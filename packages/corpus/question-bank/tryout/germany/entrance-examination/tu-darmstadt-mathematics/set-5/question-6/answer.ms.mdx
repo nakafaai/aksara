@@ -1,46 +1,52 @@
-# Tulis kedua-dua tahun sebagai faktor
+# Diberi
 
-Biar kadar faedah tahun pertama ialah <InlineMath math="P" /> peratus. Maka baki bertambah dengan faktor <InlineMath math="1+\frac{P}{100}" /> pada tahun pertama dan <InlineMath math="1+\frac{P+2}{100}" /> pada tahun kedua. **Faedah tahun pertama turut mendapat faedah pada tahun kedua**, jadi kedua-dua faktor didarab:
+Sebuah **simpanan** (*Guthaben*) sebanyak <InlineMath math="10\,000\text{ €}" /> dilaburkan selama dua tahun dengan faedah kompaun (*Zinseszins*). Kadar faedah tahun kedua adalah <InlineMath math="2" /> mata peratusan lebih tinggi daripada tahun pertama (<InlineMath math="P\,\%" /> dan <InlineMath math="(P + 2)\,\%" />), dan baki akhirnya tepat <InlineMath math="11\,235\text{ €}" />.
 
-<BlockMath math="10{,}000\cdot\left(1+\frac{P}{100}\right)\left(1+\frac{P+2}{100}\right)=11{,}235" />
+# Ditanya
 
-# Persamaan kuadratik dalam <InlineMath math="P" />
+Tentukan kadar faedah pada tahun pertama (*Zinssatz im ersten Jahr*).
 
-Oleh sebab <InlineMath math="10{,}000=100\cdot100" />, setiap faktor boleh didarab dengan <InlineMath math="100" />. Hasilnya **persamaan dengan nombor bulat**:
+# Penyelesaian
+
+Dengan faedah kompaun, faedah tahun pertama turut menjana faedah pada tahun kedua, jadi kedua-dua faktor pertumbuhan didarabkan. Oleh sebab modal awal <InlineMath math="10\,000" /> sama dengan <InlineMath math="100 \cdot 100" />, **mendarabkan seratus ke dalam setiap kurungan terus menghapuskan semua pecahan**!
+
+> Faedah kompaun dua tahun mendarabkan faktor pertumbuhan berturutan, dan modal sepuluh ribu menyerap kedua-dua penyebut seratus menjadi persamaan kuadratik integer.
+
+Tulis persamaan baki akhir bagi kadar tahun pertama <InlineMath math="P" /> peratus.
+
+<BlockMath math="10\,000 \cdot \left(1 + \frac{P}{100}\right)\left(1 + \frac{P + 2}{100}\right) = 11\,235" />
+
+## Menyelesaikan persamaan kuadratik integer
+
+Darabkan setiap kurungan dengan <InlineMath math="100" /> lalu faktorkan untuk mendapat **kadar faedah tahun pertama**.
 
 <BlockMath math="\begin{aligned}
-(100+P)(102+P)&=11{,}235 \\
-P^2+202P+10{,}200&=11{,}235 \\
-P^2+202P-1{,}035&=0 \\
-(P-5)(P+207)&=0
+(100 + P)(102 + P) &= 11\,235 \\
+P^2 + 202P + 10\,200 &= 11\,235 \\
+P^2 + 202P - 1\,035 &= 0 \\
+(P - 5)(P + 207) &= 0
 \end{aligned}" />
 
-Pemfaktoran itu sesuai kerana <InlineMath math="5\cdot207=1{,}035" /> dan <InlineMath math="207-5=202" />.
-
-# Buang penyelesaian negatif
-
-Kadar <InlineMath math="-207\,\%" /> **bukan kadar faedah yang munasabah**, kerana selepas tahun pertama bakinya sudah habis. Jadi <InlineMath math="P=5" />:
+Oleh sebab kadar negatif <InlineMath math="-207\,\%" /> tidak munasabah, hanya <InlineMath math="P = 5" /> (<InlineMath math="5\,\%" />) diterima. Perhatikan pada graf berikut betapa hampirnya lengkung kadar sama pada <InlineMath math="P = 6" />.
 
 <MathVisual
-  title={<>Baki selepas dua tahun mengikut kadar faedah</>}
-  description={<>Graf penuh menunjukkan baki <InlineMath math="(100+P)(102+P)" /> dalam euro bagi kadar <InlineMath math="P" /> peratus pada tahun pertama dan <InlineMath math="P+2" /> peratus pada tahun kedua. Graf itu bertemu garis <InlineMath math="11{,}235" /> pada <InlineMath math="P=5" />. Garis putus-putus ialah <InlineMath math="(100+P)^2" /> bagi dua kadar yang sama: nilainya hampir sama pada <InlineMath math="P=6" />.</>}
-  labels={{
-    key: <><InlineMath math="P=5" /></>,
-    eq: <><InlineMath math="P=6" /></>,
-    t: <><InlineMath math="11{,}235" /></>,
-    a: <>dua kadar</>,
-    b: <>kadar sama</>,
-  }}
+  title={<>Baki selepas dua tahun mengikut kadar tahun pertama <InlineMath math="P" /></>}
+  description={
+    <>
+      Lengkung padu menunjukkan <InlineMath math="(100 + P)(102 + P)" />{" "}
+      memotong sasaran <InlineMath math="11\,235" /> pada{" "}
+      <InlineMath math="P = 5" />. Lengkung putus-putus kadar sama{" "}
+      <InlineMath math="(100 + P)^2" /> mencapai <InlineMath math="11\,236" />{" "}
+      pada <InlineMath math="P = 6" />.
+    </>
+  }
+  footer={<>Baki tepat <InlineMath math="11\,235\text{ €}" /> tercapai pada <InlineMath math="P = 5\,\%" />, manakala kadar tetap <InlineMath math="6\,\%" /> memberi <InlineMath math="11\,236\text{ €}" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.5, max: 9.8 },
-      y: { min: 10000, max: 12300 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.8 }, y: { min: 10000, max: 12300 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x)*(102 + x)", domain: { min: 0, max: 9 } },
+      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x) * (102 + x)", domain: { min: 0, max: 9 } },
       { id: "same-rate", kind: "function", appearance: "construction", formula: "(100 + x)^2", domain: { min: 0, max: 9 } },
       { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 11235 }, to: { x: 9, y: 11235 } },
       { id: "solution", kind: "point", appearance: "answer", at: { x: 5, y: 11235 } },
@@ -54,14 +60,32 @@ Kadar <InlineMath math="-207\,\%" /> **bukan kadar faedah yang munasabah**, kera
       { key: "b", objectId: "same-rate", at: { x: 8.5, y: 11772 }, placement: "below-right" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="P = 5" /></>,
+    eq: <><InlineMath math="P = 6" /></>,
+    t: <><InlineMath math="11\,235" /></>,
+    a: <>dua kadar</>,
+    b: <>kadar sama</>,
+  }}
 />
 
-Semakan: <InlineMath math="10{,}000\cdot1.05=10{,}500" /> dan <InlineMath math="10{,}500\cdot1.07=11{,}235" />. Kadar faedah tahun pertama ialah <InlineMath math="5\,\%" />.
+Menariknya, <InlineMath math="5\,\%" /> diikuti <InlineMath math="7\,\%" /> memberi satu euro kurang daripada dua tahun <InlineMath math="6\,\%" /> kerana <InlineMath math="(a - 1)(a + 1)" /> sentiasa kurang satu daripada <InlineMath math="a^2" />.
 
-# Kenapa jawapan lain salah
+## Menyemak baki tahunan dan pilihan salah
 
-- <InlineMath math="6\,\%" /> menganggap **dua kadar yang sama**. Itu memberi <InlineMath math="10{,}000\cdot1.06^2=11{,}236\text{ €}" />, hampir sama, tetapi kedua-dua kadar mesti berbeza sebanyak <InlineMath math="2" /> mata peratus.
-- <InlineMath math="7\,\%" /> ialah kadar tahun kedua.
-- <InlineMath math="5.175\,\%" /> mengira tanpa faedah kompaun: <InlineMath math="P+(P+2)=12.35" />.
-- <InlineMath math="6.175\,\%" /> membahagi pertumbuhan keseluruhan <InlineMath math="12.35\,\%" /> sama rata bagi dua tahun.
-- <InlineMath math="12.35\,\%" /> ialah pertumbuhan bagi kedua-dua tahun bersama, bukan kadar bagi satu tahun.
+Semak tahun demi tahun bagi **kadar <InlineMath math="5\,\%" /> lalu <InlineMath math="7\,\%" />**:
+
+<BlockMath math="\begin{aligned}
+\text{Tahun 1: } &10\,000 \cdot 1.05 = 10\,500\text{ €} \\
+\text{Tahun 2: } &10\,500 \cdot 1.07 = 11\,235\text{ €}
+\end{aligned}" />
+
+- <InlineMath math="6\,\%" /> menganggap kedua-dua tahun berkadar sama lalu menghasilkan <InlineMath math="11\,236\text{ €}" />.
+- <InlineMath math="7\,\%" /> ialah kadar faedah tahun kedua, bukan tahun pertama.
+- <InlineMath math="5.175\,\%" /> mengabaikan faedah kompaun dengan menjumlahkan peratus terus menjadi <InlineMath math="12.35\,\%" />.
+- <InlineMath math="6.175\,\%" /> membahagi dua jumlah pertumbuhan <InlineMath math="12.35\,\%" /> sama rata untuk dua tahun.
+- <InlineMath math="12.35\,\%" /> ialah pertumbuhan keseluruhan dua tahun, bukan kadar setahun.
+
+# Jawapan
+
+Kadar faedah pada tahun pertama ialah <InlineMath math="5\,\%" />.

@@ -1,15 +1,72 @@
-Die beiden Holme gehen vom oberen Gelenk aus wie zwei Strahlen. Die Kette und der Boden sind beide waagerecht, also parallel. Das ist die Figur des **Strahlensatzes mit dem Gelenk als Scheitel**.
+# Gegeben
 
-Vom Gelenk aus ist die Kette <InlineMath math="1\text{ m}" /> entlang jedes Holmes entfernt, der Boden <InlineMath math="2{,}5\text{ m}" />. Die parallelen Strecken verhalten sich wie diese Abstände.
+Eine **Stehleiter** hat zwei gerade Holme der Länge <InlineMath math="2{,}5\text{ m}" />, die oben gelenkig verbunden sind und deren Füße auf dem Boden <InlineMath math="1{,}5\text{ m}" /> auseinanderstehen. Eine straffe waagerechte Kette ist an beiden Holmen jeweils <InlineMath math="1\text{ m}" /> vom oberen Gelenk entfernt befestigt.
 
-<BlockMath math="\frac{k}{1{,}5}=\frac{1}{2{,}5}\quad\Rightarrow\quad k=1{,}5\cdot0{,}4=0{,}6" />
+# Gesucht
 
-Zur Kontrolle denkst du dir die Kette weiter nach unten geschoben. Am Boden, nach <InlineMath math="2{,}5\text{ m}" />, muss sie die vollen <InlineMath math="1{,}5\text{ m}" /> überbrücken. Pro Meter Holm wächst der Abstand also um <InlineMath math="0{,}6\text{ m}" />, und nach <InlineMath math="1\text{ m}" /> sind es genau <InlineMath math="0{,}6\text{ m}" />.
+Die Länge <InlineMath math="k" /> der Kette.
 
-Die Kette ist also <InlineMath math="0{,}6\text{ m}" /> lang.
+# Lösung
 
-- <InlineMath math="0{,}4\text{ m}" /> ist nur das Verhältnis <InlineMath math="1:2{,}5" />. Es muss noch mit dem Abstand der Füße multipliziert werden.
-- <InlineMath math="0{,}9\text{ m}" /> misst die <InlineMath math="1{,}5\text{ m}" /> von den Füßen aus statt vom Gelenk, also <InlineMath math="1{,}5\cdot\frac{1{,}5}{2{,}5}" />.
-- <InlineMath math="1{,}5\text{ m}" /> nimmt an, dass parallele Strecken gleich lang sind. Die Holme laufen aber nach unten auseinander.
-- <InlineMath math="3{,}75\text{ m}" /> stellt das Verhältnis falsch herum auf, <InlineMath math="1{,}5\cdot\frac{2{,}5}{1}" />. Die Kette muss kürzer sein als der Abstand der Füße.
-- <InlineMath math="1\text{ m}" /> ist der Abstand der Befestigung vom Gelenk entlang des Holmes, nicht die Länge der Kette.
+Betrachte die Stehleiter von der Seite wie ein großes A mit dem Gelenk an der Spitze! Weil die waagerechte Kette parallel zum Boden verläuft, **schneidet sie oben ein kleines, zur ganzen Leiter ähnliches Dreieck ab**. Da die Kette <InlineMath math="1\text{ m}" /> von <InlineMath math="2{,}5\text{ m}" /> unter dem Gelenk sitzt, liegt sie genau bei zwei Fünfteln des Weges nach unten!
+
+> Schneiden zwei Parallelen zwei Strahlen vom selben Scheitelpunkt, verhalten sich die parallelen Abschnitte genauso wie ihre Abstände vom Scheitelpunkt.
+
+In der Seitenansicht erkennst du direkt die Figur des zweiten **Strahlensatzes**.
+
+<MathVisual
+  title={<>Seitenansicht der Stehleiter mit waagerechter Kette</>}
+  description={
+    <>
+      Gleichschenkliges Dreieck mit Holmlänge <InlineMath math="2{,}5\text{ m}" />{" "}
+      und Fußabstand <InlineMath math="1{,}5\text{ m}" />. Die grüne Kette
+      verläuft waagerecht in <InlineMath math="1\text{ m}" /> Abstand entlang
+      jedes Holms unterhalb des Gelenks.
+    </>
+  }
+  footer={<>Nach zwei Fünfteln der Holmlänge misst die Kette exakt zwei Fünftel von <InlineMath math="1{,}5\text{ m}" />, also <InlineMath math="0{,}6\text{ m}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.1, max: 1.1 }, y: { min: -0.3, max: 2.7 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "ladder", kind: "polygon", appearance: "primary", vertices: [{ x: -0.75, y: 0 }, { x: 0.75, y: 0 }, { x: 0, y: 2.384848 }] },
+      { id: "chain", kind: "segment", appearance: "answer", from: { x: -0.3, y: 1.430909 }, to: { x: 0.3, y: 1.430909 } },
+      { id: "hinge", kind: "point", appearance: "highlight", at: { x: 0, y: 2.384848 } },
+      { id: "left-hook", kind: "point", appearance: "answer", at: { x: -0.3, y: 1.430909 } },
+      { id: "right-hook", kind: "point", appearance: "answer", at: { x: 0.3, y: 1.430909 } },
+    ],
+    labels: [
+      { key: "top", objectId: "hinge", at: { x: 0, y: 2.384848 }, placement: "above" },
+      { key: "chain", objectId: "chain", at: { x: 0, y: 1.430909 }, placement: "below" },
+      { key: "base", objectId: "ladder", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "upper", objectId: "right-hook", at: { x: 0.2, y: 1.95 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    top: <>Gelenk</>,
+    chain: <><InlineMath math="k = 0{,}6\text{ m}" /></>,
+    base: <><InlineMath math="1{,}5\text{ m}" /></>,
+    upper: <><InlineMath math="1\text{ m}" /></>,
+  }}
+/>
+
+Das Ähnlichkeitsverhältnis liest du unmittelbar an den Holmlängen ab: <InlineMath math="1\text{ m}" /> zu <InlineMath math="2{,}5\text{ m}" />.
+
+## Kettenlänge berechnen und falsche Antworten prüfen
+
+Stelle **die Strahlensatzgleichung vom oberen Gelenk aus** auf und löse nach <InlineMath math="k" /> auf.
+
+<BlockMath math="\frac{k}{1{,}5} = \frac{1}{2{,}5} = 0{,}4 \implies k = 1{,}5 \cdot 0{,}4 = 0{,}6\text{ m}" />
+
+Anschauungsprobe: Auf <InlineMath math="2{,}5\text{ m}" /> Holmlänge wächst der Abstand auf <InlineMath math="1{,}5\text{ m}" />, also um <InlineMath math="0{,}6\text{ m}" /> pro Meter ab dem Gelenk!
+
+- <InlineMath math="0{,}4\text{ m}" /> ist nur der Verkleinerungsfaktor ohne Multiplikation mit dem Bodenabstand <InlineMath math="1{,}5\text{ m}" />.
+- <InlineMath math="0{,}9\text{ m}" /> misst fälschlich <InlineMath math="1{,}5\text{ m}" /> von unten statt <InlineMath math="1\text{ m}" /> vom Gelenk.
+- <InlineMath math="1{,}5\text{ m}" /> behandelt parallele Strecken als gleich lang, obwohl die Holme nach unten auseinandergehen.
+- <InlineMath math="3{,}75\text{ m}" /> dreht das Verhältnis um und macht die Kette breiter als den Fußabstand.
+- <InlineMath math="1\text{ m}" /> ist der Abstand der Befestigung vom Gelenk entlang des Holms, nicht die Kettenlänge.
+
+# Antwort
+
+Die Kette ist <InlineMath math="0{,}6\text{ m}" /> lang.

@@ -1,32 +1,79 @@
-# Only the last digits matter
+# Given
 
-The last digit of a product depends only on the last digits of the factors. So you don't compute the huge numbers, you only follow **how the last digit repeats as you multiply**:
+The **sum of two large powers** (*Potenzsumme*) below is written out in the decimal system (*Dezimalsystem*).
 
-| <InlineMath math="n" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
-| --- | --- | --- | --- | --- | --- | --- |
-| last digit of <InlineMath math="7^n" /> | <InlineMath math="7" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="9" /> |
-| last digit of <InlineMath math="3^n" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
+<BlockMath math="7^{2026} + 3^{2026}" />
 
-Both last digits repeat with period <InlineMath math="4" />.
+# Asked
 
-# Find the place in the cycle
+Which last digit (*Ziffer*) does this number end with?
 
-What matters is the remainder of the exponent on division by <InlineMath math="4" />:
+# Solution
 
-<BlockMath math="2026=4\cdot506+2" />
+The units digit of a power acts like a clock hand cycling through just four stops! You never need to expand <InlineMath math="7^{2026}" /> because **the final digit of every power repeats a short cycle forever**.
 
-The exponent leaves remainder <InlineMath math="2" />, so both powers sit **at the second place of the cycle**: <InlineMath math="7^{2026}" /> ends in <InlineMath math="9" />, and <InlineMath math="3^{2026}" /> also ends in <InlineMath math="9" />.
+> The last digit of a product depends only on the last digits of its factors, so find the cycle period and use the remainder of the exponent divided by that period.
 
-# Add the last digits
+List the last digits for small powers of <InlineMath math="7^n" /> and <InlineMath math="3^n" />.
 
-<BlockMath math="9+9=18" />
+| Exponent <InlineMath math="n" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Last digit of <InlineMath math="7^n" /> | <InlineMath math="7" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="9" /> |
+| Last digit of <InlineMath math="3^n" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
 
-The sum ends **in the digit <InlineMath math="8" />**.
+Watch the cycle plot below to see both sequences meet at digit <InlineMath math="9" /> whenever the exponent leaves remainder <InlineMath math="2" /> modulo <InlineMath math="4" />.
 
-# Why the other answers are wrong
+<MathVisual
+  title={<>Four-step last-digit cycles for <InlineMath math="7^n" /> and <InlineMath math="3^n" /></>}
+  description={
+    <>
+      The primary line tracks the last digit of <InlineMath math="7^n" /> (<InlineMath math="7, 9, 3, 1" />)
+      and the secondary line tracks <InlineMath math="3^n" /> (<InlineMath math="3, 9, 7, 1" />).
+      Both meet at height <InlineMath math="9" /> at <InlineMath math="n = 2" /> and <InlineMath math="n = 6" />.
+    </>
+  }
+  footer={<>Every exponent leaving remainder <InlineMath math="2" /> modulo <InlineMath math="4" /> lands both cycles on <InlineMath math="9" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 6.6 }, y: { min: 0, max: 10.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "seven-cycle", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 7 }, { x: 2, y: 9 }, { x: 3, y: 3 }, { x: 4, y: 1 }, { x: 5, y: 7 }, { x: 6, y: 9 }] },
+      { id: "three-cycle", kind: "polyline", appearance: "secondary", vertices: [{ x: 1, y: 3 }, { x: 2, y: 9 }, { x: 3, y: 7 }, { x: 4, y: 1 }, { x: 5, y: 3 }, { x: 6, y: 9 }] },
+      { id: "match-2", kind: "point", appearance: "answer", at: { x: 2, y: 9 } },
+      { id: "match-6", kind: "point", appearance: "highlight", at: { x: 6, y: 9 } },
+    ],
+    labels: [
+      { key: "p2", objectId: "match-2", at: { x: 2, y: 9 }, placement: "above" },
+      { key: "p6", objectId: "match-6", at: { x: 6, y: 9 }, placement: "above" },
+      { key: "s7", objectId: "seven-cycle", at: { x: 1, y: 7 }, placement: "left" },
+      { key: "s3", objectId: "three-cycle", at: { x: 1, y: 3 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    p2: <>rem <InlineMath math="2" /> at <InlineMath math="9" /></>,
+    p6: <>repeat at <InlineMath math="9" /></>,
+    s7: <><InlineMath math="7^n" /></>,
+    s3: <><InlineMath math="3^n" /></>,
+  }}
+/>
 
-- <InlineMath math="0" /> generalises <InlineMath math="7+3=10" />. That only works for exponents with remainder <InlineMath math="1" /> or <InlineMath math="3" />, where one last digit is <InlineMath math="7" /> and the other is <InlineMath math="3" />.
-- <InlineMath math="2" /> belongs to an exponent with remainder <InlineMath math="0" />, where both powers end in <InlineMath math="1" />.
-- <InlineMath math="9" /> is the last digit of **one** term, not of the sum.
-- <InlineMath math="6" /> comes from miscounting the period and taking last digit <InlineMath math="7" /> for <InlineMath math="3^{2026}" />: <InlineMath math="9+7=16" />.
-- <InlineMath math="4" /> mixes up the place in the cycle with the last digit and adds the remainder <InlineMath math="2" /> twice: <InlineMath math="2+2=4" />.
+Both sequences clearly repeat every <InlineMath math="4" /> steps and meet at <InlineMath math="9" /> on step two.
+
+## Finding the exponent position and checking wrong choices
+
+Divide the exponent <InlineMath math="2026" /> by the cycle length <InlineMath math="4" /> to pinpoint **its exact stop in the cycle**.
+
+<BlockMath math="2026 = 4 \cdot 506 + 2" />
+
+With remainder <InlineMath math="2" />, both <InlineMath math="7^{2026}" /> and <InlineMath math="3^{2026}" /> end in <InlineMath math="9" />, so their sum ends with the last digit of <InlineMath math="9 + 9 = 18" />, which is <InlineMath math="8" />.
+
+- <InlineMath math="0" /> holds only for odd exponents (remainder <InlineMath math="1" /> or <InlineMath math="3" />), where <InlineMath math="7 + 3 = 10" />.
+- <InlineMath math="2" /> occurs for multiples of <InlineMath math="4" /> (remainder <InlineMath math="0" />), where both terms end in <InlineMath math="1" />.
+- <InlineMath math="9" /> is the last digit of a single term before adding the two terms together.
+- <InlineMath math="6" /> comes from misreading the <InlineMath math="3^n" /> cycle as <InlineMath math="7" /> and adding <InlineMath math="9 + 7 = 16" />.
+- <InlineMath math="4" /> confuses the remainder <InlineMath math="2" /> with the last digit and adds <InlineMath math="2 + 2 = 4" />.
+
+# Answer
+
+The number <InlineMath math="7^{2026} + 3^{2026}" /> ends with the digit <InlineMath math="8" />.

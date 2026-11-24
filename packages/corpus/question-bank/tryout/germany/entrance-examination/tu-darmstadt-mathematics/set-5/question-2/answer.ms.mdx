@@ -1,20 +1,81 @@
-Soalan ini bertanya bagi nilai <InlineMath math="x" /> yang mana luasnya *mindestens* (sekurang-kurangnya) <InlineMath math="21\text{ m}^2" />. Mula-mula **tulis luas dalam sebutan <InlineMath math="x" />**, kemudian selesaikan ketaksamaan kuadratik. Perimeter memberi sisi kedua: dua sisi bersebelahan bersama-sama ialah separuh perimeter, jadi <InlineMath math="x+y=10" /> dan <InlineMath math="y=10-x" />.
+# Diberi
+
+Sebuah **batas kebun segi empat tepat** (*rechteckiges Beet*) mempunyai perimeter (*Umfang*) tepat <InlineMath math="20\text{ m}" /> dengan satu sisi sepanjang <InlineMath math="x\text{ m}" />. Luas batas (*Flächeninhalt*) mestilah sekurang-kurangnya (*mindestens*) <InlineMath math="21\text{ m}^2" />.
+
+# Ditanya
+
+Tentukan semua nilai nyata <InlineMath math="x" /> yang menjadikan luas batas sekurang-kurangnya <InlineMath math="21\text{ m}^2" />.
+
+# Penyelesaian
+
+Dengan pagar sepanjang <InlineMath math="20\text{ m}" />, dua sisi bersebelahan sentiasa berkongsi separuh perimeter, iaitu <InlineMath math="10\text{ m}" />. Jika batas dibuat terlalu panjang dan nipis (<InlineMath math="1\text{ m}" /> kali <InlineMath math="9\text{ m}" />), luasnya merosot kepada <InlineMath math="9\text{ m}^2" />, manakala **bentuk yang lebih hampir kepada segi empat sama memuatkan luas lebih besar**.
+
+> Bagi perimeter tetap, luas segi empat tepat membentuk parabola terbuka ke bawah yang memuncak pada segi empat sama, maka syarat luas minimum sentiasa menghasilkan selang tertutup antara dua sempadan simetri.
+
+Tulis sisi bersebelahan sebagai <InlineMath math="10 - x" /> dan selesaikan ketaksamaan kuadratik bagi luas.
 
 <BlockMath math="\begin{aligned}
-x(10-x)&\ge21 \\
-10x-x^2-21&\ge0 \\
-x^2-10x+21&\le0 \\
-(x-3)(x-7)&\le0
+x(10 - x) &\ge 21 \\
+10x - x^2 - 21 &\ge 0 \\
+x^2 - 10x + 21 &\le 0 \\
+(x - 3)(x - 7) &\le 0
 \end{aligned}" />
 
-Mendarab dengan <InlineMath math="-1" /> menterbalikkan tanda ketaksamaan. Hasil darab dua faktor paling banyak sifar apabila tanda kedua-dua faktor berbeza atau salah satunya sifar. Ini berlaku tepat di antara punca <InlineMath math="3" /> dan <InlineMath math="7" />, termasuk hujungnya.
+## Membaca selang luas pada lengkung parabola
 
-Sebagai semakan, uji kedua-dua hujung dan satu nilai di tengah. Bagi <InlineMath math="x=3" />, batas itu berukuran <InlineMath math="3\text{ m}" /> kali <InlineMath math="7\text{ m}" />, tepat <InlineMath math="21\text{ m}^2" />. Bagi <InlineMath math="x=5" /> kamu dapat <InlineMath math="25\text{ m}^2" />, dan bagi <InlineMath math="x=2" /> hanya <InlineMath math="16\text{ m}^2" />.
+Apabila kedua-dua belah didarab dengan <InlineMath math="-1" />, tanda ketaksamaan diterbalikkan. Hasil darab <InlineMath math="(x - 3)(x - 7)" /> adalah sifar atau negatif **tepat di antara <InlineMath math="3" /> hingga <InlineMath math="7" /> termasuk kedua-dua hujungnya**.
 
-Jadi luasnya sekurang-kurangnya <InlineMath math="21\text{ m}^2" /> bagi <InlineMath math="3\le x\le7" />.
+<MathVisual
+  title={<>Luas batas <InlineMath math="A(x) = x(10 - x)" /> berbanding paras <InlineMath math="21\text{ m}^2" /></>}
+  description={
+    <>
+      Parabola luas memuncak di <InlineMath math="(5 \mid 25)" /> dan berada
+      pada atau di atas garis <InlineMath math="y = 21" /> sepanjang jalur
+      hijau dari <InlineMath math="x = 3" /> hingga <InlineMath math="x = 7" />.
+    </>
+  }
+  footer={<>Luas kekal sekurang-kurangnya <InlineMath math="21\text{ m}^2" /> bagi seluruh selang tertutup <InlineMath math="3 \le x \le 7" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.8 }, y: { min: -2, max: 28 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "area", kind: "function", appearance: "primary", formula: "x * (10 - x)", domain: { min: 0, max: 10 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 21 }, to: { x: 10, y: 21 } },
+      { id: "span", kind: "segment", appearance: "answer", from: { x: 3, y: 21 }, to: { x: 7, y: 21 } },
+      { id: "p3", kind: "point", appearance: "answer", at: { x: 3, y: 21 } },
+      { id: "p7", kind: "point", appearance: "answer", at: { x: 7, y: 21 } },
+      { id: "peak", kind: "point", appearance: "highlight", at: { x: 5, y: 25 } },
+    ],
+    labels: [
+      { key: "l3", objectId: "p3", at: { x: 3, y: 21 }, placement: "above-left" },
+      { key: "l7", objectId: "p7", at: { x: 7, y: 21 }, placement: "above-right" },
+      { key: "top", objectId: "peak", at: { x: 5, y: 25 }, placement: "above" },
+      { key: "min", objectId: "target", at: { x: 9.8, y: 21 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    l3: <><InlineMath math="x = 3" /></>,
+    l7: <><InlineMath math="x = 7" /></>,
+    top: <>maks <InlineMath math="25" /></>,
+    min: <><InlineMath math="21\text{ m}^2" /></>,
+  }}
+/>
 
-- <InlineMath math="3<x<7" /> mengecualikan hujungnya. Pada <InlineMath math="x=3" /> dan <InlineMath math="x=7" /> luasnya tepat <InlineMath math="21\text{ m}^2" />, dan "sekurang-kurangnya" membenarkan nilai itu.
-- <InlineMath math="0<x\le3" /> atau <InlineMath math="7\le x<10" /> ialah nilai yang memberi luas paling banyak <InlineMath math="21\text{ m}^2" />. Itu sebelah lain ketaksamaan.
-- <InlineMath math="3\le x<10" /> hanya menyimpan batas bawah. Bagi <InlineMath math="x=9" /> luas batas itu cuma <InlineMath math="9\text{ m}^2" />.
-- <InlineMath math="-7\le x\le-3" /> datang daripada faktor <InlineMath math="(x+3)(x+7)" /> dengan tanda yang salah. Lagipun panjang sisi tidak boleh negatif.
-- <InlineMath math="0<x\le7" /> hanya menyimpan batas atas. Bagi <InlineMath math="x=1" /> luas batas itu cuma <InlineMath math="9\text{ m}^2" />.
+Graf menunjukkan dengan jelas kedua-dua sempadan <InlineMath math="x = 3" /> dan <InlineMath math="x = 7" /> tepat menyentuh paras <InlineMath math="21\text{ m}^2" />.
+
+## Menguji sempadan dan pilihan salah
+
+Uji tiga nilai: pada <InlineMath math="x = 3" /> luasnya tepat <InlineMath math="3 \cdot 7 = 21\text{ m}^2" />, pada <InlineMath math="x = 5" /> mencapai **luas maksimum <InlineMath math="25\text{ m}^2" />**, manakala pada <InlineMath math="x = 2" /> merosot kepada <InlineMath math="16\text{ m}^2" />.
+
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| <InlineMath math="3 < x < 7" /> | Mengecualikan kedua-dua sempadan, sedangkan perkataan sekurang-kurangnya membenarkan tepat <InlineMath math="21\text{ m}^2" />. |
+| <InlineMath math="0 < x \le 3" /> atau <InlineMath math="7 \le x < 10" /> | Mengambil bahagian luar yang luasnya selebih-lebihnya <InlineMath math="21\text{ m}^2" />. |
+| <InlineMath math="3 \le x < 10" /> | Tertinggal had atas <InlineMath math="7" />, padahal pada <InlineMath math="x = 9" /> luasnya hanya <InlineMath math="9\text{ m}^2" />. |
+| <InlineMath math="-7 \le x \le -3" /> | Salah tanda pemfaktoran kepada <InlineMath math="(x + 3)(x + 7)" /> dan panjang sisi tidak boleh negatif. |
+| <InlineMath math="0 < x \le 7" /> | Tertinggal had bawah <InlineMath math="3" />, padahal pada <InlineMath math="x = 1" /> luasnya hanya <InlineMath math="9\text{ m}^2" />. |
+
+# Jawapan
+
+Luas batas adalah sekurang-kurangnya <InlineMath math="21\text{ m}^2" /> bagi <InlineMath math="3 \le x \le 7" />.

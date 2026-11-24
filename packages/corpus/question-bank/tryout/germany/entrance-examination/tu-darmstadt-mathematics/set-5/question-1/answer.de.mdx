@@ -1,40 +1,54 @@
-# Teilbarkeit heißt Nullstelle
+# Gegeben
 
-Ein Polynom ist genau dann ohne Rest durch <InlineMath math="(x-1)" /> teilbar, wenn **<InlineMath math="x=1" /> eine Nullstelle ist**. Das liefert eine Gleichung für <InlineMath math="a" />:
+Gegeben ist das folgende **kubische Polynom** mit einem reellen Parameter <InlineMath math="a" />.
 
-<BlockMath math="p(1)=1+a-5+6=a+2=0\quad\Longrightarrow\quad a=-2" />
+<BlockMath math="p(x) = x^3 + ax^2 - 5x + 6" />
 
-# Durch den bekannten Linearfaktor teilen
+Dieses Polynom ist ohne Rest durch <InlineMath math="(x - 1)" /> teilbar.
 
-Mit <InlineMath math="a=-2" /> ist <InlineMath math="p(x)=x^3-2x^2-5x+6" />. Die Polynomdivision durch <InlineMath math="(x-1)" /> lässt **einen quadratischen Faktor** übrig, den du dann zerlegst:
+# Gesucht
+
+Alle weiteren reellen Nullstellen von <InlineMath math="p" /> außer <InlineMath math="x = 1" />.
+
+# Lösung
+
+Dass ein Polynom ohne Rest durch <InlineMath math="(x - 1)" /> teilbar ist, wirkt wie ein passender Schlüssel: **Setzt du <InlineMath math="x = 1" /> ein, muss null herauskommen**! Mit diesem einen Schritt steht <InlineMath math="a" /> sofort fest, und die Polynomdivision spaltet <InlineMath math="(x - 1)" /> zu einem einfachen quadratischen Rest ab.
+
+> Ein Polynom ist genau dann ohne Rest durch einen Linearfaktor teilbar, wenn dessen Nullstelle das Polynom zu null macht, danach senkt eine Polynomdivision den Grad auf eine quadratische Gleichung.
+
+Nutze die Nullstellenbedingung <InlineMath math="p(1) = 0" />, um <InlineMath math="a" /> zu bestimmen.
+
+<BlockMath math="p(1) = 1 + a - 5 + 6 = a + 2 = 0 \implies a = -2" />
+
+## Polynomdivision und Faktorisierung des Restpolynoms
+
+Setz <InlineMath math="a = -2" /> ein und teile durch <InlineMath math="(x - 1)" />, um **einen leicht faktorisierbaren quadratischen Faktor** zu erhalten.
 
 <BlockMath math="\begin{aligned}
-x^3-2x^2-5x+6&=(x-1)\left(x^2-x-6\right) \\
-x^2-x-6&=(x-3)(x+2)
+p(x) &= x^3 - 2x^2 - 5x + 6 \\
+&= (x - 1)\left(x^2 - x - 6\right) \\
+&= (x - 1)(x - 3)(x + 2)
 \end{aligned}" />
 
-Probe: <InlineMath math="(x-1)(x-3)(x+2)" /> ausmultipliziert ergibt wieder <InlineMath math="x^3-2x^2-5x+6" />.
+Im Graphen siehst du alle drei Nullstellen von <InlineMath math="p" /> direkt auf der waagerechten Achse.
 
 <MathVisual
-  title={<>Die drei Nullstellen von <InlineMath math="p" /></>}
-  description={<>Der Graph von <InlineMath math="p(x)=x^3-2x^2-5x+6" /> schneidet die <InlineMath math="x" />-Achse dreimal: bei <InlineMath math="-2" />, bei der gegebenen Nullstelle <InlineMath math="1" /> und bei <InlineMath math="3" />.</>}
-  labels={{
-    m2: <><InlineMath math="-2" /></>,
-    p1: <><InlineMath math="1" /></>,
-    p3: <><InlineMath math="3" /></>,
-    p: <><InlineMath math="p" /></>,
-  }}
+  title={<>Alle drei Nullstellen von <InlineMath math="p(x) = x^3 - 2x^2 - 5x + 6" /></>}
+  description={
+    <>
+      Der Graph schneidet die waagerechte Achse dreimal, bei{" "}
+      <InlineMath math="-2" />, der bekannten Nullstelle <InlineMath math="1" />{" "}
+      und <InlineMath math="3" />.
+    </>
+  }
+  footer={<>Außer <InlineMath math="x = 1" /> liegen die weiteren Nullstellen bei <InlineMath math="x = -2" /> und <InlineMath math="x = 3" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3.2, max: 4.5 },
-      y: { min: -13, max: 14 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -3.2, max: 4.5 }, y: { min: -13, max: 14 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 4.2, y: 0 } },
-      { id: "poly", kind: "function", appearance: "primary", formula: "x^3 - 2*x^2 - 5*x + 6", domain: { min: -2.6, max: 3.8 } },
+      { id: "poly", kind: "function", appearance: "primary", formula: "x^3 - 2 * x^2 - 5 * x + 6", domain: { min: -2.6, max: 3.8 } },
       { id: "r1", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
       { id: "r2", kind: "point", appearance: "highlight", at: { x: 1, y: 0 } },
       { id: "r3", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
@@ -46,14 +60,30 @@ Probe: <InlineMath math="(x-1)(x-3)(x+2)" /> ausmultipliziert ergibt wieder <Inl
       { key: "p", objectId: "poly", at: { x: 3.6, y: 10.2 }, placement: "left" },
     ],
   }}
+  labels={{
+    m2: <><InlineMath math="-2" /></>,
+    p1: <><InlineMath math="1" /></>,
+    p3: <><InlineMath math="3" /></>,
+    p: <><InlineMath math="p" /></>,
+  }}
 />
 
-Außer <InlineMath math="x=1" /> hat <InlineMath math="p" /> **die Nullstellen <InlineMath math="x=-2" /> und <InlineMath math="x=3" />**.
+Der Graph bestätigt sauber alle drei reellen Nullstellen bei <InlineMath math="-2" />, <InlineMath math="1" /> und <InlineMath math="3" />.
 
-# Warum die anderen Antworten falsch sind
+## Probe und falsche Antworten prüfen
 
-- <InlineMath math="x=2" /> und <InlineMath math="x=-3" /> sind die Nullstellen von <InlineMath math="x^2+x-6" />. Das entsteht, wenn du <InlineMath math="x^2-x-6" /> **mit vertauschten Vorzeichen zerlegst**, also als <InlineMath math="(x+3)(x-2)" />.
-- <InlineMath math="x=\frac{11\pm\sqrt{97}}{2}" /> entsteht, wenn du <InlineMath math="p(-1)=0" /> statt <InlineMath math="p(1)=0" /> ansetzt. Dann wird <InlineMath math="a=-10" />, und der Rest ist <InlineMath math="x^2-11x+6" />.
-- „Keine weiteren Nullstellen“ entsteht, wenn bei der Division <InlineMath math="x^2-x+6" /> herauskommt. Dieser Faktor hat wirklich keine Nullstelle, ist aber falsch berechnet.
-- <InlineMath math="x=-1" /> und <InlineMath math="x=6" /> sind die Nullstellen von <InlineMath math="x^2-5x-6" />. Dieser Faktor entsteht, wenn du nicht dividierst, sondern die Koeffizienten <InlineMath math="-5" /> und <InlineMath math="6" /> von <InlineMath math="p" /> einfach in einen quadratischen Term überträgst.
-- <InlineMath math="x=2" /> und <InlineMath math="x=3" /> sind die Nullstellen von <InlineMath math="x^2-5x+6" />, einem falschen Restfaktor mit vertauschten Vorzeichen.
+Kurzprobe an den drei Faktoren: Das Produkt der Konstanten ergibt **genau <InlineMath math="+6" />**, und die Summe aller drei Nullstellen passt zum Glied <InlineMath math="-2x^2" />.
+
+<BlockMath math="(-1)(-3)(2) = +6, \qquad 1 + 3 + (-2) = 2" />
+
+| Antwort | Warum sie falsch ist |
+| :--- | :--- |
+| <InlineMath math="x = 2" /> und <InlineMath math="x = -3" /> | Vertauscht beide Vorzeichen beim Faktorisieren von <InlineMath math="x^2 - x - 6" /> zu <InlineMath math="(x + 3)(x - 2)" />. |
+| <InlineMath math="x = \frac{11 \pm \sqrt{97}}{2}" /> | Nutzt <InlineMath math="p(-1) = 0" /> statt <InlineMath math="p(1) = 0" /> und erhält <InlineMath math="a = -10" />. |
+| Keine weiteren reellen Nullstellen | Verrechnet sich bei der Division zu <InlineMath math="x^2 - x + 6" /> ohne reelle Nullstellen. |
+| <InlineMath math="x = -1" /> und <InlineMath math="x = 6" /> | Übernimmt die Koeffizienten <InlineMath math="-5" /> und <InlineMath math="6" /> direkt ohne Polynomdivision. |
+| <InlineMath math="x = 2" /> und <InlineMath math="x = 3" /> | Verwendet den falschen Restfaktor <InlineMath math="x^2 - 5x + 6" /> mit falschem Vorzeichen. |
+
+# Antwort
+
+Die weiteren Nullstellen von <InlineMath math="p" /> sind <InlineMath math="x = -2" /> und <InlineMath math="x = 3" />.

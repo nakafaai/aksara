@@ -1,32 +1,79 @@
-# Nur die Endziffern zählen
+# Gegeben
 
-Die Endziffer eines Produkts hängt nur von den Endziffern der Faktoren ab. Du musst die riesigen Zahlen also nicht ausrechnen, sondern nur verfolgen, **wie sich die Endziffer beim Multiplizieren wiederholt**:
+Die folgende **Potenzsumme** wird im Dezimalsystem ausgeschrieben.
 
-| <InlineMath math="n" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
-| --- | --- | --- | --- | --- | --- | --- |
+<BlockMath math="7^{2026} + 3^{2026}" />
+
+# Gesucht
+
+Die letzte Ziffer (Einerziffer) dieser Zahl.
+
+# Lösung
+
+Die Endziffer einer Potenz dreht sich wie ein Uhrzeiger mit nur vier Stationen! Du musst <InlineMath math="7^{2026}" /> niemals ausrechnen, denn **die letzte Ziffer wiederholt immer denselben kurzen Zyklus**.
+
+> Die Endziffer eines Produkts hängt nur von den Endziffern seiner Faktoren ab, such also die Periodenlänge und teil den Exponenten mit Rest durch diese Periode.
+
+Schreib die letzten Ziffern der ersten Potenzen von <InlineMath math="7^n" /> und <InlineMath math="3^n" /> auf.
+
+| Exponent <InlineMath math="n" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Endziffer von <InlineMath math="7^n" /> | <InlineMath math="7" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="9" /> |
 | Endziffer von <InlineMath math="3^n" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
 
-Beide Endziffern wiederholen sich mit der Periode <InlineMath math="4" />.
+Im Zyklenbild siehst du direkt, wie beide Folgen immer dann bei <InlineMath math="9" /> zusammentreffen, wenn der Exponent beim Teilen durch <InlineMath math="4" /> den Rest <InlineMath math="2" /> lässt.
 
-# Die Stelle im Zyklus finden
+<MathVisual
+  title={<>Viererzyklus der Endziffern von <InlineMath math="7^n" /> und <InlineMath math="3^n" /></>}
+  description={
+    <>
+      Die Hauptlinie verfolgt die Endziffer von <InlineMath math="7^n" /> (<InlineMath math="7, 9, 3, 1" />)
+      und die zweite Linie die von <InlineMath math="3^n" /> (<InlineMath math="3, 9, 7, 1" />).
+      Beide treffen sich auf Höhe <InlineMath math="9" /> bei <InlineMath math="n = 2" /> und <InlineMath math="n = 6" />.
+    </>
+  }
+  footer={<>Jeder Exponent mit Rest <InlineMath math="2" /> bei Division durch <InlineMath math="4" /> landet bei beiden auf <InlineMath math="9" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 6.6 }, y: { min: 0, max: 10.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "seven-cycle", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 7 }, { x: 2, y: 9 }, { x: 3, y: 3 }, { x: 4, y: 1 }, { x: 5, y: 7 }, { x: 6, y: 9 }] },
+      { id: "three-cycle", kind: "polyline", appearance: "secondary", vertices: [{ x: 1, y: 3 }, { x: 2, y: 9 }, { x: 3, y: 7 }, { x: 4, y: 1 }, { x: 5, y: 3 }, { x: 6, y: 9 }] },
+      { id: "match-2", kind: "point", appearance: "answer", at: { x: 2, y: 9 } },
+      { id: "match-6", kind: "point", appearance: "highlight", at: { x: 6, y: 9 } },
+    ],
+    labels: [
+      { key: "p2", objectId: "match-2", at: { x: 2, y: 9 }, placement: "above" },
+      { key: "p6", objectId: "match-6", at: { x: 6, y: 9 }, placement: "above" },
+      { key: "s7", objectId: "seven-cycle", at: { x: 1, y: 7 }, placement: "left" },
+      { key: "s3", objectId: "three-cycle", at: { x: 1, y: 3 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    p2: <>Rest <InlineMath math="2" /> bei <InlineMath math="9" /></>,
+    p6: <>Wiederholung bei <InlineMath math="9" /></>,
+    s7: <><InlineMath math="7^n" /></>,
+    s3: <><InlineMath math="3^n" /></>,
+  }}
+/>
 
-Entscheidend ist der Rest des Exponenten bei Division durch <InlineMath math="4" />:
+Beide Folgen haben offensichtlich die Periode <InlineMath math="4" /> und treffen sich im zweiten Schritt bei <InlineMath math="9" />.
 
-<BlockMath math="2026=4\cdot506+2" />
+## Position im Zyklus bestimmen und falsche Antworten prüfen
 
-Der Exponent hat den Rest <InlineMath math="2" />, also stehen beide Potenzen **an der zweiten Stelle des Zyklus**: <InlineMath math="7^{2026}" /> endet auf <InlineMath math="9" />, und <InlineMath math="3^{2026}" /> endet auch auf <InlineMath math="9" />.
+Teil den Exponenten <InlineMath math="2026" /> durch die Periodenlänge <InlineMath math="4" />, um **seine genaue Stelle im Zyklus** zu finden.
 
-# Die Endziffern addieren
+<BlockMath math="2026 = 4 \cdot 506 + 2" />
 
-<BlockMath math="9+9=18" />
+Bei Rest <InlineMath math="2" /> enden sowohl <InlineMath math="7^{2026}" /> als auch <InlineMath math="3^{2026}" /> auf <InlineMath math="9" />, also endet ihre Summe auf die Endziffer von <InlineMath math="9 + 9 = 18" />, nämlich <InlineMath math="8" />.
 
-Die Summe endet **auf die Ziffer <InlineMath math="8" />**.
+- <InlineMath math="0" /> gilt nur für ungerade Exponenten (Rest <InlineMath math="1" /> oder <InlineMath math="3" />) mit <InlineMath math="7 + 3 = 10" />.
+- <InlineMath math="2" /> passt zu Vielfachen von <InlineMath math="4" /> (Rest <InlineMath math="0" />), wo beide Summanden auf <InlineMath math="1" /> enden.
+- <InlineMath math="9" /> ist nur die Endziffer eines einzelnen Summanden vor der Addition.
+- <InlineMath math="6" /> entsteht durch einen Fehler im Zyklus von <InlineMath math="3^n" /> mit <InlineMath math="9 + 7 = 16" />.
+- <InlineMath math="4" /> verwechselt den Rest <InlineMath math="2" /> mit der Endziffer und addiert <InlineMath math="2 + 2 = 4" />.
 
-# Warum die anderen Antworten falsch sind
+# Antwort
 
-- <InlineMath math="0" /> verallgemeinert <InlineMath math="7+3=10" />. Das gilt nur für Exponenten mit Rest <InlineMath math="1" /> oder <InlineMath math="3" />, wo eine Endziffer <InlineMath math="7" /> und die andere <InlineMath math="3" /> ist.
-- <InlineMath math="2" /> gehört zu einem Exponenten mit Rest <InlineMath math="0" />, wo beide Potenzen auf <InlineMath math="1" /> enden.
-- <InlineMath math="9" /> ist die Endziffer **eines** Summanden, nicht der Summe.
-- <InlineMath math="6" /> entsteht, wenn du die Periode falsch zählst und für <InlineMath math="3^{2026}" /> die Endziffer <InlineMath math="7" /> nimmst: <InlineMath math="9+7=16" />.
-- <InlineMath math="4" /> verwechselt die Stelle im Zyklus mit der Endziffer und addiert den Rest <InlineMath math="2" /> zweimal: <InlineMath math="2+2=4" />.
+Die Zahl <InlineMath math="7^{2026} + 3^{2026}" /> endet auf die Ziffer <InlineMath math="8" />.

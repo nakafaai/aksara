@@ -1,25 +1,35 @@
-# Ein Längsschnitt macht alles eben
+# Gegeben
 
-Schneide Kegel und Zylinder längs durch die gemeinsame Achse. Der Kegel wird zu einem Dreieck, der Zylinder zu einem Rechteck. **Die oberen Ecken des Rechtecks liegen auf den Schrägseiten**, weil der Zylinderrand den Mantel berührt:
+Ein **gerader Kreiskegel** hat den Grundkreisradius <InlineMath math="6\text{ cm}" /> und die Höhe <InlineMath math="12\text{ cm}" />. In ihn wird koaxial ein **gerader Kreiszylinder** auf derselben Grundfläche gestellt, dessen oberer Rand die Mantelfläche des Kegels berührt. Die Höhe des Zylinders ist gleich seinem Durchmesser (<InlineMath math="h = 2r" />).
+
+# Gesucht
+
+Das Volumen dieses Zylinders.
+
+# Lösung
+
+Schneid Kegel und Zylinder mitten durch ihre gemeinsame Achse, dann wird die räumliche Figur zu **einem Rechteck in einem gleichschenkligen Dreieck**! Weil die oberen Ecken des Rechtecks die schrägen Kegelwände berühren, ist der kleine Kegel über dem Zylinder zum großen Kegel ähnlich.
+
+> Ein Achsenschnitt verwandelt koaxiale Rotationskörper in ebene ähnliche Dreiecke, sodass der Strahlensatz Radius und Höhe des Zylinders sofort verknüpft.
+
+Im Achsenschnitt erkennst du das Ähnlichkeitsverhältnis direkt auf einen Blick.
 
 <MathVisual
-  title={<>Längsschnitt durch Kegel und Zylinder</>}
-  description={<>Längsschnitt durch die gemeinsame Achse: ein gleichschenkliges Dreieck mit der Grundseite <InlineMath math="12" /> und der Höhe <InlineMath math="12" />, darin ein Rechteck mit der Breite <InlineMath math="2r=6" /> und der Höhe <InlineMath math="h=6" />. Die oberen Ecken des Rechtecks, etwa <InlineMath math="(3\mid6)" />, liegen auf den Schrägseiten des Dreiecks.</>}
-  labels={{
-    s: <><InlineMath math="S" /></>,
-    r: <><InlineMath math="r=3" /></>,
-    h: <><InlineMath math="h=6" /></>,
-    base: <><InlineMath math="6" /></>,
-    top: <><InlineMath math="12" /></>,
-  }}
+  title={<>Achsenschnitt von Kegel und einbeschriebenem Zylinder</>}
+  description={
+    <>
+      Das gleichschenklige Dreieck mit Basis <InlineMath math="12" /> und Höhe{" "}
+      <InlineMath math="12" /> enthält ein Rechteck der Breite{" "}
+      <InlineMath math="2r = 6" /> und Höhe <InlineMath math="h = 6" />. Die
+      obere rechte Ecke <InlineMath math="(3 \mid 6)" /> liegt auf der
+      Mantellinie.
+    </>
+  }
+  footer={<>Die Bedingung <InlineMath math="h = 2r" /> und die Dreiecksähnlichkeit legen <InlineMath math="r = 3\text{ cm}" /> und <InlineMath math="h = 6\text{ cm}" /> fest.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -7, max: 7 },
-      y: { min: -1.5, max: 13.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -1.5, max: 13.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "cone", kind: "polygon", appearance: "primary", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }, { x: 0, y: 12 }] },
       { id: "cylinder", kind: "polygon", appearance: "answer", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
@@ -35,28 +45,37 @@ Schneide Kegel und Zylinder längs durch die gemeinsame Achse. Der Kegel wird zu
       { key: "top", objectId: "axis", at: { x: 0, y: 9 }, placement: "right" },
     ],
   }}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    r: <><InlineMath math="r = 3" /></>,
+    h: <><InlineMath math="h = 6" /></>,
+    base: <><InlineMath math="6" /></>,
+    top: <><InlineMath math="12" /></>,
+  }}
 />
 
-# Strahlensatz an der Spitze
+Über dem Zylinder sitzt ein kleiner Kegel mit Höhe <InlineMath math="12 - h" /> und Radius <InlineMath math="r" />, der zum ganzen Kegel ähnlich ist.
 
-Oberhalb des Zylinders bleibt ein kleiner Kegel mit der Höhe <InlineMath math="12-h" /> und dem Radius <InlineMath math="r" />. Er ist **dem großen Kegel ähnlich**:
+## Zylindermaße und Volumen berechnen
 
-<BlockMath math="\frac{r}{6}=\frac{12-h}{12}" />
+Wende **den Strahlensatz** gemeinsam mit <InlineMath math="h = 2r" /> an und berechne danach das Zylindervolumen.
 
-Mit der Bedingung <InlineMath math="h=2r" /> wird daraus:
+<BlockMath math="\begin{aligned}
+\frac{r}{6} &= \frac{12 - h}{12} = \frac{12 - 2r}{12} \\
+2r &= 12 - 2r \implies 4r = 12 \implies r = 3\text{ cm}, \quad h = 6\text{ cm} \\
+V &= \pi r^2 h = \pi \cdot 3^2 \cdot 6 = 54\pi\text{ cm}^3
+\end{aligned}" />
 
-<BlockMath math="\frac{r}{6}=\frac{12-2r}{12}\quad\Longrightarrow\quad 2r=12-2r\quad\Longrightarrow\quad r=3,\ h=6" />
+## Volumenprobe und falsche Antworten prüfen
 
-# Das Volumen
+Kurzprobe: Der gesamte Kegel hat <InlineMath math="144\pi\text{ cm}^3" />, sodass **der Zylinder mit <InlineMath math="54\pi\text{ cm}^3" /> genau drei Achtel des Kegels ausfüllt**, ein plausibler Anteil.
 
-<BlockMath math="V=\pi r^2h=\pi\cdot3^2\cdot6=54\pi\text{ cm}^3" />
+- <InlineMath math="64\pi\text{ cm}^3" /> setzt die Höhe gleich dem Radius (<InlineMath math="h = r" />) statt dem Durchmesser und erhält <InlineMath math="r = 4" />.
+- <InlineMath math="216\pi\text{ cm}^3" /> setzt fälschlich den Durchmesser <InlineMath math="6" /> statt des Radius in die Zylinderformel ein.
+- <InlineMath math="18\pi\text{ cm}^3" /> wendet den Kegelfaktor <InlineMath math="\frac{1}{3}" /> irrtümlich auf einen Zylinder an.
+- <InlineMath math="27\pi\text{ cm}^3" /> rechnet mit Höhe <InlineMath math="3" /> statt <InlineMath math="6" />.
+- <InlineMath math="48\pi\text{ cm}^3" /> vermischt Radius <InlineMath math="4" /> und Höhe <InlineMath math="3" /> aus zwei verschiedenen Ansätzen.
 
-Der Zylinder hat **das Volumen <InlineMath math="54\pi\text{ cm}^3" />**.
+# Antwort
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="64\pi\text{ cm}^3" /> setzt die Höhe gleich dem **Radius** statt dem Durchmesser: Aus <InlineMath math="\frac r6=\frac{12-r}{12}" /> folgt <InlineMath math="r=4" />, und <InlineMath math="\pi\cdot16\cdot4=64\pi" />.
-- <InlineMath math="216\pi\text{ cm}^3" /> rechnet mit dem Durchmesser <InlineMath math="6" /> als Radius: <InlineMath math="\pi\cdot36\cdot6" />.
-- <InlineMath math="18\pi\text{ cm}^3" /> nimmt die Kegelformel mit <InlineMath math="\frac13" /> für den Zylinder.
-- <InlineMath math="27\pi\text{ cm}^3" /> nimmt die Höhe <InlineMath math="3" /> statt <InlineMath math="6" />.
-- <InlineMath math="48\pi\text{ cm}^3" /> ist das Volumen eines Zylinders mit Radius <InlineMath math="4" /> und Höhe <InlineMath math="3" />: Hier wurden Radius und Höhe aus zwei verschiedenen Ansätzen gemischt.
+Das Volumen des Zylinders beträgt <InlineMath math="54\pi\text{ cm}^3" />.

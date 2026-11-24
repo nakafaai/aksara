@@ -1,32 +1,79 @@
-# Hanya digit terakhir yang penting
+# Diberi
 
-Digit terakhir suatu hasil darab hanya bergantung pada digit terakhir faktor-faktornya. Jadi kamu tidak perlu mengira nombor yang sangat besar itu, cukup ikut **bagaimana digit terakhirnya berulang apabila didarab**:
+**Hasil tambah dua kuasa besar** (*Potenzsumme*) berikut ditulis dalam sistem perpuluhan (*Dezimalsystem*).
 
-| <InlineMath math="n" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
-| --- | --- | --- | --- | --- | --- | --- |
-| digit terakhir <InlineMath math="7^n" /> | <InlineMath math="7" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="9" /> |
-| digit terakhir <InlineMath math="3^n" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
+<BlockMath math="7^{2026} + 3^{2026}" />
 
-Kedua-dua digit terakhir berulang dengan kala <InlineMath math="4" />.
+# Ditanya
 
-# Cari kedudukan dalam kitaran
+Apakah digit terakhir (*Ziffer*) bagi nombor ini?
 
-Yang menentukan ialah baki pembahagian eksponen dengan <InlineMath math="4" />:
+# Penyelesaian
 
-<BlockMath math="2026=4\cdot506+2" />
+Digit sa bagi suatu kuasa bertindak seperti jarum jam dengan empat hentian sahaja! Kamu tidak perlu mengira <InlineMath math="7^{2026}" /> sepenuhnya kerana **digit terakhir setiap kuasa mengulang kitaran pendek yang sama berulang kali**.
 
-Bakinya <InlineMath math="2" />, jadi kedua-dua kuasa berada **pada kedudukan kedua kitaran**: <InlineMath math="7^{2026}" /> berakhir dengan <InlineMath math="9" />, dan <InlineMath math="3^{2026}" /> juga berakhir dengan <InlineMath math="9" />.
+> Digit terakhir bagi hasil darab hanya bergantung pada digit terakhir faktor-faktornya, maka cari tempoh kitaran dan gunakan baki pembahagian indeks dengan tempoh itu.
 
-# Tambah digit terakhir
+Senaraikan digit terakhir bagi kuasa kecil <InlineMath math="7^n" /> dan <InlineMath math="3^n" />.
 
-<BlockMath math="9+9=18" />
+| Indeks <InlineMath math="n" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Digit akhir <InlineMath math="7^n" /> | <InlineMath math="7" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="9" /> |
+| Digit akhir <InlineMath math="3^n" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
 
-Hasil tambah itu berakhir **dengan digit <InlineMath math="8" />**.
+Lihat graf kitaran berikut untuk menyaksikan kedua-dua jujukan bertemu pada digit <InlineMath math="9" /> setiap kali indeks berbaki <InlineMath math="2" /> apabila dibahagi <InlineMath math="4" />.
 
-# Kenapa jawapan lain salah
+<MathVisual
+  title={<>Kitaran empat langkah digit terakhir <InlineMath math="7^n" /> dan <InlineMath math="3^n" /></>}
+  description={
+    <>
+      Garis utama menjejak digit terakhir <InlineMath math="7^n" /> (<InlineMath math="7, 9, 3, 1" />)
+      dan garis sekunder menjejak <InlineMath math="3^n" /> (<InlineMath math="3, 9, 7, 1" />).
+      Kedua-duanya bertemu di aras <InlineMath math="9" /> pada <InlineMath math="n = 2" /> dan <InlineMath math="n = 6" />.
+    </>
+  }
+  footer={<>Setiap indeks berbaki <InlineMath math="2" /> dibahagi <InlineMath math="4" /> meletakkan kedua-dua kitaran pada <InlineMath math="9" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 6.6 }, y: { min: 0, max: 10.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "seven-cycle", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 7 }, { x: 2, y: 9 }, { x: 3, y: 3 }, { x: 4, y: 1 }, { x: 5, y: 7 }, { x: 6, y: 9 }] },
+      { id: "three-cycle", kind: "polyline", appearance: "secondary", vertices: [{ x: 1, y: 3 }, { x: 2, y: 9 }, { x: 3, y: 7 }, { x: 4, y: 1 }, { x: 5, y: 3 }, { x: 6, y: 9 }] },
+      { id: "match-2", kind: "point", appearance: "answer", at: { x: 2, y: 9 } },
+      { id: "match-6", kind: "point", appearance: "highlight", at: { x: 6, y: 9 } },
+    ],
+    labels: [
+      { key: "p2", objectId: "match-2", at: { x: 2, y: 9 }, placement: "above" },
+      { key: "p6", objectId: "match-6", at: { x: 6, y: 9 }, placement: "above" },
+      { key: "s7", objectId: "seven-cycle", at: { x: 1, y: 7 }, placement: "left" },
+      { key: "s3", objectId: "three-cycle", at: { x: 1, y: 3 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    p2: <>baki <InlineMath math="2" /> di <InlineMath math="9" /></>,
+    p6: <>ulang di <InlineMath math="9" /></>,
+    s7: <><InlineMath math="7^n" /></>,
+    s3: <><InlineMath math="3^n" /></>,
+  }}
+/>
 
-- <InlineMath math="0" /> mengitlakkan <InlineMath math="7+3=10" />. Itu hanya benar bagi eksponen yang bakinya <InlineMath math="1" /> atau <InlineMath math="3" />, apabila satu digit terakhir ialah <InlineMath math="7" /> dan satu lagi <InlineMath math="3" />.
-- <InlineMath math="2" /> sesuai untuk eksponen yang bakinya <InlineMath math="0" />, apabila kedua-duanya berakhir dengan <InlineMath math="1" />.
-- <InlineMath math="9" /> ialah digit terakhir **satu** sebutan sahaja, bukan hasil tambahnya.
-- <InlineMath math="6" /> terhasil kalau kala tersalah kira sehingga <InlineMath math="3^{2026}" /> diberi digit terakhir <InlineMath math="7" />: <InlineMath math="9+7=16" />.
-- <InlineMath math="4" /> terkeliru antara kedudukan dalam kitaran dengan digit terakhir, lalu menambah baki <InlineMath math="2" /> dua kali: <InlineMath math="2+2=4" />.
+Kedua-dua jujukan jelas berulang setiap <InlineMath math="4" /> langkah dan bertemu di <InlineMath math="9" /> pada langkah kedua.
+
+## Menentukan kedudukan indeks dan menyemak pilihan salah
+
+Bahagikan indeks <InlineMath math="2026" /> dengan tempoh <InlineMath math="4" /> untuk mencari **kedudukan tepatnya dalam kitaran**.
+
+<BlockMath math="2026 = 4 \cdot 506 + 2" />
+
+Dengan baki <InlineMath math="2" />, kedua-dua <InlineMath math="7^{2026}" /> dan <InlineMath math="3^{2026}" /> berakhir dengan digit <InlineMath math="9" />, maka hasil tambahnya berakhir dengan digit sa bagi <InlineMath math="9 + 9 = 18" />, iaitu <InlineMath math="8" />.
+
+- <InlineMath math="0" /> hanya berlaku bagi indeks ganjil (baki <InlineMath math="1" /> atau <InlineMath math="3" />) apabila <InlineMath math="7 + 3 = 10" />.
+- <InlineMath math="2" /> berlaku bagi gandaan <InlineMath math="4" /> (baki <InlineMath math="0" />) apabila kedua-duanya berakhir dengan <InlineMath math="1" />.
+- <InlineMath math="9" /> ialah digit terakhir satu sebutan sahaja sebelum ditambah dengan sebutan kedua.
+- <InlineMath math="6" /> berpunca daripada tersilap membaca kitaran <InlineMath math="3^n" /> sebagai <InlineMath math="7" /> lalu mengira <InlineMath math="9 + 7 = 16" />.
+- <InlineMath math="4" /> keliru antara baki <InlineMath math="2" /> dengan digit terakhir lalu menambah <InlineMath math="2 + 2 = 4" />.
+
+# Jawapan
+
+Nombor <InlineMath math="7^{2026} + 3^{2026}" /> berakhir dengan digit <InlineMath math="8" />.

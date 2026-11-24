@@ -1,32 +1,79 @@
-# Hanya angka terakhir yang penting
+# Diketahui
 
-Angka terakhir suatu hasil kali hanya bergantung pada angka terakhir faktor-faktornya. Jadi bilangan raksasa itu tidak perlu dihitung, cukup ikuti **bagaimana angka terakhirnya berulang saat dikalikan**:
+**Jumlah dua bilangan berpangkat besar** (*Potenzsumme*) berikut dituliskan dalam sistem desimal (*Dezimalsystem*).
 
-| <InlineMath math="n" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
-| --- | --- | --- | --- | --- | --- | --- |
-| angka terakhir <InlineMath math="7^n" /> | <InlineMath math="7" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="9" /> |
-| angka terakhir <InlineMath math="3^n" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
+<BlockMath math="7^{2026} + 3^{2026}" />
 
-Kedua angka terakhir berulang dengan periode <InlineMath math="4" />.
+# Ditanyakan
 
-# Temukan posisinya dalam siklus
+Berakhir pada angka satuan (*Ziffer*) berapakah bilangan ini?
 
-Yang menentukan adalah sisa pembagian pangkat oleh <InlineMath math="4" />:
+# Penyelesaian
 
-<BlockMath math="2026=4\cdot506+2" />
+Angka satuan hasil perkalian bekerja seperti jarum jam berputar empat langkah! Kamu sama sekali tidak perlu menghitung <InlineMath math="7^{2026}" /> secara penuh karena **angka terakhir suatu pangkat selalu mengulang siklus pendek yang sama terus-menerus**.
 
-Sisanya <InlineMath math="2" />, jadi kedua bilangan berpangkat itu ada **di posisi kedua siklus**: <InlineMath math="7^{2026}" /> berakhir dengan <InlineMath math="9" />, dan <InlineMath math="3^{2026}" /> juga berakhir dengan <InlineMath math="9" />.
+> Angka satuan suatu hasil kali hanya bergantung pada angka satuan faktor-faktornya, sehingga cukup temukan panjang periode siklus lalu gunakan sisa pembagian pangkat oleh panjang periode itu.
 
-# Jumlahkan angka terakhirnya
+Catat pola angka terakhir dari pangkat kecil <InlineMath math="7^n" /> dan <InlineMath math="3^n" />.
 
-<BlockMath math="9+9=18" />
+| Pangkat <InlineMath math="n" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Angka satuan <InlineMath math="7^n" /> | <InlineMath math="7" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="9" /> |
+| Angka satuan <InlineMath math="3^n" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
 
-Jumlah itu berakhir **dengan angka <InlineMath math="8" />**.
+Lihat grafik siklus berikut untuk menyaksikan bagaimana kedua barisan bertemu tepat di angka <InlineMath math="9" /> setiap kali pangkatnya bersisa <InlineMath math="2" /> dibagi <InlineMath math="4" />.
 
-# Mengapa pilihan lain salah
+<MathVisual
+  title={<>Siklus empat langkah angka satuan <InlineMath math="7^n" /> dan <InlineMath math="3^n" /></>}
+  description={
+    <>
+      Garis biru melacak angka satuan <InlineMath math="7^n" /> (<InlineMath math="7, 9, 3, 1" />)
+      dan garis sekunder melacak angka satuan <InlineMath math="3^n" /> (<InlineMath math="3, 9, 7, 1" />).
+      Keduanya bertemu di tinggi <InlineMath math="9" /> pada <InlineMath math="n = 2" /> dan <InlineMath math="n = 6" />.
+    </>
+  }
+  footer={<>Setiap pangkat bersisa <InlineMath math="2" /> dibagi <InlineMath math="4" /> mendaratkan kedua siklus tepat di angka <InlineMath math="9" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 6.6 }, y: { min: 0, max: 10.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "seven-cycle", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 7 }, { x: 2, y: 9 }, { x: 3, y: 3 }, { x: 4, y: 1 }, { x: 5, y: 7 }, { x: 6, y: 9 }] },
+      { id: "three-cycle", kind: "polyline", appearance: "secondary", vertices: [{ x: 1, y: 3 }, { x: 2, y: 9 }, { x: 3, y: 7 }, { x: 4, y: 1 }, { x: 5, y: 3 }, { x: 6, y: 9 }] },
+      { id: "match-2", kind: "point", appearance: "answer", at: { x: 2, y: 9 } },
+      { id: "match-6", kind: "point", appearance: "highlight", at: { x: 6, y: 9 } },
+    ],
+    labels: [
+      { key: "p2", objectId: "match-2", at: { x: 2, y: 9 }, placement: "above" },
+      { key: "p6", objectId: "match-6", at: { x: 6, y: 9 }, placement: "above" },
+      { key: "s7", objectId: "seven-cycle", at: { x: 1, y: 7 }, placement: "left" },
+      { key: "s3", objectId: "three-cycle", at: { x: 1, y: 3 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    p2: <>sisa <InlineMath math="2" /> di <InlineMath math="9" /></>,
+    p6: <>siklus ulang di <InlineMath math="9" /></>,
+    s7: <><InlineMath math="7^n" /></>,
+    s3: <><InlineMath math="3^n" /></>,
+  }}
+/>
 
-- <InlineMath math="0" /> menggeneralisasi <InlineMath math="7+3=10" />. Itu hanya berlaku untuk pangkat bersisa <InlineMath math="1" /> atau <InlineMath math="3" />, ketika satu angka terakhir <InlineMath math="7" /> dan yang lain <InlineMath math="3" />.
-- <InlineMath math="2" /> cocok untuk pangkat bersisa <InlineMath math="0" />, ketika keduanya berakhir dengan <InlineMath math="1" />.
-- <InlineMath math="9" /> adalah angka terakhir **satu** suku saja, bukan jumlahnya.
-- <InlineMath math="6" /> muncul kalau periodenya salah hitung sehingga <InlineMath math="3^{2026}" /> diberi angka terakhir <InlineMath math="7" />: <InlineMath math="9+7=16" />.
-- <InlineMath math="4" /> tertukar antara posisi dalam siklus dan angka terakhir, lalu menjumlahkan sisa <InlineMath math="2" /> dua kali: <InlineMath math="2+2=4" />.
+Kedua siklus jelas memiliki panjang periode <InlineMath math="4" /> dan sama-sama memuncak di <InlineMath math="9" /> pada langkah kedua.
+
+## Menentukan posisi pangkat dan mengecek pilihan salah
+
+Bagi pangkat <InlineMath math="2026" /> dengan panjang periode <InlineMath math="4" /> untuk menemukan **posisi persisnya di dalam siklus**.
+
+<BlockMath math="2026 = 4 \cdot 506 + 2" />
+
+Karena sisanya <InlineMath math="2" />, baik <InlineMath math="7^{2026}" /> maupun <InlineMath math="3^{2026}" /> berakhir dengan angka <InlineMath math="9" />, sehingga jumlah keduanya berakhir dengan angka satuan dari <InlineMath math="9 + 9 = 18" />, yaitu <InlineMath math="8" />.
+
+- <InlineMath math="0" /> hanya berlaku untuk pangkat ganjil (sisa <InlineMath math="1" /> atau <InlineMath math="3" />) ketika <InlineMath math="7 + 3 = 10" />.
+- <InlineMath math="2" /> cocok untuk pangkat kelipatan <InlineMath math="4" /> (sisa <InlineMath math="0" />) ketika keduanya berakhir dengan <InlineMath math="1" />.
+- <InlineMath math="9" /> adalah angka terakhir satu suku saja, belum dijumlahkan dengan suku kedua.
+- <InlineMath math="6" /> muncul jika salah membaca siklus <InlineMath math="3^n" /> sehingga mengambil <InlineMath math="7" /> dan menghitung <InlineMath math="9 + 7 = 16" />.
+- <InlineMath math="4" /> tertukar antara sisa pangkat <InlineMath math="2" /> dan angka satuan lalu menjumlahkan <InlineMath math="2 + 2 = 4" />.
+
+# Jawaban
+
+Bilangan <InlineMath math="7^{2026} + 3^{2026}" /> berakhir pada angka <InlineMath math="8" />.

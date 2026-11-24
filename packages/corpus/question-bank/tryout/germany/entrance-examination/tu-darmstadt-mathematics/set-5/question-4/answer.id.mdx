@@ -1,42 +1,50 @@
-# Nyatakan banyak kemeja sebagai pecahan
+# Diketahui
 
-Kalau satu kemeja berharga <InlineMath math="p" /> euro, dengan <InlineMath math="600" /> euro pedagang mendapat tepat <InlineMath math="\frac{600}{p}" /> kemeja. Dengan harga <InlineMath math="p-5" /> ia akan mendapat <InlineMath math="\frac{600}{p-5}" /> kemeja, dan itu **tepat <InlineMath math="4" /> kemeja lebih banyak**:
+Seorang **pedagang** (*Händler*) membelanjakan total <InlineMath math="600\text{ €}" /> untuk membeli sejumlah kemeja (*Hemden*) dengan harga satuan sama. Andai setiap kemeja <InlineMath math="5\text{ €}" /> lebih murah, uang <InlineMath math="600\text{ €}" /> yang sama akan membeli tepat <InlineMath math="4" /> kemeja lebih banyak.
 
-<BlockMath math="\frac{600}{p-5}-\frac{600}{p}=4" />
+# Ditanyakan
 
-# Selesaikan persamaannya
+Tentukan harga beli satu kemeja <InlineMath math="p" /> yang sebenarnya.
 
-Kalikan dengan <InlineMath math="p(p-5)" />, **lalu bagi dengan <InlineMath math="4" />**:
+# Penyelesaian
+
+Dengan anggaran tetap <InlineMath math="600\text{ €}" />, potongan harga <InlineMath math="5\text{ €}" /> per kemeja membuat kita mendapat lebih banyak kemeja: **banyak kemeja pada harga murah dikurangi banyak kemeja pada harga asli harus sama dengan <InlineMath math="4" />**.
+
+> Ketika anggaran tetap tetapi harga satuan turun, jumlah barang bertambah sehingga selalu kurangkan jumlah pada harga lebih murah dengan jumlah pada harga lebih mahal agar selisihnya positif.
+
+Misalkan harga asli satu kemeja adalah <InlineMath math="p" /> euro (<InlineMath math="p > 5" />), maka persamaan selisih banyak kemeja berbentuk sebagai berikut.
+
+<BlockMath math="\frac{600}{p - 5} - \frac{600}{p} = 4" />
+
+## Menyelesaikan persamaan kuadrat dan memilih harga positif
+
+Kalikan kedua ruas dengan <InlineMath math="p(p - 5)" /> lalu **bagi kedua ruas dengan <InlineMath math="4" />** agar pemfaktorannya ringkas.
 
 <BlockMath math="\begin{aligned}
-600p-600(p-5)&=4p(p-5) \\
-3000&=4p^2-20p \\
-p^2-5p-750&=0 \\
-(p-30)(p+25)&=0
+600p - 600(p - 5) &= 4p(p - 5) \\
+3000 &= 4p^2 - 20p \\
+p^2 - 5p - 750 &= 0 \\
+(p - 30)(p + 25) &= 0
 \end{aligned}" />
 
-# Pertahankan harga yang masuk akal
-
-Harga pasti positif, jadi **<InlineMath math="p=-25" /> gugur**:
+Karena harga barang wajib positif, <InlineMath math="p = -25" /> gugur dan tersisa <InlineMath math="p = 30" />. Lihat grafik tambahan kemeja di bawah untuk melihat mengapa hanya satu harga yang cocok.
 
 <MathVisual
-  title={<>Berapa kemeja lebih banyak</>}
-  description={<>Untuk setiap harga <InlineMath math="p" /> dalam euro, grafik menunjukkan berapa kemeja lebih banyak yang didapat dengan <InlineMath math="600" /> euro kalau setiap kemeja <InlineMath math="5" /> euro lebih murah: <InlineMath math="\frac{600}{p-5}-\frac{600}{p}" />. Garis mendatar ada di <InlineMath math="4" /> kemeja. Garis itu memotong grafik yang turun di <InlineMath math="p=30" />.</>}
-  labels={{
-    key: <><InlineMath math="p=30" /></>,
-    d: <>tambahan kemeja</>,
-    four: <><InlineMath math="4" /></>,
-  }}
+  title={<>Tambahan banyak kemeja menurut harga awal <InlineMath math="p" /></>}
+  description={
+    <>
+      Kurva tambahan kemeja terus menurun saat harga <InlineMath math="p" />{" "}
+      naik dan memotong garis target <InlineMath math="y = 4" /> tepat satu kali
+      di <InlineMath math="p = 30" />.
+    </>
+  }
+  footer={<>Tambahan tepat <InlineMath math="4" /> kemeja hanya terjadi saat harga awal <InlineMath math="p = 30\text{ €}" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 8, max: 62 },
-      y: { min: 0, max: 40 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: 8, max: 62 }, y: { min: 0, max: 40 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "difference", kind: "function", appearance: "primary", formula: "600/(x-5) - 600/x", domain: { min: 12, max: 60 } },
+      { id: "difference", kind: "function", appearance: "primary", formula: "600 / (x - 5) - 600 / x", domain: { min: 12, max: 60 } },
       { id: "level", kind: "segment", appearance: "reference", from: { x: 10, y: 4 }, to: { x: 60, y: 4 } },
       { id: "meet", kind: "point", appearance: "answer", at: { x: 30, y: 4 } },
     ],
@@ -46,14 +54,25 @@ Harga pasti positif, jadi **<InlineMath math="p=-25" /> gugur**:
       { key: "four", objectId: "level", at: { x: 60, y: 4 }, placement: "above" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="p = 30" /></>,
+    d: <>tambahan kemeja</>,
+    four: <><InlineMath math="4" /></>,
+  }}
 />
 
-Cek: dengan harga <InlineMath math="30" /> euro didapat <InlineMath math="20" /> kemeja, dengan harga <InlineMath math="25" /> euro didapat <InlineMath math="24" />, jadi <InlineMath math="4" /> lebih banyak. Harga satu kemeja <InlineMath math="30" /> euro.
+Makin mahal harga kemeja, makin sedikit bonus kemeja dari diskon <InlineMath math="5\text{ €}" />, sehingga titik <InlineMath math="p = 30" /> bersifat tunggal.
 
-# Mengapa pilihan lain salah
+## Menguji dengan hitungan belanja dan pilihan salah
 
-- <InlineMath math="25" /> euro adalah **harga murah yang hanya dibayangkan**, bukan harga sebenarnya.
-- <InlineMath math="20" /> euro sebenarnya banyaknya kemeja, <InlineMath math="\frac{600}{30}=20" />.
-- "Tidak ada harga yang cocok" muncul kalau persamaannya disusun terbalik: <InlineMath math="\frac{600}{p}-\frac{600}{p-5}=4" />. Ruas kirinya negatif untuk setiap harga di atas <InlineMath math="5" /> euro.
-- <InlineMath math="24" /> euro adalah banyaknya kemeja dengan harga yang lebih murah.
-- <InlineMath math="150" /> euro membagi <InlineMath math="600" /> dengan <InlineMath math="4" /> kemeja tambahan.
+Cek langsung: dengan <InlineMath math="30\text{ €}" /> per kemeja diperoleh <InlineMath math="20" /> kemeja, dan dengan <InlineMath math="25\text{ €}" /> diperoleh <InlineMath math="24" /> kemeja, **tepat <InlineMath math="4" /> kemeja lebih banyak**.
+
+- <InlineMath math="25\text{ €}" /> adalah harga diskon yang hanya dibayangkan, bukan harga asli yang dibayar pedagang.
+- <InlineMath math="20\text{ €}" /> tertukar dengan jumlah <InlineMath math="20" /> kemeja yang dibeli.
+- Tidak ada harga yang cocok muncul jika urutan pengurangan dibalik sehingga ruas kiri selalu negatif.
+- <InlineMath math="24\text{ €}" /> tertukar dengan jumlah <InlineMath math="24" /> kemeja pada harga lebih murah.
+- <InlineMath math="150\text{ €}" /> membagi anggaran <InlineMath math="600\text{ €}" /> langsung dengan <InlineMath math="4" /> kemeja tambahan.
+
+# Jawaban
+
+Harga satu kemeja adalah <InlineMath math="30\text{ €}" />.

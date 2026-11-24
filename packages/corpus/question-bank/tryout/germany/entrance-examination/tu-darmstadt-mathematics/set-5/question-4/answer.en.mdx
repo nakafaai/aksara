@@ -1,42 +1,50 @@
-# Write the number of shirts as a fraction
+# Given
 
-If a shirt costs <InlineMath math="p" /> euros, <InlineMath math="600" /> euros buy exactly <InlineMath math="\frac{600}{p}" /> shirts. At the price <InlineMath math="p-5" /> it would be <InlineMath math="\frac{600}{p-5}" /> shirts, and that's **exactly <InlineMath math="4" /> shirts more**:
+A **merchant** (*Händler*) spends a total of <InlineMath math="600\text{ €}" /> on shirts (*Hemden*) that all cost the same price. Had each shirt been <InlineMath math="5\text{ €}" /> cheaper, the same <InlineMath math="600\text{ €}" /> would have bought exactly <InlineMath math="4" /> more shirts.
 
-<BlockMath math="\frac{600}{p-5}-\frac{600}{p}=4" />
+# Asked
 
-# Solve the equation
+Find the actual price <InlineMath math="p" /> of one shirt.
 
-Multiply by <InlineMath math="p(p-5)" /> and **then divide by <InlineMath math="4" />**:
+# Solution
+
+On a fixed <InlineMath math="600\text{ €}" /> budget, a <InlineMath math="5\text{ €}" /> discount stretches your money further: **the shirt count at the cheaper price minus the shirt count at the actual price must equal <InlineMath math="4" />**.
+
+> With a fixed budget, lowering the unit price increases quantity, so always subtract the higher-price quantity from the lower-price quantity to keep the difference positive.
+
+Let the actual shirt price be <InlineMath math="p" /> euros (<InlineMath math="p > 5" />), which gives the quantity-difference equation below.
+
+<BlockMath math="\frac{600}{p - 5} - \frac{600}{p} = 4" />
+
+## Solving the quadratic and keeping the positive price
+
+Multiply both sides by <InlineMath math="p(p - 5)" /> and **divide through by <InlineMath math="4" />** to keep the factoring clean.
 
 <BlockMath math="\begin{aligned}
-600p-600(p-5)&=4p(p-5) \\
-3000&=4p^2-20p \\
-p^2-5p-750&=0 \\
-(p-30)(p+25)&=0
+600p - 600(p - 5) &= 4p(p - 5) \\
+3000 &= 4p^2 - 20p \\
+p^2 - 5p - 750 &= 0 \\
+(p - 30)(p + 25) &= 0
 \end{aligned}" />
 
-# Keep the price that makes sense
-
-A price is positive, so **<InlineMath math="p=-25" /> drops out**:
+Since a price must be positive, <InlineMath math="p = -25" /> drops out and <InlineMath math="p = 30" /> remains. Watch on the graph how the extra-shirt curve crosses <InlineMath math="y = 4" /> once.
 
 <MathVisual
-  title={<>How many more shirts</>}
-  description={<>For each possible price <InlineMath math="p" /> in euros, the graph shows how many more shirts <InlineMath math="600" /> euros buy if each is <InlineMath math="5" /> euros cheaper: <InlineMath math="\frac{600}{p-5}-\frac{600}{p}" />. The horizontal line is at <InlineMath math="4" /> shirts. It meets the falling graph at <InlineMath math="p=30" />.</>}
-  labels={{
-    key: <><InlineMath math="p=30" /></>,
-    d: <>extra shirts</>,
-    four: <><InlineMath math="4" /></>,
-  }}
+  title={<>Extra shirts gained versus actual shirt price <InlineMath math="p" /></>}
+  description={
+    <>
+      The extra-shirt curve drops steadily as price <InlineMath math="p" />{" "}
+      increases and crosses the target line <InlineMath math="y = 4" /> once,
+      at <InlineMath math="p = 30" />.
+    </>
+  }
+  footer={<>Exactly <InlineMath math="4" /> extra shirts occur only at an original price of <InlineMath math="p = 30\text{ €}" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 8, max: 62 },
-      y: { min: 0, max: 40 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: 8, max: 62 }, y: { min: 0, max: 40 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "difference", kind: "function", appearance: "primary", formula: "600/(x-5) - 600/x", domain: { min: 12, max: 60 } },
+      { id: "difference", kind: "function", appearance: "primary", formula: "600 / (x - 5) - 600 / x", domain: { min: 12, max: 60 } },
       { id: "level", kind: "segment", appearance: "reference", from: { x: 10, y: 4 }, to: { x: 60, y: 4 } },
       { id: "meet", kind: "point", appearance: "answer", at: { x: 30, y: 4 } },
     ],
@@ -46,14 +54,25 @@ A price is positive, so **<InlineMath math="p=-25" /> drops out**:
       { key: "four", objectId: "level", at: { x: 60, y: 4 }, placement: "above" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="p = 30" /></>,
+    d: <>extra shirts</>,
+    four: <><InlineMath math="4" /></>,
+  }}
 />
 
-Check: <InlineMath math="30" /> euros a shirt buys <InlineMath math="20" /> shirts, <InlineMath math="25" /> euros a shirt buys <InlineMath math="24" />, which is <InlineMath math="4" /> more. A shirt cost <InlineMath math="30" /> euros.
+Higher prices shrink the bonus from a <InlineMath math="5\text{ €}" /> discount, making <InlineMath math="p = 30" /> the unique positive answer.
 
-# Why the other answers are wrong
+## Checking the purchase and wrong choices
 
-- <InlineMath math="25" /> euros is **the imagined cheaper price**, not the real one.
-- <InlineMath math="20" /> euros is really the number of shirts, <InlineMath math="\frac{600}{30}=20" />.
-- "No price fits" comes from setting up the equation the wrong way round: <InlineMath math="\frac{600}{p}-\frac{600}{p-5}=4" />. The left side is negative for every price above <InlineMath math="5" /> euros.
-- <InlineMath math="24" /> euros is the number of shirts at the cheaper price.
-- <InlineMath math="150" /> euros divides <InlineMath math="600" /> by the <InlineMath math="4" /> extra shirts.
+Quick purchase check: at <InlineMath math="30\text{ €}" /> each you get <InlineMath math="20" /> shirts, and at <InlineMath math="25\text{ €}" /> each you get <InlineMath math="24" /> shirts, **exactly <InlineMath math="4" /> more shirts**.
+
+- <InlineMath math="25\text{ €}" /> is the hypothetical discounted price rather than the actual price paid.
+- <InlineMath math="20\text{ €}" /> confuses the number of shirts bought (<InlineMath math="20" />) with the price.
+- No price matches arises when you reverse the subtraction order, making the left side negative for every <InlineMath math="p > 5" />.
+- <InlineMath math="24\text{ €}" /> confuses the cheaper-price shirt count (<InlineMath math="24" />) with the price.
+- <InlineMath math="150\text{ €}" /> divides the <InlineMath math="600\text{ €}" /> budget directly by the <InlineMath math="4" /> extra shirts.
+
+# Answer
+
+One shirt cost <InlineMath math="30\text{ €}" />.

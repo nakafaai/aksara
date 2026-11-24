@@ -1,38 +1,46 @@
-# Di mana pusat mesti berada
+# Diberi
 
-Bulatan yang menyentuh kedua-dua paksi berjarak <InlineMath math="r" /> dari kedua-dua paksi. Dalam sukuan pertama **pusatnya terletak di <InlineMath math="M(r\mid r)" />**. Jadi seluruh bulatan hanya bergantung pada <InlineMath math="r" />.
+Sebuah **bulatan** (*Kreis*) terletak dalam sukuan pertama satah koordinat dan menyentuh paksi <InlineMath math="x" /> serta paksi <InlineMath math="y" />. Selain itu, bulatan ini melalui titik <InlineMath math="P(1 \mid 8)" />.
 
-# Syarat daripada titik <InlineMath math="P" />
+# Ditanya
 
-Titik <InlineMath math="P(1\mid8)" /> terletak pada bulatan apabila **jaraknya ke <InlineMath math="M" /> tepat <InlineMath math="r" />**:
+Tentukan semua nilai jejari (*Radius*) <InlineMath math="r" /> yang mungkin bagi bulatan ini.
+
+# Penyelesaian
+
+Bayangkan kamu meniup sebiji belon yang diletakkan rapat pada penjuru antara lantai dengan dinding! Selagi belon menyentuh kedua-dua permukaan, pusatnya sentiasa bergerak di sepanjang pepenjuru <InlineMath math="M(r \mid r)" />. Semasa mengembang, lengkoknya melepasi pin di <InlineMath math="P(1 \mid 8)" /> sekali ketika kecil, dan **sekali lagi apabila belon menjadi besar**!
+
+> Bulatan dalam sukuan pertama yang menyentuh kedua-dua paksi koordinat sentiasa berpusat pada koordinat sama sebesar jejarinya, maka syarat melalui satu titik menghasilkan persamaan kuadratik dengan dua bulatan sah.
+
+Oleh sebab jarak dari pusat <InlineMath math="M(r \mid r)" /> ke <InlineMath math="P(1 \mid 8)" /> sama dengan <InlineMath math="r" />, susun persamaan jarak kuasa dua berikut.
 
 <BlockMath math="\begin{aligned}
-(1-r)^2+(8-r)^2&=r^2 \\
-1-2r+r^2+64-16r+r^2&=r^2 \\
-r^2-18r+65&=0 \\
-(r-5)(r-13)&=0
+(1 - r)^2 + (8 - r)^2 &= r^2 \\
+1 - 2r + r^2 + 64 - 16r + r^2 &= r^2 \\
+r^2 - 18r + 65 &= 0 \\
+(r - 5)(r - 13) &= 0
 \end{aligned}" />
 
-# Semak kedua-dua penyelesaian
+## Mengesahkan kedua bulatan pada satah koordinat
 
-Kedua-dua jejari positif, dan kedua-dua pusat <InlineMath math="(5\mid5)" /> dan <InlineMath math="(13\mid13)" /> terletak dalam sukuan pertama. **Tiada penyelesaian yang tersingkir**:
+Kedua-dua punca <InlineMath math="r = 5" /> dan <InlineMath math="r = 13" /> bernilai positif dengan pusat dalam sukuan pertama, maka **tiada satu pun jejari yang ditolak**.
 
 <MathVisual
-  title={<>Dua bulatan yang sepadan</>}
-  description={<>Dalam sukuan pertama terdapat dua bulatan yang menyentuh kedua-dua paksi: yang kecil berpusat <InlineMath math="M_1(5\mid5)" /> dengan jejari <InlineMath math="5" />, yang besar berpusat <InlineMath math="M_2(13\mid13)" /> dengan jejari <InlineMath math="13" />. Kedua-duanya melalui titik <InlineMath math="P(1\mid8)" />.</>}
-  labels={{
-    p: <><InlineMath math="P(1\mid8)" /></>,
-    m1: <><InlineMath math="M_1(5\mid5)" /></>,
-    m2: <><InlineMath math="M_2(13\mid13)" /></>,
-  }}
+  title={<>Dua bulatan yang menyentuh kedua paksi dan melalui <InlineMath math="P(1 \mid 8)" /></>}
+  description={
+    <>
+      Bulatan kecil berpusat di <InlineMath math="M_1(5 \mid 5)" /> dengan
+      jejari <InlineMath math="5" /> dan bulatan besar berpusat di{" "}
+      <InlineMath math="M_2(13 \mid 13)" /> dengan jejari <InlineMath math="13" />.
+      Kedua-duanya menyentuh kedua-dua paksi dan melalui titik hijau{" "}
+      <InlineMath math="P(1 \mid 8)" />.
+    </>
+  }
+  footer={<>Kedua-dua bulatan kecil (<InlineMath math="r = 5" />) dan besar (<InlineMath math="r = 13" />) melalui <InlineMath math="P(1 \mid 8)" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 28 },
-      y: { min: -2, max: 28 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -3, max: 28 }, y: { min: -2, max: 28 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "x-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 27, y: 0 } },
       { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 27 } },
@@ -48,13 +56,32 @@ Kedua-dua jejari positif, dan kedua-dua pusat <InlineMath math="(5\mid5)" /> dan
       { key: "m2", objectId: "c2", at: { x: 13, y: 13 }, placement: "above-right" },
     ],
   }}
+  labels={{
+    p: <><InlineMath math="P(1 \mid 8)" /></>,
+    m1: <><InlineMath math="M_1(5 \mid 5)" /></>,
+    m2: <><InlineMath math="M_2(13 \mid 13)" /></>,
+  }}
 />
 
-Semakan: <InlineMath math="(1-5)^2+(8-5)^2=16+9=25=5^2" /> dan <InlineMath math="(1-13)^2+(8-13)^2=144+25=169=13^2" />. Jejarinya boleh <InlineMath math="5" /> atau <InlineMath math="13" />.
+Rajah menunjukkan dengan jelas mengapa kedua-dua bulatan memenuhi semua syarat soalan.
 
-# Kenapa jawapan lain salah
+## Menyemak jarak dan pilihan salah
 
-- "hanya <InlineMath math="r=5" />" dan "hanya <InlineMath math="r=13" />" **membuang penyelesaian yang sah** bagi persamaan kuadratik itu.
-- "hanya <InlineMath math="r=\sqrt{65}" />" ialah jarak <InlineMath math="P" /> ke asalan, <InlineMath math="\sqrt{1+64}" />. Sedangkan asalan bukan pusat bulatan.
-- "hanya <InlineMath math="r=4.5" />" membahagi dua hasil tambah koordinat <InlineMath math="P" />, seolah-olah pusat berada di tengah-tengah antara pintasan paksi.
-- "hanya <InlineMath math="r=9" />" ialah purata dua jejari yang betul, iaitu nilai <InlineMath math="r" /> pada bucu <InlineMath math="r^2-18r+65" />.
+Semak terus menggunakan **jarak dari setiap pusat ke <InlineMath math="P(1 \mid 8)" />**:
+
+<BlockMath math="\begin{aligned}
+(1 - 5)^2 + (8 - 5)^2 &= 16 + 9 = 25 = 5^2 \\
+(1 - 13)^2 + (8 - 13)^2 &= 144 + 25 = 169 = 13^2
+\end{aligned}" />
+
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| Hanya <InlineMath math="r = 5" /> | Membuang jejari besar <InlineMath math="r = 13" /> yang turut sah. |
+| Hanya <InlineMath math="r = 13" /> | Membuang jejari kecil <InlineMath math="r = 5" /> yang turut sah. |
+| Hanya <InlineMath math="r = \sqrt{65}" /> | Mengira jarak <InlineMath math="P" /> ke asalan, padahal asalan bukan pusat bulatan. |
+| Hanya <InlineMath math="r = 4.5" /> | Mengambil purata koordinat <InlineMath math="1" /> dan <InlineMath math="8" /> tanpa persamaan bulatan. |
+| Hanya <InlineMath math="r = 9" /> | Mengambil nilai tengah dua jejari, iaitu puncak bagi <InlineMath math="r^2 - 18r + 65" />. |
+
+# Jawapan
+
+Jejari bulatan yang mungkin ialah <InlineMath math="r = 5" /> atau <InlineMath math="r = 13" />.

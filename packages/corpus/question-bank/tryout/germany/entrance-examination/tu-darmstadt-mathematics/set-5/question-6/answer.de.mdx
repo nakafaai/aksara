@@ -1,46 +1,52 @@
-# Beide Jahre als Faktoren schreiben
+# Gegeben
 
-Nenne den Zinssatz des ersten Jahres <InlineMath math="P" /> Prozent. Dann wächst das Guthaben im ersten Jahr mit dem Faktor <InlineMath math="1+\frac{P}{100}" /> und im zweiten mit <InlineMath math="1+\frac{P+2}{100}" />. **Die Zinsen des ersten Jahres werden im zweiten mitverzinst**, also werden die beiden Faktoren multipliziert:
+Ein **Guthaben** von <InlineMath math="10{.}000\text{ €}" /> wird zwei Jahre lang mit Zinseszins angelegt. Der Zinssatz im zweiten Jahr liegt um <InlineMath math="2" /> Prozentpunkte höher als im ersten Jahr (<InlineMath math="P\,\%" /> und <InlineMath math="(P + 2)\,\%" />), und am Ende beträgt das Guthaben genau <InlineMath math="11{.}235\text{ €}" />.
 
-<BlockMath math="10{.}000\cdot\left(1+\frac{P}{100}\right)\left(1+\frac{P+2}{100}\right)=11{.}235" />
+# Gesucht
 
-# Eine quadratische Gleichung in <InlineMath math="P" />
+Der Zinssatz im ersten Jahr.
 
-Wegen <InlineMath math="10{.}000=100\cdot100" /> kannst du jeden Faktor mit <InlineMath math="100" /> multiplizieren. So entsteht **eine Gleichung mit ganzen Zahlen**:
+# Lösung
+
+Beim Zinseszins bringen die Zinsen des ersten Jahres im zweiten Jahr selbst wieder Zinsen, daher multiplizieren sich beide Wachstumsfaktoren. Weil das Startkapital <InlineMath math="10{.}000" /> gleich <InlineMath math="100 \cdot 100" /> ist, **beseitigt das Einmultiplizieren von je hundert sofort alle Brüche**!
+
+> Beim Zinseszins über zwei Jahre multiplizieren sich die beiden Jahresfaktoren, und ein Startkapital von zehntausend schluckt beide Hunderter-Nenner zu einer ganzzahligen quadratischen Gleichung.
+
+Stelle die Gleichung für das Endguthaben mit dem ersten Zinssatz <InlineMath math="P" /> Prozent auf.
+
+<BlockMath math="10{.}000 \cdot \left(1 + \frac{P}{100}\right)\left(1 + \frac{P + 2}{100}\right) = 11{.}235" />
+
+## Ganzzahlige quadratische Gleichung lösen
+
+Multiplizier beide Klammern mit <InlineMath math="100" /> und faktorisiere, um **den ersten Zinssatz direkt abzulesen**.
 
 <BlockMath math="\begin{aligned}
-(100+P)(102+P)&=11{.}235 \\
-P^2+202P+10{.}200&=11{.}235 \\
-P^2+202P-1{.}035&=0 \\
-(P-5)(P+207)&=0
+(100 + P)(102 + P) &= 11{.}235 \\
+P^2 + 202P + 10{.}200 &= 11{.}235 \\
+P^2 + 202P - 1{.}035 &= 0 \\
+(P - 5)(P + 207) &= 0
 \end{aligned}" />
 
-Die Zerlegung passt, weil <InlineMath math="5\cdot207=1{.}035" /> und <InlineMath math="207-5=202" />.
-
-# Die negative Lösung verwerfen
-
-Ein Zinssatz von <InlineMath math="-207\,\%" /> ist **kein sinnvoller Zinssatz**, denn dann wäre schon nach dem ersten Jahr nichts mehr übrig. Also ist <InlineMath math="P=5" />:
+Da <InlineMath math="-207\,\%" /> kein sinnvoller Zinssatz ist, bleibt nur <InlineMath math="P = 5" /> (<InlineMath math="5\,\%" />). Im Graphen siehst du, wie knapp die Kurve gleicher Zinssätze bei <InlineMath math="P = 6" /> am Ziel vorbeischrammt.
 
 <MathVisual
-  title={<>Guthaben nach zwei Jahren je nach Zinssatz</>}
-  description={<>Der durchgezogene Graph zeigt das Guthaben <InlineMath math="(100+P)(102+P)" /> in Euro für einen Zinssatz von <InlineMath math="P" /> Prozent im ersten Jahr und <InlineMath math="P+2" /> Prozent im zweiten. Er trifft die Linie <InlineMath math="11{.}235" /> bei <InlineMath math="P=5" />. Gestrichelt ist <InlineMath math="(100+P)^2" /> für zwei gleiche Zinssätze gezeichnet: Er erreicht fast denselben Wert bei <InlineMath math="P=6" />.</>}
-  labels={{
-    key: <><InlineMath math="P=5" /></>,
-    eq: <><InlineMath math="P=6" /></>,
-    t: <><InlineMath math="11{.}235" /></>,
-    a: <>zwei Zinssätze</>,
-    b: <>gleicher Zinssatz</>,
-  }}
+  title={<>Endguthaben nach zwei Jahren je nach erstem Zinssatz <InlineMath math="P" /></>}
+  description={
+    <>
+      Die durchgezogene Kurve <InlineMath math="(100 + P)(102 + P)" /> trifft
+      die Ziellinie <InlineMath math="11{.}235" /> exakt bei{" "}
+      <InlineMath math="P = 5" />. Die gestrichelte Kurve gleicher Zinssätze{" "}
+      <InlineMath math="(100 + P)^2" /> erreicht bei <InlineMath math="P = 6" />{" "}
+      genau <InlineMath math="11{.}236" />.
+    </>
+  }
+  footer={<>Exakt <InlineMath math="11{.}235\text{ €}" /> entstehen bei <InlineMath math="P = 5\,\%" />, während zweimal <InlineMath math="6\,\%" /> auf <InlineMath math="11{.}236\text{ €}" /> führt.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.5, max: 9.8 },
-      y: { min: 10000, max: 12300 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.8 }, y: { min: 10000, max: 12300 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x)*(102 + x)", domain: { min: 0, max: 9 } },
+      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x) * (102 + x)", domain: { min: 0, max: 9 } },
       { id: "same-rate", kind: "function", appearance: "construction", formula: "(100 + x)^2", domain: { min: 0, max: 9 } },
       { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 11235 }, to: { x: 9, y: 11235 } },
       { id: "solution", kind: "point", appearance: "answer", at: { x: 5, y: 11235 } },
@@ -54,14 +60,32 @@ Ein Zinssatz von <InlineMath math="-207\,\%" /> ist **kein sinnvoller Zinssatz**
       { key: "b", objectId: "same-rate", at: { x: 8.5, y: 11772 }, placement: "below-right" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="P = 5" /></>,
+    eq: <><InlineMath math="P = 6" /></>,
+    t: <><InlineMath math="11{.}235" /></>,
+    a: <>zwei Zinssätze</>,
+    b: <>gleicher Zinssatz</>,
+  }}
 />
 
-Probe: <InlineMath math="10{.}000\cdot1{,}05=10{.}500" /> und <InlineMath math="10{.}500\cdot1{,}07=11{.}235" />. Der Zinssatz im ersten Jahr war <InlineMath math="5\,\%" />.
+Schöne Struktur dahinter: <InlineMath math="5\,\%" /> und <InlineMath math="7\,\%" /> bringen genau einen Euro weniger als zweimal <InlineMath math="6\,\%" />, weil <InlineMath math="(a - 1)(a + 1)" /> stets eins unter <InlineMath math="a^2" /> liegt.
 
-# Warum die anderen Antworten falsch sind
+## Jahresprobe und falsche Antworten prüfen
 
-- <InlineMath math="6\,\%" /> nimmt **zwei gleiche Zinssätze** an. Das liefert <InlineMath math="10{.}000\cdot1{,}06^2=11{.}236\text{ €}" />, fast denselben Betrag, aber die Zinssätze sollen sich um <InlineMath math="2" /> Prozentpunkte unterscheiden.
-- <InlineMath math="7\,\%" /> ist der Zinssatz des zweiten Jahres.
-- <InlineMath math="5{,}175\,\%" /> rechnet ohne Zinseszins: <InlineMath math="P+(P+2)=12{,}35" />.
-- <InlineMath math="6{,}175\,\%" /> teilt den Gesamtzuwachs von <InlineMath math="12{,}35\,\%" /> gleichmäßig auf zwei Jahre auf.
-- <InlineMath math="12{,}35\,\%" /> ist der Zuwachs über beide Jahre zusammen, nicht der Zinssatz eines Jahres.
+Mach die Probe Jahr für Jahr für **die Zinssätze <InlineMath math="5\,\%" /> und <InlineMath math="7\,\%" />**:
+
+<BlockMath math="\begin{aligned}
+\text{Jahr 1: } &10{.}000 \cdot 1{,}05 = 10{.}500\text{ €} \\
+\text{Jahr 2: } &10{.}500 \cdot 1{,}07 = 11{.}235\text{ €}
+\end{aligned}" />
+
+- <InlineMath math="6\,\%" /> setzt zwei gleiche Zinssätze an und landet bei <InlineMath math="11{.}236\text{ €}" /> statt <InlineMath math="11{.}235\text{ €}" />.
+- <InlineMath math="7\,\%" /> ist der Zinssatz im zweiten Jahr, nicht im ersten Jahr.
+- <InlineMath math="5{,}175\,\%" /> rechnet ohne Zinseszins mit der Summe <InlineMath math="12{,}35\,\%" />.
+- <InlineMath math="6{,}175\,\%" /> halbiert das gesamte Zweijahreswachstum von <InlineMath math="12{,}35\,\%" />.
+- <InlineMath math="12{,}35\,\%" /> ist der Zuwachs über beide Jahre zusammen, kein Jahreszinssatz.
+
+# Antwort
+
+Der Zinssatz im ersten Jahr betrug <InlineMath math="5\,\%" />.

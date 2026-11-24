@@ -1,15 +1,72 @@
-Soal menanyakan panjang rantai (*Kette*) pada tangga lipat itu. Kedua kaki tangga berawal dari engsel di atas seperti dua sinar. Rantai dan lantai sama-sama mendatar, jadi keduanya sejajar. Itulah bentuk **teorema intersep dengan engsel sebagai titik puncaknya**.
+# Diketahui
 
-Diukur dari engsel, rantai berjarak <InlineMath math="1\text{ m}" /> di sepanjang setiap kaki, sedangkan lantai berjarak <InlineMath math="2{,}5\text{ m}" />. Perbandingan ruas-ruas yang sejajar sama dengan perbandingan jarak itu.
+Sebuah **tangga lipat** (*Stehleiter*) memiliki dua kaki lurus (*Holme*) sepanjang masing-masing <InlineMath math="2{,}5\text{ m}" /> yang disambung engsel di puncak, dan kedua ujung kakinya berjarak <InlineMath math="1{,}5\text{ m}" /> di lantai datar. Sebuah rantai (*Kette*) mendatar yang tegang diikat pada kedua kaki tepat <InlineMath math="1\text{ m}" /> dari puncak engsel sepanjang masing-masing kaki.
 
-<BlockMath math="\frac{k}{1{,}5}=\frac{1}{2{,}5}\quad\Rightarrow\quad k=1{,}5\cdot0{,}4=0{,}6" />
+# Ditanyakan
 
-Sebagai pemeriksaan, bayangkan rantai digeser lebih ke bawah. Di lantai, setelah <InlineMath math="2{,}5\text{ m}" />, rantai harus merentang penuh <InlineMath math="1{,}5\text{ m}" />. Jadi, jaraknya bertambah <InlineMath math="0{,}6\text{ m}" /> untuk setiap meter kaki tangga, dan setelah <InlineMath math="1\text{ m}" /> jaraknya tepat <InlineMath math="0{,}6\text{ m}" />.
+Tentukan panjang rantai pengaman <InlineMath math="k" />.
 
-Jadi, panjang rantai itu <InlineMath math="0{,}6\text{ m}" />.
+# Penyelesaian
 
-- <InlineMath math="0{,}4\text{ m}" /> hanyalah perbandingan <InlineMath math="1:2{,}5" />. Nilai itu masih harus dikalikan dengan jarak kedua kaki.
-- <InlineMath math="0{,}9\text{ m}" /> mengukur <InlineMath math="1{,}5\text{ m}" /> dari ujung bawah kaki, bukan dari engsel, yaitu <InlineMath math="1{,}5\cdot\frac{1{,}5}{2{,}5}" />.
-- <InlineMath math="1{,}5\text{ m}" /> menganggap ruas yang sejajar selalu sama panjang. Padahal kedua kaki tangga makin melebar ke bawah.
-- <InlineMath math="3{,}75\text{ m}" /> menyusun perbandingan secara terbalik, <InlineMath math="1{,}5\cdot\frac{2{,}5}{1}" />. Rantai harus lebih pendek daripada jarak kedua kaki.
-- <InlineMath math="1\text{ m}" /> adalah jarak titik ikat rantai dari engsel di sepanjang kaki, bukan panjang rantai.
+Lihat tangga lipat dari samping sebagai huruf A besar yang berpuncak di engsel atas! Karena rantai sejajar dengan lantai, **bagian atas tangga membentuk segitiga mini yang persis sebangun dengan seluruh tangga**. Rantai dipasang sejauh <InlineMath math="1\text{ m}" /> dari total <InlineMath math="2{,}5\text{ m}" />, artinya tepat dua per lima perjalanan turun dari puncak!
+
+> Pada dua sinar yang berpangkal di titik sama dan dipotong dua garis sejajar, perbandingan panjang ruas sejajar selalu sama dengan perbandingan jaraknya yang diukur dari titik puncak engsel.
+
+Perhatikan penampang tangga di bawah ini untuk melihat langsung kesebangunan menurut **teorema intersep** (*Strahlensatz*).
+
+<MathVisual
+  title={<>Penampang tangga lipat dan rantai mendatar</>}
+  description={
+    <>
+      Segitiga sama kaki dengan panjang setiap kaki <InlineMath math="2{,}5\text{ m}" />{" "}
+      dan jarak kedua ujung di lantai <InlineMath math="1{,}5\text{ m}" />.
+      Rantai hijau membentang mendatar pada jarak <InlineMath math="1\text{ m}" />{" "}
+      dari engsel puncak.
+    </>
+  }
+  footer={<>Pada dua per lima panjang kaki dari puncak, panjang rantai tepat dua per lima dari <InlineMath math="1{,}5\text{ m}" />, yaitu <InlineMath math="0{,}6\text{ m}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.1, max: 1.1 }, y: { min: -0.3, max: 2.7 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "ladder", kind: "polygon", appearance: "primary", vertices: [{ x: -0.75, y: 0 }, { x: 0.75, y: 0 }, { x: 0, y: 2.384848 }] },
+      { id: "chain", kind: "segment", appearance: "answer", from: { x: -0.3, y: 1.430909 }, to: { x: 0.3, y: 1.430909 } },
+      { id: "hinge", kind: "point", appearance: "highlight", at: { x: 0, y: 2.384848 } },
+      { id: "left-hook", kind: "point", appearance: "answer", at: { x: -0.3, y: 1.430909 } },
+      { id: "right-hook", kind: "point", appearance: "answer", at: { x: 0.3, y: 1.430909 } },
+    ],
+    labels: [
+      { key: "top", objectId: "hinge", at: { x: 0, y: 2.384848 }, placement: "above" },
+      { key: "chain", objectId: "chain", at: { x: 0, y: 1.430909 }, placement: "below" },
+      { key: "base", objectId: "ladder", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "upper", objectId: "right-hook", at: { x: 0.2, y: 1.95 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    top: <>engsel</>,
+    chain: <><InlineMath math="k = 0{,}6\text{ m}" /></>,
+    base: <><InlineMath math="1{,}5\text{ m}" /></>,
+    upper: <><InlineMath math="1\text{ m}" /></>,
+  }}
+/>
+
+Skala kesebangunan langsung terbaca dari perbandingan jarak dari engsel: <InlineMath math="1\text{ m}" /> berbanding <InlineMath math="2{,}5\text{ m}" />.
+
+## Menghitung panjang rantai dan mengecek pilihan salah
+
+Susun perbandingan **teorema intersep dari puncak engsel** untuk menghitung <InlineMath math="k" />.
+
+<BlockMath math="\frac{k}{1{,}5} = \frac{1}{2{,}5} = 0{,}4 \implies k = 1{,}5 \cdot 0{,}4 = 0{,}6\text{ m}" />
+
+Cek intuisi: sepanjang <InlineMath math="2{,}5\text{ m}" /> kaki tangga, lebar terbuka penuh <InlineMath math="1{,}5\text{ m}" />, artinya melebar <InlineMath math="0{,}6\text{ m}" /> untuk setiap <InlineMath math="1\text{ m}" /> langkah dari puncak!
+
+- <InlineMath math="0{,}4\text{ m}" /> baru berupa faktor perbandingan tanpa dikalikan jarak kedua kaki <InlineMath math="1{,}5\text{ m}" />.
+- <InlineMath math="0{,}9\text{ m}" /> keliru mengukur <InlineMath math="1{,}5\text{ m}" /> dari lantai, bukan <InlineMath math="1\text{ m}" /> dari puncak engsel.
+- <InlineMath math="1{,}5\text{ m}" /> menganggap dua garis sejajar selalu sama panjang, padahal kaki tangga melebar ke bawah.
+- <InlineMath math="3{,}75\text{ m}" /> membalik perbandingan menjadi lebih besar dari jarak kaki di lantai.
+- <InlineMath math="1\text{ m}" /> hanyalah jarak kait rantai dari engsel di sepanjang kaki, bukan panjang rantainya.
+
+# Jawaban
+
+Panjang rantai tangga lipat itu adalah <InlineMath math="0{,}6\text{ m}" />.

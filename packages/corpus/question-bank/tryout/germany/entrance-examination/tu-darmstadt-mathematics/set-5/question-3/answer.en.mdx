@@ -1,15 +1,72 @@
-The task asks how long the chain (*Kette*) of the stepladder is. The two legs start at the hinge at the top like two rays. The chain and the floor are both horizontal, so they are parallel. That is the figure of the **intercept theorem with the hinge as its vertex**.
+# Given
 
-Measured from the hinge, the chain is <InlineMath math="1\text{ m}" /> along each leg and the floor is <InlineMath math="2.5\text{ m}" /> along each leg. The parallel segments are in the same ratio as these distances.
+A **stepladder** (*Stehleiter*) consists of two straight rails (*Holme*) each <InlineMath math="2.5\text{ m}" /> long hinged at the top, with their feet <InlineMath math="1.5\text{ m}" /> apart on level ground. A taut horizontal chain (*Kette*) attaches to both rails exactly <InlineMath math="1\text{ m}" /> down from the top hinge measured along each rail.
 
-<BlockMath math="\frac{k}{1.5}=\frac{1}{2.5}\quad\Rightarrow\quad k=1.5\cdot0.4=0.6" />
+# Asked
 
-As a check, imagine sliding the chain further down. At the floor, after <InlineMath math="2.5\text{ m}" />, it would have to span the full <InlineMath math="1.5\text{ m}" />. So the gap grows by <InlineMath math="0.6\text{ m}" /> per metre of leg, and after <InlineMath math="1\text{ m}" /> it is exactly <InlineMath math="0.6\text{ m}" />.
+Find the length <InlineMath math="k" /> of the chain.
 
-So the chain is <InlineMath math="0.6\text{ m}" /> long.
+# Solution
 
-- <InlineMath math="0.4\text{ m}" /> is only the ratio <InlineMath math="1:2.5" />. It still has to be multiplied by the distance between the feet.
-- <InlineMath math="0.9\text{ m}" /> measures the <InlineMath math="1.5\text{ m}" /> from the feet instead of from the hinge, <InlineMath math="1.5\cdot\frac{1.5}{2.5}" />.
-- <InlineMath math="1.5\text{ m}" /> assumes that parallel segments are equally long. The legs spread apart towards the floor.
-- <InlineMath math="3.75\text{ m}" /> sets up the ratio upside down, <InlineMath math="1.5\cdot\frac{2.5}{1}" />. The chain must be shorter than the distance between the feet.
-- <InlineMath math="1\text{ m}" /> is how far down the leg the chain is fixed, not the length of the chain.
+Picture the stepladder from the side as a giant letter A meeting at the top hinge! Because the horizontal chain runs parallel to the floor, **the upper part forms an exact miniature copy of the full ladder**. Since the chain sits <InlineMath math="1\text{ m}" /> down out of <InlineMath math="2.5\text{ m}" />, it is two fifths of the way down from the apex!
+
+> When two parallel segments cross two rays meeting at a vertex, the ratio of the parallel segments equals the ratio of their distances measured from that vertex.
+
+Look at the side view below to see the **intercept theorem** (*Strahlensatz*) in action.
+
+<MathVisual
+  title={<>Side view of the stepladder and horizontal chain</>}
+  description={
+    <>
+      An isosceles triangle with rails of length <InlineMath math="2.5\text{ m}" />{" "}
+      and feet <InlineMath math="1.5\text{ m}" /> apart on the floor. The green
+      chain stretches horizontally <InlineMath math="1\text{ m}" /> along each
+      rail below the hinge.
+    </>
+  }
+  footer={<>At two fifths of the rail from the hinge, the chain measures two fifths of <InlineMath math="1.5\text{ m}" />, or <InlineMath math="0.6\text{ m}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.1, max: 1.1 }, y: { min: -0.3, max: 2.7 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "ladder", kind: "polygon", appearance: "primary", vertices: [{ x: -0.75, y: 0 }, { x: 0.75, y: 0 }, { x: 0, y: 2.384848 }] },
+      { id: "chain", kind: "segment", appearance: "answer", from: { x: -0.3, y: 1.430909 }, to: { x: 0.3, y: 1.430909 } },
+      { id: "hinge", kind: "point", appearance: "highlight", at: { x: 0, y: 2.384848 } },
+      { id: "left-hook", kind: "point", appearance: "answer", at: { x: -0.3, y: 1.430909 } },
+      { id: "right-hook", kind: "point", appearance: "answer", at: { x: 0.3, y: 1.430909 } },
+    ],
+    labels: [
+      { key: "top", objectId: "hinge", at: { x: 0, y: 2.384848 }, placement: "above" },
+      { key: "chain", objectId: "chain", at: { x: 0, y: 1.430909 }, placement: "below" },
+      { key: "base", objectId: "ladder", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "upper", objectId: "right-hook", at: { x: 0.2, y: 1.95 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    top: <>hinge</>,
+    chain: <><InlineMath math="k = 0.6\text{ m}" /></>,
+    base: <><InlineMath math="1.5\text{ m}" /></>,
+    upper: <><InlineMath math="1\text{ m}" /></>,
+  }}
+/>
+
+The similarity ratio reads straight off the rail distances from the hinge: <InlineMath math="1\text{ m}" /> compared to <InlineMath math="2.5\text{ m}" />.
+
+## Computing the chain length and checking wrong choices
+
+Set up **the intercept theorem proportion from the top hinge** to solve for <InlineMath math="k" />.
+
+<BlockMath math="\frac{k}{1.5} = \frac{1}{2.5} = 0.4 \implies k = 1.5 \cdot 0.4 = 0.6\text{ m}" />
+
+Intuition check: over <InlineMath math="2.5\text{ m}" /> of rail the spread grows to <InlineMath math="1.5\text{ m}" />, widening by <InlineMath math="0.6\text{ m}" /> for every <InlineMath math="1\text{ m}" /> down from the hinge!
+
+- <InlineMath math="0.4\text{ m}" /> is just the scale factor before multiplying by the <InlineMath math="1.5\text{ m}" /> floor span.
+- <InlineMath math="0.9\text{ m}" /> wrongly measures <InlineMath math="1.5\text{ m}" /> up from the floor instead of <InlineMath math="1\text{ m}" /> down from the hinge.
+- <InlineMath math="1.5\text{ m}" /> assumes parallel segments have equal length, ignoring that the rails flare apart downward.
+- <InlineMath math="3.75\text{ m}" /> inverts the ratio, producing a chain wider than the ladder's base.
+- <InlineMath math="1\text{ m}" /> is the distance from the hinge along the rail, not the horizontal chain length.
+
+# Answer
+
+The chain is <InlineMath math="0.6\text{ m}" /> long.

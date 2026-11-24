@@ -1,25 +1,35 @@
-# A cross-section makes it flat
+# Given
 
-Cut the cone and the cylinder lengthwise through their common axis. The cone becomes a triangle, the cylinder a rectangle. **The top corners of the rectangle lie on the slanted sides**, because the cylinder's rim touches the cone's surface:
+A **right circular cone** (*gerader Kreiskegel*) has base radius <InlineMath math="6\text{ cm}" /> and height <InlineMath math="12\text{ cm}" />. A coaxial **right circular cylinder** (*gerader Kreiszylinder*) sits inside it on the same base with its upper rim touching the cone's lateral surface (*Mantelfläche*). The cylinder's height equals its diameter (<InlineMath math="h = 2r" />).
+
+# Asked
+
+Find the volume of the inscribed cylinder.
+
+# Solution
+
+Slice the cone and cylinder straight down their shared central axis so the 3D solid collapses into **a rectangle sitting snugly inside an isosceles triangle**! Because the top corners of the rectangle touch the slanted edges, the little cone sitting above the cylinder is a scaled copy of the entire cone.
+
+> Slicing coaxial solids of revolution through their axis turns a 3D problem into flat similar triangles, letting the intercept theorem link the cylinder's radius and height immediately.
+
+Inspect the axial cross-section below to read off the similarity proportion directly.
 
 <MathVisual
-  title={<>Cross-section through cone and cylinder</>}
-  description={<>A cross-section through the common axis: an isosceles triangle with base <InlineMath math="12" /> and height <InlineMath math="12" />, with a rectangle inside, of width <InlineMath math="2r=6" /> and height <InlineMath math="h=6" />. The top corners of the rectangle, such as <InlineMath math="(3\mid6)" />, lie on the slanted sides of the triangle.</>}
-  labels={{
-    s: <><InlineMath math="S" /></>,
-    r: <><InlineMath math="r=3" /></>,
-    h: <><InlineMath math="h=6" /></>,
-    base: <><InlineMath math="6" /></>,
-    top: <><InlineMath math="12" /></>,
-  }}
+  title={<>Axial cross-section of the cone and inscribed cylinder</>}
+  description={
+    <>
+      An isosceles triangle of base <InlineMath math="12" /> and height{" "}
+      <InlineMath math="12" /> holds a rectangle of width{" "}
+      <InlineMath math="2r = 6" /> and height <InlineMath math="h = 6" />. The
+      upper-right corner <InlineMath math="(3 \mid 6)" /> touches the cone's
+      slanted side.
+    </>
+  }
+  footer={<>Matching <InlineMath math="h = 2r" /> with triangle similarity pins down <InlineMath math="r = 3\text{ cm}" /> and <InlineMath math="h = 6\text{ cm}" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -7, max: 7 },
-      y: { min: -1.5, max: 13.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -1.5, max: 13.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "cone", kind: "polygon", appearance: "primary", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }, { x: 0, y: 12 }] },
       { id: "cylinder", kind: "polygon", appearance: "answer", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
@@ -35,28 +45,37 @@ Cut the cone and the cylinder lengthwise through their common axis. The cone bec
       { key: "top", objectId: "axis", at: { x: 0, y: 9 }, placement: "right" },
     ],
   }}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    r: <><InlineMath math="r = 3" /></>,
+    h: <><InlineMath math="h = 6" /></>,
+    base: <><InlineMath math="6" /></>,
+    top: <><InlineMath math="12" /></>,
+  }}
 />
 
-# Intercept theorem at the apex
+The small cone above the cylinder has height <InlineMath math="12 - h" /> and radius <InlineMath math="r" />, directly similar to the full cone.
 
-Above the cylinder a small cone remains, with height <InlineMath math="12-h" /> and radius <InlineMath math="r" />. It is **similar to the big cone**:
+## Solving for the cylinder dimensions and volume
 
-<BlockMath math="\frac{r}{6}=\frac{12-h}{12}" />
+Apply **the intercept theorem** (*Strahlensatz*) together with <InlineMath math="h = 2r" />, then compute the cylinder volume.
 
-With the condition <InlineMath math="h=2r" /> this becomes:
+<BlockMath math="\begin{aligned}
+\frac{r}{6} &= \frac{12 - h}{12} = \frac{12 - 2r}{12} \\
+2r &= 12 - 2r \implies 4r = 12 \implies r = 3\text{ cm}, \quad h = 6\text{ cm} \\
+V &= \pi r^2 h = \pi \cdot 3^2 \cdot 6 = 54\pi\text{ cm}^3
+\end{aligned}" />
 
-<BlockMath math="\frac{r}{6}=\frac{12-2r}{12}\quad\Longrightarrow\quad 2r=12-2r\quad\Longrightarrow\quad r=3,\ h=6" />
+## Sanity check and wrong choices
 
-# The volume
+Quick volume check: the entire cone holds <InlineMath math="144\pi\text{ cm}^3" />, so **a cylinder of <InlineMath math="54\pi\text{ cm}^3" /> fills three eighths of the cone**, well within its bounds.
 
-<BlockMath math="V=\pi r^2h=\pi\cdot3^2\cdot6=54\pi\text{ cm}^3" />
-
-The cylinder has **a volume of <InlineMath math="54\pi\text{ cm}^3" />**.
-
-# Why the other answers are wrong
-
-- <InlineMath math="64\pi\text{ cm}^3" /> makes the height equal to the **radius** instead of the diameter: <InlineMath math="\frac r6=\frac{12-r}{12}" /> gives <InlineMath math="r=4" />, and <InlineMath math="\pi\cdot16\cdot4=64\pi" />.
-- <InlineMath math="216\pi\text{ cm}^3" /> uses the diameter <InlineMath math="6" /> as the radius: <InlineMath math="\pi\cdot36\cdot6" />.
-- <InlineMath math="18\pi\text{ cm}^3" /> applies the cone formula with <InlineMath math="\frac13" /> to the cylinder.
+- <InlineMath math="64\pi\text{ cm}^3" /> sets height equal to radius (<InlineMath math="h = r" />) instead of diameter, giving <InlineMath math="r = 4" />.
+- <InlineMath math="216\pi\text{ cm}^3" /> plugs the diameter <InlineMath math="6" /> in place of the radius in the volume formula.
+- <InlineMath math="18\pi\text{ cm}^3" /> mistakenly applies the cone's <InlineMath math="\frac{1}{3}" /> factor to a cylinder.
 - <InlineMath math="27\pi\text{ cm}^3" /> uses height <InlineMath math="3" /> instead of <InlineMath math="6" />.
-- <InlineMath math="48\pi\text{ cm}^3" /> is the volume of a cylinder with radius <InlineMath math="4" /> and height <InlineMath math="3" />, mixing radius and height from two different set-ups.
+- <InlineMath math="48\pi\text{ cm}^3" /> mixes radius <InlineMath math="4" /> with height <InlineMath math="3" /> from two inconsistent setups.
+
+# Answer
+
+The volume of the cylinder is <InlineMath math="54\pi\text{ cm}^3" />.
