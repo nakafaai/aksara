@@ -1,12 +1,37 @@
-First check whether the old package is still running when Sari buys again.
+# Given
 
-**Old package**. Bought on a Tuesday, it counts Tuesday as the first day, so its seventh day is the Monday. It ends at 23:59 that Monday, and at 23:00 it is still valid.
+Sari buys a **Mingguan** package at **21:00 on Tuesday**, then buys another **Mingguan** package at **23:00 on the following Monday** while she still has **<InlineMath math="2" /> GB of daytime data** and **<InlineMath math="3" /> GB of night data** left.
 
-**Renewal**. She buys "the same package again before the old one ends", so the old one closes and its leftover daytime data moves across: <InlineMath math="5 + 2 = 7" /> GB of daytime data. "Leftover night data is never carried over", so night data is just the new <InlineMath math="5" /> GB.
+Kilat's rules:
+- **Mingguan** gives **<InlineMath math="5" /> GB of daytime data** and **<InlineMath math="5" /> GB of night data** for **<InlineMath math="7" /> days**.
+- The day of purchase counts as the first day, and the package ends at **23:59** on its last day.
+- Renewing the same package early adds leftover **daytime data**, while leftover **night data** is never carried over.
 
-- <InlineMath math="7" /> GB and <InlineMath math="8" /> GB carries the night data across too.
-- <InlineMath math="5" /> GB and <InlineMath math="5" /> GB treats the leftover as lost, as if the old package had already ended.
-- <InlineMath math="10" /> GB of daytime data moves the <InlineMath math="3" /> GB of night data into daytime data.
-- <InlineMath math="10" /> GB and <InlineMath math="10" /> GB counts two whole packages.
+# Asked
 
-So she has <InlineMath math="7" /> GB of daytime data and <InlineMath math="5" /> GB of night data.
+How much daytime data and night data Sari has once her new Mingguan package starts.
+
+# Solution
+
+First check whether the old package is still running at 23:00 on Monday, then apply the carry-over rule separately to daytime data and night data.
+
+> Counting the purchase day as day one means a seven-day package bought on Tuesday ends at 23:59 on the following Monday, so buying at 23:00 counts as an early renewal.
+
+## Checking expiry and data carry over
+
+The passage states that a package <Highlight>ends at 23:59 on its last day, counting the day of purchase as the first day</Highlight>. Counting Tuesday as day one makes Monday day seven, so the old package is still active at 23:00 on Monday.
+
+Because Sari buys the same package before expiry, the rule applies: <Highlight>its leftover daytime data is added to the new one. Leftover night data is never carried over.</Highlight>
+
+<BlockMath math="\text{Daytime: } 5 + 2 = 7\text{ GB}, \qquad \text{Night: } 5\text{ GB}" />
+
+## Why the other options fail
+
+- **<InlineMath math="7" /> GB daytime and <InlineMath math="8" /> GB night** carries over the leftover <InlineMath math="3" /> GB of night data against the rule.
+- **<InlineMath math="5" /> GB daytime and <InlineMath math="5" /> GB night** treats the old package as already expired with <InlineMath math="59" /> minutes still left.
+- **<InlineMath math="10" /> GB daytime and <InlineMath math="5" /> GB night** adds the leftover night data into daytime data.
+- **<InlineMath math="10" /> GB daytime and <InlineMath math="10" /> GB night** doubles an entire package instead of adding only the leftover daytime quota.
+
+# Answer
+
+Sari has **<InlineMath math="7" /> GB of daytime data and <InlineMath math="5" /> GB of night data**.

@@ -1,9 +1,37 @@
-Prüf jede Aussage an den Regeln.
+# Gegeben
 
-- **Ein um 23:30 gekauftes Harian hält höchstens <InlineMath math="29" /> Minuten: gestützt**. Es endet an dem Tag um 23:59.
-- Nachtvolumen um 6:30: nicht gestützt. Nachtvolumen gilt nur bis 6:00.
-- **Ein am Freitag gekauftes Mingguan gilt am folgenden Donnerstag: gestützt**. Freitag ist der erste Tag, Donnerstag der siebte.
-- Restliches Nachtvolumen kommt zum verlängerten Paket: nicht gestützt. Es "is never carried over".
-- Ein Bulanan gibt <InlineMath math="40" /> GB für jede Tageszeit: nicht gestützt. Die Hälfte ist Nachtvolumen, nutzbar nur von 0:00 bis 6:00.
+Fünf Aussagen betreffen das Laufzeitende, die Nachtzeit, die Datenübernahme und das Volumen des **Bulanan**-Pakets von Kilat.
 
-Gestützt sind also die Aussagen über das um 23:30 gekaufte Harian und das am Freitag gekaufte Mingguan.
+Maßgebliche Regeln:
+- Jedes Paket endet um **23:59 Uhr** des letzten Tages, wobei der Kauftag als erster Tag zählt.
+- Nachtdatenvolumen gilt nur von **0:00 bis 6:00 Uhr** und wird nie übernommen.
+- **Bulanan** teilt sich in **<InlineMath math="20" /> GB Tag** und **<InlineMath math="20" /> GB Nacht**.
+
+# Gesucht
+
+Alle Aussagen, die durch den Text gestützt werden (Mehrfachauswahl).
+
+# Lösung
+
+Prüfe jede Aussage einzeln anhand der 23:59-Uhr-Grenze, des Nachtfensters und der strikten Trennung von Tag- und Nachtvolumen.
+
+> Bei Mehrfachauswahl zählt jede Aussage einzeln, weil mehrere Optionen zugleich mit dem Text übereinstimmen können.
+
+## Jede Aussage mit dem Text abgleichen
+
+| Aussage | Gestützt? | Beleg im Text |
+| --- | --- | --- |
+| Harian um 23:30 gekauft hält höchstens <InlineMath math="29" /> Minuten | **Ja** | Ein Paket <Highlight>ends at 23:59 on its last day</Highlight>, von 23:30 bis 23:59 bleiben genau <InlineMath math="29" /> Minuten. |
+| Nachtdaten um 6:30 nutzbar | Nein | Der Text sagt <Highlight>Night data can be used only from 0:00 to 6:00</Highlight>. |
+| Mingguan am Freitag gekauft gilt nächsten Donnerstag | **Ja** | Mit Freitag als Tag <InlineMath math="1" /> ist der nächste Donnerstag Tag <InlineMath math="7" /> und bis 23:59 Uhr gültig. |
+| Restliches Nachtvolumen wird übernommen | Nein | Laut Regel gilt <Highlight>Leftover night data is never carried over</Highlight>. |
+| Bulanan bietet <InlineMath math="40" /> GB rund um die Uhr | Nein | Die Hälfte (<InlineMath math="20" /> GB) ist Nachtdatenvolumen nur für 0:00 bis 6:00 Uhr. |
+
+## Warum die übrigen Aussagen falsch sind
+
+- **6:30 Uhr** liegt bereits nach dem Ende des Nachtfensters um 6:00 Uhr.
+- **Nachtübernahme** und **<InlineMath math="40" /> GB jederzeit** widersprechen der klaren Trennung zwischen Tag- und Nachtdatenvolumen.
+
+# Antwort
+
+Gestützt werden die Aussagen, dass **ein um 23:30 Uhr gekauftes Harian höchstens <InlineMath math="29" /> Minuten nutzbar ist** (*A Harian bought at 23:30 can be used for at most <InlineMath math="29" /> minutes*) und **ein am Freitag gekauftes Mingguan am folgenden Donnerstag noch gültig ist** (*A Mingguan bought on a Friday is still valid on the following Thursday*).

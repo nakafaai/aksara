@@ -1,15 +1,36 @@
-Ein Paket zählt den Kauftag als ersten Tag und endet um 23:59 an seinem letzten Tag, egal zu welcher Uhrzeit es gekauft wurde.
+# Gegeben
 
-**Aussage 1**: schon abgelaufen. Harian hat einen Tag, endet also am Montag um 23:59. Um 0:30 am Dienstag ist es vorbei.
+Fünf Fälle nennen Kaufzeitpunkt und Prüfzeitpunkt für die Pakete **Harian** (<InlineMath math="1" /> Tag), **Mingguan** (<InlineMath math="7" /> Tage) und **Bulanan** (<InlineMath math="30" /> Tage).
 
-**Aussage 2**: noch gültig. Mittwoch ist der erste Tag, also ist der siebte der Dienstag, der bis 23:59 läuft.
+Laufzeitregel von Kilat:
+- Der **Kauftag zählt als erster Tag**, und das Paket endet unabhängig von der Kaufuhrzeit um **23:59 Uhr** des letzten Kalendertags.
 
-**Aussage 3**: schon abgelaufen. Es endete am Dienstag um 23:59, um 7:00 am Mittwoch ist es also vorbei, auch wenn das weniger als <InlineMath math="7 \times 24" /> Stunden nach 8:00 ist.
+# Gesucht
 
-**Aussage 4**: noch gültig. Der 1. März ist der erste Tag, also ist der 30. März der dreißigste, der bis 23:59 läuft.
+Ob jedes Paket zum Prüfzeitpunkt **noch gültig** (*Still valid*) oder **bereits abgelaufen** (*Already ended*) ist.
 
-**Aussage 5**: schon abgelaufen. Es endete am 30. März um 23:59.
+# Lösung
 
-Wer <InlineMath math="7 \times 24" /> oder <InlineMath math="30 \times 24" /> Stunden ab dem Kaufzeitpunkt zählt, entscheidet die Aussagen 3 und 5 falsch.
+Bestimme für jeden Fall den letzten Kalendertag mit dem Kauftag als Tag eins und vergleiche den Prüfzeitpunkt mit **23:59 Uhr** dieses Tages.
 
-Gültig sind also die Pakete der Aussagen 2 und 4, abgelaufen die der Aussagen 1, 3 und 5.
+> Die Laufzeit zählt Kalendertage bis 23:59 Uhr, nicht volle Vierundzwanzig-Stunden-Blöcke ab der Kaufuhrzeit.
+
+## Jeden Fall gegen das Laufzeitende prüfen
+
+Der Text definiert das Ende eindeutig: <Highlight>ends at 23:59 on its last day, counting the day of purchase as the first day</Highlight>.
+
+| Aussage | Laufzeitende | Prüfung | Status |
+| --- | --- | --- | --- |
+| Harian, Montag 23:00 | Montag 23:59 (Tag <InlineMath math="1" />) | Dienstag 0:30 | **Bereits abgelaufen** |
+| Mingguan, Mittwoch 8:00 | Dienstag 23:59 (Tag <InlineMath math="7" />) | Dienstag 22:00 | **Noch gültig** |
+| Mingguan, Mittwoch 8:00 | Dienstag 23:59 (Tag <InlineMath math="7" />) | Mittwoch 7:00 | **Bereits abgelaufen** |
+| Bulanan, 1. März 10:00 | 30. März 23:59 (Tag <InlineMath math="30" />) | 30. März 23:00 | **Noch gültig** |
+| Bulanan, 1. März 10:00 | 30. März 23:59 (Tag <InlineMath math="30" />) | 31. März 0:10 | **Bereits abgelaufen** |
+
+## Häufige Fehlerquelle
+
+- Wer volle <InlineMath math="24" />-Stunden-Abschnitte ab der Kaufuhrzeit abzählt, stuft die Aussagen 3 und 5 fälschlich als noch gültig ein.
+
+# Antwort
+
+Die Pakete in den **Aussagen 2 und 4** sind **noch gültig** (*Still valid*), während die Pakete in den **Aussagen 1, 3 und 5** **bereits abgelaufen** (*Already ended*) sind.

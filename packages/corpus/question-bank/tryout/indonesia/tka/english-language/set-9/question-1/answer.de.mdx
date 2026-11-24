@@ -1,12 +1,37 @@
-Prüf zuerst, ob das alte Paket noch läuft, als Sari neu kauft.
+# Gegeben
 
-**Altes Paket**. Am Dienstag gekauft, zählt der Dienstag als erster Tag, der siebte Tag ist also der Montag. Es endet an diesem Montag um 23:59, um 23:00 gilt es noch.
+Sari kauft ein **Mingguan**-Paket am **Dienstag um 21:00 Uhr** und kauft am **folgenden Montag um 23:00 Uhr** ein weiteres **Mingguan**-Paket, während noch **<InlineMath math="2" /> GB Tagdatenvolumen** und **<InlineMath math="3" /> GB Nachtdatenvolumen** übrig sind.
 
-**Verlängerung**. Sie kauft "the same package again before the old one ends", also schließt das alte Paket, und sein restliches Tagesvolumen wandert mit: <InlineMath math="5 + 2 = 7" /> GB Tagesvolumen. "Leftover night data is never carried over", das Nachtvolumen sind also nur die neuen <InlineMath math="5" /> GB.
+Regeln von Kilat:
+- **Mingguan** bietet **<InlineMath math="5" /> GB Tagdatenvolumen** und **<InlineMath math="5" /> GB Nachtdatenvolumen** für **<InlineMath math="7" /> Tage**.
+- Der Kauftag zählt als erster Tag, und das Paket endet um **23:59 Uhr** des letzten Tages.
+- Bei vorzeitiger Verlängerung desselben Pakets wird nur restliches **Tagdatenvolumen** übernommen, nie **Nachtdatenvolumen**.
 
-- <InlineMath math="7" /> GB und <InlineMath math="8" /> GB nimmt auch das Nachtvolumen mit.
-- <InlineMath math="5" /> GB und <InlineMath math="5" /> GB hält den Rest für verloren, als wäre das alte Paket schon abgelaufen.
-- <InlineMath math="10" /> GB Tagesvolumen schiebt die <InlineMath math="3" /> GB Nachtvolumen ins Tagesvolumen.
-- <InlineMath math="10" /> GB und <InlineMath math="10" /> GB zählt zwei ganze Pakete.
+# Gesucht
 
-Sie hat also <InlineMath math="7" /> GB Tagesvolumen und <InlineMath math="5" /> GB Nachtvolumen.
+Wie viel Tag- und Nachtdatenvolumen Sari besitzt, sobald das neue Mingguan-Paket beginnt.
+
+# Lösung
+
+Prüfe zuerst, ob das alte Paket am Montag um 23:00 Uhr noch läuft, und wende danach die Übernahmeregeln getrennt auf Tag- und Nachtdatenvolumen an.
+
+> Weil der Kauftag als Tag eins zählt, endet ein am Dienstag gekauftes Sieben-Tage-Paket erst am Montag um 23:59 Uhr, sodass der Kauf um 23:00 Uhr rechtzeitig erfolgt.
+
+## Laufzeit und Datenübernahme prüfen
+
+Laut Text gilt für jedes Paket <Highlight>ends at 23:59 on its last day, counting the day of purchase as the first day</Highlight>. Mit Dienstag als erstem Tag ist Montag der siebte Tag, also läuft das alte Paket um 23:00 Uhr noch.
+
+Bei vorzeitiger Verlängerung greift <Highlight>its leftover daytime data is added to the new one. Leftover night data is never carried over.</Highlight>
+
+<BlockMath math="\text{Tag: } 5 + 2 = 7\text{ GB}, \qquad \text{Nacht: } 5\text{ GB}" />
+
+## Warum die anderen Optionen falsch sind
+
+- **<InlineMath math="7" /> GB Tag und <InlineMath math="8" /> GB Nacht** übernimmt verbotenerweise auch die <InlineMath math="3" /> GB Nachtdatenvolumen.
+- **<InlineMath math="5" /> GB Tag und <InlineMath math="5" /> GB Nacht** behandelt das alte Paket fälschlich als bereits abgelaufen.
+- **<InlineMath math="10" /> GB Tag und <InlineMath math="5" /> GB Nacht** schlägt die restlichen <InlineMath math="3" /> GB Nachtdatenvolumen dem Tagvolumen zu.
+- **<InlineMath math="10" /> GB Tag und <InlineMath math="10" /> GB Nacht** addiert einfach zwei vollständige Pakete.
+
+# Antwort
+
+Sari hat **<InlineMath math="7" /> GB Tagdatenvolumen und <InlineMath math="5" /> GB Nachtdatenvolumen** (*<InlineMath math="7" /> GB of daytime data and <InlineMath math="5" /> GB of night data*).

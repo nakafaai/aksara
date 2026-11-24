@@ -1,12 +1,37 @@
-Cek dulu apakah paket lama masih berjalan saat Sari membeli lagi.
+# Diketahui
 
-**Paket lama**. Dibeli hari Selasa, jadi Selasa dihitung sebagai hari pertama dan hari ketujuhnya hari Senin. Paket itu berakhir pukul 23.59 hari Senin itu, dan pukul 23.00 masih berlaku.
+Sari membeli paket **Mingguan** pada **Selasa pukul 21:00**, lalu membeli paket **Mingguan** lagi pada **Senin berikutnya pukul 23:00** saat kuotanya masih tersisa **<InlineMath math="2" /> GB kuota siang** dan **<InlineMath math="3" /> GB kuota malam**.
 
-**Perpanjangan**. Ia membeli *the same package again before the old one ends* (paket yang sama lagi sebelum paket lama berakhir), jadi paket lama ditutup dan sisa kuota siangnya pindah: <InlineMath math="5 + 2 = 7" /> GB kuota siang. *Leftover night data is never carried over* (sisa kuota malam tidak pernah dipindahkan), jadi kuota malamnya hanya <InlineMath math="5" /> GB yang baru.
+Aturan paket Kilat:
+- Paket **Mingguan** memberi **<InlineMath math="5" /> GB kuota siang** dan **<InlineMath math="5" /> GB kuota malam** selama **<InlineMath math="7" /> hari**.
+- Hari pembelian dihitung sebagai hari pertama dan paket berakhir pukul **23:59** di hari terakhir.
+- Membeli paket yang sama sebelum paket lama habis memindahkan sisa **kuota siang**, sedangkan sisa **kuota malam** tidak pernah terbawa.
 
-- <InlineMath math="7" /> GB dan <InlineMath math="8" /> GB ikut memindahkan kuota malam.
-- <InlineMath math="5" /> GB dan <InlineMath math="5" /> GB menganggap sisanya hangus, seolah paket lama sudah berakhir.
-- <InlineMath math="10" /> GB kuota siang memindahkan <InlineMath math="3" /> GB kuota malam ke kuota siang.
-- <InlineMath math="10" /> GB dan <InlineMath math="10" /> GB menghitung dua paket utuh.
+# Ditanyakan
 
-Jadi, ia punya <InlineMath math="7" /> GB kuota siang dan <InlineMath math="5" /> GB kuota malam.
+Berapa kuota siang dan kuota malam yang dimiliki Sari setelah paket Mingguan barunya mulai aktif.
+
+# Penyelesaian
+
+Periksa terlebih dahulu apakah paket lama masih aktif saat Sari membeli ulang, lalu terapkan aturan akumulasi sisa kuota siang dan hangusnya sisa kuota malam.
+
+> Hari pembelian dihitung hari pertama, jadi paket tujuh hari yang dibeli hari Selasa baru berakhir Senin pukul 23:59, bukan tepat seminggu pada jam pembelian.
+
+## Memeriksa masa aktif dan akumulasi kuota
+
+Teks menyatakan bahwa masa aktif <Highlight>ends at 23:59 on its last day, counting the day of purchase as the first day</Highlight>. Karena Selasa adalah hari pertama, hari ketujuh jatuh pada **Senin pukul 23:59**, sehingga pada **Senin pukul 23:00** paket lama masih aktif.
+
+Saat memperpanjang lebih awal, teks menetapkan <Highlight>its leftover daytime data is added to the new one. Leftover night data is never carried over.</Highlight>
+
+<BlockMath math="\text{Kuota siang: } 5 + 2 = 7\text{ GB}, \qquad \text{Kuota malam: } 5\text{ GB}" />
+
+## Mengapa pilihan lain salah
+
+- **<InlineMath math="7" /> GB kuota siang dan <InlineMath math="8" /> GB kuota malam** ikut memindahkan <InlineMath math="3" /> GB kuota malam yang seharusnya hangus.
+- **<InlineMath math="5" /> GB kuota siang dan <InlineMath math="5" /> GB kuota malam** menganggap paket lama sudah berakhir padahal masih tersisa <InlineMath math="59" /> menit.
+- **<InlineMath math="10" /> GB kuota siang dan <InlineMath math="5" /> GB kuota malam** menggabungkan sisa kuota malam ke kuota siang.
+- **<InlineMath math="10" /> GB kuota siang dan <InlineMath math="10" /> GB kuota malam** menjumlahkan dua paket utuh tanpa mengurangi pemakaian.
+
+# Jawaban
+
+Sari memiliki **<InlineMath math="7" /> GB kuota siang dan <InlineMath math="5" /> GB kuota malam** (*<InlineMath math="7" /> GB of daytime data and <InlineMath math="5" /> GB of night data*).

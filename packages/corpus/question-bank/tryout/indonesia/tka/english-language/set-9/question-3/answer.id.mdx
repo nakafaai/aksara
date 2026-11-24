@@ -1,11 +1,42 @@
-Hitung setiap perbandingan dari tabel.
+# Diketahui
 
-- **I didukung**. Bulanan: <InlineMath math="80{.}000 \div 20 = \text{Rp}4{.}000" /> per GB kuota siang. Mingguan: <InlineMath math="25{.}000 \div 5 = \text{Rp}5{.}000" />.
-- II tidak didukung. Harian <InlineMath math="\text{Rp}6{.}000" /> per GB, paling mahal dari ketiganya.
-- III tidak didukung. Bulanan memberi <InlineMath math="20 \div 30 \approx 0{,}67" /> GB kuota malam per hari, Mingguan <InlineMath math="5 \div 7 \approx 0{,}71" /> GB.
-- IV tidak didukung. Tujuh paket Harian <InlineMath math="7 \times 6{.}000 = \text{Rp}42{.}000" />, lebih mahal dari satu Mingguan, tetapi memberi <InlineMath math="7" /> GB kuota siang, lebih banyak dari <InlineMath math="5" />.
-- **V didukung**. <InlineMath math="4 \times 25{.}000 = \text{Rp}100{.}000" />, lebih mahal dari <InlineMath math="\text{Rp}80{.}000" />.
+Tabel harga dan kuota tiga paket Kilat:
+- **Harian**: <InlineMath math="\text{Rp}6{.}000" />, <InlineMath math="1" /> GB siang, tanpa kuota malam, <InlineMath math="1" /> hari.
+- **Mingguan**: <InlineMath math="\text{Rp}25{.}000" />, <InlineMath math="5" /> GB siang, <InlineMath math="5" /> GB malam, <InlineMath math="7" /> hari.
+- **Bulanan**: <InlineMath math="\text{Rp}80{.}000" />, <InlineMath math="20" /> GB siang, <InlineMath math="20" /> GB malam, <InlineMath math="30" /> hari.
 
-Pilihan yang memuat III membandingkan totalnya, bukan jumlah per hari. Pilihan yang memuat IV benar di paruh pertama dan salah di paruh kedua.
+# Ditanyakan
 
-Jadi, pernyataan yang didukung hanya I dan V.
+Pernyataan perbandingan bernomor Romawi mana saja yang didukung oleh tabel paket Kilat.
+
+# Penyelesaian
+
+Hitung harga per gigabyte kuota siang, rata-rata kuota malam per hari, serta total biaya paket berganda langsung dari tabel sebelum menilai kelima pernyataan.
+
+> Perbandingan per gigabyte atau per hari wajib dibagi dulu dengan jumlah kuota atau harinya, bukan membandingkan angka total mentah.
+
+## Menghitung perbandingan dari tabel
+
+Harga per GB kuota siang serta kuota malam per hari masing-masing paket adalah:
+
+<BlockMath math="\text{Harian: }\frac{6{.}000}{1}=\text{Rp}6{.}000\text{/GB}, \quad \text{Mingguan: }\frac{25{.}000}{5}=\text{Rp}5{.}000\text{/GB}, \quad \text{Bulanan: }\frac{80{.}000}{20}=\text{Rp}4{.}000\text{/GB}" />
+
+<BlockMath math="\text{Malam/hari Bulanan: }\frac{20}{30}\approx 0{,}67\text{ GB}, \qquad \text{Mingguan: }\frac{5}{7}\approx 0{,}71\text{ GB}" />
+
+| Pernyataan | Didukung? | Bukti angka dari tabel |
+| --- | --- | --- |
+| I | **Ya** | Bulanan <InlineMath math="\text{Rp}4{.}000" />/GB lebih murah daripada Mingguan <InlineMath math="\text{Rp}5{.}000" />/GB. |
+| II | Tidak | Harian justru termahal di angka <InlineMath math="\text{Rp}6{.}000" />/GB. |
+| III | Tidak | Bulanan memberi <InlineMath math="0{,}67" /> GB malam/hari, lebih kecil daripada Mingguan <InlineMath math="0{,}71" /> GB/hari. |
+| IV | Tidak | Tujuh Harian berbiaya <InlineMath math="\text{Rp}42{.}000" /> (lebih mahal), tetapi kuota siangnya <InlineMath math="7" /> GB (lebih besar dari <InlineMath math="5" /> GB). |
+| V | **Ya** | Empat Mingguan berbiaya <InlineMath math="\text{Rp}100{.}000" />, lebih mahal daripada satu Bulanan <InlineMath math="\text{Rp}80{.}000" />. |
+
+## Mengapa pilihan lain salah
+
+- **Pilihan yang memuat II** melihat harga paket terendah tanpa membagi dengan ukuran kuota.
+- **Pilihan yang memuat III** membandingkan total <InlineMath math="20" /> GB vs <InlineMath math="5" /> GB tanpa membaginya dengan jumlah hari berlaku.
+- **Pilihan yang memuat IV** hanya benar pada bagian harga dan keliru pada bagian kuota siang.
+
+# Jawaban
+
+Pernyataan perbandingan yang didukung teks adalah **I dan V saja** (*I and V only*).
