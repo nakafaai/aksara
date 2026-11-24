@@ -1,19 +1,15 @@
 export const metadata = {
-  title: "Nota Pengangkutan dalam Manusia dan Haiwan Tingkatan Empat",
+  title: "Peredaran Darah Kitar Jantung dan Kapilari",
   description:
-    "Nota Biologi Tingkatan 4 Bab 10: terangkan darah, kitar jantung, tekanan darah, output kardium, sistem limfa dan sistem peredaran haiwan dengan latihan.",
+    "Terangkan komponen darah, ujian kumpulan darah, kitar dan output kardium, tekanan salur darah, pertukaran bendalir kapilari, dan sistem peredaran haiwan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Pengangkutan dalam Manusia dan Haiwan",
 };
 
-## Sistem Peredaran Darah Mengangkut Bahan ke Seluruh Badan
+## Darah dan Pembekuan
 
-**Sistem peredaran darah** terdiri daripada **jantung, salur darah dan darah**. Jantung mengepam darah melalui arteri, kapilari dan vena untuk membawa oksigen, nutrien dan hormon kepada sel serta menyingkirkan karbon dioksida dan urea. Manusia mempunyai **sistem peredaran tertutup dan ganda dua**: darah sentiasa berada di dalam salur darah dan melalui jantung dua kali dalam setiap kitaran lengkap. Dalam model di sini, kamu membaca tekanan dalam kitar jantung, mengira output kardium, mengukur tekanan darah dan melihat kesan jejari salur terhadap aliran darah.
-
-## Darah dan Komponennya
-
-Darah terdiri daripada **plasma** dan sel darah. Plasma, kira-kira <InlineMath math="55\%" /> isi padu darah, mengangkut nutrien, hormon, urea dan karbon dioksida.
+Bayangkan bandar sibuk dengan rangkaian paip penghantaran dua hala: **sistem peredaran darah** manusia tertutup dan ganda dua, menghubungkan **jantung, salur darah, dan darah** supaya oksigen serta nutrien sampai pantas ke setiap sel manakala karbon dioksida dan urea disingkirkan. Darah menggabungkan **plasma** (kira-kira <InlineMath math="55\%" /> isi padu) dengan tiga komponen sel utama.
 
 | Komponen | Struktur | Fungsi |
 | :--- | :--- | :--- |
@@ -22,13 +18,13 @@ Darah terdiri daripada **plasma** dan sel darah. Plasma, kira-kira <InlineMath m
 | Platlet | Serpihan sel kecil | Memulakan pembekuan darah |
 | Plasma | Cecair kekuningan, kira-kira <InlineMath math="90\%" /> air | Mengangkut bahan terlarut dan haba |
 
-### Pembekuan Darah
+### Proses Pembekuan
 
-Apabila salur darah terluka, platlet dan tisu yang rosak membebaskan **tromboplastin**. Dengan bantuan ion kalsium dan vitamin K, tromboplastin menukarkan protrombin kepada **trombin**. Trombin pula menukarkan fibrinogen yang larut kepada **fibrin** yang tidak larut. Benang fibrin memerangkap sel darah merah dan membentuk darah beku yang menghentikan pendarahan.
+Apabila salur darah terluka, platlet membebaskan **tromboplastin** yang dibantu ion kalsium dan vitamin K untuk menukarkan protrombin kepada **trombin**, lalu trombin menukarkan fibrinogen terlarut menjadi jaring **fibrin** penutup luka.
 
-### Kumpulan Darah
+### Ujian Kumpulan Darah
 
-Sistem ABO bergantung pada **antigen** di permukaan eritrosit dan **antibodi** dalam plasma. Darah penderma mesti tidak membawa antigen yang dikenali oleh antibodi penerima, jika tidak eritrosit penderma akan bergumpal.
+Keserasian darah bergantung pada **antigen** di permukaan eritrosit dan **antibodi** dalam plasma. Darah penderma tidak boleh membawa antigen yang dikenali antibodi penerima kerana eritrosit akan bergumpal.
 
 | Kumpulan | Antigen | Antibodi | Boleh menerima daripada |
 | :--- | :--- | :--- | :--- |
@@ -37,19 +33,80 @@ Sistem ABO bergantung pada **antigen** di permukaan eritrosit dan **antibodi** d
 | AB | A dan B | Tiada | A, B, AB, O |
 | O | Tiada | Anti-A dan anti-B | O sahaja |
 
-## Jantung dan Kitar Jantung
+> Titisan darah bergumpal tepat pada antiserum yang sepadan dengan antigen permukaan eritrositnya, sekali gus mendedahkan kumpulan ABO dan Rhesus pada jubin ujian.
 
-Jantung manusia mempunyai **empat ruang**: dua atrium di atas dan dua ventrikel di bawah. Ventrikel kiri berdinding paling tebal kerana mengepam darah beroksigen ke seluruh badan melalui **aorta**. Injap trikuspid dan bikuspid menghalang darah mengalir balik ke atrium, manakala injap sabit menghalang darah mengalir balik ke ventrikel. Denyutan jantung bermula di **nodus sinoatrium**, perentak semula jadi jantung.
+<BloodTypingLab
+  title={<>Ujian Kumpulan Darah pada Jubin Porselin</>}
+  description={
+    <>
+      Tiga sampel darah dicampurkan dengan serum anti-A, anti-B, dan anti-D lalu
+      diperhatikan penggumpalannya selepas satu minit.
+    </>
+  }
+  footer={<>Penggumpalan hanya muncul apabila antiserum mengikat antigen padanannya pada eritrosit.</>}
+  labels={{
+    clumped: <>Bergumpal</>,
+    group: <>Kumpulan darah</>,
+    groups: { A: <>A</>, AB: <>AB</>, B: <>B</>, O: <>O</> },
+    sample: "Sampel",
+    sera: { a: <>Anti-A</>, b: <>Anti-B</>, d: <>Anti-D</> },
+    smooth: <>Tiada gumpalan</>,
+    time: <>Masa selepas dicampur</>,
+    view: "Jubin porselin putih dengan titisan darah dan antiserum",
+  }}
+  samples={[
+    { group: "A", name: "Ali", rhesus: "positive" },
+    { group: "O", name: "Mei", rhesus: "negative" },
+    { group: "AB", name: "Ravi", rhesus: "positive" },
+  ]}
+/>
 
-Satu **kitar jantung** mengambil masa kira-kira <InlineMath math="0.8" /> saat. Model ini menunjukkan tekanan dalam ventrikel kiri, aorta dan atrium kiri. Gerakkan gelangsar masa dan perhatikan bila tekanan ventrikel melebihi tekanan aorta, iaitu saat injap sabit terbuka.
+Sampel Mei kekal licin dengan anti-A, anti-B, dan anti-D sebagai O negatif, manakala sampel Ravi bergumpal pada ketiganya sebagai AB positif. Kumpulan O ialah penderma universal dan AB penerima universal.
+
+## Kitar dan Output Kardium
+
+Jantung manusia mempunyai **empat ruang** yang dipacu **nodus sinoatrium**. Ventrikel kiri berdinding paling tebal kerana mengepam darah beroksigen ke seluruh badan melalui **aorta**, manakala injap bikuspid, trikuspid, dan sabit mengekalkan aliran sehala.
+
+> Isi padu strok ialah beza isi padu ventrikel penuh akhir diastol dengan baki akhir sistol, dan mendarabkannya dengan kadar denyutan memberi output kardium.
+
+<HeartCycleLab
+  title={<>Kitar Jantung dan Output Kardium</>}
+  description={
+    <>
+      Jantung berdenyut pada <InlineMath math="72" /> denyutan seminit dengan
+      ventrikel kiri terisi <InlineMath math="120\text{ mL}" /> dan berbaki{" "}
+      <InlineMath math="50\text{ mL}" /> setiap denyutan.
+    </>
+  }
+  footer={<>Beza 120 dan 50 mL memberi 70 mL isi padu strok atau sekitar 5.04 L seminit.</>}
+  labels={{
+    aorta: <>Tekanan aorta</>,
+    output: <>Output kardium</>,
+    phase: <>Fasa kitar</>,
+    phases: {
+      atrial: <>Sistol atrium</>,
+      diastole: <>Diastol</>,
+      ventricular: <>Sistol ventrikel</>,
+    },
+    pressure: <>Tekanan ventrikel kiri</>,
+    rate: "Kadar denyutan",
+    stroke: <>Isi padu strok</>,
+    view: "Keratan hadapan jantung manusia yang berdenyut",
+    volume: <>Isi padu ventrikel kiri</>,
+  }}
+  rate={72}
+  volumes={{ endDiastolic: 120, endSystolic: 50 }}
+/>
+
+Setiap pengecutan mengepam <InlineMath math="70\text{ mL}" /> sehingga output kardium mencapai sekitar <InlineMath math="5.04\text{ L min}^{-1}" />, hampir keseluruhan isi padu darah dewasa setiap minit.
 
 <MathVisual
   title={<>Tekanan dalam Satu Kitar Jantung</>}
+  footer={<>Darah mengalir ke aorta hanya apabila tekanan ventrikel kiri melebihi tekanan aorta.</>}
   description={
     <>
-      Model tekanan dalam unit <InlineMath math="2\text{ kPa}" /> terhadap masa
-      dalam unit <InlineMath math="0.1" /> saat. Darah dipam ke aorta apabila
-      lengkung ventrikel berada di atas lengkung aorta.
+      Model tekanan dalam unit <InlineMath math="2\text{ kPa}" /> terhadap masa{" "}
+      <InlineMath math="0.1" /> saat sepanjang satu denyutan.
     </>
   }
   scene={{
@@ -77,30 +134,19 @@ Satu **kitar jantung** mengambil masa kira-kira <InlineMath math="0.8" /> saat. 
   }}
 />
 
-### Peringkat dalam Kitar Jantung
-
-Pada awal kitar, atrium mengecut dan mengisi ventrikel. Ventrikel kemudian mengecut, injap bikuspid tertutup dan menghasilkan **bunyi pertama jantung**. Apabila tekanan ventrikel melebihi tekanan aorta, injap sabit terbuka dan darah dipam keluar. Apabila ventrikel mengendur dan tekanannya jatuh di bawah tekanan aorta, injap sabit tertutup dan menghasilkan bunyi kedua.
-
-### Contoh Output Kardium
-
-**Output kardium** ialah isi padu darah yang dipam oleh satu ventrikel dalam satu minit:
+Penutupan injap bikuspid semasa ventrikel mengecut menghasilkan bunyi pertama jantung, manakala penutupan injap sabit semasa ventrikel mengendur menghasilkan bunyi kedua.
 
 <BlockMath math="\text{Output kardium} = \text{isi padu strok} \times \text{kadar denyutan jantung}" />
 
-Isi padu strok seorang murid ialah <InlineMath math="70\text{ cm}^3" /> dan kadar denyutan jantungnya <InlineMath math="72" /> denyutan seminit.
-
-<BlockMath math="70 \times 72 = 5040\text{ cm}^3\text{ min}^{-1} = 5.04\text{ dm}^3\text{ min}^{-1}" />
-
-Semak: isi padu darah orang dewasa kira-kira <InlineMath math="5\text{ dm}^3" />, jadi seluruh darah melalui ventrikel kiri lebih kurang sekali seminit semasa rehat. Ubah isi padu strok dan kadar denyutan dalam model ini.
-
 <MathVisual
   title={<>Output Kardium bagi Isi Padu Strok dan Kadar Denyutan</>}
+  footer={<>Output kardium meningkat berkadar terus dengan isi padu strok dan kadar denyutan.</>}
   description={
     <>
       Output kardium <InlineMath math="\dfrac{ah}{100}" /> dalam{" "}
-      <InlineMath math="\text{dm}^3\text{ min}^{-1}" /> terhadap kadar denyutan{" "}
-      <InlineMath math="h" /> dalam puluhan denyutan seminit, dengan isi padu
-      strok <InlineMath math="a" /> dalam <InlineMath math="\text{cm}^3" />.
+      <InlineMath math="\text{dm}^3\text{ min}^{-1}" /> terhadap kadar{" "}
+      <InlineMath math="h" /> (puluhan seminit) dan strok{" "}
+      <InlineMath math="a" /> (<InlineMath math="\text{cm}^3" />).
     </>
   }
   scene={{
@@ -126,7 +172,11 @@ Semak: isi padu darah orang dewasa kira-kira <InlineMath math="5\text{ dm}^3" />
   }}
 />
 
-## Salur Darah dan Tekanan Darah
+Jantung atlet mengepam isi padu strok lebih besar (<InlineMath math="100\text{ cm}^3" />) supaya hanya <InlineMath math="50" /> denyutan seminit sudah menghasilkan <InlineMath math="5.0\text{ dm}^3\text{ min}^{-1}" />.
+
+## Salur dan Tekanan Darah
+
+**Arteri sentiasa membawa darah keluar dari jantung** dengan dinding tebal kenyal, manakala **vena sentiasa kembali ke jantung** pada tekanan terendah dan bergantung pada injap pencegah aliran balik.
 
 | Salur | Dinding | Lumen | Injap | Tekanan |
 | :--- | :--- | :--- | :--- | :--- |
@@ -134,14 +184,13 @@ Semak: isi padu darah orang dewasa kira-kira <InlineMath math="5\text{ dm}^3" />
 | Kapilari | Setebal satu sel | Sangat kecil | Tiada | Rendah |
 | Vena | Nipis, kurang berotot | Besar | Ada | Paling rendah |
 
-**Tekanan darah** diukur dengan sfigmomanometer dan dinyatakan sebagai tekanan sistolik per tekanan diastolik, contohnya <InlineMath math="120/80\text{ mmHg}" />. Tekanan paling tinggi di aorta dan jatuh secara berterusan apabila darah mengalir melalui salur yang semakin kecil. Graf ini menunjukkan tekanan purata dalam setiap jenis salur.
-
 <BarChart
   title={<>Tekanan Darah Purata dalam Setiap Jenis Salur</>}
+  footer={<>Kejatuhan tekanan paling curam berlaku di arteriol sebelum masuk kapilari nipis.</>}
   description={
     <>
-      Tekanan purata dalam mmHg semasa darah mengalir dari aorta ke vena besar
-      dalam peredaran sistemik.
+      Tekanan purata dalam mmHg dari aorta ke vena besar dalam peredaran
+      sistemik.
     </>
   }
   yAxisLabel="Tekanan purata (mmHg)"
@@ -156,30 +205,17 @@ Semak: isi padu darah orang dewasa kira-kira <InlineMath math="5\text{ dm}^3" />
   chartConfig={{ value: { label: "Tekanan purata", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-Penurunan terbesar berlaku di **arteriol**, kerana salur ini sempit dan dindingnya berotot. Tekanan yang rendah dalam kapilari membolehkan bahan meresap keluar tanpa merosakkan dinding setebal satu sel.
+Tekanan normal <InlineMath math="120/80\text{ mmHg}" /> menyamai <InlineMath math="16.0/10.6\text{ kPa}" />, dan penurunan mendadak di arteriol melindungi dinding kapilari setebal satu sel.
 
-### Contoh Bacaan Tekanan Darah
-
-Ketika manset sfigmomanometer merkuri dikempiskan, bunyi denyutan mula kedengaran pada lajur merkuri <InlineMath math="12.0\text{ cm}" /> dan hilang pada <InlineMath math="8.0\text{ cm}" />. Nyatakan **bacaan tekanan darah** dalam mmHg dan kPa.
-
-<MathContainer>
-<BlockMath math="12.0\text{ cmHg} = 120\text{ mmHg}, \quad 8.0\text{ cmHg} = 80\text{ mmHg}" />
-<BlockMath math="120 \times 0.133 = 16.0\text{ kPa}, \quad 80 \times 0.133 = 10.6\text{ kPa}" />
-</MathContainer>
-
-Bacaannya <InlineMath math="120/80\text{ mmHg}" />, iaitu tekanan normal. Semak: nilai sistolik <InlineMath math="16.0\text{ kPa}" /> sepadan dengan puncak lengkung ventrikel kiri dalam model kitar jantung.
-
-### Jejari Salur dan Aliran Darah
-
-Aliran darah melalui salur sangat peka terhadap jejarinya. Bagi tekanan yang sama, aliran berkadar dengan **kuasa empat jejari**. Apabila arteriol mengecut, aliran ke tisu itu jatuh dengan banyak. Itulah sebabnya plak kolesterol yang menyempitkan arteri koronari, iaitu **aterosklerosis**, begitu berbahaya.
+Aliran darah amat peka kerana berkadar dengan **kuasa empat jejari salur**, menjadikan plak kolesterol pada **aterosklerosis** sangat berbahaya.
 
 <MathVisual
   title={<>Aliran Darah Berkadar dengan Kuasa Empat Jejari</>}
+  footer={<>Mengecilkan jejari arteri separuh memotong aliran darah ke satu perenam belas.</>}
   description={
     <>
       Aliran relatif <InlineMath math="\dfrac{r^4}{216}" /> terhadap jejari{" "}
-      <InlineMath math="r" /> dalam unit relatif, dengan jejari normal{" "}
-      <InlineMath math="4" />.
+      <InlineMath math="r" /> berbanding jejari normal <InlineMath math="4" />.
     </>
   }
   scene={{
@@ -204,18 +240,58 @@ Aliran darah melalui salur sangat peka terhadap jejarinya. Bagi tekanan yang sam
   }}
 />
 
-Jika jejari arteri jatuh separuh, daripada <InlineMath math="4" /> kepada <InlineMath math="2" />, aliran menjadi <InlineMath math="\left(\tfrac{1}{2}\right)^4 = \tfrac{1}{16}" /> daripada asal, iaitu kira-kira <InlineMath math="6\%" />. Semak dengan model: pada <InlineMath math="r = 2" />, bacaan peratus ialah <InlineMath math="6.25" />.
+Penyempitan jejari arteri kepada <InlineMath math="0.8" /> kali asal sudah menjatuhkan aliran darah kepada <InlineMath math="0.8^4 = 41\%" /> sahaja.
 
-## Senaman dan Kadar Denyutan Jantung
+## Pertukaran Bendalir Kapilari
 
-Semasa senaman, otot memerlukan lebih banyak oksigen, jadi kadar denyutan jantung dan isi padu strok meningkat. Selepas senaman, kadar denyutan kembali ke nilai rehat. **Masa pemulihan yang singkat** menandakan jantung yang cergas. Graf ini menunjukkan kadar denyutan dua murid selepas berlari selama tiga minit.
+Sepanjang **jaringan kapilari**, tekanan darah menolak plasma keluar ke ruang antara sel sebagai **bendalir tisu**, manakala tarikan osmotik protein plasma menarik bendalir kembali ke salur. Lebihan bendalir memasuki **kapilari limfa** sebagai limfa, ditapis di nodus limfa, lalu kembali ke darah melalui vena subklavikel.
+
+> Di hujung arteriol tekanan darah melebihi tarikan onkotik lalu bendalir terturas keluar, manakala di hujung venul tekanan jatuh supaya kebanyakannya meresap balik dan bakinya dialirkan salur limfa.
+
+<CapillaryBedLab
+  title={<>Penurasan dan Penyerapan Semula dalam Jaringan Kapilari</>}
+  description={
+    <>
+      Darah masuk hujung arteriol pada <InlineMath math="35\text{ mmHg}" /> dan
+      keluar hujung venul pada <InlineMath math="18\text{ mmHg}" /> melawan
+      tarikan onkotik <InlineMath math="25\text{ mmHg}" />.
+    </>
+  }
+  footer={<>Di atas 25 mmHg bendalir keluar ke sel, di bawahnya balik, dan baki masuk limfa.</>}
+  labels={{
+    arterial: "Tekanan hujung arteriol",
+    inward: <>Penyerapan semula</>,
+    lymph: <>Ke kapilari limfa</>,
+    oncotic: "Tekanan onkotik plasma",
+    outward: <>Penurasan keluar</>,
+    parts: {
+      arteriole: <>Arteriol</>,
+      capillary: <>Kapilari darah</>,
+      cell: <>Sel tisu</>,
+      lymph: <>Kapilari limfa</>,
+      venule: <>Venul</>,
+    },
+    turning: <>Titik balik aliran bendalir</>,
+    view: "Jaringan kapilari dengan arteriol, venul, sel tisu, dan kapilari limfa",
+  }}
+  oncotic={25}
+  pressure={{ arterial: 35, venous: 18 }}
+  tissue={{ oncotic: 0, pressure: 0 }}
+/>
+
+Turunkan tekanan onkotik plasma di atas dan lihat titik balik beralih ke kanan supaya lebih banyak bendalir berkumpul di ruang tisu dan perlu dialirkan kapilari limfa.
+
+## Senaman dan Pemulihan
+
+Semasa senaman otot memerlukan oksigen tambahan sehingga kadar denyutan meningkat. **Masa pemulihan yang singkat** selepas berlari menandakan jantung yang cergas.
 
 <ScatterDiagram
   title={<>Kadar Denyutan Jantung Selepas Senaman</>}
+  footer={<>Denyutan atlet kembali hampir ke kadar rehat dalam empat minit selepas larian.</>}
   description={
     <>
-      Kadar denyutan jantung setiap minit selepas senaman bagi seorang atlet
-      dan seorang murid yang jarang bersenam.
+      Kadar denyutan setiap minit selepas larian tiga minit bagi atlet dan murid
+      yang jarang bersenam.
     </>
   }
   xAxisLabel="Masa selepas senaman (min)"
@@ -248,60 +324,17 @@ Semasa senaman, otot memerlukan lebih banyak oksigen, jadi kadar denyutan jantun
   ]}
 />
 
-Atlet kembali hampir ke kadar rehat dalam empat minit, manakala murid yang jarang bersenam masih berdenyut <InlineMath math="96" /> denyutan seminit selepas lima minit.
-
-## Sistem Limfa
-
-Sebahagian plasma meresap keluar dari kapilari ke ruang antara sel sebagai **bendalir tisu**. Kebanyakannya kembali ke kapilari, dan bakinya memasuki **kapilari limfa** sebagai **limfa**. Limfa mengalir melalui salur limfa dan **nodus limfa**, tempat limfosit memusnahkan patogen, sebelum kembali ke darah melalui vena subklavikel. Sistem limfa juga mengangkut lipid dari lakteal di vilus.
+Selepas lima minit murid yang jarang bersenam masih berdenyut <InlineMath math="96" /> denyutan seminit manakala atlet sudah tenang pada <InlineMath math="64" />.
 
 ## Sistem Peredaran Haiwan
 
+Kumpulan haiwan berbeza mempunyai reka bentuk sistem peredaran mengikut keperluan oksigen tubuh, daripada sistem terbuka serangga hingga peredaran ganda dua lengkap manusia.
+
 | Haiwan | Jenis sistem | Ciri |
 | :--- | :--- | :--- |
-| Serangga | Terbuka | Hemolimfa membasahi organ secara terus dalam hemosel |
-| Ikan | Tertutup, peredaran tunggal | Jantung dua ruang, darah melalui jantung sekali dalam satu kitaran |
-| Amfibia | Tertutup, peredaran ganda dua tidak lengkap | Jantung tiga ruang, sedikit percampuran darah dalam ventrikel |
-| Manusia | Tertutup, peredaran ganda dua lengkap | Jantung empat ruang, darah beroksigen dan terdeoksigen tidak bercampur |
+| Serangga | Terbuka | Hemolimfa membasahi organ terus dalam hemosel |
+| Ikan | Tertutup, peredaran tunggal | Jantung dua ruang, darah melalui jantung sekali |
+| Amfibia | Tertutup, peredaran ganda dua tidak lengkap | Jantung tiga ruang, sedikit percampuran dalam ventrikel |
+| Manusia | Tertutup, peredaran ganda dua lengkap | Jantung empat ruang, darah beroksigen dan terdeoksigen terasing |
 
-**Peredaran ganda dua** membolehkan darah dipam semula ke badan pada tekanan tinggi selepas melalui peparu, jadi oksigen sampai ke tisu dengan lebih cepat.
-
-## Kesilapan Lazim tentang Pengangkutan
-
-| Kesilapan | Sebab salah | Cara semak |
-| :--- | :--- | :--- |
-| Semua arteri membawa darah beroksigen. | Arteri pulmonari membawa darah terdeoksigen ke peparu. | Arteri ditakrifkan oleh arah aliran, iaitu keluar dari jantung. |
-| Ventrikel kanan berdinding paling tebal. | Ventrikel kiri paling tebal kerana mengepam darah ke seluruh badan. | Bandingkan jarak yang perlu dicapai oleh darah. |
-| Kumpulan AB boleh menderma kepada semua orang. | Kumpulan AB ialah penerima universal. Kumpulan O ialah penderma universal. | Semak antigen penderma dan antibodi penerima. |
-| Vena mempunyai tekanan tinggi. | Vena bertekanan paling rendah dan bergantung pada injap serta otot rangka. | Bandingkan ketebalan dinding salur. |
-
-Kesilapan pertama paling kerap muncul dalam soalan salur darah. **Arteri keluar dari jantung, vena masuk ke jantung**, walau apa pun kandungan oksigennya.
-
-## Latihan Pengangkutan dalam Manusia dan Haiwan
-
-Soalan ini bergerak dari darah ke jantung dan tekanan darah. **Tunjukkan unit** dalam setiap pengiraan.
-
-1. Isi padu strok seorang atlet ialah <InlineMath math="100\text{ cm}^3" /> dan kadar denyutannya <InlineMath math="50" /> denyutan seminit. Hitung output kardiumnya dalam <InlineMath math="\text{dm}^3\text{ min}^{-1}" />.
-
-2. Seorang pesakit berkumpulan darah B. Namakan kumpulan darah yang selamat didermakan kepadanya dan terangkan sebabnya.
-
-3. Plak menyempitkan jejari sebatang arteri kepada <InlineMath math="0.8" /> kali jejari asal. Hitung aliran darah baharu sebagai peratus aliran asal.
-
-4. Terangkan mengapa vena mempunyai injap tetapi arteri tidak.
-
-### Penyelesaian
-
-**Penyelesaian 1**: Darabkan isi padu strok dengan kadar denyutan:
-
-<BlockMath math="100 \times 50 = 5000\text{ cm}^3\text{ min}^{-1} = 5.0\text{ dm}^3\text{ min}^{-1}" />
-
-Semak: nilainya hampir sama dengan output kardium murid biasa, kerana jantung atlet mengepam lebih banyak darah setiap denyutan dan tidak perlu berdenyut sekerap itu.
-
-**Penyelesaian 2**: Kumpulan **B dan O** selamat. Plasma pesakit mengandungi antibodi anti-A, jadi darah yang membawa antigen A, iaitu kumpulan A dan AB, akan bergumpal.
-
-**Penyelesaian 3**: Aliran berkadar dengan kuasa empat jejari:
-
-<BlockMath math="0.8^4 = 0.41 \quad\Rightarrow\quad 41\%" />
-
-Semak dengan model: pada <InlineMath math="r = 3.2" />, iaitu <InlineMath math="0.8 \times 4" />, bacaan peratus ialah <InlineMath math="41" />. Penyempitan yang kecil sahaja sudah menurunkan aliran lebih daripada separuh.
-
-**Penyelesaian 4**: Tekanan dalam vena **sangat rendah**, jadi darah boleh mengalir balik, terutamanya dari kaki melawan graviti. Injap menghalang aliran balik ini. Dalam arteri, tekanan tinggi daripada pengecutan ventrikel sudah menolak darah ke hadapan.
+**Peredaran ganda dua lengkap** mengepam semula darah pada tekanan tinggi selepas melalui peparu supaya oksigen sampai pantas ke tisu. Semakan pantas kendiri: pesakit kumpulan B selamat menerima B dan O, dan arteri pulmonari membawa darah terdeoksigen kerana arteri ditentukan oleh arah keluar dari jantung.
