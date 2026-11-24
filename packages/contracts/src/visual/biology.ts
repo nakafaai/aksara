@@ -1,4 +1,10 @@
 import { Schema } from "effect";
+import { flowerVisuals } from "#contracts/visual/biology/flower";
+import { mendelianVisuals } from "#contracts/visual/biology/mendelian";
+import { nutritionVisuals } from "#contracts/visual/biology/nutrition";
+import { phytohormoneVisuals } from "#contracts/visual/biology/phytohormone";
+import { variationVisuals } from "#contracts/visual/biology/variation";
+import { vascularVisuals } from "#contracts/visual/biology/vascular";
 import type { RichSlot } from "#contracts/visual/card";
 import { TextSchema } from "#contracts/visual/card";
 import { answerAt, figure } from "#contracts/visual/entry";
@@ -113,6 +119,12 @@ const takeaway = answerAt(["labels", "items", "*", "takeaway"]);
  */
 export function biologyVisuals<E>(rich: RichSlot<E>) {
   return {
+    ...flowerVisuals(rich),
+    ...mendelianVisuals(rich),
+    ...nutritionVisuals(rich),
+    ...phytohormoneVisuals(rich),
+    ...variationVisuals(rich),
+    ...vascularVisuals(rich),
     BacteriaStructureLab: figure(bacteriaStructureLab(rich), takeaway),
     ClimateObservationLab: figure(biologyLab(rich), takeaway),
     FungiMyceliumLab: figure(biologyLab(rich), takeaway),
