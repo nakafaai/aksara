@@ -1,34 +1,29 @@
 export const metadata = {
   title: "Elektromagnetismus mit Induktion und Transformator",
   description:
-    "Erklär die Kraft auf stromdurchflossene Leiter, die elektromagnetische Induktion und den Generator und berechne Spannung und Wirkungsgrad am Transformator.",
+    "Erkläre die Kraft auf Stromleiter, die Lenzsche Regel im Kupferrohr, Wechselstromgeneratoren, Transformatoren und Hochspannungsleitungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Elektromagnetismus",
 };
 
-## Elektrizität und Magnetismus hängen zusammen
+## Kraft auf Stromleiter
 
-Der **Elektromagnetismus** untersucht den Zusammenhang zwischen elektrischem Strom und Magnetfeldern. Ein stromdurchflossener Leiter im Magnetfeld erfährt eine **Kraft**, <InlineMath math="F = B \cdot I \cdot L" />, und darauf beruht der Elektromotor. Umgekehrt entsteht in einem Leiter, der ein Magnetfeld schneidet, eine **Induktionsspannung**, und darauf beruht der Generator. Ein Transformator ändert die Spannung von Wechselstrom nach <InlineMath math="\dfrac{U_s}{U_p} = \dfrac{N_s}{N_p}" />. Hier änderst du Strom und Feld, drehst einen Generator unterschiedlich schnell, änderst die Windungszahl eines Transformators und vergleichst die Verluste in einer Leitung.
-
-Fließt Strom durch einen Draht, entsteht um ihn herum ein Magnetfeld. Liegt der Draht in einem anderen Magnetfeld, überlagern sich beide Felder. Auf einer Seite des Drahts wird das Feld stärker, auf der anderen schwächer, also wird der Draht zur schwächeren Seite gedrückt.
-
-## Die Kraft auf einen stromdurchflossenen Leiter
-
-Die Richtung der Kraft liefert die **Linke-Hand-Regel**: Der Zeigefinger zeigt in Richtung des Magnetfelds, der Mittelfinger in Richtung des Stroms und der Daumen in Richtung der Kraft. Der Betrag der Kraft hängt von der Flussdichte <InlineMath math="B" />, der Stromstärke <InlineMath math="I" /> und der Leiterlänge im Feld <InlineMath math="L" /> ab:
+Der **Elektromagnetismus** verknüpft elektrischen Strom und Magnetfelder. Fließt Strom durch einen Leiter in einem äußeren Magnetfeld, verstärken sich die Felder auf einer Seite und drücken den Leiter zur schwächeren Seite mit der Kraft:
 
 <BlockMath math="F = B \cdot I \cdot L" />
 
-Ändere unten Flussdichte und Stromstärke für einen Draht von <InlineMath math="0{,}050\ \text{m}" /> Länge. Die Kraft ist proportional zur Stromstärke, also ist der Graph eine Ursprungsgerade.
+Die Kraftrichtung liefert die **Linke-Hand-Regel**: Zeigefinger entlang des Magnetfelds, Mittelfinger entlang des Stroms, Daumen in Richtung der Kraft. Merk dir die Faustregel: **Motor mit links, Generator mit rechts**.
 
 <MathVisual
   title={<>Kraft auf einen stromdurchflossenen Draht gegen die Stromstärke</>}
+  footer={<>Die magnetische Kraft wächst linear mit Flussdichte B und Stromstärke I.</>}
   description={
     <>
-      <InlineMath math="F = B \cdot I \cdot L" /> mit{" "}
+      <InlineMath math="F = B \cdot I \cdot L" /> für{" "}
       <InlineMath math="L = 0{,}050\ \text{m}" />. Bei{" "}
       <InlineMath math="B = 0{,}20\ \text{T}" /> und{" "}
-      <InlineMath math="I = 3{,}0\ \text{A}" /> wirkt eine Kraft von{" "}
+      <InlineMath math="I = 3{,}0\ \text{A}" /> wirken{" "}
       <InlineMath math="0{,}030\ \text{N}" />.
     </>
   }
@@ -55,25 +50,84 @@ Die Richtung der Kraft liefert die **Linke-Hand-Regel**: Der Zeigefinger zeigt i
   }}
 />
 
-Prüf den Startwert: <InlineMath math="F = 0{,}20 \cdot 3{,}0 \cdot 0{,}050 = 0{,}030\ \text{N}" />.
+Verändere Flussdichte <InlineMath math="B" /> oder Strom <InlineMath math="I" /> oben: Doppelte Stromstärke verdoppelt sofort die Kraft auf den Draht.
 
-In einem **Gleichstrommotor** erfährt eine stromdurchflossene Spule im Magnetfeld an ihren beiden Seiten entgegengesetzte Kräfte und dreht sich. Der **Kommutator** polt den Strom jede halbe Umdrehung um, damit sich die Spule immer in dieselbe Richtung weiterdreht. Der Motor dreht sich schneller, wenn die Stromstärke steigt, das Magnetfeld stärker ist oder die Spule mehr Windungen hat.
+Stell dir einen dünnen Kupferdraht quer im Magnetspalt vor, der völlig frei in der Luft schwebt. Dazu muss **die nach oben gerichtete Magnetkraft genau das Gewicht des Drahts ausgleichen**:
 
-## Elektromagnetische Induktion und Generatoren
+<BlockMath math="B \cdot I \cdot L = m \cdot g \quad \Longrightarrow \quad I = \frac{m \cdot g}{B \cdot L}" />
 
-Schneidet ein Leiter Magnetfeldlinien oder ändert sich das Magnetfeld durch eine Spule, entsteht eine **Induktionsspannung**. Das **Faradaysche Induktionsgesetz** besagt, dass sie proportional zur Änderungsrate des magnetischen Flusses ist. Die **Lenzsche Regel** besagt, dass der Induktionsstrom seiner Ursache immer entgegenwirkt. Die Stromrichtung in einem bewegten Draht liefert die **Rechte-Hand-Regel**.
+> Zeigt das Magnetfeld nach Norden, hebt ein Strom nach Osten den Draht senkrecht an, bis Magnetkraft und Gewicht im Gleichgewicht stehen.
 
-Die Lenzsche Regel ist eine Form der Energieerhaltung. Schiebst du den Nordpol eines Magneten in eine Spule, wird das nahe Spulenende zum Nordpol und stößt den Magneten ab. Du musst Arbeit verrichten, um den Magneten hineinzuschieben, und diese Arbeit wird zu elektrischer Energie.
+Erhöhe im 3D-Labor den Strom für einen <InlineMath math="6{,}0\ \text{g}" />-Draht mit <InlineMath math="20\ \text{cm}" /> Länge im <InlineMath math="0{,}15\ \text{T}" />-Feld.
 
-Ein **Wechselstromgenerator** dreht eine Spule im Magnetfeld, deshalb folgt die Induktionsspannung einer Sinuskurve. Dreh die Spule unten schneller: Scheitelspannung und Frequenz steigen beide, weil sich der Fluss schneller ändert.
+<CurrentBalanceLab
+  title={<>Einen Draht im Magnetfeld schweben lassen</>}
+  description={
+    <>
+      Ein <InlineMath math="6{,}0\ \text{g}" />-Draht verläuft Ost-West mit{" "}
+      <InlineMath math="20\ \text{cm}" /> in einem nach Norden gerichteten{" "}
+      <InlineMath math="0{,}15\ \text{T}" />-Feld.
+    </>
+  }
+  footer={<>Bei 2,0 A nach Osten tragen 0,060 N Magnetkraft exakt das Gewicht des Drahts.</>}
+  labels={{
+    current: <>Strom nach Osten</>,
+    currentName: "Strom nach Osten",
+    force: <>Magnetkraft</>,
+    needed: <>Strom zum Schweben</>,
+    viewLabel: "Ein stromdurchflossener Draht im Magnetfeld",
+    weight: <>Gewichtskraft des Drahts</>,
+  }}
+  field={0.15}
+  length={20}
+  mass={6}
+/>
+
+Rechne zuerst in Kilogramm und Meter um, dann hebt der Strom von <InlineMath math="I = 2{,}0\ \text{A}" /> den Draht exakt mit <InlineMath math="0{,}060\ \text{N}" /> an.
+
+Im **Gleichstrommotor** erfährt eine stromdurchflossene Spule auf beiden Seiten entgegengesetzte Kräfte und dreht sich. Der **Kommutator** polt den Strom jede halbe Umdrehung um, und mehr Strom, ein stärkerer Magnet oder mehr Windungen erhöhen die Drehzahl.
+
+## Induktion und Lenz Regel
+
+Schneidet ein Leiter Feldlinien oder ändert sich der magnetische Fluss durch eine Spule, entsteht eine **Induktionsspannung**. Nach dem **Faradayschen Gesetz** wächst sie mit der Änderungsrate des Flusses, und nach der **Lenzschen Regel** wirkt der Induktionsstrom **stets seiner Ursache entgegen**, um Energie zu erhalten.
+
+### Wirbelstrom im Kupfer
+
+Lass denselben starken Magneten durch drei gleiche Rohre fallen: Kunststoff, Vollkupfer und geschlitztes Kupfer. Obwohl Kupfer unmagnetisch wirkt, sinkt der Magnet im Vollkupferrohr ganz langsam, weil **ringförmige Wirbelströme in der Rohrwand ihn abbremsen**.
+
+> Induzierte Wirbelströme im Kupferrohr bauen ein Gegenfeld auf, das den fallenden Magneten bremst und Bewegungsenergie in Wärme wandelt.
+
+<MagnetPipeLab
+  title={<>Ein Magnet fällt durch drei Rohre</>}
+  description={
+    <>
+      Derselbe Magnet wird gleichzeitig durch ein Kupferrohr, ein geschlitztes
+      Kupferrohr und ein Kunststoffrohr fallen gelassen.
+    </>
+  }
+  footer={<>Vollkupfer bremst am stärksten, ein Längsschlitz unterbricht die Wirbelströme.</>}
+  labels={{
+    copper: <>Kupfer</>,
+    plastic: <>Kunststoff</>,
+    slit: <>Geschlitztes Kupfer</>,
+    viewLabel: "Magneten fallen gleichzeitig durch drei Rohre",
+  }}
+/>
+
+Im Kunststoffrohr fließt kein Strom und der Magnet fällt frei, während ein Längsschlitz im Kupfer die Stromschleifen unterbricht und die Bremskraft stark abschwächt.
+
+### Wechselstromgenerator
+
+Ein **Wechselstromgenerator** dreht eine Spule im Magnetfeld und erzeugt eine sinusförmige Induktionsspannung.
 
 <MathVisual
   title={<>Ausgangsspannung eines Wechselstromgenerators bei verschiedenen Drehzahlen</>}
+  footer={<>Doppelte Drehzahl verdoppelt Scheitelspannung und Frequenz zugleich.</>}
   description={
     <>
-      Die Induktionsspannung ist <InlineMath math="u = 2s \sin(2\pi s t)" />, mit{" "}
-      <InlineMath math="s" /> Umdrehungen pro Sekunde. Doppelte Drehzahl
-      verdoppelt Scheitelspannung und Frequenz.
+      Induktionsspannung <InlineMath math="u = 2s \sin(2\pi s t)" /> bei{" "}
+      <InlineMath math="s" /> Umdrehungen pro Sekunde. Höhere Drehzahl steigert
+      Gipfel und Frequenz gemeinsam.
     </>
   }
   scene={{
@@ -98,44 +152,22 @@ Ein **Wechselstromgenerator** dreht eine Spule im Magnetfeld, deshalb folgt die 
   }}
 />
 
-Eine Windkraftanlage ist ein großer Generator. Der Wind dreht die Rotorblätter, die Blätter drehen die Generatorspule im Magnetfeld, und Induktion wandelt Bewegungsenergie in elektrische Energie um. Wähl unten einen Standort und vergleich die erzeugte elektrische Leistung.
+Schiebst du einen Nordpol in eine Spule, entsteht am nahen Ende nach der Lenzschen Regel stets ein Nordpol, der das Hineinschieben bremst.
 
-<WindRotorLab
-  title={<>Eine Windkraftanlage an drei Standorten</>}
-  description={
-    <>
-      Dieselbe Anlage mit <InlineMath math="40\ \text{m}" /> langen Blättern im
-      Tal, auf einem Hügel und an der Küste. Stärkerer Wind dreht den Generator
-      schneller und liefert mehr Leistung.
-    </>
-  }
-  labels={{
-    chooseSite: "Standort der Anlage",
-    daily: <>Elektrische Energie pro Tag</>,
-    electric: <>Elektrische Leistung</>,
-    sites: { coast: <>Küste</>, hill: <>Hügel</>, valley: <>Tal</> },
-    speed: <>Drehzahl des Rotors</>,
-    viewLabel: "Eine Windkraftanlage im Tal, auf einem Hügel und an der Küste",
-    wind: <>Windleistung</>,
-  }}
-/>
+## Transformator und Verlust
 
-## Ein Transformator ändert die Spannung
+Ein **Transformator** koppelt Primär- und Sekundärspule über wechselnden Fluss im Eisenkern und **arbeitet nur mit Wechselstrom**, nie mit Gleichstrom:
 
-Ein **Transformator** besteht aus zwei Spulen, der Primärspule und der Sekundärspule, auf einem gemeinsamen Eisenkern. Wechselstrom in der Primärspule erzeugt im Kern einen sich ständig ändernden magnetischen Fluss, und dieser Fluss induziert in der Sekundärspule eine Spannung. Ein Transformator **funktioniert nur mit Wechselstrom**, weil Gleichstrom keinen sich ändernden Fluss erzeugt.
-
-<BlockMath math="\frac{U_s}{U_p} = \frac{N_s}{N_p}" />
-
-Ein Transformator zum **Hochtransformieren** hat mehr Sekundärwindungen, also ist die Ausgangsspannung höher. Einer zum **Heruntertransformieren** hat weniger Sekundärwindungen. Ändere unten die Zahl der Sekundärwindungen für eine Primärspule mit <InlineMath math="1200" /> Windungen an <InlineMath math="240\ \text{V}" />.
+<BlockMath math="\frac{U_s}{U_p} = \frac{N_s}{N_p}, \qquad \eta = \frac{U_s \cdot I_s}{U_p \cdot I_p} \cdot 100\ \%" />
 
 <MathVisual
   title={<>Sekundärspannung eines Transformators gegen die Windungszahl</>}
+  footer={<>Die Ausgangsspannung wächst direkt proportional zur Sekundärwindungszahl.</>}
   description={
     <>
-      <InlineMath math="U_s = 240 \cdot \dfrac{N_s}{1200}" />. Eine Sekundärspule
-      mit <InlineMath math="60" /> Windungen liefert{" "}
-      <InlineMath math="12\ \text{V}" />, eine mit <InlineMath math="2400" />{" "}
-      Windungen <InlineMath math="480\ \text{V}" />.
+      Bei <InlineMath math="1200" /> Primärwindungen an{" "}
+      <InlineMath math="240\ \text{V}" /> liefern <InlineMath math="60" />{" "}
+      Sekundärwindungen genau <InlineMath math="12\ \text{V}" />.
     </>
   }
   scene={{
@@ -159,33 +191,50 @@ Ein Transformator zum **Hochtransformieren** hat mehr Sekundärwindungen, also i
   }}
 />
 
-Probier ein Beispiel. Ein Handyladegerät enthält einen Transformator mit <InlineMath math="1200" /> Primär- und <InlineMath math="60" /> Sekundärwindungen an <InlineMath math="240\ \text{V}" />. Berechne die Sekundärspannung und die Sekundärstromstärke, wenn die Primärstromstärke <InlineMath math="0{,}10\ \text{A}" /> beträgt und der Transformator ideal ist.
+Hochtransformieren **erhöht niemals die Leistung**: Steigt die Spannung, sinkt der Strom. Echte Transformatoren verlieren etwas Energie als Wärme in Spulen und Kern, weshalb **die aufgenommene Leistung stets größer als die abgegebene ist**.
 
-<MathContainer>
-<BlockMath math="U_s = 240 \cdot \frac{60}{1200} = 12\ \text{V}" />
-<BlockMath math="U_p \cdot I_p = U_s \cdot I_s \Rightarrow I_s = \frac{240 \cdot 0{,}10}{12} = 2{,}0\ \text{A}" />
-</MathContainer>
+> Das Spannungsverhältnis bestimmt das Windungsverhältnis, doch der Primärstrom folgt aus der gesamten Aufnahmeleistung samt Wärmeverlusten.
 
-Prüf es mit der Leistung: aufgenommen <InlineMath math="240 \cdot 0{,}10 = 24\ \text{W}" />, abgegeben <InlineMath math="12 \cdot 2{,}0 = 24\ \text{W}" />. Ein idealer Transformator verliert keine Energie, also sinkt die Spannung auf ein Zwanzigstel, und die Stromstärke steigt auf das Zwanzigfache.
+<TransformerLab
+  title={<>Transformator mit realem Wärmeverlust</>}
+  description={
+    <>
+      Eingang <InlineMath math="240\ \text{V}" /> wird auf{" "}
+      <InlineMath math="12\ \text{V}" /> herabgesetzt und speist eine{" "}
+      <InlineMath math="24\ \text{W}" />-Lampe bei <InlineMath math="80\ \%" />{" "}
+      Wirkungsgrad.
+    </>
+  }
+  footer={<>Für 24 W Nutzleistung bei 80 Prozent nimmt die Primärspule 30 W auf und verliert 6 W.</>}
+  labels={{
+    input: <>Aufgenommene Leistung</>,
+    lost: <>Wärmeverlust</>,
+    primaryCurrent: <>Primärstrom</>,
+    ratio: <>Windungsverhältnis <InlineMath math="N_p : N_s" /></>,
+    viewLabel: "Ein Transformator versorgt eine Glühlampe",
+  }}
+  efficiency={0.8}
+  outputPower={24}
+  primaryVoltage={240}
+  secondaryVoltage={12}
+/>
 
-Ein echter Transformator verliert etwas Energie durch den **Widerstand der Spulen**, **Wirbelströme** im Kern, **Ummagnetisierung** und **Streufluss**. Ein geblechter Kern, dicker Kupferdraht und ein weichmagnetischer Kern verringern diese Verluste. Der **Wirkungsgrad** ist <InlineMath math="\dfrac{P_{\text{ab}}}{P_{\text{zu}}} \cdot 100\ \%" />.
+Das Windungsverhältnis liegt bei <InlineMath math="20 : 1" />, die aufgenommene Leistung bei <InlineMath math="24 / 0{,}80 = 30\ \text{W}" /> und der Primärstrom bei <InlineMath math="30 / 240 = 0{,}125\ \text{A}" />, während ein geblechter Kern Wirbelströme dämpft.
 
-## Energieübertragung bei hoher Spannung
+## Hochspannung in Leitungen
 
-Energie aus einem Kraftwerk fließt durch Leitungen mit Widerstand. Die Leistung, die in den Leitungen als Wärme verloren geht, ist <InlineMath math="P_{\text{Verlust}} = I^2 \cdot R" />. Bei gleicher Leistung bedeutet eine höhere Spannung eine kleinere Stromstärke, also viel weniger Verlust. Deshalb transformiert man im Kraftwerk hoch und in der Nähe der Verbraucher wieder herunter.
-
-Ändere unten die Übertragungsspannung für <InlineMath math="100\ \text{kW}" />, die durch eine Leitung mit <InlineMath math="2\ \Omega" /> fließen. Der Verlust ist umgekehrt proportional zum **Quadrat der Spannung**.
+Stromnetze transformieren die Spannung hoch, damit der Leitungsstrom winzig bleibt, denn der Wärmeverlust <InlineMath math="I^2 \cdot R" /> sinkt mit dem **Quadrat der Spannung**.
 
 <MathVisual
   title={<>Leistungsverlust in der Leitung gegen die Übertragungsspannung</>}
+  footer={<>Zehnfache Spannung senkt den Wärmeverlust im Kabel auf ein Hundertstel.</>}
   description={
     <>
-      Die Stromstärke ist <InlineMath math="I = \dfrac{100}{U}\ \text{A}" /> mit{" "}
-      <InlineMath math="U" /> in Kilovolt, also ist der Verlust{" "}
-      <InlineMath math="I^2 \cdot R = \dfrac{20}{U^2}\ \text{kW}" />. Bei{" "}
-      <InlineMath math="1\ \text{kV}" /> gehen <InlineMath math="20\ \text{kW}" />{" "}
-      verloren, bei <InlineMath math="10\ \text{kV}" /> nur{" "}
-      <InlineMath math="0{,}2\ \text{kW}" />.
+      Für <InlineMath math="100\ \text{kW}" /> über{" "}
+      <InlineMath math="2\ \Omega" /> sinkt der Verlust von{" "}
+      <InlineMath math="20\ \text{kW}" /> bei <InlineMath math="1\ \text{kV}" />{" "}
+      auf <InlineMath math="0{,}2\ \text{kW}" /> bei{" "}
+      <InlineMath math="10\ \text{kV}" />.
     </>
   }
   scene={{
@@ -211,49 +260,4 @@ Energie aus einem Kraftwerk fließt durch Leitungen mit Widerstand. Die Leistung
   }}
 />
 
-Prüf zwei Werte: Bei <InlineMath math="1\ \text{kV}" /> ist <InlineMath math="I = 100\ \text{A}" />, und der Verlust beträgt <InlineMath math="100^2 \cdot 2 = 20\,000\ \text{W}" />. Bei <InlineMath math="10\ \text{kV}" /> ist <InlineMath math="I = 10\ \text{A}" />, und der Verlust beträgt <InlineMath math="10^2 \cdot 2 = 200\ \text{W}" />, also hundertmal weniger.
-
-## Typische Fehler beim Elektromagnetismus
-
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Für den Motor nimmt man die Rechte-Hand-Regel. | Der Motor folgt der Linken-Hand-Regel. Die Rechte-Hand-Regel gilt für Generator und Induktion. | Frag dich, ob der Strom zugeführt oder induziert wird. |
-| Ein Transformator kann Gleichspannung hochtransformieren. | Gleichstrom erzeugt keinen sich ändernden Fluss, also wird in der Sekundärspule nichts induziert. | Ein Transformator funktioniert nur mit Wechselstrom. |
-| Hochtransformieren erhöht die Leistung. | Beim idealen Transformator gilt <InlineMath math="U_p \cdot I_p = U_s \cdot I_s" />. Die Spannung steigt, die Stromstärke sinkt. | Die abgegebene Leistung kann die aufgenommene nicht übersteigen. |
-| Der Induktionsstrom hilft, den Magneten in die Spule zu ziehen. | Lenzsche Regel: Der Induktionsstrom wirkt der Änderung entgegen, also wird der Magnet abgestoßen. | Würde der Strom helfen, entstünde Energie ohne Arbeit. |
-| Hohe Spannung in der Leitung erhöht die Verluste. | Bei gleicher Leistung bedeutet hohe Spannung kleine Stromstärke, und der Verlust ist <InlineMath math="I^2 \cdot R" />. | Vergleich <InlineMath math="I^2 \cdot R" /> bei zwei Spannungen. |
-
-Der erste Fehler kommt am häufigsten vor. Merk dir die Faustregel: **Motor mit links, Generator mit rechts**.
-
-## Übungen zum Elektromagnetismus
-
-Die Aufgaben gehen vom Motor über die Induktion zum Transformator. **Schreib die Gleichung auf, bevor du Zahlen einsetzt**, damit das Windungsverhältnis nicht vertauscht wird.
-
-1. Nenn zwei Möglichkeiten, einen Gleichstrommotor schneller drehen zu lassen.
-
-2. Der Nordpol eines Magneten wird in eine Spule geschoben, die an ein Galvanometer angeschlossen ist. Gib den Pol am magnetnahen Spulenende an und erklär, warum.
-
-3. Ein Transformator setzt <InlineMath math="240\ \text{V}" /> auf <InlineMath math="6\ \text{V}" /> herunter. Seine Primärspule hat <InlineMath math="2000" /> Windungen. Berechne die Zahl der Sekundärwindungen.
-
-4. Ein Transformator hat <InlineMath math="U_p = 240\ \text{V}" />, <InlineMath math="I_p = 0{,}50\ \text{A}" />, <InlineMath math="U_s = 12\ \text{V}" /> und <InlineMath math="I_s = 9{,}0\ \text{A}" />. Berechne seinen Wirkungsgrad.
-
-### Lösungen
-
-**Lösung 1**: Die Kraft auf jede Spulenseite ist <InlineMath math="F = B \cdot I \cdot L" />, also erhöhst du die **Stromstärke** in der Spule oder nimmst einen **stärkeren Magneten**. Auch **mehr Windungen** erhöhen die Kraft, weil dann mehr Draht im Feld liegt.
-
-**Lösung 2**: Das nahe Spulenende wird zum **Nordpol**. Nach der Lenzschen Regel wirkt der Induktionsstrom seiner Ursache entgegen, also dem sich nähernden Magneten. Der Nordpol der Spule stößt den Nordpol des Magneten ab, also muss man Arbeit verrichten, um den Magneten hineinzuschieben.
-
-**Lösung 3**: Stell die Transformatorgleichung um:
-
-<BlockMath math="N_s = N_p \cdot \frac{U_s}{U_p} = 2000 \cdot \frac{6}{240} = 50\ \text{Windungen}" />
-
-Prüf es: Das Verhältnis <InlineMath math="\dfrac{50}{2000} = \dfrac{1}{40}" /> entspricht <InlineMath math="\dfrac{6}{240}" />.
-
-**Lösung 4**: Berechne aufgenommene und abgegebene Leistung:
-
-<MathContainer>
-<BlockMath math="P_{\text{zu}} = 240 \cdot 0{,}50 = 120\ \text{W}, \quad P_{\text{ab}} = 12 \cdot 9{,}0 = 108\ \text{W}" />
-<BlockMath math="\eta = \frac{108}{120} \cdot 100\ \% = 90\ \%" />
-</MathContainer>
-
-Prüf es: Die fehlenden <InlineMath math="12\ \text{W}" /> werden in Spulen und Kern zu Wärme, also muss der Wirkungsgrad unter <InlineMath math="100\ \%" /> liegen.
+Kurze Selbstkontrolle: Von <InlineMath math="240\ \text{V}" /> (<InlineMath math="2000" /> Primärwindungen) auf <InlineMath math="6\ \text{V}" /> benötigt man <InlineMath math="50" /> Sekundärwindungen, und ein Transformator mit <InlineMath math="120\ \text{W}" /> Aufnahme und <InlineMath math="108\ \text{W}" /> Abgabe erreicht <InlineMath math="90\ \%" /> Wirkungsgrad.
