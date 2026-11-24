@@ -1,6 +1,31 @@
-Check each statement **against the numbers in the table, row by row**.
+# Given
 
-- _Members rise every month_: false. They fall from <InlineMath math="30" /> to <InlineMath math="28" /> in April.
-- _March 4 minutes faster than January_: false. The difference is <InlineMath math="34 - 31 = 3" /> minutes.
-- _Times get shorter every month_: true. The figures are <InlineMath math="34" />, <InlineMath math="32" />, <InlineMath math="31" />, then <InlineMath math="29" />.
-- _March one and a half times January_: true. One and a half times <InlineMath math="20" /> is <InlineMath math="30" />.
+The *running-club* table records **two monthly series** from January to April: attending members <InlineMath math="20" />, <InlineMath math="24" />, <InlineMath math="30" />, and <InlineMath math="28" />, and average times <InlineMath math="34" />, <InlineMath math="32" />, <InlineMath math="31" />, and <InlineMath math="29" /> minutes.
+
+# Asked
+
+Whether each of the four statements matches the table.
+
+# Solution
+
+Test each statement **independently with exact arithmetic from every row**.
+
+<MathContainer>
+<BlockMath math="34 - 31 = 3 \neq 4" />
+<BlockMath math="1.5 \times 20 = 30" />
+</MathContainer>
+
+> Check every matrix row across all months so a dip like April's attendance is never overlooked.
+
+## Verifying all four statements against the table
+
+| Statement | Exact table check | Verdict |
+| --- | --- | --- |
+| Attending members increased every month | Fell in April from <InlineMath math="30" /> to <InlineMath math="28" /> | **Not consistent** |
+| March time was <InlineMath math="4" /> minutes faster than January | Difference is <InlineMath math="34 - 31 = 3" /> minutes, not <InlineMath math="4" /> | **Not consistent** |
+| Average run time got shorter every month | Decreased steadily: <InlineMath math="34" />, <InlineMath math="32" />, <InlineMath math="31" />, then <InlineMath math="29" /> minutes | **Consistent** |
+| March attendance was one and a half times January attendance | One and a half times <InlineMath math="20" /> equals exactly <InlineMath math="30" /> | **Consistent** |
+
+# Answer
+
+The four verdicts in order are **Not consistent, Not consistent, Consistent, Consistent** (*Tidak sesuai, Tidak sesuai, Sesuai, Sesuai*).

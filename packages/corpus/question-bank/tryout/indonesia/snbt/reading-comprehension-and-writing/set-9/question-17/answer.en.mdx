@@ -1,6 +1,31 @@
-Check each statement **against the numbers in the table, row by row**.
+# Given
 
-- _More than half of class II_: false. Half of <InlineMath math="32" /> is <InlineMath math="16" />, and exactly <InlineMath math="16" /> had cavities, not more.
-- _Down in every class_: true. Class I from <InlineMath math="18" /> to <InlineMath math="12" />, class II from <InlineMath math="16" /> to <InlineMath math="10" />, class III from <InlineMath math="14" /> to <InlineMath math="11" />, class IV from <InlineMath math="12" /> to <InlineMath math="5" />.
-- _Class III highest after six months_: false. Class I is higher, <InlineMath math="12" /> against <InlineMath math="11" />.
-- _Class IV fell more than class I_: true. Class IV fell by <InlineMath math="7" />, class I by <InlineMath math="6" />.
+The *tooth-brushing* table tracks **start-of-year and six-month cavity counts** across four grades: Grade I (<InlineMath math="18" /> to <InlineMath math="12" /> of <InlineMath math="30" />), Grade II (<InlineMath math="16" /> to <InlineMath math="10" /> of <InlineMath math="32" />), Grade III (<InlineMath math="14" /> to <InlineMath math="11" /> of <InlineMath math="28" />), and Grade IV (<InlineMath math="12" /> to <InlineMath math="5" /> of <InlineMath math="30" />).
+
+# Asked
+
+Whether each of the four statements matches the table.
+
+# Solution
+
+Verify all four statements **individually with exact arithmetic from each grade row**.
+
+<MathContainer>
+<BlockMath math="\frac{32}{2} = 16" />
+<BlockMath math="12 - 5 = 7 > 6 = 18 - 12" />
+</MathContainer>
+
+> Read strict boundary wording carefully: exactly half is not *more than half*.
+
+## Verifying all four statements against the table
+
+| Statement | Exact table verification | Verdict |
+| --- | --- | --- |
+| At year start, more than half of Grade II had cavities | Half of <InlineMath math="32" /> is exactly <InlineMath math="16" />, not more than half | **Not consistent** |
+| Cavity counts dropped in every grade | All four fell: <InlineMath math="18 \to 12" />, <InlineMath math="16 \to 10" />, <InlineMath math="14 \to 11" />, <InlineMath math="12 \to 5" /> | **Consistent** |
+| After six months, Grade III had the most cavities | Grade I had more (<InlineMath math="12" /> vs <InlineMath math="11" />) | **Not consistent** |
+| Grade IV's drop exceeded Grade I's drop | Grade IV dropped by <InlineMath math="7" />, exceeding Grade I's drop of <InlineMath math="6" /> | **Consistent** |
+
+# Answer
+
+The four verdicts in order are **Not consistent, Consistent, Not consistent, Consistent** (*Tidak sesuai, Sesuai, Tidak sesuai, Sesuai*).
