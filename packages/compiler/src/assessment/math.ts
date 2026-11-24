@@ -103,7 +103,7 @@ export function codeBlockNode(
     return Effect.fail(sourceError(site, element.name, "placement"));
   }
   const code = inner.value;
-  const raw = Arr.filter(code.children, Predicate.isString).join("");
+  const raw = Arr.join(Arr.filter(code.children, Predicate.isString), "");
   const text = raw.endsWith("\n") ? raw.slice(0, -1) : raw;
   const language = codeLanguage(code);
   return Effect.succeed(
