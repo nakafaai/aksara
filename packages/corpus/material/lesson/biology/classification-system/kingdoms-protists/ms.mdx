@@ -1,0 +1,331 @@
+export const metadata = {
+  title: "Sistem Pengelasan dan Penamaan Organisma",
+  description:
+    "Kelaskan organisma kepada enam alam, susun takson dari alam hingga spesies, tulis nama binomial dengan betul dan bina kekunci dikotomi yang berfungsi.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Pengelasan dan Penamaan Organisma",
+};
+
+## Nama Biasa Boleh Mengelirukan
+
+Pengelasan menyusun organisma ke dalam kumpulan mengikut ciri sepunya, seperti kotak di dalam kotak. Kotak paling besar ialah **alam** merangkumi **enam alam**, manakala yang paling kecil ialah **spesies** dengan nama saintifik dua perkataan seperti *Oryza sativa* untuk padi.
+
+Untuk mengenal pasti organisma yang belum kamu kenali, kamu gunakan kekunci dikotomi. Dalam model laut di bawah, tukar bahasa dan cari nama yang tidak pernah berubah.
+
+Kenapa nama saintifik perlu? Nama biasa berubah mengikut bahasa dan tempat. Di Malaysia, paus selalu dipanggil ikan paus walaupun paus bernafas dengan peparu dan menyusukan anaknya sebagai mamalia. Bahasa Inggeris pula memanggil obor-obor jellyfish walau tiada tulang belakang dan tiada insang, jadi **perkataan ikan dalam nama biasa** bukan bukti.
+
+<SeaNameLab
+  title={<>Satu Haiwan, Empat Nama</>}
+  description={
+    <>
+      Lima haiwan di perairan Malaysia, setiap satu dengan tanda nama. Tukar
+      bahasa dan bandingkan nama biasa setiap haiwan dengan nama saintifiknya.
+    </>
+  }
+  footer={<>Tukar bahasa dan perhatikan baris yang tidak bergerak pada tanda nama.</>}
+  animals={["dugong", "whale", "jellyfish", "seaStar", "mackerel"]}
+  languages={["malay", "english", "indonesian", "german"]}
+  labels={{
+    language: "Bahasa",
+    languages: {
+      malay: "Bahasa Melayu",
+      english: "Bahasa Inggeris",
+      indonesian: "Bahasa Indonesia",
+      german: "Bahasa Jerman",
+    },
+    animal: "Haiwan",
+    names: {
+      dugong: { malay: "duyung", english: "dugong", indonesian: "duyung", german: "Dugong" },
+      whale: { malay: "ikan paus Bryde", english: "Bryde's whale", indonesian: "paus Bryde", german: "Brydewal" },
+      jellyfish: { malay: "obor-obor", english: "moon jellyfish", indonesian: "ubur-ubur bulan", german: "Ohrenqualle" },
+      seaStar: { malay: "tapak sulaiman", english: "horned sea star", indonesian: "bintang laut", german: "Seestern" },
+      mackerel: { malay: "ikan kembung", english: "Indian mackerel", indonesian: "ikan kembung", german: "Indische Makrele" },
+    },
+    scientific: "Nama saintifik",
+    group: <>Kumpulan sebenar</>,
+    groups: {
+      dugong: <>Kelas Mammalia</>,
+      whale: <>Kelas Mammalia</>,
+      jellyfish: <>Filum Cnidaria</>,
+      seaStar: <>Filum Echinodermata</>,
+      mackerel: <>Kelas Actinopterygii, ikan bertulang</>,
+    },
+    view: "Laut cetek di perairan Malaysia dengan lima haiwan dan tanda nama masing-masing",
+  }}
+/>
+
+Nama saintifik sama dalam semua bahasa, jadi ahli biologi di mana-mana tahu mereka bercakap tentang haiwan yang sama. Dengan kumpulan yang betul, kamu juga boleh meramal ciri. Letakkan duyung dalam kelas Mammalia, dan kamu tahu duyung bernafas dengan peparu dan menyusukan anaknya, kerana satu kumpulan bermaksud **banyak ciri yang dikongsi**.
+
+## Tujuh Peringkat Takson
+
+Setiap organisma mempunyai tempat pada tujuh peringkat dari atas ke bawah: **alam, filum, kelas, order, famili, genus dan spesies**. Kumpulan yang diberi nama pada mana-mana peringkat dipanggil **takson**, contohnya famili Felidae.
+
+Semakin ke bawah, setiap takson memuatkan **lebih sedikit jenis organisma** yang berkongsi lebih banyak ciri hingga spesies hanya memuatkan satu jenis. Hierarki ini membandingkan banyak ciri sekali gus, jadi ia termasuk [pengelasan semula jadi yang berbeza daripada pengelasan buatan](/ms/subjek/biologi/biodiversiti/pengelasan-organisma).
+
+> Semakin rendah peringkat takson yang masih dikongsi bersama, semakin banyak ciri yang serupa dan semakin rapat pertalian dua organisma.
+
+Harimau dan beruang matahari sama dari alam Animalia hingga order Carnivora, lalu berpisah pada famili menjadi Felidae dan Ursidae. Jadi **peringkat terendah yang dikongsi** ialah order, iaitu empat daripada tujuh peringkat.
+
+<TaxonRankLab
+  title={<>Di Mana Dua Organisma Berpisah</>}
+  description={
+    <>
+      Tujuh dulang bersarang, dari alam di luar hingga spesies di tengah. Pilih
+      dua organisma dan cari dulang terakhir yang masih memuatkan kedua-duanya.
+    </>
+  }
+  footer={<>Ikut dulang yang menyala dari luar ke dalam. Di dulang mana cahaya itu berhenti?</>}
+  organisms={["tiger", "leopard", "leopardCat", "sunBear", "tapir", "hornbill", "birdwing", "padi"]}
+  pair={["tiger", "sunBear"]}
+  labels={{
+    first: "Organisma pertama",
+    second: "Organisma kedua",
+    organisms: {
+      tiger: "Harimau",
+      leopard: "Harimau bintang",
+      leopardCat: "Kucing batu",
+      sunBear: "Beruang matahari",
+      tapir: "Tapir",
+      hornbill: "Burung kenyalang",
+      birdwing: "Rama-rama Raja Brooke",
+      padi: "Padi",
+    },
+    ranks: {
+      kingdom: "Alam",
+      phylum: "Filum",
+      class: "Kelas",
+      order: "Order",
+      family: "Famili",
+      genus: "Genus",
+      species: "Spesies",
+    },
+    shared: <>Peringkat terendah yang dikongsi</>,
+    count: <>Bilangan peringkat yang dikongsi</>,
+    none: <>Tiada, alamnya pun berbeza</>,
+    view: "Tujuh dulang bersarang dengan model kecil organisma di dalamnya",
+  }}
+/>
+
+Cuba ramal dulu sebelum memilih dalam model. Apakah peringkat terendah yang dikongsi oleh harimau dengan kucing batu? Bagaimana pula beruang matahari dengan tapir?
+
+Harimau dan kucing batu sama-sama dalam Felidae tetapi genusnya berbeza, *Panthera* dan *Prionailurus*, jadi kedua-duanya berkongsi **lima peringkat, dari alam hingga famili**. Beruang matahari (order Carnivora) dan tapir (order Perissodactyla) berpisah pada order, jadi hanya tiga peringkat yang dikongsi, sehingga kelas Mammalia.
+
+## Enam Alam dengan Empat Soalan
+
+Empat soalan cukup untuk meletakkan hampir semua organisma dalam alamnya. Adakah selnya ada nukleus? Satu sel atau banyak sel, dan adakah sel-sel itu membentuk tisu? Dinding selnya diperbuat daripada apa? Bagaimana organisma itu mendapat makanan? **Baca keempat-empat jawapan bersama**, kerana satu ciri sahaja selalu mengelirukan.
+
+| Alam | Nukleus | Sel | Dinding sel | Cara mendapat makanan | Contoh |
+| --- | --- | --- | --- | --- | --- |
+| Archaebacteria | Tiada | Satu | Tanpa peptidoglikan | Autotrof atau heterotrof | Bakteria sulfur, *Sulfolobus* |
+| Eubacteria | Tiada | Satu | Peptidoglikan | Autotrof atau heterotrof | *Thermus aquaticus* |
+| Protista | Ada | Satu, atau banyak tanpa tisu | Ada pada kebanyakan alga, tiada pada protozoa | Fotosintesis, memakan atau menyerap | Protozoa, alga, kulapuk lendir |
+| Fungi | Ada | Satu pada yis, banyak pada hifa | Kitin | Menyerap makanan yang dicerna di luar badan | Yis, cendawan |
+| Plantae | Ada | Banyak, dengan tisu | Selulosa | Fotosintesis | Paku pakis tanpa biji, padi berbiji |
+| Animalia | Ada | Banyak | Tiada | Memakan makanan | Hidra (invertebrata), harimau (vertebrata) |
+
+### Sel Tanpa Nukleus
+
+Archaebacteria dan Eubacteria sama-sama **prokariot**, iaitu sel kecil yang DNAnya tidak dibalut oleh membran nukleus. Gen kedua-duanya berbeza, begitu juga dindingnya: dinding Eubacteria mengandungi **peptidoglikan**, manakala dinding Archaebacteria tiada peptidoglikan.
+
+Jangan anggap setiap mikrob dalam kolam air panas ialah Archaebacteria. Bandingkan dua mikrob yang sama-sama hidup dalam mata air panas:
+
+| Ciri | *Sulfolobus* | *Thermus aquaticus* |
+| --- | --- | --- |
+| Tempat ditemui | Mata air panas yang berasid | Mata air panas di Taman Negara Yellowstone |
+| Suhu membiak paling cepat | <InlineMath math="70" /> hingga <InlineMath math="75^\circ\text{C}" /> | <InlineMath math="70^\circ\text{C}" /> |
+| Peptidoglikan dalam dinding | Tiada | Ada |
+| Alam | Archaebacteria | Eubacteria |
+
+Kedua-duanya suka air sepanas <InlineMath math="70^\circ\text{C}" />, tetapi hanya *Thermus aquaticus* yang ada peptidoglikan dalam dindingnya. Jadi **tempat hidup tidak menentukan alam**.
+
+### Sel dengan Nukleus
+
+Empat alam yang lain ialah **eukariot**, dan DNA mereka berada di dalam nukleus. Di sini, rupa luar mudah mengelirukan kamu.
+
+Cendawan tumbuh dari tanah seperti tumbuhan, tetapi dinding selnya kitin dan ia menyerap makanan, jadi ia Fungi. Hidra melekat pada daun di kolam seperti tumbuhan kecil, tetapi selnya tiada dinding dan ia menangkap makanan dengan sesungut, jadi ia **Animalia**.
+
+<KingdomSortLab
+  title={<>Letakkan Spesimen dalam Alamnya</>}
+  description={
+    <>
+      Sepuluh spesimen pada saiz sebenar, di bawah mikroskop atau kanta. Semak
+      empat ciri, kemudian letakkan setiap spesimen dalam satu daripada enam
+      dulang alam.
+    </>
+  }
+  footer={<>Lihat lapisan di luar membran sel: ada dinding atau tidak, dan apa bahannya?</>}
+  specimens={["sulfolobus", "thermus", "paramecium", "spirogyra", "slimeMould", "yeast", "mushroom", "fern", "padi", "hydra"]}
+  labels={{
+    specimen: "Spesimen",
+    specimens: {
+      sulfolobus: <em>Sulfolobus</em>,
+      thermus: <em>Thermus aquaticus</em>,
+      paramecium: <em>Paramecium</em>,
+      spirogyra: <em>Spirogyra</em>,
+      slimeMould: <>Kulapuk lendir</>,
+      yeast: <>Yis</>,
+      mushroom: <>Cendawan tiram</>,
+      fern: <>Paku pakis</>,
+      padi: <>Padi</>,
+      hydra: <>Hidra</>,
+    },
+    kingdoms: {
+      archaebacteria: "Archaebacteria",
+      eubacteria: "Eubacteria",
+      protista: "Protista",
+      fungi: "Fungi",
+      plantae: "Plantae",
+      animalia: "Animalia",
+    },
+    checks: {
+      nucleus: "Nukleus",
+      cells: "Sel",
+      wall: "Dinding sel",
+      food: "Cara mendapat makanan",
+    },
+    values: {
+      yes: "Ada",
+      no: "Tiada",
+      one: "Satu sel",
+      many: "Banyak sel, tiada tisu",
+      tissue: "Banyak sel, ada tisu",
+      none: "Tiada dinding",
+      peptidoglycan: "Peptidoglikan",
+      noPeptidoglycan: "Tanpa peptidoglikan",
+      chitin: "Kitin",
+      cellulose: "Selulosa",
+      photosynthesis: "Fotosintesis",
+      absorbs: "Menyerap",
+      ingests: "Memakan",
+      either: "Autotrof atau heterotrof",
+    },
+    place: "Letakkan",
+    right: <>Betul, keempat-empat ciri sepadan dengan alam ini.</>,
+    wrong: <>Belum tepat. Bandingkan semula setiap ciri dengan jadual alam.</>,
+    kingdom: <>Alam yang betul</>,
+    view: "Bangku makmal dengan mikroskop, sepuluh spesimen dan enam dulang alam",
+  }}
+/>
+
+Uji diri kamu dengan *Spirogyra* dalam model. Filamen hijaunya terdiri daripada sel yang ada nukleus, kloroplas dan dinding selulosa. Kenapa *Spirogyra* tidak masuk Plantae?
+
+Lihat soalan kedua. Sel-selnya tersusun hujung ke hujung, setiap satu sama dengan sel jirannya, dan tiada sel yang membentuk akar, batang atau daun. Jadi **filamen itu tiada tisu**, dan *Spirogyra* ialah alga dalam Protista. Padi pula ada tisu seperti xilem dan floem, jadi padi kekal dalam Plantae.
+
+## Nama Saintifik Dua Perkataan
+
+**Sistem Penamaan Binomial** memberi setiap spesies nama dua perkataan dalam bentuk Latin. Carolus Linnaeus menggunakannya untuk setiap tumbuhan dalam *Species Plantarum* pada tahun 1753. Perkataan pertama ialah **nama genus**. Perkataan kedua ialah nama spesies, dan perkataan itu hanya bermakna di sebelah genusnya, jadi padi ialah *Oryza sativa*, kedua-dua perkataan sekali.
+
+Peraturan untuk menulisnya:
+
+- Nama genus bermula dengan huruf besar, dan perkataan kedua ditulis dengan huruf kecil semuanya, walaupun asalnya nama orang, seperti *brookiana* daripada Brooke.
+- Dalam cetakan, nama itu ditulis condong: *Ipomoea aquatica*.
+- Dengan tulisan tangan, **garis bawah setiap perkataan secara berasingan**, satu garis untuk satu perkataan.
+- Selepas nama penuh disebut sekali, ringkaskan genus kepada huruf pertamanya: *I. aquatica*.
+- Jika spesiesnya belum diketahui, tulis nama genus diikuti sp.: *Ipomoea* sp.
+
+Bandingkan cara tulisan cetak dan tulisan tangan pada tanda nama kebun di bawah, kemudian padankan perkataan pertama atau perkataan keduanya.
+
+<GardenNameLab
+  title={<>Tanda Nama di Kebun Sekolah</>}
+  description={
+    <>
+      Enam tumbuhan di kebun sekolah, setiap satu dengan tanda nama. Pilih
+      tumbuhan, tukar cara tulisan, kemudian padankan perkataan pertama atau
+      perkataan kedua.
+    </>
+  }
+  footer={<>Padankan perkataan kedua. Adakah tumbuhan yang menyala itu saudara dekat?</>}
+  plants={["kangkung", "sweetPotato", "mango", "beluntas", "neem", "padi"]}
+  labels={{
+    plant: "Tumbuhan",
+    plants: {
+      kangkung: "Kangkung",
+      sweetPotato: "Keledek",
+      mango: "Mangga",
+      beluntas: "Beluntas",
+      neem: "Mambu",
+      padi: "Padi",
+    },
+    style: "Cara tulisan",
+    styles: { printed: "Cetak", handwritten: "Tulisan tangan" },
+    match: "Padankan",
+    matches: { genus: "Perkataan pertama", epithet: "Perkataan kedua" },
+    genus: <>Nama genus</>,
+    epithet: <>Perkataan kedua</>,
+    family: <>Famili</>,
+    view: "Kebun sekolah dengan enam tumbuhan dan tanda nama pada setiap satu",
+  }}
+/>
+
+Padankan perkataan pertama dahulu. Kangkung (*Ipomoea aquatica*) dan keledek (*Ipomoea batatas*) berkongsi genus sebagai saudara dekat, walaupun satu dimakan daunnya dan satu lagi ubinya.
+
+Kemudian padankan perkataan kedua. Mangga, beluntas dan mambu semuanya *indica* (dari India), tetapi berada dalam tiga famili berbeza: Anacardiaceae, Asteraceae dan Meliaceae.
+
+> Perkongsian perkataan pertama menunjukkan genus yang sama dan pertalian rapat, manakala perkongsian perkataan kedua sahaja tidak pernah membuktikan pertalian.
+
+Cuba betulkan tanda tulisan tangan ini: Mangifera Indica, dengan satu garis panjang di bawah kedua-dua perkataan.
+
+Tanda itu ada dua kesilapan. Perkataan kedua perlu bermula dengan huruf kecil, Mangifera indica, dan setiap perkataan mendapat **garisnya sendiri**, satu di bawah Mangifera dan satu di bawah indica.
+
+## Kekunci untuk Enam Haiwan
+
+**Kekunci dikotomi** bekerja seperti jalan yang terus bercabang. Setiap langkah bernombor memberi kamu sepasang pernyataan yang berlawanan. Kamu pilih pernyataan yang benar untuk haiwan kamu, kemudian ikut pernyataan itu ke langkah seterusnya atau terus ke satu nama.
+
+Ini kekunci untuk enam haiwan kecil yang biasa ditemui di kawasan sekolah:
+
+| Langkah | Pernyataan a | Pernyataan b |
+| --- | --- | --- |
+| <InlineMath math="1" /> | Ada kaki, pergi ke langkah 2 | Tiada kaki, pergi ke langkah 5 |
+| <InlineMath math="2" /> | Tiga pasang kaki, pergi ke langkah 3 | Lebih daripada tiga pasang kaki, pergi ke langkah 4 |
+| <InlineMath math="3" /> | Ada sayap: pepatung | Tiada sayap: semut pekerja |
+| <InlineMath math="4" /> | Empat pasang kaki: labah-labah | Sepasang kaki pada setiap segmen badan: lipan |
+| <InlineMath math="5" /> | Ada cengkerang: siput babi | Tiada cengkerang, badan bergelang: cacing tanah |
+
+Langkah yang baik menguji **satu ciri yang ada pada setiap spesimen**, dan dua pernyataannya tidak boleh benar serentak. Kalau langkah 3 berbunyi "ada sayap" lawan "tiga pasang kaki", pepatung sepadan dengan kedua-duanya, jadi kekunci tersangkut di situ. Pasangan "besar" lawan "kecil" atau "gelap" lawan "cerah" juga gagal, kerana saiz dan warna berubah mengikut umur dan cahaya.
+
+<KeyBuilderLab
+  title={<>Bina dan Uji Kekunci Sendiri</>}
+  description={
+    <>
+      Enam haiwan kecil dari kawasan sekolah di atas dulang putih. Pilih
+      pasangan pernyataan untuk setiap langkah, kemudian jalankan setiap haiwan
+      melalui kekunci kamu.
+    </>
+  }
+  footer={<>Lihat haiwan yang berhenti di simpang: pernyataan mana yang benar untuknya?</>}
+  animals={["ant", "dragonfly", "spider", "centipede", "earthworm", "snail"]}
+  couplets={["legs", "pairs", "wings", "segments", "shell", "size", "colour", "overlap"]}
+  labels={{
+    animals: {
+      ant: "Semut pekerja",
+      dragonfly: "Pepatung",
+      spider: "Labah-labah",
+      centipede: "Lipan",
+      earthworm: "Cacing tanah",
+      snail: "Siput babi",
+    },
+    couplets: {
+      legs: { a: "Ada kaki", b: "Tiada kaki" },
+      pairs: { a: "Tiga pasang kaki", b: "Lebih daripada tiga pasang kaki" },
+      wings: { a: "Ada sayap", b: "Tiada sayap" },
+      segments: { a: "Empat pasang kaki", b: "Sepasang kaki pada setiap segmen badan" },
+      shell: { a: "Ada cengkerang", b: "Tiada cengkerang" },
+      size: { a: "Badan besar", b: "Badan kecil" },
+      colour: { a: "Warna gelap", b: "Warna cerah" },
+      overlap: { a: "Ada sayap", b: "Tiga pasang kaki" },
+    },
+    step: "Langkah",
+    run: "Jalankan kekunci",
+    reached: <>Haiwan yang sampai ke namanya sendiri</>,
+    failed: <>Langkah yang gagal</>,
+    sorted: <>Kekunci kamu berfungsi untuk semua haiwan</>,
+    view: "Dulang putih dengan enam haiwan kecil dan kekunci bercabang di sebelahnya",
+  }}
+/>
+
+Sekarang tambah gonggok, yang ada **dua pasang kaki pada kebanyakan segmen badannya**. Langkah manakah yang gagal, bagaimana kamu membaikinya, dan berapa langkah yang diperlukan oleh kekunci baharu?
+
+Langkah 1 dan 2 membawa gonggok ke langkah 4, dan di situ gonggok tidak sepadan dengan mana-mana pernyataan. Tulis semula langkah 4 sebagai "empat pasang kaki: labah-labah" lawan "banyak segmen berkaki, ke langkah 6", dan jadikan langkah 6 "sepasang kaki tiap segmen: lipan" lawan "dua pasang kaki pada kebanyakan segmen: gonggok".
+
+Setiap langkah membahagi satu kumpulan kepada dua, jadi <InlineMath math="n" /> organisma memerlukan **<InlineMath math="n - 1" /> langkah**: <InlineMath math="6 - 1 = 5" /> sebelum ini, dan <InlineMath math="7 - 1 = 6" /> sekarang.
