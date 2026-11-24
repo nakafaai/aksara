@@ -1,9 +1,31 @@
-Bagi pemegang pass, perjalanan hanya gratis kalau masih di dalam waktu gratis, memakai sepeda kayuh (sepeda listrik selalu kena *<InlineMath math="\text{Rp}2{.}000" /> per ride*), dan berakhir di dok.
+# Diketahui
 
-- **Perjalanan sepeda kayuh <InlineMath math="40" /> menit: gratis**. Masih di dalam <InlineMath math="45" /> menit pertama dan berakhir di dok.
-- Perjalanan sepeda listrik <InlineMath math="40" /> menit tidak gratis. Waktunya aman, tetapi biaya tambahan sepeda listrik <InlineMath math="\text{Rp}2{.}000" /> tetap berlaku.
-- **Perjalanan dengan tombol dok penuh: gratis**. Tombol itu *adds <InlineMath math="15" /> free minutes to the ride* (menambah <InlineMath math="15" /> menit gratis), jadi waktu gratisnya naik dari <InlineMath math="45" /> menjadi <InlineMath math="60" /> menit. Seluruh perjalanan <InlineMath math="44 + 12 = 56" /> menit, masih di bawah <InlineMath math="60" />.
-- Perjalanan <InlineMath math="30" /> menit yang sepedanya disandarkan di stasiun penuh tidak gratis. Sepedanya tidak pernah terkunci di dok, jadi *A bike left outside a dock is charged a recovery fee of <InlineMath math="\text{Rp}25{.}000" />* (sepeda yang ditinggal di luar dok kena biaya penjemputan <InlineMath math="\text{Rp}25{.}000" />), dan perjalanannya pun terus berjalan.
-- Perjalanan <InlineMath math="46" /> menit tidak gratis. Lewat satu menit dari <InlineMath math="45" />, dan *A started half hour is charged in full* (setengah jam yang sudah dimulai ditagih penuh), jadi biayanya <InlineMath math="\text{Rp}3{.}000" />.
+Bagi **pemegang kartu bulanan Gowes Kota**, perjalanan sepeda kayuh gratis selama <InlineMath math="45" /> menit pertama, tombol *full dock* menambah <InlineMath math="15" /> menit gratis saat stasiun penuh, e-bike selalu menambah <InlineMath math="\text{Rp}2{.}000" />, dan sepeda yang ditinggalkan di luar dok dikenai biaya penjemputan <InlineMath math="\text{Rp}25{.}000" />.
 
-Jadi, perjalanan yang gratis adalah perjalanan sepeda kayuh <InlineMath math="40" /> menit dan perjalanan <InlineMath math="44" /> menit yang diselesaikan dengan tombol dok penuh.
+# Ditanyakan
+
+Perjalanan mana saja yang **tidak dikenai biaya tambahan apa pun** di luar kartu bulanan (pilih semua yang benar).
+
+# Penyelesaian
+
+Bayangkan tiga syarat ketat agar perjalanan benar-benar gratis: **memakai sepeda kayuh (bukan e-bike)**, **selesai di dalam batas waktu gratis** (<InlineMath math="45" /> menit atau <InlineMath math="60" /> menit jika menekan tombol *full dock*), dan **dikunci rapi ke dalam dok**.
+
+> Jika salah satu dari tiga syarat (jenis sepeda, batas menit gratis, atau terkunci di dok) dilanggar, biaya tambahan langsung berlaku.
+
+## Memeriksa kelima skenario perjalanan
+
+Aturan tombol dok penuh menyatakan <Highlight>a "full dock" button on the station screen adds <InlineMath math="15" /> free minutes to the ride</Highlight>, sedangkan sepeda di luar dok terkena <Highlight>a recovery fee of <InlineMath math="\text{Rp}25{,}000" /></Highlight>.
+
+| Perjalanan | Gratis? | Alasan sesuai aturan teks |
+| --- | --- | --- |
+| Sepeda kayuh <InlineMath math="40" /> menit, berakhir di dok | **Ya** | Di bawah <InlineMath math="45" /> menit, sepeda kayuh, dan terkunci di dok. |
+| E-bike <InlineMath math="40" /> menit, berakhir di dok | **Tidak** | Meski di bawah <InlineMath math="45" /> menit, e-bike selalu menambah <InlineMath math="\text{Rp}2{.}000" /> per perjalanan. |
+| Sepeda kayuh <InlineMath math="44" /> menit ke stasiun penuh, tekan *full dock*, lalu <InlineMath math="12" /> menit ke dok kosong | **Ya** | Tombol menambah batas gratis dari <InlineMath math="45" /> menjadi <InlineMath math="60" /> menit. Total perjalanan <InlineMath math="56" /> menit masih di bawah <InlineMath math="60" /> menit dan berakhir di dok. |
+| Sepeda kayuh <InlineMath math="30" /> menit lalu disandarkan di luar stasiun penuh | **Tidak** | Tidak diklik masuk ke dok sehingga terkena biaya penjemputan <InlineMath math="\text{Rp}25{.}000" /> dan argo terus berjalan. |
+| Sepeda kayuh <InlineMath math="46" /> menit, berakhir di dok | **Tidak** | Lewat <InlineMath math="1" /> menit dari batas <InlineMath math="45" /> menit sehingga langsung dikenai <InlineMath math="\text{Rp}3{.}000" />. |
+
+# Jawaban
+
+Perjalanan yang tidak dikenai biaya tambahan apa pun di luar kartu bulanan adalah:
+- **A <InlineMath math="40" />-minute pedal-bike ride that ends in a dock**.
+- **A <InlineMath math="44" />-minute pedal-bike ride to a full station, a press of the full-dock button, and <InlineMath math="12" /> more minutes to a free dock at the next station**.

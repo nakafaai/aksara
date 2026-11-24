@@ -1,13 +1,35 @@
-Step 4 has three parts, and all three must hold on the last tests: ammonia <InlineMath math="0" /> ppm on three tests in a row, nitrite <InlineMath math="0" /> ppm on three tests in a row, and nitrate above <InlineMath math="0" /> ppm on the last test. Step 5 adds one more check: nitrate above <InlineMath math="40" /> ppm means a quarter of the water must be changed before any fish go in.
+# Given
 
-**Tank P**. Ready for fish. Ammonia and nitrite are <InlineMath math="0" /> three times in a row, and nitrate is <InlineMath math="20" />, above <InlineMath math="0" /> and not above <InlineMath math="40" />.
+Five practice tanks (**Tanks P through T**) report their latest water tests in ppm, oldest first.
 
-**Tank Q**. Keep cycling. Nitrite was <InlineMath math="0.5" /> on the first of the three tests, so it hasn't read <InlineMath math="0" /> three times in a row yet.
+Two rules from the guide govern what happens next:
+- **Step <InlineMath math="4" />** (cycled): both ammonia and nitrite read **<InlineMath math="0" /> ppm on three tests in a row**, and **nitrate reads above <InlineMath math="0" /> ppm** on the last test.
+- **Step <InlineMath math="5" />**: if nitrate reads **above <InlineMath math="40" /> ppm** on that last test, change a quarter of the water before adding fish.
 
-**Tank R**. Change a quarter of the water first. It's cycled, but nitrate is <InlineMath math="60" />, above <InlineMath math="40" />.
+# Asked
 
-**Tank S**. Keep cycling. Ammonia and nitrite are fine, but nitrate is <InlineMath math="0" />. The guide says nitrate above <InlineMath math="0" /> "shows that the second kind of bacteria is at work", so **without nitrate, the cycle isn't finished**.
+What each tank needs now (**Ready for fish**, **Keep cycling**, or **Change a quarter of the water first**).
 
-**Tank T**. Ready for fish. The early <InlineMath math="0.25" /> reading doesn't matter, because the last three tests are <InlineMath math="0, 0, 0" /> for ammonia and for nitrite, and nitrate is <InlineMath math="35" />.
+# Solution
 
-So tanks P and T are ready for fish, tanks Q and S need to keep cycling, and tank R needs a quarter of its water changed first.
+Pass each tank through **two gates in order**: **Gate <InlineMath math="1" />** checks if cycling is complete (three consecutive zeros for ammonia and nitrite, plus nitrate above zero). Only tanks clearing Gate <InlineMath math="1" /> reach **Gate <InlineMath math="2" />**, which checks whether nitrate exceeds <InlineMath math="40" /> ppm.
+
+> A nitrate reading of <InlineMath math="0" /> means cycling is unfinished, whereas an older non-zero ammonia reading does not disqualify a tank whose last three readings are all <InlineMath math="0" />.
+
+## Sorting all five practice tanks
+
+Step <InlineMath math="4" /> requires <Highlight>ammonia and nitrite both read <InlineMath math="0" /> ppm on three tests in a row and nitrate reads above <InlineMath math="0" /> ppm on the last of them</Highlight>, and Step <InlineMath math="5" /> adds <Highlight>If nitrate reads above <InlineMath math="40" /> ppm on that last test, change a quarter of the water before adding any fish</Highlight>.
+
+| Tank | Last three tests and nitrate check | Decision |
+| --- | --- | --- |
+| Tank P | Ammonia <InlineMath math="0, 0, 0" />, nitrite <InlineMath math="0, 0, 0" />, nitrate <InlineMath math="20" /> (above <InlineMath math="0" /> and not above <InlineMath math="40" />). | **Ready for fish** |
+| Tank Q | Nitrite reads <InlineMath math="0.5, 0, 0" />, only two zeros in a row instead of three. | **Keep cycling** |
+| Tank R | Cycled cleanly, yet nitrate is <InlineMath math="60" />, above the <InlineMath math="40" /> ppm cap. | **Change a quarter of the water first** |
+| Tank S | Ammonia and nitrite are zero, yet nitrate is <InlineMath math="0" /> (not above <InlineMath math="0" />), so the second bacteria are not proven active. | **Keep cycling** |
+| Tank T | The earlier <InlineMath math="0.25" /> ammonia reading does not matter because the **last three tests** are <InlineMath math="0, 0, 0" /> for both ammonia and nitrite, with nitrate <InlineMath math="35" />. | **Ready for fish** |
+
+# Answer
+
+- **Ready for fish**: **Tank P** and **Tank T**.
+- **Keep cycling**: **Tank Q** and **Tank S**.
+- **Change a quarter of the water first**: **Tank R**.

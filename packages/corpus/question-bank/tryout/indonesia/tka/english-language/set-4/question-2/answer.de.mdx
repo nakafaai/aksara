@@ -1,9 +1,31 @@
-Für Passinhaber ist eine Fahrt nur gratis, wenn sie in der freien Zeit bleibt, mit einem normalen Rad gefahren wird (ein E-Bike kostet immer "<InlineMath math="\text{Rp}2{.}000" /> per ride") und in einem Dock endet.
+# Gegeben
 
-- **Die <InlineMath math="40" />-Minuten-Fahrt mit dem normalen Rad: gratis**. Sie liegt in den ersten <InlineMath math="45" /> Minuten und endet im Dock.
-- Die <InlineMath math="40" />-Minuten-Fahrt mit dem E-Bike ist nicht gratis. Die Zeit passt, aber der E-Bike-Zuschlag von <InlineMath math="\text{Rp}2{.}000" /> fällt trotzdem an.
-- **Die Fahrt mit der Voll-Taste: gratis**. Die Taste "adds <InlineMath math="15" /> free minutes to the ride" (fügt der Fahrt <InlineMath math="15" /> freie Minuten hinzu), die freie Zeit wächst also von <InlineMath math="45" /> auf <InlineMath math="60" /> Minuten. Die ganze Fahrt dauert <InlineMath math="44 + 12 = 56" /> Minuten, also unter <InlineMath math="60" />.
-- Die <InlineMath math="30" />-Minuten-Fahrt mit dem Rad an der vollen Station ist nicht gratis. Das Rad rastete nie ein, also gilt "A bike left outside a dock is charged a recovery fee of <InlineMath math="\text{Rp}25{.}000" />" (ein Rad außerhalb eines Docks kostet <InlineMath math="\text{Rp}25{.}000" /> Abholgebühr), und die Fahrt läuft sogar weiter.
-- Die <InlineMath math="46" />-Minuten-Fahrt ist nicht gratis. Sie liegt eine Minute über <InlineMath math="45" />, und "A started half hour is charged in full", also kostet sie <InlineMath math="\text{Rp}3{.}000" />.
+Mit **Monatspass bei Gowes Kota** sind Fahrten per Pedalrad <InlineMath math="45" /> Minuten frei, die Taste "full dock" gibt <InlineMath math="15" /> zusätzliche Freiminuten, E-Bikes kosten immer <InlineMath math="\text{Rp}2{.}000" /> extra, und abgestellte Räder außerhalb eines Docks kosten <InlineMath math="\text{Rp}25{.}000" /> Abholgebühr.
 
-Gratis sind also die <InlineMath math="40" />-Minuten-Fahrt mit dem normalen Rad und die <InlineMath math="44" />-Minuten-Fahrt, die mit der Voll-Taste beendet wurde.
+# Gesucht
+
+Welche Fahrten eine Person mit Monatspass **nichts über den Pass hinaus kosten** (alle zutreffenden auswählen).
+
+# Lösung
+
+Prüfe jede Fahrt gegen **drei feste Bedingungen**: Es muss ein **Pedalrad** sein, die Fahrt bleibt **im freien Zeitfenster** (<InlineMath math="45" /> Minuten oder <InlineMath math="60" /> Minuten mit Taste), und das Rad **rastet in einem Dock ein**.
+
+> Schon ein einziger Verstoß (E-Bike, eine Minute überzogen oder nicht eingedockt) löst zusätzliche Gebühren aus.
+
+## Prüfung aller fünf Fahrten
+
+Der Text erklärt <Highlight>a "full dock" button on the station screen adds <InlineMath math="15" /> free minutes to the ride</Highlight> sowie <Highlight>A bike left outside a dock is charged a recovery fee of <InlineMath math="\text{Rp}25{,}000" /></Highlight>.
+
+| Fahrt | Kostenlos? | Regelprüfung |
+| --- | --- | --- |
+| <InlineMath math="40" />-Minuten-Pedalradfahrt bis ins Dock | **Ja** | Innerhalb von <InlineMath math="45" /> Minuten, Pedalrad, sauber eingedockt. |
+| <InlineMath math="40" />-Minuten-E-Bike-Fahrt bis ins Dock | **Nein** | Die Zeit reicht, aber E-Bikes kosten stets <InlineMath math="\text{Rp}2{.}000" /> Zuschlag. |
+| <InlineMath math="44" /> Minuten zur vollen Station, Taste "full dock", plus <InlineMath math="12" /> Minuten zum nächsten Dock | **Ja** | Die Taste erhöht die Freizeit auf <InlineMath math="60" /> Minuten. Insgesamt <InlineMath math="56" /> Minuten bleiben darunter und enden im Dock. |
+| <InlineMath math="30" /> Minuten, dann außen angelehnt | **Nein** | Nicht eingeklickt, daher <InlineMath math="\text{Rp}25{.}000" /> Abholgebühr und laufende Uhr. |
+| <InlineMath math="46" />-Minuten-Pedalradfahrt bis ins Dock | **Nein** | Eine Minute über <InlineMath math="45" /> startet eine bezahlte halbe Stunde (<InlineMath math="\text{Rp}3{.}000" />). |
+
+# Antwort
+
+Ohne Zusatzkosten zum Monatspass bleiben folgende Fahrten:
+- **A <InlineMath math="40" />-minute pedal-bike ride that ends in a dock**.
+- **A <InlineMath math="44" />-minute pedal-bike ride to a full station, a press of the full-dock button, and <InlineMath math="12" /> more minutes to a free dock at the next station**.

@@ -1,9 +1,31 @@
-For a pass holder, a ride costs nothing only if it stays inside the free time, uses a pedal bike (an e-bike always adds "<InlineMath math="\text{Rp}2{,}000" /> per ride"), and ends in a dock.
+# Given
 
-- **The <InlineMath math="40" />-minute pedal ride: free**. It's inside the first <InlineMath math="45" /> minutes and ends in a dock.
-- The <InlineMath math="40" />-minute e-bike ride isn't free. The time is fine, but the e-bike surcharge of <InlineMath math="\text{Rp}2{,}000" /> still applies.
-- **The ride with the full-dock button: free**. The button "adds <InlineMath math="15" /> free minutes to the ride", so the free time grows from <InlineMath math="45" /> to <InlineMath math="60" /> minutes. The whole ride is <InlineMath math="44 + 12 = 56" /> minutes, still inside <InlineMath math="60" />.
-- The <InlineMath math="30" />-minute ride left leaning against a full station isn't free. The bike never clicked into a dock, so "A bike left outside a dock is charged a recovery fee of <InlineMath math="\text{Rp}25{,}000" />", and the ride keeps running too.
-- The <InlineMath math="46" />-minute ride isn't free. It's one minute past <InlineMath math="45" />, and "A started half hour is charged in full", so it costs <InlineMath math="\text{Rp}3{,}000" />.
+For a **Gowes Kota monthly pass holder**, pedal-bike rides get <InlineMath math="45" /> free minutes, the "full dock" button adds <InlineMath math="15" /> free minutes at a full station, e-bikes always charge <InlineMath math="\text{Rp}2{,}000" />, and bikes left outside a dock incur a <InlineMath math="\text{Rp}25{,}000" /> recovery fee.
 
-So the free rides are the <InlineMath math="40" />-minute pedal ride and the <InlineMath math="44" />-minute ride finished with the full-dock button.
+# Asked
+
+Which rides cost a pass holder **nothing beyond the monthly pass** (choose all that apply).
+
+# Solution
+
+Check every ride against **three strict conditions**: it must use a **pedal bike (never an e-bike)**, finish **inside the free window** (<InlineMath math="45" /> minutes, or <InlineMath math="60" /> minutes with the full-dock button), and **click into a dock**.
+
+> Failing even one condition (wrong bike type, one minute over time, or leaving the bike undocked) triggers an extra charge.
+
+## Checking all five rides
+
+The text states that <Highlight>a "full dock" button on the station screen adds <InlineMath math="15" /> free minutes to the ride</Highlight> and <Highlight>A bike left outside a dock is charged a recovery fee of <InlineMath math="\text{Rp}25{,}000" /></Highlight>.
+
+| Ride | Free? | Rule check |
+| --- | --- | --- |
+| <InlineMath math="40" />-minute pedal-bike ride ending in a dock | **Yes** | Within <InlineMath math="45" /> minutes, pedal bike, properly docked. |
+| <InlineMath math="40" />-minute e-bike ride ending in a dock | **No** | Time is fine, yet an e-bike still adds <InlineMath math="\text{Rp}2{,}000" /> per ride. |
+| <InlineMath math="44" />-minute pedal ride, full-dock button, plus <InlineMath math="12" /> minutes to next dock | **Yes** | The button extends the free allowance to <InlineMath math="60" /> minutes. Total time is <InlineMath math="56" /> minutes, still inside <InlineMath math="60" />, and docked. |
+| <InlineMath math="30" />-minute pedal ride left leaning against a full station | **No** | Never clicked into a dock, triggering the <InlineMath math="\text{Rp}25{,}000" /> recovery fee while the timer keeps running. |
+| <InlineMath math="46" />-minute pedal-bike ride ending in a dock | **No** | One minute past <InlineMath math="45" /> starts a paid half hour (<InlineMath math="\text{Rp}3{,}000" />). |
+
+# Answer
+
+The rides costing nothing beyond the monthly pass are:
+- **A <InlineMath math="40" />-minute pedal-bike ride that ends in a dock**.
+- **A <InlineMath math="44" />-minute pedal-bike ride to a full station, a press of the full-dock button, and <InlineMath math="12" /> more minutes to a free dock at the next station**.
