@@ -15,9 +15,12 @@ misses an element below is not finished.
 2. **100% cohesive, crystal-clear story with plain intuition first (Rule 16).**
    The whole lesson reads as one continuous, easy-to-follow thread so a
    first-time learner immediately sees what every sentence is talking about.
-   - Give plain-language intuition before symbols, formulas, or jargon; never
-     dump a complex formula right under a heading without explaining the idea
-     in ordinary words first (`formula-without-intro`).
+   - Give plain-language intuition before symbols, formulas, or jargon; apply
+     the Feynman clarity test so even a five-year-old can picture the core idea
+     of a complex concept before you introduce formal notation, then build up
+     to full mathematical or scientific rigor. Never dump a complex formula
+     right under a heading without explaining the idea in ordinary words first
+     (`formula-without-intro`).
    - Connect every paragraph directly to the one before it. Never leave
      dangling colons followed by another plain paragraph (`dangling-colon`),
      never refer to a number or example that has not been introduced yet

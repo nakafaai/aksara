@@ -1,20 +1,90 @@
-Eine lineare Gleichung bringst du in die Form <InlineMath math="(\ldots)\cdot x=\ldots" />. Ob sie lösbar ist, hängt dann am **Faktor vor <InlineMath math="x" />**: Ist er nicht null, darfst du durch ihn teilen. Ist er null, musst du die verbleibende Aussage prüfen.
+# Gegeben
 
-Bringe alle Terme mit <InlineMath math="x" /> nach links und alle anderen nach rechts, dann klammerst du <InlineMath math="x" /> aus.
+Gegeben ist eine lineare Gleichung mit der Variablen <InlineMath math="x" /> und einem **reellen Parameter <InlineMath math="a" />**.
+
+<BlockMath math="ax + 3 = 2x - a" />
+
+Die Gleichung soll **keine reelle Lösung** für <InlineMath math="x" /> besitzen.
+
+# Gesucht
+
+Für welche Werte von <InlineMath math="a" /> hat die Gleichung keine reelle Lösung <InlineMath math="x" />?
+
+# Lösung
+
+Stell dir die Gleichung wie eine Waage vor, auf der <InlineMath math="x" /> eine geheimnisvolle Kiste ist. Damit sofort klar wird, wie viele Kisten links liegen, **sammelst du alle Terme mit <InlineMath math="x" /> links** und alle anderen Terme rechts.
 
 <BlockMath math="\begin{aligned}
-ax-2x&=-a-3 \\
-(a-2)\,x&=-(a+3)
+ax - 2x &= -a - 3 \\
+(a - 2)\,x &= -(a + 3)
 \end{aligned}" />
 
-Für <InlineMath math="a\ne2" /> teilst du durch <InlineMath math="a-2" /> und erhältst genau eine Lösung, <InlineMath math="x=-\frac{a+3}{a-2}" />. Für <InlineMath math="a=2" /> steht links <InlineMath math="0\cdot x=0" /> und rechts <InlineMath math="-5" />. Die Aussage <InlineMath math="0=-5" /> ist für kein <InlineMath math="x" /> wahr.
+Jetzt entscheidet der **Koeffizient vor <InlineMath math="x" />**, also <InlineMath math="a - 2" />. Ist diese Zahl ungleich null, darfst du beide Seiten durch <InlineMath math="a - 2" /> teilen und bekommst genau eine Lösung für <InlineMath math="x" />.
 
-Zur Kontrolle setzt du <InlineMath math="a=2" /> direkt in die Ausgangsgleichung ein: <InlineMath math="2x+3=2x-2" />. Nach Abziehen von <InlineMath math="2x" /> bleibt <InlineMath math="3=-2" />, ein Widerspruch.
+<BlockMath math="x = -\frac{a + 3}{a - 2} \qquad (a \neq 2)" />
 
-Keine Lösung gibt es also genau für <InlineMath math="a=2" />.
+> Eine lineare Gleichung hat genau dann keine Lösung, wenn der **Koeffizient vor <InlineMath math="x" /> gleich null** ist, während die **Konstante auf der anderen Seite ungleich null** bleibt und einen Widerspruch erzeugt.
 
-- Für <InlineMath math="a=-3" /> wird die rechte Seite null, und es bleibt <InlineMath math="-5x=0" />. Das hat die Lösung <InlineMath math="x=0" />, also gibt es eine Lösung.
-- <InlineMath math="a=-2" /> entsteht aus einem Vorzeichenfehler beim Umstellen, bei dem <InlineMath math="(a+2)\,x" /> statt <InlineMath math="(a-2)\,x" /> entsteht.
-- <InlineMath math="a=2" /> und <InlineMath math="a=-3" /> fasst beide besonderen Werte zusammen. Nur bei <InlineMath math="a=2" /> fehlt aber eine Lösung, bei <InlineMath math="a=-3" /> ist <InlineMath math="x=0" /> eine Lösung.
-- Die Antwort „für keinen Wert“ übersieht, dass der Faktor <InlineMath math="a-2" /> null werden kann. Durch null darf man nicht teilen.
-- Für jedes <InlineMath math="a\ne2" /> hat die Gleichung genau eine Lösung. Diese Werte sind also gerade das Gegenteil des Gesuchten.
+Kritisch wird es genau dann, wenn der **Teiler null wird**, also für <InlineMath math="a = 2" />. Setze <InlineMath math="a = 2" /> in die umgeformte Gleichung ein.
+
+<BlockMath math="\begin{aligned}
+(2 - 2)\,x &= -(2 + 3) \\
+0 \cdot x &= -5 \\
+0 &= -5
+\end{aligned}" />
+
+Egal welche Zahl du in <InlineMath math="x" /> einsetzt, null mal eine Zahl bleibt immer null und **wird niemals gleich <InlineMath math="-5" />**. Zur Probe setzt du <InlineMath math="a = 2" /> direkt in die Ausgangsgleichung ein.
+
+<BlockMath math="\begin{aligned}
+2x + 3 &= 2x - 2 \\
+3 &= -2
+\end{aligned}" />
+
+Dieser Widerspruch bestätigt eindeutig, dass die Gleichung für <InlineMath math="a = 2" /> keine reelle Lösung hat.
+
+<MathVisual
+  title={<>Zwei parallele Geraden bei <InlineMath math="a = 2" /></>}
+  description={<>Verschiebe den Regler für <InlineMath math="a" />. Genau bei <InlineMath math="a = 2" /> haben <InlineMath math="y = ax + 3" /> und <InlineMath math="y = 2x - a" /> dieselbe Steigung und bleiben ohne Schnittpunkt parallel. Für jedes andere <InlineMath math="a" /> schneiden sich die beiden Geraden in genau einem Punkt.</>}
+  labels={{
+    lhs: <InlineMath math="y = ax + 3" />,
+    param: <InlineMath math="a" />,
+    rhs: <InlineMath math="y = 2x - a" />,
+    "slope-diff": <InlineMath math="a - 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -8, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.15 },
+    parameters: [{ name: "a", min: -4, max: 4, step: 0.5, value: 2, label: "param" }],
+    objects: [
+      { id: "lhs", kind: "function", appearance: "primary", formula: "a * x + 3", domain: { min: -4.5, max: 4.5 } },
+      { id: "rhs", kind: "function", appearance: "secondary", formula: "2 * x - a", domain: { min: -4.5, max: 4.5 } },
+      { id: "gap", kind: "path", appearance: "highlight", points: [{ x: "0", y: "-a" }, { x: "0", y: "3" }] },
+    ],
+    labels: [
+      { key: "lhs", objectId: "lhs", at: { x: "1.5", y: "1.5 * a + 3" }, placement: "above-left" },
+      { key: "rhs", objectId: "rhs", at: { x: "2", y: "4 - a" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "slope-diff", formula: "a - 2" },
+    ],
+  }}
+/>
+
+Steht der Regler auf <InlineMath math="a = 2" />, wird die Anzeige <InlineMath math="a - 2" /> gleich null und beide Geraden bleiben überall um <InlineMath math="5" /> Einheiten getrennt. Verschiebst du <InlineMath math="a" /> auf einen anderen Wert wie <InlineMath math="a = -3" />, schneiden sie sich sofort in genau einem Punkt.
+
+## Warum die anderen Antworten falsch sind
+
+- Für <InlineMath math="a = -3" /> wird die rechte Seite null und es bleibt <InlineMath math="-5x = 0" />. Diese Gleichung hat die **gültige Lösung <InlineMath math="x = 0" />**.
+- Der Wert <InlineMath math="a = -2" /> entsteht durch einen **Vorzeichenfehler** beim Herüberbringen von <InlineMath math="2x" />, wodurch fälschlich <InlineMath math="(a + 2)\,x" /> entsteht.
+- Die Kombination <InlineMath math="a = 2" /> und <InlineMath math="a = -3" /> wirft zwei verschiedene Fälle zusammen. Nur <InlineMath math="a = 2" /> führt auf einen Widerspruch, während <InlineMath math="a = -3" /> durch <InlineMath math="x = 0" /> gelöst wird.
+- Die Option „für keinen Wert“ übersieht, dass **eine Division durch null verboten** ist, sobald <InlineMath math="a - 2" /> verschwindet.
+- Für jedes <InlineMath math="a \neq 2" /> besitzt die Gleichung genau eine reelle Lösung, also genau das Gegenteil des Gesuchten.
+
+# Antwort
+
+Die Gleichung hat genau für <InlineMath math="a = 2" /> keine reelle Lösung.

@@ -73,9 +73,11 @@ State clearly what quantity, proof, or conclusion the question asks for.
 
 ### Solution (`Penyelesaian` / `Solution` / `Penyelesaian` / `Lösung`)
 
-Give plain-language intuition before symbols, name the method or theorem and why
-it applies, then show every logically meaningful step so a student can reproduce
-the path without inventing a missing transformation.
+Give plain-language intuition before symbols so even a young beginner or
+five-year-old can picture why the trick works before seeing the algebra. Name
+the method or theorem and why it applies, then show every logically meaningful
+step so a student can reproduce the path without inventing a missing
+transformation.
 
 Always retain:
 

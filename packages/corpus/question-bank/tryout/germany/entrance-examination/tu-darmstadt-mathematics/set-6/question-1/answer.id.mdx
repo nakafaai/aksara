@@ -1,20 +1,90 @@
-Soal menanyakan nilai <InlineMath math="a" /> agar persamaan itu *keine reelle Lösung* (tidak punya penyelesaian real). Ubah persamaan linear ke bentuk <InlineMath math="(\ldots)\cdot x=\ldots" />. Apakah persamaan itu bisa diselesaikan bergantung pada **koefisien di depan <InlineMath math="x" />**: jika tidak nol, kamu boleh membagi dengannya. Jika nol, kamu harus memeriksa pernyataan yang tersisa.
+# Diketahui
 
-Pindahkan semua suku yang memuat <InlineMath math="x" /> ke ruas kiri dan suku lainnya ke ruas kanan, lalu faktorkan <InlineMath math="x" />.
+Diberikan sebuah persamaan linear dengan variabel <InlineMath math="x" /> dan **bilangan real <InlineMath math="a" />** sebagai parameter.
+
+<BlockMath math="ax + 3 = 2x - a" />
+
+Persamaan ini harus diuji untuk kondisi *keine reelle Lösung*, yaitu **tidak memiliki penyelesaian real** bagi <InlineMath math="x" />.
+
+# Ditanyakan
+
+Nilai <InlineMath math="a" /> mana yang membuat persamaan itu tidak punya penyelesaian real <InlineMath math="x" />?
+
+# Penyelesaian
+
+Bayangkan persamaan ini seperti timbangan dengan beberapa kotak misteri berisi angka <InlineMath math="x" />. Supaya mudah dilihat, kita **kumpulkan semua suku <InlineMath math="x" /> di kiri** dan semua bilangan lainnya di kanan.
 
 <BlockMath math="\begin{aligned}
-ax-2x&=-a-3 \\
-(a-2)\,x&=-(a+3)
+ax - 2x &= -a - 3 \\
+(a - 2)\,x &= -(a + 3)
 \end{aligned}" />
 
-Untuk <InlineMath math="a\ne2" />, bagi dengan <InlineMath math="a-2" /> sehingga diperoleh tepat satu penyelesaian, <InlineMath math="x=-\frac{a+3}{a-2}" />. Untuk <InlineMath math="a=2" />, ruas kiri menjadi <InlineMath math="0\cdot x=0" /> dan ruas kanan <InlineMath math="-5" />. Pernyataan <InlineMath math="0=-5" /> salah untuk setiap <InlineMath math="x" />.
+Sekarang lihat **koefisien di depan <InlineMath math="x" />**, yaitu <InlineMath math="a - 2" />. Kalau jumlah kotaknya tidak nol, kamu selalu bisa membagi kedua ruas dengan <InlineMath math="a - 2" /> untuk menemukan tepat satu nilai <InlineMath math="x" />.
 
-Sebagai pemeriksaan, substitusikan <InlineMath math="a=2" /> langsung ke persamaan awal: <InlineMath math="2x+3=2x-2" />. Setelah <InlineMath math="2x" /> dikurangkan, tersisa <InlineMath math="3=-2" />, sebuah kontradiksi.
+<BlockMath math="x = -\frac{a + 3}{a - 2} \qquad (a \neq 2)" />
 
-Jadi, persamaan itu tidak punya penyelesaian tepat untuk <InlineMath math="a=2" />.
+> Suatu persamaan linear tidak punya penyelesaian tepat ketika **koefisien di depan <InlineMath math="x" /> bernilai nol**, sementara **bilangan di ruas seberangnya tidak nol**, sehingga tersisa pernyataan yang mustahil.
 
-- Untuk <InlineMath math="a=-3" />, ruas kanan menjadi nol dan tersisa <InlineMath math="-5x=0" />. Persamaan itu punya penyelesaian <InlineMath math="x=0" />, jadi penyelesaiannya ada.
-- <InlineMath math="a=-2" /> muncul dari kesalahan tanda saat memindahkan suku, sehingga terbentuk <InlineMath math="(a+2)\,x" />, bukan <InlineMath math="(a-2)\,x" />.
-- <InlineMath math="a=2" /> dan <InlineMath math="a=-3" /> menggabungkan kedua nilai khusus. Padahal hanya <InlineMath math="a=2" /> yang membuat penyelesaiannya tidak ada, sedangkan untuk <InlineMath math="a=-3" /> nilai <InlineMath math="x=0" /> adalah penyelesaian.
-- Pilihan *für keinen Wert* (tidak untuk nilai apa pun) melewatkan kemungkinan koefisien <InlineMath math="a-2" /> bernilai nol. Kita tidak boleh membagi dengan nol.
-- Untuk setiap <InlineMath math="a\ne2" />, persamaan itu punya tepat satu penyelesaian. Nilai-nilai itu justru kebalikan dari yang ditanyakan.
+Masalah muncul tepat ketika **pembaginya menjadi nol**, yaitu saat <InlineMath math="a = 2" />. Mari kita substitusikan <InlineMath math="a = 2" /> ke bentuk faktornya.
+
+<BlockMath math="\begin{aligned}
+(2 - 2)\,x &= -(2 + 3) \\
+0 \cdot x &= -5 \\
+0 &= -5
+\end{aligned}" />
+
+Berapa pun angka yang kamu masukkan ke dalam <InlineMath math="x" />, nol dikali angka apa pun selalu nol dan **tidak pernah sama dengan <InlineMath math="-5" />**. Sebagai pemeriksaan akhir, masukkan <InlineMath math="a = 2" /> langsung ke persamaan awal.
+
+<BlockMath math="\begin{aligned}
+2x + 3 &= 2x - 2 \\
+3 &= -2
+\end{aligned}" />
+
+Hasil ini jelas sebuah kontradiksi, jadi <InlineMath math="a = 2" /> benar-benar membuat persamaan tidak punya penyelesaian real.
+
+<MathVisual
+  title={<>Dua garis sejajar saat <InlineMath math="a = 2" /></>}
+  description={<>Ubah nilai <InlineMath math="a" /> pada penggeser. Tepat di <InlineMath math="a = 2" />, garis <InlineMath math="y = ax + 3" /> dan <InlineMath math="y = 2x - a" /> punya kemiringan sama sehingga sejajar tanpa titik potong. Untuk nilai <InlineMath math="a" /> lainnya, kedua garis pasti berpotongan di satu titik.</>}
+  labels={{
+    lhs: <InlineMath math="y = ax + 3" />,
+    param: <InlineMath math="a" />,
+    rhs: <InlineMath math="y = 2x - a" />,
+    "slope-diff": <InlineMath math="a - 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -8, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.15 },
+    parameters: [{ name: "a", min: -4, max: 4, step: 0.5, value: 2, label: "param" }],
+    objects: [
+      { id: "lhs", kind: "function", appearance: "primary", formula: "a * x + 3", domain: { min: -4.5, max: 4.5 } },
+      { id: "rhs", kind: "function", appearance: "secondary", formula: "2 * x - a", domain: { min: -4.5, max: 4.5 } },
+      { id: "gap", kind: "path", appearance: "highlight", points: [{ x: "0", y: "-a" }, { x: "0", y: "3" }] },
+    ],
+    labels: [
+      { key: "lhs", objectId: "lhs", at: { x: "1.5", y: "1.5 * a + 3" }, placement: "above-left" },
+      { key: "rhs", objectId: "rhs", at: { x: "2", y: "4 - a" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "slope-diff", formula: "a - 2" },
+    ],
+  }}
+/>
+
+Saat penggeser berada di <InlineMath math="a = 2" />, bacaan <InlineMath math="a - 2" /> bernilai nol dan kedua garis tetap terpisah sejauh <InlineMath math="5" /> satuan di setiap titik. Geser <InlineMath math="a" /> ke nilai lain mana pun, misalnya <InlineMath math="a = -3" />, dan kedua garis langsung berpotongan tepat di satu titik.
+
+## Mengapa Pilihan Lain Keliru
+
+- Pada <InlineMath math="a = -3" />, ruas kanan yang menjadi nol dan tersisa persamaan <InlineMath math="-5x = 0" />. Persamaan itu tetap punya **tepat satu penyelesaian <InlineMath math="x = 0" />**.
+- Nilai <InlineMath math="a = -2" /> berasal dari **kesalahan tanda** saat memindahkan <InlineMath math="2x" /> ke ruas kiri sehingga keliru menulis <InlineMath math="(a + 2)\,x" />.
+- Gabungan <InlineMath math="a = 2" /> dan <InlineMath math="a = -3" /> mencampur dua kasus berbeda. Hanya <InlineMath math="a = 2" /> yang menghasilkan kontradiksi, sedangkan <InlineMath math="a = -3" /> tetap terpecahkan oleh <InlineMath math="x = 0" />.
+- Pilihan *für keinen Wert* (tidak untuk nilai mana pun) lupa bahwa **pembagian dengan nol dilarang** saat <InlineMath math="a - 2" /> bernilai nol.
+- Semua nilai <InlineMath math="a \neq 2" /> justru menghasilkan tepat satu penyelesaian, kebalikan dari syarat yang diminta soal.
+
+# Jawaban
+
+Persamaan itu tidak memiliki penyelesaian real tepat untuk <InlineMath math="a = 2" />.
