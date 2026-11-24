@@ -55,6 +55,15 @@ const MathBlockSchema = Schema.Struct({
   type: Schema.Literal("mathBlock"),
 });
 
+/**
+ * A vertical stack of consecutive block formulas from one derivation or
+ * comparison, matching `<MathContainer>` in lessons and articles.
+ */
+const MathContainerSchema = Schema.Struct({
+  content: Schema.NonEmptyArray(MathBlockSchema),
+  type: Schema.Literal("mathContainer"),
+});
+
 const ImageNodeSchema = Schema.Struct({
   attrs: ImageSchema,
   type: Schema.Literal("image"),
@@ -80,6 +89,7 @@ export type BlockNode =
   | typeof HeadingSchema.Type
   | typeof CodeBlockSchema.Type
   | typeof MathBlockSchema.Type
+  | typeof MathContainerSchema.Type
   | typeof FigureNodeSchema.Type
   | typeof ImageNodeSchema.Type
   | InteractionNode
@@ -102,7 +112,7 @@ export type BlockNode =
     }
   | {
       readonly content: readonly [BlockNode, ...BlockNode[]];
-      readonly type: "contentBlock" | "contentStack";
+      readonly type: "contentBlock" | "contentGrid" | "contentStack";
     };
 export type ListItemNode = typeof ListItemSchema.Type;
 export type TableRowNode = typeof TableRowSchema.Type;
@@ -144,12 +154,12 @@ const TableCellSchema = Schema.Struct({
 
 /**
  * A group of blocks, as a lesson groups them: `contentStack` stacks related
- * blocks, such as a formula and the graph it draws, and `contentBlock` sets one
- * block apart with space around it.
+ * blocks, `contentGrid` arranges related visuals or blocks in a responsive grid,
+ * and `contentBlock` sets one block apart with space around it.
  */
 const ContentGroupSchema = Schema.Struct({
   content: Schema.NonEmptyArray(BlockRef),
-  type: Schema.Literals(["contentBlock", "contentStack"]),
+  type: Schema.Literals(["contentBlock", "contentGrid", "contentStack"]),
 });
 
 const TableRowSchema = Schema.Struct({
@@ -168,6 +178,7 @@ export const BlockSchema: Schema.Codec<BlockNode> = Schema.Union([
   HeadingSchema,
   CodeBlockSchema,
   MathBlockSchema,
+  MathContainerSchema,
   FigureNodeSchema,
   ImageNodeSchema,
   InteractionNodeSchema,

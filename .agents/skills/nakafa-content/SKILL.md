@@ -126,13 +126,19 @@ Read only what the task needs. Each reference owns one concern.
   zero prefix labels and zero colons (never `Ingat bahwa:`, `Konsep kunci:`,
   `Catatan:`, `Tips:`, `Cek cepat:`, `Key concept:`, `Note:`, `Remember:`,
   `Merke:`, `Hinweis:`, or `Nota:`).
-- **Clean separation of `<InlineMath />` and `<BlockMath />`.** Keep
+- **Clean separation of `<InlineMath />` and `<BlockMath />`, and one unified layout engine across lessons, articles, and try-outs.** Keep
   `<InlineMath />` strictly for single variables, numbers, short symbols or
   notations, brief units, small coordinates, or short inline conditions such as
   `x \neq 0`. Equations, inequalities, complex fractions, multi-term
   expressions, and every algebraic transformation or calculation step belong in
   `<BlockMath />` so paragraphs stay breathable on phones and desktops
-  ([mathematics and code](references/math.md)).
+  ([mathematics and code](references/math.md)). Wrap consecutive `<BlockMath />`
+  rows from one derivation in `<MathContainer>` across every document type
+  (lessons, articles, questions, and answers). Keep prose and visual components
+  outside `<MathContainer>` so a formula card and a visual card always remain
+  clearly spaced apart instead of fusing together; use `<ContentStack>` or
+  `<ContentGrid>` when grouping math with a visual. Both `test:lesson-voice`
+  and `bun run explanations` enforce this contract identically.
 - **Mandatory four-heading try-out answer structure and zero heading symbols.**
   Every try-out worked answer uses the four standard headings in exact order:
   single-question answers at `#` (`Diketahui`, `Ditanyakan`, `Penyelesaian`,

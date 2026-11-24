@@ -18,17 +18,19 @@ import { createSourcePolicy } from "#compiler/policy/source";
 import { evaluateContentTree } from "#compiler/tree/evaluate";
 
 /**
- * The components an assessment source may use: the two formula components, a
- * highlight, the two layouts that group blocks, and every figure of the Visual
- * Catalog. Every other element is Markdown, so one authored document has one
- * form, and the document holds exactly what its source says.
+ * The components an assessment source may use: the formula components and
+ * container, a highlight, the layouts that group blocks, and every figure of
+ * the Visual Catalog. Every other element is Markdown, so one authored
+ * document has one form, and the document holds exactly what its source says.
  */
 export const ASSESSMENT_COMPONENTS = [
   "BlockMath",
   "ContentBlock",
+  "ContentGrid",
   "ContentStack",
   "Highlight",
   "InlineMath",
+  "MathContainer",
   ...FIGURE_NAMES,
 ];
 

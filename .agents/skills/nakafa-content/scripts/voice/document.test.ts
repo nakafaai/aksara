@@ -6,11 +6,11 @@ import { documentProfile } from "#nakafa-content/voice/profile";
 
 const METADATA = 'export const metadata = { title: "Pembahasan Soal 4" };\n\n';
 
-it("blocks unwrapped math stacks in lessons and articles, not in bank documents", () => {
+it("blocks unwrapped math stacks uniformly across lessons, articles, questions, and answers", () => {
   const source = `${METADATA}<BlockMath math="x+2=5" />\n\n<BlockMath math="x=3" />\n\n<MathContainer>\nA condition belongs outside the formula cards.\n</MathContainer>`;
   for (const [file, count] of [
-    ["question.en.mdx", 0],
-    ["answer.en.mdx", 0],
+    ["question.en.mdx", 2],
+    ["answer.en.mdx", 2],
     ["/corpus/articles/topic/en.mdx", 2],
     ["en.mdx", 2],
   ] as const) {
