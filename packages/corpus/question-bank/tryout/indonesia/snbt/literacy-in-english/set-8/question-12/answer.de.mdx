@@ -1,13 +1,37 @@
-Halte **Antworten** und **Gäste** auseinander: Die Tabelle nennt Gäste, Antworten und Bewertungen, und die Aussagen wechseln zwischen ihnen.
+# Gegeben
 
-Aussage 1. Harbour: <InlineMath math="950" /> von <InlineMath math="1{.}000" /> Antworten sind <InlineMath math="95\%" />. Station: <InlineMath math="5{.}490" /> von <InlineMath math="6{.}000" /> sind <InlineMath math="91{,}5\%" />. Yes.
+Insgesamt gab es **<InlineMath math="50{,}000" /> Gäste**, **<InlineMath math="7{,}000" /> Umfrageantworten** (<InlineMath math="1{,}000" /> in Harbour, <InlineMath math="6{,}000" /> in Station) und **<InlineMath math="6{,}440" /> positive Bewertungen** (<InlineMath math="950" /> in Harbour, <InlineMath math="5{,}490" /> in Station). Die Teilnahme war freiwillig, und laut einer Managerin antworten unzufriedene Gäste seltener.
 
-Aussage 2. Nur <InlineMath math="7{.}000" /> von <InlineMath math="50{.}000" /> Gästen haben geantwortet, etwa einer von sieben. No.
+# Gesucht
 
-Aussage 3. <InlineMath math="950+5{.}490=6{.}440" /> Gäste bewerteten ihren Aufenthalt als gut oder ausgezeichnet, und <InlineMath math="6{.}440" /> von <InlineMath math="50{.}000" /> sind etwa <InlineMath math="13\%" />. Andere, die nicht geantwortet haben, waren vielleicht auch zufrieden, das ist also eine Untergrenze. Yes.
+Welche der fünf Aussagen werden von Text und Tabelle gestützt (**Yes** oder **No**)?
 
-Aussage 4. Nur <InlineMath math="5\%" /> der Gäste von Harbour haben geantwortet. Der höhere Anteil unter den Antworten sagt nichts Verlässliches über alle seine Gäste. No.
+# Lösung
 
-Aussage 5. Wenn unzufriedene Gäste seltener antworten, sind unter den Antworten zu viele Zufriedene, also übertreiben die <InlineMath math="92\%" /> die Zufriedenheit eher. No.
+> One of the chain's managers pointed out that guests with a complaint usually raise it at the front desk before they leave, and that, in her experience, those guests are less likely to answer the survey afterwards.
 
-Aussagen 1 und 3 sind also Yes, Aussagen 2, 4 und 5 No.
+Trenne **Umfrageantworten** streng von **allen Gästen** und prüfe die Richtung der Verzerrung.
+
+## Prüfung der Aussagen mit genauen Quoten
+
+Berechne die Rücklaufquote und die gesicherte Untergrenze zufriedener Gäste:
+
+<BlockMath math="\begin{aligned} \text{Rücklaufquote} &= \frac{7{,}000}{50{,}000} = 14\% \quad (\text{Harbour: } 5\%, \text{ Station: } 20\%) \\ \text{Mindestanteil positiv} &= \frac{6{,}440}{50{,}000} = 12{,}88\% \approx 13\% \end{aligned}" />
+
+| Aussage | Prüfung | Gestützt |
+| --- | --- | --- |
+| <InlineMath math="1" /> | Harbour <InlineMath math="95\%" /> (<InlineMath math="950/1{,}000" />) übertrifft Station <InlineMath math="91{,}5\%" /> (<InlineMath math="5{,}490/6{,}000" />) | **Yes** |
+| <InlineMath math="2" /> | Nur <InlineMath math="7{,}000" /> von <InlineMath math="50{,}000" /> (<InlineMath math="14\%" />) antworteten | **No** |
+| <InlineMath math="3" /> | <InlineMath math="6{,}440" /> von <InlineMath math="50{,}000" /> sind rund <InlineMath math="13\%" /> als sichere Untergrenze | **Yes** |
+| <InlineMath math="4" /> | Nur <InlineMath math="5\%" /> der Harbour-Gäste antworteten, Gesamtzufriedenheit bleibt offen | **No** |
+| <InlineMath math="5" /> | Fehlen unzufriedene Gäste, überschätzt <InlineMath math="92\%" /> die Zufriedenheit statt sie zu unterschätzen | **No** |
+
+Beachte den Unterschied zwischen Aussage <InlineMath math="1" /> und <InlineMath math="4" />: Harbour schnitt **unter den Antworten** besser ab, doch bei <InlineMath math="95\%" /> Nichtteilnahme lässt sich das nicht auf alle Gäste übertragen.
+
+# Antwort
+
+- Aussage <InlineMath math="1" />: **Yes**
+- Aussage <InlineMath math="2" />: **No**
+- Aussage <InlineMath math="3" />: **Yes**
+- Aussage <InlineMath math="4" />: **No**
+- Aussage <InlineMath math="5" />: **No**

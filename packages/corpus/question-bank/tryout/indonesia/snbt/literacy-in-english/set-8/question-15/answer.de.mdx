@@ -1,16 +1,31 @@
-Teile die Gäste in **die, die geantwortet haben, und die anderen**, und zähle in jeder Gruppe die Zufriedenen.
+# Gegeben
 
-**Geantwortet**. <InlineMath math="950+5{.}490=6{.}440" /> bewerteten gut oder ausgezeichnet.
+Von insgesamt **<InlineMath math="50{,}000" /> Gästen** beantworteten <InlineMath math="7{,}000" /> die Umfrage (<InlineMath math="6{,}440" /> positive Bewertungen), während <InlineMath math="43{,}000" /> nicht antworteten. Angenommen, **die Hälfte (<InlineMath math="50\%" />)** der Nicht-Antwortenden hätte gut oder ausgezeichnet vergeben.
 
-**Nicht geantwortet**. <InlineMath math="50{.}000-7{.}000=43{.}000" /> Gäste, die Hälfte davon sind <InlineMath math="21{.}500" />.
+# Gesucht
 
-**Alle Gäste**.
+Welcher Anteil **aller** Gäste der Hotelkette hätte dann seinen Aufenthalt als gut oder ausgezeichnet bewertet?
 
-<BlockMath math="\frac{6{.}440+21{.}500}{50{.}000}=\frac{27{.}940}{50{.}000}\approx56\%" />
+# Lösung
 
-- <InlineMath math="92\%" /> ist nur der Anteil unter den Antworten und übergeht die <InlineMath math="43{.}000" /> ohne Antwort.
-- <InlineMath math="71\%" /> ist der einfache Durchschnitt von <InlineMath math="92\%" /> und <InlineMath math="50\%" />. Die Gruppen sind sehr unterschiedlich groß, also musst du die Zahlen addieren.
-- <InlineMath math="50\%" /> überträgt den Anteil der Nichtantwortenden auf alle.
-- <InlineMath math="13\%" /> behandelt alle Nichtantwortenden als unzufrieden statt nur die Hälfte.
+> A hotel chain advertises that <InlineMath math="92\%" /> of guests who answered its online survey last year rated their stay "good" or "excellent".
 
-Etwa <InlineMath math="56\%" /> aller Gäste der Kette hätten ihren Aufenthalt also als gut oder ausgezeichnet bewertet.
+Gewichte beide Gruppen nach ihrer **tatsächlichen Gästezahl**, statt einfach das ungewichtete Mittel aus <InlineMath math="92\%" /> und <InlineMath math="50\%" /> zu nehmen.
+
+## Zusammenführung beider Gästegruppen
+
+Addiere die positiven Antworten und die Hälfte der <InlineMath math="43{,}000" /> fehlenden Gäste und teile durch die **gesamte Gästezahl** (<InlineMath math="50{,}000" />):
+
+<BlockMath math="\begin{aligned} \text{Nicht-Antwortende} &= 50{,}000 - 7{,}000 = 43{,}000 \\ \text{Davon zufrieden} &= \frac{1}{2} \times 43{,}000 = 21{,}500 \\ \text{Gesamtanteil zufrieden} &= \frac{6{,}440 + 21{,}500}{50{,}000} = \frac{27{,}940}{50{,}000} = 55{,}88\% \approx 56\% \end{aligned}" />
+
+| Gästegruppe | Größe | Zufriedene Gäste | Anteil |
+| --- | ---: | ---: | ---: |
+| Geantwortet | <InlineMath math="7{,}000" /> | <InlineMath math="6{,}440" /> | <InlineMath math="92\%" /> |
+| Nicht geantwortet | <InlineMath math="43{,}000" /> | <InlineMath math="21{,}500" /> | <InlineMath math="50\%" /> |
+| Alle Gäste zusammen | <InlineMath math="50{,}000" /> | <InlineMath math="27{,}940" /> | <InlineMath math="55{,}88\%" /> |
+
+Weil die <InlineMath math="43{,}000" /> Nicht-Antwortenden viel größer sind als die <InlineMath math="7{,}000" /> Teilnehmenden, liegt der Gesamtwert (<InlineMath math="56\%" />) deutlich näher an <InlineMath math="50\%" /> als am ungewichteten Schnitt von <InlineMath math="71\%" />.
+
+# Antwort
+
+Etwa **<InlineMath math="56\%" />** aller Gäste der Hotelkette hätten ihren Aufenthalt als gut oder ausgezeichnet bewertet (*About <InlineMath math="56\%" />*).

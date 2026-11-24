@@ -1,16 +1,31 @@
-Split the guests into **those who answered and those who didn't**, and count the satisfied guests in each group.
+# Given
 
-**Answered**. <InlineMath math="950+5{,}490=6{,}440" /> rated good or excellent.
+Out of **<InlineMath math="50{,}000" /> total guests**, <InlineMath math="7{,}000" /> answered the survey (<InlineMath math="6{,}440" /> positive ratings) and <InlineMath math="43{,}000" /> did not answer. Suppose **half (<InlineMath math="50\%" />)** of the non-answerers would have rated their stay good or excellent.
 
-**Didn't answer**. <InlineMath math="50{,}000-7{,}000=43{,}000" /> guests, and half of them is <InlineMath math="21{,}500" />.
+# Asked
 
-**All guests**.
+About what percentage of **all** the chain's guests would then have rated their stay good or excellent?
 
-<BlockMath math="\frac{6{,}440+21{,}500}{50{,}000}=\frac{27{,}940}{50{,}000}\approx56\%" />
+# Solution
 
-- <InlineMath math="92\%" /> is the share among answers only and ignores the <InlineMath math="43{,}000" /> who didn't answer.
-- <InlineMath math="71\%" /> is the plain average of <InlineMath math="92\%" /> and <InlineMath math="50\%" />. The two groups are very different sizes, so you have to add the counts.
-- <InlineMath math="50\%" /> applies the non-answerers' share to everyone.
-- <InlineMath math="13\%" /> treats every non-answerer as unhappy, not half of them.
+> A hotel chain advertises that <InlineMath math="92\%" /> of guests who answered its online survey last year rated their stay "good" or "excellent".
 
-So about <InlineMath math="56\%" /> of all the chain's guests would have rated their stay good or excellent.
+Weight the two groups by their **actual guest counts** rather than taking an unweighted average of <InlineMath math="92\%" /> and <InlineMath math="50\%" />.
+
+## Adding satisfied guests across both groups
+
+Count the positive ratings among respondents, add half of the <InlineMath math="43{,}000" /> non-respondents, and divide by the **full guest total** (<InlineMath math="50{,}000" />):
+
+<BlockMath math="\begin{aligned} \text{Non-respondents} &= 50{,}000 - 7{,}000 = 43{,}000 \\ \text{Satisfied non-respondents} &= \frac{1}{2} \times 43{,}000 = 21{,}500 \\ \text{Total satisfied share} &= \frac{6{,}440 + 21{,}500}{50{,}000} = \frac{27{,}940}{50{,}000} = 55.88\% \approx 56\% \end{aligned}" />
+
+| Guest group | Group size | Satisfied guests | Share satisfied |
+| --- | ---: | ---: | ---: |
+| Answered survey | <InlineMath math="7{,}000" /> | <InlineMath math="6{,}440" /> | <InlineMath math="92\%" /> |
+| Did not answer | <InlineMath math="43{,}000" /> | <InlineMath math="21{,}500" /> | <InlineMath math="50\%" /> |
+| All guests combined | <InlineMath math="50{,}000" /> | <InlineMath math="27{,}940" /> | <InlineMath math="55.88\%" /> |
+
+Because the <InlineMath math="43{,}000" /> non-respondents vastly outnumber the <InlineMath math="7{,}000" /> respondents, the true combined share (<InlineMath math="56\%" />) sits much closer to <InlineMath math="50\%" /> than to the plain unweighted average of <InlineMath math="71\%" />.
+
+# Answer
+
+About **<InlineMath math="56\%" />** of all the chain's guests would have rated their stay good or excellent.

@@ -1,13 +1,37 @@
-Keep **answers** and **guests** apart: the table gives guests, answers and ratings, and the statements switch between them.
+# Given
 
-Statement 1. Harbour: <InlineMath math="950" /> of <InlineMath math="1{,}000" /> answers is <InlineMath math="95\%" />. Station: <InlineMath math="5{,}490" /> of <InlineMath math="6{,}000" /> is <InlineMath math="91.5\%" />. Yes.
+Across both hotels there were **<InlineMath math="50{,}000" /> guests**, **<InlineMath math="7{,}000" /> survey answers** (<InlineMath math="1{,}000" /> at Harbour, <InlineMath math="6{,}000" /> at Station), and **<InlineMath math="6{,}440" /> positive ratings** (<InlineMath math="950" /> at Harbour, <InlineMath math="5{,}490" /> at Station). Answering was optional, and a manager noted unhappy guests were less likely to reply.
 
-Statement 2. Only <InlineMath math="7{,}000" /> of <InlineMath math="50{,}000" /> guests answered, about one in seven. No.
+# Asked
 
-Statement 3. <InlineMath math="950+5{,}490=6{,}440" /> guests rated their stay good or excellent, and <InlineMath math="6{,}440" /> out of <InlineMath math="50{,}000" /> is about <InlineMath math="13\%" />. Others who didn't answer may have been happy too, so this is a floor. Yes.
+Which of the five statements are supported by the passage and the table (**Yes** or **No**)?
 
-Statement 4. Only <InlineMath math="5\%" /> of Harbour's guests answered. Its higher share among answers says nothing reliable about all its guests. No.
+# Solution
 
-Statement 5. If unhappy guests answer less, the answers hold too many happy guests, so the <InlineMath math="92\%" /> is more likely to overstate satisfaction. No.
+> One of the chain's managers pointed out that guests with a complaint usually raise it at the front desk before they leave, and that, in her experience, those guests are less likely to answer the survey afterwards.
 
-So statements 1 and 3 are Yes, and statements 2, 4 and 5 are No.
+Keep **survey answers** strictly separate from **all hotel guests**, and check response bias direction carefully.
+
+## Checking each statement with exact ratios
+
+Compute response rates and minimum chain-wide satisfaction from the table:
+
+<BlockMath math="\begin{aligned} \text{Response rate} &= \frac{7{,}000}{50{,}000} = 14\% \quad (\text{Harbour: } 5\%, \text{ Station: } 20\%) \\ \text{Minimum satisfied guests} &= \frac{6{,}440}{50{,}000} = 12.88\% \approx 13\% \end{aligned}" />
+
+| Statement | Verification | Supported |
+| --- | --- | --- |
+| <InlineMath math="1" /> | Harbour <InlineMath math="95\%" /> (<InlineMath math="950/1{,}000" />) beats Station <InlineMath math="91.5\%" /> (<InlineMath math="5{,}490/6{,}000" />) | **Yes** |
+| <InlineMath math="2" /> | Only <InlineMath math="7{,}000" /> of <InlineMath math="50{,}000" /> (<InlineMath math="14\%" />) answered | **No** |
+| <InlineMath math="3" /> | <InlineMath math="6{,}440" /> of <InlineMath math="50{,}000" /> is about <InlineMath math="13\%" /> (a guaranteed floor) | **Yes** |
+| <InlineMath math="4" /> | Only <InlineMath math="5\%" /> of Harbour guests answered, so all-guest happiness is unknown | **No** |
+| <InlineMath math="5" /> | Missing unhappy guests makes <InlineMath math="92\%" /> overstate, not understate, satisfaction | **No** |
+
+Watch Statement <InlineMath math="4" /> versus Statement <InlineMath math="1" />: Harbour had a higher share **among answers**, yet with <InlineMath math="95\%" /> of its guests silent we cannot conclude its guests overall were happier.
+
+# Answer
+
+- Statement <InlineMath math="1" />: **Yes**
+- Statement <InlineMath math="2" />: **No**
+- Statement <InlineMath math="3" />: **Yes**
+- Statement <InlineMath math="4" />: **No**
+- Statement <InlineMath math="5" />: **No**
