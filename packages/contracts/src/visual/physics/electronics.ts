@@ -1,7 +1,33 @@
 import { Schema } from "effect";
 import type { RichSlot } from "#contracts/visual/card";
-import { cardFields, TextSchema } from "#contracts/visual/card";
-import { figure } from "#contracts/visual/entry";
+import {
+  byIds,
+  byPickedIds,
+  cardFields,
+  namesEach,
+  TextSchema,
+} from "#contracts/visual/card";
+import { answerAt, figure } from "#contracts/visual/entry";
+
+/** A strictly positive finite measure for rectifier frequency and voltage. */
+const PositiveSchema = Schema.Finite.check(Schema.isGreaterThan(0));
+
+/** A strictly positive slider whose minimum sits below its maximum. */
+const PositiveSliderSchema = Schema.Struct({
+  max: PositiveSchema,
+  min: PositiveSchema,
+  value: PositiveSchema,
+}).check(
+  Schema.makeFilter(
+    ({ max, min, value }) => min < max && min <= value && value <= max,
+    {
+      message:
+        "Expected a positive frequency range whose minimum is below its maximum, with the starting value between them.",
+    }
+  )
+);
+
+const RECTIFIER_MODES = ["halfWave", "fullWave", "smoothed"] as const;
 
 /** Props of `TransistorBiasLab`: an npn transistor with a base resistor and a collector resistor. */
 function transistorBiasLab<E>(rich: RichSlot<E>) {
@@ -72,13 +98,59 @@ function transistorSwitchLab<E>(rich: RichSlot<E>) {
 }
 
 /**
- * The props of the electronics labs. Each prop is a value from the item the lab
- * draws, never the conclusion it leads to, so none holds answer state.
+ * Props of `RectifierDiodeLab`: a 3D AC-to-DC rectifier bench contrasting
+ * half-wave, full-wave four-diode bridge, and capacitor-smoothed rectification
+ * with live oscilloscope waveforms. Conduction path and ripple readouts are
+ * optional answer state.
+ */
+function rectifierDiodeLab<E>(rich: RichSlot<E>) {
+  return figure(
+    Schema.Struct({
+      ...cardFields(rich),
+      frequency: PositiveSliderSchema,
+      labels: Schema.Struct({
+        conduction: Schema.optionalKey(rich),
+        frequency: TextSchema,
+        inputWave: rich,
+        mode: TextSchema,
+        modes: byPickedIds(RECTIFIER_MODES, TextSchema),
+        outputWave: rich,
+        parts: byIds(
+          [
+            "acSource",
+            "diodeBridge",
+            "capacitor",
+            "loadResistor",
+            "oscilloscope",
+          ],
+          TextSchema
+        ),
+        ripple: Schema.optionalKey(rich),
+        view: TextSchema,
+      }),
+      modes: Schema.NonEmptyArray(Schema.Literals(RECTIFIER_MODES)).check(
+        Schema.isUnique()
+      ),
+      peakVoltage: PositiveSchema,
+    }).check(
+      Schema.makeFilter(({ labels, modes }) => namesEach(modes, labels.modes), {
+        message:
+          "Expected a name for every rectifier mode shown, and no other.",
+      })
+    ),
+    answerAt(["labels", "conduction"], ["labels", "ripple"])
+  );
+}
+
+/**
+ * The props of the electronics labs covering transistor circuits, logic gates,
+ * and diode rectification.
  */
 export function electronicsVisuals<E>(rich: RichSlot<E>) {
   return {
-    TransistorBiasLab: transistorBiasLab(rich),
     LogicGateLab: logicGateLab(rich),
+    RectifierDiodeLab: rectifierDiodeLab(rich),
+    TransistorBiasLab: transistorBiasLab(rich),
     TransistorSwitchLab: transistorSwitchLab(rich),
   };
 }

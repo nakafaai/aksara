@@ -20,6 +20,7 @@ import { enzymeVisuals } from "#contracts/visual/biology/enzyme";
 import { equipmentVisuals } from "#contracts/visual/biology/equipment";
 import { gametogenesisVisuals } from "#contracts/visual/biology/gametogenesis";
 import { heartVisuals } from "#contracts/visual/biology/heart";
+import { homeostasisVisuals } from "#contracts/visual/biology/homeostasis";
 import { implantationVisuals } from "#contracts/visual/biology/implantation";
 import { jointVisuals } from "#contracts/visual/biology/joint";
 import { keyVisuals } from "#contracts/visual/biology/key";
@@ -29,6 +30,7 @@ import { leafVisuals } from "#contracts/visual/biology/leaf";
 import { limbVisuals } from "#contracts/visual/biology/limb";
 import { lipidVisuals } from "#contracts/visual/biology/lipid";
 import { locomotionVisuals } from "#contracts/visual/biology/locomotion";
+import { membraneVisuals } from "#contracts/visual/biology/membrane";
 import { menstrualVisuals } from "#contracts/visual/biology/menstrual";
 import { metamorphosisVisuals } from "#contracts/visual/biology/metamorphosis";
 import { mitochondrionVisuals } from "#contracts/visual/biology/mitochondrion";
@@ -102,6 +104,7 @@ import { positionVisuals } from "#contracts/visual/physics/position";
 import { powerVisuals } from "#contracts/visual/physics/power";
 import { precisionVisuals } from "#contracts/visual/physics/precision";
 import { productVisuals } from "#contracts/visual/physics/product";
+import { quantumVisuals } from "#contracts/visual/physics/quantum";
 import { readingVisuals } from "#contracts/visual/physics/reading";
 import { recordVisuals } from "#contracts/visual/physics/record";
 import { relativeVisuals } from "#contracts/visual/physics/relative";
@@ -200,6 +203,8 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...lactaseVisuals(rich),
     ...leafVisuals(rich),
     ...tissueVisuals(rich),
+    ...homeostasisVisuals(rich),
+    ...membraneVisuals(rich),
     ...balanceVisuals(rich),
     ...bondingVisuals(rich),
     ...discoveryVisuals(rich),
@@ -227,6 +232,7 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...thermodynamicsVisuals(rich),
     ...lightVisuals(rich),
     ...nuclearVisuals(rich),
+    ...quantumVisuals(rich),
     ...readingVisuals(rich),
     ...waveVisuals(rich),
     ...politicsVisuals(rich),
