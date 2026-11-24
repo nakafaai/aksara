@@ -1,0 +1,272 @@
+export const metadata = {
+  title: "Variation Notes for Form Five",
+  description:
+    "Form 5 Mathematics Chapter 1: identify direct, inverse, joint and combined variation, find the constant of variation and solve problems, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Variation",
+};
+
+## Variation Links Quantities through One Constant
+
+In **direct variation**, <InlineMath math="y" /> increases as <InlineMath math="x" /> increases, and <InlineMath math="y = kx^n" />. In **inverse variation**, <InlineMath math="y" /> decreases as <InlineMath math="x" /> increases, and <InlineMath math="y = \dfrac{k}{x^n}" />. The number <InlineMath math="k" /> is the **constant of variation**. When <InlineMath math="y" /> varies with two or more variables at once, we get joint or combined variation. The method is always the same: write the equation, find <InlineMath math="k" /> from the given values, then use the equation. In the models here, you change the constant and the power, test experimental data and see the effect of two variables.
+
+## Direct Variation
+
+If <InlineMath math="y" /> varies directly as <InlineMath math="x^n" />, written <InlineMath math="y \propto x^n" />, then <InlineMath math="y = kx^n" /> and **the ratio** <InlineMath math="\dfrac{y}{x^n}" /> always equals <InlineMath math="k" />. Change the constant and the power in this model. Every curve passes through the origin.
+
+<MathVisual
+  title={<>Direct Variation y Equals kx to the Power n</>}
+  description={
+    <>
+      The curve <InlineMath math="y = kx^n" /> for <InlineMath math="x \ge 0" />.
+      The value <InlineMath math="n = 1" /> gives a straight line through the
+      origin.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.5, max: 4, value: 1, step: 0.5, label: "k" },
+      { name: "n", min: 0.5, max: 3, value: 2, step: 0.5, label: "n" },
+      { name: "a", min: 0, max: 5, value: 2, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "direct", kind: "function", appearance: "primary", formula: "k x^n", domain: { min: 0, max: 5 } },
+      { id: "now", kind: "marker", x: "a", y: "k a^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "k a^n" },
+    ],
+  }}
+  labels={{
+    k: <>Constant <InlineMath math="k" /></>,
+    n: <>Power <InlineMath math="n" /></>,
+    a: <>Value of <InlineMath math="x" /></>,
+    value: <>Value of <InlineMath math="y" /></>,
+  }}
+/>
+
+### Example Direct Variation with a Square
+
+Given <InlineMath math="y \propto x^2" /> and <InlineMath math="y = 36" /> when <InlineMath math="x = 3" />. Find **the value** of <InlineMath math="y" /> when <InlineMath math="x = 5" />.
+
+<MathContainer>
+<BlockMath math="36 = k(3)^2 \quad\Rightarrow\quad k = 4" />
+<BlockMath math="y = 4(5)^2 = 100" />
+</MathContainer>
+
+Check with the ratio: <InlineMath math="\dfrac{36}{3^2} = 4" /> and <InlineMath math="\dfrac{100}{5^2} = 4" />. In the model, set <InlineMath math="k = 4" />, <InlineMath math="n = 2" /> and <InlineMath math="x = 1.5" />, and it reads <InlineMath math="9" />, which is <InlineMath math="4 \times 1.5^2" />.
+
+### Testing Experimental Data
+
+A ball is dropped and its falling distance is measured. To test whether distance varies directly as the square of time, **calculate the ratio** <InlineMath math="\dfrac{d}{t^2}" /> for each pair of data.
+
+<ScatterDiagram
+  title={<>Falling Distance against Time</>}
+  description={
+    <>
+      Falling distance in metres after each time interval. The points curve
+      upwards rather than forming a straight line.
+    </>
+  }
+  xAxisLabel="Time t (s)"
+  yAxisLabel="Distance d (m)"
+  datasets={[
+    {
+      name: "Falling ball",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0.2, y: 0.20 },
+        { x: 0.4, y: 0.78 },
+        { x: 0.6, y: 1.76 },
+        { x: 0.8, y: 3.14 },
+        { x: 1.0, y: 4.90 },
+      ],
+    },
+  ]}
+/>
+
+This chart shows the ratio <InlineMath math="\dfrac{d}{t^2}" /> for each point. A nearly constant ratio shows that <InlineMath math="d \propto t^2" /> with <InlineMath math="k \approx 4.9" />.
+
+<BarChart
+  title={<>The Ratio d over t Squared for Each Point</>}
+  description={
+    <>
+      The value of <InlineMath math="\dfrac{d}{t^2}" /> rounded to one decimal
+      place. All are close to <InlineMath math="4.9" />.
+    </>
+  }
+  yAxisLabel="d over t squared"
+  data={[
+    { name: "t = 0.2", value: 4.9 },
+    { name: "t = 0.4", value: 4.9 },
+    { name: "t = 0.6", value: 4.9 },
+    { name: "t = 0.8", value: 4.9 },
+    { name: "t = 1.0", value: 4.9 },
+  ]}
+  chartConfig={{ value: { label: "Ratio", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Inverse Variation
+
+If <InlineMath math="y" /> varies inversely as <InlineMath math="x^n" />, written <InlineMath math="y \propto \dfrac{1}{x^n}" />, then <InlineMath math="y = \dfrac{k}{x^n}" /> and **the product** <InlineMath math="yx^n" /> always equals <InlineMath math="k" />. For example, the time to finish a job varies inversely as the number of workers.
+
+### The Graph of Inverse Variation
+
+The graph of inverse variation is a falling curve that approaches both axes without touching them. **Doubling** <InlineMath math="x" /> when <InlineMath math="n = 1" /> halves <InlineMath math="y" />.
+
+<MathVisual
+  title={<>Inverse Variation y Equals k over x to the Power n</>}
+  description={
+    <>
+      The curve <InlineMath math="y = \dfrac{k}{x^n}" /> for{" "}
+      <InlineMath math="x > 0" />. The curve never touches the axes.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 1, max: 24, value: 24, step: 1, label: "k" },
+      { name: "n", min: 0.5, max: 2, value: 1, step: 0.5, label: "n" },
+      { name: "a", min: 0.5, max: 12, value: 3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "inverse", kind: "function", appearance: "primary", formula: "k/x^n", domain: { min: 0.5, max: 12 } },
+      { id: "now", kind: "marker", x: "a", y: "k/a^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "k/a^n" },
+    ],
+  }}
+  labels={{
+    k: <>Constant <InlineMath math="k" /></>,
+    n: <>Power <InlineMath math="n" /></>,
+    a: <>Value of <InlineMath math="x" /></>,
+    value: <>Value of <InlineMath math="y" /></>,
+  }}
+/>
+
+### Example Inverse Variation
+
+Four workers build a fence in <InlineMath math="6" /> days. The time <InlineMath math="T" /> varies inversely as the number of workers <InlineMath math="P" />. How many days do **three workers** need?
+
+<MathContainer>
+<BlockMath math="T = \frac{k}{P} \quad\Rightarrow\quad 6 = \frac{k}{4} \quad\Rightarrow\quad k = 24" />
+<BlockMath math="T = \frac{24}{3} = 8 \text{ days}" />
+</MathContainer>
+
+Check: <InlineMath math="4 \times 6 = 3 \times 8 = 24" />, so the product stays the same. In the model, set <InlineMath math="k = 24" />, <InlineMath math="n = 1" /> and <InlineMath math="x = 3" />, and it reads <InlineMath math="8" />.
+
+## Joint and Combined Variation
+
+In **joint variation**, <InlineMath math="y" /> varies directly as the product of two or more variables, for example <InlineMath math="y = kxz" />. In **combined variation**, <InlineMath math="y" /> varies directly as one variable and inversely as another, for example <InlineMath math="y = \dfrac{kx}{z}" />.
+
+### The Effect of Two Variables
+
+This model draws <InlineMath math="y = \dfrac{kx}{z}" /> with <InlineMath math="k = 6" />. **Increasing <InlineMath math="z" /> lowers <InlineMath math="y" />** for every value of <InlineMath math="x" />.
+
+<MathVisual
+  title={<>Combined Variation y Equals kx over z</>}
+  description={
+    <>
+      The line <InlineMath math="y = \dfrac{6x}{z}" /> against{" "}
+      <InlineMath math="x" />. Increasing <InlineMath math="z" /> makes the line
+      less steep.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 1, max: 6, value: 3, step: 0.5, label: "c" },
+      { name: "a", min: 0, max: 8, value: 4, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "combined", kind: "function", appearance: "primary", formula: "6x/c", domain: { min: 0, max: 8 } },
+      { id: "now", kind: "marker", x: "a", y: "6a/c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "6a/c" },
+    ],
+  }}
+  labels={{
+    c: <>Value of <InlineMath math="z" /></>,
+    a: <>Value of <InlineMath math="x" /></>,
+    value: <>Value of <InlineMath math="y" /></>,
+  }}
+/>
+
+### Example Combined Variation
+
+Given <InlineMath math="y \propto \dfrac{x}{z}" />, and <InlineMath math="y = 8" /> when <InlineMath math="x = 4" /> and <InlineMath math="z = 3" />. Find **the value** of <InlineMath math="y" /> when <InlineMath math="x = 6" /> and <InlineMath math="z = 2" />.
+
+<MathContainer>
+<BlockMath math="8 = \frac{k(4)}{3} \quad\Rightarrow\quad k = 6" />
+<BlockMath math="y = \frac{6(6)}{2} = 18" />
+</MathContainer>
+
+Check with the model: with <InlineMath math="k = 6" />, set <InlineMath math="z = 2" /> and <InlineMath math="x = 6" />, and it reads <InlineMath math="18" />. At <InlineMath math="z = 3" /> and <InlineMath math="x = 4" />, it reads <InlineMath math="8" />, the same as the original data.
+
+## Common Mistakes about Variation
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Writing <InlineMath math="y = x + k" /> for direct variation. | Direct variation is a product, <InlineMath math="y = kx^n" />. | The ratio <InlineMath math="\tfrac{y}{x^n}" /> must stay the same. |
+| Using <InlineMath math="k" /> from a different question. | Every situation has its own constant. | Find <InlineMath math="k" /> from that question's data. |
+| Treating inverse variation as negative values. | Inverse variation means one increases while the other decreases, but both stay positive. | The product <InlineMath math="yx^n" /> must stay the same. |
+| Forgetting the power when finding <InlineMath math="k" />. | If <InlineMath math="y \propto x^2" />, the square must be used. | Substitute the original values back. |
+
+The fourth mistake is the most common one in variation questions. **Write the power in the equation before substituting values**.
+
+## Practice on Variation
+
+These questions move from direct variation to combined variation. **Find the constant first** in every question.
+
+1. Given <InlineMath math="p \propto \sqrt{q}" /> and <InlineMath math="p = 12" /> when <InlineMath math="q = 9" />. Find <InlineMath math="p" /> when <InlineMath math="q = 25" />.
+
+2. Given <InlineMath math="y \propto \dfrac{1}{x^2}" /> and <InlineMath math="y = 5" /> when <InlineMath math="x = 2" />. Find <InlineMath math="y" /> when <InlineMath math="x = 5" />.
+
+3. The area <InlineMath math="L" /> of a triangle varies jointly as its base <InlineMath math="t" /> and height <InlineMath math="h" />. Given <InlineMath math="L = 15" /> when <InlineMath math="t = 6" /> and <InlineMath math="h = 5" />. Find the constant and explain what it means.
+
+4. Given <InlineMath math="w \propto \dfrac{u^2}{v}" />, and <InlineMath math="w = 18" /> when <InlineMath math="u = 3" /> and <InlineMath math="v = 2" />. Find <InlineMath math="w" /> when <InlineMath math="u = 4" /> and <InlineMath math="v = 8" />.
+
+### Solutions
+
+**Solution 1**: Write <InlineMath math="p = k\sqrt{q}" /> and find the constant:
+
+<MathContainer>
+<BlockMath math="12 = k\sqrt{9} = 3k \quad\Rightarrow\quad k = 4" />
+<BlockMath math="p = 4\sqrt{25} = 20" />
+</MathContainer>
+
+Check: <InlineMath math="\dfrac{20}{\sqrt{25}} = 4" />.
+
+**Solution 2**: Write <InlineMath math="y = \dfrac{k}{x^2}" /> and **find the constant**:
+
+<MathContainer>
+<BlockMath math="5 = \frac{k}{4} \quad\Rightarrow\quad k = 20" />
+<BlockMath math="y = \frac{20}{25} = 0.8" />
+</MathContainer>
+
+Check: <InlineMath math="0.8 \times 5^2 = 20" />.
+
+**Solution 3**: Write <InlineMath math="L = kth" />:
+
+<BlockMath math="15 = k(6)(5) \quad\Rightarrow\quad k = \frac{1}{2}" />
+
+The constant <InlineMath math="\tfrac{1}{2}" /> is the factor in the triangle area formula, <InlineMath math="L = \tfrac{1}{2}th" />.
+
+**Solution 4**: Write <InlineMath math="w = \dfrac{ku^2}{v}" />:
+
+<MathContainer>
+<BlockMath math="18 = \frac{k(9)}{2} \quad\Rightarrow\quad k = 4" />
+<BlockMath math="w = \frac{4(16)}{8} = 8" />
+</MathContainer>
+
+Check: <InlineMath math="\dfrac{8 \times 8}{16} = 4" />, the same as the constant.

@@ -4,7 +4,39 @@ import { materialNode, unitNode } from "#corpus/curriculum/schema";
 /** The KSSM Form 5 Mathematics chapters, in the order of their DSKP. */
 export const kssmForm5MathematicsTopicNodes = [
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-mathematics-variation-variation",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.variation"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 5, Standard Kandungan 1.1 hingga 1.3",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-5-mathematics-variation",
+    materialCard: {
+      de: {
+        description: "Bestimme den Faktor und löse Aufgaben.",
+        title: "Proportionalität",
+      },
+      en: {
+        description: "Find the constant of variation and solve problems.",
+        title: "Variation",
+      },
+      id: {
+        description: "Tentukan konstanta variasi dan selesaikan soal.",
+        title: "Variasi",
+      },
+      ms: {
+        description: "Cari pemalar ubahan dan selesaikan masalah.",
+        title: "Ubahan",
+      },
+    },
     order: 10,
     translations: {
       de: { routeSlug: "proportionalitaet", title: "Proportionalität" },
