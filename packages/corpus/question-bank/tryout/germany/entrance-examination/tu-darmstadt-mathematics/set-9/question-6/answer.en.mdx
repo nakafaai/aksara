@@ -1,15 +1,88 @@
-The task asks for the shortest path on the surface of the cube. You find a shortest path on a surface by **unfolding the surface into the plane**. There the shortest path is a straight line.
+# Given
 
-The path runs over two neighbouring faces. Unfolded, they form a rectangle that is <InlineMath math="2\text{ cm}" /> wide and <InlineMath math="2+2=4\text{ cm}" /> long. Start and goal lie in opposite corners of this rectangle.
+An ant sits on one corner of a cube (*Würfel*) with **edge length <InlineMath math="2\text{ cm}" />**.
 
-<BlockMath math="d=\sqrt{2^2+4^2}=\sqrt{4+16}=\sqrt{20}=2\sqrt5" />
+The ant may crawl only along the **surface of the cube** to the farthest opposite corner.
 
-As a check, compare with other routes. Along three edges it is <InlineMath math="6\text{ cm}" />, along one edge and one face diagonal <InlineMath math="2+2\sqrt2\approx4.83\text{ cm}" />. The straight path in the net, <InlineMath math="2\sqrt5\approx4.47\text{ cm}" />, is shorter than both.
+# Asked
 
-So the shortest path is <InlineMath math="2\sqrt5\text{ cm}" /> long.
+What is the length of the shortest surface path (*kürzester Weg*) the ant can take?
 
-- <InlineMath math="2\sqrt3\text{ cm}" /> is the space diagonal through the inside. The ant crawls on the surface.
-- <InlineMath math="6\text{ cm}" /> follows three edges. That is a possible but clearly longer route.
-- <InlineMath math="4\text{ cm}" /> counts only two edges. That reaches only the opposite corner of one face, not of the cube.
-- <InlineMath math="(2+2\sqrt2)\text{ cm}" /> goes along an edge and then along a face diagonal. That is longer than the straight path in the net.
-- <InlineMath math="2\sqrt2\text{ cm}" /> is a face diagonal. It ends at a corner of the same face, not at the opposite corner of the cube.
+# Solution
+
+On a box, it is tempting to trace edges or walk a face diagonal plus an edge. The trick is to **unfold the cardboard cube flat onto a table**. Once both crossed faces lie side by side, the shortest path is simply **one straight line** across the middle fold.
+
+> The shortest path across the surface of a solid always becomes a straight line when the crossed faces are unfolded flat into a net.
+
+## Unfolding two adjacent faces into a rectangle
+
+To reach the opposite corner, the ant crosses **two adjacent square faces**. Laid flat, those two <InlineMath math="2\text{ cm}" /> squares merge into a single rectangle with:
+
+- Width <InlineMath math="2\text{ cm}" />.
+- Combined length <InlineMath math="2 + 2 = 4\text{ cm}" />.
+
+The start corner <InlineMath math="A" /> and target corner <InlineMath math="B" /> sit at opposite corners of this rectangle.
+
+<MathVisual
+  title={<>Unfolded net of two cube faces</>}
+  description={<>Two <InlineMath math="2\text{ cm}" /> cube faces unfold flat into a <InlineMath math="4\text{ cm}" /> by <InlineMath math="2\text{ cm}" /> rectangle with a fold crease down the center. The ant's shortest path is the straight line from <InlineMath math="A(0 \mid 0)" /> to <InlineMath math="B(4 \mid 2)" />, crossing the shared edge right at its midpoint <InlineMath math="(2 \mid 1)" />.</>}
+  footer={<>Unfolding two faces turns the shortest route into the <InlineMath math="4 \times 2" /> diagonal of length <InlineMath math="2\sqrt{5}\text{ cm}" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    len: <><InlineMath math="4\text{ cm}" /></>,
+    wid: <><InlineMath math="2\text{ cm}" /></>,
+    diag: <><InlineMath math="2\sqrt{5}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.8, max: 4.8 },
+      y: { min: -0.8, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "face-one", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }] },
+      { id: "face-two", kind: "polygon", appearance: "construction", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 2 }, { x: 2, y: 2 }] },
+      { id: "fold", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "path", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 2 } },
+      { id: "start", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "mid", kind: "point", appearance: "highlight", at: { x: 2, y: 1 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "start", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "end", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "len", objectId: "face-one", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "wid", objectId: "face-one", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "diag", objectId: "path", at: { x: 2, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Notice that the straight line crosses the shared edge right at its midpoint, not at a corner.
+
+## Computing the diagonal and comparing routes
+
+Apply the **Pythagorean theorem** to the <InlineMath math="4\text{ cm}" /> by <InlineMath math="2\text{ cm}" /> rectangle:
+
+<BlockMath math="d = \sqrt{4^2 + 2^2} = \sqrt{16 + 4} = \sqrt{20} = 2\sqrt{5}\text{ cm}" />
+
+Route comparison: walking three edges takes <InlineMath math="6\text{ cm}" />, and walking one edge plus one face diagonal takes about <InlineMath math="4.83\text{ cm}" />. Our straight net diagonal is only about <InlineMath math="4.47\text{ cm}" />, beating both.
+
+## Checking the distractors
+
+See which path **each wrong choice measures**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="2\sqrt{3}\text{ cm}" /> | The space diagonal tunneling straight through the interior, forbidden for a surface-crawling ant. |
+| <InlineMath math="6\text{ cm}" /> | Follows three full edges, much longer than cutting straight across the net. |
+| <InlineMath math="4\text{ cm}" /> | Only two edges, reaching the opposite corner of one face rather than the whole cube. |
+| <InlineMath math="(2 + 2\sqrt{2})\text{ cm}" /> | Follows one edge then one face diagonal (about <InlineMath math="4.83\text{ cm}" />), longer than <InlineMath math="2\sqrt{5}\text{ cm}" />. |
+| <InlineMath math="2\sqrt{2}\text{ cm}" /> | Just one face diagonal, ending on the same face instead of the opposite cube corner. |
+
+# Answer
+
+The shortest path along the cube's surface has length **<InlineMath math="2\sqrt{5}\text{ cm}" />**.

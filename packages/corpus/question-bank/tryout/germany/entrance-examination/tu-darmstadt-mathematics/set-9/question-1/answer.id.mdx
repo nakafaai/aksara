@@ -1,22 +1,40 @@
-# Baca nilai mutlak sebagai jarak
+# Diketahui
 
-<InlineMath math="|x-a|" /> adalah jarak <InlineMath math="x" /> ke bilangan <InlineMath math="a" /> pada garis bilangan. Jadi <InlineMath math="T(x)" /> adalah **jumlah jarak <InlineMath math="x" /> ke <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="6" />**. Yang dicari adalah tempat jumlah itu paling kecil.
+Untuk setiap bilangan real <InlineMath math="x" />, didefinisikan **jumlah tiga nilai mutlak** (*Term*):
 
-# Jarak ke kedua titik luar
+<BlockMath math="T(x) = \lvert x - 1 \rvert + \lvert x - 4 \rvert + \lvert x - 6 \rvert" />
 
-Untuk setiap <InlineMath math="x" /> di antara <InlineMath math="1" /> dan <InlineMath math="6" /> berlaku <InlineMath math="|x-1|+|x-6|=6-1=5" />, karena kedua jarak itu bersama-sama sepanjang ruas tersebut. Di luar ruas itu jumlahnya lebih besar. Lalu ditambah <InlineMath math="|x-4|" />, dan **bagian ini nol di <InlineMath math="x=4" />**:
+# Ditanyakan
 
-<BlockMath math="T(4)=3+0+2=5" />
+Berapakah nilai **paling kecil** yang dapat dicapai oleh <InlineMath math="T(x)" />?
 
-# Pastikan tidak ada yang lebih kecil
+# Penyelesaian
 
-Untuk setiap <InlineMath math="x" /> berlaku <InlineMath math="|x-1|+|x-6|\ge5" /> dan <InlineMath math="|x-4|\ge0" />. Jadi **<InlineMath math="T(x)\ge5" /> untuk semua <InlineMath math="x" />**, dan nilai <InlineMath math="5" /> tercapai di <InlineMath math="x=4" />:
+Bayangkan tiga rumah berdiri di jalan lurus pada kilometer <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="6" />, lalu kamu ingin membangun satu pos di titik <InlineMath math="x" /> agar **jumlah jarak jalan kaki ke ketiga rumah seminimal mungkin**. Berdiri di mana saja antara rumah <InlineMath math="1" /> dan rumah <InlineMath math="6" /> membuat total jarak ke dua rumah terluar selalu pas <InlineMath math="5" />. Agar jarak ke rumah tengah juga nol, **berdirilah tepat di rumah tengah, yaitu di <InlineMath math="x = 4" />**.
+
+> Jumlah jarak dari satu titik ke tiga titik pada garis bilangan selalu mencapai nilai minimum tepat di titik median, yaitu titik tengahnya.
+
+## Memasangkan dua titik terluar dan titik tengah
+
+Pada garis bilangan, <InlineMath math="\lvert x - a \rvert" /> menyatakan jarak antara <InlineMath math="x" /> dan <InlineMath math="a" />. Kelompokkan <InlineMath math="T(x)" /> menjadi **pasangan terluar dan suku tengah**:
+
+<BlockMath math="T(x) = \bigl(\lvert x - 1 \rvert + \lvert x - 6 \rvert\bigr) + \lvert x - 4 \rvert" />
+
+- Untuk setiap <InlineMath math="x" /> di antara <InlineMath math="1" /> dan <InlineMath math="6" />, jumlah jarak ke kedua ujung selalu tepat <InlineMath math="6 - 1 = 5" />. Di luar ruas itu, jumlahnya selalu lebih dari <InlineMath math="5" />.
+- Sementara suku tengah <InlineMath math="\lvert x - 4 \rvert" /> tidak pernah negatif dan **mencapai nol tepat di <InlineMath math="x = 4" />**.
+
+## Membuktikan batas bawah pada grafik
+
+Karena pasangan terluar selalu bernilai minimal <InlineMath math="5" /> dan suku tengah tidak pernah negatif, **berlaku batas mutlak <InlineMath math="T(x) \ge 5" />**, yang tepat tercapai di <InlineMath math="x = 4" />:
+
+<BlockMath math="T(4) = \lvert 4 - 1 \rvert + \lvert 4 - 4 \rvert + \lvert 4 - 6 \rvert = 3 + 0 + 2 = 5" />
 
 <MathVisual
   title={<>Jumlah ketiga jarak</>}
-  description={<>Grafik <InlineMath math="T(x)=|x-1|+|x-4|+|x-6|" /> terdiri dari potongan lurus dengan tekukan di <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="6" />. Di kiri <InlineMath math="4" /> grafiknya turun, di kanannya naik. Titik terendahnya <InlineMath math="(4\mid5)" />, tepat di atas titik tengah dari ketiga titik itu.</>}
+  description={<>Grafik <InlineMath math="T(x) = \lvert x - 1 \rvert + \lvert x - 4 \rvert + \lvert x - 6 \rvert" /> berbentuk garis patah dengan sudut tekukan di <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="6" />. Kurva turun hingga <InlineMath math="x = 4" /> lalu naik, dengan titik terendah tepat di <InlineMath math="(4 \mid 5)" />.</>}
+  footer={<>Grafik garis patah mencapai dasar terendahnya tepat di median <InlineMath math="(4 \mid 5)" />.</>}
   labels={{
-    m: <><InlineMath math="(4\mid5)" /></>,
+    m: <><InlineMath math="(4 \mid 5)" /></>,
     t: <><InlineMath math="T(x)" /></>,
     p1: <><InlineMath math="1" /></>,
     p6: <><InlineMath math="6" /></>,
@@ -46,12 +64,20 @@ Untuk setiap <InlineMath math="x" /> berlaku <InlineMath math="|x-1|+|x-6|\ge5" 
   }}
 />
 
-Nilai terkecil <InlineMath math="T" /> adalah <InlineMath math="5" />.
+Terlihat jelas pada grafik bahwa setiap geseran ke kiri maupun ke kanan dari <InlineMath math="x = 4" /> selalu menaikkan nilai <InlineMath math="T(x)" />.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="\frac{16}{3}" /> adalah nilai di **rata-rata** <InlineMath math="x=\frac{11}{3}" /> ketiga bilangan. Padahal jumlah jarak paling kecil di nilai tengah, yaitu median.
-- <InlineMath math="7" /> adalah nilai di <InlineMath math="x=6" />.
-- <InlineMath math="8" /> adalah nilai di <InlineMath math="x=1" />.
-- <InlineMath math="0" /> menuntut <InlineMath math="x" /> sekaligus sama dengan <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="6" />.
-- <InlineMath math="3" /> hanya jarak <InlineMath math="4" /> ke <InlineMath math="1" />, satu suku saja.
+Perhatikan bagaimana pengecoh lain muncul dari **memilih titik uji yang salah**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="\frac{16}{3}" /> | Nilai di rata-rata <InlineMath math="x = \frac{11}{3}" />, lebih besar daripada di median <InlineMath math="x = 4" />. |
+| <InlineMath math="7" /> | Nilai di ujung kanan <InlineMath math="x = 6" />: <InlineMath math="5 + 2 + 0 = 7" />. |
+| <InlineMath math="8" /> | Nilai di ujung kiri <InlineMath math="x = 1" />: <InlineMath math="0 + 3 + 5 = 8" />. |
+| <InlineMath math="0" /> | Memerlukan <InlineMath math="x" /> sama dengan <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="6" /> sekaligus, yang mustahil. |
+| <InlineMath math="3" /> | Hanya menghitung satu suku jarak <InlineMath math="\lvert 4 - 1 \rvert" />, lupa jarak ke <InlineMath math="6" />. |
+
+# Jawaban
+
+Nilai terkecil yang dapat dicapai oleh <InlineMath math="T(x)" /> adalah **<InlineMath math="5" />**.

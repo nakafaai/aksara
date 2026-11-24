@@ -1,22 +1,40 @@
-# Beträge als Abstände lesen
+# Gegeben
 
-<InlineMath math="|x-a|" /> ist der Abstand von <InlineMath math="x" /> zur Zahl <InlineMath math="a" /> auf dem Zahlenstrahl. <InlineMath math="T(x)" /> ist also **die Summe der Abstände von <InlineMath math="x" /> zu <InlineMath math="1" />, <InlineMath math="4" /> und <InlineMath math="6" />**. Gesucht ist die Stelle, an der diese Summe am kleinsten ist.
+Für jede reelle Zahl <InlineMath math="x" /> ist die **Summe dreier Beträge** gegeben:
 
-# Die Abstände zu den äußeren Punkten
+<BlockMath math="T(x) = \lvert x - 1 \rvert + \lvert x - 4 \rvert + \lvert x - 6 \rvert" />
 
-Für jedes <InlineMath math="x" /> zwischen <InlineMath math="1" /> und <InlineMath math="6" /> gilt <InlineMath math="|x-1|+|x-6|=6-1=5" />, denn die beiden Abstände ergänzen sich zur Länge der Strecke. Außerhalb dieser Strecke ist die Summe größer. Dazu kommt noch <InlineMath math="|x-4|" />, und **dieser Teil ist bei <InlineMath math="x=4" /> gleich null**:
+# Gesucht
 
-<BlockMath math="T(4)=3+0+2=5" />
+Welchen **kleinsten** Wert kann <InlineMath math="T(x)" /> annehmen?
 
-# Prüfen, dass nichts kleiner ist
+# Lösung
 
-Für jedes <InlineMath math="x" /> ist <InlineMath math="|x-1|+|x-6|\ge5" /> und <InlineMath math="|x-4|\ge0" />. Also ist **<InlineMath math="T(x)\ge5" /> für alle <InlineMath math="x" />**, und bei <InlineMath math="x=4" /> wird der Wert <InlineMath math="5" /> erreicht:
+Stell dir drei Häuser an einer geraden Straße bei den Marken <InlineMath math="1" />, <InlineMath math="4" /> und <InlineMath math="6" /> vor. Du suchst einen Standort <InlineMath math="x" /> für einen Briefkasten, sodass **die Summe der Wege zu allen drei Häusern minimal wird**. Überall zwischen <InlineMath math="1" /> und <InlineMath math="6" /> beträgt die Wegsumme zu den beiden äußeren Häusern fest <InlineMath math="5" />. Damit auch der Weg zum mittleren Haus null wird, **stellst du dich genau bei <InlineMath math="x = 4" /> hin**.
+
+> Die Summe der Abstände von einem Punkt zu drei Punkten auf der Zahlengeraden erreicht ihr Minimum stets genau im Median, also beim mittleren Punkt.
+
+## Äußeres Paar und mittleren Term trennen
+
+Auf der Zahlengeraden misst <InlineMath math="\lvert x - a \rvert" /> den Abstand zwischen <InlineMath math="x" /> und <InlineMath math="a" />. Zerlege <InlineMath math="T(x)" /> in **das äußere Paar und den mittleren Summanden**:
+
+<BlockMath math="T(x) = \bigl(\lvert x - 1 \rvert + \lvert x - 6 \rvert\bigr) + \lvert x - 4 \rvert" />
+
+- Für jedes <InlineMath math="x" /> zwischen <InlineMath math="1" /> und <InlineMath math="6" /> addieren sich die Abstände zu den Rändern genau zu <InlineMath math="6 - 1 = 5" />. Außerhalb dieses Intervalls ist die Summe echt größer als <InlineMath math="5" />.
+- Der mittlere Term <InlineMath math="\lvert x - 4 \rvert" /> ist niemals negativ und **wird genau bei <InlineMath math="x = 4" /> gleich null**.
+
+## Die untere Schranke am Graphen bestätigen
+
+Da das äußere Paar stets mindestens <InlineMath math="5" /> beträgt und der mittlere Term niemals negativ wird, gilt **die feste Schranke <InlineMath math="T(x) \ge 5" />**, die bei <InlineMath math="x = 4" /> erreicht wird:
+
+<BlockMath math="T(4) = \lvert 4 - 1 \rvert + \lvert 4 - 4 \rvert + \lvert 4 - 6 \rvert = 3 + 0 + 2 = 5" />
 
 <MathVisual
-  title={<>Die Summe der drei Abstände</>}
-  description={<>Der Graph von <InlineMath math="T(x)=|x-1|+|x-4|+|x-6|" /> besteht aus geraden Stücken mit Knicken bei <InlineMath math="1" />, <InlineMath math="4" /> und <InlineMath math="6" />. Links von <InlineMath math="4" /> fällt er, rechts davon steigt er. Sein tiefster Punkt ist <InlineMath math="(4\mid5)" /> über dem mittleren der drei Punkte.</>}
+  title={<>Summe der drei Abstände</>}
+  description={<>Der Graph von <InlineMath math="T(x) = \lvert x - 1 \rvert + \lvert x - 4 \rvert + \lvert x - 6 \rvert" /> besteht aus Geradenstücken mit Knicken bei <InlineMath math="1" />, <InlineMath math="4" /> und <InlineMath math="6" />. Er fällt bis <InlineMath math="x = 4" /> und steigt danach, mit dem Tiefpunkt exakt bei <InlineMath math="(4 \mid 5)" />.</>}
+  footer={<>Der Streckenzug erreicht seinen tiefsten Punkt genau am Median <InlineMath math="(4 \mid 5)" />.</>}
   labels={{
-    m: <><InlineMath math="(4\mid5)" /></>,
+    m: <><InlineMath math="(4 \mid 5)" /></>,
     t: <><InlineMath math="T(x)" /></>,
     p1: <><InlineMath math="1" /></>,
     p6: <><InlineMath math="6" /></>,
@@ -46,12 +64,20 @@ Für jedes <InlineMath math="x" /> ist <InlineMath math="|x-1|+|x-6|\ge5" /> und
   }}
 />
 
-Der kleinste Wert von <InlineMath math="T" /> ist <InlineMath math="5" />.
+Jede Verschiebung nach links oder rechts weg von <InlineMath math="x = 4" /> lässt <InlineMath math="T(x)" /> sofort ansteigen.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="\frac{16}{3}" /> ist der Wert am **Mittelwert** <InlineMath math="x=\frac{11}{3}" /> der drei Zahlen. Die Summe der Abstände ist aber beim mittleren Wert, dem Median, am kleinsten.
-- <InlineMath math="7" /> ist der Wert bei <InlineMath math="x=6" />.
-- <InlineMath math="8" /> ist der Wert bei <InlineMath math="x=1" />.
-- <InlineMath math="0" /> würde verlangen, dass <InlineMath math="x" /> gleichzeitig <InlineMath math="1" />, <InlineMath math="4" /> und <InlineMath math="6" /> ist.
-- <InlineMath math="3" /> ist nur der Abstand von <InlineMath math="4" /> zu <InlineMath math="1" />, also ein einzelner Summand.
+Die falschen Antworten entstehen durch **einen falschen Testpunkt**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="\frac{16}{3}" /> | Ist der Wert am arithmetischen Mittel <InlineMath math="x = \frac{11}{3}" />, größer als am Median <InlineMath math="x = 4" />. |
+| <InlineMath math="7" /> | Wert am rechten Randpunkt <InlineMath math="x = 6" />: <InlineMath math="5 + 2 + 0 = 7" />. |
+| <InlineMath math="8" /> | Wert am linken Randpunkt <InlineMath math="x = 1" />: <InlineMath math="0 + 3 + 5 = 8" />. |
+| <InlineMath math="0" /> | Verlangt <InlineMath math="x = 1" />, <InlineMath math="4" /> und <InlineMath math="6" /> gleichzeitig, was unmöglich ist. |
+| <InlineMath math="3" /> | Misst nur einen einzelnen Abstand <InlineMath math="\lvert 4 - 1 \rvert" /> und vergisst den Weg zu <InlineMath math="6" />. |
+
+# Antwort
+
+Der kleinste mögliche Wert von <InlineMath math="T(x)" /> ist **<InlineMath math="5" />**.

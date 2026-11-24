@@ -1,22 +1,39 @@
-# Die Unbekannte aus dem Exponenten holen
+# Gegeben
 
-Die Basen <InlineMath math="2" /> und <InlineMath math="3" /> lassen sich nicht angleichen. Trenne deshalb die Potenzen so, dass **alle Potenzen mit <InlineMath math="x" /> auf einer Seite stehen**:
+Für eine reelle Zahl <InlineMath math="x" /> gilt eine **Exponentialgleichung mit zwei verschiedenen Basen**:
 
-<BlockMath math="2^{x+1}=3^{x-1}\quad\Longleftrightarrow\quad 2\cdot2^x=\frac{3^x}{3}\quad\Longleftrightarrow\quad 6=\frac{3^x}{2^x}=\left(\frac32\right)^x" />
+<BlockMath math="2^{x + 1} = 3^{x - 1}" />
 
-# Logarithmieren
+# Gesucht
 
-Die Gleichung <InlineMath math="\left(\frac32\right)^x=6" /> hat **genau eine Lösung**, den Logarithmus von <InlineMath math="6" /> zur Basis <InlineMath math="\frac32" />:
+Welche reelle Zahl <InlineMath math="x" /> erfüllt diese Gleichung?
 
-<BlockMath math="x=\log_{\frac32}6=\frac{\lg6}{\lg1{,}5}\approx4{,}42" />
+# Lösung
+
+Die Basen <InlineMath math="2" /> und <InlineMath math="3" /> lassen sich nicht auf eine gemeinsame ganze Basis bringen. Der sauberste Weg ist, **alle Potenzen mit <InlineMath math="x" /> auf einer Seite zu sammeln** und alle reinen Zahlen auf der anderen. Sobald nur noch eine einzige Potenz steht, löst ein Logarithmus direkt nach <InlineMath math="x" /> auf.
+
+> Bei Exponentialgleichungen mit verschiedenen Basen spaltet man die Exponentenverschiebungen ab, fasst alle <InlineMath math="x" />-Potenzen auf einer Seite zusammen und logarithmiert dann.
+
+## Verschiebungen abspalten und Potenzen vereinen
+
+Ziehe die konstanten Faktoren aus den verschobenen Exponenten beider Basen heraus und **bündle alle <InlineMath math="x" />-Potenzen auf einer Seite**:
+
+<BlockMath math="2^{x + 1} = 3^{x - 1} \quad \Longleftrightarrow \quad 2 \cdot 2^x = \frac{3^x}{3} \quad \Longleftrightarrow \quad 6 = \frac{3^x}{2^x} = \left(\frac{3}{2}\right)^x" />
+
+## Logarithmieren und im Schaubild kontrollieren
+
+Da <InlineMath math="\left(\frac{3}{2}\right)^x" /> streng monoton von null gegen unendlich wächst, gibt es **genau eine eindeutige Lösung**, nämlich den Logarithmus von <InlineMath math="6" /> zur Basis <InlineMath math="\frac{3}{2}" />:
+
+<BlockMath math="x = \log_{\frac{3}{2}} 6 = \frac{\lg 6}{\lg 1{,}5} \approx 4{,}42" />
 
 <MathVisual
   title={<>Zwei Exponentialfunktionen</>}
-  description={<>Die Graphen von <InlineMath math="y=2^{x+1}" /> und <InlineMath math="y=3^{x-1}" />. Für kleine <InlineMath math="x" /> liegt <InlineMath math="2^{x+1}" /> oben, weil sie mit dem größeren Wert startet. <InlineMath math="3^{x-1}" /> wächst schneller und überholt sie genau einmal, bei <InlineMath math="x\approx4{,}42" />.</>}
+  description={<>Die Graphen von <InlineMath math="y = 2^{x + 1}" /> und <InlineMath math="y = 3^{x - 1}" /> steigen um die Wette. Anfangs liegt <InlineMath math="2^{x + 1}" /> dank seines höheren Startwerts vorn, bis das schneller wachsende <InlineMath math="3^{x - 1}" /> es genau einmal bei <InlineMath math="x \approx 4{,}42" /> überholt.</>}
+  footer={<>Die Kurve <InlineMath math="3^{x - 1}" /> überholt <InlineMath math="2^{x + 1}" /> genau einmal bei <InlineMath math="x = \log_{\frac{3}{2}} 6 \approx 4{,}42" />.</>}
   labels={{
-    a: <><InlineMath math="2^{x+1}" /></>,
-    b: <><InlineMath math="3^{x-1}" /></>,
-    m: <><InlineMath math="x\approx4{,}42" /></>,
+    a: <><InlineMath math="2^{x + 1}" /></>,
+    b: <><InlineMath math="3^{x - 1}" /></>,
+    m: <><InlineMath math="x \approx 4{,}42" /></>,
   }}
   scene={{
     space: "plane",
@@ -39,12 +56,22 @@ Die Gleichung <InlineMath math="\left(\frac32\right)^x=6" /> hat **genau eine L�
   }}
 />
 
-Probe: <InlineMath math="2^{5{,}42}\approx42{,}8" /> und <InlineMath math="3^{3{,}42}\approx42{,}8" />. Die Lösung ist **<InlineMath math="x=\log_{\frac32}6" />**.
+Bereichsprobe: bei <InlineMath math="x = 4" /> liegt <InlineMath math="2^5 = 32" /> noch über <InlineMath math="3^3 = 27" />. Bei <InlineMath math="x = 5" /> überholt <InlineMath math="3^4 = 81" /> bereits <InlineMath math="2^6 = 64" />. Der Schnittpunkt liegt sicher zwischen <InlineMath math="4" /> und <InlineMath math="5" />.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="\log_{\frac23}6" /> entsteht, wenn du die Exponenten vertauschst, also <InlineMath math="2^{x-1}=3^{x+1}" /> löst. Das ist **eine negative Zahl**.
-- <InlineMath math="\log_6\frac32" /> vertauscht Basis und Argument des Logarithmus.
-- <InlineMath math="\log_{\frac32}3" /> vergisst beim Umstellen den Faktor <InlineMath math="2" /> aus <InlineMath math="2^{x+1}" />: <InlineMath math="3^{x}=3\cdot2^x" />.
-- <InlineMath math="-1" /> macht die linke Seite zu <InlineMath math="2^0=1" />, die rechte aber zu <InlineMath math="3^{-2}=\frac19" />. Wer nur eine Seite prüft, übersieht das.
-- „Keine reelle Zahl“ übersieht, dass <InlineMath math="3^{x-1}" /> schneller wächst und <InlineMath math="2^{x+1}" /> genau einmal überholt.
+Die falschen Antworten **drehen den Basisbruch um oder vertauschen Basis und Numerus**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="x = \log_{\frac{2}{3}} 6" /> | Stürzt die Basis auf <InlineMath math="\frac{2}{3}" /> und liefert einen negativen Wert nahe <InlineMath math="-4{,}42" />. |
+| <InlineMath math="x = \log_6 \frac{3}{2}" /> | Vertauscht die Basis <InlineMath math="\frac{3}{2}" /> mit dem Numerus <InlineMath math="6" />. |
+| <InlineMath math="x = \log_{\frac{3}{2}} 3" /> | Vergisst den Faktor <InlineMath math="2" /> aus <InlineMath math="2^{x + 1}" /> und landet bei <InlineMath math="3" /> statt <InlineMath math="6" />. |
+| <InlineMath math="x = -1" /> | Ergibt links <InlineMath math="2^0 = 1" />, rechts aber <InlineMath math="3^{-2} = \frac{1}{9}" />. |
+| Es gibt keine reelle Zahl <InlineMath math="x" /> | Übersieht, dass die schneller wachsende Exponentialfunktion die langsamere sicher einholt. |
+
+# Antwort
+
+Die gesuchte reelle Zahl <InlineMath math="x" /> ist:
+
+<BlockMath math="x = \log_{\frac{3}{2}} 6" />

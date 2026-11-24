@@ -1,22 +1,39 @@
-# Get the unknown out of the exponent
+# Given
 
-The bases <InlineMath math="2" /> and <InlineMath math="3" /> can't be made equal. So separate the powers so that **all powers with <InlineMath math="x" /> are on one side**:
+For a real number <InlineMath math="x" />, we are given an **exponential equation with two different bases**:
 
-<BlockMath math="2^{x+1}=3^{x-1}\quad\Longleftrightarrow\quad 2\cdot2^x=\frac{3^x}{3}\quad\Longleftrightarrow\quad 6=\frac{3^x}{2^x}=\left(\frac32\right)^x" />
+<BlockMath math="2^{x + 1} = 3^{x - 1}" />
 
-# Take logarithms
+# Asked
 
-The equation <InlineMath math="\left(\frac32\right)^x=6" /> has **exactly one solution**, the logarithm of <InlineMath math="6" /> to base <InlineMath math="\frac32" />:
+Which real number <InlineMath math="x" /> satisfies this equation?
 
-<BlockMath math="x=\log_{\frac32}6=\frac{\lg6}{\lg1.5}\approx4.42" />
+# Solution
+
+Bases <InlineMath math="2" /> and <InlineMath math="3" /> cannot be rewritten as powers of a common integer. The cleanest move is to **gather every <InlineMath math="x" />-power onto one side** and every plain constant onto the other. Once only one combined power remains, a single logarithm frees <InlineMath math="x" /> immediately.
+
+> In an exponential equation with different bases, split off the exponent shifts, combine all variable powers on one side, and take the logarithm.
+
+## Splitting the shifts and combining the powers
+
+Pull out the constant factors from the shifted exponents on both sides, then **group all <InlineMath math="x" />-powers together**:
+
+<BlockMath math="2^{x + 1} = 3^{x - 1} \quad \Longleftrightarrow \quad 2 \cdot 2^x = \frac{3^x}{3} \quad \Longleftrightarrow \quad 6 = \frac{3^x}{2^x} = \left(\frac{3}{2}\right)^x" />
+
+## Taking the logarithm and checking the graph
+
+Because <InlineMath math="\left(\frac{3}{2}\right)^x" /> rises strictly from zero to infinity, the equation has **one unique real solution**, the base-<InlineMath math="\frac{3}{2}" /> logarithm of <InlineMath math="6" />:
+
+<BlockMath math="x = \log_{\frac{3}{2}} 6 = \frac{\lg 6}{\lg 1.5} \approx 4.42" />
 
 <MathVisual
   title={<>Two exponential functions</>}
-  description={<>The graphs of <InlineMath math="y=2^{x+1}" /> and <InlineMath math="y=3^{x-1}" />. For small <InlineMath math="x" />, <InlineMath math="2^{x+1}" /> is on top because it starts higher. <InlineMath math="3^{x-1}" /> grows faster and overtakes it exactly once, at <InlineMath math="x\approx4.42" />.</>}
+  description={<>Graphs of <InlineMath math="y = 2^{x + 1}" /> and <InlineMath math="y = 3^{x - 1}" /> racing upward. Initially <InlineMath math="2^{x + 1}" /> stays ahead thanks to its larger starting height, until the faster-growing <InlineMath math="3^{x - 1}" /> catches up once at <InlineMath math="x \approx 4.42" />.</>}
+  footer={<>Curve <InlineMath math="3^{x - 1}" /> overtakes <InlineMath math="2^{x + 1}" /> exactly once at <InlineMath math="x = \log_{\frac{3}{2}} 6 \approx 4.42" />.</>}
   labels={{
-    a: <><InlineMath math="2^{x+1}" /></>,
-    b: <><InlineMath math="3^{x-1}" /></>,
-    m: <><InlineMath math="x\approx4.42" /></>,
+    a: <><InlineMath math="2^{x + 1}" /></>,
+    b: <><InlineMath math="3^{x - 1}" /></>,
+    m: <><InlineMath math="x \approx 4.42" /></>,
   }}
   scene={{
     space: "plane",
@@ -39,12 +56,22 @@ The equation <InlineMath math="\left(\frac32\right)^x=6" /> has **exactly one so
   }}
 />
 
-Check: <InlineMath math="2^{5.42}\approx42.8" /> and <InlineMath math="3^{3.42}\approx42.8" />. The solution is **<InlineMath math="x=\log_{\frac32}6" />**.
+Range check: at <InlineMath math="x = 4" />, <InlineMath math="2^5 = 32" /> still beats <InlineMath math="3^3 = 27" />. At <InlineMath math="x = 5" />, <InlineMath math="2^6 = 64" /> falls behind <InlineMath math="3^4 = 81" />. The crossing must sit between <InlineMath math="4" /> and <InlineMath math="5" />.
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="\log_{\frac23}6" /> comes from swapping the exponents, solving <InlineMath math="2^{x-1}=3^{x+1}" />. That's **a negative number**.
-- <InlineMath math="\log_6\frac32" /> swaps the base and the argument of the logarithm.
-- <InlineMath math="\log_{\frac32}3" /> forgets the factor <InlineMath math="2" /> from <InlineMath math="2^{x+1}" /> when rearranging: <InlineMath math="3^{x}=3\cdot2^x" />.
-- <InlineMath math="-1" /> makes the left side <InlineMath math="2^0=1" />, but the right side <InlineMath math="3^{-2}=\frac19" />. Checking only one side misses that.
-- "No real number" overlooks that <InlineMath math="3^{x-1}" /> grows faster and overtakes <InlineMath math="2^{x+1}" /> exactly once.
+See how the wrong options **invert the base fraction or swap base and argument**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="x = \log_{\frac{2}{3}} 6" /> | Inverts the base ratio to <InlineMath math="\frac{2}{3}" />, producing a negative value near <InlineMath math="-4.42" />. |
+| <InlineMath math="x = \log_6 \frac{3}{2}" /> | Swaps the base <InlineMath math="\frac{3}{2}" /> with the argument <InlineMath math="6" />. |
+| <InlineMath math="x = \log_{\frac{3}{2}} 3" /> | Drops the factor <InlineMath math="2" /> from <InlineMath math="2^{x + 1}" />, leaving <InlineMath math="3" /> instead of <InlineMath math="6" />. |
+| <InlineMath math="x = -1" /> | Makes <InlineMath math="2^0 = 1" />, while the right side is <InlineMath math="3^{-2} = \frac{1}{9}" />. |
+| No real number <InlineMath math="x" /> exists | Assumes different bases never meet, overlooking that the faster curve always overtakes. |
+
+# Answer
+
+The real number <InlineMath math="x" /> satisfying the equation is:
+
+<BlockMath math="x = \log_{\frac{3}{2}} 6" />

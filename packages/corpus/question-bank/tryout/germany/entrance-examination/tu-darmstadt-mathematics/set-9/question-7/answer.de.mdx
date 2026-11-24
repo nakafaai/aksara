@@ -1,18 +1,40 @@
-# Die Änderungen als Faktoren
+# Gegeben
 
-Die Erhöhung um <InlineMath math="25\,\%" /> multipliziert den Preis mit <InlineMath math="1{,}25" />. Am Ende soll er <InlineMath math="10\,\%" /> unter dem alten Preis liegen, also beim <InlineMath math="0{,}9" />-Fachen. Gesucht ist die Senkung um den Anteil <InlineMath math="s" />, **bezogen auf den erhöhten Preis**:
+Der Preis einer Ware durchläuft zwei aufeinanderfolgende Prozentänderungen:
 
-<BlockMath math="1{,}25\,(1-s)=0{,}9" />
+- Zuerst wird der Preis **um <InlineMath math="25\,\%" /> erhöht**.
+- Danach wird der erhöhte Preis **um den Anteil <InlineMath math="s" /> gesenkt**, sodass der Endpreis genau <InlineMath math="10\,\%" /> unter dem Ursprungspreis liegt.
 
-# Den Prozentsatz ausrechnen
+# Gesucht
 
-<BlockMath math="1-s=\frac{0{,}9}{1{,}25}=0{,}72\quad\Longrightarrow\quad s=0{,}28=28\,\%" />
+Um wie viel Prozent wurde der **erhöhte Preis** gesenkt?
+
+# Lösung
+
+Aufeinanderfolgende Prozentänderungen darfst du niemals einfach addieren, weil **sich der Grundwert nach dem ersten Schritt ändert**. Stell dir einen Startpreis von <InlineMath math="100\text{ €}" /> vor: Nach plus <InlineMath math="25\,\%" /> kostet die Ware <InlineMath math="125\text{ €}" />. Um auf <InlineMath math="90\text{ €}" /> zu fallen, musst du <InlineMath math="35\text{ €}" /> abziehen, und zwar bezogen auf die neuen <InlineMath math="125\text{ €}" />, nicht auf <InlineMath math="100\text{ €}" />.
+
+> Jede Prozentänderung bezieht sich stets auf den aktuellen Wert unmittelbar davor, weshalb verkettete Prozentänderungen über Faktoren multipliziert werden.
+
+## Die Faktorgleichung aufstellen
+
+Eine Erhöhung um <InlineMath math="25\,\%" /> multipliziert den Ausgangspreis mit <InlineMath math="1{,}25" />, das Ziel <InlineMath math="10\,\%" /> darunter entspricht dem Faktor <InlineMath math="0{,}9" />. Für **eine Senkung um den Anteil <InlineMath math="s" /> vom erhöhten Preis** gilt:
+
+<BlockMath math="1{,}25(1 - s) = 0{,}9" />
+
+## Den Prozentsatz berechnen
+
+Teile durch <InlineMath math="1{,}25" />, um **den verbleibenden Anteil und daraus den Rabattsatz** zu bestimmen:
+
+<BlockMath math="1 - s = \frac{0{,}9}{1{,}25} = \frac{90}{125} = 0{,}72 \quad \Longrightarrow \quad s = 1 - 0{,}72 = 0{,}28 = 28\,\%" />
+
+Im Diagramm siehst du den zweistufigen Preisverlauf ab dem Startwert <InlineMath math="100" />.
 
 <MathVisual
-  title={<>Der Preis in zwei Schritten</>}
-  description={<>Der Preis als Index mit <InlineMath math="100" /> am Anfang. Er steigt auf <InlineMath math="125" /> und fällt dann auf <InlineMath math="90" />, also <InlineMath math="10" /> unter den Anfangswert. Der zweite Schritt ist eine Senkung um <InlineMath math="35" /> von <InlineMath math="125" />, das sind <InlineMath math="28\,\%" />.</>}
+  title={<>Preis in zwei Schritten</>}
+  description={<>Der Preisindex startet bei <InlineMath math="100" />, steigt um <InlineMath math="25\,\%" /> auf <InlineMath math="125" /> und fällt auf <InlineMath math="90" />, genau <InlineMath math="10\,\%" /> unter den Startwert. Der Abschlag von <InlineMath math="35" /> bezogen auf <InlineMath math="125" /> entspricht exakt <InlineMath math="28\,\%" />.</>}
+  footer={<>Ein Abschlag von <InlineMath math="35" /> bezogen auf den erhöhten Preis <InlineMath math="125" /> ergibt exakt <InlineMath math="28\,\%" />.</>}
   labels={{
-    s: <>Anfang <InlineMath math="100" /></>,
+    s: <>Start <InlineMath math="100" /></>,
     t: <>erhöht <InlineMath math="125" /></>,
     e: <>Ende <InlineMath math="90" /></>,
     cut: <><InlineMath math="-28\,\%" /></>,
@@ -41,12 +63,20 @@ Die Erhöhung um <InlineMath math="25\,\%" /> multipliziert den Preis mit <Inlin
   }}
 />
 
-Probe mit <InlineMath math="100\text{ €}" />: erhöht auf <InlineMath math="125\text{ €}" />, davon <InlineMath math="28\,\%" /> sind <InlineMath math="35\text{ €}" />, es bleiben <InlineMath math="90\text{ €}" />. Der erhöhte Preis wurde **um <InlineMath math="28\,\%" /> gesenkt**.
+Probe mit <InlineMath math="100\text{ €}" />: <InlineMath math="28\,\%" /> von <InlineMath math="125\text{ €}" /> sind <InlineMath math="35\text{ €}" />, es bleiben <InlineMath math="125 - 35 = 90\text{ €}" />, genau <InlineMath math="10\,\%" /> unter <InlineMath math="100\text{ €}" />.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="35\,\%" /> addiert die Prozentpunkte <InlineMath math="25+10" />. Die Senkung bezieht sich aber **auf den größeren Grundwert <InlineMath math="125" />**.
-- <InlineMath math="30\,\%" /> rechnet <InlineMath math="20\,\%" /> für die Rücknahme der Erhöhung plus <InlineMath math="10\,\%" /> dazu.
-- <InlineMath math="72\,\%" /> ist der verbleibende Anteil <InlineMath math="\frac{0{,}9}{1{,}25}" />, nicht die Senkung.
-- <InlineMath math="20\,\%" /> bringt den Preis nur zurück auf den Anfangswert: <InlineMath math="1{,}25\cdot0{,}8=1" />.
-- <InlineMath math="25\,\%" /> dreht einfach die Erhöhung um: <InlineMath math="1{,}25\cdot0{,}75=0{,}9375" />.
+Jede falsche Auswahl **addiert Prozente naiv oder verwechselt den Grundwert**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| um <InlineMath math="35\,\%" /> | Addiert <InlineMath math="25 + 10" />, als bezöge sich der Abschlag auf <InlineMath math="100" /> statt auf <InlineMath math="125" />. |
+| um <InlineMath math="30\,\%" /> | Addiert die <InlineMath math="20\,\%" /> Rücknahme und <InlineMath math="10\,\%" /> statt Faktoren zu multiplizieren. |
+| um <InlineMath math="72\,\%" /> | Nennt den verbleibenden Anteil <InlineMath math="0{,}72" /> statt der Senkung <InlineMath math="1 - 0{,}72" />. |
+| um <InlineMath math="20\,\%" /> | Stellt nur den Startpreis wieder her (<InlineMath math="1{,}25 \cdot 0{,}8 = 1" />) ohne weitere <InlineMath math="10\,\%" /> Senkung. |
+| um <InlineMath math="25\,\%" /> | Spiegelt bloß den Aufschlag und landet bei <InlineMath math="93{,}75\text{ €}" />. |
+
+# Antwort
+
+Der erhöhte Preis wurde um **<InlineMath math="28\,\%" />** gesenkt.

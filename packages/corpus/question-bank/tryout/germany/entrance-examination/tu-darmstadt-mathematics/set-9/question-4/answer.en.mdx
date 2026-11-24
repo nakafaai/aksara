@@ -1,28 +1,44 @@
-# Write the area in terms of one length
+# Given
 
-Call the two sides perpendicular to the wall <InlineMath math="x" /> and the side parallel to the wall <InlineMath math="y" />. The fence gives <InlineMath math="2x+y=60" />, so <InlineMath math="y=60-2x" />. The area is then **a quadratic function of <InlineMath math="x" />**:
+A rectangular enclosure (*rechteckiges Gehege*) is built along a long straight wall:
 
-<BlockMath math="A(x)=x\,(60-2x)=-2x^2+60x=-2(x-15)^2+450" />
+- The wall forms one side, while the other three sides use **<InlineMath math="60\text{ m}" /> of fencing in total**.
+- The side parallel to the wall (<InlineMath math="y" />) may be **at most <InlineMath math="24\text{ m}" /> long** (<InlineMath math="y \le 24" />).
 
-# The condition on the wall side
+# Asked
 
-Without a condition the vertex would be at <InlineMath math="x=15" /> with <InlineMath math="A=450" />. But then <InlineMath math="y=60-30=30" />, which is **longer than the allowed <InlineMath math="24\text{ m}" />**. The condition <InlineMath math="y\le24" /> means:
+What is the largest possible area (*Flächeninhalt*) of the enclosure?
 
-<BlockMath math="60-2x\le24\quad\Longleftrightarrow\quad x\ge18" />
+# Solution
 
-# The maximum at the boundary
+Without any cap on the wall side, the largest three-sided pen always makes the wall side twice as long as each side wing: <InlineMath math="30\text{ m}" /> by <InlineMath math="15\text{ m}" />. The catch is that the rule **forbids the wall side from exceeding <InlineMath math="24\text{ m}" />**. Because the unconstrained peak lands in the forbidden zone, the best legal pen must sit **right against the boundary <InlineMath math="y = 24\text{ m}" />**.
 
-For <InlineMath math="x\ge18" /> the vertex is off to the left, and the parabola falls. The largest allowed value is **at the boundary <InlineMath math="x=18" />**:
+> When the vertex of a downward parabola falls outside the allowed domain, the constrained maximum always occurs at the closest legal boundary point.
+
+## Writing the area function and fence constraint
+
+Let <InlineMath math="x" /> be each side perpendicular to the wall and <InlineMath math="y" /> the side parallel to it. The fencing gives <InlineMath math="2x + y = 60" />, so <InlineMath math="y = 60 - 2x" />. **The area forms a downward-opening parabola**:
+
+<BlockMath math="A(x) = x(60 - 2x) = -2x^2 + 60x = -2(x - 15)^2 + 450" />
+
+Its unconstrained vertex at <InlineMath math="x = 15\text{ m}" /> needs <InlineMath math="y = 30\text{ m}" />, breaking <InlineMath math="y \le 24\text{ m}" />. Convert the wall limit into a condition on <InlineMath math="x" />:
+
+<BlockMath math="60 - 2x \le 24 \quad \Longleftrightarrow \quad 2x \ge 36 \quad \Longleftrightarrow \quad x \ge 18" />
+
+## Finding the maximum at the boundary
+
+On the legal region <InlineMath math="x \ge 18" />, the entire curve lies to the right of the vertex <InlineMath math="x = 15" />, so **area strictly decreases as <InlineMath math="x" /> grows**. The largest allowed area sits right at <InlineMath math="x = 18" />.
 
 <MathVisual
-  title={<>Area depending on <InlineMath math="x" /></>}
-  description={<>The parabola <InlineMath math="A(x)=x\,(60-2x)" /> for the length <InlineMath math="x" /> of the sides perpendicular to the wall. Its vertex <InlineMath math="(15\mid450)" /> lies in the dashed, forbidden part left of <InlineMath math="x=18" />, because there the side along the wall would be longer than <InlineMath math="24" />. In the allowed part <InlineMath math="x\ge18" /> the parabola falls, and its highest point is <InlineMath math="(18\mid432)" />.</>}
+  title={<>Area as a function of <InlineMath math="x" /></>}
+  description={<>The parabola <InlineMath math="A(x) = x(60 - 2x)" /> plots area against the perpendicular side <InlineMath math="x" />. Its vertex <InlineMath math="(15 \mid 450)" /> falls on the dashed forbidden portion left of <InlineMath math="x = 18" />, so the highest legal point for <InlineMath math="x \ge 18" /> sits right at the boundary <InlineMath math="(18 \mid 432)" />.</>}
+  footer={<>Vertex <InlineMath math="(15 \mid 450)" /> is forbidden, so the best legal area sits at boundary <InlineMath math="(18 \mid 432)" />.</>}
   labels={{
-    v: <><InlineMath math="(15\mid450)" /></>,
-    m: <><InlineMath math="(18\mid432)" /></>,
+    v: <><InlineMath math="(15 \mid 450)" /></>,
+    m: <><InlineMath math="(18 \mid 432)" /></>,
     ok: <>allowed</>,
     no: <>forbidden</>,
-    b: <><InlineMath math="x=18" /></>,
+    b: <><InlineMath math="x = 18" /></>,
   }}
   scene={{
     space: "plane",
@@ -49,14 +65,24 @@ For <InlineMath math="x\ge18" /> the vertex is off to the left, and the parabola
   }}
 />
 
-<BlockMath math="A(18)=18\cdot(60-36)=18\cdot24=432" />
+Evaluate the area at <InlineMath math="x = 18\text{ m}" /> and <InlineMath math="y = 24\text{ m}" />:
 
-The enclosure can be at most <InlineMath math="432\text{ m}^2" />, with <InlineMath math="18\text{ m}" /> perpendicular and <InlineMath math="24\text{ m}" /> parallel to the wall.
+<BlockMath math="A(18) = 18 \cdot (60 - 36) = 18 \cdot 24 = 432\text{ m}^2" />
 
-# Why the other answers are wrong
+Two <InlineMath math="18\text{ m}" /> sides plus the <InlineMath math="24\text{ m}" /> side use all <InlineMath math="60\text{ m}" /> of fencing while respecting the wall cap.
 
-- <InlineMath math="450\text{ m}^2" /> is the vertex value, where the wall side would be <InlineMath math="30\text{ m}" />. **It breaks the condition**.
-- <InlineMath math="576\text{ m}^2" /> is a square with side <InlineMath math="24" />. That would need <InlineMath math="72\text{ m}" /> of fence.
-- <InlineMath math="360\text{ m}^2" /> combines <InlineMath math="x=15" /> from the vertex with <InlineMath math="y=24" />. That uses only <InlineMath math="54\text{ m}" /> of fence.
-- <InlineMath math="288\text{ m}^2" /> takes <InlineMath math="24\cdot12" />, a wrong second side.
-- <InlineMath math="225\text{ m}^2" /> is a square with side <InlineMath math="15" />, with no link to the fence.
+## Checking the distractors
+
+See how each wrong choice **breaks either the fence budget or the wall cap**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="450\text{ m}^2" /> | Unconstrained peak (<InlineMath math="15 \cdot 30" />), violating <InlineMath math="y \le 24\text{ m}" />. |
+| <InlineMath math="576\text{ m}^2" /> | A <InlineMath math="24 \times 24" /> square, needing <InlineMath math="72\text{ m}" /> of fencing instead of <InlineMath math="60\text{ m}" />. |
+| <InlineMath math="360\text{ m}^2" /> | Mixes <InlineMath math="x = 15" /> from the vertex with <InlineMath math="y = 24" />, leaving <InlineMath math="6\text{ m}" /> of fence unused. |
+| <InlineMath math="288\text{ m}^2" /> | Computes <InlineMath math="24 \cdot 12" />, using the wrong side length. |
+| <InlineMath math="225\text{ m}^2" /> | A <InlineMath math="15 \times 15" /> square that ignores the <InlineMath math="60\text{ m}" /> fencing budget. |
+
+# Answer
+
+The largest possible area of the enclosure is **<InlineMath math="432\text{ m}^2" />**.
