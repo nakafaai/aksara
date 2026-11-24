@@ -1,30 +1,86 @@
-# Luas segitiga yang sebangun
+# Diketahui
 
-Setiap garis yang sejajar <InlineMath math="BC" /> memotong segitiga kecil di pojok <InlineMath math="A" />, dan segitiga kecil itu sebangun dengan <InlineMath math="ABC" />. **Kalau sisi-sisinya <InlineMath math="k" /> kali sisi <InlineMath math="ABC" />, luasnya <InlineMath math="k^2" /> kali luas <InlineMath math="ABC" />**.
+Pada **segitiga** (*Dreieck*) <InlineMath math="ABC" />, panjang sisi <InlineMath math="\overline{AB}" /> adalah <InlineMath math="6" />. Dua garis sejajar sisi <InlineMath math="\overline{BC}" /> membagi segitiga menjadi tiga daerah sama luas (*gleichem Flächeninhalt*) dan memotong <InlineMath math="\overline{AB}" /> di <InlineMath math="P" /> dan <InlineMath math="Q" /> dengan <InlineMath math="P" /> lebih dekat ke <InlineMath math="A" />.
 
-Jadi dari luas kamu bisa kembali ke panjang dengan akar: <InlineMath math="k=\sqrt{\text{perbandingan luas}}" />.
+# Ditanyakan
 
-# Letak titik P dan Q
+Tentukan panjang ruas garis <InlineMath math="\overline{PQ}" />.
 
-Segitiga kecil yang berujung di garis melalui <InlineMath math="P" /> memuat satu dari tiga bagian yang sama luas, jadi luasnya <InlineMath math="\frac13" /> luas <InlineMath math="ABC" />. Segitiga yang berujung di garis melalui <InlineMath math="Q" /> memuat dua bagian, jadi luasnya <InlineMath math="\frac23" /> luas <InlineMath math="ABC" />. **Ambil akar dari kedua perbandingan luas itu**:
+# Penyelesaian
+
+Bayangkan sepotong kue berbentuk segitiga yang makin melebar ke arah sisi <InlineMath math="BC" />. Karena ujung di dekat <InlineMath math="A" /> sempit, kamu butuh **potongan panjang untuk mendapat sepertiga kue**. Makin dekat ke <InlineMath math="BC" />, kue makin lebar sehingga jalur tipis sudah cukup.
+
+> Pada bangun yang sebangun, perbandingan luas sama dengan kuadrat perbandingan panjang sisi, sehingga faktor panjang selalu berupa akar dari perbandingan luas.
+
+Lihat pada gambar berikut bagaimana garis sejajar melalui <InlineMath math="P" /> dan <InlineMath math="Q" /> membagi sisi <InlineMath math="AB" /> menjadi tiga ruas yang makin pendek menuju <InlineMath math="B" />.
+
+<MathVisual
+  title={<>Tiga daerah sama luas pada segitiga <InlineMath math="ABC" /></>}
+  description={
+    <>
+      Dua garis putus-putus sejajar <InlineMath math="BC" /> membagi luas
+      segitiga menjadi tiga bagian setara. Ruas hijau menandai jarak{" "}
+      <InlineMath math="PQ" /> pada sisi <InlineMath math="AB" />.
+    </>
+  }
+  footer={<>Makin dekat ke alas <InlineMath math="BC" />, lebar jalur makin tipis untuk luas yang sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.8, max: 4.6 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 4, y: 4 }] },
+      { id: "cut-p", kind: "segment", appearance: "highlight", stroke: "dashed", from: { x: 6 / Math.sqrt(3), y: 0 }, to: { x: 4 / Math.sqrt(3), y: 4 / Math.sqrt(3) } },
+      { id: "cut-q", kind: "segment", appearance: "highlight", stroke: "dashed", from: { x: 6 * Math.sqrt(2 / 3), y: 0 }, to: { x: 4 * Math.sqrt(2 / 3), y: 4 * Math.sqrt(2 / 3) } },
+      { id: "seg-pq", kind: "segment", appearance: "answer", from: { x: 6 / Math.sqrt(3), y: 0 }, to: { x: 6 * Math.sqrt(2 / 3), y: 0 } },
+      { id: "pt-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pt-b", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "pt-c", kind: "point", appearance: "reference", at: { x: 4, y: 4 } },
+      { id: "pt-p", kind: "point", appearance: "answer", at: { x: 6 / Math.sqrt(3), y: 0 } },
+      { id: "pt-q", kind: "point", appearance: "answer", at: { x: 6 * Math.sqrt(2 / 3), y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pt-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pt-b", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pt-c", at: { x: 4, y: 4 }, placement: "above" },
+      { key: "p", objectId: "pt-p", at: { x: 6 / Math.sqrt(3), y: 0 }, placement: "below" },
+      { key: "q", objectId: "pt-q", at: { x: 6 * Math.sqrt(2 / 3), y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+  }}
+/>
+
+Jarak <InlineMath math="AP" /> jauh lebih panjang daripada <InlineMath math="PQ" />, dan <InlineMath math="QB" /> adalah potongan paling pendek.
+
+## Menghitung posisi titik P dan Q
+
+Segitiga kecil di ujung <InlineMath math="A" /> yang dibatasi garis melalui <InlineMath math="P" /> memuat <InlineMath math="\frac{1}{3}" /> luas total, sedangkan yang dibatasi garis melalui <InlineMath math="Q" /> memuat <InlineMath math="\frac{2}{3}" /> luas total. **Ambil akar dari kedua perbandingan luas** lalu kalikan dengan <InlineMath math="6" />.
 
 <BlockMath math="\begin{aligned}
-AP&=6\sqrt{\frac13}=\frac{6}{\sqrt3}=2\sqrt3 \\
-AQ&=6\sqrt{\frac23}=\frac{6\sqrt2}{\sqrt3}=2\sqrt6
+AP &= 6\sqrt{\frac{1}{3}} = \frac{6}{\sqrt{3}} = 2\sqrt{3} \\
+AQ &= 6\sqrt{\frac{2}{3}} = \frac{6\sqrt{2}}{\sqrt{3}} = 2\sqrt{6}
 \end{aligned}" />
 
-# Panjang PQ
+Kurangkan keduanya untuk mendapatkan panjang <InlineMath math="PQ" />.
 
-<BlockMath math="PQ=AQ-AP=2\sqrt6-2\sqrt3\approx4{,}899-3{,}464=1{,}435" />
+<BlockMath math="PQ = AQ - AP = 2\sqrt{6} - 2\sqrt{3} \approx 4{,}899 - 3{,}464 = 1{,}435" />
 
-Ketiga potongan pada <InlineMath math="AB" /> kira-kira <InlineMath math="3{,}464" />, <InlineMath math="1{,}435" />, dan <InlineMath math="1{,}101" />. **Makin dekat ke <InlineMath math="BC" />, potongannya makin pendek**, karena segitiganya makin lebar, jadi luas yang sama cukup dengan jalur yang lebih tipis.
+## Pengecekan ukuran dan pilihan salah
 
-Jadi, <InlineMath math="PQ=2\sqrt6-2\sqrt3" />.
+Ketiga potongan pada <InlineMath math="AB" /> kira-kira <InlineMath math="3{,}464" />, <InlineMath math="1{,}435" />, dan <InlineMath math="1{,}101" />, yang jumlahnya tepat <InlineMath math="6" /> dan **makin pendek mendekati <InlineMath math="B" />**.
 
-# Kenapa pilihan lain salah
+- <InlineMath math="2" /> keliru membagi <InlineMath math="AB" /> menjadi tiga bagian sama panjang secara linear.
+- <InlineMath math="2\sqrt{3}" /> adalah panjang potongan pertama <InlineMath math="AP" />.
+- <InlineMath math="6 - 2\sqrt{6}" /> adalah panjang potongan terakhir <InlineMath math="QB" />.
+- <InlineMath math="2\sqrt{6}" /> adalah seluruh jarak <InlineMath math="AQ" /> dari <InlineMath math="A" />.
+- <InlineMath math="6 - 2\sqrt{3}" /> adalah panjang gabungan <InlineMath math="PB" />.
 
-- <InlineMath math="2" /> membagi <InlineMath math="AB" /> menjadi tiga potongan sama panjang, padahal **luas tumbuh sebanding dengan kuadrat panjang**.
-- <InlineMath math="2\sqrt3" /> adalah <InlineMath math="AP" />, potongan pertama dari <InlineMath math="A" />.
-- <InlineMath math="6-2\sqrt6" /> adalah <InlineMath math="QB" />, potongan terakhir di dekat <InlineMath math="B" />.
-- <InlineMath math="2\sqrt6" /> adalah <InlineMath math="AQ" />, jarak dari <InlineMath math="A" /> ke titik kedua.
-- <InlineMath math="6-2\sqrt3" /> adalah <InlineMath math="PB" />, jarak dari <InlineMath math="P" /> sampai ke <InlineMath math="B" />.
+# Jawaban
+
+Panjang ruas garis <InlineMath math="\overline{PQ}" /> adalah <InlineMath math="2\sqrt{6} - 2\sqrt{3}" />.

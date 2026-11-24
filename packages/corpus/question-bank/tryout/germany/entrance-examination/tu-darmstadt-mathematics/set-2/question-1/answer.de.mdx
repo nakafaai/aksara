@@ -1,29 +1,80 @@
-# Halbe Breite und Höhe
+# Gegeben
 
-Die beiden oberen Ecken liegen in gleicher Höhe auf dem Bogen, also **liegt das Rechteck symmetrisch zum Kreismittelpunkt**. Nenne die halbe Breite <InlineMath math="u" /> und die Höhe <InlineMath math="h" />. Die obere rechte Ecke <InlineMath math="(u\mid h)" /> liegt auf dem Bogen, und der Flächeninhalt ist <InlineMath math="2u\cdot h" />:
+Ein **Rechteck** liegt in einem Halbkreis mit Radius <InlineMath math="5" />. Eine Seite liegt auf dem Durchmesser, die beiden oberen Ecken liegen auf dem Bogen, und der Flächeninhalt beträgt <InlineMath math="24" />.
 
-<BlockMath math="u^2+h^2=25,\qquad 2uh=24" />
+# Gesucht
 
-# Die Summe aus einem Quadrat
+Alle möglichen Werte für den **Umfang** dieses Rechtecks.
 
-Du brauchst keine Lösungsformel. **Im Quadrat der Summe stecken beide Gleichungen auf einmal**:
+# Lösung
 
-<BlockMath math="(u+h)^2=u^2+h^2+2uh=25+24=49\quad\Rightarrow\quad u+h=7" />
+Stell dir eine rechteckige Karte vor, die genau in einen Halbkreis passt. Da beide oberen Ecken auf gleicher Höhe am Bogen anliegen, **liegt das Rechteck symmetrisch zum Kreismittelpunkt**. Nenn die halbe Breite <InlineMath math="u" /> und die Höhe <InlineMath math="h" />.
 
-Zwei positive Zahlen mit der Summe <InlineMath math="7" /> und dem Produkt <InlineMath math="12" /> sind <InlineMath math="3" /> und <InlineMath math="4" />. Aber nichts legt fest, welche davon <InlineMath math="u" /> ist.
+> Denselben Flächeninhalt im Halbkreis erreichen sowohl ein hohes als auch ein breites Rechteck, aber ihr Umfang unterscheidet sich, weil die volle Breite doppelt so groß ist wie die halbe Breite.
 
-# Zwei Rechtecke
+Sieh in der Skizze, wie die beiden Rechtecke mit den Maßen <InlineMath math="6 \times 4" /> und <InlineMath math="8 \times 3" /> in denselben Halbkreis passen und beide den Flächeninhalt <InlineMath math="24" /> haben.
 
-- <InlineMath math="u=3" />, <InlineMath math="h=4" />: Breite <InlineMath math="6" />, Höhe <InlineMath math="4" />, Umfang <InlineMath math="2(6+4)=20" />.
-- <InlineMath math="u=4" />, <InlineMath math="h=3" />: Breite <InlineMath math="8" />, Höhe <InlineMath math="3" />, Umfang <InlineMath math="2(8+3)=22" />.
+<MathVisual
+  title={<>Zwei Rechtecke mit Fläche <InlineMath math="24" /> im Halbkreis</>}
+  description={
+    <>
+      Der blaue Halbkreis hat Radius <InlineMath math="5" />. Das grüne
+      Rechteck misst <InlineMath math="6" /> mal <InlineMath math="4" />, das
+      hervorgehobene <InlineMath math="8" /> mal <InlineMath math="3" />.
+    </>
+  }
+  footer={<>Beide berühren den Bogen mit Radius <InlineMath math="5" />, haben aber verschiedenen Umfang.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -0.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "semicircle", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 5, startDegrees: 0, sweepDegrees: 180 },
+      { id: "diameter", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "rect-tall", kind: "polygon", appearance: "answer", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 4 }, { x: -3, y: 4 }] },
+      { id: "rect-wide", kind: "polygon", appearance: "highlight", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: -4, y: 3 }] },
+      { id: "radius-tall", kind: "segment", appearance: "construction", stroke: "dashed", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "corner-tall", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+      { id: "corner-wide", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "tall", objectId: "corner-tall", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "wide", objectId: "corner-wide", at: { x: 4, y: 3 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    tall: <InlineMath math="(3, 4)" />,
+    wide: <InlineMath math="(4, 3)" />,
+  }}
+/>
 
-Beide passen: <InlineMath math="3^2+4^2=25" />, und der Flächeninhalt ist <InlineMath math="24" />. **Ihre Umfänge sind verschieden**, denn im Umfang zählt die Breite als doppelte halbe Breite.
+Die rechte obere Ecke <InlineMath math="(u \mid h)" /> hat den Abstand <InlineMath math="5" /> zum Mittelpunkt, und die Gesamtfläche ist <InlineMath math="2uh" />.
 
-Der Umfang kann also <InlineMath math="20" /> oder <InlineMath math="22" /> sein.
+## Über das Quadrat der Summe lösen
 
-# Warum die anderen Antworten falsch sind
+Verbinde den Satz des Pythagoras und die Flächenbedingung direkt im **Quadrat der Summe** <InlineMath math="(u + h)^2" />.
 
-- Nur <InlineMath math="20" /> oder nur <InlineMath math="22" /> **nimmt nur eine der beiden Lagen**.
-- <InlineMath math="14" /> ist <InlineMath math="2(u+h)" />, dabei wird die halbe Breite als Breite genommen.
-- <InlineMath math="4\sqrt{37}" /> nimmt die Diagonale des Rechtecks als Durchmesser, wie bei einem Rechteck im Vollkreis.
-- <InlineMath math="24" /> mischt die beiden Lagen, Breite <InlineMath math="8" /> mit Höhe <InlineMath math="4" />. Dieses Rechteck hätte den Flächeninhalt <InlineMath math="32" />.
+<BlockMath math="\begin{aligned}
+u^2 + h^2 &= 25, \qquad 2uh = 24 \\
+(u + h)^2 &= u^2 + h^2 + 2uh = 49 \implies u + h = 7
+\end{aligned}" />
+
+Zwei positive Zahlen mit Summe <InlineMath math="7" /> und Produkt <InlineMath math="12" /> sind <InlineMath math="3" /> und <InlineMath math="4" />, wobei jede von beiden <InlineMath math="u" /> sein kann.
+
+## Beide Umfänge berechnen und falsche Antworten prüfen
+
+Berechne den Umfang <InlineMath math="2(2u + h)" /> für **beide möglichen Lagen**.
+
+<BlockMath math="\begin{aligned}
+u = 3, \; h = 4 &\implies \text{Breite } 6, \; \text{Höhe } 4, \; U = 2(6 + 4) = 20 \\
+u = 4, \; h = 3 &\implies \text{Breite } 8, \; \text{Höhe } 3, \; U = 2(8 + 3) = 22
+\end{aligned}" />
+
+- Nur <InlineMath math="20" /> oder nur <InlineMath math="22" /> berücksichtigt lediglich eine der beiden Lösungen.
+- <InlineMath math="14" /> verwendet die halbe Breite <InlineMath math="u" /> als volle Breite.
+- <InlineMath math="4\sqrt{37}" /> setzt die Rechteckdiagonale gleich dem Durchmesser <InlineMath math="10" />, was nur im Vollkreis gilt.
+- <InlineMath math="24" /> mischt Breite <InlineMath math="8" /> mit Höhe <InlineMath math="4" />, was Fläche <InlineMath math="32" /> ergäbe.
+
+# Antwort
+
+Der Umfang des Rechtecks kann <InlineMath math="20" /> oder <InlineMath math="22" /> betragen.

@@ -1,29 +1,86 @@
-# Eine Substitution mit versteckter Bedingung
+# Gegeben
 
-Setze <InlineMath math="t=3^x" />. Dann ist <InlineMath math="9^x=\left(3^x\right)^2=t^2" />, und die Gleichung wird zu:
+Gegeben ist die folgende **Exponentialgleichung** mit einem reellen Parameter <InlineMath math="a" />.
 
-<BlockMath math="t^2-6t+a=0" />
+<BlockMath math="9^x - 6 \cdot 3^x + a = 0" />
 
-Entscheidend ist: <InlineMath math="3^x" /> ist immer positiv. **Jede Lösung <InlineMath math="t>0" /> liefert genau ein <InlineMath math="x" />, eine Lösung <InlineMath math="t\le0" /> liefert keines**. Du zählst also die positiven Lösungen <InlineMath math="t" />.
+Die Gleichung soll **genau eine reelle Lösung** <InlineMath math="x" /> besitzen.
 
-# Positive Lösungen zählen
+# Gesucht
 
-Die beiden Lösungen haben die Summe <InlineMath math="6" />, das Produkt <InlineMath math="a" />, und die Diskriminante ist <InlineMath math="36-4a" />. **Geh alle Fälle für <InlineMath math="a" /> durch**:
+Alle reellen Werte von <InlineMath math="a" />, für die genau eine reelle Lösung <InlineMath math="x" /> existiert.
 
-- <InlineMath math="a>9" />: Diskriminante negativ, kein <InlineMath math="t" />, also kein <InlineMath math="x" />.
-- <InlineMath math="a=9" />: doppelte Lösung <InlineMath math="t=3>0" />, also genau ein <InlineMath math="x" />.
-- <InlineMath math="0<a<9" />: zwei verschiedene Lösungen mit positiver Summe und positivem Produkt, also beide positiv. Das ergibt zwei Werte für <InlineMath math="x" />.
-- <InlineMath math="a=0" />: <InlineMath math="t(t-6)=0" />. Die Lösung <InlineMath math="t=0" /> fällt weg, <InlineMath math="t=6" /> bleibt, also genau ein <InlineMath math="x" />.
-- <InlineMath math="a<0" />: negatives Produkt, also eine positive und eine negative Lösung. Genau ein <InlineMath math="x" />.
+# Lösung
 
-Probe mit <InlineMath math="a=-7" />: <InlineMath math="(t-7)(t+1)=0" />, nur <InlineMath math="t=7" /> ist positiv, also nur <InlineMath math="x=\log_37" />.
+Setz <InlineMath math="t = 3^x" />, sodass <InlineMath math="9^x = t^2" /> und eine quadratische Gleichung in <InlineMath math="t" /> entsteht. Entscheidend ist die versteckte Bedingung: **<InlineMath math="3^x" /> ist stets strikt positiv**, also liefert nur eine Lösung mit <InlineMath math="t > 0" /> ein reelles <InlineMath math="x" />.
 
-Genau eine Lösung gibt es also für <InlineMath math="a\le0" /> oder <InlineMath math="a=9" />.
+<BlockMath math="t^2 - 6t + a = 0" />
 
-# Warum die anderen Antworten falsch sind
+> Jede positive Lösung der quadratischen Gleichung in t ergibt genau ein reelles x, während null oder negative Lösungen wegfallen, weil eine Dreierpotenz nie null oder negativ wird.
 
-- Nur <InlineMath math="a=9" /> **denkt nur an die doppelte Lösung** und vergisst den Fall einer positiven neben einer nicht positiven Lösung.
-- <InlineMath math="a<0" /> oder <InlineMath math="a=9" /> vergisst <InlineMath math="a=0" />. Die Lösung <InlineMath math="t=0" /> fällt zwar weg, aber <InlineMath math="t=6" /> liefert noch eine Lösung.
-- <InlineMath math="a\le0" /> vergisst die doppelte Lösung bei <InlineMath math="a=9" />.
-- <InlineMath math="0<a<9" /> liefert sogar zwei Lösungen.
-- <InlineMath math="a<0" /> vergisst beide Randfälle, <InlineMath math="a=0" /> und <InlineMath math="a=9" />.
+Verschieb <InlineMath math="a" /> im folgenden Graphen und zähl, wie oft die Parabel die Achse im schraffierten Bereich <InlineMath math="t > 0" /> schneidet.
+
+<MathVisual
+  title={<>Schnittpunkte von <InlineMath math="t^2 - 6t + a" /> im Bereich <InlineMath math="t > 0" /></>}
+  description={
+    <>
+      Der schraffierte Bereich zeigt <InlineMath math="t > 0" />. Verschieb{" "}
+      <InlineMath math="a" />, um zu sehen, wann die Parabel die waagerechte
+      Achse genau einmal rechts von null trifft.
+    </>
+  }
+  footer={<>Genau eine positive Lösung entsteht bei <InlineMath math="a = 9" /> und für alle <InlineMath math="a \le 0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: -10, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: -4, max: 11, value: 9, step: 1, label: "a" }],
+    objects: [
+      { id: "positive-t", kind: "region", appearance: "construction", inequalities: ["x > 0"] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 6 * x + a", domain: { min: -2, max: 8 } },
+      { id: "vertex", kind: "marker", appearance: "answer", x: "3", y: "a - 9" },
+    ],
+    readouts: [
+      { key: "at-zero", formula: "a" },
+      { key: "discriminant", formula: "36 - 4 * a" },
+    ],
+  }}
+  labels={{
+    a: <>Parameter <InlineMath math="a" /></>,
+    "at-zero": <>Wert bei <InlineMath math="t = 0" /></>,
+    discriminant: <>Diskriminante <InlineMath math="D" /></>,
+  }}
+/>
+
+Bei <InlineMath math="a = 9" /> berührt der Scheitel die Achse genau bei <InlineMath math="t = 3" />. Sobald <InlineMath math="a \le 0" /> gilt, rutscht die linke Nullstelle auf oder unter null, sodass rechts genau eine positive Nullstelle bleibt.
+
+## Alle Fälle für a untersuchen
+
+Summe der Lösungen ist <InlineMath math="6" />, ihr Produkt <InlineMath math="a" /> und die Diskriminante <InlineMath math="36 - 4a" />. **Prüf alle fünf Bereiche von <InlineMath math="a" />**.
+
+| Wert von <InlineMath math="a" /> | Lösungen für <InlineMath math="t" /> | Lösungen für <InlineMath math="x" /> |
+| :--- | :--- | :--- |
+| <InlineMath math="a > 9" /> | keine reelle Lösung | <InlineMath math="0" /> |
+| <InlineMath math="a = 9" /> | doppelte Lösung <InlineMath math="t = 3 > 0" /> | <InlineMath math="1" /> |
+| <InlineMath math="0 < a < 9" /> | zwei verschiedene positive Lösungen | <InlineMath math="2" /> |
+| <InlineMath math="a = 0" /> | <InlineMath math="t = 0" /> entfällt, <InlineMath math="t = 6" /> bleibt | <InlineMath math="1" /> |
+| <InlineMath math="a < 0" /> | eine positive, eine negative Lösung | <InlineMath math="1" /> |
+
+## Zahlenprobe und falsche Antworten
+
+Prüf <InlineMath math="a = -7" /> und <InlineMath math="a = 0" />, um **beide Fälle mit genau einer Lösung <InlineMath math="x" /> zu bestätigen**.
+
+<BlockMath math="\begin{aligned}
+a = -7 &\implies (t - 7)(t + 1) = 0 \implies t = 7 \implies x = \log_3 7 \\
+a = 0 &\implies t(t - 6) = 0 \implies t = 6 \implies x = \log_3 6
+\end{aligned}" />
+
+- Nur <InlineMath math="a = 9" /> denkt allein an die doppelte Lösung und vergisst die Fälle mit genau einer positiven Lösung.
+- <InlineMath math="a < 0" /> oder <InlineMath math="a = 9" /> übersieht <InlineMath math="a = 0" />, obwohl <InlineMath math="t = 6" /> weiterhin eine Lösung liefert.
+- <InlineMath math="a \le 0" /> vergisst die doppelte Lösung bei <InlineMath math="a = 9" />.
+- <InlineMath math="0 < a < 9" /> erzeugt zwei verschiedene reelle Lösungen.
+- <InlineMath math="a < 0" /> verliert beide Randwerte <InlineMath math="a = 0" /> und <InlineMath math="a = 9" />.
+
+# Antwort
+
+Die Gleichung besitzt genau dann eine reelle Lösung, wenn <InlineMath math="a \le 0" /> oder <InlineMath math="a = 9" /> gilt.

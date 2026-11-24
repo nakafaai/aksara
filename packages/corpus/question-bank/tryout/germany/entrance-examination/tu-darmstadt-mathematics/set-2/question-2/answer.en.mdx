@@ -1,34 +1,87 @@
-# One base for everything
+# Given
 
-You have logarithms in base <InlineMath math="2" /> and base <InlineMath math="3" />, but the question is in base <InlineMath math="15" />. **Move everything to base <InlineMath math="2" />**:
+We are given two **logarithm values** in different bases.
 
-<BlockMath math="\log_{15}20=\frac{\log_2 20}{\log_2 15}" />
+<BlockMath math="\log_2 3 = a, \qquad \log_3 5 = b" />
 
-# Chaining two logarithms
+# Asked
 
-The number <InlineMath math="5" /> only shows up in <InlineMath math="b=\log_3 5" />, which is in base <InlineMath math="3" />. **Chaining the bases links <InlineMath math="2" /> to <InlineMath math="5" /> through <InlineMath math="3" />**:
+Express the term (*Term*) <InlineMath math="\log_{15} 20" /> in terms of <InlineMath math="a" /> and <InlineMath math="b" />.
 
-<BlockMath math="\log_2 5=\log_2 3\cdot\log_3 5=ab" />
+# Solution
 
-Now split <InlineMath math="20=4\cdot5" /> and <InlineMath math="15=3\cdot5" />:
+Think of two rulers with different units: one measured in powers of <InlineMath math="2" /> and one in powers of <InlineMath math="3" />. To compare everything directly, **move every logarithm onto one common ruler**, namely base <InlineMath math="2" />.
+
+> Changing a logarithm's base means measuring both numbers on one shared logarithmic ruler and dividing the two heights.
+
+See how <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="15" /> and <InlineMath math="20" /> all sit cleanly along one curve <InlineMath math="y = \log_2 x" /> below.
+
+<MathVisual
+  title={<>Placing every value on the <InlineMath math="\log_2 x" /> scale</>}
+  description={
+    <>
+      The blue curve plots <InlineMath math="\log_2 x" />. Highlighted dots
+      mark <InlineMath math="3" /> and <InlineMath math="5" />, while green
+      dots mark <InlineMath math="15" /> and <InlineMath math="20" />.
+    </>
+  }
+  footer={<>The value <InlineMath math="\log_{15} 20" /> is the height ratio of <InlineMath math="20" /> to <InlineMath math="15" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 23 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "log2", kind: "function", appearance: "primary", formula: "log(x) / log(2)", domain: { min: 0.5, max: 22 } },
+      { id: "p3", kind: "point", appearance: "highlight", at: { x: 3, y: Math.log(3) / Math.log(2) } },
+      { id: "p5", kind: "point", appearance: "highlight", at: { x: 5, y: Math.log(5) / Math.log(2) } },
+      { id: "p15", kind: "point", appearance: "answer", at: { x: 15, y: Math.log(15) / Math.log(2) } },
+      { id: "p20", kind: "point", appearance: "answer", at: { x: 20, y: Math.log(20) / Math.log(2) } },
+    ],
+    labels: [
+      { key: "p3", objectId: "p3", at: { x: 3, y: Math.log(3) / Math.log(2) }, placement: "above-left" },
+      { key: "p5", objectId: "p5", at: { x: 5, y: Math.log(5) / Math.log(2) }, placement: "below-right" },
+      { key: "p15", objectId: "p15", at: { x: 15, y: Math.log(15) / Math.log(2) }, placement: "below" },
+      { key: "p20", objectId: "p20", at: { x: 20, y: Math.log(20) / Math.log(2) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    p3: <InlineMath math="a" />,
+    p5: <InlineMath math="ab" />,
+    p15: <InlineMath math="a + ab" />,
+    p20: <InlineMath math="2 + ab" />,
+  }}
+/>
+
+On the base-<InlineMath math="2" /> scale, <InlineMath math="20" /> sits slightly higher than <InlineMath math="15" />, so their ratio must lie just above <InlineMath math="1" />.
+
+## Chaining bases into base two
+
+The number <InlineMath math="5" /> appears only in <InlineMath math="b = \log_3 5" />. Use the **logarithm chain rule** to jump from base <InlineMath math="2" /> to <InlineMath math="5" /> via <InlineMath math="3" />, then split <InlineMath math="20 = 4 \cdot 5" /> and <InlineMath math="15 = 3 \cdot 5" />.
 
 <BlockMath math="\begin{aligned}
-\log_2 20&=\log_2 4+\log_2 5=2+ab \\
-\log_2 15&=\log_2 3+\log_2 5=a+ab
+\log_2 5 &= \log_2 3 \cdot \log_3 5 = ab \\
+\log_2 20 &= \log_2 4 + \log_2 5 = 2 + ab \\
+\log_2 15 &= \log_2 3 + \log_2 5 = a + ab
 \end{aligned}" />
 
-# The result
+Substitute both base-two values into the change-of-base formula.
 
-<BlockMath math="\log_{15}20=\frac{2+ab}{a+ab}" />
+<BlockMath math="\log_{15} 20 = \frac{\log_2 20}{\log_2 15} = \frac{2 + ab}{a + ab}" />
 
-Check with numbers: <InlineMath math="a\approx1.585" /> and <InlineMath math="b\approx1.465" /> give <InlineMath math="\frac{4.322}{3.907}\approx1.106" />. **That value makes sense**, because <InlineMath math="20" /> is a bit more than <InlineMath math="15" />.
+## Numerical check and wrong choices
 
-So <InlineMath math="\log_{15}20=\frac{2+ab}{a+ab}" />.
+Test with <InlineMath math="a \approx 1.585" /> and <InlineMath math="b \approx 1.465" /> to confirm **the ratio makes complete sense**.
 
-# Why the other options are wrong
+<BlockMath math="\frac{2 + 1.585 \times 1.465}{1.585 + 1.585 \times 1.465} \approx \frac{4.322}{3.907} \approx 1.106" />
 
-- <InlineMath math="\frac{2+b}{a+b}" /> uses <InlineMath math="b" /> as <InlineMath math="\log_2 5" />. **But <InlineMath math="b" /> is in base <InlineMath math="3" />**, so it has to be multiplied by <InlineMath math="a" /> first.
-- <InlineMath math="\frac{2+ab}{a+b}" /> chains the bases in the numerator only and forgets the denominator.
-- <InlineMath math="\frac{2ab}{a+ab}" /> writes <InlineMath math="\log_2(4\cdot5)" /> as <InlineMath math="\log_2 4\cdot\log_2 5" />. The logarithm of a product is a sum, not a product.
-- <InlineMath math="\frac{2+ab}{a^2b}" /> makes the same slip in the denominator, <InlineMath math="\log_2 3\cdot\log_2 5=a\cdot ab" />.
-- <InlineMath math="\frac{a+ab}{2+ab}" /> swaps the numerator and the denominator. That's <InlineMath math="\log_{20}15" />.
+- Replacing <InlineMath math="ab" /> with <InlineMath math="b" /> in both places treats <InlineMath math="b" /> as base <InlineMath math="2" /> instead of base <InlineMath math="3" />.
+- Leaving <InlineMath math="a + b" /> in the denominator chains the base in the numerator only and forgets the denominator.
+- Putting <InlineMath math="2ab" /> in the numerator multiplies logarithms instead of adding them.
+- Putting <InlineMath math="a^2 b" /> in the denominator makes the same product mistake in the denominator.
+- Flipping the fraction puts <InlineMath math="2 + ab" /> below, which computes <InlineMath math="\log_{20} 15" /> instead.
+
+# Answer
+
+The expression equal to <InlineMath math="\log_{15} 20" /> is shown below.
+
+<BlockMath math="\frac{2 + ab}{a + ab}" />

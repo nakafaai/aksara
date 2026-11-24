@@ -1,37 +1,81 @@
-# A parabola with its vertex on the line
+# Given
 
-A parabola that is only shifted has the form <InlineMath math="y=(x-h)^2+k" /> with vertex <InlineMath math="S(h\mid k)" />. The vertex is on <InlineMath math="y=2x" />, so <InlineMath math="k=2h" />:
+The **standard parabola** (*Normalparabel*) <InlineMath math="y = x^2" /> is shifted without changing its shape so its vertex (*Scheitelpunkt*) <InlineMath math="S" /> lies on line <InlineMath math="g" /> given by <InlineMath math="y = 2x" />. The shifted parabola meets <InlineMath math="g" /> again at a second point <InlineMath math="T" />.
 
-<BlockMath math="y=(x-h)^2+2h" />
+# Asked
 
-You don't know <InlineMath math="h" />. **Keep <InlineMath math="h" /> as a letter and see whether the result depends on it**.
+Find the length of segment <InlineMath math="\overline{ST}" />.
 
-# Where it meets the line
+# Solution
 
-Set the parabola equal to the line <InlineMath math="y=2x" />. **The right side can be written as <InlineMath math="2(x-h)" />**, so only <InlineMath math="x-h" /> appears:
+Picture sliding a rigid wire bent into the shape <InlineMath math="y = x^2" /> up and down a straight rail <InlineMath math="y = 2x" />. Because neither the wire's shape nor the rail's slope ever changes, **the horizontal and vertical jump from <InlineMath math="S" /> to <InlineMath math="T" /> stays identical at every position**.
+
+> Translating a curve along a line preserves every relative intersection distance, so the shift parameter cancels out completely.
+
+Slide the vertex coordinate <InlineMath math="h" /> along <InlineMath math="y = 2x" /> below and watch that the horizontal gap from <InlineMath math="S" /> to <InlineMath math="T" /> stays locked at <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Sliding the parabola along line <InlineMath math="y = 2x" /></>}
+  description={
+    <>
+      The dashed line is the rail <InlineMath math="y = 2x" />. Slide vertex
+      coordinate <InlineMath math="h" /> to watch both intersections{" "}
+      <InlineMath math="S" /> and <InlineMath math="T" /> glide together at a
+      constant distance.
+    </>
+  }
+  footer={<>At every shift, <InlineMath math="T" /> stays <InlineMath math="2" /> units right and <InlineMath math="4" /> units above <InlineMath math="S" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 5 }, y: { min: -3, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "h", min: -1, max: 2, value: 0, step: 0.5, label: "h" }],
+    objects: [
+      { id: "line-g", kind: "line", appearance: "reference", stroke: "dashed", through: [{ x: -1, y: -2 }, { x: 4, y: 8 }] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "(x - h)^2 + 2 * h", domain: { min: -2, max: 5 } },
+      { id: "vertex-s", kind: "marker", appearance: "answer", x: "h", y: "2 * h" },
+      { id: "hit-t", kind: "marker", appearance: "answer", x: "h + 2", y: "2 * h + 4" },
+    ],
+    readouts: [
+      { key: "sx", formula: "h" },
+      { key: "tx", formula: "h + 2" },
+    ],
+  }}
+  labels={{
+    h: <>Vertex coordinate <InlineMath math="h" /></>,
+    sx: <>Coordinate of <InlineMath math="S" /></>,
+    tx: <>Coordinate of <InlineMath math="T" /></>,
+  }}
+/>
+
+Regardless of <InlineMath math="h" />, point <InlineMath math="T" /> always sits exactly <InlineMath math="2" /> units to the right of <InlineMath math="S" />.
+
+## Finding the intersections algebraically
+
+With vertex <InlineMath math="S(h \mid 2h)" /> on <InlineMath math="y = 2x" />, write the shifted parabola, **set it equal to <InlineMath math="2x" />** and factor.
 
 <BlockMath math="\begin{aligned}
-(x-h)^2+2h&=2x \\
-(x-h)^2&=2(x-h) \\
-(x-h)(x-h-2)&=0
+(x - h)^2 + 2h &= 2x \\
+(x - h)^2 &= 2(x - h) \\
+(x - h)(x - h - 2) &= 0
 \end{aligned}" />
 
-So <InlineMath math="x=h" />, the vertex <InlineMath math="S" />, or <InlineMath math="x=h+2" />, the point <InlineMath math="T(h+2\mid2h+4)" />.
+This gives <InlineMath math="x = h" /> (vertex <InlineMath math="S" />) and <InlineMath math="x = h + 2" /> (second point <InlineMath math="T" />).
 
-# The length of ST
+## Computing length ST and checking wrong choices
 
-From <InlineMath math="S(h\mid2h)" /> to <InlineMath math="T(h+2\mid2h+4)" /> you go <InlineMath math="2" /> to the right and <InlineMath math="4" /> up:
+From <InlineMath math="S(h \mid 2h)" /> to <InlineMath math="T(h + 2 \mid 2h + 4)" />, the horizontal step is <InlineMath math="2" /> and the vertical step is <InlineMath math="4" />. **The letter <InlineMath math="h" /> disappears completely** under the distance formula.
 
-<BlockMath math="ST=\sqrt{2^2+4^2}=\sqrt{20}=2\sqrt5" />
+<BlockMath math="ST = \sqrt{2^2 + 4^2} = \sqrt{20} = 2\sqrt{5}" />
 
-**The letter <InlineMath math="h" /> is gone completely**, so the length is the same for every shift. Check with <InlineMath math="h=0" />: <InlineMath math="y=x^2" /> meets <InlineMath math="y=2x" /> at <InlineMath math="(0\mid0)" /> and <InlineMath math="(2\mid4)" />, which are <InlineMath math="\sqrt{20}" /> apart.
+Quick check at <InlineMath math="h = 0" />: <InlineMath math="y = x^2" /> meets <InlineMath math="y = 2x" /> at <InlineMath math="(0 \mid 0)" /> and <InlineMath math="(2 \mid 4)" />, whose distance is exactly <InlineMath math="2\sqrt{5}" />.
 
-So <InlineMath math="ST=2\sqrt5" />.
+- Claiming the length depends on the shift gives up before writing the algebra in <InlineMath math="h" />.
+- <InlineMath math="\sqrt{5}" /> uses a horizontal difference of <InlineMath math="1" /> instead of <InlineMath math="2" />.
+- <InlineMath math="2" /> measures only the horizontal gap and forgets the vertical rise.
+- <InlineMath math="4" /> measures only the vertical rise.
+- <InlineMath math="2\sqrt{2}" /> assumes a slope of <InlineMath math="1" /> instead of slope <InlineMath math="2" />.
 
-# Why the other options are wrong
+# Answer
 
-- "Depends on the shift" **gives up before trying it with a letter**. Once you write it with <InlineMath math="h" />, the result is fixed.
-- <InlineMath math="\sqrt5" /> takes a horizontal gap of <InlineMath math="1" /> instead of <InlineMath math="2" />.
-- <InlineMath math="2" /> takes only the horizontal gap and forgets the climb along the line.
-- <InlineMath math="4" /> takes only the vertical gap.
-- <InlineMath math="2\sqrt2" /> assumes the climb equals the horizontal gap, but the line has slope <InlineMath math="2" />.
+The length of segment <InlineMath math="\overline{ST}" /> is always <InlineMath math="2\sqrt{5}" />.

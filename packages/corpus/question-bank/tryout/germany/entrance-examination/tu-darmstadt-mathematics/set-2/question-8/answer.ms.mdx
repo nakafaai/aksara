@@ -1,29 +1,86 @@
-# Penggantian yang menyembunyikan syarat
+# Diberi
 
-Tulis <InlineMath math="t=3^x" />. Maka <InlineMath math="9^x=\left(3^x\right)^2=t^2" />, dan persamaannya menjadi:
+**Persamaan indeks** dengan parameter nyata <InlineMath math="a" /> diberi seperti berikut.
 
-<BlockMath math="t^2-6t+a=0" />
+<BlockMath math="9^x - 6 \cdot 3^x + a = 0" />
 
-Perkara penting: <InlineMath math="3^x" /> sentiasa positif. **Setiap punca <InlineMath math="t>0" /> memberi tepat satu <InlineMath math="x" />, manakala punca <InlineMath math="t\le0" /> tidak memberi apa-apa**. Jadi kamu mengira punca <InlineMath math="t" /> yang positif.
+Soalan meminta tepat **satu penyelesaian nyata** (*genau eine reelle Lösung*) bagi <InlineMath math="x" />.
 
-# Mengira punca positif
+# Ditanya
 
-Hasil tambah kedua-dua punca ialah <InlineMath math="6" />, hasil darabnya <InlineMath math="a" />, dan pembezalayannya <InlineMath math="36-4a" />. **Periksa setiap kes bagi <InlineMath math="a" />**:
+Tentukan semua nilai nyata <InlineMath math="a" /> yang menjadikan persamaan ini mempunyai tepat satu penyelesaian nyata <InlineMath math="x" />.
 
-- <InlineMath math="a>9" />: pembezalayan negatif, tiada <InlineMath math="t" />, jadi tiada <InlineMath math="x" />.
-- <InlineMath math="a=9" />: punca berganda <InlineMath math="t=3>0" />, jadi tepat satu <InlineMath math="x" />.
-- <InlineMath math="0<a<9" />: dua punca berbeza dengan hasil tambah dan hasil darab positif, jadi kedua-duanya positif. Ada dua nilai <InlineMath math="x" />.
-- <InlineMath math="a=0" />: <InlineMath math="t(t-6)=0" />. Punca <InlineMath math="t=0" /> tersingkir, <InlineMath math="t=6" /> kekal, jadi tepat satu <InlineMath math="x" />.
-- <InlineMath math="a<0" />: hasil darab negatif, jadi satu punca positif dan satu negatif. Tepat satu <InlineMath math="x" />.
+# Penyelesaian
 
-Semak dengan <InlineMath math="a=-7" />: <InlineMath math="(t-7)(t+1)=0" />, hanya <InlineMath math="t=7" /> yang positif, jadi hanya <InlineMath math="x=\log_37" />.
+Gantikan <InlineMath math="t = 3^x" /> supaya <InlineMath math="9^x = t^2" /> dan persamaan bertukar menjadi persamaan kuadratik dalam <InlineMath math="t" />. Kuncinya terletak pada sifat indeks: **<InlineMath math="3^x" /> sentiasa positif**, jadi hanya punca <InlineMath math="t > 0" /> yang memberi nilai <InlineMath math="x" />.
 
-Jadi, tepat satu penyelesaian berlaku untuk <InlineMath math="a\le0" /> atau <InlineMath math="a=9" />.
+<BlockMath math="t^2 - 6t + a = 0" />
 
-# Kenapa pilihan lain salah
+> Setiap punca positif bagi persamaan kuadratik dalam t menghasilkan tepat satu nilai x, manakala punca sifar atau negatif terus ditolak kerana kuasa tiga tidak pernah sifar atau negatif.
 
-- <InlineMath math="a=9" /> sahaja **hanya memikirkan punca berganda** dan terlupa kes satu punca positif bersama satu punca yang tidak positif.
-- <InlineMath math="a<0" /> atau <InlineMath math="a=9" /> terlupa <InlineMath math="a=0" />. Punca <InlineMath math="t=0" /> memang tersingkir, tetapi <InlineMath math="t=6" /> masih memberi satu penyelesaian.
-- <InlineMath math="a\le0" /> terlupa punca berganda pada <InlineMath math="a=9" />.
-- <InlineMath math="0<a<9" /> sebenarnya memberi dua penyelesaian.
-- <InlineMath math="a<0" /> terlupa kedua-dua kes sempadan, <InlineMath math="a=0" /> dan <InlineMath math="a=9" />.
+Gerakkan parameter <InlineMath math="a" /> pada graf kuadratik berikut dan kira bilangan pintasan parabola yang jatuh dalam kawasan berlorek <InlineMath math="t > 0" />.
+
+<MathVisual
+  title={<>Pintasan parabola <InlineMath math="t^2 - 6t + a" /> dalam kawasan <InlineMath math="t > 0" /></>}
+  description={
+    <>
+      Kawasan berlorek menandakan <InlineMath math="t > 0" />. Gerakkan{" "}
+      <InlineMath math="a" /> untuk melihat bila lengkung hanya memotong paksi
+      mendatar tepat sekali di kanan sifar.
+    </>
+  }
+  footer={<>Tepat satu punca positif berlaku pada <InlineMath math="a = 9" /> dan bagi semua <InlineMath math="a \le 0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: -10, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: -4, max: 11, value: 9, step: 1, label: "a" }],
+    objects: [
+      { id: "positive-t", kind: "region", appearance: "construction", inequalities: ["x > 0"] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 6 * x + a", domain: { min: -2, max: 8 } },
+      { id: "vertex", kind: "marker", appearance: "answer", x: "3", y: "a - 9" },
+    ],
+    readouts: [
+      { key: "at-zero", formula: "a" },
+      { key: "discriminant", formula: "36 - 4 * a" },
+    ],
+  }}
+  labels={{
+    a: <>Parameter <InlineMath math="a" /></>,
+    "at-zero": <>Tinggi di <InlineMath math="t = 0" /></>,
+    discriminant: <>Pembezalayan <InlineMath math="D" /></>,
+  }}
+/>
+
+Pada <InlineMath math="a = 9" />, puncak menyentuh paksi tepat di <InlineMath math="t = 3" />. Apabila <InlineMath math="a \le 0" />, punca kiri jatuh ke sifar atau negatif lalu hanya tinggal satu punca positif di kanan.
+
+## Menganalisis setiap kes nilai a
+
+Hasil tambah kedua-dua punca ialah <InlineMath math="6" />, hasil darabnya <InlineMath math="a" />, dan pembezalayannya <InlineMath math="36 - 4a" />. **Semak kelima-lima kawasan <InlineMath math="a" /> berikut**.
+
+| Nilai <InlineMath math="a" /> | Punca <InlineMath math="t" /> | Bilangan <InlineMath math="x" /> |
+| :--- | :--- | :--- |
+| <InlineMath math="a > 9" /> | tiada punca nyata | <InlineMath math="0" /> |
+| <InlineMath math="a = 9" /> | punca kembar <InlineMath math="t = 3 > 0" /> | <InlineMath math="1" /> |
+| <InlineMath math="0 < a < 9" /> | dua punca berbeza, kedua-duanya positif | <InlineMath math="2" /> |
+| <InlineMath math="a = 0" /> | <InlineMath math="t = 0" /> ditolak, tinggal <InlineMath math="t = 6" /> | <InlineMath math="1" /> |
+| <InlineMath math="a < 0" /> | satu punca positif, satu punca negatif | <InlineMath math="1" /> |
+
+## Semakan contoh dan pilihan salah
+
+Uji <InlineMath math="a = -7" /> dan <InlineMath math="a = 0" /> untuk **mengesahkan kedua-duanya memberi tepat satu nilai <InlineMath math="x" />**.
+
+<BlockMath math="\begin{aligned}
+a = -7 &\implies (t - 7)(t + 1) = 0 \implies t = 7 \implies x = \log_3 7 \\
+a = 0 &\implies t(t - 6) = 0 \implies t = 6 \implies x = \log_3 6
+\end{aligned}" />
+
+- <InlineMath math="a = 9" /> sahaja hanya memikirkan punca kembar dan tertinggal kes satu punca positif dengan satu punca bukan positif.
+- <InlineMath math="a < 0" /> atau <InlineMath math="a = 9" /> tertinggal sempadan <InlineMath math="a = 0" />, sedangkan <InlineMath math="t = 6" /> tetap memberi satu nilai <InlineMath math="x" />.
+- <InlineMath math="a \le 0" /> tertinggal punca kembar pada <InlineMath math="a = 9" />.
+- <InlineMath math="0 < a < 9" /> memberi dua penyelesaian nyata berbeza.
+- <InlineMath math="a < 0" /> tertinggal kedua-dua nilai sempadan <InlineMath math="a = 0" /> dan <InlineMath math="a = 9" />.
+
+# Jawapan
+
+Persamaan ini mempunyai tepat satu penyelesaian nyata untuk <InlineMath math="a \le 0" /> atau <InlineMath math="a = 9" />.

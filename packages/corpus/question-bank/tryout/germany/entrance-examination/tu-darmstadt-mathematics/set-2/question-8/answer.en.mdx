@@ -1,29 +1,86 @@
-# A substitution that hides a condition
+# Given
 
-Write <InlineMath math="t=3^x" />. Then <InlineMath math="9^x=\left(3^x\right)^2=t^2" />, and the equation becomes:
+We are given an **exponential equation** with a real parameter <InlineMath math="a" />.
 
-<BlockMath math="t^2-6t+a=0" />
+<BlockMath math="9^x - 6 \cdot 3^x + a = 0" />
 
-Here's the key: <InlineMath math="3^x" /> is always positive. **Every root <InlineMath math="t>0" /> gives exactly one <InlineMath math="x" />, and a root <InlineMath math="t\le0" /> gives nothing**. So you count the positive roots <InlineMath math="t" />.
+The problem asks for **exactly one real solution** (*genau eine reelle Lösung*) for <InlineMath math="x" />.
 
-# Counting positive roots
+# Asked
 
-The two roots add up to <InlineMath math="6" />, their product is <InlineMath math="a" />, and the discriminant is <InlineMath math="36-4a" />. **Go through every case for <InlineMath math="a" />**:
+Find all real values of <InlineMath math="a" /> for which this equation has exactly one real solution <InlineMath math="x" />.
 
-- <InlineMath math="a>9" />: negative discriminant, no <InlineMath math="t" />, so no <InlineMath math="x" />.
-- <InlineMath math="a=9" />: double root <InlineMath math="t=3>0" />, so exactly one <InlineMath math="x" />.
-- <InlineMath math="0<a<9" />: two different roots with positive sum and product, so both are positive. That's two values of <InlineMath math="x" />.
-- <InlineMath math="a=0" />: <InlineMath math="t(t-6)=0" />. The root <InlineMath math="t=0" /> drops out, <InlineMath math="t=6" /> stays, so exactly one <InlineMath math="x" />.
-- <InlineMath math="a<0" />: negative product, so one root is positive and one is negative. Exactly one <InlineMath math="x" />.
+# Solution
 
-Check with <InlineMath math="a=-7" />: <InlineMath math="(t-7)(t+1)=0" />, only <InlineMath math="t=7" /> is positive, so only <InlineMath math="x=\log_37" />.
+Substitute <InlineMath math="t = 3^x" /> so that <InlineMath math="9^x = t^2" /> and the equation turns into a quadratic in <InlineMath math="t" />. The crucial hidden rule is that **<InlineMath math="3^x" /> is always strictly positive**, so only roots with <InlineMath math="t > 0" /> produce a real <InlineMath math="x" />.
 
-So there's exactly one solution for <InlineMath math="a\le0" /> or <InlineMath math="a=9" />.
+<BlockMath math="t^2 - 6t + a = 0" />
 
-# Why the other options are wrong
+> Every positive root of the quadratic in t yields exactly one real value of x, whereas zero or negative roots drop out because a power of three can never be zero or negative.
 
-- Only <InlineMath math="a=9" /> **thinks only of the double root** and forgets the case of one positive root next to one that isn't positive.
-- <InlineMath math="a<0" /> or <InlineMath math="a=9" /> forgets <InlineMath math="a=0" />. The root <InlineMath math="t=0" /> drops out, but <InlineMath math="t=6" /> still gives one solution.
-- <InlineMath math="a\le0" /> forgets the double root at <InlineMath math="a=9" />.
-- <InlineMath math="0<a<9" /> actually gives two solutions.
-- <InlineMath math="a<0" /> forgets both boundary cases, <InlineMath math="a=0" /> and <InlineMath math="a=9" />.
+Slide parameter <InlineMath math="a" /> in the quadratic graph below and count how many crossings land inside the shaded region <InlineMath math="t > 0" />.
+
+<MathVisual
+  title={<>Crossings of <InlineMath math="t^2 - 6t + a" /> in the region <InlineMath math="t > 0" /></>}
+  description={
+    <>
+      The shaded half-plane marks <InlineMath math="t > 0" />. Slide{" "}
+      <InlineMath math="a" /> to see when the parabola crosses the horizontal
+      axis exactly once to the right of zero.
+    </>
+  }
+  footer={<>Exactly one positive root occurs at <InlineMath math="a = 9" /> and for all <InlineMath math="a \le 0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: -10, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: -4, max: 11, value: 9, step: 1, label: "a" }],
+    objects: [
+      { id: "positive-t", kind: "region", appearance: "construction", inequalities: ["x > 0"] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 6 * x + a", domain: { min: -2, max: 8 } },
+      { id: "vertex", kind: "marker", appearance: "answer", x: "3", y: "a - 9" },
+    ],
+    readouts: [
+      { key: "at-zero", formula: "a" },
+      { key: "discriminant", formula: "36 - 4 * a" },
+    ],
+  }}
+  labels={{
+    a: <>Parameter <InlineMath math="a" /></>,
+    "at-zero": <>Height at <InlineMath math="t = 0" /></>,
+    discriminant: <>Discriminant <InlineMath math="D" /></>,
+  }}
+/>
+
+At <InlineMath math="a = 9" />, the vertex kisses the axis at <InlineMath math="t = 3" />. Once <InlineMath math="a \le 0" />, the left root hits zero or turns negative, leaving only one positive root on the right.
+
+## Analyzing every case of a
+
+The roots sum to <InlineMath math="6" />, multiply to <InlineMath math="a" />, and have discriminant <InlineMath math="36 - 4a" />. **Check all five regimes of <InlineMath math="a" /> below**.
+
+| Value of <InlineMath math="a" /> | Roots in <InlineMath math="t" /> | Solutions in <InlineMath math="x" /> |
+| :--- | :--- | :--- |
+| <InlineMath math="a > 9" /> | no real roots | <InlineMath math="0" /> |
+| <InlineMath math="a = 9" /> | double root <InlineMath math="t = 3 > 0" /> | <InlineMath math="1" /> |
+| <InlineMath math="0 < a < 9" /> | two distinct positive roots | <InlineMath math="2" /> |
+| <InlineMath math="a = 0" /> | <InlineMath math="t = 0" /> rejected, <InlineMath math="t = 6" /> kept | <InlineMath math="1" /> |
+| <InlineMath math="a < 0" /> | one positive root, one negative root | <InlineMath math="1" /> |
+
+## Concrete checks and wrong choices
+
+Test <InlineMath math="a = -7" /> and <InlineMath math="a = 0" /> to **confirm that both produce exactly one solution <InlineMath math="x" />**.
+
+<BlockMath math="\begin{aligned}
+a = -7 &\implies (t - 7)(t + 1) = 0 \implies t = 7 \implies x = \log_3 7 \\
+a = 0 &\implies t(t - 6) = 0 \implies t = 6 \implies x = \log_3 6
+\end{aligned}" />
+
+- <InlineMath math="a = 9" /> alone considers only the double root and misses the one-positive-root cases.
+- <InlineMath math="a < 0" /> or <InlineMath math="a = 9" /> forgets <InlineMath math="a = 0" />, where <InlineMath math="t = 6" /> still supplies one solution.
+- <InlineMath math="a \le 0" /> forgets the double-root case <InlineMath math="a = 9" />.
+- <InlineMath math="0 < a < 9" /> gives two distinct real solutions instead of one.
+- <InlineMath math="a < 0" /> misses both boundary cases <InlineMath math="a = 0" /> and <InlineMath math="a = 9" />.
+
+# Answer
+
+The equation has exactly one real solution for <InlineMath math="a \le 0" /> or <InlineMath math="a = 9" />.

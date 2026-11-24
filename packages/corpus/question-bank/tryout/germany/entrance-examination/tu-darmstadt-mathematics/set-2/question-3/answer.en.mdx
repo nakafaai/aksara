@@ -1,39 +1,85 @@
-# Only part of the parabola counts
+# Given
 
-The left side is an upward parabola with its vertex at <InlineMath math="x=-\frac a2" />. The inequality only has to hold for <InlineMath math="x\ge1" />, so **what matters is the parabola's smallest value on that region**, not on the whole <InlineMath math="x" />-axis. Where the vertex sits decides where that smallest value is.
+The following **quadratic inequality** (*Ungleichung*) with a real parameter <InlineMath math="a" /> must hold for every real number <InlineMath math="x \ge 1" />.
 
-# Vertex left of the region
+<BlockMath math="x^2 + ax + 4 > 0" />
 
-If <InlineMath math="-\frac a2\le1" />, that is <InlineMath math="a\ge-2" />, the parabola is already rising on <InlineMath math="x\ge1" />. **Its smallest value is at the end <InlineMath math="x=1" />**:
+# Asked
 
-<BlockMath math="1+a+4>0\quad\Rightarrow\quad a>-5" />
+Find all real values of <InlineMath math="a" /> for which this inequality holds for all <InlineMath math="x \ge 1" />.
 
-Every <InlineMath math="a\ge-2" /> meets this, so this whole case works.
+# Solution
 
-# Vertex inside the region
+Imagine guarding only the half of the field to the right of <InlineMath math="x = 1" />. The parabola is free to dip below zero outside the field (<InlineMath math="x < 1" />). All that matters is that **its lowest point inside <InlineMath math="x \ge 1" /> stays strictly above zero**.
 
-If <InlineMath math="a<-2" />, the vertex is at <InlineMath math="x=-\frac a2>1" />. **The smallest value is the value at the vertex**:
+> To keep a quadratic strictly positive on a half-line, its minimum on that half-line must be positive, whether that minimum occurs at the boundary or at the vertex.
 
-<BlockMath math="\begin{aligned}
-\left(-\frac a2\right)^2+a\left(-\frac a2\right)+4&>0 \\
-4-\frac{a^2}4&>0 \\
--4<a&<4
-\end{aligned}" />
+Slide parameter <InlineMath math="a" /> below to watch when the entire shaded half <InlineMath math="x \ge 1" /> stays strictly above the <InlineMath math="x" />-axis.
 
-Together with <InlineMath math="a<-2" />, this case gives <InlineMath math="-4<a<-2" />.
+<MathVisual
+  title={<>Parabola height on <InlineMath math="x \ge 1" /> as <InlineMath math="a" /> varies</>}
+  description={
+    <>
+      The shaded half-plane marks <InlineMath math="x \ge 1" />. Slide{" "}
+      <InlineMath math="a" /> to see whether the lowest point in that region
+      sits at the boundary <InlineMath math="x = 1" /> or at the vertex.
+    </>
+  }
+  footer={<>The curve stays strictly positive on <InlineMath math="x \ge 1" /> exactly when <InlineMath math="a > -4" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -6, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: -5, max: 6, value: -3.5, step: 0.5, label: "a" }],
+    objects: [
+      { id: "domain-half", kind: "region", appearance: "construction", inequalities: ["x >= 1"] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 + a * x + 4", domain: { min: -4, max: 6 } },
+      { id: "vertex", kind: "marker", appearance: "answer", x: "-a / 2", y: "4 - a^2 / 4" },
+    ],
+    readouts: [
+      { key: "at-one", formula: "5 + a" },
+      { key: "vertex-y", formula: "4 - a^2 / 4" },
+    ],
+  }}
+  labels={{
+    a: <>Parameter <InlineMath math="a" /></>,
+    "at-one": <>Value at <InlineMath math="x = 1" /></>,
+    "vertex-y": <>Vertex height</>,
+  }}
+/>
 
-# Putting both cases together
+At <InlineMath math="a = 5" />, the vertex at <InlineMath math="x = -2.5" /> dips below zero, yet the entire section inside <InlineMath math="x \ge 1" /> climbs high above zero!
 
-<InlineMath math="-4<a<-2" /> and <InlineMath math="a\ge-2" /> **join up into <InlineMath math="a>-4" />**.
+## Two positions for the vertex
 
-Check at the edge: for <InlineMath math="a=-4" />, <InlineMath math="x^2-4x+4=(x-2)^2" /> is <InlineMath math="0" /> at <InlineMath math="x=2\ge1" />, so <InlineMath math="a=-4" /> is out.
+The vertex sits at <InlineMath math="-\frac{a}{2}" />. Split into **two cases based on where the vertex lands** relative to <InlineMath math="x = 1" />.
 
-So the inequality holds for all <InlineMath math="x\ge1" /> exactly when <InlineMath math="a>-4" />.
+First case: if the vertex lies left of or at the boundary (<InlineMath math="a \ge -2" />), the parabola rises throughout <InlineMath math="x \ge 1" />, putting its minimum at <InlineMath math="x = 1" />.
 
-# Why the other options are wrong
+<BlockMath math="1 + a + 4 > 0 \implies a > -5" />
 
-- <InlineMath math="-4<a<4" /> **checks the whole <InlineMath math="x" />-axis** with the discriminant. For <InlineMath math="a=10" />, the parabola does cross the <InlineMath math="x" />-axis, but only at <InlineMath math="x<0" />.
-- <InlineMath math="a>-5" /> only checks <InlineMath math="x=1" />. For <InlineMath math="a=-4.5" />, the value at the vertex <InlineMath math="x=2.25" /> is negative.
-- <InlineMath math="a\ge-4" /> includes <InlineMath math="a=-4" />, where the left side is zero at <InlineMath math="x=2" />.
-- <InlineMath math="a\ge-2" /> only uses the case with the vertex left of the region and drops <InlineMath math="-4<a<-2" />.
-- <InlineMath math="a<4" /> puts the vertex at <InlineMath math="x=\frac a2" />, with the wrong sign, so every case comes out mirrored.
+Every <InlineMath math="a \ge -2" /> already satisfies <InlineMath math="a > -5" />, so all <InlineMath math="a \ge -2" /> work.
+
+Second case: if the vertex sits inside the region (<InlineMath math="a < -2" />), the minimum is the vertex height itself.
+
+<BlockMath math="4 - \frac{a^2}{4} > 0 \iff a^2 < 16 \iff -4 < a < 4" />
+
+Intersected with <InlineMath math="a < -2" />, this gives the interval between <InlineMath math="-4" /> and <InlineMath math="-2" />.
+
+## Combining cases and checking wrong choices
+
+Joining both cases gives **the single interval <InlineMath math="a > -4" />**. Check the boundary <InlineMath math="a = -4" />:
+
+<BlockMath math="x^2 - 4x + 4 = (x - 2)^2 = 0 \quad \text{at } x = 2 \ge 1" />
+
+Because it hits zero at <InlineMath math="x = 2" />, <InlineMath math="a = -4" /> is excluded.
+
+- Restricting <InlineMath math="a" /> between <InlineMath math="-4" /> and <InlineMath math="4" /> checks the entire real line, even though negative roots at <InlineMath math="a = 10" /> never violate <InlineMath math="x \ge 1" />.
+- <InlineMath math="a > -5" /> checks only <InlineMath math="x = 1" />, yet at <InlineMath math="a = -4.5" /> the vertex at <InlineMath math="x = 2.25" /> dips below zero.
+- <InlineMath math="a \ge -4" /> wrongly includes <InlineMath math="a = -4" />, where the value touches zero at <InlineMath math="x = 2" />.
+- <InlineMath math="a \ge -2" /> forgets the case where the vertex lies inside <InlineMath math="x \ge 1" />.
+- <InlineMath math="a < 4" /> misplaces the vertex at <InlineMath math="\frac{a}{2}" /> with the wrong sign.
+
+# Answer
+
+The inequality holds for all <InlineMath math="x \ge 1" /> exactly when <InlineMath math="a > -4" />.

@@ -1,27 +1,82 @@
-# Looking at a cross-section
+# Given
 
-Cut the cone and the sphere through the cone's axis. **The cross-section is an isosceles triangle inside a circle of radius <InlineMath math="5" />**. The cone's tip is on the circle, and the sphere's centre <InlineMath math="M" /> is on the cone's axis.
+A **right circular cone** (*gerader Kreiskegel*) of height <InlineMath math="8\text{ cm}" /> is inscribed in a sphere (*Kugel*) of radius <InlineMath math="5\text{ cm}" />. Both the apex and the rim of its circular base lie on the sphere's surface.
 
-# Where the base sits
+# Asked
 
-From the tip to the centre <InlineMath math="M" /> is <InlineMath math="5" />, the sphere's radius. The base is <InlineMath math="8" /> below the tip, so **the base is <InlineMath math="8-5=3" /> below the sphere's centre**.
+Find the **volume of the cone** in cubic centimeters.
 
-The edge of the base is on the sphere too. The sphere's centre, the centre of the base and one point on the edge of the base form a right triangle:
+# Solution
 
-<BlockMath math="r^2+3^2=5^2\quad\Rightarrow\quad r^2=16" />
+Picture slicing the sphere and cone straight down the middle like an apple. The cross-section is an **isosceles triangle inside a circle of radius <InlineMath math="5" />**, with its apex at the top and its flat base below the sphere's center.
 
-# The cone's volume
+> Because the cone's height of eight centimeters exceeds the five-centimeter radius, the base sits three centimeters below the sphere's center, forming a right triangle with the sphere radius as its hypotenuse.
 
-<BlockMath math="V=\frac13\pi r^2h=\frac13\pi\cdot16\cdot8=\frac{128\pi}{3}\text{ cm}^3" />
+Look at the cross-section below to read off right triangle <InlineMath math="MOR" /> with hypotenuse <InlineMath math="5" /> and vertical leg <InlineMath math="3" />.
 
-**The base radius is <InlineMath math="r=4" />**, so the right triangle you used has sides <InlineMath math="3" />, <InlineMath math="4" /> and <InlineMath math="5" />.
+<MathVisual
+  title={<>Cross-section of an <InlineMath math="8\text{ cm}" /> cone inside a sphere of radius <InlineMath math="5\text{ cm}" /></>}
+  description={
+    <>
+      The blue circle is the sphere cross-section centered at{" "}
+      <InlineMath math="M" />. The cone apex sits at{" "}
+      <InlineMath math="S(0, 5)" />, the base center at{" "}
+      <InlineMath math="O(0, -3)" />, and the green right triangle determines
+      base radius <InlineMath math="r" />.
+    </>
+  }
+  footer={<>The <InlineMath math="3" />-<InlineMath math="4" />-<InlineMath math="5" /> right triangle immediately gives base radius <InlineMath math="r = 4\text{ cm}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "sphere", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "cone", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 5 }, { x: -4, y: -3 }, { x: 4, y: -3 }] },
+      { id: "axis", kind: "segment", appearance: "reference", stroke: "dashed", from: { x: 0, y: 5 }, to: { x: 0, y: -3 } },
+      { id: "radius-sphere", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: -3 } },
+      { id: "radius-base", kind: "segment", appearance: "answer", from: { x: 0, y: -3 }, to: { x: 4, y: -3 } },
+      { id: "pt-s", kind: "point", appearance: "primary", at: { x: 0, y: 5 } },
+      { id: "pt-m", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "pt-o", kind: "point", appearance: "answer", at: { x: 0, y: -3 } },
+      { id: "pt-r", kind: "point", appearance: "answer", at: { x: 4, y: -3 } },
+    ],
+    labels: [
+      { key: "s", objectId: "pt-s", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "m", objectId: "pt-m", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "o", objectId: "pt-o", at: { x: 0, y: -3 }, placement: "below-left" },
+      { key: "r", objectId: "pt-r", at: { x: 4, y: -3 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    s: <InlineMath math="S" />,
+    m: <InlineMath math="M" />,
+    o: <InlineMath math="O" />,
+    r: <InlineMath math="R" />,
+  }}
+/>
 
-So the cone's volume is <InlineMath math="\frac{128\pi}{3}\text{ cm}^3" />.
+The distance from apex <InlineMath math="S" /> to center <InlineMath math="M" /> is <InlineMath math="5\text{ cm}" />, so distance <InlineMath math="MO" /> is <InlineMath math="8 - 5 = 3\text{ cm}" />.
 
-# Why the other options are wrong
+## Finding the base radius and cone volume
 
-- <InlineMath math="\frac{200\pi}{3}" /> **uses the sphere's radius as the base radius**, as if the base went through the centre.
-- <InlineMath math="24\pi" /> puts the sphere's centre halfway up the cone, so <InlineMath math="r^2=25-16=9" />.
-- <InlineMath math="128\pi" /> forgets the factor <InlineMath math="\frac13" /> in the cone's volume.
-- <InlineMath math="\frac{272\pi}3" /> adds in Pythagoras, <InlineMath math="r^2=25+9" />, but the hypotenuse is the sphere's radius.
-- <InlineMath math="\frac{80\pi}{3}" /> gets <InlineMath math="r^2=16" /> right but takes the sphere's radius <InlineMath math="5" /> as the cone's height.
+Because base rim point <InlineMath math="R" /> lies on the sphere, segment <InlineMath math="MR" /> equals the sphere radius <InlineMath math="5\text{ cm}" />. Apply the **Pythagorean theorem** to triangle <InlineMath math="MOR" />, then compute the volume.
+
+<BlockMath math="\begin{aligned}
+r^2 + 3^2 &= 5^2 \implies r^2 = 25 - 9 = 16 \implies r = 4\text{ cm} \\
+V &= \frac{1}{3}\pi r^2 h = \frac{1}{3}\pi \cdot 16 \cdot 8 = \frac{128\pi}{3}\text{ cm}^3
+\end{aligned}" />
+
+Sanity check: the full sphere has volume <InlineMath math="\frac{500\pi}{3}\text{ cm}^3" />, so this cone fills just over a quarter of the sphere.
+
+## Why other choices fail
+
+- <InlineMath math="\frac{200\pi}{3}\text{ cm}^3" /> **uses the sphere radius <InlineMath math="5" /> as the base radius**, as if the base passed through the sphere's center.
+- <InlineMath math="24\pi\text{ cm}^3" /> places the sphere center halfway down the cone (<InlineMath math="4\text{ cm}" />), giving <InlineMath math="r = 3\text{ cm}" />.
+- <InlineMath math="128\pi\text{ cm}^3" /> drops the factor <InlineMath math="\frac{1}{3}" /> in the cone volume formula.
+- <InlineMath math="\frac{272\pi}{3}\text{ cm}^3" /> adds <InlineMath math="25 + 9" /> instead of subtracting, ignoring that <InlineMath math="5" /> is the hypotenuse.
+- <InlineMath math="\frac{80\pi}{3}\text{ cm}^3" /> plugs the sphere radius <InlineMath math="5" /> in as the cone's height instead of <InlineMath math="8" />.
+
+# Answer
+
+The volume of the cone is <InlineMath math="\frac{128\pi}{3}\text{ cm}^3" />.
