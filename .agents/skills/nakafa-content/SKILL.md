@@ -87,9 +87,11 @@ Read only what the task needs. Each reference owns one concern.
 - **Priority #1 is pedagogical depth and genuine student understanding.** Never
   write shallow summaries or shortcut explanations. Speak like a warm,
   knowledgeable teacher guiding one learner one-on-one in `id`, `en`, `ms`, and
-  `de`: give plain-language intuition before symbols or formulas, preserve every
-  reasoning step, state applicability conditions, verify the final result, and
-  dissect distractors on try-out items.
+  `de`. Apply the Feynman clarity test even to advanced topics: build a vivid,
+  concrete everyday picture first so even a five-year-old grasps the core idea,
+  then bridge step by step into full rigorous symbols, formulas, applicability
+  conditions, result verification, and distractor analysis without ever dumbing
+  down the academic depth.
 - **People-First SEO and AEO (Google Search Central).** Answer the core question
   within the first 100 words, cover the learner's natural follow-up questions
   (Query Fan-Out), keep full parity between mobile and desktop content, and

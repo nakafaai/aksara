@@ -1,20 +1,90 @@
-The task asks for which values of <InlineMath math="a" /> the equation has *keine reelle Lösung* (no real solution). Bring a linear equation into the form <InlineMath math="(\ldots)\cdot x=\ldots" />. Whether it can be solved then depends on the **factor in front of <InlineMath math="x" />**: if it is not zero, you may divide by it. If it is zero, you have to check the statement that remains.
+# Given
 
-Move all terms with <InlineMath math="x" /> to the left and all other terms to the right, then factor out <InlineMath math="x" />.
+We are given a linear equation with variable <InlineMath math="x" /> and a **real parameter <InlineMath math="a" />**.
+
+<BlockMath math="ax + 3 = 2x - a" />
+
+The problem asks for the condition *keine reelle Lösung*, meaning the equation has **no real solution** for <InlineMath math="x" />.
+
+# Asked
+
+For which values of <InlineMath math="a" /> does the equation have no real solution <InlineMath math="x" />?
+
+# Solution
+
+Picture the equation as a balance scale where <InlineMath math="x" /> is a mystery box. To see how many boxes sit on the scale, **gather every <InlineMath math="x" /> term on the left** and all other terms on the right.
 
 <BlockMath math="\begin{aligned}
-ax-2x&=-a-3 \\
-(a-2)\,x&=-(a+3)
+ax - 2x &= -a - 3 \\
+(a - 2)\,x &= -(a + 3)
 \end{aligned}" />
 
-For <InlineMath math="a\ne2" />, divide by <InlineMath math="a-2" /> and you get exactly one solution, <InlineMath math="x=-\frac{a+3}{a-2}" />. For <InlineMath math="a=2" />, the left side is <InlineMath math="0\cdot x=0" /> and the right side is <InlineMath math="-5" />. The statement <InlineMath math="0=-5" /> is false for every <InlineMath math="x" />.
+Now look at the **coefficient in front of <InlineMath math="x" />**, which is <InlineMath math="a - 2" />. Whenever that number is not zero, you can divide both sides by <InlineMath math="a - 2" /> and find one exact value of <InlineMath math="x" />.
 
-As a check, substitute <InlineMath math="a=2" /> directly into the original equation: <InlineMath math="2x+3=2x-2" />. Subtracting <InlineMath math="2x" /> leaves <InlineMath math="3=-2" />, a contradiction.
+<BlockMath math="x = -\frac{a + 3}{a - 2} \qquad (a \neq 2)" />
 
-So there is no solution exactly for <InlineMath math="a=2" />.
+> A linear equation has no solution precisely when the **coefficient in front of <InlineMath math="x" /> equals zero**, while the **constant on the other side stays nonzero**, leaving an impossible statement.
 
-- For <InlineMath math="a=-3" /> the right side becomes zero, and <InlineMath math="-5x=0" /> remains. That has the solution <InlineMath math="x=0" />, so a solution exists.
-- <InlineMath math="a=-2" /> comes from a sign error while rearranging, which produces <InlineMath math="(a+2)\,x" /> instead of <InlineMath math="(a-2)\,x" />.
-- <InlineMath math="a=2" /> and <InlineMath math="a=-3" /> lumps both special values together. Only <InlineMath math="a=2" /> leaves no solution, while for <InlineMath math="a=-3" /> the value <InlineMath math="x=0" /> is a solution.
-- The option *für keinen Wert* (for no value) overlooks that the factor <InlineMath math="a-2" /> can be zero. You cannot divide by zero.
-- For every <InlineMath math="a\ne2" /> the equation has exactly one solution. Those values are the opposite of what the task asks.
+Trouble happens only when the **divisor turns to zero**, which occurs at <InlineMath math="a = 2" />. Substitute <InlineMath math="a = 2" /> into the factored form.
+
+<BlockMath math="\begin{aligned}
+(2 - 2)\,x &= -(2 + 3) \\
+0 \cdot x &= -5 \\
+0 &= -5
+\end{aligned}" />
+
+No matter what number you put inside <InlineMath math="x" />, zero times any number stays zero and **can never equal <InlineMath math="-5" />**. As a quick check, substitute <InlineMath math="a = 2" /> directly into the original equation.
+
+<BlockMath math="\begin{aligned}
+2x + 3 &= 2x - 2 \\
+3 &= -2
+\end{aligned}" />
+
+This contradiction confirms that <InlineMath math="a = 2" /> leaves the equation with no real solution.
+
+<MathVisual
+  title={<>Parallel lines when <InlineMath math="a = 2" /></>}
+  description={<>Move the slider for <InlineMath math="a" />. At <InlineMath math="a = 2" />, the lines <InlineMath math="y = ax + 3" /> and <InlineMath math="y = 2x - a" /> share the same slope and stay parallel with no intersection. For every other <InlineMath math="a" />, the two lines meet at one exact point.</>}
+  labels={{
+    lhs: <InlineMath math="y = ax + 3" />,
+    param: <InlineMath math="a" />,
+    rhs: <InlineMath math="y = 2x - a" />,
+    "slope-diff": <InlineMath math="a - 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -8, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.15 },
+    parameters: [{ name: "a", min: -4, max: 4, step: 0.5, value: 2, label: "param" }],
+    objects: [
+      { id: "lhs", kind: "function", appearance: "primary", formula: "a * x + 3", domain: { min: -4.5, max: 4.5 } },
+      { id: "rhs", kind: "function", appearance: "secondary", formula: "2 * x - a", domain: { min: -4.5, max: 4.5 } },
+      { id: "gap", kind: "path", appearance: "highlight", points: [{ x: "0", y: "-a" }, { x: "0", y: "3" }] },
+    ],
+    labels: [
+      { key: "lhs", objectId: "lhs", at: { x: "1.5", y: "1.5 * a + 3" }, placement: "above-left" },
+      { key: "rhs", objectId: "rhs", at: { x: "2", y: "4 - a" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "slope-diff", formula: "a - 2" },
+    ],
+  }}
+/>
+
+When the slider sits at <InlineMath math="a = 2" />, the readout <InlineMath math="a - 2" /> hits zero and the two lines stay separated by <InlineMath math="5" /> units everywhere. Move <InlineMath math="a" /> to any other value, such as <InlineMath math="a = -3" />, and the two lines immediately cross at a single point.
+
+## Why the Other Options Fail
+
+- At <InlineMath math="a = -3" />, the right side becomes zero and leaves <InlineMath math="-5x = 0" />. That equation still has the **valid solution <InlineMath math="x = 0" />**.
+- The value <InlineMath math="a = -2" /> comes from a **sign mistake** when moving <InlineMath math="2x" /> across the equals sign, wrongly producing <InlineMath math="(a + 2)\,x" />.
+- Pairing <InlineMath math="a = 2" /> and <InlineMath math="a = -3" /> merges two different behaviors. Only <InlineMath math="a = 2" /> creates a contradiction, whereas <InlineMath math="a = -3" /> is solved by <InlineMath math="x = 0" />.
+- The option *für keinen Wert* (for no value) overlooks that **division by zero is impossible** when <InlineMath math="a - 2" /> vanishes.
+- Every <InlineMath math="a \neq 2" /> produces exactly one real solution, which is the opposite of what the question asks.
+
+# Answer
+
+The equation has no real solution precisely for <InlineMath math="a = 2" />.
