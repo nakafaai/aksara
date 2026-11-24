@@ -1,25 +1,22 @@
 export const metadata = {
-  title: "Nutrition and the Human Digestive System Notes",
+  title: "Nutrition Enzymes and Human Digestion",
   description:
-    "Form 4 Biology Chapter 9: calculate food energy values, explain digestion by enzymes, absorption in the ileum and diet-related health issues, with practice.",
+    "Calculate food energy values, trace enzyme secretion and active-site catalysis, test denaturation and saturation kinetics, and explain nutrient absorption in villi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Nutrition and the Human Digestive System",
 };
 
-## Food Is Digested into Small Molecules That Can Be Absorbed
+## Food Energy Values
 
-A **balanced diet** contains seven classes of food in the right proportions: **carbohydrates, proteins, lipids, vitamins, mineral salts, fibre and water**. Carbohydrates, proteins and lipids are large molecules that can't cross the wall of the gut. **Digestion** breaks these large molecules down into small soluble ones, namely glucose, amino acids, fatty acids and glycerol, with the help of enzymes. The small molecules are then **absorbed in the ileum** and used by cells. In the models here, you compare the energy values of food, read enzyme activity at different pH values and follow starch being digested by amylase.
-
-## Energy Value of Food
-
-Each gram of a nutrient releases a different amount of energy when it's oxidised in cells. **Lipids supply more than twice the energy** of carbohydrates or proteins.
+A **balanced diet** supplies seven nutrient classes: carbohydrates, proteins, lipids, vitamins, mineral salts, fibre, and water. Because carbohydrates, proteins, and lipids are large insoluble polymers that cannot cross gut walls, **digestion** breaks them down into glucose, amino acids, fatty acids, and glycerol for absorption. Per gram oxidised, **lipids release more than double the energy** of carbohydrates or proteins.
 
 <BarChart
   title={<>Energy Value of Each Gram of Nutrient</>}
+  footer={<>One gram of lipid supplies 37 kJ, more than twice carbohydrate or protein.</>}
   description={
     <>
-      The energy released by one gram of carbohydrate, protein and lipid in
+      Energy released by one gram of carbohydrate, protein, and lipid in
       kilojoules.
     </>
   }
@@ -32,34 +29,18 @@ Each gram of a nutrient releases a different amount of energy when it's oxidised
   chartConfig={{ value: { label: "Energy value", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
-### Example Energy in One Meal
+A meal holding <InlineMath math="60\text{ g}" /> carbohydrate, <InlineMath math="20\text{ g}" /> protein, and <InlineMath math="15\text{ g}" /> lipid yields <InlineMath math="1915\text{ kJ}" />, while a simple calorimeter estimates energy value from water temperature rise via:
 
-A meal contains <InlineMath math="60\text{ g}" /> of carbohydrate, <InlineMath math="20\text{ g}" /> of protein and <InlineMath math="15\text{ g}" /> of lipid. Calculate **the total energy** of the meal.
-
-<BlockMath math="60 \times 17 + 20 \times 17 + 15 \times 37 = 1020 + 340 + 555 = 1915\text{ kJ}" />
-
-Check: there's only <InlineMath math="15\text{ g}" /> of lipid, yet it supplies <InlineMath math="555\text{ kJ}" />, more than the protein of almost the same mass. That matches the high energy value of lipids.
-
-### Example Measuring Energy Value with a Simple Calorimeter
-
-A <InlineMath math="1.0\text{ g}" /> peanut is burnt under a boiling tube holding <InlineMath math="20\text{ cm}^3" /> of water. The water warms from <InlineMath math="28^\circ\text{C}" /> to <InlineMath math="58^\circ\text{C}" />. The specific heat capacity of water is <InlineMath math="4.2\text{ J g}^{-1}\,{}^\circ\text{C}^{-1}" />. Calculate **the energy value of the peanut**.
-
-<MathContainer>
-<BlockMath math="Q = mc\Delta\theta = 20 \times 4.2 \times 30 = 2520\text{ J}" />
-<BlockMath math="\text{Energy value} = \frac{2520}{1.0} = 2520\text{ J g}^{-1} = 2.52\text{ kJ g}^{-1}" />
-</MathContainer>
-
-Check: the real value for peanuts is roughly ten times larger. A lot of heat escapes to the air and the boiling tube, so a simple calorimeter always gives a value that is too low.
-
-This graph shows the results when the mass of peanut burnt is changed. The gradient of the line is the temperature rise for each gram of food.
+<BlockMath math="Q = mc\Delta\theta, \qquad \text{Energy value} = \frac{Q}{m_{\text{food}}}" />
 
 <ScatterDiagram
   title={<>Temperature Rise of Water against Mass of Peanut Burnt</>}
+  footer={<>The slope gives roughly 30 degrees Celsius rise per gram of peanut burnt.</>}
   description={
     <>
-      Each point is one burn under <InlineMath math="20\text{ cm}^3" /> of
-      water. The gradient is about <InlineMath math="30^\circ\text{C}" /> per
-      gram.
+      Each point represents one burn under <InlineMath math="20\text{ cm}^3" />{" "}
+      of water. Heat escaping into air makes simple calorimeters underestimate
+      true energy value.
     </>
   }
   xAxisLabel="Mass of peanut (g)"
@@ -80,31 +61,186 @@ This graph shows the results when the mass of peanut burnt is changed. The gradi
   ]}
 />
 
-## Digestion in the Human Digestive System
+Burning <InlineMath math="1.0\text{ g}" /> of peanut that warms <InlineMath math="20\text{ cm}^3" /> of water by <InlineMath math="30^\circ\text{C}" /> yields <InlineMath math="2.52\text{ kJ g}^{-1}" />, far below the real value because heat escapes to surrounding air and glass.
 
-Digestion happens **mechanically**, through chewing and peristalsis, and **chemically**, through enzymes. Each enzyme acts on a particular substrate in a particular part of the gut.
+## Digestive Enzymes at Work
+
+Digestion pairs **mechanical breakdown** (chewing and peristalsis) with **chemical hydrolysis** by specific enzymes along the gut. **Bile contains no enzymes**, instead emulsifying lipids into fine droplets for lipase while neutralising stomach acid.
 
 | Place | Secretion | Enzymes | Action |
 | :--- | :--- | :--- | :--- |
 | Mouth | Saliva | Salivary amylase | Starch to maltose |
-| Stomach | Gastric juice with hydrochloric acid | Pepsin, rennin | Protein to polypeptides, caseinogen to casein |
-| Duodenum | Pancreatic juice and bile | Amylase, trypsin, lipase | Starch to maltose, polypeptides to peptides, lipids to fatty acids and glycerol |
+| Stomach | Gastric juice and hydrochloric acid | Pepsin, rennin | Protein to polypeptides, caseinogen to casein |
+| Duodenum | Pancreatic juice and bile | Amylase, trypsin, lipase | Breaks down starch, polypeptides, and lipids |
 | Ileum | Intestinal juice | Maltase, sucrase, lactase, erepsin, lipase | Disaccharides to monosaccharides, peptides to amino acids |
 
-**Bile** contains no enzymes. It emulsifies lipids into small droplets so the surface area for lipase to act on increases, and it neutralises the acidic chyme from the stomach.
+### Pancreatic Secretion
 
-### Enzymes and Optimum pH
+Picture a dispatch warehouse inside a pancreatic cell: intracellular enzymes assemble on free ribosomes, whereas **extracellular digestive enzymes like pancreatic amylase** are built on rough endoplasmic reticulum, packaged in the Golgi apparatus, and exported by **exocytosis**.
 
-Every enzyme has an **optimum pH**. Pepsin works in the acidic stomach, while amylase and trypsin work in neutral or slightly alkaline conditions. Move the pH slider and compare the activity of the three enzymes.
+> Extracellular enzymes travel from bound ribosomes through rough endoplasmic reticulum, transport vesicles, Golgi apparatus, and secretory vesicles before exocytosis releases them into the gut.
+
+<EnzymeSecretionLab
+  title={<>Intracellular and Extracellular Enzyme Synthesis Routes</>}
+  description={
+    <>
+      Compare intracellular enzyme assembly with pancreatic amylase secretion
+      inside one pancreatic acinar cell.
+    </>
+  }
+  footer={<>Pancreatic digestive enzymes are packed by the Golgi and released via exocytosis.</>}
+  labels={{
+    example: <>Example enzyme</>,
+    examples: {
+      extracellular: <>Pancreatic amylase</>,
+      intracellular: <>Glycolysis enzymes</>,
+    },
+    parts: {
+      duct: "Pancreatic duct",
+      golgi: "Golgi apparatus",
+      membrane: "Plasma membrane",
+      nucleus: "Nucleus",
+      reticulum: "Rough endoplasmic reticulum",
+      ribosome: "Ribosome",
+      vesicle: "Secretory vesicle",
+    },
+    place: <>Where the enzyme works</>,
+    places: {
+      extracellular: <>The small intestine</>,
+      intracellular: <>The cytoplasm</>,
+    },
+    route: "Kind of enzyme",
+    routes: {
+      extracellular: "Extracellular enzyme",
+      intracellular: "Intracellular enzyme",
+    },
+    step: <>Current stage</>,
+    steps: {
+      boundRibosome: <>A bound ribosome builds the polypeptide</>,
+      cytoplasm: <>The enzyme works inside the cytoplasm</>,
+      exocytosis: <>Exocytosis releases the enzyme into the duct</>,
+      freeRibosome: <>A free ribosome builds the enzyme in cytoplasm</>,
+      golgi: <>The Golgi apparatus modifies and packs it</>,
+      nucleus: <>mRNA leaves the nucleus</>,
+      reticulum: <>The chain folds inside rough reticulum</>,
+      secretory: <>A secretory vesicle carries it to the membrane</>,
+      transport: <>A transport vesicle carries it to the Golgi</>,
+    },
+    view: "An opened pancreatic acinar cell showing enzyme secretion organelles",
+  }}
+  routes={["intracellular", "extracellular"]}
+/>
+
+Toggling both routes above shows why pancreatic cells pack abundant rough endoplasmic reticulum and Golgi stacks compared with non-secretory cells.
+
+### Active Site Specificity
+
+Enzymes act **with strict specificity** because the three-dimensional **active site** accepts only a complementary substrate under lock-and-key or induced-fit binding, releasing products while leaving the enzyme **unchanged and reusable**.
+
+> Only a substrate complementary to the active site forms an enzyme-substrate complex, splits with water, and frees the unchanged enzyme to catalyse again.
+
+<ActiveSiteLab
+  title={<>Active-Site Specificity of Disaccharidase Enzymes</>}
+  description={
+    <>
+      Test lactase, sucrase, and maltase against lactose, sucrose, and maltose
+      under both lock-and-key and induced-fit models.
+    </>
+  }
+  footer={<>One enzyme molecule stays intact after splitting its substrate and is reused repeatedly.</>}
+  enzymes={["lactase", "sucrase", "maltase"]}
+  labels={{
+    enzyme: "Enzyme",
+    enzymes: { lactase: "Lactase", maltase: "Maltase", sucrase: "Sucrase" },
+    fits: <>Substrate fits the active site</>,
+    model: "Binding model",
+    models: { inducedFit: "Induced fit", lockKey: "Lock and key" },
+    no: <>no</>,
+    parts: {
+      complex: "Enzyme-substrate complex",
+      site: "Active site",
+      water: "Water",
+    },
+    products: <>Products</>,
+    reused: <>Substrates broken down by this one enzyme</>,
+    substrate: "Substrate",
+    substrates: {
+      lactose: "Lactose",
+      maltose: "Maltose",
+      sucrose: "Sucrose",
+    },
+    sugars: {
+      fructose: "Fructose",
+      galactose: "Galactose",
+      glucose: "Glucose",
+    },
+    view: "One enzyme molecule with its active site among sugar molecules",
+    yes: <>yes</>,
+  }}
+  models={["lockKey", "inducedFit"]}
+  substrates={["lactose", "sucrose", "maltose"]}
+/>
+
+Lactase splits only lactose into glucose and galactose, sucrase splits sucrose into glucose and fructose, and maltase splits maltose into two glucose units.
+
+### Heat and pH Denaturation
+
+Every enzyme operates fastest at its **optimum temperature** and **optimum pH**. Cooling merely slows effective collisions (reversible upon warming), whereas **excess heat or extreme pH permanently distorts the active site** through **denaturation**.
+
+> Low temperature only slows enzyme collisions without damaging shape, whereas overheating and extreme pH deform the active site irreversibly.
+
+<DenatureLab
+  title={<>Temperature Effect on Amylase and pH Effect on Pepsin</>}
+  description={
+    <>
+      Adjust bath temperature for the amylase iodine test or solution pH for
+      pepsin, then press restore to test whether denaturation occurred.
+    </>
+  }
+  footer={<>Cooling is reversible upon warming, but overheating denatures active sites permanently.</>}
+  enzymes={["amylase", "pepsin"]}
+  labels={{
+    active: <>Enzymes with intact active site</>,
+    collisions: <>Effective collisions per second</>,
+    endpoint: <>Time until substrate is used up</>,
+    enzyme: "Experiment",
+    enzymes: { amylase: "Amylase and starch", pepsin: "Pepsin and albumen" },
+    never: <>never reached</>,
+    parts: {
+      bath: "Water bath",
+      lens: "Lens on active site",
+      thermometer: "Thermometer",
+      tile: "Spotting tile",
+      tube: "Test tube",
+    },
+    ph: "pH of solution",
+    rate: <>Relative reaction rate</>,
+    restore: "Back to optimum conditions",
+    temperature: "Water bath temperature",
+    test: <>Current test result</>,
+    tests: {
+      clear: <>suspension now clear</>,
+      cloudy: <>suspension still cloudy</>,
+      noStarch: <>iodine yellowish-brown</>,
+      starch: <>iodine blue-black</>,
+    },
+    time: "Time",
+    view: "A water bath with test tube, spotting tile, and active-site lens",
+  }}
+  ph={{ max: 13, min: 1, value: 7 }}
+  temperature={{ max: 80, min: 0, value: 20 }}
+/>
+
+That explains why pepsin digests protein in acidic stomach juice (<InlineMath math="\text{pH}\ 2" />) while swallowed salivary amylase denatures there.
 
 <MathVisual
   title={<>Activity of Digestive Enzymes at Different pH</>}
+  footer={<>Pepsin peaks at acidic pH 2, amylase at neutral 7, and trypsin at alkaline 8.</>}
   description={
     <>
-      Relative activity of pepsin with optimum pH <InlineMath math="2" />,
-      amylase with optimum pH <InlineMath math="7" /> and trypsin with optimum
-      pH <InlineMath math="8" />, on a scale of <InlineMath math="0" /> to{" "}
-      <InlineMath math="10" />.
+      Relative activity of pepsin (optimum <InlineMath math="2" />), amylase
+      (optimum <InlineMath math="7" />), and trypsin (optimum{" "}
+      <InlineMath math="8" />).
     </>
   }
   scene={{
@@ -134,17 +270,16 @@ Every enzyme has an **optimum pH**. Pepsin works in the acidic stomach, while am
   }}
 />
 
-### Example Starch Digested by Amylase
-
-Starch solution is mixed with amylase at body temperature. A drop of the mixture is tested with **iodine solution** every minute. The starch left falls as <InlineMath math="10e^{-km}" />, with <InlineMath math="m" /> in minutes. Change the rate <InlineMath math="k" /> to imitate different temperatures, and move the time to see how much starch is left.
+Each digestive organ maintains its own pH so each enzyme operates briskly in its matching chamber.
 
 <MathVisual
   title={<>Starch Left While Amylase Digests It</>}
+  footer={<>Near-optimum warmth raises k so iodine clears from blue-black much sooner.</>}
   description={
     <>
       Relative starch <InlineMath math="10e^{-km}" /> against time{" "}
-      <InlineMath math="m" /> in minutes. Iodine stops turning blue-black once
-      the starch falls below <InlineMath math="1" />.
+      <InlineMath math="m" /> minutes, clearing the iodine test below{" "}
+      <InlineMath math="1" />.
     </>
   }
   scene={{
@@ -171,35 +306,107 @@ Starch solution is mixed with amylase at body temperature. A drop of the mixture
   }}
 />
 
-With <InlineMath math="k = 0.5" />, the starch drops to <InlineMath math="10e^{-0.5 \times 4} = 1.35" /> after <InlineMath math="4" /> minutes, and below <InlineMath math="1" /> after about <InlineMath math="4.6" /> minutes. Check: <InlineMath math="10e^{-0.5 \times 4.6} = 1.00" />. At a lower temperature, <InlineMath math="k" /> is smaller and the iodine test stays blue-black for longer.
+At <InlineMath math="k = 0.5" />, remaining starch drops below the iodine threshold in about <InlineMath math="4.6" /> minutes.
+
+## Saturation and Lactase
+
+When substrate is scarce, adding more substrate speeds up catalysis directly. Once **every active site is busy**, the rate curve levels off and **enzyme concentration becomes the limiting factor**.
+
+> Once all active sites stay saturated, extra substrate cannot raise reaction speed until more enzyme molecules are supplied.
+
+<EnzymeSaturationLab
+  title={<>Active-Site Saturation and Limiting Factors</>}
+  description={
+    <>
+      Vary enzyme and substrate molecule counts to watch the limiting factor
+      shift from substrate concentration to enzyme concentration.
+    </>
+  }
+  footer={<>Reaction rate plateaus at saturation and rises again only when enzyme count increases.</>}
+  enzymes={{ max: 20, min: 1, value: 10 }}
+  labels={{
+    busy: <>Busy active sites</>,
+    curve: <>Rate against substrate concentration</>,
+    enzymes: "Enzyme molecules",
+    limiting: <>Limiting factor</>,
+    limits: {
+      enzyme: <>enzyme concentration</>,
+      substrate: <>substrate concentration</>,
+    },
+    parts: { enzyme: "Enzyme", product: "Product", substrate: "Substrate" },
+    rate: <>Substrates broken down per second</>,
+    substrates: "Substrate molecules",
+    time: "Time",
+    view: "Enzyme and substrate molecules colliding in solution",
+  }}
+  substrates={{ max: 200, min: 0, value: 20 }}
+  turnover={2}
+/>
+
+Reusability powers food biotechnology too: **immobilised lactase** inside alginate beads produces lactose-reduced milk without contaminating the milk with enzyme.
+
+> Trapping lactase inside alginate beads yields enzyme-free milk while letting the same enzyme treat many consecutive batches cleanly.
+
+<LactaseColumnLab
+  title={<>Immobilised Lactase Column for Lactose-Reduced Milk</>}
+  description={
+    <>
+      Compare lactase trapped in alginate beads against free lactase stirred
+      into milk across different milk flow rates.
+    </>
+  }
+  footer={<>Alginate beads keep lactase inside the column so milk exits enzyme-free and reusable.</>}
+  flow={{ max: 10, min: 1, value: 5 }}
+  labels={{
+    batches: <>Batches treated by same lactase</>,
+    enzyme: <>Lactase in milk coming out</>,
+    flow: "Milk flow rate",
+    glucose: <>Glucose test strip</>,
+    lactose: <>Lactose left in milk</>,
+    method: "Method",
+    methods: {
+      free: "Lactase stirred into milk",
+      immobilised: "Lactase in alginate beads",
+    },
+    negative: <>no glucose</>,
+    none: <>none</>,
+    parts: {
+      beads: "Alginate beads",
+      column: "Glass column",
+      milk: "Milk",
+      strip: "Glucose test strip",
+    },
+    positive: <>glucose present</>,
+    present: <>present in milk</>,
+    view: "A glass column of alginate beads with milk flowing through",
+  }}
+  methods={["immobilised", "free"]}
+/>
+
+Notice that pushing milk through too quickly shortens contact time inside the column, leaving more unconverted lactose in the outflow.
 
 ## Absorption and Assimilation
 
-The ileum is adapted for absorption. Its wall is folded and covered in **villi**, and every epithelial cell of a villus has **microvilli**, so the surface area is huge. The wall of a villus is one cell thick, and each villus contains **blood capillaries** and a **lacteal**.
+The ileum wall folds into countless **villi** lined with **microvilli** for vast surface area, has one-cell-thick epithelium for short diffusion distance, and houses rich **blood capillaries** plus a central **lacteal**.
 
-- Glucose and amino acids are absorbed into the blood capillaries, then carried by the **hepatic portal vein** to the liver.
-- Fatty acids and glycerol are absorbed into the lacteal and carried by the lymphatic system before they enter the blood.
-- The remaining water and mineral salts are absorbed in the **colon**, and undigested material such as fibre is removed as faeces.
+- Glucose and amino acids enter blood capillaries and travel via the **hepatic portal vein** to the liver.
+- Fatty acids and glycerol enter the **lacteal** and lymphatic vessels before reaching the blood.
+- Remaining water and minerals are absorbed in the **colon**, while indigestible fibre forms faeces.
 
-**Assimilation** is the use of absorbed nutrients by cells. The liver turns excess glucose into glycogen, amino acids are used to build proteins, and lipids build plasma membranes or are stored under the skin.
+During **assimilation**, cells put absorbed nutrients to work: the liver stores excess glucose as glycogen, amino acids build new proteins, and lipids form membranes or energy stores.
 
-## Health Issues Related to Diet
+## Diet and Body Mass Index
 
-An unbalanced diet causes **malnutrition**. Taking in too much energy leads to obesity, a lack of protein causes kwashiorkor, and a lack of fibre causes constipation. Gastritis happens when stomach acid erodes the stomach lining, often because of irregular meals.
-
-### Body Mass Index
-
-**Body mass index**, <InlineMath math="\text{BMI} = \dfrac{\text{mass}}{\text{height}^2}" />, estimates whether body mass suits height. This model draws the mass for each height at the chosen BMI. The reference curves mark the boundaries at <InlineMath math="18.5" /> and <InlineMath math="25" />.
+Unbalanced diets trigger **malnutrition**: excess energy leads to obesity, protein deficiency causes kwashiorkor, low fibre causes constipation, and irregular meals promote gastritis. **Body mass index** (<InlineMath math="\text{BMI} = \text{mass}/\text{height}^2" />) compares mass against healthy bounds from <InlineMath math="18.5" /> to <InlineMath math="25" />.
 
 <MathVisual
   title={<>Body Mass for Each Height at a Given BMI</>}
+  footer={<>Healthy BMI sits between the 18.5 and 25 reference curves at every height.</>}
   description={
     <>
-      The horizontal axis is height above <InlineMath math="140\text{ cm}" /> in
-      decimetres, and the vertical axis is mass in units of{" "}
-      <InlineMath math="20\text{ kg}" />. The middle curve shows the mass at BMI{" "}
-      <InlineMath math="b" />, between BMI <InlineMath math="18.5" /> and{" "}
-      <InlineMath math="25" />.
+      Height above <InlineMath math="140\text{ cm}" /> against body mass at BMI{" "}
+      <InlineMath math="b" /> between reference limits{" "}
+      <InlineMath math="18.5" /> and <InlineMath math="25" />.
     </>
   }
   scene={{
@@ -233,54 +440,4 @@ An unbalanced diet causes **malnutrition**. Taking in too much energy leads to o
   }}
 />
 
-### Example Calculating Body Mass Index
-
-A student who is <InlineMath math="1.60\text{ m}" /> tall has a mass of <InlineMath math="72\text{ kg}" />. Calculate **the student's BMI** and state the category.
-
-<BlockMath math="\text{BMI} = \frac{72}{1.60^2} = \frac{72}{2.56} = 28.1" />
-
-A BMI of <InlineMath math="28.1" /> is above <InlineMath math="25" />, so the student is overweight. Check with the model: at <InlineMath math="h = 16" /> and <InlineMath math="b = 28" />, the mass reads <InlineMath math="71.7\text{ kg}" />.
-
-## Common Mistakes about Nutrition and Digestion
-
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Bile digests lipids. | Bile has no enzymes. It only emulsifies lipids, and lipase digests them. | Ask whether the substance is an enzyme. |
-| Digestion starts in the stomach. | Starch digestion starts in the mouth with salivary amylase. | Follow the food from the mouth. |
-| All products of digestion enter the blood capillaries. | Fatty acids and glycerol enter the lacteal. | Separate water-soluble products from lipid products. |
-| Pepsin works best at neutral pH. | Pepsin has an optimum pH of about <InlineMath math="2" /> in the acidic stomach. | Match the enzyme to where it's secreted. |
-
-The first mistake is the most common one in questions on lipid digestion. **Bile emulsifies, lipase digests**.
-
-## Practice on Nutrition and Digestion
-
-These questions move from energy calculations to digestion and absorption. **Name the enzyme and its product** in every answer about digestion.
-
-1. A slice of bread contains <InlineMath math="25\text{ g}" /> of carbohydrate, <InlineMath math="4\text{ g}" /> of protein and <InlineMath math="2\text{ g}" /> of lipid. Calculate its total energy.
-
-2. Explain why protein is digested in the stomach but starch isn't.
-
-3. A <InlineMath math="0.50\text{ g}" /> nut raises the temperature of <InlineMath math="25\text{ cm}^3" /> of water by <InlineMath math="12^\circ\text{C}" />. Calculate the energy value of the nut.
-
-4. Explain how villi are adapted for absorbing the products of digestion.
-
-### Solutions
-
-**Solution 1**: Multiply each mass by its energy value:
-
-<BlockMath math="25 \times 17 + 4 \times 17 + 2 \times 37 = 425 + 68 + 74 = 567\text{ kJ}" />
-
-Check: carbohydrate supplies the biggest share, which fits because bread is rich in starch.
-
-**Solution 2**: The stomach secretes **pepsin**, which digests protein to polypeptides in acidic conditions. Salivary amylase swallowed with the food is **denatured** at a pH of about <InlineMath math="2" />, and the stomach secretes no amylase, so starch isn't digested there.
-
-**Solution 3**: Calculate the heat absorbed by the water, then divide by the mass:
-
-<MathContainer>
-<BlockMath math="Q = 25 \times 4.2 \times 12 = 1260\text{ J}" />
-<BlockMath math="\frac{1260}{0.50} = 2520\text{ J g}^{-1} = 2.52\text{ kJ g}^{-1}" />
-</MathContainer>
-
-Check: the result matches the calorimeter example, so the two measurements agree.
-
-**Solution 4**: Villi and microvilli give **a very large surface area**. Their walls are one cell thick, so the diffusion distance is short, and the many blood capillaries and lacteals carry the absorbed products away so the concentration gradient stays steep.
+A <InlineMath math="1.60\text{ m}" /> student weighing <InlineMath math="72\text{ kg}" /> has BMI <InlineMath math="28.1" /> (overweight). Quick self-checks: a slice of bread with <InlineMath math="25\text{ g}" /> carbohydrate, <InlineMath math="4\text{ g}" /> protein, and <InlineMath math="2\text{ g}" /> lipid provides <InlineMath math="567\text{ kJ}" />, and bile emulsifies lipids while lipase digests them.

@@ -1,25 +1,22 @@
 export const metadata = {
-  title: "Nota Nutrisi dan Sistem Pencernaan Manusia Tingkatan Empat",
+  title: "Nutrisi Enzim dan Sistem Pencernaan Manusia",
   description:
-    "Nota Biologi Tingkatan 4 Bab 9: kira nilai tenaga makanan, terangkan pencernaan oleh enzim, penyerapan di ileum dan isu kesihatan pemakanan dengan latihan.",
+    "Hitung nilai tenaga makanan, jejaki rembesan dan tapak aktif enzim pencernaan, uji penyahaslian serta ketepuan substrat, dan terangkan penyerapan di vilus.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Nutrisi dan Sistem Pencernaan Manusia",
 };
 
-## Makanan Dicerna Menjadi Molekul Kecil yang Boleh Diserap
-
-**Gizi seimbang** mengandungi tujuh kelas makanan dalam kadar yang betul: **karbohidrat, protein, lipid, vitamin, garam mineral, pelawas dan air**. Karbohidrat, protein dan lipid ialah molekul besar yang tidak dapat merentas dinding usus. **Pencernaan** menguraikan molekul besar ini kepada molekul kecil yang larut, iaitu glukosa, asid amino, asid lemak dan gliserol, dengan bantuan enzim. Molekul kecil itu kemudian **diserap di ileum** dan digunakan oleh sel. Dalam model di sini, kamu membandingkan nilai tenaga makanan, membaca aktiviti enzim pada pH berbeza dan mengikuti kanji yang dicerna oleh amilase.
-
 ## Nilai Tenaga Makanan
 
-Setiap gram nutrien membebaskan tenaga yang berbeza apabila dioksidakan di dalam sel. **Lipid membekalkan lebih daripada dua kali ganda tenaga** karbohidrat atau protein.
+**Gizi seimbang** mengandungi tujuh kelas makanan: karbohidrat, protein, lipid, vitamin, garam mineral, pelawas, dan air. Oleh sebab karbohidrat, protein, dan lipid ialah molekul besar yang tidak dapat merentas dinding usus, **pencernaan** menguraikannya kepada glukosa, asid amino, asid lemak, dan gliserol supaya dapat diserap sel. Apabila dioksidakan, **lipid membebaskan lebih daripada dua kali ganda tenaga** karbohidrat atau protein.
 
 <BarChart
   title={<>Nilai Tenaga bagi Setiap Gram Nutrien</>}
+  footer={<>Satu gram lipid membekalkan 37 kJ, melebihi dua kali ganda karbohidrat atau protein.</>}
   description={
     <>
-      Tenaga yang dibebaskan oleh satu gram karbohidrat, protein dan lipid
+      Tenaga yang dibebaskan oleh satu gram karbohidrat, protein, dan lipid
       dalam kilojoule.
     </>
   }
@@ -32,34 +29,18 @@ Setiap gram nutrien membebaskan tenaga yang berbeza apabila dioksidakan di dalam
   chartConfig={{ value: { label: "Nilai tenaga", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
-### Contoh Tenaga dalam Satu Hidangan
+Satu hidangan berisi <InlineMath math="60\text{ g}" /> karbohidrat, <InlineMath math="20\text{ g}" /> protein, dan <InlineMath math="15\text{ g}" /> lipid membekalkan <InlineMath math="1915\text{ kJ}" />, manakala kalorimeter ringkas menganggar nilai tenaga daripada kenaikan suhu air melalui:
 
-Satu hidangan mengandungi <InlineMath math="60\text{ g}" /> karbohidrat, <InlineMath math="20\text{ g}" /> protein dan <InlineMath math="15\text{ g}" /> lipid. Kira **jumlah tenaga** hidangan itu.
-
-<BlockMath math="60 \times 17 + 20 \times 17 + 15 \times 37 = 1020 + 340 + 555 = 1915\text{ kJ}" />
-
-Semak: lipid hanya <InlineMath math="15\text{ g}" /> tetapi membekalkan <InlineMath math="555\text{ kJ}" />, lebih daripada protein yang beratnya hampir sama. Nilai itu sepadan dengan nilai tenaga lipid yang tinggi.
-
-### Contoh Mengukur Nilai Tenaga dengan Kalorimeter Ringkas
-
-Sebiji kacang tanah <InlineMath math="1.0\text{ g}" /> dibakar di bawah tabung didih berisi <InlineMath math="20\text{ cm}^3" /> air. Suhu air naik daripada <InlineMath math="28^\circ\text{C}" /> kepada <InlineMath math="58^\circ\text{C}" />. Muatan haba tentu air ialah <InlineMath math="4.2\text{ J g}^{-1}\,{}^\circ\text{C}^{-1}" />. Kira **nilai tenaga kacang tanah**.
-
-<MathContainer>
-<BlockMath math="Q = mc\Delta\theta = 20 \times 4.2 \times 30 = 2520\text{ J}" />
-<BlockMath math="\text{Nilai tenaga} = \frac{2520}{1.0} = 2520\text{ J g}^{-1} = 2.52\text{ kJ g}^{-1}" />
-</MathContainer>
-
-Semak: nilai sebenar kacang tanah lebih kurang sepuluh kali lebih besar. Banyak haba hilang ke udara dan tabung didih, jadi kalorimeter ringkas sentiasa memberikan nilai yang terlalu rendah.
-
-Graf ini menunjukkan keputusan apabila jisim kacang yang dibakar diubah. Kecerunan garis ialah kenaikan suhu bagi setiap gram makanan.
+<BlockMath math="Q = mc\Delta\theta, \qquad \text{Nilai tenaga} = \frac{Q}{m_{\text{makanan}}}" />
 
 <ScatterDiagram
   title={<>Kenaikan Suhu Air melawan Jisim Kacang yang Dibakar</>}
+  footer={<>Kecerunan garis memberi kenaikan sekitar 30 darjah Celsius bagi setiap gram kacang.</>}
   description={
     <>
-      Setiap titik ialah satu pembakaran di bawah <InlineMath math="20\text{ cm}^3" />{" "}
-      air. Kecerunan kira-kira <InlineMath math="30^\circ\text{C}" /> bagi
-      setiap gram.
+      Setiap titik ialah satu pembakaran di bawah{" "}
+      <InlineMath math="20\text{ cm}^3" /> air. Haba yang terlepas ke udara
+      menjadikan bacaan kalorimeter ringkas lebih rendah daripada nilai sebenar.
     </>
   }
   xAxisLabel="Jisim kacang (g)"
@@ -80,31 +61,189 @@ Graf ini menunjukkan keputusan apabila jisim kacang yang dibakar diubah. Kecerun
   ]}
 />
 
-## Pencernaan dalam Sistem Pencernaan Manusia
+Pembakaran <InlineMath math="1.0\text{ g}" /> kacang yang memanaskan <InlineMath math="20\text{ cm}^3" /> air sebanyak <InlineMath math="30^\circ\text{C}" /> memberi <InlineMath math="2.52\text{ kJ g}^{-1}" />, jauh lebih rendah daripada nilai sebenar kerana haba hilang ke udara dan tabung kaca.
 
-Pencernaan berlaku secara **mekanikal**, iaitu mengunyah dan pergerakan peristalsis, dan secara **kimia** oleh enzim. Setiap enzim bertindak pada substrat tertentu di bahagian salur yang tertentu.
+## Enzim dalam Pencernaan
+
+Pencernaan menggabungkan **pencernaan fizikal** (mengunyah dan peristalsis) dengan **pencernaan kimia** oleh enzim khusus sepanjang salur pencernaan. **Hempedu tidak mengandungi enzim**, sebaliknya mengemulsikan lipid kepada titisan kecil untuk lipase dan meneutralkan asid perut.
 
 | Tempat | Rembesan | Enzim | Tindakan |
 | :--- | :--- | :--- | :--- |
 | Mulut | Air liur | Amilase liur | Kanji kepada maltosa |
-| Perut | Jus gastrik dengan asid hidroklorik | Pepsin, renin | Protein kepada polipeptida, kaseinogen kepada kasein |
-| Duodenum | Jus pankreas dan hempedu | Amilase, tripsin, lipase | Kanji kepada maltosa, polipeptida kepada peptida, lipid kepada asid lemak dan gliserol |
-| Ileum | Jus usus | Maltase, sukrase, laktase, erepsin, lipase | Disakarida kepada monosakarida, peptida kepada asid amino |
+| Perut | Jus gastrik dan asid hidroklorik | Pepsin, renin | Protein kepada polipeptida, kaseinogen kepada kasein |
+| Duodenum | Jus pankreas dan hempedu | Amilase, tripsin, lipase | Menguraikan kanji, polipeptida, dan lipid |
+| Ileum | Jus usus | Maltase, sukrase, laktase, erepsin, lipase | Disakarida ke monosakarida, peptida ke asid amino |
 
-**Hempedu** tidak mengandungi enzim. Hempedu mengemulsikan lipid menjadi titisan kecil supaya luas permukaan untuk tindakan lipase bertambah, dan meneutralkan kim berasid dari perut.
+### Rembesan Enzim Pankreas
 
-### Enzim dan pH Optimum
+Bayangkan pusat penghantaran di dalam sel pankreas: enzim intrasel dibina pada ribosom bebas, manakala **enzim luar sel seperti amilase pankreas** disintesis pada jalinan endoplasma kasar, dibungkus jasad Golgi, lalu dibebaskan ke salur pencernaan melalui **eksositosis**.
 
-Setiap enzim mempunyai **pH optimum**. Pepsin bekerja dalam perut yang berasid, manakala amilase dan tripsin bekerja dalam keadaan neutral atau sedikit beralkali. Gerakkan gelangsar pH dan bandingkan aktiviti ketiga-tiga enzim.
+> Enzim luar sel melalui ribosom terikat, jalinan endoplasma kasar, vesikel angkutan, jasad Golgi, dan vesikel rembesan sebelum eksositosis melepaskannya ke usus.
+
+<EnzymeSecretionLab
+  title={<>Laluan Sintesis Enzim Intrasel dan Luar Sel</>}
+  description={
+    <>
+      Bandingkan pembinaan enzim intrasel dengan laluan rembesan amilase
+      pankreas di dalam satu sel asinar pankreas.
+    </>
+  }
+  footer={<>Enzim pencernaan pankreas dibungkus jasad Golgi lalu dibebaskan melalui eksositosis.</>}
+  labels={{
+    example: <>Contoh enzim</>,
+    examples: {
+      extracellular: <>Amilase pankreas</>,
+      intracellular: <>Enzim glikolisis</>,
+    },
+    parts: {
+      duct: "Duktus pankreas",
+      golgi: "Jasad Golgi",
+      membrane: "Membran plasma",
+      nucleus: "Nukleus",
+      reticulum: "Jalinan endoplasma kasar",
+      ribosome: "Ribosom",
+      vesicle: "Vesikel rembesan",
+    },
+    place: <>Tempat enzim bertindak</>,
+    places: {
+      extracellular: <>Usus kecil</>,
+      intracellular: <>Sitoplasma</>,
+    },
+    route: "Jenis enzim",
+    routes: {
+      extracellular: "Enzim luar sel",
+      intracellular: "Enzim intrasel",
+    },
+    step: <>Peringkat semasa</>,
+    steps: {
+      boundRibosome: <>Ribosom terikat mensintesis polipeptida</>,
+      cytoplasm: <>Enzim bertindak terus di dalam sitoplasma</>,
+      exocytosis: <>Eksositosis membebaskan enzim ke duktus</>,
+      freeRibosome: <>Ribosom bebas membina enzim di sitoplasma</>,
+      golgi: <>Jasad Golgi mengubah suai dan membungkus enzim</>,
+      nucleus: <>mRNA meninggalkan nukleus</>,
+      reticulum: <>Protein melipat dalam jalinan endoplasma kasar</>,
+      secretory: <>Vesikel rembesan membawa enzim ke membran</>,
+      transport: <>Vesikel angkutan membawa enzim ke jasad Golgi</>,
+    },
+    view: "Sel asinar pankreas terbuka menunjukkan organel rembesan enzim",
+  }}
+  routes={["intracellular", "extracellular"]}
+/>
+
+Menukar antara dua laluan di atas menjelaskan sebab sel pankreas kaya dengan jalinan endoplasma kasar dan jasad Golgi berbanding sel biasa.
+
+### Tapak Aktif Disakarida
+
+Enzim bertindak **sangat spesifik** kerana bentuk tiga dimensi **tapak aktifnya** hanya menerima substrat yang sepadan mengikut model mangga-kunci atau padanan teraruh, lalu membebaskan produk dan **kekal utuh untuk diguna semula**.
+
+> Hanya substrat yang bentuknya melengkapi tapak aktif membentuk kompleks enzim-substrat, terhidrolisis bersama air, dan membiarkan enzim utuh semula.
+
+<ActiveSiteLab
+  title={<>Kekhususan Tapak Aktif Enzim Disakaridase</>}
+  description={
+    <>
+      Uji laktase, sukrase, dan maltase terhadap laktosa, sukrosa, serta maltosa
+      mengikut model mangga-kunci dan padanan teraruh.
+    </>
+  }
+  footer={<>Satu molekul enzim kekal utuh selepas memecah substrat dan diguna berulang kali.</>}
+  enzymes={["lactase", "sucrase", "maltase"]}
+  labels={{
+    enzyme: "Enzim",
+    enzymes: { lactase: "Laktase", maltase: "Maltase", sucrase: "Sukrase" },
+    fits: <>Substrat muat pada tapak aktif</>,
+    model: "Model pengikatan",
+    models: { inducedFit: "Padanan teraruh", lockKey: "Mangga dan kunci" },
+    no: <>tidak</>,
+    parts: {
+      complex: "Kompleks enzim-substrat",
+      site: "Tapak aktif",
+      water: "Air",
+    },
+    products: <>Produk</>,
+    reused: <>Substrat yang telah diuraikan enzim ini</>,
+    substrate: "Substrat",
+    substrates: {
+      lactose: "Laktosa",
+      maltose: "Maltosa",
+      sucrose: "Sukrosa",
+    },
+    sugars: {
+      fructose: "Fruktosa",
+      galactose: "Galaktosa",
+      glucose: "Glukosa",
+    },
+    view: "Molekul enzim dengan tapak aktif di antara molekul gula",
+    yes: <>ya</>,
+  }}
+  models={["lockKey", "inducedFit"]}
+  substrates={["lactose", "sucrose", "maltose"]}
+/>
+
+Laktase hanya memecah laktosa kepada glukosa dan galaktosa, sukrase memecah sukrosa kepada glukosa dan fruktosa, manakala maltase memecah maltosa kepada dua glukosa.
+
+### Suhu dan pH Penyahaslian
+
+Setiap enzim mempunyai **suhu optimum** dan **pH optimum**. Suhu rendah hanya memperlahankan perlanggaran berkesan (boleh pulih apabila dipanaskan), tetapi **haba melampau atau pH ekstrem merosakkan bentuk tapak aktif secara kekal** melalui **penyahaslian**.
+
+> Suhu rendah sekadar memperlahankan perlanggaran tanpa merosakkan struktur enzim, manakala haba melampau dan pH ekstrem mengubah tapak aktif secara tidak berbalik.
+
+<DenatureLab
+  title={<>Kesan Suhu pada Amilase dan pH pada Pepsin</>}
+  description={
+    <>
+      Laraskan suhu kukus air bagi ujian iodin amilase atau pH larutan bagi
+      pepsin, lalu klik pulihkan untuk menyemak sama ada penyahaslian berlaku.
+    </>
+  }
+  footer={<>Penyejukan boleh dipulihkan, tetapi pemanasan melampau menyahaslikan enzim secara kekal.</>}
+  enzymes={["amylase", "pepsin"]}
+  labels={{
+    active: <>Enzim bertapak aktif utuh</>,
+    collisions: <>Perlanggaran berkesan sesaat</>,
+    endpoint: <>Masa hingga substrat habis</>,
+    enzyme: "Eksperimen",
+    enzymes: {
+      amylase: "Amilase dan kanji",
+      pepsin: "Pepsin dan albumen",
+    },
+    never: <>tidak pernah tercapai</>,
+    parts: {
+      bath: "Kukus air",
+      lens: "Kanta tapak aktif",
+      thermometer: "Termometer",
+      tile: "Jubin tompok",
+      tube: "Tabung uji",
+    },
+    ph: "pH larutan",
+    rate: <>Kadar tindak balas relatif</>,
+    restore: "Pulih ke keadaan optimum",
+    temperature: "Suhu kukus air",
+    test: <>Keputusan ujian semasa</>,
+    tests: {
+      clear: <>ampaian menjadi jernih</>,
+      cloudy: <>ampaian kekal keruh</>,
+      noStarch: <>iodin kekal kuning keperangan</>,
+      starch: <>iodin biru tua</>,
+    },
+    time: "Masa",
+    view: "Kukus air dengan tabung uji, jubin tompok, dan kanta tapak aktif",
+  }}
+  ph={{ max: 13, min: 1, value: 7 }}
+  temperature={{ max: 80, min: 0, value: 20 }}
+/>
+
+Inilah sebab protein dicerna pepsin dalam perut berasid (<InlineMath math="\text{pH}\ 2" />) manakala amilase liur yang tertelan ternyahasli di situ.
 
 <MathVisual
   title={<>Aktiviti Enzim Pencernaan pada pH Berbeza</>}
+  footer={<>Pepsin memuncak pada pH berasid 2, amilase pada neutral 7, dan tripsin pada 8.</>}
   description={
     <>
-      Aktiviti relatif pepsin dengan pH optimum <InlineMath math="2" />,
-      amilase dengan pH optimum <InlineMath math="7" /> dan tripsin dengan pH
-      optimum <InlineMath math="8" />, pada skala{" "}
-      <InlineMath math="0" /> hingga <InlineMath math="10" />.
+      Aktiviti relatif pepsin (optimum <InlineMath math="2" />), amilase
+      (optimum <InlineMath math="7" />), dan tripsin (optimum{" "}
+      <InlineMath math="8" />).
     </>
   }
   scene={{
@@ -134,17 +273,16 @@ Setiap enzim mempunyai **pH optimum**. Pepsin bekerja dalam perut yang berasid, 
   }}
 />
 
-### Contoh Kanji Dicerna oleh Amilase
-
-Larutan kanji dicampurkan dengan amilase pada suhu badan. Setitik campuran diuji dengan **larutan iodin** setiap minit. Kanji tinggal menurun mengikut <InlineMath math="10e^{-km}" />, dengan <InlineMath math="m" /> dalam minit. Ubah kadar <InlineMath math="k" /> untuk meniru suhu yang berbeza, dan gerakkan masa untuk melihat kanji yang tinggal.
+Setiap bahagian salur pencernaan mengekalkan pH tersendiri supaya setiap enzim aktif di bahagian yang tepat.
 
 <MathVisual
   title={<>Kanji yang Tinggal Semasa Dicerna oleh Amilase</>}
+  footer={<>Suhu menghampiri optimum membesarkan k supaya ujian iodin cepat jernih.</>}
   description={
     <>
       Kanji relatif <InlineMath math="10e^{-km}" /> terhadap masa{" "}
-      <InlineMath math="m" /> dalam minit. Iodin tidak lagi bertukar biru gelap
-      apabila kanji jatuh di bawah <InlineMath math="1" />.
+      <InlineMath math="m" /> minit, dan iodin berhenti biru gelap di bawah{" "}
+      <InlineMath math="1" />.
     </>
   }
   scene={{
@@ -171,35 +309,107 @@ Larutan kanji dicampurkan dengan amilase pada suhu badan. Setitik campuran diuji
   }}
 />
 
-Dengan <InlineMath math="k = 0.5" />, kanji jatuh kepada <InlineMath math="10e^{-0.5 \times 4} = 1.35" /> selepas <InlineMath math="4" /> minit, dan di bawah <InlineMath math="1" /> selepas kira-kira <InlineMath math="4.6" /> minit. Semak: <InlineMath math="10e^{-0.5 \times 4.6} = 1.00" />. Pada suhu yang lebih rendah, <InlineMath math="k" /> lebih kecil dan ujian iodin kekal biru gelap lebih lama.
+Pada <InlineMath math="k = 0.5" />, baki kanji jatuh di bawah ambang ujian iodin dalam kira-kira <InlineMath math="4.6" /> minit.
+
+## Ketepuan dan Laktase
+
+Apabila substrat sedikit, menambah substrat terus mempercepat tindak balas. Namun sebaik **semua tapak aktif penuh sibuk**, lengkung kadar menjadi mendatar dan **kepekatan enzim menjadi faktor pengehad**.
+
+> Apabila semua tapak aktif sudah tepu, penambahan substrat tidak lagi menaikkan kadar tindak balas melainkan bilangan molekul enzim ditambah.
+
+<EnzymeSaturationLab
+  title={<>Ketepuan Tapak Aktif dan Faktor Pengehad Enzim</>}
+  description={
+    <>
+      Ubah bilangan molekul enzim dan substrat untuk memerhatikan peralihan
+      faktor pengehad daripada kepekatan substrat kepada kepekatan enzim.
+    </>
+  }
+  footer={<>Kadar tindak balas mendatar semasa tepu dan hanya naik apabila bilangan enzim ditambah.</>}
+  enzymes={{ max: 20, min: 1, value: 10 }}
+  labels={{
+    busy: <>Tapak aktif yang sibuk</>,
+    curve: <>Lengkung kadar melawan kepekatan substrat</>,
+    enzymes: "Molekul enzim",
+    limiting: <>Faktor pengehad</>,
+    limits: {
+      enzyme: <>kepekatan enzim</>,
+      substrate: <>kepekatan substrat</>,
+    },
+    parts: { enzyme: "Enzim", product: "Produk", substrate: "Substrat" },
+    rate: <>Substrat terurai sesaat</>,
+    substrates: "Molekul substrat",
+    time: "Masa",
+    view: "Molekul enzim dan substrat berlanggar dalam larutan",
+  }}
+  substrates={{ max: 200, min: 0, value: 20 }}
+  turnover={2}
+/>
+
+Sifat enzim yang boleh diguna semula turut dimanfaatkan dalam industri makanan melalui **laktase terimobilisasi** dalam manik alginat bagi menghasilkan susu rendah laktosa tanpa mencemarkan susu.
+
+> Memerangkap laktase dalam manik alginat menghasilkan susu bebas enzim di samping mengguna semula enzim sama bagi banyak kelompok susu.
+
+<LactaseColumnLab
+  title={<>Turus Laktase Terimobilisasi bagi Susu Rendah Laktosa</>}
+  description={
+    <>
+      Bandingkan laktase dalam manik alginat dengan laktase bebas yang dikacau
+      ke dalam susu pada pelbagai kadar aliran susu.
+    </>
+  }
+  footer={<>Manik alginat menahan laktase dalam turus supaya susu keluar bebas enzim dan jimat.</>}
+  flow={{ max: 10, min: 1, value: 5 }}
+  labels={{
+    batches: <>Kelompok susu dirawat laktase sama</>,
+    enzyme: <>Laktase dalam susu keluaran</>,
+    flow: "Kadar aliran susu",
+    glucose: <>Jalur ujian glukosa</>,
+    lactose: <>Baki laktosa dalam susu</>,
+    method: "Kaedah",
+    methods: {
+      free: "Laktase dikacau bebas",
+      immobilised: "Laktase dalam manik alginat",
+    },
+    negative: <>tiada glukosa</>,
+    none: <>tiada</>,
+    parts: {
+      beads: "Manik alginat",
+      column: "Turus kaca",
+      milk: "Susu",
+      strip: "Jalur ujian glukosa",
+    },
+    positive: <>glukosa hadir</>,
+    present: <>hadir dalam susu</>,
+    view: "Turus kaca berisi manik alginat yang dialiri susu",
+  }}
+  methods={["immobilised", "free"]}
+/>
+
+Aliran susu yang terlalu laju memendekkan masa sentuhan di dalam turus lalu meninggalkan lebih banyak laktosa yang belum terurai.
 
 ## Penyerapan dan Asimilasi
 
-Ileum disesuaikan untuk penyerapan. Dindingnya berlipat dan dipenuhi **vilus**, dan setiap sel epitelium vilus mempunyai **mikrovilus**, jadi luas permukaan sangat besar. Dinding vilus setebal satu sel, dan setiap vilus mengandungi **kapilari darah** dan **lakteal**.
+Dinding ileum berlipat penuh **vilus** dan **mikrovilus** demi luas permukaan sangat besar, berdinding setebal satu sel supaya jarak resapan pendek, dan kaya **kapilari darah** serta **lakteal**.
 
-- Glukosa dan asid amino diserap ke dalam kapilari darah, kemudian dibawa oleh **vena portal hepar** ke hati.
-- Asid lemak dan gliserol diserap ke dalam lakteal dan dibawa oleh sistem limfa sebelum memasuki darah.
-- Air dan garam mineral yang tinggal diserap di **kolon**, dan bahan yang tidak tercerna seperti pelawas disingkirkan sebagai tinja.
+- Glukosa dan asid amino memasuki kapilari darah lalu dibawa oleh **vena portal hepar** ke hati.
+- Asid lemak dan gliserol memasuki **lakteal** dan sistem limfa sebelum kembali ke darah.
+- Baki air dan mineral diserap di **kolon**, manakala pelawas dibuang sebagai tinja.
 
-**Asimilasi** ialah penggunaan nutrien yang diserap oleh sel. Hati menukarkan glukosa berlebihan kepada glikogen, asid amino digunakan untuk membina protein, dan lipid membina membran plasma atau disimpan di bawah kulit.
+Dalam **asimilasi**, sel menggunakan nutrien terserap: hati menyimpan glukosa berlebihan sebagai glikogen, asid amino membina protein baharu, dan lipid membina membran sel atau simpanan tenaga.
 
-## Isu Kesihatan Pemakanan
+## Pemakanan dan Jisim Badan
 
-Tabiat pemakanan yang tidak seimbang menyebabkan **malnutrisi**. Pengambilan tenaga yang berlebihan membawa kepada obesiti, kekurangan protein menyebabkan kwasyiorkor, dan kekurangan pelawas menyebabkan sembelit. Gastrik pula berlaku apabila asid perut menghakis dinding perut, sering kerana makan tidak menentu.
-
-### Indeks Jisim Badan
-
-**Indeks jisim badan**, <InlineMath math="\text{IJB} = \dfrac{\text{jisim}}{\text{tinggi}^2}" />, memberi anggaran sama ada jisim badan sesuai dengan ketinggian. Model ini melukis jisim bagi setiap ketinggian pada nilai IJB yang dipilih. Lengkung rujukan menandakan sempadan <InlineMath math="18.5" /> dan <InlineMath math="25" />.
+Pemakanan tidak seimbang mencetuskan **malnutrisi**: tenaga berlebihan membawa obesiti, kekurangan protein menyebabkan kwasyiorkor, kekurangan pelawas menyebabkan sembelit, dan makan tidak menentu mendorong gastrik. **Indeks jisim badan** (<InlineMath math="\text{IJB} = \text{jisim}/\text{tinggi}^2" />) membandingkan berat badan terhadap julat sihat <InlineMath math="18.5" /> hingga <InlineMath math="25" />.
 
 <MathVisual
   title={<>Jisim Badan bagi Setiap Ketinggian pada IJB Tertentu</>}
+  footer={<>Julat IJB sihat terletak antara lengkung 18.5 hingga 25 bagi setiap ketinggian.</>}
   description={
     <>
-      Paksi mendatar ialah ketinggian melebihi <InlineMath math="140\text{ cm}" /> dalam
-      desimeter, dan paksi menegak ialah jisim dalam unit{" "}
-      <InlineMath math="20\text{ kg}" />. Lengkung tengah menunjukkan jisim pada IJB{" "}
-      <InlineMath math="b" />, di antara IJB <InlineMath math="18.5" /> dan{" "}
-      <InlineMath math="25" />.
+      Ketinggian melebihi <InlineMath math="140\text{ cm}" /> terhadap jisim
+      badan pada IJB <InlineMath math="b" /> antara sempadan{" "}
+      <InlineMath math="18.5" /> dan <InlineMath math="25" />.
     </>
   }
   scene={{
@@ -233,54 +443,4 @@ Tabiat pemakanan yang tidak seimbang menyebabkan **malnutrisi**. Pengambilan ten
   }}
 />
 
-### Contoh Mengira Indeks Jisim Badan
-
-Seorang murid setinggi <InlineMath math="1.60\text{ m}" /> mempunyai jisim <InlineMath math="72\text{ kg}" />. Kira **IJB murid itu** dan nyatakan kategorinya.
-
-<BlockMath math="\text{IJB} = \frac{72}{1.60^2} = \frac{72}{2.56} = 28.1" />
-
-IJB <InlineMath math="28.1" /> melebihi <InlineMath math="25" />, jadi murid itu berlebihan berat badan. Semak dengan model: pada <InlineMath math="h = 16" /> dan <InlineMath math="b = 28" />, bacaan jisim ialah <InlineMath math="71.7\text{ kg}" />.
-
-## Kesilapan Lazim tentang Nutrisi dan Pencernaan
-
-| Kesilapan | Sebab salah | Cara semak |
-| :--- | :--- | :--- |
-| Hempedu mencernakan lipid. | Hempedu tiada enzim. Hempedu hanya mengemulsikan lipid, dan lipase yang mencernakannya. | Tanya sama ada bahan itu enzim. |
-| Pencernaan bermula di perut. | Pencernaan kanji bermula di mulut oleh amilase liur. | Ikuti makanan dari mulut. |
-| Semua hasil pencernaan masuk ke kapilari darah. | Asid lemak dan gliserol masuk ke lakteal. | Pisahkan hasil larut air dan hasil lipid. |
-| Pepsin bekerja paling baik pada pH neutral. | Pepsin mempunyai pH optimum kira-kira <InlineMath math="2" /> dalam perut yang berasid. | Padankan enzim dengan tempat ia dirembeskan. |
-
-Kesilapan pertama paling kerap muncul dalam soalan pencernaan lipid. **Hempedu mengemulsikan, lipase mencernakan**.
-
-## Latihan Nutrisi dan Pencernaan
-
-Soalan ini bergerak dari pengiraan tenaga ke pencernaan dan penyerapan. **Namakan enzim dan hasilnya** dalam setiap jawapan tentang pencernaan.
-
-1. Sekeping roti mengandungi <InlineMath math="25\text{ g}" /> karbohidrat, <InlineMath math="4\text{ g}" /> protein dan <InlineMath math="2\text{ g}" /> lipid. Kira jumlah tenaganya.
-
-2. Terangkan mengapa protein dicerna di perut tetapi kanji tidak dicerna di situ.
-
-3. Sebiji kacang <InlineMath math="0.50\text{ g}" /> menaikkan suhu <InlineMath math="25\text{ cm}^3" /> air sebanyak <InlineMath math="12^\circ\text{C}" />. Kira nilai tenaga kacang itu.
-
-4. Terangkan bagaimana vilus disesuaikan untuk menyerap hasil pencernaan.
-
-### Penyelesaian
-
-**Penyelesaian 1**: Darabkan setiap jisim dengan nilai tenaganya:
-
-<BlockMath math="25 \times 17 + 4 \times 17 + 2 \times 37 = 425 + 68 + 74 = 567\text{ kJ}" />
-
-Semak: karbohidrat membekalkan bahagian terbesar, sesuai kerana roti kaya dengan kanji.
-
-**Penyelesaian 2**: Perut merembeskan **pepsin** yang mencernakan protein kepada polipeptida dalam keadaan berasid. Amilase liur yang tertelan bersama makanan **ternyahasli** pada pH kira-kira <InlineMath math="2" />, dan perut tidak merembeskan amilase, jadi kanji tidak dicerna di situ.
-
-**Penyelesaian 3**: Kira haba yang diserap air, kemudian bahagikan dengan jisim:
-
-<MathContainer>
-<BlockMath math="Q = 25 \times 4.2 \times 12 = 1260\text{ J}" />
-<BlockMath math="\frac{1260}{0.50} = 2520\text{ J g}^{-1} = 2.52\text{ kJ g}^{-1}" />
-</MathContainer>
-
-Semak: hasilnya sama dengan contoh kalorimeter, jadi kedua-dua sukatan konsisten.
-
-**Penyelesaian 4**: Vilus dan mikrovilus memberikan **luas permukaan yang sangat besar**. Dindingnya setebal satu sel supaya jarak resapan pendek, dan kapilari darah serta lakteal yang banyak membawa pergi hasil yang diserap supaya kecerunan kepekatan kekal.
+Murid setinggi <InlineMath math="1.60\text{ m}" /> berjisim <InlineMath math="72\text{ kg}" /> mempunyai IJB <InlineMath math="28.1" /> (berlebihan berat badan). Semakan pantas kendiri: sekeping roti dengan <InlineMath math="25\text{ g}" /> karbohidrat, <InlineMath math="4\text{ g}" /> protein, dan <InlineMath math="2\text{ g}" /> lipid membekalkan <InlineMath math="567\text{ kJ}" />, dan hempedu mengemulsikan lipid manakala lipase yang mencernakannya.
