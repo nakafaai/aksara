@@ -1,29 +1,48 @@
-# A quadratic equation in <InlineMath math="\sin x" />
+# Given
 
-Set <InlineMath math="s=\sin x" />. Then the equation is **quadratic in <InlineMath math="s" />**:
+We are given a **quadratic trigonometric equation** for angles <InlineMath math="x" /> in one full turn from <InlineMath math="0^\circ" /> up to <InlineMath math="360^\circ" /> exclusive:
 
-<BlockMath math="2s^2-s-1=0\quad\Longleftrightarrow\quad (2s+1)(s-1)=0\quad\Longleftrightarrow\quad s=1\ \text{or}\ s=-\tfrac12" />
+<BlockMath math="2\sin^2 x - \sin x - 1 = 0" />
 
-Both values lie between <InlineMath math="-1" /> and <InlineMath math="1" />, so both are possible as sine values.
+# Asked
 
-# Count the angles for each sine value
+How many solutions (*Lösungen*) does this equation have in this interval?
 
-In the range <InlineMath math="0^\circ\le x<360^\circ" /> a sine value usually has two angles. **The value <InlineMath math="1" /> is an exception**, because it is the maximum: it is reached only at <InlineMath math="90^\circ" />.
+# Solution
+
+Think of <InlineMath math="\sin x" /> as the height of a passenger riding around a unit-circle Ferris wheel. Substituting <InlineMath math="s = \sin x" /> turns the equation into a plain quadratic that picks out two target heights. During one full rotation, **almost every height is passed twice** (once climbing, once descending), except **the very top and bottom, which are touched only once**.
+
+> On the unit circle over one full turn, every sine value strictly between <InlineMath math="-1" /> and <InlineMath math="1" /> yields two angles, while the extremes <InlineMath math="1" /> and <InlineMath math="-1" /> yield only one.
+
+## Factoring the quadratic in sine
+
+Let <InlineMath math="s = \sin x" />. The quadratic **factors cleanly**:
+
+<BlockMath math="2s^2 - s - 1 = 0 \quad \Longleftrightarrow \quad (2s + 1)(s - 1) = 0 \quad \Longleftrightarrow \quad s = 1 \ \text{or} \ s = -\frac{1}{2}" />
+
+Both values lie inside the valid sine range from <InlineMath math="-1" /> to <InlineMath math="1" />.
+
+## Counting the angles on the unit circle
+
+List every angle in one full turn for **each target height**:
 
 <BlockMath math="\begin{aligned}
-\sin x=1:&\quad x=90^\circ \\
-\sin x=-\tfrac12:&\quad x=180^\circ+30^\circ=210^\circ\ \text{or}\ x=360^\circ-30^\circ=330^\circ
+\sin x = 1: &\quad x = 90^\circ \\
+\sin x = -\frac{1}{2}: &\quad x = 210^\circ \ \text{or} \ x = 330^\circ
 \end{aligned}" />
 
+See all three points directly on the unit circle below.
+
 <MathVisual
-  title={<>The solutions on the unit circle</>}
-  description={<>On the unit circle, <InlineMath math="\sin x" /> is the height of the point. The line <InlineMath math="y=1" /> only touches the circle at the top, at <InlineMath math="90^\circ" />. The line <InlineMath math="y=-\tfrac12" /> cuts it twice, at <InlineMath math="210^\circ" /> and <InlineMath math="330^\circ" />.</>}
+  title={<>Solutions on the unit circle</>}
+  description={<>On the unit circle, <InlineMath math="\sin x" /> is the vertical height. The horizontal line <InlineMath math="y = 1" /> touches the top just once at <InlineMath math="90^\circ" />, while the line <InlineMath math="y = -\frac{1}{2}" /> cuts the circle twice, at <InlineMath math="210^\circ" /> and <InlineMath math="330^\circ" />.</>}
+  footer={<>One tangent touch at <InlineMath math="90^\circ" /> plus two crossings at <InlineMath math="210^\circ" /> and <InlineMath math="330^\circ" /> give exactly <InlineMath math="3" /> solutions.</>}
   labels={{
     a: <><InlineMath math="90^\circ" /></>,
     b: <><InlineMath math="210^\circ" /></>,
     c: <><InlineMath math="330^\circ" /></>,
-    u: <><InlineMath math="\sin x=1" /></>,
-    v: <><InlineMath math="\sin x=-\tfrac12" /></>,
+    u: <><InlineMath math="\sin x = 1" /></>,
+    v: <><InlineMath math="\sin x = -\tfrac{1}{2}" /></>,
   }}
   scene={{
     space: "plane",
@@ -53,14 +72,20 @@ In the range <InlineMath math="0^\circ\le x<360^\circ" /> a sine value usually h
   }}
 />
 
-# The count
+Together there are three distinct angles: <InlineMath math="90^\circ" />, <InlineMath math="210^\circ" />, and <InlineMath math="330^\circ" />.
 
-Together these are the angles <InlineMath math="90^\circ" />, <InlineMath math="210^\circ" /> and <InlineMath math="330^\circ" />. The equation has **exactly <InlineMath math="3" /> solutions**.
+## Checking the distractors
 
-# Why the other answers are wrong
+See how each wrong answer **miscounts the angles on the unit circle**:
 
-- <InlineMath math="4" /> gives <InlineMath math="\sin x=1" /> two angles too, although **the maximum is reached only once**.
-- <InlineMath math="2" /> counts only one angle per sine value.
-- <InlineMath math="1" /> counts only <InlineMath math="\sin x=1" /> and discards the negative value.
-- <InlineMath math="5" /> also counts <InlineMath math="x=360^\circ" />, which is outside the range, and the doubled <InlineMath math="90^\circ" /> solution.
-- <InlineMath math="6" /> assumes three angles for each value, as if the range went beyond one full turn.
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="4" /> | Assumes <InlineMath math="\sin x = 1" /> also yields two angles, forgetting the peak is touched only once. |
+| <InlineMath math="2" /> | Counts only one angle per sine value. |
+| <InlineMath math="1" /> | Keeps only <InlineMath math="\sin x = 1" /> and discards the negative sine root. |
+| <InlineMath math="5" /> | Double-counts <InlineMath math="90^\circ" /> and includes <InlineMath math="360^\circ" />, which lies outside the half-open interval. |
+| <InlineMath math="6" /> | Treats each sine value as having three angles in a single turn. |
+
+# Answer
+
+The equation has exactly **<InlineMath math="3" />** solutions.

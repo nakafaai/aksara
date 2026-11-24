@@ -1,29 +1,48 @@
-# Eine quadratische Gleichung in <InlineMath math="\sin x" />
+# Gegeben
 
-Setze <InlineMath math="s=\sin x" />. Dann ist die Gleichung **quadratisch in <InlineMath math="s" />**:
+Gegeben ist eine **quadratische trigonometrische Gleichung** für Winkel <InlineMath math="x" /> in einem vollen Umlauf von <InlineMath math="0^\circ" /> bis knapp unter <InlineMath math="360^\circ" />:
 
-<BlockMath math="2s^2-s-1=0\quad\Longleftrightarrow\quad (2s+1)(s-1)=0\quad\Longleftrightarrow\quad s=1\ \text{oder}\ s=-\tfrac12" />
+<BlockMath math="2\sin^2 x - \sin x - 1 = 0" />
 
-Beide Werte liegen zwischen <InlineMath math="-1" /> und <InlineMath math="1" />, also sind beide als Sinuswerte möglich.
+# Gesucht
 
-# Winkel zu jedem Sinuswert zählen
+Wie viele Lösungen besitzt die Gleichung in diesem Bereich?
 
-Im Bereich <InlineMath math="0^\circ\le x<360^\circ" /> hat ein Sinuswert meistens zwei Winkel. **Der Wert <InlineMath math="1" /> ist eine Ausnahme**, weil er das Maximum ist: Er wird nur bei <InlineMath math="90^\circ" /> angenommen.
+# Lösung
+
+Stell dir <InlineMath math="\sin x" /> als Höhe einer Gondel auf einem Riesenrad am Einheitskreis vor. Die Substitution <InlineMath math="s = \sin x" /> liefert eine gewöhnliche quadratische Gleichung mit zwei Zielhöhen. Bei einer vollen Umdrehung wird **fast jede Höhe zweimal durchlaufen** (aufwärts und abwärts), nur **der höchste und der tiefste Punkt werden genau einmal berührt**.
+
+> Am Einheitskreis liefert jeder Sinuswert echt zwischen <InlineMath math="-1" /> und <InlineMath math="1" /> genau zwei Winkel, während die Extremwerte <InlineMath math="1" /> und <InlineMath math="-1" /> jeweils nur einen Winkel ergeben.
+
+## Die quadratische Gleichung im Sinus faktorisieren
+
+Setze <InlineMath math="s = \sin x" />. Die Gleichung **zerfällt sofort in zwei Faktoren**:
+
+<BlockMath math="2s^2 - s - 1 = 0 \quad \Longleftrightarrow \quad (2s + 1)(s - 1) = 0 \quad \Longleftrightarrow \quad s = 1 \ \text{oder} \ s = -\frac{1}{2}" />
+
+Beide Werte liegen im zulässigen Sinusbereich zwischen <InlineMath math="-1" /> und <InlineMath math="1" />.
+
+## Alle Winkel am Einheitskreis abzählen
+
+Bestimme alle Winkel einer vollen Umdrehung für **beide Zielhöhen**:
 
 <BlockMath math="\begin{aligned}
-\sin x=1:&\quad x=90^\circ \\
-\sin x=-\tfrac12:&\quad x=180^\circ+30^\circ=210^\circ\ \text{oder}\ x=360^\circ-30^\circ=330^\circ
+\sin x = 1: &\quad x = 90^\circ \\
+\sin x = -\frac{1}{2}: &\quad x = 210^\circ \ \text{oder} \ x = 330^\circ
 \end{aligned}" />
 
+Alle drei Punkte liegen im Schaubild direkt auf dem Einheitskreis.
+
 <MathVisual
-  title={<>Die Lösungen am Einheitskreis</>}
-  description={<>Am Einheitskreis ist <InlineMath math="\sin x" /> die Höhe des Punktes. Die Gerade <InlineMath math="y=1" /> berührt den Kreis nur oben, bei <InlineMath math="90^\circ" />. Die Gerade <InlineMath math="y=-\tfrac12" /> schneidet ihn zweimal, bei <InlineMath math="210^\circ" /> und <InlineMath math="330^\circ" />.</>}
+  title={<>Lösungen am Einheitskreis</>}
+  description={<>Am Einheitskreis entspricht <InlineMath math="\sin x" /> der Höhe. Die Waagerechte <InlineMath math="y = 1" /> berührt den Kreis oben nur einmal bei <InlineMath math="90^\circ" />, während <InlineMath math="y = -\frac{1}{2}" /> ihn zweimal bei <InlineMath math="210^\circ" /> und <InlineMath math="330^\circ" /> schneidet.</>}
+  footer={<>Eine Berührung bei <InlineMath math="90^\circ" /> und zwei Schnittpunkte bei <InlineMath math="210^\circ" /> und <InlineMath math="330^\circ" /> ergeben exakt <InlineMath math="3" /> Lösungen.</>}
   labels={{
     a: <><InlineMath math="90^\circ" /></>,
     b: <><InlineMath math="210^\circ" /></>,
     c: <><InlineMath math="330^\circ" /></>,
-    u: <><InlineMath math="\sin x=1" /></>,
-    v: <><InlineMath math="\sin x=-\tfrac12" /></>,
+    u: <><InlineMath math="\sin x = 1" /></>,
+    v: <><InlineMath math="\sin x = -\tfrac{1}{2}" /></>,
   }}
   scene={{
     space: "plane",
@@ -53,14 +72,20 @@ Im Bereich <InlineMath math="0^\circ\le x<360^\circ" /> hat ein Sinuswert meiste
   }}
 />
 
-# Die Anzahl
+Zusammen ergeben sich genau drei verschiedene Winkel: <InlineMath math="90^\circ" />, <InlineMath math="210^\circ" /> und <InlineMath math="330^\circ" />.
 
-Zusammen sind es die Winkel <InlineMath math="90^\circ" />, <InlineMath math="210^\circ" /> und <InlineMath math="330^\circ" />. Die Gleichung hat **genau <InlineMath math="3" /> Lösungen**.
+## Falsche Antworten prüfen
 
-# Warum die anderen Antworten falsch sind
+Jede falsche Auswahl **verzählt sich bei der Anzahl der Winkel am Einheitskreis**:
 
-- <InlineMath math="4" /> gibt auch <InlineMath math="\sin x=1" /> zwei Winkel, obwohl **das Maximum nur einmal erreicht wird**.
-- <InlineMath math="2" /> zählt nur einen Winkel pro Sinuswert.
-- <InlineMath math="1" /> zählt nur <InlineMath math="\sin x=1" /> und verwirft den negativen Wert.
-- <InlineMath math="5" /> zählt zusätzlich <InlineMath math="x=360^\circ" /> mit, das nicht mehr im Bereich liegt, und die doppelte <InlineMath math="90^\circ" />-Lösung.
-- <InlineMath math="6" /> nimmt für jeden der beiden Werte drei Winkel an, als würde der Bereich über eine volle Umdrehung hinausgehen.
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="4" /> | Nimmt auch für <InlineMath math="\sin x = 1" /> zwei Winkel an, obwohl das Maximum nur einmal erreicht wird. |
+| <InlineMath math="2" /> | Zählt nur einen Winkel pro Sinuswert. |
+| <InlineMath math="1" /> | Berücksichtigt nur <InlineMath math="\sin x = 1" /> und streicht den negativen Sinuswert. |
+| <InlineMath math="5" /> | Zählt <InlineMath math="90^\circ" /> doppelt und nimmt <InlineMath math="360^\circ" /> außerhalb des Intervalls mit. |
+| <InlineMath math="6" /> | Unterstellt drei Winkel je Sinuswert in einem einzigen Umlauf. |
+
+# Antwort
+
+Die Gleichung hat genau **<InlineMath math="3" />** Lösungen.

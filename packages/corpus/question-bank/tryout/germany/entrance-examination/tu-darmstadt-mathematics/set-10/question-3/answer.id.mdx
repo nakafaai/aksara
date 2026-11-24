@@ -1,28 +1,45 @@
-# Nilai mutlak memecah menjadi dua kasus
+# Diketahui
 
-Bentuk <InlineMath math="2x-3" /> berganti tanda di <InlineMath math="x=\frac32" />. Karena itu setiap daerah punya **pertidaksamaan lain tanpa nilai mutlak**.
+Diberikan **pertidaksamaan nilai mutlak** (*Ungleichung*) linear:
 
-# Kedua kasus
+<BlockMath math="\lvert 2x - 3 \rvert \le x + 1" />
+
+# Ditanyakan
+
+Tentukan semua bilangan real <InlineMath math="x" /> yang memenuhi pertidaksamaan ini.
+
+# Penyelesaian
+
+Nilai mutlak <InlineMath math="\lvert 2x - 3 \rvert" /> bekerja seperti sakelar dua mode yang berganti tepat di titik nolnya <InlineMath math="\frac{3}{2}" />. Di kanan <InlineMath math="\frac{3}{2}" />, isinya positif sehingga tanda mutlak dibuka begitu saja. Di kiri <InlineMath math="\frac{3}{2}" />, isinya negatif sehingga seluruh isinya dibalik tandanya. Selesaikan **kedua mode itu lalu sambungkan hasilnya**.
+
+> Pertidaksamaan nilai mutlak terpecah di titik pembuat nol isinya menjadi dua pertidaksamaan linear biasa, lalu kedua himpunan hasilnya digabungkan.
+
+## Menyelesaikan kedua kasus di kiri dan kanan titik belok
+
+Bentuk <InlineMath math="2x - 3" /> berganti tanda di <InlineMath math="\frac{3}{2}" />, sehingga muncul **dua cabang terpisah**:
 
 <BlockMath math="\begin{aligned}
-x\ge\tfrac32:&\quad 2x-3\le x+1\quad\Longrightarrow\quad x\le4,\quad\text{jadi}\ \tfrac32\le x\le4 \\
-x<\tfrac32:&\quad 3-2x\le x+1\quad\Longrightarrow\quad x\ge\tfrac23,\quad\text{jadi}\ \tfrac23\le x<\tfrac32
+x \ge \frac{3}{2}: &\quad 2x - 3 \le x + 1 \quad \Longleftrightarrow \quad x \le 4 \quad \Longrightarrow \quad \frac{3}{2} \le x \le 4 \\
+x < \frac{3}{2}: &\quad 3 - 2x \le x + 1 \quad \Longleftrightarrow \quad 2 \le 3x \quad \Longrightarrow \quad \frac{2}{3} \le x < \frac{3}{2}
 \end{aligned}" />
 
-Pada kasus kedua kamu membagi dengan <InlineMath math="-3" />, dan **tanda pertidaksamaannya berbalik**: <InlineMath math="-3x\le-2" /> menjadi <InlineMath math="x\ge\frac23" />.
+Perhatikan bahwa kedua potongan selang itu **bersambung mulus tanpa celah** di titik <InlineMath math="\frac{3}{2}" />:
 
-# Gabungkan kedua kasus
+<BlockMath math="\frac{2}{3} \le x \le 4" />
 
-Kedua bagian **bersambung tanpa celah** di <InlineMath math="\frac32" />:
+## Memeriksa daerah penyelesaian pada grafik
+
+Lihat kurva berbentuk huruf V dan garis lurus <InlineMath math="x + 1" /> berikut: garis lurus **berada di atas huruf V tepat di antara kedua titik potong**.
 
 <MathVisual
   title={<>Tempat nilai mutlak di bawah garis</>}
-  description={<>Grafik berbentuk V dari <InlineMath math="y=|2x-3|" /> dengan ujung di <InlineMath math="x=\tfrac32" /> dan garis <InlineMath math="y=x+1" />. Di antara titik potong <InlineMath math="x=\tfrac23" /> dan <InlineMath math="x=4" />, garis berada di atas nilai mutlak. Selang itu ditandai di bawah sumbu.</>}
+  description={<>Grafik berbentuk V dari <InlineMath math="\lvert 2x - 3 \rvert" /> dengan sudut di <InlineMath math="x = \frac{3}{2}" /> bertemu garis <InlineMath math="x + 1" /> pada <InlineMath math="x = \frac{2}{3}" /> dan <InlineMath math="x = 4" />. Di antara kedua titik potong itu, garis lurus berada di atas kurva nilai mutlak.</>}
+  footer={<>Garis <InlineMath math="x + 1" /> berada pada atau di atas huruf V mulai <InlineMath math="\frac{2}{3}" /> sampai <InlineMath math="4" />.</>}
   labels={{
-    a: <><InlineMath math="x=\tfrac23" /></>,
-    b: <><InlineMath math="x=4" /></>,
-    f: <><InlineMath math="|2x-3|" /></>,
-    g: <><InlineMath math="x+1" /></>,
+    a: <><InlineMath math="x = \tfrac{2}{3}" /></>,
+    b: <><InlineMath math="x = 4" /></>,
+    f: <><InlineMath math="\lvert 2x - 3 \rvert" /></>,
+    g: <><InlineMath math="x + 1" /></>,
   }}
   scene={{
     space: "plane",
@@ -48,12 +65,22 @@ Kedua bagian **bersambung tanpa celah** di <InlineMath math="\frac32" />:
   }}
 />
 
-Cek <InlineMath math="x=0" />: <InlineMath math="|{-3}|=3>1" />, jadi pertidaksamaannya tidak berlaku. Dengan <InlineMath math="x=2" />: <InlineMath math="1\le3" />, berlaku. Penyelesaiannya <InlineMath math="\frac23\le x\le4" />.
+Uji cepat: di <InlineMath math="x = 0" />, ruas kiri <InlineMath math="3" /> lebih besar dari <InlineMath math="1" /> (gagal). Di <InlineMath math="x = 2" />, ruas kiri <InlineMath math="1" /> lebih kecil dari <InlineMath math="3" /> (sah).
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="\frac32\le x\le4" /> **hanya menghitung kasus pertama**.
-- <InlineMath math="x\le4" /> menyimpan batas atas dan lupa batas bawah dari kasus kedua.
-- <InlineMath math="\frac23\le x<\frac32" /> hanya menghitung kasus kedua.
-- <InlineMath math="-4\le x\le-\frac23" /> membalik semua tanda.
-- <InlineMath math="\frac23<x<4" /> membuang ujung-ujungnya. Di sana kedua ruas sama, dan <InlineMath math="\le" /> membolehkannya.
+Perhatikan cabang mana yang **hilang atau tertukar** pada setiap pengecoh:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="\frac{3}{2} \le x \le 4" /> | Hanya menyertakan kasus pertama dan melupakan cabang kiri. |
+| <InlineMath math="x \le 4" /> | Mengambil batas atas tanpa memasang batas bawah dari kasus kedua. |
+| <InlineMath math="\frac{2}{3} \le x < \frac{3}{2}" /> | Hanya menyertakan kasus kedua dan melupakan cabang kanan. |
+| <InlineMath math="-4 \le x \le -\frac{2}{3}" /> | Membalik tanda kedua ujung selang ke bilangan negatif. |
+| <InlineMath math="\frac{2}{3} < x < 4" /> | Membuang kedua titik ujung padahal tanda <InlineMath math="\le" /> mengizinkan kesamaan. |
+
+# Jawaban
+
+Semua bilangan real <InlineMath math="x" /> yang memenuhi pertidaksamaan ini adalah:
+
+<BlockMath math="\frac{2}{3} \le x \le 4" />

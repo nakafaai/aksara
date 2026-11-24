@@ -1,12 +1,35 @@
-# Das schräge Dreieck ist gleichschenklig
+# Gegeben
 
-Nenne den Fuß des Turms <InlineMath math="F" /> und die Spitze <InlineMath math="T" />. Im Dreieck <InlineMath math="PQT" /> ist der Winkel bei <InlineMath math="P" /> gleich <InlineMath math="30^\circ" />. Der Winkel bei <InlineMath math="Q" /> ist der Nebenwinkel von <InlineMath math="60^\circ" />, also <InlineMath math="120^\circ" />. Damit bleibt bei <InlineMath math="T" /> genau <InlineMath math="180^\circ-30^\circ-120^\circ=30^\circ" />. **Zwei gleiche Winkel heißen zwei gleiche Seiten**:
+Von einem Punkt <InlineMath math="P" /> auf ebenem Boden erscheint die Spitze eines senkrechten Turms unter einem **Höhenwinkel von <InlineMath math="30^\circ" />**.
 
-<BlockMath math="\overline{QT}=\overline{PQ}=40\text{ m}" />
+Geht man <InlineMath math="40\text{ m}" /> geradlinig auf den Turmfuß zu bis zum Punkt <InlineMath math="Q" />, wächst der **Höhenwinkel auf <InlineMath math="60^\circ" />**.
+
+# Gesucht
+
+Wie hoch ist der Turm?
+
+# Lösung
+
+Du brauchst kein umständliches System aus zwei Tangensgleichungen. Schau dir das schräge Dreieck <InlineMath math="PQT" /> aus beiden Sichtlinien zur Turmspitze <InlineMath math="T" /> an: Der Außenwinkel <InlineMath math="60^\circ" /> bei <InlineMath math="Q" /> ist die Summe aus <InlineMath math="30^\circ" /> bei <InlineMath math="P" /> und dem Spitzenwinkel bei <InlineMath math="T" />. Also misst der Winkel bei <InlineMath math="T" /> ebenfalls <InlineMath math="30^\circ" />, wodurch **das Dreieck <InlineMath math="PQT" /> gleichschenklig ist** und die zweite Sichtlinie direkt <InlineMath math="40\text{ m}" /> lang wird.
+
+> Verdoppelt sich der Höhenwinkel von <InlineMath math="30^\circ" /> auf <InlineMath math="60^\circ" />, ist das schräge Dreieck zwischen beiden Standorten gleichschenklig, sodass die zweite Sichtlinie gleich dem zurückgelegten Weg ist.
+
+## Das gleichschenklige Dreieck zwischen beiden Standorten nutzen
+
+Bezeichne den Turmfuß mit <InlineMath math="F" /> und die Spitze mit <InlineMath math="T" />. Im Dreieck <InlineMath math="PQT" /> gilt:
+
+- Der Winkel bei <InlineMath math="P" /> beträgt <InlineMath math="30^\circ" />.
+- Der Innenwinkel bei <InlineMath math="Q" /> ist der Nebenwinkel zu <InlineMath math="60^\circ" />, also <InlineMath math="120^\circ" />.
+- Für den Winkel bei <InlineMath math="T" /> bleiben genau <InlineMath math="30^\circ" />.
+
+Weil die Winkel bei <InlineMath math="P" /> und <InlineMath math="T" /> beide <InlineMath math="30^\circ" /> betragen, sind **die gegenüberliegenden Seiten gleich lang**:
+
+<BlockMath math="\overline{QT} = \overline{PQ} = 40\text{ m}" />
 
 <MathVisual
-  title={<>Turm und zwei Blickpunkte</>}
-  description={<>Der Turm <InlineMath math="\overline{FT}" /> steht links. Von <InlineMath math="P" /> aus sieht man die Spitze <InlineMath math="T" /> unter <InlineMath math="30^\circ" />, von dem <InlineMath math="40" /> näher gelegenen Punkt <InlineMath math="Q" /> unter <InlineMath math="60^\circ" />. Das Dreieck <InlineMath math="PQT" /> hat bei <InlineMath math="P" /> und bei <InlineMath math="T" /> je <InlineMath math="30^\circ" />, ist also gleichschenklig mit <InlineMath math="\overline{QT}=40" />.</>}
+  title={<>Turm und zwei Beobachtungspunkte</>}
+  description={<>Links steht der Turm <InlineMath math="\overline{FT}" />. Von <InlineMath math="P" /> erscheint die Spitze <InlineMath math="T" /> unter <InlineMath math="30^\circ" />, vom <InlineMath math="40\text{ m}" /> näheren Punkt <InlineMath math="Q" /> unter <InlineMath math="60^\circ" />. Das gleichschenklige Dreieck <InlineMath math="PQT" /> erzwingt <InlineMath math="\overline{QT} = 40\text{ m}" />.</>}
+  footer={<>Das gleichschenklige Dreieck <InlineMath math="PQT" /> liefert <InlineMath math="\overline{QT} = 40\text{ m}" />, und <InlineMath math="\sin 60^\circ" /> ergibt <InlineMath math="20\sqrt{3}\text{ m}" />.</>}
   labels={{
     t: <><InlineMath math="T" /></>,
     f: <><InlineMath math="F" /></>,
@@ -49,20 +72,28 @@ Nenne den Fuß des Turms <InlineMath math="F" /> und die Spitze <InlineMath math
   }}
 />
 
-# Die Höhe im rechtwinkligen Dreieck <InlineMath math="QFT" />
+Sobald die Hypotenuse <InlineMath math="\overline{QT} = 40\text{ m}" /> feststeht, genügt ein einziger Sinus-Schritt.
 
-Im Dreieck <InlineMath math="QFT" /> ist der Winkel bei <InlineMath math="F" /> ein rechter und der bei <InlineMath math="Q" /> gleich <InlineMath math="60^\circ" />. Die Höhe ist **die Gegenkathete zum Winkel <InlineMath math="60^\circ" />**:
+## Die Turmhöhe berechnen und beide Winkel prüfen
 
-<BlockMath math="h=\overline{QT}\cdot\sin60^\circ=40\cdot\frac{\sqrt3}{2}=20\sqrt3" />
+Im rechtwinkligen Dreieck <InlineMath math="QFT" /> ist die Turmhöhe **die Gegenkathete zu <InlineMath math="60^\circ" />**:
 
-# Probe mit beiden Winkeln
+<BlockMath math="h = \overline{QT} \cdot \sin 60^\circ = 40 \cdot \frac{\sqrt{3}}{2} = 20\sqrt{3}\text{ m}" />
 
-Dann ist <InlineMath math="\overline{QF}=40\cdot\cos60^\circ=20" /> und <InlineMath math="\overline{PF}=60" />. Tatsächlich gilt <InlineMath math="\tan30^\circ=\frac{20\sqrt3}{60}=\frac{\sqrt3}{3}" />. Der Turm ist **<InlineMath math="20\sqrt3\text{ m}" /> hoch**, etwa <InlineMath math="34{,}6\text{ m}" />.
+Probe: <InlineMath math="\overline{QF} = 20\text{ m}" /> und <InlineMath math="\overline{PF} = 60\text{ m}" />, sodass das Verhältnis von Höhe zu <InlineMath math="60" /> exakt <InlineMath math="\tan 30^\circ" /> entspricht. Zahlenmäßig misst der Turm rund <InlineMath math="34{,}6\text{ m}" />.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="40\sqrt3\text{ m}" /> verwendet <InlineMath math="\tan60^\circ" /> mit der ganzen Strecke <InlineMath math="40" />: <InlineMath math="40\cdot\sqrt3" />. Die <InlineMath math="40" /> sind aber **nicht der Abstand von <InlineMath math="Q" /> zum Turm**.
-- <InlineMath math="20\text{ m}" /> ist der Abstand <InlineMath math="\overline{QF}" />, nicht die Höhe.
-- <InlineMath math="40\text{ m}" /> ist die schräge Strecke <InlineMath math="\overline{QT}" />.
-- <InlineMath math="10\sqrt3\text{ m}" /> halbiert die Höhe ein zweites Mal.
-- <InlineMath math="\frac{40\sqrt3}{3}\text{ m}" /> rechnet <InlineMath math="40\cdot\tan30^\circ" />, als stünde <InlineMath math="P" /> <InlineMath math="40" /> vom Turm entfernt.
+Die falschen Antworten **verwechseln die Wegstrecke mit dem Abstand zum Turmfuß**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="40\sqrt{3}\text{ m}" /> | Rechnet <InlineMath math="40 \cdot \tan 60^\circ" />, als wäre <InlineMath math="40\text{ m}" /> der Abstand <InlineMath math="\overline{QF}" />. |
+| <InlineMath math="20\text{ m}" /> | Ist der waagerechte Abstand <InlineMath math="\overline{QF}" />, nicht die Höhe. |
+| <InlineMath math="40\text{ m}" /> | Ist die schräge Sichtlinie <InlineMath math="\overline{QT}" />. |
+| <InlineMath math="10\sqrt{3}\text{ m}" /> | Halbiert die richtige Höhe ein weiteres Mal. |
+| <InlineMath math="\frac{40\sqrt{3}}{3}\text{ m}" /> | Rechnet <InlineMath math="40 \cdot \tan 30^\circ" />, als läge <InlineMath math="P" /> nur <InlineMath math="40\text{ m}" /> vom Turmfuß entfernt. |
+
+# Antwort
+
+Der Turm ist **<InlineMath math="20\sqrt{3}\text{ m}" />** hoch.

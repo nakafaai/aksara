@@ -1,34 +1,56 @@
-# Tiga persamaan untuk tiga sisi
+# Diberi
 
-Biar sisi tegaknya <InlineMath math="a" /> dan <InlineMath math="b" /> dan hipotenusnya <InlineMath math="c" />. Perimeter, luas dan Pythagoras memberi **tiga persamaan**:
+Sebuah segi tiga bersudut tegak (*rechtwinkliges Dreieck*) mempunyai dua ukuran berikut:
 
-<BlockMath math="a+b+c=30,\qquad \tfrac12ab=30,\qquad a^2+b^2=c^2" />
+- **Perimeter** (*Umfang*): <InlineMath math="30\text{ cm}" />.
+- **Luas** (*Flächeninhalt*): <InlineMath math="30\text{ cm}^2" />.
 
-# Guna <InlineMath math="(a+b)^2" /> untuk menghapuskan sisi tegak
+# Ditanya
 
-Kamu tidak perlu tahu <InlineMath math="a" /> dan <InlineMath math="b" /> secara berasingan. Kuasaduakan <InlineMath math="a+b=30-c" /> dan gantikan **<InlineMath math="ab=60" /> dan <InlineMath math="a^2+b^2=c^2" />**:
+Berapakah panjang hipotenusnya (*Hypotenuse*) <InlineMath math="c" />?
+
+# Penyelesaian
+
+Terdapat tiga sisi (<InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />), namun kamu **tidak perlu mencari sisi <InlineMath math="a" /> dan <InlineMath math="b" /> terlebih dahulu**. Kembangkan <InlineMath math="(a + b)^2" />: di dalamnya terkandung <InlineMath math="a^2 + b^2" /> (terus menjadi <InlineMath math="c^2" />) dan <InlineMath math="2ab" /> (terus diperoleh daripada luas!). Malah sebutan <InlineMath math="c^2" /> saling terhapus sendiri.
+
+> Menguasaduakan hasil tambah dua sisi tegak menggabungkan teorem Pythagoras dan luas serentak, lalu menghasilkan hipotenus daripada satu persamaan linear.
+
+## Menghapuskan sisi tegak dengan kuasa dua hasil tambah
+
+Perimeter, luas, dan teorem Pythagoras memberi **tiga persamaan asas**:
+
+<BlockMath math="a + b + c = 30, \qquad \frac{1}{2}ab = 30 \iff ab = 60, \qquad a^2 + b^2 = c^2" />
+
+Ungkapkan hasil tambah <InlineMath math="a + b" /> dalam sebutan <InlineMath math="c" />, lalu kuasaduakan kedua-dua belah:
 
 <BlockMath math="\begin{aligned}
-(a+b)^2&=a^2+b^2+2ab \\
-(30-c)^2&=c^2+120 \\
-900-60c+c^2&=c^2+120 \\
-780&=60c\quad\Longrightarrow\quad c=13
+(a + b)^2 &= a^2 + b^2 + 2ab \\
+(30 - c)^2 &= c^2 + 2(60) \\
+900 - 60c + c^2 &= c^2 + 120 \\
+780 &= 60c \quad \Longrightarrow \quad c = 13\text{ cm}
 \end{aligned}" />
 
+Sebutan <InlineMath math="c^2" /> terhapus di kedua-dua belah dan terus memberi <InlineMath math="c = 13\text{ cm}" />.
+
+## Menyemak semua sisi pada rajah
+
+Dengan <InlineMath math="c = 13" />, diperoleh <InlineMath math="a + b = 17" /> dan <InlineMath math="ab = 60" />, iaitu **tigaan Pythagoras terkenal** (<InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />).
+
 <MathVisual
-  title={<>Segi tiga yang dicari</>}
-  description={<>Segi tiga bersudut tegak dengan sisi tegak <InlineMath math="12" /> dan <InlineMath math="5" /> serta hipotenus <InlineMath math="13" />. Perimeternya <InlineMath math="12+5+13=30" /> dan luasnya <InlineMath math="\frac12\cdot12\cdot5=30" />.</>}
+  title={<>Segi tiga bersudut tegak yang dicari</>}
+  description={<>Segi tiga bersudut tegak dengan sisi tegak <InlineMath math="12" /> dan <InlineMath math="5" /> serta hipotenus <InlineMath math="13" />. Perimeternya tepat <InlineMath math="30\text{ cm}" /> dan luasnya tepat <InlineMath math="30\text{ cm}^2" />.</>}
+  footer={<>Tigaan <InlineMath math="5" />-<InlineMath math="12" />-<InlineMath math="13" /> memenuhi perimeter <InlineMath math="30\text{ cm}" /> dan luas <InlineMath math="30\text{ cm}^2" /> serentak.</>}
   labels={{
-    a: <><InlineMath math="a=12" /></>,
-    b: <><InlineMath math="b=5" /></>,
-    c: <><InlineMath math="c=13" /></>,
+    a: <><InlineMath math="a = 12" /></>,
+    b: <><InlineMath math="b = 5" /></>,
+    c: <><InlineMath math="c = 13" /></>,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
       x: { min: -2, max: 14 },
-      y: { min: -1.5, max: 6.5 },
+      y: { min: -2, max: 7 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
@@ -43,14 +65,20 @@ Kamu tidak perlu tahu <InlineMath math="a" /> dan <InlineMath math="b" /> secara
   }}
 />
 
-# Semak dengan sisi tegak
+Semakan penuh: sisi <InlineMath math="5" />, <InlineMath math="12" />, dan <InlineMath math="13" /> berjumlah <InlineMath math="30\text{ cm}" />, separuh daripada <InlineMath math="60" /> ialah <InlineMath math="30\text{ cm}^2" />, dan <InlineMath math="25 + 144" /> bersamaan <InlineMath math="169" />.
 
-Dengan <InlineMath math="c=13" />, <InlineMath math="a+b=17" /> dan <InlineMath math="ab=60" />, jadi <InlineMath math="a" /> dan <InlineMath math="b" /> ialah penyelesaian <InlineMath math="t^2-17t+60=0" />: <InlineMath math="12" /> dan <InlineMath math="5" />. Memang <InlineMath math="12^2+5^2=169=13^2" />. Hipotenus itu **sepanjang <InlineMath math="13\text{ cm}" />**.
+## Menyemak pilihan salah
 
-# Kenapa jawapan lain salah
+Perhatikan sisi atau faktor mana yang **tertukar pada setiap pengganggu**:
 
-- <InlineMath math="14\text{ cm}" /> terlupa faktor <InlineMath math="\frac12" /> dalam luas, jadi <InlineMath math="ab=30" />: lalu <InlineMath math="900-60c=60" /> dan <InlineMath math="c=14" />.
-- <InlineMath math="12\text{ cm}" /> ialah **sisi tegak yang lebih panjang**, bukan hipotenus.
-- <InlineMath math="15\text{ cm}" /> ialah separuh perimeter.
-- <InlineMath math="10\text{ cm}" /> membahagi perimeter dengan tiga, seolah-olah segi tiga itu sama sisi.
-- <InlineMath math="5\text{ cm}" /> ialah sisi tegak yang lebih pendek.
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="14\text{ cm}" /> | Terlupa faktor <InlineMath math="\frac{1}{2}" /> pada luas sehingga memakai <InlineMath math="ab = 30" /> dan mendapat <InlineMath math="60c = 840" />. |
+| <InlineMath math="12\text{ cm}" /> | Sisi tegak yang lebih panjang, bukan hipotenus. |
+| <InlineMath math="15\text{ cm}" /> | Separuh perimeter, mustahil kerana hipotenus mesti lebih pendek daripada <InlineMath math="a + b" />. |
+| <InlineMath math="10\text{ cm}" /> | Membahagi perimeter dengan tiga seolah-olah segi tiga sama sisi. |
+| <InlineMath math="5\text{ cm}" /> | Sisi tegak yang lebih pendek, bukan hipotenus. |
+
+# Jawapan
+
+Panjang hipotenus segi tiga ini ialah **<InlineMath math="13\text{ cm}" />**.

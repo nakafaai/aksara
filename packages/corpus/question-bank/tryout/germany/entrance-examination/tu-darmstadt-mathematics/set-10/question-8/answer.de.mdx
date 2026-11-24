@@ -1,22 +1,37 @@
-# Wo der Fußpunkt der Höhe liegt
+# Gegeben
 
-Die Spitze <InlineMath math="S" /> ist von allen drei Ecken der Grundfläche gleich weit entfernt. Deshalb trifft die Höhe die Grundfläche in ihrem **Schwerpunkt <InlineMath math="O" />**, der zugleich Umkreismittelpunkt ist. Im gleichseitigen Dreieck mit der Seite <InlineMath math="6" /> ist die Seitenhalbierende <InlineMath math="3\sqrt3" /> lang, und <InlineMath math="O" /> teilt sie im Verhältnis <InlineMath math="2:1" />:
+Ein **regelmäßiges Tetraeder** besteht aus vier kongruenten gleichseitigen Dreiecken mit **allen Kanten der Länge <InlineMath math="6\text{ cm}" />**.
 
-<BlockMath math="\overline{OA}=\frac23\cdot3\sqrt3=2\sqrt3" />
+# Gesucht
 
-# Pythagoras im Dreieck <InlineMath math="OAS" />
+Wie groß ist der Abstand einer Ecke zur gegenüberliegenden Seitenfläche (die Höhe des Tetraeders)?
 
-Die Höhe steht senkrecht auf der Grundfläche, also ist das Dreieck <InlineMath math="OAS" /> bei <InlineMath math="O" /> rechtwinklig. **Die Kante <InlineMath math="\overline{AS}=6" /> ist die Hypotenuse**:
+# Lösung
+
+Stelle das Tetraeder flach auf eine Dreiecksfläche und fälle das Lot von der oberen Spitze <InlineMath math="S" /> senkrecht auf die Grundfläche. Da alle drei schrägen Kanten von <InlineMath math="S" /> gleich lang sind, trifft der Fußpunkt exakt **den Schwerpunkt <InlineMath math="O" /> der Grundfläche**, nicht eine Seitenmitte. Ein senkrechter Schnitt durch das rechtwinklige Dreieck <InlineMath math="OAS" /> löst die Höhe mit einem einzigen Pythagoras-Schritt.
+
+> Die Höhe eines regelmäßigen Tetraeders trifft genau den Schwerpunkt der Grundfläche, der jede Seitenhalbierende im Verhältnis <InlineMath math="2 : 1" /> von der Ecke aus teilt.
+
+## Den Abstand von der Grundecke zum Schwerpunkt bestimmen
+
+Im gleichseitigen Grunddreieck der Seitenlänge <InlineMath math="6\text{ cm}" /> misst die Höhe (zugleich Seitenhalbierende) genau <InlineMath math="3\sqrt{3}\text{ cm}" />. Da der Schwerpunkt <InlineMath math="O" /> sie im Verhältnis <InlineMath math="2 : 1" /> teilt, beträgt **der Abstand von Ecke <InlineMath math="A" /> zum Zentrum <InlineMath math="O" />** zwei Drittel davon:
+
+<BlockMath math="\overline{OA} = \frac{2}{3} \cdot 3\sqrt{3} = 2\sqrt{3}\text{ cm}" />
+
+## Die Höhe im senkrechten Schnittdreieck berechnen
+
+Der Schnitt durch Spitze <InlineMath math="S" />, Grundecke <InlineMath math="A" /> und Schwerpunkt <InlineMath math="O" /> bildet ein **rechtwinkliges Dreieck bei <InlineMath math="O" />** mit der Kante <InlineMath math="\overline{AS} = 6\text{ cm}" /> als Hypotenuse.
 
 <MathVisual
-  title={<>Das Dreieck aus Höhe, Kante und Abstand</>}
-  description={<>Ein Schnitt durch die Spitze <InlineMath math="S" />, die Ecke <InlineMath math="A" /> der Grundfläche und den Schwerpunkt <InlineMath math="O" /> der Grundfläche. Das Dreieck <InlineMath math="OAS" /> ist bei <InlineMath math="O" /> rechtwinklig, mit <InlineMath math="\overline{OA}=2\sqrt3" />, der Kante <InlineMath math="\overline{AS}=6" /> als Hypotenuse und der Höhe <InlineMath math="h=\overline{OS}" />.</>}
+  title={<>Dreieck aus Höhe, Kante und Grundradius</>}
+  description={<>Senkrechter Schnitt durch die Spitze <InlineMath math="S" />, die Grundecke <InlineMath math="A" /> und den Grundflächenschwerpunkt <InlineMath math="O" />. Das Dreieck <InlineMath math="OAS" /> ist rechtwinklig bei <InlineMath math="O" /> mit Kathete <InlineMath math="\overline{OA} = 2\sqrt{3}" />, Kante <InlineMath math="\overline{AS} = 6" /> und Höhe <InlineMath math="h = \overline{OS}" />.</>}
+  footer={<>Pythagoras mit Hypotenuse <InlineMath math="6" /> und Kathete <InlineMath math="2\sqrt{3}" /> ergibt exakt die Höhe <InlineMath math="2\sqrt{6}\text{ cm}" />.</>}
   labels={{
     s: <><InlineMath math="S" /></>,
     o: <><InlineMath math="O" /></>,
     a: <><InlineMath math="A" /></>,
     e: <><InlineMath math="6" /></>,
-    r: <><InlineMath math="2\sqrt3" /></>,
+    r: <><InlineMath math="2\sqrt{3}" /></>,
     h: <><InlineMath math="h" /></>,
   }}
   scene={{
@@ -46,14 +61,24 @@ Die Höhe steht senkrecht auf der Grundfläche, also ist das Dreieck <InlineMath
   }}
 />
 
-<BlockMath math="h=\sqrt{6^2-\left(2\sqrt3\right)^2}=\sqrt{36-12}=\sqrt{24}=2\sqrt6" />
+Wende den Satz des Pythagoras auf das Dreieck <InlineMath math="OAS" /> an:
 
-Der Abstand einer Ecke von der gegenüberliegenden Fläche ist **<InlineMath math="2\sqrt6\text{ cm}" />**, etwa <InlineMath math="4{,}9\text{ cm}" />.
+<BlockMath math="h = \sqrt{6^2 - \left(2\sqrt{3}\right)^2} = \sqrt{36 - 12} = \sqrt{24} = 2\sqrt{6}\text{ cm}" />
 
-# Warum die anderen Antworten falsch sind
+Plausibilitätsprobe: Die Höhe misst etwa <InlineMath math="4{,}9\text{ cm}" />, knapp kürzer als eine schräge Seitenflächenhöhe von etwa <InlineMath math="5{,}2\text{ cm}" />, genau wie erwartet.
 
-- <InlineMath math="3\sqrt3\text{ cm}" /> ist **die Höhe einer Seitenfläche**, nicht des Tetraeders.
-- <InlineMath math="3\text{ cm}" /> setzt die ganze Seitenhalbierende <InlineMath math="3\sqrt3" /> statt <InlineMath math="2\sqrt3" /> ein: <InlineMath math="\sqrt{36-27}=3" />.
-- <InlineMath math="2\sqrt3\text{ cm}" /> ist der Abstand <InlineMath math="\overline{OA}" /> in der Grundfläche.
-- <InlineMath math="3\sqrt2\text{ cm}" /> verwendet <InlineMath math="3\sqrt2" /> als Abstand <InlineMath math="\overline{OA}" />, wie die halbe Diagonale eines Quadrats: <InlineMath math="\sqrt{36-18}" />.
-- <InlineMath math="\sqrt{30}\text{ cm}" /> zieht nur <InlineMath math="6" /> statt <InlineMath math="12" /> ab: <InlineMath math="\sqrt{36-6}" />.
+## Falsche Antworten prüfen
+
+Sieh nach, welche Strecke **bei jeder falschen Auswahl verwechselt wurde**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="3\sqrt{3}\text{ cm}" /> | Ist die Höhe einer Seitenfläche, nicht die Raumhöhe des Tetraeders. |
+| <InlineMath math="3\text{ cm}" /> | Setzt die ganze Seitenhalbierende <InlineMath math="3\sqrt{3}" /> statt <InlineMath math="2\sqrt{3}" /> als Kathete ein. |
+| <InlineMath math="2\sqrt{3}\text{ cm}" /> | Ist erst der Umkreisradius <InlineMath math="\overline{OA}" /> der Grundfläche, noch nicht die Höhe. |
+| <InlineMath math="3\sqrt{2}\text{ cm}" /> | Nimmt die halbe Quadratdiagonale <InlineMath math="3\sqrt{2}" />, als wäre die Grundfläche ein Quadrat. |
+| <InlineMath math="\sqrt{30}\text{ cm}" /> | Quadriert <InlineMath math="(2\sqrt{3})^2" /> fälschlich zu <InlineMath math="6" /> statt zu <InlineMath math="12" />. |
+
+# Antwort
+
+Der Abstand einer Ecke zur gegenüberliegenden Seitenfläche beträgt **<InlineMath math="2\sqrt{6}\text{ cm}" />**.

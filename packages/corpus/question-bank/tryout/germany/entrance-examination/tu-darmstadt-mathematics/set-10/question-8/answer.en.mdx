@@ -1,22 +1,37 @@
-# Where the foot of the height lies
+# Given
 
-The apex <InlineMath math="S" /> is equally far from all three corners of the base. So the height meets the base at its **centroid <InlineMath math="O" />**, which is also its circumcentre. In the equilateral triangle with side <InlineMath math="6" /> the median is <InlineMath math="3\sqrt3" /> long, and <InlineMath math="O" /> splits it in the ratio <InlineMath math="2:1" />:
+A **regular tetrahedron** (*regelmäßiges Tetraeder*) is made of four congruent equilateral triangles with **all edges of length <InlineMath math="6\text{ cm}" />**.
 
-<BlockMath math="\overline{OA}=\frac23\cdot3\sqrt3=2\sqrt3" />
+# Asked
 
-# Pythagoras in triangle <InlineMath math="OAS" />
+What is the distance from one vertex to the opposite triangular face (the height of the tetrahedron)?
 
-The height is perpendicular to the base, so triangle <InlineMath math="OAS" /> has a right angle at <InlineMath math="O" />. **The edge <InlineMath math="\overline{AS}=6" /> is the hypotenuse**:
+# Solution
+
+Set the tetrahedron flat on one face and drop a plumb line straight from apex <InlineMath math="S" /> to the table. Because all three slanted edges have equal length, the line hits **the base centroid <InlineMath math="O" />**, not an edge midpoint. Slicing vertically through right triangle <InlineMath math="OAS" /> yields the height in one Pythagorean step.
+
+> The altitude of a regular tetrahedron lands directly on the base centroid, which divides each base median in a <InlineMath math="2 : 1" /> ratio from the vertex.
+
+## Finding the distance from a base corner to the centroid
+
+In an equilateral base triangle of side <InlineMath math="6\text{ cm}" />, the altitude (which is also the median) measures <InlineMath math="3\sqrt{3}\text{ cm}" />. Since centroid <InlineMath math="O" /> divides each median <InlineMath math="2 : 1" />, **the distance from corner <InlineMath math="A" /> to center <InlineMath math="O" />** is two thirds of that median:
+
+<BlockMath math="\overline{OA} = \frac{2}{3} \cdot 3\sqrt{3} = 2\sqrt{3}\text{ cm}" />
+
+## Computing the height in the vertical cross section
+
+The vertical slice through apex <InlineMath math="S" />, base corner <InlineMath math="A" />, and centroid <InlineMath math="O" /> forms a **right triangle at <InlineMath math="O" />** whose hypotenuse is edge <InlineMath math="\overline{AS} = 6\text{ cm}" />.
 
 <MathVisual
-  title={<>The triangle of height, edge and distance</>}
-  description={<>A cut through the apex <InlineMath math="S" />, the base corner <InlineMath math="A" /> and the centroid <InlineMath math="O" /> of the base. Triangle <InlineMath math="OAS" /> has a right angle at <InlineMath math="O" />, with <InlineMath math="\overline{OA}=2\sqrt3" />, the edge <InlineMath math="\overline{AS}=6" /> as hypotenuse and the height <InlineMath math="h=\overline{OS}" />.</>}
+  title={<>Triangle of height, edge, and base radius</>}
+  description={<>Vertical cross section through apex <InlineMath math="S" />, base vertex <InlineMath math="A" />, and base centroid <InlineMath math="O" />. Triangle <InlineMath math="OAS" /> has a right angle at <InlineMath math="O" />, base leg <InlineMath math="\overline{OA} = 2\sqrt{3}" />, hypotenuse edge <InlineMath math="\overline{AS} = 6" />, and vertical height <InlineMath math="h = \overline{OS}" />.</>}
+  footer={<>Pythagoras on hypotenuse <InlineMath math="6" /> and base leg <InlineMath math="2\sqrt{3}" /> gives exact height <InlineMath math="2\sqrt{6}\text{ cm}" />.</>}
   labels={{
     s: <><InlineMath math="S" /></>,
     o: <><InlineMath math="O" /></>,
     a: <><InlineMath math="A" /></>,
     e: <><InlineMath math="6" /></>,
-    r: <><InlineMath math="2\sqrt3" /></>,
+    r: <><InlineMath math="2\sqrt{3}" /></>,
     h: <><InlineMath math="h" /></>,
   }}
   scene={{
@@ -46,14 +61,24 @@ The height is perpendicular to the base, so triangle <InlineMath math="OAS" /> h
   }}
 />
 
-<BlockMath math="h=\sqrt{6^2-\left(2\sqrt3\right)^2}=\sqrt{36-12}=\sqrt{24}=2\sqrt6" />
+Apply the Pythagorean theorem to right triangle <InlineMath math="OAS" />:
 
-The distance from a corner to the opposite face is **<InlineMath math="2\sqrt6\text{ cm}" />**, about <InlineMath math="4.9\text{ cm}" />.
+<BlockMath math="h = \sqrt{6^2 - \left(2\sqrt{3}\right)^2} = \sqrt{36 - 12} = \sqrt{24} = 2\sqrt{6}\text{ cm}" />
 
-# Why the other answers are wrong
+Sanity check: the height is about <InlineMath math="4.9\text{ cm}" />, slightly shorter than a slanted face altitude of about <InlineMath math="5.2\text{ cm}" />, just as geometry requires.
 
-- <InlineMath math="3\sqrt3\text{ cm}" /> is **the height of one face**, not of the tetrahedron.
-- <InlineMath math="3\text{ cm}" /> uses the whole median <InlineMath math="3\sqrt3" /> instead of <InlineMath math="2\sqrt3" />: <InlineMath math="\sqrt{36-27}=3" />.
-- <InlineMath math="2\sqrt3\text{ cm}" /> is the distance <InlineMath math="\overline{OA}" /> in the base.
-- <InlineMath math="3\sqrt2\text{ cm}" /> uses <InlineMath math="3\sqrt2" /> as the distance <InlineMath math="\overline{OA}" />, like half the diagonal of a square: <InlineMath math="\sqrt{36-18}" />.
-- <InlineMath math="\sqrt{30}\text{ cm}" /> subtracts only <InlineMath math="6" /> instead of <InlineMath math="12" />: <InlineMath math="\sqrt{36-6}" />.
+## Checking the distractors
+
+See which length is **swapped in each wrong choice**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="3\sqrt{3}\text{ cm}" /> | The altitude of one equilateral face, not the vertical height of the tetrahedron. |
+| <InlineMath math="3\text{ cm}" /> | Uses the full median <InlineMath math="3\sqrt{3}" /> as the base leg instead of <InlineMath math="2\sqrt{3}" />. |
+| <InlineMath math="2\sqrt{3}\text{ cm}" /> | Only the base circumradius <InlineMath math="\overline{OA}" />, not the vertical altitude. |
+| <InlineMath math="3\sqrt{2}\text{ cm}" /> | Uses half a square diagonal <InlineMath math="3\sqrt{2}" /> as if the base were a square instead of a triangle. |
+| <InlineMath math="\sqrt{30}\text{ cm}" /> | Mis-squares <InlineMath math="(2\sqrt{3})^2" /> as <InlineMath math="6" /> instead of <InlineMath math="12" />. |
+
+# Answer
+
+The distance from a vertex to the opposite face is **<InlineMath math="2\sqrt{6}\text{ cm}" />**.

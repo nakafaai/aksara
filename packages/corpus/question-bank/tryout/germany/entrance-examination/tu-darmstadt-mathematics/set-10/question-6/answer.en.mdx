@@ -1,25 +1,44 @@
-# Find the base and the starting value
+# Given
 
-Divide the two function values. The factor <InlineMath math="a" /> cancels and **<InlineMath math="b^2" /> is left**:
+An exponential function (*Exponentialfunktion*) <InlineMath math="f(x) = a \cdot b^x" /> with <InlineMath math="b > 0" /> passes through **two known values**:
 
-<BlockMath math="\frac{f(3)}{f(1)}=\frac{a\,b^3}{a\,b}=b^2=\frac{54}{6}=9" />
+<BlockMath math="f(1) = 6 \qquad \text{and} \qquad f(3) = 54" />
 
-Since <InlineMath math="b>0" />, <InlineMath math="b=3" />, and <InlineMath math="f(1)=3a=6" /> gives <InlineMath math="a=2" />. So <InlineMath math="f(x)=2\cdot3^x" />.
+# Asked
 
-# Check the inequality with whole numbers
+What is the smallest integer <InlineMath math="x" /> for which <InlineMath math="f(x) > 1000" />?
 
-You want the smallest whole number <InlineMath math="x" /> with <InlineMath math="2\cdot3^x>1000" />, that is <InlineMath math="3^x>500" />. Powers of <InlineMath math="3" /> grow fast, so **it's enough to work them out in order**:
+# Solution
 
-<BlockMath math="3^5=243<500,\qquad 3^6=729>500" />
+In exponential growth, every single step forward **multiplies the output by a fixed growth factor <InlineMath math="b" />**. Moving from <InlineMath math="x = 1" /> to <InlineMath math="x = 3" /> takes two steps, and the value jumps ninefold from <InlineMath math="6" /> to <InlineMath math="54" />. Multiplying by <InlineMath math="b" /> twice gives <InlineMath math="9" />, so each step **triples the value**.
+
+> Dividing two values of an exponential function cancels the starting factor immediately and leaves the growth factor raised to the step gap.
+
+## Finding the growth factor and starting value
+
+Divide <InlineMath math="f(3)" /> by <InlineMath math="f(1)" /> so **the starting factor <InlineMath math="a" /> cancels cleanly**:
+
+<BlockMath math="\frac{f(3)}{f(1)} = \frac{a \cdot b^3}{a \cdot b} = b^2 = \frac{54}{6} = 9" />
+
+Since <InlineMath math="b > 0" />, we get <InlineMath math="b = 3" />. Plug back into <InlineMath math="f(1) = 6" /> for the starting value:
+
+<BlockMath math="a \cdot 3 = 6 \quad \Longrightarrow \quad a = 2 \quad \Longrightarrow \quad f(x) = 2 \cdot 3^x" />
+
+## Finding the first integer above one thousand
+
+The inequality <InlineMath math="2 \cdot 3^x > 1000" /> simplifies to <InlineMath math="3^x > 500" />. Because powers of three climb quickly, **test the two neighboring integers directly**:
+
+<BlockMath math="3^5 = 243 < 500, \qquad 3^6 = 729 > 500" />
 
 <MathVisual
-  title={<>When <InlineMath math="f" /> passes <InlineMath math="1000" /></>}
-  description={<>The graph of <InlineMath math="f(x)=2\cdot3^x" /> grows more and more steeply. At <InlineMath math="x=5" /> it is still below the line <InlineMath math="1000" /> with <InlineMath math="486" />, at <InlineMath math="x=6" /> already above it with <InlineMath math="1458" />.</>}
+  title={<>When <InlineMath math="f" /> crosses <InlineMath math="1000" /></>}
+  description={<>The curve <InlineMath math="f(x) = 2 \cdot 3^x" /> climbs steeply. At <InlineMath math="x = 5" /> it sits at <InlineMath math="486" />, still below the <InlineMath math="1000" /> threshold, and at <InlineMath math="x = 6" /> it leaps to <InlineMath math="1458" />, well above it.</>}
+  footer={<>Value <InlineMath math="f(5) = 486" /> stays under <InlineMath math="1000" />, while <InlineMath math="f(6) = 1458" /> is the first integer above.</>}
   labels={{
-    five: <><InlineMath math="f(5)=486" /></>,
-    six: <><InlineMath math="f(6)=1458" /></>,
+    five: <><InlineMath math="f(5) = 486" /></>,
+    six: <><InlineMath math="f(6) = 1458" /></>,
     l: <><InlineMath math="1000" /></>,
-    g: <><InlineMath math="2\cdot3^x" /></>,
+    g: <><InlineMath math="2 \cdot 3^x" /></>,
   }}
   scene={{
     space: "plane",
@@ -44,12 +63,20 @@ You want the smallest whole number <InlineMath math="x" /> with <InlineMath math
   }}
 />
 
-Check: <InlineMath math="f(5)=486\le1000" /> and <InlineMath math="f(6)=1458>1000" />. The smallest whole number is **<InlineMath math="x=6" />**.
+Direct check: <InlineMath math="f(5) = 486" /> is still below <InlineMath math="1000" />, whereas <InlineMath math="f(6) = 1458" /> crosses above <InlineMath math="1000" />.
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="x=5" /> takes **<InlineMath math="a=6" /> instead of <InlineMath math="a=2" />**: <InlineMath math="6\cdot3^5=1458>1000" />. But the starting value is <InlineMath math="f(0)=a" />, not <InlineMath math="f(1)" />.
-- <InlineMath math="x=7" /> shifts the exponent by one, for example with <InlineMath math="f(x)=2\cdot3^{x-1}" />.
-- <InlineMath math="x=4" /> takes <InlineMath math="\frac{f(3)}{f(1)}=9" /> as the base: with <InlineMath math="b=9" /> and <InlineMath math="a=\frac23" />, <InlineMath math="f(4)=\frac23\cdot6561=4374" />.
-- <InlineMath math="x=43" /> works linearly: from <InlineMath math="6" /> to <InlineMath math="54" /> in two steps is <InlineMath math="24" /> per step, and <InlineMath math="6+24(x-1)>1000" /> gives <InlineMath math="x=43" />.
-- <InlineMath math="x=3" /> is where the second given value is, <InlineMath math="f(3)=54" />.
+See which modeling error produces **each wrong option**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="x = 5" /> | Mistakes <InlineMath math="f(1) = 6" /> for the starting value <InlineMath math="a" />, whereas <InlineMath math="a = f(0) = 2" />. |
+| <InlineMath math="x = 7" /> | Shifts the exponent by one, using <InlineMath math="2 \cdot 3^{x - 1}" />. |
+| <InlineMath math="x = 4" /> | Uses the two-step ratio <InlineMath math="9" /> directly as base <InlineMath math="b" /> without taking its square root. |
+| <InlineMath math="x = 43" /> | Assumes linear growth (<InlineMath math="+24" /> per step) instead of exponential growth. |
+| <InlineMath math="x = 3" /> | Simply repeats the given input where <InlineMath math="f(3) = 54" />. |
+
+# Answer
+
+The smallest integer satisfying the inequality is **<InlineMath math="x = 6" />**.

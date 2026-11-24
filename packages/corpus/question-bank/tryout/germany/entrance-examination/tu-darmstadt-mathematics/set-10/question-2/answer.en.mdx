@@ -1,34 +1,56 @@
-# Three equations for three sides
+# Given
 
-Call the legs <InlineMath math="a" /> and <InlineMath math="b" /> and the hypotenuse <InlineMath math="c" />. Perimeter, area and Pythagoras give **three equations**:
+A right triangle (*rechtwinkliges Dreieck*) has two known measurements:
 
-<BlockMath math="a+b+c=30,\qquad \tfrac12ab=30,\qquad a^2+b^2=c^2" />
+- **Perimeter** (*Umfang*): <InlineMath math="30\text{ cm}" />.
+- **Area** (*Flächeninhalt*): <InlineMath math="30\text{ cm}^2" />.
 
-# Use <InlineMath math="(a+b)^2" /> to get rid of the legs
+# Asked
 
-You don't need <InlineMath math="a" /> and <InlineMath math="b" /> separately. Square <InlineMath math="a+b=30-c" /> and substitute **<InlineMath math="ab=60" /> and <InlineMath math="a^2+b^2=c^2" />**:
+How long is its hypotenuse (*Hypotenuse*) <InlineMath math="c" />?
+
+# Solution
+
+There are three sides (<InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" />), yet you **do not need to find the legs <InlineMath math="a" /> and <InlineMath math="b" /> first**. Expand <InlineMath math="(a + b)^2" />: inside it sit <InlineMath math="a^2 + b^2" /> (which turns straight into <InlineMath math="c^2" />) and <InlineMath math="2ab" /> (which comes directly from the area!). Even better, the <InlineMath math="c^2" /> terms cancel on both sides.
+
+> Squaring the sum of the two legs combines the Pythagorean theorem and the triangle area at once, isolating the hypotenuse in a single linear equation.
+
+## Eliminating both legs via the squared sum
+
+Perimeter, area, and the Pythagorean theorem supply **three equations**:
+
+<BlockMath math="a + b + c = 30, \qquad \frac{1}{2}ab = 30 \iff ab = 60, \qquad a^2 + b^2 = c^2" />
+
+Express the sum <InlineMath math="a + b" /> in terms of <InlineMath math="c" /> and square both sides:
 
 <BlockMath math="\begin{aligned}
-(a+b)^2&=a^2+b^2+2ab \\
-(30-c)^2&=c^2+120 \\
-900-60c+c^2&=c^2+120 \\
-780&=60c\quad\Longrightarrow\quad c=13
+(a + b)^2 &= a^2 + b^2 + 2ab \\
+(30 - c)^2 &= c^2 + 2(60) \\
+900 - 60c + c^2 &= c^2 + 120 \\
+780 &= 60c \quad \Longrightarrow \quad c = 13\text{ cm}
 \end{aligned}" />
 
+The <InlineMath math="c^2" /> terms cancel out cleanly, giving <InlineMath math="c = 13\text{ cm}" /> right away.
+
+## Checking all three sides in the figure
+
+With <InlineMath math="c = 13" />, we get <InlineMath math="a + b = 17" /> and <InlineMath math="ab = 60" />, matching the classic **Pythagorean triple** (<InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />).
+
 <MathVisual
-  title={<>The triangle you want</>}
-  description={<>A right triangle with legs <InlineMath math="12" /> and <InlineMath math="5" /> and hypotenuse <InlineMath math="13" />. Its perimeter is <InlineMath math="12+5+13=30" /> and its area <InlineMath math="\frac12\cdot12\cdot5=30" />.</>}
+  title={<>The target right triangle</>}
+  description={<>A right triangle with legs <InlineMath math="12" /> and <InlineMath math="5" /> and hypotenuse <InlineMath math="13" />. Its perimeter is exactly <InlineMath math="30\text{ cm}" /> and its area is exactly <InlineMath math="30\text{ cm}^2" />.</>}
+  footer={<>The <InlineMath math="5" />-<InlineMath math="12" />-<InlineMath math="13" /> triple hits both perimeter <InlineMath math="30\text{ cm}" /> and area <InlineMath math="30\text{ cm}^2" />.</>}
   labels={{
-    a: <><InlineMath math="a=12" /></>,
-    b: <><InlineMath math="b=5" /></>,
-    c: <><InlineMath math="c=13" /></>,
+    a: <><InlineMath math="a = 12" /></>,
+    b: <><InlineMath math="b = 5" /></>,
+    c: <><InlineMath math="c = 13" /></>,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
       x: { min: -2, max: 14 },
-      y: { min: -1.5, max: 6.5 },
+      y: { min: -2, max: 7 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
@@ -43,14 +65,20 @@ You don't need <InlineMath math="a" /> and <InlineMath math="b" /> separately. S
   }}
 />
 
-# Check with the legs
+Full check: sides <InlineMath math="5" />, <InlineMath math="12" />, and <InlineMath math="13" /> add up to <InlineMath math="30\text{ cm}" />, half of <InlineMath math="60" /> is <InlineMath math="30\text{ cm}^2" />, and <InlineMath math="25 + 144" /> equals <InlineMath math="169" />.
 
-With <InlineMath math="c=13" />, <InlineMath math="a+b=17" /> and <InlineMath math="ab=60" />, so <InlineMath math="a" /> and <InlineMath math="b" /> solve <InlineMath math="t^2-17t+60=0" />: <InlineMath math="12" /> and <InlineMath math="5" />. Indeed <InlineMath math="12^2+5^2=169=13^2" />. The hypotenuse is **<InlineMath math="13\text{ cm}" /> long**.
+## Checking the distractors
 
-# Why the other answers are wrong
+See which side or factor is **mixed up in each wrong choice**:
 
-- <InlineMath math="14\text{ cm}" /> forgets the factor <InlineMath math="\frac12" /> in the area, so <InlineMath math="ab=30" />: then <InlineMath math="900-60c=60" /> and <InlineMath math="c=14" />.
-- <InlineMath math="12\text{ cm}" /> is **the longer leg**, not the hypotenuse.
-- <InlineMath math="15\text{ cm}" /> is half the perimeter.
-- <InlineMath math="10\text{ cm}" /> divides the perimeter by three, as if the triangle were equilateral.
-- <InlineMath math="5\text{ cm}" /> is the shorter leg.
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="14\text{ cm}" /> | Drops the factor <InlineMath math="\frac{1}{2}" /> from the area, setting <InlineMath math="ab = 30" /> and getting <InlineMath math="60c = 840" />. |
+| <InlineMath math="12\text{ cm}" /> | The longer leg, not the hypotenuse. |
+| <InlineMath math="15\text{ cm}" /> | Half the perimeter, impossible because <InlineMath math="c" /> must be strictly less than <InlineMath math="a + b" />. |
+| <InlineMath math="10\text{ cm}" /> | Divides the perimeter by three as if the triangle were equilateral. |
+| <InlineMath math="5\text{ cm}" /> | The shorter leg, not the hypotenuse. |
+
+# Answer
+
+The length of the hypotenuse is **<InlineMath math="13\text{ cm}" />**.

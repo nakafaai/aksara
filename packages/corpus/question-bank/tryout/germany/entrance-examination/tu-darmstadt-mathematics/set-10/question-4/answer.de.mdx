@@ -1,16 +1,31 @@
-# Die Form des Vierecks erkennen
+# Gegeben
 
-Ein Radius zum Berührpunkt steht senkrecht auf der Tangente. Deshalb stehen <InlineMath math="\overline{M_1A}" /> und <InlineMath math="\overline{M_2B}" /> beide senkrecht auf <InlineMath math="\overline{AB}" /> und sind zueinander parallel. Das Viereck <InlineMath math="M_1ABM_2" /> ist **ein rechtwinkliges Trapez** mit den parallelen Seiten <InlineMath math="9" /> und <InlineMath math="4" /> und der Höhe <InlineMath math="\overline{AB}" />.
+Zwei Kreise mit den Mittelpunkten <InlineMath math="M_1" /> und <InlineMath math="M_2" /> und den Radien <InlineMath math="9\text{ cm}" /> und <InlineMath math="4\text{ cm}" /> **berühren sich von außen**.
 
-# Die Länge <InlineMath math="\overline{AB}" />
+Eine gemeinsame äußere Tangente berührt den großen Kreis in <InlineMath math="A" /> und den kleinen Kreis in <InlineMath math="B" />, wobei beide Kreise auf derselben Seite der Geraden liegen.
 
-Weil sich die Kreise von außen berühren, ist <InlineMath math="\overline{M_1M_2}=9+4=13" />. Ziehe von <InlineMath math="M_2" /> eine Parallele zu <InlineMath math="\overline{AB}" />. Sie bildet mit <InlineMath math="\overline{M_1M_2}" /> **ein rechtwinkliges Dreieck mit den Katheten <InlineMath math="\overline{AB}" /> und <InlineMath math="9-4=5" />**:
+# Gesucht
 
-<BlockMath math="\overline{AB}=\sqrt{13^2-5^2}=\sqrt{144}=12" />
+Wie groß ist der Flächeninhalt des Vierecks <InlineMath math="M_1 A B M_2" />?
+
+# Lösung
+
+Stell dir zwei verschieden große Räder vor, die nebeneinander auf ebenem Boden stehen und sich berühren. Die senkrechte Speiche zum ersten Mittelpunkt misst <InlineMath math="9\text{ cm}" />, die zum zweiten <InlineMath math="4\text{ cm}" />. Weil beide Radien senkrecht auf der Bodentangente stehen, ist **<InlineMath math="M_1 A B M_2" /> ein rechtwinkliges Trapez** mit der Höhe <InlineMath math="\overline{AB}" />.
+
+> Berührradien stehen immer senkrecht auf der Tangente, weshalb zwei Kreise an einer gemeinsamen äußeren Tangente ein rechtwinkliges Trapez bilden, dessen Höhe mit Pythagoras berechnet wird.
+
+## Die Tangentenstrecke mit Pythagoras berechnen
+
+Da sich beide Kreise von außen berühren, beträgt der Mittelpunktsabstand <InlineMath math="\overline{M_1 M_2}" /> genau die Radiensumme von <InlineMath math="13\text{ cm}" />.
+
+Verschiebe <InlineMath math="\overline{AB}" /> parallel nach oben durch <InlineMath math="M_2" />. Es entsteht ein **rechtwinkliges Dreieck** mit Hypotenuse <InlineMath math="13" /> und Kathete <InlineMath math="9 - 4 = 5" />:
+
+<BlockMath math="\overline{AB} = \sqrt{13^2 - 5^2} = \sqrt{169 - 25} = \sqrt{144} = 12\text{ cm}" />
 
 <MathVisual
-  title={<>Zwei Kreise an einer Tangente</>}
-  description={<>Die Tangente liegt waagerecht unten. Der große Kreis um <InlineMath math="M_1" /> mit Radius <InlineMath math="9" /> berührt sie in <InlineMath math="A" />, der kleine um <InlineMath math="M_2" /> mit Radius <InlineMath math="4" /> in <InlineMath math="B" />. Die Kreise berühren sich, also ist <InlineMath math="\overline{M_1M_2}=13" />. Das Viereck <InlineMath math="M_1ABM_2" /> ist ein rechtwinkliges Trapez mit den parallelen Seiten <InlineMath math="9" /> und <InlineMath math="4" /> und der Höhe <InlineMath math="\overline{AB}=12" />.</>}
+  title={<>Zwei Kreise an einer gemeinsamen Tangente</>}
+  description={<>Unten verläuft die waagerechte Tangente. Der große Kreis um <InlineMath math="M_1" /> mit Radius <InlineMath math="9" /> berührt sie in <InlineMath math="A" />, der kleine um <InlineMath math="M_2" /> mit Radius <InlineMath math="4" /> in <InlineMath math="B" />. Der Mittelpunktsabstand <InlineMath math="13" /> liefert die Trapezhöhe <InlineMath math="\overline{AB} = 12" />.</>}
+  footer={<>Die parallelen Seiten <InlineMath math="9" /> und <InlineMath math="4" /> mit Höhe <InlineMath math="\overline{AB} = 12" /> ergeben <InlineMath math="78\text{ cm}^2" />.</>}
   labels={{
     m1: <><InlineMath math="M_1" /></>,
     m2: <><InlineMath math="M_2" /></>,
@@ -53,16 +68,28 @@ Weil sich die Kreise von außen berühren, ist <InlineMath math="\overline{M_1M_
   }}
 />
 
-# Der Flächeninhalt des Trapezes
+Genauso gut siehst du ein Rechteck <InlineMath math="12 \times 4 = 48" /> plus ein oberes rechtwinkliges Dreieck mit Inhalt <InlineMath math="30" />.
 
-<BlockMath math="A=\frac{9+4}{2}\cdot12=78\text{ cm}^2" />
+## Den Flächeninhalt des Trapezes berechnen
 
-Das Viereck hat **den Flächeninhalt <InlineMath math="78\text{ cm}^2" />**.
+Setze beide parallelen Seiten und die Höhe in **die Trapezformel** ein:
 
-# Warum die anderen Antworten falsch sind
+<BlockMath math="A = \frac{9 + 4}{2} \cdot 12 = 13 \cdot 6 = 78\text{ cm}^2" />
 
-- <InlineMath math="156\text{ cm}^2" /> **vergisst das Halbieren** in der Trapezformel.
-- <InlineMath math="84{,}5\text{ cm}^2" /> nimmt den Mittelpunktsabstand <InlineMath math="13" /> als Höhe: <InlineMath math="\frac{13}{2}\cdot13" />.
-- <InlineMath math="39\text{ cm}^2" /> halbiert zweimal: <InlineMath math="\frac12\cdot\frac{13\cdot12}{2}" />.
-- <InlineMath math="32{,}5\text{ cm}^2" /> nimmt die Differenz <InlineMath math="5" /> der Radien als Höhe: <InlineMath math="\frac{13}{2}\cdot5" />.
-- <InlineMath math="60\text{ cm}^2" /> verwendet <InlineMath math="5\cdot12" />, also nur die Differenz der Radien statt ihrer Summe.
+Auch die Zerlegung liefert exakt <InlineMath math="48 + 30 = 78\text{ cm}^2" />.
+
+## Falsche Antworten prüfen
+
+Sieh nach, wie jede falsche Auswahl **die falsche Höhe wählt oder das Halbieren verfehlt**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="156\text{ cm}^2" /> | Vergisst das Teilen durch zwei in der Trapezformel: <InlineMath math="(9 + 4) \cdot 12" />. |
+| <InlineMath math="84{,}5\text{ cm}^2" /> | Nutzt den schrägen Mittelpunktsabstand <InlineMath math="13" /> als Höhe: <InlineMath math="\frac{13}{2} \cdot 13" />. |
+| <InlineMath math="39\text{ cm}^2" /> | Teilt zweimal hintereinander durch zwei. |
+| <InlineMath math="32{,}5\text{ cm}^2" /> | Nutzt die Radiendifferenz <InlineMath math="5" /> als Höhe: <InlineMath math="\frac{13}{2} \cdot 5" />. |
+| <InlineMath math="60\text{ cm}^2" /> | Rechnet <InlineMath math="5 \cdot 12" /> mit der Radiendifferenz statt der Radiensumme. |
+
+# Antwort
+
+Der Flächeninhalt des Vierecks <InlineMath math="M_1 A B M_2" /> beträgt **<InlineMath math="78\text{ cm}^2" />**.

@@ -1,28 +1,45 @@
-# The absolute value splits into two cases
+# Given
 
-The expression <InlineMath math="2x-3" /> changes sign at <InlineMath math="x=\frac32" />. So each region has **a different inequality without the absolute value**.
+We are given a linear **absolute-value inequality** (*Ungleichung*):
 
-# The two cases
+<BlockMath math="\lvert 2x - 3 \rvert \le x + 1" />
+
+# Asked
+
+Determine all real numbers <InlineMath math="x" /> satisfying this inequality.
+
+# Solution
+
+The absolute value <InlineMath math="\lvert 2x - 3 \rvert" /> acts like a two-mode switch flipping right at its zero <InlineMath math="\frac{3}{2}" />. To the right of <InlineMath math="\frac{3}{2}" />, the expression is nonnegative and the bars simply drop. To the left, it is negative and its sign reverses. Solve **both modes and join the pieces together**.
+
+> An absolute-value inequality splits at the zero of its inner expression into two ordinary linear inequalities whose solutions are then combined.
+
+## Solving both cases around the turning point
+
+The expression <InlineMath math="2x - 3" /> changes sign at <InlineMath math="\frac{3}{2}" />, giving **two separate cases**:
 
 <BlockMath math="\begin{aligned}
-x\ge\tfrac32:&\quad 2x-3\le x+1\quad\Longrightarrow\quad x\le4,\quad\text{so}\ \tfrac32\le x\le4 \\
-x<\tfrac32:&\quad 3-2x\le x+1\quad\Longrightarrow\quad x\ge\tfrac23,\quad\text{so}\ \tfrac23\le x<\tfrac32
+x \ge \frac{3}{2}: &\quad 2x - 3 \le x + 1 \quad \Longleftrightarrow \quad x \le 4 \quad \Longrightarrow \quad \frac{3}{2} \le x \le 4 \\
+x < \frac{3}{2}: &\quad 3 - 2x \le x + 1 \quad \Longleftrightarrow \quad 2 \le 3x \quad \Longrightarrow \quad \frac{2}{3} \le x < \frac{3}{2}
 \end{aligned}" />
 
-In the second case you divide by <InlineMath math="-3" />, and **the inequality sign flips**: <InlineMath math="-3x\le-2" /> becomes <InlineMath math="x\ge\frac23" />.
+Notice how the two intervals **join seamlessly without any gap** at <InlineMath math="\frac{3}{2}" />:
 
-# Put the cases together
+<BlockMath math="\frac{2}{3} \le x \le 4" />
 
-The two parts **join without a gap** at <InlineMath math="\frac32" />:
+## Checking the solution interval on the graph
+
+Look at the V-shaped curve and the straight line <InlineMath math="x + 1" /> below: the line **stays above the V strictly between their two intersection points**.
 
 <MathVisual
-  title={<>Where the absolute value lies below the line</>}
-  description={<>The V-shaped graph of <InlineMath math="y=|2x-3|" /> with its tip at <InlineMath math="x=\tfrac32" /> and the line <InlineMath math="y=x+1" />. Between the intersections at <InlineMath math="x=\tfrac23" /> and <InlineMath math="x=4" /> the line lies above the absolute value. That interval is marked below the axis.</>}
+  title={<>Where the absolute value stays below the line</>}
+  description={<>The V-shaped graph of <InlineMath math="\lvert 2x - 3 \rvert" /> with corner at <InlineMath math="x = \frac{3}{2}" /> meets the line <InlineMath math="x + 1" /> at <InlineMath math="x = \frac{2}{3}" /> and <InlineMath math="x = 4" />. Between those two crossings, the line lies on or above the V curve.</>}
+  footer={<>Line <InlineMath math="x + 1" /> stays on or above the V curve from <InlineMath math="\frac{2}{3}" /> through <InlineMath math="4" />.</>}
   labels={{
-    a: <><InlineMath math="x=\tfrac23" /></>,
-    b: <><InlineMath math="x=4" /></>,
-    f: <><InlineMath math="|2x-3|" /></>,
-    g: <><InlineMath math="x+1" /></>,
+    a: <><InlineMath math="x = \tfrac{2}{3}" /></>,
+    b: <><InlineMath math="x = 4" /></>,
+    f: <><InlineMath math="\lvert 2x - 3 \rvert" /></>,
+    g: <><InlineMath math="x + 1" /></>,
   }}
   scene={{
     space: "plane",
@@ -48,12 +65,22 @@ The two parts **join without a gap** at <InlineMath math="\frac32" />:
   }}
 />
 
-Check <InlineMath math="x=0" />: <InlineMath math="|{-3}|=3>1" />, so the inequality fails. With <InlineMath math="x=2" />: <InlineMath math="1\le3" />, it holds. The solution is <InlineMath math="\frac23\le x\le4" />.
+Quick check: at <InlineMath math="x = 0" />, the left side <InlineMath math="3" /> exceeds <InlineMath math="1" /> (fails). At <InlineMath math="x = 2" />, the left side <InlineMath math="1" /> is below <InlineMath math="3" /> (holds).
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="\frac32\le x\le4" /> works out **only the first case**.
-- <InlineMath math="x\le4" /> keeps the upper bound and forgets the lower one from the second case.
-- <InlineMath math="\frac23\le x<\frac32" /> works out only the second case.
-- <InlineMath math="-4\le x\le-\frac23" /> flips every sign.
-- <InlineMath math="\frac23<x<4" /> excludes the endpoints. There both sides are equal, and <InlineMath math="\le" /> allows that.
+See which branch is **dropped or flipped** in each wrong choice:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="\frac{3}{2} \le x \le 4" /> | Keeps only the first case and omits the left branch. |
+| <InlineMath math="x \le 4" /> | Keeps the upper bound but drops the lower bound from the second case. |
+| <InlineMath math="\frac{2}{3} \le x < \frac{3}{2}" /> | Keeps only the second case and omits the right branch. |
+| <InlineMath math="-4 \le x \le -\frac{2}{3}" /> | Negates both endpoints into the negative half. |
+| <InlineMath math="\frac{2}{3} < x < 4" /> | Excludes both endpoints even though <InlineMath math="\le" /> allows equality. |
+
+# Answer
+
+All real numbers <InlineMath math="x" /> satisfying the inequality are:
+
+<BlockMath math="\frac{2}{3} \le x \le 4" />

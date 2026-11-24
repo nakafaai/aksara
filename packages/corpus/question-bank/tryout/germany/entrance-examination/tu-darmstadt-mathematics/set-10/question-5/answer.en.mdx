@@ -1,12 +1,35 @@
-# The slanted triangle is isosceles
+# Given
 
-Call the foot of the tower <InlineMath math="F" /> and its top <InlineMath math="T" />. In triangle <InlineMath math="PQT" /> the angle at <InlineMath math="P" /> is <InlineMath math="30^\circ" />. The angle at <InlineMath math="Q" /> is the supplement of <InlineMath math="60^\circ" />, so <InlineMath math="120^\circ" />. That leaves exactly <InlineMath math="180^\circ-30^\circ-120^\circ=30^\circ" /> at <InlineMath math="T" />. **Two equal angles mean two equal sides**:
+From point <InlineMath math="P" /> on flat ground, the top of a vertical tower (*senkrechter Turm*) appears at an **angle of elevation (*Höhenwinkel*) of <InlineMath math="30^\circ" />**.
 
-<BlockMath math="\overline{QT}=\overline{PQ}=40\text{ m}" />
+After walking <InlineMath math="40\text{ m}" /> straight toward the base of the tower to point <InlineMath math="Q" />, the top appears at an **angle of elevation of <InlineMath math="60^\circ" />**.
+
+# Asked
+
+How tall is the tower?
+
+# Solution
+
+You do not need a messy system of two tangent equations. Look at the slanted triangle <InlineMath math="PQT" /> formed by the two sightlines to the top <InlineMath math="T" />: the exterior angle <InlineMath math="60^\circ" /> at <InlineMath math="Q" /> equals the sum of <InlineMath math="30^\circ" /> at <InlineMath math="P" /> plus the top angle at <InlineMath math="T" />. So the angle at <InlineMath math="T" /> is also <InlineMath math="30^\circ" />, making **triangle <InlineMath math="PQT" /> isosceles** with second sightline equal to <InlineMath math="40\text{ m}" />.
+
+> When the angle of elevation doubles from <InlineMath math="30^\circ" /> to <InlineMath math="60^\circ" />, the slanted triangle between the two vantage points is isosceles, so the second sightline equals the distance walked.
+
+## Spotting the isosceles triangle between the vantage points
+
+Label the tower base <InlineMath math="F" /> and its top <InlineMath math="T" />. In triangle <InlineMath math="PQT" />:
+
+- The angle at <InlineMath math="P" /> is <InlineMath math="30^\circ" />.
+- The interior angle at <InlineMath math="Q" /> is the supplement of <InlineMath math="60^\circ" />, namely <InlineMath math="120^\circ" />.
+- The remaining angle at the top <InlineMath math="T" /> is <InlineMath math="30^\circ" />.
+
+Because the angles at <InlineMath math="P" /> and <InlineMath math="T" /> both equal <InlineMath math="30^\circ" />, **their opposite sides have the exact same length**:
+
+<BlockMath math="\overline{QT} = \overline{PQ} = 40\text{ m}" />
 
 <MathVisual
-  title={<>Tower and two viewpoints</>}
-  description={<>The tower <InlineMath math="\overline{FT}" /> stands on the left. From <InlineMath math="P" /> the top <InlineMath math="T" /> appears at <InlineMath math="30^\circ" />, from the point <InlineMath math="Q" />, <InlineMath math="40" /> closer, at <InlineMath math="60^\circ" />. Triangle <InlineMath math="PQT" /> has <InlineMath math="30^\circ" /> at <InlineMath math="P" /> and at <InlineMath math="T" />, so it is isosceles with <InlineMath math="\overline{QT}=40" />.</>}
+  title={<>Tower and two vantage points</>}
+  description={<>Tower <InlineMath math="\overline{FT}" /> stands vertically on the left. From <InlineMath math="P" />, the top <InlineMath math="T" /> is seen at <InlineMath math="30^\circ" />, and from <InlineMath math="Q" /> (<InlineMath math="40\text{ m}" /> closer) at <InlineMath math="60^\circ" />. Isosceles triangle <InlineMath math="PQT" /> locks in <InlineMath math="\overline{QT} = 40\text{ m}" />.</>}
+  footer={<>Isosceles triangle <InlineMath math="PQT" /> sets <InlineMath math="\overline{QT} = 40\text{ m}" />, and <InlineMath math="\sin 60^\circ" /> gives height <InlineMath math="20\sqrt{3}\text{ m}" />.</>}
   labels={{
     t: <><InlineMath math="T" /></>,
     f: <><InlineMath math="F" /></>,
@@ -49,20 +72,28 @@ Call the foot of the tower <InlineMath math="F" /> and its top <InlineMath math=
   }}
 />
 
-# The height in right triangle <InlineMath math="QFT" />
+Once hypotenuse <InlineMath math="\overline{QT} = 40\text{ m}" /> is locked in, one sine calculation yields the height.
 
-In triangle <InlineMath math="QFT" /> the angle at <InlineMath math="F" /> is a right angle and the angle at <InlineMath math="Q" /> is <InlineMath math="60^\circ" />. The height is **the side opposite the <InlineMath math="60^\circ" /> angle**:
+## Computing the height and checking both angles
 
-<BlockMath math="h=\overline{QT}\cdot\sin60^\circ=40\cdot\frac{\sqrt3}{2}=20\sqrt3" />
+In right triangle <InlineMath math="QFT" />, the tower height is **the leg opposite <InlineMath math="60^\circ" />**:
 
-# Check with both angles
+<BlockMath math="h = \overline{QT} \cdot \sin 60^\circ = 40 \cdot \frac{\sqrt{3}}{2} = 20\sqrt{3}\text{ m}" />
 
-Then <InlineMath math="\overline{QF}=40\cdot\cos60^\circ=20" /> and <InlineMath math="\overline{PF}=60" />. Indeed <InlineMath math="\tan30^\circ=\frac{20\sqrt3}{60}=\frac{\sqrt3}{3}" />. The tower is **<InlineMath math="20\sqrt3\text{ m}" /> tall**, about <InlineMath math="34.6\text{ m}" />.
+Full check: <InlineMath math="\overline{QF} = 20\text{ m}" /> and <InlineMath math="\overline{PF} = 60\text{ m}" />, so the ratio of height to <InlineMath math="60" /> matches <InlineMath math="\tan 30^\circ" /> exactly. Numerically the tower stands about <InlineMath math="34.6\text{ m}" /> tall.
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="40\sqrt3\text{ m}" /> uses <InlineMath math="\tan60^\circ" /> with the whole <InlineMath math="40" />: <InlineMath math="40\cdot\sqrt3" />. But the <InlineMath math="40" /> **isn't the distance from <InlineMath math="Q" /> to the tower**.
-- <InlineMath math="20\text{ m}" /> is the distance <InlineMath math="\overline{QF}" />, not the height.
-- <InlineMath math="40\text{ m}" /> is the slanted distance <InlineMath math="\overline{QT}" />.
-- <InlineMath math="10\sqrt3\text{ m}" /> halves the height a second time.
-- <InlineMath math="\frac{40\sqrt3}{3}\text{ m}" /> works out <InlineMath math="40\cdot\tan30^\circ" />, as if <InlineMath math="P" /> were <InlineMath math="40" /> from the tower.
+See how the wrong options **confuse the walking distance with the distance to the tower base**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="40\sqrt{3}\text{ m}" /> | Computes <InlineMath math="40 \cdot \tan 60^\circ" /> as if <InlineMath math="40\text{ m}" /> were <InlineMath math="\overline{QF}" />. |
+| <InlineMath math="20\text{ m}" /> | Horizontal distance <InlineMath math="\overline{QF}" />, not the height. |
+| <InlineMath math="40\text{ m}" /> | Length of the slanted sightline <InlineMath math="\overline{QT}" />. |
+| <InlineMath math="10\sqrt{3}\text{ m}" /> | Halves the correct height an extra time. |
+| <InlineMath math="\frac{40\sqrt{3}}{3}\text{ m}" /> | Computes <InlineMath math="40 \cdot \tan 30^\circ" /> as if <InlineMath math="P" /> stood only <InlineMath math="40\text{ m}" /> from the tower base. |
+
+# Answer
+
+The height of the tower is **<InlineMath math="20\sqrt{3}\text{ m}" />**.
