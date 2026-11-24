@@ -1,28 +1,47 @@
-# What <InlineMath math="f^{-1}(12)" /> means
+# Given
 
-<InlineMath math="f^{-1}(12)" /> is the number <InlineMath math="x" /> in the range considered for which **<InlineMath math="f(x)=12" /> holds**. So you don't have to write down the inverse function, just solve an equation:
+The quadratic function <InlineMath math="f" /> is defined by:
+
+<BlockMath math="f(x) = x^2 - 6x + 5" />
+
+Its domain is restricted to **only the right branch <InlineMath math="x \ge 3" />**, on which it has an inverse function (*Umkehrfunktion*) <InlineMath math="f^{-1}" />.
+
+# Asked
+
+What is the value of <InlineMath math="f^{-1}(12)" />?
+
+# Solution
+
+An inverse function simply runs the machine in reverse: instead of plugging in <InlineMath math="12" />, you ask **which input <InlineMath math="x" /> produces the output <InlineMath math="12" />**. You do not even need the general formula for <InlineMath math="f^{-1}(y)" />. Just solve <InlineMath math="f(x) = 12" /> and keep the unique root inside the allowed domain <InlineMath math="x \ge 3" />.
+
+> To evaluate an inverse function at a single number, solve the reverse equation and select the one root inside the restricted domain.
+
+## Solving the reverse equation by completing the square
+
+Set <InlineMath math="f(x) = 12" /> and **complete the square** to isolate <InlineMath math="x" /> cleanly:
 
 <BlockMath math="\begin{aligned}
-x^2-6x+5&=12 \\
-(x-3)^2-9+5&=12 \\
-(x-3)^2&=16
+x^2 - 6x + 5 &= 12 \\
+(x - 3)^2 - 9 + 5 &= 12 \\
+(x - 3)^2 &= 16
 \end{aligned}" />
 
-So <InlineMath math="x-3=4" /> or <InlineMath math="x-3=-4" />, that is <InlineMath math="x=7" /> or <InlineMath math="x=-1" />.
+Taking square roots gives <InlineMath math="x - 3 = 4" /> or <InlineMath math="x - 3 = -4" />, yielding two candidates: <InlineMath math="x = 7" /> and <InlineMath math="x = -1" />.
 
-# The range picks the solution
+## Selecting the valid branch on the graph
 
-The function is only considered for <InlineMath math="x\ge3" />. Only there is it invertible, because **every function value occurs exactly once there**. Of the two solutions only <InlineMath math="x=7" /> lies in that range:
+This parabola has its vertex at <InlineMath math="(3 \mid -4)" />. Because the domain keeps **only <InlineMath math="x \ge 3" />**, the left branch is excluded and only <InlineMath math="x = 7" /> survives.
 
 <MathVisual
   title={<>Only the right branch counts</>}
-  description={<>The parabola <InlineMath math="y=x^2-6x+5" /> with vertex <InlineMath math="(3\mid-4)" />. The right branch for <InlineMath math="x\ge3" /> is solid, the left one dashed. The line <InlineMath math="y=12" /> meets the right branch at <InlineMath math="(7\mid12)" /> and the left one at <InlineMath math="(-1\mid12)" />, which isn't in the range considered.</>}
+  description={<>The parabola <InlineMath math="y = x^2 - 6x + 5" /> has vertex <InlineMath math="(3 \mid -4)" />. Its right branch for <InlineMath math="x \ge 3" /> is solid while the excluded left branch is dashed. The horizontal line <InlineMath math="y = 12" /> crosses the valid branch at <InlineMath math="(7 \mid 12)" /> and the excluded branch at <InlineMath math="(-1 \mid 12)" />.</>}
+  footer={<>Domain <InlineMath math="x \ge 3" /> selects <InlineMath math="(7 \mid 12)" /> and rules out <InlineMath math="(-1 \mid 12)" />.</>}
   labels={{
-    key: <><InlineMath math="(7\mid12)" /></>,
-    bad: <><InlineMath math="(-1\mid12)" /></>,
-    u: <><InlineMath math="x\ge3" /></>,
-    o: <>not considered</>,
-    t: <><InlineMath math="y=12" /></>,
+    key: <><InlineMath math="(7 \mid 12)" /></>,
+    bad: <><InlineMath math="(-1 \mid 12)" /></>,
+    u: <><InlineMath math="x \ge 3" /></>,
+    o: <>excluded</>,
+    t: <><InlineMath math="y = 12" /></>,
   }}
   scene={{
     space: "plane",
@@ -50,12 +69,20 @@ The function is only considered for <InlineMath math="x\ge3" />. Only there is i
   }}
 />
 
-Check: <InlineMath math="f(7)=49-42+5=12" />. So **<InlineMath math="f^{-1}(12)=7" />**.
+Direct check: plugging in <InlineMath math="x = 7" /> gives <InlineMath math="49 - 42 + 5" />, which equals <InlineMath math="12" />, and <InlineMath math="7 \ge 3" /> holds.
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="-1" /> solves <InlineMath math="f(x)=12" /> on the **left branch**, which isn't in the range considered.
-- <InlineMath math="7" /> or <InlineMath math="-1" /> overlooks that an inverse function assigns exactly one number to each value.
-- <InlineMath math="77" /> is <InlineMath math="f(12)=144-72+5" />, the function value instead of the preimage.
-- <InlineMath math="\frac1{77}" /> confuses <InlineMath math="f^{-1}" /> with the reciprocal <InlineMath math="\frac{1}{f(12)}" />.
-- <InlineMath math="3+\sqrt{12}" /> forgets the numbers <InlineMath math="-9+5" /> when completing the square: from <InlineMath math="(x-3)^2=12" /> instead of <InlineMath math="(x-3)^2=16" />.
+See how each wrong option **misreads the <InlineMath math="f^{-1}" /> notation or ignores the domain restriction**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="-1" /> | Lies on the excluded left branch outside <InlineMath math="x \ge 3" />. |
+| <InlineMath math="7" /> or <InlineMath math="-1" /> | Forgets that an inverse function returns one unique value. |
+| <InlineMath math="77" /> | Evaluates forward <InlineMath math="f(12) = 144 - 72 + 5" /> instead of reversing. |
+| <InlineMath math="\frac{1}{77}" /> | Confuses the inverse function <InlineMath math="f^{-1}" /> with the reciprocal <InlineMath math="\frac{1}{f(12)}" />. |
+| <InlineMath math="3 + \sqrt{12}" /> | Drops the <InlineMath math="-9 + 5" /> term when completing the square and solves <InlineMath math="(x - 3)^2 = 12" />. |
+
+# Answer
+
+The value of <InlineMath math="f^{-1}(12)" /> is **<InlineMath math="7" />**.

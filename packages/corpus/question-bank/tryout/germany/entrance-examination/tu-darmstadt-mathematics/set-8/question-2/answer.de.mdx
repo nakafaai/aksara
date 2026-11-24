@@ -1,31 +1,56 @@
-# Eine Gleichung mit ganzen Zahlen
+# Gegeben
 
-Nenne die Anzahl der Karten zu <InlineMath math="7" /> Euro <InlineMath math="a" /> und die zu <InlineMath math="11" /> Euro <InlineMath math="b" />. Beide sind **ganze Zahlen ab <InlineMath math="0" />**, und es gilt
+Ein Kino verkauft zwei Sorten Eintrittskarten:
 
-<BlockMath math="7a+11b=200" />
+- Günstige Karten zu <InlineMath math="7\text{ €}" /> (Anzahl <InlineMath math="a" />).
+- Teurere Karten zu <InlineMath math="11\text{ €}" /> (Anzahl <InlineMath math="b" />).
 
-Gesucht ist der größte Wert von <InlineMath math="a+b" />.
+Die **Gesamteinnahme beträgt genau <InlineMath math="200\text{ €}" />**, wobei <InlineMath math="a" /> und <InlineMath math="b" /> ganze Zahlen ab <InlineMath math="0" /> sind.
 
-# Welche Werte von <InlineMath math="b" /> möglich sind
+# Gesucht
 
-<InlineMath math="200-11b" /> muss durch <InlineMath math="7" /> teilbar sein. Teste <InlineMath math="b=0,1,2,\ldots" /> bis <InlineMath math="11b>200" />. Die Reste wiederholen sich mit der Periode <InlineMath math="7" />, und **nur <InlineMath math="b=1" />, <InlineMath math="b=8" /> und <InlineMath math="b=15" /> passen**:
+Wie viele Karten hat das Kino an diesem Abend **höchstens** verkauft?
+
+# Lösung
+
+Bei festen <InlineMath math="200\text{ €}" /> Einnahmen bekommst du möglichst viele Karten, wenn du **so viele günstige <InlineMath math="7\text{ €}" />-Karten wie möglich und so wenige <InlineMath math="11\text{ €}" />-Karten wie nötig** verkaufst. Da <InlineMath math="200" /> nicht durch <InlineMath math="7" /> teilbar ist, nimmst du die kleinste Anzahl teurer Karten, bei der der Rest glatt durch <InlineMath math="7" /> aufgeht.
+
+> Bei fester Gesamtsumme wird die Stückzahl maximal, wenn du die kleinste gültige Zahl teurer Karten wählst, sodass der Rest durch den günstigen Preis teilbar ist.
+
+## Gültige Anzahlen der teureren Karten bestimmen
+
+Die Einnahmengleichung lautet:
+
+<BlockMath math="7a + 11b = 200 \quad \Longleftrightarrow \quad 7a = 200 - 11b" />
+
+Also muss <InlineMath math="200 - 11b" /> **durch <InlineMath math="7" /> teilbar sein**. Teste vom kleinsten <InlineMath math="b" /> aufwärts:
+
+- Für <InlineMath math="b = 0" /> lässt <InlineMath math="200" /> den Rest <InlineMath math="4" /> bei Division durch <InlineMath math="7" />.
+- Für <InlineMath math="b = 1" /> bleibt der Rest <InlineMath math="189" />, genau gleich <InlineMath math="7 \cdot 27" />, das geht sofort auf.
+
+Immer wenn <InlineMath math="b" /> um <InlineMath math="7" /> steigt, sinkt <InlineMath math="a" /> um <InlineMath math="11" /> bei unveränderter Summe <InlineMath math="200" />. Alle ganzzahligen Lösungen lauten:
 
 <BlockMath math="\begin{aligned}
-b=1:&\quad 7a=189,\quad a=27,\quad a+b=28 \\
-b=8:&\quad 7a=112,\quad a=16,\quad a+b=24 \\
-b=15:&\quad 7a=35,\quad a=5,\quad a+b=20
+b = 1: &\quad a = 27, \quad a + b = 28 \\
+b = 8: &\quad a = 16, \quad a + b = 24 \\
+b = 15: &\quad a = 5, \quad a + b = 20
 \end{aligned}" />
 
-Für <InlineMath math="b=22" /> wäre <InlineMath math="11b=242>200" />.
+Bei <InlineMath math="b = 22" /> erreicht <InlineMath math="11b" /> bereits <InlineMath math="242" /> (über <InlineMath math="200" />), mehr Lösungen gibt es nicht.
+
+## Alle Gitterpunkte auf der Geraden vergleichen
+
+Die Gerade <InlineMath math="7a + 11b = 200" /> trägt genau **drei ganzzahlige Gitterpunkte** im ersten Quadranten.
 
 <MathVisual
   title={<>Alle möglichen Kartenzahlen</>}
-  description={<>Die Gerade <InlineMath math="7a+11b=200" /> im ersten Quadranten, mit <InlineMath math="a" /> Karten zu <InlineMath math="7" /> Euro nach rechts und <InlineMath math="b" /> Karten zu <InlineMath math="11" /> Euro nach oben. Genau drei ganzzahlige Punkte liegen darauf: <InlineMath math="(27\mid1)" />, <InlineMath math="(16\mid8)" /> und <InlineMath math="(5\mid15)" />. Der Punkt <InlineMath math="(27\mid1)" /> hat die größte Summe <InlineMath math="a+b=28" />.</>}
+  description={<>Die Gerade <InlineMath math="7a + 11b = 200" /> im ersten Quadranten trägt die <InlineMath math="7\text{ €}" />-Karten waagerecht und die <InlineMath math="11\text{ €}" />-Karten senkrecht ab. Genau drei Gitterpunkte liegen darauf: <InlineMath math="(27 \mid 1)" />, <InlineMath math="(16 \mid 8)" /> und <InlineMath math="(5 \mid 15)" />. Der Punkt ganz rechts liefert das Maximum <InlineMath math="28" />.</>}
+  footer={<>Nur drei Gitterpunkte liegen auf der Geraden, mit dem Maximum <InlineMath math="27 + 1 = 28" />.</>}
   labels={{
-    p1: <><InlineMath math="(27\mid1)" /></>,
-    p2: <><InlineMath math="(16\mid8)" /></>,
-    p3: <><InlineMath math="(5\mid15)" /></>,
-    l: <><InlineMath math="7a+11b=200" /></>,
+    p1: <><InlineMath math="(27 \mid 1)" /></>,
+    p2: <><InlineMath math="(16 \mid 8)" /></>,
+    p3: <><InlineMath math="(5 \mid 15)" /></>,
+    l: <><InlineMath math="7a + 11b = 200" /></>,
   }}
   scene={{
     space: "plane",
@@ -52,14 +77,24 @@ Für <InlineMath math="b=22" /> wäre <InlineMath math="11b=242>200" />.
   }}
 />
 
-# Die größte Anzahl
+Probe für das Maximum:
 
-Mehr billige Karten heißen mehr Karten insgesamt. Am meisten Karten sind es bei <InlineMath math="27" /> Karten zu <InlineMath math="7" /> Euro und einer Karte zu <InlineMath math="11" /> Euro: **höchstens <InlineMath math="28" /> Karten**.
+<BlockMath math="7 \cdot 27 + 11 \cdot 1 = 189 + 11 = 200\text{ €}" />
 
-# Warum die anderen Antworten falsch sind
+Die Summe stimmt auf den Euro genau.
 
-- <InlineMath math="20" /> ist die **kleinste** mögliche Anzahl, <InlineMath math="5+15" />.
-- <InlineMath math="24" /> ist die mittlere Lösung <InlineMath math="16+8" />.
-- <InlineMath math="29" /> rundet <InlineMath math="\frac{200}{7}\approx28{,}6" /> auf, als gäbe es nur Karten zu <InlineMath math="7" /> Euro. <InlineMath math="200" /> ist aber nicht durch <InlineMath math="7" /> teilbar.
-- <InlineMath math="18" /> ist <InlineMath math="\frac{200}{11}" /> abgerundet, also nur Karten zu <InlineMath math="11" /> Euro. Auch das geht nicht genau auf.
-- <InlineMath math="27" /> zählt nur die Karten zu <InlineMath math="7" /> Euro der besten Lösung und vergisst die eine Karte zu <InlineMath math="11" /> Euro.
+## Falsche Antworten prüfen
+
+Die übrigen Antworten stammen aus **nicht maximalen Lösungen oder bloßem Runden**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="20" /> | Ist die kleinstmögliche Kartenzahl aus <InlineMath math="5 + 15" />. |
+| <InlineMath math="24" /> | Ist die mittlere Lösung <InlineMath math="16 + 8" />, noch nicht das Maximum. |
+| <InlineMath math="29" /> | Rundet <InlineMath math="\frac{200}{7} \approx 28{,}6" /> auf, doch schon <InlineMath math="29" /> günstige Karten kosten <InlineMath math="203\text{ €}" />. |
+| <InlineMath math="18" /> | Rundet <InlineMath math="\frac{200}{11}" /> ab, doch <InlineMath math="18 \cdot 11 = 198\text{ €}" /> verfehlt <InlineMath math="200\text{ €}" />. |
+| <InlineMath math="27" /> | Zählt nur die <InlineMath math="7\text{ €}" />-Karten und vergisst die eine <InlineMath math="11\text{ €}" />-Karte. |
+
+# Antwort
+
+Das Kino hat an diesem Abend höchstens **<InlineMath math="28" />** Karten verkauft.

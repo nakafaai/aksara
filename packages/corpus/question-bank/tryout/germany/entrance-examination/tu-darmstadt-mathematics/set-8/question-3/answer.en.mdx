@@ -1,26 +1,41 @@
-# Triangle <InlineMath math="ABS" /> is equilateral
+# Given
 
-<InlineMath math="S" /> lies on the arc about <InlineMath math="A" />, so <InlineMath math="\overline{AS}=6" />. It also lies on the arc about <InlineMath math="B" />, so <InlineMath math="\overline{BS}=6" />. Together with <InlineMath math="\overline{AB}=6" />, triangle <InlineMath math="ABS" /> is **equilateral**.
+Square <InlineMath math="ABCD" /> has **side length <InlineMath math="6\text{ cm}" />**.
 
-# The height above <InlineMath math="\overline{AB}" />
+Two circular arcs (*Kreisbögen*) of radius <InlineMath math="6\text{ cm}" /> centered at <InlineMath math="A" /> and <InlineMath math="B" /> intersect inside the square at point <InlineMath math="S" />.
 
-The height of an equilateral triangle with side <InlineMath math="6" /> halves the base. By Pythagoras:
+# Asked
 
-<BlockMath math="h=\sqrt{6^2-3^2}=\sqrt{27}=3\sqrt3" />
+How far is point <InlineMath math="S" /> from the top side <InlineMath math="\overline{CD}" />?
 
-So <InlineMath math="S" /> lies **<InlineMath math="3\sqrt3" /> above the side <InlineMath math="\overline{AB}" />**.
+# Solution
+
+Picture placing a compass spike at corner <InlineMath math="A" /> opened to the full side of the square (<InlineMath math="6\text{ cm}" />), then doing the exact same from corner <InlineMath math="B" />. Where the two arcs meet at <InlineMath math="S" />, that point is automatically **<InlineMath math="6\text{ cm}" /> from both <InlineMath math="A" /> and <InlineMath math="B" />**, locking in an equilateral triangle sitting on the bottom edge.
+
+> Two arcs with radius equal to the square's side form an equilateral triangle on the base, so the distance to the opposite edge is the side minus that triangle's height.
+
+## Recognizing the equilateral triangle and its height
+
+Because <InlineMath math="S" /> lies on both radius-<InlineMath math="6\text{ cm}" /> arcs, <InlineMath math="\overline{AS} = 6" /> and <InlineMath math="\overline{BS} = 6" />. Together with <InlineMath math="\overline{AB} = 6" />, **triangle <InlineMath math="ABS" /> is equilateral**.
+
+The altitude from <InlineMath math="S" /> drops straight down to the midpoint of <InlineMath math="\overline{AB}" />, splitting the base into two <InlineMath math="3\text{ cm}" /> halves. By the Pythagorean theorem:
+
+<BlockMath math="h = \sqrt{6^2 - 3^2} = \sqrt{36 - 9} = \sqrt{27} = 3\sqrt{3}" />
+
+So <InlineMath math="S" /> sits <InlineMath math="3\sqrt{3}\text{ cm}" /> above the bottom side <InlineMath math="\overline{AB}" />.
 
 <MathVisual
-  title={<>Where the arcs meet</>}
-  description={<>The square <InlineMath math="ABCD" /> with side <InlineMath math="6" />. The arcs about <InlineMath math="A" /> and about <InlineMath math="B" /> meet at <InlineMath math="S" />. Triangle <InlineMath math="ABS" /> is equilateral with height <InlineMath math="3\sqrt3" />. From <InlineMath math="S" /> to the top side <InlineMath math="\overline{CD}" /> the short piece <InlineMath math="6-3\sqrt3" /> is left.</>}
+  title={<>Intersection of the two arcs</>}
+  description={<>Square <InlineMath math="ABCD" /> of side <InlineMath math="6" /> holds two arcs of radius <InlineMath math="6" /> centered at <InlineMath math="A" /> and <InlineMath math="B" /> meeting at <InlineMath math="S" />. Equilateral triangle <InlineMath math="ABS" /> reaches height <InlineMath math="3\sqrt{3}" />, leaving a narrow gap of <InlineMath math="6 - 3\sqrt{3}" /> to the top edge <InlineMath math="\overline{CD}" />.</>}
+  footer={<>Triangle height <InlineMath math="3\sqrt{3}\text{ cm}" /> leaves a gap of <InlineMath math="(6 - 3\sqrt{3})\text{ cm}" /> to the top edge.</>}
   labels={{
     a: <><InlineMath math="A" /></>,
     b: <><InlineMath math="B" /></>,
     c: <><InlineMath math="C" /></>,
     d: <><InlineMath math="D" /></>,
     s: <><InlineMath math="S" /></>,
-    gap: <><InlineMath math="6-3\sqrt3" /></>,
-    h: <><InlineMath math="3\sqrt3" /></>,
+    gap: <><InlineMath math="6 - 3\sqrt{3}" /></>,
+    h: <><InlineMath math="3\sqrt{3}" /></>,
   }}
   scene={{
     space: "plane",
@@ -55,18 +70,28 @@ So <InlineMath math="S" /> lies **<InlineMath math="3\sqrt3" /> above the side <
   }}
 />
 
-# The distance to the opposite side
+The sketch makes it clear that <InlineMath math="S" /> sits very close to the top side <InlineMath math="\overline{CD}" />.
 
-The side <InlineMath math="\overline{CD}" /> is <InlineMath math="6" /> above <InlineMath math="\overline{AB}" />. You want **what's left up to it**:
+## Subtracting the height from the full side
 
-<BlockMath math="6-3\sqrt3\approx6-5.196=0.804" />
+Since <InlineMath math="\overline{CD}" /> runs parallel to <InlineMath math="\overline{AB}" /> at height <InlineMath math="6\text{ cm}" />, **the remaining distance to the top side** is:
 
-<InlineMath math="S" /> is <InlineMath math="(6-3\sqrt3)\text{ cm}" /> from <InlineMath math="\overline{CD}" />.
+<BlockMath math="d = 6 - 3\sqrt{3} \approx 6 - 5.196 = 0.804\text{ cm}" />
 
-# Why the other answers are wrong
+A narrow gap just under <InlineMath math="1\text{ cm}" /> matches the drawing.
 
-- <InlineMath math="3\sqrt3\text{ cm}" /> is **the distance to the wrong side**, to <InlineMath math="\overline{AB}" /> instead of <InlineMath math="\overline{CD}" />.
-- <InlineMath math="3\text{ cm}" /> is the distance from <InlineMath math="S" /> to the sides <InlineMath math="\overline{AD}" /> and <InlineMath math="\overline{BC}" />.
-- <InlineMath math="(6-3\sqrt2)\text{ cm}" /> uses half the square's diagonal, <InlineMath math="3\sqrt2" />, as the height.
-- <InlineMath math="(3\sqrt3-3)\text{ cm}" /> subtracts half the side instead of subtracting the height from the whole side.
-- <InlineMath math="(6-2\sqrt3)\text{ cm}" /> confuses the height <InlineMath math="3\sqrt3" /> with the distance <InlineMath math="2\sqrt3" /> from the centroid of triangle <InlineMath math="ABS" /> to its corner <InlineMath math="S" />.
+## Checking the distractors
+
+See how the wrong choices measure **the distance to the wrong edge or swap the radical**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="3\sqrt{3}\text{ cm}" /> | Distance to the bottom edge <InlineMath math="\overline{AB}" />, not to <InlineMath math="\overline{CD}" />. |
+| <InlineMath math="3\text{ cm}" /> | Distance from <InlineMath math="S" /> to the left side <InlineMath math="\overline{AD}" /> and right side <InlineMath math="\overline{BC}" />. |
+| <InlineMath math="(6 - 3\sqrt{2})\text{ cm}" /> | Uses half a square diagonal <InlineMath math="3\sqrt{2}" /> instead of the equilateral height. |
+| <InlineMath math="(3\sqrt{3} - 3)\text{ cm}" /> | Subtracts half the side <InlineMath math="3" /> rather than subtracting the height from the full side <InlineMath math="6" />. |
+| <InlineMath math="(6 - 2\sqrt{3})\text{ cm}" /> | Confuses the full altitude <InlineMath math="3\sqrt{3}" /> with the centroid-to-vertex length <InlineMath math="2\sqrt{3}" />. |
+
+# Answer
+
+Point <InlineMath math="S" /> is **<InlineMath math="(6 - 3\sqrt{3})\text{ cm}" />** away from side <InlineMath math="\overline{CD}" />.

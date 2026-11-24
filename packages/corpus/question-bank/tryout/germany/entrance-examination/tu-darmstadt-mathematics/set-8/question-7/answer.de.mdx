@@ -1,28 +1,47 @@
-# Was <InlineMath math="f^{-1}(12)" /> bedeutet
+# Gegeben
 
-<InlineMath math="f^{-1}(12)" /> ist die Zahl <InlineMath math="x" /> aus dem betrachteten Bereich, für die **<InlineMath math="f(x)=12" /> gilt**. Du musst also keine Umkehrfunktion aufstellen, sondern eine Gleichung lösen:
+Die quadratische Funktion <InlineMath math="f" /> lautet:
+
+<BlockMath math="f(x) = x^2 - 6x + 5" />
+
+Ihr Definitionsbereich ist **auf den rechten Ast <InlineMath math="x \ge 3" /> eingeschränkt**, sodass dort eine Umkehrfunktion <InlineMath math="f^{-1}" /> existiert.
+
+# Gesucht
+
+Welchen Wert hat <InlineMath math="f^{-1}(12)" />?
+
+# Lösung
+
+Eine Umkehrfunktion lässt die Funktionsmaschine einfach rückwärts laufen: Statt <InlineMath math="12" /> einzusetzen, fragst du, **welches <InlineMath math="x" /> den Funktionswert <InlineMath math="12" /> erzeugt**. Du brauchst die allgemeine Formel für <InlineMath math="f^{-1}(y)" /> gar nicht aufzustellen, sondern löst direkt <InlineMath math="f(x) = 12" /> und behältst die einzige Lösung im Bereich <InlineMath math="x \ge 3" />.
+
+> Um einen einzelnen Wert der Umkehrfunktion zu bestimmen, löst du die Rückwärtsgleichung und wählst die einzige Lösung im vorgegebenen Definitionsbereich.
+
+## Die Rückwärtsgleichung mit quadratischer Ergänzung lösen
+
+Setze <InlineMath math="f(x) = 12" /> und forme **per quadratischer Ergänzung** um:
 
 <BlockMath math="\begin{aligned}
-x^2-6x+5&=12 \\
-(x-3)^2-9+5&=12 \\
-(x-3)^2&=16
+x^2 - 6x + 5 &= 12 \\
+(x - 3)^2 - 9 + 5 &= 12 \\
+(x - 3)^2 &= 16
 \end{aligned}" />
 
-Also ist <InlineMath math="x-3=4" /> oder <InlineMath math="x-3=-4" />, das heißt <InlineMath math="x=7" /> oder <InlineMath math="x=-1" />.
+Wurzelziehen liefert <InlineMath math="x - 3 = 4" /> oder <InlineMath math="x - 3 = -4" />, also die beiden Kandidaten <InlineMath math="x = 7" /> und <InlineMath math="x = -1" />.
 
-# Der Bereich wählt die Lösung aus
+## Den gültigen Ast am Graphen ablesen
 
-Die Funktion wird nur für <InlineMath math="x\ge3" /> betrachtet. Nur dort ist sie umkehrbar, weil **jeder Funktionswert dort genau einmal vorkommt**. Von den beiden Lösungen liegt nur <InlineMath math="x=7" /> in diesem Bereich:
+Die Parabel hat ihren Scheitel bei <InlineMath math="(3 \mid -4)" />. Weil der Definitionsbereich **auf <InlineMath math="x \ge 3" /> begrenzt ist**, fällt der linke Ast weg und nur <InlineMath math="x = 7" /> bleibt übrig.
 
 <MathVisual
   title={<>Nur der rechte Ast zählt</>}
-  description={<>Die Parabel <InlineMath math="y=x^2-6x+5" /> mit dem Scheitel <InlineMath math="(3\mid-4)" />. Der rechte Ast für <InlineMath math="x\ge3" /> ist durchgezogen, der linke gestrichelt. Die Gerade <InlineMath math="y=12" /> trifft den rechten Ast in <InlineMath math="(7\mid12)" /> und den linken in <InlineMath math="(-1\mid12)" />, der nicht zum betrachteten Bereich gehört.</>}
+  description={<>Die Parabel <InlineMath math="y = x^2 - 6x + 5" /> hat den Scheitel <InlineMath math="(3 \mid -4)" />. Der rechte Ast für <InlineMath math="x \ge 3" /> ist durchgezogen, der ausgeschlossene linke Ast gestrichelt. Die Gerade <InlineMath math="y = 12" /> trifft den gültigen Ast in <InlineMath math="(7 \mid 12)" /> und den ausgeschlossenen Ast in <InlineMath math="(-1 \mid 12)" />.</>}
+  footer={<>Der Bereich <InlineMath math="x \ge 3" /> wählt <InlineMath math="(7 \mid 12)" /> und streicht <InlineMath math="(-1 \mid 12)" />.</>}
   labels={{
-    key: <><InlineMath math="(7\mid12)" /></>,
-    bad: <><InlineMath math="(-1\mid12)" /></>,
-    u: <><InlineMath math="x\ge3" /></>,
-    o: <>nicht betrachtet</>,
-    t: <><InlineMath math="y=12" /></>,
+    key: <><InlineMath math="(7 \mid 12)" /></>,
+    bad: <><InlineMath math="(-1 \mid 12)" /></>,
+    u: <><InlineMath math="x \ge 3" /></>,
+    o: <>ausgeschlossen</>,
+    t: <><InlineMath math="y = 12" /></>,
   }}
   scene={{
     space: "plane",
@@ -50,12 +69,20 @@ Die Funktion wird nur für <InlineMath math="x\ge3" /> betrachtet. Nur dort ist 
   }}
 />
 
-Probe: <InlineMath math="f(7)=49-42+5=12" />. Es gilt **<InlineMath math="f^{-1}(12)=7" />**.
+Probe: Einsetzen von <InlineMath math="x = 7" /> ergibt <InlineMath math="49 - 42 + 5" />, also genau <InlineMath math="12" />, und <InlineMath math="7 \ge 3" /> ist erfüllt.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="-1" /> löst <InlineMath math="f(x)=12" /> auf dem **linken Ast**, der nicht zum betrachteten Bereich gehört.
-- <InlineMath math="7" /> oder <InlineMath math="-1" /> übersieht, dass eine Umkehrfunktion jedem Wert genau eine Zahl zuordnet.
-- <InlineMath math="77" /> ist <InlineMath math="f(12)=144-72+5" />, also der Funktionswert statt des Urbilds.
-- <InlineMath math="\frac1{77}" /> verwechselt <InlineMath math="f^{-1}" /> mit dem Kehrwert <InlineMath math="\frac{1}{f(12)}" />.
-- <InlineMath math="3+\sqrt{12}" /> vergisst beim Ergänzen die Zahlen <InlineMath math="-9+5" />: aus <InlineMath math="(x-3)^2=12" /> statt <InlineMath math="(x-3)^2=16" />.
+Jede falsche Auswahl **verwechselt die Schreibweise <InlineMath math="f^{-1}" /> oder ignoriert die Bereichsgrenze**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="-1" /> | Liegt auf dem ausgeschlossenen linken Ast außerhalb von <InlineMath math="x \ge 3" />. |
+| <InlineMath math="7" /> oder <InlineMath math="-1" /> | Vergisst, dass eine Umkehrfunktion genau einen eindeutigen Wert liefert. |
+| <InlineMath math="77" /> | Berechnet vorwärts <InlineMath math="f(12) = 144 - 72 + 5" /> statt rückwärts. |
+| <InlineMath math="\frac{1}{77}" /> | Verwechselt die Umkehrfunktion <InlineMath math="f^{-1}" /> mit dem Kehrwert <InlineMath math="\frac{1}{f(12)}" />. |
+| <InlineMath math="3 + \sqrt{12}" /> | Vergisst <InlineMath math="-9 + 5" /> beim Ergänzen und löst <InlineMath math="(x - 3)^2 = 12" />. |
+
+# Antwort
+
+Der Wert von <InlineMath math="f^{-1}(12)" /> ist **<InlineMath math="7" />**.

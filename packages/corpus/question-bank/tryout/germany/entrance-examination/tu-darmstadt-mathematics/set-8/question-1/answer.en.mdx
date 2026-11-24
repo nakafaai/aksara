@@ -1,28 +1,49 @@
-# Split the expression
+# Given
 
-The difference of squares splits the expression into **one known and one unknown bracket**:
+For a real number <InlineMath math="x > 1" />, we know **the sum with its reciprocal**:
 
-<BlockMath math="x^2-\frac1{x^2}=\left(x+\frac1x\right)\left(x-\frac1x\right)=3\left(x-\frac1x\right)" />
+<BlockMath math="x + \frac{1}{x} = 3" />
 
-# Find the difference through its square
+# Asked
 
-Square the difference and use the known sum. The two squares **differ only in the mixed term** <InlineMath math="\pm2\cdot x\cdot\frac1x=\pm2" />:
+What is the exact value of this difference of squares?
 
-<BlockMath math="\left(x-\frac1x\right)^2=\left(x+\frac1x\right)^2-4=9-4=5" />
+<BlockMath math="x^2 - \frac{1}{x^2}" />
 
-So <InlineMath math="x-\frac1x=\sqrt5" /> or <InlineMath math="x-\frac1x=-\sqrt5" />.
+# Solution
 
-# The condition <InlineMath math="x>1" /> decides the sign
+You do not need to solve a quadratic for <InlineMath math="x" /> and square ugly roots. Look at the target: <InlineMath math="x^2 - x^{-2}" /> is a **difference of two squares** that splits neatly into a sum times a difference. You already hold the sum, so you only need the difference via its square.
 
-For <InlineMath math="x>1" />, <InlineMath math="\frac1x<1<x" />, so **<InlineMath math="x-\frac1x" /> is positive**. That rules out <InlineMath math="-\sqrt5" />:
+> Difference of squares splits the target into sum times difference, and the size condition locks in the unique sign of the square root.
+
+## Factoring the target into sum times difference
+
+Expand the expression using **the difference of squares pattern**:
+
+<BlockMath math="x^2 - \frac{1}{x^2} = \left(x + \frac{1}{x}\right)\left(x - \frac{1}{x}\right) = 3\left(x - \frac{1}{x}\right)" />
+
+The only missing piece is <InlineMath math="x - \frac{1}{x}" />.
+
+## Finding the difference through its square
+
+Compare the square of the sum and the square of the difference: they **differ by exactly four** because the cross term cancels <InlineMath math="x" /> completely:
+
+<BlockMath math="\left(x - \frac{1}{x}\right)^2 = \left(x + \frac{1}{x}\right)^2 - 4 = 3^2 - 4 = 5" />
+
+This leaves two candidates: <InlineMath math="\sqrt{5}" /> and <InlineMath math="-\sqrt{5}" />.
+
+## Using the size condition to fix the sign
+
+Because we know **<InlineMath math="x" /> is strictly larger than one**, its reciprocal <InlineMath math="\frac{1}{x}" /> is strictly smaller than one. Therefore <InlineMath math="x" /> exceeds <InlineMath math="\frac{1}{x}" />, forcing <InlineMath math="x - \frac{1}{x}" /> to be positive and equal to <InlineMath math="\sqrt{5}" />.
 
 <MathVisual
-  title={<>Two numbers with <InlineMath math="x+\frac1x=3" /></>}
-  description={<>The graph of <InlineMath math="y=x+\frac1x" /> for positive <InlineMath math="x" /> meets the line <InlineMath math="y=3" /> twice: at <InlineMath math="x\approx0.38" />, left of the vertical line <InlineMath math="x=1" />, and at <InlineMath math="x\approx2.62" />, right of it. Only the right point satisfies <InlineMath math="x>1" />.</>}
+  title={<>Two numbers with <InlineMath math="x + \frac{1}{x} = 3" /></>}
+  description={<>The curve <InlineMath math="y = x + \frac{1}{x}" /> for positive <InlineMath math="x" /> meets the line <InlineMath math="y = 3" /> twice: at <InlineMath math="x \approx 0.38" /> left of the vertical wall <InlineMath math="x = 1" />, and at <InlineMath math="x \approx 2.62" /> to its right. Only the right point satisfies <InlineMath math="x > 1" />.</>}
+  footer={<>Condition <InlineMath math="x > 1" /> selects the right point <InlineMath math="x \approx 2.62" />, making the difference positive.</>}
   labels={{
-    small: <><InlineMath math="x\approx0.38" /></>,
-    big: <><InlineMath math="x\approx2.62" /></>,
-    f: <><InlineMath math="x+\frac1x" /></>,
+    small: <><InlineMath math="x \approx 0.38" /></>,
+    big: <><InlineMath math="x \approx 2.62" /></>,
+    f: <><InlineMath math="x + \frac{1}{x}" /></>,
     three: <><InlineMath math="3" /></>,
   }}
   scene={{
@@ -49,14 +70,24 @@ For <InlineMath math="x>1" />, <InlineMath math="\frac1x<1<x" />, so **<InlineMa
   }}
 />
 
-<BlockMath math="x^2-\frac1{x^2}=3\sqrt5" />
+Multiply back to get the final answer:
 
-Check with <InlineMath math="x=\frac{3+\sqrt5}{2}\approx2.618" />: <InlineMath math="x^2\approx6.854" /> and <InlineMath math="\frac1{x^2}\approx0.146" />, a difference of about <InlineMath math="6.708\approx3\sqrt5" />. The value is **exactly <InlineMath math="3\sqrt5" />**.
+<BlockMath math="x^2 - \frac{1}{x^2} = 3 \cdot \sqrt{5} = 3\sqrt{5}" />
 
-# Why the other answers are wrong
+Quick decimal check: for <InlineMath math="x \approx 2.618" />, we have <InlineMath math="x^2 \approx 6.854" /> and <InlineMath math="x^{-2} \approx 0.146" />, whose difference <InlineMath math="6.708" /> matches <InlineMath math="3\sqrt{5}" /> closely.
 
-- <InlineMath math="-3\sqrt5" /> belongs to the other solution, <InlineMath math="x\approx0.38" />. It **doesn't satisfy <InlineMath math="x>1" />**.
-- <InlineMath math="3\sqrt5" /> or <InlineMath math="-3\sqrt5" /> overlooks that the condition <InlineMath math="x>1" /> fixes the sign.
-- <InlineMath math="7" /> is <InlineMath math="x^2+\frac1{x^2}=9-2" />, the sum of the squares instead of their difference.
-- <InlineMath math="\sqrt5" /> is only the difference <InlineMath math="x-\frac1x" />. The factor <InlineMath math="x+\frac1x=3" /> is missing.
-- <InlineMath math="3\sqrt7" /> squares wrongly: <InlineMath math="\left(x-\frac1x\right)^2=9-2=7" /> instead of <InlineMath math="9-4=5" />.
+## Checking the distractors
+
+See how each wrong answer **ignores the sign condition or subtracts the wrong middle term**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="-3\sqrt{5}" /> | Belongs to the left root <InlineMath math="x \approx 0.38" />, which violates <InlineMath math="x > 1" />. |
+| <InlineMath math="3\sqrt{5}" /> or <InlineMath math="-3\sqrt{5}" /> | Misses that <InlineMath math="x > 1" /> uniquely determines the positive sign. |
+| <InlineMath math="7" /> | Gives the sum of squares <InlineMath math="x^2 + \frac{1}{x^2} = 9 - 2" />, not the difference. |
+| <InlineMath math="\sqrt{5}" /> | Computes only <InlineMath math="x - \frac{1}{x}" /> and forgets the factor <InlineMath math="3" />. |
+| <InlineMath math="3\sqrt{7}" /> | Subtracts <InlineMath math="2" /> instead of <InlineMath math="4" /> when converting the squared sum into the squared difference. |
+
+# Answer
+
+The exact value of the expression is **<InlineMath math="3\sqrt{5}" />**.

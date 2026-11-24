@@ -1,28 +1,47 @@
-# Make the bases equal
+# Given
 
-Write both sides as powers of <InlineMath math="\frac13" />. Since <InlineMath math="\frac19=\left(\frac13\right)^2" />, <InlineMath math="\left(\frac19\right)^x=\left(\frac13\right)^{2x}" />. Now **both sides are powers of the same base**:
+We are given an **exponential inequality** (*Ungleichung*) whose bases are both fractions below one:
 
-<BlockMath math="\left(\frac13\right)^{x^2-8}\le\left(\frac13\right)^{2x}" />
+<BlockMath math="\left(\frac{1}{3}\right)^{x^2 - 8} \le \left(\frac{1}{9}\right)^x" />
 
-# A base below <InlineMath math="1" /> flips the sign
+# Asked
 
-The function <InlineMath math="t\mapsto\left(\frac13\right)^t" /> is strictly decreasing: a larger exponent gives a smaller value. When you pass to the exponents, **the inequality sign flips**:
+Determine all real numbers <InlineMath math="x" /> that satisfy this inequality.
+
+# Solution
+
+If you keep cutting a cake into thirds over and over, more cuts (a larger exponent) leave a smaller piece. With base <InlineMath math="\frac{1}{3}" />, **a larger exponent produces a smaller value**. Once both sides share base <InlineMath math="\frac{1}{3}" />, dropping the base must **reverse the inequality sign**.
+
+> When comparing powers with the same base between zero and one, the exponents always stand in the opposite inequality order from the powers themselves.
+
+## Matching the base on both sides
+
+Rewrite <InlineMath math="\frac{1}{9}" /> as the square of <InlineMath math="\frac{1}{3}" /> so both sides share **the same base <InlineMath math="\frac{1}{3}" />**:
+
+<BlockMath math="\left(\frac{1}{9}\right)^x = \left(\left(\frac{1}{3}\right)^2\right)^x = \left(\frac{1}{3}\right)^{2x} \quad \Longrightarrow \quad \left(\frac{1}{3}\right)^{x^2 - 8} \le \left(\frac{1}{3}\right)^{2x}" />
+
+## Reversing the inequality on the exponents
+
+Since the exponential function with base <InlineMath math="\frac{1}{3}" /> is strictly decreasing, **<InlineMath math="\le" /> flips to <InlineMath math="\ge" />** when moving to the exponents:
 
 <BlockMath math="\begin{aligned}
-x^2-8&\ge2x \\
-x^2-2x-8&\ge0 \\
-(x-4)(x+2)&\ge0
+x^2 - 8 &\ge 2x \\
+x^2 - 2x - 8 &\ge 0 \\
+(x - 4)(x + 2) &\ge 0
 \end{aligned}" />
 
-# Where the product isn't negative
+## Reading the nonnegative intervals from the parabola
+
+The upward-opening parabola <InlineMath math="x^2 - 2x - 8" /> crosses zero at <InlineMath math="-2" /> and <InlineMath math="4" />, so it stays **nonnegative on its two outer wings**.
 
 <MathVisual
   title={<>Where the exponent inequality holds</>}
-  description={<>The parabola <InlineMath math="y=x^2-2x-8" /> has zeros <InlineMath math="-2" /> and <InlineMath math="4" />. It lies on or above the <InlineMath math="x" />-axis to the left of <InlineMath math="-2" /> and to the right of <InlineMath math="4" />. Exactly these two ranges are marked below the axis.</>}
+  description={<>The parabola <InlineMath math="y = x^2 - 2x - 8" /> crosses the <InlineMath math="x" />-axis at <InlineMath math="-2" /> and <InlineMath math="4" />. It sits on or above the axis to the left of <InlineMath math="-2" /> and to the right of <InlineMath math="4" />, matching the two highlighted solution rays.</>}
+  footer={<>The parabola stays nonnegative on the left wing up to <InlineMath math="-2" /> and the right wing from <InlineMath math="4" />.</>}
   labels={{
     a: <><InlineMath math="-2" /></>,
     b: <><InlineMath math="4" /></>,
-    g: <><InlineMath math="x^2-2x-8" /></>,
+    g: <><InlineMath math="x^2 - 2x - 8" /></>,
   }}
   scene={{
     space: "plane",
@@ -48,14 +67,22 @@ x^2-2x-8&\ge0 \\
   }}
 />
 
-The product isn't negative when **both factors have the same sign** or one is zero: for <InlineMath math="x\le-2" /> or <InlineMath math="x\ge4" />.
+Quick check at <InlineMath math="x = 0" />: the left side is <InlineMath math="3^8" /> and the right side is <InlineMath math="1" />. Since <InlineMath math="3^8 \le 1" /> is false, the middle interval is excluded, confirming the two outer wings.
 
-Check <InlineMath math="x=0" />: the left side is <InlineMath math="\left(\frac13\right)^{-8}=3^8" />, the right side <InlineMath math="1" />, and <InlineMath math="3^8\le1" /> is false. The inequality holds for <InlineMath math="x\le-2" /> or <InlineMath math="x\ge4" />.
+## Checking the distractors
 
-# Why the other answers are wrong
+Notice how each wrong choice **forgets to flip the sign or mishandles the exponent**:
 
-- <InlineMath math="-2\le x\le4" /> **doesn't flip the sign**, as if the base were greater than <InlineMath math="1" />.
-- <InlineMath math="x\le-4" /> or <InlineMath math="x\ge2" /> comes from <InlineMath math="\left(\frac19\right)^x=\left(\frac13\right)^{-2x}" />, a sign slip in the exponent.
-- <InlineMath math="-4\le x\le2" /> makes both mistakes: wrong exponent and no flip.
-- <InlineMath math="x\ge4" /> loses the range to the left of <InlineMath math="-2" />.
-- <InlineMath math="x\le-2\sqrt2" /> or <InlineMath math="x\ge2\sqrt2" /> only looks at <InlineMath math="x^2-8\ge0" /> and forgets the right side.
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="-2 \le x \le 4" /> | Fails to reverse the inequality sign, as if the base were greater than <InlineMath math="1" />. |
+| <InlineMath math="x \le -4" /> or <InlineMath math="x \ge 2" /> | Rewrites <InlineMath math="\left(\frac{1}{9}\right)^x" /> wrongly as <InlineMath math="\left(\frac{1}{3}\right)^{-2x}" />. |
+| <InlineMath math="-4 \le x \le 2" /> | Makes both mistakes at once: wrong exponent sign and unflipped inequality. |
+| <InlineMath math="x \ge 4" /> | Drops the entire left branch <InlineMath math="x \le -2" />. |
+| <InlineMath math="x \le -2\sqrt{2}" /> or <InlineMath math="x \ge 2\sqrt{2}" /> | Solves only <InlineMath math="x^2 - 8 \ge 0" /> while ignoring the right-hand <InlineMath math="2x" />. |
+
+# Answer
+
+All real numbers <InlineMath math="x" /> satisfying the inequality are:
+
+<BlockMath math="x \le -2 \qquad \text{or} \qquad x \ge 4" />

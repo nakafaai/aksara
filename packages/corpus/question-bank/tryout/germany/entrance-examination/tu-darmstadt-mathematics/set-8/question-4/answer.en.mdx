@@ -1,29 +1,50 @@
-# The area from the coordinates
+# Given
 
-If one corner is at the origin, the triangle with the other corners <InlineMath math="(x_1\mid y_1)" /> and <InlineMath math="(x_2\mid y_2)" /> has area <InlineMath math="\frac12\left|x_1y_2-x_2y_1\right|" />. **The absolute value matters**, because without it the expression can be negative, depending on the orientation:
+A triangle has vertices at:
 
-<BlockMath math="A=\frac12\left|6\cdot6-k\cdot2\right|=\frac12\left|36-2k\right|" />
+<BlockMath math="A(0 \mid 0), \qquad B(6 \mid 2), \qquad C(k \mid 6)" />
 
-# Solve the absolute value equation
+Its **area (*Flächeninhalt*) equals <InlineMath math="15" />**, and <InlineMath math="k" /> is a real number.
 
-<BlockMath math="\frac12\left|36-2k\right|=15\quad\Longleftrightarrow\quad \left|36-2k\right|=30" />
+# Asked
 
-An absolute value is <InlineMath math="30" /> when **what's inside is <InlineMath math="30" /> or <InlineMath math="-30" />**:
+Which values can <InlineMath math="k" /> take?
+
+# Solution
+
+Picture segment <InlineMath math="\overline{AB}" /> fixed on the plane while vertex <InlineMath math="C(k \mid 6)" /> slides freely along the horizontal rail <InlineMath math="y = 6" />. That rail crosses the extended line <InlineMath math="AB" /> at one spot where the triangle flattens to area zero. Sliding <InlineMath math="C" /> away to **either the left or the right** grows the area symmetrically, so there must be **two distinct positions for <InlineMath math="C" />** with area <InlineMath math="15" />.
+
+> The coordinate area formula always carries an absolute value, so a given area produces two valid vertices on opposite sides of the base line.
+
+## Setting up the area formula with absolute value
+
+With one vertex at the origin <InlineMath math="(0 \mid 0)" />, the area formed with <InlineMath math="(x_1 \mid y_1)" /> and <InlineMath math="(x_2 \mid y_2)" /> is half the absolute determinant. **Keeping the absolute value bars is essential** to capture both sides of line <InlineMath math="AB" />:
+
+<BlockMath math="A = \frac{1}{2}\lvert 6 \cdot 6 - k \cdot 2 \rvert = \frac{1}{2}\lvert 36 - 2k \rvert" />
+
+## Solving the absolute value equation
+
+Set the area equal to <InlineMath math="15" /> and **split into both sign branches**:
+
+<BlockMath math="\frac{1}{2}\lvert 36 - 2k \rvert = 15 \quad \Longleftrightarrow \quad \lvert 36 - 2k \rvert = 30" />
 
 <BlockMath math="\begin{aligned}
-36-2k=30&\quad\Longrightarrow\quad k=3 \\
-36-2k=-30&\quad\Longrightarrow\quad k=33
+36 - 2k = 30 &\quad \Longrightarrow \quad 2k = 6 \quad \Longrightarrow \quad k = 3 \\
+36 - 2k = -30 &\quad \Longrightarrow \quad 2k = 66 \quad \Longrightarrow \quad k = 33
 \end{aligned}" />
+
+See both area-<InlineMath math="15" /> triangles along the horizontal rail <InlineMath math="y = 6" /> below.
 
 <MathVisual
   title={<>Two positions for <InlineMath math="C" /></>}
-  description={<>The points <InlineMath math="A(0\mid0)" /> and <InlineMath math="B(6\mid2)" /> and the horizontal line <InlineMath math="y=6" /> that carries <InlineMath math="C" />. Two triangles have area <InlineMath math="15" />: one with <InlineMath math="C_1(3\mid6)" /> on the left and a long, flat one with <InlineMath math="C_2(33\mid6)" /> far to the right.</>}
+  description={<>Points <InlineMath math="A(0 \mid 0)" /> and <InlineMath math="B(6 \mid 2)" /> with the horizontal line <InlineMath math="y = 6" /> carrying <InlineMath math="C" />. Two triangles share area <InlineMath math="15" />: an upright one with <InlineMath math="C_1(3 \mid 6)" /> on the left and a long, slim one with <InlineMath math="C_2(33 \mid 6)" /> far to the right.</>}
+  footer={<>Both <InlineMath math="C_1(3 \mid 6)" /> and <InlineMath math="C_2(33 \mid 6)" /> produce an exact area of <InlineMath math="15" />.</>}
   labels={{
     a: <><InlineMath math="A" /></>,
     b: <><InlineMath math="B" /></>,
-    c1: <><InlineMath math="C_1(3\mid6)" /></>,
-    c2: <><InlineMath math="C_2(33\mid6)" /></>,
-    l: <><InlineMath math="y=6" /></>,
+    c1: <><InlineMath math="C_1(3 \mid 6)" /></>,
+    c2: <><InlineMath math="C_2(33 \mid 6)" /></>,
+    l: <><InlineMath math="y = 6" /></>,
   }}
   scene={{
     space: "plane",
@@ -52,14 +73,20 @@ An absolute value is <InlineMath math="30" /> when **what's inside is <InlineMat
   }}
 />
 
-# Check
+Both checks confirm area <InlineMath math="15" />. Notice also the midpoint <InlineMath math="k = 18" />, exactly where <InlineMath math="C" /> becomes collinear with <InlineMath math="A" /> and <InlineMath math="B" />.
 
-For <InlineMath math="k=3" />, <InlineMath math="\frac12|36-6|=15" />, and for <InlineMath math="k=33" />, <InlineMath math="\frac12|36-66|=15" />. Both values give a real triangle, so **<InlineMath math="k=3" /> or <InlineMath math="k=33" />**.
+## Checking the distractors
 
-# Why the other answers are wrong
+See how the wrong choices **drop one branch or forget the factor of one half**:
 
-- "only <InlineMath math="k=3" />" works without the absolute value and **loses the second position**.
-- "only <InlineMath math="k=33" />" loses the first position.
-- <InlineMath math="k=10.5" /> or <InlineMath math="k=25.5" /> forgets the factor <InlineMath math="\frac12" />: these values come from <InlineMath math="|36-2k|=15" />, and the triangle would have area <InlineMath math="7.5" />.
-- <InlineMath math="k=-3" /> or <InlineMath math="k=3" /> puts the absolute value around <InlineMath math="k" /> instead of around the whole expression.
-- "only <InlineMath math="k=18" />" is the value where <InlineMath math="36-2k=0" />. Then the three points are on one line and there's no triangle.
+| Option | Why it is wrong |
+| --- | --- |
+| only <InlineMath math="k = 3" /> | Drops the absolute value and misses the second triangle on the right. |
+| only <InlineMath math="k = 33" /> | Takes only the negative branch and misses the first triangle on the left. |
+| <InlineMath math="k = 10.5" /> or <InlineMath math="k = 25.5" /> | Forgets the factor <InlineMath math="\frac{1}{2}" /> and solves <InlineMath math="\lvert 36 - 2k \rvert = 15" />, giving area <InlineMath math="7.5" />. |
+| <InlineMath math="k = -3" /> or <InlineMath math="k = 3" /> | Puts the absolute value on <InlineMath math="k" /> alone instead of the entire determinant. |
+| only <InlineMath math="k = 18" /> | Makes <InlineMath math="36 - 2k = 0" />, putting all three points on one line with area zero. |
+
+# Answer
+
+The valid values are **<InlineMath math="k = 3" /> or <InlineMath math="k = 33" />**.

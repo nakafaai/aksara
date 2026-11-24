@@ -1,27 +1,48 @@
-# Erst der Fall ohne quadratisches Glied
+# Gegeben
 
-Für <InlineMath math="a=1" /> fällt <InlineMath math="x^2" /> weg, und es bleibt die Gerade <InlineMath math="f(x)=2x+3" />. **Eine nicht waagerechte Gerade wird irgendwann negativ**, zum Beispiel ist <InlineMath math="f(-2)=-1" />. Also scheidet <InlineMath math="a=1" /> aus.
+Gegeben ist die Funktionsschar mit reellem Parameter <InlineMath math="a" />:
 
-# Bedingungen für eine Parabel
+<BlockMath math="f(x) = (a - 1)x^2 + 2ax + a + 2" />
 
-Für <InlineMath math="a\ne1" /> ist der Graph eine Parabel. Sie liegt genau dann ganz oberhalb der <InlineMath math="x" />-Achse, wenn sie **nach oben geöffnet ist und keine Nullstelle hat**:
+Verlangt wird **strenge Positivität überall**, also <InlineMath math="f(x) > 0" /> für jede reelle Zahl <InlineMath math="x" />.
+
+# Gesucht
+
+Für welche Werte von <InlineMath math="a" /> gilt <InlineMath math="f(x) > 0" /> für alle <InlineMath math="x \in \mathbb{R}" />?
+
+# Lösung
+
+Stell dir den Graphen als Schale über einem flachen Boden (der <InlineMath math="x" />-Achse) vor. Damit die Kurve den Boden nirgends berührt oder durchbricht, braucht sie **zwei Bedingungen gleichzeitig**: Sie muss eine nach oben geöffnete Parabel sein, und ihr tiefster Punkt muss echt über null schweben.
+
+> Eine quadratische Funktion ist genau dann für alle reellen Zahlen streng positiv, wenn ihr Leitkoeffizient positiv und ihre Diskriminante streng negativ ist.
+
+## Den linearen Sonderfall prüfen
+
+Prüfe zuerst den Fall, in dem der <InlineMath math="x^2" />-Term verschwindet, also <InlineMath math="a = 1" />. Dann entsteht die **schräge Gerade** <InlineMath math="f(x) = 2x + 3" />. Jede nicht waagerechte Gerade fällt irgendwann ins Negative (etwa <InlineMath math="f(-2) = -1" />), daher scheidet <InlineMath math="a = 1" /> aus.
+
+## Öffnung und Diskriminante festlegen
+
+Für <InlineMath math="a \ne 1" /> ist der Graph eine Parabel. Sie liegt genau dann vollständig oberhalb der <InlineMath math="x" />-Achse, wenn sie **nach oben geöffnet ist und keine Nullstellen besitzt**:
 
 <BlockMath math="\begin{aligned}
-a-1&>0\quad\Longrightarrow\quad a>1 \\
-D=(2a)^2-4(a-1)(a+2)&=4a^2-4\left(a^2+a-2\right)=-4a+8<0\quad\Longrightarrow\quad a>2
+a - 1 > 0 &\quad \Longrightarrow \quad a > 1 \\
+D = (2a)^2 - 4(a - 1)(a + 2) &= 4a^2 - 4(a^2 + a - 2) = -4a + 8 < 0 \quad \Longrightarrow \quad a > 2
 \end{aligned}" />
 
-# Beide Bedingungen zusammen
+Beide Bedingungen zusammen liefern genau <InlineMath math="a > 2" />.
 
-Beide Bedingungen gelten genau für <InlineMath math="a>2" />. Für <InlineMath math="a=2" /> ist <InlineMath math="D=0" />: Der Graph **berührt die Achse**, und <InlineMath math="f(-2)=0" /> ist nicht positiv.
+## Den Grenzfall im Schaubild prüfen
+
+Vergleiche <InlineMath math="a = 3" /> (sicher schwebend) mit **dem Grenzfall <InlineMath math="a = 2" />**, der die Achse bei <InlineMath math="(-2 \mid 0)" /> gerade berührt.
 
 <MathVisual
-  title={<>Wann der Graph ganz oberhalb liegt</>}
-  description={<>Für <InlineMath math="a=3" /> ist <InlineMath math="f(x)=2x^2+6x+5" /> eine nach oben geöffnete Parabel, die ganz oberhalb der <InlineMath math="x" />-Achse liegt. Für den Grenzwert <InlineMath math="a=2" /> ist <InlineMath math="f(x)=x^2+4x+4=(x+2)^2" />, und der Graph berührt die Achse im Punkt <InlineMath math="(-2\mid0)" />. Dort ist <InlineMath math="f(x)>0" /> verletzt.</>}
+  title={<>Wann der Graph vollständig oberhalb liegt</>}
+  description={<>Für <InlineMath math="a = 3" /> schwebt die Parabel <InlineMath math="f(x) = 2x^2 + 6x + 5" /> vollständig über der <InlineMath math="x" />-Achse. Beim Grenzfall <InlineMath math="a = 2" /> wird die Funktion zu <InlineMath math="(x + 2)^2" /> und berührt die Achse bei <InlineMath math="(-2 \mid 0)" />, wo strenge Positivität scheitert.</>}
+  footer={<>Bei <InlineMath math="a = 2" /> berührt die Kurve die Null bei <InlineMath math="(-2 \mid 0)" />, daher gilt streng <InlineMath math="a > 2" />.</>}
   labels={{
-    g: <><InlineMath math="a=3" /></>,
-    e: <><InlineMath math="a=2" /></>,
-    t: <><InlineMath math="(-2\mid0)" /></>,
+    g: <><InlineMath math="a = 3" /></>,
+    e: <><InlineMath math="a = 2" /></>,
+    t: <><InlineMath math="(-2 \mid 0)" /></>,
   }}
   scene={{
     space: "plane",
@@ -45,12 +66,20 @@ Beide Bedingungen gelten genau für <InlineMath math="a>2" />. Für <InlineMath 
   }}
 />
 
-Es gilt <InlineMath math="f(x)>0" /> für alle <InlineMath math="x" /> genau dann, wenn <InlineMath math="a>2" />.
+Bei <InlineMath math="a = 2" /> gilt <InlineMath math="f(-2) = 0" />, nicht echt größer als null, deshalb bleibt der Randwert <InlineMath math="2" /> ausgeschlossen.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="a>1" /> prüft nur die Öffnung der Parabel. Für <InlineMath math="a=1{,}5" /> ist <InlineMath math="D=2>0" />, und die Parabel **hat Nullstellen**.
-- <InlineMath math="a\ge2" /> nimmt <InlineMath math="a=2" /> mit, wo der Graph die Achse berührt.
-- <InlineMath math="1<a<2" /> dreht die Diskriminantenbedingung um.
-- <InlineMath math="a=1" /> oder <InlineMath math="a>2" /> übersieht, dass die Gerade für <InlineMath math="a=1" /> negative Werte annimmt.
-- <InlineMath math="a<2" /> verwendet nur <InlineMath math="D<0" /> mit falschem Ungleichheitszeichen und ignoriert die Öffnung.
+Sieh nach, welche Bedingung bei **jeder falschen Auswahl** verletzt ist:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="a > 1" /> | Prüft nur die Öffnung nach oben, doch für <InlineMath math="a = 1{,}5" /> ist <InlineMath math="D = 2 > 0" /> und die Parabel schneidet die Achse. |
+| <InlineMath math="a \ge 2" /> | Nimmt <InlineMath math="a = 2" /> mit auf, wo der Graph bei <InlineMath math="x = -2" /> die Null berührt. |
+| <InlineMath math="1 < a < 2" /> | Dreht die Diskriminantenbedingung zu <InlineMath math="D > 0" /> um. |
+| <InlineMath math="a = 1" /> oder <InlineMath math="a > 2" /> | Übersieht, dass die Gerade <InlineMath math="2x + 3" /> für <InlineMath math="a = 1" /> ins Negative läuft. |
+| <InlineMath math="a < 2" /> | Kehrt das Vorzeichen der Diskriminante um und vergisst die Öffnungsrichtung. |
+
+# Antwort
+
+Die Bedingung <InlineMath math="f(x) > 0" /> gilt für alle reellen Zahlen genau für **<InlineMath math="a > 2" />**.

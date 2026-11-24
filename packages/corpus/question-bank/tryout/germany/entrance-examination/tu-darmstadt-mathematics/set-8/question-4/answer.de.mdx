@@ -1,29 +1,50 @@
-# Der Flächeninhalt aus den Koordinaten
+# Gegeben
 
-Liegt eine Ecke im Ursprung, so hat das Dreieck mit den anderen Ecken <InlineMath math="(x_1\mid y_1)" /> und <InlineMath math="(x_2\mid y_2)" /> den Flächeninhalt <InlineMath math="\frac12\left|x_1y_2-x_2y_1\right|" />. **Der Betrag ist wichtig**, weil der Term ohne Betrag je nach Umlaufsinn negativ sein kann:
+Ein Dreieck hat die Eckpunkte:
 
-<BlockMath math="A=\frac12\left|6\cdot6-k\cdot2\right|=\frac12\left|36-2k\right|" />
+<BlockMath math="A(0 \mid 0), \qquad B(6 \mid 2), \qquad C(k \mid 6)" />
 
-# Die Betragsgleichung lösen
+Sein **Flächeninhalt beträgt genau <InlineMath math="15" />**, wobei <InlineMath math="k" /> eine reelle Zahl ist.
 
-<BlockMath math="\frac12\left|36-2k\right|=15\quad\Longleftrightarrow\quad \left|36-2k\right|=30" />
+# Gesucht
 
-Ein Betrag ist <InlineMath math="30" />, wenn **der Inhalt <InlineMath math="30" /> oder <InlineMath math="-30" /> ist**:
+Welche Werte kann die reelle Zahl <InlineMath math="k" /> annehmen?
+
+# Lösung
+
+Stell dir vor, die Grundseite <InlineMath math="\overline{AB}" /> bleibt fest liegen, während die Ecke <InlineMath math="C(k \mid 6)" /> auf der waagerechten Schiene <InlineMath math="y = 6" /> entlanggleitet. An einer Stelle kreuzt diese Schiene die verlängerte Gerade <InlineMath math="AB" />, dort schrumpft der Flächeninhalt auf null. Schiebst du <InlineMath math="C" /> von dort **nach links oder nach rechts**, wächst die Fläche symmetrisch, also gibt es genau **zwei Lagen für <InlineMath math="C" />** mit Inhalt <InlineMath math="15" />.
+
+> Die Koordinatenformel für den Dreiecksflächeninhalt enthält stets Betragsstriche, sodass ein vorgegebener Inhalt zwei Eckpunkte auf beiden Seiten der Grundlinie liefert.
+
+## Flächenformel mit Betrag aufstellen
+
+Liegt eine Ecke im Ursprung <InlineMath math="(0 \mid 0)" />, beträgt der Flächeninhalt mit den übrigen Ecken <InlineMath math="(x_1 \mid y_1)" /> und <InlineMath math="(x_2 \mid y_2)" /> die Hälfte des Determinantenbetrags. **Die Betragsstriche sind entscheidend**, damit beide Seiten von <InlineMath math="AB" /> erfasst werden:
+
+<BlockMath math="A = \frac{1}{2}\lvert 6 \cdot 6 - k \cdot 2 \rvert = \frac{1}{2}\lvert 36 - 2k \rvert" />
+
+## Die Betragsgleichung lösen
+
+Setze den Inhalt gleich <InlineMath math="15" /> und **spalte beide Vorzeichenfälle ab**:
+
+<BlockMath math="\frac{1}{2}\lvert 36 - 2k \rvert = 15 \quad \Longleftrightarrow \quad \lvert 36 - 2k \rvert = 30" />
 
 <BlockMath math="\begin{aligned}
-36-2k=30&\quad\Longrightarrow\quad k=3 \\
-36-2k=-30&\quad\Longrightarrow\quad k=33
+36 - 2k = 30 &\quad \Longrightarrow \quad 2k = 6 \quad \Longrightarrow \quad k = 3 \\
+36 - 2k = -30 &\quad \Longrightarrow \quad 2k = 66 \quad \Longrightarrow \quad k = 33
 \end{aligned}" />
+
+Die Skizze zeigt beide flächengleichen Dreiecke entlang der Geraden <InlineMath math="y = 6" />.
 
 <MathVisual
   title={<>Zwei Lagen für <InlineMath math="C" /></>}
-  description={<>Die Punkte <InlineMath math="A(0\mid0)" /> und <InlineMath math="B(6\mid2)" /> und die waagerechte Gerade <InlineMath math="y=6" />, auf der <InlineMath math="C" /> liegt. Zwei Dreiecke haben den Flächeninhalt <InlineMath math="15" />: eines mit <InlineMath math="C_1(3\mid6)" /> links und ein langes, flaches mit <InlineMath math="C_2(33\mid6)" /> weit rechts.</>}
+  description={<>Die Punkte <InlineMath math="A(0 \mid 0)" /> und <InlineMath math="B(6 \mid 2)" /> sowie die waagerechte Gerade <InlineMath math="y = 6" /> für <InlineMath math="C" />. Zwei Dreiecke haben den Inhalt <InlineMath math="15" />: ein steiles mit <InlineMath math="C_1(3 \mid 6)" /> links und ein langgestrecktes mit <InlineMath math="C_2(33 \mid 6)" /> weit rechts.</>}
+  footer={<>Sowohl <InlineMath math="C_1(3 \mid 6)" /> als auch <InlineMath math="C_2(33 \mid 6)" /> liefern exakt den Inhalt <InlineMath math="15" />.</>}
   labels={{
     a: <><InlineMath math="A" /></>,
     b: <><InlineMath math="B" /></>,
-    c1: <><InlineMath math="C_1(3\mid6)" /></>,
-    c2: <><InlineMath math="C_2(33\mid6)" /></>,
-    l: <><InlineMath math="y=6" /></>,
+    c1: <><InlineMath math="C_1(3 \mid 6)" /></>,
+    c2: <><InlineMath math="C_2(33 \mid 6)" /></>,
+    l: <><InlineMath math="y = 6" /></>,
   }}
   scene={{
     space: "plane",
@@ -52,14 +73,20 @@ Ein Betrag ist <InlineMath math="30" />, wenn **der Inhalt <InlineMath math="30"
   }}
 />
 
-# Probe
+Beide Proben ergeben exakt <InlineMath math="15" />. Genau in der Mitte bei <InlineMath math="k = 18" /> liegen alle drei Punkte auf einer Geraden.
 
-Für <InlineMath math="k=3" /> ist <InlineMath math="\frac12|36-6|=15" />, für <InlineMath math="k=33" /> ist <InlineMath math="\frac12|36-66|=15" />. Beide Werte liefern ein echtes Dreieck, also gilt **<InlineMath math="k=3" /> oder <InlineMath math="k=33" />**.
+## Falsche Antworten prüfen
 
-# Warum die anderen Antworten falsch sind
+Jede falsche Auswahl **verliert einen Fall oder vergisst den Faktor ein halb**:
 
-- „nur <InlineMath math="k=3" />“ rechnet ohne Betrag und **verliert die zweite Lage**.
-- „nur <InlineMath math="k=33" />“ verliert die erste Lage.
-- <InlineMath math="k=10{,}5" /> oder <InlineMath math="k=25{,}5" /> vergisst den Faktor <InlineMath math="\frac12" />: Aus <InlineMath math="|36-2k|=15" /> folgen diese Werte, das Dreieck hätte dann den Flächeninhalt <InlineMath math="7{,}5" />.
-- <InlineMath math="k=-3" /> oder <InlineMath math="k=3" /> setzt den Betrag um <InlineMath math="k" /> statt um den ganzen Term.
-- „nur <InlineMath math="k=18" />“ ist der Wert, für den <InlineMath math="36-2k=0" /> ist. Dann liegen die drei Punkte auf einer Geraden, und es gibt kein Dreieck.
+| Auswahl | Warum falsch |
+| --- | --- |
+| nur <InlineMath math="k = 3" /> | Lässt den Betrag weg und übersieht das zweite Dreieck rechts. |
+| nur <InlineMath math="k = 33" /> | Nimmt nur den negativen Fall und übersieht das erste Dreieck links. |
+| <InlineMath math="k = 10{,}5" /> oder <InlineMath math="k = 25{,}5" /> | Vergisst den Faktor <InlineMath math="\frac{1}{2}" /> und löst <InlineMath math="\lvert 36 - 2k \rvert = 15" />, was nur Inhalt <InlineMath math="7{,}5" /> ergibt. |
+| <InlineMath math="k = -3" /> oder <InlineMath math="k = 3" /> | Setzt den Betrag nur um <InlineMath math="k" /> statt um den gesamten Ausdruck. |
+| nur <InlineMath math="k = 18" /> | Macht <InlineMath math="36 - 2k = 0" />, sodass die drei Punkte auf einer Geraden liegen. |
+
+# Antwort
+
+Die möglichen Werte sind **<InlineMath math="k = 3" /> oder <InlineMath math="k = 33" />**.

@@ -1,27 +1,48 @@
-# Dulu kasus tanpa suku kuadrat
+# Diketahui
 
-Untuk <InlineMath math="a=1" />, suku <InlineMath math="x^2" /> hilang dan tersisa garis <InlineMath math="f(x)=2x+3" />. **Garis yang tidak mendatar pasti negatif di suatu tempat**, misalnya <InlineMath math="f(-2)=-1" />. Jadi <InlineMath math="a=1" /> gugur.
+Diberikan fungsi berparameter real <InlineMath math="a" />:
 
-# Syarat untuk parabola
+<BlockMath math="f(x) = (a - 1)x^2 + 2ax + a + 2" />
 
-Untuk <InlineMath math="a\ne1" /> grafiknya parabola. Parabola itu seluruhnya di atas sumbu <InlineMath math="x" /> tepat ketika **terbuka ke atas dan tidak punya pembuat nol**:
+Kita ingin **nilai fungsi selalu positif ketat**, yaitu <InlineMath math="f(x) > 0" /> untuk setiap bilangan real <InlineMath math="x" />.
+
+# Ditanyakan
+
+Untuk nilai <InlineMath math="a" /> mana sajakah <InlineMath math="f(x) > 0" /> berlaku bagi semua <InlineMath math="x \in \mathbb{R}" />?
+
+# Penyelesaian
+
+Bayangkan kurva fungsi ini melayang di atas lantai datar (sumbu <InlineMath math="x" />). Supaya kurva tidak pernah menyentuh apalagi menembus ke bawah lantai, perlu **dua syarat sekaligus**: kurva harus parabola terbuka ke atas, dan dasar mangkuknya harus tetap melayang di atas nol tanpa menyentuh lantai.
+
+> Sebuah fungsi kuadrat selalu positif ketat untuk semua bilangan real tepat saat koefisien kuadratnya positif dan diskriminannya negatif ketat.
+
+## Memeriksa kasus linear khusus
+
+Uji dulu kasus saat suku <InlineMath math="x^2" /> lenyap, yaitu <InlineMath math="a = 1" />. Fungsi berubah menjadi **garis miring** <InlineMath math="f(x) = 2x + 3" />. Garis miring selalu menembus sumbu <InlineMath math="x" /> (misalnya <InlineMath math="f(-2) = -1" />, bernilai negatif), jadi <InlineMath math="a = 1" /> gugur.
+
+## Mengunci bukaan parabola dan diskriminan
+
+Untuk <InlineMath math="a \ne 1" />, grafiknya adalah parabola. Agar seluruhnya melayang di atas sumbu <InlineMath math="x" />, kita wajibkan **terbuka ke atas dan tidak memiliki pembuat nol**:
 
 <BlockMath math="\begin{aligned}
-a-1&>0\quad\Longrightarrow\quad a>1 \\
-D=(2a)^2-4(a-1)(a+2)&=4a^2-4\left(a^2+a-2\right)=-4a+8<0\quad\Longrightarrow\quad a>2
+a - 1 > 0 &\quad \Longrightarrow \quad a > 1 \\
+D = (2a)^2 - 4(a - 1)(a + 2) &= 4a^2 - 4(a^2 + a - 2) = -4a + 8 < 0 \quad \Longrightarrow \quad a > 2
 \end{aligned}" />
 
-# Gabungkan kedua syarat
+Irisan dari <InlineMath math="a > 1" /> dan <InlineMath math="a > 2" /> adalah tepat <InlineMath math="a > 2" />.
 
-Kedua syarat berlaku tepat untuk <InlineMath math="a>2" />. Untuk <InlineMath math="a=2" />, <InlineMath math="D=0" />: grafiknya **menyinggung sumbu**, dan <InlineMath math="f(-2)=0" /> tidak positif.
+## Melihat kasus batas pada grafik
+
+Perhatikan bedanya antara <InlineMath math="a = 3" /> (melayang aman) dan **nilai batas <InlineMath math="a = 2" />** yang tepat menyentuh lantai di <InlineMath math="(-2 \mid 0)" />.
 
 <MathVisual
   title={<>Kapan grafik seluruhnya di atas</>}
-  description={<>Untuk <InlineMath math="a=3" />, <InlineMath math="f(x)=2x^2+6x+5" /> adalah parabola terbuka ke atas yang seluruhnya di atas sumbu <InlineMath math="x" />. Untuk nilai batas <InlineMath math="a=2" />, <InlineMath math="f(x)=x^2+4x+4=(x+2)^2" />, dan grafiknya menyinggung sumbu di <InlineMath math="(-2\mid0)" />. Di sana <InlineMath math="f(x)>0" /> tidak terpenuhi.</>}
+  description={<>Untuk <InlineMath math="a = 3" />, parabola <InlineMath math="f(x) = 2x^2 + 6x + 5" /> melayang seluruhnya di atas sumbu <InlineMath math="x" />. Pada nilai batas <InlineMath math="a = 2" />, fungsi menjadi <InlineMath math="(x + 2)^2" /> yang menyentuh sumbu di <InlineMath math="(-2 \mid 0)" />, sehingga syarat positif ketat gagal di sana.</>}
+  footer={<>Pada <InlineMath math="a = 2" /> kurva menyentuh nol di <InlineMath math="(-2 \mid 0)" />, jadi harus <InlineMath math="a > 2" />.</>}
   labels={{
-    g: <><InlineMath math="a=3" /></>,
-    e: <><InlineMath math="a=2" /></>,
-    t: <><InlineMath math="(-2\mid0)" /></>,
+    g: <><InlineMath math="a = 3" /></>,
+    e: <><InlineMath math="a = 2" /></>,
+    t: <><InlineMath math="(-2 \mid 0)" /></>,
   }}
   scene={{
     space: "plane",
@@ -45,12 +66,20 @@ Kedua syarat berlaku tepat untuk <InlineMath math="a>2" />. Untuk <InlineMath ma
   }}
 />
 
-<InlineMath math="f(x)>0" /> untuk semua <InlineMath math="x" /> tepat ketika <InlineMath math="a>2" />.
+Di <InlineMath math="a = 2" />, <InlineMath math="f(-2) = 0" /> tidak memenuhi <InlineMath math="f(x) > 0" />, sehingga batas <InlineMath math="2" /> wajib terbuka.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="a>1" /> hanya memeriksa arah bukaan parabola. Untuk <InlineMath math="a=1{,}5" />, <InlineMath math="D=2>0" />, dan parabolanya **punya pembuat nol**.
-- <InlineMath math="a\ge2" /> ikut memasukkan <InlineMath math="a=2" />, saat grafik menyinggung sumbu.
-- <InlineMath math="1<a<2" /> membalik syarat diskriminan.
-- <InlineMath math="a=1" /> atau <InlineMath math="a>2" /> melewatkan bahwa garis untuk <InlineMath math="a=1" /> mencapai nilai negatif.
-- <InlineMath math="a<2" /> hanya memakai <InlineMath math="D<0" /> dengan tanda yang terbalik dan mengabaikan arah bukaan.
+Perhatikan syarat mana yang dilanggar **setiap pilihan pengecoh**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="a > 1" /> | Hanya memeriksa bukaan ke atas, padahal pada <InlineMath math="a = 1{,}5" />, <InlineMath math="D = 2 > 0" /> sehingga parabola menembus sumbu <InlineMath math="x" />. |
+| <InlineMath math="a \ge 2" /> | Ikut memasukkan <InlineMath math="a = 2" />, tempat grafik menyentuh nol di <InlineMath math="x = -2" />. |
+| <InlineMath math="1 < a < 2" /> | Membalik tanda diskriminan menjadi <InlineMath math="D > 0" />. |
+| <InlineMath math="a = 1" /> atau <InlineMath math="a > 2" /> | Melupakan bahwa garis lurus <InlineMath math="2x + 3" /> pada <InlineMath math="a = 1" /> mencapai nilai negatif. |
+| <InlineMath math="a < 2" /> | Salah arah pada syarat diskriminan sekaligus mengabaikan bukaan ke atas. |
+
+# Jawaban
+
+Nilai yang memenuhi adalah **<InlineMath math="a > 2" />**.

@@ -1,28 +1,47 @@
-# Arti <InlineMath math="f^{-1}(12)" />
+# Diketahui
 
-<InlineMath math="f^{-1}(12)" /> adalah bilangan <InlineMath math="x" /> di daerah yang dibahas sehingga **berlaku <InlineMath math="f(x)=12" />**. Jadi kamu tidak perlu menyusun fungsi invers, cukup menyelesaikan persamaan:
+Fungsi kuadrat <InlineMath math="f" /> didefinisikan dengan rumus:
+
+<BlockMath math="f(x) = x^2 - 6x + 5" />
+
+Daerah asalnya dibatasi **hanya pada cabang kanan <InlineMath math="x \ge 3" />**, sehingga pada daerah itu ia memiliki fungsi invers (*Umkehrfunktion*) <InlineMath math="f^{-1}" />.
+
+# Ditanyakan
+
+Berapakah nilai <InlineMath math="f^{-1}(12)" />?
+
+# Penyelesaian
+
+Fungsi invers bekerja persis seperti memutar balik mesin fungsi: daripada mencari keluaran dari masukan <InlineMath math="12" />, kamu bertanya **masukan <InlineMath math="x" /> mana yang menghasilkan keluaran <InlineMath math="12" />**. Kamu bahkan tidak perlu menurunkan rumus umum <InlineMath math="f^{-1}(y)" />. Cukup selesaikan <InlineMath math="f(x) = 12" />, lalu pilih akar yang masuk ke daerah asal <InlineMath math="x \ge 3" />.
+
+> Menghitung nilai fungsi invers di satu angka cukup dilakukan dengan menyelesaikan persamaan balikannya, lalu memilih satu-satunya akar yang berada di daerah asal yang diizinkan.
+
+## Menyelesaikan persamaan balikan dengan melengkapkan kuadrat
+
+Tulis syarat <InlineMath math="f(x) = 12" /> lalu **lengkapkan kuadratnya** agar langsung rapi:
 
 <BlockMath math="\begin{aligned}
-x^2-6x+5&=12 \\
-(x-3)^2-9+5&=12 \\
-(x-3)^2&=16
+x^2 - 6x + 5 &= 12 \\
+(x - 3)^2 - 9 + 5 &= 12 \\
+(x - 3)^2 &= 16
 \end{aligned}" />
 
-Jadi <InlineMath math="x-3=4" /> atau <InlineMath math="x-3=-4" />, yaitu <InlineMath math="x=7" /> atau <InlineMath math="x=-1" />.
+Tarik akar kedua ruas: <InlineMath math="x - 3 = 4" /> atau <InlineMath math="x - 3 = -4" />, yang memberi dua kandidat <InlineMath math="x = 7" /> dan <InlineMath math="x = -1" />.
 
-# Daerahnya memilih penyelesaian
+## Memilih cabang yang sah pada grafik
 
-Fungsi itu hanya dibahas untuk <InlineMath math="x\ge3" />. Hanya di sana fungsi itu punya invers, karena **setiap nilai fungsi muncul tepat sekali di sana**. Dari kedua penyelesaian, hanya <InlineMath math="x=7" /> yang ada di daerah itu:
+Parabola ini berpuncak di <InlineMath math="(3 \mid -4)" />. Karena daerah asalnya dipotong **hanya mulai <InlineMath math="x \ge 3" />**, cabang kiri tidak ikut dihitung dan hanya <InlineMath math="x = 7" /> yang sah.
 
 <MathVisual
   title={<>Hanya cabang kanan yang dihitung</>}
-  description={<>Parabola <InlineMath math="y=x^2-6x+5" /> dengan puncak <InlineMath math="(3\mid-4)" />. Cabang kanan untuk <InlineMath math="x\ge3" /> digambar penuh, cabang kiri putus-putus. Garis <InlineMath math="y=12" /> memotong cabang kanan di <InlineMath math="(7\mid12)" /> dan cabang kiri di <InlineMath math="(-1\mid12)" />, yang tidak termasuk daerah yang dibahas.</>}
+  description={<>Parabola <InlineMath math="y = x^2 - 6x + 5" /> berpuncak di <InlineMath math="(3 \mid -4)" />. Cabang kanan untuk <InlineMath math="x \ge 3" /> digambar penuh, sedangkan cabang kiri putus-putus. Garis <InlineMath math="y = 12" /> memotong cabang kanan di <InlineMath math="(7 \mid 12)" /> dan cabang kiri yang terbuang di <InlineMath math="(-1 \mid 12)" />.</>}
+  footer={<>Daerah asal <InlineMath math="x \ge 3" /> memilih <InlineMath math="(7 \mid 12)" /> dan membuang <InlineMath math="(-1 \mid 12)" />.</>}
   labels={{
-    key: <><InlineMath math="(7\mid12)" /></>,
-    bad: <><InlineMath math="(-1\mid12)" /></>,
-    u: <><InlineMath math="x\ge3" /></>,
+    key: <><InlineMath math="(7 \mid 12)" /></>,
+    bad: <><InlineMath math="(-1 \mid 12)" /></>,
+    u: <><InlineMath math="x \ge 3" /></>,
     o: <>tidak dibahas</>,
-    t: <><InlineMath math="y=12" /></>,
+    t: <><InlineMath math="y = 12" /></>,
   }}
   scene={{
     space: "plane",
@@ -50,12 +69,20 @@ Fungsi itu hanya dibahas untuk <InlineMath math="x\ge3" />. Hanya di sana fungsi
   }}
 />
 
-Cek: <InlineMath math="f(7)=49-42+5=12" />. Jadi **<InlineMath math="f^{-1}(12)=7" />**.
+Cek langsung: substitusi <InlineMath math="x = 7" /> memberi <InlineMath math="49 - 42 + 5" />, tepat sama dengan <InlineMath math="12" />, dan <InlineMath math="7 \ge 3" /> terpenuhi.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="-1" /> menyelesaikan <InlineMath math="f(x)=12" /> pada **cabang kiri**, yang tidak termasuk daerah yang dibahas.
-- <InlineMath math="7" /> atau <InlineMath math="-1" /> melewatkan bahwa fungsi invers memasangkan tepat satu bilangan untuk setiap nilai.
-- <InlineMath math="77" /> adalah <InlineMath math="f(12)=144-72+5" />, nilai fungsinya, bukan prapetanya.
-- <InlineMath math="\frac1{77}" /> menyamakan <InlineMath math="f^{-1}" /> dengan kebalikan <InlineMath math="\frac{1}{f(12)}" />.
-- <InlineMath math="3+\sqrt{12}" /> lupa bilangan <InlineMath math="-9+5" /> saat melengkapkan kuadrat: dari <InlineMath math="(x-3)^2=12" />, padahal <InlineMath math="(x-3)^2=16" />.
+Perhatikan bagaimana setiap pengecoh **salah memaknai notasi <InlineMath math="f^{-1}" /> atau melupakan batasan cabang**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="-1" /> | Akar di cabang kiri yang berada di luar daerah asal <InlineMath math="x \ge 3" />. |
+| <InlineMath math="7" /> atau <InlineMath math="-1" /> | Lupa bahwa fungsi invers harus menghasilkan tepat satu nilai tunggal. |
+| <InlineMath math="77" /> | Menghitung nilai maju <InlineMath math="f(12) = 144 - 72 + 5" />, bukan prapetanya. |
+| <InlineMath math="\frac{1}{77}" /> | Menyangka <InlineMath math="f^{-1}(12)" /> berarti kebalikan <InlineMath math="\frac{1}{f(12)}" />. |
+| <InlineMath math="3 + \sqrt{12}" /> | Melupakan suku <InlineMath math="-9 + 5" /> saat melengkapkan kuadrat sehingga menulis <InlineMath math="(x - 3)^2 = 12" />. |
+
+# Jawaban
+
+Nilai <InlineMath math="f^{-1}(12)" /> adalah **<InlineMath math="7" />**.

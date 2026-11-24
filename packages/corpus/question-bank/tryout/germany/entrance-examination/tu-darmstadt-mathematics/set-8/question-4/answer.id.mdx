@@ -1,29 +1,50 @@
-# Luas dari koordinat
+# Diketahui
 
-Kalau satu titik sudut ada di titik asal, segitiga dengan titik sudut lain <InlineMath math="(x_1\mid y_1)" /> dan <InlineMath math="(x_2\mid y_2)" /> luasnya <InlineMath math="\frac12\left|x_1y_2-x_2y_1\right|" />. **Nilai mutlaknya penting**, karena tanpa itu bentuknya bisa negatif, tergantung arah urutan titiknya:
+Tiga titik sudut sebuah segitiga berada di koordinat:
 
-<BlockMath math="A=\frac12\left|6\cdot6-k\cdot2\right|=\frac12\left|36-2k\right|" />
+<BlockMath math="A(0 \mid 0), \qquad B(6 \mid 2), \qquad C(k \mid 6)" />
 
-# Selesaikan persamaan nilai mutlaknya
+Diketahui **luas (*Flächeninhalt*) segitiga tepat <InlineMath math="15" /> satuan luas** dan <InlineMath math="k" /> bilangan real.
 
-<BlockMath math="\frac12\left|36-2k\right|=15\quad\Longleftrightarrow\quad \left|36-2k\right|=30" />
+# Ditanyakan
 
-Nilai mutlak sama dengan <InlineMath math="30" /> kalau **isinya <InlineMath math="30" /> atau <InlineMath math="-30" />**:
+Nilai <InlineMath math="k" /> mana sajakah yang memenuhi?
+
+# Penyelesaian
+
+Bayangkan ruas alas <InlineMath math="\overline{AB}" /> tetap diam, sementara titik puncak <InlineMath math="C(k \mid 6)" /> meluncur bebas di sepanjang rel mendatar <InlineMath math="y = 6" />. Rel itu memotong perpanjangan garis <InlineMath math="AB" /> di satu titik (di sana segitiga menjadi pipih dengan luas nol). Kalau kamu menggeser <InlineMath math="C" /> menjauh ke **kiri ataupun ke kanan** dari titik itu, luasnya membesar persis simetris, sehingga pasti ada **dua posisi <InlineMath math="C" />** dengan luas <InlineMath math="15" />.
+
+> Rumus luas segitiga dari koordinat selalu memakai tanda nilai mutlak, sehingga luas yang ditentukan memberi dua posisi titik sudut di kedua sisi garis alas.
+
+## Menyusun rumus luas dengan nilai mutlak
+
+Karena satu titik sudut berada di titik asal <InlineMath math="(0 \mid 0)" />, luas segitiga dengan dua titik lain <InlineMath math="(x_1 \mid y_1)" /> dan <InlineMath math="(x_2 \mid y_2)" /> adalah setengah nilai mutlak determinannya. **Tanda nilai mutlak wajib dijaga** agar kedua sisi garis <InlineMath math="AB" /> tertangkap:
+
+<BlockMath math="A = \frac{1}{2}\lvert 6 \cdot 6 - k \cdot 2 \rvert = \frac{1}{2}\lvert 36 - 2k \rvert" />
+
+## Menyelesaikan persamaan nilai mutlak
+
+Setarakan luas itu dengan <InlineMath math="15" />, lalu **pecah menjadi dua cabang tanda**:
+
+<BlockMath math="\frac{1}{2}\lvert 36 - 2k \rvert = 15 \quad \Longleftrightarrow \quad \lvert 36 - 2k \rvert = 30" />
 
 <BlockMath math="\begin{aligned}
-36-2k=30&\quad\Longrightarrow\quad k=3 \\
-36-2k=-30&\quad\Longrightarrow\quad k=33
+36 - 2k = 30 &\quad \Longrightarrow \quad 2k = 6 \quad \Longrightarrow \quad k = 3 \\
+36 - 2k = -30 &\quad \Longrightarrow \quad 2k = 66 \quad \Longrightarrow \quad k = 33
 \end{aligned}" />
+
+Lihat kedua segitiga berluas sama pada rel <InlineMath math="y = 6" /> berikut.
 
 <MathVisual
   title={<>Dua letak untuk <InlineMath math="C" /></>}
-  description={<>Titik <InlineMath math="A(0\mid0)" /> dan <InlineMath math="B(6\mid2)" /> serta garis mendatar <InlineMath math="y=6" /> tempat <InlineMath math="C" /> berada. Dua segitiga punya luas <InlineMath math="15" />: satu dengan <InlineMath math="C_1(3\mid6)" /> di kiri dan satu lagi panjang dan pipih dengan <InlineMath math="C_2(33\mid6)" /> jauh di kanan.</>}
+  description={<>Titik <InlineMath math="A(0 \mid 0)" /> dan <InlineMath math="B(6 \mid 2)" /> bersama garis mendatar <InlineMath math="y = 6" /> tempat <InlineMath math="C" /> bergerak. Dua segitiga sama-sama berluas <InlineMath math="15" />: satu tegak dengan <InlineMath math="C_1(3 \mid 6)" /> di kiri dan satu lagi memanjang dengan <InlineMath math="C_2(33 \mid 6)" /> di kanan.</>}
+  footer={<>Baik <InlineMath math="C_1(3 \mid 6)" /> maupun <InlineMath math="C_2(33 \mid 6)" /> menghasilkan luas tepat <InlineMath math="15" />.</>}
   labels={{
     a: <><InlineMath math="A" /></>,
     b: <><InlineMath math="B" /></>,
-    c1: <><InlineMath math="C_1(3\mid6)" /></>,
-    c2: <><InlineMath math="C_2(33\mid6)" /></>,
-    l: <><InlineMath math="y=6" /></>,
+    c1: <><InlineMath math="C_1(3 \mid 6)" /></>,
+    c2: <><InlineMath math="C_2(33 \mid 6)" /></>,
+    l: <><InlineMath math="y = 6" /></>,
   }}
   scene={{
     space: "plane",
@@ -52,14 +73,20 @@ Nilai mutlak sama dengan <InlineMath math="30" /> kalau **isinya <InlineMath mat
   }}
 />
 
-# Cek
+Cek kedua nilai: untuk <InlineMath math="k = 3" />, setengah dari <InlineMath math="30" /> adalah <InlineMath math="15" />, dan untuk <InlineMath math="k = 33" />, setengah dari <InlineMath math="30" /> juga <InlineMath math="15" />. Perhatikan pula titik tengahnya <InlineMath math="k = 18" />, tepat tempat <InlineMath math="C" /> segaris dengan <InlineMath math="A" /> dan <InlineMath math="B" />.
 
-Untuk <InlineMath math="k=3" />, <InlineMath math="\frac12|36-6|=15" />, dan untuk <InlineMath math="k=33" />, <InlineMath math="\frac12|36-66|=15" />. Kedua nilai memberi segitiga yang sungguhan, jadi **<InlineMath math="k=3" /> atau <InlineMath math="k=33" />**.
+## Mengecek pilihan salah
 
-# Mengapa pilihan lain salah
+Perhatikan bagaimana pengecoh lain **kehilangan salah satu cabang atau lupa faktor setengah**:
 
-- "hanya <InlineMath math="k=3" />" menghitung tanpa nilai mutlak dan **kehilangan letak kedua**.
-- "hanya <InlineMath math="k=33" />" kehilangan letak pertama.
-- <InlineMath math="k=10{,}5" /> atau <InlineMath math="k=25{,}5" /> lupa faktor <InlineMath math="\frac12" />: nilai itu muncul dari <InlineMath math="|36-2k|=15" />, dan luas segitiganya menjadi <InlineMath math="7{,}5" />.
-- <InlineMath math="k=-3" /> atau <InlineMath math="k=3" /> memasang nilai mutlak pada <InlineMath math="k" />, bukan pada seluruh bentuknya.
-- "hanya <InlineMath math="k=18" />" adalah nilai saat <InlineMath math="36-2k=0" />. Ketiga titik lalu segaris, jadi tidak ada segitiga.
+| Pilihan | Mengapa salah |
+| --- | --- |
+| hanya <InlineMath math="k = 3" /> | Menghapus tanda nilai mutlak dan kehilangan segitiga kedua di sisi kanan. |
+| hanya <InlineMath math="k = 33" /> | Hanya mengambil cabang negatif dan kehilangan segitiga pertama di sisi kiri. |
+| <InlineMath math="k = 10{,}5" /> atau <InlineMath math="k = 25{,}5" /> | Melupakan faktor <InlineMath math="\frac{1}{2}" /> sehingga menyelesaikan <InlineMath math="\lvert 36 - 2k \rvert = 15" />, luasnya hanya <InlineMath math="7{,}5" />. |
+| <InlineMath math="k = -3" /> atau <InlineMath math="k = 3" /> | Memasang nilai mutlak pada <InlineMath math="k" /> saja, bukan pada seluruh determinan. |
+| hanya <InlineMath math="k = 18" /> | Membuat <InlineMath math="36 - 2k = 0" />, sehingga ketiga titik segaris dengan luas nol. |
+
+# Jawaban
+
+Nilai yang memenuhi adalah **<InlineMath math="k = 3" /> atau <InlineMath math="k = 33" />**.

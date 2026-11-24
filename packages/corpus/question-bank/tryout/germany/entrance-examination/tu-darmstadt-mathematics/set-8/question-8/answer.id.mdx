@@ -1,28 +1,47 @@
-# Samakan basisnya
+# Diketahui
 
-Tulis kedua ruas sebagai bilangan berpangkat dengan basis <InlineMath math="\frac13" />. Karena <InlineMath math="\frac19=\left(\frac13\right)^2" />, berlaku <InlineMath math="\left(\frac19\right)^x=\left(\frac13\right)^{2x}" />. Sekarang **kedua ruas berbasis sama**:
+Diberikan **pertidaksamaan eksponen** (*Ungleichung*) dengan kedua basis berupa pecahan kurang dari satu:
 
-<BlockMath math="\left(\frac13\right)^{x^2-8}\le\left(\frac13\right)^{2x}" />
+<BlockMath math="\left(\frac{1}{3}\right)^{x^2 - 8} \le \left(\frac{1}{9}\right)^x" />
 
-# Basis kurang dari <InlineMath math="1" /> membalik tanda
+# Ditanyakan
 
-Fungsi <InlineMath math="t\mapsto\left(\frac13\right)^t" /> turun tegas: pangkat yang lebih besar memberi nilai yang lebih kecil. Saat beralih ke pangkatnya, **tanda pertidaksamaan berbalik**:
+Tentukan semua bilangan real <InlineMath math="x" /> yang memenuhi pertidaksamaan ini.
+
+# Penyelesaian
+
+Kalau kamu terus memotong kue menjadi sepertiganya berulang kali, makin banyak kamu memotong (pangkat makin besar), potongan yang tersisa justru makin kecil. Artinya pada basis <InlineMath math="\frac{1}{3}" />, **pangkat yang lebih besar memberi nilai yang lebih kecil**. Jadi begitu kedua ruas punya basis <InlineMath math="\frac{1}{3}" /> yang sama, melepaskan basisnya wajib **membalik tanda pertidaksamaan**.
+
+> Saat menyamakan basis eksponen yang berada antara nol dan satu, perbandingan pangkat selalu berbalik arah daripada perbandingan nilai pangkatnya.
+
+## Menyamakan basis kedua ruas
+
+Tulis ulang pecahan <InlineMath math="\frac{1}{9}" /> sebagai kuadrat dari <InlineMath math="\frac{1}{3}" />, sehingga ruas kanan memiliki **basis <InlineMath math="\frac{1}{3}" /> yang sama**:
+
+<BlockMath math="\left(\frac{1}{9}\right)^x = \left(\left(\frac{1}{3}\right)^2\right)^x = \left(\frac{1}{3}\right)^{2x} \quad \Longrightarrow \quad \left(\frac{1}{3}\right)^{x^2 - 8} \le \left(\frac{1}{3}\right)^{2x}" />
+
+## Membalik tanda saat membandingkan pangkat
+
+Karena fungsi eksponen berbasis <InlineMath math="\frac{1}{3}" /> turun tegas, **tanda <InlineMath math="\le" /> berbalik menjadi <InlineMath math="\ge" />** pada pangkatnya:
 
 <BlockMath math="\begin{aligned}
-x^2-8&\ge2x \\
-x^2-2x-8&\ge0 \\
-(x-4)(x+2)&\ge0
+x^2 - 8 &\ge 2x \\
+x^2 - 2x - 8 &\ge 0 \\
+(x - 4)(x + 2) &\ge 0
 \end{aligned}" />
 
-# Tempat hasil kalinya tidak negatif
+## Menentukan selang tak negatif dari grafik parabola
+
+Parabola kuadrat <InlineMath math="x^2 - 2x - 8" /> terbuka ke atas dengan pembuat nol <InlineMath math="-2" /> dan <InlineMath math="4" />, sehingga **bernilai nol atau positif di dua sayap luarnya**.
 
 <MathVisual
   title={<>Tempat pertidaksamaan pangkat berlaku</>}
-  description={<>Parabola <InlineMath math="y=x^2-2x-8" /> punya pembuat nol <InlineMath math="-2" /> dan <InlineMath math="4" />. Parabola itu berada pada atau di atas sumbu <InlineMath math="x" /> di kiri <InlineMath math="-2" /> dan di kanan <InlineMath math="4" />. Tepat kedua selang itu ditandai di bawah sumbu.</>}
+  description={<>Parabola <InlineMath math="y = x^2 - 2x - 8" /> memotong sumbu <InlineMath math="x" /> di <InlineMath math="-2" /> dan <InlineMath math="4" />. Kurva berada pada atau di atas sumbu <InlineMath math="x" /> di kiri <InlineMath math="-2" /> dan di kanan <InlineMath math="4" />, persis seperti dua ruas jawaban di bawah sumbu.</>}
+  footer={<>Parabola tak negatif pada sayap kiri hingga <InlineMath math="-2" /> dan sayap kanan mulai <InlineMath math="4" />.</>}
   labels={{
     a: <><InlineMath math="-2" /></>,
     b: <><InlineMath math="4" /></>,
-    g: <><InlineMath math="x^2-2x-8" /></>,
+    g: <><InlineMath math="x^2 - 2x - 8" /></>,
   }}
   scene={{
     space: "plane",
@@ -48,14 +67,22 @@ x^2-2x-8&\ge0 \\
   }}
 />
 
-Hasil kali itu tidak negatif kalau **kedua faktor bertanda sama** atau salah satunya nol: untuk <InlineMath math="x\le-2" /> atau <InlineMath math="x\ge4" />.
+Uji cepat dengan titik tengah <InlineMath math="x = 0" />: ruas kiri menjadi <InlineMath math="3^8" /> dan ruas kanan <InlineMath math="1" />. Karena <InlineMath math="3^8 \le 1" /> salah, selang tengah memang bukan jawaban, mengonfirmasi dua sayap luar.
 
-Cek <InlineMath math="x=0" />: ruas kiri <InlineMath math="\left(\frac13\right)^{-8}=3^8" />, ruas kanan <InlineMath math="1" />, dan <InlineMath math="3^8\le1" /> salah. Pertidaksamaan itu berlaku untuk <InlineMath math="x\le-2" /> atau <InlineMath math="x\ge4" />.
+## Mengecek pilihan salah
 
-# Mengapa pilihan lain salah
+Perhatikan bagaimana setiap pengecoh **lupa membalik tanda atau salah mengubah pangkat**:
 
-- <InlineMath math="-2\le x\le4" /> **tidak membalik tanda**, seolah-olah basisnya lebih dari <InlineMath math="1" />.
-- <InlineMath math="x\le-4" /> atau <InlineMath math="x\ge2" /> muncul dari <InlineMath math="\left(\frac19\right)^x=\left(\frac13\right)^{-2x}" />, salah tanda pada pangkat.
-- <InlineMath math="-4\le x\le2" /> melakukan kedua kesalahan: pangkat yang salah dan tanda yang tidak dibalik.
-- <InlineMath math="x\ge4" /> kehilangan selang di kiri <InlineMath math="-2" />.
-- <InlineMath math="x\le-2\sqrt2" /> atau <InlineMath math="x\ge2\sqrt2" /> hanya melihat <InlineMath math="x^2-8\ge0" /> dan lupa ruas kanan.
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="-2 \le x \le 4" /> | Lupa membalik tanda pertidaksamaan, seolah basisnya lebih dari <InlineMath math="1" />. |
+| <InlineMath math="x \le -4" /> atau <InlineMath math="x \ge 2" /> | Salah mengubah <InlineMath math="\left(\frac{1}{9}\right)^x" /> menjadi <InlineMath math="\left(\frac{1}{3}\right)^{-2x}" />. |
+| <InlineMath math="-4 \le x \le 2" /> | Melakukan kedua kesalahan sekaligus: salah tanda pangkat dan lupa membalik pertidaksamaan. |
+| <InlineMath math="x \ge 4" /> | Kehilangan seluruh cabang kiri <InlineMath math="x \le -2" />. |
+| <InlineMath math="x \le -2\sqrt{2}" /> atau <InlineMath math="x \ge 2\sqrt{2}" /> | Hanya menyelesaikan <InlineMath math="x^2 - 8 \ge 0" /> sambil melupakan ruas kanan <InlineMath math="2x" />. |
+
+# Jawaban
+
+Semua bilangan real <InlineMath math="x" /> yang memenuhi pertidaksamaan ini adalah:
+
+<BlockMath math="x \le -2 \qquad \text{atau} \qquad x \ge 4" />

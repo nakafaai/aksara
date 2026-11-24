@@ -1,27 +1,48 @@
-# Dahulu kes tanpa sebutan kuasa dua
+# Diberi
 
-Bagi <InlineMath math="a=1" />, sebutan <InlineMath math="x^2" /> hilang dan tinggal garis <InlineMath math="f(x)=2x+3" />. **Garis yang tidak mengufuk pasti negatif di suatu tempat**, contohnya <InlineMath math="f(-2)=-1" />. Jadi <InlineMath math="a=1" /> tersingkir.
+Diberikan fungsi dengan parameter nyata <InlineMath math="a" />:
 
-# Syarat untuk parabola
+<BlockMath math="f(x) = (a - 1)x^2 + 2ax + a + 2" />
 
-Bagi <InlineMath math="a\ne1" /> grafnya ialah parabola. Parabola itu sepenuhnya di atas paksi <InlineMath math="x" /> tepat apabila ia **terbuka ke atas dan tiada punca sifar**:
+Kita memerlukan **nilai fungsi sentiasa positif ketat**, iaitu <InlineMath math="f(x) > 0" /> bagi semua nombor nyata <InlineMath math="x" />.
+
+# Ditanya
+
+Bagi nilai <InlineMath math="a" /> yang manakah <InlineMath math="f(x) > 0" /> dipenuhi bagi semua <InlineMath math="x \in \mathbb{R}" />?
+
+# Penyelesaian
+
+Bayangkan lengkung fungsi ini terapung di atas lantai mendatar (paksi <InlineMath math="x" />). Supaya lengkung tidak pernah menyentuh apatah lagi menembusi bawah lantai, ia mesti melepasi **dua syarat serentak**: lengkung mesti parabola terbuka ke atas, dan titik minimumnya mesti berada di atas sifar tanpa menyentuh paksi.
+
+> Suatu fungsi kuadratik sentiasa positif ketat bagi semua nombor nyata tepat apabila pekali kuadratiknya positif dan pembezalayan negatif ketat.
+
+## Menyemak kes linear khas
+
+Uji dahulu kes apabila sebutan <InlineMath math="x^2" /> hilang, iaitu <InlineMath math="a = 1" />. Fungsi bertukar menjadi **garis condong** <InlineMath math="f(x) = 2x + 3" />. Garis condong pasti turun ke nilai negatif (contohnya <InlineMath math="f(-2) = -1" />), jadi <InlineMath math="a = 1" /> ditolak.
+
+## Menetapkan arah bukaan dan pembezalayan
+
+Bagi <InlineMath math="a \ne 1" />, grafnya ialah parabola. Supaya keseluruhannya berada di atas paksi <InlineMath math="x" />, parabola mesti **terbuka ke atas dan tiada punca nyata**:
 
 <BlockMath math="\begin{aligned}
-a-1&>0\quad\Longrightarrow\quad a>1 \\
-D=(2a)^2-4(a-1)(a+2)&=4a^2-4\left(a^2+a-2\right)=-4a+8<0\quad\Longrightarrow\quad a>2
+a - 1 > 0 &\quad \Longrightarrow \quad a > 1 \\
+D = (2a)^2 - 4(a - 1)(a + 2) &= 4a^2 - 4(a^2 + a - 2) = -4a + 8 < 0 \quad \Longrightarrow \quad a > 2
 \end{aligned}" />
 
-# Gabungkan kedua-dua syarat
+Persilangan <InlineMath math="a > 1" /> dan <InlineMath math="a > 2" /> ialah tepat <InlineMath math="a > 2" />.
 
-Kedua-dua syarat benar tepat bagi <InlineMath math="a>2" />. Bagi <InlineMath math="a=2" />, <InlineMath math="D=0" />: graf itu **menyentuh paksi**, dan <InlineMath math="f(-2)=0" /> tidak positif.
+## Melihat kes sempadan pada graf
+
+Bandingkan <InlineMath math="a = 3" /> (terapung selamat) dengan **nilai sempadan <InlineMath math="a = 2" />** yang menyentuh paksi di <InlineMath math="(-2 \mid 0)" />.
 
 <MathVisual
-  title={<>Bila graf berada sepenuhnya di atas</>}
-  description={<>Bagi <InlineMath math="a=3" />, <InlineMath math="f(x)=2x^2+6x+5" /> ialah parabola terbuka ke atas yang sepenuhnya di atas paksi <InlineMath math="x" />. Bagi nilai sempadan <InlineMath math="a=2" />, <InlineMath math="f(x)=x^2+4x+4=(x+2)^2" />, dan graf itu menyentuh paksi di <InlineMath math="(-2\mid0)" />. Di situ <InlineMath math="f(x)>0" /> tidak dipenuhi.</>}
+  title={<>Bila graf berada sepenuhnya di atas paksi</>}
+  description={<>Bagi <InlineMath math="a = 3" />, parabola <InlineMath math="f(x) = 2x^2 + 6x + 5" /> terapung sepenuhnya di atas paksi <InlineMath math="x" />. Pada sempadan <InlineMath math="a = 2" />, fungsi menjadi <InlineMath math="(x + 2)^2" /> yang menyentuh paksi di <InlineMath math="(-2 \mid 0)" />, tempat syarat positif ketat gagal.</>}
+  footer={<>Pada <InlineMath math="a = 2" /> lengkung menyentuh sifar di <InlineMath math="(-2 \mid 0)" />, jadi mesti <InlineMath math="a > 2" />.</>}
   labels={{
-    g: <><InlineMath math="a=3" /></>,
-    e: <><InlineMath math="a=2" /></>,
-    t: <><InlineMath math="(-2\mid0)" /></>,
+    g: <><InlineMath math="a = 3" /></>,
+    e: <><InlineMath math="a = 2" /></>,
+    t: <><InlineMath math="(-2 \mid 0)" /></>,
   }}
   scene={{
     space: "plane",
@@ -45,12 +66,20 @@ Kedua-dua syarat benar tepat bagi <InlineMath math="a>2" />. Bagi <InlineMath ma
   }}
 />
 
-<InlineMath math="f(x)>0" /> bagi semua <InlineMath math="x" /> tepat apabila <InlineMath math="a>2" />.
+Pada <InlineMath math="a = 2" />, <InlineMath math="f(-2) = 0" /> tidak memenuhi <InlineMath math="f(x) > 0" />, maka sempadan <InlineMath math="2" /> mesti dikecualikan.
 
-# Kenapa jawapan lain salah
+## Menyemak pilihan salah
 
-- <InlineMath math="a>1" /> hanya menyemak arah bukaan parabola. Bagi <InlineMath math="a=1.5" />, <InlineMath math="D=2>0" />, dan parabola itu **mempunyai punca sifar**.
-- <InlineMath math="a\ge2" /> turut mengambil <InlineMath math="a=2" />, apabila graf menyentuh paksi.
-- <InlineMath math="1<a<2" /> menterbalikkan syarat pembezalayan.
-- <InlineMath math="a=1" /> atau <InlineMath math="a>2" /> terlepas pandang bahawa garis bagi <InlineMath math="a=1" /> mencapai nilai negatif.
-- <InlineMath math="a<2" /> hanya memakai <InlineMath math="D<0" /> dengan tanda yang terbalik dan mengabaikan arah bukaan.
+Perhatikan syarat yang dilanggar oleh **setiap pilihan pengganggu**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="a > 1" /> | Hanya menyemak bukaan ke atas, sedangkan bagi <InlineMath math="a = 1.5" />, <InlineMath math="D = 2 > 0" /> sehingga parabola menembusi paksi <InlineMath math="x" />. |
+| <InlineMath math="a \ge 2" /> | Memasukkan <InlineMath math="a = 2" />, tempat graf menyentuh sifar di <InlineMath math="x = -2" />. |
+| <InlineMath math="1 < a < 2" /> | Menterbalikkan syarat pembezalayan menjadi <InlineMath math="D > 0" />. |
+| <InlineMath math="a = 1" /> atau <InlineMath math="a > 2" /> | Terlepas pandang bahawa garis <InlineMath math="2x + 3" /> pada <InlineMath math="a = 1" /> mencapai nilai negatif. |
+| <InlineMath math="a < 2" /> | Silap arah ketaksamaan pembezalayan dan mengabaikan arah bukaan ke atas. |
+
+# Jawapan
+
+Syarat yang memenuhi ialah **<InlineMath math="a > 2" />**.

@@ -1,28 +1,47 @@
-# Gleiche Basis herstellen
+# Gegeben
 
-Schreibe beide Seiten als Potenzen von <InlineMath math="\frac13" />. Wegen <InlineMath math="\frac19=\left(\frac13\right)^2" /> gilt <InlineMath math="\left(\frac19\right)^x=\left(\frac13\right)^{2x}" />. Damit **stehen links und rechts Potenzen derselben Basis**:
+Gegeben ist eine **Exponentialungleichung**, deren Basen beide kleiner als eins sind:
 
-<BlockMath math="\left(\frac13\right)^{x^2-8}\le\left(\frac13\right)^{2x}" />
+<BlockMath math="\left(\frac{1}{3}\right)^{x^2 - 8} \le \left(\frac{1}{9}\right)^x" />
 
-# Die Basis kleiner als <InlineMath math="1" /> dreht das Zeichen
+# Gesucht
 
-Die Funktion <InlineMath math="t\mapsto\left(\frac13\right)^t" /> ist streng fallend: Ein größerer Exponent liefert einen kleineren Wert. Beim Übergang zu den Exponenten **kehrt sich das Ungleichheitszeichen um**:
+Bestimme alle reellen Zahlen <InlineMath math="x" />, für die diese Ungleichung gilt.
+
+# Lösung
+
+Wenn du einen Kuchen immer wieder drittelst, bleibt nach mehr Schnitten (größerem Exponenten) ein kleineres Stück übrig. Bei der Basis <InlineMath math="\frac{1}{3}" /> gilt also: **ein größerer Exponent liefert einen kleineren Wert**. Sobald beide Seiten die gleiche Basis <InlineMath math="\frac{1}{3}" /> tragen, dreht der Übergang zu den Exponenten das **Ungleichheitszeichen um**.
+
+> Beim Vergleich zweier Potenzen mit derselben Basis zwischen null und eins stehen die Exponenten stets in der umgekehrten Ungleichheitsrichtung wie die Potenzen selbst.
+
+## Beide Seiten auf dieselbe Basis bringen
+
+Schreibe <InlineMath math="\frac{1}{9}" /> als Quadrat von <InlineMath math="\frac{1}{3}" /> um, damit beide Seiten **die gleiche Basis <InlineMath math="\frac{1}{3}" />** tragen:
+
+<BlockMath math="\left(\frac{1}{9}\right)^x = \left(\left(\frac{1}{3}\right)^2\right)^x = \left(\frac{1}{3}\right)^{2x} \quad \Longrightarrow \quad \left(\frac{1}{3}\right)^{x^2 - 8} \le \left(\frac{1}{3}\right)^{2x}" />
+
+## Beim Exponentenvergleich das Zeichen umdrehen
+
+Da die Exponentialfunktion zur Basis <InlineMath math="\frac{1}{3}" /> streng monoton fällt, **dreht sich <InlineMath math="\le" /> zu <InlineMath math="\ge" />** um:
 
 <BlockMath math="\begin{aligned}
-x^2-8&\ge2x \\
-x^2-2x-8&\ge0 \\
-(x-4)(x+2)&\ge0
+x^2 - 8 &\ge 2x \\
+x^2 - 2x - 8 &\ge 0 \\
+(x - 4)(x + 2) &\ge 0
 \end{aligned}" />
 
-# Wo das Produkt nicht negativ ist
+## Die nicht negativen Bereiche an der Parabel ablesen
+
+Die nach oben geöffnete Parabel <InlineMath math="x^2 - 2x - 8" /> hat die Nullstellen <InlineMath math="-2" /> und <InlineMath math="4" /> und liegt **auf den beiden Außenbereichen oberhalb oder auf der Achse**.
 
 <MathVisual
-  title={<>Wo die Exponenten-Ungleichung gilt</>}
-  description={<>Die Parabel <InlineMath math="y=x^2-2x-8" /> hat die Nullstellen <InlineMath math="-2" /> und <InlineMath math="4" />. Sie liegt links von <InlineMath math="-2" /> und rechts von <InlineMath math="4" /> auf oder über der <InlineMath math="x" />-Achse. Genau diese beiden Bereiche sind unter der Achse markiert.</>}
+  title={<>Wo die Exponentenungleichung gilt</>}
+  description={<>Die Parabel <InlineMath math="y = x^2 - 2x - 8" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="-2" /> und <InlineMath math="4" />. Sie verläuft links von <InlineMath math="-2" /> und rechts von <InlineMath math="4" /> auf oder oberhalb der Achse, genau wie die beiden markierten Lösungsstrahlen.</>}
+  footer={<>Die Parabel ist links bis <InlineMath math="-2" /> und rechts ab <InlineMath math="4" /> nicht negativ.</>}
   labels={{
     a: <><InlineMath math="-2" /></>,
     b: <><InlineMath math="4" /></>,
-    g: <><InlineMath math="x^2-2x-8" /></>,
+    g: <><InlineMath math="x^2 - 2x - 8" /></>,
   }}
   scene={{
     space: "plane",
@@ -48,14 +67,22 @@ x^2-2x-8&\ge0 \\
   }}
 />
 
-Das Produkt ist nicht negativ, wenn **beide Faktoren dasselbe Vorzeichen haben** oder einer null ist: für <InlineMath math="x\le-2" /> oder <InlineMath math="x\ge4" />.
+Schnelle Probe bei <InlineMath math="x = 0" />: links steht <InlineMath math="3^8" />, rechts <InlineMath math="1" />. Da <InlineMath math="3^8 \le 1" /> falsch ist, scheidet der Mittelbereich aus, und die beiden Außenbereiche stimmen.
 
-Probe mit <InlineMath math="x=0" />: links <InlineMath math="\left(\frac13\right)^{-8}=3^8" />, rechts <InlineMath math="1" />, und <InlineMath math="3^8\le1" /> ist falsch. Die Ungleichung gilt für <InlineMath math="x\le-2" /> oder <InlineMath math="x\ge4" />.
+## Falsche Antworten prüfen
 
-# Warum die anderen Antworten falsch sind
+Jede falsche Auswahl **vergisst den Zeichenwechsel oder verrechnet sich im Exponenten**:
 
-- <InlineMath math="-2\le x\le4" /> **dreht das Zeichen nicht um**, als wäre die Basis größer als <InlineMath math="1" />.
-- <InlineMath math="x\le-4" /> oder <InlineMath math="x\ge2" /> entsteht mit <InlineMath math="\left(\frac19\right)^x=\left(\frac13\right)^{-2x}" />, also einem Vorzeichenfehler im Exponenten.
-- <InlineMath math="-4\le x\le2" /> macht beide Fehler: falscher Exponent und kein Umdrehen.
-- <InlineMath math="x\ge4" /> verliert den Bereich links von <InlineMath math="-2" />.
-- <InlineMath math="x\le-2\sqrt2" /> oder <InlineMath math="x\ge2\sqrt2" /> betrachtet nur <InlineMath math="x^2-8\ge0" /> und vergisst die rechte Seite.
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="-2 \le x \le 4" /> | Dreht das Ungleichheitszeichen nicht um, als wäre die Basis größer als <InlineMath math="1" />. |
+| <InlineMath math="x \le -4" /> oder <InlineMath math="x \ge 2" /> | Formt <InlineMath math="\left(\frac{1}{9}\right)^x" /> fälschlich zu <InlineMath math="\left(\frac{1}{3}\right)^{-2x}" /> um. |
+| <InlineMath math="-4 \le x \le 2" /> | Macht beide Fehler zugleich: falsches Exponentenvorzeichen und nicht umgedrehtes Zeichen. |
+| <InlineMath math="x \ge 4" /> | Verliert den gesamten linken Bereich <InlineMath math="x \le -2" />. |
+| <InlineMath math="x \le -2\sqrt{2}" /> oder <InlineMath math="x \ge 2\sqrt{2}" /> | Löst nur <InlineMath math="x^2 - 8 \ge 0" /> und ignoriert das <InlineMath math="2x" /> rechts. |
+
+# Antwort
+
+Alle reellen Zahlen <InlineMath math="x" />, die die Ungleichung erfüllen, sind:
+
+<BlockMath math="x \le -2 \qquad \text{oder} \qquad x \ge 4" />

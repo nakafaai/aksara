@@ -1,27 +1,48 @@
-# First the case without the squared term
+# Given
 
-For <InlineMath math="a=1" /> the <InlineMath math="x^2" /> disappears and the line <InlineMath math="f(x)=2x+3" /> is left. **A line that isn't horizontal becomes negative somewhere**, for example <InlineMath math="f(-2)=-1" />. So <InlineMath math="a=1" /> is out.
+We are given a family of functions with real parameter <InlineMath math="a" />:
 
-# Conditions for a parabola
+<BlockMath math="f(x) = (a - 1)x^2 + 2ax + a + 2" />
 
-For <InlineMath math="a\ne1" /> the graph is a parabola. It lies entirely above the <InlineMath math="x" />-axis exactly when it **opens upwards and has no zeros**:
+We require **strict positivity everywhere**: <InlineMath math="f(x) > 0" /> for every real number <InlineMath math="x" />.
+
+# Asked
+
+For which values of <InlineMath math="a" /> does <InlineMath math="f(x) > 0" /> hold for all <InlineMath math="x \in \mathbb{R}" />?
+
+# Solution
+
+Picture the graph hovering above a flat floor (the <InlineMath math="x" />-axis). To stay strictly above the floor for every <InlineMath math="x" />, the graph must clear **two checks at once**: it must be an upward-opening parabola, and its lowest point must stay above zero without even grazing the floor.
+
+> A quadratic is strictly positive for all real numbers exactly when its leading coefficient is positive and its discriminant is strictly negative.
+
+## Checking the special linear case
+
+First test the value where the <InlineMath math="x^2" /> term vanishes, <InlineMath math="a = 1" />. The function collapses to a **slanted line** <InlineMath math="f(x) = 2x + 3" />. Any slanted line crosses below zero (for example, <InlineMath math="f(-2) = -1" />, which is negative), so <InlineMath math="a = 1" /> fails.
+
+## Locking in the opening direction and discriminant
+
+For <InlineMath math="a \ne 1" />, the graph is a parabola. To float strictly above the <InlineMath math="x" />-axis, it must **open upward and have no real roots**:
 
 <BlockMath math="\begin{aligned}
-a-1&>0\quad\Longrightarrow\quad a>1 \\
-D=(2a)^2-4(a-1)(a+2)&=4a^2-4\left(a^2+a-2\right)=-4a+8<0\quad\Longrightarrow\quad a>2
+a - 1 > 0 &\quad \Longrightarrow \quad a > 1 \\
+D = (2a)^2 - 4(a - 1)(a + 2) &= 4a^2 - 4(a^2 + a - 2) = -4a + 8 < 0 \quad \Longrightarrow \quad a > 2
 \end{aligned}" />
 
-# Both conditions together
+Intersecting <InlineMath math="a > 1" /> and <InlineMath math="a > 2" /> gives exactly <InlineMath math="a > 2" />.
 
-Both hold exactly for <InlineMath math="a>2" />. For <InlineMath math="a=2" />, <InlineMath math="D=0" />: the graph **touches the axis**, and <InlineMath math="f(-2)=0" /> isn't positive.
+## Inspecting the boundary case on the graph
+
+Compare <InlineMath math="a = 3" /> (safely floating) with **the boundary case <InlineMath math="a = 2" />**, which grazes the floor at <InlineMath math="(-2 \mid 0)" />.
 
 <MathVisual
-  title={<>When the graph lies entirely above</>}
-  description={<>For <InlineMath math="a=3" />, <InlineMath math="f(x)=2x^2+6x+5" /> is an upward parabola lying entirely above the <InlineMath math="x" />-axis. For the boundary value <InlineMath math="a=2" />, <InlineMath math="f(x)=x^2+4x+4=(x+2)^2" />, and the graph touches the axis at <InlineMath math="(-2\mid0)" />. There <InlineMath math="f(x)>0" /> fails.</>}
+  title={<>When the graph stays completely above the axis</>}
+  description={<>For <InlineMath math="a = 3" />, the parabola <InlineMath math="f(x) = 2x^2 + 6x + 5" /> floats strictly above the <InlineMath math="x" />-axis. At the boundary <InlineMath math="a = 2" />, the function becomes <InlineMath math="(x + 2)^2" />, touching the axis at <InlineMath math="(-2 \mid 0)" /> where strict positivity fails.</>}
+  footer={<>At <InlineMath math="a = 2" /> the curve touches zero at <InlineMath math="(-2 \mid 0)" />, so we need strict <InlineMath math="a > 2" />.</>}
   labels={{
-    g: <><InlineMath math="a=3" /></>,
-    e: <><InlineMath math="a=2" /></>,
-    t: <><InlineMath math="(-2\mid0)" /></>,
+    g: <><InlineMath math="a = 3" /></>,
+    e: <><InlineMath math="a = 2" /></>,
+    t: <><InlineMath math="(-2 \mid 0)" /></>,
   }}
   scene={{
     space: "plane",
@@ -45,12 +66,20 @@ Both hold exactly for <InlineMath math="a>2" />. For <InlineMath math="a=2" />, 
   }}
 />
 
-<InlineMath math="f(x)>0" /> for all <InlineMath math="x" /> exactly when <InlineMath math="a>2" />.
+At <InlineMath math="a = 2" />, <InlineMath math="f(-2) = 0" /> violates <InlineMath math="f(x) > 0" />, so the boundary <InlineMath math="2" /> must stay excluded.
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="a>1" /> checks only which way the parabola opens. For <InlineMath math="a=1.5" />, <InlineMath math="D=2>0" />, and the parabola **has zeros**.
-- <InlineMath math="a\ge2" /> includes <InlineMath math="a=2" />, where the graph touches the axis.
-- <InlineMath math="1<a<2" /> reverses the discriminant condition.
-- <InlineMath math="a=1" /> or <InlineMath math="a>2" /> overlooks that the line for <InlineMath math="a=1" /> takes negative values.
-- <InlineMath math="a<2" /> uses only <InlineMath math="D<0" /> with the inequality the wrong way round and ignores the opening.
+See which condition fails in **each wrong option**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="a > 1" /> | Checks only the upward opening, yet at <InlineMath math="a = 1.5" />, <InlineMath math="D = 2 > 0" /> so the parabola dips below the axis. |
+| <InlineMath math="a \ge 2" /> | Includes <InlineMath math="a = 2" />, where the graph hits zero at <InlineMath math="x = -2" />. |
+| <InlineMath math="1 < a < 2" /> | Flips the discriminant requirement to <InlineMath math="D > 0" />. |
+| <InlineMath math="a = 1" /> or <InlineMath math="a > 2" /> | Misses that the line <InlineMath math="2x + 3" /> at <InlineMath math="a = 1" /> takes negative values. |
+| <InlineMath math="a < 2" /> | Reverses the discriminant inequality and ignores the upward-opening condition. |
+
+# Answer
+
+The required condition is **<InlineMath math="a > 2" />**.

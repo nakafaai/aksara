@@ -1,28 +1,47 @@
-# Samakan asas
+# Diberi
 
-Tulis kedua-dua belah sebagai kuasa berasas <InlineMath math="\frac13" />. Oleh sebab <InlineMath math="\frac19=\left(\frac13\right)^2" />, maka <InlineMath math="\left(\frac19\right)^x=\left(\frac13\right)^{2x}" />. Kini **kedua-dua belah ialah kuasa dengan asas yang sama**:
+Diberikan **ketaksamaan eksponen** (*Ungleichung*) dengan kedua-dua asas berupa pecahan kurang daripada satu:
 
-<BlockMath math="\left(\frac13\right)^{x^2-8}\le\left(\frac13\right)^{2x}" />
+<BlockMath math="\left(\frac{1}{3}\right)^{x^2 - 8} \le \left(\frac{1}{9}\right)^x" />
 
-# Asas kurang daripada <InlineMath math="1" /> menterbalikkan tanda
+# Ditanya
 
-Fungsi <InlineMath math="t\mapsto\left(\frac13\right)^t" /> menyusut secara tegas: eksponen yang lebih besar memberi nilai yang lebih kecil. Apabila beralih kepada eksponen, **tanda ketaksamaan terbalik**:
+Tentukan semua nombor nyata <InlineMath math="x" /> yang memenuhi ketaksamaan ini.
+
+# Penyelesaian
+
+Jika kamu terus memotong sebiji kek kepada satu pertiga berulang kali, makin banyak potongan dibuat (indeks makin besar), makin kecil bahagian yang tinggal. Bagi asas <InlineMath math="\frac{1}{3}" />, **indeks lebih besar memberi nilai lebih kecil**. Maka sebaik kedua-dua belah berkongsi asas <InlineMath math="\frac{1}{3}" />, membuang asas mesti **menterbalikkan tanda ketaksamaan**.
+
+> Apabila membandingkan kuasa berasas sama antara sifar dengan satu, indeks sentiasa berada pada arah ketaksamaan berlawanan daripada nilai kuasanya.
+
+## Menyamakan asas pada dua belah
+
+Tulis semula <InlineMath math="\frac{1}{9}" /> sebagai kuasa dua bagi <InlineMath math="\frac{1}{3}" /> supaya dua belah berkongsi **asas <InlineMath math="\frac{1}{3}" /> yang sama**:
+
+<BlockMath math="\left(\frac{1}{9}\right)^x = \left(\left(\frac{1}{3}\right)^2\right)^x = \left(\frac{1}{3}\right)^{2x} \quad \Longrightarrow \quad \left(\frac{1}{3}\right)^{x^2 - 8} \le \left(\frac{1}{3}\right)^{2x}" />
+
+## Menterbalikkan tanda semasa membandingkan indeks
+
+Kerana fungsi eksponen berasas <InlineMath math="\frac{1}{3}" /> menyusut tegas, **tanda <InlineMath math="\le" /> berbalik menjadi <InlineMath math="\ge" />** pada indeksnya:
 
 <BlockMath math="\begin{aligned}
-x^2-8&\ge2x \\
-x^2-2x-8&\ge0 \\
-(x-4)(x+2)&\ge0
+x^2 - 8 &\ge 2x \\
+x^2 - 2x - 8 &\ge 0 \\
+(x - 4)(x + 2) &\ge 0
 \end{aligned}" />
 
-# Di mana hasil darab tidak negatif
+## Membaca selang bukan negatif daripada graf parabola
+
+Parabola <InlineMath math="x^2 - 2x - 8" /> terbuka ke atas dengan punca <InlineMath math="-2" /> dan <InlineMath math="4" />, maka ia **bukan negatif pada dua sayap luarnya**.
 
 <MathVisual
-  title={<>Di mana ketaksamaan eksponen benar</>}
-  description={<>Parabola <InlineMath math="y=x^2-2x-8" /> mempunyai punca sifar <InlineMath math="-2" /> dan <InlineMath math="4" />. Ia berada pada atau di atas paksi <InlineMath math="x" /> di kiri <InlineMath math="-2" /> dan di kanan <InlineMath math="4" />. Tepat kedua-dua selang itu ditanda di bawah paksi.</>}
+  title={<>Tempat ketaksamaan indeks dipenuhi</>}
+  description={<>Parabola <InlineMath math="y = x^2 - 2x - 8" /> memotong paksi <InlineMath math="x" /> di <InlineMath math="-2" /> dan <InlineMath math="4" />. Lengkung berada pada atau di atas paksi di kiri <InlineMath math="-2" /> dan di kanan <InlineMath math="4" />, sepadan dengan dua selang jawapan bertanda di bawah paksi.</>}
+  footer={<>Parabola bukan negatif pada sayap kiri hingga <InlineMath math="-2" /> dan sayap kanan mulai <InlineMath math="4" />.</>}
   labels={{
     a: <><InlineMath math="-2" /></>,
     b: <><InlineMath math="4" /></>,
-    g: <><InlineMath math="x^2-2x-8" /></>,
+    g: <><InlineMath math="x^2 - 2x - 8" /></>,
   }}
   scene={{
     space: "plane",
@@ -48,14 +67,22 @@ x^2-2x-8&\ge0 \\
   }}
 />
 
-Hasil darab itu tidak negatif apabila **kedua-dua faktor mempunyai tanda yang sama** atau salah satunya sifar: bagi <InlineMath math="x\le-2" /> atau <InlineMath math="x\ge4" />.
+Semakan pantas pada <InlineMath math="x = 0" />: sebelah kiri ialah <InlineMath math="3^8" /> dan sebelah kanan ialah <InlineMath math="1" />. Oleh sebab <InlineMath math="3^8 \le 1" /> palsu, selang tengah memang tertolak, mengesahkan dua sayap luar.
 
-Semak <InlineMath math="x=0" />: sebelah kiri <InlineMath math="\left(\frac13\right)^{-8}=3^8" />, sebelah kanan <InlineMath math="1" />, dan <InlineMath math="3^8\le1" /> adalah palsu. Ketaksamaan itu benar bagi <InlineMath math="x\le-2" /> atau <InlineMath math="x\ge4" />.
+## Menyemak pilihan salah
 
-# Kenapa jawapan lain salah
+Perhatikan bagaimana setiap pengganggu **lupa menterbalikkan tanda atau tersilap mengubah indeks**:
 
-- <InlineMath math="-2\le x\le4" /> **tidak menterbalikkan tanda**, seolah-olah asasnya lebih besar daripada <InlineMath math="1" />.
-- <InlineMath math="x\le-4" /> atau <InlineMath math="x\ge2" /> terhasil daripada <InlineMath math="\left(\frac19\right)^x=\left(\frac13\right)^{-2x}" />, iaitu kesilapan tanda dalam eksponen.
-- <InlineMath math="-4\le x\le2" /> membuat kedua-dua kesilapan: eksponen yang salah dan tanda tidak diterbalikkan.
-- <InlineMath math="x\ge4" /> kehilangan selang di kiri <InlineMath math="-2" />.
-- <InlineMath math="x\le-2\sqrt2" /> atau <InlineMath math="x\ge2\sqrt2" /> hanya melihat <InlineMath math="x^2-8\ge0" /> dan terlupa sebelah kanan.
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="-2 \le x \le 4" /> | Gagal menterbalikkan tanda ketaksamaan, seolah-olah asasnya melebihi <InlineMath math="1" />. |
+| <InlineMath math="x \le -4" /> atau <InlineMath math="x \ge 2" /> | Silap menukar <InlineMath math="\left(\frac{1}{9}\right)^x" /> kepada <InlineMath math="\left(\frac{1}{3}\right)^{-2x}" />. |
+| <InlineMath math="-4 \le x \le 2" /> | Melakukan kedua-dua kesilapan: salah tanda indeks dan tidak menterbalikkan ketaksamaan. |
+| <InlineMath math="x \ge 4" /> | Kehilangan keseluruhan cabang kiri <InlineMath math="x \le -2" />. |
+| <InlineMath math="x \le -2\sqrt{2}" /> atau <InlineMath math="x \ge 2\sqrt{2}" /> | Hanya menyelesaikan <InlineMath math="x^2 - 8 \ge 0" /> sambil mengabaikan <InlineMath math="2x" />. |
+
+# Jawapan
+
+Semua nombor nyata <InlineMath math="x" /> yang memenuhi ketaksamaan ini ialah:
+
+<BlockMath math="x \le -2 \qquad \text{atau} \qquad x \ge 4" />
