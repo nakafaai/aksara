@@ -1,28 +1,45 @@
-# Der Betrag teilt in zwei Fälle
+# Gegeben
 
-Der Term <InlineMath math="2x-3" /> wechselt sein Vorzeichen bei <InlineMath math="x=\frac32" />. Deshalb gilt in jedem Bereich **eine andere Ungleichung ohne Betrag**.
+Gegeben ist eine lineare **Betragsungleichung**:
 
-# Die beiden Fälle
+<BlockMath math="\lvert 2x - 3 \rvert \le x + 1" />
+
+# Gesucht
+
+Bestimme alle reellen Zahlen <InlineMath math="x" />, für die diese Ungleichung gilt.
+
+# Lösung
+
+Der Betrag <InlineMath math="\lvert 2x - 3 \rvert" /> wirkt wie ein Kippschalter, der genau bei seiner Nullstelle <InlineMath math="\frac{3}{2}" /> umschaltet. Rechts von <InlineMath math="\frac{3}{2}" /> ist der Ausdruck nicht negativ und die Betragsstriche fallen einfach weg. Links davon dreht sich sein Vorzeichen um. Löse **beide Fälle und füge sie zusammen**.
+
+> Eine Betragsungleichung teilt sich an der Nullstelle ihres Inhalts in zwei einfache lineare Ungleichungen, deren Lösungsbereiche anschließend vereinigt werden.
+
+## Beide Fälle rund um die Knickstelle lösen
+
+Der Term <InlineMath math="2x - 3" /> wechselt bei <InlineMath math="\frac{3}{2}" /> sein Vorzeichen, sodass **zwei getrennte Fälle** entstehen:
 
 <BlockMath math="\begin{aligned}
-x\ge\tfrac32:&\quad 2x-3\le x+1\quad\Longrightarrow\quad x\le4,\quad\text{also}\ \tfrac32\le x\le4 \\
-x<\tfrac32:&\quad 3-2x\le x+1\quad\Longrightarrow\quad x\ge\tfrac23,\quad\text{also}\ \tfrac23\le x<\tfrac32
+x \ge \frac{3}{2}: &\quad 2x - 3 \le x + 1 \quad \Longleftrightarrow \quad x \le 4 \quad \Longrightarrow \quad \frac{3}{2} \le x \le 4 \\
+x < \frac{3}{2}: &\quad 3 - 2x \le x + 1 \quad \Longleftrightarrow \quad 2 \le 3x \quad \Longrightarrow \quad \frac{2}{3} \le x < \frac{3}{2}
 \end{aligned}" />
 
-Im zweiten Fall teilst du durch <InlineMath math="-3" />, und **das Ungleichheitszeichen dreht sich um**: <InlineMath math="-3x\le-2" /> wird zu <InlineMath math="x\ge\frac23" />.
+Beide Teilstücke **schließen bei <InlineMath math="\frac{3}{2}" /> lückenlos aneinander**:
 
-# Die Fälle zusammensetzen
+<BlockMath math="\frac{2}{3} \le x \le 4" />
 
-Die beiden Teile schließen bei <InlineMath math="\frac32" /> **lückenlos aneinander an**:
+## Das Lösungsintervall im Graphen prüfen
+
+Zwischen den beiden Schnittpunkten verläuft die Gerade <InlineMath math="x + 1" /> **durchgehend oberhalb des V-förmigen Betragsgraphen**.
 
 <MathVisual
   title={<>Wo der Betrag unter der Geraden liegt</>}
-  description={<>Der V-förmige Graph von <InlineMath math="y=|2x-3|" /> mit der Spitze bei <InlineMath math="x=\tfrac32" /> und die Gerade <InlineMath math="y=x+1" />. Die Gerade liegt zwischen den Schnittpunkten bei <InlineMath math="x=\tfrac23" /> und <InlineMath math="x=4" /> oberhalb des Betrags. Dieses Intervall ist unter der Achse markiert.</>}
+  description={<>Der V-förmige Graph von <InlineMath math="\lvert 2x - 3 \rvert" /> mit Knick bei <InlineMath math="x = \frac{3}{2}" /> trifft die Gerade <InlineMath math="x + 1" /> bei <InlineMath math="x = \frac{2}{3}" /> und <InlineMath math="x = 4" />. Dazwischen liegt die Gerade auf oder über dem Betragsgraphen.</>}
+  footer={<>Die Gerade <InlineMath math="x + 1" /> bleibt von <InlineMath math="\frac{2}{3}" /> bis <InlineMath math="4" /> auf oder über der V-Kurve.</>}
   labels={{
-    a: <><InlineMath math="x=\tfrac23" /></>,
-    b: <><InlineMath math="x=4" /></>,
-    f: <><InlineMath math="|2x-3|" /></>,
-    g: <><InlineMath math="x+1" /></>,
+    a: <><InlineMath math="x = \tfrac{2}{3}" /></>,
+    b: <><InlineMath math="x = 4" /></>,
+    f: <><InlineMath math="\lvert 2x - 3 \rvert" /></>,
+    g: <><InlineMath math="x + 1" /></>,
   }}
   scene={{
     space: "plane",
@@ -48,12 +65,22 @@ Die beiden Teile schließen bei <InlineMath math="\frac32" /> **lückenlos anein
   }}
 />
 
-Probe mit <InlineMath math="x=0" />: <InlineMath math="|{-3}|=3>1" />, die Ungleichung gilt also nicht. Mit <InlineMath math="x=2" />: <InlineMath math="1\le3" />, sie gilt. Die Lösung ist <InlineMath math="\frac23\le x\le4" />.
+Probe: Für <InlineMath math="x = 0" /> ist links <InlineMath math="3" /> größer als <InlineMath math="1" /> (falsch). Für <InlineMath math="x = 2" /> liegt links <InlineMath math="1" /> unter <InlineMath math="3" /> (richtig).
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="\frac32\le x\le4" /> rechnet **nur den ersten Fall**.
-- <InlineMath math="x\le4" /> übernimmt die obere Grenze und vergisst die untere aus dem zweiten Fall.
-- <InlineMath math="\frac23\le x<\frac32" /> rechnet nur den zweiten Fall.
-- <InlineMath math="-4\le x\le-\frac23" /> dreht alle Vorzeichen um.
-- <InlineMath math="\frac23<x<4" /> schließt die Grenzen aus. Dort sind beide Seiten gleich, und <InlineMath math="\le" /> erlaubt das.
+Sieh nach, welcher Fall bei **jeder falschen Auswahl** fehlt oder umgedreht wurde:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="\frac{3}{2} \le x \le 4" /> | Enthält nur den ersten Fall und vergisst den linken Zweig. |
+| <InlineMath math="x \le 4" /> | Behält die obere Grenze, vergisst aber die untere aus dem zweiten Fall. |
+| <InlineMath math="\frac{2}{3} \le x < \frac{3}{2}" /> | Enthält nur den zweiten Fall und vergisst den rechten Zweig. |
+| <InlineMath math="-4 \le x \le -\frac{2}{3}" /> | Kehrt die Vorzeichen beider Grenzen ins Negative um. |
+| <InlineMath math="\frac{2}{3} < x < 4" /> | Schließt die Randpunkte aus, obwohl <InlineMath math="\le" /> Gleichheit zulässt. |
+
+# Antwort
+
+Alle reellen Zahlen <InlineMath math="x" />, die die Ungleichung erfüllen, sind:
+
+<BlockMath math="\frac{2}{3} \le x \le 4" />

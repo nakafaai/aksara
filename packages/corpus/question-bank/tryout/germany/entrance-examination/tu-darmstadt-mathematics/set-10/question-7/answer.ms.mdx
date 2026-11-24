@@ -1,29 +1,48 @@
-# Persamaan kuadratik dalam <InlineMath math="\sin x" />
+# Diberi
 
-Biar <InlineMath math="s=\sin x" />. Persamaan itu menjadi **persamaan kuadratik dalam <InlineMath math="s" />**:
+Diberikan **persamaan trigonometri kuadratik** bagi sudut <InlineMath math="x" /> dalam satu pusingan penuh dari <InlineMath math="0^\circ" /> hingga sebelum <InlineMath math="360^\circ" />:
 
-<BlockMath math="2s^2-s-1=0\quad\Longleftrightarrow\quad (2s+1)(s-1)=0\quad\Longleftrightarrow\quad s=1\ \text{atau}\ s=-\tfrac12" />
+<BlockMath math="2\sin^2 x - \sin x - 1 = 0" />
 
-Kedua-dua nilai terletak antara <InlineMath math="-1" /> dan <InlineMath math="1" />, jadi kedua-duanya mungkin sebagai nilai sinus.
+# Ditanya
 
-# Kira sudut bagi setiap nilai sinus
+Berapakah bilangan penyelesaian (*Lösungen*) persamaan ini dalam julat sudut ini?
 
-Dalam julat <InlineMath math="0^\circ\le x<360^\circ" />, satu nilai sinus biasanya ada dua sudut. **Nilai <InlineMath math="1" /> ialah pengecualian**, kerana ia nilai maksimum: ia hanya dicapai pada <InlineMath math="90^\circ" />.
+# Penyelesaian
+
+Bayangkan <InlineMath math="\sin x" /> sebagai ketinggian satu titik yang berpusing mengelilingi roda bulatan unit. Menggantikan <InlineMath math="s = \sin x" /> menukar persamaan ini kepada kuadratik biasa yang memberi dua ketinggian sasaran. Dalam satu pusingan penuh, **hampir setiap ketinggian dilalui dua kali** (semasa naik dan turun), kecuali **puncak paling atas dan dasar paling bawah yang hanya disentuh tepat sekali**.
+
+> Pada bulatan unit dalam satu pusingan penuh, setiap nilai sinus di antara <InlineMath math="-1" /> dengan <InlineMath math="1" /> memberi dua sudut, manakala nilai ekstrem <InlineMath math="1" /> atau <InlineMath math="-1" /> memberi satu sudut sahaja.
+
+## Memfaktorkan persamaan kuadratik dalam sinus
+
+Andaikan <InlineMath math="s = \sin x" />. Persamaan kuadratik ini **terfaktor dengan kemas**:
+
+<BlockMath math="2s^2 - s - 1 = 0 \quad \Longleftrightarrow \quad (2s + 1)(s - 1) = 0 \quad \Longleftrightarrow \quad s = 1 \ \text{atau} \ s = -\frac{1}{2}" />
+
+Kedua-dua nilai terletak dalam julat sinus yang sah dari <InlineMath math="-1" /> hingga <InlineMath math="1" />.
+
+## Mengira semua sudut pada bulatan unit
+
+Senaraikan semua sudut dalam satu pusingan penuh bagi **setiap ketinggian sasaran**:
 
 <BlockMath math="\begin{aligned}
-\sin x=1:&\quad x=90^\circ \\
-\sin x=-\tfrac12:&\quad x=180^\circ+30^\circ=210^\circ\ \text{atau}\ x=360^\circ-30^\circ=330^\circ
+\sin x = 1: &\quad x = 90^\circ \\
+\sin x = -\frac{1}{2}: &\quad x = 210^\circ \ \text{atau} \ x = 330^\circ
 \end{aligned}" />
+
+Lihat ketiga-tiga titik ini terus pada bulatan unit di bawah.
 
 <MathVisual
   title={<>Penyelesaian pada bulatan unit</>}
-  description={<>Pada bulatan unit, <InlineMath math="\sin x" /> ialah ketinggian titik itu. Garis <InlineMath math="y=1" /> hanya menyentuh bulatan di atas, pada <InlineMath math="90^\circ" />. Garis <InlineMath math="y=-\tfrac12" /> memotongnya dua kali, pada <InlineMath math="210^\circ" /> dan <InlineMath math="330^\circ" />.</>}
+  description={<>Pada bulatan unit, <InlineMath math="\sin x" /> ialah ketinggian menegak. Garis mengufuk <InlineMath math="y = 1" /> hanya menyentuh puncak di <InlineMath math="90^\circ" />, manakala garis <InlineMath math="y = -\frac{1}{2}" /> memotong bulatan di dua titik, <InlineMath math="210^\circ" /> dan <InlineMath math="330^\circ" />.</>}
+  footer={<>Satu titik sentuhan di <InlineMath math="90^\circ" /> serta dua persilangan di <InlineMath math="210^\circ" /> dan <InlineMath math="330^\circ" /> memberi tepat <InlineMath math="3" /> penyelesaian.</>}
   labels={{
     a: <><InlineMath math="90^\circ" /></>,
     b: <><InlineMath math="210^\circ" /></>,
     c: <><InlineMath math="330^\circ" /></>,
-    u: <><InlineMath math="\sin x=1" /></>,
-    v: <><InlineMath math="\sin x=-\tfrac12" /></>,
+    u: <><InlineMath math="\sin x = 1" /></>,
+    v: <><InlineMath math="\sin x = -\tfrac{1}{2}" /></>,
   }}
   scene={{
     space: "plane",
@@ -53,14 +72,20 @@ Dalam julat <InlineMath math="0^\circ\le x<360^\circ" />, satu nilai sinus biasa
   }}
 />
 
-# Bilangannya
+Secara keseluruhan terdapat tiga sudut berbeza: <InlineMath math="90^\circ" />, <InlineMath math="210^\circ" />, dan <InlineMath math="330^\circ" />.
 
-Bersama-sama ada sudut <InlineMath math="90^\circ" />, <InlineMath math="210^\circ" /> dan <InlineMath math="330^\circ" />. Persamaan itu mempunyai **tepat <InlineMath math="3" /> penyelesaian**.
+## Menyemak pilihan salah
 
-# Kenapa jawapan lain salah
+Perhatikan bagaimana setiap pengganggu **tersalah kira sudut pada bulatan unit**:
 
-- <InlineMath math="4" /> memberi dua sudut juga bagi <InlineMath math="\sin x=1" />, sedangkan **nilai maksimum hanya dicapai sekali**.
-- <InlineMath math="2" /> hanya mengira satu sudut bagi setiap nilai sinus.
-- <InlineMath math="1" /> hanya mengira <InlineMath math="\sin x=1" /> dan membuang nilai negatif.
-- <InlineMath math="5" /> turut mengira <InlineMath math="x=360^\circ" />, yang sudah di luar julat, dan penyelesaian <InlineMath math="90^\circ" /> yang dikira dua kali.
-- <InlineMath math="6" /> menganggap ada tiga sudut bagi setiap nilai, seolah-olah julatnya melebihi satu pusingan penuh.
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="4" /> | Menganggap <InlineMath math="\sin x = 1" /> juga mempunyai dua sudut, terlupa puncak hanya disentuh sekali. |
+| <InlineMath math="2" /> | Hanya mengira satu sudut bagi setiap nilai sinus. |
+| <InlineMath math="1" /> | Hanya mengambil <InlineMath math="\sin x = 1" /> dan membuang nilai sinus negatif. |
+| <InlineMath math="5" /> | Mengira <InlineMath math="90^\circ" /> dua kali serta memasukkan <InlineMath math="360^\circ" /> di luar selang. |
+| <InlineMath math="6" /> | Menganggap setiap nilai sinus mempunyai tiga sudut dalam satu pusingan penuh. |
+
+# Jawapan
+
+Persamaan ini mempunyai tepat **<InlineMath math="3" />** penyelesaian.

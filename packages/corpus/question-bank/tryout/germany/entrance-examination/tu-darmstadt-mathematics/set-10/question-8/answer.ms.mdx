@@ -1,22 +1,37 @@
-# Di mana kaki garis tinggi terletak
+# Diberi
 
-Puncak <InlineMath math="S" /> sama jauh dari ketiga-tiga bucu tapak. Oleh itu garis tinggi bertemu tapak di **sentroid <InlineMath math="O" />**, yang juga pusat bulatan luarnya. Dalam segi tiga sama sisi bersisi <InlineMath math="6" />, mediannya sepanjang <InlineMath math="3\sqrt3" />, dan <InlineMath math="O" /> membahaginya dalam nisbah <InlineMath math="2:1" />:
+Sebuah **tetrahedron sekata** (*regelmäßiges Tetraeder*) terbina daripada empat segi tiga sama sisi kongruen dengan **semua tepi sepanjang <InlineMath math="6\text{ cm}" />**.
 
-<BlockMath math="\overline{OA}=\frac23\cdot3\sqrt3=2\sqrt3" />
+# Ditanya
 
-# Pythagoras dalam segi tiga <InlineMath math="OAS" />
+Berapakah jarak dari satu bucu ke muka segi tiga bertentangannya (tinggi tetrahedron)?
 
-Garis tinggi berserenjang dengan tapak, jadi segi tiga <InlineMath math="OAS" /> bersudut tegak di <InlineMath math="O" />. **Sisi <InlineMath math="\overline{AS}=6" /> ialah hipotenusnya**:
+# Penyelesaian
+
+Letakkan tetrahedron rata di atas meja pada satu muka segi tiganya, lalu jatuhkan garis tegak dari puncak atas <InlineMath math="S" /> ke meja. Oleh sebab ketiga-tiga tepi condong dari puncak sama panjang, kaki garis tegak pasti jatuh tepat di **sentroid tapak <InlineMath math="O" />**, bukan titik tengah tepi. Memotong secara menegak melalui segi tiga bersudut tegak <InlineMath math="OAS" /> menukar tinggi ruang kepada satu langkah Pythagoras.
+
+> Garis tinggi tetrahedron sekata jatuh tepat pada sentroid tapak, yang membahagi setiap median tapak dalam nisbah <InlineMath math="2 : 1" /> dari bucu.
+
+## Mencari jarak dari bucu tapak ke sentroid
+
+Dalam segi tiga sama sisi tapak bersisi <InlineMath math="6\text{ cm}" />, panjang tinggi (juga median) tapak ialah <InlineMath math="3\sqrt{3}\text{ cm}" />. Oleh sebab sentroid <InlineMath math="O" /> membahagi median dalam nisbah <InlineMath math="2 : 1" />, **jarak dari bucu <InlineMath math="A" /> ke pusat <InlineMath math="O" />** ialah dua pertiga daripadanya:
+
+<BlockMath math="\overline{OA} = \frac{2}{3} \cdot 3\sqrt{3} = 2\sqrt{3}\text{ cm}" />
+
+## Mengira tinggi pada keratan tegak
+
+Keratan tegak melalui puncak <InlineMath math="S" />, bucu tapak <InlineMath math="A" />, dan sentroid <InlineMath math="O" /> membentuk **segi tiga bersudut tegak di <InlineMath math="O" />** berhipotenus tepi <InlineMath math="\overline{AS} = 6\text{ cm}" />.
 
 <MathVisual
-  title={<>Segi tiga daripada tinggi, sisi dan jarak</>}
-  description={<>Keratan melalui puncak <InlineMath math="S" />, bucu tapak <InlineMath math="A" /> dan sentroid tapak <InlineMath math="O" />. Segi tiga <InlineMath math="OAS" /> bersudut tegak di <InlineMath math="O" />, dengan <InlineMath math="\overline{OA}=2\sqrt3" />, sisi <InlineMath math="\overline{AS}=6" /> sebagai hipotenus dan tinggi <InlineMath math="h=\overline{OS}" />.</>}
+  title={<>Segi tiga tinggi, tepi, dan jejari tapak</>}
+  description={<>Keratan tegak melalui puncak <InlineMath math="S" />, bucu tapak <InlineMath math="A" />, dan sentroid tapak <InlineMath math="O" />. Segi tiga <InlineMath math="OAS" /> bersudut tegak di <InlineMath math="O" /> dengan tapak <InlineMath math="\overline{OA} = 2\sqrt{3}" />, hipotenus tepi <InlineMath math="\overline{AS} = 6" />, dan tinggi tegak <InlineMath math="h = \overline{OS}" />.</>}
+  footer={<>Pythagoras pada hipotenus <InlineMath math="6" /> dan tapak <InlineMath math="2\sqrt{3}" /> memberi tinggi tepat <InlineMath math="2\sqrt{6}\text{ cm}" />.</>}
   labels={{
     s: <><InlineMath math="S" /></>,
     o: <><InlineMath math="O" /></>,
     a: <><InlineMath math="A" /></>,
     e: <><InlineMath math="6" /></>,
-    r: <><InlineMath math="2\sqrt3" /></>,
+    r: <><InlineMath math="2\sqrt{3}" /></>,
     h: <><InlineMath math="h" /></>,
   }}
   scene={{
@@ -46,14 +61,24 @@ Garis tinggi berserenjang dengan tapak, jadi segi tiga <InlineMath math="OAS" />
   }}
 />
 
-<BlockMath math="h=\sqrt{6^2-\left(2\sqrt3\right)^2}=\sqrt{36-12}=\sqrt{24}=2\sqrt6" />
+Gunakan teorem Pythagoras pada segi tiga <InlineMath math="OAS" />:
 
-Jarak bucu ke permukaan bertentangan ialah **<InlineMath math="2\sqrt6\text{ cm}" />**, kira-kira <InlineMath math="4.9\text{ cm}" />.
+<BlockMath math="h = \sqrt{6^2 - \left(2\sqrt{3}\right)^2} = \sqrt{36 - 12} = \sqrt{24} = 2\sqrt{6}\text{ cm}" />
 
-# Kenapa jawapan lain salah
+Semakan kewajaran: tingginya sekitar <InlineMath math="4.9\text{ cm}" />, sedikit lebih pendek daripada tinggi muka condong sekitar <InlineMath math="5.2\text{ cm}" />, tepat mengikut geometri.
 
-- <InlineMath math="3\sqrt3\text{ cm}" /> ialah **tinggi satu muka segi tiga**, bukan tinggi tetrahedron itu.
-- <InlineMath math="3\text{ cm}" /> memakai seluruh median <InlineMath math="3\sqrt3" />, bukan <InlineMath math="2\sqrt3" />: <InlineMath math="\sqrt{36-27}=3" />.
-- <InlineMath math="2\sqrt3\text{ cm}" /> ialah jarak <InlineMath math="\overline{OA}" /> pada tapak.
-- <InlineMath math="3\sqrt2\text{ cm}" /> memakai <InlineMath math="3\sqrt2" /> sebagai jarak <InlineMath math="\overline{OA}" />, seperti separuh pepenjuru segi empat sama: <InlineMath math="\sqrt{36-18}" />.
-- <InlineMath math="\sqrt{30}\text{ cm}" /> hanya menolak <InlineMath math="6" />, bukan <InlineMath math="12" />: <InlineMath math="\sqrt{36-6}" />.
+## Menyemak pilihan salah
+
+Lihat panjang mana yang **tertukar dalam setiap pilihan pengganggu**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="3\sqrt{3}\text{ cm}" /> | Tinggi satu muka segi tiga sama sisi, bukan tinggi ruang tetrahedron. |
+| <InlineMath math="3\text{ cm}" /> | Menggunakan keseluruhan median <InlineMath math="3\sqrt{3}" /> sebagai tapak bukannya <InlineMath math="2\sqrt{3}" />. |
+| <InlineMath math="2\sqrt{3}\text{ cm}" /> | Baru jejari lilit tapak <InlineMath math="\overline{OA}" />, bukan tinggi tegak. |
+| <InlineMath math="3\sqrt{2}\text{ cm}" /> | Menggunakan separuh pepenjuru segi empat sama <InlineMath math="3\sqrt{2}" /> seolah-olah tapaknya segi empat sama. |
+| <InlineMath math="\sqrt{30}\text{ cm}" /> | Silap menguasaduakan <InlineMath math="(2\sqrt{3})^2" /> sebagai <InlineMath math="6" /> bukannya <InlineMath math="12" />. |
+
+# Jawapan
+
+Jarak satu bucu ke muka bertentangannya ialah **<InlineMath math="2\sqrt{6}\text{ cm}" />**.

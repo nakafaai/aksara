@@ -1,30 +1,84 @@
-# Kerja dari dalam ke luar
+# Diberi
 
-Setiap punca ialah kuasa dengan eksponen pecahan: <InlineMath math="\sqrt{u}=u^{\frac12}" /> dan <InlineMath math="\sqrt[3]{u}=u^{\frac13}" />. Apabila didarab, **eksponen ditambah**, dan apabila punca diambil, eksponen dibahagi. Jadi kerja dari punca paling dalam ke luar:
+Bagi nombor nyata positif <InlineMath math="x > 0" />, diberikan **ungkapan punca bersarang tiga lapis** (*Term*):
 
-| Langkah | Ungkapan | sebagai kuasa |
-| --- | --- | --- |
-| punca paling dalam | <InlineMath math="\sqrt{x}" /> | <InlineMath math="x^{\frac12}" /> |
-| darab <InlineMath math="x^2" /> | <InlineMath math="x^2\cdot\sqrt{x}" /> | <InlineMath math="x^{\frac52}" /> |
-| punca kuasa tiga | <InlineMath math="\sqrt[3]{x^2\sqrt x}" /> | <InlineMath math="x^{\frac56}" /> |
-| darab <InlineMath math="x" /> | <InlineMath math="x\cdot\sqrt[3]{x^2\sqrt x}" /> | <InlineMath math="x^{\frac{11}{6}}" /> |
-| punca paling luar | <InlineMath math="\sqrt{x\cdot\sqrt[3]{x^2\sqrt x}}" /> | <InlineMath math="x^{\frac{11}{12}}" /> |
+<BlockMath math="\sqrt{x \cdot \sqrt[3]{x^2 \cdot \sqrt{x}}}" />
 
-# Kiraan langkah demi langkah
+# Ditanya
+
+Tulis ungkapan punca bersarang ini sebagai **satu kuasa tunggal** bagi <InlineMath math="x" />.
+
+# Penyelesaian
+
+Punca bersarang ibarat kotak berlapis: cara paling kemas ialah **membukanya dari lapisan paling dalam keluar selapis demi selapis**. Mendarab kuasa berasas sama menambah indeks, manakala menarik punca ke-<InlineMath math="n" /> membahagi indeks dengan <InlineMath math="n" />. Ikuti perubahan indeks hingga lapisan paling luar.
+
+> Bagi punca bersarang berasas sama, selesaikan dari dalam ke luar: darab menambah indeks dan punca membahagi indeks.
+
+## Menjejak indeks dari dalam ke luar
+
+Gunakan hukum indeks pecahan langkah demi langkah bermula daripada **punca paling dalam <InlineMath math="\sqrt{x}" />**:
 
 <BlockMath math="\begin{aligned}
-x^2\cdot x^{\frac12}&=x^{2+\frac12}=x^{\frac52} \\
-\left(x^{\frac52}\right)^{\frac13}&=x^{\frac56} \\
-x\cdot x^{\frac56}&=x^{\frac{11}{6}} \\
-\left(x^{\frac{11}{6}}\right)^{\frac12}&=x^{\frac{11}{12}}
+x^2 \cdot \sqrt{x} &= x^2 \cdot x^{\frac{1}{2}} = x^{\frac{5}{2}} \\
+\sqrt[3]{x^{\frac{5}{2}}} &= \left(x^{\frac{5}{2}}\right)^{\frac{1}{3}} = x^{\frac{5}{6}} \\
+x \cdot x^{\frac{5}{6}} &= x^{1 + \frac{5}{6}} = x^{\frac{11}{6}} \\
+\sqrt{x^{\frac{11}{6}}} &= \left(x^{\frac{11}{6}}\right)^{\frac{1}{2}} = x^{\frac{11}{12}}
 \end{aligned}" />
 
-Semak dengan <InlineMath math="x=2^{12}=4096" />: punca paling dalam ialah <InlineMath math="2^6" />, kemudian <InlineMath math="2^{24}\cdot2^6=2^{30}" />, punca kuasa tiganya <InlineMath math="2^{10}" />, didarab <InlineMath math="2^{12}" /> menjadi <InlineMath math="2^{22}" />, dan punca kuasa duanya <InlineMath math="2^{11}=\left(2^{12}\right)^{\frac{11}{12}}" />. Ungkapan itu **sama dengan <InlineMath math="x^{\frac{11}{12}}" />**.
+Lihat perjalanan naik turun indeks pada setiap tahap dalam carta berikut.
 
-# Kenapa jawapan lain salah
+<MathVisual
+  title={<>Perjalanan indeks dari dalam ke luar</>}
+  description={<>Nilai indeks berubah merentasi lima tahap: bermula di <InlineMath math="\frac{1}{2}" />, naik ke <InlineMath math="\frac{5}{2}" /> selepas didarab <InlineMath math="x^2" />, turun ke <InlineMath math="\frac{5}{6}" /> dengan punca kuasa tiga, naik ke <InlineMath math="\frac{11}{6}" /> selepas didarab <InlineMath math="x" />, lalu berakhir di <InlineMath math="\frac{11}{12}" /> oleh punca kuasa dua terluar.</>}
+  footer={<>Pendaraban menaikkan indeks dan punca membahaginya hingga berakhir tepat di <InlineMath math="\frac{11}{12}" />.</>}
+  labels={{
+    s1: <><InlineMath math="\frac{1}{2}" /></>,
+    s2: <><InlineMath math="\frac{5}{2}" /></>,
+    s3: <><InlineMath math="\frac{5}{6}" /></>,
+    s4: <><InlineMath math="\frac{11}{6}" /></>,
+    s5: <><InlineMath math="\frac{11}{12}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0.4, max: 5.6 },
+      y: { min: 0, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0.6, y: 0.9167 }, to: { x: 5.4, y: 0.9167 } },
+      { id: "steps", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 0.5 }, { x: 2, y: 2.5 }, { x: 3, y: 0.8333 }, { x: 4, y: 1.8333 }, { x: 5, y: 0.9167 }] },
+      { id: "p1", kind: "point", appearance: "secondary", at: { x: 1, y: 0.5 } },
+      { id: "p2", kind: "point", appearance: "highlight", at: { x: 2, y: 2.5 } },
+      { id: "p3", kind: "point", appearance: "secondary", at: { x: 3, y: 0.8333 } },
+      { id: "p4", kind: "point", appearance: "highlight", at: { x: 4, y: 1.8333 } },
+      { id: "p5", kind: "point", appearance: "answer", at: { x: 5, y: 0.9167 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "p1", at: { x: 1, y: 0.5 }, placement: "below" },
+      { key: "s2", objectId: "p2", at: { x: 2, y: 2.5 }, placement: "above" },
+      { key: "s3", objectId: "p3", at: { x: 3, y: 0.8333 }, placement: "below" },
+      { key: "s4", objectId: "p4", at: { x: 4, y: 1.8333 }, placement: "above" },
+      { key: "s5", objectId: "p5", at: { x: 5, y: 0.9167 }, placement: "above-right" },
+    ],
+  }}
+/>
 
-- <InlineMath math="x^{\frac{11}{6}}" /> **terlupa punca paling luar**.
-- <InlineMath math="x^{\frac56}" /> berhenti pada punca kuasa tiga dan membuang <InlineMath math="x" /> di hadapannya serta punca paling luar.
-- <InlineMath math="x^{\frac34}" /> membuang faktor <InlineMath math="x^2" /> dan punca kuasa tiga, lalu hanya mengira <InlineMath math="\sqrt{x\cdot\sqrt x}=x^{\frac34}" />.
-- <InlineMath math="x^{\frac7{12}}" /> mengenakan punca kuasa tiga juga pada <InlineMath math="x" /> di luar: <InlineMath math="\left(x\cdot x^{\frac52}\right)^{\frac13}=x^{\frac76}" />, dan punca kuasa duanya <InlineMath math="x^{\frac7{12}}" />.
-- <InlineMath math="x^{\frac{13}{12}}" /> membaca <InlineMath math="\sqrt x" /> sebagai <InlineMath math="x^{\frac32}" />: bahagian dalam menjadi <InlineMath math="x^{\frac72}" />, punca kuasa tiganya <InlineMath math="x^{\frac76}" />, didarab <InlineMath math="x" /> menjadi <InlineMath math="x^{\frac{13}{6}}" />, dan punca paling luarnya <InlineMath math="x^{\frac{13}{12}}" />.
+Semakan pantas dengan <InlineMath math="x = 2^{12}" />: punca terdalam memberi <InlineMath math="2^6" />, didarab <InlineMath math="2^{24}" /> menjadi <InlineMath math="2^{30}" />, punca kuasa tiganya <InlineMath math="2^{10}" />, didarab <InlineMath math="2^{12}" /> menjadi <InlineMath math="2^{22}" />, dan punca kuasa duanya tepat <InlineMath math="2^{11}" />, sepadan tepat dengan <InlineMath math="\frac{11}{12}" />.
+
+## Menyemak pilihan salah
+
+Perhatikan lapisan mana yang **tertinggal atau tersilap baca** bagi setiap pengganggu:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="x^{\frac{11}{6}}" /> | Lupa mengambil punca kuasa dua terluar pada langkah akhir. |
+| <InlineMath math="x^{\frac{5}{6}}" /> | Berhenti selepas punca kuasa tiga, meninggalkan faktor <InlineMath math="x" /> dan punca terluar. |
+| <InlineMath math="x^{\frac{3}{4}}" /> | Membuang <InlineMath math="x^2" /> dan punca kuasa tiga lalu hanya mengira <InlineMath math="\sqrt{x\sqrt{x}}" />. |
+| <InlineMath math="x^{\frac{7}{12}}" /> | Silap memasukkan <InlineMath math="x" /> di luar ke dalam punca kuasa tiga. |
+| <InlineMath math="x^{\frac{13}{12}}" /> | Silap membaca <InlineMath math="\sqrt{x}" /> paling dalam sebagai <InlineMath math="x^{\frac{3}{2}}" /> bukannya <InlineMath math="x^{\frac{1}{2}}" />. |
+
+# Jawapan
+
+Sebagai satu kuasa tunggal bagi <InlineMath math="x" />, ungkapan ini ialah **<InlineMath math="x^{\frac{11}{12}}" />**.

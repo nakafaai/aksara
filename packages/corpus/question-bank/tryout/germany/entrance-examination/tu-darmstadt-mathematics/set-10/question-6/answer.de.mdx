@@ -1,25 +1,44 @@
-# Basis und Anfangswert bestimmen
+# Gegeben
 
-Teile <InlineMath math="f(3)" /> durch <InlineMath math="f(1)" />. Der Faktor <InlineMath math="a" /> kürzt sich, und **es bleibt <InlineMath math="b^2" /> übrig**:
+Die Exponentialfunktion <InlineMath math="f(x) = a \cdot b^x" /> mit <InlineMath math="b > 0" /> besitzt **zwei bekannte Funktionswerte**:
 
-<BlockMath math="\frac{f(3)}{f(1)}=\frac{a\,b^3}{a\,b}=b^2=\frac{54}{6}=9" />
+<BlockMath math="f(1) = 6 \qquad \text{und} \qquad f(3) = 54" />
 
-Wegen <InlineMath math="b>0" /> ist <InlineMath math="b=3" />, und aus <InlineMath math="f(1)=3a=6" /> folgt <InlineMath math="a=2" />. Also ist <InlineMath math="f(x)=2\cdot3^x" />.
+# Gesucht
 
-# Die Ungleichung mit ganzen Zahlen prüfen
+Welches ist die kleinste ganze Zahl <InlineMath math="x" />, für die <InlineMath math="f(x) > 1000" /> gilt?
 
-Gesucht ist die kleinste ganze Zahl <InlineMath math="x" /> mit <InlineMath math="2\cdot3^x>1000" />, also <InlineMath math="3^x>500" />. Die Potenzen von <InlineMath math="3" /> wachsen schnell, deshalb **genügt es, sie der Reihe nach zu berechnen**:
+# Lösung
 
-<BlockMath math="3^5=243<500,\qquad 3^6=729>500" />
+Bei exponentiellem Wachstum **multipliziert jeder einzelne Schritt den Wert mit einem festen Wachstumsfaktor <InlineMath math="b" />**. Von <InlineMath math="x = 1" /> bis <InlineMath math="x = 3" /> liegen zwei Schritte, und der Wert verneunfacht sich von <InlineMath math="6" /> auf <InlineMath math="54" />. Zweimal mit <InlineMath math="b" /> multiplizieren ergibt <InlineMath math="9" />, also **verdreifacht jeder Schritt den Wert**.
+
+> Der Quotient zweier Werte einer Exponentialfunktion kürzt den Anfangswert sofort weg und liefert den Wachstumsfaktor hoch der Schrittweite.
+
+## Wachstumsfaktor und Anfangswert bestimmen
+
+Teile <InlineMath math="f(3)" /> durch <InlineMath math="f(1)" />, sodass **der Faktor <InlineMath math="a" /> sich sauber wegkürzt**:
+
+<BlockMath math="\frac{f(3)}{f(1)} = \frac{a \cdot b^3}{a \cdot b} = b^2 = \frac{54}{6} = 9" />
+
+Wegen <InlineMath math="b > 0" /> folgt <InlineMath math="b = 3" />. Eingesetzt in <InlineMath math="f(1) = 6" /> ergibt sich der Anfangswert:
+
+<BlockMath math="a \cdot 3 = 6 \quad \Longrightarrow \quad a = 2 \quad \Longrightarrow \quad f(x) = 2 \cdot 3^x" />
+
+## Die erste ganze Zahl oberhalb von tausend finden
+
+Die Ungleichung <InlineMath math="2 \cdot 3^x > 1000" /> vereinfacht sich zu <InlineMath math="3^x > 500" />. Da Dreierpotenzen rasant wachsen, **prüfst du direkt die beiden benachbarten ganzen Zahlen**:
+
+<BlockMath math="3^5 = 243 < 500, \qquad 3^6 = 729 > 500" />
 
 <MathVisual
   title={<>Wann <InlineMath math="f" /> die Marke <InlineMath math="1000" /> überschreitet</>}
-  description={<>Der Graph von <InlineMath math="f(x)=2\cdot3^x" /> wächst immer steiler. Bei <InlineMath math="x=5" /> liegt er mit <InlineMath math="486" /> noch unter der Linie <InlineMath math="1000" />, bei <InlineMath math="x=6" /> mit <InlineMath math="1458" /> schon darüber.</>}
+  description={<>Der Graph von <InlineMath math="f(x) = 2 \cdot 3^x" /> steigt immer steiler an. Bei <InlineMath math="x = 5" /> steht er bei <InlineMath math="486" />, noch unterhalb von <InlineMath math="1000" />, und springt bei <InlineMath math="x = 6" /> auf <InlineMath math="1458" /> deutlich darüber.</>}
+  footer={<><InlineMath math="f(5) = 486" /> liegt noch unter <InlineMath math="1000" />, erst <InlineMath math="f(6) = 1458" /> überschreitet die Marke.</>}
   labels={{
-    five: <><InlineMath math="f(5)=486" /></>,
-    six: <><InlineMath math="f(6)=1458" /></>,
+    five: <><InlineMath math="f(5) = 486" /></>,
+    six: <><InlineMath math="f(6) = 1458" /></>,
     l: <><InlineMath math="1000" /></>,
-    g: <><InlineMath math="2\cdot3^x" /></>,
+    g: <><InlineMath math="2 \cdot 3^x" /></>,
   }}
   scene={{
     space: "plane",
@@ -44,12 +63,20 @@ Gesucht ist die kleinste ganze Zahl <InlineMath math="x" /> mit <InlineMath math
   }}
 />
 
-Probe: <InlineMath math="f(5)=486\le1000" /> und <InlineMath math="f(6)=1458>1000" />. Die kleinste ganze Zahl ist **<InlineMath math="x=6" />**.
+Direkte Probe: <InlineMath math="f(5) = 486" /> bleibt unter <InlineMath math="1000" />, während <InlineMath math="f(6) = 1458" /> die Grenze klar überschreitet.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="x=5" /> nimmt **<InlineMath math="a=6" /> statt <InlineMath math="a=2" />**: <InlineMath math="6\cdot3^5=1458>1000" />. Der Anfangswert ist aber <InlineMath math="f(0)=a" />, nicht <InlineMath math="f(1)" />.
-- <InlineMath math="x=7" /> verschiebt den Exponenten um eins, etwa mit <InlineMath math="f(x)=2\cdot3^{x-1}" />.
-- <InlineMath math="x=4" /> hält <InlineMath math="\frac{f(3)}{f(1)}=9" /> für die Basis: Mit <InlineMath math="b=9" /> und <InlineMath math="a=\frac23" /> wäre <InlineMath math="f(4)=\frac23\cdot6561=4374" />.
-- <InlineMath math="x=43" /> rechnet linear: Von <InlineMath math="6" /> auf <InlineMath math="54" /> in zwei Schritten sind <InlineMath math="24" /> pro Schritt, und <InlineMath math="6+24(x-1)>1000" /> ergibt <InlineMath math="x=43" />.
-- <InlineMath math="x=3" /> ist die Stelle des zweiten gegebenen Werts, <InlineMath math="f(3)=54" />.
+Sieh nach, welcher Modellfehler **jede falsche Auswahl erzeugt**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="x = 5" /> | Verwechselt <InlineMath math="f(1) = 6" /> mit dem Anfangswert <InlineMath math="a" />, obwohl <InlineMath math="a = f(0) = 2" /> ist. |
+| <InlineMath math="x = 7" /> | Verschiebt den Exponenten um eins zu <InlineMath math="2 \cdot 3^{x - 1}" />. |
+| <InlineMath math="x = 4" /> | Nimmt den Zweischrittfaktor <InlineMath math="9" /> direkt als Basis <InlineMath math="b" />, ohne die Wurzel zu ziehen. |
+| <InlineMath math="x = 43" /> | Rechnet linear (<InlineMath math="+24" /> pro Schritt) statt exponentiell. |
+| <InlineMath math="x = 3" /> | Übernimmt einfach die gegebene Stelle mit <InlineMath math="f(3) = 54" />. |
+
+# Antwort
+
+Die kleinste ganze Zahl mit <InlineMath math="f(x) > 1000" /> ist **<InlineMath math="x = 6" />**.

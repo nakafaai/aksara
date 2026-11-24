@@ -1,16 +1,31 @@
-# Recognise the shape of the quadrilateral
+# Given
 
-A radius to the point of contact is perpendicular to the tangent. So <InlineMath math="\overline{M_1A}" /> and <InlineMath math="\overline{M_2B}" /> are both perpendicular to <InlineMath math="\overline{AB}" /> and parallel to each other. The quadrilateral <InlineMath math="M_1ABM_2" /> is **a right trapezium** with parallel sides <InlineMath math="9" /> and <InlineMath math="4" /> and height <InlineMath math="\overline{AB}" />.
+Two circles with centers <InlineMath math="M_1" /> and <InlineMath math="M_2" /> and radii <InlineMath math="9\text{ cm}" /> and <InlineMath math="4\text{ cm}" /> **touch externally**.
 
-# The length <InlineMath math="\overline{AB}" />
+A common external tangent touches the large circle at <InlineMath math="A" /> and the small circle at <InlineMath math="B" />, with both circles on the same side of the line.
 
-Because the circles touch from outside, <InlineMath math="\overline{M_1M_2}=9+4=13" />. Draw a line from <InlineMath math="M_2" /> parallel to <InlineMath math="\overline{AB}" />. With <InlineMath math="\overline{M_1M_2}" /> it forms **a right triangle with legs <InlineMath math="\overline{AB}" /> and <InlineMath math="9-4=5" />**:
+# Asked
 
-<BlockMath math="\overline{AB}=\sqrt{13^2-5^2}=\sqrt{144}=12" />
+What is the area (*Flächeninhalt*) of quadrilateral <InlineMath math="M_1 A B M_2" />?
+
+# Solution
+
+Picture two wheels of different sizes resting side by side in contact on a flat floor. The vertical spoke from the floor to the first axle has length <InlineMath math="9\text{ cm}" />, and the spoke to the second axle has length <InlineMath math="4\text{ cm}" />. Because both spokes meet the floor at right angles, **quadrilateral <InlineMath math="M_1 A B M_2" /> is a right trapezoid** whose height is the floor segment <InlineMath math="\overline{AB}" />.
+
+> Radii to tangent points are always perpendicular to the tangent line, so two circles on a common external tangent form a right trapezoid whose height comes from the Pythagorean theorem.
+
+## Computing the tangent length by Pythagoras
+
+Because the two circles touch externally, their center distance <InlineMath math="\overline{M_1 M_2}" /> equals the sum of both radii, <InlineMath math="13\text{ cm}" />.
+
+Slide segment <InlineMath math="\overline{AB}" /> straight up until it meets <InlineMath math="M_2" />. That creates a **right triangle** with hypotenuse <InlineMath math="13" /> and vertical leg <InlineMath math="9 - 4 = 5" />:
+
+<BlockMath math="\overline{AB} = \sqrt{13^2 - 5^2} = \sqrt{169 - 25} = \sqrt{144} = 12\text{ cm}" />
 
 <MathVisual
-  title={<>Two circles on one tangent</>}
-  description={<>The tangent runs horizontally at the bottom. The big circle about <InlineMath math="M_1" /> with radius <InlineMath math="9" /> touches it at <InlineMath math="A" />, the small one about <InlineMath math="M_2" /> with radius <InlineMath math="4" /> at <InlineMath math="B" />. The circles touch each other, so <InlineMath math="\overline{M_1M_2}=13" />. The quadrilateral <InlineMath math="M_1ABM_2" /> is a right trapezium with parallel sides <InlineMath math="9" /> and <InlineMath math="4" /> and height <InlineMath math="\overline{AB}=12" />.</>}
+  title={<>Two circles on a common tangent</>}
+  description={<>The horizontal tangent runs along the bottom. The large circle centered at <InlineMath math="M_1" /> with radius <InlineMath math="9" /> touches at <InlineMath math="A" />, and the small circle centered at <InlineMath math="M_2" /> with radius <InlineMath math="4" /> touches at <InlineMath math="B" />. Center distance <InlineMath math="13" /> yields trapezoid height <InlineMath math="\overline{AB} = 12" />.</>}
+  footer={<>Parallel sides <InlineMath math="9" /> and <InlineMath math="4" /> with height <InlineMath math="\overline{AB} = 12" /> give area <InlineMath math="78\text{ cm}^2" />.</>}
   labels={{
     m1: <><InlineMath math="M_1" /></>,
     m2: <><InlineMath math="M_2" /></>,
@@ -53,16 +68,28 @@ Because the circles touch from outside, <InlineMath math="\overline{M_1M_2}=9+4=
   }}
 />
 
-# The area of the trapezium
+You can also view the trapezoid as a <InlineMath math="12 \times 4 = 48" /> bottom rectangle topped by a right triangle of area <InlineMath math="30" />.
 
-<BlockMath math="A=\frac{9+4}{2}\cdot12=78\text{ cm}^2" />
+## Computing the trapezoid area
 
-The quadrilateral has **an area of <InlineMath math="78\text{ cm}^2" />**.
+Plug the two parallel sides and height into **the trapezoid area formula**:
 
-# Why the other answers are wrong
+<BlockMath math="A = \frac{9 + 4}{2} \cdot 12 = 13 \cdot 6 = 78\text{ cm}^2" />
 
-- <InlineMath math="156\text{ cm}^2" /> **forgets to halve** in the trapezium formula.
-- <InlineMath math="84.5\text{ cm}^2" /> takes the distance between the centres, <InlineMath math="13" />, as the height: <InlineMath math="\frac{13}{2}\cdot13" />.
-- <InlineMath math="39\text{ cm}^2" /> halves twice: <InlineMath math="\frac12\cdot\frac{13\cdot12}{2}" />.
-- <InlineMath math="32.5\text{ cm}^2" /> takes the difference of the radii, <InlineMath math="5" />, as the height: <InlineMath math="\frac{13}{2}\cdot5" />.
-- <InlineMath math="60\text{ cm}^2" /> uses <InlineMath math="5\cdot12" />, only the difference of the radii instead of their sum.
+Adding the split pieces gives the same <InlineMath math="48 + 30 = 78\text{ cm}^2" />.
+
+## Checking the distractors
+
+See how each wrong answer **picks the wrong height or misses the factor of one half**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="156\text{ cm}^2" /> | Forgets to divide by two in the trapezoid formula: <InlineMath math="(9 + 4) \cdot 12" />. |
+| <InlineMath math="84.5\text{ cm}^2" /> | Uses the slanted center distance <InlineMath math="13" /> as the height: <InlineMath math="\frac{13}{2} \cdot 13" />. |
+| <InlineMath math="39\text{ cm}^2" /> | Divides by two twice in a row. |
+| <InlineMath math="32.5\text{ cm}^2" /> | Uses the radius difference <InlineMath math="5" /> as the height: <InlineMath math="\frac{13}{2} \cdot 5" />. |
+| <InlineMath math="60\text{ cm}^2" /> | Computes <InlineMath math="5 \cdot 12" />, using the difference of radii instead of their sum. |
+
+# Answer
+
+The area of quadrilateral <InlineMath math="M_1 A B M_2" /> is **<InlineMath math="78\text{ cm}^2" />**.

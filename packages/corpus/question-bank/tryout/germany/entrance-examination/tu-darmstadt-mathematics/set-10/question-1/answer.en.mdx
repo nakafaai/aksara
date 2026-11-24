@@ -1,30 +1,84 @@
-# Work from the inside out
+# Given
 
-Every root is a power with a fractional exponent: <InlineMath math="\sqrt{u}=u^{\frac12}" /> and <InlineMath math="\sqrt[3]{u}=u^{\frac13}" />. When you multiply, **the exponents add**, and when you take a root, they are divided. So work from the innermost root outwards:
+For a positive real number <InlineMath math="x > 0" />, we are given a **three-layer nested radical** (*Term*):
 
-| Step | Expression | as a power |
-| --- | --- | --- |
-| innermost root | <InlineMath math="\sqrt{x}" /> | <InlineMath math="x^{\frac12}" /> |
-| times <InlineMath math="x^2" /> | <InlineMath math="x^2\cdot\sqrt{x}" /> | <InlineMath math="x^{\frac52}" /> |
-| cube root | <InlineMath math="\sqrt[3]{x^2\sqrt x}" /> | <InlineMath math="x^{\frac56}" /> |
-| times <InlineMath math="x" /> | <InlineMath math="x\cdot\sqrt[3]{x^2\sqrt x}" /> | <InlineMath math="x^{\frac{11}{6}}" /> |
-| outer root | <InlineMath math="\sqrt{x\cdot\sqrt[3]{x^2\sqrt x}}" /> | <InlineMath math="x^{\frac{11}{12}}" /> |
+<BlockMath math="\sqrt{x \cdot \sqrt[3]{x^2 \cdot \sqrt{x}}}" />
 
-# The calculation step by step
+# Asked
+
+Write this nested radical as **one single power** of <InlineMath math="x" />.
+
+# Solution
+
+Nested roots work like nesting dolls: the cleanest approach is to **unwrap them from the innermost layer outward**. Multiplying powers of <InlineMath math="x" /> adds exponents, while taking an <InlineMath math="n" />-th root divides the exponent by <InlineMath math="n" />. Simply track the exponent rising and falling until you clear the outer radical.
+
+> For nested radicals with the same base, work from inside out: multiplication adds exponents and taking a root divides the exponent.
+
+## Tracking the exponent from inside out
+
+Apply fractional-exponent rules step by step starting at **the innermost root <InlineMath math="\sqrt{x}" />**:
 
 <BlockMath math="\begin{aligned}
-x^2\cdot x^{\frac12}&=x^{2+\frac12}=x^{\frac52} \\
-\left(x^{\frac52}\right)^{\frac13}&=x^{\frac56} \\
-x\cdot x^{\frac56}&=x^{\frac{11}{6}} \\
-\left(x^{\frac{11}{6}}\right)^{\frac12}&=x^{\frac{11}{12}}
+x^2 \cdot \sqrt{x} &= x^2 \cdot x^{\frac{1}{2}} = x^{\frac{5}{2}} \\
+\sqrt[3]{x^{\frac{5}{2}}} &= \left(x^{\frac{5}{2}}\right)^{\frac{1}{3}} = x^{\frac{5}{6}} \\
+x \cdot x^{\frac{5}{6}} &= x^{1 + \frac{5}{6}} = x^{\frac{11}{6}} \\
+\sqrt{x^{\frac{11}{6}}} &= \left(x^{\frac{11}{6}}\right)^{\frac{1}{2}} = x^{\frac{11}{12}}
 \end{aligned}" />
 
-Check with <InlineMath math="x=2^{12}=4096" />: the innermost root is <InlineMath math="2^6" />, then <InlineMath math="2^{24}\cdot2^6=2^{30}" />, its cube root is <InlineMath math="2^{10}" />, times <InlineMath math="2^{12}" /> gives <InlineMath math="2^{22}" />, and its square root is <InlineMath math="2^{11}=\left(2^{12}\right)^{\frac{11}{12}}" />. The expression **equals <InlineMath math="x^{\frac{11}{12}}" />**.
+Follow the step-by-step trajectory of the exponent in the chart below.
 
-# Why the other answers are wrong
+<MathVisual
+  title={<>Exponent journey from inside out</>}
+  description={<>The exponent shifts across five stages: starting at <InlineMath math="\frac{1}{2}" />, climbing to <InlineMath math="\frac{5}{2}" /> after multiplying by <InlineMath math="x^2" />, dropping to <InlineMath math="\frac{5}{6}" /> under the cube root, climbing to <InlineMath math="\frac{11}{6}" /> after multiplying by <InlineMath math="x" />, and finishing at <InlineMath math="\frac{11}{12}" /> under the outer square root.</>}
+  footer={<>Multiplications raise the exponent and roots divide it down to the final value <InlineMath math="\frac{11}{12}" />.</>}
+  labels={{
+    s1: <><InlineMath math="\frac{1}{2}" /></>,
+    s2: <><InlineMath math="\frac{5}{2}" /></>,
+    s3: <><InlineMath math="\frac{5}{6}" /></>,
+    s4: <><InlineMath math="\frac{11}{6}" /></>,
+    s5: <><InlineMath math="\frac{11}{12}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0.4, max: 5.6 },
+      y: { min: 0, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0.6, y: 0.9167 }, to: { x: 5.4, y: 0.9167 } },
+      { id: "steps", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 0.5 }, { x: 2, y: 2.5 }, { x: 3, y: 0.8333 }, { x: 4, y: 1.8333 }, { x: 5, y: 0.9167 }] },
+      { id: "p1", kind: "point", appearance: "secondary", at: { x: 1, y: 0.5 } },
+      { id: "p2", kind: "point", appearance: "highlight", at: { x: 2, y: 2.5 } },
+      { id: "p3", kind: "point", appearance: "secondary", at: { x: 3, y: 0.8333 } },
+      { id: "p4", kind: "point", appearance: "highlight", at: { x: 4, y: 1.8333 } },
+      { id: "p5", kind: "point", appearance: "answer", at: { x: 5, y: 0.9167 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "p1", at: { x: 1, y: 0.5 }, placement: "below" },
+      { key: "s2", objectId: "p2", at: { x: 2, y: 2.5 }, placement: "above" },
+      { key: "s3", objectId: "p3", at: { x: 3, y: 0.8333 }, placement: "below" },
+      { key: "s4", objectId: "p4", at: { x: 4, y: 1.8333 }, placement: "above" },
+      { key: "s5", objectId: "p5", at: { x: 5, y: 0.9167 }, placement: "above-right" },
+    ],
+  }}
+/>
 
-- <InlineMath math="x^{\frac{11}{6}}" /> **forgets the outer root**.
-- <InlineMath math="x^{\frac56}" /> stops at the cube root and leaves out the <InlineMath math="x" /> in front and the outer root.
-- <InlineMath math="x^{\frac34}" /> drops the factor <InlineMath math="x^2" /> and the cube root and works out only <InlineMath math="\sqrt{x\cdot\sqrt x}=x^{\frac34}" />.
-- <InlineMath math="x^{\frac7{12}}" /> applies the cube root to the outer <InlineMath math="x" /> as well: <InlineMath math="\left(x\cdot x^{\frac52}\right)^{\frac13}=x^{\frac76}" />, and the square root gives <InlineMath math="x^{\frac7{12}}" />.
-- <InlineMath math="x^{\frac{13}{12}}" /> reads <InlineMath math="\sqrt x" /> as <InlineMath math="x^{\frac32}" />: the inside becomes <InlineMath math="x^{\frac72}" />, the cube root <InlineMath math="x^{\frac76}" />, times <InlineMath math="x" /> gives <InlineMath math="x^{\frac{13}{6}}" />, and the outer root <InlineMath math="x^{\frac{13}{12}}" />.
+Quick check with <InlineMath math="x = 2^{12}" />: the innermost root gives <InlineMath math="2^6" />, multiplying by <InlineMath math="2^{24}" /> gives <InlineMath math="2^{30}" />, the cube root gives <InlineMath math="2^{10}" />, multiplying by <InlineMath math="2^{12}" /> gives <InlineMath math="2^{22}" />, and the outer square root gives <InlineMath math="2^{11}" />, matching <InlineMath math="\frac{11}{12}" /> exactly.
+
+## Checking the distractors
+
+Notice which layer was **skipped or misread** in each wrong choice:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="x^{\frac{11}{6}}" /> | Forgets to take the outer square root on the final step. |
+| <InlineMath math="x^{\frac{5}{6}}" /> | Stops after the cube root, omitting the outer <InlineMath math="x" /> and outer square root. |
+| <InlineMath math="x^{\frac{3}{4}}" /> | Drops <InlineMath math="x^2" /> and the cube root, evaluating only <InlineMath math="\sqrt{x\sqrt{x}}" />. |
+| <InlineMath math="x^{\frac{7}{12}}" /> | Wrongly places the outer <InlineMath math="x" /> inside the cube root as well. |
+| <InlineMath math="x^{\frac{13}{12}}" /> | Misreads the innermost <InlineMath math="\sqrt{x}" /> as <InlineMath math="x^{\frac{3}{2}}" /> instead of <InlineMath math="x^{\frac{1}{2}}" />. |
+
+# Answer
+
+Written as a single power of <InlineMath math="x" />, the expression equals **<InlineMath math="x^{\frac{11}{12}}" />**.

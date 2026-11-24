@@ -1,22 +1,37 @@
-# Letak kaki garis tinggi
+# Diketahui
 
-Puncak <InlineMath math="S" /> sama jauh dari ketiga titik sudut alas. Karena itu garis tingginya mengenai alas di **titik berat <InlineMath math="O" />**, yang sekaligus pusat lingkaran luarnya. Pada segitiga sama sisi bersisi <InlineMath math="6" />, garis beratnya panjangnya <InlineMath math="3\sqrt3" />, dan <InlineMath math="O" /> membaginya dengan perbandingan <InlineMath math="2:1" />:
+Sebuah **tetrahedron beraturan** (*regelmäßiges Tetraeder*, limas segitiga beraturan) tersusun dari empat segitiga sama sisi kongruen dengan **semua rusuk sepanjang <InlineMath math="6\text{ cm}" />**.
 
-<BlockMath math="\overline{OA}=\frac23\cdot3\sqrt3=2\sqrt3" />
+# Ditanyakan
 
-# Pythagoras pada segitiga <InlineMath math="OAS" />
+Berapakah jarak dari satu titik sudut ke bidang sisi segitiga di hadapannya (tinggi tetrahedron)?
 
-Garis tinggi tegak lurus alas, jadi segitiga <InlineMath math="OAS" /> siku-siku di <InlineMath math="O" />. **Rusuk <InlineMath math="\overline{AS}=6" /> adalah sisi miringnya**:
+# Penyelesaian
+
+Letakkan tetrahedron rata di atas meja pada satu segitiga alasnya, lalu jatuhkan bandul tegak lurus dari puncak atas <InlineMath math="S" /> menuju meja. Karena ketiga rusuk miring dari puncak sama panjang, ujung bandul pasti menyentuh **persis titik berat alas <InlineMath math="O" />**, bukan titik tengah rusuk. Begitu kamu memotong bangun itu sepanjang bidang segitiga siku-siku <InlineMath math="OAS" />, tinggi tetrahedron langsung keluar dari satu langkah Pythagoras.
+
+> Garis tinggi tetrahedron beraturan jatuh tepat di titik berat segitiga alas, yang membagi garis berat alas dengan perbandingan <InlineMath math="2 : 1" /> dari titik sudut.
+
+## Menemukan jarak dari titik sudut alas ke titik berat
+
+Pada segitiga sama sisi alas bersisi <InlineMath math="6\text{ cm}" />, panjang garis tinggi (sekaligus garis berat) alas adalah <InlineMath math="3\sqrt{3}\text{ cm}" />. Karena titik berat <InlineMath math="O" /> membagi garis berat dengan perbandingan <InlineMath math="2 : 1" />, **jarak dari sudut alas <InlineMath math="A" /> ke pusat <InlineMath math="O" />** adalah dua pertiganya:
+
+<BlockMath math="\overline{OA} = \frac{2}{3} \cdot 3\sqrt{3} = 2\sqrt{3}\text{ cm}" />
+
+## Menghitung tinggi dengan Pythagoras pada irisan tegak
+
+Irisan tegak melalui puncak <InlineMath math="S" />, sudut alas <InlineMath math="A" />, dan titik berat <InlineMath math="O" /> membentuk **segitiga siku-siku di <InlineMath math="O" />** dengan sisi miring berupa rusuk <InlineMath math="\overline{AS} = 6\text{ cm}" />.
 
 <MathVisual
   title={<>Segitiga dari tinggi, rusuk, dan jarak</>}
-  description={<>Potongan melalui puncak <InlineMath math="S" />, titik sudut alas <InlineMath math="A" />, dan titik berat alas <InlineMath math="O" />. Segitiga <InlineMath math="OAS" /> siku-siku di <InlineMath math="O" />, dengan <InlineMath math="\overline{OA}=2\sqrt3" />, rusuk <InlineMath math="\overline{AS}=6" /> sebagai sisi miring, dan tinggi <InlineMath math="h=\overline{OS}" />.</>}
+  description={<>Potongan tegak melalui puncak <InlineMath math="S" />, sudut alas <InlineMath math="A" />, dan titik berat alas <InlineMath math="O" />. Segitiga <InlineMath math="OAS" /> siku-siku di <InlineMath math="O" /> dengan alas <InlineMath math="\overline{OA} = 2\sqrt{3}" />, sisi miring rusuk <InlineMath math="\overline{AS} = 6" />, dan tinggi tegak <InlineMath math="h = \overline{OS}" />.</>}
+  footer={<>Pythagoras pada sisi miring <InlineMath math="6" /> dan alas <InlineMath math="2\sqrt{3}" /> memberi tinggi tepat <InlineMath math="2\sqrt{6}\text{ cm}" />.</>}
   labels={{
     s: <><InlineMath math="S" /></>,
     o: <><InlineMath math="O" /></>,
     a: <><InlineMath math="A" /></>,
     e: <><InlineMath math="6" /></>,
-    r: <><InlineMath math="2\sqrt3" /></>,
+    r: <><InlineMath math="2\sqrt{3}" /></>,
     h: <><InlineMath math="h" /></>,
   }}
   scene={{
@@ -46,14 +61,24 @@ Garis tinggi tegak lurus alas, jadi segitiga <InlineMath math="OAS" /> siku-siku
   }}
 />
 
-<BlockMath math="h=\sqrt{6^2-\left(2\sqrt3\right)^2}=\sqrt{36-12}=\sqrt{24}=2\sqrt6" />
+Terapkan teorema Pythagoras pada segitiga <InlineMath math="OAS" />:
 
-Jarak titik sudut ke bidang di depannya **<InlineMath math="2\sqrt6\text{ cm}" />**, sekitar <InlineMath math="4{,}9\text{ cm}" />.
+<BlockMath math="h = \sqrt{6^2 - \left(2\sqrt{3}\right)^2} = \sqrt{36 - 12} = \sqrt{24} = 2\sqrt{6}\text{ cm}" />
 
-# Mengapa pilihan lain salah
+Cek kewajaran: nilainya sekitar <InlineMath math="4{,}9\text{ cm}" />, sedikit lebih pendek daripada tinggi sisi miring sekitar <InlineMath math="5{,}2\text{ cm}" />, persis seperti seharusnya.
 
-- <InlineMath math="3\sqrt3\text{ cm}" /> adalah **tinggi satu sisi segitiga**, bukan tinggi limas segitiga beraturan itu.
-- <InlineMath math="3\text{ cm}" /> memakai seluruh garis berat <InlineMath math="3\sqrt3" />, bukan <InlineMath math="2\sqrt3" />: <InlineMath math="\sqrt{36-27}=3" />.
-- <InlineMath math="2\sqrt3\text{ cm}" /> adalah jarak <InlineMath math="\overline{OA}" /> di bidang alas.
-- <InlineMath math="3\sqrt2\text{ cm}" /> memakai <InlineMath math="3\sqrt2" /> sebagai jarak <InlineMath math="\overline{OA}" />, seperti setengah diagonal persegi: <InlineMath math="\sqrt{36-18}" />.
-- <InlineMath math="\sqrt{30}\text{ cm}" /> hanya mengurangkan <InlineMath math="6" />, bukan <InlineMath math="12" />: <InlineMath math="\sqrt{36-6}" />.
+## Mengecek pilihan salah
+
+Perhatikan potongan mana yang **tertukar pada setiap pilihan pengecoh**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="3\sqrt{3}\text{ cm}" /> | Tinggi satu sisi segitiga sama sisi, bukan tinggi ruang tetrahedron. |
+| <InlineMath math="3\text{ cm}" /> | Memakai seluruh garis berat <InlineMath math="3\sqrt{3}" /> sebagai alas segitiga siku-siku alih-alih <InlineMath math="2\sqrt{3}" />. |
+| <InlineMath math="2\sqrt{3}\text{ cm}" /> | Baru panjang jari-jari alas <InlineMath math="\overline{OA}" />, belum tinggi tegaknya. |
+| <InlineMath math="3\sqrt{2}\text{ cm}" /> | Memakai setengah diagonal persegi <InlineMath math="3\sqrt{2}" /> seolah alasnya persegi, bukan segitiga. |
+| <InlineMath math="\sqrt{30}\text{ cm}" /> | Salah mengkuadratkan <InlineMath math="(2\sqrt{3})^2" /> menjadi <InlineMath math="6" /> alih-alih <InlineMath math="12" />. |
+
+# Jawaban
+
+Jarak satu titik sudut ke bidang sisi di hadapannya adalah **<InlineMath math="2\sqrt{6}\text{ cm}" />**.

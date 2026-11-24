@@ -1,34 +1,56 @@
-# Tiga persamaan untuk tiga sisi
+# Diketahui
 
-Misalkan sisi siku-sikunya <InlineMath math="a" /> dan <InlineMath math="b" /> dan sisi miringnya <InlineMath math="c" />. Keliling, luas, dan Pythagoras memberi **tiga persamaan**:
+Sebuah segitiga siku-siku (*rechtwinkliges Dreieck*) memiliki dua ukuran sekaligus:
 
-<BlockMath math="a+b+c=30,\qquad \tfrac12ab=30,\qquad a^2+b^2=c^2" />
+- **Keliling** (*Umfang*): <InlineMath math="30\text{ cm}" />.
+- **Luas** (*Flächeninhalt*): <InlineMath math="30\text{ cm}^2" />.
 
-# Pakai <InlineMath math="(a+b)^2" /> untuk menghilangkan sisi siku-siku
+# Ditanyakan
 
-Kamu tidak perlu tahu <InlineMath math="a" /> dan <InlineMath math="b" /> masing-masing. Kuadratkan <InlineMath math="a+b=30-c" /> lalu substitusikan **<InlineMath math="ab=60" /> dan <InlineMath math="a^2+b^2=c^2" />**:
+Berapakah panjang sisi miring (*Hypotenuse*) <InlineMath math="c" /> segitiga itu?
+
+# Penyelesaian
+
+Kamu punya tiga sisi (<InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />), namun kamu **sama sekali tidak perlu mencari <InlineMath math="a" /> dan <InlineMath math="b" /> dulu**. Perhatikan hubungan magis kuadrat jumlah <InlineMath math="(a + b)^2" />: di dalamnya ada <InlineMath math="a^2 + b^2" /> (yang langsung menjadi <InlineMath math="c^2" />) dan <InlineMath math="2ab" /> (yang langsung datang dari luas!). Bahkan suku <InlineMath math="c^2" /> nanti saling menghapus sendiri.
+
+> Kuadrat jumlah dua sisi siku-siku menggabungkan teorema Pythagoras dan luas segitiga sekaligus, sehingga sisi miring keluar dari satu persamaan linear.
+
+## Menghilangkan kedua sisi tegak lewat kuadrat jumlah
+
+Keliling, luas, dan teorema Pythagoras memberi **tiga persamaan dasar**:
+
+<BlockMath math="a + b + c = 30, \qquad \frac{1}{2}ab = 30 \iff ab = 60, \qquad a^2 + b^2 = c^2" />
+
+Nyatakan jumlah <InlineMath math="a + b" /> dalam <InlineMath math="c" />, lalu kuadratkan kedua ruasnya:
 
 <BlockMath math="\begin{aligned}
-(a+b)^2&=a^2+b^2+2ab \\
-(30-c)^2&=c^2+120 \\
-900-60c+c^2&=c^2+120 \\
-780&=60c\quad\Longrightarrow\quad c=13
+(a + b)^2 &= a^2 + b^2 + 2ab \\
+(30 - c)^2 &= c^2 + 2(60) \\
+900 - 60c + c^2 &= c^2 + 120 \\
+780 &= 60c \quad \Longrightarrow \quad c = 13\text{ cm}
 \end{aligned}" />
+
+Suku <InlineMath math="c^2" /> lenyap dari kedua ruas sehingga <InlineMath math="c = 13\text{ cm}" /> langsung ketemu.
+
+## Memeriksa seluruh sisi pada gambar
+
+Dengan <InlineMath math="c = 13" />, berlaku <InlineMath math="a + b = 17" /> dan <InlineMath math="ab = 60" />, yang persis dipenuhi oleh **tripel Pythagoras terkenal** (<InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />).
 
 <MathVisual
   title={<>Segitiga yang dicari</>}
-  description={<>Segitiga siku-siku dengan sisi siku-siku <InlineMath math="12" /> dan <InlineMath math="5" /> serta sisi miring <InlineMath math="13" />. Kelilingnya <InlineMath math="12+5+13=30" /> dan luasnya <InlineMath math="\frac12\cdot12\cdot5=30" />.</>}
+  description={<>Segitiga siku-siku dengan sisi siku-siku <InlineMath math="12" /> dan <InlineMath math="5" /> serta sisi miring <InlineMath math="13" />. Kelilingnya tepat <InlineMath math="30\text{ cm}" /> dan luasnya tepat <InlineMath math="30\text{ cm}^2" />.</>}
+  footer={<>Tripel <InlineMath math="5" />-<InlineMath math="12" />-<InlineMath math="13" /> memberi keliling <InlineMath math="30\text{ cm}" /> dan luas <InlineMath math="30\text{ cm}^2" /> sekaligus.</>}
   labels={{
-    a: <><InlineMath math="a=12" /></>,
-    b: <><InlineMath math="b=5" /></>,
-    c: <><InlineMath math="c=13" /></>,
+    a: <><InlineMath math="a = 12" /></>,
+    b: <><InlineMath math="b = 5" /></>,
+    c: <><InlineMath math="c = 13" /></>,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
       x: { min: -2, max: 14 },
-      y: { min: -1.5, max: 6.5 },
+      y: { min: -2, max: 7 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
@@ -43,14 +65,20 @@ Kamu tidak perlu tahu <InlineMath math="a" /> dan <InlineMath math="b" /> masing
   }}
 />
 
-# Cek dengan sisi siku-siku
+Cek lengkap: sisi <InlineMath math="5" />, <InlineMath math="12" />, dan <InlineMath math="13" /> berjumlah <InlineMath math="30\text{ cm}" />, setengah dari <InlineMath math="60" /> tepat <InlineMath math="30\text{ cm}^2" />, dan <InlineMath math="25 + 144" /> sama dengan <InlineMath math="169" />.
 
-Dengan <InlineMath math="c=13" />, <InlineMath math="a+b=17" /> dan <InlineMath math="ab=60" />, jadi <InlineMath math="a" /> dan <InlineMath math="b" /> adalah penyelesaian <InlineMath math="t^2-17t+60=0" />: <InlineMath math="12" /> dan <InlineMath math="5" />. Memang <InlineMath math="12^2+5^2=169=13^2" />. Sisi miringnya **sepanjang <InlineMath math="13\text{ cm}" />**.
+## Mengecek pilihan salah
 
-# Mengapa pilihan lain salah
+Perhatikan sisi mana atau faktor mana yang **tertukar pada setiap pengecoh**:
 
-- <InlineMath math="14\text{ cm}" /> lupa faktor <InlineMath math="\frac12" /> pada luas, jadi <InlineMath math="ab=30" />: lalu <InlineMath math="900-60c=60" /> dan <InlineMath math="c=14" />.
-- <InlineMath math="12\text{ cm}" /> adalah **sisi siku-siku yang lebih panjang**, bukan sisi miring.
-- <InlineMath math="15\text{ cm}" /> adalah setengah keliling.
-- <InlineMath math="10\text{ cm}" /> membagi keliling dengan tiga, seolah-olah segitiganya sama sisi.
-- <InlineMath math="5\text{ cm}" /> adalah sisi siku-siku yang lebih pendek.
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="14\text{ cm}" /> | Lupa faktor <InlineMath math="\frac{1}{2}" /> pada luas sehingga memakai <InlineMath math="ab = 30" /> dan mendapat <InlineMath math="60c = 840" />. |
+| <InlineMath math="12\text{ cm}" /> | Panjang sisi siku-siku yang lebih panjang, bukan sisi miring. |
+| <InlineMath math="15\text{ cm}" /> | Hanya setengah keliling, yang mustahil karena sisi miring harus lebih pendek dari <InlineMath math="a + b" />. |
+| <InlineMath math="10\text{ cm}" /> | Membagi keliling dengan tiga seolah segitiga sama sisi. |
+| <InlineMath math="5\text{ cm}" /> | Panjang sisi siku-siku yang lebih pendek. |
+
+# Jawaban
+
+Panjang sisi miring segitiga itu adalah **<InlineMath math="13\text{ cm}" />**.

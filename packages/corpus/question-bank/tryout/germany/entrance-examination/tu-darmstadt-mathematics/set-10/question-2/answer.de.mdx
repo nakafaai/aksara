@@ -1,34 +1,56 @@
-# Drei Gleichungen für drei Seiten
+# Gegeben
 
-Nenne die Katheten <InlineMath math="a" /> und <InlineMath math="b" /> und die Hypotenuse <InlineMath math="c" />. Umfang, Flächeninhalt und Pythagoras liefern **drei Gleichungen**:
+Ein rechtwinkliges Dreieck besitzt folgende Maße:
 
-<BlockMath math="a+b+c=30,\qquad \tfrac12ab=30,\qquad a^2+b^2=c^2" />
+- **Umfang**: <InlineMath math="30\text{ cm}" />.
+- **Flächeninhalt**: <InlineMath math="30\text{ cm}^2" />.
 
-# Mit <InlineMath math="(a+b)^2" /> die Katheten loswerden
+# Gesucht
 
-Du musst <InlineMath math="a" /> und <InlineMath math="b" /> nicht einzeln kennen. Quadriere <InlineMath math="a+b=30-c" /> und setze **<InlineMath math="ab=60" /> und <InlineMath math="a^2+b^2=c^2" />** ein:
+Wie lang ist seine Hypotenuse <InlineMath math="c" />?
+
+# Lösung
+
+Obwohl das Dreieck drei Seiten (<InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" />) hat, **musst du die Katheten <InlineMath math="a" /> und <InlineMath math="b" /> gar nicht erst bestimmen**. Quadriere einfach <InlineMath math="(a + b)^2" />: Darin stecken genau <InlineMath math="a^2 + b^2" /> (gleich <InlineMath math="c^2" />) und <InlineMath math="2ab" /> (direkt aus der Fläche!). Sogar <InlineMath math="c^2" /> kürzt sich am Ende heraus.
+
+> Das Quadrat der Kathetensumme verbindet Pythagoras und Flächenformel in einem Schritt, sodass die Hypotenuse aus einer einzigen linearen Gleichung folgt.
+
+## Beide Katheten über die binomische Formel eliminieren
+
+Umfang, Fläche und Satz des Pythagoras liefern **drei Gleichungen**:
+
+<BlockMath math="a + b + c = 30, \qquad \frac{1}{2}ab = 30 \iff ab = 60, \qquad a^2 + b^2 = c^2" />
+
+Drücke die Summe <InlineMath math="a + b" /> durch <InlineMath math="c" /> aus und quadriere beide Seiten:
 
 <BlockMath math="\begin{aligned}
-(a+b)^2&=a^2+b^2+2ab \\
-(30-c)^2&=c^2+120 \\
-900-60c+c^2&=c^2+120 \\
-780&=60c\quad\Longrightarrow\quad c=13
+(a + b)^2 &= a^2 + b^2 + 2ab \\
+(30 - c)^2 &= c^2 + 2(60) \\
+900 - 60c + c^2 &= c^2 + 120 \\
+780 &= 60c \quad \Longrightarrow \quad c = 13\text{ cm}
 \end{aligned}" />
 
+Auf beiden Seiten fällt <InlineMath math="c^2" /> weg und <InlineMath math="c = 13\text{ cm}" /> bleibt sofort übrig.
+
+## Alle drei Seiten am Dreieck prüfen
+
+Mit <InlineMath math="c = 13" /> gilt <InlineMath math="a + b = 17" /> und <InlineMath math="ab = 60" />, genau das bekannte **pythagoreische Tripel** (<InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />).
+
 <MathVisual
-  title={<>Das gesuchte Dreieck</>}
-  description={<>Ein rechtwinkliges Dreieck mit den Katheten <InlineMath math="12" /> und <InlineMath math="5" /> und der Hypotenuse <InlineMath math="13" />. Sein Umfang ist <InlineMath math="12+5+13=30" />, sein Flächeninhalt <InlineMath math="\frac12\cdot12\cdot5=30" />.</>}
+  title={<>Das gesuchte rechtwinklige Dreieck</>}
+  description={<>Rechtwinkliges Dreieck mit den Katheten <InlineMath math="12" /> und <InlineMath math="5" /> sowie der Hypotenuse <InlineMath math="13" />. Sein Umfang beträgt exakt <InlineMath math="30\text{ cm}" /> und sein Flächeninhalt exakt <InlineMath math="30\text{ cm}^2" />.</>}
+  footer={<>Das Tripel <InlineMath math="5" />-<InlineMath math="12" />-<InlineMath math="13" /> erfüllt Umfang <InlineMath math="30\text{ cm}" /> und Fläche <InlineMath math="30\text{ cm}^2" /> zugleich.</>}
   labels={{
-    a: <><InlineMath math="a=12" /></>,
-    b: <><InlineMath math="b=5" /></>,
-    c: <><InlineMath math="c=13" /></>,
+    a: <><InlineMath math="a = 12" /></>,
+    b: <><InlineMath math="b = 5" /></>,
+    c: <><InlineMath math="c = 13" /></>,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
       x: { min: -2, max: 14 },
-      y: { min: -1.5, max: 6.5 },
+      y: { min: -2, max: 7 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
@@ -43,14 +65,20 @@ Du musst <InlineMath math="a" /> und <InlineMath math="b" /> nicht einzeln kenne
   }}
 />
 
-# Probe mit den Katheten
+Vollständige Probe: Die Seiten <InlineMath math="5" />, <InlineMath math="12" /> und <InlineMath math="13" /> summieren sich zu <InlineMath math="30\text{ cm}" />, die Hälfte von <InlineMath math="60" /> ist <InlineMath math="30\text{ cm}^2" />, und <InlineMath math="25 + 144" /> ergibt <InlineMath math="169" />.
 
-Mit <InlineMath math="c=13" /> ist <InlineMath math="a+b=17" /> und <InlineMath math="ab=60" />, also sind <InlineMath math="a" /> und <InlineMath math="b" /> die Lösungen von <InlineMath math="t^2-17t+60=0" />: <InlineMath math="12" /> und <InlineMath math="5" />. Tatsächlich gilt <InlineMath math="12^2+5^2=169=13^2" />. Die Hypotenuse ist **<InlineMath math="13\text{ cm}" /> lang**.
+## Falsche Antworten prüfen
 
-# Warum die anderen Antworten falsch sind
+Sieh nach, welche Seite oder welcher Faktor **bei jeder falschen Auswahl vertauscht wurde**:
 
-- <InlineMath math="14\text{ cm}" /> vergisst den Faktor <InlineMath math="\frac12" /> im Flächeninhalt, also <InlineMath math="ab=30" />: Dann folgt <InlineMath math="900-60c=60" /> und <InlineMath math="c=14" />.
-- <InlineMath math="12\text{ cm}" /> ist **die längere Kathete**, nicht die Hypotenuse.
-- <InlineMath math="15\text{ cm}" /> ist der halbe Umfang.
-- <InlineMath math="10\text{ cm}" /> teilt den Umfang durch drei, als wäre das Dreieck gleichseitig.
-- <InlineMath math="5\text{ cm}" /> ist die kürzere Kathete.
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="14\text{ cm}" /> | Vergisst den Faktor <InlineMath math="\frac{1}{2}" /> bei der Fläche, rechnet mit <InlineMath math="ab = 30" /> und erhält <InlineMath math="60c = 840" />. |
+| <InlineMath math="12\text{ cm}" /> | Ist die längere Kathete, nicht die Hypotenuse. |
+| <InlineMath math="15\text{ cm}" /> | Ist der halbe Umfang, unmöglich weil <InlineMath math="c" /> echt kleiner als <InlineMath math="a + b" /> sein muss. |
+| <InlineMath math="10\text{ cm}" /> | Teilt den Umfang durch drei, als wäre das Dreieck gleichseitig. |
+| <InlineMath math="5\text{ cm}" /> | Ist die kürzere Kathete, nicht die Hypotenuse. |
+
+# Antwort
+
+Die Hypotenuse ist **<InlineMath math="13\text{ cm}" />** lang.
