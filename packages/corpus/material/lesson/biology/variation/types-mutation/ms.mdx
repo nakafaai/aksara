@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Nota Variasi Tingkatan Lima",
   description:
-    "Nota Biologi Tingkatan 5 Bab 12: variasi selanjar dan tak selanjar, faktor genetik dan persekitaran, serta mutasi gen, mutasi kromosom dan mutagen.",
+    "Variasi selanjar dan tak selanjar, lengkung poligen, pencampuran alel meiosis, mutasi gen, dan mutasi kromosom.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Variasi",
@@ -11,12 +11,14 @@ export const metadata = {
 
 **Variasi** ialah perbezaan trait antara individu dalam spesies yang sama. Variasi terbahagi kepada dua jenis:
 
+> Meiosis dan persenyawaan mencampurkan semula alel sedia ada kepada pelbagai gabungan, manakala mutasi satu-satunya proses yang mencipta alel baharu.
+
 - **Variasi selanjar**: trait boleh mengambil sebarang nilai dalam satu julat, seperti ketinggian, jisim badan atau panjang daun. Banyak gen dan persekitaran mengawalnya, dan histogramnya membentuk **taburan normal** yang berbentuk loceng.
 - **Variasi tak selanjar**: trait terbahagi kepada beberapa kumpulan yang jelas tanpa nilai perantaraan, seperti kumpulan darah ABO, faktor Rhesus atau corak cap jari. Satu atau beberapa gen sahaja yang mengawalnya, persekitaran hampir tidak memberi kesan, dan carta palang digunakan untuk menunjukkannya.
 
 Variasi mempunyai **faktor genetik**, iaitu pindah silang, penyusunan bebas kromosom, persenyawaan rawak dan mutasi, serta **faktor persekitaran**, seperti makanan, cahaya dan suhu. Dalam nota ini kamu mengubah bentuk lengkung ketinggian, menyusun data ke dalam histogram dan carta palang, menambah gen sehingga langkah bergabung menjadi julat, mengira gabungan kromosom, dan membandingkan alel normal dengan alel sel sabit bes demi bes.
 
-## Variasi Selanjar Membentuk Lengkung Loceng
+### Variasi Selanjar Membentuk Lengkung Loceng
 
 Ukur ketinggian sekumpulan besar murid yang sebaya. Kebanyakan ketinggian berada di sekitar nilai tengah, dan semakin sedikit murid yang sangat rendah atau sangat tinggi. Apabila bilangan murid diplot melawan ketinggian, titik-titiknya membentuk **lengkung taburan normal**. Puncaknya terletak pada **min**, dan lebarnya menunjukkan sejauh mana ketinggian itu tersebar.
 
@@ -32,6 +34,7 @@ Gen menetapkan julat ketinggian yang boleh dicapai seseorang, manakala makanan, 
       <InlineMath math="m - 2s" /> dan <InlineMath math="m + 2s" />.
     </>
   }
+  footer={<>Kebanyakan individu bertumpu dekat min manakala nilai ekstrem jarang berlaku.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 140, max: 190 }, y: { min: 0, max: 14 } },
@@ -77,6 +80,7 @@ Data sebenar dikumpulkan dalam kelas. Sebuah kelas yang terdiri daripada <Inline
       belah, iaitu bentuk variasi selanjar.
     </>
   }
+  footer={<>Ketinggian murid bercantum membentuk lengkung loceng selanjar tanpa jurang.</>}
   bars="touching"
   categories={["145 hingga 149 cm", "150 hingga 154 cm", "155 hingga 159 cm", "160 hingga 164 cm", "165 hingga 169 cm", "170 hingga 174 cm", "175 hingga 179 cm"]}
   series={[
@@ -92,9 +96,9 @@ Cari min ketinggian. Gunakan titik tengah setiap kelas, darabkan dengan bilangan
 <BlockMath math="\bar{x} = \frac{\sum f x}{\sum f} = \frac{6{,}470}{40} = 161.75\text{ cm}" />
 </MathContainer>
 
-Min ketinggian ialah <InlineMath math="161.75\text{ cm}" />, dan **kelas mod**, iaitu palang tertinggi, ialah <InlineMath math="160" /> hingga <InlineMath math="164\text{ cm}" />. Semak: jumlah kekerapan ialah <InlineMath math="2 + 5 + 8 + 11 + 8 + 4 + 2 = 40" />, dan min terletak dalam kelas mod, seperti yang dijangka bagi lengkung yang hampir simetri.
+Min ketinggian ialah <InlineMath math="161.75\text{ cm}" />, dan **kelas mod**, iaitu palang tertinggi, ialah <InlineMath math="160" /> hingga <InlineMath math="164\text{ cm}" />. Semak: jumlah tujuh tinggi palang ialah <InlineMath math="40" />, dan min terletak dalam kelas mod, seperti yang dijangka bagi lengkung yang hampir simetri.
 
-## Variasi Tak Selanjar Terbahagi kepada Kumpulan
+### Variasi Tak Selanjar Terbahagi kepada Kumpulan
 
 Cap jari mempunyai satu daripada tiga corak asas: **gelung**, **lingkaran** atau **lengkung**. Setiap cap jari ialah salah satu daripadanya, dan tiada cap jari yang berada di tengah-tengah antara dua corak. Kumpulan darah juga begitu: seseorang itu berkumpulan darah A, B, AB atau O mengikut alel yang diwarisinya, dan **persekitaran tidak dapat mengubahnya**.
 
@@ -108,6 +112,7 @@ Kelas yang sama merekodkan corak cap ibu jari kanan setiap murid. Carta palang d
       gelung paling tinggi, dengan <InlineMath math="26" /> orang murid.
     </>
   }
+  footer={<>Corak cap jari berada dalam palang berasingan tanpa nilai perantaraan.</>}
   bars="apart"
   categories={["Gelung", "Lingkaran", "Lengkung"]}
   series={[
@@ -134,6 +139,47 @@ Semak: <InlineMath math="65\% + 30\% + 5\% = 100\%" />, jadi setiap murid dikira
 
 Mengapa ketinggian membentuk lengkung yang licin sedangkan kumpulan darah membentuk palang yang berasingan? Ketinggian dikawal oleh **banyak gen**, dan setiap gen menambah sedikit sahaja. Ambil satu trait model yang dikawal oleh tiga gen, <InlineMath math="A" />, <InlineMath math="B" /> dan <InlineMath math="C" />, dan setiap alel huruf besar menambah jumlah yang sama. Kacukkan dua induk <InlineMath math="AaBbCc" />, kemudian kira bilangan alel huruf besar dalam setiap anak.
 
+<VariationDistributionLab
+  title={<>Lengkung Loceng Variasi Selanjar vs Palang Tak Selanjar</>}
+  description={
+    <>
+      Bandingkan variasi selanjar dan tak selanjar serta tambah bilangan
+      pasangan gen pengawal untuk melihat palang diskret melicin menjadi
+      lengkung loceng.
+    </>
+  }
+  footer={<>Lebih banyak gen pengawal dan persekitaran melicinkan palang menjadi lengkung loceng.</>}
+  genePairs={{ min: 1, max: 6, value: 3 }}
+  kinds={["continuous", "discontinuous"]}
+  labels={{
+    basis: <>Kawalan genetik</>,
+    genePairs: "Pasangan gen pengawal",
+    kind: "Jenis variasi",
+    kinds: {
+      continuous: {
+        basis: <>Dikawal oleh banyak gen serta dipengaruhi faktor persekitaran</>,
+        name: "Variasi selanjar",
+        shape: <>Lengkung loceng licin dengan banyak nilai perantaraan</>,
+      },
+      discontinuous: {
+        basis: <>Dikawal oleh satu gen tunggal tanpa pengaruh persekitaran</>,
+        name: "Variasi tak selanjar",
+        shape: <>Palang kumpulan berasingan tanpa nilai perantaraan</>,
+      },
+    },
+    parts: {
+      bellCurve: "Lengkung loceng",
+      discreteBars: "Palang diskret",
+      environment: "Persekitaran",
+      meanLine: "Min",
+    },
+    shape: <>Bentuk taburan</>,
+    view: "Histogram populasi tiga dimensi membandingkan dua jenis variasi",
+  }}
+/>
+
+Menambah bilangan pasangan gen melicinkan palang bertangga menjadi lengkung loceng, yang disahkan terus oleh **carta kacukan tiga gen** di bawah.
+
 <Chart
   title={<>Anak daripada <InlineMath math="AaBbCc \times AaBbCc" /></>}
   description={
@@ -145,6 +191,7 @@ Mengapa ketinggian membentuk lengkung yang licin sedangkan kumpulan darah memben
       dan turun semula, sudah hampir berbentuk loceng.
     </>
   }
+  footer={<>Lebih banyak gen pengawal melicinkan tangga diskret menjadi lengkung.</>}
   bars="touching"
   categories={["0", "1", "2", "3", "4", "5", "6"]}
   series={[
@@ -167,6 +214,50 @@ Tiga peristiwa dalam pembiakan seks mencampurkan semula alel yang sedia ada dala
 
 Gerakkan gelangsar bagi nombor haploid <InlineMath math="n" />. Lengkung itu menunjukkan gabungan gamet daripada penyusunan bebas sahaja, sebelum pindah silang berlaku.
 
+<MeiosisShufflingLab
+  title={<>Pindah Silang, Penyusunan Bebas, dan Persenyawaan Rawak</>}
+  description={
+    <>
+      Ikuti tiga mekanisme pencampuran alel dalam pembiakan seks sambil
+      mengubah bilangan pasangan kromosom homolog untuk melihat kepelbagaian
+      gamet.
+    </>
+  }
+  footer={<>Pindah silang dan penyusunan bebas menggabungkan alel sedia ada kepada corak baharu.</>}
+  chromosomePairs={{ min: 1, max: 8, value: 3 }}
+  stages={["crossingOver", "independentAssortment", "randomFertilisation"]}
+  labels={{
+    chromosomePairs: "Pasangan kromosom (n)",
+    combinations: <>Gabungan gamet</>,
+    mechanism: <>Punca variasi</>,
+    parts: {
+      centromere: "Sentromer",
+      chiasma: "Kiasma",
+      gamete: "Gamet rekombinan",
+      maternalChromatid: "Kromatid ibu",
+      paternalChromatid: "Kromatid bapa",
+    },
+    stage: "Peringkat pencampuran",
+    stages: {
+      crossingOver: {
+        mechanism: <>Kromatid bukan kembar bertukar segmen DNA di kiasma semasa profasa I</>,
+        name: "Pindah silang",
+      },
+      independentAssortment: {
+        mechanism: <>Setiap pasangan homolog tersusun rawak pada metafasa I membentuk 2^n gamet</>,
+        name: "Penyusunan bebas",
+      },
+      randomFertilisation: {
+        mechanism: <>Mana-mana sperma boleh mensenyawakan mana-mana ovum lalu mendarabkan gabungan</>,
+        name: "Persenyawaan rawak",
+      },
+    },
+    view: "Kromosom homolog tiga dimensi mencampurkan alel semasa meiosis",
+  }}
+/>
+
+Lihat bagaimana pindah silang dan penyusunan bebas menggandakan kepelbagaian gamet dengan pantas, lalu semak lengkung eksponen <InlineMath math="2^n" /> di bawah.
+
 <MathVisual
   title={<>Gabungan Kromosom daripada Penyusunan Bebas</>}
   description={
@@ -176,6 +267,7 @@ Gerakkan gelangsar bagi nombor haploid <InlineMath math="n" />. Lengkung itu men
       pasangan kromosom menggandakan bilangan itu.
     </>
   }
+  footer={<>Penyusunan bebas menggandakan gabungan gamet mengikut kuasa dua.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1100 } },
@@ -210,7 +302,7 @@ Kira bilangannya bagi manusia, dengan <InlineMath math="n = 23" />:
 <BlockMath math="\text{zigot} = 2^{23} \times 2^{23} = 2^{46} \approx 7.04 \times 10^{13}" />
 </MathContainer>
 
-Sepasang suami isteri boleh menghasilkan kira-kira <InlineMath math="70" /> trilion jenis zigot sebelum pindah silang menambah lagi. Semak magnitudnya: <InlineMath math="2^{10} = 1{,}024 \approx 10^3" />, jadi <InlineMath math="2^{23} = 2^3 \times (2^{10})^2 \approx 8 \times 10^6" />. Ketiga-tiga peristiwa ini hanya mencampurkan semula alel yang sudah wujud. Mutasi ialah **satu-satunya sumber alel baharu**.
+Sepasang suami isteri boleh menghasilkan kira-kira <InlineMath math="70" /> trilion jenis zigot sebelum pindah silang menambah lagi. Semak magnitudnya: <InlineMath math="2^{10} \approx 10^3" />, jadi <InlineMath math="2^{23} \approx 8 \times 10^6" />. Ketiga-tiga peristiwa ini hanya mencampurkan semula alel yang sudah wujud. Mutasi ialah **satu-satunya sumber alel baharu**.
 
 ## Mutasi Gen Mengubah Jujukan Bes
 
@@ -224,29 +316,8 @@ Sepasang suami isteri boleh menghasilkan kira-kira <InlineMath math="70" /> tril
 
 Mutasi dalam gamet boleh diturunkan kepada generasi seterusnya. Mutasi dalam sel soma tidak diwarisi, tetapi boleh menyebabkan kanser pada orang itu. **Mutasi gen** mengubah jujukan bes satu gen melalui tiga cara: **penggantian** menukar satu bes dengan bes lain, **penyisipan** menambah satu bes, dan **delesi** membuang satu bes. Penyisipan atau delesi menganjakkan setiap kodon selepasnya, jadi kesannya terhadap protein biasanya jauh lebih besar daripada penggantian.
 
-Anemia sel sabit berpunca daripada satu penggantian dalam gen globin beta, iaitu salah satu bahagian hemoglobin. Tukar antara dua alel itu dan cari bes yang bercahaya.
+Anemia sel sabit berpunca daripada satu penggantian dalam gen globin beta, iaitu salah satu bahagian hemoglobin.
 
-<DnaHelixLab
-  title={<>Alel Normal dan Alel Sel Sabit bagi Gen Globin Beta</>}
-  description={
-    <>
-      <InlineMath math="27" /> bes pertama gen ini, bermula dari kodon mula.
-      Dalam alel sel sabit, kodon GAG bagi asid glutamik bertukar menjadi GTG
-      bagi valina.
-    </>
-  }
-  sequence="ATG GTG CAT CTG ACT CCT GAG GAG AAG"
-  variant="ATG GTG CAT CTG ACT CCT GTG GAG AAG"
-  labels={{
-    choose: "Alel",
-    strands: { first: <>Alel normal</>, second: <>Alel sel sabit</> },
-    length: <>Pasangan bes</>,
-    span: <>Panjang</>,
-    differences: <>Bes yang berbeza</>,
-    identity: <>Bes yang sepadan</>,
-    viewLabel: "Satu bahagian gen globin beta dalam dua versi",
-  }}
-/>
 
 Analisis perubahan itu. Satu bes daripada <InlineMath math="27" /> berbeza, iaitu <InlineMath math="\mathrm{A}" /> diganti dengan <InlineMath math="\mathrm{T}" />:
 
@@ -277,55 +348,56 @@ Dalam **poliploidi**, sel mendapat set kromosom tambahan yang lengkap. Poliploid
 
 Mutasi boleh **memudaratkan, neutral atau berfaedah**. Anemia sel sabit dan sindrom Down memudaratkan orang itu, tetapi mutasi yang membolehkan bakteria hidup walaupun didedahkan kepada antibiotik memberi faedah kepada bakteria itu. Variasi memberi setiap populasi pelbagai trait, jadi apabila persekitaran berubah, sesetengah individu lebih berpeluang untuk terus hidup dan membiak.
 
-## Kesilapan Lazim tentang Variasi
+<ChromosomeMutationLab
+  title={<>Mutasi Struktur Kromosom dan Tak Disjungsi</>}
+  description={
+    <>
+      Bandingkan delesi, penggandaan, penyongsangan, translokasi, dan tak
+      disjungsi pada model kromosom tiga dimensi untuk melihat perubahan segmen
+      dan bilangan kromosom.
+    </>
+  }
+  footer={<>Mutasi kromosom mengubah blok gen besar atau bilangan kromosom secara serentak.</>}
+  mutations={["deletion", "duplication", "inversion", "translocation", "nondisjunction"]}
+  labels={{
+    change: <>Perubahan kromosom</>,
+    effect: <>Kesan genetik</>,
+    mutation: "Jenis mutasi",
+    mutations: {
+      deletion: {
+        change: <>Satu segmen kromosom patah lalu hilang</>,
+        effect: <>Gen pada segmen yang hilang tidak lagi wujud</>,
+        name: "Delesi",
+      },
+      duplication: {
+        change: <>Satu segmen kromosom berganda dan hadir dua kali</>,
+        effect: <>Salinan gen tambahan muncul pada lengan yang sama</>,
+        name: "Penggandaan",
+      },
+      inversion: {
+        change: <>Segmen patah berpusing terbalik lalu bercantum semula</>,
+        effect: <>Susunan gen terbalik sepanjang bahagian kromosom itu</>,
+        name: "Penyongsangan",
+      },
+      nondisjunction: {
+        change: <>Kromosom homolog gagal berpisah semasa meiosis</>,
+        effect: <>Gamet mendapat lebih atau kurang satu kromosom</>,
+        name: "Tak disjungsi",
+      },
+      translocation: {
+        change: <>Segmen patah melekat pada kromosom bukan homolog</>,
+        effect: <>Satu blok gen berpindah ke kromosom lain</>,
+        name: "Translokasi",
+      },
+    },
+    parts: {
+      brokenSegment: "Segmen patah",
+      centromere: "Sentromer",
+      extraCopy: "Kromosom tambahan",
+      normalArm: "Lengan normal",
+    },
+    view: "Kromosom tiga dimensi menunjukkan lima jenis mutasi kromosom",
+  }}
+/>
 
-| Kesilapan | Sebab salah | Cara menyemak |
-| :--- | :--- | :--- |
-| Semua variasi datang daripada gen | Kembar seiras berkongsi setiap gen tetapi masih berbeza | Tanya sama ada dua individu dengan gen yang sama boleh berbeza |
-| Ketinggian ialah variasi tak selanjar kerana orang sama ada tinggi atau rendah | Ketinggian mengambil setiap nilai dalam satu julat | Cuba namakan kumpulannya: jika ada nilai di antara kumpulan, variasi itu selanjar |
-| Melukis histogram dengan ruang antara palang | Kelas ketinggian bersambung, jadi palang mesti bersentuhan | Ruang hanya untuk kumpulan berasingan seperti kumpulan darah |
-| Setiap mutasi memudaratkan | Sesetengah mutasi neutral dan ada yang berfaedah, seperti kerintangan bakteria terhadap antibiotik | Nilai kesannya dalam persekitarannya |
-| Mutasi dalam sel kulit diwarisi oleh anak | Hanya mutasi dalam sel yang menghasilkan gamet diwarisi | Tanya sama ada sel itu akan menjadi sperma atau ovum |
-| Pindah silang menghasilkan alel baharu | Pindah silang menukar alel yang sedia ada antara kromatid | Hanya mutasi yang mengubah jujukan bes |
-
-Kesilapan kedua paling banyak menghilangkan markah, jadi semak dengan satu soalan: bolehkah satu nilai jatuh di antara dua kumpulan? Jika boleh, **variasi itu selanjar**.
-
-## Latihan Variasi
-
-Soalan bermula dengan mengelaskan trait, kemudian mengira dengan data, dan akhirnya mutasi pada peringkat bes. **Tentukan sama ada trait itu selanjar atau tak selanjar** sebelum kamu memilih graf.
-
-1. Kelaskan trait berikut kepada variasi selanjar dan variasi tak selanjar, dan namakan graf bagi setiap jenis: jisim badan, kumpulan darah ABO, panjang daun, corak cap jari, faktor Rhesus.
-
-2. Seorang murid mengukur <InlineMath math="50" /> helai daun daripada sebatang pokok: <InlineMath math="3" /> helai sepanjang <InlineMath math="4\text{ cm}" />, <InlineMath math="12" /> helai <InlineMath math="5\text{ cm}" />, <InlineMath math="20" /> helai <InlineMath math="6\text{ cm}" />, <InlineMath math="11" /> helai <InlineMath math="7\text{ cm}" /> dan <InlineMath math="4" /> helai <InlineMath math="8\text{ cm}" />. Cari min panjang daun dan terangkan punca variasi itu.
-
-3. Satu tumbuhan mempunyai <InlineMath math="2n = 24" />. Berapakah jenis gamet yang boleh dihasilkan melalui penyusunan bebas, dan berapakah jenis zigot yang boleh dihasilkan oleh dua tumbuhan seperti itu?
-
-4. Permulaan satu gen ialah <InlineMath math="\mathrm{ATG\,GCA\,TTC\,GAA}" />. Tulis jujukan selepas bes kelima diganti dengan <InlineMath math="\mathrm{T}" />, dan sekali lagi selepas bes kelima dibuang. Mutasi yang manakah mengubah lebih banyak kodon?
-
-### Penyelesaian
-
-**Penyelesaian 1**: Jisim badan dan panjang daun mengambil sebarang nilai dalam satu julat, jadi kedua-duanya menunjukkan **variasi selanjar** yang dilukis sebagai histogram. Kumpulan darah ABO, corak cap jari dan faktor Rhesus terbahagi kepada kumpulan yang berasingan, jadi ketiga-tiganya menunjukkan **variasi tak selanjar** yang dilukis sebagai carta palang yang berjarak.
-
-**Penyelesaian 2**: Darabkan setiap panjang dengan bilangan daunnya, jumlahkan, kemudian bahagikan dengan jumlah daun:
-
-<BlockMath math="\bar{x} = \frac{4(3) + 5(12) + 6(20) + 7(11) + 8(4)}{50} = \frac{12 + 60 + 120 + 77 + 32}{50} = \frac{301}{50} = 6.02\text{ cm}" />
-
-Min panjang ialah <InlineMath math="6.02\text{ cm}" />. Setiap daun pada sebatang pokok membawa gen yang sama, jadi **variasi itu datang daripada persekitaran**, seperti jumlah cahaya yang diterima oleh setiap daun. Semak: <InlineMath math="3 + 12 + 20 + 11 + 4 = 50" /> helai daun.
-
-**Penyelesaian 3**: Nombor haploidnya ialah <InlineMath math="24 \div 2 = 12" />:
-
-<MathContainer>
-<BlockMath math="\text{gamet} = 2^{12} = 4{,}096" />
-<BlockMath math="\text{zigot} = 4{,}096 \times 4{,}096 = 16{,}777{,}216" />
-</MathContainer>
-
-Semak: <InlineMath math="4^{12} = (2^2)^{12} = 2^{24} = 16{,}777{,}216" />, iaitu nombor yang sama.
-
-**Penyelesaian 4**: Nomborkan bes dari kiri. Bes kelima ialah <InlineMath math="\mathrm{C}" /> dalam kodon kedua, <InlineMath math="\mathrm{GCA}" />:
-
-<MathContainer>
-<BlockMath math="\text{penggantian: } \mathrm{ATG\,GTA\,TTC\,GAA}" />
-<BlockMath math="\text{delesi: } \mathrm{ATG\,GAT\,TCG\,AA}" />
-</MathContainer>
-
-Penggantian hanya mengubah kodon kedua. Delesi mengubah kodon kedua dan ketiga serta meninggalkan kodon yang tidak lengkap di hujung, kerana **setiap bes selepas delesi beranjak satu tempat ke kiri**. Delesi mengubah lebih banyak kodon.
+Berbeza daripada penukaran satu bes, **patahan struktur dan tak disjungsi** mengubah blok gen besar atau bilangan keseluruhan kromosom dalam sel anak.

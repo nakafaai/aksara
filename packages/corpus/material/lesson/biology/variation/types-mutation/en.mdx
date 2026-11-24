@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Variation Notes for Form Five Biology",
   description:
-    "Form 5 Biology Chapter 12: continuous and discontinuous variation, its genetic and environmental causes, and gene and chromosomal mutations with their mutagens.",
+    "Continuous and discontinuous variation, polygenic bell curves, meiotic allele shuffling, gene mutations, and chromosomal mutations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Variation",
@@ -11,12 +11,14 @@ export const metadata = {
 
 **Variation** is the differences in traits between individuals of the same species. It comes in two types:
 
+> Meiosis and fertilisation reshuffle existing alleles into vast combinations, while mutation is the only process that creates genuinely new alleles.
+
 - **Continuous variation**: the trait can take any value in a range, such as height, body mass or leaf length. Many genes and the environment control it, and its histogram forms a bell-shaped **normal distribution**.
 - **Discontinuous variation**: the trait falls into a few distinct groups with nothing in between, such as ABO blood group, Rhesus factor or fingerprint pattern. One gene or a few genes control it, the environment has little effect, and a bar chart shows it.
 
 Variation has **genetic causes**, namely crossing over, independent assortment, random fertilisation and mutation, and **environmental causes**, such as food, light and temperature. In these notes you reshape a curve of heights, sort data into a histogram and a bar chart, add genes until steps merge into a range, count chromosome combinations, and compare a normal allele with a sickle cell allele base by base.
 
-## Continuous Variation Forms a Bell Curve
+### Continuous Variation Forms a Bell Curve
 
 Measure the height of a large group of students of the same age. Most heights lie near the middle, and fewer and fewer students are very short or very tall. Plotted against height, the numbers form a **normal distribution curve**. Its peak sits at the **mean**, and its width shows how spread out the heights are.
 
@@ -32,6 +34,7 @@ Genes set the range a person can grow in, and food, health and exercise move eac
       <InlineMath math="m - 2s" /> and <InlineMath math="m + 2s" />.
     </>
   }
+  footer={<>Most individuals cluster near the mean while extreme heights stay rare.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 140, max: 190 }, y: { min: 0, max: 14 } },
@@ -77,6 +80,7 @@ Real data come in groups. A class of <InlineMath math="40" /> students measured 
       sides, the shape of continuous variation.
     </>
   }
+  footer={<>Grouped heights merge into one unbroken bell-shaped continuous range.</>}
   bars="touching"
   categories={["145 to 149 cm", "150 to 154 cm", "155 to 159 cm", "160 to 164 cm", "165 to 169 cm", "170 to 174 cm", "175 to 179 cm"]}
   series={[
@@ -92,9 +96,9 @@ Find the mean height. Use the midpoint of each class, multiply it by the number 
 <BlockMath math="\bar{x} = \frac{\sum f x}{\sum f} = \frac{6{,}470}{40} = 161.75\text{ cm}" />
 </MathContainer>
 
-The mean is <InlineMath math="161.75\text{ cm}" />, and the **modal class**, the tallest bar, is <InlineMath math="160" /> to <InlineMath math="164\text{ cm}" />. Check: the frequencies add up to <InlineMath math="2 + 5 + 8 + 11 + 8 + 4 + 2 = 40" />, and the mean lies inside the modal class, as it should for a curve that is nearly symmetrical.
+The mean is <InlineMath math="161.75\text{ cm}" />, and the **modal class**, the tallest bar, is <InlineMath math="160" /> to <InlineMath math="164\text{ cm}" />. Check: the seven bar heights add up to <InlineMath math="40" />, and the mean lies inside the modal class, as it should for a curve that is nearly symmetrical.
 
-## Discontinuous Variation Falls into Groups
+### Discontinuous Variation Falls into Groups
 
 A fingerprint has one of three basic patterns: a **loop**, a **whorl** or an **arch**. Every print is one of the three, and no print sits halfway between two of them. Blood group works the same way: a person is A, B, AB or O, set by the alleles they inherited, and **the environment can't change it**.
 
@@ -108,6 +112,7 @@ The same class recorded the pattern on each student's right thumb. A bar chart s
       tallest, with <InlineMath math="26" /> students.
     </>
   }
+  footer={<>Fingerprint classes sit in separate bars with no intermediate blends.</>}
   bars="apart"
   categories={["Loop", "Whorl", "Arch"]}
   series={[
@@ -134,6 +139,47 @@ Check: <InlineMath math="65\% + 30\% + 5\% = 100\%" />, so every student is coun
 
 Why does height form a smooth curve while blood group forms separate bars? Height is controlled by **many genes**, each adding a small amount. Take a model trait controlled by three genes, <InlineMath math="A" />, <InlineMath math="B" /> and <InlineMath math="C" />, where each capital allele adds the same amount. Cross two <InlineMath math="AaBbCc" /> parents and count the capital alleles in each offspring.
 
+<VariationDistributionLab
+  title={<>Continuous Bell Curves vs Discontinuous Trait Classes</>}
+  description={
+    <>
+      Switch between continuous and discontinuous variation and increase the
+      number of controlling gene pairs to watch discrete steps smooth into a
+      bell curve.
+    </>
+  }
+  footer={<>More polygenic loci plus environmental effects turn discrete bars into a bell curve.</>}
+  genePairs={{ min: 1, max: 6, value: 3 }}
+  kinds={["continuous", "discontinuous"]}
+  labels={{
+    basis: <>Genetic control</>,
+    genePairs: "Controlling gene pairs",
+    kind: "Variation kind",
+    kinds: {
+      continuous: {
+        basis: <>Controlled by many genes plus environmental factors</>,
+        name: "Continuous variation",
+        shape: <>Smooth bell curve with full intermediate values</>,
+      },
+      discontinuous: {
+        basis: <>Controlled by a single gene unaffected by environment</>,
+        name: "Discontinuous variation",
+        shape: <>Separate discrete bars with no intermediates</>,
+      },
+    },
+    parts: {
+      bellCurve: "Bell curve",
+      discreteBars: "Discrete bars",
+      environment: "Environment",
+      meanLine: "Mean",
+    },
+    shape: <>Distribution pattern</>,
+    view: "Three-dimensional population histogram contrasting variation types",
+  }}
+/>
+
+Raising the number of gene pairs turns stepped bars into a smooth bell curve, which the **three-gene cross chart** below verifies directly.
+
 <Chart
   title={<>Offspring of <InlineMath math="AaBbCc \times AaBbCc" /></>}
   description={
@@ -145,6 +191,7 @@ Why does height form a smooth curve while blood group forms separate bars? Heigh
       and back down, already close to a bell.
     </>
   }
+  footer={<>Adding more controlling genes turns discrete steps into a smooth curve.</>}
   bars="touching"
   categories={["0", "1", "2", "3", "4", "5", "6"]}
   series={[
@@ -167,6 +214,49 @@ Three events in sexual reproduction shuffle the alleles a species already has:
 
 Move the slider for the haploid number <InlineMath math="n" />. The curve shows the gamete combinations from independent assortment alone, before any crossing over.
 
+<MeiosisShufflingLab
+  title={<>Crossing-Over, Independent Assortment, and Random Fertilisation</>}
+  description={
+    <>
+      Step through the three sexual shuffling mechanisms and slide the number of
+      homologous chromosome pairs to see gamete diversity grow exponentially.
+    </>
+  }
+  footer={<>Crossing-over and independent assortment shuffle existing alleles into new combinations.</>}
+  chromosomePairs={{ min: 1, max: 8, value: 3 }}
+  stages={["crossingOver", "independentAssortment", "randomFertilisation"]}
+  labels={{
+    chromosomePairs: "Homologous pairs (n)",
+    combinations: <>Gamete combinations</>,
+    mechanism: <>How variation arises</>,
+    parts: {
+      centromere: "Centromere",
+      chiasma: "Chiasma",
+      gamete: "Recombinant gamete",
+      maternalChromatid: "Maternal chromatid",
+      paternalChromatid: "Paternal chromatid",
+    },
+    stage: "Shuffling step",
+    stages: {
+      crossingOver: {
+        mechanism: <>Non-sister chromatids exchange DNA segments at chiasmata in prophase I</>,
+        name: "Crossing-over",
+      },
+      independentAssortment: {
+        mechanism: <>Each homologous pair aligns randomly at metaphase I, giving 2^n gametes</>,
+        name: "Independent assortment",
+      },
+      randomFertilisation: {
+        mechanism: <>Any male gamete can fuse with any female gamete, multiplying possibilities</>,
+        name: "Random fertilisation",
+      },
+    },
+    view: "Three-dimensional homologous chromosomes shuffling alleles during meiosis",
+  }}
+/>
+
+Notice how crossing-over and independent assortment multiply gamete variety rapidly, and the exponential curve below quantifies <InlineMath math="2^n" />.
+
 <MathVisual
   title={<>Chromosome Combinations from Independent Assortment</>}
   description={
@@ -176,6 +266,7 @@ Move the slider for the haploid number <InlineMath math="n" />. The curve shows 
       <InlineMath math="2^n" />. One more pair of chromosomes doubles it.
     </>
   }
+  footer={<>Independent assortment multiplies gamete combinations as 2 to the power n.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1100 } },
@@ -210,7 +301,7 @@ Work out the number for humans, with <InlineMath math="n = 23" />:
 <BlockMath math="\text{zygotes} = 2^{23} \times 2^{23} = 2^{46} \approx 7.04 \times 10^{13}" />
 </MathContainer>
 
-One couple can make about <InlineMath math="70" /> trillion different zygotes before crossing over adds even more. Check the size: <InlineMath math="2^{10} = 1{,}024 \approx 10^3" />, so <InlineMath math="2^{23} = 2^3 \times (2^{10})^2 \approx 8 \times 10^6" />. These three events only reshuffle alleles that exist already. Mutation is **the only source of new alleles**.
+One couple can make about <InlineMath math="70" /> trillion different zygotes before crossing over adds even more. Check the size: <InlineMath math="2^{10} \approx 10^3" />, so <InlineMath math="2^{23} \approx 8 \times 10^6" />. These three events only reshuffle alleles that exist already. Mutation is **the only source of new alleles**.
 
 ## Gene Mutation Changes the Base Sequence
 
@@ -224,35 +315,14 @@ A **mutation** is a random change in the DNA of a gene, or in the structure or n
 
 A mutation in a gamete can pass to the next generation. A mutation in a body cell isn't inherited, but it can lead to cancer in that person. A **gene mutation** changes the base sequence of one gene in one of three ways: **substitution** swaps one base for another, **insertion** adds a base, and **deletion** removes one. An insertion or a deletion shifts every codon after it, so it usually changes far more of the protein than a substitution.
 
-Sickle cell anaemia comes from one substitution in the gene for beta globin, a part of haemoglobin. Switch between the two alleles and find the base that glows.
+Sickle cell anaemia comes from one substitution in the gene for beta globin, a part of haemoglobin.
 
-<DnaHelixLab
-  title={<>The Normal and the Sickle Cell Allele of the Beta Globin Gene</>}
-  description={
-    <>
-      The first <InlineMath math="27" /> bases of the gene, from its start codon.
-      In the sickle cell allele, the codon GAG for glutamic acid becomes GTG for
-      valine.
-    </>
-  }
-  sequence="ATG GTG CAT CTG ACT CCT GAG GAG AAG"
-  variant="ATG GTG CAT CTG ACT CCT GTG GAG AAG"
-  labels={{
-    choose: "Allele",
-    strands: { first: <>Normal allele</>, second: <>Sickle cell allele</> },
-    length: <>Base pairs</>,
-    span: <>Length</>,
-    differences: <>Bases that differ</>,
-    identity: <>Bases that match</>,
-    viewLabel: "A stretch of the beta globin gene in two versions",
-  }}
-/>
 
 Analyse the change. One base of <InlineMath math="27" /> differs, an <InlineMath math="\mathrm{A}" /> replaced by a <InlineMath math="\mathrm{T}" />:
 
 <BlockMath math="\frac{26}{27} \times 100\% \approx 96.3\% \text{ of the bases match}" />
 
-The codon <InlineMath math="\mathrm{GAG}" /> becomes <InlineMath math="\mathrm{GTG}" />, so one glutamic acid in the protein becomes valine. Haemoglobin with valine at that place clumps into long fibres when oxygen is low, the red blood cells bend into a **sickle shape**, and they block small blood vessels. Check against the lab footer: <InlineMath math="1" /> base differs and <InlineMath math="96.3\%" /> match. Albinism is another gene mutation: the allele can't make a working enzyme for the pigment melanin, so skin, hair and eyes have little colour.
+The codon <InlineMath math="\mathrm{GAG}" /> becomes <InlineMath math="\mathrm{GTG}" />, so one glutamic acid in the protein becomes valine. Haemoglobin with valine at that place clumps into long fibres when oxygen is low, the red blood cells bend into a **sickle shape**, and they block small blood vessels. Only <InlineMath math="1" /> base out of <InlineMath math="27" /> differs, leaving <InlineMath math="96.3\%" /> identical. Albinism is another gene mutation: the allele can't make a working enzyme for the pigment melanin, so skin, hair and eyes have little colour.
 
 ## Chromosomal Mutation Changes Structure or Number
 
@@ -277,55 +347,56 @@ In **polyploidy** a cell gains whole extra sets of chromosomes. It is common in 
 
 Mutations can be **harmful, neutral or useful**. Sickle cell anaemia and Down syndrome harm the person, but a mutation that lets bacteria survive an antibiotic helps those bacteria. Variation gives every population a range of traits, so when the environment changes, some individuals are more likely to survive and reproduce.
 
-## Common Mistakes about Variation
+<ChromosomeMutationLab
+  title={<>Structural Chromosomal Mutations and Nondisjunction</>}
+  description={
+    <>
+      Compare deletion, duplication, inversion, translocation, and meiotic
+      nondisjunction on a banded 3D chromosome to see how whole blocks of genes
+      or chromosome counts change.
+    </>
+  }
+  footer={<>Chromosomal mutations alter entire gene blocks or total chromosome count at once.</>}
+  mutations={["deletion", "duplication", "inversion", "translocation", "nondisjunction"]}
+  labels={{
+    change: <>Chromosomal change</>,
+    effect: <>Genetic effect</>,
+    mutation: "Mutation type",
+    mutations: {
+      deletion: {
+        change: <>A chromosome segment breaks off and is lost</>,
+        effect: <>Multiple genes on the missing segment disappear</>,
+        name: "Deletion",
+      },
+      duplication: {
+        change: <>A chromosome segment is copied and inserted twice</>,
+        effect: <>Extra copies of genes appear along the same arm</>,
+        name: "Duplication",
+      },
+      inversion: {
+        change: <>A broken segment rotates end to end and rejoins</>,
+        effect: <>Gene order flips along that chromosome region</>,
+        name: "Inversion",
+      },
+      nondisjunction: {
+        change: <>Homologous chromosomes fail to separate during meiosis</>,
+        effect: <>Produces gametes with an extra or missing chromosome</>,
+        name: "Nondisjunction",
+      },
+      translocation: {
+        change: <>A broken segment attaches to a non-homologous chromosome</>,
+        effect: <>Moves a block of genes onto a different chromosome</>,
+        name: "Translocation",
+      },
+    },
+    parts: {
+      brokenSegment: "Broken segment",
+      centromere: "Centromere",
+      extraCopy: "Extra chromosome",
+      normalArm: "Normal arm",
+    },
+    view: "Three-dimensional banded chromosome showing five chromosomal mutations",
+  }}
+/>
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| All variation comes from genes | Identical twins share every gene yet still differ | Ask whether two individuals with the same genes could differ |
-| Height is discontinuous because people are tall or short | Height takes every value in a range | Try to name the groups: if a value can fall between them, it's continuous |
-| Drawing a histogram with gaps between the bars | Height classes join, so the bars must touch | Gaps belong only to separate groups such as blood groups |
-| Every mutation is harmful | Some mutations are neutral and some help, such as antibiotic resistance in bacteria | Judge the effect in its environment |
-| A mutation in a skin cell passes to children | Only mutations in cells that make gametes are inherited | Ask whether the cell will become a sperm or an egg |
-| Crossing over makes new alleles | It swaps existing alleles between chromatids | Only mutation changes the base sequence |
-
-The second mistake costs the most marks, so check with one question: can a value fall between two groups? If it can, **the variation is continuous**.
-
-## Variation Practice
-
-The questions move from sorting traits to calculating with data and then to mutations at the level of bases. **Decide whether a trait is continuous or discontinuous** before you choose a graph.
-
-1. Sort these traits into continuous and discontinuous variation, and name the graph for each type: body mass, ABO blood group, leaf length, fingerprint pattern, Rhesus factor.
-
-2. A student measures <InlineMath math="50" /> leaves from one tree: <InlineMath math="3" /> are <InlineMath math="4\text{ cm}" /> long, <InlineMath math="12" /> are <InlineMath math="5\text{ cm}" />, <InlineMath math="20" /> are <InlineMath math="6\text{ cm}" />, <InlineMath math="11" /> are <InlineMath math="7\text{ cm}" /> and <InlineMath math="4" /> are <InlineMath math="8\text{ cm}" />. Find the mean length and explain what causes the variation.
-
-3. A plant has <InlineMath math="2n = 24" />. How many different gametes can independent assortment make, and how many different zygotes can two such plants make?
-
-4. The start of a gene reads <InlineMath math="\mathrm{ATG\,GCA\,TTC\,GAA}" />. Write the sequence after the fifth base is replaced by <InlineMath math="\mathrm{T}" />, and again after the fifth base is deleted. Which mutation changes more codons?
-
-### Solutions
-
-**Solution 1**: Body mass and leaf length take any value in a range, so they show **continuous variation**, drawn as a histogram. ABO blood group, fingerprint pattern and Rhesus factor fall into separate groups, so they show **discontinuous variation**, drawn as a bar chart with gaps.
-
-**Solution 2**: Multiply each length by its number of leaves, add, and divide by the total:
-
-<BlockMath math="\bar{x} = \frac{4(3) + 5(12) + 6(20) + 7(11) + 8(4)}{50} = \frac{12 + 60 + 120 + 77 + 32}{50} = \frac{301}{50} = 6.02\text{ cm}" />
-
-The mean is <InlineMath math="6.02\text{ cm}" />. Every leaf on one tree carries the same genes, so **the variation comes from the environment**, such as how much light each leaf receives. Check: <InlineMath math="3 + 12 + 20 + 11 + 4 = 50" /> leaves.
-
-**Solution 3**: The haploid number is <InlineMath math="24 \div 2 = 12" />:
-
-<MathContainer>
-<BlockMath math="\text{gametes} = 2^{12} = 4{,}096" />
-<BlockMath math="\text{zygotes} = 4{,}096 \times 4{,}096 = 16{,}777{,}216" />
-</MathContainer>
-
-Check: <InlineMath math="4^{12} = (2^2)^{12} = 2^{24} = 16{,}777{,}216" />, the same number.
-
-**Solution 4**: Number the bases from the left. The fifth base is the <InlineMath math="\mathrm{C}" /> of the second codon <InlineMath math="\mathrm{GCA}" />:
-
-<MathContainer>
-<BlockMath math="\text{substitution: } \mathrm{ATG\,GTA\,TTC\,GAA}" />
-<BlockMath math="\text{deletion: } \mathrm{ATG\,GAT\,TCG\,AA}" />
-</MathContainer>
-
-The substitution changes only the second codon. The deletion changes the second and third codons and leaves an incomplete codon at the end, because **every base after the deletion shifts one place to the left**. The deletion changes more codons.
+Unlike a single base swap, **structural breaks and nondisjunction** reshape entire gene blocks or change total chromosome counts across every daughter cell.

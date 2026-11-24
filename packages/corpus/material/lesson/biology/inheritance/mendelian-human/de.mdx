@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Mendelsche Regeln und Vererbung beim Menschen",
   description:
-    "Rechne Erbgänge nach Mendel mit dem Punnett-Quadrat und verfolge Geschlecht, ABO-Blutgruppen, Rot-Grün-Blindheit und Stammbäume beim Menschen.",
+    "Monohybride und dihybride Kreuzungen nach Mendel, Wahrscheinlichkeiten im Punnett-Quadrat, ABO-Blutgruppen, Geschlechtsbestimmung und Stammbäume.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Vererbung",
@@ -10,6 +10,8 @@ export const metadata = {
 ## Wie Merkmale von Eltern auf Nachkommen übergehen
 
 **Vererbung** ist die Weitergabe von Merkmalen von den Eltern an die Nachkommen über **Gene**. Ein Gen ist ein Abschnitt der DNA an einer festen Stelle eines Chromosoms, und es kommt in verschiedenen Formen vor, den **Allelen**. Jede Körperzelle trägt von jedem Gen zwei Allele, eines von jedem Elternteil. Gregor Mendel fand durch Kreuzungen von Erbsen zwei Regeln:
+
+> Ein Punnett-Quadrat liefert Wahrscheinlichkeiten für jede einzelne Befruchtung und garantiert niemals exakte Anzahlen in einer kleinen Familie.
 
 - **Spaltungsregel**: Die beiden Allele eines Gens trennen sich bei der Bildung der Keimzellen, also trägt jede Keimzelle nur eines davon. Zwei mischerbige Eltern bekommen Nachkommen im Phänotypverhältnis <InlineMath math="3:1" />.
 - **Unabhängigkeitsregel**: Die Allele verschiedener Gene gelangen unabhängig voneinander in die Keimzellen. Zwei Eltern, die für zwei Gene mischerbig sind, ergeben das Verhältnis <InlineMath math="9:3:3:1" />.
@@ -52,6 +54,7 @@ Mendel wiederholte den Versuch für sieben Merkmale. Lies die Balken unten ab un
       <InlineMath math="3" />.
     </>
   }
+  footer={<>Alle sieben Merkmale Mendels lagen nah am F2-Verhältnis drei zu eins.</>}
   bars="apart"
   categories={["Blütenfarbe", "Blütenstellung", "Wuchshöhe", "Samenform", "Samenfarbe", "Hülsenform", "Hülsenfarbe"]}
   series={[
@@ -68,7 +71,7 @@ Mendel wiederholte den Versuch für sieben Merkmale. Lies die Balken unten ab un
 
 Jeder Balken liegt nahe bei <InlineMath math="3" />, aber keiner trifft es genau. Die beiden größten Stichproben kommen am nächsten: Die Samenform aus <InlineMath math="7{.}324" /> Samen ergibt <InlineMath math="2{,}96" />, die Samenfarbe aus <InlineMath math="8{.}023" /> Samen ergibt <InlineMath math="3{,}01" />. Die Hülsenfarbe aus nur <InlineMath math="580" /> Pflanzen ergibt <InlineMath math="2{,}82" />. **Eine größere Stichprobe liegt näher am erwarteten Verhältnis**, weil sich der Zufall bei vielen Nachkommen ausgleicht.
 
-## Die Spaltungsregel im Kombinationsquadrat
+### Die Spaltungsregel im Kombinationsquadrat
 
 Mendel erklärte das Verhältnis <InlineMath math="3:1" /> mit der Spaltungsregel. Eine hochwüchsige <InlineMath math="F_1" />-Pflanze hat den Genotyp <InlineMath math="Tt" />. Bildet sie in der Meiose Keimzellen, trennen sich die beiden homologen Chromosomen, also **trägt jede Keimzelle nur ein Allel**: Die Hälfte trägt <InlineMath math="T" />, die andere Hälfte <InlineMath math="t" />. Bei der Befruchtung kann jede männliche Keimzelle mit jeder weiblichen verschmelzen.
 
@@ -83,6 +86,51 @@ Ein Kreuzungsschema verfolgt die Allele von den Eltern zu den Nachkommen, und da
 
 Das Quadrat liefert **Wahrscheinlichkeiten, keine genauen Zahlen**. Jeder <InlineMath math="F_2" />-Nachkomme ist mit der Wahrscheinlichkeit <InlineMath math="\tfrac{3}{4}" /> hochwüchsig. Stell mit dem Regler ein, wie viele <InlineMath math="F_2" />-Pflanzen wachsen, und vergleiche die erwarteten Zahlen mit Mendels echter Zählung der Blütenfarbe.
 
+<MonohybridCrossLab
+  title={<>Monohybride Erbsenkreuzungen und die Spaltungsregel</>}
+  description={
+    <>
+      Wechsle zwischen reinerbiger <InlineMath math="F_1" />-Kreuzung, <InlineMath math="F_2" />-Kreuzung und Testkreuzung,
+      um die Trennung der Allele in Keimzellen und die Nachkommenverhältnisse zu
+      verfolgen.
+    </>
+  }
+  footer={<>Die Alleltrennung in der Meiose liefert 3:1 in der F2 und 1:1 bei der Testkreuzung.</>}
+  crosses={["pureF1", "heteroF2", "testCross"]}
+  labels={{
+    cross: "Kreuzung wählen",
+    crosses: {
+      heteroF2: {
+        genotypeRatio: <>1 TT : 2 Tt : 1 tt</>,
+        name: "F2-Kreuzung (Tt x Tt)",
+        phenotypeRatio: <>3 hoch : 1 zwerg</>,
+      },
+      pureF1: {
+        genotypeRatio: <>Alle Tt</>,
+        name: "F1-Kreuzung (TT x tt)",
+        phenotypeRatio: <>Alle hoch</>,
+      },
+      testCross: {
+        genotypeRatio: <>1 Tt : 1 tt</>,
+        name: "Testkreuzung (Tt x tt)",
+        phenotypeRatio: <>1 hoch : 1 zwerg</>,
+      },
+    },
+    genotypeRatio: <>Genotypverhältnis</>,
+    parts: {
+      dwarfPea: "Zwergerbse",
+      gamete: "Keimzelle",
+      parentA: "Elternteil eins",
+      parentB: "Elternteil zwei",
+      tallPea: "Hohe Erbse",
+    },
+    phenotypeRatio: <>Phänotypverhältnis</>,
+    view: "Dreidimensionales Punnett-Quadrat mit Erbsen-Nachkommen",
+  }}
+/>
+
+Der Wechsel zwischen den drei Kreuzungen trennt klar das **<InlineMath math="3:1" />-Verhältnis der <InlineMath math="F_2" />** vom **<InlineMath math="1:1" /> der Testkreuzung**. Der Regler unten skaliert die erwarteten Stückzahlen.
+
 <MathVisual
   title={<>Erwartete Blütenfarben in einer <InlineMath math="F_2" />-Generation</>}
   description={
@@ -93,6 +141,7 @@ Das Quadrat liefert **Wahrscheinlichkeiten, keine genauen Zahlen**. Jeder <Inlin
       <InlineMath math="705" /> violette und <InlineMath math="224" /> weiße.
     </>
   }
+  footer={<>Größere F2-Stichproben nähern sich dem erwarteten Verhältnis drei zu eins.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1000 }, y: { min: 0, max: 800 } },
@@ -141,7 +190,7 @@ Mendel zählte <InlineMath math="5{.}474" /> runde und <InlineMath math="1{.}850
 
 Eine hochwüchsige Pflanze kann <InlineMath math="TT" /> oder <InlineMath math="Tt" /> sein, und beide sehen gleich aus. Eine **Testkreuzung** klärt das: Kreuze die Pflanze mit einer reinerbig rezessiven <InlineMath math="tt" />-Pflanze. Der <InlineMath math="tt" />-Elternteil kann nur <InlineMath math="t" /> weitergeben, also zeigt jeder Nachkomme das Allel, das vom unbekannten Elternteil kam. Sind alle Nachkommen hochwüchsig, ist er <InlineMath math="TT" />. Ist etwa die Hälfte zwergwüchsig, ist er <InlineMath math="Tt" />.
 
-## Zwei Merkmale im dihybriden Erbgang
+### Zwei Merkmale im dihybriden Erbgang
 
 In einem **dihybriden Erbgang** verfolgte Mendel zwei Merkmale gleichzeitig. Er kreuzte reinerbige Pflanzen mit runden gelben Samen, <InlineMath math="RRYY" />, mit reinerbigen Pflanzen mit runzeligen grünen Samen, <InlineMath math="rryy" />. Alle <InlineMath math="F_1" />-Pflanzen hatten runde gelbe Samen und den Genotyp <InlineMath math="RrYy" />.
 
@@ -160,6 +209,38 @@ Zähl die sechzehn Felder nach dem Phänotyp aus: neun rund und gelb, drei rund 
 
 Das Quadrat unten hat die Seitenlänge <InlineMath math="1" />. Der Regler <InlineMath math="p" /> ist die Wahrscheinlichkeit für einen runden Samen, <InlineMath math="q" /> die für einen gelben Samen, also ist die Fläche jedes Rechtecks die Wahrscheinlichkeit eines Phänotyps. Stell beide auf <InlineMath math="0{,}75" /> für <InlineMath math="RrYy \times RrYy" /> und probier dann <InlineMath math="0{,}5" /> für eine Testkreuzung aus.
 
+<DihybridCrossLab
+  title={<>Dihybrides 4x4-Quadrat und die Unabhängigkeitsregel</>}
+  description={
+    <>
+      Filtere die sechzehn Nachkommen aus RrYy x RrYy, um doppelt dominante,
+      rekombinante und doppelt rezessive Samen im Verhältnis <InlineMath math="9:3:3:1" /> hervorzuheben.
+    </>
+  }
+  footer={<>Die unabhängige Verteilung zweier Gene ergibt neun, drei, drei und eins.</>}
+  filters={["all", "dominantBoth", "recombinants", "recessiveBoth"]}
+  labels={{
+    count: <>Passende Felder</>,
+    filter: "Gruppe hervorheben",
+    filters: {
+      all: { count: <>16 von 16 Samen</>, name: "Alle Phänotypen", ratio: <>9 : 3 : 3 : 1</> },
+      dominantBoth: { count: <>9 von 16 Samen</>, name: "Rund gelb", ratio: <>9 / 16</> },
+      recessiveBoth: { count: <>1 von 16 Samen</>, name: "Runzelig grün", ratio: <>1 / 16</> },
+      recombinants: { count: <>6 von 16 Samen</>, name: "Rekombinanten", ratio: <>3 + 3 von 16</> },
+    },
+    parts: {
+      roundGreen: "Rund grün",
+      roundYellow: "Rund gelb",
+      wrinkledGreen: "Runzelig grün",
+      wrinkledYellow: "Runzelig gelb",
+    },
+    ratio: <>Phänotypanteil</>,
+    view: "Dreidimensionales 4x4-Punnett-Quadrat für Erbsensamen",
+  }}
+/>
+
+Die sechs rekombinanten Felder zeigen, warum die **Unabhängigkeitsregel** neue Merkmalskombinationen erzeugt. Das Wahrscheinlichkeitsquadrat unten stellt sie als Flächen dar.
+
 <MathVisual
   title={<>Zwei Gene teilen ein Quadrat der Wahrscheinlichkeit</>}
   description={
@@ -170,6 +251,7 @@ Das Quadrat unten hat die Seitenlänge <InlineMath math="1" />. Der Regler <Inli
       von Nachkommen unter <InlineMath math="16" />.
     </>
   }
+  footer={<>Unabhängige Merkmale multiplizieren ihre Anteile zum 9:3:3:1-Muster.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 1 } },
@@ -215,7 +297,7 @@ Rechne eine Testkreuzung mit Zahlen durch. Eine <InlineMath math="RrYy" />-Pflan
 
 <BlockMath math="\text{rund und gelb} = \tfrac{1}{2} \times \tfrac{1}{2} \times 200 = 50" />
 
-Die anderen drei Phänotypen kommen ebenfalls auf je <InlineMath math="50" />, das Verhältnis ist <InlineMath math="1:1:1:1" />. Probe: <InlineMath math="4 \times 50 = 200" />, und das Quadrat mit <InlineMath math="p = q = 0{,}5" /> zeigt vier gleich große Rechtecke mit je <InlineMath math="4" /> von <InlineMath math="16" />.
+Die anderen drei Phänotypen kommen ebenfalls auf je <InlineMath math="50" />, das Verhältnis ist <InlineMath math="1:1:1:1" />. Probe: <InlineMath math="4 \times 50 = 200" />, und das Quadrat mit <InlineMath math="p = 0{,}5" /> und <InlineMath math="q = 0{,}5" /> zeigt vier gleich große Rechtecke mit je <InlineMath math="4" /> von <InlineMath math="16" />.
 
 ## Geschlecht und Blutgruppen beim Menschen
 
@@ -233,6 +315,7 @@ Jede Geburt geht auf eine neue Befruchtung zurück, also ändern frühere Kinder
       sind, <InlineMath math="\left(\tfrac{1}{2}\right)^k" />.
     </>
   }
+  footer={<>Jede Geburt bleibt unabhängig, sodass sich die Wahrscheinlichkeit halbiert.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 1.1 } },
@@ -290,6 +373,7 @@ Bestimme die Kinder eines Vaters mit Blutgruppe A, <InlineMath math="I^A i" />, 
       jedes Kind gleich wahrscheinlich.
     </>
   }
+  footer={<>Eltern IAi und IBi können Kinder mit allen vier ABO-Blutgruppen bekommen.</>}
   bars="apart"
   categories={["Gruppe A", "Gruppe B", "Gruppe AB", "Gruppe O"]}
   series={[
@@ -312,6 +396,52 @@ Eine Frau braucht zwei rezessive Allele, <InlineMath math="X^b X^b" />, um rot-g
 | <InlineMath math="X^B" /> | <InlineMath math="X^B X^B" />, normale Tochter | <InlineMath math="X^B Y" />, normaler Sohn |
 | <InlineMath math="X^b" /> | <InlineMath math="X^B X^b" />, Tochter als Überträgerin | <InlineMath math="X^b Y" />, rot-grün-blinder Sohn |
 
+<PedigreeSexLinkedLab
+  title={<>ABO-Blutgruppen, Geschlechtschromosomen und X-gekoppelte Stammbäume</>}
+  description={
+    <>
+      Vergleiche ABO-Kodominanz, XX-XY-Geschlechtsbestimmung und X-chromosomal
+      rezessive Stammbäume, um zu verstehen, warum Männer schon bei einem Allel
+      betroffen sind.
+    </>
+  }
+  footer={<>Männer tragen nur ein X-Chromosom, sodass ein rezessives Allel sofort wirkt.</>}
+  patterns={["aboBlood", "sexDetermination", "xLinked"]}
+  labels={{
+    parts: {
+      affected: "Betroffen",
+      carrier: "Überträgerin",
+      female: "Weiblich (XX)",
+      male: "Männlich (XY)",
+      xChromosome: "X-Chromosom",
+      yChromosome: "Y-Chromosom",
+    },
+    pattern: "Erbgang",
+    patterns: {
+      aboBlood: {
+        name: "ABO-Blutgruppen",
+        risk: <>Eltern IAi x IBi können Kinder mit A, B, AB und O bekommen</>,
+        rule: <>IA und IB sind kodominant und beide dominant über IO</>,
+      },
+      sexDetermination: {
+        name: "XX- und XY-Chromosomen",
+        risk: <>Jede Geburt hat gleiche Chancen auf einen Jungen oder ein Mädchen</>,
+        rule: <>Das X- oder Y-Spermium bestimmt das Geschlecht des Kindes</>,
+      },
+      xLinked: {
+        name: "X-chromosomal rezessiv",
+        risk: <>Die Hälfte der Söhne einer Überträgerin erbt das Merkmal</>,
+        rule: <>Das rezessive Allel liegt auf X ohne Gegenstück auf dem Y-Chromosom</>,
+      },
+    },
+    risk: <>Nachkommenchance</>,
+    rule: <>Vererbungsregel</>,
+    view: "Dreidimensionales Stammbaum- und Geschlechtschromosomen-Modell",
+  }}
+/>
+
+Vergleiche Überträgerinnen und betroffene Väter in den drei Erbgängen, bevor du die genaue Nachkommenverteilung im Diagramm unten prüfst.
+
 <Chart
   title={<>Kinder einer Überträgerin <InlineMath math="X^B X^b" /> und eines Vaters <InlineMath math="X^B Y" /></>}
   description={
@@ -321,6 +451,7 @@ Eine Frau braucht zwei rezessive Allele, <InlineMath math="X^b X^b" />, um rot-g
       ihrem Vater <InlineMath math="X^B" /> bekommt.
     </>
   }
+  footer={<>Die Hälfte der Söhne einer Überträgerin erbt das X-chromosomale Merkmal.</>}
   bars="apart"
   categories={["Töchter", "Söhne"]}
   series={[
@@ -345,6 +476,7 @@ Ein **Stammbaum** ist eine Familientafel, die zeigt, wer ein Merkmal hat. Ein Qu
       Überträgerin sein oder nicht.
     </>
   }
+  footer={<>Zwei gesunde Überträger können ein rezessiv betroffenes Kind bekommen.</>}
   chart={`flowchart TD
   F["Vater, gesund: Aa"] --> S["Sohn, Thalassämie: aa"]
   M["Mutter, gesund: Aa"] --> S
@@ -360,60 +492,3 @@ Werte den Stammbaum aus. Der Sohn ist <InlineMath math="aa" /> und hat von jedem
 </MathContainer>
 
 Die Tochter ist gesund, also fällt das Feld <InlineMath math="aa" /> für sie weg, und **zwei der drei übrigen Felder sind Überträger**. Probe: <InlineMath math="\tfrac{1}{3} + \tfrac{2}{3} = 1" />, die Tochter ist also entweder <InlineMath math="AA" /> oder <InlineMath math="Aa" />.
-
-## Typische Fehler bei Erbgängen
-
-| Fehler | Warum falsch | So prüfst du |
-| :--- | :--- | :--- |
-| Eine Keimzelle als <InlineMath math="Tt" /> schreiben | Durch die Spaltung kommt von jedem Gen nur ein Allel in die Keimzelle | Eine Keimzelle hat für jedes Gen einen Buchstaben |
-| In echten Zählungen genau <InlineMath math="3:1" /> erwarten | Ein Verhältnis ist eine Wahrscheinlichkeit, echte Zahlen streuen darum | Mendel bekam <InlineMath math="787" /> hochwüchsige und <InlineMath math="277" /> zwergwüchsige, nicht <InlineMath math="798" /> und <InlineMath math="266" /> |
-| Glauben, ein dominantes Merkmal sei häufiger | Dominanz sagt nur, welches Allel sich bei Mischerbigkeit zeigt | Schau auf die Genotypen, nicht auf die Häufigkeit eines Merkmals |
-| Blutgruppe AB als Mischung aus A und B sehen | Kodominante Allele zeigen sich beide vollständig, also entstehen beide Antigene | Bei <InlineMath math="I^A I^B" /> erscheinen beide Phänotypen zugleich |
-| Den Vater für einen rot-grün-blinden Sohn verantwortlich machen | Ein Vater gibt jedem Sohn sein <InlineMath math="Y" /> | Verfolge das <InlineMath math="X" />: Das <InlineMath math="X" /> eines Sohnes stammt von der Mutter |
-| Nach drei Jungen ein Mädchen erwarten | Jede Geburt hat ihre eigene Wahrscheinlichkeit von <InlineMath math="\tfrac{1}{2}" /> | Die waagerechte Linie im Diagramm der Mädchen bleibt bei <InlineMath math="\tfrac{1}{2}" /> |
-
-Der erste Fehler macht die meisten Lösungen kaputt, also schreib die Keimzellen auf, bevor du ein Quadrat zeichnest. Die Regel für dein Heft: **Von jedem Gen kommt genau ein Allel in jede Keimzelle**.
-
-## Übungen zur Vererbung
-
-Die Aufgaben gehen von einem Gen über zwei Gene zu Genen auf dem <InlineMath math="X" />-Chromosom. **Schreib den Genotyp jedes Elternteils und seine Keimzellen auf**, bevor du ein Punnett-Quadrat ausfüllst.
-
-1. Bei Erbsen sind violette Blüten, <InlineMath math="P" />, dominant über weiße Blüten, <InlineMath math="p" />. Eine violett blühende Pflanze, gekreuzt mit einer weiß blühenden, liefert <InlineMath math="48" /> violett und <InlineMath math="52" /> weiß blühende Nachkommen. Gib den Genotyp des violetten Elternteils an und begründe deine Antwort.
-
-2. Ein Vater hat Blutgruppe AB, eine Mutter Blutgruppe O. Nenne die Blutgruppen, die ihre Kinder haben können, und die Wahrscheinlichkeit für jede.
-
-3. Bei Erbsen ist Hochwuchs, <InlineMath math="T" />, dominant über Zwergwuchs, <InlineMath math="t" />, und runde Samen, <InlineMath math="R" />, sind dominant über runzelige, <InlineMath math="r" />. Zwei <InlineMath math="TtRr" />-Pflanzen werden gekreuzt und liefern <InlineMath math="320" /> Nachkommen. Wie viele davon sind hochwüchsig mit runzeligen Samen zu erwarten?
-
-4. Eine normal sehende Frau hat einen rot-grün-blinden Vater. Sie heiratet einen rot-grün-blinden Mann. Bestimme die Wahrscheinlichkeit, dass ein Sohn der beiden rot-grün-blind ist, und die Wahrscheinlichkeit, dass eine Tochter rot-grün-blind ist.
-
-### Lösungen
-
-**Lösung 1**: Eine weiß blühende Pflanze ist <InlineMath math="pp" /> und bildet nur <InlineMath math="p" />-Keimzellen, es ist also eine Testkreuzung. Die Nachkommen liegen nahe am Verhältnis <InlineMath math="1:1" />, und dafür muss die Hälfte der Keimzellen des violetten Elternteils <InlineMath math="p" /> tragen:
-
-<BlockMath math="Pp \times pp \rightarrow Pp : pp = 1 : 1" />
-
-Der violette Elternteil ist **mischerbig**, <InlineMath math="Pp" />. Probe: Erwartet sind <InlineMath math="\tfrac{1}{2} \times 100 = 50" /> von jeder Sorte, nahe an <InlineMath math="48" /> und <InlineMath math="52" />. Ein <InlineMath math="PP" />-Elternteil hätte nur violett blühende Nachkommen geliefert.
-
-**Lösung 2**: Der Vater ist <InlineMath math="I^A I^B" /> und bildet die Keimzellen <InlineMath math="I^A" /> und <InlineMath math="I^B" />. Die Mutter ist <InlineMath math="ii" /> und bildet nur <InlineMath math="i" />:
-
-<BlockMath math="I^A I^B \times ii \rightarrow I^A i : I^B i = 1 : 1" />
-
-Jedes Kind hat mit der Wahrscheinlichkeit <InlineMath math="\tfrac{1}{2}" /> Blutgruppe A und mit <InlineMath math="\tfrac{1}{2}" /> Blutgruppe B. **Kein Kind kann Blutgruppe AB oder O haben**, weil jedes Kind genau eines von <InlineMath math="I^A" /> oder <InlineMath math="I^B" /> zusammen mit <InlineMath math="i" /> bekommt.
-
-**Lösung 3**: Die beiden Gene werden unabhängig verteilt, also multiplizierst du die Wahrscheinlichkeit für Hochwuchs aus <InlineMath math="Tt \times Tt" /> mit der für runzelige Samen aus <InlineMath math="Rr \times Rr" />:
-
-<MathContainer>
-<BlockMath math="P(\text{hochwüchsig und runzelig}) = \tfrac{3}{4} \times \tfrac{1}{4} = \tfrac{3}{16}" />
-<BlockMath math="\tfrac{3}{16} \times 320 = 60 \text{ Pflanzen}" />
-</MathContainer>
-
-Etwa **<InlineMath math="60" /> Pflanzen** sind hochwüchsig mit runzeligen Samen zu erwarten. Probe mit dem dihybriden Verhältnis: <InlineMath math="320 \div 16 = 20" />, und die Klasse hochwüchsig und runzelig hat <InlineMath math="3" /> Teile, also <InlineMath math="3 \times 20 = 60" />.
-
-**Lösung 4**: Die Frau sieht normal, aber ihr Vater hat ihr sein einziges <InlineMath math="X" /> gegeben, und das trägt <InlineMath math="X^b" />. Sie ist also Überträgerin, <InlineMath math="X^B X^b" />. Ihr Mann ist <InlineMath math="X^b Y" />:
-
-<MathContainer>
-<BlockMath math="\text{Söhne: } X^B Y : X^b Y = 1 : 1" />
-<BlockMath math="\text{Töchter: } X^B X^b : X^b X^b = 1 : 1" />
-</MathContainer>
-
-Ein Sohn ist mit der Wahrscheinlichkeit <InlineMath math="\tfrac{1}{2}" /> rot-grün-blind, eine Tochter ebenfalls, denn **jede Tochter bekommt von ihrem Vater <InlineMath math="X^b" />**, und dann hängt alles nur vom Allel der Mutter ab.

@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Nota Pewarisan Tingkatan Lima",
   description:
-    "Nota Biologi Tingkatan 5 Bab 11: kacukan monohibrid dan dihibrid Mendel, segi empat Punnett, penentuan seks, kumpulan darah ABO, rangkai seks dan salasilah.",
+    "Kacukan monohibrid dan dihibrid Mendel, kebarangkalian segi empat Punnett, kumpulan darah ABO, penentuan seks, dan salasilah keluarga.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Pewarisan",
@@ -10,6 +10,8 @@ export const metadata = {
 ## Cara Ciri Diwarisi daripada Induk kepada Anak
 
 **Pewarisan** ialah penurunan ciri daripada induk kepada anak melalui **gen**. Gen ialah satu bahagian DNA pada kedudukan tetap dalam kromosom, dan gen wujud dalam beberapa bentuk yang dipanggil **alel**. Setiap sel soma membawa dua alel bagi setiap gen, satu daripada setiap induk. Gregor Mendel menemui dua hukum dengan mengacukkan pokok kacang pea:
+
+> Segi empat Punnett meramalkan kebarangkalian bagi setiap persenyawaan bebas, bukan kiraan tepat yang dijamin dalam keluarga kecil.
 
 - **Hukum Segregasi**: dua alel bagi satu gen berpisah semasa gamet terbentuk, jadi setiap gamet membawa satu alel sahaja. Dua induk yang kedua-duanya heterozigot menghasilkan anak dengan nisbah fenotip <InlineMath math="3:1" />.
 - **Hukum Pengagihan Bebas**: alel bagi gen yang berlainan masuk ke dalam gamet secara bebas antara satu sama lain. Dua induk yang heterozigot bagi dua gen menghasilkan nisbah <InlineMath math="9:3:3:1" />.
@@ -52,6 +54,7 @@ Mendel mengulang eksperimen ini bagi tujuh ciri. Baca setiap palang di bawah dan
       <InlineMath math="3" />.
     </>
   }
+  footer={<>Kesemua tujuh ciri Mendel menghampiri nisbah F2 tiga kepada satu.</>}
   bars="apart"
   categories={["Warna bunga", "Kedudukan bunga", "Tinggi pokok", "Bentuk biji", "Warna biji", "Bentuk lenggai", "Warna lenggai"]}
   series={[
@@ -68,7 +71,7 @@ Mendel mengulang eksperimen ini bagi tujuh ciri. Baca setiap palang di bawah dan
 
 Setiap palang berada dekat dengan <InlineMath math="3" />, tetapi tiada satu pun yang tepat. Dua sampel terbesar paling hampir: bentuk biji daripada <InlineMath math="7{,}324" /> biji memberi <InlineMath math="2.96" />, dan warna biji daripada <InlineMath math="8{,}023" /> biji memberi <InlineMath math="3.01" />. Warna lenggai, daripada <InlineMath math="580" /> pokok sahaja, memberi <InlineMath math="2.82" />. **Sampel yang lebih besar lebih hampir dengan nisbah jangkaan**, kerana kesan kebetulan menjadi seimbang apabila anaknya banyak.
 
-## Hukum Segregasi dalam Segi Empat Punnett
+### Hukum Segregasi dalam Segi Empat Punnett
 
 Mendel menerangkan nisbah <InlineMath math="3:1" /> dengan hukum pertamanya. Pokok tinggi <InlineMath math="F_1" /> mempunyai genotip <InlineMath math="Tt" />. Apabila pokok itu menghasilkan gamet melalui meiosis, dua kromosom homolog berpisah, jadi **setiap gamet membawa satu alel sahaja**: separuh gamet membawa <InlineMath math="T" /> dan separuh lagi membawa <InlineMath math="t" />. Semasa persenyawaan, mana-mana gamet jantan boleh bercantum dengan mana-mana gamet betina.
 
@@ -83,6 +86,50 @@ Rajah skema menjejak alel daripada induk kepada anak, dan **segi empat Punnett**
 
 Segi empat itu memberi **kebarangkalian, bukan kiraan tepat**. Setiap anak <InlineMath math="F_2" /> mempunyai kebarangkalian <InlineMath math="\tfrac{3}{4}" /> untuk menjadi tinggi. Gerakkan gelangsar untuk memilih bilangan pokok <InlineMath math="F_2" />, kemudian bandingkan bilangan jangkaan dengan kiraan sebenar Mendel bagi warna bunga.
 
+<MonohybridCrossLab
+  title={<>Kacukan Monohibrid Kacang Pea dan Hukum Segregasi</>}
+  description={
+    <>
+      Pilih kacukan <InlineMath math="F_1" /> baka tulen, <InlineMath math="F_2" /> heterozigot, atau kacukan uji untuk
+      melihat pemisahan alel ke gamet dan nisbah anak kacang pea.
+    </>
+  }
+  footer={<>Pemisahan alel semasa meiosis memberi nisbah 3:1 bagi F2 dan 1:1 bagi kacukan uji.</>}
+  crosses={["pureF1", "heteroF2", "testCross"]}
+  labels={{
+    cross: "Pilih kacukan",
+    crosses: {
+      heteroF2: {
+        genotypeRatio: <>1 TT : 2 Tt : 1 tt</>,
+        name: "Kacukan F2 (Tt x Tt)",
+        phenotypeRatio: <>3 tinggi : 1 kerdil</>,
+      },
+      pureF1: {
+        genotypeRatio: <>Semua Tt</>,
+        name: "Kacukan F1 (TT x tt)",
+        phenotypeRatio: <>Semua tinggi</>,
+      },
+      testCross: {
+        genotypeRatio: <>1 Tt : 1 tt</>,
+        name: "Kacukan uji (Tt x tt)",
+        phenotypeRatio: <>1 tinggi : 1 kerdil</>,
+      },
+    },
+    genotypeRatio: <>Nisbah genotip</>,
+    parts: {
+      dwarfPea: "Pea kerdil",
+      gamete: "Gamet",
+      parentA: "Induk satu",
+      parentB: "Induk dua",
+      tallPea: "Pea tinggi",
+    },
+    phenotypeRatio: <>Nisbah fenotip</>,
+    view: "Papan Punnett monohibrid tiga dimensi bersama anak kacang pea",
+  }}
+/>
+
+Perbandingan tiga kacukan itu menjelaskan perbezaan **nisbah <InlineMath math="F_2" /> <InlineMath math="3:1" />** dengan **nisbah kacukan uji <InlineMath math="1:1" />**. Graf di bawah menunjukkan perubahan jangkaan mengikut saiz sampel.
+
 <MathVisual
   title={<>Warna Bunga yang Dijangka dalam Generasi <InlineMath math="F_2" /></>}
   description={
@@ -93,6 +140,7 @@ Segi empat itu memberi **kebarangkalian, bukan kiraan tepat**. Setiap anak <Inli
       <InlineMath math="705" /> ungu dan <InlineMath math="224" /> putih.
     </>
   }
+  footer={<>Saiz sampel F2 yang lebih besar menghampiri jangkaan tiga kepada satu.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1000 }, y: { min: 0, max: 800 } },
@@ -141,7 +189,7 @@ Mendel mengira <InlineMath math="5{,}474" /> biji bulat dan <InlineMath math="1{
 
 Pokok tinggi mungkin <InlineMath math="TT" /> atau <InlineMath math="Tt" />, dan kedua-duanya kelihatan sama. **Kacukan uji** menentukan genotipnya: kacukkan pokok itu dengan pokok homozigot resesif <InlineMath math="tt" />. Induk <InlineMath math="tt" /> hanya boleh memberi <InlineMath math="t" />, jadi setiap anak menunjukkan alel yang datang daripada induk yang tidak diketahui itu. Jika semua anak tinggi, induk itu <InlineMath math="TT" />. Jika kira-kira separuh anak kerdil, induk itu <InlineMath math="Tt" />.
 
-## Dua Ciri dalam Kacukan Dihibrid
+### Dua Ciri dalam Kacukan Dihibrid
 
 Dalam **kacukan dihibrid**, Mendel mengikut dua ciri serentak. Dia mengacukkan pokok baka tulen berbiji bulat kuning, <InlineMath math="RRYY" />, dengan pokok baka tulen berbiji berkedut hijau, <InlineMath math="rryy" />. Semua pokok <InlineMath math="F_1" /> berbiji bulat kuning dan bergenotip <InlineMath math="RrYy" />.
 
@@ -160,6 +208,38 @@ Kira keenam belas petak mengikut fenotip: sembilan bulat kuning, tiga bulat hija
 
 Segi empat di bawah bersisi <InlineMath math="1" />. Gelangsar <InlineMath math="p" /> ialah kebarangkalian biji bulat dan <InlineMath math="q" /> ialah kebarangkalian biji kuning, jadi luas setiap segi empat tepat ialah kebarangkalian satu fenotip. Tetapkan kedua-duanya pada <InlineMath math="0.75" /> untuk <InlineMath math="RrYy \times RrYy" />, kemudian cuba <InlineMath math="0.5" /> untuk kacukan uji.
 
+<DihybridCrossLab
+  title={<>Grid Punnett Dihibrid 4x4 dan Hukum Pengagihan Bebas</>}
+  description={
+    <>
+      Tapis enam belas anak RrYy x RrYy untuk menyerlahkan biji dominan berganda,
+      rekombinan, dan resesif berganda dalam nisbah klasik <InlineMath math="9:3:3:1" />.
+    </>
+  }
+  footer={<>Pengagihan bebas dua gen menghasilkan nisbah klasik sembilan, tiga, tiga, dan satu.</>}
+  filters={["all", "dominantBoth", "recombinants", "recessiveBoth"]}
+  labels={{
+    count: <>Petak sepadan</>,
+    filter: "Serlahkan kumpulan",
+    filters: {
+      all: { count: <>16 daripada 16 biji</>, name: "Semua fenotip", ratio: <>9 : 3 : 3 : 1</> },
+      dominantBoth: { count: <>9 daripada 16 biji</>, name: "Bulat kuning", ratio: <>9 / 16</> },
+      recessiveBoth: { count: <>1 daripada 16 biji</>, name: "Berkedut hijau", ratio: <>1 / 16</> },
+      recombinants: { count: <>6 daripada 16 biji</>, name: "Rekombinan", ratio: <>3 + 3 daripada 16</> },
+    },
+    parts: {
+      roundGreen: "Bulat hijau",
+      roundYellow: "Bulat kuning",
+      wrinkledGreen: "Berkedut hijau",
+      wrinkledYellow: "Berkedut kuning",
+    },
+    ratio: <>Bahagian fenotip</>,
+    view: "Kiub Punnett dihibrid 4x4 tiga dimensi bagi biji kacang pea",
+  }}
+/>
+
+Menyerlahkan enam petak rekombinan menunjukkan bagaimana **pengagihan bebas** mencipta gabungan baharu. Segi empat kebarangkalian di bawah memadankannya dengan luas.
+
 <MathVisual
   title={<>Dua Gen Membahagikan Satu Segi Empat Kebarangkalian</>}
   description={
@@ -170,6 +250,7 @@ Segi empat di bawah bersisi <InlineMath math="1" />. Gelangsar <InlineMath math=
       dijangka daripada <InlineMath math="16" />.
     </>
   }
+  footer={<>Dua ciri bebas mendarabkan kebarangkalian kepada nisbah luas 9:3:3:1.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 1 } },
@@ -215,7 +296,7 @@ Selesaikan satu kacukan uji dengan nombor. Pokok <InlineMath math="RrYy" /> dika
 
 <BlockMath math="\text{bulat kuning} = \tfrac{1}{2} \times \tfrac{1}{2} \times 200 = 50" />
 
-Tiga fenotip yang lain juga masing-masing <InlineMath math="50" />, iaitu nisbah <InlineMath math="1:1:1:1" />. Semak: <InlineMath math="4 \times 50 = 200" />, dan segi empat dengan <InlineMath math="p = q = 0.5" /> menunjukkan empat segi empat tepat yang sama besar, setiap satu <InlineMath math="4" /> daripada <InlineMath math="16" />.
+Tiga fenotip yang lain juga masing-masing <InlineMath math="50" />, iaitu nisbah <InlineMath math="1:1:1:1" />. Semak: <InlineMath math="4 \times 50 = 200" />, dan segi empat dengan <InlineMath math="p = 0.5" /> dan <InlineMath math="q = 0.5" /> menunjukkan empat segi empat tepat yang sama besar, setiap satu <InlineMath math="4" /> daripada <InlineMath math="16" />.
 
 ## Seks dan Kumpulan Darah Manusia
 
@@ -233,6 +314,7 @@ Setiap kelahiran berpunca daripada persenyawaan yang baharu, jadi anak yang lahi
       <InlineMath math="\left(\tfrac{1}{2}\right)^k" />.
     </>
   }
+  footer={<>Setiap kelahiran bebas, jadi peluang semua perempuan menyusut separuh.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 1.1 } },
@@ -290,6 +372,7 @@ Cari kumpulan darah anak bagi bapa berkumpulan darah A, <InlineMath math="I^A i"
       mungkin bagi setiap anak.
     </>
   }
+  footer={<>Induk IAi dan IBi dapat melahirkan anak bagi keempat-empat kumpulan ABO.</>}
   bars="apart"
   categories={["Kumpulan A", "Kumpulan B", "Kumpulan AB", "Kumpulan O"]}
   series={[
@@ -312,6 +395,51 @@ Perempuan memerlukan dua alel resesif, <InlineMath math="X^b X^b" />, untuk menj
 | <InlineMath math="X^B" /> | <InlineMath math="X^B X^B" />, anak perempuan normal | <InlineMath math="X^B Y" />, anak lelaki normal |
 | <InlineMath math="X^b" /> | <InlineMath math="X^B X^b" />, anak perempuan pembawa | <InlineMath math="X^b Y" />, anak lelaki buta warna |
 
+<PedigreeSexLinkedLab
+  title={<>Kumpulan Darah ABO, Kromosom Seks, dan Salasilah Rangkai X</>}
+  description={
+    <>
+      Bandingkan kodominans ABO, penentuan seks XX-XY, dan salasilah resesif
+      rangkai X untuk memahami mengapa lelaki hanya perlukan satu alel resesif.
+    </>
+  }
+  footer={<>Lelaki mempunyai satu kromosom X sahaja, jadi satu alel resesif menzahirkan ciri.</>}
+  patterns={["aboBlood", "sexDetermination", "xLinked"]}
+  labels={{
+    parts: {
+      affected: "Terjejas",
+      carrier: "Ibu pembawa",
+      female: "Perempuan (XX)",
+      male: "Lelaki (XY)",
+      xChromosome: "Kromosom X",
+      yChromosome: "Kromosom Y",
+    },
+    pattern: "Corak pewarisan",
+    patterns: {
+      aboBlood: {
+        name: "Kumpulan darah ABO",
+        risk: <>Induk IAi x IBi boleh melahirkan anak berkumpulan A, B, AB, dan O</>,
+        rule: <>Alel IA dan IB adalah kodominan serta kedua-duanya dominan ke atas IO</>,
+      },
+      sexDetermination: {
+        name: "Kromosom XX dan XY",
+        risk: <>Setiap kelahiran mempunyai peluang sama antara lelaki dan perempuan</>,
+        rule: <>Sperma membawa X atau Y menentukan seks kromosom anak</>,
+      },
+      xLinked: {
+        name: "Resesif rangkai X",
+        risk: <>Separuh anak lelaki ibu pembawa mewarisi buta warna atau hemofilia</>,
+        rule: <>Alel resesif terletak pada X tanpa lokus padanan pada Y</>,
+      },
+    },
+    risk: <>Peluang anak</>,
+    rule: <>Peraturan pewarisan</>,
+    view: "Model salasilah tiga dimensi dan pewarisan kromosom seks manusia",
+  }}
+/>
+
+Bandingkan ibu pembawa dan bapa terjejas merentas tiga corak manusia sebelum menyemak kebarangkalian tepat anak pada carta di bawah.
+
 <Chart
   title={<>Anak bagi Ibu Pembawa <InlineMath math="X^B X^b" /> dan Bapa <InlineMath math="X^B Y" /></>}
   description={
@@ -321,6 +449,7 @@ Perempuan memerlukan dua alel resesif, <InlineMath math="X^b X^b" />, untuk menj
       menerima <InlineMath math="X^B" /> daripada bapanya.
     </>
   }
+  footer={<>Separuh anak lelaki ibu pembawa mewarisi trait resesif rangkai seks.</>}
   bars="apart"
   categories={["Anak perempuan", "Anak lelaki"]}
   series={[
@@ -345,6 +474,7 @@ Anak lelaki sentiasa menerima <InlineMath math="X" /> daripada ibunya dan <Inlin
       perempuan mereka yang tidak terjejas mungkin pembawa atau bukan pembawa.
     </>
   }
+  footer={<>Dua ibu bapa pembawa yang normal boleh melahirkan anak resesif terjejas.</>}
   chart={`flowchart TD
   F["Bapa, tidak terjejas: Aa"] --> S["Anak lelaki, talasemia: aa"]
   M["Ibu, tidak terjejas: Aa"] --> S
@@ -360,60 +490,3 @@ Analisis salasilah itu. Anak lelaki itu <InlineMath math="aa" /> dan menerima sa
 </MathContainer>
 
 Anak perempuan itu tidak terjejas, jadi petak <InlineMath math="aa" /> tidak terpakai baginya, dan **dua daripada tiga petak yang tinggal ialah pembawa**. Semak: <InlineMath math="\tfrac{1}{3} + \tfrac{2}{3} = 1" />, jadi anak perempuan itu sama ada <InlineMath math="AA" /> atau <InlineMath math="Aa" />.
-
-## Kesilapan Lazim dalam Masalah Genetik
-
-| Kesilapan | Sebab salah | Cara menyemak |
-| :--- | :--- | :--- |
-| Menulis gamet sebagai <InlineMath math="Tt" /> | Segregasi memasukkan satu alel bagi setiap gen ke dalam gamet | Gamet mempunyai satu huruf bagi setiap gen |
-| Menjangka tepat <InlineMath math="3:1" /> dalam kiraan sebenar | Nisbah ialah kebarangkalian, dan kiraan sebenar bertabur di sekitarnya | Mendel mendapat <InlineMath math="787" /> tinggi dan <InlineMath math="277" /> kerdil, bukan <InlineMath math="798" /> dan <InlineMath math="266" /> |
-| Menganggap trait dominan mesti lebih biasa | Dominan hanya bermaksud alel itu yang ditunjukkan dalam heterozigot | Lihat genotip, bukan kekerapan trait itu muncul |
-| Menganggap kumpulan darah AB sebagai campuran A dan B | Alel kodominan kedua-duanya diekspresikan sepenuhnya, jadi kedua-dua antigen dihasilkan | Kedua-dua fenotip muncul serentak dalam <InlineMath math="I^A I^B" /> |
-| Menyalahkan bapa bagi anak lelaki yang buta warna | Bapa memberi <InlineMath math="Y" /> kepada setiap anak lelakinya | Jejak <InlineMath math="X" />: kromosom <InlineMath math="X" /> anak lelaki datang daripada ibunya |
-| Menjangka anak perempuan selepas tiga anak lelaki | Setiap kelahiran mempunyai kebarangkalian sendiri, <InlineMath math="\tfrac{1}{2}" /> | Garis mendatar pada graf anak perempuan kekal pada <InlineMath math="\tfrac{1}{2}" /> |
-
-Kesilapan pertama paling banyak merosakkan jawapan, jadi tulis gamet dahulu sebelum melukis segi empat Punnett. Peraturan untuk disalin ke dalam buku nota kamu: **satu alel bagi setiap gen masuk ke dalam setiap gamet**.
-
-## Latihan Pewarisan
-
-Soalan bermula dengan satu gen, kemudian dua gen, dan akhirnya gen pada kromosom <InlineMath math="X" />. **Tulis genotip setiap induk dan gametnya** sebelum kamu mengisi segi empat Punnett.
-
-1. Dalam kacang pea, bunga ungu, <InlineMath math="P" />, dominan terhadap bunga putih, <InlineMath math="p" />. Pokok berbunga ungu yang dikacukkan dengan pokok berbunga putih menghasilkan <InlineMath math="48" /> anak berbunga ungu dan <InlineMath math="52" /> anak berbunga putih. Nyatakan genotip induk berbunga ungu dan terangkan jawapan kamu.
-
-2. Seorang bapa berkumpulan darah AB dan seorang ibu berkumpulan darah O. Senaraikan kumpulan darah yang mungkin bagi anak mereka dan kebarangkalian setiap satunya.
-
-3. Dalam kacang pea, pokok tinggi, <InlineMath math="T" />, dominan terhadap pokok kerdil, <InlineMath math="t" />, dan biji bulat, <InlineMath math="R" />, dominan terhadap biji berkedut, <InlineMath math="r" />. Dua pokok <InlineMath math="TtRr" /> dikacukkan dan menghasilkan <InlineMath math="320" /> anak. Berapakah bilangan anak yang dijangka tinggi dan berbiji berkedut?
-
-4. Seorang perempuan yang berpenglihatan warna normal mempunyai bapa yang buta warna. Dia berkahwin dengan lelaki yang buta warna. Cari kebarangkalian anak lelaki mereka buta warna dan kebarangkalian anak perempuan mereka buta warna.
-
-### Penyelesaian
-
-**Penyelesaian 1**: Pokok berbunga putih ialah <InlineMath math="pp" /> dan hanya menghasilkan gamet <InlineMath math="p" />, jadi ini ialah kacukan uji. Anaknya hampir mengikut nisbah <InlineMath math="1:1" />, dan nisbah ini memerlukan separuh gamet induk berbunga ungu membawa <InlineMath math="p" />:
-
-<BlockMath math="Pp \times pp \rightarrow Pp : pp = 1 : 1" />
-
-Induk berbunga ungu ialah **heterozigot**, <InlineMath math="Pp" />. Semak: bilangan jangkaan ialah <InlineMath math="\tfrac{1}{2} \times 100 = 50" /> bagi setiap jenis, hampir dengan <InlineMath math="48" /> dan <InlineMath math="52" />. Induk <InlineMath math="PP" /> hanya akan menghasilkan anak berbunga ungu.
-
-**Penyelesaian 2**: Bapa ialah <InlineMath math="I^A I^B" /> dan menghasilkan gamet <InlineMath math="I^A" /> dan <InlineMath math="I^B" />. Ibu ialah <InlineMath math="ii" /> dan hanya menghasilkan <InlineMath math="i" />:
-
-<BlockMath math="I^A I^B \times ii \rightarrow I^A i : I^B i = 1 : 1" />
-
-Setiap anak mempunyai kebarangkalian <InlineMath math="\tfrac{1}{2}" /> berkumpulan darah A dan <InlineMath math="\tfrac{1}{2}" /> berkumpulan darah B. **Tiada anak yang boleh berkumpulan darah AB atau O**, kerana setiap anak menerima tepat satu daripada <InlineMath math="I^A" /> atau <InlineMath math="I^B" /> bersama <InlineMath math="i" />.
-
-**Penyelesaian 3**: Dua gen itu berpisah secara bebas, jadi darabkan kebarangkalian pokok tinggi daripada <InlineMath math="Tt \times Tt" /> dengan kebarangkalian biji berkedut daripada <InlineMath math="Rr \times Rr" />:
-
-<MathContainer>
-<BlockMath math="P(\text{tinggi dan berkedut}) = \tfrac{3}{4} \times \tfrac{1}{4} = \tfrac{3}{16}" />
-<BlockMath math="\tfrac{3}{16} \times 320 = 60 \text{ pokok}" />
-</MathContainer>
-
-Kira-kira **<InlineMath math="60" /> pokok** dijangka tinggi dan berbiji berkedut. Semak dengan nisbah dihibrid: <InlineMath math="320 \div 16 = 20" />, dan kelas tinggi berkedut mempunyai <InlineMath math="3" /> bahagian, jadi <InlineMath math="3 \times 20 = 60" />.
-
-**Penyelesaian 4**: Perempuan itu berpenglihatan normal, tetapi bapanya memberinya satu-satunya <InlineMath math="X" /> yang dia ada, iaitu <InlineMath math="X^b" />. Jadi perempuan itu pembawa, <InlineMath math="X^B X^b" />. Suaminya ialah <InlineMath math="X^b Y" />:
-
-<MathContainer>
-<BlockMath math="\text{anak lelaki: } X^B Y : X^b Y = 1 : 1" />
-<BlockMath math="\text{anak perempuan: } X^B X^b : X^b X^b = 1 : 1" />
-</MathContainer>
-
-Anak lelaki mempunyai kebarangkalian <InlineMath math="\tfrac{1}{2}" /> untuk menjadi buta warna, dan begitu juga anak perempuan, kerana **setiap anak perempuan menerima <InlineMath math="X^b" /> daripada bapanya**, dan hasilnya hanya bergantung pada alel yang diberi oleh ibunya.

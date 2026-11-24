@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Variasi dan Mutasi pada Makhluk Hidup",
   description:
-    "Bedakan variasi kontinu dan diskontinu, hitung data variasi, kenali penyebab genetik dan lingkungan, serta pahami mutasi gen, mutasi kromosom, dan mutagen.",
+    "Variasi kontinu dan diskontinu, kurva poligenik, pengacakan alel meiosis, mutasi gen, serta mutasi kromosom.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Variasi",
@@ -11,12 +11,14 @@ export const metadata = {
 
 **Variasi** adalah perbedaan sifat antarindividu dalam satu spesies. Variasi terbagi menjadi dua jenis:
 
+> Meiosis dan fertilisasi mengacak ulang alel yang sudah ada menjadi jutaan kombinasi, sedangkan mutasi satu-satunya proses yang melahirkan alel baru.
+
 - **Variasi kontinu**: sifatnya bisa bernilai berapa saja dalam suatu rentang, misalnya tinggi badan, massa tubuh, atau panjang daun. Banyak gen dan lingkungan mengaturnya, dan histogramnya membentuk **distribusi normal** yang berbentuk lonceng.
 - **Variasi diskontinu**: sifatnya terbagi menjadi beberapa kelompok yang jelas tanpa nilai di antaranya, misalnya golongan darah ABO, faktor rhesus, atau pola sidik jari. Satu atau beberapa gen saja yang mengaturnya, lingkungan hampir tidak berpengaruh, dan diagram batang dipakai untuk menampilkannya.
 
 Variasi punya **penyebab genetik**, yaitu pindah silang, pemisahan bebas kromosom, fertilisasi acak, dan mutasi, serta **penyebab lingkungan**, seperti makanan, cahaya, dan suhu. Di sini kamu mengubah bentuk kurva tinggi badan, menyusun data ke histogram dan diagram batang, menambah gen sampai tangga-tangganya menyatu menjadi rentang, menghitung kombinasi kromosom, dan membandingkan alel normal dengan alel sel sabit basa demi basa.
 
-## Variasi Kontinu Membentuk Kurva Lonceng
+### Variasi Kontinu Membentuk Kurva Lonceng
 
 Ukur tinggi badan sekelompok besar siswa yang seusia. Sebagian besar tinggi badan berada di sekitar nilai tengah, dan makin sedikit siswa yang sangat pendek atau sangat tinggi. Saat jumlah siswa digambarkan terhadap tinggi badan, hasilnya membentuk **kurva distribusi normal**. Puncaknya ada di **rata-rata**, dan lebarnya menunjukkan seberapa menyebar tinggi badan itu.
 
@@ -32,6 +34,7 @@ Gen menentukan rentang tinggi yang bisa dicapai seseorang, sedangkan makanan, ke
       <InlineMath math="m - 2s" /> dan <InlineMath math="m + 2s" />.
     </>
   }
+  footer={<>Sebagian besar individu berkumpul dekat rata-rata sementara ekstrem jarang.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 140, max: 190 }, y: { min: 0, max: 14 } },
@@ -77,6 +80,7 @@ Data nyata dikelompokkan dalam kelas. Satu kelas berisi <InlineMath math="40" />
       bentuk khas variasi kontinu.
     </>
   }
+  footer={<>Data tinggi badan menyatu membentuk kurva lonceng kontinu tanpa celah.</>}
   bars="touching"
   categories={["145 sampai 149 cm", "150 sampai 154 cm", "155 sampai 159 cm", "160 sampai 164 cm", "165 sampai 169 cm", "170 sampai 174 cm", "175 sampai 179 cm"]}
   series={[
@@ -92,9 +96,9 @@ Cari rata-rata tinggi badannya. Pakai titik tengah tiap kelas, kalikan dengan ju
 <BlockMath math="\bar{x} = \frac{\sum f x}{\sum f} = \frac{6{.}470}{40} = 161{,}75\text{ cm}" />
 </MathContainer>
 
-Rata-ratanya <InlineMath math="161{,}75\text{ cm}" />, dan **kelas modus**, yaitu batang tertinggi, adalah <InlineMath math="160" /> sampai <InlineMath math="164\text{ cm}" />. Cek: jumlah frekuensinya <InlineMath math="2 + 5 + 8 + 11 + 8 + 4 + 2 = 40" />, dan rata-ratanya ada di dalam kelas modus, sesuai untuk kurva yang hampir simetris.
+Rata-ratanya <InlineMath math="161{,}75\text{ cm}" />, dan **kelas modus**, yaitu batang tertinggi, adalah <InlineMath math="160" /> sampai <InlineMath math="164\text{ cm}" />. Cek: jumlah ketujuh tinggi batangnya adalah <InlineMath math="40" />, dan rata-ratanya ada di dalam kelas modus, sesuai untuk kurva yang hampir simetris.
 
-## Variasi Diskontinu Terbagi menjadi Kelompok
+### Variasi Diskontinu Terbagi menjadi Kelompok
 
 Sidik jari punya satu dari tiga pola dasar: **sangkutan**, **lingkaran**, atau **busur**. Setiap sidik jari termasuk salah satunya, dan tidak ada sidik jari yang berada di tengah-tengah dua pola. Golongan darah juga begitu: seseorang bergolongan darah A, B, AB, atau O sesuai alel yang ia warisi, dan **lingkungan tidak bisa mengubahnya**.
 
@@ -108,6 +112,7 @@ Kelas yang sama mencatat pola sidik jempol kanan setiap siswa. Diagram batang di
       tinggi, dengan <InlineMath math="26" /> siswa.
     </>
   }
+  footer={<>Pola sidik jari terpisah dalam batang tersendiri tanpa nilai antara.</>}
   bars="apart"
   categories={["Sangkutan", "Lingkaran", "Busur"]}
   series={[
@@ -134,6 +139,46 @@ Cek: <InlineMath math="65\% + 30\% + 5\% = 100\%" />, jadi setiap siswa dihitung
 
 Kenapa tinggi badan membentuk kurva yang halus, sedangkan golongan darah membentuk batang-batang terpisah? Tinggi badan diatur oleh **banyak gen**, dan tiap gen hanya menambah sedikit. Ambil sifat model yang diatur tiga gen, <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />, dengan setiap alel huruf kapital menambah jumlah yang sama. Silangkan dua induk <InlineMath math="AaBbCc" />, lalu hitung jumlah alel huruf kapital pada setiap keturunan.
 
+<VariationDistributionLab
+  title={<>Kurva Lonceng Variasi Kontinu vs Batang Variasi Diskontinu</>}
+  description={
+    <>
+      Bandingkan variasi kontinu dan diskontinu lalu tambah jumlah pasangan gen
+      pengendali untuk melihat batang terpisah menghalus menjadi kurva lonceng.
+    </>
+  }
+  footer={<>Makin banyak gen pengendali dan pengaruh lingkungan menghaluskan grafik jadi lonceng.</>}
+  genePairs={{ min: 1, max: 6, value: 3 }}
+  kinds={["continuous", "discontinuous"]}
+  labels={{
+    basis: <>Kendali genetik</>,
+    genePairs: "Pasangan gen pengendali",
+    kind: "Jenis variasi",
+    kinds: {
+      continuous: {
+        basis: <>Dikendalikan banyak gen dan dipengaruhi faktor lingkungan</>,
+        name: "Variasi kontinu",
+        shape: <>Kurva lonceng mulus dengan banyak nilai antara</>,
+      },
+      discontinuous: {
+        basis: <>Dikendalikan satu gen dan tidak dipengaruhi lingkungan</>,
+        name: "Variasi diskontinu",
+        shape: <>Batang kelompok terpisah tanpa nilai antara</>,
+      },
+    },
+    parts: {
+      bellCurve: "Kurva lonceng",
+      discreteBars: "Batang diskret",
+      environment: "Lingkungan",
+      meanLine: "Rata-rata",
+    },
+    shape: <>Bentuk sebaran</>,
+    view: "Histogram populasi tiga dimensi membandingkan dua jenis variasi",
+  }}
+/>
+
+Menambah jumlah pasangan gen menghaluskan batang bertangga menjadi kurva lonceng, yang langsung diverifikasi oleh **diagram silang tiga gen** berikut.
+
 <Chart
   title={<>Keturunan dari <InlineMath math="AaBbCc \times AaBbCc" /></>}
   description={
@@ -145,6 +190,7 @@ Kenapa tinggi badan membentuk kurva yang halus, sedangkan golongan darah membent
       lalu turun lagi, sudah mendekati bentuk lonceng.
     </>
   }
+  footer={<>Makin banyak gen pengendali membuat tangga diskret menghalus jadi kurva.</>}
   bars="touching"
   categories={["0", "1", "2", "3", "4", "5", "6"]}
   series={[
@@ -167,6 +213,50 @@ Tiga peristiwa dalam reproduksi seksual mengacak ulang alel yang sudah dimiliki 
 
 Geser penggeser untuk bilangan haploid <InlineMath math="n" />. Kurvanya menunjukkan kombinasi gamet dari pemisahan bebas saja, sebelum ada pindah silang.
 
+<MeiosisShufflingLab
+  title={<>Pindah Silang, Pemisahan Bebas, dan Fertilisasi Acak</>}
+  description={
+    <>
+      Telusuri tiga mekanisme pengacakan alel pada reproduksi seksual sambil
+      menggeser jumlah pasangan kromosom homolog untuk melihat lonjakan variasi
+      gamet.
+    </>
+  }
+  footer={<>Pindah silang dan pemisahan bebas mengacak alel lama menjadi kombinasi baru.</>}
+  chromosomePairs={{ min: 1, max: 8, value: 3 }}
+  stages={["crossingOver", "independentAssortment", "randomFertilisation"]}
+  labels={{
+    chromosomePairs: "Pasangan kromosom (n)",
+    combinations: <>Kombinasi gamet</>,
+    mechanism: <>Sumber variasi</>,
+    parts: {
+      centromere: "Sentromer",
+      chiasma: "Kiasma",
+      gamete: "Gamet rekombinan",
+      maternalChromatid: "Kromatid ibu",
+      paternalChromatid: "Kromatid ayah",
+    },
+    stage: "Tahap pengacakan",
+    stages: {
+      crossingOver: {
+        mechanism: <>Kromatid bukan saudara bertukar segmen DNA di kiasma pada profase I</>,
+        name: "Pindah silang",
+      },
+      independentAssortment: {
+        mechanism: <>Tiap pasangan homolog berjajar acak di metafase I membentuk 2^n gamet</>,
+        name: "Pemisahan bebas",
+      },
+      randomFertilisation: {
+        mechanism: <>Sperma mana pun bisa membuahi ovum mana pun sehingga kombinasi berlipat</>,
+        name: "Fertilisasi acak",
+      },
+    },
+    view: "Kromosom homolog tiga dimensi yang mengacak alel selama meiosis",
+  }}
+/>
+
+Amati bagaimana pindah silang dan pemisahan bebas melipatgandakan variasi gamet dengan cepat, lalu periksa kurva eksponensial <InlineMath math="2^n" /> di bawah.
+
 <MathVisual
   title={<>Kombinasi Kromosom dari Pemisahan Bebas</>}
   description={
@@ -176,6 +266,7 @@ Geser penggeser untuk bilangan haploid <InlineMath math="n" />. Kurvanya menunju
       pasang kromosom melipatgandakannya menjadi dua kali.
     </>
   }
+  footer={<>Pemisahan bebas melipatgandakan kombinasi gamet mengikuti pangkat dua.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1100 } },
@@ -210,7 +301,7 @@ Hitung jumlahnya untuk manusia, dengan <InlineMath math="n = 23" />:
 <BlockMath math="\text{zigot} = 2^{23} \times 2^{23} = 2^{46} \approx 7{,}04 \times 10^{13}" />
 </MathContainer>
 
-Satu pasangan suami istri bisa menghasilkan sekitar <InlineMath math="70" /> triliun macam zigot sebelum pindah silang menambah lagi. Cek besarnya: <InlineMath math="2^{10} = 1{.}024 \approx 10^3" />, jadi <InlineMath math="2^{23} = 2^3 \times (2^{10})^2 \approx 8 \times 10^6" />. Ketiga peristiwa ini hanya mengacak ulang alel yang sudah ada. Mutasi adalah **satu-satunya sumber alel baru**.
+Satu pasangan suami istri bisa menghasilkan sekitar <InlineMath math="70" /> triliun macam zigot sebelum pindah silang menambah lagi. Cek besarnya: <InlineMath math="2^{10} \approx 10^3" />, jadi <InlineMath math="2^{23} \approx 8 \times 10^6" />. Ketiga peristiwa ini hanya mengacak ulang alel yang sudah ada. Mutasi adalah **satu-satunya sumber alel baru**.
 
 ## Mutasi Gen Mengubah Urutan Basa
 
@@ -226,27 +317,6 @@ Mutasi pada gamet bisa diturunkan ke generasi berikutnya. Mutasi pada sel tubuh 
 
 Anemia sel sabit berasal dari satu substitusi pada gen globin beta, salah satu bagian hemoglobin. Pindah-pindah di antara kedua alel dan cari basa yang menyala.
 
-<DnaHelixLab
-  title={<>Alel Normal dan Alel Sel Sabit pada Gen Globin Beta</>}
-  description={
-    <>
-      <InlineMath math="27" /> basa pertama gen ini, dihitung dari kodon awal.
-      Pada alel sel sabit, kodon GAG untuk asam glutamat berubah menjadi GTG
-      untuk valin.
-    </>
-  }
-  sequence="ATG GTG CAT CTG ACT CCT GAG GAG AAG"
-  variant="ATG GTG CAT CTG ACT CCT GTG GAG AAG"
-  labels={{
-    choose: "Alel",
-    strands: { first: <>Alel normal</>, second: <>Alel sel sabit</> },
-    length: <>Pasangan basa</>,
-    span: <>Panjang</>,
-    differences: <>Basa yang berbeda</>,
-    identity: <>Basa yang cocok</>,
-    viewLabel: "Satu bagian gen globin beta dalam dua versi",
-  }}
-/>
 
 Analisis perubahannya. Satu basa dari <InlineMath math="27" /> berbeda, yaitu <InlineMath math="\mathrm{A}" /> diganti <InlineMath math="\mathrm{T}" />:
 
@@ -277,55 +347,56 @@ Pada **poliploidi**, sel mendapat tambahan set kromosom yang lengkap. Poliploidi
 
 Mutasi bisa **merugikan, netral, atau menguntungkan**. Anemia sel sabit dan sindrom Down merugikan penderitanya, tetapi mutasi yang membuat bakteri tahan antibiotik menguntungkan bakteri itu. Variasi memberi setiap populasi beragam sifat, jadi saat lingkungan berubah, sebagian individu lebih mungkin bertahan hidup dan berkembang biak.
 
-## Kesalahan Umum tentang Variasi
+<ChromosomeMutationLab
+  title={<>Mutasi Struktur Kromosom dan Gagal Berpisah</>}
+  description={
+    <>
+      Bandingkan delesi, duplikasi, inversi, translokasi, dan gagal berpisah
+      pada model kromosom berpita tiga dimensi untuk melihat perubahan segmen
+      maupun jumlah kromosom.
+    </>
+  }
+  footer={<>Mutasi kromosom mengubah banyak gen sekaligus atau jumlah total kromosom sel.</>}
+  mutations={["deletion", "duplication", "inversion", "translocation", "nondisjunction"]}
+  labels={{
+    change: <>Perubahan kromosom</>,
+    effect: <>Dampak genetik</>,
+    mutation: "Jenis mutasi",
+    mutations: {
+      deletion: {
+        change: <>Satu segmen kromosom patah lalu hilang</>,
+        effect: <>Sejumlah gen pada segmen hilang tidak lagi dimiliki sel</>,
+        name: "Delesi",
+      },
+      duplication: {
+        change: <>Satu segmen kromosom terulang menjadi dua kali</>,
+        effect: <>Muncul salinan gen berlebih di lengan yang sama</>,
+        name: "Duplikasi",
+      },
+      inversion: {
+        change: <>Segmen patah berbalik ujung lalu menyambung kembali</>,
+        effect: <>Urutan gen terbalik pada ruas kromosom itu</>,
+        name: "Inversi",
+      },
+      nondisjunction: {
+        change: <>Kromosom homolog gagal berpisah saat meiosis</>,
+        effect: <>Gamet menerima kelebihan atau kekurangan satu kromosom</>,
+        name: "Gagal berpisah",
+      },
+      translocation: {
+        change: <>Segmen patah berpindah ke kromosom bukan homolog</>,
+        effect: <>Sekelompok gen berpindah ke kromosom berbeda</>,
+        name: "Translokasi",
+      },
+    },
+    parts: {
+      brokenSegment: "Segmen patah",
+      centromere: "Sentromer",
+      extraCopy: "Kromosom ekstra",
+      normalArm: "Lengan normal",
+    },
+    view: "Kromosom berpita tiga dimensi menampilkan lima jenis mutasi kromosom",
+  }}
+/>
 
-| Kesalahan | Kenapa salah | Cara mengecek |
-| :--- | :--- | :--- |
-| Semua variasi berasal dari gen | Kembar identik punya gen yang sama tetapi tetap berbeda | Tanyakan apakah dua individu dengan gen yang sama bisa berbeda |
-| Tinggi badan itu diskontinu karena orang hanya tinggi atau pendek | Tinggi badan bisa bernilai berapa saja dalam suatu rentang | Coba sebutkan kelompoknya: kalau ada nilai di antaranya, variasinya kontinu |
-| Menggambar histogram dengan celah antarbatang | Kelas tinggi badan bersambung, jadi batangnya harus menempel | Celah hanya untuk kelompok terpisah seperti golongan darah |
-| Setiap mutasi merugikan | Sebagian mutasi netral dan ada yang menguntungkan, misalnya bakteri yang tahan antibiotik | Nilai akibatnya di lingkungannya |
-| Mutasi pada sel kulit diwariskan ke anak | Hanya mutasi pada sel pembentuk gamet yang diwariskan | Tanyakan apakah sel itu akan menjadi sperma atau sel telur |
-| Pindah silang menciptakan alel baru | Pindah silang hanya menukar alel yang sudah ada antarkromatid | Hanya mutasi yang mengubah urutan basa |
-
-Kesalahan kedua paling sering mengurangi nilai, jadi cek dengan satu pertanyaan: bisakah satu nilai jatuh di antara dua kelompok? Kalau bisa, **variasinya kontinu**.
-
-## Latihan Variasi
-
-Soalnya bergerak dari mengelompokkan sifat, lalu menghitung dengan data, sampai mutasi di tingkat basa. **Tentukan dulu apakah sifatnya kontinu atau diskontinu** sebelum kamu memilih grafik.
-
-1. Kelompokkan sifat berikut ke dalam variasi kontinu dan variasi diskontinu, lalu sebutkan grafik untuk tiap jenis: massa tubuh, golongan darah ABO, panjang daun, pola sidik jari, faktor rhesus.
-
-2. Seorang siswa mengukur <InlineMath math="50" /> helai daun dari satu pohon: <InlineMath math="3" /> helai panjangnya <InlineMath math="4\text{ cm}" />, <InlineMath math="12" /> helai <InlineMath math="5\text{ cm}" />, <InlineMath math="20" /> helai <InlineMath math="6\text{ cm}" />, <InlineMath math="11" /> helai <InlineMath math="7\text{ cm}" />, dan <InlineMath math="4" /> helai <InlineMath math="8\text{ cm}" />. Cari rata-rata panjang daunnya dan jelaskan penyebab variasinya.
-
-3. Suatu tumbuhan punya <InlineMath math="2n = 24" />. Berapa macam gamet yang bisa dibentuk lewat pemisahan bebas, dan berapa macam zigot yang bisa dihasilkan dua tumbuhan seperti itu?
-
-4. Awal suatu gen berbunyi <InlineMath math="\mathrm{ATG\,GCA\,TTC\,GAA}" />. Tulis urutannya setelah basa kelima diganti <InlineMath math="\mathrm{T}" />, lalu sekali lagi setelah basa kelima dihapus. Mutasi mana yang mengubah lebih banyak kodon?
-
-### Pembahasan
-
-**Pembahasan 1**: Massa tubuh dan panjang daun bisa bernilai berapa saja dalam suatu rentang, jadi keduanya termasuk **variasi kontinu** yang digambar sebagai histogram. Golongan darah ABO, pola sidik jari, dan faktor rhesus terbagi menjadi kelompok terpisah, jadi ketiganya termasuk **variasi diskontinu** yang digambar sebagai diagram batang berjarak.
-
-**Pembahasan 2**: Kalikan setiap panjang dengan jumlah daunnya, jumlahkan, lalu bagi dengan jumlah semua daun:
-
-<BlockMath math="\bar{x} = \frac{4(3) + 5(12) + 6(20) + 7(11) + 8(4)}{50} = \frac{12 + 60 + 120 + 77 + 32}{50} = \frac{301}{50} = 6{,}02\text{ cm}" />
-
-Rata-rata panjangnya <InlineMath math="6{,}02\text{ cm}" />. Setiap daun pada satu pohon membawa gen yang sama, jadi **variasinya berasal dari lingkungan**, misalnya banyaknya cahaya yang diterima tiap daun. Cek: <InlineMath math="3 + 12 + 20 + 11 + 4 = 50" /> helai daun.
-
-**Pembahasan 3**: Bilangan haploidnya <InlineMath math="24 \div 2 = 12" />:
-
-<MathContainer>
-<BlockMath math="\text{gamet} = 2^{12} = 4{.}096" />
-<BlockMath math="\text{zigot} = 4{.}096 \times 4{.}096 = 16{.}777{.}216" />
-</MathContainer>
-
-Cek: <InlineMath math="4^{12} = (2^2)^{12} = 2^{24} = 16{.}777{.}216" />, bilangan yang sama.
-
-**Pembahasan 4**: Beri nomor basa dari kiri. Basa kelima adalah <InlineMath math="\mathrm{C}" /> pada kodon kedua, <InlineMath math="\mathrm{GCA}" />:
-
-<MathContainer>
-<BlockMath math="\text{substitusi: } \mathrm{ATG\,GTA\,TTC\,GAA}" />
-<BlockMath math="\text{delesi: } \mathrm{ATG\,GAT\,TCG\,AA}" />
-</MathContainer>
-
-Substitusi hanya mengubah kodon kedua. Delesi mengubah kodon kedua dan ketiga serta menyisakan kodon yang tidak lengkap di ujung, karena **setiap basa sesudah delesi bergeser satu tempat ke kiri**. Delesi mengubah lebih banyak kodon.
+Berbeda dari tukar satu basa, **patahan struktur dan gagal berpisah** mengubah blok gen besar atau jumlah total kromosom pada setiap sel anak.

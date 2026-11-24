@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Inheritance Notes for Form Five Biology",
   description:
-    "Form 5 Biology Chapter 11: Mendel's monohybrid and dihybrid crosses, Punnett squares, sex determination, ABO blood groups, sex-linked traits and pedigrees.",
+    "Monohybrid and dihybrid Mendelian crosses, Punnett probabilities, ABO blood group codominance, sex determination, and human pedigrees.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Inheritance",
@@ -10,6 +10,8 @@ export const metadata = {
 ## How Traits Pass from Parents to Offspring
 
 **Inheritance** is the passing of traits from parents to offspring through **genes**. A gene is a stretch of DNA at a fixed place on a chromosome, and it comes in different forms called **alleles**. Each body cell carries two alleles of every gene, one from each parent. Gregor Mendel found two rules by crossing pea plants:
+
+> A Punnett square predicts probabilities for each independent fertilisation, never an exact count guaranteed inside a small family.
 
 - **Law of Segregation**: the two alleles of a gene separate when gametes form, so each gamete carries only one of them. Two parents that are both heterozygous give offspring in a phenotypic ratio of <InlineMath math="3:1" />.
 - **Law of Independent Assortment**: the alleles of different genes go into the gametes independently of each other. Two parents heterozygous for two genes give a ratio of <InlineMath math="9:3:3:1" />.
@@ -51,6 +53,7 @@ He repeated the experiment for seven characteristics. Read the bars below and co
       line marks the expected ratio, <InlineMath math="3" />.
     </>
   }
+  footer={<>Every one of Mendel's seven traits landed right near the 3:1 F2 ratio.</>}
   bars="apart"
   categories={["Flower colour", "Flower position", "Plant height", "Seed shape", "Seed colour", "Pod shape", "Pod colour"]}
   series={[
@@ -67,7 +70,7 @@ He repeated the experiment for seven characteristics. Read the bars below and co
 
 Every bar lands near <InlineMath math="3" />, but none hits it exactly. The two largest samples come closest: seed shape from <InlineMath math="7{,}324" /> seeds gives <InlineMath math="2.96" />, and seed colour from <InlineMath math="8{,}023" /> seeds gives <InlineMath math="3.01" />. Pod colour, from only <InlineMath math="580" /> plants, gives <InlineMath math="2.82" />. **A larger sample sits closer to the expected ratio**, because chance evens out over many offspring.
 
-## Law of Segregation in a Punnett Square
+### Law of Segregation in a Punnett Square
 
 Mendel explained the <InlineMath math="3:1" /> ratio with his first law. An <InlineMath math="F_1" /> tall plant has the genotype <InlineMath math="Tt" />. When it makes gametes by meiosis, the two homologous chromosomes separate, so **each gamete carries only one allele**: half the gametes carry <InlineMath math="T" /> and half carry <InlineMath math="t" />. At fertilisation any male gamete can fuse with any female gamete.
 
@@ -82,6 +85,51 @@ A schematic diagram follows the alleles from parents to offspring, and a **Punne
 
 The square gives **probabilities, not exact counts**. Each <InlineMath math="F_2" /> offspring has a chance of <InlineMath math="\tfrac{3}{4}" /> of being tall. Move the slider to choose how many <InlineMath math="F_2" /> plants grow, and compare the expected numbers with Mendel's real flower colour count.
 
+<MonohybridCrossLab
+  title={<>Monohybrid Pea Crosses and the Law of Segregation</>}
+  description={
+    <>
+      Switch between pure-breeding <InlineMath math="F_1" />, heterozygous <InlineMath math="F_2" />, and a test cross to
+      watch alleles segregate into gametes and recombine into predictable pea
+      offspring ratios.
+    </>
+  }
+  footer={<>Alleles separate cleanly during meiosis to give 3:1 in F2 and 1:1 in a test cross.</>}
+  crosses={["pureF1", "heteroF2", "testCross"]}
+  labels={{
+    cross: "Choose cross",
+    crosses: {
+      heteroF2: {
+        genotypeRatio: <>1 TT : 2 Tt : 1 tt</>,
+        name: "F2 cross (Tt x Tt)",
+        phenotypeRatio: <>3 tall : 1 dwarf</>,
+      },
+      pureF1: {
+        genotypeRatio: <>All Tt</>,
+        name: "F1 cross (TT x tt)",
+        phenotypeRatio: <>All tall</>,
+      },
+      testCross: {
+        genotypeRatio: <>1 Tt : 1 tt</>,
+        name: "Test cross (Tt x tt)",
+        phenotypeRatio: <>1 tall : 1 dwarf</>,
+      },
+    },
+    genotypeRatio: <>Genotype ratio</>,
+    parts: {
+      dwarfPea: "Dwarf pea",
+      gamete: "Gamete",
+      parentA: "Parent one",
+      parentB: "Parent two",
+      tallPea: "Tall pea",
+    },
+    phenotypeRatio: <>Phenotype ratio</>,
+    view: "Three-dimensional monohybrid Punnett board and pea plant offspring",
+  }}
+/>
+
+Switching between the three crosses contrasts the **<InlineMath math="3:1" /> <InlineMath math="F_2" /> ratio** with the **<InlineMath math="1:1" /> test-cross ratio**. Move the sample-size slider below to see expected counts scale.
+
 <MathVisual
   title={<>Expected Flower Colours in an <InlineMath math="F_2" /> Generation</>}
   description={
@@ -92,6 +140,7 @@ The square gives **probabilities, not exact counts**. Each <InlineMath math="F_2
       <InlineMath math="705" /> violet and <InlineMath math="224" /> white.
     </>
   }
+  footer={<>Larger F2 sample sizes settle closer to the predicted three-to-one split.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1000 }, y: { min: 0, max: 800 } },
@@ -140,7 +189,7 @@ Mendel counted <InlineMath math="5{,}474" /> round and <InlineMath math="1{,}850
 
 A tall plant can be <InlineMath math="TT" /> or <InlineMath math="Tt" />, and the two look the same. A **test cross** finds out which: cross the plant with a homozygous recessive <InlineMath math="tt" /> plant. The <InlineMath math="tt" /> parent can only give <InlineMath math="t" />, so each offspring shows the allele that came from the unknown parent. All tall offspring means <InlineMath math="TT" />, and about half dwarf offspring means <InlineMath math="Tt" />.
 
-## Two Characteristics in a Dihybrid Cross
+### Two Characteristics in a Dihybrid Cross
 
 In a **dihybrid cross** Mendel followed two characteristics at once. He crossed pure-breeding plants with round yellow seeds, <InlineMath math="RRYY" />, with pure-breeding plants with wrinkled green seeds, <InlineMath math="rryy" />. Every <InlineMath math="F_1" /> plant had round yellow seeds and the genotype <InlineMath math="RrYy" />.
 
@@ -159,6 +208,39 @@ Count the sixteen boxes by phenotype: nine round yellow, three round green, thre
 
 The square below has sides of length <InlineMath math="1" />. The slider <InlineMath math="p" /> is the chance of a round seed and <InlineMath math="q" /> the chance of a yellow seed, so each rectangle's area is the chance of one phenotype. Set both to <InlineMath math="0.75" /> for <InlineMath math="RrYy \times RrYy" />, then try <InlineMath math="0.5" /> for a test cross.
 
+<DihybridCrossLab
+  title={<>Dihybrid 4x4 Punnett Grid and Independent Assortment</>}
+  description={
+    <>
+      Filter the sixteen offspring of RrYy crossed with RrYy to highlight
+      double-dominant, recombinant, and double-recessive seeds in the classic{" "}
+      <InlineMath math="9:3:3:1" /> ratio.
+    </>
+  }
+  footer={<>Independent assortment across two genes creates nine, three, three, and one.</>}
+  filters={["all", "dominantBoth", "recombinants", "recessiveBoth"]}
+  labels={{
+    count: <>Matching squares</>,
+    filter: "Highlight group",
+    filters: {
+      all: { count: <>16 of 16 seeds</>, name: "All phenotypes", ratio: <>9 : 3 : 3 : 1</> },
+      dominantBoth: { count: <>9 of 16 seeds</>, name: "Round yellow", ratio: <>9 / 16</> },
+      recessiveBoth: { count: <>1 of 16 seeds</>, name: "Wrinkled green", ratio: <>1 / 16</> },
+      recombinants: { count: <>6 of 16 seeds</>, name: "Recombinants", ratio: <>3 + 3 of 16</> },
+    },
+    parts: {
+      roundGreen: "Round green",
+      roundYellow: "Round yellow",
+      wrinkledGreen: "Wrinkled green",
+      wrinkledYellow: "Wrinkled yellow",
+    },
+    ratio: <>Phenotype share</>,
+    view: "Three-dimensional 4x4 dihybrid Punnett cube of pea seeds",
+  }}
+/>
+
+Highlighting the six recombinant boxes shows why **independent assortment** creates traits neither pure parent had. The probability square below links that split to areas.
+
 <MathVisual
   title={<>Two Genes Split One Square of Probability</>}
   description={
@@ -169,6 +251,7 @@ The square below has sides of length <InlineMath math="1" />. The slider <Inline
       of offspring out of <InlineMath math="16" />.
     </>
   }
+  footer={<>Independent traits multiply their probabilities into a 9:3:3:1 area grid.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 1 } },
@@ -214,7 +297,7 @@ Work out a test cross with numbers. An <InlineMath math="RrYy" /> plant is cross
 
 <BlockMath math="\text{round yellow} = \tfrac{1}{2} \times \tfrac{1}{2} \times 200 = 50" />
 
-The other three phenotypes also come to <InlineMath math="50" /> each, a ratio of <InlineMath math="1:1:1:1" />. Check: <InlineMath math="4 \times 50 = 200" />, and the square with <InlineMath math="p = q = 0.5" /> shows four equal rectangles of <InlineMath math="4" /> out of <InlineMath math="16" />.
+The other three phenotypes also come to <InlineMath math="50" /> each, a ratio of <InlineMath math="1:1:1:1" />. Check: <InlineMath math="4 \times 50 = 200" />, and the square with <InlineMath math="p = 0.5" /> and <InlineMath math="q = 0.5" /> shows four equal rectangles of <InlineMath math="4" /> out of <InlineMath math="16" />.
 
 ## Sex and Blood Groups in Humans
 
@@ -232,6 +315,7 @@ Each birth is a new fertilisation, so earlier children don't change the chance f
       <InlineMath math="\left(\tfrac{1}{2}\right)^k" />.
     </>
   }
+  footer={<>Each birth stays independent, so all-girls odds halve with every child.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 1.1 } },
@@ -289,6 +373,7 @@ Work out the children of a father with blood group A, <InlineMath math="I^A i" /
       likely for every child.
     </>
   }
+  footer={<>Parents IAi and IBi can produce children across all four ABO blood groups.</>}
   bars="apart"
   categories={["Group A", "Group B", "Group AB", "Group O"]}
   series={[
@@ -311,6 +396,52 @@ A female needs two recessive alleles, <InlineMath math="X^b X^b" />, to be colou
 | <InlineMath math="X^B" /> | <InlineMath math="X^B X^B" />, normal daughter | <InlineMath math="X^B Y" />, normal son |
 | <InlineMath math="X^b" /> | <InlineMath math="X^B X^b" />, carrier daughter | <InlineMath math="X^b Y" />, colour-blind son |
 
+<PedigreeSexLinkedLab
+  title={<>Human ABO Codominance, Sex Chromosomes, and X-Linked Pedigrees</>}
+  description={
+    <>
+      Switch between ABO blood groups, XX-XY sex determination, and X-linked
+      recessive pedigrees to see why males express a single X-linked recessive
+      allele.
+    </>
+  }
+  footer={<>Males carry only one X chromosome, so one recessive allele expresses the trait.</>}
+  patterns={["aboBlood", "sexDetermination", "xLinked"]}
+  labels={{
+    parts: {
+      affected: "Affected",
+      carrier: "Carrier female",
+      female: "Female (XX)",
+      male: "Male (XY)",
+      xChromosome: "X chromosome",
+      yChromosome: "Y chromosome",
+    },
+    pattern: "Human pattern",
+    patterns: {
+      aboBlood: {
+        name: "ABO blood groups",
+        risk: <>Heterozygous IAi x IBi parents yield A, B, AB, and O children equally</>,
+        rule: <>Alleles IA and IB are codominant and both dominate IO</>,
+      },
+      sexDetermination: {
+        name: "XX and XY sex",
+        risk: <>Every pregnancy carries an equal half chance of a boy or girl</>,
+        rule: <>Sperm carrying X or Y decides the child's chromosomal sex</>,
+      },
+      xLinked: {
+        name: "X-linked recessive",
+        risk: <>Half of a carrier mother's sons inherit colour blindness or haemophilia</>,
+        rule: <>Recessive allele sits on X with no matching locus on Y</>,
+      },
+    },
+    risk: <>Offspring chance</>,
+    rule: <>Inheritance rule</>,
+    view: "Three-dimensional human pedigree and sex-chromosome transmission lab",
+  }}
+/>
+
+Compare carrier mothers and affected fathers across the three human patterns before checking the exact offspring odds in the chart below.
+
 <Chart
   title={<>Children of a Carrier Mother <InlineMath math="X^B X^b" /> and a Father <InlineMath math="X^B Y" /></>}
   description={
@@ -320,6 +451,7 @@ A female needs two recessive alleles, <InlineMath math="X^b X^b" />, to be colou
       <InlineMath math="X^B" /> from her father.
     </>
   }
+  footer={<>Half of a carrier mother's sons inherit the X-linked recessive trait.</>}
   bars="apart"
   categories={["Daughters", "Sons"]}
   series={[
@@ -344,6 +476,7 @@ A **pedigree** is a family tree that shows who has a trait. A square is a male, 
       may not be a carrier.
     </>
   }
+  footer={<>Two unaffected carrier parents can have an affected recessive child.</>}
   chart={`flowchart TD
   F["Father, unaffected: Aa"] --> S["Son, thalassaemia: aa"]
   M["Mother, unaffected: Aa"] --> S
@@ -359,60 +492,3 @@ Analyse the pedigree. The son is <InlineMath math="aa" /> and got one <InlineMat
 </MathContainer>
 
 The daughter is unaffected, so the <InlineMath math="aa" /> box is ruled out for her, and **two of the three remaining boxes are carriers**. Check: <InlineMath math="\tfrac{1}{3} + \tfrac{2}{3} = 1" />, so the daughter is either <InlineMath math="AA" /> or <InlineMath math="Aa" />.
-
-## Common Mistakes in Genetics Problems
-
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Writing a gamete as <InlineMath math="Tt" /> | Segregation puts one allele of each gene into a gamete | A gamete has one letter for each gene |
-| Expecting exactly <InlineMath math="3:1" /> in real counts | A ratio is a probability, and real counts scatter around it | Mendel got <InlineMath math="787" /> tall and <InlineMath math="277" /> dwarf, not <InlineMath math="798" /> and <InlineMath math="266" /> |
-| Thinking a dominant trait must be more common | Dominance only says which allele shows in a heterozygote | Look at the genotypes, not at how often a trait appears |
-| Treating blood group AB as a blend of A and B | Codominant alleles both show in full, so both antigens are made | Both phenotypes appear at once in <InlineMath math="I^A I^B" /> |
-| Blaming the father for a colour-blind son | A father gives his <InlineMath math="Y" /> to every son | Follow the <InlineMath math="X" />: a son's <InlineMath math="X" /> is his mother's |
-| Expecting a girl after three boys | Every birth has its own chance of <InlineMath math="\tfrac{1}{2}" /> | The flat line on the graph of girls stays at <InlineMath math="\tfrac{1}{2}" /> |
-
-The first mistake breaks the most answers, so write the gametes before you draw any square. The rule to copy into your notes: **one allele of each gene goes into every gamete**.
-
-## Inheritance Practice
-
-The questions grow from one gene to two genes and then to genes on the <InlineMath math="X" /> chromosome. **Write the genotype of each parent and its gametes** before you fill in a Punnett square.
-
-1. In peas, violet flowers, <InlineMath math="P" />, are dominant over white flowers, <InlineMath math="p" />. A violet plant crossed with a white plant gives <InlineMath math="48" /> violet and <InlineMath math="52" /> white offspring. State the genotype of the violet parent and explain your answer.
-
-2. A father has blood group AB and a mother has blood group O. List the blood groups their children can have and the chance of each.
-
-3. In peas, tall, <InlineMath math="T" />, is dominant over dwarf, <InlineMath math="t" />, and round seeds, <InlineMath math="R" />, are dominant over wrinkled seeds, <InlineMath math="r" />. Two <InlineMath math="TtRr" /> plants are crossed and give <InlineMath math="320" /> offspring. How many are expected to be tall with wrinkled seeds?
-
-4. A woman with normal colour vision has a colour-blind father. She marries a colour-blind man. Find the chance that a son of theirs is colour-blind and the chance that a daughter of theirs is colour-blind.
-
-### Solutions
-
-**Solution 1**: A white plant is <InlineMath math="pp" /> and gives only <InlineMath math="p" /> gametes, so this is a test cross. The offspring come close to a <InlineMath math="1:1" /> ratio, which needs half the gametes of the violet parent to carry <InlineMath math="p" />:
-
-<BlockMath math="Pp \times pp \rightarrow Pp : pp = 1 : 1" />
-
-The violet parent is **heterozygous**, <InlineMath math="Pp" />. Check: the expected numbers are <InlineMath math="\tfrac{1}{2} \times 100 = 50" /> of each, close to <InlineMath math="48" /> and <InlineMath math="52" />. A <InlineMath math="PP" /> parent would have given only violet offspring.
-
-**Solution 2**: The father is <InlineMath math="I^A I^B" /> and makes gametes <InlineMath math="I^A" /> and <InlineMath math="I^B" />. The mother is <InlineMath math="ii" /> and makes only <InlineMath math="i" />:
-
-<BlockMath math="I^A I^B \times ii \rightarrow I^A i : I^B i = 1 : 1" />
-
-Each child has a chance of <InlineMath math="\tfrac{1}{2}" /> of group A and <InlineMath math="\tfrac{1}{2}" /> of group B. **No child can be group AB or group O**, because every child gets exactly one of <InlineMath math="I^A" /> or <InlineMath math="I^B" /> together with <InlineMath math="i" />.
-
-**Solution 3**: The two genes assort independently, so multiply the chance of tall from <InlineMath math="Tt \times Tt" /> by the chance of wrinkled from <InlineMath math="Rr \times Rr" />:
-
-<MathContainer>
-<BlockMath math="P(\text{tall and wrinkled}) = \tfrac{3}{4} \times \tfrac{1}{4} = \tfrac{3}{16}" />
-<BlockMath math="\tfrac{3}{16} \times 320 = 60 \text{ plants}" />
-</MathContainer>
-
-About **<InlineMath math="60" /> plants** are expected to be tall with wrinkled seeds. Check with the dihybrid ratio: <InlineMath math="320 \div 16 = 20" />, and the tall wrinkled class has <InlineMath math="3" /> parts, so <InlineMath math="3 \times 20 = 60" />.
-
-**Solution 4**: The woman sees normally but her father gave her his only <InlineMath math="X" />, which carries <InlineMath math="X^b" />. So she is a carrier, <InlineMath math="X^B X^b" />. Her husband is <InlineMath math="X^b Y" />:
-
-<MathContainer>
-<BlockMath math="\text{sons: } X^B Y : X^b Y = 1 : 1" />
-<BlockMath math="\text{daughters: } X^B X^b : X^b X^b = 1 : 1" />
-</MathContainer>
-
-A son has a chance of <InlineMath math="\tfrac{1}{2}" /> of being colour-blind, and so does a daughter, because **every daughter gets <InlineMath math="X^b" /> from her father** and then depends only on her mother's allele.
