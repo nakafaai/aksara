@@ -25,6 +25,7 @@ import { jointVisuals } from "#contracts/visual/biology/joint";
 import { keyVisuals } from "#contracts/visual/biology/key";
 import { kingdomVisuals } from "#contracts/visual/biology/kingdom";
 import { lactaseVisuals } from "#contracts/visual/biology/lactase";
+import { leafVisuals } from "#contracts/visual/biology/leaf";
 import { limbVisuals } from "#contracts/visual/biology/limb";
 import { lipidVisuals } from "#contracts/visual/biology/lipid";
 import { locomotionVisuals } from "#contracts/visual/biology/locomotion";
@@ -45,6 +46,7 @@ import { spillVisuals } from "#contracts/visual/biology/spill";
 import { sugarVisuals } from "#contracts/visual/biology/sugar";
 import { synapseVisuals } from "#contracts/visual/biology/synapse";
 import { taxonVisuals } from "#contracts/visual/biology/taxon";
+import { tissueVisuals } from "#contracts/visual/biology/tissue";
 import { twinsVisuals } from "#contracts/visual/biology/twins";
 import { vernacularVisuals } from "#contracts/visual/biology/vernacular";
 import { vertebraVisuals } from "#contracts/visual/biology/vertebra";
@@ -59,6 +61,7 @@ import { bondingVisuals } from "#contracts/visual/chemistry/bonding";
 import { discoveryVisuals } from "#contracts/visual/chemistry/discovery";
 import { electrochemistryVisuals } from "#contracts/visual/chemistry/electrochemistry";
 import { electronVisuals } from "#contracts/visual/chemistry/electron";
+import { equilibriumVisuals } from "#contracts/visual/chemistry/equilibrium";
 import { lawVisuals } from "#contracts/visual/chemistry/laws";
 import { particleVisuals } from "#contracts/visual/chemistry/particles";
 import { periodicVisuals } from "#contracts/visual/chemistry/periodic";
@@ -126,6 +129,7 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...biologyVisuals(rich),
     ...atomVisuals(rich),
     ...electronVisuals(rich),
+    ...equilibriumVisuals(rich),
     ...electrochemistryVisuals(rich),
     ...titrationVisuals(rich),
     ...rateVisuals(rich),
@@ -194,6 +198,8 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...denatureVisuals(rich),
     ...saturationVisuals(rich),
     ...lactaseVisuals(rich),
+    ...leafVisuals(rich),
+    ...tissueVisuals(rich),
     ...balanceVisuals(rich),
     ...bondingVisuals(rich),
     ...discoveryVisuals(rich),
