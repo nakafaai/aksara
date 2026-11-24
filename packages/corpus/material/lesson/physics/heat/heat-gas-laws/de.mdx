@@ -1,39 +1,28 @@
 export const metadata = {
-  title: "Wärme Wärmekapazität und Gasgesetze",
+  title: "Kalorimetrie Latente Wärme und Gasgesetze",
   description:
-    "Nutze Q = mcΔT und Q = mL, erkläre das thermische Gleichgewicht, lies eine Erwärmungskurve und löse Aufgaben zu Boyle, Charles und Gay-Lussac.",
+    "Thermisches Gleichgewicht, spezifische Wärmekapazität im Kalorimeter, Schmelzplateaus beim Phasenübergang und die Gasgesetze nach Boyle, Charles und Gay-Lussac.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Wärme",
 };
 
-## Wärme und Temperatur sind verschieden
-
-**Wärme** ist Energie, die von einem heißen zu einem kalten Körper übertragen wird, gemessen in Joule. Die **Temperatur** gibt an, wie heiß etwas ist, hängt mit der mittleren Bewegungsenergie der Teilchen zusammen und wird in Grad Celsius oder Kelvin gemessen. Die zwei Hauptformeln liefern die Energie, um eine Temperatur zu erhöhen, und die Energie, um einen Aggregatzustand zu ändern:
-
-<MathContainer>
-<BlockMath math="Q = mc\Delta T" />
-<BlockMath math="Q = mL" />
-</MathContainer>
-
-Dabei ist <InlineMath math="m" /> die Masse in Kilogramm, <InlineMath math="c" /> die **spezifische Wärmekapazität**, <InlineMath math="\Delta T" /> die Temperaturänderung und <InlineMath math="L" /> die **spezifische latente Wärme**. Hier erhitzt du Wasser im Wasserkocher, führst Eis so lange Energie zu, bis Dampf entsteht, und drückst ein Gas in einer Spritze zusammen.
-
 ## Thermisches Gleichgewicht
 
-Berühren sich zwei Körper, fließt Wärme vom wärmeren zum kälteren. Der Nettofluss endet, wenn beide dieselbe Temperatur haben. Diesen Zustand nennt man **thermisches Gleichgewicht**. Ein Thermometer funktioniert genau so: Es erreicht das thermische Gleichgewicht mit einem Körper, und dann zeigt es dessen Temperatur an.
+Berührst du einen Metalllöffel in heißer Suppe, strömt Energie direkt in deine Finger. **Wärme** ist thermische Energie auf dem Weg vom wärmeren zum kälteren Körper in Joule, während die **Temperatur** die mittlere kinetische Teilchenenergie in Grad Celsius oder Kelvin anzeigt.
 
-Das Modell zeigt zwei Metallblöcke gleicher Masse und gleichen Materials, einen mit <InlineMath math="80\ {}^\circ\text{C}" /> und einen mit <InlineMath math="20\ {}^\circ\text{C}" />, die sich berühren. Beweg den Zeitregler und sieh zu, wie sich beide Temperaturen bei <InlineMath math="50\ {}^\circ\text{C}" /> treffen.
+Berühren sich zwei Körper, fließt netto so lange Wärme, bis beide dieselbe Temperatur erreichen, das **thermische Gleichgewicht**. Ein Thermometer misst genau dann richtig, wenn es mit dem Gegenstand im Gleichgewicht steht. Schiebe unten den Zeitregler und beobachte zwei identische Metallblöcke ab <InlineMath math="80^\circ\text{C}" /> und <InlineMath math="20^\circ\text{C}" />.
 
 <MathVisual
-  title={<>Zwei Blöcke erreichen das thermische Gleichgewicht</>}
+  title={<>Zwei Blöcke im thermischen Gleichgewicht</>}
   description={
     <>
-      Der heiße Block hat die Temperatur <InlineMath math="50 + 30e^{-t/10}" />,
-      der kalte <InlineMath math="50 - 30e^{-t/10}" />, mit{" "}
-      <InlineMath math="t" /> in Sekunden. Senkrecht ist die Temperatur in{" "}
-      <InlineMath math="{}^\circ\text{C}" /> aufgetragen.
+      Temperaturverlauf eines heißen und eines identischen kalten Blocks in
+      Kontakt, die ohne Wärmeverlust nach außen bei{" "}
+      <InlineMath math="50^\circ\text{C}" /> zusammentreffen.
     </>
   }
+  footer={<>Der Netto-Wärmefluss stoppt exakt dann, wenn beide Körper dieselbe Temperatur erreichen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 90 } },
@@ -52,186 +41,200 @@ Das Modell zeigt zwei Metallblöcke gleicher Masse und gleichen Materials, einen
     ],
   }}
   labels={{
-    a: <>Zeit <InlineMath math="a" /> in Sekunden</>,
-    "hot-reading": <>Heißer Block in <InlineMath math="{}^\circ\text{C}" /></>,
-    "cold-reading": <>Kalter Block in <InlineMath math="{}^\circ\text{C}" /></>,
+    a: <>Zeit <InlineMath math="a" /> (s)</>,
+    "hot-reading": <>Heißer Block (<InlineMath math="^\circ\text{C}" />)</>,
+    "cold-reading": <>Kalter Block (<InlineMath math="^\circ\text{C}" />)</>,
   }}
 />
 
-Die Endtemperatur liegt genau in der Mitte, weil beide Blöcke gleiche Masse und gleiches Material haben. Die Wärme, die der heiße Block abgibt, nimmt der kalte auf, solange keine Wärme an die Umgebung verloren geht.
+Beide treffen exakt in der Mitte zusammen, weil Masse und Material übereinstimmen. Bei ungleichen Massen liegt die Mischtemperatur näher am schwereren Körper, da abgegebene und aufgenommene Wärme gleich groß sind.
 
-## Spezifische Wärmekapazität
+## Wärmekapazität und Phase
 
-Die **spezifische Wärmekapazität** <InlineMath math="c" /> ist die Wärme, die nötig ist, um <InlineMath math="1\ \text{kg}" /> eines Stoffs um <InlineMath math="1\ \text{K}" /> zu erwärmen. Ihre Einheit ist <InlineMath math="\text{J/(kg K)}" />. Ein Stoff mit großem <InlineMath math="c" /> erwärmt sich langsam und kühlt langsam ab.
+Zugeführte Wärme erhöht die **innere Energie** eines Stoffes auf zwei Arten: Sie beschleunigt Teilchen für höhere Temperatur oder löst Bindungen für einen Phasenwechsel. Im Experiment trennt man daher klar zwischen Erwärmungsphasen und konstanten Schmelz- oder Siedeplateaus.
+
+### Spezifische Wärme
+
+Die **spezifische Wärmekapazität** <InlineMath math="c" /> gibt an, wie viel Energie nötig ist, um <InlineMath math="1\text{ kg}" /> eines Stoffes um <InlineMath math="1^\circ\text{C}" /> zu erwärmen.
+
+<BlockMath math="Q = mc\Delta\theta" />
+
+Stoffe mit hohem <InlineMath math="c" /> speichern viel Energie bei geringer Erwärmung. Vergleiche sechs bekannte Stoffe unten.
 
 <Chart
-  title={<>Spezifische Wärmekapazität einiger Stoffe</>}
+  title={<>Spezifische Wärmekapazität von sechs Stoffen</>}
   bars="apart"
   categories={["Wasser", "Eis", "Aluminium", "Eisen", "Kupfer", "Blei"]}
   series={[
-    { label: "Spezifische Wärmekapazität (J/(kg K))", mark: "bar", values: [4200, 2100, 900, 450, 390, 130] },
+    { label: "Spezifische Wärmekapazität (J/kg °C)", mark: "bar", values: [4200, 2100, 900, 450, 390, 130] },
   ]}
-  valueLabel="Spezifische Wärmekapazität (J/(kg K))"
+  valueLabel="Spezifische Wärmekapazität (J/kg °C)"
   description={
     <>
-      Übliche gerundete Werte: Wasser <InlineMath math="4200" />, Eis{" "}
-      <InlineMath math="2100" />, Aluminium <InlineMath math="900" />, Eisen{" "}
-      <InlineMath math="450" />, Kupfer <InlineMath math="390" /> und Blei{" "}
-      <InlineMath math="130\ \text{J/(kg K)}" />.
+      Gerundete Richtwerte von Wasser mit <InlineMath math="4{,}200" /> bis Blei
+      mit <InlineMath math="130\text{ J kg}^{-1}\,^\circ\text{C}^{-1}" />.
     </>
   }
+  footer={<>Wasser speichert pro Grad fast zehnmal mehr Wärme als Eisen oder Kupfer.</>}
 />
 
-Wasser hat eine sehr große spezifische Wärmekapazität. Deshalb dient Wasser als Kühlmittel im Autokühler, und deshalb erwärmt sich das Meer tagsüber langsam, sodass ein Seewind entsteht.
+Wegen seiner hohen spezifischen Wärmekapazität kühlt Wasser zuverlässig Automotoren und hält Küstenregionen im Tagesverlauf milder als das Binnenland.
 
-Der Wasserkocher im Modell erhitzt Wasser von <InlineMath math="25\ {}^\circ\text{C}" /> aus. Wähle die Wassermenge und vergleich die nötige Energie und Zeit.
+Im Labor führt ein isoliertes elektrisches **Kalorimeter** gemessene Energie <InlineMath math="Pt" /> direkt der Probe zu, während ein Rührer die Temperatur gleichmäßig hält. Wechsle unten Stoffe und verstelle Masse, Heizleistung und Heizdauer.
 
-<KettleHeatingLab
-  title={<>Ein Wasserkocher bringt Wasser zum Kochen</>}
+<SpecificHeatCalorimeterLab
+  title={<>Elektrisches Kalorimeter zur Wärmekapazität</>}
   description={
     <>
-      Wähle halb, voll oder randvoll. Die nötige Energie ist proportional zur
-      Masse des Wassers.
+      Vergleiche Wasser, Aluminium, Kupfer, Eisen und Öl im isolierten
+      Kalorimeter bei veränderlicher Masse, Heizleistung und Heizdauer.
     </>
   }
+  footer={<>Gleiche Heizenergie erwärmt Metalle mit kleinem c viel stärker als Wasser.</>}
+  materials={["water", "aluminium", "copper", "iron", "oil"]}
+  mass={{ min: 0.2, max: 2, value: 0.5 }}
+  power={{ min: 50, max: 500, value: 200 }}
+  minutes={{ min: 1, max: 15, value: 5 }}
   labels={{
-    chooseFill: "Wähle die Wassermenge",
-    energy: <>Nötige Energie</>,
-    power: <>Leistung des Wasserkochers</>,
-    rise: <>Temperaturanstieg</>,
-    time: <>Heizdauer</>,
-    viewLabel: "Ein Wasserkocher erhitzt Wasser",
+    material: "Probenstoff",
+    materials: {
+      water: "Wasser",
+      aluminium: "Aluminium",
+      copper: "Kupfer",
+      iron: "Eisen",
+      oil: "Speiseöl",
+    },
+    mass: "Probenmasse",
+    power: "Heizleistung",
+    time: "Heizdauer",
+    energy: <>Zugeführte elektrische Energie</>,
+    specificHeat: <>Spezifische Wärmekapazität</>,
+    temperatureRise: <>Temperaturanstieg</>,
+    parts: {
+      heater: "Tauchsieder",
+      thermometer: "Thermometer",
+      stirrer: "Rührer",
+      insulation: "Isoliermantel",
+      sample: "Probe",
+    },
+    view: "Isoliertes 3D-Kalorimeter mit Tauchsieder, Thermometer, Rührer und wählbarer Stoffprobe",
   }}
 />
 
-### Beispiel Energie zum Erwärmen von Wasser
+Verdoppelt man die Probenmasse, halbiert sich der Temperaturanstieg bei gleicher Heizenergie, während der Wechsel von Wasser zu Kupfer den Anstieg mehr als verzehnfacht.
 
-Berechne **die nötige Wärme**, um <InlineMath math="2{,}0\ \text{kg}" /> Wasser von <InlineMath math="25\ {}^\circ\text{C}" /> auf <InlineMath math="100\ {}^\circ\text{C}" /> zu erwärmen.
+### Latente Wärme
 
-<BlockMath math="Q = mc\Delta T = (2{,}0)(4200)(100 - 25) = 630{.}000\ \text{J}" />
+Während ein Stoff schmilzt oder siedet, verharrt das Thermometer auf einem Wert, obwohl der Heizer weiterläuft. Nutze entlang eines Plateaus nie <InlineMath math="Q = mc\Delta\theta" />, weil keine Temperaturänderung vorliegt. Alle Energie trennt Bindungen als **latente Wärme**:
 
-Prüf die Einheiten: <InlineMath math="\text{kg} \cdot \text{J/(kg K)} \cdot \text{K} = \text{J}" />. Das Ergebnis ist <InlineMath math="6{,}3 \cdot 10^{5}\ \text{J}" />.
+<BlockMath math="Q = ml" />
 
-### Beispiel Heizdauer eines Wasserkochers
+> Beim Schmelzen oder Sieden reiner Stoffe bricht zugeführte Wärme Bindungen zwischen Teilchen auf, statt ihre mittlere Bewegungsenergie zu steigern.
 
-Ein Wasserkocher mit <InlineMath math="2000\ \text{W}" /> erhitzt <InlineMath math="1{,}5\ \text{kg}" /> Wasser von <InlineMath math="25\ {}^\circ\text{C}" /> auf <InlineMath math="100\ {}^\circ\text{C}" />. Nimm an, dass keine Wärme verloren geht, also **ist die elektrische Energie gleich der aufgenommenen Wärme**, <InlineMath math="Pt = mc\Delta T" />:
+Beobachte unten einen Heizer konstanter Leistung, der <InlineMath math="0{,}20\text{ kg}" /> des Stoffes K bei <InlineMath math="80^\circ\text{C}" /> für <InlineMath math="5{,}0\text{ Minuten}" /> schmilzt und die Flüssigkeit in <InlineMath math="2{,}0\text{ Minuten}" /> auf <InlineMath math="100^\circ\text{C}" /> erwärmt.
 
-<BlockMath math="t = \frac{mc\Delta T}{P} = \frac{(1{,}5)(4200)(75)}{2000} = 236\ \text{s}" />
-
-Das sind etwa vier Minuten. In Wirklichkeit dauert es länger, weil ein Teil der Wärme den Kocher und die Luft erwärmt.
-
-## Latente Wärme und die Erwärmungskurve
-
-Während ein Stoff seinen Aggregatzustand ändert, bleibt seine Temperatur gleich, obwohl weiter Wärme zufließt. Diese Energie **löst die Bindungen zwischen den Teilchen**, statt die Bewegungsenergie zu erhöhen. Man nennt sie **latente Wärme**. Die spezifische Schmelzwärme von Eis beträgt <InlineMath math="3{,}34 \cdot 10^{5}\ \text{J/kg}" />, die spezifische Verdampfungswärme von Wasser <InlineMath math="2{,}26 \cdot 10^{6}\ \text{J/kg}" />.
-
-Die Kurve unten ist für <InlineMath math="0{,}1\ \text{kg}" /> Eis berechnet, das bei <InlineMath math="-20\ {}^\circ\text{C}" /> beginnt. Beweg den Energieregler und achte auf die zwei waagerechten Abschnitte, Schmelzen und Sieden.
-
-<MathVisual
-  title={<>Erwärmungskurve von Eis bis Dampf</>}
+<HeatingCurveLab
+  title={<>Schmelzplateau und Flüssigkeitserwärmung von Stoff K</>}
   description={
     <>
-      Waagerecht ist die zugeführte Energie in kJ aufgetragen, senkrecht die
-      Temperatur in <InlineMath math="{}^\circ\text{C}" />. Der erste
-      waagerechte Abschnitt braucht <InlineMath math="33{,}4\ \text{kJ}" />, der
-      zweite <InlineMath math="226\ \text{kJ}" />.
+      Bestimme zuerst die Heizleistung aus dem ansteigenden Flüssigkeitsstück
+      und nutze dieselbe Leistung über das fünfminütige Schmelzplateau.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 320 }, y: { min: -30, max: 130 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "q", min: 0, max: 305, value: 20, step: 1, label: "q" },
-    ],
-    objects: [
-      { id: "ice", kind: "segment", appearance: "primary", from: { x: 0, y: -20 }, to: { x: 4.2, y: 0 } },
-      { id: "melting", kind: "segment", appearance: "secondary", from: { x: 4.2, y: 0 }, to: { x: 37.6, y: 0 } },
-      { id: "water", kind: "segment", appearance: "primary", from: { x: 37.6, y: 0 }, to: { x: 79.6, y: 100 } },
-      { id: "boiling", kind: "segment", appearance: "secondary", from: { x: 79.6, y: 100 }, to: { x: 305.6, y: 100 } },
-      { id: "now", kind: "marker", x: "q", y: "-20 + 20min(max(q, 0), 4.2)/4.2 + 100min(max(q - 37.6, 0), 42)/42", appearance: "warning" },
-    ],
-    labels: [
-      { key: "melting", objectId: "melting", at: { x: 20.9, y: 0 }, placement: "below" },
-      { key: "boiling", objectId: "boiling", at: { x: 192.6, y: 100 }, placement: "above" },
-    ],
-    readouts: [
-      { key: "temperature", formula: "-20 + 20min(max(q, 0), 4.2)/4.2 + 100min(max(q - 37.6, 0), 42)/42" },
-    ],
-  }}
+  footer={<>Bei fester Heizleistung wächst die zugeführte Energie streng proportional zur Zeitdauer.</>}
   labels={{
-    q: <>Zugeführte Energie <InlineMath math="q" /> in kJ</>,
-    melting: <>Schmelzen</>,
-    boiling: <>Sieden</>,
-    temperature: <>Temperatur in <InlineMath math="{}^\circ\text{C}" /></>,
+    latent: <>Spezifische Schmelzwärme</>,
+    power: <>Heizleistung</>,
+    viewLabel: "Becherglas mit Tauchsieder beim Schmelzen von Stoff K samt Erwärmungskurve",
   }}
+  finalTemperature={100}
+  liquidHeat={2000}
+  mass={0.2}
+  meltMinutes={5}
+  meltingPoint={80}
+  warmMinutes={2}
 />
 
-Die Gesamtenergie wird Abschnitt für Abschnitt berechnet:
+Beim Erwärmen der Flüssigkeit nimmt K in <InlineMath math="120\text{ s}" /> genau <InlineMath math="8{,}000\text{ J}" /> auf, also <InlineMath math="66{,}7\text{ W}" />. Über <InlineMath math="300\text{ s}" /> Schmelzen liefert der Heizer <InlineMath math="20{,}000\text{ J}" />, was eine spezifische Schmelzwärme von <InlineMath math="1{,}0 \times 10^5\text{ J kg}^{-1}" /> ergibt.
 
-<MathContainer>
-<BlockMath math="Q_1 = (0{,}1)(2100)(20) = 4200\ \text{J}" />
-<BlockMath math="Q_2 = (0{,}1)(3{,}34 \cdot 10^{5}) = 33{.}400\ \text{J}" />
-<BlockMath math="Q_3 = (0{,}1)(4200)(100) = 42{.}000\ \text{J}" />
-<BlockMath math="Q_4 = (0{,}1)(2{,}26 \cdot 10^{6}) = 226{.}000\ \text{J}" />
-</MathContainer>
+## Gasgesetze im Teilchenmodell
 
-Der Siedeabschnitt ist am längsten. Wasser zu verdampfen braucht etwa fünfmal so viel Energie, wie es von <InlineMath math="0\ {}^\circ\text{C}" /> auf <InlineMath math="100\ {}^\circ\text{C}" /> zu erwärmen. Deshalb verbrüht Dampf mit <InlineMath math="100\ {}^\circ\text{C}" /> die Haut schlimmer als kochendes Wasser.
-
-## Die Gasgesetze
-
-Für eine feste Gasmenge hängen Druck <InlineMath math="p" />, Volumen <InlineMath math="V" /> und absolute Temperatur <InlineMath math="T" /> über drei Gesetze zusammen. Die Temperatur muss in **Kelvin** stehen: <InlineMath math="T = \vartheta + 273" />.
+Ein eingeschlossenes Gas baut **Gasdruck** auf, weil Milliarden schneller Moleküle ununterbrochen gegen die Gefäßwände prallen. Hält man eine Zustandsgröße fest, verknüpfen drei klassische Gesetze Druck <InlineMath math="P" />, Volumen <InlineMath math="V" /> und absolute Temperatur <InlineMath math="T" />:
 
 | Gesetz | Konstante Größe | Zusammenhang |
 | :--- | :--- | :--- |
-| Gesetz von Boyle-Mariotte | Temperatur | <InlineMath math="p_1V_1 = p_2V_2" /> |
-| Gesetz von Gay-Lussac (Charles) | Druck | <InlineMath math="\dfrac{V_1}{T_1} = \dfrac{V_2}{T_2}" /> |
-| Gesetz von Amontons | Volumen | <InlineMath math="\dfrac{p_1}{T_1} = \dfrac{p_2}{T_2}" /> |
+| Gesetz von Boyle | Temperatur | Druck umgekehrt proportional zum Volumen |
+| Gesetz von Charles | Druck | Volumen proportional zur Kelvintemperatur |
+| Gesetz von Gay-Lussac | Volumen | Druck proportional zur Kelvintemperatur |
 
-Die kinetische Gastheorie erklärt das **Gesetz von Boyle-Mariotte**: Wird das Volumen bei gleicher Temperatur kleiner, treffen die Gasmoleküle häufiger auf die Wände, also steigt der Druck. Das Modell nutzt den Druck in Einheiten von <InlineMath math="p_0" /> und das Volumen in Einheiten von <InlineMath math="V_0" />. Beweg den Regler und sieh, dass das Produkt <InlineMath math="pV" /> gleich bleibt.
+Wechsle unten zwischen allen drei Gasgesetzen und verstelle Kolbenvolumen sowie Heiztemperatur, um Wandstöße und Druckanzeige live zu vergleichen.
 
-<MathVisual
-  title={<>Gesetz von Boyle-Mariotte bei gleicher Temperatur</>}
+<GasLawThermalLab
+  title={<>Gasgesetze und Teilchenstöße im Zylinder</>}
   description={
     <>
-      Die Kurve ist <InlineMath math="pV = 4" /> in Einheiten von{" "}
-      <InlineMath math="p_0 V_0" />. Halbiert sich das Volumen, verdoppelt sich
-      der Druck.
+      Wähle Boyle, Charles oder Gay-Lussac und verstelle Temperatur oder
+      Volumen, um Wandstöße im Teilchenbild mit dem Gasdruck zu verknüpfen.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: 0, max: 8.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "w", min: 0.5, max: 8, value: 2, step: 0.25, label: "w" },
-    ],
-    objects: [
-      { id: "isotherm", kind: "function", appearance: "primary", formula: "4/x", domain: { min: 0.5, max: 8 } },
-      { id: "state", kind: "marker", x: "w", y: "4/w", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "pressure", formula: "4/w" },
-      { key: "product", formula: "w * 4/w" },
-    ],
-  }}
+  footer={<>Kleineres Volumen drängt Stöße enger zusammen, höhere Temperatur erhöht Stoßkraft und Rate.</>}
+  laws={["boyle", "charles", "gayLussac"]}
+  temperature={{ min: 200, max: 600, value: 300 }}
+  volume={{ min: 1, max: 8, value: 4 }}
   labels={{
-    w: <>Volumen <InlineMath math="V" /> in Einheiten von <InlineMath math="V_0" /></>,
-    pressure: <>Druck in Einheiten von <InlineMath math="p_0" /></>,
-    product: <><InlineMath math="pV" /></>,
+    law: "Gasgesetz",
+    laws: {
+      boyle: {
+        name: "Gesetz von Boyle",
+        relation: <>Bei fester Temperatur bleibt das Produkt aus Druck und Volumen konstant.</>,
+      },
+      charles: {
+        name: "Gesetz von Charles",
+        relation: <>Bei festem Druck wächst das Volumen proportional zur Kelvintemperatur.</>,
+      },
+      gayLussac: {
+        name: "Gesetz von Gay-Lussac",
+        relation: <>Bei festem Volumen steigt der Druck proportional zur Kelvintemperatur.</>,
+      },
+    },
+    temperature: "Gastemperatur",
+    volume: "Zylindervolumen",
+    constant: <>Konstant gehalten</>,
+    collisions: <>Wandstoßrate</>,
+    pressure: <>Gasdruck</>,
+    parts: {
+      piston: "Beweglicher Kolben",
+      cylinder: "Gaszylinder",
+      gauge: "Manometer",
+      heater: "Heizplatte",
+      molecules: "Gasmoleküle",
+    },
+    view: "3D-Kolbenzylinder mit Manometer, Heizplatte und bewegten Gasmolekülen",
   }}
 />
 
-Das **Gesetz von Gay-Lussac**, im Englischen Charles' law, zeigt, dass das Volumen eines Gases bei gleichem Druck linear mit der Temperatur wächst. Verlängerst du die Gerade nach hinten, wird das Volumen bei <InlineMath math="-273\ {}^\circ\text{C}" /> null. Diese Temperatur ist der **absolute Nullpunkt**, <InlineMath math="0\ \text{K}" />. Das Modell nutzt ein Gas mit <InlineMath math="273\ \text{cm}^3" /> bei <InlineMath math="0\ {}^\circ\text{C}" />.
+Verdichtet man ein Gas bei fester Temperatur auf ein Drittel seines Volumens, verdreifacht sich die Stoßzahl pro Wandfläche, sodass der Druck auf das Dreifache klettert.
+
+## Absoluter Nullpunkt
+
+Trägt man das Gasvolumen bei konstantem Druck über der Celsiustemperatur auf und verlängert die Gerade rückwärts, schneidet jedes ideale Gas bei <InlineMath math="-273^\circ\text{C}" /> das Volumen null, den **absoluten Nullpunkt** (<InlineMath math="0\text{ K}" />).
+
+<BlockMath math="T = \theta + 273" />
+
+> Jede Gasgesetzrechnung verlangt absolute Kelvintemperaturen, denn null Grad Celsius markiert nur den Gefrierpunkt von Wasser, keinen Stillstand der Teilchen.
+
+Bewege unten den Temperaturregler und vergleiche Celsiuswert, Kelvintemperatur und Gasvolumen entlang der Charles-Geraden.
 
 <MathVisual
-  title={<>Gesetz von Gay-Lussac und absoluter Nullpunkt</>}
+  title={<>Gesetz von Charles und Extrapolation zum Nullpunkt</>}
   description={
     <>
-      Volumen in <InlineMath math="\text{cm}^3" /> gegen Temperatur in{" "}
-      <InlineMath math="{}^\circ\text{C}" />. Die gestrichelte Linie verlängert
-      bis zum absoluten Nullpunkt, weil echte Gase vorher flüssig werden.
+      Gasvolumen in <InlineMath math="\text{cm}^3" /> über der
+      Celsiustemperatur, mit gestrichelter Extrapolation auf null bei{" "}
+      <InlineMath math="-273^\circ\text{C}" />.
     </>
   }
+  footer={<>Addiere stets 273 zu jeder Celsiustemperatur, bevor du ein Gasgesetz anwendest.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -300, max: 120 }, y: { min: 0, max: 420 } },
@@ -254,62 +257,30 @@ Das **Gesetz von Gay-Lussac**, im Englischen Charles' law, zeigt, dass das Volum
     ],
   }}
   labels={{
-    c: <>Temperatur <InlineMath math="\vartheta" /> in <InlineMath math="{}^\circ\text{C}" /></>,
-    zero: <>Absoluter Nullpunkt, <InlineMath math="-273\ {}^\circ\text{C}" /></>,
-    volume: <>Volumen in <InlineMath math="\text{cm}^3" /></>,
-    kelvin: <>Absolute Temperatur in K</>,
+    c: <>Temperatur <InlineMath math="\theta" /> (<InlineMath math="^\circ\text{C}" />)</>,
+    zero: <>Absoluter Nullpunkt</>,
+    volume: <>Volumen (<InlineMath math="\text{cm}^3" />)</>,
+    kelvin: <>Kelvin (<InlineMath math="\text{K}" />)</>,
   }}
 />
 
-Volumen und absolute Temperatur zeigen im Modell immer denselben Wert, also ist <InlineMath math="V/T" /> konstant. Das ist das Gesetz in seiner einfachsten Form.
+Reale Gase verflüssigen sich zwar vor <InlineMath math="0\text{ K}" />, doch die lineare Extrapolation verankert die universelle Kelvinskala der Thermodynamik.
 
-## Typische Fehler bei der Wärme
+## Wärmeberechnungen
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Wärme und Temperatur sind dasselbe. | Wärme ist übertragene Energie. Die Temperatur gibt an, wie heiß etwas ist. | Prüf die Einheiten: Joule für Wärme, Grad oder Kelvin für Temperatur. |
-| Die Temperatur steigt, während Eis schmilzt. | Die Energie löst Bindungen, also bleibt die Temperatur gleich. | Such den waagerechten Abschnitt der Erwärmungskurve. |
-| Grad Celsius in die Gasgesetze einsetzen. | Die Gasgesetze brauchen die absolute Temperatur. | Addiere <InlineMath math="273" />, bevor du einsetzt. |
-| <InlineMath math="Q = mc\Delta T" /> beim Sieden verwenden. | Während der Zustandsänderung ändert sich die Temperatur nicht. | Nutze <InlineMath math="Q = mL" /> für die waagerechten Abschnitte. |
+Prüfe zwei Alltagsrechnungen aus Wärmelehre und Gasgesetzen mit sauberer Einheitenwahl.
 
-Der dritte Fehler kommt bei Aufgaben zu den Gasgesetzen am häufigsten vor. **Rechne zuerst in Kelvin um**, dann erst weiter.
-
-## Übungen zur Wärme
-
-Die Aufgaben beginnen mit einer Formel und enden mit den Gasgesetzen. **Schreib die Einheit jeder Größe** auf, bevor du einsetzt.
-
-1. Berechne die Wärme, die nötig ist, um <InlineMath math="0{,}5\ \text{kg}" /> Aluminium um <InlineMath math="40\ \text{K}" /> zu erwärmen.
-
-2. <InlineMath math="0{,}4\ \text{kg}" /> Wasser mit <InlineMath math="90\ {}^\circ\text{C}" /> werden mit <InlineMath math="0{,}1\ \text{kg}" /> Wasser mit <InlineMath math="15\ {}^\circ\text{C}" /> gemischt. Berechne die Mischtemperatur, wenn keine Wärme verloren geht.
-
-3. Ein Gas in einer Spritze hat bei <InlineMath math="100\ \text{kPa}" /> das Volumen <InlineMath math="60\ \text{cm}^3" />. Es wird bei gleicher Temperatur langsam auf <InlineMath math="20\ \text{cm}^3" /> zusammengedrückt. Berechne den neuen Druck.
-
-4. Ein Reifen enthält Luft mit <InlineMath math="150\ \text{kPa}" /> bei <InlineMath math="27\ {}^\circ\text{C}" />. Die Luft wird bei gleichem Volumen auf <InlineMath math="127\ {}^\circ\text{C}" /> erwärmt. Berechne den neuen Druck.
-
-### Lösungen
-
-**Lösung 1**: Nutze <InlineMath math="Q = mc\Delta T" /> mit <InlineMath math="c = 900\ \text{J/(kg K)}" />:
-
-<BlockMath math="Q = (0{,}5)(900)(40) = 18{.}000\ \text{J}" />
-
-**Lösung 2**: Die vom heißen Wasser abgegebene Wärme nimmt das kalte Wasser auf. Die Mischtemperatur sei <InlineMath math="\vartheta" />:
+**Mischtemperatur prüfen.** Mische <InlineMath math="0{,}4\text{ kg}" /> Wasser bei <InlineMath math="90^\circ\text{C}" /> mit <InlineMath math="0{,}1\text{ kg}" /> Wasser bei <InlineMath math="15^\circ\text{C}" /> in einem isolierten Gefäß. Bestimme die Mischtemperatur <InlineMath math="\theta" />.
 
 <MathContainer>
-<BlockMath math="(0{,}4)(4200)(90 - \vartheta) = (0{,}1)(4200)(\vartheta - 15)" />
-<BlockMath math="36 - 0{,}4\vartheta = 0{,}1\vartheta - 1{,}5" />
-<BlockMath math="\vartheta = \frac{37{,}5}{0{,}5} = 75\ {}^\circ\text{C}" />
+<BlockMath math="(0{,}4)(4{,}200)(90 - \theta) = (0{,}1)(4{,}200)(\theta - 15)" />
+<BlockMath math="36 - 0{,}4\theta = 0{,}1\theta - 1{,}5 \implies \theta = 75^\circ\text{C}" />
 </MathContainer>
 
-Probe: <InlineMath math="75\ {}^\circ\text{C}" /> liegt zwischen <InlineMath math="15\ {}^\circ\text{C}" /> und <InlineMath math="90\ {}^\circ\text{C}" />, näher am heißen Wasser, weil dessen Masse größer ist.
+Die Endtemperatur liegt nahe an <InlineMath math="90^\circ\text{C}" />, weil viermal mehr heißes als kaltes Wasser gemischt wurde.
 
-**Lösung 3**: Die Temperatur bleibt gleich, also gilt das Gesetz von Boyle-Mariotte:
+**Reifendruck prüfen.** Luft in einem starren Reifen steht bei <InlineMath math="150\text{ kPa}" /> und <InlineMath math="27^\circ\text{C}" /> (<InlineMath math="300\text{ K}" />). Nach der Fahrt erwärmt sie sich auf <InlineMath math="127^\circ\text{C}" /> (<InlineMath math="400\text{ K}" />). Bestimme den neuen Druck.
 
-<BlockMath math="p_2 = \frac{p_1V_1}{V_2} = \frac{(100)(60)}{20} = 300\ \text{kPa}" />
+<BlockMath math="P_2 = \frac{P_1 T_2}{T_1} = \frac{(150)(400)}{300} = 200\text{ kPa}" />
 
-Das Volumen sinkt auf ein Drittel, also **verdreifacht sich der Druck**.
-
-**Lösung 4**: Das Volumen bleibt gleich, also gilt das Gesetz von Amontons mit absoluten Temperaturen: <InlineMath math="T_1 = 300\ \text{K}" /> und <InlineMath math="T_2 = 400\ \text{K}" />.
-
-<BlockMath math="p_2 = \frac{p_1T_2}{T_1} = \frac{(150)(400)}{300} = 200\ \text{kPa}" />
-
-Setzt du versehentlich Grad Celsius ein, erhältst du <InlineMath math="150 \cdot 127 : 27 \approx 706\ \text{kPa}" />, ein unmöglicher Wert für einen gewöhnlichen Reifen.
+Ein versehentliches Einsetzen in Grad Celsius lieferte falsche <InlineMath math="706\text{ kPa}" />, weshalb die Umrechnung in Kelvin immer zuerst erfolgt.

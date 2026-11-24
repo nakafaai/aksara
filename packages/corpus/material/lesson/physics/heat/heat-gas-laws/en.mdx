@@ -1,39 +1,28 @@
 export const metadata = {
-  title: "Heat Notes for Form Four Physics",
+  title: "Calorimetry Latent Heat and Gas Laws",
   description:
-    "Form 4 Physics Chapter 4: use Q = mcθ and Q = ml, explain thermal equilibrium, read a heating curve and solve Boyle's, Charles' and Gay-Lussac's laws.",
+    "Thermal equilibrium, specific heat capacity in a calorimeter, latent heat plateaus during state changes, and Boyle's, Charles's, and Gay-Lussac's gas laws.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Heat",
 };
 
-## Heat and Temperature Are Different
-
-**Heat** is energy transferred from a hot body to a cold body, measured in joules. **Temperature** measures how hot something is, linked to the average kinetic energy of its particles, measured in degrees Celsius or kelvin. The two main formulas of this chapter give the energy to raise a temperature and the energy to change a state of matter:
-
-<MathContainer>
-<BlockMath math="Q = mc\theta" />
-<BlockMath math="Q = ml" />
-</MathContainer>
-
-Here <InlineMath math="m" /> is the mass in kilograms, <InlineMath math="c" /> is the **specific heat capacity**, <InlineMath math="\theta" /> is the change in temperature, and <InlineMath math="l" /> is the **specific latent heat**. In these notes, you heat water in a kettle, feed energy into ice until it becomes steam, and squeeze a gas in a syringe.
-
 ## Thermal Equilibrium
 
-When two bodies touch, heat flows from the hotter one to the colder one. The net flow stops when both reach the same temperature. This state is called **thermal equilibrium**. A thermometer works because of it: the thermometer reaches thermal equilibrium with a body, and then its reading equals the body's temperature.
+Touch a metal spoon resting in hot soup and energy streams straight into your fingers. **Heat** is thermal energy in transit from a hotter body to a colder one, measured in joules, whereas **temperature** tracks the average kinetic energy of particles in degrees Celsius or kelvin.
 
-This model shows two metal blocks of the same mass and material, one at <InlineMath math="80^\circ\text{C}" /> and one at <InlineMath math="20^\circ\text{C}" />, placed in contact. Move the time slider and watch both temperatures meet at <InlineMath math="50^\circ\text{C}" />.
+When two bodies touch, net heat flows until both settle at the same temperature, a state called **thermal equilibrium**. A thermometer works precisely by reaching thermal equilibrium with whatever it measures. Slide the time control below to watch two identical metal blocks starting at <InlineMath math="80^\circ\text{C}" /> and <InlineMath math="20^\circ\text{C}" /> converge.
 
 <MathVisual
   title={<>Two Blocks Reaching Thermal Equilibrium</>}
   description={
     <>
-      The hot block's temperature is <InlineMath math="50 + 30e^{-t/10}" /> and
-      the cold block's is <InlineMath math="50 - 30e^{-t/10}" />, with{" "}
-      <InlineMath math="t" /> in seconds. The vertical axis is the temperature in{" "}
-      <InlineMath math="^\circ\text{C}" />.
+      Temperatures of a hot block and an identical cold block in contact,
+      meeting smoothly at <InlineMath math="50^\circ\text{C}" /> with no heat
+      lost outside.
     </>
   }
+  footer={<>Net heat flow stops once both bodies share the exact same temperature.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 90 } },
@@ -52,20 +41,28 @@ This model shows two metal blocks of the same mass and material, one at <InlineM
     ],
   }}
   labels={{
-    a: <>Time <InlineMath math="a" /> in seconds</>,
-    "hot-reading": <>Hot block in <InlineMath math="^\circ\text{C}" /></>,
-    "cold-reading": <>Cold block in <InlineMath math="^\circ\text{C}" /></>,
+    a: <>Time <InlineMath math="a" /> (s)</>,
+    "hot-reading": <>Hot block (<InlineMath math="^\circ\text{C}" />)</>,
+    "cold-reading": <>Cold block (<InlineMath math="^\circ\text{C}" />)</>,
   }}
 />
 
-The final temperature sits exactly in the middle because both blocks have the same mass and material. The heat lost by the hot block equals the heat gained by the cold block, as long as no heat escapes to the surroundings.
+Both blocks meet halfway because they share the same mass and material. When masses differ, the final equilibrium temperature sits closer to the heavier body because energy lost by the hot object equals energy gained by the cold one.
 
-## Specific Heat Capacity
+## Heat Capacity and State
 
-The **specific heat capacity**, <InlineMath math="c" />, is the heat needed to raise the temperature of <InlineMath math="1\text{ kg}" /> of a substance by <InlineMath math="1^\circ\text{C}" />. Its unit is <InlineMath math="\text{J kg}^{-1}\,^\circ\text{C}^{-1}" />. A substance with a large <InlineMath math="c" /> heats up slowly and cools down slowly.
+Supplying heat to a substance raises its **internal energy** in one of two ways: speeding up molecules to raise temperature, or breaking intermolecular bonds to change state.
+
+### Specific Heat Capacity
+
+The **specific heat capacity** <InlineMath math="c" /> is the energy needed to raise <InlineMath math="1\text{ kg}" /> of a substance by <InlineMath math="1^\circ\text{C}" />.
+
+<BlockMath math="Q = mc\Delta\theta" />
+
+Substances with large <InlineMath math="c" /> soak up huge heat while warming slowly. Compare six common materials below.
 
 <Chart
-  title={<>Specific Heat Capacity of Some Substances</>}
+  title={<>Specific Heat Capacity of Six Common Substances</>}
   bars="apart"
   categories={["Water", "Ice", "Aluminium", "Iron", "Copper", "Lead"]}
   series={[
@@ -74,164 +71,171 @@ The **specific heat capacity**, <InlineMath math="c" />, is the heat needed to r
   valueLabel="Specific heat capacity (J/kg °C)"
   description={
     <>
-      Common rounded values: water <InlineMath math="4{,}200" />, ice{" "}
-      <InlineMath math="2{,}100" />, aluminium <InlineMath math="900" />, iron{" "}
-      <InlineMath math="450" />, copper <InlineMath math="390" /> and lead{" "}
+      Rounded specific heat capacities from water at{" "}
+      <InlineMath math="4{,}200" /> down to lead at{" "}
       <InlineMath math="130\text{ J kg}^{-1}\,^\circ\text{C}^{-1}" />.
     </>
   }
+  footer={<>Water stores nearly ten times as much heat per degree as iron or copper.</>}
 />
 
-Water has a very large specific heat capacity. That's why water is used as the coolant in a car radiator, and why the sea warms up slowly during the day and drives a sea breeze.
+Because water's specific heat capacity is so high, it makes an ideal engine coolant and keeps coastal towns milder than inland deserts.
 
-The electric kettle in this model heats water from <InlineMath math="25^\circ\text{C}" />. Pick the amount of water and compare the energy and time needed.
+In a laboratory, an insulated electrical **calorimeter** delivers known energy <InlineMath math="Pt" /> directly into a sample while a stirrer keeps temperature uniform. Switch materials and tune mass, heater power, and heating time below.
 
-<KettleHeatingLab
-  title={<>An Electric Kettle Boiling Water</>}
+<SpecificHeatCalorimeterLab
+  title={<>Electrical Calorimeter for Specific Heat Capacity</>}
   description={
     <>
-      Pick half, full or brim full. The energy needed is directly proportional
-      to the mass of water.
+      Compare water, aluminium, copper, iron, and oil inside an insulated
+      calorimeter as you vary sample mass, heater wattage, and heating duration.
     </>
   }
+  footer={<>Same electrical energy heats low-c metals far more sharply than water.</>}
+  materials={["water", "aluminium", "copper", "iron", "oil"]}
+  mass={{ min: 0.2, max: 2, value: 0.5 }}
+  power={{ min: 50, max: 500, value: 200 }}
+  minutes={{ min: 1, max: 15, value: 5 }}
   labels={{
-    chooseFill: "Pick the amount of water",
-    energy: <>Energy needed</>,
-    power: <>Kettle power</>,
-    rise: <>Temperature rise</>,
-    time: <>Heating time</>,
-    viewLabel: "An electric kettle heating water",
+    material: "Sample material",
+    materials: {
+      water: "Water",
+      aluminium: "Aluminium",
+      copper: "Copper",
+      iron: "Iron",
+      oil: "Cooking oil",
+    },
+    mass: "Sample mass",
+    power: "Heater power",
+    time: "Heating time",
+    energy: <>Electrical energy supplied</>,
+    specificHeat: <>Specific heat capacity</>,
+    temperatureRise: <>Temperature rise</>,
+    parts: {
+      heater: "Immersion heater",
+      thermometer: "Thermometer",
+      stirrer: "Stirrer",
+      insulation: "Insulating jacket",
+      sample: "Sample block or liquid",
+    },
+    view: "3D insulated electrical calorimeter with immersion heater, thermometer, stirrer, and selectable sample",
   }}
 />
 
-### Example Energy to Heat Water
+Doubling sample mass halves the temperature rise for the same heater energy, while switching from water to copper multiplies the temperature rise by more than ten.
 
-Find **the heat needed** to warm <InlineMath math="2.0\text{ kg}" /> of water from <InlineMath math="25^\circ\text{C}" /> to <InlineMath math="100^\circ\text{C}" />.
+### Latent Heat Plateaus
 
-<BlockMath math="Q = mc\theta = (2.0)(4{,}200)(100 - 25) = 630{,}000\text{ J}" />
+During melting or boiling, a thermometer stops climbing even though the heater keeps running. Never use <InlineMath math="Q = mc\Delta\theta" /> along a flat plateau because temperature is unchanged. All incoming energy breaks intermolecular bonds as **latent heat**:
 
-Check the units: <InlineMath math="\text{kg} \times \text{J kg}^{-1}\,^\circ\text{C}^{-1} \times {}^\circ\text{C} = \text{J}" />. The answer is <InlineMath math="6.3 \times 10^{5}\text{ J}" />.
+<BlockMath math="Q = ml" />
 
-### Example Kettle Heating Time
+> While a pure substance melts or boils, heat breaks intermolecular bonds instead of raising average particle kinetic energy, keeping temperature flat.
 
-A <InlineMath math="2{,}000\text{ W}" /> kettle heats <InlineMath math="1.5\text{ kg}" /> of water from <InlineMath math="25^\circ\text{C}" /> to <InlineMath math="100^\circ\text{C}" />. Assume no heat is lost, so **the electrical energy equals the heat gained**, <InlineMath math="Pt = mc\theta" />:
+Watch a constant-power heater melt <InlineMath math="0.20\text{ kg}" /> of solid K at <InlineMath math="80^\circ\text{C}" /> for <InlineMath math="5.0\text{ minutes}" /> and then warm the liquid to <InlineMath math="100^\circ\text{C}" /> in <InlineMath math="2.0\text{ minutes}" /> below.
 
-<BlockMath math="t = \frac{mc\theta}{P} = \frac{(1.5)(4{,}200)(75)}{2{,}000} = 236\text{ s}" />
-
-That's about four minutes. In practice it takes longer, because some heat warms the kettle and the air.
-
-## Latent Heat and the Heating Curve
-
-While matter changes state, its temperature stays constant even though heat keeps flowing in. That energy goes into **breaking the bonds between particles**, not into extra kinetic energy. It's called **latent heat**. For ice, the specific latent heat of fusion is <InlineMath math="3.34 \times 10^{5}\text{ J kg}^{-1}" />, and for water, the specific latent heat of vaporisation is <InlineMath math="2.26 \times 10^{6}\text{ J kg}^{-1}" />.
-
-The curve below is calculated for <InlineMath math="0.1\text{ kg}" /> of ice starting at <InlineMath math="-20^\circ\text{C}" />. Move the energy slider and notice the two flat parts, melting and boiling.
-
-<MathVisual
-  title={<>Heating Curve from Ice to Steam</>}
+<HeatingCurveLab
+  title={<>Melting Plateau and Liquid Warming of Substance K</>}
   description={
     <>
-      The horizontal axis is the energy supplied in kJ. The vertical axis is the
-      temperature in <InlineMath math="^\circ\text{C}" />. The first flat part
-      takes <InlineMath math="33.4\text{ kJ}" /> and the second{" "}
-      <InlineMath math="226\text{ kJ}" />.
+      Find heater power from the sloping liquid stretch first, then apply that
+      same power across the five-minute melting plateau.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 320 }, y: { min: -30, max: 130 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "q", min: 0, max: 305, value: 20, step: 1, label: "q" },
-    ],
-    objects: [
-      { id: "ice", kind: "segment", appearance: "primary", from: { x: 0, y: -20 }, to: { x: 4.2, y: 0 } },
-      { id: "melting", kind: "segment", appearance: "secondary", from: { x: 4.2, y: 0 }, to: { x: 37.6, y: 0 } },
-      { id: "water", kind: "segment", appearance: "primary", from: { x: 37.6, y: 0 }, to: { x: 79.6, y: 100 } },
-      { id: "boiling", kind: "segment", appearance: "secondary", from: { x: 79.6, y: 100 }, to: { x: 305.6, y: 100 } },
-      { id: "now", kind: "marker", x: "q", y: "-20 + 20min(max(q, 0), 4.2)/4.2 + 100min(max(q - 37.6, 0), 42)/42", appearance: "warning" },
-    ],
-    labels: [
-      { key: "melting", objectId: "melting", at: { x: 20.9, y: 0 }, placement: "below" },
-      { key: "boiling", objectId: "boiling", at: { x: 192.6, y: 100 }, placement: "above" },
-    ],
-    readouts: [
-      { key: "temperature", formula: "-20 + 20min(max(q, 0), 4.2)/4.2 + 100min(max(q - 37.6, 0), 42)/42" },
-    ],
-  }}
+  footer={<>Constant heater power means energy absorbed in each stage scales directly with duration.</>}
   labels={{
-    q: <>Energy supplied <InlineMath math="q" /> in kJ</>,
-    melting: <>Melting</>,
-    boiling: <>Boiling</>,
-    temperature: <>Temperature in <InlineMath math="^\circ\text{C}" /></>,
+    latent: <>Specific latent heat of fusion</>,
+    power: <>Heater power</>,
+    viewLabel: "Beaker with immersion heater melting substance K and plotting its heating curve",
   }}
+  finalTemperature={100}
+  liquidHeat={2000}
+  mass={0.2}
+  meltMinutes={5}
+  meltingPoint={80}
+  warmMinutes={2}
 />
 
-The total energy is calculated part by part:
+Warming liquid K absorbs <InlineMath math="8{,}000\text{ J}" /> in <InlineMath math="120\text{ s}" />, giving <InlineMath math="66.7\text{ W}" />. Over <InlineMath math="300\text{ s}" /> of melting, that heater supplies <InlineMath math="20{,}000\text{ J}" />, yielding a specific latent heat of fusion of <InlineMath math="1.0 \times 10^5\text{ J kg}^{-1}" />.
 
-<MathContainer>
-<BlockMath math="Q_1 = (0.1)(2{,}100)(20) = 4{,}200\text{ J}" />
-<BlockMath math="Q_2 = (0.1)(3.34 \times 10^{5}) = 33{,}400\text{ J}" />
-<BlockMath math="Q_3 = (0.1)(4{,}200)(100) = 42{,}000\text{ J}" />
-<BlockMath math="Q_4 = (0.1)(2.26 \times 10^{6}) = 226{,}000\text{ J}" />
-</MathContainer>
+## Kinetic Theory of Gases
 
-The boiling part is the longest. Turning water into steam takes about five times the energy needed to heat it from <InlineMath math="0^\circ\text{C}" /> to <InlineMath math="100^\circ\text{C}" />. That's also why steam at <InlineMath math="100^\circ\text{C}" /> scalds skin worse than boiling water.
+A trapped gas builds **gas pressure** because billions of fast molecules strike the container walls every second. Holding one variable constant links pressure <InlineMath math="P" />, volume <InlineMath math="V" />, and absolute temperature <InlineMath math="T" /> through three classic laws:
 
-## Gas Laws
-
-For a fixed mass of gas, the pressure <InlineMath math="P" />, volume <InlineMath math="V" /> and absolute temperature <InlineMath math="T" /> are linked by three laws. The temperature has to be in **kelvin**: <InlineMath math="T = \theta + 273" />.
-
-| Law | Quantity kept constant | Relationship |
+| Law | Held constant | Relation |
 | :--- | :--- | :--- |
-| Boyle's law | Temperature | <InlineMath math="P_1V_1 = P_2V_2" /> |
-| Charles' law | Pressure | <InlineMath math="\dfrac{V_1}{T_1} = \dfrac{V_2}{T_2}" /> |
-| Gay-Lussac's law | Volume | <InlineMath math="\dfrac{P_1}{T_1} = \dfrac{P_2}{T_2}" /> |
+| Boyle's law | Temperature | Inverse pressure and volume |
+| Charles's law | Pressure | Direct volume and kelvin temperature |
+| Gay-Lussac's law | Volume | Direct pressure and kelvin temperature |
 
-Kinetic theory explains **Boyle's law**: when the volume shrinks at constant temperature, the gas molecules hit the container walls more often, so the pressure rises. This model uses pressure in units of <InlineMath math="P_0" /> and volume in units of <InlineMath math="V_0" />. Move the slider and watch the product <InlineMath math="PV" /> stay the same.
+Switch between all three gas laws and vary piston volume and heater temperature below to watch wall collision rates and gauge pressure respond in real time.
 
-<MathVisual
-  title={<>Boyle's Law at Constant Temperature</>}
+<GasLawThermalLab
+  title={<>Gas Laws and Molecular Collisions in a Cylinder</>}
   description={
     <>
-      The curve is <InlineMath math="PV = 4" /> in units of{" "}
-      <InlineMath math="P_0 V_0" />. When the volume halves, the pressure
-      doubles.
+      Choose Boyle's, Charles's, or Gay-Lussac's law and adjust temperature or
+      volume to link microscopic wall impacts with macroscopic gas pressure.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: 0, max: 8.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "w", min: 0.5, max: 8, value: 2, step: 0.25, label: "w" },
-    ],
-    objects: [
-      { id: "isotherm", kind: "function", appearance: "primary", formula: "4/x", domain: { min: 0.5, max: 8 } },
-      { id: "state", kind: "marker", x: "w", y: "4/w", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "pressure", formula: "4/w" },
-      { key: "product", formula: "w * 4/w" },
-    ],
-  }}
+  footer={<>Smaller volume packs impacts closer in space, higher temperature hits walls faster and harder.</>}
+  laws={["boyle", "charles", "gayLussac"]}
+  temperature={{ min: 200, max: 600, value: 300 }}
+  volume={{ min: 1, max: 8, value: 4 }}
   labels={{
-    w: <>Volume <InlineMath math="V" /> in units of <InlineMath math="V_0" /></>,
-    pressure: <>Pressure in units of <InlineMath math="P_0" /></>,
-    product: <><InlineMath math="PV" /></>,
+    law: "Gas law",
+    laws: {
+      boyle: {
+        name: "Boyle's law",
+        relation: <>Constant temperature keeps pressure times volume constant.</>,
+      },
+      charles: {
+        name: "Charles's law",
+        relation: <>Constant pressure makes volume proportional to kelvin temperature.</>,
+      },
+      gayLussac: {
+        name: "Gay-Lussac's law",
+        relation: <>Constant volume makes pressure proportional to kelvin temperature.</>,
+      },
+    },
+    temperature: "Gas temperature",
+    volume: "Cylinder volume",
+    constant: <>Held constant</>,
+    collisions: <>Wall collision rate</>,
+    pressure: <>Gas pressure</>,
+    parts: {
+      piston: "Movable piston",
+      cylinder: "Gas cylinder",
+      gauge: "Pressure gauge",
+      heater: "Thermal base",
+      molecules: "Gas molecules",
+    },
+    view: "3D piston-cylinder gas chamber with pressure gauge, thermal base, and moving gas molecules",
   }}
 />
 
-**Charles' law** shows that the volume of a gas rises linearly with temperature at constant pressure. Extend the line backwards and the volume reaches zero at <InlineMath math="-273^\circ\text{C}" />. That temperature is **absolute zero**, <InlineMath math="0\text{ K}" />. This model uses a gas whose volume is <InlineMath math="273\text{ cm}^3" /> at <InlineMath math="0^\circ\text{C}" />.
+Compressing a gas to one third of its volume at fixed temperature triples collision frequency per unit wall area, tripling the pressure.
+
+## Absolute Zero and Kelvin
+
+Plot gas volume against Celsius temperature at constant pressure and extend the straight line backward. Every ideal gas extrapolates to zero volume at <InlineMath math="-273^\circ\text{C}" />, defining **absolute zero** (<InlineMath math="0\text{ K}" />).
+
+<BlockMath math="T = \theta + 273" />
+
+> Every gas-law ratio requires absolute kelvin temperature because zero Celsius is merely the freezing point of water, not zero molecular motion.
+
+Drag the temperature slider below to compare Celsius readings, kelvin temperatures, and gas volume along Charles's straight line.
 
 <MathVisual
-  title={<>Charles' Law and Absolute Zero</>}
+  title={<>Charles's Law and Extrapolation to Absolute Zero</>}
   description={
     <>
-      Volume in <InlineMath math="\text{cm}^3" /> against temperature in{" "}
-      <InlineMath math="^\circ\text{C}" />. The dashed line is the extrapolation
-      to absolute zero, because real gases liquefy before they get there.
+      Gas volume in <InlineMath math="\text{cm}^3" /> versus Celsius
+      temperature, with the dashed extrapolation reaching zero at{" "}
+      <InlineMath math="-273^\circ\text{C}" />.
     </>
   }
+  footer={<>Add 273 to every Celsius reading before substituting into Charles or Gay-Lussac ratios.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -300, max: 120 }, y: { min: 0, max: 420 } },
@@ -254,62 +258,30 @@ Kinetic theory explains **Boyle's law**: when the volume shrinks at constant tem
     ],
   }}
   labels={{
-    c: <>Temperature <InlineMath math="\theta" /> in <InlineMath math="^\circ\text{C}" /></>,
-    zero: <>Absolute zero, <InlineMath math="-273^\circ\text{C}" /></>,
-    volume: <>Volume in <InlineMath math="\text{cm}^3" /></>,
-    kelvin: <>Absolute temperature in K</>,
+    c: <>Temperature <InlineMath math="\theta" /> (<InlineMath math="^\circ\text{C}" />)</>,
+    zero: <>Absolute zero</>,
+    volume: <>Volume (<InlineMath math="\text{cm}^3" />)</>,
+    kelvin: <>Kelvin (<InlineMath math="\text{K}" />)</>,
   }}
 />
 
-The volume and absolute temperature readings are always equal in this model, so <InlineMath math="V/T" /> is constant. That's Charles' law in its simplest form.
+Real gases liquefy before hitting <InlineMath math="0\text{ K}" />, yet the linear extrapolation fixes the universal kelvin scale used across thermodynamics.
 
-## Common Mistakes about Heat
+## Thermal Calculation Checks
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Heat and temperature are the same thing. | Heat is energy transferred. Temperature is how hot something is. | Check the units: joules for heat, degrees or kelvin for temperature. |
-| The temperature rises while ice melts. | The energy goes into breaking bonds, so the temperature stays constant. | Find the flat part of the heating curve. |
-| Using degrees Celsius in the gas laws. | The gas laws need absolute temperature. | Add <InlineMath math="273" /> before you substitute. |
-| Using <InlineMath math="Q = mc\theta" /> during boiling. | There's no temperature change during a change of state. | Use <InlineMath math="Q = ml" /> for the flat parts. |
+Verify two everyday heat and gas calculations with exact unit conversions.
 
-The third mistake is the most common one in gas law questions. **Convert to kelvin first**, then calculate.
-
-## Practice on Heat
-
-These questions start with one formula and finish with the gas laws. **Write the unit of every quantity** before you substitute.
-
-1. Find the heat needed to raise the temperature of <InlineMath math="0.5\text{ kg}" /> of aluminium by <InlineMath math="40^\circ\text{C}" />.
-
-2. A <InlineMath math="0.4\text{ kg}" /> portion of water at <InlineMath math="90^\circ\text{C}" /> is mixed with <InlineMath math="0.1\text{ kg}" /> of water at <InlineMath math="15^\circ\text{C}" />. Find the final temperature, assuming no heat is lost.
-
-3. A gas in a syringe at <InlineMath math="100\text{ kPa}" /> has a volume of <InlineMath math="60\text{ cm}^3" />. It's compressed slowly to <InlineMath math="20\text{ cm}^3" /> at constant temperature. Find the new pressure.
-
-4. A tyre holds air at <InlineMath math="150\text{ kPa}" /> and <InlineMath math="27^\circ\text{C}" />. The air is heated to <InlineMath math="127^\circ\text{C}" /> at constant volume. Find the new pressure.
-
-### Solutions
-
-**Solution 1**: Use <InlineMath math="Q = mc\theta" /> with <InlineMath math="c = 900\text{ J kg}^{-1}\,^\circ\text{C}^{-1}" />:
-
-<BlockMath math="Q = (0.5)(900)(40) = 18{,}000\text{ J}" />
-
-**Solution 2**: The heat given out by the hot water equals the heat taken in by the cold water. Let the final temperature be <InlineMath math="\theta" />:
+**Water mixing check.** Mix <InlineMath math="0.4\text{ kg}" /> of water at <InlineMath math="90^\circ\text{C}" /> with <InlineMath math="0.1\text{ kg}" /> of water at <InlineMath math="15^\circ\text{C}" /> inside an insulated cup. Find the equilibrium temperature <InlineMath math="\theta" />.
 
 <MathContainer>
 <BlockMath math="(0.4)(4{,}200)(90 - \theta) = (0.1)(4{,}200)(\theta - 15)" />
-<BlockMath math="36 - 0.4\theta = 0.1\theta - 1.5" />
-<BlockMath math="\theta = \frac{37.5}{0.5} = 75^\circ\text{C}" />
+<BlockMath math="36 - 0.4\theta = 0.1\theta - 1.5 \implies \theta = 75^\circ\text{C}" />
 </MathContainer>
 
-Check: <InlineMath math="75^\circ\text{C}" /> lies between <InlineMath math="15^\circ\text{C}" /> and <InlineMath math="90^\circ\text{C}" />, closer to the hot water because its mass is larger.
+The final temperature sits much closer to <InlineMath math="90^\circ\text{C}" /> because four times as much hot water was poured in.
 
-**Solution 3**: The temperature is constant, so use Boyle's law:
+**Tyre pressure check.** Air inside a rigid tyre sits at <InlineMath math="150\text{ kPa}" /> and <InlineMath math="27^\circ\text{C}" /> (<InlineMath math="300\text{ K}" />). After driving, it warms to <InlineMath math="127^\circ\text{C}" /> (<InlineMath math="400\text{ K}" />). Find the new pressure.
 
-<BlockMath math="P_2 = \frac{P_1V_1}{V_2} = \frac{(100)(60)}{20} = 300\text{ kPa}" />
+<BlockMath math="P_2 = \frac{P_1 T_2}{T_1} = \frac{(150)(400)}{300} = 200\text{ kPa}" />
 
-The volume becomes a third, so **the pressure triples**.
-
-**Solution 4**: The volume is constant, so use Gay-Lussac's law with absolute temperatures: <InlineMath math="T_1 = 300\text{ K}" /> and <InlineMath math="T_2 = 400\text{ K}" />.
-
-<BlockMath math="P_2 = \frac{P_1T_2}{T_1} = \frac{(150)(400)}{300} = 200\text{ kPa}" />
-
-If you used degrees Celsius by mistake, you'd get <InlineMath math="150 \times 127 / 27 \approx 706\text{ kPa}" />, an impossible value for an ordinary tyre.
+Using Celsius by mistake would falsely predict <InlineMath math="706\text{ kPa}" />, illustrating why kelvin conversion always comes first.

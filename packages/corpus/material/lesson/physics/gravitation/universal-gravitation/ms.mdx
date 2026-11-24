@@ -1,35 +1,33 @@
 export const metadata = {
-  title: "Nota Kegravitian Tingkatan Empat",
+  title: "Hukum Kegravitian Semesta dan Orbit Kepler",
   description:
-    "Nota Fizik Tingkatan 4 Bab 3: guna Hukum Kegravitian Semesta Newton, kira pecutan graviti, Hukum Kepler, laju satelit dan halaju lepas dengan latihan.",
+    "Hukum Kegravitian Semesta Newton, pecutan graviti permukaan planet, orbit satelit bulat, Hukum Kepler, dan kiraan halaju lepas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Kegravitian",
 };
 
-## Hukum Kegravitian Semesta Newton
+## Hukum Kegravitian Semesta
 
-**Hukum Kegravitian Semesta Newton** menyatakan bahawa daya graviti antara dua jasad berkadar terus dengan hasil darab jisim kedua-dua jasad dan berkadar songsang dengan kuasa dua jarak antara pusat jasad itu:
+Jatuhkan sebiji batu sambil melihat Bulan pada malam yang sama. Kedua-duanya mengikut **Hukum Kegravitian Semesta Newton**: setiap jasad berjisim menarik setiap jasad lain sepanjang garis yang menyambungkan pusat masing-masing.
 
 <BlockMath math="F = \frac{G m_1 m_2}{r^2}" />
 
-Di sini <InlineMath math="G = 6.67 \times 10^{-11}\text{ N m}^2\text{ kg}^{-2}" /> ialah **pemalar kegravitian semesta**, <InlineMath math="m_1" /> dan <InlineMath math="m_2" /> ialah jisim dalam kilogram, dan <InlineMath math="r" /> ialah jarak antara pusat dalam meter. Daya yang sama menarik epal ke Bumi dan memegang Bulan dalam orbit. Dalam model di sini, kamu mengubah jarak, mendaki dari pusat Bumi ke angkasa, dan membandingkan orbit satelit sebenar.
+Di sini <InlineMath math="G" /> bernilai <InlineMath math="6.67 \times 10^{-11}\text{ N m}^2\text{ kg}^{-2}" />, <InlineMath math="m_1" /> dan <InlineMath math="m_2" /> ialah jisim dalam kilogram, manakala <InlineMath math="r" /> ialah jarak antara pusat dalam meter. Nilai <InlineMath math="G" /> amat kecil sehingga daya graviti hanya ketara apabila sekurang-kurangnya satu jasad sebesar planet atau bintang.
 
-Hukum ini berlaku untuk **semua** jasad yang berjisim, termasuk kamu dan buku kamu. Daya antara dua jasad kecil sangat lemah kerana <InlineMath math="G" /> sangat kecil. Daya graviti hanya ketara apabila sekurang-kurangnya satu jasad sangat besar, seperti planet atau bintang.
+> Setiap jarak kegravitian sentiasa diukur dari pusat jasad, bukan dari permukaannya.
 
-## Kesan Jarak pada Daya Graviti
-
-Bahagian <InlineMath math="r^2" /> dalam penyebut bermaksud daya graviti jatuh dengan cepat apabila jarak bertambah. Jika jarak menjadi **dua kali ganda**, daya menjadi **satu perempat**. Gerakkan gelangsar jarak dan perhatikan lengkung kuasa dua songsang.
+Menggandakan jarak mengurangkan daya menjadi satu perempat, bukan separuh, kerana penyebut mengkuasakan dua nilai <InlineMath math="r" />. Gerakkan peluncur jarak di bawah untuk melihat lengkung songsang kuasa dua.
 
 <MathVisual
   title={<>Daya Graviti Melawan Jarak</>}
   description={
     <>
-      Daya graviti dalam unit <InlineMath math="F_0" />, iaitu daya pada jarak{" "}
-      <InlineMath math="r = 1" />. Lengkung ialah{" "}
-      <InlineMath math="F = F_0 / r^2" />.
+      Daya graviti relatif dalam unit <InlineMath math="F_0" />, iaitu daya
+      pada jarak satu unit.
     </>
   }
+  footer={<>Jarak dua kali ganda menurunkan daya ke suku, tiga kali ganda ke satu persembilan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 4.2 }, y: { min: 0, max: 1.3 } },
@@ -52,136 +50,146 @@ Bahagian <InlineMath math="r^2" /> dalam penyebut bermaksud daya graviti jatuh d
   }}
 />
 
-### Contoh Daya antara Bumi dan Bulan
+Pada jarak tiga kali ganda, nisbah daya menjadi satu persembilan lalu daya <InlineMath math="36\text{ N}" /> menyusut kepada <InlineMath math="4\text{ N}" />. Mengikut hukum ketiga Newton, magnitud daya Bumi terhadap Bulan sama dengan daya Bulan terhadap Bumi.
 
-Jisim Bumi ialah <InlineMath math="5.97 \times 10^{24}\text{ kg}" />, jisim Bulan <InlineMath math="7.35 \times 10^{22}\text{ kg}" />, dan jarak antara pusatnya <InlineMath math="3.84 \times 10^{8}\text{ m}" />. Hitung **daya graviti antara Bumi dan Bulan**.
+## Graviti Planet dan Orbit
 
-<BlockMath math="F = \frac{(6.67 \times 10^{-11})(5.97 \times 10^{24})(7.35 \times 10^{22})}{(3.84 \times 10^{8})^2} = 1.98 \times 10^{20}\text{ N}" />
+Tarikan planet menentukan sekuat mana jasad jatuh di permukaannya serta laju minimum **satelit semula jadi atau buatan** untuk kekal mengorbit tanpa enjin. Hukum daya yang sama mengaitkan jisim planet dengan pecutan graviti permukaan dan laju orbit pada pelbagai ketinggian.
 
-Semak susunan magnitud: pengangka kira-kira <InlineMath math="2.9 \times 10^{37}" /> dan penyebut kira-kira <InlineMath math="1.5 \times 10^{17}" />, jadi hasilnya sekitar <InlineMath math="2 \times 10^{20}" />. Daya ini sama besar pada Bumi dan pada Bulan, mengikut Hukum Gerakan Newton Ketiga.
+### Pecutan Graviti Planet
 
-### Contoh Menggandakan Jarak
-
-Dua jasad ditarik dengan daya <InlineMath math="36\text{ N}" />. Jarak antara pusatnya dijadikan **tiga kali ganda**. Daya baharu ialah:
-
-<BlockMath math="F' = \frac{36}{3^2} = 4\text{ N}" />
-
-Semak dengan model: pada <InlineMath math="r = 3" />, nisbah <InlineMath math="F / F_0" /> ialah <InlineMath math="1/9" />, dan <InlineMath math="36 \div 9 = 4" />.
-
-## Pecutan Graviti di Permukaan dan di Atas Bumi
-
-Daya graviti pada jasad berjisim <InlineMath math="m" /> ialah beratnya, <InlineMath math="mg" />. Samakan dengan Hukum Kegravitian, dan <InlineMath math="m" /> terbatal:
+Menyamakan berat jasad dengan daya graviti Newton memansuhkan jisim jasad yang jatuh <InlineMath math="m" /> lalu mentakrifkan **pecutan graviti** <InlineMath math="g" />.
 
 <BlockMath math="g = \frac{GM}{r^2}" />
 
-Jadi **pecutan graviti tidak bergantung pada jisim jasad yang jatuh**. Di permukaan Bumi, <InlineMath math="r = R = 6.37 \times 10^{6}\text{ m}" /> dan <InlineMath math="g = 9.81\text{ m s}^{-2}" />. Model ini menunjukkan cara <InlineMath math="g" /> berubah dari pusat Bumi hingga jauh ke angkasa, dengan menganggap Bumi sfera berketumpatan seragam. Di dalam Bumi, <InlineMath math="g" /> bertambah secara linear, dan di luar Bumi, <InlineMath math="g" /> jatuh mengikut kuasa dua songsang.
+Pecutan graviti hanya bergantung pada jisim planet <InlineMath math="M" /> dan jarak <InlineMath math="r" /> dari pusatnya. Di permukaan Bumi dengan jejari <InlineMath math="6.37 \times 10^{6}\text{ m}" />, nilai <InlineMath math="g" /> ialah <InlineMath math="9.81\text{ m s}^{-2}" />.
 
-<MathVisual
-  title={<>Pecutan Graviti dari Pusat Bumi</>}
+Perubahan jisim dan jejari planet mengubah graviti permukaan, laju orbit, dan halaju lepas dengan cara berlainan. Bandingkan Bumi dengan sebuah planet berjisim dua kali ganda dan berjejari dua kali ganda di bawah.
+
+<PlanetCompareLab
+  title={<>Perbandingan Graviti Permukaan Dua Planet</>}
   description={
     <>
-      Paksi mengufuk ialah jarak dari pusat Bumi dalam jejari Bumi{" "}
-      <InlineMath math="R" />. Paksi menegak ialah <InlineMath math="g" /> dalam{" "}
-      <InlineMath math="\text{m s}^{-2}" />. Puncak{" "}
-      <InlineMath math="9.81\text{ m s}^{-2}" /> berada di permukaan.
+      Planet Z mempunyai dua kali jisim Bumi dan dua kali jejarinya, maka
+      graviti permukaannya menjadi separuh sedangkan laju orbit permukaannya
+      kekal sama.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 10.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "h", min: 0.2, max: 6, value: 2, step: 0.1, label: "h" },
-    ],
-    objects: [
-      { id: "inside", kind: "function", appearance: "secondary", formula: "9.81x", domain: { min: 0, max: 1 } },
-      { id: "outside", kind: "function", appearance: "primary", formula: "9.81/x^2", domain: { min: 1, max: 6 } },
-      { id: "surface", kind: "point", appearance: "answer", at: { x: 1, y: 9.81 } },
-      { id: "now", kind: "marker", x: "h", y: "9.81min(h, 1/h^2)", appearance: "warning" },
-    ],
-    labels: [
-      { key: "surface", objectId: "surface", at: { x: 1, y: 9.81 }, placement: "above-right" },
-    ],
-    readouts: [
-      { key: "gravity", formula: "9.81min(h, 1/h^2)" },
-    ],
-  }}
+  footer={<>Graviti berkadar dengan jisim per jejari kuasa dua, manakala laju dengan jisim per jejari.</>}
   labels={{
-    h: <>Jarak dari pusat dalam <InlineMath math="R" /></>,
-    surface: <>Permukaan Bumi</>,
-    gravity: <><InlineMath math="g" /> dalam <InlineMath math="\text{m s}^{-2}" /></>,
+    earthName: "Bumi",
+    escape: <>Halaju lepas</>,
+    gravity: <>Graviti permukaan</>,
+    orbit: <>Laju orbit dekat permukaan</>,
+    period: <>Tempoh orbit dekat permukaan</>,
+    planetName: "Planet Z",
+    viewLabel: "Bumi di sebelah Planet Z dengan jisim dan jejari dua kali ganda",
   }}
+  mass={2}
+  radius={2}
 />
 
-Bahawa <InlineMath math="g" /> tidak bergantung pada jisim boleh kamu uji sendiri. Dalam tiub vakum, syiling dan bulu pelepah jatuh bersama. Dalam udara, rintangan udara memperlahan bulu pelepah.
+Di Planet Z, menggandakan <InlineMath math="M" /> dan <InlineMath math="R" /> memotong <InlineMath math="g" /> kepada separuh kerana jejari dikuasaduakan. Sementara itu, angkasawan di Stesen Angkasa Antarabangsa pada ketinggian <InlineMath math="400\text{ km}" /> masih mengalami <InlineMath math="8.69\text{ m s}^{-2}" />. Mereka terapung kerana sedang jatuh bebas bersama stesen mengelilingi Bumi.
 
-<FeatherCoinVacuumLab
-  title={<>Syiling dan Bulu Pelepah dalam Tiub</>}
-  description={
-    <>
-      Pilih udara atau vakum, kemudian lepaskan kedua-duanya serentak.
-      Bandingkan masa jatuh setiap satu.
-    </>
-  }
-  labels={{
-    airs: { air: <>Udara</>, vacuum: <>Vakum</> },
-    chooseAir: "Pilih isi tiub",
-    coinTime: <>Masa jatuh syiling</>,
-    drop: <>Tinggi jatuhan</>,
-    featherTime: <>Masa jatuh bulu pelepah</>,
-    viewLabel: "Syiling dan bulu pelepah jatuh dalam tiub kaca",
-  }}
-/>
+### Orbit Satelit Bulat
 
-Stesen Angkasa Antarabangsa mengorbit kira-kira <InlineMath math="400\text{ km}" /> di atas permukaan, iaitu <InlineMath math="r = 6.77 \times 10^{6}\text{ m}" />:
-
-<BlockMath math="g = \frac{3.98 \times 10^{14}}{(6.77 \times 10^{6})^2} = 8.69\text{ m s}^{-2}" />
-
-Angkasawan di dalamnya masih merasai hampir <InlineMath math="90\%" /> graviti permukaan. Mereka terapung kerana mereka dan stesen sama-sama jatuh bebas mengelilingi Bumi, bukan kerana graviti hilang.
-
-## Satelit dan Hukum Kepler
-
-Satelit kekal dalam orbit membulat kerana daya graviti bertindak sebagai **daya memusat**. Samakan <InlineMath math="\dfrac{GMm}{r^2}" /> dengan <InlineMath math="\dfrac{mv^2}{r}" />, dan laju linear satelit ialah:
+Satelit kekal dalam orbit bulat kerana graviti bertindak sebagai **daya memusat** yang membelokkan halajunya secara berterusan mengelilingi planet.
 
 <BlockMath math="v = \sqrt{\frac{GM}{r}}" />
 
-Satelit yang lebih jauh bergerak lebih perlahan dan mengambil masa lebih lama untuk satu orbit. Pilih tiga satelit sebenar dalam model ini dan bandingkan jejari, laju, tempoh dan pecutannya.
+Jisim satelit termansuh daripada rumus, jadi satelit berat dan satelit kecil bergerak pada laju yang sama bagi jejari orbit yang sama. Jejari orbit yang lebih besar menghasilkan laju linear lebih rendah dan tempoh orbit lebih panjang.
 
-<SatelliteOrbitCircularLab
-  title={<>Tiga Orbit Satelit Sebenar</>}
+Sentiasa tambah jejari planet <InlineMath math="R" /> kepada ketinggian <InlineMath math="h" /> dari permukaan sebelum mengira. Bandingkan dua satelit pada ketinggian <InlineMath math="3R" /> dan <InlineMath math="R" /> di atas permukaan Bumi berikut.
+
+<OrbitRadiusLab
+  title={<>Dua Orbit Satelit Mengelilingi Bumi</>}
   description={
     <>
-      Stesen angkasa, satelit GPS dan satelit geopegun dilukis mengikut skala.
-      Pilih satu orbit dan baca nilainya.
+      Satelit X mengorbit pada ketinggian <InlineMath math="3R" /> dengan tempoh{" "}
+      <InlineMath math="8.0\text{ jam}" />, manakala satelit Y berada pada
+      ketinggian <InlineMath math="R" />.
     </>
   }
+  footer={<>Tambah jejari Bumi dahulu supaya jejari orbit X ialah 4R dan Y ialah 2R dari pusat.</>}
   labels={{
-    acceleration: <>Pecutan memusat</>,
-    chooseOrbit: "Pilih orbit",
-    orbits: {
-      station: <>Stesen Angkasa Antarabangsa</>,
-      gps: <>Satelit GPS</>,
-      geostationary: <>Satelit geopegun</>,
+    knownName: "Satelit X",
+    knownRadius: <>Jejari orbit X</>,
+    otherName: "Satelit Y",
+    otherPeriod: <>Tempoh orbit Y</>,
+    otherRadius: <>Jejari orbit Y</>,
+    viewLabel: "Dua satelit mengorbit Bumi pada ketinggian berbeza",
+  }}
+  knownHeight={3}
+  knownPeriod={8}
+  otherHeight={1}
+/>
+
+Oleh sebab jejari pusat X ialah <InlineMath math="4R" /> dan Y ialah <InlineMath math="2R" />, pengurangan jejari orbit kepada separuh memendekkan tempoh sebanyak <InlineMath math="2\sqrt{2}" /> kali lalu memberikan tempoh Y sekitar <InlineMath math="2.8\text{ jam}" />.
+
+## Hukum Kepler dan Orbit
+
+Johannes Kepler menemui tiga hukum geometri gerakan planet sebelum Newton menerangkan punca dayanya:
+
+1. Setiap planet mengorbit Matahari dalam bentuk **elips** dengan Matahari pada satu fokus.
+2. Garis yang menyambungkan planet ke Matahari mencakupi **luas yang sama dalam selang masa yang sama**, jadi planet bergerak lebih laju di perihelion dan lebih perlahan di afelion.
+3. Kuasa dua tempoh orbit berkadar terus dengan kuasa tiga jejari purata orbit.
+
+<BlockMath math="T^2 = \frac{4\pi^2}{GM} r^3" />
+
+> Planet bergerak paling laju di perihelion dan paling perlahan di afelion kerana graviti memecutnya semasa menghampiri lalu memperlahankannya semasa menjauh.
+
+Pilih jasad berbeza dan laraskan kesipian orbit di bawah untuk membandingkan kedudukan fokus, sektor luas sama, dan nisbah malar kuasa dua tempoh terhadap kuasa tiga jejari.
+
+<KeplerOrbitPeriodLab
+  title={<>Orbit Elips dan Tiga Hukum Kepler</>}
+  description={
+    <>
+      Pilih planet atau komet dan ubah kesipian orbit untuk membandingkan laju
+      perihelion dan afelion, sektor luas sama, serta nisbah Kepler.
+    </>
+  }
+  footer={<>Semua jasad yang mengorbit bintang sama berkongsi satu nilai malar T kuasa dua per r kuasa tiga.</>}
+  bodies={["mercury", "earth", "mars", "jupiter", "comet"]}
+  eccentricity={{ min: 0, max: 0.75, value: 0.25 }}
+  labels={{
+    body: "Jasad pengorbit",
+    bodies: {
+      mercury: "Utarid",
+      earth: "Bumi",
+      mars: "Marikh",
+      jupiter: "Musytari",
+      comet: "Komet",
     },
+    eccentricity: "Kesipian",
+    radius: <>Jejari orbit purata</>,
+    ratio: <>Nisbah Kepler</>,
     period: <>Tempoh orbit</>,
-    radius: <>Jejari orbit</>,
-    speed: <>Laju linear</>,
-    viewLabel: "Tiga satelit mengorbit Bumi mengikut skala",
+    speed: <>Laju orbit semasa</>,
+    parts: {
+      sun: "Matahari",
+      planet: "Jasad pengorbit",
+      perihelion: "Perihelion",
+      aphelion: "Afelion",
+      focus: "Fokus kosong",
+      areaSector: "Sektor luas sama",
+    },
+    view: "Orbit elips heliosentrik 3D menunjukkan Matahari di satu fokus, perihelion, afelion, dan sektor luas sama",
   }}
 />
 
-**Hukum Kepler Ketiga** menyatakan bahawa kuasa dua tempoh orbit berkadar terus dengan kuasa tiga jejari orbit, <InlineMath math="T^2 \propto r^3" />. Hukum ini diterbitkan daripada laju satelit: <InlineMath math="T = 2\pi r / v" />, jadi <InlineMath math="T^2 = \dfrac{4\pi^2}{GM} r^3" />. Data planet sebenar mematuhi hukum ini. Dengan jarak dalam unit astronomi dan tempoh dalam tahun Bumi, <InlineMath math="T = r^{3/2}" />.
+Meningkatkan kesipian memanjangkan elips dan melebarkan jurang laju antara perihelion dengan afelion, namun nisbah kuasa dua tempoh terhadap kuasa tiga jejari purata kekal ditetapkan oleh jisim Matahari.
+
+Data cerapan lima planet mengesahkan hubungan kuasa ini apabila jarak diukur dalam unit astronomi dan tempoh dalam tahun Bumi.
 
 <ScatterDiagram
   title={<>Tempoh Orbit Lima Planet</>}
   description={
     <>
-      Jarak purata dari Matahari dalam unit astronomi melawan tempoh orbit
-      dalam tahun, daripada Utarid (<InlineMath math="0.387" />,{" "}
-      <InlineMath math="0.241" />) hingga Musytari (<InlineMath math="5.203" />,{" "}
-      <InlineMath math="11.86" />).
+      Jarak purata dari Matahari dalam unit astronomi melawan tempoh orbit dalam
+      tahun Bumi, daripada Utarid hingga Musytari.
     </>
   }
+  footer={<>Planet luar menempuh lintasan lebih jauh dengan laju lebih rendah maka tempohnya meningkat tajam.</>}
   xAxisLabel="Jarak dari Matahari (AU)"
   yAxisLabel="Tempoh orbit (tahun)"
   datasets={[
@@ -199,35 +207,25 @@ Satelit yang lebih jauh bergerak lebih perlahan dan mengambil masa lebih lama un
   ]}
 />
 
-Hukum Kepler Pertama menyatakan setiap planet mengorbit Matahari dalam elips dengan Matahari di satu fokus. Hukum Kedua menyatakan garis dari Matahari ke planet mencakupi luas yang sama dalam masa yang sama, jadi planet bergerak lebih laju apabila dekat dengan Matahari.
+Satelit geopegun mengikut hukum yang sama dengan tempoh <InlineMath math="86{,}400\text{ s}" />, meletakkan jejari orbitnya pada <InlineMath math="4.22 \times 10^{7}\text{ m}" /> atau kira-kira <InlineMath math="36{,}000\text{ km}" /> di atas khatulistiwa.
 
-Sekarang gunakan hukum ini. Satelit **geopegun** mengorbit sekali dalam <InlineMath math="24" /> jam, sama dengan putaran Bumi, jadi satelit itu kelihatan tetap di langit. Cari jejari orbitnya.
+## Halaju Lepas Planet
 
-<MathContainer>
-<BlockMath math="r^3 = \frac{GMT^2}{4\pi^2} = \frac{(3.98 \times 10^{14})(86{,}400)^2}{4\pi^2}" />
-<BlockMath math="r = 4.22 \times 10^{7}\text{ m}" />
-</MathContainer>
-
-Itu kira-kira <InlineMath math="36{,}000\text{ km}" /> di atas permukaan. Semak dengan model orbit: pilih satelit geopegun dan baca jejari yang sama.
-
-## Halaju Lepas
-
-**Halaju lepas** ialah halaju minimum yang diperlukan oleh jasad di permukaan planet untuk terlepas daripada tarikan graviti planet itu tanpa tujahan tambahan:
+**Halaju lepas** ialah halaju minimum pelancaran dari jarak <InlineMath math="r" /> supaya jasad dapat melepasi tarikan graviti planet tanpa tujahan tambahan.
 
 <BlockMath math="v_{\text{lepas}} = \sqrt{\frac{2GM}{r}}" />
 
-Halaju lepas ialah <InlineMath math="\sqrt{2}" /> kali laju orbit pada jarak yang sama. Di permukaan Bumi, laju orbit ialah <InlineMath math="7.91\text{ km s}^{-1}" /> dan halaju lepas ialah <InlineMath math="11.2\text{ km s}^{-1}" />. Gerakkan gelangsar jarak dan bandingkan kedua-dua lengkung.
+Pada sebarang jarak, halaju lepas ialah <InlineMath math="\sqrt{2}" /> kali laju orbit bulat. Di permukaan Bumi, laju orbit bulat ialah <InlineMath math="7.91\text{ km s}^{-1}" />, manakala halaju lepas ialah <InlineMath math="11.2\text{ km s}^{-1}" />. Gerakkan peluncur jarak jejari di bawah untuk membandingkan kedua-dua lengkung.
 
 <MathVisual
   title={<>Laju Orbit dan Halaju Lepas</>}
   description={
     <>
-      Paksi mengufuk ialah jarak dari pusat Bumi dalam jejari Bumi{" "}
-      <InlineMath math="R" />. Paksi menegak ialah laju dalam{" "}
-      <InlineMath math="\text{km s}^{-1}" />. Lengkung atas ialah halaju lepas,
-      lengkung bawah ialah laju orbit.
+      Jarak dari pusat Bumi dalam jejari Bumi <InlineMath math="R" /> melawan
+      laju dalam <InlineMath math="\text{km s}^{-1}" />.
     </>
   }
+  footer={<>Halaju lepas sentiasa tepat punca kuasa dua bagi dua kali laju orbit pada setiap ketinggian.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 12 } },
@@ -246,62 +244,29 @@ Halaju lepas ialah <InlineMath math="\sqrt{2}" /> kali laju orbit pada jarak yan
     ],
   }}
   labels={{
-    n: <>Jarak dari pusat dalam <InlineMath math="R" /></>,
-    "orbit-speed": <>Laju orbit dalam <InlineMath math="\text{km s}^{-1}" /></>,
-    "escape-speed": <>Halaju lepas dalam <InlineMath math="\text{km s}^{-1}" /></>,
+    n: <>Jarak dalam <InlineMath math="R" /></>,
+    "orbit-speed": <>Laju orbit (<InlineMath math="\text{km s}^{-1}" />)</>,
+    "escape-speed": <>Halaju lepas (<InlineMath math="\text{km s}^{-1}" />)</>,
   }}
 />
 
-Planet yang jisimnya kecil mempunyai halaju lepas yang kecil. Itulah sebab Bulan hampir tiada atmosfera: molekul gas yang panas mudah mencapai halaju lepas Bulan dan terlepas ke angkasa.
+Jasad kecil mempunyai halaju lepas yang rendah. Halaju lepas Bulan hanyalah <InlineMath math="2.37\text{ km s}^{-1}" />, maka molekul gas panas mudah terlepas ke angkasa dan Bulan tidak mengekalkan atmosfera.
 
-## Kesilapan Lazim tentang Kegravitian
+## Semakan Kiraan Orbit
 
-| Kesilapan | Sebab salah | Cara semak |
-| :--- | :--- | :--- |
-| Jarak dua kali ganda menjadikan daya separuh. | Daya berkadar songsang dengan <InlineMath math="r^2" />, jadi daya menjadi satu perempat. | Kuasa duakan faktor jarak. |
-| <InlineMath math="r" /> ialah ketinggian dari permukaan. | <InlineMath math="r" /> diukur dari pusat Bumi, jadi <InlineMath math="r = R + h" />. | Tambah jejari Bumi pada ketinggian. |
-| Angkasawan terapung kerana tiada graviti di orbit. | <InlineMath math="g" /> di orbit stesen angkasa masih <InlineMath math="8.69\text{ m s}^{-2}" />. Mereka jatuh bebas. | Kira <InlineMath math="g" /> pada jarak orbit. |
-| Satelit yang lebih berat perlu laju orbit yang lebih tinggi. | Jisim satelit terbatal dalam <InlineMath math="v = \sqrt{GM/r}" />. | Semak sama ada <InlineMath math="m" /> muncul dalam formula akhir. |
+Semak dua kiraan rujukan berikut dengan unit SI dan jejari dari pusat planet.
 
-Kesilapan kedua paling kerap dalam soalan pengiraan. **Sentiasa ukur dari pusat**, bukan dari permukaan.
-
-## Latihan Kegravitian
-
-Soalan ini bermula dengan nisbah ringkas dan berakhir dengan satelit. **Tulis <InlineMath math="r" /> dalam meter** sebelum menggantikan nilai.
-
-1. Daya graviti antara dua jasad ialah <InlineMath math="F" />. Jarak antara pusatnya dijadikan separuh. Berapakah daya baharu?
-
-2. Jisim Marikh ialah <InlineMath math="6.42 \times 10^{23}\text{ kg}" /> dan jejarinya <InlineMath math="3.39 \times 10^{6}\text{ m}" />. Hitung pecutan graviti di permukaan Marikh.
-
-3. Jisim Bulan ialah <InlineMath math="7.35 \times 10^{22}\text{ kg}" /> dan jejarinya <InlineMath math="1.74 \times 10^{6}\text{ m}" />. Hitung halaju lepas dari permukaan Bulan.
-
-4. Sebuah satelit mengorbit Bumi pada jarak <InlineMath math="2R" /> dari pusat Bumi. Hitung laju linearnya dan tempoh orbitnya dalam jam.
-
-### Penyelesaian
-
-**Penyelesaian 1**: Daya berkadar songsang dengan <InlineMath math="r^2" />. Jika <InlineMath math="r" /> menjadi <InlineMath math="\tfrac{1}{2}r" />:
-
-<BlockMath math="F' = \frac{F}{(1/2)^2} = 4F" />
-
-Jarak separuh menjadikan daya **empat kali ganda**.
-
-**Penyelesaian 2**: Gunakan <InlineMath math="g = GM/R^2" />:
+**Semakan graviti Marikh.** Marikh berjisim <InlineMath math="6.42 \times 10^{23}\text{ kg}" /> dengan jejari <InlineMath math="3.39 \times 10^{6}\text{ m}" />. Kira pecutan graviti di permukaannya.
 
 <BlockMath math="g = \frac{(6.67 \times 10^{-11})(6.42 \times 10^{23})}{(3.39 \times 10^{6})^2} = 3.73\text{ m s}^{-2}" />
 
-Semak: nilai ini kira-kira <InlineMath math="38\%" /> daripada <InlineMath math="9.81\text{ m s}^{-2}" />, munasabah untuk planet yang jauh lebih kecil daripada Bumi.
+Graviti permukaan Marikh ialah sekitar tiga puluh lapan peratus graviti Bumi, sepadan dengan saiznya yang lebih kecil.
 
-**Penyelesaian 3**: Gunakan formula halaju lepas:
-
-<BlockMath math="v = \sqrt{\frac{2(6.67 \times 10^{-11})(7.35 \times 10^{22})}{1.74 \times 10^{6}}} = 2.37 \times 10^{3}\text{ m s}^{-1}" />
-
-Halaju lepas Bulan ialah <InlineMath math="2.37\text{ km s}^{-1}" />, kira-kira satu perlima halaju lepas Bumi.
-
-**Penyelesaian 4**: Pada <InlineMath math="r = 2R" />, laju orbit ialah laju di permukaan dibahagi <InlineMath math="\sqrt{2}" />:
+**Semakan orbit tinggi.** Sebuah satelit mengorbit Bumi pada jarak <InlineMath math="2R" /> dari pusat Bumi. Kira laju linear dan tempoh orbitnya.
 
 <MathContainer>
 <BlockMath math="v = \frac{7.91}{\sqrt{2}} = 5.59\text{ km s}^{-1}" />
-<BlockMath math="T = \frac{2\pi r}{v} = \frac{2\pi (1.274 \times 10^{7})}{5{,}590} = 1.43 \times 10^{4}\text{ s} = 3.98\text{ jam}" />
+<BlockMath math="T = \frac{2\pi (1.274 \times 10^{7})}{5{,}590} = 1.43 \times 10^{4}\text{ s} \approx 3.98\text{ jam}" />
 </MathContainer>
 
-Semak dengan model laju: pada <InlineMath math="n = 2" />, laju orbit dibaca <InlineMath math="5.59\text{ km s}^{-1}" />.
+Semakan pada graf laju pada <InlineMath math="n = 2" /> turut memberikan bacaan tepat <InlineMath math="5.59\text{ km s}^{-1}" />.
