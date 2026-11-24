@@ -1,33 +1,41 @@
-# Tentukan bagian-bagian sisi miring
+# Diketahui
 
-Tinggi membagi sisi miring menjadi dua bagian <InlineMath math="p" /> dan <InlineMath math="q" />. Ada dua hubungan untuk keduanya: jumlahnya sama dengan sisi miring, dan menurut **teorema tinggi** hasil kalinya sama dengan kuadrat tinggi:
+Pada sebuah **segitiga siku-siku** (*rechtwinkliges Dreieck*), panjang sisi miring (*Hypotenuse*) adalah <InlineMath math="13\text{ cm}" /> dan panjang garis tinggi menuju sisi miring (*Höhe auf die Hypotenuse*) adalah <InlineMath math="6\text{ cm}" />.
+
+# Ditanyakan
+
+Tentukan keliling (*Umfang*) segitiga siku-siku ini.
+
+# Penyelesaian
+
+Menarik garis tinggi dari sudut siku-siku membelah satu segitiga menjadi dua salinan mini yang sebangun dengan segitiga induknya! Kesebangunan inilah yang melahirkan **teorema tinggi** (*Höhensatz*) dan **teorema kaki segitiga** (*Kathetensatz*), sehingga kita bisa langsung memecah sisi miring <InlineMath math="13\text{ cm}" /> menjadi dua potongan <InlineMath math="p" /> dan <InlineMath math="q" />.
+
+> Pada segitiga siku-siku, kuadrat tinggi sama dengan hasil kali kedua potongan sisi miring, dan kuadrat setiap sisi siku-siku sama dengan sisi miring kali potongan di dekatnya.
+
+Jumlah kedua potongan adalah <InlineMath math="13" /> dan hasil kalinya sama dengan kuadrat tinggi <InlineMath math="36" />.
 
 <BlockMath math="\begin{aligned}
-p+q&=13,\qquad p\cdot q=h^2=36 \\
-p\,(13-p)&=36\ \Longleftrightarrow\ p^2-13p+36=0\ \Longleftrightarrow\ (p-4)(p-9)=0
+p + q &= 13, \qquad p \cdot q = h^2 = 36 \\
+p(13 - p) &= 36 \iff p^2 - 13p + 36 = 0 \iff (p - 4)(p - 9) = 0
 \end{aligned}" />
 
-Jadi kedua bagian itu <InlineMath math="4\text{ cm}" /> dan <InlineMath math="9\text{ cm}" />.
+Kedua potongan sisi miring tepat <InlineMath math="4\text{ cm}" /> dan <InlineMath math="9\text{ cm}" />.
 
 <MathVisual
-  title={<>Tinggi membagi sisi miring</>}
-  description={<>Segitiga <InlineMath math="ABC" /> dengan sisi miring <InlineMath math="\overline{AB}=13" /> di bawah dan sudut siku-siku di <InlineMath math="C" /> di atas. Tinggi dari <InlineMath math="C" /> ke sisi miring panjangnya <InlineMath math="6" /> dan membagi sisi miring menjadi bagian <InlineMath math="p=4" /> dan <InlineMath math="q=9" />.</>}
-  labels={{
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    c: <><InlineMath math="C" /></>,
-    p: <><InlineMath math="p=4" /></>,
-    q: <><InlineMath math="q=9" /></>,
-    h: <><InlineMath math="h=6" /></>,
-  }}
+  title={<>Garis tinggi membelah sisi miring menjadi dua potongan</>}
+  description={
+    <>
+      Segitiga siku-siku <InlineMath math="ABC" /> beralas sisi miring{" "}
+      <InlineMath math="13" /> dan sudut siku-siku di <InlineMath math="C" />.
+      Tinggi <InlineMath math="h = 6" /> membagi sisi miring menjadi{" "}
+      <InlineMath math="p = 4" /> dan <InlineMath math="q = 9" />.
+    </>
+  }
+  footer={<>Tinggi <InlineMath math="h = 6" /> memecah sisi miring <InlineMath math="13" /> menjadi <InlineMath math="4" /> dan <InlineMath math="9" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 14 },
-      y: { min: -2, max: 7.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 14 }, y: { min: -2, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 13, y: 0 }, { x: 4, y: 6 }] },
       { id: "altitude", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 4, y: 6 } },
@@ -47,29 +55,40 @@ Jadi kedua bagian itu <InlineMath math="4\text{ cm}" /> dan <InlineMath math="9\
       { key: "h", objectId: "altitude", at: { x: 4, y: 3 }, placement: "right" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    p: <><InlineMath math="p = 4" /></>,
+    q: <><InlineMath math="q = 9" /></>,
+    h: <><InlineMath math="h = 6" /></>,
+  }}
 />
 
-# Tentukan sisi siku-sikunya
+Begitu potongan <InlineMath math="4" /> dan <InlineMath math="9" /> terlihat pada gambar, kedua sisi siku-siku langsung bisa dihitung dalam satu baris.
 
-Menurut **teorema kaki segitiga**, kuadrat setiap sisi siku-siku sama dengan sisi miring dikali bagian yang menempel pada sisi itu:
+## Menghitung kedua sisi siku-siku dan keliling
+
+Terapkan **teorema kaki segitiga** pada kedua potongan sisi miring, lalu jumlahkan ketiganya menjadi keliling.
 
 <BlockMath math="\begin{aligned}
-a^2&=13\cdot4=52,\qquad a=2\sqrt{13} \\
-b^2&=13\cdot9=117,\qquad b=3\sqrt{13}
+a^2 &= 13 \cdot 4 = 52 \implies a = 2\sqrt{13} \\
+b^2 &= 13 \cdot 9 = 117 \implies b = 3\sqrt{13} \\
+u &= 13 + 2\sqrt{13} + 3\sqrt{13} = (13 + 5\sqrt{13})\text{ cm}
 \end{aligned}" />
 
-Cek: <InlineMath math="a^2+b^2=52+117=169=13^2" />.
+Cek Pythagoras: jumlah kuadrat kedua kaki adalah <InlineMath math="52 + 117 = 169" />, tepat sama dengan <InlineMath math="13^2" />.
 
-# Jumlahkan kelilingnya
+## Mengecek pilihan salah
 
-<BlockMath math="u=13+2\sqrt{13}+3\sqrt{13}=(13+5\sqrt{13})\text{ cm}" />
+Perhatikan bagaimana setiap pengecoh meleset dari **hubungan luas dan potongan sisi miring**.
 
-**Keliling segitiga itu** <InlineMath math="(13+5\sqrt{13})\text{ cm}" />, kira-kira <InlineMath math="31{,}0\text{ cm}" />.
+- <InlineMath math="30\text{ cm}" /> menebak tripel populer <InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />, padahal tinggi tripel itu adalah <InlineMath math="\frac{60}{13}" />, bukan <InlineMath math="6" />.
+- <InlineMath math="26\text{ cm}" /> menjumlahkan potongan <InlineMath math="4" /> dan <InlineMath math="9" /> dengan sisi miring seolah keduanya sisi siku-siku.
+- <InlineMath math="(13 + \sqrt{481})\text{ cm}" /> keliru mengira hasil kali kaki adalah dua kali <InlineMath math="c \cdot h" />, padahal hasil kalinya tepat <InlineMath math="78" />.
+- <InlineMath math="5\sqrt{13}\text{ cm}" /> hanya menjumlahkan kedua kaki tanpa menyertakan sisi miring <InlineMath math="13\text{ cm}" />.
+- <InlineMath math="(13 + 2\sqrt{13})\text{ cm}" /> hanya menambahkan satu kaki saja ke sisi miring.
 
-# Mengapa pilihan lain salah
+# Jawaban
 
-- <InlineMath math="30\text{ cm}" /> memakai sisi yang sudah dikenal, <InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />. Padahal segitiga itu punya **tinggi yang lain**: <InlineMath math="\frac{5\cdot12}{13}=\frac{60}{13}\ne6" />.
-- <InlineMath math="26\text{ cm}" /> menjumlahkan bagian <InlineMath math="4" /> dan <InlineMath math="9" /> dengan sisi miring, seolah-olah keduanya sisi siku-siku.
-- <InlineMath math="(13+\sqrt{481})\text{ cm}" /> memakai <InlineMath math="ab=2\cdot13\cdot6=156" />. Yang benar <InlineMath math="ab=c\cdot h=78" />, karena kedua hasil kali itu sama dengan dua kali luas.
-- <InlineMath math="5\sqrt{13}\text{ cm}" /> hanya jumlah kedua sisi siku-siku, tanpa sisi miring.
-- <InlineMath math="(13+2\sqrt{13})\text{ cm}" /> hanya menghitung satu sisi siku-siku.
+Keliling segitiga siku-siku ini adalah <InlineMath math="(13 + 5\sqrt{13})\text{ cm}" />.

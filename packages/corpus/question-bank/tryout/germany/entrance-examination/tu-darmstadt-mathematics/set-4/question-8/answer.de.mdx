@@ -1,31 +1,41 @@
-# Die Höhe einer Seitenfläche
+# Gegeben
 
-Jede Seitenfläche ist ein Dreieck mit der Grundseite <InlineMath math="6\text{ cm}" />. Aus ihrem Flächeninhalt folgt ihre Höhe <InlineMath math="h_s" />, die **Höhe der Seitenfläche**, nicht die Höhe der Pyramide:
+Eine **gerade Pyramide** hat eine quadratische Grundfläche mit der Seitenlänge <InlineMath math="6\text{ cm}" />, und ihre Spitze liegt senkrecht über dem Mittelpunkt des Quadrats. Jede der vier dreieckigen Seitenflächen hat den Flächeninhalt <InlineMath math="15\text{ cm}^2" />.
 
-<BlockMath math="\frac12\cdot6\cdot h_s=15\quad\Longrightarrow\quad h_s=5\text{ cm}" />
+# Gesucht
 
-# Die Höhe der Pyramide
+Das Volumen dieser Pyramide.
 
-Schneide die Pyramide senkrecht durch die Spitze und die Mitten zweier gegenüberliegender Grundkanten. Im Schnitt entsteht ein rechtwinkliges Dreieck aus **der halben Grundkante, der Pyramidenhöhe und der Seitenhöhe**:
+# Lösung
+
+Stell dir ein pyramidenförmiges Zelt vor: Die schräge Zeltwand ist immer länger als die senkrechte Stange in der Mitte! Der Flächeninhalt einer Seitenfläche liefert zuerst **die Seitenhöhe** <InlineMath math="h_s" />, und ein senkrechter Schnitt durch die Mitte verrät die echte Pyramidenhöhe <InlineMath math="h" />.
+
+> Bei einer geraden quadratischen Pyramide bilden die halbe Grundkante, die Pyramidenhöhe und die Seitenhöhe stets ein rechtwinkliges Dreieck mit der Seitenhöhe als Hypotenuse.
+
+Berechne zuerst die Seitenhöhe <InlineMath math="h_s" /> aus einer dreieckigen Seitenfläche mit Grundseite <InlineMath math="6\text{ cm}" />.
+
+<BlockMath math="\frac{1}{2} \cdot 6 \cdot h_s = 15 \implies h_s = 5\text{ cm}" />
+
+## Pyramidenhöhe im Mittelschnitt bestimmen
+
+Schneid die Pyramide senkrecht durch die Spitze <InlineMath math="S" /> und die Mitten zweier gegenüberliegender Grundkanten. Im Querschnitt erscheint **ein klassisches rechtwinkliges Dreieck mit den Seiten <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="5" />**.
 
 <MathVisual
-  title={<>Schnitt durch die Spitze</>}
-  description={<>Senkrechter Schnitt durch die Spitze <InlineMath math="S" /> und die Mitten zweier gegenüberliegender Grundkanten. Er ist ein gleichschenkliges Dreieck mit der Grundseite <InlineMath math="6" />. Rechts sieht man ein rechtwinkliges Dreieck aus der halben Grundseite <InlineMath math="3" />, der Höhe <InlineMath math="h=4" /> und der Seitenhöhe <InlineMath math="5" />.</>}
-  labels={{
-    apex: <><InlineMath math="S" /></>,
-    m: <><InlineMath math="M" /></>,
-    h: <><InlineMath math="h=4" /></>,
-    s: <>Seitenhöhe <InlineMath math="5" /></>,
-    half: <><InlineMath math="3" /></>,
-  }}
+  title={<>Senkrechter Schnitt durch die Spitze der Pyramide</>}
+  description={
+    <>
+      Der Schnitt ergibt ein gleichschenkliges Dreieck mit Basis{" "}
+      <InlineMath math="6" /> und Spitze <InlineMath math="S" /> über der Mitte{" "}
+      <InlineMath math="M" />. Rechts liegt das rechtwinklige Dreieck aus
+      halber Basis <InlineMath math="3" />, Höhe <InlineMath math="h = 4" /> und
+      Seitenhöhe <InlineMath math="5" />.
+    </>
+  }
+  footer={<>Halbe Grundseite <InlineMath math="3" /> und Seitenhöhe <InlineMath math="5" /> liefern die Pyramidenhöhe <InlineMath math="h = 4\text{ cm}" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -4, max: 4.5 },
-      y: { min: -1, max: 5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -4, max: 4.5 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "section", kind: "polygon", appearance: "primary", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 4 }] },
       { id: "height", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
@@ -42,20 +52,32 @@ Schneide die Pyramide senkrecht durch die Spitze und die Mitten zweier gegenübe
       { key: "half", objectId: "half-base", at: { x: 1.5, y: 0 }, placement: "below" },
     ],
   }}
+  labels={{
+    apex: <><InlineMath math="S" /></>,
+    m: <><InlineMath math="M" /></>,
+    h: <><InlineMath math="h = 4" /></>,
+    s: <>Seitenhöhe <InlineMath math="5" /></>,
+    half: <><InlineMath math="3" /></>,
+  }}
 />
 
-<BlockMath math="h=\sqrt{5^2-3^2}=\sqrt{16}=4\text{ cm}" />
+Mit dem Satz des Pythagoras im Schnittdreieck folgen sofort die Höhe und das Volumen.
 
-# Das Volumen
+<BlockMath math="\begin{aligned}
+h &= \sqrt{5^2 - 3^2} = \sqrt{16} = 4\text{ cm} \\
+V &= \frac{1}{3} \cdot G \cdot h = \frac{1}{3} \cdot 6^2 \cdot 4 = 48\text{ cm}^3
+\end{aligned}" />
 
-<BlockMath math="V=\frac13\cdot G\cdot h=\frac13\cdot6^2\cdot4=48\text{ cm}^3" />
+## Vergleichsprobe und falsche Antworten prüfen
 
-Die Pyramide hat **das Volumen <InlineMath math="48\text{ cm}^3" />**.
+Kurzprobe: Ein Quader mit derselben Grundfläche und Höhe <InlineMath math="4\text{ cm}" /> hat <InlineMath math="144\text{ cm}^3" />, und **eine Pyramide fasst genau ein Drittel davon, also <InlineMath math="48\text{ cm}^3" />**.
 
-# Warum die anderen Antworten falsch sind
+- <InlineMath math="144\text{ cm}^3" /> vergisst den Faktor <InlineMath math="\frac{1}{3}" /> in der Volumenformel.
+- <InlineMath math="60\text{ cm}^3" /> setzt die Seitenhöhe <InlineMath math="5\text{ cm}" /> direkt als Pyramidenhöhe ein.
+- <InlineMath math="12\sqrt{7}\text{ cm}^3" /> verwechselt <InlineMath math="5\text{ cm}" /> mit der Seitenkante und rechnet mit der halben Diagonale <InlineMath math="3\sqrt{2}" />.
+- <InlineMath math="72\text{ cm}^3" /> nutzt den Faktor <InlineMath math="\frac{1}{2}" /> statt <InlineMath math="\frac{1}{3}" />.
+- <InlineMath math="180\text{ cm}^3" /> begeht beide Fehler zugleich: Seitenhöhe statt Pyramidenhöhe und fehlender Faktor <InlineMath math="\frac{1}{3}" />.
 
-- <InlineMath math="144\text{ cm}^3" /> **vergisst den Faktor <InlineMath math="\frac13" />** im Pyramidenvolumen.
-- <InlineMath math="60\text{ cm}^3" /> setzt die Seitenhöhe <InlineMath math="5" /> als Pyramidenhöhe ein: <InlineMath math="\frac13\cdot36\cdot5" />.
-- <InlineMath math="12\sqrt7\text{ cm}^3" /> hält <InlineMath math="5\text{ cm}" /> für die Länge einer Seitenkante und rechnet mit der halben Diagonale <InlineMath math="3\sqrt2" />: <InlineMath math="h=\sqrt{25-18}=\sqrt7" />.
-- <InlineMath math="72\text{ cm}^3" /> nimmt <InlineMath math="\frac12" /> statt <InlineMath math="\frac13" />.
-- <InlineMath math="180\text{ cm}^3" /> macht zwei Fehler: Seitenhöhe als Pyramidenhöhe und kein Faktor <InlineMath math="\frac13" />.
+# Antwort
+
+Das Volumen der Pyramide beträgt <InlineMath math="48\text{ cm}^3" />.

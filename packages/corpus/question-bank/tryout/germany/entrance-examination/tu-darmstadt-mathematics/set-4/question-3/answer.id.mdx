@@ -1,44 +1,52 @@
-# Daerah asal dan pembagian kasus
+# Diketahui
 
-Akar hanya terdefinisi untuk <InlineMath math="x+5\ge0" />, yaitu <InlineMath math="x\ge-5" />. Mengkuadratkan hanya aman kalau kedua ruas tidak negatif. Karena itu bagi menjadi dua kasus menurut **tanda ruas kanan** <InlineMath math="x-1" />.
+**Pertidaksamaan bentuk akar** (*Wurzelungleichung*) dalam bilangan real diberikan sebagai berikut.
 
-# Kasus 1: ruas kanan negatif
+<BlockMath math="\sqrt{x + 5} > x - 1" />
 
-Untuk <InlineMath math="-5\le x<1" /> berlaku <InlineMath math="x-1<0" />. Akar tidak pernah negatif, jadi pertidaksamaannya berlaku di sini **tanpa perlu menghitung**. Semua <InlineMath math="x" /> dengan <InlineMath math="-5\le x<1" /> adalah penyelesaian.
+# Ditanyakan
 
-# Kasus 2: ruas kanan tidak negatif
+Tentukan semua bilangan real <InlineMath math="x" /> yang memenuhi pertidaksamaan ini.
 
-Untuk <InlineMath math="x\ge1" /> kedua ruas tidak negatif, dan **kamu boleh mengkuadratkan**:
+# Penyelesaian
+
+Mengkuadratkan pertidaksamaan bisa menjebak saat salah satu ruas negatif: contohnya <InlineMath math="2 > -10" /> benar, tetapi begitu dikuadratkan menjadi <InlineMath math="4 > 100" /> yang salah! Karena akar tidak pernah negatif, kita wajib **memisahkan wilayah ruas kanan negatif sebagai zona menang otomatis** sebelum mengkuadratkan apa pun.
+
+> Hanya kuadratkan pertidaksamaan jika kedua ruas sama-sama tak negatif, sedangkan pada wilayah tempat ruas kanan negatif, akar kuadrat yang terdefinisi otomatis menang tanpa perlu dikuadratkan.
+
+Syarat daerah asal akar menuntut <InlineMath math="x + 5 \ge 0" />, artinya <InlineMath math="x \ge -5" />.
+
+## Membagi kasus menurut tanda ruas kanan
+
+Pada kasus pertama, ketika <InlineMath math="x" /> berada dari <InlineMath math="-5" /> sampai di bawah <InlineMath math="1" />, ruas kanan <InlineMath math="x - 1" /> bernilai negatif. Karena akar selalu tak negatif, **seluruh selang pertama otomatis memenuhi pertidaksamaan**.
+
+Pada kasus kedua, untuk <InlineMath math="x \ge 1" />, kedua ruas tak negatif sehingga aman dikuadratkan.
 
 <BlockMath math="\begin{aligned}
-x+5&>(x-1)^2=x^2-2x+1 \\
-0&>x^2-3x-4=(x-4)(x+1) \\
--1&<x<4
+x + 5 &> (x - 1)^2 = x^2 - 2x + 1 \\
+0 &> x^2 - 3x - 4 = (x - 4)(x + 1) \\
+-1 &< x < 4
 \end{aligned}" />
 
-Digabung dengan <InlineMath math="x\ge1" />, tersisa **<InlineMath math="1\le x<4" />**.
-
-# Gabungkan kedua kasus
+Diiriskan dengan syarat kasus kedua <InlineMath math="x \ge 1" />, tersisa selang <InlineMath math="1 \le x < 4" />. Gabungan kedua kasus menyambung tanpa celah dari <InlineMath math="-5" /> sampai di bawah <InlineMath math="4" />.
 
 <MathVisual
-  title={<>Tempat akar berada di atas garis</>}
-  description={<>Grafik <InlineMath math="y=\sqrt{x+5}" /> dimulai di <InlineMath math="x=-5" /> dan naik perlahan. Garis <InlineMath math="y=x-1" /> naik lebih cepat. Di kiri <InlineMath math="x=4" /> grafik akar ada di atas garis, di <InlineMath math="x=4" /> keduanya berpotongan di <InlineMath math="(4\mid3)" />, dan di kanannya garis berada di atas. Di bawah sumbu ditandai selang dari <InlineMath math="-5" /> sampai <InlineMath math="4" />.</>}
-  labels={{
-    start: <><InlineMath math="x=-5" /></>,
-    end: <><InlineMath math="x=4" /></>,
-    r: <><InlineMath math="\sqrt{x+5}" /></>,
-    l: <><InlineMath math="x-1" /></>,
-  }}
+  title={<>Wilayah kurva akar di atas garis <InlineMath math="y = x - 1" /></>}
+  description={
+    <>
+      Kurva <InlineMath math="y = \sqrt{x + 5}" /> dimulai di{" "}
+      <InlineMath math="x = -5" /> dan terus berada di atas garis{" "}
+      <InlineMath math="y = x - 1" /> hingga keduanya berpotongan di{" "}
+      <InlineMath math="(4 \mid 3)" />.
+    </>
+  }
+  footer={<>Kurva akar berada tepat di atas garis pada seluruh selang dari <InlineMath math="-5" /> sampai di bawah <InlineMath math="4" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -6.5, max: 8 },
-      y: { min: -7.5, max: 6.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -6.5, max: 8 }, y: { min: -7.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x+5)", domain: { min: -5, max: 7 } },
+      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x + 5)", domain: { min: -5, max: 7 } },
       { id: "line", kind: "function", appearance: "secondary", formula: "x - 1", domain: { min: -6, max: 7 } },
       { id: "solution", kind: "segment", appearance: "answer", from: { x: -5, y: -0.8 }, to: { x: 4, y: -0.8 } },
       { id: "left-end", kind: "point", appearance: "answer", at: { x: -5, y: 0 } },
@@ -51,14 +59,30 @@ Digabung dengan <InlineMath math="x\ge1" />, tersisa **<InlineMath math="1\le x<
       { key: "l", objectId: "line", at: { x: 6.5, y: 5.5 }, placement: "right" },
     ],
   }}
+  labels={{
+    start: <><InlineMath math="x = -5" /></>,
+    end: <><InlineMath math="x = 4" /></>,
+    r: <><InlineMath math="\sqrt{x + 5}" /></>,
+    l: <><InlineMath math="x - 1" /></>,
+  }}
 />
 
-Kedua bagian **bersambung tanpa celah**. Pertidaksamaan itu berlaku untuk <InlineMath math="-5\le x<4" />.
+Grafik menunjukkan dengan gamblang bahwa tepat di <InlineMath math="x = -5" /> kurva sudah di atas garis (<InlineMath math="0 > -6" />), lalu di <InlineMath math="x = 4" /> keduanya bernilai sama <InlineMath math="3" />.
 
-# Mengapa pilihan lain salah
+## Mengecek titik batas dan pilihan salah
 
-- <InlineMath math="-1<x<4" /> mengkuadratkan tanpa membagi kasus dan **kehilangan bilangan dari <InlineMath math="-5" /> sampai <InlineMath math="-1" />**, tempat ruas kanan negatif.
-- <InlineMath math="1\le x<4" /> hanya menghitung kasus 2.
-- <InlineMath math="x<4" /> lupa daerah asal <InlineMath math="x\ge-5" />.
-- <InlineMath math="-5\le x\le4" /> ikut memasukkan <InlineMath math="x=4" />. Di sana kedua ruas sama dengan <InlineMath math="3" />, padahal pertidaksamaannya tegas.
-- <InlineMath math="x>4" /> membalik hasilnya. Di kanan <InlineMath math="4" /> garis berada di atas akar.
+Uji kedua ujungnya: di <InlineMath math="x = -5" /> berlaku <InlineMath math="0 > -6" /> (benar, jadi <InlineMath math="-5" /> ikut), sedangkan di <InlineMath math="x = 4" /> **kedua ruas sama-sama bernilai <InlineMath math="3" />** sehingga <InlineMath math="4" /> tidak ikut.
+
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| <InlineMath math="-1 < x < 4" /> | Langsung mengkuadratkan tanpa membagi kasus sehingga membuang selang dari <InlineMath math="-5" /> sampai <InlineMath math="-1" />. |
+| <InlineMath math="1 \le x < 4" /> | Hanya menghitung kasus kedua dan melupakan zona ruas kanan negatif. |
+| <InlineMath math="x < 4" /> | Lupa daerah asal <InlineMath math="x \ge -5" /> sehingga angka di bawah <InlineMath math="-5" /> ikut masuk. |
+| <InlineMath math="-5 \le x \le 4" /> | Memasukkan <InlineMath math="x = 4" />, padahal pertidaksamaan bersifat tegas. |
+| <InlineMath math="x > 4" /> | Membalik arah, karena di kanan <InlineMath math="4" /> garis justru berada di atas akar. |
+
+# Jawaban
+
+Pertidaksamaan ini berlaku tepat pada selang berikut.
+
+<BlockMath math="-5 \le x < 4" />

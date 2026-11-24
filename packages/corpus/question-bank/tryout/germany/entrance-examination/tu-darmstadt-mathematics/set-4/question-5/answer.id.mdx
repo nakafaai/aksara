@@ -1,43 +1,51 @@
-# Hitung dengan laju per jam
+# Diketahui
 
-Waktu tidak boleh langsung dijumlahkan, tetapi laju boleh. Kalau pompa yang lebih lemah sendirian butuh <InlineMath math="x" /> jam, dalam satu jam ia mengisi <InlineMath math="\frac1x" /> bak. Pompa yang lebih kuat butuh <InlineMath math="x-5" /> jam dan mengisi <InlineMath math="\frac{1}{x-5}" /> per jam. Bersama-sama keduanya mengisi **<InlineMath math="\frac16" /> bak per jam**:
+Dua **pompa air** (*Pumpen*) mengisi sebuah bak kosong secara bersamaan dalam <InlineMath math="6" /> jam dengan laju tetap. Jika bekerja sendirian, pompa yang lebih lemah membutuhkan waktu <InlineMath math="5" /> jam lebih lama daripada pompa yang lebih kuat.
 
-<BlockMath math="\frac1x+\frac{1}{x-5}=\frac16" />
+# Ditanyakan
 
-# Selesaikan persamaannya
+Tentukan waktu yang dibutuhkan pompa yang lebih lemah untuk mengisi bak kosong sendirian.
 
-Kalikan dengan **penyebut bersama <InlineMath math="6x(x-5)" />**:
+# Penyelesaian
+
+Dua orang yang mengecat dinding bersama pasti selesai lebih cepat daripada salah satu saja, jadi kita tidak pernah menjumlahkan waktu kerja mereka. Yang bisa dijumlahkan adalah **laju pengisian per jam**, yaitu berapa bagian bak yang terisi setiap satu jam!
+
+> Pada soal kerja sama, selalu ubah waktu menjadi laju kerja per satuan waktu terlebih dahulu, jumlahkan laju masing-masing, lalu buang calon akar yang menghasilkan waktu negatif.
+
+Misalkan pompa lemah membutuhkan <InlineMath math="x" /> jam sendirian, sehingga pompa kuat membutuhkan <InlineMath math="x - 5" /> jam. Karena keduanya bersama-sama mengisi <InlineMath math="\frac{1}{6}" /> bak setiap jam, berlaku persamaan laju berikut.
+
+<BlockMath math="\frac{1}{x} + \frac{1}{x - 5} = \frac{1}{6}" />
+
+## Menyelesaikan persamaan laju dan menyaring akar fisik
+
+Kalikan kedua ruas dengan **penyebut bersama <InlineMath math="6x(x - 5)" />** untuk memperoleh persamaan kuadrat.
 
 <BlockMath math="\begin{aligned}
-6(x-5)+6x&=x(x-5) \\
-12x-30&=x^2-5x \\
-x^2-17x+30&=0 \\
-(x-15)(x-2)&=0
+6(x - 5) + 6x &= x(x - 5) \\
+12x - 30 &= x^2 - 5x \\
+x^2 - 17x + 30 &= 0 \\
+(x - 15)(x - 2) &= 0
 \end{aligned}" />
 
-# Pilih penyelesaian yang masuk akal
-
-Pompa yang lebih kuat butuh <InlineMath math="x-5" /> jam, dan **waktu itu harus positif**. Untuk <InlineMath math="x=2" /> waktunya <InlineMath math="-3" /> jam, jadi penyelesaian itu gugur:
+Muncul dua calon akar, yaitu <InlineMath math="x = 15" /> dan <InlineMath math="x = 2" />. Karena waktu pompa kuat adalah <InlineMath math="x - 5" /> yang wajib positif (<InlineMath math="x > 5" />), nilai <InlineMath math="x = 2" /> gugur sebab menghasilkan waktu negatif <InlineMath math="-3" /> jam.
 
 <MathVisual
-  title={<>Laju gabungan per jam</>}
-  description={<>Untuk waktu <InlineMath math="x>5" /> pompa yang lebih lemah, laju gabungan <InlineMath math="\frac1x+\frac1{x-5}" /> digambar sebagai grafik yang turun. Garis mendatar <InlineMath math="y=\frac16" /> adalah laju yang diminta. Keduanya bertemu tepat sekali, di <InlineMath math="x=15" />.</>}
-  labels={{
-    key: <><InlineMath math="x=15" /></>,
-    r: <>laju gabungan</>,
-    j: <><InlineMath math="\frac16" /> bak per jam</>,
-  }}
+  title={<>Laju gabungan kedua pompa menurut waktu pompa lemah</>}
+  description={
+    <>
+      Untuk <InlineMath math="x > 5" />, kurva laju gabungan menurun menuju nol
+      dan memotong garis target <InlineMath math="y = \tfrac{1}{6}" /> tepat
+      satu kali di <InlineMath math="x = 15" />.
+    </>
+  }
+  footer={<>Pada daerah fisik <InlineMath math="x > 5" />, hanya <InlineMath math="x = 15" /> jam yang mencapai laju <InlineMath math="\tfrac{1}{6}" /> bak per jam.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 5, max: 31 },
-      y: { min: 0, max: 0.65 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: 5, max: 31 }, y: { min: 0, max: 0.65 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "level", kind: "segment", appearance: "reference", from: { x: 5, y: 0.16666666666666666 }, to: { x: 30, y: 0.16666666666666666 } },
-      { id: "rate", kind: "function", appearance: "primary", formula: "1/x + 1/(x-5)", domain: { min: 7, max: 30 } },
+      { id: "rate", kind: "function", appearance: "primary", formula: "1 / x + 1 / (x - 5)", domain: { min: 7, max: 30 } },
       { id: "meet", kind: "point", appearance: "answer", at: { x: 15, y: 0.16666666666666666 } },
     ],
     labels: [
@@ -46,14 +54,27 @@ Pompa yang lebih kuat butuh <InlineMath math="x-5" /> jam, dan **waktu itu harus
       { key: "j", objectId: "level", at: { x: 28, y: 0.16666666666666666 }, placement: "above" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="x = 15" /></>,
+    r: <>laju gabungan</>,
+    j: <><InlineMath math="\tfrac{1}{6}" /> bak per jam</>,
+  }}
 />
 
-Cek <InlineMath math="x=15" />: <InlineMath math="\frac1{15}+\frac1{10}=\frac{2+3}{30}=\frac16" />. Pompa yang lebih lemah sendirian butuh <InlineMath math="15" /> jam.
+Grafik memastikan hanya ada satu titik potong di wilayah masuk akal <InlineMath math="x > 5" />.
 
-# Mengapa pilihan lain salah
+## Menguji hasil dan pilihan salah
 
-- <InlineMath math="10" /> jam adalah waktu pompa yang **lebih kuat**.
-- <InlineMath math="11" /> jam menambahkan <InlineMath math="5" /> jam ke waktu gabungan.
-- <InlineMath math="8{,}5" /> jam menganggap <InlineMath math="6" /> jam sebagai rata-rata kedua waktu: <InlineMath math="\frac{x+(x-5)}{2}=6" />.
-- "<InlineMath math="2" /> jam atau <InlineMath math="15" /> jam" melewatkan bahwa untuk <InlineMath math="x=2" /> pompa yang lebih kuat butuh waktu negatif.
-- <InlineMath math="12" /> jam menganggap setiap pompa sendirian butuh dua kali waktu gabungan. Itu hanya benar kalau kedua pompa sama kuat.
+Cek langsung untuk <InlineMath math="15" /> jam dan <InlineMath math="10" /> jam: **jumlah laju keduanya tepat satu per enam bak per jam**.
+
+<BlockMath math="\frac{1}{15} + \frac{1}{10} = \frac{2 + 3}{30} = \frac{5}{30} = \frac{1}{6}" />
+
+- <InlineMath math="10" /> jam adalah waktu milik pompa yang lebih kuat, bukan yang lebih lemah.
+- <InlineMath math="11" /> jam sekadar menambahkan selisih <InlineMath math="5" /> jam ke waktu gabungan <InlineMath math="6" /> jam.
+- <InlineMath math="8{,}5" /> jam keliru mengira waktu gabungan adalah rata-rata waktu kedua pompa.
+- <InlineMath math="2" /> jam atau <InlineMath math="15" /> jam lupa membuang <InlineMath math="x = 2" /> yang memberi waktu negatif bagi pompa kuat.
+- <InlineMath math="12" /> jam menganggap kedua pompa berkekuatan sama sehingga masing-masing butuh dua kali waktu gabungan.
+
+# Jawaban
+
+Pompa yang lebih lemah membutuhkan <InlineMath math="15" /> jam jika bekerja sendirian.

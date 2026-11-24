@@ -1,34 +1,46 @@
-# Rasionalkan setiap pecahan
+# Diberi
 
-Setiap sebutan berbentuk <InlineMath math="\frac{1}{\sqrt k+\sqrt{k+1}}" /> dengan <InlineMath math="k=1,2,\ldots,15" />. Darab pengangka dan penyebut dengan <InlineMath math="\sqrt{k+1}-\sqrt k" />. Beza dua kuasa dua menjadikan penyebut itu <InlineMath math="1" />:
+**Hasil tambah siri teleskopik** (*Teleskopsumme*) daripada <InlineMath math="15" /> pecahan punca kuasa dua diberi seperti berikut.
 
-<BlockMath math="\frac{1}{\sqrt k+\sqrt{k+1}}=\frac{\sqrt{k+1}-\sqrt k}{(k+1)-k}=\sqrt{k+1}-\sqrt k" />
+<BlockMath math="\frac{1}{1 + \sqrt{2}} + \frac{1}{\sqrt{2} + \sqrt{3}} + \frac{1}{\sqrt{3} + \sqrt{4}} + \ldots + \frac{1}{\sqrt{15} + \sqrt{16}}" />
 
-Jadi setiap pecahan ialah **beza dua punca yang bersebelahan**.
+# Ditanya
 
-# Hasil tambah itu mengecut
+Hitung nilai tepat bagi hasil tambah kesemua <InlineMath math="15" /> pecahan ini.
 
-Tulis hasil tambah dengan beza-beza tadi. Setiap punca dari <InlineMath math="\sqrt2" /> hingga <InlineMath math="\sqrt{15}" /> muncul sekali dengan tanda tambah dan sekali dengan tanda tolak:
+# Penyelesaian
 
-<BlockMath math="\left(\sqrt2-\sqrt1\right)+\left(\sqrt3-\sqrt2\right)+\ldots+\left(\sqrt{16}-\sqrt{15}\right)=\sqrt{16}-\sqrt1=4-1=3" />
+Bayangkan kamu menyusun lima belas jalur reben hujung ke hujung tanpa ruang di atas pembaris, bermula di tanda <InlineMath math="1" /> dan berakhir di tanda <InlineMath math="4" />. Kamu tidak perlu mengukur setiap jalur secara berasingan untuk mengetahui jumlah panjangnya: cukup **tolak tanda awal daripada tanda akhir**!
 
-Garis nombor menunjukkan kenapa **hanya titik pertama dan titik terakhir yang tinggal**:
+> Menisbahkan setiap penyebut menukar rangkaian pecahan yang panjang kepada siri teleskopik yang menghapuskan semua sebutan tengah dan hanya meninggalkan dua hujungnya.
+
+Nisbahkan sebutan am ke-<InlineMath math="k" /> dengan mendarab pengangka dan penyebut dengan konjugatnya supaya penyebutnya menjadi <InlineMath math="1" />.
+
+<BlockMath math="\frac{1}{\sqrt{k} + \sqrt{k + 1}} = \frac{\sqrt{k + 1} - \sqrt{k}}{(k + 1) - k} = \sqrt{k + 1} - \sqrt{k}" />
+
+## Melipat siri teleskopik
+
+Gantikan kesemua <InlineMath math="15" /> pecahan dengan beza punca berturutan supaya **semua punca tengah dari <InlineMath math="\sqrt{2}" /> hingga <InlineMath math="\sqrt{15}" /> saling menghapus**.
+
+<BlockMath math="\left(\sqrt{2} - \sqrt{1}\right) + \left(\sqrt{3} - \sqrt{2}\right) + \ldots + \left(\sqrt{16} - \sqrt{15}\right) = \sqrt{16} - \sqrt{1} = 4 - 1 = 3" />
+
+Perhatikan garis nombor di bawah untuk melihat lima belas tembereng bersambung kemas dari <InlineMath math="1" /> ke <InlineMath math="4" />.
 
 <MathVisual
-  title={<>Lima belas bahagian pada garis nombor</>}
-  description={<>Garis nombor memuatkan titik <InlineMath math="\sqrt1, \sqrt2, \ldots, \sqrt{16}" />. Setiap pecahan dalam hasil tambah ialah panjang bahagian dari <InlineMath math="\sqrt k" /> hingga <InlineMath math="\sqrt{k+1}" />. Kelima-belas bahagian bersambung tanpa celah dan bersama-sama merentang dari <InlineMath math="1" /> hingga <InlineMath math="4" />, iaitu sepanjang <InlineMath math="3" />.</>}
-  labels={{
-    one: <><InlineMath math="\sqrt1=1" /></>,
-    four: <><InlineMath math="\sqrt{16}=4" /></>,
-    sum: <><InlineMath math="4-1=3" /></>,
-  }}
+  title={<>Lima belas tembereng punca bersambung pada garis nombor</>}
+  description={
+    <>
+      Garis nombor menandakan titik <InlineMath math="\sqrt{1}" /> hingga{" "}
+      <InlineMath math="\sqrt{16}" />. Setiap pecahan menyumbang satu tembereng
+      dari <InlineMath math="\sqrt{k}" /> ke <InlineMath math="\sqrt{k + 1}" />{" "}
+      yang bersambung tepat dari <InlineMath math="1" /> hingga{" "}
+      <InlineMath math="4" />.
+    </>
+  }
+  footer={<>Kelima-lima belas tembereng bersambung tanpa celah dari <InlineMath math="1" /> ke <InlineMath math="4" />, memberi panjang <InlineMath math="3" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 0.5, max: 4.5 },
-      y: { min: -1, max: 1.5 },
-    },
+    frame: { kind: "cartesian", x: { min: 0.5, max: 4.5 }, y: { min: -1, max: 1.5 } },
     view: { kind: "fit", padding: 0.1 },
     objects: [
       { id: "axis", kind: "segment", appearance: "reference", from: { x: 0.8, y: 0 }, to: { x: 4.2, y: 0 } },
@@ -57,14 +69,25 @@ Garis nombor menunjukkan kenapa **hanya titik pertama dan titik terakhir yang ti
       { key: "sum", objectId: "total", at: { x: 2.5, y: 0.5 }, placement: "above" },
     ],
   }}
+  labels={{
+    one: <><InlineMath math="\sqrt{1} = 1" /></>,
+    four: <><InlineMath math="\sqrt{16} = 4" /></>,
+    sum: <><InlineMath math="4 - 1 = 3" /></>,
+  }}
 />
 
-Nilai hasil tambah itu ialah <InlineMath math="3" />.
+Setiap jalur semakin pendek ke kanan, namun gabungannya pasti menutup seluruh selang dari <InlineMath math="1" /> hingga <InlineMath math="4" />.
 
-# Kenapa jawapan lain salah
+## Menyemak anggaran dan pilihan salah
 
-- <InlineMath math="-3" /> terhasil kalau kamu darab dengan <InlineMath math="\sqrt k-\sqrt{k+1}" /> tetapi masih membaca penyebut sebagai <InlineMath math="+1" />. Sedangkan setiap sebutan **positif**, jadi hasil tambahnya pun positif.
-- <InlineMath math="4-\sqrt2" /> membuang pecahan pertama, jadi rantai itu bermula di <InlineMath math="\sqrt2" />.
-- <InlineMath math="\sqrt{17}-1" /> mengira satu pecahan terlebih, sehingga <InlineMath math="\sqrt{17}" />.
-- <InlineMath math="4" /> terlupa bahawa <InlineMath math="\sqrt1=1" /> ditolak pada permulaan.
-- <InlineMath math="15" /> ialah bilangan pecahan, bukan hasil tambahnya.
+Semakan pantas: setiap pecahan bernilai positif dan kurang daripada <InlineMath math="\frac{1}{2}" />, jadi **hasil tambah positif <InlineMath math="3" /> sangat munasabah bagi <InlineMath math="15" /> sebutan**.
+
+- <InlineMath math="-3" /> terhasil apabila mendarab dengan <InlineMath math="\sqrt{k} - \sqrt{k + 1}" /> tetapi mengekalkan penyebut <InlineMath math="+1" />, sedangkan jumlah sebutan positif tidak mungkin negatif.
+- <InlineMath math="4 - \sqrt{2}" /> tertinggal pecahan pertama sehingga rantai bermula di <InlineMath math="\sqrt{2}" />.
+- <InlineMath math="\sqrt{17} - 1" /> mengira satu pecahan terlebih hingga <InlineMath math="\sqrt{17}" />.
+- <InlineMath math="4" /> terlupa menolak sebutan awal <InlineMath math="1" />.
+- <InlineMath math="15" /> hanyalah bilangan pecahan, bukannya nilai jumlahnya.
+
+# Jawapan
+
+Nilai tepat bagi hasil tambah ini ialah <InlineMath math="3" />.

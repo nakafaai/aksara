@@ -1,34 +1,46 @@
-# Rasionalkan setiap pecahan
+# Diketahui
 
-Setiap suku berbentuk <InlineMath math="\frac{1}{\sqrt k+\sqrt{k+1}}" /> dengan <InlineMath math="k=1,2,\ldots,15" />. Kalikan pembilang dan penyebut dengan <InlineMath math="\sqrt{k+1}-\sqrt k" />. Selisih dua kuadrat membuat penyebutnya menjadi <InlineMath math="1" />:
+**Jumlah deret teleskopik** (*Teleskopsumme*) dari <InlineMath math="15" /> pecahan bentuk akar diberikan sebagai berikut.
 
-<BlockMath math="\frac{1}{\sqrt k+\sqrt{k+1}}=\frac{\sqrt{k+1}-\sqrt k}{(k+1)-k}=\sqrt{k+1}-\sqrt k" />
+<BlockMath math="\frac{1}{1 + \sqrt{2}} + \frac{1}{\sqrt{2} + \sqrt{3}} + \frac{1}{\sqrt{3} + \sqrt{4}} + \ldots + \frac{1}{\sqrt{15} + \sqrt{16}}" />
 
-Jadi setiap pecahan adalah **selisih dua akar yang bersebelahan**.
+# Ditanyakan
 
-# Jumlahnya menyusut
+Hitung nilai eksak dari seluruh jumlah <InlineMath math="15" /> pecahan ini.
 
-Tulis jumlah itu dengan selisih-selisih tadi. Setiap akar dari <InlineMath math="\sqrt2" /> sampai <InlineMath math="\sqrt{15}" /> muncul sekali bertanda plus dan sekali bertanda minus:
+# Penyelesaian
 
-<BlockMath math="\left(\sqrt2-\sqrt1\right)+\left(\sqrt3-\sqrt2\right)+\ldots+\left(\sqrt{16}-\sqrt{15}\right)=\sqrt{16}-\sqrt1=4-1=3" />
+Bayangkan kamu menyusun lima belas potongan pita berurutan tanpa celah di sepanjang penggaris, mulai dari tanda <InlineMath math="1" /> sampai tanda <InlineMath math="4" />. Kamu tidak perlu mengukur setiap potongan satu per satu untuk tahu panjang totalnya: cukup **kurangkan ujung akhir dengan ujung awal**!
 
-Garis bilangan menunjukkan mengapa **hanya titik pertama dan titik terakhir yang tersisa**:
+> Merasionalkan setiap penyebut mengubah deret pecahan yang tampak panjang menjadi deret teleskopik, tempat setiap suku tengah saling meniadakan dan hanya ujung pertama serta terakhir yang tersisa.
+
+Rasionalkan suku umum ke-<InlineMath math="k" /> dengan mengalikan pembilang dan penyebut oleh sekawannya sehingga penyebutnya menjadi <InlineMath math="1" />.
+
+<BlockMath math="\frac{1}{\sqrt{k} + \sqrt{k + 1}} = \frac{\sqrt{k + 1} - \sqrt{k}}{(k + 1) - k} = \sqrt{k + 1} - \sqrt{k}" />
+
+## Melipat deret teleskopik
+
+Ganti seluruh <InlineMath math="15" /> pecahan dengan selisih akar berurutan sehingga **semua akar tengah dari <InlineMath math="\sqrt{2}" /> hingga <InlineMath math="\sqrt{15}" /> saling menghapus**.
+
+<BlockMath math="\left(\sqrt{2} - \sqrt{1}\right) + \left(\sqrt{3} - \sqrt{2}\right) + \ldots + \left(\sqrt{16} - \sqrt{15}\right) = \sqrt{16} - \sqrt{1} = 4 - 1 = 3" />
+
+Lihat garis bilangan berikut untuk menyaksikan lima belas ruas yang bersambung rapi dari <InlineMath math="1" /> ke <InlineMath math="4" />.
 
 <MathVisual
-  title={<>Lima belas potongan di garis bilangan</>}
-  description={<>Garis bilangan memuat titik <InlineMath math="\sqrt1, \sqrt2, \ldots, \sqrt{16}" />. Setiap pecahan dalam jumlah itu adalah panjang potongan dari <InlineMath math="\sqrt k" /> sampai <InlineMath math="\sqrt{k+1}" />. Kelima belas potongan bersambung tanpa celah dan bersama-sama membentang dari <InlineMath math="1" /> sampai <InlineMath math="4" />, jadi panjangnya <InlineMath math="3" />.</>}
-  labels={{
-    one: <><InlineMath math="\sqrt1=1" /></>,
-    four: <><InlineMath math="\sqrt{16}=4" /></>,
-    sum: <><InlineMath math="4-1=3" /></>,
-  }}
+  title={<>Lima belas ruas akar bersambung pada garis bilangan</>}
+  description={
+    <>
+      Garis bilangan memuat titik <InlineMath math="\sqrt{1}" /> hingga{" "}
+      <InlineMath math="\sqrt{16}" />. Setiap pecahan menyumbang satu ruas dari{" "}
+      <InlineMath math="\sqrt{k}" /> ke <InlineMath math="\sqrt{k + 1}" />, dan
+      seluruhnya membentang tepat dari <InlineMath math="1" /> sampai{" "}
+      <InlineMath math="4" />.
+    </>
+  }
+  footer={<>Kelima belas ruas menyambung tanpa celah dari <InlineMath math="1" /> ke <InlineMath math="4" />, jadi panjang totalnya <InlineMath math="3" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 0.5, max: 4.5 },
-      y: { min: -1, max: 1.5 },
-    },
+    frame: { kind: "cartesian", x: { min: 0.5, max: 4.5 }, y: { min: -1, max: 1.5 } },
     view: { kind: "fit", padding: 0.1 },
     objects: [
       { id: "axis", kind: "segment", appearance: "reference", from: { x: 0.8, y: 0 }, to: { x: 4.2, y: 0 } },
@@ -57,14 +69,25 @@ Garis bilangan menunjukkan mengapa **hanya titik pertama dan titik terakhir yang
       { key: "sum", objectId: "total", at: { x: 2.5, y: 0.5 }, placement: "above" },
     ],
   }}
+  labels={{
+    one: <><InlineMath math="\sqrt{1} = 1" /></>,
+    four: <><InlineMath math="\sqrt{16} = 4" /></>,
+    sum: <><InlineMath math="4 - 1 = 3" /></>,
+  }}
 />
 
-Nilai jumlah itu <InlineMath math="3" />.
+Setiap potongan makin pendek ke kanan, namun gabungan semuanya pasti menutup selang dari <InlineMath math="1" /> sampai <InlineMath math="4" />.
 
-# Mengapa pilihan lain salah
+## Mengecek taksiran dan pilihan salah
 
-- <InlineMath math="-3" /> muncul kalau kamu mengalikan dengan <InlineMath math="\sqrt k-\sqrt{k+1}" /> tetapi penyebutnya tetap dibaca <InlineMath math="+1" />. Padahal setiap suku **positif**, jadi jumlahnya juga positif.
-- <InlineMath math="4-\sqrt2" /> membuang pecahan pertama sehingga rantainya baru mulai di <InlineMath math="\sqrt2" />.
-- <InlineMath math="\sqrt{17}-1" /> menghitung satu pecahan terlalu banyak, sampai <InlineMath math="\sqrt{17}" />.
-- <InlineMath math="4" /> lupa bahwa di awal ada <InlineMath math="\sqrt1=1" /> yang dikurangkan.
-- <InlineMath math="15" /> adalah banyaknya pecahan, bukan jumlahnya.
+Cek cepat: setiap pecahan bernilai positif dan kurang dari <InlineMath math="\frac{1}{2}" />, jadi **jumlah positif <InlineMath math="3" /> masuk akal untuk <InlineMath math="15" /> suku**.
+
+- <InlineMath math="-3" /> muncul jika mengalikan dengan <InlineMath math="\sqrt{k} - \sqrt{k + 1}" /> lalu salah menulis penyebutnya <InlineMath math="+1" />, padahal jumlah suku positif tidak mungkin negatif.
+- <InlineMath math="4 - \sqrt{2}" /> melewatkan pecahan pertama sehingga rantai baru dimulai di <InlineMath math="\sqrt{2}" />.
+- <InlineMath math="\sqrt{17} - 1" /> melampaui batas dengan menghitung satu pecahan tambahan sampai <InlineMath math="\sqrt{17}" />.
+- <InlineMath math="4" /> lupa mengurangkan suku awal <InlineMath math="1" />.
+- <InlineMath math="15" /> hanyalah banyaknya suku pecahan, bukan nilai jumlahnya.
+
+# Jawaban
+
+Nilai jumlah deret pecahan ini adalah <InlineMath math="3" />.

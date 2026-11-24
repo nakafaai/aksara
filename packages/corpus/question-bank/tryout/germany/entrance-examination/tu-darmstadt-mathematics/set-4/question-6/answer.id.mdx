@@ -1,38 +1,59 @@
-# Di mana nilai minimum bisa berada
+# Diketahui
 
-Grafik <InlineMath math="f" /> adalah parabola terbuka ke atas dengan puncak di <InlineMath math="x=a" />, karena <InlineMath math="f(x)=(x-a)^2+6-a^2" />. Pada selang <InlineMath math="0\le x\le3" />, nilai terkecilnya ada **di puncak atau di salah satu ujung selang**. Kasus mana yang terjadi bergantung pada letak <InlineMath math="a" />.
+**Fungsi kuadrat** (*quadratische Funktion*) dengan parameter real <InlineMath math="a" /> diamati pada selang tertutup <InlineMath math="0 \le x \le 3" />.
 
-# Tiga kasus
+<BlockMath math="f(x) = x^2 - 2ax + 6" />
+
+Nilai terkecil (*kleinster Funktionswert*) fungsi ini pada selang <InlineMath math="0 \le x \le 3" /> tepat sama dengan <InlineMath math="2" />.
+
+# Ditanyakan
+
+Tentukan nilai parameter real <InlineMath math="a" />.
+
+# Penyelesaian
+
+Bayangkan sebuah lembah berbentuk parabola yang bergeser ke kiri atau kanan di balik jendela sempit dari <InlineMath math="x = 0" /> sampai <InlineMath math="x = 3" />. Titik terendah yang tampak dari jendela hanyalah salah satu dari dua tempat: **dasar lembah itu sendiri jika berada di dalam jendela, atau salah satu tepi jendela jika dasar lembah ada di luar**.
+
+> Minimum fungsi kuadrat terbuka ke atas pada selang tertutup selalu berada di puncak jika puncak masuk selang, atau di ujung selang terdekat jika puncak di luar, dan setiap calon wajib dicocokkan ulang dengan syarat kasusnya.
+
+Lengkapi kuadrat untuk membaca puncak parabola di <InlineMath math="x = a" />.
+
+<BlockMath math="f(x) = (x - a)^2 + 6 - a^2" />
+
+## Menguji ketiga letak puncak parabola
+
+Periksa **tiga kemungkinan posisi <InlineMath math="a" />** terhadap selang <InlineMath math="0 \le x \le 3" />.
 
 <BlockMath math="\begin{aligned}
-0\le a\le3:&\quad \min=f(a)=6-a^2=2\ \Rightarrow\ a=2\ \ (a=-2\ \text{tidak termasuk kasus ini}) \\
-a>3:&\quad \min=f(3)=15-6a=2\ \Rightarrow\ a=\tfrac{13}{6}\ \ (\text{padahal}\ \tfrac{13}{6}<3) \\
-a<0:&\quad \min=f(0)=6\ne2
+0 \le a \le 3 &: \quad \min = f(a) = 6 - a^2 = 2 \implies a = 2 \quad (a = -2 \text{ di luar kasus}) \\
+a > 3 &: \quad \min = f(3) = 15 - 6a = 2 \implies a = \frac{13}{6} \quad (\text{gugur karena } \tfrac{13}{6} < 3) \\
+a < 0 &: \quad \min = f(0) = 6 \neq 2
 \end{aligned}" />
 
-Hanya di kasus pertama bilangan yang ditemukan **cocok dengan syarat kasusnya**.
+Hanya <InlineMath math="a = 2" /> yang konsisten dengan syarat kasusnya sendiri. Bandingkan kurva <InlineMath math="a = 2" /> dengan jebakan ujung kanan <InlineMath math="\frac{13}{6}" /> pada grafik berikut.
 
 <MathVisual
-  title={<>Nilai terkecil pada selang</>}
-  description={<>Selangnya ada di antara garis tegak <InlineMath math="x=0" /> dan <InlineMath math="x=3" />. Parabola untuk <InlineMath math="a=2" /> punya puncak <InlineMath math="(2\mid2)" /> di dalam selang, jadi nilai terkecilnya di sana <InlineMath math="2" />. Parabola untuk <InlineMath math="a=\frac{13}{6}" /> memang melalui <InlineMath math="(3\mid2)" />, tetapi di dalam selang turun lebih rendah dari <InlineMath math="2" />.</>}
-  labels={{
-    min: <><InlineMath math="(2\mid2)" /></>,
-    g: <><InlineMath math="a=2" /></>,
-    b: <><InlineMath math="a=\tfrac{13}{6}" /></>,
-  }}
+  title={<>Perbandingan nilai minimum pada jendela <InlineMath math="0 \le x \le 3" /></>}
+  description={
+    <>
+      Dua dinding tegak menandai jendela <InlineMath math="0 \le x \le 3" />.
+      Kurva <InlineMath math="a = 2" /> menyentuh garis target{" "}
+      <InlineMath math="y = 2" /> tepat di puncaknya <InlineMath math="(2 \mid 2)" />,
+      sedangkan kurva <InlineMath math="a = \tfrac{13}{6}" /> memang melewati{" "}
+      <InlineMath math="(3 \mid 2)" /> namun turun jauh di bawah{" "}
+      <InlineMath math="2" /> di dalam selang.
+    </>
+  }
+  footer={<>Hanya <InlineMath math="a = 2" /> memiliki nilai terendah tepat <InlineMath math="2" /> di dalam jendela <InlineMath math="0 \le x \le 3" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 4.8 },
-      y: { min: -0.5, max: 7.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 4.8 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "left-wall", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 7 } },
       { id: "right-wall", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 7 } },
-      { id: "good", kind: "function", appearance: "primary", formula: "x^2 - 4*x + 6", domain: { min: -0.5, max: 3.5 } },
-      { id: "bad", kind: "function", appearance: "secondary", formula: "x^2 - (13/3)*x + 6", domain: { min: -0.5, max: 3.5 } },
+      { id: "good", kind: "function", appearance: "primary", formula: "x^2 - 4 * x + 6", domain: { min: -0.5, max: 3.5 } },
+      { id: "bad", kind: "function", appearance: "secondary", formula: "x^2 - (13 / 3) * x + 6", domain: { min: -0.5, max: 3.5 } },
       { id: "target", kind: "segment", appearance: "reference", from: { x: -0.5, y: 2 }, to: { x: 3.5, y: 2 } },
       { id: "vertex", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
     ],
@@ -42,16 +63,27 @@ Hanya di kasus pertama bilangan yang ditemukan **cocok dengan syarat kasusnya**.
       { key: "b", objectId: "bad", at: { x: 3.4, y: 2.83 }, placement: "below-right" },
     ],
   }}
+  labels={{
+    min: <><InlineMath math="(2 \mid 2)" /></>,
+    g: <><InlineMath math="a = 2" /></>,
+    b: <><InlineMath math="a = \tfrac{13}{6}" /></>,
+  }}
 />
 
-# Cek
+Grafik langsung menyingkap jebakan kasus kedua: untuk <InlineMath math="\frac{13}{6}" />, titik <InlineMath math="(3 \mid 2)" /> bukan titik terendah karena puncaknya berada di dalam jendela dan lebih rendah dari <InlineMath math="2" />.
 
-Untuk <InlineMath math="a=2" />, <InlineMath math="f(x)=(x-2)^2+2" />. Puncak <InlineMath math="x=2" /> ada di dalam selang, jadi **nilai terkecilnya di sana <InlineMath math="2" />**. Jadi <InlineMath math="a=2" />.
+## Menguji solusi dan pilihan salah
 
-# Mengapa pilihan lain salah
+Cek langsung untuk <InlineMath math="a = 2" />: fungsi menjadi **bentuk kuadrat lengkap <InlineMath math="(x - 2)^2 + 2" />**, yang mencapai minimum tepat <InlineMath math="2" /> di <InlineMath math="x = 2" /> di dalam selang.
 
-- <InlineMath math="a=-2" /> atau <InlineMath math="a=2" /> mengambil kedua penyelesaian <InlineMath math="6-a^2=2" />. Untuk <InlineMath math="a=-2" /> puncaknya di <InlineMath math="x=-2" />, di luar selang, dan nilai terkecil pada selang adalah <InlineMath math="f(0)=6" />.
-- <InlineMath math="a=\frac{13}{6}" /> hanya memeriksa ujung kanan. Karena <InlineMath math="\frac{13}{6}" /> ada di dalam selang, nilai puncaknya <InlineMath math="6-\frac{169}{36}=\frac{47}{36}" /> **lebih kecil dari <InlineMath math="2" />**.
-- <InlineMath math="a=2" /> atau <InlineMath math="a=\frac{13}{6}" /> menyimpan penyelesaian kasus ujung tanpa memeriksa syarat <InlineMath math="a>3" />.
-- <InlineMath math="a=-2" /> saja adalah nilai yang puncaknya sama sekali tidak ada di selang.
-- <InlineMath math="a=2\sqrt2" /> muncul kalau nilai puncak dihitung <InlineMath math="6-\frac{a^2}{2}" />, bukan <InlineMath math="6-a^2" />.
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| <InlineMath math="a = -2" /> atau <InlineMath math="a = 2" /> | Mengambil kedua akar <InlineMath math="6 - a^2 = 2" /> tanpa mengecek bahwa puncak <InlineMath math="a = -2" /> ada di luar selang. |
+| <InlineMath math="a = \frac{13}{6}" /> | Hanya mengecek ujung kanan <InlineMath math="f(3) = 2" />, padahal puncaknya turun sampai <InlineMath math="\frac{47}{36} < 2" />. |
+| <InlineMath math="a = 2" /> atau <InlineMath math="a = \frac{13}{6}" /> | Lupa menolak <InlineMath math="\frac{13}{6}" /> yang melanggar syarat kasus <InlineMath math="a > 3" />. |
+| <InlineMath math="a = -2" /> | Puncaknya di luar selang sehingga minimum pada selang justru <InlineMath math="f(0) = 6" />. |
+| <InlineMath math="a = 2\sqrt{2}" /> | Keliru menghitung tinggi puncak sebagai <InlineMath math="6 - \frac{a^2}{2}" />, bukan <InlineMath math="6 - a^2" />. |
+
+# Jawaban
+
+Nilai parameter yang memenuhi adalah <InlineMath math="a = 2" />.

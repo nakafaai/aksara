@@ -1,50 +1,60 @@
-# Definitionsbereich und erstes Quadrieren
+# Gegeben
 
-Beide Wurzeln müssen definiert sein: <InlineMath math="3x+1\ge0" /> und <InlineMath math="x-1\ge0" />, zusammen also <InlineMath math="x\ge1" />. Bringe eine Wurzel auf die andere Seite, bevor du quadrierst, damit **nur noch eine Wurzel übrig bleibt**:
+Gegeben ist die folgende **Wurzelgleichung** in der Menge der reellen Zahlen.
 
-<BlockMath math="\begin{aligned}
-\sqrt{3x+1}&=2+\sqrt{x-1} \\
-3x+1&=4+4\sqrt{x-1}+x-1 \\
-2x-2&=4\sqrt{x-1} \\
-x-1&=2\sqrt{x-1}
-\end{aligned}" />
+<BlockMath math="\sqrt{3x + 1} - \sqrt{x - 1} = 2" />
 
-# Nicht durch die Wurzel teilen
+# Gesucht
 
-Es liegt nahe, beide Seiten durch <InlineMath math="\sqrt{x-1}" /> zu teilen. Für <InlineMath math="x=1" /> ist diese Zahl aber <InlineMath math="0" />, und **durch <InlineMath math="0" /> darfst du nicht teilen**. Setze stattdessen <InlineMath math="u=\sqrt{x-1}\ge0" />. Dann ist <InlineMath math="x-1=u^2" />:
+Die reelle Lösungsmenge <InlineMath math="\mathbb{L}" /> dieser Gleichung.
 
-<BlockMath math="u^2=2u\quad\Longleftrightarrow\quad u(u-2)=0\quad\Longleftrightarrow\quad u=0\ \text{oder}\ u=2" />
+# Lösung
 
-Aus <InlineMath math="u=0" /> folgt <InlineMath math="x=1" />, aus <InlineMath math="u=2" /> folgt <InlineMath math="x-1=4" />, also <InlineMath math="x=5" />.
+Beide Seiten durch einen Term zu teilen, der null werden kann, sperrt leicht eine echte Lösung aus. Beide Wurzeln verlangen <InlineMath math="x \ge 1" />, und **Ausklammern ist viel sicherer als Teilen durch die Wurzel**, damit <InlineMath math="x = 1" /> nicht verloren geht.
 
-# Beide Kandidaten prüfen
+> Teile eine Gleichung nie durch einen Faktor, der null werden kann, und mach am Ende immer die Probe in der Ausgangsgleichung, weil Quadrieren Scheinlösungen erzeugen kann.
 
-Quadrieren kann falsche Lösungen erzeugen, also **setzt du beide in die ursprüngliche Gleichung ein**:
+Bring eine Wurzel vor dem Quadrieren auf die andere Seite, damit nur noch eine Wurzel stehen bleibt.
 
 <BlockMath math="\begin{aligned}
-x=1:&\quad\sqrt4-\sqrt0=2 \\
-x=5:&\quad\sqrt{16}-\sqrt4=4-2=2
+\sqrt{3x + 1} &= 2 + \sqrt{x - 1} \\
+3x + 1 &= 4 + 4\sqrt{x - 1} + x - 1 \\
+2x - 2 &= 4\sqrt{x - 1} \\
+x - 1 &= 2\sqrt{x - 1}
 \end{aligned}" />
+
+## Faktorisieren ohne Lösungsverlust
+
+Ersetz <InlineMath math="\sqrt{x - 1}" /> durch <InlineMath math="u \ge 0" />, sodass <InlineMath math="x - 1" /> gleich <InlineMath math="u^2" /> ist und **beide Lösungen nebeneinander sichtbar werden**.
+
+<BlockMath math="u^2 = 2u \iff u(u - 2) = 0 \iff u = 0 \text{ oder } u = 2" />
+
+Für <InlineMath math="u = 0" /> folgt <InlineMath math="x = 1" />, für <InlineMath math="u = 2" /> folgt <InlineMath math="x - 1 = 4" />, also <InlineMath math="x = 5" />. Prüf beide Zahlen direkt in der Ausgangsgleichung.
+
+<BlockMath math="\begin{aligned}
+x = 1 &\implies \sqrt{4} - \sqrt{0} = 2 \\
+x = 5 &\implies \sqrt{16} - \sqrt{4} = 4 - 2 = 2
+\end{aligned}" />
+
+Im Graphen siehst du, wie die Kurve der linken Seite kurz absinkt und dann erneut die Höhe <InlineMath math="2" /> erreicht.
 
 <MathVisual
-  title={<>Beide Lösungen am Graphen</>}
-  description={<>Der Graph der linken Seite <InlineMath math="\sqrt{3x+1}-\sqrt{x-1}" /> beginnt bei <InlineMath math="x=1" /> auf der Höhe <InlineMath math="2" />, fällt bis etwa <InlineMath math="1{,}63" /> bei <InlineMath math="x=\tfrac53" /> und steigt danach wieder. Bei <InlineMath math="x=5" /> erreicht er noch einmal genau die Höhe <InlineMath math="2" />. Die waagerechte Gerade <InlineMath math="y=2" /> trifft ihn also in zwei Punkten.</>}
-  labels={{
-    one: <><InlineMath math="x=1" /></>,
-    five: <><InlineMath math="x=5" /></>,
-    f: <>linke Seite</>,
-  }}
+  title={<>Zwei Schnittpunkte der Wurzelkurve mit <InlineMath math="y = 2" /></>}
+  description={
+    <>
+      Die Kurve <InlineMath math="\sqrt{3x + 1} - \sqrt{x - 1}" /> startet bei{" "}
+      <InlineMath math="(1 \mid 2)" />, fällt kurz ab und schneidet{" "}
+      <InlineMath math="y = 2" /> ein zweites Mal bei <InlineMath math="(5 \mid 2)" />.
+    </>
+  }
+  footer={<>Die Kurve trifft <InlineMath math="y = 2" /> zweimal, nämlich bei <InlineMath math="x = 1" /> und <InlineMath math="x = 5" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 0, max: 11.5 },
-      y: { min: 0, max: 3.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: 0, max: 11.5 }, y: { min: 0, max: 3.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 11, y: 2 } },
-      { id: "left-side", kind: "function", appearance: "primary", formula: "sqrt(3*x+1) - sqrt(x-1)", domain: { min: 1, max: 11 } },
+      { id: "left-side", kind: "function", appearance: "primary", formula: "sqrt(3 * x + 1) - sqrt(x - 1)", domain: { min: 1, max: 11 } },
       { id: "p1", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
       { id: "p5", kind: "point", appearance: "answer", at: { x: 5, y: 2 } },
     ],
@@ -54,14 +64,27 @@ x=5:&\quad\sqrt{16}-\sqrt4=4-2=2
       { key: "f", objectId: "left-side", at: { x: 10, y: 2.57 }, placement: "above" },
     ],
   }}
+  labels={{
+    one: <><InlineMath math="x = 1" /></>,
+    five: <><InlineMath math="x = 5" /></>,
+    f: <>linke Seite</>,
+  }}
 />
 
-Die Lösungsmenge ist <InlineMath math="\mathbb{L}=\{1;\,5\}" />.
+Beide Punkte liegen genau auf der Geraden <InlineMath math="y = 2" />, keine Lösung entfällt.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="\mathbb{L}=\{5\}" /> entsteht, wenn du durch <InlineMath math="\sqrt{x-1}" /> teilst. Dabei **geht die Lösung <InlineMath math="x=1" /> verloren**.
-- <InlineMath math="\mathbb{L}=\{1\}" /> entsteht, wenn du die linke Seite gliedweise quadrierst: <InlineMath math="(3x+1)-(x-1)=4" />. Aber <InlineMath math="(a-b)^2\ne a^2-b^2" />.
-- <InlineMath math="\mathbb{L}=\{1;\,3\}" /> entsteht, wenn du in <InlineMath math="x-1=2\sqrt{x-1}" /> beim Quadrieren den Faktor <InlineMath math="2" /> nicht quadrierst: <InlineMath math="(x-1)^2=2(x-1)" />.
-- <InlineMath math="\mathbb{L}=\{3+2\sqrt3\}" /> entsteht mit einem Vorzeichenfehler beim Ausmultiplizieren: <InlineMath math="x^2-2x+1=4x+4" />.
-- <InlineMath math="\mathbb{L}=\{\}" /> übersieht, dass beide Proben aufgehen.
+Jede falsche Auswahl geht auf **eine typische Falle beim Lösen von Wurzelgleichungen** zurück.
+
+| Antwort | Warum sie falsch ist |
+| :--- | :--- |
+| <InlineMath math="\mathbb{L} = \{5\}" /> | Teilt durch <InlineMath math="\sqrt{x - 1}" /> und verliert dabei die Lösung <InlineMath math="x = 1" />. |
+| <InlineMath math="\mathbb{L} = \{1\}" /> | Quadriert gliedweise und vergisst den gemischten Term aus der binomischen Formel. |
+| <InlineMath math="\mathbb{L} = \{1,\, 3\}" /> | Vergisst, den Faktor <InlineMath math="2" /> vor der Wurzel mitzuquadrieren, und behält <InlineMath math="2" /> statt <InlineMath math="4" />. |
+| <InlineMath math="\mathbb{L} = \{3 + 2\sqrt{3}\}" /> | Beruht auf einem Vorzeichenfehler beim Ausmultiplizieren zu <InlineMath math="4x + 4" />. |
+| <InlineMath math="\mathbb{L} = \{\}" /> | Übersieht, dass beide Kandidaten die Probe bestehen. |
+
+# Antwort
+
+Die Lösungsmenge der Gleichung lautet <InlineMath math="\mathbb{L} = \{1,\, 5\}" />.

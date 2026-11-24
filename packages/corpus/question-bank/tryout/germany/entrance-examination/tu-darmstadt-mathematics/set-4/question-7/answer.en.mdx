@@ -1,42 +1,50 @@
-# Percentage changes as factors
+# Given
 
-Write the rate you want as a decimal <InlineMath math="p" />. The increase multiplies the price by <InlineMath math="1+p" />. The cut by twice the rate refers to **the already increased price** and multiplies by <InlineMath math="1-2p" />. In the end the price is <InlineMath math="12\,\%" /> lower, so it is <InlineMath math="0.88" /> times the original:
+The **price of an item** (*Preis einer Ware*) is first raised by a percentage <InlineMath math="p" />, and then the new price is cut by twice that percentage (<InlineMath math="2p" />). In the end, the item costs <InlineMath math="12\,\%" /> less than before the increase.
 
-<BlockMath math="(1+p)(1-2p)=0.88" />
+# Asked
 
-# Solve the quadratic equation
+By what percentage was the price raised in the first step?
+
+# Solution
+
+A discount taken after a price hike cuts deeper than a discount on the original price because **the second cut also trims off part of the added markup**! That is why consecutive percentage changes always multiply their growth factors rather than simply subtracting.
+
+> Consecutive percentage changes multiply their factors step by step against the latest price, and only a positive root represents an initial price increase.
+
+Write the percentage increase as a decimal <InlineMath math="p > 0" />. The hike multiplies the price by <InlineMath math="1 + p" />, the cut multiplies it by <InlineMath math="1 - 2p" />, and the final factor is <InlineMath math="0.88" />.
+
+<BlockMath math="(1 + p)(1 - 2p) = 0.88" />
+
+## Solving the quadratic and picking the positive root
+
+Expand the product and apply the quadratic formula to obtain **both candidate values for <InlineMath math="p" />**.
 
 <BlockMath math="\begin{aligned}
-1-p-2p^2&=0.88 \\
-2p^2+p-0.12&=0 \\
-p&=\frac{-1\pm\sqrt{1+0.96}}{4}=\frac{-1\pm1.4}{4}
+1 - p - 2p^2 &= 0.88 \\
+2p^2 + p - 0.12 &= 0 \\
+p &= \frac{-1 \pm \sqrt{1 + 0.96}}{4} = \frac{-1 \pm 1.4}{4}
 \end{aligned}" />
 
-That gives **<InlineMath math="p=0.1" /> or <InlineMath math="p=-0.6" />**.
-
-# Discard the negative solution
-
-An increase needs **a positive rate**, so <InlineMath math="p=0.1" /> remains:
+This yields <InlineMath math="p = 0.1" /> or <InlineMath math="p = -0.6" />. Because the first step is an increase, we keep <InlineMath math="p = 0.1" /> (<InlineMath math="10\,\%" />).
 
 <MathVisual
-  title={<>Overall factor depending on the rate</>}
-  description={<>The graph shows the overall factor <InlineMath math="(1+p)(1-2p)" /> for rates <InlineMath math="p" /> written as decimals. The horizontal line is at <InlineMath math="0.88" />. It meets the graph at <InlineMath math="p=0.1" /> and at <InlineMath math="p=-0.6" />. Only <InlineMath math="p=0.1" /> is an increase.</>}
-  labels={{
-    key: <><InlineMath math="p=0.1" /></>,
-    bad: <><InlineMath math="p=-0.6" /></>,
-    f: <>overall factor</>,
-    t: <><InlineMath math="0.88" /></>,
-  }}
+  title={<>Final price factor as a function of initial increase <InlineMath math="p" /></>}
+  description={
+    <>
+      The total-factor curve <InlineMath math="(1 + p)(1 - 2p)" /> crosses the
+      target height <InlineMath math="y = 0.88" /> at{" "}
+      <InlineMath math="p = 0.1" /> and <InlineMath math="p = -0.6" />. Only{" "}
+      <InlineMath math="p = 0.1" /> represents an initial increase.
+    </>
+  }
+  footer={<>Of the two crossings with <InlineMath math="0.88" />, only <InlineMath math="p = 0.1" /> (<InlineMath math="10\,\%" />) is a price increase.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.9, max: 0.6 },
-      y: { min: 0, max: 1.3 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -0.9, max: 0.6 }, y: { min: 0, max: 1.3 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "factor", kind: "function", appearance: "primary", formula: "(1+x)*(1-2*x)", domain: { min: -0.8, max: 0.45 } },
+      { id: "factor", kind: "function", appearance: "primary", formula: "(1 + x) * (1 - 2 * x)", domain: { min: -0.8, max: 0.45 } },
       { id: "target", kind: "segment", appearance: "reference", from: { x: -0.8, y: 0.88 }, to: { x: 0.45, y: 0.88 } },
       { id: "good", kind: "point", appearance: "answer", at: { x: 0.1, y: 0.88 } },
       { id: "neg", kind: "point", appearance: "highlight", at: { x: -0.6, y: 0.88 } },
@@ -48,14 +56,26 @@ An increase needs **a positive rate**, so <InlineMath math="p=0.1" /> remains:
       { key: "t", objectId: "target", at: { x: 0.45, y: 0.88 }, placement: "right" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="p = 0.1" /></>,
+    bad: <><InlineMath math="p = -0.6" /></>,
+    f: <>total factor</>,
+    t: <><InlineMath math="0.88" /></>,
+  }}
 />
 
-Check: a <InlineMath math="10\,\%" /> increase gives <InlineMath math="1.1" /> times, a <InlineMath math="20\,\%" /> cut gives <InlineMath math="1.1\cdot0.8=0.88" />. The price was first raised by <InlineMath math="10\,\%" />.
+The negative root <InlineMath math="-0.6" /> corresponds to an initial cut followed by a surge, not an initial increase.
 
-# Why the other answers are wrong
+## Testing with a sample price and checking wrong choices
 
-- <InlineMath math="12\,\%" /> works linearly: <InlineMath math="p-2p=-12\,\%" />. That measures the cut against the old price instead of the raised one.
-- <InlineMath math="20\,\%" /> is the rate of the **cut**, not of the increase.
-- <InlineMath math="60\,\%" /> is the size of the negative solution <InlineMath math="p=-0.6" />, which describes no increase.
-- <InlineMath math="6\,\%" /> halves the <InlineMath math="12\,\%" />.
-- <InlineMath math="4\,\%" /> divides the <InlineMath math="12\,\%" /> by three, as if the increase and the cut together were a change of <InlineMath math="3p=12\,\%" />.
+Check with a starting price of <InlineMath math="100" />: up <InlineMath math="10\,\%" /> gives <InlineMath math="110" />, then down <InlineMath math="20\,\%" /> lands on **exactly <InlineMath math="88" />**, which is <InlineMath math="12\,\%" /> cheaper than the start.
+
+- <InlineMath math="12\,\%" /> subtracts percentages linearly (<InlineMath math="p - 2p" />), ignoring that the discount acts on the raised price.
+- <InlineMath math="20\,\%" /> is the percentage decrease in the second step, not the initial increase.
+- <InlineMath math="60\,\%" /> takes the magnitude of the rejected negative root <InlineMath math="-0.6" />.
+- <InlineMath math="6\,\%" /> merely cuts <InlineMath math="12\,\%" /> in half.
+- <InlineMath math="4\,\%" /> divides <InlineMath math="12\,\%" /> by three as if the net change were <InlineMath math="3p" />.
+
+# Answer
+
+The price was first raised by <InlineMath math="10\,\%" />.

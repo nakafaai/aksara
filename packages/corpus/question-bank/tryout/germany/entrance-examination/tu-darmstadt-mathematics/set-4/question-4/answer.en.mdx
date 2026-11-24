@@ -1,33 +1,41 @@
-# Find the pieces of the hypotenuse
+# Given
 
-The altitude splits the hypotenuse into two pieces <InlineMath math="p" /> and <InlineMath math="q" />. Two facts hold for them: they add up to the hypotenuse, and by the **altitude theorem** their product is the square of the altitude:
+In a **right triangle** (*rechtwinkliges Dreieck*), the hypotenuse (*Hypotenuse*) measures <InlineMath math="13\text{ cm}" /> and the altitude to the hypotenuse (*Höhe auf die Hypotenuse*) measures <InlineMath math="6\text{ cm}" />.
+
+# Asked
+
+Find the perimeter (*Umfang*) of this right triangle.
+
+# Solution
+
+Dropping the altitude from the right angle splits the triangle into two smaller mini-copies of itself! That built-in similarity gives two classic right-triangle laws, the **altitude theorem** (*Höhensatz*) and the **leg theorem** (*Kathetensatz*), letting us break the <InlineMath math="13\text{ cm}" /> hypotenuse into two pieces <InlineMath math="p" /> and <InlineMath math="q" />.
+
+> In a right triangle, the altitude squared equals the product of the two hypotenuse segments, and each leg squared equals the whole hypotenuse times its adjacent segment.
+
+The two segments add up to <InlineMath math="13" /> and multiply to the altitude squared, <InlineMath math="36" />.
 
 <BlockMath math="\begin{aligned}
-p+q&=13,\qquad p\cdot q=h^2=36 \\
-p\,(13-p)&=36\ \Longleftrightarrow\ p^2-13p+36=0\ \Longleftrightarrow\ (p-4)(p-9)=0
+p + q &= 13, \qquad p \cdot q = h^2 = 36 \\
+p(13 - p) &= 36 \iff p^2 - 13p + 36 = 0 \iff (p - 4)(p - 9) = 0
 \end{aligned}" />
 
-So the pieces are <InlineMath math="4\text{ cm}" /> and <InlineMath math="9\text{ cm}" />.
+So the two hypotenuse segments are <InlineMath math="4\text{ cm}" /> and <InlineMath math="9\text{ cm}" />.
 
 <MathVisual
-  title={<>The altitude splits the hypotenuse</>}
-  description={<>Triangle <InlineMath math="ABC" /> with the hypotenuse <InlineMath math="\overline{AB}=13" /> at the bottom and the right angle at <InlineMath math="C" /> at the top. The altitude from <InlineMath math="C" /> to the hypotenuse is <InlineMath math="6" /> long and splits the hypotenuse into the pieces <InlineMath math="p=4" /> and <InlineMath math="q=9" />.</>}
-  labels={{
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    c: <><InlineMath math="C" /></>,
-    p: <><InlineMath math="p=4" /></>,
-    q: <><InlineMath math="q=9" /></>,
-    h: <><InlineMath math="h=6" /></>,
-  }}
+  title={<>Altitude splitting the hypotenuse into two segments</>}
+  description={
+    <>
+      Right triangle <InlineMath math="ABC" /> with hypotenuse{" "}
+      <InlineMath math="13" /> along the bottom and right angle at{" "}
+      <InlineMath math="C" />. Altitude <InlineMath math="h = 6" /> splits the
+      hypotenuse into <InlineMath math="p = 4" /> and <InlineMath math="q = 9" />.
+    </>
+  }
+  footer={<>Altitude <InlineMath math="h = 6" /> divides hypotenuse <InlineMath math="13" /> into <InlineMath math="4" /> and <InlineMath math="9" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 14 },
-      y: { min: -2, max: 7.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 14 }, y: { min: -2, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 13, y: 0 }, { x: 4, y: 6 }] },
       { id: "altitude", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 4, y: 6 } },
@@ -47,29 +55,40 @@ So the pieces are <InlineMath math="4\text{ cm}" /> and <InlineMath math="9\text
       { key: "h", objectId: "altitude", at: { x: 4, y: 3 }, placement: "right" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    p: <><InlineMath math="p = 4" /></>,
+    q: <><InlineMath math="q = 9" /></>,
+    h: <><InlineMath math="h = 6" /></>,
+  }}
 />
 
-# Find the legs
+With segments <InlineMath math="4" /> and <InlineMath math="9" /> laid out visually, both legs follow in a single step.
 
-By the **leg theorem**, the square of each leg is the hypotenuse times the piece next to that leg:
+## Finding both legs and the perimeter
+
+Apply **the leg theorem** to each segment, then add all three sides to find the perimeter.
 
 <BlockMath math="\begin{aligned}
-a^2&=13\cdot4=52,\qquad a=2\sqrt{13} \\
-b^2&=13\cdot9=117,\qquad b=3\sqrt{13}
+a^2 &= 13 \cdot 4 = 52 \implies a = 2\sqrt{13} \\
+b^2 &= 13 \cdot 9 = 117 \implies b = 3\sqrt{13} \\
+u &= 13 + 2\sqrt{13} + 3\sqrt{13} = (13 + 5\sqrt{13})\text{ cm}
 \end{aligned}" />
 
-Check: <InlineMath math="a^2+b^2=52+117=169=13^2" />.
+Pythagorean check: the leg squares sum to <InlineMath math="52 + 117 = 169" />, matching <InlineMath math="13^2" /> exactly.
 
-# Add up the perimeter
+## Checking wrong choices
 
-<BlockMath math="u=13+2\sqrt{13}+3\sqrt{13}=(13+5\sqrt{13})\text{ cm}" />
+Notice how each distractor breaks **the area or segment relationship of the right triangle**.
 
-**The perimeter is** <InlineMath math="(13+5\sqrt{13})\text{ cm}" />, about <InlineMath math="31.0\text{ cm}" />.
+- <InlineMath math="30\text{ cm}" /> guesses the familiar triple <InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />, yet its altitude is <InlineMath math="\frac{60}{13}" /> rather than <InlineMath math="6" />.
+- <InlineMath math="26\text{ cm}" /> adds the base segments <InlineMath math="4" /> and <InlineMath math="9" /> to the hypotenuse as if they were the legs.
+- <InlineMath math="(13 + \sqrt{481})\text{ cm}" /> mistakenly doubles <InlineMath math="c \cdot h" /> for the leg product instead of using <InlineMath math="78" />.
+- <InlineMath math="5\sqrt{13}\text{ cm}" /> sums only the two legs and leaves out the <InlineMath math="13\text{ cm}" /> hypotenuse.
+- <InlineMath math="(13 + 2\sqrt{13})\text{ cm}" /> includes only one leg alongside the hypotenuse.
 
-# Why the other answers are wrong
+# Answer
 
-- <InlineMath math="30\text{ cm}" /> takes the familiar sides <InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />. That triangle has **a different altitude**: <InlineMath math="\frac{5\cdot12}{13}=\frac{60}{13}\ne6" />.
-- <InlineMath math="26\text{ cm}" /> adds the pieces <InlineMath math="4" /> and <InlineMath math="9" /> to the hypotenuse as if they were the legs.
-- <InlineMath math="(13+\sqrt{481})\text{ cm}" /> uses <InlineMath math="ab=2\cdot13\cdot6=156" />. In fact <InlineMath math="ab=c\cdot h=78" />, because both products are twice the area.
-- <InlineMath math="5\sqrt{13}\text{ cm}" /> is only the sum of the legs, without the hypotenuse.
-- <InlineMath math="(13+2\sqrt{13})\text{ cm}" /> counts only one leg.
+The perimeter of the right triangle is <InlineMath math="(13 + 5\sqrt{13})\text{ cm}" />.

@@ -1,42 +1,50 @@
-# Prozentänderungen als Faktoren
+# Gegeben
 
-Schreibe den gesuchten Prozentsatz als Dezimalzahl <InlineMath math="p" />. Die Erhöhung multipliziert den Preis mit <InlineMath math="1+p" />. Die Senkung um den doppelten Prozentsatz bezieht sich auf **den schon erhöhten Preis** und multipliziert mit <InlineMath math="1-2p" />. Am Ende ist der Preis <InlineMath math="12\,\%" /> niedriger, also das <InlineMath math="0{,}88" />-Fache:
+Der **Preis einer Ware** wird zuerst um einen Prozentsatz <InlineMath math="p" /> erhöht und danach um den doppelten Prozentsatz (<InlineMath math="2p" />) gesenkt. Am Ende ist die Ware <InlineMath math="12\,\%" /> billiger als zu Beginn.
 
-<BlockMath math="(1+p)(1-2p)=0{,}88" />
+# Gesucht
 
-# Die quadratische Gleichung lösen
+Um wie viel Prozent der Preis im ersten Schritt erhöht wurde.
+
+# Lösung
+
+Ein Rabatt nach einer Preiserhöhung wirkt stärker als auf den alten Preis, weil **der zweite Schritt auch einen Teil des Aufschlags wieder abzieht**! Deshalb multipliziert man bei aufeinanderfolgenden Prozentänderungen immer die Faktoren statt Prozente einfach zu subtrahieren.
+
+> Aufeinanderfolgende Prozentänderungen verknüpfst du immer über das Produkt ihrer Wachstumsfaktoren, und nur eine positive Lösung beschreibt eine anfängliche Preiserhöhung.
+
+Schreib den gesuchten Prozentsatz als Dezimalzahl <InlineMath math="p > 0" />. Die Erhöhung multipliziert mit <InlineMath math="1 + p" />, die Senkung mit <InlineMath math="1 - 2p" />, und insgesamt ergibt sich <InlineMath math="0{,}88" />.
+
+<BlockMath math="(1 + p)(1 - 2p) = 0{,}88" />
+
+## Quadratische Gleichung lösen und positive Lösung wählen
+
+Multiplizier aus und löse die quadratische Gleichung, um **beide Kandidaten für <InlineMath math="p" />** zu finden.
 
 <BlockMath math="\begin{aligned}
-1-p-2p^2&=0{,}88 \\
-2p^2+p-0{,}12&=0 \\
-p&=\frac{-1\pm\sqrt{1+0{,}96}}{4}=\frac{-1\pm1{,}4}{4}
+1 - p - 2p^2 &= 0{,}88 \\
+2p^2 + p - 0{,}12 &= 0 \\
+p &= \frac{-1 \pm \sqrt{1 + 0{,}96}}{4} = \frac{-1 \pm 1{,}4}{4}
 \end{aligned}" />
 
-Das ergibt **<InlineMath math="p=0{,}1" /> oder <InlineMath math="p=-0{,}6" />**.
-
-# Die negative Lösung verwerfen
-
-Eine Erhöhung braucht **einen positiven Prozentsatz**, also bleibt <InlineMath math="p=0{,}1" />:
+Es folgen <InlineMath math="p = 0{,}1" /> oder <InlineMath math="p = -0{,}6" />. Da der Preis zuerst erhöht wurde, gilt nur <InlineMath math="p = 0{,}1" /> (<InlineMath math="10\,\%" />).
 
 <MathVisual
-  title={<>Gesamtfaktor in Abhängigkeit vom Prozentsatz</>}
-  description={<>Der Graph zeigt den Gesamtfaktor <InlineMath math="(1+p)(1-2p)" /> für Prozentsätze <InlineMath math="p" /> als Dezimalzahl. Die waagerechte Linie liegt bei <InlineMath math="0{,}88" />. Sie schneidet den Graphen bei <InlineMath math="p=0{,}1" /> und bei <InlineMath math="p=-0{,}6" />. Nur <InlineMath math="p=0{,}1" /> ist eine Erhöhung.</>}
-  labels={{
-    key: <><InlineMath math="p=0{,}1" /></>,
-    bad: <><InlineMath math="p=-0{,}6" /></>,
-    f: <>Gesamtfaktor</>,
-    t: <><InlineMath math="0{,}88" /></>,
-  }}
+  title={<>Gesamtfaktor in Abhängigkeit vom Anfangsprozentsatz <InlineMath math="p" /></>}
+  description={
+    <>
+      Die Kurve des Gesamtfaktors <InlineMath math="(1 + p)(1 - 2p)" />{" "}
+      schneidet die Ziellinie <InlineMath math="y = 0{,}88" /> bei{" "}
+      <InlineMath math="p = 0{,}1" /> und <InlineMath math="p = -0{,}6" />. Nur{" "}
+      <InlineMath math="p = 0{,}1" /> steht für eine Erhöhung.
+    </>
+  }
+  footer={<>Von beiden Schnittpunkten mit <InlineMath math="0{,}88" /> beschreibt nur <InlineMath math="p = 0{,}1" /> (<InlineMath math="10\,\%" />) eine Erhöhung.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.9, max: 0.6 },
-      y: { min: 0, max: 1.3 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -0.9, max: 0.6 }, y: { min: 0, max: 1.3 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "factor", kind: "function", appearance: "primary", formula: "(1+x)*(1-2*x)", domain: { min: -0.8, max: 0.45 } },
+      { id: "factor", kind: "function", appearance: "primary", formula: "(1 + x) * (1 - 2 * x)", domain: { min: -0.8, max: 0.45 } },
       { id: "target", kind: "segment", appearance: "reference", from: { x: -0.8, y: 0.88 }, to: { x: 0.45, y: 0.88 } },
       { id: "good", kind: "point", appearance: "answer", at: { x: 0.1, y: 0.88 } },
       { id: "neg", kind: "point", appearance: "highlight", at: { x: -0.6, y: 0.88 } },
@@ -48,14 +56,26 @@ Eine Erhöhung braucht **einen positiven Prozentsatz**, also bleibt <InlineMath 
       { key: "t", objectId: "target", at: { x: 0.45, y: 0.88 }, placement: "right" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="p = 0{,}1" /></>,
+    bad: <><InlineMath math="p = -0{,}6" /></>,
+    f: <>Gesamtfaktor</>,
+    t: <><InlineMath math="0{,}88" /></>,
+  }}
 />
 
-Probe: Erhöhung um <InlineMath math="10\,\%" /> auf das <InlineMath math="1{,}1" />-Fache, Senkung um <InlineMath math="20\,\%" /> auf <InlineMath math="1{,}1\cdot0{,}8=0{,}88" />. Der Preis wurde zuerst um <InlineMath math="10\,\%" /> erhöht.
+Die negative Lösung <InlineMath math="-0{,}6" /> entspräche einer ersten Senkung mit anschließendem Sprung nach oben, keiner Erhöhung.
 
-# Warum die anderen Antworten falsch sind
+## Preisprobe und falsche Antworten prüfen
 
-- <InlineMath math="12\,\%" /> rechnet linear: <InlineMath math="p-2p=-12\,\%" />. Dabei wird die Senkung auf den alten statt auf den erhöhten Preis bezogen.
-- <InlineMath math="20\,\%" /> ist der Prozentsatz der **Senkung**, nicht der Erhöhung.
-- <InlineMath math="60\,\%" /> ist der Betrag der negativen Lösung <InlineMath math="p=-0{,}6" />, die keine Erhöhung beschreibt.
-- <InlineMath math="6\,\%" /> halbiert die <InlineMath math="12\,\%" />.
-- <InlineMath math="4\,\%" /> teilt die <InlineMath math="12\,\%" /> durch drei, als ob Erhöhung und Senkung zusammen eine Änderung um <InlineMath math="3p=12\,\%" /> wären.
+Probe mit Startpreis <InlineMath math="100" />: plus <InlineMath math="10\,\%" /> ergibt <InlineMath math="110" />, minus <InlineMath math="20\,\%" /> davon ergibt **exakt <InlineMath math="88" />**, also <InlineMath math="12\,\%" /> billiger als anfangs.
+
+- <InlineMath math="12\,\%" /> rechnet linear (<InlineMath math="p - 2p" />) und ignoriert, dass die Senkung vom erhöhten Preis ausgeht.
+- <InlineMath math="20\,\%" /> ist der Prozentsatz der Senkung, nicht der ersten Erhöhung.
+- <InlineMath math="60\,\%" /> übernimmt den Betrag der negativen Lösung <InlineMath math="-0{,}6" />.
+- <InlineMath math="6\,\%" /> halbiert einfach die <InlineMath math="12\,\%" />.
+- <InlineMath math="4\,\%" /> teilt <InlineMath math="12\,\%" /> durch drei, als wäre die Gesamtänderung <InlineMath math="3p" />.
+
+# Antwort
+
+Der Preis wurde zuerst um <InlineMath math="10\,\%" /> erhöht.

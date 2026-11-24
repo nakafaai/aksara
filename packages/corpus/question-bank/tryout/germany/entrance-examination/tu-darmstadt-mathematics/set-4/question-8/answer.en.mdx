@@ -1,31 +1,41 @@
-# The height of a side face
+# Given
 
-Each side face is a triangle with base <InlineMath math="6\text{ cm}" />. Its area gives its height <InlineMath math="h_s" />, the **height of the side face**, not the height of the pyramid:
+A **right square pyramid** (*gerade Pyramide*) has a square base of side <InlineMath math="6\text{ cm}" /> with its apex directly above the center of the base. Each of the four triangular lateral faces has area <InlineMath math="15\text{ cm}^2" />.
 
-<BlockMath math="\frac12\cdot6\cdot h_s=15\quad\Longrightarrow\quad h_s=5\text{ cm}" />
+# Asked
 
-# The height of the pyramid
+Find the volume of this pyramid.
 
-Cut the pyramid vertically through the apex and the midpoints of two opposite base edges. The cut shows a right triangle made of **half the base edge, the pyramid's height and the slant height**:
+# Solution
+
+Picture a pyramid-shaped camping tent: the slanted fabric wall is always longer than the vertical center pole! The triangular face area first gives **the slant height** (*Seitenhöhe*) <InlineMath math="h_s" />, and slicing the tent down the middle reveals the true vertical height <InlineMath math="h" />.
+
+> In a right square pyramid, half the base side, the vertical height, and the slant height always form a right triangle with the slant height as hypotenuse.
+
+First extract the slant height <InlineMath math="h_s" /> from one triangular face of base <InlineMath math="6\text{ cm}" />.
+
+<BlockMath math="\frac{1}{2} \cdot 6 \cdot h_s = 15 \implies h_s = 5\text{ cm}" />
+
+## Finding the vertical height from the central slice
+
+Slice the pyramid vertically through the apex <InlineMath math="S" /> and the midpoints of two opposite base edges. Inside the cross-section sits **a classic <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="5" /> right triangle**.
 
 <MathVisual
-  title={<>Cross-section through the apex</>}
-  description={<>A vertical cut through the apex <InlineMath math="S" /> and the midpoints of two opposite base edges. It is an isosceles triangle with base <InlineMath math="6" />. On the right you see a right triangle made of half the base, <InlineMath math="3" />, the height <InlineMath math="h=4" /> and the slant height <InlineMath math="5" />.</>}
-  labels={{
-    apex: <><InlineMath math="S" /></>,
-    m: <><InlineMath math="M" /></>,
-    h: <><InlineMath math="h=4" /></>,
-    s: <>slant height <InlineMath math="5" /></>,
-    half: <><InlineMath math="3" /></>,
-  }}
+  title={<>Vertical cross-section through the pyramid apex</>}
+  description={
+    <>
+      The slice forms an isosceles triangle of base <InlineMath math="6" /> with
+      apex <InlineMath math="S" /> directly above base center{" "}
+      <InlineMath math="M" />. The right half is a right triangle with half-base{" "}
+      <InlineMath math="3" />, height <InlineMath math="h = 4" />, and slant
+      height <InlineMath math="5" />.
+    </>
+  }
+  footer={<>Half-base <InlineMath math="3" /> and slant height <InlineMath math="5" /> give vertical height <InlineMath math="h = 4\text{ cm}" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -4, max: 4.5 },
-      y: { min: -1, max: 5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -4, max: 4.5 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "section", kind: "polygon", appearance: "primary", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 4 }] },
       { id: "height", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
@@ -42,20 +52,32 @@ Cut the pyramid vertically through the apex and the midpoints of two opposite ba
       { key: "half", objectId: "half-base", at: { x: 1.5, y: 0 }, placement: "below" },
     ],
   }}
+  labels={{
+    apex: <><InlineMath math="S" /></>,
+    m: <><InlineMath math="M" /></>,
+    h: <><InlineMath math="h = 4" /></>,
+    s: <>slant <InlineMath math="5" /></>,
+    half: <><InlineMath math="3" /></>,
+  }}
 />
 
-<BlockMath math="h=\sqrt{5^2-3^2}=\sqrt{16}=4\text{ cm}" />
+Applying the Pythagorean theorem to this right triangle gives the vertical height and volume immediately.
 
-# The volume
+<BlockMath math="\begin{aligned}
+h &= \sqrt{5^2 - 3^2} = \sqrt{16} = 4\text{ cm} \\
+V &= \frac{1}{3} \cdot G \cdot h = \frac{1}{3} \cdot 6^2 \cdot 4 = 48\text{ cm}^3
+\end{aligned}" />
 
-<BlockMath math="V=\frac13\cdot G\cdot h=\frac13\cdot6^2\cdot4=48\text{ cm}^3" />
+## Sanity check and wrong choices
 
-The pyramid has **a volume of <InlineMath math="48\text{ cm}^3" />**.
+Quick check: a prism with the same base and height <InlineMath math="4\text{ cm}" /> has volume <InlineMath math="144\text{ cm}^3" />, and **a pyramid always holds exactly one third of that, or <InlineMath math="48\text{ cm}^3" />**.
 
-# Why the other answers are wrong
+- <InlineMath math="144\text{ cm}^3" /> omits the <InlineMath math="\frac{1}{3}" /> factor in the pyramid volume formula.
+- <InlineMath math="60\text{ cm}^3" /> plugs the slant height <InlineMath math="5\text{ cm}" /> directly in place of the vertical height.
+- <InlineMath math="12\sqrt{7}\text{ cm}^3" /> mistakes <InlineMath math="5\text{ cm}" /> for a lateral edge and pairs it with the half-diagonal <InlineMath math="3\sqrt{2}" />.
+- <InlineMath math="72\text{ cm}^3" /> uses <InlineMath math="\frac{1}{2}" /> instead of <InlineMath math="\frac{1}{3}" />.
+- <InlineMath math="180\text{ cm}^3" /> makes both mistakes at once: using the slant height <InlineMath math="5\text{ cm}" /> and dropping the <InlineMath math="\frac{1}{3}" /> factor.
 
-- <InlineMath math="144\text{ cm}^3" /> **forgets the factor <InlineMath math="\frac13" />** in the pyramid volume.
-- <InlineMath math="60\text{ cm}^3" /> uses the slant height <InlineMath math="5" /> as the pyramid's height: <InlineMath math="\frac13\cdot36\cdot5" />.
-- <InlineMath math="12\sqrt7\text{ cm}^3" /> takes <InlineMath math="5\text{ cm}" /> as the length of a side edge and works with half the diagonal, <InlineMath math="3\sqrt2" />: <InlineMath math="h=\sqrt{25-18}=\sqrt7" />.
-- <InlineMath math="72\text{ cm}^3" /> uses <InlineMath math="\frac12" /> instead of <InlineMath math="\frac13" />.
-- <InlineMath math="180\text{ cm}^3" /> makes two mistakes: slant height as the height and no factor <InlineMath math="\frac13" />.
+# Answer
+
+The volume of the pyramid is <InlineMath math="48\text{ cm}^3" />.

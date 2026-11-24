@@ -1,31 +1,41 @@
-# Tinggi muka sisi
+# Diberi
 
-Setiap muka sisi ialah segi tiga dengan tapak <InlineMath math="6\text{ cm}" />. Daripada luasnya kita peroleh tingginya <InlineMath math="h_s" />, iaitu **tinggi muka sisi**, bukan tinggi piramid:
+Sebuah **piramid tegak** (*gerade Pyramide*) bertapak segi empat sama bersisi <InlineMath math="6\text{ cm}" /> dengan puncak tepat tegak di atas pusat tapak. Setiap daripada empat muka sisi segi tiganya mempunyai luas <InlineMath math="15\text{ cm}^2" />.
 
-<BlockMath math="\frac12\cdot6\cdot h_s=15\quad\Longrightarrow\quad h_s=5\text{ cm}" />
+# Ditanya
 
-# Tinggi piramid
+Tentukan isi padu piramid ini.
 
-Potong piramid secara tegak melalui puncak dan titik tengah dua sisi tapak yang bertentangan. Keratan itu menunjukkan segi tiga bersudut tegak daripada **separuh sisi tapak, tinggi piramid dan tinggi condong**:
+# Penyelesaian
+
+Bayangkan sebuah khemah berbentuk piramid: dinding kain yang condong sentiasa lebih panjang daripada tiang tegak di tengah khemah! Luas satu muka segi tiga mula-mula memberi **tinggi sendeng** (*Seitenhöhe*) <InlineMath math="h_s" />, kemudian kita membelah khemah di tengah untuk mendapat tinggi tegak sebenar <InlineMath math="h" />.
+
+> Dalam piramid tegak bertapak segi empat sama, separuh sisi tapak, tinggi tegak piramid, dan tinggi sendeng sentiasa membentuk segi tiga bersudut tegak dengan tinggi sendeng sebagai hipotenus.
+
+Kira tinggi sendeng <InlineMath math="h_s" /> daripada luas satu muka segi tiga bertapak <InlineMath math="6\text{ cm}" />.
+
+<BlockMath math="\frac{1}{2} \cdot 6 \cdot h_s = 15 \implies h_s = 5\text{ cm}" />
+
+## Mencari tinggi tegak daripada keratan tengah
+
+Belah piramid secara menegak melalui puncak <InlineMath math="S" /> dan titik tengah dua sisi tapak bertentangan. Di dalam keratan itu terbentuk **segi tiga bersudut tegak klasik bersisi <InlineMath math="3" />, <InlineMath math="4" />, dan <InlineMath math="5" />**.
 
 <MathVisual
-  title={<>Keratan melalui puncak</>}
-  description={<>Keratan tegak melalui puncak <InlineMath math="S" /> dan titik tengah dua sisi tapak yang bertentangan. Keratan itu segi tiga sama kaki dengan tapak <InlineMath math="6" />. Di sebelah kanan kelihatan segi tiga bersudut tegak daripada separuh tapak <InlineMath math="3" />, tinggi <InlineMath math="h=4" /> dan tinggi condong <InlineMath math="5" />.</>}
-  labels={{
-    apex: <><InlineMath math="S" /></>,
-    m: <><InlineMath math="M" /></>,
-    h: <><InlineMath math="h=4" /></>,
-    s: <>tinggi condong <InlineMath math="5" /></>,
-    half: <><InlineMath math="3" /></>,
-  }}
+  title={<>Keratan menegak melalui puncak piramid</>}
+  description={
+    <>
+      Keratan membentuk segi tiga sama kaki bertapak <InlineMath math="6" />{" "}
+      dengan puncak <InlineMath math="S" /> di atas pusat tapak{" "}
+      <InlineMath math="M" />. Di sebelah kanan terpapar segi tiga bersudut
+      tegak dengan separuh tapak <InlineMath math="3" />, tinggi tegak{" "}
+      <InlineMath math="h = 4" />, dan tinggi sendeng <InlineMath math="5" />.
+    </>
+  }
+  footer={<>Separuh tapak <InlineMath math="3" /> dan tinggi sendeng <InlineMath math="5" /> menghasilkan tinggi tegak <InlineMath math="h = 4\text{ cm}" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -4, max: 4.5 },
-      y: { min: -1, max: 5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -4, max: 4.5 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "section", kind: "polygon", appearance: "primary", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 4 }] },
       { id: "height", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
@@ -42,20 +52,32 @@ Potong piramid secara tegak melalui puncak dan titik tengah dua sisi tapak yang 
       { key: "half", objectId: "half-base", at: { x: 1.5, y: 0 }, placement: "below" },
     ],
   }}
+  labels={{
+    apex: <><InlineMath math="S" /></>,
+    m: <><InlineMath math="M" /></>,
+    h: <><InlineMath math="h = 4" /></>,
+    s: <>tinggi sendeng <InlineMath math="5" /></>,
+    half: <><InlineMath math="3" /></>,
+  }}
 />
 
-<BlockMath math="h=\sqrt{5^2-3^2}=\sqrt{16}=4\text{ cm}" />
+Dengan teorem Pythagoras pada segi tiga keratan ini, tinggi tegak dan isi padu diperoleh terus.
 
-# Isi padu
+<BlockMath math="\begin{aligned}
+h &= \sqrt{5^2 - 3^2} = \sqrt{16} = 4\text{ cm} \\
+V &= \frac{1}{3} \cdot G \cdot h = \frac{1}{3} \cdot 6^2 \cdot 4 = 48\text{ cm}^3
+\end{aligned}" />
 
-<BlockMath math="V=\frac13\cdot G\cdot h=\frac13\cdot6^2\cdot4=48\text{ cm}^3" />
+## Menyemak nisbah dan pilihan salah
 
-Piramid itu **berisi padu <InlineMath math="48\text{ cm}^3" />**.
+Semakan pantas: prisma bertapak sama setinggi <InlineMath math="4\text{ cm}" /> berisipadu <InlineMath math="144\text{ cm}^3" />, dan **piramid sentiasa tepat satu pertiganya, iaitu <InlineMath math="48\text{ cm}^3" />**.
 
-# Kenapa jawapan lain salah
+- <InlineMath math="144\text{ cm}^3" /> terlupa faktor <InlineMath math="\frac{1}{3}" /> dalam rumus isi padu piramid.
+- <InlineMath math="60\text{ cm}^3" /> menggunakan tinggi sendeng <InlineMath math="5\text{ cm}" /> sebagai tinggi tegak piramid.
+- <InlineMath math="12\sqrt{7}\text{ cm}^3" /> menganggap <InlineMath math="5\text{ cm}" /> sebagai tepi sendeng lalu menggunakan separuh pepenjuru <InlineMath math="3\sqrt{2}" />.
+- <InlineMath math="72\text{ cm}^3" /> menggunakan <InlineMath math="\frac{1}{2}" /> bukannya <InlineMath math="\frac{1}{3}" />.
+- <InlineMath math="180\text{ cm}^3" /> melakukan kedua-dua kesilapan serentak: memakai tinggi sendeng <InlineMath math="5\text{ cm}" /> dan mengabaikan faktor <InlineMath math="\frac{1}{3}" />.
 
-- <InlineMath math="144\text{ cm}^3" /> **terlupa faktor <InlineMath math="\frac13" />** dalam isi padu piramid.
-- <InlineMath math="60\text{ cm}^3" /> memakai tinggi condong <InlineMath math="5" /> sebagai tinggi piramid: <InlineMath math="\frac13\cdot36\cdot5" />.
-- <InlineMath math="12\sqrt7\text{ cm}^3" /> menganggap <InlineMath math="5\text{ cm}" /> sebagai panjang sisi condong dan memakai separuh pepenjuru <InlineMath math="3\sqrt2" />: <InlineMath math="h=\sqrt{25-18}=\sqrt7" />.
-- <InlineMath math="72\text{ cm}^3" /> memakai <InlineMath math="\frac12" />, bukan <InlineMath math="\frac13" />.
-- <InlineMath math="180\text{ cm}^3" /> membuat dua kesilapan: tinggi condong dipakai sebagai tinggi piramid dan faktor <InlineMath math="\frac13" /> tertinggal.
+# Jawapan
+
+Isi padu piramid ini ialah <InlineMath math="48\text{ cm}^3" />.

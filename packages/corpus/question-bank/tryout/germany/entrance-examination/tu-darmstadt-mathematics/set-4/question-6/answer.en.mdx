@@ -1,38 +1,59 @@
-# Where the minimum can be
+# Given
 
-The graph of <InlineMath math="f" /> is an upward parabola with its vertex at <InlineMath math="x=a" />, because <InlineMath math="f(x)=(x-a)^2+6-a^2" />. On the interval <InlineMath math="0\le x\le3" /> the smallest value is **either at the vertex or at an end of the interval**. Which case happens depends on where <InlineMath math="a" /> lies.
+A **quadratic function** (*quadratische Funktion*) with real parameter <InlineMath math="a" /> is restricted to the closed interval <InlineMath math="0 \le x \le 3" />.
 
-# The three cases
+<BlockMath math="f(x) = x^2 - 2ax + 6" />
+
+Its smallest value (*kleinster Funktionswert*) on <InlineMath math="0 \le x \le 3" /> equals <InlineMath math="2" />.
+
+# Asked
+
+Find the real value of parameter <InlineMath math="a" />.
+
+# Solution
+
+Picture a U-shaped valley sliding left or right behind a narrow window spanning from <InlineMath math="x = 0" /> to <InlineMath math="x = 3" />. The lowest point visible through the window must be one of two places: **the bottom of the valley if it sits inside the window, or one of the window edges if the bottom lies outside**.
+
+> The minimum of an upward-opening parabola on a closed interval lies either at its vertex when inside the interval or at the nearest endpoint when outside, and every candidate must satisfy its own case condition.
+
+Complete the square to read the vertex directly at <InlineMath math="x = a" />.
+
+<BlockMath math="f(x) = (x - a)^2 + 6 - a^2" />
+
+## Testing all three vertex positions
+
+Check **all three regions for <InlineMath math="a" />** relative to <InlineMath math="0 \le x \le 3" />.
 
 <BlockMath math="\begin{aligned}
-0\le a\le3:&\quad \min=f(a)=6-a^2=2\ \Rightarrow\ a=2\ \ (a=-2\ \text{isn't in this case}) \\
-a>3:&\quad \min=f(3)=15-6a=2\ \Rightarrow\ a=\tfrac{13}{6}\ \ (\text{but}\ \tfrac{13}{6}<3) \\
-a<0:&\quad \min=f(0)=6\ne2
+0 \le a \le 3 &: \quad \min = f(a) = 6 - a^2 = 2 \implies a = 2 \quad (a = -2 \text{ outside this case}) \\
+a > 3 &: \quad \min = f(3) = 15 - 6a = 2 \implies a = \frac{13}{6} \quad (\text{fails since } \tfrac{13}{6} < 3) \\
+a < 0 &: \quad \min = f(0) = 6 \neq 2
 \end{aligned}" />
 
-Only in the first case does the number you find **fit the assumption of the case**.
+Only <InlineMath math="a = 2" /> stays consistent with its own case condition. Compare the valid curve <InlineMath math="a = 2" /> with the endpoint trap <InlineMath math="\frac{13}{6}" /> below.
 
 <MathVisual
-  title={<>Smallest value on the interval</>}
-  description={<>The interval lies between the vertical lines at <InlineMath math="x=0" /> and <InlineMath math="x=3" />. The parabola for <InlineMath math="a=2" /> has its vertex <InlineMath math="(2\mid2)" /> inside the interval, so its smallest value there is <InlineMath math="2" />. The parabola for <InlineMath math="a=\frac{13}{6}" /> does pass through <InlineMath math="(3\mid2)" />, but inside the interval it dips below <InlineMath math="2" />.</>}
-  labels={{
-    min: <><InlineMath math="(2\mid2)" /></>,
-    g: <><InlineMath math="a=2" /></>,
-    b: <><InlineMath math="a=\tfrac{13}{6}" /></>,
-  }}
+  title={<>Comparing minimums inside the window <InlineMath math="0 \le x \le 3" /></>}
+  description={
+    <>
+      Vertical walls frame <InlineMath math="0 \le x \le 3" />. The curve for{" "}
+      <InlineMath math="a = 2" /> touches target line <InlineMath math="y = 2" />{" "}
+      at its vertex <InlineMath math="(2 \mid 2)" />, whereas{" "}
+      <InlineMath math="a = \tfrac{13}{6}" /> passes through{" "}
+      <InlineMath math="(3 \mid 2)" /> yet dips below <InlineMath math="2" />{" "}
+      inside the window.
+    </>
+  }
+  footer={<>Only <InlineMath math="a = 2" /> achieves a true minimum of <InlineMath math="2" /> on <InlineMath math="0 \le x \le 3" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 4.8 },
-      y: { min: -0.5, max: 7.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 4.8 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "left-wall", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 7 } },
       { id: "right-wall", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 7 } },
-      { id: "good", kind: "function", appearance: "primary", formula: "x^2 - 4*x + 6", domain: { min: -0.5, max: 3.5 } },
-      { id: "bad", kind: "function", appearance: "secondary", formula: "x^2 - (13/3)*x + 6", domain: { min: -0.5, max: 3.5 } },
+      { id: "good", kind: "function", appearance: "primary", formula: "x^2 - 4 * x + 6", domain: { min: -0.5, max: 3.5 } },
+      { id: "bad", kind: "function", appearance: "secondary", formula: "x^2 - (13 / 3) * x + 6", domain: { min: -0.5, max: 3.5 } },
       { id: "target", kind: "segment", appearance: "reference", from: { x: -0.5, y: 2 }, to: { x: 3.5, y: 2 } },
       { id: "vertex", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
     ],
@@ -42,16 +63,27 @@ Only in the first case does the number you find **fit the assumption of the case
       { key: "b", objectId: "bad", at: { x: 3.4, y: 2.83 }, placement: "below-right" },
     ],
   }}
+  labels={{
+    min: <><InlineMath math="(2 \mid 2)" /></>,
+    g: <><InlineMath math="a = 2" /></>,
+    b: <><InlineMath math="a = \tfrac{13}{6}" /></>,
+  }}
 />
 
-# Check
+The graph immediately exposes the second-case trap: for <InlineMath math="\frac{13}{6}" />, the point <InlineMath math="(3 \mid 2)" /> is not the lowest point because the vertex sits inside the window below height <InlineMath math="2" />.
 
-For <InlineMath math="a=2" />, <InlineMath math="f(x)=(x-2)^2+2" />. The vertex <InlineMath math="x=2" /> lies in the interval, so **the smallest value there is <InlineMath math="2" />**. So <InlineMath math="a=2" />.
+## Verifying the answer and checking wrong choices
 
-# Why the other answers are wrong
+Direct check at <InlineMath math="a = 2" />: the function becomes **the completed square <InlineMath math="(x - 2)^2 + 2" />**, whose minimum on the interval is indeed <InlineMath math="2" /> at <InlineMath math="x = 2" />.
 
-- <InlineMath math="a=-2" /> or <InlineMath math="a=2" /> takes both solutions of <InlineMath math="6-a^2=2" />. For <InlineMath math="a=-2" /> the vertex is at <InlineMath math="x=-2" />, outside, and the smallest value on the interval is <InlineMath math="f(0)=6" />.
-- <InlineMath math="a=\frac{13}{6}" /> checks only the right end. Since <InlineMath math="\frac{13}{6}" /> lies in the interval, the vertex value <InlineMath math="6-\frac{169}{36}=\frac{47}{36}" /> is **less than <InlineMath math="2" />**.
-- <InlineMath math="a=2" /> or <InlineMath math="a=\frac{13}{6}" /> keeps the solution of the end case without checking the condition <InlineMath math="a>3" />.
-- <InlineMath math="a=-2" /> alone is the value whose vertex isn't in the interval at all.
-- <InlineMath math="a=2\sqrt2" /> comes from taking the vertex value as <InlineMath math="6-\frac{a^2}{2}" /> instead of <InlineMath math="6-a^2" />.
+| Option | Why it is wrong |
+| :--- | :--- |
+| <InlineMath math="a = -2" /> or <InlineMath math="a = 2" /> | Keeps both roots of <InlineMath math="6 - a^2 = 2" /> without noticing that <InlineMath math="a = -2" /> sits outside the interval. |
+| <InlineMath math="a = \frac{13}{6}" /> | Checks only <InlineMath math="f(3) = 2" />, missing that the vertex drops to <InlineMath math="\frac{47}{36} < 2" /> inside the interval. |
+| <InlineMath math="a = 2" /> or <InlineMath math="a = \frac{13}{6}" /> | Fails to reject <InlineMath math="\frac{13}{6}" /> for violating its case rule <InlineMath math="a > 3" />. |
+| <InlineMath math="a = -2" /> | Places the vertex outside the interval, where the actual minimum is <InlineMath math="f(0) = 6" />. |
+| <InlineMath math="a = 2\sqrt{2}" /> | Miscomputes the vertex height as <InlineMath math="6 - \frac{a^2}{2}" /> instead of <InlineMath math="6 - a^2" />. |
+
+# Answer
+
+The required value is <InlineMath math="a = 2" />.

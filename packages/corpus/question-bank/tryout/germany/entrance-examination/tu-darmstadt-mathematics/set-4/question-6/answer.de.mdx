@@ -1,38 +1,59 @@
-# Wo das Minimum liegen kann
+# Gegeben
 
-Der Graph von <InlineMath math="f" /> ist eine nach oben geöffnete Parabel mit dem Scheitel bei <InlineMath math="x=a" />, denn <InlineMath math="f(x)=(x-a)^2+6-a^2" />. Auf dem Intervall <InlineMath math="0\le x\le3" /> liegt der kleinste Wert **entweder am Scheitel oder an einem Rand**. Welcher Fall eintritt, hängt davon ab, wo <InlineMath math="a" /> liegt.
+Die **quadratische Funktion** mit reellem Parameter <InlineMath math="a" /> wird auf dem abgeschlossenen Intervall <InlineMath math="0 \le x \le 3" /> betrachtet.
 
-# Die drei Fälle
+<BlockMath math="f(x) = x^2 - 2ax + 6" />
+
+Ihr kleinster Funktionswert auf dem Intervall <InlineMath math="0 \le x \le 3" /> beträgt genau <InlineMath math="2" />.
+
+# Gesucht
+
+Der reelle Wert des Parameters <InlineMath math="a" />.
+
+# Lösung
+
+Stell dir ein parabelförmiges Tal vor, das hinter einem schmalen Fenster von <InlineMath math="x = 0" /> bis <InlineMath math="x = 3" /> nach links oder rechts gleitet. Der tiefste sichtbare Punkt im Fenster ist entweder **der Talboden selbst, falls er im Fenster liegt, oder einer der beiden Fensterränder, falls der Scheitel draußen liegt**.
+
+> Das Minimum einer nach oben geöffneten Parabel auf einem abgeschlossenen Intervall liegt im Scheitelpunkt innerhalb des Intervalls oder am näheren Rand, und jeder Kandidat muss seine eigene Fallbedingung erfüllen.
+
+Forme durch quadratische Ergänzung um und lies den Scheitel bei <InlineMath math="x = a" /> ab.
+
+<BlockMath math="f(x) = (x - a)^2 + 6 - a^2" />
+
+## Alle drei Lagen des Scheitelpunkts prüfen
+
+Untersuch **alle drei Bereiche für <InlineMath math="a" />** relativ zum Intervall <InlineMath math="0 \le x \le 3" />.
 
 <BlockMath math="\begin{aligned}
-0\le a\le3:&\quad \min=f(a)=6-a^2=2\ \Rightarrow\ a=2\ \ (a=-2\ \text{liegt nicht im Fall}) \\
-a>3:&\quad \min=f(3)=15-6a=2\ \Rightarrow\ a=\tfrac{13}{6}\ \ (\text{aber}\ \tfrac{13}{6}<3) \\
-a<0:&\quad \min=f(0)=6\ne2
+0 \le a \le 3 &: \quad \min = f(a) = 6 - a^2 = 2 \implies a = 2 \quad (a = -2 \text{ außerhalb dieses Falls}) \\
+a > 3 &: \quad \min = f(3) = 15 - 6a = 2 \implies a = \frac{13}{6} \quad (\text{entfällt wegen } \tfrac{13}{6} < 3) \\
+a < 0 &: \quad \min = f(0) = 6 \neq 2
 \end{aligned}" />
 
-Nur im ersten Fall passt die gefundene Zahl **zur Annahme des Falls**.
+Nur <InlineMath math="a = 2" /> passt zu seiner eigenen Fallbedingung. Vergleich im Graphen die richtige Parabel <InlineMath math="a = 2" /> mit der Randfalle <InlineMath math="\frac{13}{6}" />.
 
 <MathVisual
-  title={<>Kleinster Wert auf dem Intervall</>}
-  description={<>Zwischen den senkrechten Linien bei <InlineMath math="x=0" /> und <InlineMath math="x=3" /> liegt das Intervall. Die Parabel für <InlineMath math="a=2" /> hat ihren Scheitel <InlineMath math="(2\mid2)" /> im Intervall, ihr kleinster Wert dort ist <InlineMath math="2" />. Die Parabel für <InlineMath math="a=\frac{13}{6}" /> geht zwar durch <InlineMath math="(3\mid2)" />, sinkt im Intervall aber tiefer als <InlineMath math="2" />.</>}
-  labels={{
-    min: <><InlineMath math="(2\mid2)" /></>,
-    g: <><InlineMath math="a=2" /></>,
-    b: <><InlineMath math="a=\tfrac{13}{6}" /></>,
-  }}
+  title={<>Vergleich der Minima im Fenster <InlineMath math="0 \le x \le 3" /></>}
+  description={
+    <>
+      Die senkrechten Linien begrenzen <InlineMath math="0 \le x \le 3" />. Die
+      Parabel für <InlineMath math="a = 2" /> berührt die Ziellinie{" "}
+      <InlineMath math="y = 2" /> im Scheitel <InlineMath math="(2 \mid 2)" />,
+      während <InlineMath math="a = \tfrac{13}{6}" /> zwar durch{" "}
+      <InlineMath math="(3 \mid 2)" /> geht, im Inneren aber unter{" "}
+      <InlineMath math="2" /> sinkt.
+    </>
+  }
+  footer={<>Nur <InlineMath math="a = 2" /> erreicht auf <InlineMath math="0 \le x \le 3" /> exakt das Minimum <InlineMath math="2" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 4.8 },
-      y: { min: -0.5, max: 7.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 4.8 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "left-wall", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 7 } },
       { id: "right-wall", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 7 } },
-      { id: "good", kind: "function", appearance: "primary", formula: "x^2 - 4*x + 6", domain: { min: -0.5, max: 3.5 } },
-      { id: "bad", kind: "function", appearance: "secondary", formula: "x^2 - (13/3)*x + 6", domain: { min: -0.5, max: 3.5 } },
+      { id: "good", kind: "function", appearance: "primary", formula: "x^2 - 4 * x + 6", domain: { min: -0.5, max: 3.5 } },
+      { id: "bad", kind: "function", appearance: "secondary", formula: "x^2 - (13 / 3) * x + 6", domain: { min: -0.5, max: 3.5 } },
       { id: "target", kind: "segment", appearance: "reference", from: { x: -0.5, y: 2 }, to: { x: 3.5, y: 2 } },
       { id: "vertex", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
     ],
@@ -42,16 +63,27 @@ Nur im ersten Fall passt die gefundene Zahl **zur Annahme des Falls**.
       { key: "b", objectId: "bad", at: { x: 3.4, y: 2.83 }, placement: "below-right" },
     ],
   }}
+  labels={{
+    min: <><InlineMath math="(2 \mid 2)" /></>,
+    g: <><InlineMath math="a = 2" /></>,
+    b: <><InlineMath math="a = \tfrac{13}{6}" /></>,
+  }}
 />
 
-# Probe
+Im Bild entlarvt sich die zweite Fallfalle sofort: Bei <InlineMath math="\frac{13}{6}" /> liegt <InlineMath math="(3 \mid 2)" /> gar nicht am tiefsten, weil der Scheitel noch im Fenster unterhalb von <InlineMath math="2" /> taucht.
 
-Für <InlineMath math="a=2" /> ist <InlineMath math="f(x)=(x-2)^2+2" />. Der Scheitel <InlineMath math="x=2" /> liegt im Intervall, also ist **der kleinste Wert dort <InlineMath math="2" />**. Es gilt <InlineMath math="a=2" />.
+## Probe und falsche Antworten prüfen
 
-# Warum die anderen Antworten falsch sind
+Direkte Probe für <InlineMath math="a = 2" />: Die Funktion lautet **in Scheitelpunktform <InlineMath math="(x - 2)^2 + 2" />** und nimmt im Intervall bei <InlineMath math="x = 2" /> exakt den Kleinstwert <InlineMath math="2" /> an.
 
-- <InlineMath math="a=-2" /> oder <InlineMath math="a=2" /> nimmt beide Lösungen von <InlineMath math="6-a^2=2" />. Für <InlineMath math="a=-2" /> liegt der Scheitel bei <InlineMath math="x=-2" /> außerhalb, und der kleinste Wert auf dem Intervall ist <InlineMath math="f(0)=6" />.
-- <InlineMath math="a=\frac{13}{6}" /> prüft nur den rechten Rand. Weil <InlineMath math="\frac{13}{6}" /> im Intervall liegt, ist der Scheitelwert <InlineMath math="6-\frac{169}{36}=\frac{47}{36}" /> **kleiner als <InlineMath math="2" />**.
-- <InlineMath math="a=2" /> oder <InlineMath math="a=\frac{13}{6}" /> übernimmt die Lösung des Randfalls, ohne die Bedingung <InlineMath math="a>3" /> zu prüfen.
-- <InlineMath math="a=-2" /> allein ist der Wert, dessen Scheitel gar nicht im Intervall liegt.
-- <InlineMath math="a=2\sqrt2" /> entsteht, wenn du den Scheitelwert als <InlineMath math="6-\frac{a^2}{2}" /> statt <InlineMath math="6-a^2" /> rechnest.
+| Antwort | Warum sie falsch ist |
+| :--- | :--- |
+| <InlineMath math="a = -2" /> oder <InlineMath math="a = 2" /> | Nimmt beide Lösungen von <InlineMath math="6 - a^2 = 2" />, obwohl <InlineMath math="a = -2" /> außerhalb des Intervalls liegt. |
+| <InlineMath math="a = \frac{13}{6}" /> | Prüft nur <InlineMath math="f(3) = 2" />, obwohl der Scheitel im Intervall auf <InlineMath math="\frac{47}{36} < 2" /> fällt. |
+| <InlineMath math="a = 2" /> oder <InlineMath math="a = \frac{13}{6}" /> | Behält den Randkandidaten, obwohl <InlineMath math="\frac{13}{6}" /> die Bedingung <InlineMath math="a > 3" /> verletzt. |
+| <InlineMath math="a = -2" /> | Legt den Scheitel außerhalb des Intervalls, sodass das Minimum dort <InlineMath math="f(0) = 6" /> ist. |
+| <InlineMath math="a = 2\sqrt{2}" /> | Berechnet die Scheitelhöhe fälschlich als <InlineMath math="6 - \frac{a^2}{2}" /> statt <InlineMath math="6 - a^2" />. |
+
+# Antwort
+
+Der gesuchte Wert ist <InlineMath math="a = 2" />.
