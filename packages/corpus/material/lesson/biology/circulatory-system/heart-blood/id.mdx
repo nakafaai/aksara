@@ -1,19 +1,15 @@
 export const metadata = {
-  title: "Sistem Transportasi pada Manusia dan Hewan",
+  title: "Sistem Peredaran Darah Jantung dan Kapiler",
   description:
-    "Jelaskan darah, siklus jantung, tekanan darah, curah jantung, sistem limfa, dan sistem peredaran darah hewan lewat model interaktif, contoh, dan latihan.",
+    "Jelaskan komponen darah, uji golongan darah, siklus dan curah jantung, tekanan pembuluh darah, pertukaran cairan kapiler, serta peredaran darah hewan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Sistem Transportasi pada Manusia dan Hewan",
 };
 
-## Sistem Peredaran Darah Mengangkut Zat ke Seluruh Tubuh
+## Darah dan Pembekuan
 
-**Sistem peredaran darah** terdiri dari **jantung, pembuluh darah, dan darah**. Jantung memompa darah melalui arteri, kapiler, dan vena untuk membawa oksigen, sari makanan, dan hormon ke sel serta mengangkut karbon dioksida dan urea. Manusia punya **sistem peredaran darah tertutup dan ganda**: darah selalu berada di dalam pembuluh dan melewati jantung dua kali dalam satu putaran lengkap. Dalam model di sini, kamu membaca tekanan dalam siklus jantung, menghitung curah jantung, membandingkan tekanan darah di sepanjang pembuluh, dan melihat pengaruh jari-jari pembuluh terhadap aliran darah.
-
-## Darah dan Komponennya
-
-Darah terdiri dari **plasma** dan sel darah. Plasma, sekitar <InlineMath math="55\%" /> volume darah, mengangkut sari makanan, hormon, urea, dan karbon dioksida.
+Bayangkan kota sibuk dengan jaringan pipa pengiriman dua arah: **sistem peredaran darah** manusia bekerja tertutup dan ganda melalui **jantung, pembuluh darah, dan darah** agar oksigen serta nutrien tiba cepat di setiap sel sementara karbon dioksida dan urea diangkut keluar. Darah terdiri atas **plasma** (sekitar <InlineMath math="55\%" /> volume) dan tiga komponen seluler utama.
 
 | Komponen | Struktur | Fungsi |
 | :--- | :--- | :--- |
@@ -22,13 +18,13 @@ Darah terdiri dari **plasma** dan sel darah. Plasma, sekitar <InlineMath math="5
 | Trombosit | Kepingan sel kecil | Memulai pembekuan darah |
 | Plasma | Cairan kekuningan, sekitar <InlineMath math="90\%" /> air | Mengangkut zat terlarut dan panas |
 
-### Pembekuan Darah
+### Proses Pembekuan
 
-Saat pembuluh darah terluka, trombosit dan jaringan yang rusak melepaskan **tromboplastin**. Dengan bantuan ion kalsium dan vitamin K, tromboplastin mengubah protrombin menjadi **trombin**. Trombin lalu mengubah fibrinogen yang larut menjadi **fibrin** yang tidak larut. Benang fibrin menjerat sel darah merah dan membentuk gumpalan yang menghentikan perdarahan.
+Saat pembuluh terluka, trombosit melepaskan **tromboplastin** yang dibantu ion kalsium dan vitamin K untuk mengubah protrombin menjadi **trombin**, lalu trombin mengubah fibrinogen terlarut menjadi jaring **fibrin** penutup luka.
 
-### Golongan Darah
+### Uji Golongan Darah
 
-Sistem ABO bergantung pada **antigen** di permukaan eritrosit dan **antibodi** di dalam plasma. Darah donor tidak boleh membawa antigen yang dikenali antibodi penerima, karena eritrosit donor akan menggumpal.
+Penggolongan darah bergantung pada **antigen** di permukaan eritrosit dan **antibodi** di dalam plasma. Darah donor tidak boleh membawa antigen yang dikenali antibodi penerima karena eritrosit akan menggumpal.
 
 | Golongan | Antigen | Antibodi | Dapat menerima dari |
 | :--- | :--- | :--- | :--- |
@@ -37,19 +33,80 @@ Sistem ABO bergantung pada **antigen** di permukaan eritrosit dan **antibodi** d
 | AB | A dan B | Tidak ada | A, B, AB, O |
 | O | Tidak ada | Anti-A dan anti-B | Hanya O |
 
-## Jantung dan Siklus Jantung
+> Tetesan darah menggumpal tepat di antiserum yang cocok dengan antigen di permukaan eritrositnya, sehingga pola gumpalan menyingkap golongan ABO dan Rhesus.
 
-Jantung manusia punya **empat ruang**: dua serambi di atas dan dua bilik di bawah. Bilik kiri berdinding paling tebal karena memompa darah kaya oksigen ke seluruh tubuh melalui **aorta**. Katup trikuspidal dan bikuspidal mencegah darah kembali ke serambi, sedangkan katup semilunar mencegah darah kembali ke bilik. Detak jantung berawal di **nodus sinoatrial**, pemacu alami jantung.
+<BloodTypingLab
+  title={<>Uji Golongan Darah pada Papan Porselen</>}
+  description={
+    <>
+      Tiga sampel darah diteteskan bersama serum anti-A, anti-B, dan anti-D lalu
+      diamati penggumpalannya setelah satu menit.
+    </>
+  }
+  footer={<>Penggumpalan hanya muncul saat antiserum bertemu antigen pasangannya pada eritrosit.</>}
+  labels={{
+    clumped: <>Menggumpal</>,
+    group: <>Golongan darah</>,
+    groups: { A: <>A</>, AB: <>AB</>, B: <>B</>, O: <>O</> },
+    sample: "Sampel",
+    sera: { a: <>Anti-A</>, b: <>Anti-B</>, d: <>Anti-D</> },
+    smooth: <>Halus tanpa gumpalan</>,
+    time: <>Waktu setelah pencampuran</>,
+    view: "Papan porselen putih berisi tetesan darah dan antiserum",
+  }}
+  samples={[
+    { group: "A", name: "Ali", rhesus: "positive" },
+    { group: "O", name: "Mei", rhesus: "negative" },
+    { group: "AB", name: "Ravi", rhesus: "positive" },
+  ]}
+/>
 
-Satu **siklus jantung** berlangsung sekitar <InlineMath math="0{,}8" /> detik. Model ini menunjukkan tekanan di bilik kiri, aorta, dan serambi kiri. Geser penggeser waktu dan perhatikan kapan tekanan bilik melebihi tekanan aorta, yaitu saat katup semilunar terbuka.
+Sampel Mei tetap halus pada anti-A, anti-B, dan anti-D sehingga tergolong O negatif, sedangkan sampel Ravi menggumpal di ketiganya sehingga tergolong AB positif. Golongan O berperan sebagai donor universal, sedangkan AB berperan sebagai penerima universal.
+
+## Siklus dan Curah Jantung
+
+Jantung manusia memiliki **empat ruang** yang dipicu **nodus sinoatrial**. Bilik kiri berdinding paling tebal karena memompa darah kaya oksigen ke seluruh tubuh lewat **aorta**, sementara katup bikuspidal, trikuspidal, dan semilunar menjaga aliran tetap satu arah.
+
+> Volume sekuncup ialah selisih volume bilik penuh saat diastol dengan sisa darah sesudah sistol, dan mengalikannya dengan frekuensi denyut memberi curah jantung.
+
+<HeartCycleLab
+  title={<>Siklus Jantung dan Curah Jantung</>}
+  description={
+    <>
+      Jantung berdetak pada <InlineMath math="72" /> denyut per menit dengan
+      bilik kiri terisi <InlineMath math="120\ \text{mL}" /> dan menyisakan{" "}
+      <InlineMath math="50\ \text{mL}" /> setiap sistol.
+    </>
+  }
+  footer={<>Selisih 120 dan 50 mL memberi 70 mL sekuncup, atau sekitar 5,04 L darah per menit.</>}
+  labels={{
+    aorta: <>Tekanan aorta</>,
+    output: <>Curah jantung</>,
+    phase: <>Fase siklus</>,
+    phases: {
+      atrial: <>Sistol serambi</>,
+      diastole: <>Diastol</>,
+      ventricular: <>Sistol bilik</>,
+    },
+    pressure: <>Tekanan bilik kiri</>,
+    rate: "Frekuensi denyut",
+    stroke: <>Volume sekuncup</>,
+    view: "Penampang jantung manusia yang berdenyut",
+    volume: <>Volume bilik kiri</>,
+  }}
+  rate={72}
+  volumes={{ endDiastolic: 120, endSystolic: 50 }}
+/>
+
+Setiap kontraksi memompa <InlineMath math="70\ \text{mL}" /> sehingga curah jantungnya sekitar <InlineMath math="5{,}04\ \text{L/menit}" />, hampir seluruh volume darah orang dewasa.
 
 <MathVisual
   title={<>Tekanan dalam Satu Siklus Jantung</>}
+  footer={<>Darah mengalir ke aorta hanya ketika tekanan bilik kiri melampaui tekanan aorta.</>}
   description={
     <>
-      Model tekanan dalam satuan <InlineMath math="2\text{ kPa}" /> terhadap
-      waktu dalam satuan <InlineMath math="0{,}1" /> detik. Darah dipompa ke
-      aorta selama kurva bilik berada di atas kurva aorta.
+      Model tekanan dalam satuan <InlineMath math="2\ \text{kPa}" /> terhadap
+      waktu <InlineMath math="0{,}1" /> detik selama satu denyut.
     </>
   }
   scene={{
@@ -77,31 +134,19 @@ Satu **siklus jantung** berlangsung sekitar <InlineMath math="0{,}8" /> detik. M
   }}
 />
 
-### Tahap dalam Siklus Jantung
+Penutupan katup bikuspidal saat bilik berkontraksi melahirkan bunyi jantung pertama, lalu penutupan katup semilunar saat bilik berelaksasi melahirkan bunyi kedua.
 
-Di awal siklus, serambi berkontraksi dan mengisi bilik. Bilik lalu berkontraksi, katup bikuspidal menutup, dan terdengar **bunyi jantung pertama**. Saat tekanan bilik melebihi tekanan aorta, katup semilunar terbuka dan darah dipompa keluar. Saat bilik berelaksasi dan tekanannya turun di bawah tekanan aorta, katup semilunar menutup dan terdengar bunyi kedua.
-
-### Contoh Curah Jantung
-
-**Curah jantung** adalah volume darah yang dipompa satu bilik dalam satu menit:
-
-<BlockMath math="\text{Curah jantung} = \text{volume sekuncup} \times \text{frekuensi denyut jantung}" />
-
-Volume sekuncup seorang siswa <InlineMath math="70\text{ cm}^3" /> dan frekuensi denyut jantungnya <InlineMath math="72" /> kali per menit.
-
-<BlockMath math="70 \times 72 = 5040\text{ cm}^3\text{ min}^{-1} = 5{,}04\text{ dm}^3\text{ min}^{-1}" />
-
-Cek: volume darah orang dewasa sekitar <InlineMath math="5\text{ dm}^3" />, jadi seluruh darah melewati bilik kiri kira-kira sekali per menit saat istirahat. Ubah volume sekuncup dan frekuensi denyut dalam model ini.
+<BlockMath math="\text{Curah jantung} = \text{volume sekuncup} \times \text{frekuensi denyut}" />
 
 <MathVisual
   title={<>Curah Jantung untuk Volume Sekuncup dan Frekuensi Denyut</>}
+  footer={<>Curah jantung naik sebanding dengan volume sekuncup maupun frekuensi denyut.</>}
   description={
     <>
       Curah jantung <InlineMath math="\dfrac{ah}{100}" /> dalam{" "}
-      <InlineMath math="\text{dm}^3\text{ min}^{-1}" /> terhadap frekuensi
-      denyut <InlineMath math="h" /> dalam puluhan denyut per menit, dengan
-      volume sekuncup <InlineMath math="a" /> dalam{" "}
-      <InlineMath math="\text{cm}^3" />.
+      <InlineMath math="\text{dm}^3\text{ min}^{-1}" /> terhadap denyut{" "}
+      <InlineMath math="h" /> (puluhan per menit) dan sekuncup{" "}
+      <InlineMath math="a" /> (<InlineMath math="\text{cm}^3" />).
     </>
   }
   scene={{
@@ -127,7 +172,11 @@ Cek: volume darah orang dewasa sekitar <InlineMath math="5\text{ dm}^3" />, jadi
   }}
 />
 
-## Pembuluh Darah dan Tekanan Darah
+Jantung atlet memompa volume sekuncup lebih besar (<InlineMath math="100\ \text{cm}^3" />) sehingga cukup <InlineMath math="50" /> denyut per menit untuk menghasilkan <InlineMath math="5{,}0\ \text{dm}^3\text{ min}^{-1}" />.
+
+## Pembuluh dan Tekanan Darah
+
+**Arteri selalu keluar dari jantung** dengan dinding tebal elastis, sedangkan **vena selalu menuju jantung** bertekanan paling rendah sehingga butuh katup pencegah aliran balik.
 
 | Pembuluh | Dinding | Rongga | Katup | Tekanan |
 | :--- | :--- | :--- | :--- | :--- |
@@ -135,14 +184,13 @@ Cek: volume darah orang dewasa sekitar <InlineMath math="5\text{ dm}^3" />, jadi
 | Kapiler | Setebal satu sel | Sangat kecil | Tidak ada | Rendah |
 | Vena | Tipis, kurang berotot | Besar | Ada | Paling rendah |
 
-**Tekanan darah** diukur dengan sfigmomanometer dan dinyatakan sebagai tekanan sistolik per tekanan diastolik, misalnya <InlineMath math="120/80\text{ mmHg}" />. Tekanan paling tinggi di aorta dan terus turun saat darah mengalir melalui pembuluh yang makin kecil. Grafik ini menunjukkan tekanan rata-rata di setiap jenis pembuluh.
-
 <BarChart
   title={<>Tekanan Darah Rata-Rata di Setiap Jenis Pembuluh</>}
+  footer={<>Penurunan tekanan paling curam terjadi di arteriol sebelum masuk kapiler tipis.</>}
   description={
     <>
-      Tekanan rata-rata dalam mmHg saat darah mengalir dari aorta ke vena besar
-      dalam peredaran sistemik.
+      Tekanan rata-rata dalam mmHg dari aorta menuju vena besar dalam peredaran
+      sistemik.
     </>
   }
   yAxisLabel="Tekanan rata-rata (mmHg)"
@@ -157,30 +205,17 @@ Cek: volume darah orang dewasa sekitar <InlineMath math="5\text{ dm}^3" />, jadi
   chartConfig={{ value: { label: "Tekanan rata-rata", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-Penurunan terbesar terjadi di **arteriol**, karena pembuluh ini sempit dan dindingnya berotot. Tekanan yang rendah di kapiler memungkinkan zat berdifusi keluar tanpa merusak dinding yang setebal satu sel.
+Tekanan normal <InlineMath math="120/80\ \text{mmHg}" /> setara <InlineMath math="16{,}0/10{,}6\ \text{kPa}" />, dan penurunan tajam di arteriol melindungi dinding kapiler yang hanya setebal satu sel.
 
-### Contoh Membaca Tekanan Darah
-
-Saat manset sfigmomanometer raksa dikempiskan, bunyi denyut mulai terdengar pada kolom raksa <InlineMath math="12{,}0\text{ cm}" /> dan hilang pada <InlineMath math="8{,}0\text{ cm}" />. Nyatakan **hasil pengukuran tekanan darah** dalam mmHg dan kPa.
-
-<MathContainer>
-<BlockMath math="12{,}0\text{ cmHg} = 120\text{ mmHg}, \quad 8{,}0\text{ cmHg} = 80\text{ mmHg}" />
-<BlockMath math="120 \times 0{,}133 = 16{,}0\text{ kPa}, \quad 80 \times 0{,}133 = 10{,}6\text{ kPa}" />
-</MathContainer>
-
-Hasilnya <InlineMath math="120/80\text{ mmHg}" />, yaitu tekanan normal. Cek: nilai sistolik <InlineMath math="16{,}0\text{ kPa}" /> cocok dengan puncak kurva bilik kiri pada model siklus jantung.
-
-### Jari-Jari Pembuluh dan Aliran Darah
-
-Aliran darah melalui pembuluh sangat peka terhadap jari-jarinya. Pada tekanan yang sama, aliran sebanding dengan **pangkat empat jari-jari**. Saat arteriol menyempit, aliran ke jaringan itu turun tajam. Itulah sebabnya plak kolesterol yang menyempitkan arteri koroner, yaitu **aterosklerosis**, sangat berbahaya.
+Aliran darah sangat peka karena sebanding dengan **pangkat empat jari-jari pembuluh**, sehingga plak kolesterol pada **aterosklerosis** memangkas pasokan darah secara drastis.
 
 <MathVisual
   title={<>Aliran Darah Sebanding dengan Pangkat Empat Jari-Jari</>}
+  footer={<>Menyempitkan jari-jari arteri separuh memangkas aliran darah hingga seperenam belas.</>}
   description={
     <>
       Aliran relatif <InlineMath math="\dfrac{r^4}{216}" /> terhadap jari-jari{" "}
-      <InlineMath math="r" /> dalam satuan relatif, dengan jari-jari normal{" "}
-      <InlineMath math="4" />.
+      <InlineMath math="r" /> dengan jari-jari normal <InlineMath math="4" />.
     </>
   }
   scene={{
@@ -205,18 +240,58 @@ Aliran darah melalui pembuluh sangat peka terhadap jari-jarinya. Pada tekanan ya
   }}
 />
 
-Jika jari-jari arteri turun setengahnya, dari <InlineMath math="4" /> menjadi <InlineMath math="2" />, alirannya menjadi <InlineMath math="\left(\tfrac{1}{2}\right)^4 = \tfrac{1}{16}" /> dari semula, sekitar <InlineMath math="6\%" />. Cek dengan model: pada <InlineMath math="r = 2" />, persentasenya <InlineMath math="6{,}25" />.
+Menyempitkan jari-jari ke <InlineMath math="0{,}8" /> kali semula sudah menurunkan aliran darah menjadi <InlineMath math="0{,}8^4 = 41\%" /> saja.
 
-## Olahraga dan Frekuensi Denyut Jantung
+## Pertukaran Cairan Kapiler
 
-Saat berolahraga, otot memerlukan lebih banyak oksigen, sehingga frekuensi denyut jantung dan volume sekuncup naik. Setelah berolahraga, frekuensi denyut kembali ke nilai istirahat. **Waktu pemulihan yang singkat** menandakan jantung yang bugar. Grafik ini menunjukkan frekuensi denyut dua siswa setelah berlari selama tiga menit.
+Di sepanjang **jaringan kapiler**, dua gaya saling tarik: tekanan darah mendorong plasma keluar ke ruang antarsel menjadi **cairan jaringan**, sementara tekanan osmotik protein plasma menarik cairan kembali ke pembuluh. Kelebihan cairan masuk ke **kapiler limfa** sebagai getah bening, disaring kelenjar getah bening, lalu kembali ke darah lewat vena subklavia.
+
+> Di ujung arteriol tekanan darah mengalahkan tarikan osmotik sehingga cairan menyaring keluar, lalu di ujung venula tekanan turun sehingga sebagian besar cairan kembali dan sisanya dialirkan pembuluh limfa.
+
+<CapillaryBedLab
+  title={<>Penyaringan dan Penyerapan Kembali di Jaringan Kapiler</>}
+  description={
+    <>
+      Darah masuk ujung arteriol pada <InlineMath math="35\ \text{mmHg}" /> dan
+      keluar ujung venula pada <InlineMath math="18\ \text{mmHg}" /> melawan
+      tarikan onkotik <InlineMath math="25\ \text{mmHg}" />.
+    </>
+  }
+  footer={<>Di atas 25 mmHg cairan keluar ke sel, di bawahnya masuk lagi, dan sisa masuk limfa.</>}
+  labels={{
+    arterial: "Tekanan ujung arteriol",
+    inward: <>Penyerapan kembali</>,
+    lymph: <>Ke kapiler limfa</>,
+    oncotic: "Tekanan onkotik plasma",
+    outward: <>Penyaringan keluar</>,
+    parts: {
+      arteriole: <>Arteriol</>,
+      capillary: <>Kapiler darah</>,
+      cell: <>Sel jaringan</>,
+      lymph: <>Kapiler limfa</>,
+      venule: <>Venula</>,
+    },
+    turning: <>Titik balik arah aliran cairan</>,
+    view: "Jaringan kapiler dengan arteriol, venula, sel jaringan, dan kapiler limfa",
+  }}
+  oncotic={25}
+  pressure={{ arterial: 35, venous: 18 }}
+  tissue={{ oncotic: 0, pressure: 0 }}
+/>
+
+Turunkan tekanan onkotik plasma di atas dan perhatikan titik balik bergeser ke kanan sehingga cairan menumpuk di jaringan dan pembuluh limfa harus mengangkut lebih banyak kelebihan cairan.
+
+## Olahraga dan Pemulihan
+
+Saat berolahraga, otot menuntut lebih banyak oksigen sehingga denyut jantung melonjak. **Waktu pemulihan yang singkat** sesudah berlari menandakan jantung yang terlatih.
 
 <ScatterDiagram
   title={<>Frekuensi Denyut Jantung Setelah Olahraga</>}
+  footer={<>Denyut jantung atlet pulih hampir normal dalam empat menit setelah berlari.</>}
   description={
     <>
-      Frekuensi denyut jantung setiap menit setelah olahraga untuk seorang atlet
-      dan seorang siswa yang jarang berolahraga.
+      Frekuensi denyut setiap menit sesudah lari tiga menit pada atlet dan siswa
+      yang jarang berolahraga.
     </>
   }
   xAxisLabel="Waktu setelah olahraga (menit)"
@@ -249,60 +324,17 @@ Saat berolahraga, otot memerlukan lebih banyak oksigen, sehingga frekuensi denyu
   ]}
 />
 
-Atlet hampir kembali ke frekuensi istirahat dalam empat menit, sedangkan siswa yang jarang berolahraga masih berdenyut <InlineMath math="96" /> kali per menit setelah lima menit.
+Setelah lima menit, siswa yang jarang berolahraga masih berdenyut <InlineMath math="96" /> kali per menit sementara atlet sudah tenang di <InlineMath math="64" /> kali per menit.
 
-## Sistem Limfa
+## Peredaran Darah Hewan
 
-Sebagian plasma merembes keluar dari kapiler ke ruang antarsel sebagai **cairan jaringan**. Sebagian besar kembali ke kapiler, dan sisanya masuk ke **kapiler limfa** sebagai **getah bening**. Getah bening mengalir melalui pembuluh limfa dan **kelenjar getah bening**, tempat limfosit menghancurkan patogen, sebelum kembali ke darah melalui vena subklavia. Sistem limfa juga mengangkut lemak dari pembuluh kil di vili.
-
-## Sistem Peredaran Darah Hewan
+Hewan berbeda memiliki rancangan peredaran darah sesuai kebutuhan oksigen tubuhnya, dari sistem terbuka serangga sampai sistem ganda sempurna manusia.
 
 | Hewan | Jenis sistem | Ciri |
 | :--- | :--- | :--- |
-| Serangga | Terbuka | Hemolimfa langsung membasahi organ di dalam hemosol |
-| Ikan | Tertutup, peredaran tunggal | Jantung dua ruang, darah melewati jantung sekali dalam satu putaran |
-| Amfibi | Tertutup, peredaran ganda tidak sempurna | Jantung tiga ruang, sedikit percampuran darah di bilik |
-| Manusia | Tertutup, peredaran ganda sempurna | Jantung empat ruang, darah kaya dan miskin oksigen tidak bercampur |
+| Serangga | Terbuka | Hemolimfa membasahi organ di dalam hemosol |
+| Ikan | Tertutup, peredaran tunggal | Jantung dua ruang, darah lewat jantung sekali |
+| Amfibi | Tertutup, peredaran ganda tidak sempurna | Jantung tiga ruang, sedikit percampuran di bilik |
+| Manusia | Tertutup, peredaran ganda sempurna | Jantung empat ruang, darah kaya dan miskin oksigen terpisah |
 
-**Peredaran ganda** memungkinkan darah dipompa kembali ke tubuh dengan tekanan tinggi setelah melewati paru-paru, sehingga oksigen sampai ke jaringan lebih cepat.
-
-## Kesalahan Umum tentang Sistem Transportasi
-
-| Kesalahan | Mengapa salah | Cara mengecek |
-| :--- | :--- | :--- |
-| Semua arteri membawa darah kaya oksigen. | Arteri pulmonalis membawa darah miskin oksigen ke paru-paru. | Arteri ditentukan oleh arah aliran, yaitu keluar dari jantung. |
-| Bilik kanan berdinding paling tebal. | Bilik kiri paling tebal karena memompa darah ke seluruh tubuh. | Bandingkan jarak yang harus ditempuh darah. |
-| Golongan AB dapat mendonor ke semua orang. | Golongan AB adalah resipien universal. Golongan O adalah donor universal. | Cek antigen donor terhadap antibodi penerima. |
-| Vena bertekanan tinggi. | Vena bertekanan paling rendah dan bergantung pada katup serta otot rangka. | Bandingkan tebal dinding pembuluh. |
-
-Kesalahan pertama paling sering muncul dalam soal pembuluh darah. **Arteri keluar dari jantung, vena masuk ke jantung**, apa pun kandungan oksigennya.
-
-## Latihan Sistem Transportasi
-
-Soal-soal ini bergerak dari darah ke jantung dan tekanan darah. **Tuliskan satuan** di setiap perhitungan.
-
-1. Volume sekuncup seorang atlet <InlineMath math="100\text{ cm}^3" /> dan frekuensi denyutnya <InlineMath math="50" /> kali per menit. Hitung curah jantungnya dalam <InlineMath math="\text{dm}^3\text{ min}^{-1}" />.
-
-2. Seorang pasien bergolongan darah B. Sebutkan golongan darah yang aman didonorkan kepadanya dan jelaskan alasannya.
-
-3. Plak menyempitkan jari-jari sebuah arteri menjadi <InlineMath math="0{,}8" /> kali jari-jari semula. Hitung aliran darah yang baru sebagai persentase aliran semula.
-
-4. Jelaskan mengapa vena punya katup tetapi arteri tidak.
-
-### Pembahasan
-
-**Pembahasan 1**: Kalikan volume sekuncup dengan frekuensi denyut:
-
-<BlockMath math="100 \times 50 = 5000\text{ cm}^3\text{ min}^{-1} = 5{,}0\text{ dm}^3\text{ min}^{-1}" />
-
-Cek: nilainya hampir sama dengan curah jantung siswa biasa, karena jantung atlet memompa lebih banyak darah per denyut sehingga tidak perlu berdenyut sesering itu.
-
-**Pembahasan 2**: Golongan **B dan O** aman. Plasma pasien berisi antibodi anti-A, jadi darah yang membawa antigen A, yaitu golongan A dan AB, akan menggumpal.
-
-**Pembahasan 3**: Aliran sebanding dengan pangkat empat jari-jari:
-
-<BlockMath math="0{,}8^4 = 0{,}41 \quad\Rightarrow\quad 41\%" />
-
-Cek dengan model: pada <InlineMath math="r = 3{,}2" />, yaitu <InlineMath math="0{,}8 \times 4" />, persentasenya <InlineMath math="41" />. Penyempitan kecil saja sudah memotong aliran lebih dari separuh.
-
-**Pembahasan 4**: Tekanan di vena **sangat rendah**, sehingga darah bisa mengalir balik, terutama dari kaki melawan gravitasi. Katup mencegah aliran balik ini. Di arteri, tekanan tinggi dari kontraksi bilik sudah mendorong darah ke depan.
+**Peredaran ganda sempurna** memompa darah kembali pada tekanan tinggi sesudah melewati paru-paru agar oksigen tiba cepat di seluruh jaringan. Uji cepat mandiri: pasien golongan B aman menerima golongan B dan O, dan arteri pulmonalis membawa darah miskin oksigen karena arteri ditentukan oleh arah aliran keluar dari jantung.

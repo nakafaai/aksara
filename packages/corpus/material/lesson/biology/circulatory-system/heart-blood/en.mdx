@@ -1,34 +1,30 @@
 export const metadata = {
-  title: "Transport in Humans and Animals Notes",
+  title: "Blood Circulation Heart Cycle and Capillaries",
   description:
-    "Form 4 Biology Chapter 10: explain blood, the cardiac cycle, blood pressure, cardiac output, the lymphatic system and animal circulatory systems, with practice.",
+    "Explain blood components, blood group typing, the cardiac cycle and cardiac output, vessel pressure, capillary fluid exchange, and animal circulatory systems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Transport in Humans and Animals",
 };
 
-## The Circulatory System Carries Substances around the Body
+## Blood and Clotting
 
-The **circulatory system** is made up of **the heart, blood vessels and blood**. The heart pumps blood through arteries, capillaries and veins to bring oxygen, nutrients and hormones to cells and to carry away carbon dioxide and urea. Humans have a **closed double circulatory system**: blood always stays inside vessels and passes through the heart twice in each complete circuit. In the models here, you read pressures in the cardiac cycle, calculate cardiac output, compare blood pressure along the vessels and see how a vessel's radius affects blood flow.
-
-## Blood and Its Components
-
-Blood is made up of **plasma** and blood cells. Plasma, about <InlineMath math="55\%" /> of blood volume, carries nutrients, hormones, urea and carbon dioxide.
+Picture a busy city wired with a two-way delivery grid: the human **circulatory system** is closed and double, linking **heart, blood vessels, and blood** so oxygen and nutrients reach every cell quickly while carbon dioxide and urea leave. Blood combines **plasma** (roughly <InlineMath math="55\%" /> of volume) with three main cellular components.
 
 | Component | Structure | Function |
 | :--- | :--- | :--- |
 | Erythrocytes | Biconcave discs with no nucleus | Carry oxygen with haemoglobin |
-| Leucocytes | Have a nucleus, larger than erythrocytes | Fight pathogens by phagocytosis and antibodies |
+| Leucocytes | Have a nucleus, larger than erythrocytes | Fight pathogens via phagocytosis and antibodies |
 | Platelets | Small cell fragments | Start blood clotting |
-| Plasma | Pale yellow fluid, about <InlineMath math="90\%" /> water | Carries dissolved substances and heat |
+| Plasma | Pale yellow fluid, about <InlineMath math="90\%" /> water | Carries dissolved solutes and heat |
 
-### Blood Clotting
+### Blood Clotting Steps
 
-When a blood vessel is cut, platelets and damaged tissue release **thromboplastin**. With the help of calcium ions and vitamin K, thromboplastin turns prothrombin into **thrombin**. Thrombin then turns soluble fibrinogen into insoluble **fibrin**. Fibrin threads trap red blood cells and form a clot that stops the bleeding.
+When a vessel tears, platelets release **thromboplastin**, which with calcium ions and vitamin K converts prothrombin to **thrombin**, turning soluble fibrinogen into a mesh of **fibrin** threads that seals the wound.
 
-### Blood Groups
+### Blood Group Testing
 
-The ABO system depends on **antigens** on the surface of erythrocytes and **antibodies** in the plasma. Donor blood must not carry an antigen that the recipient's antibodies recognise, or the donor's erythrocytes will clump.
+Blood compatibility depends on **antigens** on red cell surfaces and **antibodies** in plasma. Donor blood must never carry an antigen matched by the recipient's antibodies or the red cells will clump.
 
 | Group | Antigen | Antibody | Can receive from |
 | :--- | :--- | :--- | :--- |
@@ -37,19 +33,80 @@ The ABO system depends on **antigens** on the surface of erythrocytes and **anti
 | AB | A and B | None | A, B, AB, O |
 | O | None | Anti-A and anti-B | O only |
 
-## The Heart and the Cardiac Cycle
+> Blood drops clump wherever an antiserum matches an antigen on the red cell surface, revealing both ABO and Rhesus status directly on the tile.
 
-The human heart has **four chambers**: two atria above and two ventricles below. The left ventricle has the thickest wall because it pumps oxygenated blood around the whole body through the **aorta**. The tricuspid and bicuspid valves stop blood flowing back into the atria, while the semilunar valves stop blood flowing back into the ventricles. Each heartbeat starts at the **sinoatrial node**, the heart's natural pacemaker.
+<BloodTypingLab
+  title={<>Testing Blood Groups on a Porcelain Tile</>}
+  description={
+    <>
+      Three blood samples are mixed with anti-A, anti-B, and anti-D sera and
+      checked for clumping one minute after mixing.
+    </>
+  }
+  footer={<>Clumping appears only when an antiserum binds its matching surface antigen.</>}
+  labels={{
+    clumped: <>Clumps</>,
+    group: <>Blood group</>,
+    groups: { A: <>A</>, AB: <>AB</>, B: <>B</>, O: <>O</> },
+    sample: "Sample",
+    sera: { a: <>Anti-A</>, b: <>Anti-B</>, d: <>Anti-D</> },
+    smooth: <>No clumps</>,
+    time: <>Time after mixing</>,
+    view: "A white porcelain tile with blood drops and antisera",
+  }}
+  samples={[
+    { group: "A", name: "Ali", rhesus: "positive" },
+    { group: "O", name: "Mei", rhesus: "negative" },
+    { group: "AB", name: "Ravi", rhesus: "positive" },
+  ]}
+/>
 
-One **cardiac cycle** takes about <InlineMath math="0.8" /> seconds. This model shows the pressure in the left ventricle, the aorta and the left atrium. Move the time slider and notice when the ventricular pressure rises above the aortic pressure, which is when the semilunar valve opens.
+Mei's blood stays smooth with anti-A, anti-B, and anti-D, identifying group O negative, whereas Ravi's clumps in all three wells, identifying AB positive. Group O is the universal donor and AB the universal recipient.
+
+## Cardiac Cycle and Output
+
+The human heart has **four chambers** paced by the **sinoatrial node**. The left ventricle owns the thickest wall to drive oxygenated blood body-wide via the **aorta**, while bicuspid, tricuspid, and semilunar valves enforce one-way flow.
+
+> Stroke volume equals end-diastolic volume minus end-systolic volume, and multiplying stroke volume by heart rate gives cardiac output.
+
+<HeartCycleLab
+  title={<>Beating Heart Cycle and Cardiac Output</>}
+  description={
+    <>
+      A heart beating at <InlineMath math="72" /> beats a minute fills the left
+      ventricle to <InlineMath math="120\text{ mL}" /> and empties to{" "}
+      <InlineMath math="50\text{ mL}" /> each beat.
+    </>
+  }
+  footer={<>Subtracting 50 from 120 mL gives 70 mL stroke volume and 5.04 L per minute.</>}
+  labels={{
+    aorta: <>Aortic pressure</>,
+    output: <>Cardiac output</>,
+    phase: <>Phase</>,
+    phases: {
+      atrial: <>Atrial systole</>,
+      diastole: <>Diastole</>,
+      ventricular: <>Ventricular systole</>,
+    },
+    pressure: <>Left ventricular pressure</>,
+    rate: "Heart rate",
+    stroke: <>Stroke volume</>,
+    view: "A human heart cut open from the front",
+    volume: <>Left ventricular volume</>,
+  }}
+  rate={72}
+  volumes={{ endDiastolic: 120, endSystolic: 50 }}
+/>
+
+Each beat ejects <InlineMath math="70\text{ mL}" />, delivering about <InlineMath math="5.04\text{ L min}^{-1}" />, nearly an adult's entire blood volume every minute.
 
 <MathVisual
   title={<>Pressures in One Cardiac Cycle</>}
+  footer={<>Blood enters the aorta only while left ventricular pressure exceeds aortic pressure.</>}
   description={
     <>
-      A model of pressure in units of <InlineMath math="2\text{ kPa}" /> against
-      time in units of <InlineMath math="0.1" /> seconds. Blood is pumped into
-      the aorta while the ventricle curve sits above the aorta curve.
+      Pressure model in units of <InlineMath math="2\text{ kPa}" /> against time
+      in <InlineMath math="0.1" /> second steps across one beat.
     </>
   }
   scene={{
@@ -77,30 +134,19 @@ One **cardiac cycle** takes about <InlineMath math="0.8" /> seconds. This model 
   }}
 />
 
-### Stages of the Cardiac Cycle
-
-At the start of the cycle, the atria contract and fill the ventricles. The ventricles then contract, and the bicuspid valve closes, making the **first heart sound**. When ventricular pressure rises above aortic pressure, the semilunar valve opens and blood is pumped out. When the ventricle relaxes and its pressure falls below aortic pressure, the semilunar valve closes, making the second sound.
-
-### Example Cardiac Output
-
-**Cardiac output** is the volume of blood one ventricle pumps in one minute:
+The bicuspid valve snapping shut at ventricular contraction creates the first heart sound, and semilunar valve closure at relaxation creates the second.
 
 <BlockMath math="\text{Cardiac output} = \text{stroke volume} \times \text{heart rate}" />
 
-A student's stroke volume is <InlineMath math="70\text{ cm}^3" /> and their heart rate is <InlineMath math="72" /> beats a minute.
-
-<BlockMath math="70 \times 72 = 5040\text{ cm}^3\text{ min}^{-1} = 5.04\text{ dm}^3\text{ min}^{-1}" />
-
-Check: an adult has about <InlineMath math="5\text{ dm}^3" /> of blood, so the whole blood volume passes through the left ventricle roughly once a minute at rest. Change the stroke volume and heart rate in this model.
-
 <MathVisual
   title={<>Cardiac Output for a Stroke Volume and Heart Rate</>}
+  footer={<>Cardiac output scales directly with both stroke volume and heart rate.</>}
   description={
     <>
       Cardiac output <InlineMath math="\dfrac{ah}{100}" /> in{" "}
       <InlineMath math="\text{dm}^3\text{ min}^{-1}" /> against heart rate{" "}
-      <InlineMath math="h" /> in tens of beats a minute, with stroke volume{" "}
-      <InlineMath math="a" /> in <InlineMath math="\text{cm}^3" />.
+      <InlineMath math="h" /> (tens per minute) and stroke volume{" "}
+      <InlineMath math="a" /> (<InlineMath math="\text{cm}^3" />).
     </>
   }
   scene={{
@@ -126,7 +172,11 @@ Check: an adult has about <InlineMath math="5\text{ dm}^3" /> of blood, so the w
   }}
 />
 
-## Blood Vessels and Blood Pressure
+An athlete's heart ejects a larger stroke volume (<InlineMath math="100\text{ cm}^3" />), needing only <InlineMath math="50" /> beats a minute to sustain <InlineMath math="5.0\text{ dm}^3\text{ min}^{-1}" />.
+
+## Vessels and Blood Pressure
+
+**Arteries always carry blood away from the heart** inside thick elastic walls, whereas **veins always carry blood back** at the lowest pressure and depend on valves against backflow.
 
 | Vessel | Wall | Lumen | Valves | Pressure |
 | :--- | :--- | :--- | :--- | :--- |
@@ -134,14 +184,13 @@ Check: an adult has about <InlineMath math="5\text{ dm}^3" /> of blood, so the w
 | Capillary | One cell thick | Very small | None | Low |
 | Vein | Thin, less muscular | Large | Present | Lowest |
 
-**Blood pressure** is measured with a sphygmomanometer and given as systolic pressure over diastolic pressure, for example <InlineMath math="120/80\text{ mmHg}" />. Pressure is highest in the aorta and falls steadily as blood flows through smaller and smaller vessels. This graph shows the mean pressure in each type of vessel.
-
 <BarChart
   title={<>Mean Blood Pressure in Each Type of Vessel</>}
+  footer={<>The steepest pressure drop occurs across narrow arterioles before delicate capillaries.</>}
   description={
     <>
-      Mean pressure in mmHg as blood flows from the aorta to the large veins in
-      the systemic circulation.
+      Mean pressure in mmHg from the aorta to large veins across systemic
+      circulation.
     </>
   }
   yAxisLabel="Mean pressure (mmHg)"
@@ -156,29 +205,17 @@ Check: an adult has about <InlineMath math="5\text{ dm}^3" /> of blood, so the w
   chartConfig={{ value: { label: "Mean pressure", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-The biggest drop happens in the **arterioles**, because these vessels are narrow and have muscular walls. The low pressure in the capillaries lets substances diffuse out without damaging walls that are one cell thick.
+Normal blood pressure <InlineMath math="120/80\text{ mmHg}" /> equals <InlineMath math="16.0/10.6\text{ kPa}" />, and the steep arteriole drop protects one-cell-thick capillary walls.
 
-### Example Reading Blood Pressure
-
-As the cuff of a mercury sphygmomanometer is let down, the pulse sounds start at a mercury column of <InlineMath math="12.0\text{ cm}" /> and disappear at <InlineMath math="8.0\text{ cm}" />. State **the blood pressure reading** in mmHg and kPa.
-
-<MathContainer>
-<BlockMath math="12.0\text{ cmHg} = 120\text{ mmHg}, \quad 8.0\text{ cmHg} = 80\text{ mmHg}" />
-<BlockMath math="120 \times 0.133 = 16.0\text{ kPa}, \quad 80 \times 0.133 = 10.6\text{ kPa}" />
-</MathContainer>
-
-The reading is <InlineMath math="120/80\text{ mmHg}" />, which is normal. Check: the systolic value of <InlineMath math="16.0\text{ kPa}" /> matches the peak of the left ventricle curve in the cardiac cycle model.
-
-### Vessel Radius and Blood Flow
-
-Blood flow through a vessel is very sensitive to its radius. At the same pressure, flow is proportional to **the fourth power of the radius**. When an arteriole constricts, flow to that tissue drops sharply. That's why cholesterol plaques that narrow the coronary arteries, which is **atherosclerosis**, are so dangerous.
+Blood flow responds dramatically to vessel radius, scaling with the **fourth power of radius**, which makes cholesterol plaques in **atherosclerosis** so dangerous.
 
 <MathVisual
   title={<>Blood Flow Proportional to the Fourth Power of Radius</>}
+  footer={<>Halving an artery's radius slashes blood flow down to one sixteenth of normal.</>}
   description={
     <>
       Relative flow <InlineMath math="\dfrac{r^4}{216}" /> against radius{" "}
-      <InlineMath math="r" /> in relative units, with a normal radius of{" "}
+      <InlineMath math="r" /> relative to a normal radius of{" "}
       <InlineMath math="4" />.
     </>
   }
@@ -204,18 +241,58 @@ Blood flow through a vessel is very sensitive to its radius. At the same pressur
   }}
 />
 
-If an artery's radius halves, from <InlineMath math="4" /> to <InlineMath math="2" />, the flow becomes <InlineMath math="\left(\tfrac{1}{2}\right)^4 = \tfrac{1}{16}" /> of the original, about <InlineMath math="6\%" />. Check with the model: at <InlineMath math="r = 2" />, the percentage reads <InlineMath math="6.25" />.
+Narrowing an artery to <InlineMath math="0.8" /> of its original radius cuts flow to <InlineMath math="0.8^4 = 41\%" />.
 
-## Exercise and Heart Rate
+## Capillary Fluid Exchange
 
-During exercise, muscles need more oxygen, so heart rate and stroke volume rise. After exercise, the heart rate returns to its resting value. **A short recovery time** is a sign of a fit heart. This graph shows the heart rates of two students after running for three minutes.
+Across a **capillary bed**, blood pressure pushes fluid out between cells as **tissue fluid**, while plasma protein osmotic pull draws fluid back in. Excess fluid drains into **lymph capillaries** as lymph, passes through lymph nodes, and rejoins the blood at the subclavian veins.
+
+> At the arterial end blood pressure exceeds oncotic pull so fluid filters out, while at the venous end lower pressure lets most return and lymph vessels collect the remainder.
+
+<CapillaryBedLab
+  title={<>Filtration and Reabsorption in a Capillary Bed</>}
+  description={
+    <>
+      Blood enters the arterial end at <InlineMath math="35\text{ mmHg}" /> and
+      leaves the venous end at <InlineMath math="18\text{ mmHg}" /> against an
+      oncotic pull of <InlineMath math="25\text{ mmHg}" />.
+    </>
+  }
+  footer={<>Above 25 mmHg fluid filters outward, below it returns, and excess drains to lymph.</>}
+  labels={{
+    arterial: "Arterial pressure",
+    inward: <>Fluid reabsorbed</>,
+    lymph: <>Drained to lymph</>,
+    oncotic: "Plasma oncotic pressure",
+    outward: <>Fluid filtered out</>,
+    parts: {
+      arteriole: <>Arteriole</>,
+      capillary: <>Capillary</>,
+      cell: <>Tissue cell</>,
+      lymph: <>Lymph capillary</>,
+      venule: <>Venule</>,
+    },
+    turning: <>Where fluid starts to return</>,
+    view: "A capillary bed with arteriole, venule, tissue cells, and lymph vessel",
+  }}
+  oncotic={25}
+  pressure={{ arterial: 35, venous: 18 }}
+  tissue={{ oncotic: 0, pressure: 0 }}
+/>
+
+Lower plasma oncotic pressure above and watch the turning point shift right, leaving more fluid in the tissue spaces and forcing lymph capillaries to drain a larger surplus.
+
+## Exercise and Recovery
+
+During exercise working muscles demand extra oxygen so heart rate climbs. A **short recovery time** after running indicates strong cardiovascular fitness.
 
 <ScatterDiagram
   title={<>Heart Rate after Exercise</>}
+  footer={<>The athlete returns near resting heart rate within four minutes after running.</>}
   description={
     <>
-      Heart rate every minute after exercise for an athlete and for a student
-      who rarely exercises.
+      Heart rate each minute after a three-minute run for an athlete and a
+      rarely active student.
     </>
   }
   xAxisLabel="Time after exercise (min)"
@@ -248,60 +325,17 @@ During exercise, muscles need more oxygen, so heart rate and stroke volume rise.
   ]}
 />
 
-The athlete is almost back to resting rate within four minutes, while the student who rarely exercises is still at <InlineMath math="96" /> beats a minute after five minutes.
+After five minutes the less active student still beats at <InlineMath math="96" /> beats a minute while the athlete has already settled to <InlineMath math="64" />.
 
-## The Lymphatic System
+## Animal Circulatory Systems
 
-Some plasma leaks out of the capillaries into the spaces between cells as **tissue fluid**. Most of it returns to the capillaries, and the rest enters **lymph capillaries** as **lymph**. Lymph flows through lymph vessels and **lymph nodes**, where lymphocytes destroy pathogens, before it returns to the blood through the subclavian veins. The lymphatic system also carries lipids from the lacteals in the villi.
-
-## Circulatory Systems in Animals
+Different animal groups evolve circulatory architectures matching their oxygen demands, from open insect haemolymph to complete mammalian double circulation.
 
 | Animal | Type of system | Features |
 | :--- | :--- | :--- |
-| Insects | Open | Haemolymph bathes the organs directly in the haemocoel |
-| Fish | Closed, single circulation | Two-chambered heart, blood passes through the heart once per circuit |
-| Amphibians | Closed, incomplete double circulation | Three-chambered heart, some mixing of blood in the ventricle |
-| Humans | Closed, complete double circulation | Four-chambered heart, oxygenated and deoxygenated blood don't mix |
+| Insects | Open | Haemolymph bathes organs directly in the haemocoel |
+| Fish | Closed, single circulation | Two-chambered heart, blood passes heart once per loop |
+| Amphibians | Closed, incomplete double circulation | Three-chambered heart, partial mixing in the ventricle |
+| Humans | Closed, complete double circulation | Four-chambered heart, oxygenated and deoxygenated stay separate |
 
-**Double circulation** lets blood be pumped back to the body at high pressure after it passes through the lungs, so oxygen reaches the tissues faster.
-
-## Common Mistakes about Transport
-
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| All arteries carry oxygenated blood. | The pulmonary artery carries deoxygenated blood to the lungs. | Arteries are defined by the direction of flow, away from the heart. |
-| The right ventricle has the thickest wall. | The left ventricle is thickest because it pumps blood around the whole body. | Compare how far the blood has to travel. |
-| Group AB can donate to everyone. | Group AB is the universal recipient. Group O is the universal donor. | Check the donor's antigens against the recipient's antibodies. |
-| Veins have high pressure. | Veins have the lowest pressure and rely on valves and skeletal muscle. | Compare the thickness of the vessel walls. |
-
-The first mistake is the most common one in questions on blood vessels. **Arteries go away from the heart, veins go into the heart**, whatever their oxygen content.
-
-## Practice on Transport in Humans and Animals
-
-These questions move from blood to the heart and blood pressure. **Show units** in every calculation.
-
-1. An athlete's stroke volume is <InlineMath math="100\text{ cm}^3" /> and their heart rate is <InlineMath math="50" /> beats a minute. Calculate their cardiac output in <InlineMath math="\text{dm}^3\text{ min}^{-1}" />.
-
-2. A patient has blood group B. Name the blood groups that can safely be given to them and explain why.
-
-3. A plaque narrows an artery's radius to <InlineMath math="0.8" /> times its original radius. Calculate the new blood flow as a percentage of the original flow.
-
-4. Explain why veins have valves but arteries don't.
-
-### Solutions
-
-**Solution 1**: Multiply the stroke volume by the heart rate:
-
-<BlockMath math="100 \times 50 = 5000\text{ cm}^3\text{ min}^{-1} = 5.0\text{ dm}^3\text{ min}^{-1}" />
-
-Check: this is almost the same as an ordinary student's cardiac output, because an athlete's heart pumps more blood with each beat and doesn't need to beat as often.
-
-**Solution 2**: Groups **B and O** are safe. The patient's plasma contains anti-A antibodies, so blood that carries antigen A, groups A and AB, would clump.
-
-**Solution 3**: Flow is proportional to the fourth power of the radius:
-
-<BlockMath math="0.8^4 = 0.41 \quad\Rightarrow\quad 41\%" />
-
-Check with the model: at <InlineMath math="r = 3.2" />, which is <InlineMath math="0.8 \times 4" />, the percentage reads <InlineMath math="41" />. A small narrowing already cuts the flow by more than half.
-
-**Solution 4**: Pressure in veins is **very low**, so blood can flow backwards, especially from the legs against gravity. Valves stop this backflow. In arteries, the high pressure from ventricular contraction already pushes blood forwards.
+**Complete double circulation** re-pressurises blood after the lungs so oxygen reaches tissues fast. Quick self-checks: a group B patient safely receives B or O blood, and the pulmonary artery carries deoxygenated blood because arteries are defined strictly by flow away from the heart.
