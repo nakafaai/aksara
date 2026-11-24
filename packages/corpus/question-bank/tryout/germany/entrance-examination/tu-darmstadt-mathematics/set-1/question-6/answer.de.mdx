@@ -1,40 +1,92 @@
-# Beide Seiten quadrieren
+# Gegeben
 
-Du kennst <InlineMath math="\sin x" /> und <InlineMath math="\cos x" /> noch nicht einzeln. **Quadriere beide Seiten**, denn dann entsteht <InlineMath math="\sin^2x+\cos^2x" />, und das ist immer <InlineMath math="1" />:
+Ein spitzer Winkel <InlineMath math="x" /> liegt **zwischen <InlineMath math="0^\circ" /> und <InlineMath math="45^\circ" />** und erfüllt die folgende Gleichung.
+
+<BlockMath math="\sin x + \cos x = \frac{17}{13}" />
+
+# Gesucht
+
+Der genaue Wert von <InlineMath math="\tan x" />.
+
+# Lösung
+
+Auf dem Einheitskreis wandert der Punkt <InlineMath math="(\cos x \mid \sin x)" /> entlang des Viertelkreises im ersten Quadranten mit Radius <InlineMath math="1" />. Die Gerade mit Koordinatensumme <InlineMath math="\frac{17}{13}" /> schneidet ihn in **zwei Punkten, die symmetrisch zur <InlineMath math="45^\circ" />-Linie liegen**.
+
+> Für jeden spitzen Winkel unter fünfundvierzig Grad ist die Höhe am Einheitskreis kleiner als der waagerechte Abstand, also gilt stets Sinus kleiner als Kosinus.
+
+Sieh am Viertelkreis, wie die Bedingung unter <InlineMath math="45^\circ" /> sofort den grünen Punkt unterhalb der Diagonale auswählt.
+
+<MathVisual
+  title={<>Schnitt der Summengeraden <InlineMath math="\frac{17}{13}" /> mit dem Einheitskreis</>}
+  description={
+    <>
+      Waagerecht steht <InlineMath math="\cos x" />, senkrecht{" "}
+      <InlineMath math="\sin x" />. Die gestrichelte{" "}
+      <InlineMath math="45^\circ" />-Linie trennt die beiden Schnittpunkte.
+    </>
+  }
+  footer={<>Wegen <InlineMath math="x < 45^\circ" /> zählt nur der Punkt unterhalb der Diagonale.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.2, max: 1.45 }, y: { min: -0.2, max: 1.45 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "unit-arc", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 90 },
+      { id: "bisector", kind: "line", appearance: "reference", stroke: "dashed", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }] },
+      { id: "sum-line", kind: "line", appearance: "highlight", through: [{ x: 0, y: 17 / 13 }, { x: 17 / 13, y: 0 }] },
+      { id: "ray", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 12 / 13, y: 5 / 13 } },
+      { id: "valid-pt", kind: "point", appearance: "answer", at: { x: 12 / 13, y: 5 / 13 } },
+      { id: "rejected-pt", kind: "point", appearance: "warning", at: { x: 5 / 13, y: 12 / 13 } },
+    ],
+    labels: [
+      { key: "bisector", objectId: "bisector", at: { x: 1.05, y: 1.05 }, placement: "above-right" },
+      { key: "valid", objectId: "valid-pt", at: { x: 12 / 13, y: 5 / 13 }, placement: "right" },
+      { key: "rejected", objectId: "rejected-pt", at: { x: 5 / 13, y: 12 / 13 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    bisector: <InlineMath math="45^\circ" />,
+    valid: <InlineMath math="\left(\frac{12}{13}, \frac{5}{13}\right)" />,
+    rejected: <InlineMath math="\left(\frac{5}{13}, \frac{12}{13}\right)" />,
+  }}
+/>
+
+Der grüne Punkt unterhalb der <InlineMath math="45^\circ" />-Linie hat den Kosinuswert <InlineMath math="\frac{12}{13}" /> und den Sinuswert <InlineMath math="\frac{5}{13}" />. Leite diese Werte nun rechnerisch her.
+
+## Beide Seiten quadrieren
+
+Sinus und Kosinus sind noch nicht einzeln bekannt. **Quadrier beide Seiten**, damit die Identität <InlineMath math="\sin^2 x + \cos^2 x = 1" /> auftaucht und das Produkt liefert.
 
 <BlockMath math="\begin{aligned}
-(\sin x+\cos x)^2&=\frac{289}{169} \\
-\sin^2x+2\sin x\cos x+\cos^2x&=\frac{289}{169} \\
-1+2\sin x\cos x&=\frac{289}{169} \\
-\sin x\cos x&=\frac{60}{169}
+(\sin x + \cos x)^2 &= \frac{289}{169} \\
+1 + 2\sin x \cos x &= \frac{289}{169} \\
+\sin x \cos x &= \frac{60}{169}
 \end{aligned}" />
 
-# Zwei Zahlen aus Summe und Produkt
+## Tangenswert bestimmen
 
-Jetzt kennst du die Summe <InlineMath math="\sin x+\cos x=\frac{17}{13}" /> und das Produkt <InlineMath math="\sin x\cos x=\frac{60}{169}" />. **Zwei Zahlen mit dieser Summe und diesem Produkt sind die Lösungen der folgenden quadratischen Gleichung**:
+Mit Summe <InlineMath math="\frac{17}{13}" /> und Produkt <InlineMath math="\frac{60}{169}" /> sind beide Zahlen die Lösungen der folgenden quadratischen Gleichung.
 
 <BlockMath math="\begin{aligned}
-t^2-\frac{17}{13}t+\frac{60}{169}&=0 \\
-169t^2-221t+60&=0 \\
-(13t-5)(13t-12)&=0
+t^2 - \frac{17}{13}t + \frac{60}{169} &= 0 \\
+169t^2 - 221t + 60 &= 0 \\
+(13t - 5)(13t - 12) &= 0
 \end{aligned}" />
 
-Die beiden Zahlen sind also <InlineMath math="\frac{5}{13}" /> und <InlineMath math="\frac{12}{13}" />. Bleibt nur zu klären, welche der Sinus und welche der Kosinus ist.
+Die beiden Werte sind <InlineMath math="\frac{5}{13}" /> und <InlineMath math="\frac{12}{13}" />. Weil der Winkel unter <InlineMath math="45^\circ" /> liegt, ist **der Sinus kleiner als der Kosinus**, und der Tangens folgt sofort.
 
-# Den Winkelbereich nutzen
+<BlockMath math="\sin x = \frac{5}{13}, \quad \cos x = \frac{12}{13} \implies \tan x = \frac{\sin x}{\cos x} = \frac{5}{12}" />
 
-Für <InlineMath math="0^\circ<x<45^\circ" /> liegt der Winkel näher an <InlineMath math="0^\circ" />, also **ist sein Sinus kleiner als sein Kosinus**. Deshalb gilt:
+Probe: Die Summe aus <InlineMath math="\frac{5}{13}" /> und <InlineMath math="\frac{12}{13}" /> ist genau <InlineMath math="\frac{17}{13}" />, und <InlineMath math="\tan x < 1" /> passt zum Bereich unter <InlineMath math="45^\circ" />.
 
-<BlockMath math="\sin x=\frac{5}{13},\qquad\cos x=\frac{12}{13},\qquad\tan x=\frac{\sin x}{\cos x}=\frac{5}{12}" />
+## Warum andere Antworten falsch sind
 
-Probe: <InlineMath math="\frac{5}{13}+\frac{12}{13}=\frac{17}{13}" />, und <InlineMath math="\tan x=\frac{5}{12}<1" /> passt zu einem Winkel unter <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{12}{5}" /> **vertauscht Sinus und Kosinus** und passt nur für Winkel über <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{60}{169}" /> ist das Zwischenergebnis <InlineMath math="\sin x \cos x" />, nicht der Tangens.
+- <InlineMath math="\frac{5}{12}" /> oder <InlineMath math="\frac{12}{5}" /> ignoriert die Winkelgrenze unter <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{120}{169}" /> entspricht <InlineMath math="\sin 2x" />, nicht <InlineMath math="\tan x" />.
+- Die Aussage, dass es keinen solchen Winkel gibt, entsteht, wenn beim Quadrieren der Mischterm <InlineMath math="2\sin x \cos x" /> vergessen wird.
 
-Also ist <InlineMath math="\tan x=\frac{5}{12}" />.
+# Antwort
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="\frac{12}{5}" /> **vertauscht Sinus und Kosinus**. Ein Tangens über <InlineMath math="1" /> gehört zu einem Winkel über <InlineMath math="45^\circ" />.
-- <InlineMath math="\frac{60}{169}" /> ist <InlineMath math="\sin x\cos x" />, der Zwischenschritt, nicht der Tangens.
-- <InlineMath math="\frac{5}{12}" /> oder <InlineMath math="\frac{12}{5}" /> übersieht den Winkelbereich. Ohne ihn wären beide Werte möglich, hier gilt aber nur einer.
-- <InlineMath math="\frac{120}{169}" /> ist <InlineMath math="2\sin x\cos x=\sin2x" />.
-- „Keinen solchen Winkel“ erhält man, wenn man ohne den mittleren Summanden quadriert. Dann steht da <InlineMath math="1=\frac{289}{169}" />, was unmöglich aussieht, aber nur, weil <InlineMath math="2\sin x\cos x" /> fehlt.
+Der genaue Wert von <InlineMath math="\tan x" /> ist <InlineMath math="\frac{5}{12}" />.

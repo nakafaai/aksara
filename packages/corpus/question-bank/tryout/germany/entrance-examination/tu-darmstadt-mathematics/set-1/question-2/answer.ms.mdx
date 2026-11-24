@@ -1,35 +1,92 @@
-# Tiga faktor yang berbeza sifat
+# Diberi
 
-Pecahan ini ada tiga bahagian, dan **setiap bahagian berkelakuan berbeza dari segi tanda**:
+**Ketaksamaan pecahan** (*Ungleichung*) bagi semua nombor nyata <InlineMath math="x \neq -2" /> diberi seperti berikut.
 
-- <InlineMath math="x" /> bertukar tanda di <InlineMath math="x=0" />.
-- <InlineMath math="(x-3)^2" /> ialah kuasa dua, jadi tidak pernah negatif. Nilainya sifar hanya di <InlineMath math="x=3" />.
-- <InlineMath math="x+2" /> bertukar tanda di <InlineMath math="x=-2" />, dan di situ pecahan tidak tertakrif.
+<BlockMath math="\frac{x\,(x - 3)^2}{x + 2} \le 0" />
 
-# Di mana pecahan bernilai sifar
+Syarat <InlineMath math="x \neq -2" /> mengecualikan nilai yang menjadikan penyebut sifar (*Definitionsbereich*).
 
-Pecahan bernilai sifar tepat apabila pengangka sifar dan penyebut bukan sifar, iaitu di <InlineMath math="x=0" /> dan di <InlineMath math="x=3" />. Oleh sebab tandanya <InlineMath math="\le" />, **kedua-dua titik ini termasuk dalam penyelesaian**.
+# Ditanya
 
-# Di mana pecahan bernilai negatif
+Tentukan semua nombor nyata <InlineMath math="x \neq -2" /> yang memenuhi ketaksamaan ini.
 
-Untuk <InlineMath math="x\ne3" />, faktor <InlineMath math="(x-3)^2" /> positif, jadi tanda pecahan sama dengan tanda <InlineMath math="\frac{x}{x+2}" />:
+# Penyelesaian
 
-| Bahagian | <InlineMath math="x" /> | <InlineMath math="x+2" /> | Pecahan |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="x<-2" /> | negatif | negatif | positif |
-| <InlineMath math="-2<x<0" /> | negatif | positif | negatif |
-| <InlineMath math="x>0" /> | positif | positif | positif |
+Bayangkan tiga suis tanda yang bertindak serentak pada pecahan ini. Faktor <InlineMath math="x" /> dan <InlineMath math="x + 2" /> menukar tanda apabila melintasi sifar, manakala faktor kuasa dua <InlineMath math="(x - 3)^2" /> **tidak pernah negatif** dan hanya mencecah sifar pada <InlineMath math="x = 3" />.
 
-Pecahan itu **negatif hanya pada <InlineMath math="-2<x<0" />**. Titik <InlineMath math="x=3" /> tidak menukar tanda, jadi di sekitar <InlineMath math="3" /> pecahan kekal positif, kecuali tepat di <InlineMath math="3" /> yang bernilai sifar.
+> Faktor berkuasa genap tidak pernah menukar tanda pecahan, tetapi titik sifarnya tetap termasuk dalam penyelesaian apabila ketaksamaan membenarkan tanda sama dengan sifar.
 
-Semak: <InlineMath math="x=-1" /> memberi <InlineMath math="\frac{-1\cdot16}{1}=-16\le0" />, <InlineMath math="x=2" /> memberi <InlineMath math="\frac{2\cdot1}{4}>0" />, dan <InlineMath math="x=-3" /> memberi <InlineMath math="\frac{-3\cdot36}{-1}=108>0" />.
+Gerakkan titik uji <InlineMath math="p" /> pada graf berikut untuk melihat bila lengkung turun ke kawasan <InlineMath math="y \le 0" /> dan bagaimana lengkung melantun tepat pada <InlineMath math="x = 3" />.
 
-Jadi, penyelesaiannya ialah <InlineMath math="-2<x\le0" /> atau <InlineMath math="x=3" />.
+<MathVisual
+  title={<>Kelakuan tanda lengkung sekitar <InlineMath math="x = 0" /> dan <InlineMath math="x = 3" /></>}
+  description={
+    <>
+      Garis putus-putus menegak menandakan asimtot <InlineMath math="x = -2" />{" "}
+      dan kawasan berlorek menandakan <InlineMath math="y \le 0" />. Gerakkan{" "}
+      <InlineMath math="p" /> untuk membaca nilai pecahan.
+    </>
+  }
+  footer={<>Lengkung negatif pada <InlineMath math="-2 < x < 0" /> dan menyentuh sifar di <InlineMath math="0" /> serta <InlineMath math="3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -10, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "p", min: -0.8, max: 5, value: 3, step: 0.2, label: "p" }],
+    objects: [
+      { id: "non-positive", kind: "region", appearance: "construction", inequalities: ["y <= 0"] },
+      { id: "asymptote", kind: "line", appearance: "reference", stroke: "dashed", through: [{ x: -2, y: -10 }, { x: -2, y: 6 }] },
+      { id: "branch", kind: "function", appearance: "primary", formula: "x * (x - 3)^2 / (x + 2)", domain: { min: -0.8, max: 5.5 } },
+      { id: "zero-origin", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "zero-touch", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "probe", kind: "marker", appearance: "highlight", x: "p", y: "p * (p - 3)^2 / (p + 2)" },
+    ],
+    labels: [
+      { key: "asymptote", objectId: "asymptote", at: { x: -2, y: 4.5 }, placement: "right" },
+      { key: "touch", objectId: "zero-touch", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+    readouts: [{ key: "value", formula: "p * (p - 3)^2 / (p + 2)" }],
+  }}
+  labels={{
+    p: <>Titik uji <InlineMath math="p" /></>,
+    asymptote: <InlineMath math="x = -2" />,
+    touch: <InlineMath math="(3, 0)" />,
+    value: <>Nilai pecahan</>,
+  }}
+/>
 
-# Kenapa pilihan lain salah
+Di antara <InlineMath math="-2" /> dan <InlineMath math="0" />, lengkung berada di bawah paksi <InlineMath math="x" />. Selepas sifar, lengkung kekal positif, turun menyentuh <InlineMath math="(3, 0)" />, kemudian naik semula serta-merta.
 
-- <InlineMath math="-2<x\le0" /> sahaja **terlupa titik <InlineMath math="x=3" />**, tempat pengangka bernilai sifar.
-- <InlineMath math="-2\le x\le0" /> atau <InlineMath math="x=3" /> memasukkan <InlineMath math="x=-2" />, sedangkan di situ penyebut bernilai sifar.
-- <InlineMath math="x\le0" /> atau <InlineMath math="x=3" /> mendarab kedua-dua belah dengan <InlineMath math="x+2" /> seolah-olah ia sentiasa positif. Untuk <InlineMath math="x=-3" />, pecahan itu sebenarnya positif.
-- <InlineMath math="-2<x\le0" /> atau <InlineMath math="x\ge3" /> menukar tanda di <InlineMath math="x=3" />, padahal faktor kuasa dua tidak bertukar tanda. Untuk <InlineMath math="x=4" />, pecahan itu <InlineMath math="\frac{4}{6}>0" />.
-- <InlineMath math="x<-2" /> atau <InlineMath math="x\ge0" /> ialah kawasan pecahan tidak negatif, jadi tandanya dibaca terbalik.
+## Titik sifar dan jadual tanda
+
+Pecahan bernilai sifar apabila pengangkanya sifar dan penyebutnya bukan sifar, iaitu pada <InlineMath math="x = 0" /> dan <InlineMath math="x = 3" />. Oleh sebab tandanya <InlineMath math="\le" />, **kedua-dua titik ini wajib dimasukkan**.
+
+Bagi <InlineMath math="x \neq 3" />, faktor <InlineMath math="(x - 3)^2 > 0" />, maka tanda pecahan ditentukan sepenuhnya oleh nisbah <InlineMath math="x" /> kepada <InlineMath math="x + 2" />.
+
+| Selang | <InlineMath math="x" /> | <InlineMath math="x + 2" /> | Tanda pecahan |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="x < -2" /> | negatif | negatif | positif |
+| <InlineMath math="-2 < x < 0" /> | negatif | positif | negatif |
+| <InlineMath math="x > 0" /> | positif | positif | positif |
+
+## Semakan nilai dan pilihan salah
+
+Uji tiga titik wakil untuk **mengesahkan setiap selang dan sempadannya**.
+
+<BlockMath math="\begin{aligned}
+x = -1 &\implies \frac{(-1)(-4)^2}{1} = -16 \le 0 \\
+x = 2 &\implies \frac{2(-1)^2}{4} = \frac{1}{2} > 0 \\
+x = -3 &\implies \frac{(-3)(-6)^2}{-1} = 108 > 0
+\end{aligned}" />
+
+- Pilihan yang hanya mengambil selang antara <InlineMath math="-2" /> hingga <InlineMath math="0" /> tertinggal titik terpencil <InlineMath math="x = 3" /> di mana pengangkanya sifar.
+- Pilihan dengan had kiri tertutup pada <InlineMath math="-2" /> turut memasukkan <InlineMath math="x = -2" />, yang menjadikan penyebut sifar.
+- Pilihan <InlineMath math="x \le 0" /> atau <InlineMath math="x = 3" /> mendarab kedua-dua belah dengan <InlineMath math="x + 2" /> seolah-olah sentiasa positif, mengabaikan tanda negatifnya bagi <InlineMath math="x < -2" />.
+- Pilihan yang menukar <InlineMath math="x = 3" /> kepada <InlineMath math="x \ge 3" /> mengandaikan pertukaran tanda pada <InlineMath math="x = 3" />, sedangkan faktor kuasa dua tidak menukar tanda.
+- Pilihan <InlineMath math="x < -2" /> atau <InlineMath math="x \ge 0" /> menterbalikkan arah ketaksamaan dan memilih kawasan bukan negatif.
+
+# Jawapan
+
+Semua nombor nyata yang memenuhi ketaksamaan ini ialah seperti berikut.
+
+<BlockMath math="-2 < x \le 0 \quad \text{atau} \quad x = 3" />

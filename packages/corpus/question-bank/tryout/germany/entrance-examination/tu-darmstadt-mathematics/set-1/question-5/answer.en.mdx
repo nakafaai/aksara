@@ -1,10 +1,30 @@
-# What the fold means
+# Given
 
-Call the rectangle <InlineMath math="ABCD" /> with <InlineMath math="AB=8" /> and <InlineMath math="BC=6" />, and fold it so that <InlineMath math="A" /> lands exactly on <InlineMath math="C" />. Every point of the crease is equally far from <InlineMath math="A" /> and <InlineMath math="C" />, because those two points meet when you fold. So **the crease is the perpendicular bisector of <InlineMath math="AC" />**: the line perpendicular to <InlineMath math="AC" /> through its midpoint <InlineMath math="M" />.
+A **rectangular sheet of paper** <InlineMath math="ABCD" /> measures <InlineMath math="8\text{ cm}" /> in length and <InlineMath math="6\text{ cm}" /> in width. It is folded once so that two opposite corners (<InlineMath math="A" /> and <InlineMath math="C" />) meet exactly.
+
+# Asked
+
+Find the length of the resulting **crease** (*Faltkante*) in centimeters.
+
+# Solution
+
+Think of the crease as a **flat mirror** reflecting corner <InlineMath math="A" /> straight onto corner <InlineMath math="C" />. Because every point on the crease stays fixed during the fold, its distance to <InlineMath math="A" /> always equals its distance to <InlineMath math="C" />.
+
+> A crease that brings two opposite corners together is always the perpendicular bisector of their diagonal, crossing it at right angles through its midpoint.
+
+Watch how the crease <InlineMath math="EF" /> cuts diagonal <InlineMath math="AC" /> perpendicularly through the center <InlineMath math="M" />.
 
 <MathVisual
-  title={<>A fold that brings opposite corners together</>}
-  description={<>The rectangle <InlineMath math="ABCD" /> measures <InlineMath math="8" /> by <InlineMath math="6" />. The diagonal <InlineMath math="AC" /> is drawn, and the crease <InlineMath math="EF" /> crosses it at right angles at its midpoint <InlineMath math="M" />. <InlineMath math="E" /> lies on side <InlineMath math="AB" /> and <InlineMath math="F" /> on side <InlineMath math="CD" />.</>}
+  title={<>Crease <InlineMath math="EF" /> as the perpendicular bisector of <InlineMath math="AC" /></>}
+  description={
+    <>
+      Rectangle <InlineMath math="ABCD" /> measures <InlineMath math="8" /> by{" "}
+      <InlineMath math="6" />. Crease <InlineMath math="EF" /> crosses diagonal{" "}
+      <InlineMath math="AC" /> at a right angle through its midpoint{" "}
+      <InlineMath math="M" />.
+    </>
+  }
+  footer={<>Crease <InlineMath math="EF" /> bisects diagonal <InlineMath math="AC" /> perpendicularly at <InlineMath math="M" />.</>}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
@@ -16,15 +36,11 @@ Call the rectangle <InlineMath math="ABCD" /> with <InlineMath math="AB=8" /> an
   }}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -1, max: 7 },
-    },
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 7 } },
     view: { kind: "fit", padding: 0.1 },
     objects: [
       { id: "sheet", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 6 }, { x: 0, y: 6 }] },
-      { id: "diagonal", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
+      { id: "diagonal", kind: "segment", appearance: "reference", stroke: "dashed", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
       { id: "crease", kind: "segment", appearance: "highlight", from: { x: (8 * 8 + 6 * 6) / (2 * 8), y: 0 }, to: { x: 8 - (8 * 8 + 6 * 6) / (2 * 8), y: 6 } },
       { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
       { id: "point-b", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
@@ -46,30 +62,38 @@ Call the rectangle <InlineMath math="ABCD" /> with <InlineMath math="AB=8" /> an
   }}
 />
 
-# Where the crease meets the sides
+Triangles <InlineMath math="AME" /> and <InlineMath math="ABC" /> are similar because both have a right angle and share corner <InlineMath math="A" />. We can also locate <InlineMath math="E" /> directly with Pythagoras.
 
-Say the crease meets <InlineMath math="AB" /> at <InlineMath math="E" /> with <InlineMath math="AE=x" />. Since <InlineMath math="E" /> is on the perpendicular bisector of <InlineMath math="AC" />, **<InlineMath math="E" /> is equally far from <InlineMath math="A" /> and <InlineMath math="C" />**. You get <InlineMath math="EC" /> from the right triangle <InlineMath math="EBC" />:
+## Locating endpoint E
+
+Let <InlineMath math="AE = x" />. Since <InlineMath math="E" /> sits on the perpendicular bisector of <InlineMath math="AC" />, **distance <InlineMath math="EC" /> equals <InlineMath math="AE" />**. Apply Pythagoras to right triangle <InlineMath math="EBC" /> with <InlineMath math="EB = 8 - x" /> and <InlineMath math="BC = 6" />.
 
 <BlockMath math="\begin{aligned}
-AE^2&=EB^2+BC^2 \\
-x^2&=(8-x)^2+6^2 \\
-0&=64-16x+36 \\
-x&=6.25
+x^2 &= (8 - x)^2 + 6^2 \\
+x^2 &= 64 - 16x + x^2 + 36 \\
+16x &= 100 \implies x = 6.25\text{ cm}
 \end{aligned}" />
 
-# The length of the crease
+## Computing the crease length
 
-The diagonal is <InlineMath math="AC=\sqrt{8^2+6^2}=10" />, so <InlineMath math="AM=5" />. Triangle <InlineMath math="AME" /> has its right angle at <InlineMath math="M" />, because **the crease is perpendicular to the diagonal**:
+The diagonal measures <InlineMath math="10\text{ cm}" /> since <InlineMath math="8^2 + 6^2 = 100" />, so **half the diagonal is <InlineMath math="AM = 5\text{ cm}" />**. Find half the crease <InlineMath math="ME" /> from right triangle <InlineMath math="AME" />, then double it by symmetry across <InlineMath math="M" />.
 
-<BlockMath math="ME=\sqrt{AE^2-AM^2}=\sqrt{39.0625-25}=\sqrt{14.0625}=3.75" />
+<BlockMath math="\begin{aligned}
+ME &= \sqrt{6.25^2 - 5^2} = \sqrt{39.0625 - 25} = \sqrt{14.0625} = 3.75\text{ cm} \\
+EF &= 2 \cdot ME = 7.5\text{ cm}
+\end{aligned}" />
 
-The picture is symmetric about <InlineMath math="M" />, so <InlineMath math="MF=ME" /> and <InlineMath math="EF=2\cdot3.75=7.5\text{ cm}" />.
+Check with similar triangles <InlineMath math="AME" /> and <InlineMath math="ABC" /> to verify the exact match.
 
-So the crease is <InlineMath math="7.5\text{ cm}" /> long.
+<BlockMath math="\frac{ME}{AM} = \frac{BC}{AB} = \frac{6}{8} = \frac{3}{4} \implies ME = \frac{3}{4} \cdot 5 = 3.75\text{ cm}, \quad EF = 7.5\text{ cm}" />
 
-# Why the other options are wrong
+## Why other choices fail
 
-- <InlineMath math="10\text{ cm}" /> is the diagonal <InlineMath math="AC" />. **The crease crosses the diagonal at right angles**, it doesn't lie along it.
-- <InlineMath math="5\text{ cm}" /> is half the diagonal, <InlineMath math="AM" />.
-- <InlineMath math="6.25\text{ cm}" /> is <InlineMath math="AE" />, the distance from the corner to the end of the crease.
-- <InlineMath math="6\text{ cm}" /> and <InlineMath math="8\text{ cm}" /> are the width and length of the sheet, the crease you'd get folding parallel to a side. Such a fold doesn't bring opposite corners together.
+- <InlineMath math="10\text{ cm}" /> is the diagonal <InlineMath math="AC" />, whereas **the crease crosses the diagonal perpendicularly**.
+- <InlineMath math="5\text{ cm}" /> is only half the diagonal, <InlineMath math="AM" />.
+- <InlineMath math="6.25\text{ cm}" /> is the side segment <InlineMath math="AE" /> from corner to crease, not the crease itself.
+- <InlineMath math="6\text{ cm}" /> and <InlineMath math="8\text{ cm}" /> are the sheet edges from parallel folds, which never match opposite corners.
+
+# Answer
+
+The length of the crease is <InlineMath math="7.5\text{ cm}" />.

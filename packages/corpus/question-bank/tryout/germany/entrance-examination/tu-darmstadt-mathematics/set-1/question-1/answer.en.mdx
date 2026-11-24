@@ -1,35 +1,97 @@
-# Three conditions at once
+# Given
 
-"Two different real solutions that are both positive" is really three conditions. **You need all three, not just one**:
+We are given a quadratic equation with a real parameter <InlineMath math="a" />.
 
-- there are two different real solutions, so the discriminant is positive
-- the sum of the solutions is positive
-- the product of the solutions is positive
+<BlockMath math="x^2 - 2ax + a + 6 = 0" />
 
-Two real numbers are both positive exactly when their sum and their product are both positive. A positive product means they have the same sign, and a positive sum then makes that sign positive.
+The problem asks for **two distinct positive real solutions** (*zwei verschiedene positive reelle Lösungen*).
 
-# Working out each condition
+# Asked
 
-For <InlineMath math="x^2-2ax+(a+6)=0" />, **the sum and product rules** give <InlineMath math="x_1+x_2=2a" /> and <InlineMath math="x_1x_2=a+6" />.
+Find all real values of <InlineMath math="a" /> for which the equation has two distinct positive real roots.
+
+# Solution
+
+Picture the upward-opening parabola defined by the left-hand side. For the equation to have two distinct positive roots, the curve must **cross the <InlineMath math="x" />-axis at two separate points to the right of zero**.
+
+> Two real numbers are both positive exactly when their product is positive so they share a sign, and their sum is positive.
+
+Slide <InlineMath math="a" /> in the graph below and watch when both <InlineMath math="x" />-intercepts sit inside the region <InlineMath math="x > 0" />.
+
+<MathVisual
+  title={<>Parabola position for each value of <InlineMath math="a" /></>}
+  description={
+    <>
+      The shaded half-plane marks <InlineMath math="x > 0" />. Slide{" "}
+      <InlineMath math="a" /> to track the vertex, discriminant, sum of roots
+      and product of roots.
+    </>
+  }
+  footer={<>Both crossings sit to the right of zero only when <InlineMath math="a > 3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 10 }, y: { min: -12, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: -4, max: 5, value: 4, step: 0.5, label: "a" }],
+    objects: [
+      { id: "positive-half", kind: "region", appearance: "construction", inequalities: ["x > 0"] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2 * a * x + a + 6", domain: { min: -6, max: 10 } },
+      { id: "vertex", kind: "marker", appearance: "answer", x: "a", y: "a + 6 - a^2" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "4 * a^2 - 4 * a - 24" },
+      { key: "sum", formula: "2 * a" },
+      { key: "product", formula: "a + 6" },
+    ],
+  }}
+  labels={{
+    a: <>Parameter <InlineMath math="a" /></>,
+    discriminant: <>Discriminant <InlineMath math="D" /></>,
+    sum: <>Root sum <InlineMath math="x_1 + x_2" /></>,
+    product: <>Root product <InlineMath math="x_1 x_2" /></>,
+  }}
+/>
+
+At <InlineMath math="a = 4" />, the vertex lies in the fourth quadrant and both intercepts are positive. At <InlineMath math="a = 3" />, the curve touches the axis once, and at <InlineMath math="a = -3" /> both roots are negative.
+
+## Three conditions at once
+
+Since the leading coefficient is <InlineMath math="1" />, combine the **discriminant** (*Diskriminante*) with Vieta's formulas for the sum and product of the roots.
 
 <BlockMath math="\begin{aligned}
-D=4a^2-4(a+6)=4(a-3)(a+2)>0\quad&\Rightarrow\quad a<-2\ \text{or}\ a>3 \\
-x_1+x_2=2a>0\quad&\Rightarrow\quad a>0 \\
-x_1x_2=a+6>0\quad&\Rightarrow\quad a>-6
+D &= (-2a)^2 - 4(1)(a + 6) = 4(a - 3)(a + 2) > 0 \\
+x_1 + x_2 &= 2a > 0 \\
+x_1 x_2 &= a + 6 > 0
 \end{aligned}" />
 
-# Where all three overlap
+Solving each inequality gives three ranges of <InlineMath math="a" /> that must hold together.
 
-<InlineMath math="a" /> has to satisfy all three. The part <InlineMath math="a<-2" /> fails <InlineMath math="a>0" />, so **only <InlineMath math="a>3" /> is left**.
+<BlockMath math="\begin{aligned}
+D > 0 &\iff a < -2 \quad \text{or} \quad a > 3 \\
+x_1 + x_2 > 0 &\iff a > 0 \\
+x_1 x_2 > 0 &\iff a > -6
+\end{aligned}" />
 
-Check two examples. For <InlineMath math="a=4" />: <InlineMath math="x^2-8x+10=0" /> has solutions <InlineMath math="4\pm\sqrt6" />, both positive. For <InlineMath math="a=-3" />: <InlineMath math="x^2+6x+3=0" /> has solutions adding up to <InlineMath math="-6" />, so both are negative.
+## Intersecting and checking
 
-So the equation has two different positive solutions exactly for <InlineMath math="a>3" />.
+All three conditions must hold at the same time, so take their **intersection**. The branch <InlineMath math="a < -2" /> fails <InlineMath math="a > 0" />, leaving only <InlineMath math="a > 3" />.
 
-# Why the other options are wrong
+Test concrete values on both sides of the boundary to verify.
 
-- <InlineMath math="a<-2" /> or <InlineMath math="a>3" /> only uses the discriminant. For <InlineMath math="a<-2" /> both solutions are real but not positive.
-- <InlineMath math="a>0" /> only uses the sum. For <InlineMath math="a=1" />, the discriminant is <InlineMath math="4(-2)(3)<0" />, so there's no real solution.
-- <InlineMath math="-6<a<-2" /> or <InlineMath math="a>3" /> **forgets the sum condition**. The example <InlineMath math="a=-3" /> above gives two negative solutions.
-- <InlineMath math="a\ge3" /> includes <InlineMath math="a=3" />. There <InlineMath math="x^2-6x+9=0" /> has only one solution, <InlineMath math="x=3" />.
-- <InlineMath math="-2<a<3" /> is where the discriminant is negative, so its sign was read the wrong way round.
+<BlockMath math="\begin{aligned}
+a = 4 &\implies x^2 - 8x + 10 = 0 \implies x = 4 \pm \sqrt{6} > 0 \\
+a = 3 &\implies (x - 3)^2 = 0 \implies x = 3 \quad \text{(only one root)} \\
+a = -3 &\implies x^2 + 6x + 3 = 0 \implies x = -3 \pm \sqrt{6} < 0
+\end{aligned}" />
+
+## Why other choices fail
+
+- Choosing <InlineMath math="a < -2" /> or <InlineMath math="a > 3" /> checks only the discriminant and allows negative roots when <InlineMath math="a < -2" />.
+- Choosing <InlineMath math="a > 0" /> checks only the root sum, yet at <InlineMath math="a = 1" /> the discriminant is negative so no real roots exist.
+- Including the interval between <InlineMath math="-6" /> and <InlineMath math="-2" /> **drops the positive-sum condition**, letting <InlineMath math="a = -3" /> produce two negative roots.
+- Choosing <InlineMath math="a \ge 3" /> includes <InlineMath math="a = 3" />, where the equation has only one repeated root.
+- Choosing the interval between <InlineMath math="-2" /> and <InlineMath math="3" /> flips the discriminant sign and picks the region with no real roots at all.
+
+# Answer
+
+The equation has two distinct positive real solutions exactly when <InlineMath math="a > 3" />.

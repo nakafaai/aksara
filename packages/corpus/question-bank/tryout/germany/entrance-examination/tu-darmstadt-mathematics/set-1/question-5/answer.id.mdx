@@ -1,10 +1,30 @@
-# Apa arti lipatan itu
+# Diketahui
 
-Beri nama persegi panjangnya <InlineMath math="ABCD" /> dengan <InlineMath math="AB=8" /> dan <InlineMath math="BC=6" />, lalu lipat sehingga <InlineMath math="A" /> menempel tepat di <InlineMath math="C" />. Setiap titik pada garis lipatan berjarak sama ke <InlineMath math="A" /> dan ke <InlineMath math="C" />, karena kedua titik itu bertemu saat dilipat. Jadi **garis lipatan adalah sumbu ruas <InlineMath math="AC" />**: garis yang tegak lurus <InlineMath math="AC" /> dan melewati titik tengahnya <InlineMath math="M" />.
+Selembar kertas **persegi panjang** <InlineMath math="ABCD" /> berukuran panjang <InlineMath math="8\text{ cm}" /> dan lebar <InlineMath math="6\text{ cm}" />. Kertas dilipat satu kali sehingga dua sudut berhadapan (<InlineMath math="A" /> dan <InlineMath math="C" />) menempel tepat satu sama lain.
+
+# Ditanyakan
+
+Tentukan panjang **garis lipatan** (*Faltkante*) yang terbentuk dalam satuan sentimeter.
+
+# Penyelesaian
+
+Bayangkan garis lipatan seperti **cermin datar** yang memantulkan sudut <InlineMath math="A" /> tepat ke atas sudut <InlineMath math="C" />. Karena setiap titik di garis lipatan tidak berpindah saat kertas dilipat, jaraknya ke <InlineMath math="A" /> selalu sama dengan jaraknya ke <InlineMath math="C" />.
+
+> Garis lipatan yang menempelkan dua sudut berhadapan selalu berupa sumbu diagonal, yaitu garis tegak lurus yang memotong diagonal tepat di titik tengahnya.
+
+Perhatikan bagaimana garis lipatan <InlineMath math="EF" /> memotong diagonal <InlineMath math="AC" /> secara tegak lurus di pusat <InlineMath math="M" />.
 
 <MathVisual
-  title={<>Lipatan yang menempelkan dua sudut berhadapan</>}
-  description={<>Persegi panjang <InlineMath math="ABCD" /> berukuran <InlineMath math="8" /> kali <InlineMath math="6" />. Diagonal <InlineMath math="AC" /> ditarik, dan garis lipatan <InlineMath math="EF" /> tegak lurus diagonal itu di titik tengahnya <InlineMath math="M" />. Titik <InlineMath math="E" /> ada di sisi <InlineMath math="AB" /> dan titik <InlineMath math="F" /> di sisi <InlineMath math="CD" />.</>}
+  title={<>Garis lipatan <InlineMath math="EF" /> sebagai sumbu diagonal <InlineMath math="AC" /></>}
+  description={
+    <>
+      Persegi panjang <InlineMath math="ABCD" /> berukuran{" "}
+      <InlineMath math="8" /> kali <InlineMath math="6" />. Diagonal{" "}
+      <InlineMath math="AC" /> dipotong tegak lurus di titik tengahnya{" "}
+      <InlineMath math="M" /> oleh garis lipatan <InlineMath math="EF" />.
+    </>
+  }
+  footer={<>Lipatan <InlineMath math="EF" /> membagi dua diagonal <InlineMath math="AC" /> secara tegak lurus di <InlineMath math="M" />.</>}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
@@ -16,15 +36,11 @@ Beri nama persegi panjangnya <InlineMath math="ABCD" /> dengan <InlineMath math=
   }}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -1, max: 7 },
-    },
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 7 } },
     view: { kind: "fit", padding: 0.1 },
     objects: [
       { id: "sheet", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 6 }, { x: 0, y: 6 }] },
-      { id: "diagonal", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
+      { id: "diagonal", kind: "segment", appearance: "reference", stroke: "dashed", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
       { id: "crease", kind: "segment", appearance: "highlight", from: { x: (8 * 8 + 6 * 6) / (2 * 8), y: 0 }, to: { x: 8 - (8 * 8 + 6 * 6) / (2 * 8), y: 6 } },
       { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
       { id: "point-b", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
@@ -46,30 +62,38 @@ Beri nama persegi panjangnya <InlineMath math="ABCD" /> dengan <InlineMath math=
   }}
 />
 
-# Di mana lipatan memotong sisi
+Segitiga <InlineMath math="AME" /> dan segitiga <InlineMath math="ABC" /> sebangun karena keduanya siku-siku dan berbagi sudut di <InlineMath math="A" />. Kita juga bisa mencari <InlineMath math="AE" /> langsung memakai Pythagoras.
 
-Misalkan lipatan memotong <InlineMath math="AB" /> di <InlineMath math="E" /> dengan <InlineMath math="AE=x" />. Karena <InlineMath math="E" /> ada di sumbu <InlineMath math="AC" />, **<InlineMath math="E" /> berjarak sama ke <InlineMath math="A" /> dan ke <InlineMath math="C" />**. Jarak <InlineMath math="EC" /> dihitung dari segitiga siku-siku <InlineMath math="EBC" />:
+## Menentukan posisi titik E
+
+Misalkan <InlineMath math="AE = x" />. Karena <InlineMath math="E" /> terletak di sumbu <InlineMath math="AC" />, maka **jarak <InlineMath math="EC" /> sama dengan <InlineMath math="AE" />**. Pada segitiga siku-siku <InlineMath math="EBC" /> dengan <InlineMath math="EB = 8 - x" /> dan <InlineMath math="BC = 6" />, berlaku Pythagoras.
 
 <BlockMath math="\begin{aligned}
-AE^2&=EB^2+BC^2 \\
-x^2&=(8-x)^2+6^2 \\
-0&=64-16x+36 \\
-x&=6{,}25
+x^2 &= (8 - x)^2 + 6^2 \\
+x^2 &= 64 - 16x + x^2 + 36 \\
+16x &= 100 \implies x = 6{,}25\text{ cm}
 \end{aligned}" />
 
-# Panjang lipatan
+## Menghitung panjang garis lipatan
 
-Diagonal <InlineMath math="AC=\sqrt{8^2+6^2}=10" />, jadi <InlineMath math="AM=5" />. Segitiga <InlineMath math="AME" /> siku-siku di <InlineMath math="M" />, karena **lipatan tegak lurus diagonal**:
+Panjang diagonalnya adalah <InlineMath math="10\text{ cm}" /> karena <InlineMath math="8^2 + 6^2 = 100" />, sehingga **setengah diagonalnya <InlineMath math="AM = 5\text{ cm}" />**. Pada segitiga siku-siku <InlineMath math="AME" />, hitung setengah panjang lipatan <InlineMath math="ME" /> lalu gandakan berkat simetri terhadap <InlineMath math="M" />.
 
-<BlockMath math="ME=\sqrt{AE^2-AM^2}=\sqrt{39{,}0625-25}=\sqrt{14{,}0625}=3{,}75" />
+<BlockMath math="\begin{aligned}
+ME &= \sqrt{6{,}25^2 - 5^2} = \sqrt{39{,}0625 - 25} = \sqrt{14{,}0625} = 3{,}75\text{ cm} \\
+EF &= 2 \cdot ME = 7{,}5\text{ cm}
+\end{aligned}" />
 
-Bentuknya simetris terhadap <InlineMath math="M" />, jadi <InlineMath math="MF=ME" /> dan <InlineMath math="EF=2\cdot3{,}75=7{,}5\text{ cm}" />.
+Cek kesebangunan segitiga <InlineMath math="AME" /> dan <InlineMath math="ABC" /> untuk memastikan hasilnya cocok sempurna.
 
-Jadi, panjang garis lipatan adalah <InlineMath math="7{,}5\text{ cm}" />.
+<BlockMath math="\frac{ME}{AM} = \frac{BC}{AB} = \frac{6}{8} = \frac{3}{4} \implies ME = \frac{3}{4} \cdot 5 = 3{,}75\text{ cm}, \quad EF = 7{,}5\text{ cm}" />
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="10\text{ cm}" /> adalah diagonal <InlineMath math="AC" />. **Lipatannya memotong diagonal tegak lurus**, bukan berimpit dengannya.
-- <InlineMath math="5\text{ cm}" /> adalah setengah diagonal, <InlineMath math="AM" />.
-- <InlineMath math="6{,}25\text{ cm}" /> adalah <InlineMath math="AE" />, jarak sudut ke ujung lipatan.
-- <InlineMath math="6\text{ cm}" /> dan <InlineMath math="8\text{ cm}" /> adalah lebar dan panjang kertas, yaitu lipatan kalau kertas dilipat sejajar sisinya. Lipatan seperti itu tidak menempelkan dua sudut berhadapan.
+- <InlineMath math="10\text{ cm}" /> adalah panjang diagonal <InlineMath math="AC" />, padahal **lipatan tegak lurus diagonal**.
+- <InlineMath math="5\text{ cm}" /> hanyalah setengah diagonal <InlineMath math="AM" />.
+- <InlineMath math="6{,}25\text{ cm}" /> adalah jarak <InlineMath math="AE" /> dari sudut ke ujung lipatan, bukan panjang lipatan.
+- <InlineMath math="6\text{ cm}" /> dan <InlineMath math="8\text{ cm}" /> adalah ukuran sisi kertas jika dilipat sejajar sisi, yang tidak menempelkan sudut berhadapan.
+
+# Jawaban
+
+Panjang garis lipatan yang terbentuk adalah <InlineMath math="7{,}5\text{ cm}" />.

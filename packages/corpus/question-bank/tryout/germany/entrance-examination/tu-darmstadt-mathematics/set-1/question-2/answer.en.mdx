@@ -1,35 +1,92 @@
-# Three factors that behave differently
+# Given
 
-The fraction has three parts, and **each part behaves differently with respect to sign**:
+We are given a **rational inequality** (*Ungleichung*) for all real numbers <InlineMath math="x \neq -2" />.
 
-- <InlineMath math="x" /> changes sign at <InlineMath math="x=0" />.
-- <InlineMath math="(x-3)^2" /> is a square, so it's never negative. It's zero only at <InlineMath math="x=3" />.
-- <InlineMath math="x+2" /> changes sign at <InlineMath math="x=-2" />, and there the fraction isn't defined.
+<BlockMath math="\frac{x\,(x - 3)^2}{x + 2} \le 0" />
 
-# Where it equals zero
+The condition <InlineMath math="x \neq -2" /> excludes the zero of the denominator (*Definitionsbereich*).
 
-The fraction is zero exactly when the numerator is zero and the denominator isn't: at <InlineMath math="x=0" /> and at <InlineMath math="x=3" />. Since the sign is <InlineMath math="\le" />, **both points are solutions**.
+# Asked
 
-# Where it's negative
+Find all real numbers <InlineMath math="x \neq -2" /> that satisfy this inequality.
 
-For <InlineMath math="x\ne3" />, the factor <InlineMath math="(x-3)^2" /> is positive, so the fraction has the same sign as <InlineMath math="\frac{x}{x+2}" />:
+# Solution
 
-| Part | <InlineMath math="x" /> | <InlineMath math="x+2" /> | Fraction |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="x<-2" /> | negative | negative | positive |
-| <InlineMath math="-2<x<0" /> | negative | positive | negative |
-| <InlineMath math="x>0" /> | positive | positive | positive |
+Think of the fraction as three sign switches working together. The linear factors <InlineMath math="x" /> and <InlineMath math="x + 2" /> flip signs when they cross zero, while the square <InlineMath math="(x - 3)^2" /> is **never negative** and only hits zero at <InlineMath math="x = 3" />.
 
-The fraction is **negative only on <InlineMath math="-2<x<0" />**. The point <InlineMath math="x=3" /> doesn't change the sign, so around <InlineMath math="3" /> the fraction stays positive, except exactly at <InlineMath math="3" />, where it's zero.
+> An even-power factor never flips the sign of a fraction, yet its zero still joins the solution whenever the inequality allows equality with zero.
 
-Check: <InlineMath math="x=-1" /> gives <InlineMath math="\frac{-1\cdot16}{1}=-16\le0" />, <InlineMath math="x=2" /> gives <InlineMath math="\frac{2\cdot1}{4}>0" />, and <InlineMath math="x=-3" /> gives <InlineMath math="\frac{-3\cdot36}{-1}=108>0" />.
+Slide the test value <InlineMath math="p" /> below to watch where the curve drops into <InlineMath math="y \le 0" /> and how it bounces right off the axis at <InlineMath math="x = 3" />.
 
-So the solutions are <InlineMath math="-2<x\le0" /> or <InlineMath math="x=3" />.
+<MathVisual
+  title={<>Sign behavior near <InlineMath math="x = 0" /> and <InlineMath math="x = 3" /></>}
+  description={
+    <>
+      The dashed vertical line marks the asymptote <InlineMath math="x = -2" />{" "}
+      and the shaded region marks <InlineMath math="y \le 0" />. Slide{" "}
+      <InlineMath math="p" /> to inspect the fraction value.
+    </>
+  }
+  footer={<>The curve stays below zero on <InlineMath math="-2 < x < 0" /> and touches zero at <InlineMath math="0" /> and <InlineMath math="3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -10, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "p", min: -0.8, max: 5, value: 3, step: 0.2, label: "p" }],
+    objects: [
+      { id: "non-positive", kind: "region", appearance: "construction", inequalities: ["y <= 0"] },
+      { id: "asymptote", kind: "line", appearance: "reference", stroke: "dashed", through: [{ x: -2, y: -10 }, { x: -2, y: 6 }] },
+      { id: "branch", kind: "function", appearance: "primary", formula: "x * (x - 3)^2 / (x + 2)", domain: { min: -0.8, max: 5.5 } },
+      { id: "zero-origin", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "zero-touch", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "probe", kind: "marker", appearance: "highlight", x: "p", y: "p * (p - 3)^2 / (p + 2)" },
+    ],
+    labels: [
+      { key: "asymptote", objectId: "asymptote", at: { x: -2, y: 4.5 }, placement: "right" },
+      { key: "touch", objectId: "zero-touch", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+    readouts: [{ key: "value", formula: "p * (p - 3)^2 / (p + 2)" }],
+  }}
+  labels={{
+    p: <>Test point <InlineMath math="p" /></>,
+    asymptote: <InlineMath math="x = -2" />,
+    touch: <InlineMath math="(3, 0)" />,
+    value: <>Fraction value</>,
+  }}
+/>
 
-# Why the other options are wrong
+Between <InlineMath math="-2" /> and <InlineMath math="0" />, the graph sits below the <InlineMath math="x" />-axis. Past zero it stays positive, dips down to touch <InlineMath math="(3, 0)" />, and rises again immediately.
 
-- Only <InlineMath math="-2<x\le0" /> **forgets the point <InlineMath math="x=3" />**, where the numerator is zero.
-- <InlineMath math="-2\le x\le0" /> or <InlineMath math="x=3" /> includes <InlineMath math="x=-2" />, where the denominator is zero.
-- <InlineMath math="x\le0" /> or <InlineMath math="x=3" /> multiplies by <InlineMath math="x+2" /> as if it were always positive. For <InlineMath math="x=-3" /> the fraction is actually positive.
-- <InlineMath math="-2<x\le0" /> or <InlineMath math="x\ge3" /> switches sign at <InlineMath math="x=3" />, but a square factor doesn't switch sign. For <InlineMath math="x=4" /> the fraction is <InlineMath math="\frac{4}{6}>0" />.
-- <InlineMath math="x<-2" /> or <InlineMath math="x\ge0" /> is where the fraction is not negative, so the signs were read the wrong way round.
+## Zeros and sign table
+
+The fraction equals zero when its numerator is zero and its denominator is not, namely at <InlineMath math="x = 0" /> and <InlineMath math="x = 3" />. Because the inequality is <InlineMath math="\le" />, **both points belong in the solution**.
+
+For <InlineMath math="x \neq 3" />, the factor <InlineMath math="(x - 3)^2 > 0" />, so the sign of the fraction matches the ratio of <InlineMath math="x" /> to <InlineMath math="x + 2" />.
+
+| Interval | <InlineMath math="x" /> | <InlineMath math="x + 2" /> | Fraction sign |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="x < -2" /> | negative | negative | positive |
+| <InlineMath math="-2 < x < 0" /> | negative | positive | negative |
+| <InlineMath math="x > 0" /> | positive | positive | positive |
+
+## Test points and wrong choices
+
+Check three sample points to **confirm every interval and boundary**.
+
+<BlockMath math="\begin{aligned}
+x = -1 &\implies \frac{(-1)(-4)^2}{1} = -16 \le 0 \\
+x = 2 &\implies \frac{2(-1)^2}{4} = \frac{1}{2} > 0 \\
+x = -3 &\implies \frac{(-3)(-6)^2}{-1} = 108 > 0
+\end{aligned}" />
+
+- Keeping only the interval from <InlineMath math="-2" /> up to <InlineMath math="0" /> forgets the isolated point <InlineMath math="x = 3" />, where the numerator is zero.
+- Closing the left endpoint at <InlineMath math="-2" /> includes <InlineMath math="x = -2" />, which divides by zero.
+- Choosing <InlineMath math="x \le 0" /> or <InlineMath math="x = 3" /> multiplies through by <InlineMath math="x + 2" /> as if it were always positive, ignoring that it is negative for <InlineMath math="x < -2" />.
+- Replacing <InlineMath math="x = 3" /> with <InlineMath math="x \ge 3" /> assumes a sign flip at <InlineMath math="x = 3" />, even though a square never changes sign.
+- Choosing <InlineMath math="x < -2" /> or <InlineMath math="x \ge 0" /> reverses the inequality and picks the non-negative region.
+
+# Answer
+
+All real numbers satisfying the inequality are given below.
+
+<BlockMath math="-2 < x \le 0 \quad \text{or} \quad x = 3" />

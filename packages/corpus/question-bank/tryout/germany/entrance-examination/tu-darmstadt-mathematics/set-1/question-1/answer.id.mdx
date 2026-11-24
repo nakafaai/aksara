@@ -1,35 +1,97 @@
-# Tiga syarat sekaligus
+# Diketahui
 
-"Dua penyelesaian real yang berbeda dan keduanya positif" sebenarnya tiga syarat. **Kamu perlu ketiganya, bukan salah satunya**:
+Persamaan kuadrat dengan parameter real <InlineMath math="a" /> adalah sebagai berikut.
 
-- ada dua penyelesaian real yang berbeda, jadi diskriminannya positif
-- jumlah kedua penyelesaian positif
-- hasil kali kedua penyelesaian positif
+<BlockMath math="x^2 - 2ax + a + 6 = 0" />
 
-Dua bilangan real sama-sama positif tepat saat jumlahnya positif dan hasil kalinya positif. Kalau hasil kalinya positif, keduanya bertanda sama, lalu jumlah yang positif memastikan tanda itu positif.
+Syarat soal meminta **dua penyelesaian real yang berbeda dan keduanya positif** (*zwei verschiedene positive reelle Lösungen*).
 
-# Menghitung setiap syarat
+# Ditanyakan
 
-Untuk <InlineMath math="x^2-2ax+(a+6)=0" />, **rumus jumlah dan hasil kali akar** memberi <InlineMath math="x_1+x_2=2a" /> dan <InlineMath math="x_1x_2=a+6" />.
+Tentukan semua nilai real <InlineMath math="a" /> yang membuat persamaan kuadrat ini memiliki tepat dua akar real berbeda yang semuanya positif.
+
+# Penyelesaian
+
+Bayangkan grafik parabola terbuka ke atas dari ruas kiri persamaan ini. Supaya persamaan memiliki dua akar real berbeda yang keduanya positif, parabola harus **memotong sumbu <InlineMath math="x" /> di dua titik yang sama-sama berada di sebelah kanan nol**.
+
+> Dua bilangan real pasti sama-sama positif tepat ketika hasil kalinya positif sehingga tandanya sama, lalu jumlahnya juga positif.
+
+Geser nilai <InlineMath math="a" /> pada grafik berikut dan perhatikan kapan kedua titik potong sumbu <InlineMath math="x" /> benar-benar masuk ke daerah <InlineMath math="x > 0" />.
+
+<MathVisual
+  title={<>Posisi parabola menurut nilai <InlineMath math="a" /></>}
+  description={
+    <>
+      Daerah berarsir menandai <InlineMath math="x > 0" />. Geser parameter{" "}
+      <InlineMath math="a" /> untuk melihat perubahan puncak parabola,
+      diskriminan, jumlah akar, dan hasil kali akar.
+    </>
+  }
+  footer={<>Dua titik potong berada di kanan nol hanya ketika <InlineMath math="a > 3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 10 }, y: { min: -12, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: -4, max: 5, value: 4, step: 0.5, label: "a" }],
+    objects: [
+      { id: "positive-half", kind: "region", appearance: "construction", inequalities: ["x > 0"] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2 * a * x + a + 6", domain: { min: -6, max: 10 } },
+      { id: "vertex", kind: "marker", appearance: "answer", x: "a", y: "a + 6 - a^2" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "4 * a^2 - 4 * a - 24" },
+      { key: "sum", formula: "2 * a" },
+      { key: "product", formula: "a + 6" },
+    ],
+  }}
+  labels={{
+    a: <>Parameter <InlineMath math="a" /></>,
+    discriminant: <>Diskriminan <InlineMath math="D" /></>,
+    sum: <>Jumlah akar <InlineMath math="x_1 + x_2" /></>,
+    product: <>Hasil kali akar <InlineMath math="x_1 x_2" /></>,
+  }}
+/>
+
+Saat <InlineMath math="a = 4" />, puncak berada di kuadran empat dan kedua titik potong berada di <InlineMath math="x > 0" />. Saat <InlineMath math="a = 3" />, parabola hanya menyinggung sumbu di satu titik, sedangkan saat <InlineMath math="a = -3" /> kedua akarnya negatif.
+
+## Tiga syarat sekaligus
+
+Karena koefisien kuadratnya <InlineMath math="1" />, kita pakai **diskriminan** (*Diskriminante*) serta rumus Vieta untuk jumlah dan hasil kali akar.
 
 <BlockMath math="\begin{aligned}
-D=4a^2-4(a+6)=4(a-3)(a+2)>0\quad&\Rightarrow\quad a<-2\ \text{atau}\ a>3 \\
-x_1+x_2=2a>0\quad&\Rightarrow\quad a>0 \\
-x_1x_2=a+6>0\quad&\Rightarrow\quad a>-6
+D &= (-2a)^2 - 4(1)(a + 6) = 4(a - 3)(a + 2) > 0 \\
+x_1 + x_2 &= 2a > 0 \\
+x_1 x_2 &= a + 6 > 0
 \end{aligned}" />
 
-# Irisan ketiga syarat
+Dari ketiga pertidaksamaan ini, kita memperoleh tiga daerah nilai <InlineMath math="a" /> yang wajib dipenuhi bersama.
 
-Nilai <InlineMath math="a" /> harus memenuhi ketiganya. Bagian <InlineMath math="a<-2" /> gugur karena melanggar <InlineMath math="a>0" />, jadi **yang tersisa hanya <InlineMath math="a>3" />**.
+<BlockMath math="\begin{aligned}
+D > 0 &\iff a < -2 \quad \text{atau} \quad a > 3 \\
+x_1 + x_2 > 0 &\iff a > 0 \\
+x_1 x_2 > 0 &\iff a > -6
+\end{aligned}" />
 
-Cek dengan dua contoh. Untuk <InlineMath math="a=4" />: <InlineMath math="x^2-8x+10=0" />, penyelesaiannya <InlineMath math="4\pm\sqrt6" />, keduanya positif. Untuk <InlineMath math="a=-3" />: <InlineMath math="x^2+6x+3=0" />, jumlah penyelesaiannya <InlineMath math="-6" />, jadi keduanya negatif.
+## Irisan syarat dan pengecekan
 
-Jadi, persamaan itu punya dua penyelesaian positif yang berbeda tepat untuk <InlineMath math="a>3" />.
+Karena semua syarat harus berlaku serentak, kita ambil **irisan ketiga daerah**. Cabang <InlineMath math="a < -2" /> gugur karena melanggar <InlineMath math="a > 0" />, sehingga hanya tersisa <InlineMath math="a > 3" />.
 
-# Kenapa pilihan lain salah
+Uji dua titik batas dan contoh untuk memastikan hasilnya kokoh.
 
-- <InlineMath math="a<-2" /> atau <InlineMath math="a>3" /> hanya memakai diskriminan. Untuk <InlineMath math="a<-2" /> kedua penyelesaian real, tetapi tidak positif.
-- <InlineMath math="a>0" /> hanya memakai syarat jumlah. Untuk <InlineMath math="a=1" />, diskriminannya <InlineMath math="4(-2)(3)<0" />, jadi tidak ada penyelesaian real.
-- <InlineMath math="-6<a<-2" /> atau <InlineMath math="a>3" /> **melupakan syarat jumlah**. Contoh <InlineMath math="a=-3" /> di atas memberi dua penyelesaian negatif.
-- <InlineMath math="a\ge3" /> memasukkan <InlineMath math="a=3" />. Di sana <InlineMath math="x^2-6x+9=0" /> hanya punya satu penyelesaian, <InlineMath math="x=3" />.
-- <InlineMath math="-2<a<3" /> adalah daerah dengan diskriminan negatif, jadi tanda diskriminannya terbaca terbalik.
+<BlockMath math="\begin{aligned}
+a = 4 &\implies x^2 - 8x + 10 = 0 \implies x = 4 \pm \sqrt{6} > 0 \\
+a = 3 &\implies (x - 3)^2 = 0 \implies x = 3 \quad \text{(hanya satu akar)} \\
+a = -3 &\implies x^2 + 6x + 3 = 0 \implies x = -3 \pm \sqrt{6} < 0
+\end{aligned}" />
+
+## Mengapa pilihan lain salah
+
+- Pilihan <InlineMath math="a < -2" /> atau <InlineMath math="a > 3" /> hanya memeriksa diskriminan sehingga meloloskan akar negatif saat <InlineMath math="a < -2" />.
+- Pilihan <InlineMath math="a > 0" /> hanya memakai syarat jumlah akar, padahal untuk <InlineMath math="a = 1" /> diskriminannya negatif sehingga tidak ada akar real.
+- Pilihan dengan selang di antara <InlineMath math="-6" /> dan <InlineMath math="-2" /> **melupakan syarat jumlah positif**, sehingga <InlineMath math="a = -3" /> memberi dua akar negatif.
+- Pilihan <InlineMath math="a \ge 3" /> ikut memasukkan <InlineMath math="a = 3" />, tempat persamaan hanya punya satu akar kembar.
+- Pilihan selang di antara <InlineMath math="-2" /> dan <InlineMath math="3" /> justru mengambil daerah diskriminan negatif yang tidak punya akar real.
+
+# Jawaban
+
+Persamaan kuadrat ini memiliki dua penyelesaian real berbeda yang keduanya positif tepat untuk <InlineMath math="a > 3" />.

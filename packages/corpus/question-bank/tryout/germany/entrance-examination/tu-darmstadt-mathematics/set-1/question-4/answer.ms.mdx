@@ -1,35 +1,101 @@
-# Berapa bucu tapaknya
+# Diberi
 
-Prisma dengan tapak poligon <InlineMath math="n" /> sisi mempunyai <InlineMath math="n" /> tepi di bawah, <InlineMath math="n" /> di atas dan <InlineMath math="n" /> tepi tegak. **Jadi bilangan tepinya <InlineMath math="3n" />**:
+Sebuah **prisma tegak** (*gerades Prisma*) mempunyai tepat <InlineMath math="30" /> tepi (*Kanten*). Satu **pepenjuru ruang** (*Raumdiagonale*) menyambungkan dua bucu yang tidak terletak pada mana-mana muka yang sama.
 
-<BlockMath math="3n=30\quad\Rightarrow\quad n=10" />
+# Ditanya
 
-Prisma ini mempunyai <InlineMath math="20" /> bucu, <InlineMath math="10" /> di atas dan <InlineMath math="10" /> di bawah.
+Tentukan bilangan keseluruhan pepenjuru ruang bagi prisma ini.
 
-# Dari satu bucu di atas
+# Penyelesaian
 
-Ambil satu bucu pada permukaan atas. Semua bucu atas yang lain terletak pada permukaan atas yang sama, jadi tiada satu pun memberi pepenjuru ruang. Di bawah, **bucu yang tepat di bawahnya dan dua jirannya terletak pada satu permukaan tegak bersamanya**. Yang tinggal hanya <InlineMath math="10-3=7" /> bucu.
+Bayangkan sebuah menara dengan lantai atas dan lantai bawah yang sama bentuk. Setiap bucu tapak menyumbang tiga tepi: satu di bawah, satu di atas dan satu tiang tegak. Dengan <InlineMath math="30" /> tepi keseluruhan, tapaknya mestilah **dekagon** (poligon sepuluh sisi).
 
-Setiap pepenjuru ruang menyambung satu bucu atas dengan satu bucu bawah, jadi tiada yang dikira dua kali:
+<BlockMath math="3n = 30 \implies n = 10" />
 
-<BlockMath math="10\cdot7=70" />
+Maka prisma ini mempunyai <InlineMath math="20" /> bucu: <InlineMath math="10" /> di tapak atas dan <InlineMath math="10" /> di tapak bawah.
 
-# Semak dengan cara lain
+> Setiap pepenjuru ruang mesti merentas dari satu bucu tapak atas ke satu bucu tapak bawah yang bukan betul-betul di bawahnya dan bukan dua jiran pada muka sisi yang sama.
 
-Ada <InlineMath math="\binom{20}{2}=190" /> tembereng antara dua bucu. **Buang semua tembereng yang terletak pada suatu permukaan**:
+Lihat pandangan atas tapak sepuluh sisi ini: daripada satu bucu atas <InlineMath math="A_0" />, tiga kedudukan bawah dikecualikan (bucu tepat di bawah dan dua jirannya), meninggalkan tujuh sasaran yang sah.
 
-- <InlineMath math="30" /> tepi,
-- pepenjuru kedua-dua tapak, <InlineMath math="2\cdot\frac{10\cdot7}{2}=70" />,
-- pepenjuru <InlineMath math="10" /> permukaan tegak berbentuk segi empat tepat, <InlineMath math="10\cdot2=20" />.
+<MathVisual
+  title={<>Tujuh pepenjuru ruang dari satu bucu atas <InlineMath math="A_0" /></>}
+  description={
+    <>
+      Pandangan atas prisma dekagon. Titik biru <InlineMath math="A_0" />{" "}
+      terletak di tapak atas. Dua bucu merah berkongsi muka sisi tegak dengannya,
+      meninggalkan tujuh garis hijau yang menembusi ruang dalaman prisma.
+    </>
+  }
+  footer={<>Setiap bucu atas berhubung dengan <InlineMath math="10 - 3 = 7" /> bucu bawah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      {
+        id: "decagon",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 3, y: 0 },
+          { x: 3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) },
+          { x: 3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) },
+          { x: -3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) },
+          { x: -3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) },
+          { x: -3, y: 0 },
+          { x: -3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) },
+          { x: -3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) },
+          { x: 3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) },
+          { x: 3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) },
+        ],
+      },
+      { id: "d2", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "d3", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "d4", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) } },
+      { id: "d5", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3, y: 0 } },
+      { id: "d6", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) } },
+      { id: "d7", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "d8", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "v0", kind: "point", appearance: "primary", at: { x: 3, y: 0 } },
+      { id: "v1", kind: "point", appearance: "warning", at: { x: 3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) } },
+      { id: "v9", kind: "point", appearance: "warning", at: { x: 3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) } },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "v1", objectId: "v1", at: { x: 3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) }, placement: "above-right" },
+      { key: "v9", objectId: "v9", at: { x: 3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    v0: <InlineMath math="A_0" />,
+    v1: <InlineMath math="B_1" />,
+    v9: <InlineMath math="B_9" />,
+  }}
+/>
 
-<BlockMath math="190-30-70-20=70" />
+Oleh sebab setiap pepenjuru ruang mempunyai satu hujung di atas dan satu hujung di bawah, mengira dari sepuluh bucu atas tidak pernah mengira dua kali.
 
-Jadi, prisma itu mempunyai <InlineMath math="70" /> pepenjuru ruang.
+## Kiraan jumlah dan semakan silang
 
-# Kenapa pilihan lain salah
+Darabkan <InlineMath math="10" /> bucu atas dengan <InlineMath math="7" /> sasaran bawah.
 
-- <InlineMath math="90" /> **hanya membuang bucu yang tepat di bawah**, sedangkan dua jirannya juga terletak pada satu permukaan tegak. Ini sama dengan terlupa pepenjuru permukaan tegak.
-- <InlineMath math="35" /> membahagi dua sekali lagi, seolah-olah setiap pepenjuru dikira dua kali. Dari atas ke bawah, setiap satu hanya dikira sekali.
-- <InlineMath math="80" /> hanya membuang bucu di bawah dan satu jiran.
-- <InlineMath math="140" /> terlupa membuang pepenjuru kedua-dua tapak.
-- <InlineMath math="160" /> hanya membuang tepi dan mengira setiap tembereng lain sebagai pepenjuru ruang.
+<BlockMath math="10 \times 7 = 70" />
+
+Semak dengan cara kedua: daripada <InlineMath math="\binom{20}{2} = 190" /> pasangan bucu, tolak <InlineMath math="30" /> tepi, <InlineMath math="70" /> pepenjuru kedua-dua tapak dan <InlineMath math="20" /> pepenjuru sepuluh muka sisi segi empat tepat.
+
+<BlockMath math="190 - 30 - 70 - 20 = 70" />
+
+**Kedua-dua cara memberi hasil <InlineMath math="70" />**.
+
+## Mengapa pilihan lain salah
+
+- Nilai <InlineMath math="90" /> **hanya menolak bucu tepat di bawah** dan terlupa dua jiran yang berkongsi muka sisi tegak.
+- Nilai <InlineMath math="35" /> membahagi dua <InlineMath math="70" /> secara tersilap, sedangkan kiraan dari atas ke bawah tidak pernah mengira berganda.
+- Nilai <InlineMath math="80" /> hanya menolak satu jiran bawah dan bukan kedua-duanya.
+- Nilai <InlineMath math="140" /> terlupa menolak <InlineMath math="70" /> pepenjuru tapak daripada semua pasangan bucu.
+- Nilai <InlineMath math="160" /> hanya menolak <InlineMath math="30" /> tepi dan masih menyertakan semua pepenjuru muka.
+
+# Jawapan
+
+Prisma tegak dengan <InlineMath math="30" /> tepi ini mempunyai tepat <InlineMath math="70" /> pepenjuru ruang.

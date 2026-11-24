@@ -1,63 +1,90 @@
-# Draw the left side first
+# Given
 
-The number of solutions of <InlineMath math="|x^2-4x|=a" /> equals **the number of points where the graph of <InlineMath math="y=|x^2-4x|" /> meets the horizontal line <InlineMath math="y=a" />**. So draw the left side first.
+We are given an absolute-value equation with a real parameter <InlineMath math="a" />.
 
-Without the absolute value, <InlineMath math="x^2-4x=(x-2)^2-4" /> is an upward parabola with vertex <InlineMath math="(2\mid-4)" /> and zeros at <InlineMath math="x=0" /> and <InlineMath math="x=4" />. The absolute value flips the negative part, between <InlineMath math="0" /> and <InlineMath math="4" />, above the <InlineMath math="x" />-axis. The vertex <InlineMath math="(2\mid-4)" /> becomes a hill with its top at <InlineMath math="(2\mid4)" />.
+<BlockMath math="\left|x^2 - 4x\right| = a" />
+
+The problem asks for **exactly three distinct real solutions** (*genau drei verschiedene reelle Lösungen*).
+
+# Asked
+
+Find all real values of <InlineMath math="a" /> for which the equation has exactly three distinct real solutions.
+
+# Solution
+
+The number of solutions to <InlineMath math="|x^2 - 4x| = a" /> equals **how many times the horizontal line <InlineMath math="y = a" /> crosses the curve <InlineMath math="y = |x^2 - 4x|" />**. Without the absolute value, <InlineMath math="x^2 - 4x" /> dips down to a valley at <InlineMath math="(2 \mid -4)" />.
+
+Taking the absolute value folds that valley upward above the <InlineMath math="x" />-axis, creating a **hill peaking right at <InlineMath math="(2 \mid 4)" />**.
+
+> A horizontal line crosses a folded parabola exactly three times only when it grazes the very top of the reflected hill.
+
+Slide the horizontal line height <InlineMath math="a" /> below to count how the number of crossings jumps from zero up to four.
 
 <MathVisual
-  title={<>The absolute value of a parabola</>}
-  description={<>The graph of <InlineMath math="y=|x^2-4x|" /> touches the <InlineMath math="x" />-axis at <InlineMath math="x=0" /> and <InlineMath math="x=4" />. Between them there's a hill with its top at <InlineMath math="(2\mid4)" />, and outside them the graph rises. The horizontal line <InlineMath math="y=4" /> touches the top of the hill and crosses both outer arms.</>}
+  title={<>Intersections of <InlineMath math="y = |x^2 - 4x|" /> with <InlineMath math="y = a" /></>}
+  description={
+    <>
+      The blue curve has two rising outer arms and one reflected hill peaking at{" "}
+      <InlineMath math="(2 \mid 4)" />. Slide <InlineMath math="a" /> to see
+      line <InlineMath math="y = a" /> graze the hilltop right at{" "}
+      <InlineMath math="a = 4" />.
+    </>
+  }
+  footer={<>Exactly three crossings occur only when <InlineMath math="y = 4" /> touches the hilltop.</>}
   labels={{
-    top: <InlineMath math="(2\mid4)" />,
-    line: <InlineMath math="y=4" />,
+    a: <>Line height <InlineMath math="a" /></>,
+    top: <InlineMath math="(2, 4)" />,
   }}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1.5, max: 5.5 },
-      y: { min: -1, max: 6 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1.5, max: 5.5 }, y: { min: -1, max: 6 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [{ name: "a", min: -0.5, max: 5.5, value: 4, step: 0.5, label: "a" }],
     objects: [
       { id: "left-arm", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: -1, max: 0 }, inputAxis: "x" },
       { id: "bump", kind: "quadratic", appearance: "primary", coefficients: { a: -1, b: 4, c: 0 }, domain: { min: 0, max: 4 }, inputAxis: "x" },
       { id: "right-arm", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: 4, max: 5 }, inputAxis: "x" },
-      { id: "level", kind: "line", appearance: "highlight", through: [{ x: -1, y: 4 }, { x: 5, y: 4 }] },
+      { id: "level", kind: "function", appearance: "highlight", formula: "0 * x + a", domain: { min: -1.5, max: 5.5 } },
       { id: "point-top", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
       { id: "point-left", kind: "point", appearance: "answer", at: { x: 2 - 2 * Math.sqrt(2), y: 4 } },
       { id: "point-right", kind: "point", appearance: "answer", at: { x: 2 + 2 * Math.sqrt(2), y: 4 } },
     ],
     labels: [
       { key: "top", objectId: "point-top", at: { x: 2, y: 4 }, placement: "above" },
-      { key: "line", objectId: "level", at: { x: 5, y: 4 }, placement: "below-left" },
     ],
   }}
 />
 
-# Counting meeting points for each value of a
+As the line rises from below, the crossing count jumps from <InlineMath math="0" /> to <InlineMath math="2" />, then <InlineMath math="4" />, then exactly **<InlineMath math="3" /> at the peak <InlineMath math="a = 4" />**, before dropping back to <InlineMath math="2" />.
 
-Slide the line <InlineMath math="y=a" /> from the bottom up and count where it meets the graph:
+## Counting crossings by level
 
-| Value of <InlineMath math="a" /> | Meeting points |
-| :---: | :---: |
-| <InlineMath math="a<0" /> | <InlineMath math="0" /> |
-| <InlineMath math="a=0" /> | <InlineMath math="2" /> |
-| <InlineMath math="0<a<4" /> | <InlineMath math="4" /> |
-| <InlineMath math="a=4" /> | <InlineMath math="3" /> |
-| <InlineMath math="a>4" /> | <InlineMath math="2" /> |
+Summarize every height level of <InlineMath math="y = a" /> to confirm that **only the hilltop level yields three crossings**.
 
-**Exactly three meeting points only happen when the line touches the top of the hill**, at <InlineMath math="a=4" />.
+| Value of <InlineMath math="a" /> | Number of crossings |
+| :--- | :--- |
+| <InlineMath math="a < 0" /> | <InlineMath math="0" /> |
+| <InlineMath math="a = 0" /> | <InlineMath math="2" /> |
+| <InlineMath math="0 < a < 4" /> | <InlineMath math="4" /> |
+| <InlineMath math="a = 4" /> | <InlineMath math="3" /> |
+| <InlineMath math="a > 4" /> | <InlineMath math="2" /> |
 
-# Checking the three solutions
+## Algebraic check and wrong choices
 
-For <InlineMath math="a=4" />, the hill gives <InlineMath math="-(x^2-4x)=4" />, that is <InlineMath math="(x-2)^2=0" />, so <InlineMath math="x=2" />. The outer arms give <InlineMath math="x^2-4x=4" />, that is <InlineMath math="(x-2)^2=8" />, so <InlineMath math="x=2\pm2\sqrt2" />. **There are exactly three different solutions**.
+At <InlineMath math="a = 4" />, split the equation into both sign branches to **verify all three distinct solutions explicitly**.
 
-So the equation has exactly three solutions for <InlineMath math="a=4" />.
+<BlockMath math="\begin{aligned}
+-(x^2 - 4x) = 4 &\implies (x - 2)^2 = 0 \implies x = 2 \\
+x^2 - 4x = 4 &\implies (x - 2)^2 = 8 \implies x = 2 \pm 2\sqrt{2}
+\end{aligned}" />
 
-# Why the other options are wrong
+All three roots are real and distinct.
 
-- <InlineMath math="a=0" /> only gives <InlineMath math="x=0" /> and <InlineMath math="x=4" />, two solutions.
-- <InlineMath math="0<a<4" /> gives four solutions: two on the hill and two on the outer arms. One example is <InlineMath math="a=2" />.
-- <InlineMath math="a>4" /> is above the hill, so the line only crosses the two outer arms.
-- <InlineMath math="a=-4" /> is the vertex value of the parabola without the absolute value. **An absolute value is never negative**, so there's no solution.
+- <InlineMath math="a = 0" /> yields only two solutions, <InlineMath math="x = 0" /> and <InlineMath math="x = 4" />.
+- <InlineMath math="0 < a < 4" /> (including <InlineMath math="a = 2" />) hits the hill twice and both outer arms twice, giving four solutions.
+- <InlineMath math="a > 4" /> clears the hill completely and meets only the two outer arms.
+- <InlineMath math="a = -4" /> has no solutions because an absolute value is never negative.
+
+# Answer
+
+The equation has exactly three distinct real solutions only when <InlineMath math="a = 4" />.

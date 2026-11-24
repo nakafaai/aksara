@@ -1,63 +1,90 @@
-# Lukis dahulu graf sebelah kiri persamaan
+# Diberi
 
-Bilangan penyelesaian <InlineMath math="|x^2-4x|=a" /> sama dengan **bilangan titik persilangan graf <InlineMath math="y=|x^2-4x|" /> dengan garis mengufuk <InlineMath math="y=a" />**. Jadi lukis dahulu graf bagi sebelah kiri persamaan.
+Persamaan nilai mutlak dengan parameter nyata <InlineMath math="a" /> diberi seperti berikut.
 
-Tanpa nilai mutlak, <InlineMath math="x^2-4x=(x-2)^2-4" /> ialah parabola yang terbuka ke atas dengan titik minimum <InlineMath math="(2\mid-4)" /> dan pintasan-<InlineMath math="x" /> di <InlineMath math="x=0" /> dan <InlineMath math="x=4" />. Nilai mutlak memantulkan bahagian negatif, iaitu bahagian antara <InlineMath math="0" /> dan <InlineMath math="4" />, ke atas paksi-<InlineMath math="x" />. Titik <InlineMath math="(2\mid-4)" /> menjadi bonggol dengan puncak tertinggi <InlineMath math="(2\mid4)" />.
+<BlockMath math="\left|x^2 - 4x\right| = a" />
+
+Soalan meminta tepat **tiga penyelesaian nyata yang berbeza** (*genau drei verschiedene reelle Lösungen*).
+
+# Ditanya
+
+Tentukan semua nilai nyata <InlineMath math="a" /> yang menjadikan persamaan ini mempunyai tepat tiga penyelesaian nyata berbeza.
+
+# Penyelesaian
+
+Bilangan penyelesaian bagi <InlineMath math="|x^2 - 4x| = a" /> sama dengan **bilangan titik persilangan lengkung <InlineMath math="y = |x^2 - 4x|" /> dengan garis mendatar <InlineMath math="y = a" />**. Tanpa tanda mutlak, parabola <InlineMath math="x^2 - 4x" /> turun ke lembah pada <InlineMath math="(2 \mid -4)" />.
+
+Tanda mutlak memantulkan lembah di bawah paksi <InlineMath math="x" /> ke atas, membentuk **bukit dengan puncak tepat pada <InlineMath math="(2 \mid 4)" />**.
+
+> Garis mendatar memotong graf nilai mutlak parabola pada tepat tiga titik hanya apabila garis itu menyentuh puncak bukit pantulannya.
+
+Gerakkan ketinggian garis <InlineMath math="y = a" /> pada graf berikut untuk mengira perubahan bilangan titik persilangan daripada sifar hingga empat.
 
 <MathVisual
-  title={<>Graf nilai mutlak bagi parabola</>}
-  description={<>Graf <InlineMath math="y=|x^2-4x|" /> menyentuh paksi-<InlineMath math="x" /> di <InlineMath math="x=0" /> dan <InlineMath math="x=4" />. Di antara kedua-duanya ada bonggol dengan puncak <InlineMath math="(2\mid4)" />, dan di luarnya graf itu naik. Garis mengufuk <InlineMath math="y=4" /> menyentuh puncak bonggol dan memotong kedua-dua lengan luar.</>}
+  title={<>Persilangan lengkung <InlineMath math="y = |x^2 - 4x|" /> dengan garis <InlineMath math="y = a" /></>}
+  description={
+    <>
+      Lengkung biru mempunyai dua cabang luar yang menaik dan satu bukit
+      pantulan berpuncak di <InlineMath math="(2 \mid 4)" />. Gerakkan{" "}
+      <InlineMath math="a" /> untuk melihat garis <InlineMath math="y = a" />{" "}
+      menyentuh puncak tepat pada <InlineMath math="a = 4" />.
+    </>
+  }
+  footer={<>Tepat tiga persilangan berlaku hanya apabila garis <InlineMath math="y = 4" /> menyentuh puncak bukit.</>}
   labels={{
-    top: <InlineMath math="(2\mid4)" />,
-    line: <InlineMath math="y=4" />,
+    a: <>Ketinggian garis <InlineMath math="a" /></>,
+    top: <InlineMath math="(2, 4)" />,
   }}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1.5, max: 5.5 },
-      y: { min: -1, max: 6 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1.5, max: 5.5 }, y: { min: -1, max: 6 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [{ name: "a", min: -0.5, max: 5.5, value: 4, step: 0.5, label: "a" }],
     objects: [
       { id: "left-arm", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: -1, max: 0 }, inputAxis: "x" },
       { id: "bump", kind: "quadratic", appearance: "primary", coefficients: { a: -1, b: 4, c: 0 }, domain: { min: 0, max: 4 }, inputAxis: "x" },
       { id: "right-arm", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: 4, max: 5 }, inputAxis: "x" },
-      { id: "level", kind: "line", appearance: "highlight", through: [{ x: -1, y: 4 }, { x: 5, y: 4 }] },
+      { id: "level", kind: "function", appearance: "highlight", formula: "0 * x + a", domain: { min: -1.5, max: 5.5 } },
       { id: "point-top", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
       { id: "point-left", kind: "point", appearance: "answer", at: { x: 2 - 2 * Math.sqrt(2), y: 4 } },
       { id: "point-right", kind: "point", appearance: "answer", at: { x: 2 + 2 * Math.sqrt(2), y: 4 } },
     ],
     labels: [
       { key: "top", objectId: "point-top", at: { x: 2, y: 4 }, placement: "above" },
-      { key: "line", objectId: "level", at: { x: 5, y: 4 }, placement: "below-left" },
     ],
   }}
 />
 
-# Mengira titik persilangan untuk setiap nilai a
+Apabila garis digerakkan naik dari bawah, bilangan persilangan melonjak dari <InlineMath math="0" /> kepada <InlineMath math="2" />, lalu <InlineMath math="4" />, lalu tepat **<InlineMath math="3" /> di puncak bukit <InlineMath math="a = 4" />**, sebelum turun semula kepada <InlineMath math="2" />.
 
-Gerakkan garis <InlineMath math="y=a" /> dari bawah ke atas dan kira titik persilangannya:
+## Mengira persilangan mengikut aras
 
-| Nilai <InlineMath math="a" /> | Titik persilangan |
-| :---: | :---: |
-| <InlineMath math="a<0" /> | <InlineMath math="0" /> |
-| <InlineMath math="a=0" /> | <InlineMath math="2" /> |
-| <InlineMath math="0<a<4" /> | <InlineMath math="4" /> |
-| <InlineMath math="a=4" /> | <InlineMath math="3" /> |
-| <InlineMath math="a>4" /> | <InlineMath math="2" /> |
+Ringkaskan semua aras garis <InlineMath math="y = a" /> untuk mengesahkan bahawa **hanya puncak bukit memberi tiga persilangan**.
 
-**Tepat tiga titik persilangan hanya berlaku apabila garis menyentuh puncak bonggol**, iaitu <InlineMath math="a=4" />.
+| Nilai <InlineMath math="a" /> | Bilangan persilangan |
+| :--- | :--- |
+| <InlineMath math="a < 0" /> | <InlineMath math="0" /> |
+| <InlineMath math="a = 0" /> | <InlineMath math="2" /> |
+| <InlineMath math="0 < a < 4" /> | <InlineMath math="4" /> |
+| <InlineMath math="a = 4" /> | <InlineMath math="3" /> |
+| <InlineMath math="a > 4" /> | <InlineMath math="2" /> |
 
-# Semak ketiga-tiga penyelesaian
+## Semakan algebra dan pilihan salah
 
-Untuk <InlineMath math="a=4" />, bahagian bonggol memberi <InlineMath math="-(x^2-4x)=4" />, iaitu <InlineMath math="(x-2)^2=0" />, jadi <InlineMath math="x=2" />. Kedua-dua lengan luar memberi <InlineMath math="x^2-4x=4" />, iaitu <InlineMath math="(x-2)^2=8" />, jadi <InlineMath math="x=2\pm2\sqrt2" />. **Ada tepat tiga penyelesaian yang berbeza**.
+Pada <InlineMath math="a = 4" />, pecahkan persamaan kepada dua cabang untuk **mengesahkan tepat tiga punca berbeza**.
 
-Jadi, persamaan itu mempunyai tepat tiga penyelesaian untuk <InlineMath math="a=4" />.
+<BlockMath math="\begin{aligned}
+-(x^2 - 4x) = 4 &\implies (x - 2)^2 = 0 \implies x = 2 \\
+x^2 - 4x = 4 &\implies (x - 2)^2 = 8 \implies x = 2 \pm 2\sqrt{2}
+\end{aligned}" />
 
-# Kenapa pilihan lain salah
+Ketiga-tiga puncanya nyata dan saling berbeza.
 
-- <InlineMath math="a=0" /> hanya memberi <InlineMath math="x=0" /> dan <InlineMath math="x=4" />, iaitu dua penyelesaian.
-- <InlineMath math="0<a<4" /> memberi empat penyelesaian: dua pada bonggol dan dua pada lengan luar. Contohnya <InlineMath math="a=2" />.
-- <InlineMath math="a>4" /> berada di atas bonggol, jadi garis hanya memotong kedua-dua lengan luar.
-- <InlineMath math="a=-4" /> ialah nilai minimum parabola tanpa nilai mutlak. **Nilai mutlak tidak pernah negatif**, jadi tiada penyelesaian.
+- <InlineMath math="a = 0" /> hanya memberi dua punca, iaitu <InlineMath math="x = 0" /> dan <InlineMath math="x = 4" />.
+- <InlineMath math="0 < a < 4" /> (termasuk <InlineMath math="a = 2" />) memotong bukit dua kali dan kedua-dua cabang luar dua kali, berjumlah empat punca.
+- <InlineMath math="a > 4" /> melepasi puncak bukit lalu hanya memotong kedua-dua cabang luar (dua punca).
+- <InlineMath math="a = -4" /> mustahil kerana nilai mutlak tidak pernah negatif.
+
+# Jawapan
+
+Persamaan ini mempunyai tepat tiga penyelesaian nyata berbeza hanya untuk <InlineMath math="a = 4" />.

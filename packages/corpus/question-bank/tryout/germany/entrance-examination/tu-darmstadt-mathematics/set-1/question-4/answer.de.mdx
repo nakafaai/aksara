@@ -1,35 +1,101 @@
-# Wie viele Ecken die Grundfläche hat
+# Gegeben
 
-Ein Prisma mit einem <InlineMath math="n" />-Eck als Grundfläche hat <InlineMath math="n" /> Kanten unten, <InlineMath math="n" /> oben und <InlineMath math="n" /> senkrechte Kanten. **Es hat also <InlineMath math="3n" /> Kanten**:
+Ein **gerades Prisma** besitzt genau <InlineMath math="30" /> Kanten. Eine **Raumdiagonale** verbindet zwei Ecken, die nicht auf einer gemeinsamen Fläche des Prismas liegen.
 
-<BlockMath math="3n=30\quad\Rightarrow\quad n=10" />
+# Gesucht
 
-Dieses Prisma hat <InlineMath math="20" /> Ecken, <InlineMath math="10" /> oben und <InlineMath math="10" /> unten.
+Die Gesamtzahl aller Raumdiagonalen dieses Prismas.
 
-# Von einer Ecke oben aus
+# Lösung
 
-Nimm eine Ecke der Deckfläche. Alle anderen Ecken oben liegen in derselben Deckfläche, keine davon liefert eine Raumdiagonale. Unten liegen **die Ecke direkt darunter und ihre beiden Nachbarn mit ihr auf einer gemeinsamen Seitenfläche**. Es bleiben <InlineMath math="10-3=7" /> Ecken.
+Stell dir einen Turm mit identischer Grund- und Deckfläche vor. Jede Ecke der Grundfläche bringt drei Kanten mit: eine unten, eine oben und eine senkrechte Säule. Bei <InlineMath math="30" /> Kanten ist die Grundfläche also ein **Zehneck**.
 
-Jede Raumdiagonale verbindet eine Ecke oben mit einer Ecke unten, keine wird also doppelt gezählt:
+<BlockMath math="3n = 30 \implies n = 10" />
 
-<BlockMath math="10\cdot7=70" />
+Damit besitzt das Prisma <InlineMath math="20" /> Ecken: <InlineMath math="10" /> auf der Deckfläche und <InlineMath math="10" /> auf der Grundfläche.
 
-# Probe auf einem zweiten Weg
+> Jede Raumdiagonale führt von einer oberen Ecke zu einer unteren Ecke, die weder direkt darunter liegt noch eine ihrer beiden Nachbarecken auf derselben Seitenfläche ist.
 
-Zwischen zwei Ecken gibt es <InlineMath math="\binom{20}{2}=190" /> Strecken. **Zieh alle Strecken ab, die in einer Fläche liegen**:
+Schau dir die Draufsicht des Zehnecks an: Von der oberen Ecke <InlineMath math="A_0" /> scheiden drei untere Positionen aus (die Ecke direkt darunter und ihre beiden Nachbarn), sodass sieben gültige Ziele bleiben.
 
-- die <InlineMath math="30" /> Kanten,
-- die Diagonalen der beiden Grundflächen, <InlineMath math="2\cdot\frac{10\cdot7}{2}=70" />,
-- die Diagonalen der <InlineMath math="10" /> rechteckigen Seitenflächen, <InlineMath math="10\cdot2=20" />.
+<MathVisual
+  title={<>Sieben Raumdiagonalen von einer oberen Ecke <InlineMath math="A_0" /></>}
+  description={
+    <>
+      Draufsicht des Zehneckprismas. Der blaue Punkt <InlineMath math="A_0" />{" "}
+      liegt oben. Die beiden roten Nachbarn teilen Seitenflächen mit ihr, sodass
+      genau sieben grüne Strecken durch das Innere verlaufen.
+    </>
+  }
+  footer={<>Jede obere Ecke verbindet sich mit <InlineMath math="10 - 3 = 7" /> unteren Ecken.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      {
+        id: "decagon",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 3, y: 0 },
+          { x: 3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) },
+          { x: 3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) },
+          { x: -3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) },
+          { x: -3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) },
+          { x: -3, y: 0 },
+          { x: -3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) },
+          { x: -3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) },
+          { x: 3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) },
+          { x: 3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) },
+        ],
+      },
+      { id: "d2", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "d3", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "d4", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) } },
+      { id: "d5", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3, y: 0 } },
+      { id: "d6", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) } },
+      { id: "d7", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "d8", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "v0", kind: "point", appearance: "primary", at: { x: 3, y: 0 } },
+      { id: "v1", kind: "point", appearance: "warning", at: { x: 3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) } },
+      { id: "v9", kind: "point", appearance: "warning", at: { x: 3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) } },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "v1", objectId: "v1", at: { x: 3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) }, placement: "above-right" },
+      { key: "v9", objectId: "v9", at: { x: 3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    v0: <InlineMath math="A_0" />,
+    v1: <InlineMath math="B_1" />,
+    v9: <InlineMath math="B_9" />,
+  }}
+/>
 
-<BlockMath math="190-30-70-20=70" />
+Da jede Raumdiagonale genau einen Endpunkt oben und einen unten hat, wird beim Zählen von den zehn oberen Ecken nichts doppelt erfasst.
 
-Das Prisma hat also <InlineMath math="70" /> Raumdiagonalen.
+## Gesamtzahl und Gegenprobe
 
-# Warum die anderen Antworten falsch sind
+Multiplizier die <InlineMath math="10" /> oberen Ecken mit ihren jeweils <InlineMath math="7" /> unteren Zielen.
 
-- <InlineMath math="90" /> **lässt nur die Ecke direkt darunter weg**, dabei liegen auch die beiden Nachbarn auf einer gemeinsamen Seitenfläche. Das ist dasselbe, wie die Diagonalen der Seitenflächen zu vergessen.
-- <InlineMath math="35" /> halbiert noch einmal, als würde jede Diagonale doppelt gezählt. Von oben nach unten zählt man jede nur einmal.
-- <InlineMath math="80" /> lässt nur die Ecke darunter und einen Nachbarn weg.
-- <InlineMath math="140" /> vergisst, die Diagonalen der beiden Grundflächen abzuziehen.
-- <InlineMath math="160" /> zieht nur die Kanten ab und zählt jede andere Strecke als Raumdiagonale.
+<BlockMath math="10 \cdot 7 = 70" />
+
+Gegenprobe durch Abziehen: Von allen <InlineMath math="\binom{20}{2} = 190" /> Eckenpaaren ziehst du <InlineMath math="30" /> Kanten, <InlineMath math="70" /> Flächendiagonalen der beiden Basen und <InlineMath math="20" /> Diagonalen der zehn Seitenflächen ab.
+
+<BlockMath math="190 - 30 - 70 - 20 = 70" />
+
+**Beide Wege bestätigen genau <InlineMath math="70" /> Raumdiagonalen**.
+
+## Warum andere Antworten falsch sind
+
+- <InlineMath math="90" /> **schließt nur die Ecke direkt darunter aus** und übersieht die beiden Nachbarn auf gemeinsamen Seitenflächen.
+- <InlineMath math="35" /> teilt fälschlich noch einmal durch zwei, obwohl beim Zählen von oben nach unten nichts doppelt gezählt wird.
+- <InlineMath math="80" /> schließt neben der Ecke darunter nur einen statt zwei Nachbarn aus.
+- <InlineMath math="140" /> vergisst, die <InlineMath math="70" /> Diagonalen von Grund- und Deckfläche abzuziehen.
+- <InlineMath math="160" /> zieht nur die <InlineMath math="30" /> Kanten ab und behält alle Flächendiagonalen.
+
+# Antwort
+
+Das gerade Prisma mit <InlineMath math="30" /> Kanten hat genau <InlineMath math="70" /> Raumdiagonalen.

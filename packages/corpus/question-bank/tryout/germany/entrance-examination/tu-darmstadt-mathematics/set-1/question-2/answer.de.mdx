@@ -1,35 +1,93 @@
-# Drei Faktoren mit verschiedenem Verhalten
+# Gegeben
 
-Der Bruch hat drei Teile, und **jeder Teil verhält sich beim Vorzeichen anders**:
+Für alle reellen Zahlen <InlineMath math="x \neq -2" /> gilt die folgende **Bruchungleichung**.
 
-- <InlineMath math="x" /> wechselt bei <InlineMath math="x=0" /> das Vorzeichen.
-- <InlineMath math="(x-3)^2" /> ist ein Quadrat, also nie negativ. Null ist es nur bei <InlineMath math="x=3" />.
-- <InlineMath math="x+2" /> wechselt bei <InlineMath math="x=-2" /> das Vorzeichen, und dort ist der Bruch nicht definiert.
+<BlockMath math="\frac{x\,(x - 3)^2}{x + 2} \le 0" />
 
-# Wo der Bruch null ist
+Die Bedingung <InlineMath math="x \neq -2" /> schließt die Nullstelle des Nenners aus dem Definitionsbereich aus.
 
-Der Bruch ist genau dann null, wenn der Zähler null ist und der Nenner nicht: bei <InlineMath math="x=0" /> und bei <InlineMath math="x=3" />. Weil das Zeichen <InlineMath math="\le" /> ist, **gehören beide Stellen zur Lösung**.
+# Gesucht
 
-# Wo der Bruch negativ ist
+Alle reellen Zahlen <InlineMath math="x \neq -2" />, die diese Ungleichung erfüllen.
 
-Für <InlineMath math="x\ne3" /> ist <InlineMath math="(x-3)^2" /> positiv, der Bruch hat also dasselbe Vorzeichen wie <InlineMath math="\frac{x}{x+2}" />:
+# Lösung
 
-| Bereich | <InlineMath math="x" /> | <InlineMath math="x+2" /> | Bruch |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="x<-2" /> | negativ | negativ | positiv |
-| <InlineMath math="-2<x<0" /> | negativ | positiv | negativ |
-| <InlineMath math="x>0" /> | positiv | positiv | positiv |
+Stell dir drei Vorzeichenschalter vor, die zusammenwirken. Die linearen Faktoren <InlineMath math="x" /> und <InlineMath math="x + 2" /> wechseln bei ihren Nullstellen das Vorzeichen, während das Quadrat <InlineMath math="(x - 3)^2" /> **nie negativ wird** und nur bei <InlineMath math="x = 3" /> null ist.
 
-Der Bruch ist **nur auf <InlineMath math="-2<x<0" /> negativ**. Die Stelle <InlineMath math="x=3" /> ändert das Vorzeichen nicht, um <InlineMath math="3" /> herum bleibt der Bruch also positiv, außer genau bei <InlineMath math="3" />, wo er null ist.
+> Ein Faktor mit geradem Exponenten erzeugt keinen Vorzeichenwechsel, aber seine Nullstelle gehört trotzdem zur Lösung, sobald Gleichheit mit null erlaubt ist.
 
-Probe: <InlineMath math="x=-1" /> ergibt <InlineMath math="\frac{-1\cdot16}{1}=-16\le0" />, <InlineMath math="x=2" /> ergibt <InlineMath math="\frac{2\cdot1}{4}>0" />, und <InlineMath math="x=-3" /> ergibt <InlineMath math="\frac{-3\cdot36}{-1}=108>0" />.
+Verschieb den Prüfpunkt <InlineMath math="p" /> im Graphen, um zu sehen, wo der Graph unter <InlineMath math="y \le 0" /> fällt und wie er bei <InlineMath math="x = 3" /> abprallt.
 
-Die Lösungen sind also <InlineMath math="-2<x\le0" /> oder <InlineMath math="x=3" />.
+<MathVisual
+  title={<>Vorzeichenverlauf rund um <InlineMath math="x = 0" /> und <InlineMath math="x = 3" /></>}
+  description={
+    <>
+      Die gestrichelte Senkrechte markiert die Polstelle{" "}
+      <InlineMath math="x = -2" />, der schraffierte Bereich zeigt{" "}
+      <InlineMath math="y \le 0" />. Verschieb <InlineMath math="p" /> und lies
+      den Bruchwert ab.
+    </>
+  }
+  footer={<>Der Graph liegt für <InlineMath math="-2 < x < 0" /> unter null und berührt bei <InlineMath math="0" /> und <InlineMath math="3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -10, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "p", min: -0.8, max: 5, value: 3, step: 0.2, label: "p" }],
+    objects: [
+      { id: "non-positive", kind: "region", appearance: "construction", inequalities: ["y <= 0"] },
+      { id: "asymptote", kind: "line", appearance: "reference", stroke: "dashed", through: [{ x: -2, y: -10 }, { x: -2, y: 6 }] },
+      { id: "branch", kind: "function", appearance: "primary", formula: "x * (x - 3)^2 / (x + 2)", domain: { min: -0.8, max: 5.5 } },
+      { id: "zero-origin", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "zero-touch", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "probe", kind: "marker", appearance: "highlight", x: "p", y: "p * (p - 3)^2 / (p + 2)" },
+    ],
+    labels: [
+      { key: "asymptote", objectId: "asymptote", at: { x: -2, y: 4.5 }, placement: "right" },
+      { key: "touch", objectId: "zero-touch", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+    readouts: [{ key: "value", formula: "p * (p - 3)^2 / (p + 2)" }],
+  }}
+  labels={{
+    p: <>Prüfpunkt <InlineMath math="p" /></>,
+    asymptote: <InlineMath math="x = -2" />,
+    touch: <InlineMath math="(3, 0)" />,
+    value: <>Bruchwert</>,
+  }}
+/>
 
-# Warum die anderen Antworten falsch sind
+Zwischen <InlineMath math="-2" /> und <InlineMath math="0" /> verläuft der Graph unterhalb der <InlineMath math="x" />-Achse. Rechts von null bleibt er positiv, berührt die Achse bei <InlineMath math="(3, 0)" /> und steigt sofort wieder an.
 
-- Nur <InlineMath math="-2<x\le0" /> **vergisst die Stelle <InlineMath math="x=3" />**, an der der Zähler null ist.
-- <InlineMath math="-2\le x\le0" /> oder <InlineMath math="x=3" /> nimmt <InlineMath math="x=-2" /> mit, wo der Nenner null ist.
-- <InlineMath math="x\le0" /> oder <InlineMath math="x=3" /> multipliziert mit <InlineMath math="x+2" />, als wäre das immer positiv. Für <InlineMath math="x=-3" /> ist der Bruch aber positiv.
-- <InlineMath math="-2<x\le0" /> oder <InlineMath math="x\ge3" /> wechselt bei <InlineMath math="x=3" /> das Vorzeichen, obwohl ein quadratischer Faktor das nicht tut. Für <InlineMath math="x=4" /> ist der Bruch <InlineMath math="\frac{4}{6}>0" />.
-- <InlineMath math="x<-2" /> oder <InlineMath math="x\ge0" /> ist der Bereich, in dem der Bruch nicht negativ ist. Die Vorzeichen wurden verkehrt herum gelesen.
+## Nullstellen und Vorzeichentabelle
+
+Der Bruch wird null, wenn der Zähler null und der Nenner ungleich null ist, also bei <InlineMath math="x = 0" /> und <InlineMath math="x = 3" />. Wegen <InlineMath math="\le" /> **gehören beide Stellen zur Lösung**.
+
+Für <InlineMath math="x \neq 3" /> gilt <InlineMath math="(x - 3)^2 > 0" />, sodass das Vorzeichen allein vom Quotienten aus <InlineMath math="x" /> und <InlineMath math="x + 2" /> abhängt.
+
+| Intervall | <InlineMath math="x" /> | <InlineMath math="x + 2" /> | Vorzeichen |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="x < -2" /> | negativ | negativ | positiv |
+| <InlineMath math="-2 < x < 0" /> | negativ | positiv | negativ |
+| <InlineMath math="x > 0" /> | positiv | positiv | positiv |
+
+## Probe und falsche Antworten
+
+Prüf alle Bereiche mit drei Stichproben, um **jedes Vorzeichen und jede Grenze abzusichern**.
+
+<BlockMath math="\begin{aligned}
+x = -1 &\implies \frac{(-1)(-4)^2}{1} = -16 \le 0 \\
+x = 2 &\implies \frac{2(-1)^2}{4} = \frac{1}{2} > 0 \\
+x = -3 &\implies \frac{(-3)(-6)^2}{-1} = 108 > 0
+\end{aligned}" />
+
+- Nur das Intervall von <InlineMath math="-2" /> bis <InlineMath math="0" /> vergisst die einzelne Nullstelle <InlineMath math="x = 3" />, an der der Zähler null ist.
+- Das links abgeschlossene Intervall bei <InlineMath math="-2" /> nimmt <InlineMath math="x = -2" /> mit auf, obwohl dort der Nenner null wird.
+- <InlineMath math="x \le 0" /> oder <InlineMath math="x = 3" /> multipliziert mit <InlineMath math="x + 2" /> ohne Fallunterscheidung, obwohl der Nenner für <InlineMath math="x < -2" /> negativ ist.
+- Das Ersetzen von <InlineMath math="x = 3" /> durch <InlineMath math="x \ge 3" /> unterstellt einen Vorzeichenwechsel bei <InlineMath math="x = 3" />, den das Quadrat verhindert.
+- <InlineMath math="x < -2" /> oder <InlineMath math="x \ge 0" /> liest das Ungleichheitszeichen verkehrt herum und wählt den nichtnegativen Bereich.
+
+# Antwort
+
+Die Ungleichung gilt genau für die folgenden reellen Zahlen.
+
+<BlockMath math="-2 < x \le 0 \quad \text{oder} \quad x = 3" />
