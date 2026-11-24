@@ -1,14 +1,30 @@
-Zwei Schritte: Berechne den rohen Rückgang aus Text A und wende dann die Korrektur aus Text B an.
+# Gegeben
 
-Die Standorte gingen von <InlineMath math="12" /> auf <InlineMath math="7" /> Unfälle pro Standort zurück:
+Laut **Text A** sanken die Verletzungsunfälle an den <InlineMath math="40" /> Kamerastandorten von durchschnittlich <InlineMath math="12" /> auf <InlineMath math="7" />. Laut **Text B** fanden korrigierte Studien <Highlight>the effect of fixed cameras remained real but came out at roughly half the raw before-and-after fall</Highlight>.
 
-<BlockMath math="\dfrac{12-7}{12}=\dfrac{5}{12}\approx 42\%" />
+# Gesucht
 
-Text B sagt, dass der Effekt nach Berücksichtigung der Regression zur Mitte "came out at roughly half the raw before-and-after fall" (etwa halb so groß war wie der rohe Vorher-nachher-Rückgang). **Etwa die Hälfte** von etwa <InlineMath math="42\%" /> sind etwa <InlineMath math="21\%" />.
+Wie hoch ist unter dieser Annahme die plausibelste Schätzung für den durch die Kameras selbst verursachten Rückgang?
 
-- <InlineMath math="42\%" /> ist der rohe Rückgang. Hier fehlt die Korrektur aus Text B ganz.
-- <InlineMath math="34\%" /> entsteht, wenn man die stadtweiten <InlineMath math="8\%" /> abzieht. Das ist der Vergleich aus Text A, nicht die Korrektur aus Text B. Text B betont gerade, dass sich die Kamerastandorte von den übrigen Straßen unterscheiden, weil sie nach einer schlechten Phase gewählt wurden.
-- <InlineMath math="8\%" /> ist die Veränderung in der ganzen Stadt, nicht die Wirkung der Kameras.
-- <InlineMath math="0\%" /> widerspricht Text B, laut dem der Effekt "remained real" (echt blieb).
+# Lösung
 
-Die vernünftigste Schätzung ist ein Rückgang von etwa <InlineMath math="21\%" />, also ungefähr die Hälfte des gezählten Rückgangs.
+Berechne zuerst den **rohen prozentualen Rückgang** aus Text A und halbiere diesen Wert gemäß der **Korrektur aus Text B**.
+
+> Text B halbiert den rohen Vorher-nachher-Rückgang statt den Stadttrend abzuziehen, sodass aus etwa zweiundvierzig Prozent rund einundzwanzig Prozent werden.
+
+## Berechnung in zwei Schritten
+
+Aus <InlineMath math="12" /> und <InlineMath math="7" /> Unfällen je Standort folgen der **Rohrückgang** und die **geschätzte Kamerawirkung**:
+
+<BlockMath math="\begin{aligned} \text{Rohrückgang} &= \frac{12 - 7}{12} = \frac{5}{12} \approx 41{,}7\% \approx 42\% \\ \text{Kamerawirkung} &\approx \frac{1}{2} \times 42\% = 21\% \end{aligned}" />
+
+## Warum die anderen Optionen ausscheiden
+
+- **<InlineMath math="42%" />** ist der unkorrigierte Rohwert ohne Berücksichtigung der Regression zur Mitte.
+- **<InlineMath math="34%" />** zieht lediglich die stadtweiten <InlineMath math="8%" /> ab und folgt damit dem Ansatz von Text A statt Text B.
+- **<InlineMath math="8%" />** beschreibt den Gesamttrend der Stadt, nicht die Kamerawirkung.
+- **<InlineMath math="0%" />** widerspricht Text B, wonach die Wirkung <Highlight>remained real</Highlight>.
+
+# Antwort
+
+**About <InlineMath math="21%" />, roughly half of the fall that the counts show**.

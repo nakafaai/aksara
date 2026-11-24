@@ -1,16 +1,37 @@
-Um zu schätzen, was die Erinnerungen bewirkt haben, vergleiche **die Veränderung** in der Gruppe mit Erinnerungen mit **der Veränderung** in der Gruppe ohne. Die zweite Gruppe zeigt, was ohnehin passiert wäre.
+# Gegeben
 
-<BlockMath math="\text{angemeldet: } 4\%-5\%=-1 \text{ Punkt}" />
+Von <InlineMath math="2023" /> auf <InlineMath math="2024" /> sank die Ausfallquote der angemeldeten Gruppe von **<InlineMath math="5%" /> auf <InlineMath math="4%" />**. Die Gruppe ohne Erinnerungen von **<InlineMath math="11%" /> auf <InlineMath math="10%" />** fiel.
 
-<BlockMath math="\text{nicht angemeldet: } 10\%-11\%=-1 \text{ Punkt}" />
+# Gesucht
 
-<BlockMath math="\text{Wirkung der Erinnerungen: } (-1)-(-1)=0" />
+Um wie viele Prozentpunkte senkten die Erinnerungen die Ausfallquote der angemeldeten Gruppe nach bester Schätzung?
 
-Die angemeldete Gruppe fiel genau so stark wie eine Gruppe ohne Erinnerungen. **Nichts** von ihrem Rückgang lässt sich den Erinnerungen zuschreiben.
+# Lösung
 
-- <InlineMath math="6" /> ist die Lücke zwischen den Gruppen 2024, aber die ganze Lücke gab es schon 2023, damals ebenfalls sechs Punkte (<InlineMath math="5\%" /> gegenüber <InlineMath math="11\%" />).
-- <InlineMath math="1" /> ist der eigene Rückgang der Angemeldeten. Die andere Gruppe fiel auch ohne Erinnerungen um einen Punkt.
-- <InlineMath math="5" /> vermischt die ganze Praxis 2023 mit einer Gruppe 2024, zwei verschiedene Mengen von Patienten.
-- <InlineMath math="2" /> addiert beide Rückgänge, aber der Rückgang der anderen Gruppe ist die Basis, die abgezogen wird, kein zusätzlicher Effekt.
+Vergleiche die **Veränderung mit Erinnerungen** mit der **Veränderung ohne Erinnerungen** (Differenz-von-Differenzen).
 
-Die beste Schätzung sind <InlineMath math="0" /> Prozentpunkte, weil die Gruppe ohne Erinnerungen genauso stark fiel.
+> Zieht man den Rückgang von einem Prozentpunkt ohne Erinnerungen vom Rückgang von einem Prozentpunkt mit Erinnerungen ab, bleibt ein geschätzter Effekt von null Prozentpunkten.
+
+## Berechnung der Differenz von Differenzen
+
+| Gruppe | Ausfallquote <InlineMath math="2023" /> | Ausfallquote <InlineMath math="2024" /> | Veränderung |
+| --- | ---: | ---: | ---: |
+| Angemeldet (Erinnerungen) | <InlineMath math="5\%" /> | <InlineMath math="4\%" /> | <InlineMath math="-1" /> Punkt |
+| Nicht angemeldet (ohne) | <InlineMath math="11\%" /> | <InlineMath math="10\%" /> | <InlineMath math="-1" /> Punkt |
+
+Die **Veränderung beider Gruppen** zwischen <InlineMath math="2023" /> und <InlineMath math="2024" /> ergibt:
+
+<BlockMath math="\begin{aligned} \text{Veränderung mit Erinnerungen} &= 4\% - 5\% = -1 \text{ Prozentpunkt} \\ \text{Veränderung ohne Erinnerungen} &= 10\% - 11\% = -1 \text{ Prozentpunkt} \\ \text{Geschätzter Erinnerungseffekt} &= (-1) - (-1) = 0 \text{ Prozentpunkte} \end{aligned}" />
+
+Da die Kontrollgruppe ohne Erinnerungen exakt um denselben <InlineMath math="1" /> Punkt sank, lässt sich **kein Anteil des Rückgangs** den Erinnerungen zuschreiben.
+
+## Warum die anderen Optionen ausscheiden
+
+- **<InlineMath math="6" />** ist der **Gruppenabstand** <InlineMath math="2024" />, der genauso groß schon <InlineMath math="2023" /> ohne Erinnerungen bestand.
+- **<InlineMath math="1" />** misst nur den Rohrückgang der Angemeldeten ohne Abzug des allgemeinen Trends.
+- **<InlineMath math="5" />** vermischt die gesamte Klinik <InlineMath math="2023" /> (<InlineMath math="9%" />) mit einer einzelnen Teilgruppe <InlineMath math="2024" /> (<InlineMath math="4%" />).
+- **<InlineMath math="2" />** addiert beide Rückgänge statt die Kontrollbasis abzuziehen.
+
+# Antwort
+
+**<InlineMath math="0" />, because the group without reminders fell by the same amount**.

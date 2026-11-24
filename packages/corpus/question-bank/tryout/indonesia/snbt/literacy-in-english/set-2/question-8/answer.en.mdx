@@ -1,14 +1,30 @@
-Two steps: work out the raw fall from Text A, then apply the correction from Text B.
+# Given
 
-The sites went from <InlineMath math="12" /> to <InlineMath math="7" /> injury crashes each:
+In **Text A**, the <InlineMath math="40" /> camera sites averaged <InlineMath math="12" /> injury crashes in the three years before installation and <InlineMath math="7" /> in the three years after. In **Text B**, studies correcting for regression to the mean found <Highlight>the effect of fixed cameras remained real but came out at roughly half the raw before-and-after fall</Highlight>.
 
-<BlockMath math="\dfrac{12-7}{12}=\dfrac{5}{12}\approx 42\%" />
+# Asked
 
-Text B says that once regression to the mean was allowed for, the effect "came out at roughly half the raw before-and-after fall". Taking **roughly half** of about <InlineMath math="42\%" /> gives about <InlineMath math="21\%" />.
+Assuming Text B's studies apply to this city, what is the most reasonable estimate of the crash drop caused by the cameras themselves?
 
-- <InlineMath math="42\%" /> is the raw fall. It skips Text B's correction completely.
-- <InlineMath math="34\%" /> comes from subtracting the city-wide <InlineMath math="8\%" />, which is Text A's comparison, not the correction Text B describes. Text B's point is that camera sites differ from the city's roads because they were picked after a bad run.
-- <InlineMath math="8\%" /> is the change for the whole city, not the effect of the cameras.
-- <InlineMath math="0\%" /> contradicts Text B, which says the effect "remained real".
+# Solution
 
-The most reasonable estimate is a fall of about <InlineMath math="21\%" />, roughly half of the counted fall.
+Compute the **raw percentage drop** from Text A first, then take **roughly half** as described in Text B.
+
+> Text B halves the raw before-and-after drop rather than subtracting the city-wide trend, turning a forty-two percent raw drop into roughly twenty-one percent.
+
+## Halving the raw crash drop
+
+From <InlineMath math="12" /> crashes down to <InlineMath math="7" /> crashes per site, the **raw drop** and its **halved estimate** are:
+
+<BlockMath math="\begin{aligned} \text{Raw fall} &= \frac{12 - 7}{12} = \frac{5}{12} \approx 41.7\% \approx 42\% \\ \text{Camera effect} &\approx \frac{1}{2} \times 42\% = 21\% \end{aligned}" />
+
+## Why the other options fail
+
+- **<InlineMath math="42%" />** is the raw fall before applying Text B's regression-to-the-mean correction.
+- **<InlineMath math="34%" />** subtracts the <InlineMath math="8%" /> city-wide fall, which follows Text A's method rather than Text B's half-of-raw correction.
+- **<InlineMath math="8%" />** is the city-wide fall across all roads, not the camera effect.
+- **<InlineMath math="0%" />** contradicts Text B, which says the camera effect <Highlight>remained real</Highlight>.
+
+# Answer
+
+**About <InlineMath math="21%" />, roughly half of the fall that the counts show**.
