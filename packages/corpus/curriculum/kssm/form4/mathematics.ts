@@ -188,7 +188,39 @@ export const kssmForm4MathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-mathematics-network-in-graph-theory-graph-network",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.graph-network"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 5.1",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-4-mathematics-network-in-graph-theory",
+    materialCard: {
+      de: {
+        description: "Bestimme Grade, Bäume und kürzeste Wege.",
+        title: "Netzwerke in der Graphentheorie",
+      },
+      en: {
+        description: "Find degrees, trees and shortest paths.",
+        title: "Network in Graph Theory",
+      },
+      id: {
+        description: "Tentukan derajat, pohon, dan lintasan terpendek.",
+        title: "Jaringan dalam Teori Graf",
+      },
+      ms: {
+        description: "Tentukan darjah, pokok dan laluan terpendek.",
+        title: "Rangkaian dalam Teori Graf",
+      },
+    },
     order: 50,
     translations: {
       de: {

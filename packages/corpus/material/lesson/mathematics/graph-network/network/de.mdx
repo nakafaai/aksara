@@ -1,0 +1,320 @@
+export const metadata = {
+  title: "Netzwerke in der Graphentheorie",
+  description:
+    "Erkenne Knoten, Kanten und Grade, unterscheide gerichtete und gewichtete Graphen, erkenne Bäume und finde den kürzesten Weg mit Modellen und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Netzwerke in der Graphentheorie",
+};
+
+## Ein Graph zeigt Verbindungen zwischen Objekten
+
+Ein **Graph** besteht aus **Knoten**, die für Objekte stehen, und **Kanten**, die für Verbindungen zwischen ihnen stehen. Knoten können Orte und Kanten Straßen sein, oder Knoten sind Schüler und Kanten Freundschaften. Der **Grad** eines Knotens ist die Zahl der Kanten, die an ihm zusammentreffen. Die Summe der Grade aller Knoten ist immer doppelt so groß wie die Zahl der Kanten, weil jede Kante zwei Enden hat. In den Modellen hier liest du einen gewichteten Graphen, vergleichst einen Baum mit einem vollständigen Graphen und findest den kürzesten Weg.
+
+## Grade der Knoten in einem Graphen
+
+Der Graph unten zeigt fünf Orte, <InlineMath math="A" /> bis <InlineMath math="E" />, und die Straßen zwischen ihnen. Die Zahl an jeder Kante ist die Entfernung in Kilometern. Einen Graphen, dessen Kanten solche Werte tragen, nennt man **gewichteten Graphen**.
+
+<MathVisual
+  title={<>Ein gewichteter Graph mit fünf Orten</>}
+  description={
+    <>
+      Fünf Knoten und sieben Kanten. Das Gewicht jeder Kante ist die
+      Straßenentfernung in Kilometern.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0.6, y: 3 }, to: { x: 2.6, y: 5 }, appearance: "reference" },
+      { id: "ad", kind: "segment", from: { x: 0.6, y: 3 }, to: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "bc", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 5 }, appearance: "reference" },
+      { id: "bd", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "be", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "de", kind: "segment", from: { x: 2.6, y: 1 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "ce", kind: "segment", from: { x: 5.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "pa", kind: "point", at: { x: 0.6, y: 3 }, appearance: "primary" },
+      { id: "pb", kind: "point", at: { x: 2.6, y: 5 }, appearance: "primary" },
+      { id: "pc", kind: "point", at: { x: 5.6, y: 5 }, appearance: "primary" },
+      { id: "pd", kind: "point", at: { x: 2.6, y: 1 }, appearance: "primary" },
+      { id: "pe", kind: "point", at: { x: 5.6, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "va", objectId: "pa", at: { x: 0.6, y: 3 }, placement: "left" },
+      { key: "vb", objectId: "pb", at: { x: 2.6, y: 5 }, placement: "above" },
+      { key: "vc", objectId: "pc", at: { x: 5.6, y: 5 }, placement: "above-right" },
+      { key: "vd", objectId: "pd", at: { x: 2.6, y: 1 }, placement: "below" },
+      { key: "ve", objectId: "pe", at: { x: 5.6, y: 1 }, placement: "below-right" },
+      { key: "wab", objectId: "ab", at: { x: 1.6, y: 4 }, placement: "above-left" },
+      { key: "wad", objectId: "ad", at: { x: 1.6, y: 2 }, placement: "below-left" },
+      { key: "wbc", objectId: "bc", at: { x: 4.1, y: 5 }, placement: "above" },
+      { key: "wbd", objectId: "bd", at: { x: 2.6, y: 3 }, placement: "left" },
+      { key: "wbe", objectId: "be", at: { x: 4.1, y: 3 }, placement: "above-right" },
+      { key: "wde", objectId: "de", at: { x: 4.1, y: 1 }, placement: "below" },
+      { key: "wce", objectId: "ce", at: { x: 5.6, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    va: <InlineMath math="A" />,
+    vb: <InlineMath math="B" />,
+    vc: <InlineMath math="C" />,
+    vd: <InlineMath math="D" />,
+    ve: <InlineMath math="E" />,
+    wab: <InlineMath math="4" />,
+    wad: <InlineMath math="2" />,
+    wbc: <InlineMath math="5" />,
+    wbd: <InlineMath math="3" />,
+    wbe: <InlineMath math="6" />,
+    wde: <InlineMath math="7" />,
+    wce: <InlineMath math="2" />,
+  }}
+/>
+
+Dieses Diagramm zeigt den Grad jedes Knotens. Knoten <InlineMath math="B" /> ist mit vier anderen Knoten verbunden, also ist sein Grad <InlineMath math="4" />.
+
+<BarChart
+  title={<>Grad jedes Knotens</>}
+  description={
+    <>
+      Die Zahl der Kanten an jedem Knoten des Graphen mit fünf Orten. Die Summe
+      ist <InlineMath math="14" />.
+    </>
+  }
+  yAxisLabel="Grad"
+  data={[
+    { name: "A", value: 2 },
+    { name: "B", value: 4 },
+    { name: "C", value: 2 },
+    { name: "D", value: 3 },
+    { name: "E", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Grad", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Beispiel Die Summe der Grade
+
+Prüfe **den Zusammenhang zwischen Graden und Kanten** für den Graphen mit fünf Orten.
+
+<BlockMath math="2 + 4 + 2 + 3 + 3 = 14 = 2 \times 7" />
+
+Der Graph hat <InlineMath math="7" /> Kanten, also ist die Summe der Grade <InlineMath math="14" />. Daraus folgt, dass die Zahl der Knoten mit ungeradem Grad immer gerade ist. Hier sind <InlineMath math="D" /> und <InlineMath math="E" /> die beiden Knoten mit ungeradem Grad.
+
+### Arten von Graphen
+
+Graphen werden nach **der Form ihrer Kanten** eingeteilt.
+
+| Art | Merkmal |
+| :--- | :--- |
+| Einfacher Graph | Keine Schlingen und keine Mehrfachkanten |
+| Graph mit Schlinge | Eine Kante beginnt und endet am selben Knoten und zählt <InlineMath math="2" /> zum Grad |
+| Multigraph | Mehr als eine Kante verbindet dieselben zwei Knoten |
+| Gerichteter Graph | Jede Kante hat eine Richtung |
+| Gewichteter Graph | Jede Kante trägt einen Wert wie Entfernung, Zeit oder Kosten |
+
+## Gerichtete Graphen
+
+In einem **gerichteten Graphen** wird jede Kante als Pfeil gezeichnet, etwa bei Einbahnstraßen in einem Wohngebiet. Für jeden Knoten ist der **Eingangsgrad** die Zahl der Pfeile, die zu ihm hinführen, und der **Ausgangsgrad** die Zahl der Pfeile, die ihn verlassen.
+
+<MathVisual
+  title={<>Ein gerichteter Graph aus Einbahnstraßen</>}
+  description={
+    <>
+      Vier Kreuzungen <InlineMath math="P" />, <InlineMath math="Q" />,{" "}
+      <InlineMath math="R" /> und <InlineMath math="S" /> mit fünf
+      Einbahnstraßen.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.4 }, y: { min: 0, max: 4.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "pq", kind: "vector", from: { x: 0.6, y: 0.6 }, to: { x: 4.6, y: 0.6 }, appearance: "primary" },
+      { id: "qr", kind: "vector", from: { x: 4.6, y: 0.6 }, to: { x: 4.6, y: 3.6 }, appearance: "primary" },
+      { id: "rs", kind: "vector", from: { x: 4.6, y: 3.6 }, to: { x: 0.6, y: 3.6 }, appearance: "primary" },
+      { id: "sp", kind: "vector", from: { x: 0.6, y: 3.6 }, to: { x: 0.6, y: 0.6 }, appearance: "primary" },
+      { id: "pr", kind: "vector", from: { x: 0.6, y: 0.6 }, to: { x: 4.6, y: 3.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "vp", objectId: "pq", at: { x: 0.6, y: 0.6 }, placement: "below-left" },
+      { key: "vq", objectId: "qr", at: { x: 4.6, y: 0.6 }, placement: "below-right" },
+      { key: "vr", objectId: "rs", at: { x: 4.6, y: 3.6 }, placement: "above-right" },
+      { key: "vs", objectId: "sp", at: { x: 0.6, y: 3.6 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    vp: <InlineMath math="P" />,
+    vq: <InlineMath math="Q" />,
+    vr: <InlineMath math="R" />,
+    vs: <InlineMath math="S" />,
+  }}
+/>
+
+Knoten <InlineMath math="P" /> hat den Ausgangsgrad <InlineMath math="2" />, nach <InlineMath math="Q" /> und nach <InlineMath math="R" />, und den Eingangsgrad <InlineMath math="1" />, von <InlineMath math="S" />. Die Ausgangsgrade aller Knoten ergeben zusammen dieselbe Summe wie die Eingangsgrade, nämlich <InlineMath math="5" />, die Zahl der Pfeile.
+
+## Teilgraphen und Bäume
+
+Ein **Teilgraph** ist ein Graph, dessen Knoten und Kanten alle aus dem ursprünglichen Graphen stammen. Ein **Baum** ist ein zusammenhängender Graph ohne Kreise. Ein Baum mit <InlineMath math="n" /> Knoten hat immer genau <InlineMath math="n - 1" /> Kanten. Ein **vollständiger Graph**, in dem jedes Knotenpaar verbunden ist, hat dagegen <InlineMath math="\dfrac{n(n - 1)}{2}" /> Kanten. Ändere die Zahl der Knoten und vergleiche beide.
+
+<MathVisual
+  title={<>Kanten eines Baums und eines vollständigen Graphen</>}
+  description={
+    <>
+      Zahl der Kanten in Einheiten von <InlineMath math="5" /> gegen die Zahl
+      der Knoten <InlineMath math="n" />: <InlineMath math="n - 1" /> für einen
+      Baum und <InlineMath math="\dfrac{n(n - 1)}{2}" /> für einen
+      vollständigen Graphen.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 9.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 2, max: 10, value: 5, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "tree", kind: "function", appearance: "primary", formula: "(x - 1)/5", domain: { min: 1, max: 10 } },
+      { id: "complete", kind: "function", appearance: "secondary", formula: "x(x - 1)/10", domain: { min: 1, max: 10 } },
+      { id: "now", kind: "marker", x: "n", y: "n(n - 1)/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "tree", formula: "n - 1" },
+      { key: "complete", formula: "n(n - 1)/2" },
+    ],
+  }}
+  labels={{
+    n: <>Zahl der Knoten <InlineMath math="n" /></>,
+    tree: <>Kanten eines Baums</>,
+    complete: <>Kanten eines vollständigen Graphen</>,
+  }}
+/>
+
+Für fünf Orte braucht ein Baum nur <InlineMath math="4" /> Straßen, um alle zu verbinden, ein vollständiger Graph hat dagegen <InlineMath math="10" />. Deshalb haben Rohr oder Kabelnetze, die Kosten sparen sollen, meist die Form eines Baums.
+
+## Der kürzeste Weg
+
+In einem gewichteten Graphen ist der **kürzeste Weg** der Weg mit dem kleinsten Gesamtgewicht. Autofahrer auf der Suche nach der nächsten Route, Lieferdienste bei der Tourenplanung und Kartenapps lösen alle dieses Problem. Der Weg mit den wenigsten Kanten ist nicht unbedingt der kürzeste, denn eine lange Kante kann schwerer wiegen als zwei kurze.
+
+### Alle Wege auflisten
+
+Bei einem kleinen Graphen **listest du jeden Weg auf**, der keinen Knoten wiederholt, und vergleichst die Summen.
+
+<BarChart
+  title={<>Länge jedes Weges von A nach E</>}
+  description={
+    <>
+      Das Gesamtgewicht jedes Weges ohne wiederholten Knoten im Graphen mit
+      fünf Orten, in Kilometern.
+    </>
+  }
+  yAxisLabel="Entfernung (km)"
+  data={[
+    { name: "A-D-E", value: 2 + 7 },
+    { name: "A-B-E", value: 4 + 6 },
+    { name: "A-B-C-E", value: 4 + 5 + 2 },
+    { name: "A-D-B-E", value: 2 + 3 + 6 },
+    { name: "A-D-B-C-E", value: 2 + 3 + 5 + 2 },
+  ]}
+  chartConfig={{ value: { label: "Entfernung", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Beispiel Den kürzesten Weg finden
+
+Finde **den kürzesten Weg** von Ort <InlineMath math="A" /> nach Ort <InlineMath math="E" />.
+
+<MathContainer>
+<BlockMath math="A \to D \to E: \; 2 + 7 = 9" />
+<BlockMath math="A \to B \to E: \; 4 + 6 = 10" />
+<BlockMath math="A \to B \to C \to E: \; 4 + 5 + 2 = 11" />
+</MathContainer>
+
+Der kürzeste Weg ist <InlineMath math="A \to D \to E" /> mit einer Entfernung von <InlineMath math="9\text{ km}" />. Dieses Modell hebt den Weg im Graphen hervor.
+
+<MathVisual
+  title={<>Der kürzeste Weg von A nach E</>}
+  description={
+    <>
+      Der Weg <InlineMath math="A \to D \to E" /> mit{" "}
+      <InlineMath math="9\text{ km}" />, hervorgehoben im Graphen mit fünf
+      Orten.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0.6, y: 3 }, to: { x: 2.6, y: 5 }, appearance: "reference" },
+      { id: "bc", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 5 }, appearance: "reference" },
+      { id: "bd", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "be", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "ce", kind: "segment", from: { x: 5.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "route", kind: "polyline", vertices: [{ x: 0.6, y: 3 }, { x: 2.6, y: 1 }, { x: 5.6, y: 1 }], appearance: "answer" },
+      { id: "pa", kind: "point", at: { x: 0.6, y: 3 }, appearance: "primary" },
+      { id: "pd", kind: "point", at: { x: 2.6, y: 1 }, appearance: "primary" },
+      { id: "pe", kind: "point", at: { x: 5.6, y: 1 }, appearance: "primary" },
+      { id: "pb", kind: "point", at: { x: 2.6, y: 5 }, appearance: "reference" },
+      { id: "pc", kind: "point", at: { x: 5.6, y: 5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "vb", objectId: "pb", at: { x: 2.6, y: 5 }, placement: "above" },
+      { key: "vc", objectId: "pc", at: { x: 5.6, y: 5 }, placement: "above-right" },
+      { key: "va", objectId: "pa", at: { x: 0.6, y: 3 }, placement: "left" },
+      { key: "vd", objectId: "pd", at: { x: 2.6, y: 1 }, placement: "below" },
+      { key: "ve", objectId: "pe", at: { x: 5.6, y: 1 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    vb: <InlineMath math="B" />,
+    vc: <InlineMath math="C" />,
+    va: <InlineMath math="A" />,
+    vd: <InlineMath math="D" />,
+    ve: <InlineMath math="E" />,
+  }}
+/>
+
+Prüfe: Der nächstkürzere Weg, <InlineMath math="A \to B \to E" />, ist <InlineMath math="10\text{ km}" /> lang, also sind <InlineMath math="9\text{ km}" /> tatsächlich der kleinste Wert im Diagramm.
+
+## Häufige Fehler bei Netzwerken
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Eine Schlinge zählt <InlineMath math="1" /> zum Grad. | Eine Schlinge hat beide Enden am selben Knoten, also zählt sie <InlineMath math="2" />. | Die Grade müssen zusammen doppelt so viel wie die Kanten ergeben. |
+| Der Weg mit den wenigsten Kanten ist der kürzeste. | Der kürzeste Weg hängt vom Gesamtgewicht ab, nicht von der Zahl der Kanten. | Addiere die Gewichte jedes Weges. |
+| Ein Baum kann einen Kreis enthalten. | Ein Baum hat überhaupt keine Kreise. | Ein Baum mit <InlineMath math="n" /> Knoten muss <InlineMath math="n - 1" /> Kanten haben. |
+| Eingangs und Ausgangsgrad sind an jedem Knoten gleich. | Nur ihre Summen über den ganzen Graphen sind gleich. | Zähle die Pfeile an jedem Knoten einzeln. |
+
+Der zweite Fehler kommt in Aufgaben zum kürzesten Weg am häufigsten vor. **Vergleiche Gesamtgewichte, nicht die Zahl der Kanten**.
+
+## Übungen zu Netzwerken in der Graphentheorie
+
+Diese Aufgaben führen von Graden zu Bäumen und kürzesten Wegen. **Prüfe jede Antwort mit der Gradsumme oder dem Gesamtgewicht**.
+
+1. Ein Graph hat Knoten mit den Graden <InlineMath math="1, 2, 2, 3, 4" />. Bestimme die Zahl der Kanten.
+
+2. Ein Baum hat <InlineMath math="12" /> Knoten. Wie viele Kanten hat er?
+
+3. Wie viele Kanten hat ein vollständiger Graph mit <InlineMath math="7" /> Knoten?
+
+4. Im Graphen mit fünf Orten wird die Straße von <InlineMath math="D" /> nach <InlineMath math="E" /> gesperrt. Finde den neuen kürzesten Weg von <InlineMath math="A" /> nach <InlineMath math="E" />.
+
+### Lösungen
+
+**Lösung 1**: Die Gradsumme ist doppelt so groß wie die Zahl der Kanten:
+
+<BlockMath math="\frac{1 + 2 + 2 + 3 + 4}{2} = \frac{12}{2} = 6" />
+
+Prüfe: Es gibt zwei Knoten mit ungeradem Grad, also eine gerade Zahl, wie erwartet.
+
+**Lösung 2**: Ein Baum mit <InlineMath math="n" /> Knoten hat <InlineMath math="n - 1" /> Kanten, also **<InlineMath math="11" /> Kanten**.
+
+**Lösung 3**: Nutze die Regel für vollständige Graphen:
+
+<BlockMath math="\frac{7 \times 6}{2} = 21" />
+
+Prüfe mit dem Modell: Bei <InlineMath math="n = 7" /> zeigt der vollständige Graph <InlineMath math="21" />.
+
+**Lösung 4**: Ohne die Kante <InlineMath math="DE" /> bleiben die Wege <InlineMath math="A \to B \to E = 10" />, <InlineMath math="A \to B \to C \to E = 11" />, <InlineMath math="A \to D \to B \to E = 11" /> und <InlineMath math="A \to D \to B \to C \to E = 12" />. **Der neue kürzeste Weg** ist <InlineMath math="A \to B \to E" /> mit <InlineMath math="10\text{ km}" />.
