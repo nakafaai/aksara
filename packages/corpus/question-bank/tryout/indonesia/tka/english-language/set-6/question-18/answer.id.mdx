@@ -1,11 +1,36 @@
-Tulis hitungannya dan pertahankan hanya detail yang dipakai: luas <InlineMath math="\div" /> luas per adukan <InlineMath math="=" /> jumlah adukan, adukan <InlineMath math="\times" /> semen per adukan <InlineMath math="=" /> jumlah ember, ember <InlineMath math="\div" /> ember per sak <InlineMath math="=" /> jumlah sak.
+# Diketahui
 
-- **I diperlukan**. Detail ini mengubah luas menjadi jumlah adukan.
-- **II diperlukan**. Detail ini mengubah ember semen menjadi sak.
-- **III diperlukan**. Detail ini mengubah adukan menjadi ember semen.
-- IV tidak diperlukan. Pasir tidak mengubah banyaknya semen dalam satu adukan.
-- V tidak diperlukan. Ketebalan sudah termasuk dalam angka <InlineMath math="0{,}5" /> meter persegi per adukan, karena petunjuknya memang untuk jalur setebal <InlineMath math="8" /> sentimeter.
+Kita ingin menghitung **berapa zak semen <InlineMath math="40" /> kg** yang dibutuhkan untuk jalan setapak dengan luas tertentu, dan tersedia **lima detail bernomor Romawi** (I sampai V) dari panduan beton.
 
-Pilihan tanpa III melompat dari adukan ke sak tanpa angka semen. Pilihan yang memuat IV menghitung bahan yang tidak memengaruhi jumlah sak.
+# Ditanyakan
 
-Jadi, detail yang diperlukan hanya I, II, dan III.
+Detail bernomor Romawi mana saja yang **diperlukan untuk menghitung jumlah zak semen** dari luas jalan yang diberikan.
+
+# Penyelesaian
+
+Tuliskan rumus berantai dari luas ke zak semen, lalu pilih **hanya tiga angka yang benar-benar masuk ke dalam rumus**: luas per adonan (<InlineMath math="0{,}5\text{ m}^2" />), semen per adonan (<InlineMath math="1" /> ember), dan ember per zak (<InlineMath math="2{,}5" /> ember). Pasir tidak memengaruhi zak semen, dan ketebalan <InlineMath math="8" /> cm sudah melekat di angka <InlineMath math="0{,}5\text{ m}^2" /> per adonan!
+
+> Ketebalan <InlineMath math="8" /> cm tidak perlu dipakai ulang dalam hitungan karena daya tutup <InlineMath math="0{,}5\text{ m}^2" /> per adonan sudah dihitung untuk ketebalan itu.
+
+## Melacak detail yang terpakai dalam rumus zak semen
+
+**Rantai rumus dari luas ke zak semen** menggunakan tiga detail inti (<Highlight><InlineMath math="0.5" /> square metres of path</Highlight>, <Highlight><InlineMath math="1" /> bucket of cement</Highlight>, dan <Highlight>fills about <InlineMath math="2.5" /> buckets</Highlight>):
+
+<BlockMath math="\text{Zak semen} = \frac{\text{Luas} \div 0{,}5 \times 1}{2{,}5}" />
+
+| Detail | Diperlukan? | Perannya dalam perhitungan |
+| --- | --- | --- |
+| I (<InlineMath math="0{,}5\text{ m}^2" /> per adonan penuh) | **Ya** | Mengubah luas jalan menjadi jumlah adonan penuh. |
+| II (<InlineMath math="2{,}5" /> ember per zak <InlineMath math="40" /> kg) | **Ya** | Mengubah jumlah ember semen menjadi jumlah zak semen. |
+| III (<InlineMath math="1" /> ember semen per adonan penuh) | **Ya** | Mengubah jumlah adonan penuh menjadi jumlah ember semen. |
+| IV (<InlineMath math="2" /> ember pasir per adonan) | Tidak | Jumlah pasir tidak memengaruhi berapa zak semen yang dibutuhkan. |
+| V (Ketebalan jalan <InlineMath math="8" /> cm) | Tidak | Ketebalan sudah tercakup di angka <InlineMath math="0{,}5\text{ m}^2" /> per adonan. |
+
+## Mengapa kombinasi pilihan lain salah
+
+- **Pilihan tanpa III** melompat dari adonan ke zak tanpa tahu berapa ember semen per adonan.
+- **Pilihan yang memuat IV** memasukkan bahan pasir yang tidak ikut menghitung zak semen.
+
+# Jawaban
+
+Detail yang diperlukan untuk menghitung jumlah zak semen adalah **I, II, dan III saja**.

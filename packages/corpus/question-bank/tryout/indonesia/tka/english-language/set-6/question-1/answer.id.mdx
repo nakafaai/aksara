@@ -1,14 +1,39 @@
-Ada tiga langkah: hitung harinya, cari kebutuhan airnya, lalu hitung harga air yang tidak tertampung tangki.
+# Diketahui
 
-**Hari**. Air berhenti pukul 9.00 pada hari ketiga, dan giliran Blok C berikutnya dimulai pukul 5.00 pada hari ketiga siklus berikutnya, <InlineMath math="3" /> hari <InlineMath math="20" /> jam kemudian. Karena *counting any part of a day as a whole day* (bagian hari dihitung satu hari penuh), totalnya <InlineMath math="4" /> hari.
+Satu rumah tangga beranggotakan **<InlineMath math="5" /> orang** di **Blok C** memiliki satu tandon berkapasitas **<InlineMath math="1" /> meter kubik (<InlineMath math="1{.}000" /> liter)** yang penuh saat air berhenti pukul 9:00 pada hari ketiga giliran.
 
-**Kebutuhan air**. <InlineMath math="5 \times 60 = 300" /> liter sehari, jadi <InlineMath math="300 \times 4 = 1{.}200" /> liter. Tangkinya menampung <InlineMath math="1{.}000" /> liter, jadi keluarga itu harus membeli <InlineMath math="1{.}200 - 1{.}000 = 200" /> liter.
+Aturan Bu Narti dan data teks:
+- Giliran Blok C berikutnya mulai pukul 5:00 pada hari ketiga siklus berikutnya (<InlineMath math="3" /> hari <InlineMath math="20" /> jam kemudian), dan **sebagian hari dihitung satu hari penuh**.
+- Kebutuhan air **<InlineMath math="60" /> liter per orang per hari**.
+- Air gerobak dijual **<InlineMath math="\text{Rp}5{.}000" /> per jerigen <InlineMath math="20" /> liter**.
 
-**Biaya**. Air gerobak dijual per jeriken <InlineMath math="20" /> liter seharga <InlineMath math="\text{Rp}5{.}000" />: <InlineMath math="200 \div 20 = 10" /> jeriken, dan <InlineMath math="10 \times \text{Rp}5{.}000 = \text{Rp}50{.}000" />.
+# Ditanyakan
 
-- "Tidak perlu" menganggap satu tangki cukup untuk empat hari, padahal empat hari butuh <InlineMath math="1{.}200" /> liter.
-- <InlineMath math="150" /> liter seharga <InlineMath math="\text{Rp}37{.}500" /> menghitung jam persis dari pukul 9.00 sampai pukul 5.00 (sekitar <InlineMath math="3{,}8" /> hari), bukan hari penuh.
-- <InlineMath math="\text{Rp}10{.}000" /> menghitung harga seolah satu jeriken berisi <InlineMath math="100" /> liter.
-- <InlineMath math="\text{Rp}1{.}000{.}000" /> menarik <InlineMath math="\text{Rp}5{.}000" /> untuk setiap liter, bukan setiap <InlineMath math="20" /> liter.
+Berapa liter air yang harus dibeli rumah tangga itu dari gerobak sebelum giliran berikutnya dan berapa biayanya.
 
-Jadi, keluarga itu harus membeli <InlineMath math="200" /> liter dengan biaya <InlineMath math="\text{Rp}50{.}000" />.
+# Penyelesaian
+
+Selesaikan soal ini dalam tiga langkah berurutan: **hitung jumlah hari tunggu** dengan pembulatan hari penuh ala Bu Narti, **hitung kekurangan air di luar isi tandon**, lalu **kalikan jumlah jerigen <InlineMath math="20" /> liter dengan harganya**.
+
+> Aturan "sebagian hari dihitung satu hari penuh" membuat jeda <InlineMath math="3" /> hari <InlineMath math="20" /> jam wajib dihitung tepat <InlineMath math="4" /> hari, bukan pecahan.
+
+## Menghitung hari tunggu dan biaya air gerobak
+
+Teks menetapkan cara hitung Bu Narti: <Highlight>counting any part of a day as a whole day</Highlight> dengan kebutuhan <Highlight><InlineMath math="60" /> litres per person per day</Highlight> dan harga <Highlight><InlineMath math="\text{Rp}5{,}000" /> for every <InlineMath math="20" />-litre container</Highlight>.
+
+Karena jeda <InlineMath math="3" /> hari <InlineMath math="20" /> jam dibulatkan menjadi **<InlineMath math="4" /> hari**, **kebutuhan total, kekurangan, dan biaya air gerobak** adalah:
+
+<BlockMath math="\text{Kebutuhan: } 5 \times 60 \times 4 = 1{.}200\text{ liter}, \qquad \text{Beli: } 1{.}200 - 1{.}000 = 200\text{ liter}" />
+
+<BlockMath math="\text{Biaya: } \frac{200}{20} \times \text{Rp}5{.}000 = 10 \times \text{Rp}5{.}000 = \text{Rp}50{.}000" />
+
+## Mengapa pilihan lain salah
+
+- **Tidak ada karena satu tandon cukup empat hari** keliru karena lima orang membutuhkan <InlineMath math="1{.}200" /> liter, melebihi kapasitas <InlineMath math="1{.}000" /> liter.
+- **<InlineMath math="150" /> liter seharga <InlineMath math="\text{Rp}37{.}500" />** menghitung pecahan jam (<InlineMath math="3{,}8" /> hari) dan melanggar aturan hari penuh Bu Narti.
+- **<InlineMath math="200" /> liter seharga <InlineMath math="\text{Rp}10{.}000" />** mengira satu jerigen berisi <InlineMath math="100" /> liter.
+- **<InlineMath math="200" /> liter seharga <InlineMath math="\text{Rp}1{.}000{.}000" />** mengalikan <InlineMath math="\text{Rp}5{.}000" /> per liter alih-alih per <InlineMath math="20" /> liter.
+
+# Jawaban
+
+Rumah tangga itu harus membeli **<InlineMath math="200" /> liter dengan biaya <InlineMath math="\text{Rp}50{.}000" />** (*<InlineMath math="200" /> litres, costing <InlineMath math="\text{Rp}50{,}000" />*).

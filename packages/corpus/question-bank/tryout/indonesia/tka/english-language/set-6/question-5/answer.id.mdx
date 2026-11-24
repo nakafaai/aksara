@@ -1,11 +1,34 @@
-Cek setiap pernyataan dengan angka di teks.
+# Diketahui
 
-- **Tangki kosong bisa terisi dalam waktu kurang dari sejam: didukung**. Pipa mengalirkan sekitar <InlineMath math="1{.}200" /> liter per jam, dan tangki menampung <InlineMath math="1{.}000" /> liter.
-- Setiap blok menunggu tepat empat hari: tidak didukung. Siklusnya berulang setiap empat hari, tetapi satu giliran berlangsung beberapa jam, jadi Blok B, C, atau D menunggu dari pukul 9.00 sampai pukul 5.00 empat hari kemudian, yaitu <InlineMath math="92" /> jam. Jeda Blok A <InlineMath math="78" /> jam dan <InlineMath math="12" /> jam.
-- Sebagian besar rumah punya dua tangki: tidak didukung. Hanya *a few houses have a second tank* (beberapa rumah punya tangki kedua).
-- **Satu tangki cukup untuk keluarga berlima lebih dari tiga hari: didukung**. <InlineMath math="5 \times 60 = 300" /> liter sehari, dan <InlineMath math="1{.}000 \div 300 \approx 3{,}3" /> hari.
-- **Air gerobak harganya <InlineMath math="\text{Rp}250" /> per liter: didukung**. <InlineMath math="\text{Rp}5{.}000 \div 20 = \text{Rp}250" />.
+Data angka penting Kampung Sumber: debit pipa **<InlineMath math="1{.}200" /> liter/jam**, kapasitas tandon umum **<InlineMath math="1{.}000" /> liter** (hanya beberapa rumah punya dua tandon), siklus berulang tiap <InlineMath math="4" /> hari dengan jeda antar giliran <InlineMath math="92" /> jam (Blok B/C/D) atau <InlineMath math="78" /> dan <InlineMath math="12" /> jam (Blok A), kebutuhan **<InlineMath math="60" /> liter/orang/hari**, dan air gerobak **<InlineMath math="\text{Rp}5{.}000" /> per <InlineMath math="20" /> liter**.
 
-Pernyataan tentang empat hari mencampuradukkan panjang siklus dengan jeda antargiliran.
+# Ditanyakan
 
-Jadi, pernyataan yang didukung adalah tangki yang terisi dalam waktu kurang dari sejam, tangki yang cukup lebih dari tiga hari, dan air gerobak seharga <InlineMath math="\text{Rp}250" /> per liter.
+Pernyataan mana saja yang didukung oleh teks (pilih semua yang benar).
+
+# Penyelesaian
+
+Lakukan **tiga hitungan cepat** (waktu isi tandon, lama tahan tandon untuk lima orang, harga per liter air gerobak) sambil mencermati dua jebakan kata: **"tepat empat hari"** (<InlineMath math="96" /> jam, padahal jedanya <InlineMath math="92" /> jam karena gilirannya berlangsung <InlineMath math="4" /> jam!) dan **"sebagian besar rumah"** (padahal teks menulis hanya beberapa rumah).
+
+> Jangan tertukar antara panjang satu siklus penuh (<InlineMath math="4" /> hari = <InlineMath math="96" /> jam) dan jeda menunggu dari akhir satu giliran ke awal giliran berikutnya (<InlineMath math="92" /> jam).
+
+## Menghitung dan memeriksa kelima pernyataan
+
+**Ketiga hitungan utama** untuk menguji pernyataan <InlineMath math="1, 4" />, dan <InlineMath math="5" />:
+
+<BlockMath math="\frac{1{.}000}{1{.}200} < 1\text{ jam}, \qquad \frac{1{.}000}{5 \times 60} = \frac{1{.}000}{300} \approx 3{,}33\text{ hari} > 3, \qquad \frac{\text{Rp}5{.}000}{20} = \text{Rp}250\text{ per liter}" />
+
+| Pernyataan | Didukung? | Bukti angka dan teks |
+| --- | --- | --- |
+| Tandon kosong <InlineMath math="1" /> meter kubik dapat diisi penuh kurang dari satu jam | **Ya** | Debit <InlineMath math="1{.}200" /> liter/jam melebihi kapasitas tandon <InlineMath math="1{.}000" /> liter. |
+| Setiap blok menunggu tepat empat hari antara akhir satu giliran dan awal giliran berikutnya | Tidak | Siklusnya memang empat hari, tetapi jeda antar giliran Blok B/C/D hanya <InlineMath math="92" /> jam (9:00 ke 5:00), dan Blok A hanya <InlineMath math="78" /> serta <InlineMath math="12" /> jam. |
+| Sebagian besar rumah di Kampung Sumber punya dua tandon | Tidak | Teks jelas menulis hanya <Highlight>a few houses have a second tank</Highlight>. |
+| Satu tandon penuh bertahan lebih dari tiga hari untuk lima orang | **Ya** | Kebutuhan lima orang <InlineMath math="300" /> liter/hari, sehingga <InlineMath math="1{.}000" /> liter bertahan sekitar <InlineMath math="3{,}3" /> hari (lebih dari tiga hari). |
+| Air gerobak berharga <InlineMath math="\text{Rp}250" /> per liter | **Ya** | <InlineMath math="\text{Rp}5{.}000" /> dibagi <InlineMath math="20" /> liter tepat <InlineMath math="\text{Rp}250" /> per liter. |
+
+# Jawaban
+
+Pernyataan yang didukung oleh teks adalah:
+- **A <InlineMath math="1" />-cubic-metre tank that is empty can be filled in under an hour of supply**.
+- **At Bu Narti's figure, one full <InlineMath math="1" />-cubic-metre tank lasts a household of five for more than three days**.
+- **Cart water costs <InlineMath math="\text{Rp}250" /> a litre**.

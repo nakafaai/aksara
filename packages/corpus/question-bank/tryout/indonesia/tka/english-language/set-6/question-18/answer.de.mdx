@@ -1,11 +1,36 @@
-Schreib die Rechnung auf und behalte nur die Angaben, die sie braucht: Fläche <InlineMath math="\div" /> Fläche pro Mischung <InlineMath math="=" /> Mischungen, Mischungen <InlineMath math="\times" /> Zement pro Mischung <InlineMath math="=" /> Eimer, Eimer <InlineMath math="\div" /> Eimer pro Sack <InlineMath math="=" /> Säcke.
+# Gegeben
 
-- **I wird gebraucht**. Sie macht aus der Fläche Mischungen.
-- **II wird gebraucht**. Sie macht aus Eimern Zement Säcke.
-- **III wird gebraucht**. Sie macht aus Mischungen Eimer Zement.
-- IV wird nicht gebraucht. Sand ändert nichts daran, wie viel Zement eine Mischung braucht.
-- V wird nicht gebraucht. Die Dicke steckt schon in den <InlineMath math="0{,}5" /> Quadratmetern pro Mischung, weil die Anleitung für einen Weg von <InlineMath math="8" /> Zentimetern gilt.
+Gesucht sind jene Angaben aus der Betonanleitung, mit denen sich aus einer gegebenen Wegfläche **die nötige Anzahl an <InlineMath math="40" />-kg-Zementsäcken** berechnen lässt (fünf Angaben I bis V stehen zur Wahl).
 
-Die Optionen ohne III springen ohne Zementangabe von Mischungen zu Säcken. Die Optionen mit IV zählen eine Zutat mit, die die Zahl der Säcke nicht beeinflusst.
+# Gesucht
 
-Gebraucht werden also nur I, II und III.
+Welche nummerierten Angaben **für die Berechnung der Zementsäcke nötig sind**.
+
+# Lösung
+
+Schreibe die Umrechnungskette von Fläche zu Säcken auf und behalte **nur die drei Faktoren in der Formel**: Fläche pro Mischung (<InlineMath math="0{,}5\text{ m}^2" />), Zement pro Mischung (<InlineMath math="1" /> Eimer) und Eimer pro Sack (<InlineMath math="2{,}5" /> Eimer). Sand beeinflusst die Zementmenge nicht, und die Dicke von <InlineMath math="8" /> cm steckt bereits in den <InlineMath math="0{,}5\text{ m}^2" />.
+
+> Ist die Dicke bereits im Flächenwert je Mischung eingerechnet, braucht man sie für die Sackberechnung nicht noch einmal extra.
+
+## Faktoren in der Berechnungsformel prüfen
+
+**Die Umrechnung von Wegfläche zu Zementsäcken** benötigt genau drei Werte (<Highlight><InlineMath math="0.5" /> square metres of path</Highlight>, <Highlight><InlineMath math="1" /> bucket of cement</Highlight> und <Highlight>fills about <InlineMath math="2.5" /> buckets</Highlight>):
+
+<BlockMath math="\text{Zementsäcke} = \frac{\text{Fläche} \div 0{,}5 \times 1}{2{,}5}" />
+
+| Angabe | Nötig? | Rolle in der Rechnung |
+| --- | --- | --- |
+| I (<InlineMath math="0{,}5\text{ m}^2" /> je volle Mischung) | **Ja** | Rechnet die Wegfläche in die Zahl der Mischungen um. |
+| II (<InlineMath math="2{,}5" /> Eimer je <InlineMath math="40" />-kg-Sack) | **Ja** | Rechnet Zementeimer in Zementsäcke um. |
+| III (<InlineMath math="1" /> Eimer Zement je Mischung) | **Ja** | Rechnet Mischungen in Zementeimer um. |
+| IV (<InlineMath math="2" /> Eimer Sand je Mischung) | Nein | Sand beeinflusst die Zahl der Zementsäcke nicht. |
+| V (Wegdicke <InlineMath math="8" /> cm) | Nein | Bereits in den <InlineMath math="0{,}5\text{ m}^2" /> pro Mischung enthalten. |
+
+## Warum die anderen Optionen falsch sind
+
+- **Optionen ohne III** springen von Mischungen zu Säcken ohne Angabe zum Zement je Mischung.
+- **Optionen mit IV** nehmen Sand als überflüssige Größe mit auf.
+
+# Antwort
+
+Für die Berechnung nötig sind **nur die Angaben I, II und III**.

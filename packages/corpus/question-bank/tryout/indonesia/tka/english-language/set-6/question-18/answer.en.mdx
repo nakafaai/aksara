@@ -1,11 +1,36 @@
-Write the calculation out and keep only the details it uses: area <InlineMath math="\div" /> area per batch <InlineMath math="=" /> batches, batches <InlineMath math="\times" /> cement per batch <InlineMath math="=" /> buckets, buckets <InlineMath math="\div" /> buckets per bag <InlineMath math="=" /> bags.
+# Given
 
-- **I is needed**. It turns the area into batches.
-- **II is needed**. It turns buckets of cement into bags.
-- **III is needed**. It turns batches into buckets of cement.
-- IV isn't needed. Sand doesn't change how much cement a batch uses.
-- V isn't needed. The thickness is already built into the figure of <InlineMath math="0.5" /> square metres per batch, since the instructions are for a path <InlineMath math="8" /> centimetres thick.
+We want to calculate **how many <InlineMath math="40" />-kilogram bags of cement** a garden path of a given area requires, selecting from **five numbered details** (I through V) in the concrete guide.
 
-The options without III jump from batches to bags with no cement figure. The options with IV count an ingredient that doesn't affect the number of bags.
+# Asked
 
-So the details needed are I, II and III only.
+Which numbered details are **needed to compute the number of cement bags** for a given path area.
+
+# Solution
+
+Write the unit-conversion chain from area to bags and keep **only the three conversion factors that enter the formula**: area per batch (<InlineMath math="0.5\text{ m}^2" />), cement per batch (<InlineMath math="1" /> bucket), and buckets per bag (<InlineMath math="2.5" /> buckets). Sand never enters the cement count, and the <InlineMath math="8" />-cm thickness is already baked into <InlineMath math="0.5\text{ m}^2" /> per batch.
+
+> A conversion figure like "<InlineMath math="0.5\text{ m}^2" /> per batch" already incorporates the path's fixed <InlineMath math="8" />-cm thickness, so thickness is not needed separately.
+
+## Tracing every factor in the cement bag formula
+
+**The chain from path area to cement bags** uses exactly three figures (<Highlight><InlineMath math="0.5" /> square metres of path</Highlight>, <Highlight><InlineMath math="1" /> bucket of cement</Highlight>, and <Highlight>fills about <InlineMath math="2.5" /> buckets</Highlight>):
+
+<BlockMath math="\text{Cement bags} = \frac{\text{Area} \div 0.5 \times 1}{2.5}" />
+
+| Detail | Needed? | Role in the calculation |
+| --- | --- | --- |
+| I (<InlineMath math="0.5\text{ m}^2" /> per full batch) | **Yes** | Converts path area into number of full batches. |
+| II (<InlineMath math="2.5" /> buckets per <InlineMath math="40" />-kg bag) | **Yes** | Converts buckets of cement into cement bags. |
+| III (<InlineMath math="1" /> bucket of cement per batch) | **Yes** | Converts full batches into buckets of cement. |
+| IV (<InlineMath math="2" /> buckets of sand per batch) | No | Sand quantity does not change the cement-bag count. |
+| V (<InlineMath math="8" />-cm path thickness) | No | Already built into the <InlineMath math="0.5\text{ m}^2" /> coverage per batch. |
+
+## Why the other options fail
+
+- **Options without III** jump from batches to bags without knowing how much cement each batch uses.
+- **Options including IV** include sand, which plays no part in finding cement bags.
+
+# Answer
+
+The details needed to work out the bags of cement are **I, II, and III only**.

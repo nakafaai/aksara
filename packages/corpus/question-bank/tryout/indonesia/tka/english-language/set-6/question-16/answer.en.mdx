@@ -1,14 +1,34 @@
-Go from area to batches, batches to buckets of cement, and buckets to bags.
+# Given
 
-**Area**. <InlineMath math="1 \times 6 = 6" /> square metres.
+Pak Joko wants a garden path **<InlineMath math="1" /> metre wide and <InlineMath math="6" /> metres long** (<InlineMath math="6\text{ m}^2" />) using full batches from the guide:
+- Each full batch covers about **<InlineMath math="0.5\text{ m}^2" />** and uses **<InlineMath math="1" /> bucket of cement**.
+- One <InlineMath math="40" />-kg bag of cement fills about **<InlineMath math="2.5" /> buckets**.
 
-**Batches**. Each full batch covers about <InlineMath math="0.5" /> square metres: <InlineMath math="6 \div 0.5 = 12" /> batches.
+# Asked
 
-**Cement**. Each batch uses <InlineMath math="1" /> bucket of cement, so <InlineMath math="12" /> buckets. A bag fills about <InlineMath math="2.5" /> buckets: <InlineMath math="12 \div 2.5 = 4.8" /> bags. He can't buy part of a bag, so he needs <InlineMath math="5" />.
+How many <InlineMath math="40" />-kilogram bags of cement Pak Joko must buy.
 
-- <InlineMath math="12" /> treats a bucket of cement as a bag.
-- <InlineMath math="4" /> rounds <InlineMath math="4.8" /> down and leaves him short.
-- <InlineMath math="3" /> skips the batch figure and uses one bucket per square metre: <InlineMath math="6 \div 2.5 = 2.4" />, rounded up.
-- <InlineMath math="30" /> multiplies by <InlineMath math="2.5" /> instead of dividing: <InlineMath math="12 \times 2.5" />.
+# Solution
 
-So Pak Joko must buy <InlineMath math="5" /> bags.
+Follow the unit chain straight across: **path area** to **full batches**, batches to **buckets of cement**, buckets to **bags**, then **round up** because you cannot buy a fraction of a bag.
+
+> Whenever materials are bought in whole bags, any fractional requirement like <InlineMath math="4.8" /> bags must be rounded up to <InlineMath math="5" /> so the job does not run short.
+
+## Calculating batches and bags of cement
+
+The guide states <Highlight>One <InlineMath math="40" />-kilogram bag of cement fills about <InlineMath math="2.5" /> buckets</Highlight> and <Highlight>Each full batch of <InlineMath math="1" /> bucket of cement ... makes enough concrete for about <InlineMath math="0.5" /> square metres of path</Highlight>. **Step by step**:
+
+<BlockMath math="\text{Area: } 1 \times 6 = 6\text{ m}^2, \qquad \text{Batches: } \frac{6}{0.5} = 12\text{ batches (12 buckets of cement)}" />
+
+<BlockMath math="\text{Bags: } \frac{12}{2.5} = 4.8\text{ bags} \implies \text{must buy } 5\text{ bags}" />
+
+## Why the other options fail
+
+- **Option <InlineMath math="12" />** treats <InlineMath math="12" /> buckets as <InlineMath math="12" /> bags.
+- **Option <InlineMath math="4" />** rounds <InlineMath math="4.8" /> down, leaving Pak Joko short of cement.
+- **Option <InlineMath math="3" />** skips the <InlineMath math="0.5\text{ m}^2" /> batch size (<InlineMath math="6" /> divided by <InlineMath math="2.5" />, rounded up).
+- **Option <InlineMath math="30" />** multiplies <InlineMath math="12" /> by <InlineMath math="2.5" /> instead of dividing.
+
+# Answer
+
+Pak Joko must buy **<InlineMath math="5" />** bags of cement.

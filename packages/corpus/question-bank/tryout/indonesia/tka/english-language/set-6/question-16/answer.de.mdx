@@ -1,14 +1,34 @@
-Rechne von der Fläche zu den Mischungen, von den Mischungen zu Eimern Zement und von den Eimern zu Säcken.
+# Gegeben
 
-**Fläche**. <InlineMath math="1 \times 6 = 6" /> Quadratmeter.
+Pak Joko möchte einen Gartenweg von **<InlineMath math="1" /> Meter Breite und <InlineMath math="6" /> Metern Länge** (<InlineMath math="6\text{ m}^2" />) mit vollen Mischungen herstellen:
+- Eine volle Mischung reicht für etwa **<InlineMath math="0{,}5\text{ m}^2" />** und braucht **<InlineMath math="1" /> Eimer Zement**.
+- Ein <InlineMath math="40" />-kg-Sack Zement füllt etwa **<InlineMath math="2{,}5" /> Eimer**.
 
-**Mischungen**. Eine volle Mischung reicht für etwa <InlineMath math="0{,}5" /> Quadratmeter: <InlineMath math="6 \div 0{,}5 = 12" /> Mischungen.
+# Gesucht
 
-**Zement**. Jede Mischung braucht <InlineMath math="1" /> Eimer Zement, also <InlineMath math="12" /> Eimer. Ein Sack füllt etwa <InlineMath math="2{,}5" /> Eimer: <InlineMath math="12 \div 2{,}5 = 4{,}8" /> Säcke. Einen halben Sack kann er nicht kaufen, also braucht er <InlineMath math="5" />.
+Wie viele <InlineMath math="40" />-kg-Säcke Zement Pak Joko kaufen muss.
 
-- <InlineMath math="12" /> setzt einen Eimer Zement mit einem Sack gleich.
-- <InlineMath math="4" /> rundet <InlineMath math="4{,}8" /> ab, und der Zement reicht nicht.
-- <InlineMath math="3" /> übergeht die Angabe zur Mischung und rechnet einen Eimer pro Quadratmeter: <InlineMath math="6 \div 2{,}5 = 2{,}4" />, aufgerundet.
-- <InlineMath math="30" /> multipliziert mit <InlineMath math="2{,}5" />, statt zu teilen: <InlineMath math="12 \times 2{,}5" />.
+# Lösung
 
-Pak Joko muss also <InlineMath math="5" /> Säcke kaufen.
+Folge der Einheitenkette Schritt für Schritt: **Fläche** zu **Mischungen**, Mischungen zu **Eimern Zement**, Eimer zu **Säcken**, und **runde auf**, weil man nur ganze Säcke kaufen kann.
+
+> Bei ganzen Verkaufseinheiten wie Zementsäcken wird ein Bruchwert wie <InlineMath math="4{,}8" /> immer auf <InlineMath math="5" /> aufgerundet, damit nichts fehlt.
+
+## Mischungen und Zementsäcke berechnen
+
+Laut Anleitung gilt <Highlight>One <InlineMath math="40" />-kilogram bag of cement fills about <InlineMath math="2.5" /> buckets</Highlight> sowie <Highlight>Each full batch of <InlineMath math="1" /> bucket of cement ... makes enough concrete for about <InlineMath math="0.5" /> square metres of path</Highlight>. **Damit folgt**:
+
+<BlockMath math="\text{Fläche: } 1 \times 6 = 6\text{ m}^2, \qquad \text{Mischungen: } \frac{6}{0{,}5} = 12\text{ Mischungen (12 Eimer Zement)}" />
+
+<BlockMath math="\text{Säcke: } \frac{12}{2{,}5} = 4{,}8\text{ Säcke} \implies \text{kaufen: } 5\text{ Säcke}" />
+
+## Warum die anderen Optionen falsch sind
+
+- **Option <InlineMath math="12" />** verwechselt Eimer mit Säcken.
+- **Option <InlineMath math="4" />** rundet <InlineMath math="4{,}8" /> ab und lässt zu wenig Zement übrig.
+- **Option <InlineMath math="3" />** vergisst die <InlineMath math="0{,}5\text{ m}^2" /> pro Mischung (<InlineMath math="6" /> durch <InlineMath math="2{,}5" /> aufgerundet).
+- **Option <InlineMath math="30" />** multipliziert <InlineMath math="12" /> mit <InlineMath math="2{,}5" /> statt zu teilen.
+
+# Antwort
+
+Pak Joko muss **<InlineMath math="5" />** Säcke Zement kaufen.
