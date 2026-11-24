@@ -1,0 +1,348 @@
+export const metadata = {
+  title: "Pollution and Conservation Notes for Form Five Biology",
+  description:
+    "Form 5 Biology Chapter 10: trace deforestation and five kinds of pollution, measure BOD, and compare conservation and green technology, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Environmental Sustainability",
+};
+
+## Environmental Sustainability Means Using Nature without Using It Up
+
+**Environmental sustainability** means meeting the needs of people today while keeping ecosystems healthy enough to meet the needs of people in the future. The main threats come from human activity: **deforestation, pollution, loss of biodiversity, eutrophication and fast human population growth**. People answer them in three ways. **Preservation** keeps an ecosystem untouched, **conservation** uses it wisely so it lasts, and **restoration** repairs one that is damaged. Green technology then cuts the harm at its source. You will run a river polluted by sewage, warm the water, walk away from a loud machine, let owls guard a rice field, and feed a biogas digester.
+
+Climate change is a threat too. How greenhouse gases trap heat is a story of its own, told in [the causes of climate change](/en/subjects/biology/climate-change/causes), so here the focus stays on the other threats and on what people do about them.
+
+## Deforestation Removes More Than Trees
+
+**Deforestation** is the permanent clearing of forest for farms, plantations, roads, mining or towns. A growing human population needs more land, food, water and timber, so the pressure on forests rises with it. Losing the trees sets off a chain of effects, because **tree roots, leaves and leaf litter hold soil and water in place**.
+
+<Mermaid
+  title={<>What Happens after a Forest Is Cleared</>}
+  description={<>Each arrow joins a change to the effect it causes.</>}
+  chart={`flowchart TD
+    A["Forest cleared"] --> B["Habitats lost"]
+    A --> C["Bare soil exposed to rain"]
+    B --> D["Species decline or go extinct"]
+    C --> E["Soil erosion and landslides"]
+    E --> F["Rivers fill with silt"]
+    C --> G["Rain runs off faster"]
+    G --> H["Flash floods downstream"]`}
+/>
+
+Read the chart from the top. Rain on a forest soaks into spongy leaf litter and reaches the river slowly. Rain on bare ground runs straight off, carrying soil with it. The silt makes river water cloudy, blocks light from water plants and fills channels, so the same storm now floods the land downstream. Animals that lived only in that forest lose their food and shelter, which is how **habitat loss drives the loss of biodiversity**.
+
+## Water Pollution Uses Up the Oxygen in a River
+
+Sewage, waste from farms and factory effluent carry organic matter into rivers. Bacteria break that matter down and use dissolved oxygen as they do. The amount of oxygen microorganisms use to break down the organic matter in a water sample is called the **biochemical oxygen demand (BOD)**. **The higher the BOD, the more polluted the water**, because more food for bacteria means more oxygen taken from fish.
+
+Downstream of a sewage outlet the oxygen first falls, then recovers as the organic matter runs out and air dissolves back in. This dip is the **oxygen sag**. The model below assumes water that holds <InlineMath math="8\text{ mg/L}" /> of oxygen when it is clean, with fixed rates of decay and of mixing with air. Raise the BOD of the water entering the river and watch the lowest point.
+
+<MathVisual
+  title={<>The Oxygen Sag below a Sewage Outlet</>}
+  description={
+    <>
+      Dissolved oxygen{" "}
+      <InlineMath math="O(t) = 8 - b(e^{-0.3t} - e^{-0.6t})" /> mg/L, where{" "}
+      <InlineMath math="t" /> is the days the water has flowed and{" "}
+      <InlineMath math="b" /> the BOD at the outlet. The shaded zone is below{" "}
+      <InlineMath math="5\text{ mg/L}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "b", min: 0, max: 30, value: 20, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "oxygen", kind: "function", appearance: "primary", formula: "8 - b(exp(-0.3x) - exp(-0.6x))", domain: { min: 0, max: 10 } },
+      { id: "fish", kind: "region", appearance: "warning", inequalities: ["y < 5", "y > 0", "x > 0", "x < 10"] },
+      { id: "lowest", kind: "marker", appearance: "answer", x: "ln(2)/0.3", y: "8 - 0.25b" },
+    ],
+    labels: [
+      { key: "lowest", objectId: "lowest", at: { x: "ln(2)/0.3", y: "8 - 0.25b" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "minimum", formula: "8 - 0.25b" },
+    ],
+  }}
+  labels={{
+    b: <>BOD at the outlet <InlineMath math="b" /> in mg/L</>,
+    lowest: <>Lowest oxygen</>,
+    minimum: <>Lowest dissolved oxygen in mg/L</>,
+  }}
+/>
+
+Work it out for a BOD of <InlineMath math="20\text{ mg/L}" />. In this model the lowest point comes when <InlineMath math="e^{-0.3t} = \tfrac{1}{2}" />, so the bracket equals <InlineMath math="\tfrac{1}{2} - \tfrac{1}{4} = \tfrac{1}{4}" />:
+
+<MathContainer>
+<BlockMath math="t = \frac{\ln 2}{0.3} = 2.31\text{ days}" />
+<BlockMath math="O_{\min} = 8 - \frac{b}{4} = 8 - \frac{20}{4} = 3\text{ mg/L}" />
+</MathContainer>
+
+Oxygen below about <InlineMath math="5\text{ mg/L}" /> stresses fish and other water animals, so the stretch of river around day two would suffocate them. Check with the slider: at <InlineMath math="b = 20" /> the readout shows <InlineMath math="3" />. The largest BOD that keeps the sag above the shaded zone solves <InlineMath math="8 - b/4 = 5" />, so <InlineMath math="b = 12\text{ mg/L}" />.
+
+Fertiliser washed off farms causes a slower version of the same problem, called **eutrophication**. Nitrates and phosphates feed a bloom of algae on the surface. The bloom blocks light, plants underneath die, and when the algae die too, bacteria decompose all of it. **The decomposers raise the BOD**, the oxygen falls, and fish die even though no sewage entered the water.
+
+## Four More Kinds of Pollution
+
+Water is one of five kinds of pollution. The table names the main source and the effect of each. Read each row as a cause and its result.
+
+| Pollution | Main sources | Effect on living things |
+| :--- | :--- | :--- |
+| Air | Vehicle and factory exhaust, open burning | Haze particles damage lungs, and sulfur dioxide and nitrogen oxides form acid rain |
+| Water | Sewage, farm runoff, factory effluent | High BOD, eutrophication, fish deaths |
+| Soil | Pesticides, heavy metals, leachate from rubbish dumps | Poisons build up along food chains and kill soil organisms |
+| Thermal | Hot cooling water from power stations and factories | Warm water holds less oxygen, so fish suffocate |
+| Noise | Construction, traffic, machines | Hearing loss, stress and disturbed sleep |
+
+**Acid rain** forms when sulfur dioxide and nitrogen oxides dissolve in rain to make sulfuric and nitric acid. It lowers the pH of lakes and soil, harms leaves and wears away buildings. Pesticides in soil show a different danger: a poison that is not broken down passes from prey to predator and **becomes more concentrated at each step of the food chain**, so top predators carry the highest dose.
+
+Thermal pollution works through a physical fact: **warm water holds less dissolved oxygen** than cool water. Move the temperature slider and read the most oxygen fresh water can hold.
+
+<MathVisual
+  title={<>Warmer Water Holds Less Oxygen</>}
+  description={
+    <>
+      The most oxygen fresh water at sea level can dissolve, in mg/L, from{" "}
+      <InlineMath math="0^\circ\text{C}" /> to <InlineMath math="40^\circ\text{C}" />,
+      from the Benson and Krause equation that water laboratories use.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 16 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "w", min: 0, max: 40, value: 28, step: 1, label: "w" },
+    ],
+    objects: [
+      { id: "solubility", kind: "function", appearance: "primary", formula: "exp(-139.34411 + 157570.1/(x + 273.15) - 66423080/(x + 273.15)^2 + 12438000000/(x + 273.15)^3 - 862194900000/(x + 273.15)^4)", domain: { min: 0, max: 40 } },
+      { id: "river", kind: "marker", appearance: "answer", x: "w", y: "exp(-139.34411 + 157570.1/(w + 273.15) - 66423080/(w + 273.15)^2 + 12438000000/(w + 273.15)^3 - 862194900000/(w + 273.15)^4)" },
+    ],
+    labels: [
+      { key: "river", objectId: "river", at: { x: "w", y: "exp(-139.34411 + 157570.1/(w + 273.15) - 66423080/(w + 273.15)^2 + 12438000000/(w + 273.15)^3 - 862194900000/(w + 273.15)^4)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "saturation", formula: "exp(-139.34411 + 157570.1/(w + 273.15) - 66423080/(w + 273.15)^2 + 12438000000/(w + 273.15)^3 - 862194900000/(w + 273.15)^4)" },
+    ],
+  }}
+  labels={{
+    w: <>Water temperature <InlineMath math="w" /> in <InlineMath math="^\circ\text{C}" /></>,
+    river: <>River water</>,
+    saturation: <>Most dissolved oxygen in mg/L</>,
+  }}
+/>
+
+A river at <InlineMath math="28^\circ\text{C}" /> can hold <InlineMath math="7.83\text{ mg/L}" /> of oxygen. Hot water from a power station warms it to <InlineMath math="32^\circ\text{C}" />, where it can hold only <InlineMath math="7.31\text{ mg/L}" />. That is <InlineMath math="0.52\text{ mg/L}" /> less, while warmer fish breathe faster and need more. Both changes push in the same direction, against the fish.
+
+Noise fades with distance. From a small source in open air, the sound level drops by <InlineMath math="20\log r" /> decibels at <InlineMath math="r" /> metres, compared with its level at <InlineMath math="1" /> metre. Hearing can be damaged by <InlineMath math="85" /> decibels heard over a working day. Turn up the source and find where the level falls to that limit.
+
+<MathVisual
+  title={<>A Loud Machine Is Quieter Farther Away</>}
+  description={
+    <>
+      Sound level <InlineMath math="L = s - 20\log r" /> decibels at{" "}
+      <InlineMath math="r" /> metres, where <InlineMath math="s" /> is the level
+      at <InlineMath math="1" /> metre. The shaded zone is above{" "}
+      <InlineMath math="85" /> decibels.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 40, max: 120 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 90, max: 115, value: 110, step: 1, label: "s" },
+    ],
+    objects: [
+      { id: "level", kind: "function", appearance: "primary", formula: "s - 20 log(x)", domain: { min: 1, max: 40 } },
+      { id: "loud", kind: "region", appearance: "warning", inequalities: ["y > 85", "y < 120", "x > 0", "x < 40"] },
+      { id: "limit", kind: "marker", appearance: "answer", x: "10^((s - 85)/20)", y: "85" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: "10^((s - 85)/20)", y: "85" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "distance", formula: "10^((s - 85)/20)" },
+    ],
+  }}
+  labels={{
+    s: <>Level at <InlineMath math="1" /> metre <InlineMath math="s" /> in dB</>,
+    limit: <>Falls to <InlineMath math="85" /> dB</>,
+    distance: <>Distance to <InlineMath math="85" /> dB in metres</>,
+  }}
+/>
+
+Take a pile driver at <InlineMath math="110" /> decibels measured <InlineMath math="1" /> metre away. Set the level equal to <InlineMath math="85" /> and solve for <InlineMath math="r" />:
+
+<MathContainer>
+<BlockMath math="110 - 20\log r = 85" />
+<BlockMath math="\log r = \frac{25}{20} = 1.25 \quad\Rightarrow\quad r = 10^{1.25} = 17.8\text{ m}" />
+</MathContainer>
+
+Check by doubling: each time the distance doubles, the level falls by <InlineMath math="20\log 2 = 6.0" /> decibels. At <InlineMath math="16\text{ m}" />, four doublings from <InlineMath math="1\text{ m}" />, the level is <InlineMath math="110 - 24 = 86" /> decibels, just above the limit, so <InlineMath math="17.8\text{ m}" /> fits. Workers closer than that need **ear protection**.
+
+## Three Ways to Protect an Ecosystem
+
+The three responses differ in **how much people use the ecosystem**. Read each row from the meaning to the example.
+
+| Response | Meaning | Example in Malaysia |
+| :--- | :--- | :--- |
+| Preservation | Keep an ecosystem as it is, with as little human use as possible | Taman Negara and Kinabalu Park protect forest from logging |
+| Conservation | Manage and use resources wisely so they last | Permanent forest reserves logged selectively, turtle hatcheries |
+| Restoration | Repair a damaged ecosystem toward its natural state | Replanting mangroves on eroded coasts, planting trees on old mining land |
+
+Each one is needed for a different reason. Preservation keeps species and their genes that live nowhere else, including plants that may hold future medicines. Conservation lets people keep taking timber, fish and water without running out. Restoration brings back what was lost: replanted mangroves shelter young fish again and break the force of waves. **An ecosystem that is cheaper to keep than to repair** is the strongest reason to preserve and conserve first.
+
+## Sustainable Practices Protect Nature and Food
+
+**Sustainable development** is development that meets today's needs without taking away the ability of future generations to meet theirs. In 2015 the members of the United Nations agreed on <InlineMath math="17" /> Sustainable Development Goals for 2030 that put this idea into targets. Practices that work toward them include reducing, reusing and recycling waste, treating sewage before it reaches rivers, and replanting what is cut.
+
+Farming needs sustainable practices most, because it feeds everyone and uses the most land. **Biological control** uses a natural enemy to keep a pest in check instead of a poison. Rice and oil palm farmers in Malaysia put up nest boxes for barn owls, which hunt rats. Set how many owls the field starts with, and watch the rat population over twenty years.
+
+<PredatorPreyLab
+  title={<>Barn Owls Keep Rats in Check</>}
+  description={
+    <>
+      A rice field that could feed up to <InlineMath math="500" /> rats. The
+      rats eat the grain and the barn owls hunt the rats, as the
+      Lotka-Volterra model runs both populations.
+    </>
+  }
+  capacity={500}
+  labels={{
+    start: "Owls at the start",
+    prey: <>Rats</>,
+    predators: <>Barn owls</>,
+    peak: <>Highest rat count</>,
+    year: <>Year</>,
+    viewLabel: "A rice field seen from above with rats and barn owls",
+  }}
+/>
+
+Whatever number of owls you start with, the populations swing and then settle near <InlineMath math="100" /> rats, a fifth of the <InlineMath math="500" /> the rice could feed. The owls do that without poison, so no rat poison builds up in the food chain or kills the owls themselves.
+
+Sustainable farming also supports **food security**: everyone, at all times, can get enough safe and nutritious food. One measure a country watches is its **self-sufficiency ratio (SSR)**, the share of the food it uses that it grows itself:
+
+<BlockMath math="\text{SSR} = \frac{\text{production}}{\text{production} + \text{imports} - \text{exports}} \times 100\%" />
+
+Suppose a country grows <InlineMath math="2.4" /> million tonnes of rice in a year, imports <InlineMath math="1.5" /> million tonnes and exports <InlineMath math="0.1" /> million tonnes:
+
+<BlockMath math="\text{SSR} = \frac{2.4}{2.4 + 1.5 - 0.1} \times 100\% = \frac{2.4}{3.8} \times 100\% = 63.2\%" />
+
+Check: an SSR under <InlineMath math="100\%" /> means the country uses more rice than it grows. Here <InlineMath math="2.4 < 3.8" />, so the answer must be below <InlineMath math="100\%" />, and it is. Malaysia's rice SSR has stayed below <InlineMath math="100\%" /> too, so part of its rice is imported, which is why higher yields from sustainable farming matter.
+
+## Green Technology Cuts Pollution at Its Source
+
+**Green technology** is any product, system or process that reduces harm to the environment: it uses less energy and fewer resources, produces little or no pollution and greenhouse gas, and is safe to use. Malaysia's National Green Technology Policy of 2009 rests on **four pillars: energy, environment, economy and society**. You find green technology in electricity, buildings, transport and in the treatment of water and waste.
+
+A **biogas digester** turns waste into fuel. Microbes break down animal dung without oxygen and give off biogas, which is about <InlineMath math="60\%" /> methane and burns in a stove. Dung that would have rotted in the open and polluted streams becomes cooking gas. Change how much dung goes in each day.
+
+<BiogasDigesterLab
+  title={<>A Biogas Digester Turns Dung into Cooking Gas</>}
+  description={
+    <>
+      A household digester in cross-section. Each kilogram of fresh dung gives
+      about <InlineMath math="0.04\text{ m}^3" /> of biogas, and a stove
+      burner uses <InlineMath math="0.4\text{ m}^3" /> an hour.
+    </>
+  }
+  dung={25}
+  labels={{
+    dungControl: "Dung each day",
+    gas: <>Biogas each day</>,
+    methane: <>Methane each day</>,
+    energy: <>Chemical energy</>,
+    cooking: <>Cooking time</>,
+    viewLabel: "A biogas digester connected to a kitchen stove",
+  }}
+/>
+
+Work out one day with <InlineMath math="25\text{ kg}" /> of dung. Multiply by the yield, take the methane share, then divide by the burner's use:
+
+<MathContainer>
+<BlockMath math="V_{\text{biogas}} = 25 \times 0.04 = 1.0\text{ m}^3" />
+<BlockMath math="V_{\text{methane}} = 1.0 \times 0.60 = 0.60\text{ m}^3" />
+<BlockMath math="t = \frac{1.0\text{ m}^3}{0.4\text{ m}^3/\text{h}} = 2.5\text{ h}" />
+</MathContainer>
+
+Check with the digester's readouts at <InlineMath math="25\text{ kg}" />: biogas <InlineMath math="1.0\text{ m}^3" />, methane <InlineMath math="0.60\text{ m}^3" />, cooking time <InlineMath math="2.5" /> hours. Palm oil mills use the same idea on a large scale, capturing biogas from their liquid waste instead of letting the methane escape.
+
+Solar panels are green technology for electricity, but making them uses energy too. A fair test asks how long the panels take to pay that energy back. Change how much sunshine the roof gets.
+
+<SolarRoofPaybackLab
+  title={<>How Fast a Solar Roof Repays Its Energy</>}
+  description={
+    <>
+      A <InlineMath math="3\text{ kWp}" /> solar roof that took{" "}
+      <InlineMath math="3{,}900\text{ kWh}" /> to make, set against the
+      electricity it gives each year over <InlineMath math="25" /> years.
+    </>
+  }
+  yieldPerPeak={1300}
+  labels={{
+    yieldControl: "Yearly yield per kWp",
+    invested: <>Energy to make it</>,
+    yearly: <>Energy each year</>,
+    payback: <>Years to pay back</>,
+    lifetime: <>Energy returned over its life</>,
+    viewLabel: "A chart of the energy balance of a solar roof over its lifetime",
+  }}
+/>
+
+At <InlineMath math="1{,}300\text{ kWh}" /> per kWp a year, the roof gives <InlineMath math="3 \times 1{,}300 = 3{,}900\text{ kWh}" /> a year, so it repays the energy used to make it in about one year and then gives about <InlineMath math="25" /> times that energy over its life. Even at the lowest setting it pays back in under two years. **Judge green technology over its whole life**, not only while it runs.
+
+## Common Mistakes about Environmental Sustainability
+
+| Mistake | Why it is wrong | How to check |
+| :--- | :--- | :--- |
+| A high BOD means the water is clean because it holds a lot of oxygen. | BOD is oxygen that microbes use up, so high BOD means much organic pollution. | High BOD goes with low dissolved oxygen. |
+| Preservation and conservation mean the same thing. | Preservation keeps people out, while conservation lets people use resources wisely. | Ask whether the resource is still being used. |
+| Eutrophication kills fish because fertiliser is poisonous. | Fish die from lack of oxygen when bacteria decompose dead algae. | Follow the chain to oxygen, not to the fertiliser. |
+| Heat is not pollution because it adds no substance. | Warm water holds less oxygen and changes how organisms live. | Compare the oxygen water holds at two temperatures. |
+| Halving your distance from a noise halves the decibels. | The level changes by <InlineMath math="20\log 2 = 6" /> dB for each halving. | A source at <InlineMath math="110" /> dB is <InlineMath math="104" /> dB at <InlineMath math="2" /> metres. |
+
+The first mistake is the one that costs marks in BOD experiments. Methylene blue loses its colour when the oxygen in a water sample is used up, so **the faster it turns colourless, the higher the BOD** and the more polluted the sample.
+
+## Practice with Environmental Sustainability
+
+The problems go from reading a BOD experiment to calculating with the models. **Name the cause behind each number** before you calculate.
+
+1. Methylene blue was added to three water samples. It turned colourless after <InlineMath math="40" /> minutes in sample P, <InlineMath math="3" /> hours in sample Q and <InlineMath math="5" /> days in sample R. Arrange the samples from most to least polluted and explain.
+
+2. In the oxygen sag model <InlineMath math="O_{\min} = 8 - b/4" />, a factory releases effluent with a BOD of <InlineMath math="16\text{ mg/L}" />. Will fish survive downstream? What BOD would bring the lowest point to exactly <InlineMath math="5\text{ mg/L}" />?
+
+3. A generator measures <InlineMath math="100" /> decibels at <InlineMath math="1" /> metre. How far away does its level fall to <InlineMath math="85" /> decibels?
+
+4. A farm feeds <InlineMath math="40\text{ kg}" /> of dung into the digester each day. How much biogas does it make, and how long can it cook?
+
+### Answers
+
+**Answer 1**: From most to least polluted the order is **P, Q, R**. Methylene blue turns colourless when the oxygen is used up. Sample P used its oxygen fastest, so it holds the most microorganisms and organic matter and has the highest BOD. Check: sample R kept its oxygen for days, which fits nearly clean water.
+
+**Answer 2**: Put <InlineMath math="b = 16" /> into the model:
+
+<BlockMath math="O_{\min} = 8 - \frac{16}{4} = 4\text{ mg/L}" />
+
+The lowest point is below <InlineMath math="5\text{ mg/L}" />, so **fish will be stressed and may die** around day two downstream. For a lowest point of exactly <InlineMath math="5\text{ mg/L}" />, solve <InlineMath math="8 - b/4 = 5" />, which gives <InlineMath math="b = 12\text{ mg/L}" />. Check: <InlineMath math="8 - 12/4 = 5" />.
+
+**Answer 3**: Set the level to <InlineMath math="85" /> decibels and solve:
+
+<MathContainer>
+<BlockMath math="100 - 20\log r = 85" />
+<BlockMath math="\log r = \frac{15}{20} = 0.75 \quad\Rightarrow\quad r = 10^{0.75} = 5.6\text{ m}" />
+</MathContainer>
+
+Check by doubling: at <InlineMath math="4\text{ m}" />, two doublings, the level is <InlineMath math="100 - 12 = 88" /> decibels, and at <InlineMath math="8\text{ m}" /> it is <InlineMath math="82" />. The answer <InlineMath math="5.6\text{ m}" /> lies between them, as it should.
+
+**Answer 4**: Multiply by the yield, then divide by the burner's use:
+
+<MathContainer>
+<BlockMath math="V_{\text{biogas}} = 40 \times 0.04 = 1.6\text{ m}^3" />
+<BlockMath math="t = \frac{1.6}{0.4} = 4.0\text{ h}" />
+</MathContainer>
+
+The farm makes <InlineMath math="1.6\text{ m}^3" /> of biogas and can cook for **<InlineMath math="4" /> hours** a day. Check with the digester: set the dung to <InlineMath math="40\text{ kg}" /> and read the same two values.

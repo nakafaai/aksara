@@ -1,0 +1,320 @@
+export const metadata = {
+  title: "Gentechnik und Biotechnologie",
+  description:
+    "Versteh, wie Gentechnik Insulin und GVO herstellt und wie PCR und genetischer Fingerabdruck Biotechnologie nutzen, mit Beispielen, Fehlern und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Gentechnik",
+};
+
+## Gentechnik verändert das Erbgut eines Lebewesens
+
+**Gentechnik** heißt, die DNA eines Lebewesens gezielt zu verändern, meist indem man ein Gen aus einem Organismus in einen anderen überträgt. Das Ergebnis ist ein **gentechnisch veränderter Organismus (GVO)**: ein Organismus, dessen DNA auf diese Weise verändert wurde. DNA, die Gene aus zwei verschiedenen Quellen verbindet, heißt **rekombinante DNA**. **Biotechnologie** ist das größere Feld: Man nutzt Lebewesen oder Teile von ihnen, um Produkte herzustellen oder Probleme zu lösen. Gleich schaust du in ein Bakterium hinein, lässt eine Kolonie wachsen, die Insulin bildet, kopierst DNA mit der PCR und lässt ein Gel laufen, um ein DNA-Profil zuzuordnen.
+
+Für den Gentransfer brauchst du drei Werkzeuge. Ein **Restriktionsenzym** schneidet DNA an genau einer Basenfolge. Die **DNA-Ligase** verbindet zwei geschnittene Stücke wieder zu einem Strang. Ein **Vektor** bringt das neue Gen in die Wirtszelle, und der häufigste Vektor ist ein **Plasmid**: ein kleiner DNA-Ring, der im Bakterium getrennt vom Hauptchromosom liegt.
+
+[Bakterien](/de/faecher/biologie/vielfalt-der-lebewesen/bakterien) eignen sich als Wirte, weil sie ihre Plasmide bei jeder Teilung mitkopieren und ein menschliches Gen mit demselben genetischen Code lesen wie menschliche Zellen. Öffne das Bakterium unten und such den kleinen Ring neben dem verknäuelten Nukleoid.
+
+<BacteriaStructureLab
+  title={<>Das Innere des Bakteriums, das ein neues Gen aufnimmt</>}
+  description={
+    <>
+      Ein stäbchenförmiges Bakterium wie Escherichia coli, aufgeschnitten. Das
+      verknäuelte Nukleoid enthält die Haupt-DNA, der kleine Ring daneben ist
+      ein Plasmid.
+    </>
+  }
+  labels={{
+    chooseMode: "Ansicht wählen",
+    focusLabel: "Achte auf",
+    takeawayLabel: "Warum das wichtig ist",
+    viewLabel: "Modell eines Bakteriums mit Nukleoid und Plasmid",
+    items: [
+      {
+        tab: "Form",
+        scene: { kind: "shape", bacillusLabel: "Bazillus" },
+        caption: <>Escherichia coli ist ein Stäbchen, etwa <InlineMath math="2\ \mu\text{m}" /> lang.</>,
+        focus: <>Ein Bakterium ist eine einzige Zelle. Eine Zelle, die ein neues Gen aufnimmt, kann also zu einer ganzen Kolonie heranwachsen.</>,
+        takeaway: <>Jede Tochterzelle dieser einen Zelle trägt das neue Gen ebenfalls.</>,
+      },
+      {
+        tab: "Innen",
+        scene: { kind: "structure", nucleoidDnaLabel: "DNA im Nukleoid" },
+        caption: <>Das Nukleoid enthält das Hauptchromosom. Der kleine Ring daneben ist ein Plasmid, die Körnchen sind Ribosomen.</>,
+        focus: <>Ein Plasmid ist klein und separat, also kann man ein Gen hineinschneiden und den Ring wieder in eine Zelle bringen.</>,
+        takeaway: <>Ribosomen lesen das Gen auf dem Plasmid und bauen sein Protein.</>,
+      },
+    ],
+  }}
+/>
+
+## Bakterien können menschliches Insulin herstellen
+
+Manche Menschen mit Diabetes bilden zu wenig **Insulin**, das Hormon, das den Blutzucker senkt. Früher kam Insulin aus der Bauchspeicheldrüse von Schweinen und Rindern. Seit 1982 wird **rekombinantes Humaninsulin** aus Bakterien verkauft, und seine Aminosäuresequenz ist genau dieselbe wie die des Insulins aus einer menschlichen Bauchspeicheldrüse.
+
+Die Schritte folgen den drei Werkzeugen der Reihe nach:
+
+1. Schneide das **menschliche Insulingen** mit einem Restriktionsenzym aus der menschlichen DNA.
+2. Schneide ein Plasmid mit **demselben Restriktionsenzym** auf, damit beide Schnitte passende einzelsträngige Enden hinterlassen, die sogenannten klebrigen Enden.
+3. Mische Gen und Plasmid. Die klebrigen Enden paaren sich, und die **DNA-Ligase** verschließt sie zu einem rekombinanten Plasmid.
+4. Bring die rekombinanten Plasmide in Bakterien. Nur einige Zellen nehmen eins auf, also werden genau diese Zellen ausgewählt und behalten.
+5. Lass die ausgewählten Bakterien in einem großen Fermenter wachsen. Jede Zelle liest das Insulingen und bildet Insulin, das danach gewonnen und gereinigt wird.
+
+<Mermaid
+  title={<>Vom menschlichen Gen zum Insulin im Fläschchen</>}
+  description={<>Die Reihenfolge der Schritte, die aus einem menschlichen Gen Insulin aus Bakterien machen.</>}
+  chart={`flowchart TD
+    A["Insulingen aus menschlicher DNA geschnitten"] --> C["Ligase fügt Gen ins Plasmid ein"]
+    B["Plasmid mit demselben Enzym geschnitten"] --> C
+    C --> D["Rekombinantes Plasmid gelangt ins Bakterium"]
+    D --> E["Bakterien vermehren sich im Fermenter"]
+    E --> F["Insulin gewonnen und gereinigt"]`}
+/>
+
+Schritt 5 klappt, weil sich Bakterien schnell vermehren. Eine Zelle von Escherichia coli teilt sich bei <InlineMath math="37^\circ\text{C}" /> etwa alle <InlineMath math="20" /> Minuten in zwei, und **jede Tochterzelle bekommt eine Kopie des Plasmids**. Zieh den Zeitregler und zähl die Zellen.
+
+<BinaryFissionLab
+  title={<>Ein rekombinantes Bakterium wird zur Kolonie</>}
+  description={
+    <>
+      Eine einzelne Zelle von Escherichia coli auf Agar, die sich etwa alle{" "}
+      <InlineMath math="20" /> Minuten teilt. Jede neue Zelle trägt das Plasmid
+      mit dem Insulingen.
+    </>
+  }
+  labels={{
+    cells: <>Zellen</>,
+    generations: <>Generationen</>,
+    minutes: "Minuten",
+    viewLabel: "Eine Kolonie von Escherichia coli, die durch Zweiteilung wächst",
+  }}
+/>
+
+Rechne die Zahl jetzt aus. Ein rekombinantes Bakterium verdoppelt sich alle <InlineMath math="20" /> Minuten. Wie viele Zellen entstehen nach <InlineMath math="2" /> Stunden und nach <InlineMath math="10" /> Stunden? Bestimme zuerst die Zahl der Verdopplungen und nimm dann <InlineMath math="2" /> hoch diese Zahl:
+
+<MathContainer>
+<BlockMath math="n = \frac{120\text{ min}}{20\text{ min}} = 6, \qquad N = 2^6 = 64" />
+<BlockMath math="n = \frac{600\text{ min}}{20\text{ min}} = 30, \qquad N = 2^{30} = 1{.}073{.}741{.}824 \approx 1{,}07 \cdot 10^9" />
+</MathContainer>
+
+Prüf das erste Ergebnis an der Kolonie: Bei <InlineMath math="120" /> Minuten zeigt der Zähler <InlineMath math="6" /> Generationen und <InlineMath math="64" /> Zellen. In <InlineMath math="10" /> Stunden wird aus einer Zelle rund eine Milliarde Insulinfabriken. Deshalb kann ein Fermenter Millionen Patienten mit Insulin versorgen.
+
+## Gentechnisch veränderte Organismen und Lebensmittel
+
+Ein GVO bekommt ein Gen, das ihm eine Eigenschaft gibt, die er vorher nicht hatte. Lebensmittel aus einem GVO oder mit Bestandteilen davon heißen **gentechnisch veränderte Lebensmittel**. Lies jede Zeile mit der Frage: Welches Gen kam hinein, und was hat es verändert?
+
+| GVO | Eingefügtes Gen | Neue Eigenschaft |
+| :--- | :--- | :--- |
+| Bt-Mais und Bt-Baumwolle | Ein Giftgen aus dem Bakterium Bacillus thuringiensis | Tötet die Raupen, die die Pflanze fressen, also spritzen Landwirte weniger Insektizid |
+| Goldener Reis | Gene, die im Reiskorn Beta-Carotin bilden | Die Körner liefern Vitamin A, das normalem Reis fehlt |
+| Herbizidtolerante Sojabohne | Ein Gen, mit dem die Pflanze ein bestimmtes Herbizid übersteht | Landwirte können Unkraut vernichten, ohne die Kultur zu schädigen |
+| Schnell wachsender Lachs | Ein Wachstumshormon-Gen aus einer anderen Lachsart | Erreicht früher die Marktgröße |
+| Insulin bildende Bakterien | Das menschliche Insulingen | Bilden menschliches Insulin im Fermenter |
+
+Der Nutzen ist echt: **höhere Erträge, weniger Pestizide, bessere Ernährung und günstigere Medikamente**. Die Risiken sind ebenfalls echt, deshalb muss man jeden Fall einzeln prüfen. Ein Gen kann sich über Pollen auf wilde Verwandte ausbreiten. Insekten, die ständig Bt-Pflanzen fressen, können eine Resistenz gegen das Gift entwickeln. Ein neues Protein in Lebensmitteln muss getestet werden, damit es keine Allergien auslöst. Malaysia regelt die Freisetzung und Einfuhr von GVO im **Biosafety Act 2007**, also wird jeder GVO geprüft, bevor er auf Felder oder in Lebensmittelläden kommt.
+
+## Biotechnologie lässt Lebewesen arbeiten
+
+Biotechnologie ist älter als Gentechnik. Wer Tempeh mit einem Schimmelpilz oder Joghurt mit Bakterien herstellt, betreibt Biotechnologie, denn die Arbeit erledigen Lebewesen. Gentechnik ist der moderne Teil davon, der zuerst die DNA des Organismus verändert. Biotechnologie teilt man nach **dem Bereich ein, dem sie dient**:
+
+| Bereich | Beispiel | Was das Lebewesen tut |
+| :--- | :--- | :--- |
+| Medizin | Insulin, Impfstoff gegen Hepatitis B | Bakterien oder Hefen bilden ein menschliches Protein oder ein Virusprotein |
+| Landwirtschaft | GV-Pflanzen, Gewebekultur der Ölpalme | Pflanzen tragen ein neues Gen, oder eine Pflanze wird tausendfach geklont |
+| Industrie | Enzyme im Waschpulver | Mikroben bilden Enzyme, die Eiweiß- und Fettflecken abbauen |
+| Umwelt | Beseitigung von Ölverschmutzungen | Bakterien bauen Öl zu harmlosen Stoffen ab |
+| Forensik | Genetischer Fingerabdruck | DNA identifiziert einen Menschen aus einem Blutstropfen oder einem Haar |
+
+Die **Gentherapie** ist eine medizinische Anwendung, die eine Erbkrankheit behandelt, indem sie eine funktionierende Kopie eines Gens in die eigenen Zellen des Patienten bringt. Als Vektor dient oft ein harmloses Virus. Sie zielt auf die Ursache, das defekte Gen, statt lebenslang nur die Symptome zu behandeln.
+
+## Die PCR kopiert eine Probe millionenfach
+
+Ein Haar oder ein Blutstropfen enthält zu wenig DNA für einen Test. Die **Polymerase-Kettenreaktion (PCR)** kopiert einen DNA-Abschnitt immer wieder. Jeder Zyklus hat drei Schritte. Erhitzen auf etwa <InlineMath math="95^\circ\text{C}" /> trennt die beiden Stränge. Beim Abkühlen lagern sich kurze Primer am Anfang des Abschnitts an. Bei etwa <InlineMath math="72^\circ\text{C}" /> baut eine hitzestabile DNA-Polymerase an jedem alten Strang einen neuen. Zieh den Kopierregler und beobachte, wie **jeder alte Strang zur Vorlage eines neuen wird**.
+
+<DnaHelixLab
+  title={<>Ein PCR-Zyklus kopiert beide Stränge</>}
+  description={
+    <>
+      Ein Abschnitt von <InlineMath math="20" /> Basenpaaren öffnet sich von
+      einem Ende aus, und neue Nukleotide paaren sich mit jedem alten Strang:
+      A mit T und C mit G.
+    </>
+  }
+  sequence="GATTACACGTGCATGCAATG"
+  copy
+  labels={{
+    copy: "Kopieren",
+    copied: <>Kopierte Basenpaare</>,
+    length: <>Basenpaare</>,
+    span: <>Länge</>,
+    turns: <>Windungen</>,
+    viewLabel: "Eine DNA-Doppelhelix, die Strang für Strang kopiert wird",
+  }}
+/>
+
+Ein Zyklus macht aus einer Doppelhelix zwei, also **verdoppelt** jeder Zyklus die Zahl der Kopien. Nach <InlineMath math="n" /> Zyklen ist aus einer Ausgangskopie <InlineMath math="2^n" /> Kopien geworden. Lies die Tabelle unter dem Diagramm für die ersten <InlineMath math="10" /> Zyklen.
+
+<FunctionChart
+  a={2}
+  p={1}
+  mode="discrete"
+  n={11}
+  title={<>Kopien eines DNA-Abschnitts nach jedem PCR-Zyklus</>}
+  description={
+    <>
+      Das Modell <InlineMath math="f(x) = 1 \cdot 2^x" />, wobei{" "}
+      <InlineMath math="x" /> die Zahl der Zyklen ist. Nach{" "}
+      <InlineMath math="10" /> Zyklen ist aus einer Kopie{" "}
+      <InlineMath math="1{.}024" /> geworden.
+    </>
+  }
+/>
+
+Probier es mit einer echten Probe. Ein Abstrich enthält <InlineMath math="10" /> Kopien des Abschnitts, und das PCR-Gerät läuft <InlineMath math="25" /> Zyklen. Multipliziere die Ausgangskopien für jeden Zyklus einmal mit <InlineMath math="2" />:
+
+<BlockMath math="N = 10 \cdot 2^{25} = 10 \cdot 33{.}554{.}432 = 335{.}544{.}320 \approx 3{,}4 \cdot 10^8" />
+
+Prüf mit einer schnellen Schätzung: <InlineMath math="2^{10} \approx 10^3" />, also <InlineMath math="2^{25} = 2^5 \cdot 2^{10} \cdot 2^{10} \approx 32 \cdot 10^6" />. Mal <InlineMath math="10" /> ergibt das etwa <InlineMath math="3{,}2 \cdot 10^8" />, nah am exakten Ergebnis.
+
+## Der genetische Fingerabdruck vergleicht Bandenmuster
+
+Der **genetische Fingerabdruck**, auch DNA-Profil genannt, identifiziert einen Menschen anhand seiner DNA. Etwa <InlineMath math="99{,}9\,\%" /> der DNA zweier beliebiger Menschen sind gleich, also schaut ein Profil nur auf Bereiche, in denen sich Menschen unterscheiden. Am nützlichsten sind Bereiche, in denen sich eine kurze Sequenz viele Male wiederholt, denn **die Zahl der Wiederholungen ist von Mensch zu Mensch verschieden**. Nur eineiige Zwillinge haben dasselbe Profil. Wechsle unten zwischen den beiden Personen und zähl die Basen, die sich in einem Abschnitt unterscheiden.
+
+<DnaHelixLab
+  title={<>Zwei Menschen, ein DNA-Abschnitt</>}
+  description={
+    <>
+      Dieselben <InlineMath math="24" /> Basenpaare von zwei Menschen. Die
+      Basen, die sich unterscheiden, leuchten auf, wenn du wechselst.
+    </>
+  }
+  sequence="ATGCCTAGGCATTGACCGTAGCTA"
+  variant="ATGCCTAGTCATTGACAGTAGCTA"
+  labels={{
+    choose: "Person wählen",
+    strands: { first: <>Person P</>, second: <>Person Q</> },
+    differences: <>Abweichende Basen</>,
+    identity: <>Übereinstimmende Basen</>,
+    length: <>Basenpaare</>,
+    span: <>Länge</>,
+    viewLabel: "Derselbe DNA-Abschnitt von zwei Menschen, abweichende Basen hervorgehoben",
+  }}
+/>
+
+Für ein Profil kopiert das Labor die Wiederholungsbereiche mit der PCR und füllt sie in Taschen an einem Ende eines Gels. Elektrischer Strom zieht die negativ geladene DNA zum Pluspol. **Kürzere Stücke schlüpfen schneller durch das Gel**, also wandern sie weiter. In diesem Modell wandert ein Stück aus <InlineMath math="L" /> Basenpaaren in <InlineMath math="h" /> Stunden <InlineMath math="d = h(7 - 2\log L)" /> Zentimeter weit. Verändere die Laufzeit und beobachte, wie sich die Banden trennen.
+
+<MathVisual
+  title={<>Ein Gel trennt DNA-Stücke nach ihrer Länge</>}
+  description={
+    <>
+      Drei Spuren: DNA vom Tatort und von zwei Verdächtigen. Jede Bande wandert{" "}
+      <InlineMath math="d = h(7 - 2\log L)" /> cm nach unten, also wandert die
+      Bande mit <InlineMath math="150" /> Basenpaaren am weitesten.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -6, max: 1 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "h", min: 0.5, max: 2, value: 1.5, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "well-scene", kind: "segment", appearance: "reference", from: { x: 0.6, y: 0 }, to: { x: 1.4, y: 0 } },
+      { id: "well-p", kind: "segment", appearance: "reference", from: { x: 1.6, y: 0 }, to: { x: 2.4, y: 0 } },
+      { id: "well-q", kind: "segment", appearance: "reference", from: { x: 2.6, y: 0 }, to: { x: 3.4, y: 0 } },
+      { id: "scene-150", kind: "path", appearance: "primary", points: [{ x: "0.6", y: "-h(7 - 2 log(150))" }, { x: "1.4", y: "-h(7 - 2 log(150))" }] },
+      { id: "scene-320", kind: "path", appearance: "primary", points: [{ x: "0.6", y: "-h(7 - 2 log(320))" }, { x: "1.4", y: "-h(7 - 2 log(320))" }] },
+      { id: "p-150", kind: "path", appearance: "secondary", points: [{ x: "1.6", y: "-h(7 - 2 log(150))" }, { x: "2.4", y: "-h(7 - 2 log(150))" }] },
+      { id: "p-320", kind: "path", appearance: "secondary", points: [{ x: "1.6", y: "-h(7 - 2 log(320))" }, { x: "2.4", y: "-h(7 - 2 log(320))" }] },
+      { id: "q-210", kind: "path", appearance: "warning", points: [{ x: "2.6", y: "-h(7 - 2 log(210))" }, { x: "3.4", y: "-h(7 - 2 log(210))" }] },
+      { id: "q-400", kind: "path", appearance: "warning", points: [{ x: "2.6", y: "-h(7 - 2 log(400))" }, { x: "3.4", y: "-h(7 - 2 log(400))" }] },
+    ],
+    labels: [
+      { key: "scene", objectId: "well-scene", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "suspect-p", objectId: "well-p", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "suspect-q", objectId: "well-q", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "short", formula: "h(7 - 2 log(150))" },
+      { key: "long", formula: "h(7 - 2 log(400))" },
+    ],
+  }}
+  labels={{
+    h: <>Laufzeit <InlineMath math="h" /> in Stunden</>,
+    scene: <>Tatort</>,
+    "suspect-p": <>Verdächtiger P</>,
+    "suspect-q": <>Verdächtiger Q</>,
+    short: <>Laufstrecke der Bande mit <InlineMath math="150" /> Basenpaaren in cm</>,
+    long: <>Laufstrecke der Bande mit <InlineMath math="400" /> Basenpaaren in cm</>,
+  }}
+/>
+
+Entscheide jetzt, welcher Verdächtige passt. Die Tatortprobe hat Stücke mit <InlineMath math="150" /> und <InlineMath math="320" /> Basenpaaren. Verdächtiger P hat dieselben beiden, Verdächtiger Q hat <InlineMath math="210" /> und <InlineMath math="400" />. Berechne nach <InlineMath math="1{,}5" /> Stunden, wo jede Bande liegt:
+
+<MathContainer>
+<BlockMath math="d_{150} = 1{,}5(7 - 2\log 150) = 1{,}5(7 - 4{,}352) = 3{,}97\text{ cm}" />
+<BlockMath math="d_{320} = 1{,}5(7 - 2\log 320) = 1{,}5(7 - 5{,}010) = 2{,}98\text{ cm}" />
+<BlockMath math="d_{210} = 3{,}53\text{ cm}, \qquad d_{400} = 2{,}69\text{ cm}" />
+</MathContainer>
+
+Die Banden von Verdächtigem P liegen bei <InlineMath math="3{,}97\text{ cm}" /> und <InlineMath math="2{,}98\text{ cm}" />, genau auf Höhe der Tatortbanden, also **passt das Profil von Verdächtigem P**. Die Banden von Verdächtigem Q liegen auf anderen Höhen, also ist Q ausgeschlossen. Prüf die Reihenfolge: Das kürzeste Stück mit <InlineMath math="150" /> Basenpaaren hat die größte Laufstrecke, wie es sein muss. Ein echtes Labor vergleicht viele Wiederholungsbereiche gleichzeitig, sodass eine vollständige Übereinstimmung durch Zufall extrem unwahrscheinlich wird.
+
+## Nutzen und Grenzen der Gentechnik
+
+Gentechnik **löst Probleme, die ältere Methoden nicht lösen konnten**. Insulin hängt nicht mehr von tierischen Organen ab. Eine Pflanze kann eine Eigenschaft tragen, die jahrelange Kreuzung ihr nie geben könnte, etwa ein Giftgen aus einem Bakterium. Eine winzige DNA-Spur kann einen Verdächtigen identifizieren, einen zu Unrecht Beschuldigten entlasten oder ein Opfer nach einer Katastrophe benennen.
+
+Genau diese Macht ist der Grund, warum es Regeln braucht. Ein Gen, das mit einer Pflanze freigesetzt wurde, lässt sich nicht zurückholen. Ein DNA-Profil ist eine private Information über einen Menschen und seine Verwandten. Wer menschliche Gene verändert, steht vor der Frage, welche Änderungen Behandlungen sind und welche nicht. Deshalb **wird jede Anwendung nach ihren Belegen beurteilt**: was sie verändert, wem sie schaden könnte und wer entscheidet.
+
+## Typische Fehler in der Gentechnik
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Gen und Plasmid dürfen mit verschiedenen Restriktionsenzymen geschnitten werden. | Nur dasselbe Enzym hinterlässt klebrige Enden, die zusammenpassen und sich paaren. | Nenne ein Enzym für beide Schnitte. |
+| Die Ligase schneidet DNA. | Restriktionsenzyme schneiden, und die Ligase verbindet die Schnittenden. | Ligase verbindet, Restriktionsenzyme schneiden. |
+| Jeder GVO ist eine Pflanze. | Bakterien, Tiere und Pflanzen können alle GVO sein. | Frag, ob die DNA des Organismus verändert wurde. |
+| Die PCR fügt in jedem Zyklus eine feste Zahl von Kopien hinzu. | Jeder Zyklus verdoppelt die Kopien, das Wachstum ist also <InlineMath math="2^n" />. | Zehn Zyklen müssen aus einer Kopie <InlineMath math="1{.}024" /> machen. |
+| Größere DNA-Stücke wandern im Gel weiter. | Größere Stücke kommen langsamer durch das Gel. | Das kleinste Stück liegt am weitesten von der Tasche entfernt. |
+
+Der vierte Fehler führt zu viel zu kleinen Ergebnissen. Wenn du pro Zyklus <InlineMath math="2" /> Kopien addierst, ergeben zehn Zyklen <InlineMath math="21" /> Kopien statt <InlineMath math="1{.}024" />. Merk dir: **Jeder Zyklus verdoppelt, was schon da ist**.
+
+## Übungen zur Gentechnik
+
+Die Aufgaben führen von den Werkzeugen zu den Zahlen hinter Insulin, PCR und Fingerabdruck. **Schreib zuerst die Formel auf** und setz dann die Werte ein.
+
+1. Ein Schüler schneidet das Insulingen mit Enzym X und das Plasmid mit Enzym Y. Erklär, warum das Gen sich nicht mit dem Plasmid verbindet, und nenne das Enzym, das DNA verbindet.
+
+2. Ein Fermenter startet mit <InlineMath math="100" /> rekombinanten Bakterien, die sich alle <InlineMath math="30" /> Minuten verdoppeln. Wie viele Bakterien sind es nach <InlineMath math="3" /> Stunden?
+
+3. Wie viele PCR-Zyklen machen aus einer Kopie eines DNA-Abschnitts mehr als eine Million Kopien?
+
+4. Wie weit liegen im Gelmodell <InlineMath math="d = h(7 - 2\log L)" /> eine Bande mit <InlineMath math="250" /> Basenpaaren und eine Bande mit <InlineMath math="500" /> Basenpaaren nach <InlineMath math="1" /> Stunde auseinander?
+
+### Lösungen
+
+**Lösung 1**: Die Enzyme X und Y schneiden an verschiedenen Sequenzen, also **passen die entstehenden Enden nicht zusammen**. Die einzelsträngigen Enden des Gens paaren sich nicht mit denen des Plasmids, und das Gen kann nicht hineinrutschen. Schneidest du beide mit demselben Enzym, ist das Problem gelöst, und die **DNA-Ligase** verschließt danach die Verbindungen. Prüf: Bei der Insulinherstellung nutzt Schritt 2 genau deshalb dasselbe Enzym.
+
+**Lösung 2**: Drei Stunden sind <InlineMath math="180" /> Minuten, also verdoppeln sich die Bakterien <InlineMath math="6" />-mal:
+
+<BlockMath math="n = \frac{180}{30} = 6, \qquad N = 100 \cdot 2^6 = 100 \cdot 64 = 6{.}400" />
+
+Prüf durch schrittweises Verdoppeln: <InlineMath math="100; 200; 400; 800; 1{.}600; 3{.}200; 6{.}400" />. Das sind sechs Verdopplungen.
+
+**Lösung 3**: Gesucht ist das kleinste <InlineMath math="n" /> mit <InlineMath math="2^n > 1{.}000{.}000" />:
+
+<MathContainer>
+<BlockMath math="2^{19} = 524{.}288 < 1{.}000{.}000" />
+<BlockMath math="2^{20} = 1{.}048{.}576 > 1{.}000{.}000" />
+</MathContainer>
+
+Du brauchst also **<InlineMath math="20" /> Zyklen**. Prüf: <InlineMath math="2^{10} = 1{.}024 \approx 10^3" /> und <InlineMath math="(10^3)^2 = 10^6" />, also stimmen etwa zwanzig Zyklen.
+
+**Lösung 4**: Berechne jede Laufstrecke bei <InlineMath math="h = 1" /> und subtrahiere:
+
+<MathContainer>
+<BlockMath math="d_{250} = 7 - 2\log 250 = 7 - 4{,}796 = 2{,}204\text{ cm}" />
+<BlockMath math="d_{500} = 7 - 2\log 500 = 7 - 5{,}398 = 1{,}602\text{ cm}" />
+<BlockMath math="d_{250} - d_{500} = 0{,}602\text{ cm}" />
+</MathContainer>
+
+Die Banden liegen etwa <InlineMath math="0{,}60\text{ cm}" /> auseinander, und **das kürzere Stück liegt tiefer**, weiter weg von der Tasche. Prüf: <InlineMath math="500" /> ist das Doppelte von <InlineMath math="250" />, also ist der Abstand <InlineMath math="2\log 2 = 0{,}602" />, dasselbe Ergebnis.

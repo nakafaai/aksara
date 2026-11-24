@@ -96,23 +96,35 @@ export const kssmForm5BiologyEcologyNodes = [
           },
         ],
       }),
+      materialNode({
+        key: "form-5-biology-environmental-sustainability-environmental-sustainability",
+        level: "lesson",
+        materialKeys: ["lesson.biology.environmental-sustainability"],
+        order: 20,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 25.1 to 25.4",
+            ...biologyStandards,
+          },
+        ],
+      }),
     ],
     key: "form-5-biology-environmental-sustainability",
     materialCard: {
       de: {
-        description: "Versteh, wie der Klimawandel unsere Zukunft prägt.",
+        description: "Miss Verschmutzung, schütz Natur, versteh Klimawandel.",
         title: "Ökologische Nachhaltigkeit",
       },
       en: {
-        description: "See how climate change shapes a sustainable future.",
+        description: "Measure pollution, protect nature, see climate change.",
         title: "Environmental Sustainability",
       },
       id: {
-        description: "Pahami cara perubahan iklim memengaruhi masa depan.",
+        description: "Ukur pencemaran, lindungi alam, pahami perubahan iklim.",
         title: "Kelestarian Lingkungan",
       },
       ms: {
-        description: "Fahami cara perubahan iklim membentuk masa depan.",
+        description: "Ukur pencemaran, lindungi alam, fahami perubahan iklim.",
         title: "Kelestarian Alam Sekitar",
       },
     },

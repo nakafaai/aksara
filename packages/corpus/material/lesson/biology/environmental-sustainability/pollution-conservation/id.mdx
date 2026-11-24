@@ -1,0 +1,350 @@
+export const metadata = {
+  title: "Pencemaran Lingkungan dan Konservasi",
+  description:
+    "Telusuri penggundulan hutan dan lima jenis pencemaran, hitung BOD, lalu bandingkan konservasi dan teknologi hijau lewat contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Kelestarian Lingkungan",
+};
+
+## Kelestarian Lingkungan Berarti Memakai Alam tanpa Menghabiskannya
+
+**Kelestarian lingkungan** berarti memenuhi kebutuhan manusia sekarang sambil menjaga ekosistem tetap cukup sehat untuk memenuhi kebutuhan manusia di masa depan. Ancaman utamanya datang dari kegiatan manusia: **penggundulan hutan, pencemaran, hilangnya keanekaragaman hayati, eutrofikasi, dan pertumbuhan penduduk yang pesat**. Manusia menjawabnya dengan tiga cara. **Preservasi** membiarkan ekosistem tetap utuh, **konservasi** memanfaatkannya dengan bijak supaya bertahan lama, dan **restorasi** memperbaiki ekosistem yang sudah rusak. Teknologi hijau lalu memangkas kerusakan langsung dari sumbernya. Kamu akan menjalankan sungai yang tercemar limbah, memanaskan air, menjauh dari mesin yang bising, membiarkan burung hantu menjaga sawah, dan mengisi digester biogas.
+
+Perubahan iklim juga termasuk ancaman. Cara gas rumah kaca memerangkap panas punya ceritanya sendiri di [penyebab perubahan iklim](/id/materi/biologi/perubahan-iklim/penyebab-perubahan-iklim), jadi di sini fokusnya pada ancaman lain dan pada apa yang dilakukan manusia untuk menghadapinya.
+
+## Penggundulan Hutan Menghilangkan Lebih dari Sekadar Pohon
+
+**Penggundulan hutan** atau deforestasi adalah pembukaan hutan secara permanen untuk ladang, perkebunan, jalan, tambang, atau kota. Penduduk yang terus bertambah butuh lebih banyak lahan, pangan, air, dan kayu, jadi tekanan terhadap hutan ikut naik. Hilangnya pohon memicu rantai akibat, karena **akar, daun, dan serasah menahan tanah dan air di tempatnya**.
+
+<Mermaid
+  title={<>Yang Terjadi setelah Hutan Dibuka</>}
+  description={<>Setiap panah menghubungkan satu perubahan dengan akibat yang ditimbulkannya.</>}
+  chart={`flowchart TD
+    A["Hutan dibuka"] --> B["Habitat hilang"]
+    A --> C["Tanah terbuka terkena hujan"]
+    B --> D["Spesies berkurang atau punah"]
+    C --> E["Erosi tanah dan longsor"]
+    E --> F["Sungai dipenuhi lumpur"]
+    C --> G["Air hujan mengalir lebih cepat"]
+    G --> H["Banjir bandang di hilir"]`}
+/>
+
+Baca bagannya dari atas. Hujan di hutan meresap ke serasah yang gembur dan sampai ke sungai perlahan-lahan. Hujan di tanah gundul langsung mengalir di permukaan sambil membawa tanah. Lumpur itu membuat air sungai keruh, menghalangi cahaya untuk tumbuhan air, dan mendangkalkan alur sungai, sehingga hujan badai yang sama kini membanjiri daerah hilir. Hewan yang hanya hidup di hutan itu kehilangan makanan dan tempat berlindung. Begitulah **hilangnya habitat mendorong hilangnya keanekaragaman hayati**.
+
+## Pencemaran Air Menghabiskan Oksigen di Sungai
+
+Limbah rumah tangga, limbah peternakan, dan limbah pabrik membawa bahan organik ke sungai. Bakteri menguraikan bahan itu dan memakai oksigen terlarut saat melakukannya. Banyaknya oksigen yang dipakai mikroorganisme untuk menguraikan bahan organik dalam sampel air disebut **kebutuhan oksigen biokimia (BOD)**. **Makin tinggi BOD, makin tercemar airnya**, karena makin banyak makanan bagi bakteri berarti makin banyak oksigen yang direbut dari ikan.
+
+Di hilir saluran limbah, kadar oksigen mula-mula turun, lalu pulih saat bahan organiknya habis terurai dan udara larut kembali ke air. Penurunan ini disebut **kurva penurunan oksigen**. Model di bawah menganggap air bersih menampung <InlineMath math="8\text{ mg/L}" /> oksigen, dengan laju penguraian dan laju pencampuran dengan udara yang tetap. Naikkan BOD air yang masuk ke sungai dan perhatikan titik terendahnya.
+
+<MathVisual
+  title={<>Penurunan Oksigen di Hilir Saluran Limbah</>}
+  description={
+    <>
+      Oksigen terlarut{" "}
+      <InlineMath math="O(t) = 8 - b(e^{-0{,}3t} - e^{-0{,}6t})" /> mg/L,
+      dengan <InlineMath math="t" /> lama air mengalir dalam hari dan{" "}
+      <InlineMath math="b" /> BOD di mulut saluran. Daerah yang diarsir ada di
+      bawah <InlineMath math="5\text{ mg/L}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "b", min: 0, max: 30, value: 20, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "oxygen", kind: "function", appearance: "primary", formula: "8 - b(exp(-0.3x) - exp(-0.6x))", domain: { min: 0, max: 10 } },
+      { id: "fish", kind: "region", appearance: "warning", inequalities: ["y < 5", "y > 0", "x > 0", "x < 10"] },
+      { id: "lowest", kind: "marker", appearance: "answer", x: "ln(2)/0.3", y: "8 - 0.25b" },
+    ],
+    labels: [
+      { key: "lowest", objectId: "lowest", at: { x: "ln(2)/0.3", y: "8 - 0.25b" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "minimum", formula: "8 - 0.25b" },
+    ],
+  }}
+  labels={{
+    b: <>BOD di mulut saluran <InlineMath math="b" /> dalam mg/L</>,
+    lowest: <>Oksigen terendah</>,
+    minimum: <>Oksigen terlarut terendah dalam mg/L</>,
+  }}
+/>
+
+Hitung untuk BOD <InlineMath math="20\text{ mg/L}" />. Dalam model ini titik terendah terjadi saat <InlineMath math="e^{-0{,}3t} = \tfrac{1}{2}" />, jadi isi kurungnya menjadi <InlineMath math="\tfrac{1}{2} - \tfrac{1}{4} = \tfrac{1}{4}" />:
+
+<MathContainer>
+<BlockMath math="t = \frac{\ln 2}{0{,}3} = 2{,}31\text{ hari}" />
+<BlockMath math="O_{\min} = 8 - \frac{b}{4} = 8 - \frac{20}{4} = 3\text{ mg/L}" />
+</MathContainer>
+
+Oksigen di bawah sekitar <InlineMath math="5\text{ mg/L}" /> membuat ikan dan hewan air lain tertekan, jadi bagian sungai di sekitar hari kedua akan membuat mereka sesak napas. Cek dengan penggeser: pada <InlineMath math="b = 20" />, pembacaan menunjukkan <InlineMath math="3" />. BOD terbesar yang menjaga kurva tetap di atas daerah arsiran memenuhi <InlineMath math="8 - b/4 = 5" />, jadi <InlineMath math="b = 12\text{ mg/L}" />.
+
+Pupuk yang terbawa air dari ladang memicu masalah serupa yang lebih lambat, yaitu **eutrofikasi**. Nitrat dan fosfat menyuburkan ledakan alga di permukaan air. Lapisan alga menghalangi cahaya, tumbuhan di bawahnya mati, dan saat alga ikut mati, bakteri menguraikan semuanya. **Para pengurai menaikkan BOD**, oksigen turun, dan ikan mati walaupun tidak ada limbah yang masuk ke air.
+
+## Empat Jenis Pencemaran Lainnya
+
+Air hanyalah satu dari lima jenis pencemaran. Tabel ini menyebut sumber utama dan akibat masing-masing. Baca setiap baris sebagai sebab dan akibatnya.
+
+| Pencemaran | Sumber utama | Akibat bagi makhluk hidup |
+| :--- | :--- | :--- |
+| Udara | Asap kendaraan dan pabrik, pembakaran terbuka | Partikel kabut asap merusak paru-paru, serta sulfur dioksida dan nitrogen oksida membentuk hujan asam |
+| Air | Limbah rumah tangga, limpasan ladang, limbah pabrik | BOD tinggi, eutrofikasi, ikan mati |
+| Tanah | Pestisida, logam berat, air lindi dari tempat pembuangan sampah | Racun menumpuk di sepanjang rantai makanan dan membunuh organisme tanah |
+| Termal | Air pendingin panas dari pembangkit listrik dan pabrik | Air hangat menampung lebih sedikit oksigen, jadi ikan sesak napas |
+| Suara | Proyek bangunan, lalu lintas, mesin | Gangguan pendengaran, stres, dan tidur terganggu |
+
+**Hujan asam** terbentuk saat sulfur dioksida dan nitrogen oksida larut dalam air hujan menjadi asam sulfat dan asam nitrat. Hujan asam menurunkan pH danau dan tanah, merusak daun, dan mengikis bangunan. Pestisida di tanah menunjukkan bahaya lain: racun yang tidak terurai berpindah dari mangsa ke pemangsa dan **makin pekat di setiap tingkat rantai makanan**, jadi pemangsa puncak menanggung kadar paling tinggi.
+
+Pencemaran termal bekerja lewat satu fakta fisika: **air hangat menampung lebih sedikit oksigen terlarut** daripada air dingin. Geser penggeser suhu dan baca jumlah oksigen terbanyak yang bisa ditampung air tawar.
+
+<MathVisual
+  title={<>Air yang Lebih Hangat Menampung Lebih Sedikit Oksigen</>}
+  description={
+    <>
+      Oksigen terbanyak yang bisa larut dalam air tawar di permukaan laut,
+      dalam mg/L, dari <InlineMath math="0^\circ\text{C}" /> sampai{" "}
+      <InlineMath math="40^\circ\text{C}" />, menurut persamaan Benson dan
+      Krause yang dipakai laboratorium air.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 16 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "w", min: 0, max: 40, value: 28, step: 1, label: "w" },
+    ],
+    objects: [
+      { id: "solubility", kind: "function", appearance: "primary", formula: "exp(-139.34411 + 157570.1/(x + 273.15) - 66423080/(x + 273.15)^2 + 12438000000/(x + 273.15)^3 - 862194900000/(x + 273.15)^4)", domain: { min: 0, max: 40 } },
+      { id: "river", kind: "marker", appearance: "answer", x: "w", y: "exp(-139.34411 + 157570.1/(w + 273.15) - 66423080/(w + 273.15)^2 + 12438000000/(w + 273.15)^3 - 862194900000/(w + 273.15)^4)" },
+    ],
+    labels: [
+      { key: "river", objectId: "river", at: { x: "w", y: "exp(-139.34411 + 157570.1/(w + 273.15) - 66423080/(w + 273.15)^2 + 12438000000/(w + 273.15)^3 - 862194900000/(w + 273.15)^4)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "saturation", formula: "exp(-139.34411 + 157570.1/(w + 273.15) - 66423080/(w + 273.15)^2 + 12438000000/(w + 273.15)^3 - 862194900000/(w + 273.15)^4)" },
+    ],
+  }}
+  labels={{
+    w: <>Suhu air <InlineMath math="w" /> dalam <InlineMath math="^\circ\text{C}" /></>,
+    river: <>Air sungai</>,
+    saturation: <>Oksigen terlarut terbanyak dalam mg/L</>,
+  }}
+/>
+
+Sungai bersuhu <InlineMath math="28^\circ\text{C}" /> bisa menampung <InlineMath math="7{,}83\text{ mg/L}" /> oksigen. Air panas dari pembangkit listrik menghangatkannya sampai <InlineMath math="32^\circ\text{C}" />, dan pada suhu itu air hanya bisa menampung <InlineMath math="7{,}31\text{ mg/L}" />. Itu berkurang <InlineMath math="0{,}52\text{ mg/L}" />, padahal ikan di air yang lebih hangat bernapas lebih cepat dan butuh lebih banyak oksigen. Kedua perubahan itu sama-sama merugikan ikan.
+
+Bunyi melemah seiring jarak. Dari sumber kecil di ruang terbuka, tingkat bunyi turun sebesar <InlineMath math="20\log r" /> desibel pada jarak <InlineMath math="r" /> meter, dibandingkan tingkatnya pada jarak <InlineMath math="1" /> meter. Pendengaran bisa rusak oleh bunyi <InlineMath math="85" /> desibel yang didengar sepanjang hari kerja. Keraskan sumbernya dan cari jarak saat tingkat bunyinya turun ke batas itu.
+
+<MathVisual
+  title={<>Mesin Bising Terdengar Lebih Pelan dari Jauh</>}
+  description={
+    <>
+      Tingkat bunyi <InlineMath math="L = s - 20\log r" /> desibel pada jarak{" "}
+      <InlineMath math="r" /> meter, dengan <InlineMath math="s" /> tingkat
+      bunyi pada <InlineMath math="1" /> meter. Daerah yang diarsir ada di atas{" "}
+      <InlineMath math="85" /> desibel.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 40, max: 120 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 90, max: 115, value: 110, step: 1, label: "s" },
+    ],
+    objects: [
+      { id: "level", kind: "function", appearance: "primary", formula: "s - 20 log(x)", domain: { min: 1, max: 40 } },
+      { id: "loud", kind: "region", appearance: "warning", inequalities: ["y > 85", "y < 120", "x > 0", "x < 40"] },
+      { id: "limit", kind: "marker", appearance: "answer", x: "10^((s - 85)/20)", y: "85" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: "10^((s - 85)/20)", y: "85" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "distance", formula: "10^((s - 85)/20)" },
+    ],
+  }}
+  labels={{
+    s: <>Tingkat bunyi pada <InlineMath math="1" /> meter <InlineMath math="s" /> dalam dB</>,
+    limit: <>Turun ke <InlineMath math="85" /> dB</>,
+    distance: <>Jarak sampai <InlineMath math="85" /> dB dalam meter</>,
+  }}
+/>
+
+Ambil contoh mesin pancang yang berbunyi <InlineMath math="110" /> desibel saat diukur <InlineMath math="1" /> meter dari mesin. Samakan tingkat bunyinya dengan <InlineMath math="85" /> lalu cari <InlineMath math="r" />:
+
+<MathContainer>
+<BlockMath math="110 - 20\log r = 85" />
+<BlockMath math="\log r = \frac{25}{20} = 1{,}25 \quad\Rightarrow\quad r = 10^{1{,}25} = 17{,}8\text{ m}" />
+</MathContainer>
+
+Cek dengan melipatgandakan jarak: setiap kali jarak menjadi dua kali, tingkat bunyi turun <InlineMath math="20\log 2 = 6{,}0" /> desibel. Pada <InlineMath math="16\text{ m}" />, yaitu empat kali lipat dua dari <InlineMath math="1\text{ m}" />, tingkatnya <InlineMath math="110 - 24 = 86" /> desibel, sedikit di atas batas, jadi <InlineMath math="17{,}8\text{ m}" /> memang pas. Pekerja yang lebih dekat dari jarak itu butuh **pelindung telinga**.
+
+## Tiga Cara Melindungi Ekosistem
+
+Ketiga cara ini berbeda dalam **seberapa banyak manusia memanfaatkan ekosistemnya**. Baca setiap baris dari artinya ke contohnya.
+
+| Cara | Arti | Contoh di Malaysia |
+| :--- | :--- | :--- |
+| Preservasi | Menjaga ekosistem tetap seperti adanya, dengan pemanfaatan manusia sekecil mungkin | Taman Negara dan Taman Kinabalu melindungi hutan dari penebangan |
+| Konservasi | Mengelola dan memanfaatkan sumber daya dengan bijak supaya bertahan lama | Hutan cadangan permanen yang ditebang secara tebang pilih, penangkaran telur penyu |
+| Restorasi | Memperbaiki ekosistem yang rusak supaya mendekati keadaan alaminya | Menanam kembali bakau di pantai yang terkikis, menanam pohon di bekas lahan tambang |
+
+Masing-masing dibutuhkan karena alasan berbeda. Preservasi menyimpan spesies dan gen yang tidak ada di tempat lain, termasuk tumbuhan yang mungkin menjadi sumber obat di masa depan. Dengan konservasi, manusia tetap bisa mengambil kayu, ikan, dan air tanpa kehabisan. Restorasi mengembalikan yang sudah hilang: bakau yang ditanam kembali menjadi tempat berlindung anak ikan dan meredam kekuatan ombak. **Ekosistem lebih murah dijaga daripada diperbaiki**, dan itulah alasan terkuat untuk melakukan preservasi dan konservasi lebih dulu.
+
+## Praktik Berkelanjutan Melindungi Alam dan Pangan
+
+**Pembangunan berkelanjutan** adalah pembangunan yang memenuhi kebutuhan sekarang tanpa mengurangi kemampuan generasi mendatang memenuhi kebutuhan mereka. Pada 2015, negara anggota Perserikatan Bangsa-Bangsa menyepakati <InlineMath math="17" /> Tujuan Pembangunan Berkelanjutan untuk 2030 yang mengubah gagasan ini menjadi target. Praktik ke arah sana antara lain mengurangi, memakai ulang, dan mendaur ulang sampah, mengolah limbah sebelum masuk ke sungai, dan menanam kembali pohon yang ditebang.
+
+Pertanian paling membutuhkan praktik berkelanjutan, karena pertanian memberi makan semua orang dan memakai lahan paling luas. **Pengendalian hayati** memakai musuh alami untuk menekan hama, bukan racun. Petani padi dan kelapa sawit di Malaysia memasang kotak sarang untuk burung hantu serak jawa, yang memburu tikus. Atur berapa burung hantu yang ada di awal, lalu amati populasi tikus selama dua puluh tahun.
+
+<PredatorPreyLab
+  title={<>Burung Hantu Serak Jawa Menekan Populasi Tikus</>}
+  description={
+    <>
+      Sawah yang sanggup memberi makan sampai <InlineMath math="500" /> ekor
+      tikus. Tikus memakan padi dan burung hantu memburu tikus, menurut model
+      Lotka-Volterra untuk kedua populasi.
+    </>
+  }
+  capacity={500}
+  labels={{
+    start: "Burung hantu di awal",
+    prey: <>Tikus</>,
+    predators: <>Burung hantu</>,
+    peak: <>Jumlah tikus tertinggi</>,
+    year: <>Tahun</>,
+    viewLabel: "Sawah dilihat dari atas dengan tikus dan burung hantu serak jawa",
+  }}
+/>
+
+Berapa pun jumlah burung hantu di awal, kedua populasi berayun dulu lalu stabil di sekitar <InlineMath math="100" /> ekor tikus, seperlima dari <InlineMath math="500" /> ekor yang sanggup diberi makan oleh sawah itu. Burung hantu melakukannya tanpa racun, jadi tidak ada racun tikus yang menumpuk di rantai makanan atau membunuh burung hantu itu sendiri.
+
+Pertanian berkelanjutan juga menopang **ketahanan pangan**, yaitu keadaan saat semua orang, setiap saat, bisa memperoleh pangan yang cukup, aman, dan bergizi. Salah satu ukuran yang dipantau suatu negara adalah **rasio swasembada (SSR)**, yaitu bagian pangan yang dipakai yang dihasilkan sendiri:
+
+<BlockMath math="\text{SSR} = \frac{\text{produksi}}{\text{produksi} + \text{impor} - \text{ekspor}} \times 100\%" />
+
+Misalkan suatu negara menghasilkan <InlineMath math="2{,}4" /> juta ton beras setahun, mengimpor <InlineMath math="1{,}5" /> juta ton, dan mengekspor <InlineMath math="0{,}1" /> juta ton:
+
+<BlockMath math="\text{SSR} = \frac{2{,}4}{2{,}4 + 1{,}5 - 0{,}1} \times 100\% = \frac{2{,}4}{3{,}8} \times 100\% = 63{,}2\%" />
+
+Cek: SSR di bawah <InlineMath math="100\%" /> berarti negara itu memakai lebih banyak beras daripada yang dihasilkannya. Di sini <InlineMath math="2{,}4 < 3{,}8" />, jadi jawabannya harus di bawah <InlineMath math="100\%" />, dan memang begitu. SSR beras Malaysia juga masih di bawah <InlineMath math="100\%" />, jadi sebagian berasnya diimpor. Karena itulah panen yang lebih tinggi dari pertanian berkelanjutan penting.
+
+## Teknologi Hijau Memangkas Pencemaran dari Sumbernya
+
+**Teknologi hijau** adalah produk, sistem, atau proses apa pun yang mengurangi kerusakan lingkungan: hemat energi dan sumber daya, menghasilkan sedikit atau nol pencemaran dan gas rumah kaca, serta aman dipakai. Kebijakan Teknologi Hijau Nasional Malaysia tahun 2009 bertumpu pada **empat pilar, yaitu energi, lingkungan, ekonomi, dan sosial**. Teknologi hijau ada di pembangkitan listrik, bangunan, transportasi, serta pengolahan air dan limbah.
+
+**Digester biogas** mengubah limbah menjadi bahan bakar. Mikroba menguraikan kotoran ternak tanpa oksigen dan melepaskan biogas, yang berisi sekitar <InlineMath math="60\%" /> metana dan bisa dibakar di kompor. Kotoran yang tadinya membusuk di tempat terbuka dan mencemari selokan kini menjadi gas untuk memasak. Ubah banyaknya kotoran yang dimasukkan setiap hari.
+
+<BiogasDigesterLab
+  title={<>Digester Biogas Mengubah Kotoran Menjadi Gas Masak</>}
+  description={
+    <>
+      Penampang digester biogas rumah tangga. Setiap kilogram kotoran segar
+      menghasilkan sekitar <InlineMath math="0{,}04\text{ m}^3" /> biogas, dan
+      satu tungku kompor memakai <InlineMath math="0{,}4\text{ m}^3" /> per jam.
+    </>
+  }
+  dung={25}
+  labels={{
+    dungControl: "Kotoran per hari",
+    gas: <>Biogas per hari</>,
+    methane: <>Metana per hari</>,
+    energy: <>Energi kimia</>,
+    cooking: <>Lama memasak</>,
+    viewLabel: "Digester biogas yang tersambung ke kompor dapur",
+  }}
+/>
+
+Hitung hasil satu hari dengan <InlineMath math="25\text{ kg}" /> kotoran. Kalikan dengan hasil biogas, ambil bagian metananya, lalu bagi dengan pemakaian tungku:
+
+<MathContainer>
+<BlockMath math="V_{\text{biogas}} = 25 \times 0{,}04 = 1{,}0\text{ m}^3" />
+<BlockMath math="V_{\text{metana}} = 1{,}0 \times 0{,}60 = 0{,}60\text{ m}^3" />
+<BlockMath math="t = \frac{1{,}0\text{ m}^3}{0{,}4\text{ m}^3/\text{jam}} = 2{,}5\text{ jam}" />
+</MathContainer>
+
+Cek dengan pembacaan digester pada <InlineMath math="25\text{ kg}" />: biogas <InlineMath math="1{,}0\text{ m}^3" />, metana <InlineMath math="0{,}60\text{ m}^3" />, lama memasak <InlineMath math="2{,}5" /> jam. Pabrik kelapa sawit memakai gagasan yang sama dalam skala besar, yaitu menangkap biogas dari limbah cairnya supaya metana tidak lepas ke udara.
+
+Panel surya adalah teknologi hijau untuk listrik, tetapi membuatnya juga memakai energi. Uji yang adil bertanya berapa lama panel itu melunasi energi tersebut. Ubah banyaknya sinar matahari yang diterima atap.
+
+<SolarRoofPaybackLab
+  title={<>Seberapa Cepat Atap Surya Melunasi Energinya</>}
+  description={
+    <>
+      Atap surya <InlineMath math="3\text{ kWp}" /> yang butuh{" "}
+      <InlineMath math="3{.}900\text{ kWh}" /> untuk dibuat, dibandingkan
+      dengan listrik yang dihasilkannya setiap tahun selama{" "}
+      <InlineMath math="25" /> tahun.
+    </>
+  }
+  yieldPerPeak={1300}
+  labels={{
+    yieldControl: "Hasil tahunan per kWp",
+    invested: <>Energi untuk membuatnya</>,
+    yearly: <>Energi per tahun</>,
+    payback: <>Tahun sampai lunas</>,
+    lifetime: <>Energi yang kembali selama umurnya</>,
+    viewLabel: "Grafik neraca energi atap surya selama umurnya",
+  }}
+/>
+
+Dengan <InlineMath math="1{.}300\text{ kWh}" /> per kWp setahun, atap itu menghasilkan <InlineMath math="3 \times 1{.}300 = 3{.}900\text{ kWh}" /> setahun, jadi energi pembuatannya lunas dalam sekitar satu tahun, lalu atap itu mengembalikan sekitar <InlineMath math="25" /> kali lipat energi tersebut selama umurnya. Pada pengaturan terendah pun energinya lunas dalam waktu kurang dari dua tahun. **Nilai teknologi hijau sepanjang umurnya**, bukan hanya saat beroperasi.
+
+## Kesalahan Umum tentang Kelestarian Lingkungan
+
+| Kesalahan | Kenapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| BOD tinggi berarti air bersih karena banyak oksigen. | BOD adalah oksigen yang dipakai mikroba, jadi BOD tinggi berarti banyak pencemaran organik. | BOD tinggi selalu disertai oksigen terlarut yang rendah. |
+| Preservasi dan konservasi artinya sama. | Preservasi menjauhkan pemanfaatan manusia, sedangkan konservasi membolehkan sumber daya dipakai dengan bijak. | Tanyakan apakah sumber dayanya masih dimanfaatkan. |
+| Eutrofikasi membunuh ikan karena pupuk itu beracun. | Ikan mati karena kekurangan oksigen saat bakteri menguraikan alga yang mati. | Telusuri rantainya sampai ke oksigen, bukan ke pupuk. |
+| Panas bukan pencemaran karena tidak ada zat yang ditambahkan. | Air hangat menampung lebih sedikit oksigen dan mengubah cara makhluk hidup bertahan. | Bandingkan oksigen yang bisa ditampung air pada dua suhu. |
+| Memperpendek jarak dari sumber bunyi menjadi separuhnya menggandakan desibel. | Tingkat bunyi berubah <InlineMath math="20\log 2 = 6" /> dB setiap kali jarak menjadi separuh. | Sumber <InlineMath math="110" /> dB menjadi <InlineMath math="104" /> dB pada <InlineMath math="2" /> meter. |
+
+Kesalahan pertama paling sering membuat nilai hilang di percobaan BOD. Biru metilena kehilangan warnanya saat oksigen dalam sampel air habis dipakai, jadi **makin cepat sampel menjadi tidak berwarna, makin tinggi BOD-nya** dan makin tercemar sampel itu.
+
+## Latihan Kelestarian Lingkungan
+
+Soal-soal ini bergerak dari membaca percobaan BOD ke perhitungan dengan model. **Sebutkan penyebab di balik setiap angka** sebelum kamu menghitung.
+
+1. Biru metilena diteteskan ke tiga sampel air. Warnanya hilang setelah <InlineMath math="40" /> menit di sampel P, <InlineMath math="3" /> jam di sampel Q, dan <InlineMath math="5" /> hari di sampel R. Urutkan sampel dari yang paling tercemar sampai yang paling sedikit tercemar, lalu jelaskan.
+
+2. Dalam model penurunan oksigen <InlineMath math="O_{\min} = 8 - b/4" />, sebuah pabrik membuang limbah dengan BOD <InlineMath math="16\text{ mg/L}" />. Apakah ikan bisa bertahan di hilir? Berapa BOD yang membuat titik terendahnya tepat <InlineMath math="5\text{ mg/L}" />?
+
+3. Sebuah genset berbunyi <InlineMath math="100" /> desibel pada jarak <InlineMath math="1" /> meter. Pada jarak berapa tingkat bunyinya turun ke <InlineMath math="85" /> desibel?
+
+4. Sebuah peternakan memasukkan <InlineMath math="40\text{ kg}" /> kotoran ke digester setiap hari. Berapa biogas yang dihasilkan, dan berapa lama biogas itu bisa dipakai memasak?
+
+### Pembahasan
+
+**Pembahasan 1**: Urutan dari yang paling tercemar adalah **P, Q, R**. Biru metilena kehilangan warnanya saat oksigen habis dipakai. Sampel P menghabiskan oksigennya paling cepat, jadi sampel itu berisi paling banyak mikroorganisme dan bahan organik serta punya BOD tertinggi. Cek: sampel R mempertahankan oksigennya berhari-hari, cocok dengan air yang hampir bersih.
+
+**Pembahasan 2**: Masukkan <InlineMath math="b = 16" /> ke model:
+
+<BlockMath math="O_{\min} = 8 - \frac{16}{4} = 4\text{ mg/L}" />
+
+Titik terendahnya di bawah <InlineMath math="5\text{ mg/L}" />, jadi **ikan akan tertekan dan bisa mati** di sekitar hari kedua di hilir. Agar titik terendahnya tepat <InlineMath math="5\text{ mg/L}" />, selesaikan <InlineMath math="8 - b/4 = 5" />, yang memberi <InlineMath math="b = 12\text{ mg/L}" />. Cek: <InlineMath math="8 - 12/4 = 5" />.
+
+**Pembahasan 3**: Samakan tingkat bunyinya dengan <InlineMath math="85" /> desibel lalu selesaikan:
+
+<MathContainer>
+<BlockMath math="100 - 20\log r = 85" />
+<BlockMath math="\log r = \frac{15}{20} = 0{,}75 \quad\Rightarrow\quad r = 10^{0{,}75} = 5{,}6\text{ m}" />
+</MathContainer>
+
+Cek dengan melipatgandakan jarak: pada <InlineMath math="4\text{ m}" />, yaitu dua kali lipat dua, tingkatnya <InlineMath math="100 - 12 = 88" /> desibel, dan pada <InlineMath math="8\text{ m}" /> tingkatnya <InlineMath math="82" />. Jawaban <InlineMath math="5{,}6\text{ m}" /> ada di antara keduanya, sesuai harapan.
+
+**Pembahasan 4**: Kalikan dengan hasil biogas, lalu bagi dengan pemakaian tungku:
+
+<MathContainer>
+<BlockMath math="V_{\text{biogas}} = 40 \times 0{,}04 = 1{,}6\text{ m}^3" />
+<BlockMath math="t = \frac{1{,}6}{0{,}4} = 4{,}0\text{ jam}" />
+</MathContainer>
+
+Peternakan itu menghasilkan <InlineMath math="1{,}6\text{ m}^3" /> biogas dan bisa memasak selama **<InlineMath math="4" /> jam** sehari. Cek dengan digester: atur kotorannya ke <InlineMath math="40\text{ kg}" /> dan baca dua nilai yang sama.
