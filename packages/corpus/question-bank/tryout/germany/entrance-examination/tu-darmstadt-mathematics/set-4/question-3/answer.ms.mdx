@@ -1,44 +1,52 @@
-# Domain dan pembahagian kes
+# Diberi
 
-Punca hanya tertakrif untuk <InlineMath math="x+5\ge0" />, iaitu <InlineMath math="x\ge-5" />. Mengkuasaduakan hanya selamat apabila kedua-dua belah tidak negatif. Jadi bahagikan kepada dua kes mengikut **tanda sebelah kanan** <InlineMath math="x-1" />.
+**Ketaksamaan punca kuasa dua** (*Wurzelungleichung*) dalam set nombor nyata diberi seperti berikut.
 
-# Kes 1: sebelah kanan negatif
+<BlockMath math="\sqrt{x + 5} > x - 1" />
 
-Bagi <InlineMath math="-5\le x<1" />, kita ada <InlineMath math="x-1<0" />. Punca tidak pernah negatif, jadi ketaksamaan itu benar di sini **tanpa perlu mengira**. Semua <InlineMath math="x" /> dengan <InlineMath math="-5\le x<1" /> ialah penyelesaian.
+# Ditanya
 
-# Kes 2: sebelah kanan tidak negatif
+Tentukan semua nombor nyata <InlineMath math="x" /> yang memenuhi ketaksamaan ini.
 
-Bagi <InlineMath math="x\ge1" />, kedua-dua belah tidak negatif, jadi **kamu boleh mengkuasaduakan**:
+# Penyelesaian
+
+Mengkuasaduakan ketaksamaan boleh memerangkap apabila sebelah kanan bernilai negatif: contohnya <InlineMath math="2 > -10" /> benar, tetapi selepas dikuasaduakan menjadi <InlineMath math="4 > 100" /> yang salah! Oleh sebab punca kuasa dua sentiasa bukan negatif, **asingkan kawasan sebelah kanan negatif sebagai zon menang automatik** sebelum mengkuasaduakan apa-apa.
+
+> Hanya kuasaduakan ketaksamaan apabila kedua-dua belah bukan negatif, manakala apabila sebelah kanan negatif, punca yang tertakrif menang secara automatik tanpa perlu dikuasaduakan.
+
+Syarat domain punca menuntut <InlineMath math="x + 5 \ge 0" />, iaitu <InlineMath math="x \ge -5" />.
+
+## Membahagi kes mengikut tanda sebelah kanan
+
+Bagi kes pertama, apabila <InlineMath math="x" /> berada dari <InlineMath math="-5" /> hingga bawah <InlineMath math="1" />, sebelah kanan <InlineMath math="x - 1" /> bernilai negatif. Oleh sebab punca bukan negatif, **keseluruhan selang pertama automatik memenuhi ketaksamaan**.
+
+Bagi kes kedua, untuk <InlineMath math="x \ge 1" />, kedua-dua belah bukan negatif dan selamat dikuasaduakan.
 
 <BlockMath math="\begin{aligned}
-x+5&>(x-1)^2=x^2-2x+1 \\
-0&>x^2-3x-4=(x-4)(x+1) \\
--1&<x<4
+x + 5 &> (x - 1)^2 = x^2 - 2x + 1 \\
+0 &> x^2 - 3x - 4 = (x - 4)(x + 1) \\
+-1 &< x < 4
 \end{aligned}" />
 
-Digabung dengan <InlineMath math="x\ge1" />, yang tinggal ialah **<InlineMath math="1\le x<4" />**.
-
-# Cantumkan kedua-dua kes
+Disilangkan dengan syarat kes kedua <InlineMath math="x \ge 1" />, tinggal selang <InlineMath math="1 \le x < 4" />. Gabungan kedua-dua kes bersambung rapat dari <InlineMath math="-5" /> hingga bawah <InlineMath math="4" />.
 
 <MathVisual
-  title={<>Di mana punca berada di atas garis</>}
-  description={<>Graf <InlineMath math="y=\sqrt{x+5}" /> bermula pada <InlineMath math="x=-5" /> dan naik perlahan. Garis <InlineMath math="y=x-1" /> naik lebih laju. Di kiri <InlineMath math="x=4" /> graf punca berada di atas garis, pada <InlineMath math="x=4" /> kedua-duanya bersilang di <InlineMath math="(4\mid3)" />, dan di kanannya garis berada di atas. Di bawah paksi ditanda selang dari <InlineMath math="-5" /> hingga <InlineMath math="4" />.</>}
-  labels={{
-    start: <><InlineMath math="x=-5" /></>,
-    end: <><InlineMath math="x=4" /></>,
-    r: <><InlineMath math="\sqrt{x+5}" /></>,
-    l: <><InlineMath math="x-1" /></>,
-  }}
+  title={<>Kawasan lengkung punca berada di atas garis <InlineMath math="y = x - 1" /></>}
+  description={
+    <>
+      Lengkung <InlineMath math="y = \sqrt{x + 5}" /> bermula di{" "}
+      <InlineMath math="x = -5" /> dan kekal di atas garis{" "}
+      <InlineMath math="y = x - 1" /> sehingga bersilang di{" "}
+      <InlineMath math="(4 \mid 3)" />.
+    </>
+  }
+  footer={<>Lengkung punca kekal di atas garis bagi semua nilai dari <InlineMath math="-5" /> hingga bawah <InlineMath math="4" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -6.5, max: 8 },
-      y: { min: -7.5, max: 6.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -6.5, max: 8 }, y: { min: -7.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x+5)", domain: { min: -5, max: 7 } },
+      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x + 5)", domain: { min: -5, max: 7 } },
       { id: "line", kind: "function", appearance: "secondary", formula: "x - 1", domain: { min: -6, max: 7 } },
       { id: "solution", kind: "segment", appearance: "answer", from: { x: -5, y: -0.8 }, to: { x: 4, y: -0.8 } },
       { id: "left-end", kind: "point", appearance: "answer", at: { x: -5, y: 0 } },
@@ -51,14 +59,30 @@ Digabung dengan <InlineMath math="x\ge1" />, yang tinggal ialah **<InlineMath ma
       { key: "l", objectId: "line", at: { x: 6.5, y: 5.5 }, placement: "right" },
     ],
   }}
+  labels={{
+    start: <><InlineMath math="x = -5" /></>,
+    end: <><InlineMath math="x = 4" /></>,
+    r: <><InlineMath math="\sqrt{x + 5}" /></>,
+    l: <><InlineMath math="x - 1" /></>,
+  }}
 />
 
-Kedua-dua bahagian **bersambung tanpa celah**. Ketaksamaan itu benar untuk <InlineMath math="-5\le x<4" />.
+Graf menjelaskan kedua-dua hujungnya: pada <InlineMath math="x = -5" /> lengkung sudah mengatasi garis (<InlineMath math="0 > -6" />), dan pada <InlineMath math="x = 4" /> kedua-duanya sama bernilai <InlineMath math="3" />.
 
-# Kenapa jawapan lain salah
+## Menyemak hujung selang dan pilihan salah
 
-- <InlineMath math="-1<x<4" /> mengkuasaduakan tanpa memecahkan kes dan **kehilangan nombor dari <InlineMath math="-5" /> hingga <InlineMath math="-1" />**, iaitu ketika sebelah kanan negatif.
-- <InlineMath math="1\le x<4" /> hanya mengira kes 2.
-- <InlineMath math="x<4" /> terlupa domain <InlineMath math="x\ge-5" />.
-- <InlineMath math="-5\le x\le4" /> turut mengambil <InlineMath math="x=4" />. Di situ kedua-dua belah sama dengan <InlineMath math="3" />, sedangkan ketaksamaannya tegas.
-- <InlineMath math="x>4" /> menterbalikkan jawapan. Di kanan <InlineMath math="4" />, garis berada di atas punca.
+Uji kedua-dua titik hujung: pada <InlineMath math="x = -5" /> diperoleh <InlineMath math="0 > -6" /> (benar, jadi <InlineMath math="-5" /> termasuk), manakala pada <InlineMath math="x = 4" /> **kedua-dua belah sama bernilai <InlineMath math="3" />**, maka <InlineMath math="4" /> dikecualikan.
+
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| <InlineMath math="-1 < x < 4" /> | Terus mengkuasaduakan tanpa membagi kes sehingga tercicir nilai dari <InlineMath math="-5" /> hingga <InlineMath math="-1" />. |
+| <InlineMath math="1 \le x < 4" /> | Hanya mengambil kes kedua dan melupakan zon sebelah kanan negatif. |
+| <InlineMath math="x < 4" /> | Terlupa domain <InlineMath math="x \ge -5" /> sehingga nilai tidak tertakrif termasuk. |
+| <InlineMath math="-5 \le x \le 4" /> | Memasukkan <InlineMath math="x = 4" />, sedangkan ketaksamaan bersifat ketat. |
+| <InlineMath math="x > 4" /> | Menterbalikkan arah kerana di kanan <InlineMath math="4" /> garis mengatasi punca. |
+
+# Jawapan
+
+Ketaksamaan ini dipenuhi oleh semua nombor nyata dalam selang berikut.
+
+<BlockMath math="-5 \le x < 4" />

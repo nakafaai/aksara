@@ -1,44 +1,52 @@
-# Definitionsbereich und Fallunterscheidung
+# Gegeben
 
-Die Wurzel ist nur für <InlineMath math="x+5\ge0" />, also <InlineMath math="x\ge-5" />, definiert. Quadrieren ist nur dann eine sichere Umformung, wenn beide Seiten nicht negativ sind. Deshalb trennst du zwei Fälle nach **dem Vorzeichen der rechten Seite** <InlineMath math="x-1" />.
+Gegeben ist die folgende **Wurzelungleichung** in der Menge der reellen Zahlen.
 
-# Fall 1: die rechte Seite ist negativ
+<BlockMath math="\sqrt{x + 5} > x - 1" />
 
-Für <InlineMath math="-5\le x<1" /> ist <InlineMath math="x-1<0" />. Eine Wurzel ist nie negativ, also gilt die Ungleichung hier **ohne jede Rechnung**. Alle <InlineMath math="x" /> mit <InlineMath math="-5\le x<1" /> sind Lösungen.
+# Gesucht
 
-# Fall 2: die rechte Seite ist nicht negativ
+Alle reellen Zahlen <InlineMath math="x" />, für die diese Ungleichung gilt.
 
-Für <InlineMath math="x\ge1" /> sind beide Seiten nicht negativ, und **du darfst quadrieren**:
+# Lösung
+
+Beim Quadrieren einer Ungleichung lauert eine Falle, sobald eine Seite negativ ist: <InlineMath math="2 > -10" /> stimmt, doch quadriert entsteht das falsche <InlineMath math="4 > 100" />! Weil eine Wurzel niemals negativ ist, **sicherst du dir zuerst den Bereich mit negativer rechter Seite als automatischen Gewinn**, bevor du überhaupt quadrierst.
+
+> Quadrier eine Ungleichung nur dann, wenn beide Seiten nichtnegativ sind, denn bei negativer rechter Seite gewinnt jede definierte Quadratwurzel automatisch ohne Rechnung.
+
+Die Wurzel verlangt <InlineMath math="x + 5 \ge 0" />, der Definitionsbereich ist also <InlineMath math="x \ge -5" />.
+
+## Fallunterscheidung nach dem Vorzeichen der rechten Seite
+
+Im ersten Fall, von <InlineMath math="-5" /> bis knapp unter <InlineMath math="1" />, ist die rechte Seite <InlineMath math="x - 1" /> negativ. Da die Wurzel nie negativ wird, **erfüllt dieser gesamte Bereich die Ungleichung sofort**.
+
+Im zweiten Fall mit <InlineMath math="x \ge 1" /> sind beide Seiten nichtnegativ und du darfst sicher quadrieren.
 
 <BlockMath math="\begin{aligned}
-x+5&>(x-1)^2=x^2-2x+1 \\
-0&>x^2-3x-4=(x-4)(x+1) \\
--1&<x<4
+x + 5 &> (x - 1)^2 = x^2 - 2x + 1 \\
+0 &> x^2 - 3x - 4 = (x - 4)(x + 1) \\
+-1 &< x < 4
 \end{aligned}" />
 
-Zusammen mit <InlineMath math="x\ge1" /> bleibt **<InlineMath math="1\le x<4" />**.
-
-# Beide Fälle zusammensetzen
+Zusammen mit der Fallbedingung <InlineMath math="x \ge 1" /> bleibt <InlineMath math="1 \le x < 4" />. Beide Fälle schließen nahtlos von <InlineMath math="-5" /> bis unter <InlineMath math="4" /> zusammen.
 
 <MathVisual
-  title={<>Wo die Wurzel über der Geraden liegt</>}
-  description={<>Der Graph von <InlineMath math="y=\sqrt{x+5}" /> beginnt bei <InlineMath math="x=-5" /> und steigt langsam. Die Gerade <InlineMath math="y=x-1" /> steigt schneller. Links von <InlineMath math="x=4" /> liegt der Wurzelgraph über der Geraden, bei <InlineMath math="x=4" /> schneiden sich beide im Punkt <InlineMath math="(4\mid3)" />, rechts davon liegt die Gerade oben. Unter der Achse ist das Intervall von <InlineMath math="-5" /> bis <InlineMath math="4" /> markiert.</>}
-  labels={{
-    start: <><InlineMath math="x=-5" /></>,
-    end: <><InlineMath math="x=4" /></>,
-    r: <><InlineMath math="\sqrt{x+5}" /></>,
-    l: <><InlineMath math="x-1" /></>,
-  }}
+  title={<>Bereich mit Wurzelkurve oberhalb der Geraden <InlineMath math="y = x - 1" /></>}
+  description={
+    <>
+      Die Kurve <InlineMath math="y = \sqrt{x + 5}" /> beginnt bei{" "}
+      <InlineMath math="x = -5" /> und bleibt bis zum Schnittpunkt{" "}
+      <InlineMath math="(4 \mid 3)" /> oberhalb der Geraden{" "}
+      <InlineMath math="y = x - 1" />.
+    </>
+  }
+  footer={<>Die Wurzelkurve liegt im gesamten Bereich von <InlineMath math="-5" /> bis unter <InlineMath math="4" /> über der Geraden.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -6.5, max: 8 },
-      y: { min: -7.5, max: 6.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -6.5, max: 8 }, y: { min: -7.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x+5)", domain: { min: -5, max: 7 } },
+      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x + 5)", domain: { min: -5, max: 7 } },
       { id: "line", kind: "function", appearance: "secondary", formula: "x - 1", domain: { min: -6, max: 7 } },
       { id: "solution", kind: "segment", appearance: "answer", from: { x: -5, y: -0.8 }, to: { x: 4, y: -0.8 } },
       { id: "left-end", kind: "point", appearance: "answer", at: { x: -5, y: 0 } },
@@ -51,14 +59,30 @@ Zusammen mit <InlineMath math="x\ge1" /> bleibt **<InlineMath math="1\le x<4" />
       { key: "l", objectId: "line", at: { x: 6.5, y: 5.5 }, placement: "right" },
     ],
   }}
+  labels={{
+    start: <><InlineMath math="x = -5" /></>,
+    end: <><InlineMath math="x = 4" /></>,
+    r: <><InlineMath math="\sqrt{x + 5}" /></>,
+    l: <><InlineMath math="x - 1" /></>,
+  }}
 />
 
-Die beiden Teile **schließen lückenlos aneinander an**. Die Ungleichung gilt für <InlineMath math="-5\le x<4" />.
+Im Graphen erkennst du beide Ränder sofort: Bei <InlineMath math="x = -5" /> gilt <InlineMath math="0 > -6" />, und bei <InlineMath math="x = 4" /> treffen sich beide Kurven auf Höhe <InlineMath math="3" />.
 
-# Warum die anderen Antworten falsch sind
+## Randprobe und falsche Antworten prüfen
 
-- <InlineMath math="-1<x<4" /> quadriert ohne Fallunterscheidung und **verliert die Zahlen von <InlineMath math="-5" /> bis <InlineMath math="-1" />**, für die die rechte Seite negativ ist.
-- <InlineMath math="1\le x<4" /> rechnet nur Fall 2.
-- <InlineMath math="x<4" /> vergisst den Definitionsbereich <InlineMath math="x\ge-5" />.
-- <InlineMath math="-5\le x\le4" /> nimmt <InlineMath math="x=4" /> mit. Dort sind beide Seiten gleich <InlineMath math="3" />, und die Ungleichung ist streng.
-- <InlineMath math="x>4" /> dreht das Ergebnis um. Rechts von <InlineMath math="4" /> liegt die Gerade über der Wurzel.
+Prüf beide Randpunkte: Bei <InlineMath math="x = -5" /> stimmt <InlineMath math="0 > -6" />, also gehört <InlineMath math="-5" /> dazu, während bei <InlineMath math="x = 4" /> **beide Seiten genau <InlineMath math="3" /> ergeben**, sodass <InlineMath math="4" /> ausgeschlossen bleibt.
+
+| Antwort | Warum sie falsch ist |
+| :--- | :--- |
+| <InlineMath math="-1 < x < 4" /> | Quadriert ohne Fallunterscheidung und verliert die Zahlen von <InlineMath math="-5" /> bis <InlineMath math="-1" />. |
+| <InlineMath math="1 \le x < 4" /> | Berücksichtigt nur den zweiten Fall und vergisst die negative rechte Seite. |
+| <InlineMath math="x < 4" /> | Vergisst den Definitionsbereich <InlineMath math="x \ge -5" />. |
+| <InlineMath math="-5 \le x \le 4" /> | Schließt <InlineMath math="x = 4" /> trotz strenger Ungleichung mit ein. |
+| <InlineMath math="x > 4" /> | Kehrt das Ergebnis um, denn rechts von <InlineMath math="4" /> liegt die Gerade über der Wurzel. |
+
+# Antwort
+
+Die Ungleichung gilt genau für alle reellen Zahlen im folgenden Bereich.
+
+<BlockMath math="-5 \le x < 4" />

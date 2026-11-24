@@ -1,34 +1,46 @@
-# Jeden Bruch rational machen
+# Gegeben
 
-Jeder Summand hat die Form <InlineMath math="\frac{1}{\sqrt k+\sqrt{k+1}}" /> mit <InlineMath math="k=1,2,\ldots,15" />. Erweitere mit <InlineMath math="\sqrt{k+1}-\sqrt k" />. Die dritte binomische Formel macht den Nenner zu <InlineMath math="1" />:
+Gegeben ist die folgende **Teleskopsumme** aus <InlineMath math="15" /> Wurzelbrüchen.
 
-<BlockMath math="\frac{1}{\sqrt k+\sqrt{k+1}}=\frac{\sqrt{k+1}-\sqrt k}{(k+1)-k}=\sqrt{k+1}-\sqrt k" />
+<BlockMath math="\frac{1}{1 + \sqrt{2}} + \frac{1}{\sqrt{2} + \sqrt{3}} + \frac{1}{\sqrt{3} + \sqrt{4}} + \ldots + \frac{1}{\sqrt{15} + \sqrt{16}}" />
 
-Jeder Bruch ist also **eine Differenz zweier benachbarter Wurzeln**.
+# Gesucht
 
-# Die Summe fällt zusammen
+Der exakte Wert dieser Summe aus <InlineMath math="15" /> Brüchen.
 
-Schreibe die Summe mit diesen Differenzen auf. Jede Wurzel von <InlineMath math="\sqrt2" /> bis <InlineMath math="\sqrt{15}" /> kommt einmal mit Plus und einmal mit Minus vor:
+# Lösung
 
-<BlockMath math="\left(\sqrt2-\sqrt1\right)+\left(\sqrt3-\sqrt2\right)+\ldots+\left(\sqrt{16}-\sqrt{15}\right)=\sqrt{16}-\sqrt1=4-1=3" />
+Stell dir vor, du legst fünfzehn Papierstreifen lückenlos hintereinander an ein Lineal, beginnend bei <InlineMath math="1" /> bis zur Marke <InlineMath math="4" />. Um die Gesamtlänge zu kennen, musst du nicht jeden einzelnen Streifen abmessen: du **ziehst einfach den Anfang vom Ende ab**!
 
-Am Zahlenstrahl siehst du, warum **nur der erste und der letzte Punkt übrig bleiben**:
+> Durch Rationalisieren jedes Nenners verwandelt sich die lange Bruchsumme in eine Teleskopsumme, bei der alle mittleren Wurzeln wegfallen und nur Anfang und Ende stehen bleiben.
+
+Rationalisier den allgemeinen <InlineMath math="k" />-ten Bruch mit der dritten binomischen Formel, sodass der Nenner zu <InlineMath math="1" /> wird.
+
+<BlockMath math="\frac{1}{\sqrt{k} + \sqrt{k + 1}} = \frac{\sqrt{k + 1} - \sqrt{k}}{(k + 1) - k} = \sqrt{k + 1} - \sqrt{k}" />
+
+## Teleskopsumme zusammenziehen
+
+Ersetz alle <InlineMath math="15" /> Brüche durch Differenzen aufeinanderfolgender Wurzeln, sodass **alle inneren Wurzeln von <InlineMath math="\sqrt{2}" /> bis <InlineMath math="\sqrt{15}" /> paarweise wegfallen**.
+
+<BlockMath math="\left(\sqrt{2} - \sqrt{1}\right) + \left(\sqrt{3} - \sqrt{2}\right) + \ldots + \left(\sqrt{16} - \sqrt{15}\right) = \sqrt{16} - \sqrt{1} = 4 - 1 = 3" />
+
+Auf dem Zahlenstrahl siehst du direkt, wie die fünfzehn Abschnitte nahtlos von <InlineMath math="1" /> bis <InlineMath math="4" /> reichen.
 
 <MathVisual
-  title={<>Fünfzehn Stücke auf dem Zahlenstrahl</>}
-  description={<>Auf dem Zahlenstrahl liegen die Punkte <InlineMath math="\sqrt1, \sqrt2, \ldots, \sqrt{16}" />. Jeder Bruch der Summe ist die Länge eines Stücks von <InlineMath math="\sqrt k" /> bis <InlineMath math="\sqrt{k+1}" />. Die fünfzehn Stücke liegen lückenlos hintereinander und reichen zusammen von <InlineMath math="1" /> bis <InlineMath math="4" />, also über die Länge <InlineMath math="3" />.</>}
-  labels={{
-    one: <><InlineMath math="\sqrt1=1" /></>,
-    four: <><InlineMath math="\sqrt{16}=4" /></>,
-    sum: <><InlineMath math="4-1=3" /></>,
-  }}
+  title={<>Fünfzehn lückenlose Wurzelabschnitte auf dem Zahlenstrahl</>}
+  description={
+    <>
+      Der Zahlenstrahl zeigt die Punkte <InlineMath math="\sqrt{1}" /> bis{" "}
+      <InlineMath math="\sqrt{16}" />. Jeder Bruch liefert die Strecke von{" "}
+      <InlineMath math="\sqrt{k}" /> bis <InlineMath math="\sqrt{k + 1}" />, und
+      alle fünfzehn spannen zusammen exakt von <InlineMath math="1" /> bis{" "}
+      <InlineMath math="4" />.
+    </>
+  }
+  footer={<>Alle fünfzehn Abschnitte schließen nahtlos von <InlineMath math="1" /> bis <InlineMath math="4" /> und messen zusammen <InlineMath math="3" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 0.5, max: 4.5 },
-      y: { min: -1, max: 1.5 },
-    },
+    frame: { kind: "cartesian", x: { min: 0.5, max: 4.5 }, y: { min: -1, max: 1.5 } },
     view: { kind: "fit", padding: 0.1 },
     objects: [
       { id: "axis", kind: "segment", appearance: "reference", from: { x: 0.8, y: 0 }, to: { x: 4.2, y: 0 } },
@@ -57,14 +69,25 @@ Am Zahlenstrahl siehst du, warum **nur der erste und der letzte Punkt übrig ble
       { key: "sum", objectId: "total", at: { x: 2.5, y: 0.5 }, placement: "above" },
     ],
   }}
+  labels={{
+    one: <><InlineMath math="\sqrt{1} = 1" /></>,
+    four: <><InlineMath math="\sqrt{16} = 4" /></>,
+    sum: <><InlineMath math="4 - 1 = 3" /></>,
+  }}
 />
 
-Die Summe hat den Wert <InlineMath math="3" />.
+Jeder nächste Streifen wird kürzer, doch zusammen überdecken sie genau das Stück von <InlineMath math="1" /> bis <InlineMath math="4" />.
 
-# Warum die anderen Antworten falsch sind
+## Plausibilitätsprobe und falsche Antworten prüfen
 
-- <InlineMath math="-3" /> entsteht, wenn du mit <InlineMath math="\sqrt k-\sqrt{k+1}" /> erweiterst und den Nenner trotzdem als <InlineMath math="+1" /> liest. Jeder Summand ist aber **positiv**, also auch die Summe.
-- <InlineMath math="4-\sqrt2" /> lässt den ersten Bruch weg und beginnt die Kette erst bei <InlineMath math="\sqrt2" />.
-- <InlineMath math="\sqrt{17}-1" /> zählt einen Bruch zu viel, bis <InlineMath math="\sqrt{17}" />.
-- <InlineMath math="4" /> vergisst, dass am Anfang <InlineMath math="\sqrt1=1" /> abgezogen wird.
-- <InlineMath math="15" /> ist die Anzahl der Brüche, nicht ihre Summe.
+Kurzprobe: Jeder Bruch ist positiv und kleiner als <InlineMath math="\frac{1}{2}" />, also passt **die positive Summe <InlineMath math="3" /> sehr gut zu <InlineMath math="15" /> Summanden**.
+
+- <InlineMath math="-3" /> erweitert mit <InlineMath math="\sqrt{k} - \sqrt{k + 1}" /> und liest den Nenner fälschlich als <InlineMath math="+1" />, obwohl positive Summanden nie eine negative Summe ergeben.
+- <InlineMath math="4 - \sqrt{2}" /> lässt den ersten Bruch weg, sodass die Kette erst bei <InlineMath math="\sqrt{2}" /> startet.
+- <InlineMath math="\sqrt{17} - 1" /> zählt einen Bruch zu viel bis <InlineMath math="\sqrt{17}" />.
+- <InlineMath math="4" /> vergisst, den Anfangswert <InlineMath math="1" /> abzuziehen.
+- <InlineMath math="15" /> ist lediglich die Anzahl der Brüche, nicht deren Summe.
+
+# Antwort
+
+Der Wert der Summe ist <InlineMath math="3" />.

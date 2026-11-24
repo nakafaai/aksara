@@ -1,43 +1,51 @@
-# Work with rates per hour
+# Given
 
-You can't simply add times, but you can add rates. If the weaker pump alone needs <InlineMath math="x" /> hours, it fills <InlineMath math="\frac1x" /> of the tank per hour. The stronger one needs <InlineMath math="x-5" /> hours and manages <InlineMath math="\frac{1}{x-5}" /> per hour. Together they fill **<InlineMath math="\frac16" /> of the tank per hour**:
+Two **water pumps** (*Pumpen*) running at constant rates fill an empty tank together in <InlineMath math="6" /> hours. Working alone, the weaker pump needs <InlineMath math="5" /> hours longer than the stronger pump.
 
-<BlockMath math="\frac1x+\frac{1}{x-5}=\frac16" />
+# Asked
 
-# Solve the equation
+How long would the weaker pump take to fill the empty tank on its own?
 
-Multiply by **the common denominator <InlineMath math="6x(x-5)" />**:
+# Solution
+
+Two painters working on the same wall finish faster than either painter alone, so you never add their total times. What adds up cleanly is **the hourly fill rate**, meaning the fraction of the tank filled each hour!
+
+> In combined-work problems, convert each time into a rate per hour first, add the rates together, and discard any algebraic root that gives a negative time.
+
+Let the weaker pump take <InlineMath math="x" /> hours alone, so the stronger pump takes <InlineMath math="x - 5" /> hours. Together they fill <InlineMath math="\frac{1}{6}" /> of the tank every hour, yielding the rate equation below.
+
+<BlockMath math="\frac{1}{x} + \frac{1}{x - 5} = \frac{1}{6}" />
+
+## Solving the rate equation and filtering physical roots
+
+Multiply both sides by **the common denominator <InlineMath math="6x(x - 5)" />** to turn the equation into a quadratic.
 
 <BlockMath math="\begin{aligned}
-6(x-5)+6x&=x(x-5) \\
-12x-30&=x^2-5x \\
-x^2-17x+30&=0 \\
-(x-15)(x-2)&=0
+6(x - 5) + 6x &= x(x - 5) \\
+12x - 30 &= x^2 - 5x \\
+x^2 - 17x + 30 &= 0 \\
+(x - 15)(x - 2) &= 0
 \end{aligned}" />
 
-# Pick the solution that fits
-
-The stronger pump needs <InlineMath math="x-5" /> hours, and **that time must be positive**. For <InlineMath math="x=2" /> it would be <InlineMath math="-3" /> hours, so that solution drops out:
+This produces two algebraic roots, <InlineMath math="x = 15" /> and <InlineMath math="x = 2" />. Because the stronger pump's time <InlineMath math="x - 5" /> must be positive (<InlineMath math="x > 5" />), we reject <InlineMath math="x = 2" /> since it would require <InlineMath math="-3" /> hours.
 
 <MathVisual
-  title={<>Joint rate per hour</>}
-  description={<>For times <InlineMath math="x>5" /> of the weaker pump the joint rate <InlineMath math="\frac1x+\frac1{x-5}" /> is drawn as a falling graph. The horizontal line <InlineMath math="y=\frac16" /> is the required rate. They meet exactly once, at <InlineMath math="x=15" />.</>}
-  labels={{
-    key: <><InlineMath math="x=15" /></>,
-    r: <>joint rate</>,
-    j: <><InlineMath math="\frac16" /> tank per hour</>,
-  }}
+  title={<>Combined hourly fill rate versus weaker pump time</>}
+  description={
+    <>
+      For <InlineMath math="x > 5" />, the combined fill rate decreases smoothly
+      and crosses the target line <InlineMath math="y = \tfrac{1}{6}" /> once,
+      at <InlineMath math="x = 15" />.
+    </>
+  }
+  footer={<>In the physical domain <InlineMath math="x > 5" />, only <InlineMath math="x = 15" /> hours achieves <InlineMath math="\tfrac{1}{6}" /> tank per hour.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 5, max: 31 },
-      y: { min: 0, max: 0.65 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: 5, max: 31 }, y: { min: 0, max: 0.65 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "level", kind: "segment", appearance: "reference", from: { x: 5, y: 0.16666666666666666 }, to: { x: 30, y: 0.16666666666666666 } },
-      { id: "rate", kind: "function", appearance: "primary", formula: "1/x + 1/(x-5)", domain: { min: 7, max: 30 } },
+      { id: "rate", kind: "function", appearance: "primary", formula: "1 / x + 1 / (x - 5)", domain: { min: 7, max: 30 } },
       { id: "meet", kind: "point", appearance: "answer", at: { x: 15, y: 0.16666666666666666 } },
     ],
     labels: [
@@ -46,14 +54,27 @@ The stronger pump needs <InlineMath math="x-5" /> hours, and **that time must be
       { key: "j", objectId: "level", at: { x: 28, y: 0.16666666666666666 }, placement: "above" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="x = 15" /></>,
+    r: <>combined rate</>,
+    j: <><InlineMath math="\tfrac{1}{6}" /> tank per hour</>,
+  }}
 />
 
-Check <InlineMath math="x=15" />: <InlineMath math="\frac1{15}+\frac1{10}=\frac{2+3}{30}=\frac16" />. The weaker pump alone needs <InlineMath math="15" /> hours.
+The curve crosses the target rate only once in the realistic region <InlineMath math="x > 5" />.
 
-# Why the other answers are wrong
+## Verifying the result and checking wrong choices
 
-- <InlineMath math="10" /> hours is the time of the **stronger** pump.
-- <InlineMath math="11" /> hours adds the <InlineMath math="5" /> hours to the joint time.
-- <InlineMath math="8.5" /> hours treats <InlineMath math="6" /> hours as the average of the two times: <InlineMath math="\frac{x+(x-5)}{2}=6" />.
-- "<InlineMath math="2" /> hours or <InlineMath math="15" /> hours" overlooks that for <InlineMath math="x=2" /> the stronger pump would need a negative time.
-- <InlineMath math="12" /> hours assumes each pump alone takes twice as long as both together. That only holds for two equally strong pumps.
+Check <InlineMath math="15" /> hours and <InlineMath math="10" /> hours directly: **their hourly rates add up to exactly one sixth of the tank**.
+
+<BlockMath math="\frac{1}{15} + \frac{1}{10} = \frac{2 + 3}{30} = \frac{5}{30} = \frac{1}{6}" />
+
+- <InlineMath math="10" /> hours is the time for the stronger pump rather than the weaker one.
+- <InlineMath math="11" /> hours simply adds the <InlineMath math="5" />-hour difference onto the combined <InlineMath math="6" /> hours.
+- <InlineMath math="8.5" /> hours mistakenly treats <InlineMath math="6" /> hours as the arithmetic average of the two individual times.
+- <InlineMath math="2" /> hours or <InlineMath math="15" /> hours forgets to eliminate <InlineMath math="x = 2" />, which implies a negative time for the stronger pump.
+- <InlineMath math="12" /> hours assumes both pumps are equally strong, doubling the combined time.
+
+# Answer
+
+The weaker pump alone needs <InlineMath math="15" /> hours to fill the tank.

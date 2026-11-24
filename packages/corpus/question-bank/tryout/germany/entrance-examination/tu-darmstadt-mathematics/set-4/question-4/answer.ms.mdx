@@ -1,33 +1,41 @@
-# Cari bahagian-bahagian hipotenus
+# Diberi
 
-Tinggi membahagi hipotenus kepada dua bahagian <InlineMath math="p" /> dan <InlineMath math="q" />. Ada dua hubungan untuk kedua-duanya: hasil tambahnya ialah hipotenus, dan mengikut **teorem tinggi**, hasil darabnya sama dengan kuasa dua tinggi:
+Dalam sebuah **segi tiga bersudut tegak** (*rechtwinkliges Dreieck*), panjang hipotenus (*Hypotenuse*) ialah <InlineMath math="13\text{ cm}" /> dan tinggi ke hipotenus (*Höhe auf die Hypotenuse*) ialah <InlineMath math="6\text{ cm}" />.
+
+# Ditanya
+
+Tentukan perimeter (*Umfang*) segi tiga bersudut tegak ini.
+
+# Penyelesaian
+
+Menurunkan garis tinggi daripada sudut tegak membahagikan segi tiga kepada dua salinan kecil yang serupa dengan segi tiga asal! Keserupaan inilah yang melahirkan **teorem tinggi** (*Höhensatz*) dan **teorem sisi siku** (*Kathetensatz*), membolehkan kita memecahkan hipotenus <InlineMath math="13\text{ cm}" /> kepada dua bahagian <InlineMath math="p" /> dan <InlineMath math="q" />.
+
+> Dalam segi tiga bersudut tegak, kuasa dua tinggi sama dengan hasil darab dua bahagian hipotenus, dan kuasa dua setiap sisi siku sama dengan hipotenus darab bahagian bersebelahannya.
+
+Hasil tambah kedua-dua bahagian ialah <InlineMath math="13" /> dan hasil darabnya sama dengan kuasa dua tinggi, iaitu <InlineMath math="36" />.
 
 <BlockMath math="\begin{aligned}
-p+q&=13,\qquad p\cdot q=h^2=36 \\
-p\,(13-p)&=36\ \Longleftrightarrow\ p^2-13p+36=0\ \Longleftrightarrow\ (p-4)(p-9)=0
+p + q &= 13, \qquad p \cdot q = h^2 = 36 \\
+p(13 - p) &= 36 \iff p^2 - 13p + 36 = 0 \iff (p - 4)(p - 9) = 0
 \end{aligned}" />
 
-Jadi kedua-dua bahagian itu <InlineMath math="4\text{ cm}" /> dan <InlineMath math="9\text{ cm}" />.
+Maka kedua-dua bahagian hipotenus ialah <InlineMath math="4\text{ cm}" /> dan <InlineMath math="9\text{ cm}" />.
 
 <MathVisual
-  title={<>Tinggi membahagi hipotenus</>}
-  description={<>Segi tiga <InlineMath math="ABC" /> dengan hipotenus <InlineMath math="\overline{AB}=13" /> di bawah dan sudut tegak di <InlineMath math="C" /> di atas. Tinggi dari <InlineMath math="C" /> ke hipotenus panjangnya <InlineMath math="6" /> dan membahagi hipotenus kepada bahagian <InlineMath math="p=4" /> dan <InlineMath math="q=9" />.</>}
-  labels={{
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    c: <><InlineMath math="C" /></>,
-    p: <><InlineMath math="p=4" /></>,
-    q: <><InlineMath math="q=9" /></>,
-    h: <><InlineMath math="h=6" /></>,
-  }}
+  title={<>Garis tinggi membahagikan hipotenus kepada dua bahagian</>}
+  description={
+    <>
+      Segi tiga bersudut tegak <InlineMath math="ABC" /> dengan hipotenus{" "}
+      <InlineMath math="13" /> di bawah dan sudut tegak di <InlineMath math="C" />.
+      Tinggi <InlineMath math="h = 6" /> membahagikan hipotenus kepada{" "}
+      <InlineMath math="p = 4" /> dan <InlineMath math="q = 9" />.
+    </>
+  }
+  footer={<>Tinggi <InlineMath math="h = 6" /> memecahkan hipotenus <InlineMath math="13" /> kepada <InlineMath math="4" /> dan <InlineMath math="9" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 14 },
-      y: { min: -2, max: 7.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 14 }, y: { min: -2, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 13, y: 0 }, { x: 4, y: 6 }] },
       { id: "altitude", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 4, y: 6 } },
@@ -47,29 +55,40 @@ Jadi kedua-dua bahagian itu <InlineMath math="4\text{ cm}" /> dan <InlineMath ma
       { key: "h", objectId: "altitude", at: { x: 4, y: 3 }, placement: "right" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    p: <><InlineMath math="p = 4" /></>,
+    q: <><InlineMath math="q = 9" /></>,
+    h: <><InlineMath math="h = 6" /></>,
+  }}
 />
 
-# Cari sisi tegak
+Dengan bahagian <InlineMath math="4" /> dan <InlineMath math="9" /> terpapar jelas, panjang kedua-dua sisi siku terus diperoleh dalam satu langkah.
 
-Mengikut **teorem sisi tegak**, kuasa dua setiap sisi tegak sama dengan hipotenus didarab dengan bahagian yang bersebelahan dengan sisi itu:
+## Mengira kedua sisi siku dan perimeter
+
+Gunakan **teorem sisi siku** bagi setiap bahagian, kemudian jumlahkan ketiga-tiga sisi untuk mendapat perimeter.
 
 <BlockMath math="\begin{aligned}
-a^2&=13\cdot4=52,\qquad a=2\sqrt{13} \\
-b^2&=13\cdot9=117,\qquad b=3\sqrt{13}
+a^2 &= 13 \cdot 4 = 52 \implies a = 2\sqrt{13} \\
+b^2 &= 13 \cdot 9 = 117 \implies b = 3\sqrt{13} \\
+u &= 13 + 2\sqrt{13} + 3\sqrt{13} = (13 + 5\sqrt{13})\text{ cm}
 \end{aligned}" />
 
-Semakan: <InlineMath math="a^2+b^2=52+117=169=13^2" />.
+Semakan Pythagoras: hasil tambah kuasa dua kedua-dua sisi ialah <InlineMath math="52 + 117 = 169" />, tepat sama dengan <InlineMath math="13^2" />.
 
-# Tambah perimeternya
+## Menyemak pilihan salah
 
-<BlockMath math="u=13+2\sqrt{13}+3\sqrt{13}=(13+5\sqrt{13})\text{ cm}" />
+Perhatikan bagaimana setiap pilihan salah melanggar **hubungan luas atau bahagian hipotenus**.
 
-**Perimeter segi tiga itu ialah** <InlineMath math="(13+5\sqrt{13})\text{ cm}" />, kira-kira <InlineMath math="31.0\text{ cm}" />.
+- <InlineMath math="30\text{ cm}" /> meneka tigaan biasa <InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />, padahal tingginya ialah <InlineMath math="\frac{60}{13}" />, bukan <InlineMath math="6" />.
+- <InlineMath math="26\text{ cm}" /> menjumlahkan bahagian <InlineMath math="4" /> dan <InlineMath math="9" /> dengan hipotenus seolah-olah kedua-duanya sisi siku.
+- <InlineMath math="(13 + \sqrt{481})\text{ cm}" /> tersilap menggandakan <InlineMath math="c \cdot h" /> bagi hasil darab sisi siku, bukannya <InlineMath math="78" />.
+- <InlineMath math="5\sqrt{13}\text{ cm}" /> hanya menjumlahkan dua sisi siku tanpa hipotenus <InlineMath math="13\text{ cm}" />.
+- <InlineMath math="(13 + 2\sqrt{13})\text{ cm}" /> hanya menambah satu sisi siku bersama hipotenus.
 
-# Kenapa jawapan lain salah
+# Jawapan
 
-- <InlineMath math="30\text{ cm}" /> memakai sisi yang biasa dikenali, <InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />. Tetapi segi tiga itu ada **tinggi yang lain**: <InlineMath math="\frac{5\cdot12}{13}=\frac{60}{13}\ne6" />.
-- <InlineMath math="26\text{ cm}" /> menambah bahagian <InlineMath math="4" /> dan <InlineMath math="9" /> kepada hipotenus, seolah-olah kedua-duanya sisi tegak.
-- <InlineMath math="(13+\sqrt{481})\text{ cm}" /> memakai <InlineMath math="ab=2\cdot13\cdot6=156" />. Yang betul ialah <InlineMath math="ab=c\cdot h=78" />, sebab kedua-dua hasil darab itu sama dengan dua kali luas.
-- <InlineMath math="5\sqrt{13}\text{ cm}" /> cuma hasil tambah sisi tegak, tanpa hipotenus.
-- <InlineMath math="(13+2\sqrt{13})\text{ cm}" /> hanya mengira satu sisi tegak.
+Perimeter segi tiga bersudut tegak ini ialah <InlineMath math="(13 + 5\sqrt{13})\text{ cm}" />.

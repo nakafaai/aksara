@@ -1,33 +1,41 @@
-# Die Hypotenusenabschnitte bestimmen
+# Gegeben
 
-Die Höhe zerlegt die Hypotenuse in zwei Abschnitte <InlineMath math="p" /> und <InlineMath math="q" />. Für sie gelten zwei Beziehungen: Sie ergeben zusammen die Hypotenuse, und nach dem **Höhensatz** ist ihr Produkt das Quadrat der Höhe:
+In einem **rechtwinkligen Dreieck** ist die Hypotenuse <InlineMath math="13\text{ cm}" /> lang und die Höhe auf die Hypotenuse beträgt <InlineMath math="6\text{ cm}" />.
+
+# Gesucht
+
+Der Umfang dieses rechtwinkligen Dreiecks.
+
+# Lösung
+
+Fällst du die Höhe aus dem rechten Winkel, zerfällt das Dreieck in zwei kleinere, zum großen Dreieck ähnliche Kopien! Genau daraus folgen **Höhensatz** und **Kathetensatz**, mit denen du die Hypotenuse <InlineMath math="13\text{ cm}" /> direkt in zwei Abschnitte <InlineMath math="p" /> und <InlineMath math="q" /> zerlegst.
+
+> Im rechtwinkligen Dreieck ist das Quadrat der Höhe gleich dem Produkt der Hypotenusenabschnitte, und jedes Kathetenquadrat gleich der ganzen Hypotenuse mal dem anliegenden Abschnitt.
+
+Beide Abschnitte ergeben zusammen <InlineMath math="13" /> und ihr Produkt beträgt <InlineMath math="36" />.
 
 <BlockMath math="\begin{aligned}
-p+q&=13,\qquad p\cdot q=h^2=36 \\
-p\,(13-p)&=36\ \Longleftrightarrow\ p^2-13p+36=0\ \Longleftrightarrow\ (p-4)(p-9)=0
+p + q &= 13, \qquad p \cdot q = h^2 = 36 \\
+p(13 - p) &= 36 \iff p^2 - 13p + 36 = 0 \iff (p - 4)(p - 9) = 0
 \end{aligned}" />
 
-Also sind die Abschnitte <InlineMath math="4\text{ cm}" /> und <InlineMath math="9\text{ cm}" />.
+Die beiden Hypotenusenabschnitte messen also <InlineMath math="4\text{ cm}" /> und <InlineMath math="9\text{ cm}" />.
 
 <MathVisual
-  title={<>Die Höhe teilt die Hypotenuse</>}
-  description={<>Das Dreieck <InlineMath math="ABC" /> mit der Hypotenuse <InlineMath math="\overline{AB}=13" /> unten und dem rechten Winkel bei <InlineMath math="C" /> oben. Die Höhe von <InlineMath math="C" /> auf die Hypotenuse ist <InlineMath math="6" /> lang und teilt die Hypotenuse in die Abschnitte <InlineMath math="p=4" /> und <InlineMath math="q=9" />.</>}
-  labels={{
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    c: <><InlineMath math="C" /></>,
-    p: <><InlineMath math="p=4" /></>,
-    q: <><InlineMath math="q=9" /></>,
-    h: <><InlineMath math="h=6" /></>,
-  }}
+  title={<>Die Höhe teilt die Hypotenuse in zwei Abschnitte</>}
+  description={
+    <>
+      Rechtwinkliges Dreieck <InlineMath math="ABC" /> mit Hypotenuse{" "}
+      <InlineMath math="13" /> unten und rechtem Winkel bei{" "}
+      <InlineMath math="C" />. Die Höhe <InlineMath math="h = 6" /> teilt die
+      Hypotenuse in <InlineMath math="p = 4" /> und <InlineMath math="q = 9" />.
+    </>
+  }
+  footer={<>Die Höhe <InlineMath math="h = 6" /> zerlegt die Hypotenuse <InlineMath math="13" /> in <InlineMath math="4" /> und <InlineMath math="9" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 14 },
-      y: { min: -2, max: 7.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 14 }, y: { min: -2, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 13, y: 0 }, { x: 4, y: 6 }] },
       { id: "altitude", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 4, y: 6 } },
@@ -47,29 +55,40 @@ Also sind die Abschnitte <InlineMath math="4\text{ cm}" /> und <InlineMath math=
       { key: "h", objectId: "altitude", at: { x: 4, y: 3 }, placement: "right" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    p: <><InlineMath math="p = 4" /></>,
+    q: <><InlineMath math="q = 9" /></>,
+    h: <><InlineMath math="h = 6" /></>,
+  }}
 />
 
-# Die Katheten bestimmen
+Mit den beiden Abschnitten <InlineMath math="4" /> und <InlineMath math="9" /> im Bild folgen beide Katheten in einem einzigen Schritt.
 
-Nach dem **Kathetensatz** ist das Quadrat jeder Kathete das Produkt aus der Hypotenuse und dem anliegenden Abschnitt:
+## Katheten und Umfang berechnen
+
+Wende **den Kathetensatz** auf beide Abschnitte an und addiere anschließend alle drei Seiten zum Umfang.
 
 <BlockMath math="\begin{aligned}
-a^2&=13\cdot4=52,\qquad a=2\sqrt{13} \\
-b^2&=13\cdot9=117,\qquad b=3\sqrt{13}
+a^2 &= 13 \cdot 4 = 52 \implies a = 2\sqrt{13} \\
+b^2 &= 13 \cdot 9 = 117 \implies b = 3\sqrt{13} \\
+u &= 13 + 2\sqrt{13} + 3\sqrt{13} = (13 + 5\sqrt{13})\text{ cm}
 \end{aligned}" />
 
-Probe: <InlineMath math="a^2+b^2=52+117=169=13^2" />.
+Pythagorasprobe: Die Kathetenquadrate ergeben <InlineMath math="52 + 117 = 169" />, exakt gleich <InlineMath math="13^2" />.
 
-# Den Umfang addieren
+## Falsche Antworten prüfen
 
-<BlockMath math="u=13+2\sqrt{13}+3\sqrt{13}=(13+5\sqrt{13})\text{ cm}" />
+Jede falsche Auswahl verfehlt **die Flächenbeziehung oder die Hypotenusenabschnitte**.
 
-**Der Umfang beträgt** <InlineMath math="(13+5\sqrt{13})\text{ cm}" />, etwa <InlineMath math="31{,}0\text{ cm}" />.
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="30\text{ cm}" /> nimmt die bekannten Seiten <InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />. Dieses Dreieck hat aber **eine andere Höhe**: <InlineMath math="\frac{5\cdot12}{13}=\frac{60}{13}\ne6" />.
+- <InlineMath math="30\text{ cm}" /> rät das vertraute Tripel <InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />, dessen Höhe aber <InlineMath math="\frac{60}{13}" /> statt <InlineMath math="6" /> beträgt.
 - <InlineMath math="26\text{ cm}" /> addiert die Abschnitte <InlineMath math="4" /> und <InlineMath math="9" /> zur Hypotenuse, als wären sie die Katheten.
-- <InlineMath math="(13+\sqrt{481})\text{ cm}" /> rechnet mit <InlineMath math="ab=2\cdot13\cdot6=156" />. Richtig ist <InlineMath math="ab=c\cdot h=78" />, denn beide Produkte sind das Doppelte des Flächeninhalts.
-- <InlineMath math="5\sqrt{13}\text{ cm}" /> ist nur die Summe der Katheten, ohne die Hypotenuse.
-- <InlineMath math="(13+2\sqrt{13})\text{ cm}" /> zählt nur eine Kathete.
+- <InlineMath math="(13 + \sqrt{481})\text{ cm}" /> verdoppelt fälschlich <InlineMath math="c \cdot h" /> beim Kathetenprodukt statt <InlineMath math="78" /> zu nutzen.
+- <InlineMath math="5\sqrt{13}\text{ cm}" /> addiert nur die beiden Katheten und vergisst die Hypotenuse <InlineMath math="13\text{ cm}" />.
+- <InlineMath math="(13 + 2\sqrt{13})\text{ cm}" /> zählt nur eine Kathete zur Hypotenuse hinzu.
+
+# Antwort
+
+Der Umfang des Dreiecks beträgt <InlineMath math="(13 + 5\sqrt{13})\text{ cm}" />.

@@ -1,34 +1,46 @@
-# Rationalise each fraction
+# Given
 
-Each term has the form <InlineMath math="\frac{1}{\sqrt k+\sqrt{k+1}}" /> with <InlineMath math="k=1,2,\ldots,15" />. Multiply top and bottom by <InlineMath math="\sqrt{k+1}-\sqrt k" />. The difference of squares turns the denominator into <InlineMath math="1" />:
+We are given a **telescoping sum** (*Teleskopsumme*) of <InlineMath math="15" /> radical fractions.
 
-<BlockMath math="\frac{1}{\sqrt k+\sqrt{k+1}}=\frac{\sqrt{k+1}-\sqrt k}{(k+1)-k}=\sqrt{k+1}-\sqrt k" />
+<BlockMath math="\frac{1}{1 + \sqrt{2}} + \frac{1}{\sqrt{2} + \sqrt{3}} + \frac{1}{\sqrt{3} + \sqrt{4}} + \ldots + \frac{1}{\sqrt{15} + \sqrt{16}}" />
 
-So each fraction is **a difference of two neighbouring roots**.
+# Asked
 
-# The sum collapses
+Compute the exact value of this sum of <InlineMath math="15" /> fractions.
 
-Write the sum with these differences. Every root from <InlineMath math="\sqrt2" /> to <InlineMath math="\sqrt{15}" /> appears once with a plus and once with a minus:
+# Solution
 
-<BlockMath math="\left(\sqrt2-\sqrt1\right)+\left(\sqrt3-\sqrt2\right)+\ldots+\left(\sqrt{16}-\sqrt{15}\right)=\sqrt{16}-\sqrt1=4-1=3" />
+Picture laying fifteen ribbon strips end-to-end without gaps along a ruler, starting at mark <InlineMath math="1" /> and finishing at mark <InlineMath math="4" />. You never need to measure each tiny strip individually to find their total length: simply **subtract the starting mark from the ending mark**!
 
-The number line shows why **only the first and the last point remain**:
+> Rationalizing each denominator turns a daunting chain of fractions into a telescoping sum where every interior term cancels and only the first and last endpoints remain.
+
+Rationalize the general <InlineMath math="k" />-th term by multiplying top and bottom by its conjugate so the denominator collapses to <InlineMath math="1" />.
+
+<BlockMath math="\frac{1}{\sqrt{k} + \sqrt{k + 1}} = \frac{\sqrt{k + 1} - \sqrt{k}}{(k + 1) - k} = \sqrt{k + 1} - \sqrt{k}" />
+
+## Collapsing the telescoping sum
+
+Replace all <InlineMath math="15" /> fractions with consecutive square-root differences so that **every middle root from <InlineMath math="\sqrt{2}" /> through <InlineMath math="\sqrt{15}" /> cancels out**.
+
+<BlockMath math="\left(\sqrt{2} - \sqrt{1}\right) + \left(\sqrt{3} - \sqrt{2}\right) + \ldots + \left(\sqrt{16} - \sqrt{15}\right) = \sqrt{16} - \sqrt{1} = 4 - 1 = 3" />
+
+See on the number line below how the fifteen pieces tile the span from <InlineMath math="1" /> to <InlineMath math="4" /> seamlessly.
 
 <MathVisual
-  title={<>Fifteen pieces on the number line</>}
-  description={<>The number line carries the points <InlineMath math="\sqrt1, \sqrt2, \ldots, \sqrt{16}" />. Each fraction of the sum is the length of the piece from <InlineMath math="\sqrt k" /> to <InlineMath math="\sqrt{k+1}" />. The fifteen pieces sit end to end and together reach from <InlineMath math="1" /> to <InlineMath math="4" />, a length of <InlineMath math="3" />.</>}
-  labels={{
-    one: <><InlineMath math="\sqrt1=1" /></>,
-    four: <><InlineMath math="\sqrt{16}=4" /></>,
-    sum: <><InlineMath math="4-1=3" /></>,
-  }}
+  title={<>Fifteen linked square-root steps on the number line</>}
+  description={
+    <>
+      The number line marks <InlineMath math="\sqrt{1}" /> through{" "}
+      <InlineMath math="\sqrt{16}" />. Each fraction contributes one segment
+      from <InlineMath math="\sqrt{k}" /> to <InlineMath math="\sqrt{k + 1}" />,
+      and together they span from <InlineMath math="1" /> to{" "}
+      <InlineMath math="4" />.
+    </>
+  }
+  footer={<>All fifteen segments connect without gaps from <InlineMath math="1" /> to <InlineMath math="4" />, giving total length <InlineMath math="3" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 0.5, max: 4.5 },
-      y: { min: -1, max: 1.5 },
-    },
+    frame: { kind: "cartesian", x: { min: 0.5, max: 4.5 }, y: { min: -1, max: 1.5 } },
     view: { kind: "fit", padding: 0.1 },
     objects: [
       { id: "axis", kind: "segment", appearance: "reference", from: { x: 0.8, y: 0 }, to: { x: 4.2, y: 0 } },
@@ -57,14 +69,25 @@ The number line shows why **only the first and the last point remain**:
       { key: "sum", objectId: "total", at: { x: 2.5, y: 0.5 }, placement: "above" },
     ],
   }}
+  labels={{
+    one: <><InlineMath math="\sqrt{1} = 1" /></>,
+    four: <><InlineMath math="\sqrt{16} = 4" /></>,
+    sum: <><InlineMath math="4 - 1 = 3" /></>,
+  }}
 />
 
-The sum is <InlineMath math="3" />.
+Each consecutive strip grows shorter toward the right, yet together they cover the entire interval from <InlineMath math="1" /> to <InlineMath math="4" />.
 
-# Why the other answers are wrong
+## Sanity check and wrong choices
 
-- <InlineMath math="-3" /> comes from multiplying by <InlineMath math="\sqrt k-\sqrt{k+1}" /> and still reading the denominator as <InlineMath math="+1" />. But every term is **positive**, so the sum is too.
-- <InlineMath math="4-\sqrt2" /> drops the first fraction and starts the chain at <InlineMath math="\sqrt2" />.
-- <InlineMath math="\sqrt{17}-1" /> counts one fraction too many, up to <InlineMath math="\sqrt{17}" />.
-- <InlineMath math="4" /> forgets that <InlineMath math="\sqrt1=1" /> is subtracted at the start.
-- <InlineMath math="15" /> is the number of fractions, not their sum.
+Quick check: every fraction is positive and smaller than <InlineMath math="\frac{1}{2}" />, so **a positive sum of <InlineMath math="3" /> fits <InlineMath math="15" /> terms naturally**.
+
+- <InlineMath math="-3" /> multiplies by <InlineMath math="\sqrt{k} - \sqrt{k + 1}" /> yet wrongly keeps <InlineMath math="+1" /> in the denominator, even though a sum of positive fractions cannot be negative.
+- <InlineMath math="4 - \sqrt{2}" /> drops the first fraction so the chain starts late at <InlineMath math="\sqrt{2}" />.
+- <InlineMath math="\sqrt{17} - 1" /> counts one extra fraction past the end up to <InlineMath math="\sqrt{17}" />.
+- <InlineMath math="4" /> forgets to subtract the starting term <InlineMath math="1" />.
+- <InlineMath math="15" /> is just the number of fractions, not their sum.
+
+# Answer
+
+The exact value of the sum is <InlineMath math="3" />.

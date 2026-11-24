@@ -1,31 +1,41 @@
-# Tinggi sisi tegak
+# Diketahui
 
-Setiap sisi tegak adalah segitiga dengan alas <InlineMath math="6\text{ cm}" />. Dari luasnya diperoleh tingginya <InlineMath math="h_s" />, yaitu **tinggi sisi tegak**, bukan tinggi limas:
+Sebuah **limas tegak** (*gerade Pyramide*) beralas persegi bersisi <InlineMath math="6\text{ cm}" /> dengan puncak tepat tegak lurus di atas pusat alas. Setiap dari empat sisi tegaknya berbentuk segitiga dengan luas <InlineMath math="15\text{ cm}^2" />.
 
-<BlockMath math="\frac12\cdot6\cdot h_s=15\quad\Longrightarrow\quad h_s=5\text{ cm}" />
+# Ditanyakan
 
-# Tinggi limas
+Tentukan volume limas ini.
 
-Potong limas secara tegak melalui puncak dan titik tengah dua rusuk alas yang berhadapan. Pada potongan itu terlihat segitiga siku-siku dari **setengah rusuk alas, tinggi limas, dan tinggi sisi tegak**:
+# Penyelesaian
+
+Bayangkan sebuah tenda kemah berbentuk limas: kain dinding tenda yang miring selalu lebih panjang daripada tiang tegak lurus di tengah tenda! Dari luas satu sisi segitiga kita baru memperoleh **tinggi miring sisi tegak** (*Seitenhöhe*) <InlineMath math="h_s" />, lalu kita potong tenda tepat di tengah untuk mencari tiang tinggi sejatinya <InlineMath math="h" />.
+
+> Pada limas persegi tegak, setengah sisi alas, tinggi limas, dan tinggi miring sisi tegak selalu membentuk satu segitiga siku-siku dengan tinggi miring sebagai sisi terpanjangnya.
+
+Hitung dulu tinggi miring <InlineMath math="h_s" /> dari luas segitiga sisi tegak yang beralas <InlineMath math="6\text{ cm}" />.
+
+<BlockMath math="\frac{1}{2} \cdot 6 \cdot h_s = 15 \implies h_s = 5\text{ cm}" />
+
+## Mencari tinggi limas dari penampang tengah
+
+Iris limas secara tegak melalui puncak <InlineMath math="S" /> dan titik tengah dua rusuk alas yang berhadapan. Di dalam penampang muncul **segitiga siku-siku klasik dengan sisi <InlineMath math="3" />, <InlineMath math="4" />, dan <InlineMath math="5" />**.
 
 <MathVisual
-  title={<>Penampang melalui puncak</>}
-  description={<>Potongan tegak melalui puncak <InlineMath math="S" /> dan titik tengah dua rusuk alas yang berhadapan. Potongan itu segitiga sama kaki dengan alas <InlineMath math="6" />. Di kanan tampak segitiga siku-siku dari setengah alas <InlineMath math="3" />, tinggi <InlineMath math="h=4" />, dan tinggi sisi tegak <InlineMath math="5" />.</>}
-  labels={{
-    apex: <><InlineMath math="S" /></>,
-    m: <><InlineMath math="M" /></>,
-    h: <><InlineMath math="h=4" /></>,
-    s: <>tinggi sisi <InlineMath math="5" /></>,
-    half: <><InlineMath math="3" /></>,
-  }}
+  title={<>Penampang tegak melalui puncak limas</>}
+  description={
+    <>
+      Penampang berbentuk segitiga sama kaki beralas <InlineMath math="6" />{" "}
+      dengan puncak <InlineMath math="S" /> di atas pusat alas{" "}
+      <InlineMath math="M" />. Di sebelah kanan terlihat segitiga siku-siku
+      dengan setengah alas <InlineMath math="3" />, tinggi limas{" "}
+      <InlineMath math="h = 4" />, dan tinggi miring <InlineMath math="5" />.
+    </>
+  }
+  footer={<>Setengah alas <InlineMath math="3" /> dan tinggi miring <InlineMath math="5" /> menghasilkan tinggi limas <InlineMath math="h = 4\text{ cm}" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -4, max: 4.5 },
-      y: { min: -1, max: 5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -4, max: 4.5 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "section", kind: "polygon", appearance: "primary", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 4 }] },
       { id: "height", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
@@ -42,20 +52,32 @@ Potong limas secara tegak melalui puncak dan titik tengah dua rusuk alas yang be
       { key: "half", objectId: "half-base", at: { x: 1.5, y: 0 }, placement: "below" },
     ],
   }}
+  labels={{
+    apex: <><InlineMath math="S" /></>,
+    m: <><InlineMath math="M" /></>,
+    h: <><InlineMath math="h = 4" /></>,
+    s: <>tinggi miring <InlineMath math="5" /></>,
+    half: <><InlineMath math="3" /></>,
+  }}
 />
 
-<BlockMath math="h=\sqrt{5^2-3^2}=\sqrt{16}=4\text{ cm}" />
+Dengan Pythagoras pada segitiga siku-siku penampang, tinggi limas dan volumenya langsung ditemukan.
 
-# Volumenya
+<BlockMath math="\begin{aligned}
+h &= \sqrt{5^2 - 3^2} = \sqrt{16} = 4\text{ cm} \\
+V &= \frac{1}{3} \cdot G \cdot h = \frac{1}{3} \cdot 6^2 \cdot 4 = 48\text{ cm}^3
+\end{aligned}" />
 
-<BlockMath math="V=\frac13\cdot G\cdot h=\frac13\cdot6^2\cdot4=48\text{ cm}^3" />
+## Mengecek perbandingan dan pilihan salah
 
-Limas itu **bervolume <InlineMath math="48\text{ cm}^3" />**.
+Cek balik: prisma beralas sama bertinggi <InlineMath math="4\text{ cm}" /> bervolume <InlineMath math="144\text{ cm}^3" />, dan **limas selalu mengambil tepat sepertiganya, yaitu <InlineMath math="48\text{ cm}^3" />**.
 
-# Mengapa pilihan lain salah
+- <InlineMath math="144\text{ cm}^3" /> lupa mengalikan faktor <InlineMath math="\frac{1}{3}" /> pada rumus volume limas.
+- <InlineMath math="60\text{ cm}^3" /> langsung memakai tinggi miring <InlineMath math="5\text{ cm}" /> sebagai tinggi tegak limas.
+- <InlineMath math="12\sqrt{7}\text{ cm}^3" /> mengira <InlineMath math="5\text{ cm}" /> adalah rusuk tegak lalu memakai setengah diagonal alas <InlineMath math="3\sqrt{2}" />.
+- <InlineMath math="72\text{ cm}^3" /> memakai faktor <InlineMath math="\frac{1}{2}" /> alih-alih <InlineMath math="\frac{1}{3}" />.
+- <InlineMath math="180\text{ cm}^3" /> menggabungkan dua kesalahan sekaligus: memakai tinggi miring <InlineMath math="5\text{ cm}" /> dan melupakan faktor <InlineMath math="\frac{1}{3}" />.
 
-- <InlineMath math="144\text{ cm}^3" /> **lupa faktor <InlineMath math="\frac13" />** pada volume limas.
-- <InlineMath math="60\text{ cm}^3" /> memakai tinggi sisi tegak <InlineMath math="5" /> sebagai tinggi limas: <InlineMath math="\frac13\cdot36\cdot5" />.
-- <InlineMath math="12\sqrt7\text{ cm}^3" /> menganggap <InlineMath math="5\text{ cm}" /> sebagai panjang rusuk tegak dan memakai setengah diagonal <InlineMath math="3\sqrt2" />: <InlineMath math="h=\sqrt{25-18}=\sqrt7" />.
-- <InlineMath math="72\text{ cm}^3" /> memakai <InlineMath math="\frac12" />, bukan <InlineMath math="\frac13" />.
-- <InlineMath math="180\text{ cm}^3" /> melakukan dua kesalahan: tinggi sisi tegak dipakai sebagai tinggi limas dan faktor <InlineMath math="\frac13" /> hilang.
+# Jawaban
+
+Volume limas ini adalah <InlineMath math="48\text{ cm}^3" />.

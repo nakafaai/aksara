@@ -1,43 +1,51 @@
-# Mit Leistungen pro Stunde rechnen
+# Gegeben
 
-Zeiten darf man nicht einfach addieren, Leistungen schon. Braucht die schwächere Pumpe allein <InlineMath math="x" /> Stunden, so füllt sie in einer Stunde <InlineMath math="\frac1x" /> des Beckens. Die stärkere braucht <InlineMath math="x-5" /> Stunden und schafft <InlineMath math="\frac{1}{x-5}" /> pro Stunde. Zusammen füllen beide **<InlineMath math="\frac16" /> des Beckens pro Stunde**:
+Zwei **Pumpen** mit gleichbleibender Leistung füllen ein leeres Becken gemeinsam in <InlineMath math="6" /> Stunden. Allein braucht die schwächere Pumpe <InlineMath math="5" /> Stunden länger als die stärkere Pumpe.
 
-<BlockMath math="\frac1x+\frac{1}{x-5}=\frac16" />
+# Gesucht
 
-# Die Gleichung lösen
+Die Zeit, die die schwächere Pumpe allein zum Füllen des Beckens braucht.
 
-Multipliziere mit **dem Hauptnenner <InlineMath math="6x(x-5)" />**:
+# Lösung
+
+Zwei Helfer streichen eine Wand zusammen schneller als jeder allein, deshalb addiert man niemals ihre Zeiten. Addieren darfst du nur **die stündlichen Füllraten**, also welchen Bruchteil des Beckens jede Pumpe in einer Stunde schafft!
+
+> Rechne bei gemeinsamen Arbeitsaufgaben immer über die Leistungen pro Stunde, addiere die Raten und streich jede rechnerische Lösung mit negativer Zeit.
+
+Braucht die schwächere Pumpe allein <InlineMath math="x" /> Stunden, braucht die stärkere <InlineMath math="x - 5" /> Stunden. Gemeinsam füllen sie jede Stunde <InlineMath math="\frac{1}{6}" /> des Beckens.
+
+<BlockMath math="\frac{1}{x} + \frac{1}{x - 5} = \frac{1}{6}" />
+
+## Ratengleichung lösen und sinnvoll filtern
+
+Multiplizier beide Seiten mit **dem Hauptnenner <InlineMath math="6x(x - 5)" />**, um eine quadratische Gleichung zu erhalten.
 
 <BlockMath math="\begin{aligned}
-6(x-5)+6x&=x(x-5) \\
-12x-30&=x^2-5x \\
-x^2-17x+30&=0 \\
-(x-15)(x-2)&=0
+6(x - 5) + 6x &= x(x - 5) \\
+12x - 30 &= x^2 - 5x \\
+x^2 - 17x + 30 &= 0 \\
+(x - 15)(x - 2) &= 0
 \end{aligned}" />
 
-# Die passende Lösung auswählen
-
-Die stärkere Pumpe braucht <InlineMath math="x-5" /> Stunden, und **diese Zeit muss positiv sein**. Für <InlineMath math="x=2" /> wären es <InlineMath math="-3" /> Stunden, diese Lösung fällt weg:
+Es folgen <InlineMath math="x = 15" /> und <InlineMath math="x = 2" />. Da die Zeit der stärkeren Pumpe <InlineMath math="x - 5" /> positiv sein muss (<InlineMath math="x > 5" />), scheidet <InlineMath math="x = 2" /> wegen der unmöglichen Zeit <InlineMath math="-3" /> Stunden aus.
 
 <MathVisual
-  title={<>Gemeinsame Leistung je Stunde</>}
-  description={<>Für Zeiten <InlineMath math="x>5" /> der schwächeren Pumpe ist die gemeinsame Leistung <InlineMath math="\frac1x+\frac1{x-5}" /> als fallender Graph gezeichnet. Die waagerechte Gerade <InlineMath math="y=\frac16" /> ist die geforderte Leistung. Beide treffen sich genau einmal, bei <InlineMath math="x=15" />.</>}
-  labels={{
-    key: <><InlineMath math="x=15" /></>,
-    r: <>gemeinsame Leistung</>,
-    j: <><InlineMath math="\frac16" /> Becken pro Stunde</>,
-  }}
+  title={<>Gesamtrate pro Stunde nach der Zeit der schwächeren Pumpe</>}
+  description={
+    <>
+      Für <InlineMath math="x > 5" /> fällt die Gesamtrate stetig ab und
+      schneidet die Ziellinie <InlineMath math="y = \tfrac{1}{6}" /> genau
+      einmal bei <InlineMath math="x = 15" />.
+    </>
+  }
+  footer={<>Im sinnvollen Bereich <InlineMath math="x > 5" /> liefert nur <InlineMath math="x = 15" /> Stunden die Rate <InlineMath math="\tfrac{1}{6}" /> Becken pro Stunde.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 5, max: 31 },
-      y: { min: 0, max: 0.65 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: 5, max: 31 }, y: { min: 0, max: 0.65 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "level", kind: "segment", appearance: "reference", from: { x: 5, y: 0.16666666666666666 }, to: { x: 30, y: 0.16666666666666666 } },
-      { id: "rate", kind: "function", appearance: "primary", formula: "1/x + 1/(x-5)", domain: { min: 7, max: 30 } },
+      { id: "rate", kind: "function", appearance: "primary", formula: "1 / x + 1 / (x - 5)", domain: { min: 7, max: 30 } },
       { id: "meet", kind: "point", appearance: "answer", at: { x: 15, y: 0.16666666666666666 } },
     ],
     labels: [
@@ -46,14 +54,27 @@ Die stärkere Pumpe braucht <InlineMath math="x-5" /> Stunden, und **diese Zeit 
       { key: "j", objectId: "level", at: { x: 28, y: 0.16666666666666666 }, placement: "above" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="x = 15" /></>,
+    r: <>Gesamtrate</>,
+    j: <><InlineMath math="\tfrac{1}{6}" /> Becken pro Stunde</>,
+  }}
 />
 
-Probe für <InlineMath math="x=15" />: <InlineMath math="\frac1{15}+\frac1{10}=\frac{2+3}{30}=\frac16" />. Die schwächere Pumpe braucht allein <InlineMath math="15" /> Stunden.
+Der Graph zeigt eindeutig, dass es für <InlineMath math="x > 5" /> nur genau diesen einen Schnittpunkt gibt.
 
-# Warum die anderen Antworten falsch sind
+## Probe und falsche Antworten prüfen
 
-- <InlineMath math="10" /> Stunden ist die Zeit der **stärkeren** Pumpe.
-- <InlineMath math="11" /> Stunden addiert die <InlineMath math="5" /> Stunden zur gemeinsamen Zeit.
-- <InlineMath math="8{,}5" /> Stunden behandelt <InlineMath math="6" /> Stunden als Mittelwert der beiden Zeiten: <InlineMath math="\frac{x+(x-5)}{2}=6" />.
-- „<InlineMath math="2" /> Stunden oder <InlineMath math="15" /> Stunden“ übersieht, dass bei <InlineMath math="x=2" /> die stärkere Pumpe eine negative Zeit bräuchte.
-- <InlineMath math="12" /> Stunden nimmt an, dass jede Pumpe allein doppelt so lange braucht wie beide zusammen. Das gilt nur bei gleich starken Pumpen.
+Direkte Probe mit <InlineMath math="15" /> Stunden und <InlineMath math="10" /> Stunden: **Beide Stundenleistungen addieren sich exakt zu einem Sechstel Becken**.
+
+<BlockMath math="\frac{1}{15} + \frac{1}{10} = \frac{2 + 3}{30} = \frac{5}{30} = \frac{1}{6}" />
+
+- <InlineMath math="10" /> Stunden ist die Zeit der stärkeren Pumpe, nicht der schwächeren.
+- <InlineMath math="11" /> Stunden addiert einfach den Unterschied von <InlineMath math="5" /> Stunden auf die gemeinsamen <InlineMath math="6" /> Stunden.
+- <InlineMath math="8{,}5" /> Stunden hält <InlineMath math="6" /> Stunden fälschlich für den Durchschnitt beider Einzelzeiten.
+- <InlineMath math="2" /> Stunden oder <InlineMath math="15" /> Stunden vergisst, die unmögliche Lösung <InlineMath math="x = 2" /> zu streichen.
+- <InlineMath math="12" /> Stunden tut so, als wären beide Pumpen genau gleich stark.
+
+# Antwort
+
+Die schwächere Pumpe bräuchte allein <InlineMath math="15" /> Stunden.

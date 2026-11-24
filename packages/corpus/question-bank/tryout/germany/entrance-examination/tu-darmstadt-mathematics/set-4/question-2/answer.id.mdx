@@ -1,50 +1,60 @@
-# Daerah asal dan kuadrat pertama
+# Diketahui
 
-Kedua akar harus terdefinisi: <InlineMath math="3x+1\ge0" /> dan <InlineMath math="x-1\ge0" />, jadi bersama-sama <InlineMath math="x\ge1" />. Pindahkan satu akar ke ruas lain sebelum mengkuadratkan, supaya **hanya tersisa satu akar**:
+**Persamaan bentuk akar** (*Wurzelgleichung*) dalam himpunan bilangan real diberikan sebagai berikut.
 
-<BlockMath math="\begin{aligned}
-\sqrt{3x+1}&=2+\sqrt{x-1} \\
-3x+1&=4+4\sqrt{x-1}+x-1 \\
-2x-2&=4\sqrt{x-1} \\
-x-1&=2\sqrt{x-1}
-\end{aligned}" />
+<BlockMath math="\sqrt{3x + 1} - \sqrt{x - 1} = 2" />
 
-# Jangan membagi dengan akarnya
+# Ditanyakan
 
-Rasanya wajar membagi kedua ruas dengan <InlineMath math="\sqrt{x-1}" />. Tetapi untuk <InlineMath math="x=1" /> bilangan itu <InlineMath math="0" />, dan **kamu tidak boleh membagi dengan <InlineMath math="0" />**. Sebagai gantinya, misalkan <InlineMath math="u=\sqrt{x-1}\ge0" />. Maka <InlineMath math="x-1=u^2" />:
+Tentukan himpunan penyelesaian (*Lösungsmenge*) <InlineMath math="\mathbb{L}" /> dalam bilangan real.
 
-<BlockMath math="u^2=2u\quad\Longleftrightarrow\quad u(u-2)=0\quad\Longleftrightarrow\quad u=0\ \text{atau}\ u=2" />
+# Penyelesaian
 
-Dari <InlineMath math="u=0" /> diperoleh <InlineMath math="x=1" />, dan dari <InlineMath math="u=2" /> diperoleh <InlineMath math="x-1=4" />, jadi <InlineMath math="x=5" />.
+Membagi kedua ruas persamaan dengan sebuah suku yang bisa bernilai nol ibarat mengunci pintu tanpa memeriksa apakah ada tamu sah di luar. Di sini kedua akar terdefinisi saat <InlineMath math="x \ge 1" />, dan **memfaktorkan jauh lebih aman daripada membagi dengan akar** agar penyelesaian <InlineMath math="x = 1" /> tidak ikut hilang.
 
-# Periksa kedua calon
+> Jangan pernah membagi kedua ruas persamaan dengan faktor yang bisa bernilai nol, lalu selalu uji semua calon penyelesaian ke persamaan akar asli karena proses mengkuadratkan dapat melahirkan akar palsu.
 
-Mengkuadratkan bisa memunculkan penyelesaian palsu, jadi **substitusikan keduanya ke persamaan asli**:
+Pindahkan satu akar ke ruas kanan sebelum mengkuadratkan agar hanya tersisa satu bentuk akar.
 
 <BlockMath math="\begin{aligned}
-x=1:&\quad\sqrt4-\sqrt0=2 \\
-x=5:&\quad\sqrt{16}-\sqrt4=4-2=2
+\sqrt{3x + 1} &= 2 + \sqrt{x - 1} \\
+3x + 1 &= 4 + 4\sqrt{x - 1} + x - 1 \\
+2x - 2 &= 4\sqrt{x - 1} \\
+x - 1 &= 2\sqrt{x - 1}
 \end{aligned}" />
+
+## Memfaktorkan tanpa kehilangan akar
+
+Ganti <InlineMath math="\sqrt{x - 1}" /> dengan variabel <InlineMath math="u \ge 0" /> sehingga <InlineMath math="x - 1" /> sama dengan <InlineMath math="u^2" /> dan **kedua penyelesaian langsung terlihat jelas**.
+
+<BlockMath math="u^2 = 2u \iff u(u - 2) = 0 \iff u = 0 \text{ atau } u = 2" />
+
+Nilai <InlineMath math="u = 0" /> memberi <InlineMath math="x = 1" />, sedangkan <InlineMath math="u = 2" /> memberi <InlineMath math="x - 1 = 4" /> atau <InlineMath math="x = 5" />. Substitusikan keduanya ke persamaan asli untuk memeriksa kebenarannya.
+
+<BlockMath math="\begin{aligned}
+x = 1 &\implies \sqrt{4} - \sqrt{0} = 2 \\
+x = 5 &\implies \sqrt{16} - \sqrt{4} = 4 - 2 = 2
+\end{aligned}" />
+
+Lihat grafik ruas kiri di bawah ini untuk melihat kurva yang sempat turun lalu naik kembali menembus tinggi <InlineMath math="2" />.
 
 <MathVisual
-  title={<>Kedua penyelesaian pada grafik</>}
-  description={<>Grafik ruas kiri <InlineMath math="\sqrt{3x+1}-\sqrt{x-1}" /> dimulai di <InlineMath math="x=1" /> pada ketinggian <InlineMath math="2" />, turun sampai sekitar <InlineMath math="1{,}63" /> di <InlineMath math="x=\tfrac53" />, lalu naik lagi. Di <InlineMath math="x=5" /> grafiknya tepat setinggi <InlineMath math="2" /> sekali lagi. Jadi garis mendatar <InlineMath math="y=2" /> memotongnya di dua titik.</>}
-  labels={{
-    one: <><InlineMath math="x=1" /></>,
-    five: <><InlineMath math="x=5" /></>,
-    f: <>ruas kiri</>,
-  }}
+  title={<>Dua titik potong kurva akar dengan garis <InlineMath math="y = 2" /></>}
+  description={
+    <>
+      Kurva <InlineMath math="\sqrt{3x + 1} - \sqrt{x - 1}" /> dimulai di{" "}
+      <InlineMath math="(1 \mid 2)" />, turun sebentar, lalu naik lagi memotong
+      garis mendatar <InlineMath math="y = 2" /> di <InlineMath math="(5 \mid 2)" />.
+    </>
+  }
+  footer={<>Kurva bertemu tinggi <InlineMath math="y = 2" /> tepat dua kali, yaitu di <InlineMath math="x = 1" /> dan <InlineMath math="x = 5" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 0, max: 11.5 },
-      y: { min: 0, max: 3.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: 0, max: 11.5 }, y: { min: 0, max: 3.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 11, y: 2 } },
-      { id: "left-side", kind: "function", appearance: "primary", formula: "sqrt(3*x+1) - sqrt(x-1)", domain: { min: 1, max: 11 } },
+      { id: "left-side", kind: "function", appearance: "primary", formula: "sqrt(3 * x + 1) - sqrt(x - 1)", domain: { min: 1, max: 11 } },
       { id: "p1", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
       { id: "p5", kind: "point", appearance: "answer", at: { x: 5, y: 2 } },
     ],
@@ -54,14 +64,27 @@ x=5:&\quad\sqrt{16}-\sqrt4=4-2=2
       { key: "f", objectId: "left-side", at: { x: 10, y: 2.57 }, placement: "above" },
     ],
   }}
+  labels={{
+    one: <><InlineMath math="x = 1" /></>,
+    five: <><InlineMath math="x = 5" /></>,
+    f: <>ruas kiri</>,
+  }}
 />
 
-Himpunan penyelesaiannya <InlineMath math="\mathbb{L}=\{1;\,5\}" />.
+Kedua titik berada tepat pada garis mendatar <InlineMath math="y = 2" />, membuktikan tidak ada akar yang gugur.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="\mathbb{L}=\{5\}" /> muncul kalau kamu membagi dengan <InlineMath math="\sqrt{x-1}" />. Dengan begitu **penyelesaian <InlineMath math="x=1" /> hilang**.
-- <InlineMath math="\mathbb{L}=\{1\}" /> muncul kalau ruas kiri dikuadratkan suku demi suku: <InlineMath math="(3x+1)-(x-1)=4" />. Padahal <InlineMath math="(a-b)^2\ne a^2-b^2" />.
-- <InlineMath math="\mathbb{L}=\{1;\,3\}" /> muncul kalau faktor <InlineMath math="2" /> dalam <InlineMath math="x-1=2\sqrt{x-1}" /> tidak ikut dikuadratkan: <InlineMath math="(x-1)^2=2(x-1)" />.
-- <InlineMath math="\mathbb{L}=\{3+2\sqrt3\}" /> muncul dari salah tanda saat menjabarkan: <InlineMath math="x^2-2x+1=4x+4" />.
-- <InlineMath math="\mathbb{L}=\{\}" /> melewatkan bahwa kedua pemeriksaan berhasil.
+Perhatikan bagaimana setiap pengecoh lahir dari **satu jebakan aljabar klasik pada persamaan akar**.
+
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| <InlineMath math="\mathbb{L} = \{5\}" /> | Membagi kedua ruas dengan <InlineMath math="\sqrt{x - 1}" /> sehingga akar <InlineMath math="x = 1" /> lenyap. |
+| <InlineMath math="\mathbb{L} = \{1\}" /> | Mengkuadratkan ruas kiri suku demi suku dan melupakan suku silang dua kali hasil kali akar. |
+| <InlineMath math="\mathbb{L} = \{1,\, 3\}" /> | Lupa mengkuadratkan angka <InlineMath math="2" /> di depan akar sehingga menulis faktor <InlineMath math="2" /> alih-alih <InlineMath math="4" />. |
+| <InlineMath math="\mathbb{L} = \{3 + 2\sqrt{3}\}" /> | Salah tanda saat menjabarkan ruas kanan menjadi <InlineMath math="4x + 4" />. |
+| <InlineMath math="\mathbb{L} = \{\}" /> | Mengira kedua calon gagal saat diuji ke persamaan asli. |
+
+# Jawaban
+
+Himpunan penyelesaian persamaan ini adalah <InlineMath math="\mathbb{L} = \{1,\, 5\}" />.

@@ -1,42 +1,50 @@
-# Perubahan peratus sebagai faktor
+# Diberi
 
-Tulis kadar yang dicari sebagai perpuluhan <InlineMath math="p" />. Kenaikan mendarab harga dengan <InlineMath math="1+p" />. Penurunan sebanyak dua kali kadar itu dikira daripada **harga yang sudah naik** dan mendarab dengan <InlineMath math="1-2p" />. Akhirnya harga itu <InlineMath math="12\,\%" /> lebih rendah, jadi menjadi <InlineMath math="0.88" /> kali harga asal:
+**Harga suatu barang** (*Preis einer Ware*) mula-mula dinaikkan sebanyak suatu peratusan <InlineMath math="p" />, kemudian harga baharu itu diturunkan sebanyak dua kali ganda peratusan asal (<InlineMath math="2p" />). Akhirnya barang itu menjadi <InlineMath math="12\,\%" /> lebih murah daripada harga asal.
 
-<BlockMath math="(1+p)(1-2p)=0.88" />
+# Ditanya
 
-# Selesaikan persamaan kuadratik
+Berapa peratuskah harga barang itu dinaikkan pada langkah pertama?
+
+# Penyelesaian
+
+Diskaun selepas kenaikan harga lebih besar kesannya daripada diskaun ke atas harga asal kerana **potongan kedua turut memotong sebahagian tambahan kenaikan pertama**! Sebab itulah perubahan peratus berturut-turut sentiasa didarab faktornya, bukannya ditolak terus.
+
+> Perubahan peratusan berturutan sentiasa digabungkan dengan mendarab faktor pengalinya terhadap harga terkini, dan hanya punca positif mewakili kenaikan harga awal.
+
+Tulis peratus kenaikan sebagai perpuluhan <InlineMath math="p > 0" />. Kenaikan mendarab harga dengan <InlineMath math="1 + p" />, penurunan mendarab dengan <InlineMath math="1 - 2p" />, dan hasil akhirnya ialah <InlineMath math="0.88" /> kali harga asal.
+
+<BlockMath math="(1 + p)(1 - 2p) = 0.88" />
+
+## Menyelesaikan persamaan kuadratik dan memilih punca positif
+
+Kembangkan hasil darab dan selesaikan persamaan kuadratik untuk memperoleh **kedua-dua calon nilai <InlineMath math="p" />**.
 
 <BlockMath math="\begin{aligned}
-1-p-2p^2&=0.88 \\
-2p^2+p-0.12&=0 \\
-p&=\frac{-1\pm\sqrt{1+0.96}}{4}=\frac{-1\pm1.4}{4}
+1 - p - 2p^2 &= 0.88 \\
+2p^2 + p - 0.12 &= 0 \\
+p &= \frac{-1 \pm \sqrt{1 + 0.96}}{4} = \frac{-1 \pm 1.4}{4}
 \end{aligned}" />
 
-Hasilnya **<InlineMath math="p=0.1" /> atau <InlineMath math="p=-0.6" />**.
-
-# Buang penyelesaian negatif
-
-Kenaikan memerlukan **kadar yang positif**, jadi yang tinggal ialah <InlineMath math="p=0.1" />:
+Diperoleh <InlineMath math="p = 0.1" /> atau <InlineMath math="p = -0.6" />. Oleh sebab langkah pertama ialah kenaikan harga, kita memilih <InlineMath math="p = 0.1" /> (<InlineMath math="10\,\%" />).
 
 <MathVisual
-  title={<>Faktor keseluruhan mengikut kadar</>}
-  description={<>Graf menunjukkan faktor keseluruhan <InlineMath math="(1+p)(1-2p)" /> bagi kadar <InlineMath math="p" /> dalam bentuk perpuluhan. Garis mengufuk berada pada <InlineMath math="0.88" />. Garis itu bertemu graf pada <InlineMath math="p=0.1" /> dan pada <InlineMath math="p=-0.6" />. Hanya <InlineMath math="p=0.1" /> merupakan kenaikan.</>}
-  labels={{
-    key: <><InlineMath math="p=0.1" /></>,
-    bad: <><InlineMath math="p=-0.6" /></>,
-    f: <>faktor keseluruhan</>,
-    t: <><InlineMath math="0.88" /></>,
-  }}
+  title={<>Faktor harga akhir mengikut peratusan awal <InlineMath math="p" /></>}
+  description={
+    <>
+      Lengkung faktor jumlah <InlineMath math="(1 + p)(1 - 2p)" /> memotong
+      garis sasaran <InlineMath math="y = 0.88" /> pada{" "}
+      <InlineMath math="p = 0.1" /> dan <InlineMath math="p = -0.6" />. Hanya{" "}
+      <InlineMath math="p = 0.1" /> menggambarkan kenaikan awal.
+    </>
+  }
+  footer={<>Daripada dua pintasan dengan <InlineMath math="0.88" />, hanya <InlineMath math="p = 0.1" /> (<InlineMath math="10\,\%" />) ialah kenaikan.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.9, max: 0.6 },
-      y: { min: 0, max: 1.3 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -0.9, max: 0.6 }, y: { min: 0, max: 1.3 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "factor", kind: "function", appearance: "primary", formula: "(1+x)*(1-2*x)", domain: { min: -0.8, max: 0.45 } },
+      { id: "factor", kind: "function", appearance: "primary", formula: "(1 + x) * (1 - 2 * x)", domain: { min: -0.8, max: 0.45 } },
       { id: "target", kind: "segment", appearance: "reference", from: { x: -0.8, y: 0.88 }, to: { x: 0.45, y: 0.88 } },
       { id: "good", kind: "point", appearance: "answer", at: { x: 0.1, y: 0.88 } },
       { id: "neg", kind: "point", appearance: "highlight", at: { x: -0.6, y: 0.88 } },
@@ -48,14 +56,26 @@ Kenaikan memerlukan **kadar yang positif**, jadi yang tinggal ialah <InlineMath 
       { key: "t", objectId: "target", at: { x: 0.45, y: 0.88 }, placement: "right" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="p = 0.1" /></>,
+    bad: <><InlineMath math="p = -0.6" /></>,
+    f: <>faktor jumlah</>,
+    t: <><InlineMath math="0.88" /></>,
+  }}
 />
 
-Semakan: naik <InlineMath math="10\,\%" /> menjadi <InlineMath math="1.1" /> kali, turun <InlineMath math="20\,\%" /> menjadi <InlineMath math="1.1\cdot0.8=0.88" />. Harga itu mula-mula dinaikkan sebanyak <InlineMath math="10\,\%" />.
+Punca negatif <InlineMath math="-0.6" /> bermaksud penurunan awal diikuti lonjakan harga, bukan kenaikan awal.
 
-# Kenapa jawapan lain salah
+## Menguji dengan harga contoh dan pilihan salah
 
-- <InlineMath math="12\,\%" /> mengira secara linear: <InlineMath math="p-2p=-12\,\%" />. Di situ penurunan diukur daripada harga lama, bukan daripada harga yang sudah naik.
-- <InlineMath math="20\,\%" /> ialah kadar **penurunan**, bukan kenaikan.
-- <InlineMath math="60\,\%" /> ialah magnitud penyelesaian negatif <InlineMath math="p=-0.6" />, yang tidak menggambarkan kenaikan.
-- <InlineMath math="6\,\%" /> membahagi dua <InlineMath math="12\,\%" />.
-- <InlineMath math="4\,\%" /> membahagi <InlineMath math="12\,\%" /> dengan tiga, seolah-olah kenaikan dan penurunan bersama-sama ialah perubahan sebanyak <InlineMath math="3p=12\,\%" />.
+Semak dengan harga asal <InlineMath math="100" />: naik <InlineMath math="10\,\%" /> menjadi <InlineMath math="110" />, lalu turun <InlineMath math="20\,\%" /> menjadi **tepat <InlineMath math="88" />**, iaitu <InlineMath math="12\,\%" /> lebih murah daripada asal.
+
+- <InlineMath math="12\,\%" /> menolak peratusan secara linear (<InlineMath math="p - 2p" />), mengabaikan bahawa diskaun dikenakan ke atas harga baharu.
+- <InlineMath math="20\,\%" /> ialah peratus penurunan langkah kedua, bukannya kenaikan awal.
+- <InlineMath math="60\,\%" /> mengambil magnitud punca negatif <InlineMath math="-0.6" /> yang ditolak.
+- <InlineMath math="6\,\%" /> sekadar membahagi dua angka <InlineMath math="12\,\%" />.
+- <InlineMath math="4\,\%" /> membahagi <InlineMath math="12\,\%" /> dengan tiga seolah-olah jumlah perubahan ialah <InlineMath math="3p" />.
+
+# Jawapan
+
+Harga barang itu mula-mula dinaikkan sebanyak <InlineMath math="10\,\%" />.

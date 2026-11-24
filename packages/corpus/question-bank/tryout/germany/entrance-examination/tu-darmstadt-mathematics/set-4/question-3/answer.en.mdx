@@ -1,44 +1,52 @@
-# Domain and case split
+# Given
 
-The root is only defined for <InlineMath math="x+5\ge0" />, that is <InlineMath math="x\ge-5" />. Squaring is only a safe step when both sides are non-negative. So split into two cases by **the sign of the right side** <InlineMath math="x-1" />.
+We are given a **radical inequality** (*Wurzelungleichung*) over the real numbers.
 
-# Case 1: the right side is negative
+<BlockMath math="\sqrt{x + 5} > x - 1" />
 
-For <InlineMath math="-5\le x<1" /> we have <InlineMath math="x-1<0" />. A root is never negative, so the inequality holds here **without any calculation**. Every <InlineMath math="x" /> with <InlineMath math="-5\le x<1" /> is a solution.
+# Asked
 
-# Case 2: the right side is non-negative
+Find all real numbers <InlineMath math="x" /> that satisfy this inequality.
 
-For <InlineMath math="x\ge1" /> both sides are non-negative, and **you may square**:
+# Solution
+
+Squaring an inequality can backfire whenever one side is negative: for instance, <InlineMath math="2 > -10" /> is true, yet squaring flips it to <InlineMath math="4 > 100" />, which is false! Because a square root is never negative, **claim the negative right-hand zone as an automatic win first** before squaring anything.
+
+> Only square an inequality when both sides are non-negative, whereas wherever the right side is negative a defined square root wins automatically without squaring.
+
+The square root requires <InlineMath math="x + 5 \ge 0" />, so the domain is <InlineMath math="x \ge -5" />.
+
+## Splitting cases by the sign of the right side
+
+In the first case, whenever <InlineMath math="x" /> runs from <InlineMath math="-5" /> up to just below <InlineMath math="1" />, the right side <InlineMath math="x - 1" /> is negative. Since the left side is non-negative, **that entire first stretch automatically solves the inequality**.
+
+In the second case, for <InlineMath math="x \ge 1" />, both sides are non-negative and safe to square.
 
 <BlockMath math="\begin{aligned}
-x+5&>(x-1)^2=x^2-2x+1 \\
-0&>x^2-3x-4=(x-4)(x+1) \\
--1&<x<4
+x + 5 &> (x - 1)^2 = x^2 - 2x + 1 \\
+0 &> x^2 - 3x - 4 = (x - 4)(x + 1) \\
+-1 &< x < 4
 \end{aligned}" />
 
-Together with <InlineMath math="x\ge1" /> this leaves **<InlineMath math="1\le x<4" />**.
-
-# Put the two cases together
+Intersecting with <InlineMath math="x \ge 1" /> leaves <InlineMath math="1 \le x < 4" />. Joining both cases seamlessly covers everything from <InlineMath math="-5" /> up to <InlineMath math="4" />.
 
 <MathVisual
-  title={<>Where the root lies above the line</>}
-  description={<>The graph of <InlineMath math="y=\sqrt{x+5}" /> starts at <InlineMath math="x=-5" /> and rises slowly. The line <InlineMath math="y=x-1" /> rises faster. To the left of <InlineMath math="x=4" /> the root graph lies above the line, at <InlineMath math="x=4" /> they meet at <InlineMath math="(4\mid3)" />, and to the right the line is on top. Below the axis the interval from <InlineMath math="-5" /> to <InlineMath math="4" /> is marked.</>}
-  labels={{
-    start: <><InlineMath math="x=-5" /></>,
-    end: <><InlineMath math="x=4" /></>,
-    r: <><InlineMath math="\sqrt{x+5}" /></>,
-    l: <><InlineMath math="x-1" /></>,
-  }}
+  title={<>Region where the root curve stays above <InlineMath math="y = x - 1" /></>}
+  description={
+    <>
+      The curve <InlineMath math="y = \sqrt{x + 5}" /> starts at{" "}
+      <InlineMath math="x = -5" /> and remains above the line{" "}
+      <InlineMath math="y = x - 1" /> until they cross at{" "}
+      <InlineMath math="(4 \mid 3)" />.
+    </>
+  }
+  footer={<>The root graph stays strictly above the line from <InlineMath math="-5" /> up to <InlineMath math="4" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -6.5, max: 8 },
-      y: { min: -7.5, max: 6.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -6.5, max: 8 }, y: { min: -7.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x+5)", domain: { min: -5, max: 7 } },
+      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x + 5)", domain: { min: -5, max: 7 } },
       { id: "line", kind: "function", appearance: "secondary", formula: "x - 1", domain: { min: -6, max: 7 } },
       { id: "solution", kind: "segment", appearance: "answer", from: { x: -5, y: -0.8 }, to: { x: 4, y: -0.8 } },
       { id: "left-end", kind: "point", appearance: "answer", at: { x: -5, y: 0 } },
@@ -51,14 +59,30 @@ Together with <InlineMath math="x\ge1" /> this leaves **<InlineMath math="1\le x
       { key: "l", objectId: "line", at: { x: 6.5, y: 5.5 }, placement: "right" },
     ],
   }}
+  labels={{
+    start: <><InlineMath math="x = -5" /></>,
+    end: <><InlineMath math="x = 4" /></>,
+    r: <><InlineMath math="\sqrt{x + 5}" /></>,
+    l: <><InlineMath math="x - 1" /></>,
+  }}
 />
 
-The two parts **join without a gap**. The inequality holds for <InlineMath math="-5\le x<4" />.
+The graph makes both endpoints obvious: at <InlineMath math="x = -5" /> the curve already sits above the line (<InlineMath math="0 > -6" />), and at <InlineMath math="x = 4" /> both reach height <InlineMath math="3" />.
 
-# Why the other answers are wrong
+## Checking endpoints and wrong choices
 
-- <InlineMath math="-1<x<4" /> squares without splitting cases and **loses the numbers from <InlineMath math="-5" /> to <InlineMath math="-1" />**, where the right side is negative.
-- <InlineMath math="1\le x<4" /> works out case 2 only.
-- <InlineMath math="x<4" /> forgets the domain <InlineMath math="x\ge-5" />.
-- <InlineMath math="-5\le x\le4" /> includes <InlineMath math="x=4" />. There both sides equal <InlineMath math="3" />, and the inequality is strict.
-- <InlineMath math="x>4" /> turns the result around. To the right of <InlineMath math="4" /> the line lies above the root.
+Test both endpoints: at <InlineMath math="x = -5" /> we get <InlineMath math="0 > -6" /> (true, so <InlineMath math="-5" /> stays), whereas at <InlineMath math="x = 4" /> **both sides tie at <InlineMath math="3" />**, excluding <InlineMath math="4" />.
+
+| Option | Why it is wrong |
+| :--- | :--- |
+| <InlineMath math="-1 < x < 4" /> | Squares immediately without case splitting, losing every value from <InlineMath math="-5" /> to <InlineMath math="-1" />. |
+| <InlineMath math="1 \le x < 4" /> | Solves only the second case and forgets the negative right-side zone. |
+| <InlineMath math="x < 4" /> | Forgets the domain <InlineMath math="x \ge -5" />, letting undefined values slip in. |
+| <InlineMath math="-5 \le x \le 4" /> | Includes <InlineMath math="x = 4" />, even though the inequality is strict. |
+| <InlineMath math="x > 4" /> | Flips the direction, since the line rises above the root to the right of <InlineMath math="4" />. |
+
+# Answer
+
+The inequality holds for all real numbers in the interval below.
+
+<BlockMath math="-5 \le x < 4" />
