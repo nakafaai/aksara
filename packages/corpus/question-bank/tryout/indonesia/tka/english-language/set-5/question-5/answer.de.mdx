@@ -1,9 +1,34 @@
-Prüf jede Aussage am Text und rechne, wo es nötig ist. Nutzbar sind <InlineMath math="20 - 4 = 16" /> kWh, weil der Regler eine Untergrenze von einem Fünftel hält.
+# Gegeben
 
-- **Aussage 1: gestützt**. Bei Bewölkung liefern die Paneele "about <InlineMath math="40\%" />" von <InlineMath math="30" /> kWh: <InlineMath math="0{,}4 \times 30 = 12" /> kWh, also weniger als die Hälfte der <InlineMath math="30" /> kWh bei klarem Himmel.
-- **Aussage 2: gestützt**. Wenn alles andere aus ist, verbrauchen die Ventilatoren (<InlineMath math="0{,}8" /> kW) die nutzbaren <InlineMath math="16" /> kWh in <InlineMath math="16 \div 0{,}8 = 20" /> Stunden. **Mit allen <InlineMath math="20" /> kWh kämen <InlineMath math="25" /> Stunden heraus**, das vergisst die Untergrenze.
-- Aussage 3: nicht gestützt. Was die Paneele kosten, steht nirgends, nur der Batteriepreis. Ohne den Preis der Paneele kann niemand sagen, wann sie sich bezahlt machen.
-- **Aussage 4: gestützt**. Der Kühlschrank braucht <InlineMath math="0{,}15 \times 24 = 3{,}6" /> kWh am Tag, der Projektor an einem Veranstaltungsabend <InlineMath math="0{,}3 \times 3 = 0{,}9" /> kWh.
-- Aussage 5: nicht gestützt. <InlineMath math="70\%" /> von <InlineMath math="410" /> kWh sind <InlineMath math="287" /> kWh, also weniger als <InlineMath math="300" />.
+Kernwerte für Balai Surya: klarer Tag **<InlineMath math="30" /> kWh**, bewölkt **<InlineMath math="40\%" />**, nutzbare volle Batterie **<InlineMath math="16" /> kWh** (<InlineMath math="20" /> kWh minus <InlineMath math="4" /> kWh Untergrenze), Ventilatoren <InlineMath math="0{,}8" /> kW, Kühlschrank <InlineMath math="0{,}15" /> kW (<InlineMath math="24" /> Std.), Projektor <InlineMath math="0{,}3" /> kW (<InlineMath math="3" /> Std.) und <InlineMath math="410" /> kWh Netzstrom (<InlineMath math="70\%" /> in Regenmonaten).
 
-Gestützt werden also die Aussagen 1, 2 und 4.
+# Gesucht
+
+Welche Aussagen durch den Text gestützt werden (alle zutreffenden auswählen).
+
+# Lösung
+
+Jede Aussage verlangt **eine kurze Rechnung oder den Blick auf fehlende Angaben**. Rechne konsequent mit **<InlineMath math="16" /> kWh nutzbarer Batterieladung** und prüfe, ob der Preis der Solarmodule überhaupt genannt wird.
+
+> Nutzbar sind nur <InlineMath math="16" /> kWh statt <InlineMath math="20" /> kWh, und der Kaufpreis der Solarmodule steht nirgends im Text.
+
+## Berechnung und Prüfung aller fünf Aussagen
+
+**Die vier kurzen Rechnungen** klären die Aussagen <InlineMath math="1, 2, 4" /> und <InlineMath math="5" /> direkt:
+
+<BlockMath math="0{,}4 \times 30 = 12\text{ kWh}, \quad \frac{16}{0{,}8} = 20\text{ Std.}, \quad 0{,}15 \times 24 = 3{,}6\text{ kWh} > 0{,}9\text{ kWh}, \quad 0{,}7 \times 410 = 287\text{ kWh}" />
+
+| Aussage | Gestützt? | Zahlen- und Textbeleg |
+| --- | --- | --- |
+| Bewölkter Tag liefert weniger als die Hälfte eines klaren Tages | **Ja** | <Highlight>about <InlineMath math="40\%" /> of that</Highlight> ergibt <InlineMath math="12" /> kWh, unter der Hälfte (<InlineMath math="15" /> kWh). |
+| Volle Batterie ohne andere Verbraucher betreibt Ventilatoren <InlineMath math="20" /> Stunden | **Ja** | <InlineMath math="16" /> kWh geteilt durch <InlineMath math="0{,}8" /> kW sind genau <InlineMath math="20" /> Stunden. |
+| Solarmodule amortisieren sich in acht Jahren | **Nein** | Der Text nennt nur den Batteriepreis (<InlineMath math="\text{Rp}36" /> Mio.), **aber nie den Preis der Module**. |
+| Kühlschrank verbraucht pro Tag mehr als Projektor an einem Abend | **Ja** | <InlineMath math="3{,}6" /> kWh am Tag übersteigen die <InlineMath math="0{,}9" /> kWh des Projektors deutlich. |
+| Mehr als <InlineMath math="300" /> kWh Netzstrom in den Regenmonaten | **Nein** | <InlineMath math="70\%" /> von <InlineMath math="410" /> kWh sind nur <InlineMath math="287" /> kWh, also weniger als <InlineMath math="300" /> kWh. |
+
+# Antwort
+
+Durch den Text gestützt werden folgende Aussagen:
+- **On an overcast day, the panels produce less than half of what they produce on a clear day**.
+- **Starting full, with everything else switched off (the refrigerator too), the battery can run the fans for <InlineMath math="20" /> hours before the hall switches to the grid**.
+- **In one day, the refrigerator uses more energy than the projector uses on a typical event evening**.

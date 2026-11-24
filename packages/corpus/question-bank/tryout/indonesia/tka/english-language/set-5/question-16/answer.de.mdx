@@ -1,16 +1,36 @@
-Treppe B ist versperrt, ihre Klassen nehmen also Treppe A: "If a staircase is blocked, its classes use the other one". Damit gehen alle Klassen aus dem ersten und zweiten Stock über eine Treppe.
+# Gegeben
 
-**Reihenfolge und Zeit auf Treppe A**. Alphabetisch sind das 11A, 11B, 11C, 11D, 12A, 12B, 12C, also <InlineMath math="7" /> Klassen. Jede braucht <InlineMath math="2" /> Minuten, und die nächste darf erst hinein, wenn die vorige sie "has completely left":
+Bei der diesjährigen Räumungsübung ist **Treppe B blockiert**, sodass alle Klassen des ersten Stocks (**11A, 11B, 11C, 11D**) und des zweiten Stocks (**12A, 12B, 12C**) gemeinsam **Treppe A** nutzen müssen.
 
-<BlockMath math="7 \times 2 = 14 \text{ Minuten}" />
+Zeitregeln der Anleitung:
+- Klassen auf derselben Treppe gehen nacheinander in alphabetischer Reihenfolge hinab, jeweils **<InlineMath math="2" /> Minuten** pro Klasse ohne Überschneidung.
+- Der Fußweg vom unteren Treppenende zum Sportplatz dauert **<InlineMath math="2" /> Minuten**.
 
-**Der Weg**. Die letzte Klasse, 12C, verlässt die Treppe in Minute <InlineMath math="14" /> und geht dann <InlineMath math="2" /> Minuten zum Platz:
+# Gesucht
 
-<BlockMath math="14 + 2 = 16 \text{ Minuten}" />
+Wie viele Minuten nach Ende der Klingel vergehen, bis die letzte treppennutzende Klasse den Sportplatz erreicht.
 
-- <InlineMath math="14" /> vergisst den Weg von der Treppe zum Platz.
-- <InlineMath math="10" /> ist die Zeit mit beiden Treppen offen: <InlineMath math="4" /> Klassen auf Treppe A, <InlineMath math="4 \times 2 + 2" />.
-- <InlineMath math="8" /> sind nur die Klassen des ersten Stocks auf Treppe A, ohne Weg.
-- <InlineMath math="18" /> rechnet den Weg doppelt.
+# Lösung
 
-Die letzte Klasse war also <InlineMath math="16" /> Minuten nach dem Ende der Klingel auf dem Platz.
+Stell dir alle sieben Klassen der Obergeschosse in einer Schlange vor Treppe A vor: **11A, 11B, 11C, 11D, 12A, 12B, 12C**. Rechne **<InlineMath math="7" /> Klassen mal <InlineMath math="2" /> Minuten** für die Treppe und **addiere die <InlineMath math="2" /> Minuten Fußweg** der letzten Klasse zum Sportplatz.
+
+> Die letzte Klasse erreicht den Platz nach der gesamten Treppenzeit aller Klassen plus genau einem Fußweg.
+
+## Treppenzeit und Ankunft am Platz berechnen
+
+Die Regeln <InlineMath math="3, 4" /> und <InlineMath math="5" /> besagen <Highlight>If a staircase is blocked, its classes use the other one</Highlight>, <Highlight>Each class takes <InlineMath math="2" /> minutes to clear a staircase</Highlight> und <Highlight>the walk to the field takes <InlineMath math="2" /> minutes</Highlight>.
+
+Alle **<InlineMath math="7" /> Klassen** brauchen <InlineMath math="14" /> Minuten auf Treppe A, danach geht 12C noch <InlineMath math="2" /> Minuten zum Platz:
+
+<BlockMath math="7 \times 2 + 2 = 14 + 2 = 16\text{ Minuten}" />
+
+## Warum die anderen Optionen falsch sind
+
+- **Option <InlineMath math="14" />** vergisst den <InlineMath math="2" />-Minuten-Fußweg zum Sportplatz.
+- **Option <InlineMath math="10" />** gilt nur bei zwei offenen Treppen (<InlineMath math="4" /> Klassen auf Treppe A plus Weg).
+- **Option <InlineMath math="8" />** zählt nur die <InlineMath math="4" /> Klassen des ersten Stocks ohne Fußweg.
+- **Option <InlineMath math="18" />** addiert den Fußweg doppelt.
+
+# Antwort
+
+Die letzte Klasse mit Treppennutzung erreichte den Sportplatz nach **<InlineMath math="16" />** Minuten.

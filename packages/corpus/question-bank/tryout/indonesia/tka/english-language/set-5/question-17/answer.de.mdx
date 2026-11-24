@@ -1,17 +1,32 @@
-Treppe A ist versperrt, also reihen sich die Klassen des ersten Stocks mit denen des zweiten auf Treppe B ein. Alphabetisch lautet die Reihe 11A, 11B, 11C, 11D, 12A, 12B, 12C. Jede Klasse verlässt die Treppe <InlineMath math="2" /> Minuten nach der vorigen und geht dann <InlineMath math="2" /> Minuten, die Klasse an Stelle <InlineMath math="n" /> ist also nach <InlineMath math="2n + 2" /> Minuten auf dem Platz.
+# Gegeben
 
-**Klasse 11B**: innerhalb von <InlineMath math="8" /> Minuten. Sie ist Zweite: <InlineMath math="2 \times 2 + 2 = 6" /> Minuten.
+Bei einer anderen Übung ist **Treppe A blockiert** und niemand fehlt. Die Klassen des ersten Stocks (**11A bis 11D**) wechseln zu den Klassen des zweiten Stocks (**12A bis 12C**) auf **Treppe B** in **alphabetischer Reihenfolge** (11A, 11B, 11C, 11D, 12A, 12B, 12C), während **10C** im Erdgeschoss in **unter <InlineMath math="4" /> Minuten** draußen ist.
 
-**Klasse 11C**: innerhalb von <InlineMath math="8" /> Minuten. Sie ist Dritte: <InlineMath math="3 \times 2 + 2 = 8" /> Minuten, und genau <InlineMath math="8" /> liegt noch innerhalb von <InlineMath math="8" />.
+# Gesucht
 
-**Klasse 11D**: nach <InlineMath math="8" />, aber innerhalb von <InlineMath math="12" /> Minuten. Sie ist Vierte: <InlineMath math="4 \times 2 + 2 = 10" /> Minuten.
+Wann jede der sechs Klassen den Sportplatz erreicht (**Within <InlineMath math="8" /> minutes**, **After <InlineMath math="8" /> minutes but within <InlineMath math="12" />** oder **After <InlineMath math="12" /> minutes**).
 
-**Klasse 12A**: nach <InlineMath math="8" />, aber innerhalb von <InlineMath math="12" /> Minuten. Sie ist Fünfte, weil alphabetisch alle Klassen des ersten Stocks vor denen des zweiten kommen: <InlineMath math="5 \times 2 + 2 = 12" /> Minuten.
+# Lösung
 
-**Klasse 12B**: nach <InlineMath math="12" /> Minuten. Sie ist Sechste: <InlineMath math="6 \times 2 + 2 = 14" /> Minuten.
+Wende die alphabetische Reihenfolge konsequent auch auf Treppe B an: **11A bis 11D gehen vor 12A bis 12C**! Die Klasse auf Platz <InlineMath math="n" /> der Schlange erreicht den Sportplatz nach <InlineMath math="2n + 2" /> Minuten.
 
-**Klasse 10C**: innerhalb von <InlineMath math="8" /> Minuten. Klassen im Erdgeschoss nehmen die Außentür und sind "in under <InlineMath math="4" /> minutes" da.
+> "Within <InlineMath math="8" /> minutes" schließt genau <InlineMath math="8" /> Minuten ein, ebenso schließt "within <InlineMath math="12" />" genau <InlineMath math="12" /> Minuten ein.
 
-Wer den Weg vergisst, setzt Klasse 11D auf <InlineMath math="8" /> und Klasse 12B auf <InlineMath math="12" /> Minuten. Wer Treppe B mit ihren eigenen Klassen aus dem zweiten Stock beginnen lässt, setzt Klasse 12A an den Anfang und den ersten Stock ans Ende.
+## Ankunftszeiten aller sechs Klassen
 
-Klassen 11B, 11C und 10C sind also innerhalb von <InlineMath math="8" /> Minuten da, Klassen 11D und 12A nach <InlineMath math="8" />, aber innerhalb von <InlineMath math="12" />, und Klasse 12B nach <InlineMath math="12" /> Minuten.
+Regel <InlineMath math="4" /> bestimmt <Highlight>Classes on the same staircase go down in alphabetical order of class name</Highlight>, und Regel <InlineMath math="2" /> nennt fürs Erdgeschoss <Highlight>in under <InlineMath math="4" /> minutes</Highlight>.
+
+| Klasse | Weg und Platz (<InlineMath math="n" />) | Ankunft am Platz | Zeitfenster |
+| --- | --- | --- | --- |
+| Class 11B | Treppe B, Platz <InlineMath math="2" /> | <InlineMath math="6" /> Minuten (<InlineMath math="2 \times 2 + 2" />) | **Within <InlineMath math="8" /> minutes** |
+| Class 11C | Treppe B, Platz <InlineMath math="3" /> | <InlineMath math="8" /> Minuten (<InlineMath math="3 \times 2 + 2" />), Grenzfall inklusive | **Within <InlineMath math="8" /> minutes** |
+| Class 11D | Treppe B, Platz <InlineMath math="4" /> | <InlineMath math="10" /> Minuten (<InlineMath math="4 \times 2 + 2" />) | **After <InlineMath math="8" /> minutes but within <InlineMath math="12" />** |
+| Class 12A | Treppe B, Platz <InlineMath math="5" /> (nach allen 11ern) | <InlineMath math="12" /> Minuten (<InlineMath math="5 \times 2 + 2" />), Grenzfall inklusive | **After <InlineMath math="8" /> minutes but within <InlineMath math="12" />** |
+| Class 12B | Treppe B, Platz <InlineMath math="6" /> | <InlineMath math="14" /> Minuten (<InlineMath math="6 \times 2 + 2" />) | **After <InlineMath math="12" /> minutes** |
+| Class 10C | Erdgeschoss über Außentür | Unter <InlineMath math="4" /> Minuten | **Within <InlineMath math="8" /> minutes** |
+
+# Antwort
+
+- **Within <InlineMath math="8" /> minutes**: **Class 11B**, **Class 11C** und **Class 10C**.
+- **After <InlineMath math="8" /> minutes but within <InlineMath math="12" />**: **Class 11D** und **Class 12A**.
+- **After <InlineMath math="12" /> minutes**: **Class 12B**.

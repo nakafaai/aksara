@@ -1,17 +1,32 @@
-Staircase A is blocked, so the first-floor classes join the second-floor classes on Staircase B. In alphabetical order the queue is 11A, 11B, 11C, 11D, 12A, 12B, 12C. Each class clears the staircase <InlineMath math="2" /> minutes after the one ahead and then walks <InlineMath math="2" /> minutes, so the class in place <InlineMath math="n" /> reaches the field after <InlineMath math="2n + 2" /> minutes.
+# Given
 
-**Class 11B**: within <InlineMath math="8" /> minutes. It's second: <InlineMath math="2 \times 2 + 2 = 6" /> minutes.
+In another drill, **Staircase A is blocked** and no student is away from class. First-floor classes (**11A to 11D**) join second-floor classes (**12A to 12C**) on **Staircase B** in **alphabetical order** (11A, 11B, 11C, 11D, 12A, 12B, 12C), while ground-floor **10C** uses an outside door in **under <InlineMath math="4" /> minutes**.
 
-**Class 11C**: within <InlineMath math="8" /> minutes. It's third: <InlineMath math="3 \times 2 + 2 = 8" /> minutes, and exactly <InlineMath math="8" /> is still within <InlineMath math="8" />.
+# Asked
 
-**Class 11D**: after <InlineMath math="8" /> but within <InlineMath math="12" />. It's fourth: <InlineMath math="4 \times 2 + 2 = 10" /> minutes.
+When each of the six classes (11B, 11C, 11D, 12A, 12B, 10C) reaches the field: **Within <InlineMath math="8" /> minutes**, **After <InlineMath math="8" /> minutes but within <InlineMath math="12" />**, or **After <InlineMath math="12" /> minutes**.
 
-**Class 12A**: after <InlineMath math="8" /> but within <InlineMath math="12" />. It's fifth, because all the first-floor classes come before the second-floor classes in alphabetical order: <InlineMath math="5 \times 2 + 2 = 12" /> minutes.
+# Solution
 
-**Class 12B**: after <InlineMath math="12" /> minutes. It's sixth: <InlineMath math="6 \times 2 + 2 = 14" /> minutes.
+Apply the strict alphabetical rule even on Staircase B: **11A through 11D still descend ahead of 12A through 12C**! The class in queue position <InlineMath math="n" /> clears the stairs at <InlineMath math="2n" /> minutes and reaches the field at <InlineMath math="2n + 2" /> minutes.
 
-**Class 10C**: within <InlineMath math="8" /> minutes. Ground-floor classes use the outside door and arrive "in under <InlineMath math="4" /> minutes".
+> "Within <InlineMath math="8" /> minutes" includes exactly <InlineMath math="8" /> minutes, and "within <InlineMath math="12" />" includes exactly <InlineMath math="12" /> minutes.
 
-Forgetting the walk moves Class 11D to <InlineMath math="8" /> and Class 12B to <InlineMath math="12" />. Starting Staircase B with its own second-floor classes puts Class 12A first and the first-floor classes last.
+## Computing arrival times for all six classes
 
-So Classes 11B, 11C and 10C arrive within <InlineMath math="8" /> minutes, Classes 11D and 12A after <InlineMath math="8" /> but within <InlineMath math="12" />, and Class 12B after <InlineMath math="12" />.
+Rule <InlineMath math="4" /> sets <Highlight>Classes on the same staircase go down in alphabetical order of class name</Highlight>, and Rule <InlineMath math="2" /> gives ground-floor classes <Highlight>in under <InlineMath math="4" /> minutes</Highlight>.
+
+| Class | Route and queue place (<InlineMath math="n" />) | Field arrival time | Time bracket |
+| --- | --- | --- | --- |
+| Class 11B | Staircase B, <InlineMath math="2" />nd | <InlineMath math="6" /> minutes (<InlineMath math="2 \times 2 + 2" />) | **Within <InlineMath math="8" /> minutes** |
+| Class 11C | Staircase B, <InlineMath math="3" />rd | <InlineMath math="8" /> minutes (<InlineMath math="3 \times 2 + 2" />), exact boundary counts | **Within <InlineMath math="8" /> minutes** |
+| Class 11D | Staircase B, <InlineMath math="4" />th | <InlineMath math="10" /> minutes (<InlineMath math="4 \times 2 + 2" />) | **After <InlineMath math="8" /> minutes but within <InlineMath math="12" />** |
+| Class 12A | Staircase B, <InlineMath math="5" />th (after all 11s) | <InlineMath math="12" /> minutes (<InlineMath math="5 \times 2 + 2" />), exact boundary counts | **After <InlineMath math="8" /> minutes but within <InlineMath math="12" />** |
+| Class 12B | Staircase B, <InlineMath math="6" />th | <InlineMath math="14" /> minutes (<InlineMath math="6 \times 2 + 2" />) | **After <InlineMath math="12" /> minutes** |
+| Class 10C | Ground-floor outside door | Under <InlineMath math="4" /> minutes | **Within <InlineMath math="8" /> minutes** |
+
+# Answer
+
+- **Within <InlineMath math="8" /> minutes**: **Class 11B**, **Class 11C**, and **Class 10C**.
+- **After <InlineMath math="8" /> minutes but within <InlineMath math="12" />**: **Class 11D** and **Class 12A**.
+- **After <InlineMath math="12" /> minutes**: **Class 12B**.

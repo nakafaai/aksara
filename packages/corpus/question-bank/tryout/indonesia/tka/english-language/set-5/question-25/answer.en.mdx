@@ -1,13 +1,36 @@
-Each statement needs its own check against the table.
+# Given
 
-**Statement 1**. Yes. <InlineMath math="4{,}000 - 1{,}200 = 2{,}800" /> fewer bags a week.
+The Pasar Baru trial table (<InlineMath math="60" /> stalls total):
+- **<InlineMath math="20" /> charging stalls**: dropped from **<InlineMath math="4{,}000" />** to **<InlineMath math="1{,}200" />** bags per week.
+- **<InlineMath math="40" /> non-charging stalls**: dropped from **<InlineMath math="8{,}000" />** to **<InlineMath math="7{,}600" />** bags per week.
 
-**Statement 2**. No. All sixty stalls went from <InlineMath math="4{,}000 + 8{,}000 = 12{,}000" /> bags to <InlineMath math="1{,}200 + 7{,}600 = 8{,}800" />. That's a fall of <InlineMath math="3{,}200" />, about <InlineMath math="27\%" />, **not more than half**.
+# Asked
 
-**Statement 3**. No. The stalls without the charge fell from <InlineMath math="8{,}000" /> to <InlineMath math="7{,}600" />, only <InlineMath math="5\%" />. The charging stalls fell by <InlineMath math="70\%" />.
+Whether each of the five statements can be concluded (**Yes** or **No**) from the text and table.
 
-**Statement 4**. Yes. Before the trial, the twenty charging stalls handed out <InlineMath math="4{,}000 \div 20 = 200" /> bags each, and the forty others <InlineMath math="8{,}000 \div 40 = 200" /> each.
+# Solution
 
-**Statement 5**. Yes. During the trial, <InlineMath math="7{,}600 \div 1{,}200 \approx 6.3" />, which is more than six times.
+Run **five clean checks straight from the table**: the weekly drop at charging stalls, the whole-market share drop, the percentage drop of each group, the pre-trial per-stall average, and the during-trial ratio.
 
-So statements 1, 4 and 5 can be concluded, and statements 2 and 3 cannot.
+> When comparing unequal groups (<InlineMath math="20" /> stalls vs. <InlineMath math="40" /> stalls), divide by stall count for averages and use percentages for relative drops.
+
+## Computing the five key table figures
+
+**Every needed difference, share, average, and ratio** follows directly from the table:
+
+<BlockMath math="4{,}000 - 1{,}200 = 2{,}800, \quad \frac{12{,}000 - 8{,}800}{12{,}000} \approx 26.7\%, \quad \frac{4{,}000}{20} = \frac{8{,}000}{40} = 200, \quad \frac{7{,}600}{1{,}200} \approx 6.33" />
+
+## Checking all five statements
+
+| Statement | Concluded? | Numerical evidence from text and table |
+| --- | --- | --- |
+| <InlineMath math="1" /> | **Yes** | Charging stalls fell from <InlineMath math="4{,}000" /> to <InlineMath math="1{,}200" />, exactly <InlineMath math="2{,}800" /> fewer bags a week. |
+| <InlineMath math="2" /> | **No** | All <InlineMath math="60" /> stalls went from <InlineMath math="12{,}000" /> to <InlineMath math="8{,}800" /> (a drop of <InlineMath math="3{,}200" />, roughly <InlineMath math="27\%" />), far less than half. |
+| <InlineMath math="3" /> | **No** | Non-charging stalls fell only <InlineMath math="5\%" /> (<InlineMath math="400" /> of <InlineMath math="8{,}000" />), far smaller than the charging stalls' <Highlight><InlineMath math="70\%" /></Highlight>. |
+| <InlineMath math="4" /> | **Yes** | Before the trial, both groups averaged exactly <InlineMath math="200" /> bags per stall (<InlineMath math="4{,}000" /> over <InlineMath math="20" />, and <InlineMath math="8{,}000" /> over <InlineMath math="40" />). |
+| <InlineMath math="5" /> | **Yes** | During the trial, <InlineMath math="7{,}600" /> divided by <InlineMath math="1{,}200" /> is about <InlineMath math="6.3" />, which is more than six times as many. |
+
+# Answer
+
+- **Yes**: statements **<InlineMath math="1" />**, **<InlineMath math="4" />**, and **<InlineMath math="5" />**.
+- **No**: statements **<InlineMath math="2" />** and **<InlineMath math="3" />**.

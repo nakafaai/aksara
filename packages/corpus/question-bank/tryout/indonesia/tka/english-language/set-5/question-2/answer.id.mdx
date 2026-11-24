@@ -1,13 +1,33 @@
-Untuk setiap rencana, cek aturan kabel dulu, lalu bandingkan energi yang dipakai dengan energi yang bisa diberikan baterai di atas batas bawahnya. Batas bawahnya seperlima dari <InlineMath math="20" /> kWh, jadi balai bisa memakai isi baterai **dikurangi <InlineMath math="4" /> kWh**. Energi dalam kWh adalah daya dalam kilowatt dikali jam, dan kulkas (<InlineMath math="0{,}15" /> kW) menyala sepanjang acara.
+# Diketahui
 
-**Pernyataan 1**. Baterai saja cukup. <InlineMath math="0{,}6 \times 3 + 0{,}3 \times 3 + 0{,}5 \times 3 + 0{,}15 \times 3 = 4{,}65" /> kWh, jauh di bawah <InlineMath math="16" /> kWh.
+Tersedia **lima rencana acara malam** mulai saat matahari terbenam dengan **kulkas (<InlineMath math="0{,}15" /> kW) selalu menyala**. Dua aturan utama berlaku:
+- **Aturan kabel**: pompa air tidak boleh menyala bersamaan dengan proyektor atau sistem suara.
+- **Aturan baterai**: energi terpakai dibandingkan dengan muatan awal baterai **dikurangi batas bawah <InlineMath math="4" /> kWh**.
 
-**Pernyataan 2**. Tidak boleh. Pompa *may not run while the projector or the sound system is on* (tidak boleh menyala saat proyektor atau sound system menyala), padahal di sini pompa menyala saat sound system berbunyi.
+# Ditanyakan
 
-**Pernyataan 3**. Butuh jaringan desa. Baterai hanya bisa memberi <InlineMath math="12 - 4 = 8" /> kWh, padahal rencana itu memakai <InlineMath math="0{,}6 \times 6 + 0{,}8 \times 6 + 0{,}15 \times 6 = 9{,}3" /> kWh. Tanpa batas bawah, <InlineMath math="12" /> kWh kelihatannya cukup.
+Kategori mana (**Baterai saja cukup**, **Perlu jaringan listrik**, atau **Tidak diperbolehkan sesuai rencana**) yang tepat untuk setiap acara.
 
-**Pernyataan 4**. Baterai saja cukup. <InlineMath math="0{,}6 \times 5 + 0{,}8 \times 5 + 1 \times 1 + 0{,}15 \times 6 = 8{,}9" /> kWh, di bawah <InlineMath math="16" /> kWh. Pompa menyala setelah semua yang lain mati, jadi aturan kabel tidak dilanggar.
+# Penyelesaian
 
-**Pernyataan 5**. Butuh jaringan desa. Baterai hanya bisa memberi <InlineMath math="10 - 4 = 6" /> kWh, padahal rencana itu memakai <InlineMath math="0{,}6 \times 4 + 0{,}8 \times 4 + 0{,}5 \times 4 + 0{,}15 \times 4 = 8{,}2" /> kWh.
+Selalu lakukan pemeriksaan dalam dua langkah rapi: **cek aturan kabel dulu** (apakah pompa air bentrok dengan proyektor atau sistem suara?), lalu **bandingkan total kWh acara dengan energi baterai di atas <InlineMath math="4" /> kWh**.
 
-Jadi, pernyataan 1 dan 4 cukup dengan baterai, pernyataan 3 dan 5 butuh jaringan desa, dan pernyataan 2 tidak boleh dijalankan seperti rencananya.
+> Baterai bermuatan <InlineMath math="12" /> kWh hanya menyediakan <InlineMath math="8" /> kWh energi siap pakai, dan muatan <InlineMath math="10" /> kWh hanya menyediakan <InlineMath math="6" /> kWh.
+
+## Memeriksa kelima rencana acara
+
+Aturan kabel menyatakan <Highlight>it may not run while the projector or the sound system is on</Highlight>. Berikut perhitungan tiap rencana acara:
+
+| Rencana | Batas baterai siap pakai | Total pemakaian energi dan cek kabel | Keputusan |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> (Malam film, penuh) | <InlineMath math="16" /> kWh | Lampu, proyektor, suara, kulkas selama <InlineMath math="3" /> jam: <InlineMath math="4{,}65" /> kWh (<InlineMath math="\le 16" /> kWh), kabel aman. | **Baterai saja cukup** (*The battery alone is enough*) |
+| <InlineMath math="2" /> (Pernikahan, penuh) | <InlineMath math="16" /> kWh | Pompa air menyala **saat sistem suara sedang bermain**, melanggar aturan kabel. | **Tidak diperbolehkan** (*Not allowed as planned*) |
+| <InlineMath math="3" /> (Pasar malam, <InlineMath math="12" /> kWh) | <InlineMath math="8" /> kWh | Lampu, kipas, kulkas selama <InlineMath math="6" /> jam memakai <InlineMath math="9{,}3" /> kWh (<InlineMath math="> 8" /> kWh). | **Perlu jaringan listrik** (*The hall will need the grid*) |
+| <InlineMath math="4" /> (Rapat, penuh) | <InlineMath math="16" /> kWh | Lampu dan kipas <InlineMath math="5" /> jam, pompa <InlineMath math="1" /> jam sesudah alat lain mati, kulkas <InlineMath math="6" /> jam: <InlineMath math="8{,}9" /> kWh (<InlineMath math="\le 16" /> kWh), kabel aman. | **Baterai saja cukup** (*The battery alone is enough*) |
+| <InlineMath math="5" /> (Malam kuis, <InlineMath math="10" /> kWh) | <InlineMath math="6" /> kWh | Lampu, kipas, suara, kulkas selama <InlineMath math="4" /> jam memakai <InlineMath math="8{,}2" /> kWh (<InlineMath math="> 6" /> kWh). | **Perlu jaringan listrik** (*The hall will need the grid*) |
+
+# Jawaban
+
+- **Baterai saja cukup** (*The battery alone is enough*): pernyataan **<InlineMath math="1" />** dan **<InlineMath math="4" />**.
+- **Perlu jaringan listrik** (*The hall will need the grid*): pernyataan **<InlineMath math="3" />** dan **<InlineMath math="5" />**.
+- **Tidak diperbolehkan sesuai rencana** (*Not allowed as planned*): pernyataan **<InlineMath math="2" />**.

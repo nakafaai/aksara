@@ -1,13 +1,33 @@
-For each plan, check the wiring rule first, then compare the energy used with the energy the battery can give above its floor. The floor is a fifth of <InlineMath math="20" /> kWh, so the hall can use the battery's charge **minus <InlineMath math="4" /> kWh**. Energy in kWh is the power in kilowatts times the hours, and the refrigerator (<InlineMath math="0.15" /> kW) runs throughout.
+# Given
 
-**Statement 1**. Battery alone. <InlineMath math="0.6 \times 3 + 0.3 \times 3 + 0.5 \times 3 + 0.15 \times 3 = 4.65" /> kWh, well under <InlineMath math="16" /> kWh.
+**Five sunset event plans** run with the **refrigerator (<InlineMath math="0.15" /> kW) on throughout**. Two rules control the outcome:
+- **Wiring rule**: the water pump may not run while the projector or sound system is on.
+- **Battery rule**: usable energy equals the sunset battery charge **minus the <InlineMath math="4" /> kWh floor**.
 
-**Statement 2**. Not allowed. The pump "may not run while the projector or the sound system is on", and here it runs while the sound system plays.
+# Asked
 
-**Statement 3**. Grid needed. The battery has <InlineMath math="12 - 4 = 8" /> kWh to give, but the plan uses <InlineMath math="0.6 \times 6 + 0.8 \times 6 + 0.15 \times 6 = 9.3" /> kWh. Without the floor, <InlineMath math="12" /> kWh would look like enough.
+Whether each plan runs on **the battery alone**, **needs the grid**, or is **not allowed as planned**.
 
-**Statement 4**. Battery alone. <InlineMath math="0.6 \times 5 + 0.8 \times 5 + 1 \times 1 + 0.15 \times 6 = 8.9" /> kWh, under <InlineMath math="16" /> kWh. The pump runs after everything else is off, so the wiring rule isn't broken.
+# Solution
 
-**Statement 5**. Grid needed. The battery has <InlineMath math="10 - 4 = 6" /> kWh to give, but the plan uses <InlineMath math="0.6 \times 4 + 0.8 \times 4 + 0.5 \times 4 + 0.15 \times 4 = 8.2" /> kWh.
+Check every plan in two tidy steps: **test the wiring rule first** (does the water pump overlap with the projector or sound system?), then **compare total kWh needed against usable charge above the <InlineMath math="4" /> kWh floor**.
 
-So statements 1 and 4 run on the battery alone, statements 3 and 5 need the grid, and statement 2 isn't allowed as planned.
+> Never compare energy demand against the raw sunset battery level: subtract the protected <InlineMath math="4" /> kWh floor first.
+
+## Checking all five event plans
+
+The wiring rule states <Highlight>it may not run while the projector or the sound system is on</Highlight>. Evaluating every event gives:
+
+| Plan | Usable battery | Energy demand and wiring check | Verdict |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> (Film night, full) | <InlineMath math="16" /> kWh | Lights, projector, sound, fridge for <InlineMath math="3" /> hours: <InlineMath math="4.65" /> kWh (<InlineMath math="\le 16" /> kWh), wiring fine. | **The battery alone is enough** |
+| <InlineMath math="2" /> (Wedding, full) | <InlineMath math="16" /> kWh | Water pump runs **while the sound system plays**, breaking the wiring rule. | **Not allowed as planned** |
+| <InlineMath math="3" /> (Night market, <InlineMath math="12" /> kWh) | <InlineMath math="8" /> kWh | Lights, fans, fridge for <InlineMath math="6" /> hours take <InlineMath math="9.3" /> kWh (<InlineMath math="> 8" /> kWh). | **The hall will need the grid** |
+| <InlineMath math="4" /> (Meeting, full) | <InlineMath math="16" /> kWh | Lights and fans <InlineMath math="5" /> hours, pump <InlineMath math="1" /> hour after everything else is off, fridge <InlineMath math="6" /> hours: <InlineMath math="8.9" /> kWh (<InlineMath math="\le 16" /> kWh), wiring fine. | **The battery alone is enough** |
+| <InlineMath math="5" /> (Quiz night, <InlineMath math="10" /> kWh) | <InlineMath math="6" /> kWh | Lights, fans, sound, fridge for <InlineMath math="4" /> hours take <InlineMath math="8.2" /> kWh (<InlineMath math="> 6" /> kWh). | **The hall will need the grid** |
+
+# Answer
+
+- **The battery alone is enough**: statements **<InlineMath math="1" />** and **<InlineMath math="4" />**.
+- **The hall will need the grid**: statements **<InlineMath math="3" />** and **<InlineMath math="5" />**.
+- **Not allowed as planned**: statement **<InlineMath math="2" />**.

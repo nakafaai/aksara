@@ -1,9 +1,32 @@
-First find why the drill runs over. With both staircases open, Staircase A carries the <InlineMath math="4" /> first-floor classes. The last of them, 11D, clears it at <InlineMath math="4 \times 2 = 8" /> minutes and reaches the field at <InlineMath math="10" />. Staircase B carries <InlineMath math="3" /> classes, and its last one arrives at <InlineMath math="3 \times 2 + 2 = 8" />. So **the first-floor queue** is the one that runs <InlineMath math="2" /> minutes over.
+# Given
 
-- **Moving one first-floor class into a ground-floor room works**. That class leaves through an outside door in under <InlineMath math="4" /> minutes, and Staircase A is left with <InlineMath math="3" /> classes: <InlineMath math="3 \times 2 + 2 = 8" /> minutes. Both staircases now finish at <InlineMath math="8" />.
-- Moving it into a second-floor room only moves the queue: Staircase B then carries <InlineMath math="4" /> classes, and its last one arrives at <InlineMath math="10" />.
-- Reverse order changes which class is last, not when the last one arrives. That's still <InlineMath math="10" /> minutes.
-- Whether the teacher leaves the room first or last changes only when the teacher leaves. Each class still needs <InlineMath math="2" /> minutes on the staircase and <InlineMath math="2" /> minutes to walk, so the last class still arrives at <InlineMath math="10" /> minutes.
-- Sending the second-floor classes down Staircase A puts <InlineMath math="7" /> classes on one staircase: <InlineMath math="7 \times 2 + 2 = 16" /> minutes.
+With both staircases open and no missing students, **the school's target is <InlineMath math="8" /> minutes**. Right now, the first floor sends **<InlineMath math="4" /> classes** down Staircase A (<InlineMath math="10" /> minutes), the second floor sends **<InlineMath math="3" /> classes** down Staircase B (<InlineMath math="8" /> minutes), and ground-floor classes exit directly (<InlineMath math="< 4" /> minutes).
 
-So the change that meets the target is moving one first-floor class into a ground-floor room.
+# Asked
+
+Which single change would let the drill meet its <InlineMath math="8" />-minute target.
+
+# Solution
+
+Locate **the bottleneck first**: Staircase B already meets <InlineMath math="8" /> minutes, while **Staircase A runs <InlineMath math="2" /> minutes over** because it carries <InlineMath math="4" /> classes instead of <InlineMath math="3" />. Both staircases can hit <InlineMath math="8" /> minutes only if neither carries more than **<InlineMath math="3" /> classes**.
+
+> Shifting a class to the other staircase only moves the <InlineMath math="4" />-class bottleneck, whereas moving it to the ground floor removes it from the stairs completely.
+
+## Checking staircase capacity for the target time
+
+Rule <InlineMath math="7" /> sets the goal to <Highlight>finish within <InlineMath math="8" /> minutes of the bell</Highlight>. **Comparing <InlineMath math="4" /> classes versus <InlineMath math="3" /> classes on a staircase**:
+
+<BlockMath math="\text{4 classes: } 4 \times 2 + 2 = 10\text{ minutes}, \qquad \text{3 classes: } 3 \times 2 + 2 = 8\text{ minutes}" />
+
+Moving one first-floor class into a **ground-floor room** leaves <InlineMath math="3" /> classes on Staircase A (<InlineMath math="8" /> minutes) and <InlineMath math="3" /> on Staircase B (<InlineMath math="8" /> minutes), while the relocated class exits outdoors in under <InlineMath math="4" /> minutes.
+
+## Why the other options fail
+
+- **Moving it into a second-floor room** shifts the <InlineMath math="4" />-class queue (<InlineMath math="10" /> minutes) onto Staircase B.
+- **Reverse alphabetical order** swaps which class finishes last, still taking <InlineMath math="10" /> minutes.
+- **Having teachers leave first** leaves staircase clearance (<InlineMath math="2" /> minutes per class) and walking (<InlineMath math="2" /> minutes) unchanged.
+- **Sending second-floor classes to Staircase A** jams all <InlineMath math="7" /> classes onto one staircase (<InlineMath math="16" /> minutes).
+
+# Answer
+
+The change that lets the drill meet the <InlineMath math="8" />-minute target is **moving one first-floor class into a ground-floor room**.
