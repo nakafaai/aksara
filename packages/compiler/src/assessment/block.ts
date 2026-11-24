@@ -15,6 +15,11 @@ import { sourceError } from "#compiler/assessment/error";
 import { blockField, FIELD_COMPONENT } from "#compiler/assessment/field";
 import { figureComponent, figureNode } from "#compiler/assessment/figure";
 import { inlineContent } from "#compiler/assessment/inline";
+import {
+  codeBlockNode,
+  mathBlockNode,
+  mathContainerNode,
+} from "#compiler/assessment/math";
 
 type BlockError = ReturnType<typeof sourceError>;
 
@@ -201,12 +206,15 @@ function table(
 /** The node each layout component of a lesson becomes in a document. */
 const GROUP_NODES = {
   ContentBlock: "contentBlock",
+  ContentGrid: "contentGrid",
   ContentStack: "contentStack",
 } as const;
 
 /** Checks whether an element is a layout component that groups blocks. */
 function isGroup(name: string): name is keyof typeof GROUP_NODES {
-  return name === "ContentBlock" || name === "ContentStack";
+  return (
+    name === "ContentBlock" || name === "ContentGrid" || name === "ContentStack"
+  );
 }
 
 /** Converts one block element into the blocks it stands for. */
@@ -248,13 +256,13 @@ function blockElement(
     return Effect.fail(sourceError(site, element.name, "heading"));
   }
   if (element.name === "BlockMath") {
-    const { math } = element.props;
-    if (!Predicate.isString(math) || math.trim().length === 0) {
-      return Effect.fail(sourceError(site, element.name, "math"));
-    }
-    return Effect.succeed([
-      { attrs: { latex: math.trim() }, type: "mathBlock" },
-    ]);
+    return Effect.map(mathBlockNode(element, site), (node) => [node]);
+  }
+  if (element.name === "MathContainer") {
+    return Effect.map(mathContainerNode(element, site), (node) => [node]);
+  }
+  if (element.name === "pre") {
+    return Effect.map(codeBlockNode(element, site), (node) => [node]);
   }
   if (element.name === "ul") {
     return Effect.map(listItems(element, site), (content) => [

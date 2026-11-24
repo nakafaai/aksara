@@ -138,15 +138,19 @@ strings with their own [math syntax](questions.md#response-items).
   `<BlockMath />` is complete by itself and does not require a
   `<MathContainer>` wrapper.
 - Wrap consecutive `<BlockMath />` rows from one derivation or mathematical
-  comparison in `<MathContainer>`. Blank MDX lines do not space adjacent JSX
-  blocks. Keep intervening prose outside the wrapper; use `ContentStack` for
-  math grouped with a graph, diagram, simulation, or other non-math component.
+  comparison in `<MathContainer>` across every document type (lessons,
+  articles, questions, and answers). Blank MDX lines do not space adjacent JSX
+  blocks. Keep intervening prose and visual components outside `<MathContainer>`
+  so a formula card and a visual card stay clearly spaced apart and never merge
+  into one container; use `ContentStack` or `ContentGrid` when grouping math
+  with a graph, diagram, simulation, or other non-math component.
   The `unwrapped-math-stack` gate checks rendered MDX sibling order, including
-  transparent fragments and comment-only gaps. It applies to questions,
-  answers, articles, and lessons. A prose paragraph, heading, distinct list
-  item, or different visual separates the blocks and stays valid. Code examples
-  are not rendered math. JSX inside expression-valued props still requires
-  manual composition review.
+  transparent fragments and comment-only gaps, uniformly across questions,
+  answers, articles, and lessons (both in `test:lesson-voice` and on changed
+  try-out answers in `bun run explanations`). A prose paragraph, heading,
+  distinct list item, or different visual separates the blocks and stays valid.
+  Code examples are not rendered math. JSX inside expression-valued props still
+  requires manual composition review.
   The `math-stack-content` gate rejects paragraphs, headings, and other visuals
   inside `MathContainer`, whose direct rendered children must be `BlockMath`
   cards. Do not hide those children inside fragments or other wrappers:

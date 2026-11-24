@@ -10,10 +10,12 @@ import {
   Schema,
 } from "effect";
 
+import { wrapsMathStackOnly } from "#nakafa-content/math/container";
 import { answerStandardsReport } from "#scripts/check/answers";
 import { trackedFiles } from "#scripts/check/files";
+import { sourceAt } from "#scripts/check/pages";
 import { partReport } from "#scripts/check/parts";
-import { changedFiles } from "#scripts/check/visuals";
+import { changedFiles, mergeBase } from "#scripts/check/visuals";
 import { runEntry } from "#scripts/entry";
 
 /** The ref a change is measured from, as the visuals check measures it. */
@@ -156,6 +158,37 @@ export const explanationReport = Effect.fn("AksaraPolicy.explanationReport")(
 );
 
 /**
+ * Filters out answer files whose diff from `base` only wraps consecutive
+ * `<BlockMath />` rows in `<MathContainer>` without changing any authored
+ * prose, headings, visuals, or formulas.
+ */
+const revisedAnswers = Effect.fn("AksaraPolicy.revisedAnswers")(function* (
+  changed: readonly string[],
+  base: string
+) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const kept = yield* Effect.forEach(
+    changed,
+    (file) =>
+      Effect.gen(function* () {
+        if (Option.isNone(answerSection(file))) {
+          return Option.some(file);
+        }
+        const baseSource = yield* sourceAt(base, file);
+        if (Option.isNone(baseSource)) {
+          return Option.some(file);
+        }
+        const headSource = yield* fileSystem.readFileString(file);
+        return wrapsMathStackOnly(baseSource.value, headSource)
+          ? Option.none<string>()
+          : Option.some(file);
+      }),
+    { concurrency: 16 }
+  );
+  return Arr.getSomes(kept);
+});
+
+/**
  * The gate's check: every answer this change touches, measured from `ref`,
  * meets its kind, names its parts when its item has parts, and meets the
  * try-out answer heading, blockquote, inline-math, and readability standards.
@@ -163,7 +196,8 @@ export const explanationReport = Effect.fn("AksaraPolicy.explanationReport")(
 export const checkExplanations = Effect.fn("AksaraPolicy.checkExplanations")(
   function* (ref: string) {
     const files = yield* trackedFiles();
-    const changed = yield* changedFiles(ref);
+    const base = yield* mergeBase(ref);
+    const changed = yield* revisedAnswers(yield* changedFiles(ref), base);
     const kinds = yield* explanationKinds();
     yield* explanationReport(files, changed, kinds);
     yield* partReport(files, changed);

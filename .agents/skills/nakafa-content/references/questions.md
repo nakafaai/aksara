@@ -18,19 +18,24 @@ and do not add a local override file or language mapping.
 
 Aksara compiles every prompt, reading, explanation, and option label into an
 Assessment Document, the data that Nakafa renders and Tiptap edits. These files
-therefore hold no `export const metadata` and no module code. They use
-Markdown, `InlineMath`, `BlockMath`, `Highlight`, `ContentStack`,
-`ContentBlock`, and every figure of the Visual Catalog: each visual component a
-lesson may use, labs and three-dimensional scenes included, with the same props
-a lesson gives it (`packages/contracts/src/visual`). `MathContainer`,
-`ContentGrid`, `CodeBlock`, `AgentContext`, and `FunctionAndNonFunctionDiagram`
-stay in lessons; place a `FunctionAndNonFunctionRelationVisualizer` as the
-figure instead of its diagram card. Consecutive `BlockMath` blocks render as one
-derivation. A figure says in words what it shows: its `description` is its text
-alternative, and an `alt` prop replaces it when the figure needs a fuller
-description, such as the letters of a pattern that the description must not
-give away. Draw a bar chart, line chart, or histogram as data, with `Chart` or
-the lesson chart that fits, never with a component of its own.
+therefore hold no `export const metadata` and no module code. They share the
+same unified content and layout engine as lessons and articles: Markdown
+(including fenced code blocks), `InlineMath`, `BlockMath`, `MathContainer`,
+`Highlight`, `ContentStack`, `ContentGrid`, `ContentBlock`, and every figure of
+the Visual Catalog (`packages/contracts/src/visual`), labs and three-dimensional
+scenes included, with the exact same props a lesson gives it. Wrap consecutive
+`BlockMath` rows from one derivation in `<MathContainer>` just as lessons and
+articles do (`unwrapped-math-stack` and `math-stack-content` apply uniformly
+across lessons, articles, questions, and answers). Keep visuals and prose
+outside `<MathContainer>`; a standalone `<BlockMath />` or `<MathContainer>`
+followed by a visual stays spaced apart rather than fused. Only `AgentContext`
+(agent-only metadata) and legacy `FunctionAndNonFunctionDiagram` stay outside
+assessments (use `FunctionAndNonFunctionRelationVisualizer` instead). A figure
+says in words what it shows: its `description` is its text alternative, and an
+`alt` prop replaces it when the figure needs a fuller description, such as the
+letters of a pattern that the description must not give away. Draw a bar chart,
+line chart, or histogram as data, with `Chart` or the lesson chart that fits,
+never with a component of its own.
 
 A prompt, a shared reading, and an option label never show the answer. The
 compiler refuses a figure whose props hold answer state there: a unit circle's

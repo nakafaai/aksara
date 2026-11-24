@@ -31,7 +31,7 @@ const VALID_SINGLE = Arr.join(
   [
     "# Diketahui",
     "",
-    'Kecepatan awal <InlineMath math="v_0 = 0" /> dan percepatan <InlineMath math="a = 2\\text{ m/s}^2" />.',
+    '**Kecepatan awal** <InlineMath math="v_0 = 0" /> dan **percepatan** <InlineMath math="a = 2\\text{ m/s}^2" />.',
     "",
     "# Ditanyakan",
     "",
@@ -39,7 +39,7 @@ const VALID_SINGLE = Arr.join(
     "",
     "# Penyelesaian",
     "",
-    "Hitung kecepatan akhir dengan persamaan gerak lurus berubah beraturan.",
+    "Hitung kecepatan akhir dengan **persamaan gerak lurus berubah beraturan**.",
     "",
     '<BlockMath math="v = v_0 + at = 0 + 2(3) = 6" />',
     "",
@@ -58,7 +58,7 @@ const VALID_PARTS = Arr.join(
     "",
     "## Gegeben",
     "",
-    'Die Funktion hat den Faktor <InlineMath math="a = 2" />.',
+    'Die Funktion hat den **konstanten Faktor** <InlineMath math="a = 2" />.',
     "",
     "## Gesucht",
     "",
@@ -68,7 +68,7 @@ const VALID_PARTS = Arr.join(
     "",
     "### Ableitungsregel anwenden",
     "",
-    "Leite jeden Summanden einzeln ab.",
+    "Leite **jeden Summanden einzeln** ab.",
     "",
     '<BlockMath math="f\'(x) = 4x" />',
     "",
@@ -126,14 +126,24 @@ describe("answerStandardsReport", () => {
     () =>
       Effect.gen(function* () {
         const root = yield* makeRepository();
-        const sixtyFive = Arr.join(Arr.replicate("kata", 65), " ");
-        const ninety = Arr.join(Arr.replicate("kata", 90), " ");
+        const sixtyFive = Arr.join(
+          Arr.makeBy(65, (index) => (index % 2 === 0 ? "data" : "nilai")),
+          " "
+        );
+        const ninety = Arr.join(
+          Arr.makeBy(90, (index) => (index % 2 === 0 ? "data" : "nilai")),
+          " "
+        );
         const files = {
           [`${PHYSICS}/question-1/answer.id.mdx`]: Arr.join(
             [
               "# Diketahui: salah",
               "",
               `Gunakan <InlineMath math="2x^2 + 5x - 3 = 0" />. ${ninety}.`,
+              "",
+              '<BlockMath math="x + 2 = 5" />',
+              "",
+              '<BlockMath math="x = 3" />',
             ],
             "\n"
           ),
@@ -141,7 +151,7 @@ describe("answerStandardsReport", () => {
             [
               "# Diketahui",
               "",
-              `${sixtyFive}.`,
+              `**Data awal** ${sixtyFive}.`,
               "",
               "# Ditanyakan",
               "",
@@ -149,7 +159,7 @@ describe("answerStandardsReport", () => {
               "",
               "# Penyelesaian",
               "",
-              "Hitung langsung.",
+              "Hitung **hasil langsung**.",
               "",
               "> Konsep inti tetap berlaku.",
               "",
@@ -181,6 +191,8 @@ describe("answerStandardsReport", () => {
             "missing-blockquote",
             "bloated-inline-math",
             "wall-of-text",
+            "unwrapped-math-stack",
+            "section-body-highlight",
           ]);
         }
       }).pipe(Effect.scoped, Effect.provide(NodeServices.layer))

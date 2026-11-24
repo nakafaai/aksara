@@ -31,10 +31,10 @@ import { findStringVisualText } from "#nakafa-content/voice/visual";
 
 /**
  * Applies structural checks to assessed prompts and authored voice to
- * explanations. Every document except a public page writes each quantity as
- * math, the assessed prompt included. A bank document compiles to an assessment document, which has
- * no MathContainer, so it writes each formula as a block of its own and the
- * math stack rule applies to lessons and articles only.
+ * explanations. Every document except a public page shares the same math and
+ * formula-stack contract: every quantity is written as math, and consecutive
+ * BlockMath rows belong inside MathContainer across lessons, articles,
+ * questions, and answers alike.
  */
 export function findDocumentIssues(
   file: string,
@@ -46,9 +46,8 @@ export function findDocumentIssues(
   if (profile === "page") {
     return findLessonVoiceIssues(locale, source, tree, undefined, "page");
   }
-  const bank = profile === "question" || profile === "answer";
   const structural = [
-    ...(bank ? [] : findMathStackIssues(source, tree)),
+    ...findMathStackIssues(source, tree),
     ...findExternalLinkPlacementIssues(source, tree),
     ...findInternalLinkIssues(source, tree),
     ...findHighlightNestingIssues(source, tree),

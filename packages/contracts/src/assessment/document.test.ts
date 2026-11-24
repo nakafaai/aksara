@@ -125,6 +125,9 @@ describe("assessment document nodes", () => {
         })
       ),
       doc(paragraph(text("a"), text("b"))),
+      doc({ content: [], type: "mathContainer" }),
+      doc({ content: [paragraph(text("x"))], type: "mathContainer" }),
+      doc({ content: [], type: "contentGrid" }),
     ]) {
       expect(failsStrict(AssessmentDocumentSchema, input)).toBe(true);
     }

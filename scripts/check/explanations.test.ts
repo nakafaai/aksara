@@ -27,7 +27,7 @@ const CHART = Arr.join(
   [
     "# Given",
     "",
-    'The object starts at rest with speed <InlineMath math="0" />.',
+    'The object starts at **rest** with speed <InlineMath math="0" />.',
     "",
     "# Asked",
     "",
@@ -35,9 +35,9 @@ const CHART = Arr.join(
     "",
     "# Solution",
     "",
-    "Trace the line on the speed chart below.",
+    "Trace **the speed line** on the chart below.",
     "",
-    '<Chart title="Speed" description="Speed over time." categories={["0", "1"]} series={[{ label: "v", mark: "line", values: [0, 2] }]} />',
+    '<Chart title={<>Speed</>} description={<>Speed over time.</>} categories={["Start", "End"]} series={[{ label: "Speed", mark: "line", values: [0, 2] }]} />',
     "",
     "At one second the line reaches two.",
     "",
@@ -206,5 +206,35 @@ describe("checkExplanations", () => {
         yield* inDirectory(root, failedFiles(checkExplanations("base")))
       ).toEqual([`${PHYSICS}/set-1/question-3/answer.en.mdx`]);
     }).pipe(Effect.scoped, Effect.provide(NodeServices.layer))
+  );
+
+  it.effect(
+    "skips diff-scoped editorial checks for a legacy answer that only wraps BlockMath in MathContainer",
+    () =>
+      Effect.gen(function* () {
+        const root = yield* makeRepository();
+        const legacy = `${PHYSICS}/set-1/question-1/answer.en.mdx`;
+        const note = `${PHYSICS}/set-1/question-1/question.en.mdx`;
+        const baseText =
+          '# Old\n\n<BlockMath math="x=1" />\n\n<BlockMath math="y=2" />\n';
+        const wrapped =
+          '# Old\n\n<MathContainer>\n<BlockMath math="x=1" />\n<BlockMath math="y=2" />\n</MathContainer>\n';
+        yield* writeFiles(root, { [legacy]: baseText, [note]: "Prompt.\n" });
+        yield* gitIn(root, ["add", "--", "."]);
+        yield* gitIn(root, ["commit", "--quiet", "-m", "base"]);
+        yield* gitIn(root, ["branch", "base"]);
+        yield* writeFiles(root, { [legacy]: wrapped, [note]: "Prompt 2.\n" });
+
+        expect(
+          yield* inDirectory(root, failedFiles(checkExplanations("base")))
+        ).toEqual([]);
+
+        yield* writeFiles(root, {
+          [legacy]: `${wrapped}\nExtra text.\n`,
+        });
+        expect(
+          yield* inDirectory(root, failedFiles(checkExplanations("base")))
+        ).toEqual([legacy]);
+      }).pipe(Effect.scoped, Effect.provide(NodeServices.layer))
   );
 });

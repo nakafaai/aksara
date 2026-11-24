@@ -10,6 +10,8 @@ import { findBloatedInlineMathFindings } from "#nakafa-content/math/bloated";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { findBlockquoteFindings } from "#nakafa-content/prose/blockquote";
 import { findCohesionFindings } from "#nakafa-content/prose/cohesion";
+import { findDocumentIssues } from "#nakafa-content/voice/document";
+import { isBlockingLessonVoiceIssue } from "#nakafa-content/voice/policy";
 import { PageParseError } from "#scripts/check/pages";
 
 /** One worked answer file under the try-out question bank and its folder and locale. */
@@ -88,11 +90,24 @@ const inspectAnswer = Effect.fn("AksaraPolicy.inspectAnswer")(function* (
     try: () => parseLessonMdx(source, file),
   });
   const isParts = yield* isPartsFolder(files, folder);
+  const voiceFindings = Arr.map(
+    Arr.filter(
+      findDocumentIssues(file, locale, source, tree),
+      isBlockingLessonVoiceIssue
+    ),
+    ({ excerpt, line, rule }) => ({
+      blocking: true,
+      line,
+      message: excerpt,
+      rule,
+    })
+  );
   const findings = [
     ...findAnswerStructureFindings(locale, source, tree, isParts),
     ...findBlockquoteFindings(tree),
     ...findBloatedInlineMathFindings(tree),
     ...findCohesionFindings(locale, tree),
+    ...voiceFindings,
   ];
   return Arr.map(findings, (finding): AnswerFinding => ({ ...finding, file }));
 });

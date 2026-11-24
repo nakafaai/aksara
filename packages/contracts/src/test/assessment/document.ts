@@ -122,6 +122,17 @@ export const richDocument = doc(
   ),
   blockMath("\\begin{aligned}\nV &= s^3 \\\\\n&= 64\n\\end{aligned}"),
   {
+    content: [blockMath("x + 2 = 5"), blockMath("x = 3")],
+    type: "mathContainer",
+  },
+  {
+    content: [
+      { content: [paragraph(text("blok"))], type: "contentBlock" },
+      { content: [paragraph(text("grid"))], type: "contentGrid" },
+    ],
+    type: "contentStack",
+  },
+  {
     content: [
       {
         content: [
