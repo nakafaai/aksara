@@ -1,16 +1,74 @@
-# When the mother's antibodies run out, then work back
+# Given
 
-The mother's antibodies halve every <InlineMath math="30" /> days. **The vaccine must come earlier by the <InlineMath math="14" /> day lag**, so that the baby's own antibodies are ready just as the mother's fall below the threshold.
+A newborn receives <InlineMath math="160" /> units of maternal antibodies across the placenta that **halve every <InlineMath math="30" /> days**. Protection holds while the antibody level stays at or above <InlineMath math="20" /> units.
+
+After the first injection of vaccine X, the baby's own antibodies take a <InlineMath math="14" />-day lag to reach <InlineMath math="20" /> units.
+
+# Asked
+
+On which day at the latest must the first vaccine be given so the baby stays continuously protected, and what type of immunity do the mother's antibodies provide?
+
+# Solution
+
+Picture the mother's antibodies as a borrowed bottle of <InlineMath math="160" /> drops that loses half every <InlineMath math="30" /> days (<InlineMath math="160" /> to <InlineMath math="80" /> to <InlineMath math="40" /> to <InlineMath math="20" /> on day <InlineMath math="90" />). Because the baby's immune system needs <InlineMath math="14" /> days to ramp up, **the vaccine must be given <InlineMath math="14" /> days before the borrowed supply hits the threshold**.
+
+> The latest safe vaccination day is found by counting backwards by the immune response lag from the day maternal antibodies fall to the protection threshold.
+
+Slide the vaccination day <InlineMath math="a" /> below to compare when the baby's own immunity reaches <InlineMath math="20" /> units against day <InlineMath math="90" />.
+
+<MathVisual
+  title={<>Maternal antibody decay and baby vaccine readiness</>}
+  description={
+    <>
+      The blue curve shows maternal antibodies halving every <InlineMath math="30" />{" "}
+      days down to the <InlineMath math="20" />-unit line on day <InlineMath math="90" />.
+      Slide vaccine day <InlineMath math="a" /> so the green marker lands on day <InlineMath math="90" />.
+    </>
+  }
+  footer={<>Vaccinating on day <InlineMath math="76" /> finishes the lag right on day <InlineMath math="90" /> with zero unprotected gap.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 170 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 60, max: 100, value: 76, step: 2, label: "a" }],
+    objects: [
+      { id: "decay", kind: "function", appearance: "primary", formula: "160 * 0.5^(x / 30)", domain: { min: 0, max: 115 } },
+      { id: "threshold", kind: "segment", appearance: "construction", from: { x: 0, y: 20 }, to: { x: 120, y: 20 } },
+      { id: "limit", kind: "marker", appearance: "warning", x: "90", y: "20" },
+      { id: "given", kind: "marker", appearance: "primary", x: "a", y: "160 * 0.5^(a / 30)" },
+      { id: "ready", kind: "marker", appearance: "answer", x: "a + 14", y: "20" },
+    ],
+    readouts: [
+      { key: "ready-day", formula: "a + 14" },
+      { key: "gap-days", formula: "a + 14 - 90" },
+    ],
+  }}
+  labels={{
+    a: <>Vaccination day</>,
+    "ready-day": <>Day baby antibodies are ready</>,
+    "gap-days": <>Days past threshold (<InlineMath math="90" />)</>,
+  }}
+/>
+
+Whenever <InlineMath math="a" /> goes past day <InlineMath math="76" />, the green ready marker slides right of the orange day-<InlineMath math="90" /> marker, leaving an unprotected gap.
+
+## Half life and immunity type
+
+Count how many halvings take <InlineMath math="160" /> down to <InlineMath math="20" /> units, then subtract the **<InlineMath math="14" />-day vaccine lag**.
 
 <BlockMath math="\begin{aligned}
-160\to80\to40\to20&:\ 3\times30=90\text{ days}\\
-\text{latest vaccine day}&=90-14=76
+160 \to 80 \to 40 \to 20 &: 3 \times 30 = 90\text{ days} \\
+\text{latest vaccine day} &= 90 - 14 = \text{day } 76
 \end{aligned}" />
 
-The mother's antibodies are not made by the baby's body and arrive naturally across the placenta, so the immunity is natural passive. So the vaccine must be given by day <InlineMath math="76" /> at the latest.
+Because the baby receives ready-made antibodies naturally across the placenta rather than making them itself, this is **natural passive immunity**.
 
-# Why the other options are wrong
+## Why other options fail
 
-- Day <InlineMath math="90" /> forgets the <InlineMath math="14" /> day lag, so **the baby is unprotected from day <InlineMath math="90" /> to day <InlineMath math="104" />**.
-- Active immunity means the baby's body makes its own antibodies, but these antibodies come from the mother.
-- Day <InlineMath math="104" /> adds the lag, but the vaccine must come before the mother's antibodies run out, not after.
+- Day <InlineMath math="90" /> ignores the <InlineMath math="14" />-day lag, leaving **the baby unprotected from day <InlineMath math="90" /> to day <InlineMath math="104" />**.
+- Natural active immunity requires the baby's own body to produce antibodies after infection, not receive them from the mother.
+- Day <InlineMath math="104" /> adds the lag after maternal protection ends instead of subtracting it beforehand.
+
+# Answer
+
+The first vaccine must be given by day <InlineMath math="76" /> at the latest, and the mother's antibodies give natural passive immunity.

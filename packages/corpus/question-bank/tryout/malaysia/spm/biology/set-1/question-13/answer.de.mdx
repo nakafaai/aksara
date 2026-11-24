@@ -1,18 +1,74 @@
-# Herzzeitvolumen ist Schlagvolumen mal Herzfrequenz
+# Gegeben
 
-Das Herzzeitvolumen ist das Schlagvolumen mal die Herzfrequenz. **Das Herzzeitvolumen in Ruhe ändert sich nicht**, das Schlagvolumen steigt also, wenn die Herzfrequenz sinkt.
+Vor dem Training liegt die Ruheherzfrequenz einer Sportlerin bei <InlineMath math="72\text{ Schlägen min}^{-1}" /> und das Schlagvolumen bei <InlineMath math="70\text{ cm}^3" />. Nach dem Training sinkt der Ruhepuls auf <InlineMath math="56\text{ Schläge min}^{-1}" />, während **das Ruhe-Herzzeitvolumen unverändert bleibt**.
+
+Bei maximaler Belastung nach dem Training beträgt der Puls <InlineMath math="180\text{ Schläge min}^{-1}" /> bei einem Schlagvolumen von <InlineMath math="120\text{ cm}^3" />.
+
+# Gesucht
+
+Wie groß ist das Ruhe-Schlagvolumen nach dem Training, und wie viel Mal größer ist das Herzzeitvolumen bei maximaler Belastung als in Ruhe?
+
+# Lösung
+
+Stell dir das Herz wie eine Wasserpumpe vor: Die Fördermenge pro Minute ist Volumen pro Pumpstoß mal Stöße pro Minute. Weil der trainierte Herzmuskel kräftiger pumpt, **befördert jeder Schlag mehr Blut, sodass weniger Schläge nötig sind** für dieselben <InlineMath math="5040\text{ cm}^3" /> pro Minute.
+
+> Bleibt das Ruhe-Herzzeitvolumen konstant, verlangt ein niedrigerer Ruhepuls ein umgekehrt proportional größeres Schlagvolumen.
+
+Schieb den Ruhepuls <InlineMath math="r" /> auf der Kurve konstanten Herzzeitvolumens (<InlineMath math="5040\text{ cm}^3\text{ min}^{-1}" />) von <InlineMath math="72" /> auf <InlineMath math="56" />, um das neue Schlagvolumen von <InlineMath math="90\text{ cm}^3" /> abzulesen.
+
+<MathVisual
+  title={<>Ruhepuls und Schlagvolumen bei konstantem Herzzeitvolumen</>}
+  description={
+    <>
+      Die blaue Kurve hält das Ruhe-Herzzeitvolumen bei <InlineMath math="5040\text{ cm}^3\text{ min}^{-1}" />.
+      Schieb den Ruhepuls <InlineMath math="r" /> von vor dem Training (<InlineMath math="72" />)
+      auf nach dem Training (<InlineMath math="56" />).
+    </>
+  }
+  footer={<>Sinkt der Ruhepuls von <InlineMath math="72" /> auf <InlineMath math="56" />, steigt das Schlagvolumen von <InlineMath math="70" /> auf <InlineMath math="90\text{ cm}^3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 44, max: 84 }, y: { min: 55, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "r", min: 48, max: 80, value: 56, step: 4, label: "r" }],
+    objects: [
+      { id: "co-curve", kind: "function", appearance: "primary", formula: "5040 / x", domain: { min: 46, max: 82 } },
+      { id: "before", kind: "marker", appearance: "warning", x: "72", y: "70" },
+      { id: "after", kind: "marker", appearance: "answer", x: "r", y: "5040 / r" },
+    ],
+    readouts: [
+      { key: "stroke-vol", formula: "5040 / r" },
+      { key: "max-ratio", formula: "21600 / 5040" },
+    ],
+  }}
+  labels={{
+    r: <>Ruhepuls (<InlineMath math="\text{Schläge min}^{-1}" />)</>,
+    "stroke-vol": <>Schlagvolumen (<InlineMath math="\text{cm}^3" />)</>,
+    "max-ratio": <>Verhältnis Maximal- zu Ruheleistung</>,
+  }}
+/>
+
+Wandert der Punkt nach links zu einem niedrigeren Puls, steigt er auf der Hyperbel exakt bis <InlineMath math="90\text{ cm}^3" /> an.
+
+## Schlagvolumen und Faktor berechnen
+
+Berechne zuerst das Ruhe-Herzzeitvolumen, ermittle **das neue Schlagvolumen** und teile das maximale Herzzeitvolumen durch den Ruhewert.
 
 <BlockMath math="\begin{aligned}
-\text{Ruhevolumen}&=72\times70=5040\text{ cm}^3\text{ pro Minute}\\
-\text{neues Schlagvolumen}&=\frac{5040}{56}=90\text{ cm}^3\\
-\text{Maximalvolumen}&=180\times120=21{.}600\text{ cm}^3\text{ pro Minute}\\
-\frac{21{.}600}{5040}&\approx4{,}3
+\text{Ruhe-HZV} &= 72 \cdot 70 = 5040\text{ cm}^3\text{ min}^{-1} \\
+\text{neues Schlagvolumen} &= \frac{5040}{56} = 90\text{ cm}^3 \\
+\text{Maximal-HZV} &= 180 \cdot 120 = 21{,}600\text{ cm}^3\text{ min}^{-1} \\
+\text{Faktor} &= \frac{21{,}600}{5040} = \frac{30}{7} \approx 4{,}3
 \end{aligned}" />
 
-Das Schlagvolumen beträgt also <InlineMath math="90\text{ cm}^3" />, und das maximale Herzzeitvolumen ist etwa <InlineMath math="4{,}3" />-mal so groß wie in Ruhe.
+Gegenprobe: <InlineMath math="56" /> Schläge mal <InlineMath math="90\text{ cm}^3" /> ergeben wieder exakt <InlineMath math="5040\text{ cm}^3\text{ min}^{-1}" />.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- <InlineMath math="54\text{ cm}^3" /> multipliziert <InlineMath math="70" /> mit <InlineMath math="\tfrac{56}{72}" />, doch **das Schlagvolumen muss steigen**, damit das Herzzeitvolumen gleich bleibt.
-- <InlineMath math="3{,}2" />-mal vergleicht nur die Herzfrequenzen, <InlineMath math="\tfrac{180}{56}" />, ohne den Anstieg des Schlagvolumens.
-- <InlineMath math="2{,}5" />-mal setzt bei Belastung das alte Schlagvolumen von <InlineMath math="70\text{ cm}^3" /> ein, es beträgt aber <InlineMath math="120\text{ cm}^3" />.
+- Der Wert <InlineMath math="54\text{ cm}^3" /> verkleinert das Schlagvolumen mit dem Puls, obwohl **das Schlagvolumen steigen muss**.
+- Der Faktor <InlineMath math="3{,}2" /> vergleicht nur die Herzfrequenzen (<InlineMath math="180" /> durch <InlineMath math="56" />) ohne das größere Belastungsschlagvolumen.
+- Der Faktor <InlineMath math="2{,}5" /> rechnet bei Belastung mit alten <InlineMath math="70\text{ cm}^3" /> statt mit <InlineMath math="120\text{ cm}^3" />.
+
+# Antwort
+
+Das Ruhe-Schlagvolumen nach dem Training beträgt <InlineMath math="90\text{ cm}^3" />, und das maximale Herzzeitvolumen ist etwa <InlineMath math="4{,}3" />-mal so groß wie in Ruhe.

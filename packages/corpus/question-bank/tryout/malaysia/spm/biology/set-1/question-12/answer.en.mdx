@@ -1,19 +1,75 @@
-# From the BMI target to the number of days
+# Given
 
-First find the mass to lose with <InlineMath math="\text{BMI}=\dfrac{m}{h^2}" />, using **the height squared**. Then turn that mass into energy and divide by the daily deficit.
+A teenager of mass <InlineMath math="64\text{ kg}" /> and fixed height <InlineMath math="1.60\text{ m}" /> wants to lower their **body mass index (BMI) to <InlineMath math="22.5" />**.
+
+Daily energy need is <InlineMath math="11{,}000\text{ kJ}" />, daily intake is <InlineMath math="9000\text{ kJ}" />, and each <InlineMath math="1\text{ kg}" /> of mass lost supplies <InlineMath math="40{,}000\text{ kJ}" />.
+
+# Asked
+
+How many days are needed to reach the target BMI of <InlineMath math="22.5" />?
+
+# Solution
+
+Picture stored body energy like a piggy bank. Spending <InlineMath math="2000\text{ kJ}" /> more than you eat every day **drains exactly <InlineMath math="0.05\text{ kg}" /> of mass per day**.
+
+> Because BMI divides mass by height squared, target mass always equals target BMI multiplied by the square of height.
+
+Slide the daily energy deficit <InlineMath math="d" /> below to see how quickly body mass drops from <InlineMath math="64\text{ kg}" /> to the <InlineMath math="57.6\text{ kg}" /> target line.
+
+<MathVisual
+  title={<>Body mass decline towards the <InlineMath math="57.6\text{ kg}" /> target</>}
+  description={
+    <>
+      The blue line tracks daily body mass starting at <InlineMath math="64\text{ kg}" />.
+      Set daily deficit <InlineMath math="d" /> to <InlineMath math="2000\text{ kJ}" />{" "}
+      to read the exact day the line meets <InlineMath math="57.6\text{ kg}" />.
+    </>
+  }
+  footer={<>At a deficit of <InlineMath math="2000\text{ kJ}" /> per day, mass reaches <InlineMath math="57.6\text{ kg}" /> on day <InlineMath math="128" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 270 }, y: { min: 55, max: 66 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "d", min: 1000, max: 4000, value: 2000, step: 500, label: "d" }],
+    objects: [
+      { id: "mass-line", kind: "function", appearance: "primary", formula: "64 - (d / 40000) * x", domain: { min: 0, max: 260 } },
+      { id: "target-line", kind: "segment", appearance: "construction", from: { x: 0, y: 57.6 }, to: { x: 260, y: 57.6 } },
+      { id: "hit", kind: "marker", appearance: "answer", x: "256000 / d", y: "57.6" },
+    ],
+    readouts: [
+      { key: "mass-loss", formula: "6.4" },
+      { key: "days-needed", formula: "256000 / d" },
+    ],
+  }}
+  labels={{
+    d: <>Daily deficit (<InlineMath math="\text{kJ day}^{-1}" />)</>,
+    "mass-loss": <>Mass to lose (<InlineMath math="\text{kg}" />)</>,
+    "days-needed": <>Days needed</>,
+  }}
+/>
+
+A larger deficit steepens the line and cuts the number of days. At <InlineMath math="d = 2000\text{ kJ day}^{-1}" />, the green marker hits the target line on day <InlineMath math="128" />.
+
+## Target mass and days calculation
+
+Find target mass using **the squared height**, convert mass loss into energy, then divide by the daily deficit.
 
 <BlockMath math="\begin{aligned}
-m_{\text{target}}&=22.5\times1.60^2=57.6\text{ kg}\\
-\Delta m&=64-57.6=6.4\text{ kg}\\
-\text{energy}&=6.4\times40{,}000=256{,}000\text{ kJ}\\
-\text{deficit}&=11{,}000-9000=2000\text{ kJ per day}\\
-\text{days}&=\frac{256{,}000}{2000}=128
+m_{\text{target}} &= 22.5 \times 1.60^2 = 22.5 \times 2.56 = 57.6\text{ kg} \\
+\Delta m &= 64 - 57.6 = 6.4\text{ kg} \\
+E_{\text{total}} &= 6.4 \times 40{,}000 = 256{,}000\text{ kJ} \\
+\text{daily deficit} &= 11{,}000 - 9000 = 2000\text{ kJ day}^{-1} \\
+\text{days} &= \frac{256{,}000}{2000} = 128\text{ days}
 \end{aligned}" />
 
-So <InlineMath math="128" /> days are needed.
+Quick check: starting BMI is <InlineMath math="25.0" />, a BMI drop of <InlineMath math="2.5" />, and <InlineMath math="2.5 \times 2.56" /> matches the <InlineMath math="6.4\text{ kg}" /> mass loss.
 
-# Why the other options are wrong
+## Why other options fail
 
-- <InlineMath math="560" /> days uses the height <InlineMath math="1.60" /> without squaring it, so the mass to lose becomes <InlineMath math="28\text{ kg}" />.
-- <InlineMath math="80" /> days uses a loss of <InlineMath math="4.0\text{ kg}" />, the BMI difference <InlineMath math="2.5" /> times <InlineMath math="1.60" />, but **the height must be squared**.
-- <InlineMath math="50" /> days treats the BMI difference <InlineMath math="2.5" /> as a mass difference, but BMI and mass have different units.
+- Choosing <InlineMath math="560" /> days uses <InlineMath math="1.60" /> without squaring it, falsely giving a <InlineMath math="28\text{ kg}" /> mass loss.
+- Choosing <InlineMath math="80" /> days multiplies the BMI drop <InlineMath math="2.5" /> by <InlineMath math="1.60" />, forgetting that **height must be squared**.
+- Choosing <InlineMath math="50" /> days treats the BMI drop of <InlineMath math="2.5" /> directly as <InlineMath math="2.5\text{ kg}" />, mixing up different units.
+
+# Answer
+
+A total of <InlineMath math="128" /> days are needed to reach the target BMI of <InlineMath math="22.5" />.

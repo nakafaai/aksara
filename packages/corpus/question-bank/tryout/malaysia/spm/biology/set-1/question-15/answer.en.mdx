@@ -1,18 +1,76 @@
-# Time each neurone and each synapse
+# Given
 
-The two neurones conduct at different speeds, so **each neurone is timed separately**. The relay neurone makes two synapses in the spinal cord, sensory to relay and relay to motor.
+In a reflex arc, a **sensory neurone of length <InlineMath math="0.8\text{ m}" />** conducts impulses at <InlineMath math="80\text{ m s}^{-1}" />, and a motor neurone of length <InlineMath math="0.6\text{ m}" /> conducts at <InlineMath math="40\text{ m s}^{-1}" />.
+
+The relay neurone in the spinal cord has negligible conduction time, and each synapse delays the impulse by <InlineMath math="0.5\text{ ms}" />.
+
+# Asked
+
+What is the minimum time from receptor stimulation until the impulse reaches the effector?
+
+# Solution
+
+Picture a two-runner relay race: the first runner covers <InlineMath math="0.8\text{ m}" /> fast (<InlineMath math="10\text{ ms}" />), the second runner covers <InlineMath math="0.6\text{ m}" /> slower (<InlineMath math="15\text{ ms}" />), and **the relay neurone creates two baton handoffs (synapses) in the spinal cord** (sensory to relay, then relay to motor).
+
+> Total travel time across a three-neurone reflex arc equals the sum of each individual axon time plus the delay across exactly two synapses.
+
+Slide the synapse count <InlineMath math="n" /> on the cumulative time graph below to see how synaptic delay shifts the total arrival time to <InlineMath math="26.0\text{ ms}" />.
+
+<MathVisual
+  title={<>Cumulative impulse time along the reflex arc</>}
+  description={
+    <>
+      The blue segment is the sensory neurone (<InlineMath math="10\text{ ms}" />),
+      the orange step is the two-synapse delay (<InlineMath math="1.0\text{ ms}" />),
+      and the green segment is the motor neurone (<InlineMath math="15\text{ ms}" />).
+      Slide synapse count <InlineMath math="n" /> to compare totals.
+    </>
+  }
+  footer={<>With <InlineMath math="n = 2" /> synapses in the spinal cord, arrival reaches <InlineMath math="26.0\text{ ms}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1.55 }, y: { min: 0, max: 29 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "n", min: 0, max: 4, value: 2, step: 1, label: "n" }],
+    objects: [
+      { id: "sensory", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0.8, y: 10 } },
+      { id: "synapse", kind: "segment", appearance: "warning", from: { x: 0.8, y: 10 }, to: { x: 0.8, y: 11 } },
+      { id: "motor", kind: "segment", appearance: "answer", from: { x: 0.8, y: 11 }, to: { x: 1.4, y: 26 } },
+      { id: "end-pt", kind: "marker", appearance: "answer", x: "1.4", y: "25 + 0.5 * n" },
+    ],
+    readouts: [
+      { key: "synapse-delay", formula: "0.5 * n" },
+      { key: "total-time", formula: "25 + 0.5 * n" },
+    ],
+  }}
+  labels={{
+    n: <>Number of synapses <InlineMath math="n" /></>,
+    "synapse-delay": <>Total synaptic delay (<InlineMath math="\text{ms}" />)</>,
+    "total-time": <>Total time (<InlineMath math="\text{ms}" />)</>,
+  }}
+/>
+
+The motor segment climbs twice as steeply as the sensory segment because it conducts at half the speed. Setting <InlineMath math="n = 2" /> lifts the final marker from <InlineMath math="25.0" /> to <InlineMath math="26.0\text{ ms}" />.
+
+## Segment by segment timing
+
+Time each neurone separately in milliseconds, then add **the two synaptic delays**.
 
 <BlockMath math="\begin{aligned}
-t_{\text{sensory}}&=\frac{0.8}{80}=0.010\text{ s}=10\text{ ms}\\
-t_{\text{motor}}&=\frac{0.6}{40}=0.015\text{ s}=15\text{ ms}\\
-t_{\text{synapses}}&=2\times0.5=1.0\text{ ms}\\
-t&=10+15+1.0=26.0\text{ ms}
+t_{\text{sensory}} &= \frac{0.8}{80} = 0.010\text{ s} = 10.0\text{ ms} \\
+t_{\text{motor}} &= \frac{0.6}{40} = 0.015\text{ s} = 15.0\text{ ms} \\
+t_{\text{synapses}} &= 2 \times 0.5 = 1.0\text{ ms} \\
+t_{\text{total}} &= 10.0 + 15.0 + 1.0 = 26.0\text{ ms}
 \end{aligned}" />
 
-So the minimum time is <InlineMath math="26.0\text{ ms}" />.
+Unit check: both axon times are converted from seconds into milliseconds before summing with the synaptic delay.
 
-# Why the other options are wrong
+## Why other options fail
 
-- <InlineMath math="25.0\text{ ms}" /> ignores the synaptic delay, but **two synapses add <InlineMath math="1.0\text{ ms}" />**.
-- <InlineMath math="24.3\text{ ms}" /> averages the two speeds to <InlineMath math="60\text{ m s}^{-1}" />, but each neurone covers its own length at its own speed.
-- <InlineMath math="26.5\text{ ms}" /> counts three synapses, but there are only two synapses in the spinal cord.
+- Choosing <InlineMath math="25.0\text{ ms}" /> ignores synaptic delay, even though **two synapses add <InlineMath math="1.0\text{ ms}" />**.
+- Choosing <InlineMath math="24.3\text{ ms}" /> averages the speeds to <InlineMath math="60\text{ m s}^{-1}" />, even though each neurone runs a different distance.
+- Choosing <InlineMath math="26.5\text{ ms}" /> counts three synapses instead of the two spinal synapses in this reflex arc.
+
+# Answer
+
+The minimum time for the impulse to reach the effector is <InlineMath math="26.0\text{ ms}" />.

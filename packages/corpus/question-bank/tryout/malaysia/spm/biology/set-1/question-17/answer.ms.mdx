@@ -1,17 +1,72 @@
-# Isi padu tetap, panjang dua kali ganda
+# Diberi
 
-Bendalir selom tidak boleh dimampatkan, jadi **isi padu <InlineMath math="\pi r^2L" /> kekal**. Jika panjang menjadi dua kali ganda, <InlineMath math="r^2" /> mesti menjadi separuh, jadi jejari didarab dengan <InlineMath math="\tfrac{1}{\sqrt2}" />.
+Satu segmen badan cacing tanah bertindak seperti silinder berisi bendalir selom yang tidak boleh dimampatkan, maka **isi padunya <InlineMath math="\pi r^2 L" /> kekal malar**. Semasa pergerakan, panjang segmen berganda kepada <InlineMath math="2L" />.
+
+# Ditanya
+
+Berapa peratuskah jejari segmen berkurang, dan otot manakah yang mengecut untuk menghasilkan perubahan ini?
+
+# Penyelesaian
+
+Bayangkan kamu memicit bahagian tengah belon berisi air dengan genggaman membulat. Kerana air tidak boleh dimampatkan, belon memanjang dan menipis, dan **otot membulat cacing bertindak tepat seperti genggaman itu**.
+
+> Kerana isi padu silinder bergantung pada kuasa dua jejari, menggandakan panjang menyeparuhkan kuasa dua jejari supaya jejari turun kepada satu per punca kuasa dua, bukannya separuh.
+
+Gerakkan faktor pemanjangan <InlineMath math="k" /> di bawah dan bandingkan lengkung jejari sebenar (hijau, <InlineMath math="100 / \sqrt{k}" />) dengan perangkap linear (jingga, <InlineMath math="100 / k" />).
+
+<MathVisual
+  title={<>Peratus jejari segmen cacing tanah apabila memanjang</>}
+  description={
+    <>
+      Lengkung hijau mengekalkan isi padu silinder (<InlineMath math="100 / \sqrt{k}" />).
+      Lengkung jingga menunjukkan kesilapan lazim (<InlineMath math="100 / k" />).
+      Tetapkan <InlineMath math="k" /> pada <InlineMath math="2" /> apabila panjang berganda.
+    </>
+  }
+  footer={<>Pada <InlineMath math="k = 2" />, jejari tinggal <InlineMath math="71\%" />, iaitu pengurangan sekitar <InlineMath math="29\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.8, max: 4.2 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "k", min: 1, max: 4, value: 2, step: 0.25, label: "k" }],
+    objects: [
+      { id: "true-r", kind: "function", appearance: "answer", formula: "100 / sqrt(x)", domain: { min: 1, max: 4 } },
+      { id: "trap-r", kind: "function", appearance: "warning", formula: "100 / x", domain: { min: 1, max: 4 } },
+      { id: "m-true", kind: "marker", appearance: "answer", x: "k", y: "100 / sqrt(k)" },
+      { id: "m-trap", kind: "marker", appearance: "warning", x: "k", y: "100 / k" },
+    ],
+    readouts: [
+      { key: "new-radius", formula: "100 / sqrt(k)" },
+      { key: "radius-drop", formula: "100 - 100 / sqrt(k)" },
+    ],
+  }}
+  labels={{
+    k: <>Faktor panjang <InlineMath math="L' / L" /></>,
+    "new-radius": <>Jejari baharu (<InlineMath math="\%" />)</>,
+    "radius-drop": <>Pengurangan jejari (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+Pada <InlineMath math="k = 2" />, lengkung hijau jauh di atas lengkung jingga: jejari baharu sekitar <InlineMath math="70.7\%" />, memberi pengurangan <InlineMath math="29.3\%" /> (hampir <InlineMath math="29\%" />).
+
+## Pengurangan jejari dan tindakan otot
+
+Samakan isi padu silinder sebelum dan selepas pemanjangan, lalu kenal pasti **pasangan otot berantagonis** yang terlibat.
 
 <BlockMath math="\begin{aligned}
-\pi r^2L&=\pi r'^2(2L)\ \Rightarrow\ r'^2=\tfrac12r^2\\
-r'&=\frac{r}{\sqrt2}\approx0.71r\\
-\text{pengurangan}&\approx1-0.71=0.29=29\%
+\pi r^2 L &= \pi r'^2 (2L) \implies r'^2 = \frac{1}{2} r^2 \\
+r' &= \frac{r}{\sqrt{2}} \approx 0.707 r \\
+\text{pengurangan} &\approx (1 - 0.707) \times 100\% \approx 29\%
 \end{aligned}" />
 
-Segmen yang lebih panjang dan nipis terbentuk apabila otot membulat mengecut dan otot memanjang mengendur. Jadi, jejari berkurang kira-kira <InlineMath math="29\%" /> kerana otot membulat mengecut.
+Segmen menjadi panjang dan tirus apabila **otot membulat mengecut** manakala otot memanjang mengendur.
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="50\%" /> menganggap jejari berkadar songsang dengan panjang, sedangkan **panjang berkadar songsang dengan <InlineMath math="r^2" />**.
-- Otot memanjang yang mengecut menjadikan segmen lebih pendek dan tebal, bukan lebih panjang.
-- <InlineMath math="75\%" /> menganggap luas keratan rentas menjadi satu perempat, sedangkan luas itu hanya menjadi separuh.
+- Pilihan <InlineMath math="50\%" /> menganggap jejari berkadar songsang terus dengan panjang, padahal **panjang berkadar songsang dengan <InlineMath math="r^2" />**.
+- Pilihan otot memanjang salah kerana pengecutan otot memanjang menjadikan segmen pendek dan tebal.
+- Pilihan <InlineMath math="75\%" /> menyangka luas keratan rentas jatuh kepada suku, padahal hanya jatuh separuh.
+
+# Jawapan
+
+Jejari segmen berkurang kira-kira <InlineMath math="29\%" /> disebabkan pengecutan otot membulat.

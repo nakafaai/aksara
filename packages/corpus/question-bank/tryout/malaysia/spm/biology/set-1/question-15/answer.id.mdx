@@ -1,18 +1,76 @@
-# Hitung tiap neuron dan tiap sinaps
+# Diketahui
 
-Kedua neuron punya laju berbeda, jadi **waktu tiap neuron dihitung terpisah**. Neuron perantara membuat dua sinapsis di saraf tulang belakang, yaitu dari neuron sensorik ke perantara dan dari perantara ke motorik.
+Dalam lengkung refleks, **neuron sensorik sepanjang <InlineMath math="0{,}8\text{ m}" />** menghantarkan impuls dengan laju <InlineMath math="80\text{ m s}^{-1}" />, sedangkan neuron motorik sepanjang <InlineMath math="0{,}6\text{ m}" /> menghantarkan impuls dengan laju <InlineMath math="40\text{ m s}^{-1}" />.
+
+Neuron konektor di sumsum tulang belakang sangat pendek sehingga waktu hantarnya diabaikan, dan setiap sinapsis menunda impuls sebesar <InlineMath math="0{,}5\text{ ms}" />.
+
+# Ditanyakan
+
+Berapakah waktu minimum dari rangsangan reseptor hingga impuls mencapai efektor?
+
+# Penyelesaian
+
+Bayangkan lomba lari estafet dua pelari: pelari pertama menempuh <InlineMath math="0{,}8\text{ m}" /> dengan kecepatan cepat (<InlineMath math="10\text{ ms}" />), pelari kedua menempuh <InlineMath math="0{,}6\text{ m}" /> lebih lambat (<InlineMath math="15\text{ ms}" />), dan **ada dua kali operan tongkat sinapsis di sumsum tulang belakang** (sensorik ke konektor, lalu konektor ke motorik).
+
+> Waktu tempuh total lengkung refleks tiga neuron adalah jumlah waktu masing-masing akson ditambah jeda dari tepat dua sinapsis.
+
+Geser jumlah sinapsis <InlineMath math="n" /> pada grafik jarak terhadap waktu kumulatif berikut untuk melihat lonjakan jeda sinapsis terhadap total waktu <InlineMath math="26{,}0\text{ ms}" />.
+
+<MathVisual
+  title={<>Waktu kumulatif impuls di sepanjang lengkung refleks</>}
+  description={
+    <>
+      Ruas biru adalah neuron sensorik (<InlineMath math="10\text{ ms}" />), lompatan
+      jingga adalah jeda dua sinapsis (<InlineMath math="1{,}0\text{ ms}" />), dan
+      ruas hijau adalah neuron motorik (<InlineMath math="15\text{ ms}" />). Geser jumlah
+      sinapsis <InlineMath math="n" /> untuk membandingkan total waktu.
+    </>
+  }
+  footer={<>Dengan <InlineMath math="n = 2" /> sinapsis, impuls tiba di efektor pada <InlineMath math="26{,}0\text{ ms}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1.55 }, y: { min: 0, max: 29 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "n", min: 0, max: 4, value: 2, step: 1, label: "n" }],
+    objects: [
+      { id: "sensory", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0.8, y: 10 } },
+      { id: "synapse", kind: "segment", appearance: "warning", from: { x: 0.8, y: 10 }, to: { x: 0.8, y: 11 } },
+      { id: "motor", kind: "segment", appearance: "answer", from: { x: 0.8, y: 11 }, to: { x: 1.4, y: 26 } },
+      { id: "end-pt", kind: "marker", appearance: "answer", x: "1.4", y: "25 + 0.5 * n" },
+    ],
+    readouts: [
+      { key: "synapse-delay", formula: "0.5 * n" },
+      { key: "total-time", formula: "25 + 0.5 * n" },
+    ],
+  }}
+  labels={{
+    n: <>Jumlah sinapsis <InlineMath math="n" /></>,
+    "synapse-delay": <>Total jeda sinapsis (<InlineMath math="\text{ms}" />)</>,
+    "total-time": <>Waktu total (<InlineMath math="\text{ms}" />)</>,
+  }}
+/>
+
+Ruas motorik lebih curam daripada ruas sensorik karena kecepatannya hanya separuhnya. Mengubah <InlineMath math="n" /> dari <InlineMath math="0" /> ke <InlineMath math="2" /> mengangkat titik akhir dari <InlineMath math="25{,}0" /> tepat ke <InlineMath math="26{,}0\text{ ms}" />.
+
+## Perhitungan tiap bagian jalur
+
+Hitung waktu masing-masing neuron secara terpisah lalu tambahkan **jeda dua sinapsis**.
 
 <BlockMath math="\begin{aligned}
-t_{\text{sensorik}}&=\frac{0{,}8}{80}=0{,}010\text{ s}=10\text{ ms}\\
-t_{\text{motorik}}&=\frac{0{,}6}{40}=0{,}015\text{ s}=15\text{ ms}\\
-t_{\text{sinapsis}}&=2\times0{,}5=1{,}0\text{ ms}\\
-t&=10+15+1{,}0=26{,}0\text{ ms}
+t_{\text{sensorik}} &= \frac{0{,}8}{80} = 0{,}010\text{ s} = 10{,}0\text{ ms} \\
+t_{\text{motorik}} &= \frac{0{,}6}{40} = 0{,}015\text{ s} = 15{,}0\text{ ms} \\
+t_{\text{sinapsis}} &= 2 \times 0{,}5 = 1{,}0\text{ ms} \\
+t_{\text{total}} &= 10{,}0 + 15{,}0 + 1{,}0 = 26{,}0\text{ ms}
 \end{aligned}" />
 
-Jadi, waktu minimumnya <InlineMath math="26{,}0\text{ ms}" />.
+Cek satuan: semua komponen sudah diubah ke milisekon sebelum dijumlahkan.
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="25{,}0\text{ ms}" /> mengabaikan hambatan di sinapsis, padahal **dua sinapsis menambah <InlineMath math="1{,}0\text{ ms}" />**.
-- <InlineMath math="24{,}3\text{ ms}" /> merata-ratakan kedua laju menjadi <InlineMath math="60\text{ m s}^{-1}" />, padahal tiap neuron menempuh panjangnya sendiri dengan lajunya sendiri.
-- <InlineMath math="26{,}5\text{ ms}" /> menghitung tiga sinapsis, padahal hanya ada dua sinapsis di saraf tulang belakang.
+- Pilihan <InlineMath math="25{,}0\text{ ms}" /> mengabaikan jeda sinapsis, padahal **dua sinapsis menambah <InlineMath math="1{,}0\text{ ms}" />**.
+- Pilihan <InlineMath math="24{,}3\text{ ms}" /> merata-ratakan kecepatan menjadi <InlineMath math="60\text{ m s}^{-1}" />, padahal tiap neuron punya panjang sendiri.
+- Pilihan <InlineMath math="26{,}5\text{ ms}" /> menghitung tiga sinapsis, padahal di sumsum tulang belakang hanya ada dua sinapsis.
+
+# Jawaban
+
+Waktu minimum dari rangsangan reseptor hingga impuls mencapai efektor adalah <InlineMath math="26{,}0\text{ ms}" />.

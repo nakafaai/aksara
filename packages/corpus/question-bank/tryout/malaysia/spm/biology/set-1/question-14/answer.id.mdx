@@ -1,16 +1,75 @@
-# Kapan antibodi ibu habis, lalu mundur
+# Diketahui
 
-Antibodi ibu turun separuh setiap <InlineMath math="30" /> hari. **Vaksin harus diberikan lebih awal sejauh jeda <InlineMath math="14" /> hari**, agar antibodi bayi sendiri sudah cukup tepat saat antibodi ibu turun di bawah ambang.
+Bayi lahir membawa <InlineMath math="160" /> unit antibodi ibu melewati plasenta yang **berkurang separuh setiap <InlineMath math="30" /> hari**. Perlindungan bertahan selama kadar antibodi minimal <InlineMath math="20" /> unit.
+
+Setelah suntikan vaksin X pertama, antibodi buatan tubuh bayi sendiri membutuhkan jeda <InlineMath math="14" /> hari untuk mencapai <InlineMath math="20" /> unit.
+
+# Ditanyakan
+
+Paling lambat pada hari ke berapa vaksin pertama harus diberikan agar bayi selalu terlindungi, dan jenis keimunan apakah yang diberikan antibodi ibu?
+
+# Penyelesaian
+
+Bayangkan antibodi ibu seperti sebotol bekal berisi <InlineMath math="160" /> tetes yang setiap <InlineMath math="30" /> hari tinggal separuhnya (<InlineMath math="160" /> ke <InlineMath math="80" /> ke <InlineMath math="40" /> ke <InlineMath math="20" /> pada hari ke-<InlineMath math="90" />). Karena tubuh bayi perlu <InlineMath math="14" /> hari membangun antibodinya sendiri, **vaksin harus diberikan <InlineMath math="14" /> hari lebih awal sebelum bekal ibu habis**.
+
+> Waktu pemberian vaksin paling lambat dihitung mundur sebesar masa jeda respons imun dari hari saat antibodi pasif ibu jatuh menyentuh ambang perlindungan.
+
+Geser hari pemberian vaksin <InlineMath math="a" /> pada grafik berikut dan perhatikan kapan antibodi bayi mencapai ambang <InlineMath math="20" /> unit dibandingkan hari ke-<InlineMath math="90" />.
+
+<MathVisual
+  title={<>Peluruhan antibodi ibu dan waktu siap vaksin bayi</>}
+  description={
+    <>
+      Kurva biru menunjukkan antibodi ibu yang menyusut separuh tiap{" "}
+      <InlineMath math="30" /> hari menuju ambang <InlineMath math="20" /> unit di hari
+      ke-<InlineMath math="90" />. Geser hari vaksin <InlineMath math="a" /> agar
+      titik hijau siap tepat di hari ke-<InlineMath math="90" />.
+    </>
+  }
+  footer={<>Vaksin pada hari ke-<InlineMath math="76" /> siap tepat pada hari ke-<InlineMath math="90" /> dengan nol hari tanpa perlindungan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 170 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 60, max: 100, value: 76, step: 2, label: "a" }],
+    objects: [
+      { id: "decay", kind: "function", appearance: "primary", formula: "160 * 0.5^(x / 30)", domain: { min: 0, max: 115 } },
+      { id: "threshold", kind: "segment", appearance: "construction", from: { x: 0, y: 20 }, to: { x: 120, y: 20 } },
+      { id: "limit", kind: "marker", appearance: "warning", x: "90", y: "20" },
+      { id: "given", kind: "marker", appearance: "primary", x: "a", y: "160 * 0.5^(a / 30)" },
+      { id: "ready", kind: "marker", appearance: "answer", x: "a + 14", y: "20" },
+    ],
+    readouts: [
+      { key: "ready-day", formula: "a + 14" },
+      { key: "gap-days", formula: "a + 14 - 90" },
+    ],
+  }}
+  labels={{
+    a: <>Hari pemberian vaksin</>,
+    "ready-day": <>Hari antibodi bayi siap</>,
+    "gap-days": <>Selisih hari sesudah ambang (<InlineMath math="90" />)</>,
+  }}
+/>
+
+Begitu <InlineMath math="a" /> melebihi hari ke-<InlineMath math="76" />, titik hijau bergeser ke kanan titik jingga hari ke-<InlineMath math="90" />, meninggalkan celah hari tanpa perlindungan.
+
+## Hitung waktu paruh dan jenis keimunan
+
+Hitung berapa kali antibodi ibu berkurang separuh sampai menyentuh <InlineMath math="20" /> unit, lalu kurangkan **masa jeda vaksin <InlineMath math="14" /> hari**.
 
 <BlockMath math="\begin{aligned}
-160\to80\to40\to20&:\ 3\times30=90\text{ hari}\\
-\text{hari vaksin terakhir}&=90-14=76
+160 \to 80 \to 40 \to 20 &: 3 \times 30 = 90\text{ hari} \\
+\text{hari vaksin paling lambat} &= 90 - 14 = \text{hari ke-}76
 \end{aligned}" />
 
-Antibodi ibu tidak dibuat oleh tubuh bayi dan didapat secara alami lewat plasenta, jadi kekebalannya pasif alami. Jadi, vaksin paling lambat diberikan pada hari ke-<InlineMath math="76" />.
+Antibodi ibu tidak dibuat oleh tubuh bayi dan berpindah secara alami lewat plasenta, sehingga jenisnya adalah **keimunan pasif alami**.
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- Hari ke-<InlineMath math="90" /> lupa jeda <InlineMath math="14" /> hari, sehingga **bayi tidak terlindungi dari hari ke-<InlineMath math="90" /> sampai ke-<InlineMath math="104" />**.
-- Kekebalan aktif berarti tubuh bayi membuat antibodinya sendiri, padahal antibodi ini berasal dari ibu.
-- Hari ke-<InlineMath math="104" /> menambahkan jeda, padahal vaksin harus diberikan sebelum antibodi ibu habis, bukan sesudahnya.
+- Hari ke-<InlineMath math="90" /> melupakan jeda <InlineMath math="14" /> hari sehingga **bayi tidak terlindungi dari hari ke-<InlineMath math="90" /> sampai ke-<InlineMath math="104" />**.
+- Keimunan aktif alami terjadi saat tubuh bayi membentuk antibodi sendiri sesudah infeksi, bukan menerima antibodi siap pakai dari ibu.
+- Hari ke-<InlineMath math="104" /> justru menambahkan jeda <InlineMath math="14" /> hari sesudah antibodi ibu habis.
+
+# Jawaban
+
+Vaksin pertama paling lambat diberikan pada hari ke-<InlineMath math="76" />, dan antibodi ibu memberikan keimunan pasif alami.

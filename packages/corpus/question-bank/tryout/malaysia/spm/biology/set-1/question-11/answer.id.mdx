@@ -1,16 +1,73 @@
-# Selisih kejenuhan lalu volume darah
+# Diketahui
 
-Oksigen yang dilepas ke otot adalah oksigen yang dibawa saat meninggalkan paru-paru **dikurangi oksigen yang masih tersisa** saat meninggalkan otot. Hitung per <InlineMath math="100\text{ cm}^3" /> darah, lalu kalikan dengan volume darah per menit, yaitu <InlineMath math="2000\text{ cm}^3" /> atau <InlineMath math="20" /> kali <InlineMath math="100\text{ cm}^3" />.
+Pada kejenuhan penuh (<InlineMath math="100\%" />), setiap <InlineMath math="100\text{ cm}^3" /> darah membawa **<InlineMath math="20\text{ cm}^3" /> oksigen**. Kejenuhan hemoglobin adalah <InlineMath math="98\%" /> saat meninggalkan paru-paru dan turun menjadi <InlineMath math="25\%" /> saat meninggalkan otot aktif.
+
+Selama olahraga, aliran darah melalui otot adalah <InlineMath math="2{,}0\text{ dm}^3\text{ menit}^{-1}" /> (<InlineMath math="2000\text{ cm}^3\text{ menit}^{-1}" />).
+
+# Ditanyakan
+
+Berapakah volume oksigen yang dilepaskan ke otot setiap menit?
+
+# Penyelesaian
+
+Bayangkan setiap <InlineMath math="100\text{ cm}^3" /> darah seperti satu truk pengantar yang muat <InlineMath math="20" /> kotak oksigen saat penuh. Truk keluar dari paru-paru terisi <InlineMath math="98\%" /> lalu keluar dari otot masih menyisakan <InlineMath math="25\%" />, sehingga **setiap truk hanya menurunkan selisihnya, yaitu <InlineMath math="73\%" /> muatan**.
+
+> Oksigen yang dilepaskan ke otot adalah selisih kejenuhan saat darah masuk dan keluar otot, bukan seluruh oksigen yang dibawa dari paru-paru.
+
+Geser kejenuhan darah yang meninggalkan otot <InlineMath math="a" /> pada grafik berikut dan bandingkan oksigen yang benar-benar dilepaskan (garis hijau) dengan seluruh oksigen dari paru-paru (garis jingga).
+
+<MathVisual
+  title={<>Oksigen dilepaskan ke otot menurut aliran darah</>}
+  description={
+    <>
+      Garis jingga menunjukkan seluruh oksigen dari paru-paru (<InlineMath math="98\%" />).
+      Garis hijau menunjukkan oksigen yang dilepaskan ketika darah meninggalkan otot pada
+      kejenuhan <InlineMath math="a" /> (<InlineMath math="\%" />).
+    </>
+  }
+  footer={<>Pada aliran <InlineMath math="2{,}0\text{ dm}^3" /> dan <InlineMath math="a = 25\%" />, otot menerima <InlineMath math="292\text{ cm}^3" /> oksigen per menit.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3.2 }, y: { min: 0, max: 460 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 10, max: 90, value: 25, step: 5, label: "a" }],
+    objects: [
+      { id: "carried", kind: "function", appearance: "warning", formula: "196 * x", domain: { min: 0, max: 2.3 } },
+      { id: "released", kind: "function", appearance: "answer", formula: "2 * (98 - a) * x", domain: { min: 0, max: 3 } },
+      { id: "m-carried", kind: "marker", appearance: "warning", x: "2", y: "392" },
+      { id: "m-released", kind: "marker", appearance: "answer", x: "2", y: "4 * (98 - a)" },
+    ],
+    readouts: [
+      { key: "per-hundred", formula: "0.2 * (98 - a)" },
+      { key: "per-minute", formula: "4 * (98 - a)" },
+    ],
+  }}
+  labels={{
+    a: <>Kejenuhan darah vena otot (<InlineMath math="\%" />)</>,
+    "per-hundred": <>Oksigen per <InlineMath math="100\text{ cm}^3" /> (<InlineMath math="\text{cm}^3" />)</>,
+    "per-minute": <>Oksigen per menit (<InlineMath math="\text{cm}^3" />)</>,
+  }}
+/>
+
+Semakin rendah kejenuhan darah yang keluar dari otot, semakin besar jarak vertikal ke garis pelepasan. Pada <InlineMath math="a = 25\%" /> dan aliran <InlineMath math="2{,}0\text{ dm}^3" />, titik hijau berhenti di <InlineMath math="292\text{ cm}^3" />.
+
+## Perhitungan pelepasan per menit
+
+Hitung oksigen yang dilepaskan setiap <InlineMath math="100\text{ cm}^3" /> darah, lalu kalikan dengan **<InlineMath math="20" /> paket <InlineMath math="100\text{ cm}^3" />** yang mengalir setiap menit.
 
 <BlockMath math="\begin{aligned}
-\text{per }100\text{ cm}^3&=20\times(0{,}98-0{,}25)=14{,}6\text{ cm}^3\\
-\text{per menit}&=14{,}6\times\frac{2000}{100}=292\text{ cm}^3
+\text{per } 100\text{ cm}^3 &= 20 \times (0{,}98 - 0{,}25) = 20 \times 0{,}73 = 14{,}6\text{ cm}^3 \\
+\text{per menit} &= 14{,}6 \times \frac{2000}{100} = 14{,}6 \times 20 = 292\text{ cm}^3
 \end{aligned}" />
 
-Jadi, otot itu menerima sekitar <InlineMath math="292\text{ cm}^3" /> oksigen setiap menit.
+Cek balik: total oksigen dari paru-paru adalah <InlineMath math="392\text{ cm}^3" />, sisa yang pulang ke vena <InlineMath math="100\text{ cm}^3" />, dan selisihnya tepat <InlineMath math="292\text{ cm}^3" />.
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="392\text{ cm}^3" /> adalah seluruh oksigen yang dibawa dari paru-paru, padahal **sebagian oksigen kembali bersama darah** dengan kejenuhan <InlineMath math="25\%" />.
-- <InlineMath math="100\text{ cm}^3" /> adalah oksigen yang masih tersisa dalam darah yang meninggalkan otot.
-- <InlineMath math="14{,}6\text{ cm}^3" /> hanya untuk <InlineMath math="100\text{ cm}^3" /> darah, belum dikalikan dengan aliran darah per menit.
+- Pilihan <InlineMath math="392\text{ cm}^3" /> menghitung semua oksigen dari paru-paru, padahal **masih ada <InlineMath math="25\%" /> yang ikut pulang dalam darah vena**.
+- Pilihan <InlineMath math="100\text{ cm}^3" /> adalah sisa oksigen yang belum dilepaskan di darah vena otot.
+- Pilihan <InlineMath math="14{,}6\text{ cm}^3" /> hanya untuk <InlineMath math="100\text{ cm}^3" /> darah dan belum dikalikan laju aliran per menit.
+
+# Jawaban
+
+Volume oksigen yang dilepaskan ke otot setiap menit adalah <InlineMath math="292\text{ cm}^3" />.

@@ -1,19 +1,75 @@
-# Daripada sasaran BMI kepada bilangan hari
+# Diberi
 
-Mula-mula cari jisim yang perlu hilang dengan <InlineMath math="\text{BMI}=\dfrac{m}{h^2}" />, menggunakan **kuasa dua tinggi**. Kemudian tukar jisim itu kepada tenaga dan bahagi dengan defisit harian.
+Seorang remaja berjisim <InlineMath math="64\text{ kg}" /> dengan tinggi tetap <InlineMath math="1.60\text{ m}" /> ingin menurunkan **indeks jisim badan (BMI) kepada <InlineMath math="22.5" />**.
+
+Keperluan tenaga hariannya ialah <InlineMath math="11{,}000\text{ kJ}" />, pengambilan hariannya <InlineMath math="9000\text{ kJ}" />, dan setiap <InlineMath math="1\text{ kg}" /> jisim yang hilang membekalkan <InlineMath math="40{,}000\text{ kJ}" />.
+
+# Ditanya
+
+Berapa harikah diperlukan untuk mencapai sasaran BMI <InlineMath math="22.5" />?
+
+# Penyelesaian
+
+Bayangkan simpanan tenaga badan seperti tabung besar. Apabila kamu menggunakan <InlineMath math="2000\text{ kJ}" /> lebih banyak daripada yang dimakan setiap hari, **jisim badan menyusut tepat <InlineMath math="0.05\text{ kg}" /> sehari**.
+
+> Kerana BMI membahagikan jisim dengan kuasa dua tinggi, jisim sasaran sentiasa diperoleh dengan mendarab BMI sasaran dengan kuasa dua tinggi.
+
+Gerakkan defisit tenaga harian <InlineMath math="d" /> di bawah untuk melihat berapa pantas jisim menurun daripada <InlineMath math="64\text{ kg}" /> ke garis sasaran <InlineMath math="57.6\text{ kg}" />.
+
+<MathVisual
+  title={<>Penurunan jisim badan ke sasaran <InlineMath math="57.6\text{ kg}" /></>}
+  description={
+    <>
+      Garis biru menjejak jisim badan bermula pada <InlineMath math="64\text{ kg}" />.
+      Tetapkan defisit harian <InlineMath math="d" /> pada <InlineMath math="2000\text{ kJ}" />{" "}
+      untuk melihat hari garis mencecah <InlineMath math="57.6\text{ kg}" />.
+    </>
+  }
+  footer={<>Dengan defisit <InlineMath math="2000\text{ kJ}" /> sehari, jisim mencapai <InlineMath math="57.6\text{ kg}" /> pada hari ke-<InlineMath math="128" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 270 }, y: { min: 55, max: 66 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "d", min: 1000, max: 4000, value: 2000, step: 500, label: "d" }],
+    objects: [
+      { id: "mass-line", kind: "function", appearance: "primary", formula: "64 - (d / 40000) * x", domain: { min: 0, max: 260 } },
+      { id: "target-line", kind: "segment", appearance: "construction", from: { x: 0, y: 57.6 }, to: { x: 260, y: 57.6 } },
+      { id: "hit", kind: "marker", appearance: "answer", x: "256000 / d", y: "57.6" },
+    ],
+    readouts: [
+      { key: "mass-loss", formula: "6.4" },
+      { key: "days-needed", formula: "256000 / d" },
+    ],
+  }}
+  labels={{
+    d: <>Defisit harian (<InlineMath math="\text{kJ hari}^{-1}" />)</>,
+    "mass-loss": <>Jisim perlu diturunkan (<InlineMath math="\text{kg}" />)</>,
+    "days-needed": <>Bilangan hari</>,
+  }}
+/>
+
+Defisit lebih besar menjadikan garis lebih curam supaya bilangan hari berkurang. Pada <InlineMath math="d = 2000\text{ kJ hari}^{-1}" />, penanda hijau mencecah sasaran pada hari ke-<InlineMath math="128" />.
+
+## Pengiraan jisim sasaran dan hari
+
+Cari jisim sasaran menggunakan **kuasa dua tinggi**, tukarkan pengurangan jisim kepada tenaga, lalu bahagikan dengan defisit harian.
 
 <BlockMath math="\begin{aligned}
-m_{\text{sasaran}}&=22.5\times1.60^2=57.6\text{ kg}\\
-\Delta m&=64-57.6=6.4\text{ kg}\\
-\text{tenaga}&=6.4\times40{,}000=256{,}000\text{ kJ}\\
-\text{defisit}&=11{,}000-9000=2000\text{ kJ sehari}\\
-\text{hari}&=\frac{256{,}000}{2000}=128
+m_{\text{sasaran}} &= 22.5 \times 1.60^2 = 22.5 \times 2.56 = 57.6\text{ kg} \\
+\Delta m &= 64 - 57.6 = 6.4\text{ kg} \\
+E_{\text{jumlah}} &= 6.4 \times 40{,}000 = 256{,}000\text{ kJ} \\
+\text{defisit harian} &= 11{,}000 - 9000 = 2000\text{ kJ hari}^{-1} \\
+\text{hari} &= \frac{256{,}000}{2000} = 128\text{ hari}
 \end{aligned}" />
 
-Jadi, <InlineMath math="128" /> hari diperlukan.
+Semakan pantas: BMI awal ialah <InlineMath math="25.0" />, penurunan BMI ialah <InlineMath math="2.5" />, dan <InlineMath math="2.5 \times 2.56" /> tepat memberi <InlineMath math="6.4\text{ kg}" />.
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="560" /> hari menggunakan tinggi <InlineMath math="1.60" /> tanpa kuasa dua, jadi jisim yang perlu hilang menjadi <InlineMath math="28\text{ kg}" />.
-- <InlineMath math="80" /> hari menggunakan penurunan <InlineMath math="4.0\text{ kg}" />, iaitu beza BMI <InlineMath math="2.5" /> didarab dengan <InlineMath math="1.60" />, sedangkan **tinggi mesti dikuasaduakan**.
-- <InlineMath math="50" /> hari menganggap beza BMI <InlineMath math="2.5" /> sebagai beza jisim, sedangkan BMI dan jisim berbeza unit.
+- Pilihan <InlineMath math="560" /> hari menggunakan <InlineMath math="1.60" /> tanpa menguasaduakannya, lalu tersilap mengira susut jisim <InlineMath math="28\text{ kg}" />.
+- Pilihan <InlineMath math="80" /> hari mendarab beza BMI <InlineMath math="2.5" /> dengan <InlineMath math="1.60" />, padahal **tinggi mesti dikuasaduakan**.
+- Pilihan <InlineMath math="50" /> hari menganggap beza BMI <InlineMath math="2.5" /> sama dengan <InlineMath math="2.5\text{ kg}" />, sedangkan unitnya berbeza.
+
+# Jawapan
+
+Sebanyak <InlineMath math="128" /> hari diperlukan untuk mencapai sasaran BMI <InlineMath math="22.5" />.

@@ -1,17 +1,72 @@
-# Volume tetap, panjang dua kali
+# Diketahui
 
-Cairan selom tidak bisa dimampatkan, jadi **volume <InlineMath math="\pi r^2L" /> tetap**. Jika panjang menjadi dua kali, <InlineMath math="r^2" /> harus menjadi separuh, sehingga jari-jari dikali <InlineMath math="\tfrac{1}{\sqrt2}" />.
+Satu segmen tubuh cacing tanah dimodelkan sebagai silinder berisi cairan selom yang **tidak dapat dimampatkan sehingga volumenya <InlineMath math="\pi r^2 L" /> selalu tetap**. Saat bergerak, panjang segmen menjadi dua kali lipat (<InlineMath math="2L" />).
+
+# Ditanyakan
+
+Berapa persen jari-jari segmen berkurang, dan otot manakah yang berkontraksi untuk menghasilkan perubahan bentuk ini?
+
+# Penyelesaian
+
+Bayangkan meremas pinggang balon berisi air dengan tangan melingkar. Karena air tidak bisa menyusut, balon langsung memanjang dan menipis. **Otot melingkar cacing bekerja persis seperti tangan yang meremas pinggang balon itu**.
+
+> Karena volume silinder bergantung pada kuadrat jari-jari, menggandakan panjang membagi dua kuadrat jari-jari sehingga jari-jari hanya menyusut ke akar setengah, bukan setengah.
+
+Geser faktor pemanjangan <InlineMath math="k" /> di bawah dan bandingkan kurva jari-jari sebenarnya (hijau, <InlineMath math="100 / \sqrt{k}" />) dengan jebakan linier (jingga, <InlineMath math="100 / k" />).
+
+<MathVisual
+  title={<>Persentase jari-jari segmen cacing saat memanjang</>}
+  description={
+    <>
+      Kurva hijau menjaga volume silinder tetap (<InlineMath math="100 / \sqrt{k}" />).
+      Kurva jingga menunjukkan kesalahan umum <InlineMath math="100 / k" />. Geser{" "}
+      <InlineMath math="k" /> ke <InlineMath math="2" /> saat panjang menjadi dua kali lipat.
+    </>
+  }
+  footer={<>Pada <InlineMath math="k = 2" />, jari-jari tinggal <InlineMath math="71\%" />, artinya berkurang sekitar <InlineMath math="29\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.8, max: 4.2 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "k", min: 1, max: 4, value: 2, step: 0.25, label: "k" }],
+    objects: [
+      { id: "true-r", kind: "function", appearance: "answer", formula: "100 / sqrt(x)", domain: { min: 1, max: 4 } },
+      { id: "trap-r", kind: "function", appearance: "warning", formula: "100 / x", domain: { min: 1, max: 4 } },
+      { id: "m-true", kind: "marker", appearance: "answer", x: "k", y: "100 / sqrt(k)" },
+      { id: "m-trap", kind: "marker", appearance: "warning", x: "k", y: "100 / k" },
+    ],
+    readouts: [
+      { key: "new-radius", formula: "100 / sqrt(k)" },
+      { key: "radius-drop", formula: "100 - 100 / sqrt(k)" },
+    ],
+  }}
+  labels={{
+    k: <>Faktor panjang <InlineMath math="L' / L" /></>,
+    "new-radius": <>Jari-jari baru (<InlineMath math="\%" />)</>,
+    "radius-drop": <>Penurunan jari-jari (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+Pada <InlineMath math="k = 2" />, kurva hijau jauh di atas kurva jingga: jari-jari baru sekitar <InlineMath math="70{,}7\%" />, jadi penurunannya <InlineMath math="29{,}3\%" /> (dibulatkan <InlineMath math="29\%" />).
+
+## Penurunan radius dan kerja otot
+
+Samakan volume sebelum dan sesudah pemanjangan, lalu tentukan **pasangan otot antagonis** yang memanjangkan segmen.
 
 <BlockMath math="\begin{aligned}
-\pi r^2L&=\pi r'^2(2L)\ \Rightarrow\ r'^2=\tfrac12r^2\\
-r'&=\frac{r}{\sqrt2}\approx0{,}71r\\
-\text{penurunan}&\approx1-0{,}71=0{,}29=29\%
+\pi r^2 L &= \pi r'^2 (2L) \implies r'^2 = \frac{1}{2} r^2 \\
+r' &= \frac{r}{\sqrt{2}} \approx 0{,}707 r \\
+\text{penurunan} &\approx (1 - 0{,}707) \times 100\% \approx 29\%
 \end{aligned}" />
 
-Segmen yang lebih ramping dan panjang terbentuk saat otot melingkar mengerut dan otot memanjang mengendur. Jadi, jari-jari turun sekitar <InlineMath math="29\%" /> karena otot melingkar mengerut.
+Segmen menjadi panjang dan ramping ketika **otot melingkar berkontraksi** sementara otot memanjang berelaksasi.
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="50\%" /> menganggap jari-jari berbanding terbalik dengan panjang, padahal **panjang berbanding terbalik dengan <InlineMath math="r^2" />**.
-- Otot memanjang yang mengerut memendekkan dan menebalkan segmen, bukan memanjangkannya.
-- <InlineMath math="75\%" /> menganggap luas penampang menjadi seperempat, padahal luas penampang hanya menjadi separuh.
+- Pilihan <InlineMath math="50\%" /> menganggap jari-jari berbanding terbalik langsung dengan panjang, padahal **panjang berbanding terbalik dengan <InlineMath math="r^2" />**.
+- Pilihan otot memanjang salah karena kontraksi otot memanjang membuat segmen pendek dan tebal.
+- Pilihan <InlineMath math="75\%" /> keliru mengira luas penampang turun menjadi seperempat, padahal hanya turun separuh.
+
+# Jawaban
+
+Jari-jari segmen berkurang sekitar <InlineMath math="29\%" /> akibat kontraksi otot melingkar.

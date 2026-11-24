@@ -1,18 +1,76 @@
-# Jedes Neuron und jede Synapse einzeln berechnen
+# Gegeben
 
-Die beiden Neuronen leiten unterschiedlich schnell, also **wird jedes Neuron einzeln berechnet**. Das Zwischenneuron bildet im Rückenmark zwei Synapsen, vom sensorischen Neuron zum Zwischenneuron und vom Zwischenneuron zum Motoneuron.
+In einem Reflexbogen leitet ein **<InlineMath math="0{,}8\text{ m}" /> langes sensorisches Neuron** Impulse mit <InlineMath math="80\text{ m s}^{-1}" />, ein <InlineMath math="0{,}6\text{ m}" /> langes motorisches Neuron mit <InlineMath math="40\text{ m s}^{-1}" />.
+
+Die Laufzeit im sehr kurzen Interneuron im Rückenmark wird vernachlässigt, und jede Synapse verzögert den Impuls um <InlineMath math="0{,}5\text{ ms}" />.
+
+# Gesucht
+
+Wie kurz ist die Mindestzeit von der Reizung des Rezeptors bis zum Eintreffen am Effektor?
+
+# Lösung
+
+Stell dir einen Staffellauf mit zwei Läufern vor: Läufer eins rennt <InlineMath math="0{,}8\text{ m}" /> schnell (<InlineMath math="10\text{ ms}" />), Läufer zwei rennt <InlineMath math="0{,}6\text{ m}" /> langsamer (<InlineMath math="15\text{ ms}" />), und **im Rückenmark gibt es genau zwei Staffelübergaben an Synapsen** (sensorisch zu Interneuron, dann Interneuron zu motorisch).
+
+> Die Gesamtzeit eines dreineuronalen Reflexbogens ist die Summe beider Axonlaufzeiten plus die Verzögerung genau zweier Synapsen.
+
+Schieb die Synapsenzahl <InlineMath math="n" /> im Zeit-Weg-Diagramm, um die gesamte Ankunftszeit von <InlineMath math="26{,}0\text{ ms}" /> abzulesen.
+
+<MathVisual
+  title={<>Gesamtzeit des Impulses entlang des Reflexbogens</>}
+  description={
+    <>
+      Das blaue Stück zeigt das sensorische Neuron (<InlineMath math="10\text{ ms}" />),
+      die orange Stufe die Verzögerung zweier Synapsen (<InlineMath math="1{,}0\text{ ms}" />)
+      und das grüne Stück das motorische Neuron (<InlineMath math="15\text{ ms}" />).
+      Schieb <InlineMath math="n" />, um die Gesamtzeit zu vergleichen.
+    </>
+  }
+  footer={<>Mit <InlineMath math="n = 2" /> Synapsen im Rückenmark erreicht der Impuls den Effektor nach <InlineMath math="26{,}0\text{ ms}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1.55 }, y: { min: 0, max: 29 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "n", min: 0, max: 4, value: 2, step: 1, label: "n" }],
+    objects: [
+      { id: "sensory", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0.8, y: 10 } },
+      { id: "synapse", kind: "segment", appearance: "warning", from: { x: 0.8, y: 10 }, to: { x: 0.8, y: 11 } },
+      { id: "motor", kind: "segment", appearance: "answer", from: { x: 0.8, y: 11 }, to: { x: 1.4, y: 26 } },
+      { id: "end-pt", kind: "marker", appearance: "answer", x: "1.4", y: "25 + 0.5 * n" },
+    ],
+    readouts: [
+      { key: "synapse-delay", formula: "0.5 * n" },
+      { key: "total-time", formula: "25 + 0.5 * n" },
+    ],
+  }}
+  labels={{
+    n: <>Anzahl der Synapsen <InlineMath math="n" /></>,
+    "synapse-delay": <>Synapsenverzögerung gesamt (<InlineMath math="\text{ms}" />)</>,
+    "total-time": <>Gesamtzeit (<InlineMath math="\text{ms}" />)</>,
+  }}
+/>
+
+Das motorische Stück steigt doppelt so steil wie das sensorische, weil es nur halb so schnell leitet. Bei <InlineMath math="n = 2" /> hebt sich der Endpunkt von <InlineMath math="25{,}0" /> exakt auf <InlineMath math="26{,}0\text{ ms}" />.
+
+## Laufzeit je Abschnitt berechnen
+
+Berechne jedes Neuron getrennt in Millisekunden und addiere **die beiden Synapsenverzögerungen**.
 
 <BlockMath math="\begin{aligned}
-t_{\text{sensorisch}}&=\frac{0{,}8}{80}=0{,}010\text{ s}=10\text{ ms}\\
-t_{\text{motorisch}}&=\frac{0{,}6}{40}=0{,}015\text{ s}=15\text{ ms}\\
-t_{\text{Synapsen}}&=2\times0{,}5=1{,}0\text{ ms}\\
-t&=10+15+1{,}0=26{,}0\text{ ms}
+t_{\text{sensorisch}} &= \frac{0{,}8}{80} = 0{,}010\text{ s} = 10{,}0\text{ ms} \\
+t_{\text{motorisch}} &= \frac{0{,}6}{40} = 0{,}015\text{ s} = 15{,}0\text{ ms} \\
+t_{\text{Synapsen}} &= 2 \cdot 0{,}5 = 1{,}0\text{ ms} \\
+t_{\text{gesamt}} &= 10{,}0 + 15{,}0 + 1{,}0 = 26{,}0\text{ ms}
 \end{aligned}" />
 
-Die kürzeste Zeit beträgt also <InlineMath math="26{,}0\text{ ms}" />.
+Einheitenprobe: Alle Laufzeiten wurden sauber von Sekunden in Millisekunden umgerechnet.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- <InlineMath math="25{,}0\text{ ms}" /> übersieht die synaptische Verzögerung, doch **zwei Synapsen fügen <InlineMath math="1{,}0\text{ ms}" /> hinzu**.
-- <InlineMath math="24{,}3\text{ ms}" /> mittelt die beiden Geschwindigkeiten zu <InlineMath math="60\text{ m s}^{-1}" />, doch jedes Neuron legt seine eigene Länge mit seiner eigenen Geschwindigkeit zurück.
-- <InlineMath math="26{,}5\text{ ms}" /> zählt drei Synapsen, im Rückenmark gibt es aber nur zwei.
+- Die Zeit <InlineMath math="25{,}0\text{ ms}" /> lässt die Synapsen weg, obwohl **zwei Synapsen <InlineMath math="1{,}0\text{ ms}" /> hinzufügen**.
+- Die Zeit <InlineMath math="24{,}3\text{ ms}" /> mittelt die Geschwindigkeiten auf <InlineMath math="60\text{ m s}^{-1}" />, obwohl beide Wege verschieden lang sind.
+- Die Zeit <InlineMath math="26{,}5\text{ ms}" /> zählt drei Synapsen statt der zwei Synapsen im Rückenmark.
+
+# Antwort
+
+Die Mindestzeit von der Reizung des Rezeptors bis zum Effektor beträgt <InlineMath math="26{,}0\text{ ms}" />.

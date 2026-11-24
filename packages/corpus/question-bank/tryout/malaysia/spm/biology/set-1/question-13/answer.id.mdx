@@ -1,18 +1,74 @@
-# Curah jantung adalah isi sekuncup kali denyut
+# Diketahui
 
-Curah jantung adalah volume sekuncup dikalikan frekuensi denyut. **Curah jantung saat istirahat tidak berubah**, jadi volume sekuncup naik saat denyutnya turun.
+Sebelum berlatih, denyut jantung istirahat seorang atlet adalah <InlineMath math="72\text{ denyut menit}^{-1}" /> dengan isi sekuncup <InlineMath math="70\text{ cm}^3" />. Setelah berlatih, denyut istirahat turun ke <InlineMath math="56\text{ denyut menit}^{-1}" /> sementara **curah jantung istirahat tetap sama**.
+
+Saat olahraga maksimum setelah berlatih, denyut jantung mencapai <InlineMath math="180\text{ denyut menit}^{-1}" /> dengan isi sekuncup <InlineMath math="120\text{ cm}^3" />.
+
+# Ditanyakan
+
+Berapakah isi sekuncup istirahat setelah berlatih, dan berapa kali lebih besar curah jantung saat olahraga maksimum dibandingkan saat istirahat?
+
+# Penyelesaian
+
+Bayangkan jantung seperti pompa air: total air per menit sama dengan volume tiap pompaan dikali jumlah pompaan per menit. Karena jantung atlet makin kuat, **setiap denyut mendorong darah lebih banyak sehingga jantung tidak perlu berdenyut sesering dulu** untuk memompa <InlineMath math="5040\text{ cm}^3" /> per menit.
+
+> Saat curah jantung istirahat tetap, penurunan denyut jantung selalu diimbangi kenaikan isi sekuncup secara berbanding terbalik.
+
+Geser denyut istirahat <InlineMath math="r" /> pada kurva curah jantung tetap <InlineMath math="5040\text{ cm}^3\text{ menit}^{-1}" /> berikut dari <InlineMath math="72" /> turun ke <InlineMath math="56" /> untuk melihat isi sekuncup melompat ke <InlineMath math="90\text{ cm}^3" />.
+
+<MathVisual
+  title={<>Hubungan denyut istirahat dan isi sekuncup pada curah tetap</>}
+  description={
+    <>
+      Kurva biru menjaga curah jantung istirahat tepat <InlineMath math="5040\text{ cm}^3\text{ menit}^{-1}" />.
+      Geser denyut istirahat <InlineMath math="r" /> dari titik sebelum latihan (<InlineMath math="72" />)
+      ke sesudah latihan (<InlineMath math="56" />).
+    </>
+  }
+  footer={<>Saat denyut istirahat turun dari <InlineMath math="72" /> ke <InlineMath math="56" />, isi sekuncup naik dari <InlineMath math="70" /> ke <InlineMath math="90\text{ cm}^3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 44, max: 84 }, y: { min: 55, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "r", min: 48, max: 80, value: 56, step: 4, label: "r" }],
+    objects: [
+      { id: "co-curve", kind: "function", appearance: "primary", formula: "5040 / x", domain: { min: 46, max: 82 } },
+      { id: "before", kind: "marker", appearance: "warning", x: "72", y: "70" },
+      { id: "after", kind: "marker", appearance: "answer", x: "r", y: "5040 / r" },
+    ],
+    readouts: [
+      { key: "stroke-vol", formula: "5040 / r" },
+      { key: "max-ratio", formula: "21600 / 5040" },
+    ],
+  }}
+  labels={{
+    r: <>Denyut istirahat (<InlineMath math="\text{denyut menit}^{-1}" />)</>,
+    "stroke-vol": <>Isi sekuncup (<InlineMath math="\text{cm}^3" />)</>,
+    "max-ratio": <>Rasio curah maksimum terhadap istirahat</>,
+  }}
+/>
+
+Ketika titik bergerak ke kiri mengikuti penurunan denyut jantung, titik langsung naik di sepanjang hiperbola hingga tepat di <InlineMath math="90\text{ cm}^3" />.
+
+## Perhitungan isi sekuncup dan rasio curah
+
+Hitung curah jantung istirahat dulu, cari **isi sekuncup baru**, lalu bandingkan curah jantung maksimum dengan istirahat.
 
 <BlockMath math="\begin{aligned}
-\text{curah istirahat}&=72\times70=5040\text{ cm}^3\text{ per menit}\\
-\text{volume sekuncup baru}&=\frac{5040}{56}=90\text{ cm}^3\\
-\text{curah maksimum}&=180\times120=21{.}600\text{ cm}^3\text{ per menit}\\
-\frac{21{.}600}{5040}&\approx4{,}3
+\text{curah istirahat} &= 72 \times 70 = 5040\text{ cm}^3\text{ menit}^{-1} \\
+\text{isi sekuncup baru} &= \frac{5040}{56} = 90\text{ cm}^3 \\
+\text{curah maksimum} &= 180 \times 120 = 21{,}600\text{ cm}^3\text{ menit}^{-1} \\
+\text{rasio} &= \frac{21{,}600}{5040} = \frac{30}{7} \approx 4{,}3\text{ kali}
 \end{aligned}" />
 
-Jadi, volume sekuncupnya <InlineMath math="90\text{ cm}^3" /> dan curah jantung maksimum sekitar <InlineMath math="4{,}3" /> kali curah istirahat.
+Cek balik: <InlineMath math="56 \times 90" /> tepat sama dengan <InlineMath math="5040\text{ cm}^3\text{ menit}^{-1}" />, mengonfirmasi curah istirahat tidak berubah.
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="54\text{ cm}^3" /> mengalikan <InlineMath math="70" /> dengan <InlineMath math="\tfrac{56}{72}" />, padahal **volume sekuncup harus naik** agar curah jantung tetap.
-- <InlineMath math="3{,}2" /> kali hanya membandingkan denyut, <InlineMath math="\tfrac{180}{56}" />, tanpa kenaikan volume sekuncup.
-- <InlineMath math="2{,}5" /> kali memakai volume sekuncup lama <InlineMath math="70\text{ cm}^3" /> saat olahraga, padahal volumenya <InlineMath math="120\text{ cm}^3" />.
+- Pilihan <InlineMath math="54\text{ cm}^3" /> mengira isi sekuncup ikut turun saat denyut turun, padahal **isi sekuncup harus naik** agar curah tetap.
+- Pilihan <InlineMath math="3{,}2" /> kali hanya membagi denyut <InlineMath math="180" /> dengan <InlineMath math="56" /> tanpa menghitung kenaikan isi sekuncup saat olahraga.
+- Pilihan <InlineMath math="2{,}5" /> kali keliru memakai isi sekuncup lama <InlineMath math="70\text{ cm}^3" /> saat olahraga, padahal saat olahraga mencapai <InlineMath math="120\text{ cm}^3" />.
+
+# Jawaban
+
+Isi sekuncup istirahat setelah berlatih adalah <InlineMath math="90\text{ cm}^3" /> dan curah jantung olahraga maksimum sekitar <InlineMath math="4{,}3" /> kali curah istirahat.

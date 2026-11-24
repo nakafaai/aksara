@@ -1,18 +1,74 @@
-# Curahan jantung ialah isi padu strok darab kadar denyutan
+# Diberi
 
-Curahan jantung ialah isi padu strok didarab dengan kadar denyutan jantung. **Curahan jantung semasa rehat tidak berubah**, jadi isi padu strok meningkat apabila kadar denyutan turun.
+Sebelum latihan, kadar denyutan jantung rehat seorang atlet ialah <InlineMath math="72\text{ denyutan min}^{-1}" /> dengan isi padu strok <InlineMath math="70\text{ cm}^3" />. Selepas latihan, kadar denyutan rehat turun kepada <InlineMath math="56\text{ denyutan min}^{-1}" /> manakala **keluaran jantung rehat kekal sama**.
+
+Semasa senaman maksimum selepas latihan, kadar denyutan ialah <InlineMath math="180\text{ denyutan min}^{-1}" /> dengan isi padu strok <InlineMath math="120\text{ cm}^3" />.
+
+# Ditanya
+
+Berapakah isi padu strok rehat selepas latihan, dan berapa kali lebih besarkah keluaran jantung semasa senaman maksimum berbanding semasa rehat?
+
+# Penyelesaian
+
+Bayangkan jantung seperti pam air: jumlah darah dipam seminit sama dengan isi padu setiap pam didarab bilangan pam seminit. Kerana otot jantung menjadi lebih kuat, **setiap denyutan menolak lebih banyak darah supaya jantung berdenyut lebih perlahan** bagi mengekalkan <InlineMath math="5040\text{ cm}^3" /> seminit.
+
+> Apabila keluaran jantung rehat kekal malar, kadar denyutan lebih rendah sentiasa diimbangi oleh isi padu strok yang lebih besar secara berkadar songsang.
+
+Gerakkan kadar denyutan rehat <InlineMath math="r" /> pada lengkung keluaran malar <InlineMath math="5040\text{ cm}^3\text{ min}^{-1}" /> di bawah dari <InlineMath math="72" /> ke <InlineMath math="56" /> untuk melihat isi padu strok naik ke <InlineMath math="90\text{ cm}^3" />.
+
+<MathVisual
+  title={<>Kadar denyutan rehat melawan isi padu strok pada keluaran malar</>}
+  description={
+    <>
+      Lengkung biru mengekalkan keluaran jantung rehat pada <InlineMath math="5040\text{ cm}^3\text{ min}^{-1}" />.
+      Gerakkan kadar rehat <InlineMath math="r" /> daripada sebelum latihan (<InlineMath math="72" />)
+      kepada selepas latihan (<InlineMath math="56" />).
+    </>
+  }
+  footer={<>Penurunan denyutan dari <InlineMath math="72" /> kepada <InlineMath math="56" /> menaikkan isi padu strok dari <InlineMath math="70" /> kepada <InlineMath math="90\text{ cm}^3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 44, max: 84 }, y: { min: 55, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "r", min: 48, max: 80, value: 56, step: 4, label: "r" }],
+    objects: [
+      { id: "co-curve", kind: "function", appearance: "primary", formula: "5040 / x", domain: { min: 46, max: 82 } },
+      { id: "before", kind: "marker", appearance: "warning", x: "72", y: "70" },
+      { id: "after", kind: "marker", appearance: "answer", x: "r", y: "5040 / r" },
+    ],
+    readouts: [
+      { key: "stroke-vol", formula: "5040 / r" },
+      { key: "max-ratio", formula: "21600 / 5040" },
+    ],
+  }}
+  labels={{
+    r: <>Kadar denyutan rehat (<InlineMath math="\text{denyutan min}^{-1}" />)</>,
+    "stroke-vol": <>Isi padu strok (<InlineMath math="\text{cm}^3" />)</>,
+    "max-ratio": <>Nisbah keluaran maksimum kepada rehat</>,
+  }}
+/>
+
+Apabila titik bergerak ke kiri mengikut kadar denyutan lebih rendah, titik hijau naik sepanjang hiperbola tepat ke <InlineMath math="90\text{ cm}^3" />.
+
+## Pengiraan isi padu strok dan nisbah keluaran
+
+Kira keluaran jantung rehat dahulu, cari **isi padu strok baharu**, kemudian bahagikan keluaran senaman maksimum dengan keluaran rehat.
 
 <BlockMath math="\begin{aligned}
-\text{curahan rehat}&=72\times70=5040\text{ cm}^3\text{ seminit}\\
-\text{isi padu strok baharu}&=\frac{5040}{56}=90\text{ cm}^3\\
-\text{curahan maksimum}&=180\times120=21{,}600\text{ cm}^3\text{ seminit}\\
-\frac{21{,}600}{5040}&\approx4.3
+\text{keluaran rehat} &= 72 \times 70 = 5040\text{ cm}^3\text{ min}^{-1} \\
+\text{isi padu strok baharu} &= \frac{5040}{56} = 90\text{ cm}^3 \\
+\text{keluaran maksimum} &= 180 \times 120 = 21{,}600\text{ cm}^3\text{ min}^{-1} \\
+\text{nisbah} &= \frac{21{,}600}{5040} = \frac{30}{7} \approx 4.3\text{ kali}
 \end{aligned}" />
 
-Jadi, isi padu stroknya ialah <InlineMath math="90\text{ cm}^3" /> dan curahan jantung maksimum kira-kira <InlineMath math="4.3" /> kali curahan rehat.
+Semakan pantas: mendarab <InlineMath math="56" /> denyutan dengan <InlineMath math="90\text{ cm}^3" /> memulangkan tepat <InlineMath math="5040\text{ cm}^3\text{ min}^{-1}" />.
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="54\text{ cm}^3" /> mendarab <InlineMath math="70" /> dengan <InlineMath math="\tfrac{56}{72}" />, sedangkan **isi padu strok mesti meningkat** supaya curahan jantung kekal.
-- <InlineMath math="3.2" /> kali hanya membandingkan kadar denyutan, <InlineMath math="\tfrac{180}{56}" />, tanpa peningkatan isi padu strok.
-- <InlineMath math="2.5" /> kali menggunakan isi padu strok lama <InlineMath math="70\text{ cm}^3" /> semasa senaman, sedangkan nilainya <InlineMath math="120\text{ cm}^3" />.
+- Pilihan <InlineMath math="54\text{ cm}^3" /> menurunkan isi padu strok bersama denyutan, padahal **isi padu strok mesti meningkat** untuk mengekalkan keluaran.
+- Pilihan <InlineMath math="3.2" /> kali membandingkan kadar denyutan sahaja (<InlineMath math="180" /> dengan <InlineMath math="56" />) tanpa kenaikan isi padu strok.
+- Pilihan <InlineMath math="2.5" /> kali memakai isi padu strok lama <InlineMath math="70\text{ cm}^3" /> semasa senaman, bukannya <InlineMath math="120\text{ cm}^3" />.
+
+# Jawapan
+
+Isi padu strok rehat selepas latihan ialah <InlineMath math="90\text{ cm}^3" /> dan keluaran jantung semasa senaman maksimum kira-kira <InlineMath math="4.3" /> kali lebih besar daripada semasa rehat.
