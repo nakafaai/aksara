@@ -1,33 +1,28 @@
 export const metadata = {
-  title: "Waves Notes for Form Four Physics",
+  title: "Waves Resonance and Interference",
   description:
-    "Form 4 Physics Chapter 5: use v = fλ, explain damping and resonance, reflection, refraction, diffraction, interference and the electromagnetic spectrum.",
+    "Apply the wave speed formula, explore damping, resonance, moving echoes, ripple-tank refraction, and light or sound interference.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Waves",
 };
 
-## Waves Transfer Energy
+## Wave Speed and Features
 
-A **wave** is a disturbance that carries energy from one place to another without carrying matter along. The speed of a wave depends on its frequency and wavelength:
+A **wave** carries energy without transporting matter: picture a float bobbing up and down without drifting along. Its speed links frequency and wavelength:
 
-<BlockMath math="v = f\lambda" />
+<BlockMath math="v = f\lambda, \qquad f = \frac{1}{T}" />
 
-Here <InlineMath math="v" /> is the speed in <InlineMath math="\text{m s}^{-1}" />, <InlineMath math="f" /> is the frequency in hertz, and <InlineMath math="\lambda" /> is the wavelength in metres. Frequency links to period through <InlineMath math="f = 1/T" />. In the models here, you set a wave moving, damp an oscillation, find resonance and build an interference pattern.
-
-There are two kinds of wave. In a **transverse wave**, the particles of the medium vibrate at right angles to the direction the wave travels, as in water waves and light. In a **longitudinal wave**, the particles vibrate parallel to the direction of travel, as in sound waves, which form compressions and rarefactions.
-
-## The Main Features of a Wave
-
-The wave below is <InlineMath math="y = a\sin\!\big(2\pi(x/\lambda - fs)\big)" />, with <InlineMath math="s" /> the time in seconds. The **amplitude** <InlineMath math="a" /> is the maximum displacement from the equilibrium position. The **wavelength** <InlineMath math="\lambda" /> is the distance between two neighbouring crests. Move the time slider and watch a crest travel <InlineMath math="f\lambda" /> every second.
+In **transverse waves** like light, particles vibrate perpendicular to travel, while in **longitudinal waves** like sound they vibrate parallel to travel. Always measure **wavelength** <InlineMath math="\lambda" /> from crest to next crest, never crest to trough.
 
 <MathVisual
   title={<>A Travelling Transverse Wave</>}
+  footer={<>Each second, a crest advances by frequency times wavelength.</>}
   description={
     <>
-      Change the amplitude <InlineMath math="a" />, wavelength{" "}
-      <InlineMath math="\lambda" /> and frequency <InlineMath math="f" />, then
-      move the time <InlineMath math="s" />. The panel below shows the wave speed as{" "}
+      Adjust amplitude <InlineMath math="a" />, wavelength{" "}
+      <InlineMath math="\lambda" />, and frequency <InlineMath math="f" />, then
+      slide time <InlineMath math="s" />. Wave speed appears as{" "}
       <InlineMath math="f\lambda" />.
     </>
   }
@@ -60,36 +55,20 @@ The wave below is <InlineMath math="y = a\sin\!\big(2\pi(x/\lambda - fs)\big)" /
   }}
 />
 
-### Example Speed of a Water Wave
-
-A water wave in a ripple tank has a frequency of <InlineMath math="5\text{ Hz}" />, and the distance between **two neighbouring crests** is <InlineMath math="3\text{ cm}" />. Find the wave speed.
-
-<BlockMath math="v = f\lambda = (5)(0.03) = 0.15\text{ m s}^{-1}" />
-
-Check: in <InlineMath math="1" /> second, five crests pass a point, each <InlineMath math="3\text{ cm}" /> behind the last, so the wave moves <InlineMath math="15\text{ cm}" />.
-
-### Example Period from Frequency
-
-A sound wave of frequency <InlineMath math="440\text{ Hz}" /> travels at <InlineMath math="330\text{ m s}^{-1}" /> in air. Find its **period** and wavelength.
-
-<MathContainer>
-<BlockMath math="T = \frac{1}{f} = \frac{1}{440} = 2.27 \times 10^{-3}\text{ s}" />
-<BlockMath math="\lambda = \frac{v}{f} = \frac{330}{440} = 0.75\text{ m}" />
-</MathContainer>
-
-Check: <InlineMath math="f\lambda = 440 \times 0.75 = 330\text{ m s}^{-1}" />.
+A <InlineMath math="5\text{ Hz}" /> water wave with crests <InlineMath math="3\text{ cm}" /> apart moves at <InlineMath math="0.15\text{ m s}^{-1}" />, and a <InlineMath math="440\text{ Hz}" /> tone at <InlineMath math="330\text{ m s}^{-1}" /> has a wavelength of <InlineMath math="0.75\text{ m}" />.
 
 ## Damping and Resonance
 
-**Damping** is the drop in an oscillation's amplitude as energy is lost to the surroundings, for example through friction and air resistance. The frequency stays the same, but the amplitude shrinks. Move the damping slider and watch the envelope of the oscillation fall faster.
+**Damping** reduces an oscillation's amplitude as energy leaks through friction, yet **the frequency stays fixed**. Move the damping slider below to watch the envelope drop faster.
 
 <MathVisual
   title={<>A Damped Oscillation</>}
+  footer={<>Damping shrinks the amplitude envelope while keeping the frequency fixed.</>}
   description={
     <>
       Displacement <InlineMath math="y = 2e^{-bx}\cos(2\pi x)" /> against time{" "}
       <InlineMath math="x" /> in seconds. The damping constant{" "}
-      <InlineMath math="b" /> sets how quickly the amplitude falls.
+      <InlineMath math="b" /> sets how fast the amplitude decays.
     </>
   }
   scene={{
@@ -114,16 +93,16 @@ Check: <InlineMath math="f\lambda = 440 \times 0.75 = 330\text{ m s}^{-1}" />.
   }}
 />
 
-Every vibrating system has a **natural frequency**. **Resonance** happens when an outside force drives the system at a frequency equal to its natural frequency. The system then takes in energy most efficiently and its amplitude reaches a maximum. The curve below plots amplitude against the ratio of the driving frequency to the natural frequency.
+**Resonance** occurs when a driving force matches a system's **natural frequency**, creating a sharp amplitude peak at <InlineMath math="r = 1" />.
 
 <MathVisual
   title={<>The Resonance Curve</>}
+  footer={<>A sharp amplitude peak forms when driving frequency matches natural frequency.</>}
   description={
     <>
-      Relative amplitude against the frequency ratio{" "}
-      <InlineMath math="r = f / f_0" />. A small damping ratio{" "}
-      <InlineMath math="\zeta" /> gives a tall, sharp peak at{" "}
-      <InlineMath math="r = 1" />.
+      Relative amplitude against frequency ratio{" "}
+      <InlineMath math="r = f / f_0" />. Small damping <InlineMath math="\zeta" />{" "}
+      produces a tall spike at <InlineMath math="r = 1" />.
     </>
   }
   scene={{
@@ -147,54 +126,88 @@ Every vibrating system has a **natural frequency**. **Resonance** happens when a
   }}
 />
 
-Barton's pendulums show the same idea: the pendulum whose length equals the driver pendulum's swings with the biggest amplitude. The period of a simple pendulum depends only on its length, not on the mass of the bob. Compare the three bobs in this model.
+In Barton's pendulums, the pendulum with the same string length swings widest because **pendulum period depends only on length**, never bob mass.
 
-<PendulumPeriodLab
-  title={<>Periods of Three Pendulums of Equal Length</>}
+## Reflection and Refraction
+
+When a wave meets a barrier or a new medium, **its frequency never changes** because the source fixes it. Reflection reverses direction, refraction alters speed and wavelength together, and diffraction curves wavefronts around narrow openings.
+
+Picture blowing a ship's horn while cruising straight towards a cliff. While the sound races out and back, the boat glides forward, so **the echo meets the boat closer to the cliff**.
+
+> When a moving source heads towards a reflecting wall, the distance covered by the sound plus the distance moved by the source equals twice the starting distance.
+
+With boat speed <InlineMath math="10\text{ m s}^{-1}" />, sound speed <InlineMath math="340\text{ m s}^{-1}" />, and echo delay <InlineMath math="4.0\text{ s}" />:
+
+<BlockMath math="2d = (340 + 10)(4.0) = 1400\text{ m} \quad \Longrightarrow \quad d = 700\text{ m}" />
+
+<EchoLab
+  title={<>An Echo Heard from a Moving Boat</>}
   description={
     <>
-      A wooden, a brass and a lead bob hang on strings of the same length. All
-      three have the same natural frequency.
+      The boat heads towards the cliff at{" "}
+      <InlineMath math="10\text{ m s}^{-1}" /> and hears the echo{" "}
+      <InlineMath math="4.0\text{ s}" /> after its horn.
     </>
   }
+  footer={<>Sound distance out and back plus boat travel equals twice the starting distance.</>}
   labels={{
-    check: <>Check against the formula</>,
-    gravity: <>Gravitational acceleration</>,
-    length: "String length",
-    masses: <>Bob masses</>,
-    period: <>Period of oscillation</>,
-    viewLabel: "Three pendulums swinging together",
+    back: <>Echo comes back</>,
+    boat: <>Boat moves</>,
+    out: <>Sound goes out</>,
+    start: <>Starting distance</>,
+    viewLabel: "A boat sounding its horn at a cliff",
   }}
+  boatSpeed={10}
+  echoTime={4}
+  soundSpeed={340}
 />
 
-## Waves Meeting Obstacles and New Media
+Halving only the sound distance gives the classic trap <InlineMath math="680\text{ m}" />, missing the <InlineMath math="40\text{ m}" /> the boat moved during the wait.
 
-Waves change when they meet an obstacle or a new medium. This table compares the three effects by what changes and what stays the same:
+Like marching rows stepping diagonally from dry pavement into mud, the side of a water wavefront entering shallow water slows down first, pivoting the wave **towards the normal** while keeping frequency constant.
 
-| Effect | Happens when | Stays the same | Changes |
-| :--- | :--- | :--- | :--- |
-| Reflection | A wave hits an obstacle and bounces back | Frequency, wavelength, speed | Direction |
-| Refraction | A wave enters a medium where its speed differs | Frequency | Speed, wavelength, direction |
-| Diffraction | A wave passes through a gap or round an edge | Frequency, wavelength, speed | Shape of the wavefront |
+> When water waves cross from deep into shallow water, the source fixes the frequency so wave speed and wavelength drop together.
 
-In reflection, **the angle of incidence equals the angle of reflection**. When water waves refract, they slow down in shallow water, so their wavelength shrinks and they bend towards the normal. Diffraction is strongest when the gap is about the same size as the wavelength. That's why you can hear someone talking round a doorway: the wavelength of sound is close to the width of the door.
+<RippleTankLab
+  title={<>Water Waves Crossing into Shallow Water</>}
+  description={
+    <>
+      Waves of wavelength <InlineMath math="2.0\text{ cm}" /> move at{" "}
+      <InlineMath math="20\text{ cm s}^{-1}" /> in deep water and{" "}
+      <InlineMath math="12\text{ cm s}^{-1}" /> in shallow water.
+    </>
+  }
+  footer={<>Frequency stays at 10 Hz while the shallow wavelength shrinks to 1.2 cm.</>}
+  labels={{
+    frequency: <>Frequency</>,
+    incidence: <>Angle of incidence <InlineMath math="i" /></>,
+    incidenceName: "Angle of incidence",
+    refraction: <>Angle of refraction</>,
+    viewLabel: "A ripple tank seen from above",
+    wavelength: <>Wavelength in shallow water</>,
+  }}
+  deepSpeed={20}
+  incidence={30}
+  shallowSpeed={12}
+  wavelength={2}
+/>
+
+In deep water, <InlineMath math="f = 10\text{ Hz}" />. Because frequency stays fixed, **the shallow wavelength shrinks to <InlineMath math="1.2\text{ cm}" />** and crests pack closer together.
 
 ## Interference of Waves
 
-**Interference** is the superposition of two coherent waves. Where a crest meets a crest, there's **constructive interference** and the amplitude grows. Where a crest meets a trough, there's **destructive interference** and the waves cancel. For two sources a distance <InlineMath math="a" /> apart, the distance between two neighbouring bright fringes at a distance <InlineMath math="D" /> is:
+**Interference** is the superposition of two coherent waves: crest on crest builds **constructive interference** (bright or loud), while crest on trough creates **destructive interference** (dark or quiet). Adjacent maxima lie apart by:
 
 <BlockMath math="x = \frac{\lambda D}{a}" />
 
-This model shows the light intensity on a screen <InlineMath math="2\text{ m}" /> from a double slit with a separation of <InlineMath math="0.5\text{ mm}" />. Change the wavelength and watch the fringe spacing change.
-
 <MathVisual
   title={<>Young's Double-Slit Interference Pattern</>}
+  footer={<>Longer wavelengths spread the bright interference fringes further apart.</>}
   description={
     <>
-      Relative intensity against position <InlineMath math="y" /> on the screen
-      in millimetres. The intensity is{" "}
-      <InlineMath math="\cos^2(\pi a y / \lambda D)" />, with{" "}
-      <InlineMath math="a = 0.5\text{ mm}" /> and <InlineMath math="D = 2\text{ m}" />.
+      Relative intensity against screen position <InlineMath math="y" /> with{" "}
+      <InlineMath math="a = 0.5\text{ mm}" /> and{" "}
+      <InlineMath math="D = 2\text{ m}" />.
     </>
   }
   scene={{
@@ -217,14 +230,78 @@ This model shows the light intensity on a screen <InlineMath math="2\text{ m}" /
   }}
 />
 
-At <InlineMath math="600\text{ nm}" />, the fringe spacing is <InlineMath math="(600 \times 10^{-9})(2) / (0.5 \times 10^{-3}) = 2.4\text{ mm}" />. Red light, with its longer wavelength, gives wider fringes than blue light.
+At <InlineMath math="600\text{ nm}" />, the spacing is <InlineMath math="2.4\text{ mm}" />, and red light always produces wider fringes than blue light.
 
-## Electromagnetic Waves
+### Optical Double Slit
 
-**Electromagnetic waves** are transverse waves made of an electric field and a magnetic field oscillating at right angles to each other. They need no medium and travel at <InlineMath math="3.0 \times 10^{8}\text{ m s}^{-1}" /> in a vacuum. The electromagnetic spectrum is ordered by wavelength:
+On a real optical bench, pulling the slits closer spreads the fringes wider, while moving the screen closer pulls them back in.
+
+> Bright fringe spacing grows proportionally with wavelength and screen distance, and shrinks inversely with slit separation.
+
+<DoubleSlitLab
+  title={<>Young's Double Slit on an Optical Bench</>}
+  description={
+    <>
+      Laser light of <InlineMath math="600\text{ nm}" /> passes through slits{" "}
+      <InlineMath math="0.20\text{ mm}" /> apart onto a screen{" "}
+      <InlineMath math="1.5\text{ m}" /> away.
+    </>
+  }
+  footer={<>Closer slits widen the fringes while a nearer screen squeezes them back in.</>}
+  labels={{
+    count: <>Bright fringes from P to Q</>,
+    distance: <>Slits to screen <InlineMath math="D" /></>,
+    distanceName: "Slits to screen",
+    separation: <>Slit separation <InlineMath math="a" /></>,
+    separationName: "Slit separation",
+    spacing: <>Fringe spacing</>,
+    viewLabel: "A double slit and its fringes on a screen",
+  }}
+  distance={1.5}
+  separation={0.2}
+  span={27}
+  wavelength={600}
+/>
+
+Across a <InlineMath math="27\text{ mm}" /> span at <InlineMath math="4.5\text{ mm}" /> spacing, six gaps produce **seven bright fringes**. Always count the fringes themselves rather than only the gaps.
+
+### Two Loudspeakers
+
+Walk slowly across a room in front of **two coherent loudspeakers** on one signal generator, and your ears pass through alternating loud and quiet spots obeying the exact same formula.
+
+> Two loudspeakers driven by one signal generator are coherent, so the spacing of loud points obeys the same interference equation as a double slit.
+
+<SpeakerInterferenceLab
+  title={<>Loud and Quiet Points Between Two Loudspeakers</>}
+  description={
+    <>
+      Two loudspeakers <InlineMath math="1.5\text{ m}" /> apart are heard along
+      a line <InlineMath math="6.0\text{ m}" /> away.
+    </>
+  }
+  footer={<>Raising the frequency shortens wavelength and packs loud spots closer.</>}
+  labels={{
+    frequency: <>Frequency</>,
+    frequencyName: "Frequency",
+    spacing: <>Distance between loud points</>,
+    viewLabel: "Two loudspeakers seen from above",
+    wavelength: <>Wavelength</>,
+  }}
+  distance={6}
+  frequency={1100}
+  separation={1.5}
+  speed={330}
+/>
+
+At <InlineMath math="1100\text{ Hz}" /> with sound speed <InlineMath math="330\text{ m s}^{-1}" />, the <InlineMath math="0.30\text{ m}" /> wavelength spaces **loud spots exactly <InlineMath math="1.2\text{ m}" /> apart**.
+
+## Electromagnetic Spectrum
+
+**Electromagnetic waves** are transverse oscillations of electric and magnetic fields that travel at <InlineMath math="3.0 \times 10^{8}\text{ m s}^{-1}" /> in vacuum without needing a medium.
 
 <Chart
   title={<>Typical Wavelengths in the Electromagnetic Spectrum</>}
+  footer={<>From radio to gamma rays, wavelength drops sharply while energy climbs.</>}
   bars="apart"
   categories={["Radio", "Microwaves", "Infrared", "Visible light", "Ultraviolet", "X-rays", "Gamma rays"]}
   series={[
@@ -238,56 +315,21 @@ At <InlineMath math="600\text{ nm}" />, the fringe spacing is <InlineMath math="
       <InlineMath math="10\ \mu\text{m}" />, visible light{" "}
       <InlineMath math="500\text{ nm}" />, ultraviolet{" "}
       <InlineMath math="100\text{ nm}" />, X-rays{" "}
-      <InlineMath math="0.1\text{ nm}" /> and gamma rays{" "}
+      <InlineMath math="0.1\text{ nm}" />, and gamma rays{" "}
       <InlineMath math="1\text{ pm}" />.
     </>
   }
 />
 
-The shorter the wavelength, the higher the frequency and energy of the wave. That's why X-rays and gamma rays can damage living cells, while radio waves are safe to use for broadcasting.
+Shorter wavelengths carry higher frequency and energy, which is why X-rays and gamma rays can damage living cells while radio waves safely carry broadcasts.
 
-## Common Mistakes about Waves
+## Quick Wave Checks
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Waves carry matter. | Particles only vibrate about their original position. What travels is energy. | Picture a float on the waves: it bobs up and down but doesn't drift with them. |
-| Wavelength is the distance from crest to trough. | That's half a wavelength. | Measure from one crest to the next. |
-| Frequency changes during refraction. | The source sets the frequency, so it stays the same. | Speed and wavelength change together. |
-| Damping changes the frequency of an oscillation. | Damping only reduces the amplitude. | Count the oscillations in the same time. |
+Convert centimetres and millimetres to metres first, then **check every answer** against the summary below.
 
-The third mistake is the most common one in refraction questions. **The frequency is fixed**, so if the speed drops, the wavelength drops too.
+1. A wave has period <InlineMath math="0.2\text{ s}" /> and <InlineMath math="\lambda = 1.5\text{ m}" />. Calculate its speed.
+2. A water wave slows from <InlineMath math="0.30\text{ m s}^{-1}" /> (<InlineMath math="\lambda = 6\text{ cm}" />) to <InlineMath math="0.20\text{ m s}^{-1}" /> in shallow water. Find the new wavelength.
+3. In a double-slit setup with <InlineMath math="a = 0.4\text{ mm}" />, <InlineMath math="D = 1.6\text{ m}" />, and <InlineMath math="x = 2.2\text{ mm}" />, find the wavelength.
+4. Why can soldiers marching in step make a bridge sway dangerously?
 
-## Practice on Waves
-
-These questions move from <InlineMath math="v = f\lambda" /> to interference. **Convert centimetres and millimetres to metres** before you calculate.
-
-1. A wave has a period of <InlineMath math="0.2\text{ s}" /> and a wavelength of <InlineMath math="1.5\text{ m}" />. Calculate its speed.
-
-2. A water wave moves from deep to shallow water. Its speed drops from <InlineMath math="0.30\text{ m s}^{-1}" /> to <InlineMath math="0.20\text{ m s}^{-1}" />. The wavelength in deep water is <InlineMath math="6\text{ cm}" />. Calculate the wavelength in shallow water.
-
-3. In a double-slit experiment, <InlineMath math="a = 0.4\text{ mm}" />, <InlineMath math="D = 1.6\text{ m}" /> and the distance between two neighbouring bright fringes is <InlineMath math="2.2\text{ mm}" />. Calculate the wavelength of the light.
-
-4. Explain why a bridge can sway with a very large amplitude when a group of soldiers marches across it in step at a certain rhythm.
-
-### Solutions
-
-**Solution 1**: Find the frequency first, then the speed:
-
-<MathContainer>
-<BlockMath math="f = \frac{1}{T} = \frac{1}{0.2} = 5\text{ Hz}" />
-<BlockMath math="v = f\lambda = (5)(1.5) = 7.5\text{ m s}^{-1}" />
-</MathContainer>
-
-**Solution 2**: The frequency doesn't change during refraction. In deep water:
-
-<BlockMath math="f = \frac{v}{\lambda} = \frac{0.30}{0.06} = 5\text{ Hz}" />
-
-In shallow water, <InlineMath math="\lambda = 0.20 / 5 = 0.04\text{ m} = 4\text{ cm}" />. Check: the speed ratio <InlineMath math="0.20 / 0.30" /> equals the wavelength ratio <InlineMath math="4 / 6" />.
-
-**Solution 3**: Rearrange <InlineMath math="x = \lambda D / a" />:
-
-<BlockMath math="\lambda = \frac{ax}{D} = \frac{(0.4 \times 10^{-3})(2.2 \times 10^{-3})}{1.6} = 5.5 \times 10^{-7}\text{ m}" />
-
-That's <InlineMath math="550\text{ nm}" />, green light, a sensible value for visible light.
-
-**Solution 4**: The bridge has a natural frequency. If the frequency of the soldiers' steps **equals the bridge's natural frequency**, resonance happens. The bridge keeps taking in energy at the most efficient frequency, so its amplitude grows until it can damage the structure. That's why soldiers are ordered to break step when they cross a bridge.
+Quick answers: problem one gives <InlineMath math="f = 5\text{ Hz}" /> and <InlineMath math="v = 7.5\text{ m s}^{-1}" />, problem two gives <InlineMath math="\lambda = 4\text{ cm}" /> with constant frequency, problem three yields <InlineMath math="550\text{ nm}" /> (green light), and problem four happens through **resonance** when step frequency matches the bridge's natural frequency.
