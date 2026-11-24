@@ -1,35 +1,102 @@
-# Berapa sudut alasnya
+# Diketahui
 
-Prisma dengan alas segi-<InlineMath math="n" /> punya <InlineMath math="n" /> rusuk di alas bawah, <InlineMath math="n" /> di alas atas, dan <InlineMath math="n" /> rusuk tegak. **Jadi banyak rusuknya <InlineMath math="3n" />**:
+Sebuah **prisma tegak** (*gerades Prisma*) memiliki tepat <InlineMath math="30" /> rusuk (*Kanten*). Sebuah **diagonal ruang** (*Raumdiagonale*) menghubungkan dua titik sudut yang tidak berada pada satu sisi yang sama.
 
-<BlockMath math="3n=30\quad\Rightarrow\quad n=10" />
+# Ditanyakan
 
-Prisma ini punya <InlineMath math="20" /> titik sudut, <InlineMath math="10" /> di atas dan <InlineMath math="10" /> di bawah.
+Tentukan banyak seluruh diagonal ruang yang dimiliki prisma ini.
 
-# Dari satu titik di atas
+# Penyelesaian
 
-Ambil satu titik sudut di alas atas. Semua titik lain di alas atas ada di bidang alas yang sama, jadi tidak ada yang memberi diagonal ruang. Di alas bawah, **titik tepat di bawahnya dan dua tetangganya ada di sisi tegak yang sama dengannya**. Sisanya tinggal <InlineMath math="10-3=7" /> titik.
+Bayangkan sebuah menara berkaki banyak dengan lantai atas dan lantai bawah yang identik. Setiap sudut alas menyumbang tepat tiga rusuk: satu di bawah, satu di atas, dan satu tiang tegak. Karena total rusuknya <InlineMath math="30" />, alasnya pasti **segi sepuluh**.
 
-Setiap diagonal ruang menghubungkan satu titik atas dengan satu titik bawah, jadi tidak ada yang terhitung dua kali:
+<BlockMath math="3n = 30 \implies n = 10" />
 
-<BlockMath math="10\cdot7=70" />
+Jadi prisma ini punya <InlineMath math="20" /> titik sudut: <InlineMath math="10" /> di lantai atas dan <InlineMath math="10" /> di lantai bawah.
 
-# Cek dengan cara lain
+> Setiap diagonal ruang wajib menyeberang dari satu titik di alas atas ke satu titik di alas bawah yang bukan berada tepat di bawahnya maupun di dua tetangganya.
 
-Ada <InlineMath math="\binom{20}{2}=190" /> ruas di antara dua titik sudut. **Buang semua ruas yang terletak di sebuah sisi**:
+Lihat tampak atas alas segi sepuluh ini: dari satu titik sudut atas <InlineMath math="A_0" />, ada tiga posisi bawah yang terlarang (dirinya sendiri di lantai bawah dan dua tetangganya di sisi tegak), menyisakan tepat tujuh sasaran sah.
 
-- <InlineMath math="30" /> rusuk,
-- diagonal kedua alas, <InlineMath math="2\cdot\frac{10\cdot7}{2}=70" />,
-- diagonal <InlineMath math="10" /> sisi tegak berbentuk persegi panjang, <InlineMath math="10\cdot2=20" />.
+<MathVisual
+  title={<>Tujuh diagonal ruang dari satu titik atas <InlineMath math="A_0" /></>}
+  description={
+    <>
+      Tampak atas prisma segi sepuluh. Titik biru <InlineMath math="A_0" />{" "}
+      berada di alas atas. Dua titik merah menandai tetangga pada sisi tegak
+      yang sama, sehingga hanya tujuh garis hijau yang menyeberang ke dalam
+      ruang prisma.
+    </>
+  }
+  footer={<>Setiap titik atas terhubung ke <InlineMath math="10 - 3 = 7" /> titik bawah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      {
+        id: "decagon",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 3, y: 0 },
+          { x: 3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) },
+          { x: 3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) },
+          { x: -3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) },
+          { x: -3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) },
+          { x: -3, y: 0 },
+          { x: -3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) },
+          { x: -3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) },
+          { x: 3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) },
+          { x: 3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) },
+        ],
+      },
+      { id: "d2", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "d3", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "d4", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) } },
+      { id: "d5", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3, y: 0 } },
+      { id: "d6", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) } },
+      { id: "d7", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "d8", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "v0", kind: "point", appearance: "primary", at: { x: 3, y: 0 } },
+      { id: "v1", kind: "point", appearance: "warning", at: { x: 3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) } },
+      { id: "v9", kind: "point", appearance: "warning", at: { x: 3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) } },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "v1", objectId: "v1", at: { x: 3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) }, placement: "above-right" },
+      { key: "v9", objectId: "v9", at: { x: 3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    v0: <InlineMath math="A_0" />,
+    v1: <InlineMath math="B_1" />,
+    v9: <InlineMath math="B_9" />,
+  }}
+/>
 
-<BlockMath math="190-30-70-20=70" />
+Karena setiap diagonal ruang punya satu ujung di atas dan satu ujung di bawah, tidak ada satu pun ruas yang terhitung dua kali saat kita menjumlahkan dari sepuluh titik atas.
 
-Jadi, prisma itu punya <InlineMath math="70" /> diagonal ruang.
+## Menghitung total dan pengecekan silang
 
-# Kenapa pilihan lain salah
+Kalikan <InlineMath math="10" /> titik atas dengan <InlineMath math="7" /> sasaran bawah.
 
-- <InlineMath math="90" /> **hanya membuang titik tepat di bawah**, padahal dua tetangganya juga sebidang di sisi tegak. Ini sama dengan lupa diagonal sisi tegak.
-- <InlineMath math="35" /> membagi dua lagi, seolah-olah setiap diagonal dihitung dua kali. Dari atas ke bawah setiap diagonal hanya terhitung sekali.
-- <InlineMath math="80" /> hanya membuang titik di bawah dan satu tetangga.
-- <InlineMath math="140" /> lupa membuang diagonal kedua alas.
-- <InlineMath math="160" /> hanya membuang rusuk dan menganggap semua ruas lain diagonal ruang.
+<BlockMath math="10 \times 7 = 70" />
+
+Cek dengan cara kedua: dari <InlineMath math="\binom{20}{2} = 190" /> pasang titik sudut, buang <InlineMath math="30" /> rusuk, <InlineMath math="70" /> diagonal kedua alas, dan <InlineMath math="20" /> diagonal sepuluh sisi tegak.
+
+<BlockMath math="190 - 30 - 70 - 20 = 70" />
+
+**Kedua cara sepakat pada angka <InlineMath math="70" />**.
+
+## Mengapa pilihan lain salah
+
+- Nilai <InlineMath math="90" /> **hanya membuang titik tepat di bawahnya** dan lupa bahwa dua tetangga bawah berada di sisi tegak yang sama.
+- Nilai <InlineMath math="35" /> membagi dua hasil <InlineMath math="70" /> secara keliru, padahal menghitung dari atas ke bawah tidak pernah menghitung ganda.
+- Nilai <InlineMath math="80" /> hanya membuang satu tetangga bawah, bukan kedua tetangganya.
+- Nilai <InlineMath math="140" /> lupa mengurangi <InlineMath math="70" /> diagonal alas dari jumlah semua pasangan titik.
+- Nilai <InlineMath math="160" /> hanya membuang <InlineMath math="30" /> rusuk dan masih memasukkan diagonal alas serta sisi tegak.
+
+# Jawaban
+
+Prisma tegak dengan <InlineMath math="30" /> rusuk ini memiliki tepat <InlineMath math="70" /> diagonal ruang.

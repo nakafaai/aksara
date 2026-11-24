@@ -1,40 +1,92 @@
-# Squaring both sides
+# Given
 
-You don't know <InlineMath math="\sin x" /> and <InlineMath math="\cos x" /> one by one yet. **Square both sides**, because the result contains <InlineMath math="\sin^2x+\cos^2x" />, which is always <InlineMath math="1" />:
+An acute angle (*Winkel*) <InlineMath math="x" /> lies **between <InlineMath math="0^\circ" /> and <InlineMath math="45^\circ" />** and satisfies the trigonometric equation below.
+
+<BlockMath math="\sin x + \cos x = \frac{17}{13}" />
+
+# Asked
+
+Find the exact value of <InlineMath math="\tan x" />.
+
+# Solution
+
+On the unit circle, the point <InlineMath math="(\cos x \mid \sin x)" /> traces the first-quadrant quarter-circle of radius <InlineMath math="1" />. The line whose coordinates sum to <InlineMath math="\frac{17}{13}" /> meets that arc at **two points symmetric across the <InlineMath math="45^\circ" /> line**.
+
+> For any acute angle below forty-five degrees, the vertical coordinate on the unit circle is always smaller than the horizontal coordinate, so sine is smaller than cosine.
+
+Look at how the bound below <InlineMath math="45^\circ" /> picks out the green point below the diagonal ray.
+
+<MathVisual
+  title={<>Intersection of coordinate sum <InlineMath math="\frac{17}{13}" /> with the unit circle</>}
+  description={
+    <>
+      The horizontal axis shows <InlineMath math="\cos x" /> and the vertical
+      axis shows <InlineMath math="\sin x" />. The dashed{" "}
+      <InlineMath math="45^\circ" /> ray separates the two intersections.
+    </>
+  }
+  footer={<>Because <InlineMath math="x < 45^\circ" />, only the point below the diagonal applies.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.2, max: 1.45 }, y: { min: -0.2, max: 1.45 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "unit-arc", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 90 },
+      { id: "bisector", kind: "line", appearance: "reference", stroke: "dashed", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }] },
+      { id: "sum-line", kind: "line", appearance: "highlight", through: [{ x: 0, y: 17 / 13 }, { x: 17 / 13, y: 0 }] },
+      { id: "ray", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 12 / 13, y: 5 / 13 } },
+      { id: "valid-pt", kind: "point", appearance: "answer", at: { x: 12 / 13, y: 5 / 13 } },
+      { id: "rejected-pt", kind: "point", appearance: "warning", at: { x: 5 / 13, y: 12 / 13 } },
+    ],
+    labels: [
+      { key: "bisector", objectId: "bisector", at: { x: 1.05, y: 1.05 }, placement: "above-right" },
+      { key: "valid", objectId: "valid-pt", at: { x: 12 / 13, y: 5 / 13 }, placement: "right" },
+      { key: "rejected", objectId: "rejected-pt", at: { x: 5 / 13, y: 12 / 13 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    bisector: <InlineMath math="45^\circ" />,
+    valid: <InlineMath math="\left(\frac{12}{13}, \frac{5}{13}\right)" />,
+    rejected: <InlineMath math="\left(\frac{5}{13}, \frac{12}{13}\right)" />,
+  }}
+/>
+
+The green point below the <InlineMath math="45^\circ" /> ray has cosine <InlineMath math="\frac{12}{13}" /> and sine <InlineMath math="\frac{5}{13}" />. Now derive these values algebraically.
+
+## Squaring both sides
+
+We do not know sine and cosine separately yet. **Square both sides** so the Pythagorean identity <InlineMath math="\sin^2 x + \cos^2 x = 1" /> appears and isolates their product.
 
 <BlockMath math="\begin{aligned}
-(\sin x+\cos x)^2&=\frac{289}{169} \\
-\sin^2x+2\sin x\cos x+\cos^2x&=\frac{289}{169} \\
-1+2\sin x\cos x&=\frac{289}{169} \\
-\sin x\cos x&=\frac{60}{169}
+(\sin x + \cos x)^2 &= \frac{289}{169} \\
+1 + 2\sin x \cos x &= \frac{289}{169} \\
+\sin x \cos x &= \frac{60}{169}
 \end{aligned}" />
 
-# Two numbers from their sum and product
+## Finding the tangent value
 
-Now you know the sum <InlineMath math="\sin x+\cos x=\frac{17}{13}" /> and the product <InlineMath math="\sin x\cos x=\frac{60}{169}" />. **Two numbers with that sum and product are the roots of this quadratic**:
+With sum <InlineMath math="\frac{17}{13}" /> and product <InlineMath math="\frac{60}{169}" />, both values are the roots of this quadratic equation.
 
 <BlockMath math="\begin{aligned}
-t^2-\frac{17}{13}t+\frac{60}{169}&=0 \\
-169t^2-221t+60&=0 \\
-(13t-5)(13t-12)&=0
+t^2 - \frac{17}{13}t + \frac{60}{169} &= 0 \\
+169t^2 - 221t + 60 &= 0 \\
+(13t - 5)(13t - 12) &= 0
 \end{aligned}" />
 
-So the two numbers are <InlineMath math="\frac{5}{13}" /> and <InlineMath math="\frac{12}{13}" />. All that's left is to decide which one is the sine and which is the cosine.
+The two numbers are <InlineMath math="\frac{5}{13}" /> and <InlineMath math="\frac{12}{13}" />. Because the angle is below <InlineMath math="45^\circ" />, **sine is smaller than cosine**, which fixes the tangent immediately.
 
-# Using the angle range
+<BlockMath math="\sin x = \frac{5}{13}, \quad \cos x = \frac{12}{13} \implies \tan x = \frac{\sin x}{\cos x} = \frac{5}{12}" />
 
-For <InlineMath math="0^\circ<x<45^\circ" />, the angle is closer to <InlineMath math="0^\circ" />, so **its sine is smaller than its cosine**. That means:
+Check: <InlineMath math="\frac{5}{13}" /> plus <InlineMath math="\frac{12}{13}" /> equals <InlineMath math="\frac{17}{13}" />, and <InlineMath math="\tan x < 1" /> matches an angle below <InlineMath math="45^\circ" />.
 
-<BlockMath math="\sin x=\frac{5}{13},\qquad\cos x=\frac{12}{13},\qquad\tan x=\frac{\sin x}{\cos x}=\frac{5}{12}" />
+## Why other choices fail
 
-Check: <InlineMath math="\frac{5}{13}+\frac{12}{13}=\frac{17}{13}" />, and <InlineMath math="\tan x=\frac{5}{12}<1" /> fits an angle below <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{12}{5}" /> **swaps sine and cosine**, matching an angle above <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{60}{169}" /> is the intermediate product <InlineMath math="\sin x \cos x" />, not the tangent.
+- <InlineMath math="\frac{5}{12}" /> or <InlineMath math="\frac{12}{5}" /> ignores the angle bound below <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{120}{169}" /> equals <InlineMath math="\sin 2x" />, not <InlineMath math="\tan x" />.
+- Claiming no such angle exists happens when squaring drops the middle term <InlineMath math="2\sin x \cos x" />.
 
-So <InlineMath math="\tan x=\frac{5}{12}" />.
+# Answer
 
-# Why the other options are wrong
-
-- <InlineMath math="\frac{12}{5}" /> **swaps the sine and the cosine**. A tangent above <InlineMath math="1" /> means an angle above <InlineMath math="45^\circ" />.
-- <InlineMath math="\frac{60}{169}" /> is <InlineMath math="\sin x\cos x" />, the middle step, not the tangent.
-- <InlineMath math="\frac{5}{12}" /> or <InlineMath math="\frac{12}{5}" /> ignores the angle range. Without it both values are possible, but here only one holds.
-- <InlineMath math="\frac{120}{169}" /> is <InlineMath math="2\sin x\cos x=\sin2x" />.
-- "No such angle" comes from squaring without the middle term. That gives <InlineMath math="1=\frac{289}{169}" />, which looks impossible, but only because <InlineMath math="2\sin x\cos x" /> went missing.
+The exact value of <InlineMath math="\tan x" /> is <InlineMath math="\frac{5}{12}" />.

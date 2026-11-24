@@ -1,10 +1,30 @@
-# Maksud lipatan itu
+# Diberi
 
-Namakan segi empat tepat itu <InlineMath math="ABCD" /> dengan <InlineMath math="AB=8" /> dan <InlineMath math="BC=6" />, kemudian lipat supaya <InlineMath math="A" /> jatuh tepat di atas <InlineMath math="C" />. Setiap titik pada garis lipatan sama jauh dari <InlineMath math="A" /> dan dari <InlineMath math="C" />, kerana kedua-dua titik itu bertemu apabila dilipat. Jadi **garis lipatan ialah pembahagi dua sama serenjang bagi <InlineMath math="AC" />**: garis yang berserenjang dengan <InlineMath math="AC" /> dan melalui titik tengahnya, <InlineMath math="M" />.
+Sehelai kertas **segi empat tepat** <InlineMath math="ABCD" /> berukuran panjang <InlineMath math="8\text{ cm}" /> dan lebar <InlineMath math="6\text{ cm}" />. Kertas dilipat sekali supaya dua bucu bertentangan (<InlineMath math="A" /> dan <InlineMath math="C" />) bertindih tepat.
+
+# Ditanya
+
+Tentukan panjang **garisan lipatan** (*Faltkante*) yang terhasil dalam sentimeter.
+
+# Penyelesaian
+
+Bayangkan garisan lipatan sebagai **cermin rata** yang memantulkan bucu <InlineMath math="A" /> tepat ke atas bucu <InlineMath math="C" />. Oleh sebab setiap titik pada lipatan tidak bergerak, jaraknya ke <InlineMath math="A" /> sentiasa sama dengan jaraknya ke <InlineMath math="C" />.
+
+> Garisan lipatan yang menindihkan dua bucu bertentangan sentiasa menjadi pembahagi dua sama serenjang bagi pepenjurunya.
+
+Perhatikan bagaimana garisan lipatan <InlineMath math="EF" /> memotong pepenjuru <InlineMath math="AC" /> secara berserenjang di titik tengah <InlineMath math="M" />.
 
 <MathVisual
-  title={<>Lipatan yang mempertemukan dua bucu bertentangan</>}
-  description={<>Segi empat tepat <InlineMath math="ABCD" /> berukuran <InlineMath math="8" /> dengan <InlineMath math="6" />. Pepenjuru <InlineMath math="AC" /> dilukis, dan garis lipatan <InlineMath math="EF" /> memotongnya secara serenjang di titik tengahnya, <InlineMath math="M" />. Titik <InlineMath math="E" /> berada pada sisi <InlineMath math="AB" /> dan titik <InlineMath math="F" /> pada sisi <InlineMath math="CD" />.</>}
+  title={<>Garisan lipatan <InlineMath math="EF" /> sebagai pembahagi serenjang <InlineMath math="AC" /></>}
+  description={
+    <>
+      Segi empat tepat <InlineMath math="ABCD" /> berukuran{" "}
+      <InlineMath math="8" /> kali <InlineMath math="6" />. Pepenjuru{" "}
+      <InlineMath math="AC" /> dipotong berserenjang di titik tengahnya{" "}
+      <InlineMath math="M" /> oleh garisan lipatan <InlineMath math="EF" />.
+    </>
+  }
+  footer={<>Lipatan <InlineMath math="EF" /> membahagi dua pepenjuru <InlineMath math="AC" /> secara serenjang di <InlineMath math="M" />.</>}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
@@ -16,15 +36,11 @@ Namakan segi empat tepat itu <InlineMath math="ABCD" /> dengan <InlineMath math=
   }}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -1, max: 7 },
-    },
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 7 } },
     view: { kind: "fit", padding: 0.1 },
     objects: [
       { id: "sheet", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 6 }, { x: 0, y: 6 }] },
-      { id: "diagonal", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
+      { id: "diagonal", kind: "segment", appearance: "reference", stroke: "dashed", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
       { id: "crease", kind: "segment", appearance: "highlight", from: { x: (8 * 8 + 6 * 6) / (2 * 8), y: 0 }, to: { x: 8 - (8 * 8 + 6 * 6) / (2 * 8), y: 6 } },
       { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
       { id: "point-b", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
@@ -46,30 +62,38 @@ Namakan segi empat tepat itu <InlineMath math="ABCD" /> dengan <InlineMath math=
   }}
 />
 
-# Di mana lipatan memotong sisi
+Segi tiga <InlineMath math="AME" /> dan segi tiga <InlineMath math="ABC" /> serupa kerana kedua-duanya bersudut tegak dan berkongsi bucu <InlineMath math="A" />. Kita juga boleh mencari <InlineMath math="AE" /> terus dengan teorem Pythagoras.
 
-Katakan lipatan memotong <InlineMath math="AB" /> di <InlineMath math="E" /> dengan <InlineMath math="AE=x" />. Oleh sebab <InlineMath math="E" /> berada pada pembahagi dua sama serenjang bagi <InlineMath math="AC" />, **<InlineMath math="E" /> sama jauh dari <InlineMath math="A" /> dan dari <InlineMath math="C" />**. Panjang <InlineMath math="EC" /> diperoleh daripada segi tiga bersudut tegak <InlineMath math="EBC" />:
+## Menentukan kedudukan titik E
+
+Andaikan <InlineMath math="AE = x" />. Oleh sebab <InlineMath math="E" /> terletak pada pembahagi serenjang <InlineMath math="AC" />, maka **jarak <InlineMath math="EC" /> sama dengan <InlineMath math="AE" />**. Pada segi tiga bersudut tegak <InlineMath math="EBC" /> dengan <InlineMath math="EB = 8 - x" /> dan <InlineMath math="BC = 6" />, gunakan Pythagoras.
 
 <BlockMath math="\begin{aligned}
-AE^2&=EB^2+BC^2 \\
-x^2&=(8-x)^2+6^2 \\
-0&=64-16x+36 \\
-x&=6.25
+x^2 &= (8 - x)^2 + 6^2 \\
+x^2 &= 64 - 16x + x^2 + 36 \\
+16x &= 100 \implies x = 6.25\text{ cm}
 \end{aligned}" />
 
-# Panjang lipatan
+## Mengira panjang garisan lipatan
 
-Pepenjuru <InlineMath math="AC=\sqrt{8^2+6^2}=10" />, jadi <InlineMath math="AM=5" />. Segi tiga <InlineMath math="AME" /> bersudut tegak di <InlineMath math="M" />, kerana **lipatan berserenjang dengan pepenjuru**:
+Panjang pepenjurunya ialah <InlineMath math="10\text{ cm}" /> kerana <InlineMath math="8^2 + 6^2 = 100" />, maka **separuh pepenjurunya <InlineMath math="AM = 5\text{ cm}" />**. Cari separuh lipatan <InlineMath math="ME" /> dalam segi tiga bersudut tegak <InlineMath math="AME" />, kemudian gandakan mengikut simetri pada <InlineMath math="M" />.
 
-<BlockMath math="ME=\sqrt{AE^2-AM^2}=\sqrt{39.0625-25}=\sqrt{14.0625}=3.75" />
+<BlockMath math="\begin{aligned}
+ME &= \sqrt{6.25^2 - 5^2} = \sqrt{39.0625 - 25} = \sqrt{14.0625} = 3.75\text{ cm} \\
+EF &= 2 \cdot ME = 7.5\text{ cm}
+\end{aligned}" />
 
-Rajah itu simetri terhadap <InlineMath math="M" />, jadi <InlineMath math="MF=ME" /> dan <InlineMath math="EF=2\cdot3.75=7.5\text{ cm}" />.
+Semak keserupaan segi tiga <InlineMath math="AME" /> dan <InlineMath math="ABC" /> untuk memastikan nilainya sepadan sepenuhnya.
 
-Jadi, panjang garis lipatan ialah <InlineMath math="7.5\text{ cm}" />.
+<BlockMath math="\frac{ME}{AM} = \frac{BC}{AB} = \frac{6}{8} = \frac{3}{4} \implies ME = \frac{3}{4} \cdot 5 = 3.75\text{ cm}, \quad EF = 7.5\text{ cm}" />
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="10\text{ cm}" /> ialah pepenjuru <InlineMath math="AC" />. **Lipatan memotong pepenjuru secara serenjang**, bukan terletak di atasnya.
-- <InlineMath math="5\text{ cm}" /> ialah separuh pepenjuru, <InlineMath math="AM" />.
-- <InlineMath math="6.25\text{ cm}" /> ialah <InlineMath math="AE" />, jarak dari bucu ke hujung lipatan.
-- <InlineMath math="6\text{ cm}" /> dan <InlineMath math="8\text{ cm}" /> ialah lebar dan panjang kertas, iaitu panjang lipatan jika kamu melipat selari dengan satu sisi. Lipatan begitu tidak mempertemukan dua bucu yang bertentangan.
+- <InlineMath math="10\text{ cm}" /> ialah panjang pepenjuru <InlineMath math="AC" />, sedangkan **lipatan berserenjang dengan pepenjuru**.
+- <InlineMath math="5\text{ cm}" /> hanyalah separuh pepenjuru <InlineMath math="AM" />.
+- <InlineMath math="6.25\text{ cm}" /> ialah jarak <InlineMath math="AE" /> dari bucu ke hujung lipatan, bukan panjang lipatan.
+- <InlineMath math="6\text{ cm}" /> dan <InlineMath math="8\text{ cm}" /> ialah panjang sisi kertas jika dilipat selari sisi, yang tidak menindihkan bucu bertentangan.
+
+# Jawapan
+
+Panjang garisan lipatan yang terhasil ialah <InlineMath math="7.5\text{ cm}" />.

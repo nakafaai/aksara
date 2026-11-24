@@ -1,38 +1,103 @@
-# Drei mögliche Stellen für den rechten Winkel
+# Gegeben
 
-Die Aufgabe sagt nicht, an welcher Ecke der rechte Winkel liegt. **Es gibt also drei Fälle: rechter Winkel bei <InlineMath math="A" />, bei <InlineMath math="B" /> oder bei <InlineMath math="P" />**. Zwei Strecken stehen genau dann senkrecht, wenn das Skalarprodukt ihrer Richtungsvektoren null ist.
+Zwei feste Punkte liegen in der Ebene: <InlineMath math="A(1 \mid 3)" /> und <InlineMath math="B(7 \mid 1)" />. Ein dritter Punkt <InlineMath math="P(x \mid 0)" /> liegt auf der <InlineMath math="x" />-Achse, sodass das Dreieck <InlineMath math="ABP" /> **rechtwinklig** ist.
 
-Für <InlineMath math="P(x\mid0)" /> gilt:
+# Gesucht
 
-<BlockMath math="\overrightarrow{AB}=\begin{pmatrix}6\\-2\end{pmatrix},\quad\overrightarrow{AP}=\begin{pmatrix}x-1\\-3\end{pmatrix},\quad\overrightarrow{BP}=\begin{pmatrix}x-7\\-1\end{pmatrix}" />
+Alle reellen Werte von <InlineMath math="x" />, für die das Dreieck <InlineMath math="ABP" /> einen rechten Winkel besitzt.
 
-# Rechter Winkel bei A oder bei B
+# Lösung
+
+Die Aufgabe legt nicht fest, an welcher Ecke der rechte Winkel liegt. Stell dir daher ein Geodreieck vor, das du nacheinander **an jede der drei Ecken** anlegst: an <InlineMath math="A" />, an <InlineMath math="B" /> oder an <InlineMath math="P" />.
+
+> Zwei Strecken stehen genau dann senkrecht aufeinander, wenn das Skalarprodukt ihrer Richtungsvektoren null ist.
+
+Sieh in der Skizze, wie zwei Senkrechten durch <InlineMath math="A" /> und <InlineMath math="B" /> zusammen mit dem Thaleskreis über <InlineMath math="AB" /> genau vier Punkte auf der <InlineMath math="x" />-Achse treffen.
+
+<MathVisual
+  title={<>Vier Lagen von <InlineMath math="P" /> auf der <InlineMath math="x" />-Achse</>}
+  description={
+    <>
+      Die Strecke <InlineMath math="AB" /> bleibt fest. Die gestrichelten
+      Senkrechten zeigen rechte Winkel bei <InlineMath math="A" /> und{" "}
+      <InlineMath math="B" />, während der Thaleskreis über{" "}
+      <InlineMath math="AB" /> die beiden Punkte für einen rechten Winkel bei{" "}
+      <InlineMath math="P" /> liefert.
+    </>
+  }
+  footer={<>Die drei Fälle für den rechten Winkel liefern genau vier gültige Werte von <InlineMath math="x" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -2, max: 6 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "thales", kind: "circle", appearance: "construction", center: { x: 4, y: 2 }, radius: Math.sqrt(10) },
+      { id: "seg-ab", kind: "segment", appearance: "primary", from: { x: 1, y: 3 }, to: { x: 7, y: 1 } },
+      { id: "perp-a", kind: "segment", appearance: "highlight", stroke: "dashed", from: { x: 1, y: 3 }, to: { x: 0, y: 0 } },
+      { id: "perp-b", kind: "segment", appearance: "highlight", stroke: "dashed", from: { x: 7, y: 1 }, to: { x: 20 / 3, y: 0 } },
+      { id: "pt-a", kind: "point", appearance: "primary", at: { x: 1, y: 3 } },
+      { id: "pt-b", kind: "point", appearance: "primary", at: { x: 7, y: 1 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 4 - Math.sqrt(6), y: 0 } },
+      { id: "p3", kind: "point", appearance: "answer", at: { x: 4 + Math.sqrt(6), y: 0 } },
+      { id: "p4", kind: "point", appearance: "answer", at: { x: 20 / 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pt-a", at: { x: 1, y: 3 }, placement: "above-left" },
+      { key: "b", objectId: "pt-b", at: { x: 7, y: 1 }, placement: "above-right" },
+      { key: "p1", objectId: "p1", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "p2", objectId: "p2", at: { x: 4 - Math.sqrt(6), y: 0 }, placement: "below" },
+      { key: "p3", objectId: "p3", at: { x: 4 + Math.sqrt(6), y: 0 }, placement: "above-left" },
+      { key: "p4", objectId: "p4", at: { x: 20 / 3, y: 0 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    p1: <InlineMath math="x = 0" />,
+    p2: <InlineMath math="4 - \sqrt{6}" />,
+    p3: <InlineMath math="4 + \sqrt{6}" />,
+    p4: <InlineMath math="\frac{20}{3}" />,
+  }}
+/>
+
+Jeder grüne Punkt auf der <InlineMath math="x" />-Achse ergibt ein eigenes rechtwinkliges Dreieck. Berechne nun alle vier Koordinaten mithilfe der Richtungsvektoren.
+
+<BlockMath math="\overrightarrow{AB} = \begin{pmatrix} 6 \\ -2 \end{pmatrix}, \quad \overrightarrow{AP} = \begin{pmatrix} x - 1 \\ -3 \end{pmatrix}, \quad \overrightarrow{BP} = \begin{pmatrix} x - 7 \\ -1 \end{pmatrix}" />
+
+## Rechter Winkel bei A oder B
+
+Ein rechter Winkel bei <InlineMath math="A" /> verlangt das Skalarprodukt null aus <InlineMath math="\overrightarrow{AB}" /> und <InlineMath math="\overrightarrow{AP}" />, ein rechter Winkel bei <InlineMath math="B" /> das Skalarprodukt null aus <InlineMath math="\overrightarrow{BA}" /> und <InlineMath math="\overrightarrow{BP}" />.
 
 <BlockMath math="\begin{aligned}
-\text{bei }A:&\quad\overrightarrow{AB}\cdot\overrightarrow{AP}=6(x-1)+(-2)(-3)=6x=0\quad\Rightarrow\quad x=0 \\
-\text{bei }B:&\quad\overrightarrow{BA}\cdot\overrightarrow{BP}=-6(x-7)+2\cdot(-1)=40-6x=0\quad\Rightarrow\quad x=\frac{20}{3}
+6(x - 1) + (-2)(-3) &= 0 \implies 6x = 0 \implies x = 0 \\
+-6(x - 7) + 2(-1) &= 0 \implies 40 - 6x = 0 \implies x = \frac{20}{3}
 \end{aligned}" />
 
-**Jeder dieser Fälle liefert genau einen Punkt**, weil die Gleichung linear ist.
+**Jeder dieser beiden Fälle liefert genau einen Punkt**, da beide Gleichungen linear sind.
 
-# Rechter Winkel bei P
+## Rechter Winkel bei P
+
+Ein rechter Winkel bei <InlineMath math="P" /> bedeutet, dass <InlineMath math="\overrightarrow{PA}" /> und <InlineMath math="\overrightarrow{PB}" /> senkrecht stehen. Geometrisch liegt <InlineMath math="P" /> auf dem Thaleskreis um <InlineMath math="(4 \mid 2)" /> mit Radius <InlineMath math="\sqrt{10}" />.
 
 <BlockMath math="\begin{aligned}
-\overrightarrow{PA}\cdot\overrightarrow{PB}=(1-x)(7-x)+3\cdot1&=0 \\
-x^2-8x+10&=0 \\
-x&=4\pm\sqrt6
+(1 - x)(7 - x) + 3 \cdot 1 &= 0 \\
+x^2 - 8x + 10 &= 0 \\
+x &= 4 \pm \sqrt{6}
 \end{aligned}" />
 
-Das ist dasselbe, wie die <InlineMath math="x" />-Achse mit dem Thaleskreis über <InlineMath math="AB" /> zu schneiden, der den Mittelpunkt <InlineMath math="(4\mid2)" /> und den Radius <InlineMath math="\sqrt{10}" /> hat. **Der Kreis schneidet die Achse zweimal**.
+Kollinearitätsprobe: Die Gerade <InlineMath math="AB" /> schneidet die <InlineMath math="x" />-Achse erst bei <InlineMath math="x = 10" />. Da keine der vier Lösungen gleich <InlineMath math="10" /> ist, **bilden alle vier Punkte echte Dreiecke**.
 
-Keiner der vier Punkte liegt mit <InlineMath math="A" /> und <InlineMath math="B" /> auf einer Geraden, denn die Gerade <InlineMath math="AB" /> trifft die <InlineMath math="x" />-Achse erst bei <InlineMath math="x=10" />. Jeder liefert also ein echtes Dreieck.
+## Warum andere Antworten falsch sind
 
-Also ist <InlineMath math="x=0" />, <InlineMath math="x=4-\sqrt6" />, <InlineMath math="x=4+\sqrt6" /> oder <InlineMath math="x=\frac{20}{3}" />.
+- Nur <InlineMath math="4 \pm \sqrt{6}" /> **vergisst die rechten Winkel** bei <InlineMath math="A" /> und <InlineMath math="B" />.
+- Nur <InlineMath math="0" /> oder <InlineMath math="\frac{20}{3}" /> vergisst den rechten Winkel bei <InlineMath math="P" />.
+- Der Wert <InlineMath math="\frac{22}{3}" /> entsteht durch einen Vorzeichenfehler im Skalarprodukt bei <InlineMath math="B" />.
+- Bei <InlineMath math="x = 10" /> liegen <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="P" /> auf einer Geraden, es gibt also kein Dreieck.
+- Der Wert <InlineMath math="x = 2" /> entsteht durch einen Vorzeichenfehler bei <InlineMath math="(-2)(-3)" /> im Fall bei <InlineMath math="A" />.
 
-# Warum die anderen Antworten falsch sind
+# Antwort
 
-- Nur <InlineMath math="4\pm\sqrt6" /> **denkt nur an den rechten Winkel bei <InlineMath math="P" />**. Die Aufgabe nennt die Ecke nicht.
-- Nur <InlineMath math="x=0" /> oder <InlineMath math="x=\frac{20}{3}" /> vergisst den Fall mit dem rechten Winkel bei <InlineMath math="P" />.
-- <InlineMath math="\frac{22}{3}" /> hat im Fall <InlineMath math="B" /> ein falsches Vorzeichen, also <InlineMath math="-6(x-7)+2=0" />.
-- <InlineMath math="x=10" /> ist der Punkt auf der Geraden <InlineMath math="AB" />. Dort liegen <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="P" /> auf einer Geraden, es gibt kein Dreieck.
-- <InlineMath math="x=2" /> hat im Fall <InlineMath math="A" /> ein falsches Vorzeichen, also <InlineMath math="6(x-1)-6=0" />.
+Das Dreieck <InlineMath math="ABP" /> ist genau für diese vier Werte rechtwinklig.
+
+<BlockMath math="x = 0, \quad x = 4 - \sqrt{6}, \quad x = 4 + \sqrt{6}, \quad x = \frac{20}{3}" />

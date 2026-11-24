@@ -1,35 +1,92 @@
-# Tiga faktor dengan sifat berbeda
+# Diketahui
 
-Pecahan ini punya tiga bagian, dan **setiap bagian berperilaku berbeda terhadap tanda**:
+**Pertidaksamaan pecahan** (*Ungleichung*) untuk semua bilangan real <InlineMath math="x \neq -2" /> diberikan sebagai berikut.
 
-- <InlineMath math="x" /> berganti tanda di <InlineMath math="x=0" />.
-- <InlineMath math="(x-3)^2" /> adalah kuadrat, jadi tidak pernah negatif. Nilainya nol hanya di <InlineMath math="x=3" />.
-- <InlineMath math="x+2" /> berganti tanda di <InlineMath math="x=-2" />, dan di titik itu pecahannya tidak terdefinisi.
+<BlockMath math="\frac{x\,(x - 3)^2}{x + 2} \le 0" />
 
-# Bagian yang bernilai nol
+Syarat <InlineMath math="x \neq -2" /> mengecualikan titik pembuat nol penyebut (*Definitionsbereich*).
 
-Pecahan bernilai nol tepat saat pembilangnya nol dan penyebutnya tidak: di <InlineMath math="x=0" /> dan di <InlineMath math="x=3" />. Karena tandanya <InlineMath math="\le" />, **kedua titik ini termasuk penyelesaian**.
+# Ditanyakan
 
-# Bagian yang bernilai negatif
+Tentukan semua bilangan real <InlineMath math="x \neq -2" /> yang memenuhi pertidaksamaan ini.
 
-Untuk <InlineMath math="x\ne3" />, faktor <InlineMath math="(x-3)^2" /> positif, jadi tanda pecahan sama dengan tanda <InlineMath math="\frac{x}{x+2}" />:
+# Penyelesaian
 
-| Bagian | <InlineMath math="x" /> | <InlineMath math="x+2" /> | Pecahan |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="x<-2" /> | negatif | negatif | positif |
-| <InlineMath math="-2<x<0" /> | negatif | positif | negatif |
-| <InlineMath math="x>0" /> | positif | positif | positif |
+Bayangkan tiga sakelar tanda yang bekerja bersamaan pada pecahan ini. Faktor <InlineMath math="x" /> dan <InlineMath math="x + 2" /> membalik tanda positif atau negatif, sedangkan faktor kuadrat <InlineMath math="(x - 3)^2" /> **tidak pernah negatif** dan hanya menyentuh nol di <InlineMath math="x = 3" />.
 
-Pecahannya **negatif hanya pada <InlineMath math="-2<x<0" />**. Titik <InlineMath math="x=3" /> tidak mengubah tanda, jadi di sekitar <InlineMath math="3" /> pecahannya tetap positif, kecuali tepat di <InlineMath math="3" /> yang bernilai nol.
+> Faktor berpangkat genap tidak pernah mengubah tanda pecahan, tetapi titik pembuat nolnya tetap ikut menjadi penyelesaian ketika tandanya kurang dari atau sama dengan nol.
 
-Cek: <InlineMath math="x=-1" /> memberi <InlineMath math="\frac{-1\cdot16}{1}=-16\le0" />, <InlineMath math="x=2" /> memberi <InlineMath math="\frac{2\cdot1}{4}>0" />, dan <InlineMath math="x=-3" /> memberi <InlineMath math="\frac{-3\cdot36}{-1}=108>0" />.
+Geser titik uji <InlineMath math="p" /> pada grafik berikut untuk melihat kapan kurva turun ke daerah <InlineMath math="y \le 0" /> dan bagaimana kurva memantul tepat di <InlineMath math="x = 3" />.
 
-Jadi, penyelesaiannya adalah <InlineMath math="-2<x\le0" /> atau <InlineMath math="x=3" />.
+<MathVisual
+  title={<>Perilaku tanda kurva di sekitar <InlineMath math="x = 0" /> dan <InlineMath math="x = 3" /></>}
+  description={
+    <>
+      Garis putus-putus vertikal menandai asimtot <InlineMath math="x = -2" />{" "}
+      dan daerah berarsir menandai <InlineMath math="y \le 0" />. Geser titik
+      uji <InlineMath math="p" /> untuk membaca nilai pecahan.
+    </>
+  }
+  footer={<>Kurva negatif pada <InlineMath math="-2 < x < 0" /> dan menyentuh nol di <InlineMath math="0" /> serta <InlineMath math="3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -10, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "p", min: -0.8, max: 5, value: 3, step: 0.2, label: "p" }],
+    objects: [
+      { id: "non-positive", kind: "region", appearance: "construction", inequalities: ["y <= 0"] },
+      { id: "asymptote", kind: "line", appearance: "reference", stroke: "dashed", through: [{ x: -2, y: -10 }, { x: -2, y: 6 }] },
+      { id: "branch", kind: "function", appearance: "primary", formula: "x * (x - 3)^2 / (x + 2)", domain: { min: -0.8, max: 5.5 } },
+      { id: "zero-origin", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "zero-touch", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "probe", kind: "marker", appearance: "highlight", x: "p", y: "p * (p - 3)^2 / (p + 2)" },
+    ],
+    labels: [
+      { key: "asymptote", objectId: "asymptote", at: { x: -2, y: 4.5 }, placement: "right" },
+      { key: "touch", objectId: "zero-touch", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+    readouts: [{ key: "value", formula: "p * (p - 3)^2 / (p + 2)" }],
+  }}
+  labels={{
+    p: <>Titik uji <InlineMath math="p" /></>,
+    asymptote: <InlineMath math="x = -2" />,
+    touch: <InlineMath math="(3, 0)" />,
+    value: <>Nilai pecahan</>,
+  }}
+/>
 
-# Kenapa pilihan lain salah
+Di antara <InlineMath math="-2" /> dan <InlineMath math="0" />, kurva berada di bawah sumbu <InlineMath math="x" />. Setelah melewati nol, kurva selalu di atas sumbu dan hanya menyentuh nol di <InlineMath math="(3, 0)" /> lalu memantul naik kembali.
 
-- Hanya <InlineMath math="-2<x\le0" /> **melupakan titik <InlineMath math="x=3" />**, tempat pembilangnya nol.
-- <InlineMath math="-2\le x\le0" /> atau <InlineMath math="x=3" /> memasukkan <InlineMath math="x=-2" />, padahal di sana penyebutnya nol.
-- <InlineMath math="x\le0" /> atau <InlineMath math="x=3" /> mengalikan dengan <InlineMath math="x+2" /> seolah-olah selalu positif. Untuk <InlineMath math="x=-3" /> hasilnya justru positif.
-- <InlineMath math="-2<x\le0" /> atau <InlineMath math="x\ge3" /> memakai pergantian tanda di <InlineMath math="x=3" />, padahal faktor kuadrat tidak berganti tanda. Untuk <InlineMath math="x=4" />, pecahannya <InlineMath math="\frac{4}{6}>0" />.
-- <InlineMath math="x<-2" /> atau <InlineMath math="x\ge0" /> adalah daerah tempat pecahannya tidak negatif, jadi tandanya terbaca terbalik.
+## Titik nol dan tabel tanda
+
+Pecahan bernilai nol saat pembilang nol dan penyebut tidak nol, yaitu di <InlineMath math="x = 0" /> dan <InlineMath math="x = 3" />. Karena tanda pertidaksamaannya <InlineMath math="\le" />, **kedua titik ini wajib ikut**.
+
+Untuk <InlineMath math="x \neq 3" />, faktor <InlineMath math="(x - 3)^2 > 0" />, sehingga tanda pecahan sepenuhnya ditentukan oleh hasil bagi <InlineMath math="x" /> dengan <InlineMath math="x + 2" />.
+
+| Selang | <InlineMath math="x" /> | <InlineMath math="x + 2" /> | Tanda pecahan |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="x < -2" /> | negatif | negatif | positif |
+| <InlineMath math="-2 < x < 0" /> | negatif | positif | negatif |
+| <InlineMath math="x > 0" /> | positif | positif | positif |
+
+## Pengecekan nilai dan pilihan salah
+
+Uji tiga titik wakil untuk **mengonfirmasi seluruh selang dan batasnya**.
+
+<BlockMath math="\begin{aligned}
+x = -1 &\implies \frac{(-1)(-4)^2}{1} = -16 \le 0 \\
+x = 2 &\implies \frac{2(-1)^2}{4} = \frac{1}{2} > 0 \\
+x = -3 &\implies \frac{(-3)(-6)^2}{-1} = 108 > 0
+\end{aligned}" />
+
+- Pilihan yang hanya mengambil selang terbuka <InlineMath math="-2" /> sampai <InlineMath math="0" /> melupakan titik terpencil <InlineMath math="x = 3" /> tempat pembilang bernilai nol.
+- Pilihan dengan batas kiri tertutup di <InlineMath math="-2" /> ikut memasukkan <InlineMath math="x = -2" />, padahal penyebut menjadi nol.
+- Pilihan <InlineMath math="x \le 0" /> atau <InlineMath math="x = 3" /> mengalikan kedua ruas dengan <InlineMath math="x + 2" /> tanpa memperhatikan tanda negatifnya saat <InlineMath math="x < -2" />.
+- Pilihan yang mengganti titik <InlineMath math="x = 3" /> menjadi <InlineMath math="x \ge 3" /> mengira tanda berganti di <InlineMath math="x = 3" />, padahal faktor kuadrat tidak mengubah tanda.
+- Pilihan <InlineMath math="x < -2" /> atau <InlineMath math="x \ge 0" /> membalik arah pertidaksamaan sehingga mengambil daerah non-negatif.
+
+# Jawaban
+
+Semua bilangan real yang memenuhi pertidaksamaan ini adalah sebagai berikut.
+
+<BlockMath math="-2 < x \le 0 \quad \text{atau} \quad x = 3" />

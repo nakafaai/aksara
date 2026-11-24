@@ -1,35 +1,101 @@
-# How many corners the base has
+# Given
 
-A prism with an <InlineMath math="n" />-gon base has <InlineMath math="n" /> edges on the bottom, <InlineMath math="n" /> on the top and <InlineMath math="n" /> upright edges. **So it has <InlineMath math="3n" /> edges**:
+A **right prism** (*gerades Prisma*) has <InlineMath math="30" /> edges (*Kanten*). A **space diagonal** (*Raumdiagonale*) connects two vertices that do not share any face of the prism.
 
-<BlockMath math="3n=30\quad\Rightarrow\quad n=10" />
+# Asked
 
-This prism has <InlineMath math="20" /> corners, <InlineMath math="10" /> on top and <InlineMath math="10" /> at the bottom.
+Find the total number of space diagonals in this prism.
 
-# From one corner on top
+# Solution
 
-Take one corner on the top face. Every other top corner lies in the same top face, so none of them gives a space diagonal. At the bottom, **the corner right below it and that corner's two neighbours share an upright face with it**. That leaves <InlineMath math="10-3=7" /> corners.
+Picture a tower with identical top and bottom floors. Each base corner contributes three edges: one on the bottom, one on the top, and one vertical pillar. With <InlineMath math="30" /> edges total, the base must be a **decagon**.
 
-Each space diagonal joins one top corner to one bottom corner, so none is counted twice:
+<BlockMath math="3n = 30 \implies n = 10" />
 
-<BlockMath math="10\cdot7=70" />
+So the prism has <InlineMath math="20" /> vertices in all: <InlineMath math="10" /> on the top face and <InlineMath math="10" /> on the bottom face.
 
-# Checking another way
+> Every space diagonal must bridge one top vertex to one bottom vertex that is neither directly beneath it nor one of its two side-face neighbors.
 
-There are <InlineMath math="\binom{20}{2}=190" /> segments between two corners. **Remove every segment that lies in a face**:
+Look at this top view of the ten-sided base: from one top corner <InlineMath math="A_0" />, three bottom positions are ruled out (the point directly below plus its two adjacent corners), leaving seven valid targets.
 
-- the <InlineMath math="30" /> edges,
-- the diagonals of the two bases, <InlineMath math="2\cdot\frac{10\cdot7}{2}=70" />,
-- the diagonals of the <InlineMath math="10" /> rectangular upright faces, <InlineMath math="10\cdot2=20" />.
+<MathVisual
+  title={<>Seven space diagonals from one top vertex <InlineMath math="A_0" /></>}
+  description={
+    <>
+      Top view of the decagonal prism. Blue point <InlineMath math="A_0" /> sits
+      on the top base. The two red corners lie on shared side faces, leaving
+      seven green segments cutting through the interior.
+    </>
+  }
+  footer={<>Each top vertex connects to <InlineMath math="10 - 3 = 7" /> bottom vertices.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      {
+        id: "decagon",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 3, y: 0 },
+          { x: 3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) },
+          { x: 3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) },
+          { x: -3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) },
+          { x: -3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) },
+          { x: -3, y: 0 },
+          { x: -3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) },
+          { x: -3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) },
+          { x: 3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) },
+          { x: 3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) },
+        ],
+      },
+      { id: "d2", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "d3", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos((2 * Math.PI) / 5), y: 3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "d4", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) } },
+      { id: "d5", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3, y: 0 } },
+      { id: "d6", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) } },
+      { id: "d7", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: -3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "d8", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 3 * Math.cos((2 * Math.PI) / 5), y: -3 * Math.sin((2 * Math.PI) / 5) } },
+      { id: "v0", kind: "point", appearance: "primary", at: { x: 3, y: 0 } },
+      { id: "v1", kind: "point", appearance: "warning", at: { x: 3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) } },
+      { id: "v9", kind: "point", appearance: "warning", at: { x: 3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) } },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "v1", objectId: "v1", at: { x: 3 * Math.cos(Math.PI / 5), y: 3 * Math.sin(Math.PI / 5) }, placement: "above-right" },
+      { key: "v9", objectId: "v9", at: { x: 3 * Math.cos(Math.PI / 5), y: -3 * Math.sin(Math.PI / 5) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    v0: <InlineMath math="A_0" />,
+    v1: <InlineMath math="B_1" />,
+    v9: <InlineMath math="B_9" />,
+  }}
+/>
 
-<BlockMath math="190-30-70-20=70" />
+Because every space diagonal has one top endpoint and one bottom endpoint, counting from the ten top vertices counts each diagonal once with zero overlap.
 
-So the prism has <InlineMath math="70" /> space diagonals.
+## Total count and verification
 
-# Why the other options are wrong
+Multiply the <InlineMath math="10" /> top vertices by the <InlineMath math="7" /> valid bottom vertices.
 
-- <InlineMath math="90" /> **removes only the corner right below**, but its two neighbours share an upright face too. That's the same as forgetting the diagonals of the upright faces.
-- <InlineMath math="35" /> halves again, as if every diagonal were counted twice. Going from top to bottom counts each one once.
-- <InlineMath math="80" /> removes only the corner below and one neighbour.
-- <InlineMath math="140" /> forgets to remove the diagonals of the two bases.
-- <InlineMath math="160" /> removes only the edges and counts every other segment as a space diagonal.
+<BlockMath math="10 \times 7 = 70" />
+
+Cross-check by subtraction: out of <InlineMath math="\binom{20}{2} = 190" /> vertex pairs, remove <InlineMath math="30" /> edges, <InlineMath math="70" /> base diagonals and <InlineMath math="20" /> rectangular side-face diagonals.
+
+<BlockMath math="190 - 30 - 70 - 20 = 70" />
+
+**Both counts match at <InlineMath math="70" />**.
+
+## Why other choices fail
+
+- Getting <InlineMath math="90" /> **removes only the vertex directly below** and forgets the two neighbors on shared side faces.
+- Getting <InlineMath math="35" /> divides <InlineMath math="70" /> by two unnecessarily, even though top-to-bottom counting never double-counts.
+- Getting <InlineMath math="80" /> excludes only one bottom neighbor instead of both.
+- Getting <InlineMath math="140" /> forgets to subtract the <InlineMath math="70" /> base diagonals from all vertex pairs.
+- Getting <InlineMath math="160" /> subtracts only the <InlineMath math="30" /> edges and keeps all face diagonals.
+
+# Answer
+
+A right prism with <InlineMath math="30" /> edges has exactly <InlineMath math="70" /> space diagonals.

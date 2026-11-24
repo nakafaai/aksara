@@ -1,40 +1,92 @@
-# Apa yang tersisa setiap kali dikuras
+# Diketahui
 
-Misalkan pada pengurasan pertama dibuang <InlineMath math="x" /> liter. Air tidak membawa zat antibeku, jadi **setiap pengurasan membuang bagian yang sama dari zat antibeku seperti dari cairannya**, lalu volumenya kembali menjadi <InlineMath math="40" /> liter.
+Tangki pendingin mesin berisi <InlineMath math="40" /> liter cairan dengan kadar **zat antibeku** (*Frostschutzanteil*) sebesar <InlineMath math="20\,\%" />. Pertama dibuang <InlineMath math="x" /> liter lalu diisi air kembali sampai penuh, lalu setelah tercampur rata dibuang <InlineMath math="2x" /> liter dan diisi air kembali sehingga kadar akhir menjadi <InlineMath math="5\,\%" />.
 
-- Pengurasan pertama membuang <InlineMath math="\frac{x}{40}" /> bagian, jadi tersisa <InlineMath math="1-\frac{x}{40}" /> bagian zat antibeku.
-- Pengurasan kedua membuang <InlineMath math="2x" /> liter, yaitu <InlineMath math="\frac{2x}{40}" /> bagian, jadi tersisa <InlineMath math="1-\frac{2x}{40}" /> dari yang ada saat itu.
+# Ditanyakan
 
-Kadarnya turun dari <InlineMath math="20\,\%" /> ke <InlineMath math="5\,\%" />, yaitu menjadi <InlineMath math="\frac14" /> kadar awalnya. **Kedua sisa itu dikalikan, bukan dijumlahkan**:
+Tentukan volume cairan <InlineMath math="x" /> (dalam liter) yang dibuang pada pengurasan pertama.
 
-<BlockMath math="\left(1-\frac{x}{40}\right)\left(1-\frac{2x}{40}\right)=\frac14" />
+# Penyelesaian
 
-# Menyelesaikan persamaan kuadratnya
+Bayangkan segelas sirup manis yang kamu buang sebagian lalu isi ulang dengan air bening. Air tidak membawa gula baru, jadi setiap kali kamu membuang seperbagian cairan, **kadar sirup tinggal dikalikan dengan fraksi yang masih tertinggal di dalam gelas**.
 
-**Kalikan kedua ruas dengan <InlineMath math="1600" />** agar pecahannya hilang:
+> Pengenceran berulang bekerja dengan perkalian faktor sisa, bukan penjumlahan bagian yang dibuang, karena pengurasan kedua bekerja pada cairan yang sudah lebih encer.
+
+Perhatikan grafik kadar zat antibeku terhadap <InlineMath math="x" /> berikut ini. Daerah berarsir menunjukkan batas fisik tangki <InlineMath math="0 \le x \le 20" />, karena pengurasan kedua membuang <InlineMath math="2x" /> liter dari tangki <InlineMath math="40" /> liter.
+
+<MathVisual
+  title={<>Kadar zat antibeku setelah dua pengurasan</>}
+  description={
+    <>
+      Kurva biru menunjukkan kadar akhir dalam persen terhadap volume kuras
+      pertama <InlineMath math="x" />. Garis putus-putus menandai target{" "}
+      <InlineMath math="5\,\%" /> dan daerah berarsir menandai batas fisik{" "}
+      <InlineMath math="0 \le x \le 20" />.
+    </>
+  }
+  footer={<>Hanya akar di dalam batas tangki <InlineMath math="x \le 20" /> yang mungkin secara fisik.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 52 }, y: { min: -5, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "valid-tank", kind: "region", appearance: "construction", inequalities: ["x >= 0", "x <= 20"] },
+      { id: "antifreeze", kind: "function", appearance: "primary", formula: "20 * (1 - x / 40) * (1 - 2 * x / 40)", domain: { min: 0, max: 50 } },
+      { id: "target", kind: "line", appearance: "highlight", stroke: "dashed", through: [{ x: 0, y: 5 }, { x: 50, y: 5 }] },
+      { id: "valid-root", kind: "point", appearance: "answer", at: { x: 30 - 10 * Math.sqrt(3), y: 5 } },
+      { id: "invalid-root", kind: "point", appearance: "warning", at: { x: 30 + 10 * Math.sqrt(3), y: 5 } },
+    ],
+    labels: [
+      { key: "valid", objectId: "valid-root", at: { x: 30 - 10 * Math.sqrt(3), y: 5 }, placement: "above-right" },
+      { key: "invalid", objectId: "invalid-root", at: { x: 30 + 10 * Math.sqrt(3), y: 5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    valid: <InlineMath math="30 - 10\sqrt{3}" />,
+    invalid: <InlineMath math="30 + 10\sqrt{3}" />,
+  }}
+/>
+
+Garis target <InlineMath math="5\,\%" /> memotong kurva di dua titik, tetapi titik merah berada jauh di luar kapasitas tangki <InlineMath math="40" /> liter sehingga otomatis gugur.
+
+## Menyusun dan menyelesaikan persamaan
+
+Pengurasan pertama menyisakan faktor <InlineMath math="1 - \frac{x}{40}" /> dan pengurasan kedua menyisakan faktor <InlineMath math="1 - \frac{2x}{40}" />. Kadar turun dari <InlineMath math="20\,\%" /> menjadi <InlineMath math="5\,\%" />, yaitu tepat **seperempat dari kadar semula**.
 
 <BlockMath math="\begin{aligned}
-(40-x)(40-2x)&=400 \\
-1600-120x+2x^2&=400 \\
-x^2-60x+600&=0 \\
-x&=30\pm\sqrt{900-600}=30\pm10\sqrt3
+\left(1 - \frac{x}{40}\right)\left(1 - \frac{2x}{40}\right) &= \frac{1}{4} \\
+(40 - x)(40 - 2x) &= 400 \\
+2x^2 - 120x + 1200 &= 0 \\
+x^2 - 60x + 600 &= 0
 \end{aligned}" />
 
-# Memilih akar yang mungkin
+Selesaikan persamaan kuadrat ini dengan rumus kuadrat.
 
-Pengurasan kedua membuang <InlineMath math="2x" /> liter dari tangki <InlineMath math="40" /> liter, jadi **harus berlaku <InlineMath math="2x\le40" />, yaitu <InlineMath math="x\le20" />**.
+<BlockMath math="x = 30 \pm \sqrt{900 - 600} = 30 \pm 10\sqrt{3}" />
 
-- <InlineMath math="30+10\sqrt3\approx47{,}3" /> bahkan lebih besar dari isi tangki, jadi gugur.
-- <InlineMath math="30-10\sqrt3\approx12{,}7" /> memenuhi <InlineMath math="x\le20" />.
+## Memilih akar sah dan mengecek hasil
 
-Cek: <InlineMath math="1-\frac{12{,}7}{40}\approx0{,}683" /> dan <InlineMath math="1-\frac{25{,}4}{40}\approx0{,}366" />, hasil kalinya sekitar <InlineMath math="0{,}25" />.
+Karena <InlineMath math="2x \le 40" />, nilai sah harus memenuhi **batas fisik <InlineMath math="x \le 20" />**. Bandingkan taksiran kedua akar berikut.
 
-Jadi, pada pengurasan pertama dibuang <InlineMath math="30-10\sqrt3" /> liter, sekitar <InlineMath math="12{,}7" /> liter.
+<BlockMath math="\begin{aligned}
+30 + 10\sqrt{3} &\approx 47{,}3 > 20 \quad \text{(mustahil)} \\
+30 - 10\sqrt{3} &\approx 12{,}7 \le 20 \quad \text{(sah)}
+\end{aligned}" />
 
-# Kenapa pilihan lain salah
+Cek nilai sah ke perkalian kedua faktor sisa.
 
-- <InlineMath math="30+10\sqrt3" /> liter **lupa memeriksa akar terhadap isi tangki**. Liter sebanyak itu tidak mungkin dibuang dari <InlineMath math="40" /> liter.
-- Pilihan yang memuat kedua akar juga lupa pemeriksaan itu.
-- <InlineMath math="20" /> liter menganggap kedua pengurasan sama besar, sehingga <InlineMath math="\left(1-\frac{x}{40}\right)^2=\frac14" />.
-- <InlineMath math="10" /> liter menjumlahkan bagian yang dibuang, <InlineMath math="\frac{x}{40}+\frac{2x}{40}=\frac34" />, padahal pengurasan kedua hanya mengenai zat antibeku yang masih tersisa.
-- <InlineMath math="60-20\sqrt3" /> liter **adalah banyaknya cairan pada pengurasan kedua**, yaitu <InlineMath math="2x" />, padahal yang ditanya pengurasan pertama.
+<BlockMath math="\left(1 - \frac{12{,}68}{40}\right)\left(1 - \frac{25{,}36}{40}\right) \approx 0{,}683 \times 0{,}366 \approx 0{,}25" />
+
+Hasil kalinya cocok tepat menjadi seperempat kadar semula.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="30 + 10\sqrt{3}" /> liter **melebihi kapasitas tangki** <InlineMath math="40" /> liter karena lupa mengecek syarat fisik.
+- Pilihan dengan kedua akar sekaligus juga lupa membuang akar mustahil.
+- <InlineMath math="20" /> liter mengira kedua pengurasan sama besar, bukan dua kali lipat.
+- <InlineMath math="10" /> liter menjumlahkan bagian terbuang alih-alih mengalikan faktor sisa.
+- <InlineMath math="60 - 20\sqrt{3}" /> liter adalah volume pengurasan kedua (<InlineMath math="2x" />), padahal yang ditanya pengurasan pertama.
+
+# Jawaban
+
+Volume cairan yang dibuang pada pengurasan pertama adalah <InlineMath math="30 - 10\sqrt{3}" /> liter.

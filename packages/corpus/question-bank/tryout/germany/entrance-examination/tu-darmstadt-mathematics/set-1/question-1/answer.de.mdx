@@ -1,35 +1,97 @@
-# Drei Bedingungen auf einmal
+# Gegeben
 
-„Zwei verschiedene reelle Lösungen, die beide positiv sind“ sind eigentlich drei Bedingungen. **Du brauchst alle drei, nicht nur eine**:
+Gegeben ist eine quadratische Gleichung mit einem reellen Parameter <InlineMath math="a" />.
 
-- es gibt zwei verschiedene reelle Lösungen, also ist die Diskriminante positiv
-- die Summe der Lösungen ist positiv
-- das Produkt der Lösungen ist positiv
+<BlockMath math="x^2 - 2ax + a + 6 = 0" />
 
-Zwei reelle Zahlen sind genau dann beide positiv, wenn ihre Summe und ihr Produkt positiv sind. Ein positives Produkt heißt gleiches Vorzeichen, und eine positive Summe macht dieses Vorzeichen positiv.
+Die Gleichung soll **zwei verschiedene positive reelle Lösungen** besitzen.
 
-# Jede Bedingung ausrechnen
+# Gesucht
 
-Für <InlineMath math="x^2-2ax+(a+6)=0" /> liefert **der Satz von Vieta** <InlineMath math="x_1+x_2=2a" /> und <InlineMath math="x_1x_2=a+6" />.
+Alle reellen Werte von <InlineMath math="a" />, für die genau zwei verschiedene positive reelle Lösungen existieren.
+
+# Lösung
+
+Stell dir die nach oben geöffnete Parabel zur linken Seite dieser Gleichung vor. Für zwei verschiedene positive Lösungen muss sie **die <InlineMath math="x" />-Achse zweimal rechts von der Null schneiden**.
+
+> Zwei reelle Zahlen sind genau dann beide positiv, wenn ihr Produkt positiv ist und sie dasselbe Vorzeichen haben und zusätzlich ihre Summe positiv ist.
+
+Verschieb den Parameter <InlineMath math="a" /> im Graphen und beobachte, wann beide Schnittpunkte im Bereich <InlineMath math="x > 0" /> liegen.
+
+<MathVisual
+  title={<>Lage der Parabel in Abhängigkeit von <InlineMath math="a" /></>}
+  description={
+    <>
+      Der schraffierte Bereich zeigt <InlineMath math="x > 0" />. Verschieb{" "}
+      <InlineMath math="a" />, um Scheitelpunkt, Diskriminante, Summe und
+      Produkt der Nullstellen zu verfolgen.
+    </>
+  }
+  footer={<>Beide Schnittpunkte liegen nur für <InlineMath math="a > 3" /> rechts von null.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 10 }, y: { min: -12, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: -4, max: 5, value: 4, step: 0.5, label: "a" }],
+    objects: [
+      { id: "positive-half", kind: "region", appearance: "construction", inequalities: ["x > 0"] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2 * a * x + a + 6", domain: { min: -6, max: 10 } },
+      { id: "vertex", kind: "marker", appearance: "answer", x: "a", y: "a + 6 - a^2" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "4 * a^2 - 4 * a - 24" },
+      { key: "sum", formula: "2 * a" },
+      { key: "product", formula: "a + 6" },
+    ],
+  }}
+  labels={{
+    a: <>Parameter <InlineMath math="a" /></>,
+    discriminant: <>Diskriminante <InlineMath math="D" /></>,
+    sum: <>Summe <InlineMath math="x_1 + x_2" /></>,
+    product: <>Produkt <InlineMath math="x_1 x_2" /></>,
+  }}
+/>
+
+Bei <InlineMath math="a = 4" /> liegt der Scheitel im vierten Quadranten und beide Nullstellen sind positiv. Bei <InlineMath math="a = 3" /> berührt die Parabel die Achse nur einmal, und bei <InlineMath math="a = -3" /> sind beide Nullstellen negativ.
+
+## Drei Bedingungen zugleich
+
+Da der Leitkoeffizient <InlineMath math="1" /> ist, kombinierst du die **Diskriminante** mit dem Satz von Vieta für Summe und Produkt der Lösungen.
 
 <BlockMath math="\begin{aligned}
-D=4a^2-4(a+6)=4(a-3)(a+2)>0\quad&\Rightarrow\quad a<-2\ \text{oder}\ a>3 \\
-x_1+x_2=2a>0\quad&\Rightarrow\quad a>0 \\
-x_1x_2=a+6>0\quad&\Rightarrow\quad a>-6
+D &= (-2a)^2 - 4(1)(a + 6) = 4(a - 3)(a + 2) > 0 \\
+x_1 + x_2 &= 2a > 0 \\
+x_1 x_2 &= a + 6 > 0
 \end{aligned}" />
 
-# Wo sich alle drei überschneiden
+Jede Ungleichung liefert einen Bereich für <InlineMath math="a" />, und alle drei müssen gleichzeitig gelten.
 
-<InlineMath math="a" /> muss alle drei erfüllen. Der Teil <InlineMath math="a<-2" /> verletzt <InlineMath math="a>0" />, also **bleibt nur <InlineMath math="a>3" /> übrig**.
+<BlockMath math="\begin{aligned}
+D > 0 &\iff a < -2 \quad \text{oder} \quad a > 3 \\
+x_1 + x_2 > 0 &\iff a > 0 \\
+x_1 x_2 > 0 &\iff a > -6
+\end{aligned}" />
 
-Probe mit zwei Beispielen. Für <InlineMath math="a=4" /> hat <InlineMath math="x^2-8x+10=0" /> die Lösungen <InlineMath math="4\pm\sqrt6" />, beide positiv. Für <InlineMath math="a=-3" /> haben die Lösungen von <InlineMath math="x^2+6x+3=0" /> die Summe <InlineMath math="-6" />, sind also beide negativ.
+## Schnittmenge und Probe
 
-Die Gleichung hat also genau für <InlineMath math="a>3" /> zwei verschiedene positive Lösungen.
+Bildest du die **Schnittmenge aller drei Bereiche**, fällt <InlineMath math="a < -2" /> wegen <InlineMath math="a > 0" /> weg. Es bleibt allein <InlineMath math="a > 3" /> übrig.
 
-# Warum die anderen Antworten falsch sind
+Prüf das Ergebnis mit konkreten Werten an und neben der Grenze.
 
-- <InlineMath math="a<-2" /> oder <InlineMath math="a>3" /> benutzt nur die Diskriminante. Für <InlineMath math="a<-2" /> sind beide Lösungen reell, aber nicht positiv.
-- <InlineMath math="a>0" /> benutzt nur die Summe. Für <InlineMath math="a=1" /> ist die Diskriminante <InlineMath math="4(-2)(3)<0" />, es gibt also keine reelle Lösung.
-- <InlineMath math="-6<a<-2" /> oder <InlineMath math="a>3" /> **vergisst die Bedingung für die Summe**. Das Beispiel <InlineMath math="a=-3" /> oben liefert zwei negative Lösungen.
-- <InlineMath math="a\ge3" /> nimmt <InlineMath math="a=3" /> mit. Dort hat <InlineMath math="x^2-6x+9=0" /> nur eine Lösung, <InlineMath math="x=3" />.
-- <InlineMath math="-2<a<3" /> ist der Bereich mit negativer Diskriminante, das Vorzeichen wurde also verkehrt herum gelesen.
+<BlockMath math="\begin{aligned}
+a = 4 &\implies x^2 - 8x + 10 = 0 \implies x = 4 \pm \sqrt{6} > 0 \\
+a = 3 &\implies (x - 3)^2 = 0 \implies x = 3 \quad \text{(nur eine Lösung)} \\
+a = -3 &\implies x^2 + 6x + 3 = 0 \implies x = -3 \pm \sqrt{6} < 0
+\end{aligned}" />
+
+## Warum andere Antworten falsch sind
+
+- <InlineMath math="a < -2" /> oder <InlineMath math="a > 3" /> prüft nur die Diskriminante und lässt für <InlineMath math="a < -2" /> negative Lösungen zu.
+- <InlineMath math="a > 0" /> nutzt nur die Summenbedingung, doch für <InlineMath math="a = 1" /> ist die Diskriminante negativ und es gibt keine reelle Lösung.
+- Der Bereich zwischen <InlineMath math="-6" /> und <InlineMath math="-2" /> **vergisst die positive Summe**, sodass <InlineMath math="a = -3" /> zwei negative Lösungen erzeugt.
+- <InlineMath math="a \ge 3" /> schließt <InlineMath math="a = 3" /> ein, wo nur eine doppelte Lösung vorliegt.
+- Der Bereich zwischen <InlineMath math="-2" /> und <InlineMath math="3" /> kehrt das Vorzeichen der Diskriminante um und trifft genau den Bereich ohne reelle Lösung.
+
+# Antwort
+
+Die Gleichung besitzt genau dann zwei verschiedene positive reelle Lösungen, wenn <InlineMath math="a > 3" /> gilt.

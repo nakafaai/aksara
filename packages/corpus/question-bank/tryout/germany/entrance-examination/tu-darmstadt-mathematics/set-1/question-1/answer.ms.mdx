@@ -1,35 +1,97 @@
-# Tiga syarat serentak
+# Diberi
 
-"Dua penyelesaian nyata yang berbeza dan kedua-duanya positif" sebenarnya tiga syarat. **Kamu perlukan ketiga-tiganya, bukan satu sahaja**:
+Persamaan kuadratik dengan parameter nyata <InlineMath math="a" /> ialah seperti berikut.
 
-- ada dua penyelesaian nyata yang berbeza, jadi pembezalayan positif
-- hasil tambah kedua-dua punca positif
-- hasil darab kedua-dua punca positif
+<BlockMath math="x^2 - 2ax + a + 6 = 0" />
 
-Dua nombor nyata kedua-duanya positif tepat apabila hasil tambah dan hasil darabnya positif. Hasil darab yang positif bermaksud kedua-duanya sama tanda, lalu hasil tambah yang positif memastikan tanda itu positif.
+Soalan meminta **dua penyelesaian nyata yang berbeza dan kedua-duanya positif** (*zwei verschiedene positive reelle Lösungen*).
 
-# Mengira setiap syarat
+# Ditanya
 
-Untuk <InlineMath math="x^2-2ax+(a+6)=0" />, **hasil tambah dan hasil darab punca** ialah <InlineMath math="x_1+x_2=2a" /> dan <InlineMath math="x_1x_2=a+6" />.
+Tentukan semua nilai nyata <InlineMath math="a" /> yang menjadikan persamaan kuadratik ini mempunyai tepat dua punca nyata berbeza yang kedua-duanya positif.
+
+# Penyelesaian
+
+Bayangkan graf parabola terbuka ke atas daripada sebelah kiri persamaan ini. Supaya persamaan mempunyai dua punca nyata berbeza yang positif, parabola mesti **memotong paksi <InlineMath math="x" /> pada dua titik yang kedua-duanya di sebelah kanan sifar**.
+
+> Dua nombor nyata pasti kedua-duanya positif tepat apabila hasil darabnya positif supaya tandanya sama, lalu jumlahnya juga positif.
+
+Gerakkan nilai <InlineMath math="a" /> pada graf berikut dan perhatikan bila kedua-dua pintasan paksi <InlineMath math="x" /> berada dalam kawasan <InlineMath math="x > 0" />.
+
+<MathVisual
+  title={<>Kedudukan parabola mengikut nilai <InlineMath math="a" /></>}
+  description={
+    <>
+      Kawasan berlorek menandakan <InlineMath math="x > 0" />. Gerakkan
+      parameter <InlineMath math="a" /> untuk melihat perubahan puncak,
+      pembezalayan, hasil tambah punca dan hasil darab punca.
+    </>
+  }
+  footer={<>Kedua-dua pintasan berada di kanan sifar hanya apabila <InlineMath math="a > 3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 10 }, y: { min: -12, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: -4, max: 5, value: 4, step: 0.5, label: "a" }],
+    objects: [
+      { id: "positive-half", kind: "region", appearance: "construction", inequalities: ["x > 0"] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2 * a * x + a + 6", domain: { min: -6, max: 10 } },
+      { id: "vertex", kind: "marker", appearance: "answer", x: "a", y: "a + 6 - a^2" },
+    ],
+    readouts: [
+      { key: "discriminant", formula: "4 * a^2 - 4 * a - 24" },
+      { key: "sum", formula: "2 * a" },
+      { key: "product", formula: "a + 6" },
+    ],
+  }}
+  labels={{
+    a: <>Parameter <InlineMath math="a" /></>,
+    discriminant: <>Pembezalayan <InlineMath math="D" /></>,
+    sum: <>Hasil tambah <InlineMath math="x_1 + x_2" /></>,
+    product: <>Hasil darab <InlineMath math="x_1 x_2" /></>,
+  }}
+/>
+
+Pada <InlineMath math="a = 4" />, puncak berada dalam sukuan keempat dan kedua-dua pintasan positif. Pada <InlineMath math="a = 3" />, parabola hanya menyentuh paksi pada satu titik, manakala pada <InlineMath math="a = -3" /> kedua-dua puncanya negatif.
+
+## Tiga syarat serentak
+
+Oleh sebab pekali kuadratiknya <InlineMath math="1" />, kita gunakan **pembezalayan** (*Diskriminante*) serta rumus Vieta bagi hasil tambah dan hasil darab punca.
 
 <BlockMath math="\begin{aligned}
-D=4a^2-4(a+6)=4(a-3)(a+2)>0\quad&\Rightarrow\quad a<-2\ \text{atau}\ a>3 \\
-x_1+x_2=2a>0\quad&\Rightarrow\quad a>0 \\
-x_1x_2=a+6>0\quad&\Rightarrow\quad a>-6
+D &= (-2a)^2 - 4(1)(a + 6) = 4(a - 3)(a + 2) > 0 \\
+x_1 + x_2 &= 2a > 0 \\
+x_1 x_2 &= a + 6 > 0
 \end{aligned}" />
 
-# Persilangan ketiga-tiga syarat
+Daripada ketiga-tiga ketaksamaan ini, kita memperoleh tiga julat nilai <InlineMath math="a" /> yang mesti dipenuhi bersama.
 
-Nilai <InlineMath math="a" /> mesti memenuhi ketiga-tiganya. Bahagian <InlineMath math="a<-2" /> gugur kerana melanggar <InlineMath math="a>0" />, jadi **yang tinggal hanya <InlineMath math="a>3" />**.
+<BlockMath math="\begin{aligned}
+D > 0 &\iff a < -2 \quad \text{atau} \quad a > 3 \\
+x_1 + x_2 > 0 &\iff a > 0 \\
+x_1 x_2 > 0 &\iff a > -6
+\end{aligned}" />
 
-Semak dengan dua contoh. Untuk <InlineMath math="a=4" />, <InlineMath math="x^2-8x+10=0" /> mempunyai punca <InlineMath math="4\pm\sqrt6" />, kedua-duanya positif. Untuk <InlineMath math="a=-3" />, punca <InlineMath math="x^2+6x+3=0" /> mempunyai hasil tambah <InlineMath math="-6" />, jadi kedua-duanya negatif.
+## Persilangan dan semakan
 
-Jadi, persamaan itu mempunyai dua penyelesaian positif yang berbeza tepat untuk <InlineMath math="a>3" />.
+Semua syarat mesti berlaku serentak, jadi kita ambil **persilangan ketiga-tiga julat**. Cabang <InlineMath math="a < -2" /> gugur kerana melanggar <InlineMath math="a > 0" />, meninggalkan hanya <InlineMath math="a > 3" />.
 
-# Kenapa pilihan lain salah
+Uji beberapa nilai konkrit untuk mengesahkan keputusan ini.
 
-- <InlineMath math="a<-2" /> atau <InlineMath math="a>3" /> hanya menggunakan pembezalayan. Untuk <InlineMath math="a<-2" />, kedua-dua punca nyata tetapi tidak positif.
-- <InlineMath math="a>0" /> hanya menggunakan syarat hasil tambah. Untuk <InlineMath math="a=1" />, pembezalayannya <InlineMath math="4(-2)(3)<0" />, jadi tiada penyelesaian nyata.
-- <InlineMath math="-6<a<-2" /> atau <InlineMath math="a>3" /> **terlupa syarat hasil tambah**. Contoh <InlineMath math="a=-3" /> di atas memberi dua penyelesaian negatif.
-- <InlineMath math="a\ge3" /> memasukkan <InlineMath math="a=3" />. Di situ <InlineMath math="x^2-6x+9=0" /> hanya ada satu penyelesaian, <InlineMath math="x=3" />.
-- <InlineMath math="-2<a<3" /> ialah kawasan pembezalayan negatif, jadi tandanya dibaca terbalik.
+<BlockMath math="\begin{aligned}
+a = 4 &\implies x^2 - 8x + 10 = 0 \implies x = 4 \pm \sqrt{6} > 0 \\
+a = 3 &\implies (x - 3)^2 = 0 \implies x = 3 \quad \text{(hanya satu punca)} \\
+a = -3 &\implies x^2 + 6x + 3 = 0 \implies x = -3 \pm \sqrt{6} < 0
+\end{aligned}" />
+
+## Mengapa pilihan lain salah
+
+- Pilihan <InlineMath math="a < -2" /> atau <InlineMath math="a > 3" /> hanya menyemak pembezalayan sehingga membenarkan punca negatif apabila <InlineMath math="a < -2" />.
+- Pilihan <InlineMath math="a > 0" /> hanya memakai syarat hasil tambah punca, sedangkan untuk <InlineMath math="a = 1" /> pembezalayannya negatif dan tiada punca nyata.
+- Pilihan yang memasukkan selang antara <InlineMath math="-6" /> dan <InlineMath math="-2" /> **melupakan syarat hasil tambah positif**, menyebabkan <InlineMath math="a = -3" /> memberi dua punca negatif.
+- Pilihan <InlineMath math="a \ge 3" /> turut memasukkan <InlineMath math="a = 3" />, yang hanya menghasilkan satu punca kembar.
+- Pilihan selang antara <InlineMath math="-2" /> dan <InlineMath math="3" /> mengambil kawasan pembezalayan negatif yang langsung tiada punca nyata.
+
+# Jawapan
+
+Persamaan kuadratik ini mempunyai dua penyelesaian nyata berbeza yang kedua-duanya positif tepat untuk <InlineMath math="a > 3" />.

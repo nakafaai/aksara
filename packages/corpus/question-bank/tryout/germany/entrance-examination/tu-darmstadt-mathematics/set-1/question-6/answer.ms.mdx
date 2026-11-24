@@ -1,40 +1,92 @@
-# Menguasaduakan kedua belah
+# Diberi
 
-Kamu belum tahu <InlineMath math="\sin x" /> dan <InlineMath math="\cos x" /> satu demi satu. **Kuasaduakan kedua-dua belah**, kerana hasilnya mengandungi <InlineMath math="\sin^2x+\cos^2x" />, yang sentiasa bernilai <InlineMath math="1" />:
+Sudut tirus (*Winkel*) <InlineMath math="x" /> terletak **di antara <InlineMath math="0^\circ" /> dan <InlineMath math="45^\circ" />** serta memenuhi persamaan trigonometri berikut.
+
+<BlockMath math="\sin x + \cos x = \frac{17}{13}" />
+
+# Ditanya
+
+Tentukan nilai tepat bagi <InlineMath math="\tan x" />.
+
+# Penyelesaian
+
+Pada bulatan unit, titik <InlineMath math="(\cos x \mid \sin x)" /> bergerak sepanjang lengkok sukuan pertama berjejari <InlineMath math="1" />. Garis dengan hasil tambah koordinat <InlineMath math="\frac{17}{13}" /> memotong lengkok itu pada **dua titik yang simetri terhadap garis <InlineMath math="45^\circ" />**.
+
+> Bagi sebarang sudut tirus di bawah empat puluh lima darjah, koordinat menegak pada bulatan unit sentiasa lebih kecil daripada koordinat mendatarnya, maka sinus lebih kecil daripada kosinus.
+
+Lihat pada lengkok sukuan pertama berikut bagaimana had sudut di bawah <InlineMath math="45^\circ" /> terus memilih titik hijau di bawah pepenjuru.
+
+<MathVisual
+  title={<>Persilangan garis jumlah <InlineMath math="\frac{17}{13}" /> dengan bulatan unit</>}
+  description={
+    <>
+      Paksi mendatar mewakili <InlineMath math="\cos x" /> dan paksi menegak
+      mewakili <InlineMath math="\sin x" />. Garis putus-putus menandakan sudut{" "}
+      <InlineMath math="45^\circ" /> yang memisahkan kedua-dua titik persilangan.
+    </>
+  }
+  footer={<>Oleh sebab <InlineMath math="x < 45^\circ" />, hanya titik di bawah garis pepenjuru yang sah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.2, max: 1.45 }, y: { min: -0.2, max: 1.45 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "unit-arc", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 90 },
+      { id: "bisector", kind: "line", appearance: "reference", stroke: "dashed", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }] },
+      { id: "sum-line", kind: "line", appearance: "highlight", through: [{ x: 0, y: 17 / 13 }, { x: 17 / 13, y: 0 }] },
+      { id: "ray", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 12 / 13, y: 5 / 13 } },
+      { id: "valid-pt", kind: "point", appearance: "answer", at: { x: 12 / 13, y: 5 / 13 } },
+      { id: "rejected-pt", kind: "point", appearance: "warning", at: { x: 5 / 13, y: 12 / 13 } },
+    ],
+    labels: [
+      { key: "bisector", objectId: "bisector", at: { x: 1.05, y: 1.05 }, placement: "above-right" },
+      { key: "valid", objectId: "valid-pt", at: { x: 12 / 13, y: 5 / 13 }, placement: "right" },
+      { key: "rejected", objectId: "rejected-pt", at: { x: 5 / 13, y: 12 / 13 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    bisector: <InlineMath math="45^\circ" />,
+    valid: <InlineMath math="\left(\frac{12}{13}, \frac{5}{13}\right)" />,
+    rejected: <InlineMath math="\left(\frac{5}{13}, \frac{12}{13}\right)" />,
+  }}
+/>
+
+Titik hijau di bawah garis <InlineMath math="45^\circ" /> mempunyai nilai kosinus <InlineMath math="\frac{12}{13}" /> dan nilai sinus <InlineMath math="\frac{5}{13}" />. Sekarang kita terbitkan nilai ini secara algebra.
+
+## Mengkuasaduakan persamaan
+
+Kita belum tahu nilai sinus dan kosinus secara berasingan. **Kuasaduakan kedua-dua belah** supaya identiti <InlineMath math="\sin^2 x + \cos^2 x = 1" /> muncul dan terus memberi hasil darabnya.
 
 <BlockMath math="\begin{aligned}
-(\sin x+\cos x)^2&=\frac{289}{169} \\
-\sin^2x+2\sin x\cos x+\cos^2x&=\frac{289}{169} \\
-1+2\sin x\cos x&=\frac{289}{169} \\
-\sin x\cos x&=\frac{60}{169}
+(\sin x + \cos x)^2 &= \frac{289}{169} \\
+1 + 2\sin x \cos x &= \frac{289}{169} \\
+\sin x \cos x &= \frac{60}{169}
 \end{aligned}" />
 
-# Dua nombor daripada hasil tambah dan hasil darabnya
+## Menentukan nilai tangen
 
-Sekarang kamu tahu hasil tambah <InlineMath math="\sin x+\cos x=\frac{17}{13}" /> dan hasil darab <InlineMath math="\sin x\cos x=\frac{60}{169}" />. **Dua nombor dengan hasil tambah dan hasil darab itu ialah punca persamaan kuadratik berikut**:
+Dengan hasil tambah <InlineMath math="\frac{17}{13}" /> dan hasil darab <InlineMath math="\frac{60}{169}" />, kedua-dua nilai ialah punca persamaan kuadratik berikut.
 
 <BlockMath math="\begin{aligned}
-t^2-\frac{17}{13}t+\frac{60}{169}&=0 \\
-169t^2-221t+60&=0 \\
-(13t-5)(13t-12)&=0
+t^2 - \frac{17}{13}t + \frac{60}{169} &= 0 \\
+169t^2 - 221t + 60 &= 0 \\
+(13t - 5)(13t - 12) &= 0
 \end{aligned}" />
 
-Jadi kedua-dua nombor itu ialah <InlineMath math="\frac{5}{13}" /> dan <InlineMath math="\frac{12}{13}" />. Yang tinggal hanyalah menentukan yang mana sinus dan yang mana kosinus.
+Kedua-dua nilainya ialah <InlineMath math="\frac{5}{13}" /> dan <InlineMath math="\frac{12}{13}" />. Oleh sebab sudut berada di bawah <InlineMath math="45^\circ" />, **nilai sinus lebih kecil daripada kosinus**, lalu kita peroleh tangennya.
 
-# Menggunakan julat sudut
+<BlockMath math="\sin x = \frac{5}{13}, \quad \cos x = \frac{12}{13} \implies \tan x = \frac{\sin x}{\cos x} = \frac{5}{12}" />
 
-Untuk <InlineMath math="0^\circ<x<45^\circ" />, sudut itu lebih dekat dengan <InlineMath math="0^\circ" />, jadi **sinusnya lebih kecil daripada kosinusnya**. Oleh itu:
+Semakan: hasil tambah <InlineMath math="\frac{5}{13}" /> dan <InlineMath math="\frac{12}{13}" /> tepat <InlineMath math="\frac{17}{13}" />, dan <InlineMath math="\tan x < 1" /> sepadan dengan sudut di bawah <InlineMath math="45^\circ" />.
 
-<BlockMath math="\sin x=\frac{5}{13},\qquad\cos x=\frac{12}{13},\qquad\tan x=\frac{\sin x}{\cos x}=\frac{5}{12}" />
+## Mengapa pilihan lain salah
 
-Semak: <InlineMath math="\frac{5}{13}+\frac{12}{13}=\frac{17}{13}" />, dan <InlineMath math="\tan x=\frac{5}{12}<1" /> memang sepadan dengan sudut di bawah <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{12}{5}" /> **menukar sinus dengan kosinus** sehingga sepadan bagi sudut melebihi <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{60}{169}" /> ialah hasil pertengahan <InlineMath math="\sin x \cos x" />, bukan nilai tangen.
+- <InlineMath math="\frac{5}{12}" /> atau <InlineMath math="\frac{12}{5}" /> mengabaikan had sudut di bawah <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{120}{169}" /> ialah nilai <InlineMath math="\sin 2x" />, bukan <InlineMath math="\tan x" />.
+- Kenyataan tiada sudut wujud muncul apabila sebutan tengah <InlineMath math="2\sin x \cos x" /> tertinggal semasa mengkuasaduakan.
 
-Jadi, <InlineMath math="\tan x=\frac{5}{12}" />.
+# Jawapan
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="\frac{12}{5}" /> **menukar tempat sinus dan kosinus**. Tangen yang melebihi <InlineMath math="1" /> bermaksud sudutnya melebihi <InlineMath math="45^\circ" />.
-- <InlineMath math="\frac{60}{169}" /> ialah <InlineMath math="\sin x\cos x" />, iaitu langkah tengah, bukan tangennya.
-- <InlineMath math="\frac{5}{12}" /> atau <InlineMath math="\frac{12}{5}" /> mengabaikan julat sudut. Tanpa julat itu kedua-dua nilai mungkin, tetapi di sini hanya satu yang benar.
-- <InlineMath math="\frac{120}{169}" /> ialah <InlineMath math="2\sin x\cos x=\sin2x" />.
-- "Tiada sudut sebegitu" datang daripada menguasaduakan tanpa sebutan tengah. Hasilnya <InlineMath math="1=\frac{289}{169}" />, yang nampak mustahil, sedangkan sebutan <InlineMath math="2\sin x\cos x" /> tertinggal.
+Nilai tepat bagi <InlineMath math="\tan x" /> ialah <InlineMath math="\frac{5}{12}" />.

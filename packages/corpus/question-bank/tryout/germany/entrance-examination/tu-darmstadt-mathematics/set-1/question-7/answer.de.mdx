@@ -1,40 +1,92 @@
-# Was nach jedem Ablassen übrig bleibt
+# Gegeben
 
-Angenommen, beim ersten Mal werden <InlineMath math="x" /> Liter abgelassen. Wasser enthält kein Frostschutzmittel, also **nimmt jedes Ablassen denselben Anteil des Frostschutzmittels mit wie von der Flüssigkeit**, danach sind es wieder <InlineMath math="40" /> Liter.
+Ein Kühlsystem enthält <InlineMath math="40" /> Liter Flüssigkeit mit <InlineMath math="20\,\%" /> **Frostschutzanteil**. Zuerst werden <InlineMath math="x" /> Liter abgelassen und durch Wasser ersetzt, danach werden nach dem Mischen <InlineMath math="2x" /> Liter abgelassen und erneut durch Wasser ersetzt, sodass am Ende <InlineMath math="5\,\%" /> Frostschutz bleiben.
 
-- Das erste Ablassen nimmt den Anteil <InlineMath math="\frac{x}{40}" /> mit, es bleibt <InlineMath math="1-\frac{x}{40}" /> des Frostschutzmittels.
-- Das zweite Ablassen nimmt <InlineMath math="2x" /> Liter mit, also den Anteil <InlineMath math="\frac{2x}{40}" />, es bleibt <InlineMath math="1-\frac{2x}{40}" /> von dem, was da war.
+# Gesucht
 
-Der Anteil sinkt von <InlineMath math="20\,\%" /> auf <InlineMath math="5\,\%" />, also auf <InlineMath math="\frac14" /> des Anfangswerts. **Die beiden Restanteile werden multipliziert, nicht addiert**:
+Die beim ersten Mal abgelassene Menge <InlineMath math="x" /> in Litern.
 
-<BlockMath math="\left(1-\frac{x}{40}\right)\left(1-\frac{2x}{40}\right)=\frac14" />
+# Lösung
 
-# Die quadratische Gleichung lösen
+Stell dir ein Glas Sirup vor, aus dem du einen Teil abgießt und mit reinem Wasser auffüllst. Wasser bringt keinen neuen Sirup mit, also **multipliziert jeder Wechsel die Konzentration einfach mit dem Restanteil im Tank**.
 
-**Multipliziere beide Seiten mit <InlineMath math="1600" />**, dann verschwinden die Brüche:
+> Wiederholtes Verdünnen wirkt multiplikativ über die Restanteile, nicht additiv über die abgelassenen Anteile, weil der zweite Schritt schon verdünnte Flüssigkeit trifft.
+
+Sieh dir den Verlauf des Endanteils über <InlineMath math="x" /> an. Der schraffierte Bereich zeigt die physikalische Grenze <InlineMath math="0 \le x \le 20" />, da beim zweiten Mal <InlineMath math="2x" /> Liter aus <InlineMath math="40" /> Litern abgelassen werden.
+
+<MathVisual
+  title={<>Frostschutzanteil nach zwei Verdünnungen</>}
+  description={
+    <>
+      Die blaue Kurve zeigt den Endanteil in Prozent in Abhängigkeit von{" "}
+      <InlineMath math="x" />. Die gestrichelte Linie markiert das Ziel{" "}
+      <InlineMath math="5\,\%" /> und der schraffierte Bereich das Tanklimit{" "}
+      <InlineMath math="0 \le x \le 20" />.
+    </>
+  }
+  footer={<>Nur die Lösung innerhalb der Tankgrenze <InlineMath math="x \le 20" /> ist physikalisch möglich.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 52 }, y: { min: -5, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "valid-tank", kind: "region", appearance: "construction", inequalities: ["x >= 0", "x <= 20"] },
+      { id: "antifreeze", kind: "function", appearance: "primary", formula: "20 * (1 - x / 40) * (1 - 2 * x / 40)", domain: { min: 0, max: 50 } },
+      { id: "target", kind: "line", appearance: "highlight", stroke: "dashed", through: [{ x: 0, y: 5 }, { x: 50, y: 5 }] },
+      { id: "valid-root", kind: "point", appearance: "answer", at: { x: 30 - 10 * Math.sqrt(3), y: 5 } },
+      { id: "invalid-root", kind: "point", appearance: "warning", at: { x: 30 + 10 * Math.sqrt(3), y: 5 } },
+    ],
+    labels: [
+      { key: "valid", objectId: "valid-root", at: { x: 30 - 10 * Math.sqrt(3), y: 5 }, placement: "above-right" },
+      { key: "invalid", objectId: "invalid-root", at: { x: 30 + 10 * Math.sqrt(3), y: 5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    valid: <InlineMath math="30 - 10\sqrt{3}" />,
+    invalid: <InlineMath math="30 + 10\sqrt{3}" />,
+  }}
+/>
+
+Die Ziellinie <InlineMath math="5\,\%" /> schneidet die Kurve zweimal, aber der rote Punkt liegt weit über dem Tankvolumen von <InlineMath math="40" /> Litern und fällt weg.
+
+## Gleichung aufstellen und lösen
+
+Der erste Schritt lässt den Faktor <InlineMath math="1 - \frac{x}{40}" /> zurück, der zweite den Faktor <InlineMath math="1 - \frac{2x}{40}" />. Der Anteil sinkt von <InlineMath math="20\,\%" /> auf <InlineMath math="5\,\%" />, also auf **genau ein Viertel des Ausgangswerts**.
 
 <BlockMath math="\begin{aligned}
-(40-x)(40-2x)&=400 \\
-1600-120x+2x^2&=400 \\
-x^2-60x+600&=0 \\
-x&=30\pm\sqrt{900-600}=30\pm10\sqrt3
+\left(1 - \frac{x}{40}\right)\left(1 - \frac{2x}{40}\right) &= \frac{1}{4} \\
+(40 - x)(40 - 2x) &= 400 \\
+2x^2 - 120x + 1200 &= 0 \\
+x^2 - 60x + 600 &= 0
 \end{aligned}" />
 
-# Die mögliche Lösung wählen
+Lös diese quadratische Gleichung mit der pq-Formel.
 
-Beim zweiten Mal werden <InlineMath math="2x" /> Liter aus einem System mit <InlineMath math="40" /> Litern abgelassen, also **muss <InlineMath math="2x\le40" /> gelten, das heißt <InlineMath math="x\le20" />**.
+<BlockMath math="x = 30 \pm \sqrt{900 - 600} = 30 \pm 10\sqrt{3}" />
 
-- <InlineMath math="30+10\sqrt3\approx47{,}3" /> ist mehr, als das ganze System fasst, und fällt weg.
-- <InlineMath math="30-10\sqrt3\approx12{,}7" /> erfüllt <InlineMath math="x\le20" />.
+## Gültige Lösung wählen und prüfen
 
-Probe: <InlineMath math="1-\frac{12{,}7}{40}\approx0{,}683" /> und <InlineMath math="1-\frac{25{,}4}{40}\approx0{,}366" />, das Produkt ist etwa <InlineMath math="0{,}25" />.
+Wegen <InlineMath math="2x \le 40" /> gilt die **physikalische Grenze <InlineMath math="x \le 20" />**. Vergleiche beide Näherungswerte direkt.
 
-Beim ersten Mal wurden also <InlineMath math="30-10\sqrt3" /> Liter abgelassen, etwa <InlineMath math="12{,}7" /> Liter.
+<BlockMath math="\begin{aligned}
+30 + 10\sqrt{3} &\approx 47{,}3 > 20 \quad \text{(unmöglich)} \\
+30 - 10\sqrt{3} &\approx 12{,}7 \le 20 \quad \text{(gültig)}
+\end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
+Setz die gültige Lösung zur Probe in das Produkt der Restfaktoren ein.
 
-- <InlineMath math="30+10\sqrt3" /> Liter **prüft die Lösung nicht gegen das Volumen des Systems**. So viel kann man aus <InlineMath math="40" /> Litern nicht ablassen.
-- Die Antwort mit beiden Lösungen vergisst dieselbe Probe.
-- <InlineMath math="20" /> Liter behandelt beide Ablassvorgänge als gleich groß, also <InlineMath math="\left(1-\frac{x}{40}\right)^2=\frac14" />.
-- <InlineMath math="10" /> Liter addiert die abgelassenen Anteile, <InlineMath math="\frac{x}{40}+\frac{2x}{40}=\frac34" />, dabei trifft das zweite Ablassen nur noch das verbliebene Frostschutzmittel.
-- <InlineMath math="60-20\sqrt3" /> Liter **ist die Menge beim zweiten Ablassen**, also <InlineMath math="2x" />, gefragt ist aber das erste Mal.
+<BlockMath math="\left(1 - \frac{12{,}68}{40}\right)\left(1 - \frac{25{,}36}{40}\right) \approx 0{,}683 \cdot 0{,}366 \approx 0{,}25" />
+
+Das Produkt trifft genau ein Viertel der ursprünglichen Konzentration.
+
+## Warum andere Antworten falsch sind
+
+- <InlineMath math="30 + 10\sqrt{3}" /> Liter **übersteigen das Tankvolumen** von <InlineMath math="40" /> Litern.
+- Die Antwort mit beiden Lösungen vergisst ebenfalls, die unmögliche Lösung auszuschließen.
+- <InlineMath math="20" /> Liter gehen fälschlich von zwei gleich großen Mengen aus statt von <InlineMath math="x" /> und <InlineMath math="2x" />.
+- <InlineMath math="10" /> Liter addieren die abgelassenen Anteile, statt die Restfaktoren zu multiplizieren.
+- <InlineMath math="60 - 20\sqrt{3}" /> Liter sind die zweite Menge (<InlineMath math="2x" />), gesucht ist aber die erste Menge.
+
+# Antwort
+
+Beim ersten Mal wurden genau <InlineMath math="30 - 10\sqrt{3}" /> Liter abgelassen.

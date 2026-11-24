@@ -1,40 +1,92 @@
-# What's left after each drain
+# Given
 
-Say the first drain removes <InlineMath math="x" /> litres. Water carries no antifreeze, so **each drain removes the same share of the antifreeze as of the liquid**, and then the volume is back to <InlineMath math="40" /> litres.
+An engine cooling system holds <InlineMath math="40" /> liters of coolant with <InlineMath math="20\,\%" /> **antifreeze** (*Frostschutzanteil*). First <InlineMath math="x" /> liters are drained and replaced with pure water, then after mixing <InlineMath math="2x" /> liters are drained and replaced with water, leaving a final concentration of <InlineMath math="5\,\%" />.
 
-- The first drain removes a share of <InlineMath math="\frac{x}{40}" />, so <InlineMath math="1-\frac{x}{40}" /> of the antifreeze is left.
-- The second drain removes <InlineMath math="2x" /> litres, a share of <InlineMath math="\frac{2x}{40}" />, so <InlineMath math="1-\frac{2x}{40}" /> of what was there is left.
+# Asked
 
-The content drops from <InlineMath math="20\,\%" /> to <InlineMath math="5\,\%" />, to <InlineMath math="\frac14" /> of what it was. **The two remaining shares multiply, they don't add**:
+Find the volume <InlineMath math="x" /> (in liters) drained on the first pass.
 
-<BlockMath math="\left(1-\frac{x}{40}\right)\left(1-\frac{2x}{40}\right)=\frac14" />
+# Solution
 
-# Solving the quadratic
+Picture a glass of sweet syrup where you pour some out and top it back up with plain water. Water adds zero syrup, so each drain simply **multiplies the concentration by the fraction of liquid kept in the tank**.
 
-**Multiply both sides by <InlineMath math="1600" />** to clear the fractions:
+> Repeated dilution multiplies remaining fractions instead of adding removed fractions, because the second drain acts on liquid that is already diluted.
+
+Look at the curve of final antifreeze percentage against <InlineMath math="x" />. The shaded zone shows the physical tank limit <InlineMath math="0 \le x \le 20" />, since the second drain removes <InlineMath math="2x" /> liters from a <InlineMath math="40" />-liter tank.
+
+<MathVisual
+  title={<>Antifreeze percentage after two drains</>}
+  description={
+    <>
+      The blue curve plots final percentage against the first drain{" "}
+      <InlineMath math="x" />. The dashed line marks the{" "}
+      <InlineMath math="5\,\%" /> target and the shaded region marks the tank
+      limit <InlineMath math="0 \le x \le 20" />.
+    </>
+  }
+  footer={<>Only the root inside the tank bound <InlineMath math="x \le 20" /> is physically possible.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 52 }, y: { min: -5, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "valid-tank", kind: "region", appearance: "construction", inequalities: ["x >= 0", "x <= 20"] },
+      { id: "antifreeze", kind: "function", appearance: "primary", formula: "20 * (1 - x / 40) * (1 - 2 * x / 40)", domain: { min: 0, max: 50 } },
+      { id: "target", kind: "line", appearance: "highlight", stroke: "dashed", through: [{ x: 0, y: 5 }, { x: 50, y: 5 }] },
+      { id: "valid-root", kind: "point", appearance: "answer", at: { x: 30 - 10 * Math.sqrt(3), y: 5 } },
+      { id: "invalid-root", kind: "point", appearance: "warning", at: { x: 30 + 10 * Math.sqrt(3), y: 5 } },
+    ],
+    labels: [
+      { key: "valid", objectId: "valid-root", at: { x: 30 - 10 * Math.sqrt(3), y: 5 }, placement: "above-right" },
+      { key: "invalid", objectId: "invalid-root", at: { x: 30 + 10 * Math.sqrt(3), y: 5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    valid: <InlineMath math="30 - 10\sqrt{3}" />,
+    invalid: <InlineMath math="30 + 10\sqrt{3}" />,
+  }}
+/>
+
+The <InlineMath math="5\,\%" /> target line hits the curve twice, yet the red intersection sits well past the <InlineMath math="40" />-liter tank capacity and must be rejected.
+
+## Setting up and solving the equation
+
+The first drain leaves the factor <InlineMath math="1 - \frac{x}{40}" /> and the second drain leaves <InlineMath math="1 - \frac{2x}{40}" />. Concentration drops from <InlineMath math="20\,\%" /> to <InlineMath math="5\,\%" />, which is **exactly one quarter of the starting level**.
 
 <BlockMath math="\begin{aligned}
-(40-x)(40-2x)&=400 \\
-1600-120x+2x^2&=400 \\
-x^2-60x+600&=0 \\
-x&=30\pm\sqrt{900-600}=30\pm10\sqrt3
+\left(1 - \frac{x}{40}\right)\left(1 - \frac{2x}{40}\right) &= \frac{1}{4} \\
+(40 - x)(40 - 2x) &= 400 \\
+2x^2 - 120x + 1200 &= 0 \\
+x^2 - 60x + 600 &= 0
 \end{aligned}" />
 
-# Picking the possible root
+Solve this quadratic with the quadratic formula.
 
-The second drain removes <InlineMath math="2x" /> litres from a <InlineMath math="40" />-litre system, so **<InlineMath math="2x\le40" /> must hold, that is <InlineMath math="x\le20" />**.
+<BlockMath math="x = 30 \pm \sqrt{900 - 600} = 30 \pm 10\sqrt{3}" />
 
-- <InlineMath math="30+10\sqrt3\approx47.3" /> is more than the whole system holds, so it drops out.
-- <InlineMath math="30-10\sqrt3\approx12.7" /> meets <InlineMath math="x\le20" />.
+## Picking the valid root and checking
 
-Check: <InlineMath math="1-\frac{12.7}{40}\approx0.683" /> and <InlineMath math="1-\frac{25.4}{40}\approx0.366" />, and their product is about <InlineMath math="0.25" />.
+Since <InlineMath math="2x \le 40" />, the valid answer must obey **the physical bound <InlineMath math="x \le 20" />**. Compare both numerical estimates below.
 
-So the first drain removed <InlineMath math="30-10\sqrt3" /> litres, about <InlineMath math="12.7" /> litres.
+<BlockMath math="\begin{aligned}
+30 + 10\sqrt{3} &\approx 47.3 > 20 \quad \text{(impossible)} \\
+30 - 10\sqrt{3} &\approx 12.7 \le 20 \quad \text{(valid)}
+\end{aligned}" />
 
-# Why the other options are wrong
+Substitute the valid root back into the product of remaining fractions.
 
-- <InlineMath math="30+10\sqrt3" /> litres **forgets to check the root against the system's volume**. You can't drain that much from <InlineMath math="40" /> litres.
-- The option with both roots forgets the same check.
-- <InlineMath math="20" /> litres treats both drains as the same size, so <InlineMath math="\left(1-\frac{x}{40}\right)^2=\frac14" />.
-- <InlineMath math="10" /> litres adds the drained shares, <InlineMath math="\frac{x}{40}+\frac{2x}{40}=\frac34" />, but the second drain only hits the antifreeze that's still there.
-- <InlineMath math="60-20\sqrt3" /> litres **is the second drain**, <InlineMath math="2x" />, but the question asks for the first one.
+<BlockMath math="\left(1 - \frac{12.68}{40}\right)\left(1 - \frac{25.36}{40}\right) \approx 0.683 \times 0.366 \approx 0.25" />
+
+The product lands right on one quarter of the initial concentration.
+
+## Why other choices fail
+
+- <InlineMath math="30 + 10\sqrt{3}" /> liters **exceeds the tank capacity** of <InlineMath math="40" /> liters because the physical bound was not checked.
+- Listing both roots together also forgets to reject the impossible root.
+- <InlineMath math="20" /> liters assumes both drains have the same volume instead of doubling the second drain.
+- <InlineMath math="10" /> liters adds the drained fractions instead of multiplying the remaining fractions.
+- <InlineMath math="60 - 20\sqrt{3}" /> liters equals the second drain (<InlineMath math="2x" />) rather than the first drain.
+
+# Answer
+
+The volume drained on the first pass is <InlineMath math="30 - 10\sqrt{3}" /> liters.
