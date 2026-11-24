@@ -1,16 +1,37 @@
-To estimate what the reminders did, compare **the change** in the group that got them with **the change** in the group that didn't. The second group shows what would have happened anyway.
+# Given
 
-<BlockMath math="\text{signed up: } 4\%-5\%=-1 \text{ point}" />
+Between <InlineMath math="2023" /> and <InlineMath math="2024" />, the signed-up group's missed rate changed from **<InlineMath math="5%" /> to <InlineMath math="4%" />**, while the no-reminder group changed from **<InlineMath math="11%" /> to <InlineMath math="10%" />**.
 
-<BlockMath math="\text{not signed up: } 10\%-11\%=-1 \text{ point}" />
+# Asked
 
-<BlockMath math="\text{effect of reminders: } (-1)-(-1)=0" />
+Using both the table and the nurse's figures, what is the best estimate of how many percentage points the reminders lowered the signed-up group's missed rate?
 
-The signed-up group fell by exactly as much as a group with no reminders. **None** of its fall can be credited to the reminders.
+# Solution
 
-- <InlineMath math="6" /> is the gap between the groups in 2024, but all of it already existed in 2023, when the gap was also six points (<InlineMath math="5\%" /> against <InlineMath math="11\%" />).
-- <InlineMath math="1" /> is the signed-up group's own fall. The other group fell by a point too without any reminders.
-- <InlineMath math="5" /> mixes the whole clinic in 2023 with one group in 2024, two different sets of patients.
-- <InlineMath math="2" /> adds the two falls, but the other group's fall is the baseline to subtract, not an extra effect.
+Compare the **year-on-year change** in the reminded group against the **year-on-year change** in the unreminded group (difference-in-differences).
 
-The best estimate is <InlineMath math="0" /> percentage points, because the group without reminders fell by the same amount.
+> Subtracting the one-point drop seen without reminders from the one-point drop seen with reminders leaves an estimated reminder effect of zero percentage points.
+
+## Difference in differences calculation
+
+| Group | <InlineMath math="2023" /> missed rate | <InlineMath math="2024" /> missed rate | Change |
+| --- | ---: | ---: | ---: |
+| Signed up (reminders) | <InlineMath math="5\%" /> | <InlineMath math="4\%" /> | <InlineMath math="-1" /> point |
+| Did not sign up (no reminders) | <InlineMath math="11\%" /> | <InlineMath math="10\%" /> | <InlineMath math="-1" /> point |
+
+Tracking **each group's change** from <InlineMath math="2023" /> to <InlineMath math="2024" />:
+
+<BlockMath math="\begin{aligned} \text{Signed-up change} &= 4\% - 5\% = -1 \text{ percentage point} \\ \text{No-reminder change} &= 10\% - 11\% = -1 \text{ percentage point} \\ \text{Estimated reminder effect} &= (-1) - (-1) = 0 \text{ percentage points} \end{aligned}" />
+
+Because the unreminded group fell by the exact same <InlineMath math="1" /> percentage point, **none of the signed-up drop** can be attributed to reminders.
+
+## Why the other options fail
+
+- **<InlineMath math="6" />** is the **cross-group gap** in <InlineMath math="2024" />, which already stood at <InlineMath math="6" /> points in <InlineMath math="2023" /> before reminders existed.
+- **<InlineMath math="1" />** counts the signed-up group's raw fall without subtracting the <InlineMath math="1" />-point drop that happened without reminders.
+- **<InlineMath math="5" />** compares the entire clinic in <InlineMath math="2023" /> (<InlineMath math="9%" />) with only the reliable subgroup in <InlineMath math="2024" /> (<InlineMath math="4%" />).
+- **<InlineMath math="2" />** adds both groups' falls instead of subtracting the control baseline.
+
+# Answer
+
+**<InlineMath math="0" />, because the group without reminders fell by the same amount**.
