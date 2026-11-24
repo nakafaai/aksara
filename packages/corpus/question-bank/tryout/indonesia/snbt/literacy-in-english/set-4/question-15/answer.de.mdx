@@ -1,20 +1,36 @@
-Die Fehlerquoten bleiben gleich, aber **wie häufig die Krankheit ist**, ändert sich. Bau die positive Zeile für eine Gruppe von <InlineMath math="1.000" /> solchen Erwachsenen neu auf.
+# Gegeben
 
-**Mit der Krankheit**. <InlineMath math="1" /> von <InlineMath math="10" /> sind <InlineMath math="100" /> Erwachsene, und <InlineMath math="90\%" /> davon werden positiv getestet:
+Die Stadt bietet den Test nur noch Erwachsenen mit familiärer Vorbelastung an, von denen **<InlineMath math="1" /> von <InlineMath math="10" />** (<InlineMath math="10\%" />) betroffen ist. Die Testraten bleiben gleich: **<InlineMath math="90\%" />** Erkennung bei Betroffenen und **<InlineMath math="5\%" />** Fehlalarme bei Gesunden.
 
-<BlockMath math="90\%\times 100=90" />
+# Gesucht
 
-**Ohne die Krankheit**. <InlineMath math="900" /> Erwachsene, und <InlineMath math="5\%" /> werden fälschlich markiert:
+Welcher Anteil der positiven Testergebnisse wäre in dieser Gruppe ungefähr korrekt?
 
-<BlockMath math="5\%\times 900=45" />
+# Lösung
 
-**Anteil richtiger positiver Ergebnisse**.
+Erstelle die Positivzeile neu für eine klare Stichprobe von **<InlineMath math="1{.}000" /> Erwachsenen** (<InlineMath math="100" /> Betroffene, <InlineMath math="900" /> Gesunde) und teile echte Treffer durch alle Positivbefunde.
 
-<BlockMath math="\dfrac{90}{90+45}=\dfrac{90}{135}\approx 67\%" />
+> Steigt die Häufigkeit von eins zu hundert auf eins zu zehn, entstehen je tausend Personen neunzig echte Treffer und fünfundvierzig Fehlalarme, sodass zwei Drittel oder rund siebenundsechzig Prozent stimmen.
 
-- <InlineMath math="15\%" /> ist der Anteil vom letzten Jahr, als nur <InlineMath math="1" /> von <InlineMath math="100" /> erkrankt war.
-- <InlineMath math="90\%" /> ist der Anteil der Kranken, die positiv getestet werden, und der ändert sich nicht. Er ist nicht der Anteil richtiger Positiver.
-- <InlineMath math="95\%" /> ist die Gesamtzahl des Herstellers, kein Anteil der positiven Ergebnisse.
-- <InlineMath math="50\%" /> bräuchte gleich viele richtig und falsch Positive. Hier sind die richtigen doppelt so viele.
+## Neuberechnung je tausend Getestete
 
-Etwa <InlineMath math="67\%" /> der positiven Ergebnisse wären dann richtig.
+| Teilgruppe (je <InlineMath math="1{.}000" /> Personen) | Anzahl | Positivrate | Positive Tests |
+| --- | ---: | ---: | ---: |
+| Hat Erkrankung (<InlineMath math="10\%" />) | <InlineMath math="100" /> | <InlineMath math="90\%" /> | <InlineMath math="90" /> |
+| Hat sie nicht (<InlineMath math="90\%" />) | <InlineMath math="900" /> | <InlineMath math="5\%" /> | <InlineMath math="45" /> |
+| Alle positiven Tests | <InlineMath math="1{.}000" /> | | <InlineMath math="135" /> |
+
+Daraus folgt der **neue Anteil richtiger Positivbefunde**:
+
+<BlockMath math="\begin{aligned} \text{Richtig positiv} &= 90\% \times 100 = 90 \\ \text{Fehlalarme} &= 5\% \times 900 = 45 \\ \text{Anteil richtiger Positiver} &= \frac{90}{90 + 45} = \frac{90}{135} = \frac{2}{3} \approx 67\% \end{aligned}" />
+
+## Warum die anderen Optionen ausscheiden
+
+- **<InlineMath math="15\%" />** galt nur für die frühere **<InlineMath math="1" />-zu-<InlineMath math="100" />**-Gesamtbevölkerung.
+- **<InlineMath math="90\%" />** ist die Trefferquote unter Erkrankten, nicht der Anteil richtiger Positivbefunde.
+- **<InlineMath math="95\%" />** ist die Gesamtgenauigkeit über alle Getesteten.
+- **<InlineMath math="50\%" />** bräuchte gleich viele echte und falsche Positive, doch <InlineMath math="90" /> ist doppelt so groß wie <InlineMath math="45" />.
+
+# Antwort
+
+**About <InlineMath math="67\%" />**
