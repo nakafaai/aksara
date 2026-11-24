@@ -1,23 +1,37 @@
-The question asks about the **added** BOD between two points, not the BOD at T3. So you need two steps: work out that added amount for each year, then compare the two.
+# Given
 
-The added BOD is the BOD at T3 minus the BOD at T2.
+Between stations **T2** and **T3**, the tofu hub is the sole waste source. In August 2021, BOD jumped from <InlineMath math="2.5" /> (T2) to <InlineMath math="10.0\text{ mg/L}" /> (T3). In August 2024, BOD rose from <InlineMath math="3.0" /> (T2) to <InlineMath math="4.5\text{ mg/L}" /> (T3).
 
+# Asked
+
+The percentage decrease in added BOD between T2 and T3 from August 2021 to August 2024.
+
+# Solution
+
+Compute the **added BOD across segment T2-T3** for each year (T3 minus T2), then divide the drop by the 2021 baseline addition.
+
+<MathContainer>
 <BlockMath math="\begin{aligned}
-\text{Added in 2021}&=10.0-2.5=7.5\text{ mg/L}\\
-\text{Added in 2024}&=4.5-3.0=1.5\text{ mg/L}
+\text{2021 addition} &= 10.0 - 2.5 = 7.5\text{ mg/L} \\
+\text{2024 addition} &= 4.5 - 3.0 = 1.5\text{ mg/L}
 \end{aligned}" />
+<BlockMath math="\text{reduction} = \frac{7.5 - 1.5}{7.5} = \frac{6.0}{7.5} = 80\%" />
+</MathContainer>
 
-Now find what share of the 2021 amount has gone. The denominator is **the 2021 amount**, because that's the starting state.
+> The tofu hub's added BOD fell from <InlineMath math="7.5" /> to <InlineMath math="1.5\text{ mg/L}" />, an exact reduction of <InlineMath math="80\%" />.
 
-<BlockMath math="\frac{7.5-1.5}{7.5}=\frac{6.0}{7.5}=80\%" />
+## Checking the distractor percentages
 
-Why is that larger than the drop in BOD at T3? In 2024, the water already carries a BOD of <InlineMath math="3.0" /> mg/L when it reaches the tofu workshops. That part doesn't come from the workshops, so it mustn't be counted as their load.
+Comparing **numerator and base** exposes why the four other percentages fail.
 
-The other answers come from picking the wrong number or the wrong denominator.
+| Option | Ratio | What it computes | Verdict |
+| --- | --- | --- | --- |
+| <InlineMath math="80\%" /> | <InlineMath math="(7.5 - 1.5) : 7.5" /> | Reduction in added BOD between T2 and T3 | **Correct** |
+| <InlineMath math="55\%" /> | <InlineMath math="(10.0 - 4.5) : 10.0" /> | Raw BOD drop at T3 without subtracting T2 | **Incorrect** |
+| <InlineMath math="45\%" /> | <InlineMath math="4.5 : 10.0" /> | Remaining share of raw T3 BOD | **Incorrect** |
+| <InlineMath math="20\%" /> | <InlineMath math="1.5 : 7.5" /> | Remaining share of added BOD instead of reduction | **Incorrect** |
+| <InlineMath math="60\%" /> | <InlineMath math="(7.5 - 3.0) : 7.5" /> | Subtracts 2024 T2 BOD instead of 2024 addition | **Incorrect** |
 
-- <InlineMath math="55\%" /> is the drop in BOD at T3 alone, <InlineMath math="(10.0-4.5):10.0" />. That figure still mixes the workshops' waste with the BOD already there at T2.
-- <InlineMath math="45\%" /> is the 2024 BOD at T3 divided by the 2021 BOD at T3. That's the share left at T3, not the share removed.
-- <InlineMath math="20\%" /> is <InlineMath math="1.5:7.5" />, the added amount that's still left. The question asks for the share that went away.
-- <InlineMath math="60\%" /> comes from subtracting the 2024 BOD at T2, <InlineMath math="(7.5-3.0):7.5" />, when you should subtract the amount added in 2024.
+# Answer
 
-So the added BOD between T2 and T3 fell by <InlineMath math="80\%" />.
+The added BOD between T2 and T3 decreased by **<InlineMath math="80\%" />**.

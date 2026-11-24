@@ -1,20 +1,35 @@
-Soal ini meminta peluang kemarau parah, bukan peluang El Nino. Paragraf keempat memberi dua petunjuk: El Nino "tidak selalu mengeringkan setiap kabupaten", dan ada kemarau parah "yang terjadi tanpa El Nino". Jadi tahun depan punya **dua jalan menuju kemarau parah**, dan keduanya harus dihitung.
+# Diketahui
 
-Ubah dulu catatan kabupaten menjadi peluang. Pada tahun El Nino, kemarau parah terjadi dengan peluang <InlineMath math="\tfrac{6}{10} = 0{,}6" />. Pada tahun tanpa El Nino, peluangnya <InlineMath math="\tfrac{2}{20} = 0{,}1" />. Peluang El Nino <InlineMath math="0{,}7" />, jadi peluang tidak ada El Nino <InlineMath math="1 - 0{,}7 = 0{,}3" />.
+Catatan kabupaten menunjukkan kemarau parah terjadi pada **<InlineMath math="6" /> dari <InlineMath math="10" /> tahun El Nino** (<InlineMath math="0{,}6" />) dan pada **<InlineMath math="2" /> dari <InlineMath math="20" /> tahun tanpa El Nino** (<InlineMath math="0{,}1" />). Peluang El Nino tahun depan adalah **<InlineMath math="70\%" />** (<InlineMath math="0{,}7" />), sehingga peluang tanpa El Nino <InlineMath math="0{,}3" />.
 
-Kalikan peluang setiap jalan dengan peluang kemarau parah di jalan itu, lalu jumlahkan:
+# Ditanyakan
+
+Peluang kabupaten itu mengalami kemarau parah tahun depan.
+
+# Penyelesaian
+
+Jumlahkan peluang **kedua jalur menuju kemarau parah** (jalur dengan El Nino dan jalur tanpa El Nino) memakai aturan peluang total.
 
 <BlockMath math="\begin{aligned}
-P(\text{parah}) &= 0{,}7 \times 0{,}6 + 0{,}3 \times 0{,}1 \\
-&= 0{,}42 + 0{,}03 \\
-&= 0{,}45
+P(\text{parah}) &= 0{,}7 \times \frac{6}{10} + 0{,}3 \times \frac{2}{20} \\
+&= 0{,}7 \times 0{,}6 + 0{,}3 \times 0{,}1 \\
+&= 0{,}42 + 0{,}03 = 0{,}45 = 45\%
 \end{aligned}" />
 
-Hasilnya <InlineMath math="45\%" />. Angka ini masuk akal: lebih kecil dari <InlineMath math="60\%" /> karena El Nino belum tentu terjadi, tetapi lebih besar dari <InlineMath math="42\%" /> karena tahun tanpa El Nino pun bisa kering.
+> Menggabungkan jalur El Nino (<InlineMath math="42\%" />) dan jalur tanpa El Nino (<InlineMath math="3\%" />) menghasilkan peluang total sebesar <InlineMath math="45\%" />.
 
-- <InlineMath math="35\%" /> adalah rata-rata biasa dari <InlineMath math="60\%" /> dan <InlineMath math="10\%" />. Rata-rata ini lupa bahwa El Nino lebih mungkin terjadi daripada tidak.
-- <InlineMath math="42\%" /> hanya menghitung jalan El Nino dan membuang kemarau parah tanpa El Nino.
-- <InlineMath math="60\%" /> adalah peluang kemarau parah **jika El Nino pasti terjadi**, padahal peluangnya baru <InlineMath math="70\%" />.
-- <InlineMath math="70\%" /> adalah peluang El Nino. Paragraf keempat menegaskan bahwa El Nino tidak selalu membawa kemarau parah.
+## Menelusuri sumber kesalahan pilihan pengecoh
 
-Peluang kabupaten itu mengalami kemarau parah tahun depan adalah <InlineMath math="45\%" />.
+Perbandingan **rumus tiap angka** memperlihatkan jalur atau bobot yang terlupakan.
+
+| Pilihan | Perhitungan | Makna | Status |
+| --- | --- | --- | --- |
+| <InlineMath math="45\%" /> | <InlineMath math="0{,}7(0{,}6) + 0{,}3(0{,}1)" /> | Peluang total kedua jalur berbobot | **Tepat** |
+| <InlineMath math="35\%" /> | <InlineMath math="(60\% + 10\%) : 2" /> | Rata-rata tanpa bobot peluang El Nino <InlineMath math="70\%" /> | **Keliru** |
+| <InlineMath math="42\%" /> | <InlineMath math="0{,}7 \times 0{,}6" /> | Hanya menghitung jalur El Nino, melupakan <InlineMath math="0{,}03" /> | **Keliru** |
+| <InlineMath math="60\%" /> | <InlineMath math="6 : 10" /> | Menganggap El Nino pasti terjadi (<InlineMath math="100\%" />) | **Keliru** |
+| <InlineMath math="70\%" /> | Peluang El Nino saja | Menyamakan El Nino dengan kemarau parah | **Keliru** |
+
+# Jawaban
+
+Peluang kabupaten itu mengalami kemarau parah tahun depan adalah **<InlineMath math="45\%" />**.

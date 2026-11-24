@@ -1,16 +1,34 @@
-The mayor puts the whole rise down to the fare, but corridors A and B also got more frequent buses. The right calculation has to separate out the part due to the fare.
+# Given
 
-**Step 1. Fare effect alone**. Corridors C and D, which got only the lower fare, rose <InlineMath math="10\%" />.
+Total city-bus ridership rose from **<InlineMath math="36" /> thousand** to **<InlineMath math="47.8" /> thousand** (up <InlineMath math="11.8" /> thousand, nearly one-third), and the mayor credited the entire gain to lower fares. Yet on Corridors C and D, which received **only** the fare cut, ridership grew by **<InlineMath math="10\%" />**.
 
-**Step 2. Suppose every corridor got only that effect**. The total would be <InlineMath math="36\times1.1=39.6" /> thousand.
+# Asked
 
-**Step 3. Compare with the real increase**. The real increase is <InlineMath math="47.8-36=11.8" /> thousand. The fare explains about <InlineMath math="39.6-36=3.6" /> thousand, less than a third of it.
+The calculation that best exposes the flaw in the mayor's claim about the fare cut.
 
-The other options are wrong.
+# Solution
 
-- <InlineMath math="33\%" /> is correct, but that's exactly the claim being questioned. It doesn't separate the fare effect.
-- Corridor A's <InlineMath math="60\%" /> rise is partly due to more frequent buses, so it can't be used as the fare effect.
-- A and B got two changes at once, so their rise can't be put down to the fare.
-- Falling revenue doesn't mean riders didn't increase. Riders rose, but each pays less.
+Apply the **fare-only growth rate (<InlineMath math="10\%" />)** across the <InlineMath math="36" />-thousand baseline to separate the fare share from the <InlineMath math="11.8" />-thousand total gain.
 
-So the best calculation supposes A and B rose only <InlineMath math="10\%" />, which leaves the fare explaining about <InlineMath math="3.6" /> of the <InlineMath math="11.8" /> thousand extra riders.
+<MathContainer>
+<BlockMath math="\text{fare-only estimate} = 36 \times 10\% = 3.6\text{ thousand}" />
+<BlockMath math="\text{actual increase} = 47.8 - 36 = 11.8\text{ thousand}" />
+</MathContainer>
+
+> Assuming A and B also rose <InlineMath math="10\%" /> from lower fares alone, the fare cut explains roughly <InlineMath math="3.6" /> of the <InlineMath math="11.8" /> thousand new riders (under one-third of the gain).
+
+## Checking the five candidate calculations
+
+Testing **which calculation isolates fare impact from bus frequency** leaves one clear answer.
+
+| Calculation | Isolates fare effect from frequency | Verdict |
+| --- | --- | --- |
+| Assuming A and B rose <InlineMath math="10\%" />, so fares explain about <InlineMath math="3.6" /> of <InlineMath math="11.8" /> thousand added riders | Yes, shows fares explain less than a third of the surge | **Correct** |
+| Computing the <InlineMath math="33\%" /> overall rise | Merely repeats the mayor's unseparated claim | **Incorrect** |
+| Using Corridor A's <InlineMath math="60\%" /> jump as fare impact | Wrong, Corridor A also got more frequent buses | **Incorrect** |
+| Crediting all of A and B's rise to fares | Wrong, A and B received both changes together | **Incorrect** |
+| Citing lower revenue to deny ridership grew | Wrong, ridership grew even as per-ticket price fell | **Incorrect** |
+
+# Answer
+
+The best calculation is **assuming Corridors A and B rose by only <InlineMath math="10\%" />, so the fare cut alone explains roughly <InlineMath math="3.6" /> of the <InlineMath math="11.8" /> thousand additional riders**.

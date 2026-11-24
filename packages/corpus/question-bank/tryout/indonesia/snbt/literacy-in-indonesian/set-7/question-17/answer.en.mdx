@@ -1,13 +1,29 @@
-The answer has to be right in **two parts**: the data used and the assumption needed.
+# Given
 
-- **Data**. Only in corridors C and D was frequency **"tidak berubah"** (unchanged), so only there does the fare effect show on its own. Both rose <InlineMath math="10\%" />.
-- **Assumption**. Corridors A and B also got the lower fare, but its effect is mixed with more frequent buses. For the C and D figure to apply citywide, riders on A and B have to be assumed to respond to the cheaper fare in the same way.
+In the city bus dataset, **Corridors A and B** received two changes together (lower fares plus more frequent buses), whereas only **Corridors C and D** kept bus frequency unchanged so the fare cut appears alone (a <InlineMath math="10\%" /> rise).
 
-The other options are wrong.
+# Asked
 
-- Assuming more frequent buses add no riders isn't needed, and it clashes with the big rises on A and B.
-- Not every corridor got the same change. Only A and B got more frequent buses.
-- A and B got two changes at once, so the fare effect can't be separated there.
-- How riders pay has nothing to do with how much the fare affects rider numbers.
+Which corridor data best estimate the fare cut's isolated effect, and what assumption is needed to extend that estimate citywide.
 
-So the best data is corridors C and D, assuming riders on A and B respond to the cheaper fare like riders on C and D.
+# Solution
+
+Use the **unconfounded corridors (C and D)** where fare was the sole change, paired with the **transfer assumption** that A and B riders respond similarly to lower fares.
+
+> Only Corridors C and D isolate the fare cut, and generalizing citywide requires assuming that Corridor A and B riders react to lower fares the same way Corridor C and D riders do.
+
+## Checking the five data and assumption pairs
+
+Testing **both clean isolation and the generalization assumption** isolates the single sound answer.
+
+| Data and assumption pair | Free from frequency confounding | Valid assumption | Verdict |
+| --- | --- | --- | --- |
+| Corridors C and D, assuming A and B riders respond to lower fares like C and D riders | Yes (frequency unchanged) | Yes (required to generalize) | **Correct** |
+| Assumes more frequent buses add no riders | - | False and clashes with A and B data | **Incorrect** |
+| All corridors because all received identical changes | False (only A and B increased frequency) | - | **Incorrect** |
+| Corridors A and B | False (two changes mixed together) | - | **Incorrect** |
+| Assumption about payment methods | - | Unrelated to fare sensitivity | **Incorrect** |
+
+# Answer
+
+The best data come from **Corridors C and D**, assuming that **riders on Corridors A and B respond to lower fares the same way as riders on Corridors C and D**.
