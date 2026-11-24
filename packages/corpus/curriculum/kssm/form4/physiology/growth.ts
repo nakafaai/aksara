@@ -58,7 +58,39 @@ export const kssmForm4PhysiologyGrowthNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-sexual-reproduction-development-and-growth-in-humans-and-animals-reproduction",
+        level: "lesson",
+        materialKeys: ["lesson.biology.reproduction"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 15.1 to 15.7",
+            ...biologyStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-4-biology-sexual-reproduction-development-and-growth-in-humans-and-animals",
+    materialCard: {
+      de: {
+        description: "Erkläre Zyklus, Befruchtung und Wachstum.",
+        title: "Fortpflanzung und Wachstum bei Mensch und Tier",
+      },
+      en: {
+        description: "Explain the cycle, fertilisation and growth.",
+        title: "Reproduction and Growth in Humans and Animals",
+      },
+      id: {
+        description: "Jelaskan siklus, fertilisasi, dan pertumbuhan.",
+        title: "Reproduksi dan Pertumbuhan pada Manusia dan Hewan",
+      },
+      ms: {
+        description: "Terangkan kitar, persenyawaan dan pertumbuhan.",
+        title: "Pembiakan dan Pertumbuhan dalam Manusia dan Haiwan",
+      },
+    },
     order: 150,
     translations: {
       de: {
