@@ -1,21 +1,37 @@
-Work in three steps: find Saltmarsh's share, give each North farm that share, and add up what each farm saves. The South farms don't change.
+# Given
 
-Saltmarsh lost <InlineMath math="40" /> of <InlineMath math="800" /> GWh:
+Northmoor wind-farm figures for <InlineMath math="2025" />:
+- **North line**: Fellside (<InlineMath math="200" /> GWh potential, <InlineMath math="50" /> GWh curtailed) and Brackenmoor (<InlineMath math="800" /> GWh potential, <InlineMath math="160" /> GWh curtailed).
+- **South line**: Saltmarsh (<InlineMath math="800" /> GWh potential, <InlineMath math="40" /> GWh curtailed) and Gullrock (<InlineMath math="200" /> GWh potential, <InlineMath math="50" /> GWh curtailed).
 
-<BlockMath math="\frac{40}{800} = 5\%" />
+# Asked
 
-Now give each North farm **the same share of its own potential**, not the same amount:
+How much more energy the four farms would have delivered in <InlineMath math="2025" /> if a doubled North line cut each North farm's loss to the same **share** of potential energy that Saltmarsh lost.
+
+# Solution
+
+Compute **Saltmarsh's curtailed share** first, apply that percentage to each North farm's own potential energy, and add the energy saved across both North farms while keeping South farms unchanged.
+
+> Matching Saltmarsh's five percent share scales each North farm's new loss to five percent of its own potential rather than a flat forty gigawatt-hours.
+
+## Computing Saltmarsh share and saved energy
+
+From the table, <Highlight>Saltmarsh</Highlight> curtailed <InlineMath math="40" /> GWh out of <InlineMath math="800" /> GWh potential:
 
 <BlockMath math="\begin{aligned}
-\text{Fellside: } 5\% \times 200 &= 10 \text{ GWh lost, so } 50 - 10 = 40 \text{ GWh saved} \\
-\text{Brackenmoor: } 5\% \times 800 &= 40 \text{ GWh lost, so } 160 - 40 = 120 \text{ GWh saved}
+\text{Saltmarsh curtailed share: } \frac{40}{800} = 5\% \\
+\text{Fellside new loss: } 5\% \times 200 = 10\text{ GWh}, \qquad \text{Saved: } 50 - 10 = 40\text{ GWh} \\
+  \text{Brackenmoor new loss: } 5\% \times 800 = 40\text{ GWh}, \qquad \text{Saved: } 160 - 40 = 120\text{ GWh} \\
+\text{Extra energy delivered: } 40 + 120 = 160\text{ GWh}
 \end{aligned}" />
 
-Every saved GWh is delivered instead, so the four farms deliver <InlineMath math="40 + 120 = 160" /> GWh more.
+## Why the other options fail
 
-- <InlineMath math="120" /> GWh uses the whole South line's share, <InlineMath math="90 \div 1000 = 9\%" />, instead of Saltmarsh's.
-- <InlineMath math="130" /> GWh gives each North farm Saltmarsh's **amount**, <InlineMath math="40" /> GWh, instead of its share.
-- <InlineMath math="210" /> GWh assumes the North farms lose nothing at all.
-- <InlineMath math="60" /> GWh uses the region-wide share, <InlineMath math="15\%" />, which still includes the North farms' own losses.
+- **<InlineMath math="120" /> GWh** uses the entire South line's share (<InlineMath math="90 \div 1{,}000 = 9\%" />) instead of Saltmarsh's share.
+- **<InlineMath math="130" /> GWh** assigns Saltmarsh's flat <InlineMath math="40" /> GWh loss to both North farms instead of its percentage share.
+- **<InlineMath math="210" /> GWh** assumes zero curtailment for the North farms.
+- **<InlineMath math="60" /> GWh** applies the region-wide <InlineMath math="15\%" /> average, which still includes the North farms' own heavy losses.
 
-The four farms would have delivered <InlineMath math="160" /> GWh more.
+# Answer
+
+The four wind farms would have delivered **<InlineMath math="160" /> GWh** more energy.
