@@ -1,3 +1,4 @@
+import { biologyStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Biology chapters on the plant's tissues, leaves, nutrition and transport, Bab 1 to Bab 4. */
@@ -9,6 +10,12 @@ export const kssmForm5BiologyStructureNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.plant-tissue"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 16.1 to 16.3",
+            ...biologyStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-biology-organisation-of-plant-tissues-and-growth",
@@ -57,6 +64,12 @@ export const kssmForm5BiologyStructureNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.leaf-structure"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 17.1 to 17.5",
+            ...biologyStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-biology-leaf-structure-and-function",

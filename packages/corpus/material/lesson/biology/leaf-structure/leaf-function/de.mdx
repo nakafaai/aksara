@@ -7,42 +7,108 @@ export const metadata = {
   subject: "Bau und Funktion des Blattes",
 };
 
-## Das Blatt erledigt drei Hauptaufgaben
+## Anatomie der Blattspreite
 
-Das Blatt ist das wichtigste Organ der Pflanze für **Gasaustausch**, **Transpiration** und **Fotosynthese**. Alle drei beruhen auf demselben Bau: einer breiten, dünnen Blattspreite, einem Mesophyll voller Chloroplasten, Interzellularen zwischen den Zellen und Spaltöffnungen, die Schließzellen öffnen und schließen. Bei der Fotosynthese entstehen mit Lichtenergie aus Kohlenstoffdioxid und Wasser Glucose und Sauerstoff:
+Stell dir ein Blatt wie eine papierdünne Solarküche mit tausenden winzigen Atemfenstern vor. Es meistert **Gasaustausch**, **Transpiration** und **Fotosynthese** zugleich durch dünne Blattspreite, chloroplastenreiches Mesophyll, Interzellularen und Spaltöffnungen.
+
+> Bei der Fotosynthese verwandelt die Pflanze Sonnenlicht, Kohlenstoffdioxid und Wasser in Traubenzucker und gibt dabei Sauerstoff an die Luft ab.
 
 <BlockMath math="6\mathrm{CO_2} + 12\mathrm{H_2O} \xrightarrow[\text{Chlorophyll}]{\text{Licht}} \mathrm{C_6H_{12}O_6} + 6\mathrm{O_2} + 6\mathrm{H_2O}" />
 
-Lichtstärke, Kohlenstoffdioxidkonzentration und Temperatur begrenzen die Fotosyntheserate, und am **Kompensationspunkt** ist die Fotosyntheserate genauso groß wie die Atmungsrate. In den Modellen hier änderst du die Dicke eines Blattes, bestreichst Blätter in einem Potometer, veränderst Temperatur und Luftfeuchte, zählst die Sauerstoffblasen der Wasserpflanze Hydrilla und suchst den Kompensationspunkt.
-
-## Äußerer und innerer Bau des Blattes
-
-Von außen besteht ein Blatt aus der breiten, flachen **Blattspreite**, dem **Blattstiel**, der die Spreite mit dem Spross verbindet, und den Blattadern, die Wasser und Nährstoffe führen. Ein Querschnitt zeigt die Gewebeschichten im Inneren. Die Tabelle ordnet sie von der Oberseite zur Unterseite.
+Von oben nach unten ordnet der Blattquerschnitt sechs spezialisierte Gewebeschichten für Lichtfang und Gasdiffusion.
 
 | Struktur | Merkmale | Bezug zur Funktion |
 | :--- | :--- | :--- |
-| Kutikula | Durchsichtige Wachsschicht | Verringert den Wasserverlust und lässt Licht durch |
-| Obere Epidermis | Eine Zellschicht ohne Chloroplasten | Durchsichtig, damit Licht das Mesophyll erreicht |
-| Palisadengewebe | Lange, dicht gepackte Zellen voller Chloroplasten | Hauptort der Fotosynthese, weil es das meiste Licht bekommt |
-| Schwammgewebe | Unregelmäßige Zellen mit vielen Interzellularen | Gase verteilen sich durch die Interzellularen im ganzen Blatt |
-| Leitbündel | Xylem und Phloem in den Blattadern | Xylem bringt Wasser hinein, Phloem bringt Saccharose hinaus |
-| Untere Epidermis | Viele Spaltöffnungen, jede zwischen zwei Schließzellen | Hauptort von Gasaustausch und Transpiration |
+| Kutikula | Klare Wachsschicht | Bremst Wasserverlust und lässt Licht durch |
+| Obere Epidermis | Eine Zellschicht ohne Chloroplasten | Durchsichtig für Sonnenlicht ins Mesophyll |
+| Palisadengewebe | Hohe dichte Zellen voller Chloroplasten | Hauptort der Fotosynthese im hellsten Licht |
+| Schwammgewebe | Lockere Zellen mit weiten Interzellularen | Schneller Diffusionsweg für Gase |
+| Leitbündel | Xylem und Phloem in Blattadern | Xylem liefert Wasser, Phloem exportiert Saccharose |
+| Untere Epidermis | Zahlreiche Spaltöffnungen mit Schließzellen | Haupttor für Gasaustausch und Transpiration |
 
-Eine dünne Spreite gibt dem Blatt ein **großes Verhältnis von Oberfläche zu Volumen**, sodass Gase nur wenige Zellschichten weit diffundieren müssen. Bei einem Blattstück mit der Fläche <InlineMath math="A" /> und der Dicke <InlineMath math="d" /> zählen beide Seiten zur Oberfläche, daher hängt das Verhältnis nur von der Dicke ab:
+Erkunde jede Schicht des Blattquerschnitts im dreidimensionalen Modell. Vergleich die Chloroplastendichte von der Kutikula bis hinab zur Spaltöffnung.
 
-<BlockMath math="\frac{\text{Oberfläche}}{\text{Volumen}} = \frac{2A}{Ad} = \frac{2}{d}" />
+<LeafLaminaCrossSectionLab
+  title={<>Querschnitt einer Blattspreite</>}
+  description={
+    <>
+      Wähle jede Gewebeschicht von oben nach unten, um Zellform,
+      Chloroplastendichte, Interzellularen, Leitbündel und Anpassungen zu
+      vergleichen.
+    </>
+  }
+  footer={<>Wähle Blattschichten, um Chloroplastendichte und Aufgabe zu prüfen.</>}
+  layers={[
+    "cuticle",
+    "upperEpidermis",
+    "palisade",
+    "spongy",
+    "vascular",
+    "lowerEpidermis",
+    "stoma",
+  ]}
+  labels={{
+    adaptation: <>Wichtige Anpassung</>,
+    chloroplasts: <>Chloroplastendichte</>,
+    densities: {
+      high: "Sehr hoch",
+      moderate: "Mittel",
+      guardOnly: "Nur in Schließzellen",
+      none: "Keine",
+    },
+    layer: "Blattschicht wählen",
+    layers: {
+      cuticle: {
+        name: "Wachskutikula",
+        adaptation: <>Wasserabweisend und klar, damit Sonnenlicht ins Mesophyll fällt</>,
+      },
+      upperEpidermis: {
+        name: "Obere Epidermis",
+        adaptation: <>Eine durchsichtige Schutzschicht ohne Chloroplasten für Licht</>,
+      },
+      palisade: {
+        name: "Palisadengewebe",
+        adaptation: <>Aufrechte dicht gepackte Zellen voller Chloroplasten direkt oben</>,
+      },
+      spongy: {
+        name: "Schwammgewebe",
+        adaptation: <>Lockere Zellen mit weiten Luftgängen für rasche Gasdiffusion</>,
+      },
+      vascular: {
+        name: "Leitbündel",
+        adaptation: <>Xylem liefert Wasser aus der Wurzel, Phloem exportiert Saccharose</>,
+      },
+      lowerEpidermis: {
+        name: "Untere Epidermis",
+        adaptation: <>Trägt die meisten Spaltöffnungen im Schutz vor direkter Hitze</>,
+      },
+      stoma: {
+        name: "Spaltöffnung",
+        adaptation: <>Winzige Pore zwischen zwei Schließzellen für den Gasaustausch</>,
+      },
+    },
+    parts: {
+      xylem: "Xylem",
+      phloem: "Phloem",
+      airSpace: "Interzellularraum",
+      chloroplast: "Chloroplast",
+      guardCell: "Schließzelle",
+    },
+    view: "Dreidimensionaler histologischer Querschnitt einer Blattspreite",
+  }}
+/>
 
-Verschieb den Regler für die Dicke und beobachte, wie schnell das Verhältnis steigt, wenn das Blatt dünner wird.
+Die dünne Spreite schafft ein **Oberfläche-Volumen-Verhältnis** von <InlineMath math="2/d" />, sodass ein <InlineMath math="0{,}2\text{ mm}" /> dünnes Blatt auf <InlineMath math="10\text{ mm}^{-1}" /> kommt, fünfmal mehr als bei <InlineMath math="1\text{ mm}" />. Verschieb die Dicke im Diagramm.
 
 <MathVisual
   title={<>Oberfläche-Volumen-Verhältnis eines Blattes</>}
   description={
     <>
-      Die Kurve <InlineMath math="2/d" /> für ein Blattstück von{" "}
-      <InlineMath math="d" /> Millimetern Dicke. Die Ränder fallen weg, weil
-      sie neben den beiden Blattseiten winzig sind.
+      Die Kurve <InlineMath math="2/d" /> für eine Blattspreite von{" "}
+      <InlineMath math="d" /> Millimetern Dicke ohne schmale Ränder.
     </>
   }
+  footer={<>Dünnere Blätter erreichen ein deutlich größeres Oberfläche-Volumen-Verhältnis.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1.1 }, y: { min: 0, max: 21 } },
@@ -64,38 +130,85 @@ Verschieb den Regler für die Dicke und beobachte, wie schnell das Verhältnis s
   }}
 />
 
-Ein Blatt von <InlineMath math="0{,}2\text{ mm}" /> Dicke hat ein Verhältnis von <InlineMath math="2 \div 0{,}2 = 10\text{ mm}^{-1}" />, fünfmal so viel wie ein Blatt von <InlineMath math="1\text{ mm}" /> Dicke mit <InlineMath math="2\text{ mm}^{-1}" />.
+Dünne Spreiten halten die Diffusionswege zu jeder Mesophyllzelle kurz.
 
-## Gasaustausch durch die Spaltöffnungen
+## Stomata und Transpiration
 
-Ein Blatt tauscht Gase über seine Spaltöffnungen mit der Luft aus. Tagsüber ist die Fotosyntheserate höher als die Atmungsrate, also **nimmt das Blatt Kohlenstoffdioxid auf und gibt Sauerstoff ab**. Nachts läuft nur die Zellatmung, also nimmt das Blatt Sauerstoff auf und gibt Kohlenstoffdioxid ab. Die Gase diffundieren durch die Spaltöffnungen in die Interzellularen, lösen sich im Wasserfilm auf den Mesophyllzellen und diffundieren dann in die Zellen.
+Tagsüber überwiegt die Fotosynthese, sodass Kohlenstoffdioxid einströmt und Sauerstoff austritt, nachts läuft allein die Zellatmung. Merk dir: Pflanzen atmen rund um die Uhr, niemals nur nachts.
 
-Schließzellen öffnen eine Spaltöffnung, wenn sie prall sind. Die Wand der Schließzelle zum Spalt hin ist dicker und weniger dehnbar als ihre Außenwand, deshalb krümmt sich eine pralle Schließzelle nach außen, und der Spalt öffnet sich. So läuft es ab:
+Schließzellen öffnen den Spalt im **prallen** Zustand, nicht schlaff. Im Licht pumpen sie aktiv **Kaliumionen** ein und bilden Glucose, ziehen Wasser per Osmose an und krümmen sich nach außen. Im Dunkeln oder bei Trockenstress durch **Abscisinsäure** entweichen Kaliumionen, die Zellen erschlaffen und schließen den Spalt.
 
-1. Im Licht pumpen die Schließzellen durch aktiven Transport **Kaliumionen** hinein, und Glucose aus den Chloroplasten der Schließzellen erhöht die Menge gelöster Stoffe zusätzlich.
-2. Die Konzentration gelöster Stoffe in den Schließzellen steigt, also strömt durch Osmose Wasser aus den benachbarten Epidermiszellen nach.
-3. Die Schließzellen werden prall, krümmen sich, und die Spaltöffnung öffnet sich.
-4. Im Dunkeln diffundieren Kaliumionen hinaus, Wasser folgt durch Osmose, die Schließzellen werden schlaff, und die Spaltöffnung schließt sich.
+<StomatalGuardCellLab
+  title={<>Osmotisches Öffnen und Schließen der Spaltöffnungen</>}
+  description={
+    <>
+      Wechsle zwischen Tageslicht, Dunkelheit und Trockenheit und verstelle die
+      Lichtstärke, um Kaliumionen, Osmose, Zellkrümmung und Transpiration zu
+      beobachten.
+    </>
+  }
+  footer={<>Einströmendes Wasser macht Schließzellen prall und krümmt den Spalt auf.</>}
+  conditions={["light", "dark", "drought"]}
+  light={{ min: 0, max: 100, value: 75 }}
+  labels={{
+    aperture: <>Spaltweite</>,
+    apertures: {
+      open: "Weit offen",
+      narrow: "Verengt",
+      closed: "Fest geschlossen",
+    },
+    co2Intake: <>Kohlenstoffdioxidaufnahme</>,
+    condition: "Umgebung",
+    conditions: {
+      light: "Helles Tageslicht",
+      dark: "Dunkelheit",
+      drought: "Trockenheit (ABA)",
+    },
+    light: "Lichtstärke (%)",
+    mechanism: <>Ablauf</>,
+    mechanisms: {
+      light: <>Kaliumionen strömen aktiv ein, Wasser folgt per Osmose, pralle Zellen krümmen sich</>,
+      dark: <>Kaliumionen diffundieren hinaus, Wasser weicht per Osmose, schlaffe Zellen schließen</>,
+      drought: <>Abscisinsäure öffnet Kaliumkanäle, damit der Spalt selbst tagsüber schließt</>,
+    },
+    parts: {
+      guardCell: "Schließzelle",
+      thickInnerWall: "Dicke Innenwand",
+      thinOuterWall: "Dünne Außenwand",
+      chloroplast: "Chloroplast",
+      vacuole: "Vakuole",
+      pore: "Spaltöffnung",
+      potassiumIon: "Kaliumion",
+      water: "Wassermolekül",
+    },
+    transpiration: <>Transpirationsrate</>,
+    turgor: <>Turgorzustand</>,
+    turgors: {
+      turgid: "Prall",
+      flaccid: "Schlaff",
+    },
+    view: "Dreidimensionales Paar nierenförmiger Schließzellen an einer Spaltöffnung",
+  }}
+/>
 
-Fehlt der Pflanze Wasser, bilden die Blätter **Abscisinsäure**. Dieses Hormon lässt Kaliumionen aus den Schließzellen austreten, sodass sich die Spaltöffnungen auch tagsüber schließen und die Pflanze weniger Wasser verliert.
+> Spaltöffnungen sind keine starren Klapptüren, sondern lebende Wasserventile: Pralle Schließzellen biegen sich auseinander, schlaffe Zellen legen sich flach zusammen.
 
-## Transpiration und ihre Einflussfaktoren
+Verdunstet Wasserdampf durch Spaltöffnungen, entsteht **Transpiration** samt **Transpirationssog**, der Wasser durch das Xylem hochzieht und das Blatt kühlt.
 
-**Transpiration** ist die Abgabe von Wasserdampf aus den oberirdischen Teilen einer Pflanze, vor allem durch die Spaltöffnungen. Wasser verdunstet von den Wänden der Mesophyllzellen in die Interzellularen, dann diffundiert der Wasserdampf durch die Spaltöffnungen hinaus. Die Transpiration erzeugt einen **Transpirationssog**, der Wasser und Mineralsalze aus der Wurzel durch das Xylem nach oben zieht, und die Verdunstung kühlt das Blatt.
+### Blasenpotometer
 
-### Transpiration mit dem Potometer messen
-
-Ein Potometer misst, wie schnell ein beblätterter Spross Wasser aufnimmt, und das entspricht ungefähr seiner Transpirationsrate. Nimmt der Spross Wasser auf, wandert eine Luftblase durch die Kapillare, und das Wasservolumen ist der Zylinder, den die Blase durchläuft, <InlineMath math="V = \pi r^2 l" />. Die vier Sprosse im Modell tragen Vaseline auf unterschiedlichen Blattseiten. Vergleich den Spross mit bestrichener Unterseite mit dem Spross mit bestrichener Oberseite.
+Ein Potometer misst die Wasseraufnahme eines Sprosses über die Blasenstrecke <InlineMath math="l" /> in einer Kapillare vom Volumen <InlineMath math="\pi r^2 l" />. Vergleich die vier Vaseline-Proben im Modell.
 
 <PotometerLab
   title={<>Ein Blasenpotometer mit vier Sprossen</>}
   description={
     <>
       Die Kapillare hat einen Radius von <InlineMath math="0{,}5\text{ mm}" />.
-      Spross A ist unbehandelt, B trägt Vaseline auf den Blattoberseiten, C auf
-      den Unterseiten und D auf beiden.
+      Spross A bleibt unbehandelt, B trägt Vaseline oben, C unten und D auf
+      beiden Blattseiten.
     </>
   }
+  footer={<>Vaseline auf der Unterseite bremst die Transpiration am stärksten.</>}
   minutes={10}
   radius={0.5}
   shoots={[
@@ -114,32 +227,28 @@ Ein Potometer misst, wie schnell ein beblätterter Spross Wasser aufnimmt, und d
   }}
 />
 
-Spross A nimmt <InlineMath math="0{,}60\text{ cm}^3" /> Wasser pro Stunde auf. Berechne, wie weit die Blase in <InlineMath math="10" /> Minuten wandert. **Rechne den Radius zuerst in Zentimeter um**, also <InlineMath math="0{,}5\text{ mm} = 0{,}05\text{ cm}" />:
+Für Spross A (<InlineMath math="0{,}60\text{ cm}^3" /> pro Stunde) in <InlineMath math="10" /> Minuten bei Radius <InlineMath math="0{,}05\text{ cm}" />:
 
 <MathContainer>
 <BlockMath math="V = 0{,}60 \times \frac{10}{60} = 0{,}10\text{ cm}^3" />
-<BlockMath math="l = \frac{V}{\pi r^2} = \frac{0{,}10}{\pi(0{,}05)^2} = 12{,}7\text{ cm}" />
+<BlockMath math="l = \frac{0{,}10}{\pi(0{,}05)^2} = 12{,}7\text{ cm}" />
 </MathContainer>
 
-Probe: <InlineMath math="\pi(0{,}05)^2 \times 12{,}7 = 0{,}0998\text{ cm}^3" />, also fast <InlineMath math="0{,}10\text{ cm}^3" />. Bestrichene Unterseiten senken die Rate um <InlineMath math="\frac{0{,}60 - 0{,}12}{0{,}60} \times 100\% = 80\%" />, bestrichene Oberseiten nur um <InlineMath math="20\%" />. Die meisten Spaltöffnungen liegen also in der **unteren Epidermis**.
+Vaseline auf der Unterseite senkt die Rate um <InlineMath math="80\%" /> gegen nur <InlineMath math="20\%" /> oben, womit die meisten Spaltöffnungen in der **unteren Epidermis** liegen.
 
-### Temperatur und Luftfeuchte
+### Dampfdruckdefizit
 
-Die Luft in den Interzellularen ist fast mit Wasserdampf gesättigt. Wasserdampf diffundiert entlang des Konzentrationsgefälles zwischen den Interzellularen und der Außenluft hinaus. Dieses Gefälle lässt sich als **Sättigungsdefizit** des Dampfdrucks berechnen: der Sättigungsdampfdruck bei der Lufttemperatur mal der Anteil der Luft, der noch nicht gesättigt ist:
-
-<BlockMath math="\text{Defizit} = e_s(T) \times (1 - h)" />
-
-Dabei ist <InlineMath math="e_s" /> der Sättigungsdampfdruck bei der Temperatur <InlineMath math="T" /> und <InlineMath math="h" /> die relative Luftfeuchte als Bruch. Ändere Temperatur und Luftfeuchte im Modell und beobachte, wie sich das Defizit ändert.
+Die Dampfdiffusion folgt dem **Dampfdruckdefizit** aus Sättigungsdruck <InlineMath math="e_s(T)" /> mal ungesättigtem Anteil <InlineMath math="1 - h" />. Verstelle Temperatur und Luftfeuchte im Diagramm.
 
 <MathVisual
   title={<>Dampfdruckdefizit der Luft</>}
   description={
     <>
-      Die obere Kurve ist der Sättigungsdampfdruck <InlineMath math="e_s" />{" "}
-      nach der Tetens-Gleichung. Die untere Kurve ist das Dampfdruckdefizit
-      bei der relativen Luftfeuchte <InlineMath math="h" />.
+      Die obere Kurve zeigt den Sättigungsdampfdruck <InlineMath math="e_s" />,
+      die untere das Defizit bei relativer Luftfeuchte <InlineMath math="h" />.
     </>
   }
+  footer={<>Warme trockene Luft vergrößert das Defizit und beschleunigt die Transpiration.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 47 }, y: { min: 0, max: 10.5 } },
@@ -166,47 +275,95 @@ Dabei ist <InlineMath math="e_s" /> der Sättigungsdampfdruck bei der Temperatur
   }}
 />
 
-Bei <InlineMath math="30^\circ\text{C}" /> beträgt der Sättigungsdampfdruck <InlineMath math="4{,}24\text{ kPa}" />. Vergleich das Defizit bei einer Luftfeuchte von <InlineMath math="0{,}6" /> und <InlineMath math="0{,}9" />:
-
-<MathContainer>
-<BlockMath math="4{,}24 \times (1 - 0{,}6) = 1{,}70\text{ kPa}" />
-<BlockMath math="4{,}24 \times (1 - 0{,}9) = 0{,}42\text{ kPa}" />
-</MathContainer>
-
-Probe: <InlineMath math="1{,}70 \div 0{,}42 = 4{,}0" />, feuchte Luft macht das Gefälle also viermal kleiner und die Transpiration langsamer. Die übrigen Faktoren folgen derselben Logik. Die Tabelle fasst ihre Wirkung bei geöffneten Spaltöffnungen zusammen.
+Bei <InlineMath math="30^\circ\text{C}" /> (<InlineMath math="e_s" /> beträgt <InlineMath math="4{,}24\text{ kPa}" />) liegt das Defizit bei Feuchte <InlineMath math="0{,}6" /> bei <InlineMath math="1{,}70\text{ kPa}" />, viermal höher als <InlineMath math="0{,}42\text{ kPa}" /> bei <InlineMath math="0{,}9" />.
 
 | Faktor | Wenn der Faktor steigt | Grund |
 | :--- | :--- | :--- |
-| Lichtstärke | Transpirationsrate steigt | Mehr Spaltöffnungen sind offen |
-| Temperatur | Transpirationsrate steigt | Wasser verdunstet schneller, und der Sättigungsdampfdruck steigt |
-| Relative Luftfeuchte | Transpirationsrate sinkt | Das Konzentrationsgefälle des Wasserdampfs wird kleiner |
-| Luftbewegung | Transpirationsrate steigt | Wind trägt die feuchte Luft um das Blatt fort |
+| Licht | Transpiration steigt | Mehr Spaltöffnungen öffnen sich |
+| Temperatur | Transpiration steigt | Verdunstung und Sättigungsdruck wachsen |
+| Relative Luftfeuchte | Transpiration sinkt | Dampfdruckgefälle schrumpft |
+| Wind | Transpiration steigt | Feuchte Grenzluft wird weggeweht |
 
-## Fotosynthese in zwei Schritten
+## Fotosynthese im Chloroplast
 
-Die Fotosynthese läuft in den Chloroplasten in zwei Schritten ab. Die **lichtabhängigen Reaktionen** finden an den Thylakoiden der Grana statt. Chlorophyll absorbiert Lichtenergie, und diese Energie spaltet Wassermoleküle, die sogenannte **Fotolyse des Wassers**:
+Im Chloroplasten spaltet die **lichtabhängige Reaktion** an den Thylakoiden der Grana Wasser per **Fotolyse** und liefert Sauerstoff, ATP und NADPH:
 
 <BlockMath math="2\mathrm{H_2O} \rightarrow 4\mathrm{H^+} + 4e^- + \mathrm{O_2}" />
 
-Sauerstoff wird als Nebenprodukt frei, der Sauerstoff der Fotosynthese stammt also aus dem Wasser. Die Elektronen und Wasserstoffionen dienen zur Bildung von ATP und NADPH. Die **lichtunabhängigen Reaktionen**, der Calvin-Zyklus, laufen im Stroma ab. Kohlenstoffdioxid wird fixiert und mit Energie aus ATP und Wasserstoff aus NADPH zu Glucose reduziert. Der Calvin-Zyklus braucht Licht nicht direkt, stoppt aber, sobald kein ATP und NADPH mehr nachkommt.
+Die **lichtunabhängige Reaktion** (Calvin-Zyklus) im Stroma baut Kohlenstoffdioxid mit ATP und NADPH zu Glucose um. Erkunde den dreidimensionalen Chloroplasten und regle Licht, Kohlenstoffdioxid und Temperatur.
 
-| Merkmal | Lichtabhängig | Lichtunabhängig |
-| :--- | :--- | :--- |
-| Ort | Thylakoide der Grana | Stroma |
-| Ausgangsstoffe | Wasser, Licht, ADP, NADP | Kohlenstoffdioxid, ATP, NADPH |
-| Produkte | Sauerstoff, ATP, NADPH | Glucose, ADP, NADP |
+<ChloroplastStageLab
+  title={<>Chloroplast: Lichtreaktion, Calvin-Zyklus und begrenzende Faktoren</>}
+  description={
+    <>
+      Wähle den Reaktionsschritt in Thylakoid oder Stroma und verstelle Licht,
+      Kohlenstoffdioxid und Temperatur, um den begrenzenden Faktor und den
+      Netto-Gasaustausch abzulesen.
+    </>
+  }
+  footer={<>Thylakoide liefern ATP und NADPH für den Calvin-Zyklus im Stroma.</>}
+  stages={["lightDependent", "calvinCycle", "compensation"]}
+  light={{ min: 0, max: 100, value: 65 }}
+  co2={{ min: 0, max: 1000, value: 400 }}
+  temperature={{ min: 5, max: 50, value: 28 }}
+  labels={{
+    co2: "Kohlenstoffdioxid (ppm)",
+    factors: {
+      light: "Licht",
+      co2: "Kohlenstoffdioxid",
+      temperature: "Temperatur",
+      balanced: "Ausgeglichen",
+    },
+    gasStates: {
+      netRelease: "Netto-CO2-Abgabe",
+      compensation: "Kompensationspunkt",
+      netUptake: "Netto-CO2-Aufnahme",
+    },
+    light: "Lichtstärke (%)",
+    limitingFactor: <>Begrenzender Faktor</>,
+    netGas: <>Netto-Gasaustausch</>,
+    parts: {
+      thylakoid: "Thylakoid",
+      granum: "Granum",
+      stroma: "Stroma",
+      water: "Wasser",
+      oxygen: "Sauerstoff",
+      atp: "ATP",
+      nadph: "NADPH",
+      co2: "Kohlenstoffdioxid",
+      glucose: "Glucose",
+    },
+    site: <>Ort und Vorgang</>,
+    sites: {
+      lightDependent: <>Thylakoide spalten Wasser zu Sauerstoff und laden ATP sowie NADPH auf</>,
+      calvinCycle: <>Stroma baut Kohlenstoffdioxid mit ATP und NADPH zu Glucose um</>,
+      compensation: <>Fotosynthese im Chloroplasten gleicht die Zellatmung genau aus</>,
+    },
+    stage: "Schritt im Chloroplasten",
+    stages: {
+      lightDependent: "Lichtreaktion",
+      calvinCycle: "Calvin-Zyklus",
+      compensation: "Kompensation",
+    },
+    temperature: "Temperatur (°C)",
+    view: "Dreidimensionaler Chloroplast mit Thylakoidstapeln und Stroma",
+  }}
+/>
 
-Die Hydrilla im Modell gibt Sauerstoffblasen ab. Eine nähere Lampe liefert mehr Licht, denn die Lichtstärke ist umgekehrt proportional zum Quadrat des Abstands, <InlineMath math="I \propto \frac{1}{d^2}" />. Wähle jede Messung und vergleich die Blasen pro Minute.
+> Fotosynthese-Sauerstoff stammt nie aus Kohlenstoffdioxid, sondern unmittelbar aus der Wasserspaltung während der Lichtreaktion an den Thylakoiden.
+
+Bei Hydrilla unter einer Tischlampe folgt die Lichtstärke dem quadratischen Abstandsgesetz. Vergleich alle sieben Messwerte unten.
 
 <PhotosynthesisLab
   title={<>Hydrilla unter einer Tischlampe</>}
   description={
     <>
-      Die Lampe steht <InlineMath math="50\text{ cm}" /> bis{" "}
-      <InlineMath math="10\text{ cm}" /> von der Pflanze entfernt. Die letzten
-      beiden Messungen nutzen Wasser mit Natriumhydrogencarbonat.
+      Die Lampe wandert von <InlineMath math="50\text{ cm}" /> bis auf{" "}
+      <InlineMath math="10\text{ cm}" /> heran. Die letzten beiden Messungen
+      nutzen zusätzliches Natriumhydrogencarbonat.
     </>
   }
+  footer={<>Bei naher Lampe steigert zusätzliches CO2 die Blasenzahl sprunghaft.</>}
   readings={[
     { distance: 50, bubbles: 10 },
     { distance: 40, bubbles: 14 },
@@ -219,7 +376,10 @@ Die Hydrilla im Modell gibt Sauerstoffblasen ab. Eine nähere Lampe liefert mehr
   labels={{
     bubbles: <>Blasen pro Minute</>,
     carbon: <>Zusätzliches Kohlenstoffdioxid</>,
-    carbonSources: { added: <>Natriumhydrogencarbonat zugegeben</>, none: <>Nur Wasser</> },
+    carbonSources: {
+      added: <>Natriumhydrogencarbonat zugegeben</>,
+      none: <>Nur Wasser</>,
+    },
     distance: <>Abstand der Lampe</>,
     intensity: <>Relative Lichtstärke</>,
     reading: "Messung wählen",
@@ -227,28 +387,22 @@ Die Hydrilla im Modell gibt Sauerstoffblasen ab. Eine nähere Lampe liefert mehr
   }}
 />
 
-Vergleich die Lampe bei <InlineMath math="20\text{ cm}" /> und bei <InlineMath math="10\text{ cm}" />. **Berechne zuerst das Verhältnis der Lichtstärken**, dann das der Blasen:
+Rückt die Lampe von <InlineMath math="20\text{ cm}" /> auf <InlineMath math="10\text{ cm}" />, vervierfacht sich das Licht, doch die Blasen steigen nur von <InlineMath math="27" /> auf <InlineMath math="36" />. Hydrogencarbonat hebt sie auf <InlineMath math="62" />, also begrenzte Kohlenstoffdioxid.
 
-<MathContainer>
-<BlockMath math="\frac{I_{10}}{I_{20}} = \left(\frac{20}{10}\right)^2 = 4" />
-<BlockMath math="\frac{36}{27} = 1{,}33" />
-</MathContainer>
+### Begrenzende Faktoren
 
-Das Licht wurde viermal so stark, die Blasen nahmen aber nur um ein Drittel zu. Prüf es mit Natriumhydrogencarbonat: Bei <InlineMath math="10\text{ cm}" /> steigen die Blasen von <InlineMath math="36" /> auf <InlineMath math="62" />. Bei naher Lampe begrenzt also die Kohlenstoffdioxidkonzentration die Fotosyntheserate.
-
-## Begrenzende Faktoren der Fotosynthese
-
-Ein **begrenzender Faktor** ist der Faktor, der am knappsten ist, und er bestimmt die Rate. Bei schwachem Licht begrenzt das Licht die Rate, deshalb bringt zusätzliches Kohlenstoffdioxid fast nichts. Bei starkem Licht flacht die Kurve ab, weil nun Kohlenstoffdioxid oder Temperatur die Rate begrenzen. Die Kurven im Modell folgen <InlineMath math="P = c\left(1 - e^{-2I/c}\right)" />, wobei <InlineMath math="c" /> die höchste Rate ist, die das Kohlenstoffdioxidangebot zulässt. Verschieb beide Regler und such den Bereich, in dem das Licht der begrenzende Faktor ist.
+Ein **begrenzender Faktor** ist der knappste Einfluss, der das Tempo festlegt. Bei schwachem Licht bremst Licht, bei starkem Licht flacht die Kurve durch Kohlenstoffdioxid oder Temperatur ab. Verstelle beide Regler im Diagramm.
 
 <MathVisual
   title={<>Fotosyntheserate in Abhängigkeit von der Lichtstärke</>}
   description={
     <>
-      Die beiden Vergleichskurven stehen für wenig Kohlenstoffdioxid,{" "}
-      <InlineMath math="c = 4" />, und viel, <InlineMath math="c = 12" />. Die
-      Hauptkurve folgt dem Regler <InlineMath math="c" />.
+      Vergleichskurven markieren wenig Kohlenstoffdioxid (<InlineMath math="4" />)
+      und viel (<InlineMath math="12" />). Die Hauptkurve folgt dem Regler{" "}
+      <InlineMath math="c" />.
     </>
   }
+  footer={<>Die Kurve steigt steil bei Lichtmangel und flacht bei CO2-Mangel ab.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 21 }, y: { min: 0, max: 13 } },
@@ -276,30 +430,21 @@ Ein **begrenzender Faktor** ist der Faktor, der am knappsten ist, und er bestimm
   }}
 />
 
-Berechne die Rate bei <InlineMath math="I = 1" /> und <InlineMath math="I = 15" /> für <InlineMath math="c = 4" /> und <InlineMath math="c = 12" />. **Setz in dieselbe Formel ein**:
+Bei schwachem Licht (<InlineMath math="1" />) hebt dreifaches Kohlenstoffdioxid die Rate nur von <InlineMath math="1{,}57" /> auf <InlineMath math="1{,}84" />, bei hellem Licht (<InlineMath math="15" />) dagegen von <InlineMath math="4{,}00" /> auf <InlineMath math="11{,}02" />.
 
-<MathContainer>
-<BlockMath math="I = 1:\quad 4\left(1 - e^{-0{,}5}\right) = 1{,}57, \qquad 12\left(1 - e^{-1/6}\right) = 1{,}84" />
-<BlockMath math="I = 15:\quad 4\left(1 - e^{-7{,}5}\right) = 4{,}00, \qquad 12\left(1 - e^{-2{,}5}\right) = 11{,}02" />
-</MathContainer>
+### Kompensationspunkt
 
-Bei schwachem Licht hebt dreimal so viel Kohlenstoffdioxid die Rate nur von <InlineMath math="1{,}57" /> auf <InlineMath math="1{,}84" />. Bei starkem Licht verdreifacht sie sich fast. Prüf es im Modell: Schieb <InlineMath math="I" /> auf <InlineMath math="15" /> und wechsle <InlineMath math="c" /> zwischen <InlineMath math="4" /> und <InlineMath math="12" />.
-
-Auch die Temperatur begrenzt die Rate, weil Enzyme die lichtunabhängigen Reaktionen katalysieren. Die Rate steigt mit der Temperatur bis zum Optimum und fällt dann schnell, wenn die Enzyme denaturieren. Gewächshausgärtner geben Kohlenstoffdioxid und Lampenlicht zu, um den Faktor anzuheben, der ihren Ertrag begrenzt.
-
-## Der Kompensationspunkt
-
-Eine Pflanze atmet ständig, betreibt Fotosynthese aber nur im Licht. Der **Kompensationspunkt** ist die Lichtstärke, bei der die Fotosyntheserate genau der Atmungsrate entspricht. An diesem Punkt entsteht genauso viel Glucose, wie verbraucht wird, und es gibt keinen Netto-Gasaustausch mit der Luft. Eine Pflanze kann nur wachsen, wenn sie den größten Teil des Tages Licht oberhalb ihres Kompensationspunkts bekommt. Meist wird er früh am Morgen und am späten Nachmittag erreicht, wenn das Licht schwach ist.
+Der **Kompensationspunkt** liegt vor, wenn Fotosynthese und Atmung gleich schnell laufen und der Netto-Gasaustausch null erreicht. Verschieb den Regler unten zum Nulldurchgang.
 
 <MathVisual
   title={<>Der Kompensationspunkt eines Blattes</>}
   description={
     <>
-      Die Bruttofotosyntheserate <InlineMath math="P = \frac{10I}{I + 4}" />{" "}
-      und eine konstante Atmungsrate <InlineMath math="R = 2" />. Die untere
-      Kurve ist der Netto-Gasaustausch <InlineMath math="P - R" />.
+      Bruttofotosynthese gegen konstante Atmung <InlineMath math="2" />. Die
+      untere Kurve zeigt den Netto-Gasaustausch <InlineMath math="P - R" />.
     </>
   }
+  footer={<>Am Kompensationspunkt schneidet der Netto-Gasaustausch P - R genau null.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -2.5, max: 8 } },
@@ -332,62 +477,27 @@ Eine Pflanze atmet ständig, betreibt Fotosynthese aber nur im Licht. Der **Komp
   }}
 />
 
-Bestimme die Lichtstärke am Kompensationspunkt. **Setz die Fotosyntheserate gleich der Atmungsrate** und löse:
+Setz Fotosynthese und Atmung gleich, um den Kompensationspunkt zu berechnen:
 
-<MathContainer>
-<BlockMath math="\frac{10I}{I + 4} = 2" />
-<BlockMath math="10I = 2I + 8 \quad\Rightarrow\quad I = 1" />
-</MathContainer>
+<BlockMath math="\frac{10I}{I + 4} = 2 \quad\Rightarrow\quad 10I = 2I + 8 \quad\Rightarrow\quad I = 1" />
 
-Probe: <InlineMath math="\frac{10(1)}{1 + 4} = 2" />, genauso viel wie <InlineMath math="R" />. Bei <InlineMath math="I = 3" /> beträgt der Netto-Austausch <InlineMath math="\frac{30}{7} - 2 = 2{,}29" />, das Blatt nimmt also Kohlenstoffdioxid auf. Bei <InlineMath math="I = 0" /> ist er <InlineMath math="-2" />, das Blatt gibt also nur Kohlenstoffdioxid ab.
+Oberhalb der Lichtstärke <InlineMath math="1" /> nimmt das Blatt netto Kohlenstoffdioxid auf und speichert Glucose zum Wachsen.
 
-## Typische Fehler beim Blatt
+## Rechnungen zur Blattfunktion
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Pflanzen atmen nur nachts. | Die Zellatmung läuft ständig. Tagsüber überdeckt die schnellere Fotosynthese ihre Wirkung. | Schau auf den Kompensationspunkt: Auch im Licht findet Atmung statt. |
-| Eine Spaltöffnung öffnet sich, wenn die Schließzellen schlaff sind. | Sie öffnet sich, wenn die Schließzellen prall sind und sich krümmen. | Folge dem Wasser: Wasser hinein, Zellen prall, Spalt offen. |
-| Der Sauerstoff der Fotosynthese stammt aus dem Kohlenstoffdioxid. | Er stammt aus der Fotolyse des Wassers in den lichtabhängigen Reaktionen. | Schreib die Gleichung der Fotolyse und such den Sauerstoff. |
-| Die Fotosyntheserate steigt, solange das Licht zunimmt. | Bei starkem Licht begrenzen Kohlenstoffdioxid oder Temperatur die Rate. | Eine flache Kurve zeigt, dass ein anderer Faktor begrenzt. |
+Wende Potometergeometrie, Abstandsgesetz und Kompensationspunkt auf drei Aufgaben an.
 
-Der dritte Fehler taucht in offenen Aufgaben oft auf. **Der Sauerstoff stammt aus dem Wasser**, nicht aus dem Kohlenstoffdioxid.
-
-## Übungen zu Bau und Funktion des Blattes
-
-Die Aufgaben führen von der Arbeitsweise der Spaltöffnungen zu Rechnungen zu Transpiration, Licht und Kompensationspunkt. **Schreib die Formel auf, bevor du Werte einsetzt**.
-
-1. Erkläre, wie sich eine Spaltöffnung tagsüber öffnet.
-
-2. In einem Potometer mit einer Kapillare von <InlineMath math="0{,}5\text{ mm}" /> Radius wandert die Blase in <InlineMath math="5" /> Minuten <InlineMath math="9{,}0\text{ cm}" /> weit. Berechne die Wasseraufnahmerate in <InlineMath math="\text{cm}^3" /> pro Stunde.
-
-3. Eine Lampe wird von <InlineMath math="30\text{ cm}" /> auf <InlineMath math="15\text{ cm}" /> an die Hydrilla herangerückt. Um welchen Faktor steigt die Lichtstärke?
-
-4. Bei höherer Temperatur steigt die Atmungsrate des Blattes im Modell des Kompensationspunkts auf <InlineMath math="R = 3" />. Bestimme den neuen Kompensationspunkt und erkläre die Veränderung.
-
-### Lösungen
-
-**Lösung 1**: Im Licht pumpen die Schließzellen aktiv **Kaliumionen** hinein und bilden Glucose. Die Konzentration gelöster Stoffe steigt, also strömt durch Osmose Wasser aus den benachbarten Epidermiszellen nach. Die Schließzellen werden prall, und weil ihre Innenwand dicker ist, krümmen sie sich nach außen und öffnen den Spalt.
-
-**Lösung 2**: Berechne das Volumen mit **dem Radius in Zentimetern**, <InlineMath math="0{,}05\text{ cm}" />:
+1. In einem Potometer mit Radius <InlineMath math="0{,}5\text{ mm}" /> wandert die Blase in <InlineMath math="5" /> Minuten <InlineMath math="9{,}0\text{ cm}" />. Berechne die stündliche Aufnahme. **Lösung**: mit Radius <InlineMath math="0{,}05\text{ cm}" />:
 
 <MathContainer>
 <BlockMath math="V = \pi(0{,}05)^2 \times 9{,}0 = 0{,}0707\text{ cm}^3" />
 <BlockMath math="\text{Rate} = 0{,}0707 \times \frac{60}{5} = 0{,}848\text{ cm}^3\text{ pro Stunde}" />
 </MathContainer>
 
-Probe: <InlineMath math="0{,}848 \div 12 = 0{,}0707\text{ cm}^3" />, und dieses Volumen geteilt durch <InlineMath math="\pi(0{,}05)^2" /> ergibt wieder <InlineMath math="9{,}0\text{ cm}" />.
-
-**Lösung 3**: Die Lichtstärke ist **umgekehrt proportional zum Quadrat des Abstands**:
+2. Eine Lampe rückt von <InlineMath math="30\text{ cm}" /> auf <InlineMath math="15\text{ cm}" /> an Hydrilla heran. Um welchen Faktor steigt die Lichtstärke? **Lösung**: halber Abstand vervierfacht das Licht (<InlineMath math="4" />):
 
 <BlockMath math="\frac{I_{15}}{I_{30}} = \left(\frac{30}{15}\right)^2 = 4" />
 
-Probe: Der Abstand halbiert sich, also wird die Lichtstärke <InlineMath math="2^2 = 4" />-mal so groß.
+3. Erhöht Wärme die Atmung auf <InlineMath math="3" />, finde den neuen Kompensationspunkt. **Lösung**: schnellere Atmung erfordert helleres Licht:
 
-**Lösung 4**: Setz die Fotosynthese gleich der **neuen Atmungsrate**:
-
-<MathContainer>
-<BlockMath math="\frac{10I}{I + 4} = 3" />
-<BlockMath math="10I = 3I + 12 \quad\Rightarrow\quad I = \frac{12}{7} = 1{,}71" />
-</MathContainer>
-
-Probe: <InlineMath math="\frac{10(12/7)}{12/7 + 4} = \frac{120/7}{40/7} = 3" />. Schnellere Atmung verbraucht mehr Glucose, daher braucht das Blatt helleres Licht, bevor seine Fotosynthese die Atmung ausgleicht.
+<BlockMath math="\frac{10I}{I + 4} = 3 \quad\Rightarrow\quad I = \frac{12}{7} = 1{,}71" />

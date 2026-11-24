@@ -1,48 +1,113 @@
 export const metadata = {
-  title: "Leaf Structure and Function Notes for Form Five",
+  title: "Leaf Structure and Function",
   description:
-    "Form 5 Biology Chapter 2: link leaf structure to gaseous exchange, transpiration and photosynthesis, limiting factors and the compensation point.",
+    "Link leaf structure to gaseous exchange, transpiration, photosynthesis, limiting factors, and the compensation point.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Leaf Structure and Function",
 };
 
-## A Leaf Does Three Main Jobs
+## Leaf Lamina Anatomy
 
-The leaf is a plant's main organ for **gaseous exchange**, **transpiration** and **photosynthesis**. All three rely on the same structure: a broad, thin lamina, mesophyll packed with chloroplasts, air spaces between the cells, and stomata that guard cells can open and close. Photosynthesis uses light energy to turn carbon dioxide and water into glucose and oxygen:
+Think of a leaf as a paper-thin solar kitchen dotted with thousands of tiny breathing vents. It runs **gaseous exchange**, **transpiration**, and **photosynthesis** together using a broad thin lamina, chloroplast-packed mesophyll, air spaces, and stomata.
+
+> Photosynthesis is how a plant turns sunlight, carbon dioxide, and water into glucose sugar while releasing oxygen into the air.
 
 <BlockMath math="6\mathrm{CO_2} + 12\mathrm{H_2O} \xrightarrow[\text{chlorophyll}]{\text{light}} \mathrm{C_6H_{12}O_6} + 6\mathrm{O_2} + 6\mathrm{H_2O}" />
 
-Light intensity, carbon dioxide concentration and temperature limit the rate of photosynthesis, and at the **compensation point** the rate of photosynthesis equals the rate of respiration. In the models here, you change the thickness of a leaf, coat leaves in a potometer, change the air's temperature and humidity, count the oxygen bubbles from Hydrilla, and find the compensation point.
-
-## The Outside and Inside of a Leaf
-
-From the outside, a leaf has a broad, flat **lamina**, a **petiole** that joins the lamina to the stem, and veins that carry water and food. A cross-section of the leaf shows the layers of tissue inside. This table lists those layers from the upper surface to the lower surface.
+From top to bottom, a leaf cross-section stacks six specialised tissue layers built for light capture and gas diffusion.
 
 | Structure | Features | Link to function |
 | :--- | :--- | :--- |
-| Cuticle | Transparent waxy layer | Cuts down water loss and lets light through |
-| Upper epidermis | One layer of cells with no chloroplasts | Transparent, so light reaches the mesophyll |
-| Palisade mesophyll | Long cells, tightly packed, full of chloroplasts | Main site of photosynthesis because it gets the most light |
-| Spongy mesophyll | Irregular cells with many air spaces | Gases diffuse through the whole leaf via the air spaces |
-| Vascular bundle | Xylem and phloem in the veins | Xylem brings water in, phloem carries sucrose out |
-| Lower epidermis | Many stomata, each between two guard cells | Main site of gaseous exchange and transpiration |
+| Cuticle | Transparent waxy coat | Cuts water loss while letting light through |
+| Upper epidermis | Single clear layer without chloroplasts | Transmits light into the mesophyll |
+| Palisade mesophyll | Tall packed cells full of chloroplasts | Main site of photosynthesis on the bright side |
+| Spongy mesophyll | Loose cells with wide air spaces | Rapid pathway for carbon dioxide and oxygen |
+| Vascular bundle | Xylem and phloem in veins | Xylem brings water, phloem exports sucrose |
+| Lower epidermis | Dense stomata flanked by guard cells | Main gateway for gas exchange and transpiration |
 
-A thin lamina gives the leaf a **large surface area to volume ratio**, so gases only have to diffuse a few cell layers. For a sheet of leaf with area <InlineMath math="A" /> and thickness <InlineMath math="d" />, both faces add to the area, so the ratio depends only on the thickness:
+Inspect every layer of a leaf lamina in three dimensions below. Compare chloroplast density from the waxy cuticle down to the lower stomata.
 
-<BlockMath math="\frac{\text{Surface area}}{\text{Volume}} = \frac{2A}{Ad} = \frac{2}{d}" />
+<LeafLaminaCrossSectionLab
+  title={<>Cross-Section of a Leaf Lamina</>}
+  description={
+    <>
+      Pick each tissue layer from top to bottom to inspect cell shape,
+      chloroplast density, air spaces, vascular bundles, and key adaptations.
+    </>
+  }
+  footer={<>Select leaf layers to compare chloroplast density and adaptations.</>}
+  layers={[
+    "cuticle",
+    "upperEpidermis",
+    "palisade",
+    "spongy",
+    "vascular",
+    "lowerEpidermis",
+    "stoma",
+  ]}
+  labels={{
+    adaptation: <>Key adaptation</>,
+    chloroplasts: <>Chloroplast density</>,
+    densities: {
+      high: "Very high",
+      moderate: "Moderate",
+      guardOnly: "Guard cells only",
+      none: "None",
+    },
+    layer: "Choose leaf layer",
+    layers: {
+      cuticle: {
+        name: "Waxy cuticle",
+        adaptation: <>Waterproof yet clear so sunlight passes through to the mesophyll</>,
+      },
+      upperEpidermis: {
+        name: "Upper epidermis",
+        adaptation: <>Single transparent layer without chloroplasts transmitting light</>,
+      },
+      palisade: {
+        name: "Palisade mesophyll",
+        adaptation: <>Upright packed cylinders loaded with chloroplasts right under the top</>,
+      },
+      spongy: {
+        name: "Spongy mesophyll",
+        adaptation: <>Loosely packed cells with wide air spaces speeding gas diffusion</>,
+      },
+      vascular: {
+        name: "Vascular bundle",
+        adaptation: <>Xylem brings water from roots while phloem exports sucrose away</>,
+      },
+      lowerEpidermis: {
+        name: "Lower epidermis",
+        adaptation: <>Holds most stomata shaded from direct scorching sunlight</>,
+      },
+      stoma: {
+        name: "Stoma",
+        adaptation: <>Microscopic pore flanked by guard cells controlling gas exchange</>,
+      },
+    },
+    parts: {
+      xylem: "Xylem",
+      phloem: "Phloem",
+      airSpace: "Air space",
+      chloroplast: "Chloroplast",
+      guardCell: "Guard cell",
+    },
+    view: "Three-dimensional histological cross-section of a leaf lamina",
+  }}
+/>
 
-Move the thickness slider and watch the ratio climb fast as the leaf gets thinner.
+A thin lamina gives a **surface area to volume ratio** of <InlineMath math="2/d" />, so a <InlineMath math="0.2\text{ mm}" /> blade hits <InlineMath math="10\text{ mm}^{-1}" />, five times a <InlineMath math="1\text{ mm}" /> blade. Slide leaf thickness below.
 
 <MathVisual
   title={<>Surface Area to Volume Ratio of a Leaf</>}
   description={
     <>
-      The curve <InlineMath math="2/d" /> for a sheet of leaf{" "}
-      <InlineMath math="d" /> millimetres thick. The edges are left out
-      because they're tiny next to the two faces.
+      The curve <InlineMath math="2/d" /> for a leaf blade{" "}
+      <InlineMath math="d" /> millimetres thick, ignoring the narrow edges.
     </>
   }
+  footer={<>Thinner leaves achieve a much higher surface-area-to-volume ratio.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1.1 }, y: { min: 0, max: 21 } },
@@ -64,38 +129,85 @@ Move the thickness slider and watch the ratio climb fast as the leaf gets thinne
   }}
 />
 
-A leaf <InlineMath math="0.2\text{ mm}" /> thick has a ratio of <InlineMath math="2 \div 0.2 = 10\text{ mm}^{-1}" />, five times that of a leaf <InlineMath math="1\text{ mm}" /> thick, whose ratio is <InlineMath math="2\text{ mm}^{-1}" />.
+Thin blades keep gas diffusion paths short across every mesophyll layer.
 
-## Gaseous Exchange through the Stomata
+## Stomata and Transpiration
 
-A leaf exchanges gases with the air through its stomata. In the daytime, the rate of photosynthesis is higher than the rate of respiration, so the leaf **takes in carbon dioxide and gives out oxygen**. At night, only respiration happens, so the leaf takes in oxygen and gives out carbon dioxide. Gases diffuse through the stomata into the air spaces, dissolve in the film of water that coats the mesophyll cells, and then diffuse into the cells.
+In daylight, photosynthesis outpaces respiration so carbon dioxide enters and oxygen leaves, while at night only respiration runs. Remember: plants respire nonstop, never only at night.
 
-Guard cells open a stoma when they're turgid. The guard cell wall facing the pore is thicker and less elastic than its outer wall, so a turgid guard cell curves outwards and the pore opens. Here's how it works:
+Guard cells open a stoma when **turgid**, never when flaccid. In light, they actively pump in **potassium ions** and build glucose, draw water by osmosis, and bow outward because their outer walls are thinner. In darkness or drought triggered by **abscisic acid**, potassium ions exit, cells go flaccid, and the pore closes.
 
-1. In light, the guard cells pump **potassium ions** in by active transport, and glucose made by the guard cells' chloroplasts adds more solute.
-2. The solute concentration in the guard cells rises, so water moves in by osmosis from the neighbouring epidermal cells.
-3. The guard cells become turgid and curve, and the stoma opens.
-4. In the dark, potassium ions diffuse out, water leaves by osmosis, the guard cells become flaccid and the stoma closes.
+<StomatalGuardCellLab
+  title={<>Osmotic Opening and Closing of Stomata</>}
+  description={
+    <>
+      Switch between daylight, darkness, and drought and slide light intensity
+      to watch potassium ions, water flow, guard-cell bending, and
+      transpiration change.
+    </>
+  }
+  footer={<>Water entry makes guard cells turgid so their thick inner walls bow open.</>}
+  conditions={["light", "dark", "drought"]}
+  light={{ min: 0, max: 100, value: 75 }}
+  labels={{
+    aperture: <>Stomatal aperture</>,
+    apertures: {
+      open: "Wide open",
+      narrow: "Narrowing",
+      closed: "Tightly closed",
+    },
+    co2Intake: <>Carbon dioxide uptake</>,
+    condition: "Environment",
+    conditions: {
+      light: "Bright daylight",
+      dark: "Night darkness",
+      drought: "Drought (ABA)",
+    },
+    light: "Light intensity (%)",
+    mechanism: <>Mechanism</>,
+    mechanisms: {
+      light: <>Potassium ions pump in, water enters by osmosis, turgid cells bow open</>,
+      dark: <>Potassium ions diffuse out, water leaves by osmosis, flaccid cells close pore</>,
+      drought: <>Abscisic acid triggers potassium efflux so stomata shut even in daylight</>,
+    },
+    parts: {
+      guardCell: "Guard cell",
+      thickInnerWall: "Thick inner wall",
+      thinOuterWall: "Thin outer wall",
+      chloroplast: "Chloroplast",
+      vacuole: "Vacuole",
+      pore: "Stomatal pore",
+      potassiumIon: "Potassium ion",
+      water: "Water molecule",
+    },
+    transpiration: <>Transpiration rate</>,
+    turgor: <>Turgor state</>,
+    turgors: {
+      turgid: "Turgid",
+      flaccid: "Flaccid",
+    },
+    view: "Three-dimensional pair of kidney-shaped guard cells controlling a stoma",
+  }}
+/>
 
-When a plant is short of water, its leaves make **abscisic acid**. This hormone makes potassium ions leave the guard cells, so the stomata close even in the daytime and the plant loses less water.
+> Stomata are not rigid hinged doors but living water valves: turgid guard cells bend apart to open the pore, while flaccid cells collapse flat to seal it.
 
-## Transpiration and What Affects It
+Water vapour escaping through stomata drives **transpiration**, creating **transpiration pull** that hoists water up the xylem while cooling the leaf.
 
-**Transpiration** is the loss of water vapour from the parts of a plant above the ground, mostly through the stomata. Water evaporates from the walls of the mesophyll cells into the air spaces, then the water vapour diffuses out through the stomata. Transpiration creates a **transpiration pull** that draws water and mineral salts up from the roots through the xylem, and the evaporation cools the leaf.
+### Bubble Potometer
 
-### Measuring Transpiration with a Potometer
-
-A potometer measures how fast a leafy shoot takes up water, which is close to its rate of transpiration. As the shoot takes up water, an air bubble moves along the capillary tube, and the volume of water is the cylinder the bubble moves along, <InlineMath math="V = \pi r^2 l" />. The four shoots in this model have petroleum jelly on different surfaces. Compare the shoot coated on its lower surfaces with the one coated on its upper surfaces.
+A potometer tracks shoot water uptake through bubble travel <InlineMath math="l" /> in a capillary cylinder of volume <InlineMath math="\pi r^2 l" />. Compare the four petroleum-jelly shoots below.
 
 <PotometerLab
   title={<>A Bubble Potometer with Four Shoots</>}
   description={
     <>
-      The capillary tube has a radius of <InlineMath math="0.5\text{ mm}" />.
-      Shoot A is uncoated, B has jelly on its upper surfaces, C on its lower
-      surfaces, and D on both.
+      The capillary tube has radius <InlineMath math="0.5\text{ mm}" />. Shoot
+      A is uncoated, B is coated on upper leaf surfaces, C on lower surfaces,
+      and D on both.
     </>
   }
+  footer={<>Coating lower surfaces cuts transpiration far more than upper surfaces.</>}
   minutes={10}
   radius={0.5}
   shoots={[
@@ -114,32 +226,29 @@ A potometer measures how fast a leafy shoot takes up water, which is close to it
   }}
 />
 
-Shoot A takes up <InlineMath math="0.60\text{ cm}^3" /> of water an hour. Work out how far the bubble moves in <InlineMath math="10" /> minutes. **Convert the radius to centimetres first**, <InlineMath math="0.5\text{ mm} = 0.05\text{ cm}" />:
+For shoot A (<InlineMath math="0.60\text{ cm}^3" /> an hour) over <InlineMath math="10" /> minutes with radius <InlineMath math="0.05\text{ cm}" />:
 
 <MathContainer>
 <BlockMath math="V = 0.60 \times \frac{10}{60} = 0.10\text{ cm}^3" />
-<BlockMath math="l = \frac{V}{\pi r^2} = \frac{0.10}{\pi(0.05)^2} = 12.7\text{ cm}" />
+<BlockMath math="l = \frac{0.10}{\pi(0.05)^2} = 12.7\text{ cm}" />
 </MathContainer>
 
-Check: <InlineMath math="\pi(0.05)^2 \times 12.7 = 0.0998\text{ cm}^3" />, close to <InlineMath math="0.10\text{ cm}^3" />. Coating the lower surfaces cuts the rate by <InlineMath math="\frac{0.60 - 0.12}{0.60} \times 100\% = 80\%" />, but coating the upper surfaces cuts it by only <InlineMath math="20\%" />. So most stomata are on the **lower epidermis**.
+Coating lower faces cuts uptake by <InlineMath math="80\%" /> versus <InlineMath math="20\%" /> for upper faces, showing most stomata sit on the **lower epidermis**.
 
-### Temperature and Humidity
+### Vapour Pressure Deficit
 
-The air in a leaf's air spaces is nearly saturated with water vapour. Water vapour diffuses out down the concentration gradient between the air spaces and the air outside the leaf. You can measure that gradient as the **vapour pressure deficit**: the saturation vapour pressure at the air temperature times the share of the air that isn't yet saturated:
-
-<BlockMath math="\text{Deficit} = e_s(T) \times (1 - h)" />
-
-Here <InlineMath math="e_s" /> is the saturation vapour pressure at temperature <InlineMath math="T" />, and <InlineMath math="h" /> is the relative humidity as a fraction. Change the temperature and humidity in this model and watch the deficit change.
+Vapour diffusion scales with the **vapour pressure deficit**, saturation pressure <InlineMath math="e_s(T)" /> times unsaturated fraction <InlineMath math="1 - h" />. Adjust temperature and humidity below.
 
 <MathVisual
   title={<>Vapour Pressure Deficit of the Air</>}
   description={
     <>
-      The upper curve is the saturation vapour pressure <InlineMath math="e_s" />{" "}
-      from the Tetens equation. The lower curve is the vapour pressure deficit
-      at relative humidity <InlineMath math="h" />.
+      The upper curve plots saturation vapour pressure <InlineMath math="e_s" />{" "}
+      and the lower curve shows the deficit at relative humidity{" "}
+      <InlineMath math="h" />.
     </>
   }
+  footer={<>Warm dry air widens the vapour deficit and speeds up transpiration.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 47 }, y: { min: 0, max: 10.5 } },
@@ -166,47 +275,95 @@ Here <InlineMath math="e_s" /> is the saturation vapour pressure at temperature 
   }}
 />
 
-At <InlineMath math="30^\circ\text{C}" />, the saturation vapour pressure is <InlineMath math="4.24\text{ kPa}" />. Compare the deficit at humidities of <InlineMath math="0.6" /> and <InlineMath math="0.9" />:
+At <InlineMath math="30^\circ\text{C}" /> (<InlineMath math="e_s" /> is <InlineMath math="4.24\text{ kPa}" />), the deficit at humidity <InlineMath math="0.6" /> is <InlineMath math="1.70\text{ kPa}" />, four times the <InlineMath math="0.42\text{ kPa}" /> at humidity <InlineMath math="0.9" />.
 
-<MathContainer>
-<BlockMath math="4.24 \times (1 - 0.6) = 1.70\text{ kPa}" />
-<BlockMath math="4.24 \times (1 - 0.9) = 0.42\text{ kPa}" />
-</MathContainer>
-
-Check: <InlineMath math="1.70 \div 0.42 = 4.0" />, so humid air makes the gradient four times smaller and transpiration slower. The other factors follow the same logic. This table sums up their effects while the stomata are open.
-
-| Factor | When the factor increases | Reason |
+| Factor | When the factor rises | Reason |
 | :--- | :--- | :--- |
-| Light intensity | Rate of transpiration rises | More stomata open |
-| Temperature | Rate of transpiration rises | Water evaporates faster and the saturation vapour pressure rises |
-| Relative humidity | Rate of transpiration falls | The water vapour concentration gradient gets smaller |
-| Air movement | Rate of transpiration rises | Wind carries away the humid air around the leaf |
+| Light | Transpiration rises | More stomata open |
+| Temperature | Transpiration rises | Evaporation and saturation pressure climb |
+| Relative humidity | Transpiration falls | Vapour gradient shrinks |
+| Wind | Transpiration rises | Humid boundary air blows away |
 
-## Photosynthesis in Two Stages
+## Chloroplast Photosynthesis
 
-Photosynthesis happens in chloroplasts in two stages. The **light-dependent reaction** takes place on the thylakoids in the grana. Chlorophyll absorbs light energy, and that energy splits water molecules, which is the **photolysis of water**:
+Inside chloroplasts, the **light-dependent reaction** on thylakoid grana splits water via **photolysis**, releasing oxygen, ATP, and NADPH:
 
 <BlockMath math="2\mathrm{H_2O} \rightarrow 4\mathrm{H^+} + 4e^- + \mathrm{O_2}" />
 
-Oxygen is released as a by-product, so the oxygen from photosynthesis comes from water. The electrons and hydrogen ions are used to make ATP and NADPH. The **light-independent reaction** takes place in the stroma. Carbon dioxide is fixed and reduced to glucose using energy from ATP and hydrogen from NADPH. This stage doesn't need light directly, but it stops once the supply of ATP and NADPH runs out.
+The **light-independent reaction** (Calvin cycle) in the stroma converts carbon dioxide into glucose using ATP and NADPH. Explore the three-dimensional chloroplast below and tune light, carbon dioxide, and temperature.
 
-| Feature | Light-dependent | Light-independent |
-| :--- | :--- | :--- |
-| Site | Thylakoids in the grana | Stroma |
-| Raw materials | Water, light, ADP, NADP | Carbon dioxide, ATP, NADPH |
-| Products | Oxygen, ATP, NADPH | Glucose, ADP, NADP |
+<ChloroplastStageLab
+  title={<>Chloroplast: Light Reaction, Calvin Cycle, and Limiting Factors</>}
+  description={
+    <>
+      Inspect reactions in the thylakoids and stroma, then tune light, carbon
+      dioxide, and temperature to identify the limiting factor and net gas
+      exchange.
+    </>
+  }
+  footer={<>Thylakoid light reactions supply ATP and NADPH to the Calvin cycle in stroma.</>}
+  stages={["lightDependent", "calvinCycle", "compensation"]}
+  light={{ min: 0, max: 100, value: 65 }}
+  co2={{ min: 0, max: 1000, value: 400 }}
+  temperature={{ min: 5, max: 50, value: 28 }}
+  labels={{
+    co2: "Carbon dioxide (ppm)",
+    factors: {
+      light: "Light",
+      co2: "Carbon dioxide",
+      temperature: "Temperature",
+      balanced: "Balanced",
+    },
+    gasStates: {
+      netRelease: "Net CO2 release",
+      compensation: "Compensation point",
+      netUptake: "Net CO2 uptake",
+    },
+    light: "Light intensity (%)",
+    limitingFactor: <>Limiting factor</>,
+    netGas: <>Net gas exchange</>,
+    parts: {
+      thylakoid: "Thylakoid",
+      granum: "Granum",
+      stroma: "Stroma",
+      water: "Water",
+      oxygen: "Oxygen",
+      atp: "ATP",
+      nadph: "NADPH",
+      co2: "Carbon dioxide",
+      glucose: "Glucose",
+    },
+    site: <>Reaction site and action</>,
+    sites: {
+      lightDependent: <>Thylakoids split water into oxygen while charging ATP and NADPH</>,
+      calvinCycle: <>Stroma fixes carbon dioxide into glucose using ATP and NADPH</>,
+      compensation: <>Chloroplast photosynthesis exactly balances cellular respiration</>,
+    },
+    stage: "Chloroplast stage",
+    stages: {
+      lightDependent: "Light-dependent",
+      calvinCycle: "Calvin cycle",
+      compensation: "Compensation",
+    },
+    temperature: "Temperature (°C)",
+    view: "Three-dimensional chloroplast showing thylakoid grana and stroma",
+  }}
+/>
 
-The Hydrilla in this model gives off bubbles of oxygen. A closer lamp gives a higher light intensity, because intensity is inversely proportional to the square of the distance, <InlineMath math="I \propto \frac{1}{d^2}" />. Choose each reading and compare the bubbles a minute.
+> Photosynthetic oxygen never comes from carbon dioxide, it comes directly from splitting water molecules during the light-dependent reaction on thylakoids.
+
+With Hydrilla under a bench lamp, light intensity obeys the inverse-square law of distance. Compare all seven bubble readings below.
 
 <PhotosynthesisLab
   title={<>Hydrilla under a Bench Lamp</>}
   description={
     <>
-      The lamp stands from <InlineMath math="50\text{ cm}" /> to{" "}
-      <InlineMath math="10\text{ cm}" /> from the plant. The last two readings
-      use water with sodium hydrogen carbonate added.
+      The lamp moves from <InlineMath math="50\text{ cm}" /> down to{" "}
+      <InlineMath math="10\text{ cm}" />. The final two readings add sodium
+      hydrogen carbonate for extra carbon dioxide.
     </>
   }
+  footer={<>Close to the lamp, adding CO2 triggers a sharp jump in oxygen bubbles.</>}
   readings={[
     { distance: 50, bubbles: 10 },
     { distance: 40, bubbles: 14 },
@@ -219,7 +376,10 @@ The Hydrilla in this model gives off bubbles of oxygen. A closer lamp gives a hi
   labels={{
     bubbles: <>Bubbles a minute</>,
     carbon: <>Extra carbon dioxide</>,
-    carbonSources: { added: <>Sodium hydrogen carbonate added</>, none: <>Water only</> },
+    carbonSources: {
+      added: <>Sodium hydrogen carbonate added</>,
+      none: <>Water only</>,
+    },
     distance: <>Lamp distance</>,
     intensity: <>Relative light intensity</>,
     reading: "Choose a reading",
@@ -227,28 +387,22 @@ The Hydrilla in this model gives off bubbles of oxygen. A closer lamp gives a hi
   }}
 />
 
-Compare the lamp at <InlineMath math="20\text{ cm}" /> and at <InlineMath math="10\text{ cm}" />. **Work out the ratio of light intensities first**, then the ratio of bubbles:
+Moving the lamp from <InlineMath math="20\text{ cm}" /> to <InlineMath math="10\text{ cm}" /> quadruples light, yet bubbles rise only from <InlineMath math="27" /> to <InlineMath math="36" />. Adding bicarbonate jumps bubbles to <InlineMath math="62" />, proving carbon dioxide was limiting.
 
-<MathContainer>
-<BlockMath math="\frac{I_{10}}{I_{20}} = \left(\frac{20}{10}\right)^2 = 4" />
-<BlockMath math="\frac{36}{27} = 1.33" />
-</MathContainer>
+### Limiting Factors
 
-The light got four times stronger, but the bubbles went up by only a third. Check with sodium hydrogen carbonate: at <InlineMath math="10\text{ cm}" />, the bubbles rise from <InlineMath math="36" /> to <InlineMath math="62" />. So with the lamp close, carbon dioxide concentration is what limits the rate of photosynthesis.
-
-## Limiting Factors of Photosynthesis
-
-A **limiting factor** is the factor in shortest supply, and it's the one that sets the rate. In dim light, light limits the rate, so adding carbon dioxide does almost nothing. In bright light, the curve levels off because carbon dioxide or temperature now limits the rate. The curves in this model follow <InlineMath math="P = c\left(1 - e^{-2I/c}\right)" />, where <InlineMath math="c" /> is the highest rate the carbon dioxide supply allows. Move both sliders and find where light is the limiting factor.
+A **limiting factor** is the scarcest input holding back the rate. Light limits dim leaves, while bright leaves plateau under carbon dioxide or temperature limits. Move both sliders below to compare carbon dioxide ceilings <InlineMath math="c" />.
 
 <MathVisual
   title={<>Rate of Photosynthesis against Light Intensity</>}
   description={
     <>
-      The two reference curves are low carbon dioxide,{" "}
-      <InlineMath math="c = 4" />, and high, <InlineMath math="c = 12" />. The
-      main curve follows the <InlineMath math="c" /> slider.
+      Reference curves mark low carbon dioxide (<InlineMath math="4" />) and
+      high (<InlineMath math="12" />). The primary curve tracks slider{" "}
+      <InlineMath math="c" />.
     </>
   }
+  footer={<>The curve climbs steeply under light limitation, then plateaus under CO2.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 21 }, y: { min: 0, max: 13 } },
@@ -276,30 +430,21 @@ A **limiting factor** is the factor in shortest supply, and it's the one that se
   }}
 />
 
-Work out the rate at <InlineMath math="I = 1" /> and <InlineMath math="I = 15" /> for <InlineMath math="c = 4" /> and <InlineMath math="c = 12" />. **Substitute into the same formula**:
+In dim light (<InlineMath math="1" />), tripling carbon dioxide nudges the rate from <InlineMath math="1.57" /> to <InlineMath math="1.84" />, whereas in bright light (<InlineMath math="15" />), the rate leaps from <InlineMath math="4.00" /> to <InlineMath math="11.02" />.
 
-<MathContainer>
-<BlockMath math="I = 1:\quad 4\left(1 - e^{-0.5}\right) = 1.57, \qquad 12\left(1 - e^{-1/6}\right) = 1.84" />
-<BlockMath math="I = 15:\quad 4\left(1 - e^{-7.5}\right) = 4.00, \qquad 12\left(1 - e^{-2.5}\right) = 11.02" />
-</MathContainer>
+### Compensation Point
 
-In dim light, tripling the carbon dioxide only lifts the rate from <InlineMath math="1.57" /> to <InlineMath math="1.84" />. In bright light, the rate almost triples. Check it in the model: move <InlineMath math="I" /> to <InlineMath math="15" /> and switch <InlineMath math="c" /> between <InlineMath math="4" /> and <InlineMath math="12" />.
-
-Temperature limits the rate too, because enzymes catalyse the light-independent reaction. The rate rises with temperature up to the optimum, then drops fast as the enzymes are denatured. Greenhouse growers add carbon dioxide and lamp light to raise whichever factor is limiting their crop yield.
-
-## The Compensation Point
-
-A plant respires all the time, but it photosynthesises only in light. The **compensation point** is the light intensity at which the rate of photosynthesis equals the rate of respiration. At this point, the glucose made equals the glucose used, and there's no net gas exchange with the air. A plant can only grow if it gets light above its compensation point for most of the day. The compensation point is usually reached in the early morning and late afternoon, when the light is dim.
+The **compensation point** occurs when photosynthesis exactly balances respiration so net gas exchange hits zero. Slide light intensity below to inspect the crossing point.
 
 <MathVisual
   title={<>The Compensation Point of a Leaf</>}
   description={
     <>
-      The gross rate of photosynthesis <InlineMath math="P = \frac{10I}{I + 4}" />{" "}
-      and a constant rate of respiration <InlineMath math="R = 2" />. The lower
-      curve is the net gas exchange <InlineMath math="P - R" />.
+      Gross photosynthesis versus constant respiration <InlineMath math="2" />.
+      The lower curve shows net gas exchange <InlineMath math="P - R" />.
     </>
   }
+  footer={<>At the compensation point, net gas exchange P - R crosses zero.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -2.5, max: 8 } },
@@ -332,62 +477,27 @@ A plant respires all the time, but it photosynthesises only in light. The **comp
   }}
 />
 
-Find the light intensity at the compensation point. **Set the rate of photosynthesis equal to the rate of respiration**, then solve:
+Set gross photosynthesis equal to respiration to solve for the compensation point:
 
-<MathContainer>
-<BlockMath math="\frac{10I}{I + 4} = 2" />
-<BlockMath math="10I = 2I + 8 \quad\Rightarrow\quad I = 1" />
-</MathContainer>
+<BlockMath math="\frac{10I}{I + 4} = 2 \quad\Rightarrow\quad 10I = 2I + 8 \quad\Rightarrow\quad I = 1" />
 
-Check: <InlineMath math="\frac{10(1)}{1 + 4} = 2" />, equal to <InlineMath math="R" />. At <InlineMath math="I = 3" />, the net exchange is <InlineMath math="\frac{30}{7} - 2 = 2.29" />, so the leaf takes in carbon dioxide. At <InlineMath math="I = 0" />, it's <InlineMath math="-2" />, so the leaf only gives out carbon dioxide.
+Above intensity <InlineMath math="1" />, the leaf absorbs net carbon dioxide and accumulates glucose for growth.
 
-## Common Mistakes about Leaves
+## Leaf Rate Calculations
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Plants respire only at night. | Respiration goes on all the time. In the daytime, faster photosynthesis masks its effect. | Look at the compensation point: respiration is still there in light. |
-| A stoma opens when the guard cells are flaccid. | A stoma opens when the guard cells are turgid and curve. | Follow the water: water in, cells turgid, stoma open. |
-| The oxygen from photosynthesis comes from carbon dioxide. | The oxygen comes from the photolysis of water in the light-dependent reaction. | Write the photolysis equation and find the oxygen. |
-| The rate of photosynthesis keeps rising as long as light increases. | In bright light, carbon dioxide or temperature limits the rate. | A flat curve shows another factor is limiting. |
+Apply potometer geometry, the inverse-square law, and compensation balance to three checks.
 
-The third mistake often turns up in structured questions. **The oxygen comes from water**, not from carbon dioxide.
-
-## Practice on Leaf Structure and Function
-
-These questions move from how stomata work to calculations on transpiration, light and the compensation point. **Write the formula before you substitute values**.
-
-1. Explain how a stoma opens in the daytime.
-
-2. In a potometer with a capillary tube of radius <InlineMath math="0.5\text{ mm}" />, the bubble moves <InlineMath math="9.0\text{ cm}" /> in <InlineMath math="5" /> minutes. Work out the rate of water uptake in <InlineMath math="\text{cm}^3" /> an hour.
-
-3. A lamp is moved from <InlineMath math="30\text{ cm}" /> to <InlineMath math="15\text{ cm}" /> from Hydrilla. By what factor does the light intensity increase?
-
-4. At a higher temperature, the leaf's rate of respiration in the compensation point model rises to <InlineMath math="R = 3" />. Find the new compensation point and explain the change.
-
-### Solutions
-
-**Solution 1**: In light, the guard cells actively pump in **potassium ions** and make glucose. The solute concentration rises, so water moves in by osmosis from the neighbouring epidermal cells. The guard cells become turgid, and because their inner walls are thicker, they curve outwards and open the stomatal pore.
-
-**Solution 2**: Work out the volume with **the radius in centimetres**, <InlineMath math="0.05\text{ cm}" />:
+1. In a potometer of radius <InlineMath math="0.5\text{ mm}" />, the bubble travels <InlineMath math="9.0\text{ cm}" /> in <InlineMath math="5" /> minutes. Find hourly water uptake. **Answer**: use radius <InlineMath math="0.05\text{ cm}" />:
 
 <MathContainer>
 <BlockMath math="V = \pi(0.05)^2 \times 9.0 = 0.0707\text{ cm}^3" />
 <BlockMath math="\text{Rate} = 0.0707 \times \frac{60}{5} = 0.848\text{ cm}^3\text{ an hour}" />
 </MathContainer>
 
-Check: <InlineMath math="0.848 \div 12 = 0.0707\text{ cm}^3" />, and that volume divided by <InlineMath math="\pi(0.05)^2" /> gives back <InlineMath math="9.0\text{ cm}" />.
-
-**Solution 3**: Intensity is **inversely proportional to the square of the distance**:
+2. A lamp shifts from <InlineMath math="30\text{ cm}" /> to <InlineMath math="15\text{ cm}" /> from Hydrilla. By what factor does intensity rise? **Answer**: halving distance multiplies light by <InlineMath math="4" />:
 
 <BlockMath math="\frac{I_{15}}{I_{30}} = \left(\frac{30}{15}\right)^2 = 4" />
 
-Check: the distance halves, so the intensity becomes <InlineMath math="2^2 = 4" /> times as strong.
+3. If warming raises respiration to <InlineMath math="3" />, find the new compensation point. **Answer**: faster respiration demands brighter light:
 
-**Solution 4**: Set photosynthesis equal to **the new respiration rate**:
-
-<MathContainer>
-<BlockMath math="\frac{10I}{I + 4} = 3" />
-<BlockMath math="10I = 3I + 12 \quad\Rightarrow\quad I = \frac{12}{7} = 1.71" />
-</MathContainer>
-
-Check: <InlineMath math="\frac{10(12/7)}{12/7 + 4} = \frac{120/7}{40/7} = 3" />. Faster respiration uses more glucose, so the leaf needs brighter light before its photosynthesis balances its respiration.
+<BlockMath math="\frac{10I}{I + 4} = 3 \quad\Rightarrow\quad I = \frac{12}{7} = 1.71" />
