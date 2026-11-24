@@ -1,19 +1,43 @@
-The change in the question **flips one rule**, and then you have to apply the subtraction rule as well.
+# Given
 
-- The rule: an hour is marked incomplete only *if counting stopped for more than* <InlineMath math="15" /> *minutes*. A stop of <InlineMath math="10" /> minutes is not more than <InlineMath math="15" />, so the third hour would be complete and would count.
-- The subtraction: every complete hour counts southbound birds *minus* northbound birds, because *a flock that turns back and crosses the line again would otherwise be counted twice*.
+Under the hypothetical scenario, the squall stops counting for only **<InlineMath math="10" /> minutes** while every table figure stays identical. The three complete hours already total **<InlineMath math="778" /> birds**, and the third hour holds <InlineMath math="690" /> southbound and <InlineMath math="25" /> northbound birds.
 
-The real total of <InlineMath math="778" /> already covers the other three hours. Add the third hour's net count:
+# Asked
 
-<BlockMath math="778 + (690 - 25) = 778 + 665 = 1{,}443" />
+What total the club would have sent to the regional survey under its rules.
 
-Check with all four hours: <InlineMath math="146 + 512 + 690 + 233 = 1{,}581" /> southbound and <InlineMath math="12 + 40 + 25 + 61 = 138" /> northbound, and <InlineMath math="1{,}581 - 138 = 1{,}443" />.
+# Solution
 
-Why the other totals are wrong:
+Picture the third hour as a jar of tokens that had been set aside only because the break ran too long. Shortening the stop to <InlineMath math="10" /> minutes **brings that jar back into the total**, while still requiring the northbound subtraction.
 
-- <InlineMath math="1{,}468" /> adds all <InlineMath math="690" /> southbound birds and forgets to subtract the third hour's <InlineMath math="25" /> northbound birds.
-- <InlineMath math="1{,}581" /> adds every southbound bird and subtracts no northbound birds at all.
-- <InlineMath math="1{,}158" /> adds the <InlineMath math="380" /> sandpipers to <InlineMath math="778" />, but that flock is already inside the second hour.
-- <InlineMath math="665" /> is the third hour on its own, without the other three.
+> Two rules act together: a <InlineMath math="10" />-minute stop stays inside the <Highlight>more than <InlineMath math="15" /> minutes</Highlight> cutoff in paragraph two, and paragraph five still subtracts northbound birds.
 
-So with a <InlineMath math="10" />-minute stop, the club would have sent a total of <InlineMath math="1{,}443" /> birds.
+## Computing the updated total
+
+Add the third hour's net count (<InlineMath math="690 - 25 = 665" />) to the existing three-hour total (<InlineMath math="778" />):
+
+<BlockMath math="\begin{aligned}
+\text{Third-hour net} &= 690 - 25 = 665 \\
+\text{New total} &= 778 + 665 = 1{,}443
+\end{aligned}" />
+
+Cross-checking all four rows directly confirms the exact same result:
+
+<BlockMath math="\begin{aligned}
+\text{Southbound total} &= 146 + 512 + 690 + 233 = 1{,}581 \\
+\text{Northbound total} &= 12 + 40 + 25 + 61 = 138 \\
+\text{Net count} &= 1{,}581 - 138 = 1{,}443
+\end{aligned}" />
+
+The submitted figure is therefore **<InlineMath math="1{,}443" /> birds**.
+
+## Why the other options fail
+
+- **<InlineMath math="1{,}468" /> birds** adds all <InlineMath math="690" /> southbound birds without subtracting the third hour's <InlineMath math="25" /> northbound birds.
+- **<InlineMath math="1{,}581" /> birds** totals all southbound birds and skips northbound subtraction completely.
+- **<InlineMath math="1{,}158" /> birds** adds the <InlineMath math="380" /> sandpipers onto <InlineMath math="778" /> even though they were already counted in hour two.
+- **<InlineMath math="665" /> birds** reports only the third hour's net count without the other three hours.
+
+# Answer
+
+Following the club's rules with a <InlineMath math="10" />-minute stop, the club would have sent **<InlineMath math="1{,}443" /> birds** to the survey.

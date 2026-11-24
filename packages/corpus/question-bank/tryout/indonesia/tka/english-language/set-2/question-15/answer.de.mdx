@@ -1,8 +1,28 @@
-Ein Samen zählt nur, wenn er **zwei Bedingungen zugleich** erfüllt: eine Wurzel von mindestens <InlineMath math="2\text{ mm}" />, und das bis zum letzten Tag der Testdauer, also Tag <InlineMath math="7" /> bei diesen Packungen.
+# Gegeben
 
-- Der Samen aus Packung B mit Wurzel an Tag <InlineMath math="8" />: zählt nicht. Die Wurzel kam nach Tag <InlineMath math="7" />, und *Seeds that sprout after that day are left out* („Samen, die nach diesem Tag keimen, fallen heraus“). Der Club *left them out* („ließ sie weg“).
-- Der Samen aus Packung A mit <InlineMath math="3\text{ mm}" /> Wurzel an Tag <InlineMath math="4" />: zählt. <InlineMath math="3\text{ mm}" /> sind mindestens <InlineMath math="2\text{ mm}" />, und Tag <InlineMath math="4" /> liegt im Test.
-- Der Samen mit <InlineMath math="1\text{ mm}" /> Wurzel an Tag <InlineMath math="7" />: zählt nicht. Er liegt im Test, aber <InlineMath math="1\text{ mm}" /> ist kürzer als <InlineMath math="2\text{ mm}" />, und das Zählen endet an Tag <InlineMath math="7" />.
-- Der Samen, dessen Schale aufgeplatzt ist, ohne Wurzel: zählt nicht. Aufquellen ist kein Keimen, denn die Regel betrifft die Wurzel.
+Der Text verlangt **zwei Bedingungen gleichzeitig**, damit ein Samen als gekeimt zählt: eine Wurzel von **mindestens <InlineMath math="2\text{ mm}" /> Länge** (zweiter Absatz) bis spätestens zum **siebten Tag** (dritter und vierter Absatz).
 
-Als gekeimt zählt also nur der Samen aus Packung A mit <InlineMath math="3\text{ mm}" /> Wurzel an Tag <InlineMath math="4" />, die anderen drei nicht.
+# Gesucht
+
+Welche der vier genannten Samen nach den Regeln des Textes als gekeimt zählen und welche nicht.
+
+# Lösung
+
+Stell dir ein Eingangstor mit zwei Kontrollen vor: **Mindestlänge <InlineMath math="2\text{ mm}" />** und **Ankunft bis spätestens Tag <InlineMath math="7" />**. Fällt ein Samen bei einer der beiden Kontrollen durch, zählt er nicht.
+
+> Absatz zwei verlangt <Highlight>its root is at least <InlineMath math="2\text{ mm}" /> long</Highlight>, und Absatz drei bestimmt <Highlight>Seeds that sprout after that day are left out</Highlight>.
+
+## Einordnung jedes Samens
+
+Prüfe jeden Samen gegen **beide Vorgaben zu Wurzellänge und Sieben-Tage-Frist**:
+
+| Fall | Bewertung | Prüfung beider Bedingungen |
+| --- | --- | --- |
+| Samen aus Päckchen B mit erster Wurzel an Tag <InlineMath math="8" /> | Zählt nicht | Überschreitet die siebentägige Testdauer und wird ausgeschlossen. |
+| Samen aus Päckchen A mit <InlineMath math="3\text{ mm}" /> Wurzel an Tag <InlineMath math="4" /> | Zählt | Erfüllt beides: <InlineMath math="3\text{ mm}" /> erreicht mindestens <InlineMath math="2\text{ mm}" /> innerhalb der sieben Tage. |
+| Samen mit <InlineMath math="1\text{ mm}" /> Wurzel an Tag <InlineMath math="7" /> | Zählt nicht | Zu kurz, da <InlineMath math="1\text{ mm}" /> unter <InlineMath math="2\text{ mm}" /> bleibt, wenn das Zählen an Tag <InlineMath math="7" /> endet. |
+| Samen mit gesprungener Schale ohne Wurzel bis Tag <InlineMath math="7" /> | Zählt nicht | Keine Wurzel vorhanden, daher keine Keimung nach der Regel. |
+
+# Antwort
+
+Als gekeimt zählt allein der **Samen aus Päckchen A mit einer <InlineMath math="3\text{ mm}" /> langen Wurzel an Tag <InlineMath math="4" />**, während die anderen drei Samen **nicht als gekeimt zählen**.
