@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Introduction to Chemistry Notes for Form Four",
+  title: "Scientific Method and Laboratory Safety",
   description:
-    "Form 4 Chemistry Chapter 1: identify variables, write a hypothesis, interpret experiment data, avoid parallax error and handle chemicals safely.",
+    "Identify variables, write testable hypotheses, interpret experiment data, avoid parallax error, and handle laboratory chemicals safely.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Introduction to Chemistry",
@@ -9,21 +9,19 @@ export const metadata = {
 
 ## Chemistry and the Scientific Method
 
-**Chemistry** is the branch of science that studies the composition, structure and properties of matter, and the changes matter goes through. Chemists answer questions about matter with the **scientific method**: making observations, making inferences, identifying the problem, forming a hypothesis, controlling variables, carrying out an experiment, interpreting data and drawing a conclusion. In these notes, you test a hypothesis with a hydrogen gas model, read a real solubility graph, and see parallax error for yourself.
+Imagine baking bread and wondering why one loaf rises taller than another. You look closely, guess what changed, and test one ingredient at a time. **Chemistry** works the same way on a deeper scale, studying the composition, structure, properties, and changes of matter through the **scientific method**.
 
-Those steps aren't a list to memorise. Each step answers a question raised by the one before it. An observation raises a question, a hypothesis offers a provisional answer, and a fair experiment tests that answer.
+Chemists move step by step from observation and inference to identifying a problem, forming a hypothesis, controlling variables, running a fair experiment, interpreting data, and drawing a conclusion. These steps are not a list to memorize. Each step answers a question raised by the previous one, turning curiosity into tested evidence.
 
-## Fields of Chemistry around You
+> Every fair investigation starts with what your senses or instruments directly detect and changes only one factor at a time so the cause stays clear.
 
-Chemistry shows up in many fields. **Analytical chemistry** finds out what a substance contains, such as the concentration of a pollutant in river water. **Organic chemistry** studies carbon compounds such as medicines and plastics. **Biochemistry** studies reactions inside living cells. **Materials chemistry** creates new materials such as light alloys and ceramics.
-
-Careers that need chemistry include pharmacist, chemical engineer, toxicologist, forensic scientist and food scientist. They all use the same scientific method, whether they're testing a new medicine or finding the cause of a fire.
+Chemistry shows up across everyday life and specialized professions. **Analytical chemistry** measures what a sample contains, such as river pollutants. **Organic chemistry** explores carbon compounds in medicines and plastics. **Biochemistry** follows reactions inside living cells, while **materials chemistry** designs light alloys and ceramics. Pharmacists, chemical engineers, toxicologists, forensic scientists, and food scientists all rely on this same method whether they test a medicine or trace the cause of a fire.
 
 ## Telling Observations from Inferences
 
-An **observation** is information collected with your senses or a measuring instrument, such as bubbles of gas coming off. An **inference** is an early interpretation or explanation of that observation, such as carbon dioxide being produced. Anyone can confirm an observation. An inference has to be tested.
+An **observation** is information collected directly with your senses or a measuring instrument, such as rising gas bubbles or a thermometer climbing upward. An **inference** is an early explanation of that observation, such as claiming that carbon dioxide formed. Anyone can verify an observation on the spot, whereas every inference still needs a confirming test.
 
-Pick each cue in this model. The observation box is what you detect, the inference box is your interpretation, and the last box shows why the inference still needs testing.
+Pick each cue below to compare what you directly detect against what you infer, and check why the evidence has limits until tested further.
 
 <ChemicalReactionCharacteristicsLab
   title={<>Observations and Inferences from One Mixture</>}
@@ -33,6 +31,7 @@ Pick each cue in this model. The observation box is what you detect, the inferen
       read why the evidence has limits.
     </>
   }
+  footer={<>Separate what you directly detect from what you infer caused the change.</>}
   labels={{
     chooseCue: "Pick an observed cue",
     before: "Before",
@@ -44,7 +43,7 @@ Pick each cue in this model. The observation box is what you detect, the inferen
     cues: {
       gas: {
         tab: "Gas",
-        helperCaption: <>Rising bubbles are an observation. The type of gas isn't known until you test it.</>,
+        helperCaption: <>Rising bubbles are an observation. The type of gas is unknown until you test it.</>,
         observation: <>Bubbles come out of the mixture.</>,
         meaning: (
           <>
@@ -79,15 +78,19 @@ Pick each cue in this model. The observation box is what you detect, the inferen
   }}
 />
 
-## Variables and Hypotheses
+Clicking through all four cues highlights the sharpest trap in laboratory reporting. Saying that carbon dioxide evolved is never an observation because your eyes only see colourless bubbles until limewater turns cloudy.
 
-A fair experiment changes **one** thing only. The **manipulated variable** is the factor you change on purpose. The **responding variable** is what you measure, because its value changes with the manipulated variable. The **fixed variables** are all the other factors, which have to stay the same. A **hypothesis** is a testable statement that links the manipulated variable to the responding variable.
+Try that boundary on a classic displacement mixture. When zinc powder enters blue copper(II) sulfate solution, the **blue colour fading** and **a brown solid forming** are direct observations. Saying that zinc displaced copper(II) ions to form brown copper metal is an inference that you verify by filtering and testing the solid.
 
-Take one investigation. Magnesium ribbon is put into excess hydrochloric acid, and the hydrogen gas is collected:
+## Variables and Hypotheses in Fair Experiments
+
+A fair experiment deliberately changes **only one factor** so its effect cannot blur together with anything else. The **manipulated variable** is what you change on purpose, the **responding variable** is what you measure in reply, and **fixed variables** are every remaining condition held steady. A **hypothesis** links the manipulated and responding variables in a single testable statement.
+
+Consider dropping magnesium ribbon into excess hydrochloric acid and collecting the hydrogen gas released.
 
 <BlockMath math="\mathrm{Mg(s)} + 2\mathrm{HCl(aq)} \rightarrow \mathrm{MgCl_2(aq)} + \mathrm{H_2(g)}" />
 
-The hypothesis: the greater the mass of magnesium, the greater the volume of hydrogen gas. From the equation, <InlineMath math="24\text{ mg}" /> of magnesium (<InlineMath math="0.001" /> mol) gives <InlineMath math="0.001" /> mol of hydrogen, which is <InlineMath math="24\text{ cm}^3" /> at room conditions. So the volume in <InlineMath math="\text{cm}^3" /> equals the mass in milligrams. Move the mass slider and check the hypothesis.
+A testable hypothesis predicts that a greater mass of magnesium yields a greater volume of hydrogen gas. From stoichiometry, <InlineMath math="24\ \text{mg}" /> of magnesium (<InlineMath math="0.001\ \text{mol}" />) produces <InlineMath math="0.001\ \text{mol}" /> of hydrogen, which fills <InlineMath math="24\ \text{cm}^3" /> at room conditions. Because the volume in <InlineMath math="\text{cm}^3" /> matches the mass in milligrams, move the slider below to check the prediction.
 
 <MathVisual
   title={<>Volume of Hydrogen against Mass of Magnesium</>}
@@ -99,6 +102,7 @@ The hypothesis: the greater the mass of magnesium, the greater the volume of hyd
       directly proportional to the mass.
     </>
   }
+  footer={<>Doubling the magnesium mass doubles the hydrogen volume along one straight line.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 110 } },
@@ -127,36 +131,48 @@ The hypothesis: the greater the mass of magnesium, the greater the volume of hyd
   }}
 />
 
-### Example Identifying the Variables
+Sliding the marker from <InlineMath math="24\ \text{mg}" /> to <InlineMath math="48\ \text{mg}" /> moves the readout cleanly from <InlineMath math="24\ \text{cm}^3" /> to <InlineMath math="48\ \text{cm}^3" />. Every step stays pinned to the same straight line through the origin.
 
-For the magnesium investigation, state all three kinds of variable and **one testable hypothesis**.
+### Identifying Variables in the Magnesium Reaction
+
+For the magnesium experiment, state all three variable groups and **one testable hypothesis**.
 
 - Manipulated variable: the mass of magnesium ribbon.
 - Responding variable: the volume of hydrogen gas collected.
 - Fixed variables: the volume and concentration of hydrochloric acid, and the temperature.
 - Hypothesis: the greater the mass of magnesium, the greater the volume of hydrogen gas given off.
 
-Check the hypothesis with the model: when the mass doubles from <InlineMath math="24\text{ mg}" /> to <InlineMath math="48\text{ mg}" />, the volume also doubles from <InlineMath math="24\text{ cm}^3" /> to <InlineMath math="48\text{ cm}^3" />. The hypothesis is accepted.
+Two common slips ruin variable design. Changing magnesium mass and acid concentration at the same time makes it impossible to know which factor altered the gas volume, while writing a vague sentence like "magnesium produces gas" fails as a hypothesis because it never links two variables. The same rule applies when studying how water temperature affects sugar dissolving time: temperature is manipulated, dissolving time responds, and sugar mass, water volume, and crystal size stay fixed.
 
-### Example Writing a Conclusion
+### Writing Conclusions from Experimental Data
 
-A conclusion states the relationship **the data show**, not the one you hoped for. The graph is a straight line through the origin, so the conclusion is: the volume of hydrogen gas is **directly proportional** to the mass of magnesium when the acid is in excess. The condition "acid in excess" matters. If the acid runs out first, the volume of gas stops increasing even if you keep adding magnesium.
+A conclusion reports only the relationship **the measured data actually show**. Because the magnesium plot forms a straight line through the origin, the volume of hydrogen gas is **directly proportional** to the mass of magnesium when acid is in excess. That excess-acid condition matters: if acid runs out first, gas volume flattens even as more magnesium enters the flask.
 
-## Interpreting Experiment Data
+Check that proportionality quantitatively for <InlineMath math="72\ \text{mg}" /> of magnesium with excess acid at room conditions.
 
-Real data rarely form a straight line. This chart shows the maximum mass of potassium nitrate that dissolves in <InlineMath math="100\text{ g}" /> of water at different temperatures. Hover over each point and notice the slope getting steeper as the temperature rises.
+<MathContainer>
+<BlockMath math="n(\mathrm{Mg}) = \frac{0.072}{24} = 0.003\ \text{mol}" />
+<BlockMath math="V(\mathrm{H_2}) = 0.003 \times 24\,000 = 72\ \text{cm}^3" />
+</MathContainer>
+
+Moving the slider to <InlineMath math="m = 72" /> lands directly on <InlineMath math="72\ \text{cm}^3" />, confirming the calculation.
+
+## Interpreting Nonlinear Solubility Data
+
+Real measurements often curve instead of following a ruler-straight line. The chart below records the maximum mass of potassium nitrate dissolving in <InlineMath math="100\ \text{g}" /> of water across temperature. Hover over each point and notice the slope turning steeper as the water warms up.
 
 <ScatterDiagram
   title={<>Solubility of Potassium Nitrate in Water</>}
   description={
     <>
       The mass of potassium nitrate that dissolves in{" "}
-      <InlineMath math="100\text{ g}" /> of water, from{" "}
-      <InlineMath math="13.3\text{ g}" /> at <InlineMath math="0^\circ\text{C}" />{" "}
-      to <InlineMath math="246\text{ g}" /> at{" "}
+      <InlineMath math="100\ \text{g}" /> of water, from{" "}
+      <InlineMath math="13.3\ \text{g}" /> at <InlineMath math="0^\circ\text{C}" />{" "}
+      to <InlineMath math="246\ \text{g}" /> at{" "}
       <InlineMath math="100^\circ\text{C}" />.
     </>
   }
+  footer={<>Solubility climbs faster at higher temperatures instead of rising linearly.</>}
   xAxisLabel="Temperature (°C)"
   yAxisLabel="Mass dissolved in 100 g water (g)"
   datasets={[
@@ -175,17 +191,25 @@ Real data rarely form a straight line. This chart shows the maximum mass of pota
   ]}
 />
 
-In this investigation, temperature is the manipulated variable and the mass dissolved is the responding variable. The mass of water stays at <InlineMath math="100\text{ g}" />. A curve that keeps getting steeper means solubility rises **faster and faster** at high temperatures.
+Here temperature is the manipulated variable, dissolved mass is the responding variable, and water mass stays fixed at <InlineMath math="100\ \text{g}" />. Because the curve rises **faster and faster** at high temperatures, cooling a hot saturated solution forces a large mass of solid crystals out of solution.
 
-Now put the data to work. A saturated potassium nitrate solution in <InlineMath math="100\text{ g}" /> of water is cooled from <InlineMath math="60^\circ\text{C}" /> to <InlineMath math="20^\circ\text{C}" />. Find the mass of crystals that form.
+For a saturated solution in <InlineMath math="100\ \text{g}" /> of water cooled from <InlineMath math="60^\circ\text{C}" /> to <InlineMath math="20^\circ\text{C}" />, subtract the lower solubility from the higher one.
 
-<BlockMath math="110 - 31.6 = 78.4\text{ g}" />
+<BlockMath math="110 - 31.6 = 78.4\ \text{g}" />
 
-At <InlineMath math="60^\circ\text{C}" /> the water holds <InlineMath math="110\text{ g}" />, but at <InlineMath math="20^\circ\text{C}" /> only <InlineMath math="31.6\text{ g}" />. The extra comes out as crystals. Check: <InlineMath math="78.4 + 31.6 = 110" />.
+Cooling the same <InlineMath math="100\ \text{g}" /> water sample from <InlineMath math="80^\circ\text{C}" /> (<InlineMath math="169\ \text{g}" />) down to <InlineMath math="40^\circ\text{C}" /> (<InlineMath math="63.9\ \text{g}" />) yields even more solid crystals.
 
-## Measuring Correctly in the Lab
+<BlockMath math="169 - 63.9 = 105.1\ \text{g}" />
 
-Good data start with a correct reading. When you read a measuring cylinder, your eye has to be **level with the bottom of the meniscus**. If your eye is higher or lower, the reading is wrong. This is called **parallax error**. Move the eye in the model and compare the reading with the true volume.
+Adding back the remaining dissolved salt restores the original saturated mass in both cases.
+
+## Accurate Measurement in the Laboratory
+
+Reliable conclusions depend on **careful reading technique** before any numbers enter a table. Two distinct error types affect laboratory measurements: systematic error pushes readings consistently in one direction, whereas random error scatters readings slightly above and below the true value.
+
+### Eliminating Parallax Error
+
+When you read a measuring cylinder, position your eye **level with the bottom of the meniscus**. Viewing from above or below skews every reading in the same direction, producing **parallax error**. Move the eye slider below to compare the apparent reading with the true volume.
 
 <ParallaxReadingLab
   title={<>Parallax Error on a Measuring Cylinder</>}
@@ -195,6 +219,7 @@ Good data start with a correct reading. When you read a measuring cylinder, your
       the eye is level with the bottom of the meniscus.
     </>
   }
+  footer={<>Align your eye with the bottom of the meniscus so reading error drops to zero.</>}
   labels={{
     error: <>Reading error</>,
     eye: "Eye position",
@@ -204,7 +229,11 @@ Good data start with a correct reading. When you read a measuring cylinder, your
   }}
 />
 
-Parallax error is a **systematic error** that good technique removes. There's also **random error**, where readings differ slightly every time you measure. You reduce random error by **repeating the experiment** and taking the average. This model repeats the same time measurement with a stopwatch.
+Because parallax error is a **systematic error**, repeating the same tilted glance five times never cancels it out. You remove parallax error by fixing your eye position, not by averaging more biased readings.
+
+### Reducing Random Error with Repeated Trials
+
+Even with proper eye alignment, human reaction time makes hand-timed readings vary slightly from trial to trial. That variation is **random error**, and you shrink its effect by **repeating the measurement** and calculating the mean.
 
 <StopwatchSpreadLab
   title={<>Repeated Readings with a Stopwatch</>}
@@ -214,6 +243,7 @@ Parallax error is a **systematic error** that good technique removes. There's al
       the readings and the average as the number of trials grows.
     </>
   }
+  footer={<>Averaging repeated trials narrows uncertainty even when single timings vary.</>}
   labels={{
     mean: <>Average value</>,
     spread: <>Spread of readings</>,
@@ -223,9 +253,11 @@ Parallax error is a **systematic error** that good technique removes. There's al
   }}
 />
 
-## Safety and Handling of Chemicals
+Increase the trial count and watch the running average settle closer to the true time while the uncertainty band tightens. Averaging works for random error because high and low slips cancel each other out over repeated trials.
 
-Chemical bottles carry hazard symbols. Know each symbol so you know how to handle the substance:
+## Laboratory Hazard Symbols and Safe Handling
+
+Every chemical bottle displays standardized hazard symbols so you can pick the right protection before opening the cap.
 
 | Hazard symbol | Meaning | Example substances |
 | :--- | :--- | :--- |
@@ -235,48 +267,4 @@ Chemical bottles carry hazard symbols. Know each symbol so you know how to handl
 | Irritant | Makes skin or eyes itchy and sore | Dilute aqueous ammonia |
 | Oxidising | Helps other substances burn more strongly | Potassium manganate(VII) |
 
-Wear a **lab coat, safety goggles and gloves** when you handle chemicals. Handle volatile or strong-smelling substances in a **fume chamber**. If acid spills, cover the spill with sodium hydrogen carbonate before cleaning it up. If mercury spills, sprinkle sulfur powder over it. Chemical waste doesn't go down the sink but into a labelled waste container.
-
-## Common Mistakes in Scientific Investigations
-
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Carbon dioxide being given off is an observation. | You can't see the type of gas. It's an inference until you test it with limewater. | Ask whether your senses or an instrument detect it directly. |
-| Changing the mass of magnesium and the acid concentration together. | Two variables change, so you can't tell what caused the change in volume. | Make sure only one variable is manipulated. |
-| Hypothesis: magnesium produces a gas. | That statement doesn't link two variables. | A hypothesis names the manipulated and responding variables. |
-| Repeating readings removes parallax error. | Parallax error repeats in the same direction every time. | Fix your eye position, not the number of readings. |
-
-The first mistake is the most common one in science process skill questions. **An observation is what you detect**, while **an inference is what you think caused it**.
-
-## Practice on Introduction to Chemistry
-
-These questions test science process skills, from observation to a calculation from a graph. **Name each variable precisely** in every answer.
-
-1. When zinc powder is added to copper(II) sulfate solution, the blue colour of the solution fades and a brown solid forms. State one observation and one inference.
-
-2. A student studies the effect of temperature on the time sugar takes to dissolve in water. State the manipulated variable, the responding variable and two fixed variables.
-
-3. Using the magnesium model, what volume of hydrogen gas forms from <InlineMath math="72\text{ mg}" /> of magnesium with excess acid at room conditions?
-
-4. A saturated potassium nitrate solution in <InlineMath math="100\text{ g}" /> of water is cooled from <InlineMath math="80^\circ\text{C}" /> to <InlineMath math="40^\circ\text{C}" />. Use the solubility chart to find the mass of crystals that form.
-
-### Solutions
-
-**Solution 1**: An observation is something you detect directly, such as **the blue colour of the solution fading** or **a brown solid forming**. An inference is the interpretation, such as zinc displacing copper(II) ions to form brown copper metal. You can test that inference by filtering off the solid and checking its properties.
-
-**Solution 2**: The water temperature is the manipulated variable because the student changes it. The time for the sugar to dissolve is the responding variable because it's measured. Fixed variables include the mass of sugar, the volume of water and the size of the sugar crystals. If one of them changes, the effect of temperature can't be separated out.
-
-**Solution 3**: One mole of magnesium gives one mole of hydrogen.
-
-<MathContainer>
-<BlockMath math="n(\mathrm{Mg}) = \frac{0.072}{24} = 0.003\text{ mol}" />
-<BlockMath math="V(\mathrm{H_2}) = 0.003 \times 24{,}000 = 72\text{ cm}^3" />
-</MathContainer>
-
-Check with the model: move the slider to <InlineMath math="m = 72" /> and read <InlineMath math="72\text{ cm}^3" />.
-
-**Solution 4**: From the chart, <InlineMath math="100\text{ g}" /> of water dissolves <InlineMath math="169\text{ g}" /> of potassium nitrate at <InlineMath math="80^\circ\text{C}" /> and <InlineMath math="63.9\text{ g}" /> at <InlineMath math="40^\circ\text{C}" />.
-
-<BlockMath math="169 - 63.9 = 105.1\text{ g}" />
-
-So <InlineMath math="105.1\text{ g}" /> of crystals form. Check: <InlineMath math="105.1 + 63.9 = 169" />.
+Wear a **lab coat, safety goggles, and gloves** whenever you handle chemicals, and work with volatile or pungent reagents inside a **fume chamber**. Neutralize an acid spill with sodium hydrogen carbonate before wiping it up, and sprinkle sulfur powder over a mercury spill to trap the vapour. Dispose of chemical waste in a labelled waste container rather than pouring it down the sink.
