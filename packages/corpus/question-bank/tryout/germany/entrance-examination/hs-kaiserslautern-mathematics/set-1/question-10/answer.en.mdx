@@ -1,14 +1,26 @@
-# How big the hall is
+# Given
 
-The rows grow like stairs, two seats per step. From <InlineMath math="16" /> to <InlineMath math="54" /> there are <InlineMath math="\frac{54-16}{2}=19" /> steps, so **the hall has <InlineMath math="20" /> rows**. Pairing the first with the last row, the second with the second-to-last, and so on, every pair holds <InlineMath math="70" /> seats:
+**A theatre starts** with <InlineMath math="16" /> seats in row one, adds <InlineMath math="2" /> seats per row, and ends at <InlineMath math="54" /> seats in the last row. Front rows are removed as far as possible while keeping at least <InlineMath math="560" /> seats.
+
+# Asked
+
+How many seats are in the frontmost row that remains in use?
+
+# Solution
+
+> Removing as many front rows as possible is the same as **spending as much of the surplus seat budget as we can without exceeding it**.
+
+## How big the hall is
+
+The rows grow like stairs, two seats per step. From <InlineMath math="16" /> to <InlineMath math="54" /> there are <InlineMath math="19" /> steps, so **the hall has <InlineMath math="20" /> rows**. Pairing the first with the last row, the second with the second-to-last, and so on, every pair holds <InlineMath math="70" /> seats:
 
 <BlockMath math="\begin{aligned}
 S&=\tfrac{20}{2}\,(16+54)=700
 \end{aligned}" />
 
-# How many front rows may go
+## How many front rows may go
 
-Keeping <InlineMath math="560" /> seats means losing at most <InlineMath math="700-560=140" />. The first <InlineMath math="m" /> rows hold <InlineMath math="16+18+\dots" /> seats, an arithmetic sum, so **the front rows hold <InlineMath math="m(m+15)" /> seats**: <InlineMath math="m\cdot\tfrac{16+(14+2m)}{2}=m(m+15)" />.
+Keeping <InlineMath math="560" /> seats means losing at most <InlineMath math="140" />. The first <InlineMath math="m" /> rows hold <InlineMath math="16+18+\dots" /> seats, an arithmetic sum, so **the front rows hold <InlineMath math="m(m+15)" /> seats**: <InlineMath math="m(m+15)" />.
 
 <BlockMath math="\begin{aligned}
 m(m+15)&\le140\\
@@ -27,6 +39,12 @@ m(m+15)&\le140\\
   valueLabel="Seats"
 />
 
-# The first row still in use
+Removing bars from the left uses up the surplus seats, and **dropping a seventh row would exceed the <InlineMath math="140" />-seat allowance**, so row seven must stay.
+
+## The first row still in use
 
 Six rows go, so the audience starts in row <InlineMath math="7" />. **It holds <InlineMath math="16+6\cdot2=28" /> seats**. Answering <InlineMath math="26" />, the last row removed, or using all <InlineMath math="7" /> removed rows, both miss by one step.
+
+# Answer
+
+The frontmost row still in use has <InlineMath math="28" /> seats.

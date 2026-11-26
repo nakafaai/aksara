@@ -1,13 +1,25 @@
-# Price and bikes on one seesaw
+# Given
 
-Price and demand sit on a seesaw: push the price up by <InlineMath math="1\text{ €}" /> and <InlineMath math="4" /> customers walk away. With price <InlineMath math="p" /> the shop rents <InlineMath math="n=40-4(p-12)=88-4p" /> bikes, and **each bike earns <InlineMath math="p-2" /> euros after cleaning**:
+At <InlineMath math="12\text{ €}" /> **per day**, <InlineMath math="40" /> bicycles are rented, changing linearly by <InlineMath math="4" /> bicycles for every <InlineMath math="1\text{ €}" /> price shift. Each rented bicycle costs <InlineMath math="2\text{ €}" /> to service, and the shop owns only <InlineMath math="36" /> bicycles.
+
+# Asked
+
+What is the highest daily profit in euros the rental shop can achieve?
+
+# Solution
+
+> Always check whether **the vertex of the profit parabola stays inside the physical stock cap**, otherwise the best feasible point sits right on the cap.
+
+## Price and bikes on one seesaw
+
+Price and demand sit on a seesaw: push the price up by <InlineMath math="1\text{ €}" /> and <InlineMath math="4" /> customers walk away. With price <InlineMath math="p" /> the shop rents <InlineMath math="n = 88 - 4p" /> bikes, and **each bike earns <InlineMath math="p-2" /> euros after cleaning**:
 
 <BlockMath math="\begin{aligned}
 G(p)&=(p-2)(88-4p)\\
 &=-4p^2+96p-176
 \end{aligned}" />
 
-# The top of the parabola is out of reach
+## The top of the parabola is out of reach
 
 The parabola opens downwards, and its top sits halfway between its zeros <InlineMath math="p=2" /> and <InlineMath math="p=22" />, at <InlineMath math="p=12" /> with <InlineMath math="G=400\text{ €}" />. **But at <InlineMath math="12\text{ €}" /> the shop would need <InlineMath math="40" /> bikes, and it owns only <InlineMath math="36" />**. So <InlineMath math="88-4p\le36" /> forces <InlineMath math="p\ge13" />.
 
@@ -22,6 +34,12 @@ The parabola opens downwards, and its top sits halfway between its zeros <Inline
   valueLabel="Profit in euros"
 />
 
-# The best allowed price
+The parabolic peak sits outside the feasible stock region, so **the highest reachable profit lies right on the boundary at <InlineMath math="13\text{ €}" />**.
 
-Right of its top the parabola only falls, so on <InlineMath math="p\ge13" /> the best price is the edge itself. **At <InlineMath math="13\text{ €}" /> all <InlineMath math="36" /> bikes go out and <InlineMath math="G=11\cdot36=396\text{ €}" />**. The answer <InlineMath math="400\text{ €}" /> uses four bikes the shop does not have.
+## The best allowed price
+
+Right of its top the parabola only falls, so on <InlineMath math="p\ge13" /> the best price is the edge itself. **At <InlineMath math="13\text{ €}" /> all <InlineMath math="36" /> bikes go out and <InlineMath math="396\text{ €}" />**. The answer <InlineMath math="400\text{ €}" /> uses four bikes the shop does not have.
+
+# Answer
+
+The maximum daily profit is <InlineMath math="396\text{ €}" />.

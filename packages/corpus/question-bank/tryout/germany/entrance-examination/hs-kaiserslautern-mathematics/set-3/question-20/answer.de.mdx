@@ -1,4 +1,16 @@
-# Den Mittelpunkt auf der Winkelhalbierenden ansetzen
+# Gegeben
+
+**In einem Parkplan** (Einheit <InlineMath math="1\text{ m}" />) liegt ein kreisförmiges Becken im spitzen Winkel <InlineMath math="y>0" />, <InlineMath math="4x-3y>0" />, berührt beide Wege <InlineMath math="y=0" /> und <InlineMath math="4x-3y=0" /> und geht durch <InlineMath math="P(7\mid1)" />. Das gesamte Becken muss streng auf der Seite <InlineMath math="3x+4y<65" /> des Kanals liegen.
+
+# Gesucht
+
+Wie groß ist der kürzeste Abstand zwischen Beckenrand und Kanal in m?
+
+# Lösung
+
+> Ein Kreis, der beide Wege berührt, hat seinen Mittelpunkt **genau auf der Winkelhalbierenden <InlineMath math="x = 2r" />**, sodass durch <InlineMath math="P(7\mid1)" /> nur zwei Kandidaten bleiben und der Kanal den großen Kreis sofort ausschließt.
+
+## Den Mittelpunkt auf der Winkelhalbierenden ansetzen
 
 Schiebst du eine Münze in die Ecke zwischen zwei Linealen, hat ihr Mittelpunkt immer denselben Abstand zu beiden Kanten. **Weil das Becken <InlineMath math="y=0" /> von oben berührt, gilt <InlineMath math="M(x_M\mid r)" />, und im spitzen Bereich <InlineMath math="4x-3y>0" /> liefert der Abstand zu <InlineMath math="4x-3y=0" /> direkt <InlineMath math="x_M=2r" />**. Einsetzen von <InlineMath math="P(7\mid1)" /> ergibt zwei mögliche Radien.
 
@@ -9,9 +21,9 @@ y_M=r,\qquad \frac{4x_M-3y_M}{\sqrt{4^2+(-3)^2}}=\frac{4x_M-3r}{5}=r\ \Longright
 
 Zwei Kreise passen zu beiden Wegen und zum Schacht: <InlineMath math="r_1=2{,}5\text{ m}" /> um <InlineMath math="M_1(5\mid2{,}5)" /> und <InlineMath math="r_2=5\text{ m}" /> um <InlineMath math="M_2(10\mid5)" />.
 
-# Den ganzen Kreis gegen den Kanal prüfen
+## Den ganzen Kreis gegen den Kanal prüfen
 
-**Hier steckt die Falle: Nur den Mittelpunkt zu prüfen reicht nicht**. Für <InlineMath math="M_2(10\mid5)" /> gilt zwar <InlineMath math="3\cdot10+4\cdot5=50<65" />, der Mittelpunkt liegt also auf der erlaubten Seite, doch sein Abstand zum Kanal ist nur <InlineMath math="3\text{ m}" /> und damit kleiner als <InlineMath math="r_2=5\text{ m}" />, sodass der große Kreis den Kanal schneidet.
+**Hier steckt die Falle: Nur den Mittelpunkt zu prüfen reicht nicht**. Für <InlineMath math="M_2(10\mid5)" /> gilt zwar <InlineMath math="50 < 65" />, der Mittelpunkt liegt also auf der erlaubten Seite, doch sein Abstand zum Kanal ist nur <InlineMath math="3\text{ m}" /> und damit kleiner als <InlineMath math="r_2=5\text{ m}" />, sodass der große Kreis den Kanal schneidet.
 
 <BlockMath math="\begin{aligned}
 M_2(10\mid5):\quad d(M_2,K)=\frac{65-(3\cdot10+4\cdot5)}{5}=\frac{15}{5}=3<5=r_2\\
@@ -59,3 +71,7 @@ d_{\min}=8-2{,}5=5{,}5\text{ m}
 />
 
 Nur das kleine Becken um <InlineMath math="M_1(5\mid2{,}5)" /> bleibt vollständig auf der erlaubten Seite, und zieht man den Radius <InlineMath math="2{,}5\text{ m}" /> vom Mittelpunktsabstand <InlineMath math="8\text{ m}" /> ab, bleiben **<InlineMath math="5{,}5\text{ m}" />** (wer den Radius vergisst, tappt in die Falle <InlineMath math="8\text{ m}" />).
+
+# Antwort
+
+Der kürzeste Abstand zwischen Beckenrand und Kanal beträgt <InlineMath math="5{,}5\text{ m}" />.

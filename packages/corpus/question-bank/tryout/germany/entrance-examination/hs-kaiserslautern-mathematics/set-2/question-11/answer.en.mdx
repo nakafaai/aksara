@@ -1,4 +1,16 @@
-# Two species on the same clock
+# Given
+
+**A pond starts with** <InlineMath math="800" /> rudd and <InlineMath math="100" /> sunfish. Rudd halve exponentially every <InlineMath math="2" /> months while sunfish double exponentially every <InlineMath math="2" /> months. Later, the total fish count hits <InlineMath math="600" /> for the second time.
+
+# Asked
+
+How many sunfish live in the pond at that second moment?
+
+# Solution
+
+> Because one species doubles on the exact same clock that halves the other, **naming the doubling factor <InlineMath math="u" /> turns the whole sum into a simple quadratic** with two clean roots.
+
+## Two species on the same clock
 
 One balloon loses half its air every two months, another doubles every two months. Both changes tick with the same clock, the power <InlineMath math="2^{t/2}" /> with <InlineMath math="t" /> in months. **The rudd shrink with <InlineMath math="2^{-t/2}" />, the sunfish grow with <InlineMath math="2^{t/2}" />**:
 
@@ -7,9 +19,9 @@ R(t)&=800\cdot2^{-t/2}\\
 S(t)&=100\cdot2^{t/2}
 \end{aligned}" />
 
-# One new letter makes a quadratic
+## One new letter makes a quadratic
 
-Since <InlineMath math="2^{-t/2}=\frac{1}{2^{t/2}}" />, everything depends on the single number <InlineMath math="u=2^{t/2}" />, which is always positive. **Write <InlineMath math="R+S=600" /> in <InlineMath math="u" /> and multiply by <InlineMath math="u" />**:
+Since <InlineMath math="2^{-t/2}" />, everything depends on the single number <InlineMath math="u=2^{t/2}" />, which is always positive. **Write <InlineMath math="R+S=600" /> in <InlineMath math="u" /> and multiply by <InlineMath math="u" />**:
 
 <BlockMath math="\begin{aligned}
 \frac{800}{u}+100u&=600\\
@@ -26,7 +38,7 @@ Both roots are positive, so both are real moments. Back from <InlineMath math="u
 S(4)&=100\cdot4=400
 \end{aligned}" />
 
-# The second moment, not the first
+## The second moment rather than the first
 
 After <InlineMath math="2" /> months there are <InlineMath math="400" /> rudd and <InlineMath math="200" /> sunfish, the total is still falling. Between the two moments it dips below <InlineMath math="600" />, and **after <InlineMath math="4" /> months it climbs back to <InlineMath math="600" /> with <InlineMath math="200" /> rudd and <InlineMath math="400" /> sunfish**. Taking the first moment would give <InlineMath math="200" /> sunfish.
 
@@ -41,3 +53,9 @@ After <InlineMath math="2" /> months there are <InlineMath math="400" /> rudd an
   ]}
   valueLabel="Number"
 />
+
+On the chart, the **all fish** curve dips through <InlineMath math="600" /> at month <InlineMath math="2" /> and climbs back through <InlineMath math="600" /> at month <InlineMath math="4" />, right where the **sunfish** line reaches <InlineMath math="400" />.
+
+# Answer
+
+There are <InlineMath math="400" /> sunfish in the pond at that time.

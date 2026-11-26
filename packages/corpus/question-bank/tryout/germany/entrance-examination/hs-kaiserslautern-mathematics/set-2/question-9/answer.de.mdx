@@ -1,8 +1,20 @@
-# Zwei Ankünfte werden ein Punkt
+# Gegeben
+
+**Anna und Ben** kommen unabhängig und gleichverteilt zwischen 17:00 und 17:40 Uhr an. Anna wartet bis 17:30 Uhr, in jedem Fall aber mindestens <InlineMath math="10" /> Minuten nach ihrer Ankunft. Ben wartet höchstens <InlineMath math="20" /> Minuten nach seiner Ankunft.
+
+# Gesucht
+
+Mit welcher Wahrscheinlichkeit treffen sich Anna und Ben als Dezimalzahl?
+
+# Lösung
+
+> Mach aus beiden Ankunftszeiten einen Punkt im <InlineMath math="40 \times 40" />-Quadrat, damit **Wahrscheinlichkeit zu einfacher Fläche wird**: Zieh einfach die beiden Verpass-Ecken vom Quadrat ab.
+
+## Zwei Ankünfte werden ein Punkt
 
 Schreib Annas Ankunft als <InlineMath math="x" /> und Bens Ankunft als <InlineMath math="y" />, in Minuten nach 17:00, beide zwischen <InlineMath math="0" /> und <InlineMath math="40" />. **Jedes Paar von Ankünften ist ein Punkt in einem Quadrat mit der Seite <InlineMath math="40" />, und weil jeder Zeitpunkt gleich wahrscheinlich ist, ist eine Wahrscheinlichkeit ein Anteil an seiner Fläche <InlineMath math="1600" />**. Es ist wie ein Regentropfen, der irgendwo auf eine quadratische Fliese fällt: Die Chance, ein Gebiet zu treffen, ist dessen Anteil an der Fliese.
 
-# Ben zuerst: ein glatter Schnitt
+## Ben zuerst mit glattem Schnitt
 
 Ist Ben zuerst da, also <InlineMath math="y<x" />, zählt nur seine Geduld. **Er wartet <InlineMath math="20" /> Minuten, also verpassen sich die beiden bei <InlineMath math="x-y>20" />**. Das ist die Ecke unterhalb der Geraden <InlineMath math="y=x-20" />, ein rechtwinkliges Dreieck mit den Katheten <InlineMath math="20" />:
 
@@ -10,7 +22,7 @@ Ist Ben zuerst da, also <InlineMath math="y<x" />, zählt nur seine Geduld. **Er
 A_1&=\tfrac12\cdot20\cdot20=200
 \end{aligned}" />
 
-# Anna zuerst: ihre Grenze knickt ab
+## Anna zuerst mit geknickter Grenze
 
 Anna geht zum späteren von zwei Zeitpunkten: um 17:30 Uhr oder <InlineMath math="10" /> Minuten nach ihrer Ankunft. Bis <InlineMath math="x=20" /> ist 17:30 Uhr der spätere Zeitpunkt, danach gewinnen ihre <InlineMath math="10" /> Minuten. **Ihre Grenze ist also keine einzelne Gerade: Sie läuft waagerecht bei <InlineMath math="y=30" /> bis <InlineMath math="x=20" /> und steigt dann entlang <InlineMath math="y=x+10" /> bis zur Ecke <InlineMath math="(30\mid40)" />**. Darüber kommt Ben zu spät, ein Streifen von <InlineMath math="20" /> mal <InlineMath math="10" /> und ein kleines Dreieck mit den Katheten <InlineMath math="10" />:
 
@@ -50,3 +62,9 @@ Die beiden treffen sich mit der Wahrscheinlichkeit <InlineMath math="0{,}71875" 
     ],
   }}
 />
+
+Im Treff-Quadrat füllt die Trefffläche das gesamte Quadrat der Fläche <InlineMath math="1600" /> bis auf Bens Ecke (<InlineMath math="200" />) und Annas Ecke (<InlineMath math="250" />), was genau <InlineMath math="0{,}71875" /> ergibt.
+
+# Antwort
+
+Die Wahrscheinlichkeit, dass sich beide treffen, beträgt <InlineMath math="0{,}71875" />.

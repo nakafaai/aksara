@@ -1,4 +1,16 @@
-# Setiap laluan ialah satu perkataan
+# Diberi
+
+**Seorang penghantar basikal** bergerak pada grid jalan dari <InlineMath math="S(0\mid0)" /> ke <InlineMath math="Z(6\mid4)" /> hanya ke timur atau utara. Laluan mesti melalui sekurang-kurangnya satu farmasi di <InlineMath math="A(2\mid2)" /> atau <InlineMath math="B(4\mid1)" />, manakala segmen dari <InlineMath math="(3\mid2)" /> ke <InlineMath math="(4\mid2)" /> ditutup.
+
+# Ditanya
+
+Berapakah bilangan laluan berbeza yang boleh diambil oleh penghantar itu?
+
+# Penyelesaian
+
+> Oleh sebab penghantar tidak pernah berpatah balik, **laluan melalui <InlineMath math="A" /> dan laluan melalui <InlineMath math="B" /> langsung tidak bertindih**, jadi kita cuma menambah kedua-duanya selepas membuang ruas tertutup.
+
+## Setiap laluan ialah satu perkataan
 
 Tulis laluan itu sebagai rentetan huruf: T untuk satu langkah ke timur, U untuk satu langkah ke utara. Dari <InlineMath math="S" /> ke <InlineMath math="Z" /> sentiasa ada enam T dan empat U, cuma susunannya berbeza. **Mengira laluan antara dua persimpangan bermaksud memilih kedudukan huruf U, iaitu pekali binomial**. Untuk laluan melalui farmasi <InlineMath math="A" />, darabkan kedua-dua bahagian:
 
@@ -7,7 +19,7 @@ S\to A&:\ \tbinom{4}{2}=6,\qquad A\to Z:\ \tbinom{6}{2}=15\\
 6\cdot15&=90
 \end{aligned}" />
 
-# Jalan yang ditutup hanya menjejaskan laluan melalui A
+## Jalan yang ditutup hanya menjejaskan laluan melalui A
 
 Laluan melalui <InlineMath math="A" /> menggunakan bahagian yang ditutup jika dari <InlineMath math="A" /> terus ke timur ke <InlineMath math="(3\mid2)" />, dan caranya hanya satu, kemudian melalui bahagian itu, kemudian dari <InlineMath math="(4\mid2)" /> ke <InlineMath math="Z" />. **Laluan-laluan ini mesti ditolak**:
 
@@ -66,7 +78,8 @@ Laluan melalui <InlineMath math="A" /> menggunakan bahagian yang ditutup jika da
   }}
 />
 
-# Farmasi B dan pertindihannya
+Perhatikan pada grid bahawa <InlineMath math="B(4\mid1)" /> terletak di bawah dan di kanan <InlineMath math="A(2\mid2)" />, menjadikan mustahil untuk melalui kedua-dua farmasi sambil hanya bergerak ke timur dan utara.
+## Farmasi B dan pertindihannya
 
 Untuk <InlineMath math="B(4\mid1)" /> caranya sama. **Tiada laluan yang melalui kedua-dua farmasi, kerana selepas <InlineMath math="A" /> pada ketinggian <InlineMath math="2" /> kurier tidak boleh turun lagi ke ketinggian <InlineMath math="1" /> di <InlineMath math="B" />, dan sebelum <InlineMath math="A" /> dia perlu sampai <InlineMath math="x=4" /> dan kemudian <InlineMath math="x=2" />**. Jadi tiada yang dikira dua kali. Laluan melalui <InlineMath math="B" /> hanya sampai ketinggian <InlineMath math="2" /> pada <InlineMath math="x\ge4" />, maka ia tidak pernah menggunakan jalan yang ditutup:
 
@@ -76,3 +89,7 @@ S\to B&:\ \tbinom{5}{1}=5,\qquad B\to Z:\ \tbinom{5}{2}=10\\
 \end{aligned}" />
 
 Kurier itu ada <InlineMath math="104" /> laluan berbeza. Jika kerja jalan dilupakan, jawapannya <InlineMath math="140" />.
+
+# Jawapan
+
+Penghantar itu boleh mengambil <InlineMath math="104" /> laluan berbeza.

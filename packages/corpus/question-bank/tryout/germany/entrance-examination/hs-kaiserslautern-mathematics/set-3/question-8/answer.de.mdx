@@ -1,4 +1,16 @@
-# Zuerst die gemeinsame Diagonale BD
+# Gegeben
+
+**Ein konvexes Viereck** <InlineMath math="ABCD" /> hat <InlineMath math="\overline{AB}=30\text{ m}" />, <InlineMath math="\overline{AD}=14\text{ m}" />, <InlineMath math="\overline{BC}=30\text{ m}" />, <InlineMath math="\cos(\angle BAD)=-0.6" />, <InlineMath math="\cos(\angle BDC)=0.8" /> und einen spitzen Winkel <InlineMath math="\angle BCD < 90^\circ" />.
+
+# Gesucht
+
+Wie lang ist die Diagonale AC in m?
+
+# Lösung
+
+> Berechne zuerst die gemeinsame Diagonale <InlineMath math="BD = 40\text{ m}" />, denn **die Bedingung eines spitzen Winkels bei <InlineMath math="C" /> wählt eindeutig die richtige Ecke aus** und führt per Kosinussatz bei <InlineMath math="D" /> direkt zu <InlineMath math="AC" />.
+
+## Zuerst die gemeinsame Diagonale BD
 
 Zerlege das Viereck entlang von <InlineMath math="BD" /> in zwei Dreiecke, die sich diese Brücke teilen. **Im Dreieck <InlineMath math="ABD" /> kennst du zwei Seiten und den Kosinus des eingeschlossenen Winkels, also liefert der Kosinussatz sofort <InlineMath math="BD" />**. Das Minuszeichen im Kosinus macht aus dem Minus ein Plus.
 
@@ -6,7 +18,7 @@ Zerlege das Viereck entlang von <InlineMath math="BD" /> in zwei Dreiecke, die s
 BD^2=30^2+14^2-2\cdot30\cdot14\cdot\left(-\tfrac35\right)=900+196+504=1600\ \Longrightarrow\ BD=40\text{ m}
 \end{aligned}" />
 
-# Zwei mögliche Lagen für C
+## Zwei mögliche Lagen für C
 
 Wechsle jetzt ins Dreieck <InlineMath math="BCD" /> und setze <InlineMath math="x=CD" />. **Weil <InlineMath math="BC=30\text{ m}" /> kürzer als <InlineMath math="BD=40\text{ m}" /> ist, schneidet der Kreis mit Radius <InlineMath math="30\text{ m}" /> um <InlineMath math="B" /> den Strahl von <InlineMath math="D" /> zweimal und liefert zwei Kandidaten für <InlineMath math="CD" />**.
 
@@ -15,7 +27,7 @@ Wechsle jetzt ins Dreieck <InlineMath math="BCD" /> und setze <InlineMath math="
 (x-14)(x-50)=0\ \Longrightarrow\ CD=14\text{ m}\quad\text{oder}\quad CD=50\text{ m}
 \end{aligned}" />
 
-Jetzt entscheidet die Bedingung <InlineMath math="\angle BCD<90^\circ" />. Für <InlineMath math="CD=14\text{ m}" /> gilt <InlineMath math="30^2+14^2=1096<1600=40^2" />, der Winkel bei <InlineMath math="C'" /> ist also stumpf und fällt weg. Für <InlineMath math="CD=50\text{ m}" /> gilt <InlineMath math="30^2+40^2=2500=50^2" /> (rechter Winkel bei <InlineMath math="B" />), also ist <InlineMath math="\angle BCD" /> spitz und **<InlineMath math="CD=50\text{ m}" /> bleibt übrig**.
+Jetzt entscheidet die Bedingung <InlineMath math="\angle BCD<90^\circ" />. Für <InlineMath math="CD=14\text{ m}" /> gilt <InlineMath math="1096 < 1600" />, der Winkel bei <InlineMath math="C'" /> ist also stumpf und fällt weg. Für <InlineMath math="CD=50\text{ m}" /> gilt <InlineMath math="2500 = 50^2" /> (rechter Winkel bei <InlineMath math="B" />), also ist <InlineMath math="\angle BCD" /> spitz und **<InlineMath math="CD=50\text{ m}" /> bleibt übrig**.
 
 <MathVisual
   title={<>Das Grundstück und der verworfene Punkt</>}
@@ -61,9 +73,9 @@ Jetzt entscheidet die Bedingung <InlineMath math="\angle BCD<90^\circ" />. Für 
 
 Die Zeichnung zeigt beide Schnittpunkte auf dem Strahl von <InlineMath math="D" /> und macht sichtbar, warum nur der weiter entfernte Punkt einen spitzen Winkel bei <InlineMath math="C" /> lässt.
 
-# Beide Teilwinkel bei D zusammensetzen
+## Beide Teilwinkel bei D zusammensetzen
 
-Da <InlineMath math="A" /> und <InlineMath math="C" /> auf verschiedenen Seiten von <InlineMath math="BD" /> liegen, gilt <InlineMath math="\angle ADC=\angle ADB+\angle BDC" />. **Bestimme <InlineMath math="\cos(\angle ADB)" /> im Dreieck <InlineMath math="ABD" />, setze das Additionstheorem ein und rechne <InlineMath math="AC" /> im Dreieck <InlineMath math="ADC" /> aus**.
+Da <InlineMath math="A" /> und <InlineMath math="C" /> auf verschiedenen Seiten von <InlineMath math="BD" /> liegen, gilt <InlineMath math="\angle ADC" />. **Bestimme <InlineMath math="\cos(\angle ADB)" /> im Dreieck <InlineMath math="ABD" />, setze das Additionstheorem ein und rechne <InlineMath math="AC" /> im Dreieck <InlineMath math="ADC" /> aus**.
 
 <BlockMath math="\begin{aligned}
 \cos(\angle ADB)=\frac{14^2+40^2-30^2}{2\cdot14\cdot40}=\frac{896}{1120}=\tfrac45,\qquad \sin(\angle ADB)=\tfrac35\\
@@ -72,3 +84,7 @@ AC^2=14^2+50^2-2\cdot14\cdot50\cdot\tfrac{7}{25}=196+2500-392=2304\ \Longrightar
 \end{aligned}" />
 
 Die Diagonale <InlineMath math="AC" /> ist **<InlineMath math="48\text{ m}" />** lang. Wer die verworfene Ecke <InlineMath math="C'" /> mit <InlineMath math="CD=14\text{ m}" /> wählt, landet bei der Falle <InlineMath math="16{,}8\text{ m}" />.
+
+# Antwort
+
+Die Diagonale <InlineMath math="AC" /> ist <InlineMath math="48\text{ m}" /> lang.

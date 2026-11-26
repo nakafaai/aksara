@@ -1,4 +1,16 @@
-# Count trips, not litres
+# Given
+
+**A dairy collects milk** daily from four farms along a straight road: <InlineMath math="A" /> at km <InlineMath math="0" /> (<InlineMath math="2500\text{ l}" />), <InlineMath math="B" /> at km <InlineMath math="6" /> (<InlineMath math="10\,000\text{ l}" />), <InlineMath math="C" /> at km <InlineMath math="10" /> (<InlineMath math="5500\text{ l}" />), and <InlineMath math="D" /> at km <InlineMath math="16" /> (<InlineMath math="3200\text{ l}" />). A <InlineMath math="3000\text{ l}" /> tanker makes round trips to one farm at a time, and the depot cannot sit strictly inside the protection zone <InlineMath math="5 < x < 9" />.
+
+# Asked
+
+What is the shortest total daily driving distance of the tanker in kilometres?
+
+# Solution
+
+> What matters is **how many round trips each farm forces**, not raw litres, and when the ideal weighted median lies inside a forbidden zone, the true winner must sit on one of the two allowed boundary edges.
+
+## Count trips rather than litres
 
 A tanker that holds <InlineMath math="3000" /> litres has to drive out again each time it fills up. **Each farm needs as many trips as <InlineMath math="3000" /> litres fit into its milk, rounded up**:
 
@@ -9,7 +21,7 @@ n_C&=\left\lceil\tfrac{5500}{3000}\right\rceil=2,\qquad n_D=\left\lceil\tfrac{32
 
 Farm <InlineMath math="D" /> is the trap: <InlineMath math="3200" /> litres are just over one load, so it needs <InlineMath math="2" /> trips.
 
-# Distance as a sum of absolute values
+## Distance as a sum of absolute values
 
 Every trip runs from the collection point at <InlineMath math="x" /> to one farm and back. **Counted one way, the day's trips add up to a sum of absolute values, and the daily distance is twice as long**:
 
@@ -20,7 +32,7 @@ D(x)&=2f(x)
 
 Picture walking along the road: one step to the right brings you closer to every trip on your right and farther from every trip on your left. **So the slope of <InlineMath math="f" /> is the number of trips on the left minus the number on the right**.
 
-# The best point is forbidden
+## The best point is forbidden
 
 Without the zone, the lowest point of <InlineMath math="f" /> is where the slope turns from negative to positive. Counting from the left there are <InlineMath math="1" />, then <InlineMath math="1+4=5" /> trips, more than half of the <InlineMath math="9" />, and that happens at farm <InlineMath math="B" />. So the minimum is at kilometre <InlineMath math="6" /> with <InlineMath math="f(6)=34" />. **But kilometre <InlineMath math="6" /> lies inside the protection zone, so only its two edges are left**:
 
@@ -79,8 +91,13 @@ Without the zone, the lowest point of <InlineMath math="f" /> is where the slope
   }}
 />
 
-# The far edge wins
+The distance graph dips toward the forbidden valley at <InlineMath math="x=6" /> and climbs more gently toward the right than the left, making the boundary <InlineMath math="x=9" /> beat <InlineMath math="x=5" /> with <InlineMath math="37\text{ km}" /> one way (<InlineMath math="74\text{ km}" /> round trip).
+## The far edge wins
 
 The edge at kilometre <InlineMath math="5" /> is closer to the minimum, but <InlineMath math="f" /> is steep there: every kilometre adds <InlineMath math="7" />. Towards kilometre <InlineMath math="9" /> every kilometre adds only <InlineMath math="1" />. **So the collection point goes to kilometre <InlineMath math="9" />, and the tanker drives <InlineMath math="2\cdot37=74\text{ km}" /> a day**.
 
 The nearer edge at kilometre <InlineMath math="5" /> would give <InlineMath math="82\text{ km}" />, and leaving out the way back gives only <InlineMath math="37\text{ km}" />. Weighting by thousands of litres instead of trips gives <InlineMath math="160.8" />, a number that is not even a distance. Counting <InlineMath math="D" /> as one trip lands at <InlineMath math="60\text{ km}" />.
+
+# Answer
+
+The tanker drives at least <InlineMath math="74\text{ km}" /> per day.

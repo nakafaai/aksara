@@ -1,14 +1,26 @@
-# Wie groß der Saal ist
+# Gegeben
 
-Die Reihen wachsen wie Treppenstufen, zwei Plätze pro Stufe. Von <InlineMath math="16" /> bis <InlineMath math="54" /> sind es <InlineMath math="\frac{54-16}{2}=19" /> Stufen, also **hat der Saal <InlineMath math="20" /> Reihen**. Fasst du die erste und die letzte Reihe zusammen, die zweite und die vorletzte und so weiter, hat jedes Paar <InlineMath math="70" /> Plätze:
+**Ein Theatersaal beginnt** mit <InlineMath math="16" /> Plätzen in Reihe eins, wächst um <InlineMath math="2" /> Plätze je Reihe und endet bei <InlineMath math="54" /> Plätzen. Möglichst viele vordere Reihen entfallen, solange mindestens <InlineMath math="560" /> Plätze bleiben.
+
+# Gesucht
+
+Wie viele Plätze hat die vorderste noch genutzte Reihe?
+
+# Lösung
+
+> Möglichst viele vordere Reihen wegzunehmen heißt genau, **den Überschuss über dem Mindestbestand so weit wie möglich auszuschöpfen, ohne ihn zu überschreiten**.
+
+## Wie groß der Saal ist
+
+Die Reihen wachsen wie Treppenstufen, zwei Plätze pro Stufe. Von <InlineMath math="16" /> bis <InlineMath math="54" /> sind es <InlineMath math="19" /> Stufen, also **hat der Saal <InlineMath math="20" /> Reihen**. Fasst du die erste und die letzte Reihe zusammen, die zweite und die vorletzte und so weiter, hat jedes Paar <InlineMath math="70" /> Plätze:
 
 <BlockMath math="\begin{aligned}
 S&=\tfrac{20}{2}\,(16+54)=700
 \end{aligned}" />
 
-# Wie viele vordere Reihen wegfallen dürfen
+## Wie viele vordere Reihen wegfallen dürfen
 
-Damit <InlineMath math="560" /> Plätze bleiben, dürfen höchstens <InlineMath math="700-560=140" /> wegfallen. Die ersten <InlineMath math="m" /> Reihen haben <InlineMath math="16+18+\dots" /> Plätze, eine arithmetische Summe, also **haben die vorderen Reihen <InlineMath math="m(m+15)" /> Plätze**: <InlineMath math="m\cdot\tfrac{16+(14+2m)}{2}=m(m+15)" />.
+Damit <InlineMath math="560" /> Plätze bleiben, dürfen höchstens <InlineMath math="140" /> wegfallen. Die ersten <InlineMath math="m" /> Reihen haben <InlineMath math="16+18+\dots" /> Plätze, eine arithmetische Summe, also **haben die vorderen Reihen <InlineMath math="m(m+15)" /> Plätze**: <InlineMath math="m(m+15)" />.
 
 <BlockMath math="\begin{aligned}
 m(m+15)&\le140\\
@@ -27,6 +39,12 @@ m(m+15)&\le140\\
   valueLabel="Plätze"
 />
 
-# Die vorderste Reihe, die bleibt
+Jeder gestrichene Balken links zehrt am Überschuss, und **eine siebte entfernte Reihe würde das Limit von <InlineMath math="140" /> Plätzen sprengen**, also bleibt Reihe sieben stehen.
+
+## Die vorderste Reihe die bleibt
 
 Sechs Reihen fallen weg, das Publikum sitzt also ab Reihe <InlineMath math="7" />. **Sie hat <InlineMath math="16+6\cdot2=28" /> Plätze**. Wer <InlineMath math="26" /> angibt, die letzte weggefallene Reihe, oder sieben Reihen wegnimmt, liegt jeweils um eine Stufe daneben.
+
+# Antwort
+
+Die vorderste noch benutzte Reihe hat <InlineMath math="28" /> Plätze.

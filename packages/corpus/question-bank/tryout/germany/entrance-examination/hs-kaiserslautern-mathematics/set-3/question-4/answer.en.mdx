@@ -1,6 +1,18 @@
-# Even steps give a parabola away
+# Given
 
-Walk down a staircase where every step is shorter than the last by one fixed amount: that is how a parabola changes when <InlineMath math="x" /> moves in equal steps. **For <InlineMath math="y=ax^2+bx+c" /> the first differences of the heights change by one fixed number, the second difference <InlineMath math="2a" />**.
+**A filmed basketball shot** follows a parabola with five measured heights at <InlineMath math="x=0,1,2,3,4\text{ m}" />: <InlineMath math="1.85, 3.25, 3.85, 4.25, 4.25\text{ m}" />. Exactly one reading is wrong while the other four are exact.
+
+# Asked
+
+What is the greatest height above the ground reached by the ball's centre, in metres?
+
+# Solution
+
+> On equally spaced steps along any parabola, **the change of the change (second difference) must stay completely constant**, which immediately exposes the one faulty reading like a bent rung on a ladder.
+
+## Even steps give a parabola away
+
+Walk down a staircase where every step is shorter than the last by one fixed amount: that is how a parabola changes when <InlineMath math="x" /> moves in equal steps. **For <InlineMath math="y(x)" /> the first differences of the heights change by one fixed number, the second difference <InlineMath math="2a" />**.
 
 <BlockMath math="\begin{aligned}
 \Delta y&:\quad 1.40,\ 0.60,\ 0.40,\ 0.00\\
@@ -9,7 +21,7 @@ Walk down a staircase where every step is shorter than the last by one fixed amo
 
 Those second differences do not match, which immediately reveals the wrong reading.
 
-# Tracking down the wrong reading
+## Tracking down the wrong reading
 
 A height that is off by <InlineMath math="\delta" /> shifts each second difference it belongs to: by <InlineMath math="-2\delta" /> when it sits in the middle and by <InlineMath math="+\delta" /> when it sits at an end. **Only a mistake at <InlineMath math="x=1" /> leaves the last difference <InlineMath math="-0.40" /> intact while shifting the first two by <InlineMath math="-2\delta" /> and <InlineMath math="+\delta" />**.
 
@@ -21,7 +33,7 @@ A height that is off by <InlineMath math="\delta" /> shifts each second differen
 
 Both equations agree on <InlineMath math="\delta=0.20" />, so the true height at <InlineMath math="x=1" /> is <InlineMath math="3.25-0.20=3.05\text{ m}" />. An error at <InlineMath math="x=0" /> would touch only the first difference and one at <InlineMath math="x=4" /> only the last, while at <InlineMath math="x=2" /> or <InlineMath math="x=3" /> the untouched differences contradict each other.
 
-# The highest point
+## The highest point
 
 The heights at <InlineMath math="x=3" /> and <InlineMath math="x=4" /> are equal and both exact, so the apex sits halfway between them at <InlineMath math="x=3.5" />. **The second difference <InlineMath math="2a=-0.40" /> gives <InlineMath math="a=-0.2" />, and substituting <InlineMath math="(3\mid4.25)" /> fixes the top**.
 
@@ -68,3 +80,7 @@ H&=4.30
 />
 
 The ball's centre climbs to **<InlineMath math="4.3\text{ m}" />**. Fitting a parabola through the first three readings, including the wrong one, peaks at <InlineMath math="3.875\text{ m}" /> near <InlineMath math="x=2.25" /> and already misses the reading at <InlineMath math="x=3" />.
+
+# Answer
+
+The ball reaches a maximum height of <InlineMath math="4.3\text{ m}" />.

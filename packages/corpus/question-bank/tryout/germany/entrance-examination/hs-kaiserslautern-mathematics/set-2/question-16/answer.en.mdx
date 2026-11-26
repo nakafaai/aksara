@@ -1,4 +1,16 @@
-# Tilting the walls
+# Given
+
+**A long metal strip** of width <InlineMath math="30\text{ cm}" /> is bent into an open isosceles-trapezoid rain gutter with a horizontal <InlineMath math="10\text{ cm}" /> base and two equal <InlineMath math="10\text{ cm}" /> outward-tilted side walls.
+
+# Asked
+
+What interior angle between the base and one side wall maximizes the cross-sectional area, in degrees?
+
+# Solution
+
+> Think of the trapezoid as **half of a regular hexagon**: tilting each side wall <InlineMath math="60^\circ" /> up from horizontal balances height and width for the biggest possible opening.
+
+## Tilting the walls
 
 Open a book standing on a table: the covers can stand upright or lean outwards. Leaning makes the opening wider but the walls lower. **Let <InlineMath math="\theta" /> be the angle between a side wall and the horizontal outside the gutter**. Each wall then rises <InlineMath math="10\sin\theta" /> and reaches <InlineMath math="10\cos\theta" /> outwards, so the top opening is <InlineMath math="10+20\cos\theta" /> wide:
 
@@ -7,7 +19,7 @@ h&=10\sin\theta,\qquad o=10+20\cos\theta\\
 A(\theta)&=\frac{10+o}{2}\cdot h=100\sin\theta\,(1+\cos\theta)
 \end{aligned}" />
 
-# Where the area stops growing
+## Where the area stops growing
 
 At the largest area the derivative is zero. **Replace <InlineMath math="\sin^2\theta" /> by <InlineMath math="1-\cos^2\theta" /> and the derivative becomes a quadratic in <InlineMath math="\cos\theta" /> that factors**:
 
@@ -52,7 +64,8 @@ The factor <InlineMath math="\cos\theta+1" /> vanishes only at <InlineMath math=
   }}
 />
 
-# Which angle the question wants
+The optimal cross-section forms three sides of a regular hexagon, where the <InlineMath math="60^\circ" /> exterior rise turns into a <InlineMath math="120^\circ" /> interior angle between base and side wall.
+## Which angle the question wants
 
 The tilt <InlineMath math="\theta" /> is measured outside the gutter, against the horizontal continuing the bottom. **Inside, the bottom and the wall enclose the angle that completes <InlineMath math="\theta" /> to a straight line**:
 
@@ -63,3 +76,7 @@ A(60^\circ)&=100\cdot\tfrac{\sqrt3}{2}\cdot\tfrac32=75\sqrt3\approx129.9\\
 \end{aligned}" />
 
 Upright walls give only <InlineMath math="100\text{ cm}^2" />, so <InlineMath math="60^\circ" /> is a real maximum. Typing that tilt instead of the inside angle is the trap.
+
+# Answer
+
+The interior angle between the base and a side wall is <InlineMath math="120^\circ" />.

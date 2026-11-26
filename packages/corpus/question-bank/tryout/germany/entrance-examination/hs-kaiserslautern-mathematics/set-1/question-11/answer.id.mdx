@@ -1,4 +1,16 @@
-# Seberapa cepat biakan berlipat dua
+# Diketahui
+
+**Kultur bakteri dimulai** pukul 8:00 dan tumbuh eksponensial: pukul 9:30 ada <InlineMath math="5000" /> bakteri dan pukul 11:00 ada <InlineMath math="40000" /> bakteri. Pukul 12:00 ditambahkan zat penghambat yang sendirian mengecilkan jumlah bakteri menjadi seperenam belas tiap jam, sementara pertumbuhan bakteri tetap berjalan.
+
+# Ditanyakan
+
+Berapa menit setelah penambahan zat jumlah bakteri kembali sama dengan jumlah awal pukul 8:00?
+
+# Penyelesaian
+
+> Dalam pertumbuhan dan peluruhan eksponensial, **laju gabungan per jam diperoleh langsung dengan mengalikan faktor tumbuh dan faktor susutnya**.
+
+## Seberapa cepat biakan berlipat dua
 
 Bayangkan tumpukan koin yang berlipat dua dengan irama tetap. Di antara kedua hitungan, jumlah bakteri menjadi delapan kali dalam <InlineMath math="90" /> menit. **Delapan berarti tiga kali berlipat dua, jadi biakan berlipat dua tiap <InlineMath math="30" /> menit dan menjadi empat kali tiap jam**:
 
@@ -7,7 +19,7 @@ Bayangkan tumpukan koin yang berlipat dua dengan irama tetap. Di antara kedua hi
 T_2&=\frac{90\text{ min}}{3}=30\text{ min}
 \end{aligned}" />
 
-# Mundur ke awal dan maju ke siang
+## Mundur ke awal dan maju ke siang
 
 Mundur dalam waktu berarti membagi dua, bukan mengali dua. **Biakan dibuat <InlineMath math="90" /> menit sebelum hitungan pertama, yaitu tiga kali dibagi dua, dan zat ditambahkan satu jam setelah hitungan kedua, yaitu dua kali berlipat dua**:
 
@@ -16,11 +28,11 @@ N_0&=\frac{5000}{2^3}=625\\
 N_{12}&=40000\cdot2^2=160000
 \end{aligned}" />
 
-# Dua pengaruh sekaligus
+## Dua pengaruh sekaligus
 
-Bayangkan bak mandi yang kerannya menyala sementara sumbatnya dicabut. Sisa air setelah satu jam bergantung pada keduanya. **Zat itu sendiri hanya menyisakan <InlineMath math="\frac{1}{16}" /> tiap jam, tetapi dalam jam yang sama bakteri menjadi empat kali, jadi faktor bersihnya <InlineMath math="4\cdot\frac{1}{16}=\frac14" /> per jam**. Kalau hanya memakai <InlineMath math="\frac{1}{16}" />, pertumbuhannya terlupa dan hasilnya <InlineMath math="120" /> menit. Kalau mulai dari <InlineMath math="40000" />, bukan <InlineMath math="160000" />, satu jam pertumbuhan terakhir terlupa dan hasilnya <InlineMath math="180" /> menit.
+Bayangkan bak mandi yang kerannya menyala sementara sumbatnya dicabut. Sisa air setelah satu jam bergantung pada keduanya. **Zat itu sendiri hanya menyisakan <InlineMath math="\frac{1}{16}" /> tiap jam, tetapi dalam jam yang sama bakteri menjadi empat kali, jadi faktor bersihnya <InlineMath math="1/4" /> per jam**. Kalau hanya memakai <InlineMath math="\frac{1}{16}" />, pertumbuhannya terlupa dan hasilnya <InlineMath math="120" /> menit. Kalau mulai dari <InlineMath math="40000" />, bukan <InlineMath math="160000" />, satu jam pertumbuhan terakhir terlupa dan hasilnya <InlineMath math="180" /> menit.
 
-# Kembali ke jumlah awal
+## Kembali ke jumlah awal
 
 Sekarang hitung berapa kali dibagi empat agar <InlineMath math="160000" /> turun menjadi <InlineMath math="625" />:
 
@@ -34,7 +46,7 @@ s&=4\text{ h}=240\text{ min}
 
 <Chart
   title={<>Jumlah bakteri sepanjang hari</>}
-  description={<>Jumlah bakteri dalam ribuan pada tiap jam penuh dari pukul 8.00 sampai 16.00. Sampai pukul 12.00 jumlahnya menjadi empat kali tiap jam, lalu tinggal seperempat tiap jam dan kembali menjadi <InlineMath math="625" /> bakteri pada pukul 16.00. Garis kedua hanya menghitung pembunuhan bakteri dan sudah sampai di sana pada pukul 14.00.</>}
+  description={<>Jumlah bakteri pada tiap jam penuh dari pukul 8.00 sampai 16.00. Sampai pukul 12.00 jumlahnya menjadi empat kali tiap jam, lalu tinggal seperempat tiap jam dan kembali menjadi <InlineMath math="625" /> bakteri pada pukul 16.00. Garis kedua hanya menghitung pembunuhan bakteri dan sudah sampai di sana pada pukul 14.00.</>}
   categories={["8.00", "9.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00"]}
   series={[
     { label: "pertumbuhan dan zat", mark: "line", values: [0.625, 2.5, 10.0, 40.0, 160.0, 40.0, 10.0, 2.5, 0.625] },
@@ -42,3 +54,9 @@ s&=4\text{ h}=240\text{ min}
   ]}
   valueLabel="Bakteri (ribu)"
 />
+
+Grafik memperlihatkan **kurva naik cepat sampai pukul siang lalu turun simetris dengan faktor seperempat tiap jam**, kembali tepat ke jumlah awal empat jam kemudian.
+
+# Jawaban
+
+Jumlah bakteri kembali ke nilai awal tepat <InlineMath math="240\text{ min}" /> setelah zat ditambahkan.

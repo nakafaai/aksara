@@ -1,4 +1,16 @@
-# Three equations for three amounts
+# Given
+
+**A stable mixes** <InlineMath math="100\text{ kg}" /> of feed from three sorts: sort A (<InlineMath math="12\,\%" /> protein, <InlineMath math="8\,\%" /> fat, <InlineMath math="0.40\text{ €}/\text{kg}" />), sort B (<InlineMath math="18\,\%" /> protein, <InlineMath math="6\,\%" /> fat, <InlineMath math="0.30\text{ €}/\text{kg}" />), and sort C (<InlineMath math="30\,\%" /> protein, <InlineMath math="2\,\%" /> fat, <InlineMath math="0.60\text{ €}/\text{kg}" />). The mix must contain exactly <InlineMath math="21\,\%" /> protein and <InlineMath math="5\,\%" /> fat, and any sort may be <InlineMath math="0\text{ kg}" />.
+
+# Asked
+
+How many euros does the cheapest valid mixture cost?
+
+# Solution
+
+> Because fat falls in exact lockstep as protein rises across the three sorts, **one equation is automatically satisfied**, leaving a whole line of valid mixes whose cheapest point sits at the edge with the least of the pricey sort C.
+
+## Three equations for three amounts
 
 Call the kilograms of the sorts <InlineMath math="a, b, c" />. Protein and fat are counted in percent times kilograms. **The total, the protein and the fat each give one equation**:
 
@@ -8,7 +20,7 @@ a+b+c&=100\\
 8a+6b+2c&=500
 \end{aligned}" />
 
-# The fat condition repeats the others
+## The fat condition repeats the others
 
 Subtract twelve times the first equation from the second. That gives <InlineMath math="6b+18c=900" />, so <InlineMath math="b=150-3c" /> and then <InlineMath math="a=2c-50" />. **Putting both into the fat equation turns it into <InlineMath math="500=500" />, true for every <InlineMath math="c" />**:
 
@@ -20,7 +32,7 @@ a&=100-b-c=2c-50\\
 
 It is like two witnesses telling the same story, the second one adds nothing. The reason sits in the data: for every sort the fat is <InlineMath math="12" /> minus a third of the protein, and so is the target, <InlineMath math="5=12-7" />. **So there is not one mix but a whole family, with <InlineMath math="c" /> free**. Amounts cannot be negative, so <InlineMath math="2c-50\ge0" /> and <InlineMath math="150-3c\ge0" /> give <InlineMath math="25\le c\le50" />.
 
-# The cheapest member of the family
+## The cheapest member of the family
 
 Now the price chooses. **The cost grows by <InlineMath math="0.50\text{ €}" /> with every extra kilogram of C, so the cheapest mix uses as little C as allowed**:
 
@@ -44,3 +56,9 @@ That mix is <InlineMath math="75\text{ kg}" /> of B and <InlineMath math="25\tex
   ]}
   valueLabel="Amount in kg"
 />
+
+The bar chart shows that keeping **sort C** at its minimum <InlineMath math="25\text{ kg}" /> replaces pricey feed with <InlineMath math="75\text{ kg}" /> of the cheapest **sort B** and <InlineMath math="0\text{ kg}" /> of **sort A**, achieving the lowest cost of <InlineMath math="37.5\text{ €}" />.
+
+# Answer
+
+The cheapest valid mixture costs <InlineMath math="37.5\text{ €}" />.

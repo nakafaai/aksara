@@ -1,4 +1,16 @@
-# A stack is a staircase of numbers
+# Given
+
+**In a forest**, <InlineMath math="75" /> identical logs are stacked so each layer has one fewer log than the layer below it and the top layer has at least <InlineMath math="1" /> log. The yard fits at most <InlineMath math="16" /> logs across the bottom, the first layer is <InlineMath math="30\text{ cm}" /> high, each extra layer adds <InlineMath math="26\text{ cm}" />, and the stack can be at most <InlineMath math="2\text{ m}" /> high.
+
+# Asked
+
+How many logs lie in the bottom layer?
+
+# Solution
+
+> Double the stack to turn the staircase of consecutive integers into a clean rectangle whose area is <InlineMath math="150" />, so **only divisor pairs of <InlineMath math="150" /> can even exist**.
+
+## A stack is a staircase of numbers
 
 Look at the stack from the front: each layer is one log shorter than the one below, like the steps of a staircase. **With <InlineMath math="n" /> layers and <InlineMath math="a" /> logs on top, the bottom layer has <InlineMath math="a+n-1" /> logs, and the total is the number of layers times the average layer**:
 
@@ -7,7 +19,7 @@ n\cdot\frac{a+(a+n-1)}{2}&=75\\
 n\,(2a+n-1)&=150
 \end{aligned}" />
 
-# Splitting one hundred fifty into two factors
+## Splitting one hundred fifty into two factors
 
 Both factors are whole numbers, and <InlineMath math="2a+n-1" /> is bigger than <InlineMath math="n" /> because <InlineMath math="a\ge1" />. **Their difference <InlineMath math="2a-1" /> is odd, so one factor is even and the other odd**. That leaves exactly six ways to write <InlineMath math="150" />:
 
@@ -20,7 +32,7 @@ n=6&:\ 2a+5=25,\ a=10\\
 n=10&:\ 2a+9=15,\ a=3
 \end{aligned}" />
 
-# Width and height pick the stack
+## Width and height pick the stack
 
 The bottom layers hold <InlineMath math="75, 38, 26, 17, 15" /> and <InlineMath math="12" /> logs. **Only <InlineMath math="15" /> and <InlineMath math="12" /> fit into the <InlineMath math="16" /> places side by side**. Now the height decides between six and ten layers:
 
@@ -53,3 +65,9 @@ So at most seven layers, and ten layers would stand <InlineMath math="264\text{ 
       H --> K["6 layers: 160 cm, fits"]
   `}
 />
+
+Following the diagram from top to bottom shows how the width cap leaves only two stacks (<InlineMath math="6" /> or <InlineMath math="10" /> layers) and the <InlineMath math="200\text{ cm}" /> height cap eliminates the <InlineMath math="10" />-layer stack, leaving <InlineMath math="15" /> logs on the bottom.
+
+# Answer
+
+There are <InlineMath math="15" /> logs in the bottom layer.

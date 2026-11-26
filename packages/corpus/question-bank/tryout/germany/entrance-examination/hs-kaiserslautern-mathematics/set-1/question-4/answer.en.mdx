@@ -1,6 +1,18 @@
-# Two clues, one ratio
+# Given
 
-Think of a set of nesting boxes where each box is the same fraction of the one below. That fixed fraction is the ratio <InlineMath math="q" /> of a geometric sequence. **The second cube gives <InlineMath math="a_1=\frac{1.2}{q}" />, and the first plus the third cube give the equation for <InlineMath math="q" />**:
+**Stacked cubes have** edge lengths in geometric progression from bottom to top, and every cube must rest completely on the cube below it. The second cube has edge <InlineMath math="1.2\text{ m}" />, and the first and third cubes together are <InlineMath math="2.6\text{ m}" /> tall.
+
+# Asked
+
+What is the fewest number of cubes needed for the tower to exceed <InlineMath math="5\text{ m}" />?
+
+# Solution
+
+> The no-overhang rule means **each upper cube must shrink rather than grow**, which immediately eliminates the ratio greater than one.
+
+## Two clues one ratio
+
+Think of a set of nesting boxes where each box is the same fraction of the one below. That fixed fraction is the ratio <InlineMath math="q" /> of a geometric sequence. **The second cube gives <InlineMath math="a_1" />, and the first plus the third cube give the equation for <InlineMath math="q" />**:
 
 <BlockMath math="\begin{aligned}
 a_1q&=1.2,\qquad a_1+a_1q^2=2.6\\
@@ -9,13 +21,13 @@ a_1q&=1.2,\qquad a_1+a_1q^2=2.6\\
 q&=\tfrac{3}{2}\ \text{or}\ q=\tfrac{2}{3}
 \end{aligned}" />
 
-# The overhang rule picks the ratio
+## The overhang rule picks the ratio
 
-Put a big cube on a small one and it hangs over the edge like a hat that is too wide. The text forbids that, because every cube must rest on the one below with its whole base. **So each cube is smaller than the one under it, and <InlineMath math="q=\frac{2}{3}" />**. Then <InlineMath math="a_1=1.8\text{ m}" />, and the cubes are <InlineMath math="1.8" />, <InlineMath math="1.2" />, <InlineMath math="0.8\text{ m}" /> and so on. Keeping <InlineMath math="q=\frac{3}{2}" /> builds a tower that widens upwards and passes <InlineMath math="5\text{ m}" /> after only <InlineMath math="4" /> cubes.
+Put a big cube on a small one and it hangs over the edge like a hat that is too wide. The text forbids that, because every cube must rest on the one below with its whole base. **So each cube is smaller than the one under it, and <InlineMath math="q = 2/3" />**. Then <InlineMath math="a_1=1.8\text{ m}" />, and the cubes are <InlineMath math="1.8" />, <InlineMath math="1.2" />, <InlineMath math="0.8\text{ m}" /> and so on. Keeping <InlineMath math="q = 3/2" /> builds a tower that widens upwards and passes <InlineMath math="5\text{ m}" /> after only <InlineMath math="4" /> cubes.
 
-# How tall the tower can get
+## How tall the tower can get
 
-Adding smaller and smaller cubes is like walking half of the rest of a path again and again: you get closer to an end you never pass. **Even endless cubes stay below <InlineMath math="\frac{1.8}{1-\frac{2}{3}}=5.4\text{ m}" />, so <InlineMath math="5\text{ m}" /> is reached only late**.
+Adding smaller and smaller cubes is like walking half of the rest of a path again and again: you get closer to an end you never pass. **Even endless cubes stay below <InlineMath math="5.4\text{ m}" />, so <InlineMath math="5\text{ m}" /> is reached only late**.
 
 <BlockMath math="\begin{aligned}
 S_n&=\frac{1.8\left(1-\left(\frac{2}{3}\right)^n\right)}{1-\frac{2}{3}}=5.4\left(1-\left(\tfrac{2}{3}\right)^n\right)\\
@@ -27,7 +39,7 @@ Compare the fractions over the same denominator <InlineMath math="3^n" />. For <
 
 <Chart
   title={<>The height of the tower</>}
-  description={<>The height of the tower after <InlineMath math="n" /> cubes with <InlineMath math="q=\frac{2}{3}" /> and <InlineMath math="a_1=1.8\text{ m}" />, together with the limit of <InlineMath math="5\text{ m}" />. Only the seventh cube lifts the tower above the limit, and no number of cubes reaches <InlineMath math="5.4\text{ m}" />.</>}
+  description={<>The height of the tower after <InlineMath math="n" /> cubes with <InlineMath math="q = 2/3" /> and <InlineMath math="a_1=1.8\text{ m}" />, together with the limit of <InlineMath math="5\text{ m}" />. Only the seventh cube lifts the tower above the limit, and no number of cubes reaches <InlineMath math="5.4\text{ m}" />.</>}
   categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
   series={[
     { label: "Tower height", mark: "line", values: [1.8, 3.0, 3.8, 4.33, 4.69, 4.93, 5.08, 5.19] },
@@ -35,3 +47,9 @@ Compare the fractions over the same denominator <InlineMath math="3^n" />. For <
   ]}
   valueLabel="Height (m)"
 />
+
+The cumulative height curve flattens out and **crosses the <InlineMath math="5\text{ m}" /> threshold for the first time at the seventh cube**.
+
+# Answer
+
+The tower needs at least <InlineMath math="7" /> cubes.

@@ -1,4 +1,16 @@
-# How much earth the old dyke holds
+# Given
+
+**An old dyke cross-section** sits between the <InlineMath math="x" />-axis and <InlineMath math="f(x)" /> (unit <InlineMath math="1\text{ m}" />). A taller dyke <InlineMath math="g(x)" /> (<InlineMath math="a>0" />) must cover the old one completely while keeping slope <InlineMath math="\lvert g'(x)\rvert \le 2" /> everywhere above the <InlineMath math="x" />-axis, over a <InlineMath math="50\text{ m}" /> dyke length.
+
+# Asked
+
+What is the minimum extra volume of earth needed for the <InlineMath math="50\text{ m}" /> dyke section in cubic metres?
+
+# Solution
+
+> A downward parabola is **steepest right where it hits the ground**, so setting its ground slope equal to <InlineMath math="2" /> picks the narrowest safe new dyke, and only the extra shell on top of the old earth must be hauled in.
+
+## How much earth the old dyke holds
 
 Slice a loaf of bread and every slice has the same face. A dyke is the same: **its volume is the cross-section area times the length, and the area under the parabola is an integral**:
 
@@ -7,9 +19,9 @@ A_{0}&=\int_{-3}^{3}\left(3-\frac{x^2}{3}\right)dx\\
 &=\left[3x-\frac{x^3}{9}\right]_{-3}^{3}=2\,(9-3)=12\text{ m}^2
 \end{aligned}" />
 
-# The slope limit decides the shape
+## The slope limit decides the shape
 
-The new parabola meets the ground where <InlineMath math="6-ax^2=0" />. The bigger <InlineMath math="a" />, the narrower and steeper the dyke, and the slope <InlineMath math="\lvert g'(x)\rvert=2a\lvert x\rvert" /> is largest right at the foot. **So the rule only has to hold at the foot <InlineMath math="x=r" />**:
+The new parabola meets the ground where <InlineMath math="g(x)=0" />. The bigger <InlineMath math="a" />, the narrower and steeper the dyke, and the slope <InlineMath math="\lvert g'(x)\rvert" /> is largest right at the foot. **So the rule only has to hold at the foot <InlineMath math="x=r" />**:
 
 <BlockMath math="\begin{aligned}
 r&=\sqrt{\frac{6}{a}},\qquad \lvert g'(r)\rvert=2ar=2\sqrt{6a}\\
@@ -20,7 +32,7 @@ Stretching the old shape to <InlineMath math="6\text{ m}" />, with <InlineMath m
 
 <MathVisual
   title={<>Old and new dyke in cross-section</>}
-  description={<>The old dyke <InlineMath math="f(x)=3-\frac{x^2}{3}" /> has a cross-section of <InlineMath math="12\text{ m}^2" />, the new one <InlineMath math="g(x)=6-\frac{x^2}{6}" /> has <InlineMath math="48\text{ m}^2" /> and is exactly as steep at its foot as allowed. The narrower candidate <InlineMath math="6-\frac{x^2}{3}" /> would be too steep there.</>}
+  description={<>The old dyke <InlineMath math="f(x)" /> has a cross-section of <InlineMath math="12\text{ m}^2" />, the new one <InlineMath math="g(x)=6-\frac{x^2}{6}" /> has <InlineMath math="48\text{ m}^2" /> and is exactly as steep at its foot as allowed. The narrower candidate <InlineMath math="6-\frac{x^2}{3}" /> would be too steep there.</>}
   labels={{
     old: <>old dyke</>,
     new: <>new dyke</>,
@@ -48,7 +60,8 @@ Stretching the old shape to <InlineMath math="6\text{ m}" />, with <InlineMath m
   }}
 />
 
-# As little earth as the rule allows
+In the cross-section, the new parabola wraps cleanly around the entire old dyke, so subtracting the old <InlineMath math="12\text{ m}^2" /> section from the new <InlineMath math="48\text{ m}^2" /> section leaves <InlineMath math="36\text{ m}^2 \times 50\text{ m} = 1800\text{ m}^3" /> of extra earth.
+## As little earth as the rule allows
 
 A wider foot means more earth, because with <InlineMath math="r^2=\frac6a" /> the area simplifies to <InlineMath math="8r" />, which grows with the half-width <InlineMath math="r" />. **Least earth means the largest allowed <InlineMath math="a" />, which is <InlineMath math="\frac16" />**:
 
@@ -58,4 +71,8 @@ a=\tfrac16&:\ r=6,\quad A=48\text{ m}^2\\
 V&=(48-12)\cdot50=1800\text{ m}^3
 \end{aligned}" />
 
-This dyke still covers the old one, since <InlineMath math="g(x)-f(x)=3+\frac{x^2}{6}>0" />. The whole new dyke would be <InlineMath math="2400\text{ m}^3" />, but <InlineMath math="600\text{ m}^3" /> of it are already there.
+This dyke still covers the old one, since <InlineMath math="g(x) > f(x)" />. The whole new dyke would be <InlineMath math="2400\text{ m}^3" />, but <InlineMath math="600\text{ m}^3" /> of it are already there.
+
+# Answer
+
+At least <InlineMath math="1800\text{ m}^3" /> of additional earth is needed.

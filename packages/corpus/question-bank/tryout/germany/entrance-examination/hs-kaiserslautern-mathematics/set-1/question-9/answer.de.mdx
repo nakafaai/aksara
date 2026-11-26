@@ -1,10 +1,22 @@
-# Die Wege zum Sieg aufschreiben
+# Gegeben
+
+**Mia trifft jeden** unabhängigen Freiwurf mit Wahrscheinlichkeit <InlineMath math="0{,}8" />. Sie darf höchstens viermal werfen und gewinnt sofort mit Spielabbruch, sobald zwei Treffer direkt nacheinander gelingen.
+
+# Gesucht
+
+Mit welcher Wahrscheinlichkeit gewinnt Mia als Dezimalzahl?
+
+# Lösung
+
+> Durch den sofortigen Abbruch nach zwei aufeinanderfolgenden Treffern **schließen sich alle Gewinnpfade gegenseitig aus**, sodass man ihre Einzelwahrscheinlichkeiten einfach addiert.
+
+## Die Wege zum Sieg aufschreiben
 
 Denk an Trittsteine in einem Bach: Du bleibst stehen, sobald du zweimal hintereinander auf einem Treffer landest. Schreib <InlineMath math="T" /> für Treffer und <InlineMath math="F" /> für Fehlwurf. **Das Spiel endet beim ersten <InlineMath math="TT" />, also ist jeder Sieg eine Folge ohne <InlineMath math="TT" /> vor den letzten beiden Würfen**. Mit höchstens vier Würfen gibt es genau vier solche Folgen: <InlineMath math="TT" />, <InlineMath math="FTT" />, <InlineMath math="TFTT" /> und <InlineMath math="FFTT" />.
 
 Eine Folge wie <InlineMath math="TTFT" /> ist kein fünfter Fall. Mia hat schon nach <InlineMath math="TT" /> aufgehört, es ist derselbe Sieg wie der erste. Wer ihn noch einmal zählt, addiert Wahrscheinlichkeit doppelt.
 
-# Entlang jedes Weges multiplizieren
+## Entlang jedes Weges multiplizieren
 
 Unabhängige Würfe werden multipliziert, wie bei der Auswahl aus getrennten Speisekarten. **Ein Fehlwurf hat die Wahrscheinlichkeit <InlineMath math="0{,}2" />, ein Treffer <InlineMath math="0{,}8" />**:
 
@@ -26,3 +38,7 @@ P&=0{,}8^2+0{,}2\cdot0{,}8^2+0{,}8\cdot0{,}2\cdot0{,}8^2+0{,}2^2\cdot0{,}8^2\\
 />
 
 Wer nach drei Würfen aufhört, kommt nur auf <InlineMath math="0{,}64+0{,}128=0{,}768" />. **Mia gewinnt mit der Wahrscheinlichkeit <InlineMath math="0{,}896" />**.
+
+# Antwort
+
+Mia gewinnt mit einer Wahrscheinlichkeit von <InlineMath math="0{,}896" />.

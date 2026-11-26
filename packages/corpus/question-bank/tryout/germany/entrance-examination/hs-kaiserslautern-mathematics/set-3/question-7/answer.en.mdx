@@ -1,4 +1,16 @@
-# Tracking the masses before and after jettisoning
+# Given
+
+**A two-stage rocket** carries a <InlineMath math="50\text{ kg}" /> payload with stage 1 dry mass <InlineMath math="200\text{ kg}" /> (<InlineMath math="u_1=4\text{ km/s}" />), stage 2 dry mass <InlineMath math="50\text{ kg}" /> (<InlineMath math="u_2=2\text{ km/s}" />), and <InlineMath math="600\text{ kg}" /> total fuel split as <InlineMath math="T_1 + T_2 = 600" />. Total speed gain must equal <InlineMath math="2\ln(10)\text{ km/s}" /> with <InlineMath math="2\ln(2)\text{ km/s}" />.
+
+# Asked
+
+How many kilograms of fuel T1 does the first stage receive?
+
+# Solution
+
+> Because stage 1 has **twice the exhaust speed of stage 2**, combining both logarithms squares stage 1's mass ratio and collapses the rocket equation into one clean quadratic in <InlineMath math="T_2" />.
+
+## Tracking the masses before and after jettisoning
 
 Think of a hiker who drops a heavy empty water bottle before the final climb: stage two never carries stage one's empty <InlineMath math="200\text{ kg}" /> hull. **Call stage two's fuel <InlineMath math="x=T_2" />, so stage one gets <InlineMath math="T_1=600-x" />, and write the four masses in terms of <InlineMath math="x" />**.
 
@@ -7,7 +19,7 @@ m_{\text{start},1}=50+50+200+600=900\text{ kg},\qquad m_{\text{end},1}=900-(600-
 m_{\text{start},2}=100+x,\qquad m_{\text{end},2}=50+50=100\text{ kg}
 \end{aligned}" />
 
-# Collapsing the logarithms into one quadratic
+## Collapsing the logarithms into one quadratic
 
 **Divide both sides by <InlineMath math="2" /> and use <InlineMath math="2\ln A+\ln B=\ln(A^2 B)" /> so every logarithm disappears at once**.
 
@@ -55,13 +67,17 @@ Two fuel splits hit the exact target speed: <InlineMath math="x=60\text{ kg}" />
 
 The peak sits at <InlineMath math="x=100\text{ kg}" />, so the horizontal target line cuts the curve once on each side of the dashed boundary.
 
-# Applying stage two's minimum speed rule
+## Applying the minimum speed rule for stage two
 
-**Stage two must contribute at least <InlineMath math="2\ln(2)\,\tfrac{\text{km}}{\text{s}}" /> on its own, which rules out <InlineMath math="x=60\text{ kg}" /> because <InlineMath math="\tfrac{160}{100}=1.6<2" />**.
+**Stage two must contribute at least <InlineMath math="2\ln(2)\,\tfrac{\text{km}}{\text{s}}" /> on its own, which rules out <InlineMath math="x=60\text{ kg}" /> because <InlineMath math="1.6 < 2" />**.
 
 <BlockMath math="\begin{aligned}
 2\ln\!\left(\frac{100+x}{100}\right)\ge2\ln(2)\ \Longleftrightarrow\ \frac{100+x}{100}\ge2\ \Longleftrightarrow\ x\ge100\\
 T_2=150\text{ kg}\ \Longrightarrow\ T_1=600-150=450\text{ kg}
 \end{aligned}" />
 
-As a check, with <InlineMath math="T_1=450\text{ kg}" /> and <InlineMath math="T_2=150\text{ kg}" />, stage one has ratio <InlineMath math="\tfrac{900}{450}=2" /> and stage two has ratio <InlineMath math="\tfrac{250}{100}=2.5" />, giving <InlineMath math="4\ln 2+2\ln 2.5=2\ln(4\cdot2.5)=2\ln 10" />. Keeping <InlineMath math="x=60\text{ kg}" /> would give the trap <InlineMath math="540\text{ kg}" />. **Stage one receives <InlineMath math="450\text{ kg}" /> of fuel**.
+As a check, with <InlineMath math="T_1=450\text{ kg}" /> and <InlineMath math="T_2=150\text{ kg}" />, stage one has ratio <InlineMath math="\tfrac{900}{450}=2" /> and stage two has ratio <InlineMath math="\tfrac{250}{100}=2.5" />, giving <InlineMath math="2\ln 10" />. Keeping <InlineMath math="x=60\text{ kg}" /> would give the trap <InlineMath math="540\text{ kg}" />. **Stage one receives <InlineMath math="450\text{ kg}" /> of fuel**.
+
+# Answer
+
+The first stage receives <InlineMath math="450\text{ kg}" /> of fuel.

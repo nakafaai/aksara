@@ -1,8 +1,20 @@
-# First the digits, then their order
+# Given
+
+**A four-ring combination** lock uses digits <InlineMath math="0" /> through <InlineMath math="9" />. All four digits are distinct, their sum is <InlineMath math="10" />, and the first digit cannot be <InlineMath math="0" />.
+
+# Asked
+
+How many codes satisfy all three conditions?
+
+# Solution
+
+> Pick **which four distinct digits add up to ten** before arranging them, because changing the order never changes the sum.
+
+## First the digits then their order
 
 Think of picking four different stickers first and only then deciding where each goes. Here the stickers are digits. **Choose the set of four digits first**, then count the ways to arrange it.
 
-Four different digits with sum <InlineMath math="10" /> start from the smallest possible, <InlineMath math="0+1+2+3=6" />. You must add <InlineMath math="4" /> more without making two digits equal. Raising the largest digit gives <InlineMath math="\{0,1,2,7\}" />, <InlineMath math="\{0,1,3,6\}" /> and <InlineMath math="\{0,1,4,5\}" />, then <InlineMath math="\{0,2,3,5\}" />, and without <InlineMath math="0" /> only <InlineMath math="\{1,2,3,4\}" />. Any other try repeats a digit or overshoots <InlineMath math="10" />.
+Four different digits with sum <InlineMath math="10" /> start from the smallest possible, <InlineMath math="6" />. You must add <InlineMath math="4" /> more without making two digits equal. Raising the largest digit gives <InlineMath math="\{0,1,2,7\}" />, <InlineMath math="\{0,1,3,6\}" /> and <InlineMath math="\{0,1,4,5\}" />, then <InlineMath math="\{0,2,3,5\}" />, and without <InlineMath math="0" /> only <InlineMath math="\{1,2,3,4\}" />. Any other try repeats a digit or overshoots <InlineMath math="10" />.
 
 <Mermaid
   title={<>From digit set to number of codes</>}
@@ -19,7 +31,9 @@ Four different digits with sum <InlineMath math="10" /> start from the smallest 
   `}
 />
 
-# The forbidden first ring
+Each bar group shows **how many valid arrangements survive** once codes starting with zero are removed, adding up to <InlineMath math="96" /> codes in total.
+
+## The forbidden first ring
 
 Four different digits can stand in <InlineMath math="4!=24" /> orders. **A set with <InlineMath math="0" /> loses the orders that start with <InlineMath math="0" />**, and those are the <InlineMath math="3!=6" /> ways to arrange the other three. That leaves <InlineMath math="18" /> codes for each of the four sets with <InlineMath math="0" />.
 
@@ -29,3 +43,7 @@ Four different digits can stand in <InlineMath math="4!=24" /> orders. **A set w
 \end{aligned}" />
 
 Forgetting the first-ring rule gives <InlineMath math="5\cdot24=120" />. Lena would then try <InlineMath math="24" /> codes that the rule already rules out. **There are <InlineMath math="96" /> possible codes**.
+
+# Answer
+
+There are <InlineMath math="96" /> valid codes.

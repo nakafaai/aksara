@@ -1,4 +1,16 @@
-# Jeder Weg ist ein Wort aus Buchstaben
+# Gegeben
+
+**Ein Fahrradkurier** fährt auf einem Gitter von <InlineMath math="S(0\mid0)" /> nach <InlineMath math="Z(6\mid4)" /> nur nach Osten oder Norden. Der Weg muss mindestens eine Apotheke bei <InlineMath math="A(2\mid2)" /> oder <InlineMath math="B(4\mid1)" /> besuchen, und der Abschnitt von <InlineMath math="(3\mid2)" /> nach <InlineMath math="(4\mid2)" /> ist gesperrt.
+
+# Gesucht
+
+Wie viele verschiedene Wege kann der Kurier fahren?
+
+# Lösung
+
+> Da der Kurier nie zurückfährt, **überschneiden sich Wege über <InlineMath math="A" /> und Wege über <InlineMath math="B" /> überhaupt nicht**, sodass wir beide Anzahlen nach Abzug der Baustelle einfach addieren.
+
+## Jeder Weg ist ein Wort aus Buchstaben
 
 Schreib den Weg als Buchstabenfolge auf: O für einen Schritt nach Osten, N für einen nach Norden. Von <InlineMath math="S" /> nach <InlineMath math="Z" /> sind das immer sechs O und vier N, nur in anderer Reihenfolge. **Wege zwischen zwei Kreuzungen zählen heißt auswählen, an welchen Stellen die N stehen, also ein Binomialkoeffizient**. Für die Wege über die Apotheke <InlineMath math="A" /> multiplizierst du die beiden Teilstücke:
 
@@ -7,7 +19,7 @@ S\to A&:\ \tbinom{4}{2}=6,\qquad A\to Z:\ \tbinom{6}{2}=15\\
 6\cdot15&=90
 \end{aligned}" />
 
-# Die Baustelle trifft nur Wege über A
+## Die Baustelle trifft nur Wege über A
 
 Ein Weg über <InlineMath math="A" /> benutzt den gesperrten Abschnitt, wenn er von <InlineMath math="A" /> direkt nach Osten zu <InlineMath math="(3\mid2)" /> fährt, dafür gibt es nur eine Möglichkeit, dann über den Abschnitt und danach von <InlineMath math="(4\mid2)" /> nach <InlineMath math="Z" />. **Diese Wege fallen weg**:
 
@@ -66,7 +78,8 @@ Ein Weg über <InlineMath math="A" /> benutzt den gesperrten Abschnitt, wenn er 
   }}
 />
 
-# Apotheke B und die Überschneidung
+Im Gitter liegt <InlineMath math="B(4\mid1)" /> rechts unterhalb von <InlineMath math="A(2\mid2)" />, sodass kein Weg nur nach Osten und Norden beide Apotheken gleichzeitig erreichen kann.
+## Apotheke B und die Überschneidung
 
 Für <InlineMath math="B(4\mid1)" /> zählst du genauso. **Kein Weg führt an beiden Apotheken vorbei, denn nach <InlineMath math="A" /> auf Höhe <InlineMath math="2" /> kommt der Kurier nie mehr auf Höhe <InlineMath math="1" /> zu <InlineMath math="B" /> hinunter, und vor <InlineMath math="A" /> bräuchte er erst <InlineMath math="x=4" /> und dann <InlineMath math="x=2" />**. Also wird nichts doppelt gezählt. Ein Weg über <InlineMath math="B" /> erreicht Höhe <InlineMath math="2" /> erst bei <InlineMath math="x\ge4" /> und benutzt die Baustelle deshalb nie:
 
@@ -76,3 +89,7 @@ S\to B&:\ \tbinom{5}{1}=5,\qquad B\to Z:\ \tbinom{5}{2}=10\\
 \end{aligned}" />
 
 Der Kurier hat <InlineMath math="104" /> verschiedene Wege. Wer die Baustelle vergisst, kommt auf <InlineMath math="140" />.
+
+# Antwort
+
+Der Kurier kann <InlineMath math="104" /> verschiedene Wege fahren.

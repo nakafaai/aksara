@@ -1,4 +1,16 @@
-# The cable as a parabola
+# Given
+
+**A parabolic suspension cable** spans <InlineMath math="160\text{ m}" /> between two pylons at height <InlineMath math="42\text{ m}" /> and dips to <InlineMath math="2\text{ m}" /> at the center. Vertical hangers are planned at the center and every <InlineMath math="10\text{ m}" /> outward (none at the pylons), except clamps replace hangers wherever the cable is less than <InlineMath math="3\text{ m}" /> above the deck.
+
+# Asked
+
+How many metres of vertical hanger cable are needed in total?
+
+# Solution
+
+> Put the lowest point right at <InlineMath math="x=0" /> so **every hanger on the right has an identical twin on the left**, cutting the counting work in half.
+
+## The cable as a parabola
 
 Hold a skipping rope at both ends and it sags into a gentle U. Put the origin on the deck right under the lowest point of the cable. **Then the vertex is <InlineMath math="(0\mid2)" /> and each pylon top is <InlineMath math="80\text{ m}" /> to the side at height <InlineMath math="42" />, which fixes the parabola**:
 
@@ -8,9 +20,9 @@ y&=2+ax^2\\
 a&=\frac{40}{6400}=\frac{1}{160}
 \end{aligned}" />
 
-A hanger at position <InlineMath math="x" /> reaches from the deck up to the cable, so it is <InlineMath math="2+\frac{x^2}{160}" /> metres long.
+A hanger at position <InlineMath math="x" /> reaches from the deck up to the cable, so it is <InlineMath math="y(x)" /> metres long.
 
-# Which positions get a real hanger
+## Which positions get a real hanger
 
 The plan lists <InlineMath math="x=0,\pm10,\dots,\pm70" />, fifteen spots, because the next step <InlineMath math="\pm80" /> is a pylon. **The clamp rule then removes every spot where the cable is less than <InlineMath math="3\text{ m}" /> high**:
 
@@ -70,9 +82,10 @@ Since <InlineMath math="10^2=100" /> is below <InlineMath math="160" /> and <Inl
   }}
 />
 
-# Adding by mirror pairs
+Notice that only the three central spots (<InlineMath math="x=-10, 0, 10" />) sit below the <InlineMath math="3\text{ m}" /> threshold and use clamps, while the six symmetric pairs from <InlineMath math="20\text{ m}" /> to <InlineMath math="70\text{ m}" /> carry real hangers.
+## Adding by mirror pairs
 
-Left and right of the middle the hangers come in equal pairs, so add one side and double it. **Writing <InlineMath math="x=10k" /> turns the squares into <InlineMath math="100k^2" />, and <InlineMath math="2^2+3^2+\dots+7^2=139" />**:
+Left and right of the middle the hangers come in equal pairs, so add one side and double it. **Writing <InlineMath math="x=10k" /> turns the squares into <InlineMath math="100k^2" />, and <InlineMath math="139" />**:
 
 <BlockMath math="\begin{aligned}
 L&=2\sum_{k=2}^{7}\left(2+\frac{(10k)^2}{160}\right)\\
@@ -81,3 +94,7 @@ L&=2\sum_{k=2}^{7}\left(2+\frac{(10k)^2}{160}\right)\\
 \end{aligned}" />
 
 Taking all fifteen planned spots gives <InlineMath math="205\text{ m}" />, and the clamps save exactly <InlineMath math="2+2\cdot2.625=7.25\text{ m}" /> of that.
+
+# Answer
+
+A total of <InlineMath math="197.75\text{ m}" /> of hanger cable is needed.

@@ -1,8 +1,20 @@
-# Zufluss minus Abfluss
+# Gegeben
 
-Denk an eine Badewanne mit offenem Hahn und gezogenem Stöpsel. Das Wasser steigt nur, solange mehr hinein- als hinausfließt. **Die Nettorate ist <InlineMath math="18t-3t^2-15=-3(t-1)(t-5)" />**: negativ vor <InlineMath math="t=1" />, positiv zwischen <InlineMath math="1" /> und <InlineMath math="5" />, nach <InlineMath math="5" /> wieder negativ.
+Über <InlineMath math="0\le t\le6" /> Stunden fließt **Regenwasser** mit <InlineMath math="z(t)=18t-3t^2" /> Kubikmetern je Stunde in ein Becken, während eine Pumpe dauerhaft <InlineMath math="15\text{ m}^3" /> je Stunde abpumpt. Stets müssen mindestens <InlineMath math="4\text{ m}^3" /> im Becken bleiben, bei kleinstmöglicher Startmenge.
 
-# Die Änderung aufsummieren
+# Gesucht
+
+Wie viele Kubikmeter Wasser enthält das Becken in diesen sechs Stunden höchstens?
+
+# Lösung
+
+> Der Füllstand sinkt, solange mehr ab- als zufließt, und steigt dazwischen an, sodass **das tiefste Minimum die Startmenge festlegt und der Zuwachs bis zum Maximum die Höchstmenge liefert**.
+
+## Zufluss minus Abfluss
+
+Denk an eine Badewanne mit offenem Hahn und gezogenem Stöpsel. Das Wasser steigt nur, solange mehr hinein- als hinausfließt. **Die Nettorate ist <InlineMath math="-3(t-1)(t-5)" />**: negativ vor <InlineMath math="t=1" />, positiv zwischen <InlineMath math="1" /> und <InlineMath math="5" />, nach <InlineMath math="5" /> wieder negativ.
+
+## Die Änderung aufsummieren
 
 Das Integral sammelt den Nettofluss Stunde für Stunde, wie Münzen, die du in ein Glas legst und herausnimmst:
 
@@ -24,6 +36,12 @@ Bei <InlineMath math="t=1" /> ist das <InlineMath math="-7" />, bei <InlineMath 
   valueLabel="Wasser in m³"
 />
 
-# Der kleinste sichere Anfang
+Die Füllstandskurve berührt **nach einer Stunde den Sicherheitsboden von <InlineMath math="4\text{ m}^3" /> und steigt bis zur fünften Stunde auf <InlineMath math="36\text{ m}^3" />**.
+
+## Der kleinste sichere Anfang
 
 Das Becken darf nie unter <InlineMath math="4\text{ m}^3" /> fallen, und in der ersten Stunde verliert es <InlineMath math="7\text{ m}^3" />, also beginnt es mit <InlineMath math="11\text{ m}^3" />. **Bei <InlineMath math="t=5" /> enthält es <InlineMath math="11+25=36\text{ m}^3" />**. Mit nur <InlineMath math="4\text{ m}^3" /> zu Beginn würde die Pumpe in der ersten Stunde Luft ansaugen.
+
+# Antwort
+
+Das Becken enthält in den sechs Stunden höchstens <InlineMath math="36\text{ m}^3" /> Wasser.

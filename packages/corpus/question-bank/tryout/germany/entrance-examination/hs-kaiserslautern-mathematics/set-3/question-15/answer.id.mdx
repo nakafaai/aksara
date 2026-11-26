@@ -1,12 +1,24 @@
-# Energi surya harian sebagai luas parabola simetris
+# Diketahui
 
-Dengan <InlineMath math="u=t-12" /> parabola tepat simetris di tengah hari, dan setiap kubah berlebar separuh <InlineMath math="w" /> mempunyai luas <InlineMath math="\tfrac23\int_{-w}^{w}(w^2-u^2)\,\mathrm du=\tfrac89 w^3" />. **Sepanjang hari penuh <InlineMath math="w=6" />, panel menghasilkan tepat <InlineMath math="192\text{ kWh}" />**.
+**Panel surya atap** menghasilkan daya <InlineMath math="P(t)" /> dari pukul 6:00 hingga 18:00. Bengkel memakai <InlineMath math="10{,}5\text{ kW}" /> secara konstan, sedangkan kelebihan daya mengisi baterai kosong <InlineMath math="60\text{ kWh}" /> maksimal <InlineMath math="7{,}5\text{ kW}" /> (sisanya terbuang ke jaringan), lalu seluruh isi baterai terpakai di malam hari.
+
+# Ditanyakan
+
+Berapa persen energi surya hari itu yang dimanfaatkan di dalam bengkel (langsung maupun lewat baterai)?
+
+# Penyelesaian
+
+> Bayangkan kurva surya sebagai bukit yang dipotong dua garis mendatar: **hanya puncak terpotong di atas <InlineMath math="10{,}5 + 7{,}5 = 18\text{ kW}" /> yang terbuang ke jaringan**, selama pita pengisian baterai di tengah masih muat di bawah <InlineMath math="60\text{ kWh}" />.
+
+## Energi surya harian sebagai luas parabola simetris
+
+Dengan <InlineMath math="u=t-12" /> parabola tepat simetris di tengah hari, dan setiap kubah berlebar separuh <InlineMath math="w" /> mempunyai luas <InlineMath math="\frac{8}{9} w^3" />. **Sepanjang hari penuh <InlineMath math="w=6" />, panel menghasilkan tepat <InlineMath math="192\text{ kWh}" />**.
 
 <BlockMath math="\begin{aligned}
 u=t-12:\quad P=\tfrac23(36-u^2),\qquad E_{\text{day}}=\tfrac23\int_{-6}^{6}(36-u^2)\,\mathrm du=\tfrac89\cdot6^3=192\text{ kWh}
 \end{aligned}" />
 
-# Mengecek batas daya pengisi sekaligus kapasitas baterai
+## Mengecek batas daya pengisi sekaligus kapasitas baterai
 
 **Di sini letak jebakan gandanya: kelebihan mentah di atas <InlineMath math="10{,}5\text{ kW}" /> mencapai <InlineMath math="81\text{ kWh}" />, lebih besar daripada kapasitas <InlineMath math="60\text{ kWh}" />, sehingga pembacaan cepat mengira baterai terisi penuh <InlineMath math="60\text{ kWh}" /> dan hanya <InlineMath math="21\text{ kWh}" /> yang terbuang**. Padahal pengisi dibatasi <InlineMath math="7{,}5\text{ kW}" /> sehingga memotong semua daya di atas <InlineMath math="10{,}5+7{,}5=18\text{ kW}" /> antara pukul <InlineMath math="9" /> dan <InlineMath math="15" />.
 
@@ -53,3 +65,7 @@ E_{\text{stored}}=81-24=57\text{ kWh}<60\text{ kWh}\ \Longrightarrow\ \frac{192-
 />
 
 Pemotongan kubah siang sebesar <InlineMath math="24\text{ kWh}" /> membuat energi yang masuk ke baterai tinggal <InlineMath math="57\text{ kWh}" />, tidak pernah mencapai batas <InlineMath math="60\text{ kWh}" />. Maka tepat <InlineMath math="168\text{ kWh}" /> terpakai di pabrik, yaitu **<InlineMath math="87{,}5\,\%" />** energi surya hari itu.
+
+# Jawaban
+
+Tepat <InlineMath math="87{,}5\,\%" /> energi surya hari itu digunakan di dalam bengkel.

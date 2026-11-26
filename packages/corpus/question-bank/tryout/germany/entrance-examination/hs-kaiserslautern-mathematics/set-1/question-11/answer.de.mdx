@@ -1,4 +1,16 @@
-# Wie schnell sich die Kultur verdoppelt
+# Gegeben
+
+**Eine Bakterienkultur startet** um 8:00 Uhr mit exponentiellem Wachstum: um 9:30 Uhr sind es <InlineMath math="5000" /> und um 11:00 Uhr <InlineMath math="40000" /> Bakterien. Ab 12:00 Uhr wirkt zusätzlich ein Mittel, das die Zahl stündlich auf ein Sechzehntel drückt.
+
+# Gesucht
+
+Wie viele Minuten nach Zugabe des Mittels erreicht die Bakterienzahl wieder ihren Startwert von 8:00 Uhr?
+
+# Lösung
+
+> Wenn exponentielles Wachstum und Zerfall gleichzeitig wirken, **ergibt das Produkt beider Stundenfaktoren den neuen gemeinsamen Veränderungsfaktor**.
+
+## Wie schnell sich die Kultur verdoppelt
 
 Stell dir einen Münzstapel vor, der sich in einem festen Takt verdoppelt. Zwischen den beiden Zählungen wird die Zahl der Bakterien in <InlineMath math="90" /> Minuten achtmal so groß. **Acht sind drei Verdopplungen, also verdoppelt sich die Kultur alle <InlineMath math="30" /> Minuten und vervierfacht sich jede Stunde**:
 
@@ -7,7 +19,7 @@ Stell dir einen Münzstapel vor, der sich in einem festen Takt verdoppelt. Zwisc
 T_2&=\frac{90\text{ min}}{3}=30\text{ min}
 \end{aligned}" />
 
-# Zurück zum Start und weiter bis Mittag
+## Zurück zum Start und weiter bis Mittag
 
 Rückwärts in der Zeit heißt halbieren statt verdoppeln. **Die Kultur wurde <InlineMath math="90" /> Minuten vor der ersten Zählung angesetzt, also drei Halbierungen zurück, und das Mittel kommt eine Stunde nach der zweiten Zählung, also zwei Verdopplungen weiter**:
 
@@ -16,11 +28,11 @@ N_0&=\frac{5000}{2^3}=625\\
 N_{12}&=40000\cdot2^2=160000
 \end{aligned}" />
 
-# Zwei Wirkungen gleichzeitig
+## Zwei Wirkungen gleichzeitig
 
-Denk an eine Badewanne, in die Wasser läuft, während der Stöpsel gezogen ist. Was nach einer Stunde übrig ist, hängt von beidem ab. **Das Mittel allein ließe jede Stunde <InlineMath math="\frac{1}{16}" /> übrig, aber in derselben Stunde vervierfachen sich die Bakterien, also ist der Gesamtfaktor <InlineMath math="4\cdot\frac{1}{16}=\frac14" /> pro Stunde**. Wer nur mit <InlineMath math="\frac{1}{16}" /> rechnet, vergisst das Wachstum und kommt auf <InlineMath math="120" /> Minuten. Wer bei <InlineMath math="40000" /> statt bei <InlineMath math="160000" /> beginnt, vergisst die letzte Stunde Wachstum und kommt auf <InlineMath math="180" /> Minuten.
+Denk an eine Badewanne, in die Wasser läuft, während der Stöpsel gezogen ist. Was nach einer Stunde übrig ist, hängt von beidem ab. **Das Mittel allein ließe jede Stunde <InlineMath math="\frac{1}{16}" /> übrig, aber in derselben Stunde vervierfachen sich die Bakterien, also ist der Gesamtfaktor <InlineMath math="1/4" /> pro Stunde**. Wer nur mit <InlineMath math="\frac{1}{16}" /> rechnet, vergisst das Wachstum und kommt auf <InlineMath math="120" /> Minuten. Wer bei <InlineMath math="40000" /> statt bei <InlineMath math="160000" /> beginnt, vergisst die letzte Stunde Wachstum und kommt auf <InlineMath math="180" /> Minuten.
 
-# Zurück zur Anfangszahl
+## Zurück zur Anfangszahl
 
 Jetzt zählst du, wie viele Viertelungen <InlineMath math="160000" /> auf <InlineMath math="625" /> bringen:
 
@@ -42,3 +54,9 @@ s&=4\text{ h}=240\text{ min}
   ]}
   valueLabel="Bakterien (Tausend)"
 />
+
+Das Diagramm zeigt **den steilen Anstieg bis Mittag und den spiegelbildlichen Rückgang auf ein Viertel pro Stunde**, der nach vier Stunden exakt den Startwert trifft.
+
+# Antwort
+
+Der Ausgangswert wird nach <InlineMath math="240\text{ min}" /> wieder erreicht.

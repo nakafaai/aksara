@@ -1,4 +1,16 @@
-# Ein Polter ist eine Zahlentreppe
+# Gegeben
+
+**Im Wald** werden <InlineMath math="75" /> gleiche Baumstämme gestapelt, wobei jede Lage einen Stamm weniger hat als die darunter und oben mindestens <InlineMath math="1" /> Stamm liegt. Unten passen höchstens <InlineMath math="16" /> Stämme hin, die erste Lage ist <InlineMath math="30\text{ cm}" /> hoch, jede weitere erhöht den Polter um <InlineMath math="26\text{ cm}" />, und die Gesamthöhe darf höchstens <InlineMath math="2\text{ m}" /> betragen.
+
+# Gesucht
+
+Wie viele Stämme liegen in der untersten Lage?
+
+# Lösung
+
+> Verdopple den Stapel zu einem Rechteck der Fläche <InlineMath math="150" />, denn **nur Teilerpaare von <InlineMath math="150" /> kommen überhaupt als mögliche Stapel infrage**.
+
+## Ein Polter ist eine Zahlentreppe
 
 Schau den Polter von vorne an: Jede Lage ist einen Stamm kürzer als die darunter, wie die Stufen einer Treppe. **Bei <InlineMath math="n" /> Lagen und <InlineMath math="a" /> Stämmen oben hat die unterste Lage <InlineMath math="a+n-1" /> Stämme, und die Gesamtzahl ist Lagenzahl mal mittlere Lage**:
 
@@ -7,7 +19,7 @@ n\cdot\frac{a+(a+n-1)}{2}&=75\\
 n\,(2a+n-1)&=150
 \end{aligned}" />
 
-# Hundertfünfzig in zwei Faktoren zerlegen
+## Hundertfünfzig in zwei Faktoren zerlegen
 
 Beide Faktoren sind ganze Zahlen, und <InlineMath math="2a+n-1" /> ist größer als <InlineMath math="n" />, weil <InlineMath math="a\ge1" /> gilt. **Ihr Unterschied <InlineMath math="2a-1" /> ist ungerade, also ist ein Faktor gerade und der andere ungerade**. Damit gibt es genau sechs Zerlegungen von <InlineMath math="150" />:
 
@@ -20,7 +32,7 @@ n=6&:\ 2a+5=25,\ a=10\\
 n=10&:\ 2a+9=15,\ a=3
 \end{aligned}" />
 
-# Breite und Höhe wählen den Polter aus
+## Breite und Höhe wählen den Polter aus
 
 Die untersten Lagen haben <InlineMath math="75, 38, 26, 17, 15" /> und <InlineMath math="12" /> Stämme. **Nur <InlineMath math="15" /> und <InlineMath math="12" /> passen auf die <InlineMath math="16" /> Plätze nebeneinander**. Jetzt entscheidet die Höhe zwischen sechs und zehn Lagen:
 
@@ -53,3 +65,9 @@ Höchstens sieben Lagen sind also erlaubt, zehn Lagen wären <InlineMath math="2
       H --> K["6 Lagen: 160 cm, passt"]
   `}
 />
+
+Folgt man dem Diagramm nach unten, lässt das Breitenlimit nur zwei Stapel (<InlineMath math="6" /> oder <InlineMath math="10" /> Lagen) übrig, und das Höhenlimit von <InlineMath math="200\text{ cm}" /> streicht den <InlineMath math="10" />-Lagen-Stapel, sodass unten genau <InlineMath math="15" /> Stämme liegen.
+
+# Antwort
+
+In der untersten Lage liegen <InlineMath math="15" /> Stämme.

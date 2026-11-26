@@ -1,8 +1,20 @@
-# Two divider directions and two wall regimes
+# Given
+
+**A farmer has** <InlineMath math="72\text{ m}" /> of fencing and an existing straight wall of length <InlineMath math="18\text{ m}" /> to enclose a rectangular pen on one side of the wall, split into two rectangular parts by one interior fence parallel to a pair of outer sides. Any overhang beyond the <InlineMath math="18\text{ m}" /> wall must be fenced.
+
+# Asked
+
+What is the maximum possible total area of the enclosure in square metres?
+
+# Solution
+
+> Count how many long sides you actually have to pay for: **putting the divider perpendicular to the wall saves a whole strip of wall-length fence**, letting the pen grow past the <InlineMath math="18\text{ m}" /> wall to reach a bigger maximum.
+
+## Two divider directions and two wall regimes
 
 Think of leaning a rectangle against a short garden wall: you don't have to stop at the end of the wall if fencing the extra overhang lets you build a better shape. **Call the side along the wall line <InlineMath math="x" /> and the perpendicular side <InlineMath math="y" />**. You must check both divider orientations and both regimes: staying inside the wall (<InlineMath math="x\le18" />) and extending past it (<InlineMath math="x\ge18" />), where the back side needs <InlineMath math="x-18" /> metres of fence.
 
-# Parallel divider stays stuck at the wall end
+## Parallel divider stays stuck at the wall end
 
 **First place the divider parallel to the wall, so two runs have length <InlineMath math="y" /> and three runs have length <InlineMath math="x" /> minus the used wall**.
 
@@ -13,7 +25,7 @@ x\ge18&:\quad 3x-18+2y=72\ \Longrightarrow\ A_B(x)=x\,(45-1.5x),\quad A_B'(x)=45
 
 Past <InlineMath math="x=18" /> the parabola already falls, because its vertex sits at <InlineMath math="x=15" />, so a parallel divider peaks at <InlineMath math="324\text{ m}^2" />.
 
-# Perpendicular divider climbs past the wall
+## Perpendicular divider climbs past the wall
 
 Now turn the divider perpendicular to the wall, giving three runs of length <InlineMath math="y" />. **Inside <InlineMath math="x\le18" /> the area also stops at <InlineMath math="324\text{ m}^2" />, which is the classic boundary trap, yet extending past the wall opens a new parabola whose peak lies strictly beyond <InlineMath math="18\text{ m}" />**.
 
@@ -62,3 +74,7 @@ A_A'(x)=30-\tfrac43x=0\ \Longrightarrow\ x=22.5,\quad y=15,\quad A_A(22.5)=337.5
 />
 
 Check the fence length at <InlineMath math="x=22.5\text{ m}" /> and <InlineMath math="y=15\text{ m}" />: overhang <InlineMath math="4.5" />, front <InlineMath math="22.5" />, and three sides <InlineMath math="3\cdot15=45" /> add up to <InlineMath math="72\text{ m}" />. Stopping at the wall gives the trap <InlineMath math="324\text{ m}^2" />, and pretending the wall is infinite gives <InlineMath math="432\text{ m}^2" />. **The largest possible area is <InlineMath math="337.5\text{ m}^2" />**.
+
+# Answer
+
+The enclosure can have a maximum area of <InlineMath math="337.5\text{ m}^2" />.

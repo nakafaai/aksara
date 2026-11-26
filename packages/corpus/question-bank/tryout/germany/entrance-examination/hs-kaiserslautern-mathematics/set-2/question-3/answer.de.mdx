@@ -1,4 +1,16 @@
-# Das Tragseil als Parabel
+# Gegeben
+
+**Ein parabelförmiges Tragseil** hängt zwischen zwei <InlineMath math="160\text{ m}" /> entfernten Pylonen in <InlineMath math="42\text{ m}" /> Höhe und erreicht in der Mitte <InlineMath math="2\text{ m}" /> Höhe. Geplant sind Hänger in der Mitte und alle <InlineMath math="10\text{ m}" /> nach beiden Seiten (nicht an den Pylonen), außer wo das Seil unter <InlineMath math="3\text{ m}" /> hängt und Klemmen eingesetzt werden.
+
+# Gesucht
+
+Wie viele Meter Hängerseil werden insgesamt benötigt?
+
+# Lösung
+
+> Leg den tiefsten Punkt genau auf <InlineMath math="x=0" />, damit **jeder Hänger rechts einen identischen Zwilling links hat** und sich die Rechenarbeit halbiert.
+
+## Das Tragseil als Parabel
 
 Halte ein Springseil an beiden Enden fest, dann hängt es als flaches U durch. Lege den Ursprung auf die Fahrbahn genau unter den tiefsten Punkt des Seils. **Dann ist der Scheitel <InlineMath math="(0\mid2)" />, und jede Pylonspitze liegt <InlineMath math="80\text{ m}" /> seitlich in der Höhe <InlineMath math="42" />, das legt die Parabel fest**:
 
@@ -8,9 +20,9 @@ y&=2+ax^2\\
 a&=\frac{40}{6400}=\frac{1}{160}
 \end{aligned}" />
 
-Ein Hänger an der Stelle <InlineMath math="x" /> reicht von der Fahrbahn bis zum Seil, er ist also <InlineMath math="2+\frac{x^2}{160}" /> Meter lang.
+Ein Hänger an der Stelle <InlineMath math="x" /> reicht von der Fahrbahn bis zum Seil, er ist also <InlineMath math="y(x)" /> Meter lang.
 
-# Wo wirklich ein Hänger hängt
+## Wo wirklich ein Hänger hängt
 
 Geplant sind die Stellen <InlineMath math="x=0,\pm10,\dots,\pm70" />, fünfzehn Stück, denn der nächste Schritt <InlineMath math="\pm80" /> wäre schon ein Pylon. **Die Klemmenregel streicht jede Stelle, an der das Seil tiefer als <InlineMath math="3\text{ m}" /> hängt**:
 
@@ -70,9 +82,10 @@ Weil <InlineMath math="10^2=100" /> unter <InlineMath math="160" /> liegt und <I
   }}
 />
 
-# Addieren in Spiegelpaaren
+Man erkennt klar, dass nur die drei mittleren Stellen (<InlineMath math="x=-10, 0, 10" />) unter der <InlineMath math="3\text{ m}" />-Schwelle liegen und Klemmen bekommen, während die sechs symmetrischen Paare von <InlineMath math="20\text{ m}" /> bis <InlineMath math="70\text{ m}" /> echte Hänger tragen.
+## Addieren in Spiegelpaaren
 
-Links und rechts der Mitte stehen die Hänger in gleich langen Paaren, also addierst du eine Seite und verdoppelst. **Mit <InlineMath math="x=10k" /> werden die Quadrate zu <InlineMath math="100k^2" />, und <InlineMath math="2^2+3^2+\dots+7^2=139" />**:
+Links und rechts der Mitte stehen die Hänger in gleich langen Paaren, also addierst du eine Seite und verdoppelst. **Mit <InlineMath math="x=10k" /> werden die Quadrate zu <InlineMath math="100k^2" />, und <InlineMath math="139" />**:
 
 <BlockMath math="\begin{aligned}
 L&=2\sum_{k=2}^{7}\left(2+\frac{(10k)^2}{160}\right)\\
@@ -81,3 +94,7 @@ L&=2\sum_{k=2}^{7}\left(2+\frac{(10k)^2}{160}\right)\\
 \end{aligned}" />
 
 Alle fünfzehn geplanten Stellen zusammen ergäben <InlineMath math="205\text{ m}" />. Die Klemmen sparen davon genau <InlineMath math="2+2\cdot2{,}625=7{,}25\text{ m}" />.
+
+# Antwort
+
+Es werden insgesamt <InlineMath math="197{,}75\text{ m}" /> Hängerseil benötigt.
