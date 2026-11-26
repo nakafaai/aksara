@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Jadual Berkala Unsur Moden",
   description:
@@ -15,6 +14,8 @@ Setiap kotak dalam Jadual Berkala Unsur moden mewakili satu unsur. Unsur-unsur d
 
 Apabila nombor proton <InlineMath math="Z" /> bertambah, sifat kimia unsur menunjukkan corak yang berulang.
 
+> Jadual Berkala Unsur ialah peta bilangan proton yang barisnya menjejak petala dan lajurnya menjejak elektron valens.
+
 <ModernPeriodicTableLab
   title={<>Model Jadual Berkala Unsur Moden</>}
   description={
@@ -24,6 +25,7 @@ Apabila nombor proton <InlineMath math="Z" /> bertambah, sifat kimia unsur menun
       gas adi.
     </>
   }
+  footer={<>Pilih satu kawasan untuk melihat cara tertib proton menyusun kumpulan dan kala.</>}
   labels={{
     chooseFocus: "Pilih fokus Jadual Berkala Unsur",
     tableLabel: "Model Jadual Berkala Unsur moden",
@@ -80,25 +82,45 @@ Apabila nombor proton <InlineMath math="Z" /> bertambah, sifat kimia unsur menun
   }}
 />
 
+Menekan setiap blok yang ditinggikan menunjukkan bahawa kedudukan setiap kawasan ditentukan oleh nombor proton dan susunan elektron, bukan pembahagian rambang.
+
 ## Jisim Bukan Susunannya
 
-Spektrometer jisim menunjukkan bahawa satu unsur boleh ada atom dengan jisim berbeza. Sebab itu **jadual disusun mengikut nombor proton, bukan mengikut jisim**: setiap isotop sesuatu unsur tetap ada bilangan proton yang sama.
+Satu unsur boleh mempunyai atom dengan nombor nukleon yang berbeza kerana isotopnya membawa bilangan neutron yang berbeza. Sebab itu **jadual disusun mengikut nombor proton, bukan mengikut jisim**: semua isotop boron, karbon dan neon kekal dalam kotak yang sama kerana bilangan protonnya tetap.
 
-<MassSpectrometerLab
-  title={<>Isotop di Sebalik Setiap Unsur</>}
-  description={<>Pilih boron, karbon atau neon, kemudian baca jisim purata daripada isotopnya.</>}
-  samples={["boron", "carbon", "neon"]}
+<MathVisual
+  title={<>Nombor Proton Sama Nombor Nukleon Isotop Berbeza</>}
+  description={<>Nombor proton <InlineMath math="Z" /> (kelabu) berbanding nombor nukleon isotop utama <InlineMath math="A" /> (jingga dan ungu) bagi boron, karbon dan neon. Satu langkah menegak ialah <InlineMath math="4" /> unit.</>}
+  footer={<>Nombor nukleon isotop berubah, tetapi nombor protonnya tetap satu dalam kotak yang sama.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3, y: 2.5, z: 0 } },
+    objects: [
+      { id: "b-z", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.625, z: -0.7 }, size: { length: 1.0, height: 1.25, width: 0.9 } },
+      { id: "b-10", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.25, z: 0.25 }, size: { length: 0.7, height: 2.5, width: 0.6 } },
+      { id: "b-11", kind: "cuboid", appearance: "secondary", center: { x: 0.85, y: 1.375, z: 0.25 }, size: { length: 0.7, height: 2.75, width: 0.6 } },
+      { id: "c-z", kind: "cuboid", appearance: "reference", center: { x: 3, y: 0.75, z: -0.7 }, size: { length: 1.0, height: 1.5, width: 0.9 } },
+      { id: "c-12", kind: "cuboid", appearance: "primary", center: { x: 3, y: 1.5, z: 0.25 }, size: { length: 0.7, height: 3.0, width: 0.6 } },
+      { id: "c-13", kind: "cuboid", appearance: "secondary", center: { x: 3.85, y: 1.625, z: 0.25 }, size: { length: 0.7, height: 3.25, width: 0.6 } },
+      { id: "ne-z", kind: "cuboid", appearance: "reference", center: { x: 6, y: 1.25, z: -0.7 }, size: { length: 1.0, height: 2.5, width: 0.9 } },
+      { id: "ne-20", kind: "cuboid", appearance: "primary", center: { x: 6, y: 2.5, z: 0.25 }, size: { length: 0.7, height: 5.0, width: 0.6 } },
+      { id: "ne-22", kind: "cuboid", appearance: "secondary", center: { x: 6.85, y: 2.75, z: 0.25 }, size: { length: 0.7, height: 5.5, width: 0.6 } },
+    ],
+    labels: [
+      { key: "b", objectId: "b-11", at: { x: 0.4, y: 3.2, z: 0.25 }, placement: "above" },
+      { key: "c", objectId: "c-13", at: { x: 3.4, y: 3.7, z: 0.25 }, placement: "above" },
+      { key: "ne", objectId: "ne-22", at: { x: 6.4, y: 5.9, z: 0.25 }, placement: "above" },
+    ],
+  }}
   labels={{
-    average: <>Purata jisim atom relatif</>,
-    choose: "Pilih unsur",
-    isotopes: <>Isotop dan kelimpahannya</>,
-    north: "U",
-    radius: <>Jejari lintasan</>,
-    ratio: <>Nisbah jejari</>,
-    south: "S",
-    view: "Spektrometer jisim",
+    b: <InlineMath math="\mathrm{B}:\ Z=5,\ A=10,11" />,
+    c: <InlineMath math="\mathrm{C}:\ Z=6,\ A=12,13" />,
+    ne: <InlineMath math="\mathrm{Ne}:\ Z=10,\ A=20,22" />,
   }}
 />
+
+Menyusun unsur mengikut <InlineMath math="Z" /> meletakkan semua isotop satu unsur bersama-sama dan menjelaskan sebab argon (<InlineMath math="Z = 18" />) mendahului kalium (<InlineMath math="Z = 19" />) walaupun purata jisim atomnya lebih tinggi.
 
 ## Kala dan Kumpulan
 
@@ -113,6 +135,7 @@ Kira bilangan unsur dalam setiap kala jadual moden, dan satu corak akan muncul: 
 <MathVisual
   title={<>Bilangan Unsur dalam Setiap Kala</>}
   description={<>Bilangan unsur dalam kala <InlineMath math="1" /> hingga <InlineMath math="7" /> Jadual Berkala Unsur moden. Satu langkah grid ke atas ialah <InlineMath math="4" /> unsur.</>}
+  footer={<>Panjang kala melonjak ke 18 dan 32 apabila subpetala blok d dan f mula dibuka.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -147,43 +170,72 @@ Kira bilangan unsur dalam setiap kala jadual moden, dan satu corak akan muncul: 
   }}
 />
 
+Setiap peluasan baris sepadan tepat dengan muatan subpetala elektron yang baharu tersedia, sekali gus menghubungkan bentuk jadual terus dengan struktur kuantum atom.
+
 ### Kumpulan Satu dan Tujuh Belas Berpasangan
 
-Logam kumpulan <InlineMath math="1" /> dan halogen kumpulan <InlineMath math="17" /> sentiasa bertemu satu nisbah satu, kerana **setiap kumpulan ada cas ion yang sama**. Setiap hablur di sini ada corak formula <InlineMath math="\mathrm{MX}" />.
+Logam kumpulan <InlineMath math="1" /> dan halogen kumpulan <InlineMath math="17" /> sentiasa bertemu satu nisbah satu, kerana **setiap kumpulan membentuk ion bercas seunit yang bertentangan**. Menuruni lajur itu mengekalkan formula <InlineMath math="\mathrm{MX}" /> sambil memanjangkan sisi sel unit daripada <InlineMath math="\mathrm{LiF}" /> kepada <InlineMath math="\mathrm{KCl}" />.
 
-<IonLatticeLab
-  title={<>Hablur daripada Dua Kumpulan</>}
-  description={<>Tukar antara tiga garam ini dan bandingkan saiz ion serta panjang sisi selnya.</>}
-  crystals={["lithium-fluoride", "sodium-fluoride", "potassium-chloride"]}
+<MathVisual
+  title={<>Sisi Sel Unit Garam Kumpulan 1 dan 17</>}
+  description={<>Panjang sisi sel unit kubik bagi <InlineMath math="\mathrm{LiF}" />, <InlineMath math="\mathrm{NaF}" /> dan <InlineMath math="\mathrm{KCl}" />. Satu langkah menegak ialah <InlineMath math="100\ \mathrm{pm}" />.</>}
+  footer={<>Formula kekal MX bagi ketiga-tiga garam sementara ion lebih besar memanjangkan sisi sel.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "lif", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2.015, z: 0 }, size: { length: 1.4, height: 4.03, width: 1.4 } },
+      { id: "naf", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2.31, z: 0 }, size: { length: 1.4, height: 4.62, width: 1.4 } },
+      { id: "kcl", kind: "cuboid", appearance: "primary", center: { x: 5, y: 3.145, z: 0 }, size: { length: 1.4, height: 6.29, width: 1.4 } },
+    ],
+    labels: [
+      { key: "lif", objectId: "lif", at: { x: 0, y: 4.4, z: 0 }, placement: "above" },
+      { key: "naf", objectId: "naf", at: { x: 2.5, y: 5.0, z: 0 }, placement: "above" },
+      { key: "kcl", objectId: "kcl", at: { x: 5, y: 6.7, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    cells: "Sel unit setiap sisi",
-    choose: "Pilih hablur",
-    count: <>Bilangan ion</>,
-    formula: <>Formula</>,
-    ions: <>Ion dan jejarinya</>,
-    lattice: <>Sisi sel unit</>,
-    view: "Kekisi hablur ion",
+    lif: <InlineMath math="\mathrm{LiF}:\ 403\ \mathrm{pm}" />,
+    naf: <InlineMath math="\mathrm{NaF}:\ 462\ \mathrm{pm}" />,
+    kcl: <InlineMath math="\mathrm{KCl}:\ 629\ \mathrm{pm}" />,
   }}
 />
+
+Perbandingan ini merumuskan sifat kumpulan: nisbah gabungan kekal terkunci pada <InlineMath math="1:1" />, manakala saiz hablur membesar secara teratur apabila petala elektron bertambah ke bawah lajur.
 
 ### Satu Kumpulan Bertindak Balas Serupa
 
-Unsur dalam satu kumpulan ada sifat kimia yang serupa. Litium, natrium dan kalium semuanya bertindak balas dengan air menghasilkan alkali dan gas hidrogen, jadi air dengan fenolftalein bertukar merah jambu. **Makin ke bawah kumpulan, tindak balasnya makin cergas**. Pilih ketiga-tiga logam dan bandingkan gelembungnya.
+Unsur dalam satu kumpulan ada sifat kimia yang serupa. Litium, natrium dan kalium semuanya bertindak balas dengan air menghasilkan alkali dan gas hidrogen, jadi air dengan fenolftalein bertukar merah jambu. **Makin ke bawah kumpulan, tindak balasnya makin cergas** kerana elektron luarnya memerlukan tenaga yang lebih rendah untuk disingkirkan.
 
-<AlkaliWaterLab
-  title={<>Logam Kumpulan Satu dalam Air</>}
-  description={<>Logam yang lebih ringan daripada air terapung semasa bertindak balas.</>}
-  metals={["lithium", "sodium", "potassium"]}
+<MathVisual
+  title={<>Tenaga Pengionan Pertama Menuruni Kumpulan 1</>}
+  description={<>Tenaga pengionan pertama bagi <InlineMath math="\mathrm{Li}" />, <InlineMath math="\mathrm{Na}" /> dan <InlineMath math="\mathrm{K}" />. Satu langkah menegak ialah <InlineMath math="100\ \mathrm{kJ/mol}" />.</>}
+  footer={<>Tenaga pengionan yang makin rendah ke bawah kumpulan menjadikan kalium paling cergas.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 3.8 }, y: { min: 3.5, max: 6.0 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "trend", kind: "polyline", appearance: "warning", vertices: [{ x: 1, y: 5.20 }, { x: 2, y: 4.96 }, { x: 3, y: 4.19 }] },
+      { id: "li", kind: "point", appearance: "primary", at: { x: 1, y: 5.20 } },
+      { id: "na", kind: "point", appearance: "secondary", at: { x: 2, y: 4.96 } },
+      { id: "k", kind: "point", appearance: "warning", at: { x: 3, y: 4.19 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li", at: { x: 1, y: 5.20 }, placement: "above-right" },
+      { key: "na", objectId: "na", at: { x: 2, y: 4.96 }, placement: "above-right" },
+      { key: "k", objectId: "k", at: { x: 3, y: 4.19 }, placement: "below-left" },
+    ],
+  }}
   labels={{
-    choose: "Pilih logam",
-    density: <>Ketumpatan</>,
-    equation: <>Persamaan tindak balas</>,
-    ionization: <>Tenaga pengionan pertama</>,
-    melting: <>Takat lebur</>,
-    radius: <>Jejari atom</>,
-    view: "Logam dalam bikar berisi air",
+    li: <InlineMath math="\mathrm{Li}:\ 520\ \mathrm{kJ/mol}" />,
+    na: <InlineMath math="\mathrm{Na}:\ 496\ \mathrm{kJ/mol}" />,
+    k: <InlineMath math="\mathrm{K}:\ 419\ \mathrm{kJ/mol}" />,
   }}
 />
+
+Oleh sebab kalium memerlukan tenaga lebih kecil berbanding litium untuk melepaskan elektron luarnya, ketiga-tiga logam mengikut persamaan tindak balas air yang sama sambil menjadi semakin cergas ke bawah lajur.
 
 ## Warna Menandakan Kawasan Unsur
 
@@ -222,6 +274,7 @@ Ikut nombor proton daripada <InlineMath math="1" /> hingga <InlineMath math="18"
 <MathVisual
   title={<>Membaca Jadual Mengikut Tertib Nombor Proton</>}
   description={<><InlineMath math="18" /> unsur pertama mengikut tertib nombor proton, diletakkan mengikut kumpulan (melintang) dan kala (baris).</>}
+  footer={<>Setiap lompatan ke kumpulan 1 memulakan petala baharu dan mengulang corak valens.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 5 } },
@@ -266,21 +319,35 @@ Ikut nombor proton daripada <InlineMath math="1" /> hingga <InlineMath math="18"
   }}
 />
 
+Laluan zig-zag merentasi baris ini menunjukkan sebab satu pasangan koordinat (kala dan kumpulan) terus memberitahu bilangan petala dan corak valens sesuatu unsur.
+
 ## Pola Kumpulan Satu dan Tujuh Belas
 
 Kedudukan kumpulan memberitahu berapa banyak elektron yang mudah dilepaskan atau diterima. Logam Kumpulan <InlineMath math="1" /> seperti litium dan kalium melepaskan <InlineMath math="1" /> elektron, manakala halogen Kumpulan <InlineMath math="17" /> seperti fluorin dan klorin menerima <InlineMath math="1" /> elektron. **Itulah sebabnya kedua-duanya bergabung dengan nisbah <InlineMath math="1 : 1" />**.
 
-<IonFormationLab
-  title={<>Logam Alkali Bertemu Halogen</>}
-  description={<>Satu elektron berpindah dan kedua-dua atom menjadi ion.</>}
-  pairs={["lithium-fluorine", "potassium-chlorine"]}
+<MathVisual
+  title={<>Elektron Valens Sebelum dan Selepas Berpasangan</>}
+  description={<>Elektron valens <InlineMath math="\mathrm{Li}" /> dan <InlineMath math="\mathrm{K}" /> (belakang) berbanding <InlineMath math="\mathrm{F}" /> dan <InlineMath math="\mathrm{Cl}" /> (hadapan) menuju petala gas adi yang stabil. Satu langkah menegak ialah <InlineMath math="2" /> elektron.</>}
+  footer={<>Satu elektron berpindah daripada kumpulan 1 ke kumpulan 17 agar kedua-dua ion stabil.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "m-atom", kind: "cuboid", appearance: "warning", center: { x: 0, y: 0.25, z: -0.7 }, size: { length: 1.1, height: 0.5, width: 1.1 } },
+      { id: "m-ion", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.1, z: 0.7 }, size: { length: 1.1, height: 0.2, width: 1.1 } },
+      { id: "x-atom", kind: "cuboid", appearance: "secondary", center: { x: 3.5, y: 1.75, z: -0.7 }, size: { length: 1.1, height: 3.5, width: 1.1 } },
+      { id: "x-ion", kind: "cuboid", appearance: "primary", center: { x: 3.5, y: 2.0, z: 0.7 }, size: { length: 1.1, height: 4.0, width: 1.1 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m-atom", at: { x: 0, y: 1.0, z: -0.7 }, placement: "above" },
+      { key: "x", objectId: "x-ion", at: { x: 3.5, y: 4.3, z: 0.7 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih pasangan atom",
-    metalRadius: <>Jejari logam</>,
-    metalShells: <>Petala logam</>,
-    nonmetalRadius: <>Jejari bukan logam</>,
-    nonmetalShells: <>Petala bukan logam</>,
-    progress: "Pemindahan elektron",
-    view: "Atom logam dan bukan logam menjadi ion",
+    m: <>Kumpulan 1: 1 ke 0 luar</>,
+    x: <>Kumpulan 17: 7 ke 8 luar</>,
   }}
 />
+
+Setiap kali logam kumpulan <InlineMath math="1" /> berganding dengan bukan logam kumpulan <InlineMath math="17" />, pemindahan satu elektron melengkapkan kedua-dua petala luar serentak, menjadikan kedudukan jadual sebagai peramal terus bagi formula kimia.

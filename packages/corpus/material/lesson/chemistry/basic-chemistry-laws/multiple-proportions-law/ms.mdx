@@ -9,19 +9,23 @@ export const metadata = {
   subject: "Hukum Asas Kimia",
 };
 
-## Dua Unsur Boleh Membentuk Beberapa Sebatian
+## Dua Unsur Membentuk Beberapa Sebatian
 
 Hukum perkadaran berganda berlaku apabila **dua unsur yang sama** membentuk **lebih daripada satu sebatian**. Tetapkan jisim satu unsur, kemudian bandingkan jisim unsur kedua yang sepadan dengannya. Jisim-jisim itu membentuk nisbah nombor bulat yang kecil.
 
-## Tetapkan Jisim Satu Unsur untuk Perbandingan
-
 Katakan ada dua sebatian yang kedua-duanya terbentuk daripada unsur <InlineMath math="\mathrm{A}" /> dan <InlineMath math="\mathrm{B}" />. Untuk membaca hukum Dalton, mula-mula tetapkan jisim <InlineMath math="\mathrm{A}" />, kemudian bandingkan jisim <InlineMath math="\mathrm{B}" /> yang bergabung dengannya.
 
-Bagi jisim unsur A yang sama, katakan <InlineMath math="m_{B,1}" /> dan <InlineMath math="m_{B,2}" /> ialah jisim B dalam sebatian <InlineMath math="1" /> dan sebatian <InlineMath math="2" />. Nisbah <InlineMath math="m_{B,2}/m_{B,1}" /> ialah nisbah nombor bulat yang ringkas.
+Bagi jisim unsur <InlineMath math="\mathrm{A}" /> yang sama, katakan <InlineMath math="m_{B,1}" /> dan <InlineMath math="m_{B,2}" /> ialah jisim <InlineMath math="\mathrm{B}" /> dalam sebatian <InlineMath math="1" /> dan sebatian <InlineMath math="2" />. Hasil bahagi <InlineMath math="m_{B,2}/m_{B,1}" /> sentiasa meringkas menjadi nombor bulat kecil.
 
-Jisim satu unsur <Highlight>mesti sama dalam kedua-dua sebatian</Highlight> sebelum jisim unsur yang satu lagi dibandingkan. Jika jisim kedua-dua unsur berubah serentak, pengiraan itu tidak dapat menguji secara terus sama ada nisbah jisim unsur kedua ialah nombor bulat yang ringkas.
+Jisim satu unsur <Highlight>mesti sama dalam kedua-dua sebatian</Highlight> sebelum jisim unsur yang satu lagi dibandingkan. Jika jisim kedua-dua unsur berubah serentak, pengiraan itu tidak dapat menguji secara terus sama ada nisbah jisim unsur kedua ialah nombor bulat kecil.
 
-## Bandingkan Sebatian yang Terbentuk daripada Unsur yang Sama
+> Tetapkan dahulu jisim satu unsur sebagai rujukan. Barulah jisim unsur pasangannya muncul sebagai nisbah nombor bulat yang kecil.
+
+## Kesan Atom Tambahan terhadap Nisbah Jisim
+
+Apabila pasangan unsur yang sama membentuk dua sebatian berbeza, penambahan satu atom utuh menaikkan jisim unsur pasangan dengan langkah tetap. Dengan mengekalkan **jisim unsur rujukan yang sama**, lonjakan bertahap itu terbaca terus pada model perbandingan dan tangga jisim di bawah.
+
+### Membandingkan Pasangan Sebatian
 
 Pilih satu pasangan sebatian di bawah. Model ini menunjukkan **unsur yang jisimnya ditetapkan** dan unsur yang jisimnya berubah.
 
@@ -33,6 +37,7 @@ Pilih satu pasangan sebatian di bawah. Model ini menunjukkan **unsur yang jisimn
       unsur ditetapkan, kemudian unsur yang satu lagi dibaca sebagai nisbah ringkas.
     </>
   }
+  footer={<>Pilih pasangan sebatian untuk melihat jisim tetap bersama nisbah nombor bulatnya.</>}
   labels={{
     chooseMode: "Pilih pasangan sebatian",
     comparisonView: "Model hukum perkadaran berganda",
@@ -106,39 +111,68 @@ Pilih satu pasangan sebatian di bawah. Model ini menunjukkan **unsur yang jisimn
   }}
 />
 
-Dalam setiap pasangan di atas, satu unsur digunakan sebagai asas perbandingan. Apabila asas itu sudah sama, unsur yang bilangannya berubah dibaca sebagai nisbah jisim yang ringkas.
+Dalam setiap pasangan di atas, satu unsur berfungsi sebagai asas perbandingan. Apabila asas itu sudah sepadan, unsur pasangannya melonjak secara kemas daripada satu gandaan nombor bulat kepada gandaan seterusnya.
 
-## Satu Atom Oksigen Tambahan
+### Menambah Satu Atom Oksigen
 
-Sebatian kedua daripada pasangan unsur yang sama selalunya terbentuk apabila sebatian pertama menerima atom tambahan. Pilih pengoksidaan <InlineMath math="\mathrm{NO}" /> atau <InlineMath math="\mathrm{CO}" />, kemudian seret gelangsar. Setiap molekul menerima satu lagi atom oksigen, jadi jisim oksigen bagi setiap atom nitrogen atau karbon berubah dengan **nisbah nombor bulat** <InlineMath math="1 : 2" />.
+Oksida kedua selalunya terbentuk apabila molekul pertama **menerima satu lagi atom oksigen**. Bagi satu mol nitrogen (<InlineMath math="14\ \mathrm{g}" />), pertukaran <InlineMath math="\mathrm{NO}" /> menjadi <InlineMath math="\mathrm{NO_2}" /> menaikkan jisim oksigen daripada <InlineMath math="16\ \mathrm{g}" /> kepada <InlineMath math="32\ \mathrm{g}" />, iaitu nisbah <InlineMath math="1:2" />. Bagi satu mol sulfur (<InlineMath math="32\ \mathrm{g}" />), pertukaran <InlineMath math="\mathrm{SO_2}" /> menjadi <InlineMath math="\mathrm{SO_3}" /> menambah langkah <InlineMath math="16\ \mathrm{g}" /> yang sama, daripada <InlineMath math="32\ \mathrm{g}" /> kepada <InlineMath math="48\ \mathrm{g}" />, atau <InlineMath math="2:3" />.
 
-<ReactionBalanceLab
-  title={<>Daripada Satu Oksida kepada Oksida Lain</>}
-  description={<>Oksigen tambahan mengubah satu oksida menjadi oksida seterusnya.</>}
-  reactions={[
-    { id: "nitrogen-monoxide-oxidation", name: "Pengoksidaan nitrogen monoksida", tab: <InlineMath math="\mathrm{NO}" /> },
-    { id: "carbon-monoxide-oxidation", name: "Pengoksidaan karbon monoksida", tab: <InlineMath math="\mathrm{CO}" /> },
-  ]}
-  reading="molecules"
+<MathVisual
+  title={<>Tangga Jisim Oksigen bagi Dua Pasangan Oksida</>}
+  description={
+    <>
+      Tangga kiri: oksigen bagi setiap <InlineMath math="14\ \mathrm{g}" /> nitrogen dalam{" "}
+      <InlineMath math="\mathrm{NO}" /> dan <InlineMath math="\mathrm{NO_2}" />. Tangga kanan: oksigen bagi setiap{" "}
+      <InlineMath math="32\ \mathrm{g}" /> sulfur dalam <InlineMath math="\mathrm{SO_2}" /> dan{" "}
+      <InlineMath math="\mathrm{SO_3}" />. Satu petak grid ke atas mewakili <InlineMath math="8\ \mathrm{g}" /> oksigen.
+    </>
+  }
+  footer={<>Setiap atom oksigen tambahan menambah satu anak tangga 16 g yang sama besar.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: -1, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "step-guide", kind: "segment", appearance: "reference", from: { x: 1, y: 4 }, to: { x: 7, y: 4 } },
+      { id: "no-base", kind: "segment", appearance: "secondary", from: { x: 2, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "no-step", kind: "segment", appearance: "primary", from: { x: 2, y: 2 }, to: { x: 2, y: 4 } },
+      { id: "no-pt", kind: "point", appearance: "secondary", at: { x: 2, y: 2 } },
+      { id: "no2-pt", kind: "point", appearance: "primary", at: { x: 2, y: 4 } },
+      { id: "so2-base", kind: "segment", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
+      { id: "so3-step", kind: "segment", appearance: "construction", from: { x: 6, y: 4 }, to: { x: 6, y: 6 } },
+      { id: "so2-pt", kind: "point", appearance: "secondary", at: { x: 6, y: 4 } },
+      { id: "so3-pt", kind: "point", appearance: "construction", at: { x: 6, y: 6 } },
+    ],
+    labels: [
+      { key: "no", objectId: "no-pt", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "no2", objectId: "no2-pt", at: { x: 2, y: 4 }, placement: "above" },
+      { key: "no-ratio", objectId: "no-base", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "so2", objectId: "so2-pt", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "so3", objectId: "so3-pt", at: { x: 6, y: 6 }, placement: "above" },
+      { key: "so-ratio", objectId: "so2-base", at: { x: 6, y: 0 }, placement: "below" },
+    ],
+  }}
   labels={{
-    atoms: <>Bilangan atom setiap unsur</>,
-    choose: "Pilih tindak balas",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan tindak balas</>,
-    mass: <>Jisim bahan dan hasil tindak balas</>,
-    molecules: <>Bilangan molekul</>,
-    products: <>Hasil tindak balas</>,
-    progress: "Perjalanan tindak balas",
-    reactants: <>Bahan tindak balas</>,
-    view: "Tindak balas pada aras atom",
+    no: <InlineMath math="\mathrm{NO}:\ 16\ \mathrm{g}" />,
+    no2: <InlineMath math="\mathrm{NO_2}:\ 32\ \mathrm{g}" />,
+    "no-ratio": <InlineMath math="1:2" />,
+    so2: <InlineMath math="\mathrm{SO_2}:\ 32\ \mathrm{g}" />,
+    so3: <InlineMath math="\mathrm{SO_3}:\ 48\ \mathrm{g}" />,
+    "so-ratio": <InlineMath math="2:3" />,
   }}
 />
 
-## Air dan Hidrogen Peroksida
+Kedua-dua tangga melonjak tepat dua petak grid (<InlineMath math="16\ \mathrm{g}" />) kerana setiap atom oksigen tambahan membawa jisim yang sama. Sama ada bermula dengan satu atau dua atom, penambahan atom utuh sentiasa menghasilkan nisbah integer kecil.
+
+## Contoh Pengiraan Nisbah Jisim
+
+Penerapan hukum Dalton pada formula sebenar sentiasa bermula dengan menyamakan jisim satu unsur bagi semua sebatian dalam jadual. Sebaik sahaja **asas jisim bersama** ditetapkan, pembahagian jisim unsur pasangan menzahirkan nisbah nombor bulat kecil bagi dua atau tiga oksida serentak.
+
+### Air dan Hidrogen Peroksida
 
 [Air](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula/JSON) mempunyai formula <InlineMath math="\mathrm{H_2O}" />, manakala [hidrogen peroksida](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/hydrogen%20peroxide/property/MolecularFormula/JSON) mempunyai formula <InlineMath math="\mathrm{H_2O_2}" />.
 
-Dengan <InlineMath math="A_r\mathrm{(H)} = 1" /> dan <InlineMath math="A_r\mathrm{(O)} = 16" />, jisim hidrogen dalam kedua-dua formula boleh dijadikan sama, iaitu <InlineMath math="2\ \mathrm{g}" />.
+Dengan <InlineMath math="A_r\mathrm{(H)} = 1" /> dan <InlineMath math="A_r\mathrm{(O)} = 16" />, jisim hidrogen dalam kedua-dua formula boleh disamakan pada <InlineMath math="2\ \mathrm{g}" />.
 
 | Sebatian | Jisim <InlineMath math="\mathrm{H}" /> | Jisim <InlineMath math="\mathrm{O}" /> |
 | :------- | :--------------------------------------- | :--------------------------------------- |
@@ -149,9 +183,9 @@ Oleh sebab **jisim hidrogen sudah sama**, bandingkan terus jisim oksigen.
 
 <BlockMath math="\begin{aligned} &amp;m_{\mathrm{O\ dalam\ H_2O}} : m_{\mathrm{O\ dalam\ H_2O_2}} = 16:32 \\ &amp;= 1:2 \end{aligned}" />
 
-Nisbah <InlineMath math="1:2" /> ialah nisbah nombor bulat yang ringkas. Maksudnya, data ini sepadan dengan hukum perkadaran berganda.
+Hidrogen peroksida membawa tepat dua kali ganda jisim oksigen berbanding air bagi <InlineMath math="2\ \mathrm{g}" /> hidrogen yang sama, sekali gus mengesahkan hukum Dalton.
 
-## Oksida Nitrogen
+### Dinitrogen Monoksida dan Nitrogen Dioksida
 
 Nitrogen dan oksigen boleh membentuk beberapa sebatian. Dua contohnya ialah [dinitrogen monoksida, atau nitrus oksida](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/nitrous%20oxide/property/MolecularFormula/JSON), <InlineMath math="\mathrm{N_2O}" />, dan [nitrogen dioksida](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/nitrogen%20dioxide/property/MolecularFormula/JSON), <InlineMath math="\mathrm{NO_2}" />.
 
@@ -162,17 +196,18 @@ Dengan jisim atom relatif yang dibundarkan, <InlineMath math="A_r(\mathrm{N})=14
 | <InlineMath math="2\mathrm{N_2O}" /> | <InlineMath math="32\ \mathrm{g}" /> | <InlineMath math="56\ \mathrm{g}" /> |
 | <InlineMath math="\mathrm{NO_2}" /> | <InlineMath math="32\ \mathrm{g}" /> | <InlineMath math="14\ \mathrm{g}" /> |
 
-Sekarang jisim oksigen sudah sama, jadi bandingkan jisim nitrogen:
+Sekarang jisim oksigen sudah sama dalam kedua-dua baris, jadi kita bahagikan jisim nitrogennya untuk membaca nisbahnya.
 
 <BlockMath math="\begin{aligned} &amp;m_{\mathrm{N\ dalam\ 2N_2O}} : m_{\mathrm{N\ dalam\ NO_2}} = 56:14 \\ &amp;= 4:1 \end{aligned}" />
 
-Apabila <InlineMath math="\mathrm{N_2O}" /> didarab menjadi <InlineMath math="2\mathrm{N_2O}" />, oksigen berada pada asas jisim yang sama. Formula sebatian itu tetap <InlineMath math="\mathrm{N_2O}" />.
+Apabila <InlineMath math="\mathrm{N_2O}" /> didarab menjadi <InlineMath math="2\mathrm{N_2O}" />, oksigen berada pada asas jisim yang sama manakala formula sebatiannya tetap <InlineMath math="\mathrm{N_2O}" />.
 
-Paparan di bawah meletakkan kedua-dua perbandingan bersebelahan, dengan satu petak grid mewakili <InlineMath math="8\ \mathrm{g}" />. Apabila hidrogen ditetapkan pada <InlineMath math="2\ \mathrm{g}" />, tinggi palang oksigen berada dalam nisbah <InlineMath math="16:32=1:2" />. Apabila oksigen ditetapkan pada <InlineMath math="32\ \mathrm{g}" />, tinggi palang nitrogen berada dalam nisbah <InlineMath math="56:14=4:1" />. Setiap pasangan menjadi nisbah nombor bulat yang ringkas hanya kerana satu unsur sudah ditetapkan dahulu.
+Paparan berikut meletakkan pasangan air dan pasangan oksida nitrogen bersebelahan dengan satu petak grid mewakili <InlineMath math="8\ \mathrm{g}" />.
 
 <MathVisual
   title={<>Tetapkan Satu Unsur dan Bandingkan Unsur Lain</>}
   description={<>Oren: oksigen bersama <InlineMath math="2\text{ g}" /> hidrogen dalam <InlineMath math="\mathrm{H_2O}" /> dan <InlineMath math="\mathrm{H_2O_2}" />. Ungu: nitrogen bersama <InlineMath math="32\text{ g}" /> oksigen dalam <InlineMath math="2\mathrm{N_2O}" /> dan <InlineMath math="\mathrm{NO_2}" />. Satu petak grid ke atas mewakili <InlineMath math="8\text{ g}" />.</>}
+  footer={<>Menetapkan satu unsur menzahirkan nisbah tinggi palang 1:2 dan 4:1 dengan jelas.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 8.5 }, z: { min: -1.5, max: 1.5 } },
@@ -198,40 +233,65 @@ Paparan di bawah meletakkan kedua-dua perbandingan bersebelahan, dengan satu pet
   }}
 />
 
-## Bentuk Tiga Oksida Nitrogen
+Sebaik sahaja satu unsur dikunci, nisbah ketinggian terus terserlah: palang oren kedua tepat dua kali ganda palang pertama, dan palang ungu yang tinggi tepat empat kali ganda pasangannya.
 
-Nitrogen dan oksigen membentuk lebih daripada satu sebatian. Putar <InlineMath math="\mathrm{N_2O}" />, <InlineMath math="\mathrm{NO}" /> dan <InlineMath math="\mathrm{NO_2}" />. Bilangan atom oksigen bagi setiap atom nitrogen ialah <InlineMath math="\tfrac{1}{2}" />, <InlineMath math="1" /> dan <InlineMath math="2" />. Nisbah ini ringkas kerana **atom hanya boleh bergabung secara utuh**, tidak pernah setengah atom.
+### Tiga Oksida Nitrogen pada Asas yang Sama
 
-<MoleculeShapeLab
-  title={<>Oksida Nitrogen</>}
-  description={<>Bandingkan bilangan oksigen dan bentuk ketiga-tiga molekul.</>}
-  molecules={[
-    { id: "dinitrogen-monoxide", name: "Dinitrogen monoksida" },
-    { id: "nitrogen-monoxide", name: "Nitrogen monoksida" },
-    { id: "nitrogen-dioxide", name: "Nitrogen dioksida" },
-  ]}
+Kamu boleh membandingkan lebih daripada dua sebatian pada graf yang sama dengan memilih satu jisim nitrogen bersama. Tetapkan nitrogen pada <InlineMath math="28\ \mathrm{g}" /> (dua mol atom nitrogen) bagi <InlineMath math="\mathrm{N_2O}" />, <InlineMath math="\mathrm{NO}" /> dan <InlineMath math="\mathrm{NO_2}" />. Jisim oksigen yang sepadan ialah <InlineMath math="16\ \mathrm{g}" />, <InlineMath math="32\ \mathrm{g}" /> dan <InlineMath math="64\ \mathrm{g}" />, meningkat kemas sebagai <InlineMath math="1:2:4" /> kerana **atom hanya bergabung secara utuh**, tidak pernah separuh atom.
+
+<MathVisual
+  title={<>Tiga Oksida Nitrogen pada <InlineMath math="28\ \mathrm{g}" /> Nitrogen</>}
+  description={
+    <>
+      Jisim oksigen melawan jisim nitrogen bagi <InlineMath math="\mathrm{N_2O}" /> (biru kehijauan),{" "}
+      <InlineMath math="\mathrm{NO}" /> (ungu) dan <InlineMath math="\mathrm{NO_2}" /> (oren). Paksi mengufuk: satu petak grid mewakili{" "}
+      <InlineMath math="4\ \mathrm{g}" /> nitrogen. Paksi menegak: satu petak grid mewakili{" "}
+      <InlineMath math="8\ \mathrm{g}" /> oksigen.
+    </>
+  }
+  footer={<>Pada <InlineMath math="28\ \mathrm{g}" /> nitrogen, tiga garis bersilang pada <InlineMath math="16\ \mathrm{g}" />, <InlineMath math="32\ \mathrm{g}" /> dan <InlineMath math="64\ \mathrm{g}" /> oksigen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -1, max: 9.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "n2o-ray", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 8.4, y: 2.4 } },
+      { id: "no-ray", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 8.4, y: 4.8 } },
+      { id: "no2-ray", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 7.7, y: 8.8 } },
+      { id: "fixed-n", kind: "segment", appearance: "reference", from: { x: 7, y: 0 }, to: { x: 7, y: 8.8 } },
+      { id: "n2o-pt", kind: "point", appearance: "construction", at: { x: 7, y: 2 } },
+      { id: "no-pt", kind: "point", appearance: "secondary", at: { x: 7, y: 4 } },
+      { id: "no2-pt", kind: "point", appearance: "primary", at: { x: 7, y: 8 } },
+    ],
+    labels: [
+      { key: "n2o", objectId: "n2o-pt", at: { x: 7, y: 2 }, placement: "below-right" },
+      { key: "no", objectId: "no-pt", at: { x: 7, y: 4 }, placement: "below-right" },
+      { key: "no2", objectId: "no2-pt", at: { x: 7, y: 8 }, placement: "above-left" },
+      { key: "ratio", objectId: "fixed-n", at: { x: 7, y: 0 }, placement: "below" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model isi ruang</>,
-    formula: <>Formula molekul</>,
-    mass: <>Jisim molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    n2o: <InlineMath math="\mathrm{N_2O}:\ 16\ \mathrm{g}" />,
+    no: <InlineMath math="\mathrm{NO}:\ 32\ \mathrm{g}" />,
+    no2: <InlineMath math="\mathrm{NO_2}:\ 64\ \mathrm{g}" />,
+    ratio: <InlineMath math="1:2:4" />,
   }}
 />
 
-## Kesilapan yang Perlu Dielakkan
+Setiap hirisan menegak merentasi keluarga garis ini sentiasa menghasilkan jarak <InlineMath math="1:2:4" /> yang sama. Mengubah jisim rujukan nitrogen cuma menskalakan ketiga-tiga nilai oksigen secara serentak tanpa mengubah nisbah nombor bulatnya.
 
-Jangan bandingkan jumlah jisim air dan hidrogen peroksida, kerana setiap jumlah itu merangkumi hidrogen dan oksigen sekali gus. Bandingkan hanya **jisim oksigen selepas jisim hidrogen ditetapkan**. Air dan karbon dioksida juga bukan pasangan yang sesuai, kerana unsur lain dalam kedua-dua sebatian itu berbeza.
+## Memastikan Jisim Rujukan Sama Dahulu
 
-Bagi satu sebatian, hukum komposisi tetap membandingkan nisbah jisim unsur-unsurnya. Bagi dua atau lebih sebatian yang terbentuk daripada pasangan unsur yang sama, hukum perkadaran berganda membandingkan nisbah-nisbah itu. Nisbah nombor bulat kecil yang terhasil menyokong dakwaan Dalton bahawa atom bergabung dalam bilangan nombor bulat.
+Sebelum membahagikan sebarang angka, semak dua syarat. Pertama, pastikan kedua-dua sebatian terbina daripada **dua unsur yang betul-betul sama** (air dan karbon dioksida tidak boleh dipasangkan di bawah hukum ini kerana hidrogen dan karbon ialah unsur berbeza). Kedua, bandingkan hanya **jisim unsur pasangan selepas jisim rujukan ditetapkan**, bukan membahagikan jumlah jisim sebatian seperti <InlineMath math="18\ \mathrm{g}" /> air dengan <InlineMath math="34\ \mathrm{g}" /> hidrogen peroksida, kerana setiap jumlah itu mencampurkan kedua-dua unsurnya.
 
-Setiap garis memberikan jisim oksigen yang bergabung dengan suatu jisim karbon: <InlineMath math="m_\mathrm{O}=\tfrac{4}{3}m_\mathrm{C}" /> dalam <InlineMath math="\mathrm{CO}" /> dan <InlineMath math="m_\mathrm{O}=\tfrac{8}{3}m_\mathrm{C}" /> dalam <InlineMath math="\mathrm{CO_2}" />. Tetapkan karbon pada <InlineMath math="12\ \mathrm{g}" /> di garis kelabu dan baca kedua-dua jisim oksigen. Zum masuk: kedua-duanya bernisbah <InlineMath math="1:2" />, iaitu nisbah nombor bulat yang ringkas.
+Bagi satu sebatian, hukum komposisi tetap membandingkan nisbah jisim unsur-unsurnya. Bagi dua atau lebih sebatian yang terbentuk daripada pasangan unsur yang sama, hukum perkadaran berganda membandingkan nisbah-nisbah itu merentas sebatian. Nisbah nombor bulat kecil yang terhasil menyokong dakwaan Dalton bahawa atom bergabung dalam bilangan utuh.
+
+Setiap garis di bawah memplot jisim oksigen melawan jisim karbon, mengikut <InlineMath math="m_\mathrm{O}=\tfrac{4}{3}m_\mathrm{C}" /> bagi <InlineMath math="\mathrm{CO}" /> dan <InlineMath math="m_\mathrm{O}=\tfrac{8}{3}m_\mathrm{C}" /> bagi <InlineMath math="\mathrm{CO_2}" />. Menetapkan karbon pada garis menegak <InlineMath math="12\ \mathrm{g}" /> meletakkan kedua-dua bacaan oksigen tepat pada satu hirisan menegak.
 
 <MathVisual
   title={<>Tetapkan Karbon dan Baca Oksigen</>}
   description={<>Jisim oksigen melawan jisim karbon dalam <InlineMath math="\mathrm{CO}" /> (ungu) dan <InlineMath math="\mathrm{CO_2}" /> (oren). Paksi mengufuk: satu petak grid mewakili <InlineMath math="1" /> gram karbon. Paksi menegak: satu petak grid mewakili <InlineMath math="4" /> gram oksigen.</>}
+  footer={<>Hirisan menegak pada 12 g karbon membaca 16 g dan 32 g oksigen dalam nisbah 1:2.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 15.5 }, y: { min: -1, max: 10.5 } },
@@ -255,3 +315,5 @@ Setiap garis memberikan jisim oksigen yang bergabung dengan suatu jisim karbon: 
     ratio: <InlineMath math="16:32=1:2" />,
   }}
 />
+
+Di mana-mana sahaja kamu membuat hirisan menegak pada jisim karbon pilihan, garis oren di atas sentiasa berada tepat dua kali lebih tinggi daripada garis ungu. Faktor <InlineMath math="1:2" /> yang tekal itulah tanda geometri hukum Dalton.

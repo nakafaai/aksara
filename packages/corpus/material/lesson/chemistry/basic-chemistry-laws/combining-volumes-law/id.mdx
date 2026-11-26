@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Hukum Perbandingan Volume",
   description:
@@ -15,37 +14,50 @@ Hukum perbandingan volume menyatakan bahwa gas-gas yang bereaksi, dan gas yang t
 
 Jika semua volume gas diukur pada suhu dan tekanan yang sama, rasionya mengikuti koefisien persamaan reaksi setara. Hidrogen dan oksigen bergabung menurut rasio volume <InlineMath math="2:1" /> untuk membentuk air.
 
+> Volume yang sama dari gas apa pun pada suhu dan tekanan yang sama menyimpan jumlah molekul yang sama, sehingga koefisien reaksi langsung menjadi rasio volume.
+
 Aturan ini hanya berlaku untuk zat yang berwujud gas. Volumenya juga harus dibandingkan pada suhu dan tekanan yang sama.
 
 Kita memakai **pendekatan gas ideal** dan menghitung volume yang benar-benar bereaksi atau terbentuk. Gas berlebih yang tidak bereaksi harus dihitung terpisah.
 
-## Koefisien Menghitung Molekul
+### Koefisien Menghitung Molekul Gas
 
-Perbandingan volume gas sama dengan perbandingan koefisien karena **koefisien menghitung molekul**. Pilih reaksi hidrogen klorida, lalu geser slider. <InlineMath math="1" /> molekul <InlineMath math="\mathrm{H_2}" /> dan <InlineMath math="1" /> molekul <InlineMath math="\mathrm{Cl_2}" /> menghasilkan <InlineMath math="2" /> molekul <InlineMath math="\mathrm{HCl}" />, persis seperti perbandingan volume <InlineMath math="1 : 1 : 2" />.
+Perbandingan volume gas sama dengan perbandingan koefisien karena **koefisien menghitung molekul**. Pada pembentukan hidrogen klorida, <InlineMath math="1" /> molekul <InlineMath math="\mathrm{H_2}" /> dan <InlineMath math="1" /> molekul <InlineMath math="\mathrm{Cl_2}" /> menghasilkan <InlineMath math="2" /> molekul <InlineMath math="\mathrm{HCl}" />, sehingga total volume gas tetap <InlineMath math="2" /> bagian. Pada pembentukan amonia, <InlineMath math="1" /> bagian <InlineMath math="\mathrm{N_2}" /> dan <InlineMath math="3" /> bagian <InlineMath math="\mathrm{H_2}" /> menyusut dari <InlineMath math="4" /> bagian menjadi <InlineMath math="2" /> bagian <InlineMath math="\mathrm{NH_3}" />.
 
-<ReactionBalanceLab
-  title={<>Molekul Gas Bergabung</>}
-  description={<>Bandingkan jumlah molekul sebelum dan sesudah reaksi.</>}
-  reactions={[
-    { id: "hydrogen-chloride-synthesis", name: "Pembentukan hidrogen klorida", tab: <InlineMath math="\mathrm{HCl}" /> },
-    { id: "ammonia-synthesis", name: "Pembentukan amonia", tab: <InlineMath math="\mathrm{NH_3}" /> },
-  ]}
-  reading="molecules"
+<MathVisual
+  title={<>Volume Gas Sebelum dan Sesudah Sintesis</>}
+  description={<>Bagian volume gas pereaksi di samping produk untuk <InlineMath math="\mathrm{H_2}+\mathrm{Cl_2}\rightarrow2\mathrm{HCl}" /> (kiri) dan <InlineMath math="\mathrm{N_2}+3\mathrm{H_2}\rightarrow2\mathrm{NH_3}" /> (kanan). Satu kotak grid ke atas berarti <InlineMath math="1" /> bagian volume.</>}
+  footer={<>Total volume gas tetap sama pada HCl, tetapi menyusut dari 4 menjadi 2 bagian pada NH3.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 3.5, y: 2, z: 0 } },
+    objects: [
+      { id: "hcl-h2", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "hcl-cl2", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "hcl-prod", kind: "cuboid", appearance: "construction", center: { x: 2, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "nh3-n2", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "nh3-h2", kind: "cuboid", appearance: "secondary", center: { x: 5, y: 2.5, z: 0 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "nh3-prod", kind: "cuboid", appearance: "construction", center: { x: 7, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "hcl-in", objectId: "hcl-cl2", at: { x: 0, y: 2.3, z: 0 }, placement: "above" },
+      { key: "hcl-out", objectId: "hcl-prod", at: { x: 2, y: 2.3, z: 0 }, placement: "above" },
+      { key: "nh3-in", objectId: "nh3-h2", at: { x: 5, y: 4.3, z: 0 }, placement: "above" },
+      { key: "nh3-out", objectId: "nh3-prod", at: { x: 7, y: 2.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Jumlah atom tiap unsur</>,
-    choose: "Pilih reaksi",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan reaksi</>,
-    mass: <>Massa pereaksi dan produk</>,
-    molecules: <>Jumlah molekul</>,
-    products: <>Produk</>,
-    progress: "Jalannya reaksi",
-    reactants: <>Pereaksi</>,
-    view: "Reaksi pada tingkat atom",
+    "hcl-in": <InlineMath math="\mathrm{H_2}+\mathrm{Cl_2}:\ 2" />,
+    "hcl-out": <InlineMath math="2\mathrm{HCl}:\ 2" />,
+    "nh3-in": <InlineMath math="\mathrm{N_2}+3\mathrm{H_2}:\ 4" />,
+    "nh3-out": <InlineMath math="2\mathrm{NH_3}:\ 2" />,
   }}
 />
 
-## Air Harus Berwujud Gas
+Membandingkan kedua pasangan itu memberi pelajaran penting: massa selalu kekal, tetapi total volume gas tidak harus tetap. Setiap kali reaksi menurunkan jumlah total molekul gas, total volume gas ikut menyusut dengan perbandingan yang sama.
+
+### Air Harus Tetap Berwujud Gas
 
 Perhatikan persamaan pembentukan uap air.
 
@@ -62,6 +74,7 @@ Setiap balok di bawah adalah satu bagian gas pada suhu dan tekanan yang sama. Du
 <MathVisual
   title={<>Uap Air dalam Volume</>}
   description={<><InlineMath math="2\mathrm{H_2(g)}+\mathrm{O_2(g)}\rightarrow2\mathrm{H_2O(g)}" /> digambar sebagai bagian gas yang sama besar pada suhu dan tekanan yang sama.</>}
+  footer={<>Tiga bagian gas pereaksi membentuk dua bagian uap air, tepat mengikuti rasio 2:1:2.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -86,6 +99,8 @@ Setiap balok di bawah adalah satu bagian gas pada suhu dan tekanan yang sama. Du
   }}
 />
 
+Selalu periksa simbol wujud <InlineMath math="\mathrm{(g)}" /> saat memakai gambaran balok ini. Begitu uap air mendingin menjadi tetesan cair, molekulnya merapat sehingga volumenya turun lebih dari seribu kali lipat dan tidak lagi mengikuti rasio gas.
+
 ## Membandingkan Volume Gas dengan Tabung
 
 Pilih reaksi berikut. Setiap tabung menunjukkan **satu bagian volume gas** pada suhu dan tekanan yang sama.
@@ -98,6 +113,7 @@ Pilih reaksi berikut. Setiap tabung menunjukkan **satu bagian volume gas** pada 
       volume gas.
     </>
   }
+  footer={<>Ganti reaksi untuk melihat tinggi setiap tabung selalu cocok dengan koefisien setara.</>}
   labels={{
     chooseMode: "Pilih reaksi gas",
     reactants: "Reaktan",
@@ -186,9 +202,13 @@ Pilih reaksi berikut. Setiap tabung menunjukkan **satu bagian volume gas** pada 
   }}
 />
 
-Model di atas membandingkan volume gas pada suhu dan tekanan yang sama. Dalam kondisi ini, perbandingan volume dapat mengikuti koefisien persamaan reaksi yang setara.
+Setiap tinggi tabung mewakili volume gas pada suhu dan tekanan yang sama. Karena volume yang sama menyimpan jumlah molekul yang sama, menskalakan satu volume gas yang diketahui otomatis menskalakan gas lain dalam reaksi dengan faktor yang sama.
 
-## Contoh Penguraian Amonia
+## Penguraian Amonia Berdasarkan Volume
+
+Penguraian amonia menjadi nitrogen dan hidrogen menunjukkan bagaimana **volume gas bisa berlipat ganda saat massa tetap konstan**. Setiap dua volume gas amonia terpecah menjadi tiga volume hidrogen dan satu volume nitrogen, sehingga dua volume pereaksi berubah menjadi empat volume produk tanpa menambah atau mengurangi satu atom pun.
+
+### Menskalakan Volume dari Koefisien
 
 Misalkan <InlineMath math="600\ \mathrm{mL}" /> gas amonia terurai sempurna pada suhu dan tekanan yang sama. Persamaan setaranya:
 
@@ -207,28 +227,40 @@ V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
 
 Jadi, penguraian <InlineMath math="600\ \mathrm{mL}" /> gas amonia menghasilkan <InlineMath math="900\ \mathrm{mL}" /> gas hidrogen dan <InlineMath math="300\ \mathrm{mL}" /> gas nitrogen.
 
-## Molekul dalam Contoh Amonia
+### Mengapa Dua Volume Menjadi Empat
 
-Amonia terurai menjadi nitrogen dan hidrogen. Putar ketiga molekulnya dan hitung atomnya. Setiap <InlineMath math="\mathrm{NH_3}" /> membawa <InlineMath math="1" /> atom nitrogen, sedangkan setiap <InlineMath math="\mathrm{N_2}" /> butuh <InlineMath math="2" />. Itulah sebabnya <InlineMath math="2" /> volume amonia **hanya menghasilkan** <InlineMath math="1" /> volume nitrogen.
+Amonia terurai menjadi nitrogen dan hidrogen tanpa kehilangan satu atom pun. Setiap <InlineMath math="\mathrm{NH_3}" /> membawa <InlineMath math="1" /> atom nitrogen, sedangkan setiap <InlineMath math="\mathrm{N_2}" /> butuh <InlineMath math="2" />. Itulah sebabnya <InlineMath math="2" /> volume amonia **hanya menghasilkan** <InlineMath math="1" /> volume nitrogen bersama <InlineMath math="3" /> volume hidrogen, sehingga total volume gas berlipat ganda dari <InlineMath math="2" /> menjadi <InlineMath math="4" /> bagian.
 
-<MoleculeShapeLab
-  title={<>Amonia, Nitrogen, dan Hidrogen</>}
-  description={<>Putar setiap model dan hitung atom nitrogen di tiap molekul.</>}
-  molecules={[
-    { id: "ammonia", name: "Amonia" },
-    { id: "nitrogen", name: "Nitrogen" },
-    { id: "hydrogen", name: "Hidrogen" },
-  ]}
+<MathVisual
+  title={<>Atom Tetap Saat Volume Berlipat Ganda</>}
+  description={<>Pereaksi (belakang) dan produk (depan) pada <InlineMath math="2\mathrm{NH_3}\rightarrow3\mathrm{H_2}+\mathrm{N_2}" />. Satu kotak grid ke atas berarti <InlineMath math="1" /> atom atau <InlineMath math="1" /> bagian volume.</>}
+  footer={<>Atom N tetap 2 dan H tetap 6, namun total volume gas naik dari 2 menjadi 4 bagian.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 8, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "n-in", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "n-out", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "h-in", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: -0.75 }, size: { length: 1.1, height: 6, width: 1.1 } },
+      { id: "h-out", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: 0.75 }, size: { length: 1.1, height: 6, width: 1.1 } },
+      { id: "vol-in", kind: "cuboid", appearance: "warning", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "vol-out", kind: "cuboid", appearance: "construction", center: { x: 5, y: 2, z: 0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-out", at: { x: 0, y: 2.4, z: 0.75 }, placement: "above" },
+      { key: "h", objectId: "h-out", at: { x: 2.5, y: 6.4, z: 0.75 }, placement: "above" },
+      { key: "vol", objectId: "vol-out", at: { x: 5, y: 4.4, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang</>,
-    formula: <>Rumus molekul</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    n: <InlineMath math="\mathrm{N}:\ 2 = 2" />,
+    h: <InlineMath math="\mathrm{H}:\ 6 = 6" />,
+    vol: <>Volume: 2 jadi 4</>,
   }}
 />
+
+Melihat ketiga pasangan batang itu berdampingan langsung meluruskan kekeliruan yang sering muncul. Jumlah atom setiap unsur tetap kekal, sedangkan batang volume berlipat ganda karena delapan atom yang sama kini bergerak sebagai empat molekul diatomik terpisah alih-alih dua molekul amonia.
 
 ## Syarat Perbandingan Volume Gas
 
@@ -244,6 +276,7 @@ Inilah alasan tiap volume harus diukur pada suhu dan tekanan yang sama. Gas mene
 <MathVisual
   title={<>Mol Sama, Volume Berbeda</>}
   description={<>Volume gas terhadap jumlah zat pada <InlineMath math="1\ \mathrm{atm}" /> untuk <InlineMath math="0\ ^\circ\mathrm{C}" /> (ungu) dan <InlineMath math="25\ ^\circ\mathrm{C}" /> (oranye). Mendatar: satu kotak grid berarti <InlineMath math="1\text{ mol}" />. Tegak: satu kotak grid berarti <InlineMath math="10\text{ L}" />.</>}
+  footer={<>Dua mol gas memuai dari 44,8 L pada 0 C menjadi 49 L pada 25 C saat suhu naik.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.5 }, y: { min: -0.3, max: 10.3 } },
@@ -264,3 +297,5 @@ Inilah alasan tiap volume harus diukur pada suhu dan tekanan yang sama. Gas mene
     warm: <InlineMath math="25\ ^\circ\mathrm{C}:\ 2\cdot24{,}5=49\ \mathrm{L}" />,
   }}
 />
+
+Begitu suhu atau tekanan berubah di antara dua pengukuran, kedua garis langsung memisah dan perbandingan volume sederhana tidak berlaku lagi. Pastikan dulu semua zat berwujud gas pada kondisi yang sama sebelum kamu membaca volumenya langsung dari koefisien.

@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Cara Menuliskan Reaksi Kimia",
   description:
@@ -19,31 +18,44 @@ Pola dasarnya seperti ini.
 
 Tanda panah dibaca "menghasilkan". Tanda tambah berarti ada lebih dari satu zat di sisi yang sama.
 
-## Setiap Rumus Adalah Molekul Nyata
+### Setiap Rumus Adalah Molekul Nyata
 
-Sebelum menulis persamaan, kenali dulu rumus setiap zat. Putar model <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{NO}" />, dan <InlineMath math="\mathrm{SO_2}" />. Angka kecil di rumus menghitung atom di dalam satu molekul, jadi angka itu **tidak boleh kamu ubah saat menyetarakan reaksi**.
+Sebelum menulis persamaan, kenali dulu rumus setiap zat. Perhatikan susunan atom di dalam <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{NO}" />, dan <InlineMath math="\mathrm{SO_2}" />. Angka kecil di rumus menghitung atom di dalam satu molekul, jadi angka itu **tidak boleh kamu ubah saat menyetarakan reaksi**.
 
-<MoleculeShapeLab
-  title={<>Rumus dan Bentuk Molekul</>}
-  description={<>Hitung atom pada setiap model dan cocokkan dengan rumusnya.</>}
-  molecules={[
-    { id: "nitrogen", name: "Nitrogen" },
-    { id: "oxygen", name: "Oksigen" },
-    { id: "nitrogen-monoxide", name: "Nitrogen monoksida" },
-    { id: "sulfur-dioxide", name: "Belerang dioksida" },
-  ]}
+<MathVisual
+  title={<>Jumlah Atom dalam Empat Molekul</>}
+  description={<>Atom nitrogen (ungu), oksigen (oranye), dan belerang (kuning) yang menyusun satu molekul tiap rumus. Satu kotak grid berarti <InlineMath math="1" /> atom.</>}
+  footer={<>Angka subskrip mengunci jumlah atom tiap unsur pembentuk satu molekul.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 6.5, z: 11 }, target: { x: 3, y: 1.5, z: 0 } },
+    objects: [
+      { id: "n2", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o2", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "no-n", kind: "cuboid", appearance: "secondary", center: { x: 4, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "no-o", kind: "cuboid", appearance: "primary", center: { x: 4, y: 1.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "so2-s", kind: "cuboid", appearance: "highlight", center: { x: 6, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "so2-o", kind: "cuboid", appearance: "primary", center: { x: 6, y: 2, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "n2", objectId: "n2", at: { x: 0, y: 2.3, z: 0 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2, y: 2.3, z: 0 }, placement: "above" },
+      { key: "no", objectId: "no-o", at: { x: 4, y: 2.3, z: 0 }, placement: "above" },
+      { key: "so2", objectId: "so2-o", at: { x: 6, y: 3.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang</>,
-    formula: <>Rumus molekul</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    n2: <InlineMath math="\mathrm{N_2}:\ 2\mathrm{N}" />,
+    o2: <InlineMath math="\mathrm{O_2}:\ 2\mathrm{O}" />,
+    no: <InlineMath math="\mathrm{NO}:\ 1\mathrm{N}+1\mathrm{O}" />,
+    so2: <InlineMath math="\mathrm{SO_2}:\ 1\mathrm{S}+2\mathrm{O}" />,
   }}
 />
 
-## Persamaan Pembakaran Metana
+Setiap tumpukan menggambarkan satu molekul nyata yang identitasnya ditentukan oleh jumlah atom itu. Begitu rumusnya sudah benar, biarkan angka subskripnya tetap dan fokuslah pada koefisien.
+
+### Persamaan Pembakaran Metana
 
 Mulai dari kalimat biasa: metana bereaksi dengan oksigen menghasilkan karbon dioksida dan air. Di kiri ada **reaktan, di kanan ada produk**.
 
@@ -55,7 +67,7 @@ Mulai dari kalimat biasa: metana bereaksi dengan oksigen menghasilkan karbon dio
 
 Rumus awal belum setara karena jumlah atom oksigen di kiri hanya <InlineMath math="2" />, sedangkan di kanan ada <InlineMath math="3" />. Setelah koefisien ditambahkan, jumlah atom setiap unsur sama di kedua sisi.
 
-Kita mulai dari karbon yang sudah sama, yaitu satu atom di setiap sisi. Hidrogen di kiri berjumlah empat, jadi beri koefisien <InlineMath math="2" /> pada <InlineMath math="\mathrm{H_2O}" /> agar di kanan juga ada <InlineMath math="2\times2=4" /> atom hidrogen. Kini oksigen di kanan berjumlah <InlineMath math="2+2=4" />, sehingga koefisien <InlineMath math="\mathrm{O_2}" /> harus <InlineMath math="2" />. Cek hasilnya:
+Mulai dari karbon yang jumlahnya sudah sama, satu atom di tiap sisi. Hidrogen di kiri berjumlah empat, jadi beri koefisien <InlineMath math="2" /> pada <InlineMath math="\mathrm{H_2O}" /> agar di kanan juga ada <InlineMath math="2\times2=4" /> atom hidrogen. Kini oksigen di kanan berjumlah <InlineMath math="2+2=4" />, sehingga koefisien <InlineMath math="\mathrm{O_2}" /> harus <InlineMath math="2" />. Periksa hasil akhirnya pada tabel di bawah ini.
 
 | Unsur | Kiri | Kanan |
 | :---- | :--- | :---- |
@@ -65,27 +77,36 @@ Kita mulai dari karbon yang sudah sama, yaitu satu atom di setiap sisi. Hidrogen
 
 Koefisiennya terbaca sebagai perbandingan <InlineMath math="1:2:1:2" />. Karena keempat zat dalam contoh ini berupa zat molekuler, rasio itu dapat digambarkan sebagai <InlineMath math="1" /> molekul metana yang bereaksi dengan <InlineMath math="2" /> molekul oksigen menghasilkan <InlineMath math="1" /> molekul karbon dioksida dan <InlineMath math="2" /> molekul air. Pada skala laboratorium, koefisien yang sama memberi perbandingan mol.
 
-<MethaneCombustionEquationLab
-  title={<>Koefisien menunjukkan jumlah molekul</>}
-  description={
-    <>
-      Pada tampilan awal, sisi kiri menunjukkan reaktan dan sisi kanan
-      menunjukkan produk pada persamaan setara.
-    </>
-  }
+<MathVisual
+  title={<>Perbandingan Molekul Pembakaran Metana</>}
+  description={<>Molekul reaktan di kiri (metana abu-abu, oksigen oranye) dan produk di kanan (karbon dioksida kuning, air ungu). Satu kotak grid berarti <InlineMath math="1" /> molekul.</>}
+  footer={<>Koefisien menetapkan rasio molekul dan mol 1 banding 2 banding 1 banding 2.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9.5, y: 6, z: 11 }, target: { x: 3.25, y: 1, z: 0 } },
+    objects: [
+      { id: "ch4", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "o2", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "co2", kind: "cuboid", appearance: "highlight", center: { x: 4.5, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "h2o", kind: "cuboid", appearance: "secondary", center: { x: 6.5, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "ch4", objectId: "ch4", at: { x: 0, y: 1.3, z: 0 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2, y: 2.3, z: 0 }, placement: "above" },
+      { key: "co2", objectId: "co2", at: { x: 4.5, y: 1.3, z: 0 }, placement: "above" },
+      { key: "h2o", objectId: "h2o", at: { x: 6.5, y: 2.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    moleculeView: "Model persamaan pembakaran metana",
-    reactants: "Reaktan",
-    products: "Produk",
-    equation: (
-      <>
-        Reaktan: <InlineMath math="\mathrm{CH_4} + 2\mathrm{O_2}" />. Produk: <InlineMath math="\mathrm{CO_2} + 2\mathrm{H_2O}" />. Jumlah atom <InlineMath math="\mathrm{C}" />, <InlineMath math="\mathrm{H}" />, dan <InlineMath math="\mathrm{O}" /> tetap sama di kedua sisi.
-      </>
-    ),
+    ch4: <InlineMath math="1\ \mathrm{CH_4}" />,
+    o2: <InlineMath math="2\ \mathrm{O_2}" />,
+    co2: <InlineMath math="1\ \mathrm{CO_2}" />,
+    h2o: <InlineMath math="2\ \mathrm{H_2O}" />,
   }}
 />
 
-Model molekul hanya berlaku langsung untuk zat molekuler. Untuk padatan ionik atau jaringan kovalen, koefisien menyatakan jumlah stoikiometrik atau perbandingan satuan rumus. Pada semua kasus, koefisien menyatakan jumlah mol relatif untuk reaksi makroskopis.
+Gambaran molekul ini berlaku langsung untuk zat molekuler seperti gas dan air. Untuk padatan ionik atau jaringan kovalen, koefisien menyatakan perbandingan satuan rumus, dan pada semua kasus koefisien selalu memberi perbandingan mol untuk reaksi skala makro.
 
 ## Koefisien Tidak Mengubah Rumus
 
@@ -95,11 +116,12 @@ Jumlah atom dihitung dengan **mengalikan koefisien dan subskrip**. Koefisien bol
 
 Angka <InlineMath math="2" /> di depan <InlineMath math="\mathrm{O_2}" /> berarti ada dua molekul oksigen. Angka kecil pada <InlineMath math="\mathrm{O_2}" /> adalah bagian dari rumus oksigen, jadi tidak boleh diganti menjadi <InlineMath math="\mathrm{O_4}" />.
 
-Hitung atom dalam <InlineMath math="\mathrm{CH_4}+2\mathrm{O_2}\rightarrow\mathrm{CO_2}+2\mathrm{H_2O}" /> dengan mengalikan setiap koefisien dengan indeksnya. Pada adegan, setiap unsur punya batang belakang untuk reaktan dan batang depan untuk produk, dengan satu kotak grid untuk <InlineMath math="2" /> atom. Putar adegannya: setiap pasangan sama tinggi, jadi persamaannya sudah setara.
+Hitung atom pada persamaan pembakaran metana setara di atas dengan mengalikan setiap koefisien dan subskripnya. Pada adegan berikut, setiap unsur punya batang belakang untuk reaktan dan batang depan untuk produk, dengan satu kotak grid untuk <InlineMath math="2" /> atom. Putar adegannya untuk memastikan setiap pasangan sama tinggi.
 
 <MathVisual
-  title={<>Atom di Kedua Sisi Persamaan</>}
+  title={<>Kesetaraan Atom Pembakaran Metana</>}
   description={<>Karbon (abu-abu), hidrogen (ungu), dan oksigen (oranye) dihitung pada reaktan (belakang) dan produk (depan). Satu kotak grid ke atas sama dengan <InlineMath math="2" /> atom.</>}
+  footer={<>Batang reaktan dan produk yang sama tinggi memastikan C, H, dan O sudah setara.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -125,9 +147,15 @@ Hitung atom dalam <InlineMath math="\mathrm{CH_4}+2\mathrm{O_2}\rightarrow\mathr
   }}
 />
 
-## Simbol Wujud Ditulis Setelah Rumus
+Mengalikan koefisien dengan subskrip menjaga tinggi batang depan dan belakang tetap sejajar. Pengecekan sederhana ini langsung memberi tahu kapan persamaan sudah benar-benar setara.
 
-Kalau wujud zat diketahui, tulis simbolnya setelah rumus. Pada suhu tinggi di nyala metana, produk air berwujud uap, sehingga persamaan dapat ditulis:
+## Simbol Wujud dan Contoh Pengendapan
+
+Rumus kimia saja hanya menyebutkan zat yang bereaksi tanpa menggambarkan wujudnya di dalam tabung. Penambahan **simbol wujud zat** melengkapi persamaan dengan menunjukkan reaktan mana yang larut dalam air serta produk mana yang terpisah sebagai gas atau endapan padat.
+
+### Simbol Wujud Ditulis Setelah Rumus
+
+Kalau wujud zat diketahui, tulis simbolnya setelah rumus. Pada suhu tinggi di nyala metana, produk air berwujud uap, sehingga persamaannya ditulis seperti di bawah ini.
 
 <BlockMath math="\begin{aligned} &amp;\mathrm{CH_4(g)} + 2\mathrm{O_2(g)} \\ &amp;\rightarrow \mathrm{CO_2(g)} + 2\mathrm{H_2O(g)} \end{aligned}" />
 
@@ -140,13 +168,13 @@ Simbol wujud tidak mengubah jumlah atom. Simbol itu menunjukkan **keadaan zat pa
 | <InlineMath math="\mathrm{(g)}" /> | gas | <InlineMath math="\mathrm{CO_2(g)}" /> |
 | <InlineMath math="\mathrm{(aq)}" /> | larut dalam air | <InlineMath math="\mathrm{NaCl(aq)}" /> |
 
-## Contoh Pembentukan Endapan Perak Klorida
+### Contoh Pembentukan Endapan Perak Klorida
 
 Dua larutan bening bisa membentuk padatan baru. Misalnya, larutan perak nitrat bereaksi dengan larutan natrium klorida menghasilkan endapan perak klorida.
 
 <BlockMath math="\begin{aligned} &amp;\mathrm{AgNO_3(aq)} + \mathrm{NaCl(aq)} \\ &amp;\rightarrow \mathrm{AgCl(s)} + \mathrm{NaNO_3(aq)} \end{aligned}" />
 
-Persamaan itu sudah setara dengan rasio koefisien <InlineMath math="1:1:1:1" />. Tanda <InlineMath math="\mathrm{(s)}" /> setelah <InlineMath math="\mathrm{AgCl(s)}" /> menunjukkan bahwa perak klorida merupakan **produk padat**.
+Persamaan itu sudah setara dengan rasio koefisien <InlineMath math="1:1:1:1" />. Tanda <InlineMath math="\mathrm{(s)}" /> setelah <InlineMath math="\mathrm{AgCl(s)}" /> menunjukkan bahwa perak klorida adalah **produk padat**.
 
 ## Langkah Menulis Persamaan Reaksi
 
@@ -158,11 +186,20 @@ Persamaan itu sudah setara dengan rasio koefisien <InlineMath math="1:1:1:1" />.
 
 Rumus kimia yang salah <Highlight>tidak dapat diperbaiki hanya dengan menyetarakan persamaan</Highlight>. Periksa setiap rumus sebelum mengatur koefisien.
 
-Jalankan langkah terakhir pada gas di kompor kemah: <InlineMath math="\mathrm{C_3H_8}+5\mathrm{O_2}\rightarrow3\mathrm{CO_2}+4\mathrm{H_2O}" />. Hitung setiap atom di kedua ruas setelah kamu menyetarakannya. Putar batangnya: tiap pasangan sama tinggi, jadi koefisiennya sudah benar.
+> Jangan pernah mengubah angka subskrip hanya agar jumlah atom tampak cocok. Mengubah subskrip berarti mengganti zatnya, sedangkan mengubah koefisien hanya mengatur banyak molekul yang ikut bereaksi.
+
+### Menyetarakan Pembakaran Propana
+
+Coba jalankan langkah-langkah tadi pada propana, gas yang dipakai di kompor kemah. Mulai dengan **menyetarakan karbon dan hidrogen lebih dulu**, lalu tentukan koefisien oksigen paling akhir.
+
+<BlockMath math="\mathrm{C_3H_8} + 5\mathrm{O_2} \rightarrow 3\mathrm{CO_2} + 4\mathrm{H_2O}" />
+
+Hitung setiap atom di kedua ruas setelah kamu menyetarakannya. Putar batangnya di bawah ini untuk melihat bahwa setiap pasangan unsur punya tinggi yang sama persis.
 
 <MathVisual
-  title={<>Atom di Kedua Ruas</>}
+  title={<>Kesetaraan Atom Pembakaran Propana</>}
   description={<>Atom karbon (abu-abu), hidrogen (ungu), dan oksigen (oranye) di pereaksi (belakang) dan hasil reaksi (depan). Satu kotak grid ke atas berarti <InlineMath math="2" /> atom.</>}
+  footer={<>Batang sejajar memastikan 3 karbon, 8 hidrogen, dan 10 oksigen di kedua ruas.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -188,28 +225,47 @@ Jalankan langkah terakhir pada gas di kompor kemah: <InlineMath math="\mathrm{C_
   }}
 />
 
-## Memeriksa Kesetaraan Atom demi Atom
+Untuk bahan bakar hidrokarbon yang lebih besar, menyetarakan karbon dan hidrogen lebih dulu membuat hitungan oksigen di akhir jadi rapi. Memeriksa ketiga pasangan batang memastikan koefisien <InlineMath math="1:5:3:4" /> sudah tepat.
 
-Langkah terakhir menulis persamaan adalah memeriksa setiap unsur. Pilih salah satu reaksi dan lihat kolom jumlah atom. Nilai di kiri dan kanan tanda sama dengan **harus sama untuk setiap unsur**. Koefisien boleh berubah, tetapi rumus tidak.
+### Memeriksa Kesetaraan Atom demi Atom
 
-<ReactionBalanceLab
-  title={<>Persamaan yang Setara</>}
-  description={<>Pilih reaksi dan cek jumlah atom tiap unsur di kedua ruas.</>}
-  reactions={[
-    { id: "nitrogen-fixation", name: "Pembentukan nitrogen monoksida", tab: <InlineMath math="\mathrm{NO}" /> },
-    { id: "sulfur-dioxide-oxidation", name: "Oksidasi belerang dioksida", tab: <InlineMath math="\mathrm{SO_3}" /> },
-  ]}
-  reading="molecules"
+Langkah terakhir menulis persamaan adalah memeriksa setiap unsur satu per satu. Perhatikan dua reaksi gas yang melibatkan oksida nitrogen dan belerang berikut ini.
+
+<BlockMath math="\begin{aligned} &amp;\mathrm{N_2} + \mathrm{O_2} \rightarrow 2\mathrm{NO} \\ &amp;2\mathrm{SO_2} + \mathrm{O_2} \rightarrow 2\mathrm{SO_3} \end{aligned}" />
+
+Nilai di kiri dan kanan tanda sama dengan **harus sama untuk setiap unsur**. Putar tampilan di bawah untuk mengecek atom nitrogen, belerang, dan oksigen pada kedua persamaan setara itu.
+
+<MathVisual
+  title={<>Cek Atom Oksida Nitrogen dan Belerang</>}
+  description={<>Atom pereaksi (belakang) dan produk (depan) pada pembentukan <InlineMath math="\mathrm{NO}" /> (dua pasangan kiri) serta <InlineMath math="\mathrm{SO_3}" /> (dua pasangan kanan). Satu kotak grid berarti <InlineMath math="1" /> atom.</>}
+  footer={<>Setiap pasangan unsur sama tinggi pada reaksi nitrogen maupun belerang.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9.5, y: 9.5, z: 12 }, target: { x: 3.25, y: 3, z: 0 } },
+    objects: [
+      { id: "n-left", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "n-right", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o1-left", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o1-right", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "s-left", kind: "cuboid", appearance: "highlight", center: { x: 4.5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "s-right", kind: "cuboid", appearance: "highlight", center: { x: 4.5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o2-left", kind: "cuboid", appearance: "primary", center: { x: 6.5, y: 3, z: -0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
+      { id: "o2-right", kind: "cuboid", appearance: "primary", center: { x: 6.5, y: 3, z: 0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-right", at: { x: 0, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "o1", objectId: "o1-right", at: { x: 2, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "s", objectId: "s-right", at: { x: 4.5, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "o2", objectId: "o2-right", at: { x: 6.5, y: 6.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Jumlah atom tiap unsur</>,
-    choose: "Pilih reaksi",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan reaksi</>,
-    mass: <>Massa pereaksi dan produk</>,
-    molecules: <>Jumlah molekul</>,
-    products: <>Produk</>,
-    progress: "Jalannya reaksi",
-    reactants: <>Pereaksi</>,
-    view: "Reaksi pada tingkat atom",
+    n: <InlineMath math="\mathrm{N}:\ 2=2" />,
+    o1: <InlineMath math="\mathrm{O\ (NO)}:\ 2=2" />,
+    s: <InlineMath math="\mathrm{S}:\ 2=2" />,
+    o2: <InlineMath math="\mathrm{O\ (SO_3)}:\ 6=6" />,
   }}
 />
+
+Saat setiap unsur lolos pengecekan berdampingan seperti ini, persamaan kimiamu sudah lengkap dan siap dipakai. Biasakan selalu mengecek atom di langkah akhir agar koefisien yang terlewat bisa segera ketahuan sebelum dipakai berhitung.

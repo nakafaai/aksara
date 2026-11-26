@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Isotopes",
   description:
@@ -15,17 +14,13 @@ Hydrogen in the Sun, carbon in our bodies, and oxygen in water do not always app
 
 [Isotopes](https://goldbook.iupac.org/terms/view/I03331) are atoms of the same element with the same atomic number but different mass numbers.
 
-Read the pattern like this:
-
-Isotopes have the same <InlineMath math="Z" />, but different neutron counts <InlineMath math="n^0" /> and different mass numbers <InlineMath math="A" />.
+In short, isotopes share the same <InlineMath math="Z" />, while their neutron counts <InlineMath math="n^0" /> and mass numbers <InlineMath math="A" /> differ.
 
 The symbol <InlineMath math="Z" /> is the atomic number, which equals the number of protons. The symbol <InlineMath math="A" /> is the mass number, which equals protons plus neutrons. If <InlineMath math="Z" /> is the same, the element is the same. If <InlineMath math="n^0" /> is different, the mass number also changes.
 
-Isotopes belong to the same element <Highlight>because they have the same number of protons</Highlight>. Different numbers of neutrons give them different mass numbers.
+> Isotopes belong to the same element because their proton count stays fixed even when extra neutrons make the nucleus heavier.
 
-## Isotope Model
-
-Choose an isotope below. First notice what does not change: the **number of protons**. Then compare the neutron count.
+Isotopes belong to the same element <Highlight>because they have the same number of protons</Highlight>. Choose an isotope below to see the proton count stay constant while the neutron count changes.
 
 <IsotopeLab
   title={<>Isotope Reader</>}
@@ -36,6 +31,7 @@ Choose an isotope below. First notice what does not change: the **number of prot
       change.
     </>
   }
+  footer={<>Switch isotopes to see protons stay fixed while neutron count shifts mass.</>}
   labels={{
     chooseIsotope: "Choose an isotope example",
     atomicNumber: "Atomic number",
@@ -91,7 +87,13 @@ Choose an isotope below. First notice what does not change: the **number of prot
   }}
 />
 
-## Three Isotopes of Hydrogen
+Comparing the three hydrogen buttons and three carbon buttons confirms one rule right away. Changing the neutron count updates the mass number without ever turning the atom into a different element.
+
+## Hydrogen and Carbon Isotopes
+
+Hydrogen and carbon provide the clearest examples of how **extra neutrons change mass without altering an element**. Both families appear across everyday matter and laboratory standards.
+
+### Three Isotopes of Hydrogen
 
 All hydrogen isotopes have <InlineMath math="1" /> proton. Because their proton count is <InlineMath math="1" />, they are still hydrogen. The difference is their **neutron count**.
 
@@ -108,16 +110,17 @@ The scene shows the nucleus of each hydrogen isotope, protons in orange at the b
 <MathVisual
   title={<>Three Isotopes of Hydrogen</>}
   description={<>Protons (orange, back) and neutrons (gray, front) in hydrogen-1, hydrogen-2 and hydrogen-3. One grid step up is <InlineMath math="1" /> particle.</>}
+  footer={<>Every hydrogen isotope keeps one proton while neutron counts climb from zero to two.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
     view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1, z: 0 } },
     objects: [
-      { id: "one-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "two-p", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "two-n", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: (1) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "three-p", kind: "cuboid", appearance: "primary", center: { x: 5, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "three-n", kind: "cuboid", appearance: "reference", center: { x: 5, y: (2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "one-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "two-p", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "two-n", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 0.5, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "three-p", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "three-n", kind: "cuboid", appearance: "reference", center: { x: 5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
     ],
     labels: [
       { key: "one", objectId: "one-p", at: { x: 0, y: 1.5, z: -0.75 }, placement: "above" },
@@ -132,25 +135,47 @@ The scene shows the nucleus of each hydrogen isotope, protons in orange at the b
   }}
 />
 
-Protium, deuterium and tritium differ only in the nucleus. Each still has <InlineMath math="1" /> proton and <InlineMath math="1" /> electron, so **all three share the same electron clouds** and react almost alike.
+Look across the back row first. Every orange column stays one unit tall, showing why protium, deuterium, and tritium remain the same element.
 
-<OrbitalCloudLab
-  title={<>Isotopes Share Their Orbitals</>}
-  description={<>Switch between the hydrogen orbitals that every isotope of hydrogen can use.</>}
-  orbitals={["1s", "2s", "2pz"]}
+Protium, deuterium, and tritium differ only inside the nucleus. Each still has <InlineMath math="1" /> proton and <InlineMath math="1" /> electron, so **all three share the same outer electron layout** and behave almost identically in chemical reactions.
+
+<MathVisual
+  title={<>Same Electron Count Different Nuclear Mass</>}
+  description={<>Electrons (violet, flat line at one) versus mass number (orange, rising from one to three) across the three isotopes of hydrogen.</>}
+  footer={<>Matching electron counts explain why isotopes share almost identical chemistry.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 3.5 }, y: { min: 0, max: 3.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "e-line", kind: "segment", appearance: "secondary", from: { x: 1, y: 1 }, to: { x: 3, y: 1 } },
+      { id: "m-line", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 3, y: 3 } },
+      { id: "e1", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "e2", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "e3", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "m2", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+      { id: "m3", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "h1", objectId: "e1", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "h2", objectId: "m2", at: { x: 2, y: 2 }, placement: "above" },
+      { key: "h3", objectId: "m3", at: { x: 3, y: 3 }, placement: "above" },
+      { key: "elec", objectId: "e3", at: { x: 3, y: 1 }, placement: "below" },
+    ],
+  }}
   labels={{
-    angular: <>Angular nodes</>,
-    choose: "Choose an orbital",
-    numbers: <>Quantum numbers</>,
-    orbital: <>Orbital</>,
-    radial: <>Radial nodes</>,
-    view: "Electron cloud of an orbital",
+    h1: <InlineMath math="^{1}\mathrm{H}:\ A=1" />,
+    h2: <InlineMath math="^{2}\mathrm{H}:\ A=2" />,
+    h3: <InlineMath math="^{3}\mathrm{H}:\ A=3" />,
+    elec: <InlineMath math="e^-=1" />,
   }}
 />
 
-## Carbon Isotopes Differ in Neutron Count
+Chemical bonding depends on the outer electrons, which stay flat at one across all three isotopes. Only physical properties tied to mass, such as density or diffusion speed, shift noticeably.
 
-Carbon always has <InlineMath math="6" /> protons. In <InlineMath math="{}^{12}_{6}\mathrm{C}" />, <InlineMath math="{}^{13}_{6}\mathrm{C}" />, and <InlineMath math="{}^{14}_{6}\mathrm{C}" />, the neutron count increases.
+### Carbon Isotopes Differ in Neutron Count
+
+Carbon always has <InlineMath math="6" /> protons. In <InlineMath math="{}^{12}_{6}\mathrm{C}" />, <InlineMath math="{}^{13}_{6}\mathrm{C}" />, and <InlineMath math="{}^{14}_{6}\mathrm{C}" />, the neutron count rises step by step.
 
 <BlockMath math="\begin{aligned}
 {}^{12}_{6}\mathrm{C} &: n^0 = 12 - 6 = 6 \\
@@ -160,7 +185,7 @@ Carbon always has <InlineMath math="6" /> protons. In <InlineMath math="{}^{12}_
 
 <InlineMath math="{}^{12}_{6}\mathrm{C}" /> and <InlineMath math="{}^{13}_{6}\mathrm{C}" /> are stable. <InlineMath math="{}^{14}_{6}\mathrm{C}" /> is radioactive, so its amount in nature is extremely small. Because <InlineMath math="{}^{14}_{6}\mathrm{C}" /> **decays over time**, scientists can use it to estimate the age of objects that once came from living things, such as old wood or bone.
 
-## Differences between Isotopes and Ions
+## Differences Between Isotopes and Ions
 
 An ion forms when an atom gains or loses electrons. Isotopes of the same element **differ in their number of neutrons**.
 
@@ -169,19 +194,20 @@ An ion forms when an atom gains or loses electrons. Isotopes of the same element
 | Ion | Electrons | Protons |
 | Isotope | Neutrons | Protons |
 
-For example, <InlineMath math="\mathrm{C}^{+}" /> is a carbon ion that has lost one electron. With <InlineMath math="6" /> protons and charge <InlineMath math="+1" />, its electron count is <InlineMath math="6 - 1 = 5" />. In contrast, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> is a carbon isotope because its neutron count is different from <InlineMath math="{}^{12}_{6}\mathrm{C}" />.
+For example, <InlineMath math="\mathrm{C}^{+}" /> is a carbon ion that has lost one electron. With <InlineMath math="6" /> protons and charge <InlineMath math="+1" />, its electron count is <InlineMath math="5" />. In contrast, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> is a carbon isotope because its neutron count is different from <InlineMath math="{}^{12}_{6}\mathrm{C}" />.
 
-If the atom is neutral, electrons still equal protons:
+If the atom is neutral, electrons still equal protons.
 
 <BlockMath math="\text{neutral atom} \Rightarrow e^- = p^+" />
 
 So neutral <InlineMath math="{}^{14}_{6}\mathrm{C}" /> has <InlineMath math="6" /> protons, <InlineMath math="6" /> electrons, and <InlineMath math="8" /> neutrons.
 
-Place every nucleus by its neutrons across and its protons up. Isotopes of one element share <InlineMath math="Z" />, so the carbon isotopes line up on one amber row. An ion doesn't move on this map at all, because only its electrons changed. Zoom in and compare <InlineMath math="^{14}\mathrm{C}" /> with <InlineMath math="^{14}\mathrm{N}" />: the same mass number, different elements.
+Place every nucleus by its neutrons across and its protons up. Isotopes of one element share <InlineMath math="Z" />, so the carbon isotopes line up on one amber row. An ion does not move on this map at all, because only its electrons changed. Compare <InlineMath math="^{14}\mathrm{C}" /> with <InlineMath math="^{14}\mathrm{N}" />, which share a mass number yet belong to different elements.
 
 <MathVisual
-  title={<>Isotopes Line Up, Ions Stay Put</>}
+  title={<>Isotopes Line Up Ions Stay Put</>}
   description={<>Five nuclei by neutron number (across) and proton number (up). The amber row holds the three isotopes of carbon.</>}
+  footer={<>Horizontal neighbors share proton count as isotopes of the same element.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 5, max: 9 }, y: { min: 5, max: 9 } },
@@ -211,21 +237,48 @@ Place every nucleus by its neutrons across and its protons up. Isotopes of one e
   }}
 />
 
-An ion differs from its atom by charge, an isotope by neutrons. In a magnetic field **only the charged particles curve**, while the neutron keeps a straight line.
+All three carbon points stay pinned on the horizontal line <InlineMath math="Z = 6" />. Stepping upward to <InlineMath math="Z = 7" /> immediately changes the element to nitrogen.
 
-<ParticleTrackLab
-  title={<>Charged and Neutral Particles</>}
-  description={<>Raise the field and watch which tracks curl and which stay straight.</>}
+An ion differs from its atom by charge, while an isotope differs by neutrons. In a magnetic field **only charged particles curve**, whereas an uncharged neutron keeps moving along a straight line.
+
+<MathVisual
+  title={<>Charged Ions Versus Uncharged Neutrons</>}
+  description={<>Schematic tracks entering a magnetic field from the left. Positive protons curve one way, negative electrons curve strongly the opposite way, and neutrons travel straight.</>}
+  footer={<>A magnetic field deflects charged particles by sign and leaves neutrons straight.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "n-track", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.5, y: 0 } },
+      { id: "p-a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.8, y: 0.6 } },
+      { id: "p-b", kind: "segment", appearance: "primary", from: { x: 2.8, y: 0.6 }, to: { x: 5.4, y: 1.8 } },
+      { id: "e-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.0, y: -1.1 } },
+      { id: "e-b", kind: "segment", appearance: "secondary", from: { x: 2.0, y: -1.1 }, to: { x: 3.6, y: -2.9 } },
+      { id: "n-pt", kind: "point", appearance: "reference", at: { x: 5.5, y: 0 } },
+      { id: "p-pt", kind: "point", appearance: "primary", at: { x: 5.4, y: 1.8 } },
+      { id: "e-pt", kind: "point", appearance: "secondary", at: { x: 3.6, y: -2.9 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-pt", at: { x: 5.5, y: 0 }, placement: "above" },
+      { key: "p", objectId: "p-pt", at: { x: 5.4, y: 1.8 }, placement: "above" },
+      { key: "e", objectId: "e-pt", at: { x: 3.6, y: -2.9 }, placement: "right" },
+    ],
+  }}
   labels={{
-    electron: <>Electron path radius</>,
-    field: "Magnetic field strength",
-    proton: <>Proton path radius</>,
-    ratio: <>Ratio of radii</>,
-    view: "Particle tracks in a magnetic field",
+    n: <InlineMath math="n^0\ (\text{straight})" />,
+    p: <InlineMath math="p^+\ (\text{gentle curve})" />,
+    e: <InlineMath math="e^-\ (\text{tight curve})" />,
   }}
 />
 
-## Uses of Isotopes
+The track geometry separates charge from mass at a glance. Charge sets whether and which way a particle bends, while mass controls how tightly it turns.
+
+## Nuclear Stability and Isotope Uses
+
+An isotope's neutron-to-proton balance shapes **how stable its nucleus remains over time**. That balance decides whether an isotope serves as a stable reference or a radioactive clock.
+
+### Practical Uses of Isotopes
 
 Neutron count affects an isotope's **mass and nuclear stability**. Those properties determine why a particular isotope can serve as a tracer, a possible energy source, or a clock for estimating the age of a material.
 
@@ -235,13 +288,14 @@ Neutron count affects an isotope's **mass and nuclear stability**. Those propert
 
 Any use of an isotope must account for its nuclear stability, meaning whether its nucleus tends to decay. Radioactive isotopes such as tritium and <InlineMath math="{}^{14}_{6}\mathrm{C}" /> require controlled procedures and radiation-safety rules.
 
-## Carbon Fourteen Decays Slowly
+### Carbon Fourteen Decays Slowly
 
-Carbon dating uses the isotope <InlineMath math="{}^{14}_{6}\mathrm{C}" />, which decays into <InlineMath math="{}^{14}_{7}\mathrm{N}" />. Nobody can predict when one nucleus will decay, but **the number left always halves every <InlineMath math="5730" /> years**. Move the time slider. After <InlineMath math="11\,460" /> years, about a quarter of the nuclei are left.
+Carbon dating uses the isotope <InlineMath math="{}^{14}_{6}\mathrm{C}" />, which decays into <InlineMath math="{}^{14}_{7}\mathrm{N}" />. Nobody can predict when one nucleus will decay, but **the number left always halves every <InlineMath math="5730" /> years**. Move the time slider to see about a quarter of the nuclei remain after <InlineMath math="11\,460" /> years.
 
 <RadioactiveDecayLab
   title={<>Carbon-14 Decay</>}
   description={<>Dark nuclei are carbon-14, and violet ones have become nitrogen-14.</>}
+  footer={<>Half of the remaining carbon-14 nuclei decay during each 5730 year half-life.</>}
   labels={{
     counted: <>Nuclei left</>,
     expected: <>Expected by the decay law</>,
@@ -252,13 +306,13 @@ Carbon dating uses the isotope <InlineMath math="{}^{14}_{6}\mathrm{C}" />, whic
   }}
 />
 
+Drag the slider across one, two, and three half-lives to watch the count drop from half to a quarter to an eighth. That steady halving curve turns carbon-14 into a reliable archaeological clock.
+
 ## From Isotopes to Average Atomic Mass
 
 On the periodic table, relative atomic mass is often a decimal. That number is not the mass number of one isotope. Relative atomic mass is calculated from the mass of each isotope and its abundance in a reference sample.
 
 The tabulated percentages are a [**representative isotopic composition**](https://www.physics.nist.gov/PhysRefData/Compositions/notes.html) for reference materials. The composition can vary with a material's origin and treatment. The percentages below are therefore reference values, and a particular natural sample may differ.
-
-Carbon is an easy example:
 
 | Carbon isotope | Mass number | Representative isotopic composition |
 | :------------- | :---------- | :---------------- |
@@ -268,35 +322,47 @@ Carbon is an easy example:
 
 Because <InlineMath math="{}^{12}_{6}\mathrm{C}" /> is the most abundant carbon isotope, carbon's relative atomic mass on the periodic table is close to <InlineMath math="12" />, but not exactly <InlineMath math="12" />.
 
-## A Mass Spectrometer Separates Isotopes
+Isotope percentages are measured with a mass spectrometer. Each peak's position shows the isotope mass and **its height reflects natural abundance**. Look at chlorine's two peaks below and notice why the weighted average sits at <InlineMath math="35.45" />.
 
-Isotope percentages are measured with a mass spectrometer. A magnet bends the ions, and **a heavier ion turns on a wider path**, so each isotope lands in its own place. The height of each peak follows the isotope's abundance. Choose chlorine and compare its average mass with the <InlineMath math="35.45" /> in the periodic table.
-
-<MassSpectrometerLab
-  title={<>Isotopes of Chlorine, Carbon, and Neon</>}
-  description={<>Each isotope lands on the detector at a different distance.</>}
-  samples={["chlorine", "carbon", "neon"]}
+<MathVisual
+  title={<>Chlorine Mass Spectrum and Weighted Average</>}
+  description={<>Natural abundances of chlorine-35 (<InlineMath math="75.8\%" />) and chlorine-37 (<InlineMath math="24.2\%" />), with a highlight line marking their weighted average at <InlineMath math="35.45" />.</>}
+  footer={<>Because chlorine-35 is three times more abundant, the average sits near 35.45.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 34, max: 38 }, y: { min: -5, max: 90 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "baseline", kind: "segment", appearance: "reference", from: { x: 34.4, y: 0 }, to: { x: 37.6, y: 0 } },
+      { id: "cl35", kind: "segment", appearance: "primary", from: { x: 35, y: 0 }, to: { x: 35, y: 75.8 } },
+      { id: "cl37", kind: "segment", appearance: "secondary", from: { x: 37, y: 0 }, to: { x: 37, y: 24.2 } },
+      { id: "avg-line", kind: "segment", appearance: "highlight", from: { x: 35.45, y: 0 }, to: { x: 35.45, y: 55 } },
+      { id: "p35", kind: "point", appearance: "primary", at: { x: 35, y: 75.8 } },
+      { id: "p37", kind: "point", appearance: "secondary", at: { x: 37, y: 24.2 } },
+      { id: "pavg", kind: "point", appearance: "highlight", at: { x: 35.45, y: 55 } },
+    ],
+    labels: [
+      { key: "c35", objectId: "p35", at: { x: 35, y: 75.8 }, placement: "above" },
+      { key: "c37", objectId: "p37", at: { x: 37, y: 24.2 }, placement: "above" },
+      { key: "avg", objectId: "pavg", at: { x: 35.45, y: 55 }, placement: "right" },
+    ],
+  }}
   labels={{
-    average: <>Average relative atomic mass</>,
-    choose: "Choose an element",
-    isotopes: <>Isotopes and abundance</>,
-    north: "N",
-    radius: <>Path radius</>,
-    ratio: <>Ratio of radii</>,
-    south: "S",
-    view: "Mass spectrometer",
+    c35: <InlineMath math="^{35}\mathrm{Cl}:\ 75.8\%" />,
+    c37: <InlineMath math="^{37}\mathrm{Cl}:\ 24.2\%" />,
+    avg: <InlineMath math="A_r \approx 35.45" />,
   }}
 />
 
-## Distinguishing Isotopes by Atomic and Mass Numbers
+The amber average line leans strongly toward the taller <InlineMath math="^{35}\mathrm{Cl}" /> peak instead of landing halfway at <InlineMath math="36" />. Every periodic table decimal mass reflects this same weighted pull toward the most abundant isotopes.
 
-Use these three questions whenever you read an isotope:
+Use these three questions whenever you read an isotope symbol.
 
 - How many protons are there?
 - What is the mass number?
 - How many neutrons come from <InlineMath math="A - Z" />?
 
-For <InlineMath math="{}^{92}_{40}\mathrm{Zr}" />:
+Applying those steps to <InlineMath math="{}^{92}_{40}\mathrm{Zr}" /> gives its neutron count directly.
 
 <BlockMath math="\begin{aligned}
 n^0 &= A - Z \\
@@ -304,9 +370,9 @@ n^0 &= A - Z \\
 &= 52
 \end{aligned}" />
 
-So <InlineMath math="{}^{92}_{40}\mathrm{Zr}" /> has <InlineMath math="52" /> neutrons. The relation <InlineMath math="n=A-Z" /> works for any isotope with a known atomic number and mass number, so no neutron table is needed.
+So <InlineMath math="{}^{92}_{40}\mathrm{Zr}" /> has <InlineMath math="52" /> neutrons. The relation <InlineMath math="n = A - Z" /> works for any isotope with a known atomic number and mass number, so no neutron table is needed.
 
-The **weighted average** combines isotope masses with their abundances. For this exercise, approximate the isotope masses of carbon-12 and carbon-13 as <InlineMath math="12\ \mathrm{u}" /> and <InlineMath math="13\ \mathrm{u}" />, and neglect the tiny amount of carbon-14:
+The **weighted average** combines isotope masses with their abundances. Approximating the isotope masses of carbon-12 and carbon-13 as <InlineMath math="12\ \mathrm{u}" /> and <InlineMath math="13\ \mathrm{u}" /> while neglecting the tiny trace of carbon-14 gives the standard periodic table value.
 
 <BlockMath math="\begin{aligned}
 A_r(\mathrm C)&\approx 12(0.9893)+13(0.0107)\\

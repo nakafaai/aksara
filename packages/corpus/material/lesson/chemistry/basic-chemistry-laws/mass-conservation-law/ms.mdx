@@ -17,35 +17,63 @@ Apabila tindak balas kimia berlaku, atom tidak lenyap dan tidak muncul daripada 
 
 Sempadan sistem menentukan apa yang dikira dalam jisim. Dalam bekas tertutup, setiap bahan kekal di dalam bahagian yang ditimbang. Dalam bekas terbuka, gas boleh keluar melepasi sempadan itu. Neraca kemudian menunjukkan jisim yang lebih kecil kerana gas yang terlepas tidak lagi berada di atasnya. <Highlight>Jumlah keseluruhan jirim</Highlight> kekal sama semasa perubahan kimia dan perubahan fizik, jadi bacaan neraca turun walaupun jirim itu tidak lenyap.
 
+> Jirim tidak pernah lenyap dalam tindak balas kimia. Apabila bacaan neraca berubah, perhatikan gas yang keluar atau masuk melepasi sempadan yang sedang kamu timbang.
+
 ## Pepejal Baharu dengan Jisim yang Sama
 
 Sesuatu tindak balas boleh menghasilkan bahan yang baharu sama sekali tanpa mengubah jisim. Larutan argentum nitrat dan larutan garam biasa kedua-duanya jernih. Apabila kamu mencampurkannya, ion argentum dan ion klorida bergabung menjadi argentum klorida yang tidak larut, jadi **mendakan putih** muncul seperti awan.
 
 <BlockMath math="\mathrm{AgNO_3(aq)} + \mathrm{NaCl(aq)} \rightarrow \mathrm{AgCl(s)} + \mathrm{NaNO_3(aq)}" />
 
-Setiap bikar mengandungi <InlineMath math="50.00\ \mathrm{g}" /> air dengan <InlineMath math="0.0050\ \mathrm{mol}" /> garamnya, iaitu <InlineMath math="0.85\ \mathrm{g}" /> argentum nitrat dan <InlineMath math="0.29\ \mathrm{g}" /> natrium klorida. Kedua-dua bikar berada di atas neraca yang sama sebelum dan selepas penuangan.
+Setiap bikar mengandungi <InlineMath math="50.00\ \mathrm{g}" /> air dengan <InlineMath math="0.0050\ \mathrm{mol}" /> garamnya, memberikan <InlineMath math="0.85\ \mathrm{g}" /> argentum nitrat dan <InlineMath math="0.29\ \mathrm{g}" /> natrium klorida. Oleh sebab <InlineMath math="100.00\ \mathrm{g}" /> air tidak berubah pada kedua-dua belah, kita boleh membandingkan jisim garam bahan tindak balas secara langsung dengan jisim mendakan pepejal dan garam hasil terlarut.
 
-<PrecipitateLab
-  title={<>Mendakan Putih di Atas Neraca</>}
+<MathVisual
+  title={<>Jisim Zat Terlarut Sebelum dan Selepas Pemendakan</>}
   description={
     <>
-      Mainkan untuk menuang larutan argentum nitrat ke dalam larutan garam. Awan
-      argentum klorida muncul, dan bacaannya tidak berubah.
+      Bahan tindak balas di kiri (<InlineMath math="\mathrm{AgNO_3}" /> dan{" "}
+      <InlineMath math="\mathrm{NaCl}" />) dibandingkan dengan hasil di kanan (pepejal{" "}
+      <InlineMath math="\mathrm{AgCl}" /> dan larutan{" "}
+      <InlineMath math="\mathrm{NaNO_3}" />). Satu petak grid ke atas mewakili{" "}
+      <InlineMath math="0.20\ \mathrm{g}" />.
     </>
   }
+  footer={<>Kedua-dua susunan mencecah paras 1.14 g yang sama manakala 100.00 g air kekal.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "total-line", kind: "segment", appearance: "reference", from: { x: 1, y: 5.7 }, to: { x: 7, y: 5.7 } },
+      { id: "agno3", kind: "segment", appearance: "primary", from: { x: 2, y: 0 }, to: { x: 2, y: 4.25 } },
+      { id: "nacl", kind: "segment", appearance: "secondary", from: { x: 2, y: 4.25 }, to: { x: 2, y: 5.7 } },
+      { id: "before-split", kind: "point", appearance: "primary", at: { x: 2, y: 4.25 } },
+      { id: "before-top", kind: "point", appearance: "secondary", at: { x: 2, y: 5.7 } },
+      { id: "agcl", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 3.6 } },
+      { id: "nano3", kind: "segment", appearance: "highlight", from: { x: 6, y: 3.6 }, to: { x: 6, y: 5.7 } },
+      { id: "after-split", kind: "point", appearance: "construction", at: { x: 6, y: 3.6 } },
+      { id: "after-top", kind: "point", appearance: "highlight", at: { x: 6, y: 5.7 } },
+    ],
+    labels: [
+      { key: "agno3", objectId: "agno3", at: { x: 2, y: 2.1 }, placement: "right" },
+      { key: "nacl", objectId: "nacl", at: { x: 2, y: 4.95 }, placement: "right" },
+      { key: "before-total", objectId: "before-top", at: { x: 2, y: 5.7 }, placement: "above" },
+      { key: "agcl", objectId: "agcl", at: { x: 6, y: 1.8 }, placement: "right" },
+      { key: "nano3", objectId: "nano3", at: { x: 6, y: 4.65 }, placement: "right" },
+      { key: "after-total", objectId: "after-top", at: { x: 6, y: 5.7 }, placement: "above" },
+    ],
+  }}
   labels={{
-    readingBefore: <>Bacaan sebelum penuangan</>,
-    readingAfter: <>Bacaan selepas penuangan</>,
-    precipitate: (
-      <>
-        Mendakan <InlineMath math="\mathrm{AgCl}" /> yang terbentuk
-      </>
-    ),
-    viewLabel: "Dua bikar di atas neraca",
+    agno3: <InlineMath math="\mathrm{AgNO_3}:\ 0.85\ \mathrm{g}" />,
+    nacl: <InlineMath math="\mathrm{NaCl}:\ 0.29\ \mathrm{g}" />,
+    "before-total": <InlineMath math="1.14\ \mathrm{g}" />,
+    agcl: <InlineMath math="\mathrm{AgCl}:\ 0.72\ \mathrm{g}" />,
+    nano3: <InlineMath math="\mathrm{NaNO_3}:\ 0.42\ \mathrm{g}" />,
+    "after-total": <InlineMath math="1.14\ \mathrm{g}" />,
   }}
 />
 
-Neraca menunjukkan <InlineMath math="101.14\ \mathrm{g}" /> sebelum dan selepas penuangan. Kira-kira <InlineMath math="0.72\ \mathrm{g}" /> pepejal argentum klorida terbentuk, tetapi atom-atomnya datang daripada bahan yang sudah ada di dalam bikar. Tiada gas yang masuk atau keluar, jadi bikar yang terbuka pun mengekalkan jisim yang sama.
+Bersama <InlineMath math="100.00\ \mathrm{g}" /> air, neraca menunjukkan <InlineMath math="101.14\ \mathrm{g}" /> sebelum dan selepas pencampuran. Kira-kira <InlineMath math="0.72\ \mathrm{g}" /> pepejal argentum klorida dan <InlineMath math="0.42\ \mathrm{g}" /> natrium nitrat terlarut terbentuk, dan setiap atomnya datang daripada bahan yang sudah ada di dalam bikar. Tiada gas yang masuk atau keluar, jadi bikar terbuka pun mengekalkan jisim yang sama.
 
 ## Penimbangan oleh Lavoisier
 
@@ -61,6 +89,7 @@ Eksperimennya yang paling terkenal dicatat dalam [buku Lavoisier, Elements of Ch
       sementara merkuri di dalam balang loceng naik kerana udaranya digunakan.
     </>
   }
+  footer={<>Udara di bawah balang loceng menyusut semasa kalks merah terbentuk pada merkuri.</>}
   labels={{
     day: "Hari pemanasan",
     air: <>Udara di bawah balang loceng</>,
@@ -79,7 +108,7 @@ Eksperimennya yang paling terkenal dicatat dalam [buku Lavoisier, Elements of Ch
   }}
 />
 
-Lavoisier mengumpul <InlineMath math="45" /> grain kalks. Apabila dia memanaskan kalks itu dengan lebih kuat, kalks itu bertukar semula menjadi <InlineMath math="41.5" /> grain merkuri dan <InlineMath math="7" /> hingga <InlineMath math="8" /> inci padu gas. Bezanya, <InlineMath math="45-41.5=3.5" /> grain, ialah jisim gas yang telah diambil oleh merkuri daripada udara. **Jisim tidak muncul daripada tiada**: kalks itu lebih berat kerana oksigen daripada udara bergabung dengannya.
+Lavoisier mengumpul <InlineMath math="45" /> grain kalks. Apabila dia memanaskan kalks itu dengan lebih kuat, kalks itu bertukar semula menjadi <InlineMath math="41.5" /> grain merkuri dan <InlineMath math="7" /> hingga <InlineMath math="8" /> inci padu gas. Bezanya, <InlineMath math="45-41.5=3.5" /> grain, ialah jisim gas yang telah diambil oleh merkuri daripada udara. **Jisim tidak muncul daripada tiada**, kerana kalks itu lebih berat hanya selepas oksigen daripada udara bergabung dengannya.
 
 Lavoisier membantu menetapkan hukum keabadian jisim dan mengaitkan pembakaran dengan oksigen.
 
@@ -97,6 +126,7 @@ Neraca dalam model ini **disifarkan bersama bekas kosong**. Jadi, bacaannya hany
       bacaannya apabila satu bahagian model melepasi sempadan sebelum bertindak balas.
     </>
   }
+  footer={<>Tukar antara mod tertutup dengan terbuka untuk melihat perubahan bacaan neraca.</>}
   labels={{
     chooseMode: "Pilih sempadan sistem",
     before: "Sebelum",
@@ -145,9 +175,11 @@ Neraca dalam model ini **disifarkan bersama bekas kosong**. Jadi, bacaannya hany
   }}
 />
 
+Perhatikan bahawa bacaan neraca hanya berubah apabila jirim melintasi sempadan putus-putus. Bekas yang tertutup mengekalkan bacaan pada <InlineMath math="12.00\ \mathrm{g}" />, manakala bekas terbuka membiarkan sebahagian jirim keluar daripada kawasan timbangan.
+
 ## Imbangan Jisim dalam Sistem Terbuka
 
-Paparan terbuka bermula dengan <InlineMath math="10.00\ \mathrm{g}" /> zink dan <InlineMath math="2.00\ \mathrm{g}" /> sulfur yang sama. Model itu kemudian menunjukkan <InlineMath math="1.00\ \mathrm{g}" /> sulfur **melepasi sempadan sebagai wap** sebelum bertindak balas. Nilai [jisim atom piawai versi ringkas](https://www.ciaaw.org/abridged-atomic-weights.htm) tahun 2024 ialah <InlineMath math="A_r(\mathrm{Zn})=65.38" /> dan <InlineMath math="A_r(\mathrm{S})=32.06" />. Dengan nilai ini, baki sulfur bertindak balas dengan kira-kira <InlineMath math="2.04\ \mathrm{g}" /> zink.
+Paparan terbuka bermula dengan <InlineMath math="10.00\ \mathrm{g}" /> zink dan <InlineMath math="2.00\ \mathrm{g}" /> sulfur yang sama. Model itu kemudian menunjukkan <InlineMath math="1.00\ \mathrm{g}" /> sulfur **terlepas sebagai wap** sebelum sempat bertindak balas. Nilai [jisim atom piawai versi ringkas](https://www.ciaaw.org/abridged-atomic-weights.htm) tahun 2024 ialah <InlineMath math="A_r(\mathrm{Zn})=65.38" /> dan <InlineMath math="A_r(\mathrm{S})=32.06" />, jadi baki sulfur bertindak balas dengan kira-kira <InlineMath math="2.04\ \mathrm{g}" /> zink.
 
 <MathContainer>
 <BlockMath math="m_{\mathrm{Zn}}=1\ \mathrm{g}\times\frac{65.38}{32.06}\approx 2.04\ \mathrm{g}" />
@@ -155,13 +187,14 @@ Paparan terbuka bermula dengan <InlineMath math="10.00\ \mathrm{g}" /> zink dan 
 <BlockMath math="\begin{aligned} &amp;m_{\mathrm{ZnS}} \approx 2.04 + 1.00 = 3.04\ \mathrm{g} \\ &amp;m_{\mathrm{Zn\ baki}} \approx 10.00 - 2.04 = 7.96\ \mathrm{g} \\ &amp;m_{\mathrm{di\ atas\ neraca}} \approx 3.04 + 7.96 = 11.00\ \mathrm{g} \\ &amp;m_{\mathrm{sistem\ diperluas}} = 11.00 + 1.00 \\ &amp;= 12.00\ \mathrm{g} \end{aligned}" />
 </MathContainer>
 
-Neraca hanya mengukur jirim yang masih berada di dalam sempadan yang dipilih, jadi neraca menunjukkan <InlineMath math="11.00\ \mathrm{g}" /> selepas <InlineMath math="1.00\ \mathrm{g}" /> wap sulfur keluar. Jika wap yang terlepas itu dimasukkan ke dalam sistem, jumlah jisim tetap <InlineMath math="12.00\ \mathrm{g}" />.
+Neraca hanya menyukat jirim yang masih berada di dalam sempadan pilihan kita, lalu menunjukkan <InlineMath math="11.00\ \mathrm{g}" /> selepas wap itu pergi. Apabila satu gram wap itu dimasukkan semula ke dalam kiraan, jumlah sistem yang diperluas kekal <InlineMath math="12.00\ \mathrm{g}" />.
 
-Tiga turus di bawah ialah bacaan neraca, dengan satu petak grid mewakili <InlineMath math="4\ \mathrm{g}" />. Apabila setiap bahan kekal di dalam bekas, turus tertutup kekal pada <InlineMath math="12.00\ \mathrm{g}" />. Dalam paparan terbuka, <InlineMath math="1.00\ \mathrm{g}" /> sulfur melepasi sempadan sebelum bertindak balas, jadi neraca hanya menunjukkan <InlineMath math="11.00\ \mathrm{g}" />. Jisim itu tidak lenyap, cuma keluar daripada sistem yang sedang kamu timbang.
+Tiga turus di bawah membandingkan bacaan awal, hasil tertutup dan hasil terbuka dengan skala satu petak grid bagi <InlineMath math="4\ \mathrm{g}" />. Bandingkan ketinggian ketiganya untuk melihat bagaimana satu gram yang terlepas merendahkan turus terakhir.
 
 <MathVisual
   title={<>Bacaan Neraca</>}
   description={<><InlineMath math="10.00\text{ g}" /> zink dan <InlineMath math="2.00\text{ g}" /> sulfur sebelum tindak balas, kemudian selepas tindak balas dalam sistem tertutup dan dalam sistem terbuka. Satu petak grid ke atas mewakili <InlineMath math="4\text{ g}" />.</>}
+  footer={<>Timbangan tertutup kekal pada 12.00 g manakala timbangan terbuka turun ke 11.00 g.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
@@ -184,15 +217,19 @@ Tiga turus di bawah ialah bacaan neraca, dengan satu petak grid mewakili <Inline
   }}
 />
 
-Gas boleh keluar daripada sistem terbuka, tetapi gas daripada udara juga boleh masuk dan mengambil bahagian dalam tindak balas. Dua eksperimen berikut menunjukkan kedua-dua arah itu pada jenis neraca yang sama.
+Turus terbuka lebih rendah hanya kerana sebahagian jirim bergerak keluar daripada sempadan yang ditimbang. Gas boleh keluar daripada sistem terbuka, tetapi gas daripada udara juga boleh masuk dan mengambil bahagian dalam tindak balas. Dua eksperimen berikut menguji kedua-dua arah itu pada jenis neraca yang sama.
 
 ### Gas Terlepas daripada Kelalang Terbuka
 
-Soda penaik, iaitu natrium bikarbonat, bertindak balas dengan asid etanoik di dalam cuka dan menghasilkan gas karbon dioksida.
+Soda penaik, natrium bikarbonat, bertindak balas dengan asid etanoik di dalam cuka dan menghasilkan gas karbon dioksida.
 
 <BlockMath math="\mathrm{NaHCO_3} + \mathrm{CH_3COOH} \rightarrow \mathrm{CH_3COONa} + \mathrm{H_2O} + \mathrm{CO_2}" />
 
-Setiap mol soda penaik menghasilkan **satu mol karbon dioksida**. Daripada <InlineMath math="2.00\ \mathrm{g}" /> soda penaik kamu mendapat <InlineMath math="2.00\times\frac{44.01}{84.01}\approx1.05\ \mathrm{g}" /> gas. Neraca disifarkan dengan kelalang dan piring yang kosong, jadi bacaan pertamanya ialah <InlineMath math="100.00\ \mathrm{g}" /> cuka ditambah soda penaik.
+Setiap mol soda penaik menghasilkan **satu mol karbon dioksida**. Daripada <InlineMath math="2.00\ \mathrm{g}" /> soda penaik, kita menghitung jisim gas yang terbentuk.
+
+<BlockMath math="m_{\mathrm{CO_2}} = 2.00\ \mathrm{g} \times \frac{44.01}{84.01} \approx 1.05\ \mathrm{g}" />
+
+Neraca disifarkan dengan kelalang dan piring yang kosong, jadi bacaan pertamanya ialah <InlineMath math="100.00\ \mathrm{g}" /> cuka ditambah soda penaik.
 
 <FizzBalanceLab
   title={<>Soda Penaik dan Cuka di Atas Neraca</>}
@@ -202,6 +239,7 @@ Setiap mol soda penaik menghasilkan **satu mol karbon dioksida**. Daripada <Inli
       kelalang yang ditutup dengan penyumbat.
     </>
   }
+  footer={<>Penyumbat memerangkap karbon dioksida supaya neraca kekal pada 102.00 g.</>}
   labels={{
     chooseSeal: "Pilih kelalang",
     seals: { open: "Terbuka", closed: "Tertutup" },
@@ -229,7 +267,11 @@ Wul keluli yang terbakar sebenarnya menjadi **lebih berat**. Ferum bertindak bal
 
 <BlockMath math="3\mathrm{Fe} + 2\mathrm{O_2} \rightarrow \mathrm{Fe_3O_4}" />
 
-Setiap <InlineMath math="3\times55.845=167.535\ \mathrm{g}" /> ferum mengikat <InlineMath math="4\times15.999=63.996\ \mathrm{g}" /> oksigen. Jika kesemua <InlineMath math="1.50\ \mathrm{g}" /> wul keluli terbakar, oksigen yang bergabung ialah <InlineMath math="1.50\times\frac{63.996}{167.535}\approx0.57\ \mathrm{g}" />. [Eksperimen pembakaran wul besi daripada Royal Society of Chemistry](https://edu.rsc.org/experiments/the-combustion-of-iron-wool/717.article) menunjukkan pertambahan jisim ini pada neraca yang ringkas.
+Dalam tindak balas ini, <InlineMath math="3" /> mol ferum (<InlineMath math="167.535\ \mathrm{g}" />) mengikat <InlineMath math="4" /> mol atom oksigen (<InlineMath math="63.996\ \mathrm{g}" />). Jika kesemua <InlineMath math="1.50\ \mathrm{g}" /> wul keluli terbakar, kita mengira jisim oksigen yang bergabung dengannya.
+
+<BlockMath math="m_{\mathrm{O_2}} = 1.50\ \mathrm{g} \times \frac{63.996}{167.535} \approx 0.57\ \mathrm{g}" />
+
+[Eksperimen pembakaran wul besi daripada Royal Society of Chemistry](https://edu.rsc.org/experiments/the-combustion-of-iron-wool/717.article) menunjukkan pertambahan jisim ini pada neraca yang ringkas.
 
 <SteelWoolLab
   title={<>Wul Keluli yang Terbakar Menjadi Lebih Berat</>}
@@ -239,6 +281,7 @@ Setiap <InlineMath math="3\times55.845=167.535\ \mathrm{g}" /> ferum mengikat <I
       terbuka dengan pembakaran di dalam balang udara yang tertutup.
     </>
   }
+  footer={<>Udara terbuka membekalkan oksigen tambahan manakala balang tertutup sudah menimbangnya.</>}
   labels={{
     chooseSeal: "Pilih keadaan",
     seals: { open: "Udara terbuka", closed: "Balang tertutup" },
@@ -255,7 +298,7 @@ Di udara terbuka, oksigen datang dari luar sistem yang berada di atas neraca, ja
 
 Dalam satu eksperimen, <InlineMath math="10.00\ \mathrm{g}" /> zink dipanaskan bersama <InlineMath math="2.00\ \mathrm{g}" /> sulfur. Selepas tindak balas, <InlineMath math="6.08\ \mathrm{g}" /> zink sulfida terbentuk dan <InlineMath math="5.92\ \mathrm{g}" /> zink **tinggal tanpa bertindak balas**.
 
-Tatatanda ringkas stoikiometri pada aras zarah ialah:
+Pada aras zarah, kita menulis tatatanda ringkas stoikiometri seperti ini.
 
 <BlockMath math="\mathrm{Zn(s)} + \mathrm{S(s)} \rightarrow \mathrm{ZnS(s)}" />
 
@@ -265,9 +308,9 @@ Jisim hasil tindak balas tidak semestinya sama dengan jisim semua bahan permulaa
 
 <BlockMath math="\begin{aligned} &amp;m_{\mathrm{Zn\ bertindak\ balas}} = 10.00 - 5.92 = 4.08\ \mathrm{g} \\ &amp;m_{\mathrm{bahan\ yang\ bertindak\ balas}} = 4.08 + 2.00 \\ &amp;= 6.08\ \mathrm{g} \\ &amp;m_{\mathrm{hasil}} = 6.08\ \mathrm{g} \end{aligned}" />
 
-Dalam contoh ini, keabadian jisim dipatuhi bagi bahagian yang bertindak balas: jisim zink yang bertindak balas ditambah jisim sulfur sama dengan jisim zink sulfida yang terbentuk.
+Dalam contoh ini, keabadian jisim dipatuhi bagi bahagian yang bertindak balas kerana jisim zink yang bertindak balas ditambah jisim sulfur sama dengan jisim zink sulfida yang terbentuk.
 
-Jika seluruh bekas dikira, jisimnya juga tidak berubah:
+Jika seluruh bekas dikira, jumlah jisimnya juga tidak berubah.
 
 <BlockMath math="\begin{aligned}
 m_{\mathrm{sebelum}} &= 10.00 + 2.00 = 12.00\ \mathrm{g} \\
@@ -286,11 +329,12 @@ Persamaan kimia mesti seimbang kerana kedua-dua belah persamaan mengandungi bila
 
 Hukum komposisi tetap menjawab soalan yang lain. Apabila dua unsur membentuk sebatian yang sama, adakah nisbah jisim kedua-dua unsur itu sentiasa tetap?
 
-Asingkan tiga jisim dalam eksperimen zink dan sulfur. Sebelum tindak balas, turus itu memuatkan zink yang akan bertindak balas, zink yang tidak akan bertindak balas dan sulfur. Selepas tindak balas, bahagian yang bertindak balas sudah menjadi <InlineMath math="6.08\ \mathrm{g}" /> <InlineMath math="\mathrm{ZnS}" /> di sebelah baki zink yang sama. Putar turus-turus itu: jumlah kedua-duanya sama, iaitu <InlineMath math="12.00\ \mathrm{g}" />.
+Asingkan tiga jisim dalam eksperimen zink dan sulfur. Sebelum tindak balas, turus itu memuatkan zink yang akan bertindak balas, zink yang tidak akan bertindak balas dan sulfur. Selepas tindak balas, bahagian yang bertindak balas sudah menjadi <InlineMath math="6.08\ \mathrm{g}" /> <InlineMath math="\mathrm{ZnS}" /> di sebelah baki zink yang sama.
 
 <MathVisual
   title={<>Tiga Soalan tentang Jisim</>}
   description={<>Sebelum (kiri): baki zink (kelabu), zink yang bertindak balas (oren) dan sulfur (kuning ambar). Selepas (kanan): baki zink (kelabu) dan zink sulfida (biru kehijauan). Satu petak grid ke atas mewakili <InlineMath math="1" /> gram.</>}
+  footer={<>Putar turus untuk melihat kedua-dua jumlah berhenti tepat pada 12.00 g.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 13 }, z: { min: -1.5, max: 1.5 } },
@@ -314,3 +358,5 @@ Asingkan tiga jisim dalam eksperimen zink dan sulfur. Sebelum tindak balas, turu
     left: <InlineMath math="\mathrm{Zn}:\ 5.92\ \mathrm{g}" />,
   }}
 />
+
+Kedua-dua turus mencapai paras tepat <InlineMath math="12.00\ \mathrm{g}" /> walaupun bongkah bahagian atas telah bertukar menjadi sebatian baharu. Memisahkan jisim hasil daripada baki bahan tindak balas memastikan setiap semakan stoikiometri kekal tepat.

@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Valence Electrons",
   description:
@@ -17,6 +16,8 @@ The outermost occupied shell is the <InlineMath math="\mathrm{N}" /> shell. It c
 
 For main-group elements, valence electrons are <Highlight>the electrons in the outermost occupied shell</Highlight> of an atom.
 
+> Inner shells sit tucked near the nucleus, so chemistry happens almost entirely through the outermost valence electrons.
+
 When atoms form bonds or ions, they most often share, lose, or gain these outer electrons. The number and arrangement of valence electrons therefore affect how an element reacts.
 
 ## Valence Electron Model
@@ -31,6 +32,7 @@ Choose a neutral atom. Read the shell configuration from left to right, then loo
       visible directly from the model.
     </>
   }
+  footer={<>Pick any neutral atom and read the highlighted outer ring for its valence count.</>}
   labels={{
     chooseAtom: "Choose a neutral atom",
     atomicNumber: "Atomic number",
@@ -91,6 +93,8 @@ Choose a neutral atom. Read the shell configuration from left to right, then loo
   }}
 />
 
+Comparing magnesium (<InlineMath math="2, 8, 2" />) and calcium (<InlineMath math="2, 8, 8, 2" />) in the model shows why elements in the same group react alike even when they have different total electron counts.
+
 ## Identifying Valence Electrons from the Outermost Shell
 
 The following steps determine the number of electrons in the **outermost occupied shell**.
@@ -115,6 +119,7 @@ Here is chlorine, <InlineMath math="2, 8, 7" />. Its outermost occupied shell is
 <MathVisual
   title={<>Chlorine's Seven Valence Electrons</>}
   description={<>Chlorine's <InlineMath math="17" /> electrons in shells K, L and M, with the valence electrons in fuchsia.</>}
+  footer={<>Ten inner electrons stay fixed while the seven outer M-shell electrons drive bonding.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -155,23 +160,39 @@ Here is chlorine, <InlineMath math="2, 8, 7" />. Its outermost occupied shell is
   }}
 />
 
+Because chlorine is only one electron short of an octet in shell <InlineMath math="\mathrm{M}" />, it readily gains or shares a single electron rather than losing seven.
+
 ## The Outer Shell as a Cloud
 
-Valence electrons occupy orbitals in the outer shell. In carbon, the valence electrons are in the <InlineMath math="2s" /> and <InlineMath math="2p" /> orbitals. In sodium, the single valence electron is in the <InlineMath math="3s" /> orbital. Compare the size of the clouds. **Valence electrons are the farthest from the nucleus**, so they are the ones most easily used in reactions.
+Valence electrons occupy the outermost occupied orbitals. In carbon and oxygen they lie in the <InlineMath math="n = 2" /> shell, whereas sodium's single valence electron sits far outside in the <InlineMath math="3s" /> orbital. **Valence electrons sit farthest from the nucleus**, so they are the first electrons to meet neighboring atoms in reactions.
 
-<OrbitalCloudLab
-  title={<>Orbitals of Valence Electrons</>}
-  description={<>Compare how far each cloud reaches from the nucleus.</>}
-  orbitals={["2s", "2pz", "3s"]}
+<MathVisual
+  title={<>Reach of Outer Valence Shells</>}
+  description={<>Atomic radii of oxygen (<InlineMath math="73\ \mathrm{pm}" />), carbon (<InlineMath math="77\ \mathrm{pm}" />), and sodium (<InlineMath math="186\ \mathrm{pm}" />). One grid step up is <InlineMath math="50\ \mathrm{pm}" />.</>}
+  footer={<>Sodium's 3s valence electron extends more than twice as far out as carbon's 2s and 2p shell.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "o", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.73, z: 0 }, size: { length: 1.3, height: 1.46, width: 1.3 } },
+      { id: "c", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 0.77, z: 0 }, size: { length: 1.3, height: 1.54, width: 1.3 } },
+      { id: "na", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.86, z: 0 }, size: { length: 1.3, height: 3.72, width: 1.3 } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 1.8, z: 0 }, placement: "above" },
+      { key: "c", objectId: "c", at: { x: 2.5, y: 1.9, z: 0 }, placement: "above" },
+      { key: "na", objectId: "na", at: { x: 5, y: 4.1, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    angular: <>Angular nodes</>,
-    choose: "Choose an orbital",
-    numbers: <>Quantum numbers</>,
-    orbital: <>Orbital</>,
-    radial: <>Radial nodes</>,
-    view: "Electron cloud of an orbital",
+    o: <InlineMath math="\mathrm{O}\ (2p):\ 73\ \mathrm{pm}" />,
+    c: <InlineMath math="\mathrm{C}\ (2p):\ 77\ \mathrm{pm}" />,
+    na: <InlineMath math="\mathrm{Na}\ (3s):\ 186\ \mathrm{pm}" />,
   }}
 />
+
+That wide reach explains why sodium loses its outer electron easily while smaller period <InlineMath math="2" /> nonmetals hold and share electrons tightly.
 
 ## Patterns in the Same Group
 
@@ -195,22 +216,38 @@ Hydrogen is an exception. It has <InlineMath math="1" /> valence electron, but i
 
 ## Same Valence and Same Reaction
 
-Every metal here has <InlineMath math="1" /> valence electron, so **they all react with water the same way**, giving hydrogen and a hydroxide. Only the speed changes down the group.
+Every alkali metal carries <InlineMath math="1" /> valence electron, so **lithium, sodium, and potassium all react with water in the same stoichiometric pattern**, forming <InlineMath math="\mathrm{MOH}" /> and <InlineMath math="\mathrm{H_2}" />. Only the reaction speed climbs down the group as the outer shell moves farther from the nucleus.
 
-<AlkaliWaterLab
-  title={<>One Valence Electron in Water</>}
-  description={<>Drop each metal in and compare the equations they write.</>}
-  metals={["lithium", "sodium", "potassium"]}
+<MathVisual
+  title={<>One Valence Electron Across Growing Shells</>}
+  description={<>Occupied shells (back) versus constant valence electron count (front) for <InlineMath math="\mathrm{Li}" />, <InlineMath math="\mathrm{Na}" />, and <InlineMath math="\mathrm{K}" />. Vertical step is <InlineMath math="1" /> shell or electron.</>}
+  footer={<>Constant valence count keeps the reaction formula identical while extra shells raise reactivity.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "li-s", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1.0, z: -0.7 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "li-v", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1, width: 1.1 } },
+      { id: "na-s", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 1.5, z: -0.7 }, size: { length: 1.1, height: 3, width: 1.1 } },
+      { id: "na-v", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1, width: 1.1 } },
+      { id: "k-s", kind: "cuboid", appearance: "reference", center: { x: 5, y: 2.0, z: -0.7 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "k-v", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1, width: 1.1 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li-s", at: { x: 0, y: 2.35, z: -0.7 }, placement: "above" },
+      { key: "na", objectId: "na-s", at: { x: 2.5, y: 3.35, z: -0.7 }, placement: "above" },
+      { key: "k", objectId: "k-s", at: { x: 5, y: 4.35, z: -0.7 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Choose a metal",
-    density: <>Density</>,
-    equation: <>Equation</>,
-    ionization: <>First ionization energy</>,
-    melting: <>Melting point</>,
-    radius: <>Atomic radius</>,
-    view: "Metal in a beaker of water",
+    li: <>Li: 2 shells, 1 val</>,
+    na: <>Na: 3 shells, 1 val</>,
+    k: <>K: 4 shells, 1 val</>,
   }}
 />
+
+Separating the constant front row (valence count) from the rising back row (shell count) explains both the family resemblance and the steady trend down group <InlineMath math="1" />.
 
 ## Connection to Chemical Properties
 
@@ -234,46 +271,77 @@ For transition elements, electrons in the outermost <InlineMath math="s" /> subs
 
 ### Valence Electrons Decide the Charge
 
-Sodium has <InlineMath math="1" /> valence electron and magnesium has <InlineMath math="2" />, so **they give away exactly that many**: sodium becomes <InlineMath math="\mathrm{Na^+}" />, magnesium <InlineMath math="\mathrm{Mg^{2+}}" />.
+Sodium has <InlineMath math="1" /> valence electron and magnesium has <InlineMath math="2" />, so **they give away exactly that many** to form <InlineMath math="\mathrm{Na^+}" /> and <InlineMath math="\mathrm{Mg^{2+}}" />, whereas chlorine gains <InlineMath math="1" /> (<InlineMath math="\mathrm{Cl^-}" />) and oxygen gains <InlineMath math="2" /> (<InlineMath math="\mathrm{O^{2-}}" />).
 
-<IonFormationLab
-  title={<>From Valence Electrons to Ions</>}
-  description={<>Move the electrons across for each pair and count how many leave the metal.</>}
-  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+<MathVisual
+  title={<>Ion Charges Predicted from Valence Counts</>}
+  description={<>Typical ionic charges formed by <InlineMath math="\mathrm{Na}" />, <InlineMath math="\mathrm{Mg}" />, <InlineMath math="\mathrm{Cl}" />, and <InlineMath math="\mathrm{O}" />. Positive bars show electrons lost, and negative bars show electrons gained.</>}
+  footer={<>Metals lose valence electrons to form cations while nonmetals gain them to reach eight.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: -2.8, max: 2.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 6, z: 12 }, target: { x: 3.75, y: 0, z: 0 } },
+    objects: [
+      { id: "na", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.3, height: 1, width: 1.3 } },
+      { id: "mg", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 1.0, z: 0 }, size: { length: 1.3, height: 2, width: 1.3 } },
+      { id: "cl", kind: "cuboid", appearance: "secondary", center: { x: 5, y: -0.5, z: 0 }, size: { length: 1.3, height: 1, width: 1.3 } },
+      { id: "o", kind: "cuboid", appearance: "secondary", center: { x: 7.5, y: -1.0, z: 0 }, size: { length: 1.3, height: 2, width: 1.3 } },
+    ],
+    labels: [
+      { key: "na", objectId: "na", at: { x: 0, y: 1.35, z: 0 }, placement: "above" },
+      { key: "mg", objectId: "mg", at: { x: 2.5, y: 2.35, z: 0 }, placement: "above" },
+      { key: "cl", objectId: "cl", at: { x: 5, y: -1.35, z: 0 }, placement: "below" },
+      { key: "o", objectId: "o", at: { x: 7.5, y: -2.35, z: 0 }, placement: "below" },
+    ],
+  }}
   labels={{
-    choose: "Choose a pair of atoms",
-    metalRadius: <>Metal radius</>,
-    metalShells: <>Metal shells</>,
-    nonmetalRadius: <>Nonmetal radius</>,
-    nonmetalShells: <>Nonmetal shells</>,
-    progress: "Electron transfer",
-    view: "Metal and nonmetal atoms becoming ions",
+    na: <InlineMath math="\mathrm{Na^+}:\ +1" />,
+    mg: <InlineMath math="\mathrm{Mg^{2+}}:\ +2" />,
+    cl: <InlineMath math="\mathrm{Cl^-}:\ -1" />,
+    o: <InlineMath math="\mathrm{O^{2-}}:\ -2" />,
   }}
 />
+
+The distance from a full outer shell directly sets each common main-group ion charge.
 
 ### Bonds Follow Valence Electrons
 
-Valence electrons decide how many bonds an atom forms. Carbon has <InlineMath math="4" /> valence electrons and forms <InlineMath math="4" /> bonds in <InlineMath math="\mathrm{CH_4}" />. Nitrogen forms <InlineMath math="3" /> bonds in <InlineMath math="\mathrm{NH_3}" />, oxygen <InlineMath math="2" /> in <InlineMath math="\mathrm{H_2O}" />, and chlorine <InlineMath math="1" /> in <InlineMath math="\mathrm{HCl}" />. **Each atom shares electrons until its outer shell is full**.
+Valence electrons decide how many covalent bonds a nonmetal atom typically forms. Carbon has <InlineMath math="4" /> valence electrons and forms <InlineMath math="4" /> bonds in <InlineMath math="\mathrm{CH_4}" />. Nitrogen forms <InlineMath math="3" /> bonds in <InlineMath math="\mathrm{NH_3}" />, oxygen <InlineMath math="2" /> in <InlineMath math="\mathrm{H_2O}" />, and chlorine <InlineMath math="1" /> in <InlineMath math="\mathrm{HCl}" />. **Each atom shares electrons until its outer shell reaches eight**.
 
-<MoleculeShapeLab
-  title={<>Four Central Atoms and Their Bonds</>}
-  description={<>Count the bonds of carbon, nitrogen, oxygen, and chlorine.</>}
-  molecules={[
-    { id: "methane", name: "Methane" },
-    { id: "ammonia", name: "Ammonia" },
-    { id: "water", name: "Water" },
-    { id: "hydrogen-chloride", name: "Hydrogen chloride" },
-  ]}
+<MathVisual
+  title={<>Covalent Bond Counts Toward an Octet</>}
+  description={<>Number of shared single bonds (front) alongside original valence electrons (back) for <InlineMath math="\mathrm{C}" />, <InlineMath math="\mathrm{N}" />, <InlineMath math="\mathrm{O}" />, and <InlineMath math="\mathrm{Cl}" />. Vertical step is <InlineMath math="2" />.</>}
+  footer={<>Original valence electrons plus single bonds always sum to eight across all four atoms.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 4.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "c-v", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1.0, z: -0.7 }, size: { length: 1.1, height: 2.0, width: 1.1 } },
+      { id: "c-b", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.0, z: 0.7 }, size: { length: 1.1, height: 2.0, width: 1.1 } },
+      { id: "n-v", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 1.25, z: -0.7 }, size: { length: 1.1, height: 2.5, width: 1.1 } },
+      { id: "n-b", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 0.75, z: 0.7 }, size: { length: 1.1, height: 1.5, width: 1.1 } },
+      { id: "o-v", kind: "cuboid", appearance: "reference", center: { x: 5, y: 1.5, z: -0.7 }, size: { length: 1.1, height: 3.0, width: 1.1 } },
+      { id: "o-b", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1.0, width: 1.1 } },
+      { id: "cl-v", kind: "cuboid", appearance: "reference", center: { x: 7.5, y: 1.75, z: -0.7 }, size: { length: 1.1, height: 3.5, width: 1.1 } },
+      { id: "cl-b", kind: "cuboid", appearance: "primary", center: { x: 7.5, y: 0.25, z: 0.7 }, size: { length: 1.1, height: 0.5, width: 1.1 } },
+    ],
+    labels: [
+      { key: "c", objectId: "c-v", at: { x: 0, y: 2.4, z: 0 }, placement: "above" },
+      { key: "n", objectId: "n-v", at: { x: 2.5, y: 2.9, z: 0 }, placement: "above" },
+      { key: "o", objectId: "o-v", at: { x: 5, y: 3.4, z: 0 }, placement: "above" },
+      { key: "cl", objectId: "cl-v", at: { x: 7.5, y: 3.9, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
+    c: <>CH4: 4 val + 4 bonds</>,
+    n: <>NH3: 5 val + 3 bonds</>,
+    o: <>H2O: 6 val + 2 bonds</>,
+    cl: <>HCl: 7 val + 1 bond</>,
   }}
 />
+
+As the back bar climbs from four to seven valence electrons, the front bond bar steps down from four to one so every molecule completes an octet.
 
 ## Checking Valence Electrons from the Outermost Shell
 
@@ -317,6 +385,7 @@ Write the shell configuration, find the outermost occupied shell and count its e
 <MathVisual
   title={<>Valence Electrons Climb and Reset</>}
   description={<>Valence electrons for atomic numbers <InlineMath math="1" /> to <InlineMath math="20" />. Horizontal: one grid step is <InlineMath math="2" /> in atomic number. Vertical: number of valence electrons.</>}
+  footer={<>Valence counts rise to 8 at each noble gas and reset to 1 as the next shell opens.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -0.5, max: 9 } },
@@ -359,3 +428,5 @@ Write the shell configuration, find the outermost occupied shell and count its e
     cl: <InlineMath math="\mathrm{Cl}:\ 2,8,7" />,
   }}
 />
+
+That sawtooth pattern of climbing to eight and resetting to one is the heartbeat behind periodic chemical families across the entire periodic table.

@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "John Dalton and Atomic Theory",
   description:
@@ -31,6 +30,7 @@ Choose a mode, then check **which quantity stays fixed**: atom count, compound c
       ratio number.
     </>
   }
+  footer={<>Switch modes to see how atom counting explains conservation, fixed ratios, and multiples.</>}
   labels={{
     chooseMode: "Choose evidence for Dalton's atomic theory",
     modes: {
@@ -106,13 +106,14 @@ If the carbon mass is kept the same, the oxygen masses in <InlineMath math="\mat
 &= \frac{1}{2}
 \end{aligned}" />
 
-The ratio <InlineMath math="1:2" /> is a simple whole-number ratio. This pattern supports the law of multiple proportions: when two elements form several compounds, the masses of one element that combine with a fixed mass of another element have a simple whole-number ratio.
+Because <InlineMath math="1:2" /> is a clean integer ratio, Dalton read it as proof that carbon combines with whole oxygen atoms rather than arbitrary fractions of oxygen mass.
 
 With carbon fixed at <InlineMath math="12\ \mathrm{g}" />, carbon monoxide holds <InlineMath math="16\ \mathrm{g}" /> of oxygen and carbon dioxide <InlineMath math="32\ \mathrm{g}" />, one grid step for <InlineMath math="8\ \mathrm{g}" />. The second bar is exactly twice the first, which Dalton read as one oxygen atom against two.
 
 <MathVisual
   title={<>Oxygen per <InlineMath math="12\text{ g}" /> of Carbon</>}
   description={<>Oxygen combined with <InlineMath math="12\text{ g}" /> of carbon in <InlineMath math="\mathrm{CO}" /> and <InlineMath math="\mathrm{CO_2}" />. One grid step up is <InlineMath math="8\text{ g}" />.</>}
+  footer={<>Doubling the oxygen bar per fixed carbon mass points straight to discrete whole atoms.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
@@ -132,6 +133,8 @@ With carbon fixed at <InlineMath math="12\ \mathrm{g}" />, carbon monoxide holds
   }}
 />
 
+Seeing one bar stand at exactly twice the height of the other makes it obvious why Dalton argued that oxygen enters compounds in countable atomic steps.
+
 ## Limits of the Dalton Model
 
 Dalton's model explained the mass patterns in chemical reactions, but it could not explain every observation. If atoms were solid spheres with no inner parts, why could metals conduct electricity? Why could electric and magnetic fields bend cathode rays?
@@ -139,6 +142,7 @@ Dalton's model explained the mass patterns in chemical reactions, but it could n
 <Mermaid
   title={<>New Evidence about Atomic Structure</>}
   description={<>The diagram shows how reaction-mass data supported Dalton's model, then cathode-ray experiments provided evidence for subatomic particles.</>}
+  footer={<>Each new measurement forced chemists to replace solid spheres with an internal atom model.</>}
   chart={`flowchart LR
     A["Atom idea"] --> B["Reaction mass data"]
     B --> C["Dalton model"]
@@ -152,11 +156,16 @@ Dalton assumed that all atoms of the same element had the same mass. That assump
 
 Dalton's model explains conservation of mass, fixed composition, and multiple proportions. It cannot explain electric charge, isotopes, or the internal structure of atoms. Those later observations require a model that includes subatomic particles.
 
-Dalton's solid spheres can't explain alpha particles that bounce back from gold foil. With all the positive charge in a tiny nucleus, a particle passing at distance <InlineMath math="b" /> is turned by <InlineMath math="\theta=2\arctan\tfrac{b_0}{b}" />, where <InlineMath math="b_0" /> depends on the energy and the charges. Only a near miss, much closer than <InlineMath math="b_0" />, turns it far back. Zoom in on the left end of the curve.
+Dalton's solid spheres cannot explain alpha particles that bounce back from gold foil. When all positive charge sits in a tiny nucleus, an alpha particle passing at impact parameter <InlineMath math="b" /> deflects by the angle <InlineMath math="\theta" /> given below, where <InlineMath math="b_0" /> depends on energy and charge.
+
+<BlockMath math="\theta = 2 \arctan\left(\frac{b_0}{b}\right)" />
+
+Only a near miss, much closer than <InlineMath math="b_0" />, turns the particle far back. Zoom in on the left end of the curve.
 
 <MathVisual
   title={<>Only a Near Miss Bounces Back</>}
   description={<>Deflection angle of an alpha particle against how far it passes from the nucleus. Horizontal: one grid step is half of the distance <InlineMath math="b_0" />. Vertical: one grid step is <InlineMath math="30" /> degrees.</>}
+  footer={<>Large deflection angles occur only when the alpha particle grazes very close to the core.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 10.5 }, y: { min: -0.3, max: 5.5 } },
@@ -180,6 +189,8 @@ Dalton's solid spheres can't explain alpha particles that bounce back from gold 
   }}
 />
 
+That steep drop in deflection angle explains why most alpha particles passed nearly straight through gold foil while only rare head-on encounters bounced backward.
+
 ### Thomson Finds the Electron
 
 The first crack in Dalton's solid atom came from a glowing tube. **The beam bends toward the positive plate**, so it carries negative charge, and Thomson called its particles electrons.
@@ -187,6 +198,7 @@ The first crack in Dalton's solid atom came from a glowing tube. **The beam bend
 <CathodeRayLab
   title={<>A Beam That Bends</>}
   description={<>Raise the plate voltage and watch the spot shift on the screen.</>}
+  footer={<>Raising the plate voltage pulls the negative electron beam further toward the positive plate.</>}
   labels={{
     anode: <>Accelerating voltage</>,
     field: <>Electric field between the plates</>,
@@ -196,6 +208,8 @@ The first crack in Dalton's solid atom came from a glowing tube. **The beam bend
   }}
 />
 
+Because changing the electrode metal never altered the deflection, Thomson realized electrons belong inside every element's atoms, overturning the idea of an indivisible sphere.
+
 ### Rutherford Finds a Nucleus
 
 Dalton's model treated the atom as a solid ball. Geiger and Marsden fired alpha particles at a thin sheet of gold. Most particles passed almost straight through, but a few turned sharply and some even bounced back. Rutherford concluded that **the atom's mass and positive charge sit in a very small nucleus**, about twenty thousand times smaller than the atom.
@@ -203,6 +217,7 @@ Dalton's model treated the atom as a solid ball. Geiger and Marsden fired alpha 
 <RutherfordScatteringLab
   title={<>Alpha Particles near a Gold Nucleus</>}
   description={<>The paths come from the electric repulsion between the alpha particle and the gold nucleus.</>}
+  footer={<>Higher alpha energy drives trajectories closer to the gold nucleus before repulsion turns them.</>}
   energy={7.7}
   labels={{
     approach: <>Closest approach</>,
@@ -213,36 +228,64 @@ Dalton's model treated the atom as a solid ball. Geiger and Marsden fired alpha 
   }}
 />
 
-Rutherford's nucleus left a puzzle: why do electrons not spiral into it? Bohr answered with fixed orbits, and **each jump between orbits gives light of one exact colour**, the lines hydrogen shows.
+Rutherford's nucleus left a puzzle: why do electrons not spiral into it? Bohr answered with quantized energy levels, where **each downward jump releases a photon of one exact wavelength**, producing the sharp spectral lines of hydrogen.
 
-<BohrEmissionLab
-  title={<>Bohr's Fixed Orbits</>}
-  description={<>Choose a jump down to the second level and read the colour it gives off.</>}
-  falls={[{ from: 3, to: 2 }, { from: 4, to: 2 }, { from: 5, to: 2 }]}
+<MathVisual
+  title={<>Hydrogen Balmer Jumps and Photon Energy</>}
+  description={<>Energy released when an electron drops to level <InlineMath math="n = 2" /> from <InlineMath math="n = 3" />, <InlineMath math="4" />, and <InlineMath math="5" />. One grid step up is <InlineMath math="0.5\ \mathrm{eV}" />.</>}
+  footer={<>Larger drops release more energetic photons and shift the emitted light from red to violet.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "j32", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.89, z: 0 }, size: { length: 1.4, height: 3.78, width: 1.4 } },
+      { id: "j42", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2.55, z: 0 }, size: { length: 1.4, height: 5.10, width: 1.4 } },
+      { id: "j52", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.86, z: 0 }, size: { length: 1.4, height: 5.72, width: 1.4 } },
+    ],
+    labels: [
+      { key: "j32", objectId: "j32", at: { x: 0, y: 4.1, z: 0 }, placement: "above" },
+      { key: "j42", objectId: "j42", at: { x: 2.5, y: 5.4, z: 0 }, placement: "above" },
+      { key: "j52", objectId: "j52", at: { x: 5, y: 6.1, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Choose an electron jump",
-    energy: <>Photon energy</>,
-    frequency: <>Photon frequency</>,
-    transition: <>Electron jump</>,
-    view: "Bohr model of hydrogen",
-    wavelength: <>Wavelength</>,
+    j32: <>3 to 2: 656 nm (red)</>,
+    j42: <>4 to 2: 486 nm (cyan)</>,
+    j52: <>5 to 2: 434 nm (violet)</>,
   }}
 />
+
+Those discrete spectral steps showed that electrons cannot occupy arbitrary radii around the nucleus, setting the stage for quantum mechanics.
 
 ### From Orbits to Probability Clouds
 
-After the nucleus was found, the model of the atom kept improving. The quantum model no longer draws an electron's path. **The electron is pictured as a probability cloud** around the nucleus. Choose an orbital and turn its cloud. The dense regions are where the electron is found most often.
+After the nucleus was found, the model of the atom kept improving. The quantum model no longer draws an electron's path. **The electron is pictured as a probability cloud** whose most likely distance from the nucleus expands rapidly as the principal quantum number <InlineMath math="n" /> rises.
 
-<OrbitalCloudLab
-  title={<>The Atom in the Quantum Model</>}
-  description={<>Pick an orbital and turn its cloud to find where the electron most likely is.</>}
-  orbitals={["1s", "2pz", "3dxy"]}
+<MathVisual
+  title={<>Most Probable Radius of s Orbitals</>}
+  description={<>Peak radial probability distance for hydrogen <InlineMath math="1s" />, <InlineMath math="2s" />, and <InlineMath math="3s" /> clouds in Bohr radii <InlineMath math="a_0" />. One grid step up is <InlineMath math="2\,a_0" />.</>}
+  footer={<>Higher quantum levels spread the electron cloud far farther from the nucleus.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "s1", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.25, z: 0 }, size: { length: 1.4, height: 0.5, width: 1.4 } },
+      { id: "s2", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.31, z: 0 }, size: { length: 1.4, height: 2.62, width: 1.4 } },
+      { id: "s3", kind: "cuboid", appearance: "primary", center: { x: 5, y: 3.27, z: 0 }, size: { length: 1.4, height: 6.54, width: 1.4 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "s1", at: { x: 0, y: 0.9, z: 0 }, placement: "above" },
+      { key: "s2", objectId: "s2", at: { x: 2.5, y: 3.0, z: 0 }, placement: "above" },
+      { key: "s3", objectId: "s3", at: { x: 5, y: 6.9, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    angular: <>Angular nodes</>,
-    choose: "Choose an orbital",
-    numbers: <>Quantum numbers</>,
-    orbital: <>Orbital</>,
-    radial: <>Radial nodes</>,
-    view: "Electron cloud of an orbital",
+    s1: <InlineMath math="1s:\ 1.0\,a_0" />,
+    s2: <InlineMath math="2s:\ 5.2\,a_0" />,
+    s3: <InlineMath math="3s:\ 13.1\,a_0" />,
   }}
 />
+
+Each successive atomic model kept what earlier data proved while adding the deeper physics needed to explain new experiments, carrying chemistry from Dalton's solid spheres to modern quantum orbitals.

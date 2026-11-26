@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "John Dalton dan Teori Atom",
   description:
@@ -31,6 +30,7 @@ Pilih satu mod, kemudian semak **kuantiti yang kekal tetap**: bilangan atom, kom
       nombor nisbahnya.
     </>
   }
+  footer={<>Tukar mod untuk melihat bagaimana kiraan atom menerangkan jisim, nisbah tetap dan berganda.</>}
   labels={{
     chooseMode: "Pilih bukti bagi teori atom Dalton",
     modes: {
@@ -106,13 +106,14 @@ Jika jisim karbon dikekalkan sama, jisim oksigen dalam <InlineMath math="\mathrm
 &= \frac{1}{2}
 \end{aligned}" />
 
-Nisbah <InlineMath math="1:2" /> ialah nisbah nombor bulat yang ringkas. Corak ini menyokong hukum perkadaran berganda: apabila dua unsur membentuk beberapa sebatian, jisim satu unsur yang bergabung dengan jisim tetap unsur yang lain mempunyai nisbah nombor bulat yang ringkas.
+Oleh sebab <InlineMath math="1:2" /> ialah nisbah nombor bulat yang bersih, Dalton mentafsirkannya sebagai bukti bahawa karbon bergabung dengan atom oksigen yang utuh, bukan pecahan jisim oksigen secara rambang.
 
 Dengan jisim karbon ditetapkan pada <InlineMath math="12\ \mathrm{g}" />, karbon monoksida mengandungi <InlineMath math="16\ \mathrm{g}" /> oksigen dan karbon dioksida mengandungi <InlineMath math="32\ \mathrm{g}" />, dengan satu langkah grid bersamaan <InlineMath math="8\ \mathrm{g}" />. Palang kedua tepat dua kali ganda palang pertama, dan Dalton mentafsirkannya sebagai satu atom oksigen berbanding dua.
 
 <MathVisual
   title={<>Oksigen bagi Setiap <InlineMath math="12\text{ g}" /> Karbon</>}
   description={<>Oksigen yang bergabung dengan <InlineMath math="12\text{ g}" /> karbon dalam <InlineMath math="\mathrm{CO}" /> dan <InlineMath math="\mathrm{CO_2}" />. Satu langkah grid ke atas ialah <InlineMath math="8\text{ g}" />.</>}
+  footer={<>Palang oksigen yang tepat dua kali ganda menunjukkan gabungan atom utuh yang boleh dikira.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
@@ -132,6 +133,8 @@ Dengan jisim karbon ditetapkan pada <InlineMath math="12\ \mathrm{g}" />, karbon
   }}
 />
 
+Melihat palang kedua tepat dua kali lebih tinggi daripada palang pertama menjadikan hujah Dalton sangat jelas bahawa oksigen memasuki sebatian dalam langkah atom yang diskret.
+
 ## Batasan Model Dalton
 
 Model Dalton menerangkan corak jisim dalam tindak balas kimia, tetapi model ini tidak dapat menerangkan semua pemerhatian. Jika atom ialah sfera pejal tanpa bahagian dalam, mengapa logam boleh mengalirkan elektrik? Mengapa medan elektrik dan medan magnet boleh membengkokkan sinar katod?
@@ -139,6 +142,7 @@ Model Dalton menerangkan corak jisim dalam tindak balas kimia, tetapi model ini 
 <Mermaid
   title={<>Bukti Baharu tentang Struktur Atom</>}
   description={<>Rajah ini menunjukkan cara data jisim tindak balas menyokong model Dalton, kemudian eksperimen sinar katod memberikan bukti kewujudan zarah subatom.</>}
+  footer={<>Setiap pengukuran baharu mendorong ahli kimia menggantikan sfera pejal dengan model berstruktur.</>}
   chart={`flowchart LR
     A["Idea atom"] --> B["Data jisim tindak balas"]
     B --> C["Model Dalton"]
@@ -146,17 +150,22 @@ Model Dalton menerangkan corak jisim dalam tindak balas kimia, tetapi model ini 
     D --> E["Zarah subatom"]`}
 />
 
-Eksperimen sinar katod oleh J. J. Thomson menemui **zarah bercas negatif** yang jauh lebih kecil daripada atom. Kini kita memanggil zarah itu elektron. Ini bermaksud atom bukanlah zarah yang langsung tidak boleh dibahagikan, seperti yang dianggap oleh Dalton.
+Eksperimen sinar katod oleh J. J. Thomson membuktikan wujudnya **zarah bercas negatif** yang jauh lebih kecil daripada atom, yang kini dikenali sebagai elektron. Bukti ini menafikan tanggapan Dalton bahawa atom langsung tidak boleh dibahagikan.
 
 Dalton menganggap semua atom bagi unsur yang sama mempunyai jisim yang sama. Andaian itu tidak dapat menerangkan isotop, iaitu atom yang mempunyai bilangan proton yang sama tetapi bilangan neutron yang berbeza. Penemuan zarah subatom menerangkan mengapa atom bagi satu unsur boleh mempunyai jisim yang berbeza.
 
 Model Dalton menerangkan keabadian jisim, komposisi tetap dan perkadaran berganda. Model ini tidak dapat menerangkan cas elektrik, isotop atau struktur dalaman atom. Pemerhatian yang muncul kemudian itu memerlukan model yang merangkumi zarah subatom.
 
-Sfera pejal Dalton tidak dapat menerangkan zarah alfa yang melantun balik dari kerajang emas. Jika semua cas positif berada dalam nukleus yang sangat kecil, zarah yang lalu pada jarak <InlineMath math="b" /> akan dipesongkan sebanyak <InlineMath math="\theta=2\arctan\tfrac{b_0}{b}" />, dengan <InlineMath math="b_0" /> bergantung pada tenaga dan cas. Hanya zarah yang lalu sangat hampir dengan nukleus, jauh lebih dekat daripada <InlineMath math="b_0" />, dipesongkan jauh ke belakang. Zum masuk pada hujung kiri lengkung.
+Sfera pejal Dalton tidak dapat menerangkan zarah alfa yang melantun balik dari kerajang emas. Apabila semua cas positif terkumpul dalam nukleus yang amat kecil, zarah alfa yang melintas pada jarak <InlineMath math="b" /> terpesong pada sudut <InlineMath math="\theta" /> berikut, dengan <InlineMath math="b_0" /> bergantung pada tenaga dan cas.
+
+<BlockMath math="\theta = 2 \arctan\left(\frac{b_0}{b}\right)" />
+
+Hanya zarah yang lalu sangat hampir dengan nukleus, jauh lebih dekat daripada <InlineMath math="b_0" />, dipesongkan jauh ke belakang. Zum masuk pada hujung kiri lengkung.
 
 <MathVisual
   title={<>Hanya Lintasan Paling Dekat Melantun Balik</>}
   description={<>Sudut pesongan zarah alfa melawan jarak lintasannya dari nukleus. Paksi mengufuk: satu langkah grid ialah separuh jarak <InlineMath math="b_0" />. Paksi menegak: satu langkah grid ialah <InlineMath math="30" /> darjah.</>}
+  footer={<>Sudut pesongan besar hanya berlaku apabila zarah alfa melintas sangat rapat dengan nukleus.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 10.5 }, y: { min: -0.3, max: 5.5 } },
@@ -180,6 +189,8 @@ Sfera pejal Dalton tidak dapat menerangkan zarah alfa yang melantun balik dari k
   }}
 />
 
+Kejatuhan curam sudut pesongan ini menjelaskan sebab kebanyakan zarah alfa melepasi kerajang emas hampir lurus manakala hanya lintasan yang sangat rapat melantun ke belakang.
+
 ### Thomson Menemui Elektron
 
 Retakan pertama pada atom pejal Dalton datang daripada tiub yang bercahaya. **Alur itu membelok ke arah plat positif**, jadi ia bercas negatif, dan Thomson menamakan zarahnya elektron.
@@ -187,6 +198,7 @@ Retakan pertama pada atom pejal Dalton datang daripada tiub yang bercahaya. **Al
 <CathodeRayLab
   title={<>Alur yang Membelok</>}
   description={<>Naikkan voltan plat dan lihat titik itu beralih pada skrin.</>}
+  footer={<>Voltan plat yang lebih tinggi menarik alur elektron negatif lebih jauh ke plat positif.</>}
   labels={{
     anode: <>Voltan pemecut</>,
     field: <>Medan elektrik antara plat</>,
@@ -196,6 +208,8 @@ Retakan pertama pada atom pejal Dalton datang daripada tiub yang bercahaya. **Al
   }}
 />
 
+Oleh sebab menukar logam elektrod tidak pernah mengubah pesongan alur, Thomson menyedari elektron wujud dalam atom semua unsur, sekali gus menumbangkan idea sfera tidak boleh dibahagi.
+
 ### Rutherford Menemui Nukleus
 
 Model Dalton menganggap atom sebagai bola pejal. Eksperimen Geiger dan Marsden menembakkan zarah alfa ke kepingan emas yang nipis. Kebanyakan zarah melalui hampir lurus, tetapi sebilangan kecil terpesong tajam dan ada yang melantun balik. Rutherford membuat kesimpulan bahawa **jisim dan cas positif atom terkumpul dalam nukleus yang sangat kecil**, kira-kira dua puluh ribu kali lebih kecil daripada atomnya.
@@ -203,6 +217,7 @@ Model Dalton menganggap atom sebagai bola pejal. Eksperimen Geiger dan Marsden m
 <RutherfordScatteringLab
   title={<>Zarah Alfa berhampiran Nukleus Emas</>}
   description={<>Lintasan dikira daripada daya tolakan elektrik antara zarah alfa dan nukleus emas.</>}
+  footer={<>Tenaga alfa lebih tinggi membawa lintasan lebih hampir ke nukleus emas sebelum tertolak.</>}
   energy={7.7}
   labels={{
     approach: <>Jarak paling dekat</>,
@@ -213,36 +228,64 @@ Model Dalton menganggap atom sebagai bola pejal. Eksperimen Geiger dan Marsden m
   }}
 />
 
-Nukleus Rutherford meninggalkan teka-teki: mengapa elektron tidak berpusing jatuh ke dalamnya? Bohr menjawab dengan orbit tetap, dan **setiap lompatan antara orbit memancarkan cahaya satu warna yang tepat**, iaitu garis yang ditunjukkan oleh hidrogen.
+Nukleus Rutherford meninggalkan teka-teki: mengapa elektron tidak berpusing jatuh ke dalamnya? Bohr menjawab dengan aras tenaga terkuantum sehingga **setiap lompatan turun membebaskan foton berpanjang gelombang tepat**, menghasilkan garis spektrum tajam hidrogen.
 
-<BohrEmissionLab
-  title={<>Orbit Tetap Bohr</>}
-  description={<>Pilih lompatan turun ke aras kedua dan baca warna yang dipancarkannya.</>}
-  falls={[{ from: 3, to: 2 }, { from: 4, to: 2 }, { from: 5, to: 2 }]}
+<MathVisual
+  title={<>Lompatan Balmer Hidrogen dan Tenaga Foton</>}
+  description={<>Tenaga dibebaskan apabila elektron turun ke aras <InlineMath math="n = 2" /> dari <InlineMath math="n = 3" />, <InlineMath math="4" /> dan <InlineMath math="5" />. Satu langkah menegak ialah <InlineMath math="0.5\ \mathrm{eV}" />.</>}
+  footer={<>Lompatan lebih besar membebaskan foton bertenaga lebih tinggi dari merah ke ungu.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "j32", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.89, z: 0 }, size: { length: 1.4, height: 3.78, width: 1.4 } },
+      { id: "j42", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2.55, z: 0 }, size: { length: 1.4, height: 5.10, width: 1.4 } },
+      { id: "j52", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.86, z: 0 }, size: { length: 1.4, height: 5.72, width: 1.4 } },
+    ],
+    labels: [
+      { key: "j32", objectId: "j32", at: { x: 0, y: 4.1, z: 0 }, placement: "above" },
+      { key: "j42", objectId: "j42", at: { x: 2.5, y: 5.4, z: 0 }, placement: "above" },
+      { key: "j52", objectId: "j52", at: { x: 5, y: 6.1, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih lompatan elektron",
-    energy: <>Tenaga foton</>,
-    frequency: <>Frekuensi foton</>,
-    transition: <>Lompatan elektron</>,
-    view: "Atom hidrogen model Bohr",
-    wavelength: <>Panjang gelombang</>,
+    j32: <>3 ke 2: 656 nm (merah)</>,
+    j42: <>4 ke 2: 486 nm (biru)</>,
+    j52: <>5 ke 2: 434 nm (ungu)</>,
   }}
 />
+
+Langkah spektrum diskret ini membuktikan elektron tidak boleh berada pada sebarang jejari di sekeliling nukleus, sekali gus membuka laluan kepada mekanik kuantum.
 
 ### Daripada Orbit kepada Awan Kebarangkalian
 
-Selepas nukleus ditemui, model atom terus diperbaiki. Model kuantum tidak lagi melukis lintasan elektron. **Elektron digambarkan sebagai awan kebarangkalian** di sekeliling nukleus. Pilih orbital dan putar awannya. Kawasan yang padat ialah tempat elektron paling kerap ditemui.
+Selepas nukleus ditemui, model atom terus diperbaiki. Model kuantum tidak lagi melukis lintasan elektron. **Elektron digambarkan sebagai awan kebarangkalian** yang jarak paling mungkinnya dari nukleus mengembang pantas apabila nombor kuantum utama <InlineMath math="n" /> bertambah.
 
-<OrbitalCloudLab
-  title={<>Atom dalam Model Kuantum</>}
-  description={<>Pilih orbital dan putar awannya untuk mencari tempat elektron paling mungkin berada.</>}
-  orbitals={["1s", "2pz", "3dxy"]}
+<MathVisual
+  title={<>Jejari Kebarangkalian Tertinggi Orbital s</>}
+  description={<>Jarak puncak kebarangkalian jejarian bagi awan hidrogen <InlineMath math="1s" />, <InlineMath math="2s" /> dan <InlineMath math="3s" /> dalam jejari Bohr <InlineMath math="a_0" />. Satu langkah menegak ialah <InlineMath math="2\,a_0" />.</>}
+  footer={<>Aras kuantum lebih tinggi menyebarkan awan elektron jauh lebih luas dari nukleus.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "s1", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.25, z: 0 }, size: { length: 1.4, height: 0.5, width: 1.4 } },
+      { id: "s2", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.31, z: 0 }, size: { length: 1.4, height: 2.62, width: 1.4 } },
+      { id: "s3", kind: "cuboid", appearance: "primary", center: { x: 5, y: 3.27, z: 0 }, size: { length: 1.4, height: 6.54, width: 1.4 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "s1", at: { x: 0, y: 0.9, z: 0 }, placement: "above" },
+      { key: "s2", objectId: "s2", at: { x: 2.5, y: 3.0, z: 0 }, placement: "above" },
+      { key: "s3", objectId: "s3", at: { x: 5, y: 6.9, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    angular: <>Nod sudut</>,
-    choose: "Pilih orbital",
-    numbers: <>Nombor kuantum</>,
-    orbital: <>Orbital</>,
-    radial: <>Nod jejarian</>,
-    view: "Awan elektron orbital",
+    s1: <InlineMath math="1s:\ 1.0\,a_0" />,
+    s2: <InlineMath math="2s:\ 5.2\,a_0" />,
+    s3: <InlineMath math="3s:\ 13.1\,a_0" />,
   }}
 />
+
+Setiap model atom baharu mengekalkan apa yang sudah dibuktikan oleh data terdahulu sambil menambah fizik yang lebih mendalam, membawa kimia daripada sfera pejal Dalton kepada orbital kuantum moden.

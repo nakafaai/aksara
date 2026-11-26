@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Periodic Properties of Elements",
   description:
@@ -15,6 +14,8 @@ An element's position in the periodic table gives clues about atomic size, how e
 
 These trends depend on **nuclear attraction toward valence electrons**. Valence electrons are electrons in the outer shell. When the number of protons increases, the nuclear pull usually becomes stronger. When the number of shells increases, valence electrons are farther from the nucleus and feel a weaker pull.
 
+> Every periodic trend comes down to a tug-of-war between stronger nuclear charge and extra inner shells that shield the outer electrons.
+
 <PeriodicPropertiesLab
   title={<>Periodic Trend Model</>}
   description={
@@ -23,6 +24,7 @@ These trends depend on **nuclear attraction toward valence electrons**. Valence 
       across a period and down a group.
     </>
   }
+  footer={<>Switch properties to compare how each trend moves across a period and down a group.</>}
   labels={{
     chooseTrend: "Choose a periodic property",
     sceneLabel: "Three-dimensional model of periodic properties",
@@ -73,11 +75,14 @@ These trends depend on **nuclear attraction toward valence electrons**. Valence 
   }}
 />
 
+Comparing the four modes shows that atomic radius runs opposite to ionization energy and electronegativity because tighter nuclear pull both shrinks the atom and grips electrons harder.
+
 Sodium shows why position predicts behavior. Its single outer electron, in fuchsia, sits alone in shell M, far from the nucleus and shielded by ten inner electrons, so it is easy to remove.
 
 <MathVisual
   title={<>Sodium's Lone Outer Electron</>}
   description={<>Sodium's <InlineMath math="11" /> electrons in shells K, L and M, with the outer electron in fuchsia.</>}
+  footer={<>Ten inner electrons shield sodium's single M-shell electron from the +11 nucleus.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -112,23 +117,79 @@ Sodium shows why position predicts behavior. Its single outer electron, in fuchs
   }}
 />
 
-## Each Shell Reaches Farther
+Because that lone outer electron feels only a modest net pull, sodium has a large atomic radius and a low first ionization energy compared with elements farther right in period <InlineMath math="3" />.
 
-Going down a group adds a shell, and **each new s cloud spreads farther from the nucleus**. That is the picture behind atoms growing larger down a group.
+### Each Shell Reaches Farther
 
-<OrbitalCloudLab
-  title={<>Bigger Clouds Down a Group</>}
-  description={<>Step from the 1s to the 3s cloud and watch the radial nodes appear.</>}
-  orbitals={["1s", "2s", "3s"]}
+Going down a group adds a new principal shell, and **each new outer shell extends farther from the nucleus**. That shell expansion is why atomic radii climb steadily from lithium through sodium to potassium.
+
+<MathVisual
+  title={<>Atomic Radius Growth Down Group 1</>}
+  description={<>Concentric circles scaled to metallic atomic radii of <InlineMath math="\mathrm{Li}" /> (<InlineMath math="152\ \mathrm{pm}" />), <InlineMath math="\mathrm{Na}" /> (<InlineMath math="186\ \mathrm{pm}" />), and <InlineMath math="\mathrm{K}" /> (<InlineMath math="227\ \mathrm{pm}" />). One grid unit is <InlineMath math="50\ \mathrm{pm}" />.</>}
+  footer={<>Adding shells from 2s to 3s to 4s pushes the outer electron cloud steadily outward.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.2, max: 5.2 }, y: { min: -5.2, max: 5.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "nuc", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "r-li", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 3.04 },
+      { id: "r-na", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 3.72 },
+      { id: "r-k", kind: "circle", appearance: "warning", center: { x: 0, y: 0 }, radius: 4.54 },
+    ],
+    labels: [
+      { key: "li", objectId: "r-li", at: { x: 0, y: 3.04 }, placement: "below" },
+      { key: "na", objectId: "r-na", at: { x: 0, y: 3.72 }, placement: "above" },
+      { key: "k", objectId: "r-k", at: { x: 0, y: 4.54 }, placement: "above" },
+    ],
+  }}
   labels={{
-    angular: <>Angular nodes</>,
-    choose: "Choose an orbital",
-    numbers: <>Quantum numbers</>,
-    orbital: <>Orbital</>,
-    radial: <>Radial nodes</>,
-    view: "Electron cloud of an orbital",
+    li: <InlineMath math="\mathrm{Li}:\ 152\ \mathrm{pm}" />,
+    na: <InlineMath math="\mathrm{Na}:\ 186\ \mathrm{pm}" />,
+    k: <InlineMath math="\mathrm{K}:\ 227\ \mathrm{pm}" />,
   }}
 />
+
+Each ring jumps outward even though nuclear charge rises, proving that adding a new principal shell outweighs the extra protons when moving down a group.
+
+### Radius Changes When Ions Form
+
+Losing or gaining an electron reshapes an atom dramatically: **a metal shrinks when it loses its outer shell, whereas a nonmetal swells** when an extra electron increases repulsion in the valence shell.
+
+<MathVisual
+  title={<>Neutral Atom Radius Versus Ion Radius</>}
+  description={<>Neutral atoms (back) compared with their ions (front) for <InlineMath math="\mathrm{Li}" />, <InlineMath math="\mathrm{F}" />, <InlineMath math="\mathrm{K}" />, and <InlineMath math="\mathrm{Cl}" />. One grid step up is <InlineMath math="50\ \mathrm{pm}" />.</>}
+  footer={<>Cations shrink sharply below their neutral atoms, while anions expand above theirs.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "li-a", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1.52, z: -0.7 }, size: { length: 1.0, height: 3.04, width: 1.0 } },
+      { id: "li-i", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.76, z: 0.7 }, size: { length: 1.0, height: 1.52, width: 1.0 } },
+      { id: "f-a", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 0.64, z: -0.7 }, size: { length: 1.0, height: 1.28, width: 1.0 } },
+      { id: "f-i", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.33, z: 0.7 }, size: { length: 1.0, height: 2.66, width: 1.0 } },
+      { id: "k-a", kind: "cuboid", appearance: "reference", center: { x: 5, y: 2.27, z: -0.7 }, size: { length: 1.0, height: 4.54, width: 1.0 } },
+      { id: "k-i", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.38, z: 0.7 }, size: { length: 1.0, height: 2.76, width: 1.0 } },
+      { id: "cl-a", kind: "cuboid", appearance: "reference", center: { x: 7.5, y: 0.99, z: -0.7 }, size: { length: 1.0, height: 1.98, width: 1.0 } },
+      { id: "cl-i", kind: "cuboid", appearance: "secondary", center: { x: 7.5, y: 1.81, z: 0.7 }, size: { length: 1.0, height: 3.62, width: 1.0 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li-a", at: { x: 0, y: 3.4, z: -0.7 }, placement: "above" },
+      { key: "f", objectId: "f-i", at: { x: 2.5, y: 3.0, z: 0.7 }, placement: "above" },
+      { key: "k", objectId: "k-a", at: { x: 5, y: 4.9, z: -0.7 }, placement: "above" },
+      { key: "cl", objectId: "cl-i", at: { x: 7.5, y: 4.0, z: 0.7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    li: <InlineMath math="\mathrm{Li}\rightarrow\mathrm{Li^+}" />,
+    f: <InlineMath math="\mathrm{F}\rightarrow\mathrm{F^-}" />,
+    k: <InlineMath math="\mathrm{K}\rightarrow\mathrm{K^+}" />,
+    cl: <InlineMath math="\mathrm{Cl}\rightarrow\mathrm{Cl^-}" />,
+  }}
+/>
+
+Comparing back and front rows shows that ionic radius always moves in the direction dictated by electron loss or gain, which directly controls how tightly ions pack in solids.
 
 ## Four Periodic Properties
 
@@ -141,34 +202,17 @@ Each property describes a different aspect of an atom. The trend arrows describe
 
 The difference between electron affinity and electronegativity lies in the electron's situation. Electron affinity describes the energy change when an electron is added to a gaseous atom. Electronegativity describes the attraction of shared electrons within a bond.
 
-## Radius Changes When Ions Form
-
-Read the radius readouts as the electron moves: **the metal shrinks when it loses its outer shell and the nonmetal swells** when it takes one more electron.
-
-<IonFormationLab
-  title={<>Atomic and Ionic Radii</>}
-  description={<>Choose lithium with fluorine or potassium with chlorine and compare the radii before and after.</>}
-  pairs={["lithium-fluorine", "potassium-chlorine"]}
-  labels={{
-    choose: "Choose a pair of atoms",
-    metalRadius: <>Metal radius</>,
-    metalShells: <>Metal shells</>,
-    nonmetalRadius: <>Nonmetal radius</>,
-    nonmetalShells: <>Nonmetal shells</>,
-    progress: "Electron transfer",
-    view: "Metal and nonmetal atoms becoming ions",
-  }}
-/>
-
 ## Trends Across Periods and Groups
 
 Across a main-group series such as sodium through chlorine, proton number increases while <Highlight>valence electrons enter the same main shell</Highlight>. Shielding changes less than nuclear charge, so the effective nuclear charge felt by the valence electrons generally increases. Atomic radius therefore tends to decrease, while first ionization energy and electronegativity tend to increase.
 
 Down one group, the number of occupied shells increases. Valence electrons are farther from the nucleus, and inner electrons reduce the attraction they feel from the nucleus. This reduction is called **electron shielding**.
 
-Two sign conventions are used for electron affinity. The [IUPAC Gold Book](https://goldbook.iupac.org/terms/view/E01977) uses the energy released when an electron attaches, so favorable attachment has <InlineMath math="\mathrm{EA}>0" />. When the same process is written as a reaction-energy change, <InlineMath math="\Delta E=-\mathrm{EA}<0" />.
+Two sign conventions are used for electron affinity. The [IUPAC Gold Book](https://goldbook.iupac.org/terms/view/E01977) defines <InlineMath math="\mathrm{EA}" /> as the energy released when an electron attaches, so favorable attachment has a positive <InlineMath math="\mathrm{EA}" /> while the corresponding reaction-energy change <InlineMath math="\Delta E" /> is negative.
 
-For chlorine, attaching an electron releases energy. We write <InlineMath math="\mathrm{EA}>0" /> for its positive electron affinity and <InlineMath math="\Delta E=-\mathrm{EA}<0" /> for the negative energy change of the reaction:
+<BlockMath math="\mathrm{EA} > 0 \quad \Longleftrightarrow \quad \Delta E = -\mathrm{EA} < 0" />
+
+For chlorine, attaching an electron releases energy, giving a positive electron affinity and a negative reaction-energy change for the process below.
 
 <BlockMath math="\mathrm{Cl(g)}+e^- \rightarrow \mathrm{Cl^-(g)}" />
 
@@ -179,6 +223,7 @@ Here are both trends in real data. Across a period the nucleus gains protons whi
 <MathVisual
   title={<>Ionization Energy across Two Periods</>}
   description={<>First ionization energy for atomic numbers <InlineMath math="3" /> to <InlineMath math="18" />, period <InlineMath math="2" /> (violet) and period <InlineMath math="3" /> (orange). Horizontal: one grid step is <InlineMath math="2" /> in atomic number. Vertical: one grid step is <InlineMath math="250\ \mathrm{kJ/mol}" />.</>}
+  footer={<>Ionization energy rises across each period and plunges when a new outer shell starts.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 1, max: 9.5 }, y: { min: 1, max: 9 } },
@@ -219,24 +264,74 @@ Here are both trends in real data. Across a period the nucleus gains protons whi
   }}
 />
 
-## Reactivity across a Period and down a Group
+That sharp cliff between neon and sodium is experimental proof that shell structure resets at the start of every period.
 
-A metal's reactivity follows its ionization energy. From sodium to magnesium across a period, **the ionization energy rises from <InlineMath math="496" /> to <InlineMath math="738\ \mathrm{kJ/mol}" />**, so magnesium barely reacts with cold water. Going down from magnesium to calcium in a group, the ionization energy falls and the reaction speeds up. Compare the three metals in the beaker.
+### Reactivity Across a Period and Down a Group
 
-<AlkaliWaterLab
-  title={<>Sodium, Magnesium, and Calcium in Water</>}
-  description={<>Calcium clouds the water because calcium hydroxide barely dissolves.</>}
-  metals={["sodium", "magnesium", "calcium"]}
+A metal's reactivity follows its ionization energy. From sodium to magnesium across a period, **the ionization energy rises from <InlineMath math="496" /> to <InlineMath math="738\ \mathrm{kJ/mol}" />**, so magnesium barely reacts with cold water. Going down from magnesium to calcium in group <InlineMath math="2" />, the ionization energy falls to <InlineMath math="590\ \mathrm{kJ/mol}" /> and the reaction speeds up.
+
+<MathVisual
+  title={<>Ionization Energy of Sodium Magnesium and Calcium</>}
+  description={<>First ionization energy of <InlineMath math="\mathrm{Na}" />, <InlineMath math="\mathrm{Mg}" />, and <InlineMath math="\mathrm{Ca}" />. One grid step up is <InlineMath math="150\ \mathrm{kJ/mol}" />.</>}
+  footer={<>Higher ionization energy makes magnesium less reactive than sodium or calcium in water.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "na", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.654, z: 0 }, size: { length: 1.4, height: 3.306, width: 1.4 } },
+      { id: "mg", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 2.46, z: 0 }, size: { length: 1.4, height: 4.92, width: 1.4 } },
+      { id: "ca", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.967, z: 0 }, size: { length: 1.4, height: 3.932, width: 1.4 } },
+    ],
+    labels: [
+      { key: "na", objectId: "na", at: { x: 0, y: 3.7, z: 0 }, placement: "above" },
+      { key: "mg", objectId: "mg", at: { x: 2.5, y: 5.3, z: 0 }, placement: "above" },
+      { key: "ca", objectId: "ca", at: { x: 5, y: 4.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Choose a metal",
-    density: <>Density</>,
-    equation: <>Equation</>,
-    ionization: <>First ionization energy</>,
-    melting: <>Melting point</>,
-    radius: <>Atomic radius</>,
-    view: "Metal in a beaker of water",
+    na: <InlineMath math="\mathrm{Na}:\ 496" />,
+    mg: <InlineMath math="\mathrm{Mg}:\ 738" />,
+    ca: <InlineMath math="\mathrm{Ca}:\ 590" />,
   }}
 />
+
+Comparing the three bars shows why chemical vigor tracks ionization energy: the tallest bar (<InlineMath math="\mathrm{Mg}" />) reacts slowest with cold water, while the shortest bar (<InlineMath math="\mathrm{Na}" />) reacts vigorously.
+
+### Halide Ions Grow Down the Group
+
+Radius grows down a group because more electron shells are added. Compare the crystals of <InlineMath math="\mathrm{NaF}" />, <InlineMath math="\mathrm{NaCl}" />, and <InlineMath math="\mathrm{NaBr}" />. The <InlineMath math="\mathrm{Na^+}" /> cation stays identical, but **the halide anion grows from <InlineMath math="\mathrm{F^-}" /> to <InlineMath math="\mathrm{Br^-}" />**, so the cubic unit cell edge stretches right along with it.
+
+<MathVisual
+  title={<>Halide Anion Radius and Unit Cell Edge</>}
+  description={<>Anion radius (back) and cubic unit cell edge (front) for <InlineMath math="\mathrm{NaF}" />, <InlineMath math="\mathrm{NaCl}" />, and <InlineMath math="\mathrm{NaBr}" />. One grid step up is <InlineMath math="100\ \mathrm{pm}" />.</>}
+  footer={<>Holding sodium fixed isolates how larger halide anions expand the crystal lattice.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "f-ion", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.665, z: -0.7 }, size: { length: 1.1, height: 1.33, width: 1.1 } },
+      { id: "naf-cell", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2.31, z: 0.7 }, size: { length: 1.1, height: 4.62, width: 1.1 } },
+      { id: "cl-ion", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 0.905, z: -0.7 }, size: { length: 1.1, height: 1.81, width: 1.1 } },
+      { id: "nacl-cell", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2.82, z: 0.7 }, size: { length: 1.1, height: 5.64, width: 1.1 } },
+      { id: "br-ion", kind: "cuboid", appearance: "secondary", center: { x: 5, y: 0.98, z: -0.7 }, size: { length: 1.1, height: 1.96, width: 1.1 } },
+      { id: "nabr-cell", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.985, z: 0.7 }, size: { length: 1.1, height: 5.97, width: 1.1 } },
+    ],
+    labels: [
+      { key: "naf", objectId: "naf-cell", at: { x: 0, y: 5.0, z: 0.7 }, placement: "above" },
+      { key: "nacl", objectId: "nacl-cell", at: { x: 2.5, y: 6.0, z: 0.7 }, placement: "above" },
+      { key: "nabr", objectId: "nabr-cell", at: { x: 5, y: 6.3, z: 0.7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    naf: <InlineMath math="\mathrm{NaF}:\ 462\ \mathrm{pm}" />,
+    nacl: <InlineMath math="\mathrm{NaCl}:\ 564\ \mathrm{pm}" />,
+    nabr: <InlineMath math="\mathrm{NaBr}:\ 597\ \mathrm{pm}" />,
+  }}
+/>
+
+Because the cation never changes across the three salts, the steady climb in cell edge directly mirrors the extra electron shell gained at each step down group <InlineMath math="17" />.
 
 ## Comparing Two Pairs of Elements
 
@@ -248,22 +343,3 @@ Compare elements **in the same period or group** so the reason is clear:
 | Li and Na in group 1 | Li's valence electron is in shell L, while Na's is in shell M. Na has an extra inner shell that contributes shielding. | Na has a larger radius. Its first electron is easier to remove. |
 
 These comparisons explain general trends. For electron affinity or pairs such as Mg and Al, check the data and subshell arrangement because the general direction alone is insufficient.
-
-## Halide Ions Grow down the Group
-
-Radius grows down a group because more electron shells are added. Compare the crystals of <InlineMath math="\mathrm{NaF}" />, <InlineMath math="\mathrm{NaCl}" />, and <InlineMath math="\mathrm{NaBr}" />. The cation is the same, but **the halide anion grows from <InlineMath math="\mathrm{F^-}" /> to <InlineMath math="\mathrm{Br^-}" />**, so the edge of the unit cell grows longer too.
-
-<IonLatticeLab
-  title={<>Three Sodium Halide Salts</>}
-  description={<>Compare the size of the anion and the unit cell edge.</>}
-  crystals={["sodium-fluoride", "sodium-chloride", "sodium-bromide"]}
-  labels={{
-    cells: "Unit cells per edge",
-    choose: "Choose a crystal",
-    count: <>Number of ions</>,
-    formula: <>Formula</>,
-    ions: <>Ions and their radii</>,
-    lattice: <>Unit cell edge</>,
-    view: "Ionic crystal lattice",
-  }}
-/>

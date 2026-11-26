@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Isotop",
   description:
@@ -15,17 +14,13 @@ Atom hidrogen, karbon, dan oksigen tidak semuanya memiliki massa yang sama. Satu
 
 [Isotop](https://goldbook.iupac.org/terms/view/I03331) adalah atom dari unsur yang sama dengan nomor atom sama, tetapi nomor massa berbeda.
 
-Hubungan antara nomor atom, jumlah neutron, dan nomor massa dapat diringkas seperti ini:
+Ringkasnya, isotop memiliki <InlineMath math="Z" /> yang sama, tetapi jumlah neutron <InlineMath math="n^0" /> dan nomor massa <InlineMath math="A" /> berbeda.
 
-Isotop memiliki <InlineMath math="Z" /> yang sama, tetapi jumlah neutron <InlineMath math="n^0" /> dan nomor massa <InlineMath math="A" /> yang berbeda.
+Simbol <InlineMath math="Z" /> adalah nomor atom atau jumlah proton. Simbol <InlineMath math="A" /> adalah nomor massa atau jumlah proton ditambah neutron. Kalau <InlineMath math="Z" /> sama, unsurnya sama. Kalau <InlineMath math="n^0" /> berbeda, nomor massanya ikut berbeda.
 
-Simbol <InlineMath math="Z" /> adalah nomor atom, yaitu jumlah proton. Simbol <InlineMath math="A" /> adalah nomor massa, yaitu jumlah proton dan neutron. Kalau <InlineMath math="Z" /> sama, unsurnya sama. Kalau <InlineMath math="n^0" /> berbeda, nomor massanya ikut berbeda.
+> Isotop tetap tergolong unsur yang sama karena jumlah protonnya tidak berubah meski tambahan neutron membuat intinya lebih berat.
 
-Isotop termasuk unsur yang sama <Highlight>karena jumlah protonnya sama</Highlight>. Perbedaan jumlah neutron menghasilkan nomor massa yang berbeda.
-
-## Model Isotop
-
-Pilih isotop di bawah ini. Perhatikan bagian yang tidak berubah dulu: **jumlah proton**. Setelah itu, bandingkan jumlah neutronnya.
+Isotop termasuk unsur yang sama <Highlight>karena jumlah protonnya sama</Highlight>. Pilih satu isotop di bawah ini untuk melihat jumlah proton yang tetap sementara jumlah neutronnya berubah.
 
 <IsotopeLab
   title={<>Pembaca Isotop</>}
@@ -35,6 +30,7 @@ Pilih isotop di bawah ini. Perhatikan bagian yang tidak berubah dulu: **jumlah p
       atom tetap sama, tetapi nomor massa berubah ketika neutron berubah.
     </>
   }
+  footer={<>Ganti isotop untuk melihat jumlah proton tetap saat neutron mengubah massa.</>}
   labels={{
     chooseIsotope: "Pilih contoh isotop",
     atomicNumber: "Nomor atom",
@@ -90,7 +86,13 @@ Pilih isotop di bawah ini. Perhatikan bagian yang tidak berubah dulu: **jumlah p
   }}
 />
 
-## Tiga Isotop Hidrogen
+Membandingkan tiga tombol hidrogen dan tiga tombol karbon langsung meneguhkan satu aturan. Mengubah jumlah neutron mengubah nomor massa tanpa pernah mengubah jenis unsurnya.
+
+## Isotop Hidrogen dan Karbon
+
+Hidrogen dan karbon memberi contoh paling jelas tentang cara **tambahan neutron mengubah massa tanpa mengganti unsurnya**. Kedua keluarga isotop ini hadir luas di alam dan di laboratorium.
+
+### Tiga Isotop Hidrogen
 
 Semua isotop hidrogen memiliki <InlineMath math="1" /> proton. Karena jumlah protonnya <InlineMath math="1" />, semuanya tetap unsur hidrogen. Perbedaannya ada pada **jumlah neutron**.
 
@@ -107,16 +109,17 @@ Adegan ini menunjukkan inti setiap isotop hidrogen, proton berwarna oranye di be
 <MathVisual
   title={<>Tiga Isotop Hidrogen</>}
   description={<>Proton (oranye, belakang) dan neutron (abu-abu, depan) pada hidrogen-1, hidrogen-2, dan hidrogen-3. Satu kotak grid ke atas sama dengan <InlineMath math="1" /> partikel.</>}
+  footer={<>Semua isotop hidrogen punya satu proton sementara neutronnya naik dari nol ke dua.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
     view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1, z: 0 } },
     objects: [
-      { id: "one-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "two-p", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "two-n", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: (1) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "three-p", kind: "cuboid", appearance: "primary", center: { x: 5, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "three-n", kind: "cuboid", appearance: "reference", center: { x: 5, y: (2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "one-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "two-p", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "two-n", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 0.5, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "three-p", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "three-n", kind: "cuboid", appearance: "reference", center: { x: 5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
     ],
     labels: [
       { key: "one", objectId: "one-p", at: { x: 0, y: 1.5, z: -0.75 }, placement: "above" },
@@ -131,25 +134,47 @@ Adegan ini menunjukkan inti setiap isotop hidrogen, proton berwarna oranye di be
   }}
 />
 
-Protium, deuterium, dan tritium hanya berbeda di inti. Masing-masing tetap punya <InlineMath math="1" /> proton dan <InlineMath math="1" /> elektron, jadi **ketiganya memakai awan elektron yang sama** dan bereaksi hampir sama.
+Lihat barisan belakang lebih dulu. Semua kolom oranye tetap setinggi satu satuan, menandakan protium, deuterium, dan tritium tetap unsur yang sama.
 
-<OrbitalCloudLab
-  title={<>Isotop Berbagi Orbital</>}
-  description={<>Ganti orbital hidrogen yang bisa dipakai setiap isotop hidrogen.</>}
-  orbitals={["1s", "2s", "2pz"]}
+Protium, deuterium, dan tritium hanya berbeda di dalam inti. Masing-masing tetap punya <InlineMath math="1" /> proton dan <InlineMath math="1" /> elektron, jadi **ketiganya memakai susunan elektron luar yang sama** dan bereaksi hampir sama dalam reaksi kimia.
+
+<MathVisual
+  title={<>Elektron Sama Massa Inti Berbeda</>}
+  description={<>Jumlah elektron (ungu, garis datar pada satu) dibandingkan nomor massa (oranye, naik dari satu ke tiga) pada tiga isotop hidrogen.</>}
+  footer={<>Jumlah elektron yang sama membuat sifat kimia isotop hampir identik.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 3.5 }, y: { min: 0, max: 3.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "e-line", kind: "segment", appearance: "secondary", from: { x: 1, y: 1 }, to: { x: 3, y: 1 } },
+      { id: "m-line", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 3, y: 3 } },
+      { id: "e1", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "e2", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "e3", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "m2", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+      { id: "m3", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "h1", objectId: "e1", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "h2", objectId: "m2", at: { x: 2, y: 2 }, placement: "above" },
+      { key: "h3", objectId: "m3", at: { x: 3, y: 3 }, placement: "above" },
+      { key: "elec", objectId: "e3", at: { x: 3, y: 1 }, placement: "below" },
+    ],
+  }}
   labels={{
-    angular: <>Simpul sudut</>,
-    choose: "Pilih orbital",
-    numbers: <>Bilangan kuantum</>,
-    orbital: <>Orbital</>,
-    radial: <>Simpul radial</>,
-    view: "Awan elektron orbital",
+    h1: <InlineMath math="^{1}\mathrm{H}:\ A=1" />,
+    h2: <InlineMath math="^{2}\mathrm{H}:\ A=2" />,
+    h3: <InlineMath math="^{3}\mathrm{H}:\ A=3" />,
+    elec: <InlineMath math="e^-=1" />,
   }}
 />
 
-## Isotop Karbon Berbeda dalam Jumlah Neutron
+Ikatan kimia bergantung pada elektron luar yang nilainya tetap datar di satu untuk ketiga isotop. Hanya sifat fisik yang terkait massa, seperti massa jenis dan laju difusi, yang berubah jelas.
 
-Karbon selalu memiliki <InlineMath math="6" /> proton. Dari <InlineMath math="{}^{12}_{6}\mathrm{C}" /> sampai <InlineMath math="{}^{14}_{6}\mathrm{C}" />, jumlah neutron bertambah dari <InlineMath math="6" /> menjadi <InlineMath math="8" />.
+### Isotop Karbon Berbeda dalam Jumlah Neutron
+
+Karbon selalu memiliki <InlineMath math="6" /> proton. Dari <InlineMath math="{}^{12}_{6}\mathrm{C}" /> sampai <InlineMath math="{}^{14}_{6}\mathrm{C}" />, jumlah neutron bertambah langkah demi langkah.
 
 <BlockMath math="\begin{aligned}
 {}^{12}_{6}\mathrm{C} &: n^0 = 12 - 6 = 6 \\
@@ -157,7 +182,7 @@ Karbon selalu memiliki <InlineMath math="6" /> proton. Dari <InlineMath math="{}
 {}^{14}_{6}\mathrm{C} &: n^0 = 14 - 6 = 8
 \end{aligned}" />
 
-<InlineMath math="{}^{12}_{6}\mathrm{C}" /> dan <InlineMath math="{}^{13}_{6}\mathrm{C}" /> stabil. <InlineMath math="{}^{14}_{6}\mathrm{C}" /> radioaktif, sehingga jumlahnya sangat kecil di alam. Karena <InlineMath math="{}^{14}_{6}\mathrm{C}" /> **meluruh seiring waktu**, ilmuwan dapat memakainya untuk memperkirakan usia benda yang pernah berasal dari makhluk hidup, misalnya kayu tua atau tulang.
+<InlineMath math="{}^{12}_{6}\mathrm{C}" /> dan <InlineMath math="{}^{13}_{6}\mathrm{C}" /> stabil. <InlineMath math="{}^{14}_{6}\mathrm{C}" /> radioaktif, jadi jumlahnya sangat kecil di alam. Karena <InlineMath math="{}^{14}_{6}\mathrm{C}" /> **meluruh seiring waktu**, ilmuwan dapat memakainya untuk memperkirakan usia benda yang pernah berasal dari makhluk hidup, misalnya kayu tua atau tulang.
 
 ## Perbedaan Isotop dan Ion
 
@@ -168,19 +193,20 @@ Ion terbentuk ketika atom menerima atau melepas elektron. Isotop dari unsur yang
 | Ion | Elektron | Proton |
 | Isotop | Neutron | Proton |
 
-Contohnya, <InlineMath math="\mathrm{C}^{+}" /> adalah ion karbon yang kehilangan satu elektron. Dari <InlineMath math="6" /> proton dan muatan <InlineMath math="+1" />, jumlah elektronnya menjadi <InlineMath math="6 - 1 = 5" />. Sebaliknya, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> adalah isotop karbon karena neutronnya berbeda dari <InlineMath math="{}^{12}_{6}\mathrm{C}" />.
+Contohnya, <InlineMath math="\mathrm{C}^{+}" /> adalah ion karbon yang kehilangan satu elektron. Dari <InlineMath math="6" /> proton dan muatan <InlineMath math="+1" />, jumlah elektronnya menjadi <InlineMath math="5" />. Sebaliknya, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> adalah isotop karbon karena neutronnya berbeda dari <InlineMath math="{}^{12}_{6}\mathrm{C}" />.
 
-Jika atomnya netral, elektron tetap sama dengan proton:
+Jika atomnya netral, elektron tetap sama dengan proton.
 
 <BlockMath math="\text{atom netral} \Rightarrow e^- = p^+" />
 
 Jadi, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> netral memiliki <InlineMath math="6" /> proton, <InlineMath math="6" /> elektron, dan <InlineMath math="8" /> neutron.
 
-Letakkan tiap inti menurut neutronnya di sumbu mendatar dan protonnya di sumbu tegak. Isotop satu unsur punya <InlineMath math="Z" /> yang sama, jadi isotop karbon berjajar di satu baris kuning. Ion sama sekali tidak bergeser di peta ini, karena hanya elektronnya yang berubah. Perbesar dan bandingkan <InlineMath math="^{14}\mathrm{C}" /> dengan <InlineMath math="^{14}\mathrm{N}" />: nomor massanya sama, unsurnya berbeda.
+Letakkan tiap inti menurut neutronnya di sumbu mendatar dan protonnya di sumbu tegak. Isotop satu unsur punya <InlineMath math="Z" /> yang sama, jadi isotop karbon berjajar di satu baris kuning. Ion sama sekali tidak bergeser di peta ini, karena hanya elektronnya yang berubah. Bandingkan <InlineMath math="^{14}\mathrm{C}" /> dengan <InlineMath math="^{14}\mathrm{N}" /> yang punya nomor massa sama tetapi berbeda unsur.
 
 <MathVisual
-  title={<>Isotop Berjajar, Ion Tetap di Tempat</>}
+  title={<>Isotop Berjajar Ion Tetap di Tempat</>}
   description={<>Lima inti menurut jumlah neutron (mendatar) dan jumlah proton (tegak). Baris kuning memuat tiga isotop karbon.</>}
+  footer={<>Titik yang sejajar mendatar punya jumlah proton sama sebagai satu unsur.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 5, max: 9 }, y: { min: 5, max: 9 } },
@@ -210,37 +236,65 @@ Letakkan tiap inti menurut neutronnya di sumbu mendatar dan protonnya di sumbu t
   }}
 />
 
-Ion berbeda dari atomnya karena muatan, isotop karena neutron. Di dalam medan magnet **hanya partikel bermuatan yang melengkung**, sedangkan neutron tetap lurus.
+Ketiga titik karbon tetap berada pada garis mendatar <InlineMath math="Z = 6" />. Naik satu langkah ke <InlineMath math="Z = 7" /> langsung memindahkan kita ke unsur nitrogen.
 
-<ParticleTrackLab
-  title={<>Partikel Bermuatan dan Netral</>}
-  description={<>Naikkan medannya dan lihat lintasan mana yang melengkung dan mana yang tetap lurus.</>}
+Ion berbeda dari atomnya karena muatan, sedangkan isotop berbeda karena neutron. Di dalam medan magnet **hanya partikel bermuatan yang melengkung**, sedangkan neutron yang netral tetap melaju lurus.
+
+<MathVisual
+  title={<>Ion Bermuatan dan Neutron Netral</>}
+  description={<>Jejak skematis yang masuk ke medan magnet dari kiri. Proton positif melengkung ke satu arah, elektron negatif melengkung tajam ke arah sebaliknya, dan neutron lurus.</>}
+  footer={<>Medan magnet membelokkan partikel bermuatan dan membiarkan neutron tetap lurus.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "n-track", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.5, y: 0 } },
+      { id: "p-a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.8, y: 0.6 } },
+      { id: "p-b", kind: "segment", appearance: "primary", from: { x: 2.8, y: 0.6 }, to: { x: 5.4, y: 1.8 } },
+      { id: "e-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.0, y: -1.1 } },
+      { id: "e-b", kind: "segment", appearance: "secondary", from: { x: 2.0, y: -1.1 }, to: { x: 3.6, y: -2.9 } },
+      { id: "n-pt", kind: "point", appearance: "reference", at: { x: 5.5, y: 0 } },
+      { id: "p-pt", kind: "point", appearance: "primary", at: { x: 5.4, y: 1.8 } },
+      { id: "e-pt", kind: "point", appearance: "secondary", at: { x: 3.6, y: -2.9 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-pt", at: { x: 5.5, y: 0 }, placement: "above" },
+      { key: "p", objectId: "p-pt", at: { x: 5.4, y: 1.8 }, placement: "above" },
+      { key: "e", objectId: "e-pt", at: { x: 3.6, y: -2.9 }, placement: "right" },
+    ],
+  }}
   labels={{
-    electron: <>Jari-jari lintasan elektron</>,
-    field: "Kuat medan magnet",
-    proton: <>Jari-jari lintasan proton</>,
-    ratio: <>Perbandingan jari-jari</>,
-    view: "Jejak partikel dalam medan magnet",
+    n: <InlineMath math="n^0\ (\text{lurus})" />,
+    p: <InlineMath math="p^+\ (\text{melengkung landai})" />,
+    e: <InlineMath math="e^-\ (\text{melengkung tajam})" />,
   }}
 />
 
-## Kegunaan Isotop
+Bentuk lintasan ini membedakan peran muatan dan massa dalam sekejap. Muatan menentukan apakah dan ke mana partikel berbelok, sedangkan massa mengatur seberapa tajam belokannya.
 
-Jumlah neutron memengaruhi **massa dan kestabilan inti** suatu isotop. Sifat tersebut menentukan apakah isotop tertentu dapat dipakai sebagai pelacak, calon sumber energi, atau penanda waktu untuk memperkirakan umur bahan.
+## Kestabilan Inti dan Kegunaan Isotop
+
+Imbangan jumlah neutron dan proton menentukan **seberapa stabil suatu inti atom bertahan seiring waktu**. Sifat itu membedakan isotop acuan yang stabil dari isotop peluruh yang dipakai sebagai jam alam.
+
+### Penggunaan Praktis Isotop
+
+Jumlah neutron memengaruhi **massa dan kestabilan inti** suatu isotop. Sifat ini menentukan apakah suatu isotop cocok dipakai sebagai pelacak, calon sumber energi, atau penanda waktu untuk memperkirakan umur bahan.
 
 [Deuterium dan tritium](https://www.energy.gov/science/doe-explainsdeuterium-tritium-fusion-fuel) diteliti sebagai pasangan bahan bakar dalam riset energi fusi.
 
-<InlineMath math="{}^{14}_{6}\mathrm{C}" /> dipakai dalam penanggalan radiokarbon untuk memperkirakan umur bahan organik, yaitu bahan yang pernah berasal dari makhluk hidup. Metode ini dapat menentukan usia hingga sekitar <InlineMath math="60\,000" /> tahun.
+<InlineMath math="{}^{14}_{6}\mathrm{C}" /> dipakai dalam penanggalan radiokarbon untuk memperkirakan umur bahan organik yang pernah berasal dari makhluk hidup. Metode ini dapat menentukan usia hingga sekitar <InlineMath math="60\,000" /> tahun.
 
-Setiap penggunaan isotop harus mempertimbangkan kestabilan intinya, yaitu kecenderungan inti untuk meluruh. Isotop radioaktif seperti tritium dan <InlineMath math="{}^{14}_{6}\mathrm{C}" /> memerlukan prosedur terkendali dan aturan keselamatan radiasi.
+Setiap penggunaan isotop harus mempertimbangkan kestabilan intinya atau kecenderungan inti untuk meluruh. Isotop radioaktif seperti tritium dan <InlineMath math="{}^{14}_{6}\mathrm{C}" /> memerlukan prosedur terkendali dan aturan keselamatan radiasi.
 
-## Karbon Empat Belas Meluruh Perlahan
+### Karbon Empat Belas Meluruh Perlahan
 
-Penanggalan karbon memakai isotop <InlineMath math="{}^{14}_{6}\mathrm{C}" />, yang meluruh menjadi <InlineMath math="{}^{14}_{7}\mathrm{N}" />. Tidak ada yang bisa menebak kapan satu inti meluruh, tetapi **jumlahnya selalu tinggal setengah setiap <InlineMath math="5730" /> tahun**. Geser waktunya. Setelah <InlineMath math="11\,460" /> tahun, sekitar seperempat inti masih tersisa.
+Penanggalan karbon memakai isotop <InlineMath math="{}^{14}_{6}\mathrm{C}" />, yang meluruh menjadi <InlineMath math="{}^{14}_{7}\mathrm{N}" />. Tidak ada yang bisa menebak kapan satu inti meluruh, tetapi **jumlahnya selalu tinggal setengah setiap <InlineMath math="5730" /> tahun**. Geser waktunya untuk melihat sekitar seperempat inti masih tersisa setelah <InlineMath math="11\,460" /> tahun.
 
 <RadioactiveDecayLab
   title={<>Peluruhan Karbon-14</>}
   description={<>Inti gelap adalah karbon-14, inti ungu sudah menjadi nitrogen-14.</>}
+  footer={<>Setengah inti karbon-14 yang tersisa meluruh tiap satu waktu paruh 5730 tahun.</>}
   labels={{
     counted: <>Inti yang tersisa</>,
     expected: <>Menurut hukum peluruhan</>,
@@ -251,13 +305,13 @@ Penanggalan karbon memakai isotop <InlineMath math="{}^{14}_{6}\mathrm{C}" />, y
   }}
 />
 
-## Dari Isotop ke Massa Atom Rata-rata
+Geser slider melewati satu, dua, dan tiga waktu paruh untuk melihat jumlah inti turun menjadi setengah, seperempat, lalu seperdelapan. Laju penyusutan yang stabil ini menjadikan karbon-14 jam arkeologi yang andal.
+
+## Dari Isotop ke Massa Atom Relatif
 
 Pada tabel periodik, massa atom relatif sering berupa angka desimal. Angka itu bukan nomor massa satu isotop. Massa atom relatif dihitung dari massa setiap isotop dan kelimpahan isotop dalam sampel acuan.
 
-Persentase dalam tabel merupakan [**komposisi isotop representatif**](https://www.physics.nist.gov/PhysRefData/Compositions/notes.html) untuk bahan acuan. Komposisi isotop dapat berbeda menurut asal dan pengolahan bahan. Persentase di bawah merupakan nilai rujukan, sedangkan sampel alami tertentu dapat berbeda.
-
-Karbon menjadi contoh yang mudah:
+Persentase dalam tabel adalah [**komposisi isotop representatif**](https://www.physics.nist.gov/PhysRefData/Compositions/notes.html) untuk bahan acuan. Komposisi isotop dapat berbeda menurut asal dan pengolahan bahan. Angka di bawah ini adalah nilai rujukan, sedangkan sampel alami tertentu dapat berbeda.
 
 | Isotop karbon | Nomor massa | Komposisi isotop representatif |
 | :------------ | :---------- | :--------------- |
@@ -267,35 +321,47 @@ Karbon menjadi contoh yang mudah:
 
 Karena <InlineMath math="{}^{12}_{6}\mathrm{C}" /> paling melimpah, massa atom relatif karbon di tabel periodik berada dekat <InlineMath math="12" />, tetapi tidak tepat sama dengan <InlineMath math="12" />.
 
-## Spektrometer Massa Memisahkan Isotop
+Persentase isotop diukur dengan spektrometer massa. Posisi tiap puncak menunjukkan massa isotop dan **tingginya mencerminkan kelimpahan alami**. Lihat dua puncak klorin di bawah dan perhatikan mengapa rata-rata tertimbangnya jatuh di <InlineMath math="35{,}45" />.
 
-Persentase isotop diukur dengan spektrometer massa. Ion dibelokkan magnet, dan **ion yang lebih berat berbelok dengan lintasan yang lebih lebar**, jadi setiap isotop jatuh di tempat sendiri. Tinggi puncaknya sebanding dengan kelimpahan isotop. Pilih klorin, lalu bandingkan massa rata-ratanya dengan <InlineMath math="35{,}45" /> di tabel periodik.
-
-<MassSpectrometerLab
-  title={<>Isotop Klorin, Karbon, dan Neon</>}
-  description={<>Setiap isotop mendarat di detektor pada jarak yang berbeda.</>}
-  samples={["chlorine", "carbon", "neon"]}
+<MathVisual
+  title={<>Spektrum Massa Klorin dan Rata-Rata Tertimbang</>}
+  description={<>Kelimpahan alami klorin-35 (<InlineMath math="75{,}8\%" />) dan klorin-37 (<InlineMath math="24{,}2\%" />), dengan garis kuning menandai rata-rata tertimbang pada <InlineMath math="35{,}45" />.</>}
+  footer={<>Karena klorin-35 tiga kali lebih melimpah, nilai rata-ratanya dekat 35,45.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 34, max: 38 }, y: { min: -5, max: 90 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "baseline", kind: "segment", appearance: "reference", from: { x: 34.4, y: 0 }, to: { x: 37.6, y: 0 } },
+      { id: "cl35", kind: "segment", appearance: "primary", from: { x: 35, y: 0 }, to: { x: 35, y: 75.8 } },
+      { id: "cl37", kind: "segment", appearance: "secondary", from: { x: 37, y: 0 }, to: { x: 37, y: 24.2 } },
+      { id: "avg-line", kind: "segment", appearance: "highlight", from: { x: 35.45, y: 0 }, to: { x: 35.45, y: 55 } },
+      { id: "p35", kind: "point", appearance: "primary", at: { x: 35, y: 75.8 } },
+      { id: "p37", kind: "point", appearance: "secondary", at: { x: 37, y: 24.2 } },
+      { id: "pavg", kind: "point", appearance: "highlight", at: { x: 35.45, y: 55 } },
+    ],
+    labels: [
+      { key: "c35", objectId: "p35", at: { x: 35, y: 75.8 }, placement: "above" },
+      { key: "c37", objectId: "p37", at: { x: 37, y: 24.2 }, placement: "above" },
+      { key: "avg", objectId: "pavg", at: { x: 35.45, y: 55 }, placement: "right" },
+    ],
+  }}
   labels={{
-    average: <>Massa atom relatif rata-rata</>,
-    choose: "Pilih unsur",
-    isotopes: <>Isotop dan kelimpahannya</>,
-    north: "U",
-    radius: <>Jari-jari lintasan</>,
-    ratio: <>Perbandingan jari-jari</>,
-    south: "S",
-    view: "Spektrometer massa",
+    c35: <InlineMath math="^{35}\mathrm{Cl}:\ 75{,}8\%" />,
+    c37: <InlineMath math="^{37}\mathrm{Cl}:\ 24{,}2\%" />,
+    avg: <InlineMath math="A_r \approx 35{,}45" />,
   }}
 />
 
-## Membedakan Isotop dari Nomor Atom dan Nomor Massa
+Garis rata-rata kuning tertarik kuat ke arah puncak <InlineMath math="^{35}\mathrm{Cl}" /> yang lebih tinggi, bukan tepat di tengah pada <InlineMath math="36" />. Semua massa desimal di tabel periodik lahir dari tarikan berbobot ke isotop yang paling melimpah.
 
-Gunakan tiga pertanyaan ini setiap membaca isotop:
+Gunakan tiga pertanyaan ini setiap membaca lambang isotop.
 
 - Berapa jumlah protonnya?
 - Berapa nomor massanya?
 - Berapa neutronnya dari <InlineMath math="A - Z" />?
 
-Untuk <InlineMath math="{}^{92}_{40}\mathrm{Zr}" />:
+Penerapan langkah ini pada <InlineMath math="{}^{92}_{40}\mathrm{Zr}" /> langsung memberi jumlah neutronnya.
 
 <BlockMath math="\begin{aligned}
 n^0 &= A - Z \\
@@ -303,9 +369,9 @@ n^0 &= A - Z \\
 &= 52
 \end{aligned}" />
 
-Jadi, <InlineMath math="{}^{92}_{40}\mathrm{Zr}" /> memiliki <InlineMath math="52" /> neutron. Hubungan <InlineMath math="n=A-Z" /> berlaku untuk setiap isotop yang nomor atom dan nomor massanya diketahui, sehingga kita tidak memerlukan tabel jumlah neutron.
+Jadi, <InlineMath math="{}^{92}_{40}\mathrm{Zr}" /> memiliki <InlineMath math="52" /> neutron. Hubungan <InlineMath math="n = A - Z" /> berlaku untuk setiap isotop yang nomor atom dan nomor massanya diketahui, jadi kita tidak memerlukan tabel jumlah neutron.
 
-Dengan kelimpahan pada tabel, kita dapat **menghitung rata-rata tertimbang**. Untuk latihan ini, dekati massa isotop karbon-12 dan karbon-13 dengan <InlineMath math="12\ \mathrm{u}" /> dan <InlineMath math="13\ \mathrm{u}" />, lalu abaikan karbon-14 yang jumlahnya sangat kecil:
+Dengan kelimpahan pada tabel, kita dapat **menghitung rata-rata tertimbang**. Mendekati massa isotop karbon-12 dan karbon-13 dengan <InlineMath math="12\ \mathrm{u}" /> dan <InlineMath math="13\ \mathrm{u}" /> lalu mengabaikan karbon-14 yang sangat kecil menghasilkan angka tabel periodik.
 
 <BlockMath math="\begin{aligned}
 A_r(\mathrm C)&\approx 12(0{,}9893)+13(0{,}0107)\\

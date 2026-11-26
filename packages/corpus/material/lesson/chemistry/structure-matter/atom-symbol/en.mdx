@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Atomic Symbol",
   description:
@@ -25,26 +24,9 @@ Read it like this:
 - <InlineMath math="Z" /> is the atomic number
 - <InlineMath math="A" /> is the mass number
 
-## Charge in the Corner
+> Think of an atomic symbol as a compact address label where the lower-left number identifies the element and the upper-left number weighs the nucleus.
 
-An atomic symbol can also carry a charge at its upper right, as in <InlineMath math="\mathrm{Mg^{2+}}" /> and <InlineMath math="\mathrm{O^{2-}}" />. That **charge counts the electrons lost or gained**, which you can watch move here.
-
-<IonFormationLab
-  title={<>Where an Ion's Charge Comes From</>}
-  description={<>Choose magnesium with oxygen or potassium with chlorine and count the electrons that move.</>}
-  pairs={["magnesium-oxygen", "potassium-chlorine"]}
-  labels={{
-    choose: "Choose a pair of atoms",
-    metalRadius: <>Metal radius</>,
-    metalShells: <>Metal shells</>,
-    nonmetalRadius: <>Nonmetal radius</>,
-    nonmetalShells: <>Nonmetal shells</>,
-    progress: "Electron transfer",
-    view: "Metal and nonmetal atoms becoming ions",
-  }}
-/>
-
-## Reading Mass and Atomic Numbers
+### Reading Mass and Atomic Numbers
 
 Choose an atom below, then match the two numbers in its symbol. The **upper-left number is the mass number** <InlineMath math="A" />, while the lower-left number is the atomic number <InlineMath math="Z" />. Their positions determine which proton, neutron, or electron count to calculate.
 
@@ -56,6 +38,7 @@ Choose an atom below, then match the two numbers in its symbol. The **upper-left
       with the particle counts.
     </>
   }
+  footer={<>Match upper-left A and lower-left Z directly to the proton and neutron counts.</>}
   labels={{
     chooseAtom: "Choose an atom example",
     massNumber: "Mass number",
@@ -90,6 +73,39 @@ Choose an atom below, then match the two numbers in its symbol. The **upper-left
   }}
 />
 
+Checking each sample reinforces the layout rule: the larger mass number sits on top because protons plus neutrons can never be smaller than protons alone.
+
+### Charge in the Upper Right Corner
+
+An atomic symbol can also carry a charge at its upper right, as in <InlineMath math="\mathrm{Mg^{2+}}" /> and <InlineMath math="\mathrm{O^{2-}}" />. That **charge counts the electrons lost or gained** while the proton count stays locked to the element. Compare magnesium and oxygen after two electrons move from magnesium to oxygen.
+
+<MathVisual
+  title={<>Corner Charge Tracks Electron Shifts</>}
+  description={<>Protons (orange) and electrons (violet) in <InlineMath math="\mathrm{Mg^{2+}}" /> and <InlineMath math="\mathrm{O^{2-}}" />. One grid step up is <InlineMath math="2" /> particles.</>}
+  footer={<>A 2+ corner means two fewer electrons than protons, while 2- means two more.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 7, z: 11 }, target: { x: 3, y: 3, z: 0 } },
+    objects: [
+      { id: "mg-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: 3, z: 0 }, size: { length: 1.1, height: 6, width: 1.1 } },
+      { id: "mg-e", kind: "cuboid", appearance: "secondary", center: { x: 1.4, y: 2.5, z: 0 }, size: { length: 1.1, height: 5, width: 1.1 } },
+      { id: "o-p", kind: "cuboid", appearance: "primary", center: { x: 4.6, y: 2, z: 0 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "o-e", kind: "cuboid", appearance: "answer", center: { x: 6, y: 2.5, z: 0 }, size: { length: 1.1, height: 5, width: 1.1 } },
+    ],
+    labels: [
+      { key: "mg", objectId: "mg-p", at: { x: 0.7, y: 6.3, z: 0 }, placement: "above" },
+      { key: "ox", objectId: "o-e", at: { x: 5.3, y: 5.3, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    mg: <InlineMath math="\mathrm{Mg^{2+}}:\ 12p^+,\ 10e^-" />,
+    ox: <InlineMath math="\mathrm{O^{2-}}:\ 8p^+,\ 10e^-" />,
+  }}
+/>
+
+Even though both ions carry <InlineMath math="10" /> electrons, their opposite corner signs show immediately which one lost electrons and which one gained them.
+
 ## Counting Protons Electrons and Neutrons
 
 The atomic number is written as <InlineMath math="Z" />. This number equals the number of protons in the nucleus.
@@ -113,6 +129,7 @@ Every particle count comes from the two numbers in the symbol <InlineMath math="
 <MathVisual
   title={<>From A and Z to Particle Counts</>}
   description={<>Protons (orange), neutrons (gray) and electrons (violet) in neutral carbon-12, sodium-23 and chlorine-35. One grid step up is <InlineMath math="4" /> particles.</>}
+  footer={<>Neutral atoms match orange protons to violet electrons, while gray bars show A-Z.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -141,23 +158,44 @@ Every particle count comes from the two numbers in the symbol <InlineMath math="
   }}
 />
 
-## Telling the Three Particles Apart
+Notice that in heavier atoms like sodium and chlorine, the gray neutron bar rises slightly above the proton bar because extra neutrons help stabilize the nucleus.
 
-The numbers in a symbol count three different particles, and **a magnetic field tells them apart by charge and mass**: the proton and the electron curl opposite ways, the neutron flies straight.
+### Telling the Three Particles Apart
 
-<ParticleTrackLab
-  title={<>Protons, Electrons and Neutrons in a Field</>}
-  description={<>Turn the field up and compare how tightly each track curls.</>}
+The numbers in a symbol count three distinct particles, and **a magnetic field separates them by charge and mass**. Entering the field from the left, a neutral neutron keeps flying straight, a heavy positive proton curves gently one way, and a much lighter negative electron bends sharply the opposite way.
+
+<MathVisual
+  title={<>Particle Deflection by Charge and Mass</>}
+  description={<>Paths of a proton (orange), neutron (gray), and electron (violet) entering a magnetic field from the left. Charge sets direction, mass sets tightness.</>}
+  footer={<>Opposite charges bend opposite ways, light electrons curve tightly, neutrons fly straight.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.8 }, y: { min: -3.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "neutron-path", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "proton-path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1.5, y: 0.11 }, { x: 3, y: 0.45 }, { x: 4.5, y: 1.01 }, { x: 6, y: 1.8 }] },
+      { id: "electron-path", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.8, y: -0.22 }, { x: 1.6, y: -0.9 }, { x: 2.4, y: -2.0 }, { x: 3.1, y: -3.2 }] },
+      { id: "p-end", kind: "point", appearance: "primary", at: { x: 6, y: 1.8 } },
+      { id: "n-end", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "e-end", kind: "point", appearance: "secondary", at: { x: 3.1, y: -3.2 } },
+    ],
+    labels: [
+      { key: "proton", objectId: "p-end", at: { x: 6, y: 1.8 }, placement: "above-left" },
+      { key: "neutron", objectId: "n-end", at: { x: 6, y: 0 }, placement: "above-left" },
+      { key: "electron", objectId: "e-end", at: { x: 3.1, y: -3.2 }, placement: "right" },
+    ],
+  }}
   labels={{
-    electron: <>Electron path radius</>,
-    field: "Magnetic field strength",
-    proton: <>Proton path radius</>,
-    ratio: <>Ratio of radii</>,
-    view: "Particle tracks in a magnetic field",
+    proton: <InlineMath math="p^+\ (+1)" />,
+    neutron: <InlineMath math="n^0\ (0)" />,
+    electron: <InlineMath math="e^-\ (-1)" />,
   }}
 />
 
-## Carbon Example
+Each trajectory reflects the physical identity behind the symbols: protons and neutrons carry almost all the mass, while protons and electrons carry equal and opposite electric charges.
+
+### Worked Count for Carbon Twelve
 
 For a carbon atom with mass number <InlineMath math="12" />, the symbol is written:
 
@@ -178,6 +216,7 @@ Here are the three counts for carbon-12 as columns, one grid step for <InlineMat
 <MathVisual
   title={<>Particles in Carbon-12</>}
   description={<>Protons, neutrons and electrons of a neutral carbon-12 atom. One grid step up is <InlineMath math="2" /> particles.</>}
+  footer={<>Neutral carbon-12 has six protons, six neutrons, and six electrons for three reasons.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
@@ -200,6 +239,8 @@ Here are the three counts for carbon-12 as columns, one grid step for <InlineMat
   }}
 />
 
+Keeping those three rules separate makes it easy to handle ions or heavier isotopes whenever the three bars are no longer equal.
+
 ## Mass Number and Relative Atomic Mass
 
 On the periodic table, you often see decimal values such as carbon's relative atomic mass of about <InlineMath math="12.01" />. That decimal is not the mass number of one specific carbon atom.
@@ -215,27 +256,43 @@ So keep these two ideas separate:
 | Mass number | A whole number, such as <InlineMath math="12" /> in <InlineMath math="{}^{12}_{6}\mathrm{C}" /> | The number of protons plus neutrons in one specific atom. |
 | Relative atomic mass | Often decimal, such as about <InlineMath math="12.01" /> for carbon | The ratio of the average atomic mass in the material to one twelfth of the mass of a carbon-12 atom. |
 
-When reading an atomic symbol, track three facts: atomic symbols give proton and neutron counts, ions change the electron count, and isotopes change the neutron count. The proton count still determines the element's identity.
+A mass number is always a whole number for one isotope, while the relative atomic mass in the periodic table averages all naturally occurring isotopes. Magnesium has <InlineMath math="{}^{24}\mathrm{Mg}" />, <InlineMath math="{}^{25}\mathrm{Mg}" />, and <InlineMath math="{}^{26}\mathrm{Mg}" />, and **the weighted average is about <InlineMath math="24.31" />**, sitting just above <InlineMath math="24" />.
 
-## From Mass Number to Relative Atomic Mass
-
-A mass number is always a whole number for one isotope, while the relative atomic mass in the periodic table averages all its isotopes. Choose magnesium. It has <InlineMath math="{}^{24}\mathrm{Mg}" />, <InlineMath math="{}^{25}\mathrm{Mg}" />, and <InlineMath math="{}^{26}\mathrm{Mg}" />, and **the weighted average is about <InlineMath math="24.31" />**, not a whole number.
-
-<MassSpectrometerLab
-  title={<>Isotopes of Magnesium, Boron, and Copper</>}
-  description={<>The peaks on the detector show the abundance of each mass number.</>}
-  samples={["magnesium", "boron", "copper"]}
+<MathVisual
+  title={<>Magnesium Isotopes Average to <InlineMath math="24.31" /></>}
+  description={<>Natural abundance of magnesium-24, magnesium-25, and magnesium-26 with their weighted average line (fuchsia). Vertical: one grid step is <InlineMath math="10\%" />.</>}
+  footer={<>Whole-number isotope peaks combine into magnesium's decimal average 24.31.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 23.2, max: 26.8 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 23.4, y: 0 }, to: { x: 26.6, y: 0 } },
+      { id: "mg24", kind: "segment", appearance: "primary", from: { x: 24, y: 0 }, to: { x: 24, y: 7.9 } },
+      { id: "mg25", kind: "segment", appearance: "secondary", from: { x: 25, y: 0 }, to: { x: 25, y: 1.0 } },
+      { id: "mg26", kind: "segment", appearance: "secondary", from: { x: 26, y: 0 }, to: { x: 26, y: 1.1 } },
+      { id: "avg", kind: "segment", appearance: "answer", from: { x: 24.31, y: 0 }, to: { x: 24.31, y: 8.2 } },
+      { id: "p24", kind: "point", appearance: "primary", at: { x: 24, y: 7.9 } },
+      { id: "p25", kind: "point", appearance: "secondary", at: { x: 25, y: 1.0 } },
+      { id: "p26", kind: "point", appearance: "secondary", at: { x: 26, y: 1.1 } },
+      { id: "pavg", kind: "point", appearance: "answer", at: { x: 24.31, y: 8.2 } },
+    ],
+    labels: [
+      { key: "m24", objectId: "p24", at: { x: 24, y: 7.9 }, placement: "left" },
+      { key: "m25", objectId: "p25", at: { x: 25, y: 1.0 }, placement: "above" },
+      { key: "m26", objectId: "p26", at: { x: 26, y: 1.1 }, placement: "above" },
+      { key: "avg", objectId: "pavg", at: { x: 24.31, y: 8.2 }, placement: "right" },
+    ],
+  }}
   labels={{
-    average: <>Average relative atomic mass</>,
-    choose: "Choose an element",
-    isotopes: <>Isotopes and abundance</>,
-    north: "N",
-    radius: <>Path radius</>,
-    ratio: <>Ratio of radii</>,
-    south: "S",
-    view: "Mass spectrometer",
+    m24: <InlineMath math="{}^{24}\mathrm{Mg}:\ 79.0\%" />,
+    m25: <InlineMath math="{}^{25}\mathrm{Mg}:\ 10.0\%" />,
+    m26: <InlineMath math="{}^{26}\mathrm{Mg}:\ 11.0\%" />,
+    avg: <InlineMath math="A_r\approx24.31" />,
   }}
 />
+
+When reading an atomic symbol, track three facts: atomic symbols give proton and neutron counts, ions change the electron count, and isotopes change the neutron count. The proton count still determines the element's identity.
 
 ## Capitalization of Element Symbols
 
@@ -252,25 +309,39 @@ Look closely at the last two rows. In <InlineMath math="\mathrm{Co}" />, the low
 
 When you want to check the latest element symbols and relative atomic masses, open the [IUPAC Periodic Table of Elements](https://iupac.org/what-we-do/periodic-table-of-elements/).
 
-## Symbols inside Formulas
+Capital letters in a formula separate one element from the next. Compare <InlineMath math="\mathrm{Co}" /> with <InlineMath math="\mathrm{CO}" />, <InlineMath math="\mathrm{HCl}" />, and <InlineMath math="\mathrm{N_2}" />: **each capital letter marks a distinct element**, while subscripts multiply the atom count.
 
-Capital letters in a formula separate one element from the next. <InlineMath math="\mathrm{CO}" /> is carbon monoxide, a molecule of <InlineMath math="1" /> carbon atom and <InlineMath math="1" /> oxygen atom, while <InlineMath math="\mathrm{Co}" /> is the element cobalt. In <InlineMath math="\mathrm{HCl}" />, the small <InlineMath math="\mathrm{l}" /> still belongs to the chlorine symbol. Turn each model and **count one atom for every capital letter**.
-
-<MoleculeShapeLab
-  title={<>Reading Symbols in Molecules</>}
-  description={<>Every ball carries its element symbol.</>}
-  molecules={[
-    { id: "carbon-monoxide", name: "Carbon monoxide" },
-    { id: "hydrogen-chloride", name: "Hydrogen chloride" },
-    { id: "nitrogen", name: "Nitrogen" },
-  ]}
+<MathVisual
+  title={<>Capital Letters Separate Elements in Formulas</>}
+  description={<>Number of distinct elements (orange) and total atoms (violet) in <InlineMath math="\mathrm{Co}" />, <InlineMath math="\mathrm{CO}" />, <InlineMath math="\mathrm{HCl}" />, and <InlineMath math="\mathrm{N_2}" />. One grid step up is <InlineMath math="1" />.</>}
+  footer={<>Each capital letter starts a new element, turning Co from one atom into two in CO.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 3.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 5, z: 12 }, target: { x: 5, y: 1.2, z: 0 } },
+    objects: [
+      { id: "co1-el", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 0.8, height: 1, width: 0.8 } },
+      { id: "co1-at", kind: "cuboid", appearance: "secondary", center: { x: 0.9, y: 0.5, z: 0 }, size: { length: 0.8, height: 1, width: 0.8 } },
+      { id: "co2-el", kind: "cuboid", appearance: "primary", center: { x: 3.1, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "co2-at", kind: "cuboid", appearance: "answer", center: { x: 4, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "hcl-el", kind: "cuboid", appearance: "primary", center: { x: 6.2, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "hcl-at", kind: "cuboid", appearance: "answer", center: { x: 7.1, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "n2-el", kind: "cuboid", appearance: "primary", center: { x: 9.3, y: 0.5, z: 0 }, size: { length: 0.8, height: 1, width: 0.8 } },
+      { id: "n2-at", kind: "cuboid", appearance: "secondary", center: { x: 10.2, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+    ],
+    labels: [
+      { key: "co-el", objectId: "co1-el", at: { x: 0.45, y: 1.3, z: 0 }, placement: "above" },
+      { key: "co-mol", objectId: "co2-el", at: { x: 3.55, y: 2.3, z: 0 }, placement: "above" },
+      { key: "hcl", objectId: "hcl-el", at: { x: 6.65, y: 2.3, z: 0 }, placement: "above" },
+      { key: "n2", objectId: "n2-at", at: { x: 9.75, y: 2.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
+    "co-el": <InlineMath math="\mathrm{Co}:\ 1\ \text{el},\ 1\ \text{at}" />,
+    "co-mol": <InlineMath math="\mathrm{CO}:\ 2\ \text{el},\ 2\ \text{at}" />,
+    hcl: <InlineMath math="\mathrm{HCl}:\ 2\ \text{el},\ 2\ \text{at}" />,
+    n2: <InlineMath math="\mathrm{N_2}:\ 1\ \text{el},\ 2\ \text{at}" />,
   }}
 />
+
+Writing capitalization accurately prevents confusing a single metal atom like cobalt (<InlineMath math="\mathrm{Co}" />) with a two-element gas molecule like carbon monoxide (<InlineMath math="\mathrm{CO}" />).

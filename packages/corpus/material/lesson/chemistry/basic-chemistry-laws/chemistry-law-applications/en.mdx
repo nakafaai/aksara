@@ -14,6 +14,8 @@ The type of data in a problem indicates <Highlight>which basic law of chemistry 
 
 Stoichiometric calculations use factors from balanced equations to relate amounts of substances. Before calculating, we need to check the balanced equation, the substance or quantity to calculate, and the units of the given data.
 
+> Match the law to what the experiment actually holds fixed before you reach for a calculator.
+
 The following list connects each type of data with the appropriate law.
 
 - If every substance in the system is counted, use conservation of mass.
@@ -21,11 +23,12 @@ The following list connects each type of data with the appropriate law.
 - If two different compounds are made from the same two elements, use multiple proportions.
 - If all compared substances are gases at the same temperature and pressure, use combining volumes.
 
-Before you pick a law, check whether the system was closed. Each point is one experiment, mass before across and mass after up, so a closed system sits on the gray line. When <InlineMath math="2\ \mathrm{g}" /> of <InlineMath math="\mathrm{CaCO_3}" /> reacts with acid in an open beaker, <InlineMath math="2\ \mathrm{g}\cdot\tfrac{44}{100}=0.88\ \mathrm{g}" /> of carbon dioxide escapes, and the point drops below the line. Zoom in on the pink point.
+Before you pick a law, check whether the system was closed. Each point is one experiment, with mass before across and mass after up, so a closed system sits on the gray line. When <InlineMath math="2\ \mathrm{g}" /> of <InlineMath math="\mathrm{CaCO_3}" /> reacts with acid in an open beaker, <InlineMath math="0.88\ \mathrm{g}" /> of carbon dioxide escapes, and the point drops below the line. Zoom in on the pink point.
 
 <MathVisual
   title={<>Points on the Line Kept Their Mass</>}
   description={<>Mass before (across) and after (up) for three closed experiments and one open beaker, in grams.</>}
+  footer={<>Closed trials sit on the diagonal line, while an open beaker loses gas and drops below it.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 46, max: 51 }, y: { min: 46, max: 51 } },
@@ -47,6 +50,8 @@ Before you pick a law, check whether the system was closed. Each point is one ex
     open: <InlineMath math="\text{open: }50.00-0.88=49.12\ \mathrm{g}" />,
   }}
 />
+
+That single vertical drop below the diagonal explains why open containers look lighter even though total mass is still conserved once the escaped gas is weighed.
 
 ## Mass and Volume Patterns
 
@@ -91,7 +96,7 @@ With <InlineMath math="A_r\mathrm{(H)} = 1" /> and <InlineMath math="A_r\mathrm{
 m_{\mathrm{O}} &: 16:32 = 1:2
 \end{aligned}" />
 
-Because the **hydrogen mass is already the same**, compare the oxygen mass. The ratio <InlineMath math="1:2" /> is a simple whole-number ratio, matching the law of multiple proportions.
+Because the **hydrogen mass is held identical**, the oxygen masses compare directly at <InlineMath math="1:2" />. That small whole-number ratio is the signature of multiple proportions.
 
 ### Gases Under Matching Conditions
 
@@ -111,6 +116,7 @@ The scene below stacks the gases as equal blocks, one block for each coefficient
 <MathVisual
   title={<>Gas Volumes Follow the Coefficients</>}
   description={<>Each block is one part of <InlineMath math="300\text{ mL}" /> at the same temperature and pressure. Count the blocks in each column of <InlineMath math="2\mathrm{NH_3}\rightarrow3\mathrm{H_2}+\mathrm{N_2}" />.</>}
+  footer={<>Stacking identical 300 mL blocks turns the 2 to 3 to 1 coefficients directly into volumes.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
@@ -136,7 +142,7 @@ The scene below stacks the gases as equal blocks, one block for each coefficient
   }}
 />
 
-A balanced equation has the same number of atoms on the reactant and product sides. At the same temperature and pressure, gas volume ratios follow the equation coefficients.
+A balanced equation has the same number of atoms on the reactant and product sides. At the same temperature and pressure, gas volume ratios follow the equation coefficients directly.
 
 ## When One Problem Uses Two Laws
 
@@ -151,26 +157,38 @@ Define the **system boundary**, then choose the part of the data that is actuall
 
 ## The Molecules Behind the Numbers
 
-In a problem that uses two laws, **every mass and volume comes from real molecules**. Turn the models of <InlineMath math="\mathrm{C_3H_8}" />, <InlineMath math="\mathrm{CO_2}" />, and <InlineMath math="\mathrm{H_2O}" />. The relative molecular mass reading shows where a number like <InlineMath math="44" /> or <InlineMath math="18" /> comes from: the masses of the atoms added up.
+In a problem that uses two laws, **every mass and volume comes from real molecules**. Compare how the atomic masses of carbon (<InlineMath math="12" />), hydrogen (<InlineMath math="1" />), and oxygen (<InlineMath math="16" />) build the relative molecular masses of <InlineMath math="\mathrm{C_3H_8}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{CO_2}" />, and <InlineMath math="\mathrm{H_2O}" />.
 
-<MoleculeShapeLab
-  title={<>Molecules in a Combustion Problem</>}
-  description={<>Turn each molecule and read the relative mass the problem uses.</>}
-  molecules={[
-    { id: "propane", name: "Propane" },
-    { id: "carbon-dioxide", name: "Carbon dioxide" },
-    { id: "water", name: "Water" },
-  ]}
+<MathVisual
+  title={<>Relative Molecular Mass Built from Atoms</>}
+  description={<>Relative molecular masses of combustion species. One grid step up represents <InlineMath math="10" /> relative mass units.</>}
+  footer={<>Propane and carbon dioxide share relative mass 44 even though their formulas differ.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "c3h8", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2.2, z: 0 }, size: { length: 1.4, height: 4.4, width: 1.4 } },
+      { id: "o2", kind: "cuboid", appearance: "warning", center: { x: 2.5, y: 1.6, z: 0 }, size: { length: 1.4, height: 3.2, width: 1.4 } },
+      { id: "co2", kind: "cuboid", appearance: "secondary", center: { x: 5, y: 2.2, z: 0 }, size: { length: 1.4, height: 4.4, width: 1.4 } },
+      { id: "h2o", kind: "cuboid", appearance: "construction", center: { x: 7.5, y: 0.9, z: 0 }, size: { length: 1.4, height: 1.8, width: 1.4 } },
+    ],
+    labels: [
+      { key: "c3h8", objectId: "c3h8", at: { x: 0, y: 4.7, z: 0 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2.5, y: 3.5, z: 0 }, placement: "above" },
+      { key: "co2", objectId: "co2", at: { x: 5, y: 4.7, z: 0 }, placement: "above" },
+      { key: "h2o", objectId: "h2o", at: { x: 7.5, y: 2.1, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
+    c3h8: <InlineMath math="\mathrm{C_3H_8}:\ M_r = 44" />,
+    o2: <InlineMath math="\mathrm{O_2}:\ M_r = 32" />,
+    co2: <InlineMath math="\mathrm{CO_2}:\ M_r = 44" />,
+    h2o: <InlineMath math="\mathrm{H_2O}:\ M_r = 18" />,
   }}
 />
+
+Each bar is simply the sum of the atomic masses inside that formula. Those totals link mass composition directly to gas volume ratios within the same reaction.
 
 ## Methane Combustion
 
@@ -184,7 +202,11 @@ Methane burns according to this balanced equation.
 
 If <InlineMath math="50\ \mathrm{mL}" /> of methane gas reacts completely and every gas is measured at the **same temperature and pressure**, what volume of <InlineMath math="\mathrm{O_2}" /> is needed and what volume of <InlineMath math="\mathrm{CO_2}" /> forms?
 
-The coefficients give the volume ratio <InlineMath math="\mathrm{CH_4:O_2:CO_2:H_2O} = 1:2:1:2" />. Therefore:
+The coefficients give the gas volume ratio below.
+
+<BlockMath math="\mathrm{CH_4} : \mathrm{O_2} : \mathrm{CO_2} : \mathrm{H_2O} = 1 : 2 : 1 : 2" />
+
+Scaling each coefficient by <InlineMath math="50\ \mathrm{mL}" /> yields the required oxygen and carbon dioxide volumes.
 
 <BlockMath math="\begin{aligned}
 V_{\mathrm{O_2}} &= 2 \times 50 = 100\ \mathrm{mL} \\
@@ -195,11 +217,12 @@ The answer is <InlineMath math="100\ \mathrm{mL}" /> of oxygen gas and <InlineMa
 
 The laws of definite and multiple proportions show mass patterns that support the idea that atoms combine in fixed ratios.
 
-Read the coefficients of <InlineMath math="\mathrm{CH_4(g)}+2\mathrm{O_2(g)}\rightarrow\mathrm{CO_2(g)}+2\mathrm{H_2O(g)}" /> as volumes and scale every one by the same <InlineMath math="50\ \mathrm{mL}" />. Rotate the bars: the gases react in the ratio <InlineMath math="1:2:1:2" />. The water volume only holds while the water stays a gas.
+Read the coefficients in the balanced methane equation above as volumes and scale every one by the same <InlineMath math="50\ \mathrm{mL}" />. Rotate the bars: the gases react in the ratio <InlineMath math="1:2:1:2" />. The water volume only holds while the water stays a gas.
 
 <MathVisual
   title={<>Methane Combustion by Volume</>}
   description={<>Gas volumes at one temperature and pressure: reactants at the back, products at the front. One grid step up is <InlineMath math="25\text{ mL}" />.</>}
+  footer={<>Total gas volume stays 150 mL on each side as long as water remains a vapor.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
@@ -225,27 +248,43 @@ Read the coefficients of <InlineMath math="\mathrm{CH_4(g)}+2\mathrm{O_2(g)}\rig
   }}
 />
 
+Comparing the back and front rows shows that both the gas volume ratio and the underlying oxygen-to-carbon pairing come directly from the balanced equation.
+
 ## Propane Follows the Same Rules
 
-Methane is not the only fuel you can work with. Bottled cooking gas is mostly propane, and its combustion also **balances atom by atom**. Drag the slider and watch <InlineMath math="6" /> reactant molecules become <InlineMath math="7" /> product molecules while both sides keep a mass of <InlineMath math="204" />.
+Methane is not the only fuel you can work with. Bottled cooking gas is mostly propane, and its combustion also **balances atom by atom**.
 
-<ReactionBalanceLab
-  title={<>Burning Propane</>}
-  description={<>Drag the slider and watch <InlineMath math="6" /> molecules become <InlineMath math="7" />.</>}
-  reactions={[
-    { id: "propane-combustion", name: "Burning propane", tab: <InlineMath math="\mathrm{C_3H_8}" /> },
-  ]}
-  reading="molecules"
+<BlockMath math="\mathrm{C_3H_8(g)} + 5\mathrm{O_2(g)} \rightarrow 3\mathrm{CO_2(g)} + 4\mathrm{H_2O(g)}" />
+
+Here <InlineMath math="6" /> gas reactant parts expand to <InlineMath math="7" /> gas product parts, while every element count and the total relative mass of <InlineMath math="204" /> stay identical on both sides.
+
+<MathVisual
+  title={<>Atom Conservation in Propane Combustion</>}
+  description={<>Reactant (back) versus product (front) atom counts in <InlineMath math="\mathrm{C_3H_8} + 5\mathrm{O_2} \rightarrow 3\mathrm{CO_2} + 4\mathrm{H_2O}" />. One grid step up is <InlineMath math="2" /> atoms.</>}
+  footer={<>Gas volumes grow from 6 parts to 7, yet carbon, hydrogen, and oxygen atoms stay equal.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "c-in", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.75, z: -0.75 }, size: { length: 1.1, height: 1.5, width: 1.1 } },
+      { id: "c-out", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.75, z: 0.75 }, size: { length: 1.1, height: 1.5, width: 1.1 } },
+      { id: "h-in", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2, z: -0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "h-out", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2, z: 0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "o-in", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.5, z: -0.75 }, size: { length: 1.1, height: 5, width: 1.1 } },
+      { id: "o-out", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.5, z: 0.75 }, size: { length: 1.1, height: 5, width: 1.1 } },
+    ],
+    labels: [
+      { key: "c", objectId: "c-out", at: { x: 0, y: 1.9, z: 0.75 }, placement: "above" },
+      { key: "h", objectId: "h-out", at: { x: 2.5, y: 4.4, z: 0.75 }, placement: "above" },
+      { key: "o", objectId: "o-out", at: { x: 5, y: 5.4, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms of each element</>,
-    choose: "Choose a reaction",
-    economy: <>Atom economy</>,
-    equation: <>Balanced equation</>,
-    mass: <>Mass of reactants and products</>,
-    molecules: <>Number of molecules</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Reaction at the level of atoms",
+    c: <InlineMath math="\mathrm{C}:\ 3 = 3" />,
+    h: <InlineMath math="\mathrm{H}:\ 8 = 8" />,
+    o: <InlineMath math="\mathrm{O}:\ 10 = 10" />,
   }}
 />
+
+That contrast highlights why you must separate mass laws from volume laws: total mass and atom counts are always conserved, whereas total gas volume can increase or decrease depending on the equation coefficients.

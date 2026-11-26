@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Periodische Eigenschaften von Elementen",
   description:
@@ -15,6 +14,8 @@ Die Position eines Elements im Periodensystem gibt Hinweise auf die Atomgröße,
 
 Diese Trends hängen von der **Anziehung des Kerns auf die Valenzelektronen** ab. Valenzelektronen liegen in der äußersten Schale. Mit steigender Protonenzahl wird die Kernanziehung meist stärker. Kommen dagegen weitere Schalen hinzu, liegen die Valenzelektronen weiter vom Kern entfernt und spüren seine Anziehung schwächer.
 
+> Jeder periodische Trend entsteht aus dem Kräftemessen zwischen wachsender Kernladung und zusätzlichen inneren Schalen, die außen abschirmen.
+
 <PeriodicPropertiesLab
   title={<>Modell periodischer Trends</>}
   description={
@@ -23,6 +24,7 @@ Diese Trends hängen von der **Anziehung des Kerns auf die Valenzelektronen** ab
       Periode und innerhalb einer Gruppe steigt oder fällt.
     </>
   }
+  footer={<>Wechsle die Eigenschaft, um Trends entlang einer Periode und einer Gruppe zu vergleichen.</>}
   labels={{
     chooseTrend: "Periodische Eigenschaft auswählen",
     sceneLabel: "Dreidimensionales Modell periodischer Eigenschaften",
@@ -73,11 +75,14 @@ Diese Trends hängen von der **Anziehung des Kerns auf die Valenzelektronen** ab
   }}
 />
 
+Der Vergleich der vier Ansichten macht deutlich, dass der Atomradius entgegengesetzt zu Ionisierungsenergie und Elektronegativität verläuft, weil eine stärkere Kernanziehung das Atom verkleinert und Elektronen fester bindet.
+
 Natrium zeigt, warum die Position das Verhalten vorhersagt. Sein einziges äußeres Elektron in Fuchsia sitzt allein in Schale M, weit vom Kern und von zehn inneren Elektronen abgeschirmt, also lässt es sich leicht entfernen.
 
 <MathVisual
   title={<>Das einsame Außenelektron von Natrium</>}
   description={<>Die <InlineMath math="11" /> Elektronen von Natrium in den Schalen K, L und M, das äußere in Fuchsia.</>}
+  footer={<>Zehn innere Elektronen schirmen das einzelne M-Elektron von Natriums +11-Kern ab.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -112,23 +117,79 @@ Natrium zeigt, warum die Position das Verhalten vorhersagt. Sein einziges äuße
   }}
 />
 
-## Jede Schale reicht weiter hinaus
+Weil dieses einzelne Außenelektron nur eine geringe Nettoanziehung spürt, hat Natrium einen großen Atomradius und eine niedrige erste Ionisierungsenergie im Vergleich zu Elementen weiter rechts in Periode <InlineMath math="3" />.
 
-Nach unten in einer Gruppe kommt eine Schale hinzu, und **jede neue s-Wolke reicht weiter vom Kern weg**. Das ist das Bild dahinter, dass Atome nach unten größer werden.
+### Jede Schale reicht weiter hinaus
 
-<OrbitalCloudLab
-  title={<>Größere Wolken nach unten</>}
-  description={<>Geh von der 1s- zur 3s-Wolke und sieh, wie radiale Knoten entstehen.</>}
-  orbitals={["1s", "2s", "3s"]}
+Nach unten in einer Gruppe kommt eine Hauptschale hinzu, und **jede neue äußere Schale reicht weiter vom Kern weg**. Genau diese Schalenerweiterung lässt den Atomradius von Lithium über Natrium bis Kalium wachsen.
+
+<MathVisual
+  title={<>Wachstum des Atomradius in Gruppe 1</>}
+  description={<>Konzentrische Kreise im Maßstab der Metallradien von <InlineMath math="\mathrm{Li}" /> (<InlineMath math="152\ \mathrm{pm}" />), <InlineMath math="\mathrm{Na}" /> (<InlineMath math="186\ \mathrm{pm}" />) und <InlineMath math="\mathrm{K}" /> (<InlineMath math="227\ \mathrm{pm}" />). Eine Einheit entspricht <InlineMath math="50\ \mathrm{pm}" />.</>}
+  footer={<>Zusätzliche Schalen von 2s über 3s bis 4s dehnen die Elektronenwolke nach außen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.2, max: 5.2 }, y: { min: -5.2, max: 5.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "nuc", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "r-li", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 3.04 },
+      { id: "r-na", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 3.72 },
+      { id: "r-k", kind: "circle", appearance: "warning", center: { x: 0, y: 0 }, radius: 4.54 },
+    ],
+    labels: [
+      { key: "li", objectId: "r-li", at: { x: 0, y: 3.04 }, placement: "below" },
+      { key: "na", objectId: "r-na", at: { x: 0, y: 3.72 }, placement: "above" },
+      { key: "k", objectId: "r-k", at: { x: 0, y: 4.54 }, placement: "above" },
+    ],
+  }}
   labels={{
-    angular: <>Winkelknoten</>,
-    choose: "Orbital wählen",
-    numbers: <>Quantenzahlen</>,
-    orbital: <>Orbital</>,
-    radial: <>Radialknoten</>,
-    view: "Elektronenwolke eines Orbitals",
+    li: <InlineMath math="\mathrm{Li}:\ 152\ \mathrm{pm}" />,
+    na: <InlineMath math="\mathrm{Na}:\ 186\ \mathrm{pm}" />,
+    k: <InlineMath math="\mathrm{K}:\ 227\ \mathrm{pm}" />,
   }}
 />
+
+Jeder Kreis wächst deutlich nach außen, obwohl die Kernladung zunimmt. Eine zusätzliche Hauptschale beim Gang nach unten wirkt also stärker als die zusätzlichen Protonen.
+
+### Der Radius ändert sich bei der Ionenbildung
+
+Der Verlust oder Gewinn eines Elektrons verändert die Atomgröße deutlich: **Ein Metall schrumpft beim Verlust seiner Außenschale, während ein Nichtmetall anschwillt**, weil ein zusätzliches Elektron die Abstoßung in der Valenzschale erhöht.
+
+<MathVisual
+  title={<>Neutraler Atomradius gegen Ionenradius</>}
+  description={<>Neutrale Atome (hinten) neben ihren Ionen (vorne) für <InlineMath math="\mathrm{Li}" />, <InlineMath math="\mathrm{F}" />, <InlineMath math="\mathrm{K}" /> und <InlineMath math="\mathrm{Cl}" />. Ein Schritt nach oben sind <InlineMath math="50\ \mathrm{pm}" />.</>}
+  footer={<>Kationen schrumpfen stark unter ihr neutrales Atom, während Anionen darüber hinauswachsen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "li-a", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1.52, z: -0.7 }, size: { length: 1.0, height: 3.04, width: 1.0 } },
+      { id: "li-i", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.76, z: 0.7 }, size: { length: 1.0, height: 1.52, width: 1.0 } },
+      { id: "f-a", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 0.64, z: -0.7 }, size: { length: 1.0, height: 1.28, width: 1.0 } },
+      { id: "f-i", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.33, z: 0.7 }, size: { length: 1.0, height: 2.66, width: 1.0 } },
+      { id: "k-a", kind: "cuboid", appearance: "reference", center: { x: 5, y: 2.27, z: -0.7 }, size: { length: 1.0, height: 4.54, width: 1.0 } },
+      { id: "k-i", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.38, z: 0.7 }, size: { length: 1.0, height: 2.76, width: 1.0 } },
+      { id: "cl-a", kind: "cuboid", appearance: "reference", center: { x: 7.5, y: 0.99, z: -0.7 }, size: { length: 1.0, height: 1.98, width: 1.0 } },
+      { id: "cl-i", kind: "cuboid", appearance: "secondary", center: { x: 7.5, y: 1.81, z: 0.7 }, size: { length: 1.0, height: 3.62, width: 1.0 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li-a", at: { x: 0, y: 3.4, z: -0.7 }, placement: "above" },
+      { key: "f", objectId: "f-i", at: { x: 2.5, y: 3.0, z: 0.7 }, placement: "above" },
+      { key: "k", objectId: "k-a", at: { x: 5, y: 4.9, z: -0.7 }, placement: "above" },
+      { key: "cl", objectId: "cl-i", at: { x: 7.5, y: 4.0, z: 0.7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    li: <InlineMath math="\mathrm{Li}\rightarrow\mathrm{Li^+}" />,
+    f: <InlineMath math="\mathrm{F}\rightarrow\mathrm{F^-}" />,
+    k: <InlineMath math="\mathrm{K}\rightarrow\mathrm{K^+}" />,
+    cl: <InlineMath math="\mathrm{Cl}\rightarrow\mathrm{Cl^-}" />,
+  }}
+/>
+
+Der Vergleich von hinterer und vorderer Reihe zeigt, dass sich Ionenradien immer in Richtung des Elektronenverlusts oder -gewinns verschieben und damit die Packung im Kristall bestimmen.
 
 ## Vier periodische Eigenschaften
 
@@ -141,34 +202,17 @@ Jede Eigenschaft beschreibt einen anderen Aspekt eines Atoms. Die Trendpfeile ze
 
 Der Unterschied zwischen Elektronenaffinität und Elektronegativität liegt in der Situation des Elektrons. Die Elektronenaffinität beschreibt die Energieänderung bei der Aufnahme eines Elektrons durch ein Gasatom. Die Elektronegativität beschreibt die Anziehung gemeinsamer Elektronen innerhalb einer Bindung.
 
-## Der Radius ändert sich bei der Ionenbildung
-
-Lies die Radien ab, während das Elektron wandert: **Das Metall schrumpft, wenn es seine Außenschale verliert, und das Nichtmetall wächst**, wenn es ein Elektron mehr aufnimmt.
-
-<IonFormationLab
-  title={<>Atom- und Ionenradien</>}
-  description={<>Wähle Lithium mit Fluor oder Kalium mit Chlor und vergleiche die Radien vorher und nachher.</>}
-  pairs={["lithium-fluorine", "potassium-chlorine"]}
-  labels={{
-    choose: "Atompaar wählen",
-    metalRadius: <>Radius des Metalls</>,
-    metalShells: <>Schalen des Metalls</>,
-    nonmetalRadius: <>Radius des Nichtmetalls</>,
-    nonmetalShells: <>Schalen des Nichtmetalls</>,
-    progress: "Elektronenübergang",
-    view: "Metall- und Nichtmetallatom werden zu Ionen",
-  }}
-/>
-
 ## Trends in Perioden und Gruppen
 
 Innerhalb einer Hauptgruppenreihe wie Natrium bis Chlor nimmt die Anzahl der Protonen zu, aber die Valenzelektronen <Highlight>befinden sich immer noch in derselben Hauptschale</Highlight>. Die effektive nukleare Anziehungskraft wird stärker. Infolgedessen nimmt der Atomradius tendenziell ab, während Ionisierungsenergie und Elektronegativität tendenziell zunehmen.
 
 Innerhalb einer Gruppe nach unten wächst die Zahl der besetzten Schalen. Die Valenzelektronen liegen weiter vom Kern entfernt, während innere Elektronen die von ihnen wahrgenommene Kernanziehung verringern. Dieser Effekt heißt **Elektronenabschirmung**.
 
-Für die Elektronenaffinität werden zwei Vorzeichenkonventionen verwendet. Das [IUPAC Gold Book](https://goldbook.iupac.org/terms/view/E01977) verwendet die bei der Elektronenaufnahme freigesetzte Energie. Eine günstige Aufnahme besitzt damit <InlineMath math="\mathrm{EA}>0" />. Wird derselbe Vorgang als Reaktionsenergie geschrieben, gilt <InlineMath math="\Delta E=-\mathrm{EA}<0" />.
+Für die Elektronenaffinität werden zwei Vorzeichenkonventionen verwendet. Das [IUPAC Gold Book](https://goldbook.iupac.org/terms/view/E01977) definiert <InlineMath math="\mathrm{EA}" /> als die freigesetzte Energie bei der Elektronenaufnahme, sodass eine günstige Aufnahme positiv ist, während die zugehörige Reaktionsenergie <InlineMath math="\Delta E" /> negativ bleibt.
 
-Bei einem Chloratom setzt die Aufnahme eines Elektrons Energie frei. Seine Elektronenaffinität ist positiv, <InlineMath math="\mathrm{EA}>0" />, während die Energieänderung der Reaktion negativ ist, <InlineMath math="\Delta E=-\mathrm{EA}<0" />:
+<BlockMath math="\mathrm{EA} > 0 \quad \Longleftrightarrow \quad \Delta E = -\mathrm{EA} < 0" />
+
+Bei einem Chloratom setzt die Aufnahme eines Elektrons Energie frei, sodass die Elektronenaffinität positiv und die Reaktionsenergie negativ für den folgenden Vorgang ist.
 
 <BlockMath math="\mathrm{Cl(g)}+e^- \rightarrow \mathrm{Cl^-(g)}" />
 
@@ -179,6 +223,7 @@ Hier sind beide Trends in echten Daten. Entlang einer Periode bekommt der Kern m
 <MathVisual
   title={<>Ionisierungsenergie über zwei Perioden</>}
   description={<>Erste Ionisierungsenergie für die Ordnungszahlen <InlineMath math="3" /> bis <InlineMath math="18" />, Periode <InlineMath math="2" /> (violett) und Periode <InlineMath math="3" /> (orange). Waagerecht: Ein Gitterschritt entspricht <InlineMath math="2" /> Ordnungszahlen. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="250\ \mathrm{kJ/mol}" />.</>}
+  footer={<>Die Ionisierungsenergie steigt in jeder Periode und fällt steil beim Beginn neuer Schalen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 1, max: 9.5 }, y: { min: 1, max: 9 } },
@@ -219,24 +264,74 @@ Hier sind beide Trends in echten Daten. Entlang einer Periode bekommt der Kern m
   }}
 />
 
-## Reaktivität in Periode und Gruppe
+Dieser steile Absturz zwischen Neon und Natrium liefert den direkten Messbeleg dafür, dass am Anfang jeder Periode eine neue Schale beginnt.
 
-Die Reaktivität eines Metalls folgt seiner Ionisierungsenergie. Von Natrium zu Magnesium innerhalb einer Periode **steigt die Ionisierungsenergie von <InlineMath math="496" /> auf <InlineMath math="738\ \mathrm{kJ/mol}" />**, deshalb reagiert Magnesium kaum mit kaltem Wasser. Von Magnesium hinunter zu Calcium in einer Gruppe sinkt die Ionisierungsenergie, und die Reaktion wird schneller. Vergleiche die drei Metalle im Becherglas.
+### Reaktivität in Periode und Gruppe
 
-<AlkaliWaterLab
-  title={<>Natrium, Magnesium und Calcium in Wasser</>}
-  description={<>Calcium trübt das Wasser, weil Calciumhydroxid kaum löslich ist.</>}
-  metals={["sodium", "magnesium", "calcium"]}
+Die Reaktivität eines Metalls folgt seiner Ionisierungsenergie. Von Natrium zu Magnesium innerhalb einer Periode **steigt die Ionisierungsenergie von <InlineMath math="496" /> auf <InlineMath math="738\ \mathrm{kJ/mol}" />**, deshalb reagiert Magnesium kaum mit kaltem Wasser. Von Magnesium hinunter zu Calcium in Gruppe <InlineMath math="2" /> sinkt die Ionisierungsenergie auf <InlineMath math="590\ \mathrm{kJ/mol}" />, und die Reaktion wird schneller.
+
+<MathVisual
+  title={<>Ionisierungsenergie von Natrium Magnesium und Calcium</>}
+  description={<>Erste Ionisierungsenergie von <InlineMath math="\mathrm{Na}" />, <InlineMath math="\mathrm{Mg}" /> und <InlineMath math="\mathrm{Ca}" />. Ein Schritt nach oben entspricht <InlineMath math="150\ \mathrm{kJ/mol}" />.</>}
+  footer={<>Die höhere Ionisierungsenergie macht Magnesium träger als Natrium und Calcium.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "na", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.654, z: 0 }, size: { length: 1.4, height: 3.306, width: 1.4 } },
+      { id: "mg", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 2.46, z: 0 }, size: { length: 1.4, height: 4.92, width: 1.4 } },
+      { id: "ca", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.967, z: 0 }, size: { length: 1.4, height: 3.932, width: 1.4 } },
+    ],
+    labels: [
+      { key: "na", objectId: "na", at: { x: 0, y: 3.7, z: 0 }, placement: "above" },
+      { key: "mg", objectId: "mg", at: { x: 2.5, y: 5.3, z: 0 }, placement: "above" },
+      { key: "ca", objectId: "ca", at: { x: 5, y: 4.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Metall wählen",
-    density: <>Dichte</>,
-    equation: <>Reaktionsgleichung</>,
-    ionization: <>Erste Ionisierungsenergie</>,
-    melting: <>Schmelzpunkt</>,
-    radius: <>Atomradius</>,
-    view: "Metall in einem Becherglas mit Wasser",
+    na: <InlineMath math="\mathrm{Na}:\ 496" />,
+    mg: <InlineMath math="\mathrm{Mg}:\ 738" />,
+    ca: <InlineMath math="\mathrm{Ca}:\ 590" />,
   }}
 />
+
+Der Balkenvergleich erklärt die Reaktionsfreude unmittelbar: Der höchste Balken (<InlineMath math="\mathrm{Mg}" />) reagiert am langsamsten mit kaltem Wasser, der niedrigste (<InlineMath math="\mathrm{Na}" />) am lebhaftesten.
+
+### Halogenidionen wachsen nach unten
+
+Der Radius wächst in einer Gruppe nach unten, weil Elektronenschalen dazukommen. Vergleiche die Kristalle von <InlineMath math="\mathrm{NaF}" />, <InlineMath math="\mathrm{NaCl}" /> und <InlineMath math="\mathrm{NaBr}" />. Das <InlineMath math="\mathrm{Na^+}" />-Kation bleibt unverändert, aber **das Halogenidanion wächst von <InlineMath math="\mathrm{F^-}" /> bis <InlineMath math="\mathrm{Br^-}" />**, sodass auch die Kante der Elementarzelle länger wird.
+
+<MathVisual
+  title={<>Halogenidradius und Kante der Elementarzelle</>}
+  description={<>Anionenradius (hinten) und Kante der kubischen Elementarzelle (vorne) für <InlineMath math="\mathrm{NaF}" />, <InlineMath math="\mathrm{NaCl}" /> und <InlineMath math="\mathrm{NaBr}" />. Ein Schritt nach oben sind <InlineMath math="100\ \mathrm{pm}" />.</>}
+  footer={<>Bei konstantem Natrium zeigt jedes größere Halogenidanion eine breitere Kristallzelle.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "f-ion", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.665, z: -0.7 }, size: { length: 1.1, height: 1.33, width: 1.1 } },
+      { id: "naf-cell", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2.31, z: 0.7 }, size: { length: 1.1, height: 4.62, width: 1.1 } },
+      { id: "cl-ion", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 0.905, z: -0.7 }, size: { length: 1.1, height: 1.81, width: 1.1 } },
+      { id: "nacl-cell", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2.82, z: 0.7 }, size: { length: 1.1, height: 5.64, width: 1.1 } },
+      { id: "br-ion", kind: "cuboid", appearance: "secondary", center: { x: 5, y: 0.98, z: -0.7 }, size: { length: 1.1, height: 1.96, width: 1.1 } },
+      { id: "nabr-cell", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.985, z: 0.7 }, size: { length: 1.1, height: 5.97, width: 1.1 } },
+    ],
+    labels: [
+      { key: "naf", objectId: "naf-cell", at: { x: 0, y: 5.0, z: 0.7 }, placement: "above" },
+      { key: "nacl", objectId: "nacl-cell", at: { x: 2.5, y: 6.0, z: 0.7 }, placement: "above" },
+      { key: "nabr", objectId: "nabr-cell", at: { x: 5, y: 6.3, z: 0.7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    naf: <InlineMath math="\mathrm{NaF}:\ 462\ \mathrm{pm}" />,
+    nacl: <InlineMath math="\mathrm{NaCl}:\ 564\ \mathrm{pm}" />,
+    nabr: <InlineMath math="\mathrm{NaBr}:\ 597\ \mathrm{pm}" />,
+  }}
+/>
+
+Da das Kation in allen drei Salzen gleich bleibt, spiegelt das Wachstum der Zellkante unmittelbar die zusätzliche Elektronenschale bei jedem Schritt abwärts in Gruppe <InlineMath math="17" /> wider.
 
 ## Zwei Elementpaare vergleichen
 
@@ -248,22 +343,3 @@ Vergleiche Elemente **derselben Periode oder Gruppe**, damit die Ursache deutlic
 | Li und Na in Gruppe 1 | Das Valenzelektron von Li liegt in der Schale L, das von Na in der Schale M. Na besitzt eine zusätzliche innere Schale, die zur Abschirmung beiträgt. | Na hat einen größeren Radius. Sein erstes Elektron ist leichter zu entfernen. |
 
 Diese Vergleiche erklären allgemeine Trends. Bei der Elektronenaffinität oder Paaren wie Mg und Al musst du die Daten und die Unterschalenbelegung prüfen, weil die allgemeine Richtung allein nicht ausreicht.
-
-## Halogenidionen wachsen nach unten
-
-Der Radius wächst in einer Gruppe nach unten, weil Elektronenschalen dazukommen. Vergleiche die Kristalle von <InlineMath math="\mathrm{NaF}" />, <InlineMath math="\mathrm{NaCl}" /> und <InlineMath math="\mathrm{NaBr}" />. Das Kation ist dasselbe, aber **das Halogenidion wächst von <InlineMath math="\mathrm{F^-}" /> bis <InlineMath math="\mathrm{Br^-}" />**, also wird auch die Kante der Elementarzelle länger.
-
-<IonLatticeLab
-  title={<>Drei Natriumhalogenide</>}
-  description={<>Vergleiche die Größe des Anions und die Kante der Elementarzelle.</>}
-  crystals={["sodium-fluoride", "sodium-chloride", "sodium-bromide"]}
-  labels={{
-    cells: "Elementarzellen pro Kante",
-    choose: "Kristall wählen",
-    count: <>Anzahl der Ionen</>,
-    formula: <>Formel</>,
-    ions: <>Ionen und ihre Radien</>,
-    lattice: <>Kante der Elementarzelle</>,
-    view: "Ionengitter",
-  }}
-/>

@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Lambang Atom",
   description:
@@ -19,34 +18,17 @@ Notasi yang sering dipakai dalam kimia dasar adalah:
 
 <BlockMath math="{}^{A}_{Z}\mathrm{X}" />
 
-Baca lambang atom tersebut seperti ini.
+Baca lambang atom ini seperti berikut.
 
 - <InlineMath math="\mathrm{X}" /> adalah simbol unsur
 - <InlineMath math="Z" /> adalah nomor atom
 - <InlineMath math="A" /> adalah nomor massa
 
-## Muatan di Sudut Simbol
+> Anggap lambang atom seperti label alamat singkat tempat angka kiri bawah menamai unsur dan angka kiri atas menimbang intinya.
 
-Simbol atom juga bisa membawa muatan di kanan atas, seperti <InlineMath math="\mathrm{Mg^{2+}}" /> dan <InlineMath math="\mathrm{O^{2-}}" />. **Muatan itu menghitung elektron yang lepas atau diterima**, dan di sini kamu bisa melihat elektronnya berpindah.
+### Membaca Nomor Massa dan Nomor Atom
 
-<IonFormationLab
-  title={<>Asal Muatan Sebuah Ion</>}
-  description={<>Pilih magnesium dengan oksigen atau kalium dengan klorin, lalu hitung elektron yang berpindah.</>}
-  pairs={["magnesium-oxygen", "potassium-chlorine"]}
-  labels={{
-    choose: "Pilih pasangan atom",
-    metalRadius: <>Jari-jari logam</>,
-    metalShells: <>Kulit logam</>,
-    nonmetalRadius: <>Jari-jari nonlogam</>,
-    nonmetalShells: <>Kulit nonlogam</>,
-    progress: "Perpindahan elektron",
-    view: "Atom logam dan nonlogam menjadi ion",
-  }}
-/>
-
-## Membaca Nomor Massa dan Nomor Atom
-
-Pilih atom di bawah ini, lalu cocokkan kedua angka pada lambangnya. Angka di **kiri atas adalah nomor massa** <InlineMath math="A" />, sedangkan angka di kiri bawah adalah nomor atom <InlineMath math="Z" />. Posisi tersebut menentukan jumlah proton, neutron, atau elektron yang dihitung.
+Pilih atom di bawah ini, lalu cocokkan kedua angka pada lambangnya. Angka di **kiri atas adalah nomor massa** <InlineMath math="A" />, sedangkan angka di kiri bawah adalah nomor atom <InlineMath math="Z" />. Letak kedua angka ini menentukan jumlah proton, neutron, atau elektron yang dihitung.
 
 <AtomSymbolLab
   title={<>Pembaca Lambang Atom</>}
@@ -56,6 +38,7 @@ Pilih atom di bawah ini, lalu cocokkan kedua angka pada lambangnya. Angka di **k
       jumlah partikel penyusunnya.
     </>
   }
+  footer={<>Cocokkan angka kiri atas A dan kiri bawah Z dengan jumlah proton dan neutron.</>}
   labels={{
     chooseAtom: "Pilih contoh atom",
     massNumber: "Nomor massa",
@@ -90,6 +73,39 @@ Pilih atom di bawah ini, lalu cocokkan kedua angka pada lambangnya. Angka di **k
   }}
 />
 
+Mencoba setiap contoh menegaskan aturan posisi ini: nomor massa yang lebih besar selalu berada di atas karena jumlah proton ditambah neutron tidak pernah lebih kecil daripada jumlah proton saja.
+
+### Muatan di Sudut Kanan Atas
+
+Simbol atom juga bisa membawa muatan di kanan atas, seperti <InlineMath math="\mathrm{Mg^{2+}}" /> dan <InlineMath math="\mathrm{O^{2-}}" />. **Muatan itu menghitung elektron yang lepas atau diterima** sementara jumlah proton tetap terkunci pada unsurnya. Bandingkan magnesium dan oksigen sesudah dua elektron berpindah dari magnesium ke oksigen.
+
+<MathVisual
+  title={<>Muatan Sudut Mencatat Perubahan Elektron</>}
+  description={<>Proton (oranye) dan elektron (ungu) pada <InlineMath math="\mathrm{Mg^{2+}}" /> dan <InlineMath math="\mathrm{O^{2-}}" />. Satu kotak grid ke atas berarti <InlineMath math="2" /> partikel.</>}
+  footer={<>Tanda 2+ berarti dua elektron lebih sedikit dari proton, tanda 2- berarti dua lebih banyak.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 7, z: 11 }, target: { x: 3, y: 3, z: 0 } },
+    objects: [
+      { id: "mg-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: 3, z: 0 }, size: { length: 1.1, height: 6, width: 1.1 } },
+      { id: "mg-e", kind: "cuboid", appearance: "secondary", center: { x: 1.4, y: 2.5, z: 0 }, size: { length: 1.1, height: 5, width: 1.1 } },
+      { id: "o-p", kind: "cuboid", appearance: "primary", center: { x: 4.6, y: 2, z: 0 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "o-e", kind: "cuboid", appearance: "answer", center: { x: 6, y: 2.5, z: 0 }, size: { length: 1.1, height: 5, width: 1.1 } },
+    ],
+    labels: [
+      { key: "mg", objectId: "mg-p", at: { x: 0.7, y: 6.3, z: 0 }, placement: "above" },
+      { key: "ox", objectId: "o-e", at: { x: 5.3, y: 5.3, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    mg: <InlineMath math="\mathrm{Mg^{2+}}:\ 12p^+,\ 10e^-" />,
+    ox: <InlineMath math="\mathrm{O^{2-}}:\ 8p^+,\ 10e^-" />,
+  }}
+/>
+
+Meski kedua ion sama-sama memiliki <InlineMath math="10" /> elektron, tanda sudut yang berlawanan langsung memberi tahu mana yang melepas elektron dan mana yang menerimanya.
+
 ## Menghitung Proton Elektron dan Neutron
 
 Nomor atom ditulis sebagai <InlineMath math="Z" />. Angka ini sama dengan jumlah proton di inti atom.
@@ -113,6 +129,7 @@ Setiap jumlah partikel berasal dari dua angka pada lambang <InlineMath math="^{A
 <MathVisual
   title={<>Dari A dan Z ke Jumlah Partikel</>}
   description={<>Proton (oranye), neutron (abu-abu), dan elektron (ungu) pada atom netral karbon-12, natrium-23, dan klorin-35. Satu kotak grid ke atas berarti <InlineMath math="4" /> partikel.</>}
+  footer={<>Pada atom netral batang proton dan elektron sama tinggi, sedangkan neutron sebesar A-Z.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -141,23 +158,44 @@ Setiap jumlah partikel berasal dari dua angka pada lambang <InlineMath math="^{A
   }}
 />
 
-## Membedakan Tiga Partikel
+Perhatikan bahwa pada atom yang lebih berat seperti natrium dan klorin, batang neutron abu-abu sedikit lebih tinggi daripada batang proton karena tambahan neutron membantu menstabilkan inti.
 
-Angka pada simbol menghitung tiga partikel yang berbeda, dan **medan magnet membedakannya lewat muatan dan massa**: proton dan elektron melengkung berlawanan arah, sedangkan neutron melaju lurus.
+### Membedakan Tiga Partikel Penyusun
 
-<ParticleTrackLab
-  title={<>Proton, Elektron, dan Neutron dalam Medan</>}
-  description={<>Perkuat medannya dan bandingkan seberapa rapat setiap lintasan melengkung.</>}
+Angka pada simbol menghitung tiga partikel yang berbeda, dan **medan magnet memisahkannya menurut muatan dan massa**. Saat masuk dari kiri, neutron yang netral melaju lurus, proton positif yang berat berbelok landai ke satu arah, dan elektron negatif yang jauh lebih ringan melengkung tajam ke arah berlawanan.
+
+<MathVisual
+  title={<>Pembelokan Partikel menurut Muatan dan Massa</>}
+  description={<>Lintasan proton (oranye), neutron (abu-abu), dan elektron (ungu) saat masuk ke medan magnet dari kiri. Muatan menentukan arah, massa menentukan kelengkungan.</>}
+  footer={<>Muatan berlawanan berbelok berlawanan arah, elektron ringan melengkung tajam, neutron lurus.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.8 }, y: { min: -3.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "neutron-path", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "proton-path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1.5, y: 0.11 }, { x: 3, y: 0.45 }, { x: 4.5, y: 1.01 }, { x: 6, y: 1.8 }] },
+      { id: "electron-path", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.8, y: -0.22 }, { x: 1.6, y: -0.9 }, { x: 2.4, y: -2.0 }, { x: 3.1, y: -3.2 }] },
+      { id: "p-end", kind: "point", appearance: "primary", at: { x: 6, y: 1.8 } },
+      { id: "n-end", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "e-end", kind: "point", appearance: "secondary", at: { x: 3.1, y: -3.2 } },
+    ],
+    labels: [
+      { key: "proton", objectId: "p-end", at: { x: 6, y: 1.8 }, placement: "above-left" },
+      { key: "neutron", objectId: "n-end", at: { x: 6, y: 0 }, placement: "above-left" },
+      { key: "electron", objectId: "e-end", at: { x: 3.1, y: -3.2 }, placement: "right" },
+    ],
+  }}
   labels={{
-    electron: <>Jari-jari lintasan elektron</>,
-    field: "Kuat medan magnet",
-    proton: <>Jari-jari lintasan proton</>,
-    ratio: <>Perbandingan jari-jari</>,
-    view: "Jejak partikel dalam medan magnet",
+    proton: <InlineMath math="p^+\ (+1)" />,
+    neutron: <InlineMath math="n^0\ (0)" />,
+    electron: <InlineMath math="e^-\ (-1)" />,
   }}
 />
 
-## Contoh Karbon
+Setiap lintasan mencerminkan sifat fisik di balik simbolnya: proton dan neutron membawa hampir seluruh massa atom, sedangkan proton dan elektron membawa muatan listrik yang sama besar tetapi berlawanan tanda.
+
+### Contoh Hitungan pada Karbon Dua Belas
 
 Untuk atom karbon dengan nomor massa <InlineMath math="12" />, lambangnya ditulis:
 
@@ -178,6 +216,7 @@ Inilah tiga jumlah partikel untuk karbon-12 sebagai kolom, dengan satu kotak gri
 <MathVisual
   title={<>Partikel dalam Karbon-12</>}
   description={<>Proton, neutron, dan elektron atom karbon-12 yang netral. Satu kotak grid ke atas sama dengan <InlineMath math="2" /> partikel.</>}
+  footer={<>Karbon-12 netral punya enam proton, enam neutron, dan enam elektron dari tiga aturan.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
@@ -200,6 +239,8 @@ Inilah tiga jumlah partikel untuk karbon-12 sebagai kolom, dengan satu kotak gri
   }}
 />
 
+Memisahkan ketiga aturan ini mempermudah kamu membaca ion maupun isotop berat saat ketiga batangnya tidak lagi sama tinggi.
+
 ## Nomor Massa dan Massa Atom Relatif
 
 Di tabel periodik, kamu sering melihat angka desimal seperti massa atom relatif karbon sekitar <InlineMath math="12{,}01" />. Angka desimal itu bukan nomor massa satu atom karbon tertentu.
@@ -215,27 +256,43 @@ Jadi bedakan dua hal ini:
 | Nomor massa | Bilangan bulat, misalnya <InlineMath math="12" /> pada <InlineMath math="{}^{12}_{6}\mathrm{C}" /> | Jumlah proton dan neutron dalam satu atom tertentu. |
 | Massa atom relatif | Sering desimal, misalnya sekitar <InlineMath math="12{,}01" /> untuk karbon | Perbandingan massa rata-rata atom dalam bahan dengan seperdua belas massa atom karbon-12. |
 
-Saat membaca lambang atom, perhatikan tiga hal: lambang atom memberi jumlah proton dan neutron, ion mengubah jumlah elektron, sedangkan isotop mengubah jumlah neutron. Jumlah proton tetap menentukan identitas unsur.
+Nomor massa selalu bilangan bulat untuk satu isotop, sedangkan massa atom relatif di tabel periodik adalah rata-rata semua isotop alaminya. Magnesium memiliki <InlineMath math="{}^{24}\mathrm{Mg}" />, <InlineMath math="{}^{25}\mathrm{Mg}" />, dan <InlineMath math="{}^{26}\mathrm{Mg}" />, sehingga **rata-rata tertimbangnya sekitar <InlineMath math="24{,}31" />**, sedikit di atas <InlineMath math="24" />.
 
-## Dari Nomor Massa ke Massa Atom Relatif
-
-Nomor massa selalu bilangan bulat untuk satu isotop, sedangkan massa atom relatif di tabel periodik adalah rata-rata semua isotopnya. Pilih magnesium. Ada <InlineMath math="{}^{24}\mathrm{Mg}" />, <InlineMath math="{}^{25}\mathrm{Mg}" />, dan <InlineMath math="{}^{26}\mathrm{Mg}" />, dan **rata-rata tertimbangnya sekitar <InlineMath math="24{,}31" />**, bukan bilangan bulat.
-
-<MassSpectrometerLab
-  title={<>Isotop Magnesium, Boron, dan Tembaga</>}
-  description={<>Puncak di detektor menunjukkan kelimpahan setiap nomor massa.</>}
-  samples={["magnesium", "boron", "copper"]}
+<MathVisual
+  title={<>Rata-rata Isotop Magnesium adalah <InlineMath math="24{,}31" /></>}
+  description={<>Kelimpahan alami magnesium-24, magnesium-25, dan magnesium-26 beserta garis rata-rata tertimbangnya (fuchsia). Tegak: satu kotak grid berarti <InlineMath math="10\%" />.</>}
+  footer={<>Puncak isotop bilangan bulat bergabung membentuk rata-rata desimal magnesium 24,31.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 23.2, max: 26.8 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 23.4, y: 0 }, to: { x: 26.6, y: 0 } },
+      { id: "mg24", kind: "segment", appearance: "primary", from: { x: 24, y: 0 }, to: { x: 24, y: 7.9 } },
+      { id: "mg25", kind: "segment", appearance: "secondary", from: { x: 25, y: 0 }, to: { x: 25, y: 1.0 } },
+      { id: "mg26", kind: "segment", appearance: "secondary", from: { x: 26, y: 0 }, to: { x: 26, y: 1.1 } },
+      { id: "avg", kind: "segment", appearance: "answer", from: { x: 24.31, y: 0 }, to: { x: 24.31, y: 8.2 } },
+      { id: "p24", kind: "point", appearance: "primary", at: { x: 24, y: 7.9 } },
+      { id: "p25", kind: "point", appearance: "secondary", at: { x: 25, y: 1.0 } },
+      { id: "p26", kind: "point", appearance: "secondary", at: { x: 26, y: 1.1 } },
+      { id: "pavg", kind: "point", appearance: "answer", at: { x: 24.31, y: 8.2 } },
+    ],
+    labels: [
+      { key: "m24", objectId: "p24", at: { x: 24, y: 7.9 }, placement: "left" },
+      { key: "m25", objectId: "p25", at: { x: 25, y: 1.0 }, placement: "above" },
+      { key: "m26", objectId: "p26", at: { x: 26, y: 1.1 }, placement: "above" },
+      { key: "avg", objectId: "pavg", at: { x: 24.31, y: 8.2 }, placement: "right" },
+    ],
+  }}
   labels={{
-    average: <>Massa atom relatif rata-rata</>,
-    choose: "Pilih unsur",
-    isotopes: <>Isotop dan kelimpahannya</>,
-    north: "U",
-    radius: <>Jari-jari lintasan</>,
-    ratio: <>Perbandingan jari-jari</>,
-    south: "S",
-    view: "Spektrometer massa",
+    m24: <InlineMath math="{}^{24}\mathrm{Mg}:\ 79{,}0\%" />,
+    m25: <InlineMath math="{}^{25}\mathrm{Mg}:\ 10{,}0\%" />,
+    m26: <InlineMath math="{}^{26}\mathrm{Mg}:\ 11{,}0\%" />,
+    avg: <InlineMath math="A_r\approx24{,}31" />,
   }}
 />
+
+Saat membaca lambang atom, perhatikan tiga hal: lambang atom memberi jumlah proton dan neutron, ion mengubah jumlah elektron, sedangkan isotop mengubah jumlah neutron. Jumlah proton tetap menentukan identitas unsur.
 
 ## Huruf Kapital pada Simbol Unsur
 
@@ -252,25 +309,39 @@ Coba perhatikan dua baris terakhir. Pada <InlineMath math="\mathrm{Co}" />, huru
 
 Kalau kamu ingin memeriksa simbol unsur dan massa atom relatif terbaru, buka [Tabel Periodik Unsur IUPAC](https://iupac.org/what-we-do/periodic-table-of-elements/).
 
-## Lambang di Dalam Rumus
+Huruf kapital di dalam rumus memisahkan unsur satu dari unsur lainnya. Bandingkan <InlineMath math="\mathrm{Co}" /> dengan <InlineMath math="\mathrm{CO}" />, <InlineMath math="\mathrm{HCl}" />, dan <InlineMath math="\mathrm{N_2}" />: **setiap huruf kapital menandai unsur yang berbeda**, sedangkan indeks bawah mengalikan jumlah atomnya.
 
-Huruf kapital di rumus memisahkan unsur satu dengan yang lain. <InlineMath math="\mathrm{CO}" /> adalah karbon monoksida, molekul dari <InlineMath math="1" /> atom karbon dan <InlineMath math="1" /> atom oksigen, sedangkan <InlineMath math="\mathrm{Co}" /> adalah unsur kobalt. Di <InlineMath math="\mathrm{HCl}" />, huruf kecil <InlineMath math="\mathrm{l}" /> masih bagian dari lambang klorin. Putar setiap model dan **hitung satu atom untuk setiap huruf kapital**.
-
-<MoleculeShapeLab
-  title={<>Membaca Lambang dalam Molekul</>}
-  description={<>Setiap bola diberi lambang unsurnya.</>}
-  molecules={[
-    { id: "carbon-monoxide", name: "Karbon monoksida" },
-    { id: "hydrogen-chloride", name: "Hidrogen klorida" },
-    { id: "nitrogen", name: "Nitrogen" },
-  ]}
+<MathVisual
+  title={<>Huruf Kapital Memisahkan Unsur dalam Rumus</>}
+  description={<>Jumlah jenis unsur (oranye) dan total atom (ungu) pada <InlineMath math="\mathrm{Co}" />, <InlineMath math="\mathrm{CO}" />, <InlineMath math="\mathrm{HCl}" />, dan <InlineMath math="\mathrm{N_2}" />. Satu kotak grid ke atas berarti <InlineMath math="1" />.</>}
+  footer={<>Setiap huruf kapital memulai unsur baru, mengubah Co satu atom menjadi dua di CO.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 3.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 5, z: 12 }, target: { x: 5, y: 1.2, z: 0 } },
+    objects: [
+      { id: "co1-el", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 0.8, height: 1, width: 0.8 } },
+      { id: "co1-at", kind: "cuboid", appearance: "secondary", center: { x: 0.9, y: 0.5, z: 0 }, size: { length: 0.8, height: 1, width: 0.8 } },
+      { id: "co2-el", kind: "cuboid", appearance: "primary", center: { x: 3.1, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "co2-at", kind: "cuboid", appearance: "answer", center: { x: 4, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "hcl-el", kind: "cuboid", appearance: "primary", center: { x: 6.2, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "hcl-at", kind: "cuboid", appearance: "answer", center: { x: 7.1, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "n2-el", kind: "cuboid", appearance: "primary", center: { x: 9.3, y: 0.5, z: 0 }, size: { length: 0.8, height: 1, width: 0.8 } },
+      { id: "n2-at", kind: "cuboid", appearance: "secondary", center: { x: 10.2, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+    ],
+    labels: [
+      { key: "co-el", objectId: "co1-el", at: { x: 0.45, y: 1.3, z: 0 }, placement: "above" },
+      { key: "co-mol", objectId: "co2-el", at: { x: 3.55, y: 2.3, z: 0 }, placement: "above" },
+      { key: "hcl", objectId: "hcl-el", at: { x: 6.65, y: 2.3, z: 0 }, placement: "above" },
+      { key: "n2", objectId: "n2-at", at: { x: 9.75, y: 2.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang</>,
-    formula: <>Rumus molekul</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    "co-el": <InlineMath math="\mathrm{Co}:\ 1\ \text{uns},\ 1\ \text{at}" />,
+    "co-mol": <InlineMath math="\mathrm{CO}:\ 2\ \text{uns},\ 2\ \text{at}" />,
+    hcl: <InlineMath math="\mathrm{HCl}:\ 2\ \text{uns},\ 2\ \text{at}" />,
+    n2: <InlineMath math="\mathrm{N_2}:\ 1\ \text{uns},\ 2\ \text{at}" />,
   }}
 />
+
+Menulis huruf kapital dengan tepat mencegah kita tertukar antara satu atom logam kobalt (<InlineMath math="\mathrm{Co}" />) dan molekul gas dua unsur seperti karbon monoksida (<InlineMath math="\mathrm{CO}" />).

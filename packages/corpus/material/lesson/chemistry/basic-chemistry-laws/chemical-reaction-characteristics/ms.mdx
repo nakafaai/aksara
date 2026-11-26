@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Ciri-ciri Tindak Balas Kimia",
   description:
@@ -17,91 +16,83 @@ Bukan semua perubahan yang kamu nampak ialah tindak balas kimia. Gula yang dilar
 
 <BlockMath math="\text{bahan tindak balas} \rightarrow \text{hasil tindak balas}" />
 
-Tanpa alat analisis, perubahan yang boleh dilihat memberi petunjuk awal bahawa tindak balas kimia telah berlaku. Petunjuk ini termasuk pembentukan gas, mendakan, perubahan warna atau perubahan tenaga. Tindak balas juga boleh dikelaskan kepada tindak balas pemendakan, tindak balas asid-bes dan tindak balas pengoksidaan-penurunan.
+> Lihat lebih jauh daripada perubahan luaran dan tanya sama ada atom-atomnya sudah membentuk bahan baharu dengan sifat yang berbeza.
 
-## Atom Membentuk Pasangan Baharu
+Tanpa alat analisis, perubahan yang kelihatan memberi petunjuk awal bahawa hasil baharu mungkin terbentuk. Pemerhati mencari gelembung gas, mendakan pepejal, perubahan warna yang tidak dijangka, atau perubahan suhu sebelum mengesahkan sama ada identiti kimia benar-benar berubah.
 
-Tanda tindak balas yang kamu nampak, seperti gelembung gas, berlaku kerana **atom-atom bertukar pasangan**. Seret gelangsar di bawah dari kiri ke kanan. Ikatan lama dalam <InlineMath math="\mathrm{H_2O_2}" /> melemah, atom-atomnya bergerak, lalu terbentuk <InlineMath math="\mathrm{H_2O}" /> dan gas <InlineMath math="\mathrm{O_2}" />. Bilangan atom setiap unsur tetap sama, tetapi bahannya sudah baharu.
+## Penyusunan Semula Atom dan Petunjuk Makroskopik
 
-<ReactionBalanceLab
-  title={<>Tindak Balas pada Aras Atom</>}
-  description={<>Lihat ikatan putus dan terbentuk apabila hidrogen peroksida terurai dan metana terbakar.</>}
-  reactions={[
-    { id: "peroxide-decomposition", name: "Penguraian hidrogen peroksida", tab: <InlineMath math="\mathrm{H_2O_2}" /> },
-    { id: "methane-combustion", name: "Pembakaran metana", tab: <InlineMath math="\mathrm{CH_4}" /> },
-  ]}
-  reading="molecules"
+Setiap tanda yang kelihatan di makmal berpunca daripada perubahan pada **aras zarah**. Apabila ikatan lama putus dan ikatan baharu terbentuk, atom yang sama berganding membentuk molekul berbeza dengan sifat haba, cahaya dan keterlarutan yang berbeza.
+
+### Atom Membentuk Pasangan Baharu
+
+Tanda tindak balas yang kamu nampak, seperti gelembung gas, berlaku kerana **atom-atom bertukar pasangan**. Penguraian hidrogen peroksida menunjukkan peralihan ini dengan jelas.
+
+<BlockMath math="2\mathrm{H_2O_2} \rightarrow 2\mathrm{H_2O} + \mathrm{O_2}" />
+
+Setiap atom hidrogen dan oksigen kekal sama bilangan, tetapi dua molekul bahan tindak balas terpecah menjadi tiga molekul hasil.
+
+<MathVisual
+  title={<>Atom Kekal Sementara Bilangan Molekul Berubah</>}
+  description={<>Bilangan atom dan molekul bagi <InlineMath math="2\mathrm{H_2O_2} \rightarrow 2\mathrm{H_2O} + \mathrm{O_2}" />. Barisan belakang ialah bahan tindak balas dan hadapan ialah hasil. Satu langkah grid ke atas ialah <InlineMath math="1" /> unit.</>}
+  footer={<>Hidrogen dan oksigen kekal empat atom, manakala bilangan molekul naik daripada dua kepada tiga.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "h-in", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2, z: -0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "h-out", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2, z: 0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "o-in", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2, z: -0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "o-out", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2, z: 0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "mol-in", kind: "cuboid", appearance: "warning", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "mol-out", kind: "cuboid", appearance: "secondary", center: { x: 5, y: 1.5, z: 0.75 }, size: { length: 1.1, height: 3, width: 1.1 } },
+    ],
+    labels: [
+      { key: "h", objectId: "h-out", at: { x: 0, y: 4.3, z: 0.75 }, placement: "above" },
+      { key: "o", objectId: "o-out", at: { x: 2.5, y: 4.3, z: 0.75 }, placement: "above" },
+      { key: "mol", objectId: "mol-out", at: { x: 5, y: 3.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Bilangan atom setiap unsur</>,
-    choose: "Pilih tindak balas",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan tindak balas</>,
-    mass: <>Jisim bahan dan hasil tindak balas</>,
-    molecules: <>Bilangan molekul</>,
-    products: <>Hasil tindak balas</>,
-    progress: "Perjalanan tindak balas",
-    reactants: <>Bahan tindak balas</>,
-    view: "Tindak balas pada aras atom",
+    h: <InlineMath math="\mathrm{H}:\ 4 = 4" />,
+    o: <InlineMath math="\mathrm{O}:\ 4 = 4" />,
+    mol: <>Molekul: 2 ke 3</>,
   }}
 />
 
-## Memerhati Bukti Tindak Balas dalam Model
+Perhatikan bahawa ketinggian bar atom tidak pernah berubah antara bahan dengan hasil tindak balas, manakala bar molekul meningkat daripada dua kepada tiga. Peralihan ini mengesahkan ikatan lama terputus lalu membentuk bahan baharu, termasuk gas oksigen yang naik sebagai gelembung.
 
-Pilih satu petunjuk, kemudian bandingkan **keadaan sebelum dan selepas**. Perhatikan apa yang muncul, kemudian buat inferens tentang perkara yang mungkin berlaku kepada bahan-bahan itu.
+### Membandingkan Petunjuk yang Kelihatan
 
-<ChemicalReactionCharacteristicsLab
-  title={<>Model Bukti Tindak Balas Kimia</>}
-  description={
-    <>
-      Perhatikan perubahan yang kelihatan, kemudian bezakan bukti tindak balas
-      kimia daripada tanda yang juga boleh muncul semasa perubahan fizikal.
-    </>
-  }
+Semasa merekodkan pemerhatian makmal, bandingkan **perkembangan petunjuk mengikut masa** dan bukan hanya satu detik. Dalam lengkung gas di bawah, tindak balas kimia terus membebaskan <InlineMath math="\mathrm{CO_2}" /> sehingga bahan tindak balas habis, manakala udara terlarut dalam air suam cepat berhenti.
+
+<MathVisual
+  title={<>Isi Padu Gas Dibebaskan Mengikut Masa</>}
+  description={<>Contoh gas daripada tindak balas kimia (jingga) berbanding penyahgasan air suam (kelabu). Satu langkah mengufuk ialah <InlineMath math="1\text{ min}" /> dan menegak <InlineMath math="10\text{ mL}" />.</>}
+  footer={<>Pembebasan gas berterusan yang melandai menandakan bahan tindak balas sedang habis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "rxn", kind: "function", appearance: "primary", formula: "5.8 * (1 - exp(-0.48 * x))", domain: { min: 0, max: 10 } },
+      { id: "degas", kind: "function", appearance: "reference", formula: "0.75 * (1 - exp(-1.2 * x))", domain: { min: 0, max: 10 } },
+      { id: "rxn-pt", kind: "point", appearance: "primary", at: { x: 8, y: 5.68 } },
+      { id: "degas-pt", kind: "point", appearance: "reference", at: { x: 3, y: 0.73 } },
+    ],
+    labels: [
+      { key: "rxn", objectId: "rxn-pt", at: { x: 8, y: 5.68 }, placement: "above-left" },
+      { key: "degas", objectId: "degas-pt", at: { x: 3, y: 0.73 }, placement: "above-right" },
+    ],
+  }}
   labels={{
-    chooseCue: "Pilih petunjuk tindak balas kimia",
-    before: "Sebelum",
-    after: "Selepas",
-    transition: "Perubahan daripada sebelum ke selepas",
-    observationLabel: "Apa yang muncul",
-    meaningLabel: "Maksud perubahan",
-    limitLabel: "Had bukti",
-    cues: {
-      gas: {
-        tab: "Gas",
-        helperCaption: <>Gelembung yang naik boleh menandakan gas sedang terbentuk daripada campuran.</>,
-        observation: <>Gelembung atau gas keluar daripada campuran.</>,
-        meaning: (
-          <>
-            Salah satu hasil tindak balas mungkin gas, contohnya{" "}
-            <InlineMath math="\mathrm{CO_2}" />.
-          </>
-        ),
-        limit: <>Gelembung semasa air mendidih tidak semestinya tindak balas kimia.</>,
-      },
-      precipitate: {
-        tab: "Mendakan",
-        helperCaption: <>Pepejal baharu yang terbentuk lalu mengendap boleh menandakan bahan baharu yang tidak larut.</>,
-        observation: <>Pepejal baharu yang tidak larut muncul.</>,
-        meaning: <>Ion dalam larutan boleh membentuk sebatian pepejal.</>,
-        limit: <>Habuk atau kotoran bukan bukti hasil tindak balas baharu.</>,
-      },
-      color: {
-        tab: "Warna",
-        helperCaption: <>Perubahan warna boleh menandakan bahan baharu yang menyerap cahaya secara berbeza.</>,
-        observation: <>Warna berubah walaupun tiada pewarna ditambah.</>,
-        meaning: <>Zarah baharu boleh menyerap cahaya dengan cara yang berbeza.</>,
-        limit: <>Mencampurkan pewarna ke dalam air hanyalah perubahan fizikal.</>,
-      },
-      energy: {
-        tab: "Tenaga",
-        helperCaption: <>Imbangan bersih antara pemutusan ikatan lama dan pembentukan ikatan baharu boleh memanaskan, menyejukkan atau menerangi persekitaran.</>,
-        observation: <>Suhu berubah atau cahaya muncul semasa bahan bertindak balas.</>,
-        meaning: <>Pemutusan ikatan memerlukan tenaga, manakala pembentukan ikatan membebaskan tenaga.</>,
-        limit: <>Haba daripada sumber luar mesti diasingkan daripada haba tindak balas.</>,
-      },
-    },
+    rxn: <>Gas tindak balas: 58 mL</>,
+    degas: <>Gelembung fizikal: 7.5 mL</>,
   }}
 />
+
+Merekodkan ukuran selama beberapa minit memisahkan tindak balas sebenar daripada perubahan fizikal seketika. Namun begitu, gas yang banyak tetap perlu dikenal pasti melalui ujian kimia sebelum kamu menyimpulkan hasilnya.
 
 ## Empat Petunjuk Biasa
 
@@ -120,6 +111,7 @@ Termometer menukar satu petunjuk kepada nombor. Dalam dua contoh campuran yang b
 <MathVisual
   title={<>Termometer Membaca Petunjuk Tenaga</>}
   description={<>Contoh suhu dua campuran selepas dicampurkan. Mengufuk: satu langkah grid ialah satu minit. Menegak: satu langkah grid ialah <InlineMath math="5\ ^\circ\mathrm{C}" />.</>}
+  footer={<>Campuran eksotermik memuncak di atas suhu bilik manakala endotermik turun di bawahnya.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 6.5 } },
@@ -144,7 +136,13 @@ Termometer menukar satu petunjuk kepada nombor. Dalam dua contoh campuran yang b
   }}
 />
 
-## Menyemak Beberapa Tanda Tindak Balas Kimia
+Kedua-dua lengkung kembali perlahan-lahan ke <InlineMath math="25\ ^\circ\mathrm{C}" /> apabila campuran bertukar haba dengan bilik, sebab itulah ahli kimia mencatat suhu sebaik sahaja bahan dicampurkan.
+
+## Mengesahkan Hasil Baharu
+
+Oleh sebab perubahan fizikal boleh menyerupai gelembung gas, perubahan warna atau pemindahan haba, ahli kimia tidak pernah bergantung pada satu tanda luaran sahaja. Mereka menyemak beberapa pemerhatian serentak lalu menguji **sama ada struktur bahan baharu benar-benar terbentuk** sebelum mengesahkan tindak balas.
+
+### Menyemak Beberapa Tanda Tindak Balas Kimia
 
 Satu tanda tidak selalu cukup. Air yang mendidih menghasilkan gelembung, tetapi itu ialah **perubahan fizikal** kerana bahannya masih <InlineMath math="\mathrm{H_2O}" />. Garam yang terlarut juga kelihatan berbeza, tetapi garam itu boleh diperoleh semula dengan menyejatkan airnya.
 
@@ -159,28 +157,43 @@ Jadual ini menunjukkan cara menilai beberapa kejadian berdasarkan tanda yang dip
 
 Untuk memastikannya, kita perlu menyemak sama ada hasil tindak balas benar-benar berbeza daripada bahan tindak balas. Di makmal, hal ini boleh dilakukan dengan mengukur jisim, menguji gas, memerhati mendakan atau menganalisis komposisi.
 
-## Bahan Baharu Ada Bentuk Baharu
+### Bahan Baharu Ada Bentuk Baharu
 
-Antara bukti paling kuat bahawa tindak balas berlaku ialah munculnya **bahan dengan susunan atom yang berbeza**. Bandingkan <InlineMath math="\mathrm{H_2O_2}" />, <InlineMath math="\mathrm{H_2O}" /> dan <InlineMath math="\mathrm{O_2}" /> dalam model ini. Ketiga-tiganya hanya terdiri daripada hidrogen dan oksigen, tetapi bentuk dan sudut ikatannya berbeza, jadi sifat bahannya juga berbeza.
+Antara bukti paling kuat bahawa tindak balas berlaku ialah munculnya **bahan dengan susunan atom yang berbeza**. Bandingkan sudut ikatan dan geometri <InlineMath math="\mathrm{H_2O_2}" />, <InlineMath math="\mathrm{H_2O}" /> dan <InlineMath math="\mathrm{O_2}" /> di bawah. Ketiga-tiganya hanya terdiri daripada hidrogen dan oksigen, tetapi sudut ikatan dan bentuknya berbeza, jadi sifat bahannya juga berbeza.
 
-<MoleculeShapeLab
-  title={<>Bahan dan Hasil Tindak Balas dalam 3D</>}
-  description={<>Putar setiap molekul dan bandingkan sudut ikatannya.</>}
-  molecules={[
-    { id: "hydrogen-peroxide", name: "Hidrogen peroksida" },
-    { id: "water", name: "Air" },
-    { id: "oxygen", name: "Oksigen" },
-  ]}
+<MathVisual
+  title={<>Sudut Ikatan Tiga Bahan Unsur H dan O</>}
+  description={<>Perbandingan skematik sudut <InlineMath math="\mathrm{H-O-O}" /> dalam <InlineMath math="\mathrm{H_2O_2}" /> (<InlineMath math="94.8^\circ" />), sudut <InlineMath math="\mathrm{H-O-H}" /> dalam <InlineMath math="\mathrm{H_2O}" /> (<InlineMath math="104.5^\circ" />) dan garis lurus <InlineMath math="\mathrm{O_2}" /> (<InlineMath math="180^\circ" />).</>}
+  footer={<>Unsur penyusunnya sama tetapi sudut ikatan berbeza, lalu sifat bahan pun berlainan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "h2o2-a", kind: "segment", appearance: "warning", from: { x: 0.5, y: 0.8 }, to: { x: 0.5, y: 2.6 } },
+      { id: "h2o2-b", kind: "segment", appearance: "warning", from: { x: 0.5, y: 0.8 }, to: { x: 2.29, y: 0.65 } },
+      { id: "h2o2-v", kind: "point", appearance: "warning", at: { x: 0.5, y: 0.8 } },
+      { id: "h2o-a", kind: "segment", appearance: "primary", from: { x: 4.8, y: 0.8 }, to: { x: 3.7, y: 2.2 } },
+      { id: "h2o-b", kind: "segment", appearance: "primary", from: { x: 4.8, y: 0.8 }, to: { x: 6.5, y: 1.4 } },
+      { id: "h2o-v", kind: "point", appearance: "primary", at: { x: 4.8, y: 0.8 } },
+      { id: "o2-line", kind: "segment", appearance: "secondary", from: { x: 7.8, y: 1.6 }, to: { x: 10.2, y: 1.6 } },
+      { id: "o2-a", kind: "point", appearance: "secondary", at: { x: 7.8, y: 1.6 } },
+      { id: "o2-b", kind: "point", appearance: "secondary", at: { x: 10.2, y: 1.6 } },
+    ],
+    labels: [
+      { key: "h2o2", objectId: "h2o2-v", at: { x: 1.2, y: 2.8 }, placement: "above" },
+      { key: "h2o", objectId: "h2o-v", at: { x: 5.0, y: 2.8 }, placement: "above" },
+      { key: "o2", objectId: "o2-line", at: { x: 9.0, y: 2.3 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model isi ruang</>,
-    formula: <>Formula molekul</>,
-    mass: <>Jisim molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    h2o2: <InlineMath math="\mathrm{H_2O_2}:\ 94.8^\circ" />,
+    h2o: <InlineMath math="\mathrm{H_2O}:\ 104.5^\circ" />,
+    o2: <InlineMath math="\mathrm{O_2}:\ 180^\circ" />,
   }}
 />
+
+Apabila hidrogen peroksida terurai kepada air dan oksigen, geometri molekul berubah bersama formulanya. Perubahan struktur ini menjelaskan sebab cecair peroksida, air dan gas oksigen mempunyai takat didih dan kereaktifan yang sangat berbeza.
 
 ## Bukti Tindak Balas dan Hukum Asas Kimia
 
@@ -197,6 +210,7 @@ Kira atom dalam <InlineMath math="2\mathrm{Ni}+\mathrm{O_2}\rightarrow2\mathrm{N
 <MathVisual
   title={<>Atom Kekal dalam <InlineMath math="2\mathrm{Ni}+\mathrm{O_2}\rightarrow2\mathrm{NiO}" /></>}
   description={<>Atom nikel (kelabu) dan oksigen (jingga) dalam bahan tindak balas (belakang) dan hasil tindak balas (hadapan). Satu langkah grid ke atas ialah <InlineMath math="1" /> atom.</>}
+  footer={<>Bar hadapan dan belakang yang sama tinggi menunjukkan semua atom nikel dan oksigen kekal.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -217,3 +231,5 @@ Kira atom dalam <InlineMath math="2\mathrm{Ni}+\mathrm{O_2}\rightarrow2\mathrm{N
     o: <InlineMath math="\mathrm{O}:\ 2=2" />,
   }}
 />
+
+Oleh sebab bar hadapan dan belakang kekal sama tinggi bagi setiap unsur, pembentukan bahan baharu tidak pernah bermakna atom hilang atau muncul tiba-tiba. Petunjuk kualitatif menandakan perubahan kimia, manakala hukum asas kimia mengimbangi setiap atom dan gram daripada bahan kepada hasil tindak balas.

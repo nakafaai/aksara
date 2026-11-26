@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Eigenschaften subatomarer Teilchen",
   description:
@@ -19,9 +18,9 @@ Drei Eigenschaften sind für einfache Atommodelle besonders wichtig:
 - **Masse**, wie viel das Teilchen zur Atommasse beiträgt
 - **Aufenthaltsbereich**, der Bereich des Atoms, in dem sich das Teilchen befindet
 
-Zusammen unterscheiden Ladung, Masse und Aufenthaltsbereich die drei subatomaren Teilchen.
+> Die Ladung bestimmt die Ablenkungsrichtung, die Masse bestimmt die Bahnkrümmung und der Aufenthaltsbereich trennt Elementidentität von chemischen Reaktionen.
 
-Die [CODATA-Übersicht für 2022](https://physics.nist.gov/cuu/pdf/wall_2022.pdf) enthält präzisere Werte der Konstanten.
+Zusammen unterscheiden Ladung, Masse und Aufenthaltsbereich die drei subatomaren Teilchen. Die [CODATA-Übersicht für 2022](https://physics.nist.gov/cuu/pdf/wall_2022.pdf) enthält präzisere Werte der Konstanten.
 
 ## Ladung kommt in ganzen Portionen
 
@@ -30,6 +29,7 @@ Millikan hielt winzige Öltröpfchen zwischen zwei geladenen Platten in der Schw
 <MillikanOilDropLab
   title={<>Millikans Öltröpfchenversuch</>}
   description={<>Vier gleich große Tropfen tragen verschiedene Ladungen.</>}
+  footer={<>Jedes schwebende Tröpfchen bestätigt, dass elektrische Ladung in ganzen Vielfachen von e kommt.</>}
   labels={{
     charge: <>Ladung zum Schweben</>,
     field: <>Elektrisches Feld</>,
@@ -38,6 +38,8 @@ Millikan hielt winzige Öltröpfchen zwischen zwei geladenen Platten in der Schw
     voltage: "Plattenspannung",
   }}
 />
+
+Da kein einziges schwebendes Tröpfchen ein halbes oder drittel <InlineMath math="e" /> trägt, tritt elektrische Ladung nur in unteilbaren Paketen von der Größe einer Elektronenladung auf.
 
 ## Teilcheneigenschaften im Modell
 
@@ -51,6 +53,7 @@ Wechsle unten zwischen den drei Eigenschaften. Achte auf das jeweilige Muster: *
       Protonen, Neutronen und Elektronen.
     </>
   }
+  footer={<>Wechsle zwischen Ladung, Masse und Aufenthaltsbereich, um die drei Teilchen klar zu trennen.</>}
   labels={{
     chooseMode: "Teilcheneigenschaft auswählen",
     scene: {
@@ -118,6 +121,8 @@ Wechsle unten zwischen den drei Eigenschaften. Achte auf das jeweilige Muster: *
   }}
 />
 
+Im direkten Vergleich aller drei Reiter zeigt sich, warum eine Eigenschaft allein nicht genügt: Proton und Neutron stimmen in Masse und Ort überein, unterscheiden sich aber in der Ladung, während Proton und Elektron betragsgleich geladen sind, aber völlig verschiedene Räume im Atom einnehmen.
+
 ## Die Ladung bestimmt die Ablenkungsrichtung
 
 Elektrische Ladung bestimmt, wie ein Teilchen auf ein elektrisches Feld reagiert. Ein Proton ist positiv, ein Elektron negativ und ein Neutron hat keine Gesamtladung.
@@ -145,6 +150,7 @@ Schick drei Strahlen mit derselben Bewegungsenergie <InlineMath math="K" /> zwis
 <MathVisual
   title={<>Gleiche Energie, entgegengesetzte Bögen</>}
   description={<>Bahnen eines Elektrons (violett), eines Protons (orange) und eines Neutrons (grau) mit gleicher Bewegungsenergie zwischen einer positiven und einer negativen Platte.</>}
+  footer={<>Bei gleicher Bewegungsenergie biegen Elektron und Proton symmetrisch in Gegenrichtungen ab.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -3.8, max: 3.8 } },
@@ -176,37 +182,75 @@ Schick drei Strahlen mit derselben Bewegungsenergie <InlineMath math="K" /> zwis
   }}
 />
 
+Da <InlineMath math="y" /> bei gleicher Bewegungsenergie nur von <InlineMath math="q" /> und <InlineMath math="K" /> abhängt, verrät die Richtung des Bogens sofort das Vorzeichen der Ladung.
+
 ### Elektronen biegen zum Pluspol
 
-Zwischen zwei geladenen Platten **wird ein negatives Teilchen zur positiven Platte gezogen**. Ein Proton würde sich genau andersherum biegen.
+Zwischen zwei geladenen Platten **wird ein negatives Teilchen zur positiven Platte gezogen**, während ein positives Proton eine gleich große Kraft zur negativen Platte spürt. Polt man das Feld um, kehren sich beide Kräfte zugleich um.
 
-<CathodeRayLab
-  title={<>Die Ladung bestimmt die Richtung</>}
-  description={<>Ändere die Plattenspannung und sieh, wie der Strahl dem Feld folgt.</>}
+<MathVisual
+  title={<>Elektrische Kraftrichtung auf Elektron Proton und Neutron</>}
+  description={<>Kraftrichtung entlang eines aufwärts gerichteten Feldes <InlineMath math="\vec E" />: Proton nach oben (<InlineMath math="+F" />), Elektron nach unten (<InlineMath math="-F" />), Neutron null (<InlineMath math="0" />).</>}
+  footer={<>Das Vorzeichen der Ladung kehrt den Kraftvektor um, während Ladung null kraftfrei bleibt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: -3.2, max: 3.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0.5, y: 0 }, to: { x: 7.5, y: 0 } },
+      { id: "f-e", kind: "vector", appearance: "secondary", from: { x: 2, y: 0 }, to: { x: 2, y: -2.2 } },
+      { id: "f-n", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "f-p", kind: "vector", appearance: "primary", from: { x: 6, y: 0 }, to: { x: 6, y: 2.2 } },
+    ],
+    labels: [
+      { key: "e", objectId: "f-e", at: { x: 2, y: -2.4 }, placement: "below" },
+      { key: "n", objectId: "f-n", at: { x: 4, y: 0.4 }, placement: "above" },
+      { key: "p", objectId: "f-p", at: { x: 6, y: 2.4 }, placement: "above" },
+    ],
+  }}
   labels={{
-    anode: <>Beschleunigungsspannung</>,
-    field: <>Elektrisches Feld zwischen den Platten</>,
-    plates: "Plattenspannung",
-    spot: <>Verschiebung des Leuchtflecks</>,
-    view: "Kathodenstrahlröhre",
+    e: <InlineMath math="e^-:\ -eE" />,
+    n: <InlineMath math="n^0:\ 0" />,
+    p: <InlineMath math="p^+:\ +eE" />,
   }}
 />
+
+Genau diese Symmetrie macht elektrische Felder zu einem präzisen Vorzeichenfilter für geladene Teilchenstrahlen.
 
 ### Spuren im Magnetfeld
 
-Ein Magnetfeld lenkt ein geladenes Teilchen in eine Richtung ab, die vom Vorzeichen seiner Ladung abhängt. Ein Elektron, ein Proton und ein Neutron treten mit gleicher Geschwindigkeit ein. **Das Elektron biegt zur einen Seite ab, das Proton zur anderen, und das Neutron fliegt geradeaus**. Das Elektron kreist viel enger, weil seine Masse etwa <InlineMath math="1836" /> Mal kleiner ist als die des Protons. Erhöhe die Feldstärke und sieh zu, wie die Kurve des Protons sichtbar wird.
+Ein Magnetfeld lenkt ein geladenes Teilchen auf eine Kreisbahn mit Radius <InlineMath math="r = mv / (|q|B)" />. Treten Elektron und Proton mit derselben Geschwindigkeit ein, **krümmt sich das Elektron etwa <InlineMath math="1836" />-mal enger als das Proton**, während das ungeladene Neutron geradeaus fliegt.
 
-<ParticleTrackLab
-  title={<>Elektron, Proton und Neutron im Magnetfeld</>}
-  description={<>Jeder Bahnradius folgt aus Masse, Ladung und Feldstärke.</>}
+<MathVisual
+  title={<>Magnetische Krümmung bei gleicher Geschwindigkeit</>}
+  description={<>Schematischer Vergleich der Bahnen: enge Elektronenschleife (violett), weiter Protonenbogen (orange) und gerade Neutronenspur (grau) im homogenen Magnetfeld.</>}
+  footer={<>Bei gleicher Geschwindigkeit und Ladungsgröße sorgt größere Masse für viel weiteren Radius.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -3.2, max: 3.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "n-path", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "e-loop", kind: "circle", appearance: "secondary", center: { x: 0.8, y: 0.8 }, radius: 0.8 },
+      { id: "p-arc", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: -0.25 }, { x: 4, y: -0.95 }, { x: 6, y: -2.0 }, { x: 7.5, y: -2.9 }] },
+      { id: "e-pt", kind: "point", appearance: "secondary", at: { x: 1.6, y: 0.8 } },
+      { id: "p-pt", kind: "point", appearance: "primary", at: { x: 6, y: -2.0 } },
+      { id: "n-pt", kind: "point", appearance: "reference", at: { x: 7, y: 0 } },
+    ],
+    labels: [
+      { key: "e", objectId: "e-pt", at: { x: 1.7, y: 1.6 }, placement: "right" },
+      { key: "n", objectId: "n-pt", at: { x: 7, y: 0.25 }, placement: "above" },
+      { key: "p", objectId: "p-pt", at: { x: 6, y: -2.0 }, placement: "below-left" },
+    ],
+  }}
   labels={{
-    electron: <>Bahnradius des Elektrons</>,
-    field: "Magnetische Flussdichte",
-    proton: <>Bahnradius des Protons</>,
-    ratio: <>Verhältnis der Radien</>,
-    view: "Teilchenspuren im Magnetfeld",
+    e: <>Elektron: enger Kreis</>,
+    n: <>Neutron: gerade</>,
+    p: <>Proton: weiter Bogen</>,
   }}
 />
+
+Der Kontrast zwischen engem Elektronenkreis und sanftem Protonenbogen zeigt, wie Magnetdetektoren Teilchen zugleich nach Ladungsvorzeichen und Masse trennen.
 
 ## Masse und Beschleunigung
 
@@ -233,6 +277,7 @@ Hier sind die drei Massen in u im selben Maßstab, ein Gitterschritt für <Inlin
 <MathVisual
   title={<>Massen der drei Teilchen</>}
   description={<>Proton <InlineMath math="1{,}0073" /> u, Neutron <InlineMath math="1{,}0087" /> u und Elektron <InlineMath math="0{,}00055" /> u in einem Maßstab. Ein Gitterschritt nach oben sind <InlineMath math="0{,}5" /> u.</>}
+  footer={<>Proton und Neutron stehen bei 1 u, während die Elektronensäule kaum noch sichtbar ist.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -255,25 +300,42 @@ Hier sind die drei Massen in u im selben Maßstab, ein Gitterschritt für <Inlin
   }}
 />
 
+Dieser Größenunterschied erklärt, warum die Massenzahl nur Protonen und Neutronen zählt und Elektronen ohne spürbaren Fehler vernachlässigt.
+
 ## Schwerer heißt gerader
 
-Bei gleicher Geschwindigkeit und Ladung **krümmt sich ein schwereres Ion im Magnetfeld weniger**. Das Spektrometer macht aus dieser Regel eine Waage für die Masse von Atomen.
+Bei gleicher Geschwindigkeit und Ladung **krümmt sich ein schwereres Ion im Magnetfeld weniger**, sodass sein Bahnradius direkt proportional zur Masse ist. Der Vergleich von <InlineMath math="{}^{10}\mathrm{B}^+" /> mit <InlineMath math="{}^{11}\mathrm{B}^+" /> oder <InlineMath math="{}^{35}\mathrm{Cl}^+" /> mit <InlineMath math="{}^{37}\mathrm{Cl}^+" /> macht den Magnetradius zu einer Waage für Isotopenmassen.
 
-<MassSpectrometerLab
-  title={<>Masse aus einer Krümmung</>}
-  description={<>Wähle Bor oder Chlor und vergleiche die Bahnradien ihrer Isotope.</>}
-  samples={["boron", "chlorine"]}
+<MathVisual
+  title={<>Relative Bahnradien von Isotopenionen</>}
+  description={<>Relative magnetische Bahnradien von <InlineMath math="{}^{10}\mathrm{B}^+" />, <InlineMath math="{}^{11}\mathrm{B}^+" />, <InlineMath math="{}^{35}\mathrm{Cl}^+" /> und <InlineMath math="{}^{37}\mathrm{Cl}^+" /> bei fester Geschwindigkeit und Feldstärke. Ein Schritt nach oben sind <InlineMath math="10" /> Masseneinheiten.</>}
+  footer={<>Schon ein oder zwei Neutronen Unterschied trennen die Ionen sauber am Detektor.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 4.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "b10", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.3, height: 1.0, width: 1.3 } },
+      { id: "b11", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 0.55, z: 0 }, size: { length: 1.3, height: 1.1, width: 1.3 } },
+      { id: "cl35", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.75, z: 0 }, size: { length: 1.3, height: 3.5, width: 1.3 } },
+      { id: "cl37", kind: "cuboid", appearance: "warning", center: { x: 7.5, y: 1.85, z: 0 }, size: { length: 1.3, height: 3.7, width: 1.3 } },
+    ],
+    labels: [
+      { key: "b10", objectId: "b10", at: { x: 0, y: 1.35, z: 0 }, placement: "above" },
+      { key: "b11", objectId: "b11", at: { x: 2.5, y: 1.45, z: 0 }, placement: "above" },
+      { key: "cl35", objectId: "cl35", at: { x: 5, y: 3.85, z: 0 }, placement: "above" },
+      { key: "cl37", objectId: "cl37", at: { x: 7.5, y: 4.05, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    average: <>Mittlere relative Atommasse</>,
-    choose: "Element wählen",
-    isotopes: <>Isotope und Häufigkeit</>,
-    north: "N",
-    radius: <>Bahnradius</>,
-    ratio: <>Verhältnis der Radien</>,
-    south: "S",
-    view: "Massenspektrometer",
+    b10: <InlineMath math="^{10}\mathrm{B}^+" />,
+    b11: <InlineMath math="^{11}\mathrm{B}^+" />,
+    cl35: <InlineMath math="^{35}\mathrm{Cl}^+" />,
+    cl37: <InlineMath math="^{37}\mathrm{Cl}^+" />,
   }}
 />
+
+Weil jedes zusätzliche Neutron die Ionenmasse erhöht, ohne die Ladung zu ändern, liest die Massenspektrometrie Isotopenmassen unmittelbar am Auftreffpunkt im Detektor ab.
 
 ## Aufenthaltsbereich und chemische Rolle
 

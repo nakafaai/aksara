@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Subatomic Particle Properties",
   description:
@@ -19,9 +18,9 @@ Compare these three properties:
 - **mass**, how much the particle contributes to atomic mass
 - **location**, the region of the atom where the particle is found in the atomic model
 
-Together, charge, mass, and location distinguish the three subatomic particles.
+> Charge decides which way a particle bends, mass decides how tightly it turns, and location decides whether it sets element identity or drives reactions.
 
-The [2022 CODATA review](https://physics.nist.gov/cuu/pdf/wall_2022.pdf) provides more precise values for these constants.
+Together, charge, mass, and location distinguish the three subatomic particles. The [2022 CODATA review](https://physics.nist.gov/cuu/pdf/wall_2022.pdf) provides more precise values for these constants.
 
 ## Charge Comes in Whole Units
 
@@ -30,6 +29,7 @@ Millikan balanced tiny oil drops between two charged plates. When a drop hangs s
 <MillikanOilDropLab
   title={<>Millikan's Oil Drop Experiment</>}
   description={<>Four drops of the same size carry different charges.</>}
+  footer={<>Balancing each drop reveals that electric charge always arrives in whole multiples of e.</>}
   labels={{
     charge: <>Charge needed to hover</>,
     field: <>Electric field</>,
@@ -38,6 +38,8 @@ Millikan balanced tiny oil drops between two charged plates. When a drop hangs s
     voltage: "Plate voltage",
   }}
 />
+
+Because no hovering drop ever carries half or a third of <InlineMath math="e" />, electric charge is quantized in indivisible electron-sized packets.
 
 ## Subatomic Particle Model
 
@@ -51,6 +53,7 @@ Switch the mode below. Compare the main visual evidence: **bending direction, ma
       electrons in one model.
     </>
   }
+  footer={<>Toggle charge, mass, and location to see how each property separates the three particles.</>}
   labels={{
     chooseMode: "Choose a subatomic particle property",
     scene: {
@@ -119,6 +122,8 @@ Switch the mode below. Compare the main visual evidence: **bending direction, ma
   }}
 />
 
+Comparing all three tabs side by side shows why no single property tells the whole story: protons and neutrons match in mass and location yet differ in charge, while protons and electrons match in charge size yet sit in completely different parts of the atom.
+
 ## Charge Determines the Direction of Bending
 
 Electric charge determines how a particle responds to an electric field. A proton is positive, an electron is negative, and a neutron has no total charge.
@@ -146,6 +151,7 @@ Send three beams with the same kinetic energy <InlineMath math="K" /> between ch
 <MathVisual
   title={<>Same Energy, Opposite Bends</>}
   description={<>Paths of an electron (violet), a proton (orange) and a neutron (gray) with equal kinetic energy between a positive and a negative plate.</>}
+  footer={<>Equal kinetic energy makes electron and proton bend symmetrically in opposite directions.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -3.8, max: 3.8 } },
@@ -177,37 +183,75 @@ Send three beams with the same kinetic energy <InlineMath math="K" /> between ch
   }}
 />
 
+Because <InlineMath math="y" /> depends on <InlineMath math="q" /> and <InlineMath math="K" /> rather than mass when kinetic energies match, the sign of the curve immediately identifies the particle's charge sign.
+
 ### Electrons Bend toward Plus
 
-Between two charged plates **a negative particle is pulled toward the positive plate**. Flip your expectation for a proton: it would bend the other way.
+Between two charged plates **a negative particle is pulled toward the positive plate** while a positive proton feels an equal force toward the negative plate. Flipping the electric field reverses both forces simultaneously.
 
-<CathodeRayLab
-  title={<>Charge Sets the Direction</>}
-  description={<>Change the plate voltage and see the beam follow the field.</>}
+<MathVisual
+  title={<>Electric Force Sign on Electron Proton and Neutron</>}
+  description={<>Force direction along an upward electric field <InlineMath math="\vec E" />: proton pushed upward (<InlineMath math="+F" />), electron pulled downward (<InlineMath math="-F" />), neutron unchanged (<InlineMath math="0" />).</>}
+  footer={<>Reversing charge sign flips the electric force vector while zero charge feels no push.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: -3.2, max: 3.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0.5, y: 0 }, to: { x: 7.5, y: 0 } },
+      { id: "f-e", kind: "vector", appearance: "secondary", from: { x: 2, y: 0 }, to: { x: 2, y: -2.2 } },
+      { id: "f-n", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "f-p", kind: "vector", appearance: "primary", from: { x: 6, y: 0 }, to: { x: 6, y: 2.2 } },
+    ],
+    labels: [
+      { key: "e", objectId: "f-e", at: { x: 2, y: -2.4 }, placement: "below" },
+      { key: "n", objectId: "f-n", at: { x: 4, y: 0.4 }, placement: "above" },
+      { key: "p", objectId: "f-p", at: { x: 6, y: 2.4 }, placement: "above" },
+    ],
+  }}
   labels={{
-    anode: <>Accelerating voltage</>,
-    field: <>Electric field between the plates</>,
-    plates: "Plate voltage",
-    spot: <>Spot shift on the screen</>,
-    view: "Cathode ray tube",
+    e: <InlineMath math="e^-:\ -eE" />,
+    n: <InlineMath math="n^0:\ 0" />,
+    p: <InlineMath math="p^+:\ +eE" />,
   }}
 />
+
+That symmetry is why an electric field acts as a clean sign filter whenever charged beams enter a detector.
 
 ### Tracks in a Magnetic Field
 
-A magnetic field bends a charged particle in a direction set by the sign of its charge. An electron, a proton, and a neutron enter at the same speed. **The electron bends one way, the proton the other, and the neutron flies straight**. The electron circles far more tightly because its mass is about <InlineMath math="1836" /> times smaller than the proton's. Raise the field strength and watch the proton's curve appear.
+A magnetic field bends a charged particle in a circular path of radius <InlineMath math="r = mv / (|q|B)" />. When an electron and a proton enter at the same speed, **the electron curves roughly <InlineMath math="1836" /> times more tightly than the proton**, while the uncharged neutron flies straight.
 
-<ParticleTrackLab
-  title={<>Electron, Proton, and Neutron in a Magnetic Field</>}
-  description={<>Each path radius comes from the mass, the charge, and the field strength.</>}
+<MathVisual
+  title={<>Magnetic Curvature Ratio at Equal Speed</>}
+  description={<>Schematic comparison of path curvature: tight electron loop (violet), wide proton arc (orange), and straight neutron track (gray) in a uniform magnetic field.</>}
+  footer={<>At equal speed and charge size, higher mass produces a vastly wider magnetic turning radius.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -3.2, max: 3.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "n-path", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "e-loop", kind: "circle", appearance: "secondary", center: { x: 0.8, y: 0.8 }, radius: 0.8 },
+      { id: "p-arc", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: -0.25 }, { x: 4, y: -0.95 }, { x: 6, y: -2.0 }, { x: 7.5, y: -2.9 }] },
+      { id: "e-pt", kind: "point", appearance: "secondary", at: { x: 1.6, y: 0.8 } },
+      { id: "p-pt", kind: "point", appearance: "primary", at: { x: 6, y: -2.0 } },
+      { id: "n-pt", kind: "point", appearance: "reference", at: { x: 7, y: 0 } },
+    ],
+    labels: [
+      { key: "e", objectId: "e-pt", at: { x: 1.7, y: 1.6 }, placement: "right" },
+      { key: "n", objectId: "n-pt", at: { x: 7, y: 0.25 }, placement: "above" },
+      { key: "p", objectId: "p-pt", at: { x: 6, y: -2.0 }, placement: "below-left" },
+    ],
+  }}
   labels={{
-    electron: <>Electron path radius</>,
-    field: "Magnetic field strength",
-    proton: <>Proton path radius</>,
-    ratio: <>Ratio of radii</>,
-    view: "Particle tracks in a magnetic field",
+    e: <>Electron: tight loop</>,
+    n: <>Neutron: straight</>,
+    p: <>Proton: wide arc</>,
   }}
 />
+
+Comparing the tight electron circle against the gently curving proton arc shows how magnetic detectors separate particles by both charge sign and mass.
 
 ## Mass and Acceleration
 
@@ -234,6 +278,7 @@ Here are the three masses in u at the same scale, one grid step for <InlineMath 
 <MathVisual
   title={<>Masses of the Three Particles</>}
   description={<>Proton <InlineMath math="1.0073" /> u, neutron <InlineMath math="1.0087" /> u and electron <InlineMath math="0.00055" /> u at one scale. One grid step up is <InlineMath math="0.5" /> u.</>}
+  footer={<>Proton and neutron match near 1 u while the electron bar nearly vanishes on the same scale.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -256,25 +301,42 @@ Here are the three masses in u at the same scale, one grid step for <InlineMath 
   }}
 />
 
+That scale gap explains why mass numbers count only protons and neutrons while leaving electrons out without introducing noticeable error.
+
 ## Heavier Means Straighter
 
-At the same speed and charge, **a heavier ion curves less in a magnetic field**. The spectrometer turns that rule into a scale for the mass of atoms.
+At the same speed and charge, **a heavier ion curves less in a magnetic field**, so its path radius is directly proportional to mass. Comparing <InlineMath math="{}^{10}\mathrm{B}^+" /> with <InlineMath math="{}^{11}\mathrm{B}^+" /> or <InlineMath math="{}^{35}\mathrm{Cl}^+" /> with <InlineMath math="{}^{37}\mathrm{Cl}^+" /> turns magnetic radius into a direct scale for isotopic mass.
 
-<MassSpectrometerLab
-  title={<>Mass Read from a Curve</>}
-  description={<>Choose boron or chlorine and compare the path radii of their isotopes.</>}
-  samples={["boron", "chlorine"]}
+<MathVisual
+  title={<>Relative Path Radii of Isotope Ions</>}
+  description={<>Relative magnetic path radii for <InlineMath math="{}^{10}\mathrm{B}^+" />, <InlineMath math="{}^{11}\mathrm{B}^+" />, <InlineMath math="{}^{35}\mathrm{Cl}^+" />, and <InlineMath math="{}^{37}\mathrm{Cl}^+" /> at fixed velocity and field. Vertical step is <InlineMath math="10" /> mass units.</>}
+  footer={<>Even a one- or two-neutron difference separates ions cleanly into distinct detector tracks.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 4.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "b10", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.3, height: 1.0, width: 1.3 } },
+      { id: "b11", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 0.55, z: 0 }, size: { length: 1.3, height: 1.1, width: 1.3 } },
+      { id: "cl35", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.75, z: 0 }, size: { length: 1.3, height: 3.5, width: 1.3 } },
+      { id: "cl37", kind: "cuboid", appearance: "warning", center: { x: 7.5, y: 1.85, z: 0 }, size: { length: 1.3, height: 3.7, width: 1.3 } },
+    ],
+    labels: [
+      { key: "b10", objectId: "b10", at: { x: 0, y: 1.35, z: 0 }, placement: "above" },
+      { key: "b11", objectId: "b11", at: { x: 2.5, y: 1.45, z: 0 }, placement: "above" },
+      { key: "cl35", objectId: "cl35", at: { x: 5, y: 3.85, z: 0 }, placement: "above" },
+      { key: "cl37", objectId: "cl37", at: { x: 7.5, y: 4.05, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    average: <>Average relative atomic mass</>,
-    choose: "Choose an element",
-    isotopes: <>Isotopes and abundance</>,
-    north: "N",
-    radius: <>Path radius</>,
-    ratio: <>Ratio of radii</>,
-    south: "S",
-    view: "Mass spectrometer",
+    b10: <InlineMath math="^{10}\mathrm{B}^+" />,
+    b11: <InlineMath math="^{11}\mathrm{B}^+" />,
+    cl35: <InlineMath math="^{35}\mathrm{Cl}^+" />,
+    cl37: <InlineMath math="^{37}\mathrm{Cl}^+" />,
   }}
 />
+
+Because each extra neutron increases the ion's mass without changing its charge, mass spectrometry reads isotopic masses directly from where each beam strikes the detector.
 
 ## Particle Location and Chemical Role
 

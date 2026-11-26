@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Simbol Atom",
   description:
@@ -25,26 +24,9 @@ Baca tatatanda ini begini:
 - <InlineMath math="Z" /> ialah nombor proton
 - <InlineMath math="A" /> ialah nombor nukleon
 
-## Cas di Sudut Simbol
+> Fikirkan simbol atom sebagai label alamat ringkas dengan nombor di kiri bawah menamakan unsur dan nombor di kiri atas menimbang nukleusnya.
 
-Simbol atom juga boleh membawa cas di kanan atas, seperti <InlineMath math="\mathrm{Mg^{2+}}" /> dan <InlineMath math="\mathrm{O^{2-}}" />. **Cas itu mengira elektron yang dilepaskan atau diterima**, dan di sini kamu boleh lihat elektron itu berpindah.
-
-<IonFormationLab
-  title={<>Asal Cas Sesuatu Ion</>}
-  description={<>Pilih magnesium dengan oksigen atau kalium dengan klorin, kemudian kira elektron yang berpindah.</>}
-  pairs={["magnesium-oxygen", "potassium-chlorine"]}
-  labels={{
-    choose: "Pilih pasangan atom",
-    metalRadius: <>Jejari logam</>,
-    metalShells: <>Petala logam</>,
-    nonmetalRadius: <>Jejari bukan logam</>,
-    nonmetalShells: <>Petala bukan logam</>,
-    progress: "Pemindahan elektron",
-    view: "Atom logam dan bukan logam menjadi ion",
-  }}
-/>
-
-## Membaca Nombor Nukleon dan Nombor Proton
+### Membaca Nombor Nukleon dan Nombor Proton
 
 Pilih satu atom di bawah, kemudian padankan dua nombor dalam simbolnya. **Nombor di kiri atas ialah nombor nukleon** <InlineMath math="A" />, manakala nombor di kiri bawah ialah nombor proton <InlineMath math="Z" />. Kedudukan kedua-dua nombor ini menentukan bilangan proton, neutron atau elektron yang perlu dikira.
 
@@ -56,6 +38,7 @@ Pilih satu atom di bawah, kemudian padankan dua nombor dalam simbolnya. **Nombor
       dengan bilangan zarah.
     </>
   }
+  footer={<>Padankan nombor kiri atas A dan kiri bawah Z dengan bilangan proton serta neutron.</>}
   labels={{
     chooseAtom: "Pilih contoh atom",
     massNumber: "Nombor nukleon",
@@ -90,6 +73,39 @@ Pilih satu atom di bawah, kemudian padankan dua nombor dalam simbolnya. **Nombor
   }}
 />
 
+Menyemak setiap contoh mengukuhkan susunan ini: nombor nukleon yang lebih besar sentiasa berada di atas kerana jumlah proton ditambah neutron tidak pernah lebih kecil daripada bilangan proton semata-mata.
+
+### Cas di Sudut Kanan Atas
+
+Simbol atom juga boleh membawa cas di kanan atas, seperti <InlineMath math="\mathrm{Mg^{2+}}" /> dan <InlineMath math="\mathrm{O^{2-}}" />. **Cas itu mengira elektron yang dilepaskan atau diterima** sementara bilangan proton kekal tetap bagi unsur itu. Bandingkan magnesium dan oksigen selepas dua elektron berpindah daripada magnesium kepada oksigen.
+
+<MathVisual
+  title={<>Cas Sudut Mengesan Perubahan Elektron</>}
+  description={<>Proton (jingga) dan elektron (ungu) dalam <InlineMath math="\mathrm{Mg^{2+}}" /> dan <InlineMath math="\mathrm{O^{2-}}" />. Satu petak grid ke atas mewakili <InlineMath math="2" /> zarah.</>}
+  footer={<>Tanda 2+ bermaksud kurang dua elektron daripada proton, tanda 2- bermaksud lebih dua.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 7, z: 11 }, target: { x: 3, y: 3, z: 0 } },
+    objects: [
+      { id: "mg-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: 3, z: 0 }, size: { length: 1.1, height: 6, width: 1.1 } },
+      { id: "mg-e", kind: "cuboid", appearance: "secondary", center: { x: 1.4, y: 2.5, z: 0 }, size: { length: 1.1, height: 5, width: 1.1 } },
+      { id: "o-p", kind: "cuboid", appearance: "primary", center: { x: 4.6, y: 2, z: 0 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "o-e", kind: "cuboid", appearance: "answer", center: { x: 6, y: 2.5, z: 0 }, size: { length: 1.1, height: 5, width: 1.1 } },
+    ],
+    labels: [
+      { key: "mg", objectId: "mg-p", at: { x: 0.7, y: 6.3, z: 0 }, placement: "above" },
+      { key: "ox", objectId: "o-e", at: { x: 5.3, y: 5.3, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    mg: <InlineMath math="\mathrm{Mg^{2+}}:\ 12p^+,\ 10e^-" />,
+    ox: <InlineMath math="\mathrm{O^{2-}}:\ 8p^+,\ 10e^-" />,
+  }}
+/>
+
+Walaupun kedua-dua ion mempunyai <InlineMath math="10" /> elektron, tanda sudut yang bertentangan terus menunjukkan ion mana yang kehilangan elektron dan ion mana yang menerimanya.
+
 ## Mengira Proton Elektron dan Neutron
 
 Nombor proton ditulis sebagai <InlineMath math="Z" />. Nombor ini sama dengan bilangan proton dalam nukleus.
@@ -113,6 +129,7 @@ Setiap bilangan zarah datang daripada dua nombor dalam simbol <InlineMath math="
 <MathVisual
   title={<>Daripada A dan Z kepada Bilangan Zarah</>}
   description={<>Proton (jingga), neutron (kelabu) dan elektron (ungu) dalam atom neutral karbon-12, natrium-23 dan klorin-35. Satu petak grid ke atas mewakili <InlineMath math="4" /> zarah.</>}
+  footer={<>Atom neutral menyamakan proton jingga dengan elektron ungu, manakala neutron ialah A-Z.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -141,23 +158,44 @@ Setiap bilangan zarah datang daripada dua nombor dalam simbol <InlineMath math="
   }}
 />
 
-## Membezakan Tiga Zarah
+Perhatikan bahawa bagi atom yang lebih berat seperti natrium dan klorin, palang neutron kelabu sedikit lebih tinggi daripada palang proton kerana neutron tambahan membantu menstabilkan nukleus.
 
-Nombor dalam simbol mengira tiga zarah yang berbeza, dan **medan magnet membezakannya melalui cas dan jisim**: proton dan elektron melengkung ke arah bertentangan, manakala neutron bergerak lurus.
+### Membezakan Tiga Zarah Subatom
 
-<ParticleTrackLab
-  title={<>Proton, Elektron dan Neutron dalam Medan</>}
-  description={<>Kuatkan medan dan bandingkan betapa rapat setiap laluan melengkung.</>}
+Nombor dalam simbol mengira tiga zarah yang berbeza, dan **medan magnet mengasingkannya mengikut cas dan jisim**. Apabila masuk dari kiri, neutron yang neutral terus bergerak lurus, proton positif yang berat melengkung landai ke satu arah, manakala elektron negatif yang jauh lebih ringan melengkung tajam ke arah bertentangan.
+
+<MathVisual
+  title={<>Pesongan Zarah mengikut Cas dan Jisim</>}
+  description={<>Laluan proton (jingga), neutron (kelabu) dan elektron (ungu) memasuki medan magnet dari kiri. Cas menentukan arah, jisim menentukan ketajaman lengkung.</>}
+  footer={<>Cas bertentangan membelok bertentangan arah, elektron ringan tajam, neutron lurus.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.8 }, y: { min: -3.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "neutron-path", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "proton-path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1.5, y: 0.11 }, { x: 3, y: 0.45 }, { x: 4.5, y: 1.01 }, { x: 6, y: 1.8 }] },
+      { id: "electron-path", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.8, y: -0.22 }, { x: 1.6, y: -0.9 }, { x: 2.4, y: -2.0 }, { x: 3.1, y: -3.2 }] },
+      { id: "p-end", kind: "point", appearance: "primary", at: { x: 6, y: 1.8 } },
+      { id: "n-end", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "e-end", kind: "point", appearance: "secondary", at: { x: 3.1, y: -3.2 } },
+    ],
+    labels: [
+      { key: "proton", objectId: "p-end", at: { x: 6, y: 1.8 }, placement: "above-left" },
+      { key: "neutron", objectId: "n-end", at: { x: 6, y: 0 }, placement: "above-left" },
+      { key: "electron", objectId: "e-end", at: { x: 3.1, y: -3.2 }, placement: "right" },
+    ],
+  }}
   labels={{
-    electron: <>Jejari lintasan elektron</>,
-    field: "Kekuatan medan magnet",
-    proton: <>Jejari lintasan proton</>,
-    ratio: <>Nisbah jejari</>,
-    view: "Jejak zarah dalam medan magnet",
+    proton: <InlineMath math="p^+\ (+1)" />,
+    neutron: <InlineMath math="n^0\ (0)" />,
+    electron: <InlineMath math="e^-\ (-1)" />,
   }}
 />
 
-## Contoh Karbon
+Setiap lintasan mencerminkan identiti fizik di sebalik simbolnya: proton dan neutron membawa hampir semua jisim atom, manakala proton dan elektron membawa cas elektrik yang sama besar tetapi bertentangan tanda.
+
+### Contoh Kiraan bagi Karbon Dua Belas
 
 Bagi atom karbon dengan nombor nukleon <InlineMath math="12" />, simbolnya ditulis begini:
 
@@ -178,6 +216,7 @@ Berikut ialah tiga bilangan zarah bagi karbon-12 dalam bentuk turus, dengan satu
 <MathVisual
   title={<>Zarah dalam Karbon-12</>}
   description={<>Proton, neutron dan elektron dalam atom karbon-12 yang neutral. Satu petak grid ke atas mewakili <InlineMath math="2" /> zarah.</>}
+  footer={<>Karbon-12 neutral ada enam proton, enam neutron dan enam elektron atas tiga sebab.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
@@ -200,6 +239,8 @@ Berikut ialah tiga bilangan zarah bagi karbon-12 dalam bentuk turus, dengan satu
   }}
 />
 
+Mengasingkan ketiga-tiga peraturan ini memudahkan kamu mengira ion atau isotop yang lebih berat apabila ketiga-tiga turus tidak lagi sama tinggi.
+
 ## Nombor Nukleon dan Jisim Atom Relatif
 
 Pada Jadual Berkala Unsur, kamu selalu nampak nilai perpuluhan seperti jisim atom relatif karbon, iaitu kira-kira <InlineMath math="12.01" />. Nilai perpuluhan itu bukan nombor nukleon bagi satu atom karbon yang tertentu.
@@ -215,27 +256,43 @@ Jadi, asingkan dua idea ini:
 | Nombor nukleon | Nombor bulat, seperti <InlineMath math="12" /> dalam <InlineMath math="{}^{12}_{6}\mathrm{C}" /> | Bilangan proton ditambah neutron dalam satu atom yang tertentu. |
 | Jisim atom relatif | Selalunya nombor perpuluhan, seperti kira-kira <InlineMath math="12.01" /> bagi karbon | Nisbah jisim purata atom dalam bahan itu kepada satu per dua belas jisim satu atom karbon-12. |
 
-Apabila membaca simbol atom, ingat tiga fakta: simbol atom memberikan bilangan proton dan neutron, ion mengubah bilangan elektron, dan isotop mengubah bilangan neutron. Bilangan proton tetap menentukan identiti unsur itu.
+Nombor nukleon sentiasa nombor bulat bagi satu isotop, manakala jisim atom relatif dalam jadual berkala ialah purata semua isotop semula jadinya. Magnesium mempunyai <InlineMath math="{}^{24}\mathrm{Mg}" />, <InlineMath math="{}^{25}\mathrm{Mg}" /> dan <InlineMath math="{}^{26}\mathrm{Mg}" />, dan **purata berwajarannya kira-kira <InlineMath math="24.31" />**, sedikit melebihi <InlineMath math="24" />.
 
-## Daripada Nombor Nukleon kepada Jisim Atom Relatif
-
-Nombor nukleon sentiasa nombor bulat bagi satu isotop, manakala jisim atom relatif dalam jadual berkala ialah purata semua isotopnya. Pilih magnesium. Ada <InlineMath math="{}^{24}\mathrm{Mg}" />, <InlineMath math="{}^{25}\mathrm{Mg}" /> dan <InlineMath math="{}^{26}\mathrm{Mg}" />, dan **purata berwajaraannya kira-kira <InlineMath math="24.31" />**, bukan nombor bulat.
-
-<MassSpectrometerLab
-  title={<>Isotop Magnesium, Boron dan Kuprum</>}
-  description={<>Puncak pada pengesan menunjukkan kelimpahan setiap nombor nukleon.</>}
-  samples={["magnesium", "boron", "copper"]}
+<MathVisual
+  title={<>Purata Isotop Magnesium ialah <InlineMath math="24.31" /></>}
+  description={<>Kelimpahan semula jadi magnesium-24, magnesium-25 dan magnesium-26 bersama garis purata berwajarannya (magenta). Menegak: satu petak grid mewakili <InlineMath math="10\%" />.</>}
+  footer={<>Puncak isotop nombor bulat bergabung menjadi purata perpuluhan magnesium 24.31.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 23.2, max: 26.8 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 23.4, y: 0 }, to: { x: 26.6, y: 0 } },
+      { id: "mg24", kind: "segment", appearance: "primary", from: { x: 24, y: 0 }, to: { x: 24, y: 7.9 } },
+      { id: "mg25", kind: "segment", appearance: "secondary", from: { x: 25, y: 0 }, to: { x: 25, y: 1.0 } },
+      { id: "mg26", kind: "segment", appearance: "secondary", from: { x: 26, y: 0 }, to: { x: 26, y: 1.1 } },
+      { id: "avg", kind: "segment", appearance: "answer", from: { x: 24.31, y: 0 }, to: { x: 24.31, y: 8.2 } },
+      { id: "p24", kind: "point", appearance: "primary", at: { x: 24, y: 7.9 } },
+      { id: "p25", kind: "point", appearance: "secondary", at: { x: 25, y: 1.0 } },
+      { id: "p26", kind: "point", appearance: "secondary", at: { x: 26, y: 1.1 } },
+      { id: "pavg", kind: "point", appearance: "answer", at: { x: 24.31, y: 8.2 } },
+    ],
+    labels: [
+      { key: "m24", objectId: "p24", at: { x: 24, y: 7.9 }, placement: "left" },
+      { key: "m25", objectId: "p25", at: { x: 25, y: 1.0 }, placement: "above" },
+      { key: "m26", objectId: "p26", at: { x: 26, y: 1.1 }, placement: "above" },
+      { key: "avg", objectId: "pavg", at: { x: 24.31, y: 8.2 }, placement: "right" },
+    ],
+  }}
   labels={{
-    average: <>Purata jisim atom relatif</>,
-    choose: "Pilih unsur",
-    isotopes: <>Isotop dan kelimpahannya</>,
-    north: "U",
-    radius: <>Jejari lintasan</>,
-    ratio: <>Nisbah jejari</>,
-    south: "S",
-    view: "Spektrometer jisim",
+    m24: <InlineMath math="{}^{24}\mathrm{Mg}:\ 79.0\%" />,
+    m25: <InlineMath math="{}^{25}\mathrm{Mg}:\ 10.0\%" />,
+    m26: <InlineMath math="{}^{26}\mathrm{Mg}:\ 11.0\%" />,
+    avg: <InlineMath math="A_r\approx24.31" />,
   }}
 />
+
+Apabila membaca simbol atom, ingat tiga fakta: simbol atom memberikan bilangan proton dan neutron, ion mengubah bilangan elektron, dan isotop mengubah bilangan neutron. Bilangan proton tetap menentukan identiti unsur itu.
 
 ## Huruf Besar dan Huruf Kecil dalam Simbol Unsur
 
@@ -252,25 +309,39 @@ Perhatikan dua baris terakhir dengan teliti. Dalam <InlineMath math="\mathrm{Co}
 
 Jika kamu mahu menyemak simbol unsur dan jisim atom relatif yang terkini, buka [Jadual Berkala Unsur IUPAC](https://iupac.org/what-we-do/periodic-table-of-elements/).
 
-## Simbol di Dalam Formula
+Huruf besar dalam formula memisahkan satu unsur daripada unsur lain. Bandingkan <InlineMath math="\mathrm{Co}" /> dengan <InlineMath math="\mathrm{CO}" />, <InlineMath math="\mathrm{HCl}" /> dan <InlineMath math="\mathrm{N_2}" />: **setiap huruf besar menandakan satu unsur berbeza**, manakala subskrip mendarabkan bilangan atomnya.
 
-Huruf besar dalam formula memisahkan satu unsur daripada unsur lain. <InlineMath math="\mathrm{CO}" /> ialah karbon monoksida, molekul daripada <InlineMath math="1" /> atom karbon dan <InlineMath math="1" /> atom oksigen, manakala <InlineMath math="\mathrm{Co}" /> ialah unsur kobalt. Dalam <InlineMath math="\mathrm{HCl}" />, huruf kecil <InlineMath math="\mathrm{l}" /> masih sebahagian daripada simbol klorin. Putar setiap model dan **kira satu atom bagi setiap huruf besar**.
-
-<MoleculeShapeLab
-  title={<>Membaca Simbol dalam Molekul</>}
-  description={<>Setiap bola diberi simbol unsurnya.</>}
-  molecules={[
-    { id: "carbon-monoxide", name: "Karbon monoksida" },
-    { id: "hydrogen-chloride", name: "Hidrogen klorida" },
-    { id: "nitrogen", name: "Nitrogen" },
-  ]}
+<MathVisual
+  title={<>Huruf Besar Memisahkan Unsur dalam Formula</>}
+  description={<>Bilangan unsur berbeza (jingga) dan jumlah atom (ungu) dalam <InlineMath math="\mathrm{Co}" />, <InlineMath math="\mathrm{CO}" />, <InlineMath math="\mathrm{HCl}" /> dan <InlineMath math="\mathrm{N_2}" />. Satu petak grid ke atas mewakili <InlineMath math="1" />.</>}
+  footer={<>Setiap huruf besar memulakan unsur baharu, menukar Co satu atom menjadi dua dalam CO.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 3.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 5, z: 12 }, target: { x: 5, y: 1.2, z: 0 } },
+    objects: [
+      { id: "co1-el", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 0.8, height: 1, width: 0.8 } },
+      { id: "co1-at", kind: "cuboid", appearance: "secondary", center: { x: 0.9, y: 0.5, z: 0 }, size: { length: 0.8, height: 1, width: 0.8 } },
+      { id: "co2-el", kind: "cuboid", appearance: "primary", center: { x: 3.1, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "co2-at", kind: "cuboid", appearance: "answer", center: { x: 4, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "hcl-el", kind: "cuboid", appearance: "primary", center: { x: 6.2, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "hcl-at", kind: "cuboid", appearance: "answer", center: { x: 7.1, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "n2-el", kind: "cuboid", appearance: "primary", center: { x: 9.3, y: 0.5, z: 0 }, size: { length: 0.8, height: 1, width: 0.8 } },
+      { id: "n2-at", kind: "cuboid", appearance: "secondary", center: { x: 10.2, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+    ],
+    labels: [
+      { key: "co-el", objectId: "co1-el", at: { x: 0.45, y: 1.3, z: 0 }, placement: "above" },
+      { key: "co-mol", objectId: "co2-el", at: { x: 3.55, y: 2.3, z: 0 }, placement: "above" },
+      { key: "hcl", objectId: "hcl-el", at: { x: 6.65, y: 2.3, z: 0 }, placement: "above" },
+      { key: "n2", objectId: "n2-at", at: { x: 9.75, y: 2.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model isi ruang</>,
-    formula: <>Formula molekul</>,
-    mass: <>Jisim molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    "co-el": <InlineMath math="\mathrm{Co}:\ 1\ \text{uns},\ 1\ \text{at}" />,
+    "co-mol": <InlineMath math="\mathrm{CO}:\ 2\ \text{uns},\ 2\ \text{at}" />,
+    hcl: <InlineMath math="\mathrm{HCl}:\ 2\ \text{uns},\ 2\ \text{at}" />,
+    n2: <InlineMath math="\mathrm{N_2}:\ 1\ \text{uns},\ 2\ \text{at}" />,
   }}
 />
+
+Menulis huruf besar dan huruf kecil dengan betul mengelakkan kekeliruan antara satu atom logam kobalt (<InlineMath math="\mathrm{Co}" />) dengan molekul gas dua unsur seperti karbon monoksida (<InlineMath math="\mathrm{CO}" />).

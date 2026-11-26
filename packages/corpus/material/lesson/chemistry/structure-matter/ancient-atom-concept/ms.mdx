@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Konsep Atom Zaman Yunani",
   description:
@@ -15,34 +14,42 @@ Bayangkan seketul kapur tulis, sehelai kertas atau sebutir garam. Kalau benda it
 
 Ahli falsafah Yunani bertanya soalan seperti ini lama sebelum wujudnya mikroskop, tabung uji moden atau alat untuk mengesan zarah. Mereka tidak membuktikan struktur atom melalui eksperimen seperti yang dilakukan oleh saintis hari ini. Mereka cuba menjawab satu soalan asas dengan cara yang munasabah: jirim sebenarnya **diperbuat daripada** apa?
 
-Perdebatan zaman purba itu menimbulkan soalan yang kemudiannya dijawab oleh teori atom dengan bukti eksperimen.
+> Memecahkan sesuatu bahan menjadi butiran lebih kecil hanya mengubah saiz sampel, bukan unit binaan halus pada dasarnya.
 
-## Air yang Dipecahkan Tetap Terdiri daripada Atom
+Kimia moden memberi jawapan yang boleh kamu kira. Arus elektrik dapat menguraikan air kepada gas hidrogen dan gas oksigen, tetapi **atom itu sendiri tidak terbelah dalam tindak balas kimia**. Dua molekul air tersusun semula menjadi dua molekul hidrogen dan satu molekul oksigen, mengekalkan <InlineMath math="4" /> atom hidrogen dan <InlineMath math="2" /> atom oksigen pada kedua-dua belah.
 
-Democritus bertanya sejauh mana jirim boleh dibahagi. Kimia moden memberi jawapan yang boleh kamu lihat: air boleh diuraikan kepada hidrogen dan oksigen, tetapi **atom itu sendiri tidak terbelah dalam tindak balas kimia**. Seret gelangsar dan kira atomnya. Ada <InlineMath math="4" /> atom hidrogen dan <InlineMath math="2" /> atom oksigen sebelum dan selepas penguraian.
-
-<ReactionBalanceLab
-  title={<>Penguraian Air</>}
-  description={<>Molekul air terpecah, tetapi setiap atomnya kekal utuh.</>}
-  reactions={[
-    { id: "water-electrolysis", name: "Penguraian air", tab: <InlineMath math="\mathrm{H_2O}" /> },
-  ]}
-  reading="molecules"
+<MathVisual
+  title={<>Air Terurai tetapi Atom Kekal Utuh</>}
+  description={<>Bilangan atom sebelum dan selepas menguraikan dua molekul air kepada hidrogen dan oksigen. Satu petak grid ke atas mewakili <InlineMath math="1" /> atom.</>}
+  footer={<>Molekul air terpecah, tetapi keempat-empat atom H dan dua atom O kekal utuh.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 3, y: 2, z: 0 } },
+    objects: [
+      { id: "before-h", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2, z: 0 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "before-o", kind: "cuboid", appearance: "secondary", center: { x: 1.5, y: 1, z: 0 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "after-h", kind: "cuboid", appearance: "primary", center: { x: 4.5, y: 2, z: 0 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "after-o", kind: "cuboid", appearance: "secondary", center: { x: 6, y: 1, z: 0 }, size: { length: 1.1, height: 2, width: 1.1 } },
+    ],
+    labels: [
+      { key: "before-h", objectId: "before-h", at: { x: 0, y: 4.2, z: 0 }, placement: "above" },
+      { key: "before-o", objectId: "before-o", at: { x: 1.5, y: 2.2, z: 0 }, placement: "above" },
+      { key: "after-h", objectId: "after-h", at: { x: 4.5, y: 4.2, z: 0 }, placement: "above" },
+      { key: "after-o", objectId: "after-o", at: { x: 6, y: 2.2, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Bilangan atom setiap unsur</>,
-    choose: "Pilih tindak balas",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan tindak balas</>,
-    mass: <>Jisim bahan dan hasil tindak balas</>,
-    molecules: <>Bilangan molekul</>,
-    products: <>Hasil tindak balas</>,
-    progress: "Perjalanan tindak balas",
-    reactants: <>Bahan tindak balas</>,
-    view: "Tindak balas pada aras atom",
+    "before-h": <InlineMath math="\mathrm{H}:\ 4" />,
+    "before-o": <InlineMath math="\mathrm{O}:\ 2" />,
+    "after-h": <InlineMath math="\mathrm{H}:\ 4" />,
+    "after-o": <InlineMath math="\mathrm{O}:\ 2" />,
   }}
 />
 
-## Dua Jawapan yang Bertentangan
+Ketinggian palang yang sama di kiri dan kanan menunjukkan jawapan yang dicari oleh Democritus: tindak balas kimia menyusun semula atom ke dalam kumpulan baharu sambil setiap atom kekal utuh.
+
+## Jirim Selanjar dan Unit Tidak Boleh Dibahagi
 
 Perdebatan awal itu memberikan dua jawapan yang bertentangan: jirim boleh dibahagi tanpa had, atau <Highlight>jirim terdiri daripada unit terkecil yang tidak boleh dibahagi lagi</Highlight>.
 
@@ -60,6 +67,7 @@ Uji soalan Democritus dengan nombor. Bahagi dua sebutir bahan sebesar <InlineMat
 <MathVisual
   title={<>Dua Puluh Tujuh Kali Bahagi Dua hingga Saiz Atom</>}
   description={<>Saiz bahan selepas setiap kali dibahagi dua, bermula pada <InlineMath math="1\text{ cm}" />. Mengufuk: satu petak grid mewakili <InlineMath math="3" /> kali bahagi dua. Menegak: satu petak grid ke bawah adalah sepuluh kali lebih kecil.</>}
+  footer={<>Setiap potongan menurunkan garisan hingga potongan ke-27 tiba pada skala atom.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.5, max: 9.5 } },
@@ -93,7 +101,9 @@ Uji soalan Democritus dengan nombor. Bahagi dua sebutir bahan sebesar <InlineMat
   }}
 />
 
-## Mengikuti Penaakulan Democritus
+Pembahagian berulang mengecilkan sebutir bahan satu sentimeter ke skala atom dengan sangat pantas, merentas lapan tertib magnitud dalam kurang daripada tiga puluh potongan.
+
+### Mengikuti Penaakulan Democritus
 
 Visual ini memaparkan satu **eksperimen pemikiran** tentang pembahagian jirim. Bayangkan kamu memotong sesuatu objek berulang kali, kemudian bandingkan dua pendirian: Aristotle berpendapat pembahagian boleh berterusan, manakala Democritus mencadangkan adanya bahagian terkecil. Visual ini tidak menunjukkan bentuk sebenar atom.
 
@@ -105,6 +115,7 @@ Visual ini memaparkan satu **eksperimen pemikiran** tentang pembahagian jirim. B
       satu soalan mudah tentang had pembahagian jirim.
     </>
   }
+  footer={<>Bandingkan pemotongan selanjar dengan had atomos cadangan Democritus.</>}
   labels={{
     chooseLevel: "Pilih peringkat memotong jirim",
     aristotleLabel: "Selanjar",
@@ -136,11 +147,14 @@ Visual ini memaparkan satu **eksperimen pemikiran** tentang pembahagian jirim. B
   }}
 />
 
+Meneliti setiap peringkat potongan menunjukkan sebab perdebatan itu kekal sebagai falsafah: kedua-dua pihak melihat kepingan yang semakin kecil dan meneka apa yang wujud di luar batas penglihatan.
+
 Ikuti eksperimen pemikiran ini dalam bentuk nombor. Setiap potongan membahagi dua kepingan itu, jadi selepas <InlineMath math="n" /> potongan, saiznya tinggal <InlineMath math="1/2^n" /> daripada saiz asal. Turus di bawah hanya menunjukkan empat potongan, dan kepingan terakhir sudah pun satu per enam belas daripada kepingan pertama. Soalan Democritus ialah sama ada proses ini boleh berterusan selama-lamanya atau mesti berhenti pada satu unit yang tidak boleh dipotong.
 
 <MathVisual
   title={<>Membahagi Dua Sekeping Bahan Berulang Kali</>}
   description={<>Sekeping bahan setinggi <InlineMath math="8" /> unit dipotong dua sebanyak empat kali. Setiap turus ialah separuh daripada turus sebelumnya.</>}
+  footer={<>Empat potongan mengecilkan tinggi daripada 8 kepada 0.5, satu per enam belas asal.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -163,76 +177,126 @@ Ikuti eksperimen pemikiran ini dalam bentuk nombor. Setiap potongan membahagi du
   }}
 />
 
-## Bentuk daripada Zarah Kecil
+Secara matematik, pembahagian dua boleh diteruskan tanpa pernah mencapai sifar, sebab itulah gambaran selanjar Aristotle mudah dibayangkan sebelum eksperimen menguji jirim sebenar.
 
-Demokritus meneka bahawa **bentuk kepingan kecil menentukan bentuk benda yang kita nampak**. Hablur garam ialah cara moden untuk menguji tekaan itu: bentuk kiubnya datang daripada ion yang tersusun dalam corak kiub.
+### Bentuk Benda daripada Susunan Zarah Kecil
 
-<IonLatticeLab
-  title={<>Kiub Garam daripada Zarah Tersusun</>}
-  description={<>Tukar antara garam dapur dan kalium klorida, kemudian besarkan hablur sel demi sel.</>}
-  crystals={["sodium-chloride", "potassium-chloride"]}
+Democritus meneka bahawa **susunan kepingan kecil menentukan bentuk benda yang kita nampak**. Sebutir garam dapur ialah ujian moden bagi tekaan itu: muka kiubnya yang rata terhasil kerana ion natrium dan ion klorida tersusun berselang-seli dalam grid segi empat yang teratur.
+
+<MathVisual
+  title={<>Susunan Teratur Membina Muka Hablur Rata</>}
+  description={<>Satu lapisan ion natrium (jingga) dan ion klorida (ungu) berselang-seli dalam hablur garam. Baris teratur membentuk sisi yang lurus.</>}
+  footer={<>Baris zarah yang berulang membentuk sisi lurus pada hablur yang kelihatan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "face", kind: "polygon", appearance: "reference", vertices: [{ x: 0.6, y: 0.6 }, { x: 3.4, y: 0.6 }, { x: 3.4, y: 3.4 }, { x: 0.6, y: 3.4 }] },
+      { id: "ion-11", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+      { id: "ion-21", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "ion-31", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "ion-12", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "ion-22", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+      { id: "ion-32", kind: "point", appearance: "secondary", at: { x: 3, y: 2 } },
+      { id: "ion-13", kind: "point", appearance: "primary", at: { x: 1, y: 3 } },
+      { id: "ion-23", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+      { id: "ion-33", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "cation", objectId: "ion-13", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "anion", objectId: "ion-23", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "edge", objectId: "face", at: { x: 2, y: 0.6 }, placement: "below" },
+    ],
+  }}
   labels={{
-    cells: "Sel unit setiap sisi",
-    choose: "Pilih hablur",
-    count: <>Bilangan ion</>,
-    formula: <>Formula</>,
-    ions: <>Ion dan jejarinya</>,
-    lattice: <>Sisi sel unit</>,
-    view: "Kekisi hablur ion",
+    cation: <InlineMath math="\mathrm{Na^+}" />,
+    anion: <InlineMath math="\mathrm{Cl^-}" />,
+    edge: <>Muka hablur rata</>,
   }}
 />
 
-## Mengapa Idea Atom Purba Bukan Teori Moden
+Kiub garam yang kelihatan dengan mata kasar terhasil daripada geometri zarah mikroskopik yang berulang secara teratur.
 
-Democritus mencadangkan penjelasan secara falsafah **tanpa pengukuran eksperimen**. Beliau berhujah bahawa jirim terdiri daripada unit yang sangat kecil. Kimia moden juga menerangkan jirim dengan zarah, tetapi atom mengandungi proton dan elektron, dan biasanya neutron. Hidrogen-1 ialah contoh atom tanpa neutron. Perkataan “tidak boleh dibahagi” tergolong dalam model sejarah Democritus.
+## Falsafah Tanpa Pengukuran Eksperimen
+
+Democritus mencadangkan penjelasan secara falsafah **tanpa pengukuran eksperimen**. Beliau berhujah bahawa jirim terdiri daripada unit yang sangat kecil. Kimia moden juga menerangkan jirim dengan zarah, tetapi atom mengandungi proton dan elektron, dan biasanya neutron. Hidrogen-1 ialah contoh atom tanpa neutron. Perkataan "tidak boleh dibahagi" tergolong dalam model sejarah Democritus.
 
 Menurut pandangan Aristotle, pembahagian jirim tidak berakhir pada satu unit terkecil. Pengukuran struktur atom pada masa itu belum dapat menyelesaikan perbezaan pendapat ini.
 
-## Menimbang Atom Masa Kini
+### Menimbang Atom dengan Alat Moden
 
-Demokritus hanya mampu berfikir, manakala kini **spektrometer jisim mengukur atom satu alur demi satu alur**. Atom yang lebih berat kurang membelok dalam magnet, jadi laluannya mengasingkan atom mengikut jisim.
+Democritus hanya mampu berfikir, manakala kini **spektrometer jisim mengasingkan atom secara terus mengikut jisimnya**. Apabila gas neon memasuki alat itu, tiga isyarat yang jelas muncul pada nombor nukleon <InlineMath math="20" />, <InlineMath math="21" /> dan <InlineMath math="22" />, menggantikan tekaan falsafah dengan data yang diukur.
 
-<MassSpectrometerLab
-  title={<>Daripada Tekaan kepada Pengukuran</>}
-  description={<>Pilih neon atau kuprum, kemudian bandingkan tempat setiap isotop mendarat pada pengesan.</>}
-  samples={["neon", "copper"]}
+<MathVisual
+  title={<>Spektrum Jisim Neon Hasil Pengukuran</>}
+  description={<>Kelimpahan relatif atom neon mengikut nombor nukleon. Mengufuk: nombor nukleon. Menegak: satu petak grid mewakili <InlineMath math="10\%" /> kelimpahan.</>}
+  footer={<>Alat moden mengukur setiap puncak jisim neon secara terus tanpa meneka.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 19, max: 23 }, y: { min: -0.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "baseline", kind: "segment", appearance: "reference", from: { x: 19.3, y: 0 }, to: { x: 22.7, y: 0 } },
+      { id: "peak-20", kind: "segment", appearance: "primary", from: { x: 20, y: 0 }, to: { x: 20, y: 9.05 } },
+      { id: "peak-21", kind: "segment", appearance: "secondary", from: { x: 21, y: 0 }, to: { x: 21, y: 0.03 } },
+      { id: "peak-22", kind: "segment", appearance: "answer", from: { x: 22, y: 0 }, to: { x: 22, y: 0.92 } },
+      { id: "top-20", kind: "point", appearance: "primary", at: { x: 20, y: 9.05 } },
+      { id: "top-21", kind: "point", appearance: "secondary", at: { x: 21, y: 0.03 } },
+      { id: "top-22", kind: "point", appearance: "answer", at: { x: 22, y: 0.92 } },
+    ],
+    labels: [
+      { key: "ne20", objectId: "top-20", at: { x: 20, y: 9.05 }, placement: "right" },
+      { key: "ne21", objectId: "top-21", at: { x: 21, y: 0.03 }, placement: "above" },
+      { key: "ne22", objectId: "top-22", at: { x: 22, y: 0.92 }, placement: "above" },
+    ],
+  }}
   labels={{
-    average: <>Purata jisim atom relatif</>,
-    choose: "Pilih unsur",
-    isotopes: <>Isotop dan kelimpahannya</>,
-    north: "U",
-    radius: <>Jejari lintasan</>,
-    ratio: <>Nisbah jejari</>,
-    south: "S",
-    view: "Spektrometer jisim",
+    ne20: <InlineMath math="{}^{20}\mathrm{Ne}:\ 90.5\%" />,
+    ne21: <InlineMath math="{}^{21}\mathrm{Ne}:\ 0.3\%" />,
+    ne22: <InlineMath math="{}^{22}\mathrm{Ne}:\ 9.2\%" />,
   }}
 />
 
-## Daripada Falsafah kepada Kimia
+Oleh sebab pengesan mengira atom sebenar pada nilai jisim yang tepat, teori atom beralih daripada hujah semata-mata kepada pengukuran kuantitatif.
+
+### Daripada Perdebatan Falsafah kepada Data Kimia
 
 Konsep atom Yunani menimbulkan satu soalan yang kemudiannya boleh diuji oleh sains: mungkinkah jirim terdiri daripada unit kecil yang tidak dapat diperhatikan secara langsung? Pada masa itu, **tiada pengukuran yang menyokong idea itu**.
 
 Lebih dua ribu tahun kemudian, John Dalton menghubungkan idea atom dengan kimia moden. Beliau menggunakan data jisim tindak balas untuk mengkaji struktur jirim dan membina model atom untuk pengiraan kimia. Selepas itu, teori atom boleh diuji dengan data yang diukur.
 
-## Atom Bergabung dengan Nisbah Tetap
+## Nisbah Nombor Bulat Tetap dalam Sebatian
 
-Dua ribu tahun selepas Democritus, Dalton menggunakan idea atom untuk menerangkan data eksperimen. Menurut Dalton, **sebatian terbentuk daripada atom yang bergabung dengan nisbah nombor bulat**. Putar <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{H_2O}" /> dan <InlineMath math="\mathrm{CH_4}" />. Setiap molekul ada bilangan atom yang tetap, dan model ini dibina daripada panjang serta sudut ikatan hasil pengukuran.
+Dua ribu tahun selepas Democritus, Dalton menggunakan idea atom untuk menerangkan data eksperimen. Menurut Dalton, **sebatian terbentuk daripada atom yang bergabung dengan nisbah nombor bulat**. Bandingkan karbon dioksida (<InlineMath math="\mathrm{CO_2}" />), air (<InlineMath math="\mathrm{H_2O}" />) dan metana (<InlineMath math="\mathrm{CH_4}" />): setiap sebatian mengunci unsurnya dalam bilangan nombor bulat kecil yang tetap.
 
-<MoleculeShapeLab
-  title={<>Atom dalam Molekul Sebenar</>}
-  description={<>Putar setiap molekul dan kira atomnya.</>}
-  molecules={[
-    { id: "carbon-dioxide", name: "Karbon dioksida" },
-    { id: "water", name: "Air" },
-    { id: "methane", name: "Metana" },
-  ]}
+<MathVisual
+  title={<>Nisbah Atom Nombor Bulat dalam Tiga Molekul</>}
+  description={<>Bilangan atom setiap unsur dalam satu molekul <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{H_2O}" /> dan <InlineMath math="\mathrm{CH_4}" />. Satu petak grid ke atas mewakili <InlineMath math="1" /> atom.</>}
+  footer={<>Setiap sebatian mengekalkan nisbah nombor bulat atom yang tetap.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 10 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 6, z: 12 }, target: { x: 4.2, y: 2, z: 0 } },
+    objects: [
+      { id: "co2-c", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 0.9, height: 1, width: 0.9 } },
+      { id: "co2-o", kind: "cuboid", appearance: "secondary", center: { x: 1.1, y: 1, z: 0 }, size: { length: 0.9, height: 2, width: 0.9 } },
+      { id: "h2o-h", kind: "cuboid", appearance: "primary", center: { x: 3.7, y: 1, z: 0 }, size: { length: 0.9, height: 2, width: 0.9 } },
+      { id: "h2o-o", kind: "cuboid", appearance: "secondary", center: { x: 4.8, y: 0.5, z: 0 }, size: { length: 0.9, height: 1, width: 0.9 } },
+      { id: "ch4-c", kind: "cuboid", appearance: "primary", center: { x: 7.4, y: 0.5, z: 0 }, size: { length: 0.9, height: 1, width: 0.9 } },
+      { id: "ch4-h", kind: "cuboid", appearance: "answer", center: { x: 8.5, y: 2, z: 0 }, size: { length: 0.9, height: 4, width: 0.9 } },
+    ],
+    labels: [
+      { key: "co2", objectId: "co2-o", at: { x: 0.55, y: 2.3, z: 0 }, placement: "above" },
+      { key: "h2o", objectId: "h2o-h", at: { x: 4.25, y: 2.3, z: 0 }, placement: "above" },
+      { key: "ch4", objectId: "ch4-h", at: { x: 7.95, y: 4.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model isi ruang</>,
-    formula: <>Formula molekul</>,
-    mass: <>Jisim molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    co2: <InlineMath math="\mathrm{CO_2}:\ 1\ \mathrm{C},\ 2\ \mathrm{O}" />,
+    h2o: <InlineMath math="\mathrm{H_2O}:\ 2\ \mathrm{H},\ 1\ \mathrm{O}" />,
+    ch4: <InlineMath math="\mathrm{CH_4}:\ 1\ \mathrm{C},\ 4\ \mathrm{H}" />,
   }}
 />
+
+Nisbah nombor bulat yang tetap inilah yang mengubah soalan Yunani purba tentang pembahagian jirim menjadi asas kimia moden yang boleh diuji.

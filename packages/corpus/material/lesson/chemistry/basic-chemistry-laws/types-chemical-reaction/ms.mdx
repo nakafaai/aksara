@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Jenis Tindak Balas Kimia",
   description:
@@ -13,36 +12,48 @@ export const metadata = {
 
 Perubahan haba, perubahan warna, pembentukan mendakan atau penghasilan gas memberikan petunjuk awal. Susunan bahan tindak balas dan hasil tindak balas kemudian menentukan **jenis tindak balas**.
 
-Empat contoh yang lazim ialah pembakaran, pengaratan, pemendakan dan pembentukan gas. Tindak balas juga boleh dikelaskan sebagai tindak balas pemendakan, tindak balas asid-bes dan tindak balas pengoksidaan-penurunan.
-
-Empat nama ini menggunakan dua asas pengelasan. Pembakaran dan pengaratan dikenal pasti melalui proses pengoksidaan-penurunan, manakala pemendakan dan pembentukan gas dikenal pasti melalui hasil yang boleh diperhatikan. Satu tindak balas <Highlight>boleh memenuhi lebih daripada satu huraian</Highlight>.
+Ahli kimia mengelaskan tindak balas dengan dua cara, sama ada mengikut proses kimianya seperti pengoksidaan-penurunan dan asid-bes, atau mengikut hasil yang kelihatan seperti pepejal baharu dan gas. Empat contoh utama di sini merentasi kedua-dua cara itu. Pembakaran dan pengaratan dikenal pasti melalui proses pengoksidaan-penurunan, manakala pemendakan dan pembentukan gas menonjolkan apa yang muncul di dalam bekas, jadi satu tindak balas <Highlight>boleh memenuhi lebih daripada satu huraian</Highlight>.
 
 ## Tiga Pola Tindak Balas
 
-Pola tindak balas paling mudah dikenal daripada apa yang berlaku pada molekulnya. Semasa air terbentuk, **dua bahan bergabung menjadi satu**. Semasa air atau hidrogen peroksida terurai, **satu bahan terpecah kepada beberapa bahan**. Tukar tindak balas dan perhatikan sebelah mana yang ada lebih banyak jenis bahan.
+Pola tindak balas paling mudah dikenal daripada apa yang berlaku pada molekulnya. Semasa air terbentuk, **dua bahan bergabung menjadi satu**, jadi bilangan molekul turun daripada tiga kepada dua. Semasa air atau hidrogen peroksida terurai, **satu bahan terpecah kepada beberapa bahan**, jadi bilangan molekul naik daripada dua kepada tiga.
 
-<ReactionBalanceLab
-  title={<>Pola Tindak Balas pada Aras Atom</>}
-  description={<>Tukar tindak balas dan lihat belah mana yang ada lebih banyak jenis bahan.</>}
-  reactions={[
-    { id: "water-synthesis", name: "Pembentukan air", tab: <InlineMath math="\mathrm{H_2O}" /> },
-    { id: "water-electrolysis", name: "Penguraian air", tab: <InlineMath math="\mathrm{H_2O}" /> },
-    { id: "peroxide-decomposition", name: "Penguraian hidrogen peroksida", tab: <InlineMath math="\mathrm{H_2O_2}" /> },
-  ]}
-  reading="molecules"
+Tiga persamaan seimbang di bawah memaparkan corak sintesis dan penguraian secara bersebelahan.
+
+<BlockMath math="\begin{aligned} &amp;2\mathrm{H_2} + \mathrm{O_2} \rightarrow 2\mathrm{H_2O} \\ &amp;2\mathrm{H_2O} \rightarrow 2\mathrm{H_2} + \mathrm{O_2} \\ &amp;2\mathrm{H_2O_2} \rightarrow 2\mathrm{H_2O} + \mathrm{O_2} \end{aligned}" />
+
+Bandingkan ketinggian palang bahan tindak balas di belakang dengan palang hasil tindak balas di depan untuk melihat bagaimana sintesis dan penguraian mengubah bilangan molekul.
+
+<MathVisual
+  title={<>Bilangan Molekul dalam Sintesis dan Penguraian</>}
+  description={<>Molekul bahan tindak balas (belakang) dan hasil (depan) bagi sintesis air (kuning), penguraian air (ungu) dan penguraian peroksida (oren). Satu petak grid ialah <InlineMath math="1" /> molekul.</>}
+  footer={<>Sintesis mengurangkan bilangan molekul, manakala penguraian memecahkannya lebih banyak.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8.5, y: 7, z: 11 }, target: { x: 2.5, y: 1.5, z: 0 } },
+    objects: [
+      { id: "syn-left", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 1.5, z: -0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "syn-right", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "elec-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "elec-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.5, z: 0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "perox-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "perox-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.5, z: 0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+    ],
+    labels: [
+      { key: "syn", objectId: "syn-left", at: { x: 0, y: 3.3, z: -0.75 }, placement: "above" },
+      { key: "elec", objectId: "elec-right", at: { x: 2.5, y: 3.3, z: 0.75 }, placement: "above" },
+      { key: "perox", objectId: "perox-right", at: { x: 5, y: 3.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Bilangan atom setiap unsur</>,
-    choose: "Pilih tindak balas",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan tindak balas</>,
-    mass: <>Jisim bahan dan hasil tindak balas</>,
-    molecules: <>Bilangan molekul</>,
-    products: <>Hasil tindak balas</>,
-    progress: "Perjalanan tindak balas",
-    reactants: <>Bahan tindak balas</>,
-    view: "Tindak balas pada aras atom",
+    syn: <InlineMath math="\mathrm{H_2O}:\ 3 \rightarrow 2" />,
+    elec: <InlineMath math="\mathrm{H_2O}:\ 2 \rightarrow 3" />,
+    perox: <InlineMath math="\mathrm{H_2O_2}:\ 2 \rightarrow 3" />,
   }}
 />
+
+Walaupun bilangan molekul meningkat atau menurun, setiap atom hidrogen dan oksigen kekal seimbang di kedua-dua belah. Memerhatikan sama ada molekul bergabung atau terpecah memberi petunjuk pantas tentang pola tindak balas.
 
 ## Model Jenis Tindak Balas
 
@@ -57,6 +68,7 @@ Pilih satu jenis tindak balas. Perhatikan perubahan yang kelihatan dahulu, kemud
       formula dan pekali yang tepat.
     </>
   }
+  footer={<>Padankan perubahan yang kelihatan dengan persamaan seimbang untuk mengesahkan jenisnya.</>}
   labels={{
     chooseType: "Pilih jenis tindak balas kimia",
     before: "Bahan tindak balas",
@@ -134,17 +146,19 @@ Pilih satu jenis tindak balas. Perhatikan perubahan yang kelihatan dahulu, kemud
   }}
 />
 
+Setiap tab menghubungkan perubahan yang kamu lihat di dalam bekas dengan simbol tepat dalam persamaannya. Sebaik sahaja petunjuk visual dipadankan dengan formula yang seimbang, pengelasan tindak balas baharu menjadi jauh lebih mudah.
+
 ## Empat Contoh Tindak Balas Kimia
 
 Empat contoh di bawah menunjukkan petunjuk yang berbeza: pembebasan tenaga, perubahan logam, pembentukan pepejal dan pembentukan gas. Tiada satu petunjuk pun yang dapat menjawab soalan itu dengan sendirinya, jadi setiap contoh menamakan **pemerhatian yang membezakan perubahan kimia daripada perubahan fizik**.
 
 ### Pembakaran
 
-Dalam contoh lazim pembakaran dengan oksigen yang dikaji di sini, sesuatu bahan bertindak balas dengan oksigen dan **membebaskan tenaga dalam bentuk haba atau cahaya**. Pembakaran fosforus putih diwakili oleh:
+Dalam contoh lazim pembakaran dengan oksigen yang dikaji di sini, sesuatu bahan bertindak balas dengan oksigen dan **membebaskan tenaga dalam bentuk haba atau cahaya**. Pembakaran fosforus putih diwakili oleh persamaan berikut.
 
 <BlockMath math="\mathrm{P_4} + 5\mathrm{O_2} \rightarrow \mathrm{P_4O_{10}}" />
 
-[Fosforus pentoksida](https://pubchem.ncbi.nlm.nih.gov/compound/P4O10) mempunyai formula molekul <InlineMath math="\mathrm{P_4O_{10}}" />. <InlineMath math="\mathrm{P_2O_5}" /> ialah formula empirik yang lazim digunakan. Bentuk molekul digunakan di sini kerana model zarah 3D mengira secara jelas <InlineMath math="4" /> atom fosforus dan <InlineMath math="10" /> atom oksigen.
+[Fosforus pentoksida](https://pubchem.ncbi.nlm.nih.gov/compound/P4O10) mempunyai formula molekul <InlineMath math="\mathrm{P_4O_{10}}" />. <InlineMath math="\mathrm{P_2O_5}" /> ialah formula empirik yang lazim digunakan. Bentuk molekul digunakan di sini kerana model zarah mengira secara jelas <InlineMath math="4" /> atom fosforus dan <InlineMath math="10" /> atom oksigen.
 
 ### Pengaratan
 
@@ -176,11 +190,12 @@ Semak **bilangan atom** bagi setiap unsur di kedua-dua belah. Setiap molekul eta
 | H | <InlineMath math="12" /> | <InlineMath math="2\times6=12" /> |
 | O | <InlineMath math="6" /> | <InlineMath math="2\times1+2\times2=6" /> |
 
-Contoh pembakaran <InlineMath math="\mathrm{P_4}+5\mathrm{O_2}\rightarrow\mathrm{P_4O_{10}}" /> membebaskan tenaga sebagai cahaya dan haba, dan bilangan atomnya memberitahu kamu bahawa persamaan itu seimbang. Putar palang-palang itu: ada empat atom fosforus dan sepuluh atom oksigen di setiap belah.
+Lihat kembali pembakaran fosforus putih untuk melihat bagaimana bilangan atom mengesahkan keseimbangan persamaan. Putar palang-palang di bawah bagi membandingkan empat atom fosforus dan sepuluh atom oksigen di setiap belah.
 
 <MathVisual
-  title={<>Atom di Sebelah Kiri dan Kanan</>}
+  title={<>Keseimbangan Atom Pembakaran Fosforus</>}
   description={<>Atom fosforus (kuning ambar) dan oksigen (oren) dalam bahan tindak balas (belakang) dan hasil tindak balas (depan). Satu petak grid ke atas mewakili <InlineMath math="2" /> atom.</>}
+  footer={<>Ketinggian palang yang sama mengesahkan empat fosforus dan sepuluh oksigen di dua belah.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -202,7 +217,9 @@ Contoh pembakaran <InlineMath math="\mathrm{P_4}+5\mathrm{O_2}\rightarrow\mathrm
   }}
 />
 
-## Pekali Tidak Mengubah Formula
+Oleh sebab setiap palang hadapan sama tinggi dengan palang di belakangnya, tiada atom yang muncul atau hilang semasa pembakaran. Semakan atom yang sama terpakai bagi setiap jenis tindak balas.
+
+## Mengimbang Corak Tindak Balas
 
 Pekali ialah nombor yang diletakkan di hadapan formula kimia. Kita boleh mengubah pekali supaya bilangan atom sebelum dan selepas tindak balas sepadan.
 
@@ -210,31 +227,46 @@ Pekali ialah nombor yang diletakkan di hadapan formula kimia. Kita boleh menguba
 
 Dalam persamaan ini, <InlineMath math="5" /> di hadapan <InlineMath math="\mathrm{O_2}" /> ialah pekali. Subskrip dalam <InlineMath math="\mathrm{P_4}" />, <InlineMath math="\mathrm{O_2}" /> dan <InlineMath math="\mathrm{P_4O_{10}}" /> ialah sebahagian daripada formula dan **tidak boleh diubah** semata-mata untuk memaksa persamaan menjadi seimbang.
 
+> Sentiasa padankan pemerhatian di dalam bikar dengan persamaan kimia yang seimbang. Petunjuk yang kelihatan memberi arah awal, manakala bilangan atom yang sama mengesahkan tindak balasnya.
+
 ## Ikatan Ganda Dua yang Terbuka
 
-Ada juga **tindak balas penambahan**, iaitu molekul kecil masuk ke ikatan ganda dua. Dalam etena, ikatan ganda dua antara dua atom karbon terbuka dan menerima <InlineMath math="\mathrm{H_2}" /> atau <InlineMath math="\mathrm{H_2O}" />. Semua pekalinya <InlineMath math="1" />, dan setiap atom bahan tindak balas masuk ke dalam satu hasil.
+Ada juga **tindak balas penambahan**, apabila molekul kecil masuk ke ikatan ganda dua. Dalam etena, ikatan ganda dua antara dua atom karbon terbuka dan menerima <InlineMath math="\mathrm{H_2}" /> atau <InlineMath math="\mathrm{H_2O}" />. Semua pekalinya <InlineMath math="1" />, dan setiap atom bahan tindak balas masuk ke dalam satu hasil.
 
-<ReactionBalanceLab
-  title={<>Tindak Balas Penambahan pada Etena</>}
-  description={<>Pilih hidrogen atau air, kemudian lihat ikatan ganda dua terbuka untuk menerimanya.</>}
-  reactions={[
-    { id: "ethene-hydrogenation", name: "Penambahan hidrogen kepada etena", tab: <InlineMath math="\mathrm{C_2H_6}" /> },
-    { id: "ethene-hydration", name: "Penambahan air kepada etena", tab: <InlineMath math="\mathrm{C_2H_5OH}" /> },
-  ]}
-  reading="molecules"
+Kedua-dua tindak balas penambahan di bawah menggabungkan dua molekul kepada satu hasil tanpa meninggalkan baki atom.
+
+<BlockMath math="\begin{aligned} &amp;\mathrm{C_2H_4} + \mathrm{H_2} \rightarrow \mathrm{C_2H_6} \\ &amp;\mathrm{C_2H_4} + \mathrm{H_2O} \rightarrow \mathrm{C_2H_5OH} \end{aligned}" />
+
+Bandingkan blok bahan tindak balas yang bertindih di belakang dengan satu blok hasil di depan untuk melihat semua atom berpindah lengkap ke dalam hasil.
+
+<MathVisual
+  title={<>Jumlah Atom dalam Penambahan Etena</>}
+  description={<>Atom bahan tindak balas bertindih (belakang, etena ungu dan molekul kecil kuning) serta satu hasil (depan, oren). Satu petak grid mewakili <InlineMath math="2" /> atom.</>}
+  footer={<>Setiap atom daripada dua bahan tindak balas bergabung ke dalam satu blok hasil.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 8, z: 11 }, target: { x: 1.5, y: 2.25, z: 0 } },
+    objects: [
+      { id: "ethene-h", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1.5, z: -0.75 }, size: { length: 1.3, height: 3, width: 1.3 } },
+      { id: "h2-add", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 3.5, z: -0.75 }, size: { length: 1.3, height: 1, width: 1.3 } },
+      { id: "ethane", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2, z: 0.75 }, size: { length: 1.3, height: 4, width: 1.3 } },
+      { id: "ethene-w", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 1.5, z: -0.75 }, size: { length: 1.3, height: 3, width: 1.3 } },
+      { id: "h2o-add", kind: "cuboid", appearance: "highlight", center: { x: 3, y: 3.75, z: -0.75 }, size: { length: 1.3, height: 1.5, width: 1.3 } },
+      { id: "ethanol", kind: "cuboid", appearance: "primary", center: { x: 3, y: 2.25, z: 0.75 }, size: { length: 1.3, height: 4.5, width: 1.3 } },
+    ],
+    labels: [
+      { key: "ethane", objectId: "ethane", at: { x: 0, y: 4.3, z: 0.75 }, placement: "above" },
+      { key: "ethanol", objectId: "ethanol", at: { x: 3, y: 4.8, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Bilangan atom setiap unsur</>,
-    choose: "Pilih tindak balas",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan tindak balas</>,
-    mass: <>Jisim bahan dan hasil tindak balas</>,
-    molecules: <>Bilangan molekul</>,
-    products: <>Hasil tindak balas</>,
-    progress: "Perjalanan tindak balas",
-    reactants: <>Bahan tindak balas</>,
-    view: "Tindak balas pada aras atom",
+    ethane: <InlineMath math="\mathrm{C_2H_6}:\ 6+2=8" />,
+    ethanol: <InlineMath math="\mathrm{C_2H_5OH}:\ 6+3=9" />,
   }}
 />
+
+Apabila ikatan ganda dua terbuka, etena menyerap keseluruhan molekul yang masuk tanpa menghasilkan bahan sampingan. Penggabungan lengkap ini menjadikan tindak balas penambahan mudah dikenal pasti daripada persamaan mahupun kiraan atom.
 
 ## Menentukan Jenis Tindak Balas daripada Bukti
 
@@ -251,11 +283,12 @@ Gunakan jadual berikut untuk menyemak setiap jenis tindak balas.
 
 Selepas mengenal pasti jenis tindak balas, tulis bahan tindak balas di sebelah kiri dan hasil tindak balas di sebelah kanan. Kemudian, laraskan pekali sehingga setiap jenis atom mempunyai bilangan yang sama di kedua-dua belah.
 
-Gelembung ialah petunjuk pertama, dan persamaan <InlineMath math="\mathrm{C_6H_{12}O_6}\rightarrow2\mathrm{C_2H_5OH}+2\mathrm{CO_2}" /> mengesahkan berlakunya penapaian. Ambil satu mol glukosa dan guna <InlineMath math="\mathrm{C}=12" />, <InlineMath math="\mathrm{H}=1" /> dan <InlineMath math="\mathrm{O}=16" />: <InlineMath math="180\ \mathrm{g}" /> gula menjadi etanol dan karbon dioksida dengan jumlah jisim yang sama. Putar turus-turus itu dan bandingkan ketinggiannya.
+Gelembung ialah petunjuk pertama dalam penapaian glukosa, dan persamaan seimbangnya mengesahkan jumlah jisimnya. Mengambil satu mol glukosa dengan <InlineMath math="\mathrm{C}=12" />, <InlineMath math="\mathrm{H}=1" /> dan <InlineMath math="\mathrm{O}=16" /> menunjukkan bahawa <InlineMath math="180\ \mathrm{g}" /> gula bertukar kepada etanol dan karbon dioksida dengan jumlah jisim yang tepat sama. Putar turus-turus itu dan bandingkan ketinggiannya.
 
 <MathVisual
   title={<>Penapaian Mengekalkan Jisim</>}
   description={<>Satu mol glukosa (kiri) serta etanol dan karbon dioksida yang terbentuk daripadanya (kanan). Satu petak grid ke atas mewakili <InlineMath math="20" /> gram.</>}
+  footer={<>Tindihan etanol dan karbon dioksida menyamai jisim awal glukosa iaitu 180 gram.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 10 }, z: { min: -1.5, max: 1.5 } },
@@ -277,3 +310,5 @@ Gelembung ialah petunjuk pertama, dan persamaan <InlineMath math="\mathrm{C_6H_{
     gas: <InlineMath math="2\mathrm{CO_2}:\ 2\cdot44=88\ \mathrm{g}" />,
   }}
 />
+
+Walaupun karbon dioksida terbebas sebagai gelembung daripada kelalang terbuka, jisimnya tetap sebahagian daripada hasil tindak balas. Menjumlahkan cecair dan gas itu semula menghasilkan tepat <InlineMath math="180\ \mathrm{g}" />, mengaitkan setiap corak tindak balas dengan keabadian jisim.

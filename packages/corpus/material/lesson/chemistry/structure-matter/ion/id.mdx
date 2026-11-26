@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Ion",
   description:
@@ -11,32 +10,53 @@ export const metadata = {
 
 ## Saat Atom Tidak Lagi Netral
 
-Atom netral memiliki jumlah proton dan elektron yang sama. **Ion** terbentuk ketika sebuah atom atau gugus atom, yaitu beberapa atom yang terikat bersama, memiliki muatan total. Di sini, kita fokus dulu pada ion dari satu atom.
+**Ion** terbentuk ketika sebuah atom atau gugus atom membawa muatan listrik total. Di sini, kita fokus dulu pada ion satu atom yang memiliki <Highlight>jumlah elektron berbeda dari jumlah proton</Highlight>.
 
-Ion terbentuk ketika <Highlight>jumlah elektron berbeda dari jumlah proton</Highlight>.
+Proton tetap berada di inti atom selama reaksi kimia biasa. Hanya elektron di kulit terluar yang keluar atau masuk. Karena itu, jumlah proton tetap menentukan jenis unsur, sedangkan selisih proton dan elektron menentukan muatan ion.
 
-Proton berada di inti atom dan biasanya tidak berpindah dalam proses kimia sederhana. Yang berubah adalah elektron. Jumlah proton menentukan jenis unsur, sedangkan selisih jumlah proton dan elektron menentukan muatan ion.
+> Proton menjaga identitas unsur, sedangkan elektron yang lepas atau masuk mengubah muatan listriknya.
 
-Muatan ion dapat dihitung dengan memberi nilai positif pada proton dan nilai negatif pada elektron. Jika jumlah proton dan elektron sama, muatan totalnya <InlineMath math="0" /> atau netral. Jika elektron berkurang, muatannya positif. Jika elektron bertambah, muatannya negatif.
+Setiap proton menyumbang <InlineMath math="+1" /> dan setiap elektron menyumbang <InlineMath math="-1" />. Jumlah yang sama menghasilkan atom netral bermuatan <InlineMath math="0" />. Elektron yang berkurang memberi muatan positif, sedangkan elektron tambahan memberi muatan negatif.
 
 ## Elektron Berpindah dari Logam ke Nonlogam
 
-Ion terbentuk saat elektron berpindah. Natrium punya <InlineMath math="1" /> elektron di kulit terluar, sedangkan klorin butuh <InlineMath math="1" /> lagi agar kulit terluarnya berisi <InlineMath math="8" />. Geser slider dan lihat elektron itu menyeberang. **Natrium menjadi <InlineMath math="\mathrm{Na^+}" /> yang lebih kecil, dan klorin menjadi <InlineMath math="\mathrm{Cl^-}" /> yang lebih besar**, karena jumlah elektron berubah sementara jumlah proton tetap.
+Ion terbentuk saat elektron berpindah. Natrium punya <InlineMath math="1" /> elektron di kulit terluar, sedangkan klorin butuh <InlineMath math="1" /> lagi agar kulit terluarnya berisi <InlineMath math="8" />. **Natrium menyusut menjadi <InlineMath math="\mathrm{Na^+}" /> yang lebih kecil, dan klorin mengembang menjadi <InlineMath math="\mathrm{Cl^-}" /> yang lebih besar**, karena awan elektronnya berubah sementara tarikan inti tetap.
 
-<IonFormationLab
-  title={<>Atom Menjadi Ion</>}
-  description={<>Bola kaca menunjukkan jari-jari atom dan ion pada skala sebenarnya.</>}
-  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+<MathVisual
+  title={<>Perbandingan Jari-Jari Atom dan Ion</>}
+  description={<>Jari-jari terukur dalam pikometer untuk natrium dan klorin sebelum dan sesudah satu elektron berpindah dari logam ke nonlogam.</>}
+  footer={<>Melepas elektron mengecilkan kation, sedangkan menerima elektron membesarkan anion.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -15, max: 225 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0.4, y: 0 }, to: { x: 4.6, y: 0 } },
+      { id: "na-atom", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 186 } },
+      { id: "na-ion", kind: "segment", appearance: "primary", from: { x: 2, y: 0 }, to: { x: 2, y: 102 } },
+      { id: "cl-atom", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 99 } },
+      { id: "cl-ion", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 181 } },
+      { id: "p-na", kind: "point", appearance: "reference", at: { x: 1, y: 186 } },
+      { id: "p-nai", kind: "point", appearance: "primary", at: { x: 2, y: 102 } },
+      { id: "p-cl", kind: "point", appearance: "reference", at: { x: 3, y: 99 } },
+      { id: "p-cli", kind: "point", appearance: "secondary", at: { x: 4, y: 181 } },
+    ],
+    labels: [
+      { key: "na-atom", objectId: "p-na", at: { x: 1, y: 186 }, placement: "above" },
+      { key: "na-ion", objectId: "p-nai", at: { x: 2, y: 102 }, placement: "above" },
+      { key: "cl-atom", objectId: "p-cl", at: { x: 3, y: 99 }, placement: "above" },
+      { key: "cl-ion", objectId: "p-cli", at: { x: 4, y: 181 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih pasangan atom",
-    metalRadius: <>Jari-jari logam</>,
-    metalShells: <>Kulit logam</>,
-    nonmetalRadius: <>Jari-jari nonlogam</>,
-    nonmetalShells: <>Kulit nonlogam</>,
-    progress: "Perpindahan elektron",
-    view: "Atom logam dan nonlogam menjadi ion",
+    "na-atom": <InlineMath math="\mathrm{Na}:\ 186\ \mathrm{pm}" />,
+    "na-ion": <InlineMath math="\mathrm{Na^+}:\ 102\ \mathrm{pm}" />,
+    "cl-atom": <InlineMath math="\mathrm{Cl}:\ 99\ \mathrm{pm}" />,
+    "cl-ion": <InlineMath math="\mathrm{Cl^-}:\ 181\ \mathrm{pm}" />,
   }}
 />
+
+Jari-jari natrium turun hampir setengahnya saat kulit ketiganya kosong. Klorin berubah ke arah sebaliknya karena elektron tambahan memperbesar tolakan di kulit terluarnya.
 
 ## Kation dan Anion
 
@@ -50,10 +70,11 @@ Ion bermuatan negatif disebut **anion**. Anion terbentuk saat atom menerima elek
   title={<>Simulasi Pembentukan Ion</>}
   description={
     <>
-      Lihat alurnya dari kiri ke kanan: atom netral melepas atau menerima
-      elektron, lalu menjadi kation atau anion. Proton dan neutron tetap.
+      Lihat alurnya dari kiri ke kanan saat atom netral melepas atau menerima
+      elektron lalu menjadi kation atau anion sementara proton dan neutron tetap.
     </>
   }
+  footer={<>Ganti contoh untuk memastikan hanya jumlah elektron yang berubah saat ionisasi.</>}
   labels={{
     beforeChange: "Sebelum",
     electronChange: "Elektron berubah",
@@ -89,11 +110,14 @@ Ion bermuatan negatif disebut **anion**. Anion terbentuk saat atom menerima elek
   }}
 />
 
-Tanda <InlineMath math="q=p^{+}-e^{-}" /> memberi tahu jenis partikel yang kamu punya. Elektron yang lebih sedikit daripada proton menyisakan kation positif di kanan, elektron berlebih memberi anion negatif di kiri, dan atom netral ada di nol. Perbesar dan periksa tiap pengurangannya.
+Perhatikan baris proton dan neutron pada semua contoh di simulator. Kedua angka itu tidak berubah sama sekali, sementara perubahan elektron menggeser muatan akhir menjadi positif atau negatif.
+
+Tanda <InlineMath math="q" /> memberi tahu jenis partikel yang kamu punya. Elektron yang lebih sedikit daripada proton menyisakan kation positif di kanan, elektron berlebih memberi anion negatif di kiri, dan atom netral ada di nol. Perbesar dan periksa tiap pengurangannya.
 
 <MathVisual
   title={<>Kation atau Anion dari Muatannya</>}
   description={<>Lima partikel diletakkan menurut muatannya, proton dikurangi elektron. Kation (oranye) di kanan, anion (ungu) di kiri.</>}
+  footer={<>Muatan positif berada di kanan nol dan muatan negatif berada di kiri nol.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1, max: 1 } },
@@ -123,55 +147,101 @@ Tanda <InlineMath math="q=p^{+}-e^{-}" /> memberi tahu jenis partikel yang kamu 
   }}
 />
 
+Setiap partikel pada garis ini memiliki muatan yang ditentukan langsung oleh selisih proton dan elektron. Neon netral menandai titik tengah di nol.
+
 ### Kation yang Lahir di Air
 
-Saat natrium bertemu air, setiap atom melepas elektron terluarnya dan **berubah menjadi kation <InlineMath math="\mathrm{Na^+}" />**, sementara air di sekitarnya berubah menjadi hidroksida dan gas hidrogen.
+Saat logam alkali bertemu air, setiap atom melepas satu elektron terluarnya dan **berubah menjadi kation <InlineMath math="+1" />** seperti <InlineMath math="\mathrm{Na^+}" /> atau <InlineMath math="\mathrm{K^+}" />. Makin ke bawah dalam satu golongan, elektron tunggal itu makin mudah dilepaskan.
 
-<AlkaliWaterLab
-  title={<>Logam Menjadi Ion</>}
-  description={<>Bandingkan natrium dengan kalium dan baca persamaan yang ditulis setiap reaksi.</>}
-  metals={["sodium", "potassium"]}
+<MathVisual
+  title={<>Logam Alkali Membentuk Ion Positif</>}
+  description={<>Energi ionisasi pertama dalam kilojoule per mol untuk litium, natrium, dan kalium. Garis lebih rendah melepas elektron terluarnya lebih cepat.</>}
+  footer={<>Kalium melepas elektron terluarnya paling mudah untuk membentuk ion positif.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -30, max: 600 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0.4, y: 0 }, to: { x: 3.6, y: 0 } },
+      { id: "li-bar", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 520 } },
+      { id: "na-bar", kind: "segment", appearance: "primary", from: { x: 2, y: 0 }, to: { x: 2, y: 496 } },
+      { id: "k-bar", kind: "segment", appearance: "warning", from: { x: 3, y: 0 }, to: { x: 3, y: 419 } },
+      { id: "li-pt", kind: "point", appearance: "reference", at: { x: 1, y: 520 } },
+      { id: "na-pt", kind: "point", appearance: "primary", at: { x: 2, y: 496 } },
+      { id: "k-pt", kind: "point", appearance: "warning", at: { x: 3, y: 419 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li-pt", at: { x: 1, y: 520 }, placement: "above" },
+      { key: "na", objectId: "na-pt", at: { x: 2, y: 496 }, placement: "above" },
+      { key: "k", objectId: "k-pt", at: { x: 3, y: 419 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih logam",
-    density: <>Massa jenis</>,
-    equation: <>Persamaan reaksi</>,
-    ionization: <>Energi ionisasi pertama</>,
-    melting: <>Titik leleh</>,
-    radius: <>Jari-jari atom</>,
-    view: "Logam dalam gelas kimia berisi air",
+    li: <InlineMath math="\mathrm{Li}\to\mathrm{Li^+}:\ 520" />,
+    na: <InlineMath math="\mathrm{Na}\to\mathrm{Na^+}:\ 496" />,
+    k: <InlineMath math="\mathrm{K}\to\mathrm{K^+}:\ 419" />,
   }}
 />
+
+Karena kalium menahan elektron terluarnya paling lemah dibanding natrium dan litium, kalium berubah menjadi kation <InlineMath math="\mathrm{K^+}" /> paling cepat di dalam air.
 
 ### Kation dan Anion Tersusun dalam Kristal
 
-Kation dan anion saling tarik, jadi mereka tersusun rapat dalam kristal. Di garam dapur, **setiap ion <InlineMath math="\mathrm{Na^+}" /> dikelilingi <InlineMath math="6" /> ion <InlineMath math="\mathrm{Cl^-}" />**, dan sebaliknya. Perbesar kristalnya dengan slider. Jumlah kation dan anion selalu hampir sama, itulah sebabnya rumusnya ditulis <InlineMath math="\mathrm{NaCl}" /> dengan perbandingan <InlineMath math="1 : 1" />.
+Kation dan anion saling tarik, jadi keduanya tersusun rapat dan berselang-seling dalam kisi kristal. Di garam dapur, **setiap ion <InlineMath math="\mathrm{Na^+}" /> langsung berdampingan dengan ion <InlineMath math="\mathrm{Cl^-}" />**, sehingga muatan positif dan negatif seimbang dalam perbandingan <InlineMath math="1 : 1" />.
 
-<IonLatticeLab
-  title={<>Kisi Natrium Klorida dan Magnesium Oksida</>}
-  description={<>Ion digambar dengan jari-jari hasil pengukuran.</>}
-  crystals={["sodium-chloride", "magnesium-oxide"]}
+<MathVisual
+  title={<>Susunan Ion Berselang-Seling dalam Garam</>}
+  description={<>Satu lapisan datar kristal natrium klorida yang menampilkan kation natrium (oranye) dan anion klorida (ungu) tersusun berselang-seling.</>}
+  footer={<>Susunan kation dan anion yang berselang-seling menjaga kristal tetap netral.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.8 }, y: { min: -0.8, max: 2.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "h0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "h1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 2, y: 1 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 2, y: 2 } },
+      { id: "v0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 2 } },
+      { id: "v1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 2 } },
+      { id: "v2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "p00", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "p10", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "p20", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+      { id: "p01", kind: "point", appearance: "secondary", at: { x: 0, y: 1 } },
+      { id: "p11", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+      { id: "p21", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "p02", kind: "point", appearance: "primary", at: { x: 0, y: 2 } },
+      { id: "p12", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "p22", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "center", objectId: "p11", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "right", objectId: "p21", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "top", objectId: "p12", at: { x: 1, y: 2 }, placement: "above" },
+    ],
+  }}
   labels={{
-    cells: "Sel satuan per rusuk",
-    choose: "Pilih kristal",
-    count: <>Jumlah ion</>,
-    formula: <>Rumus</>,
-    ions: <>Ion dan jari-jarinya</>,
-    lattice: <>Rusuk sel satuan</>,
-    view: "Kisi kristal ion",
+    center: <InlineMath math="\mathrm{Na^+}" />,
+    right: <InlineMath math="\mathrm{Cl^-}" />,
+    top: <InlineMath math="\mathrm{Cl^-}" />,
   }}
 />
 
+Setiap tetangga terdekat dari ion oranye <InlineMath math="\mathrm{Na^+}" /> adalah ion ungu <InlineMath math="\mathrm{Cl^-}" />. Pola berselang-seling itu membuat muatan berlawanan saling meniadakan di seluruh kristal, sehingga rumusnya ditulis <InlineMath math="\mathrm{NaCl}" />.
+
 ## Muatan Ion dari Selisih Jumlah Proton dan Elektron
+
+Bilangan muatan ion diperoleh dari jumlah proton dikurangi jumlah elektron.
 
 <BlockMath math="q = p^+ - e^-" />
 
 Simbol <InlineMath math="q" /> adalah bilangan muatan ion dalam **satuan muatan elementer**, bukan coulomb, <InlineMath math="p^+" /> adalah jumlah proton, dan <InlineMath math="e^-" /> adalah jumlah elektron.
 
-Untuk mencari jumlah elektron ion, rumus yang sama bisa ditata ulang:
+Untuk mencari jumlah elektron ion, rumus yang sama bisa ditata ulang.
 
 <BlockMath math="e^- = p^+ - q" />
 
-Contoh natrium:
+Penerapan rumus ini pada kation natrium mengurangi satu elektron.
 
 <BlockMath math="\begin{aligned}
 {}^{23}_{11}\mathrm{Na}^{+} &: p^+ = 11,\ q = +1 \\
@@ -179,7 +249,7 @@ e^- &= 11 - (+1) \\
 &= 10
 \end{aligned}" />
 
-Contoh fluorida:
+Hitungan yang sama pada anion fluorida menambah satu elektron.
 
 <BlockMath math="\begin{aligned}
 {}^{19}_{9}\mathrm{F}^{-} &: p^+ = 9,\ q = -1 \\
@@ -187,22 +257,23 @@ e^- &= 9 - (-1) \\
 &= 10
 \end{aligned}" />
 
-Tanda negatif pada <InlineMath math="\mathrm{F}^{-}" /> berarti jumlah elektron lebih banyak daripada jumlah proton. Karena itu, <InlineMath math="9 - (-1)" /> menjadi <InlineMath math="10" />.
+Tanda negatif pada <InlineMath math="\mathrm{F}^{-}" /> berarti jumlah elektron lebih banyak daripada jumlah proton, sehingga pengurangan muatan negatif menaikkan jumlah elektron menjadi <InlineMath math="10" />.
 
-Bandingkan atom litium dengan ion litium, proton berwarna oranye di belakang dan elektron berwarna ungu di depan. Kehilangan satu elektron menyisakan <InlineMath math="3" /> proton melawan <InlineMath math="2" /> elektron, jadi <InlineMath math="q=3-2=+1" />.
+Bandingkan atom litium dengan ion litium di bawah, dengan proton berwarna oranye di belakang dan elektron berwarna ungu di depan. Kehilangan satu elektron menyisakan <InlineMath math="3" /> proton melawan <InlineMath math="2" /> elektron sehingga muatannya menjadi <InlineMath math="+1" />.
 
 <MathVisual
   title={<>Atom Litium dan Ion Litium</>}
   description={<>Proton (oranye, belakang) dan elektron (ungu, depan) pada <InlineMath math="\mathrm{Li}" /> dan <InlineMath math="\mathrm{Li^+}" />. Satu kotak grid ke atas sama dengan <InlineMath math="2" /> partikel.</>}
+  footer={<>Hanya batang elektron ungu yang turun saat litium netral menjadi kation.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 3 }, z: { min: -1.5, max: 1.5 } },
     view: { kind: "camera", position: { x: 6, y: 5, z: 8 }, target: { x: 1.5, y: 1, z: 0 } },
     objects: [
-      { id: "atom-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (3 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "atom-e", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (3 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "ion-p", kind: "cuboid", appearance: "primary", center: { x: 3, y: (3 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "ion-e", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 2 / 2, width: 1.2 } },
+      { id: "atom-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (3 / 2) / 2, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "atom-e", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (3 / 2) / 2, z: 0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "ion-p", kind: "cuboid", appearance: "primary", center: { x: 3, y: (3 / 2) / 2, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "ion-e", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 2) / 2, z: 0.75 }, size: { length: 1.2, height: 2 / 2, width: 1.2 } },
     ],
     labels: [
       { key: "atom", objectId: "atom-e", at: { x: 0, y: 2, z: 0.75 }, placement: "above" },
@@ -215,25 +286,44 @@ Bandingkan atom litium dengan ion litium, proton berwarna oranye di belakang dan
   }}
 />
 
+Tinggi kedua kolom proton oranye tetap sama. Muatan positif muncul semata karena kolom elektron ungu turun satu tingkat.
+
 ## Ion di dalam Spektrometer Massa
 
-Spektrometer massa lebih dulu melepas satu elektron dari setiap atom, karena **hanya partikel bermuatan yang berbelok di dalam magnet**. Setiap berkas yang kamu lihat adalah berkas ion positif.
+Spektrometer massa lebih dulu melepas satu elektron dari setiap atom, karena **hanya partikel bermuatan yang berbelok di dalam medan magnet**. Atom netral melaju lurus, sedangkan ion positif membelok dengan kelengkungan yang bergantung pada massanya.
 
-<MassSpectrometerLab
-  title={<>Atom Bermuatan dalam Magnet</>}
-  description={<>Pilih klorin atau magnesium, lalu lihat berkas ionnya terpisah menurut massa.</>}
-  samples={["chlorine", "magnesium"]}
+<MathVisual
+  title={<>Cara Ion Terpisah dalam Medan Magnet</>}
+  description={<>Lintasan skematis atom netral (garis lurus abu-abu) dan dua kation klorin yang membelok ke bawah menurut massanya dalam pemisah magnet.</>}
+  footer={<>Atom netral melaju lurus, sedangkan ion lebih ringan membelok lebih tajam.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "neutral", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.5, y: 0 } },
+      { id: "heavy-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.5, y: -0.6 } },
+      { id: "heavy-b", kind: "segment", appearance: "secondary", from: { x: 2.5, y: -0.6 }, to: { x: 5.2, y: -2.0 } },
+      { id: "light-a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.2, y: -1.1 } },
+      { id: "light-b", kind: "segment", appearance: "primary", from: { x: 2.2, y: -1.1 }, to: { x: 4.5, y: -3.2 } },
+      { id: "p-neu", kind: "point", appearance: "reference", at: { x: 5.5, y: 0 } },
+      { id: "p-heavy", kind: "point", appearance: "secondary", at: { x: 5.2, y: -2.0 } },
+      { id: "p-light", kind: "point", appearance: "primary", at: { x: 4.5, y: -3.2 } },
+    ],
+    labels: [
+      { key: "neu", objectId: "p-neu", at: { x: 5.5, y: 0 }, placement: "above" },
+      { key: "heavy", objectId: "p-heavy", at: { x: 5.2, y: -2.0 }, placement: "right" },
+      { key: "light", objectId: "p-light", at: { x: 4.5, y: -3.2 }, placement: "below" },
+    ],
+  }}
   labels={{
-    average: <>Massa atom relatif rata-rata</>,
-    choose: "Pilih unsur",
-    isotopes: <>Isotop dan kelimpahannya</>,
-    north: "U",
-    radius: <>Jari-jari lintasan</>,
-    ratio: <>Perbandingan jari-jari</>,
-    south: "S",
-    view: "Spektrometer massa",
+    neu: <InlineMath math="\mathrm{Cl}\ (q=0)" />,
+    heavy: <InlineMath math="^{37}\mathrm{Cl^+}" />,
+    light: <InlineMath math="^{35}\mathrm{Cl^+}" />,
   }}
 />
+
+Tanpa mengubah sampel menjadi ion lebih dulu, magnet tidak bisa memilah partikelnya. Memberi setiap atom muatan <InlineMath math="+1" /> memungkinkan detektor memisahkan ion berat dan ringan secara rapi.
 
 ## Komposisi Ion
 
@@ -247,9 +337,9 @@ Saat atom menjadi ion, **jumlah proton dan neutron tetap**. Jumlah elektron beru
 
 Jadi, <InlineMath math="\mathrm{Na}" /> dan <InlineMath math="\mathrm{Na}^{+}" /> sama-sama unsur natrium karena jumlah protonnya tetap <InlineMath math="11" />. Atom natrium netral memiliki <InlineMath math="11" /> elektron. Setelah kehilangan satu elektron, <InlineMath math="\mathrm{Na}^{+}" /> memiliki <InlineMath math="10" /> elektron.
 
-## Contoh Membaca Tabel Ion
+## Membaca Jumlah Partikel dari Lambang Ion
 
-Gunakan tabel berikut sebagai contoh yang sudah terisi. Bacalah satu baris dari kiri ke kanan: nomor atom <InlineMath math="Z" /> memberi jumlah proton, selisih <InlineMath math="A - Z" /> memberi jumlah neutron, lalu rumus <InlineMath math="q = p^+ - e^-" /> **menghubungkan muatan dengan jumlah elektron**.
+Gunakan tabel berikut sebagai rujukan lengkap. Bacalah setiap baris dari kiri ke kanan karena nomor atom <InlineMath math="Z" /> memberi jumlah proton, selisih <InlineMath math="A - Z" /> memberi jumlah neutron, dan rumus muatan **menghubungkan muatan dengan jumlah elektron**.
 
 | Lambang | Nomor atom | Nomor massa | Muatan | Proton | Elektron | Neutron |
 | :------ | :--------- | :---------- | :----- | :----- | :------- | :------ |
@@ -260,11 +350,11 @@ Gunakan tabel berikut sebagai contoh yang sudah terisi. Bacalah satu baris dari 
 | <InlineMath math="{}^{27}_{13}\mathrm{Al}" /> | <InlineMath math="13" /> | <InlineMath math="27" /> | <InlineMath math="0" /> | <InlineMath math="13" /> | <InlineMath math="13" /> | <InlineMath math="14" /> |
 | <InlineMath math="{}^{27}_{13}\mathrm{Al}^{3+}" /> | <InlineMath math="13" /> | <InlineMath math="27" /> | <InlineMath math="+3" /> | <InlineMath math="13" /> | <InlineMath math="10" /> | <InlineMath math="14" /> |
 
-Cek satu baris, misalnya <InlineMath math="{}^{7}_{3}\mathrm{Li}^{+}" />. Nomor atomnya <InlineMath math="3" />, jadi protonnya <InlineMath math="3" />. Muatannya <InlineMath math="+1" />, jadi elektronnya:
+Cek satu baris, misalnya <InlineMath math="{}^{7}_{3}\mathrm{Li}^{+}" />. Nomor atomnya <InlineMath math="3" />, jadi protonnya <InlineMath math="3" />. Dengan muatan <InlineMath math="+1" />, jumlah elektronnya langsung terbaca.
 
 <BlockMath math="e^- = 3 - (+1) = 2" />
 
-Neutronnya dibaca dari nomor massa:
+Jumlah neutronnya diperoleh dari selisih nomor massa dan nomor atom.
 
 <BlockMath math="n^0 = 7 - 3 = 4" />
 

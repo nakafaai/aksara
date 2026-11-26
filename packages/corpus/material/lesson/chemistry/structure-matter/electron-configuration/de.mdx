@@ -1,8 +1,7 @@
-
 export const metadata = {
   title: "Elektronenkonfiguration",
   description:
-    "Die Verteilung von Elektronen auf Schalen herleiten, ihren Zusammenhang mit Linienspektren verstehen und die Grenzen des Bohr-Modells erkennen.",
+    "Die Verteilung von Elektronen auf Schalen herleiten, ihren Zusammenhang mit Linienspektren verstehen und die Grenzen des Bohrschen Modells erkennen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-09-12",
@@ -15,11 +14,14 @@ Wenn Salze wie <InlineMath math="\mathrm{NaCl}" /> oder <InlineMath math="\mathr
 
 Das Bohrsche Modell nutzt diskrete Energieniveaus, um das Linienspektrum von Wasserstoff zu erklären.
 
-**Diskret** bedeutet, dass nur bestimmte Energiewerte möglich sind. Eine Treppe liefert das passende Bild: Man kann auf der ersten, zweiten oder dritten Stufe stehen. Zwischen den Stufen gibt es keinen Standplatz. Auch Elektronen dürfen im Atom nur bestimmte Energieniveaus einnehmen.
+**Diskret** bedeutet, dass nur bestimmte Energiewerte möglich sind. Eine Treppe liefert das passende Bild. Man kann auf der ersten, zweiten oder dritten Stufe stehen, aber nie im leeren Raum zwischen zwei Stufen. Auch Elektronen dürfen im Atom nur bestimmte Energieniveaus einnehmen.
+
+> Elektronen verhalten sich wie Schritte auf einer Treppe, weil sie nur erlaubte Stufen besetzen und nie dazwischen schweben.
 
 <Mermaid
   title={<>Flammenfarbe weist auf Elektronenenergie hin</>}
   description={<>Die Anregung von Elektronen und das ausgesandte Licht mit der beobachteten Flammenfarbe verbinden.</>}
+  footer={<>Jeder Pfeil verbindet zugeführte Energie mit der sichtbaren Lichtfarbe.</>}
   chart={`flowchart LR
     A["Energie wird zugeführt"] --> B["Elektron wird angeregt"]
     B --> C["Elektron kehrt zurück"]
@@ -29,11 +31,20 @@ Das Bohrsche Modell nutzt diskrete Energieniveaus, um das Linienspektrum von Was
 
 **Anregung** bedeutet, dass ein Elektron Energie aufnimmt und vorübergehend auf ein höheres Energieniveau wechselt. Beim Zurückkehren wird Energie als Licht frei. Ein echter Flammentest gehört wegen des Erhitzens von Chemikalien nur unter fachgerechter Aufsicht und mit passender Schutzausrüstung durchgeführt.
 
-Eine Flammenfarbe ist Licht von Elektronen, die auf ein niedrigeres Niveau fallen. Beim Wasserstoff liegen die Niveaus bei <InlineMath math="E_n=-\tfrac{13{,}6}{n^2}\ \mathrm{eV}" />, also setzt ein Fall von <InlineMath math="n=3" /> auf <InlineMath math="n=2" /> <InlineMath math="1{,}89\ \mathrm{eV}" /> frei, und <InlineMath math="\lambda=\tfrac{1240}{1{,}89}\approx656\ \mathrm{nm}" /> ist rotes Licht. Zoom nach oben, wo sich die Niveaus drängen.
+Eine Flammenfarbe ist Licht von Elektronen, die auf ein niedrigeres Niveau fallen. Beim Wasserstoff gelten für jedes Niveau und den roten Übergang von <InlineMath math="n = 3" /> auf <InlineMath math="n = 2" /> diese Werte.
+
+<BlockMath math="\begin{aligned}
+E_n &= -\frac{13{,}6}{n^2}\ \mathrm{eV} \\
+\Delta E &= 1{,}89\ \mathrm{eV} \\
+\lambda &= \frac{1240}{1{,}89} \approx 656\ \mathrm{nm}
+\end{aligned}" />
+
+Diese Wellenlänge von <InlineMath math="656\ \mathrm{nm}" /> liegt im roten Bereich des sichtbaren Lichts. Zoom oben in das Diagramm hinein, wo die höheren Niveaus dicht beieinanderliegen.
 
 <MathVisual
   title={<>Fallende Elektronen geben farbiges Licht</>}
-  description={<>Energieniveaus des Wasserstoffatoms und zwei Übergänge auf das Niveau <InlineMath math="n=2" />, rot (rosa Pfeil) und blaugrün (türkiser Pfeil). Senkrecht: Energie in Elektronenvolt.</>}
+  description={<>Energieniveaus des Wasserstoffatoms und zwei Übergänge auf das Niveau <InlineMath math="n=2" />, rot (rosa Pfeil) und blaugrün (türkiser Pfeil). Die senkrechte Achse zeigt Energie in Elektronenvolt.</>}
+  footer={<>Größere Sprünge setzen mehr Energie frei und erzeugen kürzere Wellenlängen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -14.5, max: 0.5 } },
@@ -66,11 +77,13 @@ Eine Flammenfarbe ist Licht von Elektronen, die auf ein niedrigeres Niveau falle
   }}
 />
 
+Der blaugrüne Pfeil ist sichtbar länger als der rote. Weil das Elektron eine größere Energielücke überwindet, trägt das ausgesandte Photon mehr Energie und liegt näher am blauen Ende des Spektrums.
+
 ## Elektronenverteilung im Schalenmodell
 
 Die **Elektronenkonfiguration** beschreibt, wie die Elektronen eines Atoms verteilt sind. Hier verwenden wir ein **vereinfachtes Schalenmodell**, das sie den Schalen <InlineMath math="\mathrm{K}" />, <InlineMath math="\mathrm{L}" />, <InlineMath math="\mathrm{M}" /> und <InlineMath math="\mathrm{N}" /> zuordnet.
 
-Für ein neutrales Atom:
+Für ein neutrales Atom entspricht die Elektronenzahl der Ordnungszahl.
 
 <BlockMath math="e^- = Z" />
 
@@ -80,22 +93,39 @@ Dieses vereinfachte Schalenmodell beschränkt sich auf leichte Elemente bis Calc
 
 ## Konfigurationen im Becherglas
 
-Natrium hat <InlineMath math="2, 8, 1" /> und Magnesium <InlineMath math="2, 8, 2" />: **ein Außenelektron geht leichter verloren als zwei**, deshalb rast Natrium über das Wasser, während Magnesium sich kaum rührt.
+Natrium hat <InlineMath math="2, 8, 1" /> und Magnesium <InlineMath math="2, 8, 2" />. Weil **ein Außenelektron leichter verloren geht als zwei**, reagiert Natrium heftig mit Wasser, während Magnesium sich deutlich langsamer umsetzt. Vergleiche ihre ersten Ionisierungsenergien zusammen mit Calcium.
 
-<AlkaliWaterLab
-  title={<>Außenelektronen und Reaktionstempo</>}
-  description={<>Vergleiche Natrium, Magnesium und Calcium und lies ihre Ionisierungsenergien ab.</>}
-  metals={["sodium", "magnesium", "calcium"]}
+<MathVisual
+  title={<>Außenelektronen und Ionisierungsenergie</>}
+  description={<>Erste Ionisierungsenergie in Kilojoule pro Mol für Natrium, Magnesium und Calcium. Niedrigere Linien bedeuten ein leichter lösbares Außenelektron.</>}
+  footer={<>Natrium braucht am wenigsten Energie, um sein einzelnes Außenelektron abzugeben.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -40, max: 860 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0.4, y: 0 }, to: { x: 3.6, y: 0 } },
+      { id: "na-bar", kind: "segment", appearance: "primary", from: { x: 1, y: 0 }, to: { x: 1, y: 496 } },
+      { id: "mg-bar", kind: "segment", appearance: "secondary", from: { x: 2, y: 0 }, to: { x: 2, y: 738 } },
+      { id: "ca-bar", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 590 } },
+      { id: "na-pt", kind: "point", appearance: "primary", at: { x: 1, y: 496 } },
+      { id: "mg-pt", kind: "point", appearance: "secondary", at: { x: 2, y: 738 } },
+      { id: "ca-pt", kind: "point", appearance: "construction", at: { x: 3, y: 590 } },
+    ],
+    labels: [
+      { key: "na", objectId: "na-pt", at: { x: 1, y: 496 }, placement: "above" },
+      { key: "mg", objectId: "mg-pt", at: { x: 2, y: 738 }, placement: "above" },
+      { key: "ca", objectId: "ca-pt", at: { x: 3, y: 590 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Metall wählen",
-    density: <>Dichte</>,
-    equation: <>Reaktionsgleichung</>,
-    ionization: <>Erste Ionisierungsenergie</>,
-    melting: <>Schmelzpunkt</>,
-    radius: <>Atomradius</>,
-    view: "Metall in einem Becherglas mit Wasser",
+    na: <InlineMath math="\mathrm{Na}\ (2,8,1):\ 496" />,
+    mg: <InlineMath math="\mathrm{Mg}\ (2,8,2):\ 738" />,
+    ca: <InlineMath math="\mathrm{Ca}\ (2,8,8,2):\ 590" />,
   }}
 />
+
+Natrium besitzt die niedrigste Energiebarriere der drei Metalle und gibt sein Außenelektron am schnellsten ab. Calcium liegt unter Magnesium, weil seine zwei Außenelektronen weiter außen in der vierten Schale sitzen.
 
 ## Interaktives Elektronenschalenmodell
 
@@ -113,6 +143,7 @@ Wähle unten ein neutrales Atom. Lies zuerst seine Ordnungszahl und verfolge dan
       <InlineMath math="\mathrm{N}" /> ab.
     </>
   }
+  footer={<>Innere Schalen füllen sich vollständig, bevor die nächste äußere Schale beginnt.</>}
   labels={{
     chooseAtom: "Neutrales Atom auswählen",
     atomicNumber: "Ordnungszahl",
@@ -156,9 +187,11 @@ Wähle unten ein neutrales Atom. Lies zuerst seine Ordnungszahl und verfolge dan
   }}
 />
 
+Klicke der Reihe nach auf Natrium, Magnesium und Chlor. Mit jedem zusätzlichen Proton und Elektron füllt sich dieselbe Außenschale bis acht, bevor ein neuer Ring entsteht.
+
 ## Die Reihenfolge der Schalenbelegung lesen
 
-Im vereinfachten Schalenmodell für die ersten Elemente **bis Calcium** werden kernnahe Schalen zuerst besetzt. Daraus ergibt sich folgende Reihenfolge:
+Im vereinfachten Schalenmodell für die ersten Elemente **bis Calcium** werden kernnahe Schalen zuerst besetzt.
 
 | Schale | Höchstzahl in diesem Modell | Lesart |
 | :---- | :---------------- | :------------- |
@@ -169,7 +202,7 @@ Im vereinfachten Schalenmodell für die ersten Elemente **bis Calcium** werden k
 
 Das vereinfachte Schalenmodell kann für die Elemente von Wasserstoff bis Calcium verwendet werden. Die Anordnung <InlineMath math="2, 8, 8, 2" /> ist die Elektronenkonfiguration von Calcium. Jedes frühere Element besitzt so viele Elektronen, wie seine Ordnungszahl angibt. Bei schwereren Elementen müssen die Unterschalen berücksichtigt werden, weil die Schale <InlineMath math="\mathrm{M}" /> mehr als <InlineMath math="8" /> Elektronen aufnehmen kann.
 
-Beispiel für Natrium:
+Am Beispiel Natrium lässt sich diese Reihenfolge direkt ablesen.
 
 <BlockMath math="\begin{aligned}
 \mathrm{Na}: Z &= 11 \\
@@ -177,7 +210,7 @@ e^- &= 11 \\
 \text{Konfiguration} &= 2, 8, 1
 \end{aligned}" />
 
-Beispiel Chlor:
+Dasselbe Vorgehen ergibt für Chlor sieben Elektronen in der dritten Schale.
 
 <BlockMath math="\begin{aligned}
 \mathrm{Cl}: Z &= 17 \\
@@ -185,11 +218,12 @@ e^- &= 17 \\
 \text{Konfiguration} &= 2, 8, 7
 \end{aligned}" />
 
-Füll die Schalen der Reihe nach für die ersten <InlineMath math="20" /> Elemente, von Wasserstoff mit <InlineMath math="Z=1" /> bis Calcium mit <InlineMath math="Z=20" />. Jede Reihe ist eine Schale und jede Spalte ein Element, also enthält jede Spalte insgesamt <InlineMath math="Z" /> Elektronen. Dreh die Szene: Die L-Schale ist beim Neon voll, und ab Kalium kommen die nächsten Elektronen in die N-Schale.
+Füll die Schalen der Reihe nach für die ersten <InlineMath math="20" /> Elemente, von Wasserstoff mit <InlineMath math="Z=1" /> bis Calcium mit <InlineMath math="Z=20" />. Jede Reihe ist eine Schale und jede Spalte ein Element, also enthält jede Spalte insgesamt <InlineMath math="Z" /> Elektronen. Dreh die Szene, um zu sehen, wie die L-Schale beim Neon voll wird und ab Kalium die N-Schale startet.
 
 <MathVisual
-  title={<>Zwanzig Atome, Schale für Schale</>}
+  title={<>Zwanzig Atome Schale für Schale</>}
   description={<>Elektronen in der K- (grau), L- (violett), M- (orange) und N-Schale (fuchsia) für die Ordnungszahlen <InlineMath math="1" /> bis <InlineMath math="20" />. Ein Gitterschritt nach oben entspricht <InlineMath math="2" /> Elektronen.</>}
+  footer={<>Jede Schalenreihe endet auf ihrem Plateau, bevor die nächste Reihe startet.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: 0, max: 4.5 }, z: { min: -0.6, max: 4.2 } },
@@ -263,24 +297,51 @@ Füll die Schalen der Reihe nach für die ersten <InlineMath math="20" /> Elemen
   }}
 />
 
+Der Blick über alle zwanzig Spalten zeigt den wiederkehrenden Rhythmus des Periodensystems. Sobald eine Schalenreihe voll besetzt ist, beginnt direkt davor eine neue Reihe.
+
 ### Ionen erreichen ein Edelgasmuster
 
-Nach der Übertragung haben <InlineMath math="\mathrm{Na^+}" /> und <InlineMath math="\mathrm{Cl^-}" /> die Konfigurationen von Neon und Argon. **Ionen enden bei einem vollen Edelgasmuster**, deshalb sind diese Konfigurationen so häufig.
+Nach dem Übergang eines Elektrons von Natrium zu Chlor besitzen <InlineMath math="\mathrm{Na^+}" /> und <InlineMath math="\mathrm{Cl^-}" /> die vollen Konfigurationen von Neon und Argon. **Ionen enden bei einem vollen Edelgasmuster**, deshalb treten diese Übergänge so häufig auf.
 
-<IonFormationLab
+<MathVisual
   title={<>Konfigurationen vorher und nachher</>}
-  description={<>Schieb die Elektronen hinüber und vergleiche die Schalen jedes Atoms vorher und nachher.</>}
-  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+  description={<>Elektronenzahlen vor und nach der Abgabe eines Elektrons von Natrium an Chlor. Beide Ionen landen bei den Edelgaszahlen von Neon und Argon.</>}
+  footer={<>Abgabe oder Aufnahme eines Elektrons führt jedes Atom zur vollen Edelgasschale.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 8.5, max: 19.5 }, y: { min: -1.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 9.5, y: 0 }, to: { x: 18.5, y: 0 } },
+      { id: "na-shift", kind: "segment", appearance: "primary", from: { x: 11, y: 0.8 }, to: { x: 10, y: 0.8 } },
+      { id: "cl-shift", kind: "segment", appearance: "secondary", from: { x: 17, y: 0.8 }, to: { x: 18, y: 0.8 } },
+      { id: "ne-pt", kind: "point", appearance: "answer", at: { x: 10, y: 0 } },
+      { id: "na-pt", kind: "point", appearance: "primary", at: { x: 11, y: 0.8 } },
+      { id: "na-ion", kind: "point", appearance: "answer", at: { x: 10, y: 0.8 } },
+      { id: "cl-pt", kind: "point", appearance: "secondary", at: { x: 17, y: 0.8 } },
+      { id: "cl-ion", kind: "point", appearance: "answer", at: { x: 18, y: 0.8 } },
+      { id: "ar-pt", kind: "point", appearance: "answer", at: { x: 18, y: 0 } },
+    ],
+    labels: [
+      { key: "ne", objectId: "ne-pt", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "na", objectId: "na-pt", at: { x: 11, y: 0.8 }, placement: "above" },
+      { key: "na-ion", objectId: "na-ion", at: { x: 10, y: 0.8 }, placement: "above" },
+      { key: "cl", objectId: "cl-pt", at: { x: 17, y: 0.8 }, placement: "above" },
+      { key: "cl-ion", objectId: "cl-ion", at: { x: 18, y: 0.8 }, placement: "above" },
+      { key: "ar", objectId: "ar-pt", at: { x: 18, y: 0 }, placement: "below" },
+    ],
+  }}
   labels={{
-    choose: "Atompaar wählen",
-    metalRadius: <>Radius des Metalls</>,
-    metalShells: <>Schalen des Metalls</>,
-    nonmetalRadius: <>Radius des Nichtmetalls</>,
-    nonmetalShells: <>Schalen des Nichtmetalls</>,
-    progress: "Elektronenübergang",
-    view: "Metall- und Nichtmetallatom werden zu Ionen",
+    ne: <InlineMath math="\mathrm{Ne}:\ 2,8" />,
+    na: <InlineMath math="\mathrm{Na}:\ 2,8,1" />,
+    "na-ion": <InlineMath math="\mathrm{Na^+}:\ 2,8" />,
+    cl: <InlineMath math="\mathrm{Cl}:\ 2,8,7" />,
+    "cl-ion": <InlineMath math="\mathrm{Cl^-}:\ 2,8,8" />,
+    ar: <InlineMath math="\mathrm{Ar}:\ 2,8,8" />,
   }}
 />
+
+Beide Verschiebungen sind nur einen Schritt lang auf der Zahlengeraden der Elektronen. Natrium geht einen Schritt hinab zum Muster von Neon, während Chlor einen Schritt hinauf zum Muster von Argon geht.
 
 ### Formen der s p und d Orbitale
 
@@ -289,6 +350,7 @@ Die Reihenfolge der Besetzung nutzt Unterschalen wie <InlineMath math="2s" />, <
 <OrbitalCloudLab
   title={<>Die s, p und d Orbitale</>}
   description={<>Wähl ein Orbital und dreh die Wolke, um Keulen und Knotenebenen zu sehen.</>}
+  footer={<>Unterschalenbuchstaben beschreiben die räumliche Form der Elektronenwolke.</>}
   orbitals={["2s", "2pz", "3dz2", "3dxy"]}
   labels={{
     angular: <>Winkelknoten</>,
@@ -300,17 +362,24 @@ Die Reihenfolge der Besetzung nutzt Unterschalen wie <InlineMath math="2s" />, <
   }}
 />
 
+Beim Drehen jeder Wolke wird klar, warum schwerere Elemente mehr brauchen als flache Bohrsche Ringe. Elektronen besetzen dreidimensionale Räume mit festen Knoten und Keulen.
+
 ## Konfiguration und Spektrum verbinden
 
 Die Konfigurationen im Schalenmodell zeigen die Anordnung der Elektronen im Grundzustand, also <Highlight>im Zustand mit der niedrigsten Energie</Highlight>. Ein Linienspektrum entsteht, wenn ein Elektron Energie erhält und dann auf ein niedrigeres Energieniveau zurückkehrt.
 
-Die Energie des emittierten Lichts kann wie folgt geschrieben werden:
+Die Energie des emittierten Lichts hängt direkt mit Frequenz und Wellenlänge zusammen.
 
-<BlockMath math="\begin{aligned} E_{\text{Photon}} &amp;= E_{\text{hoch}} - E_{\text{niedrig}} \\ &amp;= h\nu \\ &amp;= \frac{hc}{\lambda} \end{aligned}" />
+<BlockMath math="\begin{aligned} E_{\text{Photon}} &= E_{\text{hoch}} - E_{\text{niedrig}} \\ &= h\nu \\ &= \frac{hc}{\lambda} \end{aligned}" />
 
-Das Symbol <InlineMath math="h" /> bezeichnet das Plancksche Wirkungsquantum, <InlineMath math="\nu" /> die Frequenz des Lichts, <InlineMath math="c" /> die Lichtgeschwindigkeit und <InlineMath math="\lambda" /> die Wellenlänge. Die [exakten Werte](https://physics.nist.gov/cuu/Constants/Table/allascii.txt) sind <InlineMath math="h = 6{,}62607015 \times 10^{-34}\ \mathrm{J\,s}" /> und <InlineMath math="c = 2{,}99792458 \times 10^8\ \mathrm{m\,s^{-1}}" />.
+Das Symbol <InlineMath math="h" /> bezeichnet das Plancksche Wirkungsquantum, <InlineMath math="\nu" /> die Frequenz des Lichts, <InlineMath math="c" /> die Lichtgeschwindigkeit und <InlineMath math="\lambda" /> die Wellenlänge. Die [exakten Werte von NIST](https://physics.nist.gov/cuu/Constants/Table/allascii.txt) stehen darunter.
 
-Berechne als Beispiel die Energie eines Photons mit der Vakuumwellenlänge <InlineMath math="600\ \mathrm{nm}" />. Verwende die gerundeten Konstanten <InlineMath math="h\approx6{,}626\times10^{-34}\ \mathrm{J\,s}" /> und <InlineMath math="c\approx3{,}00\times10^8\ \mathrm{m/s}" />:
+<BlockMath math="\begin{aligned}
+h &= 6{,}62607015 \times 10^{-34}\ \mathrm{J\,s} \\
+c &= 2{,}99792458 \times 10^8\ \mathrm{m\,s^{-1}}
+\end{aligned}" />
+
+Berechne als Beispiel die Energie eines Photons mit der Vakuumwellenlänge <InlineMath math="600\ \mathrm{nm}" /> mithilfe gerundeter Werte für <InlineMath math="h" /> und <InlineMath math="c" />.
 
 <BlockMath math="\begin{aligned}
 \lambda&=600\times10^{-9}\ \mathrm m=6{,}00\times10^{-7}\ \mathrm m\\
@@ -319,36 +388,50 @@ E&=\frac{hc}{\lambda}\\
 &\approx3{,}31\times10^{-19}\ \mathrm J
 \end{aligned}" />
 
-Elektronen besetzen bestimmte Energieniveaus. Ein Übergang zu einem niedrigeren Energieniveau kann Licht mit einer bestimmten Energie frei. Die Elektronenkonfiguration beschreibt dagegen die Anordnung der Elektronen im Grundzustand.
+Elektronen besetzen bestimmte Energieniveaus. Ein Übergang zu einem niedrigeren Energieniveau kann Licht mit einer bestimmten Energie freisetzen. Die Elektronenkonfiguration beschreibt dagegen die Anordnung der Elektronen im Grundzustand.
 
 ## Unsichtbare Linien
 
-Nicht jeder Elektronensprung ergibt sichtbares Licht. Ein Sprung auf die erste Schale setzt ein energiereiches ultraviolettes Photon frei, ein Sprung auf die dritte Schale ein infrarotes. **Je größer der Energieunterschied, desto kürzer die Wellenlänge**. Vergleiche unten auf der Karte die Photonenenergie jedes Sprungs.
+Nicht jeder Elektronensprung ergibt sichtbares Licht. Ein Sprung auf die erste Schale setzt ein energiereiches ultraviolettes Photon frei, ein Sprung auf die dritte Schale ein infrarotes. **Je größer der Energieunterschied, desto kürzer die Wellenlänge**.
 
-<BohrEmissionLab
-  title={<>Ultraviolette und infrarote Serien</>}
-  description={<>Wähl einen Sprung und vergleich seine Photonenenergie mit den sichtbaren Linien.</>}
-  falls={[{ from: 2, to: 1 }, { from: 3, to: 1 }, { from: 4, to: 3 }, { from: 5, to: 3 }]}
+<MathVisual
+  title={<>Ultraviolette sichtbare und infrarote Sprünge</>}
+  description={<>Photonenenergien in Elektronenvolt für drei Wasserstoffübergänge auf die Schalen <InlineMath math="n=1" />, <InlineMath math="n=2" /> und <InlineMath math="n=3" />.</>}
+  footer={<>Übergänge zur innersten Schale setzen weit mehr Energie frei als sichtbares Licht.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 11.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7.5, y: 7, z: 11 }, target: { x: 2.5, y: 4, z: 0 } },
+    objects: [
+      { id: "uv-bar", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 10.2 / 2, z: 0 }, size: { length: 1.3, height: 10.2, width: 1.3 } },
+      { id: "vis-bar", kind: "cuboid", appearance: "warning", center: { x: 2.5, y: 1.89 / 2, z: 0 }, size: { length: 1.3, height: 1.89, width: 1.3 } },
+      { id: "ir-bar", kind: "cuboid", appearance: "reference", center: { x: 5, y: 0.66 / 2, z: 0 }, size: { length: 1.3, height: 0.66, width: 1.3 } },
+    ],
+    labels: [
+      { key: "uv", objectId: "uv-bar", at: { x: 0, y: 10.7, z: 0 }, placement: "above" },
+      { key: "vis", objectId: "vis-bar", at: { x: 2.5, y: 2.4, z: 0 }, placement: "above" },
+      { key: "ir", objectId: "ir-bar", at: { x: 5, y: 1.2, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Elektronensprung wählen",
-    energy: <>Photonenenergie</>,
-    frequency: <>Photonenfrequenz</>,
-    transition: <>Elektronensprung</>,
-    view: "Bohrsches Wasserstoffatom",
-    wavelength: <>Wellenlänge</>,
+    uv: <InlineMath math="\mathrm{UV}\ (2\to 1):\ 10{,}2\ \mathrm{eV}" />,
+    vis: <InlineMath math="\mathrm{Rot}\ (3\to 2):\ 1{,}89\ \mathrm{eV}" />,
+    ir: <InlineMath math="\mathrm{IR}\ (4\to 3):\ 0{,}66\ \mathrm{eV}" />,
   }}
 />
 
+Der Sprung auf <InlineMath math="n = 1" /> überragt die sichtbare rote Linie um mehr als das Fünffache und liegt tief im Ultraviolett. Der kleine Sprung auf <InlineMath math="n = 3" /> trägt zu wenig Energie für das Auge und landet im Infrarot.
+
 ## Elektronenzahl aus der Ordnungszahl
 
-Für eine einfache Elektronenkonfiguration hilft immer dieselbe Reihenfolge:
+Für eine einfache Elektronenkonfiguration hilft immer dieselbe Reihenfolge.
 
 - Zuerst klären, ob das Teilchen ein **neutrales Atom oder ein Ion** ist.
 - Wenn es neutral ist, entspricht die Elektronenzahl der Ordnungszahl.
 - Die Schalen im verwendeten Modell von innen nach außen füllen.
 - Die Elektronenzahl jeder Schale durch Kommas getrennt notieren.
 
-Für neutrales Magnesium:
+So greift diese Reihenfolge bei neutralem Magnesium.
 
 <BlockMath math="\begin{aligned}
 Z &= 12 \\

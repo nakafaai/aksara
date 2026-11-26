@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Atomvorstellungen im antiken Griechenland",
   description:
@@ -15,34 +14,42 @@ Stell dir ein Stück Kreide, Papier oder einen Salzkristall vor. Wird es halbier
 
 Griechische Philosophen stellten solche Fragen lange vor Mikroskopen, modernen Reagenzgläsern oder Teilchendetektoren. Sie wiesen die Atomstruktur nicht experimentell nach. Sie suchten mit logischen Argumenten eine Antwort auf eine grundlegende Frage: **Woraus besteht Materie** wirklich?
 
-Die antike Debatte stellte Fragen, die spätere Atomtheorien mithilfe experimenteller Belege beantworteten.
+> Einen Stoff in immer feinere Körner zu brechen verändert die Größe der Probe, nicht die winzigen Grundbausteine dahinter.
 
-## Auch zerlegtes Wasser besteht aus Atomen
+Die moderne Chemie gibt eine Antwort, die du nachzählen kannst. Strom zerlegt flüssiges Wasser in Wasserstoffgas und Sauerstoffgas, aber **die Atome selbst teilen sich bei einer chemischen Reaktion nicht**. Zwei Wassermoleküle ordnen sich zu zwei Wasserstoffmolekülen und einem Sauerstoffmolekül um, sodass auf beiden Seiten <InlineMath math="4" /> Wasserstoffatome und <InlineMath math="2" /> Sauerstoffatome bleiben.
 
-Demokrit fragte, wie weit sich Materie teilen lässt. Die moderne Chemie gibt eine Antwort, die du beobachten kannst: Wasser lässt sich in Wasserstoff und Sauerstoff zerlegen, aber **die Atome selbst teilen sich bei einer chemischen Reaktion nicht**. Zieh den Regler und zähl die Atome. Vor und nach der Zerlegung sind es <InlineMath math="4" /> Wasserstoffatome und <InlineMath math="2" /> Sauerstoffatome.
-
-<ReactionBalanceLab
-  title={<>Zerlegung von Wasser</>}
-  description={<>Wassermoleküle zerfallen, aber jedes Atom bleibt ganz.</>}
-  reactions={[
-    { id: "water-electrolysis", name: "Zerlegung von Wasser", tab: <InlineMath math="\mathrm{H_2O}" /> },
-  ]}
-  reading="molecules"
+<MathVisual
+  title={<>Wasser zerfällt während Atome ganz bleiben</>}
+  description={<>Atomzahlen vor und nach der Zerlegung von zwei Wassermolekülen in Wasserstoff und Sauerstoff. Ein Gitterschritt nach oben ist <InlineMath math="1" /> Atom.</>}
+  footer={<>Wassermoleküle zerfallen, doch alle vier H und zwei O Atome bleiben ganz.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 3, y: 2, z: 0 } },
+    objects: [
+      { id: "before-h", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2, z: 0 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "before-o", kind: "cuboid", appearance: "secondary", center: { x: 1.5, y: 1, z: 0 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "after-h", kind: "cuboid", appearance: "primary", center: { x: 4.5, y: 2, z: 0 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "after-o", kind: "cuboid", appearance: "secondary", center: { x: 6, y: 1, z: 0 }, size: { length: 1.1, height: 2, width: 1.1 } },
+    ],
+    labels: [
+      { key: "before-h", objectId: "before-h", at: { x: 0, y: 4.2, z: 0 }, placement: "above" },
+      { key: "before-o", objectId: "before-o", at: { x: 1.5, y: 2.2, z: 0 }, placement: "above" },
+      { key: "after-h", objectId: "after-h", at: { x: 4.5, y: 4.2, z: 0 }, placement: "above" },
+      { key: "after-o", objectId: "after-o", at: { x: 6, y: 2.2, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome je Element</>,
-    choose: "Reaktion wählen",
-    economy: <>Atomökonomie</>,
-    equation: <>Reaktionsgleichung</>,
-    mass: <>Masse der Edukte und Produkte</>,
-    molecules: <>Anzahl der Moleküle</>,
-    products: <>Produkte</>,
-    progress: "Reaktionsverlauf",
-    reactants: <>Edukte</>,
-    view: "Reaktion auf Teilchenebene",
+    "before-h": <InlineMath math="\mathrm{H}:\ 4" />,
+    "before-o": <InlineMath math="\mathrm{O}:\ 2" />,
+    "after-h": <InlineMath math="\mathrm{H}:\ 4" />,
+    "after-o": <InlineMath math="\mathrm{O}:\ 2" />,
   }}
 />
 
-## Zwei gegensätzliche Antworten
+Die gleich hohen Säulen links und rechts zeigen die Antwort, nach der Demokrit suchte: Chemische Reaktionen ordnen Atome neu an, während jedes einzelne Atom ganz bleibt.
+
+## Kontinuierliche Materie und unteilbare Einheiten
 
 Zwei gegensätzliche Vorstellungen prägten die frühe Diskussion.
 
@@ -53,13 +60,14 @@ Zwei gegensätzliche Vorstellungen prägten die frühe Diskussion.
 
 **Kontinuierlich** bedeutet ohne Unterbrechung, wie eine Linie, die sich immer weiter teilen lässt. **Diskret** bedeutet aus einzelnen Einheiten aufgebaut, vergleichbar mit Ziegelsteinen in einer Wand.
 
-Demokrit nannte den kleinsten Baustein *atomos*, griechisch für „unzerschneidbar“.
+Demokrit nannte den kleinsten Baustein *atomos*, griechisch für "unzerschneidbar".
 
 Prüf die Frage des Demokrit mit Zahlen. Halbier ein <InlineMath math="1\ \mathrm{cm}" /> großes Korn <InlineMath math="n" />-mal, dann ist es <InlineMath math="2^{-n}\ \mathrm{cm}" /> groß. Schon etwa <InlineMath math="27" /> Halbierungen bringen es auf Atomgröße, rund <InlineMath math="10^{-10}\ \mathrm{m}" />. Jeder Gitterschritt nach unten ist zehnmal kleiner, also zoom die Linie entlang und zähl die Schnitte.
 
 <MathVisual
   title={<>Siebenundzwanzig Halbierungen bis zum Atom</>}
   description={<>Größe eines Korns nach jeder Halbierung, ab <InlineMath math="1\text{ cm}" />. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="3" /> Halbierungen. Senkrecht: Ein Gitterschritt nach unten ist zehnmal kleiner.</>}
+  footer={<>Jede Halbierung senkt die Linie, bis Schnitt 27 die Atomgröße erreicht.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.5, max: 9.5 } },
@@ -93,7 +101,9 @@ Prüf die Frage des Demokrit mit Zahlen. Halbier ein <InlineMath math="1\ \mathr
   }}
 />
 
-## Ausprobieren der Denkweise Demokrits
+Wiederholtes Halbieren schrumpft ein zentimetergroßes Korn überraschend schnell auf Atomgröße und überwindet acht Größenordnungen in weniger als dreißig Schnitten.
+
+### Ausprobieren der Denkweise Demokrits
 
 Das folgende Gedankenexperiment behandelt die Teilbarkeit von Materie. Stell dir vor, ein Objekt werde wiederholt zerschnitten, und vergleiche dann zwei Positionen: Aristoteles hielt eine **unbegrenzte Teilung** für möglich, während Demokrit einen **kleinsten Bestandteil** annahm. Die tatsächliche Form eines Atoms wird nicht dargestellt.
 
@@ -105,6 +115,7 @@ Das folgende Gedankenexperiment behandelt die Teilbarkeit von Materie. Stell dir
       einer Teilungsgrenze die Atomvorstellung entstand.
     </>
   }
+  footer={<>Vergleiche unbegrenztes Teilen mit Demokrits kleinster Einheit atomos.</>}
   labels={{
     chooseLevel: "Teilungsstufe auswählen",
     aristotleLabel: "Kontinuierlich",
@@ -136,11 +147,14 @@ Das folgende Gedankenexperiment behandelt die Teilbarkeit von Materie. Stell dir
   }}
 />
 
+Der Gang durch die Teilungsstufen macht klar, warum der Streit philosophisch blieb: Beide Seiten betrachteten immer kleinere Stücke und fragten, was hinter der Sichtgrenze liegt.
+
 Verfolg das Gedankenexperiment in Zahlen. Jeder Schnitt halbiert das Stück, nach <InlineMath math="n" /> Schnitten ist es also <InlineMath math="1/2^n" /> des Anfangs. Die Säulen unten zeigen nur vier Schnitte, und das letzte Stück ist schon ein Sechzehntel des ersten. Die Frage des Demokrit war, ob das ewig weitergeht oder bei einer unteilbaren Einheit aufhören muss.
 
 <MathVisual
   title={<>Ein Stück immer wieder halbieren</>}
   description={<>Ein <InlineMath math="8" /> Einheiten hohes Stück wird viermal halbiert. Jede Säule ist halb so hoch wie die vorige.</>}
+  footer={<>Vier Schnitte verkleinern die Höhe von 8 auf 0,5, ein Sechzehntel des Anfangs.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -163,76 +177,126 @@ Verfolg das Gedankenexperiment in Zahlen. Jeder Schnitt halbiert das Stück, nac
   }}
 />
 
-## Formen aus winzigen Teilchen
+Rein mathematisch lässt sich eine Zahl beliebig oft halbieren, ohne je null zu erreichen, weshalb Aristoteles' kontinuierliches Bild bis zu echten Experimenten leicht vorstellbar blieb.
 
-Demokrit vermutete, dass **die Form der winzigen Teilchen die Form dessen bestimmt, was wir sehen**. Ein Salzkristall prüft diese Ahnung heute: Sein Würfel entsteht aus Ionen, die würfelförmig gestapelt sind.
+### Formen aus geordneten Teilchen
 
-<IonLatticeLab
-  title={<>Salzwürfel aus gestapelten Teilchen</>}
-  description={<>Wechsle zwischen Kochsalz und Kaliumchlorid und lass den Kristall Zelle für Zelle wachsen.</>}
-  crystals={["sodium-chloride", "potassium-chloride"]}
+Demokrit vermutete, dass **die Ordnung winziger Teilchen die Form dessen bestimmt, was wir sehen**. Ein Kochsalzkristall prüft diese Ahnung heute: Seine flachen Würfelflächen entstehen, weil abwechselnde Natrium- und Chloridionen ein regelmäßiges Quadratgitter in jeder Richtung bilden.
+
+<MathVisual
+  title={<>Geordnete Packung bildet glatte Kristallflächen</>}
+  description={<>Eine Schicht aus abwechselnden Natriumionen (orange) und Chloridionen (violett) im Salzkristall. Regelmäßige Reihen ergeben gerade Kanten.</>}
+  footer={<>Wiederkehrende Teilchenreihen bilden gerade Kanten am sichtbaren Kristall.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "face", kind: "polygon", appearance: "reference", vertices: [{ x: 0.6, y: 0.6 }, { x: 3.4, y: 0.6 }, { x: 3.4, y: 3.4 }, { x: 0.6, y: 3.4 }] },
+      { id: "ion-11", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+      { id: "ion-21", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "ion-31", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "ion-12", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "ion-22", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+      { id: "ion-32", kind: "point", appearance: "secondary", at: { x: 3, y: 2 } },
+      { id: "ion-13", kind: "point", appearance: "primary", at: { x: 1, y: 3 } },
+      { id: "ion-23", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+      { id: "ion-33", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "cation", objectId: "ion-13", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "anion", objectId: "ion-23", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "edge", objectId: "face", at: { x: 2, y: 0.6 }, placement: "below" },
+    ],
+  }}
   labels={{
-    cells: "Elementarzellen pro Kante",
-    choose: "Kristall wählen",
-    count: <>Anzahl der Ionen</>,
-    formula: <>Formel</>,
-    ions: <>Ionen und ihre Radien</>,
-    lattice: <>Kante der Elementarzelle</>,
-    view: "Ionengitter",
+    cation: <InlineMath math="\mathrm{Na^+}" />,
+    anion: <InlineMath math="\mathrm{Cl^-}" />,
+    edge: <>Glatte Kristallfläche</>,
   }}
 />
 
-## Warum die Atomidee noch keine moderne Theorie war
+Sichtbare Salzwürfel gehen direkt aus der regelmäßigen Geometrie mikroskopischer Teilchen hervor und zeigen, wie Ordnung im Kleinen die Form fester Stoffe prägt.
 
-Demokrit entwickelte eine philosophische Erklärung **ohne experimentelle Messdaten**. Er nahm an, dass Materie aus sehr kleinen Einheiten besteht. Auch die moderne Chemie beschreibt Materie mit Teilchen, doch Atome enthalten Protonen und Elektronen sowie meistens Neutronen. Wasserstoff-1 ist ein Beispiel für ein Atom ohne Neutronen. Das Wort „unteilbar“ gehört zu Demokrits historischem Modell.
+## Philosophie ohne experimentelle Messdaten
+
+Demokrit entwickelte eine philosophische Erklärung **ohne experimentelle Messdaten**. Er nahm an, dass Materie aus sehr kleinen Einheiten besteht. Auch die moderne Chemie beschreibt Materie mit Teilchen, doch Atome enthalten Protonen und Elektronen sowie meistens Neutronen. Wasserstoff-1 ist ein Beispiel für ein Atom ohne Neutronen. Das Wort "unteilbar" gehört zu Demokrits historischem Modell.
 
 Nach Aristoteles endete die Teilung der Materie nicht bei einer kleinsten Einheit. Messungen der Atomstruktur hatten diese Meinungsverschiedenheit damals noch nicht geklärt.
 
-## Atome heute wiegen
+### Atome heute mit Messgeräten wiegen
 
-Demokrit konnte nur nachdenken, heute **misst ein Massenspektrometer Atome Strahl für Strahl**. Schwerere Atome werden im Magneten weniger abgelenkt, also sortieren ihre Bahnen sie nach der Masse.
+Demokrit konnte nur nachdenken, heute **sortiert ein Massenspektrometer Atome direkt nach ihrer Masse**. Gelangt Neongas in das Gerät, erscheinen drei scharfe Signale bei den Massenzahlen <InlineMath math="20" />, <InlineMath math="21" /> und <InlineMath math="22" />, womit harte Messwerte an die Stelle bloßer Vermutungen treten.
 
-<MassSpectrometerLab
-  title={<>Von der Vermutung zur Messung</>}
-  description={<>Wähle Neon oder Kupfer und vergleiche, wo jedes Isotop auf dem Detektor landet.</>}
-  samples={["neon", "copper"]}
+<MathVisual
+  title={<>Gemessenes Massenspektrum von Neon</>}
+  description={<>Relative Häufigkeit von Neonatomen nach ihrer Massenzahl. Waagerecht: Massenzahl. Senkrecht: ein Gitterschritt steht für <InlineMath math="10\%" /> Häufigkeit.</>}
+  footer={<>Moderne Messgeräte erfassen jeden Massenpeak von Neon direkt statt zu raten.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 19, max: 23 }, y: { min: -0.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "baseline", kind: "segment", appearance: "reference", from: { x: 19.3, y: 0 }, to: { x: 22.7, y: 0 } },
+      { id: "peak-20", kind: "segment", appearance: "primary", from: { x: 20, y: 0 }, to: { x: 20, y: 9.05 } },
+      { id: "peak-21", kind: "segment", appearance: "secondary", from: { x: 21, y: 0 }, to: { x: 21, y: 0.03 } },
+      { id: "peak-22", kind: "segment", appearance: "answer", from: { x: 22, y: 0 }, to: { x: 22, y: 0.92 } },
+      { id: "top-20", kind: "point", appearance: "primary", at: { x: 20, y: 9.05 } },
+      { id: "top-21", kind: "point", appearance: "secondary", at: { x: 21, y: 0.03 } },
+      { id: "top-22", kind: "point", appearance: "answer", at: { x: 22, y: 0.92 } },
+    ],
+    labels: [
+      { key: "ne20", objectId: "top-20", at: { x: 20, y: 9.05 }, placement: "right" },
+      { key: "ne21", objectId: "top-21", at: { x: 21, y: 0.03 }, placement: "above" },
+      { key: "ne22", objectId: "top-22", at: { x: 22, y: 0.92 }, placement: "above" },
+    ],
+  }}
   labels={{
-    average: <>Mittlere relative Atommasse</>,
-    choose: "Element wählen",
-    isotopes: <>Isotope und Häufigkeit</>,
-    north: "N",
-    radius: <>Bahnradius</>,
-    ratio: <>Verhältnis der Radien</>,
-    south: "S",
-    view: "Massenspektrometer",
+    ne20: <InlineMath math="{}^{20}\mathrm{Ne}:\ 90{,}5\%" />,
+    ne21: <InlineMath math="{}^{21}\mathrm{Ne}:\ 0{,}3\%" />,
+    ne22: <InlineMath math="{}^{22}\mathrm{Ne}:\ 9{,}2\%" />,
   }}
 />
 
-## Von der Philosophie zur Chemie
+Weil Detektoren reale Atome bei exakten Massenwerten zählen, entwickelte sich die Atomvorstellung vom philosophischen Argument zur messbaren Wissenschaft.
+
+### Von der philosophischen Debatte zu chemischen Daten
 
 Die griechische Atomvorstellung stellte eine Frage, die später naturwissenschaftlich geprüft werden konnte: Könnte Materie aus winzigen Einheiten unterhalb der direkten Beobachtungsgrenze bestehen? Messdaten dafür gab es damals noch nicht.
 
 Mehr als zweitausend Jahre später verband John Dalton die Atomidee mit der modernen Chemie. Mit Massendaten aus Reaktionen untersuchte er den Aufbau der Materie und entwickelte ein Atommodell für chemische Berechnungen. Die Atomtheorie ließ sich nun **an Messdaten prüfen**.
 
-## Atome verbinden sich in festen Verhältnissen
+## Feste ganzzahlige Verhältnisse in Verbindungen
 
-Zweitausend Jahre nach Demokrit nutzte Dalton die Idee der Atome, um Messdaten zu erklären. Nach Dalton **entstehen Verbindungen aus Atomen, die sich in ganzzahligen Verhältnissen verbinden**. Dreh <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{H_2O}" /> und <InlineMath math="\mathrm{CH_4}" />. Jedes Molekül hat eine feste Zahl an Atomen, und die Modelle beruhen auf gemessenen Bindungslängen und -winkeln.
+Zweitausend Jahre nach Demokrit nutzte Dalton die Idee der Atome, um Messdaten zu erklären. Nach Dalton **entstehen Verbindungen aus Atomen, die sich in ganzzahligen Verhältnissen verbinden**. Vergleiche Kohlenstoffdioxid (<InlineMath math="\mathrm{CO_2}" />), Wasser (<InlineMath math="\mathrm{H_2O}" />) und Methan (<InlineMath math="\mathrm{CH_4}" />): Jede Verbindung legt ihre Elemente in einer festen kleinen Ganzzahl fest.
 
-<MoleculeShapeLab
-  title={<>Atome in echten Molekülen</>}
-  description={<>Dreh jedes Molekül und zähl seine Atome.</>}
-  molecules={[
-    { id: "carbon-dioxide", name: "Kohlenstoffdioxid" },
-    { id: "water", name: "Wasser" },
-    { id: "methane", name: "Methan" },
-  ]}
+<MathVisual
+  title={<>Ganzzahlige Atomverhältnisse in drei Molekülen</>}
+  description={<>Anzahl der Atome jedes Elements in einem Molekül <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{H_2O}" /> und <InlineMath math="\mathrm{CH_4}" />. Ein Gitterschritt nach oben ist <InlineMath math="1" /> Atom.</>}
+  footer={<>Jede Verbindung hält ein festes ganzzahliges Verhältnis von Atomen ein.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 10 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 6, z: 12 }, target: { x: 4.2, y: 2, z: 0 } },
+    objects: [
+      { id: "co2-c", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 0.9, height: 1, width: 0.9 } },
+      { id: "co2-o", kind: "cuboid", appearance: "secondary", center: { x: 1.1, y: 1, z: 0 }, size: { length: 0.9, height: 2, width: 0.9 } },
+      { id: "h2o-h", kind: "cuboid", appearance: "primary", center: { x: 3.7, y: 1, z: 0 }, size: { length: 0.9, height: 2, width: 0.9 } },
+      { id: "h2o-o", kind: "cuboid", appearance: "secondary", center: { x: 4.8, y: 0.5, z: 0 }, size: { length: 0.9, height: 1, width: 0.9 } },
+      { id: "ch4-c", kind: "cuboid", appearance: "primary", center: { x: 7.4, y: 0.5, z: 0 }, size: { length: 0.9, height: 1, width: 0.9 } },
+      { id: "ch4-h", kind: "cuboid", appearance: "answer", center: { x: 8.5, y: 2, z: 0 }, size: { length: 0.9, height: 4, width: 0.9 } },
+    ],
+    labels: [
+      { key: "co2", objectId: "co2-o", at: { x: 0.55, y: 2.3, z: 0 }, placement: "above" },
+      { key: "h2o", objectId: "h2o-h", at: { x: 4.25, y: 2.3, z: 0 }, placement: "above" },
+      { key: "ch4", objectId: "ch4-h", at: { x: 7.95, y: 4.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Summenformel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel oder -länge</>,
-    view: "Dreidimensionales Molekülmodell",
+    co2: <InlineMath math="\mathrm{CO_2}:\ 1\ \mathrm{C},\ 2\ \mathrm{O}" />,
+    h2o: <InlineMath math="\mathrm{H_2O}:\ 2\ \mathrm{H},\ 1\ \mathrm{O}" />,
+    ch4: <InlineMath math="\mathrm{CH_4}:\ 1\ \mathrm{C},\ 4\ \mathrm{H}" />,
   }}
 />
+
+Diese festen Ganzzahlverhältnisse machten aus der antiken Frage nach der Teilbarkeit der Materie das prüfbare Fundament der modernen Chemie.

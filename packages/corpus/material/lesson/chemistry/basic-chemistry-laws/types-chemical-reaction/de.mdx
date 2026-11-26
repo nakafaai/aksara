@@ -1,8 +1,7 @@
-
 export const metadata = {
   title: "Arten chemischer Reaktionen",
   description:
-    "Verbrennungs-, Rost-, Niederschlags- und Gasbildungsreaktionen lassen sich an beobachtbaren Veränderungen und ausgeglichenen Gleichungen erkennen.",
+    "Verbrennung, Rosten, Fällung und Gasbildung lassen sich an beobachtbaren Veränderungen und ausgeglichenen Gleichungen erkennen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-09-13",
@@ -13,36 +12,48 @@ export const metadata = {
 
 Veränderungen bei Wärme und Farbe sowie Niederschläge oder entstehende Gase liefern erste Hinweise. Die Anordnung der Reaktanten und Produkte bestimmt anschließend den **Reaktionstyp**.
 
-Vier gängige Beispiele sind Verbrennung, Rosten, Fällung und Gasbildung. Reaktionen lassen sich außerdem als Fällungs-, Säure-Base- und Redoxreaktionen einordnen.
-
-Diese vier Bezeichnungen verwenden zwei Einteilungsgrundlagen. Verbrennung und Rosten werden über Redoxvorgänge erkannt, Fällung und Gasbildung dagegen über beobachtbare Produkte. Eine Reaktion kann <Highlight>mehrere dieser Beschreibungen erfüllen</Highlight>.
+In der Chemie ordnet man Reaktionen auf zwei Arten ein, entweder nach dem zugrunde liegenden Vorgang wie Redox oder Säure und Base, oder nach sichtbaren Produkten wie einem Feststoff oder Gas. Unsere vier Kernbeispiele nutzen beide Sichtweisen. Verbrennung und Rosten zeigen Redoxvorgänge, während Fällung und Gasbildung das sichtbare Ergebnis betonen, sodass eine Reaktion <Highlight>mehrere dieser Beschreibungen erfüllen</Highlight> kann.
 
 ## Drei Reaktionsmuster
 
-Ein Reaktionsmuster erkennst du am leichtesten daran, was mit den Molekülen passiert. Bei der Bildung von Wasser **verbinden sich zwei Stoffe zu einem**. Bei der Zerlegung von Wasser oder Wasserstoffperoxid **zerfällt ein Stoff in mehrere**. Wechsle zwischen den Reaktionen und achte darauf, auf welcher Seite mehr verschiedene Stoffe stehen.
+Ein Reaktionsmuster erkennst du am leichtesten daran, was mit den Molekülen passiert. Bei der Bildung von Wasser **verbinden sich zwei Stoffe zu einem**, sodass die Molekülzahl von drei auf zwei sinkt. Bei der Zerlegung von Wasser oder Wasserstoffperoxid **zerfällt ein Stoff in mehrere**, sodass die Molekülzahl von zwei auf drei steigt.
 
-<ReactionBalanceLab
-  title={<>Reaktionsmuster auf Teilchenebene</>}
-  description={<>Wechsel die Reaktion und sieh, auf welcher Seite mehr Stoffarten stehen.</>}
-  reactions={[
-    { id: "water-synthesis", name: "Bildung von Wasser", tab: <InlineMath math="\mathrm{H_2O}" /> },
-    { id: "water-electrolysis", name: "Zerlegung von Wasser", tab: <InlineMath math="\mathrm{H_2O}" /> },
-    { id: "peroxide-decomposition", name: "Zerfall von Wasserstoffperoxid", tab: <InlineMath math="\mathrm{H_2O_2}" /> },
-  ]}
-  reading="molecules"
+Die drei ausgeglichenen Gleichungen unten zeigen Synthese und Zerlegung direkt nebeneinander.
+
+<BlockMath math="\begin{aligned} &amp;2\mathrm{H_2} + \mathrm{O_2} \rightarrow 2\mathrm{H_2O} \\ &amp;2\mathrm{H_2O} \rightarrow 2\mathrm{H_2} + \mathrm{O_2} \\ &amp;2\mathrm{H_2O_2} \rightarrow 2\mathrm{H_2O} + \mathrm{O_2} \end{aligned}" />
+
+Vergleiche die Höhe jedes Eduktbalkens hinten mit dem Produktbalken vorn, um zu sehen, wie Synthese und Zerlegung die Molekülzahl verschieben.
+
+<MathVisual
+  title={<>Molekülzahlen bei Synthese und Zerlegung</>}
+  description={<>Eduktmoleküle (hinten) und Produktmoleküle (vorn) bei Wasserbildung (gelb), Wasserzerlegung (violett) und Peroxidzerfall (orange). Ein Gitterschritt ist <InlineMath math="1" /> Molekül.</>}
+  footer={<>Synthese senkt die Molekülzahl, während Zerlegung Moleküle in mehr Teile spaltet.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8.5, y: 7, z: 11 }, target: { x: 2.5, y: 1.5, z: 0 } },
+    objects: [
+      { id: "syn-left", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 1.5, z: -0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "syn-right", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "elec-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "elec-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.5, z: 0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "perox-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "perox-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.5, z: 0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+    ],
+    labels: [
+      { key: "syn", objectId: "syn-left", at: { x: 0, y: 3.3, z: -0.75 }, placement: "above" },
+      { key: "elec", objectId: "elec-right", at: { x: 2.5, y: 3.3, z: 0.75 }, placement: "above" },
+      { key: "perox", objectId: "perox-right", at: { x: 5, y: 3.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome je Element</>,
-    choose: "Reaktion wählen",
-    economy: <>Atomökonomie</>,
-    equation: <>Reaktionsgleichung</>,
-    mass: <>Masse der Edukte und Produkte</>,
-    molecules: <>Anzahl der Moleküle</>,
-    products: <>Produkte</>,
-    progress: "Reaktionsverlauf",
-    reactants: <>Edukte</>,
-    view: "Reaktion auf Teilchenebene",
+    syn: <InlineMath math="\mathrm{H_2O}:\ 3 \rightarrow 2" />,
+    elec: <InlineMath math="\mathrm{H_2O}:\ 2 \rightarrow 3" />,
+    perox: <InlineMath math="\mathrm{H_2O_2}:\ 2 \rightarrow 3" />,
   }}
 />
+
+Auch wenn die Zahl der Moleküle steigt oder fällt, bleibt jedes einzelne Wasserstoff- und Sauerstoffatom erhalten. Der Blick darauf, ob Moleküle zusammenwachsen oder zerfallen, zeigt dir das Reaktionsmuster auf einen Blick.
 
 ## Reaktionstypen im Modell
 
@@ -57,6 +68,7 @@ Wähle einen Reaktionstyp aus. Beobachte zuerst die sichtbare Veränderung und o
       die genauen Formeln und Koeffizienten liefert.
     </>
   }
+  footer={<>Verbinde jede sichtbare Veränderung mit der Gleichung, um den Typ zu bestätigen.</>}
   labels={{
     chooseType: "Reaktionstyp auswählen",
     before: "Reaktanten",
@@ -134,17 +146,19 @@ Wähle einen Reaktionstyp aus. Beobachte zuerst die sichtbare Veränderung und o
   }}
 />
 
+Jeder Reiter verknüpft die Beobachtung im Gefäß mit den genauen Symbolen der Gleichung. Sobald der sichtbare Hinweis und die ausgeglichenen Formeln zusammenpassen, fällt dir die Einordnung neuer Reaktionen viel leichter.
+
 ## Vier Beispiele für chemische Reaktionen
 
 Die folgenden vier Beispiele zeigen unterschiedliche Hinweise: Energiefreisetzung, Metallveränderung, Feststoffbildung und Gasbildung. Kein einzelner Hinweis genügt für sich, jedes Beispiel nennt deshalb die Beobachtung, die **eine chemische von einer physikalischen Veränderung** trennt.
 
 ### Verbrennung
 
-In den hier behandelten Beispielen einer Verbrennung mit Sauerstoff reagiert ein Stoff mit Sauerstoff und setzt **Energie als Wärme oder Licht** frei. Die Verbrennung von weißem Phosphor wird so dargestellt:
+In den hier behandelten Beispielen einer Verbrennung mit Sauerstoff reagiert ein Stoff mit Sauerstoff und setzt **Energie als Wärme oder Licht** frei. Die Verbrennung von weißem Phosphor folgt der Gleichung unten.
 
 <BlockMath math="\mathrm{P_4} + 5\mathrm{O_2} \rightarrow \mathrm{P_4O_{10}}" />
 
-[Phosphorpentoxid](https://pubchem.ncbi.nlm.nih.gov/compound/P4O10) besitzt die Molekülformel <InlineMath math="\mathrm{P_4O_{10}}" />. <InlineMath math="\mathrm{P_2O_5}" /> ist die häufig verwendete empirische Formel. Hier wird die Molekülform verwendet, weil das 3D-Teilchenmodell genau <InlineMath math="4" /> Phosphoratome und <InlineMath math="10" /> Sauerstoffatome zählt.
+[Phosphorpentoxid](https://pubchem.ncbi.nlm.nih.gov/compound/P4O10) besitzt die Molekülformel <InlineMath math="\mathrm{P_4O_{10}}" />. <InlineMath math="\mathrm{P_2O_5}" /> ist die häufig verwendete empirische Formel. Hier wird die Molekülform verwendet, weil das Teilchenmodell genau <InlineMath math="4" /> Phosphoratome und <InlineMath math="10" /> Sauerstoffatome zählt.
 
 ### Rosten
 
@@ -176,11 +190,12 @@ Prüfe die **Atomzahl** jedes Elements auf beiden Seiten. Jedes Ethanolmolekül 
 | H | <InlineMath math="12" /> | <InlineMath math="2\times6=12" /> |
 | O | <InlineMath math="6" /> | <InlineMath math="2\times1+2\times2=6" /> |
 
-Das Verbrennungsbeispiel <InlineMath math="\mathrm{P_4}+5\mathrm{O_2}\rightarrow\mathrm{P_4O_{10}}" /> setzt Energie als Licht und Wärme frei, und seine Atome zeigen dir, dass es ausgeglichen ist. Dreh die Balken: vier Phosphor- und zehn Sauerstoffatome auf jeder Seite.
+Schau noch einmal auf die Verbrennung von weißem Phosphor, um zu sehen, wie die Atomzahlen den Ausgleich bestätigen. Dreh die Balken unten und vergleiche die vier Phosphor- und zehn Sauerstoffatome auf beiden Seiten.
 
 <MathVisual
-  title={<>Atome auf beiden Seiten</>}
+  title={<>Atombilanz der Phosphorverbrennung</>}
   description={<>Atome von Phosphor (gelb) und Sauerstoff (orange) in den Edukten (hinten) und den Produkten (vorne). Ein Gitterschritt nach oben entspricht <InlineMath math="2" /> Atomen.</>}
+  footer={<>Gleiche Balkenhöhen bestätigen vier Phosphor- und zehn Sauerstoffatome je Seite.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -202,7 +217,9 @@ Das Verbrennungsbeispiel <InlineMath math="\mathrm{P_4}+5\mathrm{O_2}\rightarrow
   }}
 />
 
-## Koeffizienten ändern Formeln nicht
+Da jeder vordere Balken genauso hoch ist wie der hintere, geht bei der Verbrennung kein einziges Atom verloren. Genau diese Atomkontrolle gilt für jeden Reaktionstyp.
+
+## Reaktionsmuster sicher ausgleichen
 
 Ein Koeffizient ist die Zahl, die einer chemischen Formel vorangestellt wird. Wir können die Koeffizienten ändern, damit die Anzahl der Atome vor und nach der Reaktion übereinstimmt.
 
@@ -210,31 +227,46 @@ Ein Koeffizient ist die Zahl, die einer chemischen Formel vorangestellt wird. Wi
 
 In dieser Gleichung ist <InlineMath math="5" /> vor <InlineMath math="\mathrm{O_2}" /> ein Koeffizient. Die Indizes in <InlineMath math="\mathrm{P_4}" />, <InlineMath math="\mathrm{O_2}" /> und <InlineMath math="\mathrm{P_4O_{10}}" /> gehören zu den Stoffformeln und **dürfen nicht geändert werden**, nur um einen Ausgleich zu erzwingen.
 
+> Vergleiche deine Beobachtung im Becherglas immer mit der ausgeglichenen Gleichung. Sichtbare Hinweise weisen den Weg, und gleiche Atomzahlen bestätigen die Reaktion.
+
 ## Eine Doppelbindung öffnet sich
 
-Es gibt auch **Additionen**: Ein kleines Molekül lagert sich an eine Doppelbindung an. Im Ethen öffnet sich die Doppelbindung zwischen den beiden Kohlenstoffatomen und nimmt <InlineMath math="\mathrm{H_2}" /> oder <InlineMath math="\mathrm{H_2O}" /> auf. Alle Koeffizienten sind <InlineMath math="1" />, und jedes Eduktatom landet in einem einzigen Produkt.
+Es gibt auch **Additionen**, bei denen sich ein kleines Molekül an eine Doppelbindung anlagert. Im Ethen öffnet sich die Doppelbindung zwischen den beiden Kohlenstoffatomen und nimmt <InlineMath math="\mathrm{H_2}" /> oder <InlineMath math="\mathrm{H_2O}" /> auf. Alle Koeffizienten sind <InlineMath math="1" />, und jedes Eduktatom landet in einem einzigen Produkt.
 
-<ReactionBalanceLab
-  title={<>Additionen an Ethen</>}
-  description={<>Wähl Wasserstoff oder Wasser und sieh, wie sich die Doppelbindung dafür öffnet.</>}
-  reactions={[
-    { id: "ethene-hydrogenation", name: "Addition von Wasserstoff an Ethen", tab: <InlineMath math="\mathrm{C_2H_6}" /> },
-    { id: "ethene-hydration", name: "Addition von Wasser an Ethen", tab: <InlineMath math="\mathrm{C_2H_5OH}" /> },
-  ]}
-  reading="molecules"
+Beide Additionen unten fügen zwei Moleküle ohne jedes Nebenprodukt zu einem einzigen Stoff zusammen.
+
+<BlockMath math="\begin{aligned} &amp;\mathrm{C_2H_4} + \mathrm{H_2} \rightarrow \mathrm{C_2H_6} \\ &amp;\mathrm{C_2H_4} + \mathrm{H_2O} \rightarrow \mathrm{C_2H_5OH} \end{aligned}" />
+
+Vergleiche die gestapelten Eduktblöcke hinten mit dem einzelnen Produktblock vorn, um zu sehen, wie jedes Atom vollständig im Produkt ankommt.
+
+<MathVisual
+  title={<>Gesamtatome bei Additionen an Ethen</>}
+  description={<>Gestapelte Eduktatome (hinten, Ethen violett plus kleines Molekül gelb) und einzelnes Produkt (vorn, orange). Ein Gitterschritt sind <InlineMath math="2" /> Atome.</>}
+  footer={<>Alle Atome beider Edukte stapeln sich ohne Rest zum einzelnen Produktblock.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 8, z: 11 }, target: { x: 1.5, y: 2.25, z: 0 } },
+    objects: [
+      { id: "ethene-h", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1.5, z: -0.75 }, size: { length: 1.3, height: 3, width: 1.3 } },
+      { id: "h2-add", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 3.5, z: -0.75 }, size: { length: 1.3, height: 1, width: 1.3 } },
+      { id: "ethane", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2, z: 0.75 }, size: { length: 1.3, height: 4, width: 1.3 } },
+      { id: "ethene-w", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 1.5, z: -0.75 }, size: { length: 1.3, height: 3, width: 1.3 } },
+      { id: "h2o-add", kind: "cuboid", appearance: "highlight", center: { x: 3, y: 3.75, z: -0.75 }, size: { length: 1.3, height: 1.5, width: 1.3 } },
+      { id: "ethanol", kind: "cuboid", appearance: "primary", center: { x: 3, y: 2.25, z: 0.75 }, size: { length: 1.3, height: 4.5, width: 1.3 } },
+    ],
+    labels: [
+      { key: "ethane", objectId: "ethane", at: { x: 0, y: 4.3, z: 0.75 }, placement: "above" },
+      { key: "ethanol", objectId: "ethanol", at: { x: 3, y: 4.8, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome je Element</>,
-    choose: "Reaktion wählen",
-    economy: <>Atomökonomie</>,
-    equation: <>Reaktionsgleichung</>,
-    mass: <>Masse der Edukte und Produkte</>,
-    molecules: <>Anzahl der Moleküle</>,
-    products: <>Produkte</>,
-    progress: "Reaktionsverlauf",
-    reactants: <>Edukte</>,
-    view: "Reaktion auf Teilchenebene",
+    ethane: <InlineMath math="\mathrm{C_2H_6}:\ 6+2=8" />,
+    ethanol: <InlineMath math="\mathrm{C_2H_5OH}:\ 6+3=9" />,
   }}
 />
+
+Sobald sich die Doppelbindung öffnet, nimmt Ethen das gesamte ankommende Molekül auf, ohne ein Nebenprodukt abzuspalten. Genau diese vollständige Vereinigung macht Additionen in Gleichung und Atombilanz leicht erkennbar.
 
 ## Reaktionstypen anhand von Belegen bestimmen
 
@@ -251,11 +283,12 @@ Prüfe jeden Reaktionstyp mit der folgenden Tabelle.
 
 Ist der Reaktionstyp erkannt, wird die Gleichung sauber notiert: Reaktanten links, Produkte rechts. Anschließend werden die Koeffizienten angepasst, bis die Atomzahlen auf beiden Seiten übereinstimmen.
 
-Blasen sind der erste Hinweis, und die Gleichung <InlineMath math="\mathrm{C_6H_{12}O_6}\rightarrow2\mathrm{C_2H_5OH}+2\mathrm{CO_2}" /> bestätigt die Gärung. Nimm ein Mol Glucose und rechne mit <InlineMath math="\mathrm{C}=12" />, <InlineMath math="\mathrm{H}=1" /> und <InlineMath math="\mathrm{O}=16" />: <InlineMath math="180\ \mathrm{g}" /> Zucker werden zu Ethanol und Kohlenstoffdioxid mit derselben Summe. Dreh die Säulen und vergleiche ihre Höhen.
+Blasen liefern bei der Glucosegärung den ersten Hinweis, und die ausgeglichene Gleichung bestätigt die Massenbilanz. Nimm ein Mol Glucose und rechne mit <InlineMath math="\mathrm{C}=12" />, <InlineMath math="\mathrm{H}=1" /> und <InlineMath math="\mathrm{O}=16" />, dann werden <InlineMath math="180\ \mathrm{g}" /> Zucker zu Ethanol und Kohlenstoffdioxid mit exakt derselben Gesamtmasse. Dreh die Säulen und vergleiche ihre Höhen.
 
 <MathVisual
   title={<>Gärung behält die Masse</>}
   description={<>Ein Mol Glucose (links) und das entstandene Ethanol und Kohlenstoffdioxid (rechts). Ein Gitterschritt nach oben entspricht <InlineMath math="20" /> Gramm.</>}
+  footer={<>Gestapeltes Ethanol und Kohlendioxid erreichen genau die 180 Gramm Glucose.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 10 }, z: { min: -1.5, max: 1.5 } },
@@ -277,3 +310,5 @@ Blasen sind der erste Hinweis, und die Gleichung <InlineMath math="\mathrm{C_6H_
     gas: <InlineMath math="2\mathrm{CO_2}:\ 2\cdot44=88\ \mathrm{g}" />,
   }}
 />
+
+Selbst wenn Kohlendioxid aus einem offenen Kolben entweicht, gehört seine Masse weiter zu den Produkten. Zählt man Flüssigkeit und Gas wieder zusammen, ergibt sich exakt die Ausgangsmasse von <InlineMath math="180\ \mathrm{g}" />.

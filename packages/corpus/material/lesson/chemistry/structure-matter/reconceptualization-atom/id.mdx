@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Teori Atom Dalton",
   description:
@@ -13,7 +12,7 @@ export const metadata = {
 
 Sebelum John Dalton, atom sudah pernah dibayangkan sebagai bagian terkecil penyusun materi. Gagasan tentang atom ini masih bersifat filosofis dan belum menghasilkan model yang dapat digunakan untuk menghitung hasil percobaan.
 
-Dalton tidak dapat melihat atom secara langsung. Karena itu, ia mempelajari massa zat sebelum dan sesudah reaksi. Dari hasil pengukuran tersebut, ia menyusun model yang menjelaskan <Highlight>mengapa senyawa memiliki komposisi tetap</Highlight> dan mengapa massanya sering membentuk perbandingan sederhana.
+Dalton tidak dapat melihat atom secara langsung. Karena itu, ia mempelajari massa zat sebelum dan sesudah reaksi. Dari hasil pengukuran itu, ia menyusun model yang menjelaskan <Highlight>mengapa senyawa memiliki komposisi tetap</Highlight> dan mengapa massanya sering membentuk perbandingan sederhana.
 
 > Dalton mengubah cara ilmuwan memahami atom. Ia memakai atom sebagai satuan hitung untuk menjelaskan massa dan komposisi zat dalam reaksi kimia.
 
@@ -30,6 +29,7 @@ Pilih mode, lalu periksa **besaran yang tetap**: jumlah atom, komposisi senyawa,
       Bandingkan partikel di kiri, partikel di kanan, dan angka rasionya.
     </>
   }
+  footer={<>Ganti mode untuk melihat cara hitungan atom menjelaskan massa, rasio tetap, dan berganda.</>}
   labels={{
     chooseMode: "Pilih bukti teori Dalton",
     modes: {
@@ -70,7 +70,7 @@ Pilih mode, lalu periksa **besaran yang tetap**: jumlah atom, komposisi senyawa,
   }}
 />
 
-Contoh air pada mode Komposisi tetap memakai massa relatif yang dibulatkan menjadi bilangan bulat, yaitu <InlineMath math="H \approx 1" /> dan <InlineMath math="O \approx 16" />. Dengan pembulatan tersebut, <InlineMath math="2(1):16=1:8" /> menjadi pendekatan bilangan bulat. Untuk unsur yang memiliki beberapa isotop, bobot atom merupakan rata-rata tertimbang dari massa dan kelimpahan isotop sehingga bobot tersebut biasanya bukan bilangan bulat. Kelimpahan isotop alami juga dapat berbeda antarsampel. Karena itu, beberapa [bobot atom standar](https://ciaaw.org/atomic-weights.htm) dinyatakan sebagai rentang nilai.
+Contoh air pada mode Komposisi tetap memakai massa relatif yang dibulatkan menjadi bilangan bulat, yaitu <InlineMath math="H \approx 1" /> dan <InlineMath math="O \approx 16" />. Dengan pembulatan itu, <InlineMath math="2(1):16=1:8" /> menjadi pendekatan bilangan bulat. Untuk unsur yang memiliki beberapa isotop, bobot atom adalah rata-rata tertimbang dari massa dan kelimpahan isotop sehingga nilainya biasanya bukan bilangan bulat. Kelimpahan isotop alami juga dapat berbeda antarsampel. Karena itu, beberapa [bobot atom standar](https://ciaaw.org/atomic-weights.htm) dinyatakan sebagai rentang nilai.
 
 ## Lima Pernyataan dalam Teori Atom Dalton
 
@@ -105,13 +105,14 @@ Jika massa karbon dibuat sama, massa oksigen pada <InlineMath math="\mathrm{CO}"
 &= \frac{1}{2}
 \end{aligned}" />
 
-Rasio <InlineMath math="1:2" /> adalah bilangan bulat sederhana. Pola seperti ini mendukung hukum perbandingan berganda: jika dua unsur membentuk beberapa senyawa, massa salah satu unsur yang bergabung dengan massa tetap unsur lain memiliki rasio bilangan bulat sederhana.
+Karena <InlineMath math="1:2" /> adalah perbandingan bilangan bulat yang rapi, Dalton membacanya sebagai bukti bahwa karbon bergabung dengan atom oksigen utuh, bukan pecahan sembarang dari massa oksigen.
 
 Dengan karbon tetap <InlineMath math="12\ \mathrm{g}" />, karbon monoksida mengandung <InlineMath math="16\ \mathrm{g}" /> oksigen dan karbon dioksida <InlineMath math="32\ \mathrm{g}" />, dengan satu kotak grid untuk <InlineMath math="8\ \mathrm{g}" />. Batang kedua tepat dua kali batang pertama, dan Dalton membacanya sebagai satu atom oksigen melawan dua.
 
 <MathVisual
   title={<>Oksigen per <InlineMath math="12\text{ g}" /> Karbon</>}
   description={<>Oksigen yang bergabung dengan <InlineMath math="12\text{ g}" /> karbon dalam <InlineMath math="\mathrm{CO}" /> dan <InlineMath math="\mathrm{CO_2}" />. Satu kotak grid ke atas sama dengan <InlineMath math="8\text{ g}" />.</>}
+  footer={<>Batang oksigen yang tepat dua kali lipat mengarah langsung pada atom utuh yang terhitung.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
@@ -131,6 +132,8 @@ Dengan karbon tetap <InlineMath math="12\ \mathrm{g}" />, karbon monoksida menga
   }}
 />
 
+Melihat satu batang berdiri tepat dua kali lebih tinggi daripada batang pertama memperjelas mengapa Dalton berargumen bahwa oksigen masuk ke senyawa dalam langkah atom yang terhitung.
+
 ## Keterbatasan Teori Atom Dalton
 
 Model Dalton menjelaskan pola massa dalam reaksi kimia, tetapi belum dapat menjelaskan semua gejala. Jika atom benar-benar berupa bola pejal tanpa bagian dalam, mengapa logam dapat menghantarkan listrik? Mengapa medan listrik dan medan magnet dapat membelokkan sinar katode?
@@ -138,6 +141,7 @@ Model Dalton menjelaskan pola massa dalam reaksi kimia, tetapi belum dapat menje
 <Mermaid
   title={<>Bukti Baru tentang Struktur Atom</>}
   description={<>Diagram menunjukkan bagaimana data massa reaksi mendukung model Dalton, lalu eksperimen sinar katode memberi bukti adanya partikel subatom.</>}
+  footer={<>Setiap pengukuran baru mendorong kimiawan mengganti bola pejal dengan model atom berstruktur.</>}
   chart={`flowchart LR
     A["Gagasan atom"] --> B["Data massa reaksi"]
     B --> C["Model Dalton"]
@@ -149,13 +153,18 @@ Eksperimen sinar katode J. J. Thomson menunjukkan adanya **partikel bermuatan ne
 
 Dalton menganggap semua atom dari unsur yang sama memiliki massa yang sama. Anggapan ini tidak dapat menjelaskan isotop, yaitu atom dengan jumlah proton sama tetapi jumlah neutron berbeda. Penemuan partikel subatom menjelaskan mengapa atom dari satu unsur dapat memiliki massa yang berbeda.
 
-Model Dalton menjelaskan kekekalan massa, komposisi tetap, dan perbandingan berganda. Model ini belum menjelaskan muatan listrik, isotop, atau struktur bagian dalam atom. Bukti tersebut memerlukan model yang memuat partikel subatom.
+Model Dalton menjelaskan kekekalan massa, komposisi tetap, dan perbandingan berganda. Model ini belum menjelaskan muatan listrik, isotop, atau struktur bagian dalam atom. Bukti baru itu memerlukan model yang memuat partikel subatom.
 
-Bola pejal Dalton tidak bisa menjelaskan partikel alfa yang memantul balik dari lempeng emas. Kalau semua muatan positif terkumpul di inti yang mungil, partikel yang lewat pada jarak <InlineMath math="b" /> dibelokkan sebesar <InlineMath math="\theta=2\arctan\tfrac{b_0}{b}" />, dengan <InlineMath math="b_0" /> bergantung pada energi dan muatannya. Hanya partikel yang lewat sangat dekat, jauh lebih dekat daripada <InlineMath math="b_0" />, yang berbalik jauh. Perbesar ujung kiri kurvanya.
+Bola pejal Dalton tidak bisa menjelaskan partikel alfa yang memantul balik dari lempeng emas. Ketika seluruh muatan positif terkumpul di inti yang mungil, partikel alfa yang lewat pada jarak lintasan <InlineMath math="b" /> dibelokkan sebesar sudut <InlineMath math="\theta" /> berikut, dengan <InlineMath math="b_0" /> bergantung pada energi dan muatannya.
+
+<BlockMath math="\theta = 2 \arctan\left(\frac{b_0}{b}\right)" />
+
+Hanya partikel yang lewat sangat dekat, jauh lebih dekat daripada <InlineMath math="b_0" />, yang berbalik jauh. Perbesar ujung kiri kurvanya.
 
 <MathVisual
   title={<>Hanya yang Nyaris Menabrak yang Memantul</>}
   description={<>Sudut belok partikel alfa terhadap jarak lewatnya dari inti. Mendatar: satu kotak grid berarti setengah jarak <InlineMath math="b_0" />. Tegak: satu kotak grid berarti <InlineMath math="30" /> derajat.</>}
+  footer={<>Sudut belok besar hanya muncul saat partikel alfa melintas amat dekat ke inti.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 10.5 }, y: { min: -0.3, max: 5.5 } },
@@ -179,6 +188,8 @@ Bola pejal Dalton tidak bisa menjelaskan partikel alfa yang memantul balik dari 
   }}
 />
 
+Penurunan tajam sudut belok itu menjelaskan mengapa hampir semua partikel alfa menembus lempeng emas hampir lurus dan hanya tumbukan yang sangat dekat yang memantul balik.
+
 ### Thomson Menemukan Elektron
 
 Retakan pertama pada atom pejal Dalton datang dari tabung yang berpendar. **Berkasnya membelok ke pelat positif**, jadi bermuatan negatif, dan Thomson menyebut partikelnya elektron.
@@ -186,6 +197,7 @@ Retakan pertama pada atom pejal Dalton datang dari tabung yang berpendar. **Berk
 <CathodeRayLab
   title={<>Berkas yang Membelok</>}
   description={<>Naikkan tegangan pelat dan lihat titiknya bergeser di layar.</>}
+  footer={<>Tegangan pelat yang lebih tinggi menarik berkas elektron negatif makin jauh ke pelat positif.</>}
   labels={{
     anode: <>Tegangan pemercepat</>,
     field: <>Medan listrik antarpelat</>,
@@ -195,6 +207,8 @@ Retakan pertama pada atom pejal Dalton datang dari tabung yang berpendar. **Berk
   }}
 />
 
+Karena mengganti logam elektrode tidak pernah mengubah pembelokan berkas, Thomson menyimpulkan bahwa elektron ada di dalam atom semua unsur, mematahkan gagasan bola tak terbagi.
+
 ### Rutherford Menemukan Inti
 
 Model Dalton menganggap atom sebagai bola pejal. Percobaan Geiger dan Marsden menembakkan partikel alfa ke lembaran emas tipis. Sebagian besar partikel lewat hampir lurus, tetapi sebagian kecil berbelok tajam dan ada yang memantul. Rutherford menyimpulkan bahwa **massa dan muatan positif atom terkumpul di inti yang sangat kecil**, sekitar dua puluh ribu kali lebih kecil daripada atomnya.
@@ -202,6 +216,7 @@ Model Dalton menganggap atom sebagai bola pejal. Percobaan Geiger dan Marsden me
 <RutherfordScatteringLab
   title={<>Partikel Alfa di Dekat Inti Emas</>}
   description={<>Lintasan dihitung dari gaya tolak listrik antara partikel alfa dan inti emas.</>}
+  footer={<>Energi alfa lebih besar mendorong lintasan makin dekat ke inti emas sebelum terpantul.</>}
   energy={7.7}
   labels={{
     approach: <>Jarak terdekat</>,
@@ -212,36 +227,64 @@ Model Dalton menganggap atom sebagai bola pejal. Percobaan Geiger dan Marsden me
   }}
 />
 
-Inti Rutherford menyisakan teka-teki: mengapa elektron tidak berputar jatuh ke inti? Bohr menjawab dengan orbit tetap, dan **setiap lompatan antarorbit memancarkan cahaya dengan satu warna yang pasti**, yaitu garis yang ditunjukkan hidrogen.
+Inti Rutherford menyisakan teka-teki: mengapa elektron tidak berputar jatuh ke inti? Bohr menjawab dengan tingkat energi terkuantisasi sehingga **setiap lompatan turun memancarkan foton berpanjang gelombang pasti**, menghasilkan garis spektrum tajam hidrogen.
 
-<BohrEmissionLab
-  title={<>Orbit Tetap Bohr</>}
-  description={<>Pilih lompatan turun ke tingkat kedua dan baca warna yang dipancarkannya.</>}
-  falls={[{ from: 3, to: 2 }, { from: 4, to: 2 }, { from: 5, to: 2 }]}
+<MathVisual
+  title={<>Lompatan Balmer Hidrogen dan Energi Foton</>}
+  description={<>Energi yang dilepas saat elektron turun ke tingkat <InlineMath math="n = 2" /> dari <InlineMath math="n = 3" />, <InlineMath math="4" />, dan <InlineMath math="5" />. Satu kotak tegak berarti <InlineMath math="0{,}5\ \mathrm{eV}" />.</>}
+  footer={<>Lompatan lebih besar melepas foton berenergi lebih tinggi dari merah menuju ungu.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "j32", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.89, z: 0 }, size: { length: 1.4, height: 3.78, width: 1.4 } },
+      { id: "j42", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2.55, z: 0 }, size: { length: 1.4, height: 5.10, width: 1.4 } },
+      { id: "j52", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.86, z: 0 }, size: { length: 1.4, height: 5.72, width: 1.4 } },
+    ],
+    labels: [
+      { key: "j32", objectId: "j32", at: { x: 0, y: 4.1, z: 0 }, placement: "above" },
+      { key: "j42", objectId: "j42", at: { x: 2.5, y: 5.4, z: 0 }, placement: "above" },
+      { key: "j52", objectId: "j52", at: { x: 5, y: 6.1, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih lompatan elektron",
-    energy: <>Energi foton</>,
-    frequency: <>Frekuensi foton</>,
-    transition: <>Lompatan elektron</>,
-    view: "Atom hidrogen model Bohr",
-    wavelength: <>Panjang gelombang</>,
+    j32: <>3 ke 2: 656 nm (merah)</>,
+    j42: <>4 ke 2: 486 nm (biru)</>,
+    j52: <>5 ke 2: 434 nm (ungu)</>,
   }}
 />
+
+Langkah spektrum diskret itu membuktikan bahwa elektron hanya boleh menempati tingkat energi tertentu, bukan sembarang jari-jari di sekitar inti.
 
 ### Dari Lintasan ke Awan Peluang
 
-Setelah inti ditemukan, model atom terus diperbaiki. Model kuantum tidak lagi menggambar lintasan elektron. **Elektron digambarkan sebagai awan peluang** di sekitar inti. Pilih orbital dan putar awannya. Daerah yang padat adalah tempat elektron paling sering ditemukan.
+Setelah inti ditemukan, model atom terus diperbaiki. Model kuantum tidak lagi menggambar lintasan elektron. **Elektron digambarkan sebagai awan peluang** yang jarak paling mungkinnya dari inti meluas pesat saat bilangan kuantum utama <InlineMath math="n" /> meningkat.
 
-<OrbitalCloudLab
-  title={<>Atom dalam Model Kuantum</>}
-  description={<>Pilih orbital dan putar awannya untuk menemukan tempat elektron paling mungkin berada.</>}
-  orbitals={["1s", "2pz", "3dxy"]}
+<MathVisual
+  title={<>Jari-Jari Peluang Tertinggi Orbital s</>}
+  description={<>Jarak puncak peluang radial untuk awan hidrogen <InlineMath math="1s" />, <InlineMath math="2s" />, dan <InlineMath math="3s" /> dalam jari-jari Bohr <InlineMath math="a_0" />. Satu kotak tegak berarti <InlineMath math="2\,a_0" />.</>}
+  footer={<>Tingkat kuantum lebih tinggi menyebarkan awan elektron jauh lebih luas dari inti.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "s1", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.25, z: 0 }, size: { length: 1.4, height: 0.5, width: 1.4 } },
+      { id: "s2", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.31, z: 0 }, size: { length: 1.4, height: 2.62, width: 1.4 } },
+      { id: "s3", kind: "cuboid", appearance: "primary", center: { x: 5, y: 3.27, z: 0 }, size: { length: 1.4, height: 6.54, width: 1.4 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "s1", at: { x: 0, y: 0.9, z: 0 }, placement: "above" },
+      { key: "s2", objectId: "s2", at: { x: 2.5, y: 3.0, z: 0 }, placement: "above" },
+      { key: "s3", objectId: "s3", at: { x: 5, y: 6.9, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    angular: <>Simpul sudut</>,
-    choose: "Pilih orbital",
-    numbers: <>Bilangan kuantum</>,
-    orbital: <>Orbital</>,
-    radial: <>Simpul radial</>,
-    view: "Awan elektron orbital",
+    s1: <InlineMath math="1s:\ 1{,}0\,a_0" />,
+    s2: <InlineMath math="2s:\ 5{,}2\,a_0" />,
+    s3: <InlineMath math="3s:\ 13{,}1\,a_0" />,
   }}
 />
+
+Setiap model atom baru mempertahankan hasil yang sudah terbukti oleh data lama sambil menambahkan fisika yang lebih dalam, membawa kimia dari bola pejal Dalton menuju orbital kuantum modern.

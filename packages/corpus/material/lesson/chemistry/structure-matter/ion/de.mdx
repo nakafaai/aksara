@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Ionen",
   description:
@@ -11,32 +10,53 @@ export const metadata = {
 
 ## Wenn ein Atom nicht mehr neutral ist
 
-Ein neutrales Atom besitzt gleich viele Protonen und Elektronen. Ein **Ion** entsteht, wenn ein Atom oder eine Atomgruppe eine elektrische Gesamtladung trägt. Hier betrachten wir zunächst einatomige Ionen.
+Ein **Ion** entsteht, wenn ein Atom oder eine Atomgruppe eine elektrische Gesamtladung trägt. Hier betrachten wir zunächst einatomige Ionen, bei denen <Highlight>Elektronen- und Protonenzahl nicht übereinstimmen</Highlight>.
 
-Ein Ion entsteht, <Highlight>wenn Elektronen- und Protonenzahl nicht übereinstimmen</Highlight>.
+Protonen sitzen fest im Kern und werden bei einfachen chemischen Vorgängen nicht ausgetauscht. Nur die Elektronen in den äußeren Schalen wechseln. Die Protonenzahl bestimmt deshalb weiterhin das Element, während der Unterschied zwischen Protonen und Elektronen die Ladung festlegt.
 
-Protonen sitzen im Kern und werden bei einfachen chemischen Vorgängen nicht ausgetauscht. Elektronen sind die Teilchen, deren Zahl sich verändert. Die Protonenzahl bestimmt daher weiterhin das Element, während die Differenz zwischen Protonen und Elektronen die Ionenladung bestimmt.
+> Protonen legen die Identität eines Elements fest, während abgegebene oder aufgenommene Elektronen seine Ladung verändern.
 
-Eine einfache Möglichkeit, die Ladung abzulesen, ist das Vorzeichen. Protonen erhöhen den positiven Wert, während Elektronen den negativen Wert erhöhen. Wenn die Zählungen übereinstimmen, ist das Ergebnis <InlineMath math="0" /> oder neutral. Wenn die Elektronen abnehmen, bleibt die positive Ladung bestehen. Wenn die Elektronenzahl zunimmt, bleibt die negative Ladung bestehen.
+Jedes Proton trägt <InlineMath math="+1" /> und jedes Elektron <InlineMath math="-1" /> bei. Stimmen beide Zahlen überein, bleibt das Atom elektrisch neutral. Weniger Elektronen ergeben ein positives Ion, zusätzliche Elektronen ein negatives Ion.
 
 ## Ein Elektron wandert vom Metall zum Nichtmetall
 
-Ein Ion entsteht, wenn ein Elektron wandert. Natrium hat <InlineMath math="1" /> Elektron in der äußeren Schale, Chlor braucht noch <InlineMath math="1" />, damit seine äußere Schale <InlineMath math="8" /> enthält. Zieh den Regler und sieh zu, wie dieses Elektron hinüberwechselt. **Natrium wird zum kleineren <InlineMath math="\mathrm{Na^+}" />, Chlor zum größeren <InlineMath math="\mathrm{Cl^-}" />**, weil sich die Zahl der Elektronen ändert, die Zahl der Protonen aber gleich bleibt.
+Ein Ion entsteht, wenn ein Elektron wandert. Natrium hat <InlineMath math="1" /> Elektron in der äußeren Schale, Chlor braucht noch <InlineMath math="1" />, damit seine äußere Schale <InlineMath math="8" /> enthält. **Natrium schrumpft zum kleineren <InlineMath math="\mathrm{Na^+}" />, Chlor wächst zum größeren <InlineMath math="\mathrm{Cl^-}" />**, weil sich die Elektronenhülle ändert, während die Kernladung gleich bleibt.
 
-<IonFormationLab
-  title={<>Atome werden zu Ionen</>}
-  description={<>Die Glaskugeln zeigen Atom- und Ionenradien im echten Maßstab.</>}
-  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+<MathVisual
+  title={<>Atom- und Ionenradien im Vergleich</>}
+  description={<>Gemessene Radien in Pikometern für Natrium und Chlor vor und nach dem Übergang eines Elektrons vom Metall zum Nichtmetall.</>}
+  footer={<>Elektronenverlust verkleinert Kationen, Elektronenaufnahme vergrößert Anionen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -15, max: 225 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0.4, y: 0 }, to: { x: 4.6, y: 0 } },
+      { id: "na-atom", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 186 } },
+      { id: "na-ion", kind: "segment", appearance: "primary", from: { x: 2, y: 0 }, to: { x: 2, y: 102 } },
+      { id: "cl-atom", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 99 } },
+      { id: "cl-ion", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 181 } },
+      { id: "p-na", kind: "point", appearance: "reference", at: { x: 1, y: 186 } },
+      { id: "p-nai", kind: "point", appearance: "primary", at: { x: 2, y: 102 } },
+      { id: "p-cl", kind: "point", appearance: "reference", at: { x: 3, y: 99 } },
+      { id: "p-cli", kind: "point", appearance: "secondary", at: { x: 4, y: 181 } },
+    ],
+    labels: [
+      { key: "na-atom", objectId: "p-na", at: { x: 1, y: 186 }, placement: "above" },
+      { key: "na-ion", objectId: "p-nai", at: { x: 2, y: 102 }, placement: "above" },
+      { key: "cl-atom", objectId: "p-cl", at: { x: 3, y: 99 }, placement: "above" },
+      { key: "cl-ion", objectId: "p-cli", at: { x: 4, y: 181 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Atompaar wählen",
-    metalRadius: <>Radius des Metalls</>,
-    metalShells: <>Schalen des Metalls</>,
-    nonmetalRadius: <>Radius des Nichtmetalls</>,
-    nonmetalShells: <>Schalen des Nichtmetalls</>,
-    progress: "Elektronenübergang",
-    view: "Metall- und Nichtmetallatom werden zu Ionen",
+    "na-atom": <InlineMath math="\mathrm{Na}:\ 186\ \mathrm{pm}" />,
+    "na-ion": <InlineMath math="\mathrm{Na^+}:\ 102\ \mathrm{pm}" />,
+    "cl-atom": <InlineMath math="\mathrm{Cl}:\ 99\ \mathrm{pm}" />,
+    "cl-ion": <InlineMath math="\mathrm{Cl^-}:\ 181\ \mathrm{pm}" />,
   }}
 />
+
+Natrium verliert fast die Hälfte seines Radius, sobald die dritte Schale leer wird. Chlor dehnt sich in die Gegenrichtung aus, weil das zusätzliche Elektron die Abstoßung in der Außenschale verstärkt.
 
 ## Kationen und Anionen
 
@@ -50,11 +70,12 @@ Ein [Ion](https://goldbook.iupac.org/terms/view/I03158) ist ein atomares oder mo
   title={<>Simulator zur Ionenbildung</>}
   description={
     <>
-      Folge dem Weg von links nach rechts: Ein neutrales Atom gibt Elektronen
-      ab oder nimmt sie auf und wird zum Kation oder Anion. Protonen und
-      Neutronen bleiben unverändert.
+      Folge dem Weg von links nach rechts, wie ein neutrales Atom Elektronen
+      abgibt oder aufnimmt und zum Kation oder Anion wird, während Protonen und
+      Neutronen gleich bleiben.
     </>
   }
+  footer={<>Wechsle die Beispiele und prüfe, dass sich nur die Elektronenzahl ändert.</>}
   labels={{
     beforeChange: "Vorher",
     electronChange: "Elektronen verändern sich",
@@ -90,11 +111,14 @@ Ein [Ion](https://goldbook.iupac.org/terms/view/I03158) ist ein atomares oder mo
   }}
 />
 
-Das Vorzeichen von <InlineMath math="q=p^{+}-e^{-}" /> sagt dir, welche Art Teilchen du hast. Weniger Elektronen als Protonen ergeben rechts ein positives Kation, zusätzliche Elektronen links ein negatives Anion, und ein neutrales Atom liegt bei null. Zoom hinein und prüf jede Subtraktion.
+Schau in jedem Beispiel des Simulators auf die Zeilen für Protonen und Neutronen. Beide Zahlen bleiben unverändert, während allein die Elektronen die Endladung ins Positive oder Negative kippen.
+
+Das Vorzeichen von <InlineMath math="q" /> sagt dir, welche Art Teilchen du hast. Weniger Elektronen als Protonen ergeben rechts ein positives Kation, zusätzliche Elektronen links ein negatives Anion, und ein neutrales Atom liegt bei null. Zoom hinein und prüf jede Subtraktion.
 
 <MathVisual
   title={<>Kation oder Anion aus der Ladung</>}
   description={<>Fünf Teilchen nach ihrer Ladung, Protonen minus Elektronen. Kationen (orange) liegen rechts, Anionen (violett) links.</>}
+  footer={<>Positive Ladungen liegen rechts von null, negative links von null.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1, max: 1 } },
@@ -124,57 +148,101 @@ Das Vorzeichen von <InlineMath math="q=p^{+}-e^{-}" /> sagt dir, welche Art Teil
   }}
 />
 
+Jedes Teilchen auf dieser Linie erhält seine Ladung direkt aus der Differenz von Protonen minus Elektronen. Neutrales Neon bildet den Mittelpunkt bei null.
+
 ### Kationen entstehen im Wasser
 
-Trifft Natrium auf Wasser, gibt jedes Atom sein Außenelektron ab und **wird zum Kation <InlineMath math="\mathrm{Na^+}" />**, während das Wasser ringsum zu Hydroxid und Wasserstoffgas wird.
+Trifft ein Alkalimetall auf Wasser, gibt jedes Atom sein einzelnes Außenelektron ab und **wird zu einem <InlineMath math="+1" /> Kation** wie <InlineMath math="\mathrm{Na^+}" /> oder <InlineMath math="\mathrm{K^+}" />. Weiter unten in der Gruppe löst sich dieses Elektron noch leichter ab.
 
-<AlkaliWaterLab
-  title={<>Ein Metall wird zu Ionen</>}
-  description={<>Vergleiche Natrium mit Kalium und lies die Gleichung, die jede Reaktion schreibt.</>}
-  metals={["sodium", "potassium"]}
+<MathVisual
+  title={<>Alkalimetalle bilden positive Ionen</>}
+  description={<>Erste Ionisierungsenergie in Kilojoule pro Mol für Lithium, Natrium und Kalium. Niedrigere Linien geben ihr Außenelektron leichter ab.</>}
+  footer={<>Kalium gibt sein Außenelektron am leichtesten ab und bildet rasch ein Kation.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -30, max: 600 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0.4, y: 0 }, to: { x: 3.6, y: 0 } },
+      { id: "li-bar", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 520 } },
+      { id: "na-bar", kind: "segment", appearance: "primary", from: { x: 2, y: 0 }, to: { x: 2, y: 496 } },
+      { id: "k-bar", kind: "segment", appearance: "warning", from: { x: 3, y: 0 }, to: { x: 3, y: 419 } },
+      { id: "li-pt", kind: "point", appearance: "reference", at: { x: 1, y: 520 } },
+      { id: "na-pt", kind: "point", appearance: "primary", at: { x: 2, y: 496 } },
+      { id: "k-pt", kind: "point", appearance: "warning", at: { x: 3, y: 419 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li-pt", at: { x: 1, y: 520 }, placement: "above" },
+      { key: "na", objectId: "na-pt", at: { x: 2, y: 496 }, placement: "above" },
+      { key: "k", objectId: "k-pt", at: { x: 3, y: 419 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Metall wählen",
-    density: <>Dichte</>,
-    equation: <>Reaktionsgleichung</>,
-    ionization: <>Erste Ionisierungsenergie</>,
-    melting: <>Schmelzpunkt</>,
-    radius: <>Atomradius</>,
-    view: "Metall in einem Becherglas mit Wasser",
+    li: <InlineMath math="\mathrm{Li}\to\mathrm{Li^+}:\ 520" />,
+    na: <InlineMath math="\mathrm{Na}\to\mathrm{Na^+}:\ 496" />,
+    k: <InlineMath math="\mathrm{K}\to\mathrm{K^+}:\ 419" />,
   }}
 />
+
+Weil Kalium sein Außenelektron lockerer bindet als Natrium oder Lithium, geht es im Wasser am schnellsten in <InlineMath math="\mathrm{K^+}" /> Kationen über.
 
 ### Kationen und Anionen bilden einen Kristall
 
-Kationen und Anionen ziehen sich an und packen sich deshalb dicht zu einem Kristall. Im Kochsalz ist **jedes <InlineMath math="\mathrm{Na^+}" /> Ion von <InlineMath math="6" /> <InlineMath math="\mathrm{Cl^-}" /> Ionen umgeben**, und umgekehrt. Vergrößere den Kristall mit dem Regler. Kationen und Anionen bleiben immer fast gleich viele, deshalb lautet die Formel <InlineMath math="\mathrm{NaCl}" />, ein Verhältnis von <InlineMath math="1 : 1" />.
+Kationen und Anionen ziehen sich an und packen sich deshalb dicht in ein wechselndes Kristallgitter. Im Kochsalz sitzt **jedes <InlineMath math="\mathrm{Na^+}" /> Ion direkt neben <InlineMath math="\mathrm{Cl^-}" /> Nachbarn**, sodass positive und negative Ladungen im Verhältnis <InlineMath math="1 : 1" /> ausgeglichen bleiben.
 
-<IonLatticeLab
-  title={<>Gitter von Natriumchlorid und Magnesiumoxid</>}
-  description={<>Die Ionen sind mit ihren gemessenen Radien gezeichnet.</>}
-  crystals={["sodium-chloride", "magnesium-oxide"]}
+<MathVisual
+  title={<>Abwechselnde Ionen in einer Salzschicht</>}
+  description={<>Eine flache Ebene eines Natriumchloridkristalls mit abwechselnden Natriumkationen (orange) und Chloridanionen (violett) auf einem Gitter.</>}
+  footer={<>Abwechselnde Kationen und Anionen halten den gesamten Kristall elektrisch neutral.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.8 }, y: { min: -0.8, max: 2.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "h0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "h1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 2, y: 1 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 2, y: 2 } },
+      { id: "v0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 2 } },
+      { id: "v1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 2 } },
+      { id: "v2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "p00", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "p10", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "p20", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+      { id: "p01", kind: "point", appearance: "secondary", at: { x: 0, y: 1 } },
+      { id: "p11", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+      { id: "p21", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "p02", kind: "point", appearance: "primary", at: { x: 0, y: 2 } },
+      { id: "p12", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "p22", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "center", objectId: "p11", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "right", objectId: "p21", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "top", objectId: "p12", at: { x: 1, y: 2 }, placement: "above" },
+    ],
+  }}
   labels={{
-    cells: "Elementarzellen pro Kante",
-    choose: "Kristall wählen",
-    count: <>Anzahl der Ionen</>,
-    formula: <>Formel</>,
-    ions: <>Ionen und ihre Radien</>,
-    lattice: <>Kante der Elementarzelle</>,
-    view: "Ionengitter",
+    center: <InlineMath math="\mathrm{Na^+}" />,
+    right: <InlineMath math="\mathrm{Cl^-}" />,
+    top: <InlineMath math="\mathrm{Cl^-}" />,
   }}
 />
 
+Jeder direkte Nachbar eines orangen <InlineMath math="\mathrm{Na^+}" /> Ions ist ein violettes <InlineMath math="\mathrm{Cl^-}" /> Ion. Dieser strenge Wechsel gleicht entgegengesetzte Ladungen im gesamten Kristall aus und liefert die Formel <InlineMath math="\mathrm{NaCl}" />.
+
 ## Ionenladung aus der Differenz von Protonen und Elektronen
 
-Die Ionenladung ergibt sich aus der Protonenzahl minus der Elektronenzahl:
+Die Ionenladung ergibt sich aus der Protonenzahl minus der Elektronenzahl.
 
 <BlockMath math="q = p^+ - e^-" />
 
 Das Symbol <InlineMath math="q" /> ist die Ladungszahl des Ions in **Einheiten der Elementarladung**, nicht in Coulomb, <InlineMath math="p^+" /> ist die Anzahl der Protonen und <InlineMath math="e^-" /> ist die Anzahl der Elektronen.
 
-Für die Elektronenzahl eines Ions wird dieselbe Formel umgestellt:
+Für die Elektronenzahl eines Ions wird dieselbe Formel umgestellt.
 
 <BlockMath math="e^- = p^+ - q" />
 
-Beispiel für Natrium:
+Beim Natriumkation verringert diese Umstellung die Elektronenzahl um eins.
 
 <BlockMath math="\begin{aligned}
 {}^{23}_{11}\mathrm{Na}^{+} &: p^+ = 11,\ q = +1 \\
@@ -182,7 +250,7 @@ e^- &= 11 - (+1) \\
 &= 10
 \end{aligned}" />
 
-Fluorid-Beispiel:
+Beim Fluoridanion erhöht dieselbe Rechnung die Elektronenzahl um eins.
 
 <BlockMath math="\begin{aligned}
 {}^{19}_{9}\mathrm{F}^{-} &: p^+ = 9,\ q = -1 \\
@@ -190,22 +258,23 @@ e^- &= 9 - (-1) \\
 &= 10
 \end{aligned}" />
 
-Das negative Vorzeichen in <InlineMath math="\mathrm{F}^{-}" /> bedeutet, dass es mehr Elektronen als Protonen gibt. Deshalb wird <InlineMath math="9 - (-1)" /> zu <InlineMath math="10" />.
+Das negative Vorzeichen in <InlineMath math="\mathrm{F}^{-}" /> bedeutet, dass es mehr Elektronen als Protonen gibt, weshalb die Subtraktion einer negativen Ladung auf <InlineMath math="10" /> Elektronen führt.
 
-Vergleich ein Lithiumatom mit einem Lithiumion, Protonen orange hinten, Elektronen violett vorn. Ein verlorenes Elektron lässt <InlineMath math="3" /> Protonen gegen <InlineMath math="2" /> Elektronen zurück, also <InlineMath math="q=3-2=+1" />.
+Vergleiche ein Lithiumatom mit einem Lithiumion unten, mit Protonen orange hinten und Elektronen violett vorn. Ein verlorenes Elektron lässt <InlineMath math="3" /> Protonen gegen <InlineMath math="2" /> Elektronen zurück und ergibt die Ladung <InlineMath math="+1" />.
 
 <MathVisual
   title={<>Lithiumatom und Lithiumion</>}
   description={<>Protonen (orange, hinten) und Elektronen (violett, vorn) in <InlineMath math="\mathrm{Li}" /> und <InlineMath math="\mathrm{Li^+}" />. Ein Gitterschritt nach oben sind <InlineMath math="2" /> Teilchen.</>}
+  footer={<>Nur die violette Elektronensäule sinkt, wenn neutrales Lithium zum Kation wird.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 3 }, z: { min: -1.5, max: 1.5 } },
     view: { kind: "camera", position: { x: 6, y: 5, z: 8 }, target: { x: 1.5, y: 1, z: 0 } },
     objects: [
-      { id: "atom-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (3 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "atom-e", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (3 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "ion-p", kind: "cuboid", appearance: "primary", center: { x: 3, y: (3 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "ion-e", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 2 / 2, width: 1.2 } },
+      { id: "atom-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (3 / 2) / 2, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "atom-e", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (3 / 2) / 2, z: 0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "ion-p", kind: "cuboid", appearance: "primary", center: { x: 3, y: (3 / 2) / 2, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "ion-e", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 2) / 2, z: 0.75 }, size: { length: 1.2, height: 2 / 2, width: 1.2 } },
     ],
     labels: [
       { key: "atom", objectId: "atom-e", at: { x: 0, y: 2, z: 0.75 }, placement: "above" },
@@ -218,25 +287,44 @@ Vergleich ein Lithiumatom mit einem Lithiumion, Protonen orange hinten, Elektron
   }}
 />
 
+Beide orangen Protonensäulen bleiben gleich hoch. Die positive Ladung entsteht allein dadurch, dass die violette Elektronensäule um eins absinkt.
+
 ## Ionen im Massenspektrometer
 
-Ein Massenspektrometer schlägt zuerst jedem Atom ein Elektron weg, denn **nur ein geladenes Teilchen wird im Magneten abgelenkt**. Jeder Strahl, den du siehst, ist ein Strahl positiver Ionen.
+Ein Massenspektrometer schlägt zuerst jedem Atom ein Elektron weg, denn **nur ein geladenes Teilchen wird im Magnetfeld abgelenkt**. Neutrale Atome fliegen geradeaus weiter, während positive Ionen je nach Masse unterschiedlich stark gekrümmt werden.
 
-<MassSpectrometerLab
-  title={<>Geladene Atome im Magneten</>}
-  description={<>Wähle Chlor oder Magnesium und sieh, wie sich die Ionenstrahlen nach der Masse aufteilen.</>}
-  samples={["chlorine", "magnesium"]}
+<MathVisual
+  title={<>Wie Ionen sich im Magnetfeld trennen</>}
+  description={<>Schematische Bahnen eines neutralen Atoms (graue Gerade) und zweier Chlorkationen, die im Magnetfeld nach ihrer Masse nach unten abgelenkt werden.</>}
+  footer={<>Neutrale Atome fliegen geradeaus, leichtere Ionen krümmen sich stärker.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "neutral", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.5, y: 0 } },
+      { id: "heavy-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.5, y: -0.6 } },
+      { id: "heavy-b", kind: "segment", appearance: "secondary", from: { x: 2.5, y: -0.6 }, to: { x: 5.2, y: -2.0 } },
+      { id: "light-a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.2, y: -1.1 } },
+      { id: "light-b", kind: "segment", appearance: "primary", from: { x: 2.2, y: -1.1 }, to: { x: 4.5, y: -3.2 } },
+      { id: "p-neu", kind: "point", appearance: "reference", at: { x: 5.5, y: 0 } },
+      { id: "p-heavy", kind: "point", appearance: "secondary", at: { x: 5.2, y: -2.0 } },
+      { id: "p-light", kind: "point", appearance: "primary", at: { x: 4.5, y: -3.2 } },
+    ],
+    labels: [
+      { key: "neu", objectId: "p-neu", at: { x: 5.5, y: 0 }, placement: "above" },
+      { key: "heavy", objectId: "p-heavy", at: { x: 5.2, y: -2.0 }, placement: "right" },
+      { key: "light", objectId: "p-light", at: { x: 4.5, y: -3.2 }, placement: "below" },
+    ],
+  }}
   labels={{
-    average: <>Mittlere relative Atommasse</>,
-    choose: "Element wählen",
-    isotopes: <>Isotope und Häufigkeit</>,
-    north: "N",
-    radius: <>Bahnradius</>,
-    ratio: <>Verhältnis der Radien</>,
-    south: "S",
-    view: "Massenspektrometer",
+    neu: <InlineMath math="\mathrm{Cl}\ (q=0)" />,
+    heavy: <InlineMath math="^{37}\mathrm{Cl^+}" />,
+    light: <InlineMath math="^{35}\mathrm{Cl^+}" />,
   }}
 />
+
+Ohne vorherige Ionisierung könnte der Magnet die Teilchen nicht sortieren. Erst die <InlineMath math="+1" /> Ladung erlaubt es dem Detektor, schwerere und leichtere Ionen sauber zu trennen.
 
 ## Zusammensetzung eines Ions
 
@@ -248,11 +336,11 @@ Wenn ein Atom zum Ion wird, bleiben die **Zahlen der Protonen und Neutronen glei
 | Neutronen | Bleiben beim selben Isotop gleich | Die Massenzahl ändert sich nicht. |
 | Elektronen | Ändern sich | Die Ionenladung ändert sich. |
 
-<InlineMath math="\mathrm{Na}" /> und <InlineMath math="\mathrm{Na}^{+}" /> sind deshalb beide Natrium: Ihre Protonenzahl bleibt <InlineMath math="11" />. <InlineMath math="\mathrm{Na}^{+}" /> besitzt jedoch nur <InlineMath math="10" /> statt <InlineMath math="11" /> Elektronen.
+<InlineMath math="\mathrm{Na}" /> und <InlineMath math="\mathrm{Na}^{+}" /> sind deshalb beide Natrium, weil ihre Protonenzahl <InlineMath math="11" /> bleibt. <InlineMath math="\mathrm{Na}^{+}" /> besitzt jedoch nur <InlineMath math="10" /> statt <InlineMath math="11" /> Elektronen.
 
-## Ausgearbeitete Tabelle für Ionenzählungen
+## Teilchenzahlen aus einem Ionensymbol ablesen
 
-Die Tabelle zeigt die vollständige Rechnung. Von links nach rechts gelesen liefert die Ordnungszahl <InlineMath math="Z" /> die Protonenzahl, <InlineMath math="A - Z" /> die Neutronenzahl und <InlineMath math="q = p^+ - e^-" /> den **Zusammenhang zwischen Ladung und Elektronenzahl**.
+Die Tabelle zeigt die vollständige Übersicht. Von links nach rechts gelesen liefert die Ordnungszahl <InlineMath math="Z" /> die Protonenzahl, <InlineMath math="A - Z" /> die Neutronenzahl und die Ladungsformel den **Zusammenhang zwischen Ladung und Elektronenzahl**.
 
 | Symbol | Ordnungszahl | Massenzahl | Ladung | Protonen | Elektronen | Neutronen |
 | :----- | :------------ | :---------- | :----- | :------ | :-------- | :------- |
@@ -263,11 +351,11 @@ Die Tabelle zeigt die vollständige Rechnung. Von links nach rechts gelesen lief
 | <InlineMath math="{}^{27}_{13}\mathrm{Al}" /> | <InlineMath math="13" /> | <InlineMath math="27" /> | <InlineMath math="0" /> | <InlineMath math="13" /> | <InlineMath math="13" /> | <InlineMath math="14" /> |
 | <InlineMath math="{}^{27}_{13}\mathrm{Al}^{3+}" /> | <InlineMath math="13" /> | <InlineMath math="27" /> | <InlineMath math="+3" /> | <InlineMath math="13" /> | <InlineMath math="10" /> | <InlineMath math="14" /> |
 
-Nehmen wir <InlineMath math="{}^{7}_{3}\mathrm{Li}^{+}" />. Die Ordnungszahl <InlineMath math="3" /> bedeutet <InlineMath math="3" /> Protonen. Bei der Ladung <InlineMath math="+1" /> ergibt sich folgende Elektronenzahl:
+Nehmen wir <InlineMath math="{}^{7}_{3}\mathrm{Li}^{+}" />. Die Ordnungszahl <InlineMath math="3" /> bedeutet <InlineMath math="3" /> Protonen. Bei der Ladung <InlineMath math="+1" /> ergibt sich direkt folgende Elektronenzahl.
 
 <BlockMath math="e^- = 3 - (+1) = 2" />
 
-Seine Neutronenzahl ergibt sich aus der Massenzahl:
+Seine Neutronenzahl folgt aus Massenzahl minus Ordnungszahl.
 
 <BlockMath math="n^0 = 7 - 3 = 4" />
 

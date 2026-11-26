@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Characteristics of Chemical Reactions",
   description:
@@ -17,91 +16,83 @@ A **chemical reaction** happens when starting substances change into new substan
 
 <BlockMath math="\text{reactants} \rightarrow \text{products}" />
 
-Without analysis equipment, visible changes can provide initial clues that a chemical reaction has occurred. These clues include gas formation, a precipitate, a color change, or an energy change. Reactions can also be classified as precipitation, acid-base, and oxidation-reduction reactions.
+> Look past surface changes and ask whether the atoms have formed a brand new substance with different properties.
 
-## Atoms Form New Partners
+Without analysis equipment, visible changes give helpful first hints that new products may have formed. Observers watch for gas bubbles, solid precipitates, unexpected color shifts, or temperature changes, then verify whether the chemical identity actually changed.
 
-Visible signs of a reaction, such as gas bubbles, appear because **atoms swap partners**. Drag the slider below from left to right. The old bonds in <InlineMath math="\mathrm{H_2O_2}" /> fade, the atoms move, and new <InlineMath math="\mathrm{H_2O}" /> and <InlineMath math="\mathrm{O_2}" /> gas form. Every element keeps the same number of atoms, but the substances are new.
+## Atomic Rearrangement and Macroscopic Clues
 
-<ReactionBalanceLab
-  title={<>A Reaction Atom by Atom</>}
-  description={<>Watch bonds break and form as hydrogen peroxide breaks down and methane burns.</>}
-  reactions={[
-    { id: "peroxide-decomposition", name: "Breaking down hydrogen peroxide", tab: <InlineMath math="\mathrm{H_2O_2}" /> },
-    { id: "methane-combustion", name: "Burning methane", tab: <InlineMath math="\mathrm{CH_4}" /> },
-  ]}
-  reading="molecules"
+Every macroscopic sign comes from what happens at the **particle scale**. When old bonds break and new bonds form, the same atoms regroup into different molecules that interact differently with heat, light, and solvents.
+
+### Atoms Form New Partners
+
+Visible signs of a reaction, such as gas bubbles, appear because **atoms swap partners**. Hydrogen peroxide decomposition shows this shift clearly.
+
+<BlockMath math="2\mathrm{H_2O_2} \rightarrow 2\mathrm{H_2O} + \mathrm{O_2}" />
+
+Every hydrogen and oxygen atom stays counted, yet two reactant molecules split into three product molecules.
+
+<MathVisual
+  title={<>Atoms Conserved While Molecules Change</>}
+  description={<>Atom and molecule counts for <InlineMath math="2\mathrm{H_2O_2} \rightarrow 2\mathrm{H_2O} + \mathrm{O_2}" />. Back row shows reactants and front row shows products. One grid step up is <InlineMath math="1" /> unit.</>}
+  footer={<>Hydrogen and oxygen stay at four atoms each, while molecule count rises from two to three.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "h-in", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2, z: -0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "h-out", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2, z: 0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "o-in", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2, z: -0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "o-out", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2, z: 0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "mol-in", kind: "cuboid", appearance: "warning", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "mol-out", kind: "cuboid", appearance: "secondary", center: { x: 5, y: 1.5, z: 0.75 }, size: { length: 1.1, height: 3, width: 1.1 } },
+    ],
+    labels: [
+      { key: "h", objectId: "h-out", at: { x: 0, y: 4.3, z: 0.75 }, placement: "above" },
+      { key: "o", objectId: "o-out", at: { x: 2.5, y: 4.3, z: 0.75 }, placement: "above" },
+      { key: "mol", objectId: "mol-out", at: { x: 5, y: 3.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms of each element</>,
-    choose: "Choose a reaction",
-    economy: <>Atom economy</>,
-    equation: <>Balanced equation</>,
-    mass: <>Mass of reactants and products</>,
-    molecules: <>Number of molecules</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Reaction at the level of atoms",
+    h: <InlineMath math="\mathrm{H}:\ 4 = 4" />,
+    o: <InlineMath math="\mathrm{O}:\ 4 = 4" />,
+    mol: <>Molecules: 2 to 3</>,
   }}
 />
 
-## Observing Reaction Evidence in a Model
+Notice that the atom bars never change height between reactants and products, while the molecule bar climbs from two to three. That shift confirms that bonds broke and reformed into new substances, including oxygen gas that escapes as visible bubbles.
 
-Choose one clue, then compare the **before and after states**. Observe what appears and infer what may have happened to the substances.
+### Comparing Observable Clues
 
-<ChemicalReactionCharacteristicsLab
-  title={<>Chemical Reaction Evidence Model</>}
-  description={
-    <>
-      Observe the visible change, then distinguish evidence for a chemical
-      reaction from a sign that can also appear during a physical change.
-    </>
-  }
+When you record lab observations, compare how a clue **develops over time** rather than reacting to a single snapshot. In the gas curve below, a chemical reaction releases <InlineMath math="\mathrm{CO_2}" /> steadily until a reactant runs out, whereas dissolved air escaping from warmed water levels off almost immediately.
+
+<MathVisual
+  title={<>Gas Volume Released Over Time</>}
+  description={<>Illustrative gas collected from a chemical reaction (orange) versus degassing warm water (gray). Horizontal step is <InlineMath math="1\text{ min}" /> and vertical step is <InlineMath math="10\text{ mL}" />.</>}
+  footer={<>Sustained gas release tapering to a flat plateau points to a reactant being consumed.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "rxn", kind: "function", appearance: "primary", formula: "5.8 * (1 - exp(-0.48 * x))", domain: { min: 0, max: 10 } },
+      { id: "degas", kind: "function", appearance: "reference", formula: "0.75 * (1 - exp(-1.2 * x))", domain: { min: 0, max: 10 } },
+      { id: "rxn-pt", kind: "point", appearance: "primary", at: { x: 8, y: 5.68 } },
+      { id: "degas-pt", kind: "point", appearance: "reference", at: { x: 3, y: 0.73 } },
+    ],
+    labels: [
+      { key: "rxn", objectId: "rxn-pt", at: { x: 8, y: 5.68 }, placement: "above-left" },
+      { key: "degas", objectId: "degas-pt", at: { x: 3, y: 0.73 }, placement: "above-right" },
+    ],
+  }}
   labels={{
-    chooseCue: "Choose a chemical reaction clue",
-    before: "Before",
-    after: "After",
-    transition: "Change from before to after",
-    observationLabel: "What appears",
-    meaningLabel: "Meaning of the change",
-    limitLabel: "Limit of the evidence",
-    cues: {
-      gas: {
-        tab: "Gas",
-        helperCaption: <>Rising bubbles can indicate that a gas is forming from the mixture.</>,
-        observation: <>Bubbles or gas leave the mixture.</>,
-        meaning: (
-          <>
-            One product may be a gas, such as{" "}
-            <InlineMath math="\mathrm{CO_2}" />.
-          </>
-        ),
-        limit: <>Boiling bubbles are not automatically a chemical reaction.</>,
-      },
-      precipitate: {
-        tab: "Precipitate",
-        helperCaption: <>A newly formed solid that settles can indicate a new insoluble substance.</>,
-        observation: <>A new insoluble solid appears.</>,
-        meaning: <>Ions in solution can form a solid compound.</>,
-        limit: <>Dust or dirt is not evidence of a new product.</>,
-      },
-      color: {
-        tab: "Color",
-        helperCaption: <>A color change can indicate a new substance that absorbs light differently.</>,
-        observation: <>Color changes without added dye.</>,
-        meaning: <>New particles can absorb light in a different way.</>,
-        limit: <>Mixing dye into water is only a physical change.</>,
-      },
-      energy: {
-        tab: "Energy",
-        helperCaption: <>The net balance between breaking old bonds and forming new bonds can warm, cool, or light the surroundings.</>,
-        observation: <>Temperature changes or light appears as substances react.</>,
-        meaning: <>Breaking bonds requires energy, while forming bonds releases energy.</>,
-        limit: <>Heat from an outside source must be separated from reaction heat.</>,
-      },
-    },
+    rxn: <>Reaction gas: 58 mL</>,
+    degas: <>Physical bubbles: 7.5 mL</>,
   }}
 />
+
+Tracking the measurement across minutes separates a real reaction from a brief physical disturbance. Still, even a large volume of gas must be identified by a chemical test before you conclude which product formed.
 
 ## Four Common Clues
 
@@ -120,6 +111,7 @@ A thermometer turns one clue into numbers. In two illustrative mixtures that sta
 <MathVisual
   title={<>A Thermometer Reads the Energy Clue</>}
   description={<>Illustrative temperature of two mixtures after mixing. Horizontal: one grid step is one minute. Vertical: one grid step is <InlineMath math="5\ ^\circ\mathrm{C}" />.</>}
+  footer={<>An exothermic mixture peaks above room temperature while an endothermic one dips below.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 6.5 } },
@@ -144,7 +136,13 @@ A thermometer turns one clue into numbers. In two illustrative mixtures that sta
   }}
 />
 
-## Checking Multiple Signs of a Chemical Reaction
+Both curves drift back toward <InlineMath math="25\ ^\circ\mathrm{C}" /> as the mixture exchanges heat with the room, which shows why chemists record temperature right after mixing instead of waiting until the reaction finishes.
+
+## Verifying New Products
+
+Because physical changes can imitate bubbles, color shifts, or heat transfer, chemists never rely on a single surface clue. Instead, they cross-check multiple observations and test **whether a new chemical structure formed** before deciding that a reaction took place.
+
+### Checking Multiple Signs of a Chemical Reaction
 
 One sign is not always enough. Boiling water produces bubbles, but it is a **physical change** because the substance is still <InlineMath math="\mathrm{H_2O}" />. Dissolved salt also looks different, but it can be recovered by evaporating the water.
 
@@ -159,28 +157,43 @@ The table shows how several events can be assessed from the signs that are obser
 
 To be sure, we need to check whether the products are truly different from the reactants. In the laboratory, that can be done by measuring mass, testing a gas, observing a precipitate, or analyzing composition.
 
-## New Substances Have New Shapes
+### New Substances Have New Shapes
 
-One of the strongest signs that a reaction happened is **a substance with a different arrangement of atoms**. Compare <InlineMath math="\mathrm{H_2O_2}" />, <InlineMath math="\mathrm{H_2O}" />, and <InlineMath math="\mathrm{O_2}" /> in this model. All three are made of hydrogen and oxygen only, yet their shapes and bond angles differ, so the substances behave differently too.
+One of the strongest signs that a reaction happened is **a substance with a different arrangement of atoms**. Compare the bond angles and geometries of <InlineMath math="\mathrm{H_2O_2}" />, <InlineMath math="\mathrm{H_2O}" />, and <InlineMath math="\mathrm{O_2}" /> below. All three are made of hydrogen and oxygen only, yet their bond angles and shapes differ, so the substances behave differently too.
 
-<MoleculeShapeLab
-  title={<>Reactant and Products in 3D</>}
-  description={<>Turn each molecule and compare its bond angle.</>}
-  molecules={[
-    { id: "hydrogen-peroxide", name: "Hydrogen peroxide" },
-    { id: "water", name: "Water" },
-    { id: "oxygen", name: "Oxygen" },
-  ]}
+<MathVisual
+  title={<>Bond Angles of Three H and O Substances</>}
+  description={<>Schematic comparison of the <InlineMath math="\mathrm{H-O-O}" /> angle in <InlineMath math="\mathrm{H_2O_2}" /> (<InlineMath math="94.8^\circ" />), the <InlineMath math="\mathrm{H-O-H}" /> angle in <InlineMath math="\mathrm{H_2O}" /> (<InlineMath math="104.5^\circ" />), and linear <InlineMath math="\mathrm{O_2}" /> (<InlineMath math="180^\circ" />).</>}
+  footer={<>Same element pool, different bond angles, which explains their distinct physical behavior.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "h2o2-a", kind: "segment", appearance: "warning", from: { x: 0.5, y: 0.8 }, to: { x: 0.5, y: 2.6 } },
+      { id: "h2o2-b", kind: "segment", appearance: "warning", from: { x: 0.5, y: 0.8 }, to: { x: 2.29, y: 0.65 } },
+      { id: "h2o2-v", kind: "point", appearance: "warning", at: { x: 0.5, y: 0.8 } },
+      { id: "h2o-a", kind: "segment", appearance: "primary", from: { x: 4.8, y: 0.8 }, to: { x: 3.7, y: 2.2 } },
+      { id: "h2o-b", kind: "segment", appearance: "primary", from: { x: 4.8, y: 0.8 }, to: { x: 6.5, y: 1.4 } },
+      { id: "h2o-v", kind: "point", appearance: "primary", at: { x: 4.8, y: 0.8 } },
+      { id: "o2-line", kind: "segment", appearance: "secondary", from: { x: 7.8, y: 1.6 }, to: { x: 10.2, y: 1.6 } },
+      { id: "o2-a", kind: "point", appearance: "secondary", at: { x: 7.8, y: 1.6 } },
+      { id: "o2-b", kind: "point", appearance: "secondary", at: { x: 10.2, y: 1.6 } },
+    ],
+    labels: [
+      { key: "h2o2", objectId: "h2o2-v", at: { x: 1.2, y: 2.8 }, placement: "above" },
+      { key: "h2o", objectId: "h2o-v", at: { x: 5.0, y: 2.8 }, placement: "above" },
+      { key: "o2", objectId: "o2-line", at: { x: 9.0, y: 2.3 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
+    h2o2: <InlineMath math="\mathrm{H_2O_2}:\ 94.8^\circ" />,
+    h2o: <InlineMath math="\mathrm{H_2O}:\ 104.5^\circ" />,
+    o2: <InlineMath math="\mathrm{O_2}:\ 180^\circ" />,
   }}
 />
+
+When hydrogen peroxide decomposes into water and oxygen, the geometry changes alongside the formula. That structural change is why liquid peroxide, liquid water, and gaseous oxygen have completely different boiling points and reactivity.
 
 ## Reaction Evidence and Basic Chemical Laws
 
@@ -192,11 +205,12 @@ Take metal oxides as an example. Nickel can form one of its oxides with the form
 
 After the evidence confirms a chemical reaction, measure the masses or composition of the substances. The appropriate chemical law can then relate the measured reactants and products.
 
-Count the atoms in <InlineMath math="2\mathrm{Ni}+\mathrm{O_2}\rightarrow2\mathrm{NiO}" /> and the mass law follows. Rotate the bars: two nickel atoms and two oxygen atoms stand on each side, so the total mass can't change.
+Count the atoms in <InlineMath math="2\mathrm{Ni}+\mathrm{O_2}\rightarrow2\mathrm{NiO}" /> and the mass law follows. Rotate the bars: two nickel atoms and two oxygen atoms stand on each side, so the total mass cannot change.
 
 <MathVisual
   title={<>Atoms Kept in <InlineMath math="2\mathrm{Ni}+\mathrm{O_2}\rightarrow2\mathrm{NiO}" /></>}
   description={<>Nickel (gray) and oxygen (orange) atoms in the reactants (back) and the products (front). One grid step up is <InlineMath math="1" /> atom.</>}
+  footer={<>Matching front and back bars show that every nickel and oxygen atom is preserved.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -217,3 +231,5 @@ Count the atoms in <InlineMath math="2\mathrm{Ni}+\mathrm{O_2}\rightarrow2\mathr
     o: <InlineMath math="\mathrm{O}:\ 2=2" />,
   }}
 />
+
+Because the front and back bars stay equal for each element, identifying a new substance never means atoms vanished or appeared from nowhere. Qualitative clues signal a chemical change, while quantitative laws balance every atom and gram from reactants to products.

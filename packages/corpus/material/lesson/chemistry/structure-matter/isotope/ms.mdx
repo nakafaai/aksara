@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Isotop",
   description:
@@ -15,17 +14,13 @@ Hidrogen dalam Matahari, karbon dalam badan kita dan oksigen dalam air tidak sel
 
 [Isotop](https://goldbook.iupac.org/terms/view/I03331) ialah atom-atom bagi unsur yang sama dengan nombor proton yang sama tetapi nombor nukleon yang berbeza.
 
-Baca coraknya begini:
-
-Isotop mempunyai <InlineMath math="Z" /> yang sama, tetapi bilangan neutron <InlineMath math="n^0" /> dan nombor nukleon <InlineMath math="A" /> yang berbeza.
+Ringkasnya, isotop berkongsi <InlineMath math="Z" /> yang sama, manakala bilangan neutron <InlineMath math="n^0" /> dan nombor nukleon <InlineMath math="A" /> berbeza.
 
 Simbol <InlineMath math="Z" /> ialah nombor proton, iaitu bilangan proton. Simbol <InlineMath math="A" /> ialah nombor nukleon, iaitu jumlah proton dan neutron. Jika <InlineMath math="Z" /> sama, unsurnya juga sama. Jika <InlineMath math="n^0" /> berbeza, nombor nukleon juga berubah.
 
-Isotop tergolong dalam unsur yang sama <Highlight>kerana isotop mempunyai bilangan proton yang sama</Highlight>. Bilangan neutron yang berbeza memberikan isotop itu nombor nukleon yang berbeza.
+> Isotop kekal tergolong dalam unsur yang sama kerana bilangan protonnya tetap walaupun neutron tambahan menjadikan nukleusnya lebih berat.
 
-## Model Isotop
-
-Pilih satu isotop di bawah. Mula-mula, perhatikan apa yang tidak berubah: **bilangan proton**. Kemudian, bandingkan bilangan neutronnya.
+Isotop tergolong dalam unsur yang sama <Highlight>kerana isotop mempunyai bilangan proton yang sama</Highlight>. Pilih satu isotop di bawah untuk melihat bilangan proton kekal sementara bilangan neutron berubah.
 
 <IsotopeLab
   title={<>Pembaca Isotop</>}
@@ -36,6 +31,7 @@ Pilih satu isotop di bawah. Mula-mula, perhatikan apa yang tidak berubah: **bila
       berubah.
     </>
   }
+  footer={<>Tukar isotop untuk melihat proton kekal sementara neutron mengubah jisim.</>}
   labels={{
     chooseIsotope: "Pilih contoh isotop",
     atomicNumber: "Nombor proton",
@@ -91,7 +87,13 @@ Pilih satu isotop di bawah. Mula-mula, perhatikan apa yang tidak berubah: **bila
   }}
 />
 
-## Tiga Isotop Hidrogen
+Membandingkan tiga butang hidrogen dan tiga butang karbon mengesahkan satu aturan utama. Menukar bilangan neutron mengemas kini nombor nukleon tanpa pernah menukar unsur atom itu.
+
+## Isotop Hidrogen dan Karbon
+
+Hidrogen dan karbon memberikan contoh paling jelas tentang cara **neutron tambahan mengubah jisim tanpa menukar unsur**. Kedua-dua keluarga isotop ini wujud secara meluas di alam semula jadi dan makmal.
+
+### Tiga Isotop Hidrogen
 
 Semua isotop hidrogen mempunyai <InlineMath math="1" /> proton. Oleh sebab bilangan protonnya <InlineMath math="1" />, semuanya tetap hidrogen. Yang membezakannya ialah **bilangan neutron**.
 
@@ -108,16 +110,17 @@ Paparan ini menunjukkan nukleus setiap isotop hidrogen, dengan proton berwarna j
 <MathVisual
   title={<>Tiga Isotop Hidrogen</>}
   description={<>Proton (jingga, belakang) dan neutron (kelabu, hadapan) dalam hidrogen-1, hidrogen-2 dan hidrogen-3. Satu petak grid ke atas mewakili <InlineMath math="1" /> zarah.</>}
+  footer={<>Setiap isotop hidrogen kekal dengan satu proton manakala neutron naik hingga dua.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
     view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1, z: 0 } },
     objects: [
-      { id: "one-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "two-p", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "two-n", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: (1) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "three-p", kind: "cuboid", appearance: "primary", center: { x: 5, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "three-n", kind: "cuboid", appearance: "reference", center: { x: 5, y: (2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "one-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "two-p", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "two-n", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 0.5, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "three-p", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "three-n", kind: "cuboid", appearance: "reference", center: { x: 5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
     ],
     labels: [
       { key: "one", objectId: "one-p", at: { x: 0, y: 1.5, z: -0.75 }, placement: "above" },
@@ -132,25 +135,47 @@ Paparan ini menunjukkan nukleus setiap isotop hidrogen, dengan proton berwarna j
   }}
 />
 
-Protium, deuterium dan tritium hanya berbeza pada nukleus. Setiap satu masih ada <InlineMath math="1" /> proton dan <InlineMath math="1" /> elektron, jadi **ketiga-tiganya berkongsi awan elektron yang sama** dan bertindak balas hampir serupa.
+Lihat barisan belakang dahulu. Setiap turus jingga kekal setinggi satu unit, membuktikan protium, deuterium dan tritium kekal unsur yang sama.
 
-<OrbitalCloudLab
-  title={<>Isotop Berkongsi Orbital</>}
-  description={<>Tukar antara orbital hidrogen yang boleh digunakan oleh setiap isotop hidrogen.</>}
-  orbitals={["1s", "2s", "2pz"]}
+Protium, deuterium dan tritium hanya berbeza di dalam nukleus. Setiap satu masih ada <InlineMath math="1" /> proton dan <InlineMath math="1" /> elektron, jadi **ketiga-tiganya berkongsi susunan elektron luar yang sama** dan bertindak balas hampir serupa dalam tindak balas kimia.
+
+<MathVisual
+  title={<>Bilangan Elektron Sama Jisim Nukleus Berbeza</>}
+  description={<>Bilangan elektron (ungu, garis rata pada satu) berbanding nombor nukleon (jingga, meningkat daripada satu ke tiga) bagi tiga isotop hidrogen.</>}
+  footer={<>Bilangan elektron yang sama menerangkan sebab sifat kimia isotop hampir serupa.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 3.5 }, y: { min: 0, max: 3.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "e-line", kind: "segment", appearance: "secondary", from: { x: 1, y: 1 }, to: { x: 3, y: 1 } },
+      { id: "m-line", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 3, y: 3 } },
+      { id: "e1", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "e2", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "e3", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "m2", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+      { id: "m3", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "h1", objectId: "e1", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "h2", objectId: "m2", at: { x: 2, y: 2 }, placement: "above" },
+      { key: "h3", objectId: "m3", at: { x: 3, y: 3 }, placement: "above" },
+      { key: "elec", objectId: "e3", at: { x: 3, y: 1 }, placement: "below" },
+    ],
+  }}
   labels={{
-    angular: <>Nod sudut</>,
-    choose: "Pilih orbital",
-    numbers: <>Nombor kuantum</>,
-    orbital: <>Orbital</>,
-    radial: <>Nod jejarian</>,
-    view: "Awan elektron orbital",
+    h1: <InlineMath math="^{1}\mathrm{H}:\ A=1" />,
+    h2: <InlineMath math="^{2}\mathrm{H}:\ A=2" />,
+    h3: <InlineMath math="^{3}\mathrm{H}:\ A=3" />,
+    elec: <InlineMath math="e^-=1" />,
   }}
 />
 
-## Isotop Karbon Berbeza dari Segi Bilangan Neutron
+Ikatan kimia bergantung pada elektron luar yang kekal rata pada satu bagi ketiga-tiga isotop. Hanya sifat fizik yang berkait dengan jisim, seperti ketumpatan dan kadar resapan, berubah dengan ketara.
 
-Karbon sentiasa mempunyai <InlineMath math="6" /> proton. Dalam <InlineMath math="{}^{12}_{6}\mathrm{C}" />, <InlineMath math="{}^{13}_{6}\mathrm{C}" /> dan <InlineMath math="{}^{14}_{6}\mathrm{C}" />, bilangan neutron bertambah.
+### Isotop Karbon Berbeza dari Segi Bilangan Neutron
+
+Karbon sentiasa mempunyai <InlineMath math="6" /> proton. Dalam <InlineMath math="{}^{12}_{6}\mathrm{C}" />, <InlineMath math="{}^{13}_{6}\mathrm{C}" /> dan <InlineMath math="{}^{14}_{6}\mathrm{C}" />, bilangan neutron bertambah langkah demi langkah.
 
 <BlockMath math="\begin{aligned}
 {}^{12}_{6}\mathrm{C} &: n^0 = 12 - 6 = 6 \\
@@ -169,19 +194,20 @@ Ion terbentuk apabila atom menerima atau kehilangan elektron. Isotop bagi unsur 
 | Ion | Elektron | Proton |
 | Isotop | Neutron | Proton |
 
-Sebagai contoh, <InlineMath math="\mathrm{C}^{+}" /> ialah ion karbon yang telah kehilangan satu elektron. Dengan <InlineMath math="6" /> proton dan cas <InlineMath math="+1" />, bilangan elektronnya ialah <InlineMath math="6 - 1 = 5" />. Sebaliknya, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> ialah isotop karbon kerana bilangan neutronnya berbeza daripada <InlineMath math="{}^{12}_{6}\mathrm{C}" />.
+Sebagai contoh, <InlineMath math="\mathrm{C}^{+}" /> ialah ion karbon yang telah kehilangan satu elektron. Dengan <InlineMath math="6" /> proton dan cas <InlineMath math="+1" />, bilangan elektronnya ialah <InlineMath math="5" />. Sebaliknya, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> ialah isotop karbon kerana bilangan neutronnya berbeza daripada <InlineMath math="{}^{12}_{6}\mathrm{C}" />.
 
-Jika atom itu neutral, bilangan elektron tetap sama dengan bilangan proton:
+Jika atom itu neutral, bilangan elektron tetap sama dengan bilangan proton.
 
 <BlockMath math="\text{atom neutral} \Rightarrow e^- = p^+" />
 
 Jadi, <InlineMath math="{}^{14}_{6}\mathrm{C}" /> yang neutral mempunyai <InlineMath math="6" /> proton, <InlineMath math="6" /> elektron dan <InlineMath math="8" /> neutron.
 
-Letakkan setiap nukleus mengikut bilangan neutronnya secara mengufuk dan bilangan protonnya secara menegak. Isotop bagi satu unsur berkongsi <InlineMath math="Z" /> yang sama, jadi isotop karbon tersusun pada satu baris kuning ambar. Ion pula langsung tidak berganjak pada peta ini, kerana hanya elektronnya yang berubah. Zum masuk dan bandingkan <InlineMath math="^{14}\mathrm{C}" /> dengan <InlineMath math="^{14}\mathrm{N}" />: nombor nukleonnya sama, tetapi unsurnya berbeza.
+Letakkan setiap nukleus mengikut bilangan neutronnya secara mengufuk dan bilangan protonnya secara menegak. Isotop bagi satu unsur berkongsi <InlineMath math="Z" /> yang sama, jadi isotop karbon tersusun pada satu baris kuning ambar. Ion pula langsung tidak berganjak pada peta ini, kerana hanya elektronnya yang berubah. Bandingkan <InlineMath math="^{14}\mathrm{C}" /> dengan <InlineMath math="^{14}\mathrm{N}" /> yang mempunyai nombor nukleon sama tetapi unsur berbeza.
 
 <MathVisual
-  title={<>Isotop Berbaris, Ion Kekal di Tempatnya</>}
+  title={<>Isotop Berbaris Ion Kekal di Tempatnya</>}
   description={<>Lima nukleus mengikut bilangan neutron (mengufuk) dan nombor proton (menegak). Baris kuning ambar memuatkan tiga isotop karbon.</>}
+  footer={<>Jiran yang sejajar mengufuk berkongsi bilangan proton sebagai isotop unsur sama.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 5, max: 9 }, y: { min: 5, max: 9 } },
@@ -211,21 +237,48 @@ Letakkan setiap nukleus mengikut bilangan neutronnya secara mengufuk dan bilanga
   }}
 />
 
-Ion berbeza daripada atomnya kerana cas, isotop pula kerana neutron. Dalam medan magnet **hanya zarah bercas yang melengkung**, manakala neutron kekal lurus.
+Ketiga-tiga titik karbon kekal pada garis mengufuk <InlineMath math="Z = 6" />. Melangkah ke atas ke <InlineMath math="Z = 7" /> serta-merta menukar unsurnya kepada nitrogen.
 
-<ParticleTrackLab
-  title={<>Zarah Bercas dan Neutral</>}
-  description={<>Naikkan medan dan lihat laluan mana yang melengkung dan mana yang kekal lurus.</>}
+Ion berbeza daripada atomnya kerana cas, manakala isotop kerana neutron. Dalam medan magnet **hanya zarah bercas yang melengkung**, manakala neutron yang tidak bercas terus bergerak lurus.
+
+<MathVisual
+  title={<>Ion Bercas Berbanding Neutron Neutral</>}
+  description={<>Jejak skematik yang memasuki medan magnet dari kiri. Proton positif melengkung ke satu arah, elektron negatif melengkung tajam ke arah bertentangan dan neutron lurus.</>}
+  footer={<>Medan magnet membelokkan zarah bercas mengikut tandanya dan membiarkan neutron lurus.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "n-track", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.5, y: 0 } },
+      { id: "p-a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.8, y: 0.6 } },
+      { id: "p-b", kind: "segment", appearance: "primary", from: { x: 2.8, y: 0.6 }, to: { x: 5.4, y: 1.8 } },
+      { id: "e-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.0, y: -1.1 } },
+      { id: "e-b", kind: "segment", appearance: "secondary", from: { x: 2.0, y: -1.1 }, to: { x: 3.6, y: -2.9 } },
+      { id: "n-pt", kind: "point", appearance: "reference", at: { x: 5.5, y: 0 } },
+      { id: "p-pt", kind: "point", appearance: "primary", at: { x: 5.4, y: 1.8 } },
+      { id: "e-pt", kind: "point", appearance: "secondary", at: { x: 3.6, y: -2.9 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-pt", at: { x: 5.5, y: 0 }, placement: "above" },
+      { key: "p", objectId: "p-pt", at: { x: 5.4, y: 1.8 }, placement: "above" },
+      { key: "e", objectId: "e-pt", at: { x: 3.6, y: -2.9 }, placement: "right" },
+    ],
+  }}
   labels={{
-    electron: <>Jejari lintasan elektron</>,
-    field: "Kekuatan medan magnet",
-    proton: <>Jejari lintasan proton</>,
-    ratio: <>Nisbah jejari</>,
-    view: "Jejak zarah dalam medan magnet",
+    n: <InlineMath math="n^0\ (\text{lurus})" />,
+    p: <InlineMath math="p^+\ (\text{lengkung landai})" />,
+    e: <InlineMath math="e^-\ (\text{lengkung tajam})" />,
   }}
 />
 
-## Kegunaan Isotop
+Corak lintasan ini memisahkan kesan cas daripada jisim sekali gus. Cas menentukan sama ada dan ke arah mana zarah membelok, manakala jisim mengawal ketajaman lengkungannya.
+
+## Kestabilan Nukleus dan Kegunaan Isotop
+
+Imbangan neutron dan proton menentukan **tahap kestabilan sesuatu nukleus mengikut masa**. Ciri ini membezakan isotop rujukan yang stabil daripada isotop radioaktif yang berfungsi sebagai jam semula jadi.
+
+### Kegunaan Praktikal Isotop
 
 Bilangan neutron mempengaruhi **jisim dan kestabilan nukleus** sesuatu isotop. Sifat-sifat inilah yang menentukan sebab sesuatu isotop boleh berfungsi sebagai penyurih, sumber tenaga yang berpotensi, atau jam untuk menganggar usia sesuatu bahan.
 
@@ -235,13 +288,14 @@ Bilangan neutron mempengaruhi **jisim dan kestabilan nukleus** sesuatu isotop. S
 
 Setiap penggunaan isotop mesti mengambil kira kestabilan nukleusnya, iaitu sama ada nukleusnya cenderung untuk mereput. Isotop radioaktif seperti tritium dan <InlineMath math="{}^{14}_{6}\mathrm{C}" /> memerlukan prosedur terkawal dan peraturan keselamatan sinaran.
 
-## Karbon Empat Belas Mereput Perlahan
+### Karbon Empat Belas Mereput Perlahan
 
-Pentarikhan karbon menggunakan isotop <InlineMath math="{}^{14}_{6}\mathrm{C}" />, yang mereput menjadi <InlineMath math="{}^{14}_{7}\mathrm{N}" />. Tiada sesiapa boleh meneka bila satu nukleus akan mereput, tetapi **bilangannya sentiasa tinggal separuh setiap <InlineMath math="5730" /> tahun**. Ubah masanya. Selepas <InlineMath math="11\,460" /> tahun, kira-kira suku nukleus masih tinggal.
+Pentarikhan karbon menggunakan isotop <InlineMath math="{}^{14}_{6}\mathrm{C}" />, yang mereput menjadi <InlineMath math="{}^{14}_{7}\mathrm{N}" />. Tiada sesiapa boleh meneka bila satu nukleus akan mereput, tetapi **bilangannya sentiasa tinggal separuh setiap <InlineMath math="5730" /> tahun**. Ubah masanya untuk melihat kira-kira suku nukleus masih tinggal selepas <InlineMath math="11\,460" /> tahun.
 
 <RadioactiveDecayLab
   title={<>Reputan Karbon-14</>}
   description={<>Nukleus gelap ialah karbon-14, dan nukleus ungu sudah menjadi nitrogen-14.</>}
+  footer={<>Separuh nukleus karbon-14 yang tinggal mereput setiap satu separuh hayat 5730 tahun.</>}
   labels={{
     counted: <>Nukleus yang tinggal</>,
     expected: <>Mengikut hukum reputan</>,
@@ -252,13 +306,13 @@ Pentarikhan karbon menggunakan isotop <InlineMath math="{}^{14}_{6}\mathrm{C}" /
   }}
 />
 
+Seret gelangsar melepasi satu, dua dan tiga separuh hayat untuk melihat baki nukleus turun kepada separuh, suku dan perlapan. Lengkung penyusutan yang tetap ini menjadikan karbon-14 jam arkeologi yang boleh dipercayai.
+
 ## Daripada Isotop kepada Jisim Atom Purata
 
 Pada Jadual Berkala Unsur, jisim atom relatif selalunya nombor perpuluhan. Nombor itu bukan nombor nukleon bagi satu isotop. Jisim atom relatif dihitung daripada jisim setiap isotop dan kelimpahannya dalam sampel rujukan.
 
 Peratus dalam jadual ialah [**komposisi isotop wakil**](https://www.physics.nist.gov/PhysRefData/Compositions/notes.html) bagi bahan rujukan. Komposisi ini boleh berubah mengikut asal usul bahan dan cara bahan itu diproses. Oleh itu, peratus di bawah ialah nilai rujukan, dan sesuatu sampel semula jadi mungkin berbeza.
-
-Karbon ialah contoh yang mudah:
 
 | Isotop karbon | Nombor nukleon | Komposisi isotop wakil |
 | :------------- | :---------- | :---------------- |
@@ -268,35 +322,47 @@ Karbon ialah contoh yang mudah:
 
 Oleh sebab <InlineMath math="{}^{12}_{6}\mathrm{C}" /> ialah isotop karbon yang paling banyak, jisim atom relatif karbon pada Jadual Berkala Unsur hampir dengan <InlineMath math="12" />, tetapi bukan tepat <InlineMath math="12" />.
 
-## Spektrometer Jisim Memisahkan Isotop
+Peratus isotop diukur dengan spektrometer jisim. Kedudukan setiap puncak menunjukkan jisim isotop dan **ketinggiannya mencerminkan kelimpahan semula jadi**. Perhatikan dua puncak klorin di bawah dan lihat sebab purata berpemberatnya berada pada <InlineMath math="35.45" />.
 
-Peratus isotop diukur dengan spektrometer jisim. Ion dipesongkan oleh magnet, dan **ion yang lebih berat bergerak pada lintasan yang lebih lebar**, jadi setiap isotop jatuh di tempatnya sendiri. Ketinggian puncak berkadar dengan kelimpahan isotop. Pilih klorin, kemudian bandingkan jisim puratanya dengan <InlineMath math="35.45" /> dalam jadual berkala.
-
-<MassSpectrometerLab
-  title={<>Isotop Klorin, Karbon dan Neon</>}
-  description={<>Setiap isotop mendarat pada pengesan di jarak yang berbeza.</>}
-  samples={["chlorine", "carbon", "neon"]}
+<MathVisual
+  title={<>Spektrum Jisim Klorin dan Purata Berpemberat</>}
+  description={<>Kelimpahan semula jadi klorin-35 (<InlineMath math="75.8\%" />) dan klorin-37 (<InlineMath math="24.2\%" />), dengan garis kuning menandakan purata berpemberat pada <InlineMath math="35.45" />.</>}
+  footer={<>Oleh sebab klorin-35 tiga kali lebih banyak, puratanya duduk dekat 35.45.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 34, max: 38 }, y: { min: -5, max: 90 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "baseline", kind: "segment", appearance: "reference", from: { x: 34.4, y: 0 }, to: { x: 37.6, y: 0 } },
+      { id: "cl35", kind: "segment", appearance: "primary", from: { x: 35, y: 0 }, to: { x: 35, y: 75.8 } },
+      { id: "cl37", kind: "segment", appearance: "secondary", from: { x: 37, y: 0 }, to: { x: 37, y: 24.2 } },
+      { id: "avg-line", kind: "segment", appearance: "highlight", from: { x: 35.45, y: 0 }, to: { x: 35.45, y: 55 } },
+      { id: "p35", kind: "point", appearance: "primary", at: { x: 35, y: 75.8 } },
+      { id: "p37", kind: "point", appearance: "secondary", at: { x: 37, y: 24.2 } },
+      { id: "pavg", kind: "point", appearance: "highlight", at: { x: 35.45, y: 55 } },
+    ],
+    labels: [
+      { key: "c35", objectId: "p35", at: { x: 35, y: 75.8 }, placement: "above" },
+      { key: "c37", objectId: "p37", at: { x: 37, y: 24.2 }, placement: "above" },
+      { key: "avg", objectId: "pavg", at: { x: 35.45, y: 55 }, placement: "right" },
+    ],
+  }}
   labels={{
-    average: <>Purata jisim atom relatif</>,
-    choose: "Pilih unsur",
-    isotopes: <>Isotop dan kelimpahannya</>,
-    north: "U",
-    radius: <>Jejari lintasan</>,
-    ratio: <>Nisbah jejari</>,
-    south: "S",
-    view: "Spektrometer jisim",
+    c35: <InlineMath math="^{35}\mathrm{Cl}:\ 75.8\%" />,
+    c37: <InlineMath math="^{37}\mathrm{Cl}:\ 24.2\%" />,
+    avg: <InlineMath math="A_r \approx 35.45" />,
   }}
 />
 
-## Membezakan Isotop melalui Nombor Proton dan Nombor Nukleon
+Garis purata kuning ambar tertarik rapat ke puncak <InlineMath math="^{35}\mathrm{Cl}" /> yang lebih tinggi, bukan di tengah-tengah pada <InlineMath math="36" />. Setiap jisim perpuluhan dalam jadual berkala terhasil daripada tarikan berpemberat ke arah isotop yang paling melimpah.
 
-Gunakan tiga soalan ini setiap kali kamu membaca sesuatu isotop:
+Gunakan tiga soalan ini setiap kali kamu membaca simbol sesuatu isotop.
 
 - Berapakah bilangan proton?
 - Berapakah nombor nukleonnya?
 - Berapakah bilangan neutron yang diperoleh daripada <InlineMath math="A - Z" />?
 
-Bagi <InlineMath math="{}^{92}_{40}\mathrm{Zr}" />:
+Penerapan langkah ini bagi <InlineMath math="{}^{92}_{40}\mathrm{Zr}" /> memberikan bilangan neutronnya secara langsung.
 
 <BlockMath math="\begin{aligned}
 n^0 &= A - Z \\
@@ -304,9 +370,9 @@ n^0 &= A - Z \\
 &= 52
 \end{aligned}" />
 
-Jadi, <InlineMath math="{}^{92}_{40}\mathrm{Zr}" /> mempunyai <InlineMath math="52" /> neutron. Hubungan <InlineMath math="n=A-Z" /> boleh digunakan bagi mana-mana isotop yang nombor proton dan nombor nukleonnya diketahui, jadi kamu tidak memerlukan jadual neutron.
+Jadi, <InlineMath math="{}^{92}_{40}\mathrm{Zr}" /> mempunyai <InlineMath math="52" /> neutron. Hubungan <InlineMath math="n = A - Z" /> boleh digunakan bagi mana-mana isotop yang nombor proton dan nombor nukleonnya diketahui, jadi kamu tidak memerlukan jadual neutron.
 
-**Purata berpemberat** menggabungkan jisim isotop dengan kelimpahannya. Untuk latihan ini, anggarkan jisim isotop karbon-12 dan karbon-13 sebagai <InlineMath math="12\ \mathrm{u}" /> dan <InlineMath math="13\ \mathrm{u}" />, dan abaikan jumlah karbon-14 yang sangat kecil:
+**Purata berpemberat** menggabungkan jisim isotop dengan kelimpahannya. Menganggarkan jisim isotop karbon-12 dan karbon-13 sebagai <InlineMath math="12\ \mathrm{u}" /> dan <InlineMath math="13\ \mathrm{u}" /> sambil mengabaikan jumlah kecil karbon-14 memberikan nilai jadual berkala.
 
 <BlockMath math="\begin{aligned}
 A_r(\mathrm C)&\approx 12(0.9893)+13(0.0107)\\

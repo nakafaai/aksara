@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Sifat Partikel Subatom",
   description:
@@ -19,9 +18,9 @@ Bandingkan tiga sifat berikut:
 - **massa**, yaitu seberapa besar sumbangan partikel terhadap massa atom
 - **letak**, yaitu bagian atom tempat partikel berada dalam model atom
 
-Muatan, massa, dan letak membedakan ketiga partikel subatom.
+> Muatan menentukan arah belokan partikel, massa menentukan seberapa tajam lintasannya melengkung, dan letaknya menentukan apakah ia mengatur identitas unsur atau reaksi kimia.
 
-[Daftar CODATA 2022](https://physics.nist.gov/cuu/pdf/wall_2022.pdf) memuat nilai konstanta yang lebih presisi.
+Muatan, massa, dan letak membedakan ketiga partikel subatom. [Daftar CODATA 2022](https://physics.nist.gov/cuu/pdf/wall_2022.pdf) memuat nilai konstanta yang lebih presisi.
 
 ## Muatan Datang dalam Kelipatan
 
@@ -30,6 +29,7 @@ Millikan menyeimbangkan tetes minyak kecil di antara dua pelat bermuatan. Saat s
 <MillikanOilDropLab
   title={<>Percobaan Tetes Minyak Millikan</>}
   description={<>Empat tetes sama besar membawa muatan yang berbeda.</>}
+  footer={<>Menyeimbangkan tiap tetes menunjukkan muatan listrik selalu berupa kelipatan bulat e.</>}
   labels={{
     charge: <>Muatan untuk melayang</>,
     field: <>Medan listrik</>,
@@ -38,6 +38,8 @@ Millikan menyeimbangkan tetes minyak kecil di antara dua pelat bermuatan. Saat s
     voltage: "Tegangan pelat",
   }}
 />
+
+Karena tidak pernah ada tetes yang melayang dengan setengah atau sepertiga <InlineMath math="e" />, muatan listrik bersifat terkuantisasi dalam paket sekecil muatan satu elektron.
 
 ## Model Partikel Subatom
 
@@ -51,6 +53,7 @@ Ganti mode di bawah ini. Perhatikan dulu visual utamanya: **arah belokan, tinggi
       satu model.
     </>
   }
+  footer={<>Ganti tab muatan, massa, dan lokasi untuk melihat pemisah ketiga partikel.</>}
   labels={{
     chooseMode: "Pilih sifat partikel subatom",
     scene: {
@@ -117,6 +120,8 @@ Ganti mode di bawah ini. Perhatikan dulu visual utamanya: **arah belokan, tinggi
   }}
 />
 
+Membandingkan ketiga tab berdampingan menunjukkan alasan tidak cukup melihat satu sifat saja: proton dan neutron mirip massa serta letaknya tetapi beda muatan, sedangkan proton dan elektron sama besar muatannya namun berada di bagian atom yang sangat berbeda.
+
 ## Muatan Menentukan Arah Belokan
 
 Muatan listrik menentukan respons partikel terhadap medan listrik. Proton bermuatan positif, elektron bermuatan negatif, sedangkan neutron tidak memiliki muatan total.
@@ -144,6 +149,7 @@ Kirim tiga berkas dengan energi kinetik <InlineMath math="K" /> yang sama di ant
 <MathVisual
   title={<>Energi Sama, Belokan Berlawanan</>}
   description={<>Lintasan elektron (ungu), proton (oranye), dan neutron (abu-abu) dengan energi kinetik yang sama di antara pelat positif dan pelat negatif.</>}
+  footer={<>Energi kinetik sama membuat elektron dan proton berbelok simetris ke arah berlawanan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -3.8, max: 3.8 } },
@@ -175,37 +181,75 @@ Kirim tiga berkas dengan energi kinetik <InlineMath math="K" /> yang sama di ant
   }}
 />
 
+Karena <InlineMath math="y" /> bergantung pada <InlineMath math="q" /> dan <InlineMath math="K" /> saat energi kinetiknya sama, arah belokan kurva langsung menunjukkan tanda muatan partikel.
+
 ### Elektron Membelok ke Kutub Positif
 
-Di antara dua pelat bermuatan, **partikel negatif ditarik ke pelat positif**. Untuk proton, bayangkan kebalikannya: ia akan membelok ke arah sebaliknya.
+Di antara dua pelat bermuatan, **partikel negatif ditarik ke pelat positif** sementara proton menerima gaya sama besar ke arah pelat negatif. Membalik arah medan listrik langsung membalik kedua gaya sekaligus.
 
-<CathodeRayLab
-  title={<>Muatan Menentukan Arah</>}
-  description={<>Ubah tegangan pelat dan lihat berkasnya mengikuti medan.</>}
+<MathVisual
+  title={<>Arah Gaya Listrik pada Elektron Proton dan Neutron</>}
+  description={<>Arah gaya sepanjang medan listrik ke atas <InlineMath math="\vec E" />: proton terdorong ke atas (<InlineMath math="+F" />), elektron ke bawah (<InlineMath math="-F" />), neutron tetap nol (<InlineMath math="0" />).</>}
+  footer={<>Membalik tanda muatan membalik vektor gaya listrik sedangkan muatan nol tak terdorong.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: -3.2, max: 3.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0.5, y: 0 }, to: { x: 7.5, y: 0 } },
+      { id: "f-e", kind: "vector", appearance: "secondary", from: { x: 2, y: 0 }, to: { x: 2, y: -2.2 } },
+      { id: "f-n", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "f-p", kind: "vector", appearance: "primary", from: { x: 6, y: 0 }, to: { x: 6, y: 2.2 } },
+    ],
+    labels: [
+      { key: "e", objectId: "f-e", at: { x: 2, y: -2.4 }, placement: "below" },
+      { key: "n", objectId: "f-n", at: { x: 4, y: 0.4 }, placement: "above" },
+      { key: "p", objectId: "f-p", at: { x: 6, y: 2.4 }, placement: "above" },
+    ],
+  }}
   labels={{
-    anode: <>Tegangan pemercepat</>,
-    field: <>Medan listrik antarpelat</>,
-    plates: "Tegangan pelat",
-    spot: <>Pergeseran titik di layar</>,
-    view: "Tabung sinar katode",
+    e: <InlineMath math="e^-:\ -eE" />,
+    n: <InlineMath math="n^0:\ 0" />,
+    p: <InlineMath math="p^+:\ +eE" />,
   }}
 />
+
+Simetri itulah yang membuat medan listrik bekerja sebagai penyaring tanda muatan yang bersih setiap kali berkas partikel masuk ke detektor.
 
 ### Jejak di Medan Magnet
 
-Medan magnet membelokkan partikel bermuatan ke arah yang bergantung pada tanda muatannya. Elektron, proton, dan neutron masuk dengan kecepatan sama. **Elektron berbelok ke satu sisi, proton ke sisi lain, dan neutron tetap lurus**. Elektron melingkar jauh lebih rapat karena massanya sekitar <InlineMath math="1836" /> kali lebih kecil daripada proton. Naikkan kuat medannya dan lihat lingkaran proton mulai terlihat.
+Medan magnet membelokkan partikel bermuatan dalam lintasan melingkar berjari-jari <InlineMath math="r = mv / (|q|B)" />. Saat elektron dan proton masuk dengan kelajuan sama, **elektron melengkung sekitar <InlineMath math="1836" /> kali lebih rapat dibanding proton**, sedangkan neutron tak bermuatan terus lurus.
 
-<ParticleTrackLab
-  title={<>Elektron, Proton, dan Neutron dalam Medan Magnet</>}
-  description={<>Jari-jari lintasan dihitung dari massa, muatan, dan kuat medan.</>}
+<MathVisual
+  title={<>Perbandingan Kelengkungan Magnet pada Kelajuan Sama</>}
+  description={<>Perbandingan skematis lintasan: lingkaran rapat elektron (ungu), busur lebar proton (oranye), dan garis lurus neutron (abu-abu) dalam medan magnet seragam.</>}
+  footer={<>Pada kelajuan dan besar muatan sama, massa lebih besar memberi jari-jari belok jauh lebih lebar.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -3.2, max: 3.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "n-path", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "e-loop", kind: "circle", appearance: "secondary", center: { x: 0.8, y: 0.8 }, radius: 0.8 },
+      { id: "p-arc", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: -0.25 }, { x: 4, y: -0.95 }, { x: 6, y: -2.0 }, { x: 7.5, y: -2.9 }] },
+      { id: "e-pt", kind: "point", appearance: "secondary", at: { x: 1.6, y: 0.8 } },
+      { id: "p-pt", kind: "point", appearance: "primary", at: { x: 6, y: -2.0 } },
+      { id: "n-pt", kind: "point", appearance: "reference", at: { x: 7, y: 0 } },
+    ],
+    labels: [
+      { key: "e", objectId: "e-pt", at: { x: 1.7, y: 1.6 }, placement: "right" },
+      { key: "n", objectId: "n-pt", at: { x: 7, y: 0.25 }, placement: "above" },
+      { key: "p", objectId: "p-pt", at: { x: 6, y: -2.0 }, placement: "below-left" },
+    ],
+  }}
   labels={{
-    electron: <>Jari-jari lintasan elektron</>,
-    field: "Kuat medan magnet",
-    proton: <>Jari-jari lintasan proton</>,
-    ratio: <>Perbandingan jari-jari</>,
-    view: "Jejak partikel dalam medan magnet",
+    e: <>Elektron: lingkaran rapat</>,
+    n: <>Neutron: lurus</>,
+    p: <>Proton: busur lebar</>,
   }}
 />
+
+Membandingkan lingkaran rapat elektron dengan busur landai proton menunjukkan cara detektor magnetik memisahkan partikel menurut tanda muatan sekaligus massanya.
 
 ## Massa dan Percepatan
 
@@ -232,6 +276,7 @@ Inilah ketiga massa dalam u pada skala yang sama, dengan satu kotak grid untuk <
 <MathVisual
   title={<>Massa Tiga Partikel</>}
   description={<>Proton <InlineMath math="1{,}0073" /> u, neutron <InlineMath math="1{,}0087" /> u, dan elektron <InlineMath math="0{,}00055" /> u pada satu skala. Satu kotak grid ke atas sama dengan <InlineMath math="0{,}5" /> u.</>}
+  footer={<>Proton dan neutron sejajar dekat 1 u sementara batang elektron nyaris tak tampak di skala sama.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -254,25 +299,42 @@ Inilah ketiga massa dalam u pada skala yang sama, dengan satu kotak grid untuk <
   }}
 />
 
+Jurang skala itu menjelaskan mengapa nomor massa hanya menjumlahkan proton dan neutron tanpa perlu memasukkan elektron.
+
 ## Makin Berat Makin Lurus
 
-Pada kecepatan dan muatan yang sama, **ion yang lebih berat melengkung lebih sedikit di medan magnet**. Spektrometer mengubah aturan itu menjadi timbangan massa atom.
+Pada kecepatan dan muatan yang sama, **ion yang lebih berat melengkung lebih sedikit di medan magnet**, sehingga jari-jari lintasannya sebanding langsung dengan massanya. Membandingkan <InlineMath math="{}^{10}\mathrm{B}^+" /> dengan <InlineMath math="{}^{11}\mathrm{B}^+" /> atau <InlineMath math="{}^{35}\mathrm{Cl}^+" /> dengan <InlineMath math="{}^{37}\mathrm{Cl}^+" /> mengubah jari-jari magnet menjadi timbangan massa isotop.
 
-<MassSpectrometerLab
-  title={<>Massa Dibaca dari Lengkungan</>}
-  description={<>Pilih boron atau klorin, lalu bandingkan jari-jari lintasan isotop-isotopnya.</>}
-  samples={["boron", "chlorine"]}
+<MathVisual
+  title={<>Jari-Jari Lintasan Relatif Ion Isotop</>}
+  description={<>Jari-jari lintasan magnet relatif untuk <InlineMath math="{}^{10}\mathrm{B}^+" />, <InlineMath math="{}^{11}\mathrm{B}^+" />, <InlineMath math="{}^{35}\mathrm{Cl}^+" />, dan <InlineMath math="{}^{37}\mathrm{Cl}^+" /> pada kelajuan dan medan tetap. Satu kotak tegak berarti <InlineMath math="10" /> satuan massa.</>}
+  footer={<>Selisih satu atau dua neutron saja sudah memisahkan ion ke lintasan detektor berbeda.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 4.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "b10", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.3, height: 1.0, width: 1.3 } },
+      { id: "b11", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 0.55, z: 0 }, size: { length: 1.3, height: 1.1, width: 1.3 } },
+      { id: "cl35", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.75, z: 0 }, size: { length: 1.3, height: 3.5, width: 1.3 } },
+      { id: "cl37", kind: "cuboid", appearance: "warning", center: { x: 7.5, y: 1.85, z: 0 }, size: { length: 1.3, height: 3.7, width: 1.3 } },
+    ],
+    labels: [
+      { key: "b10", objectId: "b10", at: { x: 0, y: 1.35, z: 0 }, placement: "above" },
+      { key: "b11", objectId: "b11", at: { x: 2.5, y: 1.45, z: 0 }, placement: "above" },
+      { key: "cl35", objectId: "cl35", at: { x: 5, y: 3.85, z: 0 }, placement: "above" },
+      { key: "cl37", objectId: "cl37", at: { x: 7.5, y: 4.05, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    average: <>Massa atom relatif rata-rata</>,
-    choose: "Pilih unsur",
-    isotopes: <>Isotop dan kelimpahannya</>,
-    north: "U",
-    radius: <>Jari-jari lintasan</>,
-    ratio: <>Perbandingan jari-jari</>,
-    south: "S",
-    view: "Spektrometer massa",
+    b10: <InlineMath math="^{10}\mathrm{B}^+" />,
+    b11: <InlineMath math="^{11}\mathrm{B}^+" />,
+    cl35: <InlineMath math="^{35}\mathrm{Cl}^+" />,
+    cl37: <InlineMath math="^{37}\mathrm{Cl}^+" />,
   }}
 />
+
+Karena setiap tambahan neutron menaikkan massa ion tanpa mengubah muatannya, spektrometri massa dapat membaca massa isotop langsung dari posisi tumbukan berkas di detektor.
 
 ## Letak Partikel dan Peran Kimianya
 

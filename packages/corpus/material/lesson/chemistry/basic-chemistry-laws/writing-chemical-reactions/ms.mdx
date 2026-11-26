@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Menulis Persamaan Kimia",
   description:
@@ -19,31 +18,44 @@ Corak asasnya kelihatan seperti ini.
 
 Baca anak panah itu sebagai "menghasilkan". Tanda tambah bermaksud ada lebih daripada satu bahan di sebelah yang sama.
 
-## Setiap Formula Ialah Molekul Sebenar
+### Setiap Formula Ialah Molekul Sebenar
 
-Sebelum menulis persamaan, kenali dahulu formula setiap bahan. Putar model <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{NO}" /> dan <InlineMath math="\mathrm{SO_2}" />. Nombor kecil dalam formula mengira atom dalam satu molekul, jadi nombor itu **tidak boleh kamu ubah semasa mengimbangkan persamaan**.
+Sebelum menulis persamaan, kenali dahulu formula setiap bahan. Lihat susunan atom bagi <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{NO}" /> dan <InlineMath math="\mathrm{SO_2}" />. Nombor kecil dalam formula mengira atom dalam satu molekul, jadi nombor itu **tidak boleh kamu ubah semasa mengimbangkan persamaan**.
 
-<MoleculeShapeLab
-  title={<>Formula dan Bentuk Molekul</>}
-  description={<>Kira atom pada setiap model dan padankan dengan formulanya.</>}
-  molecules={[
-    { id: "nitrogen", name: "Nitrogen" },
-    { id: "oxygen", name: "Oksigen" },
-    { id: "nitrogen-monoxide", name: "Nitrogen monoksida" },
-    { id: "sulfur-dioxide", name: "Sulfur dioksida" },
-  ]}
+<MathVisual
+  title={<>Bilangan Atom dalam Empat Molekul</>}
+  description={<>Atom nitrogen (ungu), oksigen (oren) dan sulfur (kuning) yang membentuk satu molekul bagi setiap formula. Satu petak grid ialah <InlineMath math="1" /> atom.</>}
+  footer={<>Subskrip menetapkan bilangan atom setiap unsur dalam satu molekul.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 6.5, z: 11 }, target: { x: 3, y: 1.5, z: 0 } },
+    objects: [
+      { id: "n2", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o2", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "no-n", kind: "cuboid", appearance: "secondary", center: { x: 4, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "no-o", kind: "cuboid", appearance: "primary", center: { x: 4, y: 1.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "so2-s", kind: "cuboid", appearance: "highlight", center: { x: 6, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "so2-o", kind: "cuboid", appearance: "primary", center: { x: 6, y: 2, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "n2", objectId: "n2", at: { x: 0, y: 2.3, z: 0 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2, y: 2.3, z: 0 }, placement: "above" },
+      { key: "no", objectId: "no-o", at: { x: 4, y: 2.3, z: 0 }, placement: "above" },
+      { key: "so2", objectId: "so2-o", at: { x: 6, y: 3.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model isi ruang</>,
-    formula: <>Formula molekul</>,
-    mass: <>Jisim molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    n2: <InlineMath math="\mathrm{N_2}:\ 2\mathrm{N}" />,
+    o2: <InlineMath math="\mathrm{O_2}:\ 2\mathrm{O}" />,
+    no: <InlineMath math="\mathrm{NO}:\ 1\mathrm{N}+1\mathrm{O}" />,
+    so2: <InlineMath math="\mathrm{SO_2}:\ 1\mathrm{S}+2\mathrm{O}" />,
   }}
 />
 
-## Persamaan Pembakaran Metana
+Setiap susunan mewakili satu molekul sebenar yang identitinya bergantung pada bilangan atom itu. Sebaik sahaja formula ditulis dengan betul, biarkan subskripnya kekal dan tumpukan perhatian kepada pekali.
+
+### Persamaan Pembakaran Metana
 
 Mulakan dengan ayat biasa: metana bertindak balas dengan oksigen untuk menghasilkan karbon dioksida dan air. **Bahan tindak balas diletakkan di sebelah kiri**, manakala hasil tindak balas di sebelah kanan.
 
@@ -55,7 +67,7 @@ Mulakan dengan ayat biasa: metana bertindak balas dengan oksigen untuk menghasil
 
 Formula permulaan itu belum seimbang kerana sebelah kiri hanya ada <InlineMath math="2" /> atom oksigen, manakala sebelah kanan ada <InlineMath math="3" />. Selepas pekali ditambah, setiap unsur mempunyai bilangan atom yang sama di kedua-dua belah.
 
-Mulakan dengan karbon, yang sudah ada satu atom di setiap belah. Ada empat atom hidrogen di sebelah kiri, jadi letakkan pekali <InlineMath math="2" /> di hadapan <InlineMath math="\mathrm{H_2O}" /> untuk mendapat <InlineMath math="2\times2=4" /> atom hidrogen di sebelah kanan. Sebelah kanan kini ada <InlineMath math="2+2=4" /> atom oksigen, jadi <InlineMath math="\mathrm{O_2}" /> memerlukan pekali <InlineMath math="2" />. Semak hasilnya:
+Mulakan dengan karbon, yang sudah ada satu atom di setiap belah. Ada empat atom hidrogen di sebelah kiri, jadi letakkan pekali <InlineMath math="2" /> di hadapan <InlineMath math="\mathrm{H_2O}" /> untuk mendapat <InlineMath math="2\times2=4" /> atom hidrogen di sebelah kanan. Sebelah kanan kini ada <InlineMath math="2+2=4" /> atom oksigen, jadi <InlineMath math="\mathrm{O_2}" /> memerlukan pekali <InlineMath math="2" />. Semak bilangan yang seimbang dalam jadual di bawah.
 
 | Unsur | Kiri | Kanan |
 | :------ | :--- | :---- |
@@ -65,27 +77,36 @@ Mulakan dengan karbon, yang sudah ada satu atom di setiap belah. Ada empat atom 
 
 Pekali itu dibaca sebagai nisbah <InlineMath math="1:2:1:2" />. Oleh sebab keempat-empat bahan dalam contoh ini ialah bahan molekul, nisbah itu boleh dibayangkan sebagai <InlineMath math="1" /> molekul metana yang bertindak balas dengan <InlineMath math="2" /> molekul oksigen untuk menghasilkan <InlineMath math="1" /> molekul karbon dioksida dan <InlineMath math="2" /> molekul air. Pada skala makmal, pekali yang sama memberikan nisbah mol.
 
-<MethaneCombustionEquationLab
-  title={<>Pekali menunjukkan bilangan molekul</>}
-  description={
-    <>
-      Dalam paparan permulaan, sebelah kiri menunjukkan bahan tindak balas dan sebelah kanan
-      menunjukkan hasil tindak balas dalam persamaan seimbang.
-    </>
-  }
+<MathVisual
+  title={<>Nisbah Molekul dalam Pembakaran Metana</>}
+  description={<>Molekul bahan tindak balas di kiri (metana kelabu, oksigen oren) dan hasil di kanan (karbon dioksida kuning, air ungu). Satu petak grid ialah <InlineMath math="1" /> molekul.</>}
+  footer={<>Pekali menetapkan nisbah molekul dan mol 1 kepada 2 kepada 1 kepada 2.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9.5, y: 6, z: 11 }, target: { x: 3.25, y: 1, z: 0 } },
+    objects: [
+      { id: "ch4", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "o2", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "co2", kind: "cuboid", appearance: "highlight", center: { x: 4.5, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "h2o", kind: "cuboid", appearance: "secondary", center: { x: 6.5, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "ch4", objectId: "ch4", at: { x: 0, y: 1.3, z: 0 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2, y: 2.3, z: 0 }, placement: "above" },
+      { key: "co2", objectId: "co2", at: { x: 4.5, y: 1.3, z: 0 }, placement: "above" },
+      { key: "h2o", objectId: "h2o", at: { x: 6.5, y: 2.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    moleculeView: "Model persamaan pembakaran metana",
-    reactants: "Bahan tindak balas",
-    products: "Hasil tindak balas",
-    equation: (
-      <>
-        Bahan tindak balas: <InlineMath math="\mathrm{CH_4} + 2\mathrm{O_2}" />. Hasil tindak balas: <InlineMath math="\mathrm{CO_2} + 2\mathrm{H_2O}" />. Bilangan atom <InlineMath math="\mathrm{C}" />, <InlineMath math="\mathrm{H}" /> dan <InlineMath math="\mathrm{O}" /> kekal sama di kedua-dua belah.
-      </>
-    ),
+    ch4: <InlineMath math="1\ \mathrm{CH_4}" />,
+    o2: <InlineMath math="2\ \mathrm{O_2}" />,
+    co2: <InlineMath math="1\ \mathrm{CO_2}" />,
+    h2o: <InlineMath math="2\ \mathrm{H_2O}" />,
   }}
 />
 
-Model molekul ini khusus untuk bahan molekul. Bagi pepejal ion atau pepejal rangkaian, pekali memberikan kuantiti stoikiometri atau nisbah unit formula. Dalam semua kes, pekali memberikan bilangan mol relatif bagi tindak balas pada skala makroskopik.
+Gambaran molekul ini khusus bagi bahan molekul seperti gas dan air. Bagi pepejal ion atau pepejal rangkaian, pekali memberikan nisbah unit formula, manakala dalam semua kes pekali memberikan bilangan mol relatif pada skala makroskopik.
 
 ## Pekali Tidak Mengubah Formula
 
@@ -95,11 +116,12 @@ Bilangan atom diperoleh dengan **mendarabkan pekali dengan subskrip**. Pekali bo
 
 Pekali <InlineMath math="2" /> di hadapan <InlineMath math="\mathrm{O_2}" /> bermaksud dua molekul oksigen. Subskrip dalam <InlineMath math="\mathrm{O_2}" /> ialah sebahagian daripada formula oksigen, jadi subskrip itu tidak boleh ditukar menjadi <InlineMath math="\mathrm{O_4}" />.
 
-Kira atom dalam <InlineMath math="\mathrm{CH_4}+2\mathrm{O_2}\rightarrow\mathrm{CO_2}+2\mathrm{H_2O}" /> dengan mendarabkan setiap pekali dengan subskripnya. Dalam paparan ini, setiap unsur mempunyai palang belakang untuk bahan tindak balas dan palang depan untuk hasil tindak balas, dengan satu petak grid mewakili <InlineMath math="2" /> atom. Putar paparan itu: setiap pasangan sama tinggi, jadi persamaan itu seimbang.
+Kira atom dalam persamaan pembakaran metana yang seimbang ini dengan mendarabkan setiap pekali dengan subskripnya. Dalam paparan berikut, setiap unsur mempunyai palang belakang untuk bahan tindak balas dan palang depan untuk hasil tindak balas, dengan satu petak grid mewakili <InlineMath math="2" /> atom. Putar paparan itu untuk memastikan setiap pasangan sama tinggi.
 
 <MathVisual
-  title={<>Atom di Sebelah Kiri dan Kanan Persamaan</>}
+  title={<>Keseimbangan Atom Pembakaran Metana</>}
   description={<>Karbon (kelabu), hidrogen (ungu) dan oksigen (oren) yang dikira dalam bahan tindak balas (belakang) dan hasil tindak balas (depan). Satu petak grid ke atas mewakili <InlineMath math="2" /> atom.</>}
+  footer={<>Palang bahan dan hasil yang sama tinggi mengesahkan C, H dan O seimbang.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -125,9 +147,15 @@ Kira atom dalam <InlineMath math="\mathrm{CH_4}+2\mathrm{O_2}\rightarrow\mathrm{
   }}
 />
 
-## Simbol Keadaan Ditulis Selepas Formula
+Mendarabkan pekali dengan subskrip mengekalkan palang depan dan belakang setiap unsur pada paras yang sama. Semakan ringkas ini terus memberitahu kamu bila persamaan sudah benar-benar seimbang.
 
-Apabila keadaan fizik setiap bahan diketahui, tulis simbol keadaan selepas setiap formula. Pada suhu tinggi nyalaan metana, air yang terhasil berada dalam bentuk wap, jadi persamaannya boleh ditulis sebagai:
+## Simbol Keadaan dan Contoh Pemendakan
+
+Formula kimia sahaja hanya menyatakan bahan yang bertindak balas tanpa menggambarkan keadaannya di dalam kelalang. Penambahan **simbol keadaan fizik** melengkapkan persamaan dengan menunjukkan bahan tindak balas yang larut dalam air serta hasil yang terpisah sebagai gas atau mendakan pepejal.
+
+### Simbol Keadaan Ditulis Selepas Formula
+
+Apabila keadaan fizik setiap bahan diketahui, tulis simbol keadaan selepas setiap formula. Pada suhu tinggi nyalaan metana, air yang terhasil berada dalam bentuk wap, jadi persamaannya ditulis seperti di bawah.
 
 <BlockMath math="\begin{aligned} &amp;\mathrm{CH_4(g)} + 2\mathrm{O_2(g)} \\ &amp;\rightarrow \mathrm{CO_2(g)} + 2\mathrm{H_2O(g)} \end{aligned}" />
 
@@ -140,7 +168,7 @@ Simbol keadaan tidak mengubah bilangan atom. Simbol ini memberitahu kamu **bentu
 | <InlineMath math="\mathrm{(g)}" /> | gas | <InlineMath math="\mathrm{CO_2(g)}" /> |
 | <InlineMath math="\mathrm{(aq)}" /> | larut dalam air | <InlineMath math="\mathrm{NaCl(aq)}" /> |
 
-## Contoh Pemendakan Argentum Klorida
+### Contoh Pemendakan Argentum Klorida
 
 Dua larutan jernih boleh membentuk pepejal baharu. Contohnya, larutan argentum nitrat bertindak balas dengan larutan natrium klorida untuk menghasilkan mendakan argentum klorida.
 
@@ -158,11 +186,20 @@ Persamaan ini sudah seimbang dengan nisbah pekali <InlineMath math="1:1:1:1" />.
 
 Formula kimia yang salah <Highlight>tidak dapat dibetulkan dengan menyeimbangkan persamaan</Highlight>. Semak setiap formula sebelum melaraskan pekali.
 
-Gunakan langkah terakhir pada gas dalam dapur perkhemahan: <InlineMath math="\mathrm{C_3H_8}+5\mathrm{O_2}\rightarrow3\mathrm{CO_2}+4\mathrm{H_2O}" />. Kira setiap atom di kedua-dua belah selepas kamu menyeimbangkan persamaan. Putar palang-palang itu: setiap pasangan sama tinggi, jadi pekalinya betul.
+> Jangan sekali-kali mengubah angka subskrip semata-mata untuk menyamakan bilangan atom. Mengubah subskrip menukar identiti bahan, manakala mengubah pekali hanya melaraskan bilangan molekul yang terlibat.
+
+### Mengimbangkan Pembakaran Propana
+
+Cuba jalankan langkah-langkah ini pada propana, iaitu bahan api dalam dapur perkhemahan. Mulakan dengan **menyeimbangkan karbon dan hidrogen dahulu**, kemudian tetapkan pekali oksigen pada langkah terakhir.
+
+<BlockMath math="\mathrm{C_3H_8} + 5\mathrm{O_2} \rightarrow 3\mathrm{CO_2} + 4\mathrm{H_2O}" />
+
+Kira setiap atom di kedua-dua belah selepas kamu menyeimbangkan persamaan. Putar palang-palang di bawah untuk melihat bahawa setiap pasangan unsur mempunyai ketinggian yang sama.
 
 <MathVisual
-  title={<>Atom di Sebelah Kiri dan Kanan</>}
+  title={<>Keseimbangan Atom Pembakaran Propana</>}
   description={<>Atom karbon (kelabu), hidrogen (ungu) dan oksigen (oren) dalam bahan tindak balas (belakang) dan hasil tindak balas (depan). Satu petak grid ke atas mewakili <InlineMath math="2" /> atom.</>}
+  footer={<>Palang sejajar mengesahkan 3 karbon, 8 hidrogen dan 10 oksigen di kedua-dua belah.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -188,28 +225,47 @@ Gunakan langkah terakhir pada gas dalam dapur perkhemahan: <InlineMath math="\ma
   }}
 />
 
-## Menyemak Keseimbangan Atom demi Atom
+Bagi bahan api hidrokarbon yang lebih besar, mengimbangkan karbon dan hidrogen dahulu memudahkan kiraan oksigen pada langkah akhir. Menyemak ketiga-tiga pasangan palang mengesahkan bahawa pekali <InlineMath math="1:5:3:4" /> adalah tepat.
 
-Langkah terakhir menulis persamaan ialah menyemak setiap unsur. Pilih satu tindak balas dan lihat bacaan bilangan atom. Nilai di kiri dan kanan tanda sama dengan **mesti sama bagi setiap unsur**. Pekali boleh berubah, tetapi formula tidak.
+### Menyemak Keseimbangan Atom demi Atom
 
-<ReactionBalanceLab
-  title={<>Persamaan yang Seimbang</>}
-  description={<>Pilih tindak balas dan semak bilangan atom setiap unsur di kedua-dua belah.</>}
-  reactions={[
-    { id: "nitrogen-fixation", name: "Pembentukan nitrogen monoksida", tab: <InlineMath math="\mathrm{NO}" /> },
-    { id: "sulfur-dioxide-oxidation", name: "Pengoksidaan sulfur dioksida", tab: <InlineMath math="\mathrm{SO_3}" /> },
-  ]}
-  reading="molecules"
+Langkah terakhir menulis persamaan ialah menyemak setiap unsur satu demi satu. Perhatikan dua tindak balas gas yang melibatkan oksida nitrogen dan sulfur di bawah.
+
+<BlockMath math="\begin{aligned} &amp;\mathrm{N_2} + \mathrm{O_2} \rightarrow 2\mathrm{NO} \\ &amp;2\mathrm{SO_2} + \mathrm{O_2} \rightarrow 2\mathrm{SO_3} \end{aligned}" />
+
+Nilai di kiri dan kanan tanda sama dengan **mesti sama bagi setiap unsur**. Putar paparan di bawah untuk menyemak atom nitrogen, sulfur dan oksigen bagi kedua-dua persamaan seimbang itu.
+
+<MathVisual
+  title={<>Semakan Atom Oksida Nitrogen dan Sulfur</>}
+  description={<>Atom bahan tindak balas (belakang) dan hasil (depan) bagi pembentukan <InlineMath math="\mathrm{NO}" /> (dua pasangan kiri) dan <InlineMath math="\mathrm{SO_3}" /> (dua pasangan kanan). Satu petak grid ialah <InlineMath math="1" /> atom.</>}
+  footer={<>Setiap pasangan unsur sama tinggi bagi tindak balas nitrogen dan sulfur.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9.5, y: 9.5, z: 12 }, target: { x: 3.25, y: 3, z: 0 } },
+    objects: [
+      { id: "n-left", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "n-right", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o1-left", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o1-right", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "s-left", kind: "cuboid", appearance: "highlight", center: { x: 4.5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "s-right", kind: "cuboid", appearance: "highlight", center: { x: 4.5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o2-left", kind: "cuboid", appearance: "primary", center: { x: 6.5, y: 3, z: -0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
+      { id: "o2-right", kind: "cuboid", appearance: "primary", center: { x: 6.5, y: 3, z: 0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-right", at: { x: 0, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "o1", objectId: "o1-right", at: { x: 2, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "s", objectId: "s-right", at: { x: 4.5, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "o2", objectId: "o2-right", at: { x: 6.5, y: 6.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Bilangan atom setiap unsur</>,
-    choose: "Pilih tindak balas",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan tindak balas</>,
-    mass: <>Jisim bahan dan hasil tindak balas</>,
-    molecules: <>Bilangan molekul</>,
-    products: <>Hasil tindak balas</>,
-    progress: "Perjalanan tindak balas",
-    reactants: <>Bahan tindak balas</>,
-    view: "Tindak balas pada aras atom",
+    n: <InlineMath math="\mathrm{N}:\ 2=2" />,
+    o1: <InlineMath math="\mathrm{O\ (NO)}:\ 2=2" />,
+    s: <InlineMath math="\mathrm{S}:\ 2=2" />,
+    o2: <InlineMath math="\mathrm{O\ (SO_3)}:\ 6=6" />,
   }}
 />
+
+Apabila setiap unsur melepasi semakan sebelah-menyebelah ini, persamaan kimia kamu lengkap dan boleh dipercayai. Kekalkan tabiat menyemak atom pada langkah terakhir supaya pekali yang tertinggal dapat dikesan sebelum pengiraan dijalankan.

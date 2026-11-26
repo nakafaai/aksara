@@ -9,19 +9,23 @@ export const metadata = {
   subject: "Basic Laws of Chemistry",
 };
 
-## Two Elements Can Make Several Compounds
+## Same Two Elements Form Multiple Compounds
 
 The law of multiple proportions applies when **the same two elements** form **more than one compound**. Hold the mass of one element fixed, then compare the corresponding masses of the other element. Those masses form a small whole-number ratio.
 
-## Fix the Mass of One Element for Comparison
-
 Suppose two compounds are both made from elements <InlineMath math="\mathrm{A}" /> and <InlineMath math="\mathrm{B}" />. To read Dalton's law, first hold the mass of <InlineMath math="\mathrm{A}" /> fixed, then compare the mass of <InlineMath math="\mathrm{B}" /> that combines with it.
 
-For the same mass of element A, let <InlineMath math="m_{B,1}" /> and <InlineMath math="m_{B,2}" /> denote the masses of B in compounds <InlineMath math="1" /> and <InlineMath math="2" />. Their ratio <InlineMath math="m_{B,2}/m_{B,1}" /> is a simple whole-number ratio.
+For the same mass of element <InlineMath math="\mathrm{A}" />, let <InlineMath math="m_{B,1}" /> and <InlineMath math="m_{B,2}" /> denote the masses of <InlineMath math="\mathrm{B}" /> in compounds <InlineMath math="1" /> and <InlineMath math="2" />. Their ratio <InlineMath math="m_{B,2}/m_{B,1}" /> reduces to small whole numbers.
 
-The mass of one element <Highlight>must be the same in both compounds</Highlight> before the other element's masses are compared. If both element masses change at once, the calculation cannot directly test whether the second element's mass ratio is a simple whole number.
+The mass of one element <Highlight>must be the same in both compounds</Highlight> before the other element's masses are compared. If both element masses change at once, the calculation cannot directly test whether the second element's mass ratio is a small whole number.
 
-## Compare Compounds Made from the Same Elements
+> Lock the mass of one element first. Only then do the masses of the second element line up in a clean whole-number ratio.
+
+## How Extra Atoms Shift the Mass Ratio
+
+When the same pair of elements builds two different compounds, adding one whole atom changes the partner mass in a fixed step. Holding the **reference element mass constant** reveals that jump directly across both interactive models and mass ladders below.
+
+### Comparing Compound Pairs
 
 Choose a compound pair below. The model shows the **element held fixed** and the element whose mass changes.
 
@@ -33,6 +37,7 @@ Choose a compound pair below. The model shows the **element held fixed** and the
       held fixed, then the other is read as a simple ratio.
     </>
   }
+  footer={<>Pick any pair to see the fixed base mass beside the changing whole-number ratio.</>}
   labels={{
     chooseMode: "Choose compound pair",
     comparisonView: "Law of multiple proportions model",
@@ -106,39 +111,68 @@ Choose a compound pair below. The model shows the **element held fixed** and the
   }}
 />
 
-In each pair above, one element is used as the comparison base. Once that base is the same, the element whose count changes is read as a simple mass ratio.
+In each pair above, one element serves as the comparison base. Once that base matches, the partner element steps cleanly from one whole-number multiple to the next.
 
-## One More Oxygen Atom
+### Adding One Oxygen Atom at a Time
 
-The second compound of the same two elements often forms when the first one picks up an extra atom. Choose the oxidation of <InlineMath math="\mathrm{NO}" /> or <InlineMath math="\mathrm{CO}" /> and drag the slider. Each molecule gains one more oxygen atom, so the oxygen mass per nitrogen or carbon atom changes in **the whole-number ratio** <InlineMath math="1 : 2" />.
+A second oxide often forms when the first molecule **picks up one more oxygen atom**. Per mole of nitrogen (<InlineMath math="14\ \mathrm{g}" />), turning <InlineMath math="\mathrm{NO}" /> into <InlineMath math="\mathrm{NO_2}" /> raises the oxygen mass from <InlineMath math="16\ \mathrm{g}" /> to <InlineMath math="32\ \mathrm{g}" />, giving <InlineMath math="1:2" />. Per mole of sulfur (<InlineMath math="32\ \mathrm{g}" />), turning <InlineMath math="\mathrm{SO_2}" /> into <InlineMath math="\mathrm{SO_3}" /> adds the same <InlineMath math="16\ \mathrm{g}" /> step, lifting oxygen from <InlineMath math="32\ \mathrm{g}" /> to <InlineMath math="48\ \mathrm{g}" />, or <InlineMath math="2:3" />.
 
-<ReactionBalanceLab
-  title={<>From One Oxide to Another</>}
-  description={<>Extra oxygen turns one oxide into the next.</>}
-  reactions={[
-    { id: "nitrogen-monoxide-oxidation", name: "Oxidising nitrogen monoxide", tab: <InlineMath math="\mathrm{NO}" /> },
-    { id: "carbon-monoxide-oxidation", name: "Oxidising carbon monoxide", tab: <InlineMath math="\mathrm{CO}" /> },
-  ]}
-  reading="molecules"
+<MathVisual
+  title={<>Oxygen Mass Ladders for Two Oxide Pairs</>}
+  description={
+    <>
+      Left ladder: oxygen per <InlineMath math="14\ \mathrm{g}" /> of nitrogen in{" "}
+      <InlineMath math="\mathrm{NO}" /> and <InlineMath math="\mathrm{NO_2}" />. Right ladder: oxygen per{" "}
+      <InlineMath math="32\ \mathrm{g}" /> of sulfur in <InlineMath math="\mathrm{SO_2}" /> and{" "}
+      <InlineMath math="\mathrm{SO_3}" />. One grid step up is <InlineMath math="8\ \mathrm{g}" /> of oxygen.
+    </>
+  }
+  footer={<>Each added oxygen atom adds one equal 16 g step to the fixed-base ladder.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: -1, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "step-guide", kind: "segment", appearance: "reference", from: { x: 1, y: 4 }, to: { x: 7, y: 4 } },
+      { id: "no-base", kind: "segment", appearance: "secondary", from: { x: 2, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "no-step", kind: "segment", appearance: "primary", from: { x: 2, y: 2 }, to: { x: 2, y: 4 } },
+      { id: "no-pt", kind: "point", appearance: "secondary", at: { x: 2, y: 2 } },
+      { id: "no2-pt", kind: "point", appearance: "primary", at: { x: 2, y: 4 } },
+      { id: "so2-base", kind: "segment", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
+      { id: "so3-step", kind: "segment", appearance: "construction", from: { x: 6, y: 4 }, to: { x: 6, y: 6 } },
+      { id: "so2-pt", kind: "point", appearance: "secondary", at: { x: 6, y: 4 } },
+      { id: "so3-pt", kind: "point", appearance: "construction", at: { x: 6, y: 6 } },
+    ],
+    labels: [
+      { key: "no", objectId: "no-pt", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "no2", objectId: "no2-pt", at: { x: 2, y: 4 }, placement: "above" },
+      { key: "no-ratio", objectId: "no-base", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "so2", objectId: "so2-pt", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "so3", objectId: "so3-pt", at: { x: 6, y: 6 }, placement: "above" },
+      { key: "so-ratio", objectId: "so2-base", at: { x: 6, y: 0 }, placement: "below" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms of each element</>,
-    choose: "Choose a reaction",
-    economy: <>Atom economy</>,
-    equation: <>Balanced equation</>,
-    mass: <>Mass of reactants and products</>,
-    molecules: <>Number of molecules</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Reaction at the level of atoms",
+    no: <InlineMath math="\mathrm{NO}:\ 16\ \mathrm{g}" />,
+    no2: <InlineMath math="\mathrm{NO_2}:\ 32\ \mathrm{g}" />,
+    "no-ratio": <InlineMath math="1:2" />,
+    so2: <InlineMath math="\mathrm{SO_2}:\ 32\ \mathrm{g}" />,
+    so3: <InlineMath math="\mathrm{SO_3}:\ 48\ \mathrm{g}" />,
+    "so-ratio": <InlineMath math="2:3" />,
   }}
 />
 
-## Water and Hydrogen Peroxide
+Both ladders jump by the exact same two-grid-step increment of <InlineMath math="16\ \mathrm{g}" /> because every extra oxygen atom carries the same mass. Whether the starting count is one atom or two, adding another whole atom always leaves a small integer ratio.
+
+## Worked Mass Ratio Comparisons
+
+Applying Dalton's law to real formulas starts by matching one element's mass across every compound in the table. Once that **shared mass basis** is set, dividing the partner element's masses reveals clean whole-number ratios for two or even three related oxides.
+
+### Water and Hydrogen Peroxide
 
 [Water](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula/JSON) has the formula <InlineMath math="\mathrm{H_2O}" />, while [hydrogen peroxide](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/hydrogen%20peroxide/property/MolecularFormula/JSON) has the formula <InlineMath math="\mathrm{H_2O_2}" />.
 
-Using <InlineMath math="A_r\mathrm{(H)} = 1" /> and <InlineMath math="A_r\mathrm{(O)} = 16" />, the hydrogen mass in the two formulas can be made the same, <InlineMath math="2\ \mathrm{g}" />.
+Using <InlineMath math="A_r\mathrm{(H)} = 1" /> and <InlineMath math="A_r\mathrm{(O)} = 16" />, the hydrogen mass in the two formulas can be matched at <InlineMath math="2\ \mathrm{g}" />.
 
 | Compound | Mass of <InlineMath math="\mathrm{H}" /> | Mass of <InlineMath math="\mathrm{O}" /> |
 | :------- | :--------------------------------------- | :--------------------------------------- |
@@ -149,9 +183,9 @@ Because the **hydrogen mass is already the same**, compare the oxygen masses dir
 
 <BlockMath math="\begin{aligned} &amp;m_{\mathrm{O\ in\ H_2O}} : m_{\mathrm{O\ in\ H_2O_2}} = 16:32 \\ &amp;= 1:2 \end{aligned}" />
 
-The ratio <InlineMath math="1:2" /> is a simple whole-number ratio. That means these data fit the law of multiple proportions.
+Hydrogen peroxide carries exactly twice as much oxygen as water for the same <InlineMath math="2\ \mathrm{g}" /> of hydrogen, which confirms Dalton's law directly.
 
-## Nitrogen Oxides
+### Dinitrogen Monoxide and Nitrogen Dioxide
 
 Nitrogen and oxygen can form several compounds. Two examples are [dinitrogen monoxide, or nitrous oxide](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/nitrous%20oxide/property/MolecularFormula/JSON), <InlineMath math="\mathrm{N_2O}" />, and [nitrogen dioxide](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/nitrogen%20dioxide/property/MolecularFormula/JSON), <InlineMath math="\mathrm{NO_2}" />.
 
@@ -162,17 +196,18 @@ Using the rounded relative atomic masses <InlineMath math="A_r(\mathrm{N})=14" /
 | <InlineMath math="2\mathrm{N_2O}" /> | <InlineMath math="32\ \mathrm{g}" /> | <InlineMath math="56\ \mathrm{g}" /> |
 | <InlineMath math="\mathrm{NO_2}" /> | <InlineMath math="32\ \mathrm{g}" /> | <InlineMath math="14\ \mathrm{g}" /> |
 
-Now that the oxygen mass is the same, compare the nitrogen masses:
+Now that the oxygen mass matches in both rows, we divide the nitrogen masses to read the ratio.
 
 <BlockMath math="\begin{aligned} &amp;m_{\mathrm{N\ in\ 2N_2O}} : m_{\mathrm{N\ in\ NO_2}} = 56:14 \\ &amp;= 4:1 \end{aligned}" />
 
-Multiplying <InlineMath math="\mathrm{N_2O}" /> to <InlineMath math="2\mathrm{N_2O}" /> puts oxygen on the same mass basis. The compound formula stays <InlineMath math="\mathrm{N_2O}" />.
+Multiplying <InlineMath math="\mathrm{N_2O}" /> to <InlineMath math="2\mathrm{N_2O}" /> puts oxygen on the same mass basis while the compound formula itself stays <InlineMath math="\mathrm{N_2O}" />.
 
-The scene below puts both comparisons side by side, one grid step for <InlineMath math="8\ \mathrm{g}" />. With hydrogen fixed at <InlineMath math="2\ \mathrm{g}" />, the oxygen bars stand <InlineMath math="16:32=1:2" />. With oxygen fixed at <InlineMath math="32\ \mathrm{g}" />, the nitrogen bars stand <InlineMath math="56:14=4:1" />. Each pair is a simple whole-number ratio only because one element was held fixed first.
+The scene below places the water pair and the nitrogen oxide pair side by side at one grid step per <InlineMath math="8\ \mathrm{g}" />.
 
 <MathVisual
   title={<>Fix One Element, Compare the Other</>}
   description={<>Orange: oxygen with <InlineMath math="2\text{ g}" /> of hydrogen in <InlineMath math="\mathrm{H_2O}" /> and <InlineMath math="\mathrm{H_2O_2}" />. Violet: nitrogen with <InlineMath math="32\text{ g}" /> of oxygen in <InlineMath math="2\mathrm{N_2O}" /> and <InlineMath math="\mathrm{NO_2}" />. One grid step up is <InlineMath math="8\text{ g}" />.</>}
+  footer={<>Holding one element steady reveals clean 1:2 and 4:1 column height ratios.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 8.5 }, z: { min: -1.5, max: 1.5 } },
@@ -198,40 +233,65 @@ The scene below puts both comparisons side by side, one grid step for <InlineMat
   }}
 />
 
-## Shapes of Three Nitrogen Oxides
+Look at how quickly the height ratio jumps out once one element is locked: the second orange bar is exactly double the first, and the taller violet bar is four times the shorter one.
 
-Nitrogen and oxygen form more than one compound. Turn <InlineMath math="\mathrm{N_2O}" />, <InlineMath math="\mathrm{NO}" />, and <InlineMath math="\mathrm{NO_2}" />. The oxygen atoms per nitrogen atom are <InlineMath math="\tfrac{1}{2}" />, <InlineMath math="1" />, and <InlineMath math="2" />. The ratios are simple because **atoms only join whole**, never as half an atom.
+### Three Nitrogen Oxides on One Basis
 
-<MoleculeShapeLab
-  title={<>Nitrogen Oxides</>}
-  description={<>Compare the oxygen count and the shape of the three molecules.</>}
-  molecules={[
-    { id: "dinitrogen-monoxide", name: "Dinitrogen monoxide" },
-    { id: "nitrogen-monoxide", name: "Nitrogen monoxide" },
-    { id: "nitrogen-dioxide", name: "Nitrogen dioxide" },
-  ]}
+You can compare more than two compounds on the same graph by choosing one shared mass of nitrogen. Fix nitrogen at <InlineMath math="28\ \mathrm{g}" /> (two moles of nitrogen atoms) across <InlineMath math="\mathrm{N_2O}" />, <InlineMath math="\mathrm{NO}" />, and <InlineMath math="\mathrm{NO_2}" />. The matching oxygen masses are <InlineMath math="16\ \mathrm{g}" />, <InlineMath math="32\ \mathrm{g}" />, and <InlineMath math="64\ \mathrm{g}" />, stepping cleanly as <InlineMath math="1:2:4" /> because **atoms only join whole**, never as a fraction of an atom.
+
+<MathVisual
+  title={<>Three Nitrogen Oxides at <InlineMath math="28\ \mathrm{g}" /> of Nitrogen</>}
+  description={
+    <>
+      Oxygen mass against nitrogen mass for <InlineMath math="\mathrm{N_2O}" /> (teal),{" "}
+      <InlineMath math="\mathrm{NO}" /> (violet), and <InlineMath math="\mathrm{NO_2}" /> (orange). Horizontal: one grid step is{" "}
+      <InlineMath math="4\ \mathrm{g}" /> of nitrogen. Vertical: one grid step is{" "}
+      <InlineMath math="8\ \mathrm{g}" /> of oxygen.
+    </>
+  }
+  footer={<>At <InlineMath math="28\ \mathrm{g}" /> of nitrogen, the three rays intersect at <InlineMath math="16\ \mathrm{g}" />, <InlineMath math="32\ \mathrm{g}" />, and <InlineMath math="64\ \mathrm{g}" /> of oxygen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -1, max: 9.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "n2o-ray", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 8.4, y: 2.4 } },
+      { id: "no-ray", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 8.4, y: 4.8 } },
+      { id: "no2-ray", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 7.7, y: 8.8 } },
+      { id: "fixed-n", kind: "segment", appearance: "reference", from: { x: 7, y: 0 }, to: { x: 7, y: 8.8 } },
+      { id: "n2o-pt", kind: "point", appearance: "construction", at: { x: 7, y: 2 } },
+      { id: "no-pt", kind: "point", appearance: "secondary", at: { x: 7, y: 4 } },
+      { id: "no2-pt", kind: "point", appearance: "primary", at: { x: 7, y: 8 } },
+    ],
+    labels: [
+      { key: "n2o", objectId: "n2o-pt", at: { x: 7, y: 2 }, placement: "below-right" },
+      { key: "no", objectId: "no-pt", at: { x: 7, y: 4 }, placement: "below-right" },
+      { key: "no2", objectId: "no2-pt", at: { x: 7, y: 8 }, placement: "above-left" },
+      { key: "ratio", objectId: "fixed-n", at: { x: 7, y: 0 }, placement: "below" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
+    n2o: <InlineMath math="\mathrm{N_2O}:\ 16\ \mathrm{g}" />,
+    no: <InlineMath math="\mathrm{NO}:\ 32\ \mathrm{g}" />,
+    no2: <InlineMath math="\mathrm{NO_2}:\ 64\ \mathrm{g}" />,
+    ratio: <InlineMath math="1:2:4" />,
   }}
 />
 
-## Mistakes to Avoid
+Every vertical cut through this family of lines yields the same <InlineMath math="1:2:4" /> spacing. Changing the fixed nitrogen sample scales all three oxygen readings together without disturbing their integer ratio.
 
-Do not compare the total masses of water and hydrogen peroxide, because each total includes both hydrogen and oxygen. Compare only the **oxygen masses after fixing the hydrogen mass**. Water and carbon dioxide are not a suitable pair either, because their other elements differ.
+## Checking the Reference Mass First
 
-For one compound, the law of constant composition compares the mass ratio of its elements. For two or more compounds made from the same element pair, the law of multiple proportions compares those ratios. The resulting small whole-number ratios supported Dalton's claim that atoms combine in whole-number counts.
+Before dividing any numbers, verify two conditions. First, check that both compounds contain the **exact same two elements** (water and carbon dioxide cannot be paired under this law because hydrogen and carbon are different elements). Second, compare only the **partner element's masses after fixing the reference mass**, rather than dividing total compound masses like <InlineMath math="18\ \mathrm{g}" /> of water by <InlineMath math="34\ \mathrm{g}" /> of hydrogen peroxide, since each total mixes both elements together.
 
-Each line gives the oxygen that combines with a mass of carbon: <InlineMath math="m_\mathrm{O}=\tfrac{4}{3}m_\mathrm{C}" /> in <InlineMath math="\mathrm{CO}" /> and <InlineMath math="m_\mathrm{O}=\tfrac{8}{3}m_\mathrm{C}" /> in <InlineMath math="\mathrm{CO_2}" />. Fix the carbon at <InlineMath math="12\ \mathrm{g}" /> on the gray line and read both oxygen masses. Zoom in: they compare as <InlineMath math="1:2" />, a simple whole-number ratio.
+For a single compound, the law of constant composition tracks the fixed mass ratio of its elements. When two or more compounds share the same element pair, the law of multiple proportions compares those ratios across compounds. The resulting small integers gave Dalton strong evidence that atoms combine in whole-number counts.
+
+Each ray below plots oxygen mass against carbon mass, following <InlineMath math="m_\mathrm{O}=\tfrac{4}{3}m_\mathrm{C}" /> for <InlineMath math="\mathrm{CO}" /> and <InlineMath math="m_\mathrm{O}=\tfrac{8}{3}m_\mathrm{C}" /> for <InlineMath math="\mathrm{CO_2}" />. Fixing carbon along the vertical reference line at <InlineMath math="12\ \mathrm{g}" /> puts both oxygen readings directly on one vertical slice.
 
 <MathVisual
   title={<>Fix the Carbon, Read the Oxygen</>}
   description={<>Oxygen mass against carbon mass in <InlineMath math="\mathrm{CO}" /> (violet) and <InlineMath math="\mathrm{CO_2}" /> (orange). Horizontal: one grid step is <InlineMath math="1" /> gram of carbon. Vertical: one grid step is <InlineMath math="4" /> grams of oxygen.</>}
+  footer={<>Vertical cut at 12 g of carbon reads 16 g and 32 g of oxygen in a 1:2 ratio.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 15.5 }, y: { min: -1, max: 10.5 } },
@@ -255,3 +315,5 @@ Each line gives the oxygen that combines with a mass of carbon: <InlineMath math
     ratio: <InlineMath math="16:32=1:2" />,
   }}
 />
+
+Whenever you slice vertically at any chosen carbon mass, the upper orange line sits at exactly twice the height of the violet line. That steady <InlineMath math="1:2" /> factor is the geometric signature of Dalton's law.

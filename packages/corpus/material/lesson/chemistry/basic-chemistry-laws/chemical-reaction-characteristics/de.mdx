@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Eigenschaften chemischer Reaktionen",
   description:
@@ -17,92 +16,83 @@ Eine **chemische Reaktion** findet statt, wenn Ausgangsstoffe in neue Stoffe umg
 
 <BlockMath math="\text{Reaktanten} \rightarrow \text{Produkte}" />
 
-Auch ohne Analysegerät liefern sichtbare Veränderungen erste Hinweise auf eine chemische Reaktion. Dazu gehören Gasbildung, ein Niederschlag, eine Farbänderung oder eine Energieänderung. Reaktionen lassen sich außerdem als Fällungs-, Säure-Base- und Redoxreaktionen einordnen.
+> Blick hinter das äußere Erscheinungsbild und frag immer zuerst, ob die Atome einen wirklich neuen Stoff mit anderen Eigenschaften gebildet haben.
 
-## Atome finden neue Partner
+Auch ohne Analysegerät geben sichtbare Veränderungen wertvolle erste Hinweise auf mögliche neue Produkte. Im Labor achtet man auf Gasblasen, feste Niederschläge, unerwartete Farbwechsel oder Temperaturänderungen und prüft dann die stoffliche Identität.
 
-Die Anzeichen einer Reaktion, die du siehst, zum Beispiel Gasblasen, entstehen, weil **Atome ihre Partner wechseln**. Zieh den Regler unten von links nach rechts. Die alten Bindungen in <InlineMath math="\mathrm{H_2O_2}" /> verschwinden, die Atome wandern, und es bilden sich <InlineMath math="\mathrm{H_2O}" /> und gasförmiges <InlineMath math="\mathrm{O_2}" />. Jedes Element behält dieselbe Zahl an Atomen, aber die Stoffe sind neu.
+## Atomare Umgruppierung und makroskopische Hinweise
 
-<ReactionBalanceLab
-  title={<>Eine Reaktion Atom für Atom</>}
-  description={<>Sieh zu, wie Bindungen brechen und neu entstehen, wenn Wasserstoffperoxid zerfällt und Methan verbrennt.</>}
-  reactions={[
-    { id: "peroxide-decomposition", name: "Zerfall von Wasserstoffperoxid", tab: <InlineMath math="\mathrm{H_2O_2}" /> },
-    { id: "methane-combustion", name: "Verbrennung von Methan", tab: <InlineMath math="\mathrm{CH_4}" /> },
-  ]}
-  reading="molecules"
+Jedes sichtbare Anzeichen im Labor beruht auf dem Geschehen auf **Teilchenebene**. Wenn alte Bindungen brechen und neue entstehen, ordnen sich dieselben Atome zu anderen Molekülen mit neuen thermischen, optischen und physikalischen Eigenschaften.
+
+### Atome finden neue Partner
+
+Die Anzeichen einer Reaktion, die du siehst, zum Beispiel Gasblasen, entstehen, weil **Atome ihre Partner wechseln**. Der Zerfall von Wasserstoffperoxid zeigt diese Umordnung direkt.
+
+<BlockMath math="2\mathrm{H_2O_2} \rightarrow 2\mathrm{H_2O} + \mathrm{O_2}" />
+
+Jedes Wasserstoff- und Sauerstoffatom bleibt erhalten, doch aus zwei Eduktmolekülen entstehen drei Produktmoleküle.
+
+<MathVisual
+  title={<>Atome bleiben erhalten, während sich Moleküle ändern</>}
+  description={<>Atom- und Molekülzahlen für <InlineMath math="2\mathrm{H_2O_2} \rightarrow 2\mathrm{H_2O} + \mathrm{O_2}" />. Hinten stehen Edukte, vorne Produkte. Ein Gitterschritt nach oben ist <InlineMath math="1" /> Einheit.</>}
+  footer={<>Wasserstoff und Sauerstoff bleiben je vier Atome, während die Molekülzahl von zwei auf drei steigt.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "h-in", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2, z: -0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "h-out", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2, z: 0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "o-in", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2, z: -0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "o-out", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2, z: 0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "mol-in", kind: "cuboid", appearance: "warning", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "mol-out", kind: "cuboid", appearance: "secondary", center: { x: 5, y: 1.5, z: 0.75 }, size: { length: 1.1, height: 3, width: 1.1 } },
+    ],
+    labels: [
+      { key: "h", objectId: "h-out", at: { x: 0, y: 4.3, z: 0.75 }, placement: "above" },
+      { key: "o", objectId: "o-out", at: { x: 2.5, y: 4.3, z: 0.75 }, placement: "above" },
+      { key: "mol", objectId: "mol-out", at: { x: 5, y: 3.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome je Element</>,
-    choose: "Reaktion wählen",
-    economy: <>Atomökonomie</>,
-    equation: <>Reaktionsgleichung</>,
-    mass: <>Masse der Edukte und Produkte</>,
-    molecules: <>Anzahl der Moleküle</>,
-    products: <>Produkte</>,
-    progress: "Reaktionsverlauf",
-    reactants: <>Edukte</>,
-    view: "Reaktion auf Teilchenebene",
+    h: <InlineMath math="\mathrm{H}:\ 4 = 4" />,
+    o: <InlineMath math="\mathrm{O}:\ 4 = 4" />,
+    mol: <>Moleküle: 2 auf 3</>,
   }}
 />
 
-## Reaktionsmerkmale in einem Modell beobachten
+Die Atombalken behalten zwischen Edukten und Produkten exakt dieselbe Höhe, während der Molekülbalken von zwei auf drei wächst. Genau diese Umordnung zeigt, dass Bindungen brachen und neue Stoffe einschließlich sichtbarer Sauerstoffblasen entstanden.
 
-Wähle einen Hinweis aus und vergleiche den **Zustand vor und nach der Veränderung**. Beobachte, was sichtbar wird, und überlege, was vermutlich mit den Stoffen geschehen ist.
+### Sichtbare Hinweise im Verlauf vergleichen
 
-<ChemicalReactionCharacteristicsLab
-  title={<>Modell für Merkmale chemischer Reaktionen</>}
-  description={
-    <>
-      Beobachte die sichtbare Veränderung und unterscheide Befunde für eine
-      chemische Reaktion von Zeichen, die auch bei einer physikalischen Änderung
-      auftreten können.
-    </>
-  }
+Wenn du Beobachtungen im Labor festhältst, verfolge den **Verlauf über mehrere Minuten** statt nur einen Augenblick. In der Gaskurve unten liefert eine chemische Reaktion stetig <InlineMath math="\mathrm{CO_2}" />, bis ein Edukt verbraucht ist, während gelöste Luft aus warmem Wasser rasch abflacht.
+
+<MathVisual
+  title={<>Freigesetztes Gasvolumen über die Zeit</>}
+  description={<>Beispielhaftes Gasvolumen einer chemischen Reaktion (orange) gegen Entgasung von warmem Wasser (grau). Waagerecht <InlineMath math="1\text{ min}" />, senkrecht <InlineMath math="10\text{ mL}" />.</>}
+  footer={<>Anhaltende Gasentwicklung bis zu einem Plateau zeigt den Verbrauch eines Edukts.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "rxn", kind: "function", appearance: "primary", formula: "5.8 * (1 - exp(-0.48 * x))", domain: { min: 0, max: 10 } },
+      { id: "degas", kind: "function", appearance: "reference", formula: "0.75 * (1 - exp(-1.2 * x))", domain: { min: 0, max: 10 } },
+      { id: "rxn-pt", kind: "point", appearance: "primary", at: { x: 8, y: 5.68 } },
+      { id: "degas-pt", kind: "point", appearance: "reference", at: { x: 3, y: 0.73 } },
+    ],
+    labels: [
+      { key: "rxn", objectId: "rxn-pt", at: { x: 8, y: 5.68 }, placement: "above-left" },
+      { key: "degas", objectId: "degas-pt", at: { x: 3, y: 0.73 }, placement: "above-right" },
+    ],
+  }}
   labels={{
-    chooseCue: "Reaktionshinweis auswählen",
-    before: "Vorher",
-    after: "Nachher",
-    transition: "Wechsel vom Vorher zum Nachher",
-    observationLabel: "Beobachtung",
-    meaningLabel: "Bedeutung der Veränderung",
-    limitLabel: "Grenze des Befunds",
-    cues: {
-      gas: {
-        tab: "Gas",
-        helperCaption: <>Aufsteigende Blasen können zeigen, dass im Gemisch ein Gas entsteht.</>,
-        observation: <>Blasen steigen auf oder Gas entweicht aus dem Gemisch.</>,
-        meaning: (
-          <>
-            Eines der Produkte kann gasförmig sein, zum Beispiel{" "}
-            <InlineMath math="\mathrm{CO_2}" />.
-          </>
-        ),
-        limit: <>Blasen beim Sieden beweisen allein noch keine chemische Reaktion.</>,
-      },
-      precipitate: {
-        tab: "Niederschlag",
-        helperCaption: <>Ein sich absetzender Feststoff kann auf einen neuen schwer löslichen Stoff hinweisen.</>,
-        observation: <>Ein neuer schwer löslicher Feststoff entsteht.</>,
-        meaning: <>Ionen in Lösung können eine feste Verbindung bilden.</>,
-        limit: <>Staub oder Schmutz ist kein Beleg für ein neues Produkt.</>,
-      },
-      color: {
-        tab: "Farbe",
-        helperCaption: <>Eine Farbänderung kann zeigen, dass neue Teilchen Licht anders absorbieren.</>,
-        observation: <>Die Farbe ändert sich, ohne dass Farbstoff zugesetzt wurde.</>,
-        meaning: <>Neue Teilchen können Licht auf andere Weise absorbieren.</>,
-        limit: <>Farbstoff in Wasser zu mischen ist nur eine physikalische Veränderung.</>,
-      },
-      energy: {
-        tab: "Energie",
-        helperCaption: <>Die Energiebilanz aus dem Lösen alter und dem Bilden neuer Bindungen kann die Umgebung erwärmen, abkühlen oder zum Leuchten bringen.</>,
-        observation: <>Während der Reaktion ändert sich die Temperatur oder Licht entsteht.</>,
-        meaning: <>Das Lösen von Bindungen benötigt Energie, das Bilden von Bindungen setzt Energie frei.</>,
-        limit: <>Von außen zugeführte Wärme muss von der Reaktionswärme unterschieden werden.</>,
-      },
-    },
+    rxn: <>Reaktionsgas: 58 mL</>,
+    degas: <>Physikalische Blasen: 7,5 mL</>,
   }}
 />
+
+Durch die Messung über mehrere Minuten trennst du eine echte Reaktion von einer kurzen physikalischen Störung. Trotzdem muss auch eine große Gasmenge chemisch nachgewiesen werden, bevor das Produkt sicher feststeht.
 
 ## Vier häufige Hinweise
 
@@ -121,6 +111,7 @@ Ein Thermometer macht aus einem Hinweis Zahlen. In zwei beispielhaften Mischunge
 <MathVisual
   title={<>Ein Thermometer liest den Energiehinweis</>}
   description={<>Beispielhafte Temperatur zweier Mischungen nach dem Mischen. Waagerecht: Ein Gitterschritt entspricht einer Minute. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="5\ ^\circ\mathrm{C}" />.</>}
+  footer={<>Die exotherme Mischung steigt über Raumtemperatur, die endotherme fällt darunter.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 6.5 } },
@@ -145,7 +136,13 @@ Ein Thermometer macht aus einem Hinweis Zahlen. In zwei beispielhaften Mischunge
   }}
 />
 
-## Mehrere Merkmale einer chemischen Reaktion prüfen
+Beide Kurven nähern sich wieder <InlineMath math="25\ ^\circ\mathrm{C}" />, sobald die Mischung Wärme mit dem Raum austauscht. Deshalb liest man das Thermometer unmittelbar nach dem Zusammengeben ab.
+
+## Neue Produkte sicher prüfen
+
+Da physikalische Vorgänge Gasblasen, Farbwechsel oder Wärmeänderungen nachahmen können, verlassen sich Chemiker niemals auf ein einzelnes äußeres Anzeichen. Stattdessen verbinden sie mehrere Beobachtungen und prüfen gezielt, **ob eine neue stoffliche Struktur entstanden ist**, bevor eine chemische Reaktion als gesichert gilt.
+
+### Mehrere Merkmale einer chemischen Reaktion prüfen
 
 Ein Zeichen reicht nicht immer aus. Kochendes Wasser erzeugt Blasen, aber es handelt sich um eine **physikalische Veränderung**, da die Substanz immer noch <InlineMath math="\mathrm{H_2O}" /> ist. Auch gelöstes Salz sieht anders aus, kann aber durch Verdunstung des Wassers wiedergewonnen werden.
 
@@ -160,28 +157,43 @@ Die folgende Übersicht hilft bei der Einordnung.
 
 Natürlich müssen wir prüfen, ob sich die Produkte wirklich von den Reaktanten unterscheiden. Im Labor kann dies durch Messung der Masse, Prüfung eines Gases, Beobachtung eines Niederschlags oder Analyse der Zusammensetzung erfolgen.
 
-## Neue Stoffe haben neue Formen
+### Neue Stoffe haben neue Formen
 
-Einer der stärksten Hinweise auf eine Reaktion ist **ein Stoff, dessen Atome anders angeordnet sind**. Vergleiche <InlineMath math="\mathrm{H_2O_2}" />, <InlineMath math="\mathrm{H_2O}" /> und <InlineMath math="\mathrm{O_2}" /> in diesem Modell. Alle drei bestehen nur aus Wasserstoff und Sauerstoff, aber Form und Bindungswinkel unterscheiden sich, deshalb verhalten sich die Stoffe auch unterschiedlich.
+Einer der stärksten Hinweise auf eine Reaktion ist **ein Stoff, dessen Atome anders angeordnet sind**. Vergleiche die Bindungswinkel von <InlineMath math="\mathrm{H_2O_2}" />, <InlineMath math="\mathrm{H_2O}" /> und <InlineMath math="\mathrm{O_2}" /> unten. Alle drei bestehen nur aus Wasserstoff und Sauerstoff, aber Bindungswinkel und Form unterscheiden sich, deshalb verhalten sich die Stoffe auch unterschiedlich.
 
-<MoleculeShapeLab
-  title={<>Edukt und Produkte in 3D</>}
-  description={<>Dreh jedes Molekül und vergleiche seinen Bindungswinkel.</>}
-  molecules={[
-    { id: "hydrogen-peroxide", name: "Wasserstoffperoxid" },
-    { id: "water", name: "Wasser" },
-    { id: "oxygen", name: "Sauerstoff" },
-  ]}
+<MathVisual
+  title={<>Bindungswinkel dreier H- und O-Stoffe</>}
+  description={<>Schematischer Vergleich des <InlineMath math="\mathrm{H-O-O}" />-Winkels in <InlineMath math="\mathrm{H_2O_2}" /> (<InlineMath math="94{,}8^\circ" />), des <InlineMath math="\mathrm{H-O-H}" />-Winkels in <InlineMath math="\mathrm{H_2O}" /> (<InlineMath math="104{,}5^\circ" />) und linearem <InlineMath math="\mathrm{O_2}" /> (<InlineMath math="180^\circ" />).</>}
+  footer={<>Gleiche Elemente, aber verschiedene Bindungswinkel erklären die neuen Stoffeigenschaften.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "h2o2-a", kind: "segment", appearance: "warning", from: { x: 0.5, y: 0.8 }, to: { x: 0.5, y: 2.6 } },
+      { id: "h2o2-b", kind: "segment", appearance: "warning", from: { x: 0.5, y: 0.8 }, to: { x: 2.29, y: 0.65 } },
+      { id: "h2o2-v", kind: "point", appearance: "warning", at: { x: 0.5, y: 0.8 } },
+      { id: "h2o-a", kind: "segment", appearance: "primary", from: { x: 4.8, y: 0.8 }, to: { x: 3.7, y: 2.2 } },
+      { id: "h2o-b", kind: "segment", appearance: "primary", from: { x: 4.8, y: 0.8 }, to: { x: 6.5, y: 1.4 } },
+      { id: "h2o-v", kind: "point", appearance: "primary", at: { x: 4.8, y: 0.8 } },
+      { id: "o2-line", kind: "segment", appearance: "secondary", from: { x: 7.8, y: 1.6 }, to: { x: 10.2, y: 1.6 } },
+      { id: "o2-a", kind: "point", appearance: "secondary", at: { x: 7.8, y: 1.6 } },
+      { id: "o2-b", kind: "point", appearance: "secondary", at: { x: 10.2, y: 1.6 } },
+    ],
+    labels: [
+      { key: "h2o2", objectId: "h2o2-v", at: { x: 1.2, y: 2.8 }, placement: "above" },
+      { key: "h2o", objectId: "h2o-v", at: { x: 5.0, y: 2.8 }, placement: "above" },
+      { key: "o2", objectId: "o2-line", at: { x: 9.0, y: 2.3 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Summenformel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel oder -länge</>,
-    view: "Dreidimensionales Molekülmodell",
+    h2o2: <InlineMath math="\mathrm{H_2O_2}:\ 94{,}8^\circ" />,
+    h2o: <InlineMath math="\mathrm{H_2O}:\ 104{,}5^\circ" />,
+    o2: <InlineMath math="\mathrm{O_2}:\ 180^\circ" />,
   }}
 />
+
+Wenn Wasserstoffperoxid in Wasser und Sauerstoff zerfällt, ändert sich mit der Formel auch die räumliche Form. Genau dieser Strukturwandel bewirkt die stark unterschiedlichen Siedepunkte und Reaktivitäten der drei Stoffe.
 
 ## Reaktionsnachweise und chemische Grundgesetze
 
@@ -198,6 +210,7 @@ Zähl die Atome in <InlineMath math="2\mathrm{Ni}+\mathrm{O_2}\rightarrow2\mathr
 <MathVisual
   title={<>Erhaltene Atome in <InlineMath math="2\mathrm{Ni}+\mathrm{O_2}\rightarrow2\mathrm{NiO}" /></>}
   description={<>Atome von Nickel (grau) und Sauerstoff (orange) in den Edukten (hinten) und den Produkten (vorne). Ein Gitterschritt nach oben entspricht <InlineMath math="1" /> Atom.</>}
+  footer={<>Gleich hohe Balken vorn und hinten belegen, dass jedes Nickel- und Sauerstoffatom erhalten bleibt.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -218,3 +231,5 @@ Zähl die Atome in <InlineMath math="2\mathrm{Ni}+\mathrm{O_2}\rightarrow2\mathr
     o: <InlineMath math="\mathrm{O}:\ 2=2" />,
   }}
 />
+
+Da vordere und hintere Balken für jedes Element exakt gleich bleiben, verschwindet beim Entstehen neuer Stoffe kein einziges Atom. Sichtbare Merkmale bestätigen die Reaktion, und die Grundgesetze der Chemie rechnen danach jedes Atom und jedes Gramm genau nach.

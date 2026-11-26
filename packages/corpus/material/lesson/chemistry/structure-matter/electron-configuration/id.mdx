@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Konfigurasi Elektron",
   description:
@@ -17,9 +16,12 @@ Model Bohr memakai tingkat energi diskret untuk menjelaskan spektrum garis atom 
 
 Kata **diskret** berarti tidak semua nilai energi boleh dipakai. Bayangkan anak tangga. Kamu bisa berdiri di anak tangga pertama, kedua, atau ketiga, tetapi tidak di ruang kosong antara dua anak tangga. Dalam atom, elektron hanya boleh berada pada tingkat energi tertentu.
 
+> Elektron seperti langkah kaki di tangga karena hanya bisa berpijak di tingkat yang diizinkan dan tidak melayang di ruang antaranya.
+
 <Mermaid
   title={<>Warna Nyala Menunjuk Energi Elektron</>}
   description={<>Hubungkan eksitasi elektron dan cahaya yang dipancarkan dengan warna yang terlihat pada uji nyala.</>}
+  footer={<>Setiap panah menghubungkan energi yang diserap dengan warna cahaya yang keluar.</>}
   chart={`flowchart LR
     A["Energi masuk"] --> B["Elektron tereksitasi"]
     B --> C["Elektron kembali"]
@@ -29,11 +31,20 @@ Kata **diskret** berarti tidak semua nilai energi boleh dipakai. Bayangkan anak 
 
 **Eksitasi** berarti elektron menyerap energi dan naik sementara ke tingkat energi lebih tinggi. Saat elektron turun kembali, energi dilepas sebagai cahaya. Pada eksperimen nyala, percobaan harus mengikuti prosedur keselamatan dan memakai alat pelindung diri karena melibatkan pemanasan bahan kimia.
 
-Warna nyala api adalah cahaya dari elektron yang turun ke tingkat energi yang lebih rendah. Pada hidrogen, tingkatnya ada di <InlineMath math="E_n=-\tfrac{13{,}6}{n^2}\ \mathrm{eV}" />, jadi turun dari <InlineMath math="n=3" /> ke <InlineMath math="n=2" /> melepas <InlineMath math="1{,}89\ \mathrm{eV}" />, dan <InlineMath math="\lambda=\tfrac{1240}{1{,}89}\approx656\ \mathrm{nm}" /> adalah cahaya merah. Perbesar bagian atas, tempat tingkat-tingkatnya berdesakan.
+Warna nyala api adalah cahaya dari elektron yang turun ke tingkat energi yang lebih rendah. Pada hidrogen, energi tiap tingkat dan penurunan merah dari <InlineMath math="n = 3" /> ke <InlineMath math="n = 2" /> mengikuti hitungan ini.
+
+<BlockMath math="\begin{aligned}
+E_n &= -\frac{13{,}6}{n^2}\ \mathrm{eV} \\
+\Delta E &= 1{,}89\ \mathrm{eV} \\
+\lambda &= \frac{1240}{1{,}89} \approx 656\ \mathrm{nm}
+\end{aligned}" />
+
+Panjang gelombang <InlineMath math="656\ \mathrm{nm}" /> itu berada di daerah cahaya merah. Perbesar bagian atas diagram di bawah, tempat tingkat energi yang lebih tinggi saling berdekatan.
 
 <MathVisual
   title={<>Elektron yang Turun Memancarkan Cahaya Berwarna</>}
-  description={<>Tingkat energi atom hidrogen dan dua penurunan ke tingkat <InlineMath math="n=2" />, merah (panah merah muda) dan biru kehijauan (panah teal). Tegak: energi dalam elektronvolt.</>}
+  description={<>Tingkat energi atom hidrogen dan dua penurunan ke tingkat <InlineMath math="n=2" />, merah (panah merah muda) dan biru kehijauan (panah teal). Sumbu tegak menunjukkan energi dalam elektronvolt.</>}
+  footer={<>Penurunan yang lebih panjang melepas energi lebih besar dengan panjang gelombang lebih pendek.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -14.5, max: 0.5 } },
@@ -66,36 +77,55 @@ Warna nyala api adalah cahaya dari elektron yang turun ke tingkat energi yang le
   }}
 />
 
+Lihat bahwa panah biru kehijauan lebih panjang daripada panah merah. Karena elektron turun melewati selisih energi yang lebih besar, foton yang keluar membawa energi lebih tinggi dan bergeser ke arah biru.
+
 ## Susunan Elektron dalam Model Kulit
 
-**Konfigurasi elektron** adalah cara menuliskan penyebaran elektron di sekitar inti atom. Di sini, kita memakai **model kulit sederhana**, yaitu elektron dikelompokkan pada kulit <InlineMath math="\mathrm{K}" />, <InlineMath math="\mathrm{L}" />, <InlineMath math="\mathrm{M}" />, dan <InlineMath math="\mathrm{N}" />.
+**Konfigurasi elektron** adalah cara menuliskan penyebaran elektron di sekitar inti atom. Di sini, kita memakai **model kulit sederhana** yang mengelompokkan elektron pada kulit <InlineMath math="\mathrm{K}" />, <InlineMath math="\mathrm{L}" />, <InlineMath math="\mathrm{M}" />, dan <InlineMath math="\mathrm{N}" />.
 
-Untuk atom netral:
+Untuk atom netral, jumlah elektronnya sama dengan nomor atom.
 
 <BlockMath math="e^- = Z" />
 
 Simbol <InlineMath math="e^-" /> adalah jumlah elektron, sedangkan <InlineMath math="Z" /> adalah nomor atom atau jumlah proton. Jadi, atom natrium netral dengan <InlineMath math="Z = 11" /> memiliki <InlineMath math="11" /> elektron.
 
-Model kulit sederhana ini dibatasi pada unsur ringan sampai kalsium, yaitu <InlineMath math="Z \le 20" />. Untuk unsur yang lebih berat, kita perlu memakai subkulit dan orbital.
+Model kulit sederhana ini dibatasi pada unsur ringan sampai kalsium dengan <InlineMath math="Z \le 20" />. Untuk unsur yang lebih berat, kita perlu memakai subkulit dan orbital.
 
 ## Konfigurasi di dalam Gelas Kimia
 
-Natrium berkonfigurasi <InlineMath math="2, 8, 1" /> dan magnesium <InlineMath math="2, 8, 2" />: **satu elektron terluar lebih mudah lepas daripada dua**, jadi natrium melesat di atas air sementara magnesium hampir tidak bereaksi.
+Natrium berkonfigurasi <InlineMath math="2, 8, 1" /> dan magnesium <InlineMath math="2, 8, 2" />. Karena **satu elektron terluar lebih mudah lepas daripada dua**, natrium bereaksi cepat dengan air sementara magnesium bereaksi jauh lebih lambat. Bandingkan energi ionisasi pertama keduanya bersama kalsium di bawah ini.
 
-<AlkaliWaterLab
-  title={<>Elektron Terluar dan Kecepatan Reaksi</>}
-  description={<>Bandingkan natrium, magnesium, dan kalsium, lalu baca energi ionisasinya.</>}
-  metals={["sodium", "magnesium", "calcium"]}
+<MathVisual
+  title={<>Elektron Terluar dan Energi Ionisasi</>}
+  description={<>Energi ionisasi pertama dalam kilojoule per mol untuk natrium, magnesium, dan kalsium. Garis yang lebih rendah berarti elektron terluar lebih mudah lepas.</>}
+  footer={<>Natrium butuh energi paling kecil untuk melepas satu elektron terluarnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -40, max: 860 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0.4, y: 0 }, to: { x: 3.6, y: 0 } },
+      { id: "na-bar", kind: "segment", appearance: "primary", from: { x: 1, y: 0 }, to: { x: 1, y: 496 } },
+      { id: "mg-bar", kind: "segment", appearance: "secondary", from: { x: 2, y: 0 }, to: { x: 2, y: 738 } },
+      { id: "ca-bar", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 590 } },
+      { id: "na-pt", kind: "point", appearance: "primary", at: { x: 1, y: 496 } },
+      { id: "mg-pt", kind: "point", appearance: "secondary", at: { x: 2, y: 738 } },
+      { id: "ca-pt", kind: "point", appearance: "construction", at: { x: 3, y: 590 } },
+    ],
+    labels: [
+      { key: "na", objectId: "na-pt", at: { x: 1, y: 496 }, placement: "above" },
+      { key: "mg", objectId: "mg-pt", at: { x: 2, y: 738 }, placement: "above" },
+      { key: "ca", objectId: "ca-pt", at: { x: 3, y: 590 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih logam",
-    density: <>Massa jenis</>,
-    equation: <>Persamaan reaksi</>,
-    ionization: <>Energi ionisasi pertama</>,
-    melting: <>Titik leleh</>,
-    radius: <>Jari-jari atom</>,
-    view: "Logam dalam gelas kimia berisi air",
+    na: <InlineMath math="\mathrm{Na}\ (2,8,1):\ 496" />,
+    mg: <InlineMath math="\mathrm{Mg}\ (2,8,2):\ 738" />,
+    ca: <InlineMath math="\mathrm{Ca}\ (2,8,8,2):\ 590" />,
   }}
 />
+
+Natrium punya penghalang energi paling rendah di antara ketiganya, sehingga elektron terluarnya paling mudah terlepas. Kalsium lebih rendah daripada magnesium karena dua elektron terluarnya berada lebih jauh di kulit keempat.
 
 ## Model Interaktif Kulit Elektron
 
@@ -112,6 +142,7 @@ Pilih atom netral di bawah ini. Mulai dari nomor atomnya, lalu lihat bagaimana e
       <InlineMath math="\mathrm{N}" />.
     </>
   }
+  footer={<>Kulit dalam selalu terisi penuh dulu sebelum elektron masuk ke kulit berikutnya.</>}
   labels={{
     chooseAtom: "Pilih atom netral",
     atomicNumber: "Nomor atom",
@@ -155,9 +186,11 @@ Pilih atom netral di bawah ini. Mulai dari nomor atomnya, lalu lihat bagaimana e
   }}
 />
 
+Coba klik natrium, magnesium, dan klorin secara berurutan. Setiap tambahan satu proton dan satu elektron mengisi kulit terluar yang sama sampai terisi delapan dan membuka lingkaran baru.
+
 ## Membaca Urutan Pengisian
 
-Pada model kulit sederhana **untuk unsur pertama sampai kalsium**, elektron diisikan dari kulit yang lebih dekat inti dulu. Urutannya:
+Pada model kulit sederhana **untuk unsur pertama sampai kalsium**, elektron diisikan dari kulit yang lebih dekat inti dulu.
 
 | Kulit | Jumlah maksimum pada model sederhana ini | Cara membaca |
 | :---- | :------------------------------------- | :----------- |
@@ -168,7 +201,7 @@ Pada model kulit sederhana **untuk unsur pertama sampai kalsium**, elektron diis
 
 Model kulit sederhana dapat dipakai untuk unsur pertama sampai kalsium. Susunan <InlineMath math="2, 8, 8, 2" /> adalah konfigurasi kalsium, sedangkan setiap unsur sebelumnya memiliki jumlah elektron yang sesuai dengan nomor atomnya. Unsur yang lebih berat perlu dihitung dengan susunan subkulit karena kulit <InlineMath math="\mathrm{M}" /> dapat menampung lebih dari <InlineMath math="8" /> elektron.
 
-Contoh natrium:
+Cara membaca urutan pengisian ini terlihat jelas pada natrium.
 
 <BlockMath math="\begin{aligned}
 \mathrm{Na}: Z &= 11 \\
@@ -176,7 +209,7 @@ e^- &= 11 \\
 \text{konfigurasi} &= 2, 8, 1
 \end{aligned}" />
 
-Contoh klorin:
+Langkah yang sama pada klorin menyisakan tujuh elektron di kulit ketiga.
 
 <BlockMath math="\begin{aligned}
 \mathrm{Cl}: Z &= 17 \\
@@ -184,11 +217,12 @@ e^- &= 17 \\
 \text{konfigurasi} &= 2, 8, 7
 \end{aligned}" />
 
-Isi kulit-kulitnya berurutan untuk <InlineMath math="20" /> unsur pertama, dari hidrogen dengan <InlineMath math="Z=1" /> sampai kalsium dengan <InlineMath math="Z=20" />. Tiap baris adalah satu kulit dan tiap kolom satu unsur, jadi tiap kolom memuat <InlineMath math="Z" /> elektron seluruhnya. Putar adegannya: kulit L penuh di neon, dan mulai kalium elektron berikutnya masuk ke kulit N.
+Isi kulit-kulitnya berurutan untuk <InlineMath math="20" /> unsur pertama, dari hidrogen dengan <InlineMath math="Z=1" /> sampai kalsium dengan <InlineMath math="Z=20" />. Tiap baris adalah satu kulit dan tiap kolom satu unsur, jadi tiap kolom memuat <InlineMath math="Z" /> elektron seluruhnya. Putar adegannya untuk melihat kulit L penuh di neon dan kulit N mulai terisi pada kalium.
 
 <MathVisual
-  title={<>Dua Puluh Atom, Kulit demi Kulit</>}
+  title={<>Dua Puluh Atom Kulit demi Kulit</>}
   description={<>Elektron di kulit K (abu-abu), L (ungu), M (oranye), dan N (fuchsia) untuk nomor atom <InlineMath math="1" /> sampai <InlineMath math="20" />. Satu kotak grid ke atas berarti <InlineMath math="2" /> elektron.</>}
+  footer={<>Setiap baris kulit berhenti pada batas penuhnya sebelum baris berikutnya dimulai.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: 0, max: 4.5 }, z: { min: -0.6, max: 4.2 } },
@@ -262,24 +296,51 @@ Isi kulit-kulitnya berurutan untuk <InlineMath math="20" /> unsur pertama, dari 
   }}
 />
 
+Melihat seluruh dua puluh kolom sekaligus memperlihatkan irama berulang pada tabel periodik. Begitu satu baris kulit mencapai puncak datarnya, baris baru langsung terbuka di depannya.
+
 ### Ion Mencapai Pola Gas Mulia
 
-Setelah perpindahan, <InlineMath math="\mathrm{Na^+}" /> dan <InlineMath math="\mathrm{Cl^-}" /> punya konfigurasi neon dan argon. **Ion berakhir pada pola gas mulia yang penuh**, itulah sebabnya konfigurasi ini sangat sering muncul.
+Setelah satu elektron pindah dari natrium ke klorin, <InlineMath math="\mathrm{Na^+}" /> dan <InlineMath math="\mathrm{Cl^-}" /> cocok dengan konfigurasi penuh neon dan argon. **Ion berakhir pada pola gas mulia yang penuh**, itulah sebabnya perpindahan ini sangat sering terjadi.
 
-<IonFormationLab
-  title={<>Konfigurasi Sebelum dan Sesudah</>}
-  description={<>Pindahkan elektronnya dan bandingkan kulit setiap atom sebelum dan sesudah.</>}
-  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+<MathVisual
+  title={<>Konfigurasi Sebelum dan Sesudah Perpindahan</>}
+  description={<>Jumlah elektron sebelum dan sesudah natrium memindahkan satu elektron ke klorin. Kedua ion berhenti pada jumlah elektron gas mulia neon dan argon.</>}
+  footer={<>Melepas atau menerima satu elektron membawa tiap atom ke kulit penuh gas mulia.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 8.5, max: 19.5 }, y: { min: -1.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 9.5, y: 0 }, to: { x: 18.5, y: 0 } },
+      { id: "na-shift", kind: "segment", appearance: "primary", from: { x: 11, y: 0.8 }, to: { x: 10, y: 0.8 } },
+      { id: "cl-shift", kind: "segment", appearance: "secondary", from: { x: 17, y: 0.8 }, to: { x: 18, y: 0.8 } },
+      { id: "ne-pt", kind: "point", appearance: "answer", at: { x: 10, y: 0 } },
+      { id: "na-pt", kind: "point", appearance: "primary", at: { x: 11, y: 0.8 } },
+      { id: "na-ion", kind: "point", appearance: "answer", at: { x: 10, y: 0.8 } },
+      { id: "cl-pt", kind: "point", appearance: "secondary", at: { x: 17, y: 0.8 } },
+      { id: "cl-ion", kind: "point", appearance: "answer", at: { x: 18, y: 0.8 } },
+      { id: "ar-pt", kind: "point", appearance: "answer", at: { x: 18, y: 0 } },
+    ],
+    labels: [
+      { key: "ne", objectId: "ne-pt", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "na", objectId: "na-pt", at: { x: 11, y: 0.8 }, placement: "above" },
+      { key: "na-ion", objectId: "na-ion", at: { x: 10, y: 0.8 }, placement: "above" },
+      { key: "cl", objectId: "cl-pt", at: { x: 17, y: 0.8 }, placement: "above" },
+      { key: "cl-ion", objectId: "cl-ion", at: { x: 18, y: 0.8 }, placement: "above" },
+      { key: "ar", objectId: "ar-pt", at: { x: 18, y: 0 }, placement: "below" },
+    ],
+  }}
   labels={{
-    choose: "Pilih pasangan atom",
-    metalRadius: <>Jari-jari logam</>,
-    metalShells: <>Kulit logam</>,
-    nonmetalRadius: <>Jari-jari nonlogam</>,
-    nonmetalShells: <>Kulit nonlogam</>,
-    progress: "Perpindahan elektron",
-    view: "Atom logam dan nonlogam menjadi ion",
+    ne: <InlineMath math="\mathrm{Ne}:\ 2,8" />,
+    na: <InlineMath math="\mathrm{Na}:\ 2,8,1" />,
+    "na-ion": <InlineMath math="\mathrm{Na^+}:\ 2,8" />,
+    cl: <InlineMath math="\mathrm{Cl}:\ 2,8,7" />,
+    "cl-ion": <InlineMath math="\mathrm{Cl^-}:\ 2,8,8" />,
+    ar: <InlineMath math="\mathrm{Ar}:\ 2,8,8" />,
   }}
 />
+
+Kedua perpindahan itu hanya berjarak satu langkah pada garis jumlah elektron. Natrium turun satu langkah ke susunan neon, sedangkan klorin naik satu langkah ke susunan argon.
 
 ### Bentuk Orbital s p dan d
 
@@ -288,6 +349,7 @@ Urutan pengisian memakai nama subkulit seperti <InlineMath math="2s" />, <Inline
 <OrbitalCloudLab
   title={<>Orbital s, p, dan d</>}
   description={<>Pilih orbital dan putar awannya untuk melihat cuping dan bidang simpulnya.</>}
+  footer={<>Huruf subkulit menunjukkan bentuk tiga dimensi awan elektron di sekitar inti.</>}
   orbitals={["2s", "2pz", "3dz2", "3dxy"]}
   labels={{
     angular: <>Simpul sudut</>,
@@ -299,17 +361,24 @@ Urutan pengisian memakai nama subkulit seperti <InlineMath math="2s" />, <Inline
   }}
 />
 
+Memutar tiap awan memperlihatkan alasan unsur yang lebih berat butuh gambaran yang lebih kaya daripada cincin datar Bohr. Elektron menempati ruang tiga dimensi dengan simpul dan cuping tertentu.
+
 ## Menghubungkan Konfigurasi dengan Spektrum
 
 Spektrum garis muncul ketika elektron menerima energi, lalu kembali ke tingkat energi yang lebih rendah.
 
-Energi cahaya yang dilepas dapat ditulis:
+Energi cahaya yang dilepas berhubungan langsung dengan frekuensi dan panjang gelombangnya.
 
-<BlockMath math="\begin{aligned} E_{\text{foton}} &amp;= E_{\text{tinggi}} - E_{\text{rendah}} \\ &amp;= h\nu \\ &amp;= \frac{hc}{\lambda} \end{aligned}" />
+<BlockMath math="\begin{aligned} E_{\text{foton}} &= E_{\text{tinggi}} - E_{\text{rendah}} \\ &= h\nu \\ &= \frac{hc}{\lambda} \end{aligned}" />
 
-Simbol <InlineMath math="h" /> adalah tetapan Planck, <InlineMath math="\nu" /> adalah frekuensi cahaya, <InlineMath math="c" /> adalah cepat rambat cahaya, dan <InlineMath math="\lambda" /> adalah panjang gelombang. [Nilai eksaknya](https://physics.nist.gov/cuu/Constants/Table/allascii.txt) adalah <InlineMath math="h = 6{,}62607015 \times 10^{-34}\ \mathrm{J\,s}" /> dan <InlineMath math="c = 2{,}99792458 \times 10^8\ \mathrm{m\,s^{-1}}" />.
+Simbol <InlineMath math="h" /> adalah tetapan Planck, <InlineMath math="\nu" /> adalah frekuensi cahaya, <InlineMath math="c" /> adalah cepat rambat cahaya, dan <InlineMath math="\lambda" /> adalah panjang gelombang. [Nilai eksaknya di NIST](https://physics.nist.gov/cuu/Constants/Table/allascii.txt) dituliskan berikut ini.
 
-Contohnya, hitung energi satu foton dengan panjang gelombang di vakum <InlineMath math="600\ \mathrm{nm}" />. Gunakan pembulatan <InlineMath math="h\approx6{,}626\times10^{-34}\ \mathrm{J\,s}" /> dan <InlineMath math="c\approx3{,}00\times10^8\ \mathrm{m/s}" />:
+<BlockMath math="\begin{aligned}
+h &= 6{,}62607015 \times 10^{-34}\ \mathrm{J\,s} \\
+c &= 2{,}99792458 \times 10^8\ \mathrm{m\,s^{-1}}
+\end{aligned}" />
+
+Contohnya, hitung energi satu foton dengan panjang gelombang di vakum <InlineMath math="600\ \mathrm{nm}" /> memakai pembulatan nilai <InlineMath math="h" /> dan <InlineMath math="c" />.
 
 <BlockMath math="\begin{aligned}
 \lambda&=600\times10^{-9}\ \mathrm m=6{,}00\times10^{-7}\ \mathrm m\\
@@ -318,36 +387,50 @@ E&=\frac{hc}{\lambda}\\
 &\approx3{,}31\times10^{-19}\ \mathrm J
 \end{aligned}" />
 
-Elektron menempati tingkat energi tertentu. Perpindahan ke tingkat energi yang lebih rendah dapat melepaskan cahaya dengan energi tertentu, sedangkan konfigurasi elektron menunjukkan susunan elektron pada keadaan dasar, yaitu <Highlight>keadaan dengan energi terendah</Highlight>.
+Elektron menempati tingkat energi tertentu. Perpindahan ke tingkat energi yang lebih rendah dapat melepaskan cahaya dengan energi tertentu, sedangkan konfigurasi elektron menunjukkan susunan elektron pada keadaan dasar sebagai <Highlight>keadaan dengan energi terendah</Highlight>.
 
 ## Garis yang Tidak Terlihat Mata
 
-Tidak semua lompatan elektron menghasilkan cahaya tampak. Lompatan ke kulit pertama melepas foton ultraviolet yang berenergi tinggi, sedangkan lompatan ke kulit ketiga melepas foton inframerah. **Makin besar selisih tingkat energi, makin pendek panjang gelombangnya**. Bandingkan energi foton tiap lompatan di bagian bawah kartu.
+Tidak semua lompatan elektron menghasilkan cahaya tampak. Lompatan ke kulit pertama melepas foton ultraviolet yang berenergi tinggi, sedangkan lompatan ke kulit ketiga melepas foton inframerah. **Makin besar selisih tingkat energi, makin pendek panjang gelombangnya**.
 
-<BohrEmissionLab
-  title={<>Deret Ultraviolet dan Inframerah</>}
-  description={<>Pilih satu lompatan dan bandingkan energi fotonnya dengan garis tampak.</>}
-  falls={[{ from: 2, to: 1 }, { from: 3, to: 1 }, { from: 4, to: 3 }, { from: 5, to: 3 }]}
+<MathVisual
+  title={<>Lompatan Ultraviolet Tampak dan Inframerah</>}
+  description={<>Energi foton dalam elektronvolt untuk tiga transisi hidrogen yang berakhir pada kulit <InlineMath math="n=1" />, <InlineMath math="n=2" />, dan <InlineMath math="n=3" />.</>}
+  footer={<>Lompatan menuju kulit terdalam melepas energi jauh lebih besar daripada cahaya tampak.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 11.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7.5, y: 7, z: 11 }, target: { x: 2.5, y: 4, z: 0 } },
+    objects: [
+      { id: "uv-bar", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 10.2 / 2, z: 0 }, size: { length: 1.3, height: 10.2, width: 1.3 } },
+      { id: "vis-bar", kind: "cuboid", appearance: "warning", center: { x: 2.5, y: 1.89 / 2, z: 0 }, size: { length: 1.3, height: 1.89, width: 1.3 } },
+      { id: "ir-bar", kind: "cuboid", appearance: "reference", center: { x: 5, y: 0.66 / 2, z: 0 }, size: { length: 1.3, height: 0.66, width: 1.3 } },
+    ],
+    labels: [
+      { key: "uv", objectId: "uv-bar", at: { x: 0, y: 10.7, z: 0 }, placement: "above" },
+      { key: "vis", objectId: "vis-bar", at: { x: 2.5, y: 2.4, z: 0 }, placement: "above" },
+      { key: "ir", objectId: "ir-bar", at: { x: 5, y: 1.2, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih lompatan elektron",
-    energy: <>Energi foton</>,
-    frequency: <>Frekuensi foton</>,
-    transition: <>Lompatan elektron</>,
-    view: "Atom hidrogen model Bohr",
-    wavelength: <>Panjang gelombang</>,
+    uv: <InlineMath math="\mathrm{UV}\ (2\to 1):\ 10{,}2\ \mathrm{eV}" />,
+    vis: <InlineMath math="\mathrm{Merah}\ (3\to 2):\ 1{,}89\ \mathrm{eV}" />,
+    ir: <InlineMath math="\mathrm{IR}\ (4\to 3):\ 0{,}66\ \mathrm{eV}" />,
   }}
 />
 
+Lompatan menuju <InlineMath math="n = 1" /> menjulang lebih dari lima kali lipat energi garis merah tampak, sehingga jatuh jauh di wilayah ultraviolet. Lompatan kecil menuju <InlineMath math="n = 3" /> membawa energi yang terlalu kecil bagi mata manusia dan masuk wilayah inframerah.
+
 ## Jumlah Elektron dari Nomor Atom
 
-Saat diminta menulis konfigurasi elektron sederhana, pakai urutan ini:
+Saat diminta menulis konfigurasi elektron sederhana, pakai urutan ini.
 
 - Pastikan atomnya **netral atau ion**.
 - Jika netral, jumlah elektron sama dengan nomor atom.
 - Isi kulit dari dalam ke luar pada model yang sedang dipakai.
 - Tulis jumlah elektron tiap kulit dengan koma.
 
-Untuk magnesium netral:
+Begini cara menerapkan urutan ini pada magnesium netral.
 
 <BlockMath math="\begin{aligned}
 Z &= 12 \\
