@@ -1,3 +1,15 @@
+# Given
+
+**A lone bystander** helps with <InlineMath math="80" /> percent probability, while each person in a crowd decides independently with <InlineMath math="40" /> percent probability.
+
+# Asked
+
+The fewest people needed in a crowd so the probability that at least one person helps exceeds <InlineMath math="80" /> percent.
+
+# Solution
+
+> Instead of listing every way someone could help, flip the problem and find the chance that nobody helps at all.
+
 The chance that "at least one person helps" is easiest to find through its opposite: **nobody helps**. Each person doesn't help with probability <InlineMath math="100\%-40\%=60\%" />. Since each person decides independently, the chance that nobody helps is the product of the individual chances.
 
 <BlockMath math="P(\text{at least one helps})=1-(0.6)^n" />
@@ -18,5 +30,7 @@ The other options come from a wrong method.
 - <InlineMath math="5" /> people does meet the condition, but the question asks for the **smallest** number.
 - <InlineMath math="2" /> people comes from raising the chance of helping to the power, <InlineMath math="1-(0.4)^2=84\%" />. It's the chance of **not** helping that gets raised to the power.
 - Each person's chance does fall, but that doesn't mean the chance that someone helps falls too. That's the author's point.
+
+# Answer
 
 So the crowd needs at least <InlineMath math="4" /> people.
