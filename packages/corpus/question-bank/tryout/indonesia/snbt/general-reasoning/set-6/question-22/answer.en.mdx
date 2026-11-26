@@ -1,3 +1,15 @@
+# Given
+
+A tile pattern adds one surrounding ring per step, with **<InlineMath math="7" /> tiles in pattern <InlineMath math="2" />** and **<InlineMath math="19" /> tiles in pattern <InlineMath math="3" />**.
+
+# Asked
+
+The **total tile count in pattern <InlineMath math="6" />**.
+
+# Solution
+
+> Track how many tiles each new outer ring adds in multiples of six, then sum all the way to pattern six instead of stopping at five.
+
 First find how many tiles **each new ring** adds, then add them up.
 
 - The first added ring, from pattern 1 to pattern 2: <InlineMath math="7-1=6" /> tiles.
@@ -24,5 +36,9 @@ The chart below draws the new ring and the total for all six patterns. **Each ne
   ]}
   valueLabel="Tiles"
 />
+
+Each taller bar reflects the next outer ring adding another multiple of six tiles all the way through pattern six.
+
+# Answer
 
 The value <InlineMath math="61" /> is the count for pattern 5, not pattern 6. So pattern 6 has <InlineMath math="91" /> tiles.

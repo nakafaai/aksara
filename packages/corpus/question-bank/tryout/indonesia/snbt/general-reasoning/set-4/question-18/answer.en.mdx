@@ -1,3 +1,15 @@
+# Given
+
+Four numbered boxes hold four distinct items with labels, and **all four labels are completely false**.
+
+# Asked
+
+The contents of **box <InlineMath math="1" /> through box <InlineMath math="4" />** in order.
+
+# Solution
+
+> When every label lies, flip each statement into its exact opposite first so you immediately work with four guaranteed truths.
+
 All four labels are false, so you replace each label with **its opposite**. Then you look for the arrangement that satisfies all four opposites at once. The items are a *jam dinding* (wall clock), a *kamus* (dictionary), a *payung* (umbrella) and a *termos* (flask).
 
 First write the opposite of each label.
@@ -33,5 +45,7 @@ Every other option makes exactly one label true.
 - Wall clock, flask, umbrella, dictionary makes the box 2 label true. The dictionary isn't in box 3, so the "if" part doesn't happen, and an "if ..., then ..." sentence whose "if" part doesn't happen counts as true. You land here if you take the opposite of the box 2 label to be "the dictionary isn't in box 3 and the umbrella isn't in box 2".
 - Flask, wall clock, dictionary, umbrella makes the box 1 label true, because box 1 holds the flask. You land here if you take the opposite of "holds the dictionary or the flask" to be "doesn't hold the dictionary or doesn't hold the flask", when the correct opposite uses "and".
 - Umbrella, flask, dictionary, wall clock makes the box 3 label true, because the dictionary's number, <InlineMath math="3" />, is smaller than the wall clock's number, <InlineMath math="4" />. You land here if you forget to flip the box 3 label.
+
+# Answer
 
 So boxes 1 to 4 hold, in order, the wall clock, the flask, the dictionary and the umbrella.

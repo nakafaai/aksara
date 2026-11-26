@@ -1,3 +1,15 @@
+# Given
+
+Six people line up in a row under two rules: **Ayu and Banu must stand side by side** and **Candra cannot stand at either end**.
+
+# Asked
+
+The **number of valid lineup arrangements**.
+
+# Solution
+
+> Tie Ayu and Banu together as one block to count every adjacent lineup first, then subtract the cases where Candra lands on an end.
+
 There are two conditions, so use two steps: first count the lineups that keep Ayu and Banu together, then **remove the lineups with Candra at an end**.
 
 Step 1. Treat Ayu and Banu as one block. Now there are <InlineMath math="5" /> units: the AB block, Candra, Dewi, Eko and Fajar. Inside the block, the order can be AB or BA.
@@ -32,5 +44,7 @@ Common wrong answers:
 - <InlineMath math="240" /> forgets Candra's condition.
 - <InlineMath math="72" /> forgets to multiply by <InlineMath math="2" /> for the order inside the block, AB or BA.
 - <InlineMath math="192" /> removes only one end of the line.
+
+# Answer
 
 So there are <InlineMath math="144" /> possible lineups.

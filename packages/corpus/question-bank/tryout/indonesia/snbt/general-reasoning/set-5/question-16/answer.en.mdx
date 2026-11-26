@@ -1,3 +1,15 @@
+# Given
+
+The six original rules combine with a seventh rule that **Danu and Cempaka cannot be picked together**.
+
+# Asked
+
+Whether each statement is **True** (must hold) or **False** across all teams satisfying all seven rules.
+
+# Solution
+
+> An extra constraint never adds new teams, and instead simply crosses out existing legal teams that pair Danu with Cempaka.
+
 The seventh rule doesn't change the six old ones. It only throws out some teams that used to be allowed. So the safest way is to **list every team that meets the six rules**, then cross out the teams that hold both Danu and Cempaka.
 
 Split on Gendis, because rule 4 and rule 6 both depend on Gendis.
@@ -36,5 +48,7 @@ Four teams are left. Now test each statement on those four teams.
 - The second statement is false. The team Bening, Cempaka, Fauzan, Haikal has no Gendis.
 - The third statement is false. The team Arka, Danu, Elvira, Gendis has no Bening.
 - The fourth statement is true. Elvira appears in only one team, Arka, Danu, Elvira, Gendis, and that team includes Arka.
+
+# Answer
 
 So the first and fourth statements are true, while the second and third are false.

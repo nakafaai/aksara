@@ -1,3 +1,15 @@
+# Given
+
+Only the original six rules apply when forming a **four-person team** from the candidates.
+
+# Asked
+
+The total **number of distinct valid teams**.
+
+# Solution
+
+> Split every possible team cleanly into two non-overlapping buckets, without Gendis and with Gendis, so every valid team is counted once.
+
 To count every team, you need a split that misses nothing and counts nothing twice. Gendis makes a good dividing point, because rule 4 and rule 6 both mention Gendis. Every team falls into **exactly one** of two groups: teams without Gendis or teams with Gendis.
 
 First group: Gendis isn't chosen.
@@ -42,5 +54,7 @@ The chart below sums up the three parts of the count. **The largest part comes f
 />
 
 <BlockMath math="2+1+5=8" />
+
+# Answer
 
 So there are **<InlineMath math="8" /> teams** that meet all six rules.

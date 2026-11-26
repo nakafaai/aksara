@@ -1,3 +1,15 @@
+# Given
+
+A four-character code with no repeats must **start with a letter, end with an even digit, and contain exactly two letters**.
+
+# Asked
+
+The **number of distinct valid codes** that can be formed.
+
+# Solution
+
+> Fill the locked first and last spots first, decide which of the two middle spots gets the second letter, and multiply the remaining choices.
+
 The code has four places. The first and last places are already fixed by rule 1 and rule 2, so what you need to think about is **the two middle places**.
 
 The first character is a letter, and the code must hold exactly two letters (rule 3). The last character is a digit, so the second letter has to be in the middle. That means the two middle places hold one letter and one digit.
@@ -30,5 +42,7 @@ The wrong answers usually come from one missed step.
 - <InlineMath math="120" /> comes from not counting where the middle letter goes, though it can be in the second or third place.
 - <InlineMath math="400" /> comes from forgetting rule 4, <InlineMath math="5\cdot2\cdot5\cdot4\cdot2" />.
 - <InlineMath math="480" /> comes from letting the last character be any digit, not just an even one.
+
+# Answer
 
 So <InlineMath math="240" /> different codes can be made.

@@ -1,3 +1,15 @@
+# Given
+
+All six rules govern the six sessions, and **two schedules count as different whenever at least one activity moves to another session**.
+
+# Asked
+
+The total **number of distinct valid schedules**.
+
+# Solution
+
+> Anchor on the two activities that must sit next to each other and count the legal branches cleanly so nothing is missed or doubled.
+
 The question asks how many schedules meet **all six conditions at once**. The safest method is to split into cases by the batik session, because batik and gamelan always take two sessions in a row. Once the batik session is fixed, the other activities lock in one by one.
 
 First collect three facts that hold in every case.
@@ -47,5 +59,7 @@ The chart below sums up the schedules in each batik case. **Only the case with b
 />
 
 Other totals usually come from one missed step. You get <InlineMath math="5" /> if you only look for batik and gamelan on the same day, which drops cases 2 and 4. You get <InlineMath math="10" /> if you forget condition 5, because case 1 then gains an extra schedule with kuliner on Tuesday morning and wayang on Tuesday afternoon.
+
+# Answer
 
 So <InlineMath math="9" /> schedules meet every condition.

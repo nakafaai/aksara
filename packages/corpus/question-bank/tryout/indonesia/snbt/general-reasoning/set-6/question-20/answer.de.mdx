@@ -1,6 +1,18 @@
+# Gegeben
+
+Fünf Bäume K, L, M, N und O haben verschiedene Höhen mit **<InlineMath math="N > M > K" /> und O am niedrigsten**, sodass nur **L** offen bleibt.
+
+# Gesucht
+
+Welche **Zusatzinformation** die gesamte Höhenfolge aller fünf Bäume eindeutig festlegt.
+
+# Lösung
+
+> Vier Bäume bilden bereits eine feste Kette und nur L ist frei, also wähle den Hinweis, der L in genau eine Lücke zwingt.
+
 Aus den beiden Aussagen folgt <InlineMath math="N>M>K" />, und O ist am niedrigsten. Offen ist nur **die Stelle von L**, die überall über O liegen kann: über N, zwischen N und M, zwischen M und K oder zwischen K und O.
 
-"L ist niedriger als K" lässt für L nur einen Platz, zwischen K und O. Die Reihenfolge ist dann <InlineMath math="N>M>K>L>O" />, und sie steht fest.
+"L ist niedriger als K" lässt für L nur einen Platz, zwischen K und O. Die Reihenfolge ist dann N, M, K, L und O von groß nach klein, und sie steht fest.
 
 Das Diagramm zeichnet die vollständige Reihenfolge. **L hat nur einen Platz, zwischen K und O**, also ist bei keinem Baum mehr etwas offen.
 
@@ -20,5 +32,7 @@ Die anderen Optionen reichen nicht:
 - L unter N lässt noch drei Plätze: zwischen N und M, zwischen M und K oder zwischen K und O.
 - L unter M lässt noch zwei Plätze: zwischen M und K oder zwischen K und O.
 - Dass N am höchsten ist, lässt L noch an einer von drei Stellen unter N.
+
+# Antwort
 
 Die Reihenfolge steht also fest mit der Angabe, dass Baum L niedriger ist als Baum K.

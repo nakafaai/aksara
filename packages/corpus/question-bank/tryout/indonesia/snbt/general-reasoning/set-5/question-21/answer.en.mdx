@@ -1,3 +1,15 @@
+# Given
+
+A letter sequence has two blanks and each letter carries its **alphabet position from <InlineMath math="1" /> to <InlineMath math="26" />**.
+
+# Asked
+
+The **sum of the alphabet numbers** of the two missing letters.
+
+# Solution
+
+> Turn the visible letters into numbers first so the jump pattern reveals itself right away, then fill both missing slots.
+
 Turn the letters you have into their numbers, then look at the jump from each letter to the next. Call the number of the first missing letter <InlineMath math="x" /> and the number of the last missing letter <InlineMath math="y" />.
 
 <BlockMath math="26\xrightarrow{-1}25\xrightarrow{-3}22\xrightarrow{-2}20\longrightarrow x\longrightarrow13\xrightarrow{-5}8\longrightarrow y" />
@@ -33,5 +45,7 @@ Check with the letter M. From <InlineMath math="x=16" />, jump <InlineMath math=
 <BlockMath math="16+4=20" />
 
 You'd get <InlineMath math="21" /> by swapping the two missing jumps into <InlineMath math="3" /> then <InlineMath math="4" />, so <InlineMath math="x=17" />. Both orders land on M, so only the odd and even patterns above can settle the order.
+
+# Answer
 
 So the numbers of the two missing letters add up to <InlineMath math="20" />.

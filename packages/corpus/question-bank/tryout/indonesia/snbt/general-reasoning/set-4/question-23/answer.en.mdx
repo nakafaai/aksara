@@ -1,3 +1,15 @@
+# Given
+
+Data for four districts give **registered entrants, attendance rates, and exam pass rates** for each district.
+
+# Asked
+
+The **combined pass percentage** across all exam takers in all four districts.
+
+# Solution
+
+> Never average the four percentages directly, because a district with far more test takers pulls the combined rate much more strongly.
+
 The combined pass rate is **total passes divided by total exam takers**, not the average of four percentages. So you need two steps: find the number of exam takers in each district, then add them up.
 
 Step 1. Exam takers are the participants who met the attendance rule, so multiply the third-column percentage by the number registered.
@@ -28,5 +40,7 @@ The other options come from the wrong denominator or the wrong kind of average.
 - <InlineMath math="79.3\%" /> is <InlineMath math="428 : 540" />, the share of registered participants who met the attendance rule, not a pass rate.
 - <InlineMath math="76.5\%" /> comes from weighting each district's pass rate by registered participants, but a pass rate's denominator is exam takers.
 - <InlineMath math="59.4\%" /> is <InlineMath math="321 : 540" />, passes divided by everyone registered.
+
+# Answer
 
 So the combined pass rate of the four districts is <InlineMath math="75.0\%" />.

@@ -1,6 +1,18 @@
+# Given
+
+Five trees K, L, M, N, and O have distinct heights with **<InlineMath math="N > M > K" /> and O shortest**, leaving only **L** unplaced.
+
+# Asked
+
+The **extra clue** that uniquely fixes the full height order of all five trees.
+
+# Solution
+
+> Four trees already sit in a single chain and only L floats free, so pick the clue that traps L into one exact gap.
+
 The two statements give the order <InlineMath math="N>M>K" /> with O lowest. The only unknown is **where L goes**, which can be anywhere above O: above N, between N and M, between M and K, or between K and O.
 
-"L is lower than K" leaves L only one place, between K and O. The order becomes <InlineMath math="N>M>K>L>O" />, and it is certain.
+"L is lower than K" leaves L only one place, between K and O. The order becomes N, M, K, L, then O from tallest to shortest, and it is certain.
 
 The diagram below draws the full order. **L has only one place, between K and O**, so no tree's position is in doubt anymore.
 
@@ -20,5 +32,7 @@ The other options are not enough:
 - L below N still leaves three places: between N and M, between M and K, or between K and O.
 - L below M still leaves two places: between M and K or between K and O.
 - N being tallest still leaves L in one of three places below N.
+
+# Answer
 
 So the information that fixes the order is that tree L is shorter than tree K.
