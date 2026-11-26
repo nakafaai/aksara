@@ -194,46 +194,57 @@ Sepasang sel penjaga membuka stomata saat **turgid**, bukan saat lembek. Dalam c
 
 Penguapan air lewat stomata disebut **transpirasi**, yang menciptakan **tarikan transpirasi** untuk menyedot air dari akar melalui xilem sekaligus mendinginkan daun.
 
-### Potometer Gelembung
+### Bukaan Stomata
 
-Potometer mengukur penyerapan air oleh pucuk berdaun lewat pergeseran gelembung sepanjang <InlineMath math="l" /> pada pipa kapiler bervolume <InlineMath math="\pi r^2 l" />. Bandingkan keempat pucuk berolesan vaselin berikut.
+Bayangkan celah stomata seperti jendela pada hari berangin: semakin lebar jendela dibuka, semakin banyak uap air lolos keluar, dan angin kencang menyapu udara lembap di sekitarnya sehingga penguapan makin deras. Geser lebar celah stomata <InlineMath math="p" /> dan kecepatan angin <InlineMath math="w" /> di bawah untuk membaca laju transpirasi dalam satuan sebenarnya.
 
-<PotometerLab
-  title={<>Potometer Gelembung dengan Empat Pucuk</>}
+<MathVisual
+  title={<>Laju Transpirasi terhadap Bukaan Stomata dan Angin</>}
   description={
     <>
-      Tabung kapiler berjari-jari <InlineMath math="0{,}5\text{ mm}" />. Pucuk
-      A tanpa vaselin, B diolesi pada permukaan atas, C pada permukaan bawah,
-      dan D pada kedua permukaan.
+      Kurva acuan membandingkan udara tenang (<InlineMath math="0{,}5\text{ m s}^{-1}" />)
+      dan angin kencang (<InlineMath math="4{,}0\text{ m s}^{-1}" />) terhadap
+      lebar celah stomata <InlineMath math="p" /> dalam <InlineMath math="\mu\text{m}" />.
     </>
   }
-  footer={<>Mengolesi permukaan bawah menurunkan laju transpirasi paling tajam.</>}
-  minutes={10}
-  radius={0.5}
-  shoots={[
-    { name: "A", coat: "none", rate: 0.6 },
-    { name: "B", coat: "upper", rate: 0.48 },
-    { name: "C", coat: "lower", rate: 0.12 },
-    { name: "D", coat: "both", rate: 0.04 },
-  ]}
+  footer={<>Stomata lebih lebar dan angin kencang menaikkan laju transpirasi daun.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12.5 }, y: { min: 0, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 12, value: 6, step: 0.5, label: "p" },
+      { name: "w", min: 0.5, max: 4, value: 1.5, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "calm", kind: "function", appearance: "reference", formula: "(10/3)*(x/(x + 3))", domain: { min: 0, max: 12 } },
+      { id: "breezy", kind: "function", appearance: "reference", formula: "8*(x/(x + 3))", domain: { min: 0, max: 12 } },
+      { id: "active", kind: "function", appearance: "primary", formula: "10*(w/(w + 1))*(x/(x + 3))", domain: { min: 0, max: 12 } },
+      { id: "leaf", kind: "marker", appearance: "warning", x: "p", y: "10*(w/(w + 1))*(p/(p + 3))" },
+    ],
+    readouts: [
+      { key: "transpiration", formula: "10*(w/(w + 1))*(p/(p + 3))" },
+      { key: "wind-gain", formula: "3*(w/(w + 1))" },
+    ],
+  }}
   labels={{
-    distance: <>Jarak tempuh gelembung</>,
-    rate: <>Laju penyerapan air</>,
-    shoot: "Pilih pucuk",
-    time: "Waktu",
-    view: "Potometer gelembung dengan pucuk berdaun",
-    volume: <>Volume air yang diserap</>,
+    p: <>Lebar celah stomata <InlineMath math="p" /> dalam <InlineMath math="\mu\text{m}" /></>,
+    w: <>Kecepatan angin <InlineMath math="w" /> dalam <InlineMath math="\text{m s}^{-1}" /></>,
+    transpiration: <>Laju transpirasi dalam <InlineMath math="\text{mmol m}^{-2}\text{ s}^{-1}" /></>,
+    "wind-gain": <>Pengali angin terhadap udara tenang</>,
   }}
 />
 
-Untuk pucuk A (<InlineMath math="0{,}60\text{ cm}^3" /> per jam) selama <InlineMath math="10" /> menit dengan jari-jari <InlineMath math="0{,}05\text{ cm}" />:
+Pada lebar celah <InlineMath math="6\ \mu\text{m}" />, perubahan dari udara tenang (<InlineMath math="0{,}5\text{ m s}^{-1}" />) ke angin kencang (<InlineMath math="4{,}0\text{ m s}^{-1}" />) mengangkat transpirasi dari <InlineMath math="2{,}22" /> ke <InlineMath math="5{,}33\text{ mmol m}^{-2}\text{ s}^{-1}" /> karena angin menyapu lapisan udara lembap di sekitar daun.
+
+Di laboratorium, potometer gelembung menaksir kehilangan air ini lewat pergeseran gelembung <InlineMath math="l" /> pada pipa kapiler bervolume <InlineMath math="\pi r^2 l" />. Untuk pucuk yang menyerap <InlineMath math="0{,}60\text{ cm}^3" /> per jam selama <InlineMath math="10" /> menit dengan jari-jari <InlineMath math="0{,}05\text{ cm}" />:
 
 <MathContainer>
 <BlockMath math="V = 0{,}60 \times \frac{10}{60} = 0{,}10\text{ cm}^3" />
 <BlockMath math="l = \frac{0{,}10}{\pi(0{,}05)^2} = 12{,}7\text{ cm}" />
 </MathContainer>
 
-Mengolesi permukaan bawah memangkas laju sebesar <InlineMath math="80\%" /> dibanding <InlineMath math="20\%" /> di permukaan atas, membuktikan mayoritas stomata terletak di **epidermis bawah**.
+Mengolesi permukaan bawah dengan vaselin memangkas serapan sebesar <InlineMath math="80\%" /> dibanding <InlineMath math="20\%" /> di permukaan atas, membuktikan mayoritas stomata terletak di **epidermis bawah**.
 
 ### Defisit Tekanan Uap
 
@@ -352,42 +363,46 @@ Di kloroplas, **reaksi terang** berlangsung pada tilakoid grana lewat **fotolisi
 
 > Oksigen fotosintesis tidak berasal dari karbon dioksida, melainkan langsung dari pemecahan molekul air pada reaksi terang di tilakoid.
 
-Pada percobaan Hydrilla di bawah lampu meja, intensitas cahaya mengikuti hukum kuadrat terbalik terhadap jarak lampu. Bandingkan ketujuh pengamatan berikut.
+Seperti dapur yang tidak bisa memanggang lebih cepat saat tepungnya habis, daun di bawah cahaya terang mencapai **dataran jenuh cahaya** yang ditentukan kadar karbon dioksida. Geser intensitas cahaya <InlineMath math="q" /> dan kadar karbon dioksida <InlineMath math="c" /> di bawah untuk mengamati laju fotosintesis dalam satuan fisiologis sebenarnya.
 
-<PhotosynthesisLab
-  title={<>Hydrilla di bawah Lampu Meja</>}
+<MathVisual
+  title={<>Laju Fotosintesis Daun dan Dataran Jenuh Cahaya</>}
   description={
     <>
-      Lampu digeser dari <InlineMath math="50\text{ cm}" /> ke{" "}
-      <InlineMath math="10\text{ cm}" />. Dua pengamatan terakhir menambahkan
-      natrium hidrogen karbonat sebagai sumber karbon dioksida ekstra.
+      Kurva acuan menandai karbon dioksida rendah (<InlineMath math="200\text{ ppm}" />)
+      dan tinggi (<InlineMath math="800\text{ ppm}" />) terhadap fluks foton
+      dalam <InlineMath math="\mu\text{mol m}^{-2}\text{ s}^{-1}" />.
     </>
   }
-  footer={<>Saat lampu sangat dekat, tambahan CO2 langsung melipatgandakan gelembung.</>}
-  readings={[
-    { distance: 50, bubbles: 10 },
-    { distance: 40, bubbles: 14 },
-    { distance: 30, bubbles: 19 },
-    { distance: 20, bubbles: 27 },
-    { distance: 10, bubbles: 36 },
-    { distance: 20, bubbles: 47, bicarbonate: true },
-    { distance: 10, bubbles: 62, bicarbonate: true },
-  ]}
+  footer={<>Kadar CO2 lebih tinggi mengangkat dataran jenuh cahaya saat daun terang.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1250 }, y: { min: 0, max: 30 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0, max: 1200, value: 400, step: 50, label: "q" },
+      { name: "c", min: 200, max: 800, value: 400, step: 50, label: "c" },
+    ],
+    objects: [
+      { id: "low-co2", kind: "function", appearance: "reference", formula: "18*x/(x + 200)", domain: { min: 0, max: 1200 } },
+      { id: "high-co2", kind: "function", appearance: "reference", formula: "28.8*x/(x + 200)", domain: { min: 0, max: 1200 } },
+      { id: "rate", kind: "function", appearance: "primary", formula: "(36*c/(c + 200))*(x/(x + 200))", domain: { min: 0, max: 1200 } },
+      { id: "leaf", kind: "marker", appearance: "warning", x: "q", y: "(36*c/(c + 200))*(q/(q + 200))" },
+    ],
+    readouts: [
+      { key: "uptake", formula: "(36*c/(c + 200))*(q/(q + 200))" },
+      { key: "plateau", formula: "36*c/(c + 200)" },
+    ],
+  }}
   labels={{
-    bubbles: <>Gelembung per menit</>,
-    carbon: <>Tambahan karbon dioksida</>,
-    carbonSources: {
-      added: <>Natrium hidrogen karbonat ditambahkan</>,
-      none: <>Air saja</>,
-    },
-    distance: <>Jarak lampu</>,
-    intensity: <>Intensitas cahaya relatif</>,
-    reading: "Pilih pengamatan",
-    view: "Hydrilla dalam tabung reaksi di bawah lampu",
+    q: <>Intensitas cahaya <InlineMath math="q" /> dalam <InlineMath math="\mu\text{mol m}^{-2}\text{ s}^{-1}" /></>,
+    c: <>Karbon dioksida <InlineMath math="c" /> dalam <InlineMath math="\text{ppm}" /></>,
+    uptake: <>Laju fotosintesis dalam <InlineMath math="\mu\text{mol m}^{-2}\text{ s}^{-1}" /></>,
+    plateau: <>Dataran jenuh dalam <InlineMath math="\mu\text{mol m}^{-2}\text{ s}^{-1}" /></>,
   }}
 />
 
-Saat lampu digeser dari <InlineMath math="20\text{ cm}" /> ke <InlineMath math="10\text{ cm}" />, cahaya menguat empat kali lipat tetapi gelembung hanya naik dari <InlineMath math="27" /> ke <InlineMath math="36" />. Penambahan bikarbonat melesatkan gelembung menjadi <InlineMath math="62" />, membuktikan karbon dioksida sempat membatasi laju.
+Pada cahaya terang (<InlineMath math="1000\ \mu\text{mol m}^{-2}\text{ s}^{-1}" />), menaikkan karbon dioksida dari <InlineMath math="200\text{ ppm}" /> ke <InlineMath math="800\text{ ppm}" /> mendongkrak penyerapan daun dari <InlineMath math="15{,}0" /> menjadi <InlineMath math="24{,}0\ \mu\text{mol m}^{-2}\text{ s}^{-1}" />. Di bawah lampu meja, intensitas cahaya mengikuti **hukum kuadrat terbalik** terhadap jarak, sehingga memperpendek jarak menjadi setengahnya menguatkan cahaya empat kali lipat sampai karbon dioksida membatasi laju.
 
 ### Faktor Pembatas Laju
 
