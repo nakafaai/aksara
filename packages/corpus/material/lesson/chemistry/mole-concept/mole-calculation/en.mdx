@@ -1,15 +1,17 @@
 export const metadata = {
   title: "The Mole Concept Notes for Form Four",
   description:
-    "Form 4 Chemistry Chapter 3: convert moles to mass, particles and gas volume, find empirical formulae and use chemical equations, with worked examples.",
+    "Convert between moles, particle counts, mass, and gas volume, determine empirical and molecular formulae, and use balanced chemical equations for stoichiometry.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "The Mole Concept, Chemical Formula and Equation",
 };
 
-## What One Mole Means
+## Counting Invisible Particles with One Mole
 
-The **mole** is the unit for an amount of substance. One mole of a substance contains **<InlineMath math="6.02 \times 10^{23}" /> particles**, the **Avogadro constant**, <InlineMath math="N_A" />. Those particles can be atoms, molecules or ions. Three formulas link the number of moles to things you can measure:
+When you buy eggs at a market, nobody counts them one by one into your basket. You ask for a dozen and get twelve at once. Chemists face a far trickier version of the same problem because atoms and molecules are unimaginably tiny, so they bundle particles into a giant counting unit called the **mole**.
+
+One mole of any substance holds **<InlineMath math="6.02 \times 10^{23}" /> particles**, known as the **Avogadro constant**, <InlineMath math="N_A" />. Those particles can be atoms, molecules, or ions. Because lab balances measure mass and syringes measure gas volume, three compact formulas bridge the invisible world of particle counts to measurements you can actually read on the bench:
 
 <MathContainer>
 <BlockMath math="n = \frac{N}{N_A}" />
@@ -17,17 +19,19 @@ The **mole** is the unit for an amount of substance. One mole of a substance con
 <BlockMath math="n = \frac{V}{V_m}" />
 </MathContainer>
 
-Here <InlineMath math="N" /> is the number of particles, <InlineMath math="m" /> is the mass in grams, <InlineMath math="M" /> is the molar mass in <InlineMath math="\text{g mol}^{-1}" />, and <InlineMath math="V_m" /> is the molar volume of a gas. In the models here, you weigh atoms in a mass spectrometer, rotate molecules to read their mass, and turn moles into mass and volume.
+Here <InlineMath math="n" /> is the number of moles, <InlineMath math="N" /> is the number of particles, <InlineMath math="m" /> is the mass in grams, <InlineMath math="M" /> is the molar mass in <InlineMath math="\text{g mol}^{-1}" />, and <InlineMath math="V_m" /> is the molar volume of a gas.
 
-Particles are far too small to count one by one, but mass can be weighed in the lab. So chemists weigh a substance first, then convert the mass into moles.
+> One mole always holds the exact same number of particles, even when two different substances weigh completely different amounts on a balance.
+
+Keep that core picture close whenever you convert units. Counting by moles turns a weighing scale into a particle counter.
 
 ## Relative Atomic Mass and Relative Molecular Mass
 
-The **relative atomic mass**, <InlineMath math="A_r" />, is the average mass of one atom of an element compared with <InlineMath math="\tfrac{1}{12}" /> of the mass of one carbon-12 atom. It's a weighted average over all the element's isotopes. Chlorine, for example, is about <InlineMath math="75\%" /> chlorine-35 and <InlineMath math="25\%" /> chlorine-37:
+Because a single atom is far too light for any scale, chemists compare atomic masses against one reference standard. The **relative atomic mass**, <InlineMath math="A_r" />, is the average mass of one atom of an element compared with <InlineMath math="\tfrac{1}{12}" /> of the mass of one carbon-12 atom. Because most elements occur naturally as a mix of isotopes, <InlineMath math="A_r" /> is a weighted average across all of them. Chlorine, for instance, is roughly <InlineMath math="75\%" /> chlorine-35 and <InlineMath math="25\%" /> chlorine-37:
 
 <BlockMath math="A_r(\mathrm{Cl}) = \frac{75 \times 35 + 25 \times 37}{100} = 35.5" />
 
-A mass spectrometer measures this value. Heavier ions bend less in the magnetic field, and the height of each peak gives the abundance of an isotope. Pick an element in the model and compare the average with the mass of each isotope.
+A mass spectrometer measures these isotope masses directly. Heavier ions bend less inside its magnetic field, and the height of each peak reports how abundant that isotope is. Pick an element below and compare the weighted average against the mass of each individual isotope.
 
 <MassSpectrometerLab
   title={<>A Mass Spectrometer Weighing Isotopes</>}
@@ -35,6 +39,11 @@ A mass spectrometer measures this value. Heavier ions bend less in the magnetic 
     <>
       Pick an element. Each isotope bends along its own path, and the
       abundance-weighted average gives the relative atomic mass.
+    </>
+  }
+  footer={
+    <>
+      Heavier isotopes curve less sharply and shift the weighted average mass.
     </>
   }
   samples={["chlorine", "magnesium", "boron", "copper"]}
@@ -50,48 +59,41 @@ A mass spectrometer measures this value. Heavier ions bend less in the magnetic 
   }}
 />
 
-The **relative molecular mass**, <InlineMath math="M_r" />, is the sum of the relative atomic masses of all the atoms in one molecule. For water, <InlineMath math="M_r(\mathrm{H_2O}) = 2(1) + 16 = 18" />. For an ionic compound, the same sum is called the relative formula mass. Rotate the molecules in this model and check the <InlineMath math="M_r" /> it shows.
+Notice that the average <InlineMath math="A_r" /> sits closest to the most abundant isotope, which explains why chlorine's value lands at <InlineMath math="35.5" /> rather than halfway at <InlineMath math="36" />.
 
-<MoleculeShapeLab
-  title={<>Relative Molecular Mass of Five Molecules</>}
-  description={
-    <>
-      Pick a molecule and count its atoms. The sum of their relative atomic
-      masses is the relative molecular mass.
-    </>
-  }
-  molecules={[
-    { id: "water", name: "water" },
-    { id: "carbon-dioxide", name: "carbon dioxide" },
-    { id: "ammonia", name: "ammonia" },
-    { id: "methane", name: "methane" },
-    { id: "ethanol", name: "ethanol" },
-  ]}
-  labels={{
-    atoms: <>Atoms</>,
-    choose: "Pick a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle</>,
-    view: "Molecules and their mass",
-  }}
-/>
+Once you know the atomic masses, finding the mass of a whole molecule is straightforward addition. The **relative molecular mass**, <InlineMath math="M_r" />, is the sum of the relative atomic masses of every atom in one molecule. For water, adding two hydrogen atoms and one oxygen atom gives:
 
-## Molar Mass and Number of Particles
+<BlockMath math="M_r(\mathrm{H_2O}) = 2(1) + 16 = 18" />
 
-The **molar mass**, <InlineMath math="M" />, is the mass of one mole of a substance. In grams, it equals <InlineMath math="A_r" /> or <InlineMath math="M_r" />. So one mole of water has a mass of <InlineMath math="18\text{ g}" />, one mole of carbon <InlineMath math="12\text{ g}" /> and one mole of carbon dioxide <InlineMath math="44\text{ g}" />, yet all three contain the same number of particles.
+For an ionic compound such as calcium carbonate, <InlineMath math="\mathrm{CaCO_3}" />, the same sum is called the **relative formula mass**. Suppose you weigh out <InlineMath math="25\ \text{g}" /> of calcium carbonate using <InlineMath math="A_r" /> values of <InlineMath math="40" /> for calcium, <InlineMath math="12" /> for carbon, and <InlineMath math="16" /> for oxygen. Add the formula mass first, then divide to find the moles:
 
-Move the slider for the number of moles. The three lines show the mass of carbon, water and carbon dioxide. The gradient of each line is its molar mass.
+<MathContainer>
+<BlockMath math="M_r(\mathrm{CaCO_3}) = 40 + 12 + 3(16) = 100" />
+<BlockMath math="n = \frac{25}{100} = 0.25\ \text{mol}" />
+</MathContainer>
+
+Breaking the formula apart atom by atom prevents missed subscripts like the three oxygen atoms in carbonate.
+
+## Molar Mass and Particle Counts
+
+The **molar mass**, <InlineMath math="M" />, is the mass of one mole of a substance in grams, numerically equal to its <InlineMath math="A_r" /> or <InlineMath math="M_r" />. One mole of carbon weighs <InlineMath math="12\ \text{g}" />, one mole of water weighs <InlineMath math="18\ \text{g}" />, and one mole of carbon dioxide weighs <InlineMath math="44\ \text{g}" />. A classic mistake is assuming equal moles mean equal masses, yet all three samples hold the exact same particle count while carrying very different weights.
+
+Slide the mole control below to compare the masses of carbon, water, and carbon dioxide side by side. The steepness of each line is its molar mass.
 
 <MathVisual
   title={<>Mass against Number of Moles</>}
   description={
     <>
-      The lines <InlineMath math="m = nM" /> for carbon (
-      <InlineMath math="M = 12" />), water (<InlineMath math="M = 18" />) and
-      carbon dioxide (<InlineMath math="M = 44" />). The horizontal axis is
-      moles, the vertical axis mass in grams.
+      The straight lines for carbon (<InlineMath math="M = 12" />), water (
+      <InlineMath math="M = 18" />), and carbon dioxide (
+      <InlineMath math="M = 44" />). Horizontal is moles and vertical is mass in
+      grams.
+    </>
+  }
+  footer={
+    <>
+      Steeper slopes represent heavier molar masses at the exact same mole
+      count.
     </>
   }
   scene={{
@@ -131,39 +133,102 @@ Move the slider for the number of moles. The three lines show the mass of carbon
   }}
 />
 
-### Example Moles from Mass
+At any single position of the slider, the particle count readout applies equally to all three substances, whereas the mass gap widens rapidly because each carbon dioxide molecule outweighs a carbon atom nearly fourfold.
 
-Find **the number of moles and molecules** in <InlineMath math="9.0\text{ g}" /> of water.
+### Finding Moles and Atoms from Mass
 
-<MathContainer>
-<BlockMath math="n = \frac{m}{M} = \frac{9.0}{18} = 0.50\text{ mol}" />
-<BlockMath math="N = nN_A = 0.50 \times 6.02 \times 10^{23} = 3.01 \times 10^{23}" />
-</MathContainer>
-
-Each water molecule has three atoms, so the number of atoms is <InlineMath math="3 \times 3.01 \times 10^{23} = 9.03 \times 10^{23}" />. Check with the model: at <InlineMath math="n = 0.5" />, the mass of water reads <InlineMath math="9\text{ g}" />.
-
-### Example Mass from Number of Particles
-
-What's the mass of <InlineMath math="1.204 \times 10^{24}" /> magnesium atoms? Convert particles to moles first, then **moles to mass**:
+Suppose you want **the number of moles, molecules, and atoms** in <InlineMath math="9.0\ \text{g}" /> of water. Convert mass to moles first, then multiply by the Avogadro constant for molecules:
 
 <MathContainer>
-<BlockMath math="n = \frac{1.204 \times 10^{24}}{6.02 \times 10^{23}} = 2.0\text{ mol}" />
-<BlockMath math="m = nM = 2.0 \times 24 = 48\text{ g}" />
+<BlockMath math="n = \frac{m}{M} = \frac{9.0}{18} = 0.50\ \text{mol}" />
+<BlockMath math="N(\mathrm{H_2O}) = 0.50 \times 6.02 \times 10^{23} = 3.01 \times 10^{23}" />
 </MathContainer>
 
-Check: <InlineMath math="48\text{ g}" /> is twice the molar mass of magnesium, matching two moles.
+Watch out for the molecules-versus-atoms trap. One water molecule contains three atoms (two hydrogen and one oxygen), so the total number of **atoms** is three times the number of molecules:
 
-## Molar Volume of a Gas
+<BlockMath math="N(\text{atoms}) = 3 \times 3.01 \times 10^{23} = 9.03 \times 10^{23}" />
 
-At the same temperature and pressure, one mole of **any gas** takes up the same volume. This is the **molar volume**: <InlineMath math="24\text{ dm}^3\text{ mol}^{-1}" /> at room conditions and <InlineMath math="22.4\text{ dm}^3\text{ mol}^{-1}" /> at standard temperature and pressure (STP). Move the slider and compare the two lines.
+Try the same rule on <InlineMath math="0.20\ \text{mol}" /> of ammonia, <InlineMath math="\mathrm{NH_3}" />. Because every ammonia molecule contains four atoms, multiplying by four gives the total atom count directly:
+
+<BlockMath math="N(\text{atoms}) = 0.20 \times 4 \times 6.02 \times 10^{23} = 4.82 \times 10^{23}" />
+
+Always check whether a question asks for molecules or individual atoms before finishing your last line.
+
+### Finding Mass from Particle Counts
+
+Now work in the opposite direction. What is the mass of <InlineMath math="1.204 \times 10^{24}" /> magnesium atoms, given <InlineMath math="A_r(\mathrm{Mg}) = 24" />? Convert particles to moles first, then convert **moles to mass**:
+
+<MathContainer>
+<BlockMath math="n = \frac{1.204 \times 10^{24}}{6.02 \times 10^{23}} = 2.0\ \text{mol}" />
+<BlockMath math="m = nM = 2.0 \times 24 = 48\ \text{g}" />
+</MathContainer>
+
+Sanity check the answer quickly: <InlineMath math="48\ \text{g}" /> is exactly twice the molar mass of magnesium, matching two full moles of atoms.
+
+## Molar Volume of Gases at Standard and Room Conditions
+
+Gas molecules zip around with huge empty gaps between them, so the actual size of each molecule barely affects the total space the gas fills. As a result, at the same temperature and pressure, one mole of **any gas** occupies the exact same volume. This constant is the **molar volume**, <InlineMath math="V_m" />: <InlineMath math="22.4\ \text{dm}^3\text{ mol}^{-1}" /> at standard temperature and pressure (STP) and <InlineMath math="24.0\ \text{dm}^3\text{ mol}^{-1}" /> at room temperature and pressure (RTP).
+
+Molar volume applies **only to gases**, never to solids or liquids, whose particles sit tightly packed together. Switch between STP and RTP in the gas cylinder below and slide the number of moles to watch the piston rise.
+
+<AvogadroGasVolumeLab
+  title={<>Molar Gas Volume Inside a Moving Piston Cylinder</>}
+  description={
+    <>
+      Toggle between STP and RTP and adjust the moles of gas. Notice how the
+      piston climbs steadily as more gas molecules enter the cylinder.
+    </>
+  }
+  footer={
+    <>
+      Warmer room conditions expand every mole of gas compared with STP.
+    </>
+  }
+  conditions={["stp", "rtp"]}
+  moles={{ min: 0.25, max: 4, value: 1 }}
+  labels={{
+    condition: "Choose gas condition",
+    conditions: {
+      stp: {
+        molarVolume: <InlineMath math="22.4\ \mathrm{dm^3\,mol^{-1}}" />,
+        name: "STP",
+      },
+      rtp: {
+        molarVolume: <InlineMath math="24.0\ \mathrm{dm^3\,mol^{-1}}" />,
+        name: "RTP",
+      },
+    },
+    gasVolume: <>Gas volume <InlineMath math="V" /></>,
+    moles: "Number of moles",
+    particleCount: <>Particle count <InlineMath math="N" /></>,
+    parts: {
+      piston: "Movable piston",
+      cylinder: "Graduated cylinder",
+      gasParticles: "Gas particles",
+      volumeScale: "Volume scale",
+      thermometer: "Thermometer",
+    },
+    view: "Avogadro gas volume cylinder",
+  }}
+/>
+
+Whether the cylinder holds light hydrogen or heavy carbon dioxide, setting the slider to <InlineMath math="1\ \text{mol}" /> lifts the piston to the exact same mark at each temperature.
+
+Compare the two straight-line graphs directly below. Both pass through the origin, and the warmer RTP line rises slightly steeper than STP.
 
 <MathVisual
   title={<>Gas Volume against Number of Moles</>}
   description={
     <>
-      The upper line is <InlineMath math="V = 24n" /> at room conditions, the
-      lower line <InlineMath math="V = 22.4n" /> at STP, with{" "}
+      The upper line shows <InlineMath math="V = 24n" /> at room conditions and
+      the lower line shows <InlineMath math="V = 22.4n" /> at STP, with{" "}
       <InlineMath math="V" /> in <InlineMath math="\text{dm}^3" />.
+    </>
+  }
+  footer={
+    <>
+      Read gas volume straight from the mole slider under either standard
+      condition.
     </>
   }
   scene={{
@@ -196,17 +261,20 @@ At the same temperature and pressure, one mole of **any gas** takes up the same 
   }}
 />
 
-Now use the molar volume. At room conditions, <InlineMath math="0.25" /> mol of carbon dioxide takes up:
+Check one point on the graph at <InlineMath math="n = 0.25\ \text{mol}" /> of carbon dioxide under room conditions. Multiply moles by molar volume for space and by molar mass for weight:
 
-<BlockMath math="V = nV_m = 0.25 \times 24 = 6.0\text{ dm}^3" />
+<MathContainer>
+<BlockMath math="V = nV_m = 0.25 \times 24 = 6.0\ \text{dm}^3" />
+<BlockMath math="m = nM = 0.25 \times 44 = 11\ \text{g}" />
+</MathContainer>
 
-Its mass is <InlineMath math="0.25 \times 44 = 11\text{ g}" />. Check with the model at <InlineMath math="n = 0.25" />.
+The model readout matches <InlineMath math="6.0\ \text{dm}^3" /> right on the marker, linking gas volume and mass cleanly through moles.
 
 ## Empirical and Molecular Formulae
 
-The **empirical formula** shows the simplest whole-number ratio of atoms of each element in a compound. The **molecular formula** shows the actual number of atoms in one molecule. Glucose has the molecular formula <InlineMath math="\mathrm{C_6H_{12}O_6}" /> and the empirical formula <InlineMath math="\mathrm{CH_2O}" />.
+The **empirical formula** gives the simplest whole-number ratio of atoms in a compound, while the **molecular formula** states the actual number of atoms inside one molecule. Glucose, for instance, has the molecular formula <InlineMath math="\mathrm{C_6H_{12}O_6}" /> and the reduced empirical formula <InlineMath math="\mathrm{CH_2O}" />.
 
-You find the empirical formula from the mass of each element. In one experiment, <InlineMath math="2.4\text{ g}" /> of magnesium ribbon burns to give <InlineMath math="4.0\text{ g}" /> of magnesium oxide. The mass of oxygen that combined is <InlineMath math="4.0 - 2.4 = 1.6\text{ g}" />. Set the calculation out in a table:
+To find an empirical formula from lab data, convert every element's mass into moles and divide by the smallest mole value. In a classic crucible experiment, <InlineMath math="2.4\ \text{g}" /> of magnesium ribbon burns in air to form <InlineMath math="4.0\ \text{g}" /> of magnesium oxide. Subtracting the ribbon mass shows that <InlineMath math="1.6\ \text{g}" /> of oxygen combined with the magnesium:
 
 | Element | Magnesium | Oxygen |
 | :--- | :--- | :--- |
@@ -214,19 +282,39 @@ You find the empirical formula from the mass of each element. In one experiment,
 | Number of moles | <InlineMath math="2.4 \div 24 = 0.10" /> | <InlineMath math="1.6 \div 16 = 0.10" /> |
 | Simplest ratio | <InlineMath math="1" /> | <InlineMath math="1" /> |
 
-The ratio is one to one, so the empirical formula is <InlineMath math="\mathrm{MgO}" />. Check: the formula mass is <InlineMath math="24 + 16 = 40" />, and <InlineMath math="0.10 \times 40 = 4.0\text{ g}" />, the mass of oxide you weighed.
+The one-to-one ratio gives the empirical formula <InlineMath math="\mathrm{MgO}" />. With a formula mass of <InlineMath math="40" />, multiplying <InlineMath math="0.10\ \text{mol}" /> by <InlineMath math="40" /> returns the exact <InlineMath math="4.0\ \text{g}" /> of oxide weighed at the end.
 
-## Chemical Equations and Mole Ratios
+The same table handles percentage composition data. Suppose an unknown compound contains <InlineMath math="40.0\%" /> carbon, <InlineMath math="6.7\%" /> hydrogen, and <InlineMath math="53.3\%" /> oxygen by mass, with a relative molecular mass of <InlineMath math="180" />. Pretend you have <InlineMath math="100\ \text{g}" /> of sample so each percentage becomes grams directly:
 
-A balanced chemical equation gives the **mole ratio** of reactants and products. The coefficient in front of each formula is a number of moles, not a mass. Pick a reaction in this model and count the molecules on both sides of the equation.
+| Element | C | H | O |
+| :--- | :--- | :--- | :--- |
+| Number of moles | <InlineMath math="40.0 \div 12 = 3.33" /> | <InlineMath math="6.7 \div 1 = 6.7" /> | <InlineMath math="53.3 \div 16 = 3.33" /> |
+| Simplest ratio | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
+
+That gives the empirical formula <InlineMath math="\mathrm{CH_2O}" />, whose unit mass is <InlineMath math="30" />. Dividing the molecular mass by the empirical unit mass finds the multiplier:
+
+<BlockMath math="\frac{180}{30} = 6" />
+
+Multiplying every subscript in <InlineMath math="\mathrm{CH_2O}" /> by <InlineMath math="6" /> reveals the true molecular formula, <InlineMath math="\mathrm{C_6H_{12}O_6}" />, which is glucose.
+
+## Stoichiometry with Balanced Chemical Equations
+
+A balanced chemical equation works like a kitchen recipe written in moles rather than grams. The big numbers in front of each formula give the **mole ratio** linking reactants and products. The most frequent stoichiometry slip is treating those coefficients as a direct mass ratio. **Always route every calculation through moles**: convert your starting quantity to moles, apply the equation's mole ratio, and convert back to the target unit.
+
+Pick a reaction below and play the animation to watch how atoms rearrange while the molecule counts obey the balanced coefficients.
 
 <ReactionBalanceLab
   title={<>Molecules on Both Sides of an Equation</>}
   description={
     <>
-      Pick a reaction and play the animation. The number of each kind of atom
-      is the same on the left and the right, and the coefficients give the
-      mole ratio.
+      Pick a reaction and play the animation. Every kind of atom stays equal on
+      the left and right, while the coefficients report the mole ratio.
+    </>
+  }
+  footer={
+    <>
+      Balanced coefficients count reacting molecules and moles rather than
+      grams.
     </>
   }
   reactions={[
@@ -248,82 +336,46 @@ A balanced chemical equation gives the **mole ratio** of reactants and products.
   }}
 />
 
-### Example Mass of a Product
+Watch the atom counters stay locked from start to finish even when the total number of molecules changes, confirming conservation of mass in every reaction.
 
-Find **the mass of carbon dioxide** produced when <InlineMath math="8.0\text{ g}" /> of methane burns completely.
+### Product Mass from a Balanced Equation
+
+Find **the mass of carbon dioxide** produced when <InlineMath math="8.0\ \text{g}" /> of methane burns completely in oxygen. Start from the balanced equation:
 
 <BlockMath math="\mathrm{CH_4} + 2\mathrm{O_2} \rightarrow \mathrm{CO_2} + 2\mathrm{H_2O}" />
 
-Follow three steps: mass to moles, mole ratio, then moles to mass.
+Follow the three-step mole bridge cleanly, writing the unit on every line:
 
 <MathContainer>
-<BlockMath math="n(\mathrm{CH_4}) = \frac{8.0}{16} = 0.50\text{ mol}" />
-<BlockMath math="n(\mathrm{CO_2}) = n(\mathrm{CH_4}) = 0.50\text{ mol}" />
-<BlockMath math="m(\mathrm{CO_2}) = 0.50 \times 44 = 22\text{ g}" />
+<BlockMath math="n(\mathrm{CH_4}) = \frac{8.0}{16} = 0.50\ \text{mol}" />
+<BlockMath math="n(\mathrm{CO_2}) = n(\mathrm{CH_4}) = 0.50\ \text{mol}" />
+<BlockMath math="m(\mathrm{CO_2}) = 0.50 \times 44 = 22\ \text{g}" />
 </MathContainer>
 
-Check with the conservation of mass: the oxygen used is <InlineMath math="1.0 \times 32 = 32\text{ g}" /> and the water produced <InlineMath math="1.0 \times 18 = 18\text{ g}" />. The reactants' mass <InlineMath math="8 + 32 = 40\text{ g}" /> equals the products' mass <InlineMath math="22 + 18 = 40\text{ g}" />.
+Verify your result with mass conservation. Burning <InlineMath math="0.50\ \text{mol}" /> of methane consumes <InlineMath math="1.0\ \text{mol}" /> of oxygen (<InlineMath math="32\ \text{g}" />) and forms <InlineMath math="1.0\ \text{mol}" /> of water (<InlineMath math="18\ \text{g}" />):
 
-### Example Gas Volume from an Equation
+<BlockMath math="8 + 32 = 40\ \text{g} = 22 + 18" />
 
-A <InlineMath math="0.10" /> mol sample of nitrogen reacts completely with hydrogen. Find **the volume of ammonia** at room conditions.
+Reactant mass and product mass match down to the gram, confirming every step.
+
+### Gas Volume from a Balanced Equation
+
+Now connect equation ratios to gas volume at room conditions (<InlineMath math="V_m = 24\ \text{dm}^3\text{ mol}^{-1}" />). First, suppose <InlineMath math="0.10\ \text{mol}" /> of nitrogen reacts completely with hydrogen to form **ammonia gas**:
 
 <MathContainer>
 <BlockMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightarrow 2\mathrm{NH_3}" />
-<BlockMath math="n(\mathrm{NH_3}) = 2 \times 0.10 = 0.20\text{ mol}" />
-<BlockMath math="V = 0.20 \times 24 = 4.8\text{ dm}^3" />
+<BlockMath math="n(\mathrm{NH_3}) = 2 \times 0.10 = 0.20\ \text{mol}" />
+<BlockMath math="V(\mathrm{NH_3}) = 0.20 \times 24 = 4.8\ \text{dm}^3" />
 </MathContainer>
 
-Check the ratio: one nitrogen molecule gives two ammonia molecules, as the reaction model shows.
+That matches the reaction model directly: every one nitrogen molecule produces two ammonia molecules.
 
-## Common Mistakes about the Mole Concept
-
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| One mole of water and one mole of carbon dioxide have the same mass. | They have the same number of particles, but different molar masses. | Compare <InlineMath math="M" />, not <InlineMath math="n" />. |
-| Using the equation's coefficients as a mass ratio. | The coefficients are a mole ratio. | Convert mass to moles before using the ratio. |
-| Using <InlineMath math="24\text{ dm}^3" /> for a solid or liquid. | Molar volume applies only to gases. | Check the state of the substance. |
-| The number of atoms equals the number of molecules. | One molecule can hold several atoms. | Multiply by the number of atoms in the formula. |
-
-The second mistake is the most common one in stoichiometry questions. **Always go through moles**: mass to moles, mole ratio, then moles to whatever quantity you're asked for.
-
-## Practice on the Mole Concept
-
-These questions start with one conversion and finish with formulae and equations. Use <InlineMath math="A_r" />: H <InlineMath math="1" />, C <InlineMath math="12" />, N <InlineMath math="14" />, O <InlineMath math="16" />, Ca <InlineMath math="40" />, Zn <InlineMath math="65" />. **Write the unit at every step**.
-
-1. Calculate the number of atoms in <InlineMath math="0.20" /> mol of ammonia, <InlineMath math="\mathrm{NH_3}" />.
-
-2. Calculate the number of moles in <InlineMath math="25\text{ g}" /> of calcium carbonate, <InlineMath math="\mathrm{CaCO_3}" />.
-
-3. A compound contains <InlineMath math="40.0\%" /> carbon, <InlineMath math="6.7\%" /> hydrogen and <InlineMath math="53.3\%" /> oxygen by mass. Its relative molecular mass is <InlineMath math="180" />. Find its empirical and molecular formulae.
-
-4. A <InlineMath math="6.5\text{ g}" /> piece of zinc reacts with excess hydrochloric acid. Calculate the volume of hydrogen gas at room conditions.
-
-### Solutions
-
-**Solution 1**: Each <InlineMath math="\mathrm{NH_3}" /> molecule contains four atoms.
-
-<BlockMath math="N = 0.20 \times 4 \times 6.02 \times 10^{23} = 4.82 \times 10^{23}" />
-
-**Solution 2**: Work out the relative formula mass first, <InlineMath math="40 + 12 + 3(16) = 100" />.
-
-<BlockMath math="n = \frac{25}{100} = 0.25\text{ mol}" />
-
-**Solution 3**: Assume <InlineMath math="100\text{ g}" /> of the compound, so the percentages become grams.
-
-| Element | C | H | O |
-| :--- | :--- | :--- | :--- |
-| Number of moles | <InlineMath math="40.0 \div 12 = 3.33" /> | <InlineMath math="6.7 \div 1 = 6.7" /> | <InlineMath math="53.3 \div 16 = 3.33" /> |
-| Simplest ratio | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
-
-The empirical formula is <InlineMath math="\mathrm{CH_2O}" /> with a formula mass of <InlineMath math="30" />. Because <InlineMath math="180 \div 30 = 6" />, the molecular formula is <InlineMath math="\mathrm{C_6H_{12}O_6}" />, which is glucose.
-
-**Solution 4**: Write the equation, then follow the <InlineMath math="1 : 1" /> mole ratio between zinc and hydrogen.
+Next, link a weighed metal to a gas volume. Suppose a <InlineMath math="6.5\ \text{g}" /> strip of zinc (<InlineMath math="A_r = 65" />) dissolves completely in excess hydrochloric acid, and you want the volume of hydrogen released at room temperature and pressure. Write the balanced equation and follow the <InlineMath math="1 : 1" /> mole ratio between zinc and hydrogen:
 
 <MathContainer>
 <BlockMath math="\mathrm{Zn} + 2\mathrm{HCl} \rightarrow \mathrm{ZnCl_2} + \mathrm{H_2}" />
-<BlockMath math="n(\mathrm{Zn}) = \frac{6.5}{65} = 0.10\text{ mol} = n(\mathrm{H_2})" />
-<BlockMath math="V = 0.10 \times 24 = 2.4\text{ dm}^3" />
+<BlockMath math="n(\mathrm{Zn}) = \frac{6.5}{65} = 0.10\ \text{mol} = n(\mathrm{H_2})" />
+<BlockMath math="V(\mathrm{H_2}) = 0.10 \times 24 = 2.4\ \text{dm}^3" />
 </MathContainer>
 
-The acid is in excess, so **the zinc decides the amount of gas**.
+Because hydrochloric acid is present in excess, **the limiting mass of zinc decides the exact volume of hydrogen collected**.

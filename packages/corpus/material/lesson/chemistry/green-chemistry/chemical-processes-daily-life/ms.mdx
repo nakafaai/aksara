@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Proses Kimia dalam Kehidupan Harian",
   description:
@@ -9,59 +8,98 @@ export const metadata = {
   subject: "Kimia Hijau",
 };
 
-## Mengenal Pasti Perubahan Kimia dan Kesannya
+## Mengenal Pasti Perubahan Kimia di Sekeliling Kita
 
-Sebelum menilai sesuatu aktiviti sebagai "hijau" atau "tidak hijau", kita perlu tahu <Highlight>proses kimia apa yang sedang berlaku</Highlight>. Membakar sampah, mencuci pakaian, membuat kompos, memasak, fotosintesis dalam tumbuhan dan pengaratan besi semuanya melibatkan bahan yang berubah atau berinteraksi.
+Sebelum menilai sesuatu aktiviti sebagai hijau atau tidak hijau, kenal pasti dahulu <Highlight>proses kimia apa yang sedang berlaku</Highlight>. Membakar sampah, mencuci pakaian, membuat kompos, memasak, fotosintesis dalam tumbuhan dan pengaratan besi semuanya melibatkan **bahan yang berubah atau berinteraksi**.
 
-[Kimia hijau](https://www.epa.gov/greenchemistry/basics-green-chemistry) menilai cara sesuatu produk atau proses kimia direka bentuk sejak awal. Reka bentuk itu patut mengurangkan bahaya, sisa, penggunaan tenaga yang berlebihan, bahan sekali guna dan risiko kemalangan. Kimia hijau juga bertujuan mengurangkan penggunaan atau penghasilan bahan berbahaya.
+[Kimia hijau](https://www.epa.gov/greenchemistry/basics-green-chemistry) menilai cara sesuatu produk atau proses kimia direka bentuk sejak awal. Reka bentuk yang baik mengurangkan bahaya, sisa, penggunaan tenaga berlebihan, bahan sekali guna dan risiko kemalangan sambil mengurangkan penggunaan atau penghasilan bahan berbahaya.
 
-Menyemak sesuatu proses bermaksud menjawab empat soalan, satu untuk setiap bahagian proses.
+> Setiap penilaian hijau bermula dengan kimianya sendiri kerana kita tidak boleh mengurangkan sisa atau bahaya sebelum mengetahui bahan yang masuk dan keluar.
+
+Menyemak sebarang proses harian bermaksud menjawab empat soalan, satu untuk setiap peringkat perubahan.
 
 | Bahagian proses | Soalan |
-| :----------- | :------- |
+| :-------------- | :----- |
 | Bahan permulaan | Bahan apakah yang memasuki proses? |
-| Perubahan | Adakah bahan itu hanya bercampur, atau adakah ia menjadi bahan baharu? |
+| Perubahan | Adakah bahan itu hanya bercampur, atau menjadi bahan baharu? |
 | Hasil | Bahan apakah yang terbentuk selepas proses berlaku? |
 | Kesan | Adakah terdapat sisa, haba berlebihan, gas berbahaya atau bahan yang sukar terurai? |
 
-## Membakar Bahan Api di Rumah
+### Menjejaki Pembakaran Bahan Api di Rumah
 
-Dapur biogas membakar metana, dan pelita spirit membakar etanol. Kedua-duanya perubahan kimia: **atom karbon dan hidrogen daripada bahan api berpindah ke karbon dioksida dan air**. Pilih satu bahan api, seret gelangsar dan kira molekul sebelum dan selepas pembakaran.
+Dapur biogas membakar metana, manakala pelita spirit membakar etanol. Kedua-duanya perubahan kimia apabila **atom karbon dan hidrogen daripada bahan api berpindah ke karbon dioksida dan air**. Persamaan seimbangnya menunjukkan jumlah karbon dioksida yang dibebaskan setiap mol bahan api:
 
-<ReactionBalanceLab
-  title={<>Pembakaran Etanol dan Metana</>}
-  description={<>Pilih bahan api dan kira molekul sebelum dan selepas ia terbakar.</>}
-  reactions={[
-    { id: "ethanol-combustion", name: "Pembakaran etanol", tab: <InlineMath math="\mathrm{C_2H_5OH}" /> },
-    { id: "methane-combustion", name: "Pembakaran metana", tab: <InlineMath math="\mathrm{CH_4}" /> },
-  ]}
-  reading="molecules"
+<MathContainer>
+<BlockMath math="\mathrm{CH_4(g)} + 2\mathrm{O_2(g)} \rightarrow \mathrm{CO_2(g)} + 2\mathrm{H_2O(l)}" />
+<BlockMath math="\mathrm{C_2H_5OH(l)} + 3\mathrm{O_2(g)} \rightarrow 2\mathrm{CO_2(g)} + 3\mathrm{H_2O(l)}" />
+</MathContainer>
+
+Satu mol karbon dioksida berjisim <InlineMath math="44\text{ g}" />. Membakar <InlineMath math="n" /> mol metana menghasilkan <InlineMath math="44n\text{ g}" /> karbon dioksida, manakala membakar <InlineMath math="n" /> mol etanol menghasilkan <InlineMath math="88n\text{ g}" />. Gerakkan gelangsar di bawah untuk membandingkan jisim karbon dioksida daripada kedua-dua bahan api rumah.
+
+<MathVisual
+  title={<>Karbon Dioksida yang Dibebaskan oleh Metana dan Etanol</>}
+  description={
+    <>
+      Jisim karbon dioksida yang terbentuk apabila <InlineMath math="n" /> mol
+      metana atau etanol terbakar lengkap dalam oksigen.
+    </>
+  }
+  footer={
+    <>
+      Setiap mol etanol membawa dua karbon dan menggandakan jisim karbon
+      dioksida.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 920 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 1, max: 10, value: 4, step: 0.5, label: "fuel-moles" },
+    ],
+    objects: [
+      { id: "ethanol-co2", kind: "function", appearance: "warning", formula: "88*x", domain: { min: 0, max: 10 } },
+      { id: "methane-co2", kind: "function", appearance: "primary", formula: "44*x", domain: { min: 0, max: 10 } },
+      { id: "now-ethanol", kind: "marker", x: "n", y: "88*n", appearance: "warning" },
+      { id: "now-methane", kind: "marker", x: "n", y: "44*n", appearance: "primary" },
+    ],
+    labels: [
+      { key: "ethanol-line", objectId: "ethanol-co2", at: { x: 7.5, y: 660 }, placement: "above-left" },
+      { key: "methane-line", objectId: "methane-co2", at: { x: 7.5, y: 330 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "methane-mass", formula: "44*n" },
+      { key: "ethanol-mass", formula: "88*n" },
+    ],
+  }}
   labels={{
-    atoms: <>Bilangan atom setiap unsur</>,
-    choose: "Pilih tindak balas",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan tindak balas</>,
-    mass: <>Jisim bahan dan hasil tindak balas</>,
-    molecules: <>Bilangan molekul</>,
-    products: <>Hasil tindak balas</>,
-    progress: "Perjalanan tindak balas",
-    reactants: <>Bahan tindak balas</>,
-    view: "Tindak balas pada aras atom",
+    "fuel-moles": <>Bahan api (<InlineMath math="\text{mol}" />)</>,
+    "ethanol-line": <>Etanol</>,
+    "methane-line": <>Metana</>,
+    "methane-mass": <><InlineMath math="\mathrm{CO_2}" /> metana (<InlineMath math="\text{g}" />)</>,
+    "ethanol-mass": <><InlineMath math="\mathrm{CO_2}" /> etanol (<InlineMath math="\text{g}" />)</>,
   }}
 />
 
-## Cara Atom Membentuk Unsur dan Molekul
+Kedua-dua garis meningkat secara linear dari asalan, dengan garis etanol sentiasa dua kali lebih curam daripada garis metana. Mengira bilangan atom karbon dalam formula bahan api terus meramalkan keluaran karbon dioksida stoikiometri bagi setiap mol sebelum api dinyalakan.
 
-Jadual Berkala Unsur menunjukkan simbol setiap unsur, tetapi simbol sahaja tidak menyatakan jenis zarah. Kita masih perlu membezakan **atom, unsur, molekul unsur dan molekul sebatian**.
+### Membezakan Atom Unsur dan Molekul
 
-[Atom](https://goldbook.iupac.org/terms/view/A00493) ialah zarah terkecil yang masih mencirikan sesuatu unsur kimia. [Unsur kimia](https://goldbook.iupac.org/terms/view/C01022) ialah satu jenis atom yang mempunyai bilangan proton yang sama. [Molekul](https://goldbook.iupac.org/terms/view/M04002) ialah entiti yang neutral dari segi elektrik dan terdiri daripada lebih daripada satu atom.
+Jadual Berkala Unsur menunjukkan simbol setiap unsur, tetapi simbol sahaja tidak menyatakan jenis zarah. Membaca tindak balas dengan tepat memerlukan keupayaan membezakan **atom, unsur, molekul unsur dan molekul sebatian**.
+
+[Atom](https://goldbook.iupac.org/terms/view/A00493) ialah zarah terkecil yang masih mencirikan sesuatu unsur kimia. [Unsur kimia](https://goldbook.iupac.org/terms/view/C01022) ialah satu jenis atom dengan bilangan proton yang sama. [Molekul](https://goldbook.iupac.org/terms/view/M04002) ialah entiti neutral elektrik yang terdiri daripada lebih daripada satu atom terikat.
 
 <MatterParticleReaderLab
   title={<>Model Atom dan Molekul</>}
   description={
     <>
-      Putar model untuk membezakan satu atom, satu unsur, molekul unsur
-      dan molekul sebatian sebelum kamu membaca persamaan kimia.
+      Putar model untuk membezakan satu atom, satu unsur, molekul unsur dan
+      molekul sebatian sebelum kamu membaca persamaan kimia.
+    </>
+  }
+  footer={
+    <>
+      Ikatan sesama atom satu unsur membentuk molekul unsur, bukan sebatian.
     </>
   }
   labels={{
@@ -128,177 +166,220 @@ Jadual Berkala Unsur menunjukkan simbol setiap unsur, tetapi simbol sahaja tidak
   }}
 />
 
-Jadual di bawah membezakan empat istilah yang digunakan dalam contoh tindak balas.
+Perhatikan tab ketiga dan keempat pada model. Kedua-duanya menunjukkan molekul berikatan, tetapi hanya tab keempat menggabungkan jenis unsur berbeza dalam satu unit. Jadual di bawah meringkaskan empat istilah ini.
 
 | Istilah | Maksud | Contoh |
-| :--- | :------------- | :------ |
+| :------ | :----- | :----- |
 | Atom | Satu zarah daripada sesuatu unsur. | satu atom <InlineMath math="\mathrm{C}" /> atau satu atom <InlineMath math="\mathrm{O}" /> |
 | Unsur | Satu jenis atom dengan bilangan proton yang sama. | besi, karbon, oksigen |
 | Molekul unsur | Molekul yang terdiri daripada atom-atom unsur yang sama. | <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{P_4}" />, <InlineMath math="\mathrm{S_8}" /> |
 | Molekul sebatian | Molekul yang terdiri daripada atom-atom unsur yang berbeza. | <InlineMath math="\mathrm{H_2O}" />, <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{C_6H_{12}O_6}" /> |
 
-Bukan semua sebatian wujud sebagai molekul yang berasingan. Garam dapur, contohnya, membentuk susunan ion yang berulang. Contoh di bawah menggunakan molekul untuk menunjukkan cara membaca persamaan kimia yang ringkas.
+Bukan semua sebatian wujud sebagai molekul berasingan. Garam dapur, contohnya, membentuk susunan ion berulang. Bandingkan jumlah atom dan bilangan unsur berbeza bagi lima molekul lazim di bawah.
 
-## Molekul Unsur dan Molekul Sebatian
-
-Molekul boleh terdiri daripada satu jenis atom atau beberapa jenis atom. <InlineMath math="\mathrm{O_2}" /> dan <InlineMath math="\mathrm{O_3}" /> hanya mengandungi oksigen, jadi kedua-duanya **molekul unsur**. Air dan etanol mengandungi lebih daripada satu unsur, jadi kedua-duanya **molekul sebatian**. Putar setiap model dan semak atom penyusunnya.
-
-<MoleculeShapeLab
-  title={<>Unsur atau Sebatian</>}
-  description={<>Putar setiap model dan kumpulkan mengikut jenis atom di dalamnya.</>}
-  molecules={[
-    { id: "oxygen", name: "Oksigen" },
-    { id: "ozone", name: "Ozon" },
-    { id: "water", name: "Air" },
-    { id: "ethanol", name: "Etanol" },
+<Chart
+  title={<>Bilangan Atom dan Jenis Unsur dalam Lima Molekul</>}
+  description={
+    <>
+      Jumlah atom setiap molekul berbanding bilangan jenis unsur bagi oksigen,
+      ozon, air, karbon dioksida dan etanol.
+    </>
+  }
+  footer={
+    <>
+      Molekul unsur sentiasa kekal pada satu jenis unsur walau berapa banyak
+      atomnya.
+    </>
+  }
+  bars="apart"
+  categories={["Oksigen", "Ozon", "Air", "Karbon dioksida", "Etanol"]}
+  series={[
+    { label: "Jumlah atom per molekul", mark: "bar", values: [2, 3, 3, 3, 9] },
+    { label: "Jenis unsur berbeza", mark: "bar", values: [1, 1, 2, 2, 3] },
   ]}
-  labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model isi ruang</>,
-    formula: <>Formula molekul</>,
-    mass: <>Jisim molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
-  }}
+  valueLabel="Bilangan"
+  valueRange={{ min: 0, max: 10 }}
 />
 
-## Bahagian-bahagian Persamaan Kimia
+Ozon, air dan karbon dioksida semuanya mempunyai tiga atom dalam satu molekul, namun ozon kekal sebagai **molekul unsur** kerana ketiga-tiga atomnya oksigen belaka. Air, karbon dioksida dan etanol mengandungi dua atau tiga unsur berbeza, maka ketiganya tergolong dalam sebatian.
 
-Persamaan kimia merekodkan bahan tindak balas, hasil tindak balas dan kuantiti relatifnya. Bahan di sebelah kiri ialah **bahan tindak balas**, bahan di sebelah kanan ialah **hasil tindak balas**, anak panah bermaksud "menghasilkan", dan nombor yang diletakkan di hadapan formula dipanggil **pekali**.
+## Membaca dan Mengimbangkan Persamaan Kimia
 
-Corak asasnya ialah:
+Persamaan kimia merekodkan bahan tindak balas, hasil tindak balas dan kuantiti relatifnya. Bahan di sebelah kiri ialah **bahan tindak balas**, bahan di sebelah kanan ialah **hasil tindak balas**, anak panah bermaksud menghasilkan, dan nombor di hadapan formula dipanggil **pekali**.
 
 <BlockMath math="\text{bahan tindak balas} \rightarrow \text{hasil tindak balas}" />
 
-Simbol keadaan ditulis selepas formula.
+Simbol keadaan ditulis selepas setiap formula kimia untuk menyatakan keadaan fizikalnya sepanjang proses.
 
 | Simbol | Maksud |
-| :----- | :------ |
+| :----- | :----- |
 | <InlineMath math="\mathrm{(s)}" /> | pepejal |
 | <InlineMath math="\mathrm{(l)}" /> | cecair |
 | <InlineMath math="\mathrm{(g)}" /> | gas |
 | <InlineMath math="\mathrm{(aq)}" /> | larut dalam air |
 
-Pekali boleh diubah untuk mengimbangkan persamaan. Subskrip dalam formula tidak boleh diubah sesuka hati, kerana subskrip menentukan bahan itu. Menulis <InlineMath math="\mathrm{H_2O}" /> berbeza daripada menulis <InlineMath math="\mathrm{H_2O_2}" />.
+Ubah pekali sahaja ketika mengimbangkan persamaan. Jangan sekali-kali mengubah subskrip dalam formula, kerana subskrip menentukan identiti bahan itu: <InlineMath math="\mathrm{H_2O}" /> ialah air, manakala <InlineMath math="\mathrm{H_2O_2}" /> ialah hidrogen peroksida.
 
-## Imbangkan Persamaan Fotosintesis
+### Mengimbangkan Persamaan Ringkas Fotosintesis
 
-Fotosintesis selalunya ditulis sebagai satu tindak balas ringkasan. Proses sebenarnya mempunyai banyak langkah, tetapi persamaan ringkasan merekodkan atom sebelum dan selepas tindak balas. Fotosintesis menggunakan karbon dioksida dan air untuk menghasilkan gula dan oksigen.
+Fotosintesis ditulis sebagai tindak balas ringkasan yang merangkumi banyak langkah biokimia. Tumbuhan menggabungkan **karbon dioksida dan air** dengan tenaga cahaya untuk membentuk gula dan oksigen. Draf yang belum seimbang bermula begini:
 
-Persamaan yang belum seimbang boleh ditulis seperti ini:
+<BlockMath math="\mathrm{CO_2(g)} + \mathrm{H_2O(l)} \rightarrow \mathrm{C_6H_{12}O_6} + \mathrm{O_2(g)}" />
 
-<BlockMath math="\begin{aligned} &amp;\mathrm{CO_2(g)} + \mathrm{H_2O(l)} \\ &amp;\rightarrow \mathrm{C_6H_{12}O_6} + \mathrm{O_2(g)} \end{aligned}" />
-
-Jika kita mengira atomnya, kedua-dua belah tidak sepadan.
+Mengira atom menunjukkan kedua-dua belah belum sepadan.
 
 | Unsur | Kiri | Kanan |
-| :------ | :--- | :---- |
+| :---- | :--- | :---- |
 | <InlineMath math="\mathrm{C}" /> | <InlineMath math="1" /> | <InlineMath math="6" /> |
 | <InlineMath math="\mathrm{H}" /> | <InlineMath math="2" /> | <InlineMath math="12" /> |
 | <InlineMath math="\mathrm{O}" /> | <InlineMath math="3" /> | <InlineMath math="8" /> |
 
-Mulakan dengan enam atom karbon dalam satu molekul gula. Kita perlukan <InlineMath math="6\mathrm{CO_2}" /> untuk memberikan enam karbon di sebelah kiri. Dua belas atom hidrogen dalam gula memerlukan <InlineMath math="6\mathrm{H_2O}" />. Sebelah kiri kini mempunyai <InlineMath math="6\times2+6=18" /> atom oksigen. Enam daripadanya sudah berada dalam gula, jadi baki <InlineMath math="18-6=12" /> atom oksigen membentuk <InlineMath math="6\mathrm{O_2}" />:
+Mulakan dengan enam atom karbon dalam satu molekul gula dengan meletakkan <InlineMath math="6\mathrm{CO_2}" /> di kiri, kemudian padankan dua belas atom hidrogen dengan <InlineMath math="6\mathrm{H_2O}" />. Sebelah kiri kini mempunyai <InlineMath math="18" /> atom oksigen. Enam berada dalam gula, meninggalkan <InlineMath math="12" /> atom oksigen untuk membentuk <InlineMath math="6\mathrm{O_2}" />:
 
-<BlockMath math="\begin{aligned} &amp;6\mathrm{CO_2(g)} + 6\mathrm{H_2O(l)} \\ &amp;\xrightarrow{\text{cahaya}} \mathrm{C_6H_{12}O_6} + 6\mathrm{O_2(g)} \end{aligned}" />
+<BlockMath math="6\mathrm{CO_2(g)} + 6\mathrm{H_2O(l)} \xrightarrow{\text{cahaya}} \mathrm{C_6H_{12}O_6} + 6\mathrm{O_2(g)}" />
 
-Ringkasan formal ini merangkumi banyak langkah fotosintesis. Sebab itu formula karbohidrat ditunjukkan tanpa simbol keadaan.
-
-Bilangan atom bagi setiap unsur kini sama di kedua-dua belah persamaan.
+Ringkasan formal ini memampatkan banyak langkah perantaraan, sebab itu formula karbohidrat ditulis tanpa simbol keadaan. Kini kedua-dua belah mempunyai bilangan atom yang sama bagi setiap unsur.
 
 | Unsur | Kiri | Kanan |
-| :------ | :--- | :---- |
+| :---- | :--- | :---- |
 | <InlineMath math="\mathrm{C}" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
 | <InlineMath math="\mathrm{H}" /> | <InlineMath math="12" /> | <InlineMath math="12" /> |
 | <InlineMath math="\mathrm{O}" /> | <InlineMath math="18" /> | <InlineMath math="18" /> |
 
-Untuk mengimbangkan persamaan, kekalkan setiap formula kimia, <Highlight>ubah pekali sahaja</Highlight>, dan pastikan kedua-dua belah mengandungi bilangan atom yang sama bagi setiap unsur.
-
-Inilah persamaan fotosintesis yang seimbang, dikira atom demi atom, dengan bahan tindak balas di belakang, hasil tindak balas di hadapan dan satu petak grid untuk <InlineMath math="4" /> atom. Ada enam atom karbon, dua belas atom hidrogen dan lapan belas atom oksigen di setiap belah: cahaya menyusun semula atom-atom itu, bukan mencipta atom baharu.
+Untuk mengimbangkan persamaan, kekalkan setiap formula kimia, <Highlight>ubah pekali sahaja</Highlight>, dan sahkan setiap unsur sepadan pada kedua-dua belah. Gerakkan <InlineMath math="n" /> di bawah untuk menskalakan bilangan molekul glukosa yang terbentuk dan membaca bilangan atom seimbang.
 
 <MathVisual
-  title={<>Atom dalam Fotosintesis yang Seimbang</>}
-  description={<><InlineMath math="6\mathrm{CO_2}+6\mathrm{H_2O}\rightarrow\mathrm{C_6H_{12}O_6}+6\mathrm{O_2}" /> dengan karbon (kelabu), hidrogen (ungu) dan oksigen (jingga). Satu petak grid ke atas ialah <InlineMath math="4" /> atom.</>}
+  title={<>Bilangan Atom Seimbang dalam Fotosintesis</>}
+  description={
+    <>
+      Atom karbon, hidrogen dan oksigen yang diperlukan pada kedua-dua belah
+      persamaan fotosintesis seimbang apabila <InlineMath math="n" /> molekul
+      glukosa terbentuk.
+    </>
+  }
+  footer={
+    <>
+      Atom oksigen, hidrogen dan karbon kekal pada nisbah tetap tiga dua satu.
+    </>
+  }
   scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 2.5, y: 2, z: 0 } },
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: 0, max: 96 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 1, max: 5, value: 2, step: 1, label: "glucose-count" },
+    ],
     objects: [
-      { id: "carbon-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: (6 / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 6 / 4, width: 1.2 } },
-      { id: "carbon-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: (6 / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 6 / 4, width: 1.2 } },
-      { id: "hydrogen-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: ((6 * 2) / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: (6 * 2) / 4, width: 1.2 } },
-      { id: "hydrogen-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: (12 / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 12 / 4, width: 1.2 } },
-      { id: "oxygen-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: ((6 * 2 + 6 * 1) / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: (6 * 2 + 6 * 1) / 4, width: 1.2 } },
-      { id: "oxygen-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: ((6 + 6 * 2) / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: (6 + 6 * 2) / 4, width: 1.2 } },
+      { id: "oxygen-curve", kind: "function", appearance: "primary", formula: "18*x", domain: { min: 0, max: 5 } },
+      { id: "hydrogen-curve", kind: "function", appearance: "secondary", formula: "12*x", domain: { min: 0, max: 5 } },
+      { id: "carbon-curve", kind: "function", appearance: "reference", formula: "6*x", domain: { min: 0, max: 5 } },
+      { id: "oxygen-now", kind: "marker", x: "n", y: "18*n", appearance: "primary" },
+      { id: "hydrogen-now", kind: "marker", x: "n", y: "12*n", appearance: "secondary" },
+      { id: "carbon-now", kind: "marker", x: "n", y: "6*n", appearance: "reference" },
     ],
     labels: [
-      { key: "carbon", objectId: "carbon-right", at: { x: 0, y: 2, z: 0.75 }, placement: "above" },
-      { key: "hydrogen", objectId: "hydrogen-right", at: { x: 2.5, y: 3.5, z: 0.75 }, placement: "above" },
-      { key: "oxygen", objectId: "oxygen-right", at: { x: 5, y: 5, z: 0.75 }, placement: "above" },
+      { key: "oxygen-line", objectId: "oxygen-curve", at: { x: 4, y: 72 }, placement: "above-left" },
+      { key: "hydrogen-line", objectId: "hydrogen-curve", at: { x: 4, y: 48 }, placement: "above-left" },
+      { key: "carbon-line", objectId: "carbon-curve", at: { x: 4, y: 24 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "carbon-atoms", formula: "6*n" },
+      { key: "hydrogen-atoms", formula: "12*n" },
+      { key: "oxygen-atoms", formula: "18*n" },
     ],
   }}
   labels={{
-    carbon: <InlineMath math="\mathrm{C}:\ 6=6" />,
-    hydrogen: <InlineMath math="\mathrm{H}:\ 12=12" />,
-    oxygen: <InlineMath math="\mathrm{O}:\ 18=18" />,
+    "glucose-count": <>Molekul glukosa (<InlineMath math="n" />)</>,
+    "oxygen-line": <>Atom <InlineMath math="\mathrm{O}" /></>,
+    "hydrogen-line": <>Atom <InlineMath math="\mathrm{H}" /></>,
+    "carbon-line": <>Atom <InlineMath math="\mathrm{C}" /></>,
+    "carbon-atoms": <>Atom karbon (<InlineMath math="\mathrm{C}" />)</>,
+    "hydrogen-atoms": <>Atom hidrogen (<InlineMath math="\mathrm{H}" />)</>,
+    "oxygen-atoms": <>Atom oksigen (<InlineMath math="\mathrm{O}" />)</>,
   }}
 />
 
-## Nilai Proses dengan Kimia Hijau
+Setiap langkah gelangsar menggandakan karbon, hidrogen dan oksigen secara serentak tanpa mencipta atau menghilangkan satu atom pun. Tenaga cahaya sekadar menyusun semula ikatan sedia ada dan tidak mencipta jirim baharu.
 
-Selepas kita tahu cara membaca tindak balas, kita boleh menilai sama ada proses itu sesuai dengan prinsip kimia hijau. Sesuatu proses boleh jadi berguna tetapi masih tidak hijau jika ia **membentuk bahan pencemar**, menggunakan bahan berbahaya yang tidak perlu, atau memerlukan terlalu banyak tenaga.
+### Keabadian Jisim apabila Daun Kering Dibakar
+
+Membakar daun kering tidak membuatkan jirim lenyap. Satu unit selulosa bertindak balas lengkap dengan oksigen di udara untuk membentuk **karbon dioksida dan wap air**:
+
+<BlockMath math="\mathrm{C_6H_{10}O_5} + 6\mathrm{O_2} \rightarrow 6\mathrm{CO_2} + 5\mathrm{H_2O}" />
+
+Setiap <InlineMath math="162\text{ g}" /> selulosa bergabung dengan <InlineMath math="192\text{ g}" /> oksigen daripada udara dan membebaskan <InlineMath math="264\text{ g}" /> karbon dioksida serta <InlineMath math="90\text{ g}" /> wap air. Jumlah jisim gas ekzos sebanyak <InlineMath math="354\text{ g}" /> melebihi dua kali jisim daun kering sahaja kerana oksigen atmosfera menyertai hasil tindak balas.
+
+<MathVisual
+  title={<>Jisim Gas Ekzos daripada Pembakaran Daun Kering</>}
+  description={
+    <>
+      Jisim karbon dioksida, wap air dan jumlah gas yang dibebaskan apabila{" "}
+      <InlineMath math="m" /> gram selulosa daun kering terbakar lengkap.
+    </>
+  }
+  footer={
+    <>
+      Gas ekzos lebih berat daripada daun kering kerana oksigen udara menyertai
+      asap.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 500 }, y: { min: 0, max: 1150 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 50, max: 500, value: 162, step: 1, label: "leaf-mass" },
+    ],
+    objects: [
+      { id: "total-gas", kind: "function", appearance: "warning", formula: "354*x/162", domain: { min: 0, max: 500 } },
+      { id: "co2-gas", kind: "function", appearance: "primary", formula: "264*x/162", domain: { min: 0, max: 500 } },
+      { id: "water-vapor", kind: "function", appearance: "secondary", formula: "90*x/162", domain: { min: 0, max: 500 } },
+      { id: "now-total", kind: "marker", x: "m", y: "354*m/162", appearance: "warning" },
+      { id: "now-co2", kind: "marker", x: "m", y: "264*m/162", appearance: "primary" },
+    ],
+    labels: [
+      { key: "total-line", objectId: "total-gas", at: { x: 400, y: 874 }, placement: "above-left" },
+      { key: "co2-line", objectId: "co2-gas", at: { x: 400, y: 652 }, placement: "below-right" },
+      { key: "vapor-line", objectId: "water-vapor", at: { x: 400, y: 222 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "co2-out", formula: "264*m/162" },
+      { key: "vapor-out", formula: "90*m/162" },
+      { key: "total-out", formula: "354*m/162" },
+    ],
+  }}
+  labels={{
+    "leaf-mass": <>Jisim selulosa (<InlineMath math="\text{g}" />)</>,
+    "total-line": <>Jumlah gas</>,
+    "co2-line": <><InlineMath math="\mathrm{CO_2}" /></>,
+    "vapor-line": <>Wap <InlineMath math="\mathrm{H_2O}" /></>,
+    "co2-out": <>Jisim <InlineMath math="\mathrm{CO_2}" /> (<InlineMath math="\text{g}" />)</>,
+    "vapor-out": <>Wap <InlineMath math="\mathrm{H_2O}" /> (<InlineMath math="\text{g}" />)</>,
+    "total-out": <>Jumlah gas (<InlineMath math="\text{g}" />)</>,
+  }}
+/>
+
+Lihat bacaan pada <InlineMath math="162\text{ g}" /> selulosa: setiap gram karbon daun naik ke udara sebagai karbon dioksida bersama wap air dan zarah asap daripada pembakaran tidak lengkap. Keabadian jisim membuktikan pembakaran terbuka sekadar memindahkan sisa ke atmosfera.
+
+## Menilai Proses Harian dengan Kriteria Kimia Hijau
+
+Uji setiap proses harian dengan kriteria kimia hijau. Sesuatu proses boleh jadi berguna tetapi tetap tidak hijau jika ia **membentuk bahan pencemar**, menggunakan bahan berbahaya yang tidak perlu atau menuntut terlalu banyak tenaga.
 
 | Proses harian | Perubahan kimia | Penilaian kimia hijau |
-| :--------------- | :--------------- | :------------------- |
-| Membakar sisa plastik | Bahan organik dalam plastik bertindak balas dengan oksigen dan membebaskan haba. Asap dan hasil berbentuk gas boleh terbentuk. | Cara pelupusan ini menghasilkan bahan pencemar tambahan dan tidak mencegah sisa di punca. |
-| Menggunakan pencuci dalam jumlah yang betul | Agen pencuci membantu menanggalkan kotoran tanpa penggunaan berlebihan. | Dos yang betul mengelakkan pembaziran dan residu yang tidak perlu, tetapi arahan bahaya pada produk masih perlu dipatuhi. |
-| Mengkompos sisa makanan | Mikroorganisma mengurai bahan organik langkah demi langkah. | Pengkomposan yang betul boleh mengurangkan sisa organik. Kelembapan dan pengudaraan mesti dikawal untuk mengehadkan bau, air larut resapan dan perosak. |
-| Mencampurkan pencuci rumah sesuka hati | Bahan yang selamat secara berasingan boleh bertindak balas dan membentuk gas berbahaya. | Ini meningkatkan risiko kemalangan. Campurkan pencuci hanya apabila pengeluar mengarahkannya dengan jelas. |
+| :------------ | :-------------- | :-------------------- |
+| Membakar sisa plastik | Polimer organik bertindak balas dengan oksigen lalu membebaskan haba, asap dan gas. | Pelupusan ini menghasilkan bahan pencemar tambahan dan gagal mencegah sisa di punca. |
+| Menggunakan pencuci mengikut dos betul | Agen pencuci menanggalkan kotoran tanpa penggunaan berlebihan. | Dos tepat mengelakkan pembaziran dan residu, sambil arahan bahaya pada label kekal dipatuhi. |
+| Mengkompos sisa makanan | Mikroorganisma mengurai bahan organik langkah demi langkah. | Pengkomposan yang betul mengurangkan sisa organik apabila kelembapan dan pengudaraan mengawal bau, air larut resapan dan perosak. |
+| Mencampurkan pencuci rumah sesuka hati | Bahan yang selamat secara berasingan bertindak balas membentuk gas berbahaya. | Ini meningkatkan risiko kemalangan. Campurkan pencuci hanya apabila label mengarahkannya dengan jelas. |
 
-Jangan campurkan [peluntur atau pembasmi kuman rumah](https://www.cdc.gov/hygiene/about/cleaning-and-disinfecting-with-bleach.html) dengan pencuci lain. Campuran itu boleh membebaskan wap yang berbahaya jika terhidu. Ikut arahan pada label produk dan arahan pengudaraannya.
+Jangan sekali-kali campurkan [peluntur atau pembasmi kuman rumah](https://www.cdc.gov/hygiene/about/cleaning-and-disinfecting-with-bleach.html) dengan pencuci lain kerana campurannya boleh membebaskan wap beracun. Patuhi label produk dan arahan pengudaraan.
 
-Asal usul sesuatu bahan sahaja tidak menentukan sama ada bahan itu selamat. Kita juga perlu meneliti komposisi, dos dan cara penggunaannya. Pengkomposan boleh membantu, tetapi pengurusan yang lemah masih boleh menimbulkan bau, air larut resapan atau perosak. Pencuci buatan kilang boleh jadi lebih selamat apabila komposisinya diketahui, dosnya betul dan sisa yang terhasil lebih sedikit.
-
-## Menilai Proses Berdasarkan Bahan dan Kesan
-
-Bayangkan tiga cara untuk menguruskan daun kering di halaman rumah.
+Asal usul sesuatu bahan sahaja tidak membuktikan keselamatan. Teliti komposisi, dos dan cara penggunaannya bersama. Membandingkan tiga cara mengurus daun kering di halaman menunjukkan perbezaan antara rawatan sisa dan reka bentuk kimia hijau.
 
 | Pilihan | Apa yang berlaku | Penilaian |
-| :----- | :----------- | :------- |
-| Bakar | Daun bertindak balas dengan oksigen dan menghasilkan asap. | Tidak sesuai dengan kimia hijau kerana **pencemaran terbentuk**. |
-| Buang ke dalam sampah bercampur | Daun itu menambah sisa yang perlu dikendalikan. | Lebih baik daripada membakar, walaupun sisa masih terhasil. |
-| Kompos dengan betul | Bahan organik terurai perlahan-lahan menjadi kompos. | Cara ini mengelakkan pembakaran dan menukar sisa organik yang sedia ada kepada bahan yang boleh ditambah ke dalam tanah yang sesuai. Pengkomposan sahaja tidak mereka bentuk semula produk atau proses kimia. |
+| :------ | :--------------- | :-------- |
+| Bakar | Daun bertindak balas dengan oksigen dan menghasilkan asap. | Tidak menepati kimia hijau kerana **pencemaran terbentuk**. |
+| Buang ke dalam sampah bercampur | Daun menambah beban sisa tapak pelupusan yang perlu diurus. | Lebih baik daripada membakar, walaupun sisa tetap dihasilkan. |
+| Kompos dengan betul | Bahan organik terurai perlahan menjadi kompos. | Mengelakkan pembakaran dan mengembalikan nutrien ke tanah, namun pengkomposan sahaja merawat sisa sedia ada tanpa mereka bentuk semula proses kimia. |
 
-Pengkomposan ialah kaedah rawatan sisa, dan ia hanya dikira sebagai kimia hijau apabila sesuatu produk atau proses kimia sengaja direka bentuk semula untuk mencegah kemudaratan di punca.
-
-Untuk menganalisis proses kimia harian, kenal pasti bahan yang masuk, perubahan yang berlaku, bahan yang keluar dan bahaya yang boleh dicegah di punca.
-
-Membakar daun kering tidak membuatkan jirim hilang. Satu unit selulosa terbakar mengikut <InlineMath math="\mathrm{C_6H_{10}O_5}+6\mathrm{O_2}\rightarrow6\mathrm{CO_2}+5\mathrm{H_2O}" />, jadi <InlineMath math="162\ \mathrm{g}" /> bahan daun dan <InlineMath math="192\ \mathrm{g}" /> oksigen keluar sebagai <InlineMath math="354\ \mathrm{g}" /> gas dan wap, lebih berat daripada daun itu sahaja. Putar turus-turus itu: jumlahnya sepadan, dan semua karbon itu berakhir di udara.
-
-<MathVisual
-  title={<>Daun yang Dibakar Tidak Lenyap</>}
-  description={<>Selulosa daun dan oksigen (kiri) berbanding karbon dioksida dan wap air yang terhasil daripadanya (kanan). Satu petak grid ke atas ialah <InlineMath math="40" /> gram.</>}
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 9.85 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 8.5, y: 11.85, z: 11 }, target: { x: 1.5, y: 4.425, z: 0 } },
-    objects: [
-      { id: "leaves", kind: "cuboid", appearance: "construction", center: { x: 0, y: 2.025, z: 0 }, size: { length: 1.6, height: 4.05, width: 1.6 } },
-      { id: "air-oxygen", kind: "cuboid", appearance: "primary", center: { x: 0, y: 6.45, z: 0 }, size: { length: 1.6, height: 4.8, width: 1.6 } },
-      { id: "smoke-gas", kind: "cuboid", appearance: "reference", center: { x: 3, y: 3.3, z: 0 }, size: { length: 1.6, height: 6.6, width: 1.6 } },
-      { id: "vapor", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 7.725, z: 0 }, size: { length: 1.6, height: 2.25, width: 1.6 } },
-    ],
-    labels: [
-      { key: "leaves", objectId: "leaves", at: { x: 0, y: 2.025, z: 0.85 }, placement: "right" },
-      { key: "oxygen", objectId: "air-oxygen", at: { x: 0, y: 6.45, z: 0.85 }, placement: "right" },
-      { key: "gas", objectId: "smoke-gas", at: { x: 3, y: 3.3, z: 0.85 }, placement: "right" },
-      { key: "vapor", objectId: "vapor", at: { x: 3, y: 7.725, z: 0.85 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    leaves: <InlineMath math="\mathrm{C_6H_{10}O_5}:\ 162\ \mathrm{g}" />,
-    oxygen: <InlineMath math="6\mathrm{O_2}:\ 192\ \mathrm{g}" />,
-    gas: <InlineMath math="6\mathrm{CO_2}:\ 264\ \mathrm{g}" />,
-    vapor: <InlineMath math="5\mathrm{H_2O}:\ 90\ \mathrm{g}" />,
-  }}
-/>
+Pengkomposan ialah rawatan sisa biologi yang bertanggungjawab, manakala kimia hijau mereka bentuk semula produk atau proses kimia untuk mencegah kemudaratan di punca. Untuk menganalisis sebarang proses harian, kenal pasti input, perubahan kimia, output dan bahaya yang dicegah sebelum sisa terbentuk.

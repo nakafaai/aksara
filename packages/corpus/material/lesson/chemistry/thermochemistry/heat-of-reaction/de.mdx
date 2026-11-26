@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Reaktionswärme und Reaktionsenthalpie berechnen",
   description:
-    "Unterscheide exotherme und endotherme Reaktionen, berechne Reaktionswärmen mit Q = m · c · ΔT und vergleiche den Heizwert von Brennstoffen, mit Übungen.",
+    "Unterscheide exotherme und endotherme Reaktionen, berechne Reaktionswärmen aus der Temperaturänderung, bestimme Neutralisationswärmen und vergleiche Heizwerte von Brennstoffen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Thermochemie",
@@ -9,11 +9,13 @@ export const metadata = {
 
 ## Reaktionen geben Wärme ab oder nehmen sie auf
 
-Die **Thermochemie** untersucht die Wärmeänderungen bei chemischen Reaktionen. Eine **exotherme** Reaktion gibt Wärme an die Umgebung ab, also steigt die Temperatur der Mischung, und die Reaktionsenthalpie <InlineMath math="\Delta H" /> ist negativ. Eine **endotherme** Reaktion nimmt Wärme auf, also sinkt die Temperatur, und <InlineMath math="\Delta H" /> ist positiv. Die Wärme misst du mit <InlineMath math="Q = m \cdot c \cdot \Delta T" />, und dann gilt <InlineMath math="\Delta H = -\dfrac{Q}{n}" /> pro Mol. Hier änderst du die Enthalpie in einem Energiediagramm, erhitzt Wasser in einem Wasserkocher und berechnest Neutralisations-, Verdrängungs- und Verbrennungswärmen.
+Hältst du deine Hände ans Lagerfeuer, werden sie sofort warm. Drückst du ein Sofortkühlpack auf ein geprelltes Knie, wird der Beutel in Sekunden eiskalt. Beide Alltagsmomente gehören zur **Thermochemie**, denn sie verfolgt, wohin Wärme bei chemischen Reaktionen wandert.
 
-Die Wärme stammt aus den **chemischen Bindungen**. Das Spalten von Bindungen in den Ausgangsstoffen **kostet** Energie, und das Knüpfen neuer Bindungen in den Produkten **setzt** Energie **frei**. Wird mehr Energie frei, als aufgenommen wird, ist die Reaktion exotherm.
+Eine **exotherme** Reaktion gibt Wärme an die Umgebung ab, sodass die Temperatur der Mischung steigt und die Reaktionsenthalpie <InlineMath math="\Delta H" /> negativ ist. Eine **endotherme** Reaktion nimmt Wärme aus der Umgebung auf, sodass die Mischung abkühlt und <InlineMath math="\Delta H" /> positiv ist.
 
-Verschieb den Regler für <InlineMath math="\Delta H" /> unten. Ist <InlineMath math="\Delta H" /> negativ, liegen die Produkte tiefer als die Ausgangsstoffe. Ist <InlineMath math="\Delta H" /> positiv, liegen sie höher.
+Der Grund liegt in den **chemischen Bindungen**. Alte Bindungen in den Ausgangsstoffen zu spalten **kostet** immer Energie, während das Knüpfen neuer Bindungen in den Produkten Energie **freisetzt**. Zwei gebundene Atome zu trennen erfordert Kraft wie beim Auseinanderziehen zweier starker Magnete, sodass die Reaktion exotherm verläuft, sobald neue Bindungen mehr Energie zurückgeben.
+
+Verschieb den Regler für <InlineMath math="\Delta H" /> unten und beobachte das Energieprofil. Negative Werte senken die Produkte unter die Ausgangsstoffe, positive Werte heben sie darüber.
 
 <MathVisual
   title={<>Energieprofil exothermer und endothermer Reaktionen</>}
@@ -21,8 +23,14 @@ Verschieb den Regler für <InlineMath math="\Delta H" /> unten. Ist <InlineMath 
     <>
       Die Ausgangsstoffe liegen auf dem Niveau <InlineMath math="50" />, die
       Produkte auf <InlineMath math="50 + \Delta H" />. Der Buckel in der Mitte
-      ist die Energie, die zum Spalten der Bindungen nötig ist, bevor neue
+      zeigt die Aktivierungsenergie zum Spalten der Bindungen, bevor neue
       entstehen.
+    </>
+  }
+  footer={
+    <>
+      Zieh den Regler über null, um exotherme und endotherme Profile zu
+      vergleichen.
     </>
   }
   scene={{
@@ -49,26 +57,39 @@ Verschieb den Regler für <InlineMath math="\Delta H" /> unten. Ist <InlineMath 
   }}
 />
 
-Beide Arten kennst du schon. Das Verbrennen eines Brennstoffs und das Neutralisieren einer Säure sind exotherm. Das Lösen von Ammoniumnitrat in Wasser ist endotherm, und genau so funktioniert ein Sofort-Kühlpack bei Sportverletzungen.
+Der Buckel in der Mitte verschwindet selbst bei stark exothermen Reaktionen nie, weil jede Reaktion erst bestehende Bindungen lockern muss. Der senkrechte Abstand zwischen Anfang und Ende entspricht <InlineMath math="\Delta H" />.
+
+> Steigt das Thermometer, hat die Reaktion Wärme an das Wasser abgegeben, weshalb die Reaktionsenthalpie immer negativ ist.
+
+Mach eine kurze Probe mit dem Sofortkühlpack. Löst sich festes Ammoniumnitrat in Wasser, sinkt die Temperatur, weil das Lösen Wärme aus dem umgebenden Wasser aufnimmt. Die Abkühlung zeigt einen **endothermen** Vorgang mit **positivem** <InlineMath math="\Delta H" />, und im Energiediagramm liegen die Produkte höher als die Ausgangsstoffe.
 
 ## Wärme über die Temperaturänderung messen
 
-Die Wärme, die eine Reaktion in Lösung abgibt, nimmt das Wasser der Lösung auf. Du berechnest sie mit:
+Um aus einer Temperaturänderung Joule zu machen, stell dir das Wasser im Becher wie einen Schwamm vor, der die gesamte Reaktionswärme aufsaugt. Die übertragene Wärme <InlineMath math="Q" /> berechnest du aus der Masse der Lösung, ihrer spezifischen Wärmekapazität und der Temperaturänderung:
 
 <BlockMath math="Q = m \cdot c \cdot \Delta T" />
 
-Dabei ist <InlineMath math="m" /> die Masse der Lösung in Gramm, <InlineMath math="c = 4{,}2\ \text{J g}^{-1}\,\text{K}^{-1}" /> die **spezifische Wärmekapazität von Wasser** und <InlineMath math="\Delta T" /> die Temperaturänderung. Für wässrige Lösungen nimmt man eine Dichte von <InlineMath math="1\ \text{g/mL}" /> an, also haben <InlineMath math="100\ \text{mL}" /> Lösung eine Masse von <InlineMath math="100\ \text{g}" />.
+Danach teilst du <InlineMath math="Q" /> durch die umgesetzte Stoffmenge <InlineMath math="n" />, um die **molare Reaktionsenthalpie** pro Mol anzugeben:
 
-Dieselbe Formel gilt für Wasser im Wasserkocher. Wähl unten eine Wassermenge: Die doppelte Masse braucht für dieselbe Erwärmung die doppelte Energie.
+<BlockMath math="\Delta H = -\frac{Q}{n}" />
+
+Dabei ist <InlineMath math="m" /> die **Masse der Lösung** in Gramm, <InlineMath math="c = 4{,}2\ \text{J g}^{-1}\,\text{K}^{-1}" /> die **spezifische Wärmekapazität von Wasser** und <InlineMath math="\Delta T" /> die Temperaturänderung. Für wässrige Lösungen nimmt man eine Dichte von <InlineMath math="1\ \text{g/mL}" /> an, sodass <InlineMath math="100\ \text{mL}" /> Lösung genau <InlineMath math="100\ \text{g}" /> wiegen. Setz für <InlineMath math="m" /> niemals die Masse eines trockenen Ausgangsstoffs ein, denn das Wasser der Lösung nimmt die Wärme auf oder gibt sie ab.
+
+Ein Wasserkocher folgt genau derselben Regel. Wähl unten verschiedene Wassermengen und beobachte, wie die nötige Energie mit der Masse wächst.
 
 <KettleHeatingLab
   title={<>Energie zum Sieden von Wasser im Wasserkocher</>}
   description={
     <>
       Ein Wasserkocher mit <InlineMath math="2100\ \text{W}" /> erhitzt Wasser
-      von <InlineMath math="25\ ^\circ\text{C}" /> bis zum Sieden. Die Energie ist{" "}
-      <InlineMath math="Q = m \cdot c \cdot \Delta T" /> mit{" "}
+      von <InlineMath math="25\ ^\circ\text{C}" /> bis zum Sieden bei{" "}
       <InlineMath math="c = 4200\ \text{J kg}^{-1}\,\text{K}^{-1}" />.
+    </>
+  }
+  footer={
+    <>
+      Die doppelte Wassermenge braucht die doppelte Energie und die doppelte
+      Siedezeit.
     </>
   }
   labels={{
@@ -81,15 +102,95 @@ Dieselbe Formel gilt für Wasser im Wasserkocher. Wähl unten eine Wassermenge: 
   }}
 />
 
-Prüf einen Wert: <InlineMath math="1\ \text{kg}" /> Wasser um <InlineMath math="75\ \text{K}" /> zu erwärmen braucht <InlineMath math="1 \cdot 4200 \cdot 75 = 315\,000\ \text{J}" />. Bei einer chemischen Reaktion kommt diese Energie aus Bindungen, nicht aus einer Heizspirale.
+Wechselst du von halb voll auf voll, verdoppeln sich sowohl die Wassermasse als auch die Joule für denselben Temperatursprung. Eine direkte Prüfung für <InlineMath math="1\ \text{kg}" /> Wasser und <InlineMath math="75\ \text{K}" /> Erwärmung bestätigt den Wert:
+
+<BlockMath math="Q = 1 \cdot 4200 \cdot 75 = 315\,000\ \text{J}" />
+
+In einer Reaktionsmischung liefert das Umordnen chemischer Bindungen genau diese Art thermischer Energie ganz ohne Heizspirale.
+
+## Enthalpie im Kalorimeter bestimmen
+
+Im Schullabor hält ein einfaches **Styroporkalorimeter** die Wärme gut genug zusammen, um Reaktionsenthalpien sauber zu messen. Ein Rührer verteilt die Wärme gleichmäßig, während das Thermometer den höchsten oder tiefsten Wert festhält. Probier unten vier klassische Reaktionen aus und ändere die Stoffmenge, um den Ausschlag des Thermometers zu beobachten.
+
+<CalorimeterEnthalpyLab
+  title={<>Reaktionsenthalpie im Styroporkalorimeter messen</>}
+  description={
+    <>
+      Wähle eine Reaktion und verändere die umgesetzte Stoffmenge. Beobachte
+      Wärmepfeile, Temperaturänderung und das Vorzeichen von{" "}
+      <InlineMath math="\Delta H" /> im isolierten Becher.
+    </>
+  }
+  footer={
+    <>
+      Vergleich Wärmefluss und Thermometerstand bei vier Reaktionstypen.
+    </>
+  }
+  reactions={["neutralisation", "displacement", "combustion", "dissolution"]}
+  moles={{ min: 0.05, max: 0.5, value: 0.1 }}
+  labels={{
+    deltaH: <>Reaktionsenthalpie <InlineMath math="\Delta H" /></>,
+    moles: "Umgesetzte Stoffmenge",
+    parts: {
+      cup: "Styroporbecher",
+      thermometer: "Thermometer",
+      stirrer: "Rührer",
+      solution: "Wässrige Lösung",
+      heatArrow: "Wärmefluss",
+    },
+    reaction: "Reaktion wählen",
+    reactions: {
+      neutralisation: {
+        enthalpySign: <InlineMath math="\Delta H < 0" />,
+        name: "Neutralisation",
+        thermalNote: <>Säure und Lauge geben Wärme an die Lösung ab.</>,
+      },
+      displacement: {
+        enthalpySign: <InlineMath math="\Delta H < 0" />,
+        name: "Verdrängung",
+        thermalNote: <>Das unedlere Metall setzt viel Wärme frei.</>,
+      },
+      combustion: {
+        enthalpySign: <InlineMath math="\Delta H < 0" />,
+        name: "Verbrennung",
+        thermalNote: <>Brennstoff überträgt große Wärme ans Wasser.</>,
+      },
+      dissolution: {
+        enthalpySign: <InlineMath math="\Delta H > 0" />,
+        name: "Lösen",
+        thermalNote: <>Ammoniumnitrat entzieht dem Wasser Wärme.</>,
+      },
+    },
+    tempChange: <>Temperaturänderung <InlineMath math="\Delta T" /></>,
+    view: "Styroporkalorimeter",
+  }}
+/>
+
+Achte genau auf den Vorzeichenwechsel, wenn du von den ersten drei Reaktionen zum Lösen wechselst. Mehr Stoffmenge vergrößert zwar den Temperatursprung, doch die **molare Enthalpie** pro Mol bleibt für jede Reaktion charakteristisch.
+
+Eine Vorzeichenfalle taucht in fast jeder Thermochemieklausur auf: Wer eine steigende Temperatur sieht, schreibt leicht versehentlich ein positives <InlineMath math="\Delta H" />. Halt dir die Kette **Temperatur steigt, Wärme geht raus, Enthalpie negativ** klar vor Augen und notier bei jedem Rechenschritt die Einheit, damit Joule und Kilojoule nie durcheinandergeraten.
+
+Wende den Ablauf auf eine **Fällungswärme** an. Werden <InlineMath math="25\ \text{mL}" /> Silbernitratlösung mit <InlineMath math="c = 0{,}50\ \text{mol/L}" /> und <InlineMath math="25\ \text{mL}" /> Natriumchloridlösung mit <InlineMath math="c = 0{,}50\ \text{mol/L}" /> gemischt, steigt das Thermometer um <InlineMath math="3{,}5\ \text{K}" />. Das Gesamtvolumen beträgt <InlineMath math="50\ \text{mL}" />, also wiegt die Lösung <InlineMath math="50\ \text{g}" />:
+
+<MathContainer>
+<BlockMath math="Q = 50 \cdot 4{,}2 \cdot 3{,}5 = 735\ \text{J}" />
+<BlockMath math="n(\mathrm{AgCl}) = 0{,}50 \cdot \frac{25}{1000} = 0{,}0125\ \text{mol}" />
+<BlockMath math="\Delta H = -\frac{735}{0{,}0125} = -58\,800\ \text{J/mol} = -58{,}8\ \text{kJ/mol}" />
+</MathContainer>
+
+Beide Lösungen liefern dieselbe Stoffmenge, sodass kein Stoff übrig bleibt, und das negative Vorzeichen passt zur Erwärmung.
 
 ## Neutralisationswärme und Verdrängungswärme
 
-Die **Neutralisationswärme** ist die Enthalpieänderung, wenn bei der Reaktion einer Säure mit einer Lauge <InlineMath math="1" /> Mol Wasser entsteht. Für starke Säuren und starke Laugen ist sie fast immer gleich, etwa <InlineMath math="-57{,}3\ \text{kJ/mol}" />, weil die eigentliche Reaktion immer <InlineMath math="\mathrm{H^+} + \mathrm{OH^-} \rightarrow \mathrm{H_2O}" /> ist.
+Zwei der häufigsten Kalorimeterversuche laufen direkt in wässriger Lösung ab: das **Neutralisieren einer Säure mit einer Lauge** und das **Verdrängen eines Metalls aus seiner Salzlösung**. Beide nutzen denselben Dreischritt, doch jede Reaktion birgt ihre eigene Falle rund um Konzentration, schwache Säuren und Stoffe im Überschuss.
 
-Probier ein Beispiel. <InlineMath math="50\ \text{mL}" /> Salzsäure mit <InlineMath math="c = 1{,}0\ \text{mol/L}" /> werden mit <InlineMath math="50\ \text{mL}" /> Natronlauge mit <InlineMath math="c = 1{,}0\ \text{mol/L}" /> gemischt. Die Temperatur steigt um <InlineMath math="6{,}8\ \text{K}" />. Berechne die Neutralisationswärme.
+### Neutralisationsenthalpie und Konzentration
 
-**Berechne zuerst die Wärme und teil dann durch die Stoffmenge des Wassers**:
+Die **Neutralisationswärme** ist die Enthalpieänderung, wenn bei der Reaktion einer Säure mit einer Lauge <InlineMath math="1\ \text{mol}" /> Wasser entsteht. Für jede starke Säure mit jeder starken Lauge ergibt sich fast derselbe Wert von etwa <InlineMath math="-57{,}3\ \text{kJ/mol}" />, weil chemisch immer dieselbe Nettoreaktion abläuft:
+
+<BlockMath math="\mathrm{H^+} + \mathrm{OH^-} \rightarrow \mathrm{H_2O}" />
+
+Rechne ein Laborbeispiel durch. Mischt man <InlineMath math="50\ \text{mL}" /> Salzsäure (<InlineMath math="c = 1{,}0\ \text{mol/L}" />) mit <InlineMath math="50\ \text{mL}" /> Natronlauge (<InlineMath math="c = 1{,}0\ \text{mol/L}" />), steigt die Temperatur um <InlineMath math="6{,}8\ \text{K}" />. Bestimme zuerst die Wärme der <InlineMath math="100\ \text{g}" /> Mischung und teil anschließend durch die Stoffmenge des entstandenen Wassers:
 
 <MathContainer>
 <BlockMath math="Q = 100 \cdot 4{,}2 \cdot 6{,}8 = 2856\ \text{J}" />
@@ -97,17 +198,22 @@ Probier ein Beispiel. <InlineMath math="50\ \text{mL}" /> Salzsäure mit <Inline
 <BlockMath math="\Delta H = -\frac{2856}{0{,}050} = -57\,120\ \text{J/mol} \approx -57{,}1\ \text{kJ/mol}" />
 </MathContainer>
 
-Prüf es: Das Ergebnis liegt nahe am Standardwert <InlineMath math="-57{,}3\ \text{kJ/mol}" />, und das Vorzeichen ist negativ, weil die Temperatur gestiegen ist.
+Das Ergebnis liegt dicht am Standardwert <InlineMath math="-57{,}3\ \text{kJ/mol}" />, und das negative Vorzeichen bestätigt die Wärmeabgabe.
 
-Der Temperaturanstieg hängt von der **Konzentration** ab, nicht vom Volumen. Verdoppelst du beide Volumina, verdoppeln sich die Stoffmenge des Wassers und die Masse der Lösung, also bleibt <InlineMath math="\Delta T" /> gleich. Ändere unten die Konzentration von Säure und Lauge.
+Was passiert, wenn du beide Volumina bei gleicher Konzentration verdoppelst? Viele erwarten den doppelten Temperaturanstieg, doch <InlineMath math="\Delta T" /> bleibt unverändert, weil sich Stoffmenge des Wassers und zu erwärmende Lösungsmasse gleichzeitig verdoppeln. Nur die **Konzentration** steigert <InlineMath math="\Delta T" />. Prüf den linearen Zusammenhang mit dem Regler unten.
 
 <MathVisual
   title={<>Temperaturanstieg der Neutralisation gegen die Konzentration</>}
   description={
     <>
       Gleiche Volumina einer starken Säure und einer starken Lauge mit der
-      Konzentration <InlineMath math="c" />. Der Temperaturanstieg ist{" "}
-      <InlineMath math="\Delta T = \dfrac{57\,300\,c}{2000 \cdot 4{,}2} \approx 6{,}82\,c" />.
+      Konzentration <InlineMath math="c" />. Der Temperaturanstieg folgt{" "}
+      <InlineMath math="\Delta T \approx 6{,}82\,c" />.
+    </>
+  }
+  footer={
+    <>
+      Höhere Konzentration packt mehr reagierende Ionen in jeden Milliliter.
     </>
   }
   scene={{
@@ -131,7 +237,15 @@ Der Temperaturanstieg hängt von der **Konzentration** ab, nicht vom Volumen. Ve
   }}
 />
 
-Die **Verdrängungswärme** ist die Enthalpieänderung, wenn <InlineMath math="1" /> Mol eines Metalls aus der Lösung seines Salzes verdrängt wird. Zu <InlineMath math="50\ \text{mL}" /> Kupfer(II)-sulfat-Lösung mit <InlineMath math="c = 0{,}20\ \text{mol/L}" /> gibt man Zinkpulver im Überschuss, und die Temperatur steigt um <InlineMath math="10{,}0\ \text{K}" />. Die Kupfer(II)-Ionen begrenzen den Umsatz, also rechnest du mit ihrer Stoffmenge:
+Verdoppelt sich die Konzentration von <InlineMath math="1{,}0" /> auf <InlineMath math="2{,}0\ \text{mol/L}" />, nimmt dasselbe Wasservolumen doppelt so viel Wärme auf, sodass sich der Anstieg am Thermometer genau verdoppelt.
+
+Ersetzt du Salzsäure dagegen durch **Essigsäure**, eine **schwache Säure**, fällt die Neutralisationswärme mit Natronlauge kleiner als <InlineMath math="57{,}3\ \text{kJ/mol}" /> aus. Essigsäure liegt im Wasser nur teilweise protolysiert vor. Während der Neutralisation müssen noch ungespaltene Moleküle erst <InlineMath math="\mathrm{H^+}" /> abgeben, und dieser Schritt **nimmt einen Teil der Wärme auf**, sodass netto weniger Wärme pro Mol Wasser frei wird.
+
+### Metallverdrängung und begrenzende Stoffmenge
+
+Die **Verdrängungswärme** ist die Enthalpieänderung, wenn <InlineMath math="1\ \text{mol}" /> eines Metalls durch ein unedleres Metall aus seiner Salzlösung verdrängt wird. Rührt man Zinkpulver im Überschuss in <InlineMath math="50\ \text{mL}" /> Kupfersulfatlösung (<InlineMath math="c = 0{,}20\ \text{mol/L}" />), steigt die Temperatur um <InlineMath math="10{,}0\ \text{K}" />.
+
+Die entscheidende Falle hier: Berechne die Stoffmenge nie aus dem **überschüssigen Zink**, denn das restliche Zink liegt unumgesetzt am Boden. Rechne immer mit dem **begrenzenden Stoff**, also den Kupferionen, die vollständig verbraucht werden:
 
 <MathContainer>
 <BlockMath math="Q = 50 \cdot 4{,}2 \cdot 10{,}0 = 2100\ \text{J}" />
@@ -139,19 +253,29 @@ Die **Verdrängungswärme** ist die Enthalpieänderung, wenn <InlineMath math="1
 <BlockMath math="\Delta H = -\frac{2100}{0{,}010} = -210\,000\ \text{J/mol} = -210\ \text{kJ/mol}" />
 </MathContainer>
 
-Prüf es mit der Spannungsreihe: Zink und Kupfer liegen weit auseinander, also ist die Reaktion stark exotherm. <InlineMath math="-210\ \text{kJ/mol}" /> ist viel mehr als die Neutralisationswärme.
+Ein Blick in die elektrochemische Spannungsreihe erklärt diesen hohen Betrag. Zink und Kupfer liegen weit auseinander, weshalb der Elektronenübergang pro Mol weit mehr Energie freisetzt als eine Neutralisation.
 
 ## Verbrennungswärme und Heizwert
 
-Die **Verbrennungswärme** ist die Wärme, die frei wird, wenn <InlineMath math="1" /> Mol eines Stoffes in Sauerstoffüberschuss vollständig verbrennt. Beim Verbrennen von Methan werden <InlineMath math="\mathrm{C{-}H}" />- und <InlineMath math="\mathrm{O{=}O}" />-Bindungen gespalten und stärkere <InlineMath math="\mathrm{C{=}O}" />- und <InlineMath math="\mathrm{O{-}H}" />-Bindungen geknüpft. Deshalb setzt eine Verbrennung so viel Wärme frei.
+Beim Verbrennen eines Brennstoffs an der Luft entsteht wesentlich mehr Wärme als bei Reaktionen in Lösung, weil in Kohlenstoffdioxid und Wasser sehr stabile Bindungen geknüpft werden. Die **Verbrennungswärme** pro Mol zeigt den Einfluss der Kettenlänge, während der **Heizwert** pro Gramm verrät, welcher Brennstoff pro Kilogramm Tankgewicht am meisten Energie trägt.
+
+### Bindungsenergie und Alkoholverbrennung
+
+Die **Verbrennungswärme** ist die Wärme, die frei wird, wenn <InlineMath math="1\ \text{mol}" /> eines Stoffs in Sauerstoffüberschuss vollständig verbrennt. Bei Methan kostet das Spalten der Bindungen im Methan und Sauerstoff Energie, doch die neu geknüpften Bindungen in Kohlenstoffdioxid und Wasser sind weit stabiler und liefern deutlich mehr Energie zurück.
 
 <MethaneCombustionEquationLab
   title={<>Gespaltene und geknüpfte Bindungen bei der Verbrennung von Methan</>}
   description={
     <>
       Ein Methanmolekül reagiert mit zwei Sauerstoffmolekülen zu einem
-      Kohlenstoffdioxidmolekül und zwei Wassermolekülen. Die Verbrennungswärme
-      von Methan ist <InlineMath math="-890\ \text{kJ/mol}" />.
+      Kohlenstoffdioxidmolekül und zwei Wassermolekülen bei{" "}
+      <InlineMath math="-890\ \text{kJ/mol}" />.
+    </>
+  }
+  footer={
+    <>
+      Starke neue Bindungen in Kohlenstoffdioxid und Wasser liefern die hohe
+      Wärme.
     </>
   }
   labels={{
@@ -164,7 +288,9 @@ Die **Verbrennungswärme** ist die Wärme, die frei wird, wenn <InlineMath math=
   }}
 />
 
-Im Labor misst man die Verbrennungswärme eines Alkohols, indem man Wasser in einer Kupferdose erhitzt. <InlineMath math="0{,}46\ \text{g}" /> Ethanol, <InlineMath math="\mathrm{C_2H_5OH}" />, verbrennen und erwärmen <InlineMath math="200\ \text{mL}" /> Wasser um <InlineMath math="12{,}0\ \text{K}" />. Die molare Masse von Ethanol ist <InlineMath math="46\ \text{g/mol}" />:
+Jedes einzelne Atom der Ausgangsstoffe findet sich in den Produkten wieder, doch die neue Bindungsanordnung liegt energetisch viel tiefer und gibt den Überschuss als Flamme und Wärme ab.
+
+Im Labor schätzt man die Verbrennungswärme eines Alkohols ab, indem ein Spiritusbrenner Wasser in einer Kupferdose erhitzt. Verbrennen <InlineMath math="0{,}46\ \text{g}" /> Ethanol (<InlineMath math="\mathrm{C_2H_5OH}" />, molare Masse <InlineMath math="46\ \text{g/mol}" />) und erwärmen <InlineMath math="200\ \text{mL}" /> Wasser um <InlineMath math="12{,}0\ \text{K}" />, ergibt sich:
 
 <MathContainer>
 <BlockMath math="Q = 200 \cdot 4{,}2 \cdot 12{,}0 = 10\,080\ \text{J}" />
@@ -172,17 +298,23 @@ Im Labor misst man die Verbrennungswärme eines Alkohols, indem man Wasser in ei
 <BlockMath math="\Delta H = -\frac{10\,080}{0{,}010} = -1\,008\,000\ \text{J/mol} \approx -1008\ \text{kJ/mol}" />
 </MathContainer>
 
-Vergleich mit dem Standardwert, <InlineMath math="-1376\ \text{kJ/mol}" />. Der Laborwert ist kleiner, weil **Wärme** an die Luft und die Dose **verloren geht** und ein Teil des Ethanols unvollständig verbrennt.
+Verglichen mit dem Standardwert <InlineMath math="-1376\ \text{kJ/mol}" /> fällt der Laborwert kleiner aus, weil **Wärme verloren geht** an die Luft und an die Kupferdose und ein Teil des Ethanols unvollständig zu Ruß verbrennt.
 
-Die Verbrennungswärme von Alkoholen wächst mit der Zahl der Kohlenstoffatome. Die Standardwerte von Methanol bis Butan-1-ol sind <InlineMath math="726" />, <InlineMath math="1376" />, <InlineMath math="2021" /> und <InlineMath math="2676\ \text{kJ/mol}" />. Jede zusätzliche <InlineMath math="\mathrm{CH_2}" />-Gruppe bringt etwa <InlineMath math="650\ \text{kJ/mol}" /> dazu, weil ein Kohlenstoffatom und zwei Wasserstoffatome mehr verbrennen. Ändere unten die Zahl der Kohlenstoffatome.
+Von Methanol bis Butan-1-ol steigen die Standardwerte gleichmäßig über <InlineMath math="726" />, <InlineMath math="1376" />, <InlineMath math="2021" /> und <InlineMath math="2676\ \text{kJ/mol}" />. Jede zusätzliche <InlineMath math="\mathrm{CH_2}" />-Einheit bringt ein Kohlenstoffatom und zwei Wasserstoffatome mehr in die Verbrennung und erhöht den Wert um rund <InlineMath math="650\ \text{kJ/mol}" />. Verändere unten die Zahl der Kohlenstoffatome.
 
 <MathVisual
   title={<>Verbrennungswärme von Alkoholen gegen die Zahl der Kohlenstoffatome</>}
   description={
     <>
       Die Gerade <InlineMath math="650n + 76" /> nähert die Standardwerte der
-      Verbrennungswärme in <InlineMath math="\text{kJ/mol}" /> für einen
-      Alkohol mit <InlineMath math="n" /> Kohlenstoffatomen an.
+      Verbrennungswärme in <InlineMath math="\text{kJ/mol}" /> für einen Alkohol
+      mit <InlineMath math="n" /> Kohlenstoffatomen an.
+    </>
+  }
+  footer={
+    <>
+      Jede weitere Kohlenstoffgruppe erhöht die molare Verbrennungswärme
+      gleichmäßig.
     </>
   }
   scene={{
@@ -206,53 +338,17 @@ Die Verbrennungswärme von Alkoholen wächst mit der Zahl der Kohlenstoffatome. 
   }}
 />
 
-Der **Heizwert** ist die Energie, die <InlineMath math="1\ \text{g}" /> eines Brennstoffs freisetzt, in <InlineMath math="\text{kJ/g}" />. Nach diesem Wert wählt man Brennstoffe aus, zusammen mit Kosten, Verfügbarkeit und den Folgen der Verbrennung für die Umwelt.
+Da die Steigung von Alkohol zu Alkohol gleich bleibt, lässt sich die molare Verbrennungswärme längerer Ketten direkt aus der Anzahl der Kohlenstoffatome abschätzen.
 
-## Typische Fehler in der Thermochemie
+### Heizwert und Auswahl von Brennstoffen
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Die Temperatur steigt, also ist <InlineMath math="\Delta H" /> positiv. | Steigende Temperatur heißt, dass Wärme frei wird, also ist <InlineMath math="\Delta H" /> negativ. | Eine exotherme Reaktion hat immer ein negatives Vorzeichen. |
-| Die Masse in <InlineMath math="Q = m \cdot c \cdot \Delta T" /> ist die Masse der Ausgangsstoffe. | Es ist die Masse der Lösung oder des Wassers, das die Wärme aufnimmt. | Nimm das Gesamtvolumen der Lösung in <InlineMath math="\text{mL}" />. |
-| Doppelte Volumina von Säure und Lauge verdoppeln den Temperaturanstieg. | Stoffmenge des Wassers und Masse der Lösung verdoppeln sich beide, also bleibt <InlineMath math="\Delta T" /> gleich. | Nur die Konzentration ändert <InlineMath math="\Delta T" />. |
-| Bei der Verdrängung kommt die Stoffmenge vom überschüssigen Zink. | Ein Stoff im Überschuss reagiert nicht vollständig, also rechnest du mit dem begrenzenden Stoff. | Such den Stoff, der aufgebraucht wird. |
-| Das Spalten von Bindungen setzt Energie frei. | Das Spalten kostet Energie, das Knüpfen setzt sie frei. | Stell dir vor, wie viel Energie es braucht, zwei Atome auseinanderzuziehen. |
+Die molare Enthalpie vergleicht Brennstoffe pro Mol, doch bei Raketen, Campingkochern und Fahrzeugtanks zählt das Gewicht. Der **Heizwert** gibt an, wie viel Energie beim vollständigen Verbrennen von <InlineMath math="1\ \text{g}" /> eines Brennstoffs frei wird, gemessen in <InlineMath math="\text{kJ/g}" />.
 
-Der erste Fehler kommt in Multiple-Choice-Aufgaben am häufigsten vor. Merk dir die Kette: **Temperatur steigt, Wärme geht raus, <InlineMath math="\Delta H" /> ist negativ**.
-
-## Übungen zur Thermochemie
-
-Die Aufgaben gehen von Wärmeberechnungen zum Vergleich von Brennstoffen und zu Erklärungen. **Schreib bei jedem Schritt die Einheit dazu**, damit Joule und Kilojoule nicht durcheinandergeraten.
-
-1. <InlineMath math="25\ \text{mL}" /> Silbernitrat-Lösung mit <InlineMath math="c = 0{,}50\ \text{mol/L}" /> werden mit <InlineMath math="25\ \text{mL}" /> Natriumchlorid-Lösung mit <InlineMath math="c = 0{,}50\ \text{mol/L}" /> gemischt. Die Temperatur steigt um <InlineMath math="3{,}5\ \text{K}" />. Berechne die Fällungswärme von Silberchlorid.
-
-2. Die Verbrennungswärme von Methan ist <InlineMath math="-890\ \text{kJ/mol}" />, die von Butan <InlineMath math="-2877\ \text{kJ/mol}" />. Berechne jeweils den Heizwert und gib an, welcher höher ist. Die molare Masse von Methan ist <InlineMath math="16\ \text{g/mol}" />, die von Butan <InlineMath math="58\ \text{g/mol}" />.
-
-3. Die Neutralisationswärme von Essigsäure mit Natronlauge ist kleiner als <InlineMath math="57{,}3\ \text{kJ/mol}" />. Erklär, warum.
-
-4. Beim Lösen von Ammoniumnitrat in Wasser sinkt die Temperatur der Lösung. Gib die Art der Wärmeänderung und das Vorzeichen von <InlineMath math="\Delta H" /> an und beschreib das Energieniveau der Produkte im Vergleich zu den Ausgangsstoffen.
-
-### Lösungen
-
-**Lösung 1**: Das Gesamtvolumen ist <InlineMath math="50\ \text{mL}" />, also hat die Lösung eine Masse von <InlineMath math="50\ \text{g}" />:
-
-<MathContainer>
-<BlockMath math="Q = 50 \cdot 4{,}2 \cdot 3{,}5 = 735\ \text{J}" />
-<BlockMath math="n(\mathrm{AgCl}) = 0{,}50 \cdot \frac{25}{1000} = 0{,}0125\ \text{mol}" />
-<BlockMath math="\Delta H = -\frac{735}{0{,}0125} = -58\,800\ \text{J/mol} = -58{,}8\ \text{kJ/mol}" />
-</MathContainer>
-
-Prüf es: Beide Lösungen enthalten dieselbe Stoffmenge, also ist kein Stoff im Überschuss, und das negative Vorzeichen passt zur steigenden Temperatur.
-
-**Lösung 2**: Teil jede Verbrennungswärme durch die molare Masse:
+Vergleich Methan (<InlineMath math="\Delta H = -890\ \text{kJ/mol}" />, molare Masse <InlineMath math="16\ \text{g/mol}" />) mit Butan (<InlineMath math="\Delta H = -2877\ \text{kJ/mol}" />, molare Masse <InlineMath math="58\ \text{g/mol}" />). Teil jede Verbrennungswärme durch ihre molare Masse:
 
 <MathContainer>
 <BlockMath math="\text{Methan: } \frac{890}{16} = 55{,}6\ \text{kJ/g}" />
 <BlockMath math="\text{Butan: } \frac{2877}{58} = 49{,}6\ \text{kJ/g}" />
 </MathContainer>
 
-**Methan hat den höheren Heizwert**. Butan setzt pro Mol mehr Wärme frei, aber jedes Mol Butan ist auch viel schwerer. Prüf es: <InlineMath math="55{,}6 \cdot 16 = 890" />, das Verhältnis stimmt.
-
-**Lösung 3**: Essigsäure ist eine **schwache Säure**, die nur teilweise protolysiert. Bei der Neutralisation müssen Essigsäuremoleküle erst <InlineMath math="\mathrm{H^+}" />-Ionen abgeben, und dieser Vorgang **nimmt einen Teil der Wärme auf**. Deshalb wird pro Mol Wasser netto weniger als <InlineMath math="57{,}3\ \text{kJ}" /> frei.
-
-**Lösung 4**: Sinkende Temperatur heißt, dass Wärme aus der Umgebung aufgenommen wird, also ist das Lösen **endotherm** und <InlineMath math="\Delta H" /> **positiv**. Im Energiediagramm liegen die Produkte höher als die Ausgangsstoffe, und der Abstand ist die aufgenommene Wärme.
+Obwohl Butan pro Mol mehr als dreimal so viel Wärme liefert, **hat Methan den höheren Heizwert**, weil ein Mol Butan fast viermal so schwer ist. Multiplizierst du <InlineMath math="55{,}6" /> zurück mit <InlineMath math="16" />, erhältst du wieder <InlineMath math="890" />. In der Praxis wägt man den **Heizwert** immer zusammen mit Kosten, sicherer Lagerung, Verfügbarkeit und sauberer Verbrennung ab.

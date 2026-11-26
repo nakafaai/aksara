@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Polymere durch Polymerisation und Polykondensation",
   description:
-    "Unterscheide Polymerisation und Polykondensation, erklär das Gerinnen von Latex und die Vulkanisation und berechne die Zahl der Monomere in einer Kette.",
+    "Unterscheide Polymerisation und Polykondensation, berechne die Zahl der Wiederholungseinheiten und Kettenlängen und erklär Latexgerinnung sowie Vulkanisation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Polymere",
 };
 
-## Polymere bestehen aus Monomeren
+## Polymerisation entlang langer Kohlenstoffketten
 
-Ein **Polymer** ist ein großes Molekül, das entsteht, wenn sich viele kleine Moleküle, die **Monomere**, zu einer langen Kette verbinden. Diesen Vorgang nennt man **Polyreaktion**. Die relative Molekülmasse eines Polymers ist das <InlineMath math="n" />-Fache der Masse seiner Wiederholungseinheit, mit <InlineMath math="n" /> als Zahl der Wiederholungseinheiten. Hier drehst du Modelle von Monomeren, zählst die Monomere in einer Kette, vergleichst Polymerisation und Polykondensation und siehst, wie Naturkautschuk fester wird.
+Schau dich im Raum um: Kabelmäntel, Wasserrohre und Lebensmittelbehälter bestehen fast alle aus riesigen Molekülketten. Ein **Polymer** ist ein großes Molekül, das entsteht, wenn sich tausende kleine Moleküle, die **Monomere**, in einer **Polyreaktion** aneinanderreihen. Manche Polymere wachsen in Lebewesen, während synthetische Polymere aus Erdöl oder pflanzlichen Rohstoffen maßgeschneidert für Festigkeit und Wärmebeständigkeit hergestellt werden.
 
 | Polymer | Monomer | Art |
 | :--- | :--- | :--- |
@@ -21,40 +21,75 @@ Ein **Polymer** ist ein großes Molekül, das entsteht, wenn sich viele kleine M
 | Polypropen | Propen | Synthetisch |
 | Nylon | Hexandisäure und Hexan-1,6-diamin | Synthetisch |
 
-Ein Monomer für die **Polymerisation** braucht eine Doppelbindung <InlineMath math="\mathrm{C{=}C}" />. Dreh unten die drei Monomere und vergleich sie mit Ethan, das keine Doppelbindung hat.
+### Doppelbindungen öffnen und Ketten aufbauen
 
-<MoleculeShapeLab
-  title={<>Monomere für die Polymerisation</>}
-  description={
-    <>
-      Ethen, Propen und Chlorethen haben eine Doppelbindung und können sich zu
-      einem Polymer verbinden. Ethan hat nur Einfachbindungen.
-    </>
-  }
-  molecules={[
-    { id: "ethene", name: "Ethen" },
-    { id: "propene", name: "Propen" },
-    { id: "chloroethene", name: "Chlorethen" },
-    { id: "ethane", name: "Ethan" },
-  ]}
-  labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Formel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel</>,
-    view: "Monomermoleküle",
-  }}
-/>
-
-## Polymerisation an Doppelbindungen
-
-Bei der Polymerisation öffnet sich die Doppelbindung jedes Monomers, und die Monomere verbinden sich, **ohne Atome zu verlieren**. Aus Ethen wird Polyethen:
+Für die **Polymerisation** braucht jedes Monomer eine Kohlenstoffdoppelbindung, <InlineMath math="\mathrm{C{=}C}" />. Gesättigte Moleküle wie Ethan tragen nur Einfachbindungen und können sich nicht zu einer Kette öffnen. Während der Polymerisation bricht eine Bindung jeder Doppelbindung auf und verknüpft benachbarte Monomere, **ohne ein einziges Atom zu verlieren**:
 
 <BlockMath math="n\,\mathrm{CH_2{=}CH_2} \rightarrow \mathrm{-[CH_2{-}CH_2]_n-}" />
 
-Weil keine Atome verloren gehen, ist die Masse des Polymers gleich der Gesamtmasse der Monomere. Ändere unten die Zahl der Wiederholungseinheiten und vergleich die Massen von drei Polymeren.
+Ein häufiger Fehler ist, die Doppelbindung in der Wiederholungseinheit stehen zu lassen und <InlineMath math="\mathrm{-CH_2{=}CH_2-}" /> statt <InlineMath math="\mathrm{-CH_2{-}CH_2-}" /> zu schreiben. Zähl immer vier Bindungen an jedem Kohlenstoffatom der Hauptkette, um sicher zu sein, dass die Doppelbindung geöffnet ist. Bei Propen, <InlineMath math="\mathrm{CH_2{=}CHCH_3}" />, bleibt die Methylgruppe als Seitenkette an der einfach gebundenen Hauptkette:
+
+<BlockMath math="\mathrm{-[CH_2{-}CH(CH_3)]_n-}" />
+
+Wechsle unten zwischen vier Alkenmonomeren und verändere die Kettenlänge, um zu sehen, wie jede Doppelbindung zu einem einfach gebundenen Rückgrat mit eigenen Seitengruppen wird.
+
+<AdditionPolymerChainLab
+  title={<>Kettenwachstum bei der Polymerisation</>}
+  description={
+    <>
+      Wähl Ethen, Propen, Chlorethen oder Tetrafluorethen und stell die Zahl
+      der Wiederholungseinheiten ein, um Hauptkette und Seitengruppen zu prüfen.
+    </>
+  }
+  footer={
+    <>
+      Beim Öffnen der Doppelbindung verknüpfen sich Monomere ohne Atomverlust.
+    </>
+  }
+  monomers={["ethene", "propene", "chloroethene", "tetrafluoroethene"]}
+  chainLength={{ min: 2, max: 10, value: 4 }}
+  labels={{
+    chainLength: "Wiederholungseinheiten (n)",
+    monomer: "Alkenmonomer",
+    monomers: {
+      ethene: {
+        name: "Ethen",
+        polymerName: <>Polyethen</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CH_2{-}CH_2]-}" />,
+      },
+      propene: {
+        name: "Propen",
+        polymerName: <>Polypropen</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CH_2{-}CH(CH_3)]-}" />,
+      },
+      chloroethene: {
+        name: "Chlorethen",
+        polymerName: <>Polyvinylchlorid, PVC</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CH_2{-}CHCl]-}" />,
+      },
+      tetrafluoroethene: {
+        name: "Tetrafluorethen",
+        polymerName: <>Polytetrafluorethen, PTFE</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CF_2{-}CF_2]-}" />,
+      },
+    },
+    parts: {
+      monomerUnit: "Monomereinheit",
+      doubleBond: "C=C-Doppelbindung",
+      singleBackbone: "C-C-Hauptkette",
+      sideGroup: "Seitengruppe",
+    },
+    polymerName: <>Gebildetes Polymer</>,
+    repeatUnit: <>Wiederholungseinheit</>,
+    view: "Dreidimensionale Kette einer Polymerisation",
+  }}
+/>
+
+Achte darauf, dass der Austausch von Wasserstoffatomen gegen Methylgruppen, Chloratome oder Fluoratome das einfach gebundene Kohlenstoffrückgrat unverändert lässt, die Werkstoffeigenschaften jedoch von flexibler Folie über starre Rohre bis zur Antihaftbeschichtung völlig verändert.
+
+### Relative Molekülmasse von Polymerketten
+
+Da bei der Polymerisation kein Atom verloren geht, ist die **relative Molekülmasse** des Polymers genau das <InlineMath math="n" />-Fache einer Wiederholungseinheit, bei einer **Atomökonomie** von <InlineMath math="100\ \%" />. Schwerere Seitenatome wie Chlor in PVC lassen die Massenkurve bei gleicher Einheitenanzahl viel steiler ansteigen als bei Polyethen. Verschieb <InlineMath math="n" /> unten und vergleich die drei Massenverläufe.
 
 <MathVisual
   title={<>Relative Molekülmasse eines Polymers gegen die Zahl der Wiederholungseinheiten</>}
@@ -63,6 +98,11 @@ Weil keine Atome verloren gehen, ist die Masse des Polymers gleich der Gesamtmas
       Polyethen <InlineMath math="28n" />, Polypropen <InlineMath math="42n" /> und
       PVC <InlineMath math="62{,}5n" />. Für <InlineMath math="n = 1000" /> hat
       Polyethen die relative Molekülmasse <InlineMath math="28\,000" />.
+    </>
+  }
+  footer={
+    <>
+      Schwerere Monomereinheiten erzeugen steilere Geraden über alle Kettenlängen.
     </>
   }
   scene={{
@@ -84,23 +124,25 @@ Weil keine Atome verloren gehen, ist die Masse des Polymers gleich der Gesamtmas
     ],
   }}
   labels={{
-    n: <>Zahl der Wiederholungseinheiten <InlineMath math="n" /></>,
+    n: <>Wiederholungseinheiten <InlineMath math="n" /></>,
     "polythene-mass": <>Masse von Polyethen</>,
     "polypropene-mass": <>Masse von Polypropen</>,
     "pvc-mass": <>Masse von PVC</>,
   }}
 />
 
-Probier ein Beispiel. Eine Polyethenkette hat die relative Molekülmasse <InlineMath math="28\,000" />. Berechne die Zahl der Ethenmonomere in der Kette.
+Jede Gerade verläuft durch den Ursprung, weil die Polymermasse direkt proportional zur Zahl der Monomere ist. Teilst du die relative Molekülmasse einer Kette durch die Masse eines Monomers, erhältst du sofort die Zahl der Bausteine. Vergleich eine Polyethenkette der Masse <InlineMath math="28\,000" /> mit einer PVC-Kette der Masse <InlineMath math="125\,000" /> (relative Atommasse von Cl gleich <InlineMath math="35{,}5" />):
 
 <MathContainer>
-<BlockMath math="M(\mathrm{C_2H_4}) = 2 \cdot 12 + 4 \cdot 1 = 28" />
-<BlockMath math="n = \frac{28\,000}{28} = 1000" />
+<BlockMath math="M(\mathrm{C_2H_4}) = 2 \cdot 12 + 4 \cdot 1 = 28 \Rightarrow n = \frac{28\,000}{28} = 1000" />
+<BlockMath math="M(\mathrm{C_2H_3Cl}) = 2 \cdot 12 + 3 \cdot 1 + 35{,}5 = 62{,}5 \Rightarrow n = \frac{125\,000}{62{,}5} = 2000" />
 </MathContainer>
 
-Prüf es am Graphen: Bei <InlineMath math="n = 1000" /> zeigt er für Polyethen <InlineMath math="28\,000" />. Das stimmt.
+Prüf beide Ergebnisse direkt im Graphen, indem du <InlineMath math="n" /> auf <InlineMath math="1000" /> für Polyethen und <InlineMath math="2000" /> für PVC stellst. Die angezeigten Werte stimmen exakt überein.
 
-Solche Ketten sind im Vergleich zu einem Monomer sehr lang. Jede Etheneinheit verlängert eine Polyethenkette um etwa <InlineMath math="0{,}255\ \text{nm}" />. Ändere unten die Zahl der Einheiten.
+### Länge einer molekularen Polymerkette abschätzen
+
+Synthetische Ketten umfassen tausende Wiederholungseinheiten und überragen gewöhnliche kleine Moleküle um Größenordnungen. Jede Etheneinheit verlängert eine gestreckte **Polyethenkette** um etwa <InlineMath math="0{,}255\ \text{nm}" />. Ändere unten die Zahl der Einheiten und verfolge den Übergang vom Nanometerbereich in den Mikrometerbereich.
 
 <MathVisual
   title={<>Länge einer Polyethenkette gegen die Zahl der Einheiten</>}
@@ -110,6 +152,11 @@ Solche Ketten sind im Vergleich zu einem Monomer sehr lang. Jede Etheneinheit ve
       Kette aus <InlineMath math="10\,000" /> Einheiten ist etwa{" "}
       <InlineMath math="2550\ \text{nm}" /> lang, also{" "}
       <InlineMath math="2{,}55\ \mu\text{m}" />.
+    </>
+  }
+  footer={
+    <>
+      Tausende winzige Etheneinheiten summieren sich zu mikrometerlangen Strängen.
     </>
   }
   scene={{
@@ -129,17 +176,70 @@ Solche Ketten sind im Vergleich zu einem Monomer sehr lang. Jede Etheneinheit ve
   }}
   labels={{
     c: <>Zahl der Etheneinheiten</>,
-    length: <>Kettenlänge in <InlineMath math="\text{nm}" /></>,
+    length: <>Kettenlänge (<InlineMath math="\text{nm}" />)</>,
   }}
 />
 
-## Polykondensation
+Bei <InlineMath math="20\,000" /> Wiederholungseinheiten überschreitet ein einziges Polyethenmolekül <InlineMath math="5\ \mu\text{m}" /> und erreicht damit die Länge eines Bakteriums. Solch lange Ketten verhaken sich eng miteinander, weshalb hochdichtes Polyethen zäh und reißfest bleibt.
 
-Bei der **Polykondensation** hat jedes Monomer zwei funktionelle Gruppen, und jedes Mal, wenn sich zwei Monomere verbinden, wird ein kleines Molekül wie Wasser **abgespalten**. Nylon-6,6 entsteht aus Hexandisäure und Hexan-1,6-diamin:
+## Polykondensation und abgespaltenes Wasser
+
+Nicht jedes Polymer wächst durch das Öffnen einer Doppelbindung. Bei der **Polykondensation** trägt jedes Monomer zwei reaktive funktionelle Gruppen an entgegengesetzten Enden, und jede neu geknüpfte Bindung spaltet ein kleines Nebenprodukt wie Wasser, <InlineMath math="\mathrm{H_2O}" />, ab. Über diesen Weg entstehen reißfeste Kunstfasern für Seile, Segel und knitterfreie Kleidung.
+
+### Amidbindungen und Esterbindungen in Nylon und Terylen
+
+**Nylon-6,6** ist ein Polyamid aus Hexandisäure und Hexan-1,6-diamin. Jede Carboxygruppe (<InlineMath math="\mathrm{-COOH}" />) reagiert mit einer Aminogruppe (<InlineMath math="\mathrm{-NH_2}" />) zu einer **Amidbindung** (<InlineMath math="\mathrm{-CONH-}" />) unter Abspaltung von Wasser:
 
 <BlockMath math="n\,\mathrm{HOOC(CH_2)_4COOH} + n\,\mathrm{H_2N(CH_2)_6NH_2} \rightarrow \mathrm{-[OC(CH_2)_4CONH(CH_2)_6NH]_n-} + 2n\,\mathrm{H_2O}" />
 
-Ein Mol der Säure hat die Masse <InlineMath math="146\ \text{g}" />, ein Mol des Diamins <InlineMath math="116\ \text{g}" />, zusammen <InlineMath math="262\ \text{g}" />. Die Wiederholungseinheit von Nylon hat die Masse <InlineMath math="226\ \text{g}" />, also gehen <InlineMath math="36\ \text{g}" /> als zwei Mol Wasser weg. Vergleich unten, wie viel Polymer aus derselben Masse an Monomer entsteht.
+Ersetzt man das Diamin durch ein Diol, entsteht **Terylen**, ein Polyester mit **Esterbindungen** (<InlineMath math="\mathrm{-COO-}" />), wobei an jeder Verknüpfung erneut Wasser austritt. Vergleich unten beide wechselnden Ketten und achte darauf, wo die Wassermoleküle abgespalten werden.
+
+<CondensationNylonLab
+  title={<>Amidbindungen und Esterbindungen in Polykondensaten</>}
+  description={
+    <>
+      Vergleich Nylon-6,6 mit Terylen und sieh, wie zwei bifunktionelle
+      Monomere abwechselnd verknüpfen und dabei Wassermoleküle abspalten.
+    </>
+  }
+  footer={
+    <>
+      Jede Verknüpfung zweier Monomere spaltet ein kleines Wassermolekül ab.
+    </>
+  }
+  polymers={["nylon66", "terylene"]}
+  labels={{
+    polymer: "Polykondensat",
+    polymers: {
+      nylon66: {
+        name: "Nylon-6,6",
+        linkage: <>Amidbindung <InlineMath math="\mathrm{-CONH-}" /></>,
+        byproduct: <>Wasser, <InlineMath math="\mathrm{H_2O}" /></>,
+      },
+      terylene: {
+        name: "Terylen",
+        linkage: <>Esterbindung <InlineMath math="\mathrm{-COO-}" /></>,
+        byproduct: <>Wasser, <InlineMath math="\mathrm{H_2O}" /></>,
+      },
+    },
+    parts: {
+      monomerA: "Diamin oder Diol",
+      monomerB: "Dicarbonsäure",
+      esterOrAmideLink: "Amidbindung oder Esterbindung",
+      waterByproduct: "Abgespaltenes Wasser",
+      polymerChain: "Alternierende Kette",
+    },
+    byproduct: <>Abgespaltenes Molekül</>,
+    linkage: <>Gebildete Bindung</>,
+    view: "Dreidimensionales Modell der Polykondensation",
+  }}
+/>
+
+Schau genau auf die wechselnden Bausteine: Polykondensate verbinden stets zwei verschiedene Monomerarten über Amidbindungen oder Esterbindungen, und die austretenden Wassermoleküle erklären, warum das fertige Polymer leichter ist als die Ausgangsstoffe zusammen.
+
+### Massenausbeute und Atomökonomie im Vergleich
+
+Anzunehmen, dass ein Polykondensat dieselbe Masse hat wie seine Monomere, ist ein verbreiteter Rechenfehler. Ein Mol Hexandisäure wiegt <InlineMath math="146\ \text{g}" /> und ein Mol Hexan-1,6-diamin <InlineMath math="116\ \text{g}" />, zusammen <InlineMath math="262\ \text{g}" />. Weil pro Wiederholungseinheit zwei Mol Wasser (<InlineMath math="36\ \text{g}" />) abgespalten werden, verbleiben nur <InlineMath math="226\ \text{g}" /> in der Nylonkette. Vergleich unten die **Massenausbeute** beider Polyreaktionen.
 
 <MathVisual
   title={<>Polymermasse bei Polymerisation und Polykondensation</>}
@@ -149,6 +249,11 @@ Ein Mol der Säure hat die Masse <InlineMath math="146\ \text{g}" />, ein Mol de
       Polykondensation von Nylon liefert{" "}
       <InlineMath math="\dfrac{226}{262} \approx 86{,}3\ \%" /> der Monomermasse,
       der Rest ist Wasser.
+    </>
+  }
+  footer={
+    <>
+      Abgespaltenes Wasser öffnet eine Lücke unter der Polymerisationsgeraden.
     </>
   }
   scene={{
@@ -169,52 +274,38 @@ Ein Mol der Säure hat die Masse <InlineMath math="146\ \text{g}" />, ein Mol de
     ],
   }}
   labels={{
-    m: <>Masse der Monomere in <InlineMath math="\text{g}" /></>,
-    nylon: <>Masse von Nylon in <InlineMath math="\text{g}" /></>,
-    water: <>Masse des abgespaltenen Wassers in <InlineMath math="\text{g}" /></>,
+    m: <>Monomermasse (<InlineMath math="\text{g}" />)</>,
+    nylon: <>Nylonmasse (<InlineMath math="\text{g}" />)</>,
+    water: <>Abgespaltenes Wasser (<InlineMath math="\text{g}" />)</>,
   }}
 />
 
-Prüf den Startwert: <InlineMath math="524\ \text{g}" /> Monomer sind je zwei Mol beider Monomere, also entstehen <InlineMath math="2 \cdot 226 = 452\ \text{g}" /> Nylon und <InlineMath math="2 \cdot 36 = 72\ \text{g}" /> Wasser. Zusammen sind das <InlineMath math="524\ \text{g}" />.
+Prüf den Startwert bei <InlineMath math="524\ \text{g}" />, entsprechend je zwei Mol beider Monomere:
 
-Das meiste Ethen für Polyethen stammt aus Erdöl, aber Ethen lässt sich auch durch Dehydratisierung von Ethanol aus Zuckerrohr herstellen. Vergleich unten die **Atomökonomie** zweier Reaktionen: Bei der Hydratisierung von Ethen geht kein Atom verloren, bei der Dehydratisierung von Ethanol wird Wasser abgespalten.
+<MathContainer>
+<BlockMath math="m(\text{Nylon}) = 2 \cdot 226 = 452\ \text{g}, \quad m(\mathrm{H_2O}) = 2 \cdot 36 = 72\ \text{g}" />
+<BlockMath math="452\ \text{g} + 72\ \text{g} = 524\ \text{g}" />
+</MathContainer>
 
-<ReactionBalanceLab
-  title={<>Atomökonomie von Reaktionen mit Ethen</>}
-  description={
-    <>
-      Die Dehydratisierung von Ethanol liefert das Monomer Ethen und Wasser. Die
-      Hydratisierung von Ethen baut alle Atome der Ausgangsstoffe in Ethanol
-      ein.
-    </>
-  }
-  reactions={[
-    { id: "ethanol-dehydration", name: "Dehydratisierung von Ethanol", tab: <>Dehydratisierung</> },
-    { id: "ethene-hydration", name: "Hydratisierung von Ethen", tab: <>Hydratisierung</> },
-  ]}
-  reading="economy"
-  labels={{
-    atoms: <>Atome</>,
-    choose: "Reaktion wählen",
-    economy: <>Atomökonomie</>,
-    equation: <>Gleichung</>,
-    mass: <>Masse</>,
-    products: <>Produkte</>,
-    progress: "Fortschritt der Reaktion",
-    reactants: <>Ausgangsstoffe</>,
-    view: "Modell von Reaktionen mit Ethen und Ethanol",
-  }}
-/>
+Die Gesamtmasse bleibt erhalten, sobald das abgespaltene Wasser mitgezählt wird. Dieselbe Rechnung zur **Atomökonomie** gilt bei der Gewinnung von Ethen durch Dehydratisierung von Bioethanol aus Zuckerrohr: Weil Wasser abgespalten wird, liegt die Atomökonomie unter den <InlineMath math="100\ \%" /> der Polymerisation:
 
-Prüf die Atomökonomie der Dehydratisierung: Das gewünschte Produkt ist Ethen, also <InlineMath math="\dfrac{28}{46} \cdot 100\ \% = 60{,}9\ \%" />. Die Polymerisation hat wie die Hydratisierung von Ethen eine Atomökonomie von <InlineMath math="100\ \%" />.
+<BlockMath math="\text{Atomökonomie} = \frac{28}{46} \cdot 100\ \% = 60{,}9\ \%" />
 
-## Naturkautschuk und Vulkanisation
+## Naturkautschuk Latexgerinnung und Schwefelvulkanisation
 
-**Naturkautschuk** ist ein Polymer aus Isopren und stammt aus dem **Latex** des Kautschukbaums. Latex ist eine Suspension von Kautschukteilchen, die von einer **negativ geladenen** Proteinhülle umgeben sind. Diese negative Ladung lässt die Teilchen einander abstoßen, also bleibt Latex flüssig.
+Direkt aus der Rinde von *Hevea brasiliensis* gezapft, tritt **Naturkautschuk** als milchiger **Latex** aus, ein Polymer aus Isopren (<InlineMath math="\mathrm{C_5H_8}" />). Rohkautschuk wird in der Wärme weich und klebrig, doch das Zusammenspiel aus Säuregerinnung und Erhitzen mit Schwefel verwandelt ihn in belastbare Autoreifen.
 
-Gibt man Säure dazu, neutralisieren <InlineMath math="\mathrm{H^+}" />-Ionen die negative Ladung. Die Teilchen stoßen sich nicht mehr ab, stoßen zusammen, und **der Latex gerinnt**. Latex gerinnt auch langsam von selbst, weil Bakterien Milchsäure bilden. Damit er beim Lagern nicht gerinnt, gibt man **Ammoniak** dazu: Seine <InlineMath math="\mathrm{OH^-}" />-Ionen neutralisieren die entstehende Säure, also bleiben die Hüllen negativ geladen.
+### Latexgerinnung mit Säure und Ammoniak steuern
 
-Die **Vulkanisation** ist das Erhitzen von Kautschuk mit Schwefel. Schwefelatome bilden **Quervernetzungen** zwischen den Polymerketten. Diese Brücken verhindern, dass die Ketten aneinander vorbeigleiten, also ist vulkanisierter Kautschuk:
+Frischer Latex bleibt flüssig, weil jedes mikroskopische Kautschukteilchen von einer **negativ geladenen Proteinhülle** umschlossen ist. Gleiche Ladungen stoßen einander ab und halten die Teilchen im Wasser getrennt. Gibt man eine Säure wie Essigsäure hinzu, neutralisieren <InlineMath math="\mathrm{H^+}" />-Ionen diese negativen Hüllen, sodass die Teilchen zusammenstoßen, aufplatzen und zu **geronnenem Kautschuk** verklumpen. An warmer Luft wandeln Bakterien Zucker im Latex von selbst in Milchsäure um und lassen ihn langsam gerinnen.
+
+Damit frisch gezapfter Latex beim Transport flüssig bleibt, rühren Erzeuger **Ammoniaklösung** ein. Viele Lernende verwechseln Säure und Ammoniak, also merk dir die Ionenwirkung: Ammoniak ist eine Base, deren <InlineMath math="\mathrm{OH^-}" />-Ionen bakterielle Säure abfangen, bevor sie die Proteinhüllen neutralisieren kann.
+
+> Säure neutralisiert die negativ geladenen Proteinhüllen und lässt Latex gerinnen, während Ammoniak Säure neutralisiert und den Latex flüssig hält.
+
+### Schwefelbrücken und elastische Rückstellung
+
+Selbst nach der Gerinnung bleibt unvulkanisierter Kautschuk weich, weil seine langen Polyisoprenketten bei Zug leicht aneinander vorbeigleiten und nicht vollständig zurückschnellen. Beim Erhitzen mit Schwefel läuft die **Vulkanisation** ab: Schwefelatome reagieren an den Kohlenstoffdoppelbindungen und schlagen feste **Schwefelbrücken** zwischen benachbarten Ketten.
 
 | Eigenschaft | Unvulkanisierter Kautschuk | Vulkanisierter Kautschuk, Gummi |
 | :--- | :--- | :--- |
@@ -223,49 +314,48 @@ Die **Vulkanisation** ist das Erhitzen von Kautschuk mit Schwefel. Schwefelatome
 | Wärmebeständigkeit | Wird warm klebrig | Hält Wärme aus |
 | Oxidationsbeständigkeit | Oxidiert leicht | Beständiger |
 
-**Synthesekautschuk** wie Neopren hält Öl und Hitze aus und wird deshalb für Ölschläuche und Neoprenanzüge verwendet. Die meisten synthetischen Polymere sind aber **nicht biologisch abbaubar**. Beim Verbrennen von PVC entsteht giftiger Chlorwasserstoff, also sollte man Kunststoffe vermeiden, wiederverwenden und recyceln.
+Wechsle unten zwischen unvulkanisiertem und vulkanisiertem Kautschuk und zieh am Dehnungsregler, um zu beobachten, wie Schwefelbrücken das Kettenbündel sichern.
 
-## Typische Fehler bei Polymeren
+<RubberVulcanizationLab
+  title={<>Schwefelbrücken und Elastizität von Kautschuk</>}
+  description={
+    <>
+      Vergleich unvernetzte Polyisoprenketten im Naturkautschuk mit
+      schwefelvernetzten Ketten im vulkanisierten Gummi unter Zugbelastung.
+    </>
+  }
+  footer={
+    <>
+      Schwefelbrücken stoppen das Abgleiten und ziehen den Gummi zurück.
+    </>
+  }
+  states={["naturalLatex", "vulcanisedRubber"]}
+  stretch={{ min: 0, max: 100, value: 40 }}
+  labels={{
+    state: "Kautschukzustand",
+    states: {
+      naturalLatex: {
+        name: "Unvulkanisierter Kautschuk",
+        elasticityNote: <>Die Ketten gleiten unter Zug dauerhaft aneinander vorbei.</>,
+        heatNote: <>Wird beim Erwärmen weich und klebrig.</>,
+      },
+      vulcanisedRubber: {
+        name: "Vulkanisierter Kautschuk",
+        elasticityNote: <>Schwefelbrücken ziehen die Ketten in die Ausgangslage zurück.</>,
+        heatNote: <>Bleibt auch bei hoher Temperatur formstabil und fest.</>,
+      },
+    },
+    parts: {
+      isopreneChain: "Polyisoprenkette",
+      sulfurCrosslink: "Schwefelbrücke (-S-S-)",
+      doubleBond: "C=C-Doppelbindung",
+      tensionArrow: "Zugkraft",
+    },
+    stretch: "Dehnung (%)",
+    elasticityNote: <>Elastisches Verhalten</>,
+    heatNote: <>Wärmebeständigkeit</>,
+    view: "Dreidimensionales Kettenbündel bei der Vulkanisation",
+  }}
+/>
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Jedes Monomer kann polymerisieren. | Die Polymerisation braucht eine Doppelbindung <InlineMath math="\mathrm{C{=}C}" />. | Ethan hat keine Doppelbindung und bildet kein Polymer. |
-| Die Wiederholungseinheit von Polyethen ist <InlineMath math="\mathrm{-CH_2{=}CH_2-}" />. | Die Doppelbindung öffnet sich, also ist die Einheit <InlineMath math="\mathrm{-CH_2{-}CH_2-}" />. | Jedes Kohlenstoffatom der Kette muss vier Bindungen haben. |
-| Ein Polykondensat hat dieselbe Masse wie die Monomere. | Ein kleines Molekül wie Wasser wird abgespalten, also ist das Polymer leichter. | Zieh die Masse des Wassers von der Monomermasse ab. |
-| Ammoniak lässt Latex gerinnen. | Ammoniak hält die Hüllen negativ geladen, also bleibt Latex flüssig. | Säure lässt Latex gerinnen. |
-| Vulkanisation macht Kautschuk weicher. | Schwefelbrücken machen ihn fester, elastischer und wärmebeständiger. | Vergleich einen Autoreifen mit einem alten Gummiband. |
-
-Der vierte Fehler kommt am häufigsten vor. Merk dir das Paar: **Säure lässt Latex gerinnen, Ammoniak hält ihn flüssig**.
-
-## Übungen zu Polymeren
-
-Die Aufgaben gehen vom Zählen der Monomere über die Arten der Polyreaktion zum Kautschuk. **Zeig die Bindung, die sich öffnet**, wenn du eine Wiederholungseinheit aufschreibst.
-
-1. Eine PVC-Kette hat die relative Molekülmasse <InlineMath math="125\,000" />. Berechne die Zahl der Chlorethenmonomere, <InlineMath math="\mathrm{CH_2{=}CHCl}" />, in der Kette. Die relative Atommasse von Cl ist <InlineMath math="35{,}5" />.
-
-2. Nenn das Monomer von Polypropen und schreib seine Wiederholungseinheit auf.
-
-3. Erklär, warum frisch gezapftem Latex Ammoniak zugesetzt wird.
-
-4. Erklär, warum vulkanisierter Kautschuk elastischer ist als unvulkanisierter.
-
-### Lösungen
-
-**Lösung 1**: Berechne die Masse des Monomers und teile:
-
-<MathContainer>
-<BlockMath math="M(\mathrm{C_2H_3Cl}) = 2 \cdot 12 + 3 \cdot 1 + 35{,}5 = 62{,}5" />
-<BlockMath math="n = \frac{125\,000}{62{,}5} = 2000" />
-</MathContainer>
-
-Prüf es am Massengraphen: Bei <InlineMath math="n = 2000" /> zeigt PVC <InlineMath math="62{,}5 \cdot 2000 = 125\,000" />.
-
-**Lösung 2**: Das Monomer von Polypropen ist **Propen**, <InlineMath math="\mathrm{CH_2{=}CHCH_3}" />. Die Doppelbindung öffnet sich, also trägt die Wiederholungseinheit eine Methylgruppe als Seitenkette:
-
-<BlockMath math="\mathrm{-[CH_2{-}CH(CH_3)]_n-}" />
-
-Prüf es: Die Einheit hat drei Kohlenstoff- und sechs Wasserstoffatome, genau wie Propen.
-
-**Lösung 3**: Bakterien im Latex bilden Säure, und die <InlineMath math="\mathrm{H^+}" />-Ionen neutralisieren die negativ geladenen Proteinhüllen. **Ammoniak** ist eine Base, also neutralisieren seine <InlineMath math="\mathrm{OH^-}" />-Ionen diese Säure. Die Hüllen **bleiben negativ geladen**, die Teilchen stoßen sich weiter ab, und der Latex gerinnt nicht.
-
-**Lösung 4**: Im vulkanisierten Kautschuk verbinden **Schwefelbrücken** die Polymerketten. Wird der Kautschuk gedehnt, können die Ketten nicht weit aneinander vorbeigleiten. Lässt die Kraft nach, **ziehen die Brücken die Ketten zurück** an ihren Platz, also kehrt der Kautschuk in seine Form zurück.
+Schau dir an, wie die Schwefelbrücken wie winzige Rückholfedern wirken: Statt Kautschuk weicher zu machen, blockiert die Vulkanisation dauerhaftes Abgleiten und verleiht Reifen auf heißem Asphalt Festigkeit und Wärmebeständigkeit. **Synthesekautschuk** wie Neopren widersteht zusätzlich Öl in Kraftstoffschläuchen und Neoprenanzügen. Weil die meisten synthetischen Polymere **nicht biologisch abbaubar** sind und beim Verbrennen von PVC giftiger Chlorwasserstoff entsteht, bleiben Vermeidung, Wiederverwendung und Recycling unverzichtbar.

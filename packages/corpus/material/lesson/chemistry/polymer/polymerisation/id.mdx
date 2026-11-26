@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Polimer dan Reaksi Polimerisasi",
   description:
-    "Bedakan polimerisasi adisi dan kondensasi, jelaskan penggumpalan lateks dan vulkanisasi karet, serta hitung jumlah monomer dalam rantai lewat contoh dan latihan.",
+    "Bedakan polimerisasi adisi dan kondensasi, hitung jumlah unit berulang serta panjang rantai, dan jelaskan penggumpalan lateks serta vulkanisasi karet.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Polimer",
 };
 
-## Polimer Tersusun atas Monomer
+## Polimerisasi Adisi Sepanjang Rantai Karbon
 
-**Polimer** adalah molekul besar yang terbentuk saat banyak molekul kecil, **monomer**, bergabung menjadi rantai panjang. Prosesnya disebut **polimerisasi**. Massa molekul relatif polimer adalah <InlineMath math="n" /> kali massa unit berulangnya, dengan <InlineMath math="n" /> jumlah unit berulang. Di sini kamu memutar model monomer, menghitung jumlah monomer dalam rantai, membandingkan polimerisasi adisi dan kondensasi, dan melihat cara karet alam diperkuat.
+Lihat sekeliling ruanganmu: selubung kabel lentur, pipa air, dan wadah makanan hampir semuanya tersusun dari rantai molekul raksasa. **Polimer** adalah molekul besar yang terbentuk ketika ribuan molekul kecil, **monomer**, saling bertaut ujung ke ujung dalam **polimerisasi**. Sebagian polimer tumbuh alami pada makhluk hidup, sedangkan polimer sintetis dibuat dari minyak bumi atau bahan nabati agar memenuhi kebutuhan kekuatan dan ketahanan panas.
 
 | Polimer | Monomer | Jenis |
 | :--- | :--- | :--- |
@@ -21,40 +21,75 @@ export const metadata = {
 | Polipropena | Propena | Sintetis |
 | Nilon | Asam heksanadioat dan heksana-1,6-diamina | Sintetis |
 
-Monomer untuk **polimerisasi adisi** harus memiliki ikatan rangkap dua <InlineMath math="\mathrm{C{=}C}" />. Putar tiga monomer di bawah dan bandingkan dengan etana yang tidak memiliki ikatan rangkap dua.
+### Membuka Ikatan Rangkap Dua untuk Membangun Rantai
 
-<MoleculeShapeLab
-  title={<>Monomer untuk Polimerisasi Adisi</>}
-  description={
-    <>
-      Etena, propena, dan kloroetena memiliki ikatan rangkap dua, jadi bisa
-      bergabung menjadi polimer. Etana hanya memiliki ikatan tunggal.
-    </>
-  }
-  molecules={[
-    { id: "ethene", name: "etena" },
-    { id: "propene", name: "propena" },
-    { id: "chloroethene", name: "kloroetena" },
-    { id: "ethane", name: "etana" },
-  ]}
-  labels={{
-    atoms: <>Atom</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang terisi</>,
-    formula: <>Rumus</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut ikatan</>,
-    view: "Molekul monomer",
-  }}
-/>
-
-## Polimerisasi Adisi
-
-Pada polimerisasi adisi, ikatan rangkap dua setiap monomer terbuka dan monomer bergabung **tanpa kehilangan satu atom pun**. Etena menjadi polietena:
+Syarat **polimerisasi adisi** ialah setiap monomer harus memiliki ikatan rangkap dua karbon, <InlineMath math="\mathrm{C{=}C}" />. Molekul jenuh seperti etana hanya punya ikatan tunggal sehingga tidak bisa membuka diri untuk menyambung rantai. Saat polimerisasi berlangsung, satu ikatan dari setiap ikatan rangkap dua terbuka lalu menyambung monomer bertetangga **tanpa kehilangan satu atom pun**:
 
 <BlockMath math="n\,\mathrm{CH_2{=}CH_2} \rightarrow \mathrm{-[CH_2{-}CH_2]_n-}" />
 
-Karena tidak ada atom yang hilang, massa polimer sama dengan total massa monomernya. Ubah jumlah unit berulang di bawah dan bandingkan massa tiga polimer.
+Kesalahan yang sering muncul adalah tetap menulis ikatan rangkap dua di dalam unit berulang, misalnya <InlineMath math="\mathrm{-CH_2{=}CH_2-}" />, padahal bentuk benarnya <InlineMath math="\mathrm{-CH_2{-}CH_2-}" />. Selalu pastikan setiap atom karbon pada rantai utama punya empat ikatan kovalen. Untuk propena, <InlineMath math="\mathrm{CH_2{=}CHCH_3}" />, gugus metil bertahan sebagai cabang samping di luar rantai utama berikatan tunggal:
+
+<BlockMath math="\mathrm{-[CH_2{-}CH(CH_3)]_n-}" />
+
+Ganti pilihan dari empat monomer alkena dan ubah panjang rantai di bawah untuk mengamati bagaimana ikatan rangkap dua terbuka menjadi rantai tunggal dengan gugus samping khas masing-masing.
+
+<AdditionPolymerChainLab
+  title={<>Pertumbuhan Rantai pada Polimerisasi Adisi</>}
+  description={
+    <>
+      Pilih etena, propena, kloroetena, atau tetrafluoroetena lalu atur jumlah
+      unit berulangnya untuk melihat rantai karbon dan gugus sampingnya.
+    </>
+  }
+  footer={
+    <>
+      Pembukaan ikatan rangkap dua menyambung monomer tanpa ada atom terbuang.
+    </>
+  }
+  monomers={["ethene", "propene", "chloroethene", "tetrafluoroethene"]}
+  chainLength={{ min: 2, max: 10, value: 4 }}
+  labels={{
+    chainLength: "Jumlah unit berulang (n)",
+    monomer: "Monomer alkena",
+    monomers: {
+      ethene: {
+        name: "Etena",
+        polymerName: <>Polietena</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CH_2{-}CH_2]-}" />,
+      },
+      propene: {
+        name: "Propena",
+        polymerName: <>Polipropena</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CH_2{-}CH(CH_3)]-}" />,
+      },
+      chloroethene: {
+        name: "Kloroetena",
+        polymerName: <>Polivinil klorida, PVC</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CH_2{-}CHCl]-}" />,
+      },
+      tetrafluoroethene: {
+        name: "Tetrafluoroetena",
+        polymerName: <>Politetrafluoroetena, PTFE</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CF_2{-}CF_2]-}" />,
+      },
+    },
+    parts: {
+      monomerUnit: "Unit monomer",
+      doubleBond: "Ikatan rangkap C=C",
+      singleBackbone: "Rantai tunggal C-C",
+      sideGroup: "Gugus samping",
+    },
+    polymerName: <>Polimer terbentuk</>,
+    repeatUnit: <>Unit berulang</>,
+    view: "Model tiga dimensi rantai polimer adisi",
+  }}
+/>
+
+Perhatikan bahwa mengganti atom hidrogen dengan gugus metil, klorin, atau fluorin tidak mengubah rantai utama karbon berikatan tunggal, namun mengubah sifat bahan secara drastis dari plastik tipis hingga pipa kaku dan pelapis antilengket.
+
+### Massa Molekul Relatif Rantai Polimer Adisi
+
+Karena polimerisasi adisi tidak melepaskan atom, **massa molekul relatif** polimer sama persis dengan <InlineMath math="n" /> kali massa satu unit berulang, sehingga **ekonomi atom** mencapai <InlineMath math="100\%" />. Atom samping yang lebih berat seperti klorin pada PVC menaikkan garis massa jauh lebih curam daripada polietena pada jumlah unit yang sama. Geser nilai <InlineMath math="n" /> di bawah untuk membandingkan laju kenaikan massa tiga polimer.
 
 <MathVisual
   title={<>Massa Molekul Relatif Polimer terhadap Jumlah Unit Berulang</>}
@@ -63,6 +98,11 @@ Karena tidak ada atom yang hilang, massa polimer sama dengan total massa monomer
       Polietena <InlineMath math="28n" />, polipropena <InlineMath math="42n" />,
       dan PVC <InlineMath math="62{,}5n" />. Untuk <InlineMath math="n = 1000" />,
       polietena bermassa molekul relatif <InlineMath math="28.000" />.
+    </>
+  }
+  footer={
+    <>
+      Unit monomer yang lebih berat menghasilkan garis massa yang lebih curam.
     </>
   }
   scene={{
@@ -91,16 +131,18 @@ Karena tidak ada atom yang hilang, massa polimer sama dengan total massa monomer
   }}
 />
 
-Coba satu contoh. Sebuah rantai polietena memiliki massa molekul relatif <InlineMath math="28.000" />. Hitung jumlah monomer etena dalam rantai itu.
+Setiap garis bermula dari titik asal karena massa polimer berbanding lurus dengan jumlah monomer. Membagi massa molekul relatif polimer dengan massa satu monomer langsung menunjukkan jumlah unit dalam rantai. Bandingkan rantai polietena bermassa <InlineMath math="28.000" /> dengan rantai PVC bermassa <InlineMath math="125.000" /> (massa atom relatif Cl adalah <InlineMath math="35{,}5" />):
 
 <MathContainer>
-<BlockMath math="M(\mathrm{C_2H_4}) = 2 \times 12 + 4 \times 1 = 28" />
-<BlockMath math="n = \frac{28.000}{28} = 1000" />
+<BlockMath math="M(\mathrm{C_2H_4}) = 2 \times 12 + 4 \times 1 = 28 \Rightarrow n = \frac{28.000}{28} = 1000" />
+<BlockMath math="M(\mathrm{C_2H_3Cl}) = 2 \times 12 + 3 \times 1 + 35{,}5 = 62{,}5 \Rightarrow n = \frac{125.000}{62{,}5} = 2000" />
 </MathContainer>
 
-Cek dengan grafik: pada <InlineMath math="n = 1000" />, angka massa polietena adalah <InlineMath math="28.000" />. Sama.
+Cocokkan kedua hasil pada grafik di atas dengan menggeser <InlineMath math="n" /> ke <InlineMath math="1000" /> untuk polietena dan <InlineMath math="2000" /> untuk PVC. Keduanya tepat sama dengan hitungan.
 
-Rantai seperti ini sangat panjang dibandingkan ukuran monomer. Setiap unit etena menambah sekitar <InlineMath math="0{,}255\ \text{nm}" /> pada panjang rantai polietena. Ubah jumlah unitnya di bawah.
+### Menaksir Panjang Rantai Molekul Polimer
+
+Rantai polimer sintetis berisi ribuan unit berulang sehingga jauh lebih panjang daripada molekul kecil biasa. Satu unit etena menambah sekitar <InlineMath math="0{,}255\ \text{nm}" /> pada panjang **rantai polietena** yang terentang lurus. Ubah jumlah unit di bawah untuk melihat skala nanometer tumbuh ke skala mikrometer.
 
 <MathVisual
   title={<>Panjang Rantai Polietena terhadap Jumlah Unit</>}
@@ -108,8 +150,13 @@ Rantai seperti ini sangat panjang dibandingkan ukuran monomer. Setiap unit etena
     <>
       Panjang rantainya <InlineMath math="0{,}255n" /> nanometer. Rantai{" "}
       <InlineMath math="10.000" /> unit panjangnya sekitar{" "}
-      <InlineMath math="2550\ \text{nm}" />, yaitu{" "}
+      <InlineMath math="2550\ \text{nm}" />, atau{" "}
       <InlineMath math="2{,}55\ \mu\text{m}" />.
+    </>
+  }
+  footer={
+    <>
+      Ribuan unit etena kecil menumpuk menjadi untaian polimer berskala mikrometer.
     </>
   }
   scene={{
@@ -129,17 +176,70 @@ Rantai seperti ini sangat panjang dibandingkan ukuran monomer. Setiap unit etena
   }}
   labels={{
     c: <>Jumlah unit etena</>,
-    length: <>Panjang rantai dalam <InlineMath math="\text{nm}" /></>,
+    length: <>Panjang rantai (<InlineMath math="\text{nm}" />)</>,
   }}
 />
 
-## Polimerisasi Kondensasi
+Pada <InlineMath math="20.000" /> unit berulang, satu molekul polietena sudah melebihi <InlineMath math="5\ \mu\text{m}" />, sebanding dengan panjang satu sel bakteri. Rantai sepanjang ini mudah saling melilit rapat sehingga plastik berkerapatan tinggi terasa kuat dan sulit sobek.
 
-Pada **polimerisasi kondensasi**, setiap monomer memiliki dua gugus fungsi, dan setiap kali dua monomer bergabung, satu molekul kecil seperti air **dilepaskan**. Nilon-6,6 terbentuk dari asam heksanadioat dan heksana-1,6-diamina:
+## Polimerisasi Kondensasi dan Pelepasan Air
+
+Tidak semua polimer tumbuh lewat pembukaan ikatan rangkap dua. Pada **polimerisasi kondensasi**, setiap monomer membawa dua gugus fungsi reaktif di kedua ujungnya, dan setiap sambungan baru melepaskan molekul kecil seperti air, <InlineMath math="\mathrm{H_2O}" />. Jalur ini menghasilkan serat sintetis kuat untuk tali, layar, dan kain tahan kusut.
+
+### Ikatan Amida dan Ester pada Nilon serta Terilena
+
+**Nilon-6,6** adalah poliamida dari asam heksanadioat dan heksana-1,6-diamina. Gugus karboksil (<InlineMath math="\mathrm{-COOH}" />) bereaksi dengan gugus amina (<InlineMath math="\mathrm{-NH_2}" />) membentuk **ikatan amida** (<InlineMath math="\mathrm{-CONH-}" />) sambil melepaskan air:
 
 <BlockMath math="n\,\mathrm{HOOC(CH_2)_4COOH} + n\,\mathrm{H_2N(CH_2)_6NH_2} \rightarrow \mathrm{-[OC(CH_2)_4CONH(CH_2)_6NH]_n-} + 2n\,\mathrm{H_2O}" />
 
-Satu mol asam bermassa <InlineMath math="146\ \text{g}" /> dan satu mol diamina <InlineMath math="116\ \text{g}" />, totalnya <InlineMath math="262\ \text{g}" />. Unit berulang nilon bermassa <InlineMath math="226\ \text{g}" />, jadi <InlineMath math="36\ \text{g}" /> lepas sebagai dua mol air. Bandingkan massa polimer yang dihasilkan dari massa monomer yang sama di bawah.
+Jika diamina diganti dengan diol, terbentuklah **terilena**, poliester dengan **ikatan ester** (<InlineMath math="\mathrm{-COO-}" />) yang juga melepaskan air pada tiap sambungan. Bandingkan kedua rantai berselang-seling di bawah dan amati letak lepasnya molekul air.
+
+<CondensationNylonLab
+  title={<>Ikatan Amida dan Ester pada Polimer Kondensasi</>}
+  description={
+    <>
+      Bandingkan nilon-6,6 dan terilena untuk melihat dua monomer bergugus
+      ganda berselang-seling sambil melepaskan molekul air di tiap sambungan.
+    </>
+  }
+  footer={
+    <>
+      Setiap sambungan monomer kondensasi selalu melepaskan molekul air kecil.
+    </>
+  }
+  polymers={["nylon66", "terylene"]}
+  labels={{
+    polymer: "Polimer kondensasi",
+    polymers: {
+      nylon66: {
+        name: "Nilon-6,6",
+        linkage: <>Ikatan amida <InlineMath math="\mathrm{-CONH-}" /></>,
+        byproduct: <>Air, <InlineMath math="\mathrm{H_2O}" /></>,
+      },
+      terylene: {
+        name: "Terilena",
+        linkage: <>Ikatan ester <InlineMath math="\mathrm{-COO-}" /></>,
+        byproduct: <>Air, <InlineMath math="\mathrm{H_2O}" /></>,
+      },
+    },
+    parts: {
+      monomerA: "Diamina atau diol",
+      monomerB: "Asam dikarboksilat",
+      esterOrAmideLink: "Ikatan amida atau ester",
+      waterByproduct: "Air terlepas",
+      polymerChain: "Rantai berselang-seling",
+    },
+    byproduct: <>Molekul kecil terlepas</>,
+    linkage: <>Ikatan terbentuk</>,
+    view: "Model tiga dimensi polimerisasi kondensasi",
+  }}
+/>
+
+Amati pola balok berselang-seling pada rantai: polimer kondensasi selalu memadukan dua jenis unit monomer lewat jembatan amida atau ester, dan molekul air yang keluar membuat massa polimernya lebih ringan daripada total pereaksi awal.
+
+### Perbandingan Rendemen Massa dan Ekonomi Atom
+
+Menganggap massa polimer kondensasi sama dengan massa monomernya adalah kekeliruan yang sering terjadi. Satu mol asam heksanadioat bermassa <InlineMath math="146\ \text{g}" /> dan satu mol heksana-1,6-diamina bermassa <InlineMath math="116\ \text{g}" />, totalnya <InlineMath math="262\ \text{g}" />. Karena dua mol air (<InlineMath math="36\ \text{g}" />) keluar pada tiap unit berulang, hanya <InlineMath math="226\ \text{g}" /> yang bertahan sebagai rantai nilon. Bandingkan **rendemen massa polimer** adisi dan kondensasi di bawah.
 
 <MathVisual
   title={<>Massa Polimer dari Polimerisasi Adisi dan Kondensasi</>}
@@ -149,6 +249,11 @@ Satu mol asam bermassa <InlineMath math="146\ \text{g}" /> dan satu mol diamina 
       Polimerisasi kondensasi nilon menghasilkan{" "}
       <InlineMath math="\dfrac{226}{262} \approx 86{,}3\%" /> massa monomer, dan
       sisanya adalah air.
+    </>
+  }
+  footer={
+    <>
+      Air yang terlepas menciptakan selisih massa di bawah garis polimer adisi.
     </>
   }
   scene={{
@@ -169,51 +274,38 @@ Satu mol asam bermassa <InlineMath math="146\ \text{g}" /> dan satu mol diamina 
     ],
   }}
   labels={{
-    m: <>Massa monomer dalam <InlineMath math="\text{g}" /></>,
-    nylon: <>Massa nilon dalam <InlineMath math="\text{g}" /></>,
-    water: <>Massa air yang dilepaskan dalam <InlineMath math="\text{g}" /></>,
+    m: <>Massa monomer (<InlineMath math="\text{g}" />)</>,
+    nylon: <>Massa nilon (<InlineMath math="\text{g}" />)</>,
+    water: <>Massa air lepas (<InlineMath math="\text{g}" />)</>,
   }}
 />
 
-Cek angka awalnya: <InlineMath math="524\ \text{g}" /> monomer adalah dua mol dari setiap monomer, jadi nilon yang terbentuk <InlineMath math="2 \times 226 = 452\ \text{g}" /> dan airnya <InlineMath math="2 \times 36 = 72\ \text{g}" />. Totalnya <InlineMath math="524\ \text{g}" />.
+Cek posisi awal di <InlineMath math="524\ \text{g}" />, yang setara dua mol untuk masing-masing monomer:
 
-Sebagian besar etena untuk polietena berasal dari minyak bumi, tetapi etena juga bisa dibuat lewat dehidrasi etanol dari tebu. Bandingkan **ekonomi atom** kedua reaksi di bawah: hidrasi etena tidak membuang atom, tetapi dehidrasi etanol melepaskan air.
+<MathContainer>
+<BlockMath math="m(\text{nilon}) = 2 \times 226 = 452\ \text{g}, \quad m(\mathrm{H_2O}) = 2 \times 36 = 72\ \text{g}" />
+<BlockMath math="452\ \text{g} + 72\ \text{g} = 524\ \text{g}" />
+</MathContainer>
 
-<ReactionBalanceLab
-  title={<>Ekonomi Atom Reaksi yang Melibatkan Etena</>}
-  description={
-    <>
-      Dehidrasi etanol menghasilkan monomer etena dan air. Hidrasi etena
-      menggabungkan semua atom pereaksi menjadi etanol.
-    </>
-  }
-  reactions={[
-    { id: "ethanol-dehydration", name: "Dehidrasi etanol", tab: <>Dehidrasi</> },
-    { id: "ethene-hydration", name: "Hidrasi etena", tab: <>Hidrasi</> },
-  ]}
-  reading="economy"
-  labels={{
-    atoms: <>Atom</>,
-    choose: "Pilih reaksi",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan</>,
-    mass: <>Massa</>,
-    products: <>Hasil reaksi</>,
-    progress: "Kemajuan reaksi",
-    reactants: <>Pereaksi</>,
-    view: "Model reaksi etena dan etanol",
-  }}
-/>
+Massa tetap kekal begitu air yang lepas ikut dihitung. Analisis **ekonomi atom** yang sama berlaku saat membuat monomer etena lewat dehidrasi bioetanol dari tebu: karena air ikut terbuang, nilai ekonomi atomnya lebih rendah daripada polimerisasi adisi yang <InlineMath math="100\%" />:
 
-Cek ekonomi atom dehidrasinya: hasil yang diinginkan adalah etena, jadi <InlineMath math="\dfrac{28}{46} \times 100\% = 60{,}9\%" />. Polimerisasi adisi memiliki ekonomi atom <InlineMath math="100\%" />, seperti hidrasi etena.
+<BlockMath math="\text{Ekonomi atom} = \frac{28}{46} \times 100\% = 60{,}9\%" />
 
-## Karet Alam dan Vulkanisasi
+## Karet Alam Penggumpalan Lateks dan Vulkanisasi Belerang
 
-**Karet alam** adalah polimer isoprena yang berasal dari **lateks** pohon karet. Lateks adalah suspensi partikel karet yang dikelilingi membran protein **bermuatan negatif**. Muatan negatif itu membuat partikel saling tolak, jadi lateks tetap cair.
+Disadap langsung dari kulit pohon *Hevea brasiliensis*, **karet alam** keluar sebagai **lateks** putih susu, polimer isoprena (<InlineMath math="\mathrm{C_5H_8}" />). Karet mentah terasa lunak dan lengket saat panas, namun gabungan penggumpalan asam dan pemanasan belerang mengubahnya menjadi ban kendaraan yang tangguh.
 
-Saat asam ditambahkan, ion <InlineMath math="\mathrm{H^+}" /> menetralkan muatan negatif itu. Partikel karet tidak lagi saling tolak, jadi partikel bertumbukan dan **lateks menggumpal**. Lateks juga menggumpal perlahan dengan sendirinya karena bakteri menghasilkan asam laktat. Untuk mencegah penggumpalan selama disimpan, **amonia** ditambahkan: ion <InlineMath math="\mathrm{OH^-}" /> menetralkan asam yang terbentuk, jadi membran tetap bermuatan negatif.
+### Mengendalikan Penggumpalan Lateks dengan Asam dan Amonia
 
-**Vulkanisasi** adalah pemanasan karet dengan belerang. Atom belerang membentuk **ikatan silang** antara rantai polimer. Ikatan silang itu mencegah rantai saling bergeser, jadi karet tervulkanisasi:
+Lateks segar tetap cair karena setiap partikel karet terbungkus **membran protein bermuatan negatif**. Muatan sejenis saling menolak sehingga partikel karet tetap melayang terpisah dalam air. Penambahan asam seperti asam asetat membawa ion <InlineMath math="\mathrm{H^+}" /> yang menetralkan muatan negatif membran, lalu partikel bertumbukan, pecah, dan menyatu sebagai **karet menggumpal**. Jika dibiarkan di udara hangat, bakteri alami mengubah gula dalam lateks menjadi asam laktat sehingga lateks menggumpal perlahan dengan sendirinya.
+
+Agar lateks segar tetap cair selama pengangkutan, petani menambahkan **larutan amonia**. Banyak pelajar tertukar antara peran asam dan amonia, maka pegang mekanisme ionnya: amonia bersifat basa, sehingga ion <InlineMath math="\mathrm{OH^-}" /> menetralkan asam hasil bakteri sebelum sempat menyentuh membran protein.
+
+> Asam menetralkan membran protein bermuatan negatif sehingga partikel karet menggumpal, sedangkan amonia menetralkan asam agar lateks tetap cair.
+
+### Ikatan Silang Belerang dan Pemulihan Elastisitas
+
+Sesudah menggumpal, karet yang belum divulkanisasi tetap lemah karena rantai poliisoprena panjang mudah saling meluncur saat ditarik dan tidak kembali utuh. Pemanasan karet alam dengan belerang memicu **vulkanisasi**: atom belerang bereaksi pada ikatan rangkap dua karbon untuk membentuk **ikatan silang belerang** antarrantai.
 
 | Sifat | Karet belum divulkanisasi | Karet tervulkanisasi |
 | :--- | :--- | :--- |
@@ -222,49 +314,48 @@ Saat asam ditambahkan, ion <InlineMath math="\mathrm{H^+}" /> menetralkan muatan
 | Ketahanan panas | Lengket saat panas | Tahan panas |
 | Ketahanan oksidasi | Mudah teroksidasi | Lebih tahan |
 
-**Karet sintetis**, seperti neoprena, tahan minyak dan panas, jadi dipakai untuk selang minyak dan baju selam. Namun kebanyakan polimer sintetis **tidak bisa terurai secara hayati**. Pembakaran PVC melepaskan hidrogen klorida yang beracun, jadi plastik perlu dikurangi, dipakai ulang, dan didaur ulang.
+Ganti keadaan antara karet mentah dan karet tervulkanisasi di bawah, lalu geser tarikan untuk melihat cara jembatan belerang menahan pergeseran rantai.
 
-## Kesalahan Umum tentang Polimer
+<RubberVulcanizationLab
+  title={<>Ikatan Silang Belerang dan Elastisitas Karet</>}
+  description={
+    <>
+      Bandingkan rantai poliisoprena tanpa tautan pada lateks alami dengan
+      rantai berjembatan belerang pada karet tervulkanisasi saat ditarik.
+    </>
+  }
+  footer={
+    <>
+      Ikatan silang belerang menahan rantai bergeser dan menarik karet kembali.
+    </>
+  }
+  states={["naturalLatex", "vulcanisedRubber"]}
+  stretch={{ min: 0, max: 100, value: 40 }}
+  labels={{
+    state: "Keadaan karet",
+    states: {
+      naturalLatex: {
+        name: "Karet belum divulkanisasi",
+        elasticityNote: <>Rantai saling bergeser permanen saat gaya tarikan bekerja.</>,
+        heatNote: <>Melunak dan menjadi lengket saat dipanaskan.</>,
+      },
+      vulcanisedRubber: {
+        name: "Karet tervulkanisasi",
+        elasticityNote: <>Ikatan silang belerang menarik rantai kembali ke posisi asal.</>,
+        heatNote: <>Tetap kuat dan tidak melunak pada suhu tinggi.</>,
+      },
+    },
+    parts: {
+      isopreneChain: "Rantai poliisoprena",
+      sulfurCrosslink: "Ikatan silang belerang (-S-S-)",
+      doubleBond: "Ikatan rangkap C=C",
+      tensionArrow: "Gaya tarikan",
+    },
+    stretch: "Regangan terapan (%)",
+    elasticityNote: <>Sifat elastis</>,
+    heatNote: <>Ketahanan panas</>,
+    view: "Model tiga dimensi berkas rantai vulkanisasi karet",
+  }}
+/>
 
-| Kesalahan | Alasan keliru | Cara cek |
-| :--- | :--- | :--- |
-| Semua monomer bisa mengalami polimerisasi adisi. | Polimerisasi adisi butuh ikatan rangkap dua <InlineMath math="\mathrm{C{=}C}" />. | Etana tidak memiliki ikatan rangkap dua, jadi tidak membentuk polimer. |
-| Unit berulang polietena adalah <InlineMath math="\mathrm{-CH_2{=}CH_2-}" />. | Ikatan rangkap dua terbuka saat polimerisasi, jadi unit berulangnya <InlineMath math="\mathrm{-CH_2{-}CH_2-}" />. | Setiap atom karbon dalam rantai harus memiliki empat ikatan. |
-| Massa polimer kondensasi sama dengan total massa monomer. | Molekul kecil seperti air dilepaskan, jadi massa polimernya lebih kecil. | Kurangkan massa air dari total massa monomer. |
-| Amonia ditambahkan untuk menggumpalkan lateks. | Amonia menjaga muatan negatif membran, jadi lateks tetap cair. | Asamlah yang menggumpalkan lateks. |
-| Vulkanisasi membuat karet lebih lunak. | Dengan ikatan silang belerang, karet justru lebih kuat, elastis, dan tahan panas. | Bandingkan ban mobil dengan karet gelang yang sudah tua. |
-
-Kesalahan keempat paling sering muncul. Pegang pasangan ini: **asam menggumpalkan lateks, amonia menjaganya tetap cair**.
-
-## Latihan Polimer
-
-Soal-soal ini bergerak dari perhitungan monomer ke jenis polimerisasi dan karet. **Tunjukkan ikatan yang terbuka** saat kamu menulis unit berulang.
-
-1. Sebuah rantai PVC memiliki massa molekul relatif <InlineMath math="125.000" />. Hitung jumlah monomer kloroetena, <InlineMath math="\mathrm{CH_2{=}CHCl}" />, dalam rantai itu. Massa atom relatif Cl adalah <InlineMath math="35{,}5" />.
-
-2. Sebutkan monomer polipropena dan tulis unit berulangnya.
-
-3. Jelaskan mengapa amonia ditambahkan ke lateks yang baru disadap.
-
-4. Jelaskan mengapa karet tervulkanisasi lebih elastis daripada karet yang belum divulkanisasi.
-
-### Pembahasan
-
-**Pembahasan 1**: Hitung massa monomernya, lalu bagi:
-
-<MathContainer>
-<BlockMath math="M(\mathrm{C_2H_3Cl}) = 2 \times 12 + 3 \times 1 + 35{,}5 = 62{,}5" />
-<BlockMath math="n = \frac{125.000}{62{,}5} = 2000" />
-</MathContainer>
-
-Cek dengan grafik massa: angka PVC pada <InlineMath math="n = 2000" /> adalah <InlineMath math="62{,}5 \times 2000 = 125.000" />.
-
-**Pembahasan 2**: Monomer polipropena adalah **propena**, <InlineMath math="\mathrm{CH_2{=}CHCH_3}" />. Ikatan rangkap duanya terbuka, jadi unit berulangnya memiliki gugus metil sebagai cabang:
-
-<BlockMath math="\mathrm{-[CH_2{-}CH(CH_3)]_n-}" />
-
-Cek: unit berulang memiliki tiga atom karbon dan enam atom hidrogen, sama dengan propena.
-
-**Pembahasan 3**: Bakteri dalam lateks menghasilkan asam, dan ion <InlineMath math="\mathrm{H^+}" /> menetralkan membran protein yang bermuatan negatif. **Amonia** adalah basa, jadi ion <InlineMath math="\mathrm{OH^-}" /> menetralkan asam itu. Membran **tetap bermuatan negatif**, partikel karet terus saling tolak, dan lateks tidak menggumpal.
-
-**Pembahasan 4**: Pada karet tervulkanisasi, **ikatan silang belerang** menghubungkan rantai polimer. Saat karet ditarik, rantai tidak bisa bergeser jauh satu sama lain. Saat gaya dilepas, ikatan silang **menarik rantai kembali** ke posisi semula, jadi karet kembali ke bentuk asalnya.
+Amati cara jembatan belerang bekerja layaknya pegas mikroskopis: alih-alih melunakkan karet, vulkanisasi mengunci rantai agar tidak bergeser permanen sekaligus memberi kekuatan dan ketahanan panas pada ban di aspal terik. **Karet sintetis** seperti neoprena melangkah lebih jauh dengan ketahanan terhadap minyak pada selang bahan bakar dan baju selam. Karena kebanyakan polimer sintetis **tidak terurai secara hayati** dan pembakaran PVC melepaskan gas hidrogen klorida yang beracun, pengurangan, pemakaian ulang, dan daur ulang plastik tetap wajib dijaga.

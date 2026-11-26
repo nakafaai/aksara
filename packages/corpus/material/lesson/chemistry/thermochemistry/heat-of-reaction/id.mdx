@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Termokimia dan Perubahan Entalpi Reaksi",
   description:
-    "Bedakan reaksi eksoterm dan endoterm, hitung kalor reaksi dengan Q = mcΔT, dan bandingkan nilai kalor bahan bakar lewat contoh lengkap dan latihan.",
+    "Bedakan reaksi eksoterm dan endoterm, hitung kalor reaksi dari perubahan suhu, ukur entalpi penetralan dan pendesakan, lalu bandingkan nilai kalor bahan bakar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Termokimia",
@@ -9,20 +9,28 @@ export const metadata = {
 
 ## Reaksi Melepas atau Menyerap Kalor
 
-**Termokimia** mempelajari perubahan kalor dalam reaksi kimia. Reaksi **eksoterm** melepas kalor ke lingkungan, jadi suhu campuran naik dan perubahan entalpinya, <InlineMath math="\Delta H" />, bernilai negatif. Reaksi **endoterm** menyerap kalor, jadi suhu turun dan <InlineMath math="\Delta H" /> positif. Kalor diukur dengan <InlineMath math="Q = mc\Delta T" />, lalu <InlineMath math="\Delta H = -\dfrac{Q}{n}" /> untuk setiap mol. Di sini kamu mengubah perubahan entalpi pada diagram energi, memanaskan air dalam ketel, dan menghitung kalor penetralan, pendesakan, dan pembakaran.
+Dekatkan tangan ke api unggun dan telapak tangan langsung terasa hangat. Tempelkan kantong dingin instan ke lutut yang memar dan permukaannya langsung terasa dingin dalam hitungan detik. Dua kejadian sehari-hari ini terjadi karena **termokimia** melacak perpindahan kalor setiap kali zat bereaksi.
 
-Kalor itu berasal dari **ikatan kimia**. Memutus ikatan pada pereaksi **menyerap** energi, dan membentuk ikatan baru pada hasil reaksi **melepas** energi. Jika energi yang dilepas lebih besar daripada energi yang diserap, reaksinya eksoterm.
+Reaksi **eksoterm** melepas kalor ke lingkungan, jadi suhu campuran naik dan perubahan entalpinya, <InlineMath math="\Delta H" />, bernilai negatif. Reaksi **endoterm** menyerap kalor dari lingkungan, jadi suhu campuran turun dan <InlineMath math="\Delta H" /> bernilai positif.
 
-Geser penggeser <InlineMath math="\Delta H" /> di bawah. Saat <InlineMath math="\Delta H" /> negatif, tingkat energi hasil reaksi lebih rendah daripada pereaksi. Saat <InlineMath math="\Delta H" /> positif, tingkat energi hasil lebih tinggi.
+Semua perubahan kalor ini bersumber dari **ikatan kimia**. Memutus ikatan lama pada pereaksi selalu **menyerap** energi, sedangkan membentuk ikatan baru pada hasil reaksi **melepas** energi. Memisahkan dua atom terikat butuh tenaga seperti memisahkan dua magnet kuat, jadi reaksi bersifat eksoterm saat ikatan baru melepas energi melebihi biaya pemutusan ikatan lama.
+
+Geser penggeser <InlineMath math="\Delta H" /> di bawah untuk melihat profil energinya. Nilai negatif menurunkan tingkat energi hasil reaksi di bawah pereaksi, sedangkan nilai positif mengangkatnya lebih tinggi.
 
 <MathVisual
   title={<>Profil Energi Reaksi Eksoterm dan Endoterm</>}
   description={
     <>
       Pereaksi berada pada tingkat <InlineMath math="50" /> dan hasil reaksi
-      pada tingkat <InlineMath math="50 + \Delta H" />. Punuk di tengah adalah
-      energi yang perlu diserap untuk memutus ikatan sebelum ikatan baru
-      terbentuk.
+      pada tingkat <InlineMath math="50 + \Delta H" />. Punuk di tengah
+      menunjukkan energi aktivasi yang diperlukan untuk memutus ikatan sebelum
+      ikatan baru terbentuk.
+    </>
+  }
+  footer={
+    <>
+      Geser penggeser melewati nol untuk membandingkan profil eksoterm dan
+      endoterm.
     </>
   }
   scene={{
@@ -49,26 +57,39 @@ Geser penggeser <InlineMath math="\Delta H" /> di bawah. Saat <InlineMath math="
   }}
 />
 
-Kamu sudah kenal kedua jenis ini. Pembakaran bahan bakar dan penetralan asam adalah reaksi eksoterm. Melarutkan amonium nitrat dalam air adalah proses endoterm, dan itulah prinsip kantong dingin instan untuk cedera olahraga.
+Perhatikan bahwa punuk di tengah tidak pernah hilang, bahkan pada reaksi yang sangat eksoterm, karena ikatan lama tetap harus direnggangkan lebih dulu. Selisih tinggi antara awal dan akhir itulah <InlineMath math="\Delta H" />.
+
+> Saat angka termometer naik, reaksi sedang melepas kalor ke air di sekitarnya, jadi perubahan entalpinya selalu bertanda negatif.
+
+Coba uji cepat dengan kantong dingin instan. Saat padatan amonium nitrat dilarutkan dalam air, suhu larutan turun karena proses pelarutan menarik kalor dari air. Penurunan suhu ini menandakan proses **endoterm**, tanda <InlineMath math="\Delta H" /> **positif**, dan tingkat energi hasil berada lebih tinggi daripada pereaksi pada diagram energi.
 
 ## Mengukur Kalor lewat Perubahan Suhu
 
-Kalor yang dilepas reaksi dalam larutan diserap oleh air dalam larutan itu. Kalor ini dihitung dengan:
+Untuk mengubah pembacaan termometer menjadi joule, bayangkan air dalam gelas sebagai spons yang menampung seluruh kalor reaksi. Kamu menghitung kalor yang berpindah, <InlineMath math="Q" />, dari massa larutan, kalor jenis air, dan perubahan suhunya:
 
 <BlockMath math="Q = mc\Delta T" />
 
-Di sini <InlineMath math="m" /> adalah massa larutan dalam gram, <InlineMath math="c = 4{,}2\ \text{J g}^{-1}\,^\circ\text{C}^{-1}" /> adalah **kalor jenis air**, dan <InlineMath math="\Delta T" /> adalah perubahan suhu. Massa jenis larutan berair dianggap <InlineMath math="1\ \text{g/mL}" />, jadi <InlineMath math="100\ \text{mL}" /> larutan bermassa <InlineMath math="100\ \text{g}" />.
+Setelah memperoleh <InlineMath math="Q" />, bagi hasilnya dengan jumlah mol zat yang bereaksi, <InlineMath math="n" />, untuk mendapatkan **perubahan entalpi molar** per mol:
 
-Rumus yang sama memanaskan air dalam ketel listrik. Pilih massa air di bawah: dua kali massa butuh dua kali energi untuk kenaikan suhu yang sama.
+<BlockMath math="\Delta H = -\frac{Q}{n}" />
+
+Di sini <InlineMath math="m" /> adalah **massa larutan** dalam gram, <InlineMath math="c = 4{,}2\ \text{J g}^{-1}\,^\circ\text{C}^{-1}" /> adalah **kalor jenis air**, dan <InlineMath math="\Delta T" /> adalah perubahan suhu. Massa jenis larutan berair dianggap <InlineMath math="1\ \text{g/mL}" />, jadi <InlineMath math="100\ \text{mL}" /> larutan bermassa <InlineMath math="100\ \text{g}" />. Jangan masukkan massa serbuk pereaksi sebagai <InlineMath math="m" />, karena air dalam larutanlah yang menyerap atau melepas kalor.
+
+Ketel listrik mengikuti aturan yang persis sama. Pilih massa air yang berbeda di bawah dan amati bagaimana energi pemanasan ikut bertambah.
 
 <KettleHeatingLab
   title={<>Energi untuk Mendidihkan Air dalam Ketel</>}
   description={
     <>
       Ketel <InlineMath math="2100\ \text{W}" /> memanaskan air dari{" "}
-      <InlineMath math="25\ ^\circ\text{C}" /> sampai mendidih. Energinya{" "}
-      <InlineMath math="Q = mc\Delta T" /> dengan{" "}
-      <InlineMath math="c = 4200\ \text{J kg}^{-1}\,\text{K}^{-1}" />.
+      <InlineMath math="25\ ^\circ\text{C}" /> sampai mendidih dengan kalor
+      jenis <InlineMath math="c = 4200\ \text{J kg}^{-1}\,\text{K}^{-1}" />.
+    </>
+  }
+  footer={
+    <>
+      Menggandakan massa air menggandakan energi pemanasan sekaligus waktu
+      didih.
     </>
   }
   labels={{
@@ -81,15 +102,95 @@ Rumus yang sama memanaskan air dalam ketel listrik. Pilih massa air di bawah: du
   }}
 />
 
-Cek satu angka: menaikkan suhu <InlineMath math="1\ \text{kg}" /> air sebesar <InlineMath math="75\ \text{K}" /> butuh <InlineMath math="1 \times 4200 \times 75 = 315.000\ \text{J}" />. Dalam reaksi kimia, energi sebanyak itu berasal dari ikatan, bukan dari elemen pemanas.
+Mengubah isi ketel dari setengah menjadi penuh menggandakan massa air sekaligus joule yang dibutuhkan untuk lonjakan suhu yang sama. Cek langsung pada <InlineMath math="1\ \text{kg}" /> air yang suhunya naik <InlineMath math="75\ \text{K}" />:
+
+<BlockMath math="Q = 1 \times 4200 \times 75 = 315.000\ \text{J}" />
+
+Di dalam campuran reaksi kimia, penataan ulang ikatan menyuplai energi panas jenis itu tanpa elemen pemanas listrik.
+
+## Membaca Entalpi dalam Kalorimeter
+
+Di laboratorium sekolah, **kalorimeter gelas polistirena** sederhana menahan kalor dengan cukup baik untuk mengukur entalpi reaksi. Pengaduk menjaga suhu larutan merata sementara termometer mencatat suhu puncak atau suhu terendah. Jelajahi empat reaksi klasik di bawah dan ubah jumlah molnya untuk melihat tanggapan termometer.
+
+<CalorimeterEnthalpyLab
+  title={<>Mengukur Entalpi Reaksi dalam Gelas Polistirena</>}
+  description={
+    <>
+      Pilih reaksi lalu ubah jumlah mol yang bereaksi. Amati arah panah kalor,
+      perubahan suhu termometer, dan tanda entalpi di dalam gelas berinsulasi.
+    </>
+  }
+  footer={
+    <>
+      Bandingkan arah aliran kalor dan bacaan termometer pada empat jenis
+      reaksi.
+    </>
+  }
+  reactions={["neutralisation", "displacement", "combustion", "dissolution"]}
+  moles={{ min: 0.05, max: 0.5, value: 0.1 }}
+  labels={{
+    deltaH: <>Perubahan entalpi <InlineMath math="\Delta H" /></>,
+    moles: "Jumlah mol bereaksi",
+    parts: {
+      cup: "Gelas polistirena",
+      thermometer: "Termometer",
+      stirrer: "Pengaduk",
+      solution: "Larutan berair",
+      heatArrow: "Aliran kalor",
+    },
+    reaction: "Pilih reaksi",
+    reactions: {
+      neutralisation: {
+        enthalpySign: <InlineMath math="\Delta H < 0" />,
+        name: "Penetralan",
+        thermalNote: <>Asam dan basa melepas kalor ke larutan.</>,
+      },
+      displacement: {
+        enthalpySign: <InlineMath math="\Delta H < 0" />,
+        name: "Pendesakan",
+        thermalNote: <>Logam lebih reaktif melepas kalor besar.</>,
+      },
+      combustion: {
+        enthalpySign: <InlineMath math="\Delta H < 0" />,
+        name: "Pembakaran",
+        thermalNote: <>Bahan bakar menyalurkan kalor kuat ke air.</>,
+      },
+      dissolution: {
+        enthalpySign: <InlineMath math="\Delta H > 0" />,
+        name: "Pelarutan",
+        thermalNote: <>Amonium nitrat menyerap kalor dari air.</>,
+      },
+    },
+    tempChange: <>Perubahan suhu <InlineMath math="\Delta T" /></>,
+    view: "Kalorimeter gelas polistirena",
+  }}
+/>
+
+Amati perubahan tanda saat kamu berpindah dari tiga reaksi pertama ke pelarutan. Menambah mol membuat ayunan suhu makin lebar, tetapi **entalpi molar** per mol tetap khas bagi masing-masing reaksi.
+
+Satu jebakan tanda sangat sering menjerat siswa pada soal termokimia: melihat suhu naik lalu menuliskan <InlineMath math="\Delta H" /> positif. Pegang urutan **suhu naik, kalor keluar, entalpi negatif** dengan erat, dan tulis satuan di setiap baris supaya joule tidak tertukar dengan kilojoule.
+
+Terapkan alur itu pada hitungan **kalor pengendapan**. Sebanyak <InlineMath math="25\ \text{mL}" /> larutan perak nitrat <InlineMath math="0{,}50\ \text{M}" /> dicampur dengan <InlineMath math="25\ \text{mL}" /> larutan natrium klorida <InlineMath math="0{,}50\ \text{M}" />, dan termometer naik <InlineMath math="3{,}5\ ^\circ\text{C}" />. Volume gabungannya <InlineMath math="50\ \text{mL}" />, jadi massa larutannya <InlineMath math="50\ \text{g}" />:
+
+<MathContainer>
+<BlockMath math="Q = 50 \times 4{,}2 \times 3{,}5 = 735\ \text{J}" />
+<BlockMath math="n(\mathrm{AgCl}) = 0{,}50 \times \frac{25}{1000} = 0{,}0125\ \text{mol}" />
+<BlockMath math="\Delta H = -\frac{735}{0{,}0125} = -58.800\ \text{J/mol} = -58{,}8\ \text{kJ/mol}" />
+</MathContainer>
+
+Kedua larutan menyuplai jumlah mol yang sama persis, jadi tidak ada pereaksi yang tersisa, dan tanda negatif cocok dengan campuran yang menghangat.
 
 ## Kalor Penetralan dan Kalor Pendesakan
 
-**Kalor penetralan** adalah perubahan entalpi saat <InlineMath math="1" /> mol air terbentuk dari reaksi asam dengan basa. Untuk asam kuat dan basa kuat, nilainya hampir selalu sama, sekitar <InlineMath math="-57{,}3\ \text{kJ/mol}" />, karena reaksi sebenarnya selalu <InlineMath math="\mathrm{H^+} + \mathrm{OH^-} \rightarrow \mathrm{H_2O}" />.
+Dua percobaan kalorimeter paling sering berlangsung langsung dalam larutan berair: **penetralan asam dengan basa** dan **pendesakan logam dari larutan garamnya**. Keduanya memakai tiga langkah hitung yang sama, namun masing-masing menyimpan jebakan khas soal konsentrasi, asam lemah, dan pereaksi berlebih.
 
-Coba satu contoh. Sebanyak <InlineMath math="50\ \text{mL}" /> asam klorida <InlineMath math="1{,}0\ \text{M}" /> dicampur dengan <InlineMath math="50\ \text{mL}" /> natrium hidroksida <InlineMath math="1{,}0\ \text{M}" />. Suhu naik <InlineMath math="6{,}8\ ^\circ\text{C}" />. Hitung kalor penetralannya.
+### Entalpi Penetralan dan Konsentrasi
 
-**Hitung kalornya dulu, lalu bagi dengan mol air**:
+**Kalor penetralan** adalah perubahan entalpi saat <InlineMath math="1\ \text{mol}" /> air terbentuk dari reaksi asam dan basa. Pasangan asam kuat dan basa kuat mana pun memberi nilai yang hampir sama, sekitar <InlineMath math="-57{,}3\ \text{kJ/mol}" />, karena reaksi inti yang terjadi selalu reaksi ion bersih berikut:
+
+<BlockMath math="\mathrm{H^+} + \mathrm{OH^-} \rightarrow \mathrm{H_2O}" />
+
+Ikuti satu contoh data laboratorium. Mencampur <InlineMath math="50\ \text{mL}" /> asam klorida <InlineMath math="1{,}0\ \text{M}" /> dengan <InlineMath math="50\ \text{mL}" /> natrium hidroksida <InlineMath math="1{,}0\ \text{M}" /> menaikkan suhu sebesar <InlineMath math="6{,}8\ ^\circ\text{C}" />. Hitung kalor yang diserap campuran <InlineMath math="100\ \text{g}" /> dulu, lalu bagi dengan mol air yang terbentuk:
 
 <MathContainer>
 <BlockMath math="Q = 100 \times 4{,}2 \times 6{,}8 = 2856\ \text{J}" />
@@ -97,17 +198,23 @@ Coba satu contoh. Sebanyak <InlineMath math="50\ \text{mL}" /> asam klorida <Inl
 <BlockMath math="\Delta H = -\frac{2856}{0{,}050} = -57.120\ \text{J/mol} \approx -57{,}1\ \text{kJ/mol}" />
 </MathContainer>
 
-Cek: jawabannya dekat dengan nilai standar <InlineMath math="-57{,}3\ \text{kJ/mol}" />, dan tandanya negatif karena suhu naik.
+Nilai itu sangat dekat dengan standar <InlineMath math="-57{,}3\ \text{kJ/mol}" />, dan tanda negatif menegaskan reaksinya eksoterm.
 
-Kenaikan suhu bergantung pada **konsentrasi**, bukan volume. Jika volume kedua larutan digandakan, mol air dan massa larutan sama-sama berlipat dua, jadi <InlineMath math="\Delta T" /> tidak berubah. Ubah konsentrasi asam dan basa di bawah.
+Apa yang terjadi jika volume kedua larutan digandakan pada konsentrasi tetap? Banyak pelajar menduga kenaikan suhunya berlipat dua, padahal <InlineMath math="\Delta T" /> tidak berubah karena mol air dan massa larutan yang dipanaskan sama-sama berlipat dua. Hanya **konsentrasi** yang mengubah <InlineMath math="\Delta T" />. Geser penggeser konsentrasi di bawah untuk menguji hubungan lurus ini.
 
 <MathVisual
   title={<>Kenaikan Suhu Penetralan terhadap Konsentrasi</>}
   description={
     <>
       Volume sama asam kuat dan basa kuat dengan konsentrasi{" "}
-      <InlineMath math="M" />. Kenaikan suhunya{" "}
-      <InlineMath math="\Delta T = \dfrac{57.300M}{2000 \times 4{,}2} \approx 6{,}82M" />.
+      <InlineMath math="M" />. Kenaikan suhunya mengikuti{" "}
+      <InlineMath math="\Delta T \approx 6{,}82M" />.
+    </>
+  }
+  footer={
+    <>
+      Konsentrasi lebih tinggi memadatkan lebih banyak ion pereaksi per
+      mililiter.
     </>
   }
   scene={{
@@ -131,7 +238,15 @@ Kenaikan suhu bergantung pada **konsentrasi**, bukan volume. Jika volume kedua l
   }}
 />
 
-**Kalor pendesakan** adalah perubahan entalpi saat <InlineMath math="1" /> mol logam didesak dari larutan garamnya. Serbuk seng berlebih ditambahkan ke <InlineMath math="50\ \text{mL}" /> larutan tembaga(II) sulfat <InlineMath math="0{,}20\ \text{M}" />, dan suhu naik <InlineMath math="10{,}0\ ^\circ\text{C}" />. Ion tembaga(II) adalah pereaksi pembatas, jadi hitung mol dari ion itu:
+Ketika konsentrasi naik dua kali dari <InlineMath math="1{,}0" /> ke <InlineMath math="2{,}0\ \text{mol/L}" />, volume air yang sama menerima dua kali lipat kalor sehingga kenaikan termometer ikut berlipat dua.
+
+Sekarang bayangkan mengganti asam klorida dengan **asam asetat**, suatu **asam lemah**. Kalor penetralannya dengan natrium hidroksida lebih kecil daripada <InlineMath math="57{,}3\ \text{kJ/mol}" /> karena asam asetat hanya terionisasi sebagian dalam air. Selama penetralan, molekul asam yang masih utuh harus terionisasi dulu untuk melepas ion <InlineMath math="\mathrm{H^+}" />, dan langkah ionisasi itu **menyerap sebagian kalor**, sehingga kalor bersih per mol air menjadi lebih kecil.
+
+### Pendesakan Logam dan Pereaksi Pembatas
+
+**Kalor pendesakan** adalah perubahan entalpi saat <InlineMath math="1\ \text{mol}" /> logam didesak keluar dari larutan garamnya oleh logam yang lebih reaktif. Misalkan serbuk seng berlebih diaduk ke dalam <InlineMath math="50\ \text{mL}" /> larutan tembaga(II) sulfat <InlineMath math="0{,}20\ \text{M}" />, dan suhu naik <InlineMath math="10{,}0\ ^\circ\text{C}" />.
+
+Jebakan yang harus dihindari adalah menghitung mol dari **seng berlebih**, karena sisa seng hanya mengendap tanpa bereaksi di dasar gelas. Selalu hitung mol dari **pereaksi pembatas**, dalam hal ini ion tembaga(II) yang habis terpakai:
 
 <MathContainer>
 <BlockMath math="Q = 50 \times 4{,}2 \times 10{,}0 = 2100\ \text{J}" />
@@ -139,19 +254,28 @@ Kenaikan suhu bergantung pada **konsentrasi**, bukan volume. Jika volume kedua l
 <BlockMath math="\Delta H = -\frac{2100}{0{,}010} = -210.000\ \text{J/mol} = -210\ \text{kJ/mol}" />
 </MathContainer>
 
-Cek dengan deret elektrokimia: seng dan tembaga berjauhan dalam deret itu, jadi reaksinya sangat eksoterm. Nilai <InlineMath math="-210\ \text{kJ/mol}" /> jauh lebih besar daripada kalor penetralan.
+Deret elektrokimia menjelaskan besarnya angka ini. Seng terletak jauh di atas tembaga, jadi perpindahan elektronnya melepas energi per mol jauh lebih besar daripada penetralan asam dan basa.
 
 ## Kalor Pembakaran dan Nilai Kalor Bahan Bakar
 
-**Kalor pembakaran** adalah kalor yang dilepas saat <InlineMath math="1" /> mol zat terbakar sempurna dalam oksigen berlebih. Pembakaran metana memutus ikatan <InlineMath math="\mathrm{C{-}H}" /> dan <InlineMath math="\mathrm{O{=}O}" />, lalu membentuk ikatan <InlineMath math="\mathrm{C{=}O}" /> dan <InlineMath math="\mathrm{O{-}H}" /> yang lebih kuat. Itulah sebabnya pembakaran melepas banyak kalor.
+Membakar bahan bakar di udara melepas kalor jauh lebih besar daripada reaksi larutan karena ikatan baru dalam karbon dioksida dan air sangat kuat. Mengukur **kalor pembakaran** per mol menunjukkan pengaruh ukuran molekul, sedangkan **nilai kalor bahan bakar** per gram menunjukkan bahan bakar mana yang paling padat energi di dalam tangki.
+
+### Energi Ikatan dan Pembakaran Alkohol
+
+**Kalor pembakaran** adalah kalor yang dilepas saat <InlineMath math="1\ \text{mol}" /> zat terbakar sempurna dalam oksigen berlebih. Saat metana terbakar, memutus ikatan <InlineMath math="\mathrm{C{-}H}" /> dan <InlineMath math="\mathrm{O{=}O}" /> menyerap energi, lalu membentuk ikatan <InlineMath math="\mathrm{C{=}O}" /> dan <InlineMath math="\mathrm{O{-}H}" /> yang jauh lebih kuat mengembalikan energi berlimpah.
 
 <MethaneCombustionEquationLab
   title={<>Ikatan yang Putus dan Terbentuk saat Metana Terbakar</>}
   description={
     <>
       Satu molekul metana bereaksi dengan dua molekul oksigen membentuk satu
-      molekul karbon dioksida dan dua molekul air. Kalor pembakaran metana
-      adalah <InlineMath math="-890\ \text{kJ/mol}" />.
+      molekul karbon dioksida dan dua molekul air dengan kalor{" "}
+      <InlineMath math="-890\ \text{kJ/mol}" />.
+    </>
+  }
+  footer={
+    <>
+      Ikatan baru karbon-oksigen dan oksigen-hidrogen melepas kalor besar.
     </>
   }
   labels={{
@@ -164,7 +288,9 @@ Cek dengan deret elektrokimia: seng dan tembaga berjauhan dalam deret itu, jadi 
   }}
 />
 
-Di laboratorium, kalor pembakaran alkohol diukur dengan memanaskan air dalam kaleng tembaga. Sebanyak <InlineMath math="0{,}46\ \text{g}" /> etanol, <InlineMath math="\mathrm{C_2H_5OH}" />, dibakar dan menaikkan suhu <InlineMath math="200\ \text{mL}" /> air sebesar <InlineMath math="12{,}0\ ^\circ\text{C}" />. Massa molar etanol <InlineMath math="46\ \text{g/mol}" />:
+Setiap atom dari sisi pereaksi hadir utuh pada sisi hasil, namun susunan ikatan barunya berada pada tingkat energi jauh lebih rendah sehingga kelebihan energinya keluar sebagai nyala dan panas.
+
+Di laboratorium, kalor pembakaran alkohol diperkirakan dengan membakar lampu spiritus di bawah kaleng tembaga berisi air. Misalkan pembakaran <InlineMath math="0{,}46\ \text{g}" /> etanol (<InlineMath math="\mathrm{C_2H_5OH}" />, massa molar <InlineMath math="46\ \text{g/mol}" />) menaikkan suhu <InlineMath math="200\ \text{mL}" /> air sebesar <InlineMath math="12{,}0\ ^\circ\text{C}" />:
 
 <MathContainer>
 <BlockMath math="Q = 200 \times 4{,}2 \times 12{,}0 = 10.080\ \text{J}" />
@@ -172,17 +298,22 @@ Di laboratorium, kalor pembakaran alkohol diukur dengan memanaskan air dalam kal
 <BlockMath math="\Delta H = -\frac{10.080}{0{,}010} = -1.008.000\ \text{J/mol} \approx -1008\ \text{kJ/mol}" />
 </MathContainer>
 
-Cek dengan nilai standar, <InlineMath math="-1376\ \text{kJ/mol}" />. Hasil laboratorium lebih kecil karena **kalor hilang** ke udara dan ke kaleng, dan sebagian etanol terbakar tidak sempurna.
+Bandingkan angka itu dengan nilai standar <InlineMath math="-1376\ \text{kJ/mol}" />. Hasil laboratorium selalu lebih kecil karena **kalor hilang** ke udara sekitar dan ke dinding kaleng tembaga, ditambah sebagian etanol terbakar tidak sempurna menjadi jelaga.
 
-Kalor pembakaran alkohol bertambah seiring bertambahnya jumlah atom karbon. Nilai standar untuk metanol sampai butan-1-ol adalah <InlineMath math="726" />, <InlineMath math="1376" />, <InlineMath math="2021" />, dan <InlineMath math="2676\ \text{kJ/mol}" />. Setiap gugus <InlineMath math="\mathrm{CH_2}" /> tambahan menambah sekitar <InlineMath math="650\ \text{kJ/mol}" />, karena satu atom karbon dan dua atom hidrogen lagi ikut terbakar. Ubah jumlah atom karbon di bawah.
+Dari metanol hingga butan-1-ol, kalor pembakaran standar meningkat teratur melalui <InlineMath math="726" />, <InlineMath math="1376" />, <InlineMath math="2021" />, dan <InlineMath math="2676\ \text{kJ/mol}" />. Setiap tambahan gugus <InlineMath math="\mathrm{CH_2}" /> menyumbang satu atom karbon dan dua atom hidrogen tambahan yang ikut terbakar, sehingga energinya bertambah sekitar <InlineMath math="650\ \text{kJ/mol}" />. Ubah jumlah atom karbon di bawah untuk mengamati polanya.
 
 <MathVisual
   title={<>Kalor Pembakaran Alkohol terhadap Jumlah Atom Karbon</>}
   description={
     <>
       Garis lurus <InlineMath math="650n + 76" /> mendekati nilai standar kalor
-      pembakaran, dalam <InlineMath math="\text{kJ/mol}" />, untuk alkohol
-      dengan <InlineMath math="n" /> atom karbon.
+      pembakaran dalam <InlineMath math="\text{kJ/mol}" /> untuk alkohol dengan{" "}
+      <InlineMath math="n" /> atom karbon.
+    </>
+  }
+  footer={
+    <>
+      Setiap gugus karbon tambahan menaikkan kalor pembakaran secara tetap.
     </>
   }
   scene={{
@@ -206,53 +337,17 @@ Kalor pembakaran alkohol bertambah seiring bertambahnya jumlah atom karbon. Nila
   }}
 />
 
-**Nilai kalor bahan bakar** adalah energi yang dilepas oleh <InlineMath math="1\ \text{g}" /> bahan bakar, dalam <InlineMath math="\text{kJ/g}" />. Nilai ini dipakai untuk memilih bahan bakar, bersama biaya, ketersediaan, dan dampak pembakarannya terhadap lingkungan.
+Karena kemiringan garisnya konstan dari satu alkohol ke alkohol berikutnya, kamu bisa memperkirakan kalor pembakaran rantai lebih panjang langsung dari jumlah atom karbonnya.
 
-## Kesalahan Umum tentang Termokimia
+### Nilai Kalor dan Pemilihan Bahan Bakar
 
-| Kesalahan | Alasan keliru | Cara cek |
-| :--- | :--- | :--- |
-| Suhu naik, jadi <InlineMath math="\Delta H" /> positif. | Suhu naik berarti kalor dilepas, jadi <InlineMath math="\Delta H" /> negatif. | Reaksi eksoterm selalu bertanda negatif. |
-| Massa dalam <InlineMath math="Q = mc\Delta T" /> adalah massa pereaksi. | Massa itu adalah massa larutan atau air yang menyerap kalor. | Pakai volume total larutan dalam <InlineMath math="\text{mL}" />. |
-| Menggandakan volume asam dan basa menggandakan kenaikan suhu. | Mol air dan massa larutan sama-sama berlipat dua, jadi <InlineMath math="\Delta T" /> tetap. | Hanya konsentrasi yang mengubah <InlineMath math="\Delta T" />. |
-| Pada pendesakan, mol dihitung dari seng yang berlebih. | Pereaksi berlebih tidak habis bereaksi, jadi mol dihitung dari pereaksi pembatas. | Cari zat yang habis terpakai. |
-| Memutus ikatan melepas energi. | Memutus ikatan menyerap energi, dan membentuk ikatan melepas energi. | Bayangkan energi yang dibutuhkan untuk menarik dua atom sampai terpisah. |
+Entalpi molar membandingkan bahan bakar per mol, padahal roket, kompor berkemah, dan tangki kendaraan lebih peduli pada berat. **Nilai kalor bahan bakar** adalah energi yang dilepas saat <InlineMath math="1\ \text{g}" /> bahan bakar terbakar sempurna, dinyatakan dalam <InlineMath math="\text{kJ/g}" />.
 
-Kesalahan pertama paling sering muncul di soal pilihan ganda. Pegang rangkaian ini: **suhu naik, kalor keluar, <InlineMath math="\Delta H" /> negatif**.
-
-## Latihan Termokimia
-
-Soal-soal ini bergerak dari perhitungan kalor ke perbandingan bahan bakar dan penjelasan. **Tulis satuan di setiap langkah** supaya joule dan kilojoule tidak tertukar.
-
-1. Sebanyak <InlineMath math="25\ \text{mL}" /> larutan perak nitrat <InlineMath math="0{,}50\ \text{M}" /> dicampur dengan <InlineMath math="25\ \text{mL}" /> larutan natrium klorida <InlineMath math="0{,}50\ \text{M}" />. Suhu naik <InlineMath math="3{,}5\ ^\circ\text{C}" />. Hitung kalor pengendapan perak klorida.
-
-2. Kalor pembakaran metana <InlineMath math="-890\ \text{kJ/mol}" /> dan butana <InlineMath math="-2877\ \text{kJ/mol}" />. Hitung nilai kalor keduanya dan tentukan mana yang lebih tinggi. Massa molar metana <InlineMath math="16\ \text{g/mol}" /> dan butana <InlineMath math="58\ \text{g/mol}" />.
-
-3. Kalor penetralan asam asetat dengan natrium hidroksida lebih kecil daripada <InlineMath math="57{,}3\ \text{kJ/mol}" />. Jelaskan sebabnya.
-
-4. Saat amonium nitrat dilarutkan dalam air, suhu larutan turun. Tentukan jenis perubahan kalornya dan tanda <InlineMath math="\Delta H" />, lalu jelaskan tingkat energi hasil dibandingkan pereaksi.
-
-### Pembahasan
-
-**Pembahasan 1**: Volume totalnya <InlineMath math="50\ \text{mL}" />, jadi massa larutan <InlineMath math="50\ \text{g}" />:
-
-<MathContainer>
-<BlockMath math="Q = 50 \times 4{,}2 \times 3{,}5 = 735\ \text{J}" />
-<BlockMath math="n(\mathrm{AgCl}) = 0{,}50 \times \frac{25}{1000} = 0{,}0125\ \text{mol}" />
-<BlockMath math="\Delta H = -\frac{735}{0{,}0125} = -58.800\ \text{J/mol} = -58{,}8\ \text{kJ/mol}" />
-</MathContainer>
-
-Cek: kedua larutan memiliki jumlah mol yang sama, jadi tidak ada pereaksi berlebih, dan tanda negatif sesuai dengan suhu yang naik.
-
-**Pembahasan 2**: Bagi kalor pembakaran dengan massa molar:
+Bandingkan metana (<InlineMath math="\Delta H = -890\ \text{kJ/mol}" />, massa molar <InlineMath math="16\ \text{g/mol}" />) dengan butana (<InlineMath math="\Delta H = -2877\ \text{kJ/mol}" />, massa molar <InlineMath math="58\ \text{g/mol}" />). Bagi masing-masing kalor pembakaran molar dengan massa molarnya:
 
 <MathContainer>
 <BlockMath math="\text{Metana: } \frac{890}{16} = 55{,}6\ \text{kJ/g}" />
 <BlockMath math="\text{Butana: } \frac{2877}{58} = 49{,}6\ \text{kJ/g}" />
 </MathContainer>
 
-**Metana memiliki nilai kalor yang lebih tinggi**. Butana melepas lebih banyak kalor per mol, tetapi setiap mol butana juga jauh lebih berat. Cek: <InlineMath math="55{,}6 \times 16 = 890" />, jadi perbandingannya benar.
-
-**Pembahasan 3**: Asam asetat adalah **asam lemah** yang hanya terionisasi sebagian. Selama penetralan, molekul asam asetat harus terionisasi untuk melepas ion <InlineMath math="\mathrm{H^+}" />, dan ionisasi itu **menyerap sebagian kalor**. Jadi kalor bersih yang dilepas per mol air lebih kecil daripada <InlineMath math="57{,}3\ \text{kJ}" />.
-
-**Pembahasan 4**: Suhu turun berarti kalor diserap dari lingkungan, jadi pelarutan ini **endoterm** dan <InlineMath math="\Delta H" /> **positif**. Dalam diagram tingkat energi, tingkat energi hasil lebih tinggi daripada pereaksi, dan selisihnya adalah kalor yang diserap.
+Meskipun butana melepas lebih dari tiga kali kalor per mol, **metana memiliki nilai kalor yang lebih tinggi** karena setiap mol butana juga hampir empat kali lebih berat. Mengalikan <InlineMath math="55{,}6" /> kembali dengan <InlineMath math="16" /> menghasilkan <InlineMath math="890" />, jadi pembagiannya tepat. Dalam keputusan nyata, **nilai kalor** selalu dipertimbangkan bersama biaya, keamanan penyimpanan, ketersediaan pasokan, dan kebersihan gas buang.

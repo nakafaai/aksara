@@ -1,53 +1,30 @@
 export const metadata = {
   title: "Carbon Compound Notes for Form Five",
   description:
-    "Form 5 Chemistry Chapter 2: identify homologous series, explain reactions of alkanes, alkenes, alcohols and carboxylic acids, and name isomers.",
+    "Identify homologous series, separate crude oil fractions, compare alkane and alkene reactions, synthesise esters under reflux, and name structural isomers.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Carbon Compound",
 };
 
-## Carbon Compounds and Homologous Series
+## Carbon Families and Homologous Trends
 
-A **carbon compound** is a compound that contains carbon. Organic compounds come from living things, and a **hydrocarbon** is an organic compound made of carbon and hydrogen only. Carbon compounds are arranged in **homologous series**: families with the same general formula, the same functional group, and a <InlineMath math="\mathrm{CH_2}" /> difference between neighbouring members. Alkanes have the general formula <InlineMath math="\mathrm{C_nH_{2n+2}}" />. In these notes you rotate molecular models, compare alkanes with alkenes, pick out isomers, and work out the molar mass of each series.
+From cooking gas in a kitchen burner to the sweet scent of ripe pears, organic molecules owe their diversity to carbon's ability to form four strong covalent bonds and build long chains. A **carbon compound** is any compound containing carbon, and a **hydrocarbon** consists exclusively of carbon and hydrogen atoms.
+
+Chemists organise millions of organic molecules into **homologous series**, families that share one general formula, carry the same **functional group**, and differ by exactly one <InlineMath math="\mathrm{CH_2}" /> unit between consecutive members.
 
 | Homologous series | General formula | Functional group | Example |
 | :--- | :--- | :--- | :--- |
 | Alkane | <InlineMath math="\mathrm{C_nH_{2n+2}}" /> | Single bond <InlineMath math="\mathrm{C{-}C}" /> | Ethane, <InlineMath math="\mathrm{C_2H_6}" /> |
 | Alkene | <InlineMath math="\mathrm{C_nH_{2n}}" /> | Double bond <InlineMath math="\mathrm{C{=}C}" /> | Ethene, <InlineMath math="\mathrm{C_2H_4}" /> |
-| Alkyne | <InlineMath math="\mathrm{C_nH_{2n-2}}" /> | Triple bond | Ethyne, <InlineMath math="\mathrm{C_2H_2}" /> |
+| Alkyne | <InlineMath math="\mathrm{C_nH_{2n-2}}" /> | Triple bond <InlineMath math="\mathrm{C{\equiv}C}" /> | Ethyne, <InlineMath math="\mathrm{C_2H_2}" /> |
 | Alcohol | <InlineMath math="\mathrm{C_nH_{2n+1}OH}" /> | Hydroxyl, <InlineMath math="\mathrm{-OH}" /> | Ethanol, <InlineMath math="\mathrm{C_2H_5OH}" /> |
 | Carboxylic acid | <InlineMath math="\mathrm{C_nH_{2n+1}COOH}" /> | Carboxyl, <InlineMath math="\mathrm{-COOH}" /> | Ethanoic acid, <InlineMath math="\mathrm{CH_3COOH}" /> |
 | Ester | <InlineMath math="\mathrm{C_nH_{2n+1}COOC_mH_{2m+1}}" /> | Carboxylate, <InlineMath math="\mathrm{-COO-}" /> | Ethyl ethanoate |
 
-Pick an alkane in the model below. Each member differs from the one before by one <InlineMath math="\mathrm{CH_2}" /> group, and every carbon atom forms four single bonds.
+### Molar Mass Growth Across Hydrocarbon Series
 
-<MoleculeShapeLab
-  title={<>Members of the Alkane Homologous Series</>}
-  description={
-    <>
-      Methane, ethane, propane and hexane. Every bond between carbon atoms is a
-      single bond, so alkanes are saturated hydrocarbons.
-    </>
-  }
-  molecules={[
-    { id: "methane", name: "methane" },
-    { id: "ethane", name: "ethane" },
-    { id: "propane", name: "propane" },
-    { id: "hexane", name: "hexane" },
-  ]}
-  labels={{
-    atoms: <>Atoms</>,
-    choose: "Pick a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle</>,
-    view: "Alkane molecules",
-  }}
-/>
-
-The molar mass of each series grows by <InlineMath math="14\text{ g mol}^{-1}" /> for every carbon atom, because that's the mass of one <InlineMath math="\mathrm{CH_2}" /> group. Change the number of carbon atoms below and compare three series.
+Every step up a homologous series inserts one <InlineMath math="\mathrm{CH_2}" /> group, raising the **molar mass** by exactly <InlineMath math="14\text{ g mol}^{-1}" />. Because every hydrocarbon series climbs at the same rate per carbon atom, their molar mass lines run strictly parallel, separated only by the two hydrogen atoms lost when moving from an alkane (<InlineMath math="14n + 2" />) to an alkene (<InlineMath math="14n" />) or an alkyne (<InlineMath math="14n - 2" />). Slide <InlineMath math="n" /> below to track all three hydrocarbon families.
 
 <MathVisual
   title={<>Molar Mass of Alkanes, Alkenes and Alkynes</>}
@@ -57,6 +34,11 @@ The molar mass of each series grows by <InlineMath math="14\text{ g mol}^{-1}" /
       alkynes <InlineMath math="14n - 2" />, in <InlineMath math="\text{g mol}^{-1}" />.
       For <InlineMath math="n = 6" />, hexane has a molar mass of{" "}
       <InlineMath math="86" />.
+    </>
+  }
+  footer={
+    <>
+      Adding one carbon unit raises every hydrocarbon series by the same step.
     </>
   }
   scene={{
@@ -78,14 +60,75 @@ The molar mass of each series grows by <InlineMath math="14\text{ g mol}^{-1}" /
     ],
   }}
   labels={{
-    n: <>Number of carbon atoms <InlineMath math="n" /></>,
-    "alkane-mass": <>Molar mass of the alkane</>,
-    "alkene-mass": <>Molar mass of the alkene</>,
-    "alkyne-mass": <>Molar mass of the alkyne</>,
+    n: <>Carbon count <InlineMath math="n" /></>,
+    "alkane-mass": <>Alkane molar mass</>,
+    "alkene-mass": <>Alkene molar mass</>,
+    "alkyne-mass": <>Alkyne molar mass</>,
   }}
 />
 
-Physical properties change gradually along a series. As the molecules get bigger, the forces between them get stronger, so the **boiling point rises**.
+Look at how quickly that linear rule speeds up formula calculations. For octane (<InlineMath math="n = 8" />), substituting directly into <InlineMath math="\mathrm{C_nH_{2n+2}}" /> gives <InlineMath math="\mathrm{C_8H_{18}}" />, and both atomic summation and the linear shortcut yield the exact same molar mass:
+
+<MathContainer>
+<BlockMath math="M(\mathrm{C_8H_{18}}) = 8 \times 12 + 18 \times 1 = 114\text{ g mol}^{-1}" />
+<BlockMath math="14(8) + 2 = 114\text{ g mol}^{-1}" />
+</MathContainer>
+
+### Comparing Oxygenated and Hydrocarbon Molar Masses
+
+Replacing one hydrogen atom on an alkane with a **hydroxyl group**, <InlineMath math="\mathrm{-OH}" />, keeps the hydrogen count unchanged while inserting one oxygen atom of mass <InlineMath math="16\text{ g mol}^{-1}" />. As a result, alcohols follow <InlineMath math="14n + 18" />, sitting a constant <InlineMath math="16\text{ g mol}^{-1}" /> above alkanes and <InlineMath math="18\text{ g mol}^{-1}" /> above alkenes at every carbon count. Adjust <InlineMath math="n" /> from <InlineMath math="1" /> to <InlineMath math="10" /> below to compare alcohols against alkanes and alkenes directly.
+
+<MathVisual
+  title={<>Molar Mass Shift from Alkenes and Alkanes to Alcohols</>}
+  description={
+    <>
+      Alcohols <InlineMath math="14n + 18" />, alkanes <InlineMath math="14n + 2" />,
+      and alkenes <InlineMath math="14n" /> in{" "}
+      <InlineMath math="\text{g mol}^{-1}" /> across carbon counts from{" "}
+      <InlineMath math="1" /> to <InlineMath math="10" />.
+    </>
+  }
+  footer={
+    <>
+      One oxygen atom shifts the alcohol line upward while keeping the same slope.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 10 }, y: { min: 0, max: 170 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 1, max: 10, value: 4, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "alcohol", kind: "function", appearance: "primary", formula: "14x + 18", domain: { min: 1, max: 10 } },
+      { id: "alkane", kind: "function", appearance: "secondary", formula: "14x + 2", domain: { min: 1, max: 10 } },
+      { id: "alkene", kind: "function", appearance: "reference", formula: "14x", domain: { min: 2, max: 10 } },
+      { id: "alcohol-now", kind: "marker", x: "n", y: "14n + 18", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "alcohol-mass", formula: "14n + 18" },
+      { key: "alkane-mass", formula: "14n + 2" },
+      { key: "alkene-mass", formula: "14n" },
+    ],
+  }}
+  labels={{
+    n: <>Carbon count <InlineMath math="n" /></>,
+    "alcohol-mass": <>Alcohol molar mass</>,
+    "alkane-mass": <>Alkane molar mass</>,
+    "alkene-mass": <>Alkene molar mass</>,
+  }}
+/>
+
+Notice that the vertical gap between the alcohol line and the alkane line never widens or shrinks as chains lengthen: every member still grows by the exact same <InlineMath math="\mathrm{CH_2}" /> step, while the functional group fixes the vertical offset.
+
+## Boiling Points and Crude Oil Separation
+
+Physical properties shift smoothly along any homologous series even though chemical reactivity stays governed by the functional group. As molecules grow longer and heavier, the **intermolecular forces** between neighbouring chains strengthen, demanding more thermal energy to pull molecules apart into a vapour.
+
+### Alkane Boiling Point Progression
+
+At room temperature, the smallest alkanes bounce freely as gases because their tiny electron clouds attract one another weakly. Once chains reach five carbon atoms, stronger attractions hold the molecules together as **volatile liquids**, so the **boiling point rises** steadily across the first six straight-chain alkanes below.
 
 <Chart
   title={<>Boiling Points of the First Six Alkanes</>}
@@ -106,22 +149,93 @@ Physical properties change gradually along a series. As the molecules get bigger
       room temperature, while pentane and hexane are liquids.
     </>
   }
+  footer={
+    <>
+      Longer alkane chains cross room temperature from gas to liquid at pentane.
+    </>
+  }
 />
 
-## Alkanes and Alkenes React Differently
+Track the jump between consecutive bars: methane boils at <InlineMath math="-162^\circ\text{C}" />, butane sits just below freezing at <InlineMath math="-1^\circ\text{C}" />, and pentane crosses above room temperature at <InlineMath math="36^\circ\text{C}" />. That smooth rise is the exact physical lever refineries use to sort crude petroleum.
 
-Both alkanes and alkenes burn in excess oxygen to give carbon dioxide and water. Alkenes burn with a **sootier flame**, because their percentage of carbon by mass is higher.
+### Separating Crude Oil by Fractional Distillation
 
-Try an example. Compare the percentage of carbon by mass in ethene and ethane. The relative atomic mass of C is <InlineMath math="12" /> and of H is <InlineMath math="1" />.
+Raw **crude oil** is a dark mixture of hundreds of hydrocarbons spanning from one-carbon gases to thick bitumen chains with dozens of carbons. Inside a **fractionating column**, a furnace vapourises the crude oil at the hot base, and the rising vapour cools steadily as it climbs through bubble-cap trays. Each fraction condenses on the tray whose temperature matches its boiling range. Explore five industrial fractions inside the tower below.
+
+<FractionalDistillationLab
+  title={<>Crude Oil Separation in a Fractionating Column</>}
+  description={
+    <>
+      Select refinery gas, petrol, kerosene, diesel, or bitumen to trace where
+      each hydrocarbon fraction condenses along the column's temperature gradient.
+    </>
+  }
+  footer={
+    <>
+      Shorter chains climb to cooler upper trays while heavy residues stay low.
+    </>
+  }
+  fractions={["refineryGas", "petrol", "kerosene", "diesel", "bitumen"]}
+  labels={{
+    fraction: "Petroleum fraction",
+    fractions: {
+      refineryGas: {
+        name: "Refinery gas",
+        boilingRange: <>Below <InlineMath math="40^\circ\text{C}" /></>,
+        useNote: <>Bottled cooking gas and heating fuel.</>,
+      },
+      petrol: {
+        name: "Petrol",
+        boilingRange: <><InlineMath math="40^\circ\text{C}" /> to <InlineMath math="175^\circ\text{C}" /></>,
+        useNote: <>Volatile fuel for car engines.</>,
+      },
+      kerosene: {
+        name: "Kerosene",
+        boilingRange: <><InlineMath math="175^\circ\text{C}" /> to <InlineMath math="250^\circ\text{C}" /></>,
+        useNote: <>Aviation jet fuel and paraffin lamps.</>,
+      },
+      diesel: {
+        name: "Diesel",
+        boilingRange: <><InlineMath math="250^\circ\text{C}" /> to <InlineMath math="350^\circ\text{C}" /></>,
+        useNote: <>Fuel for lorries, buses, and locomotives.</>,
+      },
+      bitumen: {
+        name: "Bitumen",
+        boilingRange: <>Above <InlineMath math="350^\circ\text{C}" /></>,
+        useNote: <>Thick residue for surfacing roads and roofs.</>,
+      },
+    },
+    parts: {
+      furnace: "Heating furnace",
+      column: "Fractionating column",
+      bubbleCap: "Bubble-cap tray",
+      vaporStream: "Rising vapour",
+      outletPipe: "Fraction outlet",
+    },
+    boilingRange: <>Boiling range</>,
+    useNote: <>Primary use</>,
+    view: "3D crude-oil fractionating column",
+  }}
+/>
+
+Follow the gradient from bottom to top: heavy bitumen never vapourises and drains from the base, diesel and kerosene condense midway down, and short-chain refinery gases escape from the coolest top outlet.
+
+> Longer hydrocarbon chains experience stronger intermolecular attractions, so they condense near the hot base of a fractionating column while shorter chains rise to the cooler top.
+
+## Hydrocarbon Reactions Isomers and Ester Synthesis
+
+Once molecules are separated by size, their **functional groups** take over and govern how they burn, react with halogens, oxidise, or condense into fragrances. Comparing saturated and unsaturated four-carbon molecules reveals how a single double bond transforms chemical behaviour.
+
+### Saturated Alkanes Unsaturated Alkenes and Structural Isomers
+
+Both alkanes and alkenes burn in excess oxygen to form carbon dioxide and water, yet alkenes burn with a **sootier flame** because their carbon percentage by mass is higher. Compare ethene (<InlineMath math="\mathrm{C_2H_4}" />) with ethane (<InlineMath math="\mathrm{C_2H_6}" />) using relative atomic masses <InlineMath math="12" /> for C and <InlineMath math="1" /> for H:
 
 <MathContainer>
 <BlockMath math="\mathrm{C_2H_4}: \frac{2 \times 12}{28} \times 100\% = 85.7\%" />
 <BlockMath math="\mathrm{C_2H_6}: \frac{2 \times 12}{30} \times 100\% = 80.0\%" />
 </MathContainer>
 
-Check: ethene has two fewer hydrogen atoms for the same number of carbons, so its carbon percentage is indeed higher, and more carbon is left unburnt as soot.
-
-Alkanes only undergo **substitution reactions** with halogens under ultraviolet light, because all their bonds are single. Alkenes are **unsaturated** hydrocarbons, and the <InlineMath math="\mathrm{C{=}C}" /> double bond allows **addition reactions**:
+Because alkanes are **saturated**, they only undergo slow **substitution reactions** with halogens under ultraviolet light. Alkenes are **unsaturated**, so their <InlineMath math="\mathrm{C{=}C}" /> double bond opens readily for **addition reactions**:
 
 | Addition reaction | Reagent and conditions | Product from ethene |
 | :--- | :--- | :--- |
@@ -130,104 +244,68 @@ Alkanes only undergo **substitution reactions** with halogens under ultraviolet 
 | Hydration | Steam, phosphoric acid, <InlineMath math="300^\circ\text{C}" />, <InlineMath math="60\text{ atm}" /> | Ethanol |
 | Oxidation | Acidified potassium manganate(VII) | Ethane-1,2-diol, purple colour disappears |
 
-Compare hexene with its addition product in the model below. The double bond opens, and each bromine atom attaches to one carbon atom.
+The same four carbon atoms can also be wired into different **structural isomers**, compounds sharing one molecular formula but different carbon skeletons or double-bond positions. Butane (<InlineMath math="\mathrm{C_4H_{10}}" />) forms two isomers: straight-chain **butane** and branched **2-methylpropane** (putting a methyl group on carbon one merely extends the straight chain).
 
-<MoleculeShapeLab
-  title={<>Unsaturated Hydrocarbons and Addition Reactions</>}
+Branching packs a molecule more compactly, weakening intermolecular forces and lowering its boiling point, so isomers never share identical physical properties. When naming any isomer, always **trace the longest continuous carbon chain**, even if it bends through a branch, and number from the end giving substituents or the double bond the lowest locant.
+
+Test four <InlineMath math="\mathrm{C_4}" /> isomers below and drop bromine water onto each structure to distinguish saturated alkanes from unsaturated alkenes.
+
+<AlkaneAlkeneIsomerLab
+  title={<>Structural Isomers and the Bromine Water Test</>}
   description={
     <>
-      Ethene, propene and ethyne have multiple bonds. Hexene reacts with bromine
-      to become dibromohexane, and its double bond disappears.
+      Inspect butane, methylpropane, but-1-ene, and but-2-ene in three
+      dimensions and observe which structures decolourise brown bromine water.
     </>
   }
-  molecules={[
-    { id: "ethene", name: "ethene" },
-    { id: "propene", name: "propene" },
-    { id: "ethyne", name: "ethyne" },
-    { id: "hexene", name: "hexene" },
-    { id: "dibromohexane", name: "dibromohexane" },
-  ]}
+  footer={
+    <>
+      Only isomers with a carbon double bond decolourise brown bromine water.
+    </>
+  }
+  compounds={["butane", "methylpropane", "but1ene", "but2ene"]}
   labels={{
-    atoms: <>Atoms</>,
-    choose: "Pick a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle</>,
-    view: "Unsaturated hydrocarbon molecules",
+    compound: "Hydrocarbon isomer",
+    compounds: {
+      butane: {
+        name: "Butane",
+        formula: <InlineMath math="\mathrm{C_4H_{10}}" />,
+        bromineTest: <>Brown bromine water stays unchanged.</>,
+      },
+      methylpropane: {
+        name: "2-Methylpropane",
+        formula: <InlineMath math="\mathrm{C_4H_{10}}" />,
+        bromineTest: <>Brown bromine water stays unchanged.</>,
+      },
+      but1ene: {
+        name: "But-1-ene",
+        formula: <InlineMath math="\mathrm{C_4H_8}" />,
+        bromineTest: <>Brown bromine water turns colourless at once.</>,
+      },
+      but2ene: {
+        name: "But-2-ene",
+        formula: <InlineMath math="\mathrm{C_4H_8}" />,
+        bromineTest: <>Brown bromine water turns colourless at once.</>,
+      },
+    },
+    parts: {
+      carbonAtom: "Carbon atom",
+      hydrogenAtom: "Hydrogen atom",
+      singleBond: "C-C single bond",
+      doubleBond: "C=C double bond",
+      bromineDrop: "Bromine water drop",
+    },
+    bromineTest: <>Bromine water result</>,
+    formula: <>Molecular formula</>,
+    view: "3D C4 isomer and bromine test lab",
   }}
 />
 
-Bromine water gives a **quick test** to tell an alkane from an alkene. An alkene decolourises brown bromine water at once, but an alkane doesn't.
+Comparing butane with 2-methylpropane shows chain isomerism, whereas comparing but-1-ene with but-2-ene shows positional isomerism of the double bond. Never assume an alkane reacts with bromine water in the dark: only a double bond breaks open for halogen addition.
 
-## Alcohols and Carboxylic Acids Form Esters
+> Brown bromine water loses its colour immediately only when a hydrocarbon carries a carbon double bond that opens for addition.
 
-**Alcohols** have a hydroxyl group, <InlineMath math="\mathrm{-OH}" />. Ethanol is made by **fermentation** of glucose by yeast or by hydration of ethene. Alcohols burn with a clean blue flame, are oxidised by acidified potassium dichromate(VI) to carboxylic acids, and are dehydrated by hot porcelain chips to alkenes.
-
-<MoleculeShapeLab
-  title={<>Members of the Alcohol Homologous Series</>}
-  description={
-    <>
-      Methanol, ethanol and propanol. Each molecule has one hydroxyl group
-      bonded to a carbon atom.
-    </>
-  }
-  molecules={[
-    { id: "methanol", name: "methanol" },
-    { id: "ethanol", name: "ethanol" },
-    { id: "propanol", name: "propanol" },
-  ]}
-  labels={{
-    atoms: <>Atoms</>,
-    choose: "Pick a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle</>,
-    view: "Alcohol molecules",
-  }}
-/>
-
-**Carboxylic acids**, such as the ethanoic acid in vinegar, are weak acids. They react with metals, bases and carbonates like other acids. Carboxylic acids also react with alcohols, with concentrated sulfuric acid as a catalyst, to make sweet-smelling **esters**. This process is called **esterification**:
-
-<BlockMath math="\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} \rightleftharpoons \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}" />
-
-An ester's name comes from the alcohol first, then the acid. Ethanol and ethanoic acid give **ethyl ethanoate**.
-
-## Isomers and How to Name Them
-
-**Isomers** are compounds with the same molecular formula but different structural formulae. Hexane, <InlineMath math="\mathrm{C_6H_{14}}" />, has five isomers. A more branched chain makes the molecule more compact, so the forces between molecules are weaker and the boiling point is lower.
-
-<MoleculeShapeLab
-  title={<>The Five Isomers of Hexane</>}
-  description={
-    <>
-      All five molecules have the formula <InlineMath math="\mathrm{C_6H_{14}}" />{" "}
-      and a relative molecular mass of <InlineMath math="86" />, but their carbon
-      atoms are arranged in different chains and branches.
-    </>
-  }
-  molecules={[
-    { id: "hexane", name: "hexane" },
-    { id: "methylpentane-2", name: "2-methylpentane" },
-    { id: "methylpentane-3", name: "3-methylpentane" },
-    { id: "dimethylbutane-22", name: "2,2-dimethylbutane" },
-    { id: "dimethylbutane-23", name: "2,3-dimethylbutane" },
-  ]}
-  labels={{
-    atoms: <>Atoms</>,
-    choose: "Pick a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle</>,
-    view: "Isomers of hexane",
-  }}
-/>
-
-To name an isomer, **find the longest carbon chain** first, then number it from the end that gives the branches the smallest numbers. For 2-methylpentane, the longest chain has five carbon atoms, so the name ends in pentane, and the methyl group sits on the second carbon.
-
-Try a calculation. Calculate the mass of carbon dioxide produced when <InlineMath math="8.6\text{ g}" /> of hexane burns completely. The molar mass of hexane is <InlineMath math="86\text{ g mol}^{-1}" /> and of carbon dioxide <InlineMath math="44\text{ g mol}^{-1}" />.
+Complete combustion calculations follow directly from counting carbon atoms. When <InlineMath math="8.6\text{ g}" /> of hexane (<InlineMath math="86\text{ g mol}^{-1}" />) burns completely, every hexane molecule delivers six carbon dioxide molecules (<InlineMath math="44\text{ g mol}^{-1}" />):
 
 <MathContainer>
 <BlockMath math="2\mathrm{C_6H_{14}} + 19\mathrm{O_2} \rightarrow 12\mathrm{CO_2} + 14\mathrm{H_2O}" />
@@ -235,49 +313,75 @@ Try a calculation. Calculate the mass of carbon dioxide produced when <InlineMat
 <BlockMath math="m(\mathrm{CO_2}) = 0.60 \times 44 = 26.4\text{ g}" />
 </MathContainer>
 
-Check with the carbon atoms: each hexane molecule has six carbon atoms, and each carbon atom becomes one carbon dioxide molecule, so the mole ratio must be <InlineMath math="1 : 6" />.
+### Alcohol Oxidation and Dehydration Pathways
 
-## Common Mistakes about Carbon Compounds
+**Alcohols** carry the hydroxyl functional group, <InlineMath math="\mathrm{-OH}" />, which makes small members such as methanol, ethanol, and propanol completely miscible with water. Industry produces ethanol either by **fermentation** of glucose with yeast or by catalytic hydration of ethene with steam. Alcohols burn cleanly with a pale blue flame, making ethanol a practical biofuel.
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Alkanes react with bromine water. | Alkanes are saturated and don't undergo addition, so the brown colour stays. | Only a <InlineMath math="\mathrm{C{=}C}" /> bond decolourises bromine water. |
-| Isomers have the same physical properties. | A different structural formula changes the forces between molecules, so boiling points differ. | Compare hexane with 2,2-dimethylbutane. |
-| An ester's name starts with the acid. | The first part of the name comes from the alcohol, for example ethyl from ethanol. | Ethanol and ethanoic acid give ethyl ethanoate. |
-| The longest chain is the one drawn straight. | The longest chain can bend through a branch. | Count the carbon atoms along every path from end to end. |
-| Ethanol is oxidised to ethene. | Oxidation gives ethanoic acid. Ethene comes from dehydration. | Ask whether oxygen is added or water is removed. |
+Two contrasting laboratory reactions convert ethanol into completely different homologous series. Heating ethanol with acidified potassium dichromate(VI) performs **oxidation**, adding oxygen to produce **ethanoic acid** while turning the orange solution green. Passing ethanol vapour over hot porcelain chips performs **dehydration**, removing a water molecule to yield **ethene**. Learners often mix up these two pathways, so check what changes in the formula: oxidation adds oxygen to form a carboxylic acid, whereas dehydration removes water to form an alkene.
 
-The first mistake comes up most often. Remember this test: **brown bromine water loses its colour only with an alkene**.
+### Forming Sweet Esters Under Reflux
 
-## Practice on Carbon Compounds
+**Carboxylic acids**, such as ethanoic acid in household vinegar, are weak acids that react with metals, alkalis, and metal carbonates. When heated with an alcohol and a few drops of concentrated sulfuric acid catalyst, a carboxylic acid undergoes reversible **esterification** to form water and a fragrant **ester** carrying the <InlineMath math="\mathrm{-COO-}" /> linkage:
 
-These questions move from general formulae to reactions and isomers. **Draw the structural formula** whenever a question involves isomers or functional groups.
+<BlockMath math="\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} \rightleftharpoons \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}" />
 
-1. Write the molecular formula of the alkane with eight carbon atoms and calculate its molar mass.
+Watch the naming order carefully because reversing it is a frequent error: the **first word comes from the alcohol** (ethyl from ethanol, propyl from propanol) and the **second word comes from the carboxylic acid** (ethanoate from ethanoic acid). Explore three fruity ethanoate syntheses under reflux below and adjust the water-bath temperature to track condensation and ester-layer formation.
 
-2. Describe a chemical test to tell hexane from hexene.
+<EsterificationRefluxLab
+  title={<>Synthesising Fruity Esters Under Reflux</>}
+  description={
+    <>
+      Choose ethyl, propyl, or butyl ethanoate and vary the water-bath
+      temperature to observe reflux condensation, sulfuric acid catalysis, and
+      ester separation.
+    </>
+  }
+  footer={
+    <>
+      Reflux heating keeps volatile alcohol inside while the ester layer forms.
+    </>
+  }
+  esters={["ethylEthanoate", "propylEthanoate", "butylEthanoate"]}
+  temperature={{ min: 50, max: 100, value: 78 }}
+  labels={{
+    ester: "Target ester",
+    esters: {
+      ethylEthanoate: {
+        name: "Ethyl ethanoate",
+        equation: (
+          <InlineMath math="\mathrm{CH_3COOH} + \mathrm{C_2H_5OH} \rightleftharpoons \mathrm{CH_3COOC_2H_5} + \mathrm{H_2O}" />
+        ),
+        aroma: <>Sweet pear-drop and fruity solvent scent.</>,
+      },
+      propylEthanoate: {
+        name: "Propyl ethanoate",
+        equation: (
+          <InlineMath math="\mathrm{CH_3COOH} + \mathrm{C_3H_7OH} \rightleftharpoons \mathrm{CH_3COOC_3H_7} + \mathrm{H_2O}" />
+        ),
+        aroma: <>Crisp ripe pear fragrance.</>,
+      },
+      butylEthanoate: {
+        name: "Butyl ethanoate",
+        equation: (
+          <InlineMath math="\mathrm{CH_3COOH} + \mathrm{C_4H_9OH} \rightleftharpoons \mathrm{CH_3COOC_4H_9} + \mathrm{H_2O}" />
+        ),
+        aroma: <>Rich banana and sweet apple aroma.</>,
+      },
+    },
+    parts: {
+      roundFlask: "Round-bottom flask",
+      condenser: "Reflux condenser",
+      waterBath: "Water bath",
+      esterLayer: "Insoluble ester layer",
+      catalystDrop: "Conc. H2SO4 catalyst",
+    },
+    temperature: "Water bath temperature (°C)",
+    aroma: <>Characteristic aroma</>,
+    equation: <>Balanced equation</>,
+    view: "3D esterification reflux apparatus",
+  }}
+/>
 
-3. Name the ester formed from propanol and ethanoic acid, and write the equation.
+Notice how the cold reflux condenser returns escaping alcohol vapour back into the flask so the mixture can react gently over a water bath without catching fire, while the finished ester floats as an insoluble sweet-smelling layer. Verify the atom balance for propyl ethanoate directly:
 
-4. Draw and name all the isomers of butane, <InlineMath math="\mathrm{C_4H_{10}}" />.
-
-### Solutions
-
-**Solution 1**: Use the general formula <InlineMath math="\mathrm{C_nH_{2n+2}}" /> with <InlineMath math="n = 8" />:
-
-<MathContainer>
-<BlockMath math="\mathrm{C_8H_{18}}" />
-<BlockMath math="M = 8 \times 12 + 18 \times 1 = 114\text{ g mol}^{-1}" />
-</MathContainer>
-
-Check with <InlineMath math="14n + 2" />: <InlineMath math="14 \times 8 + 2 = 114" />. The same.
-
-**Solution 2**: Add a few drops of **bromine water** to each liquid and shake. **Hexene decolourises** the brown bromine water because its double bond undergoes addition. Hexane **doesn't change** the brown colour, because all its bonds are single.
-
-**Solution 3**: The alcohol part, propyl, comes first, and the acid part, ethanoate, second. The ester is **propyl ethanoate**:
-
-<BlockMath math="\mathrm{CH_3COOH} + \mathrm{C_3H_7OH} \rightleftharpoons \mathrm{CH_3COOC_3H_7} + \mathrm{H_2O}" />
-
-Check the atoms: left <InlineMath math="\mathrm{C_5H_{12}O_3}" />, right <InlineMath math="\mathrm{C_5H_{10}O_2} + \mathrm{H_2O} = \mathrm{C_5H_{12}O_3}" />. Balanced.
-
-**Solution 4**: Butane has **two isomers**. The first is a straight chain of four carbon atoms, **butane**. The second is a chain of three carbon atoms with a methyl group on the second carbon, **2-methylpropane**. Check: both are <InlineMath math="\mathrm{C_4H_{10}}" />, and there's no other arrangement, because a methyl group on the first carbon just lengthens the chain again.
+<BlockMath math="\mathrm{CH_3COOH} + \mathrm{C_3H_7OH} \rightleftharpoons \mathrm{CH_3COOC_3H_7} + \mathrm{H_2O} \quad (\mathrm{C_5H_{12}O_3} \text{ on both sides})" />

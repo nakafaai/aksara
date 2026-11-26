@@ -1,68 +1,110 @@
 export const metadata = {
   title: "Polymer Notes for Form Five",
   description:
-    "Form 5 Chemistry Chapter 4: tell addition from condensation polymerisation, explain latex coagulation and vulcanisation, and count the monomers in a chain.",
+    "Distinguish addition and condensation polymerisation, calculate repeating unit counts and chain lengths, and explain latex coagulation and sulfur vulcanisation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Polymer",
 };
 
-## Polymers Are Built from Monomers
+## Addition Polymerisation Along Carbon Chains
 
-A **polymer** is a large molecule formed when many small molecules, **monomers**, join into a long chain. The process is called **polymerisation**. The relative molecular mass of a polymer is <InlineMath math="n" /> times the mass of its repeating unit, where <InlineMath math="n" /> is the number of repeating units. In these notes you rotate monomer models, count the monomers in a chain, compare addition with condensation polymerisation, and see how natural rubber is made stronger.
+Look around a room and almost every flexible cable jacket, water pipe, and food container is built from giant molecular chains. A **polymer** is a large molecule formed when thousands of small reactive molecules, called **monomers**, link end to end during **polymerisation**. Some polymers grow inside living organisms, whereas synthetic polymers are engineered from petroleum or plant feedstocks to match specific strength and heat demands.
 
 | Polymer | Monomer | Type |
 | :--- | :--- | :--- |
 | Starch | Glucose | Natural |
 | Protein | Amino acids | Natural |
 | Natural rubber | Isoprene | Natural |
-| Polythene | Ethene | Synthetic |
+| Polyethene | Ethene | Synthetic |
 | Polyvinyl chloride, PVC | Chloroethene | Synthetic |
 | Polypropene | Propene | Synthetic |
 | Nylon | Hexanedioic acid and hexane-1,6-diamine | Synthetic |
 
-A monomer for **addition polymerisation** must have a <InlineMath math="\mathrm{C{=}C}" /> double bond. Rotate the three monomers below and compare them with ethane, which has no double bond.
+### Opening Double Bonds to Build Chains
 
-<MoleculeShapeLab
-  title={<>Monomers for Addition Polymerisation</>}
-  description={
-    <>
-      Ethene, propene and chloroethene have a double bond, so they can join into
-      a polymer. Ethane has only single bonds.
-    </>
-  }
-  molecules={[
-    { id: "ethene", name: "ethene" },
-    { id: "propene", name: "propene" },
-    { id: "chloroethene", name: "chloroethene" },
-    { id: "ethane", name: "ethane" },
-  ]}
-  labels={{
-    atoms: <>Atoms</>,
-    choose: "Pick a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle</>,
-    view: "Monomer molecules",
-  }}
-/>
-
-## Addition Polymerisation
-
-In addition polymerisation, the double bond of each monomer opens and the monomers join **without losing any atoms**. Ethene becomes polythene:
+For **addition polymerisation** to occur, every monomer must carry a carbon-carbon double bond, <InlineMath math="\mathrm{C{=}C}" />. Saturated molecules like ethane possess only single bonds, so they cannot open up to join a growing chain. During polymerisation, one bond of each double bond breaks open and links neighbouring monomers **without losing any atoms**:
 
 <BlockMath math="n\,\mathrm{CH_2{=}CH_2} \rightarrow \mathrm{-[CH_2{-}CH_2]_n-}" />
 
-Because no atoms are lost, the mass of the polymer equals the total mass of the monomers. Change the number of repeating units below and compare the masses of three polymers.
+A frequent slip is leaving a double bond inside the repeating unit, writing <InlineMath math="\mathrm{-CH_2{=}CH_2-}" /> instead of <InlineMath math="\mathrm{-CH_2{-}CH_2-}" />. Always count four covalent bonds around each backbone carbon to confirm the double bond has opened. For propene, <InlineMath math="\mathrm{CH_2{=}CHCH_3}" />, the methyl group stays attached as a side branch off the single-bonded carbon backbone:
+
+<BlockMath math="\mathrm{-[CH_2{-}CH(CH_3)]_n-}" />
+
+Switch between four alkene monomers and extend the chain length below to watch how each double bond unfolds into a single-bonded backbone carrying its characteristic side groups.
+
+<AdditionPolymerChainLab
+  title={<>Chain Growth in Addition Polymerisation</>}
+  description={
+    <>
+      Pick ethene, propene, chloroethene, or tetrafluoroethene and adjust the
+      number of repeating units to inspect the carbon backbone and side groups.
+    </>
+  }
+  footer={
+    <>
+      Opening the carbon double bond links monomers end to end with zero atoms
+      lost.
+    </>
+  }
+  monomers={["ethene", "propene", "chloroethene", "tetrafluoroethene"]}
+  chainLength={{ min: 2, max: 10, value: 4 }}
+  labels={{
+    chainLength: "Repeating units (n)",
+    monomer: "Alkene monomer",
+    monomers: {
+      ethene: {
+        name: "Ethene",
+        polymerName: <>Polyethene</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CH_2{-}CH_2]-}" />,
+      },
+      propene: {
+        name: "Propene",
+        polymerName: <>Polypropene</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CH_2{-}CH(CH_3)]-}" />,
+      },
+      chloroethene: {
+        name: "Chloroethene",
+        polymerName: <>Polyvinyl chloride, PVC</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CH_2{-}CHCl]-}" />,
+      },
+      tetrafluoroethene: {
+        name: "Tetrafluoroethene",
+        polymerName: <>Polytetrafluoroethene, PTFE</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CF_2{-}CF_2]-}" />,
+      },
+    },
+    parts: {
+      monomerUnit: "Monomer unit",
+      doubleBond: "C=C double bond",
+      singleBackbone: "C-C single backbone",
+      sideGroup: "Side group",
+    },
+    polymerName: <>Polymer formed</>,
+    repeatUnit: <>Repeating unit</>,
+    view: "3D addition polymerisation chain",
+  }}
+/>
+
+Notice that changing hydrogen atoms for methyl, chlorine, or fluorine side groups leaves the central single-bonded carbon chain intact while completely transforming the material from flexible film to rigid piping or non-stick cookware.
+
+### Relative Molecular Mass of Addition Chains
+
+Because addition polymerisation discards no atoms, the **relative molecular mass** of the finished polymer equals <InlineMath math="n" /> times the mass of one repeating unit, giving an **atom economy** of <InlineMath math="100\%" />. Heavier side atoms such as chlorine in PVC make the mass line climb far more steeply than polyethene for the same degree of polymerisation. Slide <InlineMath math="n" /> below to compare how quickly the three polymer masses grow.
 
 <MathVisual
   title={<>Relative Molecular Mass of a Polymer against Number of Repeating Units</>}
   description={
     <>
-      Polythene <InlineMath math="28n" />, polypropene <InlineMath math="42n" /> and
-      PVC <InlineMath math="62.5n" />. For <InlineMath math="n = 1000" />, polythene
+      Polyethene <InlineMath math="28n" />, polypropene <InlineMath math="42n" /> and
+      PVC <InlineMath math="62.5n" />. For <InlineMath math="n = 1000" />, polyethene
       has a relative molecular mass of <InlineMath math="28\,000" />.
+    </>
+  }
+  footer={
+    <>
+      Heavier monomer units produce steeper straight lines across every chain
+      count.
     </>
   }
   scene={{
@@ -84,31 +126,38 @@ Because no atoms are lost, the mass of the polymer equals the total mass of the 
     ],
   }}
   labels={{
-    n: <>Number of repeating units <InlineMath math="n" /></>,
-    "polythene-mass": <>Mass of polythene</>,
+    n: <>Repeating units <InlineMath math="n" /></>,
+    "polythene-mass": <>Mass of polyethene</>,
     "polypropene-mass": <>Mass of polypropene</>,
     "pvc-mass": <>Mass of PVC</>,
   }}
 />
 
-Try an example. A polythene chain has a relative molecular mass of <InlineMath math="28\,000" />. Calculate the number of ethene monomers in the chain.
+Every line passes through the origin because polymer mass is directly proportional to the number of monomers joined. Dividing a polymer's total relative molecular mass by the mass of one monomer reveals how many units sit inside the chain. Consider a polyethene chain of mass <InlineMath math="28\,000" /> and a PVC chain of mass <InlineMath math="125\,000" /> (with relative atomic mass of Cl equal to <InlineMath math="35.5" />):
 
 <MathContainer>
-<BlockMath math="M(\mathrm{C_2H_4}) = 2 \times 12 + 4 \times 1 = 28" />
-<BlockMath math="n = \frac{28\,000}{28} = 1000" />
+<BlockMath math="M(\mathrm{C_2H_4}) = 2 \times 12 + 4 \times 1 = 28 \Rightarrow n = \frac{28\,000}{28} = 1000" />
+<BlockMath math="M(\mathrm{C_2H_3Cl}) = 2 \times 12 + 3 \times 1 + 35.5 = 62.5 \Rightarrow n = \frac{125\,000}{62.5} = 2000" />
 </MathContainer>
 
-Check with the graph: at <InlineMath math="n = 1000" />, the polythene mass reading is <InlineMath math="28\,000" />. The same.
+Verify both answers on the graph above by sliding <InlineMath math="n" /> to <InlineMath math="1000" /> for polyethene and <InlineMath math="2000" /> for PVC. Both readouts match the calculated figures exactly.
 
-Chains like this are very long compared with the size of a monomer. Each ethene unit adds about <InlineMath math="0.255\text{ nm}" /> to the length of a polythene chain. Change the number of units below.
+### Estimating Molecular Chain Length
+
+Real synthetic chains contain thousands of repeating units, stretching far beyond the size of ordinary small molecules. Each ethene repeating unit contributes about <InlineMath math="0.255\text{ nm}" /> along a fully extended **polyethene chain**. Adjust the unit count below to watch molecular scale turn into micrometre scale.
 
 <MathVisual
-  title={<>Length of a Polythene Chain against Number of Units</>}
+  title={<>Length of a Polyethene Chain against Number of Units</>}
   description={
     <>
       The chain length is <InlineMath math="0.255n" /> nanometres. A chain of{" "}
       <InlineMath math="10\,000" /> units is about <InlineMath math="2550\text{ nm}" />{" "}
       long, which is <InlineMath math="2.55\ \mu\text{m}" />.
+    </>
+  }
+  footer={
+    <>
+      Thousands of tiny ethene units add up to micrometre-scale polymer strands.
     </>
   }
   scene={{
@@ -128,17 +177,71 @@ Chains like this are very long compared with the size of a monomer. Each ethene 
   }}
   labels={{
     c: <>Number of ethene units</>,
-    length: <>Chain length in <InlineMath math="\text{nm}" /></>,
+    length: <>Chain length (<InlineMath math="\text{nm}" />)</>,
   }}
 />
 
-## Condensation Polymerisation
+At <InlineMath math="20\,000" /> repeating units, one single polyethene molecule exceeds <InlineMath math="5\ \mu\text{m}" />, comparable in length to a living bacterium. Long, tangled chains interlock tightly, explaining why high-density polyethene feels tough and resists tearing.
 
-In **condensation polymerisation**, each monomer has two functional groups, and every time two monomers join, a small molecule such as water is **eliminated**. Nylon-6,6 forms from hexanedioic acid and hexane-1,6-diamine:
+## Condensation Polymerisation and Eliminated Water
+
+Not every polymer grows by opening a double bond. In **condensation polymerisation**, monomers carry two reactive functional groups at opposite ends, and every bond formed between them ejects a small byproduct molecule such as water, <InlineMath math="\mathrm{H_2O}" />. This step-growth pathway produces strong synthetic fibres used in ropes, sails, and crease-resistant clothing.
+
+### Amide and Ester Linkages in Nylon and Terylene
+
+**Nylon-6,6** is a polyamide built from hexanedioic acid and hexane-1,6-diamine. Each carboxyl group (<InlineMath math="\mathrm{-COOH}" />) reacts with an amine group (<InlineMath math="\mathrm{-NH_2}" />) to forge an **amide linkage** (<InlineMath math="\mathrm{-CONH-}" />) while releasing water:
 
 <BlockMath math="n\,\mathrm{HOOC(CH_2)_4COOH} + n\,\mathrm{H_2N(CH_2)_6NH_2} \rightarrow \mathrm{-[OC(CH_2)_4CONH(CH_2)_6NH]_n-} + 2n\,\mathrm{H_2O}" />
 
-One mole of the acid has a mass of <InlineMath math="146\text{ g}" /> and one mole of the diamine <InlineMath math="116\text{ g}" />, <InlineMath math="262\text{ g}" /> in total. The nylon repeating unit has a mass of <InlineMath math="226\text{ g}" />, so <InlineMath math="36\text{ g}" /> leaves as two moles of water. Compare the mass of polymer made from the same mass of monomer below.
+Replacing the diamine with a diol produces **terylene**, a polyester held together by **ester linkages** (<InlineMath math="\mathrm{-COO-}" />), again eliminating water at every junction. Inspect both alternating chains below and spot where each water molecule breaks away.
+
+<CondensationNylonLab
+  title={<>Amide and Ester Linkages in Condensation Polymers</>}
+  description={
+    <>
+      Compare nylon-6,6 and terylene to see two bifunctional monomers alternate
+      along the chain while releasing water molecules at each junction.
+    </>
+  }
+  footer={
+    <>
+      Every link between bifunctional monomers eliminates a small water
+      molecule.
+    </>
+  }
+  polymers={["nylon66", "terylene"]}
+  labels={{
+    polymer: "Condensation polymer",
+    polymers: {
+      nylon66: {
+        name: "Nylon-6,6",
+        linkage: <>Amide link <InlineMath math="\mathrm{-CONH-}" /></>,
+        byproduct: <>Water, <InlineMath math="\mathrm{H_2O}" /></>,
+      },
+      terylene: {
+        name: "Terylene",
+        linkage: <>Ester link <InlineMath math="\mathrm{-COO-}" /></>,
+        byproduct: <>Water, <InlineMath math="\mathrm{H_2O}" /></>,
+      },
+    },
+    parts: {
+      monomerA: "Diamine or diol",
+      monomerB: "Dicarboxylic acid",
+      esterOrAmideLink: "Amide or ester link",
+      waterByproduct: "Water eliminated",
+      polymerChain: "Alternating chain",
+    },
+    byproduct: <>Small molecule lost</>,
+    linkage: <>Linkage formed</>,
+    view: "3D condensation polymerisation model",
+  }}
+/>
+
+Look closely at the alternating blocks: condensation polymers always contain two distinct monomer units stitched together by amide or ester links, and the eliminated water molecules explain why condensation chains weigh less than the starting reagents.
+
+### Mass Yield and Atom Economy Comparison
+
+Assuming a condensation polymer weighs the same as its starting monomers is a classic accounting error. One mole of hexanedioic acid weighs <InlineMath math="146\text{ g}" /> and one mole of hexane-1,6-diamine weighs <InlineMath math="116\text{ g}" />, totalling <InlineMath math="262\text{ g}" />. Because two moles of water (<InlineMath math="36\text{ g}" />) escape per repeating unit, only <InlineMath math="226\text{ g}" /> remains in the nylon chain. Compare the **polymer mass yield** of addition and condensation below.
 
 <MathVisual
   title={<>Mass of Polymer from Addition and Condensation Polymerisation</>}
@@ -148,6 +251,12 @@ One mole of the acid has a mass of <InlineMath math="146\text{ g}" /> and one mo
       Condensation polymerisation of nylon gives{" "}
       <InlineMath math="\dfrac{226}{262} \approx 86.3\%" /> of the monomer mass,
       and the rest is water.
+    </>
+  }
+  footer={
+    <>
+      Eliminated water creates a widening mass gap below the addition polymer
+      line.
     </>
   }
   scene={{
@@ -168,51 +277,38 @@ One mole of the acid has a mass of <InlineMath math="146\text{ g}" /> and one mo
     ],
   }}
   labels={{
-    m: <>Mass of monomer in <InlineMath math="\text{g}" /></>,
-    nylon: <>Mass of nylon in <InlineMath math="\text{g}" /></>,
-    water: <>Mass of water eliminated in <InlineMath math="\text{g}" /></>,
+    m: <>Monomer mass (<InlineMath math="\text{g}" />)</>,
+    nylon: <>Nylon mass (<InlineMath math="\text{g}" />)</>,
+    water: <>Water eliminated (<InlineMath math="\text{g}" />)</>,
   }}
 />
 
-Check the starting reading: <InlineMath math="524\text{ g}" /> of monomer is two moles of each monomer, so the nylon made is <InlineMath math="2 \times 226 = 452\text{ g}" /> and the water <InlineMath math="2 \times 36 = 72\text{ g}" />. They add up to <InlineMath math="524\text{ g}" />.
+Check the starting slider at <InlineMath math="524\text{ g}" />, which represents two moles of each monomer:
 
-Most ethene for polythene comes from petroleum, but ethene can also be made by dehydrating ethanol from sugar cane. Compare the **atom economy** of the two reactions below: hydrating ethene wastes no atoms, but dehydrating ethanol removes water.
+<MathContainer>
+<BlockMath math="m(\text{nylon}) = 2 \times 226 = 452\text{ g}, \quad m(\mathrm{H_2O}) = 2 \times 36 = 72\text{ g}" />
+<BlockMath math="452\text{ g} + 72\text{ g} = 524\text{ g}" />
+</MathContainer>
 
-<ReactionBalanceLab
-  title={<>Atom Economy of Reactions Involving Ethene</>}
-  description={
-    <>
-      Dehydrating ethanol gives the ethene monomer and water. Hydrating ethene
-      combines every atom of the reactants into ethanol.
-    </>
-  }
-  reactions={[
-    { id: "ethanol-dehydration", name: "Dehydration of ethanol", tab: <>Dehydration</> },
-    { id: "ethene-hydration", name: "Hydration of ethene", tab: <>Hydration</> },
-  ]}
-  reading="economy"
-  labels={{
-    atoms: <>Atoms</>,
-    choose: "Pick a reaction",
-    economy: <>Atom economy</>,
-    equation: <>Equation</>,
-    mass: <>Mass</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Model of reactions of ethene and ethanol",
-  }}
-/>
+Mass is still conserved overall once you count the eliminated water. The exact same **atom economy** check applies when sourcing monomers: dehydrating bio-ethanol from sugar cane into ethene releases water, lowering atom economy compared with <InlineMath math="100\%" /> addition polymerisation:
 
-Check the atom economy of the dehydration: the wanted product is ethene, so <InlineMath math="\dfrac{28}{46} \times 100\% = 60.9\%" />. Addition polymerisation has an atom economy of <InlineMath math="100\%" />, like the hydration of ethene.
+<BlockMath math="\text{Atom economy} = \frac{28}{46} \times 100\% = 60.9\%" />
 
-## Natural Rubber and Vulcanisation
+## Natural Rubber Coagulation and Sulfur Vulcanisation
 
-**Natural rubber** is a polymer of isoprene that comes from the **latex** of the rubber tree. Latex is a suspension of rubber particles surrounded by a **negatively charged** protein membrane. That negative charge makes the particles repel each other, so latex stays liquid.
+Tapped straight from the bark of *Hevea brasiliensis*, **natural rubber** arrives as milky **latex**, a polymer of isoprene (<InlineMath math="\mathrm{C_5H_8}" />). Raw rubber turns soft and sticky in tropical heat, yet a controlled sequence of acid coagulation and sulfur heating converts it into tough car tyres.
 
-When acid is added, <InlineMath math="\mathrm{H^+}" /> ions neutralise the negative charge. The rubber particles no longer repel, so they collide and the **latex coagulates**. Latex also coagulates slowly on its own because bacteria produce lactic acid. To stop it coagulating in storage, **ammonia** is added: its <InlineMath math="\mathrm{OH^-}" /> ions neutralise the acid that forms, so the membranes stay negatively charged.
+### Controlling Latex Coagulation with Acid and Ammonia
 
-**Vulcanisation** is heating rubber with sulfur. Sulfur atoms form **cross-links** between the polymer chains. Those cross-links stop the chains sliding past each other, so vulcanised rubber is:
+Fresh latex stays liquid because every microscopic rubber particle is wrapped in a **negatively charged protein membrane**. Like charges repel, keeping the rubber particles suspended apart in water. Adding an acid such as ethanoic acid introduces <InlineMath math="\mathrm{H^+}" /> ions that neutralise those negative membranes, letting particles collide, rupture, and clump together as **coagulated rubber**. Left standing in warm air, bacteria naturally digest sugars in latex into lactic acid, causing slow spontaneous coagulation.
+
+To keep freshly tapped latex liquid during transport, farmers stir in **ammonia solution**. Many learners accidentally swap the roles of acid and ammonia, so anchor the chemistry through ions: ammonia is an alkali whose <InlineMath math="\mathrm{OH^-}" /> ions neutralise bacterial acid before it can touch the protein membranes.
+
+> Acid neutralises the negative protein membranes so rubber particles collide and coagulate, whereas ammonia neutralises acid to keep latex liquid.
+
+### Sulfur Crosslinks and Elastic Recovery
+
+Even after coagulation, unvulcanised rubber remains weak because its long polyisoprene chains easily slide past one another under tension and fail to snap back. Heating natural rubber with sulfur triggers **vulcanisation**: sulfur atoms react across carbon double bonds to build strong **sulfur cross-links** between adjacent chains.
 
 | Property | Unvulcanised rubber | Vulcanised rubber |
 | :--- | :--- | :--- |
@@ -221,49 +317,48 @@ When acid is added, <InlineMath math="\mathrm{H^+}" /> ions neutralise the negat
 | Heat resistance | Turns sticky when hot | Resists heat |
 | Resistance to oxidation | Oxidises easily | More resistant |
 
-**Synthetic rubber**, such as neoprene, resists oil and heat, so it's used for oil hoses and wetsuits. But most synthetic polymers are **not biodegradable**. Burning PVC releases toxic hydrogen chloride, so plastics need to be reduced, reused and recycled.
+Toggle between unvulcanised latex and vulcanised rubber below, then drag the stretch slider to observe how sulfur bridges control chain movement.
 
-## Common Mistakes about Polymers
+<RubberVulcanizationLab
+  title={<>Sulfur Crosslinks and Rubber Elasticity</>}
+  description={
+    <>
+      Compare uncrosslinked polyisoprene chains in natural latex with
+      sulfur-bridged chains in vulcanised rubber under increasing tension.
+    </>
+  }
+  footer={
+    <>
+      Sulfur cross-links prevent chains slipping and pull vulcanised rubber back.
+    </>
+  }
+  states={["naturalLatex", "vulcanisedRubber"]}
+  stretch={{ min: 0, max: 100, value: 40 }}
+  labels={{
+    state: "Rubber state",
+    states: {
+      naturalLatex: {
+        name: "Unvulcanised rubber",
+        elasticityNote: <>Chains slip permanently past each other under tension.</>,
+        heatNote: <>Softens and turns sticky when warmed.</>,
+      },
+      vulcanisedRubber: {
+        name: "Vulcanised rubber",
+        elasticityNote: <>Sulfur cross-links snap chains back when tension ends.</>,
+        heatNote: <>Stays tough and resists softening at high heat.</>,
+      },
+    },
+    parts: {
+      isopreneChain: "Polyisoprene chain",
+      sulfurCrosslink: "Sulfur cross-link (-S-S-)",
+      doubleBond: "C=C double bond",
+      tensionArrow: "Applied stretch",
+    },
+    stretch: "Applied stretch (%)",
+    elasticityNote: <>Elastic behaviour</>,
+    heatNote: <>Heat resistance</>,
+    view: "3D rubber vulcanisation chain bundle",
+  }}
+/>
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Every monomer can undergo addition polymerisation. | Addition polymerisation needs a <InlineMath math="\mathrm{C{=}C}" /> double bond. | Ethane has no double bond, so it forms no polymer. |
-| The repeating unit of polythene is <InlineMath math="\mathrm{-CH_2{=}CH_2-}" />. | The double bond opens during polymerisation, so the repeating unit is <InlineMath math="\mathrm{-CH_2{-}CH_2-}" />. | Every carbon atom in the chain must have four bonds. |
-| A condensation polymer has the same mass as the monomers. | A small molecule such as water is eliminated, so the polymer is lighter. | Subtract the mass of water from the total monomer mass. |
-| Ammonia is added to coagulate latex. | Ammonia keeps the membranes negatively charged, so latex stays liquid. | It's acid that coagulates latex. |
-| Vulcanisation makes rubber softer. | Sulfur cross-links make rubber stronger, more elastic and heat-resistant. | Compare a car tyre with an old rubber band. |
-
-The fourth mistake comes up most often. Keep this pair in mind: **acid coagulates latex, ammonia keeps it liquid**.
-
-## Practice on Polymers
-
-These questions move from counting monomers to types of polymerisation and rubber. **Show the bond that opens** when you write a repeating unit.
-
-1. A PVC chain has a relative molecular mass of <InlineMath math="125\,000" />. Calculate the number of chloroethene monomers, <InlineMath math="\mathrm{CH_2{=}CHCl}" />, in the chain. The relative atomic mass of Cl is <InlineMath math="35.5" />.
-
-2. Name the monomer of polypropene and write its repeating unit.
-
-3. Explain why ammonia is added to freshly tapped latex.
-
-4. Explain why vulcanised rubber is more elastic than unvulcanised rubber.
-
-### Solutions
-
-**Solution 1**: Work out the monomer's mass, then divide:
-
-<MathContainer>
-<BlockMath math="M(\mathrm{C_2H_3Cl}) = 2 \times 12 + 3 \times 1 + 35.5 = 62.5" />
-<BlockMath math="n = \frac{125\,000}{62.5} = 2000" />
-</MathContainer>
-
-Check with the mass graph: the PVC reading at <InlineMath math="n = 2000" /> is <InlineMath math="62.5 \times 2000 = 125\,000" />.
-
-**Solution 2**: The monomer of polypropene is **propene**, <InlineMath math="\mathrm{CH_2{=}CHCH_3}" />. The double bond opens, so the repeating unit has a methyl group as a branch:
-
-<BlockMath math="\mathrm{-[CH_2{-}CH(CH_3)]_n-}" />
-
-Check: the repeating unit has three carbon atoms and six hydrogen atoms, the same as propene.
-
-**Solution 3**: Bacteria in latex produce acid, and the <InlineMath math="\mathrm{H^+}" /> ions neutralise the negatively charged protein membranes. **Ammonia** is an alkali, so its <InlineMath math="\mathrm{OH^-}" /> ions neutralise that acid. The membranes **stay negatively charged**, the rubber particles keep repelling each other, and the latex doesn't coagulate.
-
-**Solution 4**: In vulcanised rubber, **sulfur cross-links** join the polymer chains. When the rubber is stretched, the chains can't slide far past each other. When the force is removed, the cross-links **pull the chains back** to where they were, so the rubber returns to its shape.
+Watch how the sulfur bridges act like microscopic springs: rather than softening the rubber, vulcanisation locks chains against permanent slipping while giving tyres the strength and heat resistance needed on hot roads. **Synthetic rubbers** such as neoprene push durability further by resisting oil in fuel hoses and wetsuits. Because most synthetic polymers are **non-biodegradable** and burning PVC releases toxic hydrogen chloride gas, reducing, reusing, and recycling plastics remains essential alongside smart material design.

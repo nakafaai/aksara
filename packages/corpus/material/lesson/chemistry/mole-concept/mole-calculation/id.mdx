@@ -1,15 +1,17 @@
 export const metadata = {
   title: "Konsep Mol dan Stoikiometri",
   description:
-    "Ubah mol menjadi massa, jumlah partikel, dan volume gas, tentukan rumus empiris, dan pakai persamaan reaksi lewat contoh lengkap, kesalahan umum, dan latihan.",
+    "Ubah antara jumlah mol, jumlah partikel, massa, dan volume gas, tentukan rumus empiris serta rumus molekul, dan gunakan persamaan reaksi setara untuk stoikiometri.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Konsep Mol, Rumus Kimia, dan Persamaan Reaksi",
 };
 
-## Arti Satu Mol
+## Menghitung Partikel Tak Terlihat dengan Satu Mol
 
-**Mol** adalah satuan jumlah zat. Satu mol zat mengandung **<InlineMath math="6{,}02 \times 10^{23}" /> partikel**, yaitu **tetapan Avogadro**, <InlineMath math="N_A" />. Partikel itu bisa berupa atom, molekul, atau ion. Tiga rumus menghubungkan jumlah mol dengan hal yang bisa kamu ukur:
+Saat membeli telur di pasar, tidak ada orang yang menghitungnya satu per satu di keranjang. Kamu cukup menyebut satu lusin dan langsung mendapat dua belas butir. Ahli kimia menghadapi tantangan yang jauh lebih besar karena atom dan molekul luar biasa kecil, jadi mereka mengelompokkan partikel ke dalam satu paket hitung raksasa bernama **mol**.
+
+Satu mol zat apa pun berisi **<InlineMath math="6{,}02 \times 10^{23}" /> partikel**, angka yang dikenal sebagai **tetapan Avogadro**, <InlineMath math="N_A" />. Partikel itu bisa berupa atom, molekul, atau ion. Karena timbangan laboratorium mengukur massa dan tabung gas mengukur volume, tiga rumus ringkas ini menjembatani dunia partikel tak terlihat dengan angka yang bisa kamu ukur langsung:
 
 <MathContainer>
 <BlockMath math="n = \frac{N}{N_A}" />
@@ -17,24 +19,31 @@ export const metadata = {
 <BlockMath math="n = \frac{V}{V_m}" />
 </MathContainer>
 
-Di sini <InlineMath math="N" /> adalah jumlah partikel, <InlineMath math="m" /> adalah massa dalam gram, <InlineMath math="M" /> adalah massa molar dalam <InlineMath math="\text{g/mol}" />, dan <InlineMath math="V_m" /> adalah volume molar gas. Di model-model berikut, kamu menimbang atom di spektrometer massa, memutar molekul untuk membaca massanya, dan mengubah mol menjadi massa serta volume.
+Di sini <InlineMath math="n" /> adalah jumlah mol, <InlineMath math="N" /> adalah jumlah partikel, <InlineMath math="m" /> adalah massa dalam gram, <InlineMath math="M" /> adalah massa molar dalam <InlineMath math="\text{g/mol}" />, dan <InlineMath math="V_m" /> adalah volume molar gas.
 
-Partikel terlalu kecil untuk dihitung satu per satu, tetapi massanya bisa ditimbang di laboratorium. Jadi ahli kimia menimbang zat dulu, lalu mengubah massanya menjadi mol.
+> Satu mol selalu memuat jumlah partikel yang persis sama, meskipun dua zat berbeda memiliki berat yang jauh berbeda di atas timbangan.
+
+Pegang gambaran inti ini setiap kali kamu mengubah satuan. Menghitung dengan mol mengubah timbangan biasa menjadi penghitung partikel.
 
 ## Massa Atom Relatif dan Massa Molekul Relatif
 
-**Massa atom relatif**, <InlineMath math="A_r" />, adalah massa rata-rata satu atom suatu unsur dibandingkan dengan <InlineMath math="\tfrac{1}{12}" /> massa satu atom karbon-12. Nilainya adalah rata-rata berbobot semua isotop unsur itu. Klorin, misalnya, terdiri dari sekitar <InlineMath math="75\%" /> klorin-35 dan <InlineMath math="25\%" /> klorin-37:
+Karena satu atom jauh terlalu ringan untuk timbangan mana pun, ahli kimia membandingkan massa atom terhadap satu patokan baku. **Massa atom relatif**, <InlineMath math="A_r" />, adalah massa rata-rata satu atom unsur dibandingkan dengan <InlineMath math="\tfrac{1}{12}" /> massa satu atom karbon-12. Karena sebagian besar unsur hadir di alam sebagai campuran isotop, <InlineMath math="A_r" /> adalah rata-rata berbobot dari semua isotopnya. Klorin, misalnya, terdiri atas sekitar <InlineMath math="75\%" /> klorin-35 dan <InlineMath math="25\%" /> klorin-37:
 
 <BlockMath math="A_r(\mathrm{Cl}) = \frac{75 \times 35 + 25 \times 37}{100} = 35{,}5" />
 
-Spektrometer massa mengukur nilai ini. Ion yang lebih berat membelok lebih sedikit di medan magnet, dan tinggi setiap puncak memberi kelimpahan isotopnya. Pilih unsur di model dan bandingkan rata-ratanya dengan massa tiap isotop.
+Spektrometer massa mengukur massa isotop secara langsung. Ion yang lebih berat membelok lebih sedikit dalam medan magnet, dan tinggi tiap puncak melaporkan kelimpahan isotopnya. Pilih satu unsur di bawah dan bandingkan rata-rata berbobot dengan massa masing-masing isotop.
 
 <MassSpectrometerLab
   title={<>Spektrometer Massa Menimbang Isotop</>}
   description={
     <>
-      Pilih unsur. Setiap isotop membelok di lintasannya sendiri, dan rata-rata
-      berbobot kelimpahannya memberi massa atom relatif.
+      Pilih unsur. Setiap isotop membelok pada lintasannya sendiri, dan
+      rata-rata berbobot kelimpahannya memberi massa atom relatif.
+    </>
+  }
+  footer={
+    <>
+      Isotop lebih berat membelok lebih landai dan menggeser massa rata-rata.
     </>
   }
   samples={["chlorine", "magnesium", "boron", "copper"]}
@@ -50,48 +59,40 @@ Spektrometer massa mengukur nilai ini. Ion yang lebih berat membelok lebih sedik
   }}
 />
 
-**Massa molekul relatif**, <InlineMath math="M_r" />, adalah jumlah massa atom relatif semua atom dalam satu molekul. Untuk air, <InlineMath math="M_r(\mathrm{H_2O}) = 2(1) + 16 = 18" />. Untuk senyawa ion, jumlah yang sama disebut massa rumus relatif. Putar molekul di model ini dan cek <InlineMath math="M_r" /> yang ditampilkan.
+Amati bahwa nilai rata-rata <InlineMath math="A_r" /> selalu jatuh paling dekat ke isotop yang paling melimpah, sebab itulah klorin bernilai <InlineMath math="35{,}5" /> dan bukan tepat di tengah pada <InlineMath math="36" />.
 
-<MoleculeShapeLab
-  title={<>Massa Molekul Relatif Lima Molekul</>}
-  description={
-    <>
-      Pilih molekul dan hitung atomnya. Jumlah massa atom relatifnya adalah
-      massa molekul relatif.
-    </>
-  }
-  molecules={[
-    { id: "water", name: "air" },
-    { id: "carbon-dioxide", name: "karbon dioksida" },
-    { id: "ammonia", name: "amonia" },
-    { id: "methane", name: "metana" },
-    { id: "ethanol", name: "etanol" },
-  ]}
-  labels={{
-    atoms: <>Atom</>,
-    choose: "Pilih molekul",
-    fill: <>Model pengisian ruang</>,
-    formula: <>Rumus</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut ikatan</>,
-    view: "Molekul dan massanya",
-  }}
-/>
+Setelah massa atom diketahui, menghitung massa satu molekul cukup dengan penjumlahan biasa. **Massa molekul relatif**, <InlineMath math="M_r" />, adalah jumlah massa atom relatif seluruh atom dalam satu molekul. Untuk air, menjumlahkan dua atom hidrogen dan satu atom oksigen memberi:
+
+<BlockMath math="M_r(\mathrm{H_2O}) = 2(1) + 16 = 18" />
+
+Untuk senyawa ion seperti kalsium karbonat, <InlineMath math="\mathrm{CaCO_3}" />, jumlah yang sama disebut **massa rumus relatif**. Misalkan kamu menimbang <InlineMath math="25\ \text{g}" /> kalsium karbonat dengan nilai <InlineMath math="A_r" /> kalsium <InlineMath math="40" />, karbon <InlineMath math="12" />, dan oksigen <InlineMath math="16" />. Jumlahkan massa rumusnya dulu, lalu bagi untuk mencari mol:
+
+<MathContainer>
+<BlockMath math="M_r(\mathrm{CaCO_3}) = 40 + 12 + 3(16) = 100" />
+<BlockMath math="n = \frac{25}{100} = 0{,}25\ \text{mol}" />
+</MathContainer>
+
+Mengurai rumus atom demi atom menjaga agar angka indeks seperti tiga atom oksigen pada karbonat tidak terlewat.
 
 ## Massa Molar dan Jumlah Partikel
 
-**Massa molar**, <InlineMath math="M" />, adalah massa satu mol zat. Nilainya dalam gram sama dengan <InlineMath math="A_r" /> atau <InlineMath math="M_r" />. Jadi satu mol air bermassa <InlineMath math="18\text{ g}" />, satu mol karbon <InlineMath math="12\text{ g}" />, dan satu mol karbon dioksida <InlineMath math="44\text{ g}" />, tetapi ketiganya mengandung jumlah partikel yang sama.
+**Massa molar**, <InlineMath math="M" />, adalah massa satu mol zat dalam gram, yang angkanya sama dengan <InlineMath math="A_r" /> atau <InlineMath math="M_r" />. Satu mol karbon bermassa <InlineMath math="12\ \text{g}" />, satu mol air bermassa <InlineMath math="18\ \text{g}" />, dan satu mol karbon dioksida bermassa <InlineMath math="44\ \text{g}" />. Kesalahan klasik yang sering terjadi adalah mengira mol yang sama berarti massa yang sama, padahal ketiganya memuat jumlah partikel identik dengan berat berbeda jauh.
 
-Geser penggeser jumlah mol. Tiga garis menunjukkan massa karbon, air, dan karbon dioksida. Gradien setiap garis adalah massa molarnya.
+Geser penggeser jumlah mol di bawah untuk membandingkan massa karbon, air, dan karbon dioksida sekaligus. Kemiringan tiap garis adalah massa molarnya.
 
 <MathVisual
   title={<>Massa terhadap Jumlah Mol</>}
   description={
     <>
-      Garis <InlineMath math="m = nM" /> untuk karbon (
-      <InlineMath math="M = 12" />), air (<InlineMath math="M = 18" />), dan
-      karbon dioksida (<InlineMath math="M = 44" />). Sumbu mendatar adalah
-      mol, sumbu tegak adalah massa dalam gram.
+      Garis lurus untuk karbon (<InlineMath math="M = 12" />), air (
+      <InlineMath math="M = 18" />), dan karbon dioksida (
+      <InlineMath math="M = 44" />). Sumbu mendatar adalah mol dan sumbu tegak
+      adalah massa dalam gram.
+    </>
+  }
+  footer={
+    <>
+      Garis lebih curam menandakan massa molar lebih besar pada mol yang sama.
     </>
   }
   scene={{
@@ -131,39 +132,101 @@ Geser penggeser jumlah mol. Tiga garis menunjukkan massa karbon, air, dan karbon
   }}
 />
 
-### Contoh Mol dari Massa
+Pada posisi penggeser mana pun, angka jumlah partikel berlaku sama bagi ketiga zat, sementara selisih massanya makin melebar karena satu molekul karbon dioksida hampir empat kali lebih berat daripada satu atom karbon.
 
-Hitung **jumlah mol dan jumlah molekul** dalam <InlineMath math="9{,}0\text{ g}" /> air.
+### Mencari Mol dan Atom dari Massa
 
-<MathContainer>
-<BlockMath math="n = \frac{m}{M} = \frac{9{,}0}{18} = 0{,}50\text{ mol}" />
-<BlockMath math="N = nN_A = 0{,}50 \times 6{,}02 \times 10^{23} = 3{,}01 \times 10^{23}" />
-</MathContainer>
-
-Setiap molekul air punya tiga atom, jadi jumlah atomnya <InlineMath math="3 \times 3{,}01 \times 10^{23} = 9{,}03 \times 10^{23}" />. Cek dengan model: pada <InlineMath math="n = 0{,}5" />, massa air terbaca <InlineMath math="9\text{ g}" />.
-
-### Contoh Massa dari Jumlah Partikel
-
-Berapa massa <InlineMath math="1{,}204 \times 10^{24}" /> atom magnesium? Ubah partikel menjadi mol dulu, lalu **mol menjadi massa**:
+Misalkan kamu ingin mencari **jumlah mol, molekul, dan atom** dalam <InlineMath math="9{,}0\ \text{g}" /> air. Ubah massa ke mol lebih dulu, lalu kalikan dengan tetapan Avogadro untuk memperoleh jumlah molekul:
 
 <MathContainer>
-<BlockMath math="n = \frac{1{,}204 \times 10^{24}}{6{,}02 \times 10^{23}} = 2{,}0\text{ mol}" />
-<BlockMath math="m = nM = 2{,}0 \times 24 = 48\text{ g}" />
+<BlockMath math="n = \frac{m}{M} = \frac{9{,}0}{18} = 0{,}50\ \text{mol}" />
+<BlockMath math="N(\mathrm{H_2O}) = 0{,}50 \times 6{,}02 \times 10^{23} = 3{,}01 \times 10^{23}" />
 </MathContainer>
 
-Cek: <InlineMath math="48\text{ g}" /> adalah dua kali massa molar magnesium, sesuai dengan dua mol.
+Waspadai jebakan antara molekul dan atom. Satu molekul air berisi tiga atom (dua hidrogen dan satu oksigen), jadi total **atom** adalah tiga kali jumlah molekul:
 
-## Volume Molar Gas
+<BlockMath math="N(\text{atom}) = 3 \times 3{,}01 \times 10^{23} = 9{,}03 \times 10^{23}" />
 
-Pada suhu dan tekanan yang sama, satu mol **gas apa pun** menempati volume yang sama. Volume ini disebut **volume molar**: <InlineMath math="24\text{ L/mol}" /> pada keadaan kamar dan <InlineMath math="22{,}4\text{ L/mol}" /> pada suhu dan tekanan standar (STP). Geser penggesernya dan bandingkan kedua garis.
+Terapkan aturan yang sama pada <InlineMath math="0{,}20\ \text{mol}" /> amonia, <InlineMath math="\mathrm{NH_3}" />. Karena setiap molekul amonia memuat empat atom, mengalikannya dengan empat langsung memberi total atom:
+
+<BlockMath math="N(\text{atom}) = 0{,}20 \times 4 \times 6{,}02 \times 10^{23} = 4{,}82 \times 10^{23}" />
+
+Selalu cek apakah soal menanyakan jumlah molekul atau jumlah atom sebelum menutup perhitungan.
+
+### Mencari Massa dari Jumlah Partikel
+
+Sekarang balik arahnya. Berapa massa <InlineMath math="1{,}204 \times 10^{24}" /> atom magnesium jika <InlineMath math="A_r(\mathrm{Mg}) = 24" />? Ubah partikel ke mol lebih dulu, lalu ubah **mol ke massa**:
+
+<MathContainer>
+<BlockMath math="n = \frac{1{,}204 \times 10^{24}}{6{,}02 \times 10^{23}} = 2{,}0\ \text{mol}" />
+<BlockMath math="m = nM = 2{,}0 \times 24 = 48\ \text{g}" />
+</MathContainer>
+
+Cek kewajaran hasilnya dengan cepat: <InlineMath math="48\ \text{g}" /> tepat dua kali massa molar magnesium, cocok dengan dua mol penuh atom.
+
+## Volume Molar Gas pada Keadaan Standar dan Kamar
+
+Molekul gas melesat bebas dengan ruang kosong sangat lebar di antara mereka, jadi ukuran tiap molekul nyaris tidak memengaruhi ruang total yang ditempati gas. Akibatnya, pada suhu dan tekanan yang sama, satu mol **gas apa pun** menempati volume persis sama. Nilai tetap ini disebut **volume molar**, <InlineMath math="V_m" />: <InlineMath math="22{,}4\ \text{dm}^3\text{ mol}^{-1}" /> pada suhu dan tekanan standar (STP) dan <InlineMath math="24{,}0\ \text{dm}^3\text{ mol}^{-1}" /> pada suhu dan tekanan kamar (RTP).
+
+Satu batas penting: volume molar berlaku **hanya untuk gas**, bukan padatan atau cairan yang partikelnya berhimpitan rapat. Ganti antara STP dan RTP pada silinder gas di bawah dan geser jumlah molnya untuk melihat piston terangkat.
+
+<AvogadroGasVolumeLab
+  title={<>Volume Molar Gas dalam Silinder Piston Bergerak</>}
+  description={
+    <>
+      Ubah kondisi antara STP dan RTP lalu atur jumlah mol gas. Amati piston
+      naik teratur saat lebih banyak molekul gas masuk ke silinder.
+    </>
+  }
+  footer={
+    <>
+      Suhu kamar yang lebih hangat memekarkan tiap mol gas dibanding STP.
+    </>
+  }
+  conditions={["stp", "rtp"]}
+  moles={{ min: 0.25, max: 4, value: 1 }}
+  labels={{
+    condition: "Pilih kondisi gas",
+    conditions: {
+      stp: {
+        molarVolume: <InlineMath math="22{,}4\ \mathrm{dm^3\,mol^{-1}}" />,
+        name: "STP",
+      },
+      rtp: {
+        molarVolume: <InlineMath math="24{,}0\ \mathrm{dm^3\,mol^{-1}}" />,
+        name: "RTP",
+      },
+    },
+    gasVolume: <>Volume gas <InlineMath math="V" /></>,
+    moles: "Jumlah mol",
+    particleCount: <>Jumlah partikel <InlineMath math="N" /></>,
+    parts: {
+      piston: "Piston bergerak",
+      cylinder: "Silinder berskala",
+      gasParticles: "Partikel gas",
+      volumeScale: "Skala volume",
+      thermometer: "Termometer",
+    },
+    view: "Silinder volume gas Avogadro",
+  }}
+/>
+
+Entah silinder berisi gas hidrogen ringan atau karbon dioksida berat, mengatur penggeser ke <InlineMath math="1\ \text{mol}" /> mengangkat piston ke tanda skala yang persis sama pada tiap suhu.
+
+Bandingkan kedua garis lurusnya secara langsung di bawah. Keduanya lewat titik asal, dan garis RTP yang lebih hangat sedikit lebih curam daripada STP.
 
 <MathVisual
   title={<>Volume Gas terhadap Jumlah Mol</>}
   description={
     <>
-      Garis atas adalah <InlineMath math="V = 24n" /> pada keadaan kamar, garis
-      bawah <InlineMath math="V = 22{,}4n" /> pada STP, dengan{" "}
-      <InlineMath math="V" /> dalam liter.
+      Garis atas menunjukkan <InlineMath math="V = 24n" /> pada keadaan kamar
+      dan garis bawah menunjukkan <InlineMath math="V = 22{,}4n" /> pada STP,
+      dengan <InlineMath math="V" /> dalam liter.
+    </>
+  }
+  footer={
+    <>
+      Baca volume gas langsung dari penggeser mol pada kedua kondisi standar.
     </>
   }
   scene={{
@@ -196,17 +259,20 @@ Pada suhu dan tekanan yang sama, satu mol **gas apa pun** menempati volume yang 
   }}
 />
 
-Sekarang pakai volume molar. Pada keadaan kamar, <InlineMath math="0{,}25" /> mol karbon dioksida menempati:
+Cek satu titik pada grafik saat <InlineMath math="n = 0{,}25\ \text{mol}" /> karbon dioksida pada keadaan kamar. Kalikan mol dengan volume molar untuk volume dan dengan massa molar untuk massa:
 
-<BlockMath math="V = nV_m = 0{,}25 \times 24 = 6{,}0\text{ L}" />
+<MathContainer>
+<BlockMath math="V = nV_m = 0{,}25 \times 24 = 6{,}0\ \text{L}" />
+<BlockMath math="m = nM = 0{,}25 \times 44 = 11\ \text{g}" />
+</MathContainer>
 
-Massanya <InlineMath math="0{,}25 \times 44 = 11\text{ g}" />. Cek dengan model pada <InlineMath math="n = 0{,}25" />.
+Angka model cocok tepat di <InlineMath math="6{,}0\ \text{L}" />, menghubungkan volume gas dan massa secara rapi lewat mol.
 
 ## Rumus Empiris dan Rumus Molekul
 
-**Rumus empiris** menunjukkan perbandingan bilangan bulat paling sederhana dari atom setiap unsur dalam senyawa. **Rumus molekul** menunjukkan jumlah atom sebenarnya dalam satu molekul. Glukosa punya rumus molekul <InlineMath math="\mathrm{C_6H_{12}O_6}" /> dan rumus empiris <InlineMath math="\mathrm{CH_2O}" />.
+**Rumus empiris** menyatakan perbandingan bilangan bulat paling sederhana dari atom tiap unsur dalam senyawa, sedangkan **rumus molekul** menyatakan jumlah atom sebenarnya dalam satu molekul. Glukosa punya rumus molekul <InlineMath math="\mathrm{C_6H_{12}O_6}" /> dan rumus empiris <InlineMath math="\mathrm{CH_2O}" />.
 
-Rumus empiris ditentukan dari massa setiap unsur. Dalam satu percobaan, <InlineMath math="2{,}4\text{ g}" /> pita magnesium dibakar dan menghasilkan <InlineMath math="4{,}0\text{ g}" /> magnesium oksida. Massa oksigen yang bergabung adalah <InlineMath math="4{,}0 - 2{,}4 = 1{,}6\text{ g}" />. Susun perhitungannya dalam tabel:
+Untuk menentukan rumus empiris dari data percobaan, ubah massa setiap unsur ke mol lalu bagi dengan nilai mol terkecil. Dalam percobaan cawan porselen klasik, <InlineMath math="2{,}4\ \text{g}" /> pita magnesium dibakar di udara hingga membentuk <InlineMath math="4{,}0\ \text{g}" /> magnesium oksida. Mengurangkan massa pita menunjukkan ada <InlineMath math="1{,}6\ \text{g}" /> oksigen yang bergabung dengan magnesium:
 
 | Unsur | Magnesium | Oksigen |
 | :--- | :--- | :--- |
@@ -214,18 +280,38 @@ Rumus empiris ditentukan dari massa setiap unsur. Dalam satu percobaan, <InlineM
 | Jumlah mol | <InlineMath math="2{,}4 : 24 = 0{,}10" /> | <InlineMath math="1{,}6 : 16 = 0{,}10" /> |
 | Perbandingan paling sederhana | <InlineMath math="1" /> | <InlineMath math="1" /> |
 
-Perbandingannya satu banding satu, jadi rumus empirisnya <InlineMath math="\mathrm{MgO}" />. Cek: massa rumusnya <InlineMath math="24 + 16 = 40" />, dan <InlineMath math="0{,}10 \times 40 = 4{,}0\text{ g}" />, sama dengan massa oksida yang ditimbang.
+Perbandingan satu banding satu memberi rumus empiris <InlineMath math="\mathrm{MgO}" />. Dengan massa rumus <InlineMath math="40" />, mengalikan <InlineMath math="0{,}10\ \text{mol}" /> dengan <InlineMath math="40" /> mengembalikan tepat <InlineMath math="4{,}0\ \text{g}" /> oksida yang ditimbang.
 
-## Persamaan Reaksi dan Perbandingan Mol
+Tabel yang sama berlaku untuk data persen massa. Misalkan suatu senyawa mengandung <InlineMath math="40{,}0\%" /> karbon, <InlineMath math="6{,}7\%" /> hidrogen, dan <InlineMath math="53{,}3\%" /> oksigen menurut massa, dengan massa molekul relatif <InlineMath math="180" />. Anggap sampel bermassa <InlineMath math="100\ \text{g}" /> supaya tiap persen langsung menjadi gram:
 
-Persamaan reaksi yang setara memberi **perbandingan mol** pereaksi dan hasil reaksi. Koefisien di depan setiap rumus adalah jumlah mol, bukan massa. Pilih reaksi di model ini dan hitung molekul di kedua ruas persamaan.
+| Unsur | C | H | O |
+| :--- | :--- | :--- | :--- |
+| Jumlah mol | <InlineMath math="40{,}0 : 12 = 3{,}33" /> | <InlineMath math="6{,}7 : 1 = 6{,}7" /> | <InlineMath math="53{,}3 : 16 = 3{,}33" /> |
+| Perbandingan paling sederhana | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
+
+Hasilnya adalah rumus empiris <InlineMath math="\mathrm{CH_2O}" /> dengan massa satuan <InlineMath math="30" />. Membagi massa molekul dengan massa satuan empiris memberi faktor pengalinya:
+
+<BlockMath math="\frac{180}{30} = 6" />
+
+Mengalikan tiap angka indeks pada <InlineMath math="\mathrm{CH_2O}" /> dengan <InlineMath math="6" /> menghasilkan rumus molekul sebenarnya, <InlineMath math="\mathrm{C_6H_{12}O_6}" />, glukosa.
+
+## Stoikiometri dengan Persamaan Reaksi Setara
+
+Persamaan reaksi setara menetapkan perbandingan zat dalam satuan mol, bukan gram. Angka koefisien di depan setiap rumus memberi **perbandingan mol** antara pereaksi dan hasil reaksi. Kesalahan paling sering dalam stoikiometri adalah memakai koefisien langsung sebagai perbandingan massa. **Selalu lewat jalur mol**: ubah data awal ke mol, pakai perbandingan mol persamaan, lalu ubah ke satuan tujuan.
+
+Pilih satu reaksi di bawah dan putar animasinya untuk melihat atom-atom menata ulang diri sementara jumlah molekul mengikuti koefisien setara.
 
 <ReactionBalanceLab
   title={<>Molekul di Kedua Ruas Persamaan</>}
   description={
     <>
-      Pilih reaksi dan jalankan animasinya. Jumlah setiap jenis atom sama di
-      kiri dan kanan, dan koefisiennya memberi perbandingan mol.
+      Pilih reaksi dan jalankan animasinya. Jumlah tiap jenis atom tetap sama di
+      kiri dan kanan, sementara koefisien menunjukkan perbandingan mol.
+    </>
+  }
+  footer={
+    <>
+      Koefisien setara menghitung molekul dan mol reaksi, bukan massa gram.
     </>
   }
   reactions={[
@@ -247,82 +333,46 @@ Persamaan reaksi yang setara memberi **perbandingan mol** pereaksi dan hasil rea
   }}
 />
 
-### Contoh Massa Hasil Reaksi
+Amati hitungan atom tetap terkunci dari awal hingga akhir meskipun jumlah molekulnya berubah, membuktikan hukum kekekalan massa pada tiap reaksi.
 
-Hitung **massa karbon dioksida** yang terbentuk saat <InlineMath math="8{,}0\text{ g}" /> metana terbakar sempurna.
+### Massa Hasil dari Persamaan Setara
+
+Hitung **massa karbon dioksida** yang terbentuk saat <InlineMath math="8{,}0\ \text{g}" /> metana terbakar sempurna dalam oksigen. Mulai dari persamaan setaranya:
 
 <BlockMath math="\mathrm{CH_4} + 2\mathrm{O_2} \rightarrow \mathrm{CO_2} + 2\mathrm{H_2O}" />
 
-Ikuti tiga langkah: massa ke mol, perbandingan mol, lalu mol ke massa.
+Ikuti jembatan tiga langkah mol secara rapi dan tulis satuan di setiap baris:
 
 <MathContainer>
-<BlockMath math="n(\mathrm{CH_4}) = \frac{8{,}0}{16} = 0{,}50\text{ mol}" />
-<BlockMath math="n(\mathrm{CO_2}) = n(\mathrm{CH_4}) = 0{,}50\text{ mol}" />
-<BlockMath math="m(\mathrm{CO_2}) = 0{,}50 \times 44 = 22\text{ g}" />
+<BlockMath math="n(\mathrm{CH_4}) = \frac{8{,}0}{16} = 0{,}50\ \text{mol}" />
+<BlockMath math="n(\mathrm{CO_2}) = n(\mathrm{CH_4}) = 0{,}50\ \text{mol}" />
+<BlockMath math="m(\mathrm{CO_2}) = 0{,}50 \times 44 = 22\ \text{g}" />
 </MathContainer>
 
-Cek dengan hukum kekekalan massa: oksigen yang dipakai <InlineMath math="1{,}0 \times 32 = 32\text{ g}" /> dan air yang terbentuk <InlineMath math="1{,}0 \times 18 = 18\text{ g}" />. Massa pereaksi <InlineMath math="8 + 32 = 40\text{ g}" /> sama dengan massa hasil <InlineMath math="22 + 18 = 40\text{ g}" />.
+Uji jawaban dengan kekekalan massa. Membakar <InlineMath math="0{,}50\ \text{mol}" /> metana memakai <InlineMath math="1{,}0\ \text{mol}" /> oksigen (<InlineMath math="32\ \text{g}" />) dan membentuk <InlineMath math="1{,}0\ \text{mol}" /> air (<InlineMath math="18\ \text{g}" />):
 
-### Contoh Volume Gas dari Persamaan
+<BlockMath math="8 + 32 = 40\ \text{g} = 22 + 18" />
 
-Sebanyak <InlineMath math="0{,}10" /> mol nitrogen bereaksi sempurna dengan hidrogen. Hitung **volume amonia** pada keadaan kamar.
+Massa pereaksi dan massa hasil cocok tepat sampai gramnya, memastikan seluruh langkah benar.
+
+### Volume Gas dari Persamaan Setara
+
+Sekarang hubungkan perbandingan persamaan dengan volume gas pada keadaan kamar (<InlineMath math="V_m = 24\ \text{L/mol}" />). Pertama, misalkan <InlineMath math="0{,}10\ \text{mol}" /> nitrogen bereaksi sempurna dengan hidrogen membentuk **gas amonia**:
 
 <MathContainer>
 <BlockMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightarrow 2\mathrm{NH_3}" />
-<BlockMath math="n(\mathrm{NH_3}) = 2 \times 0{,}10 = 0{,}20\text{ mol}" />
-<BlockMath math="V = 0{,}20 \times 24 = 4{,}8\text{ L}" />
+<BlockMath math="n(\mathrm{NH_3}) = 2 \times 0{,}10 = 0{,}20\ \text{mol}" />
+<BlockMath math="V(\mathrm{NH_3}) = 0{,}20 \times 24 = 4{,}8\ \text{L}" />
 </MathContainer>
 
-Cek perbandingannya: satu molekul nitrogen menghasilkan dua molekul amonia, seperti yang ditunjukkan model reaksi.
+Hasil ini selaras dengan model reaksi: satu molekul nitrogen menghasilkan dua molekul amonia.
 
-## Kesalahan Umum tentang Konsep Mol
-
-| Kesalahan | Alasan keliru | Cara mengecek |
-| :--- | :--- | :--- |
-| Satu mol air dan satu mol karbon dioksida sama massanya. | Jumlah partikelnya sama, tetapi massa molarnya berbeda. | Bandingkan <InlineMath math="M" />, bukan <InlineMath math="n" />. |
-| Memakai koefisien persamaan sebagai perbandingan massa. | Koefisien adalah perbandingan mol. | Ubah massa ke mol sebelum memakai perbandingan. |
-| Memakai <InlineMath math="24\text{ L}" /> untuk padatan atau cairan. | Volume molar hanya berlaku untuk gas. | Cek wujud zatnya. |
-| Jumlah atom sama dengan jumlah molekul. | Satu molekul bisa berisi beberapa atom. | Kalikan dengan jumlah atom dalam rumus. |
-
-Kesalahan kedua paling sering muncul di soal stoikiometri. **Selalu lewat mol**: massa ke mol, perbandingan mol, lalu mol ke besaran yang ditanyakan.
-
-## Latihan Konsep Mol
-
-Soal-soal ini dimulai dari satu konversi dan diakhiri dengan rumus serta persamaan. Pakai <InlineMath math="A_r" />: H <InlineMath math="1" />, C <InlineMath math="12" />, N <InlineMath math="14" />, O <InlineMath math="16" />, Ca <InlineMath math="40" />, Zn <InlineMath math="65" />. **Tulis satuan di setiap langkah**.
-
-1. Hitung jumlah atom dalam <InlineMath math="0{,}20" /> mol amonia, <InlineMath math="\mathrm{NH_3}" />.
-
-2. Hitung jumlah mol dalam <InlineMath math="25\text{ g}" /> kalsium karbonat, <InlineMath math="\mathrm{CaCO_3}" />.
-
-3. Suatu senyawa mengandung <InlineMath math="40{,}0\%" /> karbon, <InlineMath math="6{,}7\%" /> hidrogen, dan <InlineMath math="53{,}3\%" /> oksigen menurut massa. Massa molekul relatifnya <InlineMath math="180" />. Tentukan rumus empiris dan rumus molekulnya.
-
-4. Sebanyak <InlineMath math="6{,}5\text{ g}" /> seng bereaksi dengan asam klorida berlebih. Hitung volume gas hidrogen pada keadaan kamar.
-
-### Pembahasan
-
-**Pembahasan 1**: Setiap molekul <InlineMath math="\mathrm{NH_3}" /> mengandung empat atom.
-
-<BlockMath math="N = 0{,}20 \times 4 \times 6{,}02 \times 10^{23} = 4{,}82 \times 10^{23}" />
-
-**Pembahasan 2**: Hitung massa rumus relatifnya dulu, <InlineMath math="40 + 12 + 3(16) = 100" />.
-
-<BlockMath math="n = \frac{25}{100} = 0{,}25\text{ mol}" />
-
-**Pembahasan 3**: Anggap ada <InlineMath math="100\text{ g}" /> senyawa, jadi persen menjadi gram.
-
-| Unsur | C | H | O |
-| :--- | :--- | :--- | :--- |
-| Jumlah mol | <InlineMath math="40{,}0 : 12 = 3{,}33" /> | <InlineMath math="6{,}7 : 1 = 6{,}7" /> | <InlineMath math="53{,}3 : 16 = 3{,}33" /> |
-| Perbandingan paling sederhana | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
-
-Rumus empirisnya <InlineMath math="\mathrm{CH_2O}" /> dengan massa rumus <InlineMath math="30" />. Karena <InlineMath math="180 : 30 = 6" />, rumus molekulnya <InlineMath math="\mathrm{C_6H_{12}O_6}" />, yaitu glukosa.
-
-**Pembahasan 4**: Tulis persamaannya, lalu ikuti perbandingan mol <InlineMath math="1 : 1" /> antara seng dan hidrogen.
+Berikutnya, hubungkan massa logam dengan volume gas. Misalkan <InlineMath math="6{,}5\ \text{g}" /> keping seng (<InlineMath math="A_r = 65" />) larut sempurna dalam asam klorida berlebih, dan kamu mencari volume hidrogen yang dibebaskan pada suhu serta tekanan kamar. Tulis persamaan setara dan ikuti perbandingan mol <InlineMath math="1 : 1" /> antara seng dan hidrogen:
 
 <MathContainer>
 <BlockMath math="\mathrm{Zn} + 2\mathrm{HCl} \rightarrow \mathrm{ZnCl_2} + \mathrm{H_2}" />
-<BlockMath math="n(\mathrm{Zn}) = \frac{6{,}5}{65} = 0{,}10\text{ mol} = n(\mathrm{H_2})" />
-<BlockMath math="V = 0{,}10 \times 24 = 2{,}4\text{ L}" />
+<BlockMath math="n(\mathrm{Zn}) = \frac{6{,}5}{65} = 0{,}10\ \text{mol} = n(\mathrm{H_2})" />
+<BlockMath math="V(\mathrm{H_2}) = 0{,}10 \times 24 = 2{,}4\ \text{L}" />
 </MathContainer>
 
-Asamnya berlebih, jadi **seng menentukan jumlah gas**.
+Karena asam klorida tersedia berlebih, **massa pembatas seng menentukan tepat volume hidrogen yang terkumpul**.
