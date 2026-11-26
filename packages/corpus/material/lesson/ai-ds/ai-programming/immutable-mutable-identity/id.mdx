@@ -11,7 +11,7 @@ export const metadata = {
 
 Dalam Python, `list` bersifat mutable, sehingga isinya dapat diubah setelah dibuat. Dampak suatu operasi bergantung pada apakah operasi itu <Highlight>mengubah objek yang sama atau mengikat ulang nama</Highlight>.
 
-Ketika sebuah `list` di-assign ke variabel, variabel tersebut hanya menyimpan referensi ke objek `list`. Assignment tidak menyalin isi `list`, sehingga beberapa nama atau container dapat merujuk ke objek yang sama.
+Ketika sebuah `list` di-assign ke variabel, variabel itu hanya menyimpan referensi ke objek `list`. Assignment tidak menyalin isi `list`, sehingga beberapa nama atau container dapat merujuk ke objek yang sama.
 
 <CodeBlock
   data={[
@@ -31,7 +31,7 @@ print(list2)  # ['a', [0, [3, 4, 5], 2], True]`
   ]}
 />
 
-Perhatikan bagaimana perubahan pada `list1` juga memengaruhi `list2`. `list2` adalah list luar yang berbeda. Elemen `list2[1]` merujuk ke objek yang sama dengan `list1`.
+Perubahan pada `list1` ikut memengaruhi `list2`. `list2` adalah list luar yang berbeda, tetapi elemen `list2[1]` merujuk ke objek yang sama dengan `list1`.
 
 Full slice seperti `data[:]` membuat **`list` luar baru**, tetapi elemen di dalamnya tetap merujuk ke objek yang sama. Hasil ini disebut shallow copy. Mengganti elemen pada bagian luar tidak memengaruhi `list` asal, tetapi objek mutable yang tersimpan di dalamnya masih dipakai bersama.
 
@@ -65,6 +65,7 @@ List bisa berubah di tempat. Mulai dari `nums = [1, 2, 3]`, `nums[0] = 10` mengg
 
 <MathVisual
   title={<><code>nums</code> diubah di tempat</>}
+  footer={<>Penggantian indeks dan append mengubah isi list tanpa menciptakan objek baru.</>}
   description={<>Setiap titik adalah satu elemen, dengan indeks mendatar dan nilai tegak. Ruas oranye menaikkan elemen indeks <InlineMath math="0" /> dari <InlineMath math="1" /> ke titik magenta <InlineMath math="10" />, dan titik hijau toska adalah elemen baru dari <code>append</code>.</>}
   scene={{
     space: "plane",
@@ -89,12 +90,15 @@ List bisa berubah di tempat. Mulai dari `nums = [1, 2, 3]`, `nums[0] = 10` mengg
   }}
 />
 
+Baik pembaruan elemen maupun `append` memodifikasi wadah `nums` yang sama, sehingga referensi mana pun yang menunjuk ke `nums` langsung melihat isi terbarunya.
+
 ## Identitas Tipe dan Nilai Objek
 
 Setiap objek Python memiliki tiga karakteristik: **identitas, tipe, dan nilai**.
 
 <Mermaid
   title={<>Identitas Menunjukkan Objek yang Dipakai</>}
+  footer={<>Identitas menandai objek, tipe mengatur operasi, dan nilai menyimpan datanya.</>}
   description={<>Pisahkan identitas, tipe, dan nilai agar satu objek tidak tertukar dengan nama variabelnya.</>}
   chart={`
     flowchart LR
@@ -108,9 +112,11 @@ Setiap objek Python memiliki tiga karakteristik: **identitas, tipe, dan nilai**.
   `}
 />
 
+Memisahkan ketiga sifat ini membantu saat melacak bug: nilai boleh berubah untuk tipe mutable, sementara identitas dan tipe objek tetap melekat selama objek hidup.
+
 ### Identitas Objek
 
-Dua referensi memiliki identitas yang sama jika keduanya menunjuk ke objek yang sama. `id()` mengembalikan integer yang **unik di antara objek-objek yang hidup bersamaan**, sedangkan `is` membandingkan identitas secara langsung. Bahasa Python tidak menjamin bahwa integer tersebut merupakan alamat memori fisik.
+Dua referensi memiliki identitas yang sama jika keduanya menunjuk ke objek yang sama. `id()` mengembalikan integer yang **unik di antara objek-objek yang hidup bersamaan**, sedangkan `is` membandingkan identitas secara langsung. Bahasa Python tidak menjamin bahwa integer itu adalah alamat memori fisik.
 
 <CodeBlock
   data={[
@@ -133,7 +139,7 @@ print(id(a))      # Contoh: 10492 (berbeda dari sebelumnya)`
 
 ### Membandingkan Identitas dan Nilai
 
-Gunakan `is` untuk memeriksa apakah dua nama merujuk pada objek yang sama, terutama pada kondisi seperti `value is None`. Gunakan `==` untuk **membandingkan nilai objek**. Interpreter dapat memakai kembali objek tertentu atau menghitung ekspresi konstanta lebih awal. Akibatnya, dua nilai immutable kadang memiliki identitas yang sama. Jangan jadikan perilaku internal tersebut sebagai dasar logika program.
+Gunakan `is` untuk memeriksa apakah dua nama merujuk pada objek yang sama, terutama pada kondisi seperti `value is None`. Gunakan `==` untuk **membandingkan nilai objek**. Interpreter dapat memakai kembali objek tertentu atau menghitung ekspresi konstanta lebih awal. Akibatnya, dua nilai immutable kadang memiliki identitas yang sama. Jangan jadikan perilaku internal itu sebagai dasar logika program.
 
 <CodeBlock
   data={[
@@ -156,6 +162,7 @@ Jalankan `a = [1, 2]`, `b = a`, `c = a.copy()`, lalu `b.append(3)`. Gambar ini m
 
 <MathVisual
   title={<>Dua nama untuk satu list, satu nama untuk salinan</>}
+  footer={<>Alias a dan b berbagi satu list yang sama, sedangkan c menunjuk salinan terpisah.</>}
   description={<><code>b</code> diikat ke list yang sama dengan <code>a</code>, <code>c</code> ke salinan dari <code>a.copy()</code>, lalu <code>b.append(3)</code> dijalankan: ruas ungu menunjukkan <code>a</code> dan <code>b</code> ke objek yang sama, yang kini berisi <code>[1, 2, 3]</code>, dan ruas hijau toska menunjukkan <code>c</code> ke salinannya <code>[1, 2]</code>.</>}
   scene={{
     space: "plane",
@@ -188,6 +195,8 @@ Jalankan `a = [1, 2]`, `b = a`, `c = a.copy()`, lalu `b.append(3)`. Gambar ini m
   }}
 />
 
+Salinan eksplisit seperti `a.copy()` memutus jalur berbagi objek, sehingga mutasi lewat `b` tidak ikut mengubah `c`.
+
 ## Perubahan Isi Objek dan Pengikatan Ulang Nama
 
 Python membagi objeknya menurut satu pertanyaan, yaitu apakah isinya bisa berubah setelah objek itu ada. Objek immutable seperti `int`, `str`, atau `tuple` menyimpan nilai yang sama sepanjang umurnya, sehingga operasi yang terlihat mengubah isi sebenarnya membuat objek baru. Objek mutable seperti `list`, `dict`, atau `set` menyimpan isi yang bisa berubah tanpa mengganti objeknya.
@@ -196,7 +205,7 @@ Dua nama yang menunjuk ke satu objek mutable sama-sama melihat perubahan isi itu
 
 ### Objek Immutable
 
-Objek immutable **tidak dapat diubah setelah dibuat**. Operasi yang tampak mengubah nilai objek sebenarnya membuat objek baru dan mengikat nama variabel ke objek tersebut.
+Objek immutable **tidak dapat diubah setelah dibuat**. Operasi yang tampak mengubah nilai objek sebenarnya membuat objek baru dan mengikat nama variabel ke objek baru itu.
 
 <CodeBlock
   data={[
@@ -269,7 +278,7 @@ Tipe mutable dalam Python meliputi:
 
 ### Reassignment dan Mutation
 
-Reassignment **mengikat sebuah nama** ke objek lain. Mutation mengubah isi objek yang sama, sehingga perubahannya dapat diakses melalui semua nama yang masih merujuk ke objek tersebut.
+Reassignment **mengikat sebuah nama** ke objek lain. Mutation mengubah isi objek yang sama, sehingga perubahannya dapat diakses melalui semua nama yang masih merujuk ke objek itu.
 
 <CodeBlock
   data={[
@@ -297,6 +306,7 @@ print(list2)         # [0, 'x', 2] (tidak berubah)`
 
 <Mermaid
   title={<>Dua Nama Melihat Satu Mutasi</>}
+  footer={<>Mengubah elemen lewat list1 langsung terlihat lewat list2 karena objeknya sama.</>}
   description={<>Kedua nama tetap merujuk ke list yang sama setelah elemen list diubah.</>}
   chart={`
     flowchart TD
@@ -320,6 +330,7 @@ Bandingkan `a = 5; b = a; a += 1` dengan `x = [5]; y = x; x[0] += 1`. Bilangan b
 
 <BarChart
   title={<>Objek yang tidak bisa diubah dan yang bisa diubah setelah <code>+= 1</code></>}
+  footer={<>Integer membuat objek baru saat ditambah, sedangkan list diubah langsung di tempat.</>}
   description={<>Setiap batang adalah nilai nama yang tertulis di bawahnya setelah kedua potongan kode. <code>b</code> tetap <InlineMath math="5" />, sedangkan <code>x[0]</code> dan <code>y[0]</code> sama-sama <InlineMath math="6" /> karena menunjuk list yang sama.</>}
   yAxisLabel="Nilai"
   data={[
@@ -330,3 +341,7 @@ Bandingkan `a = 5; b = a; a += 1` dengan `x = [5]; y = x; x[0] += 1`. Bilangan b
   ]}
   chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
+
+Operator yang sama (`+=`) memberi efek berbeda bergantung pada sifat objeknya: angka memindahkan ikatan nama ke objek baru, sedangkan elemen list diubah langsung pada objek bersama.
+
+> Variabel di Python bukan kotak penyimpan nilai, melainkan label yang ditempelkan pada objek di memori. Membedakan reassignment dari mutation mencegah bug tersembunyi saat data dipakai bersama.

@@ -28,9 +28,6 @@ Eine Liste bewahrt die **Reihenfolge ihrer Elemente** und ihr Inhalt lässt sich
 
 Anders als ein niedrigstufiges Array fester Größe kann eine Python-Liste wachsen und schrumpfen. Sie speichert Verweise auf Python-Objekte. Eine Änderung an einem verschachtelten Objekt kann deshalb über jeden Verweis auf dieses Objekt sichtbar sein.
 
-
-### Eigenschaften von Listen
-
 Achte auf **Reihenfolge, gemischte Typen und Veränderlichkeit**. Geordnet bedeutet, dass jedes Element eine Position hat. Die Werte sind deshalb nicht automatisch der Größe nach sortiert.
 
 | Eigenschaft | Erklärung | Beispiel |
@@ -38,8 +35,6 @@ Achte auf **Reihenfolge, gemischte Typen und Veränderlichkeit**. Geordnet bedeu
 | Geordnet | Elemente haben eine feste Reihenfolge | `[1, 2, 3]` ist nicht dasselbe wie `[3, 2, 1]` |
 | Heterogen | Kann verschiedene Datentypen enthalten | `[1, 'text', 3.14, True]` |
 | Veränderlich | Inhalte können nach der Erstellung geändert werden | Kann Elemente hinzufügen, entfernen oder ändern |
-
-### Listen schreiben
 
 Ein Listenliteral verwendet **eckige Klammern** und trennt die Elemente durch Kommas. Eine Liste kann Werte unterschiedlicher Typen oder weitere Listen enthalten.
 
@@ -131,7 +126,10 @@ Du kannst auch über einen Index zuweisen. Nach `x = [0, 1, 2, 3, 4, 5]` und `x[
     "new": <code>x[2] = 9</code>,
     "last": <code>x[-1]</code>,
   }}
+  footer="Das Element an Index 2 ändert sich direkt, alle anderen bleiben fest."
 />
+
+Da Listen veränderlich sind, ersetzt die Zuweisung an Index `2` nur diesen Eintrag, während alle übrigen Positionen unverändert bleiben.
 
 ## Slicing mit Schrittweite
 
@@ -242,7 +240,10 @@ Die obere Zeile nimmt `x[1:4:2]`: Sie beginnt bei Index <InlineMath math="1" />,
     "row-slice": "x[1:4:2]",
     "row-back": "x[::-1]",
   }}
+  footer="Positive Schritte überspringen Indizes, negative Schritte kehren die Liste um."
 />
+
+Slicing erzeugt immer eine neue Liste, sodass die ursprüngliche Reihenfolge in `x` bei positiven wie negativen Schrittweiten erhalten bleibt.
 
 ## Listen und Strings
 
@@ -302,7 +303,10 @@ Der Hauptunterschied liegt in der Veränderlichkeit. Ein String kann nach seiner
         M --> N[index]
         M --> O[count]
   `}
+  footer="Listenmethoden zum Hinzufügen, Entfernen, Suchen, Kopieren und Ordnen."
 />
+
+Die meisten Änderungsmethoden wie `append`, `remove` und `sort` verändern die Liste direkt, während `index` und `count` sie nur auslesen.
 
 | Methode | Beschreibung | Anwendungsbeispiel |
 |--------|-------------|---------------|
@@ -480,7 +484,7 @@ print('Nach dem Ändern der inneren Liste:', t) # Ausgabe: Nach dem Ändern der 
   ]}
 />
 
-### Dictionary
+### Schlüsselwertzuordnungen
 
 Ein Dictionary speichert **Schlüssel-Wert-Paare**. Jeder Schlüssel muss eindeutig sein und unverändert hashbar bleiben, solange er im Dictionary liegt. Werte dürfen mehrfach vorkommen und auf veränderliche Objekte verweisen. Ein Dictionary-Literal verwendet `{}` mit einem Doppelpunkt zwischen Schlüssel und Wert.
 
@@ -537,6 +541,35 @@ print('gerade & ungerade =', gerade & ungerade) # Ausgabe: gerade & ungerade = s
   ]}
 />
 
+Mengenoperationen wie Schnitt (`&`), Vereinigung (`|`) und Differenz (`-`) entsprechen direkt den Bereichen eines Venn-Diagramms. Wechsle unten die Operation, um zu prüfen, welche eindeutigen Elemente aus der Menge der roten Objekte und der Menge der Bälle ausgewählt werden.
+
+<VennSortLab
+  title={<>Elemente mit Mengenoperationen auswählen</>}
+  description={<>Wechsle die Mengenoperation, um eindeutige Elemente im Schnitt, in der Vereinigung, in der Differenz oder außerhalb beider Kreise hervorzuheben.</>}
+  footer="Jede Mengenoperation filtert eindeutige Objekte, ohne je Duplikate zu erzeugen."
+  sets={[
+    { attribute: "red", name: "Rot" },
+    { attribute: "ball", name: "Ball" },
+  ]}
+  objects={[
+    { object: "apple", name: "Apfel" },
+    { object: "red-ball", name: "Roter Ball" },
+    { object: "blue-ball", name: "Blauer Ball" },
+    { object: "tennis-ball", name: "Tennisball" },
+    { object: "red-block", name: "Roter Block" },
+    { object: "blue-cup", name: "Blaue Tasse" },
+  ]}
+  operations={["intersection", "union", "difference", "outside-union"]}
+  labels={{
+    count: "Anzahl",
+    members: "Elemente",
+    operation: "Operation",
+    viewLabel: "Venn-Diagramm mit zwei Mengen nach roter Farbe und Ballform",
+  }}
+/>
+
+Nur `Roter Ball` liegt im Schnitt `Rot & Ball`, während die Vereinigung `Rot | Ball` fünf eindeutige Objekte sammelt und `Blaue Tasse` außerhalb beider Mengen bleibt.
+
 ### Vergleich der Sammlungstypen
 
 Die vier eingebauten Sammlungstypen unterscheiden sich in **Reihenfolge, Veränderbarkeit und Umgang mit doppelten Werten**. Die Tabelle stellt sie gegenüber, damit du den passenden Typ aus der Aufgabe auswählst.
@@ -563,4 +596,7 @@ Baue jeden Container aus denselben Daten, `[3, 1, 3, 2, 1]`. Eine `list` und ein
     { name: "dict", value: 3 },
   ]}
   chartConfig={{ value: { label: "Anzahl der Elemente", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="list und tuple behalten 5 Elemente, set und dict nur 3 eindeutige Werte."
 />
+
+Wenn Duplikate und Positionen zählen, wähle `list` oder `tuple`. Wenn nur eindeutige Einträge nötig sind, verwerfen `set` und `dict`-Schlüssel Wiederholungen automatisch.

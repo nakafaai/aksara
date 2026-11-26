@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Functions",
-  description: "Define Python functions with parameters, **return values**, variable scopes, closures, and explicit error handling.",
+  description: "Define Python functions with parameters, return values, variable scopes, closures, and explicit error handling.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
     dateModified: "2026-09-19",
@@ -11,7 +11,7 @@ export const metadata = {
 
 A function <Highlight>names a reusable operation</Highlight>. Its parameters describe the **inputs it accepts**, its body performs the work, and a `return` statement can provide a result to the caller.
 
-## Function Structure and Syntax
+### Function Structure and Syntax
 
 Every Python function follows the same **basic structure**:
 
@@ -39,7 +39,7 @@ Function components consist of:
 5. Indented code block
 6. Optional `return` statement to return a value
 
-## How Function Calls Work
+### How Function Calls Work
 
 Calling a function evaluates the callable expression, **binds the supplied arguments to parameters**, and executes the function body in a new local frame.
 
@@ -167,7 +167,10 @@ Suppose `def power(x, n=2): return x ** n`. If you call `power(x)` without a sec
     "linear": "power(x, 1)",
     "square": "power(x)",
   }}
+  footer="Omitting the second argument uses n=2, while passing 1 overrides the default."
 />
+
+Default parameters keep the most common call short while still letting callers override that default whenever different behavior is needed.
 
 ## Function Return Values
 
@@ -232,7 +235,10 @@ A function can return several values at once as a tuple. `def min_max(data): ret
     "smallest": <code>min</code>,
     "largest": <code>max</code>,
   }}
+  footer="One return statement packs both the minimum 1 and maximum 7 into one tuple."
 />
+
+Returning multiple values as a tuple lets the caller unpack `low, high = min_max(...)` directly without scanning the data twice.
 
 ## Variable Scope in Functions
 
@@ -247,7 +253,10 @@ Variables in Python have scope that determines **where variables can be accessed
         E --> G[Global Scope]
         G --> B[Built-in Scope]
   `}
+  footer="Python resolves names outward from Local to Enclosing, Global, and Built-in."
 />
+
+Lookup stops at the first matching level, so assigning a local variable with the same name shadows the global name without modifying it.
 
 <CodeBlock
   data={[
@@ -455,7 +464,10 @@ Each call of `create_multiplier(factor)` builds a closure that remembers its own
     "two-call": <code>multiply_two(10)</code>,
     "five-call": <code>multiply_five(4)</code>,
   }}
+  footer="Each closure retains its own factor and produces a distinct linear function."
 />
+
+Even though both functions come from one `create_multiplier` definition, each carries its own captured `factor`, so calling one never interferes with the other.
 
 ## Error Handling in Functions
 
@@ -495,3 +507,5 @@ for value in ("abc", [1, 2]):
     }
   ]}
 />
+
+> Design each function around one clear task that receives inputs through parameters and returns outputs through `return` instead of mutating global state.

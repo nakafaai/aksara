@@ -28,9 +28,6 @@ Tipe `list` menyimpan elemen **secara berurutan dan bersifat mutable**, sehingga
 
 Berbeda dari array tingkat rendah yang ukurannya tetap, `list` Python dapat bertambah dan berkurang. Setiap elemennya menyimpan referensi ke objek Python. Jika objek bersarang diubah, perubahan itu dapat diakses melalui setiap referensi yang menunjuk objek yang sama.
 
-
-### Sifat List
-
 Perhatikan **urutan, campuran tipe, dan perubahan isi** saat memilih list. Urutan berarti setiap elemen memiliki posisi. Ini bukan berarti nilainya otomatis terurut dari kecil ke besar.
 
 | Karakteristik | Penjelasan | Contoh |
@@ -38,8 +35,6 @@ Perhatikan **urutan, campuran tipe, dan perubahan isi** saat memilih list. Uruta
 | Terurut | Setiap elemen memiliki posisi | `[1, 2, 3]` berbeda dengan `[3, 2, 1]` |
 | Dapat memuat tipe campuran | Elemen tidak harus bertipe sama | `[1, 'teks', 3.14, True]` |
 | Mutable | Isi dapat diubah setelah dibuat | Elemen dapat ditambah, dihapus, atau diganti |
-
-### Membuat List
 
 Literal `list` memakai **kurung siku dan koma** sebagai pemisah elemen. Sebuah `list` dapat memuat tipe data yang berbeda atau bahkan `list` lain.
 
@@ -131,7 +126,10 @@ Indeks juga bisa dipakai untuk menulis. Setelah `x = [0, 1, 2, 3, 4, 5]` dan `x[
     "new": <code>x[2] = 9</code>,
     "last": <code>x[-1]</code>,
   }}
+  footer="Satu elemen pada indeks 2 berubah di tempat tanpa menggeser elemen lain."
 />
+
+Karena list bersifat mutable, mengganti nilai pada indeks `2` tidak membuat list baru dan tidak menggeser elemen pada indeks lainnya.
 
 ## Slicing dengan Step
 
@@ -242,7 +240,10 @@ Baris atas mengambil `x[1:4:2]`: mulai di indeks <InlineMath math="1" />, melomp
     "row-slice": "x[1:4:2]",
     "row-back": "x[::-1]",
   }}
+  footer="Step positif memilih indeks berkala, sedangkan step negatif membalik urutan."
 />
+
+Slicing selalu menghasilkan list baru, jadi urutan elemen di dalam `x` asal tetap utuh baik saat memakai step positif maupun step negatif.
 
 ## Operasi dan Kesamaan dengan String
 
@@ -279,7 +280,7 @@ print('Isi list:', nested)
 | **Indexing** | Mengambil satu karakter | Mengambil satu elemen |
 | **Slicing dengan step** | Mengambil bagian string | Mengambil bagian `list` |
 
-Perbedaan utamanya, string bersifat immutable, sedangkan `list` bersifat mutable. Artinya, isi string tidak dapat diubah setelah dibuat, tetapi elemen `list` dapat ditambah, dihapus, atau diganti. Python menyediakan sejumlah method untuk melakukan operasi tersebut pada `list`.
+Perbedaan utamanya, string bersifat immutable, sedangkan `list` bersifat mutable. Artinya, isi string tidak dapat diubah setelah dibuat, tetapi elemen `list` dapat ditambah, dihapus, atau diganti. Python menyediakan sejumlah method untuk melakukan operasi ini pada `list`.
 
 <Mermaid
   title={<>Method pada List</>}
@@ -302,7 +303,10 @@ Perbedaan utamanya, string bersifat immutable, sedangkan `list` bersifat mutable
         M --> N[index]
         M --> O[count]
   `}
+  footer="Method list terbagi untuk menambah, menghapus, mencari, menyalin, dan menyusun."
 />
+
+Sebagian besar method mutasi seperti `append`, `remove`, dan `sort` mengubah list secara langsung, sedangkan `index` dan `count` hanya membaca isinya tanpa mengubah urutan elemen.
 
 | Method | Deskripsi | Contoh Penggunaan |
 |--------|-----------|-------------------|
@@ -480,7 +484,7 @@ print('Setelah list di dalamnya diubah:', t)  # Hasil: Setelah list di dalamnya 
   ]}
 />
 
-### Dictionary Python
+### Pemetaan Kunci dan Nilai
 
 Tipe `dict` menyimpan pasangan kunci dan nilai. Setiap kunci harus **unik dan memiliki nilai hash yang tetap** selama digunakan. Nilai dalam pasangan boleh berulang dan dapat merujuk ke objek mutable. Literal `dict` memakai `{}` dengan titik dua di antara kunci dan nilai.
 
@@ -536,6 +540,35 @@ print('genap & ganjil =', genap & ganjil)    # Hasil: genap & ganjil = set()`
   ]}
 />
 
+Operasi `set` seperti irisan (`&`), gabungan (`|`), dan selisih (`-`) langsung memilih wilayah pada diagram Venn. Coba ganti operasi di bawah untuk melihat objek mana yang terpilih dari himpunan benda merah dan himpunan bola.
+
+<VennSortLab
+  title={<>Memilih Anggota dengan Operasi Set</>}
+  description={<>Ganti operasi himpunan untuk melihat anggota unik yang terpilih pada irisan, gabungan, selisih, atau di luar kedua lingkaran.</>}
+  footer="Setiap operasi himpunan menyaring objek unik tanpa pernah menghasilkan duplikat."
+  sets={[
+    { attribute: "red", name: "Merah" },
+    { attribute: "ball", name: "Bola" },
+  ]}
+  objects={[
+    { object: "apple", name: "Apel" },
+    { object: "red-ball", name: "Bola merah" },
+    { object: "blue-ball", name: "Bola biru" },
+    { object: "tennis-ball", name: "Bola tenis" },
+    { object: "red-block", name: "Balok merah" },
+    { object: "blue-cup", name: "Cangkir biru" },
+  ]}
+  operations={["intersection", "union", "difference", "outside-union"]}
+  labels={{
+    count: "Jumlah",
+    members: "Anggota",
+    operation: "Operasi",
+    viewLabel: "Diagram Venn dua himpunan benda berdasarkan warna merah dan bentuk bola",
+  }}
+/>
+
+Hanya `Bola merah` yang masuk ke irisan `Merah & Bola`, sedangkan gabungan `Merah | Bola` memuat lima benda unik dan menyisakan `Cangkir biru` di luar kedua himpunan.
+
 ### Perbandingan Container
 
 Keempat tipe koleksi bawaan berbeda pada **urutan, sifat yang dapat diubah, dan penanganan nilai kembar**. Tabel berikut membandingkannya supaya kamu bisa memilih sesuai kebutuhan.
@@ -562,4 +595,7 @@ Bangun setiap wadah dari data yang sama, `[3, 1, 3, 2, 1]`. `list` dan `tuple` m
     { name: "dict", value: 3 },
   ]}
   chartConfig={{ value: { label: "Banyak elemen", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="list dan tuple mempertahankan 5 elemen, sedangkan set dan dict menyimpan 3 unik."
 />
+
+Saat data boleh memiliki nilai berulang dan urutan tetap penting, gunakan `list` atau `tuple`. Jika kamu hanya memerlukan nilai unik, `set` dan kunci `dict` membuang duplikat secara otomatis.

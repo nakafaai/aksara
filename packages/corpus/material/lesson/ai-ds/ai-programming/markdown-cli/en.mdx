@@ -15,7 +15,7 @@ That readable source is Markdown's main advantage. You can review changes line b
 
 ### Basic Markdown Syntax
 
-The following sample collects common syntax in one file. A **hash introduces a heading**, while surrounding markers express emphasis, links, code, and other structures:
+The following sample collects common syntax in one file. A **hash introduces a heading**, while surrounding markers express emphasis, links, code, and other structures.
 
 The example uses Markdown features supported by Pandoc and GitHub Flavored Markdown. Tables and `~~strikethrough~~` are extensions, so not every Markdown renderer supports them. The shell examples use Bash on macOS or Linux. Adapt example paths to your practice directory.
 
@@ -119,7 +119,10 @@ The number of `#` signs at the start of a line sets the heading level, and those
     "second": <code>## Usage</code>,
     "detail": <code>### Install</code>,
   }}
+  footer="Leading # symbols define a clear outline from top title down to subsections."
 />
+
+Consistent `#` nesting lets table-of-contents generators and screen readers interpret document structure without manual visual formatting.
 
 ## Command Line Interface Basics
 
@@ -186,7 +189,7 @@ less file.txt       # view with navigation`
   }]}
 />
 
-### Integrating Markdown with CLI
+## Automating Markdown with CLI
 
 A small build script makes the conversion repeatable. It should **fail when a command fails**, create its own output directory, quote every path, and handle the case where no source file exists:
 
@@ -258,7 +261,7 @@ pandoc input.md -o output.html --template=custom.html`
 
 ### Best Practices for CLI and Markdown
 
-<Highlight>Keep authored Markdown in version control</Highlight>, validate before conversion, build into a replaceable output directory, and review the diff before committing:
+<Highlight>Keep authored Markdown in version control</Highlight>, validate before conversion, build into a replaceable output directory, and review the diff before committing.
 
 The `site` directory in this example contains only generated output and is replaced by the build. Keep authored files in `docs`, not in `site`.
 
@@ -308,7 +311,7 @@ git diff -- docs`
   }]}
 />
 
-## Real Project Example
+## Building Multi Page Documentation
 
 The final example creates four source pages and combines them into **one standalone HTML document**. Every input path is explicit, so the build fails when a page is missing:
 
@@ -423,7 +426,10 @@ Imagine your current working folder is `/home/user`, the magenta point in this t
     "down": "cd projects",
     "up": "cd ..",
   }}
+  footer="cd projects descends into a child folder, while cd .. returns to the parent."
 />
+
+Knowing your current working directory keeps relative commands like `cd projects` and `cd ..` targeted at the exact folder you intend.
 
 An absolute path starts at the root `/`, and every further slash goes down one level. `pwd` prints that path for the current working folder, and `cd ..` climbs one level to the parent folder.
 
@@ -438,4 +444,9 @@ An absolute path starts at the root `/`, and every further slash goes down one l
     { name: "/home/user/projects", value: 3 },
   ]}
   chartConfig={{ value: { label: "Depth", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+  footer="Each folder segment after root / increases the absolute path depth by one."
 />
+
+Because every `/` represents one step down from root, comparing absolute paths shows exactly how deeply a folder sits in the filesystem.
+
+> Always run `pwd` and `ls` before deleting or overwriting files so the exact target path is verified first.

@@ -38,7 +38,10 @@ Fungsi terbina dalam `id()` memulangkan integer yang **mengenal pasti sesuatu ob
     V2 --> M1
     V4 --> M2
     V5 --> M3`}
+  footer="Kedua-dua nama x dan y menunjuk terus kepada objek int 2 yang sama."
 />
+
+Kedua-dua anak panah dari `x` dan `y` bertemu pada `Objek A: int 2` yang sama, manakala `text` dan `numbers` menunjuk kepada objek berasingan mengikut jenis masing-masing.
 
 <CodeBlock
   data={[
@@ -103,7 +106,10 @@ Jalankan `x = 5`, kemudian `y = x`, kemudian `x = 7`, dan ikut segmen-segmennya.
     "copy": "y = x",
     "old": "x = 5",
   }}
+  footer="Mengikat semula x memindahkan panah x ke 7 sementara y kekal pada 5."
 />
+
+Segmen hijau kebiruan bagi `y` kekal terpaut pada `5` selepas `x` berpindah ke `7`, mengesahkan bahawa umpukan semula hanya mengalihkan ikatan nama yang diumpukkan.
 
 ## Ciri-ciri Pemboleh Ubah Python
 
@@ -162,8 +168,6 @@ print(f"Nilai: {data}, Jenis: {type(data)}")`
 
 Python ada peraturan yang ketat untuk nama pemboleh ubah, dan kamu mesti mengikutnya supaya kod dapat berjalan dengan betul. Nama boleh mengandungi huruf, digit dan garis bawah, tetapi **tidak boleh bermula dengan digit**, dan tidak boleh menjadi kata kunci terpelihara.
 
-### Komponen Nama Pemboleh Ubah
-
 Pengecam (identifier) bermula dengan **garis bawah atau huruf Unicode** dan boleh diikuti oleh huruf pengecam, garis bawah dan digit seperti <InlineMath math="0,1,2,\dots,9" />. Python menerima banyak pengecam bukan ASCII, tetapi nama ASCII `snake_case` yang deskriptif selalunya lebih mudah ditaip, dicari dan dikongsi dalam pelbagai alat.
 
 <CodeBlock
@@ -183,8 +187,6 @@ print(student_name, score1, _total, MAX_SIZE, camelCase, snake_case)`
     }
   ]}
 />
-
-### Peraturan Wajib
 
 Ada beberapa peraturan wajib yang kamu mesti ikut semasa menamakan pemboleh ubah Python. Nama pemboleh ubah **tidak boleh bermula dengan nombor**. Python akan menghasilkan ralat sintaks jika kamu cuba mencipta pemboleh ubah yang bermula dengan nombor.
 
@@ -207,8 +209,6 @@ print(data1, data_2, _data3)`
     }
   ]}
 />
-
-### Kepekaan Huruf Besar dan Kecil
 
 Python membezakan **huruf besar dan huruf kecil** dalam nama pemboleh ubah. Ini bermaksud `nama`, `Nama` dan `NAMA` ialah tiga pemboleh ubah yang berbeza.
 
@@ -248,7 +248,10 @@ Nama pemboleh ubah yang sah bermula dengan huruf atau `_`, hanya mengandungi hur
     { name: "my_var2", value: 1 },
   ]}
   chartConfig={{ value: { label: "Sah", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Hanya total, _count dan my_var2 lulus ketiga-tiga peraturan pengecam Python."
 />
+
+Tiga palang yang sah semuanya bermula dengan huruf atau garis bawah tanpa aksara terlarang, manakala tiga ruang kosong masing-masing melanggar satu peraturan sintaks.
 
 ## Kata Kunci yang Tidak Boleh Digunakan
 
@@ -320,8 +323,6 @@ print(f"Adakah 'class' kata kunci? {keyword.iskeyword('class')}")`
 
 Pengecam Python mesti mengikut peraturan sintaks di atas. Dalam lingkungan peraturan itu, pilih nama yang menyatakan **apa yang diwakili oleh setiap nilai**. Nama seperti `total_price` memberitahu pembaca seterusnya lebih banyak perkara berbanding `tp`, dan tabiat yang sama memastikan atur cara yang lebih panjang masih mudah dibaca beberapa bulan kemudian.
 
-### Nama yang Bermakna
-
 Guna nama pemboleh ubah yang menerangkan dengan jelas **apa yang disimpan dalam pemboleh ubah itu**. Nama yang bermakna menjadikan kod lebih mudah difahami, sama ada oleh kamu sendiri atau oleh orang lain.
 
 <CodeBlock
@@ -351,8 +352,6 @@ print(f"Umur: {age} tahun")`
   ]}
 />
 
-### Panjang Nama yang Sesuai
-
 Elakkan nama pemboleh ubah yang terlalu panjang kerana ia menjadikan kod sukar dibaca. Sebaliknya, nama yang terlalu pendek mungkin tidak memberikan **maklumat yang cukup**.
 
 <CodeBlock
@@ -380,8 +379,6 @@ average_score = 85.5`
     }
   ]}
 />
-
-### Gaya Penulisan yang Konsisten
 
 Python menggunakan gaya snake_case untuk nama pemboleh ubah, iaitu perkataan **dipisahkan dengan garis bawah** dan semua hurufnya ditulis dalam huruf kecil.
 
@@ -411,8 +408,6 @@ print(f"Purata markah: {average_score:.2f}")`
     }
   ]}
 />
-
-### Mengelakkan Kekeliruan
 
 Elakkan aksara yang boleh mengelirukan, terutamanya **huruf yang kelihatan seperti nombor**.
 
@@ -444,7 +439,7 @@ can_edit = True`
   ]}
 />
 
-## Contoh Penggunaan Pemboleh Ubah dalam Atur Cara
+## Mengira Luas dan Perimeter Segi Empat Tepat
 
 Atur cara berikut menggunakan pemboleh ubah untuk mengira **luas dan perimeter segi empat tepat**.
 
@@ -508,4 +503,9 @@ Pemboleh ubah memberi nama yang jelas kepada nombor dalam atur cara. Dengan `len
     "width": <code>width = 3</code>,
     "rectangle": <code>area = 12</code>,
   }}
+  footer="Nama length, width dan area melabel setiap ukuran dan hasil luas."
 />
+
+Sisi berlabel `length = 4` dan `width = 3` membentuk kawasan seluas `area = 12`, menunjukkan cara nama pemboleh ubah deskriptif menerangkan peranan setiap nombor dalam pengiraan.
+
+> Dalam Python, pemboleh ubah ialah nama yang menunjuk kepada objek, jadi peraturan pengecam, gaya `snake_case` dan kefahaman umpukan semula memastikan kod kekal jelas.

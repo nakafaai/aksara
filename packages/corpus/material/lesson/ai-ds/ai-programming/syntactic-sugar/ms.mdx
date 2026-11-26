@@ -13,6 +13,8 @@ Gula sintaksis (syntactic sugar) ialah <Highlight>tatatanda ringkas</Highlight> 
 
 Python menawarkan beberapa bentuk padat untuk corak yang biasa. Bentuk ini tidak semestinya menjadikan atur cara berjalan lebih laju, dan bentuk ini juga tidak boleh ditukar ganti dalam setiap perincian. Pilih bentuk yang menjadikan niat kamu paling mudah difahami.
 
+> Kod yang terbaik bukan baris yang paling pendek, sebaliknya baris yang paling cepat difahami rakan sepasukan apabila dibaca semula enam bulan kemudian.
+
 ## List Comprehension
 
 List comprehension mencipta **senarai baharu daripada objek boleh lelar (iterable)**. List comprehension boleh menukar nilai, menapisnya, atau menggabungkan kedua-dua operasi itu dalam satu ungkapan.
@@ -100,6 +102,7 @@ Jalankan list comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` sambil 
 
 <MathVisual
   title={<>Unsur yang dipilih oleh <code>[x**2 for x in range(-3, 4) if x % 2 == 0]</code></>}
+  footer={<>Syarat if menapis input genap sebelum menguasaduakannya ke dalam senarai hasil.</>}
   description={<>Lengkung kelabu ialah <InlineMath math="y=x^2" />. Titik magenta ialah unsur yang lulus syarat <code>if</code>, manakala titik hijau kebiruan dilangkau.</>}
   scene={{
     space: "plane",
@@ -137,6 +140,8 @@ Jalankan list comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` sambil 
     "value-g": "3",
   }}
 />
+
+Kerana penapis berjalan sebelum ungkapan output, input ganjil disingkirkan dahulu dan hanya tiga nombor genap yang menyumbang nilai kepada senarai akhir.
 
 ## Fungsi Lambda
 
@@ -204,6 +209,7 @@ print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
 
 <MathVisual
   title={<><code>lambda x: x * 2</code> untuk <code>x</code> dari <InlineMath math="-3" /> hingga <InlineMath math="3" /></>}
+  footer={<>Setiap panggilan lambda memetakan x kepada 2x tepat pada garis lurus yang sama.</>}
   description={<>Garis ungu ialah <InlineMath math="y=2x" />. Titik magenta ialah tujuh panggilan <code>f(x)</code>, dari <InlineMath math="f(-3)=-6" /> hingga <InlineMath math="f(3)=6" />.</>}
   scene={{
     space: "plane",
@@ -227,6 +233,8 @@ print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
     "call-6": <code>f(3) = 6</code>,
   }}
 />
+
+Objek fungsi daripada `lambda` bertindak sama seperti fungsi `def` biasa, cuma dipadatkan menjadi satu ungkapan pemetaan.
 
 ## Ciri Gula Sintaksis yang Lain
 
@@ -317,6 +325,7 @@ Umpukan majmuk mengira menggunakan nilai lama, kemudian menyimpan hasilnya di ba
 
 <BarChart
   title={<>Nilai <code>x</code> selepas setiap umpukan majmuk</>}
+  footer={<>Setiap operator majmuk membaca hasil langkah terdahulu lalu mengemas kini x.</>}
   description={<>Setiap palang ialah <code>x</code> selepas operator yang ditulis di bawahnya, dengan operan <InlineMath math="5" />, <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="5" /> dan <InlineMath math="2" /> mengikut urutan itu.</>}
   yAxisLabel="Nilai"
   data={[
@@ -329,6 +338,8 @@ Umpukan majmuk mengira menggunakan nilai lama, kemudian menyimpan hasilnya di ba
   ]}
   chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+Setiap umpukan majmuk menyambung terus daripada hasil langkah sebelumnya, jadi menukar susunan mana-mana dua langkah akan menghasilkan nilai akhir `x` yang berbeza.
 
 ## Perbandingan Sintaks
 

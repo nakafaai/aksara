@@ -116,7 +116,11 @@ Ein negativer Schritt kehrt die Auswahlrichtung um. `s[::-1]` lässt beide Grenz
 
 Ein Slice wird als `start:stop:step` geschrieben. Der Startindex gehört zum Ergebnis, **der Endindex nicht**, und eine negative Schrittweite liest die Sequenz von rechts nach links.
 
-Sei <InlineMath math="n" /> die Länge von `s`. Im einfachen Fall <InlineMath math="0 \le i \le j \le n" /> mit der positiven Standardschrittweite hat `s[i:j]` die Länge <InlineMath math="j-i" />. Allgemeine Slices können ausgelassene, negative oder außerhalb liegende Grenzen und eine andere Schrittweite besitzen. Python **normalisiert sie zunächst anhand der Sequenzlänge**. Die genaue Anzahl ist `len(range(*slice(i, j, step).indices(len(s))))`.
+Sei <InlineMath math="n" /> die Länge von `s`. Im einfachen Fall mit geordneten Grenzen und der positiven Standardschrittweite:
+
+<BlockMath math="0 \le i \le j \le n" />
+
+Dann hat `s[i:j]` die Länge <InlineMath math="j-i" />. Allgemeine Slices können ausgelassene, negative oder außerhalb liegende Grenzen und eine andere Schrittweite besitzen. Python **normalisiert sie zunächst anhand der Sequenzlänge**. Die genaue Anzahl ist `len(range(*slice(i, j, step).indices(len(s))))`.
 
 <CodeBlock
   data={[
@@ -149,6 +153,7 @@ Jedes Zeichen von `s = "Python"` hat zwei Adressen: einen positiven Index von li
 
 <MathVisual
   title={<>Positive Indizes, negative Indizes und <code>s[1:4]</code></>}
+  footer={<>Jedes Zeichen hat positive und negative Indizes, und s[1:4] endet vor Index 4.</>}
   description={<>Für <code>s = 'Python'</code>: Violette Zahlen sind positive Indizes, türkise Zahlen negative Indizes, und die magentafarbenen Zeichen sind das Ergebnis von <code>s[1:4]</code>.</>}
   scene={{
     space: "plane",
@@ -220,6 +225,8 @@ Jedes Zeichen von `s = "Python"` hat zwei Adressen: einen positiven Index von li
   }}
 />
 
+Diese halboffene Regel gilt überall in Python: Da der Endindex ausgeschlossen bleibt, entspricht die Anzahl der gewählten Elemente stets `stop - start`.
+
 ## Ausgewählte Indizes
 
 Mit `range()` kannst du zeigen, **welche Indizes ein Slice auswählt**. Dieses Modell erklärt das Ergebnis, ohne Annahmen über die interne Umsetzung des jeweiligen Python-Typs zu treffen.
@@ -262,6 +269,7 @@ Ein Slice wählt die Indizes von `range(start, stop, step)`. Für `s = 'Python'`
 
 <MathVisual
   title={<>Die von <code>s[0:6:2]</code> und <code>s[5:0:-2]</code> gewählten Indizes</>}
+  footer={<>Das Vorzeichen von step legt die Richtung fest, sein Betrag die Sprungweite.</>}
   description={<>Die graue mittlere Zeile sind die Zeichen von <code>'Python'</code>. Der magentafarbene Streckenzug oben springt in Zweierschritten vorwärts zu den Indizes <InlineMath math="0" />, <InlineMath math="2" /> und <InlineMath math="4" />. Der türkise Streckenzug unten springt rückwärts zu den Indizes <InlineMath math="5" />, <InlineMath math="3" /> und <InlineMath math="1" />.</>}
   scene={{
     space: "plane",
@@ -301,6 +309,8 @@ Ein Slice wählt die Indizes von `range(start, stop, step)`. Für `s = 'Python'`
     "char-5": <code>n</code>,
   }}
 />
+
+Bei der negativen Schrittweite in `s[5:0:-2]` wirkt Index `0` als exklusive Stoppgrenze, sodass `'P'` genau wie bei `range(5, 0, -2)` ausgelassen wird.
 
 ## Kurzformen beim Slicing
 
@@ -349,6 +359,7 @@ Derselbe Trennindex schneidet einen String ohne Lücke und ohne Überlappung. F�
 
 <MathVisual
   title={<><code>s[:3]</code> und <code>s[3:]</code> teilen <code>'Python'</code></>}
+  footer={<>Durch den ausgeschlossenen Endindex teilen s[:k] und s[k:] jede Sequenz lückenlos.</>}
   description={<>Die violetten Zeichen sind <code>s[:3]</code> und die türkisen Zeichen <code>s[3:]</code>. Die graue Strecke steht zwischen den Indizes <InlineMath math="2" /> und <InlineMath math="3" />, wo sich beide Slices treffen.</>}
   scene={{
     space: "plane",
@@ -381,6 +392,8 @@ Derselbe Trennindex schneidet einen String ohne Lücke und ohne Überlappung. F�
     "char-5": <code>n</code>,
   }}
 />
+
+Diese saubere Teilung gilt für jeden Trennindex `i`, sodass sich linke und rechte Hälfte stets wieder vollständig zum Original zusammenfügen lassen.
 
 ## Teile von Strings und Listen verarbeiten
 
@@ -435,3 +448,5 @@ Verwende einen Index für ein Element an einer bekannten Position. Verwende Slic
 Slice-Grenzen werden an die Länge der Daten angepasst. `s[10:]` liefert bei einem kürzeren String deshalb `""`. Die direkte Indizierung mit `s[10]` löst weiterhin einen `IndexError` aus. Verwende einen Slice nur, wenn ein leeres Ergebnis zulässig ist.
 
 Negative Indizes zählen vom Ende. Verwende `s[-1]` für das letzte Element oder `s[-3:]` für die letzten drei Elemente. Diese Form passt, wenn eine Position bei der Dateiverarbeitung, Textanalyse oder Arbeit mit Datensätzen vom Ende aus bestimmt wird.
+
+> Merke dir den entscheidenden Unterschied. Indizierung verlangt eine gültige Position und wirft sonst einen `IndexError`, während Slicing die Grenzen sicher auf die vorhandene Länge zuschneidet.

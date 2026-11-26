@@ -38,7 +38,10 @@ Das Built-in `id()` liefert eine ganze Zahl, die ein Objekt während seiner Lebe
     V2 --> M1
     V4 --> M2
     V5 --> M3`}
+  footer="Sowohl x als auch y zeigen direkt auf dasselbe int-Objekt 2 im Speicher."
 />
+
+Beide Pfeile von `x` und `y` laufen auf dasselbe `Objekt A: int 2` zu, während `text` und `numbers` auf eigene Objekte mit ihren jeweiligen Typen verweisen.
 
 <CodeBlock
   data={[
@@ -103,7 +106,10 @@ Führ `x = 5`, dann `y = x`, dann `x = 7` aus und folg den Strecken. `y = x` kop
     "copy": "y = x",
     "old": "x = 5",
   }}
+  footer="Das Umbinden von x verschiebt nur den Pfeil für x auf 7, y bleibt bei 5."
 />
+
+Die türkise Strecke von `y` bleibt fest bei `5`, nachdem `x` auf `7` gewechselt ist, und belegt, dass eine Neuzuweisung nur die Bindung des zugewiesenen Namens ändert.
 
 ## Eigenschaften von Variablen in Python
 
@@ -162,8 +168,6 @@ print(f"Wert: {data}, Typ: {type(data)}")`
 
 Python hat feste Syntaxregeln für Identifier. Ein Name darf Buchstaben, Ziffern und Unterstriche enthalten, aber **nicht mit einer Ziffer beginnen** und nicht mit einem reservierten Schlüsselwort übereinstimmen.
 
-### Variablennamenskomponenten
-
 Ein Identifier beginnt mit einem **Unterstrich oder einem Unicode-Buchstaben**. Danach dürfen Identifier-Buchstaben, Unterstriche und Ziffern wie <InlineMath math="0,1,2,\dots,9" /> folgen. Python akzeptiert viele Nicht-ASCII-Identifier, doch aussagekräftige ASCII-Namen in `snake_case` lassen sich meist leichter tippen, suchen und werkzeugübergreifend teilen.
 
 <CodeBlock
@@ -183,8 +187,6 @@ print(student_name, score1, _total, MAX_SIZE, camelCase, snake_case)`
     }
   ]}
 />
-
-### Pflichtregeln
 
 Ein Variablenname darf nicht mit einer Ziffer beginnen und kein reserviertes Schlüsselwort sein. Ein **ungültiger Identifier** führt bereits beim Parsen zu einem `SyntaxError`.
 
@@ -207,8 +209,6 @@ print(data1, data_2, _data3)`
     }
   ]}
 />
-
-### Großschreibung und Kleinschreibung
 
 Python unterscheidet bei Variablennamen zwischen **Groß- und Kleinbuchstaben**. Das bedeutet, dass `nama`, `Nama` und `NAMA` drei verschiedene Variablen sind.
 
@@ -248,7 +248,10 @@ Ein gültiger Variablenname beginnt mit einem Buchstaben oder `_`, enthält nur 
     { name: "my_var2", value: 1 },
   ]}
   chartConfig={{ value: { label: "Gültig", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Nur total, _count und my_var2 erfüllen alle drei Python-Bezeichnerregeln."
 />
+
+Die drei gültigen Balken beginnen mit einem Buchstaben oder Unterstrich ohne unzulässige Zeichen, während jede der drei Lücken genau eine Syntaxregel verletzt.
 
 ## Für Python reservierte Schlüsselwörter
 
@@ -320,8 +323,6 @@ print(f"Ist „class“ ein Schlüsselwort? {keyword.iskeyword('class')}")`
 
 Python-Bezeichner müssen die oben beschriebenen Syntaxregeln erfüllen. Innerhalb dieser Regeln sollten die Namen angeben, **wofür ein Wert steht**. Ein Name wie `gesamtpreis` sagt der nächsten Leserin mehr als `gp`, und dieselbe Gewohnheit hält ein längeres Programm auch Monate später lesbar.
 
-### Bedeutungsvolle Namen
-
 Wähle Variablennamen, die den gebundenen Wert oder **seine Rolle im Programm** erklären. Aussagekräftige Namen helfen dir und allen späteren Lesenden, den Code schneller zu verstehen.
 
 <CodeBlock
@@ -351,8 +352,6 @@ print(f"Alter: {age} Jahre")`
   ]}
 />
 
-### Angemessene Namenslänge
-
 Ein Name sollte so kurz wie möglich und **so konkret wie nötig** sein. Zu lange Namen verdecken den Ausdruck, während ein einzelner Buchstabe außerhalb eines kleinen lokalen Kontexts kaum Bedeutung trägt.
 
 <CodeBlock
@@ -380,8 +379,6 @@ average_score = 85.5`
     }
   ]}
 />
-
-### Konsistenter Schreibstil
 
 Die Python-Konvention empfiehlt den **snake_case-Stil** für Variablennamen, wobei Wörter durch Unterstriche getrennt werden und alle Buchstaben Kleinbuchstaben verwenden.
 
@@ -411,8 +408,6 @@ print(f"Durchschnittliche Punktzahl: {average_score:.2f}")`
     }
   ]}
 />
-
-### Verwechslungen vermeiden
 
 Vermeide Zeichen, die **leicht mit Ziffern verwechselt** werden, wenn der kurze Name keinen etablierten mathematischen Kontext hat.
 
@@ -444,7 +439,7 @@ can_edit = True`
   ]}
 />
 
-## Beispiel für Variablen in einem Programm
+## Fläche und Umfang eines Rechtecks berechnen
 
 Das folgende Programm verwendet Variablen, um **Fläche und Umfang eines Rechtecks** zu berechnen.
 
@@ -508,4 +503,9 @@ Variablen geben den Zahlen in einem Programm klare Namen. Mit `length = 4` und `
     "width": <code>width = 3</code>,
     "rectangle": <code>area = 12</code>,
   }}
+  footer="Die Namen length, width und area benennen beide Seiten und die Fläche."
 />
+
+Die beschrifteten Kanten `length = 4` und `width = 3` schließen die Fläche `area = 12` ein und zeigen, wie sprechende Variablennamen jede Zahl in einer Rechnung erklären.
+
+> In Python verweist eine Variable als Name auf ein Objekt, weshalb Bezeichnerregeln, `snake_case` und ein klares Verständnis der Neuzuweisung den Code lesbar halten.

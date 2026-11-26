@@ -15,7 +15,7 @@ Dieser lesbare Quelltext ist der wichtigste Vorteil von Markdown. Du kannst Änd
 
 ### Grundlegende Syntax von Markdown
 
-Das folgende Beispiel sammelt häufige Syntax in einer Datei. Eine **Raute leitet eine Überschrift ein**, während umschließende Zeichen Hervorhebungen, Links, Code und weitere Strukturen ausdrücken:
+Das folgende Beispiel sammelt häufige Syntax in einer Datei. Eine **Raute leitet eine Überschrift ein**, während umschließende Zeichen Hervorhebungen, Links, Code und weitere Strukturen ausdrücken.
 
 Das Beispiel nutzt Markdown-Funktionen aus Pandoc und GitHub Flavored Markdown. Tabellen und `~~durchgestrichener Text~~` sind Erweiterungen, die nicht jeder Markdown-Renderer unterstützt. Die Shell-Beispiele verwenden Bash unter macOS oder Linux. Passe Beispielpfade an deinen Übungsordner an.
 
@@ -119,7 +119,10 @@ Die Anzahl der `#`-Zeichen am Zeilenanfang bestimmt die Überschriftenebene, und
     "second": <code>## Usage</code>,
     "detail": <code>### Install</code>,
   }}
+  footer="Die Anzahl der #-Zeichen bildet eine klare Gliederung bis zu Unterabschnitten."
 />
+
+Sauber gestaffelte `#`-Überschriften erlauben Inhaltsverzeichnissen und Screenreadern, die Dokumentstruktur ohne manuelle Formatierung zu lesen.
 
 ## Grundlagen der Befehlszeilenschnittstelle
 
@@ -186,7 +189,7 @@ less file.txt       # Ansicht mit Navigation`
   }]}
 />
 
-### Integration von Markdown mit CLI
+## Automatisierung von Markdown per CLI
 
 Ein kleines Build-Skript macht die Umwandlung wiederholbar. Es sollte **bei einem fehlgeschlagenen Befehl abbrechen**, sein Ausgabeverzeichnis selbst anlegen, jeden Pfad zitieren und den Fall ohne Quelldatei behandeln:
 
@@ -258,7 +261,7 @@ pandoc input.md -o output.html --template=custom.html`
 
 ### Bewährte Vorgehensweisen für CLI und Markdown
 
-<Highlight>Speichere verfasstes Markdown in der Versionsverwaltung</Highlight>, validiere es vor der Umwandlung, baue in ein ersetzbares Ausgabeverzeichnis und prüfe den Diff vor dem Commit:
+<Highlight>Speichere verfasstes Markdown in der Versionsverwaltung</Highlight>, validiere es vor der Umwandlung, baue in ein ersetzbares Ausgabeverzeichnis und prüfe den Diff vor dem Commit.
 
 Das Verzeichnis `site` enthält in diesem Beispiel ausschließlich erzeugte Ausgaben und wird beim Build ersetzt. Speichere selbst geschriebene Dateien in `docs`, nicht in `site`.
 
@@ -308,7 +311,7 @@ git diff -- docs`
   }]}
 />
 
-## Echtes Projektbeispiel
+## Mehrseitige Dokumentation automatisch bauen
 
 Das letzte Beispiel erstellt vier Quelldateien und verbindet sie zu einem **eigenständigen HTML-Dokument**. Jeder Eingabepfad ist ausdrücklich genannt. Fehlt eine Datei, schlägt der Build mit einer Fehlermeldung fehl:
 
@@ -423,7 +426,10 @@ Stell dir vor, dein aktueller Arbeitsordner ist `/home/user`, der magentafarbene
     "down": "cd projects",
     "up": "cd ..",
   }}
+  footer="cd projects steigt in einen Unterordner ab, cd .. kehrt zum Elternordner zurück."
 />
+
+Wer seinen aktuellen Arbeitsordner kennt, steuert mit relativen Befehlen wie `cd projects` und `cd ..` zielsicher den richtigen Ordner an.
 
 Ein absoluter Pfad beginnt bei der Wurzel `/`, und jeder weitere Schrägstrich geht eine Ebene tiefer. `pwd` gibt diesen Pfad für den aktuellen Arbeitsordner aus, und `cd ..` steigt eine Ebene zum übergeordneten Ordner hinauf.
 
@@ -438,4 +444,9 @@ Ein absoluter Pfad beginnt bei der Wurzel `/`, und jeder weitere Schrägstrich g
     { name: "/home/user/projects", value: 3 },
   ]}
   chartConfig={{ value: { label: "Tiefe", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+  footer="Jedes Ordnersegment nach der Wurzel / erhöht die Pfadtiefe um genau eins."
 />
+
+Da jeder Schrägstrich eine Ebene tiefer von der Wurzel führt, zeigt der absolute Pfad direkt, wie tief ein Ordner im Dateisystem liegt.
+
+> Prüfe mit `pwd` und `ls` immer zuerst dein Zielverzeichnis, bevor du Dateien löschst oder überschreibst.

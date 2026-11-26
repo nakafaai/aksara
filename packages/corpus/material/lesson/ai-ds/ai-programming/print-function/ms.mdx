@@ -13,6 +13,8 @@ Fungsi terbina dalam `print()` <Highlight>menulis perwakilan teks bagi nilai ke 
 
 Fungsi print tergolong dalam kategori fungsi terbina dalam, sama seperti `len()`, `abs()` dan `round()`. Maksudnya, kamu tidak perlu mengimport modul tambahan untuk menggunakannya.
 
+> Anggap `print()` seperti tingkap pemeriksaan ke dalam atur cara. Kamu boleh menyemak nilai mana-mana pemboleh ubah semasa pelaksanaan tanpa mengubah data asalnya.
+
 ## Sintaks Asas Fungsi Print
 
 Sintaks lengkap fungsi print mempunyai beberapa **parameter output** untuk mengawal cara output dipaparkan.
@@ -81,6 +83,7 @@ Nilai `sep` menentukan aksara tepat yang ditulis di antara objek yang bersebelah
 
 <BarChart
   title={<>Panjang output <code>print(1, 2, 3, sep=s)</code></>}
+  footer={<>Setiap aksara tambahan dalam sep menambah panjang keseluruhan output sebanyak dua.</>}
   description={<>Setiap palang ialah bilangan aksara yang ditulis untuk nilai <code>sep</code> di bawahnya: <InlineMath math="5" /> untuk satu ruang, <InlineMath math="3" /> untuk rentetan kosong, <InlineMath math="7" /> untuk koma dan ruang, dan <InlineMath math="9" /> untuk <code>' | '</code>.</>}
   yAxisLabel="Aksara"
   data={[
@@ -91,6 +94,8 @@ Nilai `sep` menentukan aksara tepat yang ditulis di antara objek yang bersebelah
   ]}
   chartConfig={{ value: { label: "Aksara", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
+
+Menukar `sep` tidak mengubah nilai argumen, tetapi terus menggandakan panjang tambahan mengikut bilangan jurang antara argumen.
 
 ## Parameter End
 
@@ -142,6 +147,7 @@ Rajah ini menjalankan `print("A", "B", "C", sep="-")`, kemudian `print("x", end=
 
 <MathVisual
   title={<>Tiga panggilan <code>print</code> dalam strim output</>}
+  footer={<>Parameter sep diletakkan antara argumen, manakala end sentiasa di hujung panggilan.</>}
   description={<>Aksara ungu datang daripada argumen, aksara hijau kebiruan daripada <code>sep</code>, dan aksara oren daripada <code>end</code>. Simbol ↵ ialah baris baharu dan ␣ ialah ruang.</>}
   scene={{
     space: "plane",
@@ -186,6 +192,8 @@ Rajah ini menjalankan `print("A", "B", "C", sep="-")`, kemudian `print("x", end=
   }}
 />
 
+Kerana `end=" "` menggantikan baris baharu lalai, panggilan kedua dan ketiga berkongsi satu baris yang sama sehingga baris baharu terakhir menutupnya.
+
 ## Memaparkan Pelbagai Jenis Data
 
 `print()` menerima objek pelbagai jenis dan mendapatkan **perwakilan rentetan yang mudah dibaca oleh manusia** bagi setiap objek sebelum menulisnya. Kelas tersuai boleh mengawal perwakilan itu dengan `__str__()`.
@@ -228,6 +236,7 @@ Satu panggilan `print()` boleh menerima nilai pelbagai jenis, menukar setiap nil
 
 <BarChart
   title={<>Aksara yang ditulis oleh <code>print</code> untuk enam nilai</>}
+  footer={<>Lebar cetakan mengikut hasil str() setiap jenis data, termasuk kurungan dan tanda baca.</>}
   description={<>Setiap palang ialah <code>len(str(x))</code> untuk nilai <code>x</code> yang tertulis di bawahnya, iaitu bilangan aksara yang muncul pada skrin.</>}
   yAxisLabel="Aksara"
   data={[
@@ -240,6 +249,8 @@ Satu panggilan `print()` boleh menerima nilai pelbagai jenis, menukar setiap nil
   ]}
   chartConfig={{ value: { label: "Aksara", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
+
+Senarai kecil seperti `[1, 2]` sudah mengambil enam aksara pada skrin kerana kurungan siku, koma, dan ruang turut ditulis bersama angkanya.
 
 ## Teknik Pemformatan Output
 

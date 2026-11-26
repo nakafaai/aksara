@@ -13,6 +13,8 @@ NumPy helps Python process numerical data efficiently. Python lists can hold mix
 
 The core [`ndarray` object](https://numpy.org/doc/stable/) represents an n-dimensional, fixed-size container whose elements share one data type. This design enables vectorized operations, where one expression describes work over an entire array.
 
+> Picture a NumPy array as an egg carton with identical slots. Because every slot holds the same data type in one compact block, the computer can process thousands of numbers together without checking each item one by one.
+
 NumPy arrays provide the following advantages for scientific programming:
 
 1. **Efficient numerical loops** implemented in compiled native code
@@ -156,6 +158,7 @@ A nested list becomes a two-dimensional array. `np.array([[1, 2, 3], [4, 5, 6]])
 
 <MathVisual
   title={<>An array with <code>shape</code> <code>(2, 3)</code></>}
+  footer={<>Axis 0 moves down across rows, while axis 1 moves right across columns.</>}
   description={<>Each violet point is one element with its value. The teal segment points along <code>axis 0</code> from row to row, and the orange segment points along <code>axis 1</code> from column to column.</>}
   scene={{
     space: "plane",
@@ -193,6 +196,8 @@ A nested list becomes a two-dimensional array. `np.array([[1, 2, 3], [4, 5, 6]])
     "axis-zero": <code>axis 0</code>,
   }}
 />
+
+The tuple `(2, 3)` gives the size of each axis in order: two steps along `axis 0` and three steps along `axis 1`, giving six elements in the grid.
 
 ## Array Creation Functions
 
@@ -310,7 +315,7 @@ print(a)
   ]}
 />
 
-### Mathematical Functions
+### Coordinate Based Array Rules
 
 The `np.fromfunction` function passes **arrays of index coordinates** to your function. Here, `f(i, j)` receives an array of row indices in `i` and an array of column indices in `j`. Adding `i + j` works element by element: position `[1, 2]`, for example, receives `3`.
 
@@ -377,6 +382,7 @@ Compare the two rows of points below. `np.linspace(0, 10, 5)` splits the interva
 
 <MathVisual
   title={<><code>np.linspace</code> and <code>np.arange</code> on the number line</>}
+  footer={<>The linspace function includes the stop value, while arange stops before it.</>}
   description={<>The top row is <code>np.linspace(0, 10, 5)</code>, the bottom row <code>np.arange(0, 10, 2.5)</code>. The value <InlineMath math="10" /> is missing from the bottom row.</>}
   scene={{
     space: "plane",
@@ -421,6 +427,8 @@ Compare the two rows of points below. `np.linspace(0, 10, 5)` splits the interva
     "ar-row": "np.arange(0, 10, 2.5)",
   }}
 />
+
+Choose `np.linspace` when both endpoints and the exact point count matter, and reach for `np.arange` when a fixed step width drives the sequence.
 
 ## Arrays from Sequences
 
@@ -574,6 +582,7 @@ Arithmetic on an array applies to every element at once, with no loop. For `arr 
 
 <ScatterDiagram
   title={<>Three element-wise operations on <code>[1, 2, 3]</code></>}
+  footer={<>Each operation acts across every index at once without a manual loop.</>}
   description={<>Across are the indices <InlineMath math="0" />, <InlineMath math="1" />, and <InlineMath math="2" />. Each series is one result: the original array, <code>arr + 1</code>, <code>arr * 2</code>, and <code>arr ** 2</code>. At one index, every operation uses only the element at that index.</>}
   xAxisLabel="Index"
   yAxisLabel="Value"
@@ -616,3 +625,28 @@ Arithmetic on an array applies to every element at once, with no loop. For `arr 
     },
   ]}
 />
+
+Each operation touches only the number at the same index, so squaring quickly pulls away from addition and doubling.
+
+In data science experiments, each sensor produces a NumPy array of repeated readings whose mean, range, and offset from a target value can be summarized at once:
+
+<ReadingSpreadLab
+  title={<>Reading Spread Across Three Sensor Arrays</>}
+  footer={<>One sensor array summarizes mean, spread, and offset from the target at once.</>}
+  description={<>Compare three arrays of sensor readings against the reference value <InlineMath math="10" /> to inspect accuracy and consistency.</>}
+  actual={10}
+  students={[
+    { name: "Sensor A", readings: [9.9, 10.0, 10.1, 10.0] },
+    { name: "Sensor B", readings: [9.4, 9.5, 9.5, 9.6] },
+    { name: "Sensor C", readings: [9.2, 10.1, 10.7, 9.8] },
+  ]}
+  labels={{
+    mean: <>Array mean</>,
+    offset: <>Offset from target</>,
+    range: <>Data range</>,
+    student: "Select sensor array",
+    viewLabel: "Spread scale comparing three sensor reading arrays against the target value",
+  }}
+/>
+
+Switch between sensors above to compare the arrays: Sensor A stays tight around the reference, Sensor B is tight yet systematically shifted, and Sensor C spreads widely with a large range.

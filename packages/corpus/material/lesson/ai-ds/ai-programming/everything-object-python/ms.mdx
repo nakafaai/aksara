@@ -165,8 +165,6 @@ print(parking.is_full())`
 
 Kenyataan bahawa semuanya objek bermaksud Python mengendalikan setiap nilai semasa atur cara berjalan melalui satu model objek, jadi nombor, rentetan dan senarai semuanya ialah tika (instance) bagi sesuatu kelas. Yang berbeza ialah set atribut dan kaedah yang disediakan oleh kelas itu, kerana <Highlight>jenis yang menentukan alat yang tersedia</Highlight>, bukan model objek itu sendiri.
 
-### Nombor sebagai Objek
-
 Integer ialah **objek yang mempunyai kaedah**. Contoh ini memanggil `bit_length()` pada `42` dan mencetak hasilnya.
 
 <CodeBlock
@@ -191,8 +189,6 @@ print(type(result))         # <class 'int'>
 print(dir(result))          # Teroka nama-nama atribut`
   }]}
 />
-
-### Rentetan sebagai Objek
 
 Rentetan ialah objek dengan kaedah yang **membina nilai baharu**. Contoh ini memanggil beberapa kaedah rentetan pada satu mesej.
 
@@ -229,8 +225,6 @@ rejoined = " ".join(words)          # Gabungkan semula
 print(rejoined)`
   }]}
 />
-
-### Senarai sebagai Objek
 
 Senarai menyediakan **kaedah yang mengubah kandungannya**, seperti `append()`, di samping kaedah yang hanya membaca seperti `count()`. Contoh ini bermula dengan senarai buah-buahan, kemudian memanggil kaedah-kaedah senarai.
 
@@ -274,8 +268,6 @@ print(f"Asal: {original}")
 print(f"Salinan: {copy_list}")`
   }]}
 />
-
-### Kamus sebagai Objek
 
 Kamus ialah objek dengan kaedah untuk **membaca dan mengemas kini** pasangannya. Contoh ini menggunakan rekod seorang pelajar untuk memanggil kaedah-kaedah itu.
 
@@ -399,7 +391,10 @@ Oleh sebab fungsi ialah objek, kamu boleh menyerahkannya kepada fungsi lain sepe
     { name: "4", value: 4 ** 2 },
   ]}
   chartConfig={{ value: { label: "Hasil square", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  footer="map menerima objek fungsi square lalu memanggilnya pada setiap unsur."
 />
+
+Ketinggian setiap palang meningkat mengikut kuasa dua inputnya dari `1` hingga `16` kerana `map` menerima objek fungsi `square` secara langsung lalu memanggilnya bagi setiap unsur tanpa gelung manual.
 
 ## Kelas dan Tika sebagai Objek
 
@@ -475,7 +470,9 @@ print(Student.university)           # University of Indonesia`
   }]}
 />
 
-Satu kelas `Point` boleh mencipta banyak tika, dan setiap tika menyimpan atributnya sendiri. `p1 = Point(1, 2)` dan `p2 = Point(4, 1)` mempunyai `x` dan `y` yang berbeza, tetapi kedua-duanya berkongsi kaedah yang sama, seperti `p1.distance(p2)`, yang memberikan <InlineMath math="\sqrt{3^2+1^2}=\sqrt{10}" />.
+Satu kelas `Point` boleh mencipta banyak tika, dan setiap tika menyimpan atributnya sendiri. `p1 = Point(1, 2)` dan `p2 = Point(4, 1)` mempunyai `x` dan `y` yang berbeza, tetapi kedua-duanya berkongsi kaedah yang sama, seperti `p1.distance(p2)`, yang memberikan <InlineMath math="\sqrt{10}" />.
+
+<BlockMath math="d = \sqrt{3^2 + 1^2} = \sqrt{10}" />
 
 <MathVisual
   title={<>Dua tika bagi satu kelas <code>Point</code></>}
@@ -498,7 +495,10 @@ Satu kelas `Point` boleh mencipta banyak tika, dan setiap tika menyimpan atribut
     "first": <code>p1 = Point(1, 2)</code>,
     "second": <code>p2 = Point(4, 1)</code>,
   }}
+  footer="p1 dan p2 menyimpan koordinat sendiri sambil berkongsi kaedah distance."
 />
+
+Kedua-dua titik berada pada kedudukan berbeza di atas satah kerana setiap tika menyimpan `self.x` dan `self.y` sendiri, manakala segmen jaraknya dikira oleh satu kaedah `distance` yang sama pada kelas `Point`.
 
 ## Kaedah Khas
 
@@ -586,9 +586,12 @@ Katakan kelas `Vector` mempunyai kaedah khas `__add__` yang menambah komponen-ko
     "w": "w = Vector(1, 2)",
     "sum": "v + w = Vector(3, 3)",
   }}
+  footer="v + w memanggil v.__add__(w) dan memulangkan objek Vector baharu."
 />
 
-## Latihan Pengaturcaraan Berorientasikan Objek
+Apabila `w` disambung pada hujung `v`, titik akhirnya jatuh tepat pada `(3, 3)` sehingga segmen magenta `v + w` memaparkan hasil tambah komponen yang dipulangkan oleh `__add__` tanpa mengubah `v` atau `w`.
+
+## Memodelkan Sistem Perpustakaan dengan Kelas
 
 Contoh berikut menggabungkan beberapa kelas untuk memodelkan **buku, ahli dan pinjaman perpustakaan**.
 
@@ -749,3 +752,5 @@ print(library.return_book("M001", "978-1234567890"))`
 />
 
 Model objek Python menerangkan sebab nilai, fungsi dan kelas boleh melalui mekanisme bahasa yang sama. Gunakan komposisi berorientasikan objek apabila keadaan dan tingkah laku yang berkaitan perlu diurus bersama. Gunakan reka bentuk prosedural atau fungsian apabila urutan langkah atau aliran data lebih mudah diterangkan secara terus.
+
+> Setiap nilai dalam Python membawa jenis, identiti dan kaedahnya sendiri sehingga nombor, fungsi serta kelas dapat bergerak melalui satu model bahasa yang seragam.

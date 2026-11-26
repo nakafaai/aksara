@@ -13,9 +13,11 @@ Jujukan lepas (escape sequence) bermula dengan backslash (`\`) yang diikuti satu
 
 Backslash mengubah cara Python membaca aksara selepasnya. Backslash itu sebahagian daripada notasi dalam kod sumber, manakala rentetan yang terhasil mengandungi aksara yang diwakili oleh notasi itu.
 
+> Setiap jujukan lepas ditulis dengan beberapa aksara dalam kod sumber, tetapi Python menyimpannya sebagai satu aksara tunggal dalam rentetan.
+
 ## Masalah Semasa Menulis Rentetan
 
-**Tanda petik dan backslash** perlu dijaga di dalam rentetan, kerana Python membacanya sebelum rentetan itu wujud. Tanda petik di dalam rentetan yang sama dengan pembatasnya akan menutup literal terlalu awal, dan backslash dalam rentetan biasa memulakan notasi lepas. Kalau kamu letakkan backslash di depan aksara itu, aksara tersebut kekal di dalam teks, dan dua backslash berturut-turut menghasilkan satu backslash dalam nilainya.
+**Tanda petik dan backslash** perlu dijaga di dalam rentetan, kerana Python membacanya sebelum rentetan itu wujud. Tanda petik di dalam rentetan yang sama dengan pembatasnya akan menutup literal terlalu awal, dan backslash dalam rentetan biasa memulakan notasi lepas. Kalau kamu letakkan backslash di depan aksara itu, ia kekal di dalam teks, dan dua backslash berturut-turut menghasilkan satu backslash dalam nilainya.
 
 ### Konflik Tanda Petik
 
@@ -63,7 +65,7 @@ He said: "I'm Bob."`
   ]}
 />
 
-Dalam contoh ini, `\'` memberitahu Python supaya mengekalkan tanda petik tunggal di dalam teks. Rentetan itu masih bersambung selepas tanda petik tersebut.
+Dalam contoh ini, `\'` memberitahu Python supaya mengekalkan tanda petik tunggal di dalam teks. Rentetan itu masih bersambung selepas tanda petik itu.
 
 ### Memaparkan Aksara Backslash
 
@@ -94,6 +96,7 @@ Backslash sebelum tanda petik hanya memberitahu Python bahawa tanda petik itu se
 
 <BarChart
   title={<><code>len()</code> bagi rentetan yang mengandungi tanda petik</>}
+  footer={<>Backslash lepas tidak pernah ditambah ke dalam panjang akhir rentetan.</>}
   description={<>Setiap palang ialah <code>len()</code> bagi literal yang ditulis di bawahnya. Versi yang menggunakan backslash dan versi yang menggunakan jenis tanda petik yang lain mempunyai panjang yang sama, <InlineMath math="4" /> dan <InlineMath math="8" />.</>}
   yAxisLabel="Panjang rentetan"
   data={[
@@ -104,6 +107,8 @@ Backslash sebelum tanda petik hanya memberitahu Python bahawa tanda petik itu se
   ]}
   chartConfig={{ value: { label: "Panjang rentetan", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Kedua-dua cara penulisan menghasilkan panjang rentetan yang sama persis, kerana backslash hanya memandu Python semasa membaca kod sumber dan hilang sebaik sahaja rentetan dibentuk.
 
 ## Rujukan Jujukan Lepas
 
@@ -149,6 +154,7 @@ Setiap jujukan lepas menghasilkan tepat satu aksara, dan `ord()` membaca kod Uni
 
 <BarChart
   title={<><code>ord()</code> bagi aksara daripada setiap jujukan lepas</>}
+  footer={<>Aksara kawalan seperti tab dan baris baharu mempunyai kod Unicode jauh lebih kecil.</>}
   description={<>Setiap palang ialah kod Unicode bagi aksara yang dihasilkan oleh jujukan lepas di bawahnya, daripada <code>\t</code> dengan kod <InlineMath math="9" /> hingga <code>\\</code> dengan kod <InlineMath math="92" />.</>}
   yAxisLabel="Kod Unicode"
   data={[
@@ -160,6 +166,8 @@ Setiap jujukan lepas menghasilkan tepat satu aksara, dan `ord()` membaca kod Uni
   ]}
   chartConfig={{ value: { label: "Kod Unicode", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
+
+Perhatikan bahawa `ord()` menerima setiap hasil jujukan lepas sebagai satu aksara utuh, membuktikan `\t` dan `\n` ialah aksara Unicode sebenar dan bukan dua huruf berasingan.
 
 ## Menggabungkan Jujukan Lepas
 
@@ -191,10 +199,13 @@ Dalam contoh ini, `\t` menghasilkan lajur yang kemas, `\n` memisahkan baris dan 
 
 Perkara penting di sini ialah beza antara notasi dalam kod sumber dengan rentetan yang terhasil. Contohnya, `\n` mengambil dua aksara dalam kod sumber tetapi mewakili satu aksara baris baharu dalam rentetan.
 
-Gambar ini mencetak `"Name\tAge\nBob\t25"` dalam terminal yang mempunyai hentian tab setiap lapan lajur. Segmen ambar menunjukkan `\t` melompat ke gandaan lapan yang seterusnya, jadi `Age` dan `25` bermula pada lajur yang sama walaupun panjang `Name` dan `Bob` berbeza. Segmen jingga menunjukkan `\n` membawa kursor ke permulaan baris seterusnya. Walau selebar mana pun rupanya, setiap jujukan lepas tetap satu aksara, jadi `len()` bagi rentetan ini ialah <InlineMath math="15" />.
+Gambar ini mencetak `"Name\tAge\nBob\t25"` dalam terminal yang mempunyai hentian tab setiap lapan lajur. Segmen ambar menunjukkan `\t` melompat ke gandaan lapan seterusnya supaya `Age` dan `25` sejajar walaupun panjang `Name` dan `Bob` berbeza.
+
+Segmen jingga menunjukkan `\n` membawa kursor ke permulaan baris baharu. Walau selebar mana pun rupanya pada skrin, setiap jujukan lepas tetap satu aksara sehingga `len()` rentetan ini ialah <InlineMath math="15" />.
 
 <MathVisual
   title={<>Ke mana kursor pergi untuk <code>\t</code> dan <code>\n</code></>}
+  footer={<>Tab melompat ke hentian lajur lapan berikutnya, baris baharu mula di lajur sifar.</>}
   description={<>Aksara ungu ialah teks biasa, segmen ambar ialah lompatan tab dan segmen jingga ialah baris baharu, bagi terminal dengan hentian tab setiap lapan lajur.</>}
   scene={{
     space: "plane",
@@ -253,3 +264,5 @@ Gambar ini mencetak `"Name\tAge\nBob\t25"` dalam terminal yang mempunyai hentian
     "tab-b": "\\t",
   }}
 />
+
+Dengan mengikuti laluan kursor ini, kamu dapat melihat sebab tab menyelaraskan lajur secara automatik tanpa mengira ruang, sementara panjang rentetan dalam memori tetap mengira aksara sebenar sahaja.

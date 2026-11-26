@@ -98,7 +98,7 @@ Each cell can run independently, and its output appears directly below it. Becau
 
 Cells share state in the same kernel. After restarting the kernel, run the cells from top to bottom: a cell using `math` or a function depends on the cell that defined that name.
 
-Install JupyterLab in a dedicated Python environment so its packages do not interfere with unrelated projects:
+Install JupyterLab in a dedicated Python environment so its packages do not interfere with unrelated projects.
 
 These commands use macOS/Linux paths. On Windows, use `py -m venv .venv`, then `.venv\Scripts\python -m pip install jupyterlab` and `.venv\Scripts\jupyter lab`.
 
@@ -284,13 +284,14 @@ The basic math operators give different results for the same numbers. With `7` a
     { name: "**", value: 7 ** 2 },
   ]}
   chartConfig={{ value: { label: "Result", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  footer="Four operators produce four distinct results from the same inputs 7 and 2."
 />
 
-## Practical Exercises
+The `**` bar climbs to `49` far above the other three operators, while `/` returns the float `3.5` in contrast to `//` dropping the remainder to yield `3`.
+
+## Building Three Starter Programs
 
 Complete these exercises to practice **variables, input, output, and basic operations**. Write each answer yourself before checking it, because the exercise trains the steps you take. The solutions follow the same order as the problems.
-
-### Simple Calculator
 
 This program reads **two numbers and an operator**, then prints the result. It combines input, type conversion, and branching in one file.
 
@@ -328,8 +329,6 @@ if result is not None:
     print(f"Result: {number1} {operator} {number2} = {result}")`
   }]}
 />
-
-### Temperature Conversion
 
 This program converts a **Celsius temperature into Fahrenheit and Kelvin**, and it rejects a value below absolute zero.
 
@@ -370,8 +369,6 @@ elif celsius > 100:
     print("This temperature is above water boiling point!")`
   }]}
 />
-
-### Student Profile
 
 This program asks for a student's details, stores them in variables, and **prints a short profile**.
 
@@ -419,8 +416,6 @@ else:
   }]}
 />
 
-### Check Your Work
-
 **Your practice programs are correct** when:
 
 - The calculator asks for two numbers and one operator, then displays the result of the selected operation.
@@ -459,7 +454,10 @@ Fix `number1 = 2` and imagine trying many values of `number2` in the calculator 
     "times": "2 * number2",
     "divide": "2 / number2",
   }}
+  footer="Three operators cross zero smoothly, whereas division leaves a gap at zero."
 />
+
+The `+`, `-`, and `*` lines pass straight through `number2 = 0`, whereas the division points break at zero because the `if number2 != 0` guard prevents a `ZeroDivisionError`.
 
 The temperature program computes `fahrenheit = (celsius * 9/5) + 32`. That formula is the straight line <InlineMath math="F=\tfrac95C+32" />: every step of <InlineMath math="1^\circ\mathrm{C}" /> adds <InlineMath math="1.8^\circ\mathrm{F}" />, and the line meets the vertical axis at <InlineMath math="32" />.
 
@@ -487,4 +485,9 @@ The temperature program computes `fahrenheit = (celsius * 9/5) + 32`. That formu
     "body": <InlineMath math="37^\circ\mathrm{C}=98.6^\circ\mathrm{F}" />,
     "boiling": <InlineMath math="100^\circ\mathrm{C}=212^\circ\mathrm{F}" />,
   }}
+  footer="All three reference temperatures fall right on the line F = 9/5 C + 32."
 />
+
+Freezing point, body temperature, and boiling point all lie on the same straight line, confirming that a single linear formula handles every valid Celsius input.
+
+> Every Python program follows the same core loop of reading input, storing values in the right types, and computing clear output.

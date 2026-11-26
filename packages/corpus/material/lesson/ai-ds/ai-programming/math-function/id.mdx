@@ -11,17 +11,13 @@ export const metadata = {
 
 Python <Highlight>menyimpan banyak kode yang dapat digunakan ulang di dalam modul</Highlight>. Sebuah modul dapat berisi fungsi, konstanta, class, dan nama lain tanpa menempatkan semuanya di namespace global.
 
-`import` memuat modul ketika diperlukan dan mengikat sebuah nama untuk mengakses anggota publik modul tersebut. Standard library menyediakan banyak fungsi matematika yang siap dipakai dan sudah diuji. Sebelum menulis rumus sendiri, periksa apakah standard library sudah menyediakan fungsi yang dibutuhkan.
-
-## Modul math untuk Fungsi Matematika
+`import` memuat modul ketika diperlukan dan mengikat sebuah nama untuk mengakses anggota publik modul itu. Standard library menyediakan banyak fungsi matematika yang siap dipakai dan sudah diuji. Sebelum menulis rumus sendiri, periksa apakah standard library sudah menyediakan fungsi yang dibutuhkan.
 
 Modul `math` menyediakan **fungsi dan konstanta bernilai riil**. Modul ini menerima bilangan riil yang kompatibel seperti `int` dan `float`, tetapi operasi seperti `sqrt()` tidak menerima nilai kompleks. Gunakan `cmath` ketika domain atau hasilnya dapat berupa bilangan kompleks.
 
 ## Cara Import Modul math
 
 Python menawarkan beberapa cara untuk mengimpor modul, dan pilihannya memengaruhi **bentuk setiap pemanggilan** setelahnya. Kamu bisa mengimpor seluruh modul, mengimpor nama tertentu saja, atau mengganti nama modul saat impor.
-
-### Import Dasar dengan Namespace
 
 Statement `import math` menambahkan modul ke namespace dengan **nama `math`**. Setelah itu, fungsi dan konstanta dipanggil dengan nama seperti `math.sqrt` dan `math.pi`.
 
@@ -44,8 +40,6 @@ print(math.pi)  # Output: 3.141592653589793
   ]}
 />
 
-### Import dengan Alias
-
 Alias mengikat modul ke **nama lokal lain**. Pakai alias jika mengikuti konvensi yang sudah mapan atau jika dua nama memang bertabrakan. Nama `math` sendiri sudah singkat dan jelas.
 
 <CodeBlock
@@ -65,9 +59,7 @@ print(m.pi)       # Output: 3.141592653589793
   ]}
 />
 
-### Import Semua Fungsi
-
-Bentuk ini memasukkan setiap nama publik dari `math` ke namespace saat ini. Cara tersebut mungkin nyaman dalam sesi interaktif sekali pakai, tetapi sebaiknya dihindari dalam kode aplikasi.
+Bentuk ini memasukkan setiap nama publik dari `math` ke namespace saat ini. Cara ini mungkin nyaman dalam sesi interaktif sekali pakai, tetapi sebaiknya dihindari dalam kode aplikasi.
 
 <CodeBlock
   data={[
@@ -87,8 +79,6 @@ print(pi)       # Output: 3.141592653589793
 />
 
 `from math import *` memasukkan semua nama publik dari `math` ke namespace saat ini. Jika salah satu nama itu sudah dipakai, nilai dari `math` menggantikannya tanpa pesan error. Kode juga tidak lagi menunjukkan modul asal setiap nama, dan perubahan pada `math` dapat menambahkan nama baru ke modul yang melakukan import. Import eksplisit <Highlight>mencantumkan setiap nama beserta modul asalnya</Highlight>.
-
-### Import Fungsi Tertentu
 
 Import **hanya fungsi yang dipakai program**. Nama fungsi tetap dapat dipanggil tanpa prefix modul, sedangkan baris import tetap mencatat asalnya.
 
@@ -110,8 +100,6 @@ print(sqrt(9))  # Output: 3.0
     }
   ]}
 />
-
-### Import dengan Alias Fungsi
 
 Fungsi yang di-import dapat diberi alias untuk **menghindari konflik nama** atau mengikuti konvensi lokal yang sudah ditetapkan.
 
@@ -138,7 +126,7 @@ print(fac(5))  # Output: 120
 
 Python menyediakan built-in numerik seperti `abs()` dan `round()` **tanpa import**. Keduanya bekerja pada berbagai tipe melalui protokol numerik Python. Setiap tipe dapat menentukan operasi yang didukungnya.
 
-### Fungsi Nilai Absolut
+### Nilai Mutlak dengan abs
 
 Untuk bilangan riil, `abs()` mengembalikan besar nonnegatif. Untuk bilangan kompleks, fungsi ini mengembalikan **jarak dari titik asal**.
 
@@ -159,7 +147,9 @@ print(abs(4 + 3j))  # Output: 5.0`
   ]}
 />
 
-Hasil untuk `4 + 3j` adalah <InlineMath math="5.0" /> karena <InlineMath math="|4+3i|=\sqrt{4^2+3^2}=\sqrt{25}=5" />. Python menulis satuan imajiner sebagai `j`, sedangkan rumus matematika lazim memakai <InlineMath math="i" />.
+Hasil untuk `4 + 3j` adalah <InlineMath math="5.0" /> karena Python menghitung modulusnya dari komponen riil dan imajiner. Python menulis satuan imajiner sebagai `j`, sedangkan rumus matematika lazim memakai <InlineMath math="i" />.
+
+<BlockMath math="|4 + 3i| = \sqrt{4^2 + 3^2} = \sqrt{25} = 5" />
 
 ### Fungsi Pembulatan
 
@@ -197,13 +187,16 @@ Fungsi bawaan `round()` dan fungsi modul `math.floor`, `math.ceil`, serta `math.
     { name: "round", value: -2 },
   ]}
   chartConfig={{ value: { label: "Hasil", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  footer="Untuk -2.5, floor turun ke -3 sementara ceil, trunc, dan round ke -2."
 />
+
+Tiga batang berhenti di `-2` sedangkan `floor` turun ke `-3`, membuktikan bahwa pembulatan bilangan negatif bergantung pada arah pemotongan yang dipilih masing-masing fungsi.
 
 ## Fungsi dan Konstanta dalam Modul math
 
 Setiap fungsi `math` **memiliki domain**. Sebagai contoh, `sqrt(x)` menerima input riil nonnegatif, sedangkan logaritma menerima input riil positif. Nilai di luar domain itu menghasilkan `ValueError`, bukan sebuah angka.
 
-### Fungsi Akar dan Logaritma
+### Operasi Numerik dan Trigonometri
 
 Contoh berikut memanggil fungsi akar dan logaritma, lalu memperlihatkan cara Python melaporkan **masukan di luar daerah asalnya**.
 
@@ -238,8 +231,6 @@ except ValueError as error:
   ]}
 />
 
-### Fungsi Trigonometri
-
 Fungsi trigonometri memakai **satuan radian**. Contoh berikut mengubah satu sudut lalu memanggil ketiga fungsi utamanya.
 
 <CodeBlock
@@ -263,8 +254,6 @@ print(f"45 derajat = {angle_rad} radian")  # Output: 45 derajat = 0.785398163397
     }
   ]}
 />
-
-### Fungsi Ceiling Floor dan Faktorial
 
 Pembulatan ke atas, pembulatan ke bawah, dan faktorial menjawab **pertanyaan yang berbeda**. Contoh berikut menerapkan setiap fungsi lalu mencetak hasilnya.
 
@@ -348,7 +337,10 @@ Ikuti kurva ungu `math.sqrt(x)` dari modul `math`. Kurva ini mulai di `0` dan tu
     "nine": "math.sqrt(9) = 3.0",
     "two": "math.sqrt(2)",
   }}
+  footer="Kurva math.sqrt(x) hanya terdefinisi untuk x >= 0 dan makin landai."
 />
+
+Kenaikan kurva melambat di sebelah kanan karena jarak dari `4` ke `9` hanya menambah hasil sebesar `1`, sementara sisi kiri sumbu nol kosong sebab `math.sqrt` menolak masukan negatif.
 
 Fungsi trigonometri di modul `math` memakai radian, jadi kamu menulis sudut dengan konstanta `math.pi`. Untuk sudut `math.pi / 3`, yaitu <InlineMath math="60^\circ" />, `math.cos` memberi <InlineMath math="0{,}5" /> dan `math.sin` memberi <InlineMath math="\tfrac{\sqrt3}2\approx0.866" />.
 
@@ -376,7 +368,10 @@ Fungsi trigonometri di modul `math` memakai radian, jadi kamu menulis sudut deng
     "cosine": <code>math.cos</code>,
     "sine": <code>math.sin</code>,
   }}
+  footer="Pada sudut pi/3 radian, math.cos memberi absis dan math.sin ordinat."
 />
+
+Proyeksi titik sudut `math.pi / 3` pada sumbu mendatar dan tegak menghasilkan `0.5` dan sekitar `0.866`, sehingga kedua panggilan trigonometri langsung memetakan sudut radian ke koordinat lingkaran satuan.
 
 ## Memilih Cara Import Modul
 
@@ -387,7 +382,7 @@ Pilih cara mengimpor yang tetap menampilkan **nama modul pada setiap pemanggilan
 Pilih gaya import dari banyaknya nama yang kamu butuhkan dan **seberapa jelas pemanggilannya**. Daftar berikut mengurutkan pilihan dari yang paling eksplisit.
 
 1. **Utamakan `import math`** ketika program memakai beberapa anggota. Pemanggilan seperti `math.sqrt()` menempatkan nama modul di sebelah fungsi.
-2. **Gunakan `import math as m` dengan sengaja** hanya ketika alias tersebut merupakan konvensi lokal yang terdokumentasi.
+2. **Gunakan `import math as m` dengan sengaja** hanya ketika alias itu adalah konvensi lokal yang terdokumentasi.
 3. **Gunakan `from math import sqrt, pi`** ketika sekumpulan kecil nama yang tidak ambigu memperjelas kode lokal.
 4. **Hindari `from math import *`** karena setiap nama dipakai tanpa awalan modul dan dapat mengganti nama yang sudah digunakan program.
 
@@ -439,3 +434,5 @@ print(f"Luas segitiga dengan sisi 3, 4, 5: {luas}")`
 />
 
 Kode numerik perlu menunjukkan tiga hal: namespace pemilik operasi, **domain input**, dan cara menangani input yang berada di luar domain atau memiliki nilai khusus seperti `nan`. Informasi ini lebih berguna daripada menyingkat nama fungsi beberapa karakter.
+
+> Memilih import yang eksplisit dan mengecek domain masukan sejak awal menjaga perhitungan `math` tetap dapat dibaca sekaligus terlindungi dari `ValueError`.

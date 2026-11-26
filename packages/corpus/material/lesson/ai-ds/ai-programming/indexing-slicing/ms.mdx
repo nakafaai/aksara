@@ -116,7 +116,11 @@ Langkah negatif membalikkan arah pemilihan. Bentuk `s[::-1]` meninggalkan kedua-
 
 Hirisan ditulis sebagai `start:stop:step`. Indeks mula termasuk, **indeks henti tidak termasuk**, dan langkah negatif melalui jujukan dari kanan ke kiri. Bila kamu ragu, semak tiga peraturan ini satu per satu sebelum menjalankan kod.
 
-Katakan <InlineMath math="n" /> ialah panjang `s`. Untuk kes mudah <InlineMath math="0 \le i \le j \le n" /> dengan langkah positif lalai, panjang `s[i:j]` ialah <InlineMath math="j-i" />. Hirisan umum mungkin ada had yang ditinggalkan, negatif, atau di luar julat, serta langkah yang berbeza. Python terlebih dahulu **menormalkan had itu berdasarkan panjang jujukan**. Bilangan tepatnya ialah `len(range(*slice(i, j, step).indices(len(s))))`.
+Katakan <InlineMath math="n" /> ialah panjang `s`. Untuk kes mudah dengan langkah positif lalai dan had tersusun:
+
+<BlockMath math="0 \le i \le j \le n" />
+
+Panjang `s[i:j]` ialah <InlineMath math="j-i" />. Hirisan umum mungkin ada had yang ditinggalkan, negatif, atau di luar julat, serta langkah yang berbeza. Python terlebih dahulu **menormalkan had itu berdasarkan panjang jujukan**. Bilangan tepatnya ialah `len(range(*slice(i, j, step).indices(len(s))))`.
 
 <CodeBlock
   data={[
@@ -149,6 +153,7 @@ Setiap aksara dalam `s = "Python"` ada dua alamat: indeks positif dari kiri dan 
 
 <MathVisual
   title={<>Indeks positif, indeks negatif, dan <code>s[1:4]</code></>}
+  footer={<>Setiap aksara ada indeks positif dan negatif, manakala s[1:4] berhenti sebelum 4.</>}
   description={<>Untuk <code>s = 'Python'</code>: nombor ungu ialah indeks positif, nombor hijau kebiruan ialah indeks negatif, dan aksara magenta ialah hasil <code>s[1:4]</code>.</>}
   scene={{
     space: "plane",
@@ -220,6 +225,8 @@ Setiap aksara dalam `s = "Python"` ada dua alamat: indeks positif dari kiri dan 
   }}
 />
 
+Peraturan separuh terbuka ini konsisten di seluruh Python: kerana indeks henti dikecualikan, bilangan unsur yang dipilih sentiasa sama dengan `stop - start`.
+
 ## Indeks yang Dipilih oleh Hirisan
 
 Gelung di bawah membina semula hirisan dengan `range(start, stop, step)`, **satu indeks pada satu masa**.
@@ -262,6 +269,7 @@ Hirisan memilih indeks daripada `range(start, stop, step)`. Untuk `s = 'Python'`
 
 <MathVisual
   title={<>Indeks yang dipilih oleh <code>s[0:6:2]</code> dan <code>s[5:0:-2]</code></>}
+  footer={<>Tanda step menetapkan arah pergerakan, manakala nilainya menetapkan jarak lompatan.</>}
   description={<>Baris tengah yang kelabu ialah aksara <code>'Python'</code>. Garisan magenta di atas melompat ke hadapan dua langkah ke indeks <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="4" />. Garisan hijau kebiruan di bawah melompat ke belakang ke indeks <InlineMath math="5" />, <InlineMath math="3" />, dan <InlineMath math="1" />.</>}
   scene={{
     space: "plane",
@@ -301,6 +309,8 @@ Hirisan memilih indeks daripada `range(start, stop, step)`. Untuk `s = 'Python'`
     "char-5": <code>n</code>,
   }}
 />
+
+Dengan langkah negatif dalam `s[5:0:-2]`, indeks `0` menjadi had henti eksklusif supaya `'P'` tidak termasuk, sama tepat seperti `range(5, 0, -2)`.
 
 ## Bentuk Ringkas Hirisan
 
@@ -349,6 +359,7 @@ Indeks pemisah yang sama memotong rentetan tanpa jurang dan tanpa pertindihan. U
 
 <MathVisual
   title={<><code>s[:3]</code> dan <code>s[3:]</code> membahagi <code>'Python'</code></>}
+  footer={<>Pengecualian indeks henti membolehkan s[:k] dan s[k:] membelah jujukan tanpa jurang.</>}
   description={<>Aksara ungu ialah <code>s[:3]</code> dan aksara hijau kebiruan ialah <code>s[3:]</code>. Segmen kelabu berdiri di antara indeks <InlineMath math="2" /> dan <InlineMath math="3" />, iaitu tempat kedua-dua hirisan bertemu.</>}
   scene={{
     space: "plane",
@@ -381,6 +392,8 @@ Indeks pemisah yang sama memotong rentetan tanpa jurang dan tanpa pertindihan. U
     "char-5": <code>n</code>,
   }}
 />
+
+Pembahagian kemas ini terpakai bagi sebarang indeks pemisah `i`, jadi bahagian kiri dan kanan sentiasa bercantum semula membentuk jujukan asal.
 
 ## Bekerja dengan Bahagian Rentetan dan Senarai
 
@@ -435,3 +448,5 @@ Gunakan indeks untuk memilih satu item pada kedudukan yang diketahui. Gunakan hi
 <Highlight>Had hirisan dipangkas mengikut panjang jujukan</Highlight>, jadi `s[10:]` pada rentetan yang lebih pendek memulangkan `""`. Pengindeksan terus seperti `s[10]` tetap menimbulkan `IndexError`. Gunakan hirisan hanya apabila hasil kosong boleh diterima.
 
 Indeks negatif mengira dari hujung. Gunakan `s[-1]` untuk unsur terakhir atau `s[-3:]` untuk tiga unsur terakhir. Bentuk ini memilih kedudukan berhampiran hujung semasa memproses fail, menghurai teks, atau mengendalikan set data.
+
+> Ingat perbezaan utama antara kedua-duanya. Pengindeksan menuntut kedudukan sah dan menimbulkan `IndexError` jika terkeluar had, manakala penghirisan memangkas had secara selamat mengikut panjang jujukan.

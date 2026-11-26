@@ -65,6 +65,7 @@ Eine Liste kann sich an Ort und Stelle ändern. Ausgehend von `nums = [1, 2, 3]`
 
 <MathVisual
   title={<><code>nums</code> an Ort und Stelle geändert</>}
+  footer={<>Indexzuweisung und append ändern die Liste, ohne ein neues Objekt anzulegen.</>}
   description={<>Jeder Punkt ist ein Element, mit dem Index nach rechts und dem Wert nach oben. Die orange Strecke hebt das Element am Index <InlineMath math="0" /> von <InlineMath math="1" /> auf den magentafarbenen Punkt <InlineMath math="10" />, und der türkise Punkt ist das neue Element aus <code>append</code>.</>}
   scene={{
     space: "plane",
@@ -89,12 +90,15 @@ Eine Liste kann sich an Ort und Stelle ändern. Ausgehend von `nums = [1, 2, 3]`
   }}
 />
 
+Sowohl die Indexzuweisung als auch `append` ändern denselben Behälter `nums`, sodass jede Referenz auf `nums` sofort den aktualisierten Inhalt sieht.
+
 ## Identität Typ und Wert eines Objekts
 
 Jedes Python-Objekt besitzt drei Merkmale: **Identität, Typ und Wert**.
 
 <Mermaid
   title={<>Identität zeigt an, welches Objekt verwendet wird</>}
+  footer={<>Identität kennzeichnet das Objekt, Typ die Operationen und Wert die Daten.</>}
   description={<>Unterscheide Identität, Typ und Wert, damit ein Objekt nicht mit dem Variablennamen verwechselt wird, der darauf verweist.</>}
   chart={`
     flowchart LR
@@ -107,6 +111,8 @@ Jedes Python-Objekt besitzt drei Merkmale: **Identität, Typ und Wert**.
         D --> D1[Gespeicherte Daten]
   `}
 />
+
+Diese drei Eigenschaften sauber zu trennen erleichtert die Fehlersuche: Werte dürfen sich bei veränderlichen Typen ändern, während Identität und Typ eines Objekts lebenslang fest bleiben.
 
 ### Objektidentität
 
@@ -156,6 +162,7 @@ Führ `a = [1, 2]`, `b = a`, `c = a.copy()` und dann `b.append(3)` aus. Dieses B
 
 <MathVisual
   title={<>Zwei Namen für eine Liste, ein Name für eine Kopie</>}
+  footer={<>Die Namen a und b teilen sich eine Liste, während c auf eine eigene Kopie zeigt.</>}
   description={<><code>b</code> wird an dieselbe Liste wie <code>a</code> gebunden, <code>c</code> an eine Kopie aus <code>a.copy()</code>, danach läuft <code>b.append(3)</code>: Violette Strecken zeigen <code>a</code> und <code>b</code> auf dasselbe Objekt, das jetzt <code>[1, 2, 3]</code> enthält, und die türkise Strecke zeigt <code>c</code> auf die Kopie <code>[1, 2]</code>.</>}
   scene={{
     space: "plane",
@@ -187,6 +194,8 @@ Führ `a = [1, 2]`, `b = a`, `c = a.copy()` und dann `b.append(3)` aus. Dieses B
     "copy": "[1, 2]",
   }}
 />
+
+Eine explizite Kopie über `a.copy()` löst die gemeinsame Bindung, sodass Änderungen über `b` niemals auf `c` überspringen.
 
 ## Veränderliche und unveränderliche Objekte
 
@@ -297,6 +306,7 @@ print(list2)         # [0, 'x', 2] (unverändert)`
 
 <Mermaid
   title={<>Zwei Namen sehen dieselbe Mutation</>}
+  footer={<>Eine Änderung über list1 wird sofort über list2 sichtbar, da beide dieselbe Liste nutzen.</>}
   description={<>Beide Namen verweisen nach der Änderung eines Elements weiterhin auf dieselbe Liste.</>}
   chart={`
     flowchart TD
@@ -320,6 +330,7 @@ Vergleiche `a = 5; b = a; a += 1` mit `x = [5]; y = x; x[0] += 1`. Ganze Zahlen 
 
 <BarChart
   title={<>Unveränderliche und veränderliche Objekte nach <code>+= 1</code></>}
+  footer={<>Ganzzahlen binden bei Addition ein neues Objekt, Listen ändern sich direkt am Platz.</>}
   description={<>Jeder Balken ist der Wert des darunter stehenden Namens nach beiden Codestücken. <code>b</code> bleibt <InlineMath math="5" />, während <code>x[0]</code> und <code>y[0]</code> beide <InlineMath math="6" /> sind, weil sie auf dieselbe Liste zeigen.</>}
   yAxisLabel="Wert"
   data={[
@@ -330,3 +341,7 @@ Vergleiche `a = 5; b = a; a += 1` mit `x = [5]; y = x; x[0] += 1`. Ganze Zahlen 
   ]}
   chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
+
+Derselbe Operator `+=` wirkt je nach Veränderlichkeit verschieden: Ganze Zahlen versetzen den Namen auf ein neues Objekt, während Listenelemente direkt im geteilten Behälter geändert werden.
+
+> Eine Variable in Python ist keine Kiste für Daten, sondern ein Etikett an einem Objekt im Speicher. Wer Neuzuweisung von Mutation trennt, vermeidet verborgene Nebenwirkungen bei geteilten Daten.

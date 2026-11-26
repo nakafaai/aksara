@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Fungsi",
-  description: "Takrifkan fungsi Python dengan parameter, **nilai pulangan**, skop pemboleh ubah, closure, dan pengendalian ralat yang eksplisit.",
+  description: "Takrifkan fungsi Python dengan parameter, nilai pulangan, skop pemboleh ubah, closure, dan pengendalian ralat yang eksplisit.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
     dateModified: "2026-09-19",
@@ -11,7 +11,7 @@ export const metadata = {
 
 Fungsi <Highlight>memberi nama kepada satu operasi yang boleh digunakan semula</Highlight>. Parameternya menerangkan **input yang diterimanya**, badannya melakukan kerja, dan pernyataan `return` boleh memberi hasil kepada pemanggil.
 
-## Struktur dan Sintaks Fungsi
+### Struktur dan Sintaks Fungsi
 
 Setiap fungsi Python mengikut **struktur asas** yang sama:
 
@@ -39,7 +39,7 @@ Komponen fungsi terdiri daripada:
 5. Blok kod yang diinden
 6. Pernyataan `return` pilihan untuk memulangkan nilai
 
-## Apa yang Berlaku Semasa Fungsi Dipanggil
+### Apa yang Berlaku Semasa Fungsi Dipanggil
 
 Apabila kamu memanggil fungsi, Python menilai ungkapan yang boleh dipanggil itu, **mengikat argumen yang diberi kepada parameter**, lalu melaksanakan badan fungsi dalam bingkai setempat yang baharu.
 
@@ -108,7 +108,7 @@ Peraturan parameter:
 
 ### Bilangan Parameter yang Tidak Tetap
 
-Python boleh **mengumpul argumen tambahan** melalui `*args` dan `**kwargs`. Fungsi itu masih perlu menyemak bilangan, jenis, dan nilai argumen tersebut berdasarkan keperluan atur cara.
+Python boleh **mengumpul argumen tambahan** melalui `*args` dan `**kwargs`. Fungsi itu masih perlu menyemak bilangan, jenis, dan nilai argumen itu berdasarkan keperluan atur cara.
 
 <CodeBlock
   data={[
@@ -167,7 +167,10 @@ Katakan `def power(x, n=2): return x ** n`. Jika kamu memanggil `power(x)` tanpa
     "linear": "power(x, 1)",
     "square": "power(x)",
   }}
+  footer="Tanpa argumen kedua, power(x) guna n=2, manakala power(x, 1) mengatasinya."
 />
+
+Parameter lalai meringkaskan panggilan yang paling biasa sambil tetap membenarkan pemanggil menggantikan nilai itu apabila kelakuan lain diperlukan.
 
 ## Nilai Pulangan Fungsi
 
@@ -232,7 +235,10 @@ Fungsi boleh memulangkan beberapa nilai serentak dalam bentuk tuple. Dengan `def
     "smallest": <code>min</code>,
     "largest": <code>max</code>,
   }}
+  footer="Satu pernyataan return membungkus nilai min 1 dan max 7 dalam satu tuple."
 />
+
+Memulangkan beberapa nilai sebagai tuple membolehkan pemanggil membongkar `low, high = min_max(...)` terus tanpa memproses data dua kali.
 
 ## Skop Pemboleh Ubah dalam Fungsi
 
@@ -247,7 +253,10 @@ Pemboleh ubah dalam Python ada skop yang menentukan **di mana pemboleh ubah itu 
         E --> G[Skop Global]
         G --> B[Skop Built-in]
   `}
+  footer="Python mencari nama mengikut urutan Local, Enclosing, Global, dan Built-in."
 />
+
+Carian berhenti pada aras pertama yang sepadan, jadi pemboleh ubah setempat dengan nama sama membayangi nama sejagat tanpa mengubah nilainya.
 
 <CodeBlock
   data={[
@@ -455,7 +464,10 @@ Setiap panggilan `create_multiplier(factor)` membina closure yang mengingati `fa
     "two-call": <code>multiply_two(10)</code>,
     "five-call": <code>multiply_five(4)</code>,
   }}
+  footer="Setiap closure menyimpan faktornya sendiri lalu membentuk garis yang berbeza."
 />
+
+Walaupun kedua-dua fungsi datang daripada satu takrifan `create_multiplier`, setiap satunya menyimpan nilai `factor` tersendiri tanpa saling mengganggu.
 
 ## Pengendalian Ralat dalam Fungsi
 
@@ -495,3 +507,5 @@ for value in ("abc", [1, 2]):
     }
   ]}
 />
+
+> Reka bentuk setiap fungsi untuk satu tugasan yang jelas, terima input melalui parameter, dan pulangkan hasil melalui `return` berbanding mengubah keadaan sejagat.

@@ -165,8 +165,6 @@ print(parking.is_full())`
 
 „Alles ist ein Objekt“ bedeutet, dass Python Laufzeitwerte über ein gemeinsames Objektmodell behandelt. Welche Attribute und Methoden verfügbar sind, hängt weiterhin <Highlight>vom jeweiligen Typ</Highlight> ab.
 
-### Zahlen sind Objekte
-
 Eine ganze Zahl ist ein **Objekt mit Methoden**. Das Beispiel ruft die Methode `bit_length()` der Zahl `42` auf und gibt das Ergebnis aus.
 
 <CodeBlock
@@ -191,8 +189,6 @@ print(type(result))         # <class 'int'>
 print(dir(result))          # Attributnamen erkunden`
   }]}
 />
-
-### Strings sind Objekte
 
 Ein String ist ein Objekt mit Methoden, die **neue Werte erzeugen**. Das Beispiel ruft mehrere String-Methoden auf einem Text auf.
 
@@ -229,8 +225,6 @@ rejoined = " ".join(words)          # Kommt wieder zusammen
 print(rejoined)`
   }]}
 />
-
-### Listen sind Objekte
 
 Eine Liste bietet **Methoden zur Änderung ihres Inhalts** wie `append()` sowie lesende Methoden wie `count()`. Das Beispiel beginnt mit einer Obstliste und ruft die Listenmethoden auf.
 
@@ -274,8 +268,6 @@ print(f"Original: {original}")
 print(f"Copy: {copy_list}")`
   }]}
 />
-
-### Wörterbücher sind Objekte
 
 Ein Wörterbuch ist ein Objekt mit Methoden zum **Lesen und Ändern** seiner Paare. Das Beispiel verwendet einen Studierendendatensatz für diese Methoden.
 
@@ -399,7 +391,10 @@ Weil eine Funktion ein Objekt ist, kannst du sie wie jeden Wert an eine andere F
     { name: "4", value: 4 ** 2 },
   ]}
   chartConfig={{ value: { label: "Ergebnis von square", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  footer="map erhält das Funktionsobjekt square und ruft es pro Element auf."
 />
+
+Jeder Balken steigt quadratisch von `1` bis `16`, weil `map` das Funktionsobjekt `square` direkt übernimmt und es ohne manuelle Schleife auf jeden Eingabewert anwendet.
 
 ## Klassen und Instanzen als Objekte
 
@@ -475,7 +470,9 @@ print(Student.university)           # Universitas Indonesia`
   }]}
 />
 
-Eine Klasse `Point` kann viele Instanzen erzeugen, und jede Instanz behält ihre eigenen Attribute. `p1 = Point(1, 2)` und `p2 = Point(4, 1)` haben verschiedene `x` und `y`, teilen sich aber dieselben Methoden, etwa `p1.distance(p2)`, das <InlineMath math="\sqrt{3^2+1^2}=\sqrt{10}" /> liefert.
+Eine Klasse `Point` kann viele Instanzen erzeugen, und jede Instanz behält ihre eigenen Attribute. `p1 = Point(1, 2)` und `p2 = Point(4, 1)` haben verschiedene `x` und `y`, teilen sich aber dieselben Methoden, etwa `p1.distance(p2)`, das <InlineMath math="\sqrt{10}" /> liefert.
+
+<BlockMath math="d = \sqrt{3^2 + 1^2} = \sqrt{10}" />
 
 <MathVisual
   title={<>Zwei Instanzen einer Klasse <code>Point</code></>}
@@ -498,7 +495,10 @@ Eine Klasse `Point` kann viele Instanzen erzeugen, und jede Instanz behält ihre
     "first": <code>p1 = Point(1, 2)</code>,
     "second": <code>p2 = Point(4, 1)</code>,
   }}
+  footer="p1 und p2 tragen eigene Koordinaten, teilen sich aber distance."
 />
+
+Beide Punkte liegen an getrennten Stellen in der Ebene, weil jede Instanz ihr eigenes `self.x` und `self.y` speichert, während die verbindende Abstandsstrecke aus derselben Methode `distance` auf `Point` stammt.
 
 ## Spezielle Methoden
 
@@ -586,9 +586,12 @@ Angenommen, eine Klasse `Vector` hat eine spezielle Methode `__add__`, die die K
     "w": "w = Vector(1, 2)",
     "sum": "v + w = Vector(3, 3)",
   }}
+  footer="v + w ruft v.__add__(w) auf und liefert ein neues Vector-Objekt."
 />
 
-## Objektorientierte Programmierpraxis
+Setzt man `w` an die Spitze von `v`, landet der Endpunkt genau bei `(3, 3)`, sodass die magentafarbene Strecke `v + w` die komponentenweise Summe aus `__add__` zeigt, ohne `v` oder `w` zu verändern.
+
+## Ein Bibliothekssystem mit Klassen modellieren
 
 Das folgende Beispiel verbindet mehrere Klassen, um **Bücher, Mitglieder und Ausleihen** in einer Bibliothek abzubilden.
 
@@ -749,3 +752,5 @@ print(library.return_book("M001", "978-1234567890"))`
 />
 
 Pythons Objektmodell erklärt, warum Werte, Funktionen und Klassen dieselben Sprachmechanismen durchlaufen können. Nutze objektorientierte Komposition, wenn zusammengehöriger Zustand und Verhalten gemeinsam verwaltet werden müssen. Nutze ein prozedurales oder funktionales Design, wenn sich die Abfolge der Schritte oder der Datenfluss damit direkter erklären lässt.
+
+> Jeder Wert in Python trägt Typ, Identität und eigene Methoden, sodass Zahlen, Funktionen und Klassen durch ein einheitliches Sprachmodell laufen.

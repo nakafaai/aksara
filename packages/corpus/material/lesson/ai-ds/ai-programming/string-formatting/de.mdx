@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Formatierung von Strings",
-    description: "Formatiere Python-Ausgaben mit str.format(), F-Strings, Feldbreite, Ausrichtung, Genauigkeit und Vorzeichen.",
+    description: "Formatiere Python Ausgaben mit str.format, F-Strings, Feldbreite, Ausrichtung, Genauigkeit und Vorzeichen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
     dateModified: "2026-09-19",
@@ -49,6 +49,7 @@ Das Diagramm vergleicht denselben Text **links, rechts und mittig** in einer fes
 
 <Mermaid
   title={<>Wie Breite Text platziert</>}
+  footer="Die Zeichen <, > und ^ richten Text links, rechts oder mittig in fester Breite aus."
   description={<>Vergleiche die linke, rechte und mittige Ausrichtung desselben Strings in einem Feld mit fester Breite.</>}
   chart={`
     flowchart TD
@@ -63,6 +64,8 @@ Das Diagramm vergleicht denselben Text **links, rechts und mittig** in einer fes
         E --> H["'      xxx      '"]
   `}
 />
+
+Die Tabelle fasst diese drei Ausrichtungssymbole samt ihrem Standardverhalten zusammen:
 
 | Symbol | Name | Verhalten | Standard für |
 |--------|------|----------|-------------|
@@ -101,6 +104,7 @@ Eine Breite von <InlineMath math="15" /> lässt <InlineMath math="15-3=12" /> Sp
 
 <MathVisual
   title={<><code>'xxx'</code> in Breite <InlineMath math="15" /> mit drei Ausrichtungen</>}
+  footer={<>Die 12 freien Spalten um xxx liegen rechts, links oder gleichmäßig auf beiden Seiten.</>}
   description={<>Jede Zeile hat <InlineMath math="15" /> Spalten. Das violette Rechteck ist <code>'xxx'</code>, die grauen Rechtecke sind Füllzeichen. Von oben nach unten: linksbündig, rechtsbündig und zentriert.</>}
   scene={{
     space: "plane",
@@ -118,12 +122,15 @@ Eine Breite von <InlineMath math="15" /> lässt <InlineMath math="15-3=12" /> Sp
   }}
 />
 
+Alle drei Zeilen bleiben genau fünfzehn Spalten breit, und nur die Aufteilung der zwölf Füllspalten rund um den Text verschiebt sich.
+
 ## Argumentreferenzmethoden
 
 Ein Ersetzungsfeld wählt **den Wert für die Textausgabe**. Verwende einen Index für ein Positionsargument, einen Namen für ein Schlüsselwortargument oder die automatische Nummerierung, um Positionsargumente der Reihe nach einzusetzen.
 
 <Mermaid
   title={<>Wie Platzhalter Werte auswählen</>}
+  footer={<>Platzhalter wählen Werte über Positionsindex, Schlüsselwort oder automatische Folge.</>}
   description={<>Sieh dir an, wie nummerierte, benannte und automatische Referenzen den Wert für einen Formatplatzhalter auswählen.</>}
   chart={`
     flowchart TD
@@ -194,8 +201,11 @@ Die Bedeutung der Präzision hängt vom Darstellungstyp ab. Bei `f` und `e` best
 
 ### Vorzeichenoptionen
 
+Neben der Nachkommastellenzahl lässt sich das Vorzeichen vor jeder Zahl festlegen, damit Spalten mit positiven und negativen Werten sauber untereinander stehen.
+
 <Mermaid
   title={<>Wie Zeichen in Zahlen erscheinen</>}
+  footer={<>Die Optionen +, - und Leerzeichen steuern das Symbol vor positiven Zahlen.</>}
   description={<>Vergleiche Plus, Minus und Leerzeichen für eine konsistente Ausgabe positiver und negativer Zahlen.</>}
   chart={`
     flowchart TD
@@ -249,6 +259,7 @@ Die Angabe `.1f` zeigt jede Zahl mit einer Nachkommastelle, also erscheint jedes
 
 <MathVisual
   title={<>Die Genauigkeit <code>.1f</code> als Rundungstreppe</>}
+  footer={<>Das Format .1f bildet jedes 0,1 breite Intervall auf dieselbe Anzeigestufe ab.</>}
   description={<>Die violette Treppe ist der mit <code>.1f</code> angezeigte Wert für Eingaben von null bis eins, die graue Linie ist die Winkelhalbierende.</>}
   scene={{
     space: "plane",
@@ -283,6 +294,7 @@ Jede zusätzliche Stelle Genauigkeit verkleinert den Rundungsfehler ungefähr um
 
 <BarChart
   title={<>Rundungsfehler von <code>math.pi</code> für Genauigkeit <InlineMath math="0" /> bis <InlineMath math="4" /></>}
+  footer={<>Jede weitere Nachkommastelle verkleinert den Rundungsfehler etwa um den Faktor zehn.</>}
   description={<>Jeder Balken ist der Abstand zwischen <InlineMath math="\pi" /> und dem Wert, der mit der darunter stehenden Anzahl Dezimalstellen angezeigt wird.</>}
   yAxisLabel="Rundungsfehler"
   data={[
@@ -294,6 +306,8 @@ Jede zusätzliche Stelle Genauigkeit verkleinert den Rundungsfehler ungefähr um
   ]}
   chartConfig={{ value: { label: "Rundungsfehler", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+Wähle gerade so viele Nachkommastellen, dass Tabellen gut lesbar bleiben, ohne für die Analyse wichtige Genauigkeit abzuschneiden.
 
 ## Formatierte Strings und dynamische Vorlagen
 
@@ -335,8 +349,11 @@ print(f'Fläche: {math.pi * radius**2:.2f} cm²') # Ausgabe: Fläche: 102.07 cm�
 
 ### Eine Formatspezifikation lesen
 
+Alle Formatierungsoptionen stehen nach dem Doppelpunkt in einer festen Reihenfolge, damit Python auch komplexe Angaben eindeutig liest.
+
 <Mermaid
   title={<>Reihenfolge innerhalb eines Formatbezeichners</>}
+  footer={<>Eine Formatspezifikation folgt der festen Reihe von Füllzeichen über Breite zum Typ.</>}
   description={<>Folge der Reihenfolge vom Füllzeichen bis zum Darstellungstyp.</>}
   chart={`
     flowchart TD
@@ -358,3 +375,5 @@ print(f'Fläche: {math.pi * radius**2:.2f} cm²') # Ausgabe: Fläche: 102.07 cm�
 Probiere `"{value:*^+10.2f}".format(value=12.3)` aus. Die Ausgabe lautet `**+12.30**`. Der Typ `f` mit Präzision `2` erzeugt `12.30`, das Pluszeichen ergänzt ein Zeichen, und vier Füllzeichen vervollständigen die **Mindestbreite von zehn Zeichen**. Die Ausrichtung `^` verteilt diese vier Füllzeichen gleichmäßig: zwei links und zwei rechts.
 
 Die Formatierung erzeugt ein neues [Stringobjekt](/de/faecher/ki-und-data-science/ki-programmierung/strings-als-objekte). Die Zahl `12.3` bleibt unverändert. Du kannst sie weiterhin für eine andere Berechnung verwenden.
+
+> Eine Formatspezifikation ändert nur die Textdarstellung und rundet oder verändert niemals den gespeicherten Zahlenwert im Speicher. Trenne Rechengenauigkeit stets von der Anzeigeformatierung.

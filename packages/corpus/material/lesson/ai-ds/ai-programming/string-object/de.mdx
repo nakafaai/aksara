@@ -61,7 +61,10 @@ Ein String ist eine geordnete Folge von Unicode-Zeichen, und jedes Zeichen hat e
     { name: "n", value: 110 },
   ]}
   chartConfig={{ value: { label: "Unicode-Code", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+  footer="Jedes Zeichen in 'Python' gehört zu genau einem ganzzahligen Unicode-Codepoint."
 />
+
+Der Balken für das große `P` liegt mit `80` deutlich unter den fünf Kleinbuchstaben zwischen `104` und `121` und zeigt, wie Unicode Groß- und Kleinbuchstaben trennt.
 
 ## Leere Strings und die Funktion Str
 
@@ -119,7 +122,10 @@ Die Funktion `str()` liefert eine **gut lesbare Stringdarstellung** eines Werts.
     { name: "''", value: 0 },
   ]}
   chartConfig={{ value: { label: "Textlänge", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+  footer="str() zählt jede Ziffer, jedes Minuszeichen und jeden Dezimalpunkt mit."
 />
+
+`True` belegt vier Zeichen und `''` hat gar keinen Balken, was zeigt, dass Vorzeichen und Dezimalpunkte nach der Umwandlung in Text voll mitzählen.
 
 ## Mehrzeilige Zeichenfolgen
 
@@ -202,8 +208,6 @@ Drei doppelte Anführungszeichen funktionieren genauso. Wähle die Begrenzung, m
 
 Python kann Stringliterale bereits beim Lesen des Quellcodes oder Stringwerte während der Programmausführung verbinden. Benachbarte Literale werden **ohne Operator zusammengefügt**, Werte in Variablen brauchen dagegen einen Operator.
 
-### Angrenzende Literalverkettung
-
 Python verbindet **benachbarte Stringliterale** beim Lesen des Quellcodes. Diese Kurzform funktioniert nur für Text, der direkt als Literal im Code steht.
 
 <CodeBlock
@@ -222,8 +226,6 @@ Python verbindet **benachbarte Stringliterale** beim Lesen des Quellcodes. Diese
   ]}
 />
 
-### Plusoperator
-
 Der Operator `+` verkettet **zwei Stringwerte** zur Laufzeit.
 
 <CodeBlock
@@ -237,8 +239,6 @@ Der Operator `+` verkettet **zwei Stringwerte** zur Laufzeit.
     }
   ]}
 />
-
-### Multiplikationsoperator
 
 Der Operator `*` **wiederholt einen String** so oft, wie es die angegebene ganze Zahl bestimmt.
 
@@ -293,7 +293,7 @@ Verwende `+`, um Stringwerte zu verketten, und `*` mit einer ganzen Zahl, um ein
   ]}
 />
 
-### Häufige Fehler
+### Variablen ohne Operator schreiben
 
 Die folgenden Formen scheitern schon beim Einlesen des Codes, weil zwischen der Variablen und dem nächsten Ausdruck **kein Operator** steht.
 
@@ -315,7 +315,9 @@ SyntaxError ...`
   ]}
 />
 
-Schau in diesem Bild, wie drei Strings zu einem werden. Jedes Stück behält die Reihenfolge seiner Zeichen und wird direkt hinter das vorherige gehängt, also beginnt `W` bei Index <InlineMath math="6" />, direkt nach den <InlineMath math="5" /> Zeichen von `Hello` und einem Leerzeichen. Die Länge des Ergebnisses ist die Summe der Stücklängen, <InlineMath math="5+1+5=11" />. Die drei ursprünglichen Strings ändern sich nicht, weil der Operator `+` einen neuen String erzeugt.
+Schau in diesem Bild, wie drei Strings zu einem werden. Jedes Stück behält die Reihenfolge seiner Zeichen und wird direkt hinter das vorherige gehängt, also beginnt `W` bei Index <InlineMath math="6" />, direkt nach den <InlineMath math="5" /> Zeichen von `Hello` und einem Leerzeichen. Die Länge des Ergebnisses ist die Summe der Stücklängen, also <InlineMath math="11" />. Die drei ursprünglichen Strings ändern sich nicht, weil der Operator `+` einen neuen String erzeugt.
+
+<BlockMath math="5 + 1 + 5 = 11" />
 
 <MathVisual
   title={<><code>'Hello' + ' ' + 'World'</code> verbinden</>}
@@ -371,4 +373,9 @@ Schau in diesem Bild, wie drei Strings zu einem werden. Jedes Stück behält die
     "hello-length": "len('Hello') = 5",
     "world-length": "len('World') = 5",
   }}
+  footer="Die Verkettung mit '+' reiht alle 11 Zeichen in einem neuen String aneinander."
 />
+
+Alle drei Teile stehen lückenlos von Index `0` bis `10` mit dem Leerzeichen bei `5` und bestätigen, dass `+` stets einen neuen String mit der Gesamtlänge aller Stücke erzeugt.
+
+> Ein String ist eine unveränderliche Folge von Unicode-Codepoints, weshalb Zeilenumbrüche im Quellcode, dreifache Anführungszeichen und `+` jeweils klare eigene Regeln befolgen.

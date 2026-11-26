@@ -74,8 +74,6 @@ A complex number keeps two components apart, and Python exposes both as attribut
 
 Each attribute returns one component of the number. Comparing a pure real number, a pure imaginary number, and a mixed number shows which component belongs to which attribute.
 
-### The real Attribute
-
 The `real` attribute returns the **real component of the number**. Reading it never changes the number, so you can inspect the same value as often as you need.
 
 <CodeBlock
@@ -99,8 +97,6 @@ print(f"Real part of {z3} is {z3.real}")
     }
   ]}
 />
-
-### The imag Attribute
 
 The `imag` attribute returns the coefficient of <InlineMath math="i" />. Python writes that unit as `j` inside a complex literal. The **sign belongs to the coefficient**, so a subtracted term comes back as a negative number.
 
@@ -128,7 +124,9 @@ print(f"Imaginary part of {z3} is {z3.imag}")
 
 The result for `z2` is <InlineMath math="-4.0" />, because the coefficient carries the minus sign that stands in front of the imaginary unit. The value for `z1` stays positive, and the pure imaginary number `z3` reports <InlineMath math="9.0" /> with a real component of <InlineMath math="0.0" />.
 
-You can read the real and imaginary parts of a product directly. For `z1 = 1+2j` and `z2 = 3-1j`, `(z1 * z2).real` is <InlineMath math="1\cdot3-2\cdot(-1)=5" /> and `(z1 * z2).imag` is <InlineMath math="1\cdot(-1)+2\cdot3=5" />. The lengths multiply too: `abs(z1) * abs(z2)` equals <InlineMath math="\sqrt5\cdot\sqrt{10}=\sqrt{50}" />.
+You can read the real and imaginary parts of a product directly. For `z1 = 1+2j` and `z2 = 3-1j`, both components of `z1 * z2` equal <InlineMath math="5" />, while their multiplied length `abs(z1) * abs(z2)` equals <InlineMath math="\sqrt{50}" />.
+
+<BlockMath math="\begin{aligned}(z_1 z_2).\text{real} &= 1\cdot 3 - 2\cdot(-1) = 5 \\ (z_1 z_2).\text{imag} &= 1\cdot(-1) + 2\cdot 3 = 5 \\ |z_1|\cdot|z_2| &= \sqrt{5}\cdot\sqrt{10} = \sqrt{50}\end{aligned}" />
 
 <MathVisual
   title={<>The parts of <code>z1 * z2</code> for <code>1+2j</code> and <code>3-1j</code></>}
@@ -153,7 +151,10 @@ You can read the real and imaginary parts of a product directly. For `z1 = 1+2j`
     "second": <code>z2 = 3-1j</code>,
     "product": <code>z1 * z2 = (5+5j)</code>,
   }}
+  footer="The product z1 * z2 lands at (5, 5) with modulus sqrt(50)."
 />
+
+The magenta segment scales and rotates straight to `(5, 5)`, matching the `real` and `imag` attributes Python returns for `z1 * z2` in the complex plane.
 
 ## Methods on Complex Numbers
 
@@ -252,7 +253,10 @@ Draw `z = 3+4j` as a point in the complex plane and notice what each attribute r
     "imag": "z.imag = 4.0",
     "real": "z.real = 3.0",
   }}
+  footer="z and z.conjugate() lie on the same circle of radius abs(z) = 5.0."
 />
+
+Both points rest on the circle of radius `5.0` because `z.conjugate()` flips only the sign of `z.imag` while keeping the distance from the origin unchanged.
 
 ## Methods on Integers and Floats
 
@@ -266,8 +270,6 @@ Integers and floats expose methods that match **their own representation**, and 
 | `as_integer_ratio()` | `float` | Which exact fraction does the stored value equal |
 
 Modern Python also gives `int` the methods `is_integer()` and `as_integer_ratio()`: `(42).is_integer()` returns `True`, and `(42).as_integer_ratio()` returns `(42, 1)`. The table selects the types used in these examples rather than listing every type that owns a method.
-
-### Integer Numbers
 
 <CodeBlock
   data={[
@@ -292,8 +294,6 @@ print(f"Byte representation of {n}: {byte_representation}")
 />
 
 `bit_length()` counts the bits needed for the absolute integer value, **excluding its sign and leading zeros**. Here, `to_bytes()` receives an explicit output length and byte order, so the two-byte result above begins with a zero byte.
-
-### Float Numbers
 
 <CodeBlock
   data={[
@@ -337,7 +337,10 @@ The method `bit_length()` counts the binary digits a positive integer needs, whi
     { name: "256", value: Math.floor(Math.log2(256)) + 1 },
   ]}
   chartConfig={{ value: { label: "Number of bits", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Bit count steps up by one at each power of two such as 2, 4, 8, and 256."
 />
+
+Bar height jumps precisely at `2`, `4`, `8`, and `256` because every power of two requires one extra binary digit to represent the larger value.
 
 ## Validating and Calculating with Numeric Objects
 
@@ -410,3 +413,5 @@ complex_operations(z1, z2)`
 With those inputs, `z1 + z2` is <InlineMath math="3+1j" />, because the **real parts and the imaginary parts add separately**. The expression `z1 * z2.conjugate()` multiplies <InlineMath math="2+3j" /> by <InlineMath math="1+2j" /> and returns <InlineMath math="-4+7j" />.
 
 Identify the numeric type, then check whether an operation returns a component, a representation, or a new value, because that return type decides how the next expression can use the result.
+
+> Attributes read data already attached to a numeric object without parentheses, while methods are called with parentheses to compute and return a new result.

@@ -13,6 +13,7 @@ Prioritas operator <Highlight>menentukan cara Python mengelompokkan ekspresi ket
 
 <Mermaid
   title={<>Prioritas Operator yang Dibahas</>}
+  footer={<>Kurung mengikat paling kuat, lalu aritmetika, perbandingan, not, and, hingga or.</>}
   description={<>Diagram merangkum prioritas operator yang dibahas, bukan waktu evaluasi setiap operand.</>}
   chart={`
     flowchart LR
@@ -65,6 +66,7 @@ Operator boolean menggabungkan beberapa kondisi atau mengubah nilai boolean. Pyt
 
 <Mermaid
   title={<>Operator Boolean Menggabungkan Keputusan</>}
+  footer={<>Operator and dan or mengembalikan salah satu operand, sedangkan not selalu bool.</>}
   description={<>Lihat bagaimana and, or, dan not menggabungkan nilai benar-salah dalam keputusan program.</>}
   chart={`
     flowchart LR
@@ -82,6 +84,8 @@ Operator boolean menggabungkan beberapa kondisi atau mengubah nilai boolean. Pyt
         NOT --> J["Boolean kebalikan"]
   `}
 />
+
+Alur di atas memperlihatkan aturan pengembalian nilai dari tiap operator logika Python:
 
 1. **Operator `and`** mengembalikan nilai pertama jika bernilai false, atau nilai kedua jika nilai pertama bernilai true.
 
@@ -122,6 +126,7 @@ Setiap perbandingan bernilai `True` di satu daerah garis bilangan. Di gambar ini
 
 <MathVisual
   title={<>Perbandingan sebagai daerah pada garis bilangan</>}
+  footer={<>Operator and hanya mempertahankan irisan terbuka antara batas 2 dan 5.</>}
   description={<>Baris ungu adalah <InlineMath math="x>2" />, baris hijau toska adalah <InlineMath math="x<5" />, dan baris magenta adalah bagian tempat keduanya benar, jadi <code>and</code> menyisakan <InlineMath math="2<x<5" />. Setiap baris berhenti tepat di <InlineMath math="2" /> atau <InlineMath math="5" />, dan nilai itu sendiri tidak termasuk.</>}
   scene={{
     space: "plane",
@@ -145,14 +150,19 @@ Setiap perbandingan bernilai `True` di satu daerah garis bilangan. Di gambar ini
   }}
 />
 
+Menggabungkan dua pertidaksamaan dengan `and` langsung memotong daerah solusi menjadi interval terbuka tempat kedua syarat terpenuhi bersamaan.
+
 ## Nilai dalam Konteks Boolean
 
-Semua objek Python bisa menjalani **pengujian kebenaran**, termasuk objek yang bukan nilai `True` dan `False`. Python kemudian menentukan sendiri nilai mana yang dianggap salah. Dengan aturan tersebut, list kosong, bilangan nol, dan string kosong semuanya bersikap seperti `False` di dalam `if`, sedangkan wadah yang tidak kosong bersikap seperti `True`.
+Semua objek Python bisa menjalani **pengujian kebenaran**, termasuk objek yang bukan nilai `True` dan `False`. Python kemudian menentukan sendiri nilai mana yang dianggap salah. Dengan aturan ini, list kosong, bilangan nol, dan string kosong semuanya bersikap seperti `False` di dalam `if`, sedangkan wadah yang tidak kosong bersikap seperti `True`.
 
 ### Nilai Falsy dan Truthy
 
+Diagram berikut mengelompokkan nilai bawaan Python yang selalu dievaluasi sebagai **falsy** maupun **truthy** saat diuji dalam kondisi.
+
 <Mermaid
   title={<>Nilai yang Dibaca Python sebagai Kondisi</>}
+  footer={<>Nilai nol, None, False, dan wadah kosong dianggap falsy oleh evaluasi boolean.</>}
   description={<>Kelompokkan nilai yang dianggap False dan True oleh Python sebelum dipakai dalam kondisi.</>}
   chart={`
     flowchart TD
@@ -178,11 +188,11 @@ Nilai bawaan berikut memiliki **aturan truthiness** yang dapat kamu uji dengan `
 
 String `"0"` dan list `[0]` tetap truthy karena tidak kosong. Nilai elemen di dalam container tidak menentukan truthiness container bawaan.
 
-Objek buatan sendiri dapat mengatur pengujian kebenaran melalui `__bool__()` atau `__len__()`. Jika keduanya tidak didefinisikan, objek tersebut dianggap benar.
+Objek buatan sendiri dapat mengatur pengujian kebenaran melalui `__bool__()` atau `__len__()`. Jika keduanya tidak didefinisikan, objek itu dianggap benar.
 
 ### Tipe Data Boolean
 
-Tipe `bool` dalam Python merepresentasikan **nilai kebenaran** `False` dan `True`, merupakan subtipe dari integer (`int`), dan boolean berperilaku seperti <InlineMath math="0" /> dan <InlineMath math="1" /> dalam operasi matematika.
+Tipe `bool` dalam Python merepresentasikan **nilai kebenaran** `False` dan `True`, dan adalah subtipe dari integer (`int`), sehingga boolean berperilaku seperti <InlineMath math="0" /> dan <InlineMath math="1" /> dalam operasi matematika.
 
 <CodeBlock
   data={[
@@ -209,6 +219,7 @@ Di dalam `if`, Python memanggil `bool()` pada nilai apa pun. Angka nol dan wadah
 
 <BarChart
   title={<>Hasil <code>bool()</code> untuk tujuh nilai</>}
+  footer={<>List [0] tetap bernilai True karena tidak kosong, berbeda dengan 0, '', dan [].</>}
   description={<>Batang setinggi <InlineMath math="1" /> berarti <code>True</code> dan tanpa batang berarti <code>False</code>, untuk nilai yang tertulis di bawahnya. Hanya <code>0</code>, <code>''</code>, dan <code>[]</code> yang bernilai salah.</>}
   yAxisLabel="Nilai bool"
   data={[
@@ -222,6 +233,8 @@ Di dalam `if`, Python memanggil `bool()` pada nilai apa pun. Angka nol dan wadah
   ]}
   chartConfig={{ value: { label: "Nilai bool", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+Perbedaan antara `[]` dan `[0]` menunjukkan aturan inti Python: truthiness sebuah wadah ditentukan oleh panjangnya, bukan oleh nilai elemen di dalamnya.
 
 ## Menggabungkan Operator
 
@@ -256,6 +269,7 @@ Gabungkan dua perbandingan pada titik <InlineMath math="(x,y)" /> dengan <Inline
 
 <MathVisual
   title={<><code>and</code> dan <code>or</code> sebagai daerah</>}
+  footer={<>Daerah and adalah irisan sempit, sedangkan or mencakup seluruh gabungan berbentuk L.</>}
   description={<>Garis ungu adalah <InlineMath math="x=1" /> dan garis oranye adalah <InlineMath math="y=3" />. Persegi panjang magenta adalah tempat <InlineMath math="x>1" /> dan <InlineMath math="y<3" /> sama-sama benar. Daerah hijau toska berbentuk L adalah tempat setidaknya satu perbandingan benar.</>}
   scene={{
     space: "plane",
@@ -272,6 +286,8 @@ Gabungkan dua perbandingan pada titik <InlineMath math="(x,y)" /> dengan <Inline
   }}
 />
 
+Mengganti `and` menjadi `or` langsung memperluas himpunan titik yang diterima dari satu persegi panjang sempit menjadi gabungan seluruh wilayah yang memenuhi salah satu syarat.
+
 ## Membandingkan Nilai Float
 
 Banyak pecahan desimal tidak dapat direpresentasikan secara persis sebagai bilangan biner dengan jumlah digit terbatas. Karena hasil antara dibulatkan, dua perhitungan yang setara secara matematis dapat menghasilkan nilai `float` yang **sangat dekat tetapi tidak sama**.
@@ -282,6 +298,7 @@ Pecahan desimal dapat memerlukan **pembulatan dalam biner**. Diagram berikut mem
 
 <Mermaid
   title={<>Desimal Bisa Dibandingkan Berbeda dari Tampilannya</>}
+  footer={<>Pembulatan biner dapat mematahkan ==, sehingga math.isclose memakai toleransi.</>}
   description={<>Telusuri angka desimal ke representasi float agar kebutuhan toleransi perbandingan masuk akal.</>}
   chart={`
     flowchart TD
@@ -299,6 +316,8 @@ Pecahan desimal dapat memerlukan **pembulatan dalam biner**. Diagram berikut mem
         K --> L
   `}
 />
+
+Saat pembulatan biner menyisakan selisih amat kecil, perbandingan langsung `==` bisa gagal seperti pada contoh berikut:
 
 <CodeBlock
   data={[
@@ -334,7 +353,7 @@ Untuk contoh `math.isclose(100, 95, rel_tol=0.05)`, selisih absolut adalah <Inli
 
 <BlockMath math="\begin{aligned} |100-95| &= 5 \\ 0{,}05\max(|100|,|95|) &= 5 \\ 5 &\leq \max(5,0) \end{aligned}" />
 
-Karena selisih tidak melebihi toleransi, hasilnya `True`. Pada `abs_tol=5`, batas absolut <InlineMath math="5" /> juga cukup untuk menerima selisih tersebut.
+Karena selisih tidak melebihi toleransi, hasilnya `True`. Pada `abs_tol=5`, batas absolut <InlineMath math="5" /> juga cukup untuk menerima selisih ini.
 
 
 > Gunakan kesetaraan persis hanya jika nilai `float` memang harus identik. Untuk hasil pengukuran atau perhitungan, tentukan toleransi yang sesuai dengan jenis perhitungan lalu gunakan `math.isclose()`. Saat nilai yang dibandingkan mendekati nol, tentukan `abs_tol` karena toleransi relatif juga mengecil.

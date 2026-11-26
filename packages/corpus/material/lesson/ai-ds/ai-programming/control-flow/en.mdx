@@ -127,7 +127,10 @@ Run `for i in range(10)` with `if i == 7: break` and then `if i % 2 == 0: contin
     "print-5": <InlineMath math="5" />,
     "stop": <code>break</code>,
   }}
+  footer="continue skips even values, while break ends the entire loop at value 7."
 />
+
+Because `break` runs before `continue`, iteration stops completely at `7`, so `8` and `9` never execute.
 
 ## Enumerate Function
 
@@ -208,7 +211,10 @@ A `while` loop fits condition-driven repetition, but its body must eventually ch
         B -->|No| E[Exit loop]
         E --> F[Continue program]
   `}
+  footer="A while loop rechecks its condition after every pass until it turns false."
 />
+
+After each block updates its variables, control loops back to the condition check so execution exits as soon as the condition becomes false.
 
 ## Zip Function
 
@@ -330,13 +336,14 @@ This process is called "unzipping" because it separates data that has been combi
     "letter-3": <code>d</code>,
     "extra": <code>5</code>,
   }}
+  footer="zip pairs aligned positions and stops as soon as the shortest input ends."
 />
+
+Extra elements in longer inputs are dropped by default, so pass `strict=True` whenever mismatched lengths should raise an error.
 
 ## Range and For Loop
 
 The `range()` function produces a **sequence of integers** for iteration. Use it when a loop needs numeric positions or a fixed number of repetitions. Because `range` yields each value on demand instead of storing the whole sequence, its memory use stays small even when the loop runs millions of times.
-
-### Range Syntax
 
 <CodeBlock
   data={[
@@ -379,8 +386,6 @@ for i in range(8, 4, -1):
 />
 
 Range follows an **arithmetic formula** where each i-th element is `start + i * step` for all `i` from <InlineMath math="0" /> to `n-1`.
-
-### Range vs List Efficiency
 
 A `range` stores **only its start, stop, and step**. It computes each integer when requested, so its memory use does not grow with the number of represented integers.
 
@@ -443,7 +448,10 @@ Follow the loop `for i in range(1, 6): total += i` pass by pass. Before the loop
     "step-e": "total = 10",
     "step-f": "total = 15",
   }}
+  footer="The running total grows faster on each pass until reaching 15 at i = 5."
 />
+
+Each step of `range(1, 6)` adds the next integer from `1` through `5`, illustrating the step-by-step accumulation pattern common in loops.
 
 ## Conditional Statements
 
@@ -532,3 +540,5 @@ for char in text:
 />
 
 An iterable supplies values one at a time, but it is not necessarily ordered, indexable, reusable, or finite. A `for` loop asks its iterator for successive values. In a `for` header, `in` connects the iteration target to the iterable. In an expression such as `3 in [1, 3]`, `in` tests membership.
+
+> Choose `for` with `enumerate()`, `zip()`, or `range()` when iteration follows a collection or count, and reserve `while` for loops whose stop condition depends on changing state.

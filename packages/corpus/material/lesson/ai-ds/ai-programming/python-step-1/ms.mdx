@@ -98,7 +98,7 @@ Setiap sel boleh dijalankan secara berasingan, dan outputnya muncul terus di baw
 
 Sel-sel berkongsi keadaan dalam kernel yang sama. Selepas kernel dimulakan semula, jalankan sel dari atas ke bawah: sel yang menggunakan `math` atau sesuatu fungsi bergantung pada sel yang mentakrifkan nama itu.
 
-Pasang JupyterLab dalam persekitaran Python yang khusus untuknya supaya pakej-pakejnya tidak mengganggu projek lain yang tidak berkaitan:
+Pasang JupyterLab dalam persekitaran Python yang khusus untuknya supaya pakej-pakejnya tidak mengganggu projek lain yang tidak berkaitan.
 
 Arahan di bawah menggunakan laluan macOS/Linux. Pada Windows, guna `py -m venv .venv`, kemudian `.venv\Scripts\python -m pip install jupyterlab` dan `.venv\Scripts\jupyter lab`.
 
@@ -159,7 +159,7 @@ Atur cara Python yang pertama membaca pernyataannya dari atas ke bawah. Pemboleh
 
 ### Pemboleh Ubah dan Jenis Data
 
-Python mempunyai beberapa jenis data asas. **Nama pemboleh ubah merujuk kepada sesuatu nilai**. Apabila kamu mengumpukkan nilai lain, nama itu akan menunjuk kepada nilai baharu tersebut.
+Python mempunyai beberapa jenis data asas. **Nama pemboleh ubah merujuk kepada sesuatu nilai**. Apabila kamu mengumpukkan nilai lain, nama itu akan menunjuk kepada nilai baharu itu.
 
 <CodeBlock
   data={[{
@@ -284,13 +284,14 @@ Operator matematik asas memberi hasil yang berbeza untuk nombor yang sama. Denga
     { name: "**", value: 7 ** 2 },
   ]}
   chartConfig={{ value: { label: "Hasil", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  footer="Empat operator memberi hasil berbeza daripada pasangan nombor 7 dan 2."
 />
 
-## Latihan Amali
+Palang `**` melonjak ke `49` jauh mengatasi tiga operator lain, manakala `/` memulangkan float `3.5` berbeza daripada `//` yang membuang baki untuk memberi `3`.
+
+## Membina Tiga Atur Cara Permulaan
 
 Selesaikan latihan ini untuk berlatih **pemboleh ubah, input, output dan operasi asas**. Tulis setiap jawapan sendiri sebelum menyemaknya, kerana latihan ini melatih langkah-langkah yang kamu ambil. Penyelesaiannya mengikut susunan yang sama dengan soalan.
-
-### Kalkulator Mudah
 
 Atur cara ini membaca **dua nombor dan satu operator**, kemudian mencetak hasilnya. Atur cara ini menggabungkan input, penukaran jenis dan pencabangan dalam satu fail.
 
@@ -328,8 +329,6 @@ if result is not None:
     print(f"Hasil: {number1} {operator} {number2} = {result}")`
   }]}
 />
-
-### Penukaran Suhu
 
 Atur cara ini menukar **suhu Celsius kepada Fahrenheit dan Kelvin**, dan menolak nilai di bawah sifar mutlak.
 
@@ -370,8 +369,6 @@ elif celsius > 100:
     print("Suhu ini melebihi takat didih air!")`
   }]}
 />
-
-### Profil Pelajar
 
 Atur cara ini meminta butiran seorang pelajar, menyimpannya dalam pemboleh ubah dan **mencetak profil ringkas**.
 
@@ -419,8 +416,6 @@ else:
   }]}
 />
 
-### Semak Kerja Kamu
-
 **Atur cara latihan kamu betul** apabila:
 
 - Kalkulator meminta dua nombor dan satu operator, kemudian memaparkan hasil operasi yang dipilih.
@@ -459,7 +454,10 @@ Tetapkan `number1 = 2` dan bayangkan kamu mencuba banyak nilai `number2` dalam k
     "times": "2 * number2",
     "divide": "2 / number2",
   }}
+  footer="Tiga operator merentasi sifar dengan lancar, tetapi pembahagian terhenti di sifar."
 />
+
+Ketiga-tiga garis `+`, `-` dan `*` kekal selanjar apabila `number2` melalui sifar, manakala titik pembahagian terputus pada sifar kerana syarat `if number2 != 0` menghalang `ZeroDivisionError`.
 
 Atur cara suhu mengira `fahrenheit = (celsius * 9/5) + 32`. Formula itu ialah garis lurus <InlineMath math="F=\tfrac95C+32" />: setiap langkah <InlineMath math="1^\circ\mathrm{C}" /> menambah <InlineMath math="1.8^\circ\mathrm{F}" />, dan garis itu bertemu paksi menegak pada <InlineMath math="32" />.
 
@@ -487,4 +485,9 @@ Atur cara suhu mengira `fahrenheit = (celsius * 9/5) + 32`. Formula itu ialah ga
     "body": <InlineMath math="37^\circ\mathrm{C}=98.6^\circ\mathrm{F}" />,
     "boiling": <InlineMath math="100^\circ\mathrm{C}=212^\circ\mathrm{F}" />,
   }}
+  footer="Ketiga-tiga suhu rujukan terletak tepat pada garis F = 9/5 C + 32."
 />
+
+Takat beku, suhu badan dan takat didih semuanya jatuh pada garis lurus yang sama, membuktikan satu ungkapan linear sudah memadai untuk menukar semua input Celsius yang sah.
+
+> Setiap atur cara Python terbina daripada aliran teras yang sama, iaitu membaca input, menyimpan nilai mengikut jenis yang sesuai lalu mengira output yang jelas.

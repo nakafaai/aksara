@@ -28,9 +28,6 @@ A list **preserves element order** and allows its contents to change. One list m
 
 Unlike a fixed-size low-level array, a Python list can grow and shrink. It stores references to Python objects, so mutating a nested object can be visible through every reference to that object.
 
-
-### List Properties
-
 Compare **order, mixed types, and mutability** when choosing a list. Ordered means that every element has a position. It does not mean that values are automatically sorted.
 
 | Characteristic | Explanation | Example |
@@ -38,8 +35,6 @@ Compare **order, mixed types, and mutability** when choosing a list. Ordered mea
 | Ordered | Each element has a position | `[1, 2, 3]` is different from `[3, 2, 1]` |
 | Heterogeneous | Can hold various data types | `[1, 'text', 3.14, True]` |
 | Mutable | Contents can be changed after creation | Can add, remove, or modify elements |
-
-### Writing a List
 
 A list literal uses **square brackets** and separates its elements with commas. A list can contain values of different types or other lists.
 
@@ -76,7 +71,7 @@ Python list indices follow these rules:
 
 - **Positive indices** start from <InlineMath math="0" /> for the first element
 - **Negative indices** start from <InlineMath math="-1" /> for the last element
-- **An index outside the valid range** raises `IndexError`
+- **An out of range index** triggers an `IndexError`
 
 <CodeBlock
   data={[
@@ -131,7 +126,10 @@ You can also assign through an index. After `x = [0, 1, 2, 3, 4, 5]` and `x[2] =
     "new": <code>x[2] = 9</code>,
     "last": <code>x[-1]</code>,
   }}
+  footer="Element at index 2 changes in place while all other positions stay fixed."
 />
+
+Because a list is mutable, replacing the value at index `2` updates the existing list without shifting any other element.
 
 ## Slicing with Stride
 
@@ -242,7 +240,10 @@ The top row takes `x[1:4:2]`: it starts at index <InlineMath math="1" />, jumps 
     "row-slice": "x[1:4:2]",
     "row-back": "x[::-1]",
   }}
+  footer="A positive step picks spaced indices, while a negative step reverses order."
 />
+
+Slicing always returns a new list, so the original order inside `x` stays intact whether the step moves forward or backward.
 
 ## Lists and Strings
 
@@ -302,7 +303,10 @@ The main difference is mutability. A string cannot change after creation, while 
         M --> N[index]
         M --> O[count]
   `}
+  footer="List methods grouped into adding, removing, searching, copying, and ordering."
 />
+
+Most mutating methods such as `append`, `remove`, and `sort` modify the list in place, whereas `index` and `count` only inspect its contents without changing element order.
 
 | Method | Description | Usage Example |
 |--------|-------------|---------------|
@@ -480,7 +484,7 @@ print('After modifying inner list:', t)     # Output: After modifying inner list
   ]}
 />
 
-### Dictionary
+### Key Value Mapping
 
 A dictionary stores key-value pairs. Each key must be **unique and remain hashable** while it is in the dictionary. Values may repeat and may refer to mutable objects. A dictionary literal uses `{}` with a colon between each key and value.
 
@@ -536,6 +540,35 @@ print('genap & ganjil =', genap & ganjil)    # Output: genap & ganjil = set()`
   ]}
 />
 
+Set operations such as intersection (`&`), union (`|`), and difference (`-`) map directly to regions of a Venn diagram. Switch the operation below to see which unique items are selected from the set of red objects and the set of balls.
+
+<VennSortLab
+  title={<>Selecting Members with Set Operations</>}
+  description={<>Switch the set operation to highlight unique members in the intersection, union, difference, or outside both hoops.</>}
+  footer="Each set operation filters unique objects without ever producing duplicates."
+  sets={[
+    { attribute: "red", name: "Red" },
+    { attribute: "ball", name: "Ball" },
+  ]}
+  objects={[
+    { object: "apple", name: "Apple" },
+    { object: "red-ball", name: "Red ball" },
+    { object: "blue-ball", name: "Blue ball" },
+    { object: "tennis-ball", name: "Tennis ball" },
+    { object: "red-block", name: "Red block" },
+    { object: "blue-cup", name: "Blue cup" },
+  ]}
+  operations={["intersection", "union", "difference", "outside-union"]}
+  labels={{
+    count: "Count",
+    members: "Members",
+    operation: "Operation",
+    viewLabel: "Two-hoop Venn diagram grouping objects by red color and ball shape",
+  }}
+/>
+
+Only `Red ball` belongs to the intersection `Red & Ball`, while the union `Red | Ball` collects five distinct objects and leaves `Blue cup` outside both sets.
+
 ### Collection Type Comparison
 
 The four built-in collections differ in **order, mutability, and duplicate handling**. The table compares them so you can pick one from the task at hand.
@@ -562,4 +595,7 @@ Build each container from the same data, `[3, 1, 3, 2, 1]`. A `list` and a `tupl
     { name: "dict", value: 3 },
   ]}
   chartConfig={{ value: { label: "Number of elements", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="list and tuple keep all 5 items, while set and dict keep only 3 unique values."
 />
+
+When duplicates and position matter, choose `list` or `tuple`. When only distinct entries matter, `set` and `dict` keys discard repeated values automatically.

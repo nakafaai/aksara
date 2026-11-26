@@ -13,6 +13,8 @@ Built-in `print()` <Highlight>menulis representasi teks suatu nilai ke output st
 
 `print()` adalah built-in function, sama seperti `len()`, `abs()`, dan `round()`. Kamu dapat menggunakannya tanpa mengimpor modul tambahan.
 
+> Anggap `print()` seperti jendela inspeksi ke dalam program. Kamu bisa melihat nilai variabel apa pun di tengah eksekusi tanpa mengubah isi datanya.
+
 ## Sintaks Dasar Fungsi Print
 
 Sintaks lengkap fungsi print memiliki beberapa **parameter pengatur output** untuk mengontrol cara output ditampilkan.
@@ -81,6 +83,7 @@ Nilai `sep` menentukan karakter yang ditulis di antara dua objek, misalnya spasi
 
 <BarChart
   title={<>Panjang keluaran <code>print(1, 2, 3, sep=s)</code></>}
+  footer={<>Setiap penambahan satu karakter pada sep menambah panjang total keluaran sebesar dua.</>}
   description={<>Setiap batang adalah banyak karakter yang ditulis untuk nilai <code>sep</code> di bawahnya: <InlineMath math="5" /> untuk spasi, <InlineMath math="3" /> untuk string kosong, <InlineMath math="7" /> untuk koma dengan spasi, dan <InlineMath math="9" /> untuk <code>' | '</code>.</>}
   yAxisLabel="Banyak karakter"
   data={[
@@ -91,6 +94,8 @@ Nilai `sep` menentukan karakter yang ditulis di antara dua objek, misalnya spasi
   ]}
   chartConfig={{ value: { label: "Banyak karakter", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
+
+Mengubah `sep` tidak menyentuh isi argumennya, tetapi langsung menggandakan tambahan panjangnya sesuai jumlah celah di antara argumen.
 
 ## Parameter End
 
@@ -142,6 +147,7 @@ Gambar ini menjalankan `print("A", "B", "C", sep="-")`, lalu `print("x", end=" "
 
 <MathVisual
   title={<>Tiga panggilan <code>print</code> di aliran keluaran</>}
+  footer={<>Parameter sep bekerja di antara argumen, sedangkan end selalu di ujung panggilan.</>}
   description={<>Karakter ungu berasal dari argumen, karakter hijau toska dari <code>sep</code>, dan karakter oranye dari <code>end</code>. Simbol ↵ adalah baris baru dan ␣ adalah spasi.</>}
   scene={{
     space: "plane",
@@ -186,9 +192,11 @@ Gambar ini menjalankan `print("A", "B", "C", sep="-")`, lalu `print("x", end=" "
   }}
 />
 
+Karena `end=" "` menggantikan karakter baris baru bawaan, panggilan kedua dan ketiga menyatu pada baris yang sama hingga bertemu baris baru terakhir.
+
 ## Menampilkan Berbagai Tipe Data
 
-`print()` menerima objek dari berbagai tipe dan mengambil **representasi string** yang mudah dibaca sebelum menulisnya. Class buatan sendiri dapat mengatur representasi tersebut melalui `__str__()`.
+`print()` menerima objek dari berbagai tipe dan mengambil **representasi string** yang mudah dibaca sebelum menulisnya. Class buatan sendiri dapat mengatur representasi ini melalui `__str__()`.
 
 <CodeBlock
   data={[
@@ -228,6 +236,7 @@ Satu pemanggilan `print()` dapat menerima nilai dari beberapa tipe, mengubah set
 
 <BarChart
   title={<>Banyak karakter yang ditulis <code>print</code> untuk enam nilai</>}
+  footer={<>Panjang tampilan print mengikuti hasil str() dari setiap tipe data, termasuk tanda baca.</>}
   description={<>Setiap batang adalah <code>len(str(x))</code> untuk nilai <code>x</code> yang tertulis di bawahnya, yaitu banyak karakter yang tampil di layar.</>}
   yAxisLabel="Banyak karakter"
   data={[
@@ -240,6 +249,8 @@ Satu pemanggilan `print()` dapat menerima nilai dari beberapa tipe, mengubah set
   ]}
   chartConfig={{ value: { label: "Banyak karakter", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
+
+Satu list kecil seperti `[1, 2]` sudah memakan enam karakter di layar karena kurung siku, koma, dan spasi ikut dicetak bersama angkanya.
 
 ## Teknik Formatting Output
 

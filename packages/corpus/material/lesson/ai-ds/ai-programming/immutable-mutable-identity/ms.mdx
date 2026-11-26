@@ -11,7 +11,7 @@ export const metadata = {
 
 Dalam Python, senarai (list) ialah struktur data yang boleh diubah selepas ia dicipta. Mutasi mengubah senarai yang sedia ada. Umpukan pula mengikat nama.
 
-Apabila senarai diumpukkan kepada pemboleh ubah, <Highlight>pemboleh ubah itu merujuk kepada objek senarai tersebut</Highlight>. Umpukan tidak menyalin senarai. Jadi, pemboleh ubah atau bekas lain boleh merujuk kepada objek yang sama itu juga.
+Apabila senarai diumpukkan kepada pemboleh ubah, <Highlight>pemboleh ubah itu merujuk kepada objek senarai itu</Highlight>. Umpukan tidak menyalin senarai. Jadi, pemboleh ubah atau bekas lain boleh merujuk kepada objek yang sama itu juga.
 
 <CodeBlock
   data={[
@@ -31,7 +31,7 @@ print(list2)  # ['a', [0, [3, 4, 5], 2], True]`
   ]}
 />
 
-Perhatikan bahawa perubahan pada `list1` turut menjejaskan `list2`. Ini berlaku kerana `list2` tidak menyimpan salinan `list1`, sebaliknya menyimpan rujukan kepada objek senarai yang sama dalam memori.
+Perubahan pada `list1` turut menjejaskan `list2`. Ini berlaku kerana `list2` tidak menyimpan salinan `list1`, sebaliknya menyimpan rujukan kepada objek senarai yang sama dalam memori.
 
 Hirisan penuh mencipta **senarai luar yang baharu** yang mengandungi rujukan kepada unsur yang sama. Inilah salinan cetek (shallow copy). Menggantikan unsur luar tidak mengubah senarai asal, tetapi unsur boleh diubah yang bersarang masih dikongsi.
 
@@ -65,6 +65,7 @@ Senarai boleh berubah di tempatnya. Bermula daripada `nums = [1, 2, 3]`, `nums[0
 
 <MathVisual
   title={<><code>nums</code> diubah di tempatnya</>}
+  footer={<>Umpukan indeks dan append mengubah isi senarai tanpa mencipta objek baharu.</>}
   description={<>Setiap titik ialah satu unsur, dengan indeks pada arah mengufuk dan nilai pada arah menegak. Segmen jingga menaikkan unsur pada indeks <InlineMath math="0" /> dari <InlineMath math="1" /> ke titik magenta <InlineMath math="10" />, dan titik hijau kebiruan ialah unsur baharu daripada <code>append</code>.</>}
   scene={{
     space: "plane",
@@ -89,12 +90,15 @@ Senarai boleh berubah di tempatnya. Bermula daripada `nums = [1, 2, 3]`, `nums[0
   }}
 />
 
+Kedua-dua umpukan indeks dan `append` mengubah suai bekas `nums` yang sama, jadi sebarang rujukan kepada `nums` terus melihat kandungan baharunya.
+
 ## Identiti Jenis dan Nilai Objek
 
 Setiap objek Python mempunyai tiga ciri: **identiti, jenis dan nilai**.
 
 <Mermaid
   title={<>Identiti Menunjukkan Objek Mana yang Sedang Digunakan</>}
+  footer={<>Identiti menandakan objek, jenis menetapkan operasi, dan nilai menyimpan datanya.</>}
   description={<>Asingkan identiti, jenis dan nilai supaya objek tidak dikelirukan dengan nama pemboleh ubah yang menunjuk kepadanya.</>}
   chart={`
     flowchart LR
@@ -107,6 +111,8 @@ Setiap objek Python mempunyai tiga ciri: **identiti, jenis dan nilai**.
         D --> D1[Data yang disimpan]
   `}
 />
+
+Memisahkan ketiga-tiga sifat ini memudahkan penjejakan pepijat: nilai boleh berubah bagi jenis boleh diubah, manakala identiti dan jenis objek kekal tetap sepanjang hayatnya.
 
 ### Identiti Objek
 
@@ -156,6 +162,7 @@ Jalankan `a = [1, 2]`, `b = a`, `c = a.copy()`, kemudian `b.append(3)`. Gambar i
 
 <MathVisual
   title={<>Dua nama bagi satu senarai, satu nama bagi salinan</>}
+  footer={<>Alias a dan b berkongsi satu senarai yang sama, manakala c menunjuk salinan berasingan.</>}
   description={<><code>b</code> diikat kepada senarai yang sama dengan <code>a</code>, <code>c</code> kepada salinan daripada <code>a.copy()</code>, kemudian <code>b.append(3)</code> dijalankan: segmen ungu menghalakan <code>a</code> dan <code>b</code> kepada objek yang sama, yang kini memegang <code>[1, 2, 3]</code>, dan segmen hijau kebiruan menghalakan <code>c</code> kepada salinannya <code>[1, 2]</code>.</>}
   scene={{
     space: "plane",
@@ -188,11 +195,13 @@ Jalankan `a = [1, 2]`, `b = a`, `c = a.copy()`, kemudian `b.append(3)`. Gambar i
   }}
 />
 
+Salinan eksplisit dengan `a.copy()` memutuskan pautan kongsi itu, jadi perubahan melalui `b` tidak merebak ke `c`.
+
 ## Objek Boleh Diubah dan Tidak Boleh Diubah
 
 Python mengelompokkan objeknya berdasarkan satu soalan, iaitu sama ada kandungannya boleh berubah selepas objek itu wujud. Objek tidak boleh diubah (immutable) seperti `int`, `str` atau `tuple` mengekalkan nilai yang sama sepanjang hayatnya, jadi operasi yang nampak seperti mengubahnya sebenarnya membina objek baharu. Objek boleh diubah (mutable) seperti `list`, `dict` atau `set` memegang kandungan yang boleh berubah, sementara objek itu sendiri kekal objek yang sama.
 
-Perbezaan ini penting sebaik sahaja dua nama merujuk kepada objek yang sama, kerana <Highlight>setiap nama nampak perubahan itu</Highlight> apabila objek tersebut boleh diubah.
+Perbezaan ini penting sebaik sahaja dua nama merujuk kepada objek yang sama, kerana <Highlight>setiap nama nampak perubahan itu</Highlight> apabila objek itu boleh diubah.
 
 ### Objek Tidak Boleh Diubah
 
@@ -297,6 +306,7 @@ print(list2)         # [0, 'x', 2] (tidak berubah)`
 
 <Mermaid
   title={<>Dua Nama Melihat Satu Mutasi</>}
+  footer={<>Mengubah unsur melalui list1 terus kelihatan melalui list2 kerana objeknya sama.</>}
   description={<>Kedua-dua nama masih merujuk kepada senarai yang sama selepas satu unsur berubah.</>}
   chart={`
     flowchart TD
@@ -320,6 +330,7 @@ Bandingkan `a = 5; b = a; a += 1` dengan `x = [5]; y = x; x[0] += 1`. Integer ti
 
 <BarChart
   title={<>Objek tidak boleh diubah dan boleh diubah selepas <code>+= 1</code></>}
+  footer={<>Integer mengikat objek baharu apabila ditambah, manakala senarai berubah di tempat.</>}
   description={<>Setiap bar ialah nilai bagi nama yang tertulis di bawahnya selepas kedua-dua cebisan kod dijalankan. <code>b</code> kekal <InlineMath math="5" />, manakala <code>x[0]</code> dan <code>y[0]</code> kedua-duanya <InlineMath math="6" /> kerana kedua-duanya merujuk kepada senarai yang sama.</>}
   yAxisLabel="Nilai"
   data={[
@@ -330,3 +341,7 @@ Bandingkan `a = 5; b = a; a += 1` dengan `x = [5]; y = x; x[0] += 1`. Integer ti
   ]}
   chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
+
+Operator `+=` yang sama memberi kesan berbeza bergantung pada sifat kebolehubahan: integer memindahkan label nama kepada objek baharu, manakala unsur senarai dikemas kini dalam bekas kongsi.
+
+> Pemboleh ubah dalam Python bukan kotak penyimpan data, sebaliknya label yang dilekatkan pada objek dalam memori. Membezakan umpukan semula daripada mutasi mengelakkan kesan sampingan tersembunyi apabila data dikongsi.

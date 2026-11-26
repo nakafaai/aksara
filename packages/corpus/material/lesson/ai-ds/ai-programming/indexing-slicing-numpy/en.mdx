@@ -13,7 +13,7 @@ Indexing selects values at specific positions, while slicing selects a range alo
 
 [Views](https://numpy.org/doc/stable/user/basics.indexing.html) avoid copying data, but a write through a view also changes the corresponding values in the original array.
 
-## One Dimensional Array Operations
+### One Dimensional Array Operations
 
 One-dimensional arrays use familiar Python indexing syntax. A basic slice such as `a[1:4]` returns a view, so **changing that view changes the same elements** in `a`.
 
@@ -76,7 +76,7 @@ print("Copy:", copy_array)  # Output: Copy: [777   3   4]`
   ]}
 />
 
-## Multidimensional Array Operations
+### Multidimensional Array Operations
 
 In a multidimensional selection, each comma-separated entry addresses one array dimension, starting with the first dimension. An integer index **removes that dimension** from the result array, while a slice such as `:` keeps it. For example, on a two-dimensional array `a`, `a[1, :]` produces a one-dimensional array holding the second row, while `a[1:2, :]` still produces a two-dimensional array holding one row.
 
@@ -243,7 +243,10 @@ This picture lays out `a = np.arange(20).reshape(4, 5)` as four rows and five co
     "cell-19": "19",
     "box": "a[1:3, 2:5]",
   }}
+  footer="Row slice 1:3 and column slice 2:5 extract a (2, 3) view of the original array."
 />
+
+Because `a[1:3, 2:5]` uses basic slicing, the resulting `(2, 3)` block is a `view`, so editing any cell inside it updates the same cell in `a`.
 
 ## Advanced Indexing
 
@@ -535,7 +538,10 @@ For `a = np.array([5, 12, 8, 15, 20, 3])`, the comparison `a > 10` produces the 
     "value-4": <InlineMath math="20" />,
     "value-5": <InlineMath math="3" />,
   }}
+  footer="Only points above threshold 10 evaluate to True and enter the filtered array."
 />
+
+Filtering with a boolean mask such as `a[a > 10]` always returns a one-dimensional `copy` containing the matching values in their original order.
 
 ## Fancy Indexing
 
@@ -667,7 +673,10 @@ Fancy indexing uses a list of indices, and the order of that list becomes the or
     "result-1": <InlineMath math="5" />,
     "result-2": <InlineMath math="8" />,
   }}
+  footer="Index list [4, 0, 2] copies and reorders elements to match the requested order."
 />
+
+With an integer index array, you can pick arbitrary positions, change their order, or repeat entries while leaving the source array `a` untouched.
 
 ## Selecting and Rearranging Array Data
 
@@ -742,3 +751,5 @@ print("Reorganized first row:", reorganized_data[0, :])  # Output: Reorganized f
     }
   ]}
 />
+
+> Call `.copy()` whenever you plan to mutate a basic slice without altering its source array, because basic slicing always returns a `view`.

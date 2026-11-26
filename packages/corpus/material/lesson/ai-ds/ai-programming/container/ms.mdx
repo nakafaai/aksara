@@ -26,10 +26,7 @@ Python menyediakan lima koleksi terbina dalam yang biasa digunakan:
 
 Senarai **mengekalkan urutan unsur** dan membenarkan isinya diubah. Satu senarai boleh menyimpan nilai daripada jenis yang berbeza, walaupun unsur yang bentuknya seragam biasanya lebih mudah diproses.
 
-Tidak seperti tatasusunan (array) aras rendah yang saiznya tetap, senarai Python boleh membesar dan mengecil. Senarai menyimpan rujukan kepada objek Python, jadi jika kamu mengubah objek bersarang, perubahan itu boleh kelihatan melalui setiap rujukan kepada objek tersebut.
-
-
-### Sifat Senarai
+Tidak seperti tatasusunan (array) aras rendah yang saiznya tetap, senarai Python boleh membesar dan mengecil. Senarai menyimpan rujukan kepada objek Python, jadi jika kamu mengubah objek bersarang, perubahan itu boleh kelihatan melalui setiap rujukan kepada objek itu.
 
 Bandingkan **urutan, jenis campuran dan sifat boleh diubah** semasa memilih senarai. Berurutan bermaksud setiap unsur ada kedudukannya. Ini tidak bermaksud nilainya diisih secara automatik.
 
@@ -38,8 +35,6 @@ Bandingkan **urutan, jenis campuran dan sifat boleh diubah** semasa memilih sena
 | Berurutan | Setiap unsur ada kedudukan | `[1, 2, 3]` berbeza daripada `[3, 2, 1]` |
 | Heterogen | Boleh menyimpan pelbagai jenis data | `[1, 'text', 3.14, True]` |
 | Boleh diubah | Isinya boleh diubah selepas dicipta | Boleh menambah, membuang atau mengubah unsur |
-
-### Menulis Senarai
 
 Literal senarai menggunakan **kurungan segi empat sama** dan memisahkan unsurnya dengan koma. Senarai boleh menyimpan nilai daripada jenis yang berbeza, atau menyimpan senarai lain.
 
@@ -131,7 +126,10 @@ Kamu juga boleh membuat umpukan melalui indeks. Selepas `x = [0, 1, 2, 3, 4, 5]`
     "new": <code>x[2] = 9</code>,
     "last": <code>x[-1]</code>,
   }}
+  footer="Unsur pada indeks 2 berubah di tempat tanpa menganjak unsur yang lain."
 />
+
+Oleh sebab senarai boleh diubah, menggantikan nilai pada indeks `2` mengemas kini senarai sedia ada tanpa mengubah kedudukan unsur lain.
 
 ## Penghirisan dengan Langkah
 
@@ -242,7 +240,10 @@ Baris atas mengambil `x[1:4:2]`: ia bermula pada indeks <InlineMath math="1" />,
     "row-slice": "x[1:4:2]",
     "row-back": "x[::-1]",
   }}
+  footer="Langkah positif memilih indeks sekata, manakala langkah negatif menterbalikkan."
 />
+
+Penghirisan sentiasa memulangkan senarai baharu, jadi urutan asal dalam `x` kekal tidak berubah sama ada langkah bergerak ke hadapan atau ke belakang.
 
 ## Senarai dan Rentetan
 
@@ -302,7 +303,10 @@ Perbezaan utamanya ialah sifat boleh diubah. Rentetan tidak boleh berubah selepa
         M --> N[index]
         M --> O[count]
   `}
+  footer="Kaedah senarai untuk menambah, membuang, mencari, menyalin, dan menyusun."
 />
+
+Kebanyakan kaedah seperti `append`, `remove`, dan `sort` mengubah senarai secara terus, manakala `index` dan `count` hanya memeriksa isinya tanpa mengubah susunan unsur.
 
 | Kaedah | Penerangan | Contoh Penggunaan |
 |--------|-------------|---------------|
@@ -480,7 +484,7 @@ print('Selepas senarai dalam diubah:', t)   # Output: Selepas senarai dalam diub
   ]}
 />
 
-### Kamus
+### Pemetaan Kunci dan Nilai
 
 Kamus (dictionary) menyimpan pasangan kunci-nilai. Setiap kunci mesti **unik dan kekal boleh dicincang** selagi ia berada dalam kamus. Nilai boleh berulang dan boleh merujuk kepada objek boleh diubah. Literal kamus menggunakan `{}` dengan titik bertindih di antara setiap kunci dan nilai.
 
@@ -536,6 +540,35 @@ print('genap & ganjil =', genap & ganjil)    # Output: genap & ganjil = set()`
   ]}
 />
 
+Operasi `set` seperti persilangan (`&`), kesatuan (`|`), dan beza (`-`) memilih kawasan terus pada gambar rajah Venn. Tukar operasi di bawah untuk melihat objek unik yang dipilih daripada set objek merah dan set bola.
+
+<VennSortLab
+  title={<>Memilih Ahli dengan Operasi Set</>}
+  description={<>Tukar operasi set untuk melihat ahli unik yang dipilih pada persilangan, kesatuan, beza, atau di luar kedua-dua gelung.</>}
+  footer="Setiap operasi set menapis objek unik tanpa pernah menghasilkan pendua."
+  sets={[
+    { attribute: "red", name: "Merah" },
+    { attribute: "ball", name: "Bola" },
+  ]}
+  objects={[
+    { object: "apple", name: "Epal" },
+    { object: "red-ball", name: "Bola merah" },
+    { object: "blue-ball", name: "Bola biru" },
+    { object: "tennis-ball", name: "Bola tenis" },
+    { object: "red-block", name: "Blok merah" },
+    { object: "blue-cup", name: "Cawan biru" },
+  ]}
+  operations={["intersection", "union", "difference", "outside-union"]}
+  labels={{
+    count: "Bilangan",
+    members: "Ahli",
+    operation: "Operasi",
+    viewLabel: "Gambar rajah Venn dua set objek mengikut warna merah dan bentuk bola",
+  }}
+/>
+
+Hanya `Bola merah` berada dalam persilangan `Merah & Bola`, manakala kesatuan `Merah | Bola` mengumpulkan lima objek unik dan meninggalkan `Cawan biru` di luar kedua-dua set.
+
 ### Perbandingan Jenis Koleksi
 
 Empat koleksi terbina dalam ini berbeza dari segi **urutan, sifat boleh diubah dan cara mengendalikan pendua**. Jadual ini membandingkannya supaya kamu boleh memilih yang sesuai dengan tugasan kamu.
@@ -562,4 +595,7 @@ Bina setiap bekas daripada data yang sama, `[3, 1, 3, 2, 1]`. `list` dan `tuple`
     { name: "dict", value: 3 },
   ]}
   chartConfig={{ value: { label: "Bilangan unsur", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="list dan tuple mengekalkan 5 unsur, manakala set dan dict menyimpan 3 unik."
 />
+
+Apabila pendua dan kedudukan penting, pilih `list` atau `tuple`. Apabila nilai berbeza sahaja yang diperlukan, `set` dan kunci `dict` menyingkirkan pendua secara automatik.

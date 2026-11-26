@@ -61,7 +61,10 @@ String adalah barisan karakter Unicode yang berurutan, dan setiap karakter punya
     { name: "n", value: 110 },
   ]}
   chartConfig={{ value: { label: "Kode Unicode", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+  footer="Setiap karakter dalam 'Python' dipetakan ke satu kode bilangan bulat Unicode."
 />
+
+Batang huruf kapital `P` duduk lebih rendah di `80` daripada lima huruf kecil di kisaran `104` sampai `121`, menunjukkan urutan kode Unicode yang membedakan kapital dan huruf kecil.
 
 ## String Kosong dan Fungsi Str
 
@@ -119,7 +122,10 @@ Fungsi `str()` menghasilkan **representasi string yang mudah dibaca** dari suatu
     { name: "''", value: 0 },
   ]}
   chartConfig={{ value: { label: "Panjang teks", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+  footer="str() menghitung setiap digit, tanda, dan titik desimal ke dalam panjang string."
 />
+
+Nilai `True` menghasilkan empat karakter sedangkan `''` tidak memiliki batang sama sekali, memperlihatkan bahwa tanda minus dan titik desimal ikut dihitung saat diubah menjadi teks.
 
 ## String Multibaris
 
@@ -173,7 +179,7 @@ xxxyyy`
 
 ### Triple Quotes
 
-Literal dengan tiga tanda kutip dapat menyimpan **baris baru yang sebenarnya**. Baris baru tersebut menjadi karakter `\n` di dalam nilai string.
+Literal dengan tiga tanda kutip dapat menyimpan **baris baru yang sebenarnya**. Baris baru itu menjadi karakter `\n` di dalam nilai string.
 
 <CodeBlock
   data={[
@@ -202,8 +208,6 @@ Tiga kutip ganda bekerja dengan cara yang sama. Pilih pembatas yang membuat teks
 
 Python dapat menggabungkan literal string saat membaca kode sumber atau menggabungkan nilai string ketika program berjalan. **Literal yang bersebelahan** digabung tanpa operator, sedangkan nilai di dalam variabel memerlukan operator.
 
-### Penggabungan Literal Berdekatan
-
 Python menggabungkan **literal string yang bersebelahan** saat membaca kode sumber. Cara singkat ini hanya berlaku untuk teks yang ditulis langsung sebagai literal.
 
 <CodeBlock
@@ -222,8 +226,6 @@ Python menggabungkan **literal string yang bersebelahan** saat membaca kode sumb
   ]}
 />
 
-### Operator Plus
-
 Operator `+` menggabungkan **dua nilai string** saat program berjalan.
 
 <CodeBlock
@@ -237,8 +239,6 @@ Operator `+` menggabungkan **dua nilai string** saat program berjalan.
     }
   ]}
 />
-
-### Operator Perkalian
 
 Operator `*` **mengulang string** sebanyak bilangan bulat yang diberikan.
 
@@ -256,11 +256,11 @@ Operator `*` **mengulang string** sebanyak bilangan bulat yang diberikan.
 
 ## Penggabungan String Variabel
 
-Variabel menyimpan nilai. Gunakan operator seperti `+` untuk **menggabungkan nilai tersebut**. Literal yang bersebelahan sudah digabung saat kode sumber dibaca, sehingga `"a" "b"` berhasil sedangkan `nama lain` tidak.
+Variabel menyimpan nilai. Gunakan operator seperti `+` untuk **menggabungkan nilai itu**. Literal yang bersebelahan sudah digabung saat kode sumber dibaca, sehingga `"a" "b"` berhasil sedangkan `nama lain` tidak.
 
 ### Menggunakan Operator
 
-Gunakan `+` untuk menggabungkan nilai string dan `*` bersama bilangan bulat untuk mengulangnya. Meletakkan nama variabel bersebelahan tanpa operator merupakan **sintaks yang tidak valid**.
+Gunakan `+` untuk menggabungkan nilai string dan `*` bersama bilangan bulat untuk mengulangnya. Meletakkan nama variabel bersebelahan tanpa operator adalah **sintaks yang tidak valid**.
 
 <CodeBlock
   data={[
@@ -293,7 +293,7 @@ Gunakan `+` untuk menggabungkan nilai string dan `*` bersama bilangan bulat untu
   ]}
 />
 
-### Kesalahan Umum
+### Menulis Variabel Tanpa Operator
 
 Bentuk berikut gagal ketika Python membaca kode karena **tidak ada operator** di antara variabel dan ekspresi berikutnya.
 
@@ -315,7 +315,9 @@ SyntaxError ...`
   ]}
 />
 
-Lihat bagaimana tiga string disambung menjadi satu di gambar ini. Setiap potongan mempertahankan urutan karakternya dan langsung ditempel di belakang potongan sebelumnya, jadi `W` mulai di indeks <InlineMath math="6" />, tepat setelah <InlineMath math="5" /> karakter `Hello` dan satu spasi. Panjang hasilnya adalah jumlah panjang potongan, <InlineMath math="5+1+5=11" />. Ketiga string asli tidak berubah, karena operator `+` membuat string baru.
+Lihat bagaimana tiga string disambung menjadi satu di gambar ini. Setiap potongan mempertahankan urutan karakternya dan langsung ditempel di belakang potongan sebelumnya, jadi `W` mulai di indeks <InlineMath math="6" />, tepat setelah <InlineMath math="5" /> karakter `Hello` dan satu spasi. Panjang hasilnya adalah jumlah panjang potongan, yaitu <InlineMath math="11" />. Ketiga string asli tidak berubah, karena operator `+` membuat string baru.
+
+<BlockMath math="5 + 1 + 5 = 11" />
 
 <MathVisual
   title={<>Menyambung <code>'Hello' + ' ' + 'World'</code></>}
@@ -371,4 +373,9 @@ Lihat bagaimana tiga string disambung menjadi satu di gambar ini. Setiap potonga
     "hello-length": "len('Hello') = 5",
     "world-length": "len('World') = 5",
   }}
+  footer="Penggabungan '+' menyusun 11 karakter berurutan tanpa mengubah string asalnya."
 />
+
+Ketiga potongan berjejer berurutan dari indeks `0` hingga `10` termasuk satu spasi di posisi `5`, menegaskan bahwa operator `+` selalu membentuk string baru sepanjang jumlah ketiga bagiannya.
+
+> String menyimpan urutan code point Unicode yang tidak dapat diubah, sehingga pelipatan baris kode sumber, baris baru triple quotes, dan penggabungan dengan `+` semuanya mengikuti aturan literal dan operator yang jelas.

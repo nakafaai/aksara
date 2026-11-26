@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Objek Boleh Lelar",
-    description: "Objek boleh lelar (iterable) dalam Python menyokong gelung, semakan keahlian, ujian nilai kebenaran dan pembongkaran mengikut kedudukan.",
+    description: "Objek boleh lelar dalam Python menyokong gelung, semakan keahlian, ujian nilai kebenaran dan pembongkaran mengikut kedudukan.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
     dateModified: "2026-09-07",
@@ -86,6 +86,7 @@ Setiap pusingan `for item in [3, 8, 1, 6]` memanggil `next()` sekali dan menyera
 
 <BarChart
   title={<><code>total</code> selepas setiap <code>next()</code></>}
+  footer={<>Setiap panggilan next() membekalkan satu nilai hingga pelelar tamat pada unsur terakhir.</>}
   description={<>Setiap bar ialah <code>total</code> selepas unsur yang tertulis di bawahnya ditambah: <InlineMath math="3" />, <InlineMath math="11" />, <InlineMath math="12" />, kemudian <InlineMath math="18" />.</>}
   yAxisLabel="Jumlah terkumpul"
   data={[
@@ -96,6 +97,8 @@ Setiap pusingan `for item in [3, 8, 1, 6]` memanggil `next()` sekali dan menyera
   ]}
   chartConfig={{ value: { label: "Jumlah terkumpul", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
+
+Gelung `for` tidak membaca seluruh jujukan sekali gus, sebaliknya menarik satu item setiap langkah melalui `next()` sehingga sumbernya habis.
 
 ## Operator Keahlian
 
@@ -254,6 +257,7 @@ Semak senarai `[3, 8, 1, 6]` dengan syarat `v > 5`. Dua titik magenta, <InlineMa
 
 <MathVisual
   title={<><code>any</code> dan <code>all</code> pada <code>[3, 8, 1, 6]</code></>}
+  footer={<>Satu titik melepasi ambang cukup untuk any, tetapi all memerlukan semua titik lulus.</>}
   description={<>Setiap titik ialah satu nilai pada kedudukannya. Titik magenta memenuhi <InlineMath math="v>5" />, titik hijau kebiruan tidak, dan garis kelabu ialah nilai ambang <InlineMath math="5" />.</>}
   scene={{
     space: "plane",
@@ -282,6 +286,8 @@ Semak senarai `[3, 8, 1, 6]` dengan syarat `v > 5`. Dua titik magenta, <InlineMa
     "value-d": "6",
   }}
 />
+
+Sebaik sahaja `any()` menyentuh angka `8`, semakan terus berhenti dengan `True`, manakala `all()` terus berhenti dengan `False` pada nilai pertama `3`.
 
 ## Operator Pembongkaran
 
@@ -405,6 +411,7 @@ Nama yang berbintang mengambil setiap unsur yang tidak diambil oleh nama lain, d
 
 <MathVisual
   title={<>Ke mana setiap unsur pergi dalam pembongkaran berbintang</>}
+  footer={<>Sasaran berbintang mengumpul baki unsur sebagai senarai, di tengah atau hujung.</>}
   description={<>Baris atas ialah <code>[1, 2, 3, 4]</code>: sel ungu pergi ke <code>a</code> dan sel hijau kebiruan ke <code>rest</code>. Baris bawah ialah <code>[1, 2, 3, 4, 5]</code>: sel ungu pergi ke <code>first</code>, tiga sel hijau kebiruan ke <code>middle</code>, dan sel jingga ke <code>last</code>.</>}
   scene={{
     space: "plane",
@@ -433,3 +440,7 @@ Nama yang berbintang mengambil setiap unsur yang tidak diambil oleh nama lain, d
     "tail": <code>last</code>,
   }}
 />
+
+Sasaran berbintang menjadikan pembongkaran fleksibel apabila panjang jujukan berubah, kerana nama biasa mengambil kedudukan tetap manakala sasaran berbintang menyerap semua baki.
+
+> Protokol objek boleh lelar menyatukan gelung `for`, semakan `any()` dan `all()`, serta pembongkaran berbintang. Sebaik sahaja satu objek menyokong lelaran, semua alat Python itu terus berfungsi padanya.

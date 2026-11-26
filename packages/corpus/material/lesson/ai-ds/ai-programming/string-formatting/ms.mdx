@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Pemformatan Rentetan",
-    description: "Gunakan format(), f-string, lebar lajur, penjajaran, kepersisan nombor, tanda dan pengendalian ralat untuk membentuk output teks Python.",
+    description: "Gunakan kaedah format, f-string, lebar lajur, penjajaran, kepersisan nombor, tanda dan pengendalian ralat untuk membentuk output teks Python.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
     dateModified: "2026-09-19",
@@ -49,6 +49,7 @@ Rajah ini membandingkan teks yang sama yang diletakkan **di kiri, di kanan dan d
 
 <Mermaid
   title={<>Cara Lebar Meletakkan Teks</>}
+  footer="Simbol <, >, dan ^ menjajarkan teks di kiri, kanan, atau tengah lebar tetap."
   description={<>Bandingkan penjajaran kiri, kanan dan tengah untuk rentetan yang sama dalam medan yang lebarnya tetap.</>}
   chart={`
     flowchart TD
@@ -63,6 +64,8 @@ Rajah ini membandingkan teks yang sama yang diletakkan **di kiri, di kanan dan d
         E --> H["'      xxx      '"]
   `}
 />
+
+Jadual ini meringkaskan ketiga-tiga simbol penjajaran bersama jenis data lalainya:
 
 | Simbol | Nama | Tingkah Laku | Lalai untuk |
 |--------|------|----------|-------------|
@@ -101,6 +104,7 @@ Lebar <InlineMath math="15" /> meninggalkan <InlineMath math="15-3=12" /> lajur 
 
 <MathVisual
   title={<><code>'xxx'</code> dalam lebar <InlineMath math="15" /> dengan tiga penjajaran</>}
+  footer={<>Baki 12 lajur sekitar xxx dialih ke kanan, kiri, atau dibahagi rata di dua sisi.</>}
   description={<>Setiap baris terdiri daripada <InlineMath math="15" /> lajur. Segi empat tepat ungu ialah <code>'xxx'</code> dan segi empat tepat kelabu ialah isian. Dari atas ke bawah: penjajaran kiri, kanan dan tengah.</>}
   scene={{
     space: "plane",
@@ -118,12 +122,15 @@ Lebar <InlineMath math="15" /> meninggalkan <InlineMath math="15-3=12" /> lajur 
   }}
 />
 
+Jumlah lebar ketiga-tiga baris kekal tepat lima belas lajur, dan hanya agihan dua belas lajur pengisi di sekeliling teks yang berubah.
+
 ## Kaedah Merujuk Argumen
 
 Medan gantian memilih **nilai yang dimasukkan ke dalam teks**. Gunakan indeks untuk argumen kedudukan, nama untuk argumen kata kunci, atau penomboran automatik untuk mengambil argumen kedudukan mengikut urutan.
 
 <Mermaid
   title={<>Cara Pemegang Tempat Memilih Nilai</>}
+  footer={<>Pemegang tempat memilih nilai mengikut indeks, nama kata kunci, atau urutan automatik.</>}
   description={<>Lihat cara rujukan kedudukan, bernama dan berindeks memilih nilai untuk setiap pemegang tempat dalam format.</>}
   chart={`
     flowchart TD
@@ -194,8 +201,11 @@ Kepersisan membawa maksud yang berbeza bagi setiap jenis persembahan. Bagi `f` d
 
 ### Pilihan Tanda
 
+Selain bilangan tempat perpuluhan, kamu boleh mengawal kemunculan tanda di hadapan nombor supaya lajur nilai positif dan negatif kekal sejajar.
+
 <Mermaid
   title={<>Cara Tanda Muncul pada Nombor</>}
+  footer={<>Pilihan tanda +, -, dan ruang mengawal simbol di hadapan nombor positif.</>}
   description={<>Bandingkan tanda tambah, tanda tolak dan ruang supaya output nombor positif dan negatif dibaca dengan konsisten.</>}
   chart={`
     flowchart TD
@@ -249,6 +259,7 @@ Penentu `.1f` memaparkan setiap nombor dengan satu tempat perpuluhan, jadi setia
 
 <MathVisual
   title={<>Kepersisan <code>.1f</code> sebagai tangga pembundaran</>}
+  footer={<>Format .1f memetakan setiap selang selebar 0.1 kepada satu langkah paparan perpuluhan.</>}
   description={<>Tangga ungu ialah nilai yang dipaparkan dengan <code>.1f</code> untuk input dari sifar hingga satu, dan garis kelabu ialah garis identiti.</>}
   scene={{
     space: "plane",
@@ -283,6 +294,7 @@ Setiap digit kepersisan tambahan mengurangkan ralat pembundaran kira-kira sepulu
 
 <BarChart
   title={<>Ralat pembundaran <code>math.pi</code> untuk kepersisan <InlineMath math="0" /> hingga <InlineMath math="4" /></>}
+  footer={<>Setiap tempat perpuluhan tambahan mengecilkan jurang pembundaran kira-kira sepuluh kali.</>}
   description={<>Setiap palang ialah jurang antara <InlineMath math="\pi" /> dengan nilai yang dipaparkan menggunakan bilangan digit perpuluhan yang tertulis di bawahnya.</>}
   yAxisLabel="Ralat pembundaran"
   data={[
@@ -294,6 +306,8 @@ Setiap digit kepersisan tambahan mengurangkan ralat pembundaran kira-kira sepulu
   ]}
   chartConfig={{ value: { label: "Ralat pembundaran", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+Pilih bilangan tempat perpuluhan yang mencukupi supaya jadual kekal ringkas tanpa kehilangan ketepatan yang diperlukan oleh analisis kamu.
 
 ## F String dan Templat Dinamik
 
@@ -335,8 +349,11 @@ print(f'Luas: {math.pi * radius**2:.2f} cm²') # Output: Luas: 102.07 cm²`
 
 ### Membaca Spesifikasi Format
 
+Semua pilihan pemformatan ditulis selepas tanda titik bertindih mengikut urutan yang ketat supaya Python dapat menghurainya tanpa kekaburan.
+
 <Mermaid
   title={<>Urutan di Dalam Penentu Format</>}
+  footer={<>Penentu format dibaca mengikut urutan tetap daripada pengisi dan lebar hingga jenis.</>}
   description={<>Ikuti urutan komponen daripada aksara pengisi hingga jenis persembahan.</>}
   chart={`
     flowchart TD
@@ -358,3 +375,5 @@ print(f'Luas: {math.pi * radius**2:.2f} cm²') # Output: Luas: 102.07 cm²`
 Cuba `"{value:*^+10.2f}".format(value=12.3)`. Outputnya ialah `**+12.30**`. Jenis `f` dengan kepersisan `2` menghasilkan `12.30`, tanda `+` menambah satu aksara, dan empat aksara pengisi melengkapkan **lebar minimum sepuluh**. Penjajaran `^` membahagikan empat aksara pengisi itu kepada dua di kiri dan dua di kanan.
 
 Pemformatan menghasilkan [objek rentetan](/ms/subjek/ai-ds/pengaturcaraan-ai/objek-rentetan) yang baharu. Nombor `12.3` kekal tidak berubah, jadi kamu masih boleh menggunakannya dalam pengiraan lain.
+
+> Penentu format hanya mengubah rupa teks yang dipaparkan dan tidak pernah membundarkan atau mengubah nombor asal dalam memori. Asingkan sentiasa ketepatan pengiraan daripada format paparan.

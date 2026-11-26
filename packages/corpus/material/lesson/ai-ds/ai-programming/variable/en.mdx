@@ -38,7 +38,10 @@ The built-in `id()` returns an integer that **uniquely identifies an object** du
     V2 --> M1
     V4 --> M2
     V5 --> M3`}
+  footer="Both x and y point directly to the same single int 2 object in memory."
 />
+
+Both arrows from `x` and `y` converge on the same `Object A: int 2`, while `text` and `numbers` bind to separate objects with their own types.
 
 <CodeBlock
   data={[
@@ -103,7 +106,10 @@ Run `x = 5`, then `y = x`, then `x = 7`, and follow the segments. `y = x` does n
     "copy": "y = x",
     "old": "x = 5",
   }}
+  footer="Rebinding x moves only the arrow for x to 7 while y stays bound to 5."
 />
+
+The teal segment from `y` remains attached to `5` after `x` moves to `7`, confirming that reassignment redirects only the name being assigned.
 
 ## Python Variable Characteristics
 
@@ -162,8 +168,6 @@ print(f"Value: {data}, Type: {type(data)}")`
 
 Python has strict rules for variable naming that you must follow for code to run correctly. A name may contain letters, digits, and underscores, but it **cannot start with a digit**, and it cannot be a reserved keyword.
 
-### Variable Name Components
-
 An identifier starts with an **underscore or a Unicode letter** and may continue with identifier letters, underscores, and digits such as <InlineMath math="0,1,2,\dots,9" />. Python accepts many non-ASCII identifiers, but descriptive ASCII `snake_case` names are often easier to type, search, and share across tools.
 
 <CodeBlock
@@ -183,8 +187,6 @@ print(student_name, score1, _total, MAX_SIZE, camelCase, snake_case)`
     }
   ]}
 />
-
-### Mandatory Rules
 
 Several mandatory rules that you must follow in Python variable naming. Variable names **cannot start with a number**. Python will generate a syntax error if you try to create a variable that starts with a number.
 
@@ -207,8 +209,6 @@ print(data1, data_2, _data3)`
     }
   ]}
 />
-
-### Case Sensitivity
 
 Python distinguishes between **uppercase and lowercase letters** in variable names. This means `nama`, `Nama`, and `NAMA` are three different variables.
 
@@ -248,7 +248,10 @@ A valid variable name starts with a letter or `_`, contains only letters, digits
     { name: "my_var2", value: 1 },
   ]}
   chartConfig={{ value: { label: "Valid", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Only total, _count, and my_var2 pass all three Python identifier rules."
 />
+
+The three valid bars each start with a letter or underscore and use only permitted characters, while the three empty positions each break a different syntax rule.
 
 ## Keywords That Cannot Be Used
 
@@ -320,8 +323,6 @@ print(f"Is 'class' a keyword? {keyword.iskeyword('class')}")`
 
 Python identifiers must follow the syntax rules above. Within those rules, choose names that state **what each value represents**. A name such as `total_price` tells the next reader more than `tp`, and the same habit keeps a longer program readable months later.
 
-### Meaningful Names
-
 Use variable names that clearly explain **what is stored in the variable**. Meaningful names make code easier to understand, both for yourself and others.
 
 <CodeBlock
@@ -351,8 +352,6 @@ print(f"Age: {age} years")`
   ]}
 />
 
-### Appropriate Name Length
-
 Avoid variable names that are too long as they will make code hard to read. Conversely, names that are too short may not provide **enough information**.
 
 <CodeBlock
@@ -380,8 +379,6 @@ average_score = 85.5`
     }
   ]}
 />
-
-### Consistent Writing Style
 
 Python uses snake_case style for variable names, where words are **separated by underscores** and all letters use lowercase.
 
@@ -411,8 +408,6 @@ print(f"Average score: {average_score:.2f}")`
     }
   ]}
 />
-
-### Avoiding Confusion
 
 Avoid using characters that can cause confusion, especially **letters that look similar to numbers**.
 
@@ -444,7 +439,7 @@ can_edit = True`
   ]}
 />
 
-## Example of Variable Usage in Programs
+## Calculating Rectangle Area and Perimeter
 
 The following program uses variables to calculate the **area and perimeter of a rectangle**.
 
@@ -508,4 +503,9 @@ Variables give the numbers in a program clear names. With `length = 4` and `widt
     "width": <code>width = 3</code>,
     "rectangle": <code>area = 12</code>,
   }}
+  footer="Descriptive names length, width, and area label each dimension and result."
 />
+
+The labeled edges `length = 4` and `width = 3` enclose the region `area = 12`, illustrating how descriptive variable names document the role of every number in a calculation.
+
+> In Python, a variable is a name pointing to an object, so identifier rules, `snake_case` conventions, and clear reassignment habits all work together to keep code readable.

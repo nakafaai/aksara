@@ -165,8 +165,6 @@ print(parking.is_full())`
 
 The statement that everything is an object means Python treats every runtime value through one object model, so a number, a string, and a list are all instances of some class. What differs is the set of attributes and methods that class provides, because <Highlight>the type decides the available tools</Highlight> rather than the object model itself.
 
-### Numbers are Objects
-
 An integer is an **object with methods**. The example calls `bit_length()` on `42` and prints the result.
 
 <CodeBlock
@@ -191,8 +189,6 @@ print(type(result))         # <class 'int'>
 print(dir(result))          # Explore attribute names`
   }]}
 />
-
-### Strings are Objects
 
 A string is an object with methods that **build new values**. The example calls several string methods on one message.
 
@@ -229,8 +225,6 @@ rejoined = " ".join(words)          # Join back together
 print(rejoined)`
   }]}
 />
-
-### Lists are Objects
 
 A list provides **methods that change its contents**, such as `append()`, alongside read-only methods such as `count()`. The example starts from a fruit list and calls the list methods.
 
@@ -274,8 +268,6 @@ print(f"Original: {original}")
 print(f"Copy: {copy_list}")`
   }]}
 />
-
-### Dictionaries are Objects
 
 A dictionary is an object with methods for **reading and updating** its pairs. The example uses a student record to call those methods.
 
@@ -399,7 +391,10 @@ Because a function is an object, you can hand it to another function like any va
     { name: "4", value: 4 ** 2 },
   ]}
   chartConfig={{ value: { label: "Result of square", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  footer="map receives the function object square and runs it on each element."
 />
+
+Each bar climbs quadratically from `1` to `16` because `map` takes the `square` function object directly and invokes it for every element without a manual loop.
 
 ## Classes and Instances as Objects
 
@@ -475,7 +470,9 @@ print(Student.university)           # University of Indonesia`
   }]}
 />
 
-One class `Point` can create many instances, and every instance keeps its own attributes. `p1 = Point(1, 2)` and `p2 = Point(4, 1)` have different `x` and `y`, yet they share the same methods, such as `p1.distance(p2)`, which gives <InlineMath math="\sqrt{3^2+1^2}=\sqrt{10}" />.
+One class `Point` can create many instances, and every instance keeps its own attributes. `p1 = Point(1, 2)` and `p2 = Point(4, 1)` have different `x` and `y`, yet they share the same methods, such as `p1.distance(p2)`, which gives <InlineMath math="\sqrt{10}" />.
+
+<BlockMath math="d = \sqrt{3^2 + 1^2} = \sqrt{10}" />
 
 <MathVisual
   title={<>Two instances of one class <code>Point</code></>}
@@ -498,7 +495,10 @@ One class `Point` can create many instances, and every instance keeps its own at
     "first": <code>p1 = Point(1, 2)</code>,
     "second": <code>p2 = Point(4, 1)</code>,
   }}
+  footer="p1 and p2 keep separate coordinates while sharing the distance method."
 />
+
+Both points sit at distinct positions on the plane because each instance stores its own `self.x` and `self.y`, while the connecting distance segment comes from one shared `distance` method on `Point`.
 
 ## Special Methods
 
@@ -586,9 +586,12 @@ Suppose a `Vector` class has a special method `__add__` that adds the components
     "w": "w = Vector(1, 2)",
     "sum": "v + w = Vector(3, 3)",
   }}
+  footer="v + w invokes v.__add__(w) and returns a brand-new Vector object."
 />
 
-## Object Oriented Programming Practice
+Placing `w` at the tip of `v` lands cleanly on `(3, 3)`, so the magenta segment `v + w` depicts the component-wise sum returned by `__add__` while leaving `v` and `w` intact.
+
+## Modeling a Library System with Classes
 
 The following example combines several classes to model **books, members, and library loans**.
 
@@ -749,3 +752,5 @@ print(library.return_book("M001", "978-1234567890"))`
 />
 
 Python's object model explains why values, functions, and classes can move through the same language mechanisms. Use object-oriented composition when related state and behavior need to be managed together. Use a procedural or functional design when the sequence of steps or the flow of data is easier to explain directly.
+
+> Every value in Python carries its own type, identity, and methods, allowing numbers, functions, and classes to flow through one uniform language model.

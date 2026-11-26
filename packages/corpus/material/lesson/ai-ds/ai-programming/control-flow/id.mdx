@@ -11,7 +11,7 @@ export const metadata = {
 
 Python menyediakan beberapa statement untuk mengubah alur loop. Statement ini dapat <Highlight>menghentikan loop, melompat ke iterasi berikutnya, atau menjalankan tindakan setelah loop selesai tanpa dihentikan</Highlight>.
 
-Statement `break` <Highlight>langsung keluar dari loop terdekat</Highlight> ketika suatu kondisi terpenuhi. Eksekusi kemudian berlanjut ke statement pertama setelah loop tersebut.
+Statement `break` <Highlight>langsung keluar dari loop terdekat</Highlight> ketika suatu kondisi terpenuhi. Eksekusi kemudian berlanjut ke statement pertama setelah loop itu.
 
 <CodeBlock
   data={[
@@ -127,7 +127,10 @@ Jalankan `for i in range(10)` dengan `if i == 7: break` lalu `if i % 2 == 0: con
     "print-5": <InlineMath math="5" />,
     "stop": <code>break</code>,
   }}
+  footer="continue melewati angka genap, sedangkan break menghentikan loop di angka 7."
 />
+
+Karena `break` diperiksa sebelum `continue`, iterasi berhenti total tepat pada `7` sehingga nilai `8` dan `9` tidak pernah diproses.
 
 ## Fungsi Enumerate
 
@@ -208,7 +211,10 @@ print(z)
         B -->|Tidak| E[Keluar dari loop]
         E --> F[Lanjutkan program]
   `}
+  footer="Siklus while memeriksa kondisi ulang di setiap putaran sampai bernilai salah."
 />
+
+Setiap kali isi blok selesai memperbarui variabel, alur selalu kembali ke pemeriksaan kondisi agar loop berhenti begitu syarat tidak lagi terpenuhi.
 
 ## Fungsi Zip
 
@@ -240,7 +246,7 @@ Fungsi `zip()` mengembalikan **iterator berisi tuple**. Setiap tuple memuat elem
 
 ### Mengonversi Hasil Zip
 
-Kamu bisa membaca pasangan dari iterator `zip()` langsung lewat loop. Ubah iterator menjadi **list atau tuple** jika pasangan tersebut perlu disimpan untuk digunakan ulang.
+Kamu bisa membaca pasangan dari iterator `zip()` langsung lewat loop. Ubah iterator menjadi **list atau tuple** jika pasangan itu perlu disimpan untuk digunakan ulang.
 
 <CodeBlock
   data={[
@@ -330,13 +336,14 @@ Proses ini disebut "unzipping" karena memisahkan kembali data yang telah digabun
     "letter-3": <code>d</code>,
     "extra": <code>5</code>,
   }}
+  footer="zip memasangkan tiap indeks sejajar dan berhenti saat input terpendek habis."
 />
+
+Elemen ekstra pada input yang lebih panjang diabaikan secara bawaan, jadi sertakan `strict=True` jika perbedaan panjang harus dianggap kesalahan.
 
 ## Range dan For Loop
 
 Fungsi `range()` menghasilkan **urutan bilangan bulat** untuk iterasi. Gunakan fungsi ini jika loop memerlukan posisi numerik atau jumlah iterasi yang tetap. Karena `range` menghasilkan setiap nilai saat dibutuhkan, bukan menyimpan seluruh urutan sekaligus, pemakaian memorinya tetap kecil meskipun loop berjalan jutaan kali.
-
-### Sintaks Range
 
 <CodeBlock
   data={[
@@ -379,8 +386,6 @@ for i in range(8, 4, -1):
 />
 
 Range mengikuti **pola aritmetika**. Elemen ke-i adalah `start + i * step` untuk setiap `i` dari <InlineMath math="0" /> sampai `n-1`.
-
-### Efisiensi Range vs List
 
 `range` **menyimpan nilai start, stop, dan step** secara ringkas tanpa membuat seluruh bilangan menjadi list. Nilai dihitung saat diminta, sehingga penggunaan memorinya tidak bertambah mengikuti banyaknya bilangan yang direpresentasikan.
 
@@ -443,7 +448,10 @@ Ikuti loop `for i in range(1, 6): total += i` putaran demi putaran. Sebelum loop
     "step-e": "total = 10",
     "step-f": "total = 15",
   }}
+  footer="Jumlah berjalan total bertambah makin besar tiap putaran hingga mencapai 15."
 />
+
+Setiap langkah `range(1, 6)` menambahkan bilangan bulat berikutnya dari `1` sampai `5`, menunjukkan pola akumulasi bertahap yang umum dipakai dalam loop.
 
 ## Conditional Statements
 
@@ -532,3 +540,5 @@ for char in text:
 />
 
 Iterable menyediakan nilai satu per satu, tetapi tidak selalu terurut, memiliki indeks, dapat digunakan ulang, atau berhingga. `for` loop meminta nilai berikutnya dari iterator. Dalam kepala `for`, `in` menghubungkan target iterasi dengan iterable. Dalam ekspresi seperti `3 in [1, 3]`, `in` menguji keanggotaan.
+
+> Pilih `for` dengan `enumerate()`, `zip()`, atau `range()` ketika jumlah langkah mengikuti iterable, dan simpan `while` untuk kondisi berhenti yang bergantung pada perubahan status di dalam loop.

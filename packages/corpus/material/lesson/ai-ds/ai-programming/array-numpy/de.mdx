@@ -13,6 +13,8 @@ NumPy hilft Python, numerische Daten effizient zu verarbeiten. Python-Listen kö
 
 Das zentrale [Objekt `ndarray`](https://numpy.org/doc/stable/) ist ein n-dimensionaler Behälter fester Größe, dessen Elemente einen gemeinsamen Datentyp besitzen. Dadurch kann ein einziger Ausdruck dieselbe Operation auf das gesamte Array anwenden.
 
+> Stell dir ein NumPy-Array wie einen Eierkarton mit identischen Fächern vor. Da jedes Fach denselben Datentyp in einem kompakten Block speichert, kann der Rechner tausende Zahlen gleichzeitig verarbeiten, ohne jeden Eintrag einzeln zu prüfen.
+
 NumPy-Arrays bieten die folgenden Vorteile für die wissenschaftliche Programmierung:
 
 1. **Effiziente numerische Schleifen** in kompiliertem Maschinencode
@@ -156,6 +158,7 @@ Eine verschachtelte Liste wird zu einem zweidimensionalen Array. `np.array([[1, 
 
 <MathVisual
   title={<>Ein Array mit <code>shape</code> <code>(2, 3)</code></>}
+  footer={<>Achse 0 läuft abwärts über Zeilen, während Achse 1 nach rechts über Spalten führt.</>}
   description={<>Jeder violette Punkt ist ein Element mit seinem Wert. Die türkise Strecke zeigt entlang <code>axis 0</code> von Zeile zu Zeile, die orange Strecke entlang <code>axis 1</code> von Spalte zu Spalte.</>}
   scene={{
     space: "plane",
@@ -193,6 +196,8 @@ Eine verschachtelte Liste wird zu einem zweidimensionalen Array. `np.array([[1, 
     "axis-zero": <code>axis 0</code>,
   }}
 />
+
+Das Tupel `(2, 3)` nennt die Größe jeder Achse der Reihe nach: zwei Schritte entlang `axis 0` und drei Schritte entlang `axis 1`, also sechs Elemente im Raster.
 
 ## Funktionen zum Erstellen von Arrays
 
@@ -310,7 +315,7 @@ print(a)
   ]}
 />
 
-### Mathematische Funktionen
+### Koordinatenregeln für Arrays
 
 `np.fromfunction` übergibt **Arrays mit Indexkoordinaten** an deine Funktion. Hier erhält `f(i, j)` die Zeilenindizes in `i` und die Spaltenindizes in `j`. Die Addition `i + j` erfolgt elementweise: An Position `[1, 2]` steht deshalb `3`.
 
@@ -377,6 +382,7 @@ Vergleich die zwei Punktreihen unten. `np.linspace(0, 10, 5)` teilt das Interval
 
 <MathVisual
   title={<><code>np.linspace</code> und <code>np.arange</code> auf dem Zahlenstrahl</>}
+  footer={<>Die Funktion linspace schließt den Endwert ein, während arange vorher stoppt.</>}
   description={<>Die obere Zeile ist <code>np.linspace(0, 10, 5)</code>, die untere <code>np.arange(0, 10, 2.5)</code>. Der Wert <InlineMath math="10" /> fehlt in der unteren Zeile.</>}
   scene={{
     space: "plane",
@@ -421,6 +427,8 @@ Vergleich die zwei Punktreihen unten. `np.linspace(0, 10, 5)` teilt das Interval
     "ar-row": "np.arange(0, 10, 2.5)",
   }}
 />
+
+Wähle `np.linspace`, wenn Punktzahl und beide Intervallenden exakt feststehen, und greife zu `np.arange`, wenn eine feste Schrittweite entscheidend ist.
 
 ## Arrays aus Sequenzen
 
@@ -574,6 +582,7 @@ Arithmetik auf einem Array wirkt auf jedes Element zugleich, ohne Schleife. Für
 
 <ScatterDiagram
   title={<>Drei elementweise Operationen auf <code>[1, 2, 3]</code></>}
+  footer={<>Jede Operation wirkt gleichzeitig an jedem Index ohne manuelle Schleife.</>}
   description={<>Nach rechts stehen die Indizes <InlineMath math="0" />, <InlineMath math="1" /> und <InlineMath math="2" />. Jede Reihe ist ein Ergebnis: das ursprüngliche Array, <code>arr + 1</code>, <code>arr * 2</code> und <code>arr ** 2</code>. An einem Index benutzt jede Operation nur das Element an diesem Index.</>}
   xAxisLabel="Index"
   yAxisLabel="Wert"
@@ -616,3 +625,28 @@ Arithmetik auf einem Array wirkt auf jedes Element zugleich, ohne Schleife. Für
     },
   ]}
 />
+
+Jede Operation greift nur auf die Zahl am selben Index zu, sodass sofort sichtbar wird, wie stark das Quadrieren über Addition und Verdopplung hinauswächst.
+
+In Data-Science-Experimenten liefert jeder Sensor ein NumPy-Array wiederholter Messwerte, deren Mittelwert, Spannweite und Abweichung vom Sollwert sich direkt zusammenfassen lassen:
+
+<ReadingSpreadLab
+  title={<>Streuung der Messwert-Arrays dreier Sensoren</>}
+  footer={<>Ein Sensor-Array fasst Mittelwert, Spannweite und Abweichung sofort zusammen.</>}
+  description={<>Vergleiche drei Arrays aus Sensormessungen mit dem Sollwert <InlineMath math="10" />, um Genauigkeit und Streuung zu erkennen.</>}
+  actual={10}
+  students={[
+    { name: "Sensor A", readings: [9.9, 10.0, 10.1, 10.0] },
+    { name: "Sensor B", readings: [9.4, 9.5, 9.5, 9.6] },
+    { name: "Sensor C", readings: [9.2, 10.1, 10.7, 9.8] },
+  ]}
+  labels={{
+    mean: <>Array-Mittelwert</>,
+    offset: <>Abweichung vom Sollwert</>,
+    range: <>Spannweite</>,
+    student: "Sensor-Array wählen",
+    viewLabel: "Streuungsskala der Messwert-Arrays dreier Sensoren im Vergleich zum Sollwert",
+  }}
+/>
+
+Wechsle oben zwischen den Sensoren, um die Arrays zu vergleichen: Sensor A liegt eng am Sollwert, Sensor B streut kaum aber verschiebt sich systematisch, und Sensor C streut breit mit großer Spannweite.

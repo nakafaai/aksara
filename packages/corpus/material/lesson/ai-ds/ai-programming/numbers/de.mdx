@@ -42,6 +42,7 @@ In wissenschaftlicher Schreibweise verschiebt die Zahl nach `e` das Dezimaltrenn
 
 <BarChart
   title={<><InlineMath math="\log_{10}" /> von vier Literalen in wissenschaftlicher Schreibweise</>}
+  footer={<>Der Exponent nach e zeigt direkt die Größenordnung jeder Zahl an.</>}
   description={<>Jeder Balken ist <InlineMath math="\log_{10}" /> des darunter stehenden Literals. Negative Balken gehören zu Zahlen unter <InlineMath math="1" />, etwa <code>9.99e-05</code>, das fast genau <InlineMath math="-4" /> ergibt.</>}
   yAxisLabel="Zehnerpotenz"
   data={[
@@ -52,6 +53,8 @@ In wissenschaftlicher Schreibweise verschiebt die Zahl nach `e` das Dezimaltrenn
   ]}
   chartConfig={{ value: { label: "Zehnerpotenz", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Das Vorzeichen des Exponenten nach `e` verrät sofort die Größenordnung: Ein positiver Exponent steht für große Werte über eins, ein negativer Exponent für kleine Brüche nahe null.
 
 ## Arten von Zahlendaten
 
@@ -112,6 +115,7 @@ Die drei Zahltypen wohnen an verschiedenen Orten. Ein `int` sitzt nur auf ganzza
 
 <MathVisual
   title={<>Wo <code>int</code>, <code>float</code> und <code>complex</code> liegen</>}
+  footer={<>Werte von int und float liegen auf dem Zahlenstrahl, während complex in die Ebene steigt.</>}
   description={<>Die violetten Punkte sind <code>int</code>-Werte von <InlineMath math="-3" /> bis <InlineMath math="3" /> auf der grauen Linie. Die türkisen Punkte sind die <code>float</code>-Werte <code>2.5</code> und <code>-0.75</code>. Der magentafarbene Punkt <code>1+2j</code> liegt in der Ebene, mit Realteil <InlineMath math="1" /> und Imaginärteil <InlineMath math="2" />.</>}
   scene={{
     space: "plane",
@@ -142,6 +146,8 @@ Die drei Zahltypen wohnen an verschiedenen Orten. Ein `int` sitzt nur auf ganzza
     "complex": <code>1+2j</code>,
   }}
 />
+
+Sobald eine Zahl einen Imaginärteil ungleich null besitzt, verlässt sie den eindimensionalen Zahlenstrahl und braucht ein Koordinatenpaar in der komplexen Ebene.
 
 ## Die Typfunktion zum Überprüfen von Datentypen
 
@@ -237,6 +243,7 @@ Vergleich die violette Treppe mit der grauen Linie <InlineMath math="y=x" />. Be
 
 <MathVisual
   title={<><code>int()</code> schneidet Richtung null ab</>}
+  footer={<>Jeder Nachkommawert wird Richtung null abgeschnitten, nicht kaufmännisch gerundet.</>}
   description={<>Die violette Treppe ist <code>int(x)</code>, die graue Linie die Winkelhalbierende. Magentafarbene Punkte markieren <code>int(2.9)</code> und <code>int(-2.9)</code>.</>}
   scene={{
     space: "plane",
@@ -269,6 +276,8 @@ Vergleich die violette Treppe mit der grauen Linie <InlineMath math="y=x" />. Be
   }}
 />
 
+Da das Abschneiden immer zur Null hin wirkt, springen negative Werte wie `-2.9` aufwärts zu `-2`, während positive Werte wie `2.9` abwärts zu `2` gehen. Verwende `round()`, wenn gerundet werden soll.
+
 ## Zusammenfassungstabelle für Zahlendatentypen
 
 Die Tabelle sammelt die **drei Zahlentypen** mit Beispielen und einer kurzen Beschreibung, damit du einen Typ an einer Stelle nachschlägst.
@@ -278,3 +287,5 @@ Die Tabelle sammelt die **drei Zahlentypen** mit Beispielen und einer kurzen Bes
 | **Ganzzahl** | `int` | <InlineMath math="-2, -1, 0, 1, 2" /> und <InlineMath math="+1, +2, +3" /> | Ganze Zahlen, zur Verdeutlichung kann ein Unterstrich verwendet werden |
 | **Gleitkomma** | `float` | <InlineMath math="-1.2, 3.85, +7.01" /> und <InlineMath math="-.21, .01, 2." /> | Dezimalzahlen, unterstützt die wissenschaftliche Notation mit <InlineMath math="e" /> oder <InlineMath math="E" /> |
 | **Komplex** | `complex` | <InlineMath math="2 + 3j" /> und <InlineMath math="4.5 - 2.1j" /> | Komplexe Zahlen mit <InlineMath math="j" /> als imaginärer Einheit |
+
+> Wähle den Zahlentyp passend zur Aufgabe. Nimm `int` für exakte Zählungen, `float` für dezimale Messwerte und `complex`, sobald Gleichungen einen Imaginärteil tragen.

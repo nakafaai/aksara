@@ -45,8 +45,6 @@ print("Dtype:", float_array.dtype)  # Output: Dtype: float64`
   ]}
 />
 
-### Jenis Data Berangka Khusus
-
 NumPy memberi kawalan kepersisan yang terperinci melalui **jenis data berangka dalam pelbagai saiz**:
 
 | Kategori | Jenis Data | Penerangan | Julat Nilai |
@@ -98,8 +96,6 @@ print(a)
   ]}
 />
 
-### Pengesanan Jenis Data secara Automatik
-
 NumPy mengesan jenis data secara automatik berdasarkan **unsur yang diberikan**:
 
 <CodeBlock
@@ -140,7 +136,10 @@ Nombor dalam nama `dtype` ialah bilangan bit bagi setiap unsur, dan `itemsize` m
     { name: "complex128", value: 128 / 8 },
   ]}
   chartConfig={{ value: { label: "Bait bagi setiap unsur", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+  footer="Saiz memori per unsur berganda setiap kali lebar bit digandakan."
 />
+
+Memilih `float32` berbanding `float64` terus mengurangkan memori per unsur kepada separuh, manakala `complex128` memerlukan ruang dua kali ganda daripada `float64`.
 
 ## Atribut Tatasusunan NumPy
 
@@ -173,8 +172,6 @@ print("Bait yang digunakan unsur:", a.nbytes)  # Output: Bait yang digunakan uns
     }
   ]}
 />
-
-### Atribut Tatasusunan
 
 Tatasusunan melaporkan strukturnya sendiri melalui atribut. Jadual ini menyenaraikan atribut yang paling kerap kamu baca dan **nilai yang dipulangkan oleh setiap satunya** bagi tatasusunan <InlineMath math="2 \times 3" />.
 
@@ -244,7 +241,10 @@ Putar grid titik ini, yang mewakili `np.zeros((2, 3, 4))`. Ia ada dua lapisan se
     "axis-one": "paksi 1",
     "axis-two": "paksi 2",
   }}
+  footer="Bentuk (2, 3, 4) menyusun 2 lapisan, 3 baris, dan 4 lajur menjadi 24 unsur."
 />
+
+Urutan nombor dalam `shape` memetakan terus setiap paksi dari lapisan luar `axis 0` hingga lajur `axis 2`, jadi `size` sentiasa sama dengan hasil darab semua dimensi dalam `shape`.
 
 ## Penukaran dan Manipulasi Jenis Data
 
@@ -312,8 +312,6 @@ print("Peratus memori dijimatkan:", (memory_saved / large_array_int64.nbytes) * 
     }
   ]}
 />
-
-### Maklumat Terperinci Jenis Data
 
 Atribut `itemsize` melaporkan **bilangan bait yang digunakan oleh setiap unsur**, jadi kita boleh membandingkan kepersisan dan kos memori bagi jenis data yang berbeza.
 
@@ -392,7 +390,10 @@ for name, arr in arrays.items():
     "int-1": <code>0</code>,
     "int-2": <code>2</code>,
   }}
+  footer="astype(int) membuang bahagian pecahan dan menarik setiap nilai ke arah sifar."
 />
+
+Oleh sebab pemangkasan ke arah sifar berbeza daripada pembundaran, panggil `np.round()` atau `np.floor()` sebelum `astype(int)` apabila kamu mahukan pembundaran terdekat atau ke bawah.
 
 ## Penggunaan Praktikal Atribut Tatasusunan
 
@@ -538,3 +539,5 @@ for i, arr in enumerate(test_arrays):
     }
   ]}
 />
+
+> Sentiasa semak `shape` dan `dtype` pada data mentah supaya pemangkasan senyap atau penggunaan memori berlebihan dapat dikesan sebelum latihan model bermula.

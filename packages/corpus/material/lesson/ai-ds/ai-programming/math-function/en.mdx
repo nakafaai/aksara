@@ -13,15 +13,11 @@ Python <Highlight>stores much of its reusable code in modules</Highlight>. A mod
 
 An `import` loads a module when needed and binds a name through which your code can reach its public members. The standard library already supplies well-tested mathematical operations. Reusing them avoids mistakes from rewriting the formulas yourself.
 
-## The math Module for Mathematical Functions
-
 The `math` module provides **real-valued functions and constants**. It accepts compatible real numbers such as `int` and `float`, but does not accept complex values for operations such as `sqrt()`. Use `cmath` when the domain or result may be complex.
 
 ## How to Import the math Module
 
 Python offers several ways to import a module, and the choice affects **how each later call looks**. You can import the whole module, import selected names from it, or rename the module during the import.
-
-### Basic Import with Namespace
 
 The statement `import math` imports the module under the **`math` namespace**. Functions and constants are then accessed with names such as `math.sqrt` and `math.pi`.
 
@@ -44,8 +40,6 @@ print(math.pi)  # Output: 3.141592653589793
   ]}
 />
 
-### Import with Alias
-
 An alias binds the module to **another local name**. Use one only when it follows an established convention or resolves a genuine naming conflict. `math` is already short and explicit.
 
 <CodeBlock
@@ -64,8 +58,6 @@ print(m.pi)       # Output: 3.141592653589793
     }
   ]}
 />
-
-### Import All Functions
 
 This form imports every public name from `math` into the current namespace. It may be convenient in a disposable interactive session, but application code should avoid it.
 
@@ -88,8 +80,6 @@ print(pi)       # Output: 3.141592653589793
 
 `from math import *` places every public name from `math` in the current namespace. If one of those names is already in use, the value from `math` replaces it without an error. The code also stops showing which module supplied each name, and a later change to `math` can add new names to the importing module. An explicit import <Highlight>lists every dependency on the import line</Highlight>.
 
-### Import Specific Functions
-
 Import **only the functions the program uses**. The function name remains available without a module prefix, while the import line still records its source.
 
 <CodeBlock
@@ -110,8 +100,6 @@ print(sqrt(9))  # Output: 3.0
     }
   ]}
 />
-
-### Import with Function Alias
 
 An imported function can receive an alias to **resolve a name conflict** or follow an established local convention.
 
@@ -138,7 +126,7 @@ print(fac(5))  # Output: 120
 
 Python provides numeric built-ins such as `abs()` and `round()` **without an import**. They work across types through Python's numeric protocols. Each type can define the operations it supports.
 
-### Absolute Value Function
+### Magnitudes with abs
 
 For real numbers, `abs()` returns a nonnegative magnitude. For a complex number, it returns the **distance from the origin**.
 
@@ -159,7 +147,9 @@ print(abs(4 + 3j))  # Output: 5.0`
   ]}
 />
 
-The result for `4 + 3j` is <InlineMath math="5.0" /> because <InlineMath math="|4+3i|=\sqrt{4^2+3^2}=\sqrt{25}=5" />. Python writes the imaginary unit as `j`, while the mathematical formula conventionally uses <InlineMath math="i" />.
+The result for `4 + 3j` is <InlineMath math="5.0" /> because Python computes its modulus from the real and imaginary components. Python writes the imaginary unit as `j`, while the mathematical formula conventionally uses <InlineMath math="i" />.
+
+<BlockMath math="|4 + 3i| = \sqrt{4^2 + 3^2} = \sqrt{25} = 5" />
 
 ### Rounding Function
 
@@ -197,13 +187,16 @@ The built-in `round()` and the module functions `math.floor`, `math.ceil`, and `
     { name: "round", value: -2 },
   ]}
   chartConfig={{ value: { label: "Result", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  footer="For -2.5, floor drops to -3 while ceil, trunc, and round land on -2."
 />
+
+Three bars stop at `-2` while `floor` drops to `-3`, proving that negative rounding depends on the direction each function chooses when discarding the fractional part.
 
 ## Functions and Constants in the math Module
 
 Each `math` function **has a domain**. For example, `sqrt(x)` requires a nonnegative real input and logarithms require positive real inputs. A value outside the domain raises a `ValueError` instead of returning a number.
 
-### Square Root and Logarithm Functions
+### Numeric and Trigonometric Calls
 
 The example calls the square root and logarithm functions, and it shows how Python reports **an input outside the allowed domain**.
 
@@ -238,8 +231,6 @@ except ValueError as error:
   ]}
 />
 
-### Trigonometry Functions
-
 The trigonometry functions **expect radians**. The example converts an angle and calls the three primary functions.
 
 <CodeBlock
@@ -263,8 +254,6 @@ print(f"45 degrees = {angle_rad} radians")  # Output: 45 degrees = 0.78539816339
     }
   ]}
 />
-
-### Ceiling Floor and Factorial Functions
 
 Rounding up, rounding down, and factorial answer **different questions**. The example applies each function and prints the result.
 
@@ -348,7 +337,10 @@ Follow the violet curve `math.sqrt(x)` from the `math` module. It starts at `0` 
     "nine": "math.sqrt(9) = 3.0",
     "two": "math.sqrt(2)",
   }}
+  footer="math.sqrt(x) is defined only for x >= 0 and flattens as x grows."
 />
+
+The curve rises more gently to the right because jumping from `4` to `9` adds just `1` to the output, while the region left of zero stays empty because `math.sqrt` rejects negative inputs.
 
 The trigonometric functions in the `math` module take radians, so you write an angle with the constant `math.pi`. For the angle `math.pi / 3`, which is <InlineMath math="60^\circ" />, `math.cos` gives <InlineMath math="0.5" /> and `math.sin` gives <InlineMath math="\tfrac{\sqrt3}2\approx0.866" />.
 
@@ -376,7 +368,10 @@ The trigonometric functions in the `math` module take radians, so you write an a
     "cosine": <code>math.cos</code>,
     "sine": <code>math.sin</code>,
   }}
+  footer="At pi/3 radians, math.cos gives the horizontal leg and math.sin the vertical."
 />
+
+Projecting the angle `math.pi / 3` onto the horizontal and vertical axes yields `0.5` and roughly `0.866`, directly connecting radian inputs to unit-circle coordinates.
 
 ## Choosing the Right Import Method
 
@@ -439,3 +434,5 @@ print(f"Triangle area with sides 3, 4, 5: {area}")`
 />
 
 Clear numerical code makes three decisions explicit: which namespace owns an operation, **which input domain** the operation accepts, and how exceptional inputs are handled. Those decisions matter more than shortening a function name by a few characters.
+
+> Choosing explicit imports and checking input domains upfront keeps `math` calculations readable while preventing unexpected `ValueError` failures.

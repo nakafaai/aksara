@@ -17,7 +17,7 @@ Jika `a = 5`, penugasan `a = a + 1` mengikat nama `a` ke objek bernilai `6`. [Id
 
 ## Mengakses Atribut dan Method
 
-Akses atribut membaca **nilai melalui nama anggota objek**, sedangkan pemanggilan method menjalankan operasi. Secara umum, atribut juga dapat menghitung nilai saat dibaca. Kamu membaca atribut dengan `object.attribute` dan memanggil method dengan `object.method()`. Tanda kurung pada bentuk kedua itulah yang memberitahu Python untuk menjalankan method tersebut.
+Akses atribut membaca **nilai melalui nama anggota objek**, sedangkan pemanggilan method menjalankan operasi. Secara umum, atribut juga dapat menghitung nilai saat dibaca. Kamu membaca atribut dengan `object.attribute` dan memanggil method dengan `object.method()`. Tanda kurung pada bentuk kedua itulah yang memberitahu Python untuk menjalankan method itu.
 
 Bilangan kompleks memperlihatkan perbedaannya dengan jelas. Ekspresi `c.real` adalah data yang sudah disimpan Python di dalam `c`, dan akses atribut mengembalikan komponen riil itu. Pemanggilan `c.conjugate()` adalah pekerjaan yang Python lakukan saat itu juga, dan hasilnya adalah bilangan kompleks kedua yang membiarkan `c` tetap tidak berubah.
 
@@ -43,7 +43,7 @@ print(c.conjugate())  # Output: (2-3j)`
 
 ## Mengenali Tipe Numerik
 
-Python memilih tipe numerik dari literal yang kamu tulis, dan tipe itu menentukan atribut serta method yang dibawa nilainya. Bertanya lebih dulu kepada Python tentang class-nya membuat kamu tidak perlu menebak apakah sebuah operasi tersedia pada nilai tersebut.
+Python memilih tipe numerik dari literal yang kamu tulis, dan tipe itu menentukan atribut serta method yang dibawa nilainya. Bertanya lebih dulu kepada Python tentang class-nya membuat kamu tidak perlu menebak apakah sebuah operasi tersedia pada nilai itu.
 
 Fungsi `type()` mengembalikan <Highlight>class dari nilai</Highlight>, yaitu objek class, bukan string nama tipe. Ketiga literal di bawah ini terlihat mirip ketika kamu masukkan ke sebuah fungsi, tetapi `type()` melaporkan class yang berbeda untuk masing-masing.
 
@@ -72,11 +72,9 @@ print(type(2+3j))      # Output: <class 'complex'>`
 
 Bilangan kompleks menyimpan dua komponennya secara terpisah, dan Python menyediakan keduanya sebagai atribut sehingga kamu tidak perlu membongkarnya sendiri. Atribut `real` menyimpan komponen riil, atribut `imag` menyimpan **koefisien** satuan imajiner, dan keduanya kembali sebagai <Highlight>float meskipun kamu menulis bilangan bulat</Highlight>.
 
-Setiap atribut mengembalikan satu komponen dari bilangan tersebut. Membandingkan bilangan riil murni, bilangan imajiner murni, dan bilangan campuran memperlihatkan komponen mana yang menjadi milik atribut mana.
+Setiap atribut mengembalikan satu komponen dari bilangan itu. Membandingkan bilangan riil murni, bilangan imajiner murni, dan bilangan campuran memperlihatkan komponen mana yang menjadi milik atribut mana.
 
-### Atribut real
-
-Atribut `real` mengembalikan **komponen riil dari bilangan** tersebut. Membacanya tidak pernah mengubah bilangan itu, sehingga kamu bisa memeriksa nilai yang sama sebanyak yang kamu butuhkan.
+Atribut `real` mengembalikan **komponen riil dari bilangan** itu. Membacanya tidak pernah mengubah bilangan itu, sehingga kamu bisa memeriksa nilai yang sama sebanyak yang kamu butuhkan.
 
 <CodeBlock
   data={[
@@ -100,9 +98,7 @@ print(f"Bagian riil dari {z3} adalah {z3.real}")
   ]}
 />
 
-### Atribut imag
-
-Atribut `imag` mengembalikan koefisien <InlineMath math="i" />, dan Python menulis satuan itu sebagai `j` di dalam literal bilangan kompleks. **Tanda milik koefisien** tersebut, sehingga suku yang dikurangi kembali sebagai bilangan negatif.
+Atribut `imag` mengembalikan koefisien <InlineMath math="i" />, dan Python menulis satuan itu sebagai `j` di dalam literal bilangan kompleks. **Tanda milik koefisien** itu, sehingga suku yang dikurangi kembali sebagai bilangan negatif.
 
 <CodeBlock
   data={[
@@ -128,7 +124,9 @@ print(f"Bagian imajiner dari {z3} adalah {z3.imag}")
 
 Hasil untuk `z2` adalah <InlineMath math="-4.0" />, karena koefisiennya membawa tanda minus yang berdiri di depan satuan imajiner. Nilai `z1` tetap positif, dan bilangan imajiner murni `z3` melaporkan <InlineMath math="9.0" /> dengan komponen riil <InlineMath math="0.0" />.
 
-Bagian real dan imajiner hasil kali bisa kamu baca langsung. Untuk `z1 = 1+2j` dan `z2 = 3-1j`, `(z1 * z2).real` adalah <InlineMath math="1\cdot3-2\cdot(-1)=5" /> dan `(z1 * z2).imag` adalah <InlineMath math="1\cdot(-1)+2\cdot3=5" />. Panjangnya juga ikut dikalikan: `abs(z1) * abs(z2)` sama dengan <InlineMath math="\sqrt5\cdot\sqrt{10}=\sqrt{50}" />.
+Bagian real dan imajiner hasil kali bisa kamu baca langsung. Untuk `z1 = 1+2j` dan `z2 = 3-1j`, kedua komponen `(z1 * z2)` sama-sama bernilai <InlineMath math="5" />, sementara panjang hasil kalinya `abs(z1) * abs(z2)` menjadi <InlineMath math="\sqrt{50}" />.
+
+<BlockMath math="\begin{aligned}(z_1 z_2).\text{real} &= 1\cdot 3 - 2\cdot(-1) = 5 \\ (z_1 z_2).\text{imag} &= 1\cdot(-1) + 2\cdot 3 = 5 \\ |z_1|\cdot|z_2| &= \sqrt{5}\cdot\sqrt{10} = \sqrt{50}\end{aligned}" />
 
 <MathVisual
   title={<>Bagian <code>z1 * z2</code> untuk <code>1+2j</code> dan <code>3-1j</code></>}
@@ -153,7 +151,10 @@ Bagian real dan imajiner hasil kali bisa kamu baca langsung. Untuk `z1 = 1+2j` d
     "second": <code>z2 = 3-1j</code>,
     "product": <code>z1 * z2 = (5+5j)</code>,
   }}
+  footer="Hasil kali z1 * z2 jatuh di (5, 5) dengan panjang akar 50."
 />
+
+Ruas magenta memanjang dan berputar hingga berhenti di `(5, 5)`, tepat sesuai komponen `real` dan `imag` yang dikembalikan perkalian `z1 * z2` pada bidang kompleks.
 
 ## Method pada Bilangan Kompleks
 
@@ -189,7 +190,7 @@ Hasil kedua memperlihatkan aturan itu pada koefisien negatif. Bagian imajiner `z
 
 ### Menghitung Ukuran Bilangan Kompleks
 
-Identitas <InlineMath math="z\overline{z}=|z|^2" /> **menghubungkan bilangan kompleks dengan modulusnya**, dan contoh di bawah ini menjalankan identitas tersebut dalam kode. Pada kode Python sehari-hari kamu cukup memanggil `abs(z)` untuk modulus, jadi bacalah contoh ini sebagai alasan mengapa fungsi bawaan itu bekerja.
+Identitas <InlineMath math="z\overline{z}=|z|^2" /> **menghubungkan bilangan kompleks dengan modulusnya**, dan contoh di bawah ini menjalankan identitas itu dalam kode. Pada kode Python sehari-hari kamu cukup memanggil `abs(z)` untuk modulus, jadi bacalah contoh ini sebagai alasan mengapa fungsi bawaan itu bekerja.
 
 <CodeBlock
   data={[
@@ -252,7 +253,10 @@ Gambar `z = 3+4j` sebagai titik di bidang kompleks dan perhatikan apa yang dibac
     "imag": "z.imag = 4.0",
     "real": "z.real = 3.0",
   }}
+  footer="z dan z.conjugate() berbagi lingkaran berjari-jari abs(z) = 5.0."
 />
+
+Kedua titik berada tepat pada lingkaran berjari-jari `5.0` karena `z.conjugate()` hanya membalik tanda `z.imag` sementara jaraknya ke titik asal tetap sama.
 
 ## Method pada Bilangan Bulat dan Float
 
@@ -266,8 +270,6 @@ Bilangan bulat dan float menyediakan method yang **sesuai dengan representasinya
 | `as_integer_ratio()` | `float` | Pecahan tepat apa yang sama dengan nilai tersimpan |
 
 Pada Python modern, `int` juga memiliki `is_integer()` dan `as_integer_ratio()`: `(42).is_integer()` menghasilkan `True`, sedangkan `(42).as_integer_ratio()` menghasilkan `(42, 1)`. Tabel ini memilih tipe yang dipakai dalam contoh, bukan membatasi semua pemilik method.
-
-### Method Bilangan Bulat
 
 <CodeBlock
   data={[
@@ -292,8 +294,6 @@ print(f"Representasi byte dari {n}: {byte_representation}")
 />
 
 `bit_length()` menghitung bit yang dibutuhkan nilai absolut bilangan bulat, dan perhitungan itu **mengabaikan tanda serta angka nol di depan**. Pada contoh ini, `to_bytes()` diberi panjang keluaran dan urutan byte secara eksplisit, sehingga hasil dua byte di atas dibuka dengan satu byte nol untuk memenuhi lebar yang kamu minta.
-
-### Method Float
 
 <CodeBlock
   data={[
@@ -337,7 +337,10 @@ Metode `bit_length()` menghitung banyak digit biner yang dibutuhkan sebuah bilan
     { name: "256", value: Math.floor(Math.log2(256)) + 1 },
   ]}
   chartConfig={{ value: { label: "Banyak bit", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Jumlah bit bertambah satu tepat pada setiap pangkat dua seperti 2, 4, 8, dan 256."
 />
+
+Tinggi batang melompat persis di `2`, `4`, `8`, dan `256` karena setiap pangkat dua membuka satu digit biner baru untuk menyimpan nilai yang lebih besar.
 
 ## Memeriksa dan Menghitung dengan Objek Numerik
 
@@ -407,4 +410,8 @@ complex_operations(z1, z2)`
   ]}
 />
 
-Dengan masukan tersebut, `z1 + z2` bernilai <InlineMath math="3+1j" />, karena **bagian riil dan bagian imajiner dijumlahkan secara terpisah**. Ekspresi `z1 * z2.conjugate()` mengalikan <InlineMath math="2+3j" /> dengan <InlineMath math="1+2j" /> dan mengembalikan <InlineMath math="-4+7j" />.
+Dengan masukan itu, `z1 + z2` bernilai <InlineMath math="3+1j" />, karena **bagian riil dan bagian imajiner dijumlahkan secara terpisah**. Ekspresi `z1 * z2.conjugate()` mengalikan <InlineMath math="2+3j" /> dengan <InlineMath math="1+2j" /> dan mengembalikan <InlineMath math="-4+7j" />.
+
+Kenali tipe numeriknya lebih dulu, lalu periksa apakah operasi mengembalikan komponen, representasi, atau nilai baru, karena tipe kembalian itulah yang menentukan cara ekspresi berikutnya memakai hasilnya.
+
+> Atribut membaca data yang sudah menempel pada objek bilangan tanpa tanda kurung, sedangkan method dipanggil dengan tanda kurung untuk menghitung dan mengembalikan hasil baru.

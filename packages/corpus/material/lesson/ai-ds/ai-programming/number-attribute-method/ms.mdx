@@ -17,7 +17,7 @@ Jika `a = 5`, umpukan `a = a + 1` mengikat nama `a` kepada objek yang nilainya `
 
 ## Mengakses Atribut dan Kaedah
 
-Akses atribut membaca **nilai melalui ahli objek yang bernama**, manakala panggilan kaedah menjalankan satu operasi. Secara umum, atribut juga boleh mengira nilai semasa ia diakses. Kamu membaca atribut dengan `object.attribute` dan memanggil kaedah dengan `object.method()`. Tanda kurung dalam bentuk kedua itulah yang memberitahu Python supaya menjalankan kaedah tersebut.
+Akses atribut membaca **nilai melalui ahli objek yang bernama**, manakala panggilan kaedah menjalankan satu operasi. Secara umum, atribut juga boleh mengira nilai semasa ia diakses. Kamu membaca atribut dengan `object.attribute` dan memanggil kaedah dengan `object.method()`. Tanda kurung dalam bentuk kedua itulah yang memberitahu Python supaya menjalankan kaedah itu.
 
 Nombor kompleks menunjukkan perbezaan ini dengan jelas. Ungkapan `c.real` ialah data yang sudah Python simpan di dalam `c`, dan akses atribut memulangkan komponen nyata itu. Panggilan `c.conjugate()` pula ialah kerja yang Python lakukan pada saat itu, dan hasilnya ialah nombor kompleks kedua, manakala `c` tidak berubah langsung.
 
@@ -43,7 +43,7 @@ print(c.conjugate())  # Output: (2-3j)`
 
 ## Mengenal Pasti Jenis Berangka
 
-Python memilih jenis berangka berdasarkan literal yang kamu tulis, dan jenis itu menentukan atribut dan kaedah yang dibawa oleh nilai tersebut. Jika kamu bertanya kepada Python tentang kelasnya dahulu sebelum memanggil kaedah khusus sesuatu jenis, kamu tidak perlu meneka sama ada operasi itu wujud pada nilai tersebut.
+Python memilih jenis berangka berdasarkan literal yang kamu tulis, dan jenis itu menentukan atribut dan kaedah yang dibawa oleh nilai itu. Jika kamu bertanya kepada Python tentang kelasnya dahulu sebelum memanggil kaedah khusus sesuatu jenis, kamu tidak perlu meneka sama ada operasi itu wujud pada nilai itu.
 
 Fungsi `type()` memulangkan <Highlight>kelas bagi nilai itu</Highlight>, iaitu objek kelas, bukan rentetan yang menamakan jenisnya. Tiga literal di bawah nampak serupa apabila kamu menghantarnya kepada fungsi, tetapi `type()` melaporkan kelas yang berbeza bagi setiap satu.
 
@@ -74,8 +74,6 @@ Nombor kompleks menyimpan dua komponen secara berasingan, dan Python mendedahkan
 
 Setiap atribut memulangkan satu komponen nombor itu. Apabila kamu membandingkan nombor nyata tulen, nombor khayalan tulen dan nombor campuran, kamu boleh nampak komponen mana milik atribut mana.
 
-### Atribut real
-
 Atribut `real` memulangkan **komponen nyata bagi nombor itu**. Membacanya tidak pernah mengubah nombor itu, jadi kamu boleh memeriksa nilai yang sama seberapa kerap yang kamu perlukan.
 
 <CodeBlock
@@ -99,8 +97,6 @@ print(f"Bahagian nyata bagi {z3} ialah {z3.real}")
     }
   ]}
 />
-
-### Atribut imag
 
 Atribut `imag` memulangkan pekali bagi <InlineMath math="i" />. Python menulis unit itu sebagai `j` di dalam literal kompleks. **Tanda itu milik pekali**, jadi sebutan yang ditolak akan dipulangkan sebagai nombor negatif.
 
@@ -128,7 +124,9 @@ print(f"Bahagian khayalan bagi {z3} ialah {z3.imag}")
 
 Hasil bagi `z2` ialah <InlineMath math="-4.0" />, kerana pekali itu membawa tanda tolak yang berada di hadapan unit khayalan. Nilai bagi `z1` kekal positif, dan nombor khayalan tulen `z3` melaporkan <InlineMath math="9.0" /> dengan komponen nyata <InlineMath math="0.0" />.
 
-Kamu boleh membaca bahagian nyata dan bahagian khayalan bagi suatu hasil darab secara terus. Bagi `z1 = 1+2j` dan `z2 = 3-1j`, `(z1 * z2).real` ialah <InlineMath math="1\cdot3-2\cdot(-1)=5" /> dan `(z1 * z2).imag` ialah <InlineMath math="1\cdot(-1)+2\cdot3=5" />. Panjangnya juga didarab: `abs(z1) * abs(z2)` sama dengan <InlineMath math="\sqrt5\cdot\sqrt{10}=\sqrt{50}" />.
+Kamu boleh membaca bahagian nyata dan bahagian khayalan bagi suatu hasil darab secara terus. Bagi `z1 = 1+2j` dan `z2 = 3-1j`, kedua-dua komponen `z1 * z2` bernilai <InlineMath math="5" />, manakala panjang hasil darabnya `abs(z1) * abs(z2)` ialah <InlineMath math="\sqrt{50}" />.
+
+<BlockMath math="\begin{aligned}(z_1 z_2).\text{real} &= 1\cdot 3 - 2\cdot(-1) = 5 \\ (z_1 z_2).\text{imag} &= 1\cdot(-1) + 2\cdot 3 = 5 \\ |z_1|\cdot|z_2| &= \sqrt{5}\cdot\sqrt{10} = \sqrt{50}\end{aligned}" />
 
 <MathVisual
   title={<>Bahagian <code>z1 * z2</code> bagi <code>1+2j</code> dan <code>3-1j</code></>}
@@ -153,7 +151,10 @@ Kamu boleh membaca bahagian nyata dan bahagian khayalan bagi suatu hasil darab s
     "second": <code>z2 = 3-1j</code>,
     "product": <code>z1 * z2 = (5+5j)</code>,
   }}
+  footer="Hasil darab z1 * z2 berhenti pada (5, 5) dengan panjang punca 50."
 />
+
+Segmen magenta memanjang dan berputar terus ke `(5, 5)`, sepadan dengan atribut `real` dan `imag` yang dipulangkan Python untuk `z1 * z2` pada satah kompleks.
 
 ## Kaedah pada Nombor Kompleks
 
@@ -161,7 +162,7 @@ Nombor kompleks juga membawa kaedahnya sendiri, dan kaedah di bawah meliputi ope
 
 ### Kaedah Konjugat
 
-Bagi <InlineMath math="z=a+bi" />, `conjugate()` memulangkan <InlineMath math="\overline{z}=a-bi" />. Bahagian nyata mengekalkan nilainya dan <Highlight>hanya bahagian khayalan yang bertukar tanda</Highlight>, jadi konjugat itu ialah imej cermin nombor tersebut merentasi paksi nyata.
+Bagi <InlineMath math="z=a+bi" />, `conjugate()` memulangkan <InlineMath math="\overline{z}=a-bi" />. Bahagian nyata mengekalkan nilainya dan <Highlight>hanya bahagian khayalan yang bertukar tanda</Highlight>, jadi konjugat itu ialah imej cermin nombor itu merentasi paksi nyata.
 
 <CodeBlock
   data={[
@@ -252,7 +253,10 @@ Lukis `z = 3+4j` sebagai satu titik pada satah kompleks dan perhatikan apa yang 
     "imag": "z.imag = 4.0",
     "real": "z.real = 3.0",
   }}
+  footer="z dan z.conjugate() berkongsi bulatan berjejari abs(z) = 5.0."
 />
+
+Kedua-dua titik terletak pada bulatan berjejari `5.0` kerana `z.conjugate()` hanya menukar tanda `z.imag` manakala jaraknya dari asalan kekal sama.
 
 ## Kaedah pada Integer dan Float
 
@@ -266,8 +270,6 @@ Integer dan float mendedahkan kaedah yang sepadan dengan **perwakilan masing-mas
 | `as_integer_ratio()` | `float` | Pecahan tepat yang manakah sama dengan nilai yang disimpan |
 
 Python moden juga memberi `int` kaedah `is_integer()` dan `as_integer_ratio()`: `(42).is_integer()` memulangkan `True`, dan `(42).as_integer_ratio()` memulangkan `(42, 1)`. Jadual itu hanya memilih jenis yang digunakan dalam contoh-contoh ini, bukan menyenaraikan setiap jenis yang memiliki sesuatu kaedah.
-
-### Nombor Integer
 
 <CodeBlock
   data={[
@@ -292,8 +294,6 @@ print(f"Perwakilan bait bagi {n}: {byte_representation}")
 />
 
 `bit_length()` mengira bit yang diperlukan untuk nilai mutlak integer itu, **tidak termasuk tanda dan sifar di hadapannya**. Di sini, `to_bytes()` menerima panjang output dan susunan bait yang dinyatakan dengan jelas, jadi hasil dua bait di atas bermula dengan bait sifar.
-
-### Nombor Titik Apungan
 
 <CodeBlock
   data={[
@@ -337,7 +337,10 @@ Kaedah `bit_length()` mengira bilangan digit binari yang diperlukan oleh integer
     { name: "256", value: Math.floor(Math.log2(256)) + 1 },
   ]}
   chartConfig={{ value: { label: "Bilangan bit", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Bilangan bit bertambah satu tepat pada setiap kuasa dua seperti 2, 4, 8 dan 256."
 />
+
+Ketinggian palang melonjak tepat pada `2`, `4`, `8` dan `256` kerana setiap kuasa dua membuka satu digit binari baharu bagi menampung nilai yang lebih besar.
 
 ## Mengesahkan dan Mengira dengan Objek Berangka
 
@@ -409,4 +412,6 @@ complex_operations(z1, z2)`
 
 Dengan input itu, `z1 + z2` ialah <InlineMath math="3+1j" />, kerana **bahagian nyata dan bahagian khayalan ditambah secara berasingan**. Ungkapan `z1 * z2.conjugate()` mendarab <InlineMath math="2+3j" /> dengan <InlineMath math="1+2j" /> dan memulangkan <InlineMath math="-4+7j" />.
 
-Kenal pasti jenis berangka dahulu, kemudian semak sama ada sesuatu operasi memulangkan komponen, perwakilan atau nilai baharu, kerana jenis pulangan itulah yang menentukan cara ungkapan seterusnya boleh menggunakan hasil tersebut.
+Kenal pasti jenis berangka dahulu, kemudian semak sama ada sesuatu operasi memulangkan komponen, perwakilan atau nilai baharu, kerana jenis pulangan itulah yang menentukan cara ungkapan seterusnya boleh menggunakan hasil itu.
+
+> Atribut membaca data yang sedia melekat pada objek nombor tanpa tanda kurung, manakala kaedah dipanggil dengan tanda kurung untuk mengira dan memulangkan hasil baharu.

@@ -42,6 +42,7 @@ Dalam tatatanda saintifik, nombor selepas `e` menganjakkan titik perpuluhan. `3.
 
 <BarChart
   title={<><InlineMath math="\log_{10}" /> bagi empat literal tatatanda saintifik</>}
+  footer={<>Nilai eksponen selepas e terus menandakan tertib magnitud setiap nombor.</>}
   description={<>Setiap palang ialah <InlineMath math="\log_{10}" /> bagi literal yang tertulis di bawahnya. Palang negatif mewakili nombor yang kurang daripada <InlineMath math="1" />, seperti <code>9.99e-05</code>, yang palangnya hampir tepat <InlineMath math="-4" />.</>}
   yAxisLabel="Kuasa sepuluh"
   data={[
@@ -52,6 +53,8 @@ Dalam tatatanda saintifik, nombor selepas `e` menganjakkan titik perpuluhan. `3.
   ]}
   chartConfig={{ value: { label: "Kuasa sepuluh", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Tanda eksponen selepas `e` terus menunjukkan skalanya: eksponen positif menandakan nombor besar melebihi satu, manakala eksponen negatif menandakan pecahan kecil yang menghampiri sifar.
 
 ## Jenis Data Nombor
 
@@ -112,6 +115,7 @@ Ketiga-tiga jenis nombor ini berada di tempat yang berbeza. `int` hanya duduk pa
 
 <MathVisual
   title={<>Tempat <code>int</code>, <code>float</code> dan <code>complex</code> berada</>}
+  footer={<>Nilai int dan float berada pada garis nombor, manakala complex naik ke satah.</>}
   description={<>Titik ungu ialah nilai <code>int</code> dari <InlineMath math="-3" /> hingga <InlineMath math="3" /> pada garis kelabu. Titik hijau kebiruan ialah nilai <code>float</code> <code>2.5</code> dan <code>-0.75</code>. Titik magenta <code>1+2j</code> berada dalam satah, dengan bahagian nyata <InlineMath math="1" /> dan bahagian khayalan <InlineMath math="2" />.</>}
   scene={{
     space: "plane",
@@ -142,6 +146,8 @@ Ketiga-tiga jenis nombor ini berada di tempat yang berbeza. `int` hanya duduk pa
     "complex": <code>1+2j</code>,
   }}
 />
+
+Apabila sesuatu nombor ada komponen `j` bukan sifar, kedudukannya meninggalkan garis nombor satu dimensi dan memerlukan sepasang koordinat pada satah kompleks.
 
 ## Fungsi type untuk Menyemak Jenis Data
 
@@ -237,6 +243,7 @@ Bandingkan tangga ungu dengan garis kelabu <InlineMath math="y=x" />. Untuk nomb
 
 <MathVisual
   title={<><code>int()</code> memangkas ke arah sifar</>}
+  footer={<>Semua nilai pecahan dipangkas menuju sifar, bukan dibundarkan kepada nombor terdekat.</>}
   description={<>Tangga ungu ialah <code>int(x)</code>, dan garis kelabu ialah garis identiti. Titik magenta menandakan <code>int(2.9)</code> dan <code>int(-2.9)</code>.</>}
   scene={{
     space: "plane",
@@ -269,6 +276,8 @@ Bandingkan tangga ungu dengan garis kelabu <InlineMath math="y=x" />. Untuk nomb
   }}
 />
 
+Kerana pemangkasan sentiasa bergerak ke sifar, nombor negatif seperti `-2.9` naik ke `-2` manakala nombor positif seperti `2.9` turun ke `2`. Gunakan `round()` jika kamu memerlukan pembundaran.
+
 ## Jadual Ringkasan Jenis Data Nombor
 
 Jadual ini mengumpulkan **tiga jenis nombor** bersama contoh dan penerangan ringkas, jadi kamu boleh menyemak sesuatu jenis di satu tempat sahaja.
@@ -278,3 +287,5 @@ Jadual ini mengumpulkan **tiga jenis nombor** bersama contoh dan penerangan ring
 | **Integer** | `int` | <InlineMath math="-2, -1, 0, 1, 2" /> dan <InlineMath math="+1, +2, +3" /> | Nombor bulat, boleh guna garis bawah supaya lebih jelas |
 | **Titik Apungan** | `float` | <InlineMath math="-1.2, 3.85, +7.01" /> dan <InlineMath math="-.21, .01, 2." /> | Nombor perpuluhan, menyokong tatatanda saintifik dengan <InlineMath math="e" /> atau <InlineMath math="E" /> |
 | **Kompleks** | `complex` | <InlineMath math="2 + 3j" /> dan <InlineMath math="4.5 - 2.1j" /> | Nombor kompleks dengan <InlineMath math="j" /> sebagai unit khayalan |
+
+> Pilih jenis nombor mengikut keperluan pengiraan. Gunakan `int` untuk bilangan tepat, `float` untuk ukuran perpuluhan, dan `complex` apabila persamaan melibatkan komponen khayalan.

@@ -11,7 +11,9 @@ export const metadata = {
 
 Syntactic sugar adalah <Highlight>notasi ringkas</Highlight> untuk perilaku yang juga dapat ditulis secara lebih eksplisit. Notasi ini dapat mengurangi bagian yang berulang, tetapi sintaks yang lebih pendek hanya berguna jika pembaca tetap memahami maksud kode.
 
-Python menyediakan beberapa bentuk ringkas untuk pola yang umum. Bentuk tersebut tidak otomatis membuat program berjalan lebih cepat dan tidak selalu identik dalam setiap detail. Gunakan bentuk ringkas ketika maksud kode menjadi lebih jelas.
+Python menyediakan beberapa bentuk ringkas untuk pola yang umum. Bentuk ini tidak otomatis membuat program berjalan lebih cepat dan tidak selalu identik dalam setiap detail. Gunakan bentuk ringkas ketika maksud kode menjadi lebih jelas.
+
+> Kode yang paling baik bukan yang paling pendek, melainkan yang paling cepat dipahami rekan satu tim saat dibaca ulang enam bulan kemudian.
 
 ## List Comprehension
 
@@ -100,6 +102,7 @@ Jalankan list comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` dengan 
 
 <MathVisual
   title={<>Apa yang dipilih <code>[x**2 for x in range(-3, 4) if x % 2 == 0]</code></>}
+  footer={<>Kondisi if menyaring titik genap sebelum ekspresi kuadrat dimasukkan ke list.</>}
   description={<>Kurva abu-abu adalah <InlineMath math="y=x^2" />. Titik magenta adalah elemen yang lolos syarat <code>if</code>, titik hijau toska adalah yang dilewati.</>}
   scene={{
     space: "plane",
@@ -138,11 +141,13 @@ Jalankan list comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` dengan 
   }}
 />
 
+Urutan evaluasi dari belakang ke depan membuat semua input ganjil tersingkir lebih dulu, sehingga hanya tiga nilai genap yang masuk ke list akhir.
+
 ## Lambda Functions
 
 Ekspresi lambda membuat **objek fungsi** tanpa statement `def`. Gunakan lambda untuk fungsi kecil yang langsung diberikan sebagai argumen.
 
-Isi fungsi `lambda` hanya boleh berupa satu ekspresi, dan hasil ekspresi itu menjadi return value. Fungsi tersebut boleh memanggil fungsi lain seperti `print()`, tetapi tidak dapat memuat statement seperti `return`, assignment biasa, `for`, atau `while`. Fungsi `lambda` dapat disimpan dalam variabel, tetapi `def` bernama biasanya lebih jelas jika fungsi akan digunakan kembali.
+Isi fungsi `lambda` hanya boleh berupa satu ekspresi, dan hasil ekspresi itu menjadi return value. Fungsi ini boleh memanggil fungsi lain seperti `print()`, tetapi tidak dapat memuat statement seperti `return`, assignment biasa, `for`, atau `while`. Fungsi `lambda` dapat disimpan dalam variabel, tetapi `def` bernama biasanya lebih jelas jika fungsi akan digunakan kembali.
 
 ### Cara Menggunakan Lambda
 
@@ -204,6 +209,7 @@ print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
 
 <MathVisual
   title={<><code>lambda x: x * 2</code> untuk <code>x</code> dari <InlineMath math="-3" /> sampai <InlineMath math="3" /></>}
+  footer={<>Setiap panggilan lambda memetakan x ke 2x tepat di garis lurus yang sama.</>}
   description={<>Garis ungu adalah <InlineMath math="y=2x" />. Titik magenta adalah tujuh panggilan <code>f(x)</code>, dari <InlineMath math="f(-3)=-6" /> sampai <InlineMath math="f(3)=6" />.</>}
   scene={{
     space: "plane",
@@ -228,9 +234,11 @@ print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
   }}
 />
 
+Objek fungsi dari `lambda` bekerja identik dengan fungsi `def` biasa, hanya ditulis ringkas untuk satu ekspresi pemetaan.
+
 ## Fitur Syntactic Sugar Lainnya
 
-Python memiliki sintaks ringkas lain untuk operasi yang umum. Bentuk tersebut dapat meningkatkan keterbacaan, tetapi **tidak menjamin performa runtime yang lebih baik**. Periksa kesetaraan perilaku sebelum mengganti bentuk panjang, terutama ketika operasi dapat mengubah objek.
+Python memiliki sintaks ringkas lain untuk operasi yang umum. Bentuk ini dapat meningkatkan keterbacaan, tetapi **tidak menjamin performa runtime yang lebih baik**. Periksa kesetaraan perilaku sebelum mengganti bentuk panjang, terutama ketika operasi dapat mengubah objek.
 
 ### Assignment Operators
 
@@ -317,6 +325,7 @@ Operator penugasan gabungan menghitung dengan nilai lama lalu menyimpan hasilnya
 
 <BarChart
   title={<>Nilai <code>x</code> setelah setiap penugasan gabungan</>}
+  footer={<>Setiap operator gabungan membaca hasil langkah sebelumnya lalu menimpa x.</>}
   description={<>Setiap batang adalah <code>x</code> setelah operator yang tertulis di bawahnya, dengan operan <InlineMath math="5" />, <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="5" />, dan <InlineMath math="2" /> secara berurutan.</>}
   yAxisLabel="Nilai"
   data={[
@@ -329,6 +338,8 @@ Operator penugasan gabungan menghitung dengan nilai lama lalu menyimpan hasilnya
   ]}
   chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+Urutan operator gabungan mengubah nilai `x` secara berantai dari satu langkah ke langkah berikutnya, sehingga menukar urutan dua baris saja akan menghasilkan nilai akhir yang berbeda.
 
 ## Perbandingan Sintaks
 

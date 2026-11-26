@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Pemformatan String",
-    description: "Cara memakai format(), f-string, lebar kolom, perataan, presisi angka, tanda, dan penanganan error saat membentuk teks Python.",
+    description: "Cara memakai method format, f-string, lebar kolom, perataan, presisi angka, tanda, dan penanganan error saat membentuk teks Python.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-09-18",
     dateModified: "2026-09-19",
@@ -49,6 +49,7 @@ Perataan menempatkan nilai di **kiri, kanan, atau tengah** bidang, sedangkan kar
 
 <Mermaid
   title={<>Lebar Format Menentukan Posisi Teks</>}
+  footer="Tanda <, >, dan ^ menempatkan teks di kiri, kanan, atau tengah bidang tetap."
   description={<>Bandingkan perataan kiri, kanan, dan tengah untuk string yang sama di dalam bidang berlebar tetap.</>}
   chart={`
     flowchart TD
@@ -63,6 +64,8 @@ Perataan menempatkan nilai di **kiri, kanan, atau tengah** bidang, sedangkan kar
         E --> H["'      xxx      '"]
   `}
 />
+
+Ketiga simbol perataan itu dirangkum bersama perilaku bawaannya pada tabel berikut:
 
 | Simbol | Nama | Perilaku | Pilihan bawaan untuk |
 |--------|------|----------|---------------|
@@ -101,6 +104,7 @@ Lebar <InlineMath math="15" /> menyisakan <InlineMath math="15-3=12" /> kolom un
 
 <MathVisual
   title={<><code>'xxx'</code> dalam lebar <InlineMath math="15" /> dengan tiga perataan</>}
+  footer={<>Sisa 12 kolom di sekitar xxx digeser ke kanan, kiri, atau dibagi rata dua sisi.</>}
   description={<>Setiap baris adalah <InlineMath math="15" /> kolom. Persegi panjang ungu adalah <code>'xxx'</code> dan persegi panjang abu-abu adalah pengisi. Dari atas ke bawah: rata kiri, rata kanan, dan rata tengah.</>}
   scene={{
     space: "plane",
@@ -118,12 +122,15 @@ Lebar <InlineMath math="15" /> menyisakan <InlineMath math="15-3=12" /> kolom un
   }}
 />
 
+Total lebar ketiga baris tetap tepat lima belas kolom, dan hanya distribusi dua belas kolom pengisi di sekitar teks yang berubah.
+
 ## Cara Merujuk Argumen
 
 Replacement field memilih **nilai yang akan dimasukkan ke teks**. Pakai indeks untuk memilih argumen posisi, nama untuk memilih argumen kata kunci, atau penomoran otomatis untuk mengambil argumen posisi secara berurutan.
 
 <Mermaid
   title={<>Placeholder Memilih Nilai dari Argumen</>}
+  footer={<>Placeholder bisa memilih argumen lewat nomor indeks, nama kunci, atau urutan otomatis.</>}
   description={<>Lihat bagaimana referensi posisi, nama, dan indeks memilih nilai untuk setiap placeholder format.</>}
   chart={`
     flowchart TD
@@ -194,8 +201,11 @@ Arti presisi bergantung pada tipe penyajian. Untuk `f` dan `e`, presisi menentuk
 
 ### Opsi Tanda
 
+Selain jumlah digit, kamu bisa mengontrol kemunculan tanda di depan angka agar kolom nilai positif dan negatif tetap sejajar.
+
 <Mermaid
   title={<>Tanda yang Muncul pada Angka</>}
+  footer={<>Opsi tanda +, -, dan spasi mengatur penampilan simbol di depan angka positif.</>}
   description={<>Bandingkan tanda plus, minus, dan spasi agar output angka positif dan negatif terbaca konsisten.</>}
   chart={`
     flowchart TD
@@ -249,6 +259,7 @@ Spesifikasi `.1f` menampilkan setiap bilangan dengan satu angka desimal, jadi se
 
 <MathVisual
   title={<>Presisi <code>.1f</code> sebagai tangga pembulatan</>}
+  footer={<>Format .1f memetakan tiap rentang selebar 0.1 ke satu tampilan desimal yang sama.</>}
   description={<>Tangga ungu adalah nilai yang tampil dengan <code>.1f</code> untuk masukan dari nol sampai satu, garis abu-abu adalah garis identitas.</>}
   scene={{
     space: "plane",
@@ -283,6 +294,7 @@ Setiap digit presisi tambahan memperkecil galat pembulatan kira-kira sepuluh kal
 
 <BarChart
   title={<>Galat pembulatan <code>math.pi</code> untuk presisi <InlineMath math="0" /> sampai <InlineMath math="4" /></>}
+  footer={<>Setiap penambahan satu angka desimal mengecilkan galat tampilan sekitar sepuluh kali.</>}
   description={<>Setiap batang adalah selisih antara <InlineMath math="\pi" /> dan nilai yang tampil dengan banyak digit desimal yang tertulis di bawahnya.</>}
   yAxisLabel="Galat pembulatan"
   data={[
@@ -294,6 +306,8 @@ Setiap digit presisi tambahan memperkecil galat pembulatan kira-kira sepuluh kal
   ]}
   chartConfig={{ value: { label: "Galat pembulatan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+Pilih jumlah angka desimal secukupnya agar tabel tetap ringkas tanpa kehilangan ketelitian yang dibutuhkan perhitunganmu.
 
 ## F Strings dan Template Dinamis
 
@@ -335,8 +349,11 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
 
 ### Membaca Spesifikasi Format
 
+Semua opsi pemformatan ditulis setelah tanda titik dua dalam urutan tetap agar Python dapat membacanya tanpa ambiguitas.
+
 <Mermaid
   title={<>Urutan di Dalam Spesifikasi Format</>}
+  footer={<>Spesifikasi format dibaca berurutan dari pengisi, perataan, tanda, lebar, hingga tipe.</>}
   description={<>Ikuti urutan komponen dari karakter pengisi sampai tipe penyajian.</>}
   chart={`
     flowchart TD
@@ -358,3 +375,5 @@ print(f'Area: {math.pi * radius**2:.2f} cm²') # Output: Area: 102.07 cm²`
 Coba `"{nilai:*^+10.2f}".format(nilai=12.3)`. Hasilnya adalah `**+12.30**`. Tipe `f` dengan presisi `2` membentuk `12.30`, tanda `+` menambah satu karakter, lalu empat karakter pengisi melengkapi **lebar minimum sepuluh karakter**. Perataan `^` membagi empat pengisi itu menjadi dua di kiri dan dua di kanan.
 
 Pemformatan menghasilkan [objek string](/id/materi/ai-ds/pemrograman-ai/objek-string) baru. Nilai angka `12.3` tetap sama, sehingga kamu masih dapat memakai angka itu untuk perhitungan berikutnya.
+
+> Spesifikasi format hanya mengubah tampilan teks, tidak pernah membulatkan atau mengubah angka aslinya di memori. Pisahkan selalu akurasi hitungan dari cara angka dicetak.

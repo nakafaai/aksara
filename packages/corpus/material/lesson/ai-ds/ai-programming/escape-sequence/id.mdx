@@ -9,13 +9,15 @@ export const metadata = {
 
 ## Menuliskan Karakter Khusus dalam String
 
-Escape sequence ditulis dengan backslash (`\`) yang diikuti satu atau beberapa karakter. <Highlight>Python membaca gabungan tersebut sebagai satu notasi khusus</Highlight>. Misalnya, `\n` mewakili baris baru dan `\'` mewakili tanda kutip tunggal di dalam string yang dibatasi tanda kutip tunggal.
+Escape sequence ditulis dengan backslash (`\`) yang diikuti satu atau beberapa karakter. <Highlight>Python membaca gabungan ini sebagai satu notasi khusus</Highlight>. Misalnya, `\n` mewakili baris baru dan `\'` mewakili tanda kutip tunggal di dalam string yang dibatasi tanda kutip tunggal.
 
-Backslash mengubah cara Python membaca karakter setelahnya. Backslash itu merupakan bagian dari notasi dalam kode sumber, sedangkan string hasilnya berisi karakter yang diwakili notasi tersebut.
+Backslash mengubah cara Python membaca karakter setelahnya. Backslash adalah bagian dari notasi dalam kode sumber, sedangkan string hasilnya berisi karakter yang diwakili notasi ini.
+
+> Setiap escape sequence ditulis dengan beberapa karakter di kode sumber, tetapi di dalam memori string ia hanya dihitung sebagai satu karakter tunggal.
 
 ## Masalah dalam Penulisan String
 
-**Tanda kutip dan backslash** perlu perhatian di dalam string, karena Python membacanya sebelum string itu terbentuk. Tanda kutip dalam yang sama dengan pembatas akan menutup literal terlalu awal, sedangkan backslash dalam string biasa menandai notasi escape. Menambahkan escape pada karakter itu menjaga karakter tersebut tetap di dalam teks, dan dua backslash menghasilkan satu backslash pada nilai akhir.
+**Tanda kutip dan backslash** perlu perhatian di dalam string, karena Python membacanya sebelum string itu terbentuk. Tanda kutip dalam yang sama dengan pembatas akan menutup literal terlalu awal, sedangkan backslash dalam string biasa menandai notasi escape. Menambahkan escape pada karakter itu menjaganya tetap di dalam teks, dan dua backslash menghasilkan satu backslash pada nilai akhir.
 
 ### Konflik Tanda Kutip
 
@@ -41,11 +43,11 @@ SyntaxError: invalid syntax`
   ]}
 />
 
-Ketika kamu menggunakan tanda kutip tunggal untuk membuat string, tetapi di dalam string tersebut juga ada tanda kutip tunggal, Python akan menganggap tanda kutip kedua sebagai penutup string. Akibatnya, bagian setelahnya dianggap sebagai kode yang tidak valid.
+Ketika kamu menggunakan tanda kutip tunggal untuk membuat string, tetapi di dalamnya juga ada tanda kutip tunggal, Python akan menganggap tanda kutip kedua sebagai penutup string. Akibatnya, bagian setelahnya dianggap sebagai kode yang tidak valid.
 
 ### Solusi dengan Backslash
 
-Letakkan backslash (`\`) sebelum tanda kutip yang ingin dimasukkan ke dalam teks. Python lalu <Highlight>membaca tanda kutip tersebut sebagai isi string</Highlight>.
+Letakkan backslash (`\`) sebelum tanda kutip yang ingin dimasukkan ke dalam teks. Python lalu <Highlight>membaca tanda kutip ini sebagai isi string</Highlight>.
 
 <CodeBlock
   data={[
@@ -63,7 +65,7 @@ He said: "I'm Bob."`
   ]}
 />
 
-Dalam contoh ini, `\'` memberi tahu Python agar mempertahankan tanda kutip tunggal di dalam teks. String masih berlanjut setelah tanda kutip tersebut.
+Dalam contoh ini, `\'` memberi tahu Python agar mempertahankan tanda kutip tunggal di dalam teks. String masih berlanjut setelah tanda kutip itu.
 
 ### Menampilkan Karakter Backslash
 
@@ -94,6 +96,7 @@ Garis miring terbalik di depan tanda kutip hanya memberi tahu Python bahwa kutip
 
 <BarChart
   title={<><code>len()</code> string dengan tanda kutip di dalamnya</>}
+  footer={<>Tanda backslash tidak ikut dihitung sebagai karakter dalam panjang akhir string.</>}
   description={<>Setiap batang adalah <code>len()</code> literal yang tertulis di bawahnya. Pasangan yang memakai escape dan yang memakai jenis kutip lain punya panjang yang sama, <InlineMath math="4" /> dan <InlineMath math="8" />.</>}
   yAxisLabel="Panjang string"
   data={[
@@ -104,6 +107,8 @@ Garis miring terbalik di depan tanda kutip hanya memberi tahu Python bahwa kutip
   ]}
   chartConfig={{ value: { label: "Panjang string", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Kedua cara penulisan menghasilkan panjang string yang persis sama, karena backslash hanya bekerja saat Python membaca kode sumber dan langsung hilang setelah string terbentuk.
 
 ## Daftar Escape Sequence
 
@@ -125,7 +130,7 @@ Tabel berikut memuat **notasi escape** yang sering dipakai dalam Python.
 
 Setiap notasi menghasilkan karakter tertentu di dalam string. Sebagian mengatur tata letak teks, sedangkan sebagian lain memasukkan karakter yang sulit ditulis langsung.
 
-Dalam `str.format()` dan f-string, kurung kurawal menandai **bagian yang akan diisi nilai**. Kurung kurawal ganda membuat tanda tersebut dibaca sebagai teks biasa. Mekanisme ini berbeda dari notasi backslash di dalam literal string.
+Dalam `str.format()` dan f-string, kurung kurawal menandai **bagian yang akan diisi nilai**. Kurung kurawal ganda membuat tanda ini dibaca sebagai teks biasa. Mekanisme ini berbeda dari notasi backslash di dalam literal string.
 
 <CodeBlock
   data={[
@@ -149,6 +154,7 @@ Setiap escape sequence menghasilkan tepat satu karakter, dan `ord()` membaca kod
 
 <BarChart
   title={<><code>ord()</code> karakter dari setiap escape sequence</>}
+  footer={<>Karakter kontrol tab dan baris baru memiliki kode Unicode lebih kecil dari simbol cetak.</>}
   description={<>Setiap batang adalah kode Unicode dari karakter yang dihasilkan escape sequence di bawahnya, dari <code>\t</code> dengan kode <InlineMath math="9" /> sampai <code>\\</code> dengan kode <InlineMath math="92" />.</>}
   yAxisLabel="Kode Unicode"
   data={[
@@ -160,6 +166,8 @@ Setiap escape sequence menghasilkan tepat satu karakter, dan `ord()` membaca kod
   ]}
   chartConfig={{ value: { label: "Kode Unicode", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
+
+Perhatikan bahwa `ord()` menerima setiap hasil escape sebagai satu karakter utuh, membuktikan bahwa `\t` dan `\n` adalah karakter nyata di tabel Unicode, bukan gabungan dua huruf.
 
 ## Menggabungkan Escape Sequence
 
@@ -191,10 +199,13 @@ Dalam contoh ini, `\t` membuat kolom yang rapi, `\n` memisahkan baris, dan `\\` 
 
 Bedakan notasi di dalam kode sumber dari string yang dihasilkan. `\n`, misalnya, ditulis dengan dua karakter dalam kode sumber tetapi mewakili satu karakter baris baru di dalam string.
 
-Gambar ini mencetak `"Name\tAge\nBob\t25"` di terminal dengan tab setiap delapan kolom. Ruas kuning menunjukkan `\t` melompat ke kelipatan delapan berikutnya, jadi `Age` dan `25` mulai di kolom yang sama walaupun `Name` dan `Bob` beda panjang. Ruas oranye menunjukkan `\n` membawa kursor ke awal baris berikutnya. Walaupun kelihatan lebar, setiap escape sequence tetap satu karakter, sehingga `len()` string ini <InlineMath math="15" />.
+Gambar ini mencetak `"Name\tAge\nBob\t25"` di terminal dengan tab setiap delapan kolom. Ruas kuning menunjukkan `\t` melompat ke kelipatan delapan berikutnya sehingga `Age` dan `25` sejajar meski `Name` dan `Bob` beda panjang.
+
+Ruas oranye menunjukkan `\n` membawa kursor ke awal baris baru. Walau terlihat lebar di layar, tiap escape sequence tetap satu karakter sehingga `len()` string ini bernilai <InlineMath math="15" />.
 
 <MathVisual
   title={<>Ke mana kursor pergi untuk <code>\t</code> dan <code>\n</code></>}
+  footer={<>Tab melompat ke kelipatan kolom delapan, sedangkan newline memulai baris baru.</>}
   description={<>Karakter ungu adalah teks biasa, ruas kuning adalah lompatan tab, dan ruas oranye adalah baris baru, untuk terminal dengan tab setiap delapan kolom.</>}
   scene={{
     space: "plane",
@@ -253,3 +264,5 @@ Gambar ini mencetak `"Name\tAge\nBob\t25"` di terminal dengan tab setiap delapan
     "tab-b": "\\t",
   }}
 />
+
+Jalur kursor ini menunjukkan mengapa tab meratakan kolom secara otomatis tanpa menghitung spasi, sementara panjang string di memori hanya menghitung karakter aslinya.

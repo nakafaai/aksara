@@ -45,8 +45,6 @@ print("Dtype:", float_array.dtype)  # Output: Dtype: float64`
   ]}
 />
 
-### Specific Numeric Data Types
-
 NumPy provides detailed precision control with **various sizes of numeric data types**:
 
 | Category | Data Type | Description | Value Range |
@@ -98,8 +96,6 @@ print(a)
   ]}
 />
 
-### Automatic Data Type Detection
-
 NumPy automatically detects data types based on **provided elements**:
 
 <CodeBlock
@@ -140,7 +136,10 @@ The number in a `dtype` name is the bits per element, and `itemsize` divides it 
     { name: "complex128", value: 128 / 8 },
   ]}
   chartConfig={{ value: { label: "Bytes per element", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+  footer="Memory per element doubles each time the bit width doubles across dtypes."
 />
+
+Choosing `float32` over `float64` immediately halves memory per element, while `complex128` requires twice the space of `float64`.
 
 ## NumPy Array Attributes
 
@@ -173,8 +172,6 @@ print("Bytes used by elements:", a.nbytes)  # Output: Bytes used by elements: 48
     }
   ]}
 />
-
-### Array Attributes
 
 An array reports its own structure through attributes. The table lists the ones you read most often and the **value each one returns** for a <InlineMath math="2 \times 3" /> array.
 
@@ -244,7 +241,10 @@ Rotate this grid of points, which stands for `np.zeros((2, 3, 4))`. It has two l
     "axis-one": "axis 1",
     "axis-two": "axis 2",
   }}
+  footer="Shape (2, 3, 4) arranges 2 layers, 3 rows, and 4 columns into 24 elements."
 />
+
+The order of numbers in `shape` maps directly from the outermost layer `axis 0` down to columns `axis 2`, so `size` always equals the product of every dimension in `shape`.
 
 ## Data Type Conversion and Manipulation
 
@@ -312,8 +312,6 @@ print("Memory saved percentage:", (memory_saved / large_array_int64.nbytes) * 10
     }
   ]}
 />
-
-### Detailed Data Type Information
 
 The `itemsize` attribute reports the **number of bytes used by each element**, so we can compare the precision and memory cost of different data types.
 
@@ -392,7 +390,10 @@ for name, arr in arrays.items():
     "int-1": <code>0</code>,
     "int-2": <code>2</code>,
   }}
+  footer="astype(int) drops fractional digits and pulls every value toward zero."
 />
+
+Because truncation toward zero differs from rounding, call `np.round()` or `np.floor()` before `astype(int)` whenever you want nearest-integer or downward rounding.
 
 ## Practical Array Attribute Usage
 
@@ -538,3 +539,5 @@ for i, arr in enumerate(test_arrays):
     }
   ]}
 />
+
+> Always verify `shape` and `dtype` on incoming data so silent truncation or excess memory usage gets caught before model training starts.

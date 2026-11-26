@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Die Funktion Print",
-    description: "Python-Druckausgabe, sep- und end-Parameter sowie Formatierungstechniken für eine präzise Ausgabesteuerung.",
+    description: "Python Druckausgabe, Parameter sep und end sowie Formatierungstechniken für eine präzise Ausgabesteuerung.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
     dateModified: "2026-09-19",
@@ -12,6 +12,8 @@ export const metadata = {
 Die eingebaute Funktion `print()` <Highlight>schreibt die Textdarstellung von Werten in einen Stream</Highlight>. Standardmäßig ist das `sys.stdout`, dessen Inhalt ein Terminal gewöhnlich auf dem Bildschirm zeigt. Die Ausgabe kann aber auch in eine Datei oder an ein anderes Ziel umgeleitet werden.
 
 Wie `len()`, `abs()` und `round()` ist `print()` bereits in Python enthalten. Du musst dafür kein zusätzliches Modul importieren.
+
+> Betrachte `print()` wie ein Sichtfenster in ein laufendes Programm. Du kannst jeden Wert mitten in der Ausführung prüfen, ohne die gespeicherten Daten zu verändern.
 
 ## Grundlegende Syntax der Funktion Print
 
@@ -81,6 +83,7 @@ Wähle das Trennzeichen passend zum Ausgabeformat, etwa ein Komma für eine einf
 
 <BarChart
   title={<>Ausgabelänge von <code>print(1, 2, 3, sep=s)</code></>}
+  footer={<>Jedes zusätzliche Zeichen in sep verlängert die Gesamtausgabe um zwei Zeichen.</>}
   description={<>Jeder Balken ist die Anzahl der geschriebenen Zeichen für den <code>sep</code>-Wert darunter: <InlineMath math="5" /> für ein Leerzeichen, <InlineMath math="3" /> für den leeren String, <InlineMath math="7" /> für Komma mit Leerzeichen und <InlineMath math="9" /> für <code>' | '</code>.</>}
   yAxisLabel="Zeichen"
   data={[
@@ -91,6 +94,8 @@ Wähle das Trennzeichen passend zum Ausgabeformat, etwa ein Komma für eine einf
   ]}
   chartConfig={{ value: { label: "Zeichen", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
+
+Ein anderes `sep` lässt die Argumente unverändert, vergrößert die Zeilenlänge aber entsprechend der Anzahl der Lücken dazwischen.
 
 ## Der Parameter End
 
@@ -142,6 +147,7 @@ Dieses Bild führt `print("A", "B", "C", sep="-")`, dann `print("x", end=" ")` u
 
 <MathVisual
   title={<>Drei <code>print</code>-Aufrufe im Ausgabestrom</>}
+  footer={<>Der Parameter sep steht zwischen Argumenten, während end immer am Aufrufende sitzt.</>}
   description={<>Violette Zeichen stammen aus den Argumenten, türkise aus <code>sep</code> und orange aus <code>end</code>. Das Symbol ↵ ist ein Zeilenumbruch und ␣ ein Leerzeichen.</>}
   scene={{
     space: "plane",
@@ -186,6 +192,8 @@ Dieses Bild führt `print("A", "B", "C", sep="-")`, dann `print("x", end=" ")` u
   }}
 />
 
+Weil `end=" "` den Standard-Zeilenumbruch ersetzt, landen der zweite und dritte Aufruf in derselben Zeile, bis der letzte Umbruch sie abschließt.
+
 ## Anzeige verschiedener Datentypen
 
 `print()` akzeptiert Objekte verschiedener Typen und ermittelt vor dem Schreiben ihre **lesbare String-Darstellung**. Eigene Klassen können diese Darstellung mit `__str__()` festlegen.
@@ -228,6 +236,7 @@ Ein einziger Aufruf von `print()` kann Werte verschiedener Typen annehmen, sie i
 
 <BarChart
   title={<>Zeichen, die <code>print</code> für sechs Werte schreibt</>}
+  footer={<>Die Ausgabebreite folgt str() für jeden Typ samt Klammern, Kommas und Leerzeichen.</>}
   description={<>Jeder Balken ist <code>len(str(x))</code> für den darunter stehenden Wert <code>x</code>, also die Anzahl der Zeichen auf dem Bildschirm.</>}
   yAxisLabel="Zeichen"
   data={[
@@ -240,6 +249,8 @@ Ein einziger Aufruf von `print()` kann Werte verschiedener Typen annehmen, sie i
   ]}
   chartConfig={{ value: { label: "Zeichen", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
+
+Selbst eine kleine Liste wie `[1, 2]` belegt sechs Zeichen auf dem Bildschirm, weil Klammern, Komma und Leerzeichen mit ausgegeben werden.
 
 ## Ausgabeformatierungstechniken
 

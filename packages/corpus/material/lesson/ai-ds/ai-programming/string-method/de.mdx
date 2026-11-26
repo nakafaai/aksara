@@ -176,7 +176,10 @@ Jede Umwandlungsmethode gibt einen neuen String zurück, und die Zahl der Großb
     { name: "capitalize", value: 1 },
   ]}
   chartConfig={{ value: { label: "Großbuchstaben", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Jede Methode liefert einen neuen String mit eigener Großbuchstabenzahl."
 />
+
+Die Balken reichen von `0` bei `lower()` bis `10` bei `upper()`, während der erste Balken bei `1` bleibt, weil `'hello World'` unverändert erhalten bleibt.
 
 ## Strings durchsuchen und Zeichen prüfen
 
@@ -343,7 +346,10 @@ Such mit diesem Bild nach `"an"` in `"banana"`. Zwei türkise Strecken markieren
     "find": 'find("an") = 1',
     "rfind": 'rfind("an") = 3',
   }}
+  footer="find endet links bei Index 1, rfind findet von rechts den Treffer bei Index 3."
 />
+
+Beide Pfeile zeigen auf verschiedene Startindizes von `'an'`, weil `find` von links nach rechts sucht und `rfind` die letzte Fundstelle von rechts wählt.
 
 ## Suchmethoden für Präfixe und Suffixe
 
@@ -408,8 +414,6 @@ Das Präfix `https://` ordnet den Text nach dem URL-Schema ein. Es belegt weder 
 
 Diese beiden Methoden ändern, wie ein String in Teile zerlegt wird. `replace` **tauscht einen Teilstring** gegen einen anderen, `split` zerlegt den String an einem Trennzeichen in eine Liste.
 
-### Teilstrings ersetzen
-
 `replace()` ersetzt **Vorkommen eines Teilstrings** durch einen neuen String.
 
 <CodeBlock
@@ -452,8 +456,6 @@ print(f"Bereinigte Telefonnummer: {clean_phone}")`
 />
 
 `replace()` unterscheidet Groß- und Kleinschreibung. Ohne dritten Parameter ersetzt die Methode alle Vorkommen, mit diesem Parameter höchstens die angegebene Anzahl.
-
-### Strings aufteilen
 
 `split()` zerlegt einen String an einem angegebenen Trennzeichen und gibt die Teile als Liste zurück. Ohne Trennzeichen behandelt die Methode **aufeinanderfolgenden Whitespace** als einen Separator und lässt leere Felder an den Rändern weg.
 
@@ -517,7 +519,10 @@ Ohne Argument schneidet `split()` einen String an jedem Leerzeichen und gibt ein
     { name: "fox", value: 3 },
   ]}
   chartConfig={{ value: { label: "Wortlänge", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+  footer="split() zerlegt den Satz in vier Wörter und entfernt die drei Leerzeichen."
 />
+
+Alle vier Balken ergeben zusammen `16` Zeichen ohne die drei Leerzeichen und zeigen, dass `split()` ohne Argument den trennenden Whitespace aus der Liste entfernt.
 
 ## Verkettung von Stringmethoden
 
@@ -587,7 +592,7 @@ for email in emails:
 
 Methodenverkettung passt zu einer kurzen, linearen Bereinigung. Sie ist nicht automatisch klarer als benannte Schritte.
 
-## Praktische Anwendungen von Methoden für Strings
+## Telefonnummern und Logzeilen verarbeiten
 
 Jedes kleine Beispiel zeigt das Verhalten einer Stringmethode unter **klar genannten Annahmen**. Validatoren und Parser für den Produktionseinsatz brauchen Regeln für ihre echten Daten.
 
@@ -735,3 +740,5 @@ for title in titles:
 Diese vier Beispiele verbinden Klassifikation, Suche, Aufteilung und Ersetzung unter kleinen, klar angegebenen Formaten. Ein produktiver Telefon-, Dateinamen- oder Log-Parser sowie ein Slug-Generator benötigen zusätzlich einen Fachvertrag, eine Fehlerstrategie und Tests für mehrdeutige Eingaben.
 
 Setze jede Methode so ein, wie sie tatsächlich arbeitet. Eine Stringoperation kann einen Prüfschritt übernehmen. Für eine vollständige Validierung sind oft weitere Regeln nötig.
+
+> Da Strings sich nie am Ort ändern, liefert jede Umwandlungsmethode ein frisches Objekt, das sich sauber verketten lässt, solange das Ergebnis ein String bleibt.

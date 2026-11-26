@@ -17,7 +17,7 @@ Source file yang mudah dibaca adalah keunggulan utama Markdown. Kamu dapat menin
 
 Contoh berikut mengumpulkan sintaks umum dalam satu file. **Tanda pagar di awal baris** membuat heading. Penanda di sekeliling teks dapat membuat penekanan, tautan, atau kode.
 
-Contoh memakai fitur Markdown yang didukung Pandoc dan GitHub Flavored Markdown. Tabel dan coretan `~~teks~~` merupakan ekstensi, jadi tidak semua renderer Markdown menampilkannya. Perintah shell berikut memakai Bash di macOS atau Linux. Contoh path perlu disesuaikan dengan folder latihanmu.
+Contoh memakai fitur Markdown yang didukung Pandoc dan GitHub Flavored Markdown. Tabel dan coretan `~~teks~~` adalah ekstensi, jadi tidak semua renderer Markdown menampilkannya. Perintah shell berikut memakai Bash di macOS atau Linux. Contoh path perlu disesuaikan dengan folder latihanmu.
 
 <CodeBlock
   data={[{
@@ -119,13 +119,16 @@ Banyak tanda `#` di awal baris menentukan tingkat judul, dan tingkat itu membent
     "second": <code>## Usage</code>,
     "detail": <code>### Install</code>,
   }}
+  footer="Jumlah tanda # membentuk hierarki judul dari judul utama hingga subbagian."
 />
+
+Hierarki tanda `#` yang teratur memastikan daftar isi dan pembaca layar menangkap struktur dokumen tanpa perlu penataan visual manual.
 
 ## Dasar Antarmuka Baris Perintah
 
 Antarmuka baris perintah atau CLI menerima **perintah teks melalui shell**. Setiap perintah memiliki nama program, flag opsional, dan argumen seperti path.
 
-CLI berguna karena perintah dapat diperiksa, diulang, dijadikan skrip, dan ditinjau. Path dan flag destruktif harus ditulis dengan tepat karena shell mengikuti perintah tersebut apa adanya. Periksa perintah sebelum menjalankannya.
+CLI berguna karena perintah dapat diperiksa, diulang, dijadikan skrip, dan ditinjau. Path dan flag destruktif harus ditulis dengan tepat karena shell mengikuti perintah itu apa adanya. Periksa perintah sebelum menjalankannya.
 
 ### Navigasi dan Eksplorasi Direktori
 
@@ -186,7 +189,7 @@ less file.txt       # view dengan navigasi`
   }]}
 />
 
-### Integrasi Markdown dengan CLI
+## Otomatisasi Markdown dengan CLI
 
 Skrip build kecil menjalankan langkah konversi yang sama setiap kali. Skrip harus **gagal ketika sebuah perintah gagal**, membuat direktori output sendiri, mengutip setiap path, dan menangani keadaan tanpa file sumber:
 
@@ -258,7 +261,7 @@ pandoc input.md -o output.html --template=custom.html`
 
 ### Praktik Terbaik CLI dan Markdown
 
-Simpan source file Markdown di version control. <Highlight>Validasi file sebelum konversi</Highlight>, simpan hasil konversi di direktori output yang dapat dibuat ulang, lalu tinjau diff sebelum commit:
+Simpan source file Markdown di version control. <Highlight>Validasi file sebelum konversi</Highlight>, simpan hasil konversi di direktori output yang dapat dibuat ulang, lalu tinjau diff sebelum commit.
 
 Direktori `site` di contoh ini khusus untuk output hasil konversi dan akan diganti. Simpan file yang kamu tulis di `docs`, bukan di `site`.
 
@@ -308,7 +311,7 @@ git diff -- docs`
   }]}
 />
 
-## Contoh Proyek Nyata
+## Alur Build Dokumentasi Multi Halaman
 
 Contoh terakhir membuat empat source file dan menggabungkannya menjadi **satu dokumen HTML mandiri**. Setiap input path ditulis secara eksplisit. Build langsung gagal jika salah satu input file tidak ditemukan:
 
@@ -423,7 +426,10 @@ Bayangkan folder kerjamu sekarang adalah `/home/user`, titik magenta di pohon in
     "down": "cd projects",
     "up": "cd ..",
   }}
+  footer="cd projects turun ke folder anak, sedangkan cd .. kembali ke folder induk."
 />
+
+Mengetahui posisi folder kerja aktif menjaga perintah relatif seperti `cd projects` dan `cd ..` tetap terarah ke folder yang dimaksud.
 
 Path absolut dimulai dari akar `/`, dan setiap garis miring berikutnya turun satu tingkat. `pwd` mencetak path itu untuk folder kerja sekarang, dan `cd ..` naik satu tingkat ke folder induk.
 
@@ -438,4 +444,9 @@ Path absolut dimulai dari akar `/`, dan setiap garis miring berikutnya turun sat
     { name: "/home/user/projects", value: 3 },
   ]}
   chartConfig={{ value: { label: "Kedalaman", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+  footer="Setiap segmen folder setelah akar / menambah kedalaman path sebesar satu."
 />
+
+Karena setiap `/` mewakili satu tingkat turun dari akar, membandingkan panjang path absolut langsung menunjukkan seberapa dalam sebuah folder tersimpan.
+
+> Selalu jalankan `pwd` dan `ls` sebelum menjalankan perintah yang menghapus atau menimpa berkas agar path target benar-benar terverifikasi.

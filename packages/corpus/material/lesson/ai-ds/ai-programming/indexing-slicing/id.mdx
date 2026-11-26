@@ -116,7 +116,11 @@ print(repr(s[-1:4:-1]))  # Output: '!dlroW '`
 
 Indeks awal, indeks akhir, dan `step` menentukan elemen yang masuk ke hasil. Aturan utamanya: indeks awal ikut diambil, **indeks akhir tidak**, dan `step` negatif membalik arah pembacaan dari kanan ke kiri.
 
-Misalkan <InlineMath math="n" /> adalah panjang `s`. Untuk kasus <InlineMath math="0 \le i \le j \le n" /> dengan `step` positif bawaan, panjang `s[i:j]` adalah <InlineMath math="j-i" />. Bentuk lain dapat mengosongkan batas, memakai indeks negatif, melewati rentang, atau menentukan `step` berbeda. **Python menyesuaikan batas tersebut** terhadap panjang data. Jumlah elemen hasil slicing dapat dihitung dengan `len(range(*slice(i, j, step).indices(len(s))))`.
+Misalkan <InlineMath math="n" /> adalah panjang `s`. Untuk kasus `step` positif bawaan dengan batas berurutan:
+
+<BlockMath math="0 \le i \le j \le n" />
+
+Panjang `s[i:j]` adalah <InlineMath math="j-i" />. Bentuk lain dapat mengosongkan batas, memakai indeks negatif, melewati rentang, atau menentukan `step` berbeda. **Python menyesuaikan batas itu** terhadap panjang data. Jumlah elemen hasil slicing dapat dihitung dengan `len(range(*slice(i, j, step).indices(len(s))))`.
 
 <CodeBlock
   data={[
@@ -149,6 +153,7 @@ Setiap karakter `s = "Python"` punya dua alamat: indeks positif dari kiri dan in
 
 <MathVisual
   title={<>Indeks positif, indeks negatif, dan <code>s[1:4]</code></>}
+  footer={<>Setiap karakter punya indeks positif dan negatif, sedangkan s[1:4] berhenti sebelum 4.</>}
   description={<>Untuk <code>s = 'Python'</code>: angka ungu adalah indeks positif, angka hijau toska adalah indeks negatif, dan karakter magenta adalah hasil <code>s[1:4]</code>.</>}
   scene={{
     space: "plane",
@@ -220,6 +225,8 @@ Setiap karakter `s = "Python"` punya dua alamat: indeks positif dari kiri dan in
   }}
 />
 
+Aturan setengah terbuka ini konsisten di seluruh Python: karena indeks akhir tidak ikut masuk, banyak elemen yang terambil selalu sama dengan selisih `stop - start`.
+
 ## Indeks yang Dipilih
 
 Fungsi `range()` dapat menunjukkan **indeks mana saja yang dipilih** oleh slicing. Perbandingan ini menjelaskan indeks hasil slicing pada contoh ini.
@@ -262,6 +269,7 @@ Slice memilih indeks `range(start, stop, step)`. Untuk `s = 'Python'`, `s[0:6:2]
 
 <MathVisual
   title={<>Indeks yang dipilih <code>s[0:6:2]</code> dan <code>s[5:0:-2]</code></>}
+  footer={<>Tanda step mengatur arah langkah, sedangkan nilainya menentukan jarak lompatan indeks.</>}
   description={<>Baris tengah abu-abu adalah karakter <code>'Python'</code>. Garis patah magenta di atas melompat maju dua langkah ke indeks <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="4" />. Garis patah hijau toska di bawah melompat mundur ke indeks <InlineMath math="5" />, <InlineMath math="3" />, dan <InlineMath math="1" />.</>}
   scene={{
     space: "plane",
@@ -301,6 +309,8 @@ Slice memilih indeks `range(start, stop, step)`. Untuk `s = 'Python'`, `s[0:6:2]
     "char-5": <code>n</code>,
   }}
 />
+
+Pada langkah negatif `s[5:0:-2]`, indeks `0` berperan sebagai batas berhenti sehingga `'P'` tidak ikut terambil, persis seperti perilaku `range(5, 0, -2)`.
 
 ## Bentuk Singkat Slicing
 
@@ -343,12 +353,13 @@ print(f"Bagian tengah: {middle}")`
   ]}
 />
 
-Bentuk-bentuk tersebut dapat mengambil bagian tertentu atau elemen dengan selang tetap dari dataset tanpa menulis loop terpisah.
+Bentuk-bentuk ini dapat mengambil bagian tertentu atau elemen dengan selang tetap dari dataset tanpa menulis loop terpisah.
 
 Indeks pemisah yang sama membelah string tanpa celah dan tanpa tumpang tindih. Untuk `s = 'Python'`, `s[:3]` memberi `'Pyt'` dan `s[3:]` memberi `'hon'`, jadi `s[:3] + s[3:] == s` selalu benar.
 
 <MathVisual
   title={<><code>s[:3]</code> dan <code>s[3:]</code> membelah <code>'Python'</code></>}
+  footer={<>Karena batas akhir dikecualikan, s[:k] dan s[k:] membelah urutan tanpa celah.</>}
   description={<>Karakter ungu adalah <code>s[:3]</code> dan karakter hijau toska adalah <code>s[3:]</code>. Ruas abu-abu berdiri di antara indeks <InlineMath math="2" /> dan <InlineMath math="3" />, tempat kedua slice bertemu.</>}
   scene={{
     space: "plane",
@@ -381,6 +392,8 @@ Indeks pemisah yang sama membelah string tanpa celah dan tanpa tumpang tindih. U
     "char-5": <code>n</code>,
   }}
 />
+
+Sifat pembelahan rapi ini berlaku untuk indeks pemisah `i` mana pun, sehingga membagi urutan menjadi bagian kiri dan kanan selalu dapat digabungkan kembali secara utuh.
 
 ## Mengolah Bagian String dan List
 
@@ -435,3 +448,5 @@ Gunakan indexing untuk mengambil satu elemen pada posisi yang diketahui. Gunakan
 <Highlight>Batas slicing disesuaikan dengan panjang data</Highlight>, sehingga `s[10:]` pada string yang lebih pendek menghasilkan `""`. Akses langsung seperti `s[10]` tetap menghasilkan `IndexError`. Gunakan slicing hanya jika hasil kosong memang dapat diterima.
 
 Indeks negatif menghitung posisi dari akhir data. Gunakan `s[-1]` untuk elemen terakhir atau `s[-3:]` untuk tiga elemen terakhir. Bentuk ini dapat dipakai saat memproses file, parsing teks, atau mengolah dataset yang elemennya perlu dihitung dari akhir.
+
+> Ingat perbedaan paling penting antara keduanya. Indexing menuntut indeks valid dan melempar `IndexError` jika meleset, sedangkan slicing memotong batas secara aman ke rentang yang tersedia.
