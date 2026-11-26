@@ -14,11 +14,14 @@ Apabila lampu menyala, air mendidih, basikal bergerak atau telefon dicas, ada te
 
 Tenaga <Highlight>dikenal pasti melalui kesannya</Highlight>: objek bergerak, suhu berubah, cahaya muncul, bunyi terhasil atau cas elektrik mengalir.
 
-Inilah idea itu pada sebuah alat sebenar. Lampu graviti tiada bateri dan tiada palam: sebuah beg pasir <InlineMath math="12\text{ kg}" /> turun sejauh <InlineMath math="1.8\text{ m}" /> dan memutar sebuah penjana kecil yang menyalakan LED. Perhatikan dua perubahan berlaku serentak: beg itu semakin rendah dan cahaya muncul. Dengan <InlineMath math="g=10\text{ m/s}^2" />, beg itu sentiasa membebaskan <InlineMath math="mgh=216\text{ J}" />, jadi penurunan yang lebih perlahan hanya membahagikan tenaga itu kepada masa yang lebih panjang dan lampu menyala lebih malap.
+Inilah idea itu pada sebuah alat sebenar. Lampu graviti tiada bateri dan tiada palam: sebuah beg pasir <InlineMath math="12\text{ kg}" /> turun sejauh <InlineMath math="1.8\text{ m}" /> dan memutar sebuah penjana kecil yang menyalakan LED. Perhatikan dua perubahan berlaku serentak: beg itu semakin rendah dan cahaya muncul.
+
+Dengan <InlineMath math="g=10\text{ m/s}^2" />, beg itu sentiasa membebaskan <InlineMath math="mgh=216\text{ J}" />. Penurunan yang lebih perlahan hanya membahagikan tenaga itu kepada masa yang lebih panjang sehingga lampu menyala lebih malap.
 
 <WeightLampEnergyLab
   title={<>Lampu yang Dikuasakan oleh Beg yang Turun</>}
   description={<>Beg <InlineMath math="12\text{ kg}" /> turun sejauh <InlineMath math="1.8\text{ m}" /> dan memutar penjana yang menyalakan LED. Pilih tempoh penurunannya dan bandingkan kecerahan lampu dengan kuasa yang diserahkan oleh beg.</>}
+  footer={<>Penurunan perlahan mengekalkan 216 J tetapi menurunkan kuasa lampu.</>}
   labels={{
     chooseDescent: "Tempoh beg itu turun",
     drop: <>Tinggi jatuhan</>,
@@ -30,7 +33,13 @@ Inilah idea itu pada sebuah alat sebenar. Lampu graviti tiada bateri dan tiada p
   }}
 />
 
-## Kerja Mekanik Memindahkan Tenaga
+Perhatikan bahawa setiap pilihan masa membebaskan tepat <InlineMath math="216\text{ J}" />. Mengubah tempoh penurunan cuma mengubah kecerahan dan tempoh nyalaan lampu, yang membuka laluan kepada perbezaan antara tenaga dengan kuasa.
+
+## Kerja Mekanik dan Unit Joule
+
+Untuk menyukat tenaga dengan angka, fizik mengaitkan **kerja mekanik** secara langsung dengan unit S.I. bagi tenaga, iaitu joule. Menolak objek merentasi sesuatu jarak menunjukkan cara daya bertukar menjadi tenaga yang dipindahkan.
+
+### Kerja Mekanik Memindahkan Tenaga
 
 Apabila daya malar bertindak pada **arah yang sama** dengan sesaran objek, tenaga yang dipindahkan melalui kerja mekanik ialah:
 
@@ -62,17 +71,18 @@ Lukis tolakan itu sebagai graf daya melawan sesaran, dan kerja itu menjadi satu 
 
 <MathVisual
   title={<>Kerja sebagai Luas</>}
-  description={<>Daya malar <InlineMath math="15\text{ N}" /> sepanjang <InlineMath math="2\text{ m}" />. Mengufuk: sesaran dalam m. Menegak: daya dalam unit 5 N.</>}
+  description={<>Daya malar <InlineMath math="15\text{ N}" /> sepanjang <InlineMath math="2\text{ m}" />. Mengufuk: sesaran dalam m. Menegak: daya dalam N.</>}
+  footer={<>Luas segi empat tepat sama dengan daya darab sesaran, iaitu 30 J.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.2 } },
+    frame: { kind: "cartesian", x: { min: -0.4, max: 3.2 }, y: { min: -2, max: 20 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "work", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }] },
+      { id: "work", kind: "region", appearance: "construction", inequalities: ["x >= 0", "x <= 2", "y >= 0", "y <= 15"] },
     ],
     labels: [
-      { key: "force", objectId: "work", at: { x: 1, y: 3 }, placement: "above" },
-      { key: "area", objectId: "work", at: { x: 1, y: 1.5 }, placement: "center" },
+      { key: "force", objectId: "work", at: { x: 1, y: 15 }, placement: "above" },
+      { key: "area", objectId: "work", at: { x: 1, y: 7.5 }, placement: "center" },
     ],
   }}
   labels={{
@@ -81,7 +91,9 @@ Lukis tolakan itu sebagai graf daya melawan sesaran, dan kerja itu menjadi satu 
   }}
 />
 
-## Tenaga Diukur dalam Joule
+Pandangan luas ini kekal berguna apabila daya berubah. Setiap kali kamu melukis daya melawan sesaran, luas di bawah graf memberitahu jumlah tenaga yang dipindahkan oleh daya itu.
+
+### Tenaga Diukur dalam Joule
 
 Dalam S.I., unit bagi tenaga ialah joule, dengan simbol <InlineMath math="\text{J}" />. Oleh sebab tenaga boleh dihitung daripada **daya didarab dengan sesaran**, satu joule boleh dibaca sebagai:
 
@@ -93,11 +105,12 @@ Dalam S.I., unit bagi tenaga ialah joule, dengan simbol <InlineMath math="\text{
 
 Joule ialah [unit terbitan S.I.](https://www.nist.gov/pml/special-publication-330/sp-330-section-2) bagi tenaga. [Satu joule bersamaan dengan satu newton meter](https://www.nist.gov/glossary-term/26261), iaitu satu kilogram meter kuasa dua per saat kuasa dua.
 
-Kamu boleh merasai joule di tapak binaan. Sebuah kren angkat bermotor mengangkat peti <InlineMath math="20\text{ kg}" /> ke pelantar setinggi <InlineMath math="5\text{ m}" />. Dengan <InlineMath math="g=10\text{ m/s}^2" />, tali menarik dengan daya sebesar berat peti, <InlineMath math="200\text{ N}" />, jadi peti itu memperoleh <InlineMath math="200\text{ N}\times5\text{ m}=1\,000\text{ J}" /> tidak kira motor mana yang menggerakkan kren itu. Tukar motor dan perhatikan apa yang berubah: hanya masanya.
+Kamu boleh merasai joule di tapak binaan. Sebuah kren angkat bermotor mengangkat peti <InlineMath math="20\text{ kg}" /> ke pelantar setinggi <InlineMath math="5\text{ m}" />. Dengan <InlineMath math="g=10\text{ m/s}^2" />, tali menarik dengan daya sebesar berat peti <InlineMath math="200\text{ N}" />, jadi peti itu memperoleh <InlineMath math="1\,000\text{ J}" /> tidak kira motor mana yang dipakai. Tukar motor dan lihat apa yang berubah.
 
 <HoistWorkLab
   title={<>Joule Sama, Motor Berbeza</>}
   description={<>Kren angkat menaikkan peti <InlineMath math="20\text{ kg}" /> setinggi <InlineMath math="5\text{ m}" />. Pilih kuasa motor dan bandingkan tenaga yang diperoleh peti dengan masa yang diambil untuk mengangkatnya.</>}
+  footer={<>Motor lebih kuat mengangkat lebih cepat, tetapi peti tetap mendapat 1,000 J.</>}
   labels={{
     chooseMotor: "Kuasa motor",
     energy: <>Tenaga yang diperoleh</>,
@@ -109,13 +122,20 @@ Kamu boleh merasai joule di tapak binaan. Sebuah kren angkat bermotor mengangkat
   }}
 />
 
-## Pemindahan dan Penukaran Tenaga
+Motor mana pun yang kamu pilih, peti tiba di ketinggian yang sama dengan pertambahan tepat <InlineMath math="1\,000\text{ J}" />. Motor berkuasa lebih tinggi hanya menyerahkan joule itu dalam masa yang lebih singkat.
+
+## Pemindahan Tenaga dan Kuasa
+
+Sebaik sahaja tenaga mengalir dari sumber ke alat, dua ukuran menerangkan prestasinya: **bahagian output yang berguna** dan **kadar pemindahannya**. Membezakan jumlah tenaga daripada kadar pemindahan mengelakkan kekeliruan antara joule dengan watt.
+
+### Pemindahan dan Penukaran Tenaga
 
 Tenaga boleh **dipindahkan daripada sumber kepada alat**. Alat itu kemudian boleh menukarkannya kepada output yang berguna seperti cahaya, gerakan, pemanasan atau elektrik.
 
 <Mermaid
   title={<>Pemindahan Tenaga daripada Sumber kepada Penggunaan</>}
   description={<>Contoh harian menunjukkan cara tenaga dipindahkan dan ditukar.</>}
+  footer={<>Setiap laluan menjejak tenaga daripada sumber semula jadi kepada alat.</>}
   chart={`flowchart TD
     A["Tenaga di sekeliling kita"] --> B["Cahaya matahari ke panel"]
     B --> C["Elektrik untuk lampu"]
@@ -126,11 +146,16 @@ Tenaga boleh **dipindahkan daripada sumber kepada alat**. Alat itu kemudian bole
 
 Dalam panel suria, tenaga cahaya bertukar menjadi tenaga elektrik. Dalam sistem hidroelektrik, tenaga keupayaan graviti air bertukar menjadi gerakan turbin, kemudian menjadi tenaga elektrik. Dalam badan, tenaga kimia daripada makanan membantu otot melakukan kerja.
 
-Tenaga tidak pernah hilang dalam penukaran, cuma diagihkan. Dalam contoh lampu ini, setiap <InlineMath math="100\text{ J}" /> terbahagi kepada <InlineMath math="20\text{ J}" /> cahaya dan <InlineMath math="80\text{ J}" /> haba, jadi kecekapannya <InlineMath math="\eta=\tfrac{20}{100}=20\%" />. Besarkan paparan pada kedua-dua cabang itu.
+Tenaga tidak pernah hilang dalam penukaran, cuma diagihkan. Dalam contoh lampu ini, setiap <InlineMath math="100\text{ J}" /> terbahagi kepada <InlineMath math="20\text{ J}" /> cahaya dan <InlineMath math="80\text{ J}" /> haba, jadi kecekapannya ialah:
+
+<BlockMath math="\eta = \frac{20\text{ J}}{100\text{ J}} = 20\%" />
+
+Bandingkan lebar kedua-dua cabang keluaran di bawah.
 
 <MathVisual
   title={<>Kecekapan ialah Bahagian yang Berguna</>}
-  description={<>Contoh aliran tenaga melalui sebuah lampu, dengan lebar jalur dilukis mengikut skala. Satu petak grid ialah <InlineMath math="10\text{ J}" />.</>}
+  description={<>Contoh aliran tenaga melalui sebuah lampu, dengan tinggi jalur berkadaran dengan besar setiap bahagian tenaga.</>}
+  footer={<>Hanya jalur cahaya yang berguna, manakala 80 J lagi menjadi haba.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -1.5, max: 11 } },
@@ -155,7 +180,9 @@ Tenaga tidak pernah hilang dalam penukaran, cuma diagihkan. Dalam contoh lampu i
   }}
 />
 
-## Kuasa Mengukur Kadar Pemindahan Tenaga
+Kedua-dua jalur keluaran tetap berjumlah <InlineMath math="100\text{ J}" />. Kecekapan hanya mengukur pecahan tenaga input yang sampai ke output yang dikehendaki, bukannya menjadi haba terbuang.
+
+### Kuasa Mengukur Kadar Pemindahan Tenaga
 
 Tenaga menjawab soalan *berapa banyak tenaga yang dipindahkan atau ditukar bentuknya*. Kuasa menjawab soalan *berapa cepat pemindahan atau penukaran itu berlaku*.
 
@@ -193,25 +220,26 @@ E &= P t \\
 
 Jika lampu yang sama menyala lebih lama, penggunaan tenaganya bertambah. Jika kuasanya lebih tinggi, penggunaan tenaganya juga bertambah untuk tempoh masa yang sama.
 
-Graf di bawah menunjukkan kedua-dua pernyataan itu sekali gus. Ikuti garis oren bagi lampu <InlineMath math="10\text{ W}" />: makin lama lampu menyala, makin banyak tenaganya, dan pada <InlineMath math="5\text{ j}" /> tenaganya mencecah <InlineMath math="50\text{ Wj}" />. Garis ungu bagi lampu <InlineMath math="20\text{ W}" /> naik dua kali lebih curam, kerana kuasa menunjukkan betapa cepat tenaga itu terkumpul.
+Graf di bawah menunjukkan kedua-dua kesan itu sekali gus. Ikuti garis oren bagi lampu <InlineMath math="10\text{ W}" />: pada <InlineMath math="5\text{ j}" /> tenaganya mencecah <InlineMath math="50\text{ Wj}" />. Garis ungu bagi lampu <InlineMath math="20\text{ W}" /> naik dua kali lebih curam kerana kuasa menunjukkan betapa cepat tenaga terkumpul.
 
 <MathVisual
   title={<>Penggunaan Tenaga Bertambah dengan Masa</>}
-  description={<>E = Pt bagi lampu <InlineMath math="10\text{ W}" /> dan lampu <InlineMath math="20\text{ W}" />. Mengufuk: masa dalam jam. Menegak: tenaga dalam unit 20 Wj.</>}
+  description={<>Tenaga <InlineMath math="E = Pt" /> bagi lampu <InlineMath math="10\text{ W}" /> dan lampu <InlineMath math="20\text{ W}" />. Mengufuk: masa dalam jam. Menegak: tenaga dalam Wj.</>}
+  footer={<>Kuasa lebih tinggi menjadikan garis tenaga lebih curam pada masa sama.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -10, max: 135 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "ten", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 3 } },
-      { id: "twenty", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
-      { id: "used", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 5, y: 2.5 } },
-      { id: "used-top", kind: "point", appearance: "answer", at: { x: 5, y: 2.5 } },
+      { id: "ten", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 60 } },
+      { id: "twenty", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 120 } },
+      { id: "used", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 5, y: 50 } },
+      { id: "used-top", kind: "point", appearance: "answer", at: { x: 5, y: 50 } },
     ],
     labels: [
-      { key: "ten", objectId: "ten", at: { x: 6, y: 3 }, placement: "right" },
-      { key: "twenty", objectId: "twenty", at: { x: 6, y: 6 }, placement: "right" },
-      { key: "used", objectId: "used-top", at: { x: 5, y: 2.5 }, placement: "below-right" },
+      { key: "ten", objectId: "ten", at: { x: 6, y: 60 }, placement: "right" },
+      { key: "twenty", objectId: "twenty", at: { x: 6, y: 120 }, placement: "right" },
+      { key: "used", objectId: "used-top", at: { x: 5, y: 50 }, placement: "below-right" },
     ],
   }}
   labels={{
@@ -220,6 +248,8 @@ Graf di bawah menunjukkan kedua-dua pernyataan itu sekali gus. Ikuti garis oren 
     used: <InlineMath math="E=50\text{ Wj}" />,
   }}
 />
+
+Kecerunan garis memberitahu kuasa lampu secara terus, manakala ketinggian titik pada mana-mana jam menunjukkan jumlah tenaga terkumpul pada bil elektrik kamu.
 
 ## Analisis Tenaga bagi Sumber Boleh Baharu
 

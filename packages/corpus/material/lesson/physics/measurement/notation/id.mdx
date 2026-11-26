@@ -26,7 +26,13 @@ Massa elektron tadi sekarang dapat ditulis lebih ringkas:
 
 <BlockMath math="9{,}11 \times 10^{-31} \text{ kg}" />
 
-Rambut adalah contoh nilai yang sangat kecil. Pada mikroskop di bawah, skala di lensa okuler sudah dikalibrasi untuk setiap lensa objektif: pada <InlineMath math="10\times" />, satu skala sama dengan <InlineMath math="10\ \mu\text{m}" />. Rambutnya selebar <InlineMath math="6{,}8" /> skala, jadi diameternya <InlineMath math="68\ \mu\text{m}" />, yaitu <InlineMath math="0{,}000068\text{ m}=6{,}8\times10^{-5}\text{ m}" />. Ganti ke <InlineMath math="40\times" />, dan hitungannya menjadi <InlineMath math="27{,}2" /> skala, sehingga hasilnya <InlineMath math="6{,}80\times10^{-5}\text{ m}" /> dengan satu angka penting lebih banyak.
+### Membaca Ukuran Kecil dengan Mikroskop
+
+Rambut adalah contoh jelas untuk nilai yang sangat kecil. Pada mikroskop di bawah, **skala di lensa okuler** sudah dikalibrasi untuk setiap lensa objektif: pada <InlineMath math="10\times" />, satu skala sama dengan <InlineMath math="10\ \mu\text{m}" />. Rambutnya selebar <InlineMath math="6{,}8" /> skala, jadi diameternya <InlineMath math="68\ \mu\text{m}" />.
+
+<BlockMath math="68\ \mu\text{m} = 0{,}000068\text{ m} = 6{,}8 \times 10^{-5}\text{ m}" />
+
+Ganti ke <InlineMath math="40\times" />, dan hitungannya menjadi <InlineMath math="27{,}2" /> skala, sehingga hasilnya <InlineMath math="6{,}80\times10^{-5}\text{ m}" /> dengan satu angka penting lebih banyak.
 
 <MicroscopeScaleLab
   title={<>Rambut di Bawah Mikroskop</>}
@@ -35,6 +41,7 @@ Rambut adalah contoh nilai yang sangat kecil. Pada mikroskop di bawah, skala di 
       Ganti lensa objektif, lalu perhatikan rambut menutupi lebih banyak skala sementara diameternya tetap sama.
     </>
   }
+  footer={<>Perbesaran lebih tinggi memberi skala lebih halus tanpa mengubah tebal rambut.</>}
   labels={{
     chooseObjective: "Pilih lensa objektif",
     diameter: <>Diameter</>,
@@ -45,7 +52,9 @@ Rambut adalah contoh nilai yang sangat kecil. Pada mikroskop di bawah, skala di 
   }}
 />
 
-## Menggeser Koma Tanpa Mengubah Nilai
+Mengganti lensa objektif tidak pernah mengubah tebal fisik rambut. Sebaliknya, skala okuler yang lebih halus menambah satu digit penting pada koefisien notasi ilmiahnya.
+
+### Menggeser Koma Tanpa Mengubah Nilai
 
 Geser tanda koma sampai koefisien berada di antara <InlineMath math="1" /> dan <InlineMath math="10" />. Jumlah dan arah pergeseran menentukan nilai pangkat.
 
@@ -62,11 +71,14 @@ Jika <Highlight>koma bergerak ke kiri</Highlight>, pangkatnya positif. Jika koma
 0{,}000764 &= 7{,}64 \times 10^{-4}
 \end{aligned}" />
 
-Di sini setiap nilai diletakkan menurut pangkat <InlineMath math="n" /> ke kanan dan koefisien <InlineMath math="a" /> ke atas. Nilai dalam bentuk baku selalu jatuh di antara dua garis abu-abu, karena <InlineMath math="1 \le a < 10" />. Sekarang cari panah fuchsia: <InlineMath math="10{,}0\times10^{-13}" /> dari perkalian di akhir pelajaran ini berada tepat di garis atas, di luar pita. Satu geseran koma membawanya masuk menjadi <InlineMath math="1{,}0\times10^{-12}" />.
+Di sini setiap nilai diletakkan menurut pangkat <InlineMath math="n" /> ke kanan dan koefisien <InlineMath math="a" /> ke atas. Nilai dalam bentuk baku selalu jatuh di antara dua garis abu-abu karena <InlineMath math="1 \le a < 10" />.
+
+Sekarang cari panah fuchsia: <InlineMath math="10{,}0\times10^{-13}" /> berada tepat di garis atas di luar pita, lalu satu geseran koma membawanya masuk menjadi <InlineMath math="1{,}0\times10^{-12}" />.
 
 <MathVisual
   title={<>Setiap Nilai dalam Bentuk Baku</>}
   description={<>Setiap titik adalah nilai yang ditulis sebagai <InlineMath math="a\times10^n" />, diletakkan menurut pangkat n ke kanan dan koefisien a ke atas. Garis abu-abu menandai <InlineMath math="a=1" /> dan <InlineMath math="a=10" />.</>}
+  footer={<>Bentuk baku notasi ilmiah selalu menjaga koefisien di antara 1 dan 10.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -15, max: 9 }, y: { min: -0.5, max: 11.5 } },
@@ -101,6 +113,8 @@ Di sini setiap nilai diletakkan menurut pangkat <InlineMath math="n" /> ke kanan
   }}
 />
 
+Setiap kali hasil hitung membuat koefisien mencapai <InlineMath math="10" /> atau lebih, membagi koefisien dengan <InlineMath math="10" /> dan menaikkan pangkat sebesar <InlineMath math="1" /> menarik titik itu kembali ke dalam pita baku tanpa mengubah nilainya.
+
 ## Angka Penting pada Koefisien
 
 Dalam notasi ilmiah, baca jumlah **angka penting dari koefisien**. Pangkat <InlineMath math="10" /> menentukan besar faktor pengali.
@@ -114,7 +128,7 @@ Dalam notasi ilmiah, baca jumlah **angka penting dari koefisien**. Pangkat <Inli
 
 Notasi ilmiah mencatat ketelitian yang dimaksud dalam suatu pengukuran. Bentuk <InlineMath math="1000 \text{ m}" /> tidak menjelaskan apakah nol di belakangnya termasuk angka penting, sedangkan <InlineMath math="1{,}000 \times 10^3 \text{ m}" /> secara tegas memiliki <InlineMath math="4" /> angka penting.
 
-Dari sinilah digit-digit itu berasal. Selembar kertas terlalu tipis untuk penggaris milimeter, jadi ukur setumpuk kertas lalu bagi dengan jumlah lembarnya, yang merupakan bilangan pasti. Tumpukan <InlineMath math="500" /> lembar terbaca <InlineMath math="52\text{ mm}" />, dua angka penting, jadi tebal selembar kertas <InlineMath math="1{,}0\times10^{-4}\text{ m}" />. Tumpuk <InlineMath math="1000" /> lembar, dan penggaris terbaca <InlineMath math="104\text{ mm}" />, tiga angka penting: <InlineMath math="1{,}04\times10^{-4}\text{ m}" />.
+Dari sinilah digit-digit itu berasal. Selembar kertas terlalu tipis untuk penggaris milimeter, jadi ukur setumpuk kertas lalu bagi dengan jumlah lembarnya sebagai bilangan eksak. Tumpukan <InlineMath math="500" /> lembar terbaca <InlineMath math="52\text{ mm}" /> sehingga selembarnya <InlineMath math="1{,}0\times10^{-4}\text{ m}" />, sedangkan <InlineMath math="1000" /> lembar terbaca <InlineMath math="104\text{ mm}" /> sehingga menjadi <InlineMath math="1{,}04\times10^{-4}\text{ m}" />.
 
 <PaperStackLab
   title={<>Mengukur Tebal Selembar Kertas</>}
@@ -123,6 +137,7 @@ Dari sinilah digit-digit itu berasal. Selembar kertas terlalu tipis untuk pengga
       Tumpuk lebih banyak lembar, lalu perhatikan hasil bacaan, dan bersamanya tebal selembar kertas, mendapat lebih banyak angka penting.
     </>
   }
+  footer={<>Tumpukan lebih tebal menambah angka penting pada ketebalan selembar kertas.</>}
   labels={{
     chooseStack: "Pilih jumlah lembar",
     figures: <>Angka penting</>,
@@ -131,6 +146,8 @@ Dari sinilah digit-digit itu berasal. Selembar kertas terlalu tipis untuk pengga
     viewLabel: "Tumpukan kertas di samping penggaris baja, dengan kaca pembesar di bagian atas tumpukan",
   }}
 />
+
+Karena jumlah lembarnya eksak, setiap digit tambahan yang terbaca pada tumpukan lebih tebal langsung terbawa ke koefisien tebal satu lembar. Itulah sebabnya notasi ilmiah menjaga ketelitian hasil ukur secara jujur.
 
 ## Jangan Bulatkan Hasil Terlalu Awal
 
@@ -157,6 +174,7 @@ Satuan berpangkat juga ikut memangkatkan faktor konversinya. Satu sentimeter sam
 <MathVisual
   title={<>Mengubah Satuan Berpangkat</>}
   description={<>Satu sentimeter persegi yang dibagi menjadi milimeter persegi.</>}
+  footer={<>Menguadratkan <InlineMath math="10\text{ mm}" /> tiap sisi memberi <InlineMath math="100\text{ mm}^2" /> dalam <InlineMath math="1\text{ cm}^2" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 11.5 } },
@@ -193,6 +211,8 @@ Satuan berpangkat juga ikut memangkatkan faktor konversinya. Satu sentimeter sam
   }}
 />
 
+Setiap baris berisi <InlineMath math="10" /> persegi kecil dan ada <InlineMath math="10" /> baris, jadi luas berubah sebesar kuadrat faktor panjangnya. Selalu ikut pangkatkan faktor sepuluh sesuai pangkat satuannya sebelum membulatkan hasil akhir.
+
 ## Perhitungan dengan Notasi Ilmiah
 
 Dalam notasi ilmiah, **kalikan koefisien dan jumlahkan pangkat** <InlineMath math="10" /> secara terpisah.
@@ -215,6 +235,7 @@ Kalikan angka di depannya dan jumlahkan pangkatnya: <InlineMath math="2{,}5\time
 <MathVisual
   title={<>Perkalian dalam Notasi Ilmiah</>}
   description={<>Pangkat sepuluh pada garis bilangan: kedua faktor (oranye, ungu) dan pergeseran ke bentuk baku (fuchsia).</>}
+  footer={<>Jumlahkan kedua pangkat dulu, lalu geser satu pangkat ke bentuk baku.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -15, max: 2 }, y: { min: -4.2, max: 5.2 } },
@@ -241,3 +262,5 @@ Kalikan angka di depannya dan jumlahkan pangkatnya: <InlineMath math="2{,}5\time
     fix: <InlineMath math="10{,}0\times10^{-13}=1{,}0\times10^{-12}" />,
   }}
 />
+
+Melacak pangkat di garis bilangan menjauhkan kamu dari salah tanda. Begitu lompatan oranye dan ungu berhenti di <InlineMath math="-13" />, satu langkah pendek fuchsia ke <InlineMath math="-12" /> mengembalikan hasil ke bentuk baku.

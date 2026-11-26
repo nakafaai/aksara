@@ -26,7 +26,13 @@ The electron mass above can now be written more compactly:
 
 <BlockMath math="9.11 \times 10^{-31} \text{ kg}" />
 
-A hair is a good example of a small value. Under the microscope below, the scale in the eyepiece is calibrated for each objective: at <InlineMath math="10\times" />, one division covers <InlineMath math="10\ \mu\text{m}" />. The hair spans <InlineMath math="6.8" /> divisions, so it is <InlineMath math="68\ \mu\text{m}" /> wide, which is <InlineMath math="0.000068\text{ m}=6.8\times10^{-5}\text{ m}" />. Switch to <InlineMath math="40\times" />, and the count becomes <InlineMath math="27.2" /> divisions, giving <InlineMath math="6.80\times10^{-5}\text{ m}" /> with one more significant figure.
+### Reading Tiny Lengths Under a Microscope
+
+A hair is a clear example of a small value. Under the microscope below, the **eyepiece scale** is calibrated for each objective: at <InlineMath math="10\times" />, one division covers <InlineMath math="10\ \mu\text{m}" />. The hair spans <InlineMath math="6.8" /> divisions, so its diameter is <InlineMath math="68\ \mu\text{m}" />.
+
+<BlockMath math="68\ \mu\text{m} = 0.000068\text{ m} = 6.8 \times 10^{-5}\text{ m}" />
+
+Switch to <InlineMath math="40\times" />, and the count becomes <InlineMath math="27.2" /> divisions, giving <InlineMath math="6.80\times10^{-5}\text{ m}" /> with one more significant figure.
 
 <MicroscopeScaleLab
   title={<>A Hair under the Microscope</>}
@@ -35,6 +41,7 @@ A hair is a good example of a small value. Under the microscope below, the scale
       Switch the objective and watch the hair cover more divisions while its diameter stays the same.
     </>
   }
+  footer={<>Higher magnification gives finer divisions while the hair width stays fixed.</>}
   labels={{
     chooseObjective: "Choose an objective",
     diameter: <>Diameter</>,
@@ -45,7 +52,9 @@ A hair is a good example of a small value. Under the microscope below, the scale
   }}
 />
 
-## Moving the Decimal Point without Changing the Value
+Switching objectives never changes the physical width of the hair. Instead, finer eyepiece divisions add one extra significant digit to the scientific notation coefficient.
+
+### Moving the Decimal Point without Changing the Value
 
 Move the decimal point until the coefficient is between <InlineMath math="1" /> and <InlineMath math="10" />. The number and direction of the moves determine the exponent.
 
@@ -62,11 +71,14 @@ If <Highlight>the decimal point moves left</Highlight>, the exponent is positive
 0.000764 &= 7.64 \times 10^{-4}
 \end{aligned}" />
 
-Here every value sits at its exponent <InlineMath math="n" /> across and its coefficient <InlineMath math="a" /> up. Values in standard form land between the two gray lines, because <InlineMath math="1 \le a < 10" />. Now find the fuchsia arrow: <InlineMath math="10.0\times10^{-13}" /> from the multiplication at the end of this lesson sits on the top line, outside the band, and one decimal move takes it inside as <InlineMath math="1.0\times10^{-12}" />.
+Here every value sits at its exponent <InlineMath math="n" /> across and its coefficient <InlineMath math="a" /> up. Values in standard form land between the two gray lines because <InlineMath math="1 \le a < 10" />.
+
+Now find the fuchsia arrow: <InlineMath math="10.0\times10^{-13}" /> sits on the top line outside the band, and one decimal move brings it inside as <InlineMath math="1.0\times10^{-12}" />.
 
 <MathVisual
   title={<>Every Value in Standard Form</>}
   description={<>Each point is a value written as <InlineMath math="a\times10^n" />, placed at its exponent n across and its coefficient a up. The gray lines mark <InlineMath math="a=1" /> and <InlineMath math="a=10" />.</>}
+  footer={<>Standard scientific notation always keeps the coefficient between 1 and 10.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -15, max: 9 }, y: { min: -0.5, max: 11.5 } },
@@ -101,6 +113,8 @@ Here every value sits at its exponent <InlineMath math="n" /> across and its coe
   }}
 />
 
+Whenever a calculation leaves the coefficient at <InlineMath math="10" /> or higher, dividing the coefficient by <InlineMath math="10" /> and raising the exponent by <InlineMath math="1" /> pulls the point back into the valid band without changing the number's value.
+
 ## Significant Figures in the Coefficient
 
 In scientific notation, read the **significant figures from the coefficient**. The power of <InlineMath math="10" /> sets the scale.
@@ -114,7 +128,7 @@ In scientific notation, read the **significant figures from the coefficient**. T
 
 Scientific notation records the intended precision of a measurement. The value <InlineMath math="1000 \text{ m}" /> does not state whether its trailing zeros are significant, while <InlineMath math="1.000 \times 10^3 \text{ m}" /> explicitly has <InlineMath math="4" /> significant figures.
 
-Here is where those digits come from. One sheet of paper is too thin for a millimetre ruler, so measure a stack and divide by the number of sheets, which is an exact count. A stack of <InlineMath math="500" /> sheets reads <InlineMath math="52\text{ mm}" />, two significant figures, so one sheet is <InlineMath math="1.0\times10^{-4}\text{ m}" />. Stack <InlineMath math="1000" /> sheets, and the ruler reads <InlineMath math="104\text{ mm}" />, three figures: <InlineMath math="1.04\times10^{-4}\text{ m}" />.
+Here is where those digits come from. One sheet of paper is too thin for a millimeter ruler, so measure a stack and divide by the exact sheet count. A stack of <InlineMath math="500" /> sheets reads <InlineMath math="52\text{ mm}" /> (two figures), giving <InlineMath math="1.0\times10^{-4}\text{ m}" />, while <InlineMath math="1000" /> sheets read <InlineMath math="104\text{ mm}" /> (three figures), giving <InlineMath math="1.04\times10^{-4}\text{ m}" />.
 
 <PaperStackLab
   title={<>Measuring One Sheet of Paper</>}
@@ -123,6 +137,7 @@ Here is where those digits come from. One sheet of paper is too thin for a milli
       Stack more sheets and watch the reading, and with it one sheet's thickness, gain significant figures.
     </>
   }
+  footer={<>Stacking more sheets adds significant figures to one sheet's thickness.</>}
   labels={{
     chooseStack: "Choose how many sheets",
     figures: <>Significant figures</>,
@@ -131,6 +146,8 @@ Here is where those digits come from. One sheet of paper is too thin for a milli
     viewLabel: "Stack of paper beside a steel ruler, with a magnifier on the top of the stack",
   }}
 />
+
+Because the sheet count is exact, every extra digit you read on the thicker stack carries straight into the coefficient for one sheet. That is why scientific notation preserves the measurement precision transparently.
 
 ## Keep Guard Digits Until the Final Report
 
@@ -157,6 +174,7 @@ A powered unit takes the power of the conversion factor too. One centimeter is <
 <MathVisual
   title={<>Converting a Powered Unit</>}
   description={<>One square centimeter divided into square millimeters.</>}
+  footer={<>Squaring 10 mm per side gives 100 square millimeters in one square centimeter.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 11.5 } },
@@ -193,6 +211,8 @@ A powered unit takes the power of the conversion factor too. One centimeter is <
   }}
 />
 
+Every row holds <InlineMath math="10" /> tiny squares and there are <InlineMath math="10" /> rows, so area scales by the square of the length factor. Always apply the unit's exponent to the power of ten before rounding your final value.
+
 ## Calculations with Scientific Notation
 
 In scientific notation, **multiply the coefficients and add the exponents** of <InlineMath math="10" /> separately.
@@ -215,6 +235,7 @@ Multiply the numbers in front and add the exponents: <InlineMath math="2.5\times
 <MathVisual
   title={<>Multiplying in Scientific Notation</>}
   description={<>Exponents of ten on a number line: the two factors (orange, violet) and the shift to standard form (fuchsia).</>}
+  footer={<>Add both exponents first, then shift one power to restore standard form.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -15, max: 2 }, y: { min: -4.2, max: 5.2 } },
@@ -241,3 +262,5 @@ Multiply the numbers in front and add the exponents: <InlineMath math="2.5\times
     fix: <InlineMath math="10.0\times10^{-13}=1.0\times10^{-12}" />,
   }}
 />
+
+Tracking exponents on a number line keeps sign errors away. Once the orange and violet jumps finish at <InlineMath math="-13" />, the short fuchsia step to <InlineMath math="-12" /> restores standard form cleanly.

@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Types of Measurement Tools",
   description:
@@ -13,7 +12,7 @@ export const metadata = {
 
 Every time we weigh food ingredients, look at a speedometer, read body temperature, or measure the length of a table, we are measuring something. In physics, measurement is the <Highlight>experimental process of obtaining one or more quantity values</Highlight>. A measurement unit supplies <Highlight>the shared reference</Highlight>.
 
-A quantity value is the numerical value multiplied by the unit.
+Every instrument readout combines a numerical reading with the unit printed on its scale.
 
 For example, if the length of an object reads <InlineMath math="8 \text{ cm}" />, then <InlineMath math="8" /> is the numerical value and <InlineMath math="\text{cm}" /> is the unit.
 
@@ -31,6 +30,7 @@ Use the following interactive model to compare three measurement tools. Choose a
       object, and reading.
     </>
   }
+  footer={<>Each tool pairs one physical quantity with its own scale and unit.</>}
   labels={{
     chooseTool: "Choose a measuring tool",
     decimalSeparator: ".",
@@ -60,6 +60,8 @@ Use the following interactive model to compare three measurement tools. Choose a
   }}
 />
 
+Switching between the ruler, balance, and stopwatch shows that each instrument tracks a different physical property and reports its own unit. Reading the number without checking which instrument produced it leaves the measurement incomplete.
+
 ## Choosing a Measurement Tool
 
 Identify the quantity before measuring. Its expected range and required resolution determine the measuring tool, while the quantity determines the unit used to report the result.
@@ -67,6 +69,7 @@ Identify the quantity before measuring. Its expected range and required resoluti
 <Mermaid
   title={<>Match the Tool to the Quantity</>}
   description={<>Start from the object being measured, then choose a tool by precision, range, and how its scale is read.</>}
+  footer={<>Identify the quantity first so your instrument matches its range and unit.</>}
   chart={`flowchart TD
     A["Measured quantity"] --> B["Length"]
     A --> C["Mass"]
@@ -109,6 +112,7 @@ A vernier caliper reads finer than a ruler. In the lab below, its jaws close on 
       Slide the jaw onto the brass cylinder. The vernier zero gives the whole millimetres, and the line that meets a main mark gives the tenth.
     </>
   }
+  footer={<>Read whole millimeters at vernier zero and tenths at the aligned mark.</>}
   labels={{
     centimetres: <>In centimetres</>,
     line: <>Vernier line on a mark</>,
@@ -119,13 +123,17 @@ A vernier caliper reads finer than a ruler. In the lab below, its jaws close on 
   }}
 />
 
+As you slide the jaw, the whole millimeters always come from the mark just to the left of the vernier zero, while the single aligned vernier mark supplies the tenth. Combining both readings reaches <InlineMath math="0.1\text{ mm}" /> resolution.
+
 ### Mass
 
 Mass describes how strongly an object resists a change in motion. A balance measures it by comparison with **known masses**. If the balance reads <InlineMath math="250 \text{ g}" />, then the object's mass is:
 
 <BlockMath math="m = 250 \text{ g}" />
 
-In the lab above, the balance is modeled as an equal-arm balance. The object sits on the left pan, while a <InlineMath math="250 \text{ g}" /> reference mass sits on the right pan. If the object mass is greater than <InlineMath math="250 \text{ g}" />, the object side moves down. If it is smaller than <InlineMath math="250 \text{ g}" />, the reference side moves down. If both masses are equal, the balance is in equilibrium.
+In the lab above, the balance is modeled as an equal-arm balance with the object on the left pan and a <InlineMath math="250 \text{ g}" /> reference mass on the right pan.
+
+When the object is heavier than <InlineMath math="250 \text{ g}" />, its pan drops, and when it is lighter, the reference pan drops. When both pans level out, the two masses are equal.
 
 The symbol <InlineMath math="\tau" /> denotes the magnitude of torque, the turning effect of a force on the balance. Both arms have length <InlineMath math="r" />, and <InlineMath math="g" /> is gravitational acceleration magnitude. Equal masses on equal arms produce opposing torques of equal magnitude.
 
@@ -153,6 +161,7 @@ A vernier caliper adds a tenth of a millimeter by lining up two scales. Its <Inl
 <MathVisual
   title={<>Reading a Vernier Caliper</>}
   description={<>The main scale in millimeters (top) and the vernier scale with <InlineMath math="10" /> divisions over <InlineMath math="9\text{ mm}" /> (bottom).</>}
+  footer={<>Only one vernier line aligns cleanly, giving the tenth of a millimeter.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 14 }, y: { min: -1.6, max: 1.4 } },
@@ -200,6 +209,8 @@ A vernier caliper adds a tenth of a millimeter by lining up two scales. Its <Inl
   }}
 />
 
+Because each vernier division is <InlineMath math="0.1\text{ mm}" /> shorter than one main-scale millimeter, every step shifts the offset by a tenth until the seventh mark snaps directly under the <InlineMath math="3\text{ cm}" /> line.
+
 ## Measurement Tools Around Us
 
 Many everyday quantities can be read directly from an instrument. Other quantities, such as density, can be calculated from several measurements. The table pairs a common instrument with the quantity it reports, so you can choose the tool from the quantity you need.
@@ -225,6 +236,7 @@ For something as thin as a wire or a small ball, a micrometer screw gauge is the
       Turn the thimble onto the steel ball. The sleeve gives whole and half millimetres, and the thimble line on the datum adds hundredths.
     </>
   }
+  footer={<>Add the sleeve's millimeter reading to the thimble's hundredths line.</>}
   labels={{
     division: <>Thimble division on the line</>,
     reading: <>Reading</>,
@@ -233,6 +245,8 @@ For something as thin as a wire or a small ball, a micrometer screw gauge is the
     viewLabel: "Micrometer screw gauge closed on a steel ball, with a magnifier on the sleeve and thimble",
   }}
 />
+
+Always check whether the lower half-millimeter mark on the sleeve is visible before adding the thimble reading. That quick check prevents the most common <InlineMath math="0.50\text{ mm}" /> reading error on a micrometer.
 
 ## Finding a Length from Two Readings
 
@@ -254,6 +268,7 @@ The pencil below does not start at zero, so read both ends. Its tail sits at <In
 <MathVisual
   title={<>Reading a Length from Two Marks</>}
   description={<>A pencil from the <InlineMath math="1\text{ cm}" /> mark to the <InlineMath math="8\text{ cm}" /> mark on a ruler. One grid step is <InlineMath math="1\text{ cm}" />.</>}
+  footer={<>Subtract the starting mark from the end mark whenever zero is unused.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -1.75, max: 3.25 } },
@@ -297,3 +312,5 @@ The pencil below does not start at zero, so read both ends. Its tail sits at <In
     length: <InlineMath math="L=8-1=7\text{ cm}" />,
   }}
 />
+
+Starting at a clean interior mark like <InlineMath math="1\text{ cm}" /> is even helpful when a ruler's zero end is worn. As long as you subtract the starting mark from the final mark, the length stays exact.

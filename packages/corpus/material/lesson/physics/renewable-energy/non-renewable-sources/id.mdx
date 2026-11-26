@@ -18,38 +18,42 @@ Misalkan <InlineMath math="r_{\mathrm{use}}" /> adalah laju penggunaan manusia d
 
 Tanda <InlineMath math="\gg" /> dibaca "jauh lebih besar daripada". Untuk menilai persediaan bahan bakar, periksa jumlah yang tersedia dan kecepatan pemakaiannya.
 
-Coba uji tanda itu dengan angka bulat buatan. Persediaan <InlineMath math="S_0=100" /> satuan dipakai <InlineMath math="r_{\mathrm{use}}=2" /> satuan per tahun, jadi berkurang <InlineMath math="r_{\mathrm{use}}-r_{\mathrm{form}}" /> setiap tahun. Seandainya alam mengganti separuh dari yang kita pakai, garis ungu akan bertahan sampai <InlineMath math="100" /> tahun, dua kali lebih lama. Saat <InlineMath math="r_{\mathrm{use}}\gg r_{\mathrm{form}}" />, garis oranye sudah habis setelah sekitar <InlineMath math="50" /> tahun saja, hampir sama seperti kalau tidak ada yang terbentuk sama sekali.
+Coba uji tanda itu dengan angka bulat ilustratif. Persediaan <InlineMath math="S_0=100" /> satuan dipakai <InlineMath math="r_{\mathrm{use}}=2" /> satuan per tahun, jadi berkurang <InlineMath math="r_{\mathrm{use}}-r_{\mathrm{form}}" /> setiap tahun.
+
+Seandainya alam mengganti separuh dari yang kita pakai, garis ungu bertahan sampai <InlineMath math="100" /> tahun, dua kali lebih lama. Saat <InlineMath math="r_{\mathrm{use}}\gg r_{\mathrm{form}}" />, garis oranye habis setelah sekitar <InlineMath math="50" /> tahun, hampir sama seperti tanpa pembentukan sama sekali.
 
 <MathVisual
   title={<>Persediaan yang Terbentuk Terlalu Lambat</>}
-  description={<>Persediaan rekaan <InlineMath math="100" /> satuan yang dipakai <InlineMath math="2" /> satuan per tahun dengan dua laju pembentukan. Mendatar: waktu dalam satuan <InlineMath math="20" /> tahun. Tegak: persediaan dalam satuan <InlineMath math="20" />.</>}
+  description={<>Persediaan ilustrasi <InlineMath math="100" /> satuan yang dipakai <InlineMath math="2" /> satuan per tahun dengan dua laju pembentukan. Mendatar: waktu dalam tahun. Tegak: sisa persediaan dalam satuan.</>}
+  footer={<>Saat pembentukan jauh lebih lambat, stok habis dua kali lebih cepat.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.8, max: 5.8 } },
+    frame: { kind: "cartesian", x: { min: -5, max: 115 }, y: { min: -10, max: 115 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "slow", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 5, y: 0 } },
-      { id: "fast", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: 100 / (2 - 2 / 1000) / 20, y: 0 } },
-      { id: "fast-empty", kind: "point", appearance: "primary", at: { x: 100 / (2 - 2 / 1000) / 20, y: 0 } },
+      { id: "slow", kind: "segment", appearance: "secondary", from: { x: 0, y: 100 }, to: { x: 100, y: 0 } },
+      { id: "fast", kind: "segment", appearance: "primary", from: { x: 0, y: 100 }, to: { x: 100 / (2 - 2 / 1000), y: 0 } },
+      { id: "fast-empty", kind: "point", appearance: "primary", at: { x: 100 / (2 - 2 / 1000), y: 0 } },
     ],
     labels: [
-      { key: "slow", objectId: "slow", at: { x: 2.5, y: 2.5 }, placement: "above-right" },
-      { key: "fast", objectId: "fast", at: { x: 1.25, y: (100 - (2 - 2 / 1000) * 25) / 20 }, placement: "below-left" },
-      { key: "time", objectId: "fast-empty", at: { x: 100 / (2 - 2 / 1000) / 20, y: 0 }, placement: "above-right" },
+      { key: "slow", objectId: "slow", at: { x: 50, y: 50 }, placement: "above-right" },
+      { key: "fast", objectId: "fast", at: { x: 25, y: 100 - (2 - 2 / 1000) * 25 }, placement: "below-left" },
+      { key: "time", objectId: "fast-empty", at: { x: 100 / (2 - 2 / 1000), y: 0 }, placement: "above-right" },
     ],
   }}
   labels={{
     slow: <InlineMath math="r_{\mathrm{form}}=\tfrac12 r_{\mathrm{use}}" />,
     fast: <InlineMath math="r_{\mathrm{form}}=\tfrac{1}{1000} r_{\mathrm{use}}" />,
-    time: <InlineMath math="t=\frac{S_0}{r_{\mathrm{use}}-r_{\mathrm{form}}}\approx50\text{ tahun}" />,
+    time: <InlineMath math="t\approx50\text{ tahun}" />,
   }}
 />
 
-Cadangan terbatas <InlineMath math="R" /> yang dipakai dengan laju tetap <InlineMath math="P" /> bertahan selama <InlineMath math="t=R/P" />. Dengan cadangan ilustratif <InlineMath math="1000" /> satuan, pemakaian tahunan yang dua kali lipat membuat sisa waktunya tinggal separuh. Putar batangnya: <InlineMath math="10" />, <InlineMath math="20" />, dan <InlineMath math="40" /> satuan per tahun.
+Ketika pembentukan alami sangat kecil dibandingkan pengambilan, cadangan berperilaku seperti tabungan tetap tanpa setoran. Cadangan terbatas <InlineMath math="R" /> yang dipakai dengan laju tetap <InlineMath math="P" /> bertahan selama <InlineMath math="t=R/P" />. Dengan cadangan ilustratif <InlineMath math="1000" /> satuan, pemakaian dua kali lipat membuat sisa waktunya tinggal separuh. Putar batangnya untuk <InlineMath math="10" />, <InlineMath math="20" />, dan <InlineMath math="40" /> satuan per tahun.
 
 <MathVisual
   title={<>Cadangan Terbatas Bisa Habis</>}
-  description={<>Lama cadangan ilustratif <InlineMath math="1000" /> satuan bertahan pada tiga laju pemakaian tetap. Satu kotak grid ke atas berarti <InlineMath math="20" /> tahun.</>}
+  description={<>Lama cadangan ilustratif <InlineMath math="1000" /> satuan bertahan pada tiga laju pemakaian tetap, dengan tinggi batang sesuai skala.</>}
+  footer={<>Pemakaian tahunan dua kali lipat memangkas umur cadangan jadi separuh.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -72,6 +76,8 @@ Cadangan terbatas <InlineMath math="R" /> yang dipakai dengan laju tetap <Inline
   }}
 />
 
+Setiap pelipatan dua laju pemakaian memotong tinggi batang menjadi separuh, turun dari <InlineMath math="100" /> tahun ke <InlineMath math="50" /> lalu ke <InlineMath math="25" /> tahun. Besar cadangan saja belum memberi tahu berapa lama bahan bakar bertahan tanpa melihat laju pemakaiannya.
+
 ## Bahan Bakar Fosil dan Bahan Bakar Nuklir
 
 Dua kelompok utama sumber tak terbarukan adalah bahan bakar fosil dan bahan bakar nuklir. [**Bahan bakar fosil**](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) terbentuk dari sisa makhluk hidup purba yang tertimbun, lalu berubah akibat tekanan dan panas selama jutaan tahun.
@@ -81,13 +87,17 @@ Dua kelompok utama sumber tak terbarukan adalah bahan bakar fosil dan bahan baka
 | Sumber | Energi awal | Asal dan penggunaan |
 | :----- | :---------- | :------------------------ |
 | Batu bara | Energi kimia | Batu bara terbentuk dari sisa tumbuhan purba yang berubah menjadi padatan kaya karbon. |
-| Minyak bumi | Energi kimia | Minyak bumi merupakan campuran hidrokarbon cair yang diolah menjadi bahan bakar seperti bensin dan solar. |
+| Minyak bumi | Energi kimia | Minyak bumi adalah campuran hidrokarbon cair yang diolah menjadi bahan bakar seperti bensin dan solar. |
 | Gas alam | Energi kimia | Gas alam banyak mengandung metana yang dapat dibakar untuk menghasilkan kalor. |
 | Uranium | Energi inti | Uranium berasal dari mineral yang ditambang untuk bahan bakar reaktor nuklir. |
 
 Istilah "tak terbarukan" <Highlight>mencakup bahan bakar fosil dan bahan bakar nuklir</Highlight>. Batu bara, minyak bumi, dan gas alam dibakar, sedangkan uranium melepaskan energi melalui fisi nuklir.
 
-## Berbagai Sumber Memakai Tahap Konversi Kalor
+## Konversi Kalor dan Peran dalam Jaringan
+
+Sebagian besar pembangkit tak terbarukan bekerja sebagai **pembangkit termal**, namun masing-masing menjalankan peran berbeda dalam jaringan listrik. Kecepatan menyala dan biaya operasi menentukan mana yang melayani beban dasar dan mana yang menutup beban puncak.
+
+### Berbagai Sumber Memakai Tahap Konversi Kalor
 
 Banyak pembangkit dari sumber tak terbarukan menghasilkan listrik lewat kalor. Perbedaannya terletak pada **proses yang menghasilkan kalor**.
 
@@ -96,6 +106,7 @@ Pada pembangkit uap, pembakaran dan fisi menghasilkan kalor melalui proses berbe
 <Mermaid
   title={<>Kalor menuju listrik</>}
   description={<>Dua proses menghasilkan kalor untuk sistem uap.</>}
+  footer={<>Pembakaran dan fisi berbeda di awal, lalu memakai siklus uap yang sama.</>}
   chart={`flowchart TD
     A["Bahan bakar fosil: pembakaran"] --> C["Kalor memanaskan air"]
     B["Uranium: fisi inti"] --> C
@@ -106,11 +117,14 @@ Pada pembangkit uap, pembakaran dan fisi menghasilkan kalor melalui proses berbe
 
 Hasil akhirnya sama-sama berupa listrik, sedangkan tahap awal konversinya berbeda. Setiap jalur memakai alat untuk mengubah energi awal menjadi energi yang dapat digunakan.
 
-Ganti sumber kalornya dan lihat semua tahap setelah boiler tetap sama. Pembangkit ini menerima kalor <InlineMath math="1\,000\text{ MW}" />. Dengan batu bara, uap mencapai sekitar <InlineMath math="540^\circ\text{C}" /> dan <InlineMath math="380\text{ MW}" /> keluar sebagai listrik, sedangkan kondensor menyerahkan <InlineMath math="620\text{ MW}" /> ke menara pendingin. Reaktor nuklir memakai uap yang lebih dingin, sekitar <InlineMath math="285^\circ\text{C}" />, sehingga listriknya <InlineMath math="330\text{ MW}" />. Bandingkan juga bahan bakarnya: <InlineMath math="150\,000\text{ kg}" /> batu bara per jam dibandingkan kurang dari <InlineMath math="1\text{ kg}" /> bahan bakar uranium.
+Ganti sumber kalornya dan lihat semua tahap setelah boiler tetap sama. Pembangkit ini menerima kalor <InlineMath math="1\,000\text{ MW}" />. Dengan batu bara, uap mencapai sekitar <InlineMath math="540^\circ\text{C}" /> dan <InlineMath math="380\text{ MW}" /> keluar sebagai listrik, sedangkan kondensor menyerahkan <InlineMath math="620\text{ MW}" /> ke menara pendingin.
+
+Reaktor nuklir memakai uap yang lebih dingin sekitar <InlineMath math="285^\circ\text{C}" />, sehingga listriknya <InlineMath math="330\text{ MW}" />. Bandingkan juga bahan bakar per jam: <InlineMath math="150\,000\text{ kg}" /> batu bara dibandingkan kurang dari <InlineMath math="1\text{ kg}" /> uranium.
 
 <SteamPlantCycleLab
   title={<>Satu Siklus Uap, Tiga Sumber Kalor</>}
   description={<>Pembangkit listrik tenaga uap menerima kalor <InlineMath math="1\,000\text{ MW}" /> dari batu bara, gas, atau uranium. Pilih bahan bakarnya, lalu bandingkan listrik, kalor buangan, suhu uap, batas idealnya, dan bahan bakar yang dipakai tiap jam.</>}
+  footer={<>Uap lebih panas menaikkan efisiensi, sedangkan uranium butuh massa sangat kecil.</>}
   labels={{
     chooseFuel: "Bahan bakar",
     electric: <>Listrik</>,
@@ -128,7 +142,9 @@ Ganti sumber kalornya dan lihat semua tahap setelah boiler tetap sama. Pembangki
   }}
 />
 
-## Peran Berbeda dalam Jaringan Listrik
+Perhatikan bahwa setiap pembangkit uap melepas lebih dari separuh kalor masuknya ke menara pendingin karena batas termodinamika. Meski begitu, mengganti bahan bakar memperlihatkan perbedaan amat besar pada massa bahan bakar yang dibutuhkan per jam.
+
+### Peran Berbeda dalam Jaringan Listrik
 
 Setiap jenis pembangkit memasok listrik dengan cara yang berbeda. Pembangkit nuklir biasanya beroperasi terus dengan daya yang stabil. Pembangkit gas alam siklus gabungan dapat **menaikkan atau menurunkan daya** ketika kebutuhan listrik berubah. Saat kebutuhan mencapai puncak, turbin berbahan bakar gas alam atau minyak dapat menambah pasokan selama beberapa jam.
 
@@ -140,19 +156,20 @@ Pada hari ilustrasi ini, garis abu-abu adalah beban dasar yang tetap, yang bisa 
 
 <MathVisual
   title={<>Beban Dasar dan Puncak dalam Satu Hari</>}
-  description={<>Kurva permintaan ilustrasi selama satu hari di atas beban dasar yang tetap. Mendatar: jam dalam satuan <InlineMath math="2" /> jam. Tegak: daya dalam satuan sembarang.</>}
+  description={<>Kurva permintaan ilustrasi selama <InlineMath math="24" /> jam di atas beban dasar yang tetap. Mendatar: jam dalam sehari. Tegak: daya relatif.</>}
+  footer={<>Beban dasar memikul lantai tetap, sedangkan pembangkit cepat menutup puncak.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 25 }, y: { min: 0, max: 5.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 12, y: 2 } },
-      { id: "demand", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.5) / 6) }, { x: 0.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.75) / 6) }, { x: 0.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 3) / 6) }, { x: 0.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 3.25) / 6) }, { x: 1, y: 3.5 + 1.2 * Math.cos((Math.PI * 3.5) / 6) }, { x: 1.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 3.75) / 6) }, { x: 1.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 4) / 6) }, { x: 1.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 4.25) / 6) }, { x: 2, y: 3.5 + 1.2 * Math.cos((Math.PI * 4.5) / 6) }, { x: 2.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 4.75) / 6) }, { x: 2.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 5) / 6) }, { x: 2.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 5.25) / 6) }, { x: 3, y: 3.5 + 1.2 * Math.cos((Math.PI * 5.5) / 6) }, { x: 3.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 5.75) / 6) }, { x: 3.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -6) / 6) }, { x: 3.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -5.75) / 6) }, { x: 4, y: 3.5 + 1.2 * Math.cos((Math.PI * -5.5) / 6) }, { x: 4.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -5.25) / 6) }, { x: 4.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -5) / 6) }, { x: 4.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -4.75) / 6) }, { x: 5, y: 3.5 + 1.2 * Math.cos((Math.PI * -4.5) / 6) }, { x: 5.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -4.25) / 6) }, { x: 5.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -4) / 6) }, { x: 5.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -3.75) / 6) }, { x: 6, y: 3.5 + 1.2 * Math.cos((Math.PI * -3.5) / 6) }, { x: 6.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -3.25) / 6) }, { x: 6.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -3) / 6) }, { x: 6.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -2.75) / 6) }, { x: 7, y: 3.5 + 1.2 * Math.cos((Math.PI * -2.5) / 6) }, { x: 7.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -2.25) / 6) }, { x: 7.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -2) / 6) }, { x: 7.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -1.75) / 6) }, { x: 8, y: 3.5 + 1.2 * Math.cos((Math.PI * -1.5) / 6) }, { x: 8.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -1.25) / 6) }, { x: 8.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -1) / 6) }, { x: 8.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -0.75) / 6) }, { x: 9, y: 3.5 + 1.2 * Math.cos((Math.PI * -0.5) / 6) }, { x: 9.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -0.25) / 6) }, { x: 9.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 0) / 6) }, { x: 9.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 0.25) / 6) }, { x: 10, y: 3.5 + 1.2 * Math.cos((Math.PI * 0.5) / 6) }, { x: 10.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 0.75) / 6) }, { x: 10.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 1) / 6) }, { x: 10.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 1.25) / 6) }, { x: 11, y: 3.5 + 1.2 * Math.cos((Math.PI * 1.5) / 6) }, { x: 11.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 1.75) / 6) }, { x: 11.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 2) / 6) }, { x: 11.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.25) / 6) }, { x: 12, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.5) / 6) }] },
-      { id: "top", kind: "point", appearance: "primary", at: { x: 9.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 0) / 6) } },
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 24, y: 2 } },
+      { id: "demand", kind: "function", appearance: "primary", formula: "3.5 + 1.2 * cos(pi * (x - 19) / 12)", domain: { min: 0, max: 24 } },
+      { id: "top", kind: "point", appearance: "primary", at: { x: 19, y: 4.7 } },
     ],
     labels: [
-      { key: "base", objectId: "base", at: { x: 1, y: 2 }, placement: "below" },
-      { key: "peak", objectId: "top", at: { x: 9.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+      { key: "base", objectId: "base", at: { x: 3, y: 2 }, placement: "below" },
+      { key: "peak", objectId: "top", at: { x: 19, y: 4.7 }, placement: "above" },
     ],
   }}
   labels={{
@@ -160,6 +177,8 @@ Pada hari ilustrasi ini, garis abu-abu adalah beban dasar yang tetap, yang bisa 
     peak: <>Puncak malam</>,
   }}
 />
+
+Jarak antara lantai abu-abu dan puncak oranye terus berubah dari jam ke jam. Jaringan menggabungkan pembangkit beban dasar dengan pembangkit yang cepat menyesuaikan daya atau penyimpanan agar pasokan selalu mengikuti permintaan tanpa pemadaman.
 
 ## Risiko di Sepanjang Rantai Energi
 
@@ -178,11 +197,14 @@ Karbon dioksida ditulis sebagai <InlineMath math="\text{CO}_2" />. Gas alam bany
 
 Bandingkan setiap sumber berdasarkan persediaan, urutan perubahan energi, energi yang dapat digunakan, limbah, serta dampaknya terhadap masyarakat dan ekosistem.
 
-Inilah alasan pembakaran bahan bakar menambah begitu banyak karbon dioksida. Setiap atom karbon bergabung dengan dua atom oksigen dari udara, <InlineMath math="\mathrm{C}+\mathrm{O_2}\rightarrow\mathrm{CO_2}" />, jadi <InlineMath math="12\text{ g}" /> karbon menjadi <InlineMath math="44\text{ g}" /> gas. Membakar <InlineMath math="1\text{ kg}" /> batu bara yang mengandung sekitar <InlineMath math="70\%" /> karbon menghasilkan <InlineMath math="2{,}57\text{ kg}" /> <InlineMath math="\mathrm{CO_2}" />, lebih berat dari bahan bakarnya sendiri, karena <InlineMath math="1{,}87\text{ kg}" /> di antaranya oksigen dari udara.
+Inilah alasan pembakaran bahan bakar menambah begitu banyak karbon dioksida. Setiap atom karbon bergabung dengan dua atom oksigen dari udara, <InlineMath math="\mathrm{C}+\mathrm{O_2}\rightarrow\mathrm{CO_2}" />, jadi <InlineMath math="12\text{ g}" /> karbon menjadi <InlineMath math="44\text{ g}" /> gas.
+
+Membakar <InlineMath math="1\text{ kg}" /> batu bara yang mengandung sekitar <InlineMath math="70\%" /> karbon menghasilkan <InlineMath math="2{,}57\text{ kg}" /> <InlineMath math="\mathrm{CO_2}" />. Gasnya lebih berat dari bahan bakarnya sendiri karena <InlineMath math="1{,}87\text{ kg}" /> di antaranya adalah oksigen dari udara.
 
 <FuelCombustionCarbonLab
   title={<>Membakar <InlineMath math="1\text{ kg}" /> Bahan Bakar</>}
   description={<><InlineMath math="1\text{ kg}" /> batu bara, solar, atau metana dibakar, dan balon menampung karbon dioksidanya. Pilih bahan bakarnya, lalu bandingkan karbon, oksigen yang diambil dari udara, dan gas yang terbentuk.</>}
+  footer={<>Karbon mengikat oksigen udara, sehingga CO2 lebih berat dari bahan bakarnya.</>}
   labels={{
     carbon: <>Karbon dalam bahan bakar</>,
     chooseFuel: "Bahan bakar",
@@ -198,3 +220,5 @@ Inilah alasan pembakaran bahan bakar menambah begitu banyak karbon dioksida. Set
     volume: <>Volume gas pada <InlineMath math="25^\circ\text{C}" /></>,
   }}
 />
+
+Bandingkan karbon dioksida per megajoule kalor pada ketiga bahan bakar. Metana menghasilkan lebih sedikit karbon dioksida per satuan kalor daripada batu bara karena pembakaran hidrogennya membentuk uap air, tetapi semua bahan bakar fosil tetap menambah karbon fosil ke atmosfer.

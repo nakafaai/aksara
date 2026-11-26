@@ -16,9 +16,7 @@ When a lamp turns on, it converts electrical energy into light and heat. Before 
 
 Not every source passes through every stage. Wind and sunlight do not require fuel extraction, but wind turbines and solar panels still require raw materials, manufacturing, installation, and end-of-life management.
 
-The stages that need assessment can be represented as this chain:
-
-Start with exploration of the resource, then its extraction, conversion, distribution, and use. Finally, assess the residues left behind.
+The stages that need assessment form one continuous chain: start with exploration of the resource, continue through extraction, conversion, distribution, and use, and finish by checking the residues left behind.
 
 Energy systems can affect mines, wells, dams, transmission lines, solar panels, turbines, batteries, air, water, soil, and nearby communities at different stages of the energy chain.
 
@@ -26,7 +24,8 @@ Count the emissions of every stage, from mining and building to running and taki
 
 <MathVisual
   title={<>Every Stage Counts</>}
-  description={<>Median lifecycle emissions per kWh from the IPCC (2014). One grid step up is <InlineMath math="100" /> <InlineMath math="\mathrm{g\,CO_2\text{-}eq/kWh}" />.</>}
+  description={<>Median lifecycle emissions per kWh from the IPCC (2014), with bar heights proportional to <InlineMath math="\mathrm{g\,CO_2\text{-}eq/kWh}" />.</>}
+  footer={<>Coal and gas tower over solar, hydro, and wind across the full lifecycle.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 9.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -55,7 +54,13 @@ Count the emissions of every stage, from mining and building to running and taki
   }}
 />
 
-## Assess Impacts across the Full Energy Chain
+Even when manufacturing and decommissioning are included, coal emits roughly seventy times as much carbon dioxide per kilowatt-hour as wind. That gap shows why counting every stage gives a clearer picture than judging one step alone.
+
+## Full Chain and Source Specific Impacts
+
+To compare energy systems fairly, map **every stage of the energy chain** and see how each source shapes air, land, water, and climate. Looking past daily operation reveals mining, construction, and disposal effects too.
+
+### Assess Impacts across the Full Energy Chain
 
 **Environmental impact** means a change in air, water, soil, living things, or landscape caused by an activity. **Emission** means matter or energy released into the environment, such as exhaust gas from burning fuel.
 
@@ -71,11 +76,14 @@ Nearly every part of the [electricity system](https://www.epa.gov/energy/about-u
 
 For each stage, record the magnitude, duration, affected area, and available evidence. A short, visible impact may be less severe than one that lasts for years or affects a much larger area.
 
-Energy losses are one impact you can measure stage by stage. Take round, illustrative efficiencies: the power plant turns <InlineMath math="35\%" /> of the fuel energy into electricity, and the grid delivers <InlineMath math="95\%" /> of that. In the scene below, each column is still <InlineMath math="100\text{ J}" /> tall, because energy is conserved. Only the split changes: the teal part is the energy still useful, the gray part is the heat already released to the surroundings. Rotate it and compare how much gray appears at the conversion stage.
+Energy losses are one impact you can measure stage by stage. Take an illustrative chain where a power plant converts <InlineMath math="35\%" /> of fuel energy to electricity and the grid delivers <InlineMath math="95\%" /> of that.
+
+Each column below stays <InlineMath math="100\text{ J}" /> tall because energy is conserved. The teal segment tracks energy still useful, while the gray cap shows heat already released to the surroundings.
 
 <MathVisual
   title={<>What Is Left of <InlineMath math="100\text{ J}" /> along the Chain</>}
-  description={<>An illustrative energy chain with a conversion efficiency of <InlineMath math="0.35" /> and a grid efficiency of <InlineMath math="0.95" />. One grid step up is <InlineMath math="20\text{ J}" />.</>}
+  description={<>An illustrative energy chain with conversion efficiency <InlineMath math="0.35" /> and grid efficiency <InlineMath math="0.95" />, showing useful and released shares of <InlineMath math="100\text{ J}" />.</>}
+  footer={<>Most of the 100 J turns into waste heat during power-plant conversion.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -1, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -106,7 +114,9 @@ Energy losses are one impact you can measure stage by stage. Take round, illustr
   }}
 />
 
-## Impacts Differ by Source and Stage
+Look at how sharply the teal bar drops at the power plant compared with the small extra drop in the grid. Improving conversion efficiency cuts fuel demand and thermal waste much faster than tweaking transmission lines alone.
+
+### Impacts Differ by Source and Stage
 
 For fossil fuels, major impacts come from extracting geological stocks and burning them. A geological stock is a reserve formed below Earth's surface over a very long time, such as coal or petroleum. [Burning fossil fuels releases carbon dioxide](https://www.eia.gov/energyexplained/energy-and-the-environment/where-greenhouse-gases-come-from.php), written as <InlineMath math="\text{CO}_2" />.
 
@@ -116,15 +126,16 @@ Some renewable technologies, including wind turbines and photovoltaic panels, op
 
 Clean-energy technologies require [minerals](https://www.iea.org/reports/the-role-of-critical-minerals-in-clean-energy-transitions) such as lithium, cobalt, nickel, copper, and rare-earth elements. Some technologies depend heavily on a reliable supply of these materials, and mining them also affects the environment.
 
-An energy source with low operating emissions still needs assessment <Highlight>from exploration through end-of-life management</Highlight>.
+An energy source with low operating emissions still needs assessment <Highlight>from exploration through end-of-life management</Highlight>. The total impact therefore includes more than what happens while the device is running.
 
-The total impact therefore includes more than what happens while the device is running.
+The simplest atmosphere model shows that radiative effect: one layer lets sunlight through, absorbs a share of ground infrared, and sends half back down. With no absorption, the surface sits near <InlineMath math="255\text{ K}" />.
 
-The simplest model of the atmosphere shows that radiative effect: one layer that lets sunlight through but absorbs a share of the infrared from the ground and sends half of it back down. With no absorption, the surface would sit near <InlineMath math="255\text{ K}" />. When the layer absorbs <InlineMath math="78\%" />, the back radiation of <InlineMath math="152\text{ W/m}^2" /> warms the surface to about <InlineMath math="288\text{ K}" />, close to Earth's average. Raise the share and watch the surface warm until it sheds the sunlight plus the back radiation.
+When the layer absorbs <InlineMath math="78\%" />, back radiation of <InlineMath math="152\text{ W/m}^2" /> warms the surface to about <InlineMath math="288\text{ K}" />, close to Earth's average. Raise the absorbed share below and watch the surface temperature climb.
 
 <GreenhouseLayerLab
   title={<>One Layer of Greenhouse Gas</>}
   description={<>Sunlight warms the ground, the ground gives off infrared, and one layer of atmosphere absorbs a share of it. Change that share and compare the back radiation with the surface temperature.</>}
+  footer={<>Higher infrared absorption raises back radiation and warms the surface.</>}
   labels={{
     absorptanceControl: "Share of infrared the layer absorbs",
     back: <>Back radiation</>,
@@ -136,7 +147,13 @@ The simplest model of the atmosphere shows that radiative effect: one layer that
   }}
 />
 
-## Assessing an Open Pit Coal Mine
+Notice that absorbed sunlight never changes when you move the slider. Warming happens because stronger back radiation forces the surface to reach a higher temperature before its outgoing infrared balances the total energy coming in.
+
+## Case Comparisons across Stages
+
+Compare two contrasting energy projects stage by stage: the **land disturbance of a coal mine** and the **energy payback of a solar roof**. Each example connects field measurements to total lifetime impact.
+
+### Assessing an Open Pit Coal Mine
 
 In open-pit coal mining, layers of soil and rock above the coal deposit can be removed so the coal can be reached. **Burning the coal and changing the land** during mining both cause impacts.
 
@@ -144,11 +161,12 @@ In open-pit coal mining, layers of soil and rock above the coal deposit can be r
 
 When examining a mining area, ask what soil is moved, where water flows, where wind carries the dust, and whether the land can be restored after the activity ends.
 
-Each question about the mine points at a place in this cross-section. The amber area is rock and soil that was moved, <InlineMath math="2{,}400" /> cubic meters for every meter along the pit, water gathers at the bottom, and the wind lifts dust from the edge. Zoom in on each part.
+Each question about the mine points at a place in this cross-section. The amber area is rock and soil that was moved, <InlineMath math="2\,400" /> cubic meters for every meter along the pit, water gathers at the bottom, and the wind lifts dust from the edge.
 
 <MathVisual
   title={<>Questions at an Open Pit Mine</>}
-  description={<>Cross-section of an open pit with three <InlineMath math="10\text{ m}" /> benches. One grid step is <InlineMath math="10\text{ m}" />.</>}
+  description={<>Cross-section of an open pit with three <InlineMath math="10\text{ m}" /> benches showing excavated rock, pooled water, and windblown dust.</>}
+  footer={<>Excavation reshapes 2,400 m² per slice while pooling water and lifting dust.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 3 } },
@@ -175,7 +193,9 @@ Each question about the mine points at a place in this cross-section. The amber 
   }}
 />
 
-## Compare Benefits and Impacts at Every Stage
+That cross-section shows why extraction impacts extend beyond carbon emissions. Even before a single kilogram of coal reaches a boiler, moving overburden reshapes drainage, groundwater, and air quality around the pit.
+
+### Compare Benefits and Impacts at Every Stage
 
 A sound energy assessment compares the useful energy with environmental and social impacts at **every stage**. The labels "renewable" and "non-renewable" provide only part of that information.
 
@@ -189,20 +209,43 @@ A sound energy assessment compares the useful energy with environmental and soci
 
 Some costs do not appear in the price of electricity. They can include dirtier air, disturbed rivers, lost habitat, or waste that requires long-term management.
 
-Upstream impact can be weighed against the benefit in energy itself. Making and installing a <InlineMath math="3\text{ kWp}" /> rooftop solar system uses an illustrative <InlineMath math="3\,900\text{ kWh}" /> before it gives back a single kilowatt-hour. On a roof that yields <InlineMath math="1\,300\text{ kWh}" /> per kWp each year, the system repays that energy in one year and returns it <InlineMath math="25" /> times over its <InlineMath math="25" /> years. Move the yield and watch the payback point shift.
+Upstream impact can be weighed against the benefit in energy itself. Making and installing a <InlineMath math="3\text{ kWp}" /> rooftop solar system uses an illustrative <InlineMath math="3\,900\text{ kWh}" /> before it delivers its first kilowatt-hour.
 
-<SolarRoofPaybackLab
-  title={<>When a Solar Roof Repays Its Energy</>}
-  description={<>A <InlineMath math="3\text{ kWp}" /> solar roof starts in energy debt: making it took <InlineMath math="3\,900\text{ kWh}" />. Change the yearly yield and watch the energy account cross zero.</>}
+On a sunny roof yielding <InlineMath math="1\,300\text{ kWh}" /> per kWp each year, the array pays back that energy debt in <InlineMath math="1\text{ year}" /> and returns <InlineMath math="97\,500\text{ kWh}" /> over <InlineMath math="25\text{ years}" />. Adjust the yearly yield below to see the break-even point shift.
+
+<MathVisual
+  title={<>Rooftop Solar Energy Payback</>}
+  description={<>Cumulative net energy balance in kWh for a <InlineMath math="3\text{ kWp}" /> rooftop solar system starting at <InlineMath math="-3\,900\text{ kWh}" /> of embodied energy. Horizontal: operating years. Vertical: net energy in kWh.</>}
+  footer={<>Higher yearly yield steepens the line and pulls the break-even point left.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.2, max: 3.3 }, y: { min: -4500, max: 13500 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 800, max: 1800, step: 100, value: 1300, label: "yield" },
+    ],
+    objects: [
+      { id: "zero-line", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "balance", kind: "function", appearance: "primary", formula: "3 * a * x - 3900", domain: { min: 0, max: 3 } },
+      { id: "payback-pt", kind: "marker", appearance: "answer", x: "1300 / a", y: "0" },
+    ],
+    readouts: [
+      { key: "payback", formula: "1300 / a" },
+      { key: "lifetime", formula: "75 * a" },
+    ],
+    labels: [
+      { key: "zero", objectId: "payback-pt", at: { x: "1300 / a", y: "0" }, placement: "above-right" },
+    ],
+  }}
   labels={{
-    invested: <>Energy to make the system</>,
-    lifetime: <>Energy returned over <InlineMath math="25" /> years</>,
-    payback: <>Payback time in years</>,
-    viewLabel: "House with a solar roof above its energy account over five years",
-    yearly: <>Energy each year</>,
-    yieldControl: "Yearly yield per kWp",
+    yield: <>Yearly yield (kWh/kWp)</>,
+    zero: <>Energy payback</>,
+    payback: <>Payback time (years)</>,
+    lifetime: <>25-year output (kWh)</>,
   }}
 />
+
+Watch where the green dot crosses the zero line as you lower the yield from <InlineMath math="1\,800" /> to <InlineMath math="800\text{ kWh/kWp}" />. Even on a cloudier roof, the system clears its manufacturing energy debt in under two years and spends more than two decades delivering net clean electricity.
 
 ## Evaluate Each Energy Choice as a Whole
 

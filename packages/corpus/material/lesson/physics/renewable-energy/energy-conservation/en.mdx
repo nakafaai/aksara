@@ -20,11 +20,14 @@ If a device supplies less electrical energy than it receives, the difference is 
 
 Energy conservation applies to each transfer and transformation in a system.
 
-Watch it happen in a swinging bob. A <InlineMath math="1\text{ kg}" /> bob on a <InlineMath math="2\text{ m}" /> string starts at <InlineMath math="40^\circ" /> with <InlineMath math="4.59\text{ J}" /> of potential energy. Without drag, that energy only trades between potential and kinetic. With air drag, part of it moves to the surroundings as heat, yet the three bands always stack to the same <InlineMath math="4.59\text{ J}" />.
+> Energy never vanishes when a device delivers less useful output. Every missing joule either heats the surroundings, leaves as sound or vibration, or stays stored inside the device.
+
+Watch it happen in a swinging bob. A <InlineMath math="1\text{ kg}" /> bob on a <InlineMath math="2\text{ m}" /> string starts at <InlineMath math="40^\circ" /> with <InlineMath math="4.59\text{ J}" /> of potential energy. Without drag, that energy trades only between potential and kinetic. With air drag, part moves to the surroundings as heat, yet the three bands always sum to <InlineMath math="4.59\text{ J}" />.
 
 <PendulumEnergyLab
   title={<>A Swing That Keeps Its Energy Total</>}
   description={<>A <InlineMath math="1\text{ kg}" /> bob on a <InlineMath math="2\text{ m}" /> string swings from <InlineMath math="40^\circ" />. Choose the drag and watch potential energy, kinetic energy and heat share one constant total.</>}
+  footer={<>Air drag shrinks the swing, yet all three bands always total 4.59 J.</>}
   labels={{
     chooseDrag: "Air drag",
     drags: {
@@ -40,13 +43,20 @@ Watch it happen in a swinging bob. A <InlineMath math="1\text{ kg}" /> bob on a 
   }}
 />
 
-## Choose the System First
+Switch from no drag to strong drag and compare the heat bar after ten seconds. The pendulum slows down not because energy disappears, but because friction shifts mechanical energy into thermal energy in the air.
+
+## System Boundaries and Mechanical Energy
+
+Accounting for energy starts by choosing a **clear system boundary** before simplifying friction out of a model. The boundary decides which forces act inside the system and which energies leave into the room.
+
+### Choose the System First
 
 A **system** is the part we choose to analyze. Everything outside the system is called the **surroundings**. State the system boundary before applying energy conservation, because that boundary determines which energy transfers cross into or out of the calculation.
 
 <Mermaid
   title={<>System Boundary Decides the Energy Count</>}
   description={<>Choose the system boundary first so incoming, outgoing, and stored energy can be separated.</>}
+  footer={<>Every input splits between useful output and transfers to surroundings.</>}
   chart={`flowchart TD
     A["Energy input"] --> B["System"]
     B --> C["Useful energy"]
@@ -63,7 +73,7 @@ The diagram tracks every output. A system can deliver useful energy while also t
 
 In the first row, Earth is part of the system because gravitational potential energy belongs to the interaction between water and Earth. A change of energy form inside a system differs from a transfer across its boundary.
 
-## When Friction Is Ignored
+### When Friction Is Ignored
 
 Many introductory problems **ignore friction and air resistance** so that only kinetic energy and gravitational potential energy remain in the model. Mechanical energy is then written as:
 
@@ -88,26 +98,27 @@ E_p &= mgh \\
 
 If no energy crosses into the surroundings, that <InlineMath math="120 \text{ J}" /> changes into the kinetic energy of the water. In a real device, some energy moves to the surroundings as heat, sound, and vibration.
 
-Follow the water down the graph below, from <InlineMath math="h=12\text{ m}" /> on the right to the ground on the left. The orange potential energy shrinks by exactly as much as the teal kinetic energy grows, so the violet line for their sum never moves from <InlineMath math="120\text{ J}" />. Halfway down, at <InlineMath math="6\text{ m}" />, the two forms share the energy equally.
+Follow the water down the graph below, from <InlineMath math="h=12\text{ m}" /> on the right to the ground on the left. The orange potential energy shrinks by exactly as much as the teal kinetic energy grows, so the violet sum stays flat at <InlineMath math="120\text{ J}" />.
 
 <MathVisual
   title={<>Potential Energy Turns into Kinetic Energy</>}
-  description={<>Water of <InlineMath math="1\text{ kg}" /> falling from <InlineMath math="12\text{ m}" /> with <InlineMath math="g=10\text{ m/s}^2" /> and no losses. Horizontal: height in units of <InlineMath math="2\text{ m}" />. Vertical: energy in units of <InlineMath math="20\text{ J}" />.</>}
+  description={<>Water of <InlineMath math="1\text{ kg}" /> falling from <InlineMath math="12\text{ m}" /> with <InlineMath math="g=10\text{ m/s}^2" /> and no losses. Horizontal: height in m. Vertical: energy in J.</>}
+  footer={<>Potential and kinetic energy swap joule for joule around 60 J at 6 m.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.8, max: 7 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 14 }, y: { min: -12, max: 140 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
-      { id: "kinetic", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 6, y: 0 } },
-      { id: "mechanical", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 6, y: 6 } },
-      { id: "half", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 12, y: 120 } },
+      { id: "kinetic", kind: "segment", appearance: "construction", from: { x: 0, y: 120 }, to: { x: 12, y: 0 } },
+      { id: "mechanical", kind: "segment", appearance: "secondary", from: { x: 0, y: 120 }, to: { x: 12, y: 120 } },
+      { id: "half", kind: "point", appearance: "answer", at: { x: 6, y: 60 } },
     ],
     labels: [
-      { key: "ep", objectId: "potential", at: { x: 5, y: 5 }, placement: "below-right" },
-      { key: "ek", objectId: "kinetic", at: { x: 1, y: 5 }, placement: "above-right" },
-      { key: "em", objectId: "mechanical", at: { x: 3, y: 6 }, placement: "above" },
-      { key: "half", objectId: "half", at: { x: 3, y: 3 }, placement: "below" },
+      { key: "ep", objectId: "potential", at: { x: 10, y: 100 }, placement: "below-right" },
+      { key: "ek", objectId: "kinetic", at: { x: 2, y: 100 }, placement: "above-right" },
+      { key: "em", objectId: "mechanical", at: { x: 6, y: 120 }, placement: "above" },
+      { key: "half", objectId: "half", at: { x: 6, y: 60 }, placement: "below" },
     ],
   }}
   labels={{
@@ -118,23 +129,33 @@ Follow the water down the graph below, from <InlineMath math="h=12\text{ m}" /> 
   }}
 />
 
-Without friction, every joule of potential energy becomes kinetic energy: <InlineMath math="mgh=\tfrac12mv^2" />, so <InlineMath math="v=\sqrt{2gh}" /> and the mass cancels. Four times the height gives only twice the speed. Follow the curve from <InlineMath math="5\text{ m}" /> to <InlineMath math="20\text{ m}" />.
+Halfway down at <InlineMath math="6\text{ m}" />, both lines cross at <InlineMath math="60\text{ J}" />. Because the top line stays horizontal, reading any height tells you how the fixed <InlineMath math="120\text{ J}" /> is split.
+
+Without friction, every joule of potential energy turns into kinetic energy, and the mass <InlineMath math="m" /> cancels out:
+
+<BlockMath math="\begin{aligned}
+mgh &= \frac{1}{2}mv^2 \\
+v &= \sqrt{2gh}
+\end{aligned}" />
+
+Because speed grows with the square root of height, four times the drop height gives only twice the speed. Follow the curve from <InlineMath math="5\text{ m}" /> to <InlineMath math="20\text{ m}" />.
 
 <MathVisual
   title={<>Height Becomes Speed</>}
-  description={<>Speed at the bottom against the drop height with <InlineMath math="g=10\text{ m/s}^2" />. Horizontal: one grid step is <InlineMath math="2\text{ m}" />. Vertical: one grid step is <InlineMath math="4\text{ m/s}" />.</>}
+  description={<>Bottom speed against drop height with <InlineMath math="g=10\text{ m/s}^2" />. Horizontal: drop height in m. Vertical: speed in m/s.</>}
+  footer={<>Quadrupling drop height from 5 m to 20 m only doubles bottom speed.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -0.5, max: 6 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 22 }, y: { min: -2, max: 24 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "speed", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: Math.sqrt(2 * 10 * 1) / 4 }, { x: 1, y: Math.sqrt(2 * 10 * 2) / 4 }, { x: 1.5, y: Math.sqrt(2 * 10 * 3) / 4 }, { x: 2, y: Math.sqrt(2 * 10 * 4) / 4 }, { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, { x: 3, y: Math.sqrt(2 * 10 * 6) / 4 }, { x: 3.5, y: Math.sqrt(2 * 10 * 7) / 4 }, { x: 4, y: Math.sqrt(2 * 10 * 8) / 4 }, { x: 4.5, y: Math.sqrt(2 * 10 * 9) / 4 }, { x: 5, y: Math.sqrt(2 * 10 * 10) / 4 }, { x: 5.5, y: Math.sqrt(2 * 10 * 11) / 4 }, { x: 6, y: Math.sqrt(2 * 10 * 12) / 4 }, { x: 6.5, y: Math.sqrt(2 * 10 * 13) / 4 }, { x: 7, y: Math.sqrt(2 * 10 * 14) / 4 }, { x: 7.5, y: Math.sqrt(2 * 10 * 15) / 4 }, { x: 8, y: Math.sqrt(2 * 10 * 16) / 4 }, { x: 8.5, y: Math.sqrt(2 * 10 * 17) / 4 }, { x: 9, y: Math.sqrt(2 * 10 * 18) / 4 }, { x: 9.5, y: Math.sqrt(2 * 10 * 19) / 4 }, { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }] },
-      { id: "five", kind: "point", appearance: "secondary", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 } },
-      { id: "twenty", kind: "point", appearance: "answer", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 } },
+      { id: "speed", kind: "function", appearance: "primary", formula: "sqrt(20 * x)", domain: { min: 0, max: 20 } },
+      { id: "five", kind: "point", appearance: "secondary", at: { x: 5, y: 10 } },
+      { id: "twenty", kind: "point", appearance: "answer", at: { x: 20, y: 20 } },
     ],
     labels: [
-      { key: "five", objectId: "five", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, placement: "below-right" },
-      { key: "twenty", objectId: "twenty", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }, placement: "above-left" },
+      { key: "five", objectId: "five", at: { x: 5, y: 10 }, placement: "below-right" },
+      { key: "twenty", objectId: "twenty", at: { x: 20, y: 20 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -143,7 +164,13 @@ Without friction, every joule of potential energy becomes kinetic energy: <Inlin
   }}
 />
 
-## Useful Energy Depends on the Device Purpose
+The curve bends flatter as height increases, showing why building a taller dam gives diminishing gains in water speed compared with the rise in drop height.
+
+## Useful Output and Claim Checks
+
+Real converters always share their input between **useful output** and **surroundings**, leaving no extra energy out of thin air. Match those two streams against the input whenever you check a performance claim.
+
+### Useful Energy Depends on the Device Purpose
 
 In renewable-energy technology, the desired output is usually **useful energy**, such as electrical energy. Energy conservation still applies, but the energy input does not all become electricity.
 
@@ -166,7 +193,8 @@ Rotate the columns: the energy that goes into the turbine all comes out again. U
 
 <MathVisual
   title={<>The Turbine's Energy Balance</>}
-  description={<>Energy into the turbine and generator (gray) and out as electricity (teal) and to the surroundings (pink). One grid step up is <InlineMath math="20\text{ J}" />.</>}
+  description={<>Energy into the turbine and generator (gray) compared with electricity (teal) and heat, sound, and vibration to the surroundings (pink).</>}
+  footer={<>Stacked electricity and loss bars match the 120 J input bar height.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
@@ -189,7 +217,9 @@ Rotate the columns: the energy that goes into the turbine all comes out again. U
   }}
 />
 
-## Testing Energy Claims with Conservation
+Look at the top edges of both stacks: they line up at the exact same level. Raising efficiency shrinks the pink cap and grows the teal column without changing the total height.
+
+### Testing Energy Claims with Conservation
 
 The law of energy conservation can test an energy claim by accounting for every transfer and transformation.
 
@@ -219,11 +249,12 @@ To check energy conservation in a renewable-energy technology, answer three ques
 
 These answers identify the energy input, every transfer out of the system, and the useful fraction of the output.
 
-Try those three questions on a solar panel. In full sun, <InlineMath math="1\,000\text{ W/m}^2" /> falls on a <InlineMath math="1.6\text{ m}^2" /> panel, so <InlineMath math="1\,600\text{ W}" /> comes in. About <InlineMath math="64\text{ W}" /> bounces off the glass, <InlineMath math="274\text{ W}" /> leaves as electricity, and the remaining <InlineMath math="1\,262\text{ W}" /> heats the panel to about <InlineMath math="61^\circ\text{C}" />. Weaken the sunlight and check that the three outputs still add back to the input.
+Try those three questions on a solar panel. In full sun, <InlineMath math="1\,000\text{ W/m}^2" /> falls on a <InlineMath math="1.6\text{ m}^2" /> panel, so <InlineMath math="1\,600\text{ W}" /> comes in. About <InlineMath math="64\text{ W}" /> bounces off the glass, <InlineMath math="274\text{ W}" /> leaves as electricity, and <InlineMath math="1\,262\text{ W}" /> heats the panel to <InlineMath math="61^\circ\text{C}" />.
 
 <SolarPanelHeatLab
   title={<>Where the Sunlight on a Panel Goes</>}
   description={<>A <InlineMath math="1.6\text{ m}^2" /> panel on a <InlineMath math="30^\circ\text{C}" /> day. Change the sunlight, follow its split into electricity, reflection and heat, and see a hotter cell convert a smaller share.</>}
+  footer={<>Electricity, reflection, and heat always sum to incoming sunlight power.</>}
   labels={{
     efficiency: <>Efficiency</>,
     electric: <>Electricity</>,
@@ -235,3 +266,5 @@ Try those three questions on a solar panel. In full sun, <InlineMath math="1\,00
     viewLabel: "Solar panel on a roof with its flows of light, heat and electricity",
   }}
 />
+
+Lower the sunlight slider and add the three output readings together. Even as cell temperature drops and efficiency nudges upward, the total power leaving the panel always equals the sunlight power arriving on its glass.

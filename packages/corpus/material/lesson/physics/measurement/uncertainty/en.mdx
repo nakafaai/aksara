@@ -18,23 +18,49 @@ The sample standard deviation <InlineMath math="s" /> describes how far individu
 
 > Repeated measurements show random variation through small changes between readings. Systematic errors, such as a tool that does not start at zero or a damaged scale, must be checked through inspection or calibration.
 
-Reading the scale from a slightly different angle is one of those small changes. In the measuring cylinder below, the bottom of the water's curved surface sits on the cylinder's axis, but the scale is printed on the front wall. With your eye <InlineMath math="6.0\text{ cm}" /> above the water, your sight line crosses the wall higher up, and <InlineMath math="42.0\text{ mL}" /> reads as <InlineMath math="44.1\text{ mL}" />. Bring your eye level with the water, and the error drops to zero.
+Reading a graduated scale from an angle introduces **parallax shift**. When the true meniscus sits at <InlineMath math="42.0\text{ mL}" /> behind the front scale, tilting your eye by angle <InlineMath math="a" /> shifts the apparent reading by <InlineMath math="4\tan a" />. Drag the viewing-angle slider toward <InlineMath math="0^\circ" /> and watch the shift vanish.
 
-<ParallaxReadingLab
-  title={<>Parallax on a Measuring Cylinder</>}
+<MathVisual
+  title={<>Parallax Reading Shift vs Viewing Angle</>}
   description={
     <>
-      Move your eye up or down and watch where your sight line to the water crosses the scale.
+      Apparent cylinder reading against eye viewing angle <InlineMath math="a" /> around a true meniscus volume of <InlineMath math="42.0\text{ mL}" />.
     </>
   }
+  footer={<>Viewing level with the meniscus removes parallax shift completely.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -35, max: 35 }, y: { min: 38.5, max: 45.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -30, max: 30, value: 20, step: 2, label: "a" },
+    ],
+    objects: [
+      { id: "true-level", kind: "segment", appearance: "reference", from: { x: -30, y: 42 }, to: { x: 30, y: 42 } },
+      { id: "parallax-curve", kind: "function", appearance: "primary", formula: "42 + 4*tan(x*pi/180)", domain: { min: -30, max: 30 } },
+      { id: "angle-guide", kind: "path", appearance: "answer", points: [{ x: "a", y: "39" }, { x: "a", y: "42 + 4*tan(a*pi/180)" }] },
+      { id: "eye-point", kind: "marker", appearance: "answer", x: "a", y: "42 + 4*tan(a*pi/180)" },
+      { id: "zero-point", kind: "point", appearance: "secondary", at: { x: 0, y: 42 } },
+    ],
+    labels: [
+      { key: "true-vol", objectId: "zero-point", at: { x: 0, y: 42 }, placement: "below-right" },
+      { key: "shift", objectId: "eye-point", at: { x: "a", y: "42 + 4*tan(a*pi/180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "apparent-reading", formula: "42 + 4*tan(a*pi/180)" },
+      { key: "parallax-error", formula: "4*tan(a*pi/180)" },
+    ],
+  }}
   labels={{
-    error: <>Parallax error</>,
-    eye: "Eye height above the water",
-    reading: <>Reading you see</>,
-    trueVolume: <>True volume</>,
-    viewLabel: "Eye reading the water in a measuring cylinder, with a magnifier on the scale",
+    a: <>Viewing angle <InlineMath math="a" /> (deg)</>,
+    "true-vol": <InlineMath math="42.0\text{ mL}" />,
+    shift: <InlineMath math="\Delta V" />,
+    "apparent-reading": <>Apparent reading (mL)</>,
+    "parallax-error": <>Parallax shift (mL)</>,
   }}
 />
+
+Looking down from above biases the reading too high, while looking up from below biases it too low. Aligning your eye straight across at <InlineMath math="0^\circ" /> brings the parallax error to zero and removes this preventable reading shift.
 
 ## Mean of Repeated Measurements
 
@@ -52,37 +78,77 @@ For repeated data with a roughly symmetric spread and no clear outlier, the mean
 
 <BlockMath math="\bar d=\frac{\sum_{i=1}^{N} d_i}{N}" />
 
-For the data above:
-
-Add the numerical readings in centimetres first:
+For the data above, add the numerical readings in centimeters first:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} S &amp;=3.12+3.14+3.15 \\ &amp;\quad{}+3.11+3.14 \\ &amp;=15.66 \end{aligned}" />
+  <BlockMath math="\begin{aligned} S &=3.12+3.14+3.15 \\ &\quad{}+3.11+3.14 \\ &=15.66 \end{aligned}" />
 
   <BlockMath math="\bar d=\frac{15.66}{5}\text{ cm}=3.132\text{ cm}" />
 </MathContainer>
 
 The mean is not enough. We also need to know <Highlight>whether the data cluster tightly around the mean</Highlight> or spread farther away.
 
-The same idea works for time. Below, an <InlineMath math="0.80\text{ m}" /> pendulum is timed for ten swings again and again, and your thumb starts and stops the stopwatch a little early or late each time. With <InlineMath math="N=10" /> trials, the mean is <InlineMath math="\bar t=17.933\text{ s}" />, close to the true <InlineMath math="17.943\text{ s}" />. Slide <InlineMath math="N" /> and watch the mean settle while the spread of single readings stays about the same.
+The same spread appears when timing ten swings of a <InlineMath math="0.80\text{ m}" /> pendulum by hand. Even when five trials average cleanly to <InlineMath math="\bar t = 17.94\text{ s}" />, reaction-time jitter pulls individual trials up or down by a half-range <InlineMath math="h" />. Adjust <InlineMath math="h" /> below to compare tight versus wide stopwatch scatter.
 
-<StopwatchSpreadLab
-  title={<>Timing a Pendulum by Hand</>}
+<MathVisual
+  title={<>Stopwatch Trial Spread and Half-Range</>}
   description={
     <>
-      Add trials and watch the mean in fuchsia settle while the spread of single readings stays about the same.
+      Five repeated pendulum timings around their mean <InlineMath math="17.94\text{ s}" /> as the half-range spread <InlineMath math="h" /> changes.
     </>
   }
+  footer={<>Half the gap between the highest and lowest trial sets the half-range spread.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.8 }, y: { min: 17.4, max: 18.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0.05, max: 0.4, value: 0.2, step: 0.05, label: "h" },
+    ],
+    objects: [
+      { id: "mean", kind: "segment", appearance: "reference", from: { x: 0.5, y: 17.94 }, to: { x: 5.5, y: 17.94 } },
+      { id: "upper-band", kind: "path", appearance: "answer", points: [{ x: "0.5", y: "17.94 + h" }, { x: "5.5", y: "17.94 + h" }] },
+      { id: "lower-band", kind: "path", appearance: "answer", points: [{ x: "0.5", y: "17.94 - h" }, { x: "5.5", y: "17.94 - h" }] },
+      { id: "stem-1", kind: "path", appearance: "construction", points: [{ x: "1", y: "17.94" }, { x: "1", y: "17.94 - 0.6*h" }] },
+      { id: "stem-2", kind: "path", appearance: "construction", points: [{ x: "2", y: "17.94" }, { x: "2", y: "17.94 + h" }] },
+      { id: "stem-3", kind: "path", appearance: "construction", points: [{ x: "3", y: "17.94" }, { x: "3", y: "17.94 + 0.2*h" }] },
+      { id: "stem-4", kind: "path", appearance: "construction", points: [{ x: "4", y: "17.94" }, { x: "4", y: "17.94 - h" }] },
+      { id: "stem-5", kind: "path", appearance: "construction", points: [{ x: "5", y: "17.94" }, { x: "5", y: "17.94 + 0.4*h" }] },
+      { id: "trial-1", kind: "marker", appearance: "primary", x: "1", y: "17.94 - 0.6*h" },
+      { id: "trial-2", kind: "marker", appearance: "primary", x: "2", y: "17.94 + h" },
+      { id: "trial-3", kind: "marker", appearance: "primary", x: "3", y: "17.94 + 0.2*h" },
+      { id: "trial-4", kind: "marker", appearance: "primary", x: "4", y: "17.94 - h" },
+      { id: "trial-5", kind: "marker", appearance: "primary", x: "5", y: "17.94 + 0.4*h" },
+    ],
+    labels: [
+      { key: "mean-line", objectId: "mean", at: { x: 5.5, y: 17.94 }, placement: "right" },
+      { key: "upper-bound", objectId: "upper-band", at: { x: "5.5", y: "17.94 + h" }, placement: "right" },
+      { key: "lower-bound", objectId: "lower-band", at: { x: "5.5", y: "17.94 - h" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "full-range", formula: "2*h" },
+      { key: "half-range", formula: "h" },
+      { key: "upper-reading", formula: "17.94 + h" },
+    ],
+  }}
   labels={{
-    mean: <>Mean</>,
-    spread: <>Spread of one reading</>,
-    trials: "Number of trials",
-    uncertainty: <>Uncertainty of the mean</>,
-    viewLabel: "Pendulum timed with a stopwatch, with a dot plot of the readings",
+    h: <>Half-range <InlineMath math="h" /> (s)</>,
+    "mean-line": <InlineMath math="\bar t" />,
+    "upper-bound": <InlineMath math="\bar t+h" />,
+    "lower-bound": <InlineMath math="\bar t-h" />,
+    "full-range": <>Total range (s)</>,
+    "half-range": <>Half-range uncertainty (s)</>,
+    "upper-reading": <>Highest trial (s)</>,
   }}
 />
 
-## Data Spread Around the Mean
+Notice that all five trials keep the exact same mean <InlineMath math="17.94\text{ s}" /> no matter how wide <InlineMath math="h" /> grows. Reporting the spread alongside the mean is what reveals how consistent those repeated timings really are.
+
+## Quantifying Spread and Uncertainty of the Mean
+
+To evaluate repeated readings rigorously, separate the **spread of individual values** from the **uncertainty of their mean**. Sample standard deviation describes how widely single readings scatter, whereas uncertainty of the mean shows how tightly the average is pinned down.
+
+### Data Spread Around the Mean
 
 For repeated data, sample spread can be calculated from the **distance between each reading and the mean**.
 
@@ -93,9 +159,9 @@ The denominator <InlineMath math="N-1" /> is used because the sample mean <Inlin
 Sum the squared numerical deviations first:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} V &amp;=(-0.012)^2+(0.008)^2 \\ &amp;\quad{}+(0.018)^2+(-0.022)^2 \\ &amp;\quad{}+(0.008)^2 \\ &amp;=0.00108 \end{aligned}" />
+  <BlockMath math="\begin{aligned} V &=(-0.012)^2+(0.008)^2 \\ &\quad{}+(0.018)^2+(-0.022)^2 \\ &\quad{}+(0.008)^2 \\ &=0.00108 \end{aligned}" />
 
-  <BlockMath math="\begin{aligned} &amp;s_d=\sqrt{\frac V4}\text{ cm} \\ &amp;=\sqrt{0.00027}\text{ cm} \\ &amp;\approx0.0164\text{ cm} \end{aligned}" />
+  <BlockMath math="\begin{aligned} s_d&=\sqrt{\frac{V}{4}}\text{ cm} \\ &=\sqrt{0.00027}\text{ cm} \\ &\approx0.0164\text{ cm} \end{aligned}" />
 </MathContainer>
 
 If we report the diameter with the spread of the repeated data, the result becomes:
@@ -109,6 +175,7 @@ Here are the five readings from the table on one line. The fuchsia line is their
 <MathVisual
   title={<>From Readings to Spread</>}
   description={<>Five readings of the diameter (orange), their mean (fuchsia) and the band of one standard deviation (teal). One grid step is <InlineMath math="0.01\text{ cm}" /> from <InlineMath math="3.10\text{ cm}" />.</>}
+  footer={<>Most repeated readings fall within one standard deviation of the mean.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.8, max: 2.7 } },
@@ -134,7 +201,9 @@ Here are the five readings from the table on one line. The fuchsia line is their
   }}
 />
 
-## Data Spread and Uncertainty of the Mean
+Three of the five orange points sit inside the teal band while the two extreme readings lie just past its edges. That visual balance shows why <InlineMath math="s_d" /> captures the typical distance of a single reading from the mean.
+
+### Data Spread and Uncertainty of the Mean
 
 Some repeated-measurement exercises use the compact algebraic form below.
 
@@ -150,7 +219,7 @@ That formula is equivalent to the sample standard deviation:
 
 <BlockMath math="\Delta x=s_x=\sqrt{\frac{\sum_{i=1}^{N}(x_i-\bar x)^2}{N-1}}" />
 
-So the <InlineMath math="\frac{1}{\sqrt N}" /> in the compact form does not automatically mean the result is the formal uncertainty of the mean.
+So the <InlineMath math="1/\sqrt{N}" /> factor in the compact form does not automatically mean the result is the formal uncertainty of the mean.
 
 In formal metrology, NIST and the JCGM GUM describe the standard uncertainty of the mean as:
 
@@ -160,11 +229,14 @@ For independent readings with the same spread, the **standard uncertainty of the
 
 <BlockMath math="u(\bar d)=\frac{\sqrt{0.00027}}{\sqrt 5}\text{ cm}\approx0.00735\text{ cm}" />
 
-The scene below puts the five readings side by side. Each teal stem is one reading's distance from the mean, drawn <InlineMath math="100" /> times larger. The orange lines at <InlineMath math="\pm s_d" /> show how far single readings spread, while the closer violet lines at <InlineMath math="\pm u(\bar d)" /> show how well the mean itself is known. Try adding the stems above the gray line and the ones below it: they cancel, because deviations from the mean always sum to zero.
+The scene below puts the five readings side by side. Each teal stem is one reading's distance from the mean, drawn <InlineMath math="100" /> times larger.
+
+The orange lines at <InlineMath math="\pm s_d" /> show how far single readings spread, while the closer violet lines at <InlineMath math="\pm u(\bar d)" /> show how well the mean itself is known. Adding the stems above and below the gray line cancels out to zero.
 
 <MathVisual
   title={<>Five Readings around Their Mean</>}
   description={<>Each stem is a reading minus the mean, in units of <InlineMath math="0.01\text{ cm}" />. Orange lines mark the spread s, violet lines the uncertainty of the mean u.</>}
+  footer={<>Mean uncertainty stays narrower than single-reading spread around the mean.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: -2.8, max: 2.5 } },
@@ -213,13 +285,14 @@ The scene below puts the five readings side by side. Each teal stem is one readi
   }}
 />
 
-For a measurement problem, follow the notation defined in its statement. If <InlineMath math="\Delta x" /> denotes the compact formula above, then <InlineMath math="\Delta x" /> is the sample standard deviation of the individual measurements. Do not confuse this spread with the standard uncertainty of the mean <InlineMath math="u(\bar x)=s_x/\sqrt N" />.
+For a measurement problem, follow the notation defined in its statement. If <InlineMath math="\Delta x" /> denotes the compact formula above, then <InlineMath math="\Delta x" /> is the sample standard deviation of the individual measurements. Do not confuse this spread with the standard uncertainty of the mean <InlineMath math="u(\bar x)" />.
 
 The graph below keeps the same spread <InlineMath math="s_d" /> and asks what happens with more readings. The uncertainty of the mean falls fast at first and then more slowly, because it shrinks with <InlineMath math="\sqrt N" />: four times as many readings only halve it.
 
 <MathVisual
   title={<>More Readings, a Sharper Mean</>}
   description={<><InlineMath math="u=s/\sqrt N" /> for <InlineMath math="N=1" /> to <InlineMath math="20" /> readings with the cap's spread <InlineMath math="s_d" />. Horizontal: N in units of <InlineMath math="4" />. Vertical: u in units of <InlineMath math="0.004\text{ cm}" />.</>}
+  footer={<>Quadrupling the trial count cuts the mean uncertainty only in half.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 4.6 } },
@@ -239,6 +312,8 @@ The graph below keeps the same spread <InlineMath math="s_d" /> and asks what ha
     five: <InlineMath math="N=5:\ u\approx0.00735\text{ cm}" />,
   }}
 />
+
+Going from <InlineMath math="1" /> reading to <InlineMath math="5" /> cuts the uncertainty of the mean sharply, yet tripling from <InlineMath math="5" /> to <InlineMath math="15" /> yields a much smaller drop. Beyond a modest sample size, improving the instrument or technique helps far more than repeating endlessly.
 
 ## Area Calculated from Diameter Data
 

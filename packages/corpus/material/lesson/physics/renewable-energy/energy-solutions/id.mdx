@@ -14,9 +14,9 @@ export const metadata = {
 
 Sebagian kebutuhan energi dapat dipenuhi dari sumber lokal seperti air, cahaya Matahari, angin, limbah organik, atau panas bumi. Kecocokannya bergantung pada kondisi setiap daerah.
 
-Rencana yang lengkap mencakup urutan berikut:
+Rencana yang lengkap menghubungkan kebutuhan hingga layanan akhir. Mulai dari kebutuhan, <Highlight>tentukan sumber lokal yang sesuai</Highlight>, lalu rencanakan alat untuk mengubah energinya. Setelah itu, tentukan cara menyalurkan atau menyimpan energi agar manfaat yang dibutuhkan dapat diperoleh.
 
-Mulai dari kebutuhan, <Highlight>tentukan sumber lokal yang sesuai</Highlight>, lalu rencanakan alat untuk mengubah energinya. Setelah itu, tentukan cara menyalurkan atau menyimpan energi agar manfaat yang dibutuhkan dapat diperoleh.
+> Keberadaan sumber energi lokal saja belum menjamin pasokan listrik. Rencana energi yang baik menyesuaikan kebutuhan di setiap jam, menyiapkan penyimpanan saat keluaran turun, dan menentukan pihak yang merawat alat.
 
 Sistem dapat gagal jika perawatan, biaya, keselamatan, atau pengelolaan dampak lingkungan tidak masuk dalam rencana. Sumber energi dan seluruh bagian pendukung sistem harus sesuai dengan kondisi lokasi.
 
@@ -24,7 +24,8 @@ Mulai dari kebutuhannya, lalu periksa sumbernya. Desa dengan <InlineMath math="5
 
 <MathVisual
   title={<>Dari Kebutuhan ke Layanan Energi</>}
-  description={<>Kebutuhan energi harian <InlineMath math="50" /> rumah (ungu) dan hasil harian mikrohidro <InlineMath math="2{,}5\text{ kW}" /> (teal). Satu kotak grid ke atas berarti <InlineMath math="10\text{ kWh}" />.</>}
+  description={<>Kebutuhan energi harian <InlineMath math="50" /> rumah (ungu) dibandingkan dengan hasil harian mikrohidro <InlineMath math="2{,}5\text{ kW}" /> (teal) dalam kWh.</>}
+  footer={<>Batang pasokan 60 kWh melampaui kebutuhan desa 50 kWh dengan cadangan 10 kWh.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
@@ -43,6 +44,8 @@ Mulai dari kebutuhannya, lalu periksa sumbernya. Desa dengan <InlineMath math="5
     supply: <InlineMath math="2{,}5\cdot24=60\text{ kWh}" />,
   }}
 />
+
+Selisih cadangan <InlineMath math="10\text{ kWh}" /> itu penting dalam praktik. Kecukupan harian baru aman jika pasokan tetap melampaui beban pada jam sibuk malam hari atau saat debit sungai menyusut di musim kemarau.
 
 ## Contoh Mikrohidro dari Plaosan
 
@@ -67,17 +70,20 @@ Keterangan simbol:
 | <InlineMath math="h" /> | beda tinggi, dalam meter |
 | <InlineMath math="\eta" /> | efisiensi tanpa satuan, ditulis sebagai desimal pada rumus ini |
 
-Rumus tersebut memperkirakan daya dari massa jenis air, gravitasi, debit, beda tinggi, dan efisiensi. Debit dan beda tinggi yang lebih besar meningkatkan perkiraan daya, tetapi rancangan lengkap juga memerlukan data lokasi dan pemeriksaan keselamatan.
+Rumus ini memperkirakan daya dari massa jenis air, gravitasi, debit, beda tinggi, dan efisiensi. Debit dan beda tinggi yang lebih besar meningkatkan perkiraan daya, tetapi rancangan lengkap juga memerlukan data lokasi dan pemeriksaan keselamatan.
 
-Untuk **contoh hitung rekaan**, ambil massa jenis air <InlineMath math="1\,000 \text{ kg/m}^3" />, <InlineMath math="g=10 \text{ m/s}^2" />, debit <InlineMath math="0{,}02 \text{ m}^3/\text{s}" />, beda tinggi <InlineMath math="10 \text{ m}" />, dan efisiensi <InlineMath math="0{,}7" />. Angka ini bukan hasil pengukuran proyek yang dibahas setelahnya.
+Untuk **contoh hitungan**, ambil massa jenis air <InlineMath math="1\,000 \text{ kg/m}^3" />, <InlineMath math="g=10 \text{ m/s}^2" />, debit <InlineMath math="0{,}02 \text{ m}^3/\text{s}" />, beda tinggi <InlineMath math="10 \text{ m}" />, dan efisiensi <InlineMath math="0{,}7" />. Angka ini mengilustrasikan rumus secara terpisah dari proyek nyata yang dibahas setelahnya.
 
 <BlockMath math="\begin{aligned} P &\approx \rho g Q h \eta \\ &= (1\,000)(10)(0{,}02)(10)(0{,}7) \text{ W} \\ &= 1\,400 \text{ W} \end{aligned}" />
 
-Putar permukaan di bawah. Setiap titik di permukaan itu adalah rumus tadi dengan satu debit ke kanan dan satu beda tinggi ke arah dalam layar, sedangkan tingginya adalah daya dalam kilowatt. Titik fuchsia adalah contoh hipotetis di atas, <InlineMath math="1\,400\text{ W}" />. Telusuri garis oranye mana saja, dayanya naik teratur bersama beda tinggi. Telusuri garis hijau toska, dayanya naik bersama debit. Sudut terjauh, tempat air paling banyak jatuh paling tinggi, adalah bagian permukaan yang paling tinggi.
+Putar permukaan di bawah untuk melihat bagaimana daya naik mengikuti debit <InlineMath math="Q" /> dan beda tinggi <InlineMath math="h" />. Titik fuchsia menandai contoh hitungan <InlineMath math="1\,400\text{ W}" /> di atas.
+
+Telusuri garis oranye mana saja, dayanya naik teratur bersama beda tinggi, sedangkan garis hijau toska naik bersama debit. Sudut terjauh menggabungkan debit terbesar dan jatuh tertinggi sehingga permukaan mencapai puncaknya di sana.
 
 <MathVisual
   title={<>Daya Mikrohidro dari Debit dan Beda Tinggi</>}
-  description={<><InlineMath math="P=\rho gQh\eta" /> dengan <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" />, dan <InlineMath math="\eta=0{,}7" />. Ke kanan: debit dalam satuan <InlineMath math="0{,}01\text{ m}^3\text{/s}" />. Ke dalam layar: beda tinggi dalam satuan <InlineMath math="5\text{ m}" />. Ke atas: daya dalam kW.</>}
+  description={<><InlineMath math="P=\rho gQh\eta" /> dengan <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" />, dan <InlineMath math="\eta=0{,}7" />. Mendatar: debit <InlineMath math="Q" /> hingga <InlineMath math="0{,}04\text{ m}^3\text{/s}" />. Kedalaman: beda tinggi <InlineMath math="h" /> hingga <InlineMath math="20\text{ m}" />. Ke atas: daya dalam kW.</>}
+  footer={<>Daya naik linear mengikuti debit dan beda tinggi, memuncak di sudut terjauh.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -0.5, max: 4.5 } },
@@ -108,11 +114,15 @@ Putar permukaan di bawah. Setiap titik di permukaan itu adalah rumus tadi dengan
   }}
 />
 
-[Pengelola proyek PLTMH di sekitar Air Terjun Kali Pedati](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) melaporkan kapasitas terpasang sebesar <InlineMath math="7 \text{ kW}" />. Proyek ini dikelola oleh kelompok yang terdiri atas <InlineMath math="14" /> rumah tangga, dan pengelola yang sama menyebut sekitar <InlineMath math="500 \text{ W}" /> per rumah tangga. Coba cek apakah kedua angka itu cocok: <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />, atau <InlineMath math="7 \text{ kW}" />. Angka tersebut berasal dari pengelola proyek. Pengukuran jangka panjang oleh pihak independen masih diperlukan untuk menilai kinerja pembangkit dari waktu ke waktu.
+[Pengelola proyek PLTMH di sekitar Air Terjun Kali Pedati](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) melaporkan kapasitas terpasang sebesar <InlineMath math="7 \text{ kW}" /> untuk <InlineMath math="14" /> rumah tangga, atau sekitar <InlineMath math="500 \text{ W}" /> per rumah tangga. Kedua angka itu cocok karena <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />.
 
-Ketersediaan air belum menjamin pembangkit dapat bekerja. Periksa apakah debit air cukup stabil, beda tinggi cukup besar, turbin terlindungi dari banjir, dan warga punya cara merawat turbin serta generator.
+Karena angka itu berasal dari pengelola proyek, pengukuran jangka panjang oleh pihak independen tetap diperlukan. Periksa selalu kestabilan debit air, kecukupan beda tinggi, perlindungan turbin dari banjir, serta kesiapan warga merawat mesin.
 
-## Solusi Energi Mencakup Seluruh Sistem
+## Rancangan Sistem dan Akses Energi
+
+Listrik yang andal bergantung pada **efisiensi, penyimpanan, dan akses yang adil** yang saling mendukung dalam satu sistem warga. Memilih pembangkit saja belum cukup bila baterai, jaringan, dan perawatan tidak dirancang bersama.
+
+### Solusi Energi Mencakup Seluruh Sistem
 
 Kebutuhan energi juga bisa dipenuhi dengan mengurangi pemborosan. Efisiensi adalah perbandingan **energi berguna terhadap energi yang masuk**. Jika alat lebih efisien, kebutuhan energi masuk dapat turun tanpa mengurangi layanan yang diberikan alat.
 
@@ -129,11 +139,14 @@ Kebutuhan energi juga bisa dipenuhi dengan mengurangi pemborosan. Efisiensi adal
 
 Rencana yang lengkap menggabungkan alat yang sesuai lokasi, pemakaian yang efisien, jaringan yang aman, penyimpanan jika diperlukan, perawatan teratur, dan pengelolaan dampak.
 
-Penyimpanan adalah tempat sebuah rencana bertemu malam hari. Sebuah pos kesehatan desa punya atap surya <InlineMath math="3\text{ kWp}" /> yang mengumpulkan sekitar <InlineMath math="22{,}9\text{ kWh}" /> sehari, lebih banyak dari <InlineMath math="13{,}6\text{ kWh}" /> yang dipakainya. Namun, lemari pendingin vaksin dan lampu malam tetap menyala setelah matahari terbenam. Dengan baterai <InlineMath math="5\text{ kWh}" />, <InlineMath math="4{,}3\text{ kWh}" /> kebutuhan malam tidak terpasok. Baterai <InlineMath math="10\text{ kWh}" /> sanggup bertahan sampai pagi.
+Penyimpanan adalah tempat rencana surya diuji pada malam hari. Sebuah pos kesehatan desa punya atap surya <InlineMath math="3\text{ kWp}" /> yang mengumpulkan <InlineMath math="22{,}9\text{ kWh}" /> sehari, jauh di atas pemakaian hariannya sebesar <InlineMath math="13{,}6\text{ kWh}" />.
+
+Namun, lemari pendingin vaksin dan lampu malam tetap menyala setelah matahari terbenam. Dengan baterai <InlineMath math="5\text{ kWh}" />, <InlineMath math="4{,}3\text{ kWh}" /> kebutuhan malam tidak terpasok, sedangkan baterai <InlineMath math="10\text{ kWh}" /> bertahan sampai pagi.
 
 <SolarBatteryStorageLab
   title={<>Pos Kesehatan Surya Melewati Malam</>}
   description={<>Pos kesehatan dengan atap surya <InlineMath math="3\text{ kWp}" /> dan baterai, selama satu hari. Pilih ukuran baterainya dan lihat apakah muatannya cukup sampai matahari terbit lagi.</>}
+  footer={<>Baterai 10 kWh menutup celah malam yang tidak sanggup ditahan baterai 5 kWh.</>}
   labels={{
     chooseSize: "Ukuran baterai",
     demand: <>Energi yang dipakai sehari</>,
@@ -144,21 +157,27 @@ Penyimpanan adalah tempat sebuah rencana bertemu malam hari. Sebuah pos kesehata
   }}
 />
 
-## Empat Hal yang Dinilai dalam Akses Energi
+Bandingkan total harian dengan grafik malam hari: mengumpulkan cukup energi dalam <InlineMath math="24" /> jam belum cukup menjaga vaksin tetap dingin jika baterai tidak menyimpan kelebihan siang hari sampai fajar.
 
-[Tujuan Pembangunan Berkelanjutan](https://sdgs.un.org/2030agenda) merupakan agenda global yang disepakati negara-negara anggota Perserikatan Bangsa-Bangsa untuk meningkatkan kesejahteraan manusia dan menjaga lingkungan. Agenda <InlineMath math="2030" /> memuat <InlineMath math="17" /> tujuan yang saling terhubung.
+### Empat Hal yang Dinilai dalam Akses Energi
 
-Pemenuhan kebutuhan energi berkaitan langsung dengan SDG <InlineMath math="7" />, yaitu energi bersih dan terjangkau.
+[Tujuan Pembangunan Berkelanjutan](https://sdgs.un.org/2030agenda) adalah agenda global yang disepakati negara-negara anggota Perserikatan Bangsa-Bangsa untuk meningkatkan kesejahteraan manusia dan menjaga lingkungan. Agenda <InlineMath math="2030" /> memuat <InlineMath math="17" /> tujuan yang saling terhubung.
 
-SDG <InlineMath math="7" /> menargetkan [**akses energi** yang terjangkau, andal, berkelanjutan, dan modern](https://sdgs.un.org/goals/goal7) untuk semua orang.
+Pemenuhan kebutuhan energi berkaitan langsung dengan SDG <InlineMath math="7" />, yaitu energi bersih dan terjangkau. SDG <InlineMath math="7" /> menargetkan [**akses energi** yang terjangkau, andal, berkelanjutan, dan modern](https://sdgs.un.org/goals/goal7) untuk semua orang.
 
-Keempat unsur akses energi tersebut dapat diperiksa melalui pertanyaan. Bisakah rumah tangga dan layanan publik membayar energi sambil memenuhi kebutuhan pokok lain? Apakah pasokan energi tersedia saat dibutuhkan? Bisakah sistem terus berjalan sambil melindungi manusia, ekosistem, dan generasi berikutnya? Apakah layanan energi aman dan mampu mendukung penerangan, komunikasi, pekerjaan produktif, serta layanan kesehatan?
+Periksa keempat syarat akses energi itu lewat pertanyaan langsung:
 
-Beri nilai tiap pilihan pada keempat pertanyaan, maka bentuknya bercerita. Dalam nilai ilustratif dari <InlineMath math="4" /> ini, jaringan mini tenaga surya dengan baterai menutupi bagian yang lebih luas daripada generator diesel, terutama pada sumbu berkelanjutan. Perbesar tiap sudutnya.
+- Bisakah rumah tangga dan layanan publik membayar energi sambil memenuhi kebutuhan pokok lain?
+- Apakah pasokan energi tetap tersedia tepat saat dibutuhkan?
+- Bisakah sistem berjalan terus sambil melindungi manusia, ekosistem, dan generasi berikutnya?
+- Apakah layanan energi aman dan cukup kuat untuk penerangan, komunikasi, kerja produktif, dan kesehatan?
+
+Beri nilai tiap pilihan pada keempat pertanyaan, maka bentuknya bercerita. Dalam nilai ilustratif dari <InlineMath math="4" /> ini, jaringan mini tenaga surya dengan baterai menutupi bagian yang lebih luas daripada generator diesel, terutama pada sumbu berkelanjutan.
 
 <MathVisual
   title={<>Empat Pertanyaan untuk Akses Energi</>}
   description={<>Nilai ilustratif dari <InlineMath math="4" /> untuk jaringan mini tenaga surya dengan baterai (teal) dan generator diesel (merah muda).</>}
+  footer={<>Jaringan mini surya menjangkau lebih luas, terutama pada sumbu berkelanjutan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -5, max: 5 } },
@@ -186,13 +205,15 @@ Beri nilai tiap pilihan pada keempat pertanyaan, maka bentuknya bercerita. Dalam
   }}
 />
 
+Perhatikan bahwa keduanya sejajar pada keandalan begitu baterai mendampingi panel surya, sedangkan diesel menyusut tajam pada keberlanjutan karena pembakaran bahan bakar menimbulkan emisi dan biaya bahan bakar terus-menerus.
+
 ## Rencana Energi Lokal yang Dapat Diuji
 
-Untuk dusun yang membutuhkan listrik bagi lampu malam, pengisian ponsel, pompa air kecil, dan kegiatan belajar, mulailah dari **kebutuhan tersebut serta kondisi setempat**. Gunakan urutan berikut.
+Untuk dusun yang membutuhkan listrik bagi lampu malam, pengisian ponsel, pompa air kecil, dan kegiatan belajar, mulailah dari **kebutuhan itu serta kondisi setempat**. Gunakan urutan berikut.
 
 | Pertanyaan lapangan | Dampak pada rencana |
 | :------------------ | :-------------- |
-| Beban listrik mana yang harus dilayani lebih dulu? | Sistem harus menyediakan energi bagi beban tersebut sebelum melayani beban dengan prioritas lebih rendah. |
+| Beban listrik mana yang harus dilayani lebih dulu? | Sistem harus menyediakan energi bagi beban utama sebelum melayani beban dengan prioritas lebih rendah. |
 | Sumber lokal apa yang tersedia saat listrik dibutuhkan? | Pasokan yang lebih teratur mengurangi kebutuhan baterai atau pembangkit cadangan. |
 | Alat apa yang mengubah sumber energi menjadi listrik? | Rencana harus memuat turbin, generator, panel, atau alat konversi lain yang sesuai dengan sumber lokal. |
 | Siapa yang merawat sistem? | Sistem kecil pun bisa gagal jika tidak ada perawatan. |
@@ -200,11 +221,14 @@ Untuk dusun yang membutuhkan listrik bagi lampu malam, pengisian ponsel, pompa a
 
 Rencana yang dapat diuji menyatakan kebutuhan yang harus dipenuhi, sumber yang tersedia, alat yang mengubah energi, dampak yang harus dibatasi, dan pihak yang menjaga sistem tetap bekerja.
 
-Coba pertanyaan sumber energi dalam rencana itu pada sebuah sungai kecil. Pembangkit mikrohidro mengalirkan sebagian air sungai lewat pipa menuju turbin, dan daya yang dapat dipakai adalah <InlineMath math="P\approx\rho gQh\eta" />. Dengan <InlineMath math="Q=20\text{ L/s}" />, <InlineMath math="h=10\text{ m}" />, dan <InlineMath math="\eta=0{,}7" />, daya yang didapat <InlineMath math="1\,400\text{ W}" />, cukup untuk <InlineMath math="5" /> dari <InlineMath math="16" /> rumah di dusun itu kalau tiap rumah butuh <InlineMath math="250\text{ W}" /> pada malam hari. Cari debit dan tinggi jatuh yang bisa menyalakan semua rumah.
+Coba pertanyaan sumber energi itu pada sebuah sungai kecil dengan <InlineMath math="P\approx\rho gQh\eta" />. Dengan <InlineMath math="Q=20\text{ L/s}" />, <InlineMath math="h=10\text{ m}" />, dan <InlineMath math="\eta=0{,}7" />, pembangkit menghasilkan <InlineMath math="1\,400\text{ W}" />.
+
+Jika tiap rumah butuh <InlineMath math="250\text{ W}" /> pada malam hari, daya itu baru menyalakan <InlineMath math="5" /> dari <InlineMath math="16" /> rumah. Cari kombinasi debit dan tinggi jatuh di bawah untuk menyalakan seluruh dusun.
 
 <MicrohydroLab
   title={<>Berapa Rumah yang Bisa Dinyalakan Sebuah Sungai</>}
   description={<>Pembangkit mikrohidro di lereng bukit menjelang malam. Ubah debit dan tinggi jatuhnya, lalu hitung rumah yang bisa dinyalakan dengan <InlineMath math="250\text{ W}" /> per rumah.</>}
+  footer={<>Menggandakan debit atau tinggi jatuh menggandakan daya dan rumah menyala.</>}
   labels={{
     flowControl: "Debit air",
     headControl: "Tinggi jatuh",
@@ -213,3 +237,5 @@ Coba pertanyaan sumber energi dalam rencana itu pada sebuah sungai kecil. Pemban
     viewLabel: "Pembangkit mikrohidro di lereng bukit dengan pipa ke rumah pembangkit dan deretan rumah",
   }}
 />
+
+Untuk menyalakan seluruh <InlineMath math="16" /> rumah diperlukan minimal <InlineMath math="4\,000\text{ W}" />, yang bisa dicapai lewat lereng lebih curam atau aliran lebih deras, membuktikan bahwa bentuk medan menentukan rancangan solusi energi lokal.

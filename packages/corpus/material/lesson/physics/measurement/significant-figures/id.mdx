@@ -14,11 +14,12 @@ Saat diameter tutup botol terbaca <InlineMath math="3{,}12 \text{ cm}" />, kalku
 
 Angka penting adalah <Highlight>digit yang dipertahankan untuk menyatakan resolusi</Highlight> suatu nilai ukur. Tulis nilai ukur hanya sampai tempat desimal yang didukung oleh alat. Digit terakhir menunjukkan batas ketelitian pembacaan dan dapat berubah saat nilai dibulatkan.
 
-Perbesar garis fuchsia di tepi kanan tutup botol. Garis itu sudah melewati tanda <InlineMath math="3{,}1\text{ cm}" />, tetapi belum sampai <InlineMath math="3{,}2\text{ cm}" />. Jadi, digit <InlineMath math="3" /> dan <InlineMath math="1" /> langsung terbaca dari tanda, sedangkan <InlineMath math="2" /> terakhir adalah taksiranmu di antara dua tanda. Digit taksiran itulah angka penting terakhir yang kamu laporkan. Digit kalkulator sesudahnya tidak didukung alat.
+Perbesar garis fuchsia di tepi kanan tutup botol. Garis itu sudah melewati <InlineMath math="3{,}1\text{ cm}" /> tetapi belum sampai <InlineMath math="3{,}2\text{ cm}" />. Digit <InlineMath math="3" /> dan <InlineMath math="1" /> terbaca langsung dari tanda, lalu <InlineMath math="2" /> terakhir adalah taksiranmu sebagai angka penting terakhir.
 
 <MathVisual
   title={<>Membaca Tutup Botol pada Mistar</>}
   description={<>Mistar dengan tanda setiap <InlineMath math="0{,}1\text{ cm}" /> di bawah tutup botol. Perbesar bagian tempat garis fuchsia memotong mistar.</>}
+  footer={<>Baca dua digit pasti dari tanda skala dan taksir satu digit terakhir saja.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 4.5 } },
@@ -105,11 +106,11 @@ Nol sering membuat siswa keliru karena perannya bergantung pada **posisi penulis
 | <InlineMath math="3{,}25 \text{ cm}" /> | Semua digit bukan nol dihitung, jadi ada <InlineMath math="3" /> angka penting. |
 | <InlineMath math="1{,}004 \text{ cm}" /> | Nol di antara angka bukan nol dihitung, jadi ada <InlineMath math="4" /> angka penting. |
 | <InlineMath math="31{,}00 \text{ cm}" /> | Nol setelah tanda desimal dihitung, jadi ada <InlineMath math="4" /> angka penting. |
-| <InlineMath math="0{,}0026 \text{ kg}" /> | Nol di depan angka bukan nol tidak dihitung sebagai angka penting. Nol tersebut hanya menunjukkan posisi koma, jadi nilai ini memiliki <InlineMath math="2" /> angka penting. |
+| <InlineMath math="0{,}0026 \text{ kg}" /> | Nol di depan angka bukan nol tidak dihitung sebagai angka penting. Nol itu hanya menunjukkan posisi koma, jadi nilai ini memiliki <InlineMath math="2" /> angka penting. |
 | <InlineMath math="1000 \text{ m}" /> | Nol di belakang ambigu jika resolusi atau jumlah angka pentingnya tidak disebutkan. |
 | <InlineMath math="3{,}14 \times 10^{-5} \text{ m}" /> | Bagian <InlineMath math="3{,}14" /> punya <InlineMath math="3" /> angka penting. |
 
-Pada notasi ilmiah, pangkat seperti <InlineMath math="10^{-5}" /> menunjukkan skala. Pangkat tersebut tidak menambah angka penting.
+Pada notasi ilmiah, pangkat seperti <InlineMath math="10^{-5}" /> menunjukkan skala. Pangkat itu tidak menambah angka penting.
 
 Notasi ilmiah menunjukkan dengan tepat nol di belakang yang termasuk angka penting karena setiap digit pada koefisiennya dihitung.
 
@@ -121,7 +122,9 @@ Dengan <InlineMath math="4" /> angka penting:
 
 <BlockMath math="1000\text{ m}=1{,}000\times10^3\text{ m}" />
 
-Di sini satu batang baja dibaca dengan tiga alat. Dengan penggaris hasilnya <InlineMath math="31{,}0\text{ cm}" />: tiga angka penting, dan nol terakhir itu benar-benar terukur. Ganti ke meteran pita, dan nol itu hilang (<InlineMath math="31\text{ cm}" />). Ganti ke jangka sorong, dan kamu dapat satu nol lagi (<InlineMath math="31{,}00\text{ cm}" />). Sekarang tulis hasil penggaris dalam meter, <InlineMath math="0{,}310\text{ m}" />: nol di depan cuma menandai letak koma, jadi angka pentingnya tetap tiga.
+Di sini satu batang baja dibaca dengan tiga alat. Dengan penggaris hasilnya <InlineMath math="31{,}0\text{ cm}" />, jadi nol terakhir itu memang terukur.
+
+Ganti ke meteran pita, dan nol itu hilang (<InlineMath math="31\text{ cm}" />), atau ganti ke jangka sorong untuk satu nol lagi (<InlineMath math="31{,}00\text{ cm}" />). Menulis hasil penggaris dalam meter sebagai <InlineMath math="0{,}310\text{ m}" /> hanya menambah nol penanda koma, sehingga angka pentingnya tetap tiga.
 
 <SignificantZerosLab
   title={<>Kapan Nol Dihitung</>}
@@ -130,6 +133,7 @@ Di sini satu batang baja dibaca dengan tiga alat. Dengan penggaris hasilnya <Inl
       Ganti alat dan satuannya, lalu perhatikan nol mana yang benar-benar terukur dan nol mana yang cuma menandai letak koma.
     </>
   }
+  footer={<>Alat lebih teliti menambah nol terukur, sedangkan nol depan hanya penanda.</>}
   labels={{
     chooseTool: "Pilih alat ukur",
     chooseUnit: "Pilih satuan",
@@ -146,6 +150,8 @@ Di sini satu batang baja dibaca dengan tiga alat. Dengan penggaris hasilnya <Inl
     viewLabel: "Batang baja di atas alat ukur, dengan kaca pembesar di ujungnya",
   }}
 />
+
+Mengubah satuan tidak pernah menambah atau mengurangi ketelitian pengukuran. Perhatikan bahwa tampilan notasi ilmiah mempertahankan jumlah angka penting yang persis sama baik dalam sentimeter maupun meter.
 
 ## Bulatkan Sekali dari Digit Pertama yang Dibuang
 
@@ -174,11 +180,14 @@ Jika banyak nilai dibulatkan, pembulatan ke genap mengurangi kecenderungan hasil
 
 Bulatkan langsung dari nilai yang belum dibulatkan ke ketelitian akhir. Jangan membulatkan melalui beberapa hasil antara.
 
+> Simpan digit cadangan di setiap langkah perhitungan antara, lalu bulatkan sekali saja pada hasil akhir yang dilaporkan.
+
 Lihat hanya angka pertama yang dibuang. Di bawah <InlineMath math="5" />, angka terakhir tetap, di atas <InlineMath math="5" />, angka terakhir naik, dan angka <InlineMath math="5" /> tepat tanpa angka lain sesudahnya dibulatkan ke tetangga yang genap. Perbesar ketiga bacaan antara <InlineMath math="3{,}140" /> dan <InlineMath math="3{,}150" />.
 
 <MathVisual
   title={<>Pembulatan dari Angka Pertama yang Dibuang</>}
   description={<>Tiga bacaan dibulatkan menjadi dua desimal pada garis bilangan yang diperbesar. Satu kotak grid berarti <InlineMath math="0{,}001" />.</>}
+  footer={<>Lihat digit pertama yang dibuang dan bulatkan tepat lima ke angka genap.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.3, max: 3.9 } },
@@ -211,7 +220,13 @@ Lihat hanya angka pertama yang dibuang. Di bawah <InlineMath math="5" />, angka 
   }}
 />
 
-## Pembulatan Penjumlahan Berdasarkan Posisi Desimal
+Baik <InlineMath math="3{,}142" /> maupun titik tengah tepat <InlineMath math="3{,}145" /> bergeser ke kiri menuju <InlineMath math="3{,}14" /> karena <InlineMath math="4" /> genap, sedangkan <InlineMath math="3{,}146" /> melangkah ke kanan menuju <InlineMath math="3{,}15" />. Satu pengecekan langsung pada digit pertama yang dibuang menjaga pembulatan tetap adil.
+
+## Aturan Pembulatan Berdasarkan Operasi Hitung
+
+Operasi hitung yang berbeda meneruskan ketelitian pengukuran dengan aturan berbeda. Penjumlahan mengikuti **jumlah tempat desimal**, sedangkan perkalian mengikuti **jumlah angka penting**. Selalu periksa operasi yang menggabungkan hasil ukurmu sebelum menentukan banyak digit pada jawaban akhir.
+
+### Pembulatan Penjumlahan Berdasarkan Posisi Desimal
 
 Pada penjumlahan dan pengurangan, hasil akhir mengikuti **jumlah tempat desimal paling sedikit** di antara nilai yang diukur.
 
@@ -224,7 +239,9 @@ Misalnya panjang besi <InlineMath math="8{,}235 \text{ cm}" /> disambung dengan 
 
 Hasil <InlineMath math="12{,}735 \text{ cm}" /> harus dibulatkan ke <InlineMath math="1" /> tempat desimal karena <InlineMath math="4{,}5 \text{ cm}" /> hanya memiliki <InlineMath math="1" /> digit setelah koma.
 
-Kenapa hasil penggaris yang menentukan? Sambungkan dua batang di bawah. Jangka sorong membaca batang besi sampai <InlineMath math="0{,}005\text{ cm}" />, tapi penggaris hanya membaca batang tembaga sampai <InlineMath math="0{,}1\text{ cm}" />, jadi ujung sambungannya bisa berada di mana saja dalam pita hijau toska. Pita itu lebih lebar daripada setiap perseratus sentimeter, jadi <InlineMath math="12{,}735\text{ cm}" /> dilaporkan sebagai <InlineMath math="12{,}7\text{ cm}" />. Kalau batang tembaga juga diukur dengan jangka sorong, pitanya menyempit dan ketiga desimalnya boleh tetap ditulis.
+Kenapa hasil penggaris yang menentukan? Sambungkan dua batang di bawah. Jangka sorong membaca batang besi sampai <InlineMath math="0{,}005\text{ cm}" />, sedangkan penggaris hanya membaca batang tembaga sampai <InlineMath math="0{,}1\text{ cm}" />, sehingga ujung sambungan bisa berada di mana saja dalam pita hijau toska.
+
+Karena pita itu lebih lebar daripada setiap perseratus sentimeter, <InlineMath math="12{,}735\text{ cm}" /> dilaporkan sebagai <InlineMath math="12{,}7\text{ cm}" />. Ganti batang tembaga ke jangka sorong, maka pitanya menyempit dan ketiga desimalnya tetap bertahan.
 
 <DecimalSumLab
   title={<>Menjumlahkan Dua Panjang Hasil Ukur</>}
@@ -233,6 +250,7 @@ Kenapa hasil penggaris yang menentukan? Sambungkan dua batang di bawah. Jangka s
       Ganti alat untuk batang tembaga, lalu perhatikan seberapa lebar pita kemungkinan ujung sambungan di kaca pembesar.
     </>
   }
+  footer={<>Pita lebar dari alat kurang teliti membatasi desimal hasil penjumlahan.</>}
   labels={{
     chooseTool: "Pilih alat untuk batang tembaga",
     copper: <>Batang tembaga</>,
@@ -247,7 +265,9 @@ Kenapa hasil penggaris yang menentukan? Sambungkan dua batang di bawah. Jangka s
   }}
 />
 
-## Pembulatan Perkalian Berdasarkan Jumlah Angka Penting Terkecil
+Menjumlahkan satu bacaan kasar dengan bacaan halus menyebarkan posisi ujung sambungan selebar rentang alat yang kurang teliti. Sebaran fisik inilah alasan penjumlahan mengikuti tempat desimal tersedikit, bukan jumlah total digit.
+
+### Pembulatan Perkalian Berdasarkan Jumlah Angka Penting Terkecil
 
 Pada perkalian dan pembagian hasil pengukuran, bulatkan hasil sesuai **jumlah angka penting paling sedikit** pada data ukur. Aturan ini tidak menggantikan perhitungan ketidakpastian pengukuran.
 
@@ -273,7 +293,7 @@ A &= \frac{1}{4}\pi d^2 \\
 
 Jika satuan Sistem Satuan Internasional (SI) diminta, ubah <InlineMath math="\text{cm}^2" /> menjadi <InlineMath math="\text{m}^2" />. SI adalah standar internasional satuan pengukuran yang dipakai dalam sains.
 
-<BlockMath math="\begin{aligned} 7{,}65 \text{ cm}^2 &amp;= 0{,}000765 \text{ m}^2 \\ &amp;= 7{,}65 \times 10^{-4} \text{ m}^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} 7{,}65 \text{ cm}^2 &= 0{,}000765 \text{ m}^2 \\ &= 7{,}65 \times 10^{-4} \text{ m}^2 \end{aligned}" />
 
 Aturan angka penting berbeda antara penjumlahan, pengurangan, perkalian, dan pembagian. [Pembulatan ke bilangan genap serta pembulatan satu kali](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation) membantu mengurangi bias dari pembulatan berulang.
 
@@ -282,6 +302,7 @@ Pilih aturannya dari operasinya, lalu bulatkan sekali di akhir. Penjumlahan memp
 <MathVisual
   title={<>Aturan Pembulatan yang Berlaku</>}
   description={<>Penjumlahan (oranye, satu kotak grid berarti <InlineMath math="0{,}01" />) dan perkalian (ungu, satu kotak grid berarti <InlineMath math="0{,}01" />) dibulatkan menurut aturannya.</>}
+  footer={<>Penjumlahan ikut desimal tersedikit, perkalian ikut angka penting tersedikit.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -2.05, max: 3.75 } },
@@ -306,3 +327,5 @@ Pilih aturannya dari operasinya, lalu bulatkan sekali di akhir. Penjumlahan memp
     product: <InlineMath math="2{,}5\times3{,}42=8{,}55\to8{,}6" />,
   }}
 />
+
+Membandingkan kedua panah secara berdampingan memperjelas bedanya: penjumlahan oranye berhenti di satu tempat desimal, sedangkan perkalian ungu membulatkan <InlineMath math="8{,}55" /> ke atas menjadi <InlineMath math="8{,}6" /> dengan aturan ke genap untuk dua angka penting.

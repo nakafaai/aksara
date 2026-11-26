@@ -18,7 +18,7 @@ Die **wissenschaftliche Schreibweise** zerlegt einen Wert in einen Koeffizienten
 
 Für positive Werte gilt die Standardform:
 
-<BlockMath math="1 \le a &lt; 10 \quad \text{und} \quad n \in \mathbb{Z}" />
+<BlockMath math="1 \le a < 10 \quad \text{und} \quad n \in \mathbb{Z}" />
 
 Der Koeffizient <InlineMath math="a" /> enthält die signifikanten Stellen. Der Exponent <InlineMath math="n" /> gibt die Größenordnung an.
 
@@ -26,7 +26,13 @@ Die Elektronenmasse von oben lässt sich damit kürzer schreiben:
 
 <BlockMath math="9{,}11 \times 10^{-31} \text{ kg}" />
 
-Ein Haar ist ein gutes Beispiel für einen kleinen Wert. Im Mikroskop unten ist die Skala im Okular für jedes Objektiv kalibriert: Bei <InlineMath math="10\times" /> ist ein Teilstrich <InlineMath math="10\ \mu\text{m}" /> breit. Das Haar überdeckt <InlineMath math="6{,}8" /> Teilstriche, ist also <InlineMath math="68\ \mu\text{m}" /> dick, das sind <InlineMath math="0{,}000068\text{ m}=6{,}8\times10^{-5}\text{ m}" />. Wechsel zu <InlineMath math="40\times" />, dann zählst du <InlineMath math="27{,}2" /> Teilstriche und bekommst <InlineMath math="6{,}80\times10^{-5}\text{ m}" /> mit einer signifikanten Stelle mehr.
+### Kleine Längen im Mikroskop ablesen
+
+Ein Haar ist ein klares Beispiel für einen kleinen Wert. Im Mikroskop unten ist die **Okularskala** für jedes Objektiv kalibriert: Bei <InlineMath math="10\times" /> ist ein Teilstrich <InlineMath math="10\ \mu\text{m}" /> breit. Das Haar überdeckt <InlineMath math="6{,}8" /> Teilstriche, ist also <InlineMath math="68\ \mu\text{m}" /> dick.
+
+<BlockMath math="68\ \mu\text{m} = 0{,}000068\text{ m} = 6{,}8 \times 10^{-5}\text{ m}" />
+
+Wechsel zu <InlineMath math="40\times" />, dann zählst du <InlineMath math="27{,}2" /> Teilstriche und bekommst <InlineMath math="6{,}80\times10^{-5}\text{ m}" /> mit einer signifikanten Stelle mehr.
 
 <MicroscopeScaleLab
   title={<>Ein Haar unter dem Mikroskop</>}
@@ -35,6 +41,7 @@ Ein Haar ist ein gutes Beispiel für einen kleinen Wert. Im Mikroskop unten ist 
       Wechsel das Objektiv und achte darauf, dass das Haar mehr Teilstriche überdeckt, während sein Durchmesser gleich bleibt.
     </>
   }
+  footer={<>Höhere Vergrößerung verfeinert die Skala, während das Haar gleich dick bleibt.</>}
   labels={{
     chooseObjective: "Objektiv wählen",
     diameter: <>Durchmesser</>,
@@ -45,7 +52,9 @@ Ein Haar ist ein gutes Beispiel für einen kleinen Wert. Im Mikroskop unten ist 
   }}
 />
 
-## Das Komma verschieben ohne den Wert zu ändern
+Der Wechsel des Objektivs ändert die wirkliche Dicke des Haars nicht. Stattdessen erlaubt die feinere Okularskala eine zusätzliche Ziffer im Koeffizienten der wissenschaftlichen Schreibweise.
+
+### Das Komma verschieben ohne den Wert zu ändern
 
 Verschiebe das Dezimalkomma so weit, bis der Koeffizient zwischen <InlineMath math="1" /> und <InlineMath math="10" /> liegt. Die Anzahl der Stellen bestimmt den Exponenten.
 
@@ -62,11 +71,14 @@ Verschiebe das Dezimalkomma so weit, bis der Koeffizient zwischen <InlineMath ma
 0{,}000764 &= 7{,}64 \times 10^{-4}
 \end{aligned}" />
 
-Hier liegt jeder Wert bei seinem Exponenten <InlineMath math="n" /> nach rechts und seinem Koeffizienten <InlineMath math="a" /> nach oben. Werte in Normalform landen zwischen den beiden grauen Linien, weil <InlineMath math="1 \le a < 10" /> gilt. Such jetzt den fuchsiafarbenen Pfeil: <InlineMath math="10{,}0\times10^{-13}" /> aus der Multiplikation am Ende dieser Lektion liegt genau auf der oberen Linie, also außerhalb des Bands. Eine Kommaverschiebung bringt ihn als <InlineMath math="1{,}0\times10^{-12}" /> hinein.
+Hier liegt jeder Wert bei seinem Exponenten <InlineMath math="n" /> nach rechts und seinem Koeffizienten <InlineMath math="a" /> nach oben. Werte in Normalform landen zwischen den beiden grauen Linien, weil <InlineMath math="1 \le a < 10" /> gilt.
+
+Such jetzt den fuchsiafarbenen Pfeil: <InlineMath math="10{,}0\times10^{-13}" /> liegt genau auf der oberen Linie außerhalb des Bands, und eine Kommaverschiebung bringt ihn als <InlineMath math="1{,}0\times10^{-12}" /> hinein.
 
 <MathVisual
   title={<>Jeder Wert in Normalform</>}
   description={<>Jeder Punkt ist ein Wert der Form <InlineMath math="a\times10^n" />, nach rechts bei seinem Exponenten n und nach oben bei seinem Koeffizienten a. Die grauen Linien markieren <InlineMath math="a=1" /> und <InlineMath math="a=10" />.</>}
+  footer={<>In wissenschaftlicher Normalform liegt der Koeffizient stets zwischen 1 und 10.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -15, max: 9 }, y: { min: -0.5, max: 11.5 } },
@@ -101,6 +113,8 @@ Hier liegt jeder Wert bei seinem Exponenten <InlineMath math="n" /> nach rechts 
   }}
 />
 
+Landet ein Koeffizient nach einer Rechnung bei <InlineMath math="10" /> oder darüber, ziehst du den Punkt wieder ins gültige Band zurück, indem du den Koeffizienten durch <InlineMath math="10" /> teilst und den Exponenten um <InlineMath math="1" /> erhöhst.
+
 ## Signifikante Stellen im Koeffizienten
 
 Die Anzahl der signifikanten Stellen liest du **am Koeffizienten** ab. Die Potenz von <InlineMath math="10" /> legt die Größenordnung fest.
@@ -114,7 +128,7 @@ Die Anzahl der signifikanten Stellen liest du **am Koeffizienten** ab. Die Poten
 
 Die wissenschaftliche Schreibweise hält die beabsichtigte Genauigkeit eines Messwerts fest. Bei <InlineMath math="1000 \text{ m}" /> bleibt offen, ob die abschließenden Nullen signifikant sind. <InlineMath math="1{,}000 \times 10^3 \text{ m}" /> weist dagegen ausdrücklich <InlineMath math="4" /> signifikante Stellen aus.
 
-Hier siehst du, woher diese Stellen kommen. Ein Blatt Papier ist zu dünn für ein Millimeterlineal, also misst du einen Stapel und teilst durch die Zahl der Blätter, die exakt ist. Ein Stapel aus <InlineMath math="500" /> Blättern zeigt <InlineMath math="52\text{ mm}" />, zwei signifikante Stellen, also ist ein Blatt <InlineMath math="1{,}0\times10^{-4}\text{ m}" /> dick. Staple <InlineMath math="1000" /> Blätter, und das Lineal zeigt <InlineMath math="104\text{ mm}" />, drei Stellen: <InlineMath math="1{,}04\times10^{-4}\text{ m}" />.
+Hier siehst du, woher diese Stellen kommen. Ein Blatt Papier ist zu dünn für ein Millimeterlineal, also misst du einen Stapel und teilst durch die exakte Blattzahl. Bei <InlineMath math="500" /> Blättern liest du <InlineMath math="52\text{ mm}" /> ab und erhältst <InlineMath math="1{,}0\times10^{-4}\text{ m}" />, bei <InlineMath math="1000" /> Blättern liest du <InlineMath math="104\text{ mm}" /> ab und bekommst <InlineMath math="1{,}04\times10^{-4}\text{ m}" />.
 
 <PaperStackLab
   title={<>Die Dicke eines Blatts messen</>}
@@ -123,6 +137,7 @@ Hier siehst du, woher diese Stellen kommen. Ein Blatt Papier ist zu dünn für e
       Staple mehr Blätter und achte darauf, wie die Ablesung und damit die Dicke eines Blatts mehr signifikante Stellen bekommt.
     </>
   }
+  footer={<>Ein höherer Stapel liefert mehr signifikante Stellen für ein einzelnes Blatt.</>}
   labels={{
     chooseStack: "Anzahl der Blätter wählen",
     figures: <>Signifikante Stellen</>,
@@ -132,20 +147,22 @@ Hier siehst du, woher diese Stellen kommen. Ein Blatt Papier ist zu dünn für e
   }}
 />
 
+Da die Blattzahl exakt ist, geht jede zusätzliche Ziffer am höheren Stapel direkt in den Koeffizienten der Blattdicke über. Genau so bewahrt die wissenschaftliche Schreibweise die echte Messgenauigkeit.
+
 ## Rundungsreserve bis zur endgültigen Angabe behalten
 
 Die wissenschaftliche Schreibweise darf keine frühe Rundung erzwingen. Rechne und konvertiere mit zusätzlichen Stellen und runde den endgültigen Berichtswert **genau einmal**.
 
 Ein Flaschendeckel mit dem Durchmesser <InlineMath math="3{,}12 \text{ cm}" /> hat die folgende berechnete Fläche, wenn der Rechnerwert von <InlineMath math="\pi" /> beibehalten wird:
 
-<BlockMath math="A=\frac{1}{4}\pi(3{,}12 \text{ cm})^2=7{,}645379881\ldots \text{cm}^2" />
+<BlockMath math="A=\frac{1}{4}\pi(3{,}12 \text{ cm})^2=7{,}645379881\ldots \text{ cm}^2" />
 
 Verwende die exakte Zehnerpotenz zur Umrechnung in das Internationale Einheitensystem, kurz SI, bevor du die zusätzlichen Stellen entfernst.
 
 <BlockMath math="\begin{aligned}
 1 \text{ cm} &= 10^{-2} \text{ m} \\
 1 \text{ cm}^2 &= (10^{-2} \text{ m})^2 = 10^{-4} \text{ m}^2 \\
-7{,}645379881\ldots \text{cm}^2 &= 7{,}645379881\ldots \times 10^{-4} \text{ m}^2
+7{,}645379881\ldots \text{ cm}^2 &= 7{,}645379881\ldots \times 10^{-4} \text{ m}^2
 \end{aligned}" />
 
 Der gemessene Durchmesser trägt <InlineMath math="3" /> signifikante Stellen. Das endgültige SI-Ergebnis lautet daher <InlineMath math="7{,}65 \times 10^{-4} \text{ m}^2" />.
@@ -157,6 +174,7 @@ Eine Einheit mit Potenz nimmt auch den Umrechnungsfaktor hoch. Ein Zentimeter si
 <MathVisual
   title={<>Eine Einheit mit Potenz umrechnen</>}
   description={<>Ein Quadratzentimeter, aufgeteilt in Quadratmillimeter.</>}
+  footer={<>Quadriert man <InlineMath math="10\text{ mm}" /> je Seite, passen <InlineMath math="100\text{ mm}^2" /> in <InlineMath math="1\text{ cm}^2" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 11.5 } },
@@ -193,6 +211,8 @@ Eine Einheit mit Potenz nimmt auch den Umrechnungsfaktor hoch. Ein Zentimeter si
   }}
 />
 
+Jede Reihe fasst <InlineMath math="10" /> kleine Quadrate, und es gibt <InlineMath math="10" /> Reihen, sodass die Fläche mit dem Quadrat des Längenfaktors wächst. Wende den Exponenten der Einheit immer auf die Zehnerpotenz an, bevor du das Endergebnis rundest.
+
 ## Rechnungen mit wissenschaftlicher Schreibweise
 
 In wissenschaftlicher Schreibweise werden die **Koeffizienten multipliziert** und die Exponenten von <InlineMath math="10" /> getrennt addiert.
@@ -215,6 +235,7 @@ Multipliziere die Zahlen vorne und addiere die Exponenten: <InlineMath math="2{,
 <MathVisual
   title={<>Multiplizieren in wissenschaftlicher Schreibweise</>}
   description={<>Zehnerexponenten auf einem Zahlenstrahl: die beiden Faktoren (orange, violett) und die Verschiebung zur Normalform (fuchsia).</>}
+  footer={<>Addiere zuerst beide Exponenten und verschiebe dann um eins zur Normalform.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -15, max: 2 }, y: { min: -4.2, max: 5.2 } },
@@ -241,3 +262,5 @@ Multipliziere die Zahlen vorne und addiere die Exponenten: <InlineMath math="2{,
     fix: <InlineMath math="10{,}0\times10^{-13}=1{,}0\times10^{-12}" />,
   }}
 />
+
+Wenn du die Exponenten auf einem Zahlenstrahl verfolgst, vermeidest du Vorzeichenfehler. Nachdem die beiden Sprünge bei <InlineMath math="-13" /> enden, stellt der kurze Schritt auf <InlineMath math="-12" /> die Normalform sauber wieder her.

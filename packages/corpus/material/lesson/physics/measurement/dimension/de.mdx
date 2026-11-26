@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Physikalische Dimensionen",
   description:
@@ -19,7 +18,7 @@ Länge, Durchmesser, Radius und Abstand haben alle die Längendimension <InlineM
 
 Eine Dimension nennt nicht den gemessenen Wert. Sie bezeichnet die *Art der physikalischen Größe*, die gemessen wird.
 
-## Potenzen der Längendimension erkennen
+### Potenzen der Längendimension erkennen
 
 Die Darstellung unten konzentriert sich auf die Längendimension. Wechsle von der Länge zur Fläche und anschließend zum Volumen. Beobachte, wie ein, zwei und drei **Längenfaktoren** die Dimensionen <InlineMath math="[\mathrm{L}]" />, <InlineMath math="[\mathrm{L}]^2" /> und <InlineMath math="[\mathrm{L}]^3" /> ergeben.
 
@@ -29,8 +28,9 @@ Die Darstellung unten konzentriert sich auf die Längendimension. Wechsle von de
     <>
       Wähle eine Form, die aus Längenfaktoren aufgebaut ist. Vergleiche dann
       ihre Formel, ihre SI-Einheit und ihre Dimension.
-  </>
+    </>
   }
+  footer={<>Jeder weitere Längenfaktor erhöht den Exponenten der Dimension um eins.</>}
   labels={{
     chooseMode: "Form auswählen",
     dimension: "Dimension",
@@ -44,9 +44,11 @@ Die Darstellung unten konzentriert sich auf die Längendimension. Wechsle von de
   }}
 />
 
-## Grundgrößen in der Dimensionsanalyse
+Jedes Mal, wenn du mit einem weiteren Längenfaktor multiplizierst, wächst der Exponent von <InlineMath math="[\mathrm{L}]" /> um eins, während die Grunddimension gleich bleibt. Fläche und Volumen sind einfach höhere Potenzen der Länge.
 
-Das Internationale Einheitensystem, kurz SI, verwendet <InlineMath math="7" /> Grundgrößen. Die Dimension einer abgeleiteten Größe wird als **Produkt von Potenzen** der sieben Grunddimensionen geschrieben.
+### Grundgrößen in der Dimensionsanalyse
+
+Das SI führt jede abgeleitete Größe auf genau <InlineMath math="7" /> unabhängige Grundgrößen zurück. Die Dimension einer abgeleiteten Größe wird als **Produkt von Potenzen** dieser sieben Grunddimensionen geschrieben.
 
 | Grundgröße | Beispielsymbol | Dimension |
 | :------------ | :------------- | :-------- |
@@ -60,7 +62,11 @@ Das Internationale Einheitensystem, kurz SI, verwendet <InlineMath math="7" /> G
 
 Eckige Klammern unterscheiden Dimensionen von Einheiten. So bezeichnet <InlineMath math="[\mathrm{L}]" /> die Dimension Länge, während <InlineMath math="\text{m}" /> für die Einheit Meter steht.
 
-Mit den Basisdimensionen kannst du sogar eine Formel vorhersagen. Angenommen, die Periode <InlineMath math="T" /> eines Pendels hängt von der Masse des Pendelkörpers <InlineMath math="[\mathrm{M}]" />, der Fadenlänge <InlineMath math="[\mathrm{L}]" /> und der Fallbeschleunigung <InlineMath math="[\mathrm{L}][\mathrm{T}]^{-2}" /> ab. Damit <InlineMath math="[\mathrm{T}]" /> herauskommt, braucht die Masse den Exponenten <InlineMath math="0" />, die Länge <InlineMath math="\tfrac12" /> und die Fallbeschleunigung <InlineMath math="-\tfrac12" />, also <InlineMath math="T=k\sqrt{l/g}" />. Experimente liefern <InlineMath math="k=2\pi" />. Unten schwingen drei Pendelkörper mit <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> und <InlineMath math="500\text{ g}" /> an <InlineMath math="0{,}80\text{ m}" /> langen Fäden im Gleichtakt, einmal alle <InlineMath math="1{,}79\text{ s}" /> bei <InlineMath math="g=9{,}81\text{ m/s}^2" />. Ändere die Länge und such den, der zurückbleibt: Es gibt keinen.
+Mit den Basisdimensionen kannst du sogar eine Formel vorhersagen. Angenommen, die Periode <InlineMath math="T" /> eines Pendels hängt von der Masse des Pendelkörpers <InlineMath math="[\mathrm{M}]" />, der Fadenlänge <InlineMath math="[\mathrm{L}]" /> und der Fallbeschleunigung <InlineMath math="[\mathrm{L}][\mathrm{T}]^{-2}" /> ab. Damit <InlineMath math="[\mathrm{T}]" /> herauskommt, braucht die Masse den Exponenten <InlineMath math="0" />, die Länge <InlineMath math="\tfrac12" /> und die Fallbeschleunigung <InlineMath math="-\tfrac12" />.
+
+<BlockMath math="T = k\sqrt{\frac{l}{g}}" />
+
+Experimente liefern <InlineMath math="k = 2\pi" />. Unten schwingen drei Pendelkörper mit <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> und <InlineMath math="500\text{ g}" /> an <InlineMath math="0{,}80\text{ m}" /> langen Fäden einmal alle <InlineMath math="1{,}79\text{ s}" /> bei <InlineMath math="g = 9{,}81\text{ m/s}^2" />. Ändere die Länge und prüfe, ob ein Körper zurückbleibt.
 
 <PendulumPeriodLab
   title={<>Was die Periode eines Pendels bestimmt</>}
@@ -69,6 +75,7 @@ Mit den Basisdimensionen kannst du sogar eine Formel vorhersagen. Angenommen, di
       Ändere die Fadenlänge und achte darauf, dass die Pendelkörper mit <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> und <InlineMath math="500\text{ g}" /> im Gleichtakt bleiben.
     </>
   }
+  footer={<>Alle drei Massen schwingen im Takt, da nur die Fadenlänge die Periode ändert.</>}
   labels={{
     check: <>Dimensionsprobe</>,
     gravity: <>Fallbeschleunigung</>,
@@ -78,6 +85,8 @@ Mit den Basisdimensionen kannst du sogar eine Formel vorhersagen. Angenommen, di
     viewLabel: "Drei Pendel mit Holz-, Messing- und Bleikugel an einer Stange",
   }}
 />
+
+Keiner der drei Pendelkörper bleibt bei irgendeiner Fadenlänge zurück. Weil die Masse in der Dimensionsgleichung den Exponenten <InlineMath math="0" /> trägt, hat sie keinen Einfluss auf die Schwingungsdauer.
 
 ## Dimensionen aus Formeln ableiten
 
@@ -103,6 +112,7 @@ Setz jede Größe an ihre Potenzen von Länge, Masse und Zeit: nach rechts, nach
 <MathVisual
   title={<>Drei Schritte der Dimensionsanalyse</>}
   description={<>Potenzen von L (rechts), M (oben) und T (Tiefe) für Masse, Beschleunigung und Kraft.</>}
+  footer={<>Das Addieren der Exponenten von L, M und T ergibt die Dimension der Kraft.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -2.5, max: 0.5 } },
@@ -128,6 +138,8 @@ Setz jede Größe an ihre Potenzen von Länge, Masse und Zeit: nach rechts, nach
   }}
 />
 
+Verfolgst du die Strecken Schritt für Schritt, siehst du, dass das Multiplizieren physikalischer Größen einfach ihre Exponenten-Koordinaten addiert. Mit dieser einen Regel bestimmst du die Dimension jeder abgeleiteten Größe.
+
 ## Die Dimensionskonsistenz einer Formel prüfen
 
 Mit Dimensionen lässt sich prüfen, ob eine Formel überhaupt stimmen kann. Größen, die addiert werden, <Highlight>müssen dieselbe Dimension besitzen</Highlight>.
@@ -152,6 +164,7 @@ Schreib jede Dimension als Potenzen von L und T, dann addiert das Multiplizieren
 <MathVisual
   title={<>Jeder Term braucht dieselbe Dimension</>}
   description={<>Potenzen der Länge (waagerecht) und der Zeit (senkrecht) für die Terme der Bewegungsformel.</>}
+  footer={<>Beide Bewegungsterme landen auf L und dürfen deshalb addiert werden.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.8, max: 2.5 }, y: { min: -2.4, max: 0.6 } },
@@ -184,6 +197,8 @@ Schreib jede Dimension als Potenzen von L und T, dann addiert das Multiplizieren
   }}
 />
 
+Beide Wege starten bei verschiedenen negativen Zeitpotenzen, doch das Multiplizieren mit <InlineMath math="t" /> und <InlineMath math="t^2" /> führt beide Pfeile exakt zum selben Punkt <InlineMath math="\mathrm{L}" />. Jeder Term, der diesen Punkt verfehlt, darf nicht zu einem Weg addiert werden.
+
 ## An einem Objekt lassen sich mehrere Größen messen
 
 Schraube und Mutter sind kleine Gegenstände, an denen dennoch mehrere Größen gemessen werden können. Für ein einziges Objekt können deshalb unterschiedliche Messwerkzeuge nötig sein.
@@ -201,6 +216,8 @@ Zwei Geräte können also dieselbe Dimension messen und trotzdem für verschiede
 
 Die Grenze der Prüfung zeigt sich, wenn wir <InlineMath math="\frac{1}{2}" /> aus der Verschiebungsformel weglassen. Auch <InlineMath math="s=v_0t+at^2" /> besitzt auf beiden Seiten die Dimension Länge, ergibt bei konstanter Beschleunigung ungleich null aber eine falsche Verschiebung. **Dimensionen bestimmen keine Zahlenfaktoren** wie <InlineMath math="\frac{1}{2}" />.
 
+> Eine Dimensionsprüfung deckt unmögliche Formeln sofort auf, verrät aber niemals, ob ein reiner Zahlenfaktor wie <InlineMath math="\frac{1}{2}" /> fehlt.
+
 Probier es an einer echten Schraube. Das Labor unten nimmt eine <InlineMath math="\text{M}10" />-Schraube, deren Schaft als Zylinder mit <InlineMath math="10\text{ mm}" /> Durchmesser und <InlineMath math="50\text{ mm}" /> Länge zählt, und zeigt jede Größe aus der Tabelle: ihren Wert in SI-Einheiten und ihre Dimension. Länge und Durchmesser teilen sich <InlineMath math="[\mathrm{L}]" />, die Dichte als Masse durch Volumen landet bei <InlineMath math="[\mathrm{M}][\mathrm{L}]^{-3}" />.
 
 <BoltDimensionsLab
@@ -210,6 +227,7 @@ Probier es an einer echten Schraube. Das Labor unten nimmt eine <InlineMath math
       Wähl eine Größe dieser <InlineMath math="\text{M}10" />-Schraube und achte darauf, welchen Teil sie misst, welchen Wert sie in SI-Einheiten hat und welche Dimension.
     </>
   }
+  footer={<>Vergleiche Länge, Fläche, Volumen, Masse und Dichte an derselben Schraube.</>}
   labels={{
     chooseQuantity: "Größe wählen",
     dimension: <>Dimension</>,
@@ -225,3 +243,5 @@ Probier es an einer echten Schraube. Das Labor unten nimmt eine <InlineMath math
     viewLabel: "Stahlschraube mit markierter Größe",
   }}
 />
+
+Der Wechsel zwischen den sechs Größen zeigt, wie ein einziges Stück Stahl verschiedene Dimensionen vereint, selbst wenn mehrere Messungen auf der Grunddimension <InlineMath math="[\mathrm{L}]" /> beruhen. Über die Dimension wählst du für jede Eigenschaft das passende Messgerät und die richtige Formel.

@@ -18,23 +18,49 @@ Die Stichprobenstandardabweichung <InlineMath math="s" /> beschreibt die Streuun
 
 > Wiederholte Messungen zeigen zufällige Abweichungen, die von einer Ablesung zur nächsten in beide Richtungen schwanken. Systematische Abweichungen verschwinden dadurch nicht. Ein Gerät mit verschobenem Nullpunkt oder beschädigter Skala muss geprüft und gegebenenfalls kalibriert werden.
 
-Die Skala aus einem leicht anderen Winkel abzulesen, ist eine dieser kleinen Änderungen. Im Messzylinder unten liegt der tiefste Punkt der gewölbten Wasseroberfläche auf der Achse, die Skala ist aber auf die Vorderwand gedruckt. Ist dein Auge <InlineMath math="6{,}0\text{ cm}" /> über dem Wasser, schneidet deine Sichtlinie die Wand weiter oben, und aus <InlineMath math="42{,}0\text{ mL}" /> werden abgelesene <InlineMath math="44{,}1\text{ mL}" />. Bring dein Auge auf Höhe des Wassers, dann verschwindet der Fehler.
+Wer eine Skala schräg abliest, erzeugt eine **Parallaxenverschiebung**. Liegt der wahre Meniskus bei <InlineMath math="42{,}0\text{ mL}" /> hinter der vorderen Skala, verschiebt ein Blickwinkel <InlineMath math="a" /> die Ablesung um <InlineMath math="4\tan a" />. Zieh den Winkelregler auf <InlineMath math="0^\circ" /> und beobachte, wie der Fehler verschwindet.
 
-<ParallaxReadingLab
-  title={<>Parallaxe am Messzylinder</>}
+<MathVisual
+  title={<>Parallaxenverschiebung über dem Blickwinkel</>}
   description={
     <>
-      Beweg dein Auge nach oben oder unten und achte darauf, wo deine Sichtlinie zum Wasser die Skala schneidet.
+      Scheinbare Ablesung am Messzylinder gegen den Blickwinkel <InlineMath math="a" /> um ein wahres Meniskusvolumen von <InlineMath math="42{,}0\text{ mL}" />.
     </>
   }
+  footer={<>Ein waagerechter Blick auf den Meniskus beseitigt den Parallaxenfehler völlig.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -35, max: 35 }, y: { min: 38.5, max: 45.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -30, max: 30, value: 20, step: 2, label: "a" },
+    ],
+    objects: [
+      { id: "true-level", kind: "segment", appearance: "reference", from: { x: -30, y: 42 }, to: { x: 30, y: 42 } },
+      { id: "parallax-curve", kind: "function", appearance: "primary", formula: "42 + 4*tan(x*pi/180)", domain: { min: -30, max: 30 } },
+      { id: "angle-guide", kind: "path", appearance: "answer", points: [{ x: "a", y: "39" }, { x: "a", y: "42 + 4*tan(a*pi/180)" }] },
+      { id: "eye-point", kind: "marker", appearance: "answer", x: "a", y: "42 + 4*tan(a*pi/180)" },
+      { id: "zero-point", kind: "point", appearance: "secondary", at: { x: 0, y: 42 } },
+    ],
+    labels: [
+      { key: "true-vol", objectId: "zero-point", at: { x: 0, y: 42 }, placement: "below-right" },
+      { key: "shift", objectId: "eye-point", at: { x: "a", y: "42 + 4*tan(a*pi/180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "apparent-reading", formula: "42 + 4*tan(a*pi/180)" },
+      { key: "parallax-error", formula: "4*tan(a*pi/180)" },
+    ],
+  }}
   labels={{
-    error: <>Parallaxenfehler</>,
-    eye: "Augenhöhe über dem Wasser",
-    reading: <>Abgelesener Wert</>,
-    trueVolume: <>Wahres Volumen</>,
-    viewLabel: "Auge liest das Wasser in einem Messzylinder ab, mit Lupe auf der Skala",
+    a: <>Blickwinkel <InlineMath math="a" /> (Grad)</>,
+    "true-vol": <InlineMath math="42{,}0\text{ mL}" />,
+    shift: <InlineMath math="\Delta V" />,
+    "apparent-reading": <>Scheinbare Ablesung (mL)</>,
+    "parallax-error": <>Parallaxenfehler (mL)</>,
   }}
 />
+
+Ein Blick von schräg oben verzerrt den Wert nach oben, ein Blick von schräg unten nach unten. Erst wenn dein Auge genau bei <InlineMath math="0^\circ" /> auf Meniskushöhe liegt, fällt der vermeidbare Ablesefehler auf null.
 
 ## Mittelwert der wiederholten Messungen
 
@@ -52,37 +78,77 @@ Bei annähernd symmetrisch streuenden Messwerten **ohne deutlichen Ausreißer** 
 
 <BlockMath math="\bar d=\frac{\sum_{i=1}^{N} d_i}{N}" />
 
-Für die Daten aus der Tabelle ergibt sich:
-
-Addiere zunächst die Zahlenwerte der Messungen in Zentimetern:
+Für die Daten aus der Tabelle addierst du zunächst die Zahlenwerte in Zentimetern:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} S &amp;=3{,}12+3{,}14+3{,}15 \\ &amp;\quad{}+3{,}11+3{,}14 \\ &amp;=15{,}66 \end{aligned}" />
+  <BlockMath math="\begin{aligned} S &=3{,}12+3{,}14+3{,}15 \\ &\quad{}+3{,}11+3{,}14 \\ &=15{,}66 \end{aligned}" />
 
   <BlockMath math="\bar d=\frac{15{,}66}{5}\text{ cm}=3{,}132\text{ cm}" />
 </MathContainer>
 
 Der Mittelwert allein reicht nicht. Ebenso wichtig ist, ob die Messwerte dicht bei ihm liegen oder weit streuen.
 
-Bei der Zeit funktioniert es genauso. Unten wird ein <InlineMath math="0{,}80\text{ m}" /> langes Pendel immer wieder für zehn Schwingungen gestoppt, und dein Daumen startet und stoppt die Uhr jedes Mal etwas zu früh oder zu spät. Bei <InlineMath math="N=10" /> Versuchen liegt der Mittelwert bei <InlineMath math="\bar t=17{,}933\text{ s}" />, nah am wahren Wert <InlineMath math="17{,}943\text{ s}" />. Verschieb <InlineMath math="N" /> und schau, wie sich der Mittelwert beruhigt, während die Streuung der einzelnen Werte etwa gleich bleibt.
+Dieselbe Streuung zeigt sich beim manuellen Stoppen von zehn Schwingungen eines <InlineMath math="0{,}80\text{ m}" /> langen Pendels. Selbst bei festem Mittelwert <InlineMath math="\bar t = 17{,}94\text{ s}" /> zieht die Reaktionszeit einzelne Versuche bis zur halben Spannweite <InlineMath math="h" /> auseinander. Verstelle <InlineMath math="h" /> unten, um enge und breite Streuung zu vergleichen.
 
-<StopwatchSpreadLab
-  title={<>Ein Pendel von Hand stoppen</>}
+<MathVisual
+  title={<>Streuung von Stoppuhr-Versuchen und halbe Spannweite</>}
   description={
     <>
-      Füg Versuche hinzu und achte darauf, wie sich der Mittelwert in Fuchsia beruhigt, während die Streuung der einzelnen Werte etwa gleich bleibt.
+      Fünf wiederholte Pendelzeiten um ihren Mittelwert <InlineMath math="17{,}94\text{ s}" /> bei veränderlicher halber Spannweite <InlineMath math="h" />.
     </>
   }
+  footer={<>Die halbe Spannweite zwischen höchstem und tiefstem Wert ergibt die Streuung.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.8 }, y: { min: 17.4, max: 18.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0.05, max: 0.4, value: 0.2, step: 0.05, label: "h" },
+    ],
+    objects: [
+      { id: "mean", kind: "segment", appearance: "reference", from: { x: 0.5, y: 17.94 }, to: { x: 5.5, y: 17.94 } },
+      { id: "upper-band", kind: "path", appearance: "answer", points: [{ x: "0.5", y: "17.94 + h" }, { x: "5.5", y: "17.94 + h" }] },
+      { id: "lower-band", kind: "path", appearance: "answer", points: [{ x: "0.5", y: "17.94 - h" }, { x: "5.5", y: "17.94 - h" }] },
+      { id: "stem-1", kind: "path", appearance: "construction", points: [{ x: "1", y: "17.94" }, { x: "1", y: "17.94 - 0.6*h" }] },
+      { id: "stem-2", kind: "path", appearance: "construction", points: [{ x: "2", y: "17.94" }, { x: "2", y: "17.94 + h" }] },
+      { id: "stem-3", kind: "path", appearance: "construction", points: [{ x: "3", y: "17.94" }, { x: "3", y: "17.94 + 0.2*h" }] },
+      { id: "stem-4", kind: "path", appearance: "construction", points: [{ x: "4", y: "17.94" }, { x: "4", y: "17.94 - h" }] },
+      { id: "stem-5", kind: "path", appearance: "construction", points: [{ x: "5", y: "17.94" }, { x: "5", y: "17.94 + 0.4*h" }] },
+      { id: "trial-1", kind: "marker", appearance: "primary", x: "1", y: "17.94 - 0.6*h" },
+      { id: "trial-2", kind: "marker", appearance: "primary", x: "2", y: "17.94 + h" },
+      { id: "trial-3", kind: "marker", appearance: "primary", x: "3", y: "17.94 + 0.2*h" },
+      { id: "trial-4", kind: "marker", appearance: "primary", x: "4", y: "17.94 - h" },
+      { id: "trial-5", kind: "marker", appearance: "primary", x: "5", y: "17.94 + 0.4*h" },
+    ],
+    labels: [
+      { key: "mean-line", objectId: "mean", at: { x: 5.5, y: 17.94 }, placement: "right" },
+      { key: "upper-bound", objectId: "upper-band", at: { x: "5.5", y: "17.94 + h" }, placement: "right" },
+      { key: "lower-bound", objectId: "lower-band", at: { x: "5.5", y: "17.94 - h" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "full-range", formula: "2*h" },
+      { key: "half-range", formula: "h" },
+      { key: "upper-reading", formula: "17.94 + h" },
+    ],
+  }}
   labels={{
-    mean: <>Mittelwert</>,
-    spread: <>Streuung eines Messwerts</>,
-    trials: "Anzahl der Versuche",
-    uncertainty: <>Unsicherheit des Mittelwerts</>,
-    viewLabel: "Pendel, mit einer Stoppuhr gemessen, mit Punktdiagramm der Messwerte",
+    h: <>Halbe Spannweite <InlineMath math="h" /> (s)</>,
+    "mean-line": <InlineMath math="\bar t" />,
+    "upper-bound": <InlineMath math="\bar t+h" />,
+    "lower-bound": <InlineMath math="\bar t-h" />,
+    "full-range": <>Gesamtspannweite (s)</>,
+    "half-range": <>Unsicherheit halbe Spannweite (s)</>,
+    "upper-reading": <>Höchster Versuch (s)</>,
   }}
 />
 
-## Die Streuung um den Mittelwert
+Alle fünf Versuche behalten exakt denselben Mittelwert <InlineMath math="17{,}94\text{ s}" />, egal wie stark <InlineMath math="h" /> wächst. Erst die Streuung neben dem Mittelwert zeigt, wie zuverlässig die Zeitmessungen zusammenliegen.
+
+## Streuung und Unsicherheit des Mittelwerts bestimmen
+
+Um Wiederholungsmessungen sauber auszuwerten, trennst du die **Streuung einzelner Messwerte** von der **Unsicherheit ihres Mittelwerts**. Die Standardabweichung beschreibt, wie weit einzelne Ablesungen schwanken, während die Unsicherheit des Mittelwerts angibt, wie eng der Durchschnitt eingegrenzt ist.
+
+### Die Streuung um den Mittelwert
 
 Die Stichprobenstandardabweichung erfasst <Highlight>die Abstände der einzelnen Messwerte vom Mittelwert</Highlight>.
 
@@ -93,9 +159,9 @@ Im Nenner steht <InlineMath math="N-1" />, weil der Stichprobenmittelwert <Inlin
 Addiere zunächst die quadrierten Zahlenwerte der Abweichungen:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} V &amp;=(-0{,}012)^2+(0{,}008)^2 \\ &amp;\quad{}+(0{,}018)^2+(-0{,}022)^2 \\ &amp;\quad{}+(0{,}008)^2 \\ &amp;=0{,}00108 \end{aligned}" />
+  <BlockMath math="\begin{aligned} V &=(-0{,}012)^2+(0{,}008)^2 \\ &\quad{}+(0{,}018)^2+(-0{,}022)^2 \\ &\quad{}+(0{,}008)^2 \\ &=0{,}00108 \end{aligned}" />
 
-  <BlockMath math="\begin{aligned} &amp;s_d=\sqrt{\frac V4}\text{ cm} \\ &amp;=\sqrt{0{,}00027}\text{ cm} \\ &amp;\approx0{,}0164\text{ cm} \end{aligned}" />
+  <BlockMath math="\begin{aligned} s_d&=\sqrt{\frac{V}{4}}\text{ cm} \\ &=\sqrt{0{,}00027}\text{ cm} \\ &\approx0{,}0164\text{ cm} \end{aligned}" />
 </MathContainer>
 
 Mit der gerundeten Streuung lässt sich der Durchmesser so angeben:
@@ -109,6 +175,7 @@ Hier sind die fünf Messwerte aus der Tabelle auf einer Linie. Die fuchsia Linie
 <MathVisual
   title={<>Von Messwerten zur Streuung</>}
   description={<>Fünf Messwerte des Durchmessers (orange), ihr Mittelwert (fuchsia) und das Band einer Standardabweichung (türkis). Ein Gitterschritt entspricht <InlineMath math="0{,}01\text{ cm}" /> ab <InlineMath math="3{,}10\text{ cm}" />.</>}
+  footer={<>Die meisten Einzelwerte liegen innerhalb einer Standardabweichung vom Mittel.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.8, max: 2.7 } },
@@ -134,7 +201,9 @@ Hier sind die fünf Messwerte aus der Tabelle auf einer Linie. Die fuchsia Linie
   }}
 />
 
-## Datenstreuung und Unsicherheit des Mittelwerts
+Drei der fünf orangen Punkte liegen im türkisen Band, während die beiden äußersten Werte knapp außerhalb stehen. Dieses Gleichgewicht zeigt anschaulich, warum <InlineMath math="s_d" /> den typischen Abstand eines Einzelwerts vom Mittel beschreibt.
+
+### Datenstreuung und Unsicherheit des Mittelwerts
 
 In manchen Aufgaben zu wiederholten Messungen wird die folgende kompakte algebraische Form verwendet.
 
@@ -150,7 +219,7 @@ Diese Formel ist algebraisch gleichbedeutend mit der Stichprobenstandardabweichu
 
 <BlockMath math="\Delta x=s_x=\sqrt{\frac{\sum_{i=1}^{N}(x_i-\bar x)^2}{N-1}}" />
 
-Der Faktor <InlineMath math="\frac{1}{\sqrt N}" /> in der kompakten Form macht das Ergebnis daher nicht automatisch zur formalen Unsicherheit des Mittelwerts.
+Der Faktor <InlineMath math="1/\sqrt{N}" /> in der kompakten Form macht das Ergebnis daher nicht automatisch zur formalen Unsicherheit des Mittelwerts.
 
 In der Metrologie beschreiben NIST und JCGM GUM die Standardunsicherheit des Mittelwerts dagegen als:
 
@@ -160,11 +229,14 @@ Bei unabhängigen Ablesungen mit derselben Streuung ist die **Standardunsicherhe
 
 <BlockMath math="u(\bar d)=\frac{\sqrt{0{,}00027}}{\sqrt 5}\text{ cm}\approx0{,}00735\text{ cm}" />
 
-Die Szene unten stellt die fünf Messwerte nebeneinander. Jeder türkise Stab ist der Abstand eines Messwerts vom Mittelwert, <InlineMath math="100" />-fach vergrößert. Die orangen Linien bei <InlineMath math="\pm s_d" /> zeigen, wie weit einzelne Messwerte streuen, die engeren violetten Linien bei <InlineMath math="\pm u(\bar d)" /> zeigen, wie genau der Mittelwert selbst bekannt ist. Addier mal die Stäbe über der grauen Linie und die darunter: Sie heben sich auf, weil die Abweichungen vom Mittelwert immer null ergeben.
+Die Szene unten stellt die fünf Messwerte nebeneinander. Jeder türkise Stab ist der Abstand eines Messwerts vom Mittelwert, <InlineMath math="100" />-fach vergrößert.
+
+Die orangen Linien bei <InlineMath math="\pm s_d" /> zeigen, wie weit einzelne Messwerte streuen, während die engeren violetten Linien bei <InlineMath math="\pm u(\bar d)" /> zeigen, wie genau der Mittelwert bekannt ist. Addierst du die Stäbe oberhalb und unterhalb der grauen Linie, heben sie sich genau auf.
 
 <MathVisual
   title={<>Fünf Messwerte um ihren Mittelwert</>}
   description={<>Jeder Stab ist ein Messwert minus Mittelwert, in Einheiten von <InlineMath math="0{,}01\text{ cm}" />. Orange Linien markieren die Streuung s, violette die Unsicherheit des Mittelwerts u.</>}
+  footer={<>Die Unsicherheit des Mittelwerts ist enger als die Streuung der Einzelwerte.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: -2.8, max: 2.5 } },
@@ -213,13 +285,14 @@ Die Szene unten stellt die fünf Messwerte nebeneinander. Jeder türkise Stab is
   }}
 />
 
-Bei einfachen Messaufgaben gilt die Konvention im Aufgabentext. Wenn dort <InlineMath math="\Delta x" /> für die kompakte Formel steht, bezeichnet <InlineMath math="\Delta x" /> die Stichprobenstandardabweichung der einzelnen Messwerte. Diese Streuung darf nicht mit der Standardunsicherheit des Mittelwerts <InlineMath math="u(\bar x)=s_x/\sqrt N" /> verwechselt werden.
+Bei einfachen Messaufgaben gilt die Konvention im Aufgabentext. Wenn dort <InlineMath math="\Delta x" /> für die kompakte Formel steht, bezeichnet <InlineMath math="\Delta x" /> die Stichprobenstandardabweichung der einzelnen Messwerte. Diese Streuung darf nicht mit der Standardunsicherheit des Mittelwerts <InlineMath math="u(\bar x)" /> verwechselt werden.
 
 Das Diagramm unten behält dieselbe Streuung <InlineMath math="s_d" /> und fragt, was mit mehr Messwerten passiert. Die Unsicherheit des Mittelwerts fällt anfangs schnell und dann langsamer, weil sie mit <InlineMath math="\sqrt N" /> schrumpft: Viermal so viele Messwerte halbieren sie nur.
 
 <MathVisual
   title={<>Mehr Messwerte, schärferer Mittelwert</>}
   description={<><InlineMath math="u=s/\sqrt N" /> für <InlineMath math="N=1" /> bis <InlineMath math="20" /> Messwerte mit der Streuung <InlineMath math="s_d" /> des Deckels. Waagrecht: N in Einheiten von <InlineMath math="4" />. Senkrecht: u in Einheiten von <InlineMath math="0{,}004\text{ cm}" />.</>}
+  footer={<>Viermal so viele Messungen halbieren die Unsicherheit des Mittelwerts nur.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 4.6 } },
@@ -239,6 +312,8 @@ Das Diagramm unten behält dieselbe Streuung <InlineMath math="s_d" /> und fragt
     five: <InlineMath math="N=5:\ u\approx0{,}00735\text{ cm}" />,
   }}
 />
+
+Der Schritt von <InlineMath math="1" /> auf <InlineMath math="5" /> Messungen senkt die Unsicherheit des Mittelwerts deutlich, doch der Sprung von <InlineMath math="5" /> auf <InlineMath math="15" /> bringt nur noch wenig Gewinn. Ab einer mittleren Probenzahl hilft ein besseres Messgerät weit mehr als endloses Wiederholen.
 
 ## Fläche aus Durchmesserdaten berechnen
 

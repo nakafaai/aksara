@@ -15,11 +15,14 @@ export const metadata = {
 
 When you switch on a flashlight, chemical energy in the battery becomes electrical energy supplied to the lamp. The lamp produces **the light you need** while also heating parts of the flashlight and its surroundings. That heating still counts in the energy balance, even though your purpose is to illuminate the room.
 
-Swap the bulb and the energy path stays the same while the useful share changes. Two AA cells hold <InlineMath math="3\text{ V}\times2.5\text{ Ah}=27\,000\text{ J}" />, and the bulb draws <InlineMath math="1\text{ W}" />, so the battery lasts <InlineMath math="7.5\text{ h}" /> either way. A filament bulb turns about <InlineMath math="5\%" /> of that power into light, an LED about <InlineMath math="40\%" />: eight times as much light from the same battery.
+Swap the bulb and the energy path stays the same while the useful share changes. Two AA cells hold <InlineMath math="27\,000\text{ J}" /> (<InlineMath math="3\text{ V}" /> at <InlineMath math="2.5\text{ Ah}" />), and the bulb draws <InlineMath math="1\text{ W}" />, so the battery lasts <InlineMath math="7.5\text{ h}" /> either way.
+
+A filament bulb turns about <InlineMath math="5\%" /> of that power into light, while an LED converts about <InlineMath math="40\%" />. That gives you eight times as much light from the same battery.
 
 <FlashlightEfficiencyLab
   title={<>Same Battery, Different Bulbs</>}
   description={<>A flashlight draws <InlineMath math="1\text{ W}" /> from two AA cells. Choose the bulb and compare how much of the electrical power becomes light and how much becomes heat.</>}
+  footer={<>Both bulbs last equally long, yet the LED makes eight times more light.</>}
   labels={{
     battery: <>Battery energy</>,
     bulbs: {
@@ -36,18 +39,26 @@ Swap the bulb and the energy path stays the same while the useful share changes.
   }}
 />
 
+Notice that both bulbs draw the same electrical power and drain the battery at the same rate. Choosing a more efficient device does not create extra energy, it simply redirects a larger share of the input into the output you actually want.
+
 ## Conversion Paths in Power Plants
+
+Every power plant moves energy through a **conversion chain** from a natural source to electricity and the surroundings. Mapping each turbine, boiler, or solar cell shows where useful output comes from and where heat escapes.
+
+### Mechanical and Solar Conversion Paths
 
 The diagram shows the forms of energy supplied by different sources and how power plants convert them for use.
 
 <Mermaid
   title={<>Power Plants Convert Energy in Stages</>}
   description={<>The diagram shows the path from the natural energy source through the conversion device to useful output and energy transferred to the surroundings.</>}
+  footer={<>Every conversion step splits input between useful output and the surroundings.</>}
   chart={`flowchart TD
     A["Natural source"] --> B["Initial energy form"]
     B --> C["Conversion device"]
     C --> D["Useful energy"]
-    C --> E["Energy to surroundings"]`}/>
+    C --> E["Energy to surroundings"]`}
+/>
 
 In [hydropower](https://www.energy.gov/cmei/water/how-hydropower-works), water flows through a penstock and spins turbine blades. The turbine drives a **generator that produces electricity**.
 
@@ -61,6 +72,7 @@ In [wind power](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work), 
       energy of the air is converted into electrical energy.
     </>
   }
+  footer={<>Faster wind spins the rotor faster, while turbine limits still cap the output.</>}
   labels={{
     flow: <>Wind turns the rotor, the rotor turns the generator, and electricity flows out.</>,
     flowLabel: "Conversion path",
@@ -87,11 +99,20 @@ In a [photovoltaic panel](https://www.eia.gov/energyexplained/solar/photovoltaic
 
 [Geothermal power plants](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation) use hot fluid or steam from below Earth's surface to drive turbines and produce electricity.
 
-A power plant converts energy in stages, and every stage passes on only part of what it gets, so the stage efficiencies multiply. With illustrative values of <InlineMath math="90\%" /> for the turbine and <InlineMath math="95\%" /> each for the generator and the lines, the chain delivers <InlineMath math="\eta=0.9\times0.95\times0.95\approx81\%" /> of the water's energy. Rotate the bars and watch the gray part grow.
+### Multiplying Stage Efficiencies
+
+A power plant converts energy in stages, and every stage passes on only part of what it receives. Because each stage acts on the remainder from the step before, the **stage efficiencies multiply**.
+
+With illustrative efficiencies of <InlineMath math="90\%" /> for the turbine and <InlineMath math="95\%" /> each for the generator and the lines, the chain delivers:
+
+<BlockMath math="\eta = 0.9 \times 0.95 \times 0.95 \approx 81\%" />
+
+Rotate the bars below and watch the gray lost share grow at every step.
 
 <MathVisual
   title={<>Stage Efficiencies Multiply</>}
-  description={<>Energy left at each stage of an illustrative hydropower chain from <InlineMath math="100\text{ J}" /> of water energy (teal, front) and the energy lost so far (gray, back). One grid step up is <InlineMath math="20\text{ J}" />.</>}
+  description={<>Energy left at each stage of an illustrative hydropower chain from <InlineMath math="100\text{ J}" /> of water energy (teal, front) and energy lost so far (gray, back), with bar heights drawn to scale.</>}
+  footer={<>Each stage takes its share from the last, so losses stack across the chain.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 6.5 }, z: { min: -1.8, max: 1.8 } },
@@ -120,9 +141,13 @@ A power plant converts energy in stages, and every stage passes on only part of 
   }}
 />
 
+Even when every machine in a chain is over <InlineMath math="90\%" /> efficient, the overall efficiency always falls below the weakest stage. At every step, the teal bar and gray bar still add back to the original <InlineMath math="100\text{ J}" />.
+
 ## Efficiency Measures the Useful Share
 
 Because not all input energy becomes the output we need, we use **efficiency**. Efficiency compares useful energy with input energy.
+
+> Efficiency below <InlineMath math="100\%" /> never means energy vanished. It only shows how much left the device in forms you did not intend to use.
 
 <BlockMath math="\eta=\frac{E_{\text{useful}}}{E_{\text{input}}}\times 100\%" />
 
@@ -156,11 +181,12 @@ So, an efficiency of <InlineMath math="20\%" /> does not mean the remaining <Inl
 
 [Energy efficiency](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php) measures the share of input energy converted into useful output by a device.
 
-Move the efficiency of the panel and watch the <InlineMath math="800\text{ J}" /> split. At <InlineMath math="\eta=20\%" /> the amber band is the <InlineMath math="160\text{ J}" /> of electricity from the example and the pink band the <InlineMath math="640\text{ J}" /> that goes to the surroundings, and the two bands always add back to the input.
+Move the efficiency of the panel and watch the <InlineMath math="800\text{ J}" /> split. At <InlineMath math="\eta=20\%" />, the amber band is the <InlineMath math="160\text{ J}" /> of electricity from the example and the pink band is the <InlineMath math="640\text{ J}" /> sent to the surroundings.
 
 <MathVisual
   title={<>Efficiency Splits the Input</>}
-  description={<><InlineMath math="800\text{ J}" /> of light into a panel (gray) split into electricity (amber) and energy to the surroundings (pink), with band widths drawn to scale. One grid step is <InlineMath math="100\text{ J}" />.</>}
+  description={<><InlineMath math="800\text{ J}" /> of light into a panel (gray) split into electricity (amber) and energy to the surroundings (pink), with band heights drawn to scale.</>}
+  footer={<>Drag the efficiency slider and watch the two output bands always sum to 800 J.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -0.5, max: 9 } },
@@ -190,10 +216,12 @@ Move the efficiency of the panel and watch the <InlineMath math="800\text{ J}" /
     useful: <InlineMath math="\text{electricity}" />,
     lost: <InlineMath math="\text{to the surroundings}" />,
     eta: <InlineMath math="\eta\ (\%)" />,
-    out: <InlineMath math="E_{\text{useful}}=\eta E_{\text{input}}\ (\text{J})" />,
-    rest: <InlineMath math="E_{\text{input}}-E_{\text{useful}}\ (\text{J})" />,
+    out: <InlineMath math="E_{\text{useful}}\ (\text{J})" />,
+    rest: <InlineMath math="E_{\text{surroundings}}\ (\text{J})" />,
   }}
 />
+
+Raising efficiency grows the amber useful band by the exact amount it shrinks the pink band. The total height stays fixed at <InlineMath math="800\text{ J}" /> because energy conservation holds at every efficiency setting.
 
 ## Comparing Conversion Paths across Devices
 
@@ -209,11 +237,14 @@ Solar panels, wind turbines, generators, and biogas reactors convert existing en
 
 The conversion path records the source, initial energy form, output form, useful energy, and energy transferred to the surroundings.
 
-Now compare whole chains side by side. In the chart, <InlineMath math="100\text{ J}" /> enters each plant, every machine passes on its share, and each loss bends down into the surroundings. With typical round shares, a solar panel delivers <InlineMath math="19.2\text{ J}" />, a wind turbine <InlineMath math="40.61\text{ J}" />, a hydropower plant <InlineMath math="85.5\text{ J}" />, a biogas engine <InlineMath math="33.25\text{ J}" />, and a geothermal plant <InlineMath math="11.4\text{ J}" />. The lost joules never vanish: together with the electricity they always make <InlineMath math="100\text{ J}" />.
+Now compare whole chains side by side. In the chart, <InlineMath math="100\text{ J}" /> enters each plant, every machine passes on its share, and each loss bends down into the surroundings.
+
+With typical round shares, a solar panel delivers <InlineMath math="19.2\text{ J}" />, a wind turbine <InlineMath math="40.61\text{ J}" />, a hydropower plant <InlineMath math="85.5\text{ J}" />, a biogas engine <InlineMath math="33.25\text{ J}" />, and a geothermal plant <InlineMath math="11.4\text{ J}" />. Together with the lost joules, every plant still totals <InlineMath math="100\text{ J}" />.
 
 <EnergyFlowLossLab
   title={<>Where <InlineMath math="100\text{ J}" /> Go in Five Plants</>}
   description={<>Each band starts with <InlineMath math="100\text{ J}" /> of the source's energy. Choose a plant and follow how its machines thin the band and hand the rest to the surroundings.</>}
+  footer={<>Compare the five plants to see how fewer thermal steps keep more energy useful.</>}
   labels={{
     choosePlant: "Power plant",
     efficiency: <>Overall efficiency</>,
@@ -230,3 +261,5 @@ Now compare whole chains side by side. In the chart, <InlineMath math="100\text{
     viewLabel: "Energy flow chart of a power plant's conversion stages and losses",
   }}
 />
+
+Plants that spin a turbine directly with moving water avoid heat-engine losses and keep the highest useful share. Thermal plants like geothermal and biogas lose more energy as waste heat, yet they can still supply steady electricity whenever a site has abundant heat or organic fuel.

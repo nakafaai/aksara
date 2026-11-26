@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Jenis-jenis Alat Pengukur",
   description:
@@ -13,7 +12,7 @@ export const metadata = {
 
 Setiap kali kita menimbang bahan masakan, melihat meter laju, membaca suhu badan atau mengukur panjang meja, kita sedang mengukur sesuatu. Dalam fizik, pengukuran ialah <Highlight>proses eksperimen untuk memperoleh satu atau lebih nilai kuantiti</Highlight>. Unit pengukuran pula memberikan <Highlight>rujukan yang dikongsi bersama</Highlight>.
 
-Nilai kuantiti ialah hasil darab nilai berangka dengan unitnya.
+Setiap bacaan alat pengukur menggabungkan angka yang dibaca dengan unit yang tercetak pada skalanya.
 
 Contohnya, jika panjang sesuatu objek dibaca sebagai <InlineMath math="8 \text{ cm}" />, maka <InlineMath math="8" /> ialah nilai berangka dan <InlineMath math="\text{cm}" /> ialah unitnya.
 
@@ -31,6 +30,7 @@ Gunakan model interaktif berikut untuk membandingkan tiga alat pengukur. Pilih s
       diukur dan bacaannya.
     </>
   }
+  footer={<>Setiap alat memadankan satu kuantiti fizik dengan skala dan unitnya.</>}
   labels={{
     chooseTool: "Pilih alat pengukur",
     decimalSeparator: ".",
@@ -60,6 +60,8 @@ Gunakan model interaktif berikut untuk membandingkan tiga alat pengukur. Pilih s
   }}
 />
 
+Bertukar antara pembaris, neraca dan jam randik menunjukkan bahawa setiap alat menjejak sifat fizik yang berbeza dengan unitnya sendiri. Membaca angka tanpa mengetahui alat yang menghasilkannya menjadikan ukuran tidak lengkap.
+
 ## Memilih Alat Pengukur
 
 Kenal pasti kuantitinya sebelum kamu mengukur. Julat yang dijangka dan resolusi yang diperlukan menentukan alat pengukur, manakala kuantiti itu menentukan unit yang digunakan untuk melaporkan hasilnya.
@@ -67,6 +69,7 @@ Kenal pasti kuantitinya sebelum kamu mengukur. Julat yang dijangka dan resolusi 
 <Mermaid
   title={<>Padankan Alat dengan Kuantiti</>}
   description={<>Mulakan daripada objek yang diukur, kemudian pilih alat berdasarkan kepersisan, julat dan cara skalanya dibaca.</>}
+  footer={<>Kenal pasti kuantiti dahulu supaya alat sepadan dengan julat dan unitnya.</>}
   chart={`flowchart TD
     A["Kuantiti yang diukur"] --> B["Panjang"]
     A --> C["Jisim"]
@@ -109,6 +112,7 @@ Angkup vernier membaca lebih halus daripada pembaris. Dalam makmal di bawah, rah
       Gelongsorkan rahang hingga mengepit silinder loyang. Sifar vernier memberikan milimeter penuh, dan garis yang segaris dengan tanda skala utama memberikan persepuluhnya.
     </>
   }
+  footer={<>Baca milimeter penuh pada sifar vernier dan persepuluh pada garis segaris.</>}
   labels={{
     centimetres: <>Dalam sentimeter</>,
     line: <>Garis vernier yang segaris</>,
@@ -119,13 +123,17 @@ Angkup vernier membaca lebih halus daripada pembaris. Dalam makmal di bawah, rah
   }}
 />
 
+Semasa menggerakkan rahang, milimeter penuh sentiasa dibaca pada senggatan tepat di kiri sifar vernier, manakala satu garis vernier yang sejajar memberikan angka persepuluhnya. Gabungan kedua-dua bacaan ini mencapai resolusi <InlineMath math="0.1\text{ mm}" />.
+
 ### Jisim
 
 Jisim menunjukkan sejauh mana sesuatu objek menentang perubahan pada gerakannya. Neraca mengukur jisim dengan membandingkan objek itu dengan **jisim yang diketahui**. Jika neraca menunjukkan bacaan <InlineMath math="250 \text{ g}" />, jisim objek itu ialah:
 
 <BlockMath math="m = 250 \text{ g}" />
 
-Dalam model interaktif di atas, neraca itu dimodelkan sebagai neraca lengan sama. Objek diletakkan pada piring kiri, manakala jisim rujukan <InlineMath math="250 \text{ g}" /> diletakkan pada piring kanan. Jika jisim objek lebih besar daripada <InlineMath math="250 \text{ g}" />, sisi objek akan turun. Jika jisim objek lebih kecil daripada <InlineMath math="250 \text{ g}" />, sisi jisim rujukan pula yang turun. Jika kedua-dua jisim sama, neraca berada dalam keseimbangan.
+Dalam model interaktif di atas, neraca itu dimodelkan sebagai neraca lengan sama dengan objek pada piring kiri dan jisim rujukan <InlineMath math="250 \text{ g}" /> pada piring kanan.
+
+Jika jisim objek lebih besar daripada <InlineMath math="250 \text{ g}" />, sisi objek akan turun, dan jika lebih kecil, sisi jisim rujukan pula yang turun. Apabila kedua-dua piring sejajar, kedua-dua jisim adalah sama.
 
 Simbol <InlineMath math="\tau" /> mewakili magnitud tork, iaitu kesan putaran daya pada neraca. Kedua-dua lengan mempunyai panjang <InlineMath math="r" />, dan <InlineMath math="g" /> ialah magnitud pecutan graviti. Jisim yang sama pada lengan yang sama panjang menghasilkan dua tork yang bertentangan arah dengan magnitud yang sama.
 
@@ -153,6 +161,7 @@ Angkup vernier membolehkan bacaan hingga satu persepuluh milimeter dengan menjaj
 <MathVisual
   title={<>Membaca Angkup Vernier</>}
   description={<>Skala utama dalam milimeter (atas) dan skala vernier dengan <InlineMath math="10" /> senggatan sepanjang <InlineMath math="9\text{ mm}" /> (bawah).</>}
+  footer={<>Hanya satu garis vernier sejajar tepat bagi menunjukkan persepuluh mm.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 14 }, y: { min: -1.6, max: 1.4 } },
@@ -200,6 +209,8 @@ Angkup vernier membolehkan bacaan hingga satu persepuluh milimeter dengan menjaj
   }}
 />
 
+Oleh sebab setiap senggatan vernier lebih pendek <InlineMath math="0.1\text{ mm}" /> daripada satu milimeter skala utama, setiap langkah menganjakkan perbezaannya sebanyak satu persepuluh sehingga garis ketujuh sejajar tepat di bawah tanda <InlineMath math="3\text{ cm}" />.
+
 ## Alat Pengukur di Sekeliling Kita
 
 Banyak kuantiti harian boleh dibaca terus daripada alat pengukur. Kuantiti lain, seperti ketumpatan, boleh dihitung daripada beberapa pengukuran. Jadual ini memadankan alat pengukur yang lazim dengan kuantiti yang diukurnya, jadi kamu boleh memilih alat berdasarkan kuantiti yang kamu perlukan.
@@ -225,6 +236,7 @@ Bagi benda senipis dawai atau sekecil bebola, tolok skru mikrometer ialah alat y
       Putar bidal hingga mengepit bebola keluli. Skala utama memberikan milimeter penuh dan setengah milimeter, dan garis bidal pada garis rujukan menambah perseratusnya.
     </>
   }
+  footer={<>Tambah bacaan skala utama dengan perseratus pada garisan bidal.</>}
   labels={{
     division: <>Senggatan bidal pada garis rujukan</>,
     reading: <>Bacaan</>,
@@ -233,6 +245,8 @@ Bagi benda senipis dawai atau sekecil bebola, tolok skru mikrometer ialah alat y
     viewLabel: "Tolok skru mikrometer mengepit bebola keluli, dengan kanta pembesar pada skala utama dan bidal",
   }}
 />
+
+Sentiasa periksa sama ada senggatan setengah milimeter di bahagian bawah skala utama kelihatan sebelum menambah bacaan bidal. Semakan ringkas ini mengelakkan ralat bacaan <InlineMath math="0.50\text{ mm}" /> yang paling kerap berlaku pada mikrometer.
 
 ## Mencari Panjang daripada Dua Bacaan
 
@@ -254,6 +268,7 @@ Pensel di bawah tidak bermula pada sifar, jadi baca kedua-dua hujungnya. Pangkal
 <MathVisual
   title={<>Membaca Panjang daripada Dua Tanda</>}
   description={<>Sebatang pensel dari tanda <InlineMath math="1\text{ cm}" /> hingga tanda <InlineMath math="8\text{ cm}" /> pada pembaris. Satu petak grid ialah <InlineMath math="1\text{ cm}" />.</>}
+  footer={<>Tolak tanda mula daripada tanda hujung apabila sifar tidak digunakan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -1.75, max: 3.25 } },
@@ -297,3 +312,5 @@ Pensel di bawah tidak bermula pada sifar, jadi baca kedua-dua hujungnya. Pangkal
     length: <InlineMath math="L=8-1=7\text{ cm}" />,
   }}
 />
+
+Bermula pada tanda jelas seperti <InlineMath math="1\text{ cm}" /> amat membantu apabila hujung sifar pembaris sudah haus. Selagi kamu menolak tanda mula daripada tanda akhir, panjang yang diperoleh kekal tepat.

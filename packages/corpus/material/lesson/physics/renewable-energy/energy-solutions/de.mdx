@@ -14,9 +14,9 @@ export const metadata = {
 
 Je nach Ort können Wasser, Sonnenlicht, Wind, organische Abfälle oder Erdwärme einen Teil des Bedarfs decken.
 
-Ein vollständiger Plan verbindet den Bedarf mit der gewünschten Energiedienstleistung:
+Ein vollständiger Plan verbindet den Bedarf mit der gewünschten Energiedienstleistung. Gehe vom Bedarf aus, <Highlight>wähle eine passende örtliche Quelle</Highlight> und plane die Energieumwandlung, danach Verteilung oder Speicherung.
 
-Gehe vom Bedarf aus, <Highlight>wähle eine passende örtliche Quelle</Highlight> und plane die Energieumwandlung. Kläre anschließend die Verteilung oder Speicherung, damit die benötigte Energiedienstleistung bereitsteht.
+> Eine örtliche erneuerbare Quelle allein garantiert noch keinen Strom. Ein tragfähiger Energieplan deckt den Bedarf zu jeder Stunde, plant Speicher für schwache Phasen ein und klärt die Wartung der Anlage.
 
 Kosten, Sicherheit, Wartung und Umweltschutz müssen in jeder Stufe geprüft werden. Auch die Quelle und die Anlagen müssen zum Standort passen.
 
@@ -24,7 +24,8 @@ Fang beim Bedarf an und prüf dann die Quelle. Ein Dorf mit <InlineMath math="50
 
 <MathVisual
   title={<>Vom Bedarf zur Energiedienstleistung</>}
-  description={<>Täglicher Energiebedarf von <InlineMath math="50" /> Häusern (violett) und die Tagesleistung eines 2,5-kW-Kleinwasserkraftwerks (türkis). Ein Gitterschritt nach oben entspricht <InlineMath math="10\text{ kWh}" />.</>}
+  description={<>Täglicher Energiebedarf von <InlineMath math="50" /> Häusern (violett) im Vergleich zur Tagesleistung eines <InlineMath math="2{,}5\text{ kW}" />-Kleinwasserkraftwerks (türkis) in kWh.</>}
+  footer={<>Die 60 kWh Erzeugung übertrifft den Dorfbedarf von 50 kWh um 10 kWh Reserve.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
@@ -43,6 +44,8 @@ Fang beim Bedarf an und prüf dann die Quelle. Ein Dorf mit <InlineMath math="50
     supply: <InlineMath math="2{,}5\cdot24=60\text{ kWh}" />,
   }}
 />
+
+Diese <InlineMath math="10\text{ kWh}" /> Reserve sind in der Praxis entscheidend. Eine Tagesbilanz trägt nur dann zuverlässig, wenn die Versorgung auch bei Abendspitzen oder niedrigerem Bachpegel stabil bleibt.
 
 ## Kleine Wasserkraftanlagen in Plaosan
 
@@ -69,15 +72,18 @@ Die Symbole bedeuten:
 
 Die Formel schätzt die nutzbare Leistung aus Wasserdichte, Gravitation, Durchfluss, Fallhöhe und Wirkungsgrad. Größerer Durchfluss und größere Fallhöhe erhöhen den Schätzwert, doch eine vollständige technische Planung braucht zusätzliche Standort- und Sicherheitsdaten.
 
-Für ein **fiktives Rechenbeispiel** wählen wir die Wasserdichte <InlineMath math="1\,000 \text{ kg/m}^3" />, <InlineMath math="g=10 \text{ m/s}^2" />, den Durchfluss <InlineMath math="0{,}02 \text{ m}^3/\text{s}" />, die Fallhöhe <InlineMath math="10 \text{ m}" /> und den Wirkungsgrad <InlineMath math="0{,}7" />. Diese Werte sind keine Messwerte des anschließend beschriebenen Projekts.
+Für ein **Rechenbeispiel** wählen wir die Wasserdichte <InlineMath math="1\,000 \text{ kg/m}^3" />, <InlineMath math="g=10 \text{ m/s}^2" />, den Durchfluss <InlineMath math="0{,}02 \text{ m}^3/\text{s}" />, die Fallhöhe <InlineMath math="10 \text{ m}" /> und den Wirkungsgrad <InlineMath math="0{,}7" />. Diese Werte zeigen die Formel unabhängig vom anschließenden Praxisprojekt.
 
 <BlockMath math="\begin{aligned} P &\approx \rho g Q h \eta \\ &= (1\,000)(10)(0{,}02)(10)(0{,}7) \text{ W} \\ &= 1\,400 \text{ W} \end{aligned}" />
 
-Dreh die Fläche unten. Jeder Punkt darauf ist die Formel mit einem Volumenstrom nach rechts und einer Fallhöhe in den Bildschirm hinein, und seine Höhe ist die Leistung in Kilowatt. Der fuchsiafarbene Punkt ist das hypothetische Beispiel oben, <InlineMath math="1\,400\text{ W}" />. Folgst du einer orangen Linie, steigt die Leistung gleichmäßig mit der Fallhöhe, entlang einer türkisen Linie steigt sie mit dem Volumenstrom. In der hinteren Ecke, wo das meiste Wasser am tiefsten fällt, liegt die Fläche am höchsten.
+Dreh die Fläche unten, um zu sehen, wie die Leistung mit Durchfluss <InlineMath math="Q" /> und Fallhöhe <InlineMath math="h" /> ansteigt. Der fuchsiafarbene Punkt markiert das <InlineMath math="1\,400\text{ W}" />-Beispiel von oben.
+
+Entlang jeder orangen Linie wächst die Leistung gleichmäßig mit der Fallhöhe, entlang jeder türkisen Linie mit dem Volumenstrom. In der hinteren Ecke treffen höchster Durchfluss und größte Fallhöhe aufeinander.
 
 <MathVisual
   title={<>Mikrowasserkraft aus Volumenstrom und Fallhöhe</>}
-  description={<><InlineMath math="P=\rho gQh\eta" /> mit <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" /> und <InlineMath math="\eta=0{,}7" />. Nach rechts: Volumenstrom in Einheiten von <InlineMath math="0{,}01\text{ m}^3\text{/s}" />. In den Bildschirm: Fallhöhe in Einheiten von <InlineMath math="5\text{ m}" />. Nach oben: Leistung in kW.</>}
+  description={<><InlineMath math="P=\rho gQh\eta" /> mit <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" /> und <InlineMath math="\eta=0{,}7" />. Nach rechts: Durchfluss <InlineMath math="Q" /> bis <InlineMath math="0{,}04\text{ m}^3\text{/s}" />. In die Tiefe: Fallhöhe <InlineMath math="h" /> bis <InlineMath math="20\text{ m}" />. Nach oben: Leistung in kW.</>}
+  footer={<>Die Leistung steigt linear mit Durchfluss und Fallhöhe bis zur hinteren Ecke.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -0.5, max: 4.5 } },
@@ -108,11 +114,15 @@ Dreh die Fläche unten. Jeder Punkt darauf ist die Formel mit einem Volumenstrom
   }}
 />
 
-Der [Betreiber des Mikro-Wasserkraftprojekts am Kali-Pedati-Wasserfall](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) gibt eine installierte Leistung von <InlineMath math="7 \text{ kW}" /> an. Eine Gruppe aus <InlineMath math="14" /> Haushalten verwaltet die Anlage, und derselbe Betreiber nennt etwa <InlineMath math="500 \text{ W}" /> pro Haushalt. Prüfe, ob beide Angaben zusammenpassen: <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />, also <InlineMath math="7 \text{ kW}" />. Diese Zahlen stammen vom Betreiber und nicht aus unabhängigen Langzeitmessungen. Solche Stromproduktionsdaten wären nötig, um die Leistung der Anlage über längere Zeit zu beurteilen.
+Der [Betreiber des Mikro-Wasserkraftprojekts am Kali-Pedati-Wasserfall](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) nennt <InlineMath math="7 \text{ kW}" /> installierte Leistung für <InlineMath math="14" /> Haushalte, also etwa <InlineMath math="500 \text{ W}" /> pro Haushalt. Beide Angaben passen zusammen, denn <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />.
 
-Für eine verlässliche Stromversorgung müssen der Durchfluss dauerhaft ausreichen, die Fallhöhe groß genug sein, die Turbine Hochwasser überstehen und die Gemeinde die Anlage warten können.
+Da diese Zahlen vom Betreiber stammen, wären unabhängige Langzeitmessungen nötig, um die Dauerleistung zu prüfen. Kontrolliere stets stabilen Durchfluss, ausreichende Fallhöhe, Hochwasserschutz und Wartung vor Ort.
 
-## Energielösungen umfassen das gesamte System
+## Systemplanung und Energiezugang
+
+Verlässlicher Strom entsteht erst, wenn **Effizienz, Speicherung und fairer Zugang** im gesamten Versorgungssystem zusammenspielen. Ein Generator allein reicht nicht aus, wenn Speicher, Leitungen und Wartung fehlen.
+
+### Energielösungen umfassen das gesamte System
 
 Der Energiebedarf kann auch sinken, wenn unnötige Verluste verringert werden. Der Wirkungsgrad ist das Verhältnis von **Nutzenergie zu zugeführter Energie**. Arbeitet ein Gerät effizienter, braucht es für denselben Nutzen weniger Energie.
 
@@ -129,11 +139,14 @@ Der Energiebedarf kann auch sinken, wenn unnötige Verluste verringert werden. D
 
 Ein vollständiger Plan verbindet standortgerechte Technik, effiziente Nutzung, ein sicheres Netz, bei Bedarf einen Speicher, verlässliche Wartung und die Begrenzung von Folgen.
 
-Bei der Speicherung trifft ein Plan auf die Nacht. Eine Gesundheitsstation im Dorf hat ein Solardach mit <InlineMath math="3\text{ kWp}" />, das etwa <InlineMath math="22{,}9\text{ kWh}" /> am Tag sammelt, mehr als die <InlineMath math="13{,}6\text{ kWh}" />, die sie verbraucht. Aber der Impfstoffkühlschrank und das Abendlicht laufen nach Sonnenuntergang weiter. Mit einer Batterie von <InlineMath math="5\text{ kWh}" /> bleiben <InlineMath math="4{,}3\text{ kWh}" /> des nächtlichen Bedarfs ungedeckt. Eine Batterie mit <InlineMath math="10\text{ kWh}" /> kommt bis zum Morgen durch.
+Bei der Speicherung trifft ein Solarplan auf die Nacht. Eine Dorf-Gesundheitsstation mit <InlineMath math="3\text{ kWp}" />-Solardach sammelt etwa <InlineMath math="22{,}9\text{ kWh}" /> am Tag, deutlich mehr als ihren Tagesverbrauch von <InlineMath math="13{,}6\text{ kWh}" />.
+
+Doch Impfstoffkühlschrank und Abendlicht laufen nach Sonnenuntergang weiter. Mit einer <InlineMath math="5\text{ kWh}" />-Batterie bleiben <InlineMath math="4{,}3\text{ kWh}" /> Nachtbedarf ungedeckt, während eine <InlineMath math="10\text{ kWh}" />-Batterie bis zum Morgen durchhält.
 
 <SolarBatteryStorageLab
   title={<>Eine Solar-Gesundheitsstation durch die Nacht bringen</>}
   description={<>Eine Gesundheitsstation mit Solardach von <InlineMath math="3\text{ kWp}" /> und Batterie über einen Tag. Wähle die Batteriegröße und sieh, ob die Ladung reicht, bis die Sonne zurückkommt.</>}
+  footer={<>Eine 10 kWh Batterie schließt die Nachtlücke, bei der 5 kWh leer laufen.</>}
   labels={{
     chooseSize: "Batteriegröße",
     demand: <>Tagesverbrauch</>,
@@ -144,21 +157,27 @@ Bei der Speicherung trifft ein Plan auf die Nacht. Eine Gesundheitsstation im Do
   }}
 />
 
-## Vier Bedingungen für den Zugang zu Energie
+Vergleiche die Tagessumme mit dem Nachtverlauf: Genug Tageserzeugung allein hält Impfstoffe nicht kühl, wenn der Speicher den Mittagsüberschuss nicht bis zum nächsten Morgen bewahrt.
+
+### Vier Bedingungen für den Zugang zu Energie
 
 Die [**Ziele für nachhaltige Entwicklung**](https://sdgs.un.org/2030agenda) bilden eine von den Mitgliedstaaten der Vereinten Nationen vereinbarte Agenda für menschliches Wohlergehen und Umweltschutz. Die Agenda <InlineMath math="2030" /> umfasst <InlineMath math="17" /> miteinander verbundene Ziele.
 
-Die Deckung des Energiebedarfs steht in direktem Zusammenhang mit SDG <InlineMath math="7" />, also mit bezahlbarer und sauberer Energie.
+Die Deckung des Energiebedarfs steht in direktem Zusammenhang mit SDG <InlineMath math="7" />, also mit bezahlbarer und sauberer Energie. SDG <InlineMath math="7" /> zielt darauf, allen Menschen [Zugang zu bezahlbarer, zuverlässiger, nachhaltiger und moderner Energie](https://sdgs.un.org/goals/goal7) zu ermöglichen.
 
-SDG <InlineMath math="7" /> zielt darauf, allen Menschen [Zugang zu bezahlbarer, zuverlässiger, nachhaltiger und moderner Energie](https://sdgs.un.org/goals/goal7) zu ermöglichen.
+Prüfe diese vier Bedingungen direkt mit klaren Fragen:
 
-Die vier Bedingungen lassen sich mit Fragen prüfen. Können Haushalte und öffentliche Einrichtungen die Energie bezahlen und zugleich andere Grundbedürfnisse decken? Steht die Energieversorgung zur Verfügung, wenn sie benötigt wird? Kann das Energiesystem weiterarbeiten und dabei Menschen, Ökosysteme und künftige Generationen schützen? Ist die Energieversorgung sicher und leistungsfähig genug für Beleuchtung, Kommunikation, produktive Arbeit und Gesundheitsversorgung?
+- Können Haushalte und öffentliche Einrichtungen die Energie neben anderen Grundbedürfnissen bezahlen?
+- Steht die Versorgung verlässlich bereit, wenn sie gebraucht wird?
+- Schützt das System Menschen, Ökosysteme und künftige Generationen dauerhaft?
+- Ist die Versorgung sicher und stark genug für Licht, Kommunikation, Arbeit und Gesundheit?
 
-Bewerte jede Option nach den vier Fragen, und die Formen erzählen den Rest. Bei diesen beispielhaften Werten von <InlineMath math="4" /> deckt ein Solar-Inselnetz mit Batterien mehr Fläche ab als ein Dieselgenerator, vor allem auf der Achse nachhaltig. Zoom auf jede Ecke.
+Bewerte jede Option nach den vier Fragen, und die Formen erzählen den Rest. Bei diesen beispielhaften Werten von <InlineMath math="4" /> deckt ein Solar-Inselnetz mit Batterien mehr Fläche ab als ein Dieselgenerator, vor allem auf der Achse nachhaltig.
 
 <MathVisual
   title={<>Vier Fragen zum Energiezugang</>}
   description={<>Beispielhafte Werte von <InlineMath math="4" /> für ein Solar-Inselnetz mit Batterien (türkis) und einen Dieselgenerator (rosa).</>}
+  footer={<>Das Solar-Inselnetz deckt mehr ab, besonders auf der Achse nachhaltig.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -5, max: 5 } },
@@ -186,6 +205,8 @@ Bewerte jede Option nach den vier Fragen, und die Formen erzählen den Rest. Bei
   }}
 />
 
+Beide Systeme erreichen dieselbe Zuverlässigkeit, sobald Batterien die Solarmodule stützen, während Diesel bei Nachhaltigkeit weit zurückfällt, weil Brennstoffverbrauch Emissionen und laufende Kosten verursacht.
+
 ## Ein prüfbarer lokaler Energieplan
 
 Für einen Weiler, der Strom für Beleuchtung am Abend, das Laden von Telefonen, eine kleine Wasserpumpe und Lernangebote benötigt, bilden diese **Bedürfnisse und die Bedingungen vor Ort** den Ausgangspunkt. Die folgenden Fragen ordnen die Planung.
@@ -200,11 +221,14 @@ Für einen Weiler, der Strom für Beleuchtung am Abend, das Laden von Telefonen,
 
 Ein prüfbarer Plan nennt den zu deckenden Bedarf, die verfügbare Quelle, die Anlage zur Energieumwandlung, die zu begrenzenden Folgen und die für den Betrieb verantwortlichen Personen.
 
-Probier die Frage nach der Quelle an einem kleinen Bach aus. Eine Kleinwasserkraftanlage leitet einen Teil des Bachs durch ein Rohr hinunter zu einer Turbine, und ihre nutzbare Leistung ist <InlineMath math="P\approx\rho gQh\eta" />. Mit <InlineMath math="Q=20\text{ L/s}" />, <InlineMath math="h=10\text{ m}" /> und <InlineMath math="\eta=0{,}7" /> liefert sie <InlineMath math="1\,400\text{ W}" />, genug für <InlineMath math="5" /> der <InlineMath math="16" /> Häuser im Weiler, wenn jedes am Abend <InlineMath math="250\text{ W}" /> braucht. Finde Durchfluss und Fallhöhe, die jedes Haus erhellen.
+Probier die Quellenfrage an einem kleinen Bach mit <InlineMath math="P\approx\rho gQh\eta" /> aus. Mit <InlineMath math="Q=20\text{ L/s}" />, <InlineMath math="h=10\text{ m}" /> und <InlineMath math="\eta=0{,}7" /> liefert die Anlage <InlineMath math="1\,400\text{ W}" />.
+
+Braucht jedes Haus am Abend <InlineMath math="250\text{ W}" />, reicht das für <InlineMath math="5" /> der <InlineMath math="16" /> Häuser. Finde unten eine Kombination aus Durchfluss und Fallhöhe, die alle Häuser versorgt.
 
 <MicrohydroLab
   title={<>Wie viele Häuser ein Bach erhellen kann</>}
   description={<>Eine Kleinwasserkraftanlage an einem Hang in der Abenddämmerung. Ändere Durchfluss und Fallhöhe und zähle die Häuser, die ihre Leistung mit je <InlineMath math="250\text{ W}" /> erhellen kann.</>}
+  footer={<>Doppelter Durchfluss oder Fallhöhe verdoppelt Leistung und versorgte Häuser.</>}
   labels={{
     flowControl: "Durchfluss",
     headControl: "Fallhöhe",
@@ -213,3 +237,5 @@ Probier die Frage nach der Quelle an einem kleinen Bach aus. Eine Kleinwasserkra
     viewLabel: "Kleinwasserkraftanlage an einem Hang mit Rohr zum Krafthaus und einer Häuserreihe",
   }}
 />
+
+Für alle <InlineMath math="16" /> Häuser sind mindestens <InlineMath math="4\,000\text{ W}" /> nötig, erreichbar über größeres Gefälle oder stärkeren Durchfluss. Genau deshalb prägt die örtliche Landschaft jede lokale Energielösung.

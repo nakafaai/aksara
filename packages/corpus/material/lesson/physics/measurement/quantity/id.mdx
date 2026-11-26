@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Besaran",
   description:
-    "Besaran fisika menggabungkan nilai hasil pengukuran dengan satuan, sedangkan besaran pokok dan turunan menghubungkan hasil tersebut dengan satuan SI serta dimensi.",
+    "Besaran fisika menggabungkan nilai hasil pengukuran dengan satuan, sedangkan besaran pokok dan turunan menghubungkan hasil itu dengan satuan SI serta dimensi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-04-25",
   dateModified: "2026-09-12",
@@ -12,7 +12,7 @@ export const metadata = {
 
 Nilai besaran seperti <InlineMath math="0{,}60 \text{ m}" /> terdiri dari dua bagian, yaitu angka <InlineMath math="0{,}60" /> dan satuan meter.
 
-Nilai besaran adalah <Highlight>nilai numerik dikalikan dengan satuannya</Highlight>.
+Setiap hasil pengukuran memasangkan <Highlight>angka hasil ukur dengan satuan acuan</Highlight> lewat perkalian.
 
 Nilai numerik <InlineMath math="0{,}60" /> memberi tahu *berapa banyak*. Satuan <InlineMath math="\text{m}" /> memberi tahu *dibandingkan dengan acuan apa*. Besarannya adalah sifat benda atau kejadian yang sedang diukur, misalnya panjang, massa, waktu, suhu, atau kelajuan. Hasil pengukuran yang lengkap juga dapat memuat ketidakpastian dan informasi lain yang relevan.
 
@@ -27,6 +27,7 @@ Setiap hasil ukur di lab berikut adalah angka dikali satuan. Rusuk balok alumini
       Ganti bahannya, lalu perhatikan massa dan massa jenis berubah sementara rusuk dan volumenya tetap.
     </>
   }
+  footer={<>Mengganti bahan mengubah massa dan massa jenis sementara volume tetap.</>}
   labels={{
     chooseMaterial: "Pilih bahan",
     density: <>Massa jenis</>,
@@ -43,9 +44,11 @@ Setiap hasil ukur di lab berikut adalah angka dikali satuan. Rusuk balok alumini
   }}
 />
 
+Berpindah antara kayu pinus, aluminium, dan kuningan menjaga panjang ketiga rusuk serta volumenya tetap sama, sementara massa pada timbangan berubah drastis. Massa jenis menggabungkan hasil bacaan itu menjadi ciri yang membedakan bahannya.
+
 ## Besaran Pokok dan Besaran Turunan
 
-Dalam SI, yaitu **Sistem Satuan Internasional**, ada <InlineMath math="7" /> besaran pokok yang dipakai sebagai dasar. Besaran lain diturunkan dari gabungan besaran pokok tersebut.
+Dalam SI, yaitu **Sistem Satuan Internasional**, ada <InlineMath math="7" /> besaran pokok yang dipakai sebagai dasar. Besaran lain diturunkan dari gabungan ketujuh besaran pokok itu.
 
 | Besaran pokok | Simbol umum | Satuan SI | Dimensi |
 | :------------ | :---------- | :-------- | :------ |
@@ -57,7 +60,9 @@ Dalam SI, yaitu **Sistem Satuan Internasional**, ada <InlineMath math="7" /> bes
 | Jumlah zat | <InlineMath math="n" /> | <InlineMath math="\text{mol}" /> | <InlineMath math="\mathrm{N}" /> |
 | Intensitas cahaya | <InlineMath math="I_v" /> | <InlineMath math="\text{cd}" /> | <InlineMath math="\mathrm{J}" /> |
 
-Besaran turunan muncul ketika kita menggabungkan besaran pokok. Misalnya luas berasal dari panjang dikali lebar.
+### Menggabungkan Besaran Pokok menjadi Luas dan Kelajuan
+
+**Besaran turunan** muncul ketika kita menggabungkan besaran pokok. Misalnya luas berasal dari panjang dikali lebar.
 
 <BlockMath math="\begin{aligned}
 A &= l \times w \\
@@ -78,6 +83,7 @@ Kelajuan dibangun dari dua besaran pokok, <InlineMath math="v=s/t" />, jadi satu
 <MathVisual
   title={<>Kelajuan dari Besaran Pokok</>}
   description={<>Jarak terhadap waktu pada <InlineMath math="2\text{ m/s}" /> (ungu) dan <InlineMath math="5\text{ m/s}" /> (oranye). Mendatar: sekon. Tegak: satu kotak grid berarti <InlineMath math="2\text{ m}" />.</>}
+  footer={<>Kemiringan lebih curam pada grafik jarak terhadap waktu berarti lebih cepat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
@@ -99,7 +105,15 @@ Kelajuan dibangun dari dua besaran pokok, <InlineMath math="v=s/t" />, jadi satu
   }}
 />
 
-Kamu juga bisa mengukur kelajuan langsung dari dua besaran pokoknya. Di bawah, troli melaju melewati dua gerbang cahaya yang berjarak <InlineMath math="0{,}60\text{ m}" />, dan pencatat waktu terbaca <InlineMath math="1{,}250\text{ s}" /> di antara kedua berkas cahaya. Jadi <InlineMath math="v=\frac{0{,}60\text{ m}}{1{,}250\text{ s}}=0{,}48\text{ m/s}" />. Jauhkan gerbangnya: jarak dan waktunya sama-sama bertambah, tapi perbandingannya tetap.
+Setiap segitiga siku-siku menempuh kenaikan jarak <InlineMath math="2\text{ m}" /> yang sama, tetapi garis oranye hanya butuh <InlineMath math="0{,}4\text{ s}" /> dibanding <InlineMath math="1\text{ s}" /> pada garis ungu. Membagi jarak dengan waktu mengubah dua bacaan pokok itu menjadi satu besaran kelajuan.
+
+### Mengukur Kelajuan Langsung dengan Gerbang Cahaya
+
+Kamu juga bisa mengukur kelajuan langsung dari **dua besaran pokoknya**. Di bawah, troli melaju melewati dua gerbang cahaya yang berjarak <InlineMath math="0{,}60\text{ m}" />, dan pencatat waktu terbaca <InlineMath math="1{,}250\text{ s}" /> di antara kedua berkas cahaya.
+
+<BlockMath math="v = \frac{0{,}60\text{ m}}{1{,}250\text{ s}} = 0{,}48\text{ m/s}" />
+
+Jauhkan gerbangnya: jarak dan waktunya sama-sama bertambah, tetapi perbandingannya tetap.
 
 <LightGateSpeedLab
   title={<>Kelajuan dari Dua Gerbang Cahaya</>}
@@ -108,6 +122,7 @@ Kamu juga bisa mengukur kelajuan langsung dari dua besaran pokoknya. Di bawah, t
       Jauhkan gerbangnya, lalu perhatikan jarak dan waktunya bertambah sementara kelajuannya tetap.
     </>
   }
+  footer={<>Jarak gerbang lebih lebar menaikkan jarak dan waktu sehingga rasio tetap.</>}
   labels={{
     distance: "Jarak antargerbang",
     speed: <>Kelajuan</>,
@@ -116,6 +131,8 @@ Kamu juga bisa mengukur kelajuan langsung dari dua besaran pokoknya. Di bawah, t
   }}
 />
 
+Saat jarak antargerbang menjadi dua kali lebih lebar, waktu tempuh yang tercatat ikut menjadi dua kali lebih lama. Perbandingan yang tetap membuktikan bahwa kelajuan bergantung pada rasio jarak terhadap waktu, bukan pada satu bacaan saja.
+
 ## Dimensi dan Pemeriksaan Rumus
 
 <Highlight>Dimensi menunjukkan besaran pokok</Highlight> beserta pangkat yang membentuk suatu besaran. Satuan memberikan acuan untuk nilai pengukuran, sedangkan dimensi menunjukkan apakah besaran pada kedua ruas rumus sudah sesuai.
@@ -123,10 +140,12 @@ Kamu juga bisa mengukur kelajuan langsung dari dua besaran pokoknya. Di bawah, t
 <Mermaid
   title={<>Cara mengecek besaran</>}
   description={<>Mulai dari besaran yang diukur, lalu hubungkan besaran pokoknya ke satuan SI dan dimensi.</>}
+  footer={<>Telusuri besaran turunan ke besaran pokoknya untuk satuan dan dimensi.</>}
   chart={`flowchart TD
     A["Panjang × lebar"] --> B["Luas"]
     B --> C["Satuan: m × m = m²"]
-    B --> D["Dimensi: L × L = L²"]`}/>
+    B --> D["Dimensi: L × L = L²"]`}
+/>
 
 Contohnya, luas meja dan luas kertas bisa punya nilai berbeda, tetapi jenis besarannya sama. Keduanya sama-sama luas, satuan SI-nya <InlineMath math="\text{m}^2" />, dan dimensinya <InlineMath math="\mathrm{L}^2" />.
 
@@ -137,6 +156,7 @@ Besaran turunan dibangun dari besaran pokok. Volume mengalikan tiga panjang, <In
 <MathVisual
   title={<>Volume dari Tiga Panjang</>}
   description={<>Kotak berukuran <InlineMath math="0{,}30\text{ m}" /> kali <InlineMath math="0{,}20\text{ m}" /> kali <InlineMath math="0{,}10\text{ m}" /> (oranye) dan satu baris kubus <InlineMath math="0{,}10\text{ m}" /> di atasnya (teal).</>}
+  footer={<>Mengalikan tiga panjang memberi satuan kubik dan dimensi <InlineMath math="\mathrm{L}^3" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: 0, max: 2.5 }, z: { min: -0.5, max: 2.5 } },
@@ -162,6 +182,8 @@ Besaran turunan dibangun dari besaran pokok. Volume mengalikan tiga panjang, <In
   }}
 />
 
+Menghitung dua baris yang masing-masing berisi tiga kubus memberi enam kubus berukuran <InlineMath math="0{,}001\text{ m}^3" />, cocok dengan <InlineMath math="0{,}006\text{ m}^3" />. Tiga panjang yang saling tegak lurus selalu bergabung membentuk dimensi volume <InlineMath math="\mathrm{L}^3" />.
+
 ## Menghitung Luas Selembar Kertas
 
 Sebuah kertas memiliki panjang <InlineMath math="0{,}30 \text{ m}" /> dan lebar <InlineMath math="0{,}20 \text{ m}" />. Luasnya adalah:
@@ -172,11 +194,16 @@ A &= l \times w \\
 &= 0{,}060 \text{ m}^2
 \end{aligned}" />
 
-Adegan di bawah menggambar kertas itu dengan satu kotak grid untuk setiap <InlineMath math="0{,}10\text{ m}" />. Coba hitung persegi kecilnya: <InlineMath math="3" /> di sepanjang panjang dan <InlineMath math="2" /> di sepanjang lebar, jadi ada <InlineMath math="6" /> persegi. Setiap persegi luasnya <InlineMath math="0{,}10\text{ m}\times0{,}10\text{ m}=0{,}010\text{ m}^2" />, jadi enam persegi memberi <InlineMath math="0{,}060\text{ m}^2" />, sama dengan hasil rumus. Itulah sebabnya luas adalah besaran yang dibangun dari dua panjang.
+Adegan di bawah menggambar kertas itu dengan satu kotak grid untuk setiap <InlineMath math="0{,}10\text{ m}" />. Coba hitung persegi kecilnya: <InlineMath math="3" /> di sepanjang panjang dan <InlineMath math="2" /> di sepanjang lebar, jadi ada <InlineMath math="6" /> persegi.
+
+<BlockMath math="0{,}10\text{ m} \times 0{,}10\text{ m} = 0{,}010\text{ m}^2" />
+
+Enam persegi itu memberi <InlineMath math="0{,}060\text{ m}^2" />, sama dengan hasil rumus dan memperlihatkan mengapa luas dibangun dari dua panjang.
 
 <MathVisual
   title={<>Luas Dihitung dengan Persegi</>}
   description={<>Kertas digambar dengan satu kotak grid untuk setiap <InlineMath math="0{,}10\text{ m}" />. Setiap persegi kecil luasnya <InlineMath math="0{,}010\text{ m}^2" />.</>}
+  footer={<>Enam persegi <InlineMath math="0{,}010\text{ m}^2" /> memberi luas yang sama, <InlineMath math="0{,}060\text{ m}^2" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 2.8 } },

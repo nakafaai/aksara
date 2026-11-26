@@ -17,6 +17,7 @@ Semua penerangan ini merujuk kepada kuantiti fizik yang sama. Rumus yang sesuai 
 <Mermaid
   title={<>Tenaga dalam Sistem dan Pemindahan Tenaga</>}
   description={<>Asingkan tenaga yang berada dalam sistem daripada proses yang memindahkan tenaga antara sistem.</>}
+  footer={<>Cabang kiri menunjukkan simpanan tenaga, cabang kanan laluan pemindahan.</>}
   chart={`flowchart TD
     A["Tenaga"] --> B["Berada dalam sistem"]
     A --> C["Dipindahkan antara sistem"]
@@ -25,22 +26,45 @@ Semua penerangan ini merujuk kepada kuantiti fizik yang sama. Rumus yang sesuai 
     C --> F["Pemanasan dan sinaran"]
     C --> G["Kerja mekanik dan elektrik"]`}/>
 
-Rajah ini memisahkan dua soalan. Cabang kiri bertanya di mana tenaga berada. Cabang kanan bertanya bagaimana tenaga merentas dari satu sistem ke sistem lain. Haba ialah tenaga yang dipindahkan kerana perbezaan suhu, manakala [tenaga dalam](https://openstax.org/books/college-physics-2e/pages/14-1-heat) ialah tenaga yang berada di dalam bahan itu.
+Rajah ini memisahkan dua soalan. Cabang kiri bertanya di mana tenaga berada. Cabang kanan bertanya bagaimana tenaga merentas dari satu sistem ke sistem lain.
 
-Cerek elektrik menunjukkan kedua-dua soalan itu sekali gus. Kerja elektrik masuk ke dalam cerek melalui elemen <InlineMath math="2\,100\text{ W}" />, dan air menyimpan tenaga itu sebagai tenaga dalam, <InlineMath math="Q=mc\Delta T" />. Memanaskan air dari <InlineMath math="25^\circ\text{C}" /> hingga <InlineMath math="100^\circ\text{C}" /> ialah kenaikan <InlineMath math="75\text{ K}" />, jadi <InlineMath math="1\text{ kg}" /> air memerlukan <InlineMath math="315\,000\text{ J}" />, yang mengambil masa sekurang-kurangnya <InlineMath math="150\text{ s}" />. Gandakan airnya, dan tenaga serta masanya turut berganda.
+> Haba bukan bahan yang tersimpan di dalam objek. Haba ialah tenaga yang dipindahkan kerana perbezaan suhu, manakala [tenaga dalam](https://openstax.org/books/college-physics-2e/pages/14-1-heat) ialah tenaga yang berada di dalam bahan itu.
 
-<KettleHeatingLab
-  title={<>Mendidihkan Air di dalam Cerek</>}
-  description={<>Cerek <InlineMath math="2\,100\text{ W}" /> memanaskan air dari <InlineMath math="25^\circ\text{C}" /> hingga mendidih. Pilih banyaknya air di dalamnya dan bandingkan tenaga yang disimpan oleh air dengan masa yang diperlukan oleh elemen jika tiada tenaga terlepas.</>}
+Memanaskan air dalam cerek elektrik <InlineMath math="2.1\text{ kW}" /> menunjukkan kedua-dua idea itu sekali gus. Kerja elektrik masuk ke cerek, dan air menyimpannya sebagai tenaga dalam melalui <InlineMath math="Q=mc\Delta T" />. Menaikkan suhu <InlineMath math="1\text{ kg}" /> air sebanyak <InlineMath math="75\text{ K}" /> memerlukan <InlineMath math="315\text{ kJ}" /> dan sekurang-kurangnya <InlineMath math="150\text{ s}" />.
+
+<MathVisual
+  title={<>Tenaga Haba untuk Memanaskan Air</>}
+  description={<>Tenaga pemanasan <InlineMath math="Q=mc\Delta T" /> dalam kJ melawan kenaikan suhu dalam K bagi air dengan <InlineMath math="c=4.2\text{ kJ/(kg K)}" />. Ubah jisim air <InlineMath math="m" /> untuk melihat tenaga dan masa mendidih pada <InlineMath math="2.1\text{ kW}" />.</>}
+  footer={<>Menggandakan jisim air menggandakan kecerunan, kJ dan masa pemanasan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 85 }, y: { min: -40, max: 720 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0.5, max: 2, step: 0.25, value: 1, label: "mass" },
+    ],
+    objects: [
+      { id: "heating", kind: "function", appearance: "primary", formula: "4.2 * m * x", domain: { min: 0, max: 80 } },
+      { id: "boil-drop", kind: "path", appearance: "construction", points: [{ x: "75", y: "0" }, { x: "75", y: "4.2 * m * 75" }] },
+      { id: "boil-point", kind: "marker", appearance: "answer", x: "75", y: "4.2 * m * 75" },
+    ],
+    readouts: [
+      { key: "energy-out", formula: "4.2 * m * 75" },
+      { key: "time-out", formula: "4.2 * m * 75 / 2.1" },
+    ],
+    labels: [
+      { key: "boil", objectId: "boil-point", at: { x: "75", y: "4.2 * m * 75" }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    chooseFill: "Air di dalam cerek",
-    energy: <>Tenaga yang masuk ke air</>,
-    power: <>Kuasa elemen</>,
-    rise: <>Kenaikan suhu</>,
-    time: <>Masa untuk mendidih</>,
-    viewLabel: "Cerek kaca memanaskan air di sebelah termometer",
+    mass: <>Jisim air (kg)</>,
+    boil: <InlineMath math="\Delta T=75\text{ K}" />,
+    "energy-out": <>Tenaga pada <InlineMath math="75\text{ K}" /> (kJ)</>,
+    "time-out": <>Masa min <InlineMath math="2.1\text{ kW}" /> (s)</>,
   }}
 />
+
+Gerakkan jisim air dari <InlineMath math="1\text{ kg}" /> ke <InlineMath math="2\text{ kg}" /> dan lihat garis menjadi dua kali lebih curam. Air dua kali ganda memerlukan tenaga dua kali ganda dan masa dua kali ganda pada kuasa pemanas yang sama.
 
 ## Empat Pengiraan Tenaga yang Lazim
 
@@ -55,34 +79,41 @@ Sistem tenaga boleh baharu sering melibatkan **gerakan, ketinggian, perbezaan su
 
 Biojisim dan bateri juga mengandungi tenaga kimia, manakala panel suria menerima tenaga yang dibawa oleh cahaya matahari. Empat rumus dalam jadual itu menghitung tenaga daripada gerakan, ketinggian, perubahan suhu dan kuasa elektrik.
 
-Spring yang diregangkan menyimpan tenaga keupayaan kenyal <InlineMath math="E=\tfrac12kx^2" />. Dengan <InlineMath math="k=200\text{ N/m}" />, pemanjangan tiga kali ganda menyimpan tenaga sembilan kali ganda, iaitu <InlineMath math="1\text{ J}" /> pada <InlineMath math="10\text{ cm}" /> dan <InlineMath math="9\text{ J}" /> pada <InlineMath math="30\text{ cm}" />. Ikuti lengkungnya.
+Spring yang diregangkan menyimpan tenaga keupayaan kenyal <InlineMath math="E=\tfrac12kx^2" />. Dengan <InlineMath math="k=200\text{ N/m}" />, pemanjangan tiga kali ganda menyimpan tenaga sembilan kali ganda, iaitu <InlineMath math="1\text{ J}" /> pada <InlineMath math="10\text{ cm}" /> dan <InlineMath math="9\text{ J}" /> pada <InlineMath math="30\text{ cm}" />. Ikuti lengkung di bawah.
 
 <MathVisual
   title={<>Tenaga Keupayaan Kenyal Berkadar dengan Kuasa Dua Pemanjangan</>}
-  description={<>Tenaga keupayaan kenyal sebuah spring dengan <InlineMath math="k=200\text{ N/m}" /> melawan pemanjangannya. Mengufuk: satu petak grid ialah <InlineMath math="5\text{ cm}" />. Menegak: joule.</>}
+  description={<>Tenaga keupayaan kenyal sebuah spring dengan <InlineMath math="k=200\text{ N/m}" /> melawan pemanjangannya. Mengufuk: pemanjangan dalam cm. Menegak: tenaga dalam J.</>}
+  footer={<>Pemanjangan tiga kali ganda dari 10 cm ke 30 cm menyimpan sembilan kali tenaga.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 10 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 34 }, y: { min: -0.5, max: 10.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "spring", kind: "quadratic", appearance: "secondary", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
-      { id: "ten", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
-      { id: "thirty", kind: "point", appearance: "answer", at: { x: 6, y: 9 } },
+      { id: "spring", kind: "quadratic", appearance: "secondary", coefficients: { a: 0.01, b: 0, c: 0 }, domain: { min: 0, max: 30 }, inputAxis: "x" },
+      { id: "ten", kind: "point", appearance: "primary", at: { x: 10, y: 1 } },
+      { id: "thirty", kind: "point", appearance: "answer", at: { x: 30, y: 9 } },
     ],
     labels: [
-      { key: "ten", objectId: "ten", at: { x: 2, y: 1 }, placement: "above-left" },
-      { key: "thirty", objectId: "thirty", at: { x: 6, y: 9 }, placement: "left" },
+      { key: "ten", objectId: "ten", at: { x: 10, y: 1 }, placement: "above-left" },
+      { key: "thirty", objectId: "thirty", at: { x: 30, y: 9 }, placement: "left" },
     ],
   }}
   labels={{
-    ten: <InlineMath math="x=0.1\text{ m}:\ E=1\text{ J}" />,
-    thirty: <InlineMath math="x=0.3\text{ m}:\ E=9\text{ J}" />,
+    ten: <InlineMath math="x=10\text{ cm}:\ E=1\text{ J}" />,
+    thirty: <InlineMath math="x=30\text{ cm}:\ E=9\text{ J}" />,
   }}
 />
 
+Perhatikan lengkung yang semakin mencuram ke atas: setiap kali satu pemboleh ubah dikuasaduakan dalam rumus tenaga, tambahan kecil pada nilai yang lebih besar menghasilkan lonjakan tenaga yang jauh lebih tinggi.
+
 ## Padankan Rumus dengan Situasi
 
-Tenaga kinetik ialah tenaga yang dimiliki oleh objek **kerana gerakannya**.
+Setiap model tenaga sepadan dengan satu mekanisme fizik, bermula daripada **tenaga mekanik** akibat gerakan dan ketinggian sebelum beralih kepada **pemanasan dan elektrik**. Kenal pasti kuantiti yang berubah dahulu supaya persamaan yang dipilih terus tepat.
+
+### Gerakan dan Ketinggian
+
+Tenaga kinetik ialah tenaga yang dimiliki oleh objek **kerana gerakannya**. Nilainya bergantung pada jisim dan kuasa dua laju, bukan pada jisim semata-mata.
 
 <BlockMath math="E_k=\frac{1}{2}mv^2" />
 
@@ -102,24 +133,25 @@ E_k &= \frac{1}{2}mv^2 \\
 &= 9 \text{ J}
 \end{aligned}" />
 
-Graf di bawah menggunakan rumus yang sama bagi setiap laju dari <InlineMath math="0" /> hingga <InlineMath math="6\text{ m/s}" />. Bandingkan dua titik yang ditanda. Menggandakan laju daripada <InlineMath math="3\text{ m/s}" /> kepada <InlineMath math="6\text{ m/s}" /> tidak menggandakan tenaga: tenaga naik daripada <InlineMath math="9\text{ J}" /> kepada <InlineMath math="36\text{ J}" />, iaitu empat kali ganda, kerana laju itu dikuasaduakan. Itulah sebabnya sedikit kenaikan laju angin memberi kesan yang sangat besar kepada turbin.
+Graf di bawah menggunakan rumus yang sama dari <InlineMath math="0" /> hingga <InlineMath math="6\text{ m/s}" />. Menggandakan laju daripada <InlineMath math="3\text{ m/s}" /> kepada <InlineMath math="6\text{ m/s}" /> menaikkan tenaga empat kali ganda daripada <InlineMath math="9\text{ J}" /> kepada <InlineMath math="36\text{ J}" /> kerana laju dikuasaduakan.
 
 <MathVisual
   title={<>Tenaga Kinetik Bertambah dengan Kuasa Dua Laju</>}
-  description={<>Tenaga kinetik <InlineMath math="2\text{ kg}" /> udara pada laju dari <InlineMath math="0" /> hingga <InlineMath math="6\text{ m/s}" />. Mengufuk: laju dalam m/s. Menegak: tenaga dalam unit 8 J.</>}
+  description={<>Tenaga kinetik <InlineMath math="2\text{ kg}" /> udara pada laju dari <InlineMath math="0" /> hingga <InlineMath math="6\text{ m/s}" />. Mengufuk: laju dalam m/s. Menegak: tenaga dalam J.</>}
+  footer={<>Menggandakan laju angin dari 3 ke 6 m/s melipatempatkan tenaga ke 36 J.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -3, max: 40 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "kinetic", kind: "quadratic", appearance: "construction", coefficients: { a: 0.125, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
-      { id: "v3", kind: "point", appearance: "primary", at: { x: 3, y: 1.125 } },
-      { id: "v6", kind: "point", appearance: "answer", at: { x: 6, y: 4.5 } },
+      { id: "kinetic", kind: "quadratic", appearance: "construction", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
+      { id: "v3", kind: "point", appearance: "primary", at: { x: 3, y: 9 } },
+      { id: "v6", kind: "point", appearance: "answer", at: { x: 6, y: 36 } },
     ],
     labels: [
-      { key: "rule", objectId: "kinetic", at: { x: 5, y: 3.125 }, placement: "left" },
-      { key: "v3", objectId: "v3", at: { x: 3, y: 1.125 }, placement: "right" },
-      { key: "v6", objectId: "v6", at: { x: 6, y: 4.5 }, placement: "left" },
+      { key: "rule", objectId: "kinetic", at: { x: 4.8, y: 23 }, placement: "left" },
+      { key: "v3", objectId: "v3", at: { x: 3, y: 9 }, placement: "right" },
+      { key: "v6", objectId: "v6", at: { x: 6, y: 36 }, placement: "left" },
     ],
   }}
   labels={{
@@ -129,7 +161,7 @@ Graf di bawah menggunakan rumus yang sama bagi setiap laju dari <InlineMath math
   }}
 />
 
-Teorem kerja-tenaga mengaitkan kerja bersih dengan perubahan tenaga kinetik.
+Lengkung kuadratik yang curam itu menerangkan sebab sedikit kenaikan laju angin sangat bermakna bagi turbin. Teorem kerja-tenaga turut mengaitkan kerja bersih secara terus dengan perubahan tenaga kinetik ini.
 
 Tenaga keupayaan graviti ialah tenaga yang berkait dengan kedudukan objek dalam medan graviti. Bagi objek berhampiran permukaan Bumi, model yang biasa digunakan ialah:
 
@@ -150,7 +182,34 @@ Hitung tenaga keupayaan <InlineMath math="2 \text{ kg}" /> air yang berada <Inli
 
 <BlockMath math="\begin{aligned} E_p &= mgh \\ &= (2 \text{ kg})(10 \text{ m/s}^2)(5 \text{ m}) \\ &= 100 \text{ J} \end{aligned}" />
 
-Sesuatu objek mengandungi tenaga dalam. Apabila dua sistem mempunyai suhu yang berbeza, tenaga bergerak dari sistem yang lebih panas ke sistem yang lebih sejuk. Tenaga yang dipindahkan kerana perbezaan suhu ini dipanggil haba. Jika bahan itu tidak berubah fasa dan muatan haba tentu dianggap malar sepanjang julat suhu itu, tenaga yang dipindahkan ialah:
+Bandingkan garis lurus ini dengan lengkung tenaga kinetik di atas. Tenaga keupayaan bertambah secara berkadar dengan ketinggian, jadi setiap meter tambahan menambah <InlineMath math="mg=20\text{ J}" /> yang sama.
+
+<MathVisual
+  title={<>Tenaga Keupayaan Bertambah Sekata dengan Ketinggian</>}
+  description={<><InlineMath math="E_p=mgh" /> bagi <InlineMath math="2\text{ kg}" /> dengan <InlineMath math="g=10\text{ m/s}^2" />. Mengufuk: ketinggian dalam m. Menegak: tenaga dalam J.</>}
+  footer={<>Setiap meter tambahan menambah 20 J secara sekata hingga 100 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -10, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 100 } },
+      { id: "top", kind: "point", appearance: "primary", at: { x: 5, y: 100 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 5, y: 100 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    top: <InlineMath math="h=5\text{ m}:\ E_p=100\text{ J}" />,
+  }}
+/>
+
+Berbeza daripada graf tenaga kinetik yang melengkung, kecerunan malar di sini menunjukkan hubungan linear terus antara ketinggian takungan dengan tenaga keupayaan graviti.
+
+### Pemanasan dan Elektrik
+
+Sesuatu objek mengandungi tenaga dalam. Apabila dua sistem mempunyai suhu yang berbeza, tenaga bergerak dari sistem yang lebih panas ke sistem yang lebih sejuk sebagai haba. Jika bahan tidak berubah fasa dan muatan haba tentu malar, tenaga yang dipindahkan ialah:
 
 <BlockMath math="Q=mc\Delta T" />
 
@@ -167,7 +226,7 @@ Katakan kita menaikkan suhu <InlineMath math="0.5 \text{ kg}" /> air cecair seba
 
 <BlockMath math="\begin{aligned} Q &= mc\Delta T \\ &= (0.5 \text{ kg})(4\,200 \text{ J/(kg K)})(10 \text{ K}) \\ &= 21\,000 \text{ J} \end{aligned}" />
 
-Tenaga elektrik boleh dihitung daripada kuasa elektrik dalam suatu selang masa. Model di bawah digunakan apabila <InlineMath math="V" /> dan <InlineMath math="I" /> dianggap malar sepanjang selang masa itu.
+Tenaga elektrik boleh dihitung daripada **kuasa elektrik dalam suatu selang masa**. Model di bawah digunakan apabila <InlineMath math="V" /> dan <InlineMath math="I" /> malar sepanjang selang masa itu.
 
 <BlockMath math="\begin{aligned}
 P &= VI \\
@@ -185,49 +244,26 @@ Panduan simbol:
 | <InlineMath math="I" /> | arus elektrik | <InlineMath math="\text{A}" /> |
 | <InlineMath math="t" /> | masa | <InlineMath math="\text{s}" /> |
 
-Di sini <InlineMath math="E" /> mewakili tenaga elektrik. <InlineMath math="\text{W}" /> tegak ialah simbol unit bagi watt, manakala <InlineMath math="W" /> condong sering mewakili kerja.
+Di sini <InlineMath math="E" /> mewakili tenaga elektrik. Unit <InlineMath math="\text{kWj}" /> menyukat tenaga, bukan kuasa, kerana terhasil daripada darab kuasa <InlineMath math="P" /> dengan masa <InlineMath math="t" />. <InlineMath math="\text{W}" /> tegak ialah simbol unit bagi watt, manakala <InlineMath math="W" /> condong sering mewakili kerja.
 
 Sebuah alat beroperasi pada voltan malar <InlineMath math="12 \text{ V}" /> dan arus <InlineMath math="0.5 \text{ A}" /> selama <InlineMath math="60 \text{ s}" />. Hitung kuasa dahulu, kemudian tenaga:
 
 <BlockMath math="\begin{aligned} P &= VI = (12 \text{ V})(0.5 \text{ A})=6 \text{ W} \\ E &= Pt = (6 \text{ W})(60 \text{ s})=360 \text{ J} \end{aligned}" />
 
-Bandingkan garis lurus ini dengan lengkung tenaga kinetik di atas. Tenaga keupayaan bertambah secara berkadar dengan ketinggian, jadi setiap meter tambahan menambah nilai yang sama, iaitu <InlineMath math="mg=20\text{ J}" />.
-
-<MathVisual
-  title={<>Tenaga Keupayaan Bertambah Sekata dengan Ketinggian</>}
-  description={<><InlineMath math="E_p=mgh" /> bagi <InlineMath math="2\text{ kg}" /> dengan <InlineMath math="g=10\text{ m/s}^2" />. Mengufuk: ketinggian dalam m. Menegak: tenaga dalam unit 20 J.</>}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 6 } },
-    view: { kind: "fit", padding: 0.06 },
-    objects: [
-      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 5 } },
-      { id: "top", kind: "point", appearance: "primary", at: { x: 5, y: 5 } },
-    ],
-    labels: [
-      { key: "top", objectId: "top", at: { x: 5, y: 5 }, placement: "left" },
-    ],
-  }}
-  labels={{
-    top: <InlineMath math="h=5\text{ m}:\ E_p=100\text{ J}" />,
-  }}
-/>
-
 ## Satu Stesen Janakuasa Menukar Beberapa Bentuk Tenaga
 
-Contohnya, stesen janakuasa hidroelektrik mengikut rantai tenaga ini:
+Dalam stesen janakuasa hidroelektrik, air pada mulanya mempunyai **tenaga keupayaan graviti**. Semasa mengalir ke bawah, tenaga itu menjadi tenaga kinetik air, kemudian tenaga kinetik turbin yang berputar, dan akhirnya tenaga elektrik.
 
-Pada mulanya air mempunyai **tenaga keupayaan graviti**. Semasa air mengalir ke bawah, tenaga itu menjadi tenaga kinetik air yang mengalir, kemudian tenaga kinetik turbin yang berputar, dan akhirnya tenaga elektrik.
+Panel suria menerima tenaga sinaran daripada cahaya matahari, kemudian menukar sebahagian tenaga itu kepada tenaga elektrik. Jangan anggap semua input boleh baharu terus menjadi elektrik: setiap alat penukar turut memindahkan sebahagian tenaga ke persekitaran sebagai haba atau bunyi.
 
-Panel suria menerima tenaga sinaran daripada cahaya matahari, kemudian menukar sebahagian tenaga itu kepada tenaga elektrik.
+Ikuti peringkat itu di sebuah empangan sebenar. Setiap saat, <InlineMath math="10\text{ m}^3" /> air jatuh melalui beza ketinggian antara permukaan takungan dengan turbin. Pada beza ketinggian <InlineMath math="50\text{ m}" /> dengan <InlineMath math="g=10\text{ m/s}^2" />, air membebaskan <InlineMath math="5\text{ MW}" /> dan tiba di turbin sekitar <InlineMath math="31.6\text{ m/s}" />.
 
-Rantai tenaga yang lengkap menamakan tenaga awal, output yang dikehendaki dan setiap penukaran di antaranya.
-
-Ikuti bentuk-bentuk tenaga itu melalui sebuah empangan sebenar. Setiap saat, <InlineMath math="10\text{ m}^3" /> air jatuh melalui beza ketinggian, iaitu ketinggian di antara permukaan takungan dengan turbin. Tenaga keupayaannya setiap saat ialah <InlineMath math="\rho g Q h" />, jadi pada beza ketinggian <InlineMath math="50\text{ m}" /> air itu membebaskan <InlineMath math="5\text{ MW}" /> dengan <InlineMath math="g=10\text{ m/s}^2" />. Air tiba di turbin pada <InlineMath math="\sqrt{2gh}\approx31.6\text{ m/s}" />, aci mengekalkan <InlineMath math="90\%" />, dan penjana menghantar <InlineMath math="95\%" /> daripadanya ke grid. Naikkan beza ketinggian dan perhatikan setiap bar bertambah serentak.
+Aci mengekalkan <InlineMath math="90\%" /> kuasa turbin, dan penjana menghantar <InlineMath math="95\%" /> daripadanya ke grid. Naikkan beza ketinggian di bawah dan perhatikan setiap bar bertambah serentak.
 
 <HydroDamLab
   title={<>Bentuk Tenaga di Empangan Hidro</>}
   description={<>Air jatuh melalui beza ketinggian pada <InlineMath math="10\text{ m}^3\text{/s}" />. Ubah beza ketinggian dan bandingkan kuasa pada setiap peringkat: tenaga keupayaan yang dibebaskan, tenaga kinetik di turbin, aci yang berputar dan elektrik.</>}
+  footer={<>Menaikkan beza ketinggian menambah tiap tahap sambil mengekalkan rugi alat.</>}
   labels={{
     electric: <>Elektrik</>,
     head: <>Beza ketinggian</>,
@@ -240,13 +276,4 @@ Ikuti bentuk-bentuk tenaga itu melalui sebuah empangan sebenar. Setiap saat, <In
   }}
 />
 
-## Bezakan Idea yang Sering Dikelirukan
-
-| Salah faham | Pembetulan |
-| :------ | :------------------- |
-| Tenaga kinetik dianggap bergantung pada jisim sahaja | Tenaga kinetik juga bergantung pada kuasa dua laju, ditulis sebagai <InlineMath math="v^2" /> |
-| Haba dianggap sebagai bahan yang tersimpan di dalam objek | Haba ialah tenaga yang dipindahkan kerana perbezaan suhu |
-| <InlineMath math="\text{kWj}" /> dianggap sebagai unit kuasa | <InlineMath math="\text{kWj}" /> ialah unit tenaga kerana unit itu datang daripada <InlineMath math="P \times t" /> |
-| Semua tenaga daripada sumber boleh baharu dianggap terus menjadi elektrik | Alat penukar juga memindahkan sebahagian tenaga ke persekitaran, jadi hanya sebahagian input menjadi output elektrik yang berguna |
-
-Untuk memilih rumus yang sesuai bagi sesuatu alat tenaga boleh baharu, <Highlight>kenal pasti bentuk tenaga yang memasukinya</Highlight>. Udara yang bergerak mempunyai tenaga kinetik, air di tempat tinggi mempunyai tenaga keupayaan graviti, bendalir geoterma membawa tenaga terma, biojisim menyimpan tenaga kimia, dan cahaya matahari membawa tenaga sinaran.
+Perhatikan bagaimana setiap bar turun sedikit daripada kuasa keupayaan kepada output elektrik, menunjukkan kerugian sebenar pada turbin dan penjana. Untuk memilih rumus yang sesuai, <Highlight>kenal pasti bentuk tenaga yang memasukinya</Highlight>: udara bergerak membawa tenaga kinetik, air tinggi membawa tenaga keupayaan, bendalir geoterma membawa tenaga terma, biojisim menyimpan tenaga kimia dan cahaya matahari membawa tenaga sinaran.

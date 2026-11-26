@@ -18,38 +18,42 @@ Let <InlineMath math="r_{\mathrm{use}}" /> be the human use rate and <InlineMath
 
 The symbol <InlineMath math="\gg" /> means "much greater than". To judge a fuel supply, check <Highlight>the amount available and the rate of use</Highlight>.
 
-Try the inequality with round, made-up numbers. A stock of <InlineMath math="S_0=100" /> units is used at <InlineMath math="r_{\mathrm{use}}=2" /> units per year, so it shrinks by <InlineMath math="r_{\mathrm{use}}-r_{\mathrm{form}}" /> each year. If nature replaced half of what we use, the violet line would last a full <InlineMath math="100" /> years, twice as long. When <InlineMath math="r_{\mathrm{use}}\gg r_{\mathrm{form}}" />, the orange line hits zero after only about <InlineMath math="50" /> years, almost as if nothing formed at all.
+Try the inequality with round, illustrative numbers. A stock of <InlineMath math="S_0=100" /> units is used at <InlineMath math="r_{\mathrm{use}}=2" /> units per year, so it shrinks by <InlineMath math="r_{\mathrm{use}}-r_{\mathrm{form}}" /> each year.
+
+If nature replaced half of what we use, the violet line would last a full <InlineMath math="100" /> years, twice as long. When <InlineMath math="r_{\mathrm{use}}\gg r_{\mathrm{form}}" />, the orange line hits zero after about <InlineMath math="50" /> years, almost as if nothing formed at all.
 
 <MathVisual
   title={<>A Stock That Forms Too Slowly</>}
-  description={<>An illustrative stock of <InlineMath math="100" /> units used at <InlineMath math="2" /> units per year with two formation rates. Horizontal: time in units of <InlineMath math="20" /> years. Vertical: stock in units of <InlineMath math="20" />.</>}
+  description={<>An illustrative stock of <InlineMath math="100" /> units used at <InlineMath math="2" /> units per year with two formation rates. Horizontal: time in years. Vertical: remaining stock in units.</>}
+  footer={<>When formation is tiny compared with use, a finite stock empties twice as fast.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.8, max: 5.8 } },
+    frame: { kind: "cartesian", x: { min: -5, max: 115 }, y: { min: -10, max: 115 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "slow", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 5, y: 0 } },
-      { id: "fast", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: 100 / (2 - 2 / 1000) / 20, y: 0 } },
-      { id: "fast-empty", kind: "point", appearance: "primary", at: { x: 100 / (2 - 2 / 1000) / 20, y: 0 } },
+      { id: "slow", kind: "segment", appearance: "secondary", from: { x: 0, y: 100 }, to: { x: 100, y: 0 } },
+      { id: "fast", kind: "segment", appearance: "primary", from: { x: 0, y: 100 }, to: { x: 100 / (2 - 2 / 1000), y: 0 } },
+      { id: "fast-empty", kind: "point", appearance: "primary", at: { x: 100 / (2 - 2 / 1000), y: 0 } },
     ],
     labels: [
-      { key: "slow", objectId: "slow", at: { x: 2.5, y: 2.5 }, placement: "above-right" },
-      { key: "fast", objectId: "fast", at: { x: 1.25, y: (100 - (2 - 2 / 1000) * 25) / 20 }, placement: "below-left" },
-      { key: "time", objectId: "fast-empty", at: { x: 100 / (2 - 2 / 1000) / 20, y: 0 }, placement: "above-right" },
+      { key: "slow", objectId: "slow", at: { x: 50, y: 50 }, placement: "above-right" },
+      { key: "fast", objectId: "fast", at: { x: 25, y: 100 - (2 - 2 / 1000) * 25 }, placement: "below-left" },
+      { key: "time", objectId: "fast-empty", at: { x: 100 / (2 - 2 / 1000), y: 0 }, placement: "above-right" },
     ],
   }}
   labels={{
     slow: <InlineMath math="r_{\mathrm{form}}=\tfrac12 r_{\mathrm{use}}" />,
     fast: <InlineMath math="r_{\mathrm{form}}=\tfrac{1}{1000} r_{\mathrm{use}}" />,
-    time: <InlineMath math="t=\frac{S_0}{r_{\mathrm{use}}-r_{\mathrm{form}}}\approx50\text{ years}" />,
+    time: <InlineMath math="t\approx50\text{ years}" />,
   }}
 />
 
-A finite reserve <InlineMath math="R" /> used at a steady rate <InlineMath math="P" /> lasts <InlineMath math="t=R/P" />. With an illustrative reserve of <InlineMath math="1000" /> units, doubling the yearly use halves the time left. Rotate the bars: <InlineMath math="10" />, <InlineMath math="20" /> and <InlineMath math="40" /> units a year.
+When natural formation is negligible next to extraction, a reserve behaves like a fixed bank account with no deposits. A finite reserve <InlineMath math="R" /> used at a steady rate <InlineMath math="P" /> lasts <InlineMath math="t=R/P" />. With an illustrative reserve of <InlineMath math="1000" /> units, doubling yearly use halves the time left. Rotate the bars for <InlineMath math="10" />, <InlineMath math="20" />, and <InlineMath math="40" /> units a year.
 
 <MathVisual
   title={<>A Finite Reserve Runs Out</>}
-  description={<>Years an illustrative reserve of <InlineMath math="1000" /> units lasts at three steady rates of use. One grid step up is <InlineMath math="20" /> years.</>}
+  description={<>Years an illustrative reserve of <InlineMath math="1000" /> units lasts at three steady rates of use, with bar heights drawn to scale.</>}
+  footer={<>Doubling the annual extraction rate cuts the remaining lifetime in half.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -72,6 +76,8 @@ A finite reserve <InlineMath math="R" /> used at a steady rate <InlineMath math=
   }}
 />
 
+Each doubling of demand shrinks the bar to half its height, dropping the lifetime from <InlineMath math="100" /> years to <InlineMath math="50" /> and then to <InlineMath math="25" />. Reserve size alone never tells you how long a fuel will last without knowing how fast society consumes it.
+
 ## Fossil Fuels and Nuclear Fuel
 
 The two main groups of non-renewable sources are fossil fuels and nuclear fuel. [**Fossil fuels**](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) formed from ancient living remains that were buried, then changed by pressure and heat over millions of years.
@@ -87,7 +93,11 @@ The two main groups of non-renewable sources are fossil fuels and nuclear fuel. 
 
 The term "non-renewable" <Highlight>includes both fossil fuels and nuclear fuel</Highlight>. Coal, petroleum, and natural gas are burned, while uranium releases energy through nuclear fission.
 
-## Heat Is a Shared Conversion Step
+## Heat Conversion and Grid Roles
+
+Most non-renewable generators rely on **thermal power plants**, yet they fill very different roles once connected to the electricity grid. Startup speed and operating cost decide which plant runs all day and which handles evening peaks.
+
+### Heat Is a Shared Conversion Step
 
 Many power plants using non-renewable sources produce electricity through heat. The plants differ in how they produce that heat.
 
@@ -96,6 +106,7 @@ In steam power plants, combustion and fission produce **heat through different p
 <Mermaid
   title={<>Heat to electricity</>}
   description={<>Two processes supply heat to a steam system.</>}
+  footer={<>Combustion and fission differ at first, then share the same steam cycle.</>}
   chart={`flowchart TD
     A["Fossil fuel: combustion"] --> C["Heat warms water"]
     B["Uranium: nuclear fission"] --> C
@@ -106,11 +117,14 @@ In steam power plants, combustion and fission produce **heat through different p
 
 Fossil fuels and uranium both reach the same final energy form, electricity. The early path is different, but each source still needs a conversion device before its initial energy becomes useful energy.
 
-Swap the heat source and watch everything after the boiler stay the same. This plant takes in <InlineMath math="1\,000\text{ MW}" /> of heat. With coal, the steam reaches about <InlineMath math="540^\circ\text{C}" /> and <InlineMath math="380\text{ MW}" /> leaves as electricity, while the condenser hands <InlineMath math="620\text{ MW}" /> to the cooling tower. A reactor runs cooler steam, about <InlineMath math="285^\circ\text{C}" />, so it sends out <InlineMath math="330\text{ MW}" />. Compare the fuel too: <InlineMath math="150\,000\text{ kg}" /> of coal an hour against under <InlineMath math="1\text{ kg}" /> of uranium fuel.
+Swap the heat source and watch everything after the boiler stay the same. This plant takes in <InlineMath math="1\,000\text{ MW}" /> of heat. With coal, steam reaches about <InlineMath math="540^\circ\text{C}" /> and <InlineMath math="380\text{ MW}" /> leaves as electricity, while the condenser sends <InlineMath math="620\text{ MW}" /> to the cooling tower.
+
+A reactor runs cooler steam at about <InlineMath math="285^\circ\text{C}" />, so it delivers <InlineMath math="330\text{ MW}" />. Compare the hourly fuel mass too: <InlineMath math="150\,000\text{ kg}" /> of coal versus under <InlineMath math="1\text{ kg}" /> of uranium fuel.
 
 <SteamPlantCycleLab
   title={<>One Steam Cycle, Three Heat Sources</>}
   description={<>A steam power plant takes in <InlineMath math="1\,000\text{ MW}" /> of heat from coal, gas or uranium. Choose the fuel and compare the electricity, the waste heat, the steam temperature, its ideal limit and the fuel used each hour.</>}
+  footer={<>Hotter steam raises efficiency, while nuclear fuel needs a tiny mass per hour.</>}
   labels={{
     chooseFuel: "Fuel",
     electric: <>Electricity</>,
@@ -128,7 +142,9 @@ Swap the heat source and watch everything after the boiler stay the same. This p
   }}
 />
 
-## Different Roles on the Power Grid
+Notice that every steam plant rejects more than half of its heat input to the cooling tower because of thermodynamic limits. Even so, switching between fuels highlights the huge contrast in fuel mass needed to keep the same turbine spinning.
+
+### Different Roles on the Power Grid
 
 Power plants do not all supply electricity in the same way. Nuclear plants usually run continuously at a steady output. Natural-gas combined-cycle plants can **raise or lower their output** as demand changes. When demand reaches a peak, combustion turbines fueled by natural gas or petroleum can add electricity for a few hours.
 
@@ -140,19 +156,20 @@ In this illustrative day, the gray line is the steady base load that a plant run
 
 <MathVisual
   title={<>Base Load and Peak in One Day</>}
-  description={<>An illustrative demand curve over one day above a steady base load. Horizontal: clock time in units of <InlineMath math="2\text{ h}" />. Vertical: power in arbitrary units.</>}
+  description={<>An illustrative demand curve over <InlineMath math="24" /> hours above a steady base load. Horizontal: hour of the day. Vertical: relative power.</>}
+  footer={<>Base-load plants carry the steady floor while flexible plants cover peaks.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 25 }, y: { min: 0, max: 5.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 12, y: 2 } },
-      { id: "demand", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.5) / 6) }, { x: 0.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.75) / 6) }, { x: 0.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 3) / 6) }, { x: 0.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 3.25) / 6) }, { x: 1, y: 3.5 + 1.2 * Math.cos((Math.PI * 3.5) / 6) }, { x: 1.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 3.75) / 6) }, { x: 1.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 4) / 6) }, { x: 1.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 4.25) / 6) }, { x: 2, y: 3.5 + 1.2 * Math.cos((Math.PI * 4.5) / 6) }, { x: 2.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 4.75) / 6) }, { x: 2.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 5) / 6) }, { x: 2.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 5.25) / 6) }, { x: 3, y: 3.5 + 1.2 * Math.cos((Math.PI * 5.5) / 6) }, { x: 3.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 5.75) / 6) }, { x: 3.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -6) / 6) }, { x: 3.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -5.75) / 6) }, { x: 4, y: 3.5 + 1.2 * Math.cos((Math.PI * -5.5) / 6) }, { x: 4.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -5.25) / 6) }, { x: 4.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -5) / 6) }, { x: 4.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -4.75) / 6) }, { x: 5, y: 3.5 + 1.2 * Math.cos((Math.PI * -4.5) / 6) }, { x: 5.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -4.25) / 6) }, { x: 5.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -4) / 6) }, { x: 5.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -3.75) / 6) }, { x: 6, y: 3.5 + 1.2 * Math.cos((Math.PI * -3.5) / 6) }, { x: 6.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -3.25) / 6) }, { x: 6.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -3) / 6) }, { x: 6.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -2.75) / 6) }, { x: 7, y: 3.5 + 1.2 * Math.cos((Math.PI * -2.5) / 6) }, { x: 7.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -2.25) / 6) }, { x: 7.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -2) / 6) }, { x: 7.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -1.75) / 6) }, { x: 8, y: 3.5 + 1.2 * Math.cos((Math.PI * -1.5) / 6) }, { x: 8.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -1.25) / 6) }, { x: 8.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -1) / 6) }, { x: 8.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -0.75) / 6) }, { x: 9, y: 3.5 + 1.2 * Math.cos((Math.PI * -0.5) / 6) }, { x: 9.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -0.25) / 6) }, { x: 9.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 0) / 6) }, { x: 9.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 0.25) / 6) }, { x: 10, y: 3.5 + 1.2 * Math.cos((Math.PI * 0.5) / 6) }, { x: 10.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 0.75) / 6) }, { x: 10.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 1) / 6) }, { x: 10.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 1.25) / 6) }, { x: 11, y: 3.5 + 1.2 * Math.cos((Math.PI * 1.5) / 6) }, { x: 11.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 1.75) / 6) }, { x: 11.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 2) / 6) }, { x: 11.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.25) / 6) }, { x: 12, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.5) / 6) }] },
-      { id: "top", kind: "point", appearance: "primary", at: { x: 9.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 0) / 6) } },
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 24, y: 2 } },
+      { id: "demand", kind: "function", appearance: "primary", formula: "3.5 + 1.2 * cos(pi * (x - 19) / 12)", domain: { min: 0, max: 24 } },
+      { id: "top", kind: "point", appearance: "primary", at: { x: 19, y: 4.7 } },
     ],
     labels: [
-      { key: "base", objectId: "base", at: { x: 1, y: 2 }, placement: "below" },
-      { key: "peak", objectId: "top", at: { x: 9.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+      { key: "base", objectId: "base", at: { x: 3, y: 2 }, placement: "below" },
+      { key: "peak", objectId: "top", at: { x: 19, y: 4.7 }, placement: "above" },
     ],
   }}
   labels={{
@@ -160,6 +177,8 @@ In this illustrative day, the gray line is the steady base load that a plant run
     peak: <>Evening peak</>,
   }}
 />
+
+The gap between the gray floor and the orange crest changes hour by hour. Grids combine steady base-load stations with fast-ramping plants or storage so supply tracks that changing gap without blackouts.
 
 ## Risks Across the Full Energy Chain
 
@@ -178,11 +197,14 @@ Carbon dioxide is written as <InlineMath math="\text{CO}_2" />. Natural gas cons
 
 Assess each source by its stock, conversion path, useful energy, waste, and effects on communities and ecosystems.
 
-Here's why burning a fuel adds so much carbon dioxide. Each carbon atom joins two oxygen atoms from the air, <InlineMath math="\mathrm{C}+\mathrm{O_2}\rightarrow\mathrm{CO_2}" />, so <InlineMath math="12\text{ g}" /> of carbon becomes <InlineMath math="44\text{ g}" /> of gas. Burning <InlineMath math="1\text{ kg}" /> of coal, about <InlineMath math="70\%" /> carbon, makes <InlineMath math="2.57\text{ kg}" /> of <InlineMath math="\mathrm{CO_2}" />, more than the fuel itself, because <InlineMath math="1.87\text{ kg}" /> of it is oxygen from the air.
+Here is why burning a fuel adds so much carbon dioxide. Each carbon atom joins two oxygen atoms from the air, <InlineMath math="\mathrm{C}+\mathrm{O_2}\rightarrow\mathrm{CO_2}" />, so <InlineMath math="12\text{ g}" /> of carbon becomes <InlineMath math="44\text{ g}" /> of gas.
+
+Burning <InlineMath math="1\text{ kg}" /> of coal, which is about <InlineMath math="70\%" /> carbon, produces <InlineMath math="2.57\text{ kg}" /> of <InlineMath math="\mathrm{CO_2}" />. The exhaust gas weighs more than the fuel itself because <InlineMath math="1.87\text{ kg}" /> of it is oxygen drawn from the air.
 
 <FuelCombustionCarbonLab
   title={<>Burning <InlineMath math="1\text{ kg}" /> of Fuel</>}
   description={<><InlineMath math="1\text{ kg}" /> of coal, diesel or methane burns, and a balloon collects the carbon dioxide. Choose the fuel and compare the carbon, the oxygen taken from the air, and the gas they make.</>}
+  footer={<>Carbon binds oxygen from air, so the CO2 produced weighs more than the fuel.</>}
   labels={{
     carbon: <>Carbon in the fuel</>,
     chooseFuel: "Fuel",
@@ -198,3 +220,5 @@ Here's why burning a fuel adds so much carbon dioxide. Each carbon atom joins tw
     volume: <>Gas volume at <InlineMath math="25^\circ\text{C}" /></>,
   }}
 />
+
+Compare the carbon dioxide per megajoule of heat across all three fuels. Methane releases less carbon dioxide per unit of heat than coal because burning hydrogen in methane also produces water vapor, yet every fossil fuel still adds fossil carbon to the atmosphere.

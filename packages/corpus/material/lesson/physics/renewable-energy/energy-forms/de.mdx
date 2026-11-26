@@ -10,13 +10,14 @@ export const metadata = {
 
 ## Energie in Körpern und bei ihrer Übertragung verfolgen
 
-Energie wird in Joule mit dem Symbol <InlineMath math="\text{J}" /> gemessen. Bei einer Rechnung verfolgen wir, wo Energie vorhanden ist und wie sie von einem System in ein anderes gelangt. Ein bewegter Körper besitzt kinetische Energie. Ein hoch gelegener Körper besitzt potenzielle Energie im Schwerefeld. Batterien und Biomasse enthalten chemische Energie. Energie kann durch Erwärmung, Strahlung sowie mechanische oder elektrische Arbeit übertragen werden.
+Energie wird in Joule mit dem Symbol <InlineMath math="\text{J}" /> gemessen. Bei einer Rechnung verfolgen wir <Highlight>wo Energie vorhanden ist</Highlight> und <Highlight>wie sie von einem System in ein anderes gelangt</Highlight>. Ein bewegter Körper besitzt kinetische Energie. Ein hoch gelegener Körper besitzt potenzielle Energie im Schwerefeld. Batterien und Biomasse enthalten chemische Energie. Energie kann durch Erwärmung, Strahlung sowie mechanische oder elektrische Arbeit übertragen werden.
 
 Alle diese Beschreibungen beziehen sich auf dieselbe physikalische Größe. Die passende Formel hängt vom untersuchten Körper oder Vorgang ab.
 
 <Mermaid
   title={<>Energie in Systemen und ihre Übertragung</>}
   description={<>Die Darstellung trennt Energie in einem System von den Vorgängen, die Energie zwischen Systemen übertragen.</>}
+  footer={<>Links stehen Energiespeicher, rechts die Übertragungswege zwischen Systemen.</>}
   chart={`flowchart TD
     A["Energie"] --> B["In einem System vorhanden"]
     A --> C["Zwischen Systemen übertragen"]
@@ -25,22 +26,45 @@ Alle diese Beschreibungen beziehen sich auf dieselbe physikalische Größe. Die 
     C --> F["Erwärmung und Strahlung"]
     C --> G["Mechanische und elektrische Arbeit"]`}/>
 
-Das Diagramm trennt zwei Fragen. Der linke Zweig zeigt, wo Energie vorhanden ist. Der rechte Zweig zeigt, wie Energie von einem System in ein anderes gelangt. Wärme ist Energie, die <Highlight>wegen eines Temperaturunterschieds übertragen wird</Highlight>. [Innere Energie](https://openstax.org/books/college-physics-2e/pages/14-1-heat) ist dagegen im Material vorhanden.
+Das Diagramm trennt zwei Fragen. Der linke Zweig zeigt, wo Energie vorhanden ist. Der rechte Zweig zeigt, wie Energie von einem System in ein anderes gelangt.
 
-Ein Wasserkocher zeigt beide Fragen auf einmal. Über sein Heizelement mit <InlineMath math="2\,100\text{ W}" /> gelangt elektrische Arbeit in den Wasserkocher, und das Wasser speichert sie als innere Energie, <InlineMath math="Q=mc\Delta T" />. Von <InlineMath math="25^\circ\text{C}" /> auf <InlineMath math="100^\circ\text{C}" /> sind es <InlineMath math="75\text{ K}" />, also braucht <InlineMath math="1\text{ kg}" /> Wasser <InlineMath math="315\,000\text{ J}" /> und mindestens <InlineMath math="150\text{ s}" />. Doppelt so viel Wasser braucht doppelt so viel Energie und doppelt so viel Zeit.
+> Wärme ist kein Stoff, der in einem Körper steckt. Wärme ist Energie, die <Highlight>wegen eines Temperaturunterschieds übertragen wird</Highlight>, während [innere Energie](https://openstax.org/books/college-physics-2e/pages/14-1-heat) im Material vorhanden ist.
 
-<KettleHeatingLab
-  title={<>Wasser im Wasserkocher zum Sieden bringen</>}
-  description={<>Ein Wasserkocher mit <InlineMath math="2\,100\text{ W}" /> erhitzt Wasser von <InlineMath math="25^\circ\text{C}" /> bis zum Sieden. Wähle die Wassermenge und vergleiche die gespeicherte Energie mit der Zeit, die das Heizelement braucht, wenn keine Energie entweicht.</>}
+Das Erhitzen von Wasser in einem <InlineMath math="2{,}1\text{ kW}" />-Wasserkocher zeigt beides zugleich. Elektrische Arbeit gelangt hinein, und das Wasser speichert sie als innere Energie nach <InlineMath math="Q=mc\Delta T" />. Für <InlineMath math="1\text{ kg}" /> Wasser und <InlineMath math="75\text{ K}" /> Anstieg braucht man <InlineMath math="315\text{ kJ}" /> und mindestens <InlineMath math="150\text{ s}" />.
+
+<MathVisual
+  title={<>Wärmeenergie zum Erhitzen von Wasser</>}
+  description={<>Heizenergie <InlineMath math="Q=mc\Delta T" /> in kJ über dem Temperaturanstieg in K für Wasser mit <InlineMath math="c=4{,}2\text{ kJ/(kg K)}" />. Ändere die Wassermasse <InlineMath math="m" /> und verfolge Energie und Heizzeit bei <InlineMath math="2{,}1\text{ kW}" />.</>}
+  footer={<>Doppelte Wassermasse verdoppelt Steigung, Energiebedarf und Heizzeit.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 85 }, y: { min: -40, max: 720 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0.5, max: 2, step: 0.25, value: 1, label: "mass" },
+    ],
+    objects: [
+      { id: "heating", kind: "function", appearance: "primary", formula: "4.2 * m * x", domain: { min: 0, max: 80 } },
+      { id: "boil-drop", kind: "path", appearance: "construction", points: [{ x: "75", y: "0" }, { x: "75", y: "4.2 * m * 75" }] },
+      { id: "boil-point", kind: "marker", appearance: "answer", x: "75", y: "4.2 * m * 75" },
+    ],
+    readouts: [
+      { key: "energy-out", formula: "4.2 * m * 75" },
+      { key: "time-out", formula: "4.2 * m * 75 / 2.1" },
+    ],
+    labels: [
+      { key: "boil", objectId: "boil-point", at: { x: "75", y: "4.2 * m * 75" }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    chooseFill: "Wasser im Wasserkocher",
-    energy: <>Energie im Wasser</>,
-    power: <>Leistung des Heizelements</>,
-    rise: <>Temperaturanstieg</>,
-    time: <>Zeit bis zum Sieden</>,
-    viewLabel: "Gläserner Wasserkocher erhitzt Wasser neben einem Thermometer",
+    mass: <>Wassermasse (kg)</>,
+    boil: <InlineMath math="\Delta T=75\text{ K}" />,
+    "energy-out": <>Energie bei <InlineMath math="75\text{ K}" /> (kJ)</>,
+    "time-out": <>Mindestzeit <InlineMath math="2{,}1\text{ kW}" /> (s)</>,
   }}
 />
+
+Schiebe die Wassermasse von <InlineMath math="1\text{ kg}" /> auf <InlineMath math="2\text{ kg}" /> und beobachte, wie die Gerade doppelt so steil wird. Doppelt so viel Wasser verlangt bei gleicher Heizleistung doppelt so viele Kilojoule und doppelt so viel Zeit.
 
 ## Vier häufige Energierechnungen
 
@@ -55,34 +79,41 @@ Erneuerbare Energiesysteme arbeiten oft mit **Bewegung, Höhe, Temperaturuntersc
 
 Biomasse und Batterien enthalten außerdem chemische Energie. Solarmodule empfangen Energie, die das Sonnenlicht trägt. Die vier Formeln in der Tabelle berechnen Energie aus Bewegung, Höhe, Temperaturänderung und elektrischer Leistung.
 
-Eine gedehnte Feder speichert Spannenergie <InlineMath math="E=\tfrac12kx^2" />. Mit <InlineMath math="k=200\text{ N/m}" /> speichert die dreifache Dehnung die neunfache Energie, <InlineMath math="1\text{ J}" /> bei <InlineMath math="10\text{ cm}" /> und <InlineMath math="9\text{ J}" /> bei <InlineMath math="30\text{ cm}" />. Folge der Kurve.
+Eine gedehnte Feder speichert Spannenergie <InlineMath math="E=\tfrac12kx^2" />. Mit <InlineMath math="k=200\text{ N/m}" /> speichert die dreifache Dehnung die neunfache Energie, <InlineMath math="1\text{ J}" /> bei <InlineMath math="10\text{ cm}" /> und <InlineMath math="9\text{ J}" /> bei <InlineMath math="30\text{ cm}" />. Folge der Kurve unten.
 
 <MathVisual
   title={<>Spannenergie wächst mit dem Quadrat</>}
-  description={<>Spannenergie einer Feder mit <InlineMath math="k=200\text{ N/m}" /> über ihrer Dehnung. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="5\text{ cm}" />. Senkrecht: Joule.</>}
+  description={<>Spannenergie einer Feder mit <InlineMath math="k=200\text{ N/m}" /> über ihrer Dehnung. Waagrecht: Dehnung in cm. Senkrecht: Energie in J.</>}
+  footer={<>Dreifache Dehnung von 10 cm auf 30 cm speichert neunmal so viel Energie.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 10 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 34 }, y: { min: -0.5, max: 10.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "spring", kind: "quadratic", appearance: "secondary", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
-      { id: "ten", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
-      { id: "thirty", kind: "point", appearance: "answer", at: { x: 6, y: 9 } },
+      { id: "spring", kind: "quadratic", appearance: "secondary", coefficients: { a: 0.01, b: 0, c: 0 }, domain: { min: 0, max: 30 }, inputAxis: "x" },
+      { id: "ten", kind: "point", appearance: "primary", at: { x: 10, y: 1 } },
+      { id: "thirty", kind: "point", appearance: "answer", at: { x: 30, y: 9 } },
     ],
     labels: [
-      { key: "ten", objectId: "ten", at: { x: 2, y: 1 }, placement: "above-left" },
-      { key: "thirty", objectId: "thirty", at: { x: 6, y: 9 }, placement: "left" },
+      { key: "ten", objectId: "ten", at: { x: 10, y: 1 }, placement: "above-left" },
+      { key: "thirty", objectId: "thirty", at: { x: 30, y: 9 }, placement: "left" },
     ],
   }}
   labels={{
-    ten: <InlineMath math="x=0{,}1\text{ m}:\ E=1\text{ J}" />,
-    thirty: <InlineMath math="x=0{,}3\text{ m}:\ E=9\text{ J}" />,
+    ten: <InlineMath math="x=10\text{ cm}:\ E=1\text{ J}" />,
+    thirty: <InlineMath math="x=30\text{ cm}:\ E=9\text{ J}" />,
   }}
 />
 
+Achte auf die immer steilere Krümmung nach oben: Sobald eine Größe quadratisch eingeht, bringt ein gleich großer Zuwachs bei höheren Werten viel mehr Energie als nahe null.
+
 ## Die Formel an die Situation anpassen
 
-Kinetische Energie ist die Energie, die ein Objekt **aufgrund seiner Bewegung** besitzt.
+Jedes Energiemodell passt zu einem bestimmten physikalischen Vorgang, von **mechanischer Energie** durch Bewegung und Höhe bis zu **Erwärmung und Strom**. Prüfe zuerst, welche Messgrößen sich ändern, damit die gewählte Gleichung sofort stimmt.
+
+### Bewegung und Höhe
+
+Kinetische Energie ist die Energie, die ein Objekt **aufgrund seiner Bewegung** besitzt. Sie hängt nicht nur von der Masse ab, sondern ebenso vom Quadrat der Geschwindigkeit.
 
 <BlockMath math="E_k=\frac{1}{2}mv^2" />
 
@@ -102,24 +133,25 @@ E_k &= \frac{1}{2}mv^2 \\
 &= 9 \text{ J}
 \end{aligned}" />
 
-Das Diagramm unten setzt jede Geschwindigkeit von <InlineMath math="0" /> bis <InlineMath math="6\text{ m/s}" /> in dieselbe Formel ein. Vergleich die beiden markierten Punkte. Wenn sich die Geschwindigkeit von <InlineMath math="3\text{ m/s}" /> auf <InlineMath math="6\text{ m/s}" /> verdoppelt, verdoppelt sich die Energie nicht: Sie steigt von <InlineMath math="9\text{ J}" /> auf <InlineMath math="36\text{ J}" />, also auf das Vierfache, weil die Geschwindigkeit quadriert wird. Deshalb macht schon etwas mehr Wind für eine Turbine so viel aus.
+Das Diagramm unten nutzt dieselbe Formel von <InlineMath math="0" /> bis <InlineMath math="6\text{ m/s}" />. Verdoppelt sich die Geschwindigkeit von <InlineMath math="3\text{ m/s}" /> auf <InlineMath math="6\text{ m/s}" />, vervierfacht sich die Energie von <InlineMath math="9\text{ J}" /> auf <InlineMath math="36\text{ J}" />, weil <InlineMath math="v" /> quadriert wird.
 
 <MathVisual
   title={<>Kinetische Energie wächst mit dem Quadrat der Geschwindigkeit</>}
-  description={<>Kinetische Energie von <InlineMath math="2\text{ kg}" /> Luft bei <InlineMath math="0" /> bis <InlineMath math="6\text{ m/s}" />. Waagrecht: Geschwindigkeit in m/s. Senkrecht: Energie in Einheiten von <InlineMath math="8\text{ J}" />.</>}
+  description={<>Kinetische Energie von <InlineMath math="2\text{ kg}" /> Luft bei <InlineMath math="0" /> bis <InlineMath math="6\text{ m/s}" />. Waagrecht: Geschwindigkeit in m/s. Senkrecht: Energie in J.</>}
+  footer={<>Doppeltes Windtempo von 3 auf 6 m/s vervierfacht die Energie auf 36 J.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -3, max: 40 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "kinetic", kind: "quadratic", appearance: "construction", coefficients: { a: 0.125, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
-      { id: "v3", kind: "point", appearance: "primary", at: { x: 3, y: 1.125 } },
-      { id: "v6", kind: "point", appearance: "answer", at: { x: 6, y: 4.5 } },
+      { id: "kinetic", kind: "quadratic", appearance: "construction", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
+      { id: "v3", kind: "point", appearance: "primary", at: { x: 3, y: 9 } },
+      { id: "v6", kind: "point", appearance: "answer", at: { x: 6, y: 36 } },
     ],
     labels: [
-      { key: "rule", objectId: "kinetic", at: { x: 5, y: 3.125 }, placement: "left" },
-      { key: "v3", objectId: "v3", at: { x: 3, y: 1.125 }, placement: "right" },
-      { key: "v6", objectId: "v6", at: { x: 6, y: 4.5 }, placement: "left" },
+      { key: "rule", objectId: "kinetic", at: { x: 4.8, y: 23 }, placement: "left" },
+      { key: "v3", objectId: "v3", at: { x: 3, y: 9 }, placement: "right" },
+      { key: "v6", objectId: "v6", at: { x: 6, y: 36 }, placement: "left" },
     ],
   }}
   labels={{
@@ -129,7 +161,7 @@ Das Diagramm unten setzt jede Geschwindigkeit von <InlineMath math="0" /> bis <I
   }}
 />
 
-Der Arbeit-Energie-Satz verbindet die Gesamtarbeit mit der Änderung der kinetischen Energie.
+Diese steile Parabel erklärt, warum schon etwas mehr Wind für eine Turbine einen großen Unterschied macht. Der Arbeit-Energie-Satz verbindet die Gesamtarbeit direkt mit genau dieser Änderung der kinetischen Energie.
 
 Die potenzielle Gravitationsenergie ist Energie, die mit der Position eines Objekts in einem Gravitationsfeld zusammenhängt. Für Objekte in der Nähe der Erdoberfläche lautet das gängige Modell:
 
@@ -150,7 +182,34 @@ Berechne die potenzielle Energie von <InlineMath math="2 \text{ kg}" /> Wasser i
 
 <BlockMath math="\begin{aligned} E_p &= mgh \\ &= (2 \text{ kg})(10 \text{ m/s}^2)(5 \text{ m}) \\ &= 100 \text{ J} \end{aligned}" />
 
-Ein Körper besitzt innere Energie. Haben zwei Systeme unterschiedliche Temperaturen, wird Energie vom wärmeren zum kälteren System übertragen. Diese wegen des Temperaturunterschieds übertragene Energie heißt Wärme. Wenn der Stoff keinen Phasenübergang durchläuft und seine spezifische Wärmekapazität im betrachteten Temperaturbereich als konstant gilt, beträgt die übertragene Energie:
+Vergleich diese Gerade mit der Kurve der kinetischen Energie oben. Die potenzielle Energie wächst proportional zur Höhe, also bringt jeder zusätzliche Meter dieselben <InlineMath math="mg=20\text{ J}" />.
+
+<MathVisual
+  title={<>Potenzielle Energie wächst gleichmäßig mit der Höhe</>}
+  description={<><InlineMath math="E_p=mgh" /> für <InlineMath math="2\text{ kg}" /> mit <InlineMath math="g=10\text{ m/s}^2" />. Waagrecht: Höhe in m. Senkrecht: Energie in J.</>}
+  footer={<>Jeder weitere Meter ergänzt genau 20 J entlang einer Geraden bis 100 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -10, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 100 } },
+      { id: "top", kind: "point", appearance: "primary", at: { x: 5, y: 100 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 5, y: 100 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    top: <InlineMath math="h=5\text{ m}:\ E_p=100\text{ J}" />,
+  }}
+/>
+
+Anders als die gekrümmte Bewegungskurve zeigt die konstante Steigung hier einen rein linearen Zusammenhang zwischen Stauhöhe und gespeicherter Lageenergie.
+
+### Erwärmung und elektrische Energie
+
+Ein Körper besitzt innere Energie. Haben zwei Systeme unterschiedliche Temperaturen, gelangt Energie als Wärme vom wärmeren zum kälteren System. Bleibt der Aggregatzustand gleich und die spezifische Wärmekapazität konstant, gilt:
 
 <BlockMath math="Q=mc\Delta T" />
 
@@ -167,7 +226,7 @@ Wir erwärmen <InlineMath math="0{,}5 \text{ kg}" /> flüssiges Wasser um <Inlin
 
 <BlockMath math="\begin{aligned} Q &= mc\Delta T \\ &= (0{,}5 \text{ kg})(4\,200 \text{ J/(kg K)})(10 \text{ K}) \\ &= 21\,000 \text{ J} \end{aligned}" />
 
-Elektrische Energie lässt sich aus der elektrischen Leistung und der Zeit berechnen. Das folgende Modell wird verwendet, wenn <InlineMath math="V" /> und <InlineMath math="I" /> während des Zeitintervalls als konstant behandelt werden.
+Elektrische Energie lässt sich aus **elektrischer Leistung und Zeit** berechnen. Das folgende Modell gilt, wenn <InlineMath math="V" /> und <InlineMath math="I" /> während des Zeitintervalls konstant bleiben.
 
 <BlockMath math="\begin{aligned}
 P &= VI \\
@@ -185,47 +244,26 @@ Symbolübersicht:
 | <InlineMath math="I" /> | elektrischer Strom | <InlineMath math="\text{A}" /> |
 | <InlineMath math="t" /> | Zeit | <InlineMath math="\text{s}" /> |
 
-Hier bezeichnet <InlineMath math="E" /> die elektrische Energie. Das Zeichen <InlineMath math="\text{W}" /> wird bereits für die Einheit Watt verwendet. Mit <InlineMath math="E" /> bleiben Energiesymbol und Leistungseinheit eindeutig.
+Hier bezeichnet <InlineMath math="E" /> die elektrische Energie. Achte darauf, dass <InlineMath math="\text{kWh}" /> eine Energieeinheit und keine Leistungseinheit ist, weil sie aus <InlineMath math="P \times t" /> entsteht. Aufrechtes <InlineMath math="\text{W}" /> bleibt der Einheit Watt vorbehalten.
 
 Ein Gerät arbeitet <InlineMath math="60 \text{ s}" /> lang mit konstanter Spannung <InlineMath math="12 \text{ V}" /> und konstantem Strom <InlineMath math="0{,}5 \text{ A}" />. Berechne zuerst die Leistung, dann die Energie:
 
 <BlockMath math="\begin{aligned} P &= VI = (12 \text{ V})(0{,}5 \text{ A})=6 \text{ W} \\ E &= Pt = (6 \text{ W})(60 \text{ s})=360 \text{ J} \end{aligned}" />
 
-Vergleich diese Gerade mit der Kurve der kinetischen Energie oben. Die potenzielle Energie wächst proportional zur Höhe, also bringt jeder zusätzliche Meter dieselben <InlineMath math="mg=20\text{ J}" />.
-
-<MathVisual
-  title={<>Potenzielle Energie wächst gleichmäßig mit der Höhe</>}
-  description={<><InlineMath math="E_p=mgh" /> für <InlineMath math="2\text{ kg}" /> mit <InlineMath math="g=10\text{ m/s}^2" />. Waagrecht: Höhe in m. Senkrecht: Energie in Einheiten von <InlineMath math="20\text{ J}" />.</>}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 6 } },
-    view: { kind: "fit", padding: 0.06 },
-    objects: [
-      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 5 } },
-      { id: "top", kind: "point", appearance: "primary", at: { x: 5, y: 5 } },
-    ],
-    labels: [
-      { key: "top", objectId: "top", at: { x: 5, y: 5 }, placement: "left" },
-    ],
-  }}
-  labels={{
-    top: <InlineMath math="h=5\text{ m}:\ E_p=100\text{ J}" />,
-  }}
-/>
-
 ## Ein Kraftwerk wandelt mehrere Energieformen um
 
 Zunächst besitzt das Wasser **potenzielle Gravitationsenergie**. Beim Abwärtsfließen wird daraus kinetische Energie des Wassers, dann kinetische Energie der rotierenden Turbine und schließlich elektrische Energie.
 
-Ein Solarmodul empfängt Strahlungsenergie des Sonnenlichts und wandelt einen Teil davon in elektrische Energie um.
+Ein Solarmodul empfängt Strahlungsenergie des Sonnenlichts und wandelt einen Teil davon in elektrische Energie um. Nicht die gesamte erneuerbare Eingangsenergie wird direkt zu Strom: Jede Anlage gibt auch einen Teil als Wärme oder Schall an die Umgebung ab.
 
-Eine vollständige Energiekette nennt die anfängliche Energie, die gewünschte Ausgabe und jeden Umwandlungsschritt dazwischen.
+Verfolge diese Stufen an einer echten Talsperre. Jede Sekunde fallen <InlineMath math="10\text{ m}^3" /> Wasser durch die Fallhöhe zwischen Stauseeoberfläche und Turbine. Bei <InlineMath math="50\text{ m}" /> Fallhöhe und <InlineMath math="g=10\text{ m/s}^2" /> setzt das Wasser <InlineMath math="5\text{ MW}" /> frei und erreicht die Turbine mit etwa <InlineMath math="31{,}6\text{ m/s}" />.
 
-Verfolge diese Formen an einer echten Talsperre. Jede Sekunde fallen <InlineMath math="10\text{ m}^3" /> Wasser durch die Fallhöhe, den Höhenunterschied zwischen Stauseeoberfläche und Turbine. Ihre potenzielle Energie pro Sekunde ist <InlineMath math="\rho g Q h" />, bei <InlineMath math="50\text{ m}" /> Fallhöhe und <InlineMath math="g=10\text{ m/s}^2" /> also <InlineMath math="5\text{ MW}" />. Das Wasser erreicht die Turbine mit <InlineMath math="\sqrt{2gh}\approx31{,}6\text{ m/s}" />, die Welle behält <InlineMath math="90\%" />, und der Generator gibt <InlineMath math="95\%" /> davon ans Netz. Erhöhe die Fallhöhe und sieh, wie alle Balken gleichmäßig wachsen.
+Die Welle behält <InlineMath math="90\%" /> der Turbinenleistung, und der Generator speist <InlineMath math="95\%" /> davon ins Netz ein. Erhöhe unten die Fallhöhe und sieh, wie alle Balken gleichmäßig wachsen.
 
 <HydroDamLab
   title={<>Energieformen in einem Wasserkraftwerk</>}
   description={<>Wasser fällt mit <InlineMath math="10\text{ m}^3\text{/s}" /> durch die Fallhöhe. Ändere die Fallhöhe und vergleiche die Leistung in jeder Stufe: freigesetzte potenzielle Energie, kinetische Energie an der Turbine, drehende Welle und Strom.</>}
+  footer={<>Größere Fallhöhe hebt jede Stufe an, doch Verluste halten den Strom darunter.</>}
   labels={{
     electric: <>Strom</>,
     head: <>Fallhöhe</>,
@@ -238,13 +276,4 @@ Verfolge diese Formen an einer echten Talsperre. Jede Sekunde fallen <InlineMath
   }}
 />
 
-## Häufig verwechselte Begriffe unterscheiden
-
-| Fehler | Richtige Einordnung |
-| :------ | :------------------- |
-| Kinetische Energie wird nur mit der Masse verbunden | Sie hängt ebenso vom Quadrat der Geschwindigkeit ab, also von <InlineMath math="v^2" /> |
-| Wärme wird wie ein Stoff behandelt, der in einem Körper gespeichert ist | Wärme ist Energie, die **aufgrund eines Temperaturunterschieds** übertragen wird |
-| <InlineMath math="\text{kWh}" /> wird als Leistungseinheit behandelt | <InlineMath math="\text{kWh}" /> ist eine Energieeinheit, denn sie entsteht aus <InlineMath math="P \times t" /> |
-| Die gesamte Energie einer erneuerbaren Quelle wird als direkt nutzbarer Strom betrachtet | Eine Anlage überträgt auch Energie an die Umgebung. Deshalb wird nur ein Teil der zugeführten Energie zu nutzbarer elektrischer Energie. |
-
-Um die passende Formel zu wählen, bestimme zuerst die Energieform, die in die Anlage gelangt. Bewegte Luft besitzt kinetische Energie, hoch gelegenes Wasser potenzielle Energie, geothermische Flüssigkeiten transportieren thermische Energie, Biomasse speichert chemische Energie und Sonnenlicht überträgt Strahlungsenergie.
+Jeder Balken fällt von der potenziellen Leistung bis zum Strom etwas ab und zeigt die realen Verluste an Turbine und Generator. Um die passende Formel zu wählen, bestimme zuerst die Energieform, die in die Anlage gelangt: bewegte Luft trägt kinetische Energie, hoch gelegenes Wasser potenzielle Energie, geothermische Flüssigkeit thermische Energie, Biomasse chemische Energie und Sonnenlicht Strahlungsenergie.

@@ -14,7 +14,7 @@ Bayangkan kamu membaca nilai kuantiti <InlineMath math="12" /> tanpa unit. Adaka
 
 Unit ialah <Highlight>saiz rujukan yang dipersetujui bagi sesuatu kuantiti fizik</Highlight>. Hasil pengukuran daripada orang, alat dan tempat yang berbeza hanya boleh dibandingkan apabila unitnya dinyatakan, dan ditukar jika perlu.
 
-Nilai kuantiti ialah hasil darab nilai berangka dengan unitnya.
+Setiap hasil pengukuran mendarabkan nombor tulen dengan simbol unit yang dipersetujui.
 
 Nilai berangka menjawab *berapa banyak*. Unit pula menjawab *dengan rujukan apa nilai itu dibandingkan*.
 
@@ -27,6 +27,7 @@ Di sini tiga orang kawan mengukur meja yang sama, sepanjang <InlineMath math="1.
       Tukar antara tiga pensel dan pembaris meter dan perhatikan bilangannya berubah bagi meja yang sama.
     </>
   }
+  footer={<>Rujukan peribadi berbeza memberi angka berbeza bagi meja yang sama panjang.</>}
   labels={{
     chooseReference: "Pilih alat untuk mengukur",
     count: <>Bilangan</>,
@@ -42,6 +43,8 @@ Di sini tiga orang kawan mengukur meja yang sama, sepanjang <InlineMath math="1.
   }}
 />
 
+Setiap pensil memberikan bilangan berbeza walaupun panjang meja tidak pernah berubah. Hanya apabila semua beralih kepada pembaris meter yang dikongsi, barulah ketiga-tiga sahabat melaporkan bacaan yang sama.
+
 ## Daripada Banyak Sistem kepada Sistem Unit Antarabangsa
 
 Sebelum satu piawai digunakan secara meluas, beberapa sistem unit wujud serentak. Tiga nama kerap muncul dalam buku fizik:
@@ -54,7 +57,7 @@ Sebelum satu piawai digunakan secara meluas, beberapa sistem unit wujud serentak
 
 Dalam baris FPS ini, <InlineMath math="\text{lb}" /> mewakili paun-jisim. Jangan kelirukannya dengan paun-daya, yang biasanya ditulis <InlineMath math="\text{lbf}" />.
 
-Perbezaan ini menyukarkan perbandingan hasil pengukuran apabila sistem unitnya tidak jelas. Itulah sebabnya sains moden menggunakan **S.I.**, iaitu **Sistem Unit Antarabangsa**. Singkatan S.I. berasal daripada nama Perancis *Système international d'unités*, dan dalam bahasa Inggeris dikenali sebagai *International System of Units*. BIPM, iaitu *Bureau International des Poids et Mesures*, ialah organisasi antarabangsa yang menjaga piawai S.I.
+Perbezaan ini menyukarkan perbandingan apabila sistem unitnya tidak jelas. Itulah sebabnya sains moden menggunakan **Sistem Unit Antarabangsa** (**S.I.**), daripada nama Perancis *Système international d'unités*, yang dijaga di peringkat dunia oleh BIPM (*Bureau International des Poids et Mesures*).
 
 [BIPM mentakrifkan S.I.](https://www.bipm.org/en/measurement-units) supaya semua unitnya berkongsi rujukan antarabangsa yang sama.
 
@@ -69,6 +72,7 @@ Satu objek sudah cukup untuk menunjukkannya. Bola boling di bawah ialah yang pal
       Tukar antara FPS, CGS dan MKS dan perhatikan jarum dan bola itu tetap di tempatnya sedangkan hanya nombornya yang berubah.
     </>
   }
+  footer={<>Menukar sistem unit mengubah nombor, bukan jisim atau saiz sebenar bola itu.</>}
   labels={{
     chooseSystem: "Pilih sistem unit",
     diameter: <>Diameter</>,
@@ -82,6 +86,8 @@ Satu objek sudah cukup untuk menunjukkannya. Bola boling di bawah ialah yang pal
     viewLabel: "Bola boling di atas penimbang berdail di sebelah pembaris inci dan sentimeter",
   }}
 />
+
+Perhatikan bahawa jarum penimbang dan tepi pembaris tidak pernah berganjak apabila kamu bertukar antara FPS, CGS dan MKS. Sistem unit hanya menukar saiz rujukan yang dibandingkan, bukan objek fizikal itu sendiri.
 
 ## Tujuh Unit Asas dalam Sistem Unit Antarabangsa
 
@@ -119,11 +125,14 @@ Unit terbitan muncul apabila kuantiti terbitan dibentuk daripada kuantiti asas. 
 
 Baris kerja menganggap daya yang malar dan selari dengan sesaran. Rumus laju, pecutan dan kuasa dalam jadual memberikan nilai purata sepanjang selang yang dipilih.
 
-Putar kubus di bawah. Di sepanjang setiap tepi, kamu boleh mengira <InlineMath math="10" /> kubus kecil bersisi <InlineMath math="1\text{ dm}" />, jadi setiap tepi kubus besar itu sepanjang <InlineMath math="1\text{ m}" />. Isi padunya ialah <InlineMath math="(10\text{ dm})^3=1000\text{ dm}^3" />, jadi <InlineMath math="1\text{ m}^3=1000\text{ dm}^3" />, dan satu kubus kecil memuatkan tepat <InlineMath math="1" /> liter. Perhatikan bahawa imbuhan itu turut dinaikkan kuasa tiga bersama unitnya: <InlineMath math="1\text{ dm}=10^{-1}\text{ m}" />, jadi <InlineMath math="1\text{ dm}^3=10^{-3}\text{ m}^3" />.
+Putar kubus di bawah. Di sepanjang setiap tepi, kamu boleh mengira <InlineMath math="10" /> kubus kecil bersisi <InlineMath math="1\text{ dm}" />, jadi kubus besar bersisi <InlineMath math="1\text{ m}" /> ini memuatkan <InlineMath math="1000\text{ dm}^3" />, atau tepat <InlineMath math="1000" /> liter.
+
+Perhatikan bahawa imbuhan itu turut dikuasatigakan bersama unitnya: oleh sebab <InlineMath math="1\text{ dm}=10^{-1}\text{ m}" />, satu desimeter padu bersamaan dengan <InlineMath math="10^{-3}\text{ m}^3" />.
 
 <MathVisual
   title={<>Satu Meter Padu Dibina daripada Desimeter Padu</>}
   description={<>Satu petak grid ialah <InlineMath math="1\text{ dm}" />. Kubus-kubus kecil itu tersusun di sepanjang tiga tepi sebuah kubus yang setiap tepinya sepanjang <InlineMath math="1\text{ m}" />. Putar kubus itu untuk mengiranya.</>}
+  footer={<>Sepuluh kubus <InlineMath math="1\text{ dm}" /> setiap tepi memuatkan <InlineMath math="1000\text{ dm}^3" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 12 }, z: { min: -1, max: 11 } },
@@ -192,6 +201,7 @@ Setiap unit terbitan ialah hasil darab kuasa bagi kg, m dan s. Putar bar-bar itu
 <MathVisual
   title={<>Daripada Newton kepada Joule dan Watt</>}
   description={<>Indeks bagi kg (ungu), m (jingga) dan s (hijau kebiruan) dalam newton, joule dan watt. Bar di bawah lantai mewakili indeks negatif.</>}
+  footer={<>Setiap langkah dari newton ke joule ke watt mengubah satu indeks unit asas.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: -3.5, max: 3 }, z: { min: -1, max: 1 } },
@@ -220,16 +230,24 @@ Setiap unit terbitan ialah hasil darab kuasa bagi kg, m dan s. Putar bar-bar itu
   }}
 />
 
-## Menulis Nilai Besar dan Kecil dengan Ringkas
+Membandingkan tiga kumpulan bar ini menunjukkan bahawa nama khas S.I. seperti newton, joule dan watt ialah ringkasan bagi gabungan tertentu <InlineMath math="\text{kg}" />, <InlineMath math="\text{m}" /> dan <InlineMath math="\text{s}" />. Memecahkannya semula kepada unit asas memudahkan setiap semakan rumus.
+
+## Menggunakan Imbuhan Metrik bagi Skala Ukuran
+
+**Imbuhan metrik** menskalakan mana-mana unit asas atau unit terbitan mengikut kuasa sepuluh yang tepat supaya bacaan kekal ringkas dari saiz atom hingga orbit planet. Satu simbol ringkas menggantikan deretan sifar yang panjang dan memudahkan penukaran unit terus.
+
+### Menulis Nilai Besar dan Kecil dengan Ringkas
 
 Apabila nilai yang diukur sangat besar atau sangat kecil, **imbuhan S.I.** boleh menggantikan deretan sifar yang panjang dengan kuasa <InlineMath math="10" />.
 
 <Mermaid
   title={<>Tatatanda Ringkas dengan Imbuhan S.I.</>}
   description={<>Lihat cara imbuhan metrik menggantikan deretan sifar yang panjang dengan nama unit yang lebih pendek.</>}
+  footer={<>Gantikan imbuhan metrik dengan kuasa sepuluhnya untuk menukar ke unit asas.</>}
   chart={`flowchart LR
     A["7.5 km"] --> B["7.5 × 1000 m"]
-    B --> C["7500 m"]`}/>
+    B --> C["7500 m"]`}
+/>
 
 Imbuhan yang lazim digunakan termasuklah:
 
@@ -248,7 +266,7 @@ Imbuhan yang lazim digunakan termasuklah:
 
 Jadual di atas meliputi imbuhan daripada yokto hingga yota. BIPM juga menyenaraikan ronna dan ronto bagi <InlineMath math="10^{27}" /> dan <InlineMath math="10^{-27}" />, serta quetta dan quecto bagi <InlineMath math="10^{30}" /> dan <InlineMath math="10^{-30}" />. Kamu boleh menyemak senarai terkini yang lengkap dalam [jadual imbuhan S.I. oleh BIPM](https://www.bipm.org/en/measurement-units/si-prefixes).
 
-## Membaca Imbuhan dalam Pengiraan
+### Membaca Imbuhan dalam Pengiraan
 
 Imbuhan S.I. boleh dilekatkan pada **unit asas atau unit terbitan**. Contohnya, kilometer menggunakan meter, manakala kilowatt menggunakan watt. Sebagai contoh lain, <InlineMath math="\text{km}" /> bermaksud seribu meter, jadi unit ini tetap unit panjang yang berasaskan meter.
 
@@ -277,6 +295,7 @@ Setiap imbuhan ialah kuasa sepuluh, jadi beralih daripada satu imbuhan kepada im
 <MathVisual
   title={<>Imbuhan sebagai Kuasa Sepuluh</>}
   description={<>Imbuhan S.I. yang lazim bagi meter, diletakkan mengikut indeks kuasa sepuluhnya.</>}
+  footer={<>Tolak kedua-dua indeks untuk mencari faktor penukaran antara sebarang imbuhan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -11, max: 5 }, y: { min: -1.2, max: 1.2 } },
@@ -308,3 +327,5 @@ Setiap imbuhan ialah kuasa sepuluh, jadi beralih daripada satu imbuhan kepada im
     nm: <InlineMath math="\text{n}:\ 10^{-9}" />,
   }}
 />
+
+Membaca imbuhan sebagai kedudukan pada satu garis indeks menjadikan setiap penukaran metrik sekadar penolakan mudah. Sebaik sahaja kamu tahu jurang indeksnya, mengalihkan titik perpuluhan menjadi pantas dan tepat.

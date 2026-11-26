@@ -12,13 +12,13 @@ export const metadata = {
 
 When we write a quantity value such as <InlineMath math="0.60 \text{ m}" />, <InlineMath math="2" /> parts are working together.
 
-A quantity value is <Highlight>the numerical value multiplied by the unit</Highlight>.
+Every reported measurement pairs <Highlight>a numerical value with a reference unit</Highlight> by multiplication.
 
 In <InlineMath math="0.60 \text{ m}" />, <InlineMath math="0.60" /> is the numerical value and <InlineMath math="\text{m}" /> is the reference unit. The quantity is the property of an object or event being measured, such as length, mass, time, temperature, or speed. A complete measurement result can also carry uncertainty and other relevant information.
 
 > Without a named quantity, a number has no physical meaning. Without a unit, its scale cannot be compared.
 
-Every reading in the lab below is a number times a unit. The aluminium block measures <InlineMath math="5.0\text{ cm}" />, <InlineMath math="4.0\text{ cm}" /> and <InlineMath math="2.5\text{ cm}" /> along its edges, and the scale reads <InlineMath math="135\text{ g}" />. From those four values you get its volume, <InlineMath math="50\text{ cm}^3" />, and its density, <InlineMath math="2.70\text{ g/cm}^3" />. Swap the material and watch which values change.
+Every reading in the lab below is a number times a unit. The aluminium block measures <InlineMath math="5.0\text{ cm}" />, <InlineMath math="4.0\text{ cm}" />, and <InlineMath math="2.5\text{ cm}" /> along its edges, and the scale reads <InlineMath math="135\text{ g}" />. From those four values you get its volume, <InlineMath math="50\text{ cm}^3" />, and its density, <InlineMath math="2.70\text{ g/cm}^3" />. Swap the material and watch which values change.
 
 <DensityMeasurementLab
   title={<>Density from Four Readings</>}
@@ -27,6 +27,7 @@ Every reading in the lab below is a number times a unit. The aluminium block mea
       Swap the material and watch the mass and density change while the edges and the volume stay the same.
     </>
   }
+  footer={<>Swapping the material changes mass and density while volume stays fixed.</>}
   labels={{
     chooseMaterial: "Choose a material",
     density: <>Density</>,
@@ -43,6 +44,8 @@ Every reading in the lab below is a number times a unit. The aluminium block mea
   }}
 />
 
+Switching between pine, aluminium, and brass leaves the three edge lengths and volume unchanged while the scale mass shifts sharply. Density combines those readings into a property that identifies the material itself.
+
 ## Base and Derived Quantities
 
 SI defines <InlineMath math="7" /> base quantities. Other physical quantities are derived from **combinations of those base quantities**.
@@ -57,7 +60,9 @@ SI defines <InlineMath math="7" /> base quantities. Other physical quantities ar
 | Amount of substance | <InlineMath math="n" /> | <InlineMath math="\text{mol}" /> | <InlineMath math="\mathrm{N}" /> |
 | Luminous intensity | <InlineMath math="I_v" /> | <InlineMath math="\text{cd}" /> | <InlineMath math="\mathrm{J}" /> |
 
-A derived quantity appears when base quantities are combined. For example, area comes from length multiplied by width.
+### Combining Base Quantities into Area and Speed
+
+A **derived quantity** appears when base quantities are combined. For example, area comes from length multiplied by width.
 
 <BlockMath math="\begin{aligned}
 A &= l \times w \\
@@ -78,6 +83,7 @@ Speed is built from two base quantities, <InlineMath math="v=s/t" />, so its uni
 <MathVisual
   title={<>Speed Built from Base Quantities</>}
   description={<>Distance against time at <InlineMath math="2\text{ m/s}" /> (violet) and <InlineMath math="5\text{ m/s}" /> (orange). Horizontal: seconds. Vertical: one grid step is <InlineMath math="2\text{ m}" />.</>}
+  footer={<>Steeper slope on the distance-time graph means a higher speed.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
@@ -99,7 +105,15 @@ Speed is built from two base quantities, <InlineMath math="v=s/t" />, so its uni
   }}
 />
 
-You can also measure a speed straight from its two base quantities. Below, a trolley rolls through two light gates <InlineMath math="0.60\text{ m}" /> apart, and the timer reads <InlineMath math="1.250\text{ s}" /> between the beams. So <InlineMath math="v=\frac{0.60\text{ m}}{1.250\text{ s}}=0.48\text{ m/s}" />. Move the gates apart: the distance and the time both grow, and their ratio stays the same.
+Each right triangle covers the same <InlineMath math="2\text{ m}" /> rise, yet the orange line needs only <InlineMath math="0.4\text{ s}" /> compared with <InlineMath math="1\text{ s}" /> for the violet line. Dividing distance by time turns both base readings into one derived speed.
+
+### Measuring Speed Directly with Light Gates
+
+You can also measure a speed straight from its **two base quantities**. Below, a trolley rolls through two light gates <InlineMath math="0.60\text{ m}" /> apart, and the timer reads <InlineMath math="1.250\text{ s}" /> between the beams.
+
+<BlockMath math="v = \frac{0.60\text{ m}}{1.250\text{ s}} = 0.48\text{ m/s}" />
+
+Move the gates apart: the distance and the time both grow, and their ratio stays the same.
 
 <LightGateSpeedLab
   title={<>Speed from Two Light Gates</>}
@@ -108,6 +122,7 @@ You can also measure a speed straight from its two base quantities. Below, a tro
       Move the gates apart and watch the distance and the time grow while the speed stays the same.
     </>
   }
+  footer={<>Wider gate spacing raises both distance and time so their ratio stays fixed.</>}
   labels={{
     distance: "Distance between the gates",
     speed: <>Speed</>,
@@ -116,6 +131,8 @@ You can also measure a speed straight from its two base quantities. Below, a tro
   }}
 />
 
+Even as the separation doubles, the recorded travel time doubles alongside it. A steady ratio confirms that speed depends on how distance scales with time, not on either reading alone.
+
 ## Dimensions and Formula Checks
 
 A dimension records <Highlight>which base quantities and powers form another quantity</Highlight>. Units provide a reference for a measured value, while dimensions test whether the quantities on both sides of a formula are compatible.
@@ -123,20 +140,23 @@ A dimension records <Highlight>which base quantities and powers form another qua
 <Mermaid
   title={<>How to check a quantity</>}
   description={<>Start from the measured quantity, then connect its base quantities to the SI unit and dimension.</>}
+  footer={<>Trace any derived quantity back to base quantities for its unit and dimension.</>}
   chart={`flowchart TD
     A["Length × width"] --> B["Area"]
     B --> C["Unit: m × m = m²"]
-    B --> D["Dimension: L × L = L²"]`}/>
+    B --> D["Dimension: L × L = L²"]`}
+/>
 
 For example, the area of a desk and the area of a sheet of paper can have different values, but they are the same kind of quantity. Both are area, both use the SI unit <InlineMath math="\text{m}^2" />, and both have dimension <InlineMath math="\mathrm{L}^2" />.
 
 On the other hand, length, width, height, diameter, radius, distance, and displacement can all use length units. They all have dimension <InlineMath math="\mathrm{L}" />.
 
-A derived quantity is built from base quantities. Volume multiplies three lengths, <InlineMath math="V=lwh" />, so its dimension is <InlineMath math="\mathrm{L^3}" />. The box holds six cubes of <InlineMath math="0.10\text{ m}" /> on each edge, three along, two across and one up, like the teal row of three laid on top. Rotate the box.
+A derived quantity is built from base quantities. Volume multiplies three lengths, <InlineMath math="V=lwh" />, so its dimension is <InlineMath math="\mathrm{L^3}" />. The box holds six cubes of <InlineMath math="0.10\text{ m}" /> on each edge, three along, two across, and one up, like the teal row of three laid on top. Rotate the box.
 
 <MathVisual
   title={<>A Volume from Three Lengths</>}
   description={<>A <InlineMath math="0.30\text{ m}" /> by <InlineMath math="0.20\text{ m}" /> by <InlineMath math="0.10\text{ m}" /> box (orange) and one row of <InlineMath math="0.10\text{ m}" /> cubes on top (teal).</>}
+  footer={<>Multiplying three lengths gives a cubic unit and dimension <InlineMath math="\mathrm{L}^3" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: 0, max: 2.5 }, z: { min: -0.5, max: 2.5 } },
@@ -162,6 +182,8 @@ A derived quantity is built from base quantities. Volume multiplies three length
   }}
 />
 
+Counting the two rows of three cubes gives six blocks of <InlineMath math="0.001\text{ m}^3" /> each, matching <InlineMath math="0.006\text{ m}^3" />. Three perpendicular lengths always combine into the volume dimension <InlineMath math="\mathrm{L}^3" />.
+
 ## Calculating the Area of a Sheet of Paper
 
 A sheet of paper has length <InlineMath math="0.30 \text{ m}" /> and width <InlineMath math="0.20 \text{ m}" />. Its area is:
@@ -172,11 +194,16 @@ A &= l \times w \\
 &= 0.060 \text{ m}^2
 \end{aligned}" />
 
-The scene below draws the sheet at one grid step per <InlineMath math="0.10\text{ m}" />. Count the small squares: <InlineMath math="3" /> along the length and <InlineMath math="2" /> along the width make <InlineMath math="6" /> squares. Each square is <InlineMath math="0.10\text{ m}\times0.10\text{ m}=0.010\text{ m}^2" />, so six of them give <InlineMath math="0.060\text{ m}^2" />, the same area the formula gave. That's why area is a quantity built from two lengths.
+The scene below draws the sheet at one grid step per <InlineMath math="0.10\text{ m}" />. Count the small squares: <InlineMath math="3" /> along the length and <InlineMath math="2" /> along the width make <InlineMath math="6" /> squares.
+
+<BlockMath math="0.10\text{ m} \times 0.10\text{ m} = 0.010\text{ m}^2" />
+
+Six of those squares give <InlineMath math="0.060\text{ m}^2" />, matching the formula and showing why area is built from two lengths.
 
 <MathVisual
   title={<>Area Counted in Squares</>}
   description={<>The sheet of paper drawn at one grid step per <InlineMath math="0.10\text{ m}" />. Each small square has an area of <InlineMath math="0.010\text{ m}^2" />.</>}
+  footer={<>Six squares of <InlineMath math="0.010\text{ m}^2" /> each match the area <InlineMath math="0.060\text{ m}^2" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 2.8 } },

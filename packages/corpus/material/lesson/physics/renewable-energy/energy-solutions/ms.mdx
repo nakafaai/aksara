@@ -14,9 +14,9 @@ export const metadata = {
 
 Di sesetengah kawasan, sumber setempat seperti air, cahaya matahari, angin, sisa organik atau haba geoterma boleh memenuhi sebahagian permintaan tenaga.
 
-Pelan yang lengkap menghubungkan keperluan dengan perkhidmatan tenaga akhir:
+Pelan yang lengkap menghubungkan keperluan dengan perkhidmatan tenaga akhir. Mulakan dengan permintaan, <Highlight>kenal pasti sumber setempat yang sesuai</Highlight>, dan rancang cara tenaganya ditukar. Kemudian tentukan cara mengagihkan atau menyimpan tenaga supaya perkhidmatan yang diperlukan sentiasa tersedia.
 
-Mulakan dengan permintaan, <Highlight>kenal pasti sumber setempat yang sesuai</Highlight>, dan rancang cara tenaganya akan ditukar. Kemudian tentukan cara mengagihkan atau menyimpan tenaga itu supaya tenaga itu dapat memberikan perkhidmatan yang diperlukan.
+> Kehadiran sumber boleh baharu setempat sahaja belum menjamin bekalan elektrik. Pelan tenaga yang berjaya memadankan permintaan setiap jam, menyediakan simpanan ketika output merosot dan menamakan pihak yang menyelenggara peralatan.
 
 Kos, keselamatan, penyelenggaraan dan perlindungan alam sekitar mesti disemak pada setiap peringkat. Sumber dan peralatan juga mesti sesuai dengan lokasi.
 
@@ -24,7 +24,8 @@ Mulakan daripada keperluan, kemudian semak sumbernya. Sebuah kampung dengan <Inl
 
 <MathVisual
   title={<>Daripada Keperluan kepada Perkhidmatan Tenaga</>}
-  description={<>Keperluan tenaga harian <InlineMath math="50" /> buah rumah (ungu) dan output harian mikrohidro <InlineMath math="2.5\text{ kW}" /> (hijau kebiruan). Satu petak grid ke atas ialah <InlineMath math="10" /> kWj.</>}
+  description={<>Keperluan tenaga harian <InlineMath math="50" /> buah rumah (ungu) dibandingkan dengan output harian mikrohidro <InlineMath math="2.5\text{ kW}" /> (hijau kebiruan) dalam kWj.</>}
+  footer={<>Bar bekalan 60 kWj melepasi keperluan kampung 50 kWj dengan margin 10 kWj.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
@@ -43,6 +44,8 @@ Mulakan daripada keperluan, kemudian semak sumbernya. Sebuah kampung dengan <Inl
     supply: <InlineMath math="2.5\cdot24=60\text{ kWj}" />,
   }}
 />
+
+Ruang lebihan <InlineMath math="10\text{ kWj}" /> itu menjadi penampan operasi di lapangan. Padanan harian hanya selamat apabila bekalan kekal mengatasi beban pada waktu puncak malam atau ketika aliran sungai menyusut pada musim kering.
 
 ## Contoh Mikrohidro dari Plaosan
 
@@ -69,15 +72,18 @@ Nota simbol:
 
 Rumus ini menganggarkan kuasa yang boleh digunakan daripada ketumpatan air, graviti, kadar aliran, beza ketinggian dan kecekapan. Kadar aliran dan beza ketinggian yang lebih besar menaikkan anggaran itu, tetapi reka bentuk kejuruteraan yang lengkap juga memerlukan data tapak dan keselamatan.
 
-Untuk **pengiraan hipotetikal**, ambil ketumpatan air <InlineMath math="1\,000 \text{ kg/m}^3" />, <InlineMath math="g=10 \text{ m/s}^2" />, kadar aliran <InlineMath math="0.02 \text{ m}^3/\text{s}" />, beza ketinggian <InlineMath math="10 \text{ m}" /> dan kecekapan <InlineMath math="0.7" />. Nilai ini bukan hasil pengukuran daripada projek yang dibincangkan seterusnya.
+Untuk **contoh anggaran**, ambil ketumpatan air <InlineMath math="1\,000 \text{ kg/m}^3" />, <InlineMath math="g=10 \text{ m/s}^2" />, kadar aliran <InlineMath math="0.02 \text{ m}^3/\text{s}" />, beza ketinggian <InlineMath math="10 \text{ m}" /> dan kecekapan <InlineMath math="0.7" />. Nilai ini menggambarkan rumus secara berasingan daripada tapak sebenar yang dibincangkan selepas ini.
 
 <BlockMath math="\begin{aligned} P &\approx \rho g Q h \eta \\ &= (1\,000)(10)(0.02)(10)(0.7) \text{ W} \\ &= 1\,400 \text{ W} \end{aligned}" />
 
-Putar permukaan di bawah. Setiap titik padanya ialah rumus tadi dengan satu kadar aliran ke kanan dan satu beza ketinggian ke dalam skrin, dan tingginya ialah kuasa dalam kilowatt. Titik merah keunguan ialah kes hipotetikal di atas, <InlineMath math="1\,400\text{ W}" />. Ikuti mana-mana garis oren, dan kuasa naik secara sekata dengan beza ketinggian. Ikuti garis hijau kebiruan, dan kuasa naik dengan kadar aliran. Sudut paling jauh, tempat paling banyak air jatuh dari paling tinggi, ialah tempat permukaan itu naik paling tinggi.
+Putar permukaan di bawah untuk melihat cara kuasa meningkat mengikut kadar aliran <InlineMath math="Q" /> dan beza ketinggian <InlineMath math="h" />. Titik merah keunguan menandai contoh anggaran <InlineMath math="1\,400\text{ W}" /> di atas.
+
+Ikuti mana-mana garis oren, kuasa naik sekata bersama beza ketinggian, manakala garis hijau kebiruan naik bersama kadar aliran. Sudut terjauh menggabungkan aliran terbesar dan jatuhan tertinggi, jadi permukaannya memuncak di situ.
 
 <MathVisual
   title={<>Kuasa Mikrohidro daripada Kadar Aliran dan Ketinggian</>}
-  description={<><InlineMath math="P=\rho gQh\eta" /> dengan <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" /> dan <InlineMath math="\eta=0.7" />. Ke kanan: kadar aliran dalam unit <InlineMath math="0.01\text{ m}^3\text{/s}" />. Ke dalam skrin: beza ketinggian dalam unit <InlineMath math="5\text{ m}" />. Ke atas: kuasa dalam kW.</>}
+  description={<><InlineMath math="P=\rho gQh\eta" /> dengan <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" /> dan <InlineMath math="\eta=0.7" />. Melintang: kadar aliran <InlineMath math="Q" /> hingga <InlineMath math="0.04\text{ m}^3\text{/s}" />. Kedalaman: beza ketinggian <InlineMath math="h" /> hingga <InlineMath math="20\text{ m}" />. Ke atas: kuasa dalam kW.</>}
+  footer={<>Kuasa meningkat secara linear dengan aliran dan ketinggian hingga puncak sudut.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -0.5, max: 4.5 } },
@@ -108,11 +114,15 @@ Putar permukaan di bawah. Setiap titik padanya ialah rumus tadi dengan satu kada
   }}
 />
 
-[Pengendali projek mikrohidro Kali Pedati](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) melaporkan kapasiti terpasang sebanyak <InlineMath math="7 \text{ kW}" />. Sekumpulan <InlineMath math="14" /> isi rumah mengurus sistem itu, dan pengendali yang sama melaporkan kira-kira <InlineMath math="500 \text{ W}" /> bagi setiap isi rumah. Semak sama ada angka-angka itu sepadan: <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />, iaitu <InlineMath math="7 \text{ kW}" />. Angka ini dibekalkan oleh pengendali projek. Pengukuran bebas jangka panjang tentang pengeluaran elektrik masih diperlukan untuk menilai prestasi sistem itu dari semasa ke semasa.
+[Pengendali projek mikrohidro Kali Pedati](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) melaporkan kapasiti terpasang sebanyak <InlineMath math="7 \text{ kW}" /> untuk <InlineMath math="14" /> isi rumah, atau sekitar <InlineMath math="500 \text{ W}" /> bagi setiap isi rumah. Angka-angka itu sepadan kerana <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />.
 
-Kehadiran air tidak menjamin elektrik. Semak sama ada aliran air cukup stabil, beza ketinggian cukup besar, turbin dilindungi daripada banjir, dan komuniti mampu menyelenggara sistem itu.
+Oleh sebab angka ini dibekalkan oleh pengendali projek, pengukuran bebas jangka panjang tetap diperlukan untuk menilai prestasinya. Semak sentiasa kestabilan aliran air, kecukupan beza ketinggian, perlindungan banjir dan keupayaan penyelenggaraan komuniti.
 
-## Penyelesaian Tenaga Merangkumi Seluruh Sistem
+## Reka Bentuk Sistem dan Akses Tenaga
+
+Elektrik yang boleh diharap bergantung pada **kecekapan, penyimpanan dan akses yang adil** yang saling melengkapi dalam satu sistem komuniti. Memilih penjana sahaja gagal jika bateri, pendawaian dan penyelenggaraan tidak dirancang bersama.
+
+### Penyelesaian Tenaga Merangkumi Seluruh Sistem
 
 Permintaan tenaga juga boleh dipenuhi dengan mengurangkan pembaziran. Kecekapan ialah nisbah **tenaga berguna kepada tenaga input**. Jika sesuatu alat lebih cekap, alat itu boleh memberikan pencahayaan, penyejukan, pengepaman atau perkhidmatan lain yang sama dengan tenaga input yang lebih sedikit.
 
@@ -129,11 +139,14 @@ Permintaan tenaga juga boleh dipenuhi dengan mengurangkan pembaziran. Kecekapan 
 
 Pelan yang lengkap menggabungkan peralatan yang sesuai dengan lokasi, penggunaan yang cekap, rangkaian yang selamat, penyimpanan apabila perlu, penyelenggaraan berkala dan pengurusan kesan.
 
-Pada simpananlah sesuatu rancangan berdepan dengan waktu malam. Sebuah klinik desa mempunyai bumbung suria <InlineMath math="3\text{ kWp}" /> yang mengumpul kira-kira <InlineMath math="22.9\text{ kWj}" /> sehari, lebih daripada <InlineMath math="13.6\text{ kWj}" /> yang digunakannya. Tetapi peti sejuk vaksin dan lampu malam terus hidup selepas matahari terbenam. Dengan bateri <InlineMath math="5\text{ kWj}" />, sebanyak <InlineMath math="4.3\text{ kWj}" /> daripada keperluan malam tidak dapat dibekalkan. Bateri <InlineMath math="10\text{ kWj}" /> pula bertahan hingga pagi.
+Pada simpananlah pelan suria diuji pada waktu malam. Sebuah klinik desa mempunyai bumbung suria <InlineMath math="3\text{ kWp}" /> yang mengumpul <InlineMath math="22.9\text{ kWj}" /> sehari, jauh melebihi kegunaan hariannya sebanyak <InlineMath math="13.6\text{ kWj}" />.
+
+Namun peti sejuk vaksin dan lampu malam terus berjalan selepas matahari terbenam. Dengan bateri <InlineMath math="5\text{ kWj}" />, <InlineMath math="4.3\text{ kWj}" /> keperluan malam tidak terbekal, manakala bateri <InlineMath math="10\text{ kWj}" /> bertahan hingga pagi.
 
 <SolarBatteryStorageLab
   title={<>Klinik Suria Melalui Waktu Malam</>}
   description={<>Sebuah klinik dengan bumbung suria <InlineMath math="3\text{ kWp}" /> dan bateri, sepanjang satu hari. Pilih saiz bateri dan perhatikan sama ada casnya bertahan sehingga matahari terbit semula.</>}
+  footer={<>Bateri 10 kWj menampung waktu malam yang tidak dapat dipenuhi bateri 5 kWj.</>}
   labels={{
     chooseSize: "Saiz bateri",
     demand: <>Tenaga yang digunakan sehari</>,
@@ -144,21 +157,27 @@ Pada simpananlah sesuatu rancangan berdepan dengan waktu malam. Sebuah klinik de
   }}
 />
 
-## Empat Syarat untuk Akses Tenaga
+Bandingkan jumlah harian dengan lengkung malam: menjana cukup tenaga dalam <InlineMath math="24" /> jam tidak mampu mengekalkan vaksin sejuk melainkan bateri menyimpan lebihan siang hari bagi setiap jam gelap.
+
+### Empat Syarat untuk Akses Tenaga
 
 [Matlamat Pembangunan Mampan](https://sdgs.un.org/2030agenda) ialah agenda global yang dipersetujui oleh negara anggota Pertubuhan Bangsa-Bangsa Bersatu untuk meningkatkan kesejahteraan manusia dan melindungi alam sekitar. Agenda <InlineMath math="2030" /> mengandungi <InlineMath math="17" /> matlamat yang saling berkait.
 
-Memenuhi permintaan tenaga berkait secara langsung dengan SDG <InlineMath math="7" />, yang memberi tumpuan kepada **tenaga mampu milik dan bersih**.
+Memenuhi permintaan tenaga berkait secara langsung dengan SDG <InlineMath math="7" />, yang memberi tumpuan kepada **tenaga mampu milik dan bersih**. SDG <InlineMath math="7" /> bertujuan memastikan [akses kepada tenaga yang mampu milik, boleh diharap, mampan dan moden](https://sdgs.un.org/goals/goal7) untuk semua.
 
-SDG <InlineMath math="7" /> bertujuan memastikan [akses kepada tenaga yang mampu milik, boleh diharap, mampan dan moden](https://sdgs.un.org/goals/goal7) untuk semua.
+Semak empat syarat ini dengan soalan langsung:
 
-Empat syarat ini boleh disemak dengan soalan. Bolehkah isi rumah dan perkhidmatan awam membayar tenaga itu sambil memenuhi keperluan asas yang lain? Adakah bekalan tenaga tersedia apabila diperlukan? Bolehkah sistem tenaga itu berterusan sambil melindungi manusia, ekosistem dan generasi akan datang? Adakah perkhidmatan tenaga itu selamat dan cukup berupaya untuk pencahayaan, komunikasi, kerja produktif dan penjagaan kesihatan?
+- Bolehkah isi rumah dan perkhidmatan awam membayar tenaga sambil memenuhi keperluan asas lain?
+- Adakah bekalan tenaga kekal tersedia apabila diperlukan?
+- Bolehkah sistem terus berjalan sambil melindungi manusia, ekosistem dan generasi akan datang?
+- Adakah perkhidmatan tenaga selamat dan cukup berupaya untuk pencahayaan, komunikasi, kerja dan kesihatan?
 
-Beri skor kepada setiap pilihan berdasarkan empat soalan itu, dan bentuknya akan menunjukkan perbezaannya. Dalam skor contoh daripada <InlineMath math="4" /> ini, grid mini suria dengan bateri meliputi kawasan carta yang lebih luas berbanding penjana diesel, terutamanya pada paksi mampan. Besarkan paparan pada setiap sudut.
+Beri skor kepada setiap pilihan berdasarkan empat soalan itu, dan bentuknya menunjukkan perbezaannya. Dalam skor contoh daripada <InlineMath math="4" /> ini, grid mini suria dengan bateri meliputi kawasan lebih luas berbanding penjana diesel, terutamanya pada paksi mampan.
 
 <MathVisual
   title={<>Empat Soalan untuk Akses Tenaga</>}
   description={<>Skor contoh daripada <InlineMath math="4" /> bagi grid mini suria dengan bateri (hijau kebiruan) dan penjana diesel (merah jambu).</>}
+  footer={<>Grid mini suria mencapai skor lebih luas, terutama pada paksi mampan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -5, max: 5 } },
@@ -186,6 +205,8 @@ Beri skor kepada setiap pilihan berdasarkan empat soalan itu, dan bentuknya akan
   }}
 />
 
+Perhatikan bahawa kedua-dua sistem seri pada kebolehharapan sebaik bateri menyokong panel suria, manakala diesel menyusut tajam pada kemampanan kerana pembakaran bahan api menambah pelepasan dan kos berterusan.
+
 ## Pelan Tenaga Setempat yang Boleh Diuji
 
 Bagi sebuah kampung kecil yang memerlukan elektrik untuk lampu pada waktu malam, pengecasan telefon, sebuah pam air kecil dan aktiviti belajar, mulakan dengan **keperluan dan keadaan setempat** itu. Ikut urutan di bawah.
@@ -200,11 +221,14 @@ Bagi sebuah kampung kecil yang memerlukan elektrik untuk lampu pada waktu malam,
 
 Pelan yang boleh diuji menyatakan permintaan mana yang mesti dipenuhi, sumber mana yang tersedia, alat mana yang menukar tenaga, kesan apa yang mesti dihadkan, dan siapa yang memastikan sistem itu terus berfungsi.
 
-Cuba soalan tentang sumber dalam rancangan itu dengan sebatang anak sungai. Loji mikrohidro mengalirkan sebahagian air sungai melalui paip turun ke turbin, dan kuasa bergunanya ialah <InlineMath math="P\approx\rho gQh\eta" />. Dengan <InlineMath math="Q=20\text{ L/s}" />, <InlineMath math="h=10\text{ m}" /> dan <InlineMath math="\eta=0.7" />, loji itu memberikan <InlineMath math="1\,400\text{ W}" />, cukup untuk <InlineMath math="5" /> daripada <InlineMath math="16" /> buah rumah di kampung itu jika setiap rumah memerlukan <InlineMath math="250\text{ W}" /> pada waktu malam. Cari kadar aliran dan beza ketinggian yang menerangi semua rumah.
+Cuba soalan sumber dalam pelan itu pada sebatang anak sungai dengan <InlineMath math="P\approx\rho gQh\eta" />. Dengan <InlineMath math="Q=20\text{ L/s}" />, <InlineMath math="h=10\text{ m}" /> dan <InlineMath math="\eta=0.7" />, loji itu menghasilkan <InlineMath math="1\,400\text{ W}" />.
+
+Pada <InlineMath math="250\text{ W}" /> setiap rumah pada waktu malam, kuasa itu menerangi <InlineMath math="5" /> daripada <InlineMath math="16" /> buah rumah. Ubah kadar aliran dan beza ketinggian di bawah untuk menerangi semua rumah.
 
 <MicrohydroLab
   title={<>Berapa Buah Rumah yang Boleh Diterangi Sebatang Sungai</>}
   description={<>Loji mikrohidro di lereng bukit pada waktu senja. Ubah kadar aliran dan beza ketinggian, dan kira rumah yang boleh diterangi oleh kuasanya pada <InlineMath math="250\text{ W}" /> setiap rumah.</>}
+  footer={<>Menggandakan aliran atau ketinggian menggandakan kuasa dan rumah menyala.</>}
   labels={{
     flowControl: "Kadar aliran air",
     headControl: "Beza ketinggian",
@@ -213,3 +237,5 @@ Cuba soalan tentang sumber dalam rancangan itu dengan sebatang anak sungai. Loji
     viewLabel: "Loji mikrohidro di lereng bukit dengan paip ke rumah jana kuasa dan sebaris rumah",
   }}
 />
+
+Untuk menerangi kesemua <InlineMath math="16" /> buah rumah diperlukan sekurang-kurangnya <InlineMath math="4\,000\text{ W}" />, yang boleh dicapai melalui cerun lebih curam atau aliran lebih deras, menunjukkan bagaimana bentuk muka bumi membentuk setiap pelan tenaga setempat.
