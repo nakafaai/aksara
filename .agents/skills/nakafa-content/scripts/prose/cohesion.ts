@@ -45,6 +45,17 @@ const STIFF_FORMAL_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
   ms: /\b(?:tersebut|merupakan|yakni|adapun|oleh\s+yang\s+demikian|oleh\s+kerana\s+itu|sehubungan\s+dengan\s+itu|berdasarkan\s+perkara\s+tersebut|dapat\s+dirumuskan\s+bahawa|perlu\s+diingat\s+bahawa)\b/iu,
 };
 
+/**
+ * Copy-paste generic visual takeaway filler that fails to tell the learner what
+ * to actually observe in a visual.
+ */
+const GENERIC_TAKEAWAY_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
+  de: /\b(?:Die\s+Darstellung\s+oben\s+bestätigt\s+den\s+zentralen\s+Zusammenhang|Das\s+Diagramm\s+oben\s+bestätigt\s+den\s+Zusammenhang)\b/iu,
+  en: /\b(?:The\s+visual\s+above\s+confirms\s+the\s+core\s+relationship|The\s+diagram\s+above\s+confirms\s+the\s+main\s+relationship)\b/iu,
+  id: /\b(?:Visual\s+di\s+atas\s+menegaskan\s+hubungan\s+utama|Visual\s+di\s+atas\s+menunjukkan\s+hubungan\s+utama)\b/iu,
+  ms: /\b(?:Visual\s+di\s+atas\s+mengesahkan\s+hubungan\s+utama|Rajah\s+di\s+atas\s+menunjukkan\s+hubungan\s+utama)\b/iu,
+};
+
 /** Counts visible authored words in one text fragment. */
 function countWords(text: string): number {
   return text.match(WORD_PATTERN)?.length ?? 0;
@@ -68,12 +79,13 @@ function visualAttributeText(attribute: MdxAttribute): string {
   return text;
 }
 
-/** Checks word density, unit-scaling workarounds, and stiff phrasing in one paragraph. */
+/** Checks word density, unit-scaling workarounds, stiff phrasing, and generic takeaways in one paragraph. */
 function paragraphFindings(
   node: MdxNode,
   line: number,
   scalePattern: RegExp,
-  formalPattern: RegExp
+  formalPattern: RegExp,
+  genericTakeawayPattern: RegExp
 ): HeadingFinding[] {
   const findings: HeadingFinding[] = [];
   const unquoted = maskBalancedQuotations(visibleProse(node));
@@ -109,6 +121,15 @@ function paragraphFindings(
       line,
       message: `Replace stiff textbook wording '${formalMatch[0]}' with direct teacher voice.`,
       rule: "stiff-formal-prose",
+    });
+  }
+  const takeawayMatch = genericTakeawayPattern.exec(unquoted);
+  if (takeawayMatch !== null) {
+    findings.push({
+      blocking: true,
+      line,
+      message: `Replace generic visual takeaway filler '${takeawayMatch[0]}' with a specific observation about what this visual shows.`,
+      rule: "generic-visual-takeaway",
     });
   }
   return findings;
@@ -156,12 +177,19 @@ function findProseCohesionFindings(
   const findings: HeadingFinding[] = [];
   const scalePattern = UNIT_SCALING_PATTERNS[locale];
   const formalPattern = STIFF_FORMAL_PATTERNS[locale];
+  const genericTakeawayPattern = GENERIC_TAKEAWAY_PATTERNS[locale];
 
   visitMdxNodes(tree, (node) => {
     const line = node.position?.start?.line ?? 1;
     if (node.type === "paragraph") {
       findings.push(
-        ...paragraphFindings(node, line, scalePattern, formalPattern)
+        ...paragraphFindings(
+          node,
+          line,
+          scalePattern,
+          formalPattern,
+          genericTakeawayPattern
+        )
       );
       return;
     }

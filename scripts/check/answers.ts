@@ -6,6 +6,7 @@ import { decodeItemSource } from "@nakafa/aksara-corpus/question-bank/reader";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Array as Arr, Effect, FileSystem, Option, Schema } from "effect";
 import { findAnswerStructureFindings } from "#nakafa-content/heading/answer";
+import { findFinalAnswerQualityFindings } from "#nakafa-content/heading/final";
 import { findBloatedInlineMathFindings } from "#nakafa-content/math/bloated";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { findBlockquoteFindings } from "#nakafa-content/prose/blockquote";
@@ -104,6 +105,7 @@ const inspectAnswer = Effect.fn("AksaraPolicy.inspectAnswer")(function* (
   );
   const findings = [
     ...findAnswerStructureFindings(locale, source, tree, isParts),
+    ...findFinalAnswerQualityFindings(locale, tree, isParts),
     ...findBlockquoteFindings(tree),
     ...findBloatedInlineMathFindings(tree),
     ...findCohesionFindings(locale, tree),

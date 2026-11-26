@@ -45,7 +45,7 @@ const CHART = Arr.join(
     "",
     "# Answer",
     "",
-    'The speed is <InlineMath math="2" />.',
+    'The speed is **<InlineMath math="2" />**.',
   ],
   "\n"
 );
