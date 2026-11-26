@@ -9,9 +9,9 @@ export const metadata = {
 
 ## Memakai Ulang Kode melalui Fungsi
 
-Fungsi <Highlight>memberi nama pada operasi yang dapat dipakai ulang</Highlight>. Parameter menyatakan input yang diterima, function body berisi kode yang dijalankan, dan statement `return` mengirimkan hasil kepada pemanggil.
+Fungsi <Highlight>memberi nama pada operasi yang dapat dipakai ulang</Highlight>. Parameter menyatakan **input yang diterima**, function body berisi kode yang dijalankan, dan statement `return` mengirimkan hasil kepada pemanggil.
 
-## Struktur dan Sintaks Fungsi
+### Struktur dan Sintaks Fungsi
 
 Setiap fungsi Python mengikuti **struktur dasar** yang sama:
 
@@ -39,9 +39,9 @@ Komponen fungsi terdiri dari:
 5. Blok kode yang diindentasi
 6. Statement `return` bersifat opsional dan **mengembalikan nilai** kepada pemanggil
 
-## Cara Kerja Pemanggilan Fungsi
+### Cara Kerja Pemanggilan Fungsi
 
-Saat fungsi dipanggil, Python memastikan nama atau ekspresi tersebut merujuk ke objek callable. Python kemudian **memasangkan setiap argumen dengan parameter** dan menjalankan function body di local scope baru.
+Saat fungsi dipanggil, Python memastikan nama atau ekspresi itu merujuk ke objek callable. Python kemudian **memasangkan setiap argumen dengan parameter** dan menjalankan function body di local scope baru.
 
 <CodeBlock
   data={[
@@ -167,7 +167,10 @@ Misalkan `def power(x, n=2): return x ** n`. Kalau kamu memanggil `power(x)` tan
     "linear": "power(x, 1)",
     "square": "power(x)",
   }}
+  footer="Tanpa argumen kedua, power(x) memakai n=2, sedangkan power(x, 1) mengubahnya."
 />
+
+Parameter bawaan membuat panggilan umum menjadi ringkas, sekaligus tetap memberi ruang bagi pemanggil untuk menimpa nilai bawaan saat perilaku lain dibutuhkan.
 
 ## Return Value
 
@@ -232,7 +235,10 @@ Sebuah fungsi bisa mengembalikan beberapa nilai sekaligus sebagai tuple. `def mi
     "smallest": <code>min</code>,
     "largest": <code>max</code>,
   }}
+  footer="Satu pernyataan return mengemas nilai minimum 1 dan maksimum 7 dalam satu tuple."
 />
+
+Dengan mengembalikan beberapa nilai sebagai tuple, pemanggil dapat langsung membongkar `low, high = min_max(...)` tanpa memanggil fungsi dua kali.
 
 ## Scope dalam Fungsi
 
@@ -247,7 +253,10 @@ Setiap nama dalam Python memiliki **scope yang menentukan bagian program** yang 
         E --> G[Global Scope]
         G --> B[Built In Scope]
   `}
+  footer="Python mencari nama berurutan dari Local, Enclosing, Global, hingga Built-in."
 />
+
+Pencarian berhenti pada tingkat pertama yang cocok, sehingga variabel lokal dengan nama sama dapat menutupi variabel global tanpa mengubah nilai globalnya.
 
 <CodeBlock
   data={[
@@ -380,7 +389,7 @@ Konvensi penulisan docstring yang baik:
 
 ## Closure pada Fungsi Bersarang
 
-Python mengizinkan fungsi didefinisikan di dalam fungsi lain. Jika inner function dikembalikan, fungsi tersebut tetap dapat mengakses **nama dari enclosing scope**. Inner function beserta environment yang dipertahankan ini disebut `closure`.
+Python mengizinkan fungsi didefinisikan di dalam fungsi lain. Jika inner function dikembalikan, fungsi itu tetap dapat mengakses **nama dari enclosing scope**. Inner function beserta environment yang dipertahankan ini disebut `closure`.
 
 <CodeBlock
   data={[
@@ -455,7 +464,10 @@ Setiap panggilan `create_multiplier(factor)` membuat closure yang mengingat `fac
     "two-call": <code>multiply_two(10)</code>,
     "five-call": <code>multiply_five(4)</code>,
   }}
+  footer="Setiap closure menyimpan faktornya sendiri dan membentuk garis berbeda."
 />
+
+Walaupun kedua fungsi berasal dari satu definisi `create_multiplier`, masing-masing membawa nilai `factor` yang terpisah sehingga keduanya tidak saling menimpa.
 
 ## Error Handling dalam Fungsi
 
@@ -495,3 +507,5 @@ for nilai in ("abc", [1, 2]):
     }
   ]}
 />
+
+> Rancang setiap fungsi agar mengerjakan satu tugas yang jelas, menerima input lewat parameter, dan mengembalikan hasil lewat `return` alih-alih mengubah variabel global.

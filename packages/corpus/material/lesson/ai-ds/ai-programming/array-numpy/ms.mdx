@@ -13,6 +13,8 @@ NumPy membantu Python memproses data berangka dengan cekap. Senarai (list) Pytho
 
 [Objek teras `ndarray`](https://numpy.org/doc/stable/) ialah tatasusunan n-dimensi bersaiz tetap, dan semua unsurnya berkongsi satu jenis data. Reka bentuk ini membolehkan operasi tervektor, iaitu satu ungkapan menerangkan kerja ke atas seluruh tatasusunan.
 
+> Bayangkan tatasusunan NumPy seperti dulang telur dengan petak yang sama saiz. Kerana setiap petak menyimpan jenis data yang sama dalam satu blok padat, komputer boleh mengira ribuan nombor serentak tanpa menyemak jenis setiap unsur satu per satu.
+
 Tatasusunan NumPy memberi kelebihan berikut untuk pengaturcaraan saintifik:
 
 1. **Gelung berangka yang cekap** kerana dilaksanakan dalam kod natif yang dikompil
@@ -156,6 +158,7 @@ Senarai bersarang menjadi tatasusunan dua dimensi. `np.array([[1, 2, 3], [4, 5, 
 
 <MathVisual
   title={<>Tatasusunan dengan <code>shape</code> <code>(2, 3)</code></>}
+  footer={<>Paksi 0 turun mengikut baris, manakala paksi 1 bergerak ke kanan mengikut lajur.</>}
   description={<>Setiap titik ungu ialah satu unsur bersama nilainya. Tembereng hijau kebiruan menunjuk sepanjang <code>axis 0</code> dari baris ke baris, dan tembereng jingga menunjuk sepanjang <code>axis 1</code> dari lajur ke lajur.</>}
   scene={{
     space: "plane",
@@ -193,6 +196,8 @@ Senarai bersarang menjadi tatasusunan dua dimensi. `np.array([[1, 2, 3], [4, 5, 
     "axis-zero": <code>axis 0</code>,
   }}
 />
+
+Tuple `(2, 3)` terus menyatakan saiz setiap paksi mengikut turutan: dua langkah sepanjang `axis 0` dan tiga langkah sepanjang `axis 1`, menghasilkan enam unsur dalam grid.
 
 ## Fungsi Pembina Tatasusunan
 
@@ -310,7 +315,7 @@ print(a)
   ]}
 />
 
-### Fungsi Matematik
+### Peraturan Koordinat Tatasusunan
 
 Fungsi `np.fromfunction` menghantar **tatasusunan koordinat indeks** kepada fungsi kamu. Di sini, `f(i, j)` menerima tatasusunan indeks baris dalam `i` dan tatasusunan indeks lajur dalam `j`. Penambahan `i + j` berlaku unsur demi unsur: contohnya, kedudukan `[1, 2]` menerima `3`.
 
@@ -377,6 +382,7 @@ Bandingkan dua baris titik di bawah. `np.linspace(0, 10, 5)` membahagi selang it
 
 <MathVisual
   title={<><code>np.linspace</code> dan <code>np.arange</code> pada garis nombor</>}
+  footer={<>Fungsi linspace menyertakan had akhir, manakala arange berhenti sebelumnya.</>}
   description={<>Baris atas ialah <code>np.linspace(0, 10, 5)</code>, manakala baris bawah ialah <code>np.arange(0, 10, 2.5)</code>. Nilai <InlineMath math="10" /> tiada pada baris bawah.</>}
   scene={{
     space: "plane",
@@ -421,6 +427,8 @@ Bandingkan dua baris titik di bawah. `np.linspace(0, 10, 5)` membahagi selang it
     "ar-row": "np.arange(0, 10, 2.5)",
   }}
 />
+
+Pilih `np.linspace` apabila bilangan titik dan kedua-dua hujung julat mesti tepat, dan gunakan `np.arange` apabila lebar langkah tetap menjadi syarat utama.
 
 ## Tatasusunan daripada Jujukan
 
@@ -574,6 +582,7 @@ Operasi aritmetik pada tatasusunan berlaku pada setiap unsur sekali gus, tanpa g
 
 <ScatterDiagram
   title={<>Tiga operasi unsur demi unsur pada <code>[1, 2, 3]</code></>}
+  footer={<>Setiap operasi bertindak serentak pada setiap indeks tanpa gelung manual.</>}
   description={<>Paksi mendatar menunjukkan indeks <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="2" />. Setiap siri ialah satu hasil: tatasusunan asal, <code>arr + 1</code>, <code>arr * 2</code>, dan <code>arr ** 2</code>. Pada satu indeks, setiap operasi hanya menggunakan unsur pada indeks itu.</>}
   xAxisLabel="Indeks"
   yAxisLabel="Nilai"
@@ -616,3 +625,28 @@ Operasi aritmetik pada tatasusunan berlaku pada setiap unsur sekali gus, tanpa g
     },
   ]}
 />
+
+Setiap operasi hanya menggunakan nombor pada indeks yang sama, jadi jelas kelihatan bagaimana kuasa dua cepat meninggalkan penambahan dan pendaraban.
+
+Dalam eksperimen sains data, setiap penderia menghasilkan satu tatasusunan bacaan berulang yang purata, julat, dan sisihannya daripada nilai rujukan boleh diringkaskan serentak:
+
+<ReadingSpreadLab
+  title={<>Sebaran Tatasusunan Bacaan Tiga Penderia</>}
+  footer={<>Satu tatasusunan penderia meringkaskan purata, julat, dan sisihan daripada rujukan.</>}
+  description={<>Bandingkan tiga tatasusunan bacaan penderia terhadap nilai rujukan <InlineMath math="10" /> untuk melihat ketepatan dan ketekalan data.</>}
+  actual={10}
+  students={[
+    { name: "Penderia A", readings: [9.9, 10.0, 10.1, 10.0] },
+    { name: "Penderia B", readings: [9.4, 9.5, 9.5, 9.6] },
+    { name: "Penderia C", readings: [9.2, 10.1, 10.7, 9.8] },
+  ]}
+  labels={{
+    mean: <>Purata tatasusunan</>,
+    offset: <>Sisihan daripada rujukan</>,
+    range: <>Julat data</>,
+    student: "Pilih tatasusunan penderia",
+    viewLabel: "Skala sebaran titik bacaan tiga tatasusunan penderia terhadap nilai rujukan",
+  }}
+/>
+
+Tukar pilihan penderia di atas untuk membandingkan hasilnya: tatasusunan Penderia A rapat dan tepat pada rujukan, Penderia B rapat tetapi berganjak secara sistematik, manakala Penderia C tersebar luas dengan julat yang besar.

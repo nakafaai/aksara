@@ -13,6 +13,8 @@ An escape sequence starts with a backslash (`\`) followed by one or more charact
 
 The backslash changes how Python parses the following characters. It is part of the source notation, while the resulting string contains the character represented by that notation.
 
+> Every escape sequence uses multiple symbols in source code, yet Python stores it as a single character inside the resulting string.
+
 ## Problems in String Writing
 
 **Quotes and backslashes** need care inside a string, because Python reads them before the string exists. An inner quote that matches the delimiter closes the literal too early, and a backslash in an ordinary string starts escape notation. Escaping the character keeps it in the text, and writing two backslashes keeps one backslash in the value.
@@ -94,6 +96,7 @@ A backslash before a quote only tells Python that the quote belongs to the text.
 
 <BarChart
   title={<><code>len()</code> of strings with quotes inside</>}
+  footer={<>Escaping a quote never adds the backslash itself to the final string length.</>}
   description={<>Each bar is the <code>len()</code> of the literal written below it. The escaped version and the version with the other quote type have the same length, <InlineMath math="4" /> and <InlineMath math="8" />.</>}
   yAxisLabel="String length"
   data={[
@@ -104,6 +107,8 @@ A backslash before a quote only tells Python that the quote belongs to the text.
   ]}
   chartConfig={{ value: { label: "String length", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Both ways of writing the string produce the exact same length, because the backslash only guides Python while reading your source code and disappears once the string is created.
 
 ## Escape Sequence Reference
 
@@ -149,6 +154,7 @@ Every escape sequence produces exactly one character, and `ord()` reads that cha
 
 <BarChart
   title={<><code>ord()</code> of the character from each escape sequence</>}
+  footer={<>Control characters like tab and newline carry much smaller Unicode codes than symbols.</>}
   description={<>Each bar is the Unicode code of the character that the escape sequence below it produces, from <code>\t</code> with code <InlineMath math="9" /> to <code>\\</code> with code <InlineMath math="92" />.</>}
   yAxisLabel="Unicode code"
   data={[
@@ -160,6 +166,8 @@ Every escape sequence produces exactly one character, and `ord()` reads that cha
   ]}
   chartConfig={{ value: { label: "Unicode code", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
+
+Notice that `ord()` accepts every escape sequence result as one single character, proving that `\t` and `\n` are real Unicode characters rather than two separate letters.
 
 ## Combining Escape Sequences
 
@@ -191,10 +199,13 @@ In this example, `\t` creates neat columns, `\n` separates lines, and `\\` displ
 
 The key distinction is between source notation and the resulting string. `\n`, for example, occupies two characters in the source but represents one newline character in the string.
 
-This picture prints `"Name\tAge\nBob\t25"` in a terminal with a tab stop every eight columns. The amber segments show `\t` jumping to the next multiple of eight, so `Age` and `25` start in the same column even though `Name` and `Bob` have different lengths. The orange segment shows `\n` taking the cursor to the start of the next line. However wide they look, each escape sequence is still one character, so the `len()` of this string is <InlineMath math="15" />.
+This picture prints `"Name\tAge\nBob\t25"` in a terminal with a tab stop every eight columns. The amber segments show `\t` jumping to the next multiple of eight, so `Age` and `25` line up even though `Name` and `Bob` have different lengths.
+
+The orange segment shows `\n` returning the cursor to the start of the next line. No matter how wide a tab looks on screen, each escape sequence still counts as one character, giving `len()` equal to <InlineMath math="15" />.
 
 <MathVisual
   title={<>Where the cursor goes for <code>\t</code> and <code>\n</code></>}
+  footer={<>Tabs jump to the next eight-column stop while newlines reset to column zero.</>}
   description={<>Violet characters are plain text, amber segments are tab jumps, and orange segments are newlines, for a terminal with a tab stop every eight columns.</>}
   scene={{
     space: "plane",
@@ -253,3 +264,5 @@ This picture prints `"Name\tAge\nBob\t25"` in a terminal with a tab stop every e
     "tab-b": "\\t",
   }}
 />
+
+Following this cursor path shows why tabs align columns automatically without counting spaces, while the string length in memory still counts only the actual characters stored.

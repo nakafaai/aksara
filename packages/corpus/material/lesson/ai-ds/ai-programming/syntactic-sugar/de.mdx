@@ -13,6 +13,8 @@ Syntaktischer Zucker ist eine <Highlight>knappe Schreibweise</Highlight> für Ve
 
 Python bietet mehrere kompakte Formen für häufige Muster. Sie machen ein Programm nicht automatisch schneller und sind nicht in jedem Detail austauschbar. Wähle die Form, in der deine Absicht am leichtesten zu verstehen ist.
 
+> Der beste Code ist nicht die kürzeste Zeile, sondern die Zeile, die eine Kollegin auch nach sechs Monaten in Sekunden versteht.
+
 ## Listenkomprehension
 
 Eine Listenkomprehension erzeugt eine **neue Liste aus einem Iterable**. Sie kann Werte transformieren, filtern oder beides in einem Ausdruck verbinden.
@@ -100,6 +102,7 @@ Führ die List Comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` mit Bl
 
 <MathVisual
   title={<>Was <code>[x**2 for x in range(-3, 4) if x % 2 == 0]</code> auswählt</>}
+  footer={<>Die if-Bedingung filtert gerade Eingaben, bevor ihre Quadrate in der Liste landen.</>}
   description={<>Die graue Kurve ist <InlineMath math="y=x^2" />. Magentafarbene Punkte sind die Elemente, die die <code>if</code>-Bedingung erfüllen, türkise werden übersprungen.</>}
   scene={{
     space: "plane",
@@ -137,6 +140,8 @@ Führ die List Comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` mit Bl
     "value-g": "3",
   }}
 />
+
+Weil der Filter vor dem Ergebnisausdruck greift, scheiden ungerade Eingaben zuerst aus und nur die drei geraden Zahlen liefern Werte für die endgültige Liste.
 
 ## Lambdafunktionen
 
@@ -204,6 +209,7 @@ print(sorted_by_grade)  # Ausgabe: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]
 
 <MathVisual
   title={<><code>lambda x: x * 2</code> für <code>x</code> von <InlineMath math="-3" /> bis <InlineMath math="3" /></>}
+  footer={<>Jeder Aufruf des Lambda bildet x genau auf 2x entlang derselben Geraden ab.</>}
   description={<>Die violette Gerade ist <InlineMath math="y=2x" />. Die magentafarbenen Punkte sind sieben Aufrufe <code>f(x)</code>, von <InlineMath math="f(-3)=-6" /> bis <InlineMath math="f(3)=6" />.</>}
   scene={{
     space: "plane",
@@ -227,6 +233,8 @@ print(sorted_by_grade)  # Ausgabe: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]
     "call-6": <code>f(3) = 6</code>,
   }}
 />
+
+Eine mit `lambda` erzeugte Funktion verhält sich genauso wie eine `def`-Funktion, nur verdichtet auf einen einzigen Zuordnungsausdruck.
 
 ## Andere syntaktische Zuckerfunktionen
 
@@ -317,6 +325,7 @@ Eine erweiterte Zuweisung rechnet mit dem alten Wert und speichert das Ergebnis 
 
 <BarChart
   title={<>Der Wert von <code>x</code> nach jeder erweiterten Zuweisung</>}
+  footer={<>Jeder Zuweisungsoperator nutzt den vorigen Wert und aktualisiert x direkt.</>}
   description={<>Jeder Balken ist <code>x</code> nach dem darunter stehenden Operator, mit den Operanden <InlineMath math="5" />, <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="5" /> und <InlineMath math="2" /> in dieser Reihenfolge.</>}
   yAxisLabel="Wert"
   data={[
@@ -329,6 +338,8 @@ Eine erweiterte Zuweisung rechnet mit dem alten Wert und speichert das Ergebnis 
   ]}
   chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+Jede erweiterte Zuweisung baut unmittelbar auf dem vorigen Wert auf, sodass bereits das Vertauschen zweier Zeilen einen anderen Endwert für `x` ergibt.
 
 ## Syntaxvergleich
 

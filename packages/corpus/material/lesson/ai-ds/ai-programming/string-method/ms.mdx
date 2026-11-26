@@ -176,7 +176,10 @@ Setiap kaedah transformasi memulangkan rentetan baharu, dan bilangan huruf besar
     { name: "capitalize", value: 1 },
   ]}
   chartConfig={{ value: { label: "Huruf besar", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Setiap kaedah memulangkan rentetan baharu dengan bilangan huruf besar berbeza."
 />
+
+Ketinggian palang merentang dari `0` bagi `lower()` hingga `10` bagi `upper()`, manakala palang pertama kekal `1` kerana rentetan asal `'hello World'` tidak pernah berubah.
 
 ## Kaedah Carian dan Pengesahan
 
@@ -343,7 +346,10 @@ Cari `"an"` di dalam `"banana"` dengan gambar ini. Dua segmen hijau kebiruan men
     "find": 'find("an") = 1',
     "rfind": 'rfind("an") = 3',
   }}
+  footer="find berhenti pada indeks 1 dari kiri, manakala rfind menemui indeks 3 dari kanan."
 />
+
+Kedua-dua penunjuk berhenti pada indeks mula `'an'` dari arah bertentangan kerana `find` mengimbas dari kiri ke kanan sedangkan `rfind` memilih padanan paling kanan.
 
 ## Kaedah Carian Awalan dan Akhiran
 
@@ -408,8 +414,6 @@ Awalan `https://` mengelaskan teks itu mengikut skema URL. Awalan itu tidak memb
 
 Kedua-dua kaedah ini mengubah cara sesuatu rentetan dibahagikan kepada beberapa bahagian. `replace` **menukar satu subrentetan dengan subrentetan lain**, dan `split` memecahkan rentetan menjadi senarai pada sesuatu pemisah.
 
-### Menggantikan Subrentetan
-
 Kaedah `replace()` digunakan untuk menggantikan **semua kemunculan sesuatu subrentetan** dengan rentetan baharu.
 
 <CodeBlock
@@ -452,8 +456,6 @@ print(f"Telefon bersih: {clean_phone}")`
 />
 
 Kaedah `replace()` peka huruf besar-kecil dan menggantikan semua kemunculan, kecuali jika dihadkan oleh parameter ketiga.
-
-### Memisahkan Rentetan
 
 Kaedah `split()` memecahkan rentetan menjadi senarai di sekeliling pembatas yang ditetapkan. Tanpa pembatas, kaedah ini menganggap **ruang putih berturut-turut sebagai satu pemisah** dan mengabaikan medan kosong di awal atau di akhir.
 
@@ -517,7 +519,10 @@ Tanpa argumen, `split()` memotong rentetan pada setiap ruang dan memulangkan sen
     { name: "fox", value: 3 },
   ]}
   chartConfig={{ value: { label: "Panjang perkataan", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+  footer="split() memecahkan ayat kepada empat perkataan dan membuang tiga ruang pemisah."
 />
+
+Keempat-empat palang berjumlah `16` aksara tanpa mengira tiga ruang itu, menunjukkan bahawa `split()` tanpa argumen menggugurkan pemisah ruang putih daripada senarai hasilnya.
 
 ## Merantaikan Kaedah Rentetan
 
@@ -587,11 +592,11 @@ for email in emails:
 
 Rantaian kaedah sesuai untuk pembersihan linear yang pendek. Rantaian itu tidak semestinya lebih jelas daripada langkah-langkah yang diberi nama.
 
-## Aplikasi Praktikal Kaedah Rentetan
+## Memproses Nombor Telefon dan Baris Log
 
 Setiap contoh kecil mengasingkan kelakuan satu kaedah rentetan di bawah **andaian yang dinyatakan**. Pengesah dan penghurai untuk sistem sebenar memerlukan peraturan yang ditulis khusus untuk data sebenarnya.
 
-Fungsi telefon itu hanya memformat dua corak contoh. Nombor telefon Indonesia tidak terhad kepada panjang tersebut. Nama fail dianggap sebagai nama ringkas tanpa direktori. Penormalan e-mel di atas menunjukkan pemprosesan rentetan, bukan pengesahan alamat e-mel yang lengkap.
+Fungsi telefon itu hanya memformat dua corak contoh. Nombor telefon Indonesia tidak terhad kepada panjang itu. Nama fail dianggap sebagai nama ringkas tanpa direktori. Penormalan e-mel di atas menunjukkan pemprosesan rentetan, bukan pengesahan alamat e-mel yang lengkap.
 
 <CodeBlock
   data={[
@@ -735,3 +740,5 @@ for title in titles:
 Keempat-empat contoh ini menggabungkan pengelasan, carian, pemisahan dan penggantian di bawah format kecil yang dinyatakan. Penghurai nombor telefon, penghurai nama fail, penghurai log atau penjana slug untuk sistem sebenar juga memerlukan kontrak domain, polisi ralat dan ujian untuk input yang taksa.
 
 Padankan setiap kaedah dengan kelakuannya yang tepat. Operasi rentetan yang mudah boleh meliputi satu langkah pengesahan, manakala semakan penuh mungkin memerlukan lebih banyak peraturan.
+
+> Oleh sebab rentetan tidak pernah berubah di tempatnya, setiap kaedah transformasi memulangkan objek baharu yang selamat dirantaikan selagi outputnya masih rentetan.

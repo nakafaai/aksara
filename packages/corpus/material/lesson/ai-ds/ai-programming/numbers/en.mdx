@@ -42,6 +42,7 @@ In scientific notation, the number after `e` shifts the decimal point. `3.2e5` m
 
 <BarChart
   title={<><InlineMath math="\log_{10}" /> of four scientific notation literals</>}
+  footer={<>The exponent after e directly marks the order of magnitude of each number.</>}
   description={<>Each bar is <InlineMath math="\log_{10}" /> of the literal written below it. Negative bars belong to numbers below <InlineMath math="1" />, such as <code>9.99e-05</code>, which is almost exactly <InlineMath math="-4" />.</>}
   yAxisLabel="Power of ten"
   data={[
@@ -52,6 +53,8 @@ In scientific notation, the number after `e` shifts the decimal point. `3.2e5` m
   ]}
   chartConfig={{ value: { label: "Power of ten", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+The sign of the exponent after `e` signals scale right away: a positive exponent means a large value above one, while a negative exponent means a small fraction near zero.
 
 ## Types of Number Data
 
@@ -112,6 +115,7 @@ The three number types live in different places. An `int` sits only on whole-num
 
 <MathVisual
   title={<>Where <code>int</code>, <code>float</code>, and <code>complex</code> live</>}
+  footer={<>Values of int and float lie on the number line, while complex rises into the plane.</>}
   description={<>The violet points are <code>int</code> values from <InlineMath math="-3" /> to <InlineMath math="3" /> on the gray line. The teal points are the <code>float</code> values <code>2.5</code> and <code>-0.75</code>. The magenta point <code>1+2j</code> sits in the plane, with real part <InlineMath math="1" /> and imaginary part <InlineMath math="2" />.</>}
   scene={{
     space: "plane",
@@ -142,6 +146,8 @@ The three number types live in different places. An `int` sits only on whole-num
     "complex": <code>1+2j</code>,
   }}
 />
+
+Once a number carries a nonzero `j` component, it steps off the one-dimensional number line and requires a pair of coordinates in the complex plane.
 
 ## The type Function for Checking Data Types
 
@@ -237,6 +243,7 @@ Compare the violet staircase with the gray line <InlineMath math="y=x" />. For p
 
 <MathVisual
   title={<><code>int()</code> truncates toward zero</>}
+  footer={<>Every fractional value is cut toward zero instead of rounded to the nearest integer.</>}
   description={<>The violet staircase is <code>int(x)</code>, the gray line is the identity line. Magenta points mark <code>int(2.9)</code> and <code>int(-2.9)</code>.</>}
   scene={{
     space: "plane",
@@ -269,6 +276,8 @@ Compare the violet staircase with the gray line <InlineMath math="y=x" />. For p
   }}
 />
 
+Because truncation always moves toward zero, negative values like `-2.9` step up to `-2` while positive values like `2.9` step down to `2`. Use `round()` whenever you want rounding instead.
+
 ## Number Data Types Summary Table
 
 The table collects the **three numeric types** with examples and a short description, so you can look up a type in one place.
@@ -278,3 +287,5 @@ The table collects the **three numeric types** with examples and a short descrip
 | **Integer** | `int` | <InlineMath math="-2, -1, 0, 1, 2" /> and <InlineMath math="+1, +2, +3" /> | Whole numbers, can use underscore for clarity |
 | **Floating-Point** | `float` | <InlineMath math="-1.2, 3.85, +7.01" /> and <InlineMath math="-.21, .01, 2." /> | Decimal numbers, supports scientific notation with <InlineMath math="e" /> or <InlineMath math="E" /> |
 | **Complex** | `complex` | <InlineMath math="2 + 3j" /> and <InlineMath math="4.5 - 2.1j" /> | Complex numbers with <InlineMath math="j" /> as imaginary unit |
+
+> Match the numeric type to the calculation. Reach for `int` for exact counts, `float` for decimal measurements, and `complex` when equations carry an imaginary component.

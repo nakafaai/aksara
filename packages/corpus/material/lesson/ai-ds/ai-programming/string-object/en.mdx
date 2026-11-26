@@ -61,7 +61,10 @@ A string is an ordered sequence of Unicode characters, and every character has a
     { name: "n", value: 110 },
   ]}
   chartConfig={{ value: { label: "Unicode code", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+  footer="Each character in 'Python' maps to one integer Unicode code point."
 />
+
+The bar for uppercase `P` sits lower at `80` than the five lowercase letters spanning `104` to `121`, showing how Unicode code order separates letter cases.
 
 ## Empty Strings and the Str Function
 
@@ -119,7 +122,10 @@ The `str()` function returns a **readable string representation** of a value. Us
     { name: "''", value: 0 },
   ]}
   chartConfig={{ value: { label: "Text length", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+  footer="str() includes every digit, minus sign, and decimal point in the string length."
 />
+
+`True` spans four characters while `''` has no bar at all, confirming that minus signs and decimal points count as characters once converted to text.
 
 ## Multiline Strings
 
@@ -202,8 +208,6 @@ Triple double quotes behave the same way. Choose the delimiter that makes the te
 
 Python can combine string literals while reading the source or combine string values while the program runs. **Adjacent literals join** with **no operator** between them, while values held in variables need an operator.
 
-### Adjacent Literal Concatenation
-
 Python **joins adjacent string literals** while it reads the source code. This shortcut works only for text written directly as literals.
 
 <CodeBlock
@@ -222,8 +226,6 @@ Python **joins adjacent string literals** while it reads the source code. This s
   ]}
 />
 
-### Plus Operator
-
 The `+` operator concatenates **two string values** at runtime.
 
 <CodeBlock
@@ -237,8 +239,6 @@ The `+` operator concatenates **two string values** at runtime.
     }
   ]}
 />
-
-### Multiplication Operator
 
 The `*` operator **repeats a string** an integer number of times.
 
@@ -293,7 +293,7 @@ Use `+` to concatenate string values and `*` with an integer to repeat one. Simp
   ]}
 />
 
-### Common Errors
+### Writing Variables Without an Operator
 
 The following forms fail while Python parses the code because there is **no operator between a variable** and the next expression.
 
@@ -315,7 +315,9 @@ SyntaxError ...`
   ]}
 />
 
-See how three strings join into one in this picture. Each piece keeps the order of its characters and is attached right after the previous piece, so `W` starts at index <InlineMath math="6" />, just after the <InlineMath math="5" /> characters of `Hello` and one space. The length of the result is the sum of the piece lengths, <InlineMath math="5+1+5=11" />. The three original strings stay the same, because the `+` operator creates a new string.
+See how three strings join into one in this picture. Each piece keeps the order of its characters and is attached right after the previous piece, so `W` starts at index <InlineMath math="6" />, just after the <InlineMath math="5" /> characters of `Hello` and one space. The length of the result is the sum of the piece lengths, which is <InlineMath math="11" />. The three original strings stay the same, because the `+` operator creates a new string.
+
+<BlockMath math="5 + 1 + 5 = 11" />
 
 <MathVisual
   title={<>Joining <code>'Hello' + ' ' + 'World'</code></>}
@@ -371,4 +373,9 @@ See how three strings join into one in this picture. Each piece keeps the order 
     "hello-length": "len('Hello') = 5",
     "world-length": "len('World') = 5",
   }}
+  footer="Concatenation with '+' lines up all 11 characters into a brand-new string."
 />
+
+All three segments line up from index `0` to `10` with the space at index `5`, confirming that `+` builds a fresh string whose length equals the sum of its parts.
+
+> A string is an immutable sequence of Unicode code points, so source line wrapping, triple-quoted newlines, and concatenation with `+` all follow distinct literal and operator rules.

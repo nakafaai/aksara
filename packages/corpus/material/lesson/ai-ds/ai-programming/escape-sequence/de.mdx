@@ -13,6 +13,8 @@ Eine Escape-Sequenz beginnt mit einem Backslash (`\`), auf den ein oder mehrere 
 
 Der Backslash verändert also, wie Python die folgenden Zeichen liest. Er gehört zur Schreibweise im Quellcode. Der fertige String enthält dagegen das Zeichen, für das diese Schreibweise steht.
 
+> Jede Escape-Sequenz steht im Quellcode aus mehreren Zeichen, zählt im fertigen String aber immer als genau ein einzelnes Zeichen.
+
 ## Probleme beim Schreiben von Strings
 
 **Anführungszeichen und Backslashes** brauchen innerhalb eines Strings besondere Aufmerksamkeit, weil Python sie liest, bevor der String entsteht. Ein inneres Anführungszeichen, das dem Begrenzungszeichen entspricht, beendet das Literal zu früh, und ein Backslash leitet in einem gewöhnlichen String eine Escape-Schreibweise ein. Ein Escape hält das störende Zeichen im Text, und zwei Backslashes ergeben einen einzelnen Backslash im fertigen Wert.
@@ -94,6 +96,7 @@ Ein Backslash vor einem Anführungszeichen sagt Python nur, dass das Zeichen zum
 
 <BarChart
   title={<><code>len()</code> von Strings mit Anführungszeichen darin</>}
+  footer={<>Der Backslash zum Maskieren zählt nie zur endgültigen Länge des Strings.</>}
   description={<>Jeder Balken ist die <code>len()</code> des darunter stehenden Literals. Die Variante mit Escape und die Variante mit der anderen Art von Anführungszeichen sind gleich lang, <InlineMath math="4" /> und <InlineMath math="8" />.</>}
   yAxisLabel="Stringlänge"
   data={[
@@ -104,6 +107,8 @@ Ein Backslash vor einem Anführungszeichen sagt Python nur, dass das Zeichen zum
   ]}
   chartConfig={{ value: { label: "Stringlänge", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Beide Schreibweisen liefern exakt dieselbe Stringlänge, weil der Backslash Python nur beim Einlesen des Quellcodes steuert und im fertigen String verschwindet.
 
 ## Übersicht der Escapesequenzen
 
@@ -149,6 +154,7 @@ Jede Escape-Sequenz erzeugt genau ein Zeichen, und `ord()` liest dessen Unicode-
 
 <BarChart
   title={<><code>ord()</code> des Zeichens jeder Escape-Sequenz</>}
+  footer={<>Steuerzeichen wie Tab und Zeilenumbruch haben deutlich kleinere Unicode-Codes.</>}
   description={<>Jeder Balken ist der Unicode-Code des Zeichens, das die Escape-Sequenz darunter erzeugt, von <code>\t</code> mit dem Code <InlineMath math="9" /> bis <code>\\</code> mit dem Code <InlineMath math="92" />.</>}
   yAxisLabel="Unicode-Code"
   data={[
@@ -160,6 +166,8 @@ Jede Escape-Sequenz erzeugt genau ein Zeichen, und `ord()` liest dessen Unicode-
   ]}
   chartConfig={{ value: { label: "Unicode-Code", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
+
+Beachte, dass `ord()` jedes Ergebnis einer Escape-Sequenz als genau ein Zeichen annimmt. Das beweist, dass `\t` und `\n` echte Unicode-Zeichen sind und nicht zwei getrennte Buchstaben.
 
 ## Mehrere Escapes in einer Ausgabe verwenden
 
@@ -191,10 +199,13 @@ In diesem Beispiel erstellt `\t` übersichtliche Spalten, `\n` trennt Zeilen und
 
 Entscheidend ist der Unterschied zwischen der Schreibweise im Quellcode und dem fertigen String. `\n` besteht im Quellcode beispielsweise aus zwei Zeichen, steht im String aber für genau einen Zeilenumbruch.
 
-Dieses Bild gibt `"Name\tAge\nBob\t25"` in einem Terminal mit einem Tabstopp alle acht Spalten aus. Die gelben Strecken zeigen, wie `\t` zum nächsten Vielfachen von acht springt, deshalb beginnen `Age` und `25` in derselben Spalte, obwohl `Name` und `Bob` verschieden lang sind. Die orange Strecke zeigt, wie `\n` den Cursor an den Anfang der nächsten Zeile bringt. Egal wie breit es aussieht, jede Escape-Sequenz bleibt ein Zeichen, also ist `len()` dieses Strings <InlineMath math="15" />.
+Dieses Bild gibt `"Name\tAge\nBob\t25"` in einem Terminal mit einem Tabstopp alle acht Spalten aus. Die gelben Strecken zeigen, wie `\t` zum nächsten Vielfachen von acht springt, weshalb `Age` und `25` trotz verschiedener Wortlängen genau untereinander stehen.
+
+Die orange Strecke zeigt, wie `\n` den Cursor an den Anfang der nächsten Zeile setzt. Egal wie breit ein Tab wirkt, jede Escape-Sequenz bleibt ein Zeichen, sodass `len()` dieses Strings <InlineMath math="15" /> ergibt.
 
 <MathVisual
   title={<>Wohin der Cursor bei <code>\t</code> und <code>\n</code> springt</>}
+  footer={<>Tabs springen zum nächsten Achter-Stopp, Zeilenumbrüche starten bei Spalte null.</>}
   description={<>Violette Zeichen sind normaler Text, gelbe Strecken Tabsprünge und orange Strecken Zeilenumbrüche, für ein Terminal mit einem Tabstopp alle acht Spalten.</>}
   scene={{
     space: "plane",
@@ -253,3 +264,5 @@ Dieses Bild gibt `"Name\tAge\nBob\t25"` in einem Terminal mit einem Tabstopp all
     "tab-b": "\\t",
   }}
 />
+
+An diesem Cursorpfad erkennst du, warum Tabs Spalten sauber ausrichten, ohne Leerzeichen zählen zu müssen, während die gespeicherte Länge weiter nur echte Zeichen zählt.

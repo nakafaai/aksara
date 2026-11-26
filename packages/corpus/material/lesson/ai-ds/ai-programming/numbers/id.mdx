@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Tipe Numerik dari Cara Penulisan Bilangan
 
-Python memiliki tiga tipe numerik bawaan: `int` untuk bilangan bulat, `float` untuk aproksimasi bilangan real, dan `complex` untuk bilangan kompleks. <Highlight>Tipe tersebut menentukan cara Python merepresentasikan nilai</Highlight> dan menjalankan operasi aritmetika.
+Python memiliki tiga tipe numerik bawaan: `int` untuk bilangan bulat, `float` untuk aproksimasi bilangan real, dan `complex` untuk bilangan kompleks. <Highlight>Tipe ini menentukan cara Python merepresentasikan nilai</Highlight> dan menjalankan operasi aritmetika.
 
 Python shell mengevaluasi literal numerik dan menampilkan nilai literal. Bandingkan literal berikut.
 
@@ -42,6 +42,7 @@ Dalam notasi ilmiah, angka setelah `e` menggeser titik desimal. `3.2e5` berarti 
 
 <BarChart
   title={<><InlineMath math="\log_{10}" /> dari empat literal notasi ilmiah</>}
+  footer={<>Nilai eksponen setelah e langsung menandai orde besaran setiap bilangan.</>}
   description={<>Setiap batang adalah <InlineMath math="\log_{10}" /> dari literal yang tertulis di bawahnya. Batang negatif milik bilangan di bawah <InlineMath math="1" />, misalnya <code>9.99e-05</code> yang hampir tepat <InlineMath math="-4" />.</>}
   yAxisLabel="Pangkat sepuluh"
   data={[
@@ -52,6 +53,8 @@ Dalam notasi ilmiah, angka setelah `e` menggeser titik desimal. `3.2e5` berarti 
   ]}
   chartConfig={{ value: { label: "Pangkat sepuluh", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Tanda eksponen setelah `e` segera menunjukkan skalanya: eksponen positif berarti bilangan besar di atas satu, sedangkan eksponen negatif berarti pecahan kecil mendekati nol.
 
 ## Jenis Tipe Data Angka
 
@@ -112,6 +115,7 @@ Ketiga tipe angka menempati tempat yang berbeda. `int` hanya mengisi titik bilan
 
 <MathVisual
   title={<>Tempat <code>int</code>, <code>float</code>, dan <code>complex</code></>}
+  footer={<>Nilai int dan float berada di garis bilangan, sedangkan complex naik ke bidang.</>}
   description={<>Titik ungu adalah nilai <code>int</code> dari <InlineMath math="-3" /> sampai <InlineMath math="3" /> pada garis abu-abu. Titik hijau toska adalah nilai <code>float</code> <code>2.5</code> dan <code>-0.75</code>. Titik magenta <code>1+2j</code> berada di bidang, dengan bagian real <InlineMath math="1" /> dan bagian imajiner <InlineMath math="2" />.</>}
   scene={{
     space: "plane",
@@ -142,6 +146,8 @@ Ketiga tipe angka menempati tempat yang berbeda. `int` hanya mengisi titik bilan
     "complex": <code>1+2j</code>,
   }}
 />
+
+Begitu suatu bilangan punya komponen `j` bukan nol, posisinya lepas dari garis bilangan satu dimensi dan membutuhkan sepasang koordinat pada bidang kompleks.
 
 ## Memeriksa Tipe dengan Fungsi Type
 
@@ -237,6 +243,7 @@ Bandingkan tangga ungu dengan garis abu-abu <InlineMath math="y=x" />. Untuk bil
 
 <MathVisual
   title={<><code>int()</code> memotong ke arah nol</>}
+  footer={<>Semua nilai pecahan dipotong menuju nol, bukan dibulatkan ke angka terdekat.</>}
   description={<>Tangga ungu adalah <code>int(x)</code>, garis abu-abu adalah garis identitas. Titik magenta menandai <code>int(2.9)</code> dan <code>int(-2.9)</code>.</>}
   scene={{
     space: "plane",
@@ -269,6 +276,8 @@ Bandingkan tangga ungu dengan garis abu-abu <InlineMath math="y=x" />. Untuk bil
   }}
 />
 
+Karena pemotongan selalu bergerak ke nol, angka negatif seperti `-2.9` naik ke `-2` sementara angka positif seperti `2.9` turun ke `2`. Gunakan `round()` jika kamu membutuhkan pembulatan.
+
 ## Tabel Ringkasan Tipe Data Angka
 
 Tabel berikut mengumpulkan **ketiga tipe angka** beserta contoh dan penjelasan singkatnya, sehingga kamu bisa mencarinya di satu tempat.
@@ -278,3 +287,5 @@ Tabel berikut mengumpulkan **ketiga tipe angka** beserta contoh dan penjelasan s
 | **Integer** | `int` | <InlineMath math="-2, -1, 0, 1, 2" /> dan <InlineMath math="+1, +2, +3" /> | Bilangan bulat, bisa gunakan underscore untuk kejelasan |
 | **Float** | `float` | <InlineMath math="-1.2, 3.85, +7.01" /> dan <InlineMath math="-.21, .01, 2." /> | Bilangan desimal, mendukung notasi ilmiah dengan <InlineMath math="e" /> atau <InlineMath math="E" /> |
 | **Complex** | `complex` | <InlineMath math="2 + 3j" /> dan <InlineMath math="4.5 - 2.1j" /> | Bilangan kompleks dengan <InlineMath math="j" /> sebagai unit imajiner |
+
+> Pilih tipe bilangan sesuai kebutuhan perhitungan. Pakai `int` untuk hitungan eksak, `float` untuk pengukuran desimal, dan `complex` saat persamaan memuat bagian imajiner.

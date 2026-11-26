@@ -108,11 +108,16 @@ with open('file.txt', 'w', encoding='utf-8') as f:
 
 Argumen `file` memakai kembali pemformatan `print()` sambil mengarahkan teks hasilnya ke objek file yang dipilih.
 
-`f.write(text)` mengembalikan banyak karakter yang ditulis, dan baris baru `\n` dihitung sebagai satu karakter. Menulis `'Hello\n'`, `'Python\n'`, lalu `'!'` menghasilkan file berisi <InlineMath math="6+7+1=14" /> karakter.
+`f.write(text)` mengembalikan banyak karakter yang ditulis, dan baris baru `\n` dihitung sebagai satu karakter. Menulis `'Hello\n'`, `'Python\n'`, lalu `'!'` memberi total empat belas karakter.
+
+<BlockMath math="6 + 7 + 1 = 14" />
+
+Grafik berikut membandingkan nilai kembalian `f.write()` untuk ketiga string itu.
 
 <BarChart
   title={<>Nilai kembali <code>f.write()</code> untuk tiga string</>}
   description={<>Setiap batang adalah angka yang dikembalikan <code>f.write()</code> untuk string di bawahnya. Setiap <code>\n</code> menambah satu karakter.</>}
+  footer={<>Setiap karakter biasa dan setiap <code>\n</code> menambah satu pada nilai kembali.</>}
   yAxisLabel="Karakter ditulis"
   data={[
     { name: "'Hello\\n'", value: 6 },
@@ -122,6 +127,8 @@ Argumen `file` memakai kembali pemformatan `print()` sambil mengarahkan teks has
   chartConfig={{ value: { label: "Karakter ditulis", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
+Perhatikan bahwa string satu karakter tanpa baris baru hanya menambah satu, sedangkan string dengan `\n` selalu menyertakan pemisah baris itu dalam hitungan.
+
 ## Mode Pembukaan File
 
 Python menyediakan berbagai **mode untuk membuka file** sesuai dengan kebutuhan operasi yang akan dilakukan.
@@ -129,6 +136,7 @@ Python menyediakan berbagai **mode untuk membuka file** sesuai dengan kebutuhan 
 <Mermaid
   title={<>Pilih Mode Sebelum Membuka File</>}
   description={<>Bandingkan mode baca, tulis, tambah, dan biner agar operasi file tidak merusak isi yang sudah ada.</>}
+  footer={<>Tambahkan sufiks b untuk bekerja langsung dengan byte mentah tanpa encoding.</>}
   chart={`
     flowchart LR
         A[Mode File] --> B[Text Mode]
@@ -145,6 +153,8 @@ Python menyediakan berbagai **mode untuk membuka file** sesuai dengan kebutuhan 
         C --> C4[rb+ - baca tulis binary yang ada]
   `}
 />
+
+Setiap mode di cabang teks punya pasangan biner yang sama perilakunya, bedanya cabang biner membaca dan menulis byte mentah.
 
 <CodeBlock
   data={[
@@ -177,6 +187,7 @@ Mulai dari file berisi `'abc\n'`, yaitu empat karakter. Membuka dengan `'r'` lal
 <BarChart
   title={<>Ukuran file setelah setiap mode</>}
   description={<>Setiap batang adalah banyak karakter di file setelah dibuka dengan mode di bawahnya dan, untuk <code>'w'</code> dan <code>'a'</code>, setelah menulis <code>'xy'</code>. Setiap mode dimulai lagi dari file empat karakter.</>}
+  footer={<>Mode w menghapus isi lama, sedangkan mode a menyambung teks baru di ujung.</>}
   yAxisLabel="Karakter di file"
   data={[
     { name: "awal", value: 4 },
@@ -186,6 +197,8 @@ Mulai dari file berisi `'abc\n'`, yaitu empat karakter. Membuka dengan `'r'` lal
   ]}
   chartConfig={{ value: { label: "Karakter di file", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Bandingkan batang `'w'` dan `'a'` agar kamu selalu waspada sebelum menulis. Memilih `'w'` saat berniat menambah catatan akan menghapus seluruh isi lama seketika.
 
 ## Method untuk Membaca File
 
@@ -221,7 +234,7 @@ with open('file.txt', 'r', encoding='utf-8') as f:
 
 ### Posisi File dan Pembacaan
 
-File yang dibuka dengan mode `r` berawal pada posisi stream pertamanya. Pembacaan memajukan posisi tersebut. Dalam text mode, `tell()` dapat menghasilkan **penanda posisi khusus**. Simpan penanda itu dan berikan kembali kepada Python saat kamu memerlukan posisi yang sama.
+File yang dibuka dengan mode `r` berawal pada posisi stream pertamanya, lalu setiap pembacaan memajukan posisi itu. Dalam text mode, `tell()` dapat menghasilkan **penanda posisi khusus**. Simpan penanda itu dan berikan kembali kepada Python saat kamu memerlukan posisi yang sama.
 
 <CodeBlock
   data={[
@@ -246,11 +259,12 @@ with open('sample.txt', 'r', encoding='utf-8') as f:
 
 Dalam text mode, `read()` dan `readline()` mengembalikan string serta menghasilkan `''` ketika tidak ada teks tersisa. Dalam binary mode, keduanya mengembalikan `bytes` dan memakai `b''` pada akhir file. Iterasi berhenti otomatis ketika mencapai akhir.
 
-File yang dibuka punya penunjuk posisi, dan setiap pembacaan menggesernya maju. Untuk isi `"Hi!\nPython\n"`, penunjuk mulai di awal setelah `open()`. `read(3)` mengambil `Hi!` dan berhenti di posisi `3`, `readline()` pertama mengambil sisa baris itu sampai `\n`, dan `readline()` kedua mengambil `Python\n` sampai akhir file. Pembacaan berikutnya mengembalikan string kosong, karena penunjuk sudah di ujung.
+File yang dibuka punya penunjuk posisi yang terus bergeser maju. Pada `"Hi!\nPython\n"`, penunjuk mulai di awal setelah `open()`. Panggilan `read(3)` mengambil `Hi!`, `readline()` pertama mengambil `\n`, lalu `readline()` kedua mengambil `Python\n` sampai ujung file.
 
 <MathVisual
   title={<>Penunjuk posisi file saat membaca</>}
   description={<>Setiap karakter file adalah satu titik, dan ↵ adalah baris baru. Ruas menunjukkan posisi penunjuk setelah setiap panggilan.</>}
+  footer={<>Setiap panggilan baca menggeser penunjuk maju sampai ujung file tercapai.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.4, max: 0.6 } },
@@ -309,6 +323,8 @@ File yang dibuka punya penunjuk posisi, dan setiap pembacaan menggesernya maju. 
   }}
 />
 
+Begitu penunjuk tiba di akhir file, panggilan baca berikutnya mengembalikan string kosong hingga kamu memindahkannya kembali dengan `seek(0)`.
+
 ## Penanganan File yang Aman
 
 Statement `with` <Highlight>menutup file secara otomatis ketika blok selesai</Highlight>, termasuk saat operasi di dalam blok gagal.
@@ -340,3 +356,5 @@ with open('input.txt', 'r', encoding='utf-8') as input_file, open('output.txt', 
 />
 
 Statement `with` menutup file setelah blok selesai, termasuk ketika program mengalami error. Dengan begitu, file tidak dibiarkan terbuka dan resource sistem dapat dilepas.
+
+> Selalu buka file di dalam blok `with` agar Python menutupnya secara otomatis walaupun terjadi error di tengah proses.

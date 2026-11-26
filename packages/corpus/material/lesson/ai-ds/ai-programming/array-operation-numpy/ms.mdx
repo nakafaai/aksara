@@ -206,7 +206,10 @@ Ambil `a` berbentuk `(3, 1)` yang mengandungi <InlineMath math="0" />, <InlineMa
     "sum-2-2": <InlineMath math="22" />,
     "sum-2-3": <InlineMath math="23" />,
   }}
+  footer="Paksi bersaiz 1 diregangkan secara automatik membentuk grid hasil (3, 4)."
 />
+
+Broadcasting menjajarkan lajur `(3, 1)` dan baris `(1, 4)` menjadi matriks `(3, 4)` tanpa menyalin data input berulang kali dalam memori.
 
 ## Operasi Aritmetik Tatasusunan
 
@@ -242,7 +245,7 @@ print(f"2**a = {2**a}")
   ]}
 />
 
-### Operasi antara Tatasusunan
+Operator aritmetik dan pendaraban matriks juga berfungsi terus antara dua tatasusunan.
 
 <CodeBlock
   data={[
@@ -273,8 +276,6 @@ print(f"a @ b = {a @ b}")
 />
 
 Operator `*` mendarab **entri pada kedudukan yang sama**. Untuk dua tatasusunan satu dimensi di atas, `@` memulangkan hasil darab skalar (dot product) kedua-duanya: `0 + 3 + 4 + 3 + 0` sama dengan `10`. Untuk dua matriks, `@` mengikut peraturan baris darab lajur. Jangan anggap `np.dot()` setara dengan `@` untuk semua bentuk tatasusunan. Peraturan kedua-duanya berbeza dalam dimensi yang lebih tinggi.
-
-### Perbandingan dan Logik
 
 Operasi perbandingan NumPy menghasilkan **tatasusunan boolean**. Gunakan tatasusunan itu untuk menapis data atau menggabungkan beberapa syarat.
 
@@ -380,7 +381,9 @@ print(f"argmax(axis=1): {np.argmax(data, axis=1)}")
   ]}
 />
 
-Penurunan meringkaskan seluruh tatasusunan dalam satu nombor. Untuk `data = np.array([1, 3, 5, 7, 9])`, `np.sum` memberi <InlineMath math="25" />, `np.mean` memberi <InlineMath math="5" />, dan `np.std` memberi <InlineMath math="\sqrt{(16+4+0+4+16)/5}=\sqrt8\approx2.83" />, kerana secara lalai ia membahagi dengan <InlineMath math="n" />.
+Penurunan meringkaskan seluruh tatasusunan dalam satu nombor. Untuk `data = np.array([1, 3, 5, 7, 9])`, `np.sum` memberi <InlineMath math="25" />, `np.mean` memberi <InlineMath math="5" />, dan `np.std` membahagi jumlah kuasa dua sisihan dengan <InlineMath math="n" /> secara lalai.
+
+<BlockMath math="\text{std} = \sqrt{\frac{16 + 4 + 0 + 4 + 16}{5}} = \sqrt{8} \approx 2.83" />
 
 <BarChart
   title={<>Lima penurunan pada <code>[1, 3, 5, 7, 9]</code></>}
@@ -394,7 +397,10 @@ Penurunan meringkaskan seluruh tatasusunan dalam satu nombor. Untuk `data = np.a
     { name: "max", value: 9 },
   ]}
   chartConfig={{ value: { label: "Hasil", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Lima fungsi penurunan meringkaskan satu tatasusunan kepada satu nilai per metrik."
 />
+
+Setiap penurunan merangkum sifat berbeza daripada data yang sama: `sum` dan `mean` menunjukkan jumlah serta pusat, manakala `std`, `min`, dan `max` mengukur serakan.
 
 ## Manipulasi Bentuk Tatasusunan
 
@@ -534,7 +540,11 @@ print("Adakah transpos ialah pandangan?", np.shares_memory(a, b))`
 
 Pemiawaian skor-z memusatkan setiap ciri pada min <InlineMath math="0" /> dan menskalakannya kepada sisihan piawai <InlineMath math="1" />. Pemiawaian ini hanya ditakrifkan untuk ciri yang mempunyai **sisihan piawai bukan sifar**, dan ia meletakkan ciri-ciri pada skala berangka yang setanding.
 
-Formula skor-z ialah <InlineMath math="Z = \frac{X - \mu}{\sigma}" />, dengan:
+Formula pemiawaian skor-z ditulis seperti di bawah.
+
+<BlockMath math="Z = \frac{X - \mu}{\sigma}" />
+
+Dengan setiap simbol bermaksud:
 - <InlineMath math="X" /> ialah matriks ciri bersaiz <InlineMath math="n \times k" />
 - <InlineMath math="n" /> ialah bilangan cerapan (baris)
 - <InlineMath math="k" /> ialah bilangan ciri (lajur)
@@ -625,4 +635,9 @@ Ambil `data = np.array([1, 3, 5, 7, 9])`. Minnya ialah `5` dan sisihan piawainya
     "data-row": "data",
     "score-row": "(data - mean) / std",
   }}
+  footer="Menolak min memusatkan data pada 0, dan membahagi dengan std menyamakan skala."
 />
+
+Selepas pemiawaian, kedudukan setiap titik diukur dalam unit sisihan piawai dari min, sekali gus meletakkan ciri berlainan unit pada skala yang setanding.
+
+> Semak `shape` dan `axis` sebelum menggabungkan atau menurunkan tatasusunan, kerana paksi yang tersilap boleh menghasilkan purata yang salah tanpa menimbulkan ralat.

@@ -7,13 +7,13 @@ export const metadata = {
   subject: "Pemrograman AI",
 };
 
-## Indexing dan Slicing
+## Konsep Dasar Seleksi Array
 
 Indexing memilih nilai pada posisi tertentu, sedangkan slicing memilih rentang pada satu atau beberapa `axis`. Slicing pada `list` Python membuat `list` baru. Basic slicing pada `ndarray` menghasilkan **view yang berbagi data** dengan array asal. Membaca elemen melalui advanced indexing dengan array integer atau Boolean menghasilkan copy.
 
 [`View`](https://numpy.org/doc/stable/user/basics.indexing.html) tidak menyalin data. Karena `view` dan array asal memakai data yang sama, perubahan melalui `view` juga mengubah elemen terkait pada array asal.
 
-## Operasi Array Satu Dimensi
+### Operasi Array Satu Dimensi
 
 Array satu dimensi memakai sintaks indeks Python. Basic slicing seperti `a[1:4]` menghasilkan `view`, sehingga perubahan melalui `view` juga **mengubah elemen yang sama** di `a`.
 
@@ -76,9 +76,9 @@ print("Salinan:", copy_array)  # Output: Salinan: [777   3   4]`
   ]}
 />
 
-## Operasi Array Multidimensi
+### Operasi Array Multidimensi
 
-Pada seleksi multidimensi, setiap entri yang dipisahkan koma menangani satu dimensi array, dimulai dari dimensi pertama. Indeks berupa bilangan bulat **menghapus dimensi itu** dari array hasil, sedangkan potongan seperti `:` mempertahankan dimensi tersebut. Contohnya, pada array dua dimensi `a`, `a[1, :]` menghasilkan array satu dimensi dari baris kedua, sedangkan `a[1:2, :]` tetap menghasilkan array dua dimensi berisi satu baris.
+Pada seleksi multidimensi, setiap entri yang dipisahkan koma menangani satu dimensi array, dimulai dari dimensi pertama. Indeks berupa bilangan bulat **menghapus dimensi itu** dari array hasil, sedangkan potongan seperti `:` mempertahankan dimensi itu. Contohnya, pada array dua dimensi `a`, `a[1, :]` menghasilkan array satu dimensi dari baris kedua, sedangkan `a[1:2, :]` tetap menghasilkan array dua dimensi berisi satu baris.
 
 <CodeBlock
   data={[
@@ -243,7 +243,10 @@ Gambar ini menata `a = np.arange(20).reshape(4, 5)` sebagai empat baris dan lima
     "cell-19": "19",
     "box": "a[1:3, 2:5]",
   }}
+  footer="Slice baris 1:3 dan kolom 2:5 mengambil blok (2, 3) sebagai view dari array asal."
 />
+
+Karena `a[1:3, 2:5]` adalah basic slicing, kotak hasil berbentuk `(2, 3)` ini masih berupa `view` sehingga mengubah elemen di dalamnya langsung mengubah elemen yang sama pada `a`.
 
 ## Advanced Indexing
 
@@ -312,7 +315,7 @@ print("a[complex_mask]:", a[complex_mask])  # Output: a[complex_mask]: [2. 3.]`
   ]}
 />
 
-Advanced indexing dan basic slicing dapat dipakai dalam seleksi yang sama. Jika sebuah seleksi memuat advanced indexing, seleksi tersebut tetap menghasilkan copy:
+Advanced indexing dan basic slicing dapat dipakai dalam seleksi yang sama. Jika sebuah seleksi memuat advanced indexing, seleksi itu tetap menghasilkan copy:
 
 <CodeBlock
   data={[
@@ -535,7 +538,10 @@ Untuk `a = np.array([5, 12, 8, 15, 20, 3])`, perbandingan `a > 10` menghasilkan 
     "value-4": <InlineMath math="20" />,
     "value-5": <InlineMath math="3" />,
   }}
+  footer="Hanya elemen di atas garis ambang 10 yang bernilai True dan masuk ke array hasil."
 />
+
+Penyaringan dengan mask boolean seperti `a[a > 10]` selalu mengembalikan `copy` satu dimensi berisi elemen yang lolos syarat tanpa mengubah urutan kemunculannya.
 
 ## Indexing dengan Array Indeks
 
@@ -667,7 +673,10 @@ Fancy indexing memakai list indeks, dan urutan list itu menjadi urutan hasil. `a
     "result-1": <InlineMath math="5" />,
     "result-2": <InlineMath math="8" />,
   }}
+  footer="Array indeks [4, 0, 2] menyalin dan menata ulang elemen sesuai urutan indeks."
 />
+
+Dengan array indeks, kamu bisa mengambil elemen secara acak, membalik susunannya, atau mengulang posisi yang sama tanpa menyentuh array sumber `a`.
 
 ## Memilih dan Menyusun Ulang Data dalam Array
 
@@ -742,3 +751,5 @@ print("Baris pertama setelah ditata ulang:", reorganized_data[0, :])  # Output: 
     }
   ]}
 />
+
+> Panggil `.copy()` setiap kali kamu hendak mengubah hasil basic slicing tanpa memengaruhi array sumbernya, karena basic slicing selalu mengembalikan `view`.

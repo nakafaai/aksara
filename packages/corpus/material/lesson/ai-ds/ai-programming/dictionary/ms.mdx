@@ -11,8 +11,6 @@ export const metadata = {
 
 Kamus (dictionary) ialah pemetaan yang boleh diubah (mutable) daripada **kunci unik kepada nilai**. Kamu mencari setiap item melalui kunci yang bermakna, contohnya nama, pengecam atau tarikh.
 
-### Pelbagai Cara Membina Kamus
-
 Python menyediakan beberapa cara untuk membina kamus, termasuk **kamus kosong** dan kamus yang sudah berisi data.
 
 <CodeBlock
@@ -49,8 +47,6 @@ print("Kamus mass:", mass)
   ]}
 />
 
-### Sintaks Kamus
-
 Paparan kamus (dictionary display) menggunakan tanda kurung kerinting. Koma memisahkan setiap entri, dan **titik bertindih** memisahkan setiap kunci daripada nilainya. Paparan kosong `{}` membina kamus kosong.
 
 <CodeBlock
@@ -81,6 +77,7 @@ Kamus ialah bekas (container) kerana ia memegang sekumpulan objek lain. Ciri uta
         B["phone['bob']"] --> V2["991"]
         C["phone['cat']"] --> V3["112"]
   `}
+  footer="Setiap kunci menunjuk terus kepada nilai pasangannya tanpa indeks nombor."
 />
 
 Senarai dan tuple menyusun item mengikut kedudukan, manakala kamus menyusun entri mengikut kunci. Perbezaan inilah yang menentukan cara kamu membaca, mengemas kini dan melelar isinya.
@@ -119,7 +116,10 @@ Kunci dalam kamus sentiasa unik. Dalam `d = {'a': 1, 'b': 2, 'a': 3}`, kunci `'a
     { name: "'b'", value: 2 },
   ]}
   chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+  footer="Kunci 'a' kedua menulis ganti 1 menjadi 3, meninggalkan dua pasangan unik."
 />
+
+Penulisan ganti secara automatik ini mengekalkan dua entri sahaja dan memastikan kunci pendua tidak pernah terkumpul.
 
 ## Mengakses Kamus
 
@@ -165,7 +165,51 @@ Untuk `phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}`, `phone['ann']`
     { name: "'eve'", value: 0 },
   ]}
   chartConfig={{ value: { label: "Hasil get", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+  footer="get() memulangkan nilai tersimpan untuk 'ann' dan 'bob', serta 0 untuk 'eve'."
 />
+
+Nilai sandaran `0` membolehkan carian kunci yang belum didaftarkan diteruskan dengan selamat tanpa menimbulkan `KeyError`.
+
+Kamus bersarang juga sering digunakan untuk memodelkan peta laluan atau graf berpemberat. Setiap nod menjadi kunci luar yang dipetakan kepada kamus jiran dan jaraknya, seperti `routes['A']['C']` bernilai `2` dan `routes['C']['B']` bernilai `1`. Teroka rangkaian di bawah untuk membandingkan jumlah jarak beberapa laluan dari `A` ke `E` dan memeriksa darjah setiap nod.
+
+<RouteNetworkLab
+  title={<>Peta Laluan sebagai Kamus Bersarang</>}
+  description={<>Pilih laluan dari A ke E atau tukar mod kepada darjah nod untuk melihat cara setiap kunci luar bersambung kepada jirannya.</>}
+  footer="Kamus bersarang memetakan setiap nod kepada jiran dan pemberat laluannya."
+  towns={[
+    { id: "A", name: "Nod A" },
+    { id: "B", name: "Nod B" },
+    { id: "C", name: "Nod C" },
+    { id: "D", name: "Nod D" },
+    { id: "E", name: "Nod E" },
+  ]}
+  roads={[
+    { from: "A", to: "B", length: 4 },
+    { from: "A", to: "C", length: 2 },
+    { from: "B", to: "D", length: 5 },
+    { from: "C", to: "B", length: 1 },
+    { from: "C", to: "D", length: 8 },
+    { from: "C", to: "E", length: 10 },
+    { from: "D", to: "E", length: 2 },
+  ]}
+  start="A"
+  end="E"
+  mode="route"
+  labels={{
+    degreeSum: "Jumlah darjah",
+    length: "Jarak",
+    mode: "Mod",
+    modes: { degrees: "Darjah", route: "Laluan" },
+    route: "Laluan",
+    shortest: "Terpendek",
+    town: "Nod",
+    trip: "Laluan",
+    twiceRoads: "Dua kali sisi",
+    viewLabel: "Rangkaian lima nod berpemberat yang dimodelkan sebagai peta kejiranan kamus",
+  }}
+/>
+
+Dengan struktur `routes[asal][destinasi]`, carian pemberat antara nod berlaku terus melalui kuncinya, jadi penilaian laluan `A -> C -> B -> D -> E` berjarak `10` tidak perlu mengimbas senarai pasangan sisi satu demi satu.
 
 ## Lelaran Kamus
 
@@ -334,4 +378,9 @@ Kira huruf dalam `"banana"` dengan `counts[ch] = counts.get(ch, 0) + 1`. Apabila
     "bar-a": "'a': 3",
     "bar-n": "'n': 2",
   }}
+  footer="Kekerapan setiap huruf unik dalam 'banana' direkodkan dalam satu kamus."
 />
+
+Corak `counts[ch] = counts.get(ch, 0) + 1` sering dipakai dalam pemprosesan teks dan data kerana ia memulakan kunci baharu dan menambah bilangan dalam satu baris.
+
+> Guna akses kurungan siku apabila kunci yang tiada menandakan pepijat, dan guna `get()` apabila ketiadaan kunci memang dijangka dan memerlukan nilai lalai.

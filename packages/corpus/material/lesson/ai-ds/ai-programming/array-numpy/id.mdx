@@ -13,6 +13,8 @@ NumPy membantu Python mengolah data numerik secara efisien. List Python dapat me
 
 [Objek inti `ndarray`](https://numpy.org/doc/stable/) adalah array n-dimensi berukuran tetap yang seluruh elemennya memakai satu tipe data. Dengan `ndarray`, satu ekspresi dapat menjalankan operasi yang sama pada seluruh array.
 
+> Bayangkan array NumPy seperti rak telur seragam dengan ukuran petak yang sama persis. Karena seluruh isinya bertipe sama dan tersusun rapat, komputer bisa menghitung ribuan angka sekaligus tanpa memeriksa tipe tiap elemen satu per satu.
+
 Untuk pemrograman ilmiah, array NumPy menjalankan loop numerik dalam kode terkompilasi, menerapkan satu operasi pada seluruh array, dan menyimpan nilai homogen secara ringkas:
 
 1. **Loop numerik yang efisien** karena dijalankan dalam kode native terkompilasi
@@ -20,7 +22,7 @@ Untuk pemrograman ilmiah, array NumPy menjalankan loop numerik dalam kode terkom
 3. **Penyimpanan yang ringkas** untuk nilai numerik homogen
 4. **Banyak operasi matematika** yang siap dipakai
 
-Vektorisasi berarti <Highlight>menyatakan operasi untuk seluruh array</Highlight> tanpa menulis loop Python secara eksplisit bagi setiap elemen. NumPy tetap memproses elemen-elemen tersebut secara internal, tetapi perulangannya berjalan dalam kode terkompilasi yang telah dioptimalkan.
+Vektorisasi berarti <Highlight>menyatakan operasi untuk seluruh array</Highlight> tanpa menulis loop Python secara eksplisit bagi setiap elemen. NumPy tetap memproses semua elemen itu secara internal, tetapi perulangannya berjalan dalam kode terkompilasi yang telah dioptimalkan.
 
 <CodeBlock
   data={[
@@ -156,6 +158,7 @@ List bersarang menjadi array dua dimensi. `np.array([[1, 2, 3], [4, 5, 6]])` pun
 
 <MathVisual
   title={<>Array dengan <code>shape</code> <code>(2, 3)</code></>}
+  footer={<>Axis 0 bergerak turun menyusuri baris, sedangkan axis 1 bergerak ke kanan antar kolom.</>}
   description={<>Setiap titik ungu adalah satu elemen dengan nilainya. Ruas hijau toska menunjuk arah <code>axis 0</code> dari baris ke baris, dan ruas oranye menunjuk arah <code>axis 1</code> dari kolom ke kolom.</>}
   scene={{
     space: "plane",
@@ -193,6 +196,8 @@ List bersarang menjadi array dua dimensi. `np.array([[1, 2, 3], [4, 5, 6]])` pun
     "axis-zero": <code>axis 0</code>,
   }}
 />
+
+Tuple `(2, 3)` langsung memberi tahu ukuran setiap sumbu secara berurutan: dua langkah sepanjang `axis 0` dan tiga langkah sepanjang `axis 1`, menghasilkan enam elemen di dalam grid.
 
 ## Fungsi Pembuat Array
 
@@ -310,7 +315,7 @@ print(a)
   ]}
 />
 
-### Fungsi Matematika
+### Aturan Koordinat Array
 
 Fungsi `np.fromfunction` memberikan **array koordinat indeks** kepada fungsi yang kamu tulis. Fungsi `f(i, j)` di bawah menerima dua array: indeks baris dalam `i` dan indeks kolom dalam `j`. Penjumlahan `i + j` bekerja per elemen. Misalnya, posisi `[1, 2]` menghasilkan `3`.
 
@@ -377,6 +382,7 @@ Bandingkan dua baris titik di bawah. `np.linspace(0, 10, 5)` membagi selang menj
 
 <MathVisual
   title={<><code>np.linspace</code> dan <code>np.arange</code> pada garis bilangan</>}
+  footer={<>Fungsi linspace menyertakan batas akhir, sedangkan arange berhenti sebelum batas akhir.</>}
   description={<>Baris atas adalah <code>np.linspace(0, 10, 5)</code>, baris bawah <code>np.arange(0, 10, 2.5)</code>. Nilai <InlineMath math="10" /> tidak ada di baris bawah.</>}
   scene={{
     space: "plane",
@@ -421,6 +427,8 @@ Bandingkan dua baris titik di bawah. `np.linspace(0, 10, 5)` membagi selang menj
     "ar-row": "np.arange(0, 10, 2.5)",
   }}
 />
+
+Pilih `np.linspace` ketika jumlah titik dan kedua ujung rentang harus tepat, lalu gunakan `np.arange` saat lebar langkah antar angka menjadi syarat utama.
 
 ## Membuat Array Berpola
 
@@ -574,6 +582,7 @@ Operasi aritmetika pada array berlaku untuk setiap elemen sekaligus, tanpa loop.
 
 <ScatterDiagram
   title={<>Tiga operasi elemen demi elemen pada <code>[1, 2, 3]</code></>}
+  footer={<>Setiap operasi bekerja serentak pada tiap indeks tanpa menulis loop manual.</>}
   description={<>Mendatar ada indeks <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="2" />. Setiap seri adalah satu hasil: array asli, <code>arr + 1</code>, <code>arr * 2</code>, dan <code>arr ** 2</code>. Pada indeks yang sama, setiap operasi hanya memakai elemen di indeks itu.</>}
   xAxisLabel="Indeks"
   yAxisLabel="Nilai"
@@ -616,3 +625,28 @@ Operasi aritmetika pada array berlaku untuk setiap elemen sekaligus, tanpa loop.
     },
   ]}
 />
+
+Setiap operasi hanya menyentuh angka pada indeks yang sama, sehingga kamu bisa melihat seberapa cepat pertumbuhan kuadrat meninggalkan penjumlahan dan perkalian.
+
+Dalam eksperimen sains data, setiap sensor menghasilkan satu array pembacaan berulang yang bisa langsung diringkas rata-rata, rentang, dan selisihnya terhadap nilai acuan:
+
+<ReadingSpreadLab
+  title={<>Sebaran Array Pembacaan Tiga Sensor</>}
+  footer={<>Satu array sensor langsung meringkas rata-rata, rentang, dan penyimpangan dari acuan.</>}
+  description={<>Bandingkan tiga array bacaan sensor terhadap nilai acuan <InlineMath math="10" /> untuk melihat perbedaan ketepatan dan konsistensi data.</>}
+  actual={10}
+  students={[
+    { name: "Sensor A", readings: [9.9, 10.0, 10.1, 10.0] },
+    { name: "Sensor B", readings: [9.4, 9.5, 9.5, 9.6] },
+    { name: "Sensor C", readings: [9.2, 10.1, 10.7, 9.8] },
+  ]}
+  labels={{
+    mean: <>Rata-rata array</>,
+    offset: <>Selisih dari acuan</>,
+    range: <>Rentang data</>,
+    student: "Pilih array sensor",
+    viewLabel: "Skala sebaran titik pembacaan tiga array sensor terhadap nilai acuan",
+  }}
+/>
+
+Ganti pilihan sensor di atas untuk membandingkan hasilnya: array Sensor A rapat dan tepat di acuan, Sensor B rapat tetapi bergeser sistematis, sedangkan Sensor C tersebar lebar sehingga rentangnya besar.

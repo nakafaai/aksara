@@ -9,7 +9,7 @@ export const metadata = {
 
 ## Sistem Tipe Data NumPy
 
-Tipe data menentukan **representasi nilai di memori** dan operasi yang dapat dilakukan NumPy pada nilai tersebut. Boolean NumPy memakai satu byte, sedangkan bilangan kompleks menyimpan komponen real dan imajiner secara terpisah.
+Tipe data menentukan **representasi nilai di memori** dan operasi yang dapat dilakukan NumPy pada nilai itu. Boolean NumPy memakai satu byte, sedangkan bilangan kompleks menyimpan komponen real dan imajiner secara terpisah.
 
 Semua elemen dalam array NumPy biasa memakai [tipe data yang sama](https://numpy.org/doc/stable/user/basics.types.html). Dengan susunan ini, loop yang dijalankan NumPy dalam kode C dapat memproses elemen tanpa memeriksa tipe setiap nilai satu per satu.
 
@@ -44,8 +44,6 @@ print("Dtype:", float_array.dtype)  # Output: Dtype: float64`
     }
   ]}
 />
-
-### Tipe Data Numerik Spesifik
 
 NumPy menyediakan kontrol presisi yang detail dengan **berbagai ukuran tipe data numerik**:
 
@@ -98,8 +96,6 @@ print(a)
   ]}
 />
 
-### Deteksi Otomatis Tipe Data
-
 NumPy secara otomatis mendeteksi tipe data berdasarkan **elemen yang diberikan**:
 
 <CodeBlock
@@ -140,7 +136,10 @@ Angka di nama `dtype` adalah banyak bit per elemen, dan `itemsize` membagi angka
     { name: "complex128", value: 128 / 8 },
   ]}
   chartConfig={{ value: { label: "Byte per elemen", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+  footer="Ukuran memori per elemen naik dua kali lipat setiap kali lebar bit digandakan."
 />
+
+Memilih `float32` alih-alih `float64` langsung memangkas kebutuhan memori per elemen hingga separuhnya, sedangkan `complex128` memerlukan ruang dua kali lipat dari `float64`.
 
 ## Atribut Array NumPy
 
@@ -174,8 +173,6 @@ print("Byte yang dipakai elemen:", a.nbytes)  # Output: Byte yang dipakai elemen
   ]}
 />
 
-### Atribut Array
-
 Sebuah array melaporkan strukturnya sendiri melalui atribut. Tabel berikut memuat atribut yang paling sering dibaca dan **nilai yang dikembalikan** masing-masing untuk array <InlineMath math="2 \times 3" />.
 
 | Atribut | Fungsi | Contoh Hasil |
@@ -188,7 +185,7 @@ Sebuah array melaporkan strukturnya sendiri melalui atribut. Tabel berikut memua
 
 ### Konsistensi Tipe Data
 
-Semua elemen dalam array NumPy biasa berbagi satu tipe data. Objek `numpy.dtype` menjelaskan cara nilai tersebut disimpan dan dibaca di dalam memori. Jika input memiliki tipe berbeda, <Highlight>NumPy memakai aturan promosi tipe</Highlight> untuk mencari dtype bersama yang cocok. Presisi dan kategori tipe input menentukan dtype hasil. Frekuensi kemunculan setiap tipe tidak memengaruhi aturan ini.
+Semua elemen dalam array NumPy biasa berbagi satu tipe data. Objek `numpy.dtype` menjelaskan cara nilai itu disimpan dan dibaca di dalam memori. Jika input memiliki tipe berbeda, <Highlight>NumPy memakai aturan promosi tipe</Highlight> untuk mencari dtype bersama yang cocok. Presisi dan kategori tipe input menentukan dtype hasil. Frekuensi kemunculan setiap tipe tidak memengaruhi aturan ini.
 
 <CodeBlock
   data={[
@@ -244,7 +241,10 @@ Putar kisi titik ini, yang mewakili `np.zeros((2, 3, 4))`. Ada dua lapisan sepan
     "axis-one": "axis 1",
     "axis-two": "axis 2",
   }}
+  footer="Bentuk (2, 3, 4) menyusun 2 lapisan, 3 baris, dan 4 kolom menjadi 24 elemen."
 />
+
+Urutan angka dalam `shape` langsung memetakan setiap sumbu dari lapisan terluar `axis 0` hingga kolom terdalam `axis 2`, sehingga `size` selalu sama dengan hasil kali semua angka di `shape`.
 
 ## Konversi dan Manipulasi Tipe Data
 
@@ -312,8 +312,6 @@ print("Memory saved percentage:", (memory_saved / large_array_int64.nbytes) * 10
     }
   ]}
 />
-
-### Informasi Detail Tipe Data
 
 Atribut `itemsize` memperlihatkan langsung hubungan antara presisi dan **penggunaan memori pada setiap array**.
 
@@ -392,7 +390,10 @@ for name, arr in arrays.items():
     "int-1": <code>0</code>,
     "int-2": <code>2</code>,
   }}
+  footer="Konversi astype(int) membuang bagian desimal dan menggeser nilai menuju nol."
 />
+
+Karena pemotongan menuju nol tidak sama dengan pembulatan biasa, gunakan `np.round()` atau `np.floor()` terlebih dahulu sebelum `astype(int)` jika kamu menginginkan pembulatan ke bilangan bulat terdekat atau ke bawah.
 
 ## Penggunaan Praktis Atribut Array
 
@@ -466,7 +467,7 @@ analyze_array(array_3d, "3D")
 
 ### Validasi Data dan Pelacakan Kesalahan
 
-Sebelum meneruskan array ke model, periksa **bentuk, dtype, nilai yang hilang**, dan penggunaan memori yang benar-benar diharapkan model tersebut.
+Sebelum meneruskan array ke model, periksa **bentuk, dtype, nilai yang hilang**, dan penggunaan memori yang benar-benar diharapkan model itu.
 
 <CodeBlock
   data={[
@@ -538,3 +539,5 @@ for i, arr in enumerate(test_arrays):
     }
   ]}
 />
+
+> Periksa selalu `shape` dan `dtype` saat menerima data mentah agar pemotongan nilai atau pembengkakan memori terdeteksi sebelum pelatihan model dimulai.

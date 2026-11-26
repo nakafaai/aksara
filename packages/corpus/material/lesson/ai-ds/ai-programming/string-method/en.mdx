@@ -176,7 +176,10 @@ Every transformation method returns a new string, and the number of capitals sho
     { name: "capitalize", value: 1 },
   ]}
   chartConfig={{ value: { label: "Capital letters", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Each method returns a new string with a different count of capital letters."
 />
+
+The bars span from `0` for `lower()` up to `10` for `upper()`, while the first bar stays at `1` because the original `'hello World'` is never mutated.
 
 ## Search and Validation Methods
 
@@ -343,7 +346,10 @@ Search for `"an"` inside `"banana"` with this picture. Two teal segments mark th
     "find": 'find("an") = 1',
     "rfind": 'rfind("an") = 3',
   }}
+  footer="find stops at index 1 from the left, while rfind locates index 3 from the right."
 />
+
+Both pointers land on the starting index of `'an'` from opposite ends because `find` scans left to right whereas `rfind` returns the rightmost match.
 
 ## Prefix and Suffix Search Methods
 
@@ -408,8 +414,6 @@ The prefix `https://` classifies the text by URL scheme. It does not establish t
 
 These two methods change how a string is divided into parts. `replace` **swaps one substring for another**, and `split` breaks a string into a list at a separator.
 
-### Replacing Substrings
-
 The `replace()` method is used to replace **all occurrences of a substring** with a new string.
 
 <CodeBlock
@@ -452,8 +456,6 @@ print(f"Clean phone: {clean_phone}")`
 />
 
 The `replace()` method is case-sensitive and replaces all occurrences unless limited by the third parameter.
-
-### Splitting Strings
 
 The `split()` method breaks a string into a list around a specified delimiter. With no delimiter, it treats **consecutive whitespace as one separator** and omits leading or trailing empty fields.
 
@@ -517,7 +519,10 @@ Without an argument, `split()` cuts a string at every space and returns a list o
     { name: "fox", value: 3 },
   ]}
   chartConfig={{ value: { label: "Word length", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+  footer="split() turns the sentence into four words and discards the three spaces."
 />
+
+The four bars sum to `16` characters without counting the three spaces, showing that calling `split()` with no argument removes whitespace separators from the returned list.
 
 ## String Method Chaining
 
@@ -587,7 +592,7 @@ for email in emails:
 
 Method chaining works well for a short linear cleanup. It is not automatically clearer than named steps.
 
-## Practical String Method Applications
+## Parsing Phone Numbers and Log Lines
 
 Each small example isolates the behavior of a string method under **stated assumptions**. Production validators and parsers need rules written for their real data.
 
@@ -735,3 +740,5 @@ for title in titles:
 These four examples combine classification, searching, splitting, and replacement under small, stated formats. A production phone parser, filename parser, log parser, or slug generator also needs a domain contract, error policy, and tests for ambiguous input.
 
 Match each method to its exact behavior. A convenient string operation can cover one validation step, while the full check may need more rules.
+
+> Because strings never change in place, every transformation method returns a fresh object that chains cleanly as long as each step still produces a string.

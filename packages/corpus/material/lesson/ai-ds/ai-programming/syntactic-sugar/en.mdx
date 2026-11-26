@@ -13,6 +13,8 @@ Syntactic sugar is <Highlight>concise notation</Highlight> for behavior that cou
 
 Python offers several compact forms for common patterns. They do not automatically make a program run faster, and they are not interchangeable in every detail. Choose the form that makes your intent easiest to understand.
 
+> The best code is not the shortest line on screen, it is the line a teammate can still understand in seconds six months later.
+
 ## List Comprehension
 
 A list comprehension creates a **new list from an iterable**. It can transform values, filter them, or combine both operations in one expression.
@@ -100,6 +102,7 @@ Run the list comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` with you
 
 <MathVisual
   title={<>What <code>[x**2 for x in range(-3, 4) if x % 2 == 0]</code> picks</>}
+  footer={<>The if filter keeps even inputs before squaring them into the resulting list.</>}
   description={<>The gray curve is <InlineMath math="y=x^2" />. Magenta points are the elements that pass the <code>if</code> condition, teal points are skipped.</>}
   scene={{
     space: "plane",
@@ -137,6 +140,8 @@ Run the list comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` with you
     "value-g": "3",
   }}
 />
+
+Because the filter runs before the output expression, odd inputs are discarded first and only the three even numbers contribute values to the final list.
 
 ## Lambda Functions
 
@@ -204,6 +209,7 @@ print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
 
 <MathVisual
   title={<><code>lambda x: x * 2</code> for <code>x</code> from <InlineMath math="-3" /> to <InlineMath math="3" /></>}
+  footer={<>Every call to the lambda maps x to 2x right along the same straight line.</>}
   description={<>The violet line is <InlineMath math="y=2x" />. The magenta points are seven calls <code>f(x)</code>, from <InlineMath math="f(-3)=-6" /> to <InlineMath math="f(3)=6" />.</>}
   scene={{
     space: "plane",
@@ -227,6 +233,8 @@ print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
     "call-6": <code>f(3) = 6</code>,
   }}
 />
+
+A function built with `lambda` behaves identically to one built with `def`, condensed into a single mapping expression.
 
 ## Other Syntactic Sugar Features
 
@@ -317,6 +325,7 @@ An augmented assignment computes with the old value and stores the result under 
 
 <BarChart
   title={<>The value of <code>x</code> after each augmented assignment</>}
+  footer={<>Each augmented operator reads the previous result and updates x in place.</>}
   description={<>Each bar is <code>x</code> after the operator written below it, with the operands <InlineMath math="5" />, <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="5" />, and <InlineMath math="2" /> in that order.</>}
   yAxisLabel="Value"
   data={[
@@ -329,6 +338,8 @@ An augmented assignment computes with the old value and stores the result under 
   ]}
   chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+Each augmented assignment feeds directly into the next, so swapping the order of any two steps produces a completely different final value for `x`.
 
 ## Syntax Comparison
 

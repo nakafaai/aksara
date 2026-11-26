@@ -13,6 +13,8 @@ The built-in `print()` function <Highlight>writes a text representation of value
 
 The print function belongs to the built-in function category, just like `len()`, `abs()`, and `round()`. This means you don't need to import additional modules to use it.
 
+> Treat `print()` as an inspection window into a running program. You can check any variable mid-execution without altering the data stored in memory.
+
 ## Basic Print Function Syntax
 
 The complete print function syntax has several **output parameters** to control how output is displayed.
@@ -81,6 +83,7 @@ The `sep` value determines the exact characters written between adjacent objects
 
 <BarChart
   title={<>Output length of <code>print(1, 2, 3, sep=s)</code></>}
+  footer={<>Each extra character in sep increases the total printed length by two characters.</>}
   description={<>Each bar is the number of characters written for the <code>sep</code> value below it: <InlineMath math="5" /> for a space, <InlineMath math="3" /> for the empty string, <InlineMath math="7" /> for a comma and a space, and <InlineMath math="9" /> for <code>' | '</code>.</>}
   yAxisLabel="Characters"
   data={[
@@ -91,6 +94,8 @@ The `sep` value determines the exact characters written between adjacent objects
   ]}
   chartConfig={{ value: { label: "Characters", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
+
+Changing `sep` leaves the argument values intact while scaling the output width by the number of gaps between adjacent arguments.
 
 ## End Parameter
 
@@ -142,6 +147,7 @@ This picture runs `print("A", "B", "C", sep="-")`, then `print("x", end=" ")`, t
 
 <MathVisual
   title={<>Three <code>print</code> calls in the output stream</>}
+  footer={<>The sep string goes between arguments, while end always lands at the call boundary.</>}
   description={<>Violet characters come from the arguments, teal ones from <code>sep</code>, and orange ones from <code>end</code>. The symbol ↵ is a newline and ␣ is a space.</>}
   scene={{
     space: "plane",
@@ -186,6 +192,8 @@ This picture runs `print("A", "B", "C", sep="-")`, then `print("x", end=" ")`, t
   }}
 />
 
+Because `end=" "` replaces the default line break, the second and third calls share a single line until the final newline closes it.
+
 ## Displaying Various Data Types
 
 `print()` accepts objects of many types and obtains their **human-readable string representation** before writing it. Custom classes can control that representation with `__str__()`.
@@ -228,6 +236,7 @@ One `print()` call can accept values of different types, convert each value to t
 
 <BarChart
   title={<>Characters that <code>print</code> writes for six values</>}
+  footer={<>Printed width follows each value's str() text, including brackets, commas, and spaces.</>}
   description={<>Each bar is <code>len(str(x))</code> for the value <code>x</code> written below it, the number of characters that appear on screen.</>}
   yAxisLabel="Characters"
   data={[
@@ -240,6 +249,8 @@ One `print()` call can accept values of different types, convert each value to t
   ]}
   chartConfig={{ value: { label: "Characters", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
+
+Even a tiny two-item list like `[1, 2]` takes six characters on screen because its brackets, comma, and space are written alongside the digits.
 
 ## Output Formatting Techniques
 

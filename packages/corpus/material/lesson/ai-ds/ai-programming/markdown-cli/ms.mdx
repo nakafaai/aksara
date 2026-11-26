@@ -15,7 +15,7 @@ Sumber yang mudah dibaca inilah kelebihan utama Markdown. Kamu boleh menyemak pe
 
 ### Sintaks Asas Markdown
 
-Contoh di bawah mengumpulkan sintaks yang biasa digunakan dalam satu fail. **Tanda pagar memulakan tajuk**, manakala penanda yang mengapit teks menyatakan penegasan, pautan, kod dan struktur lain:
+Contoh di bawah mengumpulkan sintaks yang biasa digunakan dalam satu fail. **Tanda pagar memulakan tajuk**, manakala penanda yang mengapit teks menyatakan penegasan, pautan, kod dan struktur lain.
 
 Contoh ini menggunakan ciri Markdown yang disokong oleh Pandoc dan GitHub Flavored Markdown. Jadual dan `~~strikethrough~~` ialah sambungan (extension), jadi bukan semua pemapar Markdown menyokongnya. Contoh shell pula menggunakan Bash pada macOS atau Linux. Sesuaikan laluan dalam contoh dengan direktori latihan kamu.
 
@@ -119,7 +119,10 @@ Bilangan tanda `#` di awal baris menentukan aras tajuk, dan aras-aras itu memben
     "second": <code>## Penggunaan</code>,
     "detail": <code>### Pemasangan</code>,
   }}
+  footer="Bilangan tanda # membentuk hierarki tajuk dari tajuk utama hingga subbahagian."
 />
+
+Susunan tanda `#` yang tekal membolehkan penjana isi kandungan dan pembaca skrin mentafsir struktur dokumen tanpa pemformatan manual.
 
 ## Asas Antara Muka Baris Perintah
 
@@ -186,7 +189,7 @@ less file.txt       # lihat dengan navigasi`
   }]}
 />
 
-### Menggabungkan Markdown dengan CLI
+## Mengautomasikan Markdown dengan CLI
 
 Skrip binaan (build script) yang kecil membolehkan penukaran itu diulang bila-bila masa. Skrip itu patut **gagal apabila sesuatu perintah gagal**, mencipta direktori outputnya sendiri, meletakkan tanda petik pada setiap laluan, dan mengendalikan keadaan apabila tiada fail sumber:
 
@@ -258,7 +261,7 @@ pandoc input.md -o output.html --template=custom.html`
 
 ### Amalan Terbaik untuk CLI dan Markdown
 
-<Highlight>Simpan Markdown yang kamu tulis dalam kawalan versi</Highlight>, sahkan sebelum penukaran, bina ke dalam direktori output yang boleh diganti, dan semak diff sebelum membuat commit:
+<Highlight>Simpan Markdown yang kamu tulis dalam kawalan versi</Highlight>, sahkan sebelum penukaran, bina ke dalam direktori output yang boleh diganti, dan semak diff sebelum membuat commit.
 
 Direktori `site` dalam contoh ini hanya mengandungi output yang dijana dan akan diganti oleh binaan. Simpan fail yang kamu tulis dalam `docs`, bukan dalam `site`.
 
@@ -308,7 +311,7 @@ git diff -- docs`
   }]}
 />
 
-## Contoh Projek Sebenar
+## Membina Dokumentasi Pelbagai Halaman
 
 Contoh terakhir ini mencipta empat halaman sumber dan menggabungkannya menjadi **satu dokumen HTML yang berdiri sendiri**. Setiap laluan input ditulis dengan jelas, jadi binaan akan gagal apabila ada halaman yang tiada:
 
@@ -423,7 +426,10 @@ Bayangkan folder kerja semasa kamu ialah `/home/user`, iaitu titik magenta dalam
     "down": "cd projects",
     "up": "cd ..",
   }}
+  footer="cd projects turun ke folder anak, manakala cd .. kembali ke folder induk."
 />
+
+Mengetahui folder kerja semasa memastikan perintah relatif seperti `cd projects` dan `cd ..` sentiasa menuju ke folder yang tepat.
 
 Laluan mutlak bermula dari akar `/`, dan setiap garis condong seterusnya turun satu aras. `pwd` mencetak laluan itu untuk folder kerja semasa, dan `cd ..` naik satu aras ke folder induk.
 
@@ -438,4 +444,9 @@ Laluan mutlak bermula dari akar `/`, dan setiap garis condong seterusnya turun s
     { name: "/home/user/projects", value: 3 },
   ]}
   chartConfig={{ value: { label: "Kedalaman", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+  footer="Setiap segmen folder selepas akar / menambah kedalaman laluan sebanyak satu."
 />
+
+Oleh sebab setiap `/` mewakili satu tingkat ke bawah dari akar, perbandingan laluan mutlak menunjukkan kedalaman sebenar sesuatu folder.
+
+> Sentiasa jalankan `pwd` dan `ls` sebelum memadam atau menulis ganti fail supaya laluan sasaran disahkan terlebih dahulu.

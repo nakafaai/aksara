@@ -11,8 +11,6 @@ export const metadata = {
 
 Ein Dictionary ist eine veränderliche Zuordnung von **eindeutigen Schlüsseln zu Werten**. Du schlägst jedes Element über einen aussagekräftigen Schlüssel wie einen Namen, eine Kennung oder ein Datum nach.
 
-### Möglichkeiten zum Erstellen von Wörterbüchern
-
 Python bietet mehrere Möglichkeiten zum Erstellen von Wörterbüchern, darunter **leere und bereits gefüllte**.
 
 <CodeBlock
@@ -49,8 +47,6 @@ print("Dictionary mass:", mass)
   ]}
 />
 
-### Wörterbuchsyntax
-
 Die Darstellung eines Dictionarys verwendet geschweifte Klammern. Kommas trennen die Einträge, **ein Doppelpunkt** trennt jeweils den Schlüssel vom Wert. Die leere Darstellung `{}` erzeugt ein leeres Dictionary.
 
 <CodeBlock
@@ -81,6 +77,7 @@ Ein Dictionary ist ein Container, weil es eine Sammlung anderer Objekte enthält
         B["phone['bob']"] --> V2["991"]
         C["phone['cat']"] --> V3["112"]
   `}
+  footer="Jeder Schlüssel verweist direkt auf seinen Wert ohne numerischen Index."
 />
 
 Listen und Tupel ordnen Elemente nach Position, Dictionaries dagegen nach Schlüsseln. Dieser Unterschied bestimmt, wie du ihre Inhalte liest, aktualisierst und durchläufst.
@@ -119,7 +116,10 @@ Schlüssel in einem Dictionary sind immer eindeutig. In `d = {'a': 1, 'b': 2, 'a
     { name: "'b'", value: 2 },
   ]}
   chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+  footer="Das zweite 'a' ersetzt 1 durch 3, sodass nur zwei Einträge übrig bleiben."
 />
+
+Dieses automatische Überschreiben hält das Dictionary bei zwei Einträgen und verhindert doppelte Schlüssel zuverlässig.
 
 ## Zugriff auf Wörterbücher
 
@@ -165,7 +165,51 @@ Für `phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}` liefern `phone['
     { name: "'eve'", value: 0 },
   ]}
   chartConfig={{ value: { label: "Ergebnis von get", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+  footer="get() liefert Werte für 'ann' und 'bob' und fällt bei 'eve' auf 0 zurück."
 />
+
+Durch den Ersatzwert `0` laufen Abfragen nach fehlenden Schlüsseln weiter, ohne einen `KeyError` auszulösen.
+
+Verschachtelte Dictionaries eignen sich auch gut für Routennetze und gewichtete Graphen. Jeder Knoten ist ein äußerer Schlüssel, der auf ein Dictionary seiner Nachbarn und Entfernungen verweist, etwa `routes['A']['C']` mit Wert `2` und `routes['C']['B']` mit Wert `1`. Erkunde das Netz unten, um Gesamtlängen verschiedener Wege von `A` nach `E` zu vergleichen und den Grad jedes Knotens zu prüfen.
+
+<RouteNetworkLab
+  title={<>Routenkarte als verschachteltes Dictionary</>}
+  description={<>Wähle eine Route von A nach E oder wechsle zu Knotengraden, um die Nachbarschaft jedes äußeren Schlüssels zu untersuchen.</>}
+  footer="Ein verschachteltes Dictionary ordnet jeden Knoten seinen Nachbarn und Gewichten zu."
+  towns={[
+    { id: "A", name: "Knoten A" },
+    { id: "B", name: "Knoten B" },
+    { id: "C", name: "Knoten C" },
+    { id: "D", name: "Knoten D" },
+    { id: "E", name: "Knoten E" },
+  ]}
+  roads={[
+    { from: "A", to: "B", length: 4 },
+    { from: "A", to: "C", length: 2 },
+    { from: "B", to: "D", length: 5 },
+    { from: "C", to: "B", length: 1 },
+    { from: "C", to: "D", length: 8 },
+    { from: "C", to: "E", length: 10 },
+    { from: "D", to: "E", length: 2 },
+  ]}
+  start="A"
+  end="E"
+  mode="route"
+  labels={{
+    degreeSum: "Gradsumme",
+    length: "Entfernung",
+    mode: "Modus",
+    modes: { degrees: "Grade", route: "Route" },
+    route: "Route",
+    shortest: "Kürzeste",
+    town: "Knoten",
+    trip: "Pfad",
+    twiceRoads: "Doppelte Kanten",
+    viewLabel: "Gewichtetes Fünf-Knoten-Netz als verschachtelte Dictionary-Adjazenzkarte",
+  }}
+/>
+
+Über `routes[start][ziel]` liest du Kantengewichte direkt per Schlüssel nach, sodass der Weg `A -> C -> B -> D -> E` mit Gesamtlänge `10` ausgewertet wird, ohne eine Kantenliste komplett zu durchsuchen.
 
 ## Wörterbuch Iteration
 
@@ -334,4 +378,9 @@ Zähl die Buchstaben in `"banana"` mit `counts[ch] = counts.get(ch, 0) + 1`. Tau
     "bar-a": "'a': 3",
     "bar-n": "'n': 2",
   }}
+  footer="Die Häufigkeiten der Buchstaben in 'banana' stehen kompakt in einem Dictionary."
 />
+
+Das Muster `counts[ch] = counts.get(ch, 0) + 1` ist ein Klassiker der Text- und Datenverarbeitung, weil es neue Schlüssel anlegt und Zähler in einer Zeile aktualisiert.
+
+> Nutze eckige Klammern, wenn ein fehlender Schlüssel auf einen Fehler hinweist, und nutze `get()`, wenn fehlende Schlüssel erwartet werden und einen Standardwert bekommen sollen.

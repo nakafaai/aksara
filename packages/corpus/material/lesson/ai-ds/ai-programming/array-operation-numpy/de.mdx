@@ -206,7 +206,10 @@ Nimm `a` der Form `(3, 1)` mit <InlineMath math="0" />, <InlineMath math="10" />
     "sum-2-2": <InlineMath math="22" />,
     "sum-2-3": <InlineMath math="23" />,
   }}
+  footer="Achsen der Länge 1 dehnen sich automatisch zu einem (3, 4)-Ergebnisgitter."
 />
+
+Broadcasting dehnt die Spalte `(3, 1)` und die Zeile `(1, 4)` zu einer `(3, 4)`-Matrix, ohne die Eingabedaten vorher im Speicher zu kopieren.
 
 ## Arithmetische Operationen mit Arrays
 
@@ -242,7 +245,7 @@ print(f"2**a = {2**a}")
   ]}
 />
 
-### Operationen zwischen Arrays
+Arithmetik und Matrixmultiplikation lassen sich genauso direkt zwischen zwei Arrays anwenden.
 
 <CodeBlock
   data={[
@@ -273,8 +276,6 @@ print(f"a @ b = {a @ b}")
 />
 
 Der Operator `*` multipliziert **Elemente an entsprechenden Positionen**. Für die beiden eindimensionalen Arrays oben liefert `@` das Skalarprodukt: `0 + 3 + 4 + 3 + 0` ergibt `10`. Bei zwei Matrizen gilt die Zeile-mal-Spalte-Regel. Setze `np.dot()` nicht für alle Array-Formen mit `@` gleich. Bei höheren Dimensionen unterscheiden sich ihre Regeln.
-
-### Vergleich und Logik
 
 Vergleiche erzeugen **boolesche Arrays**. Sie können anschließend zum Filtern von Daten oder zum Verknüpfen mehrerer Bedingungen verwendet werden.
 
@@ -380,7 +381,9 @@ print(f"argmax(axis=1): {np.argmax(data, axis=1)}")
   ]}
 />
 
-Eine Reduktion fasst ein ganzes Array in einer Zahl zusammen. Für `data = np.array([1, 3, 5, 7, 9])` liefert `np.sum` den Wert <InlineMath math="25" />, `np.mean` den Wert <InlineMath math="5" /> und `np.std` den Wert <InlineMath math="\sqrt{(16+4+0+4+16)/5}=\sqrt8\approx2.83" />, weil standardmäßig durch <InlineMath math="n" /> geteilt wird.
+Eine Reduktion fasst ein ganzes Array in einer Zahl zusammen. Für `data = np.array([1, 3, 5, 7, 9])` liefert `np.sum` den Wert <InlineMath math="25" />, `np.mean` den Wert <InlineMath math="5" /> und `np.std` teilt die Summe der quadrierten Abweichungen standardmäßig durch <InlineMath math="n" />.
+
+<BlockMath math="\text{std} = \sqrt{\frac{16 + 4 + 0 + 4 + 16}{5}} = \sqrt{8} \approx 2.83" />
 
 <BarChart
   title={<>Fünf Reduktionen auf <code>[1, 3, 5, 7, 9]</code></>}
@@ -394,7 +397,10 @@ Eine Reduktion fasst ein ganzes Array in einer Zahl zusammen. Für `data = np.ar
     { name: "max", value: 9 },
   ]}
   chartConfig={{ value: { label: "Ergebnis", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Fünf Reduktionen fassen dasselbe Array zu je einer Kennzahl zusammen."
 />
+
+Jede Reduktion liefert eine andere Kennzahl derselben Daten: `sum` und `mean` beschreiben Summe und Mitte, während `std`, `min` und `max` die Streuung erfassen.
 
 ## Bearbeitung der Form von Arrays
 
@@ -534,7 +540,11 @@ print("Ist die Transponierung eine Ansicht?", np.shares_memory(a, b))`
 
 Die Z-Standardisierung zentriert jedes Merkmal auf den Mittelwert <InlineMath math="0" /> und skaliert es auf die Standardabweichung <InlineMath math="1" />. Sie ist nur für Merkmale mit einer **von null verschiedenen Standardabweichung** definiert und bringt Merkmale auf vergleichbare numerische Skalen.
 
-Die Formel lautet <InlineMath math="Z = \frac{X - \mu}{\sigma}" />. Dabei gilt:
+Die Formel der Z-Standardisierung lautet wie folgt.
+
+<BlockMath math="Z = \frac{X - \mu}{\sigma}" />
+
+Dabei gilt:
 - <InlineMath math="X" /> ist die Merkmalsmatrix der Größe <InlineMath math="n \times k" />
 - <InlineMath math="n" /> ist die Anzahl der Beobachtungen, also der Zeilen
 - <InlineMath math="k" /> ist die Anzahl der Merkmale, also der Spalten
@@ -625,4 +635,9 @@ Nimm `data = np.array([1, 3, 5, 7, 9])`. Der Mittelwert ist `5`, und die Standar
     "data-row": "data",
     "score-row": "(data - mean) / std",
   }}
+  footer="Mittelwert abziehen zentriert bei 0, Teilen durch std normiert die Streuung."
 />
+
+Nach der Standardisierung misst jeder Wert seinen Abstand vom Mittelwert in Standardabweichungen, sodass Merkmale mit verschiedenen Einheiten direkt vergleichbar werden.
+
+> Prüfe vor dem Kombinieren oder Reduzieren immer `shape` und `axis`, weil eine falsche Achse still einen falschen Mittelwert liefert statt einen Fehler auszulösen.

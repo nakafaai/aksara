@@ -86,6 +86,7 @@ Setiap putaran `for item in [3, 8, 1, 6]` memanggil `next()` sekali dan memberi 
 
 <BarChart
   title={<><code>total</code> setelah setiap <code>next()</code></>}
+  footer={<>Setiap panggilan next() memasok satu nilai hingga iterator berhenti di elemen terakhir.</>}
   description={<>Setiap batang adalah <code>total</code> setelah elemen yang tertulis di bawahnya ditambahkan: <InlineMath math="3" />, <InlineMath math="11" />, <InlineMath math="12" />, lalu <InlineMath math="18" />.</>}
   yAxisLabel="Total berjalan"
   data={[
@@ -97,9 +98,11 @@ Setiap putaran `for item in [3, 8, 1, 6]` memanggil `next()` sekali dan memberi 
   chartConfig={{ value: { label: "Total berjalan", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
 
+Loop `for` tidak membaca seluruh urutan sekaligus, melainkan menarik satu item tiap putaran lewat `next()` sampai sumbernya habis.
+
 ## Operator Keanggotaan
 
-Operator `in` dan `not in` memeriksa apakah suatu objek **memuat nilai tertentu**. Cara pemeriksaannya bergantung pada tipe objek tersebut: list menelusuri elemennya, dictionary mencari pada daftar kunci, dan string mencari potongan teks.
+Operator `in` dan `not in` memeriksa apakah suatu objek **memuat nilai tertentu**. Cara pemeriksaannya bergantung pada tipe objeknya: list menelusuri elemennya, dictionary mencari pada daftar kunci, dan string mencari potongan teks.
 
 ### Penggunaan Operator in dan not in
 
@@ -176,11 +179,11 @@ Pemeriksaan terakhir hanya menunjukkan dua penanda. Cara itu belum cukup untuk m
 
 ## Fungsi any dan all
 
-Built-in `any()` dan `all()` menerima iterable lalu menguji truthiness setiap item, yaitu apakah Python menganggap item tersebut benar atau salah dalam konteks Boolean. Kedua fungsi <Highlight>berhenti segera setelah return value dapat ditentukan</Highlight>, sehingga ekspresi generator dapat menghindari pembuatan list perantara yang tidak diperlukan.
+Built-in `any()` dan `all()` menerima iterable lalu menguji truthiness setiap item, yaitu apakah Python menganggap item itu benar atau salah dalam konteks Boolean. Kedua fungsi <Highlight>berhenti segera setelah return value dapat ditentukan</Highlight>, sehingga ekspresi generator dapat menghindari pembuatan list perantara yang tidak diperlukan.
 
 ### Fungsi Any
 
-`any()` mengembalikan `True` setelah menemukan **item pertama yang dianggap benar**. Return value menjadi `False` jika semua item dianggap salah atau iterable tersebut kosong.
+`any()` mengembalikan `True` setelah menemukan **item pertama yang dianggap benar**. Return value menjadi `False` jika semua item dianggap salah atau iterable itu kosong.
 
 <CodeBlock
   data={[
@@ -215,7 +218,7 @@ if any(numbers):
 
 ### Fungsi All
 
-`all()` mengembalikan `False` setelah menemukan **item pertama yang dianggap salah**. Jika iterasi selesai tanpa item tersebut, return value menjadi `True`. Pada iterable kosong, tidak ada item yang melanggar kondisi sehingga `all()` juga mengembalikan `True`.
+`all()` mengembalikan `False` setelah menemukan **item pertama yang dianggap salah**. Jika iterasi selesai tanpa item semacam itu, return value menjadi `True`. Pada iterable kosong, tidak ada item yang melanggar kondisi sehingga `all()` juga mengembalikan `True`.
 
 <CodeBlock
   data={[
@@ -254,6 +257,7 @@ Periksa daftar `[3, 8, 1, 6]` terhadap syarat `v > 5`. Dua titik magenta, <Inlin
 
 <MathVisual
   title={<><code>any</code> dan <code>all</code> pada <code>[3, 8, 1, 6]</code></>}
+  footer={<>Cukup satu titik melewati batas agar any benar, tetapi semua titik wajib lulus untuk all.</>}
   description={<>Setiap titik adalah satu nilai di posisinya. Titik magenta memenuhi <InlineMath math="v>5" />, titik hijau toska tidak, dan garis abu-abu adalah batas <InlineMath math="5" />.</>}
   scene={{
     space: "plane",
@@ -283,13 +287,15 @@ Periksa daftar `[3, 8, 1, 6]` terhadap syarat `v > 5`. Dua titik magenta, <Inlin
   }}
 />
 
+Begitu `any()` menyentuh angka `8`, pemeriksaan berhenti dengan hasil `True`, sedangkan `all()` langsung berhenti dengan `False` pada angka pertama `3`.
+
 ## Positional Unpacking
 
 Dalam pemanggilan fungsi, asterisk di depan iterable (`*`) mengembangkannya menjadi **argumen posisi**. Jumlah argumen yang dihasilkan tetap harus sesuai dengan yang diterima fungsi.
 
 ### Pemanggilan Tanpa Unpacking
 
-Jika `coordinates` diberikan langsung kepada fungsi, **seluruh list diterima sebagai satu argumen**. Padahal, `math.hypot()` mengharapkan setiap koordinat sebagai argumen tersendiri. Mengakses setiap indeks secara manual dapat bekerja untuk jumlah koordinat yang tetap, tetapi pemanggil harus mengulang cara data tersebut disusun.
+Jika `coordinates` diberikan langsung kepada fungsi, **seluruh list diterima sebagai satu argumen**. Padahal, `math.hypot()` mengharapkan setiap koordinat sebagai argumen tersendiri. Mengakses setiap indeks secara manual dapat bekerja untuk jumlah koordinat yang tetap, tetapi pemanggil harus mengulang cara data ini disusun.
 
 <CodeBlock
   data={[
@@ -405,6 +411,7 @@ Nama berbintang mengambil semua elemen yang tidak diambil nama lain, dan selalu 
 
 <MathVisual
   title={<>Ke mana setiap elemen pergi saat unpacking dengan bintang</>}
+  footer={<>Variabel berbintang selalu menampung sisa elemen sebagai list, di tengah maupun di akhir.</>}
   description={<>Baris atas adalah <code>[1, 2, 3, 4]</code>: sel ungu masuk ke <code>a</code> dan sel hijau toska ke <code>rest</code>. Baris bawah adalah <code>[1, 2, 3, 4, 5]</code>: sel ungu masuk ke <code>first</code>, tiga sel hijau toska ke <code>middle</code>, dan sel oranye ke <code>last</code>.</>}
   scene={{
     space: "plane",
@@ -433,3 +440,7 @@ Nama berbintang mengambil semua elemen yang tidak diambil nama lain, dan selalu 
     "tail": <code>last</code>,
   }}
 />
+
+Pola bintang menjaga kode tetap fleksibel saat panjang urutan berubah, karena nama tetap mengambil posisi yang pasti sementara target berbintang menyerap seluruh sisanya.
+
+> Protokol iterable menyatukan loop `for`, pengujian `any()` dan `all()`, hingga unpacking bintang. Begitu sebuah objek mendukung iterasi, seluruh alat Python itu langsung bekerja padanya.

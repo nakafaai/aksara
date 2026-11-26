@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Dateieingabe und Dateiausgabe",
-    description: "Lies und schreibe Text- und Binärdateien sicher in Python, wähle passende Öffnungsmodi und verwalte Streampositionen.",
+    description: "Lies und schreibe Textdateien und Binärdateien sicher in Python, wähle passende Öffnungsmodi und verwalte Streampositionen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
     dateModified: "2026-09-19",
@@ -108,11 +108,16 @@ with open('file.txt', 'w', encoding='utf-8') as f:
 
 Das Argument `file` verwendet die Formatierung von `print()` weiter, leitet den fertigen Text aber an das gewählte Dateiobjekt.
 
-`f.write(text)` gibt die Anzahl der geschriebenen Zeichen zurück, und der Zeilenumbruch `\n` zählt als ein Zeichen. Schreibst du `'Hello\n'`, `'Python\n'` und dann `'!'`, enthält die Datei <InlineMath math="6+7+1=14" /> Zeichen.
+`f.write(text)` gibt die Anzahl der geschriebenen Zeichen zurück, und der Zeilenumbruch `\n` zählt als ein Zeichen. Schreibst du `'Hello\n'`, `'Python\n'` und dann `'!'`, enthält die Datei vierzehn Zeichen insgesamt.
+
+<BlockMath math="6 + 7 + 1 = 14" />
+
+Das Balkendiagramm vergleicht den Rückgabewert von `f.write()` für diese drei Strings.
 
 <BarChart
   title={<>Rückgabewerte von <code>f.write()</code> für drei Strings</>}
   description={<>Jeder Balken ist die Zahl, die <code>f.write()</code> für den String darunter zurückgibt. Jedes <code>\n</code> fügt ein Zeichen hinzu.</>}
+  footer={<>Jedes sichtbare Zeichen und jedes <code>\n</code> erhöht den Rückgabewert um eins.</>}
   yAxisLabel="Geschriebene Zeichen"
   data={[
     { name: "'Hello\\n'", value: 6 },
@@ -122,6 +127,8 @@ Das Argument `file` verwendet die Formatierung von `print()` weiter, leitet den 
   chartConfig={{ value: { label: "Geschriebene Zeichen", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
+Ein einzelnes Zeichen ohne Zeilenumbruch zählt genau eins, während Strings mit abschließendem `\n` diesen Umbruch immer mitzählen.
+
 ## Dateiöffnungsmodi
 
 Python bietet verschiedene **Modi zum Öffnen** von Dateien entsprechend den Anforderungen der auszuführenden Vorgänge.
@@ -129,6 +136,7 @@ Python bietet verschiedene **Modi zum Öffnen** von Dateien entsprechend den Anf
 <Mermaid
   title={<>Wähle den Modus vor dem Öffnen</>}
   description={<>Vergleiche Lese-, Schreib-, Anhänge- und Binärmodi, damit eine Datei nicht versehentlich ihren Inhalt verliert.</>}
+  footer={<>Hänge ein b an, um direkt mit rohen Bytes statt mit dekodiertem Text zu arbeiten.</>}
   chart={`
     flowchart LR
         A[Dateimodi] --> B[Textmodus]
@@ -145,6 +153,8 @@ Python bietet verschiedene **Modi zum Öffnen** von Dateien entsprechend den Anf
         C --> C4[rb+ - vorhandene Binärdatei lesen und schreiben]
   `}
 />
+
+Jeder Textmodus besitzt ein passendes binäres Gegenstück mit denselben Regeln beim Öffnen und Schreiben, arbeitet aber direkt auf rohen Bytes.
 
 <CodeBlock
   data={[
@@ -177,6 +187,7 @@ Starte mit einer Datei, die `'abc\n'` enthält, also vier Zeichen. Öffnen mit `
 <BarChart
   title={<>Dateigröße nach jedem Modus</>}
   description={<>Jeder Balken ist die Anzahl der Zeichen in der Datei, nachdem sie mit dem Modus darunter geöffnet und bei <code>'w'</code> und <code>'a'</code> <code>'xy'</code> geschrieben wurde. Jeder Modus beginnt wieder mit der Datei aus vier Zeichen.</>}
+  footer={<>Modus w löscht vorhandenen Inhalt, während Modus a neuen Text hinten anhängt.</>}
   yAxisLabel="Zeichen in der Datei"
   data={[
     { name: "Start", value: 4 },
@@ -186,6 +197,8 @@ Starte mit einer Datei, die `'abc\n'` enthält, also vier Zeichen. Öffnen mit `
   ]}
   chartConfig={{ value: { label: "Zeichen in der Datei", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Vergleiche die Balken für `'w'` und `'a'` sorgfältig vor jedem Schreibzugriff. Wer `'w'` statt `'a'` wählt, überschreibt den gespeicherten Inhalt sofort.
 
 ## Methoden zum Lesen von Dateien
 
@@ -246,11 +259,12 @@ with open('sample.txt', 'r', encoding='utf-8') as f:
 
 Im Textmodus geben `read()` und `readline()` Strings zurück. Ist kein Text mehr vorhanden, liefern sie `''`. Im Binärmodus geben sie `bytes` zurück und verwenden am Dateiende `b''`. Eine Iteration endet dort automatisch.
 
-Eine geöffnete Datei hat eine Position, und jedes Lesen schiebt sie weiter. Beim Inhalt `"Hi!\nPython\n"` steht die Position nach `open()` am Anfang. `read(3)` nimmt `Hi!` und hält bei Position `3`, das erste `readline()` nimmt den Rest dieser Zeile bis `\n`, und das zweite `readline()` nimmt `Python\n` bis zum Dateiende. Das nächste Lesen liefert einen leeren String, weil die Position schon am Ende steht.
+Eine geöffnete Datei hat eine Leseposition, die sich bei jedem Aufruf weiterbewegt. Bei `"Hi!\nPython\n"` startet sie nach `open()` am Anfang, `read(3)` liest `Hi!`, das erste `readline()` liest `\n`, und das zweite `readline()` liest `Python\n` bis zum Ende.
 
 <MathVisual
   title={<>Die Dateiposition beim Lesen</>}
   description={<>Jedes Zeichen der Datei ist ein Punkt, und ↵ ist ein Zeilenumbruch. Die Strecken zeigen die Position nach jedem Aufruf.</>}
+  footer={<>Jeder Leseaufruf schiebt den Zeiger weiter vor, bis das Dateiende erreicht ist.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.4, max: 0.6 } },
@@ -309,6 +323,8 @@ Eine geöffnete Datei hat eine Position, und jedes Lesen schiebt sie weiter. Bei
   }}
 />
 
+Sobald der Zeiger am Dateiende ankommt, gibt jeder weitere Leseaufruf einen leeren String zurück, bis du ihn mit `seek(0)` wieder zurücksetzt.
+
 ## Sicherer Umgang mit Dateien
 
 Die `with`-Anweisung <Highlight>schließt eine Datei automatisch am Ende ihres Blocks</Highlight>, auch wenn eine Operation im Block eine Ausnahme auslöst.
@@ -340,3 +356,5 @@ with open('input.txt', 'r', encoding='utf-8') as input_file, open('output.txt', 
 />
 
 Die `with`-Anweisung stellt sicher, dass Dateien immer ordnungsgemäß geschlossen werden, auch wenn im Programm ein Fehler auftritt. Dadurch wird verhindert, dass Dateien geöffnet bleiben und Systemressourcen verbrauchen.
+
+> Öffne Dateien immer in einem `with`-Block, damit Python sie selbst bei einem Laufzeitfehler zuverlässig wieder schließt.

@@ -33,7 +33,7 @@ print(txt)
   ]}
 />
 
-`open()` mencipta objek fail, `read()` mengambil teksnya, dan blok `with` menutup fail secara automatik apabila blok itu tamat, termasuk apabila pengecualian mengganggu operasi tersebut.
+`open()` mencipta objek fail, `read()` mengambil teksnya, dan blok `with` menutup fail secara automatik apabila blok itu tamat, termasuk apabila pengecualian mengganggu operasi itu.
 
 ### Membaca Fail Baris demi Baris
 
@@ -108,11 +108,16 @@ with open('file.txt', 'w', encoding='utf-8') as f:
 
 Argumen `file` menggunakan semula pemformatan `print()`, tetapi teks yang terhasil dihantar ke objek fail yang dipilih.
 
-`f.write(text)` memulangkan bilangan aksara yang ditulis, dan baris baharu `\n` dikira sebagai satu aksara. Jika kamu menulis `'Hello\n'`, `'Python\n'` dan kemudian `'!'`, fail itu akan mengandungi <InlineMath math="6+7+1=14" /> aksara.
+`f.write(text)` memulangkan bilangan aksara yang ditulis, dan baris baharu `\n` dikira sebagai satu aksara. Jika kamu menulis `'Hello\n'`, `'Python\n'` dan kemudian `'!'`, fail itu mengandungi empat belas aksara keseluruhannya.
+
+<BlockMath math="6 + 7 + 1 = 14" />
+
+Carta di bawah membandingkan nilai pulangan `f.write()` bagi ketiga-tiga rentetan itu.
 
 <BarChart
   title={<>Nilai pulangan <code>f.write()</code> untuk tiga rentetan</>}
   description={<>Setiap palang ialah nombor yang dipulangkan oleh <code>f.write()</code> untuk rentetan di bawahnya. Setiap <code>\n</code> menambah satu aksara.</>}
+  footer={<>Setiap aksara kelihatan dan setiap <code>\n</code> menambah satu pada jumlah pulangan.</>}
   yAxisLabel="Aksara ditulis"
   data={[
     { name: "'Hello\\n'", value: 6 },
@@ -122,6 +127,8 @@ Argumen `file` menggunakan semula pemformatan `print()`, tetapi teks yang terhas
   chartConfig={{ value: { label: "Aksara ditulis", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
+Perhatikan bahawa rentetan satu aksara tanpa baris baharu hanya menyumbang satu, manakala rentetan yang berakhir dengan `\n` sentiasa memasukkan pemisah baris itu dalam jumlahnya.
+
 ## Mod Pembukaan Fail
 
 Python menyediakan pelbagai **mod untuk membuka fail** mengikut keperluan operasi yang hendak dilakukan.
@@ -129,6 +136,7 @@ Python menyediakan pelbagai **mod untuk membuka fail** mengikut keperluan operas
 <Mermaid
   title={<>Pilih Mod Sebelum Menyentuh Fail</>}
   description={<>Bandingkan mod baca, tulis, tambah dan binari supaya operasi fail tidak memusnahkan kandungan sedia ada secara tidak sengaja.</>}
+  footer={<>Tambah akhiran b untuk bekerja terus dengan bait mentah tanpa pengekodan teks.</>}
   chart={`
     flowchart LR
         A[Mod Fail] --> B[Mod Teks]
@@ -145,6 +153,8 @@ Python menyediakan pelbagai **mod untuk membuka fail** mengikut keperluan operas
         C --> C4[rb+ - baca tulis binari sedia ada]
   `}
 />
+
+Setiap mod di cabang teks mempunyai pasangan binari dengan peraturan buka dan tulis yang sama, cuma cabang binari membaca dan menulis bait mentah secara langsung.
 
 <CodeBlock
   data={[
@@ -177,6 +187,7 @@ Mulakan dengan fail yang berisi `'abc\n'`, iaitu empat aksara. Membuka dengan `'
 <BarChart
   title={<>Saiz fail selepas setiap mod</>}
   description={<>Setiap palang ialah bilangan aksara dalam fail selepas fail itu dibuka dengan mod di bawahnya dan, bagi <code>'w'</code> dan <code>'a'</code>, selepas <code>'xy'</code> ditulis. Setiap mod bermula semula daripada fail empat aksara itu.</>}
+  footer={<>Mod w memadamkan teks lama, manakala mod a menambah teks baharu di hujung.</>}
   yAxisLabel="Aksara dalam fail"
   data={[
     { name: "awal", value: 4 },
@@ -186,6 +197,8 @@ Mulakan dengan fail yang berisi `'abc\n'`, iaitu empat aksara. Membuka dengan `'
   ]}
   chartConfig={{ value: { label: "Aksara dalam fail", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Bandingkan palang `'w'` dan `'a'` dengan teliti sebelum menulis ke mana-mana fail. Memilih `'w'` ketika kamu ingin menambah catatan akan memadamkan semua isi lama serta-merta.
 
 ## Kaedah Membaca Fail
 
@@ -246,11 +259,12 @@ with open('sample.txt', 'r', encoding='utf-8') as f:
 
 Dalam mod teks, `read()` dan `readline()` memulangkan rentetan, dan memulangkan `''` apabila tiada lagi teks. Dalam mod binari, kedua-duanya memulangkan `bytes` dan menggunakan `b''` di hujung fail. Lelaran berhenti secara automatik apabila sampai ke hujung.
 
-Fail yang terbuka mempunyai kedudukan, dan setiap bacaan memajukannya. Untuk kandungan `"Hi!\nPython\n"`, kedudukan bermula di awal selepas `open()`. `read(3)` mengambil `Hi!` dan berhenti pada kedudukan `3`, `readline()` yang pertama mengambil baki baris itu hingga `\n`, dan `readline()` yang kedua mengambil `Python\n` hingga hujung fail. Bacaan seterusnya memulangkan rentetan kosong, kerana kedudukan sudah berada di hujung.
+Fail yang terbuka mempunyai kedudukan yang terus maju ke hadapan. Untuk `"Hi!\nPython\n"`, kedudukan bermula di awal selepas `open()`. Panggilan `read(3)` mengambil `Hi!`, `readline()` pertama mengambil `\n`, lalu `readline()` kedua mengambil `Python\n` hingga hujung fail.
 
 <MathVisual
   title={<>Kedudukan fail semasa membaca</>}
   description={<>Setiap aksara dalam fail ialah satu titik, dan ↵ ialah baris baharu. Segmen menunjukkan kedudukan selepas setiap panggilan.</>}
+  footer={<>Setiap panggilan baca menggerakkan penunjuk maju hingga hujung fail dicapai.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.4, max: 0.6 } },
@@ -309,6 +323,8 @@ Fail yang terbuka mempunyai kedudukan, dan setiap bacaan memajukannya. Untuk kan
   }}
 />
 
+Sebaik sahaja penunjuk tiba di hujung fail, panggilan baca seterusnya memulangkan rentetan kosong sehingga kamu memindahkannya semula dengan `seek(0)`.
+
 ## Pengendalian Fail yang Selamat
 
 Pernyataan `with` <Highlight>menutup fail secara automatik apabila bloknya tamat</Highlight>, termasuk apabila operasi di dalam blok itu menimbulkan pengecualian.
@@ -340,3 +356,5 @@ with open('input.txt', 'r', encoding='utf-8') as input_file, open('output.txt', 
 />
 
 Pernyataan `with` memastikan fail sentiasa ditutup dengan betul, walaupun ralat berlaku dalam atur cara. Dengan cara ini, kamu mengelakkan masalah seperti fail yang terus terbuka dan menggunakan sumber sistem.
+
+> Sentiasa buka fail di dalam blok `with` supaya Python menutupnya secara automatik walaupun ralat berlaku di tengah proses.

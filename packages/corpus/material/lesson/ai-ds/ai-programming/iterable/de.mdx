@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Iterables",
-    description: "Nutze Python-Iterables in Schleifen, für Mitgliedschafts- und Wahrheitsprüfungen sowie zum Entpacken nach Position.",
+    description: "Nutze Python Iterables in Schleifen, für Mitgliedschaftsprüfungen, Wahrheitsprüfungen sowie zum Entpacken nach Position.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
     dateModified: "2026-09-07",
@@ -86,6 +86,7 @@ Jede Runde von `for item in [3, 8, 1, 6]` ruft einmal `next()` auf und liefert e
 
 <BarChart
   title={<><code>total</code> nach jedem <code>next()</code></>}
+  footer={<>Jeder Aufruf von next() liefert ein Element, bis der Iterator am letzten Eintrag endet.</>}
   description={<>Jeder Balken ist <code>total</code>, nachdem das darunter stehende Element addiert wurde: <InlineMath math="3" />, <InlineMath math="11" />, <InlineMath math="12" />, dann <InlineMath math="18" />.</>}
   yAxisLabel="Laufende Summe"
   data={[
@@ -96,6 +97,8 @@ Jede Runde von `for item in [3, 8, 1, 6]` ruft einmal `next()` auf und liefert e
   ]}
   chartConfig={{ value: { label: "Laufende Summe", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
+
+Eine `for`-Schleife liest nicht die gesamte Sequenz auf einmal ein, sondern holt pro Schritt genau ein Element über `next()`, bis die Quelle erschöpft ist.
 
 ## Mitgliedschaftsoperatoren
 
@@ -254,6 +257,7 @@ Prüf die Liste `[3, 8, 1, 6]` gegen die Bedingung `v > 5`. Die zwei magentafarb
 
 <MathVisual
   title={<><code>any</code> und <code>all</code> auf <code>[3, 8, 1, 6]</code></>}
+  footer={<>Ein Punkt über der Grenze reicht für any, während all alle Punkte oberhalb verlangt.</>}
   description={<>Jeder Punkt ist ein Wert an seiner Position. Magentafarbene Punkte erfüllen <InlineMath math="v>5" />, türkise nicht, und die graue Linie ist die Grenze <InlineMath math="5" />.</>}
   scene={{
     space: "plane",
@@ -282,6 +286,8 @@ Prüf die Liste `[3, 8, 1, 6]` gegen die Bedingung `v > 5`. Die zwei magentafarb
     "value-d": "6",
   }}
 />
+
+Sobald `any()` den Wert `8` erreicht, endet die Prüfung mit `True`, während `all()` bereits beim ersten Wert `3` mit `False` abbricht.
 
 ## Entpackoperator
 
@@ -405,6 +411,7 @@ Ein Name mit Stern nimmt jedes Element, das kein anderer Name nimmt, und ist imm
 
 <MathVisual
   title={<>Wohin jedes Element beim Entpacken mit Stern geht</>}
+  footer={<>Ein Ziel mit Stern sammelt alle übrigen Elemente als Liste, in der Mitte oder am Ende.</>}
   description={<>Die obere Zeile ist <code>[1, 2, 3, 4]</code>: Die violette Zelle geht an <code>a</code>, die türkisen Zellen an <code>rest</code>. Die untere Zeile ist <code>[1, 2, 3, 4, 5]</code>: Die violette Zelle geht an <code>first</code>, die drei türkisen Zellen an <code>middle</code> und die orange Zelle an <code>last</code>.</>}
   scene={{
     space: "plane",
@@ -433,3 +440,7 @@ Ein Name mit Stern nimmt jedes Element, das kein anderer Name nimmt, und ist imm
     "tail": <code>last</code>,
   }}
 />
+
+Ziele mit Stern halten das Entpacken bei wechselnder Länge flexibel, weil feste Namen ihren Platz sichern und der Stern den gesamten Rest als Liste einsammelt.
+
+> Das Iterable-Protokoll verbindet `for`-Schleifen, `any()` und `all()` sowie das Entpacken mit Stern. Sobald ein Objekt Iteration unterstützt, funktionieren all diese Python-Werkzeuge sofort darauf.

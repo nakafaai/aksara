@@ -11,7 +11,7 @@ export const metadata = {
 
 Python mendukung beberapa cara menyusun program. Procedural programming mengatur program sebagai urutan langkah. Functional programming mengolah data dengan fungsi. Object-oriented programming menyatukan data dan operasi yang berkaitan. Ketiganya dapat dipakai bersama.
 
-Saat program berjalan, <Highlight>setiap nilai di Python merupakan objek</Highlight>. Bilangan, fungsi, class, dan modul memiliki tipe, identitas yang membedakannya dari objek lain, serta nilai yang disimpan.
+Saat program berjalan, <Highlight>setiap nilai di Python adalah objek</Highlight>. Bilangan, fungsi, class, dan modul memiliki tipe, identitas yang membedakannya dari objek lain, serta nilai yang disimpan.
 
 Tipe sebuah objek menentukan atribut dan method yang tersedia. Karena aturan ini berlaku untuk semua objek, fungsi dapat disimpan dalam list, class dapat diberikan kepada fungsi lain, dan bilangan dapat memiliki method. Model objek Python dapat digunakan dalam program procedural, functional, maupun object-oriented.
 
@@ -58,11 +58,11 @@ int main() {
   }]}
 />
 
-Di sini, `struct` C menyimpan state parkir. Setiap fungsi menerima pointer ke data tersebut. Fungsi procedural dapat membaca input dan membiarkannya tetap sama.
+Di sini, `struct` C menyimpan state parkir. Setiap fungsi menerima pointer ke data itu. Fungsi procedural dapat membaca input dan membiarkannya tetap sama.
 
 ### Object Oriented Programming
 
-Dalam object-oriented programming, class **mengelompokkan data dan operasi** yang saling berkaitan. Atribut menyimpan state objek, sedangkan method membaca atau memperbarui state tersebut.
+Dalam object-oriented programming, class **mengelompokkan data dan operasi** yang saling berkaitan. Atribut menyimpan state objek, sedangkan method membaca atau memperbarui state itu.
 
 <CodeBlock
   data={[{
@@ -163,9 +163,7 @@ print(parking.is_full())`
 
 ## Konsep Objek pada Tipe Data
 
-"Setiap nilai adalah objek" berarti Python memakai satu model objek untuk seluruh nilai saat program berjalan. Atribut dan method yang tersedia tetap bergantung pada <Highlight>tipe objek</Highlight> tersebut.
-
-### Angka adalah Objek
+"Setiap nilai adalah objek" berarti Python memakai satu model objek untuk seluruh nilai saat program berjalan. Atribut dan method yang tersedia tetap bergantung pada <Highlight>tipe objek</Highlight> itu.
 
 Bilangan bulat adalah **objek yang punya method**. Contoh berikut memanggil `bit_length()` pada `42` lalu mencetak hasilnya.
 
@@ -191,8 +189,6 @@ print(type(result))         # <class 'int'>
 print(dir(result))          # Menampilkan nama atribut untuk eksplorasi`
   }]}
 />
-
-### String adalah Objek
 
 String adalah objek dengan method yang **menghasilkan nilai baru**. Contoh berikut memanggil beberapa method string pada satu teks.
 
@@ -229,8 +225,6 @@ rejoined = " ".join(words)          # Menggabung kembali
 print(rejoined)`
   }]}
 />
-
-### List adalah Objek
 
 List menyediakan **method yang mengubah isi** seperti `append()`, serta method pembacaan seperti `count()` yang tidak mengubah list. Contoh berikut berawal dari daftar buah lalu memanggil method list.
 
@@ -275,9 +269,7 @@ print(f"Copy: {copy_list}")`
   }]}
 />
 
-### Dictionary adalah Objek
-
-Dictionary adalah objek dengan method untuk **membaca dan memperbarui** pasangannya. Contoh berikut memakai data seorang mahasiswa untuk memanggil method tersebut.
+Dictionary adalah objek dengan method untuk **membaca dan memperbarui** pasangannya. Contoh berikut memakai data seorang mahasiswa untuk memanggil method itu.
 
 <CodeBlock
   data={[{
@@ -399,11 +391,14 @@ Karena fungsi adalah objek, kamu bisa memberikannya ke fungsi lain seperti nilai
     { name: "4", value: 4 ** 2 },
   ]}
   chartConfig={{ value: { label: "Hasil square", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  footer="Objek fungsi square dikirim ke map dan dipanggil untuk setiap elemen."
 />
+
+Tinggi setiap batang melonjak mengikuti kuadrat masukannya dari `1` hingga `16` karena `map` menerima objek `square` secara langsung lalu memanggilnya pada setiap nilai tanpa perlu menulis loop manual.
 
 ## Class dan Instance sebagai Objek
 
-Class menentukan cara instance dibuat serta menyediakan class attribute dan method yang dipakai bersama. Class itu sendiri juga merupakan objek, sedangkan **setiap instance menyimpan state masing-masing**.
+Class menentukan cara instance dibuat serta menyediakan class attribute dan method yang dipakai bersama. Class itu sendiri juga adalah objek, sedangkan **setiap instance menyimpan state masing-masing**.
 
 <CodeBlock
   data={[{
@@ -475,7 +470,9 @@ print(Student.university)           # Universitas Indonesia`
   }]}
 />
 
-Satu kelas `Point` bisa membuat banyak instance, dan setiap instance menyimpan atributnya sendiri. `p1 = Point(1, 2)` dan `p2 = Point(4, 1)` punya `x` dan `y` yang berbeda, tetapi berbagi metode yang sama, misalnya `p1.distance(p2)`, yang memberi <InlineMath math="\sqrt{3^2+1^2}=\sqrt{10}" />.
+Satu kelas `Point` bisa membuat banyak instance, dan setiap instance menyimpan atributnya sendiri. `p1 = Point(1, 2)` dan `p2 = Point(4, 1)` punya `x` dan `y` yang berbeda, tetapi berbagi metode yang sama, misalnya `p1.distance(p2)`, yang memberi <InlineMath math="\sqrt{10}" />.
+
+<BlockMath math="d = \sqrt{3^2 + 1^2} = \sqrt{10}" />
 
 <MathVisual
   title={<>Dua instance dari satu kelas <code>Point</code></>}
@@ -498,11 +495,14 @@ Satu kelas `Point` bisa membuat banyak instance, dan setiap instance menyimpan a
     "first": <code>p1 = Point(1, 2)</code>,
     "second": <code>p2 = Point(4, 1)</code>,
   }}
+  footer="p1 dan p2 menyimpan koordinat sendiri sambil berbagi method distance."
 />
+
+Kedua titik berada di posisi berbeda pada bidang karena masing-masing menyimpan `self.x` dan `self.y` sendiri, sedangkan ruas jaraknya dihitung oleh satu method `distance` yang sama di class `Point`.
 
 ## Special Methods
 
-Nama special method dimulai dan diakhiri dengan **double underscore**, seperti `__len__`. Python memanggil method ini melalui sintaks atau built-in function seperti `+`, `abs()`, `repr()`, dan `bool()`. Tambahkan special method hanya jika operasi tersebut memang masuk akal untuk objek yang dibuat.
+Nama special method dimulai dan diakhiri dengan **double underscore**, seperti `__len__`. Python memanggil method ini melalui sintaks atau built-in function seperti `+`, `abs()`, `repr()`, dan `bool()`. Tambahkan special method hanya jika operasi itu memang masuk akal untuk objek yang dibuat.
 
 <CodeBlock
   data={[{
@@ -586,9 +586,12 @@ Misalkan kelas `Vector` punya metode khusus `__add__` yang menjumlahkan komponen
     "w": "w = Vector(1, 2)",
     "sum": "v + w = Vector(3, 3)",
   }}
+  footer="v + w memanggil v.__add__(w) dan mengembalikan objek Vector baru."
 />
 
-## Praktik Object Oriented Programming
+Saat `w` disambungkan dari ujung `v`, titik akhirnya mendarat tepat di `(3, 3)` sehingga ruas magenta `v + w` menampilkan hasil penjumlahan per komponen yang dikembalikan `__add__` tanpa mengubah `v` maupun `w`.
+
+## Memodelkan Sistem Perpustakaan dengan Class
 
 Contoh berikut menggabungkan beberapa class untuk memodelkan **buku, anggota, dan proses peminjaman** di perpustakaan.
 
@@ -749,3 +752,5 @@ print(library.return_book("M001", "978-1234567890"))`
 />
 
 Karena semua nilai mengikuti model objek yang sama, fungsi dan class dapat disimpan dalam variabel, dimasukkan ke list, atau diberikan sebagai argumen seperti nilai lain. Gunakan object-oriented programming ketika data dan operasi terkait perlu dikelola bersama. Gunakan procedural programming atau functional programming ketika urutan langkah atau aliran datanya lebih mudah dijelaskan secara langsung.
+
+> Setiap nilai di Python membawa tipe, identitas, dan method-nya sendiri sehingga bilangan, fungsi, hingga class bisa bergerak melewati aturan bahasa yang seragam.

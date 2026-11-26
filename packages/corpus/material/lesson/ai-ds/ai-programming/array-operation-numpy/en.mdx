@@ -206,7 +206,10 @@ Take `a` of shape `(3, 1)` holding <InlineMath math="0" />, <InlineMath math="10
     "sum-2-2": <InlineMath math="22" />,
     "sum-2-3": <InlineMath math="23" />,
   }}
+  footer="Length-one axes stretch automatically to produce a (3, 4) grid of sums."
 />
+
+Broadcasting aligns the `(3, 1)` column and `(1, 4)` row into a `(3, 4)` matrix without copying either input array in memory.
 
 ## Array Arithmetic Operations
 
@@ -242,7 +245,7 @@ print(f"2**a = {2**a}")
   ]}
 />
 
-### Operations Between Arrays
+Arithmetic and matrix operators also apply directly between two arrays.
 
 <CodeBlock
   data={[
@@ -273,8 +276,6 @@ print(f"a @ b = {a @ b}")
 />
 
 The `*` operator multiplies **entries at the same position**. For the two one-dimensional arrays above, `@` returns their dot product: `0 + 3 + 4 + 3 + 0` equals `10`. For two matrices, `@` follows the row-by-column rule. Do not treat `np.dot()` as equivalent to `@` for all array shapes. Their rules differ in higher dimensions.
-
-### Comparison and Logic
 
 NumPy comparison operations produce **boolean arrays**. Use those arrays to filter data or combine several conditions.
 
@@ -380,7 +381,9 @@ print(f"argmax(axis=1): {np.argmax(data, axis=1)}")
   ]}
 />
 
-A reduction sums up a whole array in one number. For `data = np.array([1, 3, 5, 7, 9])`, `np.sum` gives <InlineMath math="25" />, `np.mean` gives <InlineMath math="5" />, and `np.std` gives <InlineMath math="\sqrt{(16+4+0+4+16)/5}=\sqrt8\approx2.83" />, because by default it divides by <InlineMath math="n" />.
+A reduction sums up a whole array in one number. For `data = np.array([1, 3, 5, 7, 9])`, `np.sum` gives <InlineMath math="25" />, `np.mean` gives <InlineMath math="5" />, and `np.std` divides the sum of squared deviations by <InlineMath math="n" /> by default.
+
+<BlockMath math="\text{std} = \sqrt{\frac{16 + 4 + 0 + 4 + 16}{5}} = \sqrt{8} \approx 2.83" />
 
 <BarChart
   title={<>Five reductions on <code>[1, 3, 5, 7, 9]</code></>}
@@ -394,7 +397,10 @@ A reduction sums up a whole array in one number. For `data = np.array([1, 3, 5, 
     { name: "max", value: 9 },
   ]}
   chartConfig={{ value: { label: "Result", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Five reduction functions summarize the same array as one number per metric."
 />
+
+Each reduction captures a different summary of the same array: `sum` and `mean` report total and center, while `std`, `min`, and `max` measure spread.
 
 ## Array Shape Manipulation
 
@@ -534,7 +540,11 @@ print("Is transpose a view?", np.shares_memory(a, b))`
 
 Z-score standardization centers each feature at a mean of <InlineMath math="0" /> and scales it to a standard deviation of <InlineMath math="1" />. It is defined only for features with **nonzero standard deviation** and puts features on comparable numerical scales.
 
-The z-score formula is <InlineMath math="Z = \frac{X - \mu}{\sigma}" />, where:
+The z-score standardization formula is written below.
+
+<BlockMath math="Z = \frac{X - \mu}{\sigma}" />
+
+Where each symbol represents:
 - <InlineMath math="X" /> is the feature matrix of size <InlineMath math="n \times k" />
 - <InlineMath math="n" /> is the number of observations (rows)
 - <InlineMath math="k" /> is the number of features (columns)
@@ -625,4 +635,9 @@ Take `data = np.array([1, 3, 5, 7, 9])`. Its mean is `5` and its standard deviat
     "data-row": "data",
     "score-row": "(data - mean) / std",
   }}
+  footer="Subtracting the mean centers at 0, and dividing by std normalizes the spread."
 />
+
+After standardization, each point's position is measured in standard deviations from the mean, placing features with different units on one shared scale.
+
+> Always check `shape` and `axis` before combining or reducing arrays, because picking the wrong axis returns a silently incorrect average rather than raising an error.

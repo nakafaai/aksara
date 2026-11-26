@@ -47,7 +47,7 @@ except IndexError:
   ]}
 />
 
-An index outside the valid range raises `IndexError`. This bounds check prevents Python sequences from returning an unrelated value.
+Requesting a position beyond the valid bounds triggers an `IndexError`. This bounds check prevents Python sequences from returning an unrelated value.
 
 ## Selecting Several Elements
 
@@ -116,7 +116,11 @@ A negative step reverses the selection direction. The form `s[::-1]` omits both 
 
 A slice is written as `start:stop:step`. The start index is included, the **stop index is excluded**, and a negative step walks the sequence from right to left.
 
-Let <InlineMath math="n" /> be the length of `s`. For the simple case <InlineMath math="0 \le i \le j \le n" /> with the default positive step, `s[i:j]` has length <InlineMath math="j-i" />. General slices may contain omitted, negative, or out-of-range bounds and a different step. Python first **normalizes them against the sequence length**. The exact count is `len(range(*slice(i, j, step).indices(len(s))))`.
+Let <InlineMath math="n" /> be the length of `s`. For the simple case with ordered bounds and the default positive step:
+
+<BlockMath math="0 \le i \le j \le n" />
+
+The slice `s[i:j]` has length <InlineMath math="j-i" />. General slices may contain omitted, negative, or out-of-range bounds and a different step. Python first **normalizes them against the sequence length**. The exact count is `len(range(*slice(i, j, step).indices(len(s))))`.
 
 <CodeBlock
   data={[
@@ -149,6 +153,7 @@ Every character of `s = "Python"` has two addresses: a positive index from the l
 
 <MathVisual
   title={<>Positive indices, negative indices, and <code>s[1:4]</code></>}
+  footer={<>Every character has a positive and negative index, and s[1:4] stops before index 4.</>}
   description={<>For <code>s = 'Python'</code>: violet numbers are positive indices, teal numbers are negative indices, and the magenta characters are the result of <code>s[1:4]</code>.</>}
   scene={{
     space: "plane",
@@ -220,6 +225,8 @@ Every character of `s = "Python"` has two addresses: a positive index from the l
   }}
 />
 
+This half-open rule stays consistent across Python: because the stop index is excluded, the number of selected elements always equals `stop - start`.
+
 ## Indices Selected by a Slice
 
 The loop below rebuilds the slice with `range(start, stop, step)`, **one index at a time**.
@@ -262,6 +269,7 @@ A slice picks the indices of `range(start, stop, step)`. For `s = 'Python'`, `s[
 
 <MathVisual
   title={<>The indices picked by <code>s[0:6:2]</code> and <code>s[5:0:-2]</code></>}
+  footer={<>The sign of step sets the direction, while its magnitude sets the stride between picks.</>}
   description={<>The gray middle row is the characters of <code>'Python'</code>. The magenta polyline above jumps forward two steps to the indices <InlineMath math="0" />, <InlineMath math="2" />, and <InlineMath math="4" />. The teal polyline below jumps backward to the indices <InlineMath math="5" />, <InlineMath math="3" />, and <InlineMath math="1" />.</>}
   scene={{
     space: "plane",
@@ -301,6 +309,8 @@ A slice picks the indices of `range(start, stop, step)`. For `s = 'Python'`, `s[
     "char-5": <code>n</code>,
   }}
 />
+
+With the negative step in `s[5:0:-2]`, index `0` serves as the exclusive stop boundary so `'P'` is omitted, matching `range(5, 0, -2)` exactly.
 
 ## Slice Shorthand
 
@@ -349,6 +359,7 @@ The same split index cuts a string with no gap and no overlap. For `s = 'Python'
 
 <MathVisual
   title={<><code>s[:3]</code> and <code>s[3:]</code> split <code>'Python'</code></>}
+  footer={<>Excluding the stop index lets s[:k] and s[k:] split any sequence with no gap or overlap.</>}
   description={<>The violet characters are <code>s[:3]</code> and the teal characters are <code>s[3:]</code>. The gray segment stands between the indices <InlineMath math="2" /> and <InlineMath math="3" />, where the two slices meet.</>}
   scene={{
     space: "plane",
@@ -381,6 +392,8 @@ The same split index cuts a string with no gap and no overlap. For `s = 'Python'
     "char-5": <code>n</code>,
   }}
 />
+
+This clean partition holds for every split index `i`, so dividing a sequence into left and right halves always reassembles cleanly into the original.
 
 ## Working with Parts of Strings and Lists
 
@@ -435,3 +448,5 @@ Use an index to select one item at a known position. Use a slice to select sever
 <Highlight>Slice bounds are clipped to the sequence</Highlight>, so `s[10:]` on a shorter string returns `""`. Direct indexing such as `s[10]` still raises `IndexError`. Use a slice only when an empty result is acceptable.
 
 Negative indices count from the end. Use `s[-1]` for the last element or `s[-3:]` for the last three elements. This form selects positions near the end during file processing, text parsing, or dataset work.
+
+> Keep the main difference in mind. Indexing demands a valid position and raises `IndexError` when out of bounds, while slicing safely clips bounds to the available sequence length.

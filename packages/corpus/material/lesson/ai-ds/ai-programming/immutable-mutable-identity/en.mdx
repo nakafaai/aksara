@@ -31,7 +31,7 @@ print(list2)  # ['a', [0, [3, 4, 5], 2], True]`
   ]}
 />
 
-Notice how changes to `list1` also affect `list2`. This happens because `list2` doesn't store a copy of `list1`, but rather a reference to the same list object in memory.
+Changes to `list1` also affect `list2`. This happens because `list2` does not store a copy of `list1`, it holds a reference to the same list object in memory.
 
 A full slice creates a **new outer list** containing references to the same elements. This is a shallow copy. Replacing an outer element leaves the original list unchanged, while a nested mutable element remains shared.
 
@@ -65,6 +65,7 @@ A list can change in place. Starting from `nums = [1, 2, 3]`, `nums[0] = 10` rep
 
 <MathVisual
   title={<><code>nums</code> changed in place</>}
+  footer={<>Index assignment and append update the list contents without creating a new object.</>}
   description={<>Each point is one element, with the index across and the value up. The orange segment lifts the element at index <InlineMath math="0" /> from <InlineMath math="1" /> to the magenta point <InlineMath math="10" />, and the teal point is the new element from <code>append</code>.</>}
   scene={{
     space: "plane",
@@ -89,12 +90,15 @@ A list can change in place. Starting from `nums = [1, 2, 3]`, `nums[0] = 10` rep
   }}
 />
 
+Both index assignment and `append` mutate the same `nums` container, so any reference pointing at `nums` sees the updated contents immediately.
+
 ## Object Identity Type and Value
 
 Every Python object has three characteristics: **identity, type, and value**.
 
 <Mermaid
   title={<>Identity Shows Which Object Is Being Used</>}
+  footer={<>Identity names the object, type defines valid operations, and value holds the data.</>}
   description={<>Separate identity, type, and value so an object is not confused with the variable name pointing to it.</>}
   chart={`
     flowchart LR
@@ -107,6 +111,8 @@ Every Python object has three characteristics: **identity, type, and value**.
         D --> D1[Stored data]
   `}
 />
+
+Keeping these three properties separate makes debugging clearer: values can change on mutable types, while an object's identity and type stay fixed for its entire lifetime.
 
 ### Object Identity
 
@@ -156,6 +162,7 @@ Run `a = [1, 2]`, `b = a`, `c = a.copy()`, then `b.append(3)`. This picture show
 
 <MathVisual
   title={<>Two names for one list, one name for a copy</>}
+  footer={<>Aliases a and b share one list object, while c points to an independent copy.</>}
   description={<><code>b</code> is bound to the same list as <code>a</code>, <code>c</code> to a copy from <code>a.copy()</code>, and then <code>b.append(3)</code> runs: violet segments point <code>a</code> and <code>b</code> at the same object, which now holds <code>[1, 2, 3]</code>, and the teal segment points <code>c</code> at its copy <code>[1, 2]</code>.</>}
   scene={{
     space: "plane",
@@ -187,6 +194,8 @@ Run `a = [1, 2]`, `b = a`, `c = a.copy()`, then `b.append(3)`. This picture show
     "copy": "[1, 2]",
   }}
 />
+
+Making an explicit copy with `a.copy()` breaks the shared link, so mutations made through `b` never leak into `c`.
 
 ## Mutable and Immutable Objects
 
@@ -297,6 +306,7 @@ print(list2)         # [0, 'x', 2] (unchanged)`
 
 <Mermaid
   title={<>Two Names Observe One Mutation</>}
+  footer={<>Mutating an element through list1 shows up through list2 because they share one list.</>}
   description={<>Both names still reference the same list after an element changes.</>}
   chart={`
     flowchart TD
@@ -320,6 +330,7 @@ Compare `a = 5; b = a; a += 1` with `x = [5]; y = x; x[0] += 1`. Integers are im
 
 <BarChart
   title={<>Immutable and mutable objects after <code>+= 1</code></>}
+  footer={<>Integers rebind to a new object on addition, while lists mutate in place.</>}
   description={<>Each bar is the value of the name written below it after both snippets. <code>b</code> stays <InlineMath math="5" />, while <code>x[0]</code> and <code>y[0]</code> are both <InlineMath math="6" /> because they refer to the same list.</>}
   yAxisLabel="Value"
   data={[
@@ -330,3 +341,7 @@ Compare `a = 5; b = a; a += 1` with `x = [5]; y = x; x[0] += 1`. Integers are im
   ]}
   chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
+
+The same `+=` operator behaves differently depending on mutability: integers move the variable label onto a new object, while list elements update inside the shared container.
+
+> A Python variable is not a box holding data, it is a label attached to an object in memory. Separating reassignment from mutation prevents hidden side effects whenever data is shared.

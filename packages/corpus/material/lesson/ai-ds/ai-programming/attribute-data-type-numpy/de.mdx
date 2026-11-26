@@ -45,8 +45,6 @@ print("Dtype:", float_array.dtype)  # Ausgabe: Dtype: float64`
   ]}
 />
 
-### Spezifische numerische Datentypen
-
 NumPy bietet eine detaillierte Präzisionskontrolle mit **verschiedenen Größen numerischer Datentypen**:
 
 | Kategorie | Datentyp | Beschreibung | Wertebereich |
@@ -98,8 +96,6 @@ print(a)
   ]}
 />
 
-### Automatische Datentyperkennung
-
 NumPy erkennt Datentypen automatisch anhand der **bereitgestellten Elemente**:
 
 <CodeBlock
@@ -140,7 +136,10 @@ Die Zahl im Namen eines `dtype` ist die Anzahl der Bits pro Element, und `itemsi
     { name: "complex128", value: 128 / 8 },
   ]}
   chartConfig={{ value: { label: "Byte pro Element", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+  footer="Der Speicher pro Element verdoppelt sich mit jeder Verdopplung der Bitbreite."
 />
+
+Wer `float32` statt `float64` wählt, halbiert sofort den Speicher pro Element, während `complex128` den doppelten Platz von `float64` belegt.
 
 ## Attribute von NumPy Arrays
 
@@ -173,8 +172,6 @@ print("Von den Elementen belegte Bytes:", a.nbytes)  # Ausgabe: Von den Elemente
     }
   ]}
 />
-
-### Attribute eines Arrays
 
 Ein Array beschreibt seinen eigenen Aufbau über Attribute. Die Tabelle nennt die **häufig gelesenen Attribute** und den Wert, den jedes für ein <InlineMath math="2 \times 3" />-Array liefert.
 
@@ -244,7 +241,10 @@ Dreh dieses Punktgitter, das für `np.zeros((2, 3, 4))` steht. Es hat zwei Schic
     "axis-one": "axis 1",
     "axis-two": "axis 2",
   }}
+  footer="Die Form (2, 3, 4) ordnet 2 Schichten, 3 Zeilen und 4 Spalten zu 24 Elementen."
 />
+
+Die Reihenfolge der Zahlen in `shape` bildet jede Achse von den äußeren Schichten `axis 0` bis zu den Spalten `axis 2` ab, weshalb `size` immer dem Produkt aller Einträge in `shape` entspricht.
 
 ## Konvertierung und Bearbeitung von Datentypen
 
@@ -312,8 +312,6 @@ print("Memory saved percentage:", (memory_saved / large_array_int64.nbytes) * 10
     }
   ]}
 />
-
-### Detaillierte Datentypinformationen
 
 Am Attribut `itemsize` erkennst du unmittelbar den Zusammenhang zwischen Genauigkeit und **Speicherbedarf eines Arrays**.
 
@@ -392,7 +390,10 @@ for name, arr in arrays.items():
     "int-1": <code>0</code>,
     "int-2": <code>2</code>,
   }}
+  footer="astype(int) streicht Nachkommastellen und zieht jeden Wert Richtung null."
 />
+
+Da Abschneiden Richtung null nicht dem Runden entspricht, rufe vor `astype(int)` gezielt `np.round()` oder `np.floor()` auf, wenn du kaufmännisch oder abwärts runden willst.
 
 ## Praktische Verwendung von Attributen von Arrays
 
@@ -538,3 +539,5 @@ for i, arr in enumerate(test_arrays):
     }
   ]}
 />
+
+> Prüfe `shape` und `dtype` direkt nach dem Laden von Rohdaten, damit stilles Abschneiden oder unnötiger Speicherverbrauch vor dem Modelltraining auffallen.

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Arithmetische Operatoren",
-  description: "Arithmetische Python-Operatoren, Vorrangregeln, Assoziativität und die praktische Verwendung von +, -, *, /, //, % und ** im Code.",
+  description: "Arithmetische Python Operatoren, Vorrangregeln, Assoziativität, Abrundungsdivision, Modulo und Potenzierung im Code.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-09-07",
@@ -13,10 +13,15 @@ Arithmetische Operatoren legen fest, welche Rechnung Python ausführt. `+` addie
 
 Python besitzt sieben grundlegende arithmetische Operatoren. Ihre Priorität bestimmt <Highlight>die Gruppierung der Operationen</Highlight>, wenn keine Klammern diese Gruppierung vorgeben.
 
-Zoom in diesen Graphen und folg beiden Linien von links nach rechts. Die violette Linie `x // 3` steigt um eine Stufe, sobald <InlineMath math="x" /> ein Vielfaches von <InlineMath math="3" /> überschreitet, und bei negativen Zahlen rundet sie trotzdem ab, also ergibt `-5 // 3` den Wert `-2`. Die türkise Linie `x % 3` steigt von <InlineMath math="0" /> an und fällt bei jedem Vielfachen von <InlineMath math="3" /> zurück, deshalb liegt der Rest immer zwischen <InlineMath math="0" /> und <InlineMath math="3" />. An jeder Stelle gilt `x == 3 * (x // 3) + x % 3`.
+> Die Rangfolge der Rechenoperatoren wirkt wie Vorfahrt an einer Kreuzung. Potenzen fahren zuerst, danach Multiplikation und Division, und Addition oder Subtraktion zuletzt, sofern Klammern nichts anderes festlegen.
+
+Zoom in diesen Graphen und folg beiden Linien von links nach rechts. Die violette Linie `x // 3` steigt um eine Stufe, sobald <InlineMath math="x" /> ein Vielfaches von <InlineMath math="3" /> überschreitet, und bei negativen Zahlen rundet sie trotzdem ab, sodass `-5 // 3` den Wert `-2` ergibt.
+
+Die türkise Linie `x % 3` steigt von <InlineMath math="0" /> an und fällt bei jedem Vielfachen von <InlineMath math="3" /> zurück, sodass der Rest immer zwischen <InlineMath math="0" /> und <InlineMath math="3" /> liegt.
 
 <MathVisual
   title={<>Ganzzahlige Division <code>//</code> und Rest <code>%</code></>}
+  footer={<>Die Abrundungsdivision klettert stufenweise, während der Rest stets bei null neu startet.</>}
   description={<>Die violette Linie ist <code>x // 3</code>, die türkise Linie <code>x % 3</code> von minus sechs bis vor sechs. Jedes Stück enthält sein linkes Ende und hört kurz vor dem nächsten Vielfachen von <InlineMath math="3" /> auf.</>}
   scene={{
     space: "plane",
@@ -43,7 +48,9 @@ Zoom in diesen Graphen und folg beiden Linien von links nach rechts. Die violett
   }}
 />
 
-## Rangfolge der Operatoren
+An jeder Stelle auf dem Zahlenstrahl greifen violette Treppe und türkise Sägezahnlinie so ineinander, dass `x == 3 * (x // 3) + x % 3` auch bei negativen Zahlen gilt.
+
+## Prioritätsstufen der Rechenoperatoren
 
 Enthält ein Ausdruck mehrere arithmetische Operatoren, braucht Python eine feste Reihenfolge, um zu entscheiden, welche Rechnung zuerst läuft. Diese Reihenfolge <Highlight>ergibt sich aus drei Prioritätsstufen</Highlight>. Die Priorität bestimmt die Gruppierung der Operationen. Klammern können diese Gruppierung ändern.
 
@@ -137,7 +144,9 @@ Die Abrundung erfolgt in Richtung negativ unendlich. Bei `-7 // 2` erhält Pytho
 
 **Modulo-Operator `%`**
 
-Der Operator `%` liefert den zur Abrundungsdivision gehörenden Rest. Für ganzzahlige Operanden und einen Divisor ungleich null gilt exakt <InlineMath math="a \% b = a - (a // b) \times b" />.
+Der Operator `%` liefert den zur Abrundungsdivision gehörenden Rest. Für ganzzahlige Operanden und einen Divisor ungleich null gilt diese exakte Gleichung:
+
+<BlockMath math="a \% b = a - (a // b) \times b" />
 
 <CodeBlock
   data={[
@@ -169,6 +178,7 @@ Die Rangfolge bestimmt die Form des Ausdrucksbaums für `2 + 3 * 4 ** 2`. Operat
 
 <MathVisual
   title={<>Der Auswertungsbaum von <code>2 + 3 * 4 ** 2</code></>}
+  footer={<>Operatoren mit höherer Priorität sitzen tiefer im Baum und laufen zuerst.</>}
   description={<>Die violetten Punkte sind die Operatoren <code>+</code>, <code>*</code> und <code>**</code>, die türkisen Punkte die Zahlen. Die Beschriftung an jedem Operator zeigt das dort berechnete Ergebnis, von <code>**</code> unten bis <code>+</code> oben.</>}
   scene={{
     space: "plane",
@@ -209,6 +219,8 @@ Die Rangfolge bestimmt die Form des Ausdrucksbaums für `2 + 3 * 4 ** 2`. Operat
     "exponent": <InlineMath math="2" />,
   }}
 />
+
+Liest du den Baum von unten nach oben, siehst du Pythons Reihenfolge sofort: `4 ** 2` startet ganz unten, dann folgt die Multiplikation, und die Addition schließt ganz oben ab.
 
 ## Vorrangregeln und Assoziativität
 
@@ -293,6 +305,7 @@ Die Assoziativität entscheidet, wohin sich der Baum neigt, wenn die Operatoren 
 
 <MathVisual
   title={<>Bäume, die sich nach rechts und nach links neigen</>}
+  footer={<>Potenzen gruppieren von rechts nach links, Divisionen von links nach rechts.</>}
   description={<>Der linke Baum ist <code>2 ** 3 ** 2</code>, mit dem zweiten <code>**</code> im rechten Ast. Der rechte Baum ist <code>100 / 10 / 5</code>, mit dem ersten <code>/</code> im linken Ast. Die violetten Punkte sind Operatoren, und die Beschriftungen zeigen ihre Ergebnisse.</>}
   scene={{
     space: "plane",
@@ -344,6 +357,8 @@ Die Assoziativität entscheidet, wohin sich der Baum neigt, wenn die Operatoren 
     "five": <InlineMath math="5" />,
   }}
 />
+
+Vergleiche beide Bäume, sobald du gleiche Operatoren aneinanderreihst. Bist du unsicher, wohin eine Kette kippt, mach die Gruppierung mit Klammern eindeutig.
 
 ## Python Shell als Rechner
 

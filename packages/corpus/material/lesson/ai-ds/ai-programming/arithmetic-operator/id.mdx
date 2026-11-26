@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Operator Aritmatika",
-    description: "Operator aritmatika Python, prioritas operasi, asosiativitas, dan penggunaan +, -, *, /, //, %, ** dalam kode.",
+  description: "Operator aritmatika Python, aturan prioritas, asosiativitas, pembagian bulat, modulo, dan perpangkatan dalam kode.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-26",
   dateModified: "2026-09-07",
@@ -11,12 +11,17 @@ export const metadata = {
 
 Operator aritmatika memberi tahu Python jenis perhitungan yang harus dilakukan. Misalnya, `+` menjumlahkan nilai, `*` mengalikan dua nilai, dan `**` memangkatkan satu nilai dengan nilai lain.
 
-Python memiliki tujuh operator aritmatika utama. Prioritas operator menentukan <Highlight>pengelompokan operasi dalam ekspresi</Highlight> ketika tanda kurung tidak menentukan pengelompokan tersebut.
+Python memiliki tujuh operator aritmatika utama. Prioritas operator menentukan <Highlight>pengelompokan operasi dalam ekspresi</Highlight> ketika tanda kurung tidak menentukan pengelompokannya.
 
-Perbesar grafik ini dan ikuti kedua garis dari kiri ke kanan. Garis ungu `x // 3` naik satu tingkat setiap kali <InlineMath math="x" /> melewati kelipatan <InlineMath math="3" />, dan untuk bilangan negatif ia tetap membulatkan ke bawah, jadi `-5 // 3` hasilnya `-2`. Garis hijau toska `x % 3` naik dari <InlineMath math="0" /> lalu jatuh kembali di setiap kelipatan <InlineMath math="3" />, sehingga sisanya selalu di antara <InlineMath math="0" /> dan <InlineMath math="3" />. Di setiap titik berlaku `x == 3 * (x // 3) + x % 3`.
+> Operator aritmatika bekerja seperti aturan lalu lintas di persimpangan hitungan. Pangkat selalu jalan dulu, disusul kali dan bagi, lalu tambah dan kurang, kecuali tanda kurung memaksa urutan lain.
+
+Perbesar grafik ini dan ikuti kedua garis dari kiri ke kanan. Garis ungu `x // 3` naik satu tingkat setiap kali <InlineMath math="x" /> melewati kelipatan <InlineMath math="3" />, dan untuk bilangan negatif ia tetap membulatkan ke bawah sehingga `-5 // 3` bernilai `-2`.
+
+Garis hijau toska `x % 3` naik dari <InlineMath math="0" /> lalu jatuh kembali di setiap kelipatan <InlineMath math="3" /> sehingga sisanya selalu berada di antara <InlineMath math="0" /> dan <InlineMath math="3" />.
 
 <MathVisual
   title={<>Pembagian bulat <code>//</code> dan sisa <code>%</code></>}
+  footer={<>Hasil floor division naik bertangga tiap kelipatan tiga, sisanya selalu berulang dari nol.</>}
   description={<>Garis ungu adalah <code>x // 3</code>, garis hijau toska adalah <code>x % 3</code> dari minus enam sampai sebelum enam. Setiap potongan memuat ujung kirinya dan berhenti tepat sebelum kelipatan <InlineMath math="3" /> berikutnya.</>}
   scene={{
     space: "plane",
@@ -43,9 +48,11 @@ Perbesar grafik ini dan ikuti kedua garis dari kiri ke kanan. Garis ungu `x // 3
   }}
 />
 
-## Urutan Prioritas Operator
+Di setiap titik pada garis bilangan, pasangan tangga ungu dan gigi gergaji toska ini selalu memenuhi `x == 3 * (x // 3) + x % 3`, termasuk untuk bilangan negatif.
 
-Ketika satu ekspresi memuat beberapa operator aritmatika sekaligus, Python memerlukan urutan tetap untuk menentukan perhitungan mana yang dikerjakan lebih dulu. Tujuh operator biner ini dikelompokkan ke dalam **tiga tingkat prioritas**. Prioritas menentukan pengelompokan operasi. Tanda kurung dapat mengubah pengelompokan tersebut.
+## Tingkat Prioritas Operator Aritmatika
+
+Ketika satu ekspresi memuat beberapa operator aritmatika sekaligus, Python memerlukan urutan tetap untuk menentukan perhitungan mana yang dikerjakan lebih dulu. Tujuh operator biner ini dikelompokkan ke dalam **tiga tingkat prioritas**. Prioritas menentukan pengelompokan operasi, sedangkan tanda kurung dapat mengubahnya.
 
 ### Prioritas Tertinggi
 
@@ -137,7 +144,9 @@ Floor division membulatkan hasil ke arah negatif tak hingga. Untuk `-7 // 2`, Py
 
 **Operator Modulo `%`**
 
-Operator `%` mengembalikan sisa pembagian. Untuk operand bilangan bulat dan pembagi bukan nol, berlaku identitas eksak <InlineMath math="a \% b = a - (a // b) \times b" />.
+Operator `%` mengembalikan sisa pembagian. Untuk operand bilangan bulat dan pembagi bukan nol, berlaku identitas eksak berikut:
+
+<BlockMath math="a \% b = a - (a // b) \times b" />
 
 <CodeBlock
   data={[
@@ -169,6 +178,7 @@ Urutan prioritas menentukan bentuk pohon ekspresi `2 + 3 * 4 ** 2`. Operator yan
 
 <MathVisual
   title={<>Pohon evaluasi <code>2 + 3 * 4 ** 2</code></>}
+  footer={<>Operator berprioritas lebih tinggi duduk lebih dalam dan dihitung paling awal.</>}
   description={<>Titik ungu adalah operator <code>+</code>, <code>*</code>, dan <code>**</code>, titik hijau toska adalah angkanya. Label di setiap operator menunjukkan hasil yang dihitung di sana, dari <code>**</code> paling bawah sampai <code>+</code> di puncak.</>}
   scene={{
     space: "plane",
@@ -209,6 +219,8 @@ Urutan prioritas menentukan bentuk pohon ekspresi `2 + 3 * 4 ** 2`. Operator yan
     "exponent": <InlineMath math="2" />,
   }}
 />
+
+Membaca pohon dari bawah ke atas membuat urutan kerja Python langsung terlihat jelas: pangkat `4 ** 2` selesai dulu, barulah perkalian, dan penjumlahan berada paling atas sebagai langkah terakhir.
 
 ## Aturan Prioritas dan Asosiativitas
 
@@ -293,6 +305,7 @@ Asosiativitas menentukan ke mana pohon condong saat operatornya sama. `2 ** 3 **
 
 <MathVisual
   title={<>Pohon yang condong ke kanan dan ke kiri</>}
+  footer={<>Pangkat mengelompok dari kanan ke kiri, sedangkan pembagian dari kiri ke kanan.</>}
   description={<>Pohon kiri adalah <code>2 ** 3 ** 2</code>, dengan <code>**</code> kedua di cabang kanan. Pohon kanan adalah <code>100 / 10 / 5</code>, dengan <code>/</code> pertama di cabang kiri. Titik ungu adalah operator dan label menunjukkan hasilnya.</>}
   scene={{
     space: "plane",
@@ -344,6 +357,8 @@ Asosiativitas menentukan ke mana pohon condong saat operatornya sama. `2 ** 3 **
     "five": <InlineMath math="5" />,
   }}
 />
+
+Bandingkan kedua pohon ini saat menulis ekspresi berantai: bila kamu ragu apakah sebuah rangkaian operator condong ke kiri atau ke kanan, tambahkan tanda kurung agar maksud kodemu langsung terbaca.
 
 ## Python Shell sebagai Kalkulator
 

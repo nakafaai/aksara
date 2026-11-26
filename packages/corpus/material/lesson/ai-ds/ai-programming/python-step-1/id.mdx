@@ -96,9 +96,9 @@ Jupyter adalah lingkungan interaktif yang sering digunakan untuk sains data dan 
 
 Setiap sel dapat dijalankan secara terpisah, lalu output sel muncul tepat di bawah kode. Kode, output, penjelasan, gambar, dan grafik tetap berada dalam satu dokumen. Susunan ini dapat merekam setiap langkah eksperimen atau analisis data.
 
-Sel berbagi state dari kernel yang sama. Jalankan sel berurutan dari atas setelah restart kernel: sel yang memakai `math` atau fungsi harus dijalankan sesudah sel yang mendefinisikan nama tersebut.
+Sel berbagi state dari kernel yang sama. Jalankan sel berurutan dari atas setelah restart kernel: sel yang memakai `math` atau fungsi harus dijalankan sesudah sel yang mendefinisikan nama itu.
 
-Instal JupyterLab di environment Python khusus agar paketnya tidak mengganggu proyek lain:
+Instal JupyterLab di environment Python khusus agar paketnya tidak mengganggu proyek lain.
 
 Perintah berikut memakai path macOS/Linux. Pada Windows, gunakan `py -m venv .venv`, lalu `.venv\Scripts\python -m pip install jupyterlab` dan `.venv\Scripts\jupyter lab`.
 
@@ -159,7 +159,7 @@ Program Python pertama membaca perintahnya dari atas ke bawah. Variabel menyimpa
 
 ### Variabel dan Tipe Data
 
-Python memiliki beberapa tipe data dasar. **Nama variabel merujuk** pada sebuah nilai. Penetapan nilai berikutnya membuat nama tersebut merujuk pada nilai baru.
+Python memiliki beberapa tipe data dasar. **Nama variabel merujuk** pada sebuah nilai. Penetapan nilai berikutnya membuat nama itu merujuk pada nilai baru.
 
 <CodeBlock
   data={[{
@@ -284,13 +284,14 @@ Operator matematika dasar memberi hasil yang berbeda untuk angka yang sama. Deng
     { name: "**", value: 7 ** 2 },
   ]}
   chartConfig={{ value: { label: "Hasil", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  footer="Empat operator memberi hasil berbeda dari pasangan angka 7 dan 2."
 />
 
-## Latihan Praktis
+Batang `**` melonjak ke `49` jauh di atas ketiga operator lain, sementara `/` menghasilkan float `3.5` berbeda dari `//` yang memotong sisa menjadi `3`.
+
+## Membangun Program Pertama dari Awal
 
 Kerjakan latihan berikut untuk mempraktikkan **variabel, input, output, dan operasi dasar**. Tulis jawabanmu sendiri sebelum memeriksanya, karena latihan ini melatih langkah pengerjaan. Pembahasan mengikuti urutan soal yang sama.
-
-### Kalkulator Sederhana
 
 Program ini membaca **dua bilangan dan satu operator**, lalu mencetak hasilnya. Di dalamnya tergabung masukan, konversi tipe, dan percabangan.
 
@@ -328,8 +329,6 @@ if hasil is not None:
     print(f"Hasil: {angka1} {operator} {angka2} = {hasil}")`
   }]}
 />
-
-### Konversi Suhu
 
 Program ini mengubah suhu **Celsius menjadi Fahrenheit dan Kelvin**, dan menolak nilai di bawah nol mutlak.
 
@@ -370,8 +369,6 @@ elif celsius > 100:
     print("Suhu ini di atas titik didih air!")`
   }]}
 />
-
-### Profil Mahasiswa
 
 Program ini meminta data seorang mahasiswa, menyimpannya dalam variabel, lalu **mencetak profil singkat**.
 
@@ -419,8 +416,6 @@ else:
   }]}
 />
 
-### Cek Hasil
-
 **Program latihanmu sudah sesuai** kalau:
 
 - Kalkulator meminta dua angka dan satu operator, lalu menampilkan hasil operasi yang dipilih.
@@ -459,7 +454,10 @@ Tetapkan `number1 = 2` dan bayangkan kamu mencoba banyak nilai `number2` di kalk
     "times": "2 * number2",
     "divide": "2 / number2",
   }}
+  footer="Tiga operator melintasi nol dengan mulus, tetapi pembagian berhenti di nol."
 />
+
+Tiga garis `+`, `-`, dan `*` tetap kontinu saat `number2` melewati nol, sedangkan titik pembagian terputus di `0` karena cabang `if angka2 != 0` melindungi program dari `ZeroDivisionError`.
 
 Program konversi suhu menghitung `fahrenheit = (celsius * 9/5) + 32`. Rumus itu adalah garis lurus <InlineMath math="F=\tfrac95C+32" />: setiap kenaikan <InlineMath math="1^\circ\mathrm{C}" /> menambah <InlineMath math="1{,}8^\circ\mathrm{F}" />, dan garisnya memotong sumbu tegak di <InlineMath math="32" />.
 
@@ -487,4 +485,9 @@ Program konversi suhu menghitung `fahrenheit = (celsius * 9/5) + 32`. Rumus itu 
     "body": <InlineMath math="37^\circ\mathrm{C}=98{,}6^\circ\mathrm{F}" />,
     "boiling": <InlineMath math="100^\circ\mathrm{C}=212^\circ\mathrm{F}" />,
   }}
+  footer="Tiga titik acuan jatuh tepat pada garis linear F = 9/5 C + 32."
 />
+
+Titik beku, suhu tubuh, dan titik didih semuanya menempel pada satu garis lurus yang sama, sehingga satu ekspresi linear sudah cukup untuk mengonversi seluruh rentang suhu valid.
+
+> Setiap program Python dibangun dari alur sederhana yang sama, yaitu membaca masukan, menyimpan nilai pada tipe yang tepat, lalu mengolahnya menjadi keluaran yang terukur.

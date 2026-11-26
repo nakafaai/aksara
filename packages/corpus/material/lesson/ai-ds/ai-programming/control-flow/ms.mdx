@@ -11,7 +11,7 @@ export const metadata = {
 
 Python menyediakan beberapa pernyataan yang mengubah aliran sesuatu gelung. Pernyataan ini boleh <Highlight>menghentikan gelung, melompat ke lelaran seterusnya, atau menentukan apa yang berlaku selepas gelung selesai seperti biasa</Highlight>.
 
-Pernyataan `break` <Highlight>terus keluar dari gelung terdekat yang melingkunginya</Highlight> apabila sesuatu syarat dipenuhi. Selepas itu, pelaksanaan diteruskan dengan pernyataan pertama selepas gelung tersebut.
+Pernyataan `break` <Highlight>terus keluar dari gelung terdekat yang melingkunginya</Highlight> apabila sesuatu syarat dipenuhi. Selepas itu, pelaksanaan diteruskan dengan pernyataan pertama selepas gelung itu.
 
 <CodeBlock
   data={[
@@ -127,7 +127,10 @@ Jalankan `for i in range(10)` dengan `if i == 7: break` dan kemudian `if i % 2 =
     "print-5": <InlineMath math="5" />,
     "stop": <code>break</code>,
   }}
+  footer="continue melangkau nombor genap, manakala break menamatkan gelung pada 7."
 />
+
+Oleh sebab `break` disemak sebelum `continue`, gelung berhenti sepenuhnya pada `7` sehingga `8` dan `9` tidak pernah dicapai.
 
 ## Fungsi Enumerate
 
@@ -208,7 +211,10 @@ Gelung `while` sesuai untuk ulangan yang dipandu oleh syarat, tetapi badan gelun
         B -->|Tidak| E[Keluar dari gelung]
         E --> F[Teruskan program]
   `}
+  footer="Gelung while menyemak syarat semula setiap pusingan sehingga menjadi palsu."
 />
+
+Selepas badan gelung mengemas kini pemboleh ubah, aliran kembali ke semakan syarat supaya gelung tamat sebaik sahaja syarat menjadi palsu.
 
 ## Fungsi Zip
 
@@ -330,13 +336,14 @@ Proses ini dipanggil "unzipping" kerana ia memisahkan semula data yang telah dig
     "letter-3": <code>d</code>,
     "extra": <code>5</code>,
   }}
+  footer="zip memasangkan kedudukan sejajar dan berhenti apabila input terpendek habis."
 />
+
+Unsur tambahan dalam input lebih panjang digugurkan secara lalai, jadi guna `strict=True` apabila panjang tidak sepadan perlu menimbulkan ralat.
 
 ## Range dan Gelung For
 
 Fungsi `range()` menghasilkan **jujukan integer** untuk lelaran. Gunakannya apabila gelung memerlukan kedudukan bernombor atau bilangan ulangan yang tetap. Oleh sebab `range` menghasilkan setiap nilai hanya apabila diminta dan tidak menyimpan seluruh jujukan, penggunaan memorinya kekal kecil walaupun gelung berjalan berjuta-juta kali.
-
-### Sintaks Range
 
 <CodeBlock
   data={[
@@ -379,8 +386,6 @@ for i in range(8, 4, -1):
 />
 
 Range mengikut **formula aritmetik**, iaitu unsur ke-i ialah `start + i * step` untuk semua `i` dari <InlineMath math="0" /> hingga `n-1`.
-
-### Kecekapan Range berbanding Senarai
 
 `range` menyimpan **start, stop dan step sahaja**. Ia mengira setiap integer apabila diminta, jadi penggunaan memorinya tidak bertambah walaupun bilangan integer yang diwakilinya bertambah.
 
@@ -443,7 +448,10 @@ Ikuti gelung `for i in range(1, 6): total += i` pusingan demi pusingan. Sebelum 
     "step-e": "total = 10",
     "step-f": "total = 15",
   }}
+  footer="Jumlah terkumpul meningkat lebih cepat setiap pusingan hingga mencapai 15."
 />
+
+Setiap langkah `range(1, 6)` menambah integer seterusnya dari `1` hingga `5`, menunjukkan corak pengumpulan berperingkat dalam gelung.
 
 ## Pernyataan Bersyarat
 
@@ -532,3 +540,5 @@ for char in text:
 />
 
 Objek boleh lelar membekalkan nilai satu demi satu, tetapi ia tidak semestinya tersusun, boleh diindeks, boleh digunakan semula atau terhingga. Gelung `for` meminta nilai yang berturutan daripada pelelarnya. Dalam pengepala `for`, `in` menghubungkan sasaran lelaran dengan objek boleh lelar. Dalam ungkapan seperti `3 in [1, 3]`, `in` menguji keahlian.
+
+> Pilih `for` bersama `enumerate()`, `zip()`, atau `range()` apabila lelaran mengikut koleksi atau bilangan tetap, dan guna `while` untuk syarat henti yang berubah di dalam gelung.

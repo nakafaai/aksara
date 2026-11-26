@@ -13,15 +13,11 @@ Python <Highlight>speichert viel wiederverwendbaren Code in Modulen</Highlight>.
 
 Ein `import` lädt ein Modul bei Bedarf und bindet einen Namen, über den dein Code auf dessen öffentliche Elemente zugreift. Die Standardbibliothek bietet bereits gut getestete mathematische Operationen. Anwendungscode sollte sie nutzen, statt Formeln unbedacht neu zu implementieren.
 
-## Das Modul Math
-
 Das Modul `math` stellt **reellwertige Funktionen und Konstanten** bereit. Es akzeptiert kompatible reelle Zahlen wie `int` und `float`, nimmt bei Operationen wie `sqrt()` aber keine komplexen Werte an. Verwende `cmath`, wenn der Definitionsbereich oder das Ergebnis komplex sein kann.
 
 ## Das Modul Math importieren
 
 Python bietet mehrere Möglichkeiten, ein Modul zu importieren, und die Wahl prägt das **Aussehen jedes späteren Aufrufs**. Du kannst das ganze Modul importieren, einzelne Namen daraus oder das Modul beim Import umbenennen.
-
-### Basisimport mit Namespace
 
 Die Anweisung `import math` importiert das Modul unter dem **Namensraum `math`**. Funktionen und Konstanten werden anschließend über Namen wie `math.sqrt` und `math.pi` aufgerufen.
 
@@ -44,8 +40,6 @@ print(math.pi)  # Ausgabe: 3.141592653589793
   ]}
 />
 
-### Importieren mit Alias
-
 Ein Alias bindet das Modul an einen **anderen lokalen Namen**. Nutze ihn nur, wenn er einer etablierten Konvention folgt oder einen echten Namenskonflikt löst. `math` selbst ist bereits kurz und eindeutig.
 
 <CodeBlock
@@ -64,8 +58,6 @@ print(m.pi)       # Ausgabe: 3.141592653589793
     }
   ]}
 />
-
-### Alle Funktionen importieren
 
 Diese Form importiert jeden öffentlichen Namen aus `math` in den aktuellen Namensraum. In einer einmaligen interaktiven Sitzung mag das bequem sein, Anwendungscode sollte es jedoch vermeiden.
 
@@ -88,8 +80,6 @@ print(pi)       # Ausgabe: 3.141592653589793
 
 `from math import *` fügt jeden öffentlichen Namen aus `math` in den aktuellen Namensraum ein. Wird einer dieser Namen bereits verwendet, ersetzt der Wert aus `math` ihn ohne Fehlermeldung. Im Code ist außerdem nicht mehr erkennbar, aus welchem Modul der jeweilige Name stammt. Eine spätere Änderung an `math` kann dem importierenden Modul weitere Namen hinzufügen. Ein expliziter Import <Highlight>nennt jede Abhängigkeit in der Importzeile</Highlight>.
 
-### Spezifische Funktionen importieren
-
 Importiere **nur die Funktionen**, die das Programm verwendet. Der Funktionsname bleibt ohne Modulpräfix verfügbar, während die Importzeile weiterhin seine Herkunft nennt.
 
 <CodeBlock
@@ -110,8 +100,6 @@ print(sqrt(9))  # Ausgabe: 3.0
     }
   ]}
 />
-
-### Importieren mit Funktionsalias
 
 Eine importierte Funktion kann einen Alias erhalten, um einen **Namenskonflikt aufzulösen** oder einer etablierten lokalen Konvention zu folgen.
 
@@ -138,7 +126,7 @@ print(fac(5))  # Ausgabe: 120
 
 Python stellt numerische Built-ins wie `abs()` und `round()` **ohne Import** bereit. Sie arbeiten über Pythons numerische Protokolle mit verschiedenen Typen: Ein Typ kann die unterstützte Operation definieren. Python wählt dabei nicht zwischen mehreren statisch überladenen Funktionsdeklarationen.
 
-### Absolutwertfunktion
+### Beträge mit abs
 
 Für reelle Zahlen liefert `abs()` einen nichtnegativen Betrag. Für eine komplexe Zahl liefert die Funktion den **Abstand zum Ursprung**.
 
@@ -159,7 +147,9 @@ print(abs(4 + 3j))  # Ausgabe: 5.0`
   ]}
 />
 
-Für `4 + 3j` ergibt sich <InlineMath math="5.0" />, denn <InlineMath math="|4+3i|=\sqrt{4^2+3^2}=\sqrt{25}=5" />. Python schreibt die imaginäre Einheit als `j`, während mathematische Formeln üblicherweise <InlineMath math="i" /> verwenden.
+Für `4 + 3j` ergibt sich <InlineMath math="5.0" />, da Python den Betrag aus Real- und Imaginärteil berechnet. Python schreibt die imaginäre Einheit als `j`, während mathematische Formeln üblicherweise <InlineMath math="i" /> verwenden.
+
+<BlockMath math="|4 + 3i| = \sqrt{4^2 + 3^2} = \sqrt{25} = 5" />
 
 ### Rundungsfunktion
 
@@ -197,13 +187,16 @@ Die eingebaute Funktion `round()` und die Modulfunktionen `math.floor`, `math.ce
     { name: "round", value: -2 },
   ]}
   chartConfig={{ value: { label: "Ergebnis", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  footer="Bei -2.5 fällt floor auf -3, während ceil, trunc und round bei -2 liegen."
 />
+
+Drei Balken landen bei `-2`, während `floor` auf `-3` fällt und belegt, dass das Runden negativer Werte von der Richtung abhängt, in die eine Funktion den Nachkommateil verwirft.
 
 ## Funktionen und Konstanten im Mathematikmodul
 
 Jede `math`-Funktion hat **einen Definitionsbereich**. `sqrt(x)` benötigt beispielsweise eine nichtnegative reelle Eingabe, Logarithmen benötigen positive reelle Eingaben. Ein Wert außerhalb dieses Bereichs löst einen `ValueError` aus, statt eine Zahl zurückzugeben.
 
-### Funktionen für Quadratwurzeln und Logarithmen
+### Numerische und trigonometrische Aufrufe
 
 Das Beispiel ruft die Wurzel- und die Logarithmusfunktion auf und zeigt, wie Python eine **Eingabe außerhalb des Definitionsbereichs** meldet.
 
@@ -238,8 +231,6 @@ except ValueError as error:
   ]}
 />
 
-### Trigonometriefunktionen
-
 Die Trigonometriefunktionen arbeiten **im Bogenmaß**. Das Beispiel rechnet einen Winkel um und ruft die drei Hauptfunktionen auf.
 
 <CodeBlock
@@ -263,8 +254,6 @@ print(f"45 Grad = {angle_rad} Bogenmaß")  # Ausgabe: 45 Grad = 0.78539816339744
     }
   ]}
 />
-
-### Aufrunden Abrunden und Fakultät
 
 Aufrunden, Abrunden und Fakultät beantworten **verschiedene Fragen**. Das Beispiel wendet jede Funktion an und gibt das Ergebnis aus.
 
@@ -348,7 +337,10 @@ Folg der violetten Kurve `math.sqrt(x)` aus dem Modul `math`. Sie beginnt bei `0
     "nine": "math.sqrt(9) = 3.0",
     "two": "math.sqrt(2)",
   }}
+  footer="math.sqrt(x) gilt nur für x >= 0 und flacht bei größerem x ab."
 />
+
+Nach rechts steigt die Kurve spürbar flacher an, weil der Sprung von `4` auf `9` nur noch `1` hinzufügt, während der Bereich links von null leer bleibt, da `math.sqrt` negative Eingaben ablehnt.
 
 Die trigonometrischen Funktionen im Modul `math` rechnen in Bogenmaß, also schreibst du einen Winkel mit der Konstante `math.pi`. Für den Winkel `math.pi / 3`, also <InlineMath math="60^\circ" />, liefert `math.cos` den Wert <InlineMath math="0{,}5" /> und `math.sin` den Wert <InlineMath math="\tfrac{\sqrt3}2\approx0.866" />.
 
@@ -376,7 +368,10 @@ Die trigonometrischen Funktionen im Modul `math` rechnen in Bogenmaß, also schr
     "cosine": <code>math.cos</code>,
     "sine": <code>math.sin</code>,
   }}
+  footer="Bei pi/3 im Bogenmaß liefert math.cos die x- und math.sin die y-Strecke."
 />
+
+Die Projektion von `math.pi / 3` auf die waagerechte und senkrechte Achse liefert `0.5` und rund `0.866` und verbindet Bogenmaß direkt mit Koordinaten auf dem Einheitskreis.
 
 ## Auswahl der richtigen Importmethode
 
@@ -439,3 +434,5 @@ print(f"Dreiecksfläche bei Seitenlängen 3, 4 und 5: {area}")`
 />
 
 In klarem numerischem Code lassen sich drei Entscheidungen direkt erkennen: Welcher Namensraum besitzt eine Operation, **welchen Eingabebereich** akzeptiert sie und wie behandelt der Code außergewöhnliche Eingaben? Diese Entscheidungen sind wichtiger, als einen Funktionsnamen um wenige Zeichen zu verkürzen.
+
+> Explizite Importe und frühe Bereichsprüfungen halten `math`-Berechnungen lesbar und schützen vor unerwarteten `ValueError`-Abbrüchen.

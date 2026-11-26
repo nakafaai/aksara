@@ -74,8 +74,6 @@ Eine komplexe Zahl hält ihre zwei Bestandteile getrennt, und Python stellt beid
 
 Jedes Attribut liefert einen Bestandteil der Zahl. Der Vergleich einer rein reellen Zahl, einer rein imaginären Zahl und einer gemischten Zahl zeigt, welcher Bestandteil zu welchem Attribut gehört.
 
-### Das Attribut real
-
 Das Attribut `real` liefert den **Realteil der Zahl**. Das Lesen verändert die Zahl nie, du kannst denselben Wert also beliebig oft untersuchen.
 
 <CodeBlock
@@ -99,8 +97,6 @@ print(f"Realteil von {z3} ist {z3.real}")
     }
   ]}
 />
-
-### Das Attribut imag
 
 Das Attribut `imag` liefert den **Koeffizienten von** <InlineMath math="i" />, und Python schreibt diese Einheit im Literal einer komplexen Zahl als `j`. Das Vorzeichen gehört zum Koeffizienten, ein abgezogener Term kommt also als negative Zahl zurück.
 
@@ -128,7 +124,9 @@ print(f"Imaginaerteil von {z3} ist {z3.imag}")
 
 Das Ergebnis für `z2` ist <InlineMath math="-4.0" />, weil der Koeffizient das Minuszeichen vor der imaginären Einheit trägt. Der Wert von `z1` bleibt positiv, und die rein imaginäre Zahl `z3` meldet <InlineMath math="9.0" /> mit dem Realteil <InlineMath math="0.0" />.
 
-Real- und Imaginärteil eines Produkts kannst du direkt ablesen. Für `z1 = 1+2j` und `z2 = 3-1j` ist `(z1 * z2).real` gleich <InlineMath math="1\cdot3-2\cdot(-1)=5" /> und `(z1 * z2).imag` gleich <InlineMath math="1\cdot(-1)+2\cdot3=5" />. Auch die Längen multiplizieren sich: `abs(z1) * abs(z2)` ist <InlineMath math="\sqrt5\cdot\sqrt{10}=\sqrt{50}" />.
+Real- und Imaginärteil eines Produkts kannst du direkt ablesen. Für `z1 = 1+2j` und `z2 = 3-1j` sind beide Bestandteile von `z1 * z2` gleich <InlineMath math="5" />, während das Produkt der Längen `abs(z1) * abs(z2)` genau <InlineMath math="\sqrt{50}" /> ergibt.
+
+<BlockMath math="\begin{aligned}(z_1 z_2).\text{real} &= 1\cdot 3 - 2\cdot(-1) = 5 \\ (z_1 z_2).\text{imag} &= 1\cdot(-1) + 2\cdot 3 = 5 \\ |z_1|\cdot|z_2| &= \sqrt{5}\cdot\sqrt{10} = \sqrt{50}\end{aligned}" />
 
 <MathVisual
   title={<>Die Teile von <code>z1 * z2</code> für <code>1+2j</code> und <code>3-1j</code></>}
@@ -153,7 +151,10 @@ Real- und Imaginärteil eines Produkts kannst du direkt ablesen. Für `z1 = 1+2j
     "second": <code>z2 = 3-1j</code>,
     "product": <code>z1 * z2 = (5+5j)</code>,
   }}
+  footer="Das Produkt z1 * z2 landet bei (5, 5) mit Betrag Wurzel aus 50."
 />
+
+Die magentafarbene Strecke streckt und dreht sich direkt nach `(5, 5)` und entspricht damit genau den Attributen `real` und `imag`, die Python für `z1 * z2` liefert.
 
 ## Methoden für komplexe Zahlen
 
@@ -252,7 +253,10 @@ Zeichne `z = 3+4j` als Punkt in der komplexen Ebene und achte darauf, was jedes 
     "imag": "z.imag = 4.0",
     "real": "z.real = 3.0",
   }}
+  footer="z und z.conjugate() liegen auf demselben Kreis mit Radius abs(z) = 5.0."
 />
+
+Beide Punkte liegen auf dem Kreis mit Radius `5.0`, weil `z.conjugate()` nur das Vorzeichen von `z.imag` umkehrt und den Abstand zum Ursprung unverändert lässt.
 
 ## Methoden für ganze Zahlen und Floats
 
@@ -266,8 +270,6 @@ Ganze Zahlen und Floats bringen Methoden mit, die **zu ihrer eigenen Darstellung
 | `as_integer_ratio()` | `float` | Welchem genauen Bruch entspricht der gespeicherte Wert |
 
 In modernem Python besitzt auch `int` die Methoden `is_integer()` und `as_integer_ratio()`: `(42).is_integer()` ergibt `True`, `(42).as_integer_ratio()` ergibt `(42, 1)`. Die Tabelle nennt die in den Beispielen verwendeten Typen, nicht alle möglichen Besitzer einer Methode.
-
-### Methoden ganzer Zahlen
 
 <CodeBlock
   data={[
@@ -292,8 +294,6 @@ print(f"Byte-Darstellung von {n}: {byte_representation}")
 />
 
 `bit_length()` zählt die Bits, die der absolute Wert der ganzen Zahl braucht, und lässt dabei das **Vorzeichen sowie alle führenden Nullen** weg. Hier erhält `to_bytes()` ausdrücklich eine Ausgabelänge und eine Byteordnung, deshalb beginnt das Ergebnis mit zwei Bytes mit einem Nullbyte, das die angeforderte Breite auffüllt.
-
-### Methoden von Floats
 
 <CodeBlock
   data={[
@@ -337,7 +337,10 @@ Die Methode `bit_length()` zählt die Binärziffern, die eine positive ganze Zah
     { name: "256", value: Math.floor(Math.log2(256)) + 1 },
   ]}
   chartConfig={{ value: { label: "Anzahl der Bits", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Die Bitzahl steigt genau bei jeder Zweierpotenz wie 2, 4, 8 und 256."
 />
+
+Die Balkenhöhe springt genau bei `2`, `4`, `8` und `256` um eins nach oben, weil jede Zweierpotenz eine zusätzliche Binärziffer benötigt.
 
 ## Numerische Objekte prüfen und berechnen
 
@@ -410,3 +413,5 @@ complex_operations(z1, z2)`
 Mit diesen Eingaben ergibt `z1 + z2` den Wert <InlineMath math="3+1j" />, weil **Realteile und Imaginärteile getrennt addiert** werden. Der Ausdruck `z1 * z2.conjugate()` multipliziert <InlineMath math="2+3j" /> mit <InlineMath math="1+2j" /> und liefert <InlineMath math="-4+7j" />.
 
 Bestimme den numerischen Typ, und prüfe dann, ob eine Operation einen Bestandteil, eine Darstellung oder einen neuen Wert liefert, denn dieser Rückgabetyp entscheidet, wie der nächste Ausdruck das Ergebnis verwenden kann.
+
+> Attribute lesen direkt am Zahlenobjekt gespeicherte Werte ohne Klammern, während Methoden mit Klammern aufgerufen werden, um ein neues Ergebnis zu berechnen.

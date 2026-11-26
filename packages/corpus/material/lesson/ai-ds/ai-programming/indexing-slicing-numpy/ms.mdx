@@ -13,7 +13,7 @@ Pengindeksan (indexing) memilih nilai pada kedudukan tertentu, manakala penghiri
 
 [Pandangan](https://numpy.org/doc/stable/user/basics.indexing.html) tidak menyalin data, tetapi apabila kamu menulis melalui pandangan, nilai yang sepadan dalam tatasusunan asal turut berubah.
 
-## Operasi Tatasusunan Satu Dimensi
+### Operasi Tatasusunan Satu Dimensi
 
 Tatasusunan satu dimensi menggunakan sintaks pengindeksan Python yang sudah kamu kenal. Hirisan asas seperti `a[1:4]` memulangkan pandangan, jadi **mengubah pandangan itu turut mengubah unsur yang sama** dalam `a`.
 
@@ -76,7 +76,7 @@ print("Salinan:", copy_array)  # Output: Salinan: [777   3   4]`
   ]}
 />
 
-## Operasi Tatasusunan Multidimensi
+### Operasi Tatasusunan Multidimensi
 
 Dalam pemilihan multidimensi, setiap entri yang dipisahkan oleh koma merujuk kepada satu dimensi tatasusunan, bermula dengan dimensi pertama. Indeks integer **membuang dimensi itu** daripada tatasusunan hasil, manakala hirisan seperti `:` mengekalkannya. Contohnya, pada tatasusunan dua dimensi `a`, `a[1, :]` menghasilkan tatasusunan satu dimensi yang mengandungi baris kedua, manakala `a[1:2, :]` masih menghasilkan tatasusunan dua dimensi yang mengandungi satu baris.
 
@@ -243,11 +243,14 @@ Gambar ini menyusun `a = np.arange(20).reshape(4, 5)` sebagai empat baris dan li
     "cell-19": "19",
     "box": "a[1:3, 2:5]",
   }}
+  footer="Hirisan baris 1:3 dan lajur 2:5 mengambil blok (2, 3) sebagai pandangan asal."
 />
+
+Oleh sebab `a[1:3, 2:5]` ialah penghirisan asas, blok `(2, 3)` ini masih satu pandangan, jadi sebarang perubahan di dalamnya turut mengubah unsur yang sama dalam `a`.
 
 ## Pengindeksan Lanjutan
 
-Pengindeksan lanjutan menggunakan tatasusunan integer atau Boolean untuk memilih apa-apa unsur yang kamu mahu, dan hasilnya sentiasa salinan. Untuk sumber satu dimensi, **tatasusunan indeks integer menentukan bentuk hasilnya**. Untuk sumber multidimensi pula, NumPy melakukan broadcasting (penyiaran) pada tatasusunan indeks itu, kemudian menggabungkan bentuk tersebut dengan mana-mana dimensi yang ditinggalkan oleh hirisan asas.
+Pengindeksan lanjutan menggunakan tatasusunan integer atau Boolean untuk memilih apa-apa unsur yang kamu mahu, dan hasilnya sentiasa salinan. Untuk sumber satu dimensi, **tatasusunan indeks integer menentukan bentuk hasilnya**. Untuk sumber multidimensi pula, NumPy melakukan broadcasting (penyiaran) pada tatasusunan indeks itu, kemudian menggabungkan bentuk itu dengan mana-mana dimensi yang ditinggalkan oleh hirisan asas.
 
 <CodeBlock
   data={[
@@ -535,7 +538,10 @@ Untuk `a = np.array([5, 12, 8, 15, 20, 3])`, perbandingan `a > 10` menghasilkan 
     "value-4": <InlineMath math="20" />,
     "value-5": <InlineMath math="3" />,
   }}
+  footer="Hanya titik di atas ambang 10 bernilai True dan masuk ke dalam tatasusunan hasil."
 />
+
+Penapisan dengan topeng Boolean seperti `a[a > 10]` sentiasa memulangkan salinan satu dimensi yang menyimpan nilai sepadan mengikut urutan asalnya.
 
 ## Pengindeksan Fancy
 
@@ -667,7 +673,10 @@ Pengindeksan fancy menggunakan senarai indeks, dan susunan senarai itu menjadi s
     "result-1": <InlineMath math="5" />,
     "result-2": <InlineMath math="8" />,
   }}
+  footer="Senarai indeks [4, 0, 2] menyalin dan menyusun semula unsur mengikut urutan indeks."
 />
+
+Dengan tatasusunan indeks integer, kamu boleh memilih kedudukan secara bebas, menukar susunannya, atau mengulang unsur sambil mengekalkan tatasusunan asal `a`.
 
 ## Memilih dan Menyusun Semula Data Tatasusunan
 
@@ -742,3 +751,5 @@ print("Baris pertama selepas disusun semula:", reorganized_data[0, :])  # Output
     }
   ]}
 />
+
+> Panggil `.copy()` setiap kali kamu mahu mengubah hirisan asas tanpa menjejaskan tatasusunan asalnya, kerana penghirisan asas sentiasa memulangkan pandangan.

@@ -11,8 +11,6 @@ export const metadata = {
 
 Tipe `dict` menyimpan pemetaan yang bisa diubah dari **kunci unik ke nilai**. Kamu mencari setiap elemennya melalui kunci yang bermakna, seperti nama, pengenal, atau tanggal yang kamu pilih sendiri.
 
-### Beberapa Cara Membuat Dictionary
-
 **Dictionary kosong** dapat dibuat dengan `{}` atau `dict()`. Kamu juga dapat langsung mengisi pasangan kunci dan nilai saat membuatnya.
 
 <CodeBlock
@@ -49,8 +47,6 @@ print("Dictionary mass:", mass)
   ]}
 />
 
-### Cara Menulis Pasangan Kunci dan Nilai
-
 Dictionary ditulis dengan kurung kurawal. Koma memisahkan setiap pasangan, sedangkan **titik dua** memisahkan key dari value. Kurung kurawal kosong `{}` membuat dictionary kosong.
 
 <CodeBlock
@@ -66,7 +62,7 @@ print(phone)
   ]}
 />
 
-<Highlight>Nilai hash sebuah kunci harus tetap</Highlight> selama kunci itu berada di dalam dictionary. String dan angka merupakan contoh kunci yang hashable. Tuple dapat menjadi kunci jika semua elemennya juga hashable. Tuple yang berisi list tidak memenuhi syarat ini. List sendiri tidak hashable. Nilai yang dipasangkan dengan kunci boleh berupa objek Python apa pun, termasuk dictionary lain.
+<Highlight>Nilai hash sebuah kunci harus tetap</Highlight> selama kunci itu berada di dalam dictionary. String dan angka adalah contoh kunci yang hashable. Tuple dapat menjadi kunci jika semua elemennya juga hashable. Tuple yang berisi list tidak memenuhi syarat ini. List sendiri tidak hashable. Nilai yang dipasangkan dengan kunci boleh berupa objek Python apa pun, termasuk dictionary lain.
 
 ## Kunci Menentukan Nilai
 
@@ -81,15 +77,16 @@ Dictionary menghubungkan **setiap kunci dengan satu nilai**. Python juga menging
         B["phone['bob']"] --> V2["991"]
         C["phone['cat']"] --> V3["112"]
   `}
+  footer="Setiap kunci langsung menuju nilai pasangannya tanpa perlu indeks angka."
 />
 
-List dan tuple mengatur item berdasarkan posisi. Dictionary mengatur isinya berdasarkan kunci, sehingga kamu membaca dan memperbarui nilai melalui kunci tersebut.
+List dan tuple mengatur item berdasarkan posisi. Dictionary mengatur isinya berdasarkan kunci, sehingga kamu membaca dan memperbarui nilai melalui kuncinya.
 
 ## Aturan Kunci dan Urutan
 
 Dictionary bersifat **mutable**, tetapi setiap kuncinya harus unik dan memiliki nilai hash yang tetap. Saat dictionary dibaca dengan `for` loop, kuncinya muncul sesuai urutan saat pertama kali ditambahkan.
 
-Sejak Python `3.7`, spesifikasi bahasa menjamin insertion order pada dictionary. Menetapkan nilai baru ke kunci yang sudah ada **tidak memindahkan posisi kunci** tersebut. Jika kunci dihapus lalu ditambahkan kembali, posisinya berpindah ke akhir.
+Sejak Python `3.7`, spesifikasi bahasa menjamin insertion order pada dictionary. Menetapkan nilai baru ke kunci yang sudah ada **tidak memindahkan posisi kunci** itu. Jika kunci dihapus lalu ditambahkan kembali, posisinya berpindah ke akhir.
 
 <CodeBlock
   data={[
@@ -106,7 +103,7 @@ print(phone)
   ]}
 />
 
-Jika satu kunci ditulis beberapa kali saat membuat dictionary, hanya nilai terakhir yang tersimpan. Posisi kunci tersebut tetap mengikuti kemunculan pertamanya.
+Jika satu kunci ditulis beberapa kali saat membuat dictionary, hanya nilai terakhir yang tersimpan. Posisi kunci itu tetap mengikuti kemunculan pertamanya.
 
 Kunci dalam dictionary selalu unik. Pada `d = {'a': 1, 'b': 2, 'a': 3}`, kunci `'a'` muncul dua kali, dan penugasan terakhir menang, jadi `d` hanya punya dua pasangan dengan `d['a']` bernilai `3`.
 
@@ -119,7 +116,10 @@ Kunci dalam dictionary selalu unik. Pada `d = {'a': 1, 'b': 2, 'a': 3}`, kunci `
     { name: "'b'", value: 2 },
   ]}
   chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+  footer="Kunci 'a' yang kedua menimpa nilai 1 menjadi 3 sehingga tersisa dua pasangan."
 />
+
+Penimpaan otomatis ini menjaga ukuran dictionary tetap dua pasangan tanpa pernah menyimpan kunci kembar.
 
 ## Mengakses Nilai
 
@@ -165,7 +165,51 @@ Untuk `phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}`, `phone['ann']`
     { name: "'eve'", value: 0 },
   ]}
   chartConfig={{ value: { label: "Hasil get", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+  footer="get() mengembalikan nilai yang ada untuk 'ann' dan 'bob', lalu 0 untuk 'eve'."
 />
+
+Nilai cadangan `0` membuat pencarian kunci yang belum terdaftar tetap aman tanpa memicu `KeyError`.
+
+Dictionary bersarang juga sering dipakai untuk memodelkan peta rute atau graf berbobot. Setiap simpul menjadi kunci luar yang dipetakan ke dictionary tetangga beserta jaraknya, misalnya `routes['A']['C']` bernilai `2` dan `routes['C']['B']` bernilai `1`. Coba telusuri jaringan di bawah untuk membandingkan total jarak beberapa rute dari `A` ke `E` dan memeriksa derajat tiap simpul.
+
+<RouteNetworkLab
+  title={<>Peta Rute sebagai Dictionary Bersarang</>}
+  description={<>Pilih lintasan dari A ke E atau ubah mode ke derajat simpul untuk melihat bagaimana setiap kunci terhubung ke tetangganya.</>}
+  footer="Dictionary bersarang memetakan setiap simpul ke tetangga dan bobot rutenya."
+  towns={[
+    { id: "A", name: "Simpul A" },
+    { id: "B", name: "Simpul B" },
+    { id: "C", name: "Simpul C" },
+    { id: "D", name: "Simpul D" },
+    { id: "E", name: "Simpul E" },
+  ]}
+  roads={[
+    { from: "A", to: "B", length: 4 },
+    { from: "A", to: "C", length: 2 },
+    { from: "B", to: "D", length: 5 },
+    { from: "C", to: "B", length: 1 },
+    { from: "C", to: "D", length: 8 },
+    { from: "C", to: "E", length: 10 },
+    { from: "D", to: "E", length: 2 },
+  ]}
+  start="A"
+  end="E"
+  mode="route"
+  labels={{
+    degreeSum: "Jumlah derajat",
+    length: "Jarak",
+    mode: "Mode",
+    modes: { degrees: "Derajat", route: "Rute" },
+    route: "Rute",
+    shortest: "Terpendek",
+    town: "Simpul",
+    trip: "Lintasan",
+    twiceRoads: "Dua kali sisi",
+    viewLabel: "Jaringan lima simpul berbobot yang dimodelkan sebagai peta ketetanggaan dictionary",
+  }}
+/>
+
+Dengan struktur `routes[asal][tujuan]`, pencarian bobot antar simpul berlangsung langsung tanpa perlu memindai daftar pasangan satu per satu, sehingga lintasan `A -> C -> B -> D -> E` dengan total jarak `10` dapat langsung dihitung.
 
 ## Iterasi Dictionary
 
@@ -219,7 +263,7 @@ Method `items()` menghasilkan pasangan kunci dan nilai. Pada `for key, val in ph
 
 ## Tiga Jenis Dictionary View
 
-Method `keys()`, `values()`, dan `items()` menghasilkan dictionary view yang berbeda. **View tetap terhubung** ke dictionary asal, sehingga perubahan pada dictionary juga muncul pada view tersebut.
+Method `keys()`, `values()`, dan `items()` menghasilkan dictionary view yang berbeda. **View tetap terhubung** ke dictionary asal, sehingga perubahan pada dictionary juga muncul pada view itu.
 
 <CodeBlock
   data={[
@@ -334,4 +378,9 @@ Hitung huruf di kata `"banana"` dengan `counts[ch] = counts.get(ch, 0) + 1`. Saa
     "bar-a": "'a': 3",
     "bar-n": "'n': 2",
   }}
+  footer="Frekuensi tiap huruf unik di 'banana' tercatat rapi dalam satu dictionary."
 />
+
+Pola `counts[ch] = counts.get(ch, 0) + 1` dipakai luas dalam pemrosesan teks dan data karena menggabungkan inisialisasi kunci baru dengan pembaruan hitung dalam satu baris.
+
+> Pilih akses kurung siku ketika kunci yang hilang menandakan bug, dan pilih `get()` ketika kunci yang belum ada memang wajar terjadi dan memerlukan nilai bawaan.

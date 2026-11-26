@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Vergleich und Logik",
-    description: "Python-Vergleich und boolesche Operatoren, Vorrang, falsche/wahre Werte und sichere Float-Vergleiche.",
+    description: "Python Vergleichsoperatoren und boolesche Operatoren, Vorrang, falsche und wahre Werte sowie sichere Float Vergleiche.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
     dateModified: "2026-09-19",
@@ -13,6 +13,7 @@ Die Operatorrangfolge <Highlight>bestimmt, wie Python einen Ausdruck gruppiert, 
 
 <Mermaid
   title={<>Priorität der behandelten Operatoren</>}
+  footer={<>Klammern binden am stärksten, gefolgt von Arithmetik, Vergleichen, not, and und or.</>}
   description={<>Das Diagramm zeigt die Priorität der behandelten Operatoren, nicht den Auswertungszeitpunkt jedes Operanden.</>}
   chart={`
     flowchart LR
@@ -65,6 +66,7 @@ Mit booleschen Operatoren lassen sich mehrere Bedingungen kombinieren oder boole
 
 <Mermaid
   title={<>Boolesche Operatoren verknüpfen Bedingungen</>}
+  footer={<>Sowohl and als auch or liefern einen Operanden zurück, während not stets bool ergibt.</>}
   description={<>Das Diagramm zeigt, wie die Operatoren and, or und not Wahrheitswerte verarbeiten.</>}
   chart={`
     flowchart LR
@@ -82,6 +84,8 @@ Mit booleschen Operatoren lassen sich mehrere Bedingungen kombinieren oder boole
         NOT --> J["Negierter Wahrheitswert"]
   `}
 />
+
+Das Ablaufschema fasst die Rückgaberegeln der drei logischen Operatoren zusammen:
 
 1. **Operator `and`** gibt den ersten Wert zurück, wenn er falsch ist, oder den zweiten Wert, wenn der erste Wert wahr ist.
 
@@ -122,6 +126,7 @@ Jeder Vergleich ist auf einem Bereich des Zahlenstrahls `True`. In diesem Bild m
 
 <MathVisual
   title={<>Vergleiche als Bereiche auf dem Zahlenstrahl</>}
+  footer={<>Der Operator and behält nur die offene Schnittmenge streng zwischen 2 und 5.</>}
   description={<>Die violette Zeile ist <InlineMath math="x>2" />, die türkise Zeile <InlineMath math="x<5" />, und die magentafarbene Zeile zeigt, wo beides gilt, also behält <code>and</code> den Bereich <InlineMath math="2<x<5" />. Jede Zeile hört genau bei <InlineMath math="2" /> oder <InlineMath math="5" /> auf, und diese Werte selbst gehören nicht dazu.</>}
   scene={{
     space: "plane",
@@ -145,14 +150,19 @@ Jeder Vergleich ist auf einem Bereich des Zahlenstrahls `True`. In diesem Bild m
   }}
 />
 
+Verbindet `and` zwei Ungleichungen, schrumpft die Lösungsmenge auf das offene Intervall, in dem beide Bedingungen gleichzeitig zutreffen.
+
 ## Werte im booleschen Kontext
 
 Jedes Python-Objekt kann einer **Wahrheitsprüfung** unterzogen werden, auch wenn es nicht die Werte `True` und `False` sind. Python entscheidet dann selbst, welche Werte als falsch gelten. Nach dieser Regel verhalten sich eine leere Liste, die Zahl null und die leere Zeichenkette in einem `if` wie `False`, während ein nicht leeres Behältnis wie `True` wirkt.
 
 ### Falsche und wahre Werte
 
+Das Diagramm trennt eingebaute Python-Werte, die in Bedingungen als **falsy** gelten, von Werten, die als **truthy** ausgewertet werden.
+
 <Mermaid
   title={<>Werte, die Python als Bedingungsergebnisse behandelt</>}
+  footer={<>Null, None, False und leere Container gelten in booleschen Prüfungen als falsy.</>}
   description={<>Gruppiere die Werte, die Python als „False“ oder „True“ behandelt, bevor sie in Bedingungen verwendet werden.</>}
   chart={`
     flowchart TD
@@ -209,6 +219,7 @@ In einem `if` ruft Python `bool()` auf jeden Wert auf. Null und leere Container 
 
 <BarChart
   title={<>Das Ergebnis von <code>bool()</code> für sieben Werte</>}
+  footer={<>Die Liste [0] ergibt True, weil sie nicht leer ist, anders als 0, '' und [].</>}
   description={<>Ein Balken der Höhe <InlineMath math="1" /> bedeutet <code>True</code> und kein Balken <code>False</code>, für den darunter stehenden Wert. Nur <code>0</code>, <code>''</code> und <code>[]</code> sind falsy.</>}
   yAxisLabel="Wahrheitswert"
   data={[
@@ -222,6 +233,8 @@ In einem `if` ruft Python `bool()` auf jeden Wert auf. Null und leere Container 
   ]}
   chartConfig={{ value: { label: "Wahrheitswert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+Der Unterschied zwischen `[]` und `[0]` zeigt Pythons Grundregel: Über den Wahrheitswert eines Containers entscheidet seine Länge, nicht der Wert darin.
 
 ## Operatoren kombinieren
 
@@ -256,6 +269,7 @@ Verknüpfe zwei Vergleiche für Punkte <InlineMath math="(x,y)" /> mit <InlineMa
 
 <MathVisual
   title={<><code>and</code> und <code>or</code> als Bereiche</>}
+  footer={<>Der and-Bereich ist die enge Schnittmenge, während or die ganze L-Vereinigung deckt.</>}
   description={<>Die violette Gerade ist <InlineMath math="x=1" /> und die orange Gerade <InlineMath math="y=3" />. Das magentafarbene Rechteck ist der Bereich, in dem <InlineMath math="x>1" /> und <InlineMath math="y<3" /> beide gelten. Der türkise L-förmige Bereich ist der, in dem mindestens ein Vergleich gilt.</>}
   scene={{
     space: "plane",
@@ -272,6 +286,8 @@ Verknüpfe zwei Vergleiche für Punkte <InlineMath math="(x,y)" /> mit <InlineMa
   }}
 />
 
+Der Wechsel von `and` zu `or` erweitert die akzeptierten Punkte von einem schmalen Rechteck auf die Vereinigung aller Bereiche, in denen eine Bedingung genügt.
+
 ## Vergleich von Gleitkommazahlen
 
 Viele Dezimalbrüche besitzen keine exakte endliche binäre Gleitkommadarstellung. Arithmetische Operationen runden Zwischenergebnisse. Zwei mathematisch gleichwertige Rechnungen können deshalb **nahe beieinanderliegende, aber ungleiche Floats** liefern. Ein Vergleich mit `==` schlägt dann fehl, obwohl beide Werte als gleich gelten sollten.
@@ -282,6 +298,7 @@ Ein Dezimalbruch kann eine **binäre Rundung** erfordern. Das Diagramm untersche
 
 <Mermaid
   title={<>Gleich aussehende Dezimalwerte können sich unterscheiden</>}
+  footer={<>Binäre Rundung kann == brechen, daher prüft math.isclose Werte mit einer Toleranz.</>}
   description={<>Verfolge Dezimalwerte bis zur Gleitkommadarstellung, um die Rolle einer Vergleichstoleranz zu verstehen.</>}
   chart={`
     flowchart TD
@@ -299,6 +316,8 @@ Ein Dezimalbruch kann eine **binäre Rundung** erfordern. Das Diagramm untersche
         K --> L
   `}
 />
+
+Sobald binäre Rundung eine winzige Abweichung hinterlässt, schlägt ein direkter `==`-Vergleich wie im folgenden Beispiel fehl:
 
 <CodeBlock
   data={[

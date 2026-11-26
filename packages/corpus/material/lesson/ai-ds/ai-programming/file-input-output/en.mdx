@@ -108,11 +108,16 @@ with open('file.txt', 'w', encoding='utf-8') as f:
 
 The `file` argument reuses `print()` formatting while directing the resulting text to the chosen file object.
 
-`f.write(text)` returns the number of characters written, and the newline `\n` counts as one character. Writing `'Hello\n'`, `'Python\n'`, and then `'!'` leaves a file of <InlineMath math="6+7+1=14" /> characters.
+`f.write(text)` returns the number of characters written, and the newline `\n` counts as one character. Writing `'Hello\n'`, `'Python\n'`, and then `'!'` produces fourteen characters in total.
+
+<BlockMath math="6 + 7 + 1 = 14" />
+
+The chart below compares the return value of `f.write()` for each of those three strings.
 
 <BarChart
   title={<>Return values of <code>f.write()</code> for three strings</>}
   description={<>Each bar is the number that <code>f.write()</code> returns for the string below it. Every <code>\n</code> adds one character.</>}
+  footer={<>Every visible character and every <code>\n</code> adds one to the returned count.</>}
   yAxisLabel="Characters written"
   data={[
     { name: "'Hello\\n'", value: 6 },
@@ -122,6 +127,8 @@ The `file` argument reuses `print()` formatting while directing the resulting te
   chartConfig={{ value: { label: "Characters written", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
+Notice that a single-character string without a newline contributes just one, while strings ending in `\n` always include that line break in the returned total.
+
 ## File Opening Modes
 
 Python provides various **modes for opening files** according to the needs of the operations to be performed.
@@ -129,6 +136,7 @@ Python provides various **modes for opening files** according to the needs of th
 <Mermaid
   title={<>Choose the Mode Before Touching a File</>}
   description={<>Compare read, write, append, and binary modes so file operations do not accidentally destroy existing content.</>}
+  footer={<>Add the b suffix to work directly with raw bytes instead of decoded text.</>}
   chart={`
     flowchart LR
         A[File Modes] --> B[Text Mode]
@@ -145,6 +153,8 @@ Python provides various **modes for opening files** according to the needs of th
         C --> C4[rb+ - read write existing binary]
   `}
 />
+
+Every text mode has a matching binary counterpart with the same open and write rules, except that binary mode works directly with raw bytes.
 
 <CodeBlock
   data={[
@@ -177,6 +187,7 @@ Start from a file holding `'abc\n'`, four characters. Opening with `'r'` and rea
 <BarChart
   title={<>File size after each mode</>}
   description={<>Each bar is the number of characters in the file after opening it with the mode below it and, for <code>'w'</code> and <code>'a'</code>, writing <code>'xy'</code>. Every mode starts again from the four-character file.</>}
+  footer={<>Mode w erases existing text, while mode a appends new text at the end.</>}
   yAxisLabel="Characters in file"
   data={[
     { name: "start", value: 4 },
@@ -186,6 +197,8 @@ Start from a file holding `'abc\n'`, four characters. Opening with `'r'` and rea
   ]}
   chartConfig={{ value: { label: "Characters in file", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Compare the `'w'` and `'a'` bars carefully before writing to any file. Choosing `'w'` when you meant to add new entries immediately erases what was already saved.
 
 ## File Reading Methods
 
@@ -246,11 +259,12 @@ with open('sample.txt', 'r', encoding='utf-8') as f:
 
 In text mode, `read()` and `readline()` return strings and return `''` when no more text is available. In binary mode they return `bytes` and use `b''` at end of file. Iteration stops automatically at the end.
 
-An open file has a position, and every read moves it forward. For the contents `"Hi!\nPython\n"`, the position starts at the beginning after `open()`. `read(3)` takes `Hi!` and stops at position `3`, the first `readline()` takes the rest of that line up to `\n`, and the second `readline()` takes `Python\n` up to the end of the file. The next read returns an empty string, because the position is already at the end.
+An open file tracks a cursor position that moves forward with every read. On `"Hi!\nPython\n"`, the cursor begins at the start after `open()`. Calling `read(3)` takes `Hi!`, the first `readline()` takes `\n`, and the second `readline()` takes `Python\n` to the end.
 
 <MathVisual
   title={<>The file position while reading</>}
   description={<>Each character of the file is one point, and ↵ is a newline. The segments show the position after each call.</>}
+  footer={<>Each read call moves the cursor forward until it reaches the end of the file.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.4, max: 0.6 } },
@@ -309,6 +323,8 @@ An open file has a position, and every read moves it forward. For the contents `
   }}
 />
 
+Once the cursor reaches the end of the file, further reads return an empty string until you move it back with `seek(0)`.
+
 ## Safe File Handling
 
 The `with` statement <Highlight>closes a file automatically when its block ends</Highlight>, including when an operation inside the block raises an exception.
@@ -340,3 +356,5 @@ with open('input.txt', 'r', encoding='utf-8') as input_file, open('output.txt', 
 />
 
 The `with` statement ensures files are always closed properly, even if an error occurs in the program. This prevents problems like files staying open and consuming system resources.
+
+> Always open files inside a `with` block so Python closes them automatically even when an error interrupts your code.

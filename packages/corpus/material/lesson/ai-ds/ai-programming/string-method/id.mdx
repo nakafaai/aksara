@@ -9,7 +9,7 @@ export const metadata = {
 
 ## String Bersifat Immutable
 
-<Highlight>String Python bersifat immutable</Highlight>, sehingga isi objek string tidak dapat diedit langsung. Transformasi isi string dapat menghasilkan nilai string baru. Variabel dapat diarahkan ke objek baru tersebut, sedangkan objek string asal tetap tidak berubah.
+<Highlight>String Python bersifat immutable</Highlight>, sehingga isi objek string tidak dapat diedit langsung. Transformasi isi string dapat menghasilkan nilai string baru. Variabel dapat diarahkan ke objek baru itu, sedangkan objek string asal tetap tidak berubah.
 
 Karena itu, assignment ke posisi karakter menghasilkan `TypeError`. List berbeda karena elemennya dapat diganti langsung.
 
@@ -115,7 +115,7 @@ print(f"Complex title: {complex_text.title()}")`
   ]}
 />
 
-Method `title()` mengikuti aturan kapitalisasi mekanis. Method ini cocok untuk label tampilan sederhana, tetapi tidak dapat diandalkan untuk nama orang atau judul editorial. Pertahankan ejaan resmi atau gunakan aturan khusus domain untuk nilai tersebut.
+Method `title()` mengikuti aturan kapitalisasi mekanis. Method ini cocok untuk label tampilan sederhana, tetapi tidak dapat diandalkan untuk nama orang atau judul editorial. Pertahankan ejaan resmi atau gunakan aturan khusus domain untuk nilai itu.
 
 ### Menghapus Karakter di Awal dan Akhir
 
@@ -176,7 +176,10 @@ Setiap metode transformasi mengembalikan string baru, dan banyak huruf kapital m
     { name: "capitalize", value: 1 },
   ]}
   chartConfig={{ value: { label: "Huruf kapital", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+  footer="Setiap method mengembalikan string baru dengan jumlah huruf kapital berbeda."
 />
+
+Tinggi batang berubah dari `0` pada `lower()` sampai `10` pada `upper()`, sementara batang pertama tetap `1` karena string awal `'hello World'` tidak pernah berubah.
 
 ## Method Pencarian dan Validasi
 
@@ -226,7 +229,7 @@ print(f"Huruf 'a' muncul {count} kali")`
   ]}
 />
 
-Pilih method berdasarkan perilaku saat substring tidak ditemukan: `find()` mengembalikan `-1`, sedangkan `index()` menghasilkan `ValueError`. Jika kamu hanya membutuhkan jawaban ya atau tidak, operator `in` lebih jelas daripada kedua method tersebut.
+Pilih method berdasarkan perilaku saat substring tidak ditemukan: `find()` mengembalikan `-1`, sedangkan `index()` menghasilkan `ValueError`. Jika kamu hanya membutuhkan jawaban ya atau tidak, operator `in` lebih jelas daripada kedua method itu.
 
 ### Validasi Karakter String
 
@@ -343,7 +346,10 @@ Cari `"an"` di dalam `"banana"` lewat gambar ini. Dua ruas hijau toska menandai 
     "find": 'find("an") = 1',
     "rfind": 'rfind("an") = 3',
   }}
+  footer="find berhenti di indeks 1 dari kiri, sedangkan rfind menemukan indeks 3."
 />
+
+Kedua panah menunjuk indeks awal potongan `'an'` yang berbeda arah karena `find` memindai dari kiri ke kanan sementara `rfind` memilih kemunculan terakhir dari kanan.
 
 ## Method Pencarian Prefix dan Suffix
 
@@ -408,8 +414,6 @@ Awalan `https://` hanya mengelompokkan teks berdasarkan skema URL. Awalan itu ti
 
 Kedua method ini mengubah cara string dibagi menjadi bagian. `replace` **menukar satu potongan teks** dengan potongan lain, sedangkan `split` memecah string menjadi list pada pemisah tertentu.
 
-### Mengganti Substring
-
 Method `replace()` digunakan untuk mengganti **semua kemunculan substring** dengan string baru.
 
 <CodeBlock
@@ -452,8 +456,6 @@ print(f"Clean phone: {clean_phone}")`
 />
 
 Method `replace()` bersifat case-sensitive dan mengganti semua kemunculan kecuali jika dibatasi dengan parameter ketiga.
-
-### Memisahkan String
 
 Method `split()` memecah string menjadi list di sekitar delimiter tertentu. Tanpa delimiter, method ini memperlakukan **whitespace berurutan sebagai satu pemisah** dan membuang field kosong di awal atau akhir.
 
@@ -517,11 +519,14 @@ Tanpa argumen, `split()` memotong string di setiap spasi dan mengembalikan list 
     { name: "fox", value: 3 },
   ]}
   chartConfig={{ value: { label: "Panjang kata", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+  footer="split() memecah kalimat menjadi empat kata dan membuang tiga spasi pemisah."
 />
+
+Keempat batang berjumlah `16` karakter tanpa memasukkan ketiga spasi, memperlihatkan bahwa `split()` tanpa argumen membuang pemisah whitespace dari elemen list hasilnya.
 
 ## Method Chaining
 
-Method transformasi yang **mengembalikan string** dapat dirangkai. Method seperti `split()` menghasilkan list, sehingga langkah berikutnya harus sesuai dengan tipe hasil tersebut. Pertahankan chain cukup pendek agar setiap langkah tetap jelas. Beri nama pada nilai antara jika ada validasi atau penjelasan di tengah proses.
+Method transformasi yang **mengembalikan string** dapat dirangkai. Method seperti `split()` menghasilkan list, sehingga langkah berikutnya harus sesuai dengan tipe hasil itu. Pertahankan chain cukup pendek agar setiap langkah tetap jelas. Beri nama pada nilai antara jika ada validasi atau penjelasan di tengah proses.
 
 Setelah `.strip()` pertama, masih ada spasi di antara tanda `+++` dan kata `Python`. Karena itu, `.strip("+- ")` menghapus **plus, minus, dan spasi** dari kedua tepi sebelum konversi huruf.
 
@@ -587,7 +592,7 @@ for email in emails:
 
 Method chaining cocok untuk pembersihan teks yang singkat dan berurutan. Jika chain terlalu panjang, pisahkan menjadi beberapa langkah dengan nama yang menjelaskan hasil tiap langkah.
 
-## Contoh Penggunaan String Methods
+## Mengolah Nomor Telepon dan Log Teks
 
 Setiap contoh kecil berikut menunjukkan perilaku string method dengan **asumsi yang dinyatakan secara jelas**. Validator dan parser produksi memerlukan aturan yang sesuai dengan data sebenarnya.
 
@@ -735,3 +740,5 @@ for title in titles:
 Keempat contoh ini menggabungkan klasifikasi, pencarian, pemisahan, dan penggantian di bawah format kecil yang dinyatakan jelas. Parser telepon, nama file, log, atau pembuat slug untuk produksi juga membutuhkan kontrak domain, kebijakan error, dan pengujian input ambigu.
 
 Cocokkan setiap method dengan perilaku sebenarnya. Satu operasi string dapat menangani satu langkah validasi, sedangkan pemeriksaan lengkap mungkin memerlukan aturan tambahan.
+
+> Karena string tidak pernah berubah di tempat, setiap method transformasi menghasilkan objek baru yang aman dirangkai selama tipe keluarannya masih string.

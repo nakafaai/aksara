@@ -1,19 +1,19 @@
 export const metadata = {
   title: "Indizieren und Slicen mit NumPy",
-  description: "Wähle Daten aus ein- und zweidimensionalen NumPy-Arrays mit Indizes, Slices, booleschen Masken und Index-Arrays aus.",
+  description: "Wähle Daten aus eindimensionalen und zweidimensionalen NumPy Arrays mit Indizes, Slices, booleschen Masken und Indexarrays aus.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-09-12",
   subject: "KI-Programmierung",
 };
 
-## Indexierung und Slicing
+## Grundkonzepte von Indizierung und Slicing
 
 Indexing wählt Werte an bestimmten Positionen aus, Slicing dagegen einen Bereich entlang einer oder mehrerer Achsen. Ein Slice einer Python-Liste erzeugt eine neue Liste. Basic Slicing eines `ndarray` liefert eine **View mit gemeinsam genutzten Daten**. Das Lesen durch Advanced Indexing mit Integer- oder Boolean-Arrays erzeugt dagegen eine Kopie.
 
 Eine [View](https://numpy.org/doc/stable/user/basics.indexing.html) vermeidet das Kopieren der Daten. Schreibst du jedoch über die View, ändern sich auch die entsprechenden Werte im ursprünglichen Array.
 
-## Eindimensionale Operationen mit Arrays
+### Eindimensionale Operationen mit Arrays
 
 Eindimensionale Arrays verwenden die vertraute Indexing-Syntax von Python. Ein Basic Slice wie `a[1:4]` liefert eine View. Änderungen an dieser View betreffen daher **dieselben Elemente** in `a`.
 
@@ -76,7 +76,7 @@ print("Kopie:", copy_array)  # Ausgabe: Kopie: [777   3   4]`
   ]}
 />
 
-## Multidimensionale Operationen mit Arrays
+### Multidimensionale Operationen mit Arrays
 
 In einer mehrdimensionalen Auswahl spricht jeder durch Komma getrennte Eintrag eine Dimension des Arrays an, beginnend mit der ersten Dimension. Ein ganzzahliger Index **entfernt diese Dimension** aus dem Ergebnisarray, ein Schnitt wie `:` behält sie bei. Zum Beispiel liefert `a[1, :]` für das zweidimensionale Array `a` ein eindimensionales Array mit der zweiten Zeile, während `a[1:2, :]` weiterhin ein zweidimensionales Array mit einer Zeile liefert.
 
@@ -243,7 +243,10 @@ Dieses Bild ordnet `a = np.arange(20).reshape(4, 5)` als vier Zeilen und fünf S
     "cell-19": "19",
     "box": "a[1:3, 2:5]",
   }}
+  footer="Zeilen-Slice 1:3 und Spalten-Slice 2:5 liefern eine (2, 3)-View des Originals."
 />
+
+Da `a[1:3, 2:5]` ein Basic Slice ist, bleibt der `(2, 3)`-Block eine View, weshalb jede Änderung darin dieselbe Zelle in `a` anpasst.
 
 ## Erweiterte Indizierung
 
@@ -535,7 +538,10 @@ Für `a = np.array([5, 12, 8, 15, 20, 3])` erzeugt der Vergleich `a > 10` die Ma
     "value-4": <InlineMath math="20" />,
     "value-5": <InlineMath math="3" />,
   }}
+  footer="Nur Punkte über der Grenze 10 sind True und landen im gefilterten Ergebnisarray."
 />
+
+Das Filtern mit einer booleschen Maske wie `a[a > 10]` liefert stets eine eindimensionale Kopie aller passenden Werte in ihrer ursprünglichen Reihenfolge.
 
 ## Fancy Indexing
 
@@ -667,7 +673,10 @@ Fancy Indexing benutzt eine Liste von Indizes, und deren Reihenfolge wird zur Re
     "result-1": <InlineMath math="5" />,
     "result-2": <InlineMath math="8" />,
   }}
+  footer="Die Indexliste [4, 0, 2] kopiert Elemente und ordnet sie in neuer Reihenfolge."
 />
+
+Mit einem ganzzahligen Indexarray wählst du beliebige Positionen, änderst ihre Reihenfolge oder wiederholst Einträge, ohne das Quellarray `a` zu verändern.
 
 ## Daten in Arrays auswählen und neu anordnen
 
@@ -742,3 +751,5 @@ print("Neu angeordnete erste Zeile:", reorganized_data[0, :])  # Ausgabe: Neu an
     }
   ]}
 />
+
+> Rufe `.copy()` auf, sobald du ein Basic Slice verändern willst, ohne das Quellarray zu berühren, weil Basic Slicing immer eine View zurückgibt.
