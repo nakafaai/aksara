@@ -1,6 +1,21 @@
-Du musst <InlineMath math="B" /> nicht bestimmen. Nutze **die Determinante eines Produkts**: Sie ist das Produkt der Determinanten, und <InlineMath math="\det\left(A^{-1}\right)=\frac{1}{\det A}" />.
+# Gegeben
 
-<BlockMath math="\det C=\det A\cdot\det B\cdot\frac{1}{\det A}=\det B" />
+Gegeben ist eine **Matrixgleichung** mit den Matrizen <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />.
+
+# Gesucht
+
+Die **unbekannte Matrix** <InlineMath math="B" /> oder deren gesuchter Eintrag.
+
+# Lösung
+
+> Multipliziere mit der Inversen von genau derselben Seite, da man Matrixfaktoren nicht einfach vertauschen darf.
+
+Du musst <InlineMath math="B" /> nicht bestimmen. Nutze **die Determinante eines Produkts**: Sie ist das Produkt der Determinanten, und die folgende Gleichung.
+
+<BlockMath math="\begin{gathered}
+\det\left(A^{-1}\right)=\frac{1}{\det A} \\
+\det C=\det A\cdot\det B\cdot\frac{1}{\det A}=\det B
+\end{gathered}" />
 
 Das Diagramm verfolgt die Determinantenfaktoren von links nach rechts. **Die Faktoren <InlineMath math="\det A" /> und <InlineMath math="\tfrac{1}{\det A}" /> heben sich auf**, also bleibt nur <InlineMath math="\det B" />, und das muss <InlineMath math="\det C" /> sein.
 
@@ -17,11 +32,21 @@ Die Faktoren <InlineMath math="\det A" /> und <InlineMath math="\frac{1}{\det A}
 
 <BlockMath math="\det B=\det C=2\cdot2-1\cdot1=3" />
 
-Die Angaben zu <InlineMath math="A" /> sind trotzdem wichtig, um sicherzugehen, dass <InlineMath math="A^{-1}" /> existiert, denn <InlineMath math="\det A=6-4=2\ne0" />.
+Die Angaben zu <InlineMath math="A" /> sind trotzdem wichtig, um sicherzugehen, dass <InlineMath math="A^{-1}" /> existiert, denn <InlineMath math="\det A \ne 0" />.
+
+<BlockMath math="\det A=6-4=2\ne0" />
 
 Also ist <InlineMath math="\det B=3" />.
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="12" /> multipliziert <InlineMath math="\det C" /> mit <InlineMath math="(\det A)^2" />, als trüge auch <InlineMath math="A^{-1}" /> einen Faktor <InlineMath math="\det A" /> bei.
 - <InlineMath math="\frac34" /> teilt <InlineMath math="\det C" /> durch <InlineMath math="(\det A)^2" />.
 - <InlineMath math="6" /> multipliziert <InlineMath math="\det C" /> mit <InlineMath math="\det A" /> und vergisst den Faktor von <InlineMath math="A^{-1}" />.
 - <InlineMath math="\frac32" /> teilt <InlineMath math="\det C" /> durch <InlineMath math="\det A" /> und vergisst den Faktor von <InlineMath math="A" />.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

@@ -1,9 +1,24 @@
-Cramer's rule gives <InlineMath math="z=\frac{D_z}{D}" />. **<InlineMath math="D" /> is the determinant of the coefficient matrix**, and <InlineMath math="D_z" /> is the same determinant after replacing the column of <InlineMath math="z" />-coefficients with the column of constants. Expand along the first row.
+# Given
 
-<BlockMath math="\begin{aligned}
+We are given a **three-variable linear system** in <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" />.
+
+# Asked
+
+The **variable value or determinant** found by Cramer rule.
+
+# Solution
+
+> Cramer rule replaces one column of the coefficient matrix with the right-hand side and divides by the main determinant.
+
+Cramer's rule gives <InlineMath math="z" />. **<InlineMath math="D" /> is the determinant of the coefficient matrix**, and <InlineMath math="D_z" /> is the same determinant after replacing the column of <InlineMath math="z" />-coefficients with the column of constants. Expand along the first row.
+
+<BlockMath math="\begin{gathered}
+z=\frac{D_z}{D} \\
+\begin{aligned}
 D&=\begin{vmatrix} 1 & 1 & 1 \\ 2 & -1 & 1 \\ 1 & 2 & -1 \end{vmatrix}=1(1-2)-1(-2-1)+1(4+1)=-1+3+5=7 \\
 D_z&=\begin{vmatrix} 1 & 1 & 6 \\ 2 & -1 & 3 \\ 1 & 2 & 2 \end{vmatrix}=1(-2-6)-1(4-3)+6(4+1)=-8-1+30=21
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
 Compare the four Cramer determinants. **Each variable is its column determinant divided by <InlineMath math="D=7" />**, so the bar for <InlineMath math="D_z" />, three times as tall as <InlineMath math="D" />, gives <InlineMath math="z=3" />.
 
@@ -18,11 +33,26 @@ Compare the four Cramer determinants. **Each variable is its column determinant 
   valueLabel="Determinant"
 />
 
-So <InlineMath math="z=\frac{21}{7}=3" />. In the same way, <InlineMath math="x=1" /> and <InlineMath math="y=2" />. Check in all three equations: <InlineMath math="1+2+3=6" />, <InlineMath math="2-2+3=3" /> and <InlineMath math="1+4-3=2" />.
+So <InlineMath math="z=3" />. In the same way, <InlineMath math="x=1" /> and <InlineMath math="y=2" />. Check in all three equations: <InlineMath math="6" />, <InlineMath math="3" /> and <InlineMath math="2" />.
+
+<BlockMath math="\begin{gathered}
+z=\frac{21}{7}=3 \\
+1+2+3=6 \\
+2-2+3=3 \\
+1+4-3=2
+\end{gathered}" />
 
 So <InlineMath math="z=3" />.
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="1" /> is the value of <InlineMath math="x" />.
 - <InlineMath math="2" /> is the value of <InlineMath math="y" />.
 - <InlineMath math="7" /> is the determinant <InlineMath math="D" />, not yet used as the divisor.
 - <InlineMath math="21" /> is <InlineMath math="D_z" />, not yet divided by <InlineMath math="D" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

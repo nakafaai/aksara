@@ -1,3 +1,15 @@
+# Given
+
+We are given a **trigonometric limit** in radians combining <InlineMath math="x" /> and sine in both numerator and denominator.
+
+# Asked
+
+The **limit value** as <InlineMath math="x" /> approaches zero.
+
+# Solution
+
+> Divide top and bottom by the variable so every sine fraction immediately turns into its angle coefficient.
+
 Direct substitution gives <InlineMath math="\frac00" />. Every term behaves like a multiple of <InlineMath math="x" /> near zero, so **divide top and bottom by <InlineMath math="x" />**.
 
 <BlockMath math="\lim_{x\to0}\frac{x+\sin x}{x-\tan2x}=\lim_{x\to0}\frac{1+\frac{\sin x}{x}}{1-\frac{\tan2x}{x}}=\frac{1+1}{1-2}=-2" />
@@ -32,11 +44,24 @@ Draw the graph of the fraction near <InlineMath math="x=0" />. **Both branches o
   }}
 />
 
-That line uses <InlineMath math="\lim_{x\to0}\frac{\sin x}{x}=1" /> and <InlineMath math="\lim_{x\to0}\frac{\tan2x}{x}=2" />. Numerical check: at <InlineMath math="x=0.01" /> the value is about <InlineMath math="-1.9995" />.
+That line uses the value <InlineMath math="1" /> and the value <InlineMath math="2" />. Numerical check: at <InlineMath math="x=0.01" /> the value is about <InlineMath math="-1.9995" />.
+
+<BlockMath math="\begin{gathered}
+\lim_{x\to0}\frac{\sin x}{x}=1 \\
+\lim_{x\to0}\frac{\tan2x}{x}=2
+\end{gathered}" />
 
 So the limit is <InlineMath math="-2" />.
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="2" /> reverses the denominator to <InlineMath math="\tan2x-x" />.
 - <InlineMath math="0" /> only looks at the numerator tending to <InlineMath math="0" />, but the denominator tends to <InlineMath math="0" /> too.
 - <InlineMath math="\frac23" /> slips the sign in the denominator, as if it were <InlineMath math="x+\tan2x" />.
 - <InlineMath math="-\frac12" /> turns the fraction upside down.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

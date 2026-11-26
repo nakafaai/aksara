@@ -1,3 +1,15 @@
+# Gegeben
+
+Ein Dreieck mit Flächeninhalt <InlineMath math="6" /> wird vom Ursprung aus mit **Streckfaktor** <InlineMath math="-3" /> gestreckt.
+
+# Gesucht
+
+Der **Flächeninhalt des Bilddreiecks** nach der Streckung.
+
+# Lösung
+
+> Beim Strecken aller Seiten vervielfacht sich die Fläche mit dem Quadrat des Streckfaktors und bleibt immer positiv.
+
 Eine zentrische Streckung mit Faktor <InlineMath math="k" /> multipliziert jede Länge mit <InlineMath math="|k|" />. Ein Flächeninhalt ist ein Produkt zweier Längen, also **wird der Flächeninhalt mit <InlineMath math="k^2" /> multipliziert**.
 
 <BlockMath math="A'=k^2\cdot A=(-3)^2\cdot6=9\cdot6=54" />
@@ -34,11 +46,21 @@ Zeichne ein Beispieldreieck mit Flächeninhalt <InlineMath math="6" /> und sein 
   }}
 />
 
-Das negative Vorzeichen des Faktors legt das Bild nur auf die andere Seite des Zentrums und dreht es um. Der Flächeninhalt bleibt positiv. Als Matrix ist die Streckung <InlineMath math="\begin{pmatrix} -3 & 0 \\ 0 & -3 \end{pmatrix}" /> mit Determinante <InlineMath math="9" />, und Flächeninhalte werden mit dem Betrag der Determinante multipliziert.
+Das negative Vorzeichen des Faktors legt das Bild nur auf die andere Seite des Zentrums und dreht es um. Der Flächeninhalt bleibt positiv. Als Matrix ist die Streckung die folgende Matrix mit Determinante <InlineMath math="9" />, und Flächeninhalte werden mit dem Betrag der Determinante multipliziert.
+
+<BlockMath math="\begin{pmatrix} -3 & 0 \\ 0 & -3 \end{pmatrix}" />
 
 Das Bilddreieck hat also den Flächeninhalt <InlineMath math="54" /> Flächeneinheiten.
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="-18" /> multipliziert den Flächeninhalt mit <InlineMath math="k=-3" />, ohne zu quadrieren, und vergisst, dass Flächeninhalte nie negativ sind.
 - <InlineMath math="18" /> multipliziert mit <InlineMath math="|k|=3" />, als änderte sich der Flächeninhalt wie eine Länge.
 - <InlineMath math="-54" /> quadriert richtig, gibt dem Flächeninhalt aber ein negatives Vorzeichen.
 - <InlineMath math="6" /> nimmt an, eine Streckung ändere den Flächeninhalt nicht.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

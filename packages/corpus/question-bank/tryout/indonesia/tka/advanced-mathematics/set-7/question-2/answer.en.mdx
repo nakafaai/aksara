@@ -1,15 +1,29 @@
+# Given
+
+Adult and child **museum ticket prices** <InlineMath math="d" /> and <InlineMath math="a" /> satisfy two group purchase totals.
+
+# Asked
+
+The **unit ticket prices** or requested group total via matrices.
+
+# Solution
+
+> Turn the two group bills into a matrix system and solve directly using the inverse or elimination.
+
 First find the unit prices with **the inverse of the coefficient matrix**, then compute the third group's cost.
 
 <MathContainer>
-<BlockMath math="\det\begin{pmatrix} 3 & 2 \\ 2 & 3 \end{pmatrix}=9-4=5,\qquad \begin{pmatrix} d \\ a \end{pmatrix}=\frac15\begin{pmatrix} 3 & -2 \\ -2 & 3 \end{pmatrix}\begin{pmatrix} 190 \\ 185 \end{pmatrix}" />
-<BlockMath math="\begin{pmatrix} d \\ a \end{pmatrix}=\frac15\begin{pmatrix} 570-370 \\ -380+555 \end{pmatrix}=\frac15\begin{pmatrix} 200 \\ 175 \end{pmatrix}=\begin{pmatrix} 40 \\ 35 \end{pmatrix}" />
+<BlockMath math="\begin{gathered}
+\det\begin{pmatrix} 3 & 2 \\ 2 & 3 \end{pmatrix}=9-4=5,\qquad \begin{pmatrix} d \\ a \end{pmatrix}=\frac15\begin{pmatrix} 3 & -2 \\ -2 & 3 \end{pmatrix}\begin{pmatrix} 190 \\ 185 \end{pmatrix} \\
+\begin{pmatrix} d \\ a \end{pmatrix}=\frac15\begin{pmatrix} 570-370 \\ -380+555 \end{pmatrix}=\frac15\begin{pmatrix} 200 \\ 175 \end{pmatrix}=\begin{pmatrix} 40 \\ 35 \end{pmatrix}
+\end{gathered}" />
 </MathContainer>
 
 Each row of the matrix equation is a line in the <InlineMath math="(d,a)" /> plane. **The unit prices are where the two lines cross**, at <InlineMath math="d=40" /> and <InlineMath math="a=35" />.
 
 <MathVisual
   title={<>The two groups as two lines</>}
-  description={<>The horizontal axis is the adult ticket price <InlineMath math="d" />, and the vertical axis is the child ticket price <InlineMath math="a" />, both in thousands of rupiah. The lines <InlineMath math="3d+2a=190" /> and <InlineMath math="2d+3a=185" /> cross at <InlineMath math="(40,\ 35)" />.</>}
+  description={<>The horizontal axis is the adult ticket price <InlineMath math="d" />, and the vertical axis is the child ticket price <InlineMath math="a" />, each scaled by <InlineMath math="\text{Rp}1{,}000" />. The lines <InlineMath math="3d+2a=190" /> and <InlineMath math="2d+3a=185" /> cross at <InlineMath math="(40,\ 35)" />.</>}
   labels={{
     first: <InlineMath math="3d+2a=190" />,
     second: <InlineMath math="2d+3a=185" />,
@@ -42,7 +56,15 @@ An adult ticket costs <InlineMath math="\text{Rp}40{,}000.00" /> and a child tic
 
 So the third group pays <InlineMath math="\text{Rp}335{,}000.00" />.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="\text{Rp}340{,}000.00" /> swaps the two prices, using <InlineMath math="35" /> thousand for adults and <InlineMath math="40" /> thousand for children.
 - <InlineMath math="\text{Rp}375{,}000.00" /> adds the two groups' costs, which is <InlineMath math="5" /> adults and <InlineMath math="5" /> children, not <InlineMath math="4" /> adults and <InlineMath math="5" /> children.
 - <InlineMath math="\text{Rp}337{,}500.00" /> uses the average price of <InlineMath math="37.5" /> thousand for all <InlineMath math="9" /> people.
 - <InlineMath math="\text{Rp}360{,}000.00" /> charges the adult price for all <InlineMath math="9" /> people.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

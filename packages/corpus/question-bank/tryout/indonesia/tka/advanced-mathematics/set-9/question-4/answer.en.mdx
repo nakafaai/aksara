@@ -1,3 +1,15 @@
+# Given
+
+A **batik workshop** produces two batik styles under weekly material and labor limits with known unit profits.
+
+# Asked
+
+The **maximum weekly profit** the batik workshop can earn.
+
+# Solution
+
+> Evaluate profit at every corner of the feasible region because the maximum always sits on a boundary vertex.
+
 Let <InlineMath math="x" /> be the number of hand-drawn batik pieces and <InlineMath math="y" /> the number of stamped batik pieces per week. The dyeing time and the fabric stock each give **one constraint**.
 
 <BlockMath math="\begin{aligned}
@@ -6,7 +18,7 @@ x+y&\le26\quad(\text{fabric}) \\
 x\ge0,\quad y&\ge0
 \end{aligned}" />
 
-The profit, in thousands of rupiah, is <InlineMath math="P=100x+80y" />. The corner where both constraints are used up comes from subtracting the two equations.
+The profit (each unit standing for <InlineMath math="\text{Rp}1{,}000" />) is <InlineMath math="P=100x+80y" />. The corner where both constraints are used up comes from subtracting the two equations.
 
 <BlockMath math="(2x+y)-(x+y)=40-26\ \Rightarrow\ x=14,\quad y=12" />
 
@@ -58,7 +70,15 @@ Draw the feasible region. **The dyeing line and the fabric line cut it into a qu
 
 So the maximum profit is <InlineMath math="\text{Rp}2{,}360{,}000.00" />, with <InlineMath math="14" /> hand-drawn and <InlineMath math="12" /> stamped pieces.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="\text{Rp}2{,}000{,}000.00" /> is the profit at <InlineMath math="(20,0)" />, hand-drawn batik only.
 - <InlineMath math="\text{Rp}2{,}080{,}000.00" /> is the profit at <InlineMath math="(0,26)" />, stamped batik only.
 - <InlineMath math="\text{Rp}2{,}600{,}000.00" /> assumes all <InlineMath math="26" /> pieces of fabric can become hand-drawn batik. That plan needs <InlineMath math="52" /> hours of dyeing.
 - <InlineMath math="\text{Rp}3{,}200{,}000.00" /> spends all <InlineMath math="40" /> hours on <InlineMath math="40" /> stamped pieces and forgets that the fabric covers only <InlineMath math="26" /> pieces.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

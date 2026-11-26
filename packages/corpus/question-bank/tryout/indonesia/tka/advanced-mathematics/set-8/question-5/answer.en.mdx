@@ -1,16 +1,30 @@
+# Given
+
+After **repairing the binding machine**, binding time per notebook pack drops to <InlineMath math="2" /> hours while other limits stay fixed.
+
+# Asked
+
+The **new maximum profit** after the faster binding time.
+
+# Solution
+
+> Faster binding relaxes one boundary line, opening up a new corner to test for higher profit.
+
 The binding limit becomes <InlineMath math="2x+2y\le120" />, that is <InlineMath math="x+y\le60" />. The cutting limit stays <InlineMath math="x+2y\le80" />. The feasible region changes, so **every corner must be found again**, including the ones on the axes.
 
 <MathContainer>
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+\begin{aligned}
 x+y=60,\ x+2y=80&\ \Rightarrow\ y=20,\ x=40 \\
 x+y=60,\ y=0&\ \Rightarrow\ (60,0) \\
 x+2y=80,\ x=0&\ \Rightarrow\ (0,40)
-\end{aligned}" />
-<BlockMath math="\begin{aligned}
+\end{aligned} \\
+\begin{aligned}
 P(60,0)&=3{,}000 \\
 P(40,20)&=2{,}000+800=2{,}800 \\
 P(0,40)&=1{,}600
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 </MathContainer>
 
 Draw the new region with the profit line through <InlineMath math="(60,\ 0)" />. **The profit line is steeper than the edge <InlineMath math="x+y=60" />**, so as it slides outward, the last point it touches is the corner on the horizontal axis.
@@ -50,7 +64,15 @@ The point <InlineMath math="(60,0)" /> meets the cutting limit, since <InlineMat
 
 So the maximum profit is now <InlineMath math="\text{Rp}3{,}000{,}000.00" />, from <InlineMath math="60" /> packs of exercise books only.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="\text{Rp}2{,}800{,}000.00" /> is the profit where the two boundary lines cross, <InlineMath math="(40,20)" />. That corner is no longer optimal.
 - <InlineMath math="\text{Rp}2{,}200{,}000.00" /> is the maximum profit before the repair.
 - <InlineMath math="\text{Rp}3{,}200{,}000.00" /> is the profit of <InlineMath math="(40,30)" />, which needs <InlineMath math="100" /> cutting hours.
 - <InlineMath math="\text{Rp}2{,}400{,}000.00" /> is the profit of <InlineMath math="(0,60)" />. That plan fits the new binding limit, but needs <InlineMath math="120" /> cutting hours.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

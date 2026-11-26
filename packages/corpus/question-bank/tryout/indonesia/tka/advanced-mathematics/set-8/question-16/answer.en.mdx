@@ -1,4 +1,18 @@
-The largest circle inside a triangle touching all three sides is **the incircle**. Triangle <InlineMath math="OPQ" /> has a right angle at <InlineMath math="O" />, legs <InlineMath math="12" /> and <InlineMath math="5" />, and hypotenuse <InlineMath math="PQ=\sqrt{144+25}=13" />.
+# Given
+
+A **right-triangular plot** has vertices at <InlineMath math="O(0,0)" />, <InlineMath math="P(12,0)" />, and a third corner on the vertical axis.
+
+# Asked
+
+The **circumcircle or incircle** of the right-triangular plot.
+
+# Solution
+
+> In any right triangle, the hypotenuse is the circumcircle diameter, putting the center right at its midpoint.
+
+The largest circle inside a triangle touching all three sides is **the incircle**. Triangle <InlineMath math="OPQ" /> has a right angle at <InlineMath math="O" />, legs <InlineMath math="12" /> and <InlineMath math="5" />, and hypotenuse <InlineMath math="PQ=13" />.
+
+<BlockMath math="PQ=\sqrt{144+25}=13" />
 
 The inradius equals the area divided by the semi-perimeter.
 
@@ -46,11 +60,37 @@ The circle touches both axes, so its centre is <InlineMath math="2" /> units fro
 
 <BlockMath math="(x-2)^2+(y-2)^2=4\ \Leftrightarrow\ x^2+y^2-4x-4y+4=0" />
 
-Check against the hypotenuse: line <InlineMath math="PQ" /> is <InlineMath math="5x+12y-60=0" />, and its distance from <InlineMath math="(2,2)" /> is <InlineMath math="\frac{|10+24-60|}{13}=\frac{26}{13}=2" />, equal to the radius.
+Check against the hypotenuse: line <InlineMath math="PQ" /> is the equation below, and its distance from <InlineMath math="(2,2)" /> is <InlineMath math="2" />, equal to the radius.
 
-So the edge of the pond is <InlineMath math="x^2+y^2-4x-4y+4=0" />.
+<BlockMath math="\begin{gathered}
+5x+12y-60=0 \\
+\frac{|10+24-60|}{13}=\frac{26}{13}=2
+\end{gathered}" />
 
-- <InlineMath math="x^2+y^2-12x-5y=0" /> is the circumcircle, through all three vertices. It runs outside the plot.
-- <InlineMath math="x^2+y^2-4x-4y=0" /> has centre <InlineMath math="(2,2)" /> but forgets to subtract <InlineMath math="r^2" /> from <InlineMath math="4+4" />. Its radius is <InlineMath math="2\sqrt2" />.
-- <InlineMath math="x^2+y^2-8x-8y+16=0" /> uses <InlineMath math="r=12+5-13=4" />, forgetting to halve.
-- <InlineMath math="x^2+y^2+4x+4y+4=0" /> has centre <InlineMath math="(-2,-2)" />, outside the plot.
+So the edge of the pond is the equation below.
+
+<BlockMath math="x^2+y^2-4x-4y+4=0" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- The equation below is the circumcircle, through all three vertices. It runs outside the plot.
+
+  <BlockMath math="x^2+y^2-12x-5y=0" />
+
+- The equation below has centre <InlineMath math="(2,2)" /> but forgets to subtract <InlineMath math="r^2" /> from <InlineMath math="4+4" />. Its radius is <InlineMath math="2\sqrt2" />.
+
+  <BlockMath math="x^2+y^2-4x-4y=0" />
+
+- The equation below uses <InlineMath math="r=4" />, forgetting to halve.
+
+  <BlockMath math="\begin{gathered} x^2+y^2-8x-8y+16=0 \\ r=12+5-13=4 \end{gathered}" />
+
+- The equation below has centre <InlineMath math="(-2,-2)" />, outside the plot.
+
+  <BlockMath math="x^2+y^2+4x+4y+4=0" />
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

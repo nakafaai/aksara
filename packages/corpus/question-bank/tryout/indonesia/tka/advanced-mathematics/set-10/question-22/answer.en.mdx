@@ -1,10 +1,29 @@
-Direct substitution gives <InlineMath math="\frac00" />. Rewrite the denominator with <InlineMath math="1-\cos3x=2\sin^2\frac{3x}{2}" />, then **pair each trigonometric function with its own angle**.
+# Given
 
-<BlockMath math="\frac{x\tan6x}{2\sin^2\frac{3x}{2}}=\frac12\cdot\frac{\tan6x}{x}\cdot\left(\frac{x}{\sin\frac{3x}{2}}\right)^2" />
+We are given a **trigonometric fraction limit** in radians with tangent in the numerator and cosine in the denominator.
 
-Use <InlineMath math="\lim_{x\to0}\frac{\tan6x}{x}=6" /> and <InlineMath math="\lim_{x\to0}\frac{x}{\sin\frac{3x}{2}}=\frac23" />.
+# Asked
 
-<BlockMath math="\lim_{x\to0}\frac{x\tan6x}{1-\cos3x}=\frac12\cdot6\cdot\left(\frac23\right)^2=\frac12\cdot6\cdot\frac49=\frac43" />
+The **trigonometric limit value** near zero.
+
+# Solution
+
+> Rewrite the cosine difference using half-angle sine squared so matching zero factors simplify cleanly.
+
+Direct substitution gives <InlineMath math="\frac00" />. Rewrite the denominator with the equation below, then **pair each trigonometric function with its own angle**.
+
+<BlockMath math="\begin{gathered}
+1-\cos3x=2\sin^2\frac{3x}{2} \\
+\frac{x\tan6x}{2\sin^2\frac{3x}{2}}=\frac12\cdot\frac{\tan6x}{x}\cdot\left(\frac{x}{\sin\frac{3x}{2}}\right)^2
+\end{gathered}" />
+
+Use the value <InlineMath math="6" /> and the value <InlineMath math="\frac23" />.
+
+<BlockMath math="\begin{gathered}
+\lim_{x\to0}\frac{\tan6x}{x}=6 \\
+\lim_{x\to0}\frac{x}{\sin\frac{3x}{2}}=\frac23 \\
+\lim_{x\to0}\frac{x\tan6x}{1-\cos3x}=\frac12\cdot6\cdot\left(\frac23\right)^2=\frac12\cdot6\cdot\frac49=\frac43
+\end{gathered}" />
 
 Draw the graph of the fraction near <InlineMath math="x=0" />. **From the left and from the right, the curve drops towards height <InlineMath math="\tfrac43" />**, even though the fraction is undefined at <InlineMath math="x=0" /> itself.
 
@@ -40,7 +59,20 @@ Numerical check: at <InlineMath math="x=0.01" /> the value is about <InlineMath 
 
 So the limit is <InlineMath math="\frac43" />.
 
-- <InlineMath math="\frac23" /> takes <InlineMath math="1-\cos3x" /> to behave like <InlineMath math="9x^2" />, but it behaves like <InlineMath math="\frac{9x^2}{2}" />.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- <InlineMath math="\frac23" /> takes <InlineMath math="1-\cos3x" /> to behave like <InlineMath math="9x^2" />, but it behaves like the expression below.
+
+  <BlockMath math="\frac{9x^2}{2}" />
+
 - <InlineMath math="\frac34" /> turns the fraction upside down.
 - <InlineMath math="0" /> only looks at the numerator tending to <InlineMath math="0" />, but the denominator tends to <InlineMath math="0" /> too.
-- <InlineMath math="\frac83" /> forgets the factor <InlineMath math="2" /> in <InlineMath math="2\sin^2\frac{3x}{2}" />, using <InlineMath math="1-\cos3x\approx\frac{9x^2}{4}" />.
+- <InlineMath math="\frac83" /> forgets the factor <InlineMath math="2" /> in <InlineMath math="2\sin^2\frac{3x}{2}" />, using the equation below.
+
+  <BlockMath math="1-\cos3x\approx\frac{9x^2}{4}" />
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

@@ -1,8 +1,25 @@
-Eine Funktion ist bei <InlineMath math="x=0" /> genau dann stetig, wenn **ihr Funktionswert gleich ihrem Grenzwert ist**, <InlineMath math="k=\lim_{x\to0}f(x)" />. Du brauchst also den Grenzwert des Teils für <InlineMath math="x\ne0" />.
+# Gegeben
 
-Nutze die Identität <InlineMath math="1-\cos x=2\sin^2\frac x2" />, damit der Standardgrenzwert des Sinus erscheint.
+Gegeben ist eine **stückweise trigonometrische Funktion** <InlineMath math="f(x)" /> im Bogenmaß mit einem Parameter <InlineMath math="k" />.
 
-<BlockMath math="\lim_{x\to0}\frac{1-\cos x}{x^2}=\lim_{x\to0}\frac{2\sin^2\frac x2}{x^2}=2\left(\lim_{x\to0}\frac{\sin\frac x2}{x}\right)^2=2\cdot\left(\frac12\right)^2=\frac12" />
+# Gesucht
+
+Der **Parameterwert** <InlineMath math="k" />, der die Funktion stetig macht.
+
+# Lösung
+
+> Berechne zuerst den Grenzwert des trigonometrischen Zweigs und setze ihn gleich dem Konstantenwert für Stetigkeit.
+
+Eine Funktion ist bei <InlineMath math="x=0" /> genau dann stetig, wenn **ihr Funktionswert gleich ihrem Grenzwert ist**, der folgende Ausdruck. Du brauchst also den Grenzwert des Teils für <InlineMath math="x\ne0" />.
+
+<BlockMath math="k=\lim_{x\to0}f(x)" />
+
+Nutze die Identität die folgende Gleichung, damit der Standardgrenzwert des Sinus erscheint.
+
+<BlockMath math="\begin{gathered}
+1-\cos x=2\sin^2\frac x2 \\
+\lim_{x\to0}\frac{1-\cos x}{x^2}=\lim_{x\to0}\frac{2\sin^2\frac x2}{x^2}=2\left(\lim_{x\to0}\frac{\sin\frac x2}{x}\right)^2=2\cdot\left(\frac12\right)^2=\frac12
+\end{gathered}" />
 
 Zeichne den Teil <InlineMath math="x\ne0" /> von <InlineMath math="f" />. **Beide Äste steigen bei <InlineMath math="x=0" /> auf die Höhe <InlineMath math="\tfrac12" />**, also ist der Punkt, der das Loch füllt, <InlineMath math="\left(0,\ \tfrac12\right)" />.
 
@@ -33,11 +50,26 @@ Zeichne den Teil <InlineMath math="x\ne0" /> von <InlineMath math="f" />. **Beid
   }}
 />
 
-Numerische Probe: Für <InlineMath math="x=0{,}1" /> ist <InlineMath math="\frac{1-\cos0{,}1}{0{,}01}\approx0{,}4996" />.
+Numerische Probe: Für <InlineMath math="x=0{,}1" /> ist die folgende Gleichung.
+
+<BlockMath math="\frac{1-\cos0{,}1}{0{,}01}\approx0{,}4996" />
 
 Also ist <InlineMath math="k=\frac12" />.
 
-- <InlineMath math="1" /> verwendet <InlineMath math="1-\cos x\approx x^2" />, die Näherung ist aber <InlineMath math="\frac{x^2}{2}" />.
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
+- <InlineMath math="1" /> verwendet <InlineMath math="1-\cos x\approx x^2" />, die Näherung ist aber der folgende Ausdruck.
+
+  <BlockMath math="\frac{x^2}{2}" />
+
 - <InlineMath math="0" /> schaut nur auf den Zähler, der gegen null geht.
 - <InlineMath math="2" /> stellt den Bruch <InlineMath math="\frac12" /> auf den Kopf.
-- <InlineMath math="-\frac12" /> hat einen Vorzeichenfehler in der Identität, als wäre <InlineMath math="1-\cos x=-2\sin^2\frac x2" />.
+- <InlineMath math="-\frac12" /> hat einen Vorzeichenfehler in der Identität, als wäre die folgende Gleichung.
+
+  <BlockMath math="1-\cos x=-2\sin^2\frac x2" />
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

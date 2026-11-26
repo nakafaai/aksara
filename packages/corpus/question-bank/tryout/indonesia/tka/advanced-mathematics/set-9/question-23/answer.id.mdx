@@ -1,8 +1,28 @@
-Ketika <InlineMath math="n\to\infty" />, faktor <InlineMath math="\frac n2" /> membesar, sedangkan <InlineMath math="\sin\frac{2\pi}{n}" /> mengecil menuju <InlineMath math="0" />. Untuk melihat hasil kali keduanya, **misalkan <InlineMath math="t=\frac{2\pi}{n}" />**, sehingga <InlineMath math="t\to0^+" /> dan <InlineMath math="n=\frac{2\pi}{t}" />.
+# Diketahui
+
+Segi-<InlineMath math="n" /> **beraturan** dilukis di dalam lingkaran berjari-jari <InlineMath math="1" /> dengan jumlah sisi makin banyak.
+
+# Ditanyakan
+
+**Nilai limit keliling atau luas** segi-<InlineMath math="n" /> saat <InlineMath math="n" /> membesar tanpa batas.
+
+# Penyelesaian
+
+> Semakin banyak sisi segi beraturan di dalam lingkaran, bentuknya makin menempel halus pada lingkaran sehingga nilainya mendekati keliling atau luas lingkaran.
+
+Ketika <InlineMath math="n\to\infty" />, faktor ekspresi berikut membesar, sedangkan <InlineMath math="\sin\frac{2\pi}{n}" /> mengecil menuju <InlineMath math="0" />. Untuk melihat hasil kali keduanya, **misalkan <InlineMath math="t" />**, sehingga <InlineMath math="t\to0^+" /> dan <InlineMath math="n" />.
+
+<BlockMath math="\begin{gathered}
+\frac n2 \\
+t=\frac{2\pi}{n} \\
+n=\frac{2\pi}{t}
+\end{gathered}" />
 
 <MathContainer>
-<BlockMath math="L=\frac{n}{2}\sin\frac{2\pi}{n}=\frac{\pi}{t}\sin t=\pi\cdot\frac{\sin t}{t}" />
-<BlockMath math="\lim_{n\to\infty}L(n)=\pi\cdot\lim_{t\to0^+}\frac{\sin t}{t}=\pi\cdot1=\pi" />
+<BlockMath math="\begin{gathered}
+L=\frac{n}{2}\sin\frac{2\pi}{n}=\frac{\pi}{t}\sin t=\pi\cdot\frac{\sin t}{t} \\
+\lim_{n\to\infty}L(n)=\pi\cdot\lim_{t\to0^+}\frac{\sin t}{t}=\pi\cdot1=\pi
+\end{gathered}" />
 </MathContainer>
 
 Gambar segi enam beraturan di dalam lingkaran berjari-jari <InlineMath math="1" />. **Celah antara segi-<InlineMath math="n" /> dan lingkaran makin sempit ketika <InlineMath math="n" /> bertambah**, jadi luasnya mendekati luas lingkaran.
@@ -39,11 +59,29 @@ Gambar segi enam beraturan di dalam lingkaran berjari-jari <InlineMath math="1" 
   }}
 />
 
-Hasil ini masuk akal: makin banyak sisinya, segi-<InlineMath math="n" /> makin mirip lingkarannya, yang luasnya <InlineMath math="\pi\cdot1^2=\pi" />. Contoh: <InlineMath math="L(6)=3\sin\frac{\pi}{3}\approx2{,}598" /> dan <InlineMath math="L(100)\approx3{,}1395" />, sedangkan <InlineMath math="\pi\approx3{,}1416" />.
+Hasil ini masuk akal: makin banyak sisinya, segi-<InlineMath math="n" /> makin mirip lingkarannya, yang luasnya <InlineMath math="\pi\cdot1^2=\pi" />. Contoh: <InlineMath math="L(6) \approx 2{,}598" /> dan <InlineMath math="L(100)\approx3{,}1395" />, sedangkan <InlineMath math="\pi\approx3{,}1416" />.
+
+<BlockMath math="L(6)=3\sin\frac{\pi}{3}\approx2{,}598" />
 
 Jadi, <InlineMath math="L(n)" /> mendekati <InlineMath math="\pi" />.
 
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
+
 - <InlineMath math="2\pi" /> lupa faktor <InlineMath math="\frac12" /> pada luas segitiga. Nilai itu adalah keliling lingkaran, bukan luasnya.
-- <InlineMath math="\frac{\pi}{2}" /> membagi dua sekali lagi, seolah-olah <InlineMath math="n=\frac{\pi}{t}" />.
-- <InlineMath math="1" /> hanya menuliskan nilai <InlineMath math="\lim_{t\to0}\frac{\sin t}{t}" /> dan lupa faktor <InlineMath math="\pi" /> di depannya.
-- <InlineMath math="\infty" /> hanya melihat faktor <InlineMath math="\frac n2" /> yang membesar, padahal <InlineMath math="\sin\frac{2\pi}{n}" /> mengecil dengan laju yang sebanding.
+- <InlineMath math="\frac{\pi}{2}" /> membagi dua sekali lagi, seolah-olah <InlineMath math="n" />.
+
+  <BlockMath math="n=\frac{\pi}{t}" />
+
+- <InlineMath math="1" /> hanya menuliskan nilai ekspresi berikut dan lupa faktor <InlineMath math="\pi" /> di depannya.
+
+  <BlockMath math="\lim_{t\to0}\frac{\sin t}{t}" />
+
+- <InlineMath math="\infty" /> hanya melihat faktor ekspresi berikut yang membesar, padahal <InlineMath math="\sin\frac{2\pi}{n}" /> mengecil dengan laju yang sebanding.
+
+  <BlockMath math="\frac n2" />
+
+# Jawaban
+
+Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.

@@ -1,15 +1,32 @@
-As <InlineMath math="x\to-2" />, both fractions grow without bound with opposite signs, so the form is <InlineMath math="\infty-\infty" /> and the limit is not visible yet. **Use a common denominator** first, since <InlineMath math="x^2-4=(x+2)(x-2)" />.
+# Given
 
-<BlockMath math="\begin{aligned}
+We are given a **sum of two fractions** each undefined at <InlineMath math="x=-2" /> whose combined sum has a limit.
+
+# Asked
+
+The **limit of the combined sum** as <InlineMath math="x" /> approaches <InlineMath math="-2" />.
+
+# Solution
+
+> Combine the two fractions over one common denominator first so the shared zero factor cancels cleanly.
+
+As <InlineMath math="x\to-2" />, both fractions grow without bound with opposite signs, so the form is <InlineMath math="\infty-\infty" /> and the limit is not visible yet. **Use a common denominator** first, since the equation below.
+
+<BlockMath math="\begin{gathered}
+x^2-4=(x+2)(x-2) \\
+\begin{aligned}
 \frac{1}{x+2}+\frac{4}{(x+2)(x-2)}&=\frac{(x-2)+4}{(x+2)(x-2)} \\
 &=\frac{x+2}{(x+2)(x-2)}=\frac{1}{x-2},\qquad x\neq-2
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
 Once the factor <InlineMath math="x+2" /> is cancelled, direct substitution is safe.
 
 <BlockMath math="\lim_{x\to-2}\frac{1}{x-2}=\frac{1}{-4}=-\frac14" />
 
-Draw the sum of the two fractions after simplifying. **The two parts that blow up cancel each other, and what's left is the curve <InlineMath math="\frac{1}{x-2}" />** with one hole at <InlineMath math="x=-2" />.
+Draw the sum of the two fractions after simplifying. **The two parts that blow up cancel each other, and what's left is the curve the expression below** with one hole at <InlineMath math="x=-2" />.
+
+<BlockMath math="\frac{1}{x-2}" />
 
 <MathVisual
   title={<>The sum of the two fractions near <InlineMath math="x=-2" /></>}
@@ -37,11 +54,26 @@ Draw the sum of the two fractions after simplifying. **The two parts that blow u
   }}
 />
 
-Numerical check: for <InlineMath math="x=-1.99" />, <InlineMath math="\frac{1}{0.01}+\frac{4}{-0.0399}\approx100-100.25=-0.25" />.
+Numerical check: for <InlineMath math="x=-1.99" />, <InlineMath math="-0.25" />.
+
+<BlockMath math="\frac{1}{0.01}+\frac{4}{-0.0399}\approx100-100.25=-0.25" />
 
 So the limit is <InlineMath math="-\frac14" />.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="0" /> assumes the two unbounded parts cancel completely.
 - <InlineMath math="\infty" /> only looks at the first fraction growing.
-- <InlineMath math="\frac14" /> factors <InlineMath math="x^2-4" /> wrongly as <InlineMath math="(x+2)(2-x)" />, leaving <InlineMath math="\frac{1}{2-x}" />.
-- <InlineMath math="-4" /> substitutes into <InlineMath math="x-2" /> and forgets that what remains is the fraction <InlineMath math="\frac{1}{x-2}" />.
+- <InlineMath math="\frac14" /> factors <InlineMath math="x^2-4" /> wrongly as <InlineMath math="(x+2)(2-x)" />, leaving the expression below.
+
+  <BlockMath math="\frac{1}{2-x}" />
+
+- <InlineMath math="-4" /> substitutes into <InlineMath math="x-2" /> and forgets that what remains is the fraction the expression below.
+
+  <BlockMath math="\frac{1}{x-2}" />
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

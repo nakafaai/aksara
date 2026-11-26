@@ -1,3 +1,15 @@
+# Given
+
+A **laundry service** offers two wash packages under washer and dryer hour caps with known package profits.
+
+# Asked
+
+The **maximum daily profit** of the laundry business.
+
+# Solution
+
+> Locate every corner point that respects both machine limits, then compare their daily profits.
+
 Let <InlineMath math="x" /> be the number of per-kilo packages and <InlineMath math="y" /> the number of bed cover packages per day. Each machine gives **one limit on working hours**.
 
 <BlockMath math="\begin{aligned}
@@ -6,7 +18,7 @@ x+2y&\le16\quad(\text{washer}) \\
 x\ge0,\quad y&\ge0
 \end{aligned}" />
 
-The profit, in thousands of rupiah, is <InlineMath math="P=15x+20y" />. The corner where both machines are fully used comes from solving the two equations. Multiply the second by <InlineMath math="2" /> and subtract the first.
+The profit (each unit standing for <InlineMath math="\text{Rp}1{,}000" />) is <InlineMath math="P=15x+20y" />. The corner where both machines are fully used comes from solving the two equations. Multiply the second by <InlineMath math="2" /> and subtract the first.
 
 <BlockMath math="(4x+2y)-(x+2y)=40-16\ \Rightarrow\ 3x=24\ \Rightarrow\ x=8,\quad y=4" />
 
@@ -61,7 +73,15 @@ Draw the region of plans that meet both limits, then slide the profit line away 
 
 So the maximum profit is <InlineMath math="\text{Rp}200{,}000.00" />, with <InlineMath math="8" /> per-kilo and <InlineMath math="4" /> bed cover packages.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="\text{Rp}150{,}000.00" /> is the profit at <InlineMath math="(10,0)" />, per-kilo packages only.
 - <InlineMath math="\text{Rp}160{,}000.00" /> is the profit at <InlineMath math="(0,8)" />, bed cover packages only.
 - <InlineMath math="\text{Rp}310{,}000.00" /> adds the profits at <InlineMath math="(10,0)" /> and <InlineMath math="(0,8)" />, as if both plans could run at once.
 - <InlineMath math="\text{Rp}400{,}000.00" /> only uses the dryer limit for <InlineMath math="20" /> bed cover packages. That plan needs <InlineMath math="40" /> washer hours.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

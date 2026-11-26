@@ -1,11 +1,25 @@
+# Gegeben
+
+Ein Stahlrahmen besitzt **drei Raumknoten** bei <InlineMath math="A(2,3,0)" />, <InlineMath math="B(1,2,0)" /> und <InlineMath math="C(1,1,1)" />.
+
+# Gesucht
+
+Der **Winkel am Knoten** oder die Stablänge der drei Punkte.
+
+# Lösung
+
+> Bilde zwei Stabvektoren ab dem gemeinsamen Knoten und berechne den Winkel über ihr Skalarprodukt.
+
 Der Winkel <InlineMath math="ABC" /> ist der Winkel bei <InlineMath math="B" /> zwischen zwei Vektoren, die **beide in <InlineMath math="B" /> beginnen**, nämlich <InlineMath math="\overrightarrow{BA}" /> und <InlineMath math="\overrightarrow{BC}" />.
 
 <MathContainer>
-<BlockMath math="\overrightarrow{BA}=A-B=(1,1,0),\qquad \overrightarrow{BC}=C-B=(0,-1,1)" />
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+\overrightarrow{BA}=A-B=(1,1,0),\qquad \overrightarrow{BC}=C-B=(0,-1,1) \\
+\begin{aligned}
 \cos\angle ABC&=\frac{\overrightarrow{BA}\cdot\overrightarrow{BC}}{\left|\overrightarrow{BA}\right|\left|\overrightarrow{BC}\right|} \\
 &=\frac{0-1+0}{\sqrt2\cdot\sqrt2}=-\frac12
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 </MathContainer>
 
 Zeichne die beiden Stäbe in der Ebene, die sie enthält. **Beide Stäbe haben die Länge <InlineMath math="\sqrt2" />, und der Kosinus des Winkels ist negativ**, also ist der Winkel bei <InlineMath math="B" /> stumpf, nämlich <InlineMath math="120^\circ" />.
@@ -47,11 +61,29 @@ Zeichne die beiden Stäbe in der Ebene, die sie enthält. **Beide Stäbe haben d
 
 Der Winkel zwischen <InlineMath math="0^\circ" /> und <InlineMath math="180^\circ" /> mit Kosinus <InlineMath math="-\frac12" /> ist <InlineMath math="120^\circ" />.
 
-Probe mit dem Kosinussatz: <InlineMath math="AC^2=1+4+1=6" />, und <InlineMath math="BA^2+BC^2-2\cdot BA\cdot BC\cos120^\circ=2+2+2=6" />.
+Probe mit dem Kosinussatz: <InlineMath math="AC^2=6" />, und <InlineMath math="6" />.
+
+<BlockMath math="\begin{gathered}
+AC^2=1+4+1=6 \\
+BA^2+BC^2-2\cdot BA\cdot BC\cos120^\circ=2+2+2=6
+\end{gathered}" />
 
 Der Winkel <InlineMath math="ABC" /> beträgt also <InlineMath math="120^\circ" />.
 
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
 - <InlineMath math="60^\circ" /> verwendet <InlineMath math="\overrightarrow{AB}" /> und <InlineMath math="\overrightarrow{BC}" />. Der Vektor <InlineMath math="\overrightarrow{AB}" /> beginnt nicht in <InlineMath math="B" />, deshalb kippt das Vorzeichen des Kosinus.
-- <InlineMath math="135^\circ" /> verwendet <InlineMath math="\left|\overrightarrow{BA}\right|\left|\overrightarrow{BC}\right|=\sqrt2" />, aber <InlineMath math="\sqrt2\cdot\sqrt2=2" />.
+- <InlineMath math="135^\circ" /> verwendet die folgende Gleichung, aber <InlineMath math="\sqrt2\cdot\sqrt2=2" />.
+
+  <BlockMath math="\left|\overrightarrow{BA}\right|\left|\overrightarrow{BC}\right|=\sqrt2" />
+
 - <InlineMath math="45^\circ" /> macht beide Fehler auf einmal.
-- <InlineMath math="150^\circ" /> verwechselt den Wert <InlineMath math="\cos150^\circ=-\frac12\sqrt3" />.
+- <InlineMath math="150^\circ" /> verwechselt den Wert <InlineMath math="\cos150^\circ" />.
+
+  <BlockMath math="\cos150^\circ=-\frac12\sqrt3" />
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

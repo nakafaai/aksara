@@ -1,12 +1,34 @@
-Den Flächeninhalt eines Dreiecks bekommst du aus zwei Seitenvektoren mit gemeinsamem Anfangspunkt, ohne zuerst eine Höhe zu suchen. Nimm <InlineMath math="\vec{u}=\overrightarrow{AB}=(2,1,0)" /> und <InlineMath math="\vec{v}=\overrightarrow{AC}=(0,2,2)" />. Wegen <InlineMath math="\sin^2\theta=1-\cos^2\theta" /> **lässt sich der Flächeninhalt mit Längen und Skalarprodukt schreiben**.
+# Gegeben
+
+Ein **dreieckiges Sonnensegel** im Raum hat die Ecken <InlineMath math="A(1,0,2)" />, <InlineMath math="B(3,1,2)" /> und eine dritte bekannte Ecke.
+
+# Gesucht
+
+Der **Flächeninhalt des dreieckigen Segels** im Raum.
+
+# Lösung
+
+> Bilde zwei Seitenvektoren von einer Ecke aus und berechne die Fläche über das halbe Kreuzprodukt oder den Sinus.
+
+Den Flächeninhalt eines Dreiecks bekommst du aus zwei Seitenvektoren mit gemeinsamem Anfangspunkt, ohne zuerst eine Höhe zu suchen. Nimm <InlineMath math="\vec{u}=(2,1,0)" /> und <InlineMath math="\vec{v}=(0,2,2)" />. Wegen <InlineMath math="\sin^2\theta" /> **lässt sich der Flächeninhalt mit Längen und Skalarprodukt schreiben**.
+
+<BlockMath math="\begin{gathered}
+\vec{u}=\overrightarrow{AB}=(2,1,0) \\
+\vec{v}=\overrightarrow{AC}=(0,2,2) \\
+\sin^2\theta=1-\cos^2\theta
+\end{gathered}" />
 
 <MathContainer>
-<BlockMath math="L=\frac12\left|\vec{u}\right|\left|\vec{v}\right|\sin\theta=\frac12\sqrt{\left|\vec{u}\right|^2\left|\vec{v}\right|^2-\left(\vec{u}\cdot\vec{v}\right)^2}" />
-<BlockMath math="\left|\vec{u}\right|^2=5,\qquad \left|\vec{v}\right|^2=8,\qquad \vec{u}\cdot\vec{v}=0+2+0=2" />
-<BlockMath math="L=\frac12\sqrt{5\cdot8-2^2}=\frac12\sqrt{36}=3" />
+<BlockMath math="\begin{gathered}
+L=\frac12\left|\vec{u}\right|\left|\vec{v}\right|\sin\theta=\frac12\sqrt{\left|\vec{u}\right|^2\left|\vec{v}\right|^2-\left(\vec{u}\cdot\vec{v}\right)^2} \\
+\left|\vec{u}\right|^2=5,\qquad \left|\vec{v}\right|^2=8,\qquad \vec{u}\cdot\vec{v}=0+2+0=2 \\
+L=\frac12\sqrt{5\cdot8-2^2}=\frac12\sqrt{36}=3
+\end{gathered}" />
 </MathContainer>
 
-Zeichne das Sonnensegel in seiner Ebene in wahrer Größe. **Die Grundseite <InlineMath math="AB=\sqrt5" /> und die Höhe von <InlineMath math="C" /> auf diese Grundseite ist <InlineMath math="\tfrac{6}{\sqrt5}" />**, also ist der Flächeninhalt <InlineMath math="\tfrac12\cdot\sqrt5\cdot\tfrac{6}{\sqrt5}=3" />.
+Zeichne das Sonnensegel in seiner Ebene in wahrer Größe. **Die Grundseite <InlineMath math="AB=\sqrt5" /> und die Höhe von <InlineMath math="C" /> auf diese Grundseite ist <InlineMath math="\tfrac{6}{\sqrt5}" />**, also ist der Flächeninhalt die folgende Gleichung.
+
+<BlockMath math="\tfrac12\cdot\sqrt5\cdot\tfrac{6}{\sqrt5}=3" />
 
 <MathVisual
   title={<>Das Sonnensegel <InlineMath math="ABC" /> in seiner Ebene</>}
@@ -41,11 +63,24 @@ Zeichne das Sonnensegel in seiner Ebene in wahrer Größe. **Die Grundseite <Inl
   }}
 />
 
-Probe mit dem Kreuzprodukt: <InlineMath math="\vec{u}\times\vec{v}=(2,-4,4)" /> hat die Länge <InlineMath math="\sqrt{4+16+16}=6" />, die Hälfte davon ist <InlineMath math="3" />.
+Probe mit dem Kreuzprodukt: die folgende Gleichung hat die Länge <InlineMath math="6" />, die Hälfte davon ist <InlineMath math="3" />.
+
+<BlockMath math="\begin{gathered}
+\vec{u}\times\vec{v}=(2,-4,4) \\
+\sqrt{4+16+16}=6
+\end{gathered}" />
 
 Das Sonnensegel ist also <InlineMath math="3" /> Quadratmeter groß.
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="6" /> vergisst den Faktor <InlineMath math="\frac12" /> und berechnet so das Parallelogramm.
 - <InlineMath math="\sqrt{10}" /> nimmt bei <InlineMath math="A" /> einen rechten Winkel an, aber <InlineMath math="\vec{u}\cdot\vec{v}=2\neq0" />.
 - <InlineMath math="2\sqrt{10}" /> nimmt einen rechten Winkel an und vergisst zusätzlich den Faktor <InlineMath math="\frac12" />.
 - <InlineMath math="9" /> vergisst die Wurzel: Das ist das Quadrat des Flächeninhalts.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

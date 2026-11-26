@@ -1,8 +1,22 @@
+# Gegeben
+
+Der Punkt <InlineMath math="P(3,-4)" /> wird um **neunzig Grad im Uhrzeigersinn** um den Ursprung <InlineMath math="O(0,0)" /> gedreht.
+
+# Gesucht
+
+Die **Bildkoordinaten** von <InlineMath math="P" /> nach der Drehung im Uhrzeigersinn.
+
+# Lösung
+
+> Eine Vierteldrehung im Uhrzeigersinn tauscht beide Koordinaten und kehrt das Vorzeichen der neuen zweiten Koordinate um.
+
 Eine Drehung um <InlineMath math="90^\circ" /> im Uhrzeigersinn ist eine Drehung um <InlineMath math="-90^\circ" />. **Ihre Vorschrift lautet <InlineMath math="(x,y)\mapsto(y,-x)" />**, mit der Matrix unten.
 
 <MathContainer>
-<BlockMath math="\begin{pmatrix} \cos(-90^\circ) & -\sin(-90^\circ) \\ \sin(-90^\circ) & \cos(-90^\circ) \end{pmatrix}=\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}" />
-<BlockMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}\begin{pmatrix} 3 \\ -4 \end{pmatrix}=\begin{pmatrix} -4 \\ -3 \end{pmatrix}" />
+<BlockMath math="\begin{gathered}
+\begin{pmatrix} \cos(-90^\circ) & -\sin(-90^\circ) \\ \sin(-90^\circ) & \cos(-90^\circ) \end{pmatrix}=\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \\
+\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}\begin{pmatrix} 3 \\ -4 \end{pmatrix}=\begin{pmatrix} -4 \\ -3 \end{pmatrix}
+\end{gathered}" />
 </MathContainer>
 
 Zeichne <InlineMath math="P" /> und seinen Bildpunkt ins Koordinatensystem. **Der Punkt dreht sich auf dem Kreis mit Radius <InlineMath math="5" />**, vom IV. in den III. Quadranten, und seine Strecke zum Ursprung dreht sich um <InlineMath math="90^\circ" /> mit.
@@ -46,7 +60,15 @@ Probe: <InlineMath math="P" /> liegt im IV. Quadranten. Eine Vierteldrehung im U
 
 Das Bild ist also <InlineMath math="(-4,-3)" />.
 
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
 - <InlineMath math="(4,3)" /> ist das Ergebnis einer Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn.
 - <InlineMath math="(-3,4)" /> ist das Ergebnis einer Drehung um <InlineMath math="180^\circ" />.
 - <InlineMath math="(3,4)" /> ist die Spiegelung an der <InlineMath math="x" />-Achse.
 - <InlineMath math="(-4,3)" /> vertauscht nur die Koordinaten, das ist die Spiegelung an <InlineMath math="y=x" />.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

@@ -1,11 +1,35 @@
-Substitusi <InlineMath math="x=1" /> memberi <InlineMath math="\frac{2-2}{0}=\frac00" />. Bentuk sekawan akar kuadrat tidak menghilangkan akar pangkat tiga, jadi **misalkan <InlineMath math="u=\sqrt[3]{x+7}" />**. Maka <InlineMath math="x=u^3-7" />, dan <InlineMath math="u\to2" /> ketika <InlineMath math="x\to1" />.
+# Diketahui
+
+Diberikan **limit bentuk akar pangkat tiga** di titik <InlineMath math="x=1" /> yang menghasilkan bentuk nol per nol.
+
+# Ditanyakan
+
+**Nilai limit** setelah merasionalkan akar pangkat tiga.
+
+# Penyelesaian
+
+> Pakai pola selisih pangkat tiga untuk menghilangkan akar kubik sehingga faktor pembuat nol langsung bisa dicoret.
+
+Substitusi <InlineMath math="x=1" /> memberi persamaan berikut. Bentuk sekawan akar kuadrat tidak menghilangkan akar pangkat tiga, jadi **misalkan <InlineMath math="u" />**. Maka <InlineMath math="x=u^3-7" />, dan <InlineMath math="u\to2" /> ketika <InlineMath math="x\to1" />.
+
+<BlockMath math="\begin{gathered}
+\frac{2-2}{0}=\frac00 \\
+u=\sqrt[3]{x+7}
+\end{gathered}" />
 
 <MathContainer>
-<BlockMath math="x-1=u^3-8=(u-2)(u^2+2u+4)" />
-<BlockMath math="\lim_{x\to1}\frac{\sqrt[3]{x+7}-2}{x-1}=\lim_{u\to2}\frac{u-2}{(u-2)(u^2+2u+4)}=\frac{1}{4+4+4}=\frac{1}{12}" />
+<BlockMath math="\begin{gathered}
+x-1=u^3-8=(u-2)(u^2+2u+4) \\
+\lim_{x\to1}\frac{\sqrt[3]{x+7}-2}{x-1}=\lim_{u\to2}\frac{u-2}{(u-2)(u^2+2u+4)}=\frac{1}{4+4+4}=\frac{1}{12}
+\end{gathered}" />
 </MathContainer>
 
-Gambar fungsi itu setelah dimisalkan <InlineMath math="u=\sqrt[3]{x+7}" />. **Untuk <InlineMath math="x\ne1" />, grafiknya sama dengan <InlineMath math="\frac{1}{u^2+2u+4}" />**, kurva mulus yang melewati ketinggian <InlineMath math="\tfrac{1}{12}" /> di <InlineMath math="x=1" />.
+Gambar fungsi itu setelah dimisalkan <InlineMath math="u" />. **Untuk <InlineMath math="x\ne1" />, grafiknya sama dengan ekspresi berikut**, kurva mulus yang melewati ketinggian <InlineMath math="\tfrac{1}{12}" /> di <InlineMath math="x=1" />.
+
+<BlockMath math="\begin{gathered}
+u=\sqrt[3]{x+7} \\
+\frac{1}{u^2+2u+4}
+\end{gathered}" />
 
 <MathVisual
   title={<>Grafik di sekitar <InlineMath math="x=1" /></>}
@@ -37,7 +61,18 @@ Pemeriksaan numerik: untuk <InlineMath math="x=1{,}001" />, <InlineMath math="\s
 
 Jadi, nilai limitnya <InlineMath math="\frac{1}{12}" />.
 
-- <InlineMath math="\frac14" /> memperlakukan akar pangkat tiga seperti akar kuadrat, sehingga memakai <InlineMath math="\frac{1}{u+2}" />.
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
+
+- <InlineMath math="\frac14" /> memperlakukan akar pangkat tiga seperti akar kuadrat, sehingga memakai ekspresi berikut.
+
+  <BlockMath math="\frac{1}{u+2}" />
+
 - <InlineMath math="\frac13" /> memakai rumus untuk <InlineMath math="\sqrt[3]{x}" /> di <InlineMath math="x=1" /> dan lupa bahwa di dalam akar ada <InlineMath math="x+7=8" />.
 - <InlineMath math="12" /> membalik hasil akhirnya.
 - <InlineMath math="0" /> hanya melihat pembilang yang menuju <InlineMath math="0" />, padahal penyebutnya juga menuju <InlineMath math="0" />.
+
+# Jawaban
+
+Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.

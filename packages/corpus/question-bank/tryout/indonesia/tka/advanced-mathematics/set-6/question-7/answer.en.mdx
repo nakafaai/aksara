@@ -1,3 +1,15 @@
+# Given
+
+We are given a **degree-four polynomial** <InlineMath math="P(x)" /> with integer coefficients.
+
+# Asked
+
+All **true statements** about roots, factors, and values of <InlineMath math="P(x)" />.
+
+# Solution
+
+> Test divisors of the constant term to spot integer roots first, then factor down the polynomial step by step.
+
 Every statement can be judged from **the values of <InlineMath math="P" /> at a few points**. Compute them first.
 
 <BlockMath math="\begin{aligned}
@@ -45,8 +57,16 @@ Draw <InlineMath math="P" /> with the remainder line for division by <InlineMath
 
 1. The statement about the remainder on division by <InlineMath math="x-2" /> is true, because the remainder is <InlineMath math="P(2)=4" />.
 2. The statement that <InlineMath math="x+1" /> is a factor is false, because <InlineMath math="P(-1)=-5\ne0" />.
-3. The statement about the remainder on division by <InlineMath math="x^2-1" /> is true. The remainder has the form <InlineMath math="ax+b" /> with <InlineMath math="a+b=P(1)=-1" /> and <InlineMath math="-a+b=P(-1)=-5" />. Adding gives <InlineMath math="2b=-6" />, so <InlineMath math="b=-3" /> and <InlineMath math="a=2" />.
-4. The statement about the quotient on division by <InlineMath math="x-1" /> is true. Synthetic division with coefficients <InlineMath math="1,-3,2,5,-6" /> at <InlineMath math="x=1" /> gives the row <InlineMath math="1,-2,0,5" /> with remainder <InlineMath math="-1" />. The quotient is <InlineMath math="x^3-2x^2+0x+5" />.
+3. The statement about the remainder on division by <InlineMath math="x^2-1" /> is true. The remainder has the form <InlineMath math="ax+b" /> with <InlineMath math="-1" /> and <InlineMath math="-5" />. Adding gives <InlineMath math="2b=-6" />, so <InlineMath math="b=-3" /> and <InlineMath math="a=2" />.
+
+   <BlockMath math="\begin{gathered} a+b=P(1)=-1 \\ -a+b=P(-1)=-5 \end{gathered}" />
+
+4. The statement about the quotient on division by <InlineMath math="x-1" /> is true. Synthetic division with coefficients <InlineMath math="1,-3,2,5,-6" /> at <InlineMath math="x=1" /> gives the row <InlineMath math="1,-2,0,5" /> with remainder <InlineMath math="-1" />. The quotient is the expression below.
+
+   <BlockMath math="x^3-2x^2+0x+5" />
+
 5. The statement <InlineMath math="P(3)=21" /> is false, because <InlineMath math="P(3)=27" />.
+
+# Answer
 
 So the true statements are the remainder on division by <InlineMath math="x-2" />, the remainder on division by <InlineMath math="x^2-1" />, and the quotient on division by <InlineMath math="x-1" />.

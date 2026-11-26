@@ -1,3 +1,15 @@
+# Gegeben
+
+Gegeben ist ein **trigonometrischer Grenzwert** im Bogenmaß aus Kombinationen von <InlineMath math="x" /> und Sinus.
+
+# Gesucht
+
+Der **Grenzwert** für <InlineMath math="x" /> gegen null.
+
+# Lösung
+
+> Teile Zähler und Nenner durch die Variable, damit jeder Sinusterm direkt seinen Winkelfaktor liefert.
+
 Direktes Einsetzen ergibt <InlineMath math="\frac00" />. Nahe null verhält sich jeder Term wie ein Vielfaches von <InlineMath math="x" />, also **teilst du Zähler und Nenner durch <InlineMath math="x" />**.
 
 <BlockMath math="\lim_{x\to0}\frac{x+\sin x}{x-\tan2x}=\lim_{x\to0}\frac{1+\frac{\sin x}{x}}{1-\frac{\tan2x}{x}}=\frac{1+1}{1-2}=-2" />
@@ -32,11 +44,24 @@ Zeichne den Graphen des Bruchs nahe <InlineMath math="x=0" />. **Beide Äste der
   }}
 />
 
-Diese Zeile verwendet <InlineMath math="\lim_{x\to0}\frac{\sin x}{x}=1" /> und <InlineMath math="\lim_{x\to0}\frac{\tan2x}{x}=2" />. Numerische Probe: Für <InlineMath math="x=0{,}01" /> ist der Wert etwa <InlineMath math="-1{,}9995" />.
+Diese Zeile verwendet der Wert <InlineMath math="1" /> und der Wert <InlineMath math="2" />. Numerische Probe: Für <InlineMath math="x=0{,}01" /> ist der Wert etwa <InlineMath math="-1{,}9995" />.
+
+<BlockMath math="\begin{gathered}
+\lim_{x\to0}\frac{\sin x}{x}=1 \\
+\lim_{x\to0}\frac{\tan2x}{x}=2
+\end{gathered}" />
 
 Der Grenzwert ist also <InlineMath math="-2" />.
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="2" /> dreht den Nenner zu <InlineMath math="\tan2x-x" /> um.
 - <InlineMath math="0" /> schaut nur auf den Zähler, der gegen <InlineMath math="0" /> geht, aber der Nenner geht ebenfalls gegen <InlineMath math="0" />.
 - <InlineMath math="\frac23" /> hat im Nenner das falsche Vorzeichen, als stünde dort <InlineMath math="x+\tan2x" />.
 - <InlineMath math="-\frac12" /> stellt den Bruch auf den Kopf.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

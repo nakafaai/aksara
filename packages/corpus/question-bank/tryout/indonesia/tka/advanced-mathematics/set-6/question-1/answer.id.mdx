@@ -1,3 +1,15 @@
+# Diketahui
+
+Diberikan **matriks persegi** <InlineMath math="A" /> dan matriks identitas <InlineMath math="I" /> berordo <InlineMath math="2\times2" />.
+
+# Ditanyakan
+
+**Hasil operasi matriks** atau nilai entri yang dicari dari <InlineMath math="A" /> dan <InlineMath math="I" />.
+
+# Penyelesaian
+
+> Hitung kuadrat matriks dengan perkalian baris kali kolom dulu, lalu gabungkan setiap posisi sesuai koefisiennya.
+
 Hitung invers <InlineMath math="A" /> lebih dulu, lalu jumlahkan dengan <InlineMath math="A" />. Determinannya <InlineMath math="2\cdot2-1\cdot3=1" />, jadi invers hanya perlu **menukar diagonal utama dan mengubah tanda diagonal lainnya**.
 
 <BlockMath math="\begin{aligned}
@@ -21,11 +33,21 @@ Diagram berikut menjumlahkan <InlineMath math="A" /> dan <InlineMath math="A^{-1
   E22 --> R`}
 />
 
-Entri di luar diagonal saling meniadakan, dan entri diagonal sama-sama <InlineMath math="4" />, jadi hasilnya memang kelipatan <InlineMath math="I" />. Pemeriksaan: <InlineMath math="AA^{-1}=\begin{pmatrix} 4-3 & -2+2 \\ 6-6 & -3+4 \end{pmatrix}=I" />.
+Entri di luar diagonal saling meniadakan, dan entri diagonal sama-sama <InlineMath math="4" />, jadi hasilnya memang kelipatan <InlineMath math="I" />. Pemeriksaan: matriks berikut.
+
+<BlockMath math="AA^{-1}=\begin{pmatrix} 4-3 & -2+2 \\ 6-6 & -3+4 \end{pmatrix}=I" />
 
 Jadi, <InlineMath math="k=4" />.
+
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
 
 - <InlineMath math="2" /> hanya membaca entri diagonal <InlineMath math="A" />, tanpa menambahkan invers.
 - <InlineMath math="0" /> adalah jumlah entri di luar diagonal, bukan entri diagonal.
 - <InlineMath math="5" /> menambahkan determinan <InlineMath math="1" /> pada <InlineMath math="4" />, padahal determinan hanya dipakai sebagai pembagi adjoin.
 - <InlineMath math="1" /> adalah determinan <InlineMath math="A" />.
+
+# Jawaban
+
+Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.

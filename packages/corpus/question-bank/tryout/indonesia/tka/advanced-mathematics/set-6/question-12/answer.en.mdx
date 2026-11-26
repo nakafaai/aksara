@@ -1,3 +1,15 @@
+# Given
+
+Parallelogram <InlineMath math="OPRQ" /> is spanned by two **edge vectors** <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> from origin <InlineMath math="O" />.
+
+# Asked
+
+The **diagonal or midpoint vector** expressed in terms of <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" />.
+
+# Solution
+
+> Walk head-to-tail along the parallelogram edges to build any diagonal or internal vector cleanly.
+
 The area of a parallelogram is base times height, <InlineMath math="|\vec{a}||\vec{b}|\sin\theta" />, where <InlineMath math="\theta" /> is the angle between the sides. **The sine comes from the cosine**, and the cosine comes from the dot product.
 
 <BlockMath math="\begin{aligned}
@@ -41,11 +53,21 @@ Draw the parallelogram in the plane that holds <InlineMath math="\vec a" /> and 
   }}
 />
 
-The same result without the angle: <InlineMath math="A=\sqrt{|\vec{a}|^2|\vec{b}|^2-(\vec{a}\cdot\vec{b})^2}=\sqrt{81-16}=\sqrt{65}" />.
+The same result without the angle: <InlineMath math="\sqrt{65}" />.
+
+<BlockMath math="A=\sqrt{|\vec{a}|^2|\vec{b}|^2-(\vec{a}\cdot\vec{b})^2}=\sqrt{81-16}=\sqrt{65}" />
 
 So the area of <InlineMath math="OPRQ" /> is <InlineMath math="\sqrt{65}" /> square units.
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="4" /> is the dot product, which belongs to the cosine, not the area.
 - <InlineMath math="9" /> is <InlineMath math="|\vec{a}||\vec{b}|" />, as if the sides were perpendicular.
 - <InlineMath math="\sqrt{77}" /> subtracts <InlineMath math="\vec{a}\cdot\vec{b}=4" /> without squaring it, <InlineMath math="\sqrt{81-4}" />.
 - <InlineMath math="\frac12\sqrt{65}" /> is the area of triangle <InlineMath math="OPQ" />, half the parallelogram.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

@@ -1,3 +1,15 @@
+# Given
+
+We are given a **cubic rational function** <InlineMath math="v(x)" /> as <InlineMath math="x" /> grows without bound.
+
+# Asked
+
+The **limit at infinity** of <InlineMath math="v(x)" />.
+
+# Solution
+
+> Expand the highest-power terms in the numerator first because leading terms dominate for huge inputs.
+
 The numerator looks like degree three, but **the <InlineMath math="x^3" /> terms cancel**. Expand before comparing degrees.
 
 <BlockMath math="\begin{aligned}
@@ -44,11 +56,21 @@ Draw the expanded numerator together with the denominator. **The numerator curve
   }}
 />
 
-In fact <InlineMath math="\frac{6x^2+2}{3x^2+1}=2" /> for every <InlineMath math="x" />, because the numerator is exactly twice the denominator.
+In fact the equation below for every <InlineMath math="x" />, because the numerator is exactly twice the denominator.
+
+<BlockMath math="\frac{6x^2+2}{3x^2+1}=2" />
 
 So the limit is <InlineMath math="2" />.
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="0" /> treats the denominator as the higher degree, after wrongly cancelling every squared term in the numerator.
 - <InlineMath math="1" /> compares the <InlineMath math="x^3" /> coefficients of the two cubes and forgets the denominator.
 - <InlineMath math="6" /> takes the <InlineMath math="x^2" />-coefficient of the numerator and forgets to divide by <InlineMath math="3" />.
 - <InlineMath math="\infty" /> treats the numerator as degree three without expanding it.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

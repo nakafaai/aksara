@@ -1,11 +1,25 @@
+# Given
+
+We are given **two space points** <InlineMath math="A(1,2,2)" /> and <InlineMath math="B(5,2,-2)" /> plus point <InlineMath math="C(t,0,0)" /> on the <InlineMath math="x" />-axis.
+
+# Asked
+
+The **coordinate value** <InlineMath math="t" /> satisfying the geometric condition on <InlineMath math="C" />.
+
+# Solution
+
+> Express the distance or dot product in that single axis variable so a clean equation solves for it directly.
+
 A right angle at <InlineMath math="C" /> means **the vectors <InlineMath math="\overrightarrow{CA}" /> and <InlineMath math="\overrightarrow{CB}" /> are perpendicular**, so their dot product is zero.
 
 <MathContainer>
-<BlockMath math="\overrightarrow{CA}=(1-t,\,2,\,2),\qquad \overrightarrow{CB}=(5-t,\,2,\,-2)" />
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+\overrightarrow{CA}=(1-t,\,2,\,2),\qquad \overrightarrow{CB}=(5-t,\,2,\,-2) \\
+\begin{aligned}
 (1-t)(5-t)+2\cdot2+2\cdot(-2)&=0 \\
 (1-t)(5-t)&=0
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 </MathContainer>
 
 The angle <InlineMath math="ACB" /> is a right angle exactly when <InlineMath math="C" /> lies on the sphere with diameter <InlineMath math="AB" />. Draw where that sphere meets the plane <InlineMath math="z=0" />, which holds the <InlineMath math="x" />-axis. **The circle of intersection crosses the <InlineMath math="x" />-axis at two points**, so there are two values of <InlineMath math="t" />.
@@ -49,10 +63,28 @@ The angle <InlineMath math="ACB" /> is a right angle exactly when <InlineMath ma
 
 So <InlineMath math="t=1" /> or <InlineMath math="t=5" />, and their sum is <InlineMath math="6" />.
 
-Check: for <InlineMath math="t=1" />, <InlineMath math="\overrightarrow{CA}=(0,2,2)" /> and <InlineMath math="\overrightarrow{CB}=(4,2,-2)" />, with dot product <InlineMath math="0+4-4=0" />. For <InlineMath math="t=5" />, <InlineMath math="\overrightarrow{CA}=(-4,2,2)" /> and <InlineMath math="\overrightarrow{CB}=(0,2,-2)" />, again <InlineMath math="0+4-4=0" />.
+Check: for <InlineMath math="t=1" />, the equation below and the equation below, with dot product <InlineMath math="0" />. For <InlineMath math="t=5" />, the equation below and the equation below, again <InlineMath math="0" />.
+
+<BlockMath math="\begin{gathered}
+\overrightarrow{CA}=(0,2,2) \\
+\overrightarrow{CB}=(4,2,-2) \\
+0+4-4=0 \\
+\overrightarrow{CA}=(-4,2,2) \\
+\overrightarrow{CB}=(0,2,-2)
+\end{gathered}" />
 
 So the sum of all values of <InlineMath math="t" /> is <InlineMath math="6" />.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="5" /> and <InlineMath math="1" /> are each only one of the two values that work.
 - <InlineMath math="3" /> is the <InlineMath math="x" />-coordinate of the midpoint of <InlineMath math="AB" />. The point <InlineMath math="(3,0,0)" /> does not give a right angle, since the dot product is <InlineMath math="(-2)(2)=-4" />.
-- <InlineMath math="-6" /> slips a sign when using the sum of the roots of <InlineMath math="t^2-6t+5=0" />.
+- <InlineMath math="-6" /> slips a sign when using the sum of the roots of <InlineMath math="0" />.
+
+  <BlockMath math="t^2-6t+5=0" />
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

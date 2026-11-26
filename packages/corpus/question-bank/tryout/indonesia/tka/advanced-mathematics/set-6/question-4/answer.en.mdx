@@ -1,3 +1,15 @@
+# Given
+
+An artisan makes **two craft products** under fabric and sewing-hour limits with known unit profits.
+
+# Asked
+
+The **maximum weekly profit** the artisan can earn.
+
+# Solution
+
+> Find every corner of the region meeting both fabric and time limits, then pick the highest profit.
+
 Let <InlineMath math="x" /> be the number of bags and <InlineMath math="y" /> the number of wallets per week. There are **two resource limits**: cloth and sewing hours.
 
 <BlockMath math="\begin{aligned}
@@ -6,7 +18,7 @@ x+2y&\le50 \\
 x\ge0,\quad y&\ge0
 \end{aligned}" />
 
-The objective, in thousands of rupiah, is <InlineMath math="P=30x+20y" />. The corner where both resources run out comes from substituting <InlineMath math="y=40-2x" />.
+The profit objective (each unit standing for <InlineMath math="\text{Rp}1{,}000" />) is <InlineMath math="P=30x+20y" />. The corner where both resources run out comes from substituting <InlineMath math="y=40-2x" />.
 
 <BlockMath math="\begin{aligned}
 x+2(40-2x)&=50 \\
@@ -61,7 +73,15 @@ Draw the feasible region. **The two limit lines cut it into a quadrilateral**, a
 
 So the maximum profit is <InlineMath math="\text{Rp}700{,}000.00" />, from <InlineMath math="10" /> bags and <InlineMath math="20" /> wallets.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="\text{Rp}600{,}000.00" /> is the profit at <InlineMath math="(20,0)" />, bags only.
 - <InlineMath math="\text{Rp}500{,}000.00" /> is the profit at <InlineMath math="(0,25)" />, wallets only.
 - <InlineMath math="\text{Rp}750{,}000.00" /> is the profit of <InlineMath math="(15,15)" />. That plan needs <InlineMath math="45\text{ m}^2" /> of cloth, more than <InlineMath math="40\text{ m}^2" />.
 - <InlineMath math="\text{Rp}800{,}000.00" /> is the profit of <InlineMath math="(20,10)" />, which needs <InlineMath math="50\text{ m}^2" /> of cloth.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

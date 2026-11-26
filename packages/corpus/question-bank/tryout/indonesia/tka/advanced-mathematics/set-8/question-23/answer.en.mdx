@@ -1,12 +1,26 @@
+# Given
+
+A ball rolls straight with **position function** <InlineMath math="s(t)" /> after <InlineMath math="t" /> seconds.
+
+# Asked
+
+The **instantaneous velocity** found as the limit of average velocity.
+
+# Solution
+
+> Instantaneous velocity is simply average velocity over a time window shrunk down toward zero.
+
 Work out the numerator first. Putting <InlineMath math="h=0" /> straight in gives <InlineMath math="\frac00" />, so **expand <InlineMath math="s(2+h)" /> so that the factor <InlineMath math="h" /> can cancel**.
 
 <MathContainer>
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+\begin{aligned}
 s(2+h)&=2(4+4h+h^2)+3(2+h)=14+11h+2h^2 \\
 s(2)&=8+6=14 \\
 s(2+h)-s(2)&=11h+2h^2=h(11+2h)
-\end{aligned}" />
-<BlockMath math="\lim_{h\to0}\frac{h(11+2h)}{h}=\lim_{h\to0}(11+2h)=11" />
+\end{aligned} \\
+\lim_{h\to0}\frac{h(11+2h)}{h}=\lim_{h\to0}(11+2h)=11
+\end{gathered}" />
 </MathContainer>
 
 Draw the ball's distance against time. **The instantaneous velocity at <InlineMath math="t=2" /> is the slope of the tangent at the point <InlineMath math="(2,\ 14)" />**, and that tangent has gradient <InlineMath math="11" />.
@@ -40,11 +54,24 @@ Draw the ball's distance against time. **The instantaneous velocity at <InlineMa
   }}
 />
 
-Check: the average velocity on <InlineMath math="[2,\,2.1]" /> is <InlineMath math="\frac{s(2.1)-s(2)}{0.1}=\frac{15.12-14}{0.1}=11.2" />, and the shorter the interval, the closer it gets to <InlineMath math="11" />.
+Check: the average velocity on <InlineMath math="[2,\,2.1]" /> is <InlineMath math="11.2" />, and the shorter the interval, the closer it gets to <InlineMath math="11" />.
+
+<BlockMath math="\frac{s(2.1)-s(2)}{0.1}=\frac{15.12-14}{0.1}=11.2" />
 
 So the ball's instantaneous velocity at <InlineMath math="t=2" /> is <InlineMath math="11" /> metres per second.
 
-- <InlineMath math="7" /> is the average velocity over the first two seconds, <InlineMath math="\frac{s(2)-s(0)}{2}" />.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- <InlineMath math="7" /> is the average velocity over the first two seconds, the expression below.
+
+  <BlockMath math="\frac{s(2)-s(0)}{2}" />
+
 - <InlineMath math="14" /> is the ball's distance at <InlineMath math="t=2" />, not its velocity.
 - <InlineMath math="8" /> drops the term <InlineMath math="3h" /> from <InlineMath math="3(2+h)" />.
 - <InlineMath math="3" /> is the instantaneous velocity at <InlineMath math="t=0" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

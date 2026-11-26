@@ -1,11 +1,25 @@
+# Given
+
+A steel frame has **three space joints** at <InlineMath math="A(2,3,0)" />, <InlineMath math="B(1,2,0)" />, and <InlineMath math="C(1,1,1)" />.
+
+# Asked
+
+The **joint angle** or bar length formed by the three space points.
+
+# Solution
+
+> Build two rod vectors starting at the shared joint, then use their dot product to find the angle.
+
 Angle <InlineMath math="ABC" /> is the angle at <InlineMath math="B" /> between two vectors that **both start at <InlineMath math="B" />**, namely <InlineMath math="\overrightarrow{BA}" /> and <InlineMath math="\overrightarrow{BC}" />.
 
 <MathContainer>
-<BlockMath math="\overrightarrow{BA}=A-B=(1,1,0),\qquad \overrightarrow{BC}=C-B=(0,-1,1)" />
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+\overrightarrow{BA}=A-B=(1,1,0),\qquad \overrightarrow{BC}=C-B=(0,-1,1) \\
+\begin{aligned}
 \cos\angle ABC&=\frac{\overrightarrow{BA}\cdot\overrightarrow{BC}}{\left|\overrightarrow{BA}\right|\left|\overrightarrow{BC}\right|} \\
 &=\frac{0-1+0}{\sqrt2\cdot\sqrt2}=-\frac12
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 </MathContainer>
 
 Draw the two bars in the plane that holds them. **Both bars have length <InlineMath math="\sqrt2" /> and the cosine of the angle is negative**, so the angle at <InlineMath math="B" /> is obtuse, <InlineMath math="120^\circ" />.
@@ -47,11 +61,29 @@ Draw the two bars in the plane that holds them. **Both bars have length <InlineM
 
 The angle between <InlineMath math="0^\circ" /> and <InlineMath math="180^\circ" /> with cosine <InlineMath math="-\frac12" /> is <InlineMath math="120^\circ" />.
 
-Check with the cosine rule: <InlineMath math="AC^2=1+4+1=6" />, and <InlineMath math="BA^2+BC^2-2\cdot BA\cdot BC\cos120^\circ=2+2+2=6" />.
+Check with the cosine rule: <InlineMath math="AC^2=6" />, and <InlineMath math="6" />.
+
+<BlockMath math="\begin{gathered}
+AC^2=1+4+1=6 \\
+BA^2+BC^2-2\cdot BA\cdot BC\cos120^\circ=2+2+2=6
+\end{gathered}" />
 
 So angle <InlineMath math="ABC" /> is <InlineMath math="120^\circ" />.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="60^\circ" /> uses <InlineMath math="\overrightarrow{AB}" /> and <InlineMath math="\overrightarrow{BC}" />. The vector <InlineMath math="\overrightarrow{AB}" /> does not start at <InlineMath math="B" />, so the sign of the cosine flips.
-- <InlineMath math="135^\circ" /> uses <InlineMath math="\left|\overrightarrow{BA}\right|\left|\overrightarrow{BC}\right|=\sqrt2" />, but <InlineMath math="\sqrt2\cdot\sqrt2=2" />.
+- <InlineMath math="135^\circ" /> uses the equation below, but <InlineMath math="\sqrt2\cdot\sqrt2=2" />.
+
+  <BlockMath math="\left|\overrightarrow{BA}\right|\left|\overrightarrow{BC}\right|=\sqrt2" />
+
 - <InlineMath math="45^\circ" /> makes both of those slips at once.
-- <InlineMath math="150^\circ" /> mixes up the value <InlineMath math="\cos150^\circ=-\frac12\sqrt3" />.
+- <InlineMath math="150^\circ" /> mixes up the value <InlineMath math="\cos150^\circ" />.
+
+  <BlockMath math="\cos150^\circ=-\frac12\sqrt3" />
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.
