@@ -88,14 +88,15 @@ publishes once Nakafa's production renderer draws it.
   without changing the mathematical meaning. Confirm whether the owning
   component preserves the authored pose or explicitly fits finite content.
   The owning card composes its header, an optional toolbar, the scene body,
-  an actions band, and its footer, separated by full-width lines. The
-  actions band holds the shared scene actions (Play, Reset, Full screen, and
-  Grid on a coordinate scene). Do not add a gizmo or overlay controls on the
-  mathematical subject. The toolbar and the actions band hold only controls,
-  each with its own short label: never a legend, a key such as
-  "A = {red objects}", a readout or a note. Write those words in the footer,
-  and what the reader should try in the description. The footer is written,
-  never generated: see [the card footer](#the-card-footer).
+  an actions band, and at most one optional footer band (structured key-value
+  readouts or a table owned by the component), separated by full-width lines.
+  The actions band holds the shared scene actions (Play, Reset, Full screen,
+  and Grid on a coordinate scene). Do not add a gizmo or overlay controls on
+  the mathematical subject. The toolbar and the actions band hold only
+  controls, each with its own short label: never a legend, a key such as
+  "A = {red objects}", a readout or a note. Write what the reader should try
+  in the header description, and never pass a plain-text `footer` prop on a
+  visual card: see [the card footer](#the-card-footer).
   Use the established EvilCharts components, tables, and diagrams when their
   axes, values, comparisons, or structure explain real data more clearly. The
   chart library's own renderer is a data display, not a hand-drawn
@@ -164,47 +165,31 @@ publishes once Nakafa's production renderer draws it.
   a visual. Longer localized text must not clip, overlap, obscure data, or
   detach from the representation it explains.
 
-## The card header and footer talk like a teacher
+## The card header talks like a teacher
 
-A card's title, description and footer talk like a warm teacher showing the
-picture to one student: informal, plain words, short sentences. Say each idea
-so simply first that a young child could follow it, then give the term and the
-notation. Accuracy never drops. The voice gate checks this text like any other
-learning text.
+A card's title and description talk like a warm teacher showing the picture to
+one student: informal, plain words, short sentences. Say each idea so simply
+first that a young child could follow it, then give the term and the notation.
+Accuracy never drops. The voice gate checks this text like any other learning
+text.
 
 ## The card footer
 
-Every visual card (`MathVisual`, charts, `Mermaid`, and every custom lab,
-everything in `FIGURE_NAMES` except `Youtube`) requires an authored footer
-written for that one visual: `footer={<>...</>}` beside `title` and
-`description`, rich text with `<InlineMath />` where it holds math, at most 90
-visible characters, so it reads in one or two lines on a phone. The
+A `VisualCard` holds at most one optional footer band owned by the component
+itself: either structured key-value readouts (`VisualCardFooter` with
+`VisualCardFacts` / `VisualFact`, or `MathVisual` `readouts`) or a full-width
+`VisualCardTable`. Never stack two footer bands and never pass a plain-text
+`footer={<>...</>}` prop on any Visual Catalog figure (`FIGURE_NAMES`). The
 [points gate](verification.md#points-gate) blocks any changed or new page whose
-visual card omits `footer` (`missing-visual-footer`), and `--all` audits the
-whole corpus. It tells the student what to look at in this visual and what it
-means. The footer is never generated and never a template: two figures never
-share a footer sentence, and a revised figure gets a footer that names what
-changed. Live readouts may sit beside it; the written sentence is the part
-every card keeps.
+visual card passes a `footer` prop (`banned-visual-footer`). Put what to look
+for in the card's `description` and surrounding lesson prose, and keep every
+footer strictly key-value or tabular.
 
-Good footers point at something in this figure, in plain words first:
-
-- `See the dashed edges? Points on them don't count, so the corner (2, 1) is out.`
-- `Follow the pink line: the water stays just as high after it cools down.`
-- `Each dot is one way to spend the money. The shaded dots are the cheaper ones.`
-
-Bad footers say nothing about this figure, repeat its header, sound like a
-textbook, or give away an answer:
-
-- `This graph shows the function.` It points at nothing in the figure.
-- `A quadratic function and its vertex.` It repeats the title.
-- `The boundary is excluded from the solution set.` It is formal and gives the
-  term before the plain idea; say what the dashes mean first.
-- `The answer is the shaded point (15, 15).` In a prompt, a reading or an
-  option a footer tells how to read the figure, never its result.
-
-Write the footer in every locale as its own sentence in that language, in the
-same teacher voice, with the same plain-number and math rules as the header.
+Every `MathVisual` slider declared in `scene.parameters` must visibly drive at
+least one object in `scene.objects` (a dynamic `function`, `parametric`,
+`marker`, `path`, `loop`, `region`, `implicit`, or `surface`). A slider that
+only updates footer readouts without changing the rendered visual is rejected
+by `@nakafa/aksara-contracts` (`formulaScopeIssues`).
 
 ## Math in visual text
 

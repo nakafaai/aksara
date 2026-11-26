@@ -148,8 +148,9 @@ export function strayIssues(
 }
 
 /**
- * Reports every formula that reads a name its object does not offer, and every
- * slider whose name repeats an earlier one.
+ * Reports every formula that reads a name its object does not offer, every
+ * slider whose name repeats an earlier one, and every slider that drives no
+ * object in the visual scene.
  */
 export function formulaScopeIssues<Object>(
   objects: readonly Object[],
@@ -170,12 +171,30 @@ export function formulaScopeIssues<Object>(
           ]
         : []
   );
+  const usedInObjects = Arr.reduce(
+    Arr.flatMap(objects, fields),
+    HashSet.empty<string>(),
+    (acc, field) => HashSet.union(acc, namesOf(field))
+  );
+  const unused = Arr.flatMap(
+    parameters,
+    ({ name }, index): Schema.FilterIssue[] =>
+      Arr.contains(Arr.take(names, index), name) ||
+      HashSet.has(usedInObjects, name)
+        ? []
+        : [
+            {
+              issue: `Expected slider "${name}" to drive at least one object in the visual scene.`,
+              path: ["parameters", index, "name"],
+            },
+          ]
+  );
   const unknown = Arr.flatMap(objects, (object, index) =>
     Arr.flatMap(fields(object), (field) =>
       strayIssues(field, declared, ["objects", index])
     )
   );
-  return [...repeated, ...unknown];
+  return [...repeated, ...unused, ...unknown];
 }
 
 /** Each slider's starting value by its name, the scope a scene first draws with. */

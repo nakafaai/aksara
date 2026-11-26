@@ -50,7 +50,6 @@ Im Beispiel unten ist die gelbe Linie diese wöchentliche Überwärme und die pi
 <MathVisual
   title={<>Hitzestress summiert sich am Riff</>}
   description={<>Eine beispielhafte Meereshitzewelle über sechs Wochen. Waagrecht: Woche. Senkrecht: Grad über der Bleichschwelle (gelb) und ihre laufende Summe in °C-Wochen (pink).</>}
-  footer={<>Sechs warme Wochen summieren sich auf 9 C-Wochen über beide Schwellen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 10 } },
@@ -96,7 +95,6 @@ Riffforschende zählen Hitzestress zusammen. Jede Woche, in der das Wasser minde
 <MathVisual
   title={<>Hitzestress summiert sich Woche für Woche</>}
   description={<>Degree Heating Weeks über <InlineMath math="12" /> beispielhafte Wochen. Waagerecht: Wochen. Senkrecht: angesammelter Hitzestress in <InlineMath math="^\circ\mathrm{C}" />-Wochen.</>}
-  footer={<>Der Stress überschreitet 4 in Woche 6 und 8 in Woche 8, flach in kühlen Wochen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 10 } },
@@ -134,7 +132,6 @@ Im Riffaquarium unten kannst du Hitzestress selbst testen. Seine Korallen stamme
 <CoralBleachLab
   title={<>Hitzestress bleicht Korallen</>}
   description={<>Stell die Wassertemperatur ein und wie viele Wochen sie anhält. Sieh zu, wie die Korallen ihre Farbe verlieren.</>}
-  footer={<>Höhere Wassertemperatur oder längere Hitze treiben Korallen in die Bleiche.</>}
   labels={{
     temperature: "Wassertemperatur",
     weeks: "Wochen bei dieser Temperatur",
@@ -171,7 +168,6 @@ Bei wild lebenden Arten kann Klimawandel **das geografische Gebiet verschieben**
 <Mermaid
   title={<>Wirkungskette des Klimawandels</>}
   description={<>Ordne Veränderungen von Wasser und Lebensraum, Reaktionen der Organismen, Populationsänderungen und Risiken für Menschen.</>}
-  footer={<>Physikalische Klimaveränderungen wirken über Lebensräume bis zur Gesundheit.</>}
   chart={`flowchart LR
     A["Hitze oder Niederschlag verändern sich"] --> B["Wasser und Lebensraum verändern sich"]
     B --> C["Organismen geraten unter Stress"]
@@ -192,7 +188,6 @@ An einer flachen Küste steigt das Land nur langsam an, also schiebt ein kleiner
 <MathVisual
   title={<>Einen halben Meter hoch, fünfzig Meter hinein</>}
   description={<>Eine flache Küste im Querschnitt, die Höhe gestreckt, damit die Steigung sichtbar wird. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="10" /> Metern. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="0{,}25" /> Metern.</>}
-  footer={<>Bei 1 % Steigung verschiebt 0,5 m Anstieg die Küstenlinie um 50 m landeinwärts.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.5, max: 10.5 }, y: { min: -1, max: 4.5 } },
@@ -227,7 +222,6 @@ Ein steigendes Meer zeigt seine Folgen vor allem bei Sturm. Verschieb den Meeres
       Reichweite landeinwärts (in Metern) gegen den Meeresspiegelanstieg <InlineMath math="x" /> (in Zentimetern) an einem Strand mit <InlineMath math="1\text{ m}" /> Anstieg je <InlineMath math="20\text{ m}" /> für ruhiges Wasser (violett) und eine <InlineMath math="1\text{ m}" />-Sturmflut (rosa).
     </>
   }
-  footer={<>Jede 50 cm Anstieg schieben ruhiges Wasser und Sturmflut 10 m weiter ins Land.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 108 }, y: { min: -2, max: 46 } },
@@ -240,6 +234,9 @@ Ein steigendes Meer zeigt seine Folgen vor allem bei Sturm. Verschieb den Meeres
       { id: "calm", kind: "function", appearance: "secondary", formula: "0.2 * x", domain: { min: 0, max: 100 } },
       { id: "pt-s", kind: "point", appearance: "warning", at: { x: 50, y: 30 } },
       { id: "pt-c", kind: "point", appearance: "secondary", at: { x: 50, y: 10 } },
+      { id: "probe-line", kind: "path", appearance: "reference", points: [{ x: "r", y: "0" }, { x: "r", y: "20 + 0.2 * r" }] },
+      { id: "probe-storm", kind: "marker", appearance: "warning", x: "r", y: "20 + 0.2 * r" },
+      { id: "probe-calm", kind: "marker", appearance: "secondary", x: "r", y: "0.2 * r" },
     ],
     readouts: [
       { key: "storm-reach", formula: "20 + 0.2 * r" },

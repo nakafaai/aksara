@@ -50,7 +50,6 @@ Dalam contoh di bawah, garis kuning ambar ialah lebihan mingguan itu, dan garis 
 <MathVisual
   title={<>Tekanan Haba Bertambah pada Terumbu</>}
   description={<>Contoh gelombang haba laut selama enam minggu. Paksi mengufuk: minggu. Paksi menegak: darjah di atas ambang pelunturan (kuning ambar) dan jumlah terkumpulnya dalam °C-minggu (merah jambu).</>}
-  footer={<>Enam minggu panas menimbun 9 C-minggu, melepasi kedua-dua ambang pelunturan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 10 } },
@@ -96,7 +95,6 @@ Saintis yang mengkaji terumbu karang menjumlahkan tekanan haba. Bagi setiap ming
 <MathVisual
   title={<>Tekanan Haba Bertambah Minggu demi Minggu</>}
   description={<>Minggu pemanasan darjah sepanjang <InlineMath math="12" /> minggu contoh. Paksi mengufuk: minggu. Paksi menegak: tekanan haba terkumpul dalam <InlineMath math="^\circ\mathrm{C}" /> minggu.</>}
-  footer={<>Tekanan melepasi 4 C-minggu pada minggu 6 dan 8 C-minggu pada minggu 8.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 10 } },
@@ -134,7 +132,6 @@ Kamu boleh menguji tekanan haba sendiri dalam tangki terumbu di bawah. Karangnya
 <CoralBleachLab
   title={<>Tekanan Haba Melunturkan Karang</>}
   description={<>Tetapkan suhu air dan bilangan minggu suhu itu berkekalan. Perhatikan karang kehilangan warnanya.</>}
-  footer={<>Suhu air lebih tinggi atau tempoh lebih panjang menolak karang ke ambang luntur.</>}
   labels={{
     temperature: "Suhu air",
     weeks: "Minggu pada suhu ini",
@@ -171,7 +168,6 @@ Bagi hidupan liar, perubahan iklim boleh **mengalihkan julat geografi** tempat s
 <Mermaid
   title={<>Laluan Kesan Perubahan Iklim</>}
   description={<>Susun perubahan pada air dan habitat, gerak balas organisma, perubahan populasi dan risiko kepada manusia.</>}
-  footer={<>Perubahan iklim fizikal menjalar kepada habitat, siratan makanan dan kesihatan.</>}
   chart={`flowchart LR
     A["Haba atau hujan berubah"] --> B["Air dan habitat berubah"]
     B --> C["Organisma tertekan"]
@@ -192,7 +188,6 @@ Di pantai yang landai, daratan naik dengan perlahan, jadi kenaikan aras laut yan
 <MathVisual
   title={<>Naik Separuh Meter, Berundur Lima Puluh Meter</>}
   description={<>Keratan rentas pantai yang landai, dengan ketinggian diregangkan supaya kecerunan dapat dilihat. Paksi mengufuk: satu petak grid bersamaan <InlineMath math="10" /> meter. Paksi menegak: satu petak grid bersamaan <InlineMath math="0.25" /> meter.</>}
-  footer={<>Di pantai cerun 1%, kenaikan laut 0.5 m menolak garis pantai 50 m ke darat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.5, max: 10.5 }, y: { min: -1, max: 4.5 } },
@@ -227,7 +222,6 @@ Kenaikan aras laut paling terasa apabila ribut datang. Gerakkan kenaikan aras la
       Jangkauan air ke darat (dalam meter) berbanding kenaikan aras laut <InlineMath math="x" /> (sentimeter) di pantai yang naik <InlineMath math="1\text{ m}" /> setiap <InlineMath math="20\text{ m}" /> bagi air tenang (ungu) dan lonjakan ribut <InlineMath math="1\text{ m}" /> (merah jambu).
     </>
   }
-  footer={<>Setiap 50 cm kenaikan laut menolak air tenang dan lonjakan ribut 10 m ke darat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 108 }, y: { min: -2, max: 46 } },
@@ -240,6 +234,9 @@ Kenaikan aras laut paling terasa apabila ribut datang. Gerakkan kenaikan aras la
       { id: "calm", kind: "function", appearance: "secondary", formula: "0.2 * x", domain: { min: 0, max: 100 } },
       { id: "pt-s", kind: "point", appearance: "warning", at: { x: 50, y: 30 } },
       { id: "pt-c", kind: "point", appearance: "secondary", at: { x: 50, y: 10 } },
+      { id: "probe-line", kind: "path", appearance: "reference", points: [{ x: "r", y: "0" }, { x: "r", y: "20 + 0.2 * r" }] },
+      { id: "probe-storm", kind: "marker", appearance: "warning", x: "r", y: "20 + 0.2 * r" },
+      { id: "probe-calm", kind: "marker", appearance: "secondary", x: "r", y: "0.2 * r" },
     ],
     readouts: [
       { key: "storm-reach", formula: "20 + 0.2 * r" },

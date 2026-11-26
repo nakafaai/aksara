@@ -49,7 +49,6 @@ Bayangkan dua populasi padi berisi <InlineMath math="10" /> tanaman, tiap tanama
 <MathVisual
   title={<>Keragaman Memberi Sebagian Tanaman Peluang</>}
   description={<>Ketahanan ilustratif dari <InlineMath math="10" /> tanaman dengan satu varian yang sama (atas) dan <InlineMath math="10" /> tanaman dengan varian berbeda (bawah). Titik di kanan garis merah muda bertahan dalam kondisi baru.</>}
-  footer={<>Hanya baris dengan variasi genetik yang memiliki tanaman melewati ambang.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 3.5 } },
@@ -101,7 +100,6 @@ Variasi genetik bisa sekecil satu basa pada gen beta-globin manusia (HBB), mengu
       dari <InlineMath math="0" /> ke <InlineMath math="0{,}5" />.
     </>
   }
-  footer={<>Bahkan alel satu basa yang jarang tetap banyak hadir pada pembawa heterozigot.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 105 } },
@@ -113,6 +111,10 @@ Variasi genetik bisa sekecil satu basa pada gen beta-globin manusia (HBB), mengu
       { id: "usual", kind: "function", appearance: "reference", formula: "100 * (1 - x)^2", domain: { min: 0, max: 0.5 } },
       { id: "carrier", kind: "function", appearance: "primary", formula: "200 * x * (1 - x)", domain: { min: 0, max: 0.5 } },
       { id: "variant", kind: "function", appearance: "secondary", formula: "100 * x^2", domain: { min: 0, max: 0.5 } },
+      { id: "probe-line", kind: "path", appearance: "reference", points: [{ x: "q", y: "0" }, { x: "q", y: "100" }] },
+      { id: "probe-usual", kind: "marker", appearance: "reference", x: "q", y: "100 * (1 - q)^2" },
+      { id: "probe-carrier", kind: "marker", appearance: "primary", x: "q", y: "200 * q * (1 - q)" },
+      { id: "probe-variant", kind: "marker", appearance: "secondary", x: "q", y: "100 * q^2" },
     ],
     readouts: [
       { key: "carriers", formula: "200 * q * (1 - q)" },
@@ -156,7 +158,6 @@ Ahli ekologi merangkum perbedaan ini dengan **indeks keanekaragaman Simpson**, d
 <MathVisual
   title={<>Kekayaan Sama, Kemerataan Berbeda</>}
   description={<>Individu spesies A (oranye), B (ungu), dan C (hijau toska) pada dua petak hipotetis yang sama luas. Satu kotak grid ke atas sama dengan <InlineMath math="2" /> individu.</>}
-  footer={<>Jumlah spesies lebih merata menaikkan indeks Simpson tanpa menambah spesies.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
@@ -193,7 +194,6 @@ Data biodiversitas primer dapat berasal dari museum, koleksi ilmiah, DNA barcode
 <Mermaid
   title={<>Tiga Tingkat Keanekaragaman di Sawah</>}
   description={<>Diagram membandingkan keanekaragaman genetik, spesies, dan ekosistem pada lingkungan sawah.</>}
-  footer={<>Satu sawah sekaligus menyimpan keragaman gen, spesies, dan habitat.</>}
   chart={`flowchart TD
     A["Keanekaragaman hayati"] --> B["Tingkat gen"]
     A --> C["Tingkat spesies"]
@@ -208,7 +208,6 @@ Kekayaan spesies menghitung berapa jenis yang hidup di suatu tempat. Kedua petak
 <MathVisual
   title={<>Jumlah Sama, Kekayaan Berbeda</>}
   description={<>Dua petak dengan masing-masing <InlineMath math="12" /> individu. Tiap warna adalah satu spesies.</>}
-  footer={<>Jumlah individu yang sama bisa menyembunyikan kekayaan spesies berbeda.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 4.5 } },
@@ -264,7 +263,6 @@ Keanekaragaman ekosistem juga mencakup hubungan antarorganisme, misalnya pemangs
       tahun.
     </>
   }
-  footer={<>Puncak burung hantu menyusul tepat sesudah puncak tikus lalu menurunkannya.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 155 } },

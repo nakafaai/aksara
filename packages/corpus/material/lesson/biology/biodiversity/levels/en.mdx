@@ -49,7 +49,6 @@ Picture two rice populations of <InlineMath math="10" /> plants, each plant plac
 <MathVisual
   title={<>Variation Gives Some Plants a Chance</>}
   description={<>Illustrative stress tolerance of <InlineMath math="10" /> plants with one shared variant (top) and <InlineMath math="10" /> plants with different variants (bottom). Points right of the pink line cope with the new condition.</>}
-  footer={<>Only the genetically varied row has plants past the stress threshold.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 3.5 } },
@@ -101,7 +100,6 @@ Genetic variation can be as small as one base in the human beta-globin gene (HBB
       runs from <InlineMath math="0" /> to <InlineMath math="0.5" />.
     </>
   }
-  footer={<>Even a rare single-base allele appears widely in heterozygous carriers.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 105 } },
@@ -113,6 +111,10 @@ Genetic variation can be as small as one base in the human beta-globin gene (HBB
       { id: "usual", kind: "function", appearance: "reference", formula: "100 * (1 - x)^2", domain: { min: 0, max: 0.5 } },
       { id: "carrier", kind: "function", appearance: "primary", formula: "200 * x * (1 - x)", domain: { min: 0, max: 0.5 } },
       { id: "variant", kind: "function", appearance: "secondary", formula: "100 * x^2", domain: { min: 0, max: 0.5 } },
+      { id: "probe-line", kind: "path", appearance: "reference", points: [{ x: "q", y: "0" }, { x: "q", y: "100" }] },
+      { id: "probe-usual", kind: "marker", appearance: "reference", x: "q", y: "100 * (1 - q)^2" },
+      { id: "probe-carrier", kind: "marker", appearance: "primary", x: "q", y: "200 * q * (1 - q)" },
+      { id: "probe-variant", kind: "marker", appearance: "secondary", x: "q", y: "100 * q^2" },
     ],
     readouts: [
       { key: "carriers", formula: "200 * q * (1 - q)" },
@@ -156,7 +158,6 @@ Ecologists summarize this difference with **Simpson's diversity index**, where <
 <MathVisual
   title={<>Same Richness, Different Evenness</>}
   description={<>Individuals of species A (orange), B (violet) and C (teal) in two hypothetical plots of equal area. One grid step up is <InlineMath math="2" /> individuals.</>}
-  footer={<>Evenly balanced species raise Simpson's index without adding new species.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
@@ -193,7 +194,6 @@ Primary biodiversity records can come from museums, scientific collections, DNA 
 <Mermaid
   title={<>Three Levels of Biodiversity in a Rice Field</>}
   description={<>The diagram compares genetic, species, and ecosystem diversity in a rice-field environment.</>}
-  footer={<>One field holds genetic, species, and habitat diversity at once.</>}
   chart={`flowchart TD
     A["Biodiversity"] --> B["Gene level"]
     A --> C["Species level"]
@@ -208,7 +208,6 @@ Species richness counts how many kinds live in a place. Both plots hold <InlineM
 <MathVisual
   title={<>Same Count, Different Richness</>}
   description={<>Two plots with <InlineMath math="12" /> individuals each. Each color is one species.</>}
-  footer={<>Equal headcounts can hide very different numbers of distinct species.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 4.5 } },
@@ -263,7 +262,6 @@ Ecosystem diversity also covers relationships, such as hunters and their prey. A
       <InlineMath math="20" /> years with a <InlineMath math="4.4" />-year cycle.
     </>
   }
-  footer={<>Owl peaks lag just behind rat peaks, pulling prey numbers back down.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 155 } },

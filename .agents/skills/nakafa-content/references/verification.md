@@ -235,7 +235,7 @@ three findings, the thresholds, and the one scoped skip live in
 
 It also holds every lesson folder that the change touched (or every lesson
 under `--all`) to the [scene bar](visuals.md#interactive-visual-in-every-lesson),
-global custom visual uniqueness (Rule 18), and required card footers (D3):
+global custom visual uniqueness (Rule 18), and banned plain-text card footers:
 
 - `[custom-scenes]`: counts distinct custom scenes across all sections of the
   lesson, in the locale with the fewest. Fewer than three blocks; three or four
@@ -246,9 +246,9 @@ global custom visual uniqueness (Rule 18), and required card footers (D3):
   reuses a custom visual component already owned by another lesson folder.
 - `[repeated-scene-in-lesson]`: blocks any changed or new lesson that renders
   the same custom visual component more than once in the same locale as filler.
-- `[missing-visual-footer]`: blocks any changed or new lesson or article whose
-  visual card (`FIGURE_NAMES` except `Youtube`) omits an authored `footer`
-  prop.
+- `[banned-visual-footer]`: blocks any changed or new lesson or article whose
+  visual card (`FIGURE_NAMES`) passes a plain-text `footer` prop. A `VisualCard`
+  holds at most one structured key-value footer band owned by the component.
 
 A lesson or file the change never touched keeps its state until a revision
 touches it; `--all` audits every lesson and visual across the whole corpus. A

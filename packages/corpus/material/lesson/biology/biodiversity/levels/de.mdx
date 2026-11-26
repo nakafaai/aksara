@@ -49,7 +49,6 @@ Stell dir zwei Reispopulationen mit je <InlineMath math="10" /> Pflanzen vor, je
 <MathVisual
   title={<>Vielfalt gibt manchen Pflanzen eine Chance</>}
   description={<>Beispielhafte Toleranz von <InlineMath math="10" /> Pflanzen mit einer gemeinsamen Variante (oben) und <InlineMath math="10" /> Pflanzen mit verschiedenen Varianten (unten). Punkte rechts der rosa Linie halten die neue Bedingung aus.</>}
-  footer={<>Nur in der genetisch vielfältigen Reihe überschreiten Pflanzen die Schwelle.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 3.5 } },
@@ -102,7 +101,6 @@ Genetische Variation kann so klein sein wie eine einzige Base im menschlichen Be
       <InlineMath math="0{,}5" />.
     </>
   }
-  footer={<>Selbst ein seltenes Ein-Basen-Allel tritt bei Heterozygoten häufig auf.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 105 } },
@@ -114,6 +112,10 @@ Genetische Variation kann so klein sein wie eine einzige Base im menschlichen Be
       { id: "usual", kind: "function", appearance: "reference", formula: "100 * (1 - x)^2", domain: { min: 0, max: 0.5 } },
       { id: "carrier", kind: "function", appearance: "primary", formula: "200 * x * (1 - x)", domain: { min: 0, max: 0.5 } },
       { id: "variant", kind: "function", appearance: "secondary", formula: "100 * x^2", domain: { min: 0, max: 0.5 } },
+      { id: "probe-line", kind: "path", appearance: "reference", points: [{ x: "q", y: "0" }, { x: "q", y: "100" }] },
+      { id: "probe-usual", kind: "marker", appearance: "reference", x: "q", y: "100 * (1 - q)^2" },
+      { id: "probe-carrier", kind: "marker", appearance: "primary", x: "q", y: "200 * q * (1 - q)" },
+      { id: "probe-variant", kind: "marker", appearance: "secondary", x: "q", y: "100 * q^2" },
     ],
     readouts: [
       { key: "carriers", formula: "200 * q * (1 - q)" },
@@ -157,7 +159,6 @@ Die Szene unten zeigt beide Flächen als Säulen: orange für Art A, violett fü
 <MathVisual
   title={<>Gleicher Artenreichtum, andere Gleichmäßigkeit</>}
   description={<>Individuen der Arten A (orange), B (violett) und C (türkis) auf zwei hypothetischen, gleich großen Flächen. Ein Gitterschritt nach oben sind <InlineMath math="2" /> Individuen.</>}
-  footer={<>Gleichmäßigere Artenanteile erhöhen den Simpson-Index ohne neue Arten.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
@@ -194,7 +195,6 @@ Primäre Biodiversitätsdaten können aus Museen, wissenschaftlichen Sammlungen,
 <Mermaid
   title={<>Drei Ebenen der Biodiversität im Reisfeld</>}
   description={<>Das Diagramm vergleicht genetische Vielfalt, Artenvielfalt und Ökosystemvielfalt in einem Reisfeld.</>}
-  footer={<>Ein einziges Feld vereint Gen-, Arten- und Lebensraumvielfalt zugleich.</>}
   chart={`flowchart TD
     A["Biologische Vielfalt"] --> B["Genetische Ebene"]
     A --> C["Artenebene"]
@@ -209,7 +209,6 @@ Der Artenreichtum zählt, wie viele Arten an einem Ort leben. Beide Flächen hab
 <MathVisual
   title={<>Gleiche Anzahl, anderer Artenreichtum</>}
   description={<>Zwei Flächen mit je <InlineMath math="12" /> Individuen. Jede Farbe ist eine Art.</>}
-  footer={<>Gleiche Individuenzahlen können ganz verschiedene Artenzahlen verbergen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 4.5 } },
@@ -264,7 +263,6 @@ Zur Vielfalt der Ökosysteme gehören auch Beziehungen, etwa zwischen Jägern un
       <InlineMath math="20" /> Jahre im <InlineMath math="4{,}4" />-Jahres-Zyklus.
     </>
   }
-  footer={<>Eulengipfel folgen knapp hinter Rattengipfeln und drücken die Beute herab.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 155 } },

@@ -18,8 +18,8 @@ function parse(...blocks: readonly string[]) {
   return inspectDocument(parseLessonMdx(lesson(...blocks)));
 }
 
-/** Writes one self-closing catalog element, with an optional footer prop. */
-const element = (name: string, withFooter = true) =>
+/** Writes one self-closing catalog element, with an optional banned footer prop. */
+const element = (name: string, withFooter = false) =>
   withFooter
     ? `<${name} title="${name}" description="A ${name}." footer={<>Notice the main detail in ${name}.</>} />`
     : `<${name} title="${name}" description="A ${name}." />`;
@@ -112,12 +112,12 @@ layer(NodeServices.layer, { excludeTestServices: true })(
   "custom visual uniqueness and footer gate",
   (gate) => {
     gate.effect(
-      "blocks cross-lesson reuse, within-lesson repetition, and missing footers on changed lessons and --all audits",
+      "blocks cross-lesson reuse, within-lesson repetition, and banned footers on changed lessons and --all audits",
       () =>
         Effect.gen(function* () {
           const root = yield* commitBase({
             [OTHER_FILE]: lesson(
-              element("VirusStructureLab", false),
+              element("VirusStructureLab", true),
               element("HeartCycleLab", false),
               element("SynapseLab")
             ),
@@ -127,7 +127,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
               element("VirusStructureLab"),
               element("CellCutawayLab"),
               element("VirusReplicationLab"),
-              element("CellCutawayLab", false)
+              element("CellCutawayLab", true)
             ),
           });
           const focused = yield* capture(
@@ -136,7 +136,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           assert.strictEqual(focused.code, 1);
           assert.isTrue(
             focused.error.some((line) =>
-              line.includes("[missing-visual-footer]")
+              line.includes("[banned-visual-footer]")
             )
           );
           assert.isTrue(
@@ -158,7 +158,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
             auditAll.error.some(
               (line) =>
                 line.includes(`${OTHER_FILE}:`) &&
-                line.includes("[missing-visual-footer]")
+                line.includes("[banned-visual-footer]")
             )
           );
         })

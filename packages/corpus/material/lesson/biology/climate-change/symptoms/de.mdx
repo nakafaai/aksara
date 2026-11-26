@@ -65,7 +65,6 @@ Ein kühles Jahr hebt einen Erwärmungstrend nicht auf. Die Jahreswerte hier spr
 <MathVisual
   title={<>Einzelne Jahre schwanken, Jahrzehnte steigen</>}
   description={<>Beispielhafte jährliche Temperaturabweichungen über <InlineMath math="40" /> Jahre mit ihrer Trendgeraden. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="4" /> Jahren. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="0{,}2\ ^\circ\mathrm{C}" />.</>}
-  footer={<>Einzeljahre schwanken, während der 40-Jahres-Trend um +0,8 C steigt.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 5.5 } },
@@ -96,7 +95,6 @@ Eine lange Messreihe der Luft zeigt die Ursache hinter diesen Anzeichen. Seit 19
       Prozentualer Anstieg des atmosphärischen <InlineMath math="\mathrm{CO_2}" /> über dem vorindustriellen Wert (<InlineMath math="280\text{ ppm}" />) gegen die Jahre seit 1960 (<InlineMath math="x=0" /> bis <InlineMath math="64" /> für 1960 bis 2024).
     </>
   }
-  footer={<>CO2 stieg von 13 % über vorindustriell (1960) auf 52 % im Jahr 2024.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2, max: 70 }, y: { min: -2, max: 58 } },
@@ -109,6 +107,8 @@ Eine lange Messreihe der Luft zeigt die Ursache hinter diesen Anzeichen. Seit 19
       { id: "co2", kind: "function", appearance: "primary", formula: "13.2 + 0.303 * x + 0.00464 * x^2", domain: { min: 0, max: 64 } },
       { id: "now", kind: "point", appearance: "warning", at: { x: 64, y: 51.6 } },
       { id: "start", kind: "point", appearance: "secondary", at: { x: 0, y: 13.2 } },
+      { id: "probe-n", kind: "path", appearance: "reference", points: [{ x: "n", y: "0" }, { x: "n", y: "13.2 + 0.303 * n + 0.00464 * n^2" }] },
+      { id: "probe-co2", kind: "marker", appearance: "highlight", x: "n", y: "13.2 + 0.303 * n + 0.00464 * n^2" },
     ],
     readouts: [
       { key: "rise-pct", formula: "13.2 + 0.303 * n + 0.00464 * n^2" },
@@ -163,7 +163,6 @@ Pegelmessstationen auf der ganzen Welt messen das Meer seit mehr als einem Jahrh
       Globale Anstiegsrate des Meeresspiegels laut IPCC (in <InlineMath math="\mathrm{mm/Jahr}" />) über Jahrzehnte seit 1901 (<InlineMath math="x=0" /> bis <InlineMath math="11{,}7" /> für 1901 bis 2018), mit Zeitraummitteln (orange) und Beschleunigungskurve (violett).
     </>
   }
-  footer={<>Der Meeresspiegelanstieg beschleunigte von 1,3 über 1,9 auf 3,7 mm/Jahr.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 4.5 } },
@@ -176,6 +175,8 @@ Pegelmessstationen auf der ganzen Welt messen das Meer seit mehr als einem Jahrh
       { id: "p2", kind: "segment", appearance: "primary", from: { x: 7, y: 1.9 }, to: { x: 10.5, y: 1.9 } },
       { id: "p3", kind: "segment", appearance: "warning", from: { x: 10.5, y: 3.7 }, to: { x: 11.7, y: 3.7 } },
       { id: "curve", kind: "function", appearance: "secondary", formula: "1.2 + 0.0014 * x^3", domain: { min: 0, max: 11.7 } },
+      { id: "probe-d", kind: "path", appearance: "reference", points: [{ x: "d", y: "0" }, { x: "d", y: "1.2 + 0.0014 * d^3" }] },
+      { id: "probe-rate", kind: "marker", appearance: "highlight", x: "d", y: "1.2 + 0.0014 * d^3" },
     ],
     readouts: [
       { key: "trend-rate", formula: "1.2 + 0.0014 * d^3" },
@@ -206,7 +207,6 @@ Temperatur, Ozeanwärme, Eis, Niederschlag, Dürre und Küstenereignisse müssen
 <Mermaid
   title={<>Klimadaten aus mehreren Indikatoren</>}
   description={<>Vergleiche langfristige Daten zu Temperatur, Ozean, Eis und Extremereignissen, bevor du den Klimawandel beurteilst.</>}
-  footer={<>Vier unabhängige Langzeitreihen stützen gemeinsam den Klimabefund.</>}
   chart={`flowchart LR
     A["Langzeitdaten"] --> B["Durchschnittstemperatur"]
     A --> C["Meereswärme"]
@@ -223,7 +223,6 @@ Verschieb die ganze Verteilung der Tagestemperaturen um <InlineMath math="1\ ^\c
 <MathVisual
   title={<>Kleine Verschiebung, viel mehr heiße Tage</>}
   description={<>Glockenkurven der täglichen Temperaturabweichung vor (grau) und nach (orange) einer Verschiebung um <InlineMath math="1\ ^\circ\mathrm{C}" />. Waagerecht: Grad vom alten Mittel. Senkrecht: wie oft jeder Wert vorkommt.</>}
-  footer={<>Eine Verschiebung um +1 C erhöht sehr heiße Tage von 2,3 % auf 15,9 %.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 5.5 }, y: { min: -0.3, max: 5 } },

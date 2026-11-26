@@ -59,7 +59,6 @@ In a simple textbook model, each layer of greenhouse gas absorbs all the heat ra
 <MathVisual
   title={<>More Layers, Warmer Ground</>}
   description={<>Ground temperature in the layer model with zero, one and two fully absorbing layers. One grid step up is <InlineMath math="50" /> kelvin.</>}
-  footer={<>One absorbing layer already raises ground temperature from 255 K to 303 K.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
@@ -91,7 +90,6 @@ The three main greenhouse gases from human activity are <InlineMath math="\mathr
       Equivalent <InlineMath math="100" />-year warming (in <InlineMath math="\mathrm{kg\ CO_2e}" />) versus emitted gas mass <InlineMath math="x" /> (in grams) for <InlineMath math="\mathrm{N_2O}" /> (pink), <InlineMath math="\mathrm{CH_4}" /> (orange), and <InlineMath math="\mathrm{CO_2}" /> (gray).
     </>
   }
-  footer={<>Over 100 years, 10 g of N2O warms like 2.73 kg of CO2 and CH4 like 0.30 kg.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: -0.2, max: 3.2 } },
@@ -106,6 +104,10 @@ The three main greenhouse gases from human activity are <InlineMath math="\mathr
       { id: "pt-n2o", kind: "point", appearance: "warning", at: { x: 10, y: 2.73 } },
       { id: "pt-ch4", kind: "point", appearance: "primary", at: { x: 10, y: 0.3 } },
       { id: "pt-co2", kind: "point", appearance: "reference", at: { x: 10, y: 0.01 } },
+      { id: "probe-m", kind: "path", appearance: "reference", points: [{ x: "m", y: "0" }, { x: "m", y: "0.273 * m" }] },
+      { id: "probe-n2o", kind: "marker", appearance: "warning", x: "m", y: "0.273 * m" },
+      { id: "probe-ch4", kind: "marker", appearance: "primary", x: "m", y: "0.03 * m" },
+      { id: "probe-co2", kind: "marker", appearance: "reference", x: "m", y: "0.001 * m" },
     ],
     readouts: [
       { key: "n2o-eq", formula: "0.273 * m" },
@@ -148,7 +150,6 @@ Bottled cooking gas (LPG) is a mixture of propane and butane. When it burns, the
       <InlineMath math="\mathrm{CO_2}" /> molecules released versus <InlineMath math="\mathrm{O_2}" /> molecules consumed when burning propane (orange, <InlineMath math="3/5" />) compared with methane (violet, <InlineMath math="1/2" />).
     </>
   }
-  footer={<>Every 5 O2 molecules burning propane yield 3 CO2, versus 2.5 for methane.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 16 }, y: { min: 0, max: 10 } },
@@ -161,6 +162,9 @@ Bottled cooking gas (LPG) is a mixture of propane and butane. When it burns, the
       { id: "methane", kind: "function", appearance: "secondary", formula: "0.5 * x", domain: { min: 0, max: 15 } },
       { id: "pt-p", kind: "point", appearance: "primary", at: { x: 10, y: 6 } },
       { id: "pt-m", kind: "point", appearance: "secondary", at: { x: 10, y: 5 } },
+      { id: "probe-k", kind: "path", appearance: "reference", points: [{ x: "k", y: "0" }, { x: "k", y: "0.6 * k" }] },
+      { id: "probe-p", kind: "marker", appearance: "primary", x: "k", y: "0.6 * k" },
+      { id: "probe-m", kind: "marker", appearance: "secondary", x: "k", y: "0.5 * k" },
     ],
     readouts: [
       { key: "propane-co2", formula: "0.6 * k" },
@@ -211,7 +215,6 @@ Plastic is linked to [emissions across its life cycle](https://www.oecd.org/en/p
 <Mermaid
   title={<>Three Carbon Paths Increase Warming</>}
   description={<>Connect fossil fuels, organic waste, and forest loss to the gases or sink changes that retain more heat.</>}
-  footer={<>Burning fuels, anoxic waste, and forest loss all push Earth toward warming.</>}
   chart={`flowchart LR
     A["Fossil fuels"] --> B["Carbon dioxide"]
     C["Organic waste decays with little oxygen"] --> D["Methane"]
@@ -226,7 +229,6 @@ Think of the air as a tub: emissions pour carbon in, and forests and oceans take
 <MathVisual
   title={<>Less Uptake, Faster Build-up</>}
   description={<>Extra carbon in the air in an illustrative tub model, with the whole forest (gray) and after clearing (pink). Horizontal: years. Vertical: one grid step is <InlineMath math="10" /> units of carbon.</>}
-  footer={<>Cutting forest uptake from 5 to 3 raises the yearly buildup from 5 to 7.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 7.5 } },

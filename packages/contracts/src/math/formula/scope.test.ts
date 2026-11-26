@@ -186,6 +186,7 @@ describe("formulaScopeIssues", () => {
       formulaScopeIssues(objects, planeFormulaFields, [
         slider,
         { ...slider, value: 2 },
+        { max: 1, min: 0, name: "z", value: 0.5 },
       ]),
       [
         {
@@ -193,11 +194,16 @@ describe("formulaScopeIssues", () => {
           path: ["parameters", 1, "name"],
         },
         {
-          issue: "Expected only x, a in this formula, not q.",
+          issue:
+            'Expected slider "z" to drive at least one object in the visual scene.',
+          path: ["parameters", 2, "name"],
+        },
+        {
+          issue: "Expected only x, a, z in this formula, not q.",
           path: ["objects", 0, "formula"],
         },
         {
-          issue: "Expected only x, y, a in this formula, not b.",
+          issue: "Expected only x, y, a, z in this formula, not b.",
           path: ["objects", 1, "inequalities", 1],
         },
       ]

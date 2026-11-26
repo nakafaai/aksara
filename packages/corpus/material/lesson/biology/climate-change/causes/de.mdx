@@ -59,7 +59,6 @@ In einem einfachen Lehrbuchmodell nimmt jede Schicht aus Treibhausgas die ganze 
 <MathVisual
   title={<>Mehr Schichten, wärmerer Boden</>}
   description={<>Bodentemperatur im Schichtmodell mit null, einer und zwei vollständig absorbierenden Schichten. Ein Gitterschritt nach oben entspricht <InlineMath math="50" /> Kelvin.</>}
-  footer={<>Schon eine Schicht hebt die Bodentemperatur von 255 K auf 303 K.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
@@ -91,7 +90,6 @@ Die drei wichtigsten Treibhausgase aus menschlicher Tätigkeit sind <InlineMath 
       Erwärmungsäquivalent über <InlineMath math="100" /> Jahre (in <InlineMath math="\mathrm{kg\ CO_2e}" />) gegenüber der Gasmasse <InlineMath math="x" /> (in Gramm) für <InlineMath math="\mathrm{N_2O}" /> (rosa), <InlineMath math="\mathrm{CH_4}" /> (orange) und <InlineMath math="\mathrm{CO_2}" /> (grau).
     </>
   }
-  footer={<>Über 100 Jahre wirken 10 g N2O wie 2,73 kg CO2 und CH4 wie 0,30 kg CO2.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: -0.2, max: 3.2 } },
@@ -106,6 +104,10 @@ Die drei wichtigsten Treibhausgase aus menschlicher Tätigkeit sind <InlineMath 
       { id: "pt-n2o", kind: "point", appearance: "warning", at: { x: 10, y: 2.73 } },
       { id: "pt-ch4", kind: "point", appearance: "primary", at: { x: 10, y: 0.3 } },
       { id: "pt-co2", kind: "point", appearance: "reference", at: { x: 10, y: 0.01 } },
+      { id: "probe-m", kind: "path", appearance: "reference", points: [{ x: "m", y: "0" }, { x: "m", y: "0.273 * m" }] },
+      { id: "probe-n2o", kind: "marker", appearance: "warning", x: "m", y: "0.273 * m" },
+      { id: "probe-ch4", kind: "marker", appearance: "primary", x: "m", y: "0.03 * m" },
+      { id: "probe-co2", kind: "marker", appearance: "reference", x: "m", y: "0.001 * m" },
     ],
     readouts: [
       { key: "n2o-eq", formula: "0.273 * m" },
@@ -148,7 +150,6 @@ Flüssiggas zum Kochen ist ein Gemisch aus Propan und Butan. Beim Verbrennen gel
       Freigesetzte <InlineMath math="\mathrm{CO_2}" />-Moleküle gegenüber verbrauchten <InlineMath math="\mathrm{O_2}" />-Molekülen beim Verbrennen von Propan (orange, <InlineMath math="3/5" />) und Methan (violett, <InlineMath math="1/2" />).
     </>
   }
-  footer={<>Je 5 O2-Moleküle liefern bei Propan 3 CO2, bei Methan 2,5 CO2.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 16 }, y: { min: 0, max: 10 } },
@@ -161,6 +162,9 @@ Flüssiggas zum Kochen ist ein Gemisch aus Propan und Butan. Beim Verbrennen gel
       { id: "methane", kind: "function", appearance: "secondary", formula: "0.5 * x", domain: { min: 0, max: 15 } },
       { id: "pt-p", kind: "point", appearance: "primary", at: { x: 10, y: 6 } },
       { id: "pt-m", kind: "point", appearance: "secondary", at: { x: 10, y: 5 } },
+      { id: "probe-k", kind: "path", appearance: "reference", points: [{ x: "k", y: "0" }, { x: "k", y: "0.6 * k" }] },
+      { id: "probe-p", kind: "marker", appearance: "primary", x: "k", y: "0.6 * k" },
+      { id: "probe-m", kind: "marker", appearance: "secondary", x: "k", y: "0.5 * k" },
     ],
     readouts: [
       { key: "propane-co2", formula: "0.6 * k" },
@@ -211,7 +215,6 @@ Kunststoff ist [über seinen gesamten Lebenszyklus mit Emissionen verbunden](htt
 <Mermaid
   title={<>Drei Kohlenstoffpfade verstärken die Erwärmung</>}
   description={<>Verbinde fossile Brennstoffe, organische Abfälle und Waldverlust mit den Gasen oder Senkenveränderungen, durch die mehr Wärme zurückgehalten wird.</>}
-  footer={<>Fossile Brennstoffe, Abfall und Waldverlust verstärken die Erwärmung.</>}
   chart={`flowchart LR
     A["Fossile Brennstoffe"] --> B["Kohlendioxid"]
     C["Organischer Abfall zerfällt unter Sauerstoffmangel"] --> D["Methan"]
@@ -226,7 +229,6 @@ Stell dir die Luft als Wanne vor: Emissionen gießen Kohlenstoff hinein, und Wä
 <MathVisual
   title={<>Weniger Aufnahme, schnellerer Anstieg</>}
   description={<>Zusätzlicher Kohlenstoff in der Luft in einem beispielhaften Wannenmodell, mit ganzem Wald (grau) und nach der Rodung (rosa). Waagerecht: Jahre. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="10" /> Einheiten Kohlenstoff.</>}
-  footer={<>Sinkt die Waldaufnahme von 5 auf 3, wächst der Rest von 5 auf 7 pro Jahr.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 7.5 } },
