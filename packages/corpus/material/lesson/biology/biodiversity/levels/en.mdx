@@ -49,6 +49,7 @@ Picture two rice populations of <InlineMath math="10" /> plants, each plant plac
 <MathVisual
   title={<>Variation Gives Some Plants a Chance</>}
   description={<>Illustrative stress tolerance of <InlineMath math="10" /> plants with one shared variant (top) and <InlineMath math="10" /> plants with different variants (bottom). Points right of the pink line cope with the new condition.</>}
+  footer={<>Only the genetically varied row has plants past the stress threshold.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 3.5 } },
@@ -89,21 +90,39 @@ Picture two rice populations of <InlineMath math="10" /> plants, each plant plac
   }}
 />
 
-Genetic variation can be as small as one base. The card below compares the start of the human beta-globin gene (HBB), a gene that helps build hemoglobin, in two alleles.
+Genetic variation can be as small as one base in the human beta-globin gene (HBB), changing `GAG` to `GTG`. Slide the variant allele frequency <InlineMath math="q" /> below to see how one single-base allele spreads through genotypes across a population.
 
-<DnaHelixLab
-  title={<>One Base Makes a Different Allele</>}
-  description={<>The start of the human HBB gene, <InlineMath math="27" /> base pairs. Switch between the usual allele and the sickle-cell allele and watch the changed base glow.</>}
-  sequence="ATG GTG CAT CTG ACT CCT GAG GAG AAG"
-  variant="ATG GTG CAT CTG ACT CCT GTG GAG AAG"
+<MathVisual
+  title={<>Genotype Shares from One Variant Allele</>}
+  description={
+    <>
+      Percentage of usual homozygotes (gray), heterozygous carriers (orange),
+      and variant homozygotes (violet) as allele frequency <InlineMath math="x" />{" "}
+      runs from <InlineMath math="0" /> to <InlineMath math="0.5" />.
+    </>
+  }
+  footer={<>Even a rare single-base allele appears widely in heterozygous carriers.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0.05, max: 0.5, value: 0.1, step: 0.05, label: "q" },
+    ],
+    objects: [
+      { id: "usual", kind: "function", appearance: "reference", formula: "100 * (1 - x)^2", domain: { min: 0, max: 0.5 } },
+      { id: "carrier", kind: "function", appearance: "primary", formula: "200 * x * (1 - x)", domain: { min: 0, max: 0.5 } },
+      { id: "variant", kind: "function", appearance: "secondary", formula: "100 * x^2", domain: { min: 0, max: 0.5 } },
+    ],
+    readouts: [
+      { key: "carriers", formula: "200 * q * (1 - q)" },
+      { key: "homozygous", formula: "100 * q^2" },
+    ],
+  }}
   labels={{
-    choose: "Choose an allele",
-    strands: { first: <>Usual allele</>, second: <>Sickle-cell allele</> },
-    length: <>Base pairs</>,
-    span: <>Length</>,
-    differences: <>Different bases</>,
-    identity: <>Same bases</>,
-    viewLabel: "DNA double helix of the HBB gene with the changed base glowing",
+    q: <>Variant allele frequency <InlineMath math="q" /></>,
+    carriers: <>Heterozygous carriers (%)</>,
+    homozygous: <>Variant homozygotes (%)</>,
   }}
 />
 
@@ -128,11 +147,16 @@ Compare these hypothetical observations, using the same plot area and counting m
 
 Both plots contain <InlineMath math="10" /> individuals and <InlineMath math="3" /> species. However, **abundance is more even** in plot 2. Counting species alone misses this difference.
 
-The scene below turns the two plots into bars, orange for species A, violet for B and teal for C, with one grid step for <InlineMath math="2" /> individuals. Rotate it so you see both rows side by side. Plot 1 has one tall bar and two stubs, while plot 2 has three bars of similar height. One common way to put a number on this is Simpson's index, <InlineMath math="1-\sum p_i^2" />, where <InlineMath math="p_i" /> is each species' share of the individuals. It reaches <InlineMath math="0.34" /> for plot 1 and <InlineMath math="0.66" /> for plot 2, so the more even plot scores almost twice as high with the same species count.
+The scene below turns both plots into bars: orange for species A, violet for B, and teal for C, with one grid step representing <InlineMath math="2" /> individuals. Plot 1 has one tall bar and two stubs, while plot 2 has three bars of similar height.
+
+Ecologists summarize this difference with **Simpson's diversity index**, where <InlineMath math="p_i" /> is each species' share of all individuals:
+
+<BlockMath math="D = 1 - \sum p_i^2" />
 
 <MathVisual
   title={<>Same Richness, Different Evenness</>}
   description={<>Individuals of species A (orange), B (violet) and C (teal) in two hypothetical plots of equal area. One grid step up is <InlineMath math="2" /> individuals.</>}
+  footer={<>Evenly balanced species raise Simpson's index without adding new species.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
@@ -156,6 +180,8 @@ The scene below turns the two plots into bars, orange for species A, violet for 
   }}
 />
 
+Plot 1 scores <InlineMath math="0.34" /> while plot 2 scores <InlineMath math="0.66" />, nearly twice as high with the exact same three species. Measuring evenness alongside richness reveals whether one dominant species crowds out the rest of a community.
+
 ### Ecosystem Diversity Compares Habitats and Relationships
 
 Rice fields, rivers, tropical rainforests, mangroves, savannas, and coral reefs have different conditions. **Light, water, salinity, soil, temperature, and organism interactions** shape which living things can survive there.
@@ -167,6 +193,7 @@ Primary biodiversity records can come from museums, scientific collections, DNA 
 <Mermaid
   title={<>Three Levels of Biodiversity in a Rice Field</>}
   description={<>The diagram compares genetic, species, and ecosystem diversity in a rice-field environment.</>}
+  footer={<>One field holds genetic, species, and habitat diversity at once.</>}
   chart={`flowchart TD
     A["Biodiversity"] --> B["Gene level"]
     A --> C["Species level"]
@@ -181,6 +208,7 @@ Species richness counts how many kinds live in a place. Both plots hold <InlineM
 <MathVisual
   title={<>Same Count, Different Richness</>}
   description={<>Two plots with <InlineMath math="12" /> individuals each. Each color is one species.</>}
+  footer={<>Equal headcounts can hide very different numbers of distinct species.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 4.5 } },
@@ -224,18 +252,38 @@ Species richness counts how many kinds live in a place. Both plots hold <InlineM
   }}
 />
 
-Ecosystem diversity also covers relationships, such as hunters and their prey. At the edge of a rice field, barn owls hunt rice-field rats.
+Ecosystem diversity also covers relationships, such as hunters and their prey. At the edge of a rice field, barn owls hunt rice-field rats. Adjust the cycle amplitude <InlineMath math="a" /> below to see how rat and owl populations rise and fall out of phase across <InlineMath math="20" /> years.
 
-<PredatorPreyLab
+<MathVisual
   title={<>Rats and Owls Rise and Fall Together</>}
-  description={<>Set how many owls start in the field, then press play to run the model for <InlineMath math="20" /> years.</>}
+  description={
+    <>
+      Coupled population waves of rats (orange) around <InlineMath math="100" />{" "}
+      and barn owls (violet) around <InlineMath math="20" /> over{" "}
+      <InlineMath math="20" /> years with a <InlineMath math="4.4" />-year cycle.
+    </>
+  }
+  footer={<>Owl peaks lag just behind rat peaks, pulling prey numbers back down.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 155 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 10, max: 45, value: 30, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "rats", kind: "function", appearance: "primary", formula: "100 + a * sin(2 * pi * x / 4.4)", domain: { min: 0, max: 20 } },
+      { id: "owls", kind: "function", appearance: "secondary", formula: "20 + 0.25 * a * sin(2 * pi * (x - 1.1) / 4.4)", domain: { min: 0, max: 20 } },
+    ],
+    readouts: [
+      { key: "peak-rats", formula: "100 + a" },
+      { key: "peak-owls", formula: "20 + 0.25 * a" },
+    ],
+  }}
   labels={{
-    start: "Owls at the start",
-    prey: <>Rats</>,
-    predators: <>Owls</>,
-    peak: <>Most rats</>,
-    year: <>Year</>,
-    viewLabel: "Rice field with rice-field rats and barn owls",
+    a: <>Rat swing amplitude <InlineMath math="a" /></>,
+    "peak-rats": <>Peak rat count</>,
+    "peak-owls": <>Peak owl count</>,
   }}
 />
 

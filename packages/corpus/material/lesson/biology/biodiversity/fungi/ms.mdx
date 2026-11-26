@@ -24,6 +24,7 @@ Kamu boleh melihat hifa merebak dalam kad di bawah. Pembuat tempe menabur spora 
 <HyphaeDecayLab
   title={<>Hifa Mengikat Kacang Soya Menjadi Tempe</>}
   description={<>Spora Rhizopus ditabur pada kacang soya yang dibelah dan dimasak. Gerakkan jamnya atau tekan main untuk melihat miselium tumbuh selama <InlineMath math="36\text{ jam}" />.</>}
+  footer={<>Hifa bercabang mengikat kacang soya longgar menjadi lapisan miselium putih.</>}
   labels={{
     hours: "Jam selepas spora ditabur",
     time: <>Masa</>,
@@ -85,6 +86,7 @@ Benang putih dalam tempe tumbuh di hujungnya, dan setiap hujung boleh bercabang 
 <MathVisual
   title={<>Hifa yang Bercabang Menambah Bilangan Hujung</>}
   description={<>Hifa yang bercabang sebanyak tiga kali. Titik ungu ialah hujung yang sedang tumbuh.</>}
+  footer={<>Tiga pusingan percabangan menggandakan satu hujung hifa kepada lapan hujung.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 6.5 } },
@@ -123,6 +125,8 @@ Benang putih dalam tempe tumbuh di hujungnya, dan setiap hujung boleh bercabang 
   }}
 />
 
+Setiap percabangan menggandakan bilangan hujung aktif yang merembeskan enzim pencernaan dan menyerap nutrien, sekali gus meluaskan kawasan sentuhan fungi di permukaan makanan dengan cepat.
+
 ## Cara Pemakanan Fungi Berbeza daripada Haiwan
 
 Fungi merembeskan enzim ke atas bahan organik dan **menyerap molekul lebih kecil yang terhasil daripada pencernaan**. Haiwan biasanya mencerna makanan di dalam badan, manakala tumbuhan membuat gula melalui fotosintesis.
@@ -137,26 +141,38 @@ Proses ini dipanggil **pencernaan ekstrasel**. **Hifa** ialah benang halus yang 
 
 Dinding sel fungi mengandungi **kitin**, manakala dinding sel tumbuhan terutamanya mengandungi selulosa. Kitin juga terdapat dalam rangka luar serangga. Bahan dinding sel ialah salah satu ciri yang digunakan oleh ahli biologi untuk membezakan fungi daripada tumbuhan.
 
-Tidak semua fungi membentuk hifa. Yis roti hidup sebagai sel tunggal sepanjang kira-kira <InlineMath math="5\ \mu\text{m}" />, dan membiak secara **pertunasan**.
+Tidak semua fungi membentuk hifa. Yis roti hidup sebagai sel tunggal sepanjang kira-kira <InlineMath math="5\ \mu\text{m}" />, dan membiak secara **pertunasan**. Laraskan tempoh kitaran <InlineMath math="c" /> di bawah untuk menjejaki bagaimana tunas anak menghampiri empat per lima panjang sel induk sebelum berpisah.
 
-<CellCutawayLab
-  title={<>Sel Yis Bertunas</>}
-  description={<>Sel yis ini dipotong dua. Gerakkan minit dalam kitarannya untuk melihat tunas membesar dan nukleus bergerak ke leher tunas.</>}
-  cells={["yeast"]}
+<MathVisual
+  title={<>Pertumbuhan Tunas Yis dalam Satu Kitaran Sel</>}
+  description={
+    <>
+      Panjang tunas dalam mikrometer sepanjang <InlineMath math="120\text{ minit}" />{" "}
+      bagi tempoh kitaran <InlineMath math="c" /> yang boleh dipilih, berbanding
+      sel induk <InlineMath math="5\ \mu\text{m}" /> dan saiz pemisahan{" "}
+      <InlineMath math="4\ \mu\text{m}" />.
+    </>
+  }
+  footer={<>Tunas membesar hingga sekitar 4 µm, empat per lima panjang sel induknya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 60, max: 120, value: 90, step: 15, label: "c" },
+    ],
+    objects: [
+      { id: "bud", kind: "function", appearance: "primary", formula: "4 / (1 + exp(-0.08 * (x - 0.5 * c)))", domain: { min: 0, max: 120 } },
+      { id: "mother", kind: "function", appearance: "reference", formula: "5 + 0x", domain: { min: 0, max: 120 } },
+      { id: "target", kind: "function", appearance: "construction", formula: "4 + 0x", domain: { min: 0, max: 120 } },
+    ],
+    readouts: [
+      { key: "at-ninety", formula: "4 / (1 + exp(-0.08 * (90 - 0.5 * c)))" },
+    ],
+  }}
   labels={{
-    choose: "Pilih sel",
-    cells: {
-      yeast: "Yis",
-    },
-    facts: {
-      yeast: { nucleus: <>di dalam membran nukleus</>, wall: <>glukan dan kitin</>, power: <>mitokondria</> },
-    },
-    minutes: "Minit dalam kitaran",
-    size: <>Panjang</>,
-    nucleus: <>Bahan genetik</>,
-    wall: <>Dinding sel</>,
-    power: <>Organel tenaga</>,
-    viewLabel: "Sebuah sel yang dipotong dua bersama organelnya",
+    c: <>Tempoh kitaran <InlineMath math="c" /> (minit)</>,
+    "at-ninety": <>Panjang tunas pada minit ke-90 (µm)</>,
   }}
 />
 
@@ -185,6 +201,7 @@ Pada akar tumbuhan, sesetengah fungi membentuk [**mikoriza**](https://research.f
 <Mermaid
   title={<>Pertukaran Bahan antara Akar Tumbuhan dan Fungi Mikoriza</>}
   description={<>Ikuti pertukaran gula, air dan mineral pada akar untuk memahami simbiosis antara tumbuhan dan fungi.</>}
+  footer={<>Gula fotosintesis mengalir ke fungi manakala air dan mineral ke akar.</>}
   chart={`flowchart LR
     P["Tumbuhan"] -->|"Gula daripada fotosintesis"| F["Fungi mikoriza"]
     F -->|"Air dan mineral"| P`}
@@ -195,6 +212,7 @@ Fungi pengurai memecahkan daun yang gugur, jadi sarap daun semakin susut. Sebaga
 <MathVisual
   title={<>Fungi Mengurangkan Sarap Daun kepada Separuh</>}
   description={<>Baki sarap daun dalam model ringkas, dengan separuh sarap diuraikan setiap <InlineMath math="4" /> minggu. Mengufuk: satu selang grid mewakili <InlineMath math="2" /> minggu. Menegak: satu selang grid mewakili <InlineMath math="12.5" /> gram.</>}
+  footer={<>Setiap empat minggu baki sarap daun berkurang separuh dan kembali ke tanah.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 8.5 } },
@@ -217,6 +235,8 @@ Fungi pengurai memecahkan daun yang gugur, jadi sarap daun semakin susut. Sebaga
     end: <InlineMath math="6.25\ \mathrm{g}" />,
   }}
 />
+
+Selepas empat separuh hayat atau enam belas minggu, hanya tinggal <InlineMath math="6.25\text{ g}" /> daripada <InlineMath math="100\text{ g}" /> daun gugur asal sementara fungi pengurai mengitar semula selebihnya menjadi mineral tanah.
 
 ## Fungi Menyerap Makanan selepas Pencernaan Luar
 

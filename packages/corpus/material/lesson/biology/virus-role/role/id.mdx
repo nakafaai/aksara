@@ -68,6 +68,8 @@ Struktur permukaan virus mengikat sel yang sesuai, sedangkan partikel virus memb
   }}
 />
 
+Beralihlah di antara ketiga tab dan perhatikan bahwa mekanisme dasar virus yang sama menghasilkan dampak yang jauh berbeda bergantung pada inang dan kendali manusia. Replikasi liar di jaringan manusia memicu penyakit, bakteriofag mengatur kelimpahan mikroba di ekosistem, dan vektor rekayasa mengantarkan gen pilihan ke sel target secara terkendali.
+
 ## Virus Memakai Jalur Penularan yang Berbeda
 
 Influenza, demam berdarah, dan rabies menyebar melalui **jalur biologis yang berbeda**. Nama penyakit saja belum menentukan tindakan pencegahannya. Tentukan dahulu apakah virus menyebar melalui partikel pernapasan, organisme pembawa seperti nyamuk, atau jalur lain.
@@ -78,25 +80,40 @@ Infeksi virus dapat terjadi pada manusia, hewan lain, dan tumbuhan. Pada manusia
 
 Untuk memahami penyakit akibat virus, periksa **jalur penularan** dan jaringan yang terkena. Virus dengue terutama ditularkan melalui gigitan nyamuk Aedes yang terinfeksi. Virus pernapasan dapat menyebar ketika orang menghirup partikel pernapasan yang dilepaskan oleh orang yang terinfeksi. Virus tumbuhan dapat berpindah melalui serangga pembawa, luka tanaman, atau bahan tanam yang terinfeksi.
 
-Jalur penularan menentukan tindakan mana yang berhasil. Ganti jalurnya, lalu coba masker dan cuci tangan.
+Jalur penularan menentukan tindakan mana yang berhasil. Geser angka reproduksi dasar <InlineMath math="R" /> di bawah dan bandingkan bagaimana masker menekan penularan udara sementara cuci tangan menekan penularan sentuhan pada tingkat kepatuhan dari <InlineMath math="0" /> hingga <InlineMath math="1" />.
 
-<EpidemicSpreadLab
+<MathVisual
   title={<>Jalur Penularan Menentukan Tindakan</>}
-  description={<>Pilih apakah virus menyebar lewat udara atau lewat sentuhan, lalu atur masker dan cuci tangan.</>}
-  measures={["masks", "washing"]}
-  routes={["air", "touch"]}
+  description={
+    <>
+      Penularan efektif terhadap tingkat penerapan <InlineMath math="x" /> untuk
+      masker pada jalur udara (oranye), cuci tangan pada jalur sentuhan (ungu),
+      dan tindakan yang tidak sesuai jalur (abu-abu).
+    </>
+  }
+  footer={<>Hanya tindakan sesuai jalur penularan yang menurunkan R mendekati 1.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 2, max: 4, value: 3, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "air-mask", kind: "function", appearance: "primary", formula: "r * (1 - 0.5 * x)^2", domain: { min: 0, max: 1 } },
+      { id: "touch-wash", kind: "function", appearance: "secondary", formula: "r * (1 - 0.5 * x)", domain: { min: 0, max: 1 } },
+      { id: "mismatched", kind: "function", appearance: "reference", formula: "r + 0x", domain: { min: 0, max: 1 } },
+      { id: "threshold", kind: "function", appearance: "warning", formula: "1 + 0x", domain: { min: 0, max: 1 } },
+    ],
+    readouts: [
+      { key: "full-mask", formula: "r * 0.25" },
+      { key: "full-wash", formula: "r * 0.5" },
+    ],
+  }}
   labels={{
-    chooseRoute: "Pilih jalur penularan",
-    routes: { air: <>Lewat udara</>, touch: <>Lewat sentuhan</> },
-    masks: "Orang yang bermasker",
-    washing: "Orang yang mencuci tangan",
-    reproduction: <>Satu kasus menulari</>,
-    peak: <>Paling banyak sakit bersamaan</>,
-    susceptible: <>Masih rentan</>,
-    infected: <>Sedang tertular</>,
-    recovered: <>Sudah sembuh</>,
-    immune: <>Kebal karena vaksin</>,
-    viewLabel: "Alun-alun kota dengan orang yang berjalan dan grafik wabah",
+    r: <>Nilai dasar <InlineMath math="R" /></>,
+    "full-mask": <>R udara saat semua bermasker</>,
+    "full-wash": <>R sentuhan saat semua cuci tangan</>,
   }}
 />
 
@@ -104,13 +121,13 @@ Lewat udara, masker menurunkan angka penularan dari <InlineMath math="3" /> menj
 
 ### Pilih Pencegahan Sesuai Jalur Penularan
 
-Partikel pernapasan, gigitan nyamuk, dan cairan tubuh tertentu merupakan jalur penularan yang berbeda. Pemilihan tindakan pencegahan memerlukan informasi tentang **jalur, sel target, dan kondisi** yang mendukung perpindahan virus.
+Partikel pernapasan, gigitan nyamuk, dan cairan tubuh tertentu adalah jalur penularan yang berbeda. Pemilihan tindakan pencegahan memerlukan informasi tentang **jalur, sel target, dan kondisi** yang mendukung perpindahan virus.
 
 ## Pemanfaatan Virus dalam Kondisi Terkendali
 
-Sebagian virus dapat masuk ke sel tertentu dan membawa materi genetik ke dalamnya. Pada infeksi alami yang tidak terkendali, kemampuan tersebut dapat merusak inang. Untuk membuat vektor virus, peneliti mengubah virus lalu **menguji sel yang dapat dimasuki** serta materi genetik yang diantarkan.
+Sebagian virus dapat masuk ke sel tertentu dan membawa materi genetik ke dalamnya. Pada infeksi alami yang tidak terkendali, kemampuan ini dapat merusak inang. Untuk membuat vektor virus, peneliti mengubah virus lalu **menguji sel yang dapat dimasuki** serta materi genetik yang diantarkan.
 
-Peneliti memakai virus yang telah dimodifikasi dalam riset genetik, terapi gen, pengembangan vaksin, dan pengendalian hama tertentu. Baculovirus merupakan kelompok virus yang menginfeksi serangga, dan beberapa anggotanya telah dikembangkan menjadi biopestisida komersial.
+Peneliti memakai virus yang telah dimodifikasi dalam riset genetik, terapi gen, pengembangan vaksin, dan pengendalian hama tertentu. Baculovirus adalah kelompok virus yang menginfeksi serangga, dan beberapa anggotanya telah dikembangkan menjadi biopestisida komersial.
 
 Dalam [terapi gen](https://www.nhlbi.nih.gov/health/genetic-therapies/types), virus dapat diubah menjadi alat pengantar yang terkendali dengan menghilangkan gen virus penyebab penyakit dan menambahkan gen terapi untuk membentuk vektor.
 
@@ -123,6 +140,7 @@ Putar vektor virus ini. Selubung proteinnya, bagian yang sudah tahu cara masuk k
 <MathVisual
   title={<>Selubung Sama, Muatan Baru</>}
   description={<>Selubung virus ikosahedral (ungu) yang membawa gen terapi (fuchsia), dengan gen penyebab penyakit yang dibuang (merah muda) di luar.</>}
+  footer={<>Selubung kapsid masuk ke sel target sambil membawa gen terapi saja.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: 0, max: 4 }, z: { min: -2, max: 2 } },
@@ -164,19 +182,38 @@ Putar vektor virus ini. Selubung proteinnya, bagian yang sudah tahu cara masuk k
   }}
 />
 
-Vaksin adalah salah satu pemanfaatan virus yang terkendali. Vaksin dari virus yang dilemahkan atau dimatikan, atau dari bagian virus seperti protein duri, melatih tubuh tanpa menimbulkan penyakitnya.
+Vaksin adalah salah satu pemanfaatan virus yang terkendali. Vaksin dari virus yang dilemahkan atau dimatikan, atau dari bagian virus seperti protein duri, melatih tubuh tanpa menimbulkan penyakitnya. Geser hari tengah respons <InlineMath math="d" /> di bawah untuk mengikuti kenaikan peluang penghalangan virion selama tiga minggu.
 
-<AntibodyNeutralizeLab
+<MathVisual
   title={<>Antibodi Bertambah setelah Vaksinasi</>}
-  description={<>Geser hari setelah dosis pertama, lalu tekan putar untuk melihat apakah virion masih bisa menempel.</>}
-  mode="days"
+  description={
+    <>
+      Persentase peluang virion terhalang selama <InlineMath math="21" /> hari
+      setelah dosis pertama, dengan hari tengah respons <InlineMath math="d" />{" "}
+      yang bisa diatur.
+    </>
+  }
+  footer={<>Penghalangan masih rendah di minggu pertama dan naik tajam di minggu kedua.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 21 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 6, max: 12, value: 8, step: 1, label: "d" },
+    ],
+    objects: [
+      { id: "blocking", kind: "function", appearance: "primary", formula: "100 / (1 + exp(-0.4 * (x - d)))", domain: { min: 0, max: 21 } },
+      { id: "half", kind: "function", appearance: "reference", formula: "50 + 0x", domain: { min: 0, max: 21 } },
+    ],
+    readouts: [
+      { key: "day-seven", formula: "100 / (1 + exp(-0.4 * (7 - d)))" },
+      { key: "day-fourteen", formula: "100 / (1 + exp(-0.4 * (14 - d)))" },
+    ],
+  }}
   labels={{
-    day: "Hari setelah dosis",
-    level: <>Kadar antibodi</>,
-    covered: <>Duri yang tertutup</>,
-    blocked: <>Virion yang terhalang</>,
-    chance: <>Peluang satu virion terhalang</>,
-    viewLabel: "Virion SARS-CoV-2 mendekati reseptor ACE2 di permukaan sel, dengan antibodi pada duri",
+    d: <>Hari tengah respons <InlineMath math="d" /></>,
+    "day-seven": <>Peluang terhalang hari ke-7 (%)</>,
+    "day-fourteen": <>Peluang terhalang hari ke-14 (%)</>,
   }}
 />
 
@@ -191,6 +228,7 @@ Letakkan tiga pertanyaan itu di satu peta. Tiap titik menyebut inang dan virus y
 <MathVisual
   title={<>Inang, Pengaruh, dan Kendali di Satu Peta</>}
   description={<>Empat kasus virus diletakkan menurut pengaruhnya pada inang (mendatar) dan seberapa terkendali (tegak).</>}
+  footer={<>Kendali lebih tinggi memindahkan virus dari wabah alami ke alat terarah.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 } },
@@ -221,3 +259,5 @@ Letakkan tiga pertanyaan itu di satu peta. Tiap titik menyebut inang dan virus y
     control: <>lebih terkendali</>,
   }}
 />
+
+Membaca peta ini dari kiri bawah ke kanan atas memperlihatkan bagaimana tingkat kendali memisahkan infeksi alami dari bioteknologi. Virus flu dan fag laut berada di bagian bawah karena berjalan tanpa kendali manusia, sedangkan biopestisida dan vektor terapi gen naik ke atas karena peneliti membatasi inang sasaran sekaligus hasilnya.

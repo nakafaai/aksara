@@ -30,22 +30,25 @@ International climate agreements use temperature goals to guide collective actio
 
 [Climate risks and losses](https://www.ipcc.ch/report/ar6/syr/resources/spm-headline-statements/) increase with every increment of warming. The <InlineMath math="1.5\,^\circ\text{C}" /> and <InlineMath math="2\,^\circ\text{C}" /> goals provide a shared measure for judging how quickly and deeply emissions need to fall.
 
-A temperature target turns into a shared budget of carbon dioxide. The IPCC estimated that, from the start of 2020, about <InlineMath math="500" /> billion tonnes of <InlineMath math="\mathrm{CO_2}" /> could still be emitted for an even chance of staying within <InlineMath math="1.5\,^\circ\text{C}" />. The scene below spends that budget at a round <InlineMath math="40" /> billion tonnes per year in two ways. Both shapes have the same area, <InlineMath math="500" />. At constant emissions the pink rectangle ends after <InlineMath math="12.5" /> years, while cutting emissions steadily to zero stretches the teal triangle to <InlineMath math="25" /> years. That's why the target says how fast emissions must fall, not only how far.
+A temperature target turns into a shared budget of carbon dioxide. The IPCC estimated that, from the start of 2020, about <InlineMath math="500" /> billion tonnes of <InlineMath math="\mathrm{CO_2}" /> could still be emitted for an even chance of staying within <InlineMath math="1.5\,^\circ\text{C}" />.
+
+The scene below spends that budget at a round <InlineMath math="40" /> billion tonnes per year in two ways. Both shapes have the same area, <InlineMath math="500" />. At constant emissions the pink rectangle ends after <InlineMath math="12.5" /> years, while cutting emissions steadily to zero stretches the teal triangle to <InlineMath math="25" /> years. That's why the target says how fast emissions must fall, not only how far.
 
 <MathVisual
   title={<>Two Ways to Spend One Carbon Budget</>}
-  description={<>A <InlineMath math="500" /> <InlineMath math="\mathrm{GtCO_2}" /> budget spent from <InlineMath math="40" /> <InlineMath math="\mathrm{GtCO_2}" /> per year. Horizontal: years after 2020 in units of <InlineMath math="5" />. Vertical: yearly emissions in units of <InlineMath math="10" /> <InlineMath math="\mathrm{GtCO_2}" />.</>}
+  description={<>A <InlineMath math="500" /> <InlineMath math="\mathrm{GtCO_2}" /> budget spent from <InlineMath math="40" /> <InlineMath math="\mathrm{GtCO_2}" /> per year. Horizontal: years after 2020. Vertical: yearly emissions in <InlineMath math="\mathrm{GtCO_2}" />.</>}
+  footer={<>Steady emissions exhaust 500 GtCO2 in 12.5 years, while linear cuts double that to 25.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 36 }, y: { min: -2, max: 46 } },
     view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "constant", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 500 / 40 / 5, y: 0 }, { x: 500 / 40 / 5, y: 40 / 10 }, { x: 0, y: 40 / 10 }] },
-      { id: "decline", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: (2 * 500) / 40 / 5, y: 0 }, { x: 0, y: 40 / 10 }] },
+      { id: "constant", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 12.5, y: 0 }, { x: 12.5, y: 40 }, { x: 0, y: 40 }] },
+      { id: "decline", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 25, y: 0 }, { x: 0, y: 40 }] },
     ],
     labels: [
-      { key: "constant", objectId: "constant", at: { x: 500 / 40 / 5, y: 40 / 10 }, placement: "above-right" },
-      { key: "decline", objectId: "decline", at: { x: (2 * 500) / 40 / 5, y: 0 }, placement: "above" },
+      { key: "constant", objectId: "constant", at: { x: 12.5, y: 40 }, placement: "above-right" },
+      { key: "decline", objectId: "decline", at: { x: 25, y: 0 }, placement: "above" },
     ],
   }}
   labels={{
@@ -59,6 +62,7 @@ A temperature target becomes a common measure once you turn it into a budget. Th
 <MathVisual
   title={<>Each Target Has Its Own Budget</>}
   description={<>Remaining carbon dioxide budgets from 2020 for a <InlineMath math="50" /> percent chance of three warming limits. Each label divides the budget by <InlineMath math="40\ \mathrm{GtCO_2}" /> per year. One grid step up is <InlineMath math="250\ \mathrm{GtCO_2}" />.</>}
+  footer={<>Higher warming limits leave larger budgets, from 12.5 years at 1.5 C to 33.75 at 2 C.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -86,6 +90,7 @@ Temperature targets matter for every coast. The village below shows what each em
 <SeaLevelRiseLab
   title={<>Sea Level in 2100 Depends on the Pathway</>}
   description={<>Choose a pathway. The sea rises to its median for 2100, compared with the 1995 to 2014 average.</>}
+  footer={<>Stronger collective cuts hold 2100 sea-level rise near 0.44 m instead of 0.77 m.</>}
   mode="scenario"
   labels={{
     choose: "Choose a pathway",
@@ -126,20 +131,44 @@ After submitting an NDC, countries report actions, progress, and support under t
 
 > Targets set the direction, national plans state intended action, reports record progress, and the global stocktake assesses the combined result.
 
-One country's cuts cannot hold the climate on their own, because <InlineMath math="\mathrm{CO_2}" /> mixes through the whole atmosphere. Test it in the bathtub model below.
+One country's cuts cannot hold the climate on their own, because <InlineMath math="\mathrm{CO_2}" /> mixes through the whole atmosphere. Slide the share of global emissions cut to zero by 2050 below to see how year-2100 <InlineMath math="\mathrm{CO_2}" /> changes relative to today's <InlineMath math="425\text{ ppm}" />.
 
-<CarbonBudgetLab
-  title={<>Every Region Fills the Same Tub</>}
-  description={<>Emissions pour in from the tap, the ocean and land drain part away, and the water level is the <InlineMath math="\mathrm{CO_2}" /> in the air. Pick the regions that cut their fossil <InlineMath math="\mathrm{CO_2}" /> to zero by 2050.</>}
-  mode="cooperate"
+<MathVisual
+  title={<>Every Region Fills the Same Atmosphere</>}
+  description={
+    <>
+      Percentage change in year-2100 <InlineMath math="\mathrm{CO_2}" /> relative to today's <InlineMath math="425\text{ ppm}" /> versus the share <InlineMath math="x" /> (in <InlineMath math="\%" />) of global fossil emissions cut to zero by 2050.
+    </>
+  }
+  footer={<>CO2 only falls below today's 425 ppm by 2100 once over 55% of global emissions are cut.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 110 }, y: { min: -24, max: 30 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 100, value: 31, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "today", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 100, y: 0 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "22.6 - 0.407 * x", domain: { min: 0, max: 100 } },
+      { id: "china", kind: "point", appearance: "warning", at: { x: 31, y: 10 } },
+      { id: "all", kind: "point", appearance: "secondary", at: { x: 100, y: -18.1 } },
+    ],
+    readouts: [
+      { key: "co2-2100", formula: "521 - 1.73 * p" },
+    ],
+    labels: [
+      { key: "today", objectId: "today", at: { x: 55, y: 0 }, placement: "above-right" },
+      { key: "china", objectId: "china", at: { x: 31, y: 10 }, placement: "above-right" },
+      { key: "all", objectId: "all", at: { x: 100, y: -18.1 }, placement: "below-left" },
+    ],
+  }}
   labels={{
-    chooseRegions: "Choose regions",
-    regions: { china: <>China</>, usa: <>USA</>, india: <>India</>, europe: <>EU</>, rest: <>Rest of the world</> },
-    level: <><InlineMath math="\mathrm{CO_2}" /> in 2100</>,
-    warming: <>Warming in 2100</>,
-    emissions: <><InlineMath math="\mathrm{CO_2}" /> released in 2050 per year</>,
-    peak: <>Highest <InlineMath math="\mathrm{CO_2}" /></>,
-    viewLabel: "Atmosphere bathtub with an emissions tap, a sink drain and a carbon dioxide graph",
+    today: <>Today (425 ppm)</>,
+    china: <>China alone (31%, 467 ppm)</>,
+    all: <>All regions (100%, 348 ppm)</>,
+    p: <>Global emissions cut <InlineMath math="p" /> (%)</>,
+    "co2-2100": <><InlineMath math="\mathrm{CO_2}" /> in 2100 (ppm)</>,
   }}
 />
 
@@ -154,6 +183,7 @@ International and national policy set the larger conditions. Understanding data,
 <Mermaid
   title={<>From Global Goals to National Plans</>}
   description={<>The diagram connects the global temperature goal with national plans, transparency reports, the global stocktake, and updated national plans.</>}
+  footer={<>National plans, transparency reports, and stocktakes loop to tighten climate action.</>}
   chart={`flowchart LR
     A["Shared temperature goal"] --> B["National NDC"]
     B --> C["Transparency report"]
@@ -161,6 +191,8 @@ International and national policy set the larger conditions. Understanding data,
     D --> E["Stronger next NDC"]
     E --> B`}
 />
+
+Notice the arrow returning from the stronger next NDC back into the cycle: the Paris Agreement is designed as a repeating ratchet so each five-year review pushes national plans closer to the shared temperature goal.
 
 ## Reports Show Whether Climate Plans Are Working
 
@@ -178,6 +210,7 @@ The cycle runs on two clocks that both tick every five years, three years apart.
 <MathVisual
   title={<>Each Stocktake Feeds the Next Plans</>}
   description={<>Years of national plans (top row) and global stocktakes (bottom row) under the Paris Agreement. One grid step across is <InlineMath math="2" /> years.</>}
+  footer={<>Every stocktake arrives two years before the next NDC round to inform stronger pledges.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 3 } },
@@ -206,3 +239,5 @@ The cycle runs on two clocks that both tick every five years, three years apart.
     plan: <>new plans, 2025</>,
   }}
 />
+
+Follow the diagonal arrows from the 2023, 2028, and 2033 stocktakes up to the 2025, 2030, and 2035 plans. That two-year offset ensures countries receive collective progress data in time to strengthen their next commitments.

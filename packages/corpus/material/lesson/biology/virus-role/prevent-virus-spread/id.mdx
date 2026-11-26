@@ -48,7 +48,8 @@ Inilah alasan tindakan perlu digabungkan. Sebut <InlineMath math="R" /> sebagai 
 
 <MathVisual
   title={<>Satu Kasus, Lima Generasi</>}
-  description={<>Rantai penularan ilustrasi yang dimulai dari satu kasus. Mendatar: generasi. Tegak: kasus baru dalam satuan <InlineMath math="4" />.</>}
+  description={<>Rantai penularan ilustrasi yang dimulai dari satu kasus. Mendatar: generasi. Tegak: satu kotak grid mewakili <InlineMath math="4" /> kasus baru.</>}
+  footer={<>Turun di bawah R = 1 mengubah lonjakan kasus menjadi penyusutan wabah.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 9 } },
@@ -72,39 +73,60 @@ Inilah alasan tindakan perlu digabungkan. Sebut <InlineMath math="R" /> sebagai 
 
 Virus dengue terutama menular melalui [gigitan nyamuk Aedes](https://www.cdc.gov/dengue/prevention/index.html). Karena itu, pencegahan berfokus pada perlindungan dari gigitan dan pengendalian nyamuk di sekitar rumah. Pencegahan virus pernapasan berfokus pada partikel yang dilepaskan ke udara dan paparan dari jarak dekat.
 
-Setiap tindakan memutus bagian rantai penularan yang berbeda. Gabungkan tindakan-tindakan itu di alun-alun kota dan lihat wabahnya mengecil.
+Setiap tindakan memutus bagian rantai penularan yang berbeda. Geser proporsi orang bermasker <InlineMath math="m" /> di bawah dan ikuti nilai penularan efektif sepanjang cakupan vaksinasi untuk melihat bagaimana gabungan langkah menekan wabah di bawah <InlineMath math="1" />.
 
-<EpidemicSpreadLab
+<MathVisual
   title={<>Pencegahan Mengecilkan Wabah</>}
-  description={<>Atur persentase orang yang bermasker, yang divaksin, dan yang tetap di rumah.</>}
-  measures={["masks", "vaccinated", "distancing"]}
+  description={
+    <>
+      Rata-rata kasus tertular per orang saat cakupan vaksinasi{" "}
+      <InlineMath math="x" /> naik dari <InlineMath math="0" /> ke{" "}
+      <InlineMath math="1" />, untuk proporsi pemakai masker{" "}
+      <InlineMath math="m" />, dibandingkan dengan garis <InlineMath math="R=1" />.
+    </>
+  }
+  footer={<>Gabungan masker dan vaksinasi menekan angka penularan efektif di bawah 1.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0, max: 1, value: 0.6, step: 0.1, label: "m" },
+    ],
+    objects: [
+      { id: "reff", kind: "function", appearance: "primary", formula: "3 * (1 - x) * (1 - 0.5 * m)^2", domain: { min: 0, max: 1 } },
+      { id: "threshold", kind: "function", appearance: "warning", formula: "1 + 0x", domain: { min: 0, max: 1 } },
+    ],
+    readouts: [
+      { key: "at-zero", formula: "3 * (1 - 0.5 * m)^2" },
+      { key: "at-half", formula: "1.5 * (1 - 0.5 * m)^2" },
+    ],
+  }}
   labels={{
-    masks: "Orang yang bermasker",
-    vaccinated: "Orang yang divaksin",
-    distancing: "Orang yang tetap di rumah",
-    reproduction: <>Satu kasus menulari</>,
-    peak: <>Paling banyak sakit bersamaan</>,
-    susceptible: <>Masih rentan</>,
-    infected: <>Sedang tertular</>,
-    recovered: <>Sudah sembuh</>,
-    immune: <>Kebal karena vaksin</>,
-    viewLabel: "Alun-alun kota dengan orang yang berjalan dan grafik wabah",
+    m: <>Proporsi bermasker <InlineMath math="m" /></>,
+    "at-zero": <>R efektif saat 0% divaksin</>,
+    "at-half": <>R efektif saat 50% divaksin</>,
   }}
 />
 
-Tanpa pencegahan, setiap kasus menulari <InlineMath math="3" /> orang. Dalam model ini, masker mengurangi separuh risiko bagi pemakainya, jadi kalau semua bermasker, angkanya turun menjadi <InlineMath math="3 \times 0{,}5 \times 0{,}5 = 0{,}75" />. Saat angka itu di bawah <InlineMath math="1" />, setiap kasus menulari kurang dari satu orang dan wabah padam. Angka sungguhan bergantung pada virus dan produknya, tetapi logikanya tetap sama.
+Tanpa pencegahan, setiap kasus menulari <InlineMath math="3" /> orang. Dalam model ini, masker mengurangi separuh risiko bagi pemakainya, sehingga ketika semua orang bermasker, risiko penularan turun separuhnya dua kali.
+
+<BlockMath math="3 \times 0{,}5 \times 0{,}5 = 0{,}75" />
+
+Saat angka itu di bawah <InlineMath math="1" />, setiap kasus menulari kurang dari satu orang dan wabah padam. Angka sungguhan bergantung pada virus dan produknya, tetapi logikanya tetap sama.
 
 ### Cara Sabun Mengangkat Kotoran dan Mikroba
 
-Kebersihan tangan mengurangi kotoran, minyak, dan mikroba yang tidak selalu terlihat. Molekul sabun memiliki satu bagian yang mudah bercampur dengan air dan bagian lain yang mengikat minyak. Menggosok tangan melepaskan bahan tersebut, lalu **air membawanya dari kulit saat dibilas**.
+Kebersihan tangan mengurangi kotoran, minyak, dan mikroba yang tidak selalu terlihat. Molekul sabun memiliki satu bagian yang mudah bercampur dengan air dan bagian lain yang mengikat minyak. Menggosok tangan melepaskan bahan ini, lalu **air membawanya dari kulit saat dibilas**.
 
-[Mencuci tangan](https://www.cdc.gov/clean-hands/data-research/facts-stats/) dapat melepaskan virus berselubung maupun tidak berselubung secara mekanis. Sabun juga dapat mengganggu lapisan lipid pada virus berselubung. Gesekan melepaskan kotoran dan mikroba, lalu air mengalir membawanya pergi. Pelepasan mekanis dan kerusakan selubung lipid merupakan dua mekanisme yang saling melengkapi. Karena tangan sering membawa bahan dari permukaan ke wajah, mencuci tangan dapat memutus perpindahan tersebut.
+[Mencuci tangan](https://www.cdc.gov/clean-hands/data-research/facts-stats/) dapat melepaskan virus berselubung maupun tidak berselubung secara mekanis. Sabun juga dapat mengganggu lapisan lipid pada virus berselubung. Gesekan melepaskan kotoran dan mikroba, lalu air mengalir membawanya pergi. Pelepasan mekanis dan kerusakan selubung lipid adalah dua mekanisme yang saling melengkapi. Karena tangan sering membawa bahan dari permukaan ke wajah, mencuci tangan dapat memutus perpindahan ini.
 
 Ventilasi memutus jalur udara karena udara segar terus menggantikan udara ruangan. Dengan <InlineMath math="\lambda" /> pertukaran udara per jam, bagian partikel yang masih melayang setelah <InlineMath math="t" /> jam adalah <InlineMath math="e^{-\lambda t}" />, selama tidak ada yang menambah partikel baru. Setelah satu jam, yang tersisa sekitar <InlineMath math="37\%" /> pada satu pertukaran, <InlineMath math="5\%" /> pada tiga, dan kurang dari <InlineMath math="1\%" /> pada enam. Perbesar menit-menit awal, tempat garis-garisnya mulai berpisah.
 
 <MathVisual
   title={<>Udara Segar Membersihkan Ruangan</>}
   description={<>Bagian partikel di udara yang tersisa di ruangan yang tercampur rata setelah sumbernya berhenti, pada <InlineMath math="1" /> (abu-abu), <InlineMath math="3" /> (oranye), dan <InlineMath math="6" /> (teal) pertukaran udara per jam. Mendatar: satu kotak grid berarti <InlineMath math="10" /> menit. Tegak: satu kotak grid berarti <InlineMath math="20" /> persen.</>}
+  footer={<>Pertukaran udara lebih cepat membersihkan partikel melayang jauh lebih singkat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 5.5 } },
@@ -130,6 +152,8 @@ Ventilasi memutus jalur udara karena udara segar terus menggantikan udara ruanga
   }}
 />
 
+Perhatikan seberapa cepat ketiga kurva berpisah pada dua puluh menit pertama. Menaikkan aliran udara dari satu menjadi enam pertukaran per jam memangkas sisa partikel melayang dari lebih dari sepertiga menjadi kurang dari satu persen dalam sejam, sehingga paparan di dalam ruangan jauh menurun.
+
 ## Vaksin Memicu Respons Imun dan Obat Antivirus Menghambat Replikasi
 
 **Vaksin** tidak menghalangi droplet atau aerosol secara fisik. Setelah vaksinasi, sistem imun membentuk respons yang mengenali patogen tertentu. Tingkat perlindungan bergantung pada jenis vaksin dan patogen. Perlindungan terhadap infeksi bisa tidak sempurna meskipun perlindungan terhadap penyakit berat tetap kuat. Vaksin bekerja lewat kekebalan, sedangkan masker, ventilasi, dan kebersihan mengurangi paparan serta penularan.
@@ -141,6 +165,7 @@ Diagram berikut menempatkan setiap tindakan pada tahap yang dipengaruhi. Masker,
 <Mermaid
   title={<>Pencegahan Menargetkan Tahap yang Berbeda</>}
   description={<>Bandingkan titik kerja vaksin, obat, dan kebiasaan pencegahan pada rantai penularan virus.</>}
+  footer={<>Setiap cabang memutus tahap berbeda: paparan, imun, atau replikasi.</>}
   chart={`flowchart TD
     A["Pilih tindakan"] --> B["Kurangi paparan"]
     A --> C["Siapkan respons imun"]
@@ -150,20 +175,36 @@ Diagram berikut menempatkan setiap tindakan pada tahap yang dipengaruhi. Masker,
     D --> G["Obat antivirus"]`}
 />
 
-Vaksin melatih sistem imun membuat antibodi sebelum virus yang sebenarnya datang.
+Vaksin melatih sistem imun membuat antibodi sebelum virus yang sebenarnya datang. Geser konstanta ikatan <InlineMath math="K" /> di bawah untuk melihat bagaimana naiknya kadar antibodi menutupi protein duri hingga melampaui batas penghalangan <InlineMath math="75\%" />.
 
-<AntibodyNeutralizeLab
-  title={<>Antibodi Menghalangi Virion Menempel</>}
-  description={<>Bandingkan orang tanpa dan dengan antibodi dari vaksin. Tekan putar untuk mengirim virion ke arah sel.</>}
-  mode="vaccine"
+<MathVisual
+  title={<>Antibodi Menutupi Duri dan Menghalangi Penempelan</>}
+  description={
+    <>
+      Persentase duri virus yang tertutup antibodi saat konsentrasi antibodi{" "}
+      <InlineMath math="x" /> naik hingga <InlineMath math="20\text{ nM}" />,
+      dibandingkan dengan batas netralisasi <InlineMath math="75\%" />.
+    </>
+  }
+  footer={<>Saat tutupan antibodi melewati 75%, duri bebas terlalu sedikit untuk menempel.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.5, max: 3, value: 1, step: 0.5, label: "k" },
+    ],
+    objects: [
+      { id: "covered", kind: "function", appearance: "primary", formula: "100 * x / (x + k)", domain: { min: 0, max: 20 } },
+      { id: "threshold", kind: "function", appearance: "construction", formula: "75 + 0x", domain: { min: 0, max: 20 } },
+    ],
+    readouts: [
+      { key: "at-twelve", formula: "100 * 12 / (12 + k)" },
+    ],
+  }}
   labels={{
-    choose: "Pilih orang",
-    people: { unvaccinated: <>Belum divaksin</>, vaccinated: <>Sudah divaksin</> },
-    level: <>Kadar antibodi</>,
-    covered: <>Duri yang tertutup</>,
-    blocked: <>Virion yang terhalang</>,
-    chance: <>Peluang satu virion terhalang</>,
-    viewLabel: "Virion SARS-CoV-2 mendekati reseptor ACE2 di permukaan sel, dengan antibodi pada duri",
+    k: <>Konstanta ikatan <InlineMath math="K" /> (nM)</>,
+    "at-twelve": <>Duri tertutup pada 12 nM (%)</>,
   }}
 />
 
@@ -180,6 +221,7 @@ Nyamuk butuh sekitar seminggu di air yang menggenang untuk tumbuh dari telur men
 <MathVisual
   title={<>Menguras Tiap Minggu Mengalahkan Jam Nyamuk</>}
   description={<>Tiga kelompok telur yang diletakkan pada hari ke-<InlineMath math="0" />, <InlineMath math="7" />, dan <InlineMath math="14" />. Tiap baris tumbuh menuju hari ke-<InlineMath math="8" /> dan berhenti di pengurasan berikutnya (titik merah muda). Satu kotak grid mendatar berarti satu hari.</>}
+  footer={<>Pengurasan hari ke-7 memutus pertumbuhan sebelum nyamuk dewasa terbang.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 22.5 }, y: { min: 0, max: 4 } },
@@ -206,3 +248,5 @@ Nyamuk butuh sekitar seminggu di air yang menggenang untuk tumbuh dari telur men
     adult: <>nyamuk dewasa muncul hari ke-8</>,
   }}
 />
+
+Setiap titik merah muda jatuh sehari sebelum nyamuk dewasa muncul, sehingga setiap kelompok telur terputus saat masih berada di dalam air. Menyesuaikan jadwal pengurasan dengan daur hidup serangga mencegah vektor baru terbang dan menularkan virus.

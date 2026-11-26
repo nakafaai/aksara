@@ -26,27 +26,37 @@ In a garden, producers build organic matter, consumers obtain food from other or
 
 > Trace two pathways through the ecosystem. Follow energy from a food source to its consumers. Follow matter as decomposers return it to the environment for organisms to use again.
 
-Energy enters an ecosystem through producers. Compare a leaf cell with an animal cell to see where that flow starts.
+Energy enters an ecosystem through producers. Compare how a chloroplast-bearing leaf cell and a consumer animal cell respond to light intensity as cellular respiration rate <InlineMath math="r" /> changes below.
 
-<CellCutawayLab
-  title={<>A Producer's Cell and a Consumer's Cell</>}
-  description={<>Both cells are cut in half at their real sizes. Pick a cell and look for its chloroplasts.</>}
-  cells={["plant", "animal"]}
+<MathVisual
+  title={<>A Producer's Cell and a Consumer's Cell in Light</>}
+  description={
+    <>
+      Net sugar balance versus light intensity <InlineMath math="x" /> for a
+      leaf cell with chloroplasts (orange) and an animal cell without
+      chloroplasts (violet), at respiration demand <InlineMath math="r" />.
+    </>
+  }
+  footer={<>Only the leaf cell turns positive in light while animal cells stay negative.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: -4, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1, max: 3, value: 1.5, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "leaf", kind: "function", appearance: "primary", formula: "8 * x / (x + 2) - r", domain: { min: 0, max: 10 } },
+      { id: "animal", kind: "function", appearance: "secondary", formula: "-r + 0x", domain: { min: 0, max: 10 } },
+      { id: "zero", kind: "function", appearance: "reference", formula: "0x", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "leaf-net", formula: "8 * 6 / 8 - r" },
+    ],
+  }}
   labels={{
-    choose: "Choose a cell",
-    cells: {
-      animal: "Animal cell",
-      plant: "Leaf cell",
-    },
-    facts: {
-      animal: { nucleus: <>inside a nuclear membrane</>, wall: <>none</>, power: <>mitochondria</> },
-      plant: { nucleus: <>inside a nuclear membrane</>, wall: <>cellulose</>, power: <>chloroplasts and mitochondria</> },
-    },
-    size: <>Length</>,
-    nucleus: <>Genetic material</>,
-    wall: <>Cell wall</>,
-    power: <>Energy organelles</>,
-    viewLabel: "A cell cut in half with its organelles",
+    r: <>Respiration rate <InlineMath math="r" /></>,
+    "leaf-net": <>Leaf net sugar gain at light 6</>,
   }}
 />
 
@@ -73,6 +83,7 @@ The scene below builds this pyramid from numbers. Suppose the grass layer holds 
 <MathVisual
   title={<>An Energy Pyramid with One Tenth per Level</>}
   description={<>Each layer's top area is proportional to the energy available at that trophic level, starting from an illustrative <InlineMath math="10" /> <InlineMath math="000\text{ kJ}" /> in the grass.</>}
+  footer={<>Each trophic tier shrinks tenfold in top area as heat leaves the chain.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: 0, max: 2.5 }, z: { min: -4, max: 4 } },
@@ -106,6 +117,7 @@ Only about one tenth of the energy at one level reaches the next, so <InlineMath
 <MathVisual
   title={<>One Tenth Moves Up Each Level</>}
   description={<>Energy at three levels of one food chain, starting from <InlineMath math="10{,}000\text{ kJ}" /> in the grass. Vertical: one grid step down is one tenth as much energy.</>}
+  footer={<>Nine tenths leave as heat at every step up the food chain.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 1, max: 4.5 } },
@@ -131,19 +143,36 @@ Only about one tenth of the energy at one level reaches the next, so <InlineMath
   }}
 />
 
-Each level passes on only part of its energy. So a field can feed only so many rats, and the rats can feed only so many owls.
+Each level passes on only part of its energy. So a field can feed only so many rats, and the rats can feed only so many owls. Adjust the damping strength <InlineMath math="d" /> below to watch food limits settle both populations toward steady balance.
 
-<PredatorPreyLab
+<MathVisual
   title={<>Food Limits Rats and Owls</>}
-  description={<>The rice in this field can feed at most <InlineMath math="400" /> rats. Set the owls at the start and play <InlineMath math="20" /> years.</>}
-  capacity={400}
+  description={
+    <>
+      Damped oscillations of rats (orange, settling at <InlineMath math="100" />)
+      and barn owls (violet, settling at <InlineMath math="15" />) over{" "}
+      <InlineMath math="20" /> years when rice limits carrying capacity.
+    </>
+  }
+  footer={<>Food carrying capacity damps swings toward 100 rats and 15 barn owls.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 190 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.05, max: 0.3, value: 0.15, step: 0.05, label: "d" },
+    ],
+    objects: [
+      { id: "rats", kind: "function", appearance: "primary", formula: "100 + 80 * exp(-d * x) * sin(2 * pi * x / 4.4)", domain: { min: 0, max: 20 } },
+      { id: "owls", kind: "function", appearance: "secondary", formula: "15 + 10 * exp(-d * x) * sin(2 * pi * (x - 1.1) / 4.4)", domain: { min: 0, max: 20 } },
+    ],
+    readouts: [
+      { key: "rat-swing", formula: "80 * exp(-10 * d)" },
+    ],
+  }}
   labels={{
-    start: "Owls at the start",
-    prey: <>Rats</>,
-    predators: <>Owls</>,
-    peak: <>Most rats</>,
-    year: <>Year</>,
-    viewLabel: "Rice field with rice-field rats and barn owls",
+    d: <>Food-limit damping <InlineMath math="d" /></>,
+    "rat-swing": <>Remaining rat swing at year 10</>,
   }}
 />
 
@@ -162,6 +191,7 @@ Decomposers, like every other living thing, release energy by respiration: <Inli
 <MathVisual
   title={<>Respiration Keeps Every Atom</>}
   description={<>Carbon (gray), hydrogen (violet) and oxygen (orange) atoms in the reactants (back) and the products (front). One grid step up is <InlineMath math="4" /> atoms.</>}
+  footer={<>Reactant and product bars match exactly for carbon, hydrogen, and oxygen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
@@ -187,6 +217,8 @@ Decomposers, like every other living thing, release energy by respiration: <Inli
   }}
 />
 
+Every front bar matches its rear twin in height because respiration never destroys atoms: decomposers release energy as heat while returning every carbon, hydrogen, and oxygen atom to the surrounding air and soil.
+
 ## A Niche Describes How an Organism Uses Its Environment
 
 A **niche** describes the range of environmental conditions an organism tolerates, the resources it uses, and its interactions with other organisms. A habitat is the place where an organism lives. Its niche describes how it lives there. Two organisms can share a habitat but occupy different niches.
@@ -198,6 +230,7 @@ Many plants [depend on pollinators](https://www.fao.org/pollination/). When poll
 <Mermaid
   title={<>Energy Flow and Matter Cycling</>}
   description={<>The diagram shows energy flowing through consumers and matter cycling through decomposers in one ecosystem.</>}
+  footer={<>Energy exits as heat while decomposers loop nutrients back to producers.</>}
   chart={`flowchart TB
     subgraph energy["Energy flow"]
       direction TB
@@ -213,6 +246,8 @@ Many plants [depend on pollinators](https://www.fao.org/pollination/). When poll
     end
     energy ~~~ matter`}
 />
+
+Comparing the two halves side by side highlights the fundamental rule of ecosystems: sunlight moves one way through organisms and escapes as heat, while decomposers close the loop so mineral elements return to producers again and again.
 
 ## Energy Arrows and Matter Cycles Show Different Pathways
 

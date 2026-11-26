@@ -71,43 +71,79 @@ Viruses can be compared by their composition, structure, classification, and eff
   }}
 />
 
-The next model shows the surface of **SARS-CoV-2** in more detail than the general diagram above. [Cryo-electron tomography of intact virions](https://www.nature.com/articles/s41586-020-2665-2) found a lipid bilayer with spike trimers protruding from it. The spikes bind the ACE2 receptor and mediate entry into suitable target cells. This model represents one enveloped virus. Other viruses can have different shapes and parts.
+The next model quantifies how surface spikes on **SARS-CoV-2** bind host receptors. [Cryo-electron tomography of intact virions](https://www.nature.com/articles/s41586-020-2665-2) found a lipid bilayer with spike trimers protruding from it. The spikes bind the ACE2 receptor and mediate entry into suitable target cells. Vary the dissociation constant <InlineMath math="K" /> below to see how binding strength controls the fraction of occupied ACE2 receptors.
 
-<SarsCov2VirionLab
-  title={<>SARS-CoV-2 surface shape</>}
+<MathVisual
+  title={<>Spike Binding and ACE2 Receptor Occupancy</>}
   description={
     <>
-      Observe an enveloped virion with many protein projections on its surface.
+      Fraction of occupied host receptors as spike concentration rises, for a
+      selectable binding constant <InlineMath math="K" />.
     </>
   }
-  labels={{
-    chooseMode: "Choose a surface part",
-    focusLabel: "What to examine",
-    takeawayLabel: "Biological meaning",
-    viewLabel: "SARS-CoV-2 surface model",
-    items: [
-      {
-        tab: "Surface",
-        caption: <>SARS-CoV-2 appears as an enveloped virion with a rough surface and many protein projections.</>,
-        focus: <>The model shows a rounded envelope with protein projections distributed across its surface.</>,
-        takeaway: <>SARS-CoV-2 spike proteins can bind ACE2 on suitable cells and mediate viral entry into the cell.</>,
-      },
+  footer={<>Lower K means tighter spike binding and faster receptor saturation.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1.1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.5, max: 4, value: 1.5, step: 0.5, label: "k" },
     ],
+    objects: [
+      { id: "binding", kind: "function", appearance: "primary", formula: "x / (k + x)", domain: { min: 0, max: 10 } },
+      { id: "half", kind: "function", appearance: "reference", formula: "0.5 + 0x", domain: { min: 0, max: 10 } },
+      { id: "ceiling", kind: "function", appearance: "construction", formula: "1 + 0x", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "bound", formula: "5 / (k + 5)" },
+    ],
+  }}
+  labels={{
+    k: <>Dissociation constant <InlineMath math="K" /></>,
+    bound: <>Bound fraction at concentration 5</>,
   }}
 />
 
-Virions are far smaller than the cells they infect. Zoom from a whole animal cell down to a single virion.
+When <InlineMath math="K" /> is small, spikes grip ACE2 tightly, so even modest viral concentrations cross the half-saturation line quickly and initiate entry. Other viruses carry different surface proteins and target entirely different host receptors.
 
-<CellScaleLab
-  title={<>From a Cell Down to a Virus</>}
-  description={<>Slide the zoom. Each step narrows the view by the same factor, like switching to a stronger microscope objective.</>}
+Virions are far smaller than the cells they infect. Compare an animal cell, a bacterium, and a single virion on a base-ten logarithmic nanometer scale below.
+
+<MathVisual
+  title={<>Size Scale from Virion to Animal Cell</>}
+  description={
+    <>
+      Horizontal axis shows <InlineMath math="\log_{10}" /> of diameter in
+      nanometers, from a <InlineMath math="100\text{ nm}" /> virion past the{" "}
+      <InlineMath math="200\text{ nm}" /> light-microscope limit to a{" "}
+      <InlineMath math="20{,}000\text{ nm}" /> animal cell.
+    </>
+  }
+  footer={<>A virion sits below the light-microscope limit, unlike bacteria and cells.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1.5, max: 4.8 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "limit", kind: "segment", appearance: "warning", from: { x: Math.log10(200), y: 0.2 }, to: { x: Math.log10(200), y: 3.8 } },
+      { id: "virion-bar", kind: "segment", appearance: "primary", from: { x: 1.5, y: 1 }, to: { x: Math.log10(100), y: 1 } },
+      { id: "virion", kind: "point", appearance: "primary", at: { x: Math.log10(100), y: 1 } },
+      { id: "bacterium-bar", kind: "segment", appearance: "secondary", from: { x: 1.5, y: 2 }, to: { x: Math.log10(2000), y: 2 } },
+      { id: "bacterium", kind: "point", appearance: "secondary", at: { x: Math.log10(2000), y: 2 } },
+      { id: "cell-bar", kind: "segment", appearance: "construction", from: { x: 1.5, y: 3 }, to: { x: Math.log10(20000), y: 3 } },
+      { id: "cell", kind: "point", appearance: "construction", at: { x: Math.log10(20000), y: 3 } },
+    ],
+    labels: [
+      { key: "virion", objectId: "virion", at: { x: Math.log10(100), y: 1 }, placement: "above-left" },
+      { key: "limit", objectId: "limit", at: { x: Math.log10(200), y: 3.8 }, placement: "right" },
+      { key: "bacterium", objectId: "bacterium", at: { x: Math.log10(2000), y: 2 }, placement: "right" },
+      { key: "cell", objectId: "cell", at: { x: Math.log10(20000), y: 3 }, placement: "left" },
+    ],
+  }}
   labels={{
-    zoom: "Zoom",
-    view: <>Width of the view</>,
-    cell: <>Animal cell</>,
-    bacterium: <>Bacterium</>,
-    virion: <>SARS-CoV-2 virion</>,
-    viewLabel: "An animal cell, a bacterium and a virion in a row at their real sizes",
+    virion: <>virion (100 nm)</>,
+    limit: <>light limit (200 nm)</>,
+    bacterium: <>bacterium (2,000 nm)</>,
+    cell: <>animal cell (20,000 nm)</>,
   }}
 />
 
@@ -123,25 +159,50 @@ Outside a host cell, a virion may persist for a while, attach to a suitable cell
 
 Outside a cell, a virion does not perform metabolism, make proteins, or copy its genome. Inside a suitable cell, the viral genome can direct the production of viral proteins and new genome copies. The virus therefore reproduces **only in a compatible host cell**.
 
-Some viruses carry DNA, others RNA. SARS-CoV-2 carries one strand of RNA almost <InlineMath math="30{,}000" /> bases long.
+Some viruses carry DNA, others RNA. SARS-CoV-2 carries one strand of RNA <InlineMath math="29{,}903" /> bases long, beginning with the sequence `AUUAAAGGUUUAUACCUUCCCAGGUAACAA`. Slide the polymerase copying rate <InlineMath math="r" /> below to see how genome length sets copying time.
 
-<DnaHelixLab
-  title={<>The Start of a Virus's RNA Genome</>}
-  description={<>These are the first <InlineMath math="30" /> bases of the SARS-CoV-2 reference genome, as one strand of RNA. Rotate the strand and read its bases.</>}
-  nucleic="rna"
-  genome={29903}
-  sequence="AUUAAAGGUUUAUACCUUCCCAGGUAACAA"
+<MathVisual
+  title={<>Viral Genome Length and Copying Time</>}
+  description={
+    <>
+      Minutes needed to copy a viral genome of length <InlineMath math="x" />{" "}
+      kilobases at copying rate <InlineMath math="r" /> kilobases per minute,
+      with poliovirus, SARS-CoV-2, and phage lambda marked.
+    </>
+  }
+  footer={<>Longer viral genomes take proportionally longer to copy at a given rate.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 52 }, y: { min: 0, max: 25 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 2, max: 8, value: 4, step: 1, label: "r" },
+    ],
+    objects: [
+      { id: "time", kind: "function", appearance: "primary", formula: "x / r", domain: { min: 0, max: 50 } },
+      { id: "polio", kind: "segment", appearance: "reference", from: { x: 7.5, y: 0 }, to: { x: 7.5, y: 24 } },
+      { id: "sars", kind: "segment", appearance: "warning", from: { x: 29.9, y: 0 }, to: { x: 29.9, y: 24 } },
+      { id: "lambda", kind: "segment", appearance: "secondary", from: { x: 48.5, y: 0 }, to: { x: 48.5, y: 24 } },
+    ],
+    readouts: [
+      { key: "sars-time", formula: "29.9 / r" },
+    ],
+    labels: [
+      { key: "polio", objectId: "polio", at: { x: 7.5, y: 22 }, placement: "right" },
+      { key: "sars", objectId: "sars", at: { x: 29.9, y: 22 }, placement: "left" },
+      { key: "lambda", objectId: "lambda", at: { x: 48.5, y: 22 }, placement: "left" },
+    ],
+  }}
   labels={{
-    length: <>Bases shown</>,
-    span: <>Length</>,
-    whole: <>Bases in the whole genome</>,
-    share: <>Share of the genome shown</>,
-    gc: <>Share of G and C</>,
-    viewLabel: "A single strand of RNA with its bases",
+    r: <>Copying rate <InlineMath math="r" /> (kb/min)</>,
+    "sars-time": <>SARS-CoV-2 copying time (min)</>,
+    polio: <>Polio (7.5 kb)</>,
+    sars: <>SARS-CoV-2 (29.9 kb)</>,
+    lambda: <>Lambda (48.5 kb)</>,
   }}
 />
 
-The whole genome holds <InlineMath math="29{,}903" /> bases, so this stretch is only about <InlineMath math="0.1\%" /> of it. Notice that RNA uses U instead of T, and the strand is single. To multiply, this virus uses its own enzyme to copy that RNA inside the host cell.
+That opening <InlineMath math="30" />-base snippet is only about <InlineMath math="0.1\%" /> of the full <InlineMath math="29{,}903" />-base RNA strand. Notice that RNA uses U instead of T, and the strand is single. To multiply, this virus uses its own enzyme to copy that RNA inside the host cell.
 
 ## Capsid and Envelope Structures Determine Viral Shape
 

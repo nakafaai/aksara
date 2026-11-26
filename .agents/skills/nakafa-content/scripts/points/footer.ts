@@ -1,4 +1,8 @@
-import { FIGURE_NAMES } from "@nakafa/aksara-contracts/visual/catalog";
+import type { FigureName } from "@nakafa/aksara-contracts/visual/catalog";
+import {
+  assessmentVisuals,
+  FIGURE_NAMES,
+} from "@nakafa/aksara-contracts/visual/catalog";
 import { Array as Arr, HashSet, Option, Predicate } from "effect";
 import type {
   EstreeNode,
@@ -13,12 +17,18 @@ import {
 } from "#nakafa-content/mdx/parse";
 import type { PointsFinding } from "#nakafa-content/points/finding";
 
+/** Tells whether one figure's visual contract declares a `footer` prop. */
+function declaresFooterProp(name: FigureName): boolean {
+  return Predicate.hasProperty(assessmentVisuals[name].props.fields, "footer");
+}
+
 /**
- * Every Visual Catalog figure that renders inside a VisualCard with an authored
- * footer (D3): all `FIGURE_NAMES` except embedded `Youtube` videos.
+ * Every Visual Catalog figure whose contract accepts an authored `footer` prop
+ * (D3): derived directly from `assessmentVisuals` so `points` and
+ * `compileContent` stay aligned.
  */
 export const FOOTER_VISUALS = HashSet.fromIterable(
-  Arr.filter(FIGURE_NAMES, (name) => name !== "Youtube")
+  Arr.filter(FIGURE_NAMES, declaresFooterProp)
 );
 
 /** Tells whether one JSX component requires an authored `footer` prop. */

@@ -30,6 +30,7 @@ Yogurt is an example you can watch yourself. Lactic acid bacteria turn the milk'
       jar to test whether the milk has set.
     </>
   }
+  footer={<>Once lactic acid drops pH past 4.6, casein proteins lock into a gel.</>}
   labels={{
     hours: "Hours of incubation",
     tilt: "Tilt",
@@ -50,62 +51,55 @@ In a prokaryotic cell, DNA occupies the nucleoid region and **no nuclear membran
 
 > Bacteria are living cells because they have a membrane, cytoplasm, DNA, ribosomes, and metabolism. Shape helps with early recognition, but identifying a bacterium also requires evidence from its cell structure, metabolism, habitat, and effects.
 
-<BacteriaStructureLab
-  title={<>Comparing bacterial shape, cell contents, and cell wall</>}
+<MathVisual
+  title={<>Peptidoglycan Thickness and Cell-Wall Dye Retention</>}
   description={
     <>
-      The model separates outer shape, prokaryotic contents, and cell-wall layers.
-      Rotate the model to see the arrangement of each part from different sides.
+      Percentage of crystal-violet stain retained against peptidoglycan wall
+      thickness <InlineMath math="x" /> in nanometers, with thin Gram-negative
+      (<InlineMath math="5\text{ nm}" />) and thick Gram-positive
+      (<InlineMath math="40\text{ nm}" />) walls marked.
     </>
   }
-  labels={{
-    chooseMode: "Choose a bacterial view",
-    focusLabel: "Part to observe",
-    takeawayLabel: "Function of each part",
-    viewLabel: "Bacterial structure model",
-    items: [
-      {
-        tab: "Shape",
-        scene: {
-          kind: "shape",
-          coccusLabel: "Coccus",
-          bacillusLabel: "Bacillus",
-          spiralLabel: "Spiral",
-        },
-        caption: <>In the starting view, the forms from left to right show coccus, bacillus, and spiral bacteria as early recognition clues.</>,
-        focus: <>Shape gives the first clue about bacterial morphology. Other evidence completes the identification.</>,
-        takeaway: <>Strong identification uses outer form together with other traits.</>,
-      },
-      {
-        tab: "Inside",
-        scene: {
-          kind: "structure",
-          nucleoidDnaLabel: "Nucleoid DNA",
-        },
-        caption: <>The nucleoid contains bacterial DNA, while ribosomes are spread through the cytoplasm to make proteins.</>,
-        focus: <>There is no membrane-bound nucleus, but DNA and ribosomes are still present.</>,
-        takeaway: <>A bacterium stays alive because its membrane, cytoplasm, DNA, ribosomes, and metabolism work together.</>,
-      },
-      {
-        tab: "Wall",
-        scene: {
-          kind: "wall",
-          gramPositiveLabel: "Gram-positive",
-          gramNegativeLabel: "Gram-negative",
-        },
-        caption: <>In the starting view, the left stack shows a thicker Gram-positive wall, while the right stack shows a Gram-negative wall with an outer membrane.</>,
-        focus: <>Compare peptidoglycan thickness and the presence of an outer membrane.</>,
-        takeaway: <>Cell-envelope structure affects shape, protection, Gram staining, and sensitivity to some antibiotics.</>,
-      },
+  footer={<>Thick Gram-positive peptidoglycan traps stain far better than thin walls.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 60 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 5, max: 25, value: 12, step: 5, label: "w" },
+    ],
+    objects: [
+      { id: "retention", kind: "function", appearance: "primary", formula: "100 * x / (x + w)", domain: { min: 0, max: 60 } },
+      { id: "neg", kind: "segment", appearance: "warning", from: { x: 5, y: 0 }, to: { x: 5, y: 100 } },
+      { id: "pos", kind: "segment", appearance: "secondary", from: { x: 40, y: 0 }, to: { x: 40, y: 100 } },
+    ],
+    readouts: [
+      { key: "gram-pos", formula: "100 * 40 / (40 + w)" },
+      { key: "gram-neg", formula: "100 * 5 / (5 + w)" },
+    ],
+    labels: [
+      { key: "neg", objectId: "neg", at: { x: 5, y: 95 }, placement: "right" },
+      { key: "pos", objectId: "pos", at: { x: 40, y: 95 }, placement: "left" },
     ],
   }}
+  labels={{
+    w: <>Washout constant <InlineMath math="w" /> (nm)</>,
+    "gram-pos": <>Gram-positive retention at 40 nm (%)</>,
+    "gram-neg": <>Gram-negative retention at 5 nm (%)</>,
+    neg: <>Gram-negative (5 nm)</>,
+    pos: <>Gram-positive (40 nm)</>,
+  }}
 />
+
+Comparing the two vertical markers shows why envelope structure separates bacterial groups far more reliably than outer shape alone: thick peptidoglycan resists alcohol washout, whereas thin Gram-negative layers lose purple dye easily and rely on an outer membrane for extra protection.
 
 Bacteria can change food so quickly because they multiply by splitting. One cell splits into two, so after <InlineMath math="n" /> splits there are <InlineMath math="2^n" /> cells. Zoom in on the first points, then look at how steeply the last ones climb.
 
 <MathVisual
   title={<>Splitting Doubles the Cells</>}
   description={<>Cell count after each split, starting from one cell. Horizontal: number of splits. Vertical: one grid step is <InlineMath math="10" /> cells.</>}
+  footer={<>Each split doubles the total, making late divisions jump steeply upward.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
@@ -131,24 +125,40 @@ Bacteria can change food so quickly because they multiply by splitting. One cell
   }}
 />
 
+Each horizontal step doubles the previous bar height, so the last split alone adds <InlineMath math="32" /> new cells, more than all earlier splits combined. That steep exponential jump explains why a few cells on warm food can turn into spoilage in just a few hours.
+
 ### One Cell Becomes a Colony
 
 The graph counts the cells, but you can also watch how they divide. A rod-shaped cell such as Escherichia coli grows to almost twice its length, pinches in the middle, and splits into **two daughter cells** that are alike. In a rich broth at <InlineMath math="37^\circ\text{C}" />, one round takes about <InlineMath math="20\text{ minutes}" />.
 
-<BinaryFissionLab
+<MathVisual
   title={<>Binary Fission Builds a Colony</>}
   description={
     <>
-      One Escherichia coli cell divides every{" "}
-      <InlineMath math="20\text{ minutes}" />. Slide the time or play the
-      first two hours.
+      Cells produced from one Escherichia coli bacterium over{" "}
+      <InlineMath math="120\text{ minutes}" /> as doubling time{" "}
+      <InlineMath math="g" /> changes between <InlineMath math="20" /> and{" "}
+      <InlineMath math="40\text{ minutes}" />.
     </>
   }
+  footer={<>Shorter doubling times multiply a single cell into dozens within two hours.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 70 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "g", min: 20, max: 40, value: 20, step: 5, label: "g" },
+    ],
+    objects: [
+      { id: "colony", kind: "function", appearance: "primary", formula: "2^(x / g)", domain: { min: 0, max: 120 } },
+    ],
+    readouts: [
+      { key: "at-two-hours", formula: "2^(120 / g)" },
+    ],
+  }}
   labels={{
-    minutes: "Minutes since the first cell",
-    generations: <>Divisions</>,
-    cells: <>Number of cells</>,
-    viewLabel: "Colony of rod-shaped bacteria under a microscope",
+    g: <>Doubling time <InlineMath math="g" /> (min)</>,
+    "at-two-hours": <>Cells after 120 minutes</>,
   }}
 />
 
@@ -158,15 +168,9 @@ Two hours hold <InlineMath math="120/20=6" /> divisions, so one cell becomes <In
 
 Bacterial cell shape can be observed with a microscope and provides one early clue. **Cell shape alone cannot identify** a bacterial type. A complete identification also needs evidence about cell structure, chemistry, or genes.
 
-### Three Common Bacterial Shapes
+Bacteria are extremely small, generally on the micrometer scale. Common forms include **coccus**, or spherical bacteria, **bacillus**, or rod-shaped bacteria, and **spiral** forms. Cocci can appear in pairs, chains, or clusters. Rod-shaped cells can also be single or arranged in groups. These morphology terms describe shape, while taxonomic identification needs more evidence.
 
-Bacteria are extremely small, generally on the micrometer scale. Common forms include **coccus**, or spherical bacteria, **bacillus**, or rod-shaped bacteria, and **spiral** forms. Cocci can appear in pairs, chains, or clusters. Rod-shaped cells can also be single or arranged in groups. These morphology terms describe shape. Taxonomic identification needs more evidence.
-
-### Complete Identification Combines Several Traits
-
-Shape helps during early observation. Two rod-shaped bacteria may have different lifestyles, cell walls, or effects, so identification also compares **structure, metabolism, and habitat**.
-
-A bacterial sketch records shape only. Identification also checks how the cell is built, where it lives, and what it does to nearby organisms.
+Shape helps during early observation, yet two rod-shaped bacteria may have different lifestyles, cell walls, or effects, so identification also compares **structure, metabolism, and habitat**. A bacterial sketch records shape only, whereas full identification checks how the cell is built, where it lives, and what it does to nearby organisms.
 
 | Visible clue | What it helps with | Why it is still limited |
 | --- | --- | --- |
@@ -198,6 +202,7 @@ A **Gram stain** shows that difference in the wall. Crystal violet colours every
       step to see each shape's colour.
     </>
   }
+  footer={<>Alcohol separates purple Gram-positive cells from pale Gram-negative ones.</>}
   labels={{
     chooseStep: "Choose the staining step",
     steps: {
@@ -221,6 +226,7 @@ A cell takes in food and gets rid of waste through its surface, while what it ne
 <MathVisual
   title={<>Small Cells Have More Surface per Volume</>}
   description={<>Cubes with sides of <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="4" /> micrometers. Each label divides the surface area by the volume.</>}
+  footer={<>Smaller cubes keep a larger surface-to-volume ratio for fast diffusion.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 9.5 }, y: { min: 0, max: 4.5 }, z: { min: -2.5, max: 2.5 } },
@@ -243,6 +249,8 @@ A cell takes in food and gets rid of waste through its surface, while what it ne
   }}
 />
 
+Doubling the side length halves the surface-to-volume ratio from <InlineMath math="6" /> to <InlineMath math="3" /> and then to <InlineMath math="1.5" />. Staying at micrometer scale keeps the membrane large relative to the cytoplasm, so nutrients diffuse in and wastes diffuse out rapidly without internal transport organs.
+
 ### Flagella Carry a Cell toward Food
 
 Many rod-shaped bacteria swim with **flagella**, long tails that turn like propellers. Escherichia coli swims straight at about <InlineMath math="25\ \mu\text{m/s}" /> for roughly <InlineMath math="1\text{ s}" />, then tumbles for about <InlineMath math="0.1\text{ s}" /> and faces a new random direction. The cell can't see food, but it can sense whether the sugar around it is increasing.
@@ -256,6 +264,7 @@ Many rod-shaped bacteria swim with **flagella**, long tails that turn like prope
       four times faster.
     </>
   }
+  footer={<>Longer runs up the sugar gradient steer the teal cell toward food.</>}
   labels={{
     sensing: <>Progress toward sugar, teal cell</>,
     mutant: <>Progress toward sugar, grey cell</>,
@@ -277,6 +286,7 @@ To assess a bacterium's role, ask where it lives, which metabolic process it use
 <Mermaid
   title={<>Evidence for Identifying Bacteria</>}
   description={<>Combine outer shape, cell contents, and cell-wall evidence to identify a bacterium from several clues.</>}
+  footer={<>Three independent clues converge on a reliable bacterial identification.</>}
   chart={`flowchart LR
     A["Outer shape"] --> B["Morphology clue"]
     C["Cell contents"] --> D["DNA and ribosomes"]
@@ -285,6 +295,8 @@ To assess a bacterium's role, ask where it lives, which metabolic process it use
     D --> G
     F --> G`}
 />
+
+Follow all three branches into the right box: morphology narrows the search, cell contents confirm a prokaryotic cell, and the Gram stain reveals the envelope type. Combining those three lines of evidence prevents misidentifying unrelated bacteria that happen to share one shape.
 
 ## Cell Parts and Bacterial Diversity
 

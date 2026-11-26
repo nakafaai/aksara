@@ -49,6 +49,7 @@ Stell dir zwei Reispopulationen mit je <InlineMath math="10" /> Pflanzen vor, je
 <MathVisual
   title={<>Vielfalt gibt manchen Pflanzen eine Chance</>}
   description={<>Beispielhafte Toleranz von <InlineMath math="10" /> Pflanzen mit einer gemeinsamen Variante (oben) und <InlineMath math="10" /> Pflanzen mit verschiedenen Varianten (unten). Punkte rechts der rosa Linie halten die neue Bedingung aus.</>}
+  footer={<>Nur in der genetisch vielfältigen Reihe überschreiten Pflanzen die Schwelle.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 3.5 } },
@@ -89,21 +90,40 @@ Stell dir zwei Reispopulationen mit je <InlineMath math="10" /> Pflanzen vor, je
   }}
 />
 
-Genetische Variation kann so klein sein wie eine einzige Base. Das folgende Kärtchen vergleicht den Anfang des menschlichen Beta-Globin-Gens (HBB), das am Aufbau von Hämoglobin beteiligt ist, in zwei Allelen.
+Genetische Variation kann so klein sein wie eine einzige Base im menschlichen Beta-Globin-Gen (HBB), die `GAG` in `GTG` verwandelt. Verändere unten die Allelhäufigkeit <InlineMath math="q" />, um zu sehen, wie sich eine einzelne Basenvariante auf Genotypen einer Population verteilt.
 
-<DnaHelixLab
-  title={<>Eine Base macht ein anderes Allel</>}
-  description={<>Der Anfang des menschlichen HBB-Gens, <InlineMath math="27" /> Basenpaare. Wechsle zwischen dem üblichen Allel und dem Sichelzell-Allel und sieh, wie die veränderte Base leuchtet.</>}
-  sequence="ATG GTG CAT CTG ACT CCT GAG GAG AAG"
-  variant="ATG GTG CAT CTG ACT CCT GTG GAG AAG"
+<MathVisual
+  title={<>Genotypanteile aus einem einzigen Varianten-Allel</>}
+  description={
+    <>
+      Prozentsatz üblicher Homozygoten (grau), heterozygoter Träger (orange)
+      und varianter Homozygoten (violett) bei einer Allelhäufigkeit{" "}
+      <InlineMath math="x" /> von <InlineMath math="0" /> bis{" "}
+      <InlineMath math="0{,}5" />.
+    </>
+  }
+  footer={<>Selbst ein seltenes Ein-Basen-Allel tritt bei Heterozygoten häufig auf.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0.05, max: 0.5, value: 0.1, step: 0.05, label: "q" },
+    ],
+    objects: [
+      { id: "usual", kind: "function", appearance: "reference", formula: "100 * (1 - x)^2", domain: { min: 0, max: 0.5 } },
+      { id: "carrier", kind: "function", appearance: "primary", formula: "200 * x * (1 - x)", domain: { min: 0, max: 0.5 } },
+      { id: "variant", kind: "function", appearance: "secondary", formula: "100 * x^2", domain: { min: 0, max: 0.5 } },
+    ],
+    readouts: [
+      { key: "carriers", formula: "200 * q * (1 - q)" },
+      { key: "homozygous", formula: "100 * q^2" },
+    ],
+  }}
   labels={{
-    choose: "Allel wählen",
-    strands: { first: <>Übliches Allel</>, second: <>Sichelzell-Allel</> },
-    length: <>Basenpaare</>,
-    span: <>Länge</>,
-    differences: <>Abweichende Basen</>,
-    identity: <>Gleiche Basen</>,
-    viewLabel: "DNA-Doppelhelix des HBB-Gens mit leuchtender veränderter Base",
+    q: <>Häufigkeit des Varianten-Allels <InlineMath math="q" /></>,
+    carriers: <>Heterozygote Träger (%)</>,
+    homozygous: <>Variante Homozygote (%)</>,
   }}
 />
 
@@ -128,11 +148,16 @@ Vergleiche diese erfundenen Beobachtungen bei gleicher Flächengröße und Zähl
 
 Beide Flächen enthalten <InlineMath math="10" /> Individuen und <InlineMath math="3" /> Arten. Auf Fläche <InlineMath math="2" /> sind die **Häufigkeiten gleichmäßiger verteilt**. Die bloße Artenzahl bildet diesen Unterschied nicht ab.
 
-Die Szene unten macht aus den beiden Flächen Säulen, orange für Art A, violett für B und türkis für C, ein Gitterschritt steht für <InlineMath math="2" /> Individuen. Dreh sie, bis du beide Reihen nebeneinander siehst. Fläche <InlineMath math="1" /> hat eine hohe Säule und zwei Stummel, Fläche <InlineMath math="2" /> drei ähnlich hohe Säulen. Eine verbreitete Art, das in eine Zahl zu fassen, ist der Simpson-Index, <InlineMath math="1-\sum p_i^2" />, wobei <InlineMath math="p_i" /> der Anteil jeder Art an allen Individuen ist. Er erreicht <InlineMath math="0{,}34" /> für Fläche <InlineMath math="1" /> und <InlineMath math="0{,}66" /> für Fläche <InlineMath math="2" />, die gleichmäßigere Fläche kommt also bei gleicher Artenzahl auf fast den doppelten Wert.
+Die Szene unten zeigt beide Flächen als Säulen: orange für Art A, violett für B und türkis für C, wobei ein Gitterschritt <InlineMath math="2" /> Individuen entspricht. Fläche <InlineMath math="1" /> besitzt eine hohe Säule und zwei Stummel, während Fläche <InlineMath math="2" /> drei ähnlich hohe Säulen zeigt.
+
+Ökologen fassen diesen Unterschied mit dem **Simpson-Diversitätsindex** zusammen, wobei <InlineMath math="p_i" /> der Anteil jeder Art an allen Individuen ist:
+
+<BlockMath math="D = 1 - \sum p_i^2" />
 
 <MathVisual
   title={<>Gleicher Artenreichtum, andere Gleichmäßigkeit</>}
   description={<>Individuen der Arten A (orange), B (violett) und C (türkis) auf zwei hypothetischen, gleich großen Flächen. Ein Gitterschritt nach oben sind <InlineMath math="2" /> Individuen.</>}
+  footer={<>Gleichmäßigere Artenanteile erhöhen den Simpson-Index ohne neue Arten.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
@@ -156,6 +181,8 @@ Die Szene unten macht aus den beiden Flächen Säulen, orange für Art A, violet
   }}
 />
 
+Fläche <InlineMath math="1" /> erreicht <InlineMath math="0{,}34" />, während Fläche <InlineMath math="2" /> mit denselben drei Arten <InlineMath math="0{,}66" /> erreicht, also fast den doppelten Wert. Wer Gleichmäßigkeit neben dem Artenreichtum misst, erkennt sofort, ob eine dominante Art die übrigen verdrängt.
+
 ### Ökosystemvielfalt vergleicht Lebensräume und Beziehungen
 
 Die Ökosystemvielfalt betrachtet eine noch größere Ebene. Reisfelder, Flüsse, tropische Regenwälder, Mangroven, Savannen und Korallenriffe bieten unterschiedliche Bedingungen. **Licht, Wasser, Salzgehalt, Boden, Temperatur** und die Beziehungen zwischen Organismen bestimmen, welche Lebewesen dort überleben können.
@@ -167,6 +194,7 @@ Primäre Biodiversitätsdaten können aus Museen, wissenschaftlichen Sammlungen,
 <Mermaid
   title={<>Drei Ebenen der Biodiversität im Reisfeld</>}
   description={<>Das Diagramm vergleicht genetische Vielfalt, Artenvielfalt und Ökosystemvielfalt in einem Reisfeld.</>}
+  footer={<>Ein einziges Feld vereint Gen-, Arten- und Lebensraumvielfalt zugleich.</>}
   chart={`flowchart TD
     A["Biologische Vielfalt"] --> B["Genetische Ebene"]
     A --> C["Artenebene"]
@@ -181,6 +209,7 @@ Der Artenreichtum zählt, wie viele Arten an einem Ort leben. Beide Flächen hab
 <MathVisual
   title={<>Gleiche Anzahl, anderer Artenreichtum</>}
   description={<>Zwei Flächen mit je <InlineMath math="12" /> Individuen. Jede Farbe ist eine Art.</>}
+  footer={<>Gleiche Individuenzahlen können ganz verschiedene Artenzahlen verbergen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 4.5 } },
@@ -224,18 +253,38 @@ Der Artenreichtum zählt, wie viele Arten an einem Ort leben. Beide Flächen hab
   }}
 />
 
-Zur Vielfalt der Ökosysteme gehören auch Beziehungen, etwa zwischen Jägern und Beute. Am Rand eines Reisfelds jagen Schleiereulen Reisfeldratten.
+Zur Vielfalt der Ökosysteme gehören auch Beziehungen, etwa zwischen Jägern und Beute. Am Rand eines Reisfelds jagen Schleiereulen Reisfeldratten. Verändere unten die Schwankungsbreite <InlineMath math="a" />, um die zeitversetzten Wellen von Ratten und Eulen über <InlineMath math="20" /> Jahre zu verfolgen.
 
-<PredatorPreyLab
+<MathVisual
   title={<>Ratten und Eulen steigen und fallen gemeinsam</>}
-  description={<>Stell ein, wie viele Eulen am Anfang im Feld leben, und drück auf Abspielen, um das Modell <InlineMath math="20" /> Jahre laufen zu lassen.</>}
+  description={
+    <>
+      Gekoppelte Populationswellen von Ratten (orange) um <InlineMath math="100" />{" "}
+      und Schleiereulen (violett) um <InlineMath math="20" /> über{" "}
+      <InlineMath math="20" /> Jahre im <InlineMath math="4{,}4" />-Jahres-Zyklus.
+    </>
+  }
+  footer={<>Eulengipfel folgen knapp hinter Rattengipfeln und drücken die Beute herab.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 155 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 10, max: 45, value: 30, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "rats", kind: "function", appearance: "primary", formula: "100 + a * sin(2 * pi * x / 4.4)", domain: { min: 0, max: 20 } },
+      { id: "owls", kind: "function", appearance: "secondary", formula: "20 + 0.25 * a * sin(2 * pi * (x - 1.1) / 4.4)", domain: { min: 0, max: 20 } },
+    ],
+    readouts: [
+      { key: "peak-rats", formula: "100 + a" },
+      { key: "peak-owls", formula: "20 + 0.25 * a" },
+    ],
+  }}
   labels={{
-    start: "Eulen zu Beginn",
-    prey: <>Ratten</>,
-    predators: <>Eulen</>,
-    peak: <>Meiste Ratten</>,
-    year: <>Jahr</>,
-    viewLabel: "Reisfeld mit Reisfeldratten und Schleiereulen",
+    a: <>Ratten-Amplitude <InlineMath math="a" /></>,
+    "peak-rats": <>Höchstzahl Ratten</>,
+    "peak-owls": <>Höchstzahl Eulen</>,
   }}
 />
 

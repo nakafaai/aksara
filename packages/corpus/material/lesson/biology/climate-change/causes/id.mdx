@@ -39,6 +39,8 @@ Aktivitas manusia, terutama melalui [emisi gas rumah kaca](https://www.ipcc.ch/r
   }}
 />
 
+Naikkan tingkat gas pada model dan lihat lebih banyak panah inframerah kembali ke permukaan alih-alih lepas ke angkasa. Energi yang tertahan itulah yang mendorong Bumi menuju suhu keseimbangan baru yang lebih hangat.
+
 ### Sumber Utama Setiap Gas Rumah Kaca
 
 Emisi karbon dioksida dari aktivitas manusia terutama berasal dari [pembakaran bahan bakar fosil dan bahan biologis](https://www.epa.gov/ghgemissions/overview-greenhouse-gases). Metana berkaitan dengan **produksi energi, pertanian, dan pembusukan limbah organik**. Dinitrogen oksida dapat berasal dari pertanian, industri, pembakaran, dan pengolahan air limbah.
@@ -57,6 +59,7 @@ Dalam model sederhana di buku pelajaran, tiap lapisan gas rumah kaca menyerap se
 <MathVisual
   title={<>Lapisan Bertambah, Permukaan Makin Hangat</>}
   description={<>Suhu permukaan dalam model lapisan dengan nol, satu, dan dua lapisan yang menyerap penuh. Satu kotak grid ke atas berarti <InlineMath math="50" /> kelvin.</>}
+  footer={<>Satu lapisan penyerap sudah menaikkan suhu permukaan dari 255 K ke 303 K.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
@@ -79,24 +82,48 @@ Dalam model sederhana di buku pelajaran, tiap lapisan gas rumah kaca menyerap se
   }}
 />
 
-Tiga gas rumah kaca utama dari kegiatan manusia adalah <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{CH_4}" />, dan <InlineMath math="\mathrm{N_2O}" />. Putar molekulnya dan bandingkan bentuknya.
+Tiga gas rumah kaca utama dari kegiatan manusia adalah <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{CH_4}" />, dan <InlineMath math="\mathrm{N_2O}" />. Bandingkan besarnya setara pemanasan selama <InlineMath math="100" /> tahun dari massa yang sama untuk tiap gas.
 
-<MoleculeShapeLab
-  title={<>Tiga Gas Rumah Kaca dalam 3D</>}
-  description={<>Pilih karbon dioksida, metana, atau dinitrogen oksida, lalu bandingkan sudut ikatannya.</>}
-  molecules={[
-    { id: "carbon-dioxide", name: "Karbon dioksida" },
-    { id: "methane", name: "Metana" },
-    { id: "dinitrogen-monoxide", name: "Dinitrogen oksida" },
-  ]}
+<MathVisual
+  title={<>Daya Pemanasan Tiga Gas Rumah Kaca</>}
+  description={
+    <>
+      Setara pemanasan <InlineMath math="100" /> tahun (dalam <InlineMath math="\mathrm{kg\ CO_2e}" />) terhadap massa gas <InlineMath math="x" /> (gram) untuk <InlineMath math="\mathrm{N_2O}" /> (merah muda), <InlineMath math="\mathrm{CH_4}" /> (oranye), dan <InlineMath math="\mathrm{CO_2}" /> (abu-abu).
+    </>
+  }
+  footer={<>Dalam 100 tahun, 10 g N2O setara 2,73 kg CO2 dan CH4 setara 0,30 kg CO2.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: -0.2, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1, max: 10, value: 10, step: 1, label: "m" },
+    ],
+    objects: [
+      { id: "n2o", kind: "function", appearance: "warning", formula: "0.273 * x", domain: { min: 0, max: 10 } },
+      { id: "ch4", kind: "function", appearance: "primary", formula: "0.03 * x", domain: { min: 0, max: 10 } },
+      { id: "co2", kind: "function", appearance: "reference", formula: "0.001 * x", domain: { min: 0, max: 10 } },
+      { id: "pt-n2o", kind: "point", appearance: "warning", at: { x: 10, y: 2.73 } },
+      { id: "pt-ch4", kind: "point", appearance: "primary", at: { x: 10, y: 0.3 } },
+      { id: "pt-co2", kind: "point", appearance: "reference", at: { x: 10, y: 0.01 } },
+    ],
+    readouts: [
+      { key: "n2o-eq", formula: "0.273 * m" },
+      { key: "ch4-eq", formula: "0.03 * m" },
+    ],
+    labels: [
+      { key: "n2o", objectId: "pt-n2o", at: { x: 10, y: 2.73 }, placement: "left" },
+      { key: "ch4", objectId: "pt-ch4", at: { x: 10, y: 0.3 }, placement: "above" },
+      { key: "co2", objectId: "pt-co2", at: { x: 10, y: 0.01 }, placement: "below" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang</>,
-    formula: <>Rumus molekul</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    n2o: <InlineMath math="\mathrm{N_2O}\ (\times 273)" />,
+    ch4: <InlineMath math="\mathrm{CH_4}\ (\times 30)" />,
+    co2: <InlineMath math="\mathrm{CO_2}\ (\times 1)" />,
+    m: <>Massa gas <InlineMath math="m" /> (g)</>,
+    "n2o-eq": <>Pemanasan <InlineMath math="\mathrm{N_2O}" /> (<InlineMath math="\mathrm{kg\ CO_2e}" />)</>,
+    "ch4-eq": <>Pemanasan <InlineMath math="\mathrm{CH_4}" /> (<InlineMath math="\mathrm{kg\ CO_2e}" />)</>,
   }}
 />
 
@@ -114,28 +141,50 @@ Karbon dioksida adalah salah satu dari beberapa gas rumah kaca. Emisinya besar k
 
 Elpiji yang dipakai untuk memasak adalah campuran propana dan butana. Saat dibakar, karbon yang tersimpan di dalamnya berpindah ke udara sebagai <InlineMath math="\mathrm{CO_2}" />.
 
-<ReactionBalanceLab
+<MathVisual
   title={<>Membakar Bahan Bakar Melepaskan Karbon Dioksida</>}
-  description={<>Jalankan reaksi atom demi atom. Bandingkan pembakaran propana dan metana.</>}
-  reactions={[
-    { id: "propane-combustion", name: "Membakar propana", tab: <InlineMath math="\mathrm{C_3H_8}" /> },
-    { id: "methane-combustion", name: "Membakar metana", tab: <InlineMath math="\mathrm{CH_4}" /> },
-  ]}
-  reading="molecules"
+  description={
+    <>
+      Jumlah molekul <InlineMath math="\mathrm{CO_2}" /> yang dilepas terhadap molekul <InlineMath math="\mathrm{O_2}" /> yang dipakai saat membakar propana (oranye, <InlineMath math="3/5" />) dibanding metana (ungu, <InlineMath math="1/2" />).
+    </>
+  }
+  footer={<>Tiap 5 molekul O2 pada propana menghasilkan 3 CO2, pada metana 2,5 CO2.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 16 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 2, max: 15, value: 10, step: 1, label: "k" },
+    ],
+    objects: [
+      { id: "propane", kind: "function", appearance: "primary", formula: "0.6 * x", domain: { min: 0, max: 15 } },
+      { id: "methane", kind: "function", appearance: "secondary", formula: "0.5 * x", domain: { min: 0, max: 15 } },
+      { id: "pt-p", kind: "point", appearance: "primary", at: { x: 10, y: 6 } },
+      { id: "pt-m", kind: "point", appearance: "secondary", at: { x: 10, y: 5 } },
+    ],
+    readouts: [
+      { key: "propane-co2", formula: "0.6 * k" },
+      { key: "methane-co2", formula: "0.5 * k" },
+    ],
+    labels: [
+      { key: "propane", objectId: "pt-p", at: { x: 10, y: 6 }, placement: "above" },
+      { key: "methane", objectId: "pt-m", at: { x: 10, y: 5 }, placement: "below" },
+    ],
+  }}
   labels={{
-    atoms: <>Jumlah atom tiap unsur</>,
-    choose: "Pilih reaksi",
-    equation: <>Persamaan reaksi</>,
-    mass: <>Massa pereaksi dan produk</>,
-    molecules: <>Jumlah molekul</>,
-    products: <>Produk</>,
-    progress: "Jalannya reaksi",
-    reactants: <>Pereaksi</>,
-    view: "Reaksi pada tingkat atom",
+    propane: <InlineMath math="\mathrm{C_3H_8}" />,
+    methane: <InlineMath math="\mathrm{CH_4}" />,
+    k: <>Molekul <InlineMath math="\mathrm{O_2}" /> <InlineMath math="k" /></>,
+    "propane-co2": <><InlineMath math="\mathrm{CO_2}" /> dari propana</>,
+    "methane-co2": <><InlineMath math="\mathrm{CO_2}" /> dari metana</>,
   }}
 />
 
-Persamaannya <InlineMath math="\mathrm{C_3H_8} + 5\,\mathrm{O_2} \rightarrow 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}" />. Satu molekul propana menghasilkan tiga molekul <InlineMath math="\mathrm{CO_2}" />, karena setiap atom karbonnya mengambil oksigen dari udara. Itulah sebabnya sekitar <InlineMath math="44\text{ g}" /> propana menghasilkan sekitar <InlineMath math="3 \times 44 = 132\text{ g}" /> <InlineMath math="\mathrm{CO_2}" />, tiga kali massa bahan bakarnya.
+Persamaan setara untuk pembakaran propana adalah:
+
+<BlockMath math="\mathrm{C_3H_8} + 5\,\mathrm{O_2} \rightarrow 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}" />
+
+Satu molekul propana menghasilkan tiga molekul <InlineMath math="\mathrm{CO_2}" />, karena setiap atom karbonnya mengambil oksigen dari udara. Itulah sebabnya sekitar <InlineMath math="44\text{ g}" /> propana menghasilkan sekitar <InlineMath math="132\text{ g}" /> <InlineMath math="\mathrm{CO_2}" />, tiga kali massa bahan bakarnya.
 
 ### Katalis Kendaraan Menangani Polutan Tertentu
 
@@ -143,7 +192,7 @@ Katalis pada kendaraan dapat mengurangi polutan seperti karbon monoksida dan nit
 
 ## Perubahan Lahan dan Pengelolaan Sampah Menambah Emisi
 
-Penggunaan lahan, pengolahan sampah, dan produksi plastik juga mengubah aliran karbon. Kegiatan tersebut dapat menambah gas rumah kaca atau **mengurangi karbon yang tersimpan** di hutan dan ekosistem lain.
+Penggunaan lahan, pengolahan sampah, dan produksi plastik juga mengubah aliran karbon. Kegiatan ini dapat menambah gas rumah kaca atau **mengurangi karbon yang tersimpan** di hutan dan ekosistem lain.
 
 ### Hutan Menyimpan Karbon dan Menjaga Habitat
 
@@ -157,11 +206,12 @@ Kondisi pembusukan ikut menentukan gas yang dominan. Dalam keadaan miskin oksige
 
 ### Emisi Sepanjang Daur Hidup Plastik
 
-Plastik menghasilkan [emisi sepanjang daur hidup](https://www.oecd.org/en/publications/global-plastics-outlook_de747aef-en.html), mulai dari penggunaan bahan baku fosil dan produksi yang membutuhkan banyak energi sampai pengolahan limbah, terutama pembakaran. Mikroplastik merupakan masalah pencemaran yang serius. Jalur utama dampak iklim berasal dari **emisi saat produksi dan akhir pemakaian**.
+Plastik menghasilkan [emisi sepanjang daur hidup](https://www.oecd.org/en/publications/global-plastics-outlook_de747aef-en.html), mulai dari penggunaan bahan baku fosil dan produksi yang membutuhkan banyak energi sampai pengolahan limbah, terutama pembakaran. Mikroplastik adalah masalah pencemaran yang serius. Jalur utama dampak iklim berasal dari **emisi saat produksi dan akhir pemakaian**.
 
 <Mermaid
   title={<>Tiga Aktivitas Manusia yang Menambah Pemanasan</>}
   description={<>Hubungkan bahan bakar fosil, limbah organik, dan kehilangan hutan dengan perubahan gas rumah kaca atau penyerapan karbon.</>}
+  footer={<>Bahan bakar fosil, sampah anoksik, dan kehilangan hutan menambah pemanasan.</>}
   chart={`flowchart LR
     A["Bahan bakar fosil"] --> B["Karbon dioksida"]
     C["Limbah organik membusuk tanpa cukup oksigen"] --> D["Metana"]
@@ -176,6 +226,7 @@ Bayangkan udara sebagai bak: emisi menuangkan karbon ke dalamnya, dan hutan sert
 <MathVisual
   title={<>Serapan Berkurang, Penumpukan Makin Cepat</>}
   description={<>Karbon tambahan di udara dalam model bak ilustratif, dengan hutan utuh (abu-abu) dan setelah penebangan (merah muda). Mendatar: tahun. Tegak: satu kotak grid berarti <InlineMath math="10" /> satuan karbon.</>}
+  footer={<>Serapan turun dari 5 ke 3 menaikkan sisa karbon tahunan dari 5 jadi 7.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 7.5 } },
@@ -196,6 +247,8 @@ Bayangkan udara sebagai bak: emisi menuangkan karbon ke dalamnya, dan hutan sert
     cleared: <InlineMath math="10-3=7" />,
   }}
 />
+
+Bandingkan kedua garis setelah sepuluh tahun: garis hutan utuh mencapai <InlineMath math="50" /> satuan, sedangkan garis setelah penebangan naik sampai <InlineMath math="70" /> satuan. Melemahnya penyerap karbon mempercepat penumpukan di atmosfer meski emisi tahunan tidak berubah.
 
 ## Dari Aktivitas Manusia ke Pemanasan
 

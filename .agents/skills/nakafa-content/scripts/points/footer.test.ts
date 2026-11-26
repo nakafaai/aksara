@@ -6,17 +6,17 @@ import {
 } from "#nakafa-content/points/footer";
 
 describe("requiresVisualFooter", () => {
-  it("requires a footer on every catalog figure card except Youtube", () => {
-    for (const name of [
-      "MathVisual",
-      "VirusStructureLab",
-      "BarChart",
-      "Mermaid",
-    ]) {
+  it("requires a footer only on catalog figures whose contract declares a footer prop", () => {
+    for (const name of ["MathVisual", "YogurtLab", "BarChart", "Mermaid"]) {
       assert.isTrue(requiresVisualFooter(name), name);
     }
     for (const name of [
       "Youtube",
+      "VirusStructureLab",
+      "FungiMyceliumLab",
+      "GreenhouseEffectLab",
+      "AtomShellLab",
+      "ParabolicMovementLab",
       "ContentBlock",
       "InlineMath",
       "BlockMath",
@@ -28,10 +28,11 @@ describe("requiresVisualFooter", () => {
 });
 
 describe("findMissingFooters", () => {
-  it("passes figures with a non-empty authored footer and ignores Youtube and layout", () => {
+  it("passes figures with a non-empty authored footer and ignores figures without a footer contract", () => {
     const source = [
       "<MathVisual title={<>Line</>} description={<>Slope.</>} footer={<>Watch the steepness rise.</>} scene={{}} />",
-      '<VirusStructureLab title={<>Virus</>} description={<>Coat.</>} footer="Rotate the capsid to see its symmetry." />',
+      '<YogurtLab title={<>Yogurt</>} description={<>Fermentation.</>} footer="Slide temperature to track lactic acid." />',
+      "<VirusStructureLab title={<>Virus</>} description={<>Coat.</>} />",
       '<Youtube videoId="abc123" />',
       "<ContentBlock>",
       "<Mermaid title={<>Flow</>} description={<>Steps.</>} footer={<>Follow each arrow left to right.</>} chart={`graph LR; A-->B`} />",
@@ -43,7 +44,7 @@ describe("findMissingFooters", () => {
   it("reports missing or blank footers on direct and expression-wrapped visual cards", () => {
     const source = [
       "<MathVisual title={<>Line</>} description={<>Slope.</>} scene={{}} />",
-      "<VirusStructureLab title={<>Virus</>} description={<>Coat.</>} footer={<>   </>} />",
+      "<YogurtLab title={<>Yogurt</>} description={<>Fermentation.</>} footer={<>   </>} />",
       '<BarChart title={<>Bars</>} description={<>Counts.</>} footer="" />',
       "{<CellCutawayLab title={<>Cell</>} description={<>Parts.</>} />}",
       "{<HeartCycleLab title={<>Heart</>} description={<>Beat.</>} footer={<>Watch the valves snap shut.</>} />}",
@@ -68,11 +69,11 @@ describe("findMissingFooters", () => {
 
   it("rejects dynamic empty footer expressions and preserves non-figure expressions", () => {
     const source = [
-      "<VirusStructureLab footer={undefined} />",
-      "<VirusStructureLab footer />",
-      "<VirusStructureLab footer={<>First <b>second</b></>} />",
-      "{<VirusStructureLab {...props} footer /> }",
-      "{<VirusStructureLab {...props} footer={<>Shown <b>here</b></>} /> }",
+      "<YogurtLab footer={undefined} />",
+      "<YogurtLab footer />",
+      "<YogurtLab footer={<>First <b>second</b></>} />",
+      "{<YogurtLab {...props} footer /> }",
+      "{<YogurtLab {...props} footer={<>Shown <b>here</b></>} /> }",
       "{<UnknownWidget />}",
     ].join("\n");
     assert.deepStrictEqual(
@@ -89,7 +90,7 @@ describe("findMissingFooters", () => {
     // Synthetic MDX node without source position or attributes still reports line 1.
     assert.deepStrictEqual(
       findMissingFooters({
-        children: [{ name: "VirusStructureLab", type: "mdxJsxFlowElement" }],
+        children: [{ name: "YogurtLab", type: "mdxJsxFlowElement" }],
         type: "root",
       }).map(({ column, line, rule }) => [line, column, rule]),
       [[1, 1, "missing-visual-footer"]]

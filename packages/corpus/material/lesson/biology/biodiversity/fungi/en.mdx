@@ -24,6 +24,7 @@ You can watch hyphae spread in the card below. Tempeh makers sow Rhizopus spores
 <HyphaeDecayLab
   title={<>Hyphae Bind Soybeans into Tempeh</>}
   description={<>Rhizopus spores are sown on split cooked soybeans. Slide the hours or press play to watch the mycelium grow for <InlineMath math="36\text{ hours}" />.</>}
+  footer={<>Branching hyphae knit loose soybeans into a solid white mycelium mat.</>}
   labels={{
     hours: "Hours after the spores are sown",
     time: <>Time</>,
@@ -85,6 +86,7 @@ The white threads in tempeh grow at their tips, and every tip can fork into two.
 <MathVisual
   title={<>Forking Hyphae Multiply the Tips</>}
   description={<>A hypha that forks three times. The violet points are the growing tips.</>}
+  footer={<>Three rounds of branching multiply one hyphal tip into eight active tips.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 6.5 } },
@@ -123,6 +125,8 @@ The white threads in tempeh grow at their tips, and every tip can fork into two.
   }}
 />
 
+Every fork doubles the number of active tips secreting digestive enzymes and absorbing nutrients, so branching rapidly multiplies the fungus's contact area across a food surface.
+
 ## Fungi Feed Differently from Animals
 
 Fungi release enzymes onto organic material and **absorb the smaller molecules produced by digestion**. Animals usually digest food inside the body, while plants make sugars through photosynthesis.
@@ -137,26 +141,38 @@ This process is called **extracellular digestion**. **Hyphae** are fine threads 
 
 Fungal cell walls contain **chitin**, while plant cell walls mainly contain cellulose. Chitin is also found in insect exoskeletons. Cell-wall material is one of the traits biologists use to distinguish fungi from plants.
 
-Not every fungus forms hyphae. Baker's yeast lives as single cells about <InlineMath math="5\ \mu\text{m}" /> long, and it reproduces by **budding**.
+Not every fungus forms hyphae. Baker's yeast lives as single cells about <InlineMath math="5\ \mu\text{m}" /> long, and it reproduces by **budding**. Slide the cycle duration <InlineMath math="c" /> below to track how a daughter bud approaches four fifths of the mother cell's length before separation.
 
-<CellCutawayLab
-  title={<>A Yeast Cell Buds</>}
-  description={<>The yeast cell is cut in half. Slide the minutes of its cycle to watch a bud grow and the nucleus move into the neck.</>}
-  cells={["yeast"]}
+<MathVisual
+  title={<>Yeast Bud Growth across One Cell Cycle</>}
+  description={
+    <>
+      Bud length in micrometers over <InlineMath math="120\text{ minutes}" />{" "}
+      for a selectable cycle time <InlineMath math="c" />, compared against the{" "}
+      <InlineMath math="5\ \mu\text{m}" /> mother cell and the{" "}
+      <InlineMath math="4\ \mu\text{m}" /> separation size.
+    </>
+  }
+  footer={<>The growing bud reaches about 4 µm, four fifths of the mother cell.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 60, max: 120, value: 90, step: 15, label: "c" },
+    ],
+    objects: [
+      { id: "bud", kind: "function", appearance: "primary", formula: "4 / (1 + exp(-0.08 * (x - 0.5 * c)))", domain: { min: 0, max: 120 } },
+      { id: "mother", kind: "function", appearance: "reference", formula: "5 + 0x", domain: { min: 0, max: 120 } },
+      { id: "target", kind: "function", appearance: "construction", formula: "4 + 0x", domain: { min: 0, max: 120 } },
+    ],
+    readouts: [
+      { key: "at-ninety", formula: "4 / (1 + exp(-0.08 * (90 - 0.5 * c)))" },
+    ],
+  }}
   labels={{
-    choose: "Choose a cell",
-    cells: {
-      yeast: "Yeast",
-    },
-    facts: {
-      yeast: { nucleus: <>inside a nuclear membrane</>, wall: <>glucan and chitin</>, power: <>mitochondria</> },
-    },
-    minutes: "Minutes into the cycle",
-    size: <>Length</>,
-    nucleus: <>Genetic material</>,
-    wall: <>Cell wall</>,
-    power: <>Energy organelles</>,
-    viewLabel: "A cell cut in half with its organelles",
+    c: <>Cycle duration <InlineMath math="c" /> (min)</>,
+    "at-ninety": <>Bud length at 90 minutes (µm)</>,
   }}
 />
 
@@ -185,6 +201,7 @@ On plant roots, some fungi form [**mycorrhizae**](https://research.fs.usda.gov/t
 <Mermaid
   title={<>Matter Exchange Between Plant Roots and Mycorrhizal Fungi</>}
   description={<>Follow the exchange of sugars, water, and minerals at roots to understand plant-fungus symbiosis.</>}
+  footer={<>Photosynthetic sugars flow to the fungus while water and minerals return.</>}
   chart={`flowchart LR
     P["Plant"] -->|"Sugars from photosynthesis"| F["Mycorrhizal fungus"]
     F -->|"Water and minerals"| P`}
@@ -195,6 +212,7 @@ Decomposer fungi break down fallen leaves, so the litter shrinks. As a simple mo
 <MathVisual
   title={<>Fungi Halve the Leaf Litter</>}
   description={<>Remaining litter in a simple model where half is broken down every <InlineMath math="4" /> weeks. Horizontal: one grid step is <InlineMath math="2" /> weeks. Vertical: one grid step is <InlineMath math="12.5" /> grams.</>}
+  footer={<>Every four weeks cuts remaining leaf litter in half, returning nutrients.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 8.5 } },
@@ -217,6 +235,8 @@ Decomposer fungi break down fallen leaves, so the litter shrinks. As a simple mo
     end: <InlineMath math="6.25\ \mathrm{g}" />,
   }}
 />
+
+After four half-lives, or sixteen weeks, only <InlineMath math="6.25\text{ g}" /> of the original <InlineMath math="100\text{ g}" /> of dead leaves remains while decomposer fungi recycle the rest back into soil minerals.
 
 ## Fungi Absorb Food after External Digestion
 

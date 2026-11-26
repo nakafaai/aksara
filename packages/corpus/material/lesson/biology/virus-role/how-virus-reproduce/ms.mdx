@@ -64,20 +64,36 @@ Faj virulen mengikut kitar litik. Faj temperat juga boleh melalui kitar lisogeni
   }}
 />
 
-Setiap kitar litik membebaskan banyak virion baharu. Dalam sesebuah populasi, penggandaan yang sama berlaku dari seorang ke seorang.
+Setiap kitar litik membebaskan banyak virion baharu. Dalam sesebuah populasi, penggandaan yang sama berlaku dari seorang ke seorang. Laraskan purata jangkitan bagi setiap kes <InlineMath math="R" /> di bawah untuk melihat bagaimana gelombang wabak tanpa kawalan meningkat lalu perlahan.
 
-<EpidemicSpreadLab
+<MathVisual
   title={<>Satu Kes Menjadi Wabak</>}
-  description={<>Orang ramai berjalan-jalan di dataran bandar. Tekan main untuk melihat satu jangkitan merebak apabila tiada sesiapa mengambil langkah pencegahan.</>}
-  measures={[]}
+  description={
+    <>
+      Peratusan kumulatif yang dijangkiti (oren) dan gelombang kes aktif (ungu)
+      sepanjang <InlineMath math="40" /> hari apabila nombor pembiakan{" "}
+      <InlineMath math="R" /> berubah.
+    </>
+  }
+  footer={<>R lebih tinggi menaikkan puncak sakit dan menghampiri 100% jumlah jangkitan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1.5, max: 4, value: 3, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "100 * (1 - exp(-r)) / (1 + 49 * exp(-0.18 * (r - 1) * x))", domain: { min: 0, max: 40 } },
+      { id: "active", kind: "function", appearance: "secondary", formula: "15 * (r - 1) * exp(-((x - 16) / 6)^2)", domain: { min: 0, max: 40 } },
+    ],
+    readouts: [
+      { key: "peak", formula: "15 * (r - 1)" },
+    ],
+  }}
   labels={{
-    reproduction: <>Setiap kes menjangkiti</>,
-    peak: <>Paling ramai sakit serentak</>,
-    susceptible: <>Masih boleh dijangkiti</>,
-    infected: <>Sedang dijangkiti</>,
-    recovered: <>Sudah pulih</>,
-    immune: <>Imun kerana vaksin</>,
-    viewLabel: "Dataran bandar dengan orang berjalan dan graf wabak",
+    r: <>Purata jangkitan per kes <InlineMath math="R" /></>,
+    peak: <>Puncak sakit serentak (%)</>,
   }}
 />
 
@@ -109,6 +125,7 @@ Semasa sintesis, genom virus disalin dan protein virus dibuat **sebagai komponen
 <Mermaid
   title={<>Memasang Komponen Virus Menjadi Virion</>}
   description={<>Peringkat litik mengikut urutan anak panah: penjerapan, penembusan, sintesis, pemasangan, lisis.</>}
+  footer={<>Ikut kiri ke kanan: sintesis membina bahagian, pemasangan membentuk virion.</>}
   chart={`flowchart LR
     A(["Penjerapan"]) --> B(["Penembusan"])
     B --> C(["Sintesis"])
@@ -121,6 +138,7 @@ Putar bakteriofaj ini ketika ia sedang melekat. Gentian ekornya mencengkam permu
 <MathVisual
   title={<>Faj Mendarat dan Menyuntik</>}
   description={<>Bakteriofaj pada permukaan bakteria: kepala ikosahedron, ekor, enam gentian ekor dan genom yang disuntik di bawah permukaan.</>}
+  footer={<>Hanya genom virus masuk ke dalam bakteria manakala salut protein kekal di luar.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.5, max: 6 }, z: { min: -3, max: 3 } },
@@ -172,24 +190,40 @@ Putar bakteriofaj ini ketika ia sedang melekat. Gentian ekornya mencengkam permu
   }}
 />
 
-Penyalinan genom bergantung pada pemasangan bes. Pada faj DNA, dua bebenang terbuka, dan setiap bes mengambil pasangannya: A dengan T, G dengan C.
+Penyalinan genom bergantung pada pemasangan bes. Pada faj DNA, dua bebenang terbuka, dan setiap bes mengambil pasangannya: A dengan T, G dengan C. Laraskan kelajuan penyalinan polimerase <InlineMath math="r" /> di bawah untuk melihat berapa cepat sel perumah menyalin genom faj lambda sepanjang <InlineMath math="48.5\text{ kb}" />.
 
-<DnaHelixLab
+<MathVisual
   title={<>Genom Virus Disalin Bes demi Bes</>}
-  description={<>Contoh satu bahagian DNA sepanjang <InlineMath math="27" /> pasangan bes. Gerakkan penyalinan atau tekan main, dan perhatikan nukleotida baharu berpasangan dengan kedua-dua bebenang lama.</>}
-  copy
-  sequence="ATG GCT AGC TTA GGC ATC GAT CCG TAA"
+  description={
+    <>
+      Kilobes yang disalin sepanjang <InlineMath math="100" /> saat pada kelajuan
+      polimerase <InlineMath math="r" /> pasangan bes sesaat, berbanding garis
+      genom faj lambda <InlineMath math="48.5\text{ kb}" />.
+    </>
+  }
+  footer={<>Polimerase lebih pantas mencapai garis genom lambda 48.5 kb lebih awal.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 300, max: 1000, value: 600, step: 100, label: "r" },
+    ],
+    objects: [
+      { id: "copied", kind: "function", appearance: "primary", formula: "r * x / 1000", domain: { min: 0, max: 100 } },
+      { id: "lambda", kind: "function", appearance: "construction", formula: "48.5 + 0x", domain: { min: 0, max: 100 } },
+    ],
+    readouts: [
+      { key: "at-minute", formula: "r * 60 / 1000" },
+    ],
+  }}
   labels={{
-    copy: "Kemajuan penyalinan",
-    length: <>Pasangan bes</>,
-    span: <>Panjang</>,
-    copied: <>Bes baharu yang berpasangan</>,
-    turns: <>Pusingan heliks</>,
-    viewLabel: "Heliks DNA terbuka dan sedang disalin",
+    r: <>Kelajuan salin <InlineMath math="r" /> (bp/s)</>,
+    "at-minute": <>Kilobes disalin dalam 60 s</>,
   }}
 />
 
-Setiap bebenang baharu berpasangan dengan satu bebenang lama, jadi kedua-dua salinan sama tepat dengan yang asal. Bahagian sepanjang <InlineMath math="27" /> pasangan bes ini hanya <InlineMath math="27 \times 0.34\text{ nm} \approx 9.2\text{ nm}" /> panjangnya. Genom faj lambda mempunyai <InlineMath math="48{,}502" /> pasangan bes, dan sel perumah membekalkan nukleotida serta tenaga untuk menyalin kesemuanya.
+Setiap bebenang baharu berpasangan dengan satu bebenang lama, jadi kedua-dua salinan sama tepat dengan yang asal. Bahagian sepanjang <InlineMath math="27" /> pasangan bes ini hanya berukuran kira-kira <InlineMath math="9.2\text{ nm}" />. Genom faj lambda mempunyai <InlineMath math="48{,}502" /> pasangan bes, dan sel perumah membekalkan nukleotida serta tenaga untuk menyalin kesemuanya.
 
 ## Profaj Boleh Kekal dalam Genom Perumah
 
@@ -204,6 +238,7 @@ Kedua-dua kitar menyalin genom virus, tetapi pada kadar yang sangat berbeza. Dal
 <MathVisual
   title={<>Letusan atau Salinan Senyap</>}
   description={<>Ilustrasi bilangan salinan selepas setiap pusingan bagi kitar litik (oren) dan kitar lisogenik (ungu). Paksi menegak: satu langkah grid ialah sepuluh kali ganda bilangan salinan.</>}
+  footer={<>Letusan litik meningkat jauh lebih pantas daripada pembahagian profaj.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 8.5 } },
@@ -232,6 +267,8 @@ Kedua-dua kitar menyalin genom virus, tetapi pada kadar yang sangat berbeza. Dal
     lyso: <InlineMath math="2^4=16" />,
   }}
 />
+
+Selepas empat pusingan sahaja, garis litik melonjak kepada seratus juta salinan manakala laluan profaj baru mencecah enam belas salinan di dalam bakteria hidup. Jurang besar ini menunjukkan sebab jangkitan litik cepat memusnahkan koloni perumah sementara lisogeni mengekalkan genom virus merentasi generasi.
 
 ## Membezakan Sintesis daripada Pemasangan
 

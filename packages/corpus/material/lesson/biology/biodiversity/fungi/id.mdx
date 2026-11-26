@@ -15,7 +15,7 @@ Pada tempe, bagian fungi yang mudah kita amati adalah **jaringan hifa putih** di
 
 ### Miselium adalah Jaringan Hifa
 
-Pada tempe, jaringan hifa putih yang rapat dari fungi *Rhizopus* merekatkan biji kedelai. Benang putih tersebut merupakan hifa fungi. Banyak fungi membangun tubuh dari hifa yang menyebar pada bahan makanan. Fungi uniseluler seperti ragi memiliki bentuk tubuh yang berbeda.
+Pada tempe, jaringan hifa putih yang rapat dari fungi *Rhizopus* merekatkan biji kedelai. Benang putih itu adalah hifa fungi. Banyak fungi membangun tubuh dari hifa yang menyebar pada bahan makanan. Fungi uniseluler seperti ragi memiliki bentuk tubuh yang berbeda.
 
 **Fungi** adalah organisme eukariotik heterotrof. **Eukariotik** berarti selnya memiliki inti bermembran. **Heterotrof** berarti tidak membuat makanan sendiri seperti tumbuhan berklorofil. Fungi memperoleh nutrien dengan menyerap bahan organik dari organisme hidup atau sisa organisme.
 
@@ -24,6 +24,7 @@ Kamu bisa melihat hifa menyebar di kartu berikut. Pembuat tempe menabur spora Rh
 <HyphaeDecayLab
   title={<>Hifa Mengikat Kedelai Menjadi Tempe</>}
   description={<>Spora Rhizopus ditabur di atas kedelai rebus yang dibelah. Geser jamnya atau tekan putar untuk melihat miselium tumbuh selama <InlineMath math="36\text{ jam}" />.</>}
+  footer={<>Hifa bercabang mengikat biji kedelai menjadi lapisan miselium putih padat.</>}
   labels={{
     hours: "Jam setelah spora ditabur",
     time: <>Waktu</>,
@@ -85,6 +86,7 @@ Benang putih pada tempe tumbuh di ujungnya, dan tiap ujung bisa bercabang jadi d
 <MathVisual
   title={<>Hifa Bercabang Melipatgandakan Ujung</>}
   description={<>Satu hifa yang bercabang tiga kali. Titik ungu adalah ujung yang sedang tumbuh.</>}
+  footer={<>Tiga kali percabangan melipatgandakan satu ujung hifa menjadi delapan ujung.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 6.5 } },
@@ -123,6 +125,8 @@ Benang putih pada tempe tumbuh di ujungnya, dan tiap ujung bisa bercabang jadi d
   }}
 />
 
+Setiap percabangan menggandakan jumlah ujung aktif yang melepaskan enzim pencerna dan menyerap nutrien, sehingga jaringan miselium cepat memperluas bidang sentuhnya di permukaan makanan.
+
 ## Cara Makan Fungi Berbeda dari Hewan
 
 Fungi melepaskan enzim pada bahan organik, lalu **menyerap molekul kecil hasil pencernaan**. Hewan biasanya mencerna makanan di dalam tubuh, sedangkan tumbuhan membuat gula melalui fotosintesis.
@@ -137,26 +141,38 @@ Proses ini disebut **pencernaan ekstraseluler**. Hifa menyediakan permukaan temp
 
 Dinding sel fungi mengandung **kitin**, sedangkan dinding sel tumbuhan terutama mengandung selulosa. Kitin juga ditemukan pada rangka luar serangga. Bahan penyusun dinding sel menjadi salah satu ciri yang dipakai untuk membedakan fungi dari tumbuhan.
 
-Tidak semua jamur membentuk hifa. Khamir roti hidup sebagai sel tunggal sepanjang sekitar <InlineMath math="5\ \mu\text{m}" /> dan berkembang biak dengan **bertunas**.
+Tidak semua jamur membentuk hifa. Khamir roti hidup sebagai sel tunggal sepanjang sekitar <InlineMath math="5\ \mu\text{m}" /> dan berkembang biak dengan **bertunas**. Geser lama siklus <InlineMath math="c" /> di bawah untuk melihat bagaimana tunas anak mendekati empat per lima panjang sel induk sebelum memisah.
 
-<CellCutawayLab
-  title={<>Sel Khamir Bertunas</>}
-  description={<>Sel khamir dipotong separuh. Geser menit siklusnya untuk melihat tunas tumbuh dan inti bergerak ke leher tunas.</>}
-  cells={["yeast"]}
+<MathVisual
+  title={<>Pertumbuhan Tunas Khamir dalam Satu Siklus Sel</>}
+  description={
+    <>
+      Panjang tunas dalam mikrometer selama <InlineMath math="120\text{ menit}" />{" "}
+      untuk lama siklus <InlineMath math="c" /> yang bisa diatur, dibandingkan
+      dengan sel induk <InlineMath math="5\ \mu\text{m}" /> dan ukuran pisah{" "}
+      <InlineMath math="4\ \mu\text{m}" />.
+    </>
+  }
+  footer={<>Tunas tumbuh hingga sekitar 4 µm, empat per lima ukuran sel induknya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 60, max: 120, value: 90, step: 15, label: "c" },
+    ],
+    objects: [
+      { id: "bud", kind: "function", appearance: "primary", formula: "4 / (1 + exp(-0.08 * (x - 0.5 * c)))", domain: { min: 0, max: 120 } },
+      { id: "mother", kind: "function", appearance: "reference", formula: "5 + 0x", domain: { min: 0, max: 120 } },
+      { id: "target", kind: "function", appearance: "construction", formula: "4 + 0x", domain: { min: 0, max: 120 } },
+    ],
+    readouts: [
+      { key: "at-ninety", formula: "4 / (1 + exp(-0.08 * (90 - 0.5 * c)))" },
+    ],
+  }}
   labels={{
-    choose: "Pilih sel",
-    cells: {
-      yeast: "Khamir",
-    },
-    facts: {
-      yeast: { nucleus: <>di dalam membran inti</>, wall: <>glukan dan kitin</>, power: <>mitokondria</> },
-    },
-    minutes: "Menit dalam siklus",
-    size: <>Panjang</>,
-    nucleus: <>Materi genetik</>,
-    wall: <>Dinding sel</>,
-    power: <>Organel energi</>,
-    viewLabel: "Sel yang dipotong separuh dengan organelnya",
+    c: <>Lama siklus <InlineMath math="c" /> (menit)</>,
+    "at-ninety": <>Panjang tunas pada menit ke-90 (µm)</>,
   }}
 />
 
@@ -174,7 +190,7 @@ Fungi pada akar tumbuhan dapat membantu penyerapan air dan mineral. Fungi pada m
 
 ### Tempat dan Hubungan Menentukan Peran Fungi
 
-Dampak fungi bergantung pada **jenis, tempat hidup, dan organisme** yang berinteraksi dengan fungi tersebut. Ragi membantu fermentasi, jamur konsumsi menjadi bahan makanan, dan fungi tanah menguraikan daun serta kayu. Jenis lain dapat merusak makanan, menyerang tanaman, atau menyebabkan penyakit.
+Dampak fungi bergantung pada **jenis, tempat hidup, dan organisme** yang berinteraksi dengannya. Ragi membantu fermentasi, jamur konsumsi menjadi bahan makanan, dan fungi tanah menguraikan daun serta kayu. Jenis lain dapat merusak makanan, menyerang tanaman, atau menyebabkan penyakit.
 
 Fungi dapat ditemukan pada makanan, tanah, akar, dan jaringan yang terinfeksi. Dampak fungi berubah sesuai lokasi, sumber nutrien, dan organisme di sekitar.
 
@@ -185,6 +201,7 @@ Pada akar tumbuhan, sebagian fungi membentuk [**mikoriza**](https://research.fs.
 <Mermaid
   title={<>Jamur Akar Memindahkan Gula dan Mineral</>}
   description={<>Ikuti pertukaran gula, air, dan mineral untuk memahami cara tumbuhan dan fungi saling memasok zat yang dibutuhkan.</>}
+  footer={<>Gula fotosintesis mengalir ke jamur, sedangkan air dan mineral ke akar.</>}
   chart={`flowchart LR
     P["Tumbuhan"] -->|"Gula dari fotosintesis"| F["Fungi mikoriza"]
     F -->|"Air dan mineral"| P`}
@@ -195,6 +212,7 @@ Jamur pengurai menguraikan daun gugur, jadi serasahnya menyusut. Sebagai model s
 <MathVisual
   title={<>Jamur Membuat Serasah Tinggal Separuh</>}
   description={<>Serasah yang tersisa dalam model sederhana, dengan separuhnya terurai tiap <InlineMath math="4" /> minggu. Mendatar: satu kotak grid berarti <InlineMath math="2" /> minggu. Tegak: satu kotak grid berarti <InlineMath math="12{,}5" /> gram.</>}
+  footer={<>Setiap empat minggu sisa serasah daun berkurang separuh kembali ke tanah.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 8.5 } },
@@ -217,6 +235,8 @@ Jamur pengurai menguraikan daun gugur, jadi serasahnya menyusut. Sebagai model s
     end: <InlineMath math="6{,}25\ \mathrm{g}" />,
   }}
 />
+
+Setelah empat kali waktu paruh atau enam belas minggu, hanya tersisa <InlineMath math="6{,}25\text{ g}" /> dari <InlineMath math="100\text{ g}" /> daun gugur semula sementara jamur pengurai mengembalikan sisanya menjadi mineral tanah.
 
 ## Fungi Mencerna Makanan di Luar Tubuh
 

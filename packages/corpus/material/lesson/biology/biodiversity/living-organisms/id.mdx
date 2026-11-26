@@ -14,7 +14,7 @@ Ekosistem terbentuk dari **interaksi makhluk hidup dengan lingkungan**. Lingkung
 
 ### Organisme Berinteraksi dengan Organisme Lain dan Lingkungan Abiotik
 
-Di kebun kecil, rumput, serangga, burung, jamur, dan bakteri berinteraksi dengan tanah, air, cahaya, serta organisme lain. Seluruh komponen hidup dan tak hidup tersebut membentuk **ekosistem**.
+Di kebun kecil, rumput, serangga, burung, jamur, dan bakteri berinteraksi dengan tanah, air, cahaya, serta organisme lain. Seluruh komponen hidup dan tak hidup ini membentuk **ekosistem**.
 
 Organisme dapat dikelompokkan berdasarkan peran dalam ekosistem. **Produsen** membuat bahan organik, misalnya tumbuhan yang berfotosintesis. **Konsumen** memperoleh makanan dari organisme lain. **Pengurai** memecah sisa organisme menjadi materi yang dapat digunakan kembali dalam ekosistem.
 
@@ -26,27 +26,37 @@ Di kebun, produsen membuat bahan organik, konsumen memperoleh makanan dari organ
 
 > Ikuti dua jalur dalam ekosistem. Telusuri energi dari sumber makanan menuju konsumen. Lalu telusuri materi yang dikembalikan pengurai ke lingkungan agar dapat digunakan lagi oleh organisme.
 
-Energi masuk ke ekosistem melalui produsen. Bandingkan sel daun dengan sel hewan untuk melihat dari mana aliran energi itu dimulai.
+Energi masuk ke ekosistem melalui produsen. Bandingkan bagaimana sel daun berkloroplas dan sel hewan konsumen merespons intensitas cahaya saat laju respirasi sel <InlineMath math="r" /> berubah di bawah ini.
 
-<CellCutawayLab
-  title={<>Sel Produsen dan Sel Konsumen</>}
-  description={<>Kedua sel dipotong separuh sesuai ukuran aslinya. Pilih sel, lalu cari kloroplasnya.</>}
-  cells={["plant", "animal"]}
+<MathVisual
+  title={<>Sel Produsen dan Sel Konsumen di Bawah Cahaya</>}
+  description={
+    <>
+      Neraca gula bersih terhadap intensitas cahaya <InlineMath math="x" /> bagi
+      sel daun berkloroplas (oranye) dan sel hewan tanpa kloroplas (ungu), pada
+      kebutuhan respirasi <InlineMath math="r" />.
+    </>
+  }
+  footer={<>Hanya sel daun menjadi positif saat terang, sel hewan tetap negatif.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: -4, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1, max: 3, value: 1.5, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "leaf", kind: "function", appearance: "primary", formula: "8 * x / (x + 2) - r", domain: { min: 0, max: 10 } },
+      { id: "animal", kind: "function", appearance: "secondary", formula: "-r + 0x", domain: { min: 0, max: 10 } },
+      { id: "zero", kind: "function", appearance: "reference", formula: "0x", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "leaf-net", formula: "8 * 6 / 8 - r" },
+    ],
+  }}
   labels={{
-    choose: "Pilih sel",
-    cells: {
-      animal: "Sel hewan",
-      plant: "Sel daun",
-    },
-    facts: {
-      animal: { nucleus: <>di dalam membran inti</>, wall: <>tidak ada</>, power: <>mitokondria</> },
-      plant: { nucleus: <>di dalam membran inti</>, wall: <>selulosa</>, power: <>kloroplas dan mitokondria</> },
-    },
-    size: <>Panjang</>,
-    nucleus: <>Materi genetik</>,
-    wall: <>Dinding sel</>,
-    power: <>Organel energi</>,
-    viewLabel: "Sel yang dipotong separuh dengan organelnya",
+    r: <>Laju respirasi <InlineMath math="r" /></>,
+    "leaf-net": <>Laba gula bersih daun pada cahaya 6</>,
   }}
 />
 
@@ -58,7 +68,7 @@ Panah pada rantai makanan mengikuti **perpindahan energi**. Mulailah dari organi
 
 ### Panah Menunjukkan Perpindahan Energi dan Materi
 
-Tumbuhan memakai cahaya saat fotosintesis untuk membentuk senyawa organik. Energi kimia tersimpan dalam senyawa tersebut. Konsumen memperoleh sebagian energi itu dengan memakan tumbuhan atau organisme lain.
+Tumbuhan memakai cahaya saat fotosintesis untuk membentuk senyawa organik. Energi kimia tersimpan dalam senyawa itu. Konsumen memperoleh sebagian energi itu dengan memakan tumbuhan atau organisme lain.
 
 Arah panah pada rantai makanan menunjukkan **perpindahan energi dan materi makanan**. Jika rumput dimakan belalang, lalu belalang dimakan burung, panah mengarah dari rumput ke belalang lalu ke burung. Setiap panah dapat dibaca sebagai "energi berpindah dari organisme ini ke organisme berikutnya".
 
@@ -66,13 +76,14 @@ Arah panah pada rantai makanan menunjukkan **perpindahan energi dan materi makan
 
 Hanya sebagian energi kimia pada satu tingkat trofik yang menjadi **biomassa baru** dan tersedia bagi tingkat berikutnya. Organisme memakai sebagian besar energi untuk metabolisme yang melepaskan panas, sedangkan bagian tubuh yang tidak termakan dan sisa metabolisme masuk ke jalur pengurai. Akibatnya, energi yang tersedia makin sedikit pada setiap tingkat berikutnya.
 
-Karena itu, piramida energi selalu makin kecil ke atas. Lebarnya menunjukkan energi yang tersedia pada setiap tingkat trofik. Piramida jumlah menunjukkan jumlah organisme dan dapat memiliki bentuk berbeda. Tidak ada piramida tersebut yang mengukur tingkat kepentingan organisme.
+Karena itu, piramida energi selalu makin kecil ke atas. Lebarnya menunjukkan energi yang tersedia pada setiap tingkat trofik. Piramida jumlah menunjukkan jumlah organisme dan dapat memiliki bentuk berbeda. Kedua piramida ini tidak mengukur tingkat kepentingan organisme.
 
 Adegan di bawah membangun piramida itu dari angka. Misalkan lapisan rumput menyimpan <InlineMath math="10\,000\ \text{kJ}" /> dan, sebagai ilustrasi, setiap tingkat meneruskan sepersepuluh energinya. Luas permukaan atas setiap lapisan sebanding dengan energinya, jadi setiap naik satu tingkat, sisinya <InlineMath math="\sqrt{10}" /> kali lebih sempit. Putar adegannya dan lihat dari atas: lapisan burung hanya menutupi seperseratus lapisan rumput, sedangkan energi yang hilang sudah lepas sebagai kalor di sepanjang jalan.
 
 <MathVisual
   title={<>Piramida Energi dengan Sepersepuluh per Tingkat</>}
   description={<>Luas permukaan atas setiap lapisan sebanding dengan energi yang tersedia di tingkat trofik itu, mulai dari ilustrasi <InlineMath math="10" /> <InlineMath math="000\text{ kJ}" /> pada rumput.</>}
+  footer={<>Setiap tingkat trofik menyusut sepersepuluh luasnya karena panas terlepas.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: 0, max: 2.5 }, z: { min: -4, max: 4 } },
@@ -106,6 +117,7 @@ Hanya sekitar sepersepuluh energi di satu tingkat yang sampai ke tingkat berikut
 <MathVisual
   title={<>Sepersepuluh Naik ke Tiap Tingkat</>}
   description={<>Energi di tiga tingkat satu rantai makanan, mulai dari <InlineMath math="10{.}000\text{ kJ}" /> di rumput. Tegak: satu kotak grid ke bawah berarti energinya tinggal sepersepuluh.</>}
+  footer={<>Sembilan per sepuluh energi lepas sebagai panas di setiap tingkat trofik.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 1, max: 4.5 } },
@@ -131,19 +143,36 @@ Hanya sekitar sepersepuluh energi di satu tingkat yang sampai ke tingkat berikut
   }}
 />
 
-Setiap tingkat hanya meneruskan sebagian energinya. Akibatnya, sawah hanya dapat memberi makan tikus dalam jumlah terbatas, dan tikus hanya dapat memberi makan burung hantu dalam jumlah terbatas.
+Setiap tingkat hanya meneruskan sebagian energinya. Akibatnya, sawah hanya dapat memberi makan tikus dalam jumlah terbatas, dan tikus hanya dapat memberi makan burung hantu dalam jumlah terbatas. Geser redaman <InlineMath math="d" /> di bawah untuk melihat batas makanan menenangkan kedua populasi menuju keseimbangan.
 
-<PredatorPreyLab
+<MathVisual
   title={<>Makanan Membatasi Tikus dan Burung Hantu</>}
-  description={<>Padi di sawah ini paling banyak cukup untuk <InlineMath math="400" /> tikus. Atur jumlah burung hantu di awal, lalu putar <InlineMath math="20" /> tahun.</>}
-  capacity={400}
+  description={
+    <>
+      Ayunan teredam populasi tikus (oranye, menetap di <InlineMath math="100" />)
+      dan burung hantu (ungu, menetap di <InlineMath math="15" />) selama{" "}
+      <InlineMath math="20" /> tahun saat padi membatasi daya dukung.
+    </>
+  }
+  footer={<>Daya dukung makanan meredam ayunan menuju 100 tikus dan 15 burung hantu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 190 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.05, max: 0.3, value: 0.15, step: 0.05, label: "d" },
+    ],
+    objects: [
+      { id: "rats", kind: "function", appearance: "primary", formula: "100 + 80 * exp(-d * x) * sin(2 * pi * x / 4.4)", domain: { min: 0, max: 20 } },
+      { id: "owls", kind: "function", appearance: "secondary", formula: "15 + 10 * exp(-d * x) * sin(2 * pi * (x - 1.1) / 4.4)", domain: { min: 0, max: 20 } },
+    ],
+    readouts: [
+      { key: "rat-swing", formula: "80 * exp(-10 * d)" },
+    ],
+  }}
   labels={{
-    start: "Burung hantu di awal",
-    prey: <>Tikus</>,
-    predators: <>Burung hantu</>,
-    peak: <>Tikus terbanyak</>,
-    year: <>Tahun</>,
-    viewLabel: "Sawah dengan tikus sawah dan burung hantu",
+    d: <>Redaman batas makanan <InlineMath math="d" /></>,
+    "rat-swing": <>Sisa ayunan tikus pada tahun ke-10</>,
   }}
 />
 
@@ -151,17 +180,18 @@ Karena padi membatasi tikus, ayunan populasinya makin kecil, lalu sawah mendekat
 
 ## Materi Berputar Lewat Pengurai
 
-Berbeda dari energi, materi tidak habis begitu saja setelah makanan dimakan. Unsur penyusun tubuh berpindah di antara organisme dan tempat penyimpanan abiotik seperti udara, air, dan tanah. Penguraian mengembalikan unsur dari sisa organik ke **daur biogeokimia** tersebut.
+Berbeda dari energi, materi tidak habis begitu saja setelah makanan dimakan. Unsur penyusun tubuh berpindah di antara organisme dan tempat penyimpanan abiotik seperti udara, air, dan tanah. Penguraian mengembalikan unsur dari sisa organik ke **daur biogeokimia** ini.
 
-<Highlight>Energi mengalir, tetapi materi berputar</Highlight>. Saat daun gugur, hewan mati, atau sisa makanan tertinggal, pengurai seperti bakteri dan fungi memecah bahan organik tersebut. Hasil penguraian kembali menjadi unsur hara di tanah atau air.
+<Highlight>Energi mengalir, tetapi materi berputar</Highlight>. Saat daun gugur, hewan mati, atau sisa makanan tertinggal, pengurai seperti bakteri dan fungi memecah bahan organik itu. Hasil penguraian kembali menjadi unsur hara di tanah atau air.
 
-Tanpa pengurai, sisa organisme akan menumpuk dan unsur yang dibutuhkan produsen tetap terikat dalam bahan organik. Pengurai mengubah sisa tersebut menjadi bentuk materi yang dapat dipakai kembali oleh organisme lain. Proses lain di udara, air, dan tanah juga menjadi bagian dari daur hara.
+Tanpa pengurai, sisa organisme akan menumpuk dan unsur yang dibutuhkan produsen tetap terikat dalam bahan organik. Pengurai mengubah sisa itu menjadi bentuk materi yang dapat dipakai kembali oleh organisme lain. Proses lain di udara, air, dan tanah juga menjadi bagian dari daur hara.
 
 Pengurai, seperti makhluk hidup lainnya, melepas energi lewat respirasi: <InlineMath math="\mathrm{C_6H_{12}O_6}+6\mathrm{O_2}\rightarrow6\mathrm{CO_2}+6\mathrm{H_2O}" />. Atom-atomnya hanya disusun ulang, jadi karbon yang kembali ke udara dalam karbon dioksida adalah karbon yang sama yang tadinya ada di makanan. Putar batangnya: tiap unsur sama tingginya sebelum dan sesudah reaksi.
 
 <MathVisual
   title={<>Respirasi Menjaga Setiap Atom</>}
   description={<>Atom karbon (abu-abu), hidrogen (ungu), dan oksigen (oranye) di pereaksi (belakang) dan hasil reaksi (depan). Satu kotak grid ke atas berarti <InlineMath math="4" /> atom.</>}
+  footer={<>Batang pereaksi dan hasil sama persis untuk karbon, hidrogen, dan oksigen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
@@ -187,6 +217,8 @@ Pengurai, seperti makhluk hidup lainnya, melepas energi lewat respirasi: <Inline
   }}
 />
 
+Setiap batang depan persis setinggi pasangannya di belakang karena respirasi tidak memusnahkan atom: pengurai melepaskan energi sebagai panas sambil mengembalikan seluruh atom karbon, hidrogen, dan oksigen ke udara serta tanah.
+
 ## Relung Menjelaskan Cara Organisme Menggunakan Lingkungan
 
 **Relung** menjelaskan rentang kondisi lingkungan yang dapat ditoleransi organisme, sumber daya yang digunakan, dan interaksinya dengan organisme lain. Habitat menunjukkan tempat hidupnya, sedangkan relung menjelaskan cara organisme hidup di tempat itu. Dua organisme dapat berbagi habitat, tetapi menempati relung berbeda.
@@ -198,6 +230,7 @@ Banyak tumbuhan [bergantung pada penyerbuk](https://www.fao.org/pollination/). J
 <Mermaid
   title={<>Aliran Energi dan Daur Materi</>}
   description={<>Diagram memperlihatkan aliran energi melalui konsumen dan daur materi melalui pengurai dalam satu ekosistem.</>}
+  footer={<>Energi keluar sebagai panas, sedangkan pengurai memutar nutrien kembali.</>}
   chart={`flowchart TB
     subgraph energy["Aliran energi"]
       direction TB
@@ -214,8 +247,10 @@ Banyak tumbuhan [bergantung pada penyerbuk](https://www.fao.org/pollination/). J
     energy ~~~ matter`}
 />
 
+Membandingkan kedua sisi diagram menegaskan aturan dasar ekosistem: cahaya matahari bergerak searah lewat rantai makanan lalu lepas sebagai panas, sedangkan pengurai menutup lingkaran agar unsur mineral kembali tersedia bagi produsen.
+
 ## Panah Energi dan Daur Materi Menunjukkan Jalur Berbeda
 
-Sisa tubuh, kotoran, dan organisme mati masuk ke jalur pengurai, sedangkan materi juga bergerak melalui udara, air, tanah, dan tubuh makhluk hidup dengan cara lain. Semua jalur tersebut membentuk jaringan. Energi akhirnya berpindah ke lingkungan sebagai **panas, sedangkan materi terus berputar**.
+Sisa tubuh, kotoran, dan organisme mati masuk ke jalur pengurai, sedangkan materi juga bergerak melalui udara, air, tanah, dan tubuh makhluk hidup dengan cara lain. Semua jalur ini membentuk jaringan. Energi akhirnya berpindah ke lingkungan sebagai **panas, sedangkan materi terus berputar**.
 
 Jika satu organisme hilang, sumber makanan, pemangsa, pengurai, dan habitat organisme lain dapat ikut terdampak. Ekosistem terdiri atas organisme yang saling terhubung beserta lingkungan fisiknya.

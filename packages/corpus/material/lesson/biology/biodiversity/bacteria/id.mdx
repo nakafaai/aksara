@@ -17,7 +17,7 @@ Bakteri dapat menyebabkan **perubahan pada makanan** sebelum selnya terlihat mel
 
 Bakteri tertentu mengubah susu menjadi yoghurt dan air kelapa menjadi nata de coco. Jenis bakteri dan kondisi yang dibutuhkan berbeda pada setiap proses. Bakteri lain juga dapat membuat makanan basi. Karena sel bakteri terlalu kecil untuk dilihat langsung, kita sering mengenali aktivitas bakteri dari perubahan bau, rasa, tekstur, atau warna.
 
-**Bakteri** adalah <Highlight>organisme uniseluler prokariotik</Highlight>. Artinya, setiap bakteri terdiri dari satu sel dan materi genetiknya tidak dibungkus membran inti. Bakteri tetap merupakan sel hidup. Susunan bagian dalam sel bakteri berbeda dari sel hewan, tumbuhan, dan fungi.
+**Bakteri** adalah <Highlight>organisme uniseluler prokariotik</Highlight>. Artinya, setiap bakteri terdiri dari satu sel dan materi genetiknya tidak dibungkus membran inti. Bakteri tetap termasuk sel hidup. Susunan bagian dalam sel bakteri berbeda dari sel hewan, tumbuhan, dan fungi.
 
 Yoghurt adalah contoh yang bisa kamu amati sendiri. Bakteri asam laktat mengubah gula susu menjadi asam laktat, jadi susu makin asam. Susu segar punya pH sekitar <InlineMath math="6{,}7" />. Begitu pH turun sampai sekitar <InlineMath math="4{,}6" />, kasein, protein utama susu, kehilangan muatannya dan saling menempel, sehingga susu **mengental menjadi gel**.
 
@@ -30,6 +30,7 @@ Yoghurt adalah contoh yang bisa kamu amati sendiri. Bakteri asam laktat mengubah
       toples untuk menguji apakah susu sudah mengental.
     </>
   }
+  footer={<>Saat asam laktat menurunkan pH di bawah 4,6, protein kasein memadat.</>}
   labels={{
     hours: "Jam pemeraman",
     tilt: "Miringkan",
@@ -44,68 +45,61 @@ Kartu ini memakai model kurva S: pH turun pelan di awal, cepat saat bakteri suda
 
 ### Struktur Sel Prokariotik
 
-Sel prokariotik memiliki struktur seperti membran plasma, nukleoid, dan ribosom, sedangkan selubung sel berbeda antarspesies. Bacteria dan Archaea merupakan dua domain prokariotik yang berbeda, sehingga bakteri bukan sebutan untuk semua prokariota.
+Sel prokariotik memiliki struktur seperti membran plasma, nukleoid, dan ribosom, sedangkan selubung sel berbeda antarspesies. Bacteria dan Archaea adalah dua domain prokariotik yang berbeda, sehingga bakteri bukan sebutan untuk semua prokariota.
 
 Pada sel prokariotik, DNA berada di daerah nukleoid **tanpa dibungkus membran inti**. Sel prokariotik juga memiliki membran, materi genetik, ribosom untuk membuat protein, serta reaksi metabolisme yang menyediakan energi dan bahan untuk tumbuh.
 
-> Bakteri merupakan sel hidup karena memiliki membran, sitoplasma, DNA, ribosom, dan metabolisme. Bentuk membantu pengenalan awal, tetapi identifikasi bakteri juga memerlukan bukti dari struktur sel, metabolisme, habitat, dan dampaknya.
+> Bakteri adalah sel hidup karena memiliki membran, sitoplasma, DNA, ribosom, dan metabolisme. Bentuk membantu pengenalan awal, tetapi identifikasi bakteri juga memerlukan bukti dari struktur sel, metabolisme, habitat, dan dampaknya.
 
-<BacteriaStructureLab
-  title={<>Membandingkan bentuk, isi sel, dan dinding bakteri</>}
+<MathVisual
+  title={<>Ketebalan Peptidoglikan dan Penahanan Zat Warna</>}
   description={
     <>
-      Model membedakan bentuk luar, isi sel prokariotik, dan lapisan dinding sel.
-      Putar model untuk melihat susunan setiap bagian dari sisi yang berbeda.
+      Persentase zat warna kristal violet yang tertahan terhadap ketebalan
+      dinding peptidoglikan <InlineMath math="x" /> dalam nanometer, dengan
+      penanda Gram negatif tipis (<InlineMath math="5\text{ nm}" />) dan Gram
+      positif tebal (<InlineMath math="40\text{ nm}" />).
     </>
   }
-  labels={{
-    chooseMode: "Pilih tampilan bakteri",
-    focusLabel: "Bagian yang diamati",
-    takeawayLabel: "Fungsi bagian",
-    viewLabel: "Model struktur bakteri",
-    items: [
-      {
-        tab: "Bentuk",
-        scene: {
-          kind: "shape",
-          coccusLabel: "Kokus",
-          bacillusLabel: "Basilus",
-          spiralLabel: "Spiral",
-        },
-        caption: <>Pada tampilan awal, bentuk kiri ke kanan menunjukkan kokus, basilus, dan spiral sebagai petunjuk pengenalan awal.</>,
-        focus: <>Bentuk memberi petunjuk awal tentang morfologi bakteri. Identifikasi lengkap memerlukan bukti lain.</>,
-        takeaway: <>Bentuk memberi petunjuk awal, tetapi identifikasi jenis bakteri memerlukan ciri lain.</>,
-      },
-      {
-        tab: "Isi sel",
-        scene: {
-          kind: "structure",
-          nucleoidDnaLabel: "DNA nukleoid",
-        },
-        caption: <>Nukleoid berisi DNA bakteri, sementara ribosom tersebar di sitoplasma untuk membuat protein.</>,
-        focus: <>Tidak ada inti bermembran, tetapi DNA dan ribosom tetap ada.</>,
-        takeaway: <>Bakteri tetap hidup karena membran, sitoplasma, DNA, ribosom, dan metabolismenya bekerja bersama.</>,
-      },
-      {
-        tab: "Dinding",
-        scene: {
-          kind: "wall",
-          gramPositiveLabel: "Gram positif",
-          gramNegativeLabel: "Gram negatif",
-        },
-        caption: <>Pada tampilan awal, tumpukan kiri menunjukkan Gram positif yang lebih tebal, sedangkan tumpukan kanan menunjukkan Gram negatif dengan membran luar.</>,
-        focus: <>Bandingkan ketebalan peptidoglikan dan keberadaan membran luar.</>,
-        takeaway: <>Struktur selubung sel memengaruhi bentuk, perlindungan, pewarnaan Gram, dan kepekaan terhadap antibiotik tertentu.</>,
-      },
+  footer={<>Peptidoglikan Gram positif yang tebal menahan zat warna jauh lebih kuat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 60 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 5, max: 25, value: 12, step: 5, label: "w" },
+    ],
+    objects: [
+      { id: "retention", kind: "function", appearance: "primary", formula: "100 * x / (x + w)", domain: { min: 0, max: 60 } },
+      { id: "neg", kind: "segment", appearance: "warning", from: { x: 5, y: 0 }, to: { x: 5, y: 100 } },
+      { id: "pos", kind: "segment", appearance: "secondary", from: { x: 40, y: 0 }, to: { x: 40, y: 100 } },
+    ],
+    readouts: [
+      { key: "gram-pos", formula: "100 * 40 / (40 + w)" },
+      { key: "gram-neg", formula: "100 * 5 / (5 + w)" },
+    ],
+    labels: [
+      { key: "neg", objectId: "neg", at: { x: 5, y: 95 }, placement: "right" },
+      { key: "pos", objectId: "pos", at: { x: 40, y: 95 }, placement: "left" },
     ],
   }}
+  labels={{
+    w: <>Konstanta pembilasan <InlineMath math="w" /> (nm)</>,
+    "gram-pos": <>Retensi Gram positif pada 40 nm (%)</>,
+    "gram-neg": <>Retensi Gram negatif pada 5 nm (%)</>,
+    neg: <>Gram negatif (5 nm)</>,
+    pos: <>Gram positif (40 nm)</>,
+  }}
 />
+
+Perbandingan kedua garis tegak menunjukkan alasan struktur selubung membedakan kelompok bakteri jauh lebih andal daripada bentuk luarnya: lapisan peptidoglikan tebal menahan pembilasan alkohol, sedangkan dinding Gram negatif yang tipis cepat luntur dan mengandalkan membran luar tambahan.
 
 Bakteri bisa mengubah makanan secepat itu karena mereka memperbanyak diri dengan membelah. Satu sel membelah jadi dua, jadi setelah <InlineMath math="n" /> kali membelah ada <InlineMath math="2^n" /> sel. Perbesar titik-titik awal, lalu lihat betapa curamnya titik terakhir naik.
 
 <MathVisual
   title={<>Membelah Menggandakan Sel</>}
   description={<>Jumlah sel setelah tiap pembelahan, mulai dari satu sel. Mendatar: banyaknya pembelahan. Tegak: satu kotak grid berarti <InlineMath math="10" /> sel.</>}
+  footer={<>Setiap pembelahan menggandakan total sel sehingga grafik naik makin curam.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
@@ -131,24 +125,40 @@ Bakteri bisa mengubah makanan secepat itu karena mereka memperbanyak diri dengan
   }}
 />
 
+Setiap langkah ke kanan menggandakan tinggi grafik sebelumnya, sehingga pembelahan terakhir saja menambah <InlineMath math="32" /> sel baru, lebih banyak daripada seluruh pembelahan sebelumnya digabung. Lonjakan eksponensial yang curam ini menjelaskan mengapa sedikit sel pada makanan hangat cepat membuatnya basi dalam beberapa jam.
+
 ### Satu Sel Menjadi Koloni
 
 Grafik tadi menghitung sel, tetapi bentuk pembelahannya juga bisa diamati. Sel batang seperti Escherichia coli tumbuh sampai panjangnya hampir dua kali lipat, menyempit di tengah, lalu terpisah menjadi **dua sel anak** yang sama. Dalam kaldu kaya nutrien pada <InlineMath math="37^\circ\text{C}" />, satu putaran ini butuh sekitar <InlineMath math="20\text{ menit}" />.
 
-<BinaryFissionLab
+<MathVisual
   title={<>Pembelahan Biner Menjadi Koloni</>}
   description={
     <>
-      Satu sel Escherichia coli membelah setiap{" "}
-      <InlineMath math="20\text{ menit}" />. Geser waktunya atau putar dua jam
-      pertama.
+      Jumlah sel yang tumbuh dari satu bakteri Escherichia coli selama{" "}
+      <InlineMath math="120\text{ menit}" /> saat waktu generasi{" "}
+      <InlineMath math="g" /> berubah antara <InlineMath math="20" /> sampai{" "}
+      <InlineMath math="40\text{ menit}" />.
     </>
   }
+  footer={<>Waktu generasi lebih singkat menggandakan satu sel jadi puluhan dalam 2 jam.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 70 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "g", min: 20, max: 40, value: 20, step: 5, label: "g" },
+    ],
+    objects: [
+      { id: "colony", kind: "function", appearance: "primary", formula: "2^(x / g)", domain: { min: 0, max: 120 } },
+    ],
+    readouts: [
+      { key: "at-two-hours", formula: "2^(120 / g)" },
+    ],
+  }}
   labels={{
-    minutes: "Menit sejak sel pertama",
-    generations: <>Pembelahan</>,
-    cells: <>Jumlah sel</>,
-    viewLabel: "Koloni bakteri batang di bawah mikroskop",
+    g: <>Waktu generasi <InlineMath math="g" /> (menit)</>,
+    "at-two-hours": <>Jumlah sel setelah 120 menit</>,
   }}
 />
 
@@ -158,15 +168,9 @@ Dalam dua jam ada <InlineMath math="120:20=6" /> kali pembelahan, jadi satu sel 
 
 Bentuk sel bakteri dapat diamati dengan mikroskop dan menjadi salah satu petunjuk awal. **Bentuk sel saja belum cukup** untuk menentukan jenis bakteri. Identifikasi lengkap juga memerlukan bukti tentang struktur sel, sifat kimia, atau gen.
 
-### Tiga Bentuk Umum Sel Bakteri
+Bakteri umumnya berukuran mikrometer. Bentuk yang sering ditemukan ialah **kokus** atau bulat, **basilus** atau batang, dan **spiral**. Sel-sel ini dapat berdiri sendiri, berpasangan, membentuk rantai, atau berkelompok. Bentuk membantu pengenalan awal, sedangkan identifikasi taksonomi memerlukan ciri lain.
 
-Bakteri umumnya berukuran mikrometer. Bentuk yang sering ditemukan ialah **kokus** atau bulat, **basilus** atau batang, dan **spiral**. Sel-sel tersebut dapat berdiri sendiri, berpasangan, membentuk rantai, atau berkelompok. Bentuk membantu pengenalan awal, sedangkan identifikasi taksonomi memerlukan ciri lain.
-
-### Identifikasi Lengkap Memakai Beberapa Ciri
-
-Bentuk membantu saat pengamatan awal. Dua bakteri yang sama-sama berbentuk batang dapat memiliki cara hidup, dinding sel, atau dampak yang berbeda. Karena itu, identifikasi juga membandingkan **struktur, metabolisme, dan lingkungan hidupnya**.
-
-Sketsa bakteri hanya mencatat bentuk sel. Identifikasi juga memeriksa susunan sel, tempat hidup, dan pengaruh bakteri terhadap organisme di sekitar.
+Dua bakteri yang sama-sama berbentuk batang dapat memiliki cara hidup, dinding sel, atau dampak yang berbeda. Karena itu, identifikasi juga membandingkan **struktur, metabolisme, dan lingkungan hidupnya**. Sketsa bakteri hanya mencatat bentuk sel, sedangkan identifikasi menyeluruh memeriksa susunan sel, tempat hidup, dan pengaruhnya bagi organisme sekitar.
 
 | Petunjuk yang terlihat | Kegunaan petunjuk | Mengapa masih terbatas |
 | --- | --- | --- |
@@ -198,6 +202,7 @@ Perbedaan dinding itu bisa kamu lihat lewat **pewarnaan Gram**. Kristal violet m
       pewarnaan untuk melihat warna setiap bentuk.
     </>
   }
+  footer={<>Alkohol memisahkan sel Gram positif ungu dari sel Gram negatif pucat.</>}
   labels={{
     chooseStep: "Pilih langkah pewarnaan",
     steps: {
@@ -221,6 +226,7 @@ Sel mengambil makanan dan membuang sisa lewat permukaannya, sedangkan kebutuhann
 <MathVisual
   title={<>Sel Kecil Punya Permukaan Lebih Luas per Volume</>}
   description={<>Kubus dengan sisi <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="4" /> mikrometer. Tiap label membagi luas permukaan dengan volume.</>}
+  footer={<>Kubus lebih kecil menjaga rasio luas per volume besar untuk difusi cepat.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 9.5 }, y: { min: 0, max: 4.5 }, z: { min: -2.5, max: 2.5 } },
@@ -243,6 +249,8 @@ Sel mengambil makanan dan membuang sisa lewat permukaannya, sedangkan kebutuhann
   }}
 />
 
+Menggandakan panjang sisi menurunkan rasio luas permukaan terhadap volume separuhnya, dari <InlineMath math="6" /> menjadi <InlineMath math="3" /> lalu <InlineMath math="1{,}5" />. Ukuran berskala mikrometer menjaga membran tetap luas dibanding sitoplasmanya, sehingga nutrien masuk dan sisa metabolisme keluar dengan cepat tanpa alat transpor khusus.
+
 ### Flagel Membawa Sel ke Makanan
 
 Banyak bakteri batang berenang dengan **flagel**, ekor panjang yang berputar seperti baling-baling. Escherichia coli berenang lurus sekitar <InlineMath math="25\ \mu\text{m/s}" /> selama kira-kira <InlineMath math="1\text{ s}" />, lalu jungkir balik sekitar <InlineMath math="0{,}1\text{ s}" /> dan menghadap ke arah acak yang baru. Sel itu tidak bisa melihat makanan, tetapi bisa merasakan apakah gula di sekitarnya bertambah.
@@ -256,6 +264,7 @@ Banyak bakteri batang berenang dengan **flagel**, ekor panjang yang berputar sep
       Waktu diputar empat kali lebih cepat.
     </>
   }
+  footer={<>Lari lebih panjang ke arah gradien gula mengarahkan sel toska ke makanan.</>}
   labels={{
     sensing: <>Maju ke arah gula, sel toska</>,
     mutant: <>Maju ke arah gula, sel abu-abu</>,
@@ -270,13 +279,14 @@ Kalau gula bertambah, sel toska menunda jungkir baliknya, jadi larinya ke arah g
 
 Sebagian bakteri menyebabkan penyakit. Banyak jenis lain membantu pembuatan yoghurt, keju, atau nata de coco. Bakteri juga berperan dalam penguraian sisa organisme, produksi vitamin, rekayasa genetika, dan bioremediasi. **Bioremediasi** berarti memakai organisme untuk membantu menguraikan pencemar.
 
-Tubuh manusia memiliki komunitas mikroba yang berkaitan dengan kesehatan. [Penelitian pada manusia sehat](https://irp.nih.gov/catalyst/21/6/the-human-microbiome-project) telah memetakan keragaman mikroba dan mengkaji kaitan antara komunitas mikroba dan penyakit. Bakteri merupakan bagian dari ekosistem tubuh dan dapat menjalankan beragam peran.
+Tubuh manusia memiliki komunitas mikroba yang berkaitan dengan kesehatan. [Penelitian pada manusia sehat](https://irp.nih.gov/catalyst/21/6/the-human-microbiome-project) telah memetakan keragaman mikroba dan mengkaji kaitan antara komunitas mikroba dan penyakit. Bakteri adalah bagian dari ekosistem tubuh dan dapat menjalankan beragam peran.
 
 Peran bakteri dapat dinilai dari tempat hidupnya, proses metabolisme yang berlangsung, dan dampaknya bagi organisme lain.
 
 <Mermaid
   title={<>Bukti untuk Mengidentifikasi Bakteri</>}
   description={<>Gabungkan bentuk luar, isi sel, dan bukti dinding sel agar bakteri tidak diidentifikasi hanya dari satu ciri yang terlihat.</>}
+  footer={<>Tiga bukti terpisah menyatu untuk menghasilkan identifikasi bakteri akurat.</>}
   chart={`flowchart LR
     A["Bentuk luar"] --> B["Petunjuk morfologi"]
     C["Isi sel"] --> D["DNA dan ribosom"]
@@ -285,6 +295,8 @@ Peran bakteri dapat dinilai dari tempat hidupnya, proses metabolisme yang berlan
     D --> G
     F --> G`}
 />
+
+Ikuti ketiga cabang menuju kotak kanan: morfologi mempersempit pilihan, isi sel memastikan sel prokariotik, dan pewarnaan Gram mengungkap tipe dinding selnya. Menggabungkan ketiga bukti ini mencegah kesalahan identifikasi pada bakteri berbeda yang kebetulan berbentuk sama.
 
 ## Bagian Sel dan Keragaman Bakteri
 

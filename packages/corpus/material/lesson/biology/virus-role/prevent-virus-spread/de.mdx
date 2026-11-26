@@ -48,7 +48,8 @@ Deshalb lohnt es sich, Maßnahmen zu kombinieren. Nenn <InlineMath math="R" /> d
 
 <MathVisual
   title={<>Ein Fall, fünf Generationen</>}
-  description={<>Beispielhafte Ansteckungsketten, die mit einem Fall beginnen. Waagrecht: Generation. Senkrecht: neue Fälle in Einheiten von <InlineMath math="4" />.</>}
+  description={<>Beispielhafte Ansteckungsketten, die mit einem Fall beginnen. Waagrecht: Generation. Senkrecht: Ein Gitterschritt steht für <InlineMath math="4" /> neue Fälle.</>}
+  footer={<>Unterhalb von R = 1 kippt rasches Wachstum in einen Rückgang um.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 9 } },
@@ -72,27 +73,47 @@ Deshalb lohnt es sich, Maßnahmen zu kombinieren. Nenn <InlineMath math="R" /> d
 
 Dengueviren gelangen hauptsächlich durch [Stiche von Aedes-Mücken](https://www.cdc.gov/dengue/prevention/index.html) zum Menschen. Deshalb konzentriert sich die Prävention auf den Schutz vor Stichen und die Mückenbekämpfung rund um Wohnorte. Bei Atemwegsviren geht es dagegen um Partikel in gemeinsam genutzter Luft und Exposition aus kurzer Entfernung.
 
-Jede Maßnahme trennt ein anderes Glied der Kette. Kombiniere sie auf dem Marktplatz und sieh, wie der Ausbruch schrumpft.
+Jede Maßnahme trennt ein anderes Glied der Kette. Verschiebe unten den Anteil der Menschen mit Maske <InlineMath math="m" /> und verfolge die effektive Übertragung über die Impfquote, um zu sehen, wie kombinierte Maßnahmen unter <InlineMath math="1" /> fallen.
 
-<EpidemicSpreadLab
+<MathVisual
   title={<>Maßnahmen verkleinern einen Ausbruch</>}
-  description={<>Stell den Anteil der Menschen ein, die Masken tragen, geimpft sind oder zu Hause bleiben.</>}
-  measures={["masks", "vaccinated", "distancing"]}
+  description={
+    <>
+      Effektive Ansteckungen pro Fall bei steigender Impfquote{" "}
+      <InlineMath math="x" /> von <InlineMath math="0" /> bis{" "}
+      <InlineMath math="1" /> für einen wählbaren Maskenanteil{" "}
+      <InlineMath math="m" />, verglichen mit der Linie <InlineMath math="R=1" />.
+    </>
+  }
+  footer={<>Masken und Impfungen zusammen drücken die effektive Übertragung unter 1.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0, max: 1, value: 0.6, step: 0.1, label: "m" },
+    ],
+    objects: [
+      { id: "reff", kind: "function", appearance: "primary", formula: "3 * (1 - x) * (1 - 0.5 * m)^2", domain: { min: 0, max: 1 } },
+      { id: "threshold", kind: "function", appearance: "warning", formula: "1 + 0x", domain: { min: 0, max: 1 } },
+    ],
+    readouts: [
+      { key: "at-zero", formula: "3 * (1 - 0.5 * m)^2" },
+      { key: "at-half", formula: "1.5 * (1 - 0.5 * m)^2" },
+    ],
+  }}
   labels={{
-    masks: "Menschen mit Maske",
-    vaccinated: "Geimpfte Menschen",
-    distancing: "Menschen, die zu Hause bleiben",
-    reproduction: <>Ein Fall steckt an</>,
-    peak: <>Höchstens gleichzeitig krank</>,
-    susceptible: <>Noch empfänglich</>,
-    infected: <>Gerade angesteckt</>,
-    recovered: <>Genesen</>,
-    immune: <>Durch Impfung immun</>,
-    viewLabel: "Marktplatz mit spazierenden Menschen und einer Kurve des Ausbruchs",
+    m: <>Anteil mit Maske <InlineMath math="m" /></>,
+    "at-zero": <>Effektives R bei 0% Impfung</>,
+    "at-half": <>Effektives R bei 50% Impfung</>,
   }}
 />
 
-Ohne Maßnahmen steckt jeder Fall <InlineMath math="3" /> Menschen an. In diesem Modell halbiert eine Maske das Risiko für ihren Träger, tragen also alle eine, sinkt die Zahl auf <InlineMath math="3 \times 0{,}5 \times 0{,}5 = 0{,}75" />. Liegt diese Zahl unter <InlineMath math="1" />, steckt jeder Fall weniger als einen Menschen an, und der Ausbruch erlischt. Echte Werte hängen vom Virus und vom Produkt ab, aber die Logik bleibt gleich.
+Ohne Maßnahmen steckt jeder Fall <InlineMath math="3" /> Menschen an. In diesem Modell halbiert eine Maske das Risiko für ihren Träger, also halbiert sich das Risiko zweimal, wenn alle eine Maske tragen.
+
+<BlockMath math="3 \times 0{,}5 \times 0{,}5 = 0{,}75" />
+
+Liegt diese Zahl unter <InlineMath math="1" />, steckt jeder Fall weniger als einen Menschen an, und der Ausbruch erlischt. Echte Werte hängen vom Virus und vom Produkt ab, aber die Logik bleibt gleich.
 
 ### Wie Seife Schmutz und Mikroorganismen entfernt
 
@@ -105,6 +126,7 @@ Lüften unterbricht den Weg durch die Luft, weil frische Luft die Raumluft stän
 <MathVisual
   title={<>Frische Luft räumt den Raum</>}
   description={<>Anteil der Partikel in der Luft, der in einem gut durchmischten Raum nach dem Ende der Quelle bleibt, bei <InlineMath math="1" /> (grau), <InlineMath math="3" /> (orange) und <InlineMath math="6" /> (türkis) Luftwechseln pro Stunde. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="10" /> Minuten. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="20" /> Prozent.</>}
+  footer={<>Mehr Luftwechsel pro Stunde senken Schwebepartikel deutlich schneller.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 5.5 } },
@@ -130,6 +152,8 @@ Lüften unterbricht den Weg durch die Luft, weil frische Luft die Raumluft stän
   }}
 />
 
+Beachte, wie schnell die drei Kurven in den ersten zwanzig Minuten auseinanderlaufen. Steigt die Lüftung von einem auf sechs Luftwechsel pro Stunde, sinkt der Anteil verbliebener Partikel binnen einer Stunde von über einem Drittel auf unter ein Prozent und senkt die Belastung im Raum deutlich.
+
 ## Impfstoffe lösen Immunreaktionen aus und Virostatika hemmen die Replikation
 
 Ein **Impfstoff** blockiert Tröpfchen oder Aerosole nicht physisch. Nach der Impfung entwickelt das Immunsystem eine Reaktion, die einen bestimmten Erreger erkennt. Je nach Impfstoff und Erreger kann der Schutz vor einer Infektion unvollständig sein, obwohl der Schutz vor schwerer Erkrankung stark ist. Impfstoffe wirken über die Immunität. Masken, Lüftung und Hygiene verringern dagegen Exposition und Übertragung.
@@ -141,6 +165,7 @@ Das folgende Diagramm ordnet jede Maßnahme dem Schritt zu, an dem sie wirkt. Ma
 <Mermaid
   title={<>Prävention zielt auf verschiedene Schritte ab</>}
   description={<>Vergleiche, an welchen Stellen Impfstoffe, Medikamente und Schutzgewohnheiten in der Übertragungskette wirken.</>}
+  footer={<>Jeder Zweig greift anders ein: Kontakt, Immunabwehr oder Vermehrung.</>}
   chart={`flowchart TD
     A["Maßnahme auswählen"] --> B["Kontakt mit Viren verringern"]
     A --> C["Immunantwort vorbereiten"]
@@ -150,20 +175,36 @@ Das folgende Diagramm ordnet jede Maßnahme dem Schritt zu, an dem sie wirkt. Ma
     D --> G["Virostatikum"]`}
 />
 
-Eine Impfung trainiert das Immunsystem, Antikörper zu bilden, bevor das echte Virus kommt.
+Eine Impfung trainiert das Immunsystem, Antikörper zu bilden, bevor das echte Virus kommt. Verändere unten die Bindungskonstante <InlineMath math="K" /> und sieh, wie steigende Antikörperspiegel die Spikes über die <InlineMath math="75\%" />-Blockadeschwelle bedecken.
 
-<AntibodyNeutralizeLab
-  title={<>Antikörper hindern Virionen am Andocken</>}
-  description={<>Vergleiche einen Menschen ohne und mit Antikörpern aus einer Impfung. Drück auf Abspielen, um die Virionen zur Zelle zu schicken.</>}
-  mode="vaccine"
+<MathVisual
+  title={<>Antikörper bedecken Spikes und blockieren das Andocken</>}
+  description={
+    <>
+      Prozentsatz der mit Antikörpern bedeckten Spikes bei Antikörperspiegeln{" "}
+      <InlineMath math="x" /> bis <InlineMath math="20\text{ nM}" />, verglichen
+      mit der <InlineMath math="75\%" />-Neutralisationsschwelle.
+    </>
+  }
+  footer={<>Ab 75% Spike-Bedeckung bleiben zu wenige freie Spikes zum Andocken.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.5, max: 3, value: 1, step: 0.5, label: "k" },
+    ],
+    objects: [
+      { id: "covered", kind: "function", appearance: "primary", formula: "100 * x / (x + k)", domain: { min: 0, max: 20 } },
+      { id: "threshold", kind: "function", appearance: "construction", formula: "75 + 0x", domain: { min: 0, max: 20 } },
+    ],
+    readouts: [
+      { key: "at-twelve", formula: "100 * 12 / (12 + k)" },
+    ],
+  }}
   labels={{
-    choose: "Person wählen",
-    people: { unvaccinated: <>Nicht geimpft</>, vaccinated: <>Geimpft</> },
-    level: <>Antikörperspiegel</>,
-    covered: <>Bedeckte Spikes</>,
-    blocked: <>Blockierte Virionen</>,
-    chance: <>Chance, dass ein Virion blockiert ist</>,
-    viewLabel: "SARS-CoV-2-Virionen nähern sich ACE2-Rezeptoren einer Zelloberfläche, mit Antikörpern an ihren Spikes",
+    k: <>Bindungskonstante <InlineMath math="K" /> (nM)</>,
+    "at-twelve": <>Bedeckte Spikes bei 12 nM (%)</>,
   }}
 />
 
@@ -180,6 +221,7 @@ Eine Mücke braucht im stehenden Wasser etwa eine Woche vom Ei bis zum erwachsen
 <MathVisual
   title={<>Wöchentliches Ausleeren schlägt die Mückenuhr</>}
   description={<>Drei Bruten aus Eiern, die an den Tagen <InlineMath math="0" />, <InlineMath math="7" /> und <InlineMath math="14" /> gelegt wurden. Jede Reihe wächst Richtung Tag <InlineMath math="8" /> und endet beim nächsten Ausleeren (rosa Punkte). Ein Gitterschritt nach rechts ist ein Tag.</>}
+  footer={<>Jedes Ausleeren an Tag 7 stoppt die Brut, bevor Mücken schlüpfen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 22.5 }, y: { min: 0, max: 4 } },
@@ -206,3 +248,5 @@ Eine Mücke braucht im stehenden Wasser etwa eine Woche vom Ei bis zum erwachsen
     adult: <>erwachsene Mücke käme an Tag 8</>,
   }}
 />
+
+Jeder rosa Punkt liegt einen Tag vor dem grauen Schlupfpunkt und unterbricht jede Brut, solange sie noch im Wasser festsitzt. Wer den Reinigungsplan am Lebenszyklus der Mücke ausrichtet, verhindert neue erwachsene Überträger, bevor sie das Virus weitergeben können.

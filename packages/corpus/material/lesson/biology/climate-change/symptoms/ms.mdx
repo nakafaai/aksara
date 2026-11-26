@@ -23,7 +23,7 @@ Pemanasan global, haba lautan yang meningkat, kehilangan ais dan kenaikan aras l
 
 ### Penunjuk yang Bebas Menyokong Kesimpulan Pemanasan yang Sama
 
-Lautan telah menyerap lebih daripada <InlineMath math="90\%" /> [haba berlebihan dalam sistem Bumi](https://www.climate.gov/news-features/understanding-climate/climate-change-ocean-heat-content) akibat pemanasan oleh manusia. Oleh itu, penilaian iklim mengukur haba lautan bersama-sama suhu di daratan.
+Lebih daripada <InlineMath math="90\%" /> [tenaga haba tambahan daripada pemanasan manusia](https://www.climate.gov/news-features/understanding-climate/climate-change-ocean-heat-content) tersimpan di lautan, maka rekod iklim sentiasa menjejaki haba air laut bersama suhu udara daratan.
 
 Sebab itulah saintis membandingkan data satelit, pengukuran lautan, rekod suhu dan pemerhatian ais. Suhu lautan boleh **meningkat sementara jisim ais berkurang**. Nombor-nombor itu bergerak ke arah yang berbeza, tetapi kedua-duanya boleh menyokong kesimpulan yang sama tentang pemanasan jangka panjang.
 
@@ -65,6 +65,7 @@ Satu tahun yang sejuk tidak membatalkan trend pemanasan. Nilai tahunan di sini m
 <MathVisual
   title={<>Setiap Tahun Turun Naik, Setiap Dekad Meningkat</>}
   description={<>Contoh perbezaan suhu tahunan sepanjang <InlineMath math="40" /> tahun dan garis trend lurusnya. Paksi mengufuk: satu petak grid bersamaan <InlineMath math="4" /> tahun. Paksi menegak: satu petak grid bersamaan <InlineMath math="0.2\ ^\circ\mathrm{C}" />.</>}
+  footer={<>Suhu tahunan turun naik manakala garis trend 40 tahun meningkat +0.8 C.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 5.5 } },
@@ -88,18 +89,42 @@ Satu tahun yang sejuk tidak membatalkan trend pemanasan. Nilai tahunan di sini m
 
 Rekod udara yang panjang menunjukkan punca di sebalik gejala ini. Sejak 1958, balai cerap Mauna Loa di Hawaii mengukur karbon dioksida di udara.
 
-<CarbonBudgetLab
+<MathVisual
   title={<>Rekod <InlineMath math="\mathrm{CO_2}" /> Mauna Loa</>}
-  description={<>Min tahunan <InlineMath math="\mathrm{CO_2}" /> yang diukur oleh NOAA. Gerakkan tahunnya dan perhatikan tab udara itu terisi.</>}
-  mode="record"
+  description={
+    <>
+      Peratus peningkatan <InlineMath math="\mathrm{CO_2}" /> atmosfera melebihi garis dasar praindustri <InlineMath math="280\text{ ppm}" /> berbanding tahun selepas 1960 (<InlineMath math="x=0" /> hingga <InlineMath math="64" /> bagi 1960 hingga 2024).
+    </>
+  }
+  footer={<>CO2 udara naik daripada 13% melebihi praindustri pada 1960 kepada 52% pada 2024.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 70 }, y: { min: -2, max: 58 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 0, max: 64, value: 64, step: 4, label: "n" },
+    ],
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 64, y: 0 } },
+      { id: "co2", kind: "function", appearance: "primary", formula: "13.2 + 0.303 * x + 0.00464 * x^2", domain: { min: 0, max: 64 } },
+      { id: "now", kind: "point", appearance: "warning", at: { x: 64, y: 51.6 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 0, y: 13.2 } },
+    ],
+    readouts: [
+      { key: "rise-pct", formula: "13.2 + 0.303 * n + 0.00464 * n^2" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 0, y: 13.2 }, placement: "above-right" },
+      { key: "now", objectId: "now", at: { x: 64, y: 51.6 }, placement: "above-left" },
+      { key: "base", objectId: "base", at: { x: 32, y: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    year: "Tahun",
-    level: <><InlineMath math="\mathrm{CO_2}" /> di udara</>,
-    rise: <>Kenaikan sejak 1960</>,
-    rate: <>Kenaikan setahun sepanjang 10 tahun terakhir</>,
-    perYear: "thn",
-    above: <>Di atas aras praindustri</>,
-    viewLabel: "Tab mandi atmosfera dengan pili pelepasan, lubang salir sinki karbon dan graf karbon dioksida",
+    start: <>1960 (+13%)</>,
+    now: <>2024 (+52%)</>,
+    base: <>Praindustri 280 ppm (0%)</>,
+    n: <>Tahun sejak 1960 <InlineMath math="n" /></>,
+    "rise-pct": <>Kenaikan melebihi praindustri (%)</>,
   }}
 />
 
@@ -131,18 +156,42 @@ Purata aras laut global meningkat terutamanya kerana air laut yang semakin panas
 
 Tolok pasang surut di seluruh dunia sudah mengukur laut selama lebih satu abad.
 
-<SeaLevelRiseLab
-  title={<>Laut Sudah Naik sejak 1901</>}
-  description={<>Kenaikan min aras laut global menurut IPCC. Gerakkan tahunnya dan perhatikan air naik di kampung ini.</>}
-  mode="record"
+<MathVisual
+  title={<>Laut Naik Lebih Cepat sejak 1901</>}
+  description={
+    <>
+      Kadar kenaikan purata aras laut global IPCC (dalam <InlineMath math="\mathrm{mm/tahun}" />) berbanding dekad selepas 1901 (<InlineMath math="x=0" /> hingga <InlineMath math="11.7" /> bagi 1901 hingga 2018), membandingkan purata tempoh (jingga) dengan lengkung pecutan (ungu).
+    </>
+  }
+  footer={<>Kadar kenaikan aras laut meningkat dari 1.3 ke 1.9 lalu 3.7 mm/tahun.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.5, max: 11.5, value: 11.5, step: 0.5, label: "d" },
+    ],
+    objects: [
+      { id: "p1", kind: "segment", appearance: "primary", from: { x: 0, y: 1.3 }, to: { x: 7, y: 1.3 } },
+      { id: "p2", kind: "segment", appearance: "primary", from: { x: 7, y: 1.9 }, to: { x: 10.5, y: 1.9 } },
+      { id: "p3", kind: "segment", appearance: "warning", from: { x: 10.5, y: 3.7 }, to: { x: 11.7, y: 3.7 } },
+      { id: "curve", kind: "function", appearance: "secondary", formula: "1.2 + 0.0014 * x^3", domain: { min: 0, max: 11.7 } },
+    ],
+    readouts: [
+      { key: "trend-rate", formula: "1.2 + 0.0014 * d^3" },
+    ],
+    labels: [
+      { key: "p1", objectId: "p1", at: { x: 3.5, y: 1.3 }, placement: "below" },
+      { key: "p2", objectId: "p2", at: { x: 8.75, y: 1.9 }, placement: "below" },
+      { key: "p3", objectId: "p3", at: { x: 11.1, y: 3.7 }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    year: "Tahun",
-    level: <>Kenaikan global sejak 1901</>,
-    rate: <>Kenaikan setahun dalam tempoh itu</>,
-    perYear: "thn",
-    span: <>Tahun sejak 1901</>,
-    retreat: <>Garis pantai beralih ke darat</>,
-    viewLabel: "Kampung pesisir di pantai yang landai dengan tolok pasang surut",
+    p1: <>1.3 mm/thn (1901 hingga 1971)</>,
+    p2: <>1.9 mm/thn</>,
+    p3: <>3.7 mm/thn (2006 hingga 2018)</>,
+    d: <>Dekad sejak 1901 <InlineMath math="d" /></>,
+    "trend-rate": <>Kadar trend (mm/tahun)</>,
   }}
 />
 
@@ -157,6 +206,7 @@ Suhu, haba lautan, ais, hujan, kemarau dan kejadian di pantai mesti dibandingkan
 <Mermaid
   title={<>Data Iklim daripada Pelbagai Penunjuk</>}
   description={<>Bandingkan rekod jangka panjang suhu, lautan, ais dan corak ekstrem sebelum menilai perubahan iklim.</>}
+  footer={<>Keselarasan empat rekod panjang yang bebas mengukuhkan bukti iklim.</>}
   chart={`flowchart LR
     A["Data jangka panjang"] --> B["Suhu purata"]
     A --> C["Haba lautan"]
@@ -173,6 +223,7 @@ Anjakkan seluruh taburan suhu harian ke atas sebanyak <InlineMath math="1\ ^\cir
 <MathVisual
   title={<>Anjakan Kecil, Jauh Lebih Banyak Hari Panas</>}
   description={<>Lengkung loceng perbezaan suhu harian sebelum (kelabu) dan selepas (jingga) anjakan <InlineMath math="1\ ^\circ\mathrm{C}" />. Paksi mengufuk: darjah daripada purata lama. Paksi menegak: kekerapan setiap nilai berlaku.</>}
+  footer={<>Anjakan +1 C menaikkan hari panas ekstrem daripada 2.3% kepada 15.9%.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 5.5 }, y: { min: -0.3, max: 5 } },
@@ -196,6 +247,8 @@ Anjakkan seluruh taburan suhu harian ke atas sebanyak <InlineMath math="1\ ^\cir
     after: <InlineMath math="\approx15.9\%" />,
   }}
 />
+
+Perhatikan betapa kecil anjakan puncak kedua-dua lengkung berbanding pertambahan luas di kanan garis ambang merah jambu. Kenaikan purata jangka panjang yang nampak kecil menggandakan kekerapan hari panas ekstrem jauh lebih cepat daripada jangkaan harian.
 
 ## Gunakan Penunjuk Iklim Beberapa Dekad sebelum Membuat Kesimpulan
 

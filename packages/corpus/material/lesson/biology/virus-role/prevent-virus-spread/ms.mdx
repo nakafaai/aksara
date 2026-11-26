@@ -48,7 +48,8 @@ Ini sebabnya beberapa lapis langkah pencegahan itu penting. Katakan <InlineMath 
 
 <MathVisual
   title={<>Satu Kes, Lima Generasi</>}
-  description={<>Ilustrasi rantai jangkitan yang bermula daripada satu kes. Paksi mengufuk: generasi. Paksi menegak: kes baharu dalam unit 4.</>}
+  description={<>Ilustrasi rantai jangkitan yang bermula daripada satu kes. Paksi mengufuk: generasi. Paksi menegak: satu langkah grid ialah <InlineMath math="4" /> kes baharu.</>}
+  footer={<>Menurun di bawah R = 1 menukar lonjakan kes kepada pengecilan wabak.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 9 } },
@@ -72,27 +73,47 @@ Ini sebabnya beberapa lapis langkah pencegahan itu penting. Katakan <InlineMath 
 
 Virus denggi merebak terutamanya melalui [gigitan nyamuk Aedes](https://www.cdc.gov/dengue/prevention/index.html), jadi pencegahannya memberi tumpuan kepada mengelakkan gigitan dan mengawal nyamuk di sekitar rumah. Pencegahan virus pernafasan pula menangani zarah yang dilepaskan ke dalam udara yang dikongsi dan pendedahan dalam jarak dekat.
 
-Setiap langkah memutuskan mata rantai yang berbeza. Gabungkan langkah-langkah itu di dataran bandar dan perhatikan wabak mengecil.
+Setiap langkah memutuskan mata rantai yang berbeza. Laraskan bahagian orang yang memakai pelitup muka <InlineMath math="m" /> di bawah dan ikuti penularan berkesan merentasi liputan vaksinasi untuk melihat gabungan langkah menekan wabak ke bawah <InlineMath math="1" />.
 
-<EpidemicSpreadLab
+<MathVisual
   title={<>Langkah Pencegahan Mengecilkan Wabak</>}
-  description={<>Tetapkan bahagian orang yang memakai pelitup muka, yang sudah divaksin, dan yang duduk di rumah.</>}
-  measures={["masks", "vaccinated", "distancing"]}
+  description={
+    <>
+      Purata kes baharu bagi setiap orang apabila liputan vaksinasi{" "}
+      <InlineMath math="x" /> meningkat daripada <InlineMath math="0" /> kepada{" "}
+      <InlineMath math="1" />, bagi bahagian pemakai pelitup muka{" "}
+      <InlineMath math="m" />, berbanding garis <InlineMath math="R=1" />.
+    </>
+  }
+  footer={<>Gabungan pelitup muka dan vaksinasi menurunkan R berkesan di bawah 1.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0, max: 1, value: 0.6, step: 0.1, label: "m" },
+    ],
+    objects: [
+      { id: "reff", kind: "function", appearance: "primary", formula: "3 * (1 - x) * (1 - 0.5 * m)^2", domain: { min: 0, max: 1 } },
+      { id: "threshold", kind: "function", appearance: "warning", formula: "1 + 0x", domain: { min: 0, max: 1 } },
+    ],
+    readouts: [
+      { key: "at-zero", formula: "3 * (1 - 0.5 * m)^2" },
+      { key: "at-half", formula: "1.5 * (1 - 0.5 * m)^2" },
+    ],
+  }}
   labels={{
-    masks: "Orang yang memakai pelitup muka",
-    vaccinated: "Orang yang divaksin",
-    distancing: "Orang yang duduk di rumah",
-    reproduction: <>Setiap kes menjangkiti</>,
-    peak: <>Paling ramai sakit serentak</>,
-    susceptible: <>Masih boleh dijangkiti</>,
-    infected: <>Sedang dijangkiti</>,
-    recovered: <>Sudah pulih</>,
-    immune: <>Imun kerana vaksin</>,
-    viewLabel: "Dataran bandar dengan orang berjalan dan graf wabak",
+    m: <>Bahagian memakai pelitup muka <InlineMath math="m" /></>,
+    "at-zero": <>R berkesan pada 0% divaksin</>,
+    "at-half": <>R berkesan pada 50% divaksin</>,
   }}
 />
 
-Tanpa langkah pencegahan, setiap kes menjangkiti <InlineMath math="3" /> orang. Dalam model ini pelitup muka mengurangkan risiko pemakainya sebanyak separuh, jadi jika semua orang memakainya, nombor itu turun kepada <InlineMath math="3 \times 0.5 \times 0.5 = 0.75" />. Apabila nombor itu di bawah <InlineMath math="1" />, setiap kes menjangkiti kurang daripada seorang dan wabak itu padam. Nilai sebenar bergantung pada virus dan produknya, tetapi logiknya tetap sama.
+Tanpa langkah pencegahan, setiap kes menjangkiti <InlineMath math="3" /> orang. Dalam model ini pelitup muka mengurangkan risiko pemakainya sebanyak separuh, jadi jika semua orang memakainya, risiko penularan dikurangkan separuh sebanyak dua kali.
+
+<BlockMath math="3 \times 0.5 \times 0.5 = 0.75" />
+
+Apabila nombor itu di bawah <InlineMath math="1" />, setiap kes menjangkiti kurang daripada seorang dan wabak itu padam. Nilai sebenar bergantung pada virus dan produknya, tetapi logiknya tetap sama.
 
 ### Cara Sabun Menanggalkan Kotoran dan Mikrob
 
@@ -105,6 +126,7 @@ Pengudaraan memutuskan laluan bawaan udara kerana udara segar terus menggantikan
 <MathVisual
   title={<>Udara Segar Membersihkan Bilik</>}
   description={<>Bahagian zarah bawaan udara yang tinggal dalam bilik yang udaranya bercampur sekata selepas sumbernya berhenti, pada <InlineMath math="1" /> (kelabu), <InlineMath math="3" /> (oren) dan <InlineMath math="6" /> (hijau kebiruan) pertukaran udara sejam. Paksi mengufuk: satu langkah grid ialah <InlineMath math="10" /> minit. Paksi menegak: satu langkah grid ialah <InlineMath math="20" /> peratus.</>}
+  footer={<>Pertukaran udara lebih tinggi membersihkan zarah bawaan udara lebih cepat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 5.5 } },
@@ -130,6 +152,8 @@ Pengudaraan memutuskan laluan bawaan udara kerana udara segar terus menggantikan
   }}
 />
 
+Perhatikan betapa cepatnya tiga lengkung ini berpisah dalam dua puluh minit pertama. Meningkatkan aliran udara daripada satu kepada enam pertukaran sejam menurunkan baki zarah bawaan udara daripada lebih satu pertiga kepada kurang daripada satu peratus dalam sejam, sekali gus mengurangkan pendedahan di dalam bilik.
+
 ## Vaksin Mencetuskan Gerak Balas Imun dan Antivirus Merencatkan Replikasi
 
 **Vaksin** tidak menyekat titisan atau aerosol di udara secara fizikal. Selepas vaksinasi, sistem imun membina gerak balas yang mengecam patogen tertentu. Bergantung pada jenis vaksin dan patogen, perlindungan daripada jangkitan mungkin tidak lengkap walaupun perlindungan daripada penyakit teruk adalah kuat. Vaksin bertindak melalui keimunan, manakala pelitup muka, pengudaraan dan kebersihan bertindak pada pendedahan dan penularan.
@@ -141,6 +165,7 @@ Rajah di bawah meletakkan setiap langkah pada peringkat yang dipengaruhinya. Pel
 <Mermaid
   title={<>Pencegahan Menyasarkan Peringkat yang Berbeza</>}
   description={<>Bandingkan di mana vaksin, ubat dan tabiat pencegahan bertindak dalam rantai penularan virus.</>}
+  footer={<>Setiap cabang menyekat peringkat berbeza: pendedahan, imun, atau replikasi.</>}
   chart={`flowchart TD
     A["Pilih langkah"] --> B["Kurangkan pendedahan"]
     A --> C["Sediakan gerak balas imun"]
@@ -150,20 +175,36 @@ Rajah di bawah meletakkan setiap langkah pada peringkat yang dipengaruhinya. Pel
     D --> G["Ubat antivirus"]`}
 />
 
-Vaksin melatih sistem imun untuk menghasilkan antibodi sebelum virus sebenar tiba.
+Vaksin melatih sistem imun untuk menghasilkan antibodi sebelum virus sebenar tiba. Laraskan pemalar ikatan <InlineMath math="K" /> di bawah untuk melihat bagaimana aras antibodi yang meningkat menutupi spike virus melepasi ambang halangan <InlineMath math="75\%" />.
 
-<AntibodyNeutralizeLab
-  title={<>Antibodi Menghalang Virion daripada Melekat</>}
-  description={<>Bandingkan seseorang tanpa antibodi dengan seseorang yang mempunyai antibodi daripada vaksin. Tekan main untuk menghantar virion ke arah sel.</>}
-  mode="vaccine"
+<MathVisual
+  title={<>Antibodi Menutupi Spike dan Menghalang Pelekatan</>}
+  description={
+    <>
+      Peratusan spike virus yang dilitupi antibodi apabila kepekatan antibodi{" "}
+      <InlineMath math="x" /> meningkat hingga <InlineMath math="20\text{ nM}" />,
+      berbanding ambang peneutralan <InlineMath math="75\%" />.
+    </>
+  }
+  footer={<>Apabila litupan antibodi melepasi 75%, terlalu sedikit spike bebas melekat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.5, max: 3, value: 1, step: 0.5, label: "k" },
+    ],
+    objects: [
+      { id: "covered", kind: "function", appearance: "primary", formula: "100 * x / (x + k)", domain: { min: 0, max: 20 } },
+      { id: "threshold", kind: "function", appearance: "construction", formula: "75 + 0x", domain: { min: 0, max: 20 } },
+    ],
+    readouts: [
+      { key: "at-twelve", formula: "100 * 12 / (12 + k)" },
+    ],
+  }}
   labels={{
-    choose: "Pilih orang",
-    people: { unvaccinated: <>Tidak divaksin</>, vaccinated: <>Sudah divaksin</> },
-    level: <>Aras antibodi</>,
-    covered: <>Spike yang dilitupi</>,
-    blocked: <>Virion yang dihalang</>,
-    chance: <>Peluang sesebuah virion dihalang</>,
-    viewLabel: "Virion SARS-CoV-2 menghampiri reseptor ACE2 pada permukaan sel, dengan antibodi pada spikenya",
+    k: <>Pemalar ikatan <InlineMath math="K" /> (nM)</>,
+    "at-twelve": <>Spike dilitupi pada 12 nM (%)</>,
   }}
 />
 
@@ -180,6 +221,7 @@ Nyamuk memerlukan kira-kira seminggu di dalam air bertakung untuk membesar darip
 <MathVisual
   title={<>Pengosongan Mingguan Mengalahkan Jam Nyamuk</>}
   description={<>Tiga kelompok telur yang diletakkan pada hari <InlineMath math="0" />, <InlineMath math="7" /> dan <InlineMath math="14" />. Setiap baris membesar ke arah hari <InlineMath math="8" /> dan terhenti pada pengosongan seterusnya (titik merah jambu). Satu langkah grid ke kanan ialah satu hari.</>}
+  footer={<>Pengosongan hari ke-7 memutuskan kitar sebelum nyamuk dewasa terbang.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 22.5 }, y: { min: 0, max: 4 } },
@@ -206,3 +248,5 @@ Nyamuk memerlukan kira-kira seminggu di dalam air bertakung untuk membesar darip
     adult: <>nyamuk dewasa muncul hari ke-8</>,
   }}
 />
+
+Setiap tanda merah jambu jatuh sehari sebelum titik kemunculan nyamuk dewasa, sekali gus memotong setiap kelompok telur semasa masih terperangkap di dalam air. Menyelaraskan jadual pembersihan dengan kitar hidup serangga menghalang vektor dewasa baharu daripada menyebarkan virus.

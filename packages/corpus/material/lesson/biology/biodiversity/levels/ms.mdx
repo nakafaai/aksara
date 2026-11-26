@@ -49,6 +49,7 @@ Bayangkan dua populasi padi, masing-masing <InlineMath math="10" /> pokok, dan s
 <MathVisual
   title={<>Variasi Memberi Peluang kepada Sesetengah Pokok</>}
   description={<>Ilustrasi ketahanan terhadap tekanan bagi <InlineMath math="10" /> pokok dengan satu varian yang sama (atas) dan <InlineMath math="10" /> pokok dengan varian yang berbeza (bawah). Titik di sebelah kanan garis merah jambu mampu bertahan dalam keadaan baharu.</>}
+  footer={<>Hanya baris bervariasi genetik mempunyai pokok melepasi ambang tekanan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 3.5 } },
@@ -89,21 +90,39 @@ Bayangkan dua populasi padi, masing-masing <InlineMath math="10" /> pokok, dan s
   }}
 />
 
-Variasi genetik boleh sekecil satu bes. Kad di bawah membandingkan permulaan gen beta-globin manusia (HBB), iaitu gen yang membantu membina hemoglobin, pada dua alel.
+Variasi genetik boleh sekecil satu bes pada gen beta-globin manusia (HBB), menukarkan kodon `GAG` kepada `GTG`. Laraskan kekerapan alel varian <InlineMath math="q" /> di bawah untuk melihat bagaimana satu alel berbeza tersebar dalam genotip populasi.
 
-<DnaHelixLab
-  title={<>Satu Bes Menghasilkan Alel yang Berbeza</>}
-  description={<>Permulaan gen HBB manusia, <InlineMath math="27" /> pasangan bes. Tukar antara alel biasa dengan alel sel sabit dan perhatikan bes yang berubah menyala.</>}
-  sequence="ATG GTG CAT CTG ACT CCT GAG GAG AAG"
-  variant="ATG GTG CAT CTG ACT CCT GTG GAG AAG"
+<MathVisual
+  title={<>Perkadaran Genotip daripada Satu Alel Varian</>}
+  description={
+    <>
+      Peratusan homozigot biasa (kelabu), pembawa heterozigot (oren) dan
+      homozigot varian (ungu) apabila kekerapan alel <InlineMath math="x" />{" "}
+      meningkat daripada <InlineMath math="0" /> kepada <InlineMath math="0.5" />.
+    </>
+  }
+  footer={<>Malah alel satu bes yang jarang masih meluas pada pembawa heterozigot.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0.05, max: 0.5, value: 0.1, step: 0.05, label: "q" },
+    ],
+    objects: [
+      { id: "usual", kind: "function", appearance: "reference", formula: "100 * (1 - x)^2", domain: { min: 0, max: 0.5 } },
+      { id: "carrier", kind: "function", appearance: "primary", formula: "200 * x * (1 - x)", domain: { min: 0, max: 0.5 } },
+      { id: "variant", kind: "function", appearance: "secondary", formula: "100 * x^2", domain: { min: 0, max: 0.5 } },
+    ],
+    readouts: [
+      { key: "carriers", formula: "200 * q * (1 - q)" },
+      { key: "homozygous", formula: "100 * q^2" },
+    ],
+  }}
   labels={{
-    choose: "Pilih alel",
-    strands: { first: <>Alel biasa</>, second: <>Alel sel sabit</> },
-    length: <>Pasangan bes</>,
-    span: <>Panjang</>,
-    differences: <>Bes yang berbeza</>,
-    identity: <>Bes yang sama</>,
-    viewLabel: "Heliks ganda dua DNA gen HBB dengan bes yang berubah menyala",
+    q: <>Kekerapan alel varian <InlineMath math="q" /></>,
+    carriers: <>Pembawa heterozigot (%)</>,
+    homozygous: <>Homozigot varian (%)</>,
   }}
 />
 
@@ -128,11 +147,16 @@ Bandingkan pemerhatian andaian ini, yang menggunakan luas petak dan kaedah pengi
 
 Kedua-dua petak mengandungi <InlineMath math="10" /> individu dan <InlineMath math="3" /> spesies. Namun, **kelimpahan lebih sekata** dalam petak 2. Mengira spesies sahaja tidak dapat menangkap perbezaan ini.
 
-Paparan di bawah menukar kedua-dua petak menjadi bar, jingga untuk spesies A, ungu untuk B dan hijau kebiruan untuk C, dengan satu selang grid mewakili <InlineMath math="2" /> individu. Putar paparan itu supaya kamu dapat melihat kedua-dua baris bersebelahan. Petak 1 mempunyai satu bar tinggi dan dua bar pendek, manakala petak 2 mempunyai tiga bar yang hampir sama tinggi. Satu cara biasa untuk menyatakan perbezaan ini dengan nombor ialah indeks Simpson, <InlineMath math="1-\sum p_i^2" />, dengan <InlineMath math="p_i" /> ialah perkadaran individu bagi setiap spesies. Nilainya mencapai <InlineMath math="0.34" /> bagi petak 1 dan <InlineMath math="0.66" /> bagi petak 2, jadi petak yang lebih sekata mendapat skor hampir dua kali ganda walaupun bilangan spesiesnya sama.
+Paparan di bawah menukar kedua-dua petak menjadi bar: jingga untuk spesies A, ungu untuk B dan hijau kebiruan untuk C, dengan satu selang grid mewakili <InlineMath math="2" /> individu. Petak 1 mempunyai satu bar tinggi dan dua bar pendek, manakala petak 2 mempunyai tiga bar yang hampir sama tinggi.
+
+Ahli ekologi merumuskan perbezaan ini dengan **indeks kepelbagaian Simpson**, dengan <InlineMath math="p_i" /> ialah perkadaran individu setiap spesies:
+
+<BlockMath math="D = 1 - \sum p_i^2" />
 
 <MathVisual
   title={<>Kekayaan Sama, Kesamarataan Berbeza</>}
   description={<>Individu spesies A (jingga), B (ungu) dan C (hijau kebiruan) dalam dua petak andaian yang sama luas. Satu selang grid ke atas mewakili <InlineMath math="2" /> individu.</>}
+  footer={<>Spesies lebih sekata meningkatkan indeks Simpson tanpa menambah spesies.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
@@ -156,6 +180,8 @@ Paparan di bawah menukar kedua-dua petak menjadi bar, jingga untuk spesies A, un
   }}
 />
 
+Petak 1 mencatat <InlineMath math="0.34" /> manakala petak 2 mencatat <InlineMath math="0.66" />, hampir dua kali ganda walaupun kedua-duanya mempunyai tiga spesies yang sama. Mengukur kesamarataan bersama kekayaan spesies mendedahkan sama ada satu spesies dominan mendesak komuniti lain.
+
 ### Kepelbagaian Ekosistem Membandingkan Habitat dan Hubungan
 
 Sawah, sungai, hutan hujan tropika, paya bakau, savana dan terumbu karang mempunyai keadaan yang berbeza. **Cahaya, air, kemasinan, tanah, suhu dan interaksi antara organisma** menentukan benda hidup yang dapat terus hidup di situ.
@@ -167,6 +193,7 @@ Rekod primer biodiversiti boleh datang daripada muzium, koleksi saintifik, kod b
 <Mermaid
   title={<>Tiga Aras Biodiversiti di Sawah</>}
   description={<>Rajah ini membandingkan kepelbagaian genetik, spesies dan ekosistem dalam persekitaran sawah.</>}
+  footer={<>Satu sawah mengandungi kepelbagaian gen, spesies, dan habitat serentak.</>}
   chart={`flowchart TD
     A["Biodiversiti"] --> B["Aras gen"]
     A --> C["Aras spesies"]
@@ -181,6 +208,7 @@ Kekayaan spesies mengira berapa banyak jenis yang hidup di sesuatu tempat. Kedua
 <MathVisual
   title={<>Bilangan Sama, Kekayaan Berbeza</>}
   description={<>Dua petak yang masing-masing mempunyai <InlineMath math="12" /> individu. Setiap warna mewakili satu spesies.</>}
+  footer={<>Bilangan individu sama boleh menyembunyikan kekayaan spesies berbeza.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 4.5 } },
@@ -224,18 +252,39 @@ Kekayaan spesies mengira berapa banyak jenis yang hidup di sesuatu tempat. Kedua
   }}
 />
 
-Kepelbagaian ekosistem juga merangkumi hubungan, seperti pemangsa dengan mangsanya. Di pinggir sawah padi, burung pungguk jelapang memburu tikus sawah.
+Kepelbagaian ekosistem juga merangkumi hubungan, seperti pemangsa dengan mangsanya. Di pinggir sawah padi, burung pungguk jelapang memburu tikus sawah. Laraskan amplitud ayunan <InlineMath math="a" /> di bawah untuk melihat populasi tikus dan burung pungguk naik turun secara berselang sepanjang <InlineMath math="20" /> tahun.
 
-<PredatorPreyLab
+<MathVisual
   title={<>Tikus dan Burung Pungguk Naik Turun Bersama</>}
-  description={<>Tetapkan bilangan burung pungguk pada permulaan, kemudian tekan main untuk menjalankan model selama <InlineMath math="20" /> tahun.</>}
+  description={
+    <>
+      Gelombang populasi tikus (oren) sekitar <InlineMath math="100" /> dan
+      burung pungguk (ungu) sekitar <InlineMath math="20" /> sepanjang{" "}
+      <InlineMath math="20" /> tahun dengan kitaran <InlineMath math="4.4" />{" "}
+      tahun.
+    </>
+  }
+  footer={<>Puncak burung pungguk menyusul puncak tikus lalu menarik mangsa turun.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 155 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 10, max: 45, value: 30, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "rats", kind: "function", appearance: "primary", formula: "100 + a * sin(2 * pi * x / 4.4)", domain: { min: 0, max: 20 } },
+      { id: "owls", kind: "function", appearance: "secondary", formula: "20 + 0.25 * a * sin(2 * pi * (x - 1.1) / 4.4)", domain: { min: 0, max: 20 } },
+    ],
+    readouts: [
+      { key: "peak-rats", formula: "100 + a" },
+      { key: "peak-owls", formula: "20 + 0.25 * a" },
+    ],
+  }}
   labels={{
-    start: "Burung pungguk pada permulaan",
-    prey: <>Tikus</>,
-    predators: <>Burung pungguk</>,
-    peak: <>Tikus paling banyak</>,
-    year: <>Tahun</>,
-    viewLabel: "Sawah padi dengan tikus sawah dan burung pungguk jelapang",
+    a: <>Amplitud ayunan tikus <InlineMath math="a" /></>,
+    "peak-rats": <>Puncak bilangan tikus</>,
+    "peak-owls": <>Puncak bilangan burung pungguk</>,
   }}
 />
 

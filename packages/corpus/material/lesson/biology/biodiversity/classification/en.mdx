@@ -45,6 +45,7 @@ The scene below sorts six animals twice. The fuchsia circle uses one criterion, 
 <MathVisual
   title={<>Same Animals, Two Criteria</>}
   description={<>Six animals grouped by flight (fuchsia circle) and by class from shared body traits (orange, violet and teal circles).</>}
+  footer={<>Only the class circles follow relatedness while flight cuts across them.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -2.5, max: 7.5 } },
@@ -88,41 +89,59 @@ The scene below sorts six animals twice. The fuchsia circle uses one criterion, 
   }}
 />
 
+Notice how the fuchsia flight circle grabs one member from three separate class circles while leaving each animal's flightless relative outside. Practical artificial criteria can be useful, yet they split genuine evolutionary relatives apart.
+
 ### Natural Classification Compares Many Traits
 
 The historical five-kingdom system used broad trait combinations to place organisms in Monera, Protista, Fungi, Plantae, and Animalia. Modern evidence no longer keeps all prokaryotes together as Monera. Comparisons of ribosomal RNA and other evidence distinguish the **domains Bacteria and Archaea** alongside Eukarya.
 
 Natural classification compares several biological traits so the grouping does not depend on one visible habit.
 
-Natural classification compares many traits at once, and the cell itself carries several of them. Pick each cell below and compare where its genetic material sits, what wall surrounds it, and which organelles supply its energy.
+Natural classification compares many traits at once, including cell size, nuclear organization, cell wall chemistry, and energy organelles. Compare the typical cell lengths of a bacterium, yeast, animal cell, and plant leaf cell below.
 
-<CellCutawayLab
-  title={<>Cells from Four Groups of Organisms</>}
-  description={<>Each cell is cut in half and drawn at its real size. Pick a cell and compare its nucleus, its wall, and its energy organelles.</>}
-  cells={["bacterium", "yeast", "plant", "animal"]}
+<MathVisual
+  title={<>Cell Sizes Across Four Groups of Organisms</>}
+  description={
+    <>
+      Typical cell lengths in micrometers from a <InlineMath math="2\ \mu\text{m}" />{" "}
+      bacterium and an <InlineMath math="8\ \mu\text{m}" /> yeast cell up to a{" "}
+      <InlineMath math="20\ \mu\text{m}" /> animal cell and a{" "}
+      <InlineMath math="40\ \mu\text{m}" /> leaf cell.
+    </>
+  }
+  footer={<>Eukaryotic cells are roughly 4 to 20 times longer than typical bacteria.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 48 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "bac-bar", kind: "segment", appearance: "warning", from: { x: 0, y: 1 }, to: { x: 2, y: 1 } },
+      { id: "bac", kind: "point", appearance: "warning", at: { x: 2, y: 1 } },
+      { id: "yeast-bar", kind: "segment", appearance: "secondary", from: { x: 0, y: 2 }, to: { x: 8, y: 2 } },
+      { id: "yeast", kind: "point", appearance: "secondary", at: { x: 8, y: 2 } },
+      { id: "animal-bar", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 20, y: 3 } },
+      { id: "animal", kind: "point", appearance: "primary", at: { x: 20, y: 3 } },
+      { id: "leaf-bar", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 40, y: 4 } },
+      { id: "leaf", kind: "point", appearance: "construction", at: { x: 40, y: 4 } },
+    ],
+    labels: [
+      { key: "bac", objectId: "bac", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "yeast", objectId: "yeast", at: { x: 8, y: 2 }, placement: "right" },
+      { key: "animal", objectId: "animal", at: { x: 20, y: 3 }, placement: "right" },
+      { key: "leaf", objectId: "leaf", at: { x: 40, y: 4 }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    choose: "Choose a cell",
-    cells: {
-      animal: "Animal cell",
-      bacterium: "Bacterium",
-      plant: "Leaf cell",
-      yeast: "Yeast",
-    },
-    facts: {
-      animal: { nucleus: <>inside a nuclear membrane</>, wall: <>none</>, power: <>mitochondria</> },
-      bacterium: { nucleus: <>nucleoid, no membrane</>, wall: <>peptidoglycan</>, power: <>cell membrane</> },
-      plant: { nucleus: <>inside a nuclear membrane</>, wall: <>cellulose</>, power: <>chloroplasts and mitochondria</> },
-      yeast: { nucleus: <>inside a nuclear membrane</>, wall: <>glucan and chitin</>, power: <>mitochondria</> },
-    },
-    size: <>Length</>,
-    nucleus: <>Genetic material</>,
-    wall: <>Cell wall</>,
-    power: <>Energy organelles</>,
-    viewLabel: "A cell cut in half with its organelles",
+    bac: <>Bacterium (2 µm, nucleoid)</>,
+    yeast: <>Yeast (8 µm, chitin wall)</>,
+    animal: <>Animal cell (20 µm, no wall)</>,
+    leaf: <>Leaf cell (40 µm, cellulose)</>,
   }}
 />
 
-The bacterium has no nucleus, so its DNA lies in a **nucleoid**. The yeast, leaf, and animal cells keep their DNA inside a nuclear membrane, which makes all three **eukaryotes**. The cell wall splits them again: cellulose in plants, glucan and chitin in fungi, and no wall at all in animals. Their sizes differ a lot too. A leaf cell <InlineMath math="40\ \mu\text{m}" /> long is about <InlineMath math="20" /> times as long as a bacterium of only <InlineMath math="2\ \mu\text{m}" />. So organisms share a group because **many traits match**, not because of one trait alone.
+The bacterium has no nucleus, so its DNA lies in a **nucleoid** surrounded by a peptidoglycan wall. Yeast, leaf, and animal cells enclose their DNA inside a nuclear membrane, which makes all three **eukaryotes**.
+
+Cell walls and sizes separate them further: plants build cellulose walls and chloroplasts, fungi build chitin and glucan walls, and animal cells lack a wall altogether. A leaf cell <InlineMath math="40\ \mu\text{m}" /> long is about <InlineMath math="20" /> times as long as a <InlineMath math="2\ \mu\text{m}" /> bacterium, showing why natural classification groups organisms where **many traits match** together.
 
 ### Phylogenetic Classification Infers Common Ancestry
 
@@ -131,6 +150,7 @@ Phylogenetic classification infers evolutionary relationships. Evidence may incl
 <Mermaid
   title={<>Criteria in Three Classification Methods</>}
   description={<>The diagram compares the basis of artificial, natural, and phylogenetic classification.</>}
+  footer={<>Each branch starts from a distinct grouping basis and builds a different tree.</>}
   chart={`flowchart TD
     A["Basis for grouping"] --> B["Human use"]
     A --> C["Traits match"]
@@ -145,6 +165,7 @@ A key with yes-or-no questions splits every group into two. After <InlineMath ma
 <MathVisual
   title={<>Each Question Doubles the Groups</>}
   description={<>A dichotomous key with three yes-or-no questions. Each fork is one question, and each end point is one group.</>}
+  footer={<>Three binary splits separate up to eight distinct organism groups.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -8, max: 10 }, y: { min: -1, max: 4 } },
@@ -193,21 +214,37 @@ A key with yes-or-no questions splits every group into two. After <InlineMath ma
   }}
 />
 
-Phylogenetic classification compares DNA base sequences. The fewer differences two species show in the same gene, the closer their relationship, because they split from a common ancestor more recently.
+Phylogenetic classification compares DNA base sequences. The fewer differences two species show in the same gene, the closer their relationship, because they split from a common ancestor more recently. Slide the gene length <InlineMath math="n" /> below to see how each base mismatch lowers sequence identity.
 
-<DnaHelixLab
-  title={<>Comparing the DNA of Two Species</>}
-  description={<>An example stretch of the same gene in two species, <InlineMath math="27" /> base pairs long. Switch the species and watch the different bases glow.</>}
-  sequence="ATG GCT AAC CTG GTA CAG TTC GAA AGC"
-  variant="ATG GCC AAC CTG GTG CAG TTT GAA AGC"
+<MathVisual
+  title={<>DNA Sequence Identity and Base Differences</>}
+  description={
+    <>
+      Percentage of identical bases as the number of differing sites{" "}
+      <InlineMath math="x" /> increases from <InlineMath math="0" /> to{" "}
+      <InlineMath math="10" />, for a compared gene segment of length{" "}
+      <InlineMath math="n" /> base pairs.
+    </>
+  }
+  footer={<>Fewer base differences keep DNA identity high and indicate closer ancestry.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 50, max: 102 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 20, max: 50, value: 27, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "identity", kind: "function", appearance: "primary", formula: "100 * (1 - x / n)", domain: { min: 0, max: 10 } },
+      { id: "three-diff", kind: "segment", appearance: "reference", from: { x: 3, y: 50 }, to: { x: 3, y: 100 } },
+    ],
+    readouts: [
+      { key: "at-three", formula: "100 * (1 - 3 / n)" },
+    ],
+  }}
   labels={{
-    choose: "Choose a species",
-    strands: { first: <>Species A</>, second: <>Species B</> },
-    length: <>Base pairs</>,
-    span: <>Length</>,
-    differences: <>Different bases</>,
-    identity: <>Same bases</>,
-    viewLabel: "DNA double helix with the different bases glowing",
+    n: <>Compared length <InlineMath math="n" /> (bp)</>,
+    "at-three": <>Sequence identity with 3 differences (%)</>,
   }}
 />
 
@@ -228,6 +265,7 @@ Here is one complete path through the ranks, for humans. Every rank sits inside 
 <MathVisual
   title={<>Ranks Nested from Domain to Species</>}
   description={<>Each circle is one taxon in the human classification, inside the taxon one rank above it.</>}
+  footer={<>Each inner circle narrows the taxon until only Homo sapiens remains.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -0.5, max: 17 } },
@@ -265,6 +303,8 @@ Here is one complete path through the ranks, for humans. Every rank sits inside 
     species: <>Species Homo sapiens</>,
   }}
 />
+
+Moving inward from Domain Eukarya to Species *Homo sapiens* narrows membership step by step while increasing the number of shared traits. Every nested ring sits completely inside the broader ring above it, illustrating why biological hierarchy builds inclusive sets rather than loose lists.
 
 ## Criterion and Purpose of a Group Name
 

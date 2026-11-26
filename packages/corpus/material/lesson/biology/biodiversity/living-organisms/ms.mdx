@@ -26,27 +26,37 @@ Di sebuah kebun, pengeluar membina bahan organik, pengguna mendapat makanan dari
 
 > Jejaki dua laluan dalam ekosistem. Ikuti tenaga daripada sumber makanan kepada pengguna-penggunanya. Ikuti jirim apabila pengurai mengembalikannya ke persekitaran supaya organisma boleh menggunakannya semula.
 
-Tenaga masuk ke dalam ekosistem melalui pengeluar. Bandingkan sel daun dengan sel haiwan untuk melihat tempat aliran itu bermula.
+Tenaga masuk ke dalam ekosistem melalui pengeluar. Bandingkan bagaimana sel daun berkloroplas dan sel haiwan pengguna bergerak balas terhadap keamatan cahaya apabila kadar respirasi sel <InlineMath math="r" /> berubah di bawah.
 
-<CellCutawayLab
-  title={<>Sel Pengeluar dan Sel Pengguna</>}
-  description={<>Kedua-dua sel dipotong dua pada saiz sebenarnya. Pilih satu sel dan cari kloroplasnya.</>}
-  cells={["plant", "animal"]}
+<MathVisual
+  title={<>Sel Pengeluar dan Sel Pengguna di Bawah Cahaya</>}
+  description={
+    <>
+      Imbangan gula bersih melawan keamatan cahaya <InlineMath math="x" /> bagi
+      sel daun berkloroplas (oren) dan sel haiwan tanpa kloroplas (ungu), pada
+      keperluan respirasi <InlineMath math="r" />.
+    </>
+  }
+  footer={<>Hanya sel daun menjadi positif dalam cahaya, sel haiwan kekal negatif.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: -4, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1, max: 3, value: 1.5, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "leaf", kind: "function", appearance: "primary", formula: "8 * x / (x + 2) - r", domain: { min: 0, max: 10 } },
+      { id: "animal", kind: "function", appearance: "secondary", formula: "-r + 0x", domain: { min: 0, max: 10 } },
+      { id: "zero", kind: "function", appearance: "reference", formula: "0x", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "leaf-net", formula: "8 * 6 / 8 - r" },
+    ],
+  }}
   labels={{
-    choose: "Pilih sel",
-    cells: {
-      animal: "Sel haiwan",
-      plant: "Sel daun",
-    },
-    facts: {
-      animal: { nucleus: <>di dalam membran nukleus</>, wall: <>tiada</>, power: <>mitokondria</> },
-      plant: { nucleus: <>di dalam membran nukleus</>, wall: <>selulosa</>, power: <>kloroplas dan mitokondria</> },
-    },
-    size: <>Panjang</>,
-    nucleus: <>Bahan genetik</>,
-    wall: <>Dinding sel</>,
-    power: <>Organel tenaga</>,
-    viewLabel: "Sebuah sel yang dipotong dua bersama organelnya",
+    r: <>Kadar respirasi <InlineMath math="r" /></>,
+    "leaf-net": <>Untung gula bersih daun pada cahaya 6</>,
   }}
 />
 
@@ -73,6 +83,7 @@ Paparan di bawah membina piramid ini daripada nombor. Katakan lapisan rumput men
 <MathVisual
   title={<>Piramid Tenaga dengan Satu Persepuluh bagi Setiap Aras</>}
   description={<>Luas bahagian atas setiap lapisan berkadar dengan tenaga yang tersedia pada aras trofik itu, bermula dengan <InlineMath math="10{,}000\text{ kJ}" /> dalam rumput sebagai ilustrasi.</>}
+  footer={<>Setiap aras trofik mengecil sepuluh kali ganda luasnya apabila haba hilang.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: 0, max: 2.5 }, z: { min: -4, max: 4 } },
@@ -106,6 +117,7 @@ Hanya kira-kira satu persepuluh tenaga pada satu aras sampai ke aras seterusnya,
 <MathVisual
   title={<>Satu Persepuluh Naik pada Setiap Aras</>}
   description={<>Tenaga pada tiga aras dalam satu rantai makanan, bermula daripada <InlineMath math="10{,}000\text{ kJ}" /> dalam rumput. Menegak: satu selang grid ke bawah bermaksud tenaga menjadi satu persepuluh.</>}
+  footer={<>Sembilan per sepuluh tenaga keluar sebagai haba pada setiap aras makanan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 1, max: 4.5 } },
@@ -131,19 +143,36 @@ Hanya kira-kira satu persepuluh tenaga pada satu aras sampai ke aras seterusnya,
   }}
 />
 
-Setiap aras hanya meneruskan sebahagian tenaganya. Jadi sebidang sawah hanya boleh menyara sebilangan tikus, dan tikus itu hanya boleh menyara sebilangan burung pungguk.
+Setiap aras hanya meneruskan sebahagian tenaganya. Jadi sebidang sawah hanya boleh menyara sebilangan tikus, dan tikus itu hanya boleh menyara sebilangan burung pungguk. Laraskan kekuatan redaman <InlineMath math="d" /> di bawah untuk melihat had makanan menstabilkan kedua-dua populasi menuju keseimbangan.
 
-<PredatorPreyLab
+<MathVisual
   title={<>Makanan Mengehadkan Tikus dan Burung Pungguk</>}
-  description={<>Padi di sawah ini boleh menyara paling banyak <InlineMath math="400" /> ekor tikus. Tetapkan burung pungguk pada permulaan dan mainkan <InlineMath math="20" /> tahun.</>}
-  capacity={400}
+  description={
+    <>
+      Ayunan teredam populasi tikus (oren, stabil pada <InlineMath math="100" />)
+      dan burung pungguk (ungu, stabil pada <InlineMath math="15" />) sepanjang{" "}
+      <InlineMath math="20" /> tahun apabila padi mengehadkan muatan tampung.
+    </>
+  }
+  footer={<>Muatan tampung makanan meredam ayunan ke arah 100 tikus dan 15 pungguk.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 190 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.05, max: 0.3, value: 0.15, step: 0.05, label: "d" },
+    ],
+    objects: [
+      { id: "rats", kind: "function", appearance: "primary", formula: "100 + 80 * exp(-d * x) * sin(2 * pi * x / 4.4)", domain: { min: 0, max: 20 } },
+      { id: "owls", kind: "function", appearance: "secondary", formula: "15 + 10 * exp(-d * x) * sin(2 * pi * (x - 1.1) / 4.4)", domain: { min: 0, max: 20 } },
+    ],
+    readouts: [
+      { key: "rat-swing", formula: "80 * exp(-10 * d)" },
+    ],
+  }}
   labels={{
-    start: "Burung pungguk pada permulaan",
-    prey: <>Tikus</>,
-    predators: <>Burung pungguk</>,
-    peak: <>Tikus paling banyak</>,
-    year: <>Tahun</>,
-    viewLabel: "Sawah padi dengan tikus sawah dan burung pungguk jelapang",
+    d: <>Redaman had makanan <InlineMath math="d" /></>,
+    "rat-swing": <>Baki ayunan tikus pada tahun ke-10</>,
   }}
 />
 
@@ -162,6 +191,7 @@ Pengurai, seperti semua benda hidup yang lain, membebaskan tenaga melalui respir
 <MathVisual
   title={<>Respirasi Mengekalkan Setiap Atom</>}
   description={<>Atom karbon (kelabu), hidrogen (ungu) dan oksigen (jingga) dalam bahan tindak balas (belakang) dan hasil tindak balas (depan). Satu selang grid ke atas mewakili <InlineMath math="4" /> atom.</>}
+  footer={<>Bar bahan dan hasil tindak balas sama tepat bagi karbon, hidrogen, oksigen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
@@ -187,6 +217,8 @@ Pengurai, seperti semua benda hidup yang lain, membebaskan tenaga melalui respir
   }}
 />
 
+Setiap bar depan menyamai pasangannya di belakang kerana respirasi tidak memusnahkan atom: pengurai membebaskan tenaga sebagai haba sambil mengembalikan semua atom karbon, hidrogen dan oksigen ke udara serta tanah.
+
 ## Nic Menerangkan Cara Organisma Menggunakan Persekitarannya
 
 **Nic** menerangkan julat keadaan persekitaran yang mampu ditahan oleh sesuatu organisma, sumber yang digunakannya dan interaksinya dengan organisma lain. Habitat ialah tempat organisma itu hidup. Nicnya pula menerangkan cara organisma itu hidup di situ. Dua organisma boleh berkongsi habitat tetapi menduduki nic yang berbeza.
@@ -198,6 +230,7 @@ Banyak tumbuhan [bergantung pada pendebunga](https://www.fao.org/pollination/). 
 <Mermaid
   title={<>Aliran Tenaga dan Kitar Jirim</>}
   description={<>Rajah ini menunjukkan tenaga yang mengalir melalui pengguna dan jirim yang berkitar melalui pengurai dalam satu ekosistem.</>}
+  footer={<>Tenaga keluar sebagai haba sementara pengurai mengitar nutrien kembali.</>}
   chart={`flowchart TB
     subgraph energy["Aliran tenaga"]
       direction TB
@@ -213,6 +246,8 @@ Banyak tumbuhan [bergantung pada pendebunga](https://www.fao.org/pollination/). 
     end
     energy ~~~ matter`}
 />
+
+Membandingkan kedua-dua bahagian rajah menonjolkan prinsip asas ekosistem: tenaga matahari mengalir sehala melalui organisma dan hilang sebagai haba, manakala pengurai menutup gelung supaya unsur mineral kembali kepada pengeluar berulang kali.
 
 ## Anak Panah Tenaga dan Kitar Jirim Menunjukkan Laluan yang Berbeza
 

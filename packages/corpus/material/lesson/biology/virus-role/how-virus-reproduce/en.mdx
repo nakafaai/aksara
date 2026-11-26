@@ -64,20 +64,36 @@ Virulent phages follow the lytic cycle. Temperate phages can also undergo lysoge
   }}
 />
 
-Each lytic cycle releases many new virions. In a population, the same multiplication happens from person to person.
+Each lytic cycle releases many new virions. In a population, the same multiplication happens from person to person. Adjust the average number of secondary infections <InlineMath math="R" /> below to see how an unchecked outbreak wave grows and slows.
 
-<EpidemicSpreadLab
+<MathVisual
   title={<>One Case Grows into an Outbreak</>}
-  description={<>People stroll through a town square. Press play to watch one infection spread when nobody takes any measure.</>}
-  measures={[]}
+  description={
+    <>
+      Cumulative percentage infected (orange) and active illness wave (violet)
+      over <InlineMath math="40" /> days as the reproduction number{" "}
+      <InlineMath math="R" /> changes.
+    </>
+  }
+  footer={<>Higher R lifts the active peak and pushes total infections closer to 100%.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1.5, max: 4, value: 3, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "100 * (1 - exp(-r)) / (1 + 49 * exp(-0.18 * (r - 1) * x))", domain: { min: 0, max: 40 } },
+      { id: "active", kind: "function", appearance: "secondary", formula: "15 * (r - 1) * exp(-((x - 16) / 6)^2)", domain: { min: 0, max: 40 } },
+    ],
+    readouts: [
+      { key: "peak", formula: "15 * (r - 1)" },
+    ],
+  }}
   labels={{
-    reproduction: <>Each case infects</>,
-    peak: <>Most ill at once</>,
-    susceptible: <>Still susceptible</>,
-    infected: <>Infected now</>,
-    recovered: <>Recovered</>,
-    immune: <>Immune from a vaccine</>,
-    viewLabel: "Town square with people walking and a graph of the outbreak",
+    r: <>Average infections per case <InlineMath math="R" /></>,
+    peak: <>Peak ill at once (%)</>,
   }}
 />
 
@@ -109,6 +125,7 @@ During synthesis, viral genomes are copied and viral proteins are made **as sepa
 <Mermaid
   title={<>Assembling Viral Components into Virions</>}
   description={<>The lytic stages in the order the arrows show: adsorption, penetration, synthesis, assembly, lysis.</>}
+  footer={<>Follow left to right: synthesis makes parts, then assembly builds virions.</>}
   chart={`flowchart LR
     A(["Adsorption"]) --> B(["Penetration"])
     B --> C(["Synthesis"])
@@ -121,6 +138,7 @@ Rotate this bacteriophage at the moment of attachment. Its tail fibers grip the 
 <MathVisual
   title={<>A Phage Lands and Injects</>}
   description={<>A bacteriophage on a bacterial surface: an icosahedral head, a tail, six tail fibers and the injected genome below the surface.</>}
+  footer={<>Only the viral genome enters the bacterium while the protein coat stays out.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.5, max: 6 }, z: { min: -3, max: 3 } },
@@ -172,24 +190,40 @@ Rotate this bacteriophage at the moment of attachment. Its tail fibers grip the 
   }}
 />
 
-Copying the genome relies on base pairing. In a DNA phage the two strands open, and each base takes its partner: A with T, G with C.
+Copying the genome relies on base pairing. In a DNA phage the two strands open, and each base takes its partner: A with T, G with C. Slide the polymerase copying speed <InlineMath math="r" /> below to see how fast a host cell replicates a <InlineMath math="48.5\text{ kb}" /> phage lambda genome.
 
-<DnaHelixLab
-  title={<>A Viral Genome Is Copied Base by Base</>}
-  description={<>An example stretch of DNA, <InlineMath math="27" /> base pairs long. Slide the copying or press play, and watch new nucleotides pair with both old strands.</>}
-  copy
-  sequence="ATG GCT AGC TTA GGC ATC GAT CCG TAA"
+<MathVisual
+  title={<>Copying a Phage Genome Base by Base</>}
+  description={
+    <>
+      Kilobases copied over <InlineMath math="100" /> seconds at polymerase speed{" "}
+      <InlineMath math="r" /> base pairs per second, compared against the{" "}
+      <InlineMath math="48.5\text{ kb}" /> phage lambda genome line.
+    </>
+  }
+  footer={<>Faster polymerase copying reaches the 48.5 kb lambda genome line sooner.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 300, max: 1000, value: 600, step: 100, label: "r" },
+    ],
+    objects: [
+      { id: "copied", kind: "function", appearance: "primary", formula: "r * x / 1000", domain: { min: 0, max: 100 } },
+      { id: "lambda", kind: "function", appearance: "construction", formula: "48.5 + 0x", domain: { min: 0, max: 100 } },
+    ],
+    readouts: [
+      { key: "at-minute", formula: "r * 60 / 1000" },
+    ],
+  }}
   labels={{
-    copy: "Copying progress",
-    length: <>Base pairs</>,
-    span: <>Length</>,
-    copied: <>New bases paired</>,
-    turns: <>Turns of the helix</>,
-    viewLabel: "DNA helix opening and being copied",
+    r: <>Copying speed <InlineMath math="r" /> (bp/s)</>,
+    "at-minute": <>Kilobases copied in 60 s</>,
   }}
 />
 
-Each new strand pairs with one old strand, so both copies match the original exactly. This stretch of <InlineMath math="27" /> base pairs is only <InlineMath math="27 \times 0.34\text{ nm} \approx 9.2\text{ nm}" /> long. The genome of phage lambda has <InlineMath math="48{,}502" /> base pairs, and the host cell supplies the nucleotides and the energy to copy them all.
+Each new strand pairs with one old strand, so both copies match the original exactly. This stretch of <InlineMath math="27" /> base pairs measures about <InlineMath math="9.2\text{ nm}" /> long. The genome of phage lambda has <InlineMath math="48{,}502" /> base pairs, and the host cell supplies the nucleotides and the energy to copy them all.
 
 ## A Prophage Can Remain in the Host Genome
 
@@ -204,6 +238,7 @@ Both cycles copy the viral genome, at very different speeds. In the lytic cycle 
 <MathVisual
   title={<>Bursts or Quiet Copies</>}
   description={<>Illustrative copies after each round for the lytic cycle (orange) and the lysogenic cycle (violet). Vertical: one grid step is ten times as many copies.</>}
+  footer={<>Lytic bursts climb orders of magnitude faster than quiet prophage divisions.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 8.5 } },
@@ -232,6 +267,8 @@ Both cycles copy the viral genome, at very different speeds. In the lytic cycle 
     lyso: <InlineMath math="2^4=16" />,
   }}
 />
+
+After just four rounds, the lytic curve climbs to one hundred million copies while the quiet prophage path reaches sixteen copies tucked inside living bacteria. That huge gap shows why lytic infections burst rapidly through host colonies whereas lysogeny preserves the viral genome across generations without destroying the host.
 
 ## Distinguishing Synthesis from Assembly
 

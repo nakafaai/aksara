@@ -43,11 +43,14 @@ Coral reefs may look like rocks, but they are built by coral animals living with
 
 Coral bleaching is a sign of severe stress and can happen before a coral dies. If seawater stays too warm, corals can weaken and die. Fish lose habitat, while coastal communities may lose reef fisheries and protection from waves.
 
-Heat stress on a reef adds up week by week. NOAA Coral Reef Watch measures it in **degree heating weeks**: each week, take how many degrees the water sits above the coral's bleaching threshold, then add the weeks together. In the illustrative case below, the amber line is that weekly excess, and the pink line is its running sum. Follow the pink line upward: it crosses <InlineMath math="4\ ^\circ\text{C-weeks}" />, where significant bleaching becomes likely, and then <InlineMath math="8" />, where severe bleaching and coral deaths become likely. Notice that the pink line keeps its height once the water cools, because the stress already happened.
+Heat stress on a reef adds up week by week. NOAA Coral Reef Watch measures it in **degree heating weeks**: each week, take how many degrees the water sits above the coral's bleaching threshold, then add the weeks together.
+
+In the illustrative case below, the amber line is that weekly excess, and the pink line is its running sum. Follow the pink line upward: it crosses <InlineMath math="4\ ^\circ\text{C-weeks}" />, where significant bleaching becomes likely, and then <InlineMath math="8" />, where severe bleaching and coral deaths become likely. Notice that the pink line keeps its height once the water cools, because the stress already happened.
 
 <MathVisual
   title={<>Heat Stress Adds Up on a Reef</>}
   description={<>An illustrative six-week marine heatwave. Horizontal: week. Vertical: degrees above the bleaching threshold (amber) and their running sum in °C-weeks (pink).</>}
+  footer={<>Six warm weeks accumulate 9 C-weeks, crossing both bleaching thresholds.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 10 } },
@@ -73,6 +76,8 @@ Heat stress on a reef adds up week by week. NOAA Coral Reef Watch measures it in
   }}
 />
 
+Even when the amber weekly excess drops back to zero in week <InlineMath math="7" />, the pink cumulative line stays at <InlineMath math="9" /> °C-weeks. Reef recovery only begins once water cools and stays cool long enough for corals to rebuild their algae.
+
 ### Pale Color Is a Stress Signal
 
 [Coral bleaching](https://oceanservice.noaa.gov/facts/coral_bleach.html) is a stress response in which coral expels the algae living in its tissue. Unusually warm water can disrupt this relationship. Without enough algae, coral loses one of its main energy sources and can turn pale.
@@ -91,6 +96,7 @@ Reef scientists add up heat stress. Every week the water is at least <InlineMath
 <MathVisual
   title={<>Heat Stress Adds Up Week by Week</>}
   description={<>Degree heating weeks over <InlineMath math="12" /> illustrative weeks. Horizontal: weeks. Vertical: accumulated heat stress in <InlineMath math="^\circ\mathrm{C}" /> weeks.</>}
+  footer={<>Stress passes 4 C-weeks in week 6 and 8 C-weeks in week 8, pausing in cool weeks.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 10 } },
@@ -128,6 +134,7 @@ You can test heat stress yourself in the reef tank below. Its corals come from a
 <CoralBleachLab
   title={<>Heat Stress Bleaches Corals</>}
   description={<>Set the water temperature and how many weeks it stays there. Watch the corals lose their color.</>}
+  footer={<>Raising water temperature or heatwave duration pushes corals past bleaching limits.</>}
   labels={{
     temperature: "Water temperature",
     weeks: "Weeks at this temperature",
@@ -164,12 +171,15 @@ In wildlife, climate change can **shift the geographic range** in which a specie
 <Mermaid
   title={<>Pathway of Climate Change Impacts</>}
   description={<>Order the changes in water and habitat, organism responses, population changes, and risks to people.</>}
+  footer={<>Physical climate shifts ripple through habitats, food webs, and human health.</>}
   chart={`flowchart LR
     A["Heat or rain changes"] --> B["Water and habitat change"]
     B --> C["Organisms are stressed"]
     C --> D["Populations and food webs change"]
     D --> E["Food water and health risks increase"]`}
 />
+
+Follow the chain from left to right: a shift in heat or rainfall alters habitat conditions first, which stresses organisms, reshapes food webs, and finally increases food, water, and health risks for people.
 
 ## Ocean Changes Affect Coastal Communities
 
@@ -182,6 +192,7 @@ On a gentle coast the land rises slowly, so a small rise in sea level moves the 
 <MathVisual
   title={<>Half a Meter Up, Fifty Meters In</>}
   description={<>A gentle coast in cross-section, with the height stretched so the slope is visible. Horizontal: one grid step is <InlineMath math="10" /> meters. Vertical: one grid step is <InlineMath math="0.25" /> meters.</>}
+  footer={<>On a 1% slope, a 0.5 m sea-level rise pushes the shoreline 50 m inland.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.5, max: 10.5 }, y: { min: -1, max: 4.5 } },
@@ -207,21 +218,44 @@ On a gentle coast the land rises slowly, so a small rise in sea level moves the 
   }}
 />
 
-Rising seas matter most when a storm comes. Raise the sea and switch the storm on.
+Rising seas matter most when a storm comes. Slide the sea-level rise to compare how far inland calm water and a <InlineMath math="1\text{ m}" /> storm surge reach on a gentle beach that climbs <InlineMath math="1\text{ m}" /> every <InlineMath math="20\text{ m}" />.
 
-<SeaLevelRiseLab
+<MathVisual
   title={<>A Storm on a Higher Sea</>}
-  description={<>A village on a beach that climbs <InlineMath math="1\text{ m}" /> every <InlineMath math="20\text{ m}" /> inland. Slide the sea level rise and switch on a storm.</>}
-  mode="flood"
+  description={
+    <>
+      Inland water reach (in meters) versus sea-level rise <InlineMath math="x" /> (in centimeters) on a beach rising <InlineMath math="1\text{ m}" /> every <InlineMath math="20\text{ m}" /> for calm water (violet) and a <InlineMath math="1\text{ m}" /> storm surge (pink).
+    </>
+  }
+  footer={<>Each 50 cm of sea-level rise shifts both calm water and storm surge 10 m inland.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 108 }, y: { min: -2, max: 46 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0, max: 100, value: 50, step: 10, label: "r" },
+    ],
+    objects: [
+      { id: "storm", kind: "function", appearance: "warning", formula: "20 + 0.2 * x", domain: { min: 0, max: 100 } },
+      { id: "calm", kind: "function", appearance: "secondary", formula: "0.2 * x", domain: { min: 0, max: 100 } },
+      { id: "pt-s", kind: "point", appearance: "warning", at: { x: 50, y: 30 } },
+      { id: "pt-c", kind: "point", appearance: "secondary", at: { x: 50, y: 10 } },
+    ],
+    readouts: [
+      { key: "storm-reach", formula: "20 + 0.2 * r" },
+      { key: "calm-reach", formula: "0.2 * r" },
+    ],
+    labels: [
+      { key: "storm", objectId: "pt-s", at: { x: 50, y: 30 }, placement: "above-left" },
+      { key: "calm", objectId: "pt-c", at: { x: 50, y: 10 }, placement: "below-right" },
+    ],
+  }}
   labels={{
-    rise: "Sea level rise",
-    choose: "Conditions",
-    defences: { storm: <>Storm</> },
-    level: <>Highest water</>,
-    wave: <>Wave height at the shore</>,
-    flooded: <>Houses flooded</>,
-    retreat: <>Shoreline moves inland</>,
-    viewLabel: "Coastal village on a gentle beach with a tide gauge",
+    storm: <>Storm surge (30 m at +50 cm)</>,
+    calm: <>Calm shore (10 m at +50 cm)</>,
+    r: <>Sea-level rise <InlineMath math="r" /> (cm)</>,
+    "storm-reach": <>Storm surge reach (m)</>,
+    "calm-reach": <>Calm shoreline shift (m)</>,
   }}
 />
 
