@@ -5,7 +5,10 @@ import type {
   ContentTreeValue,
 } from "@nakafa/aksara-contracts/tree";
 import type { RichSlot } from "@nakafa/aksara-contracts/visual/card";
-import type { VisualName } from "@nakafa/aksara-contracts/visual/catalog";
+import type {
+  VisualCatalog,
+  VisualName,
+} from "@nakafa/aksara-contracts/visual/catalog";
 import {
   VisualNameSchema,
   visualCatalog,
@@ -54,7 +57,7 @@ export const TreeRichSchema: RichSlot = Schema.Unknown.pipe(
 );
 
 /** The Visual Catalog of a content tree: its rich text is read from elements. */
-export const treeVisuals = visualCatalog(TreeRichSchema);
+export const treeVisuals: VisualCatalog = visualCatalog(TreeRichSchema);
 
 /** Formats a schema failure for the author, path by path. */
 const formatIssue = SchemaIssue.makeFormatterDefault();

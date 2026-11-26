@@ -1,119 +1,25 @@
 import { Array as Arr, Order, Record as Rec, Schema } from "effect";
 
 import { RichTextSchema } from "#contracts/assessment/inline";
-
-import { layoutVisuals } from "#contracts/visual/base/layout";
-import { mathVisuals } from "#contracts/visual/base/math";
-import { mediaVisuals } from "#contracts/visual/base/media";
+import { baseVisuals } from "#contracts/visual/base";
 import { biologyVisuals } from "#contracts/visual/biology";
-import { bacteriaVisuals } from "#contracts/visual/biology/bacteria";
-import { binomialVisuals } from "#contracts/visual/biology/binomial";
-import { bloodVisuals } from "#contracts/visual/biology/blood";
-import { boneVisuals } from "#contracts/visual/biology/bone";
-import { cellVisuals } from "#contracts/visual/biology/cell";
-import { chromosomeVisuals } from "#contracts/visual/biology/chromosome";
-import { climateVisuals } from "#contracts/visual/biology/climate";
-import { denatureVisuals } from "#contracts/visual/biology/denature";
-import { drawingVisuals } from "#contracts/visual/biology/drawing";
-import { ecologyVisuals } from "#contracts/visual/biology/ecology";
-import { enzymeVisuals } from "#contracts/visual/biology/enzyme";
-import { equipmentVisuals } from "#contracts/visual/biology/equipment";
-import { gametogenesisVisuals } from "#contracts/visual/biology/gametogenesis";
-import { heartVisuals } from "#contracts/visual/biology/heart";
-import { homeostasisVisuals } from "#contracts/visual/biology/homeostasis";
-import { implantationVisuals } from "#contracts/visual/biology/implantation";
-import { jointVisuals } from "#contracts/visual/biology/joint";
-import { keyVisuals } from "#contracts/visual/biology/key";
-import { kingdomVisuals } from "#contracts/visual/biology/kingdom";
-import { lactaseVisuals } from "#contracts/visual/biology/lactase";
-import { leafVisuals } from "#contracts/visual/biology/leaf";
-import { limbVisuals } from "#contracts/visual/biology/limb";
-import { lipidVisuals } from "#contracts/visual/biology/lipid";
-import { locomotionVisuals } from "#contracts/visual/biology/locomotion";
-import { membraneVisuals } from "#contracts/visual/biology/membrane";
-import { menstrualVisuals } from "#contracts/visual/biology/menstrual";
-import { metamorphosisVisuals } from "#contracts/visual/biology/metamorphosis";
-import { mitochondrionVisuals } from "#contracts/visual/biology/mitochondrion";
-import { muscleVisuals } from "#contracts/visual/biology/muscle";
-import { neuronVisuals } from "#contracts/visual/biology/neuron";
-import { paddyVisuals } from "#contracts/visual/biology/paddy";
-import { physiologyVisuals } from "#contracts/visual/biology/physiology";
-import { placentaVisuals } from "#contracts/visual/biology/placenta";
-import { planesVisuals } from "#contracts/visual/biology/planes";
-import { plantVisuals } from "#contracts/visual/biology/plant";
-import { proteinVisuals } from "#contracts/visual/biology/protein";
-import { saturationVisuals } from "#contracts/visual/biology/saturation";
-import { secretionVisuals } from "#contracts/visual/biology/secretion";
-import { spillVisuals } from "#contracts/visual/biology/spill";
-import { sugarVisuals } from "#contracts/visual/biology/sugar";
-import { synapseVisuals } from "#contracts/visual/biology/synapse";
-import { taxonVisuals } from "#contracts/visual/biology/taxon";
-import { tissueVisuals } from "#contracts/visual/biology/tissue";
-import { twinsVisuals } from "#contracts/visual/biology/twins";
-import { vernacularVisuals } from "#contracts/visual/biology/vernacular";
-import { vertebraVisuals } from "#contracts/visual/biology/vertebra";
-import { vesselVisuals } from "#contracts/visual/biology/vessel";
-import { wasteVisuals } from "#contracts/visual/biology/waste";
-import { waterVisuals } from "#contracts/visual/biology/water";
-import { yeastVisuals } from "#contracts/visual/biology/yeast";
 import type { RichSlot } from "#contracts/visual/card";
-import { atomVisuals } from "#contracts/visual/chemistry/atom";
-import { balanceVisuals } from "#contracts/visual/chemistry/balance";
-import { bondingVisuals } from "#contracts/visual/chemistry/bonding";
-import { discoveryVisuals } from "#contracts/visual/chemistry/discovery";
-import { electrochemistryVisuals } from "#contracts/visual/chemistry/electrochemistry";
-import { electronVisuals } from "#contracts/visual/chemistry/electron";
-import { equilibriumVisuals } from "#contracts/visual/chemistry/equilibrium";
-import { lawVisuals } from "#contracts/visual/chemistry/laws";
-import { particleVisuals } from "#contracts/visual/chemistry/particles";
-import { periodicVisuals } from "#contracts/visual/chemistry/periodic";
-import { rateVisuals } from "#contracts/visual/chemistry/rate";
-import { reactionVisuals } from "#contracts/visual/chemistry/reaction";
-import { titrationVisuals } from "#contracts/visual/chemistry/titration";
+import { chemistryVisuals } from "#contracts/visual/chemistry";
 import type { VisualEntry } from "#contracts/visual/entry";
-import { argumentVisuals } from "#contracts/visual/mathematics/argument";
-import { chanceVisuals } from "#contracts/visual/mathematics/chance";
-import { chartVisuals } from "#contracts/visual/mathematics/charts";
-import { counterexampleVisuals } from "#contracts/visual/mathematics/counterexample";
-import { functionVisuals } from "#contracts/visual/mathematics/function";
-import { geometryVisuals } from "#contracts/visual/mathematics/geometry";
-import { journeyVisuals } from "#contracts/visual/mathematics/journey";
-import { logicVisuals } from "#contracts/visual/mathematics/logic";
-import { networkVisuals } from "#contracts/visual/mathematics/network";
-import { numeralVisuals } from "#contracts/visual/mathematics/numeral";
-import { setVisuals } from "#contracts/visual/mathematics/sets";
-import { brakingVisuals } from "#contracts/visual/physics/braking";
-import { circuitVisuals } from "#contracts/visual/physics/circuit";
-import { circularVisuals } from "#contracts/visual/physics/circular";
-import { dynamicsVisuals } from "#contracts/visual/physics/dynamics";
-import { efficiencyVisuals } from "#contracts/visual/physics/efficiency";
-import { electronicsVisuals } from "#contracts/visual/physics/electronics";
-import { fallingVisuals } from "#contracts/visual/physics/falling";
-import { fieldVisuals } from "#contracts/visual/physics/field";
-import { fluidVisuals } from "#contracts/visual/physics/fluid";
-import { forceVisuals } from "#contracts/visual/physics/force";
-import { gravityVisuals } from "#contracts/visual/physics/gravity";
-import { heatVisuals } from "#contracts/visual/physics/heat";
-import { instrumentVisuals } from "#contracts/visual/physics/instrument";
-import { lightVisuals } from "#contracts/visual/physics/light";
-import { measurementVisuals } from "#contracts/visual/physics/measurement";
-import { motionVisuals } from "#contracts/visual/physics/motion";
-import { nuclearVisuals } from "#contracts/visual/physics/nuclear";
-import { parabolicVisuals } from "#contracts/visual/physics/parabolic";
-import { positionVisuals } from "#contracts/visual/physics/position";
-import { powerVisuals } from "#contracts/visual/physics/power";
-import { precisionVisuals } from "#contracts/visual/physics/precision";
-import { productVisuals } from "#contracts/visual/physics/product";
-import { quantumVisuals } from "#contracts/visual/physics/quantum";
-import { readingVisuals } from "#contracts/visual/physics/reading";
-import { recordVisuals } from "#contracts/visual/physics/record";
-import { relativeVisuals } from "#contracts/visual/physics/relative";
-import { solarVisuals } from "#contracts/visual/physics/solar";
-import { thermodynamicsVisuals } from "#contracts/visual/physics/thermodynamics";
-import { vectorVisuals } from "#contracts/visual/physics/vector";
-import { velocityVisuals } from "#contracts/visual/physics/velocity";
-import { waveVisuals } from "#contracts/visual/physics/wave";
+import { mathematicsVisuals } from "#contracts/visual/mathematics";
+import { physicsVisuals } from "#contracts/visual/physics";
 import { politicsVisuals } from "#contracts/visual/politics";
+
+/**
+ * The combined visual catalog type for one rich-text encoding `E`, expressed
+ * as an intersection of domain catalogs so declaration emit stays compact.
+ */
+export type VisualCatalogOf<E> = ReturnType<typeof baseVisuals<E>> &
+  ReturnType<typeof biologyVisuals<E>> &
+  ReturnType<typeof chemistryVisuals<E>> &
+  ReturnType<typeof mathematicsVisuals<E>> &
+  ReturnType<typeof physicsVisuals<E>> &
+  ReturnType<typeof politicsVisuals<E>>;
 
 /**
  * The Visual Catalog: every component Nakafa's renderer draws, each with the
@@ -124,123 +30,19 @@ import { politicsVisuals } from "#contracts/visual/politics";
  * and every kind decodes it to the same inline nodes.
  * Nakafa's renderer manifest names exactly these components.
  */
-export function visualCatalog<E>(rich: RichSlot<E>) {
+export function visualCatalog<E>(rich: RichSlot<E>): VisualCatalogOf<E> {
   return {
-    ...layoutVisuals(),
-    ...mathVisuals(rich),
-    ...mediaVisuals(rich),
+    ...baseVisuals(rich),
     ...biologyVisuals(rich),
-    ...atomVisuals(rich),
-    ...electronVisuals(rich),
-    ...equilibriumVisuals(rich),
-    ...electrochemistryVisuals(rich),
-    ...titrationVisuals(rich),
-    ...rateVisuals(rich),
-    ...lawVisuals(rich),
-    ...particleVisuals(rich),
-    ...periodicVisuals(rich),
-    ...reactionVisuals(rich),
-    ...argumentVisuals(rich),
-    ...chanceVisuals(rich),
-    ...chartVisuals(rich),
-    ...counterexampleVisuals(rich),
-    ...functionVisuals(rich),
-    ...geometryVisuals(rich),
-    ...journeyVisuals(rich),
-    ...logicVisuals(rich),
-    ...networkVisuals(rich),
-    ...numeralVisuals(rich),
-    ...setVisuals(rich),
-    ...measurementVisuals(rich),
-    ...motionVisuals(rich),
-    ...parabolicVisuals(rich),
-    ...velocityVisuals(rich),
-    ...bacteriaVisuals(rich),
-    ...cellVisuals(rich),
-    ...climateVisuals(rich),
-    ...ecologyVisuals(rich),
-    ...physiologyVisuals(rich),
-    ...plantVisuals(rich),
-    ...heartVisuals(rich),
-    ...vesselVisuals(rich),
-    ...bloodVisuals(rich),
-    ...neuronVisuals(rich),
-    ...synapseVisuals(rich),
-    ...mitochondrionVisuals(rich),
-    ...muscleVisuals(rich),
-    ...yeastVisuals(rich),
-    ...paddyVisuals(rich),
-    ...equipmentVisuals(rich),
-    ...wasteVisuals(rich),
-    ...spillVisuals(rich),
-    ...drawingVisuals(rich),
-    ...planesVisuals(rich),
-    ...vertebraVisuals(rich),
-    ...jointVisuals(rich),
-    ...limbVisuals(rich),
-    ...locomotionVisuals(rich),
-    ...boneVisuals(rich),
-    ...waterVisuals(rich),
-    ...sugarVisuals(rich),
-    ...proteinVisuals(rich),
-    ...lipidVisuals(rich),
-    ...chromosomeVisuals(rich),
-    ...vernacularVisuals(rich),
-    ...taxonVisuals(rich),
-    ...kingdomVisuals(rich),
-    ...binomialVisuals(rich),
-    ...keyVisuals(rich),
-    ...gametogenesisVisuals(rich),
-    ...menstrualVisuals(rich),
-    ...implantationVisuals(rich),
-    ...placentaVisuals(rich),
-    ...twinsVisuals(rich),
-    ...metamorphosisVisuals(rich),
-    ...enzymeVisuals(rich),
-    ...secretionVisuals(rich),
-    ...denatureVisuals(rich),
-    ...saturationVisuals(rich),
-    ...lactaseVisuals(rich),
-    ...leafVisuals(rich),
-    ...tissueVisuals(rich),
-    ...homeostasisVisuals(rich),
-    ...membraneVisuals(rich),
-    ...balanceVisuals(rich),
-    ...bondingVisuals(rich),
-    ...discoveryVisuals(rich),
-    ...brakingVisuals(rich),
-    ...circularVisuals(rich),
-    ...efficiencyVisuals(rich),
-    ...fallingVisuals(rich),
-    ...forceVisuals(rich),
-    ...instrumentVisuals(rich),
-    ...positionVisuals(rich),
-    ...powerVisuals(rich),
-    ...precisionVisuals(rich),
-    ...productVisuals(rich),
-    ...recordVisuals(rich),
-    ...relativeVisuals(rich),
-    ...solarVisuals(rich),
-    ...vectorVisuals(rich),
-    ...circuitVisuals(rich),
-    ...dynamicsVisuals(rich),
-    ...electronicsVisuals(rich),
-    ...fieldVisuals(rich),
-    ...fluidVisuals(rich),
-    ...gravityVisuals(rich),
-    ...heatVisuals(rich),
-    ...thermodynamicsVisuals(rich),
-    ...lightVisuals(rich),
-    ...nuclearVisuals(rich),
-    ...quantumVisuals(rich),
-    ...readingVisuals(rich),
-    ...waveVisuals(rich),
+    ...chemistryVisuals(rich),
+    ...mathematicsVisuals(rich),
+    ...physicsVisuals(rich),
     ...politicsVisuals(rich),
   };
 }
 
 /** The catalog of one document kind, keyed by component name. */
-export type VisualCatalog = ReturnType<typeof visualCatalog<unknown>>;
+export type VisualCatalog = VisualCatalogOf<unknown>;
 
 /** The name of one catalog component. */
 export type VisualName = keyof VisualCatalog;
@@ -249,9 +51,7 @@ export type VisualName = keyof VisualCatalog;
  * The type of the assessment catalog, named so a declaration refers to it
  * instead of writing out every component's schema.
  */
-export type AssessmentVisuals = ReturnType<
-  typeof visualCatalog<typeof RichTextSchema.Encoded>
->;
+export type AssessmentVisuals = VisualCatalogOf<typeof RichTextSchema.Encoded>;
 
 /**
  * The catalog of an assessment, which stores rich text as inline nodes. Its
