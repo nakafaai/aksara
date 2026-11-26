@@ -29,10 +29,11 @@ Das Symbol <InlineMath math="\Delta x" /> beziehungsweise <InlineMath math="\Del
   title={<>Die Bewegung eines rollenden Balls im Mittel</>}
   description={
     <>
-    Beobachte, wie der Ball einer vermessenen Bahn folgt. Vergleiche anschließend
-    die zurückgelegte Wegstrecke mit der Verschiebung vom Start zum Ziel.
-  </>
+      Beobachte, wie der Ball einer vermessenen Bahn folgt. Vergleiche anschließend
+      die zurückgelegte Wegstrecke mit der Verschiebung vom Start zum Ziel.
+    </>
   }
+  footer={<>Die türkise Kurve misst den Gesamtweg, die violette Gerade die Verschiebung.</>}
   labels={{
     chooseCase: "Route wählen",
     modeLabels: {
@@ -69,44 +70,69 @@ Bei der sanften Kurve folgt der Ball der gekrümmten Bahn und legt deshalb etwa 
 
 <BlockMath math="\begin{aligned} &amp;s_{\text{gesamt}}\approx 16{,}7\text{ m} \\ &amp;|\Delta \vec r|=14\text{ m} \\ &amp;\Delta t=5\text{ s} \\ &amp;\text{mittlere Schnelligkeit}&amp;\approx \frac{16{,}7}{5} \\ &amp;\approx3{,}3\text{ m/s} \\ &amp;|\bar{\vec v}| =\frac{14}{5} \\ &amp;=2{,}8\text{ m/s} \end{aligned}" />
 
-## Eine Lichtschranke misst einen Mittelwert
+## Mittelwerte über Strecken und Steigungen messen
 
-Eine Geschwindigkeitsmessung an der Straße sieht nie nur einen Augenblick. Sie stoppt das Auto zwischen zwei Lichtstrahlen in festem Abstand und teilt den Abstand durch diese Zeit, also ist ihr Wert **ein Mittelwert über die Strecke**.
+Jede reale Messung über eine Strecke liefert **einen Mittelwert über ein endliches Zeitintervall**. Im Ort-Zeit-Diagramm erscheint dieser Mittelwert direkt als Steigung der Verbindungsgeraden zwischen zwei Messpunkten.
 
-<SpeedTrapInstantSpeedLab
-  title={<>Lichtschranken auf einer Teststrecke</>}
+### Eine Lichtschranke misst einen Mittelwert
+
+Eine Geschwindigkeitsmessung an der Straße sieht nie nur einen Augenblick. Sie stoppt das Auto zwischen zwei Lichtstrahlen in festem Abstand um die <InlineMath math="50\text{ m}" />-Marke und bildet so **eine mittlere Schnelligkeit über eine feste Strecke**. Verändere den halben Abstand <InlineMath math="h" /> und beobachte, wie sich die Sekante an die Kurve schmiegt.
+
+<MathVisual
+  title={<>Mittelwert zwischen zwei Lichtschranken</>}
   description={
     <>
-      Ein Auto beschleunigt aus dem Stand mit{" "}
-      <InlineMath math="4\text{ m/s}^2" /> durch zwei Lichtschranken um die{" "}
-      <InlineMath math="50\text{ m}" />-Marke. Ändere den Abstand und
-      vergleiche die Anzeige.
+      Position <InlineMath math="x(t)=2t^2" /> eines mit{" "}
+      <InlineMath math="4\text{ m/s}^2" /> beschleunigenden Autos und die
+      Sekante zwischen <InlineMath math="50-h" /> und <InlineMath math="50+h" />.
     </>
   }
+  footer={<>Die Sekante über die Messstrecke bleibt flacher als die Steigung in der Mitte.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7.2 }, y: { min: 0, max: 90 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 4, max: 20, value: 20, step: 4, label: "h" },
+    ],
+    objects: [
+      { id: "car-path", kind: "function", appearance: "primary", formula: "2*x^2", domain: { min: 0, max: 6.5 } },
+      { id: "mid", kind: "point", appearance: "secondary", at: { x: 5, y: 50 } },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "sqrt((50 - h)/2)", y: "50 - h" },
+          { x: "sqrt((50 + h)/2)", y: "50 + h" },
+        ],
+      },
+      { id: "gate-1", kind: "marker", appearance: "answer", x: "sqrt((50 - h)/2)", y: "50 - h" },
+      { id: "gate-2", kind: "marker", appearance: "answer", x: "sqrt((50 + h)/2)", y: "50 + h" },
+    ],
+    labels: [
+      { key: "g1", objectId: "gate-1", at: { x: "sqrt((50 - h)/2)", y: "50 - h" }, placement: "above-left" },
+      { key: "g2", objectId: "gate-2", at: { x: "sqrt((50 + h)/2)", y: "50 + h" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "gap", formula: "2*h" },
+      { key: "dt", formula: "sqrt((50 + h)/2) - sqrt((50 - h)/2)" },
+      { key: "v-bar", formula: "2*h / (sqrt((50 + h)/2) - sqrt((50 - h)/2))" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Angezeigter Wert</>,
-    chooseGap: "Abstand der Lichtschranken wählen",
-    elapsed: <>Zeit zwischen den Strahlen</>,
-    gap: <>Abstand der Lichtschranken</>,
-    instantSpeed: <>Schnelligkeit in der Mitte</>,
-    viewLabel: "Auto fährt durch zwei Lichtschranken auf einer Teststrecke",
+    h: <>Halber Schrankenabstand <InlineMath math="h" /> (m)</>,
+    g1: <InlineMath math="G_1" />,
+    g2: <InlineMath math="G_2" />,
+    gap: <>Abstand der Schranken (m)</>,
+    dt: <>Zeit dazwischen (s)</>,
+    "v-bar": <>Angezeigter Mittelwert (m/s)</>,
   }}
 />
 
 Bei <InlineMath math="40\text{ m}" /> Abstand braucht das Auto <InlineMath math="2{,}043\text{ s}" />, also zeigt die Messung <InlineMath math="19{,}58\text{ m/s}" />, etwas weniger als die <InlineMath math="20\text{ m/s}" />, die das Auto in der Mitte hat. Der Wert gilt für die ganze Strecke, nicht für einen Moment.
 
-## Das gleiche Zeitintervall kann verschiedene Fahrten beschreiben
-
-Angenommen, zwei Fahrten dauern beide <InlineMath math="3 \text{ s}" />. Die erste Fahrt geht geradeaus <InlineMath math="6 \text{ m}" /> nach rechts. Die zweite Fahrt geht <InlineMath math="6 \text{ m}" /> nach rechts und dann <InlineMath math="3 \text{ m}" /> zurück nach links. Die Zeit ist gleich, aber **Wegstrecke und Verschiebung sind verschieden**.
-
-| Fahrt | Gesamte Wegstrecke | Verschiebung | Aussage der Mittelwerte |
-| --- | --- | --- | --- |
-| Direkt nach rechts | <InlineMath math="6 \text{ m}" /> | <InlineMath math="6 \text{ m}" /> nach rechts | Mittlere Schnelligkeit und mittlere Geschwindigkeit haben denselben Betrag |
-| Hin und teilweise zurück | <InlineMath math="9 \text{ m}" /> | <InlineMath math="3 \text{ m}" /> nach rechts | Die mittlere Schnelligkeit ist größer als der Betrag der mittleren Geschwindigkeit |
-
-Diese Tabelle zeigt, woher der Unterschied kommt. Die Zeit ändert sich nicht, aber der Zähler in beiden Formeln ändert sich.
-
-## Mittlere Geschwindigkeit als Steigung
+### Mittlere Geschwindigkeit als Steigung
 
 Im Ort-Zeit-Diagramm ist die mittlere Geschwindigkeit über ein Intervall **die Steigung der Geraden durch seine beiden Punkte**. Die Fahrt eines Autos zeigt, warum verschiedene Intervalle derselben Fahrt verschiedene Mittelwerte liefern.
 
@@ -120,6 +146,7 @@ Im Ort-Zeit-Diagramm ist die mittlere Geschwindigkeit über ein Intervall **die 
       das Auto an seinen beiden Enden war.
     </>
   }
+  footer={<>Jedes Intervall erzeugt eine eigene Sekantensteigung auf derselben Fahrt.</>}
   labels={{
     change: <>Verschiebung</>,
     chooseInterval: "Zeitintervall wählen",
@@ -131,11 +158,16 @@ Im Ort-Zeit-Diagramm ist die mittlere Geschwindigkeit über ein Intervall **die 
 
 Über die ganze Fahrt legt das Auto <InlineMath math="110\text{ m}" /> in <InlineMath math="20\text{ s}" /> zurück, also ist <InlineMath math="\bar{v}=5{,}5\text{ m/s}" />. Zwischen <InlineMath math="4" /> und <InlineMath math="10\text{ s}" /> fährt es gleichmäßig mit <InlineMath math="10\text{ m/s}" />, zwischen <InlineMath math="10" /> und <InlineMath math="16\text{ s}" /> kommt es nur auf etwa <InlineMath math="1{,}67\text{ m/s}" />, weil es an der Ampel wartet.
 
-## Mittlere Schnelligkeit und mittlere Geschwindigkeit auf einem Rückweg
+## Wegstrecke und Verschiebung auf derselben Zeitspanne vergleichen
 
-Auf dem Rückweg bewegt sich das Objekt um <InlineMath math="6 \text{ m}" /> nach rechts und dann um <InlineMath math="3 \text{ m}" /> nach links in <InlineMath math="3 \text{ s}" />.
+Zwei Fahrten können genau gleich lange dauern und trotzdem völlig **unterschiedliche Mittelwerte** liefern. Angenommen, zwei Fahrten dauern beide <InlineMath math="3 \text{ s}" />. Die erste Fahrt geht geradeaus <InlineMath math="6 \text{ m}" /> nach rechts. Die zweite Fahrt geht <InlineMath math="6 \text{ m}" /> nach rechts und dann <InlineMath math="3 \text{ m}" /> zurück nach links. Die Zeit ist gleich, aber **Wegstrecke und Verschiebung sind verschieden**.
 
-Die Gesamtstrecke beträgt <InlineMath math="9 \text{ m}" />, aber die Verschiebung beträgt nur <InlineMath math="3 \text{ m}" /> nach rechts.
+| Fahrt | Gesamte Wegstrecke | Verschiebung | Aussage der Mittelwerte |
+| --- | --- | --- | --- |
+| Direkt nach rechts | <InlineMath math="6 \text{ m}" /> | <InlineMath math="6 \text{ m}" /> nach rechts | Mittlere Schnelligkeit und mittlere Geschwindigkeit haben denselben Betrag |
+| Hin und teilweise zurück | <InlineMath math="9 \text{ m}" /> | <InlineMath math="3 \text{ m}" /> nach rechts | Die mittlere Schnelligkeit ist größer als der Betrag der mittleren Geschwindigkeit |
+
+Diese Tabelle zeigt, woher der Unterschied kommt. Auf dem Rückweg beträgt die Gesamtstrecke <InlineMath math="9 \text{ m}" />, aber die Verschiebung beträgt nur <InlineMath math="3 \text{ m}" /> nach rechts.
 
 <MathContainer>
   <BlockMath math="\text{mittlere Schnelligkeit}=\frac{9}{3}=3\text{ m/s}" />
@@ -148,34 +180,41 @@ Hier sind beide Fahrten als Position über der Zeit, A bewegt sich gleichmäßig
 
 <MathVisual
   title={<>Durchschnittsgeschwindigkeit ist die Steigung vom Start zum Ziel</>}
-  description={<>Fahrt A geht <InlineMath math="6\text{ m}" /> nach rechts, Fahrt B <InlineMath math="6\text{ m}" /> nach rechts und <InlineMath math="3\text{ m}" /> zurück, jeweils in <InlineMath math="3\text{ s}" />. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von <InlineMath math="2\text{ m}" />.</>}
+  description={<>Fahrt A geht <InlineMath math="6\text{ m}" /> nach rechts, Fahrt B <InlineMath math="6\text{ m}" /> nach rechts und <InlineMath math="3\text{ m}" /> zurück, jeweils in <InlineMath math="3\text{ s}" />. Waagerecht: Zeit in s. Senkrecht: Position in m.</>}
+  footer={<>Die Sehne von B verbindet nur Start und Ende und liegt unter der Bahn von A.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -1, max: 7.2 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 }] },
-      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 3 }, { x: 3, y: 1.5 }] },
-      { id: "chord", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 1.5 } },
-      { id: "a-end", kind: "point", appearance: "construction", at: { x: 3, y: 3 } },
-      { id: "b-turn", kind: "point", appearance: "primary", at: { x: 2, y: 3 } },
-      { id: "b-end", kind: "point", appearance: "primary", at: { x: 3, y: 1.5 } },
+      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }] },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 6 }, { x: 3, y: 3 }] },
+      { id: "chord", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 3 } },
+      { id: "a-end", kind: "point", appearance: "construction", at: { x: 3, y: 6 } },
+      { id: "b-turn", kind: "point", appearance: "primary", at: { x: 2, y: 6 } },
+      { id: "b-end", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
       { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
     ],
     labels: [
-      { key: "a", objectId: "a-end", at: { x: 3, y: 3 }, placement: "right" },
-      { key: "b", objectId: "b-turn", at: { x: 2, y: 3 }, placement: "above" },
-      { key: "chord", objectId: "chord", at: { x: 3, y: 1.5 }, placement: "below-right" },
+      { key: "a", objectId: "a-end", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "b", objectId: "b-turn", at: { x: 2, y: 6 }, placement: "above" },
+      { key: "chord", objectId: "chord", at: { x: 3, y: 3 }, placement: "below-right" },
     ],
   }}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
-    chord: <InlineMath math="\bar v_B=\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />,
+    chord: <InlineMath math="\bar v_B=1\text{ m/s}" />,
   }}
 />
 
-## Das Vorzeichen zeigt die Richtung der mittleren Geschwindigkeit
+Obwohl Fahrt B unterwegs schneller ist als Fahrt A, liegt ihre Sehne flacher. Die Umkehr zieht den Endpunkt zurück und senkt die mittlere Geschwindigkeit auf <InlineMath math="1\text{ m/s}" />.
+
+## Richtung am Vorzeichen der mittleren Geschwindigkeit ablesen
+
+Sobald eine positive Achsenrichtung festliegt, trägt die mittlere Geschwindigkeit **dasselbe Vorzeichen wie die Verschiebung**. Ein Minuszeichen zeigt eine Bewegung entgegen der positiven Richtung, niemals ein Tempo kleiner als null.
+
+### Das Vorzeichen zeigt die Richtung
 
 Wenn wir die **Rechtsrichtung als positiv** wählen, ist die Verschiebung nach rechts positiv und die Verschiebung nach links negativ. Dieses Vorzeichen überträgt sich auf die Durchschnittsgeschwindigkeit.
 
@@ -188,36 +227,76 @@ Beispielsweise beginnt ein Objekt bei <InlineMath math="x=8 \text{ m}" /> und en
 
 Ein negativer Wert bedeutet nicht, dass die Bewegung „langsamer als null“ ist. Er zeigt, dass die mittlere Geschwindigkeit relativ zur gewählten Achse nach links gerichtet ist.
 
-## Hin und ein Stück zurück
+### Hin und ein Stück zurück
 
-Ein Spaziergang entlang einer Straße zeigt, **woher das Vorzeichen kommt**. Nimm Osten als positiv: Du gehst <InlineMath math="300\text{ m}" /> nach Osten und dann <InlineMath math="100\text{ m}" /> zurück nach Westen, mit <InlineMath math="1\text{ m/s}" />.
+Ein Spaziergang entlang einer Straße zeigt, **woher das Vorzeichen kommt**. Nimm Osten als positiv: Du gehst <InlineMath math="300\text{ m}" /> nach Osten und dann eine wählbare Strecke <InlineMath math="w" /> zurück nach Westen, immer mit <InlineMath math="1\text{ m/s}" />. Verschiebe <InlineMath math="w" /> und beobachte, wann die mittlere Geschwindigkeit ihr Vorzeichen wechselt.
 
-<CityWalkDisplacementLab
-  legs={[
-    { east: 300, north: 0 },
-    { east: -100, north: 0 },
-  ]}
-  pace={1}
-  title={<>Ein Spaziergang hin und ein Stück zurück</>}
+<MathVisual
+  title={<>Spaziergang hin nach Osten und zurück nach Westen</>}
   description={
     <>
-      Der gelbe Weg ist alles, was du gegangen bist. Der violette Pfeil
-      verbindet den Start mit deinem Standort und zeigt weiter nach Osten.
+      Position über der Zeit bei <InlineMath math="300\text{ m}" /> nach Osten und{" "}
+      <InlineMath math="w\text{ m}" /> zurück nach Westen mit <InlineMath math="1\text{ m/s}" />.
     </>
   }
+  footer={<>Sobald du westlich vom Start endest, kippt die Sekante unter die Zeitachse.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 760 }, y: { min: -160, max: 350 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 50, max: 400, value: 100, step: 50, label: "w" },
+    ],
+    objects: [
+      { id: "out", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 300, y: 300 } },
+      {
+        id: "back",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "300", y: "300" },
+          { x: "300 + w", y: "300 - w" },
+        ],
+      },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0", y: "0" },
+          { x: "300 + w", y: "300 - w" },
+        ],
+      },
+      { id: "turn", kind: "point", appearance: "primary", at: { x: 300, y: 300 } },
+      { id: "finish", kind: "marker", appearance: "answer", x: "300 + w", y: "300 - w" },
+    ],
+    labels: [
+      { key: "turn-lbl", objectId: "turn", at: { x: 300, y: 300 }, placement: "above" },
+      { key: "end-lbl", objectId: "finish", at: { x: "300 + w", y: "300 - w" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "dist", formula: "300 + w" },
+      { key: "disp", formula: "300 - w" },
+      { key: "v-avg", formula: "(300 - w) / (300 + w)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Mittlere Schnelligkeit</>,
-    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
-    displacement: <>Betrag der Verschiebung</>,
-    distance: <>Gegangene Strecke</>,
-    time: <>Zeit</>,
-    viewLabel: "Spaziergang auf einer Straße von oben gesehen",
+    w: <>Rückweg nach Westen <InlineMath math="w" /> (m)</>,
+    "turn-lbl": <InlineMath math="300\text{ m}" />,
+    "end-lbl": <InlineMath math="x_{\text{Ende}}" />,
+    dist: <>Gegangene Strecke (m)</>,
+    disp: <>Verschiebung (m)</>,
+    "v-avg": <>Mittlere Geschwindigkeit (m/s)</>,
   }}
 />
 
-Du gehst <InlineMath math="400\text{ m}" /> in <InlineMath math="400\text{ s}" />, also ist die mittlere Schnelligkeit <InlineMath math="1\text{ m/s}" />. Die Verschiebung beträgt <InlineMath math="+200\text{ m}" />, also ist die mittlere Geschwindigkeit <InlineMath math="+0{,}5\text{ m/s}" />: positiv, weil du östlich vom Start ankommst.
+Bei <InlineMath math="w=100\text{ m}" /> gehst du <InlineMath math="400\text{ m}" /> in <InlineMath math="400\text{ s}" />, also ist die mittlere Schnelligkeit <InlineMath math="1\text{ m/s}" />. Die Verschiebung beträgt <InlineMath math="+200\text{ m}" />, also ist die mittlere Geschwindigkeit <InlineMath math="+0{,}5\text{ m/s}" />: positiv, weil du östlich vom Start ankommst.
 
-## Eine Schleife kann eine mittlere Geschwindigkeit von null haben
+## Schleifen mit mittlerer Geschwindigkeit null
+
+Kehrt eine Bewegung **zu ihrem Ausgangspunkt zurück**, schrumpft ihre Verschiebung auf null. Die mittlere Schnelligkeit bleibt dennoch positiv, weil der zurückgelegte Weg seine volle Länge behält.
+
+### Vor der Rechnung nach Weg oder Verschiebung trennen
 
 Kehrt ein Objekt **zu seinem Ausgangspunkt zurück**, beträgt seine Verschiebung <InlineMath math="0 \text{ m}" />. Damit ist auch seine mittlere Geschwindigkeit <InlineMath math="0 \text{ m/s}" />, obwohl die mittlere Schnelligkeit weiterhin größer als null sein kann.
 
@@ -235,6 +314,7 @@ Fahrt B geht <InlineMath math="6\text{ m}" /> nach rechts und <InlineMath math="
 <MathVisual
   title={<>Tempo oder Geschwindigkeit nach der Frage</>}
   description={<>Der Weg von Fahrt B (orange und violett) und ihre Verschiebung (fuchsia).</>}
+  footer={<>Die Summe beider Wegstücke ergibt <InlineMath math="3\text{ m/s}" />, der Nettoabstand nur <InlineMath math="1\text{ m/s}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -1.55, max: 2.55 } },
@@ -258,29 +338,72 @@ Fahrt B geht <InlineMath math="6\text{ m}" /> nach rechts und <InlineMath math="
   }}
 />
 
-## Eine Runde auf der Laufbahn
+Beide Werte gehören zu derselben Bewegung und demselben Zeitintervall. Nur die Wahl zwischen Gesamtweg und Netto-Verschiebung unterscheidet die beiden Ergebnisse.
 
-Eine volle Runde ist **eine Schleife, die genau an ihrem Start endet**. Ein Läufer auf Bahn <InlineMath math="1" /> einer <InlineMath math="400\text{ m}" />-Bahn läuft gleichmäßig <InlineMath math="8\text{ m/s}" />, und seine Verschiebung von der Startlinie wächst, schrumpft und verschwindet.
+### Eine Runde auf der Laufbahn
 
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>Eine Runde auf der Bahn</>}
+Eine volle Runde ist **eine Schleife, die genau an ihrem Start endet**. Ein Läufer läuft auf einer runden <InlineMath math="400\text{ m}" />-Bahn gleichmäßig mit <InlineMath math="8\text{ m/s}" />. Verändere die gelaufene Strecke <InlineMath math="s" /> und sieh, wie die Sehne vom Start zuerst wächst und am Ende wieder verschwindet.
+
+<MathVisual
+  title={<>Verschiebung auf einer Rundbahn</>}
   description={
     <>
-      Halte den Läufer nach <InlineMath math="100" />,{" "}
-      <InlineMath math="200" />, <InlineMath math="300" /> oder{" "}
-      <InlineMath math="400\text{ m}" /> an und vergleiche die violette
-      Verschiebung mit dem gelben Weg.
+      Ein Läufer startet rechts auf einer kreisförmigen{" "}
+      <InlineMath math="400\text{ m}" />-Bahn mit <InlineMath math="8\text{ m/s}" />.
+      Die violette Sehne zeigt die Verschiebung nach <InlineMath math="s\text{ m}" />.
     </>
   }
+  footer={<>Nach der halben Runde ist die Sehne maximal, nach der vollen Runde null.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -85, max: 85 }, y: { min: -85, max: 85 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 50, max: 400, value: 200, step: 50, label: "s" },
+    ],
+    objects: [
+      { id: "track", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 200 / Math.PI },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 200 / Math.PI, y: 0 } },
+      {
+        id: "chord",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "200/pi", y: "0" },
+          { x: "(200/pi)*cos(pi*s/200)", y: "(200/pi)*sin(pi*s/200)" },
+        ],
+      },
+      {
+        id: "runner",
+        kind: "marker",
+        appearance: "primary",
+        x: "(200/pi)*cos(pi*s/200)",
+        y: "(200/pi)*sin(pi*s/200)",
+      },
+    ],
+    labels: [
+      { key: "start-lbl", objectId: "start", at: { x: 200 / Math.PI, y: 0 }, placement: "right" },
+      {
+        key: "run-lbl",
+        objectId: "runner",
+        at: { x: "(200/pi)*cos(pi*s/200)", y: "(200/pi)*sin(pi*s/200)" },
+        placement: "above",
+      },
+    ],
+    readouts: [
+      { key: "disp", formula: "(400/pi)*abs(sin(pi*s/400))" },
+      { key: "t-run", formula: "s / 8" },
+      { key: "v-avg", formula: "(3200/pi)*abs(sin(pi*s/400)) / s" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
-    chooseDistance: "Laufstrecke wählen",
-    displacement: <>Betrag der Verschiebung</>,
-    distance: <>Gelaufene Strecke</>,
-    time: <>Zeit</>,
-    viewLabel: "Läufer auf einer 400-m-Leichtathletikbahn von oben gesehen",
+    s: <>Gelaufene Strecke <InlineMath math="s" /> (m)</>,
+    "start-lbl": <>Start</>,
+    "run-lbl": <>Läufer</>,
+    disp: <>Betrag der Verschiebung (m)</>,
+    "t-run": <>Laufzeit (s)</>,
+    "v-avg": <>Mittlere Geschwindigkeit (m/s)</>,
   }}
 />
 
-Nach <InlineMath math="200\text{ m}" /> ist der Läufer <InlineMath math="112\text{ m}" /> vom Start entfernt, also hat die mittlere Geschwindigkeit den Betrag <InlineMath math="4{,}48\text{ m/s}" />. Nach der vollen Runde ist die Verschiebung null und damit auch die mittlere Geschwindigkeit, während die mittlere Schnelligkeit weiter <InlineMath math="8\text{ m/s}" /> beträgt.
+Nach <InlineMath math="200\text{ m}" /> steht der Läufer genau gegenüber dem Start in <InlineMath math="127{,}3\text{ m}" /> Abstand, also beträgt der Betrag der mittleren Geschwindigkeit <InlineMath math="5{,}09\text{ m/s}" />. Nach der vollen Runde von <InlineMath math="400\text{ m}" /> ist die Verschiebung null und damit auch die mittlere Geschwindigkeit, während die mittlere Schnelligkeit weiter <InlineMath math="8\text{ m/s}" /> beträgt.

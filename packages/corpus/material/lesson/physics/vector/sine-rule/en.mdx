@@ -10,84 +10,120 @@ export const metadata = {
 
 ## Resultant Direction Requires Another Angle
 
-The cosine rule gives the resultant magnitude, but it does not fully give the direction. In vector problems, an answer such as <InlineMath math="15.6\text{ N}" /> is incomplete if the force direction is not stated.
+The cosine rule gives the resultant magnitude, but it does not complete the answer. In physics problems, a magnitude such as <InlineMath math="15.6\text{ N}" /> stays incomplete until the direction is stated.
 
-For two vectors, the resultant direction can be found using the **sine rule**. This rule works on the resultant triangle formed by the two vectors and their resultant.
+For two vectors, the resultant direction follows from the **sine rule** on the triangle formed by both vectors and their resultant:
 
 <BlockMath math="\frac{\sin\phi}{B}=\frac{\sin\theta}{R}" />
 
-Here, <InlineMath math="\theta" /> is the included angle between <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" />, <InlineMath math="R" /> is the resultant magnitude, and <InlineMath math="\phi" /> is the angle between <InlineMath math="\vec{A}" /> and resultant <InlineMath math="\vec{R}" />.
-
-
-Use this triangle for **two nonzero vectors that are not collinear**, with <InlineMath math="0^\circ<\theta<180^\circ" />. A zero resultant has no direction to calculate.
+Here <InlineMath math="\theta" /> is the included angle between <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" />, <InlineMath math="R" /> is the resultant magnitude, and <InlineMath math="\phi" /> is the angle between <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{R}" />. Use this triangle for **two nonzero, noncollinear vectors** whose included angle lies strictly between <InlineMath math="0^\circ" /> and <InlineMath math="180^\circ" />. A zero resultant has no direction to calculate.
 
 > The sine rule is usually used after the resultant magnitude is known.
 
-## Where the Boat Really Goes
+### Where the Boat Really Goes
 
-Knowing the boat moves at <InlineMath math="5\text{ m/s}" /> is not enough to land it: **you also need the angle from straight across**, <InlineMath math="36.9^\circ" />, where <InlineMath math="\sin\alpha=3/5" />. That angle decides it lands <InlineMath math="45\text{ m}" /> downstream.
+Knowing a boat moves over the riverbed at <InlineMath math="5\text{ m/s}" /> is not enough to land it safely. You also need the **angle from straight across**, which reaches <InlineMath math="36.9^\circ" /> when the current is <InlineMath math="3\text{ m/s}" /> against a <InlineMath math="4\text{ m/s}" /> boat speed and pushes the landing point <InlineMath math="45\text{ m}" /> downstream across a <InlineMath math="60\text{ m}" /> river.
 
-<RiverBoatCrossingLab
-  title={<>Speed Alone Does Not Land the Boat</>}
-  description={<>Boat <InlineMath math="4\text{ m/s}" />, current <InlineMath math="3\text{ m/s}" />, river <InlineMath math="60\text{ m}" /> wide.</>}
-  boatSpeed={4}
-  current={3}
-  width={60}
+<MathVisual
+  title={<>Boat Heading Versus River Current</>}
+  description={<>Boat speed <InlineMath math="4\text{ m/s}" /> straight across with an adjustable river current <InlineMath math="c" /> in meters per second.</>}
+  footer="Stronger river current widens the drift angle and pushes the landing farther."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "c", min: 0, max: 6, value: 3, step: 0.5, label: "river-current" },
+    ],
+    objects: [
+      { id: "boat", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "current", kind: "path", appearance: "secondary", points: [{ x: "0", y: "4" }, { x: "c", y: "4" }] },
+      { id: "ground", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "c", y: "4" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "c", y: "4" },
+    ],
+    labels: [
+      { key: "boat", objectId: "boat", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "tip", objectId: "tip", at: { x: "c", y: "4" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "ground-speed", formula: "sqrt(16 + c^2)" },
+      { key: "drift-angle", formula: "atan(c / 4) * 180 / pi" },
+      { key: "drift-m", formula: "15 * c" },
+    ],
+  }}
   labels={{
-    angle: <>Angle from straight across</>,
-    drift: <>Drift downstream</>,
-    groundSpeed: <>Speed over the ground</>,
-    heading: <>Boat heading</>,
-    headingName: "Boat heading",
-    time: <>Crossing time</>,
-    viewLabel: "Boat crossing a flowing river",
+    boat: <InlineMath math="v_b=4\text{ m/s}" />,
+    tip: <InlineMath math="\vec{v}_{\text{ground}}" />,
+    "river-current": <>River current (m/s)</>,
+    "ground-speed": <>Ground speed (m/s)</>,
+    "drift-angle": <>Angle from across (<InlineMath math="^\circ" />)</>,
+    "drift-m": <>Downstream drift (m)</>,
   }}
 />
 
-## Reading the Angle Being Asked For
+Increasing the current widens the angle between the boat's heading and its actual track. Even at fixed boat speed, the angle tells you exactly how far downstream the boat lands.
 
-Before calculating, decide the **reference direction**. If the question asks for the resultant direction relative to <InlineMath math="\vec{A}" />, the required angle is from <InlineMath math="\vec{A}" /> toward <InlineMath math="\vec{R}" />.
+### Choosing the Reference Vector
 
-If the question asks for direction relative to <InlineMath math="\vec{B}" />, the angle is different. Do not swap angles without checking the vector triangle.
-
-A common relationship is:
+Before calculating, decide the **reference direction**. When a question asks for direction relative to <InlineMath math="\vec{A}" />, measure from <InlineMath math="\vec{A}" /> toward <InlineMath math="\vec{R}" />. When it asks relative to <InlineMath math="\vec{B}" />, inspect the triangle so you do not swap opposite sides.
 
 <MathContainer>
   <BlockMath math="\sin\phi=\frac{B\sin\theta}{R}" />
   <BlockMath math="\phi_0=\sin^{-1}\left(\frac{B\sin\theta}{R}\right)" />
 </MathContainer>
 
-The value <InlineMath math="\phi_0" /> is an **acute or right-angle candidate**. Check the resultant components to choose between <InlineMath math="\phi=\phi_0" /> and <InlineMath math="\phi=180^\circ-\phi_0" />.
+The value <InlineMath math="\phi_0" /> is an **acute or right-angle candidate**. Check the resultant components to choose between <InlineMath math="\phi_0" /> and its supplement <InlineMath math="180^\circ-\phi_0" />. Because side <InlineMath math="B" /> lies opposite angle <InlineMath math="\phi" />, <InlineMath math="B" /> appears in the numerator.
 
-This formula finds the resultant angle relative to vector <InlineMath math="\vec{A}" />. Because the side opposite angle <InlineMath math="\phi" /> has magnitude <InlineMath math="B" />, <InlineMath math="B" /> appears in the numerator.
+Pilots use the exact same triangle for **crosswind drift**. For an airspeed of <InlineMath math="400\text{ km/h}" /> at <InlineMath math="30^\circ" /> east of north and an eastward wind of <InlineMath math="300\text{ km/h}" />, the included angle between airspeed and wind is <InlineMath math="60^\circ" />, giving ground speed <InlineMath math="608.3\text{ km/h}" /> and drift angle:
 
-## Drift Angle of a Plane
+<BlockMath math="\sin\delta=\frac{300\sin60^\circ}{\sqrt{370\,000}}\approx0.4271 \implies \delta\approx25.3^\circ" />
 
-Pilots ask for the angle between where the nose points and where the plane goes, **the drift**. Here it sits between the air velocity and the ground velocity, opposite the wind side: <InlineMath math="\sin\delta=300\sin60^\circ/608" />, so <InlineMath math="25.3^\circ" />.
-
-<AircraftCrosswindLab
-  title={<>Which Angle Is the Drift</>}
-  description={<>Airspeed <InlineMath math="400\text{ km/h}" />, wind <InlineMath math="300\text{ km/h}" /> toward the east. Turn the nose.</>}
-  airspeed={400}
-  heading={30}
-  toward={90}
-  wind={300}
+<MathVisual
+  title={<>Aircraft Drift Angle in a Crosswind</>}
+  description={<>Airspeed <InlineMath math="400\text{ km/h}" /> at <InlineMath math="30^\circ" /> east of north plus an adjustable eastward wind <InlineMath math="w" />.</>}
+  footer="Stronger crosswind increases both ground speed and drift away from the nose."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -40, max: 660 }, y: { min: -40, max: 460 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "w", min: 0, max: 400, value: 300, step: 25, label: "east-wind" },
+    ],
+    objects: [
+      { id: "air", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 200, y: 346.41 } },
+      { id: "wind", kind: "path", appearance: "secondary", points: [{ x: "200", y: "346.41" }, { x: "200 + w", y: "346.41" }] },
+      { id: "track", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "200 + w", y: "346.41" }] },
+      { id: "end", kind: "marker", appearance: "answer", x: "200 + w", y: "346.41" },
+    ],
+    labels: [
+      { key: "air", objectId: "air", at: { x: 100, y: 173 }, placement: "above-left" },
+      { key: "end", objectId: "end", at: { x: "200 + w", y: "346.41" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "ground-kmh", formula: "sqrt((200 + w)^2 + 346.4102^2)" },
+      { key: "drift-deg", formula: "atan((200 + w) / 346.4102) * 180 / pi - 30" },
+    ],
+  }}
   labels={{
-    between: <>Angle between airspeed and wind</>,
-    drift: <>Drift angle</>,
-    groundSpeed: <>Speed over the ground</>,
-    heading: <>Heading of the nose</>,
-    headingName: "Heading of the nose",
-    track: <>Track over the ground</>,
-    viewLabel: "Airliner over farmland in a crosswind",
+    air: <InlineMath math="\vec{v}_{\text{air}}" />,
+    end: <InlineMath math="\vec{v}_{\text{ground}}" />,
+    "east-wind": <>Eastward wind (km/h)</>,
+    "ground-kmh": <>Ground speed (km/h)</>,
+    "drift-deg": <>Drift angle (<InlineMath math="^\circ" />)</>,
   }}
 />
 
-## Resultant Force Direction
+The drift angle always sits between the nose vector and the ground track, directly opposite the wind side of the triangle.
 
-Two forces act at one point. <InlineMath math="A=10\text{ N}" />, <InlineMath math="B=8\text{ N}" />, and the included angle is <InlineMath math="60^\circ" />. From the cosine rule, the resultant magnitude is <InlineMath math="R\approx15.6\text{ N}" />.
+## Worked Force and Tow Directions
 
-Use the **unrounded resultant magnitude** to find angle <InlineMath math="\phi" /> between <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{R}" />.
+Once the cosine rule yields an **unrounded resultant magnitude**, substitute that exact radical into the sine rule to avoid rounding error in the angle. Both the force diagram and the harbour tow below share the same triangle geometry.
+
+### Two Forces Acting at One Ring
+
+Suppose a ring experiences pulls <InlineMath math="A=10\text{ N}" /> and <InlineMath math="B=8\text{ N}" /> with an included angle of <InlineMath math="60^\circ" />. From the cosine rule, the resultant has magnitude <InlineMath math="\sqrt{244}\text{ N}" />, or about <InlineMath math="15.6\text{ N}" />.
+
+Keep the **unrounded radical** when finding angle <InlineMath math="\phi" /> between <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{R}" />:
 
 <BlockMath math="\begin{aligned}
 \sin\phi&=\frac{B\sin\theta}{R} \\
@@ -96,50 +132,49 @@ Use the **unrounded resultant magnitude** to find angle <InlineMath math="\phi" 
 &\approx0.4435
 \end{aligned}" />
 
-The calculation gives:
+Taking the inverse sine gives:
 
 <BlockMath math="\phi=\sin^{-1}(0.4435)\approx26.3^\circ" />
 
-So the resultant force is about <InlineMath math="15.6\text{ N}" /> at <InlineMath math="26.3^\circ" /> from <InlineMath math="\vec{A}" /> toward <InlineMath math="\vec{B}" />.
-
-Here are the two forces with their parallelogram. The fuchsia resultant leans toward the larger force, and the angle it makes with <InlineMath math="\vec A" /> is the <InlineMath math="\phi\approx26.3^\circ" /> from the sine rule.
+So the resultant force is about <InlineMath math="15.6\text{ N}" /> directed <InlineMath math="26.3^\circ" /> from <InlineMath math="\vec{A}" /> toward <InlineMath math="\vec{B}" />.
 
 <MathVisual
   title={<>Direction of the Resultant</>}
-  description={<><InlineMath math="A=10\text{ N}" /> and <InlineMath math="B=8\text{ N}" /> at <InlineMath math="60^\circ" /> with the parallelogram that gives R. One grid step is <InlineMath math="2\text{ N}" />.</>}
+  description={<>True-scale parallelogram for <InlineMath math="A=10\text{ N}" /> and <InlineMath math="B=8\text{ N}" /> at <InlineMath math="60^\circ" /> in newtons.</>}
+  footer="The resultant leans closer to the larger 10 N force at 26.3 degrees."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -1.5, max: 9 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
-      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 4.75, y: 0.125 }, { x: 4.75, y: -0.125 }] },
-      { id: "b", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) } },
-      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
-      { id: "sides", kind: "polyline", appearance: "reference", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 7, y: 2 * Math.sqrt(3) }, { x: 5, y: 0 }] },
-      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
-      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }] },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 4 * Math.sqrt(3) } },
+      { id: "sides", kind: "polyline", appearance: "reference", vertices: [{ x: 4, y: 4 * Math.sqrt(3) }, { x: 14, y: 4 * Math.sqrt(3) }, { x: 10, y: 0 }] },
+      { id: "r", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 14, y: 4 * Math.sqrt(3) } },
     ],
     labels: [
-      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
-      { key: "b", objectId: "b", at: { x: 1, y: Math.sqrt(3) }, placement: "above-left" },
-      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above-right" },
+      { key: "a", objectId: "a", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "r", objectId: "r", at: { x: 14, y: 4 * Math.sqrt(3) }, placement: "above-right" },
     ],
   }}
   labels={{
     a: <InlineMath math="A=10\text{ N}" />,
     b: <InlineMath math="B=8\text{ N}" />,
-    r: <InlineMath math="R\approx15.62\text{ N},\ \phi\approx26.3^\circ" />,
+    r: <InlineMath math="R\approx15.6\text{ N},\ \phi\approx26.3^\circ" />,
   }}
 />
 
-## Direction of a Tow
+Because <InlineMath math="A" /> exceeds <InlineMath math="B" />, the resultant sits closer to <InlineMath math="\vec{A}" /> than to the <InlineMath math="30^\circ" /> bisector of the <InlineMath math="60^\circ" /> angle.
 
-Tugs pulling <InlineMath math="10\text{ kN}" /> and <InlineMath math="8\text{ kN}" /> with <InlineMath math="60^\circ" /> between their cables give <InlineMath math="15.6\text{ kN}" />. **Its angle from the first cable** is <InlineMath math="26.3^\circ" />, the same <InlineMath math="\phi" /> as above, so the ship moves only <InlineMath math="3.7^\circ" /> off its own line.
+### Direction of a Harbour Tow
+
+Two tugboats pulling with <InlineMath math="10\text{ kN}" /> and <InlineMath math="8\text{ kN}" /> across a <InlineMath math="60^\circ" /> cable spread produce a <InlineMath math="15.6\text{ kN}" /> pull. **Its angle from the first cable** is <InlineMath math="26.3^\circ" />, the exact same <InlineMath math="\phi" /> as above, so the ship drifts only <InlineMath math="3.7^\circ" /> off its own centerline.
 
 <TugboatResultantLab
   title={<>The Sine Rule in a Harbour</>}
   description={<>Pulls of <InlineMath math="10\text{ kN}" /> and <InlineMath math="8\text{ kN}" />. Open or close the cables.</>}
+  footer="Changing the cable angle updates both resultant magnitude and direction at once."
   between={60}
   first={10}
   second={8}
@@ -153,9 +188,15 @@ Tugs pulling <InlineMath math="10\text{ kN}" /> and <InlineMath math="8\text{ kN
   }}
 />
 
-## Checking with Components
+Notice that the resultant always leans toward the stronger <InlineMath math="10\text{ kN}" /> cable regardless of how wide the cables open.
 
-The same direction can be checked using **resultant components**. If <InlineMath math="\vec{A}" /> is placed on the positive <InlineMath math="x" /> axis, then:
+## Checking Direction with Components
+
+The sine rule gives an angle magnitude quickly, yet **component signs** provide an independent check on which quadrant holds the resultant. Checking horizontal and vertical sums settles every acute versus obtuse ambiguity before you write a final direction.
+
+### Verifying an Acute Direction
+
+Placing <InlineMath math="\vec{A}" /> along the positive <InlineMath math="x" /> axis gives the **resultant components**:
 
 <MathContainer>
   <BlockMath math="R_x=A+B\cos\theta" />
@@ -163,43 +204,82 @@ The same direction can be checked using **resultant components**. If <InlineMath
   <BlockMath math="\tan\phi=\frac{R_y}{R_x}" />
 </MathContainer>
 
-For the same example:
+For the <InlineMath math="10\text{ N}" /> and <InlineMath math="8\text{ N}" /> example:
 
-<BlockMath math="\begin{aligned} \tan\phi &amp;=\frac{8\sin60^\circ}{10+8\cos60^\circ} \\ &amp;=\frac{4\sqrt3}{14} \\ &amp;\approx0.495 \end{aligned}" />
+<BlockMath math="\begin{aligned} \tan\phi &=\frac{8\sin60^\circ}{10+8\cos60^\circ} \\ &=\frac{4\sqrt3}{14} \\ &\approx0.495 \end{aligned}" />
 
-This gives <InlineMath math="\phi\approx26.3^\circ" />, matching the sine rule. This check is useful when you are unsure which angle is being found.
+This yields <InlineMath math="\phi\approx26.3^\circ" />, confirming the sine rule result. Placing the two forces head to tail shows both the included angle <InlineMath math="\theta" /> and resultant angle <InlineMath math="\phi" /> in one triangle.
 
-Because <InlineMath math="\sin\phi=\sin(180^\circ-\phi)" />, inverse sine alone can return an acute angle even when the triangle requires its obtuse supplement. Use the vector geometry or the component form <InlineMath math="\phi=\operatorname{atan2}(R_y,R_x)" /> to choose the correct quadrant.
+<MathVisual
+  title={<>Triangle Check for Magnitude and Direction</>}
+  description={<>Head-to-tail force triangle of <InlineMath math="A=10\text{ N}" />, <InlineMath math="B=8\text{ N}" />, and resultant <InlineMath math="R" /> in newtons.</>}
+  footer="Head to tail geometry links cosine magnitude and sine direction in one triangle."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -1.5, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 10, y: 0 }, to: { x: 14, y: 4 * Math.sqrt(3) } },
+      { id: "r", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 14, y: 4 * Math.sqrt(3) } },
+      { id: "phi", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 3.2, startDegrees: 0, sweepDegrees: (Math.atan2(4 * Math.sqrt(3), 14) * 180) / Math.PI },
+      { id: "theta", kind: "arc", appearance: "construction", center: { x: 10, y: 0 }, radius: 2.2, startDegrees: 0, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 12, y: 2 * Math.sqrt(3) }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "phi", objectId: "phi", at: { x: 3.4, y: 0.7 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 12.2, y: 0.6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A=10\text{ N}" />,
+    b: <InlineMath math="B=8\text{ N}" />,
+    r: <InlineMath math="R=\sqrt{244}\approx15.6\text{ N}" />,
+    phi: <InlineMath math="\phi\approx26.3^\circ" />,
+    theta: <InlineMath math="\theta=60^\circ" />,
+  }}
+/>
 
-Let <InlineMath math="A=1\text{ N}" />, <InlineMath math="B=\sqrt3\text{ N}" />, and <InlineMath math="\theta=150^\circ" />. Place the first force along the positive horizontal axis. Calculate the components before choosing an angle:
+When both <InlineMath math="R_x" /> and <InlineMath math="R_y" /> are positive, the resultant lies in the first quadrant and the acute inverse-sine value is already final.
+
+### Resolving Obtuse Angles
+
+Because supplementary angles share the same sine, inverse sine alone can return an acute angle even when the triangle demands an obtuse angle:
+
+<MathContainer>
+  <BlockMath math="\sin\phi=\sin(180^\circ-\phi)" />
+  <BlockMath math="\phi=\operatorname{atan2}(R_y,R_x)" />
+</MathContainer>
+
+Test this with <InlineMath math="A=1\text{ N}" />, <InlineMath math="B=\sqrt3\text{ N}" />, and <InlineMath math="\theta=150^\circ" />. Place the first force along the positive horizontal axis and compute both components first:
 
 <MathContainer>
   <BlockMath math="\begin{aligned}R_x &= A+B\cos150^\circ \\ &= 1+\sqrt3\left(-\frac{\sqrt3}{2}\right) \\ &= -\frac12\text{ N}\end{aligned}" />
   <BlockMath math="\begin{aligned}R_y &= B\sin150^\circ \\ &= \sqrt3\cdot\frac12 \\ &= \frac{\sqrt3}{2}\text{ N}\end{aligned}" />
 </MathContainer>
 
-The horizontal component is **negative** and the vertical component is **positive**. The resultant lies in the second quadrant.
+The horizontal component is **negative** while the vertical component is **positive**, placing the resultant in the second quadrant.
 
 <ContentStack>
   <MathVisual
     title={<>A Resultant in the Second Quadrant</>}
-    description={<>The purple resultant points up and left. Compare that direction with the acute angle returned by inverse sine.</>}
+    description={<>The resultant points up and left, showing why the true direction is obtuse rather than acute.</>}
+    footer="Negative x and positive y place the resultant at 120 degrees, not 60 degrees."
     labels={{
-      "l1": <InlineMath math="\vec{A}" />,
-      "l2": <InlineMath math="\vec{B}" />,
-      "l3": <InlineMath math="\vec{R}" />,
+      l1: <InlineMath math="\vec{A}" />,
+      l2: <InlineMath math="\vec{B}" />,
+      l3: <InlineMath math="\vec{R}" />,
     }}
     scene={{
       space: "plane",
       frame: { kind: "cartesian", x: { min: -1, max: 1.5 }, y: { min: -0.5, max: 1.5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((1) - (0)), y: (0) + 0.5 * ((0) - (0)) }, { x: 1, y: 0 }], appearance: "primary" },
-        { id: "s1-head", kind: "vector", from: { x: 0.5, y: 0 }, to: { x: 1, y: 0 }, appearance: "primary" },
-        { id: "s2", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: (1) + 0.5 * ((-0.5) - (1)), y: (0) + 0.5 * ((Math.sqrt(3) / 2) - (0)) }, { x: -0.5, y: Math.sqrt(3) / 2 }], appearance: "secondary" },
-        { id: "s2-head", kind: "vector", from: { x: 0.25, y: 0.43 }, to: { x: -0.5, y: 0.87 }, appearance: "secondary" },
-        { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((-0.5) - (0)), y: (0) + 0.5 * ((Math.sqrt(3) / 2) - (0)) }, { x: -0.5, y: Math.sqrt(3) / 2 }], appearance: "answer" },
-        { id: "s3-head", kind: "vector", from: { x: -0.25, y: 0.43 }, to: { x: -0.5, y: 0.87 }, appearance: "answer" },
+        { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 1, y: 0 }, to: { x: -0.5, y: Math.sqrt(3) / 2 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: -0.5, y: Math.sqrt(3) / 2 }, appearance: "answer" },
       ],
       labels: [
         { key: "l1", objectId: "s1", at: { x: 0.5, y: 0 }, placement: "below" },
@@ -209,96 +289,107 @@ The horizontal component is **negative** and the vertical component is **positiv
     }}
   />
 
-
   <MathContainer>
     <BlockMath math="\begin{aligned}R &= \sqrt{\left(-\frac12\right)^2+\left(\frac{\sqrt3}{2}\right)^2}\text{ N} \\ &= \sqrt{\frac14+\frac34}\text{ N} \\ &= 1\text{ N}\end{aligned}" />
     <BlockMath math="\begin{aligned}\sin\phi &= \frac{\sqrt3\sin150^\circ}{1} \\ &= \frac{\sqrt3}{2}\end{aligned}" />
   </MathContainer>
 </ContentStack>
 
-Inverse sine returns <InlineMath math="60^\circ" />, but the resultant direction is <InlineMath math="180^\circ-60^\circ=120^\circ" />. The component signs distinguish the two candidate angles.
+Inverse sine returns <InlineMath math="60^\circ" />, yet the component signs confirm the obtuse direction:
 
-Join the vectors head to tail and you get a triangle. The cosine rule gives the magnitude, <InlineMath math="R=\sqrt{244}\approx15.62\text{ N}" />, and the sine rule or the components give the direction. Zoom in on both angles: the same <InlineMath math="\phi" /> from either method checks the answer.
+<BlockMath math="\phi=180^\circ-60^\circ=120^\circ" />
+
+The same flip happens when a weak <InlineMath math="0.98\text{ N}" /> pull at <InlineMath math="0^\circ" /> combines with a stronger <InlineMath math="3.92\text{ N}" /> pull at <InlineMath math="150^\circ" />. Inverse sine reports <InlineMath math="39.1^\circ" />, while the negative <InlineMath math="R_x" /> reveals the true direction <InlineMath math="140.9^\circ" />.
 
 <MathVisual
-  title={<>Magnitude, Direction, Check</>}
-  description={<>The vector triangle of A (orange), B (violet) and their resultant R (fuchsia), with the angle between A and B (teal) and the direction of R (amber). One grid step is <InlineMath math="2\text{ N}" />.</>}
+  title={<>Watching Inverse Sine Flip Obtuse</>}
+  description={<>Pulls of <InlineMath math="0.98\text{ N}" /> at <InlineMath math="0^\circ" /> and <InlineMath math="3.92\text{ N}" /> at an adjustable angle <InlineMath math="a" />.</>}
+  footer="Once the x sum turns negative, the true direction jumps past 90 degrees."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
-    view: { kind: "fit", padding: 0.06 },
+    frame: { kind: "cartesian", x: { min: -4.2, max: 5.5 }, y: { min: -1, max: 4.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 30, max: 170, value: 150, step: 5, label: "second-angle" },
+    ],
     objects: [
-      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
-      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 4.75, y: 0.125 }, { x: 4.75, y: -0.125 }] },
-      { id: "b", kind: "segment", appearance: "secondary", from: { x: 5, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
-      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 7 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
-      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
-      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }] },
-      { id: "phi", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 1.5, startDegrees: 0, sweepDegrees: (Math.atan2(2 * Math.sqrt(3), 7) * 180) / Math.PI },
-      { id: "theta", kind: "arc", appearance: "construction", center: { x: 5, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 60 },
+      { id: "f1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0.98, y: 0 } },
+      { id: "f2", kind: "path", appearance: "secondary", points: [{ x: "0.98", y: "0" }, { x: "0.98 + 3.92 * cos(a * pi / 180)", y: "3.92 * sin(a * pi / 180)" }] },
+      { id: "res", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "0.98 + 3.92 * cos(a * pi / 180)", y: "3.92 * sin(a * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "0.98 + 3.92 * cos(a * pi / 180)", y: "3.92 * sin(a * pi / 180)" },
     ],
     labels: [
-      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
-      { key: "b", objectId: "b", at: { x: 6, y: Math.sqrt(3) }, placement: "right" },
-      { key: "r", objectId: "r", at: { x: 3.5, y: Math.sqrt(3) }, placement: "above-left" },
-      { key: "phi", objectId: "phi", at: { x: 1.5, y: 0.35 }, placement: "right" },
-      { key: "theta", objectId: "theta", at: { x: 6, y: 0.3 }, placement: "right" },
+      { key: "f1", objectId: "f1", at: { x: 0.5, y: 0 }, placement: "below" },
+      { key: "tip", objectId: "tip", at: { x: "0.98 + 3.92 * cos(a * pi / 180)", y: "3.92 * sin(a * pi / 180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "rx-n", formula: "0.98 + 3.92 * cos(a * pi / 180)" },
+      { key: "ry-n", formula: "3.92 * sin(a * pi / 180)" },
+      { key: "acute-deg", formula: "acos(abs(0.98 + 3.92 * cos(a * pi / 180)) / sqrt((0.98 + 3.92 * cos(a * pi / 180))^2 + (3.92 * sin(a * pi / 180))^2)) * 180 / pi" },
+      { key: "true-deg", formula: "acos((0.98 + 3.92 * cos(a * pi / 180)) / sqrt((0.98 + 3.92 * cos(a * pi / 180))^2 + (3.92 * sin(a * pi / 180))^2)) * 180 / pi" },
     ],
   }}
   labels={{
-    a: <InlineMath math="A=10\text{ N}" />,
-    b: <InlineMath math="B=8\text{ N}" />,
-    r: <InlineMath math="R^2=10^2+8^2+2\cdot10\cdot8\cos60^\circ=244" />,
-    phi: <InlineMath math="\phi\approx26.3^\circ" />,
-    theta: <InlineMath math="\theta=60^\circ" />,
+    f1: <InlineMath math="\vec{F}_1" />,
+    tip: <InlineMath math="\vec{R}" />,
+    "second-angle": <>Angle of <InlineMath math="\vec{F}_2" /> (<InlineMath math="^\circ" />)</>,
+    "rx-n": <>Horizontal sum <InlineMath math="R_x" /> (N)</>,
+    "ry-n": <>Vertical sum <InlineMath math="R_y" /> (N)</>,
+    "acute-deg": <>Inverse sine <InlineMath math="\phi_0" /> (<InlineMath math="^\circ" />)</>,
+    "true-deg": <>True direction <InlineMath math="\phi" /> (<InlineMath math="^\circ" />)</>,
   }}
 />
 
-A weak pull of <InlineMath math="0.98\text{ N}" /> at <InlineMath math="0^\circ" /> and a strong one of <InlineMath math="3.92\text{ N}" /> at <InlineMath math="150^\circ" /> give a resultant at <InlineMath math="140.9^\circ" />. The sine rule alone says <InlineMath math="39.1^\circ" />, but the components show the obtuse answer, <InlineMath math="180^\circ-39.1^\circ" />.
+Drag the angle past <InlineMath math="105^\circ" /> and watch <InlineMath math="R_x" /> cross zero. At that exact threshold, <InlineMath math="\phi_0" /> bends back down while the true angle continues smoothly past <InlineMath math="90^\circ" />.
 
-<ForceTableResultantLab
-  title={<>An Obtuse Resultant</>}
-  description={<>Hangers of <InlineMath math="100\text{ g}" /> at <InlineMath math="0^\circ" /> and <InlineMath math="400\text{ g}" /> at the angle you choose.</>}
-  pulls={[
-    { angle: 0, mass: 100 },
-    { angle: 150, mass: 400 },
-  ]}
-  labels={{
-    angle: <>Angle of the last string</>,
-    angleName: "Angle of the last string",
-    direction: <>Direction of <InlineMath math="\vec R" /></>,
-    resultant: <>Resultant <InlineMath math="R" /></>,
-    sumX: <>Sum along <InlineMath math="0^\circ" /></>,
-    sumY: <>Sum along <InlineMath math="90^\circ" /></>,
-    viewLabel: "Force table with hanging masses",
-  }}
-/>
+## Component Sums for Three or More Vectors
 
-## Component Methods for More than Two Vectors
+When more than two vectors act together, the **component method** places every vector on shared <InlineMath math="x" /> and <InlineMath math="y" /> axes and sums their components directly. That avoids chaining several triangles and guessing which interior angle fits each sine-rule step.
 
-When there are more than two vectors, the component method puts every vector on the same <InlineMath math="x" /> and <InlineMath math="y" /> axes and then adds the components. This avoids constructing several triangles and deciding which triangle angle belongs in each sine-rule equation. The same component method also fits directions already measured from the coordinate axes.
+Use the sine rule when the setup is clean: two vectors, a known included angle, a known resultant magnitude, and a direction measured from one vector. Always <Highlight>resolve the inverse-sine ambiguity</Highlight> before stating the final direction.
 
-Use the sine rule when the problem is clear: two vectors, a known included angle, a known resultant magnitude, and a requested resultant direction relative to one of the vectors. Always <Highlight>resolve the inverse-sine ambiguity</Highlight> before stating the direction.
+Consider a three-leg voyage: <InlineMath math="6\text{ km}" /> east, <InlineMath math="4\text{ km}" /> north, and <InlineMath math="5\text{ km}" /> on an adjustable bearing. At a <InlineMath math="315^\circ" /> bearing, the sums give <InlineMath math="2.46\text{ km}" /> east and <InlineMath math="7.54\text{ km}" /> north, placing the ferry <InlineMath math="7.93\text{ km}" /> from harbour on bearing <InlineMath math="18.1^\circ" />.
 
-## A Voyage of Three Legs
-
-With three legs, triangles get messy, so **add components**. The legs give <InlineMath math="2.46\text{ km}" /> east and <InlineMath math="7.54\text{ km}" /> north, so the ferry ends <InlineMath math="7.93\text{ km}" /> away on a bearing of <InlineMath math="18.1^\circ" />. Turn the last leg and the sums update at once.
-
-<ShipBearingComponentLab
+<MathVisual
   title={<>Three Legs Added by Components</>}
-  description={<>Legs of <InlineMath math="6\text{ km}" /> east, <InlineMath math="4\text{ km}" /> north and <InlineMath math="5\text{ km}" /> on a bearing you choose.</>}
-  courses={[
-    { bearing: 90, distance: 6 },
-    { bearing: 0, distance: 4 },
-    { bearing: 315, distance: 5 },
-  ]}
+  description={<>Legs of <InlineMath math="6\text{ km}" /> east, <InlineMath math="4\text{ km}" /> north, and <InlineMath math="5\text{ km}" /> on an adjustable compass bearing <InlineMath math="b" />.</>}
+  footer="Summing east and north components gives distance and bearing in one pass."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "b", min: 240, max: 360, value: 315, step: 5, label: "third-bearing" },
+    ],
+    objects: [
+      { id: "leg-one", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "leg-two", kind: "vector", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
+      { id: "leg-three", kind: "path", appearance: "highlight", points: [{ x: "6", y: "4" }, { x: "6 + 5 * sin(b * pi / 180)", y: "4 + 5 * cos(b * pi / 180)" }] },
+      { id: "total", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "6 + 5 * sin(b * pi / 180)", y: "4 + 5 * cos(b * pi / 180)" }] },
+      { id: "end", kind: "marker", appearance: "answer", x: "6 + 5 * sin(b * pi / 180)", y: "4 + 5 * cos(b * pi / 180)" },
+    ],
+    labels: [
+      { key: "one", objectId: "leg-one", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "two", objectId: "leg-two", at: { x: 6, y: 2 }, placement: "right" },
+      { key: "end", objectId: "end", at: { x: "6 + 5 * sin(b * pi / 180)", y: "4 + 5 * cos(b * pi / 180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "east-km", formula: "6 + 5 * sin(b * pi / 180)" },
+      { key: "north-km", formula: "4 + 5 * cos(b * pi / 180)" },
+      { key: "dist-km", formula: "sqrt((6 + 5 * sin(b * pi / 180))^2 + (4 + 5 * cos(b * pi / 180))^2)" },
+      { key: "bearing-deg", formula: "atan((6 + 5 * sin(b * pi / 180)) / (4 + 5 * cos(b * pi / 180))) * 180 / pi" },
+    ],
+  }}
   labels={{
-    bearing: <>Bearing of the last leg</>,
-    bearingName: "Bearing of the last leg",
-    direction: <>Bearing from the harbour</>,
-    distance: <>Distance from the harbour</>,
-    east: <>East component</>,
-    north: <>North component</>,
-    viewLabel: "Ferry sailing from a harbour",
+    one: <InlineMath math="6\text{ km}" />,
+    two: <InlineMath math="4\text{ km}" />,
+    end: <InlineMath math="\vec{R}" />,
+    "third-bearing": <>Third-leg bearing (<InlineMath math="^\circ" />)</>,
+    "east-km": <>East sum (km)</>,
+    "north-km": <>North sum (km)</>,
+    "dist-km": <>Distance (km)</>,
+    "bearing-deg": <>Resultant bearing (<InlineMath math="^\circ" />)</>,
   }}
 />
+
+Turning the third leg updates the east and north totals immediately, showing why components scale effortlessly to multi-leg routes.

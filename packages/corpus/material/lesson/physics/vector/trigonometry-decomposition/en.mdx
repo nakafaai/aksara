@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Vector Decomposition Using Trigonometry Rules",
   description:
@@ -12,79 +10,99 @@ export const metadata = {
 
 ## The Angle Determines the Components
 
-When a vector forms an angle with an axis, its components can be found using trigonometry. The idea is simple: the slanted vector becomes <Highlight>the hypotenuse of a right triangle</Highlight>, while its components become the horizontal and vertical sides.
+When a vector forms an angle with an axis, trigonometry splits it cleanly into axis components. The slanted vector acts as <Highlight>the hypotenuse of a right triangle</Highlight>, while its horizontal and vertical components form the two perpendicular legs.
 
-For a vector in quadrant I, measure <InlineMath math="\theta" /> from the positive <InlineMath math="x" /> axis. The horizontal component is adjacent to the angle and the vertical component is opposite it. For vector magnitude <InlineMath math="F>0" />, divide each side by the hypotenuse, then multiply by <InlineMath math="F" /> again.
+For a vector in quadrant I, measure <InlineMath math="\theta" /> from the positive <InlineMath math="x" /> axis. The horizontal component is adjacent to the angle and the vertical component lies opposite it. Dividing each leg by the positive magnitude <InlineMath math="F" /> and multiplying back by <InlineMath math="F" /> gives:
 
 <MathContainer>
   <BlockMath math="\cos\theta=\frac{F_x}{F}\quad\Rightarrow\quad F_x=F\cos\theta" />
   <BlockMath math="\sin\theta=\frac{F_y}{F}\quad\Rightarrow\quad F_y=F\sin\theta" />
 </MathContainer>
 
-> Identify the side adjacent to the reference angle before assigning <InlineMath math="\cos" /> and the opposite side before assigning <InlineMath math="\sin" />.
+> Identify the side adjacent to the reference angle before assigning cosine, and the opposite side before assigning sine.
 
-## Tilting a Ramp
+On a ramp tilted at <InlineMath math="37^\circ" />, a <InlineMath math="19.6\text{ N}" /> weight splits into <InlineMath math="11.8\text{ N}" /> down the slope and <InlineMath math="15.65\text{ N}" /> perpendicular into the plank. Changing the tilt trades strength between the two components while **the total weight stays constant**.
 
-On a ramp at <InlineMath math="37^\circ" />, the <InlineMath math="19.6\text{ N}" /> weight splits into <InlineMath math="W\sin\theta" />, about <InlineMath math="11.8\text{ N}" /> down the slope, and <InlineMath math="W\cos\theta" />, about <InlineMath math="15.65\text{ N}" /> into it. Change the angle and the two parts trade size, while **the weight itself never changes**.
-
-<RampBlockComponentLab
-  title={<>Sine and Cosine on a Ramp</>}
-  description={<>A <InlineMath math="2\text{ kg}" /> block on a plank. It slips once <InlineMath math="\tan\theta" /> passes <InlineMath math="0.8" />.</>}
-  angle={37}
-  friction={0.8}
-  mass={2}
+<MathVisual
+  title={<>Sine and Cosine Components on a Ramp</>}
+  description={<>Down-slope <InlineMath math="W\sin\theta" /> and perpendicular <InlineMath math="W\cos\theta" /> weight components for a <InlineMath math="2\text{ kg}" /> block across ramp angle <InlineMath math="a" />.</>}
+  footer="As ramp angle rises, down-slope force grows while normal weight shrinks."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 90 }, y: { min: 0, max: 22 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 10, max: 70, value: 37, step: 1, label: "ramp-angle" },
+    ],
+    objects: [
+      { id: "along", kind: "function", appearance: "primary", formula: "19.6 * sin(x * pi / 180)", domain: { min: 0, max: 90 } },
+      { id: "into", kind: "function", appearance: "secondary", formula: "19.6 * cos(x * pi / 180)", domain: { min: 0, max: 90 } },
+      { id: "pt-along", kind: "marker", appearance: "primary", x: "a", y: "19.6 * sin(a * pi / 180)" },
+      { id: "pt-into", kind: "marker", appearance: "secondary", x: "a", y: "19.6 * cos(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "along", objectId: "along", at: { x: 68, y: 18.2 }, placement: "above-left" },
+      { key: "into", objectId: "into", at: { x: 22, y: 18.2 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "along-n", formula: "19.6 * sin(a * pi / 180)" },
+      { key: "into-n", formula: "19.6 * cos(a * pi / 180)" },
+      { key: "total-n", formula: "19.6" },
+    ],
+  }}
   labels={{
-    along: <>Down the slope <InlineMath math="W\sin\theta" /></>,
-    angle: <>Ramp angle</>,
-    angleName: "Ramp angle",
-    into: <>Into the slope <InlineMath math="W\cos\theta" /></>,
-    viewLabel: "Wooden block on a tilted plank",
-    weight: <>Weight <InlineMath math="W" /></>,
+    along: <InlineMath math="W\sin\theta" />,
+    into: <InlineMath math="W\cos\theta" />,
+    "ramp-angle": <>Ramp angle (<InlineMath math="^\circ" />)</>,
+    "along-n": <>Down slope (N)</>,
+    "into-n": <>Into slope (N)</>,
+    "total-n": <>Total weight (N)</>,
   }}
 />
 
-## A Slanted Force on Coordinate Axes
+At <InlineMath math="45^\circ" />, both curves cross at the exact same value because <InlineMath math="\sin45^\circ" /> equals <InlineMath math="\cos45^\circ" />.
 
-Imagine a rope pulling a box with force <InlineMath math="\vec{F}" /> up and to the right. The pull has **rightward and upward force components**. An upward component does not necessarily lift the box: its motion also depends on its weight and the normal force from the floor.
+## Resolving a Slanted Force on Coordinate Axes
+
+Imagine pulling a crate with a rope slanted upward and to the right. The pull decomposes into **rightward and upward components** whose vector sum reproduces the exact original force without altering its net effect.
+
+### Approximate and Exact Components
+
+Place a <InlineMath math="50\text{ N}" /> force at <InlineMath math="37^\circ" /> above the horizontal directly on newton axes. Following <InlineMath math="F_x" /> then <InlineMath math="F_y" /> lands at the exact tip of <InlineMath math="\vec{F}" />.
 
 <MathVisual
   title={<>Resolving a Slanted Force</>}
   description={
     <>
-      Force <InlineMath math="F=50\text{ N}" /> forms a{" "}
-      <InlineMath math="37^\circ" /> angle above the horizontal, so its
-      components can be estimated from <InlineMath math="\cos37^\circ" /> and{" "}
-      <InlineMath math="\sin37^\circ" />.
+      Force <InlineMath math="F=50\text{ N}" /> at <InlineMath math="37^\circ" />{" "}
+      above horizontal drawn directly in newtons with its horizontal and vertical
+      components.
     </>
   }
+  footer="Horizontal Fx followed by vertical Fy reaches the exact tip of F."
   labels={{
-    "l1": <InlineMath math="F" />,
-    "l2": <InlineMath math="F_x" />,
-    "l3": <InlineMath math="F_y" />,
+    l1: <InlineMath math="\vec{F}" />,
+    l2: <InlineMath math="F_x" />,
+    l3: <InlineMath math="F_y" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
-    view: { kind: "fit", padding: 0.2 },
+    frame: { kind: "cartesian", x: { min: -5, max: 48 }, y: { min: -5, max: 36 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2.4, y: 1.81 }, { x: 3.99, y: 3.01 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2.4, y: 1.81 }, to: { x: 3.99, y: 3.01 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 3.99, y: 0 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 2, y: 0 }, to: { x: 3.99, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 3.99, y: 0 }, { x: 3.99, y: 1.5 }, { x: 3.99, y: 3.01 }], appearance: "answer" },
-      { id: "s3-head", kind: "vector", from: { x: 3.99, y: 1.5 }, to: { x: 3.99, y: 3.01 }, appearance: "answer" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 39.93, y: 30.09 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 39.93, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 39.93, y: 0 }, to: { x: 39.93, y: 30.09 }, appearance: "answer" },
     ],
     labels: [
-      { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.81 }, placement: "above-right" },
-      { key: "l2", objectId: "s2", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "l3", objectId: "s3", at: { x: 3.99, y: 1.5 }, placement: "right" },
+      { key: "l1", objectId: "s1", at: { x: 20, y: 16 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 39.93, y: 15 }, placement: "right" },
     ],
   }}
 />
 
-Each coordinate unit in the model represents <InlineMath math="10\text{ N}" />. The endpoint of <InlineMath math="F_x" /> followed by <InlineMath math="F_y" /> matches the endpoint of vector <InlineMath math="\vec{F}" />. The components describe the same force in two directions.
-
-A <InlineMath math="50\text{ N}" /> force acts <InlineMath math="37^\circ" /> above the horizontal. Use the **trigonometric approximations** <InlineMath math="\cos37^\circ\approx0.8" /> and <InlineMath math="\sin37^\circ\approx0.6" />.
+Using the **trigonometric approximations** <InlineMath math="\cos37^\circ\approx0.8" /> and <InlineMath math="\sin37^\circ\approx0.6" /> gives quick classroom estimates:
 
 <MathContainer>
   <BlockMath math="\begin{aligned}
@@ -100,78 +118,96 @@ A <InlineMath math="50\text{ N}" /> force acts <InlineMath math="37^\circ" /> ab
   \end{aligned}" />
 </MathContainer>
 
-With this rounding, the components of the <InlineMath math="50\text{ N}" /> force are approximately a <InlineMath math="40\text{ N}" /> pull to the right and a <InlineMath math="30\text{ N}" /> pull upward.
-
-Without early rounding, the values are about <InlineMath math="39.93\text{ N}" /> and <InlineMath math="30.09\text{ N}" />. The model uses the angle <InlineMath math="37^\circ" /> directly, so its coordinates are not exactly <InlineMath math="4" /> and <InlineMath math="3" />.
-
-Here is the rope force split onto the axes. The cosine gives the horizontal part and the sine the vertical part, about <InlineMath math="40\text{ N}" /> and <InlineMath math="30\text{ N}" />, and the two parts rebuild the <InlineMath math="50\text{ N}" /> force.
+Without early rounding, the exact values are <InlineMath math="39.93\text{ N}" /> rightward and <InlineMath math="30.09\text{ N}" /> upward. Both components rebuild the full <InlineMath math="50\text{ N}" /> rope force.
 
 <MathVisual
   title={<>Splitting the Pulling Force</>}
-  description={<><InlineMath math="F=50\text{ N}" /> at <InlineMath math="37^\circ" /> above the horizontal with its components. One grid step is <InlineMath math="10\text{ N}" />.</>}
+  description={<><InlineMath math="F=50\text{ N}" /> at <InlineMath math="37^\circ" /> above the horizontal with labeled trigonometric components in newtons.</>}
+  footer="Cosine gives about 40 N horizontally and sine gives about 30 N vertically."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 3.8 } },
-    view: { kind: "fit", padding: 0.06 },
+    frame: { kind: "cartesian", x: { min: -5, max: 52 }, y: { min: -8, max: 38 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "fx", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 } },
-      { id: "fx-head", kind: "polygon", appearance: "construction", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.25, y: 0.125 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.25, y: -0.125 }] },
-      { id: "fy", kind: "segment", appearance: "secondary", from: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) } },
-      { id: "fy-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) }, { x: 5 * Math.cos((37 * Math.PI) / 180) + 0.125, y: 5 * Math.sin((37 * Math.PI) / 180) + -0.25 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.125, y: 5 * Math.sin((37 * Math.PI) / 180) + -0.25 }] },
-      { id: "f", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) } },
-      { id: "f-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) }, { x: 5 * Math.cos((37 * Math.PI) / 180) - (0.25 * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) + ((0.25 / 2) * -3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416), y: 5 * Math.sin((37 * Math.PI) / 180) - (0.25 * 3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416) + ((0.25 / 2) * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) }, { x: 5 * Math.cos((37 * Math.PI) / 180) - (0.25 * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) - ((0.25 / 2) * -3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416), y: 5 * Math.sin((37 * Math.PI) / 180) - (0.25 * 3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416) - ((0.25 / 2) * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) }] },
+      { id: "fx", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 0 } },
+      { id: "fy", kind: "vector", appearance: "secondary", from: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 0 }, to: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 50 * Math.sin((37 * Math.PI) / 180) } },
+      { id: "f", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 50 * Math.sin((37 * Math.PI) / 180) } },
     ],
     labels: [
-      { key: "fx", objectId: "fx", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "fy", objectId: "fy", at: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 1.5 }, placement: "right" },
-      { key: "f", objectId: "f", at: { x: 2, y: 1.5 }, placement: "above-left" },
+      { key: "fx", objectId: "fx", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "fy", objectId: "fy", at: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 15 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: 20, y: 15 }, placement: "above-left" },
     ],
   }}
   labels={{
-    fx: <InlineMath math="F_x=F\cos37^\circ\approx40\text{ N}" />,
-    fy: <InlineMath math="F_y=F\sin37^\circ\approx30\text{ N}" />,
+    fx: <InlineMath math="F_x\approx40\text{ N}" />,
+    fy: <InlineMath math="F_y\approx30\text{ N}" />,
     f: <InlineMath math="F=50\text{ N}" />,
   }}
 />
 
-Here is the same <InlineMath math="50\text{ N}" /> pull at <InlineMath math="37^\circ" /> on a real sled. The card computes without early rounding, so it reads <InlineMath math="39.9\text{ N}" /> along the snow and <InlineMath math="30.1\text{ N}" /> up, close to the <InlineMath math="40\text{ N}" /> and <InlineMath math="30\text{ N}" /> above.
+An upward component does not automatically lift the crate off the floor because motion also depends on weight and normal force.
 
-<SledPullWorkLab
-  title={<>Pulling a Sled at an Angle</>}
-  description={<>A <InlineMath math="20\text{ kg}" /> sled of firewood, pulled <InlineMath math="10\text{ m}" /> with <InlineMath math="50\text{ N}" />.</>}
-  angle={37}
-  distance={10}
-  force={50}
-  mass={20}
+### Pulling a Sled at an Adjustable Angle
+
+Apply the same <InlineMath math="50\text{ N}" /> pull to a sled over <InlineMath math="10\text{ m}" /> while varying the **rope angle** <InlineMath math="a" />. At <InlineMath math="37^\circ" />, the exact calculator readouts give <InlineMath math="39.9\text{ N}" /> along the snow, <InlineMath math="30.1\text{ N}" /> upward, and <InlineMath math="399.3\text{ J}" /> of work.
+
+<MathVisual
+  title={<>Sled Pull Components Against Rope Angle</>}
+  description={<>A <InlineMath math="50\text{ N}" /> rope pull split into horizontal <InlineMath math="F_x" /> and upward <InlineMath math="F_y" /> in newtons as angle <InlineMath math="a" /> varies.</>}
+  footer="Raising the rope trades forward pull for upward lift while keeping F at 50 N."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 55 }, y: { min: -5, max: 55 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 0, max: 80, value: 37, step: 1, label: "rope-angle" },
+    ],
+    objects: [
+      { id: "fx", kind: "path", appearance: "construction", points: [{ x: "0", y: "0" }, { x: "50 * cos(a * pi / 180)", y: "0" }] },
+      { id: "fy", kind: "path", appearance: "secondary", points: [{ x: "50 * cos(a * pi / 180)", y: "0" }, { x: "50 * cos(a * pi / 180)", y: "50 * sin(a * pi / 180)" }] },
+      { id: "pull", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "50 * cos(a * pi / 180)", y: "50 * sin(a * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "50 * cos(a * pi / 180)", y: "50 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "50 * cos(a * pi / 180)", y: "50 * sin(a * pi / 180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "fx-n", formula: "50 * cos(a * pi / 180)" },
+      { key: "fy-n", formula: "50 * sin(a * pi / 180)" },
+      { key: "work-j", formula: "500 * cos(a * pi / 180)" },
+    ],
+  }}
   labels={{
-    along: <>Along the snow <InlineMath math="F\cos\theta" /></>,
-    angle: <>Rope angle above the snow</>,
-    angleName: "Rope angle above the snow",
-    normal: <>Normal force from the snow</>,
-    up: <>Upward part <InlineMath math="F\sin\theta" /></>,
-    viewLabel: "Sled of firewood pulled across snow",
-    work: <>Work over <InlineMath math="10\text{ m}" /></>,
+    tip: <InlineMath math="\vec{F}" />,
+    "rope-angle": <>Rope angle (<InlineMath math="^\circ" />)</>,
+    "fx-n": <>Along snow (N)</>,
+    "fy-n": <>Upward pull (N)</>,
+    "work-j": <>Work over 10 m (J)</>,
   }}
 />
 
-## Angle from Vertical Axis
+Notice that the squared components always satisfy <InlineMath math="F_x^2+F_y^2=2500\text{ N}^2" />, no matter how steep or flat the rope angle becomes.
 
-Keep the force in quadrant I, but measure the **angle from the positive vertical axis** toward the force. The component adjacent to <InlineMath math="\theta" /> is now <InlineMath math="F_y" />, while <InlineMath math="F_x" /> is opposite the angle.
+## Angle Measured from the Vertical Axis
+
+Keep the force in quadrant I, yet measure the **angle from the positive vertical axis** instead of the horizontal. Now <InlineMath math="F_y" /> lies adjacent to <InlineMath math="\theta" /> and takes the cosine, while <InlineMath math="F_x" /> lies opposite and takes the sine:
 
 <MathContainer>
   <BlockMath math="F_y=F\cos\theta" />
   <BlockMath math="F_x=F\sin\theta" />
 </MathContainer>
 
-Before using a formula, always ask: from which axis is the angle measured? This small check prevents a common error when resolving vectors.
+Always check which axis anchors the angle before writing sine or cosine.
 
-### A Kite String
+### Tension in a Kite String
 
-A kite string pulls its stake with <InlineMath math="40\text{ N}" /> at <InlineMath math="60^\circ" /> from the vertical. Measured from that axis, **the vertical part takes the cosine**, <InlineMath math="20\text{ N}" />, and the horizontal part the sine, <InlineMath math="34.6\text{ N}" />.
+A kite string pulls its beach stake with <InlineMath math="40\text{ N}" /> at <InlineMath math="60^\circ" /> from the vertical. Because the angle is anchored to the vertical axis, **the vertical part takes the cosine** (<InlineMath math="20\text{ N}" />) and the horizontal part takes the sine (<InlineMath math="34.6\text{ N}" />).
 
 <KiteStringTensionLab
   title={<>Angle Measured from the Vertical</>}
   description={<>A <InlineMath math="30\text{ m}" /> string with a tension of <InlineMath math="40\text{ N}" />. Tilt it away from the vertical.</>}
+  footer="With angle from vertical, cosine gives upward lift and sine gives horizontal pull."
   angle={60}
   length={30}
   tension={40}
@@ -184,13 +220,16 @@ A kite string pulls its stake with <InlineMath math="40\text{ N}" /> at <InlineM
   }}
 />
 
-### A Bearing from North
+Tilting the string closer to the vertical boosts upward tension while shrinking horizontal pull on the stake.
 
-A ship's bearing is **also an angle from the vertical axis**, north. On a bearing of <InlineMath math="30^\circ" />, <InlineMath math="10\text{ km}" /> of sailing becomes <InlineMath math="10\cos30^\circ" />, about <InlineMath math="8.66\text{ km}" />, north and <InlineMath math="10\sin30^\circ" />, <InlineMath math="5\text{ km}" />, east.
+### Compass Bearing from North
+
+A ship's compass bearing is **another angle measured from the vertical north axis**. On a <InlineMath math="30^\circ" /> bearing, <InlineMath math="10\text{ km}" /> of travel resolves into <InlineMath math="8.66\text{ km}" /> north (<InlineMath math="10\cos30^\circ" />) and <InlineMath math="5\text{ km}" /> east (<InlineMath math="10\sin30^\circ" />).
 
 <ShipBearingComponentLab
   title={<>Cosine North, Sine East</>}
   description={<>A ferry sails <InlineMath math="10\text{ km}" />. Turn its bearing, measured clockwise from north.</>}
+  footer="Bearings measured from north put cosine on north and sine on east."
   courses={[{ bearing: 30, distance: 10 }]}
   labels={{
     bearing: <>Bearing of the last leg</>,
@@ -203,9 +242,11 @@ A ship's bearing is **also an angle from the vertical axis**, north. On a bearin
   }}
 />
 
+For any bearing referenced to north, north forms the adjacent leg and east forms the opposite leg.
+
 ## Component Signs Follow the Quadrant
 
-If <InlineMath math="\theta" /> is the **full standard-position angle** measured counterclockwise from positive <InlineMath math="x" />, <InlineMath math="\cos\theta" /> and <InlineMath math="\sin\theta" /> already produce the component signs. If an acute reference angle is used instead, first calculate the component magnitudes and then assign signs from the quadrant.
+When <InlineMath math="\theta" /> is the **full standard-position angle** counterclockwise from positive <InlineMath math="x" />, <InlineMath math="\cos\theta" /> and <InlineMath math="\sin\theta" /> deliver the correct component signs automatically. If you use an acute reference angle instead, find component magnitudes first and assign signs from the quadrant.
 
 | Vector direction | Sign of <InlineMath math="F_x" /> | Sign of <InlineMath math="F_y" /> |
 | :--------------- | :------------------------------- | :------------------------------- |
@@ -214,28 +255,23 @@ If <InlineMath math="\theta" /> is the **full standard-position angle** measured
 | down and left | negative | negative |
 | down and right | positive | negative |
 
-If a force points up and to the left, its horizontal component is negative because it opposes the positive <InlineMath math="x" /> axis, while its vertical component remains positive.
-
-Measure the angle from the positive x axis, counterclockwise, and the quadrant gives the signs. Each arrow has the same size, but its components take the signs of the quadrant it points into. Zoom in on each arrow tip.
+The four equal-magnitude arrows below point into all four quadrants at <InlineMath math="30^\circ" />, <InlineMath math="150^\circ" />, <InlineMath math="210^\circ" />, and <InlineMath math="330^\circ" />.
 
 <MathVisual
   title={<>Component Signs by Quadrant</>}
-  description={<>Four forces of the same size at <InlineMath math="30^\circ" />, <InlineMath math="150^\circ" />, <InlineMath math="210^\circ" /> and <InlineMath math="330^\circ" />.</>}
+  description={<>Four equal forces of magnitude <InlineMath math="3\text{ N}" /> at <InlineMath math="30^\circ" />, <InlineMath math="150^\circ" />, <InlineMath math="210^\circ" />, and <InlineMath math="330^\circ" />.</>}
+  footer="Equal arrows in four quadrants carry four distinct pairs of component signs."
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -3, max: 3 } },
-    view: { kind: "fit", padding: 0.06 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
       { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 3 } },
-      { id: "q30", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 } },
-      { id: "q30-head", kind: "polygon", appearance: "primary", vertices: [{ x: (3 * Math.sqrt(3)) / 2, y: 1.5 }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) + ((0.25 / 2) * -1.5) / Math.hypot(2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(2.598076211353316, 1.5) + ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) - ((0.25 / 2) * -1.5) / Math.hypot(2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(2.598076211353316, 1.5) - ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) }] },
-      { id: "q150", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: 1.5 } },
-      { id: "q150-head", kind: "polygon", appearance: "secondary", vertices: [{ x: -(3 * Math.sqrt(3)) / 2, y: 1.5 }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) + ((0.25 / 2) * -1.5) / Math.hypot(-2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(-2.598076211353316, 1.5) + ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) - ((0.25 / 2) * -1.5) / Math.hypot(-2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(-2.598076211353316, 1.5) - ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) }] },
-      { id: "q210", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: -1.5 } },
-      { id: "q210-head", kind: "polygon", appearance: "construction", vertices: [{ x: -(3 * Math.sqrt(3)) / 2, y: -1.5 }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) + ((0.25 / 2) * 1.5) / Math.hypot(-2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(-2.598076211353316, -1.5) + ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) - ((0.25 / 2) * 1.5) / Math.hypot(-2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(-2.598076211353316, -1.5) - ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) }] },
-      { id: "q330", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: -1.5 } },
-      { id: "q330-head", kind: "polygon", appearance: "answer", vertices: [{ x: (3 * Math.sqrt(3)) / 2, y: -1.5 }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) + ((0.25 / 2) * 1.5) / Math.hypot(2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(2.598076211353316, -1.5) + ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) - ((0.25 / 2) * 1.5) / Math.hypot(2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(2.598076211353316, -1.5) - ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) }] },
+      { id: "q30", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 } },
+      { id: "q150", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: 1.5 } },
+      { id: "q210", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: -1.5 } },
+      { id: "q330", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: -1.5 } },
     ],
     labels: [
       { key: "q30", objectId: "q30", at: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 }, placement: "above" },
@@ -252,22 +288,41 @@ Measure the angle from the positive x axis, counterclockwise, and the quadrant g
   }}
 />
 
-## Wind from Every Quadrant
+Each arrow shares the same acute <InlineMath math="30^\circ" /> reference angle to the horizontal axis, so only the plus and minus signs distinguish the four quadrants.
 
-Wind of <InlineMath math="10\text{ m/s}" /> toward <InlineMath math="210^\circ" /> blows into the third quadrant, so **the cosine and the sine are both negative**: <InlineMath math="-8.66\text{ m/s}" /> east and <InlineMath math="-5\text{ m/s}" /> north. Turn the direction through all four quadrants and read the signs.
+Sweep a <InlineMath math="10\text{ m/s}" /> wind vector through all <InlineMath math="360^\circ" />. At <InlineMath math="210^\circ" /> in quadrant III, **both cosine and sine are negative**, producing <InlineMath math="-8.66\text{ m/s}" /> east and <InlineMath math="-5\text{ m/s}" /> north.
 
-<WindMapVectorLab
-  title={<>Signs of the Wind Components</>}
-  description={<>Wind of <InlineMath math="10\text{ m/s}" />. Its direction is measured counterclockwise from east.</>}
-  angle={210}
-  speed={10}
+<MathVisual
+  title={<>Wind Components Through All Four Quadrants</>}
+  description={<>Wind of <InlineMath math="10\text{ m/s}" /> at standard angle <InlineMath math="a" /> counterclockwise from east, showing signed <InlineMath math="v_x" /> and <InlineMath math="v_y" />.</>}
+  footer="Sweeping angle a through 360 degrees flips component signs at every axis."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 12 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 0, max: 360, value: 210, step: 15, label: "wind-angle" },
+    ],
+    objects: [
+      { id: "vx", kind: "path", appearance: "construction", points: [{ x: "0", y: "0" }, { x: "10 * cos(a * pi / 180)", y: "0" }] },
+      { id: "vy", kind: "path", appearance: "secondary", points: [{ x: "10 * cos(a * pi / 180)", y: "0" }, { x: "10 * cos(a * pi / 180)", y: "10 * sin(a * pi / 180)" }] },
+      { id: "wind", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "10 * cos(a * pi / 180)", y: "10 * sin(a * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "10 * cos(a * pi / 180)", y: "10 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "10 * cos(a * pi / 180)", y: "10 * sin(a * pi / 180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "vx-ms", formula: "10 * cos(a * pi / 180)" },
+      { key: "vy-ms", formula: "10 * sin(a * pi / 180)" },
+    ],
+  }}
   labels={{
-    angle: <>Direction from east</>,
-    angleName: "Direction from east",
-    east: <>East component <InlineMath math="v_x" /></>,
-    north: <>North component <InlineMath math="v_y" /></>,
-    speed: <>Wind speed</>,
-    speedName: "Wind speed",
-    viewLabel: "Weather map of wind over islands",
+    tip: <InlineMath math="\vec{v}" />,
+    "wind-angle": <>Angle from east (<InlineMath math="^\circ" />)</>,
+    "vx-ms": <>East component (m/s)</>,
+    "vy-ms": <>North component (m/s)</>,
   }}
 />
+
+Crossing <InlineMath math="90^\circ" /> or <InlineMath math="270^\circ" /> flips the sign of <InlineMath math="v_x" />, while crossing <InlineMath math="180^\circ" /> or <InlineMath math="360^\circ" /> flips the sign of <InlineMath math="v_y" />.

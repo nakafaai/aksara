@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Jarak Henti",
   description:
@@ -35,6 +34,7 @@ Jadi, jarak henti terdiri dari dua tahap. Tahap pertama terjadi ketika pengemudi
       oranye.
     </>
   }
+  footer={<>Kecepatan awal lebih tinggi memanjangkan batang rem jauh lebih cepat dari reaksi.</>}
   labels={{
     chooseSpeed: "Pilih kecepatan awal",
     speed: <>Kecepatan awal</>,
@@ -45,11 +45,12 @@ Jadi, jarak henti terdiri dari dua tahap. Tahap pertama terjadi ketika pengemudi
   }}
 />
 
-Luas di bawah kecepatan adalah jaraknya. Selama waktu reaksi mobil tetap <InlineMath math="20\text{ m/s}" />, berupa persegi panjang <InlineMath math="20\text{ m}" />. Lalu rem dengan <InlineMath math="b=5\text{ m/s}^2" /> memberi segitiga <InlineMath math="v^2/2b=40\text{ m}" />, jadi mobil butuh <InlineMath math="60\text{ m}" /> seluruhnya. Perbesar kedua luasnya.
+Luas di bawah kecepatan adalah jaraknya. Selama waktu reaksi mobil tetap <InlineMath math="20\text{ m/s}" />, berupa persegi panjang <InlineMath math="20\text{ m}" />. Lalu rem dengan <InlineMath math="b=5\text{ m/s}^2" /> memberi segitiga <InlineMath math="40\text{ m}" />, jadi mobil butuh <InlineMath math="60\text{ m}" /> seluruhnya. Perbesar kedua luasnya.
 
 <MathVisual
   title={<>Dua Tahap Pengereman</>}
   description={<>Kecepatan terhadap waktu saat berhenti dari <InlineMath math="20\text{ m/s}" />: reaksi (teal) dan pengereman (oranye). Mendatar: sekon. Tegak: satu kotak grid berarti <InlineMath math="5\text{ m/s}" />.</>}
+  footer={<>Luas persegi panjang reaksi dan segitiga rem membentuk seluruh jarak henti.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5 } },
@@ -69,7 +70,13 @@ Luas di bawah kecepatan adalah jaraknya. Selama waktu reaksi mobil tetap <Inline
   }}
 />
 
-## Ukur Waktu Reaksimu
+Menjumlahkan luas persegi panjang dan segitiga memastikan bahwa total jarak henti selalu bergantung pada kedua tahap. Memperpendek waktu reaksi atau waktu pengereman langsung memperkecil luas daerah dan membuat mobil berhenti lebih cepat.
+
+## Waktu Reaksi dan Perlambatan Rem
+
+Dua batas fisika terpisah menentukan seberapa cepat kendaraan berhenti: **waktu reaksi manusia** sebelum pedal diinjak dan **gesekan jalan** saat rem bekerja. Menguji keduanya menunjukkan mengapa jarak henti di jalan nyata bisa sangat beragam.
+
+### Ukur Waktu Reaksimu
 
 Waktu reaksi bukan angka tetap, dan cara paling jelas untuk merasakannya adalah mengukur waktumu sendiri. Di kartu ini kamu mengemudi dengan kelajuan <InlineMath math="20\text{ m/s}" />, sama dengan <InlineMath math="72\text{ km/jam}" />, dua detik di belakang mobil lain. Tekan **Mulai**, lalu tekan **Rem** begitu lampu rem mobil di depan menyala.
 
@@ -82,6 +89,7 @@ Waktu reaksi bukan angka tetap, dan cara paling jelas untuk merasakannya adalah 
       <InlineMath math="20\text{ m/s}" />.
     </>
   }
+  footer={<>Sepersekian detik reaksi sudah menambah jarak tempuh sebelum rem mulai bekerja.</>}
   labels={{
     start: "Mulai",
     brake: "Rem",
@@ -98,11 +106,11 @@ Waktu reaksi bukan angka tetap, dan cara paling jelas untuk merasakannya adalah 
   }}
 />
 
-Waktu yang terukur langsung menjadi jarak lewat <InlineMath math="d_{\text{reaksi}}=vt_r" />. Kalau waktumu <InlineMath math="0{,}3\text{ s}" />, mobil tetap melaju <InlineMath math="20\cdot0{,}3=6\text{ m}" /> sebelum rem bekerja. Setelah kamu mengerem, kedua mobil berhenti dengan perlambatan yang sama, jadi celah di antara keduanya menyusut **tepat sebesar jarak reaksimu**.
+Waktu yang terukur langsung menjadi jarak lewat <InlineMath math="d_{\text{reaksi}}=vt_r" />. Kalau waktumu <InlineMath math="0{,}3\text{ s}" />, mobil tetap melaju <InlineMath math="6\text{ m}" /> sebelum rem bekerja. Setelah kamu mengerem, kedua mobil berhenti dengan perlambatan yang sama, jadi celah di antara keduanya menyusut **tepat sebesar jarak reaksimu**.
 
 Di jalan sungguhan, angkanya lebih besar daripada di layar. Pengemudi harus melihat bahaya, memutuskan untuk mengerem, lalu memindahkan kaki ke pedal. [Ringkasan riset waktu reaksi pengemudi dari Marc Green](https://www.visualexpert.com/Resources/reactiontime.html) memberi sekitar <InlineMath math="0{,}7\text{ s}" /> untuk pengemudi yang sudah siap mengerem, <InlineMath math="1{,}25\text{ s}" /> untuk lampu rem mobil di depan yang tidak ditunggu, dan <InlineMath math="1{,}5\text{ s}" /> untuk benda yang tiba-tiba masuk dari samping jalan.
 
-## Jarak Rem Menggunakan Perlambatan Tetap
+### Jarak Rem Menggunakan Perlambatan Tetap
 
 Saat rem bekerja, kendaraan mengalami perlambatan. Jika perlambatan **dianggap tetap** dan kecepatan akhirnya nol, persamaan GLBB dapat dipakai untuk mencari jarak pengereman.
 
@@ -116,7 +124,7 @@ Besaran <InlineMath math="b" /> adalah besar perlambatan, sehingga nilainya ditu
 
 Rumus ini memakai asumsi sederhana: lintasannya lurus, perlambatan rem dianggap tetap, dan kendaraan tidak tergelincir. Kalau kondisi jalan berubah, nilai <InlineMath math="b" /> juga bisa berubah.
 
-## Permukaan Jalan Mengubah Perlambatan
+### Permukaan Jalan Mengubah Perlambatan
 
 Lintasannya tetap lurus, tetapi kalau mobil tanpa ABS direm sekuat mungkin, rodanya terkunci dan ban meluncur lurus di atas jalan. Saat itu, gaya yang memperlambat mobil hanyalah gaya gesek antara ban dan jalan. Besarnya <InlineMath math="\mu mg" />, dengan <InlineMath math="\mu" /> koefisien gesek. Massa mobil muncul di kedua ruas, jadi perlambatannya **hanya bergantung pada jalan**.
 
@@ -145,6 +153,7 @@ Nilai koefisien gesek luncur di tabel ini diambil dari [tinjauan riset interaksi
       bekas ban dan tiang jarak.
     </>
   }
+  footer={<>Gesekan jalan yang lebih kecil memperpanjang bekas rem jauh lebih jauh.</>}
   labels={{
     chooseSurface: "Pilih permukaan jalan",
     surfaces: {
@@ -170,13 +179,21 @@ Nilai koefisien gesek luncur di tabel ini diambil dari [tinjauan riset interaksi
   }}
 />
 
-Bandingkan aspal kering dan aspal basah. Koefisien geseknya turun dari <InlineMath math="0{,}75" /> menjadi <InlineMath math="0{,}45" />, jadi jarak remnya naik <InlineMath math="0{,}75/0{,}45\approx1{,}67" /> kali, dari <InlineMath math="27{,}2\text{ m}" /> menjadi <InlineMath math="45{,}4\text{ m}" />. Di es, mobil yang sama baru berhenti setelah hampir <InlineMath math="300\text{ m}" />. Perhatikan juga bekas bannya: panjang bekas itu adalah jarak rem yang kamu baca di tiang.
+Bandingkan aspal kering dan aspal basah. Koefisien geseknya turun dari <InlineMath math="0{,}75" /> menjadi <InlineMath math="0{,}45" />, jadi jarak remnya naik sekitar <InlineMath math="1{,}67" /> kali, dari <InlineMath math="27{,}2\text{ m}" /> menjadi <InlineMath math="45{,}4\text{ m}" />. Di es, mobil yang sama baru berhenti setelah hampir <InlineMath math="300\text{ m}" />. Perhatikan juga bekas bannya: panjang bekas itu adalah jarak rem yang kamu baca di tiang.
 
-## Jarak Rem Bertambah Kuadrat terhadap Kelajuan
+## Kuadrat Kelajuan dan Energi Rem
+
+Karena jarak rem bergantung pada <InlineMath math="v^2" />, kenaikan kecil pada kelajuan membawa **dampak keselamatan yang jauh lebih besar**. Melihat grafik jarak henti dan panas cakram rem menunjukkan hukum energi kuadrat yang persis sama.
+
+### Jarak Rem Bertambah Kuadrat terhadap Kelajuan
 
 Jarak reaksi berbanding lurus dengan kecepatan. Jika kecepatan dua kali lebih besar, jarak reaksi juga menjadi dua kali lebih besar untuk waktu reaksi yang sama.
 
-Jarak pengereman lebih sensitif karena mengandung <InlineMath math="v^2" />. Untuk massa kendaraan yang tetap, energi kinetik <InlineMath math="K=\frac{1}{2}mv^2" /> juga mengikuti **kuadrat kelajuan**. Rem dan gaya antara ban dengan jalan harus mengurangi energi itu sampai kendaraan berhenti.
+Jarak pengereman lebih sensitif karena mengandung <InlineMath math="v^2" />. Untuk massa kendaraan yang tetap, energi kinetik juga mengikuti **kuadrat kelajuan**:
+
+<BlockMath math="K=\frac{1}{2}mv^2" />
+
+Rem dan gaya antara ban dengan jalan harus mengurangi energi itu sampai kendaraan berhenti.
 
 Misalkan waktu reaksi <InlineMath math="1\text{ s}" /> dan besar perlambatan rem <InlineMath math="5\text{ m/s}^2" />.
 
@@ -188,24 +205,25 @@ Misalkan waktu reaksi <InlineMath math="1\text{ s}" /> dan besar perlambatan rem
 
 Saat kecepatan naik dari <InlineMath math="10\text{ m/s}" /> ke <InlineMath math="20\text{ m/s}" />, jarak henti naik dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="60\text{ m}" />. Kenaikannya menjadi tiga kali karena bagian pengereman mengikuti kuadrat kecepatan.
 
-Grafik di bawah menjumlahkan kedua bagian untuk setiap kelajuan sampai <InlineMath math="30\text{ m/s}" />. Jarak reaksi hijau toska tumbuh sebagai garis lurus. Total yang oranye melengkung ke atas karena bagian pengeremannya tumbuh bersama <InlineMath math="v^2" />. Pada <InlineMath math="20\text{ m/s}" /> totalnya <InlineMath math="20+40=60\text{ m}" />.
+Grafik di bawah menjumlahkan kedua bagian untuk setiap kelajuan sampai <InlineMath math="30\text{ m/s}" />. Jarak reaksi hijau toska tumbuh sebagai garis lurus. Total yang oranye melengkung ke atas karena bagian pengeremannya tumbuh bersama <InlineMath math="v^2" />.
 
 <MathVisual
   title={<>Jarak Henti terhadap Kelajuan</>}
-  description={<>Waktu reaksi <InlineMath math="1\text{ s}" /> dan perlambatan pengereman <InlineMath math="5\text{ m/s}^2" />. Mendatar: kelajuan dalam satuan <InlineMath math="5\text{ m/s}" />. Tegak: jarak dalam satuan <InlineMath math="20\text{ m}" />.</>}
+  description={<>Waktu reaksi <InlineMath math="1\text{ s}" /> dan perlambatan pengereman <InlineMath math="5\text{ m/s}^2" />. Sumbu mendatar menunjukkan kelajuan dalam <InlineMath math="\text{m/s}" /> dan sumbu tegak menunjukkan jarak dalam meter.</>}
+  footer={<>Kurva total oranye melengkung curam di atas garis lurus jarak reaksi.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 38 }, y: { min: -5, max: 130 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "reaction", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 6, y: 1.5 } },
-      { id: "total", kind: "quadratic", appearance: "primary", coefficients: { a: 0.125, b: 0.25, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
-      { id: "at-20", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+      { id: "reaction", kind: "function", appearance: "construction", formula: "x", domain: { min: 0, max: 30 } },
+      { id: "total", kind: "function", appearance: "primary", formula: "x + x^2/10", domain: { min: 0, max: 30 } },
+      { id: "at-20", kind: "point", appearance: "answer", at: { x: 20, y: 60 } },
     ],
     labels: [
-      { key: "reaction", objectId: "reaction", at: { x: 6, y: 1.5 }, placement: "right" },
-      { key: "total", objectId: "total", at: { x: 6, y: 6 }, placement: "left" },
-      { key: "at", objectId: "at-20", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "reaction", objectId: "reaction", at: { x: 30, y: 30 }, placement: "right" },
+      { key: "total", objectId: "total", at: { x: 30, y: 120 }, placement: "left" },
+      { key: "at", objectId: "at-20", at: { x: 20, y: 60 }, placement: "right" },
     ],
   }}
   labels={{
@@ -215,9 +233,11 @@ Grafik di bawah menjumlahkan kedua bagian untuk setiap kelajuan sampai <InlineMa
   }}
 />
 
-## Energi Gerak Menjadi Panas di Rem
+Pada <InlineMath math="10\text{ m/s}" />, reaksi dan pengereman sama besar, tetapi pada <InlineMath math="30\text{ m/s}" /> pengereman menyumbang tiga perempat dari seluruh jarak henti. Selisih tegak yang makin melebar antara kedua kurva menjelaskan mengapa melaju lebih kencang mengurangi ruang aman secara drastis.
 
-Kenapa jarak rem mengikuti <InlineMath math="v^2" />? Rem harus menghabiskan energi kinetik mobil, <InlineMath math="K=\tfrac{1}{2}mv^2" />. Gesekan kampas pada cakram mengubah energi itu menjadi **panas**, sehingga cakram menghangat. Kalau gaya rem tetap, energi yang dihabiskan sama dengan gaya kali jarak, jadi jarak rem ikut sebanding dengan <InlineMath math="v^2" />.
+### Energi Gerak Menjadi Panas di Rem
+
+Kenapa jarak rem mengikuti <InlineMath math="v^2" />? Rem harus menghabiskan energi kinetik mobil <InlineMath math="K" />. Gesekan kampas pada cakram mengubah energi itu menjadi **panas**, sehingga cakram menghangat. Kalau gaya rem tetap, energi yang dihabiskan sama dengan gaya kali jarak, jadi jarak rem ikut sebanding dengan <InlineMath math="v^2" />.
 
 Kartu berikut memakai mobil <InlineMath math="1200\text{ kg}" /> dengan empat cakram besi <InlineMath math="8\text{ kg}" /> yang menerima panas sama rata. Kalor jenis besi diambil <InlineMath math="449\text{ J/(kg K)}" /> dari CRC Handbook of Chemistry and Physics, dan cakram mulai pada <InlineMath math="30^\circ\text{C}" />.
 
@@ -235,6 +255,7 @@ Kartu berikut memakai mobil <InlineMath math="1200\text{ kg}" /> dengan empat ca
       setiap bagian roda menurut suhunya.
     </>
   }
+  footer={<>Kelajuan dua kali lipat mengirim energi panas empat kali lipat ke cakram rem.</>}
   labels={{
     chooseSpeed: "Pilih kelajuan awal",
     thermal: "Kamera termal",
@@ -245,13 +266,17 @@ Kartu berikut memakai mobil <InlineMath math="1200\text{ kg}" /> dengan empat ca
   }}
 />
 
-Mata biasa tidak melihat perubahan apa pun pada cakram, tetapi kamera termal menunjukkan cakram sebagai bagian terpanas. Dari <InlineMath math="20\text{ m/s}" />, energinya <InlineMath math="\tfrac{1}{2}\cdot1200\cdot20^2=240\text{ kJ}" /> dan suhu cakram naik sekitar <InlineMath math="16{,}7\text{ K}" />. Dari <InlineMath math="10\text{ m/s}" />, kenaikannya hanya sekitar <InlineMath math="4{,}2\text{ K}" />. Kelajuan dua kali lipat membuat panasnya **empat kali lipat**.
+Mata biasa tidak melihat perubahan apa pun pada cakram, tetapi kamera termal menunjukkan cakram sebagai bagian terpanas. Dari <InlineMath math="20\text{ m/s}" />, energi kinetik yang diubah menjadi panas adalah:
+
+<BlockMath math="K=\frac{1}{2}(1200\text{ kg})(20\text{ m/s})^2=240\text{ kJ}" />
+
+Suhu cakram naik sekitar <InlineMath math="16{,}7\text{ K}" />, sedangkan dari <InlineMath math="10\text{ m/s}" /> kenaikannya hanya sekitar <InlineMath math="4{,}2\text{ K}" />. Kelajuan dua kali lipat membuat panasnya **empat kali lipat**.
 
 ## Jarak Aman di Belakang Kendaraan Lain
 
 Saat mobil di depan mengerem mendadak, kamu cukup berhenti sebelum menabraknya, dan mobil itu sendiri juga masih bergerak selama mengerem. Kalau kedua mobil mengerem sama kuat, jarak rem keduanya sama. Yang membedakan hanyalah jarak reaksimu: selama <InlineMath math="t_r" /> kamu masih melaju penuh, sementara mobil di depan sudah melambat.
 
-Misalkan kamu menjaga jarak waktu <InlineMath math="h" /> di belakang mobil itu. Pada kelajuan <InlineMath math="v" />, jarak awalnya <InlineMath math="vh" />, dan setelah keduanya berhenti sisanya adalah
+Misalkan kamu menjaga jarak waktu <InlineMath math="h" /> di belakang mobil itu. Pada kelajuan <InlineMath math="v" />, jarak awalnya <InlineMath math="vh" />, dan setelah keduanya berhenti sisanya adalah:
 
 <BlockMath math="d_{\text{sisa}}=vh-vt_r=v\,(h-t_r)" />
 
@@ -266,6 +291,7 @@ Jadi celah habis tepat ketika <InlineMath math="h<t_r" />, **berapa pun kelajuan
       waktu dan waktu reaksi, lalu putar.
     </>
   }
+  footer={<>Berhenti aman menuntut jarak waktumu selalu lebih lama dari waktu reaksimu.</>}
   labels={{
     chooseHeadway: "Pilih jarak waktu",
     reactionTime: "Waktu reaksi",
@@ -279,7 +305,7 @@ Jadi celah habis tepat ketika <InlineMath math="h<t_r" />, **berapa pun kelajuan
   }}
 />
 
-Coba jarak waktu <InlineMath math="1\text{ s}" /> dengan waktu reaksi <InlineMath math="1{,}5\text{ s}" />. Jarak awalnya <InlineMath math="25\text{ m}" />, lebih pendek daripada jarak reaksi <InlineMath math="37{,}5\text{ m}" />, sehingga mobilmu menabrak dengan selisih kelajuan <InlineMath math="5\cdot1{,}5=7{,}5\text{ m/s}" />. Dengan jarak waktu <InlineMath math="2\text{ s}" />, sisanya <InlineMath math="25\,(2-1{,}5)=12{,}5\text{ m}" />.
+Coba jarak waktu <InlineMath math="1\text{ s}" /> dengan waktu reaksi <InlineMath math="1{,}5\text{ s}" />. Jarak awalnya <InlineMath math="25\text{ m}" />, lebih pendek daripada jarak reaksi <InlineMath math="37{,}5\text{ m}" />, sehingga mobilmu menabrak dengan selisih kelajuan <InlineMath math="7{,}5\text{ m/s}" />. Dengan jarak waktu <InlineMath math="2\text{ s}" />, masih tersisa jarak aman <InlineMath math="12{,}5\text{ m}" />.
 
 ## Menghitung Jarak Reaksi dan Jarak Rem
 
@@ -291,7 +317,7 @@ Sebuah kendaraan bergerak dengan kecepatan <InlineMath math="20\text{ m/s}" />. 
   <BlockMath math="d_{\text{henti}}=20+40=60\text{ m}" />
 </MathContainer>
 
-Dengan kondisi tersebut, model ini menghasilkan jarak henti <InlineMath math="60\text{ m}" />.
+Dengan kondisi itu, model ini menghasilkan jarak henti <InlineMath math="60\text{ m}" />.
 
 Angka <InlineMath math="60\text{ m}" /> terdiri dari **jarak reaksi dan jarak pengereman**. Sebanyak <InlineMath math="20\text{ m}" /> terjadi sebelum rem mulai bekerja, lalu <InlineMath math="40\text{ m}" /> terjadi selama kendaraan direm.
 

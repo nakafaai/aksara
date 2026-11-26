@@ -1,13 +1,14 @@
 export const metadata = {
   title: "Gerak Parabola",
-  description: "Gerak parabola menggabungkan gerak mendatar berkecepatan tetap dan gerak vertikal dipercepat gravitasi. Pahami lintasan, waktu di udara, dan jangkauan.",
+  description:
+    "Gerak parabola menggabungkan gerak mendatar berkecepatan tetap dan gerak vertikal dipercepat gravitasi. Pahami lintasan, waktu di udara, dan jangkauan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
   dateModified: "2026-11-08",
   subject: "Kinematika",
 };
 
-## Dua Gerak dalam Satu Lintasan
+## Dua Gerak dalam Satu Lintasan Melengkung
 
 Gerak parabola adalah gerak benda yang dilempar miring atau mendatar, sehingga lintasannya melengkung. Lengkungan itu muncul dari **dua gerak yang terjadi bersamaan**: gerak mendatar dengan kecepatan tetap dan gerak vertikal yang dipercepat gravitasi ke bawah. Kalau hambatan udara diabaikan, kedua gerak itu mengikuti persamaan:
 
@@ -16,6 +17,8 @@ Gerak parabola adalah gerak benda yang dilempar miring atau mendatar, sehingga l
   <BlockMath math="y(t)=y_0+v_0\sin\theta\ t-\frac{1}{2}gt^2" />
   <BlockMath math="v_x=v_0\cos\theta,\qquad v_y=v_0\sin\theta-gt" />
 </MathContainer>
+
+> Gerak mendatar dan gerak vertikal berlangsung saling bebas dan hanya terhubung melalui waktu di udara yang sama.
 
 Di sini <InlineMath math="v_0" /> adalah kelajuan awal, <InlineMath math="\theta" /> sudut lontar terhadap arah mendatar, <InlineMath math="g" /> percepatan gravitasi, dan <InlineMath math="t" /> waktu sejak benda dilempar. Arah mendatar peluncuran dan arah ke atas dipilih positif. Simulasi lintasan bola memakai kelajuan awal yang sama untuk beberapa sudut, jadi kamu bisa membandingkan jangkauan dan waktu di udaranya.
 
@@ -40,6 +43,8 @@ Di sini <InlineMath math="v_0" /> adalah kelajuan awal, <InlineMath math="\theta
   }}
 />
 
+Sudut yang lebih curam mengangkat bola lebih tinggi dan memperpanjang waktu melayangnya, sedangkan sudut yang lebih landai menyalurkan lebih banyak kelajuan ke arah mendatar.
+
 ## Gravitasi Hanya Mengubah Gerak Vertikal
 
 Gravitasi menarik ke bawah, jadi hanya kecepatan vertikal yang berubah. Kecepatan mendatar <InlineMath math="v_x" /> **tetap sama sepanjang lintasan**, karena tidak ada percepatan ke arah mendatar.
@@ -63,6 +68,7 @@ Ini demonstrasi untuk gagasan tadi. Peluncur dibidikkan lurus ke kaleng, dan kal
       Kaleng tergantung <InlineMath math="4\text{ m}" /> jauhnya dan <InlineMath math="2\text{ m}" /> tingginya, dan peluncur mengarah lurus kepadanya. Ubah kelajuan awalnya.
     </>
   }
+  footer={<>Bola dan kaleng turun sama jauh di bawah garis bidik lalu bertemu di udara.</>}
   labels={{
     drop: <>Turunnya kaleng saat bertemu</>,
     meetTime: <>Waktu bertemu</>,
@@ -74,7 +80,22 @@ Ini demonstrasi untuk gagasan tadi. Peluncur dibidikkan lurus ke kaleng, dan kal
 
 Pada <InlineMath math="8\text{ m/s}" />, bola tiba di garis kaleng setelah <InlineMath math="0{,}56\text{ s}" />, saat keduanya sudah turun <InlineMath math="1{,}56\text{ m}" />, jadi bola tetap kena. Gravitasi hanya mengubah gerak vertikal, dan perubahannya sama untuk kedua benda.
 
-## Jangkauan Ditentukan oleh Waktu di Udara
+Sebelum menghitung, **pisahkan gerak mendatar dan vertikal** lalu hubungkan keduanya hanya lewat waktu.
+
+| Anggapan keliru | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Menganggap kecepatan nol di titik puncak | Hanya <InlineMath math="v_y" /> yang nol, <InlineMath math="v_x" /> tetap | Kelajuan di puncak sama dengan <InlineMath math="v_x" /> |
+| Memasukkan gravitasi ke gerak mendatar | Gravitasi hanya bekerja ke bawah | Percepatan mendatar harus nol |
+| Menghitung waktu dari gerak mendatar | Lama di udara ditentukan gerak vertikal | Waktu harus cocok dengan persamaan <InlineMath math="y" /> |
+| Menyangka bola mendatar jatuh lebih lambat | Kecepatan mendatar tidak mengubah gerak vertikal | Bandingkan dengan bola dijatuhkan dari tinggi sama |
+
+Kekeliruan pertama langsung terlihat jika kamu menulis kelajuan di puncak sama dengan nol. Benda di puncak tetap melaju mendatar, jadi kelajuannya sama dengan <InlineMath math="v_x" />.
+
+## Waktu di Udara Menentukan Jangkauan
+
+Jangkauan memadukan dua faktor yang saling tarik: **kecepatan mendatar yang tetap** dan **lama waktu di udara dari gerak vertikal**. Hasil kali keduanya menentukan sejauh apa benda mendarat.
+
+### Menghubungkan Komponen Lewat Waktu Terbang
 
 Jangkauan <InlineMath math="R" /> adalah jarak mendatar dari titik lempar sampai titik jatuh. Karena gerak mendatarnya berkecepatan tetap, jangkauan adalah **kecepatan mendatar dikali waktu di udara**:
 
@@ -85,6 +106,7 @@ Waktu di udara ditentukan oleh gerak vertikal saja. Dua bola dengan <InlineMath 
 <Mermaid
   title={<>Dari kecepatan awal ke jangkauan</>}
   description={<>Gerak mendatar dan vertikal dihitung terpisah, lalu digabung lewat waktu di udara.</>}
+  footer={<>Kedua cabang berjalan terpisah lalu bertemu kembali saat menghitung jangkauan.</>}
   chart={`flowchart TD
   A["Kecepatan awal v₀ dan sudut θ"] --> B["v_x = v₀ cos θ, tetap"]
   A --> C["v₀y = v₀ sin θ, berkurang karena g"]
@@ -93,66 +115,131 @@ Waktu di udara ditentukan oleh gerak vertikal saja. Dua bola dengan <InlineMath 
   D --> E`}
 />
 
-## Satu Semburan di Setiap Sudut
+Setelah persamaan vertikal menghasilkan waktu di udara <InlineMath math="T" />, satu perkalian dengan <InlineMath math="v_x" /> langsung memberi seluruh jangkauannya.
 
-Dengan selang taman, kamu bisa menonton aturan jangkauan ini. Semua air keluar dengan <InlineMath math="8\text{ m/s}" />, dan **semburan yang paling lama di udara tidak selalu jatuh paling jauh**.
+### Membandingkan Sudut Semburan pada Kelajuan Sama
 
-<HoseJetProjectileLab
-  angle={30}
-  speed={8}
-  title={<>Selang Taman pada Enam Sudut</>}
+Semburan air yang keluar dengan <InlineMath math="8\text{ m/s}" /> memperlihatkan aturan ini secara nyata: **semburan yang paling lama di udara tidak selalu jatuh paling jauh**. Ubah sudut nosel <InlineMath math="a" /> dan bandingkan lintasannya dengan busur putus-putus <InlineMath math="45^\circ" />.
+
+<MathVisual
+  title={<>Semburan Air pada Sudut yang Diubah</>}
   description={
     <>
-      Miringkan noselnya, lalu bandingkan waktu di udara dengan jangkauannya. Garis putus-putus adalah semburan pada <InlineMath math="45^\circ" />.
+      Semburan air dengan <InlineMath math="v_0=8\text{ m/s}" /> pada sudut{" "}
+      <InlineMath math="a" /> (oranye) dibandingkan dengan jangkauan maksimum{" "}
+      <InlineMath math="45^\circ" /> (abu-abu putus-putus) dalam meter.
     </>
   }
+  footer={<>Sudut <InlineMath math="30^\circ" /> dan <InlineMath math="60^\circ" /> mendarat di titik sama meski waktu terbangnya berbeda.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 7 }, y: { min: -0.3, max: 3.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 15, max: 75, value: 30, step: 15, label: "a" },
+    ],
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6.8, y: 0 } },
+      { id: "best", kind: "function", appearance: "reference", stroke: "dashed", formula: "x - x^2 / 6.4", domain: { min: 0, max: 6.4 } },
+      { id: "jet", kind: "function", appearance: "primary", formula: "max(0, tan(a*pi/180)*x - 5*x^2/(64*cos(a*pi/180)^2))", domain: { min: 0, max: 6.4 } },
+      { id: "apex", kind: "marker", appearance: "secondary", x: "3.2*sin(2*a*pi/180)", y: "3.2*sin(a*pi/180)^2" },
+      { id: "land", kind: "marker", appearance: "answer", x: "6.4*sin(2*a*pi/180)", y: "0" },
+    ],
+    labels: [
+      { key: "apex-lbl", objectId: "apex", at: { x: "3.2*sin(2*a*pi/180)", y: "3.2*sin(a*pi/180)^2" }, placement: "above" },
+      { key: "land-lbl", objectId: "land", at: { x: "6.4*sin(2*a*pi/180)", y: "0" }, placement: "below" },
+    ],
+    readouts: [
+      { key: "flight", formula: "1.6*sin(a*pi/180)" },
+      { key: "range", formula: "6.4*sin(2*a*pi/180)" },
+      { key: "height", formula: "3.2*sin(a*pi/180)^2" },
+    ],
+  }}
   labels={{
-    chooseAngle: "Pilih sudut nosel",
-    flight: <>Waktu di udara</>,
-    range: <>Jangkauan</>,
-    top: <>Tinggi puncak</>,
-    viewLabel: "Semburan air dari selang taman",
+    a: <>Sudut nosel <InlineMath math="a" /> (derajat)</>,
+    "apex-lbl": <InlineMath math="H" />,
+    "land-lbl": <InlineMath math="R" />,
+    flight: <>Waktu di udara (s)</>,
+    range: <>Jangkauan (m)</>,
+    height: <>Tinggi puncak (m)</>,
   }}
 />
 
 Pada <InlineMath math="30^\circ" />, air melayang <InlineMath math="0{,}8\text{ s}" /> dan jatuh <InlineMath math="5{,}54\text{ m}" /> jauhnya. Pada <InlineMath math="60^\circ" />, air melayang <InlineMath math="1{,}39\text{ s}" /> dan jatuh di titik yang sama, <InlineMath math="5{,}54\text{ m}" />, karena kecepatan mendatarnya lebih kecil.
 
-## Bola Keluar Mendatar dari Meja
+## Lemparan Mendatar dan Sudut Lontar di Tanah Datar
 
-Benda yang dilempar mendatar punya kecepatan vertikal awal nol, jadi gerak vertikalnya adalah **jatuh bebas**. Misalkan bola keluar mendatar dari tepi meja setinggi <InlineMath math="1{,}25\text{ m}" /> dengan <InlineMath math="v_x = 4\text{ m/s}" />. Dengan <InlineMath math="g = 10\text{ m/s}^2" />, waktu jatuhnya dari gerak vertikal:
+Bola yang menggelinding dari tepi meja dan bola yang dilontarkan miring dari tanah mengikuti aturan yang sama. Yang pertama mulai dengan **kecepatan vertikal nol**, sedangkan yang kedua membagi kelajuan awal menurut sudut.
 
-<BlockMath math="1{,}25 = \frac{1}{2}(10)t^2 \quad\Longrightarrow\quad t^2 = 0{,}25 \quad\Longrightarrow\quad t = 0{,}5\text{ s}" />
+### Bola Keluar Mendatar dari Meja Seperti Jatuh Bebas
 
-Jangkauannya dari gerak mendatar selama waktu yang sama:
+Benda yang dilempar mendatar punya kecepatan vertikal awal nol, jadi gerak vertikalnya adalah **jatuh bebas**. Misalkan bola keluar mendatar dari tepi meja setinggi <InlineMath math="1{,}25\text{ m}" /> dengan <InlineMath math="v_x = 4\text{ m/s}" />. Dengan <InlineMath math="g = 10\text{ m/s}^2" />, waktu jatuh dan jangkauannya adalah:
 
-<BlockMath math="R = v_x t = 4(0{,}5) = 2\text{ m}" />
+<MathContainer>
+  <BlockMath math="1{,}25 = \frac{1}{2}(10)t^2 \quad\Longrightarrow\quad t^2 = 0{,}25 \quad\Longrightarrow\quad t = 0{,}5\text{ s}" />
+  <BlockMath math="R = v_x t = 4(0{,}5) = 2\text{ m}" />
+</MathContainer>
 
-Periksa dengan persamaan vertikal: <InlineMath math="\frac{1}{2}(10)(0{,}5)^2 = 1{,}25\text{ m}" />, sama dengan tinggi meja. Bola yang dijatuhkan diam dari tepi meja yang sama juga sampai di lantai setelah <InlineMath math="0{,}5\text{ s}" />, karena kecepatan mendatar tidak mengubah lama jatuhnya.
+Pemeriksaan dengan persamaan vertikal mengembalikan tinggi meja yang tepat:
 
-## Contoh Meja dalam Foto Stroboskop
+<BlockMath math="h = \frac{1}{2}(10)(0{,}5)^2 = 1{,}25\text{ m}" />
 
-Ini contoh meja tadi dalam foto. Satu bola keluar mendatar dari meja setinggi <InlineMath math="1{,}25\text{ m}" /> dengan <InlineMath math="4\text{ m/s}" />, sementara bola kembarannya dijatuhkan di sebelahnya, dengan kilatan setiap <InlineMath math="0{,}05\text{ s}" />. Di setiap kilatan, **kedua bola berada pada ketinggian yang sama**.
+Bola yang dijatuhkan diam dari tepi meja yang sama juga sampai di lantai setelah <InlineMath math="0{,}5\text{ s}" />. Geser waktu <InlineMath math="d" /> di bawah untuk melihat kedua bola selalu sejajar di ketinggian yang sama.
 
-<StrobePhotoMotionLab
-  shot="launch"
-  title={<>Dijatuhkan dan Menggelinding Bersamaan</>}
+<MathVisual
+  title={<>Bola Dijatuhkan vs Bola Menggelinding Mendatar</>}
   description={
     <>
-      Mejanya setinggi <InlineMath math="1{,}25\text{ m}" /> dan bola hijau toska meninggalkan tepinya dengan <InlineMath math="4\text{ m/s}" />. Bandingkan kedua ketinggian di setiap kilatan.
+      Bola dijatuhkan (ungu) dan bola menggelinding dari meja{" "}
+      <InlineMath math="1{,}25\text{ m}" /> pada <InlineMath math="4\text{ m/s}" />{" "}
+      (teal) dibandingkan pada waktu <InlineMath math="d" />.
     </>
   }
+  footer={<>Garis penghubung tetap datar karena kedua bola jatuh dengan laju yang sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.4 }, y: { min: -0.15, max: 1.45 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.05, max: 0.5, value: 0.3, step: 0.05, label: "d" },
+    ],
+    objects: [
+      { id: "drop-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 1.25 } },
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -0.2, y: 0 }, to: { x: 2.2, y: 0 } },
+      { id: "arc", kind: "function", appearance: "construction", formula: "1.25 - (5/16)*x^2", domain: { min: 0, max: 2 } },
+      {
+        id: "level",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0", y: "1.25 - 5*d^2" },
+          { x: "4*d", y: "1.25 - 5*d^2" },
+        ],
+      },
+      { id: "dropped", kind: "marker", appearance: "secondary", x: "0", y: "1.25 - 5*d^2" },
+      { id: "rolled", kind: "marker", appearance: "construction", x: "4*d", y: "1.25 - 5*d^2" },
+    ],
+    labels: [
+      { key: "h-lbl", objectId: "rolled", at: { x: "4*d", y: "1.25 - 5*d^2" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "height", formula: "1.25 - 5*d^2" },
+      { key: "reach", formula: "4*d" },
+      { key: "vy", formula: "-10*d" },
+    ],
+  }}
   labels={{
-    airTime: <>Waktu di udara</>,
-    height: <>Tinggi awal</>,
-    interval: <>Selang antarkilatan</>,
-    outcome: <>Jangkauan bola yang menggelinding</>,
-    viewLabel: "Foto stroboskop yang terbentuk kilatan demi kilatan",
+    d: <>Waktu <InlineMath math="d" /> (s)</>,
+    "h-lbl": <InlineMath math="(x, y)" />,
+    height: <>Tinggi dari lantai (m)</>,
+    reach: <>Jangkauan mendatar (m)</>,
+    vy: <>Kecepatan vertikal (m/s)</>,
   }}
 />
 
-Keduanya menyentuh lantai setelah <InlineMath math="0{,}5\text{ s}" />, persis seperti perhitungan tadi, dan bola yang menggelinding mendarat <InlineMath math="4(0{,}5)=2\text{ m}" /> dari meja. Kecepatan mendatarnya tidak berubah selama jatuh.
+Keduanya menyentuh lantai setelah <InlineMath math="0{,}5\text{ s}" />, persis seperti perhitungan tadi, dan bola yang menggelinding mendarat <InlineMath math="2\text{ m}" /> dari meja. Kecepatan mendatarnya tidak berubah selama jatuh.
 
-## Sudut Lontar dan Jangkauan
+### Sudut Lontar dan Jangkauan Maksimum
 
 Untuk benda yang dilempar dari tanah dan mendarat di tanah, sudut lontar membagi kelajuan awal menjadi bagian mendatar dan vertikal. Sudut kecil memberi <InlineMath math="v_x" /> besar tetapi waktu di udara pendek. Sudut besar memberi waktu di udara panjang tetapi <InlineMath math="v_x" /> kecil. Jangkauan terjauh dicapai pada **sudut** <InlineMath math="45^\circ" />, ketika kedua bagian sama besar.
 
@@ -164,79 +251,86 @@ Dengan <InlineMath math="v_0 = 20\text{ m/s}" />, lemparan <InlineMath math="30^
 | <InlineMath math="45^\circ" /> | <InlineMath math="10\sqrt{2}\text{ m/s}" /> | <InlineMath math="2\sqrt{2}\text{ s}" /> | <InlineMath math="40\text{ m}" /> |
 | <InlineMath math="60^\circ" /> | <InlineMath math="10\text{ m/s}" /> | <InlineMath math="2\sqrt{3}\text{ s}" /> | <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" /> |
 
-Untuk lemparan <InlineMath math="30^\circ" />, setiap besaran dihitung dari kedua komponen:
+Perhitungan untuk sudut <InlineMath math="30^\circ" /> dan <InlineMath math="60^\circ" /> mengonfirmasi jangkauannya yang sama:
 
 <MathContainer>
   <BlockMath math="v_x = 20\cos30^\circ = 10\sqrt{3}\text{ m/s},\qquad v_{0y} = 20\sin30^\circ = 10\text{ m/s}" />
-  <BlockMath math="T = \frac{2 \times 10}{10} = 2\text{ s},\qquad R = 10\sqrt{3} \times 2 = 20\sqrt{3}\text{ m}" />
+  <BlockMath math="T_{30^\circ} = \frac{2 \times 10}{10} = 2\text{ s},\qquad R_{30^\circ} = 10\sqrt{3} \times 2 = 20\sqrt{3}\text{ m}" />
+  <BlockMath math="T_{60^\circ} = 2\sqrt{3}\text{ s},\qquad R_{60^\circ} = 10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m}" />
 </MathContainer>
 
-Periksa dengan lemparan <InlineMath math="60^\circ" />: <InlineMath math="v_x = 10\text{ m/s}" /> dan <InlineMath math="T = 2\sqrt{3}\text{ s}" />, sehingga <InlineMath math="R = 10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m}" />, jangkauan yang sama.
+Setiap waktu di udara adalah dua kali waktu naik, dan ketiga jangkauan keluar langsung dari rumus pada [analisis gerak parabola](/id/materi/fisika/kinematika/analisis-gerak-parabola):
 
-Setiap waktu di udara adalah dua kali waktu naik <InlineMath math="\frac{v_0 \sin\theta}{g}" />. Lemparan <InlineMath math="60^\circ" /> lebih lama di udara, tetapi bergerak mendatar lebih lambat, sehingga jangkauannya sama dengan lemparan <InlineMath math="30^\circ" />. Ketiga jangkauan itu juga keluar langsung dari rumus <InlineMath math="R = \frac{v_0^2 \sin 2\theta}{g}" /> yang dipakai dalam [analisis gerak parabola](/id/materi/fisika/kinematika/analisis-gerak-parabola). Nilai <InlineMath math="\sin 2\theta" /> paling besar, yaitu <InlineMath math="1" />, tercapai pada <InlineMath math="\theta = 45^\circ" />.
+<BlockMath math="T = \frac{2 v_0 \sin\theta}{g},\qquad R = \frac{v_0^2 \sin 2\theta}{g}" />
+
+Nilai <InlineMath math="\sin 2\theta" /> paling besar, yaitu <InlineMath math="1" />, tercapai pada <InlineMath math="\theta = 45^\circ" />.
 
 <MathVisual
-  title={<>Lintasan untuk tiga sudut lempar dengan <InlineMath math="v_0=20\text{ m/s}" /></>}
-  description={<>Satu kotak grid mewakili <InlineMath math="5\text{ m}" />. Lemparan <InlineMath math="30^\circ" /> dan <InlineMath math="60^\circ" /> mendarat di titik yang sama, sekitar <InlineMath math="34{,}6\text{ m}" /> jauhnya, sedangkan lemparan <InlineMath math="45^\circ" /> mendarat paling jauh, di <InlineMath math="40\text{ m}" />.</>}
+  title={<>Lintasan untuk Tiga Sudut Lempar dengan <InlineMath math="v_0=20\text{ m/s}" /></>}
+  description={<>Lemparan <InlineMath math="30^\circ" /> dan <InlineMath math="60^\circ" /> mendarat di titik sama sekitar <InlineMath math="34{,}6\text{ m}" />, sedangkan <InlineMath math="45^\circ" /> mendarat terjauh di <InlineMath math="40\text{ m}" />.</>}
+  footer={<>Busur <InlineMath math="30^\circ" /> dan <InlineMath math="60^\circ" /> berbeda tinggi puncak tetapi jatuh di titik sama.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.8, max: 3.8 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 44 }, y: { min: -3, max: 18 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8.5, y: 0 } },
-      { id: "thirty", kind: "function", appearance: "construction", formula: "x / sqrt(3) - x^2 / 12", domain: { min: 0, max: 4 * Math.sqrt(3) } },
-      { id: "fortyfive", kind: "function", appearance: "secondary", formula: "x - x^2 / 8", domain: { min: 0, max: 8 } },
-      { id: "sixty", kind: "function", appearance: "highlight", formula: "sqrt(3) x - x^2 / 4", domain: { min: 0, max: 4 * Math.sqrt(3) } },
-      { id: "thirty-top", kind: "point", appearance: "construction", at: { x: 2 * Math.sqrt(3), y: 1 } },
-      { id: "fortyfive-top", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
-      { id: "sixty-top", kind: "point", appearance: "highlight", at: { x: 2 * Math.sqrt(3), y: 3 } },
-      { id: "land-same", kind: "point", appearance: "answer", at: { x: 4 * Math.sqrt(3), y: 0 } },
-      { id: "land-far", kind: "point", appearance: "answer", at: { x: 8, y: 0 } },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 42, y: 0 } },
+      { id: "thirty", kind: "function", appearance: "construction", formula: "x / sqrt(3) - x^2 / 60", domain: { min: 0, max: 20 * Math.sqrt(3) } },
+      { id: "fortyfive", kind: "function", appearance: "secondary", formula: "x - x^2 / 40", domain: { min: 0, max: 40 } },
+      { id: "sixty", kind: "function", appearance: "highlight", formula: "sqrt(3)*x - x^2 / 20", domain: { min: 0, max: 20 * Math.sqrt(3) } },
+      { id: "thirty-top", kind: "point", appearance: "construction", at: { x: 10 * Math.sqrt(3), y: 5 } },
+      { id: "fortyfive-top", kind: "point", appearance: "secondary", at: { x: 20, y: 10 } },
+      { id: "sixty-top", kind: "point", appearance: "highlight", at: { x: 10 * Math.sqrt(3), y: 15 } },
+      { id: "land-same", kind: "point", appearance: "answer", at: { x: 20 * Math.sqrt(3), y: 0 } },
+      { id: "land-far", kind: "point", appearance: "answer", at: { x: 40, y: 0 } },
     ],
     labels: [
-      { key: "thirty", objectId: "thirty-top", at: { x: 2 * Math.sqrt(3), y: 1 }, placement: "above" },
-      { key: "fortyfive", objectId: "fortyfive-top", at: { x: 4, y: 2 }, placement: "above" },
-      { key: "sixty", objectId: "sixty-top", at: { x: 2 * Math.sqrt(3), y: 3 }, placement: "above" },
-      { key: "same", objectId: "land-same", at: { x: 4 * Math.sqrt(3), y: 0 }, placement: "below" },
-      { key: "far", objectId: "land-far", at: { x: 8, y: 0 }, placement: "below" },
+      { key: "thirty", objectId: "thirty-top", at: { x: 10 * Math.sqrt(3), y: 5 }, placement: "above" },
+      { key: "fortyfive", objectId: "fortyfive-top", at: { x: 20, y: 10 }, placement: "above" },
+      { key: "sixty", objectId: "sixty-top", at: { x: 10 * Math.sqrt(3), y: 15 }, placement: "above" },
+      { key: "same", objectId: "land-same", at: { x: 20 * Math.sqrt(3), y: 0 }, placement: "below" },
+      { key: "far", objectId: "land-far", at: { x: 40, y: 0 }, placement: "below" },
     ],
   }}
   labels={{
     thirty: <InlineMath math="30^\circ" />,
     fortyfive: <InlineMath math="45^\circ" />,
     sixty: <InlineMath math="60^\circ" />,
-    same: <InlineMath math="20\sqrt3\approx34{,}6\text{ m}" />,
+    same: <InlineMath math="34{,}6\text{ m}" />,
     far: <InlineMath math="40\text{ m}" />,
   }}
 />
 
-Sekarang coba sendiri setiap sudutnya. Dengan <InlineMath math="v_0=20\text{ m/s}" /> dan <InlineMath math="g=10\text{ m/s}^2" />, geser <InlineMath math="\theta" /> dan perhatikan titik pendaratannya: jangkauannya bertambah sampai <InlineMath math="45^\circ" />, lalu berkurang lagi, dan dua sudut yang jumlahnya <InlineMath math="90^\circ" /> selalu mendarat di tempat yang sama.
+Grafik ini menegaskan kedua simetri sekaligus: pasangan sudut komplementer jatuh di satu titik, dan sudut <InlineMath math="45^\circ" /> mencapai jarak terjauh tepat di tengahnya.
+
+Sekarang coba sendiri setiap sudutnya. Dengan <InlineMath math="v_0=20\text{ m/s}" /> dan <InlineMath math="g=10\text{ m/s}^2" />, geser <InlineMath math="\theta" /> dan perhatikan titik pendaratannya bertambah sampai <InlineMath math="45^\circ" /> lalu mengecil lagi.
 
 <MathVisual
   title={<>Geser Sudut Lemparnya</>}
-  description={<>Lintasan bola yang dilempar dengan <InlineMath math="v_0=20\text{ m/s}" />, titik tertingginya (ungu), dan titik pendaratannya (fuchsia). Satu kotak grid berarti <InlineMath math="5\text{ m}" />. Penggeser sudut memakai radian, dan pembacaannya menampilkan derajat.</>}
+  description={<>Lintasan bola dengan <InlineMath math="v_0=20\text{ m/s}" />, puncak (ungu), dan titik mendarat (fuchsia) dalam meter. Penggeser memakai radian dan pembacaan memakai derajat.</>}
+  footer={<>Setiap pasangan sudut berjumlah <InlineMath math="90^\circ" /> jatuh tepat di titik <InlineMath math="R" /> yang sama.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 4.5 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 44 }, y: { min: -2, max: 24 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8.5, y: 0 } },
-      { id: "path", kind: "parametric", appearance: "primary", x: "4 cos(a) t", y: "4 sin(a) t - t^2", parameter: { min: 0, max: 4 } },
-      { id: "landing", kind: "marker", appearance: "answer", x: "8 sin(2a)", y: "0" },
-      { id: "apex", kind: "marker", appearance: "secondary", x: "4 sin(2a)", y: "4 sin(a)^2" },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 42, y: 0 } },
+      { id: "path", kind: "function", appearance: "primary", formula: "max(0, tan(a)*x - x^2/(80*cos(a)^2))", domain: { min: 0, max: 40 } },
+      { id: "landing", kind: "marker", appearance: "answer", x: "40*sin(2*a)", y: "0" },
+      { id: "apex", kind: "marker", appearance: "secondary", x: "20*sin(2*a)", y: "20*sin(a)^2" },
     ],
     labels: [
-      { key: "land", objectId: "landing", at: { x: "8 sin(2a)", y: "0" }, placement: "below" },
-      { key: "top", objectId: "apex", at: { x: "4 sin(2a)", y: "4 sin(a)^2" }, placement: "above" },
+      { key: "land", objectId: "landing", at: { x: "40*sin(2*a)", y: "0" }, placement: "below" },
+      { key: "top", objectId: "apex", at: { x: "20*sin(2*a)", y: "20*sin(a)^2" }, placement: "above" },
     ],
     parameters: [
-      { name: "a", min: 0.1, max: 1.5, value: Math.PI / 4, step: 0.01, label: "angle" },
+      { name: "a", min: 0.15, max: 1.45, value: Math.PI / 4, step: 0.05, label: "angle" },
     ],
     readouts: [
       { key: "deg", formula: "a * 180 / pi" },
-      { key: "range", formula: "40 sin(2a)" },
-      { key: "height", formula: "20 sin(a)^2" },
-      { key: "time", formula: "4 sin(a)" },
+      { key: "range", formula: "40*sin(2*a)" },
+      { key: "height", formula: "20*sin(a)^2" },
+      { key: "time", formula: "4*sin(a)" },
     ],
   }}
   labels={{
@@ -244,94 +338,111 @@ Sekarang coba sendiri setiap sudutnya. Dengan <InlineMath math="v_0=20\text{ m/s
     land: <InlineMath math="R" />,
     top: <InlineMath math="H" />,
     deg: <InlineMath math="\theta\ (^\circ)" />,
-    range: <InlineMath math="R=\tfrac{v_0^2\sin2\theta}{g}\ (\text{m})" />,
-    height: <InlineMath math="H=\tfrac{v_0^2\sin^2\theta}{2g}\ (\text{m})" />,
-    time: <InlineMath math="T=\tfrac{2v_0\sin\theta}{g}\ (\text{s})" />,
+    range: <InlineMath math="R\ (\text{m})" />,
+    height: <InlineMath math="H\ (\text{m})" />,
+    time: <InlineMath math="T\ (\text{s})" />,
   }}
 />
 
-## Bola Meriam di Atas Air
+Sementara tinggi puncak <InlineMath math="H" /> dan waktu terbang <InlineMath math="T" /> terus naik hingga <InlineMath math="90^\circ" />, jangkauan <InlineMath math="R" /> memuncak di <InlineMath math="45^\circ" /> lalu menyusut kembali.
 
-Bola meriam mengikuti aturan yang sama dalam ukuran lebih besar. **Bayangannya di permukaan air bergerak dengan kelajuan tetap**, sementara bolanya sendiri naik lalu turun.
+### Mengamati Bola Meriam dan Bayangannya di Air
 
-<ParabolicMovementAnalysisLab
-  decimalSeparator="comma"
-  title={<>Bola Meriam di Atas Air</>}
+Bola meriam mengikuti aturan yang sama dalam ukuran lebih besar. Dengan <InlineMath math="v_x=15\text{ m/s}" /> dan <InlineMath math="v_{0y}=20\text{ m/s}" />, **bayangannya di permukaan air bergerak dengan kelajuan tetap**, sementara bolanya sendiri naik hingga <InlineMath math="20\text{ m}" /> dan jatuh sejauh <InlineMath math="60\text{ m}" /> setelah <InlineMath math="4\text{ s}" />. Geser waktu <InlineMath math="d" /> untuk melacak keduanya.
+
+<MathVisual
+  title={<>Bola Meriam dan Bayangannya di Permukaan Air</>}
   description={
     <>
-      Ganti lontarannya, lalu bandingkan komponen mendatar dan tegaknya dengan jangkauannya.
+      Lintasan bola meriam dengan <InlineMath math="v_x=15\text{ m/s}" /> dan{" "}
+      <InlineMath math="v_{0y}=20\text{ m/s}" /> terhubung tegak lurus ke
+      bayangannya di air pada waktu <InlineMath math="d" />.
     </>
   }
+  footer={<>Bayangan melaju tetap <InlineMath math="15\text{ m/s}" /> sementara bola naik dan turun di atasnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 64 }, y: { min: -3, max: 24 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 4, value: 1.5, step: 0.25, label: "d" },
+    ],
+    objects: [
+      { id: "water", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 62, y: 0 } },
+      { id: "arc", kind: "function", appearance: "primary", formula: "(4/3)*x - x^2 / 45", domain: { min: 0, max: 60 } },
+      {
+        id: "drop",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "15*d", y: "0" },
+          { x: "15*d", y: "20*d - 5*d^2" },
+        ],
+      },
+      { id: "ball", kind: "marker", appearance: "primary", x: "15*d", y: "20*d - 5*d^2" },
+      { id: "shadow", kind: "marker", appearance: "answer", x: "15*d", y: "0" },
+    ],
+    labels: [
+      { key: "ball-lbl", objectId: "ball", at: { x: "15*d", y: "20*d - 5*d^2" }, placement: "above" },
+      { key: "sh-lbl", objectId: "shadow", at: { x: "15*d", y: "0" }, placement: "below" },
+    ],
+    readouts: [
+      { key: "x-pos", formula: "15*d" },
+      { key: "y-pos", formula: "20*d - 5*d^2" },
+      { key: "vy", formula: "20 - 10*d" },
+    ],
+  }}
   labels={{
-    chooseScenario: "Pilih tembakan",
-    scenarioNames: {
-      "sixty-degree": <>Enam Puluh Derajat</>,
-      "long-drive": <>Jarak Jauh</>,
-      "high-arc": <>Lengkung Tinggi</>,
-    },
-    factLabels: {
-      horizontalComponent: <>Komponen mendatar</>,
-      verticalComponent: <>Komponen vertikal</>,
-      peakTime: <>Waktu puncak</>,
-      flightTime: <>Waktu terbang</>,
-      range: <>Jangkauan</>,
-      instantaneousVelocity: <>Kecepatan pada dua detik</>,
-    },
-    viewLabel: "Visual analisis gerak parabola bola meriam",
+    d: <>Waktu terbang <InlineMath math="d" /> (s)</>,
+    "ball-lbl": <>Bola</>,
+    "sh-lbl": <>Bayangan</>,
+    "x-pos": <>Posisi bayangan (m)</>,
+    "y-pos": <>Tinggi bola (m)</>,
+    vy: <>Kecepatan vertikal (m/s)</>,
   }}
 />
 
-Setiap lontaran mempertahankan komponen mendatarnya sepanjang penerbangan. Busur yang lebih tinggi memberi komponen tegak yang lebih besar dan waktu di udara yang lebih lama, tetapi tidak selalu jangkauan yang lebih jauh.
+Setiap lontaran mempertahankan komponen mendatarnya sepanjang penerbangan. Hanya kecepatan vertikal yang berkurang <InlineMath math="10\text{ m/s}" /> tiap detik dan melengkungkan bola kembali ke air.
 
-## Kesalahan yang Sering Terjadi
+## Skenario Lontaran dan Jangkauan
 
-Sebelum menghitung, **pisahkan gerak mendatar dan vertikal** lalu hubungkan keduanya hanya lewat waktu.
+Dua skenario berikut memakai **urutan dua langkah yang sama**: cari dahulu waktu di udara dari gerak vertikal dengan <InlineMath math="g = 10\text{ m/s}^2" />, baru hitung jangkauan dan kelajuan akhirnya.
 
-| Kesalahan | Mengapa salah | Cara memeriksa |
-| --- | --- | --- |
-| Menganggap kecepatan nol di titik puncak | Hanya <InlineMath math="v_y" /> yang nol, <InlineMath math="v_x" /> tetap | Kelajuan di puncak sama dengan <InlineMath math="v_x" /> |
-| Memasukkan gravitasi ke gerak mendatar | Gravitasi hanya bekerja ke bawah | Percepatan mendatar harus nol |
-| Menghitung waktu dari gerak mendatar | Lama di udara ditentukan gerak vertikal | Waktu harus cocok dengan persamaan <InlineMath math="y" /> |
-| Menyangka bola yang dilempar mendatar jatuh lebih lambat | Kecepatan mendatar tidak mengubah gerak vertikal | Bandingkan dengan bola yang dijatuhkan dari tinggi yang sama |
+### Jatuh Mendatar dari Meja dan Tebing
 
-Kesalahan pertama terlihat jika kelajuan di puncak yang kamu tulis nol. Benda di puncak tetap melaju mendatar, jadi kelajuannya sama dengan <InlineMath math="v_x" />.
-
-## Latihan Soal Gerak Parabola
-
-Pakai <InlineMath math="g = 10\text{ m/s}^2" />. Untuk setiap soal, cari dulu **waktu di udara dari gerak vertikal**.
-
-1. Bola menggelinding keluar dari meja setinggi <InlineMath math="0{,}8\text{ m}" /> dengan kecepatan mendatar <InlineMath math="3\text{ m/s}" />. Tentukan waktu jatuh dan jarak mendatar bola dari titik di lantai tepat di bawah tepi meja.
-
-2. Batu dilempar mendatar dengan kecepatan <InlineMath math="15\text{ m/s}" /> dari tebing setinggi <InlineMath math="20\text{ m}" />. Tentukan jarak mendatar batu saat sampai di bawah dan kelajuannya saat itu.
-
-3. Dua bola dilempar dari tanah dengan kelajuan awal <InlineMath math="20\text{ m/s}" />, satu dengan sudut <InlineMath math="30^\circ" /> dan satu dengan sudut <InlineMath math="60^\circ" />. Bola mana yang lebih lama di udara, dan bola mana yang mendarat lebih jauh?
-
-### Pembahasan
-
-**Soal 1**. Gerak vertikalnya **jatuh bebas** dari tinggi <InlineMath math="0{,}8\text{ m}" />:
+Sebuah bola menggelinding keluar dari meja setinggi <InlineMath math="0{,}8\text{ m}" /> dengan kecepatan mendatar <InlineMath math="3\text{ m/s}" />. Gerak vertikalnya **jatuh bebas**:
 
 <MathContainer>
   <BlockMath math="0{,}8 = \frac{1}{2}(10)t^2 \quad\Longrightarrow\quad t^2 = 0{,}16 \quad\Longrightarrow\quad t = 0{,}4\text{ s}" />
   <BlockMath math="R = 3(0{,}4) = 1{,}2\text{ m}" />
 </MathContainer>
 
-Periksa: <InlineMath math="5(0{,}4)^2 = 0{,}8\text{ m}" />, sama dengan tinggi meja.
+Pemeriksaan <InlineMath math="5(0{,}4)^2" /> menghasilkan tepat <InlineMath math="0{,}8\text{ m}" /> sesuai tinggi meja.
 
-**Soal 2**. Waktu jatuh dari tinggi <InlineMath math="20\text{ m}" /> adalah <InlineMath math="\sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />. Jarak mendatarnya dan **kedua komponen kecepatan** saat sampai di bawah:
+Berikutnya, batu dilempar mendatar dengan kecepatan <InlineMath math="15\text{ m/s}" /> dari tebing setinggi <InlineMath math="20\text{ m}" />. Waktu jatuh, jangkauan, dan **kedua komponen kecepatan** di dasar tebing adalah:
 
 <MathContainer>
-  <BlockMath math="R = 15(2) = 30\text{ m}" />
+  <BlockMath math="t = \sqrt{\frac{2 \times 20}{10}} = 2\text{ s},\qquad R = 15(2) = 30\text{ m}" />
   <BlockMath math="v_x = 15\text{ m/s},\qquad v_y = -10(2) = -20\text{ m/s}" />
   <BlockMath math="v = \sqrt{15^2 + 20^2} = 25\text{ m/s}" />
 </MathContainer>
 
-Periksa dengan persamaan ketiga gerak vertikal: <InlineMath math="v_y^2 = 2(10)(20) = 400" />, jadi <InlineMath math="\lvert v_y \rvert = 20\text{ m/s}" />.
+Pemeriksaan dengan persamaan ketiga gerak vertikal menguatkan besar kecepatan vertikalnya:
 
-**Soal 3**. Waktu di udara adalah **dua kali waktu naik**, <InlineMath math="T = \frac{2 v_0 \sin\theta}{g}" />:
+<BlockMath math="v_y^2 = 2(10)(20) = 400 \quad\Longrightarrow\quad \lvert v_y \rvert = 20\text{ m/s}" />
+
+### Membandingkan Lemparan Tiga Puluh dan Enam Puluh Derajat
+
+Dua bola dilempar dari tanah dengan kelajuan awal <InlineMath math="20\text{ m/s}" />, satu pada sudut <InlineMath math="30^\circ" /> dan satu pada <InlineMath math="60^\circ" />. Waktu di udara selalu **dua kali waktu naik**:
 
 <MathContainer>
+  <BlockMath math="T = \frac{2 v_0 \sin\theta}{g}" />
   <BlockMath math="T_{30^\circ} = \frac{2(20)(0{,}5)}{10} = 2\text{ s}" />
   <BlockMath math="T_{60^\circ} = \frac{2(20)\left(\frac{\sqrt{3}}{2}\right)}{10} = 2\sqrt{3} \approx 3{,}46\text{ s}" />
 </MathContainer>
 
-Bola <InlineMath math="60^\circ" /> lebih lama di udara. Jangkauannya <InlineMath math="10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m}" />, sama dengan jangkauan bola <InlineMath math="30^\circ" />, yaitu <InlineMath math="10\sqrt{3} \times 2 = 20\sqrt{3}\text{ m}" />. Jadi keduanya mendarat di titik yang sama.
+Bola <InlineMath math="60^\circ" /> lebih lama di udara, tetapi perbandingan jangkauan menunjukkan keduanya mendarat bersama:
+
+<BlockMath math="R_{60^\circ} = 10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m},\qquad R_{30^\circ} = 10\sqrt{3} \times 2 = 20\sqrt{3}\text{ m}" />
+
+Kedua bola akhirnya menyentuh tanah pada jarak yang persis sama, sekitar <InlineMath math="34{,}6\text{ m}" />.

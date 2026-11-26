@@ -21,26 +21,22 @@ Caranya adalah menguraikan setiap vektor menjadi [komponen vektor](/id/materi/fi
 
 > Pada metode analitis, jumlahkan komponen vektor pada setiap sumbu. Panjang panah saja belum memberikan hasil penjumlahannya.
 
-Pecah setiap vektor menjadi bagian x dan y, jumlahkan bagian di tiap sumbu, lalu susun kembali resultannya. Komponen teal dari jumlahnya hanyalah bagian x yang dijumlahkan dan bagian y yang dijumlahkan. Perbesar tiap langkah.
+Pecah setiap vektor menjadi bagian <InlineMath math="x" /> dan <InlineMath math="y" />, jumlahkan bagian di tiap sumbu, lalu susun kembali resultannya. Komponen teal dari jumlahnya adalah gabungan bagian <InlineMath math="x" /> dan bagian <InlineMath math="y" />. Perbesar tiap langkah.
 
 <MathVisual
   title={<>Metode Komponen dalam Empat Langkah</>}
   description={<>Dua vektor disambung ujung ke pangkal (oranye, ungu), komponen jumlahnya (teal), dan resultannya (fuchsia).</>}
+  footer={<>Jumlah komponen <InlineMath math="x" /> dan <InlineMath math="y" /> membentuk segitiga siku-siku <InlineMath math="\vec R" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 4.8 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 1 } },
-      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 1 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 1) + ((0.25 / 2) * -1) / Math.hypot(3, 1), y: 1 - (0.25 * 1) / Math.hypot(3, 1) + ((0.25 / 2) * 3) / Math.hypot(3, 1) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 1) - ((0.25 / 2) * -1) / Math.hypot(3, 1), y: 1 - (0.25 * 1) / Math.hypot(3, 1) - ((0.25 / 2) * 3) / Math.hypot(3, 1) }] },
-      { id: "b", kind: "segment", appearance: "secondary", from: { x: 3, y: 1 }, to: { x: 4, y: 4 } },
-      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 4 }, { x: 4 - (0.25 * 1) / Math.hypot(1, 3) + ((0.25 / 2) * -3) / Math.hypot(1, 3), y: 4 - (0.25 * 3) / Math.hypot(1, 3) + ((0.25 / 2) * 1) / Math.hypot(1, 3) }, { x: 4 - (0.25 * 1) / Math.hypot(1, 3) - ((0.25 / 2) * -3) / Math.hypot(1, 3), y: 4 - (0.25 * 3) / Math.hypot(1, 3) - ((0.25 / 2) * 1) / Math.hypot(1, 3) }] },
-      { id: "rx", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
-      { id: "rx-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: 0 }, { x: 3.75, y: 0.125 }, { x: 3.75, y: -0.125 }] },
-      { id: "ry", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: 4 } },
-      { id: "ry-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: 4 }, { x: 4.125, y: 3.75 }, { x: 3.875, y: 3.75 }] },
-      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 4 } },
-      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 4 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 4) + ((0.25 / 2) * -4) / Math.hypot(4, 4), y: 4 - (0.25 * 4) / Math.hypot(4, 4) + ((0.25 / 2) * 4) / Math.hypot(4, 4) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 4) - ((0.25 / 2) * -4) / Math.hypot(4, 4), y: 4 - (0.25 * 4) / Math.hypot(4, 4) - ((0.25 / 2) * 4) / Math.hypot(4, 4) }] },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 1 } },
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 3, y: 1 }, to: { x: 4, y: 4 } },
+      { id: "rx", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "ry", kind: "vector", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "r", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 4 } },
     ],
     labels: [
       { key: "a", objectId: "a", at: { x: 1.5, y: 0.5 }, placement: "below-right" },
@@ -53,33 +49,58 @@ Pecah setiap vektor menjadi bagian x dan y, jumlahkan bagian di tiap sumbu, lalu
   labels={{
     a: <InlineMath math="\vec A=(3,1)" />,
     b: <InlineMath math="\vec B=(1,3)" />,
-    rx: <InlineMath math="R_x=3+1=4" />,
-    ry: <InlineMath math="R_y=1+3=4" />,
-    r: <InlineMath math="R=\sqrt{4^2+4^2}\approx5{,}66,\ \theta=45^\circ" />,
+    rx: <InlineMath math="R_x=4" />,
+    ry: <InlineMath math="R_y=4" />,
+    r: <InlineMath math="R\approx5{,}66,\ \theta=45^\circ" />,
   }}
 />
 
-## Komponen pada Meja Gaya
+Kedua sisi teal bertemu tegak lurus di titik <InlineMath math="(4,0)" />. Begitu <InlineMath math="R_x" /> dan <InlineMath math="R_y" /> diketahui, Pythagoras dan tangen invers langsung memberi panjang serta arah resultannya.
 
-Dua tali menarik dengan <InlineMath math="1{,}96\text{ N}" /> pada <InlineMath math="30^\circ" /> dan <InlineMath math="2{,}94\text{ N}" /> pada <InlineMath math="120^\circ" />. Kartu **menjumlahkan komponennya** sepanjang <InlineMath math="0^\circ" /> dan <InlineMath math="90^\circ" />, yaitu <InlineMath math="0{,}23\text{ N}" /> dan <InlineMath math="3{,}53\text{ N}" />, lalu menyusun kembali resultannya, <InlineMath math="3{,}53\text{ N}" /> pada <InlineMath math="86{,}3^\circ" />. Putar katrol kedua, lalu hitung ulang jumlahnya.
+## Menjumlahkan Dua Tarikan Tali dengan Komponen
 
-<ForceTableResultantLab
+Dua tali menarik dengan <InlineMath math="1{,}96\text{ N}" /> pada <InlineMath math="30^\circ" /> dan <InlineMath math="2{,}94\text{ N}" /> pada sudut <InlineMath math="a" /> yang bisa kamu atur. Saat <InlineMath math="a = 120^\circ" />, **jumlah komponennya** sepanjang <InlineMath math="0^\circ" /> dan <InlineMath math="90^\circ" /> menghasilkan <InlineMath math="0{,}23\text{ N}" /> dan <InlineMath math="3{,}53\text{ N}" />, sehingga resultannya <InlineMath math="3{,}53\text{ N}" /> pada <InlineMath math="86{,}3^\circ" />. Geser <InlineMath math="a" /> dan lihat kedua jumlah komponennya berubah.
+
+<MathVisual
   title={<>Menjumlahkan Tarikan per Komponen</>}
-  description={<>Gantungan <InlineMath math="200\text{ g}" /> dan <InlineMath math="300\text{ g}" />. Putar katrol kedua.</>}
-  pulls={[
-    { angle: 30, mass: 200 },
-    { angle: 120, mass: 300 },
-  ]}
+  description={<>Gaya pertama <InlineMath math="1{,}96\text{ N}" /> pada <InlineMath math="30^\circ" /> ditambah gaya <InlineMath math="2{,}94\text{ N}" /> pada sudut <InlineMath math="a" /> dalam newton.</>}
+  footer={<>Geser sudut <InlineMath math="a" /> untuk melihat <InlineMath math="R_x" /> mengecil atau berbalik tanda.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 5 }, y: { min: -0.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 180, value: 120, step: 5, label: "angle" },
+    ],
+    objects: [
+      { id: "f1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1.96 * Math.cos(Math.PI / 6), y: 1.96 * Math.sin(Math.PI / 6) } },
+      { id: "f2", kind: "path", appearance: "secondary", points: [{ x: "1.96*cos(pi/6)", y: "1.96*sin(pi/6)" }, { x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "1.96*sin(pi/6) + 2.94*sin(a*pi/180)" }] },
+      { id: "rx-leg", kind: "path", appearance: "construction", points: [{ x: "0", y: "0" }, { x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "0" }] },
+      { id: "ry-leg", kind: "path", appearance: "construction", points: [{ x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "0" }, { x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "1.96*sin(pi/6) + 2.94*sin(a*pi/180)" }] },
+      { id: "res", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "1.96*sin(pi/6) + 2.94*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "1.96*sin(pi/6) + 2.94*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 0.85, y: 0.49 }, placement: "below-right" },
+      { key: "res", objectId: "tip", at: { x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "1.96*sin(pi/6) + 2.94*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "sum-x", formula: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)" },
+      { key: "sum-y", formula: "1.96*sin(pi/6) + 2.94*sin(a*pi/180)" },
+      { key: "mag", formula: "sqrt((1.96*cos(pi/6) + 2.94*cos(a*pi/180))^2 + (1.96*sin(pi/6) + 2.94*sin(a*pi/180))^2)" },
+    ],
+  }}
   labels={{
-    angle: <>Sudut tali terakhir</>,
-    angleName: "Sudut tali terakhir",
-    direction: <>Arah <InlineMath math="\vec R" /></>,
-    resultant: <>Resultan <InlineMath math="R" /></>,
-    sumX: <>Jumlah sepanjang <InlineMath math="0^\circ" /></>,
-    sumY: <>Jumlah sepanjang <InlineMath math="90^\circ" /></>,
-    viewLabel: "Meja gaya dengan beban tergantung",
+    angle: <>Sudut gaya kedua <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    f1: <InlineMath math="\vec F_1" />,
+    res: <InlineMath math="\vec R" />,
+    "sum-x": <><InlineMath math="R_x" /> (N)</>,
+    "sum-y": <><InlineMath math="R_y" /> (N)</>,
+    mag: <><InlineMath math="R" /> (N)</>,
   }}
 />
+
+Ketika gaya kedua melewati <InlineMath math="90^\circ" />, komponen horizontalnya menjadi negatif dan sebagian meniadakan tarikan pertama. Penjumlahan komponen mencatat perubahan tanda itu secara otomatis tanpa perlu menggambar ulang.
 
 ## Langkah Penjumlahan Vektor
 
@@ -111,6 +132,7 @@ Pilot **menjumlahkan vektor per komponen setiap hari**. Dengan hidung pesawat pa
 <AircraftCrosswindLab
   title={<>Kecepatan terhadap Tanah per Komponen</>}
   description={<>Kecepatan udara <InlineMath math="400\text{ km/h}" />, angin <InlineMath math="300\text{ km/h}" /> ke timur. Putar hidung pesawat.</>}
+  footer={<>Memutar hidung mengubah komponen pesawat sementara komponen angin tetap.</>}
   airspeed={400}
   heading={30}
   toward={90}
@@ -125,6 +147,8 @@ Pilot **menjumlahkan vektor per komponen setiap hari**. Dengan hidung pesawat pa
     viewLabel: "Pesawat di atas sawah saat angin samping",
   }}
 />
+
+Saat hidung pesawat diputar melawan arah angin, komponen timurnya saling mengurangi sehingga kelajuan terhadap tanah turun. Bila diarahkan searah angin, kedua komponen timur saling menguatkan.
 
 Seseorang berjalan dalam dua tahap. Tahap pertama setara dengan <InlineMath math="80\text{ m}" /> ke timur dan <InlineMath math="60\text{ m}" /> ke utara. Tahap kedua setara dengan <InlineMath math="120\text{ m}" /> ke timur dan <InlineMath math="90\text{ m}" /> ke utara.
 
@@ -156,75 +180,117 @@ Arah resultan:
 
 Perpindahan totalnya <InlineMath math="250\text{ m}" /> dengan arah <InlineMath math="36{,}9^\circ" /> ke utara dari timur.
 
-Jumlahkan kedua tahap komponen demi komponen dan resultannya langsung muncul: <InlineMath math="R_x=80+120=200\text{ m}" /> dan <InlineMath math="R_y=60+90=150\text{ m}" />. Panah fuchsia adalah jumlah itu, <InlineMath math="250\text{ m}" /> dengan sudut sekitar <InlineMath math="36{,}9^\circ" /> ke utara dari timur.
+Penjumlahan komponen timur menghasilkan <InlineMath math="200\text{ m}" /> dan komponen utara menghasilkan <InlineMath math="150\text{ m}" />. Panah fuchsia di bawah menampilkan perpindahan gabungan itu langsung dalam satuan meter.
 
 <MathVisual
   title={<>Dua Tahap Dijumlahkan per Komponen</>}
-  description={<>Perpindahan tahap <InlineMath math="(80, 60)" /> m dan <InlineMath math="(120, 90)" /> m disusun ujung ke pangkal. Satu kotak grid sama dengan <InlineMath math="50\text{ m}" />.</>}
+  description={<>Perpindahan tahap <InlineMath math="(80, 60)\text{ m}" /> dan <InlineMath math="(120, 90)\text{ m}" /> disusun ujung ke pangkal langsung dalam meter.</>}
+  footer={<>Kedua tahap memiliki kemiringan sama sehingga resultannya sejajar lurus.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 4 } },
+    frame: { kind: "cartesian", x: { min: -15, max: 235 }, y: { min: -15, max: 175 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "first", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1.6, y: 1.2 } },
-      { id: "first-head", kind: "polygon", appearance: "primary", vertices: [{ x: 1.6, y: 1.2 }, { x: 1.6 - (0.25 * 1.6) / Math.hypot(1.6, 1.2) + ((0.25 / 2) * -1.2) / Math.hypot(1.6, 1.2), y: 1.2 - (0.25 * 1.2) / Math.hypot(1.6, 1.2) + ((0.25 / 2) * 1.6) / Math.hypot(1.6, 1.2) }, { x: 1.6 - (0.25 * 1.6) / Math.hypot(1.6, 1.2) - ((0.25 / 2) * -1.2) / Math.hypot(1.6, 1.2), y: 1.2 - (0.25 * 1.2) / Math.hypot(1.6, 1.2) - ((0.25 / 2) * 1.6) / Math.hypot(1.6, 1.2) }] },
-      { id: "second", kind: "segment", appearance: "secondary", from: { x: 1.6, y: 1.2 }, to: { x: 4, y: 3 } },
-      { id: "second-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 2.4) / Math.hypot(2.4, 1.8) + ((0.25 / 2) * -1.8) / Math.hypot(2.4, 1.8), y: 3 - (0.25 * 1.8) / Math.hypot(2.4, 1.8) + ((0.25 / 2) * 2.4) / Math.hypot(2.4, 1.8) }, { x: 4 - (0.25 * 2.4) / Math.hypot(2.4, 1.8) - ((0.25 / 2) * -1.8) / Math.hypot(2.4, 1.8), y: 3 - (0.25 * 1.8) / Math.hypot(2.4, 1.8) - ((0.25 / 2) * 2.4) / Math.hypot(2.4, 1.8) }] },
-      { id: "result", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
-      { id: "result-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) + ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) + ((0.25 / 2) * 4) / Math.hypot(4, 3) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) - ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) - ((0.25 / 2) * 4) / Math.hypot(4, 3) }] },
+      { id: "first", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 80, y: 60 } },
+      { id: "second", kind: "vector", appearance: "secondary", from: { x: 80, y: 60 }, to: { x: 200, y: 150 } },
+      { id: "result", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 200, y: 150 } },
     ],
     labels: [
-      { key: "first", objectId: "first", at: { x: 0.8, y: 0.6 }, placement: "below-right" },
-      { key: "second", objectId: "second", at: { x: 2.8, y: 2.1 }, placement: "below-right" },
-      { key: "result", objectId: "result", at: { x: 2, y: 1.5 }, placement: "above-left" },
+      { key: "first", objectId: "first", at: { x: 40, y: 30 }, placement: "below-right" },
+      { key: "second", objectId: "second", at: { x: 140, y: 105 }, placement: "below-right" },
+      { key: "result", objectId: "result", at: { x: 100, y: 75 }, placement: "above-left" },
     ],
   }}
   labels={{
-    first: <InlineMath math="(80,60)" />,
-    second: <InlineMath math="(120,90)" />,
-    result: <InlineMath math="R=\sqrt{200^2+150^2}=250\text{ m}" />,
+    first: <InlineMath math="(80,60)\text{ m}" />,
+    second: <InlineMath math="(120,90)\text{ m}" />,
+    result: <InlineMath math="R=250\text{ m}" />,
   }}
 />
 
-Kapal feri melakukan perjalanan dua tahap yang serupa: <InlineMath math="6\text{ km}" /> lurus ke timur, lalu <InlineMath math="10\text{ km}" /> dengan arah kompas <InlineMath math="30^\circ" />. Komponen timurnya berjumlah <InlineMath math="11\text{ km}" /> dan komponen utaranya <InlineMath math="8{,}66\text{ km}" />, jadi feri berakhir <InlineMath math="14\text{ km}" /> dari pelabuhan.
+Karena perbandingan komponen utara dan timur pada kedua tahap sama, kedua panah sejajar pada satu garis dan panjangnya langsung bertambah menjadi <InlineMath math="250\text{ m}" />.
 
-<ShipBearingComponentLab
+Kapal feri melakukan perjalanan dua tahap ke arah berbeda: <InlineMath math="6\text{ km}" /> lurus ke timur, lalu <InlineMath math="10\text{ km}" /> dengan arah kompas <InlineMath math="b" /> searah jarum jam dari utara. Saat <InlineMath math="b = 30^\circ" />, komponen timurnya berjumlah <InlineMath math="11\text{ km}" /> dan komponen utaranya <InlineMath math="8{,}66\text{ km}" />, jadi feri berakhir <InlineMath math="14\text{ km}" /> dari pelabuhan.
+
+<MathVisual
   title={<>Feri dalam Dua Tahap</>}
-  description={<>Tahap pertama <InlineMath math="6\text{ km}" /> ke timur, tahap kedua <InlineMath math="10\text{ km}" />. Putar arah kompas tahap kedua.</>}
-  courses={[
-    { bearing: 90, distance: 6 },
-    { bearing: 30, distance: 10 },
-  ]}
+  description={<>Tahap pertama <InlineMath math="6\text{ km}" /> ke timur, tahap kedua <InlineMath math="10\text{ km}" /> pada arah kompas <InlineMath math="b" /> dari utara.</>}
+  footer={<>Putar sudut kompas <InlineMath math="b" /> untuk melihat jumlah timur dan utara berubah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 18.5 }, y: { min: -6.5, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 0, max: 120, value: 30, step: 5, label: "bearing" },
+    ],
+    objects: [
+      { id: "leg-one", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "leg-two", kind: "path", appearance: "secondary", points: [{ x: "6", y: "0" }, { x: "6 + 10*sin(b*pi/180)", y: "10*cos(b*pi/180)" }] },
+      { id: "harbour-net", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "6 + 10*sin(b*pi/180)", y: "10*cos(b*pi/180)" }] },
+      { id: "ship-end", kind: "marker", appearance: "answer", x: "6 + 10*sin(b*pi/180)", y: "10*cos(b*pi/180)" },
+    ],
+    labels: [
+      { key: "leg-one", objectId: "leg-one", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "ship-end", objectId: "ship-end", at: { x: "6 + 10*sin(b*pi/180)", y: "10*cos(b*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "east-sum", formula: "6 + 10*sin(b*pi/180)" },
+      { key: "north-sum", formula: "10*cos(b*pi/180)" },
+      { key: "harbour-dist", formula: "sqrt((6 + 10*sin(b*pi/180))^2 + (10*cos(b*pi/180))^2)" },
+    ],
+  }}
   labels={{
-    bearing: <>Arah kompas tahap terakhir</>,
-    bearingName: "Arah kompas tahap terakhir",
-    direction: <>Arah kompas dari pelabuhan</>,
-    distance: <>Jarak dari pelabuhan</>,
-    east: <>Komponen timur</>,
-    north: <>Komponen utara</>,
-    viewLabel: "Kapal feri berlayar dari pelabuhan",
+    bearing: <>Arah kompas tahap kedua <InlineMath math="b" /> (<InlineMath math="^\circ" />)</>,
+    "leg-one": <InlineMath math="6\text{ km}" />,
+    "ship-end": <InlineMath math="\vec R" />,
+    "east-sum": <>Total timur (km)</>,
+    "north-sum": <>Total utara (km)</>,
+    "harbour-dist": <>Jarak dari pelabuhan (km)</>,
   }}
 />
+
+Meski kedua tahap berarah berbeda, menjumlahkan timur dengan timur lalu utara dengan utara langsung memberi jarak lurus dari pelabuhan dengan satu akar kuadrat.
 
 ### Dua Tahap di Ruang
 
-Langkah yang sama berlaku di ruang **dengan komponen ketiga**. Drone naik ke <InlineMath math="3\text{ m}" /> sambil terbang <InlineMath math="4\text{ m}" /> ke timur, lalu terbang <InlineMath math="12\text{ m}" /> ke utara: jumlahnya <InlineMath math="4\text{ m}" />, <InlineMath math="12\text{ m}" />, dan <InlineMath math="3\text{ m}" />, jadi perpindahannya <InlineMath math="13\text{ m}" />.
+Langkah yang sama berlaku di ruang **dengan komponen ketiga**. Drone naik setinggi <InlineMath math="h" /> meter sambil terbang <InlineMath math="4\text{ m}" /> ke timur lalu <InlineMath math="12\text{ m}" /> ke utara. Di bidang datar, kedua tahap itu bergabung menjadi <InlineMath math="\sqrt{4^2+12^2}\approx12{,}65\text{ m}" />. Saat <InlineMath math="h = 3\text{ m}" />, tambahan komponen vertikal menghasilkan perpindahan total <InlineMath math="13\text{ m}" />.
 
-<DroneDisplacementLab
-  title={<>Menjumlahkan Dua Tahap Terbang</>}
-  description={<>Tahap satu naik <InlineMath math="3\text{ m}" /> sambil ke timur <InlineMath math="4\text{ m}" />. Tahap dua ke utara <InlineMath math="12\text{ m}" />.</>}
-  hops={[
-    { east: 4, north: 0, up: 3 },
-    { east: 0, north: 12, up: 0 },
-  ]}
+<MathVisual
+  title={<>Menambahkan Tahap Vertikal di Ruang</>}
+  description={<>Perpindahan mendatar <InlineMath math="\sqrt{160}\text{ m}" /> dipasangkan dengan tinggi naik <InlineMath math="h" /> dalam meter.</>}
+  footer={<>Menaikkan <InlineMath math="h" /> menambahkan <InlineMath math="h^2" /> di bawah akar kuadrat <InlineMath math="R" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 15 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0, max: 10, value: 3, step: 0.5, label: "climb" },
+    ],
+    objects: [
+      { id: "ground", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(160), y: 0 } },
+      { id: "climb-leg", kind: "path", appearance: "secondary", points: [{ x: "sqrt(160)", y: "0" }, { x: "sqrt(160)", y: "h" }] },
+      { id: "space-res", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "sqrt(160)", y: "h" }] },
+      { id: "drone-pos", kind: "marker", appearance: "answer", x: "sqrt(160)", y: "h" },
+    ],
+    labels: [
+      { key: "ground", objectId: "ground", at: { x: 6.3, y: 0 }, placement: "below" },
+      { key: "drone-pos", objectId: "drone-pos", at: { x: "sqrt(160)", y: "h" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "climb-out", formula: "h" },
+      { key: "total-r", formula: "sqrt(160 + h^2)" },
+    ],
+  }}
   labels={{
-    chooseFactor: "Kalikan rencana terbang dengan k",
-    displacement: <>Perpindahan</>,
-    path: <>Panjang lintasan terbang</>,
-    size: <>Jarak dari landasan</>,
-    viewLabel: "Drone terbang dari landasannya",
+    climb: <>Tinggi naik <InlineMath math="h" /> (m)</>,
+    ground: <InlineMath math="\sqrt{4^2+12^2}\text{ m}" />,
+    "drone-pos": <InlineMath math="\vec R" />,
+    "climb-out": <>Komponen vertikal (m)</>,
+    "total-r": <>Perpindahan ruang <InlineMath math="R" /> (m)</>,
   }}
 />
+
+Tambahan sumbu ketiga tidak mengubah aturannya: jumlahkan sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" /> secara terpisah, lalu kuadratkan ketiganya di bawah satu tanda akar.
 
 ## Pengurangan dengan Komponen
 
@@ -247,6 +313,7 @@ Tanda negatif pada <InlineMath math="-2\hat{j}" /> menunjukkan bahwa komponen <I
 <MathVisual
   title={<>Selisih Dua Vektor</>}
   description={<>Panah <InlineMath math="\vec{C}" /> dari ujung <InlineMath math="\vec{B}" /> ke ujung <InlineMath math="\vec{A}" /> memiliki komponen <InlineMath math="(5,-2)" />. Panah ungu yang dimulai di titik asal adalah vektor yang sama, hanya digeser.</>}
+  footer={<>Kedua panah ungu punya komponen sama, <InlineMath math="(5,-2)" />, ke kanan dan ke bawah.</>}
   labels={{
     "l1": <InlineMath math="A" />,
     "l2": <InlineMath math="B" />,
@@ -258,14 +325,10 @@ Tanda negatif pada <InlineMath math="-2\hat{j}" /> menunjukkan bahwa komponen <I
     frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -3, max: 7 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.85, y: (0) + 0.55 * ((4) - (0)) }, { x: 7, y: 4 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 3.85, y: 2.2 }, to: { x: 7, y: 4 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((6) - (0)) }, { x: 2, y: 6 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 1, y: 3 }, to: { x: 2, y: 6 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: 6 }, { x: (2) + 0.5 * ((7) - (2)), y: (6) + 0.5 * ((4) - (6)) }, { x: 7, y: 4 }], appearance: "answer" },
-      { id: "s3-head", kind: "vector", from: { x: 4.5, y: 5 }, to: { x: 7, y: 4 }, appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((5) - (0)), y: (0) + 0.5 * ((-2) - (0)) }, { x: 5, y: -2 }], appearance: "answer" },
-      { id: "s4-head", kind: "vector", from: { x: 2.5, y: -1 }, to: { x: 5, y: -2 }, appearance: "answer" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 7, y: 4 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 2, y: 6 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 2, y: 6 }, to: { x: 7, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: 0 }, to: { x: 5, y: -2 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 3.85, y: 2.2 }, placement: "below" },
@@ -280,34 +343,48 @@ Tanda komponen memberi arah kanan dan bawah. Untuk mendapatkan panjang panah, gu
 
 <BlockMath math="\lvert\vec{C}\rvert=\sqrt{5^2+(-2)^2}=\sqrt{25+4}=\sqrt{29}" />
 
-
 Jadi, pengurangan tidak memerlukan aturan baru. Gunakan sumbu yang sama, kurangi komponen yang sejenis, lalu tentukan arah setiap komponen resultan dari tandanya.
 
 ## Mengurangkan Posisi di Peta
 
-Pos <InlineMath math="A" /> berada <InlineMath math="60\text{ m}" /> di timur dan <InlineMath math="20\text{ m}" /> di utara titik awal, sedangkan <InlineMath math="B" /> berada <InlineMath math="20\text{ m}" /> di timur dan <InlineMath math="50\text{ m}" /> di utara. **Kurangkan per komponen**: <InlineMath math="\vec b-\vec a" /> adalah <InlineMath math="-40\text{ m}" /> ke timur dan <InlineMath math="30\text{ m}" /> ke utara, panjangnya <InlineMath math="50\text{ m}" />.
+Pos <InlineMath math="A" /> berada <InlineMath math="60\text{ m}" /> di timur dan <InlineMath math="20\text{ m}" /> di utara titik awal, sedangkan <InlineMath math="B" /> berada <InlineMath math="50\text{ m}" /> di utara dengan posisi timur <InlineMath math="p" /> yang dapat digeser. Saat <InlineMath math="p = 20\text{ m}" />, **pengurangan per komponen** memberi <InlineMath math="\vec b-\vec a" /> sebesar <InlineMath math="-40\text{ m}" /> ke timur dan <InlineMath math="30\text{ m}" /> ke utara, dengan panjang <InlineMath math="50\text{ m}" />.
 
-<OrienteeringMapVectorLab
-  title={<>Selisih Dua Posisi</>}
-  description={<>Titik awal <InlineMath math="O" /> adalah segitiga magenta. Bandingkan <InlineMath math="\vec b-\vec a" /> dengan rute dari <InlineMath math="B" /> ke <InlineMath math="A" />.</>}
-  marks={{
-    a: { east: 60, north: 20 },
-    b: { east: 20, north: 50 },
-    c: { east: 110, north: 70 },
+<MathVisual
+  title={<>Selisih Dua Posisi Peta</>}
+  description={<>Posisi <InlineMath math="\vec a=(60,20)\text{ m}" /> dan posisi geser <InlineMath math="\vec b=(p,50)\text{ m}" /> bersama selisihnya <InlineMath math="\vec b-\vec a" /> dari <InlineMath math="A" /> ke <InlineMath math="B" />.</>}
+  footer={<>Geser <InlineMath math="p" /> melewati <InlineMath math="60\text{ m}" /> agar selisih timurnya berbalik tanda.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 115 }, y: { min: -10, max: 75 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 100, value: 20, step: 10, label: "east-b" },
+    ],
+    objects: [
+      { id: "pos-a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 60, y: 20 } },
+      { id: "pos-b", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "p", y: "50" }] },
+      { id: "diff-ab", kind: "path", appearance: "answer", points: [{ x: "60", y: "20" }, { x: "p", y: "50" }] },
+      { id: "pt-a", kind: "point", appearance: "primary", at: { x: 60, y: 20 } },
+      { id: "pt-b", kind: "marker", appearance: "answer", x: "p", y: "50" },
+    ],
+    labels: [
+      { key: "pt-a", objectId: "pt-a", at: { x: 60, y: 20 }, placement: "below-right" },
+      { key: "pt-b", objectId: "pt-b", at: { x: "p", y: "50" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "dx", formula: "p - 60" },
+      { key: "dy", formula: "30" },
+      { key: "dist", formula: "sqrt((p - 60)^2 + 30^2)" },
+    ],
   }}
-  views={["difference", "back"]}
   labels={{
-    angle: <>Arah dari timur</>,
-    chooseView: "Pilih vektor yang ditampilkan",
-    east: <>Bagian timur</>,
-    north: <>Bagian utara</>,
-    size: <>Panjang</>,
-    viewLabel: "Peta orienteering sebuah taman",
-    views: {
-      back: <><InlineMath math="B" /> ke <InlineMath math="A" /></>,
-      copy: <>Vektor sama dari <InlineMath math="C" /></>,
-      difference: <><InlineMath math="\vec b-\vec a" /></>,
-      forward: <><InlineMath math="A" /> ke <InlineMath math="B" /></>,
-    },
+    "east-b": <>Koordinat timur <InlineMath math="p" /> titik <InlineMath math="B" /> (m)</>,
+    "pt-a": <InlineMath math="A(60,20)" />,
+    "pt-b": <InlineMath math="B" />,
+    dx: <>Selisih timur (m)</>,
+    dy: <>Selisih utara (m)</>,
+    dist: <>Panjang rute (m)</>,
   }}
 />
+
+Selama <InlineMath math="p" /> lebih kecil daripada <InlineMath math="60\text{ m}" />, komponen timur yang negatif langsung memberi tahu kamu untuk melangkah ke barat dari <InlineMath math="A" /> menuju <InlineMath math="B" />. Saat <InlineMath math="p" /> melewati <InlineMath math="60\text{ m}" />, tandanya menjadi positif dan arahnya berbalik ke timur.

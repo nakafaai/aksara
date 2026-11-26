@@ -32,6 +32,7 @@ Simulasi bola pada gerak vertikal memperlihatkan kedua cara bola mulai bergerak.
       dan kecepatannya.
     </>
   }
+  footer={<>Lemparan dan jatuhan berbeda kecepatan awal, namun gravitasi selalu ke bawah.</>}
   labels={{
     condition: "Kondisi awal",
     modeLabels: {
@@ -45,6 +46,8 @@ Simulasi bola pada gerak vertikal memperlihatkan kedua cara bola mulai bergerak.
     viewLabel: "Visual bola pada gerak vertikal",
   }}
 />
+
+Beralihlah antara kedua mode peluncuran dan perhatikan bahwa percepatan ke bawah tidak pernah berganti tanda. Baik saat bola naik maupun jatuh dari diam, gravitasi selalu mengubah kecepatannya ke bawah sebesar <InlineMath math="g" /> setiap detik.
 
 ## Tiga Cara Benda Bergerak Vertikal
 
@@ -61,6 +64,7 @@ Pada ketiganya, percepatan tetap <InlineMath math="-g" /> sepanjang gerak, terma
 <Mermaid
   title={<>Memilih jenis gerak vertikal</>}
   description={<>Arah kecepatan awal menentukan jenis gerak, tetapi persamaannya tetap sama.</>}
+  footer={<>Ketiga arah kecepatan awal bermuara pada pasangan persamaan gerak yang sama.</>}
   chart={`flowchart TD
   A{"Arah kecepatan awal?"} -->|"ke atas"| B["Dilempar ke atas, v₀ positif"]
   A -->|"nol"| C["Jatuh bebas, v₀ = 0"]
@@ -79,6 +83,7 @@ Jatuh bebas berarti hanya gravitasi yang bekerja. Di udara, hambatan udara menah
       Tabung kacanya setinggi <InlineMath math="1{,}1\text{ m}" />. Selama masih ada udara, bulu tertinggal di belakang, jadi pompa keluar udaranya dan bandingkan dua waktu mendaratnya.
     </>
   }
+  footer={<>Memompa udara menghilangkan hambatan sehingga bulu dan koin jatuh bersamaan.</>}
   labels={{
     airs: {
       air: <>Berisi udara</>,
@@ -92,9 +97,17 @@ Jatuh bebas berarti hanya gravitasi yang bekerja. Di udara, hambatan udara menah
   }}
 />
 
-Di ruang hampa, keduanya jatuh <InlineMath math="1{,}1\text{ m}" /> dalam <InlineMath math="\sqrt{\frac{2(1{,}1)}{10}}\approx0{,}47\text{ s}" /> dan sampai bersamaan. Dengan udara, koin tetap sampai setelah sekitar <InlineMath math="0{,}47\text{ s}" />, tetapi bulu melayang turun selama sekitar <InlineMath math="2{,}25\text{ s}" />.
+Di ruang hampa, kedua benda jatuh sejauh <InlineMath math="1{,}1\text{ m}" /> dan sampai bersamaan dalam waktu:
 
-## Benda Dilempar ke Atas
+<BlockMath math="t=\sqrt{\frac{2(1{,}1)}{10}}\approx0{,}47\text{ s}" />
+
+Dengan udara di dalam tabung, koin tetap sampai setelah sekitar <InlineMath math="0{,}47\text{ s}" />, sedangkan hambatan udara memperlambat bulu menjadi sekitar <InlineMath math="2{,}25\text{ s}" />.
+
+## Membandingkan Lemparan dan Jatuh Bebas
+
+Setiap gerak vertikal masuk ke salah satu dari tiga kasus yang ditentukan oleh **kecepatan awalnya** <InlineMath math="v_0" />. Melihat lemparan ke atas, jatuh bebas dari diam, dan lemparan ke bawah berdampingan memperlihatkan peran simetri dan kelajuan awal.
+
+### Benda Dilempar ke Atas
 
 Saat benda dilempar ke atas, kecepatannya positif lalu **berkurang terus karena gravitasi** sampai nol di titik tertinggi. Dari <InlineMath math="v_y = 0" />, waktu naik dan tinggi maksimum terhadap titik lempar adalah:
 
@@ -103,11 +116,15 @@ Saat benda dilempar ke atas, kecepatannya positif lalu **berkurang terus karena 
   <BlockMath math="h_{\text{maks}} = \frac{v_0^2}{2g}" />
 </MathContainer>
 
-Misalkan bola dilempar ke atas dengan <InlineMath math="v_0 = 20\text{ m/s}" />. Waktu naiknya <InlineMath math="\frac{20}{10} = 2\text{ s}" /> dan tinggi maksimumnya <InlineMath math="\frac{20^2}{2 \times 10} = 20\text{ m}" />. Persamaan posisi memberi hasil yang sama:
+Misalkan bola dilempar ke atas dengan <InlineMath math="v_0 = 20\text{ m/s}" />. Waktu naik dan tinggi maksimumnya adalah:
 
-<BlockMath math="y = 20(2) - \frac{1}{2}(10)(2^2) = 40 - 20 = 20\text{ m}" />
+<MathContainer>
+  <BlockMath math="t_{\text{naik}} = \frac{20}{10} = 2\text{ s}" />
+  <BlockMath math="h_{\text{maks}} = \frac{20^2}{2 \times 10} = 20\text{ m}" />
+  <BlockMath math="y = 20(2) - \frac{1}{2}(10)(2^2) = 40 - 20 = 20\text{ m}" />
+</MathContainer>
 
-Di titik tertinggi, kecepatan bola nol sesaat, tetapi percepatannya tetap <InlineMath math="-g" />. Substitusikan beberapa nilai <InlineMath math="t" /> ke <InlineMath math="y = 20t - 5t^2" /> dan <InlineMath math="v_y = 20 - 10t" /> untuk mengikuti gerak naik dan turunnya:
+Di titik tertinggi, kecepatan bola nol sesaat, namun percepatannya tetap <InlineMath math="-g" />. Substitusikan beberapa waktu ke <InlineMath math="y = 20t - 5t^2" /> dan <InlineMath math="v_y = 20 - 10t" /> untuk mengikuti gerak naik dan turunnya:
 
 | Waktu | Tinggi | Kecepatan | Arah gerak |
 | --- | --- | --- | --- |
@@ -117,13 +134,14 @@ Di titik tertinggi, kecepatan bola nol sesaat, tetapi percepatannya tetap <Inlin
 | <InlineMath math="3\text{ s}" /> | <InlineMath math="15\text{ m}" /> | <InlineMath math="-10\text{ m/s}" /> | Turun |
 | <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="-20\text{ m/s}" /> | Kembali ke titik lempar |
 
-Gerak ini simetris. Bola berada di tinggi <InlineMath math="15\text{ m}" /> pada detik ke-<InlineMath math="1" /> dan ke-<InlineMath math="3" />, dengan kelajuan yang sama tetapi arah berlawanan, dan kembali ke titik lempar dengan kelajuan awalnya.
+Gerak ini simetris. Bola melewati tinggi <InlineMath math="15\text{ m}" /> pada detik ke-<InlineMath math="1" /> dan ke-<InlineMath math="3" /> dengan kelajuan sama tetapi arah berlawanan, lalu kembali ke titik lempar dengan kelajuan awalnya.
 
-Geser waktu untuk bola yang dilempar ke atas dengan <InlineMath math="20\text{ m/s}" />. Panah ungu adalah kecepatannya, digambar sebagai jarak yang ditempuh dalam satu sekon: panahnya memendek saat naik, hilang pada <InlineMath math="t=2\text{ s}" /> di puncak, dan menunjuk ke bawah saat kembali.
+Geser waktu untuk bola yang dilempar ke atas dengan <InlineMath math="20\text{ m/s}" />. Panah ungu menunjukkan kecepatannya: memendek saat naik, hilang pada <InlineMath math="t=2\text{ s}" /> di puncak, lalu menunjuk ke bawah saat turun.
 
 <MathVisual
   title={<>Lihat Kecepatan Berbalik Arah</>}
   description={<>Bola yang dilempar lurus ke atas dengan <InlineMath math="20\text{ m/s}" />, posisinya pada waktu yang dipilih (fuchsia), dan kecepatannya (ungu). Satu kotak grid berarti <InlineMath math="5\text{ m}" />.</>}
+  footer={<>Panah kecepatan ungu mengecil hingga nol di puncak lalu berbalik ke bawah.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -4.5, max: 8.5 } },
@@ -152,66 +170,125 @@ Geser waktu untuk bola yang dilempar ke atas dengan <InlineMath math="20\text{ m
   }}
 />
 
-Foto stroboskop menampilkan satu lemparan dalam satu gambar. Bola yang dilempar ke atas dengan <InlineMath math="5\text{ m/s}" /> **kehilangan <InlineMath math="1\text{ m/s}" /> kecepatan ke atas setiap sepersepuluh detik**, jadi gambarnya merapat di dekat puncak.
+Rekaman stroboskop untuk lemparan <InlineMath math="5\text{ m/s}" /> memperlihatkan potret setiap <InlineMath math="0{,}1\text{ s}" /> makin merapat dekat puncak karena bola **kehilangan <InlineMath math="1\text{ m/s}" /> kecepatan ke atas setiap sepersepuluh detik**. Geser waktu kilatan <InlineMath math="a" /> di bawah untuk mengamati perubahan tinggi tiap <InlineMath math="0{,}1\text{ s}" />.
 
-<StrobePhotoMotionLab
-  shot="toss"
+<MathVisual
   title={<>Bola Dilempar ke Atas, Kilatan demi Kilatan</>}
   description={
     <>
-      Lampu berkedip setiap <InlineMath math="0{,}1\text{ s}" />. Perhatikan jaraknya menyempit saat naik dan melebar saat turun.
+      Tinggi <InlineMath math="y=5t-5t^2" /> untuk lemparan <InlineMath math="5\text{ m/s}" />. Geser waktu kilatan <InlineMath math="a" /> untuk melihat selisih tinggi dalam <InlineMath math="0{,}1\text{ s}" /> berikutnya.
     </>
   }
+  footer={<>Selang waktu sama makin rapat dekat puncak saat kecepatan vertikal mendekati nol.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 1.1 }, y: { min: -0.1, max: 1.45 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 0.9, value: 0.2, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "toss-curve", kind: "function", appearance: "primary", formula: "5*x - 5*x^2", domain: { min: 0, max: 1 } },
+      { id: "step-gap", kind: "path", appearance: "answer", points: [{ x: "a", y: "5*a - 5*a^2" }, { x: "a + 0.1", y: "5*(a + 0.1) - 5*(a + 0.1)^2" }] },
+      { id: "vert-drop", kind: "path", appearance: "secondary", points: [{ x: "a + 0.1", y: "5*a - 5*a^2" }, { x: "a + 0.1", y: "5*(a + 0.1) - 5*(a + 0.1)^2" }] },
+      { id: "peak", kind: "point", appearance: "reference", at: { x: 0.5, y: 1.25 } },
+      { id: "pt-a", kind: "marker", appearance: "secondary", x: "a", y: "5*a - 5*a^2" },
+      { id: "pt-b", kind: "marker", appearance: "answer", x: "a + 0.1", y: "5*(a + 0.1) - 5*(a + 0.1)^2" },
+    ],
+    labels: [
+      { key: "peak-lbl", objectId: "peak", at: { x: 0.5, y: 1.25 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "height-now", formula: "5*a - 5*a^2" },
+      { key: "step-shift", formula: "(5*(a + 0.1) - 5*(a + 0.1)^2) - (5*a - 5*a^2)" },
+      { key: "vel-now", formula: "5 - 10*a" },
+    ],
+  }}
   labels={{
-    airTime: <>Waktu di udara</>,
-    height: <>Tinggi awal</>,
-    interval: <>Selang antarkilatan</>,
-    outcome: <>Tinggi puncak</>,
-    viewLabel: "Foto stroboskop yang terbentuk kilatan demi kilatan",
+    a: <>Waktu kilatan <InlineMath math="a" /> (s)</>,
+    "peak-lbl": <>Puncak</>,
+    "height-now": <>Tinggi saat kilatan (m)</>,
+    "step-shift": <>Perubahan tinggi 0,1 s (m)</>,
+    "vel-now": <>Kecepatan saat kilatan (m/s)</>,
   }}
 />
 
-Bola berhenti naik setelah <InlineMath math="\frac{5}{10}=0{,}5\text{ s}" /> pada ketinggian <InlineMath math="\frac{5^2}{2(10)}=1{,}25\text{ m}" />, dan kembali ke tangan setelah <InlineMath math="1\text{ s}" />, bergerak turun dengan <InlineMath math="5\text{ m/s}" />.
+Bola yang dilempar mencapai puncak lalu kembali ke tangan setelah <InlineMath math="1\text{ s}" /> dengan <InlineMath math="5\text{ m/s}" /> ke bawah:
 
-## Benda Jatuh Bebas
+<MathContainer>
+  <BlockMath math="t_{\text{naik}}=\frac{5}{10}=0{,}5\text{ s}" />
+  <BlockMath math="h_{\text{maks}}=\frac{5^2}{2(10)}=1{,}25\text{ m}" />
+</MathContainer>
 
-Dalam pelajaran fisika sekolah, jatuh bebas berarti benda dilepas **tanpa kecepatan awal**, jadi <InlineMath math="v_0 = 0" />. Sebagian buku menyebut semua gerak di bawah gravitasi saja sebagai jatuh bebas, termasuk lemparan, tetapi halaman ini memakai arti yang pertama. Untuk benda yang jatuh setinggi <InlineMath math="h" />, waktu jatuh dan kelajuan saat menyentuh tanah adalah:
+### Benda Jatuh Bebas
+
+Dalam pelajaran fisika sekolah, jatuh bebas berarti benda dilepas **tanpa kecepatan awal**, jadi <InlineMath math="v_0 = 0" />. Untuk benda yang jatuh setinggi <InlineMath math="h" />, waktu jatuh dan kelajuan saat menyentuh tanah adalah:
 
 <MathContainer>
   <BlockMath math="t = \sqrt{\frac{2h}{g}}" />
   <BlockMath math="v = \sqrt{2gh}" />
 </MathContainer>
 
-Bola yang dijatuhkan dari ketinggian <InlineMath math="20\text{ m}" /> mencapai tanah setelah <InlineMath math="t = \sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />. Kecepatannya saat itu:
+Bola yang dijatuhkan dari ketinggian <InlineMath math="20\text{ m}" /> mencapai tanah dengan waktu dan kecepatan:
 
-<BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
+<MathContainer>
+  <BlockMath math="t = \sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />
+  <BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
+  <BlockMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />
+</MathContainer>
 
-Tanda negatif berarti bola bergerak ke bawah. Periksa kelajuannya dengan rumus kedua: <InlineMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />. Kelajuan ini sama dengan kelajuan bola yang dilempar ke atas dengan <InlineMath math="20\text{ m/s}" /> saat kembali ke titik lemparnya, karena keduanya menempuh <InlineMath math="20\text{ m}" /> turun dari keadaan diam sesaat.
+Tanda negatif berarti gerak ke bawah. Kelajuan ini sama dengan bola yang dilempar ke atas pada <InlineMath math="20\text{ m/s}" /> saat kembali ke titik lempar, karena keduanya turun <InlineMath math="20\text{ m}" /> dari diam.
 
-## Jatuh Bebas Kilatan demi Kilatan
+Dijatuhkan dari <InlineMath math="1{,}8\text{ m}" />, bola turun <InlineMath math="5\text{ cm}" /> pada sepersepuluh detik pertama dan **makin jauh pada setiap sepersepuluh detik berikutnya**, karena kelajuannya bertambah <InlineMath math="1\text{ m/s}" /> setiap langkah. Geser waktu kilatan <InlineMath math="a" /> di bawah untuk membandingkan selang <InlineMath math="0{,}1\text{ s}" /> berurutan.
 
-Dijatuhkan dari diam, bola turun <InlineMath math="5\text{ cm}" /> pada sepersepuluh detik pertama dan **makin jauh pada setiap sepersepuluh detik berikutnya**, karena kelajuannya bertambah <InlineMath math="1\text{ m/s}" /> setiap kali.
-
-<StrobePhotoMotionLab
-  shot="drop"
-  title={<>Bola Jatuh, Kilatan demi Kilatan</>}
+<MathVisual
+  title={<>Jatuh Bebas Kilatan demi Kilatan</>}
   description={
     <>
-      Lampu berkedip setiap <InlineMath math="0{,}1\text{ s}" /> sementara rana tetap terbuka. Bandingkan jaraknya dari atas ke bawah.
+      Tinggi <InlineMath math="y=1{,}8-5t^2" /> untuk bola jatuh dari <InlineMath math="1{,}8\text{ m}" />. Geser waktu <InlineMath math="a" /> untuk melihat jarak jatuh tiap <InlineMath math="0{,}1\text{ s}" /> makin lebar.
     </>
   }
+  footer={<>Tiap sepersepuluh sekon bola jatuh makin jauh karena kelajuan terus bertambah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 0.7 }, y: { min: -0.1, max: 2.0 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 0.5, value: 0.3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "drop-curve", kind: "function", appearance: "primary", formula: "1.8 - 5*x^2", domain: { min: 0, max: 0.6 } },
+      { id: "drop-step", kind: "path", appearance: "answer", points: [{ x: "a", y: "1.8 - 5*a^2" }, { x: "a + 0.1", y: "1.8 - 5*(a + 0.1)^2" }] },
+      { id: "vert-span", kind: "path", appearance: "secondary", points: [{ x: "a", y: "1.8 - 5*a^2" }, { x: "a", y: "1.8 - 5*(a + 0.1)^2" }] },
+      { id: "pt-start", kind: "marker", appearance: "secondary", x: "a", y: "1.8 - 5*a^2" },
+      { id: "pt-end", kind: "marker", appearance: "answer", x: "a + 0.1", y: "1.8 - 5*(a + 0.1)^2" },
+    ],
+    labels: [
+      { key: "p2", objectId: "pt-end", at: { x: "a + 0.1", y: "1.8 - 5*(a + 0.1)^2" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "drop-gap", formula: "5*(a + 0.1)^2 - 5*a^2" },
+      { key: "fall-speed", formula: "10*(a + 0.1)" },
+    ],
+  }}
   labels={{
-    airTime: <>Waktu di udara</>,
-    height: <>Tinggi awal</>,
-    interval: <>Selang antarkilatan</>,
-    outcome: <>Kelajuan saat menyentuh lantai</>,
-    viewLabel: "Foto stroboskop yang terbentuk kilatan demi kilatan",
+    a: <>Awal kilatan <InlineMath math="a" /> (s)</>,
+    p2: <>Kilatan berikut</>,
+    "drop-gap": <>Jarak turun 0,1 s (m)</>,
+    "fall-speed": <>Kelajuan akhir langkah (m/s)</>,
   }}
 />
 
-Dari <InlineMath math="1{,}8\text{ m}" />, bola sampai di lantai setelah <InlineMath math="\sqrt{\frac{2(1{,}8)}{10}}=0{,}6\text{ s}" /> dengan <InlineMath math="10(0{,}6)=6\text{ m/s}" />. Jaraknya bertambah <InlineMath math="5" />, <InlineMath math="15" />, <InlineMath math="25" />, dan seterusnya sampai <InlineMath math="55\text{ cm}" />.
+Dari ketinggian <InlineMath math="1{,}8\text{ m}" />, waktu jatuh dan kelajuan saat menyentuh lantai adalah:
 
-## Benda Dilempar ke Bawah
+<MathContainer>
+  <BlockMath math="t=\sqrt{\frac{2(1{,}8)}{10}}=0{,}6\text{ s}" />
+  <BlockMath math="v=10(0{,}6)=6\text{ m/s}" />
+</MathContainer>
+
+Jarak turunnya bertambah dalam kelipatan ganjil: <InlineMath math="5" />, <InlineMath math="15" />, <InlineMath math="25" />, <InlineMath math="35" />, <InlineMath math="45" />, dan <InlineMath math="55\text{ cm}" />.
+
+### Benda Dilempar ke Bawah
 
 Benda yang dilempar ke bawah sudah punya kecepatan awal ke bawah, jadi **kecepatan awalnya negatif**. Gravitasi menambah kelajuannya sejak awal, sehingga benda sampai ke tanah lebih cepat daripada benda yang dijatuhkan dari tinggi yang sama.
 
@@ -221,9 +298,10 @@ Misalkan batu dilempar ke bawah dengan kelajuan <InlineMath math="5\text{ m/s}" 
   <BlockMath math="0 = 30 - 5t - 5t^2" />
   <BlockMath math="t^2 + t - 6 = 0 \quad\Longrightarrow\quad (t + 3)(t - 2) = 0" />
   <BlockMath math="v_y = -5 - 10(2) = -25\text{ m/s}" />
+  <BlockMath math="v_y^2 = (-5)^2 + 2(10)(30) = 625" />
 </MathContainer>
 
-Nilai <InlineMath math="t = -3" /> berarti tiga detik sebelum batu dilempar, jadi dibuang, dan batu sampai setelah <InlineMath math="2\text{ s}" />. Periksa dengan persamaan ketiga: <InlineMath math="v_y^2 = (-5)^2 + 2(10)(30) = 625" />, sehingga kelajuannya <InlineMath math="25\text{ m/s}" />.
+Nilai <InlineMath math="t = -3\text{ s}" /> terjadi sebelum batu dilempar sehingga dibuang, dan batu mendarat setelah <InlineMath math="2\text{ s}" /> dengan kelajuan <InlineMath math="25\text{ m/s}" />.
 
 ## Gerak Vertikal di Dalam Gerak Parabola
 
@@ -234,6 +312,7 @@ Karena itu, waktu benda di udara pada gerak parabola dihitung dari komponen vert
 <MathVisual
   title={<>Dua bola dengan kecepatan awal tegak yang sama</>}
   description={<>Satu kotak grid mewakili <InlineMath math="5\text{ m}" />. Bola teal ditendang dengan <InlineMath math="v_x=10\text{ m/s}" /> dan <InlineMath math="v_{0y}=20\text{ m/s}" />, dan bola oranye dilempar lurus ke atas dengan <InlineMath math="20\text{ m/s}" />. Garis abu-abu menghubungkan posisi keduanya pada saat yang sama, dan tingginya selalu sama.</>}
+  footer={<>Garis penghubung abu-abu selalu datar karena tinggi kedua bola selalu sama.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.5, max: 9 }, y: { min: -0.5, max: 5 } },
@@ -264,31 +343,65 @@ Karena itu, waktu benda di udara pada gerak parabola dihitung dari komponen vert
   }}
 />
 
-## Semburan Tegak di Samping Semburan Miring
+Gerak menyamping tidak pernah memperlambat ataupun mempercepat jatuhnya benda. Pada setiap detik, kedua bola berada di ketinggian yang persis sama karena gravitasi hanya menarik lurus ke bawah.
 
-Selang taman yang diarahkan lurus ke atas adalah gerak vertikal yang bisa kamu lihat sekaligus. **Setiap tetes naik lalu jatuh kembali ke nosel**, dan kelajuan yang sama jika dimiringkan membentuk parabola.
+Selang taman yang menyemprotkan air pada <InlineMath math="8\text{ m/s}" /> memperlihatkan perbandingan ini dengan jelas. Diarahkan lurus ke atas, **setiap tetes naik lalu jatuh kembali ke nosel** sepanjang garis tegak. Miringkan sudut nosel <InlineMath math="a" /> di bawah untuk membandingkan parabola miring dengan semburan tegak <InlineMath math="3{,}2\text{ m}" />.
 
-<HoseJetProjectileLab
-  angle={90}
-  speed={8}
-  title={<>Selang Taman pada Enam Sudut</>}
+<MathVisual
+  title={<>Semburan Air Tegak dan Semburan Miring</>}
   description={
     <>
-      Air keluar dengan <InlineMath math="8\text{ m/s}" />. Mulai dari lurus ke atas, lalu miringkan noselnya.
+      Air keluar pada <InlineMath math="8\text{ m/s}" />. Bandingkan semburan tegak abu-abu (<InlineMath math="3{,}2\text{ m}" />) dengan semburan oranye pada sudut nosel <InlineMath math="a" />.
     </>
   }
+  footer={<>Memiringkan nosel menurunkan puncak semburan di bawah puncak tegak abu-abu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 7.2 }, y: { min: 0, max: 3.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 80, value: 60, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "vert-jet", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 3.2 } },
+      { id: "vert-top", kind: "point", appearance: "reference", at: { x: 0, y: 3.2 } },
+      { id: "jet-curve", kind: "function", appearance: "primary", formula: "x*tan(a*pi/180) - 5*x^2/(64*(cos(a*pi/180))^2)" },
+      { id: "peak-drop", kind: "path", appearance: "construction", points: [{ x: "0", y: "3.2*(sin(a*pi/180))^2" }, { x: "3.2*sin(2*a*pi/180)", y: "3.2*(sin(a*pi/180))^2" }] },
+      { id: "peak-pt", kind: "marker", appearance: "answer", x: "3.2*sin(2*a*pi/180)", y: "3.2*(sin(a*pi/180))^2" },
+      { id: "land-pt", kind: "marker", appearance: "secondary", x: "6.4*sin(2*a*pi/180)", y: "0" },
+    ],
+    labels: [
+      { key: "vtop", objectId: "vert-top", at: { x: 0, y: 3.2 }, placement: "above-right" },
+      { key: "atop", objectId: "peak-pt", at: { x: "3.2*sin(2*a*pi/180)", y: "3.2*(sin(a*pi/180))^2" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "top-height", formula: "3.2*(sin(a*pi/180))^2" },
+      { key: "air-time", formula: "1.6*sin(a*pi/180)" },
+      { key: "range", formula: "6.4*sin(2*a*pi/180)" },
+    ],
+  }}
   labels={{
-    chooseAngle: "Pilih sudut nosel",
-    flight: <>Waktu di udara</>,
-    range: <>Jangkauan</>,
-    top: <>Tinggi puncak</>,
-    viewLabel: "Semburan air dari selang taman",
+    a: <>Sudut nosel <InlineMath math="a" /> (deg)</>,
+    vtop: <>Puncak tegak</>,
+    atop: <>Puncak miring</>,
+    "top-height": <>Tinggi puncak miring (m)</>,
+    "air-time": <>Waktu di udara (s)</>,
+    range: <>Jangkauan mendatar (m)</>,
   }}
 />
 
-Lurus ke atas, air naik <InlineMath math="\frac{8^2}{2(10)}=3{,}2\text{ m}" /> dan kembali setelah <InlineMath math="\frac{2(8)}{10}=1{,}6\text{ s}" />. Pada <InlineMath math="60^\circ" />, komponen vertikalnya hanya <InlineMath math="8\sin60^\circ\approx6{,}9\text{ m/s}" />, jadi semburannya naik sampai <InlineMath math="2{,}4\text{ m}" />.
+Lurus ke atas, air naik setinggi <InlineMath math="3{,}2\text{ m}" /> dan kembali dalam <InlineMath math="1{,}6\text{ s}" />, sedangkan pada <InlineMath math="60^\circ" /> komponen vertikalnya berkurang menjadi sekitar <InlineMath math="6{,}9\text{ m/s}" /> dengan puncak <InlineMath math="2{,}4\text{ m}" />:
 
-## Kesalahan yang Sering Terjadi
+<MathContainer>
+  <BlockMath math="h_{\text{tegak}}=\frac{8^2}{2(10)}=3{,}2\text{ m},\quad t_{\text{udara}}=\frac{2(8)}{10}=1{,}6\text{ s}" />
+  <BlockMath math="v_{0y}=8\sin60^\circ\approx6{,}9\text{ m/s},\quad h_{60^\circ}=2{,}4\text{ m}" />
+</MathContainer>
+
+## Pemeriksaan Tanda dan Contoh Soal Vertikal
+
+Aturan tanda yang konsisten mencegah kesalahan paling umum pada soal gerak vertikal. Menetapkan **arah ke atas sebagai positif** sebelum menghitung memudahkan pemeriksaan tiap langkah pada lemparan maupun jatuhan.
+
+### Memeriksa Tanda pada Perhitungan Vertikal
 
 Sebelum menghitung, tetapkan dulu **arah positif** dan pakai secara konsisten.
 
@@ -301,54 +414,44 @@ Sebelum menghitung, tetapkan dulu **arah positif** dan pakai secara konsisten.
 
 Kesalahan tanda paling mudah dicek di akhir. Benda yang sedang turun harus punya <InlineMath math="v_y" /> negatif, dan waktu yang negatif selalu dibuang.
 
-## Latihan Soal Gerak Vertikal
+### Contoh Pembahasan Lemparan dan Jatuh Bebas
 
-Pakai <InlineMath math="g = 10\text{ m/s}^2" /> dan arah ke atas sebagai positif. Untuk setiap soal, tentukan dulu **tanda kecepatan awal** dan posisi awal.
+Pakai <InlineMath math="g = 10\text{ m/s}^2" /> dan arah ke atas sebagai positif. Untuk tiap soal, tentukan dulu **tanda kecepatan awal** dan ketinggian awal.
 
-1. Bola dilempar tegak ke atas dengan kecepatan <InlineMath math="15\text{ m/s}" />. Tentukan waktu naik dan tinggi maksimumnya.
-
-2. Buah kelapa jatuh dari pohon setinggi <InlineMath math="45\text{ m}" />. Tentukan waktu jatuh dan kelajuannya saat menyentuh tanah.
-
-3. Bola dilempar ke atas dengan kecepatan <InlineMath math="20\text{ m/s}" /> dari atap gedung setinggi <InlineMath math="25\text{ m}" />. Kapan bola menyentuh tanah, dan berapa kecepatannya saat itu?
-
-4. Batu dilempar ke bawah dengan kelajuan <InlineMath math="10\text{ m/s}" /> dari jembatan setinggi <InlineMath math="15\text{ m}" />. Tentukan waktu sampai ke air dan kelajuannya.
-
-### Pembahasan
-
-**Soal 1**. Di titik tertinggi **kecepatannya nol**, jadi:
+**Soal 1.** Bola dilempar tegak ke atas dengan kecepatan <InlineMath math="15\text{ m/s}" />. Tentukan waktu naik dan tinggi maksimumnya. Di titik tertinggi kecepatannya nol:
 
 <MathContainer>
   <BlockMath math="t_{\text{naik}} = \frac{15}{10} = 1{,}5\text{ s}" />
   <BlockMath math="h_{\text{maks}} = \frac{15^2}{2 \times 10} = 11{,}25\text{ m}" />
+  <BlockMath math="y = 15(1{,}5) - 5(1{,}5)^2 = 22{,}5 - 11{,}25 = 11{,}25\text{ m}" />
 </MathContainer>
 
-Periksa dengan persamaan posisi: <InlineMath math="15(1{,}5) - 5(1{,}5)^2 = 22{,}5 - 11{,}25 = 11{,}25\text{ m}" />.
-
-**Soal 2**. Buah jatuh **tanpa kecepatan awal**:
+**Soal 2.** Buah kelapa jatuh dari pohon setinggi <InlineMath math="45\text{ m}" /> tanpa kecepatan awal. Tentukan waktu jatuh dan kelajuannya saat menyentuh tanah:
 
 <MathContainer>
   <BlockMath math="t = \sqrt{\frac{2 \times 45}{10}} = 3\text{ s}" />
   <BlockMath math="v = \sqrt{2 \times 10 \times 45} = 30\text{ m/s}" />
+  <BlockMath math="v_y = 0 - 10(3) = -30\text{ m/s}" />
 </MathContainer>
 
-Periksa: <InlineMath math="v_y = 0 - 10(3) = -30\text{ m/s}" />, jadi kelajuannya <InlineMath math="30\text{ m/s}" />.
-
-**Soal 3**. Ambil atap sebagai <InlineMath math="y_0 = 25" />, jadi tanah adalah <InlineMath math="y = 0" />. Persamaan posisi memberi **persamaan kuadrat dalam** <InlineMath math="t" />:
+**Soal 3.** Bola dilempar ke atas dengan kecepatan <InlineMath math="20\text{ m/s}" /> dari atap setinggi <InlineMath math="25\text{ m}" /> (<InlineMath math="y_0 = 25" />, tanah di <InlineMath math="y = 0" />). Tentukan kapan bola menyentuh tanah dan kecepatannya saat itu:
 
 <MathContainer>
   <BlockMath math="0 = 25 + 20t - 5t^2" />
   <BlockMath math="t^2 - 4t - 5 = 0 \quad\Longrightarrow\quad (t - 5)(t + 1) = 0" />
   <BlockMath math="v_y = 20 - 10(5) = -30\text{ m/s}" />
+  <BlockMath math="v_y^2 = 20^2 + 2(10)(25) = 900" />
 </MathContainer>
 
-Waktu negatif dibuang, jadi bola menyentuh tanah setelah <InlineMath math="5\text{ s}" /> dengan kecepatan <InlineMath math="30\text{ m/s}" /> ke bawah. Periksa: <InlineMath math="v_y^2 = 20^2 + 2(10)(25) = 900" />.
+Waktu negatif dibuang sehingga bola menyentuh tanah setelah <InlineMath math="5\text{ s}" /> dengan kecepatan <InlineMath math="-30\text{ m/s}" /> ke bawah.
 
-**Soal 4**. Kecepatan awalnya **negatif**, <InlineMath math="v_0 = -10" />, dan <InlineMath math="y_0 = 15" />:
+**Soal 4.** Batu dilempar ke bawah dengan kelajuan <InlineMath math="10\text{ m/s}" /> (<InlineMath math="v_0 = -10" />) dari jembatan setinggi <InlineMath math="15\text{ m}" /> (<InlineMath math="y_0 = 15" />). Tentukan waktu sampai ke air dan kelajuannya:
 
 <MathContainer>
   <BlockMath math="0 = 15 - 10t - 5t^2" />
   <BlockMath math="t^2 + 2t - 3 = 0 \quad\Longrightarrow\quad (t + 3)(t - 1) = 0" />
   <BlockMath math="v_y = -10 - 10(1) = -20\text{ m/s}" />
+  <BlockMath math="v_y^2 = (-10)^2 + 2(10)(15) = 400" />
 </MathContainer>
 
-Batu sampai ke air setelah <InlineMath math="1\text{ s}" /> dengan kelajuan <InlineMath math="20\text{ m/s}" />. Periksa: <InlineMath math="(-10)^2 + 2(10)(15) = 400 = 20^2" />.
+Batu sampai ke permukaan air setelah <InlineMath math="1\text{ s}" /> dengan kelajuan <InlineMath math="20\text{ m/s}" />.

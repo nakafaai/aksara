@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Vektorkomponenten",
+  title: "Vektorkomponenten in der Physik",
   description:
-    "Einen Vektor mithilfe von Einheitsvektoren in Komponenten entlang der x-, y- und z-Achse zerlegen.",
+    "Zerlege einen Vektor mit Einheitsvektoren in seine Komponenten entlang der Achsen x, y und z.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-09-01",
@@ -16,13 +16,12 @@ Die horizontale Komponente gibt den Anteil des Vektors entlang der <InlineMath m
 
 > Ein Vektor ist die Summe seiner Komponenten entlang der Koordinatenachsen.
 
-## Ein Klotz auf einer Rampe
-
 Die Gewichtskraft eines <InlineMath math="2\text{ kg}" /> schweren Klotzes zeigt senkrecht nach unten, <InlineMath math="19{,}6\text{ N}" />, aber **rutschen kann der Klotz nur entlang des Bretts**. Zerlegst du sie, siehst du, worauf es ankommt: <InlineMath math="9{,}8\text{ N}" /> hangabwärts bei <InlineMath math="30^\circ" /> und <InlineMath math="16{,}97\text{ N}" /> senkrecht in die Ebene. Kipp das Brett, bis der Hanganteil gewinnt und der Klotz rutscht.
 
 <RampBlockComponentLab
   title={<>Gewichtskraft an der Rampe zerlegt</>}
   description={<>Ein <InlineMath math="2\text{ kg}" /> schwerer Eichenklotz auf einem Kiefernbrett. Er rutscht, sobald <InlineMath math="\tan\theta" /> größer als <InlineMath math="0{,}7" /> ist.</>}
+  footer={<>Mehr Neigung verschiebt Gewichtskraft vom Anpressdruck in die Hangrichtung.</>}
   angle={30}
   friction={0.7}
   mass={2}
@@ -36,63 +35,80 @@ Die Gewichtskraft eines <InlineMath math="2\text{ kg}" /> schweren Klotzes zeigt
   }}
 />
 
+Mit größerem Neigungswinkel wächst die Hangabtriebskraft, während die Normalkraft senkrecht zur Rampe abnimmt, obwohl die gesamte Gewichtskraft bei <InlineMath math="19{,}6\text{ N}" /> bleibt.
+
 ## Komponenten in der Ebene lesen
 
-In einer Ebene lässt sich der Vektor <InlineMath math="\vec{A}" /> als Summe seiner <InlineMath math="x" />- und <InlineMath math="y" />-Komponente schreiben.
+In einer flachen Ebene lässt sich jeder Vektor <InlineMath math="\vec{A}" /> mithilfe von **Einheitsvektoren** sauber in seinen Anteil entlang der <InlineMath math="x" />-Achse und der <InlineMath math="y" />-Achse zerlegen.
 
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />
 
-Dabei ist <InlineMath math="\hat{i}" /> der **Einheitsvektor** in <InlineMath math="x" />-Richtung und <InlineMath math="\hat{j}" /> der Einheitsvektor in <InlineMath math="y" />-Richtung. Die vorzeichenbehafteten Skalare <InlineMath math="A_x" /> und <InlineMath math="A_y" /> geben die Komponenten entlang der beiden Achsen an. Ihr Vorzeichen kennzeichnet die jeweilige Achsenrichtung.
+Dabei ist <InlineMath math="\hat{i}" /> der **Einheitsvektor** in <InlineMath math="x" />-Richtung und <InlineMath math="\hat{j}" /> der Einheitsvektor in <InlineMath math="y" />-Richtung. Die vorzeichenbehafteten Skalare <InlineMath math="A_x" /> und <InlineMath math="A_y" /> geben die Komponenten entlang beider Achsen an, und ihr Vorzeichen kennzeichnet die Richtung.
 
-## Ein Schlitten am Seil
+### Ein Schlittenzug auf zwei Achsen
 
-Das Seil zieht den Schlitten mit <InlineMath math="80\text{ N}" /> unter <InlineMath math="30^\circ" /> über dem Schnee. Auf den Achsen sind das <InlineMath math="69{,}3\text{ N}" /> entlang dem Schnee und <InlineMath math="40\text{ N}" /> nach oben, **Spitze an Fuß unter dem Seil gezeichnet**.
+Ein Seil zieht einen Schlitten mit <InlineMath math="80\text{ N}" /> unter einem verstellbaren Winkel <InlineMath math="a" /> über dem Schnee. Bei <InlineMath math="a = 30^\circ" /> teilt sich der Zug in <InlineMath math="69{,}3\text{ N}" /> entlang dem Schnee und <InlineMath math="40\text{ N}" /> nach oben, **Spitze an Fuß unter dem Seil gezeichnet**.
 
-<SledPullWorkLab
+<MathVisual
   title={<>Der Seilzug auf zwei Achsen</>}
-  description={<>Ein <InlineMath math="25\text{ kg}" /> schwerer Schlitten wird mit <InlineMath math="80\text{ N}" /> über <InlineMath math="5\text{ m}" /> gezogen. Heb oder senk das Seil.</>}
-  angle={30}
-  distance={5}
-  force={80}
-  mass={25}
+  description={<>Eine Zugkraft von <InlineMath math="80\text{ N}" /> unter Winkel <InlineMath math="a" /> über dem Schnee, zerlegt in horizontale und vertikale Komponenten in Newton.</>}
+  footer={<>Erhöh Winkel <InlineMath math="a" />, um Vorwärtszug gegen Auftrieb einzutauschen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 95 }, y: { min: -10, max: 90 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 10, max: 75, value: 30, step: 5, label: "rope-angle" },
+    ],
+    objects: [
+      { id: "fx", kind: "path", appearance: "construction", points: [{ x: "0", y: "0" }, { x: "80*cos(a*pi/180)", y: "0" }] },
+      { id: "fy", kind: "path", appearance: "secondary", points: [{ x: "80*cos(a*pi/180)", y: "0" }, { x: "80*cos(a*pi/180)", y: "80*sin(a*pi/180)" }] },
+      { id: "pull", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "80*cos(a*pi/180)", y: "80*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "80*cos(a*pi/180)", y: "80*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "80*cos(a*pi/180)", y: "80*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "along", formula: "80*cos(a*pi/180)" },
+      { key: "up", formula: "80*sin(a*pi/180)" },
+    ],
+  }}
   labels={{
-    along: <>Entlang dem Schnee <InlineMath math="F\cos\theta" /></>,
-    angle: <>Seilwinkel über dem Schnee</>,
-    angleName: "Seilwinkel über dem Schnee",
-    normal: <>Normalkraft des Schnees</>,
-    up: <>Anteil nach oben <InlineMath math="F\sin\theta" /></>,
-    viewLabel: "Schlitten mit Brennholz wird über Schnee gezogen",
-    work: <>Arbeit auf <InlineMath math="5\text{ m}" /></>,
+    "rope-angle": <>Seilwinkel <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    tip: <InlineMath math="F=80\text{ N}" />,
+    along: <>Entlang Schnee <InlineMath math="F_x" /> (N)</>,
+    up: <>Nach oben <InlineMath math="F_y" /> (N)</>,
   }}
 />
+
+Ein flacheres Seil lenkt mehr von den <InlineMath math="80\text{ N}" /> nach vorn in Bewegungsrichtung, während ein steileres Seil den Schlitten stärker anhebt.
+
+### Länge aus ebenen Komponenten berechnen
 
 Beispielsweise bedeutet <InlineMath math="\vec{A}=6\hat{i}+8\hat{j}" />, dass der Vektor <InlineMath math="6" /> Einheiten in positive <InlineMath math="x" />-Richtung und <InlineMath math="8" /> Einheiten in positive <InlineMath math="y" />-Richtung zeigt.
 
 <BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{6^2+8^2} \\ &= \sqrt{36+64} \\ &= \sqrt{100}=10\end{aligned}" />
 
-Der Betrag des Vektors folgt aus dem **Satz des Pythagoras**, weil die <InlineMath math="x" />- und <InlineMath math="y" />-Komponente senkrecht aufeinander stehen.
-
-Die beiden Komponentenpfeile unten bilden mit dem Vektor ein rechtwinkliges Dreieck, die Länge ist also die Hypotenuse: <InlineMath math="\sqrt{6^2+8^2}=10" />.
+Der Betrag des Vektors folgt aus dem **Satz des Pythagoras**, weil die <InlineMath math="x" />- und <InlineMath math="y" />-Komponente senkrecht aufeinander stehen. Die beiden Komponentenpfeile bilden mit dem Vektor ein rechtwinkliges Dreieck mit der Hypotenuse <InlineMath math="10" />.
 
 <MathVisual
   title={<>Ein Vektor und seine zwei Komponenten</>}
-  description={<><InlineMath math="\vec A=6\hat i+8\hat j" /> mit seinen x- und y-Komponenten. Ein Gitterschritt entspricht <InlineMath math="2" /> Einheiten.</>}
+  description={<><InlineMath math="\vec A=6\hat i+8\hat j" /> direkt in Einheiten zusammen mit seiner horizontalen und vertikalen Komponente.</>}
+  footer={<>Die Katheten <InlineMath math="6" /> und <InlineMath math="8" /> legen die Vektorlänge auf <InlineMath math="10" /> fest.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 9.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "ax", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "ax-head", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 0 }, { x: 2.75, y: 0.125 }, { x: 2.75, y: -0.125 }] },
-      { id: "ay", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
-      { id: "ay-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 4 }, { x: 3.125, y: 3.75 }, { x: 2.875, y: 3.75 }] },
-      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
-      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 4 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) + ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) + ((0.25 / 2) * 3) / Math.hypot(3, 4) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) - ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) - ((0.25 / 2) * 3) / Math.hypot(3, 4) }] },
+      { id: "ax", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "ay", kind: "vector", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 6, y: 8 } },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 8 } },
     ],
     labels: [
-      { key: "ax", objectId: "ax", at: { x: 1.5, y: 0 }, placement: "below" },
-      { key: "ay", objectId: "ay", at: { x: 3, y: 2 }, placement: "right" },
-      { key: "a", objectId: "a", at: { x: 1.5, y: 2 }, placement: "above-left" },
+      { key: "ax", objectId: "ax", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "ay", objectId: "ay", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 3, y: 4 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -102,13 +118,17 @@ Die beiden Komponentenpfeile unten bilden mit dem Vektor ein rechtwinkliges Drei
   }}
 />
 
+Stehen zwei Komponenten senkrecht aufeinander, ergibt sich der Betrag immer aus der Wurzel der Quadratsumme und nie aus der einfachen Summe <InlineMath math="14" />.
+
 ## Komponenten im dreidimensionalen Raum
 
-Im dreidimensionalen Raum benötigt ein Vektor drei Komponenten. Die allgemeine Form ist:
+Im dreidimensionalen Raum benötigt ein Vektor drei zueinander senkrechte Komponenten entlang <InlineMath math="x" />, <InlineMath math="y" /> und <InlineMath math="z" />, geschrieben mit dem **dritten Einheitsvektor** <InlineMath math="\hat{k}" />.
 
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}+A_z\hat{k}" />
 
-Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der **dritten Koordinatenachse**, der <InlineMath math="z" />-Achse. Diese Komponente wird gebraucht, wenn eine Bewegung oder Kraft nicht auf eine Ebene beschränkt ist, etwa bei einer Drohne, die sich gleichzeitig nach Osten, nach Norden und nach oben bewegt.
+### Senkrechte Achsenschritte zusammensetzen
+
+Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der **dritten Koordinatenachse**, der <InlineMath math="z" />-Achse. Diese Komponente wird gebraucht, wenn eine Bewegung oder Kraft eine Ebene verlässt, etwa bei einer Drohne im Raum.
 
 <MathVisual
   title={<>Komponenten von <InlineMath math="\vec{A}" /></>}
@@ -118,6 +138,7 @@ Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der **dritten Koo
       drei zueinander senkrechte Komponenten zerlegt.
     </>
   }
+  footer={<>Geh die drei Achsenschritte nacheinander und erreiche exakt die Spitze von <InlineMath math="\vec A" />.</>}
   labels={{
     "l1": <InlineMath math="A" />,
     "l2": <InlineMath math="A_x" />,
@@ -129,14 +150,10 @@ Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der **dritten Koo
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 2.5 } },
     view: { kind: "camera", position: { x: 8, y: 6, z: -6 }, target: { x: 2, y: 1.5, z: 1 } },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2.4, y: 1.8, z: 1.2 }, { x: 4, y: 3, z: 2 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2.4, y: 1.8, z: 1.2 }, to: { x: 4, y: 3, z: 2 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 2, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 4, y: 0, z: 0 }, { x: 4, y: 1.5, z: 0 }, { x: 4, y: 3, z: 0 }], appearance: "answer" },
-      { id: "s3-head", kind: "vector", from: { x: 4, y: 1.5, z: 0 }, to: { x: 4, y: 3, z: 0 }, appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 3, z: 0 }, { x: 4, y: 3, z: 1 }, { x: 4, y: 3, z: 2 }], appearance: "highlight" },
-      { id: "s4-head", kind: "vector", from: { x: 4, y: 3, z: 1 }, to: { x: 4, y: 3, z: 2 }, appearance: "highlight" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 3, z: 2 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 4, y: 0, z: 0 }, to: { x: 4, y: 3, z: 0 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 4, y: 3, z: 0 }, to: { x: 4, y: 3, z: 2 }, appearance: "highlight" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.8, z: 1.2 }, placement: "above-right" },
@@ -147,32 +164,52 @@ Der Einheitsvektor <InlineMath math="\hat{k}" /> zeigt entlang der **dritten Koo
   }}
 />
 
-Die Darstellung setzt die Komponenten nacheinander zusammen: zuerst entlang der <InlineMath math="x" />-Achse, dann entlang der <InlineMath math="y" />-Achse und schließlich entlang der <InlineMath math="z" />-Achse. Der so erreichte Endpunkt stimmt mit dem Endpunkt des Vektors <InlineMath math="\vec{A}" /> überein.
-
-
-Drehe das Modell, um zu sehen, dass die <InlineMath math="z" />-Komponente **senkrecht auf der <InlineMath math="xy" />-Ebene** steht. Die <InlineMath math="x" />- und <InlineMath math="y" />-Komponenten bilden einen Vektor in dieser Ebene. Für den räumlichen Vektorbetrag kommt die <InlineMath math="z" />-Komponente hinzu.
+Die Darstellung setzt die Schritte nacheinander entlang <InlineMath math="x" />, <InlineMath math="y" /> und <InlineMath math="z" /> zusammen. Dreh das Modell und erkenne, dass die <InlineMath math="z" />-Komponente **senkrecht auf der <InlineMath math="xy" />-Ebene** steht, sodass alle drei Quadrate in die Länge eingehen:
 
 <BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{4^2+3^2+2^2} \\ &= \sqrt{16+9+4} \\ &= \sqrt{29}\end{aligned}" />
 
-Die Drohne landet <InlineMath math="2\text{ m}" /> östlich, <InlineMath math="3\text{ m}" /> nördlich und <InlineMath math="6\text{ m}" /> über ihrem Startplatz. Die drei farbigen Pfeile sind diese Komponenten, Spitze an Fuß, und der violette Pfeil ist ihre Summe, <InlineMath math="\sqrt{2^2+3^2+6^2}=7" /> Meter lang.
+### Drei Komponenten eines Flugs
 
-<DroneDisplacementLab
+Eine Drohne fliegt <InlineMath math="2\text{ m}" /> nach Osten und <InlineMath math="3\text{ m}" /> nach Norden, was über Grund <InlineMath math="\sqrt{13}\text{ m}" /> (etwa <InlineMath math="3{,}61\text{ m}" />) ergibt, und steigt zusätzlich um <InlineMath math="h" /> Meter auf. Bei <InlineMath math="h = 6\text{ m}" /> liefert die **räumliche Länge** einen genauen ganzzahligen Wert:
+
+<BlockMath math="\lvert\vec{r}\rvert = \sqrt{2^2+3^2+6^2} = \sqrt{49} = 7\text{ m}" />
+
+<MathVisual
   title={<>Drei Komponenten eines Flugs</>}
-  description={<>Die Drohne steigt <InlineMath math="6\text{ m}" /> und fliegt dann <InlineMath math="2\text{ m}" /> nach Osten und <InlineMath math="3\text{ m}" /> nach Norden.</>}
-  hops={[
-    { east: 0, north: 0, up: 6 },
-    { east: 2, north: 0, up: 0 },
-    { east: 0, north: 3, up: 0 },
-  ]}
+  description={<>Bodendiagonale <InlineMath math="\sqrt{13}\text{ m}" /> aus <InlineMath math="2\text{ m}" /> Ost und <InlineMath math="3\text{ m}" /> Nord zusammen mit Steighöhe <InlineMath math="h" />.</>}
+  footer={<>Bei <InlineMath math="h=6\text{ m}" /> ergeben die Komponenten <InlineMath math="(2,3,6)" /> genau <InlineMath math="7\text{ m}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 1, max: 10, value: 6, step: 0.5, label: "climb-h" },
+    ],
+    objects: [
+      { id: "horiz", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(13), y: 0 } },
+      { id: "vert", kind: "path", appearance: "secondary", points: [{ x: "sqrt(13)", y: "0" }, { x: "sqrt(13)", y: "h" }] },
+      { id: "span", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "sqrt(13)", y: "h" }] },
+      { id: "drone", kind: "marker", appearance: "answer", x: "sqrt(13)", y: "h" },
+    ],
+    labels: [
+      { key: "horiz", objectId: "horiz", at: { x: 1.8, y: 0 }, placement: "below" },
+      { key: "drone", objectId: "drone", at: { x: "sqrt(13)", y: "h" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "up-val", formula: "h" },
+      { key: "space-len", formula: "sqrt(13 + h^2)" },
+    ],
+  }}
   labels={{
-    chooseFactor: "Flugplan mit k multiplizieren",
-    displacement: <>Verschiebung</>,
-    path: <>Geflogene Strecke</>,
-    size: <>Abstand vom Startplatz</>,
-    viewLabel: "Drohne fliegt von ihrem Startplatz",
+    "climb-h": <>Steighöhe <InlineMath math="h" /> (m)</>,
+    horiz: <InlineMath math="\sqrt{13}\text{ m}" />,
+    drone: <InlineMath math="\vec r" />,
+    "up-val": <>Höhe <InlineMath math="z" /> (m)</>,
+    "space-len": <>Gesamtabstand (m)</>,
   }}
 />
 
+Verstellst du <InlineMath math="h" />, siehst du direkt, dass der vertikale Schritt senkrecht auf der gesamten Bodenebene steht und sein Quadrat einfach zu <InlineMath math="x^2 + y^2" /> addiert wird.
 
 ## Positive und negative Vorzeichen
 
@@ -186,60 +223,74 @@ Komponenten können positiv oder negativ sein. Das Vorzeichen zeigt <Highlight>d
 
 Für <InlineMath math="\vec{B}=-5\hat{i}+2\hat{j}" /> zeigt die Komponente mit dem Betrag <InlineMath math="5" /> in negativer <InlineMath math="x" />-Richtung. Die Komponente mit dem Betrag <InlineMath math="2" /> zeigt dagegen in positiver <InlineMath math="y" />-Richtung.
 
-## Eine Fähre nach Südwesten
+Bei einem Kompasskurs <InlineMath math="b" /> im Uhrzeigersinn ab Norden fährt eine <InlineMath math="8\text{ km}" /> lange Fährfahrt bei <InlineMath math="b = 225^\circ" /> nach Südwesten, sodass **beide Komponenten negativ werden**: <InlineMath math="-5{,}66\text{ km}" /> nach Osten und <InlineMath math="-5{,}66\text{ km}" /> nach Norden. Dreh <InlineMath math="b" /> durch alle Quadranten und beobachte die Vorzeichen.
 
-Mit dem Kurswinkel <InlineMath math="225^\circ" /> fährt die Fähre nach Südwesten, also sind **beide Komponenten negativ**: <InlineMath math="-5{,}66\text{ km}" /> nach Osten und <InlineMath math="-5{,}66\text{ km}" /> nach Norden. Dreh den Kurs durch jeden Quadranten und sieh, wie die Vorzeichen wechseln.
-
-<ShipBearingComponentLab
-  title={<>Vorzeichen vom Kompass</>}
-  description={<>Eine Fähre fährt <InlineMath math="8\text{ km}" /> aus dem Hafen. Dreh ihren Kurs.</>}
-  courses={[{ bearing: 225, distance: 8 }]}
+<MathVisual
+  title={<>Vorzeichen der Komponenten am Kompass</>}
+  description={<>Eine Fährfahrt von <InlineMath math="8\text{ km}" /> beim Kurs <InlineMath math="b" /> im Uhrzeigersinn ab Norden mit Ost- und Nordkomponente.</>}
+  footer={<>Dreh Kurs <InlineMath math="b" /> über jede Achse und sieh Ost- und Nordzeichen wechseln.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -10, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 0, max: 360, value: 225, step: 15, label: "bearing" },
+    ],
+    objects: [
+      { id: "east-comp", kind: "path", appearance: "construction", points: [{ x: "0", y: "0" }, { x: "8*sin(b*pi/180)", y: "0" }] },
+      { id: "north-comp", kind: "path", appearance: "secondary", points: [{ x: "8*sin(b*pi/180)", y: "0" }, { x: "8*sin(b*pi/180)", y: "8*cos(b*pi/180)" }] },
+      { id: "ferry-leg", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "8*sin(b*pi/180)", y: "8*cos(b*pi/180)" }] },
+      { id: "ship", kind: "marker", appearance: "answer", x: "8*sin(b*pi/180)", y: "8*cos(b*pi/180)" },
+    ],
+    labels: [
+      { key: "ship", objectId: "ship", at: { x: "8*sin(b*pi/180)", y: "8*cos(b*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "east-km", formula: "8*sin(b*pi/180)" },
+      { key: "north-km", formula: "8*cos(b*pi/180)" },
+    ],
+  }}
   labels={{
-    bearing: <>Kurswinkel der letzten Etappe</>,
-    bearingName: "Kurswinkel der letzten Etappe",
-    direction: <>Kurswinkel vom Hafen aus</>,
-    distance: <>Abstand vom Hafen</>,
-    east: <>Ostkomponente</>,
-    north: <>Nordkomponente</>,
-    viewLabel: "Fähre fährt aus einem Hafen",
+    bearing: <>Kompasskurs <InlineMath math="b" /> (<InlineMath math="^\circ" />)</>,
+    ship: <InlineMath math="8\text{ km}" />,
+    "east-km": <>Ostkomponente (km)</>,
+    "north-km": <>Nordkomponente (km)</>,
   }}
 />
 
+Jeder Quadrant liefert ein eigenes Vorzeichenpaar, während die Streckenlänge immer <InlineMath math="8\text{ km}" /> bleibt. Der Blick auf den Quadranten verhindert Vorzeichenfehler vor jeder Addition.
+
 ## Eine Verschiebung in Komponenten schreiben
 
-Ein Schüler geht <InlineMath math="3\text{ m}" /> nach Osten und anschließend <InlineMath math="4\text{ m}" /> nach Norden. Wird Osten als positive <InlineMath math="x" />-Richtung und Norden als positive <InlineMath math="y" />-Richtung festgelegt, lautet der Verschiebungsvektor:
+Jeder Weg über ein Gitter oder durch Stadtstraßen zerfällt sauber in **Achsenkomponenten mit physikalischer Einheit**. Summierst du Ost-West-Schritte getrennt von Nord-Süd-Schritten, erhältst du aus dem rechtwinkligen Dreieck direkt die resultierende Verschiebung, ihren Betrag und ihren Winkel.
+
+### Zwei senkrechte Schritte zu Fuß
+
+Ein Wanderer geht <InlineMath math="3\text{ m}" /> nach Osten und biegt dann <InlineMath math="4\text{ m}" /> nach Norden ab. Mit Osten als positive <InlineMath math="x" />-Richtung und Norden als positive <InlineMath math="y" />-Richtung lautet der Verschiebungsvektor:
 
 <MathContainer>
   <BlockMath math="\vec{s}=(3\hat{i}+4\hat{j})\text{ m}" />
   <BlockMath math="\begin{aligned}\lvert\vec{s}\rvert &= \sqrt{3^2+4^2}\text{ m} \\ &= \sqrt{9+16}\text{ m} \\ &= 5\text{ m}\end{aligned}" />
 </MathContainer>
 
-Die Komponenten einer Verschiebung haben die **Einheit Meter**. Einheitsvektoren geben nur die Richtung an. Deshalb muss die physikalische Einheit auch in der Vektorgleichung stehen.
-
-Aus der Komponentenform ist sofort erkennbar, dass die resultierende Verschiebung zugleich nach Osten und nach Norden zeigt. Ihr Betrag von <InlineMath math="5\text{ m}" /> ergibt sich aus einem rechtwinkligen Dreieck mit den Kathetenlängen <InlineMath math="3\text{ m}" /> und <InlineMath math="4\text{ m}" />.
-
-Miss die Richtung der Verschiebung von Osten nach Norden. Beide Komponenten sind positiv, deshalb liegt der Winkel im ersten Quadranten.
+Die Komponenten einer Verschiebung haben die **Einheit Meter**. Einheitsvektoren geben nur die Richtung an, weshalb die Einheit in der Gleichung erhalten bleibt. Für den Winkel ab Osten im ersten Quadranten gilt:
 
 <BlockMath math="\begin{aligned}\tan\theta &= \frac{4}{3} \\ \theta &= \arctan\left(\frac{4}{3}\right) \\ &\approx 53{,}1^\circ\end{aligned}" />
 
 Die Verschiebung zeigt also etwa <InlineMath math="53{,}1^\circ" /> nördlich von Osten.
 
-Hier ist der Weg als Komponenten. Der Teil nach Osten und der nach Norden sind die Komponenten, und der orange Pfeil ist die daraus geschriebene Verschiebung, <InlineMath math="3\hat{i}+4\hat{j}" /> Meter, etwa <InlineMath math="53{,}1^\circ" /> von Osten.
-
 <MathVisual
   title={<>Ein Weg als Komponenten geschrieben</>}
-  description={<><InlineMath math="3\text{ m}" /> nach Osten, dann <InlineMath math="4\text{ m}" /> nach Norden. Ein Gitterschritt ist <InlineMath math="1\text{ m}" />.</>}
+  description={<><InlineMath math="3\text{ m}" /> nach Osten und <InlineMath math="4\text{ m}" /> nach Norden ergeben <InlineMath math="3\hat i+4\hat j\text{ m}" /> direkt in Metern.</>}
+  footer={<>Ost- und Nordkomponente bilden ein Dreieck mit <InlineMath math="5\text{ m}" /> bei <InlineMath math="53{,}1^\circ" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "east", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "east-head", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 0 }, { x: 2.75, y: 0.125 }, { x: 2.75, y: -0.125 }] },
-      { id: "north", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
-      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 4 }, { x: 3.125, y: 3.75 }, { x: 2.875, y: 3.75 }] },
-      { id: "walk", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
-      { id: "walk-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 4 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) + ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) + ((0.25 / 2) * 3) / Math.hypot(3, 4) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) - ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) - ((0.25 / 2) * 3) / Math.hypot(3, 4) }] },
+      { id: "east", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "north", kind: "vector", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "walk", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
     ],
     labels: [
       { key: "east", objectId: "east", at: { x: 1.5, y: 0 }, placement: "below" },
@@ -254,25 +305,48 @@ Hier ist der Weg als Komponenten. Der Teil nach Osten und der nach Norden sind d
   }}
 />
 
-## Ein Weg in drei Etappen
+Beide Komponenten sind positiv, sodass der Pfeil klar im ersten Quadranten liegt und sein Steigungsverhältnis <InlineMath math="4/3" /> genau <InlineMath math="\tan 53{,}1^\circ" /> entspricht.
 
-Der Weg führt <InlineMath math="400\text{ m}" /> nach Osten, <InlineMath math="300\text{ m}" /> nach Norden und <InlineMath math="100\text{ m}" /> zurück nach Westen. **Addier die Komponenten**: <InlineMath math="300\text{ m}" /> nach Osten und <InlineMath math="300\text{ m}" /> nach Norden, also ist die Verschiebung <InlineMath math="424\text{ m}" />, obwohl der Weg <InlineMath math="800\text{ m}" /> lang ist.
+### Drei Straßenetappen addieren
 
-<CityWalkDisplacementLab
-  title={<>Die Etappen eines Wegs addieren</>}
-  description={<>Ein Spaziergang mit <InlineMath math="1{,}25\text{ m/s}" /> durch die Straßen der Stadt.</>}
-  legs={[
-    { east: 400, north: 0 },
-    { east: 0, north: 300 },
-    { east: -100, north: 0 },
-  ]}
-  pace={1.25}
+Folge nun einem Weg aus drei Etappen: <InlineMath math="400\text{ m}" /> nach Osten, <InlineMath math="300\text{ m}" /> nach Norden und dann <InlineMath math="w" /> Meter zurück nach Westen. Bei <InlineMath math="w = 100\text{ m}" /> lässt die **Addition der Ostkomponenten** genau <InlineMath math="300\text{ m}" /> nach Osten und <InlineMath math="300\text{ m}" /> nach Norden übrig, also eine Verschiebung von <InlineMath math="424\text{ m}" /> bei einer Weglänge von <InlineMath math="800\text{ m}" />.
+
+<MathVisual
+  title={<>Drei Etappen eines Wegs addieren</>}
+  description={<>Etappen von <InlineMath math="400\text{ m}" /> Ost, <InlineMath math="300\text{ m}" /> Nord und einem verstellbaren Rückweg <InlineMath math="w" /> nach Westen in Metern.</>}
+  footer={<>Größerer Rückweg <InlineMath math="w" /> nach Westen verkürzt die Ostverschiebung.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -50, max: 460 }, y: { min: -50, max: 380 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 400, value: 100, step: 50, label: "west-back" },
+    ],
+    objects: [
+      { id: "leg1", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 400, y: 0 } },
+      { id: "leg2", kind: "vector", appearance: "secondary", from: { x: 400, y: 0 }, to: { x: 400, y: 300 } },
+      { id: "leg3", kind: "path", appearance: "primary", points: [{ x: "400", y: "300" }, { x: "400 - w", y: "300" }] },
+      { id: "net-walk", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "400 - w", y: "300" }] },
+      { id: "end-pt", kind: "marker", appearance: "answer", x: "400 - w", y: "300" },
+    ],
+    labels: [
+      { key: "leg1", objectId: "leg1", at: { x: 200, y: 0 }, placement: "below" },
+      { key: "end-pt", objectId: "end-pt", at: { x: "400 - w", y: "300" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "net-east", formula: "400 - w" },
+      { key: "total-path", formula: "700 + w" },
+      { key: "disp-m", formula: "sqrt((400 - w)^2 + 90000)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Durchschnittliches Tempo</>,
-    averageVelocity: <>Mittlere Geschwindigkeit</>,
-    displacement: <>Verschiebung</>,
-    distance: <>Zurückgelegte Strecke</>,
-    time: <>Zeit</>,
-    viewLabel: "Spaziergang durch eine Stadt von oben",
+    "west-back": <>Rückweg nach Westen <InlineMath math="w" /> (m)</>,
+    leg1: <InlineMath math="400\text{ m}" />,
+    "end-pt": <InlineMath math="\Delta\vec r" />,
+    "net-east": <>Netto-Ostkomponente (m)</>,
+    "total-path": <>Gesamter Weg (m)</>,
+    "disp-m": <>Verschiebung (m)</>,
   }}
 />
+
+Je weiter der Rückweg nach Westen reicht, desto länger wird die gelaufene Strecke, während die Endposition näher an die Nordachse rückt, weil negative Komponenten direkt auf der <InlineMath math="x" />-Achse abziehen.

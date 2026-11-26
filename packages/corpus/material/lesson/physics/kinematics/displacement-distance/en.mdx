@@ -34,6 +34,7 @@ In two-dimensional motion, displacement is drawn as the straight line from the s
       displacement.
     </>
   }
+  footer={<>Every bend adds to distance while the arrow joins only start and finish.</>}
   labels={{
     chooseCase: "Choose route",
     modeLabels: {
@@ -56,13 +57,13 @@ In two-dimensional motion, displacement is drawn as the straight line from the s
   }}
 />
 
-## Detours Change Distance
+As soon as the car turns or heads back, distance keeps climbing while the displacement arrow stays shorter or shrinks to zero.
 
-Compare an object that travels from the same start point to the same end point in two ways. A straight route gives a distance equal to the displacement magnitude. A detour gives a longer distance, but the displacement remains the straight line from start to finish.
+## How Detours Separate Distance from Displacement
 
-In the simulation, choose the turning route and then the return route. Compare **path length** with **displacement magnitude**. When the car returns to the start, its path still has length, while the segment connecting its initial and final positions has zero length.
+Along a straight path without reversing, **distance and displacement magnitude** match. A detour gives a longer distance, while the displacement remains the straight line from start to finish.
 
-## A Detour through Town
+In the simulation above, choose the turning route and then the return route. Compare **path length** with **displacement magnitude**. When the car returns to the start, its path still has length, while the segment connecting its initial and final positions has zero length.
 
 Scale the lesson's example up to a town and **compare the path with the arrow**: walk <InlineMath math="400\text{ m}" /> east along a street, then <InlineMath math="300\text{ m}" /> south, at <InlineMath math="1.25\text{ m/s}" />.
 
@@ -78,6 +79,7 @@ Scale the lesson's example up to a town and **compare the path with the arrow**:
       The amber path is the distance you walk. The violet arrow is the displacement, straight from the start to where you stand.
     </>
   }
+  footer={<>The two street legs total <InlineMath math="700\text{ m}" />, while the direct arrow spans <InlineMath math="500\text{ m}" />.</>}
   labels={{
     averageSpeed: <>Average speed</>,
     averageVelocity: <>Size of the average velocity</>,
@@ -90,7 +92,11 @@ Scale the lesson's example up to a town and **compare the path with the arrow**:
 
 The path is <InlineMath math="700\text{ m}" /> long, but the arrow is only <InlineMath math="500\text{ m}" />, the same <InlineMath math="3:4:5" /> triangle as before. In <InlineMath math="560\text{ s}" /> that gives an average speed of <InlineMath math="1.25\text{ m/s}" /> and an average velocity of only about <InlineMath math="0.89\text{ m/s}" />.
 
-## Distance Describes Path Length
+## Distance Always Accumulates Along the Path
+
+Distance never takes a minus sign because it **adds every step covered along the way**. Even when a curved track brings you back toward the start, every extra meter still counts.
+
+### Distance Describes Path Length
 
 Distance is always zero or positive. It answers the question, "how long is the path traveled?" So distance **does not include direction**.
 
@@ -100,31 +106,67 @@ If an object moves <InlineMath math="4 \text{ m}" /> east and then <InlineMath m
 
 The symbol <InlineMath math="s" /> is often used for distance traveled.
 
-## Distance Only Grows
+### Distance Only Grows While Displacement Shrinks
 
-Distance **can only grow** while you move. On a <InlineMath math="400\text{ m}" /> running track, every extra <InlineMath math="100\text{ m}" /> of running adds <InlineMath math="100\text{ m}" /> of distance, whichever way the bend turns.
+Distance **can only grow** while you move. On a circular <InlineMath math="400\text{ m}" /> running track, every extra <InlineMath math="100\text{ m}" /> of running adds <InlineMath math="100\text{ m}" /> of distance, while displacement shrinks again after the halfway mark. Drag the distance run <InlineMath math="s" /> to compare both curves.
 
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>Distance on a Running Track</>}
+<MathVisual
+  title={<>Distance vs Displacement on a Track</>}
   description={
     <>
-      A runner on lane <InlineMath math="1" /> keeps <InlineMath math="8\text{ m/s}" />. Stop the run at each mark and watch the distance climb while the displacement does not.
+      Cumulative distance (orange) and displacement magnitude (teal) on a
+      circular <InlineMath math="400\text{ m}" /> track up to mark{" "}
+      <InlineMath math="s" />.
     </>
   }
+  footer={<>Distance climbs steadily to <InlineMath math="400\text{ m}" />, while displacement drops back to zero.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 430 }, y: { min: -20, max: 430 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 50, max: 400, value: 200, step: 50, label: "s" },
+    ],
+    objects: [
+      { id: "dist-curve", kind: "function", appearance: "primary", formula: "x", domain: { min: 0, max: 400 } },
+      { id: "disp-curve", kind: "function", appearance: "construction", formula: "(400/pi)*abs(sin(pi*x/400))", domain: { min: 0, max: 400 } },
+      {
+        id: "gap",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "s", y: "(400/pi)*abs(sin(pi*s/400))" },
+          { x: "s", y: "s" },
+        ],
+      },
+      { id: "dist-dot", kind: "marker", appearance: "primary", x: "s", y: "s" },
+      { id: "disp-dot", kind: "marker", appearance: "construction", x: "s", y: "(400/pi)*abs(sin(pi*s/400))" },
+    ],
+    labels: [
+      { key: "dist-lbl", objectId: "dist-dot", at: { x: "s", y: "s" }, placement: "above-left" },
+      { key: "disp-lbl", objectId: "disp-dot", at: { x: "s", y: "(400/pi)*abs(sin(pi*s/400))" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "dist-val", formula: "s" },
+      { key: "disp-val", formula: "(400/pi)*abs(sin(pi*s/400))" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Size of the average velocity</>,
-    chooseDistance: "Choose how far the runner goes",
-    displacement: <>Size of the displacement</>,
-    distance: <>Distance run</>,
-    time: <>Time</>,
-    viewLabel: "Runner on a 400 m athletics track seen from above",
+    s: <>Distance run <InlineMath math="s" /> (m)</>,
+    "dist-lbl": <InlineMath math="s" />,
+    "disp-lbl": <InlineMath math="|\Delta \vec{r}|" />,
+    "dist-val": <>Distance (m)</>,
+    "disp-val": <>Displacement magnitude (m)</>,
   }}
 />
 
-The distance reads <InlineMath math="100" />, <InlineMath math="200" />, <InlineMath math="300" />, and <InlineMath math="400\text{ m}" />. The displacement goes from about <InlineMath math="72\text{ m}" /> to <InlineMath math="112\text{ m}" />, back to about <InlineMath math="100\text{ m}" />, and finally to <InlineMath math="0" />.
+The distance climbs steadily through <InlineMath math="100" />, <InlineMath math="200" />, <InlineMath math="300" />, and <InlineMath math="400\text{ m}" />. Meanwhile, the displacement peaks at the track diameter of about <InlineMath math="127.3\text{ m}" /> before falling back to <InlineMath math="0\text{ m}" />.
 
-## Displacement Has Magnitude and Direction
+## Displacement Depends on Start and Finish Only
+
+Unlike distance, displacement is **the directed difference between two positions**. Shifting the zero point of your ruler changes every position reading without changing the displacement itself.
+
+### Displacement Has Magnitude and Direction
 
 Displacement is a vector quantity. That means displacement has magnitude and direction. For the example <InlineMath math="4 \text{ m}" /> east and then <InlineMath math="3 \text{ m}" /> south, the displacement magnitude is the straight line from start to finish:
 
@@ -136,34 +178,79 @@ Displacement is a vector quantity. That means displacement has magnitude and dir
 
 The direction of displacement <Highlight>points straight from the starting point to the ending point</Highlight>.
 
-## The Same Displacement from Every Landmark
+### The Same Displacement from Every Landmark
 
-Displacement **does not depend on where you put zero**. A cyclist rides from <InlineMath math="20\text{ m}" /> to <InlineMath math="50\text{ m}" /> east of a store and back to <InlineMath math="35\text{ m}" />. Measure from the store, from Rani's house, or from the flagpole.
+Displacement **does not depend on where you put zero**. A cyclist rides from <InlineMath math="20\text{ m}" /> to <InlineMath math="50\text{ m}" /> east of a store and back to <InlineMath math="35\text{ m}" />. Slide the origin offset <InlineMath math="k" /> along the street and check the position change.
 
-<StreetOriginPositionLab
-  title={<>One Ride, Three Origins</>}
+<MathVisual
+  title={<>One Ride Measured from Shifted Origins</>}
   description={
     <>
-      East is positive. The amber arrow runs from the chosen origin to the cyclist, and the graph shows the position over time.
+      Cyclist position over time when zero sits at <InlineMath math="k\text{ m}" />{" "}
+      east of the store. The violet bracket shows the net displacement.
     </>
   }
+  footer={<>Shifting <InlineMath math="k" /> slides the whole graph vertically, yet the gap stays <InlineMath math="+15\text{ m}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -25, max: 75 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: -20, max: 40, value: 0, step: 10, label: "k" },
+    ],
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      {
+        id: "ride",
+        kind: "path",
+        appearance: "primary",
+        points: [
+          { x: "0", y: "20 - k" },
+          { x: "6", y: "50 - k" },
+          { x: "9", y: "35 - k" },
+        ],
+      },
+      {
+        id: "shift",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "9.8", y: "20 - k" },
+          { x: "9.8", y: "35 - k" },
+        ],
+      },
+      { id: "start-dot", kind: "marker", appearance: "secondary", x: "0", y: "20 - k" },
+      { id: "end-dot", kind: "marker", appearance: "answer", x: "9", y: "35 - k" },
+    ],
+    labels: [
+      { key: "start-lbl", objectId: "start-dot", at: { x: "0", y: "20 - k" }, placement: "above-right" },
+      { key: "end-lbl", objectId: "end-dot", at: { x: "9", y: "35 - k" }, placement: "above" },
+      { key: "delta-lbl", objectId: "shift", at: { x: "9.8", y: "27.5 - k" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "x-start", formula: "20 - k" },
+      { key: "x-end", formula: "35 - k" },
+      { key: "dx", formula: "(35 - k) - (20 - k)" },
+    ],
+  }}
   labels={{
-    change: <>Change of position</>,
-    chooseOrigin: "Choose the origin",
-    end: <>Final position</>,
-    origins: {
-      store: <>Store</>,
-      house: <>Rani's house</>,
-      pole: <>Flagpole</>,
-    },
-    start: <>Initial position</>,
-    viewLabel: "Cyclist on a street with three landmarks",
+    k: <>Origin shift <InlineMath math="k" /> (m)</>,
+    "start-lbl": <InlineMath math="x_0" />,
+    "end-lbl": <InlineMath math="x_t" />,
+    "delta-lbl": <InlineMath math="\Delta x" />,
+    "x-start": <>Initial position (m)</>,
+    "x-end": <>Final position (m)</>,
+    dx: <>Displacement (m)</>,
   }}
 />
 
 The initial and final positions change with the origin, but the change of position is always <InlineMath math="+15\text{ m}" />: <InlineMath math="15\text{ m}" /> toward the east, while the path ridden is <InlineMath math="45\text{ m}" />.
 
-## Returning to the Starting Point
+## Closed Loops and Turning Routes
+
+When an object finishes where it began, its displacement becomes **exactly zero**. On a right-angle turn in two dimensions, the Pythagorean theorem gives the direct start-to-finish arrow.
+
+### Zero Displacement on Closed Loops
 
 If an object travels around and returns to the starting point, the distance is not zero because a path was still traveled. But the displacement is zero because the **initial and final positions are the same**.
 
@@ -180,6 +267,7 @@ Three trips leave the same start. The straight one has distance equal to the siz
 <MathVisual
   title={<>Three Trips, One Start</>}
   description={<>A straight trip (teal), a detour (orange) and a loop back to the start (violet).</>}
+  footer={<>Straight and detour share the same finish, while the loop closes on the start.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -2.5, max: 2.8 } },
@@ -207,32 +295,66 @@ Three trips leave the same start. The straight one has distance equal to the siz
   }}
 />
 
-## Out and Back on a Graph
+Two different routes can therefore share the same displacement, and a long loop can end with zero displacement overall.
 
-A car that starts up a gentle slope at <InlineMath math="6\text{ m/s}" /> rolls out, stops after <InlineMath math="5\text{ s}" />, and rolls back to where it started. Its position-time graph **rises and falls back to zero**.
+### Out and Back on a Position Graph
 
-<CarTripSecantSlopeLab
-  trip="return"
-  title={<>Out and Back</>}
+A car starting up a gentle slope at <InlineMath math="6\text{ m/s}" /> reaches its **turnaround peak** of <InlineMath math="15\text{ m}" /> after <InlineMath math="5\text{ s}" /> and rolls back to the start at <InlineMath math="10\text{ s}" />. Drag the time <InlineMath math="d" /> to compare total distance against displacement.
+
+<MathVisual
+  title={<>Rolling Out and Back on a Slope</>}
   description={
     <>
-      Pick an interval. The flags mark the car's two positions, and the secant joins them on the graph.
+      Position <InlineMath math="x(t)=6t-0.6t^2" /> of a car rolling uphill and
+      back down. The violet line joins start to time <InlineMath math="d" />.
     </>
   }
+  footer={<>After the turnaround, distance keeps growing while displacement returns to zero.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -1.5, max: 17 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 1, max: 10, value: 10, step: 1, label: "d" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "6*x - 0.6*x^2", domain: { min: 0, max: 10 } },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "peak", kind: "point", appearance: "secondary", at: { x: 5, y: 15 } },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0", y: "0" },
+          { x: "d", y: "6*d - 0.6*d^2" },
+        ],
+      },
+      { id: "car", kind: "marker", appearance: "answer", x: "d", y: "6*d - 0.6*d^2" },
+    ],
+    labels: [
+      { key: "peak-lbl", objectId: "peak", at: { x: 5, y: 15 }, placement: "above" },
+      { key: "car-lbl", objectId: "car", at: { x: "d", y: "6*d - 0.6*d^2" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "dist", formula: "15 + 0.6*(d - 5)*abs(d - 5)" },
+      { key: "disp", formula: "6*d - 0.6*d^2" },
+    ],
+  }}
   labels={{
-    change: <>Displacement</>,
-    chooseInterval: "Choose a time interval",
-    elapsed: <>Time interval</>,
-    rate: <>Average velocity</>,
-    viewLabel: "Car trip with its position-time graph",
+    d: <>Time <InlineMath math="d" /> (s)</>,
+    "peak-lbl": <InlineMath math="15\text{ m}" />,
+    "car-lbl": <InlineMath math="x(d)" />,
+    dist: <>Distance traveled (m)</>,
+    disp: <>Displacement (m)</>,
   }}
 />
 
 From <InlineMath math="0" /> to <InlineMath math="10\text{ s}" /> the car travels <InlineMath math="15\text{ m}" /> out and <InlineMath math="15\text{ m}" /> back, a distance of <InlineMath math="30\text{ m}" />, yet the displacement is <InlineMath math="0" /> and the secant is flat.
 
-## Distance and Displacement on a Turning Path
+### Distance and Displacement on a Turning Path
 
-A student walks <InlineMath math="8 \text{ m}" /> east, then <InlineMath math="6 \text{ m}" /> north. The distance traveled is:
+Suppose a hiker walks <InlineMath math="8 \text{ m}" /> east along a trail and then turns <InlineMath math="6 \text{ m}" /> north. The distance traveled is:
 
 <BlockMath math="s=8 \text{ m}+6 \text{ m}=14 \text{ m}" />
 
@@ -250,23 +372,21 @@ Rotate the walk below. The orange and violet arrows are the path, <InlineMath ma
 
 <MathVisual
   title={<>Distance and Displacement on a Turn</>}
-  description={<><InlineMath math="8\text{ m}" /> east, then <InlineMath math="6\text{ m}" /> north, seen from above. One grid step is <InlineMath math="2\text{ m}" />.</>}
+  description={<><InlineMath math="8\text{ m}" /> east, then <InlineMath math="6\text{ m}" /> north, seen from above in meters.</>}
+  footer={<>The direct diagonal spans <InlineMath math="10\text{ m}" />, shorter than the <InlineMath math="14\text{ m}" /> path.</>}
   scene={{
     space: "space",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 1 }, z: { min: -3.5, max: 0.5 } },
-    view: { kind: "camera", position: { x: 2, y: 7, z: 5 }, target: { x: 2, y: 0, z: -1.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: 0, max: 2 }, z: { min: -7, max: 1 } },
+    view: { kind: "camera", position: { x: 4, y: 12, z: 8 }, target: { x: 4, y: 0, z: -3 } },
     objects: [
-      { id: "east", kind: "segment", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 } },
-      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0, z: 0 }, { x: 3.75, y: 0, z: 0.125 }, { x: 3.75, y: 0, z: -0.125 }] },
-      { id: "north", kind: "segment", appearance: "secondary", from: { x: 4, y: 0, z: 0 }, to: { x: 4, y: 0, z: -3 } },
-      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 0, z: -3 }, { x: 4.125, y: 0, z: -2.75 }, { x: 3.875, y: 0, z: -2.75 }] },
-      { id: "straight", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: -3 } },
-      { id: "straight-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 0, z: -3 }, { x: 4 - (0.25 * 4) / Math.hypot(4, -3) + ((0.25 / 2) * 3) / Math.hypot(4, -3), y: 0, z: -3 - (0.25 * -3) / Math.hypot(4, -3) + ((0.25 / 2) * 4) / Math.hypot(4, -3) }, { x: 4 - (0.25 * 4) / Math.hypot(4, -3) - ((0.25 / 2) * 3) / Math.hypot(4, -3), y: 0, z: -3 - (0.25 * -3) / Math.hypot(4, -3) - ((0.25 / 2) * 4) / Math.hypot(4, -3) }] },
+      { id: "east", kind: "vector", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 8, y: 0, z: 0 } },
+      { id: "north", kind: "vector", appearance: "secondary", from: { x: 8, y: 0, z: 0 }, to: { x: 8, y: 0, z: -6 } },
+      { id: "straight", kind: "vector", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 8, y: 0, z: -6 } },
     ],
     labels: [
-      { key: "east", objectId: "east", at: { x: 2, y: 0, z: 0 }, placement: "below" },
-      { key: "north", objectId: "north", at: { x: 4, y: 0, z: -1.5 }, placement: "right" },
-      { key: "straight", objectId: "straight", at: { x: 2, y: 0, z: -1.5 }, placement: "above-left" },
+      { key: "east", objectId: "east", at: { x: 4, y: 0, z: 0 }, placement: "below" },
+      { key: "north", objectId: "north", at: { x: 8, y: 0, z: -3 }, placement: "right" },
+      { key: "straight", objectId: "straight", at: { x: 4, y: 0, z: -3 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -275,3 +395,5 @@ Rotate the walk below. The orange and violet arrows are the path, <InlineMath ma
     straight: <InlineMath math="\sqrt{8^2+6^2}=10\text{ m}" />,
   }}
 />
+
+Because the route makes a right angle, the displacement forms the triangle's hypotenuse and stays shorter than the sum of the two legs.

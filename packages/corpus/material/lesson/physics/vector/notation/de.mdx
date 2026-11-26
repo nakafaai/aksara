@@ -10,63 +10,76 @@ export const metadata = {
 
 ## Welche Informationen ein Vektorpfeil zeigt
 
-Ein Vektor wird gewöhnlich als <Highlight>Pfeil</Highlight> gezeichnet. Der Fußpunkt zeigt den Anfang, die Spitze zeigt die Richtung, und die Pfeillänge stellt den Betrag des Vektors dar.
+Ein Vektor wird als <Highlight>Pfeil</Highlight> gezeichnet. Sein Fußpunkt zeigt den Anfang, die Spitze zeigt die Richtung, und die Länge stellt den Betrag im gewählten Maßstab dar.
 
-Ist ein Kraftpfeil bei gleichem Maßstab länger, besitzt die Kraft einen größeren Betrag. Zeigt der Pfeil nach rechts oben, wirkt die Kraft ebenfalls nach rechts oben.
+Ist ein Kraftpfeil im selben Maßstab länger als ein anderer, ist diese Kraft größer. Zeigt der Pfeil nach rechts oben, wirkt die Kraft genau nach rechts oben.
 
 > Eine vollständige Vektornotation zeigt Betrag und Richtung.
 
-## Pfeile auf einer Windkarte
+Betrachte Wind, der um <InlineMath math="45^\circ" /> nördlich von Ost weht. Steigt die Windgeschwindigkeit ab <InlineMath math="8\text{ m/s}" />, ändert sich **nur die Pfeillänge**, während die Richtung unverändert bleibt.
 
-Jeder Pfeil auf dieser Karte beginnt an einem Ort, seinem Fuß, und zeigt dorthin, wohin der Wind weht, seine Spitze, und **er wird mit der Geschwindigkeit länger**. Schieb die Geschwindigkeit von <InlineMath math="8\text{ m/s}" /> nach oben und achte darauf, dass sich nur die Länge ändert.
-
-<WindMapVectorLab
-  title={<>Länge und Richtung des Windes</>}
-  description={<>Wind mit <InlineMath math="8\text{ m/s}" /> in Richtung <InlineMath math="45^\circ" /> ab Osten.</>}
-  angle={45}
-  speed={8}
+<MathVisual
+  title={<>Länge und Richtung eines Windvektors</>}
+  description={<>Wind unter <InlineMath math="45^\circ" /> ab Osten mit einstellbarer Geschwindigkeit <InlineMath math="s" /> in Metern pro Sekunde.</>}
+  footer="Höhere Windgeschwindigkeit streckt den Pfeil bei fester 45 Grad Richtung."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -1, max: 13 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 2, max: 16, value: 8, step: 2, label: "wind-speed" },
+    ],
+    objects: [
+      { id: "wind", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "s * cos(45 * pi / 180)", y: "s * sin(45 * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "s * cos(45 * pi / 180)", y: "s * sin(45 * pi / 180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "s * cos(45 * pi / 180)", y: "s * sin(45 * pi / 180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "vx-ms", formula: "s * cos(45 * pi / 180)" },
+      { key: "vy-ms", formula: "s * sin(45 * pi / 180)" },
+    ],
+  }}
   labels={{
-    angle: <>Richtung ab Osten</>,
-    angleName: "Richtung ab Osten",
-    east: <>Ostkomponente <InlineMath math="v_x" /></>,
-    north: <>Nordkomponente <InlineMath math="v_y" /></>,
-    speed: <>Windgeschwindigkeit</>,
-    speedName: "Windgeschwindigkeit",
-    viewLabel: "Wetterkarte mit Wind über Inseln",
+    tip: <InlineMath math="\vec{v}" />,
+    "wind-speed": <>Windgeschwindigkeit (m/s)</>,
+    "vx-ms": <>Ostkomponente (m/s)</>,
+    "vy-ms": <>Nordkomponente (m/s)</>,
   }}
 />
 
+Ost- und Nordkomponente wachsen im selben Verhältnis wie die Pfeillänge, solange der Richtungswinkel fest bleibt.
+
 ## Zweipunktnotation
 
-Ein Vektor kann durch seinen Anfangs- und Endpunkt bezeichnet werden. So steht <InlineMath math="\overrightarrow{AB}" /> für den Vektor vom Punkt <InlineMath math="A" /> zum Punkt <InlineMath math="B" />.
+Ein Vektor lässt sich über **Anfangspunkt** und **Endpunkt** benennen. So steht <InlineMath math="\overrightarrow{AB}" /> für den Vektor vom Punkt <InlineMath math="A" /> zum Punkt <InlineMath math="B" />.
 
-Die Reihenfolge der Buchstaben ist wichtig. <InlineMath math="\overrightarrow{AB}" /> und <InlineMath math="\overrightarrow{BA}" /> verwenden dieselben zwei Punkte, ihre Richtungen sind jedoch entgegengesetzt.
+Die Reihenfolge der Buchstaben ist entscheidend. Wer <InlineMath math="\overrightarrow{AB}" /> und <InlineMath math="\overrightarrow{BA}" /> gleichsetzt, begeht einen häufigen Lesefehler: Beide verbinden dieselben Punkte, zeigen aber in entgegengesetzte Richtungen.
 
 | Notation | Lesart | Bedeutung der Richtung |
 | :------- | :----- | :--------------------- |
 | <InlineMath math="\overrightarrow{AB}" /> | Vektor von <InlineMath math="A" /> nach <InlineMath math="B" /> | Fußpunkt bei <InlineMath math="A" />, Spitze bei <InlineMath math="B" /> |
 | <InlineMath math="\overrightarrow{BA}" /> | Vektor von <InlineMath math="B" /> nach <InlineMath math="A" /> | Fußpunkt bei <InlineMath math="B" />, Spitze bei <InlineMath math="A" /> |
-| <InlineMath math="\lvert\overrightarrow{AB}\rvert" /> | Betrag von <InlineMath math="\overrightarrow{AB}" /> | Der Wert gibt die Vektorlänge an. Die Richtung beeinflusst ihn nicht |
+| <InlineMath math="\lvert\overrightarrow{AB}\rvert" /> | Betrag von <InlineMath math="\overrightarrow{AB}" /> | gibt nur die Länge ohne Richtung an |
 
-<Highlight>Der Pfeil über den Buchstaben</Highlight> kennzeichnet die Größe als Vektor. Die Betragsstriche zeigen dagegen an, dass nur der Betrag gemeint ist.
+<Highlight>Der Pfeil über den Buchstaben</Highlight> kennzeichnet die Größe als Vektor, während Betragsstriche nur ihre Länge herausgreifen. Das Vertauschen der Buchstaben kehrt den Vektor um:
 
-Beide Pfeile unten sind gleich lang, aber die Reihenfolge der Buchstaben dreht die Richtung um: <InlineMath math="\overrightarrow{AB}" /> beginnt bei <InlineMath math="A" />, <InlineMath math="\overrightarrow{BA}" /> bei <InlineMath math="B" />. Also gilt <InlineMath math="\overrightarrow{BA}=-\overrightarrow{AB}" />.
+<BlockMath math="\overrightarrow{BA}=-\overrightarrow{AB}" />
 
 <MathVisual
   title={<>Die Reihenfolge der Punkte bestimmt die Richtung</>}
-  description={<>Die Vektoren <InlineMath math="\overrightarrow{AB}" /> und <InlineMath math="\overrightarrow{BA}" /> zwischen <InlineMath math="A(1, 1)" /> und <InlineMath math="B(4, 3)" />, der zweite nach unten verschoben, damit er neben dem ersten liegt.</>}
+  description={<>Die Vektoren <InlineMath math="\overrightarrow{AB}" /> und <InlineMath math="\overrightarrow{BA}" /> zwischen <InlineMath math="A(1, 1)" /> und <InlineMath math="B(4, 3)" />, nebeneinander verschoben.</>}
+  footer="Vertauschen der Punkte erhält die Länge, kehrt aber die Pfeilrichtung um."
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -1, max: 3.8 } },
-    view: { kind: "fit", padding: 0.06 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "ab-line", kind: "segment", appearance: "reference", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
       { id: "a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
       { id: "b", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
-      { id: "ab", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
-      { id: "ab-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) + ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) + ((0.25 / 2) * 3) / Math.hypot(3, 2) }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) - ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) - ((0.25 / 2) * 3) / Math.hypot(3, 2) }] },
-      { id: "ba", kind: "segment", appearance: "secondary", from: { x: 4, y: 1.5 }, to: { x: 1, y: -0.5 } },
-      { id: "ba-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: -0.5 }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) + ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) + ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) - ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) - ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }] },
+      { id: "ab", kind: "vector", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "ba", kind: "vector", appearance: "secondary", from: { x: 4, y: 1.5 }, to: { x: 1, y: -0.5 } },
     ],
     labels: [
       { key: "ab", objectId: "ab", at: { x: 2.5, y: 2 }, placement: "above-left" },
@@ -83,103 +96,185 @@ Beide Pfeile unten sind gleich lang, aber die Reihenfolge der Buchstaben dreht d
   }}
 />
 
-## Posten auf einer Parkkarte
+Lies die Zweipunktnotation stets von links nach rechts: Der erste Buchstabe bezeichnet den Fußpunkt und der zweite die Spitze.
 
-Auf einer Orientierungslaufkarte führt <InlineMath math="\overrightarrow{AB}" /> vom Posten <InlineMath math="A" /> im türkisen Ring zum Posten <InlineMath math="B" /> im bernsteinfarbenen Ring: <InlineMath math="60\text{ m}" /> nach Osten und <InlineMath math="80\text{ m}" /> nach Norden, <InlineMath math="100\text{ m}" /> lang. Wechsle zu <InlineMath math="\overrightarrow{BA}" />, dann **bleibt die Länge gleich und die Richtung kehrt sich um**.
+Prüfe diesen Wechsel auf einer Parkkarte zwischen Posten <InlineMath math="A(40, 30)" /> und Posten <InlineMath math="B(100, 110)" /> in Metern. Hinwärts ergeben sich <InlineMath math="60\text{ m}" /> Ost und <InlineMath math="80\text{ m}" /> Nord, während <InlineMath math="\overrightarrow{BA}" /> beide Vorzeichen umdreht und die Länge von <InlineMath math="100\text{ m}" /> behält.
 
-<OrienteeringMapVectorLab
-  title={<>Von <InlineMath math="A" /> nach <InlineMath math="B" /> und zurück</>}
-  description={<>Der Start <InlineMath math="O" /> ist das magentafarbene Dreieck. Wähle, welchen Vektor die Karte zeigt.</>}
-  marks={{
-    a: { east: 40, north: 30 },
-    b: { east: 100, north: 110 },
-    c: { east: 150, north: -10 },
+<MathVisual
+  title={<>Von Posten A nach B und zurück</>}
+  description={<>Wechsle die Richtung <InlineMath math="k" /> zwischen <InlineMath math="+1" /> (<InlineMath math="\overrightarrow{AB}" />) und <InlineMath math="-1" /> (<InlineMath math="\overrightarrow{BA}" />) in Metern.</>}
+  footer="Der Wechsel von A nach B auf B nach A kehrt beide Komponenten bei 100 m um."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 140 }, y: { min: 0, max: 140 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "k", min: -1, max: 1, value: 1, step: 2, label: "leg-order" },
+    ],
+    objects: [
+      { id: "line", kind: "segment", appearance: "reference", from: { x: 40, y: 30 }, to: { x: 100, y: 110 } },
+      { id: "pt-a", kind: "point", appearance: "reference", at: { x: 40, y: 30 } },
+      { id: "pt-b", kind: "point", appearance: "reference", at: { x: 100, y: 110 } },
+      { id: "leg", kind: "path", appearance: "primary", points: [{ x: "70 - 30 * k", y: "70 - 40 * k" }, { x: "70 + 30 * k", y: "70 + 40 * k" }] },
+      { id: "head", kind: "marker", appearance: "answer", x: "70 + 30 * k", y: "70 + 40 * k" },
+    ],
+    labels: [
+      { key: "a", objectId: "pt-a", at: { x: 40, y: 30 }, placement: "below-left" },
+      { key: "b", objectId: "pt-b", at: { x: 100, y: 110 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "east-m", formula: "60 * k" },
+      { key: "north-m", formula: "80 * k" },
+      { key: "len-m", formula: "100 * abs(k)" },
+    ],
   }}
-  views={["forward", "back"]}
   labels={{
-    angle: <>Richtung ab Osten</>,
-    chooseView: "Wähle den gezeigten Vektor",
-    east: <>Ostanteil</>,
-    north: <>Nordanteil</>,
-    size: <>Länge</>,
-    viewLabel: "Orientierungslaufkarte eines Parks",
-    views: {
-      back: <><InlineMath math="B" /> nach <InlineMath math="A" /></>,
-      copy: <>Gleicher Vektor ab <InlineMath math="C" /></>,
-      difference: <><InlineMath math="\vec b-\vec a" /></>,
-      forward: <><InlineMath math="A" /> nach <InlineMath math="B" /></>,
-    },
+    a: <InlineMath math="A(40,30)" />,
+    b: <InlineMath math="B(100,110)" />,
+    "leg-order": <>Richtung (<InlineMath math="+1" /> ist <InlineMath math="A\to B" />)</>,
+    "east-m": <>Ostanteil (m)</>,
+    "north-m": <>Nordanteil (m)</>,
+    "len-m": <>Länge (m)</>,
   }}
 />
 
+Ob hin oder zurück zwischen zwei Posten, der Abstand bleibt <InlineMath math="100\text{ m}" />, während beide Vorzeichen wechseln.
+
 ## Notation mit einem Buchstaben
 
-In Rechnungen werden Vektoren häufig mit **einem Buchstaben mit Vektorpfeil** bezeichnet, etwa <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" /> oder <InlineMath math="\vec{F}" />. Der Buchstabe verweist auf die jeweilige physikalische Größe.
-
-So steht <InlineMath math="\vec{F}" /> häufig für eine Kraft, <InlineMath math="\vec{v}" /> für eine Geschwindigkeit und <InlineMath math="\vec{s}" /> für eine Verschiebung. Der Betrag wird ohne Vektorpfeil geschrieben, zum Beispiel als <InlineMath math="F" /> oder <InlineMath math="\lvert\vec{F}\rvert" />.
+In Rechnungen bekommen Vektoren meist **einen Buchstaben mit Vektorpfeil**, etwa <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" /> oder <InlineMath math="\vec{F}" />. Schreibt man <InlineMath math="F" /> oder <InlineMath math="\lvert\vec{F}\rvert" />, fällt die Richtung weg und es zählt nur der Betrag.
 
 <MathContainer>
   <BlockMath math="\vec{F}=20\text{ N nach rechts}" />
   <BlockMath math="\lvert\vec{F}\rvert=20\text{ N}" />
 </MathContainer>
 
-Die erste Zeile enthält Betrag und Richtung. Die zweite Zeile nennt nur den Betrag der Kraft.
+Ein Vektorbetrag ist **immer null oder positiv**, niemals negativ. Ein Minuszeichen wie in <InlineMath math="-\vec{a}" /> macht die Länge nicht negativ: Der Vektor behält denselben Betrag wie <InlineMath math="\vec{a}" /> und zeigt lediglich in die Gegenrichtung.
 
-## Ein Buchstabe für eine Fährstrecke
+Nenn die <InlineMath math="10\text{ km}" /> lange Etappe einer Fähre einfach <InlineMath math="\vec{s}" />. Bei einem Kurswinkel von <InlineMath math="60^\circ" /> im Uhrzeigersinn ab Norden fasst dieses eine Symbol sowohl <InlineMath math="8{,}66\text{ km}" /> Ost als auch <InlineMath math="5\text{ km}" /> Nord zusammen.
 
-Nenn die Verschiebung der Fähre <InlineMath math="\vec s" />. **Der eine Buchstabe trägt alles**: <InlineMath math="10\text{ km}" /> mit dem Kurswinkel <InlineMath math="60^\circ" />, was die Karte auch als <InlineMath math="8{,}66\text{ km}" /> nach Osten und <InlineMath math="5\text{ km}" /> nach Norden schreibt. Dreh den Kurs, und <InlineMath math="\vec s" /> benennt weiter den ganzen Pfeil.
-
-<ShipBearingComponentLab
-  title={<>Der Vektor <InlineMath math="\vec s" /> der Fähre</>}
-  description={<>Eine Fähre fährt <InlineMath math="10\text{ km}" /> weit aus dem Hafen. Der Kurswinkel wird im Uhrzeigersinn ab Norden gemessen.</>}
-  courses={[{ bearing: 60, distance: 10 }]}
+<MathVisual
+  title={<>Ein Symbol für die Verschiebung einer Fähre</>}
+  description={<>Eine <InlineMath math="10\text{ km}" /> lange Fährstrecke <InlineMath math="\vec{s}" /> mit einstellbarem Kurswinkel <InlineMath math="b" /> ab Norden.</>}
+  footer="Ein einziges Symbol bündelt Abstand und Komponenten beim Drehen des Kurses."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 12 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "b", min: 0, max: 90, value: 60, step: 15, label: "ferry-bearing" },
+    ],
+    objects: [
+      { id: "leg", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "10 * sin(b * pi / 180)", y: "10 * cos(b * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "10 * sin(b * pi / 180)", y: "10 * cos(b * pi / 180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "10 * sin(b * pi / 180)", y: "10 * cos(b * pi / 180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "east-km", formula: "10 * sin(b * pi / 180)" },
+      { key: "north-km", formula: "10 * cos(b * pi / 180)" },
+      { key: "mag-km", formula: "10" },
+    ],
+  }}
   labels={{
-    bearing: <>Kurswinkel der letzten Etappe</>,
-    bearingName: "Kurswinkel der letzten Etappe",
-    direction: <>Kurswinkel vom Hafen aus</>,
-    distance: <>Abstand vom Hafen</>,
-    east: <>Ostkomponente</>,
-    north: <>Nordkomponente</>,
-    viewLabel: "Fähre fährt aus einem Hafen",
+    tip: <InlineMath math="\vec{s}" />,
+    "ferry-bearing": <>Kurswinkel ab Nord (<InlineMath math="^\circ" />)</>,
+    "east-km": <>Ostkomponente (km)</>,
+    "north-km": <>Nordkomponente (km)</>,
+    "mag-km": <>Betrag (km)</>,
   }}
 />
+
+Drehst du den Kurswinkel, verschieben sich Ost- und Nordanteil, während <InlineMath math="\vec{s}" /> durchgehend den Betrag <InlineMath math="10\text{ km}" /> behält.
 
 ## Nullvektoren und Einheitsvektoren
 
-Bei Komponentenrechnungen brauchst du zwei Sonderfälle: Der **Nullvektor** beschreibt keine Verschiebung. Ein **Einheitsvektor** legt dagegen eine Richtung fest und hat den Betrag eins, unabhängig von der gewählten Richtung.
+Bei Komponentenrechnungen triffst du auf zwei besondere Symbole mit gegensätzlicher Aufgabe. Ein **Nullvektor** beschreibt vollständige Aufhebung mit Betrag null, während ein **Einheitsvektor** reine Richtung mit Betrag eins vorgibt.
 
 ### Ein Vektor mit dem Betrag null
 
-Ein **Nullvektor** hat den Betrag <InlineMath math="0" />. Sein Fußpunkt und seine Spitze fallen zusammen, sodass seine Richtung nicht definiert ist. In der Physik entsteht ein Nullvektor zum Beispiel, wenn sich zwei gleich große, entgegengesetzt gerichtete Kräfte aufheben.
-
-Lege zum Beispiel rechts als positive Richtung fest. Zwei Kräfte von jeweils <InlineMath math="20\text{ N}" /> nach rechts und nach links ergeben zusammen:
+Ein **Nullvektor** <InlineMath math="\vec{0}" /> hat den Betrag <InlineMath math="0" />. Fußpunkt und Spitze fallen zusammen, sodass seine Richtung nicht definiert ist. Mit rechts als positiver Richtung heben sich zwei entgegengesetzte <InlineMath math="20\text{ N}" />-Kräfte vollständig auf:
 
 <BlockMath math="\begin{aligned}\vec{F}_1+\vec{F}_2 &= 20\hat{i}\text{ N}-20\hat{i}\text{ N} \\ &= (20-20)\hat{i}\text{ N} \\ &= \vec{0}\text{ N}\end{aligned}" />
 
-Auf diesem Kräftetisch ziehen drei Schnüre an einem Ring. Dreh die dritte Rolle von <InlineMath math="200^\circ" /> in Richtung <InlineMath math="233^\circ" />: Die Resultierende schrumpft, bis sie fast <InlineMath math="0\text{ N}" /> ist, der Nullvektor, und der Ring sitzt am Stift.
+Spitze an Fuß in echten Newton gezeichnet, endet der zweite Pfeil exakt am Startpunkt des ersten.
 
-<ForceTableResultantLab
-  title={<>Bring den Ring ins Gleichgewicht</>}
-  description={<>Massen von <InlineMath math="300\text{ g}" />, <InlineMath math="400\text{ g}" /> und <InlineMath math="500\text{ g}" /> hängen bei <InlineMath math="0^\circ" />, <InlineMath math="90^\circ" /> und dem Winkel, den du wählst.</>}
-  pulls={[
-    { angle: 0, mass: 300 },
-    { angle: 90, mass: 400 },
-    { angle: 200, mass: 500 },
-  ]}
+<MathVisual
+  title={<>Zwei Kräfte, die sich aufheben</>}
+  description={<>Entgegengesetzte Kräfte <InlineMath math="\vec{F}_1=20\hat{i}\text{ N}" /> und <InlineMath math="\vec{F}_2=-20\hat{i}\text{ N}" /> Spitze an Fuß in Newton.</>}
+  footer="Gleich lange Gegenpfeile kehren zum Ursprung zurück und ergeben den Nullvektor."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 24 }, y: { min: -6, max: 10 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "f1", kind: "vector", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 20, y: 3 } },
+      { id: "f2", kind: "vector", appearance: "secondary", from: { x: 20, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "sum", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 10, y: 3 }, placement: "above" },
+      { key: "f2", objectId: "f2", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
   labels={{
-    angle: <>Winkel der letzten Schnur</>,
-    angleName: "Winkel der letzten Schnur",
-    direction: <>Richtung von <InlineMath math="\vec R" /></>,
-    resultant: <>Resultierende <InlineMath math="R" /></>,
-    sumX: <>Summe entlang <InlineMath math="0^\circ" /></>,
-    sumY: <>Summe entlang <InlineMath math="90^\circ" /></>,
-    viewLabel: "Kräftetisch mit Massestücken",
+    f1: <InlineMath math="\vec F_1=20\hat i\text{ N}" />,
+    f2: <InlineMath math="\vec F_2=-20\hat i\text{ N}" />,
+    sum: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />,
   }}
 />
 
+Weil die letzte Spitze wieder auf dem Anfangsfuß landet, besitzt die Summe weder Länge noch Richtung.
+
+Auch drei Kräfte können sich exakt ausgleichen. Addiere <InlineMath math="3\text{ N}" /> bei <InlineMath math="0^\circ" />, <InlineMath math="4\text{ N}" /> bei <InlineMath math="90^\circ" /> und <InlineMath math="5\text{ N}" /> unter einstellbarem Winkel. Drehst du den dritten Zug von <InlineMath math="200^\circ" /> auf <InlineMath math="233^\circ" />, schrumpft die Resultierende auf nahezu <InlineMath math="0\text{ N}" />.
+
+<MathVisual
+  title={<>Drei Kräfte zum Nullvektor ausgleichen</>}
+  description={<>Kräfte <InlineMath math="3\text{ N}" /> bei <InlineMath math="0^\circ" />, <InlineMath math="4\text{ N}" /> bei <InlineMath math="90^\circ" /> und <InlineMath math="5\text{ N}" /> unter Winkel <InlineMath math="a" /> Spitze an Fuß addiert.</>}
+  footer="Bei 233 Grad schließt der 5 N Pfeil das 3 4 5 Dreieck genau zurück auf null."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -2, max: 6 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 200, max: 260, value: 200, step: 3, label: "third-angle" },
+    ],
+    objects: [
+      { id: "f1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "f2", kind: "vector", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "f3", kind: "path", appearance: "highlight", points: [{ x: "3", y: "4" }, { x: "3 + 5 * cos(a * pi / 180)", y: "4 + 5 * sin(a * pi / 180)" }] },
+      { id: "res", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "3 + 5 * cos(a * pi / 180)", y: "4 + 5 * sin(a * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "3 + 5 * cos(a * pi / 180)", y: "4 + 5 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "f2", objectId: "f2", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "tip", objectId: "tip", at: { x: "3 + 5 * cos(a * pi / 180)", y: "4 + 5 * sin(a * pi / 180)" }, placement: "left" },
+    ],
+    readouts: [
+      { key: "sum-x", formula: "3 + 5 * cos(a * pi / 180)" },
+      { key: "sum-y", formula: "4 + 5 * sin(a * pi / 180)" },
+      { key: "res-n", formula: "sqrt((3 + 5 * cos(a * pi / 180))^2 + (4 + 5 * sin(a * pi / 180))^2)" },
+    ],
+  }}
+  labels={{
+    f1: <InlineMath math="3\text{ N}" />,
+    f2: <InlineMath math="4\text{ N}" />,
+    tip: <InlineMath math="\vec{R}" />,
+    "third-angle": <>Winkel der 3. Kraft (<InlineMath math="^\circ" />)</>,
+    "sum-x": <>Summe entlang x (N)</>,
+    "sum-y": <>Summe entlang y (N)</>,
+    "res-n": <>Resultierende R (N)</>,
+  }}
+/>
+
+Schließt der Vektorzug wieder am Ursprung, gelten <InlineMath math="R_x=0" /> und <InlineMath math="R_y=0" /> als klares Kennzeichen des Nullvektors.
+
 ### Ein Vektor zur Angabe einer Richtung
 
-Ein **Einheitsvektor** hat den Betrag <InlineMath math="1" /> und kennzeichnet eine Richtung. Er sagt weder aus, wie groß eine Kraft ist, noch wie weit eine Verschiebung reicht. In der dreidimensionalen kartesischen Standardbasis besitzt jeder Einheitsvektor genau eine Komponente mit dem Wert <InlineMath math="1" />:
+Ein **Einheitsvektor** hat den Betrag <InlineMath math="1" /> und trägt ausschließlich eine Richtung. In der dreidimensionalen kartesischen Standardbasis besitzt jeder Einheitsvektor genau eine Komponente gleich <InlineMath math="1" />:
 
 <ContentStack>
   <MathContainer>
@@ -190,11 +285,12 @@ Ein **Einheitsvektor** hat den Betrag <InlineMath math="1" /> und kennzeichnet e
 
   <MathVisual
     title={<>Richtungen dreier Einheitsvektoren</>}
-    description={<>Drehe das Modell, um die drei Achsenrichtungen zu unterscheiden. Jeder Pfeil hat die Länge eins, auch wenn die Perspektive unterschiedliche Längen zeigt.</>}
+    description={<>Drehe das Modell, um die drei senkrechten Achsen-Einheitsvektoren mit wahrer Länge eins zu sehen.</>}
+    footer="Alle drei Basisvektoren haben genau die Länge eins entlang x, y und z."
     labels={{
-      "l1": <InlineMath math="\hat{i}" />,
-      "l2": <InlineMath math="\hat{j}" />,
-      "l3": <InlineMath math="\hat{k}" />,
+      l1: <InlineMath math="\hat{i}" />,
+      l2: <InlineMath math="\hat{j}" />,
+      l3: <InlineMath math="\hat{k}" />,
     }}
     scene={{
       space: "space",
@@ -214,44 +310,14 @@ Ein **Einheitsvektor** hat den Betrag <InlineMath math="1" /> und kennzeichnet e
   />
 </ContentStack>
 
-Alle drei Pfeile haben **dieselbe tatsächliche Länge**. Beim Drehen ändert sich ihre Projektion auf den Bildschirm, aber nicht der Betrag der Einheitsvektoren.
+Alle drei Pfeile besitzen **dieselbe wahre Länge**, auch wenn die Perspektive sie unterschiedlich verkürzt zeigt. In <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" /> verbinden sie die Achsenrichtungen mit den vorzeichenbehafteten Skalarkomponenten.
 
-Wird ein Vektor als <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" /> geschrieben, geben <InlineMath math="\hat{i}" /> und <InlineMath math="\hat{j}" /> die positiven Achsenrichtungen an. Die vorzeichenbehafteten Skalare <InlineMath math="A_x" /> und <InlineMath math="A_y" /> geben die Komponenten entlang dieser Achsen an.
-
-Leg die beiden Kräfte Spitze an Fuß. Der zweite Pfeil endet genau dort, wo der erste begonnen hat, die Summe ist also der Nullvektor: ohne Länge und ohne Richtung.
-
-<MathVisual
-  title={<>Zwei Kräfte, die sich aufheben</>}
-  description={<><InlineMath math="\vec F_1=20\hat i\text{ N}" /> und <InlineMath math="\vec F_2=-20\hat i\text{ N}" />, Spitze an Fuß gelegt. Ein Gitterschritt entspricht <InlineMath math="5\text{ N}" />.</>}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -1.1, max: 1.6 } },
-    view: { kind: "fit", padding: 0.06 },
-    objects: [
-      { id: "f1", kind: "segment", appearance: "primary", from: { x: 0, y: 0.6 }, to: { x: 4, y: 0.6 } },
-      { id: "f1-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0.6 }, { x: 3.75, y: 0.725 }, { x: 3.75, y: 0.475 }] },
-      { id: "f2", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 0, y: 0 } },
-      { id: "f2-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 0.125 }, { x: 0.25, y: -0.125 }] },
-      { id: "sum", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
-    ],
-    labels: [
-      { key: "f1", objectId: "f1", at: { x: 2, y: 0.6 }, placement: "above" },
-      { key: "f2", objectId: "f2", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "sum", objectId: "sum", at: { x: 0, y: 0 }, placement: "left" },
-    ],
-  }}
-  labels={{
-    f1: <InlineMath math="\vec F_1=20\hat i\text{ N}" />,
-    f2: <InlineMath math="\vec F_2=-20\hat i\text{ N}" />,
-    sum: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />,
-  }}
-/>
-
-Die drei kurzen Pfeile am Startplatz sind die Einheitsvektoren <InlineMath math="\hat\imath" />, <InlineMath math="\hat\jmath" /> und <InlineMath math="\hat k" />, jeder <InlineMath math="1\text{ m}" /> lang, nach Osten, Norden und oben. Die Verschiebung der Drohne ist <InlineMath math="3\,\hat\imath+4\,\hat\jmath+12\,\hat k" /> Meter, <InlineMath math="13\text{ m}" /> lang.
+Am Startplatz unten markieren die drei kurzen <InlineMath math="1\text{ m}" />-Pfeile <InlineMath math="\hat\imath" />, <InlineMath math="\hat\jmath" /> und <InlineMath math="\hat k" /> nach Osten, Norden und oben. Zusammen beschreiben sie die Verschiebung der Drohne als <InlineMath math="3\,\hat\imath+4\,\hat\jmath+12\,\hat k" /> Meter mit Betrag <InlineMath math="13\text{ m}" />.
 
 <DroneDisplacementLab
   title={<>Einheitsvektoren am Startplatz</>}
   description={<>Die Drohne steigt <InlineMath math="12\text{ m}" /> und fliegt dann gleichzeitig <InlineMath math="3\text{ m}" /> nach Osten und <InlineMath math="4\text{ m}" /> nach Norden.</>}
+  footer="Die Einheitsvektoren i, j und k bauen die gesamte 13 m Raumverschiebung auf."
   hops={[
     { east: 0, north: 0, up: 12 },
     { east: 3, north: 4, up: 0 },
@@ -266,10 +332,4 @@ Die drei kurzen Pfeile am Startplatz sind die Einheitsvektoren <InlineMath math=
   }}
 />
 
-## Häufige Lesefehler
-
-Der erste Fehler ist, **die Reihenfolge der Punkte zu übersehen** und <InlineMath math="\overrightarrow{AB}" /> als denselben Vektor wie <InlineMath math="\overrightarrow{BA}" /> zu behandeln, weil sie dieselben zwei Punkte verwenden. Ihre Richtungen sind entgegengesetzt.
-
-Der zweite Fehler ist ein **negativer Vektorbetrag**. Ein Betrag ist immer <InlineMath math="0" /> oder positiv. Ein Minuszeichen vor einem Vektor richtet ihn gewöhnlich entgegen der gewählten Bezugsrichtung aus. Sein Betrag bleibt dabei unverändert und ist niemals negativ.
-
-So hat <InlineMath math="-\vec{a}" /> keinen negativen Betrag. Der Vektor besitzt denselben Betrag wie <InlineMath math="\vec{a}" />, zeigt aber in die entgegengesetzte Richtung.
+Jede Koordinate skaliert ihren zugehörigen Einheitsvektor und fasst einen dreidimensionalen Flugweg in einen kurzen Ausdruck zusammen.

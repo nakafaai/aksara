@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Jarak Berhenti",
   description:
@@ -35,6 +34,7 @@ Jadi, jarak berhenti mempunyai dua peringkat. Peringkat pertama berlaku apabila 
       kebiruan dengan jarak brek berwarna oren.
     </>
   }
+  footer={<>Laju awal lebih tinggi memanjangkan bar brek jauh lebih cepat daripada reaksi.</>}
   labels={{
     chooseSpeed: "Pilih laju awal",
     speed: <>Laju awal</>,
@@ -45,11 +45,12 @@ Jadi, jarak berhenti mempunyai dua peringkat. Peringkat pertama berlaku apabila 
   }}
 />
 
-Luas di bawah graf halaju ialah jarak yang dilalui. Sepanjang masa tindak balas, kereta kekal pada <InlineMath math="20\text{ m/s}" />, jadi luasnya ialah segi empat tepat yang mewakili <InlineMath math="20\text{ m}" />. Kemudian brek, dengan <InlineMath math="b=5\text{ m/s}^2" />, menghasilkan segi tiga yang mewakili <InlineMath math="v^2/2b=40\text{ m}" />, jadi kereta memerlukan <InlineMath math="60\text{ m}" /> kesemuanya. Besarkan paparan untuk melihat kedua-dua luas itu.
+Luas di bawah graf halaju ialah jarak yang dilalui. Sepanjang masa tindak balas, kereta kekal pada <InlineMath math="20\text{ m/s}" />, jadi luasnya ialah segi empat tepat yang mewakili <InlineMath math="20\text{ m}" />. Kemudian brek, dengan <InlineMath math="b=5\text{ m/s}^2" />, menghasilkan segi tiga yang mewakili <InlineMath math="40\text{ m}" />, jadi kereta memerlukan <InlineMath math="60\text{ m}" /> kesemuanya. Besarkan paparan untuk melihat kedua-dua luas itu.
 
 <MathVisual
   title={<>Dua Peringkat untuk Berhenti</>}
   description={<>Halaju melawan masa semasa kereta berhenti daripada <InlineMath math="20\text{ m/s}" />: tindak balas (hijau kebiruan) dan brek (oren). Paksi mengufuk: saat. Paksi menegak: satu petak grid bersamaan <InlineMath math="5\text{ m/s}" />.</>}
+  footer={<>Luas segi empat tindak balas dan segi tiga brek membentuk seluruh jarak berhenti.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5 } },
@@ -69,7 +70,13 @@ Luas di bawah graf halaju ialah jarak yang dilalui. Sepanjang masa tindak balas,
   }}
 />
 
-## Ukur Masa Tindak Balas Kamu Sendiri
+Menjumlahkan luas segi empat tepat dan segi tiga itu mengesahkan bahawa jumlah jarak berhenti sentiasa bergantung pada kedua-dua peringkat. Memendekkan masa tindak balas atau masa membrek mengurangkan luas berlorek dan memberhentikan kereta lebih awal.
+
+## Masa Tindak Balas dan Nyahpecutan Brek
+
+Dua had fizik yang berasingan menentukan seberapa cepat kenderaan berhenti: **masa tindak balas manusia** sebelum pedal ditekan dan **geseran jalan** apabila brek bertindak. Menguji kedua-duanya menjelaskan sebab jarak berhenti sebenar berbeza dengan ketara.
+
+### Ukur Masa Tindak Balas Kamu Sendiri
 
 Masa tindak balas bukan nombor yang tetap, dan cara paling jelas untuk merasainya ialah mengukur masa kamu sendiri. Dalam kad ini kamu memandu pada <InlineMath math="20\text{ m/s}" />, iaitu <InlineMath math="72\text{ km/j}" />, dua saat di belakang sebuah kereta lain. Tekan **Mula**, kemudian tekan **Brek** sebaik sahaja lampu brek kereta di hadapan menyala.
 
@@ -82,6 +89,7 @@ Masa tindak balas bukan nombor yang tetap, dan cara paling jelas untuk merasainy
       <InlineMath math="20\text{ m/s}" />.
     </>
   }
+  footer={<>Pecahan saat tindak balas sudah menambah jarak sebelum brek sempat bertindak.</>}
   labels={{
     start: "Mula",
     brake: "Brek",
@@ -98,11 +106,13 @@ Masa tindak balas bukan nombor yang tetap, dan cara paling jelas untuk merasainy
   }}
 />
 
-Masa yang kamu ukur terus bertukar menjadi jarak melalui <InlineMath math="d_{\text{tindak balas}}=vt_r" />. Jika masa kamu <InlineMath math="0.3\text{ s}" />, kereta terus bergerak sejauh <InlineMath math="20\cdot0.3=6\text{ m}" /> sebelum brek bertindak. Sebaik sahaja kamu membrek, kedua-dua kereta berhenti dengan nyahpecutan yang sama, jadi jarak di antara kedua-duanya berkurang **tepat sebanyak jarak tindak balas kamu**.
+Masa yang kamu ukur terus bertukar menjadi jarak melalui <InlineMath math="d_{\text{tindak balas}}=vt_r" />. Jika masa kamu <InlineMath math="0.3\text{ s}" />, kereta terus bergerak sejauh <InlineMath math="6\text{ m}" /> sebelum brek bertindak. Sebaik sahaja kamu membrek, kedua-dua kereta berhenti dengan nyahpecutan yang sama, jadi jarak di antara kedua-duanya berkurang **tepat sebanyak jarak tindak balas kamu**.
 
-Di jalan sebenar, nombornya lebih besar daripada di skrin. Pemandu perlu melihat bahaya, membuat keputusan untuk membrek, dan menggerakkan kaki ke pedal. [Rumusan Marc Green tentang kajian masa tindak balas pemandu](https://www.visualexpert.com/Resources/reactiontime.html) memberikan kira-kira <InlineMath math="0.7\text{ s}" /> bagi pemandu yang bersedia untuk membrek, <InlineMath math="1.25\text{ s}" /> bagi lampu brek di hadapan yang tidak dijangka oleh pemandu, dan <InlineMath math="1.5\text{ s}" /> bagi sesuatu yang tiba-tiba masuk ke jalan dari tepi.
+Di jalan sebenar, nombornya lebih besar daripada di skrin kerana pemandu perlu melihat bahaya, membuat keputusan untuk membrek, dan menggerakkan kaki ke pedal.
 
-## Jarak Brek Menggunakan Nyahpecutan Malar
+[Rumusan Marc Green tentang kajian masa tindak balas pemandu](https://www.visualexpert.com/Resources/reactiontime.html) memberikan kira-kira <InlineMath math="0.7\text{ s}" /> bagi pemandu yang bersedia, <InlineMath math="1.25\text{ s}" /> bagi lampu brek tidak dijangka, dan <InlineMath math="1.5\text{ s}" /> bagi bahaya dari tepi jalan.
+
+### Jarak Brek Menggunakan Nyahpecutan Malar
 
 Semasa brek berfungsi, kenderaan menjadi perlahan. Jika nyahpecutan **dianggap malar** dan halaju akhirnya sifar, persamaan gerakan dengan pecutan seragam boleh digunakan untuk mencari jarak brek.
 
@@ -116,7 +126,7 @@ Kuantiti <InlineMath math="b" /> ialah magnitud nyahpecutan, jadi ia ditulis seb
 
 Rumus ini menggunakan andaian yang mudah: laluannya lurus, nyahpecutan brek dianggap malar, dan kenderaan tidak tergelincir. Jika keadaan jalan berubah, nilai <InlineMath math="b" /> juga boleh berubah.
 
-## Permukaan Jalan Mengubah Nyahpecutan
+### Permukaan Jalan Mengubah Nyahpecutan
 
 Lintasannya kekal lurus, tetapi jika kereta tanpa ABS membrek sekuat mungkin, rodanya terkunci dan tayarnya menggelongsor lurus di atas jalan. Ketika itu satu-satunya daya yang memperlahankan kereta ialah geseran di antara tayar dengan jalan. Magnitudnya <InlineMath math="\mu mg" />, dengan <InlineMath math="\mu" /> sebagai pekali geseran. Jisim kereta muncul pada kedua-dua belah persamaan, jadi nyahpecutan **hanya bergantung pada jalan**.
 
@@ -145,6 +155,7 @@ Pekali geseran gelongsor dalam jadual ini diambil daripada [ulasan Soica dan Ghe
       kesan gelinciran dan tiang penanda jarak.
     </>
   }
+  footer={<>Geseran jalan yang lebih kecil memanjangkan kesan gelinciran dengan ketara.</>}
   labels={{
     chooseSurface: "Pilih permukaan jalan",
     surfaces: {
@@ -170,13 +181,21 @@ Pekali geseran gelongsor dalam jadual ini diambil daripada [ulasan Soica dan Ghe
   }}
 />
 
-Bandingkan asfalt kering dengan asfalt basah. Pekali geseran turun daripada <InlineMath math="0.75" /> kepada <InlineMath math="0.45" />, jadi jarak brek bertambah <InlineMath math="0.75/0.45\approx1.67" /> kali, daripada <InlineMath math="27.2\text{ m}" /> kepada <InlineMath math="45.4\text{ m}" />. Di atas ais, kereta yang sama hanya berhenti selepas hampir <InlineMath math="300\text{ m}" />. Perhatikan juga kesan gelincirannya: panjangnya ialah jarak brek yang kamu baca pada tiang penanda.
+Bandingkan asfalt kering dengan asfalt basah. Pekali geseran turun daripada <InlineMath math="0.75" /> kepada <InlineMath math="0.45" />, jadi jarak brek bertambah sekitar <InlineMath math="1.67" /> kali, daripada <InlineMath math="27.2\text{ m}" /> kepada <InlineMath math="45.4\text{ m}" />. Di atas ais, kereta yang sama hanya berhenti selepas hampir <InlineMath math="300\text{ m}" />. Perhatikan juga kesan gelincirannya: panjangnya ialah jarak brek yang kamu baca pada tiang penanda.
 
-## Jarak Brek Bertambah dengan Kuasa Dua Laju
+## Kuasa Dua Laju dan Tenaga Brek
+
+Oleh sebab jarak brek bergantung pada <InlineMath math="v^2" />, pertambahan kecil pada laju membawa **kesan keselamatan yang jauh lebih besar**. Melihat graf jarak berhenti dan haba pada cakera brek menunjukkan hukum tenaga kuadratik yang sama.
+
+### Jarak Brek Bertambah dengan Kuasa Dua Laju
 
 Jarak tindak balas berkadar terus dengan laju. Jika laju menjadi dua kali ganda, jarak tindak balas juga menjadi dua kali ganda untuk masa tindak balas yang sama.
 
-Jarak brek lebih peka kerana ia mengandungi <InlineMath math="v^2" />. Bagi jisim kenderaan yang tetap, tenaga kinetik <InlineMath math="K=\frac{1}{2}mv^2" /> juga berubah mengikut **kuasa dua laju**. Brek dan daya antara tayar dengan jalan mesti menyingkirkan tenaga itu untuk memberhentikan kenderaan.
+Jarak brek lebih peka kerana ia mengandungi <InlineMath math="v^2" />. Bagi jisim kenderaan yang tetap, tenaga kinetik juga berubah mengikut **kuasa dua laju**:
+
+<BlockMath math="K=\frac{1}{2}mv^2" />
+
+Brek dan daya antara tayar dengan jalan mesti menyingkirkan tenaga itu untuk memberhentikan kenderaan.
 
 Katakan masa tindak balas ialah <InlineMath math="1\text{ s}" /> dan magnitud nyahpecutan brek ialah <InlineMath math="5\text{ m/s}^2" />.
 
@@ -188,24 +207,25 @@ Katakan masa tindak balas ialah <InlineMath math="1\text{ s}" /> dan magnitud ny
 
 Apabila laju menjadi dua kali ganda, jarak tindak balas juga berganda dua daripada <InlineMath math="10\text{ m}" /> kepada <InlineMath math="20\text{ m}" />, manakala jarak brek menjadi empat kali ganda daripada <InlineMath math="10\text{ m}" /> kepada <InlineMath math="40\text{ m}" />. Oleh itu, jumlahnya naik daripada <InlineMath math="20\text{ m}" /> kepada <InlineMath math="60\text{ m}" />.
 
-Graf di bawah menjumlahkan kedua-dua bahagian untuk setiap laju sehingga <InlineMath math="30\text{ m/s}" />. Jarak tindak balas berwarna hijau kebiruan bertambah sebagai garis lurus. Jumlah berwarna oren melengkung ke atas kerana bahagian brek bertambah mengikut <InlineMath math="v^2" />. Pada <InlineMath math="20\text{ m/s}" />, jumlahnya ialah <InlineMath math="20+40=60\text{ m}" />.
+Graf di bawah menjumlahkan kedua-dua bahagian untuk setiap laju sehingga <InlineMath math="30\text{ m/s}" />. Jarak tindak balas berwarna hijau kebiruan bertambah sebagai garis lurus. Jumlah berwarna oren melengkung ke atas kerana bahagian brek bertambah mengikut <InlineMath math="v^2" />.
 
 <MathVisual
   title={<>Jarak Berhenti Melawan Laju</>}
-  description={<>Masa tindak balas <InlineMath math="1\text{ s}" /> dan nyahpecutan brek <InlineMath math="5\text{ m/s}^2" />. Paksi mengufuk: laju dalam unit 5 m/s. Paksi menegak: jarak dalam unit 20 m.</>}
+  description={<>Masa tindak balas <InlineMath math="1\text{ s}" /> dan nyahpecutan brek <InlineMath math="5\text{ m/s}^2" />. Paksi mengufuk menunjukkan laju dalam <InlineMath math="\text{m/s}" /> dan paksi menegak menunjukkan jarak dalam meter.</>}
+  footer={<>Lengkung jumlah oren melengkung curam di atas garis lurus tindak balas.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 38 }, y: { min: -5, max: 130 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "reaction", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 6, y: 1.5 } },
-      { id: "total", kind: "quadratic", appearance: "primary", coefficients: { a: 0.125, b: 0.25, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
-      { id: "at-20", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+      { id: "reaction", kind: "function", appearance: "construction", formula: "x", domain: { min: 0, max: 30 } },
+      { id: "total", kind: "function", appearance: "primary", formula: "x + x^2/10", domain: { min: 0, max: 30 } },
+      { id: "at-20", kind: "point", appearance: "answer", at: { x: 20, y: 60 } },
     ],
     labels: [
-      { key: "reaction", objectId: "reaction", at: { x: 6, y: 1.5 }, placement: "right" },
-      { key: "total", objectId: "total", at: { x: 6, y: 6 }, placement: "left" },
-      { key: "at", objectId: "at-20", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "reaction", objectId: "reaction", at: { x: 30, y: 30 }, placement: "right" },
+      { key: "total", objectId: "total", at: { x: 30, y: 120 }, placement: "left" },
+      { key: "at", objectId: "at-20", at: { x: 20, y: 60 }, placement: "right" },
     ],
   }}
   labels={{
@@ -215,9 +235,11 @@ Graf di bawah menjumlahkan kedua-dua bahagian untuk setiap laju sehingga <Inline
   }}
 />
 
-## Gerakan Bertukar Menjadi Haba pada Brek
+Pada <InlineMath math="10\text{ m/s}" />, tindak balas dan brek menyumbang sama banyak, tetapi pada <InlineMath math="30\text{ m/s}" /> jarak brek membentuk tiga perempat daripada jumlah jarak berhenti. Jurang menegak yang semakin melebar antara kedua-dua lengkung itu menunjukkan sebab memandu laju meninggalkan ruang berhenti yang jauh lebih kecil.
 
-Mengapa jarak brek mengikut <InlineMath math="v^2" />? Brek perlu menghabiskan tenaga kinetik kereta, <InlineMath math="K=\tfrac{1}{2}mv^2" />. Geseran di antara pad dengan cakera menukarkan tenaga itu kepada **haba**, jadi cakera menjadi panas. Dengan daya brek yang malar, tenaga yang dihabiskan sama dengan daya darab jarak, jadi jarak brek juga berkadar dengan <InlineMath math="v^2" />.
+### Gerakan Bertukar Menjadi Haba pada Brek
+
+Mengapa jarak brek mengikut <InlineMath math="v^2" />? Brek perlu menghabiskan tenaga kinetik kereta <InlineMath math="K" />. Geseran di antara pad dengan cakera menukarkan tenaga itu kepada **haba**, jadi cakera menjadi panas. Dengan daya brek yang malar, tenaga yang dihabiskan sama dengan daya darab jarak, jadi jarak brek juga berkadar dengan <InlineMath math="v^2" />.
 
 Kad di bawah menggunakan kereta <InlineMath math="1200\text{ kg}" /> dengan empat cakera besi <InlineMath math="8\text{ kg}" /> yang berkongsi haba sama rata. Muatan haba tentu besi ialah <InlineMath math="449\text{ J/(kg K)}" /> daripada CRC Handbook of Chemistry and Physics, dan cakera bermula pada <InlineMath math="30^\circ\text{C}" />.
 
@@ -235,6 +257,7 @@ Kad di bawah menggunakan kereta <InlineMath math="1200\text{ kg}" /> dengan empa
       bahagian roda mengikut suhunya.
     </>
   }
+  footer={<>Laju dua kali ganda menghantar tenaga haba empat kali ganda ke cakera brek.</>}
   labels={{
     chooseSpeed: "Pilih laju awal",
     thermal: "Kamera terma",
@@ -245,13 +268,17 @@ Kad di bawah menggunakan kereta <InlineMath math="1200\text{ kg}" /> dengan empa
   }}
 />
 
-Mata kamu tidak nampak apa-apa perubahan pada cakera, tetapi kamera terma menunjukkannya sebagai bahagian yang paling panas. Daripada <InlineMath math="20\text{ m/s}" />, tenaganya ialah <InlineMath math="\tfrac{1}{2}\cdot1200\cdot20^2=240\text{ kJ}" /> dan cakera menjadi panas kira-kira <InlineMath math="16.7\text{ K}" />. Daripada <InlineMath math="10\text{ m/s}" />, cakera hanya menjadi panas kira-kira <InlineMath math="4.2\text{ K}" />. Laju yang dua kali ganda menghasilkan **haba empat kali ganda**.
+Mata kamu tidak nampak apa-apa perubahan pada cakera, tetapi kamera terma menunjukkannya sebagai bahagian yang paling panas. Daripada <InlineMath math="20\text{ m/s}" />, tenaga kinetik yang dilesapkan ialah:
+
+<BlockMath math="K=\frac{1}{2}(1200\text{ kg})(20\text{ m/s})^2=240\text{ kJ}" />
+
+Cakera menjadi panas kira-kira <InlineMath math="16.7\text{ K}" />, manakala daripada <InlineMath math="10\text{ m/s}" /> kenaikannya hanya sekitar <InlineMath math="4.2\text{ K}" />. Laju yang dua kali ganda menghasilkan **haba empat kali ganda**.
 
 ## Jarak Selamat di Belakang Kenderaan Lain
 
 Apabila kereta di hadapan membrek dengan kuat, kamu hanya perlu berhenti sebelum melanggarnya, dan kereta itu juga terus bergerak semasa membrek. Jika kedua-dua kereta membrek sama kuat, jarak brek kedua-duanya sama. Bezanya hanya jarak tindak balas kamu: selama <InlineMath math="t_r" /> kamu masih bergerak pada laju penuh sedangkan kereta di hadapan sudah mula perlahan.
 
-Katakan kamu mengekalkan sela masa <InlineMath math="h" /> di belakang kereta itu. Pada laju <InlineMath math="v" />, jarak awalnya ialah <InlineMath math="vh" />, dan selepas kedua-duanya berhenti, yang tinggal ialah
+Katakan kamu mengekalkan sela masa <InlineMath math="h" /> di belakang kereta itu. Pada laju <InlineMath math="v" />, jarak awalnya ialah <InlineMath math="vh" />, dan selepas kedua-duanya berhenti, yang tinggal ialah:
 
 <BlockMath math="d_{\text{baki}}=vh-vt_r=v\,(h-t_r)" />
 
@@ -266,6 +293,7 @@ Jadi jarak itu habis tepat apabila <InlineMath math="h<t_r" />, **tidak kira ber
       balas, kemudian mainkan.
     </>
   }
+  footer={<>Berhenti selamat memerlukan sela masa lebih panjang daripada masa tindak balas.</>}
   labels={{
     chooseHeadway: "Pilih sela masa",
     reactionTime: "Masa tindak balas",
@@ -279,7 +307,7 @@ Jadi jarak itu habis tepat apabila <InlineMath math="h<t_r" />, **tidak kira ber
   }}
 />
 
-Cuba sela masa <InlineMath math="1\text{ s}" /> dengan masa tindak balas <InlineMath math="1.5\text{ s}" />. Jarak awalnya <InlineMath math="25\text{ m}" />, lebih pendek daripada jarak tindak balas <InlineMath math="37.5\text{ m}" />, jadi kereta kamu melanggar kereta di hadapan dengan beza laju <InlineMath math="5\cdot1.5=7.5\text{ m/s}" />. Dengan sela <InlineMath math="2\text{ s}" />, masih tinggal <InlineMath math="25\,(2-1.5)=12.5\text{ m}" />.
+Cuba sela masa <InlineMath math="1\text{ s}" /> dengan masa tindak balas <InlineMath math="1.5\text{ s}" />. Jarak awalnya <InlineMath math="25\text{ m}" />, lebih pendek daripada jarak tindak balas <InlineMath math="37.5\text{ m}" />, jadi kereta kamu melanggar kereta di hadapan dengan beza laju <InlineMath math="7.5\text{ m/s}" />. Dengan sela <InlineMath math="2\text{ s}" />, masih tinggal jarak selamat <InlineMath math="12.5\text{ m}" />.
 
 ## Mengira Jumlah Jarak Berhenti
 

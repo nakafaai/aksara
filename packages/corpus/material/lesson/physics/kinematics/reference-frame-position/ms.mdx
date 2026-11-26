@@ -22,38 +22,57 @@ Jika gerakan berlaku sepanjang satu garis lurus, kita boleh memilih satu arah se
 
 Persamaan ini mengekalkan objek di tempatnya dan menganjakkan asalan koordinat, sementara paksi dan arah positif kekal tetap.
 
-## Siapa yang Bergerak Bergantung pada Kerangka
+Kerangka rujukan juga menentukan **apa yang dikira sebagai bergerak**. Bayangkan sebuah kereta api bergerak ke timur pada <InlineMath math="20\text{ m/s}" /> sementara seorang penumpang berjalan dalam gerabak pada halaju <InlineMath math="a" /> relatif kepada tempat duduk. Ubah nilai <InlineMath math="a" /> untuk membandingkan kedudukan penumpang dari platform dan dari kereta api.
 
-Kerangka rujukan juga menentukan **apa yang dikira sebagai bergerak**. Seorang penumpang berjalan di sepanjang gerabak sementara kereta api bergerak pada <InlineMath math="20\text{ m/s}" />, dan dua orang memerhatikannya.
-
-<TrainPassengerRelativeLab
-  title={<>Berjalan dalam Kereta Api yang Bergerak</>}
+<MathVisual
+  title={<>Kedudukan Penumpang dalam Dua Kerangka</>}
   description={
     <>
-      Perhatikan dari platform, kemudian dari tempat duduk dalam kereta api. Anak panah menunjukkan halaju yang diukur oleh setiap pemerhati, dengan arah kereta api sebagai positif.
+      Bandingkan kedudukan kereta api (kelabu) dengan kedudukan penumpang dari platform (jingga) apabila halaju berjalan <InlineMath math="a" /> berubah.
     </>
   }
+  footer={<>Jarak dua garis melebar kerana penumpang berjalan di dalam kereta api.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: 0, max: 120 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -2, max: 2, value: 1.5, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "train-line", kind: "function", appearance: "reference", formula: "20*x", domain: { min: 0, max: 5 } },
+      { id: "person-line", kind: "function", appearance: "primary", formula: "(20 + a)*x", domain: { min: 0, max: 5 } },
+      { id: "time-guide", kind: "path", appearance: "construction", points: [{ x: "4", y: "0" }, { x: "4", y: "4*(20 + a)" }] },
+      { id: "train-dot", kind: "point", appearance: "reference", at: { x: 4, y: 80 } },
+      { id: "person-dot", kind: "marker", appearance: "answer", x: "4", y: "4*(20 + a)" },
+    ],
+    labels: [
+      { key: "train", objectId: "train-line", at: { x: 5, y: 100 }, placement: "below-right" },
+      { key: "person", objectId: "person-dot", at: { x: "4", y: "4*(20 + a)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "platform-speed", formula: "20 + a" },
+      { key: "train-speed", formula: "a" },
+      { key: "seat-shift", formula: "4*a" },
+    ],
+  }}
   labels={{
-    chooseObserver: "Pilih pemerhati",
-    chooseWay: "Pilih arah berjalan",
-    observers: {
-      platform: <>Dari platform</>,
-      train: <>Dari tempat duduk</>,
-    },
-    passenger: <>Halaju penumpang</>,
-    train: <>Halaju kereta api</>,
-    viewLabel: "Penumpang berjalan dalam kereta api yang bergerak",
-    walk: <>Halaju berjalan dalam gerabak</>,
-    ways: {
-      forward: <>Berjalan ke hadapan</>,
-      backward: <>Berjalan ke belakang</>,
-    },
+    a: <>Halaju berjalan <InlineMath math="a" /> (m/s)</>,
+    train: <>Kereta api</>,
+    person: <>Penumpang</>,
+    "platform-speed": <>Dari platform (m/s)</>,
+    "train-speed": <>Dari kerusi (m/s)</>,
+    "seat-shift": <>Anjakan dalam gerabak pada 4 s (m)</>,
   }}
 />
 
-Dari platform, penumpang itu bergerak pada <InlineMath math="+21.5\text{ m/s}" />. Dari tempat duduk, penumpang yang sama hanya bergerak pada <InlineMath math="+1.5\text{ m/s}" />, dan platform pula yang kelihatan bergerak ke belakang.
+Dari platform, penumpang itu bergerak pada <InlineMath math="+21.5\text{ m/s}" /> apabila berjalan ke hadapan pada <InlineMath math="+1.5\text{ m/s}" />. Dari tempat duduk, penumpang yang sama hanya bergerak pada <InlineMath math="+1.5\text{ m/s}" />, dan platform pula yang kelihatan bergerak ke belakang.
 
-## Kedudukan daripada Rujukan yang Berbeza
+## Mengubah Asalan pada Satu Garis
+
+Sepanjang satu jalan lurus, setiap mercu tanda boleh dijadikan titik sifar pada **paksi koordinat** yang sama. Memindahkan titik sifar mengubah koordinat bertanda bagi objek walaupun objek itu tetap pegun.
+
+### Kedudukan daripada Rujukan yang Berbeza
 
 Ambil satu objek pada koordinat <InlineMath math="30 \text{ m}" /> apabila kedai dijadikan sifar. Jika asalan dianjakkan ke rumah Rani pada koordinat <InlineMath math="20 \text{ m}" />, koordinat baharu objek itu menjadi <InlineMath math="+10 \text{ m}" />.
 
@@ -64,6 +83,7 @@ Lihat paparan di bawah. Garis kelabu ialah objek, dan objek itu tidak pernah ber
 <MathVisual
   title={<>Satu Objek dengan Tiga Asalan</>}
   description={<>Setiap baris mengukur objek yang sama dari asalan yang berbeza, dengan arah timur di sebelah kanan. Satu langkah grid ialah <InlineMath math="10\text{ m}" />.</>}
+  footer={<>Garis kelabu tetap diam ketika setiap asalan memberi panah koordinat berbeza.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1, max: 3 } },
@@ -98,7 +118,17 @@ Lihat paparan di bawah. Garis kelabu ialah objek, dan objek itu tidak pernah ber
   }}
 />
 
-## Tiga Asalan pada Satu Jalan
+Tanda bagi sesuatu kedudukan memberitahu kita <Highlight>di sebelah mana titik rujukan</Highlight> objek itu berada. Dalam contoh jalan ini, arah timur dipilih sebagai positif. Jadi, nilai positif bermaksud objek berada di sebelah timur titik rujukan, manakala nilai negatif bermaksud objek berada di sebelah baratnya.
+
+| Asalan dalam kerangka rujukan yang sama | Koordinat objek pada paksi jalan | Koordinat relatif kepada asalan |
+| :-------------- | :--------------------------------- | :----------------------- |
+| Kedai pada <InlineMath math="0 \text{ m}" /> | Objek pada <InlineMath math="30 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> ke timur |
+| Rumah Rani pada <InlineMath math="20 \text{ m}" /> | Objek pada <InlineMath math="30 \text{ m}" /> | <InlineMath math="+10 \text{ m}" /> ke timur |
+| Rumah Naya pada <InlineMath math="50 \text{ m}" /> | Objek pada <InlineMath math="30 \text{ m}" /> | <InlineMath math="-20 \text{ m}" /> atau <InlineMath math="20 \text{ m}" /> ke barat |
+
+Nilai <InlineMath math="-20 \text{ m}" /> tidak bermaksud jaraknya negatif. Tanda negatif hanya memberitahu arah relatif kepada titik rujukan.
+
+### Tiga Asalan pada Satu Jalan
 
 Inilah rumus <InlineMath math="x'=x_{\text{objek}}-x_{\text{asalan}}" /> semasa digunakan. Sebuah kedai berada pada sifar, rumah Rani pada <InlineMath math="20\text{ m}" />, dan tiang bendera pada <InlineMath math="50\text{ m}" />, dengan arah timur positif. Menukar asalan **menganjakkan setiap kedudukan sebanyak koordinat asalan itu sendiri**.
 
@@ -109,6 +139,7 @@ Inilah rumus <InlineMath math="x'=x_{\text{objek}}-x_{\text{asalan}}" /> semasa 
       Seorang penunggang basikal bergerak dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="50\text{ m}" /> dan kembali ke <InlineMath math="35\text{ m}" />. Pilih asalan dan baca kedudukannya.
     </>
   }
+  footer={<>Menukar asalan menganjak mula dan akhir serentak tanpa mengubah sesaran.</>}
   labels={{
     change: <>Perubahan kedudukan</>,
     chooseOrigin: "Pilih asalan",
@@ -125,45 +156,109 @@ Inilah rumus <InlineMath math="x'=x_{\text{objek}}-x_{\text{asalan}}" /> semasa 
 
 Diukur dari rumah Rani, penunggang basikal bermula pada <InlineMath math="0" /> dan berakhir pada <InlineMath math="+15\text{ m}" />. Diukur dari tiang bendera, titik mulanya <InlineMath math="-30\text{ m}" /> dan titik akhirnya <InlineMath math="-15\text{ m}" />, iaitu di sebelah barat sifar yang baharu.
 
-## Membaca Tanda dan Arah
+## Kedudukan dalam Dua Dimensi
 
-Tanda bagi sesuatu kedudukan memberitahu kita <Highlight>di sebelah mana titik rujukan</Highlight> objek itu berada. Dalam contoh jalan ini, arah timur dipilih sebagai positif. Jadi, nilai positif bermaksud objek berada di sebelah timur titik rujukan, manakala nilai negatif bermaksud objek berada di sebelah baratnya.
+Apabila gerakan meninggalkan satu garis lurus, satu nombor bertanda tidak lagi mencukupi untuk menyatakan lokasi objek. Peta rata atau lintasan sungai memerlukan **dua paksi serenjang** dan satu asalan supaya setiap titik mempunyai pasangan koordinat yang tepat.
 
-| Asalan dalam kerangka rujukan yang sama | Koordinat objek pada paksi jalan | Koordinat relatif kepada asalan |
-| :-------------- | :--------------------------------- | :----------------------- |
-| Kedai pada <InlineMath math="0 \text{ m}" /> | Objek pada <InlineMath math="30 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> ke timur |
-| Rumah Rani pada <InlineMath math="20 \text{ m}" /> | Objek pada <InlineMath math="30 \text{ m}" /> | <InlineMath math="+10 \text{ m}" /> ke timur |
-| Rumah Naya pada <InlineMath math="50 \text{ m}" /> | Objek pada <InlineMath math="30 \text{ m}" /> | <InlineMath math="-20 \text{ m}" /> atau <InlineMath math="20 \text{ m}" /> ke barat |
+### Dua Arah pada Peta
 
-Nilai <InlineMath math="-20 \text{ m}" /> tidak bermaksud jaraknya negatif. Tanda negatif hanya memberitahu arah relatif kepada titik rujukan.
+Pada peta pekan, satu kedudukan memerlukan **dua nombor bertanda**, satu bagi setiap arah. Ambil arah timur dan utara sebagai positif, kemudian berjalan <InlineMath math="150\text{ m}" /> ke barat dan <InlineMath math="200\text{ m}" /> ke utara. Ubah langkah timur-barat <InlineMath math="a" /> dan utara-selatan <InlineMath math="b" /> di bawah untuk menguji titik akhir lain.
 
-## Dua Arah pada Peta
-
-Pada peta pekan, satu kedudukan memerlukan **dua nombor bertanda**, satu bagi setiap arah. Ambil arah timur dan utara sebagai positif, kemudian berjalan <InlineMath math="150\text{ m}" /> ke barat dan <InlineMath math="200\text{ m}" /> ke utara.
-
-<CityWalkDisplacementLab
-  legs={[
-    { east: -150, north: 0 },
-    { east: 0, north: 200 },
-  ]}
-  pace={1.25}
-  title={<>Berjalan pada Dua Paksi</>}
+<MathVisual
+  title={<>Berjalan pada Dua Paksi Peta</>}
   description={
     <>
-      Anak panah ungu menghala dari rumah ke tempat kamu berdiri. Bahagian timurnya negatif dan bahagian utaranya positif.
+      Laluan ungu mengikut dua bahagian jalan dari rumah, manakala garis merah jambu menghala terus ke kedudukan <InlineMath math="(a,b)" />.
     </>
   }
+  footer={<>Garis pepenjuru menyambung rumah terus ke kedudukan akhirmu pada dua paksi.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -240, max: 240 }, y: { min: -240, max: 240 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -200, max: 200, value: -150, step: 50, label: "a" },
+      { name: "b", min: -200, max: 200, value: 200, step: 50, label: "b" },
+    ],
+    objects: [
+      { id: "home", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "walk-legs", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "a", y: "0" }, { x: "a", y: "b" }] },
+      { id: "direct-pos", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "a", y: "b" }] },
+      { id: "end-spot", kind: "marker", appearance: "primary", x: "a", y: "b" },
+    ],
+    labels: [
+      { key: "home", objectId: "home", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "end", objectId: "end-spot", at: { x: "a", y: "b" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "straight-dist", formula: "sqrt(a^2 + b^2)" },
+      { key: "walk-dist", formula: "abs(a) + abs(b)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Laju purata</>,
-    averageVelocity: <>Magnitud halaju purata</>,
-    displacement: <>Magnitud sesaran</>,
-    distance: <>Jarak berjalan</>,
-    time: <>Masa</>,
-    viewLabel: "Berjalan melalui pekan dilihat dari atas",
+    a: <>Koordinat timur <InlineMath math="a" /> (m)</>,
+    b: <>Koordinat utara <InlineMath math="b" /> (m)</>,
+    home: <>Rumah</>,
+    end: <>Kamu</>,
+    "straight-dist": <>Garis lurus dari rumah (m)</>,
+    "walk-dist": <>Jumlah jarak berjalan (m)</>,
   }}
 />
 
-Kamu berakhir pada <InlineMath math="x=-150\text{ m}" /> dan <InlineMath math="y=+200\text{ m}" /> dari rumah, iaitu <InlineMath math="\sqrt{150^2+200^2}=250\text{ m}" /> jauhnya dalam garis lurus, walaupun kamu berjalan <InlineMath math="350\text{ m}" />.
+Kamu berakhir pada <InlineMath math="x=-150\text{ m}" /> dan <InlineMath math="y=+200\text{ m}" /> dari rumah. Walaupun kamu berjalan <InlineMath math="350\text{ m}" />, jarak garis lurus dari rumah ialah:
+
+<BlockMath math="r=\sqrt{(-150)^2+200^2}=250\text{ m}" />
+
+### Titik Mendarat Sebuah Bot
+
+Bot yang menyeberangi sungai selebar <InlineMath math="60\text{ m}" /> menunjukkan ayat kedudukan dengan dua rujukan serentak. Titik mendarat **diukur di sepanjang tebing seberang dari titik yang betul-betul bertentangan**. Bot itu bergerak pada <InlineMath math="4\text{ m/s}" /> dengan sudut haluan <InlineMath math="a" /> sementara sungai mengalir ke hilir pada <InlineMath math="3\text{ m/s}" />.
+
+<MathVisual
+  title={<>Titik Mendarat di Tebing Seberang</>}
+  description={
+    <>
+      Ubah sudut haluan <InlineMath math="a" /> (negatif menghala ke hulu) dan perhatikan titik mendarat bot bergerak sepanjang tebing seberang.
+    </>
+  }
+  footer={<>Mengarahkan haluan lebih ke hulu menarik titik mendarat mendekati sifar.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 72 }, y: { min: -10, max: 52 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -50, max: 0, value: -30, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "near-bank", kind: "segment", appearance: "reference", from: { x: 0, y: -8 }, to: { x: 0, y: 50 } },
+      { id: "far-bank", kind: "segment", appearance: "reference", from: { x: 60, y: -8 }, to: { x: 60, y: 50 } },
+      { id: "across-guide", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "start-pt", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "across-pt", kind: "point", appearance: "reference", at: { x: 60, y: 0 } },
+      { id: "boat-track", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "60", y: "15*(3 + 4*sin(a*pi/180))/cos(a*pi/180)" }] },
+      { id: "drift-seg", kind: "path", appearance: "answer", points: [{ x: "60", y: "0" }, { x: "60", y: "15*(3 + 4*sin(a*pi/180))/cos(a*pi/180)" }] },
+      { id: "land-pt", kind: "marker", appearance: "answer", x: "60", y: "15*(3 + 4*sin(a*pi/180))/cos(a*pi/180)" },
+    ],
+    labels: [
+      { key: "start", objectId: "start-pt", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "across", objectId: "across-pt", at: { x: 60, y: 0 }, placement: "below-right" },
+      { key: "landing", objectId: "land-pt", at: { x: "60", y: "15*(3 + 4*sin(a*pi/180))/cos(a*pi/180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "drift-dist", formula: "15*(3 + 4*sin(a*pi/180))/cos(a*pi/180)" },
+      { key: "cross-time", formula: "15/cos(a*pi/180)" },
+    ],
+  }}
+  labels={{
+    a: <>Sudut haluan <InlineMath math="a" /> (deg)</>,
+    start: <>Mula</>,
+    across: <>Seberang</>,
+    landing: <>Mendarat</>,
+    "drift-dist": <>Kedudukan ke hilir (m)</>,
+    "cross-time": <>Masa menyeberang (s)</>,
+  }}
+/>
+
+Pada haluan <InlineMath math="-30^\circ" /> ke hulu, bot mendarat kira-kira <InlineMath math="17.3\text{ m}" /> ke hilir dari titik yang betul-betul bertentangan. Jawapan yang lengkap menyebut titik rujukan itu, jaraknya dan arahnya ke hilir.
 
 ## Pernyataan Kedudukan yang Lengkap
 
@@ -172,6 +267,7 @@ Ayat kedudukan memerlukan empat bahagian. Jika satu bahagian tertinggal, orang l
 <Mermaid
   title={<>Membina Pernyataan Kedudukan</>}
   description={<>Ikut urutan ini supaya kedudukan objek tidak dibaca dari titik rujukan yang salah.</>}
+  footer={<>Setiap kotak menambah satu syarat agar dua pembaca sepakat tentang lokasi.</>}
   chart={`flowchart LR
     A["Objek yang diperhatikan"] --> B["Asalan dan arah positif"]
     B --> C["Nilai koordinat dan unit"]
@@ -187,6 +283,7 @@ Dalam dua dimensi, pernyataan kedudukan memerlukan satu asalan dan dua nombor. D
 <MathVisual
   title={<>Satu Titik dengan Dua Asalan</>}
   description={<>Kedudukan P dari O (jingga) dan dari O' (merah jambu), dengan anjakan antara kedua-dua asalan (ungu).</>}
+  footer={<>Menolak vektor anjakan memindahkan anak panah kedudukan dari asalan lama.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.8, max: 4 }, y: { min: -0.8, max: 2.8 } },
@@ -219,35 +316,66 @@ Dalam dua dimensi, pernyataan kedudukan memerlukan satu asalan dan dua nombor. D
   }}
 />
 
-## Ketinggian yang Diukur dari Dua Asalan
+Anak panah jingga dan anak panah merah jambu kedua-duanya menunjuk kepada lokasi titik <InlineMath math="P" /> yang sama. Hanya asalan yang berubah, jadi menolak anjakan <InlineMath math="\vec r_0=(1,1)" /> menukar <InlineMath math="(3,2)" /> kepada <InlineMath math="(2,1)" />.
+
+## Mengukur Kedudukan dari Dua Asalan
+
+Pengukuran sebenar sering menyatakan dua nilai berbeza untuk objek yang sama kerana **dua asalan yang berbeza** sama-sama mudah digunakan. Membandingkan ketinggian satelit dengan koordinat penanda jalan menunjukkan cara menamakan asalan mengelakkan kekeliruan.
+
+### Ketinggian yang Diukur dari Dua Asalan
 
 Kedudukan satelit juga memerlukan rujukannya. Stesen angkasa mengorbit kira-kira <InlineMath math="400\text{ km}" /> di atas permukaan tanah, iaitu <InlineMath math="6771\text{ km}" /> dari pusat Bumi. Kedua-dua nombor itu betul, kerana **kedua-duanya diukur dari asalan yang berbeza**.
 
-<SatelliteOrbitCircularLab
-  title={<>Satelit di Sekeliling Bumi</>}
+<MathVisual
+  title={<>Ketinggian Satelit dan Jejari Orbit</>}
   description={
     <>
-      Pilih satelit. Jejari orbit diukur dari pusat Bumi, bukan dari permukaan tanah.
+      Ubah ketinggian <InlineMath math="h" /> di atas permukaan Bumi dan bandingkan jarak dari tanah (merah jambu) dengan jejari dari pusat Bumi.
     </>
   }
+  footer={<>Jejari orbit sentiasa menambah jejari Bumi pada ketinggian dari tanah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7200, max: 11200 }, y: { min: -7600, max: 7600 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 400, max: 3600, value: 400, step: 200, label: "h" },
+    ],
+    objects: [
+      { id: "earth", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 6371 },
+      { id: "earth-center", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "surface", kind: "point", appearance: "secondary", at: { x: 6371, y: 0 } },
+      { id: "earth-radius", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6371, y: 0 } },
+      { id: "altitude-seg", kind: "path", appearance: "answer", points: [{ x: "6371", y: "0" }, { x: "6371 + h", y: "0" }] },
+      { id: "satellite", kind: "marker", appearance: "primary", x: "6371 + h", y: "0" },
+    ],
+    labels: [
+      { key: "center", objectId: "earth-center", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "ground", objectId: "surface", at: { x: 6371, y: 0 }, placement: "below-left" },
+      { key: "sat", objectId: "satellite", at: { x: "6371 + h", y: "0" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "ground-height", formula: "h" },
+      { key: "center-radius", formula: "6371 + h" },
+    ],
+  }}
   labels={{
-    acceleration: <>Pecutan memusat</>,
-    chooseOrbit: "Pilih satelit",
-    orbits: {
-      station: <>Stesen angkasa</>,
-      gps: <>GPS</>,
-      geostationary: <>Geopegun</>,
-    },
-    period: <>Masa untuk satu orbit</>,
-    radius: <>Jejari orbit</>,
-    speed: <>Laju</>,
-    viewLabel: "Satelit mengorbit Bumi",
+    h: <>Ketinggian <InlineMath math="h" /> (km)</>,
+    center: <>Pusat</>,
+    ground: <>Tanah</>,
+    sat: <>Satelit</>,
+    "ground-height": <>Dari tanah (km)</>,
+    "center-radius": <>Dari pusat Bumi (km)</>,
   }}
 />
 
-Tambahkan jejari min Bumi, <InlineMath math="6371\text{ km}" />, kepada ketinggian di atas tanah dan kamu mendapat jejari dari pusat: <InlineMath math="6371+400=6771\text{ km}" />. Pernyataan yang lengkap menyebut yang mana satu dimaksudkan.
+Tambahkan jejari min Bumi <InlineMath math="6371\text{ km}" /> kepada ketinggian di atas tanah untuk mendapatkan jejari orbit dari pusat:
 
-## Ayat Kedudukan dari Kedai
+<BlockMath math="r=6371\text{ km}+400\text{ km}=6771\text{ km}" />
+
+Pernyataan yang lengkap sentiasa menyebut asalan yang mana dimaksudkan.
+
+### Ayat Kedudukan dari Kedai
 
 Sebuah penanda berada pada koordinat <InlineMath math="40 \text{ m}" /> apabila kedai menjadi asalan. Rumah Dimas berada pada koordinat <InlineMath math="30 \text{ m}" /> dalam kerangka yang sama. Jika **asalan dianjakkan** ke rumah Dimas, koordinat penanda itu ialah:
 
@@ -265,6 +393,7 @@ Kedua-dua anak panah di bawah berakhir di penanda yang sama. Hanya titik mulanya
 <MathVisual
   title={<>Satu Penanda dengan Dua Asalan</>}
   description={<>Penanda pada <InlineMath math="40\text{ m}" /> dari kedai, diukur dari kedai dan dari rumah Dimas yang berada pada <InlineMath math="30\text{ m}" />. Satu langkah grid ialah <InlineMath math="10\text{ m}" />.</>}
+  footer={<>Kedua-dua anak panah berakhir di penanda sama kerana hanya asalan berubah.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1, max: 2 } },
@@ -293,30 +422,4 @@ Kedua-dua anak panah di bawah berakhir di penanda yang sama. Hanya titik mulanya
   }}
 />
 
-## Titik Mendarat Sebuah Bot
-
-Bot yang menyeberangi sungai menunjukkan ayat kedudukan dengan dua rujukan serentak. Titik mendarat **diukur di sepanjang tebing dari titik yang betul-betul bertentangan**. Bot itu dihalakan <InlineMath math="30^\circ" /> ke hulu pada <InlineMath math="4\text{ m/s}" /> sementara sungai mengalir pada <InlineMath math="3\text{ m/s}" />.
-
-<RiverBoatCrossingLab
-  boatSpeed={4}
-  current={3}
-  heading={-30}
-  width={60}
-  title={<>Menyeberangi Sungai yang Mengalir</>}
-  description={
-    <>
-      Ubah haluan dan perhatikan tempat bot mendarat di tebing seberang, <InlineMath math="60\text{ m}" /> jauhnya.
-    </>
-  }
-  labels={{
-    angle: <>Sudut dari arah lurus menyeberang</>,
-    drift: <>Hanyutan ke hilir</>,
-    groundSpeed: <>Laju relatif kepada tebing</>,
-    heading: <>Haluan</>,
-    headingName: "Haluan bot",
-    time: <>Masa menyeberang</>,
-    viewLabel: "Bot menyeberangi sungai dilihat dari atas",
-  }}
-/>
-
-Pada haluan ini, bot mendarat kira-kira <InlineMath math="17.3\text{ m}" /> ke hilir dari titik yang betul-betul bertentangan. Jawapan yang lengkap menyebut titik itu, jaraknya dan arahnya ke hilir.
+Perhatikan bahawa anak panah ungu adalah <InlineMath math="30\text{ m}" /> lebih pendek daripada anak panah jingga, sepadan dengan jarak antara kedai dengan rumah Dimas. Menyebut asalan memberitahu pembaca anak panah mana yang dilaporkan.

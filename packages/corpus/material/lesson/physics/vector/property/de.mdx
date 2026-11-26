@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Vektoreigenschaften",
   description:
@@ -10,9 +8,15 @@ export const metadata = {
   subject: "Vektor",
 };
 
-## Gleiche Vektoren sind nicht an einen Ort gebunden
+## Gleiche Vektoren und Gegenvektoren
 
-Zwei Vektoren sind gleich, wenn sie <Highlight>denselben Betrag und dieselbe Richtung</Highlight> besitzen. Im Diagramm dürfen ihre Pfeile an verschiedenen Stellen liegen. Diese Gleichheit vergleicht die Vektoren selbst. Bei einer Kraft kann der Angriffspunkt trotzdem die Drehwirkung verändern, obwohl der Kraftvektor gleich bleibt.
+Zwei Vektoren werden allein über **Betrag und Richtung** verglichen, niemals über den Zeichenort auf dem Blatt. Kehrt man die Richtung bei exakt gleicher Länge um, entsteht der **Gegenvektor**, der den ursprünglichen Vektor aufhebt.
+
+> Gleiche Vektoren stimmen in Betrag und Richtung überein, unabhängig von ihrem Zeichenort.
+
+### Gleiche Vektoren sind nicht an einen Ort gebunden
+
+Zwei Vektoren sind gleich, wenn sie <Highlight>denselben Betrag und dieselbe Richtung</Highlight> besitzen. Ihre Anfangspunkte in der Zeichnung dürfen verschieden sein. Diese Gleichheit vergleicht die Vektoren selbst, während bei einer realen Kraft am starren Körper ein anderer Angriffspunkt das Drehmoment verändern kann.
 
 <MathVisual
   title={<>Gleiche und entgegengesetzte Vektoren</>}
@@ -23,22 +27,20 @@ Zwei Vektoren sind gleich, wenn sie <Highlight>denselben Betrag und dieselbe Ric
       <InlineMath math="-\vec{a}" /> zeigt in die entgegengesetzte Richtung.
     </>
   }
+  footer="Parallele Pfeile gleicher Länge sind auch an verschiedenen Orten derselbe Vektor."
   labels={{
-    "l1": <InlineMath math="a" />,
-    "l2": <InlineMath math="b" />,
-    "l3": <InlineMath math="-a" />,
+    l1: <InlineMath math="\vec{a}" />,
+    l2: <InlineMath math="\vec{b}" />,
+    l3: <InlineMath math="-\vec{a}" />,
   }}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -2.5, max: 2.5 }, z: { min: -2.5, max: 2.5 } },
     view: { kind: "camera", position: { x: 3.5, y: 4.5, z: 8 }, target: { x: 1, y: 0, z: 0 } },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2.4, y: 1.2, z: 0 }, { x: 4, y: 2, z: 0 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2.4, y: 1.2, z: 0 }, to: { x: 4, y: 2, z: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 2 }, { x: 2.4, y: 1.2, z: 2 }, { x: 4, y: 2, z: 2 }], appearance: "primary" },
-      { id: "s2-head", kind: "vector", from: { x: 2.4, y: 1.2, z: 2 }, to: { x: 4, y: 2, z: 2 }, appearance: "primary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0, z: -2 }, { x: -2, y: -1, z: -2 }, { x: -4, y: -2, z: -2 }], appearance: "secondary" },
-      { id: "s3-head", kind: "vector", from: { x: -2, y: -1, z: -2 }, to: { x: -4, y: -2, z: -2 }, appearance: "secondary" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 2, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 2 }, to: { x: 4, y: 2, z: 2 }, appearance: "primary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: -2 }, to: { x: -4, y: -2, z: -2 }, appearance: "secondary" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.2, z: 0 }, placement: "above-right" },
@@ -48,48 +50,64 @@ Zwei Vektoren sind gleich, wenn sie <Highlight>denselben Betrag und dieselbe Ric
   }}
 />
 
-In der Darstellung liegen <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> auf verschiedenen Geraden. Als Vektoren sind sie gleich, weil Betrag und Richtung übereinstimmen. Das Verschieben eines Pfeils lässt beide Eigenschaften unverändert.
+Verschiebst du einen Pfeil parallel im Raum, bleiben Länge und Richtung unverändert, sodass <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> denselben Vektor darstellen.
 
-Die freie Verschiebung eines abstrakten Vektors in einer Zeichnung bedeutet nicht, dass jeder physikalische Angriffspunkt austauschbar ist. Eine Kraft kann an einem anderen Punkt ein anderes Drehmoment erzeugen.
+Ein gleichmäßiger Seewind von <InlineMath math="10\text{ m/s}" /> unter <InlineMath math="150^\circ" /> ab Osten zeigt das an mehreren Messstationen. Drei Pfeile an getrennten Koordinaten bleiben **identische Vektoren**, weil Geschwindigkeit und Richtung überall übereinstimmen.
 
-## Derselbe Wind über jeder Insel
-
-Ein gleichmäßiger Seewind mit <InlineMath math="10\text{ m/s}" /> ist **über jeder Insel derselbe Vektor**: fünfzehn Pfeile an fünfzehn Orten, alle gleich, weil jeder dieselbe Länge und dieselbe Richtung hat. Ändere den Wind, und alle ändern sich gemeinsam.
-
-<WindMapVectorLab
-  title={<>Ein Wind, viele Orte</>}
-  description={<>Wind mit <InlineMath math="10\text{ m/s}" /> in Richtung <InlineMath math="150^\circ" /> ab Osten.</>}
-  angle={150}
-  speed={10}
+<MathVisual
+  title={<>Ein gleichmäßiger Wind an drei Stationen</>}
+  description={<>Drei Windpfeile an getrennten Stationen mit Richtung <InlineMath math="150^\circ" /> und einstellbarer Geschwindigkeit <InlineMath math="s" /> in m/s.</>}
+  footer="Eine andere Windgeschwindigkeit ändert alle drei Pfeile gemeinsam und gleich."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -16, max: 14 }, y: { min: -2, max: 18 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 4, max: 16, value: 10, step: 2, label: "wind-speed" },
+    ],
+    objects: [
+      { id: "w1", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "s * cos(150 * pi / 180)", y: "s * sin(150 * pi / 180)" }] },
+      { id: "w2", kind: "path", appearance: "primary", points: [{ x: "12", y: "0" }, { x: "12 + s * cos(150 * pi / 180)", y: "s * sin(150 * pi / 180)" }] },
+      { id: "w3", kind: "path", appearance: "primary", points: [{ x: "6", y: "8" }, { x: "6 + s * cos(150 * pi / 180)", y: "8 + s * sin(150 * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "s * cos(150 * pi / 180)", y: "s * sin(150 * pi / 180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "s * cos(150 * pi / 180)", y: "s * sin(150 * pi / 180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "vx-ms", formula: "s * cos(150 * pi / 180)" },
+      { key: "vy-ms", formula: "s * sin(150 * pi / 180)" },
+      { key: "spd-ms", formula: "s" },
+    ],
+  }}
   labels={{
-    angle: <>Richtung ab Osten</>,
-    angleName: "Richtung ab Osten",
-    east: <>Ostkomponente <InlineMath math="v_x" /></>,
-    north: <>Nordkomponente <InlineMath math="v_y" /></>,
-    speed: <>Windgeschwindigkeit</>,
-    speedName: "Windgeschwindigkeit",
-    viewLabel: "Wetterkarte mit Wind über Inseln",
+    tip: <InlineMath math="\vec{v}" />,
+    "wind-speed": <>Windgeschwindigkeit (m/s)</>,
+    "vx-ms": <>Ostkomponente (m/s)</>,
+    "vy-ms": <>Nordkomponente (m/s)</>,
+    "spd-ms": <>Betrag (m/s)</>,
   }}
 />
 
-## Ein Gegenvektor kehrt die Richtung um
+Da alle drei Pfeile dieselbe Ost- und Nordkomponente haben, messen alle drei Stationen exakt denselben Geschwindigkeitsvektor.
 
-Der <Highlight>Gegenvektor</Highlight> zu <InlineMath math="\vec{a}" /> wird als <InlineMath math="-\vec{a}" /> geschrieben. Er hat denselben Betrag wie <InlineMath math="\vec{a}" />, zeigt aber in die entgegengesetzte Richtung.
+### Ein Gegenvektor kehrt die Richtung um
+
+Der <Highlight>Gegenvektor</Highlight> zu <InlineMath math="\vec{a}" /> heißt <InlineMath math="-\vec{a}" />. Er behält den Betrag von <InlineMath math="\vec{a}" /> bei und kehrt seine Richtung um:
 
 <MathContainer>
   <BlockMath math="\lvert-\vec{a}\rvert=\lvert\vec{a}\rvert" />
   <BlockMath math="\vec{a}+(-\vec{a})=\vec{0}" />
 </MathContainer>
 
-Eine Kraft von <InlineMath math="12\text{ N}" /> nach rechts und eine Kraft von <InlineMath math="12\text{ N}" /> nach links bilden zum Beispiel ein Paar entgegengesetzter Vektoren. Wirken beide entlang derselben Geraden auf denselben Körper, ist ihre Resultierende der Nullvektor.
+Eine Kraft von <InlineMath math="12\text{ N}" /> nach rechts und <InlineMath math="12\text{ N}" /> nach links entlang derselben Geraden bilden ein Paar von Gegenvektoren mit Summe null.
 
-## Eine Etappe rückwärts laufen
-
-Die Etappe von <InlineMath math="A" /> nach <InlineMath math="B" /> geht <InlineMath math="60\text{ m}" /> nach Osten und <InlineMath math="80\text{ m}" /> nach Norden. Läufst du sie von <InlineMath math="B" /> nach <InlineMath math="A" /> zurück, bekommst du <InlineMath math="-60\text{ m}" /> und <InlineMath math="-80\text{ m}" />: wieder <InlineMath math="100\text{ m}" />, aber **der Gegenvektor**. Ab <InlineMath math="C" /> gezeichnet bleibt die ursprüngliche Etappe genau derselbe Vektor.
+Auf der Parkkarte führt die Etappe von <InlineMath math="A" /> nach <InlineMath math="B" /> über <InlineMath math="60\text{ m}" /> Ost und <InlineMath math="80\text{ m}" /> Nord. Der Rückweg von <InlineMath math="B" /> nach <InlineMath math="A" /> ergibt <InlineMath math="-60\text{ m}" /> und <InlineMath math="-80\text{ m}" /> als **Gegenvektor** gleicher Länge <InlineMath math="100\text{ m}" />, während die Kopie ab <InlineMath math="C" /> exakt derselbe Vektor bleibt.
 
 <OrienteeringMapVectorLab
   title={<>Hin, zurück, verschoben</>}
   description={<>Die Posten <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" /> in türkisen, bernsteinfarbenen und rosa Ringen. Wähle einen Vektor.</>}
+  footer="Verschieben erhält den Vektor, Umkehren von Start und Ziel bildet den Gegenvektor."
   marks={{
     a: { east: 20, north: 10 },
     b: { east: 80, north: 90 },
@@ -112,9 +130,11 @@ Die Etappe von <InlineMath math="A" /> nach <InlineMath math="B" /> geht <Inline
   }}
 />
 
+Der Vergleich der drei Ansichten zeigt, dass Verschiebung beide Vorzeichen bewahrt, während Umkehrung beide zugleich dreht.
+
 ## Die Skalarmultiplikation ändert Betrag und Richtung
 
-Ein Skalar ist eine gewöhnliche Zahl ohne Richtung. Wird ein Vektor mit dem Skalar <InlineMath math="k" /> multipliziert, ändert sich sein Betrag um den Faktor <InlineMath math="\lvert k\rvert" />.
+Ein Skalar ist eine gewöhnliche Zahl ohne Richtung. Multipliziert man einen Vektor mit <InlineMath math="k" />, wächst oder schrumpft seine Länge um den Faktor <InlineMath math="\lvert k\rvert" />, und ein **negativer Skalar kehrt die Richtung um**, ohne den Betrag je negativ zu machen.
 
 | Form | Betrag des Ergebnisses | Richtung des Ergebnisses |
 | :--- | :--------------------- | :----------------------- |
@@ -123,15 +143,16 @@ Ein Skalar ist eine gewöhnliche Zahl ohne Richtung. Wird ein Vektor mit dem Ska
 | <InlineMath math="-3\vec{a}" /> | <InlineMath math="3\lvert\vec{a}\rvert" /> | entgegengesetzt zu <InlineMath math="\vec{a}" /> |
 | <InlineMath math="0\vec{a}" /> | <InlineMath math="0" /> | wird zum Nullvektor |
 
-Ein negativer Skalar <Highlight>macht den Betrag nicht negativ</Highlight>. Sein Minuszeichen kehrt die Richtung des Vektors um.
+Ein negativer Skalar <Highlight>macht den Betrag nicht negativ</Highlight>. Er dreht den Pfeil lediglich auf derselben Geraden um.
 
-## Mehr Hände am Seil
+### Teams und Koordinaten skalieren
 
-Jede Person fügt dieselben <InlineMath math="350\text{ N}" /> hinzu, also **zieht ein Team aus vier Personen mit** <InlineMath math="4\vec F" />, <InlineMath math="1400\text{ N}" />, und ein Team aus zwei mit der Hälfte. Die Kraft des linken Teams hat ein negatives Vorzeichen, weil sie in die andere Richtung zeigt.
+Jede Person am Tauziehtau ergänzt dieselben <InlineMath math="350\text{ N}" />, sodass **ein Viererteam mit** <InlineMath math="4\vec{F}" />, also <InlineMath math="1400\text{ N}" />, zieht und ein Zweierteam mit der Hälfte. Die linke Seite trägt ein Minuszeichen, weil sie entgegengesetzt zieht.
 
 <TugOfWarForceLab
   title={<>Ein Team ist ein Vielfaches eines Zugs</>}
   description={<>Jede Person zieht mit <InlineMath math="350\text{ N}" />. Ändere, wie viele auf jeder Seite ziehen.</>}
+  footer="Mehr gleiche Zugkräfte skalieren den Vektor, die Gegenseite trägt ein Minus."
   left={2}
   pull={350}
   right={4}
@@ -147,39 +168,36 @@ Jede Person fügt dieselben <InlineMath math="350\text{ N}" /> hinzu, also **zie
   }}
 />
 
-Für den Vektor im Modell nehmen wir <InlineMath math="\vec{a}=(4,2,0)" />. Multipliziere **jede Komponente** mit demselben Skalar. Ein negativer Skalar kehrt die Vorzeichen der Komponenten um. Der Betrag des Ergebnisses bleibt nicht negativ.
+Ziehen auf beiden Seiten gleich viele Personen, bilden ihre skalierten Kräfte exakte Gegenvektoren mit Summe null.
+
+In Koordinaten multiplizierst du **jede Komponente** mit demselben Skalar. Für <InlineMath math="\vec{a}=(4,2,0)" /> beträgt die ursprüngliche Länge <InlineMath math="2\sqrt{5}" />, und der Faktor <InlineMath math="-3" /> verdreifacht den Betrag bei umgekehrten Vorzeichen:
 
 <MathContainer>
   <BlockMath math="-3\vec{a}=(-3\cdot4,-3\cdot2,-3\cdot0)=(-12,-6,0)" />
   <BlockMath math="\lvert-3\vec{a}\rvert=\sqrt{(-12)^2+(-6)^2}=\sqrt{180}=6\sqrt{5}" />
 </MathContainer>
 
-Der ursprüngliche Betrag ist <InlineMath math="\sqrt{4^2+2^2}=2\sqrt{5}" />. Der neue Betrag <InlineMath math="6\sqrt{5}" /> ist genau dreimal so groß, passend zum Faktor <InlineMath math="\lvert-3\rvert=3" />.
-
-Jeder Pfeil unten ist <InlineMath math="k\vec a" /> für <InlineMath math="\vec a=(4,2)" />, im halben Maßstab gezeichnet. Mal zwei macht ihn doppelt so lang, mal einhalb nur halb so lang, und <InlineMath math="k=-1" /> behält die Länge, dreht ihn aber um. Die Steigung jedes Pfeils bleibt gleich.
+Die Grafik unten zeichnet <InlineMath math="2\vec{a}" />, <InlineMath math="\vec{a}" />, <InlineMath math="0{,}5\vec{a}" /> und <InlineMath math="-\vec{a}" /> für <InlineMath math="\vec{a}=(4,2)" /> im echten Koordinatenmaßstab auf getrennten Zeilen.
 
 <MathVisual
   title={<>Skalare Vielfache eines Vektors</>}
-  description={<><InlineMath math="2\vec a" />, <InlineMath math="\vec a" />, <InlineMath math="0{,}5\vec a" /> und <InlineMath math="-\vec a" /> für <InlineMath math="\vec a=(4,2)" />, im halben Maßstab auf getrennten Zeilen.</>}
+  description={<>Maßstabsgetreue Pfeile für <InlineMath math="2\vec{a}" />, <InlineMath math="\vec{a}" />, <InlineMath math="0{,}5\vec{a}" /> und <InlineMath math="-\vec{a}" /> bei <InlineMath math="\vec{a}=(4,2)" />.</>}
+  footer="Jedes Vielfache behält exakt dieselbe Steigung und skaliert die Länge mit |k|."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -6, max: 2.5 } },
-    view: { kind: "fit", padding: 0.06 },
+    frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: -12, max: 5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "k0", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 2 } },
-      { id: "k0-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 2 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 2) + ((0.25 / 2) * -2) / Math.hypot(4, 2), y: 2 - (0.25 * 2) / Math.hypot(4, 2) + ((0.25 / 2) * 4) / Math.hypot(4, 2) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 2) - ((0.25 / 2) * -2) / Math.hypot(4, 2), y: 2 - (0.25 * 2) / Math.hypot(4, 2) - ((0.25 / 2) * 4) / Math.hypot(4, 2) }] },
-      { id: "k1", kind: "segment", appearance: "primary", from: { x: 0, y: -1.5 }, to: { x: 2, y: -0.5 } },
-      { id: "k1-head", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: -0.5 }, { x: 2 - (0.25 * 2) / Math.hypot(2, 1.0) + ((0.25 / 2) * -1.0) / Math.hypot(2, 1.0), y: -0.5 - (0.25 * 1.0) / Math.hypot(2, 1.0) + ((0.25 / 2) * 2) / Math.hypot(2, 1.0) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 1.0) - ((0.25 / 2) * -1.0) / Math.hypot(2, 1.0), y: -0.5 - (0.25 * 1.0) / Math.hypot(2, 1.0) - ((0.25 / 2) * 2) / Math.hypot(2, 1.0) }] },
-      { id: "k2", kind: "segment", appearance: "construction", from: { x: 0, y: -3 }, to: { x: 1, y: -2.5 } },
-      { id: "k2-head", kind: "polygon", appearance: "construction", vertices: [{ x: 1, y: -2.5 }, { x: 1.0 - (0.25 * 1.0) / Math.hypot(1.0, 0.5) + ((0.25 / 2) * -0.5) / Math.hypot(1.0, 0.5), y: -2.5 - (0.25 * 0.5) / Math.hypot(1.0, 0.5) + ((0.25 / 2) * 1.0) / Math.hypot(1.0, 0.5) }, { x: 1.0 - (0.25 * 1.0) / Math.hypot(1.0, 0.5) - ((0.25 / 2) * -0.5) / Math.hypot(1.0, 0.5), y: -2.5 - (0.25 * 0.5) / Math.hypot(1.0, 0.5) - ((0.25 / 2) * 1.0) / Math.hypot(1.0, 0.5) }] },
-      { id: "k3", kind: "segment", appearance: "secondary", from: { x: 4, y: -4.5 }, to: { x: 2, y: -5.5 } },
-      { id: "k3-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: -5.5 }, { x: 2 - (0.25 * -2) / Math.hypot(-2, -1.0) + ((0.25 / 2) * 1.0) / Math.hypot(-2, -1.0), y: -5.5 - (0.25 * -1.0) / Math.hypot(-2, -1.0) + ((0.25 / 2) * -2) / Math.hypot(-2, -1.0) }, { x: 2 - (0.25 * -2) / Math.hypot(-2, -1.0) - ((0.25 / 2) * 1.0) / Math.hypot(-2, -1.0), y: -5.5 - (0.25 * -1.0) / Math.hypot(-2, -1.0) - ((0.25 / 2) * -2) / Math.hypot(-2, -1.0) }] },
+      { id: "k0", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 8, y: 4 } },
+      { id: "k1", kind: "vector", appearance: "primary", from: { x: 0, y: -3 }, to: { x: 4, y: -1 } },
+      { id: "k2", kind: "vector", appearance: "construction", from: { x: 0, y: -6 }, to: { x: 2, y: -5 } },
+      { id: "k3", kind: "vector", appearance: "secondary", from: { x: 8, y: -9 }, to: { x: 4, y: -11 } },
     ],
     labels: [
-      { key: "k0", objectId: "k0", at: { x: 4, y: 2 }, placement: "right" },
-      { key: "k1", objectId: "k1", at: { x: 2, y: -0.5 }, placement: "right" },
-      { key: "k2", objectId: "k2", at: { x: 1, y: -2.5 }, placement: "right" },
-      { key: "k3", objectId: "k3", at: { x: 2, y: -5.5 }, placement: "left" },
+      { key: "k0", objectId: "k0", at: { x: 8, y: 4 }, placement: "right" },
+      { key: "k1", objectId: "k1", at: { x: 4, y: -1 }, placement: "right" },
+      { key: "k2", objectId: "k2", at: { x: 2, y: -5 }, placement: "right" },
+      { key: "k3", objectId: "k3", at: { x: 4, y: -11 }, placement: "left" },
     ],
   }}
   labels={{
@@ -190,47 +208,63 @@ Jeder Pfeil unten ist <InlineMath math="k\vec a" /> für <InlineMath math="\vec 
   }}
 />
 
-Multipliziere den ganzen Flugplan mit <InlineMath math="k" />. Mit <InlineMath math="k=2" /> verdoppelt sich jede Komponente, von <InlineMath math="4\,\hat\imath+4\,\hat\jmath+2\,\hat k" /> Metern auf das Doppelte, und der Abstand vom Startplatz wächst von <InlineMath math="6\text{ m}" /> auf <InlineMath math="12\text{ m}" />. Mit <InlineMath math="k=-1" /> fliegt die Drohne denselben Plan in die Gegenrichtung.
+Verdoppeln macht den Pfeil doppelt so lang, Halbieren halbiert ihn, und <InlineMath math="k=-1" /> kehrt ihn auf derselben Geraden vollständig um.
 
-<DroneDisplacementLab
-  title={<>Den Flug mit <InlineMath math="k" /> skalieren</>}
-  description={<>Der Plan steigt <InlineMath math="2\text{ m}" /> und fliegt <InlineMath math="4\text{ m}" /> nach Osten und <InlineMath math="4\text{ m}" /> nach Norden. Wähle <InlineMath math="k" />.</>}
-  factors={[-1, 0.5, 1, 2]}
-  hops={[
-    { east: 0, north: 0, up: 2 },
-    { east: 4, north: 0, up: 0 },
-    { east: 0, north: 4, up: 0 },
-  ]}
+### Einen räumlichen Flugplan skalieren
+
+Skaliere die gesamte Drohnenverschiebung <InlineMath math="4\,\hat\imath+4\,\hat\jmath+2\,\hat k" /> Meter (Länge <InlineMath math="6\text{ m}" />) mit dem Skalar <InlineMath math="k" />. Mit <InlineMath math="k=2" /> **verdoppeln sich alle drei Koordinaten** und der Abstand auf <InlineMath math="12\text{ m}" />, während <InlineMath math="k=-1" /> alle Komponenten umkehrt und der Abstand <InlineMath math="6\text{ m}" /> bleibt.
+
+<MathVisual
+  title={<>Einen Flugplan mit k skalieren</>}
+  description={<>Bodenprojektion von <InlineMath math="k(4\hat\imath+4\hat\jmath+2\hat k)" /> in Metern für <InlineMath math="k" /> von <InlineMath math="-2" /> bis <InlineMath math="2" />.</>}
+  footer="Alle drei Koordinaten skalieren mit k, während der Raumabstand als 6|k| wächst."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -10, max: 10 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "k", min: -2, max: 2, value: 1, step: 0.5, label: "scale-factor" },
+    ],
+    objects: [
+      { id: "track", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "4 * k", y: "4 * k" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "4 * k", y: "4 * k" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "4 * k", y: "4 * k" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "east-m", formula: "4 * k" },
+      { key: "north-m", formula: "4 * k" },
+      { key: "up-m", formula: "2 * k" },
+      { key: "dist-m", formula: "6 * abs(k)" },
+    ],
+  }}
   labels={{
-    chooseFactor: "Flugplan mit k multiplizieren",
-    displacement: <>Verschiebung</>,
-    path: <>Geflogene Strecke</>,
-    size: <>Abstand vom Startplatz</>,
-    viewLabel: "Drohne fliegt von ihrem Startplatz",
+    tip: <InlineMath math="k\vec{s}" />,
+    "scale-factor": <>Skalar <InlineMath math="k" /></>,
+    "east-m": <>Ost (m)</>,
+    "north-m": <>Nord (m)</>,
+    "up-m": <>Höhe (m)</>,
+    "dist-m": <>Raumabstand (m)</>,
   }}
 />
 
-## Der Nullvektor als Ergebnis einer Aufhebung
+Beim Durchgang von <InlineMath math="k" /> durch null wechseln alle drei Komponenten zugleich ihr Vorzeichen, während der Raumabstand nie negativ wird.
 
-Der Nullvektor wird als <InlineMath math="\vec{0}" /> geschrieben. Sein Betrag ist <InlineMath math="0" />, und seine <Highlight>Richtung ist nicht definiert</Highlight>, weil Fußpunkt und Spitze zusammenfallen.
+## Wie sich der Betrag nahe null verhält
 
-Ein Nullvektor entsteht häufig, wenn sich Vektoren gegenseitig aufheben. Ziehen zum Beispiel zwei Schüler mit gleich großen Kräften in entgegengesetzte Richtungen an einer Kiste, ergibt sich bei exakt gleicher Wirkungslinie keine resultierende Kraft nach rechts oder links.
-
-<BlockMath math="\vec{F}_1+\vec{F}_2=\vec{0}" />
-
-Im Gleichgewicht kann ein Körper in Ruhe bleiben, obwohl mehrere Kräfte auf ihn wirken, weil ihre Resultierende null ist.
-
-Mit <InlineMath math="k" /> zu multiplizieren skaliert die Länge auf <InlineMath math="\lvert k\rvert\,\lvert\vec a\rvert" />, und das Vorzeichen von <InlineMath math="k" /> entscheidet die Richtung. Das V ist die Länge für einen Einheitsvektor: Sie wächst auf beiden Seiten, aber nur rechts bleibt die Richtung. Zoom nah an <InlineMath math="k=0" />.
+Multiplizierst du einen Einheitsvektor mit <InlineMath math="k" />, entsteht die Länge <InlineMath math="\lvert k\rvert" />. Dieser **V-förmige Graph** steigt auf beiden Seiten von <InlineMath math="k=0" /> symmetrisch an, aber nur der rechte Ast bewahrt die ursprüngliche Richtung.
 
 <MathVisual
   title={<>Was ein Skalar mit einem Vektor macht</>}
-  description={<>Länge von <InlineMath math="k\vec a" /> über <InlineMath math="k" /> für einen Vektor der Länge <InlineMath math="1" />. Die grauen Marken zeigen <InlineMath math="k=\tfrac12" /> und <InlineMath math="k=1" />.</>}
+  description={<>Betrag <InlineMath math="\lvert k\vec{a}\rvert=\lvert k\rvert" /> für einen Einheitsvektor aufgetragen gegen den Skalar <InlineMath math="k" />.</>}
+  footer="Der Betrag wächst beidseitig von null, links kehrt sich jedoch die Richtung um."
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.8, max: 2.6 } },
-    view: { kind: "fit", padding: 0.06 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "length", kind: "polyline", appearance: "primary", vertices: [{ x: -2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }] },
+      { id: "length", kind: "function", appearance: "primary", formula: "abs(x)", domain: { min: -2.4, max: 2.4 } },
       { id: "zero", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
       { id: "one", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 1 } },
       { id: "half", kind: "segment", appearance: "reference", from: { x: 0.5, y: 0 }, to: { x: 0.5, y: 0.5 } },
@@ -248,25 +282,54 @@ Mit <InlineMath math="k" /> zu multiplizieren skaliert die Länge auf <InlineMat
   }}
 />
 
-## Drei gleiche Schnüre
+Genau bei <InlineMath math="k=0" /> schrumpft der Pfeil zum Nullvektor, bei dem keine Richtung mehr existiert.
 
-Drei Schnüre ziehen jeweils mit der Gewichtskraft von <InlineMath math="200\text{ g}" />, also <InlineMath math="1{,}96\text{ N}" />. Dreh die letzte Rolle auf <InlineMath math="240^\circ" />: Dann liegen die drei Züge <InlineMath math="120^\circ" /> auseinander, **heben sich auf**, und die Resultierende ist der Nullvektor.
+## Der Nullvektor als Ergebnis einer Aufhebung
 
-<ForceTableResultantLab
-  title={<>Züge, die sich aufheben</>}
-  description={<>Drei Massestücke zu je <InlineMath math="200\text{ g}" />. Dreh die letzte Rolle.</>}
-  pulls={[
-    { angle: 0, mass: 200 },
-    { angle: 120, mass: 200 },
-    { angle: 200, mass: 200 },
-  ]}
+Der Nullvektor <InlineMath math="\vec{0}" /> besitzt den Betrag <InlineMath math="0" /> und eine <Highlight>nicht definierte Richtung</Highlight>, weil Fußpunkt und Spitze zusammenfallen. Er entsteht immer dann, wenn sich ausgeglichene Vektoren gegenseitig aufheben:
+
+<BlockMath math="\vec{F}_1+\vec{F}_2=\vec{0}" />
+
+Im mechanischen Gleichgewicht bleibt ein Körper in Ruhe, obwohl mehrere Kräfte ungleich null angreifen, weil ihr Vektorzug wieder am Start endet. Drei gleiche Züge von <InlineMath math="1{,}96\text{ N}" /> im Abstand von <InlineMath math="120^\circ" /> zeigen genau diese Symmetrie.
+
+<MathVisual
+  title={<>Drei gleiche Züge, die sich aufheben</>}
+  description={<>Drei Kräfte von <InlineMath math="1{,}96\text{ N}" /> bei <InlineMath math="0^\circ" />, <InlineMath math="120^\circ" /> und einstellbarem Winkel <InlineMath math="a" /> Spitze an Fuß.</>}
+  footer="Bei 240 Grad schließen die drei 1,96 N Kräfte ein gleichseitiges Dreieck."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.2, max: 2.8 }, y: { min: -2.2, max: 2.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 180, max: 300, value: 200, step: 10, label: "third-angle" },
+    ],
+    objects: [
+      { id: "f1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1.96, y: 0 } },
+      { id: "f2", kind: "vector", appearance: "secondary", from: { x: 1.96, y: 0 }, to: { x: 0.98, y: 0.98 * Math.sqrt(3) } },
+      { id: "f3", kind: "path", appearance: "highlight", points: [{ x: "0.98", y: "0.98 * sqrt(3)" }, { x: "0.98 + 1.96 * cos(a * pi / 180)", y: "0.98 * sqrt(3) + 1.96 * sin(a * pi / 180)" }] },
+      { id: "res", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "0.98 + 1.96 * cos(a * pi / 180)", y: "0.98 * sqrt(3) + 1.96 * sin(a * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "0.98 + 1.96 * cos(a * pi / 180)", y: "0.98 * sqrt(3) + 1.96 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 0.98, y: 0 }, placement: "below" },
+      { key: "f2", objectId: "f2", at: { x: 1.5, y: 0.85 }, placement: "above-right" },
+      { key: "tip", objectId: "tip", at: { x: "0.98 + 1.96 * cos(a * pi / 180)", y: "0.98 * sqrt(3) + 1.96 * sin(a * pi / 180)" }, placement: "left" },
+    ],
+    readouts: [
+      { key: "sum-x", formula: "0.98 + 1.96 * cos(a * pi / 180)" },
+      { key: "sum-y", formula: "0.98 * sqrt(3) + 1.96 * sin(a * pi / 180)" },
+      { key: "res-n", formula: "sqrt((0.98 + 1.96 * cos(a * pi / 180))^2 + (0.98 * sqrt(3) + 1.96 * sin(a * pi / 180))^2)" },
+    ],
+  }}
   labels={{
-    angle: <>Winkel der letzten Schnur</>,
-    angleName: "Winkel der letzten Schnur",
-    direction: <>Richtung von <InlineMath math="\vec R" /></>,
-    resultant: <>Resultierende <InlineMath math="R" /></>,
-    sumX: <>Summe entlang <InlineMath math="0^\circ" /></>,
-    sumY: <>Summe entlang <InlineMath math="90^\circ" /></>,
-    viewLabel: "Kräftetisch mit Massestücken",
+    f1: <InlineMath math="\vec{F}_1" />,
+    f2: <InlineMath math="\vec{F}_2" />,
+    tip: <InlineMath math="\vec{R}" />,
+    "third-angle": <>Winkel der 3. Kraft (<InlineMath math="^\circ" />)</>,
+    "sum-x": <>Summe x (N)</>,
+    "sum-y": <>Summe y (N)</>,
+    "res-n": <>Resultierende R (N)</>,
   }}
 />
+
+Drehst du den dritten Zug auf <InlineMath math="240^\circ" />, fallen beide Komponentensummen und der Betrag der Resultierenden exakt auf <InlineMath math="0\text{ N}" />.

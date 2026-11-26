@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Gerak Relatif",
   description:
@@ -28,6 +27,7 @@ Tanda positif dan negatif menyatakan arah pada sumbu yang dipilih.
       Pilih arah mobil <InlineMath math="B" /> untuk melihat geraknya menurut pengamat di mobil <InlineMath math="A" />.
     </>
   }
+  footer={<>Membalik arah mobil B mengubah tanda sekaligus besar kecepatan relatifnya.</>}
   labels={{
     chooseCase: "Pilih arah gerak",
     modeLabels: {
@@ -48,7 +48,13 @@ Tanda positif dan negatif menyatakan arah pada sumbu yang dipilih.
   }}
 />
 
-## Kecepatan Pengamat Mengubah Kecepatan Relatif
+Beralihlah antara kedua pilihan dan perhatikan tanda kecepatan relatif yang ikut berbalik. Meskipun kecepatan mobil <InlineMath math="A" /> di jalan tetap sama, membalik arah mobil <InlineMath math="B" /> langsung mengubah gerak yang terlihat dari mobil <InlineMath math="A" />.
+
+## Kecepatan Relatif pada Satu Garis
+
+Saat beberapa benda bergerak di lintasan lurus yang sama, membandingkan geraknya cukup dilakukan dengan **mengurangkan kecepatan bertanda**. Membandingkan pengamat lebih cepat, penumpang kereta, dan pengamat diam memperlihatkan bahwa satu aturan berlaku bagi semua kasus.
+
+### Kecepatan Pengamat Mengubah Kecepatan Relatif
 
 Kecepatan benda menurut pengamat berubah ketika pengamatnya juga bergerak. Karena itu, perhitungan harus membandingkan **gerak benda dan gerak pengamat**.
 
@@ -60,7 +66,7 @@ Nilai negatif berarti arah geraknya relatif ke kiri.
 
 Jika dua kendaraan bergerak searah, pengamat yang lebih cepat dapat melihat kendaraan lain seolah mundur. Mobil tetap bergerak maju terhadap jalan, tetapi kecepatannya relatif terhadap taksi bernilai negatif.
 
-## Berjalan di Dalam Kereta
+### Berjalan di Dalam Kereta
 
 Kecepatan yang diukur oleh pengamat yang bergerak cukup dikurangi kecepatan pengamat itu. Kereta melaju <InlineMath math="20\text{ m/s}" /> dan seorang penumpang berjalan di dalamnya dengan <InlineMath math="1{,}5\text{ m/s}" />, jadi **jawabannya bergantung pada siapa yang mengamati**.
 
@@ -71,6 +77,7 @@ Kecepatan yang diukur oleh pengamat yang bergerak cukup dikurangi kecepatan peng
       Kereta melaju <InlineMath math="20\text{ m/s}" /> dan penumpang berjalan <InlineMath math="1{,}5\text{ m/s}" />. Ganti pengamat dan arah jalannya, lalu baca kecepatannya di bawah.
     </>
   }
+  footer={<>Mengurangi kecepatan pengamat menyamakan laju dari peron dan kursi kereta.</>}
   labels={{
     chooseObserver: "Pilih pengamat",
     chooseWay: "Pilih arah jalan",
@@ -89,48 +96,19 @@ Kecepatan yang diukur oleh pengamat yang bergerak cukup dikurangi kecepatan peng
   }}
 />
 
-Saat berjalan ke belakang, penumpang bergerak <InlineMath math="20-1{,}5=18{,}5\text{ m/s}" /> terhadap peron, tetapi <InlineMath math="-1{,}5\text{ m/s}" /> terhadap kursi. Kurangkan kecepatan pengamat, <InlineMath math="v_{AB}=v_A-v_B" />, maka kedua hasil itu cocok.
+Saat berjalan ke belakang, penumpang bergerak <InlineMath math="18{,}5\text{ m/s}" /> terhadap peron, tetapi <InlineMath math="-1{,}5\text{ m/s}" /> terhadap kursi. Mengurangkan kecepatan pengamat membuat kedua hasil pengamatan cocok.
 
-## Pengamat yang Diam
+### Pengamat yang Diam
 
 Jika pengamat diam relatif terhadap tanah, kecepatan relatif sama dengan kecepatan benda terhadap tanah.
 
-<BlockMath math="\begin{aligned} &amp;v_{\text{benda/pengamat}} =v_{\text{benda/tanah}}-0 \\ &amp;=v_{\text{benda/tanah}} \end{aligned}" />
+<BlockMath math="\begin{aligned} v_{\text{benda/pengamat}} &= v_{\text{benda/tanah}}-0 \\ &= v_{\text{benda/tanah}} \end{aligned}" />
 
 Karena itu, dalam banyak soal sederhana, kecepatan yang tidak diberi keterangan biasanya dianggap terhadap tanah.
 
 Benda juga bisa **diam relatif terhadap pengamat yang bergerak**. Jika mobil dan taksi sama-sama bergerak ke kanan dengan <InlineMath math="12\text{ m/s}" />, selisih kecepatan keduanya nol:
 
 <BlockMath math="v_{\text{mobil/taksi}}=12-12=0\text{ m/s}" />
-
-## Hujan Dilihat dari Mobil yang Melaju
-
-Saat tidak ada angin, hujan turun tegak lurus. Dilihat dari mobil yang melaju, **hujan datang miring**, karena kecepatan hujan relatif terhadap mobil adalah kecepatan hujan dikurangi kecepatan mobil.
-
-<RainDriveRelativeVelocityLab
-  car={10}
-  title={<>Hujan di Atas Mobil yang Melaju</>}
-  description={
-    <>
-      Tetes hujan yang besar jatuh sekitar <InlineMath math="6{,}5\text{ m/s}" />. Ganti pengamatnya dan ubah kelajuan mobil.
-    </>
-  }
-  labels={{
-    angle: <>Kemiringan dari arah vertikal</>,
-    apparentSpeed: <>Kelajuan hujan yang terlihat</>,
-    carSpeed: <>Kelajuan mobil</>,
-    carSpeedName: "Kelajuan mobil",
-    chooseFrame: "Pilih pengamat",
-    frames: {
-      ground: <>Dari tepi jalan</>,
-      car: <>Dari dalam mobil</>,
-    },
-    rainSpeed: <>Kelajuan jatuh hujan</>,
-    viewLabel: "Hujan turun di atas mobil yang melaju",
-  }}
-/>
-
-Pada <InlineMath math="10\text{ m/s}" />, hujan tampak datang dengan <InlineMath math="\sqrt{6{,}5^2+10^2}\approx11{,}9\text{ m/s}" />, miring sekitar <InlineMath math="57^\circ" /> dari arah vertikal. Dari tepi jalan, tetes yang sama tetap jatuh tegak lurus.
 
 ## Ketika Keduanya Bergerak
 
@@ -142,29 +120,28 @@ Bagi pengemudi truk, kecepatan mobil adalah:
 
 Nilai <InlineMath math="+20 \text{ m/s}" /> berarti posisi mobil relatif terhadap truk berubah ke kanan dengan kelajuan relatif <InlineMath math="20\text{ m/s}" />. Apakah keduanya saling mendekat atau menjauh juga bergantung pada kendaraan mana yang mula-mula berada di sebelah kiri.
 
-Pengamat yang berbeda mengukur kecepatan relatif yang berbeda untuk peristiwa gerak yang sama.
-
-Inilah mobil, taksi, dan truk yang berangkat dari tempat yang sama. Jarak antara dua garis adalah posisi satu kendaraan menurut kendaraan lainnya. Mobil dan taksi menjauh pelan, <InlineMath math="2\text{ m}" /> setiap sekon, sedangkan mobil dan truk berpisah <InlineMath math="20\text{ m}" /> setiap sekon.
+Inilah mobil, taksi, dan truk yang berangkat dari tempat yang sama. Jarak tegak antara dua garis adalah posisi satu kendaraan menurut kendaraan lainnya. Mobil dan taksi menjauh pelan, <InlineMath math="2\text{ m}" /> setiap sekon, sedangkan mobil dan truk berpisah <InlineMath math="20\text{ m}" /> setiap sekon.
 
 <MathVisual
   title={<>Jarak Bertambah sebesar Kecepatan Relatif</>}
-  description={<>Posisi tiga kendaraan terhadap tanah, berangkat bersamaan. Mendatar: waktu dalam s. Tegak: posisi dalam satuan <InlineMath math="10\text{ m}" />.</>}
+  description={<>Posisi tiga kendaraan terhadap tanah yang berangkat bersamaan, dengan waktu dalam sekon pada sumbu mendatar dan posisi dalam meter pada sumbu tegak.</>}
+  footer={<>Jarak tegak antargaris melebar tiap sekon sebesar selisih kecepatannya.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -3, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.6 }, y: { min: -30, max: 50 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "car", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: (12 * 3) / 10 } },
-      { id: "taxi", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: (14 * 3) / 10 } },
-      { id: "truck", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: (-8 * 3) / 10 } },
-      { id: "car-end", kind: "point", appearance: "primary", at: { x: 3, y: (12 * 3) / 10 } },
-      { id: "taxi-end", kind: "point", appearance: "secondary", at: { x: 3, y: (14 * 3) / 10 } },
-      { id: "truck-end", kind: "point", appearance: "construction", at: { x: 3, y: (-8 * 3) / 10 } },
+      { id: "car", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 36 } },
+      { id: "taxi", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 42 } },
+      { id: "truck", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: -24 } },
+      { id: "car-end", kind: "point", appearance: "primary", at: { x: 3, y: 36 } },
+      { id: "taxi-end", kind: "point", appearance: "secondary", at: { x: 3, y: 42 } },
+      { id: "truck-end", kind: "point", appearance: "construction", at: { x: 3, y: -24 } },
     ],
     labels: [
-      { key: "car", objectId: "car-end", at: { x: 3, y: (12 * 3) / 10 }, placement: "right" },
-      { key: "taxi", objectId: "taxi-end", at: { x: 3, y: (14 * 3) / 10 }, placement: "right" },
-      { key: "truck", objectId: "truck-end", at: { x: 3, y: (-8 * 3) / 10 }, placement: "right" },
+      { key: "car", objectId: "car-end", at: { x: 3, y: 36 }, placement: "right" },
+      { key: "taxi", objectId: "taxi-end", at: { x: 3, y: 42 }, placement: "right" },
+      { key: "truck", objectId: "truck-end", at: { x: 3, y: -24 }, placement: "right" },
     ],
   }}
   labels={{
@@ -174,34 +151,13 @@ Inilah mobil, taksi, dan truk yang berangkat dari tempat yang sama. Jarak antara
   }}
 />
 
-## Perahu di Sungai yang Mengalir
-
-Perahu bergerak terhadap air, dan air bergerak terhadap tepi sungai. **Kecepatan perahu terhadap tepi sungai adalah jumlah keduanya**, digambar ujung ke pangkal.
-
-<RiverBoatCrossingLab
-  boatSpeed={4}
-  current={3}
-  width={60}
-  title={<>Menyeberangi Sungai yang Mengalir</>}
-  description={
-    <>
-      Perahu melaju <InlineMath math="4\text{ m/s}" /> terhadap air dan arus mengalir <InlineMath math="3\text{ m/s}" />. Putar arah haluannya.
-    </>
-  }
-  labels={{
-    angle: <>Sudut dari arah tegak lurus</>,
-    drift: <>Hanyut ke hilir</>,
-    groundSpeed: <>Kelajuan terhadap tanah</>,
-    heading: <>Arah haluan</>,
-    headingName: "Arah haluan perahu",
-    time: <>Waktu menyeberang</>,
-    viewLabel: "Perahu menyeberangi sungai dilihat dari atas",
-  }}
-/>
-
-Saat haluan lurus ke seberang, perahu bergerak <InlineMath math="\sqrt{4^2+3^2}=5\text{ m/s}" /> terhadap tepi sungai, menyeberangi sungai selebar <InlineMath math="60\text{ m}" /> dalam <InlineMath math="15\text{ s}" />, dan mendarat <InlineMath math="45\text{ m}" /> ke arah hilir.
+Pada <InlineMath math="3\text{ s}" />, taksi hanya <InlineMath math="6\text{ m}" /> di depan mobil, sedangkan truk sudah terpisah <InlineMath math="60\text{ m}" /> di belakangnya. Makin besar sudut bukaan antara dua garis posisi, makin besar kelajuan relatifnya.
 
 ## Kecepatan Relatif adalah Selisih
+
+Setiap pengamat memakai aturan pengurangan yang persis sama pada mobil yang sama:
+
+<BlockMath math="v_{\text{rel}}=v_{\text{mobil}}-v_{\text{pengamat}}" />
 
 | Situasi | Cara menghitung | Arti gerak relatif |
 | :------ | :-------------- | :---------------- |
@@ -209,13 +165,12 @@ Saat haluan lurus ke seberang, perahu bergerak <InlineMath math="\sqrt{4^2+3^2}=
 | Pengamat lebih cepat searah | <InlineMath math="12-14=-2 \text{ m/s}" /> | Benda tampak bergerak ke arah negatif |
 | Pengamat berlawanan arah | <InlineMath math="12-(-8)=+20 \text{ m/s}" /> | Benda tampak bergerak ke arah positif |
 
-Jadi, sebelum menyebut suatu benda cepat, lambat, diam, atau bergerak mundur, selalu periksa **kerangka acuan yang dipakai**.
-
-Setiap pengamat memakai pengurangan yang sama, <InlineMath math="v_\text{rel}=v_\text{mobil}-v_\text{pengamat}" />. Dari pinggir jalan kamu melihat <InlineMath math="12\text{ m/s}" />, taksi yang lebih cepat melihat mobil itu mundur, dan truk dari arah berlawanan melihatnya datang dengan <InlineMath math="20\text{ m/s}" />. Perbesar tiap batang.
+Dari pinggir jalan kamu melihat <InlineMath math="+12\text{ m/s}" />, taksi yang lebih cepat melihat mobil mundur <InlineMath math="-2\text{ m/s}" />, dan truk dari arah berlawanan melihatnya melaju <InlineMath math="+20\text{ m/s}" />.
 
 <MathVisual
   title={<>Satu Pengurangan untuk Setiap Pengamat</>}
   description={<>Kecepatan mobil dalam m/s dilihat dari pinggir jalan (abu-abu), taksi (ungu), dan truk (teal). Satu kotak grid berarti <InlineMath math="4\text{ m/s}" />.</>}
+  footer={<>Satu kecepatan mobil menghasilkan tiga batang berbeda saat dikurangi pengamat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1.5, max: 6 } },
@@ -239,25 +194,144 @@ Setiap pengamat memakai pengurangan yang sama, <InlineMath math="v_\text{rel}=v_
   }}
 />
 
-## Garis Lurus Relatif terhadap Kaleng yang Jatuh
+Sebelum menyebut suatu benda cepat, lambat, diam, atau mundur, selalu periksa **kerangka acuan yang dipakai**. Mobil yang sama bisa berubah tanda dan nilainya hanya karena pengamatnya mengurangkan kecepatan berbeda.
 
-Gerak relatif menjelaskan sebuah demonstrasi terkenal. Peluncur dibidikkan lurus ke kaleng yang jatuh tepat saat bola ditembakkan. Keduanya jatuh dengan cara yang sama, jadi bola **bergerak lurus relatif terhadap kaleng** ke arahnya.
+## Gerak Relatif dalam Dua Dimensi
 
-<FallingTargetAimLab
-  speed={10}
-  title={<>Membidik Kaleng yang Jatuh</>}
+Ketika dua kecepatan memiliki arah berbeda, pengurangan dan penjumlahan berlaku **tiap komponen sebagai vektor**. Hujan dilihat dari mobil, perahu menyeberangi sungai, dan membidik kaleng jatuh semuanya mengikuti aturan dua dimensi ini.
+
+### Hujan Dilihat dari Mobil yang Melaju
+
+Saat tidak ada angin, hujan turun tegak lurus. Dilihat dari mobil yang melaju, **hujan datang miring**, karena kecepatan hujan relatif terhadap mobil adalah kecepatan hujan dikurangi kecepatan mobil.
+
+<RainDriveRelativeVelocityLab
+  car={10}
+  title={<>Hujan di Atas Mobil yang Melaju</>}
   description={
     <>
-      Kaleng tergantung <InlineMath math="4\text{ m}" /> jauhnya dan <InlineMath math="2\text{ m}" /> tingginya. Ubah kelajuan awalnya dan perhatikan jarak keduanya menyusut di sepanjang garis bidik.
+      Tetes hujan yang besar jatuh sekitar <InlineMath math="6{,}5\text{ m/s}" />. Ganti pengamatnya dan ubah kelajuan mobil.
     </>
   }
+  footer={<>Mobil yang makin cepat membuat arah hujan tampak makin miring dari vertikal.</>}
   labels={{
-    drop: <>Turunnya kaleng saat bertemu</>,
-    meetTime: <>Waktu bertemu</>,
-    speed: <>Kelajuan awal</>,
-    speedName: "Kelajuan awal",
-    viewLabel: "Peluncur dibidikkan ke kaleng yang jatuh",
+    angle: <>Kemiringan dari arah vertikal</>,
+    apparentSpeed: <>Kelajuan hujan yang terlihat</>,
+    carSpeed: <>Kelajuan mobil</>,
+    carSpeedName: "Kelajuan mobil",
+    chooseFrame: "Pilih pengamat",
+    frames: {
+      ground: <>Dari tepi jalan</>,
+      car: <>Dari dalam mobil</>,
+    },
+    rainSpeed: <>Kelajuan jatuh hujan</>,
+    viewLabel: "Hujan turun di atas mobil yang melaju",
   }}
 />
 
-Pada <InlineMath math="10\text{ m/s}" />, bola bertemu kaleng setelah <InlineMath math="0{,}45\text{ s}" />, saat keduanya sudah turun <InlineMath math="1\text{ m}" />. Kurangkan kecepatan kaleng dari kecepatan bola, maka pengaruh gravitasi saling meniadakan.
+Pada <InlineMath math="10\text{ m/s}" />, tetes hujan tampak miring sekitar <InlineMath math="57^\circ" /> dari arah vertikal dengan kelajuan semu:
+
+<BlockMath math="v_{\text{hujan/mobil}}=\sqrt{6{,}5^2+10^2}\approx11{,}9\text{ m/s}" />
+
+Dari tepi jalan, tetes hujan yang sama tetap jatuh tegak lurus ke bawah.
+
+### Perahu di Sungai yang Mengalir
+
+Perahu bergerak terhadap air dengan <InlineMath math="4\text{ m/s}" />, dan arus sungai mengalir ke hilir dengan <InlineMath math="3\text{ m/s}" />. **Kecepatan perahu terhadap tepi sungai adalah jumlah vektor keduanya**, digambar pangkal ke ujung. Ubah sudut haluan <InlineMath math="a" /> di bawah untuk mengamati vektor resultannya.
+
+<MathVisual
+  title={<>Penjumlahan Kecepatan Perahu dan Arus</>}
+  description={
+    <>
+      Kecepatan perahu (oranye, <InlineMath math="4\text{ m/s}" />) dan arus sungai (ungu, <InlineMath math="3\text{ m/s}" />) dijumlahkan ujung ke pangkal membentuk kecepatan terhadap tanah (fuchsia).
+    </>
+  }
+  footer={<>Resultan fuchsia menyambung vektor perahu dan arus dari pangkal ke ujung.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -3.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -45, max: 30, value: 0, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "boat-vel", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }] },
+      { id: "current-vel", kind: "path", appearance: "secondary", points: [{ x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }, { x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" }] },
+      { id: "ground-vel", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" }] },
+      { id: "boat-tip", kind: "marker", appearance: "primary", x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" },
+      { id: "sum-tip", kind: "marker", appearance: "answer", x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "boat-lbl", objectId: "boat-tip", at: { x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }, placement: "below-right" },
+      { key: "sum-lbl", objectId: "sum-tip", at: { x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "ground-speed", formula: "sqrt((4*cos(a*pi/180))^2 + (3 + 4*sin(a*pi/180))^2)" },
+      { key: "cross-time", formula: "60/(4*cos(a*pi/180))" },
+      { key: "drift", formula: "60*(3 + 4*sin(a*pi/180))/(4*cos(a*pi/180))" },
+    ],
+  }}
+  labels={{
+    a: <>Sudut haluan <InlineMath math="a" /> (deg)</>,
+    "boat-lbl": <InlineMath math="\vec v_{\text{p/a}}" />,
+    "sum-lbl": <InlineMath math="\vec v_{\text{p/t}}" />,
+    "ground-speed": <>Kelajuan terhadap tanah (m/s)</>,
+    "cross-time": <>Waktu seberang 60 m (s)</>,
+    drift: <>Hanyut ke hilir (m)</>,
+  }}
+/>
+
+Saat haluan lurus ke seberang pada <InlineMath math="0^\circ" />, perahu menyeberangi sungai selebar <InlineMath math="60\text{ m}" /> dalam <InlineMath math="15\text{ s}" />, mendarat <InlineMath math="45\text{ m}" /> ke hilir, dan melaju terhadap tepi sungai sebesar:
+
+<BlockMath math="v_{\text{perahu/tepi}}=\sqrt{4^2+3^2}=5\text{ m/s}" />
+
+### Garis Lurus Relatif terhadap Kaleng yang Jatuh
+
+Gerak relatif menjelaskan sebuah demonstrasi terkenal. Peluncur di <InlineMath math="(0,0)" /> dibidikkan lurus ke kaleng pada jarak <InlineMath math="4\text{ m}" /> dan tinggi <InlineMath math="2\text{ m}" /> yang lepas tepat saat bola ditembakkan. Keduanya dipercepat ke bawah oleh <InlineMath math="g" />, sehingga **relatif terhadap kaleng bola bergerak lurus di sepanjang garis bidik**.
+
+<MathVisual
+  title={<>Membidik Kaleng yang Jatuh</>}
+  description={
+    <>
+      Ubah kelajuan awal <InlineMath math="s" /> (dalam m/s). Bola (kurva oranye) dan kaleng (garis ungu) selalu turun sejauh jarak vertikal yang sama dari garis bidik.
+    </>
+  }
+  footer={<>Menaikkan kelajuan awal menaikkan titik temu, namun bola selalu mengenai kaleng.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.8 }, y: { min: -0.2, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 8, max: 14, value: 10, step: 1, label: "s" },
+    ],
+    objects: [
+      { id: "aim-line", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4, y: 2 } },
+      { id: "ball-curve", kind: "function", appearance: "primary", formula: "0.5*x - 6.25*x^2/s^2", domain: { min: 0, max: 4 } },
+      { id: "can-drop", kind: "path", appearance: "secondary", points: [{ x: "4", y: "2" }, { x: "4", y: "2 - 100/s^2" }] },
+      { id: "launcher", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "can-start", kind: "point", appearance: "reference", at: { x: 4, y: 2 } },
+      { id: "meet-pt", kind: "marker", appearance: "answer", x: "4", y: "2 - 100/s^2" },
+    ],
+    labels: [
+      { key: "launch", objectId: "launcher", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "can", objectId: "can-start", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "hit", objectId: "meet-pt", at: { x: "4", y: "2 - 100/s^2" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "meet-time", formula: "2*sqrt(5)/s" },
+      { key: "drop-dist", formula: "100/s^2" },
+      { key: "meet-height", formula: "2 - 100/s^2" },
+    ],
+  }}
+  labels={{
+    s: <>Kelajuan awal <InlineMath math="s" /> (m/s)</>,
+    launch: <>Peluncur</>,
+    can: <>Awal kaleng</>,
+    hit: <>Tumbukan</>,
+    "meet-time": <>Waktu bertemu (s)</>,
+    "drop-dist": <>Jarak turun bersama (m)</>,
+    "meet-height": <>Tinggi titik temu (m)</>,
+  }}
+/>
+
+Pada <InlineMath math="10\text{ m/s}" /> dengan <InlineMath math="g=10\text{ m/s}^2" />, bola bertemu kaleng setelah <InlineMath math="0{,}45\text{ s}" /> saat keduanya turun <InlineMath math="1\text{ m}" />. Kurangkan kecepatan kaleng dari kecepatan bola, maka pengaruh gravitasi saling meniadakan.

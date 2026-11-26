@@ -8,7 +8,7 @@ export const metadata = {
   subject: "Kinematik",
 };
 
-## Positionen zu verschiedenen Zeitpunkten vergleichen
+## Positionen im zeitlichen Verlauf erfassen
 
 Ein Objekt bewegt sich relativ zu einem Bezugssystem, wenn sich seine Position mit der Zeit ändert. Eine einzelne Beobachtung reicht deshalb nicht aus. Eine Folge von Positionen kann die Bewegung zeigen, während **Anfangsposition** und **Endposition** die gesamte Ortsänderung in einem Zeitintervall zusammenfassen.
 
@@ -20,36 +20,66 @@ Das Symbol <InlineMath math="\Delta x" /> wird als „Delta x“ gelesen und bez
 
 > Bewegung erkennt man daran, dass sich die Position mit der Zeit ändert. Die Verschiebung vergleicht nur zwei ausgewählte Endpunkte.
 
-## Positionen auf einem Papierband
+Ein Zeitschreiber verwandelt Positionen zu verschiedenen Zeiten in Marken im festen Abstand von <InlineMath math="0{,}1\text{ s}" />. Bei gleichmäßiger Fahrt liegt zwischen zwei benachbarten Punkten immer **dieselbe Positionsänderung**. Verändere das Tempo <InlineMath math="s" /> des Wagens und vergleiche die Schrittweite jeder Zehntelsekunde.
 
-Ein Ticker verwandelt Positionen zu verschiedenen Zeiten in Punkte. Er druckt alle <InlineMath math="0{,}02\text{ s}" /> einen Punkt auf ein Band, das ein Wagen zieht, also ist **jeder Punkt die Position des Wagens zu einem Zeitpunkt**.
-
-<TickerTapeMotionLab
-  motion="uniform"
-  title={<>Positionen auf einem Tickerband</>}
+<MathVisual
+  title={<>Gleichmäßige Positionspunkte in festen Zeitabständen</>}
   description={
     <>
-      Der Wagen zieht das Band durch den Ticker. Zähle die Punkte: Zwischen zwei Nachbarn vergeht immer dieselbe Zeit.
+      Position eines Wagens in Zentimetern alle <InlineMath math="0{,}1\text{ s}" />{" "}
+      bei konstanter Geschwindigkeit <InlineMath math="s" />. Die violette Stufe
+      markiert einen Schritt von <InlineMath math="0{,}1\text{ s}" />.
     </>
   }
+  footer={<>Jede Zehntelsekunde verschiebt den Wagen um genau denselben Abstand nach vorn.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 0.6 }, y: { min: -5, max: 58 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0.4, max: 1, value: 0.6, step: 0.2, label: "s" },
+    ],
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "100*s*x", domain: { min: 0, max: 0.5 } },
+      { id: "p1", kind: "marker", appearance: "primary", x: "0.1", y: "10*s" },
+      { id: "p2", kind: "marker", appearance: "primary", x: "0.2", y: "20*s" },
+      { id: "p3", kind: "marker", appearance: "primary", x: "0.3", y: "30*s" },
+      { id: "p4", kind: "marker", appearance: "primary", x: "0.4", y: "40*s" },
+      { id: "p5", kind: "marker", appearance: "primary", x: "0.5", y: "50*s" },
+      {
+        id: "step",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0.2", y: "20*s" },
+          { x: "0.3", y: "20*s" },
+          { x: "0.3", y: "30*s" },
+        ],
+      },
+    ],
+    labels: [
+      { key: "step-lbl", objectId: "step", at: { x: "0.3", y: "25*s" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "strip", formula: "10*s" },
+      { key: "total", formula: "50*s" },
+    ],
+  }}
   labels={{
-    acceleration: <>Beschleunigung aus den Streifen</>,
-    chooseMotion: "Bewegung des Wagens wählen",
-    firstStrip: <>Erster Streifen</>,
-    interval: <>Zeit zwischen zwei Punkten</>,
-    lastStrip: <>Letzter Streifen</>,
-    motions: {
-      uniform: <>Gleichmäßig</>,
-      speeding: <>Schneller werdend</>,
-      slowing: <>Langsamer werdend</>,
-    },
-    viewLabel: "Wagen zieht ein Papierband durch einen Ticker",
+    s: <>Geschwindigkeit <InlineMath math="s" /> (m/s)</>,
+    "step-lbl": <InlineMath math="\Delta x" />,
+    strip: <>Schritt je 0,1 s (cm)</>,
+    total: <>Gesamtänderung nach 0,5 s (cm)</>,
   }}
 />
 
-Bei gleichmäßiger Bewegung ist jeder Streifen von einer Zehntelsekunde <InlineMath math="6\text{ cm}" /> lang. Vergleichst du zwei Punkte, weißt du, wie weit der Wagen zwischen diesen beiden Zeitpunkten gekommen ist, und genau das ist eine Positionsänderung.
+Bei <InlineMath math="s=0{,}6\text{ m/s}" /> ist jeder Abschnitt von einer Zehntelsekunde genau <InlineMath math="6\text{ cm}" /> lang. Vergleichst du zwei beliebige Marken, liest du direkt die Positionsänderung zwischen beiden Zeitpunkten ab.
 
-## Positionsunterschied auf einer geraden Strecke
+## Positionsunterschiede aus Diagrammen ablesen
+
+Gleiche Anfangs- und Endpunkte garantieren noch nicht, dass zwei Bewegungen identisch waren. Erst der **vollständige Verlauf dazwischen** im Ort-Zeit-Diagramm trennt Stillstand sauber von einer Hin- und Rückfahrt, während die Höhe der Kurve die Verschiebung angibt.
+
+### Positionsunterschied auf einer geraden Strecke
 
 Auf einer geraden Strecke mit festem Nullpunkt hängt die Positionsänderung nur von der **Endposition minus der Anfangsposition** ab. Wenn ein Objekt beispielsweise bei <InlineMath math="20 \text{ m}" /> beginnt und bei <InlineMath math="50 \text{ m}" /> endet, beträgt die Positionsänderung <InlineMath math="+30 \text{ m}" />.
 
@@ -63,31 +93,37 @@ Vergleiche diese beiden Fälle. Objekt A bleibt während der gesamten Beobachtun
 | <InlineMath math="3\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="50\text{ m}" /> |
 | <InlineMath math="6\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="20\text{ m}" /> |
 
-Beide haben die Verschiebung <InlineMath math="20-20=0\text{ m}" />. A legt keinen Weg zurück, B dagegen <InlineMath math="(50-20)+(50-20)=60\text{ m}" />. Die Zwischenposition zeigt den Unterschied zwischen den beiden Fällen.
+Beide haben dieselbe Verschiebung, doch nur Objekt B legt einen Weg zurück:
+
+<BlockMath math="\begin{aligned}
+\Delta x_A &= \Delta x_B = 20\text{ m} - 20\text{ m} = 0\text{ m} \\
+s_B &= (50-20)+(50-20) = 60\text{ m}
+\end{aligned}" />
 
 Zeichne beide Fälle als Position über der Zeit und folge jeder Linie von links nach rechts. A bleibt flach bei <InlineMath math="20\text{ m}" />, B steigt bis <InlineMath math="50\text{ m}" /> bei <InlineMath math="3\text{ s}" /> und kommt wieder zurück. Beide Linien beginnen und enden im selben Punkt, genau deshalb ist die Verschiebung bei beiden null.
 
 <MathVisual
   title={<>Gleiche Endpunkte, andere Bewegung</>}
-  description={<>Die Zeit in Sekunden läuft nach rechts. Die Position steigt in Einheiten von <InlineMath math="10\text{ m}" />, also bedeutet <InlineMath math="5" /> genau <InlineMath math="50\text{ m}" />. Vergleiche, wo A und B bei <InlineMath math="3\text{ s}" /> sind.</>}
+  description={<>Position von A (türkis) und B (orange) in Metern über der Zeit in Sekunden. Vergleiche beide Linien bei <InlineMath math="3\text{ s}" />.</>}
+  footer={<>A bleibt waagerecht bei <InlineMath math="20\text{ m}" />, während B bis <InlineMath math="50\text{ m}" /> steigt und zurückkehrt.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: 0, max: 6 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: 0, max: 60 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 2 }, { x: 3, y: 2 }, { x: 6, y: 2 }] },
-      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 2 }, { x: 3, y: 5 }, { x: 6, y: 2 }] },
-      { id: "a-0", kind: "point", appearance: "construction", at: { x: 0, y: 2 } },
-      { id: "a-3", kind: "point", appearance: "construction", at: { x: 3, y: 2 } },
-      { id: "a-6", kind: "point", appearance: "construction", at: { x: 6, y: 2 } },
-      { id: "b-0", kind: "point", appearance: "primary", at: { x: 0, y: 2 } },
-      { id: "b-3", kind: "point", appearance: "primary", at: { x: 3, y: 5 } },
-      { id: "b-6", kind: "point", appearance: "primary", at: { x: 6, y: 2 } },
+      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 20 }, { x: 3, y: 20 }, { x: 6, y: 20 }] },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 20 }, { x: 3, y: 50 }, { x: 6, y: 20 }] },
+      { id: "a-0", kind: "point", appearance: "construction", at: { x: 0, y: 20 } },
+      { id: "a-3", kind: "point", appearance: "construction", at: { x: 3, y: 20 } },
+      { id: "a-6", kind: "point", appearance: "construction", at: { x: 6, y: 20 } },
+      { id: "b-0", kind: "point", appearance: "primary", at: { x: 0, y: 20 } },
+      { id: "b-3", kind: "point", appearance: "primary", at: { x: 3, y: 50 } },
+      { id: "b-6", kind: "point", appearance: "primary", at: { x: 6, y: 20 } },
     ],
     labels: [
-      { key: "a", objectId: "a-6", at: { x: 6, y: 2 }, placement: "below-left" },
-      { key: "b", objectId: "b-3", at: { x: 3, y: 5 }, placement: "above" },
-      { key: "top", objectId: "b-3", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "a", objectId: "a-6", at: { x: 6, y: 20 }, placement: "below-left" },
+      { key: "b", objectId: "b-3", at: { x: 3, y: 50 }, placement: "above" },
+      { key: "top", objectId: "b-3", at: { x: 3, y: 50 }, placement: "right" },
     ],
   }}
   labels={{
@@ -97,30 +133,77 @@ Zeichne beide Fälle als Position über der Zeit und folge jeder Linie von links
   }}
 />
 
-## Positionsänderungen im Diagramm ablesen
+Die Zwischenposition bei <InlineMath math="3\text{ s}" /> trennt beide Fälle sofort: Nur eine waagerechte Linie zeigt echten Stillstand.
 
-Im Ort-Zeit-Diagramm ist **die Positionsänderung über ein Intervall der Anstieg zwischen seinen beiden Punkten**. Ein Auto, das gleichmäßig mit <InlineMath math="8\text{ m/s}" /> fährt, zeigt das sauber.
+### Positionsänderungen als Stufe im Diagramm ablesen
 
-<CarTripSecantSlopeLab
-  trip="cruise"
-  title={<>Positionsänderungen eines gleichmäßig fahrenden Autos</>}
+Im Ort-Zeit-Diagramm ist **die Positionsänderung über ein Intervall die senkrechte Stufe zwischen seinen beiden Punkten**. Ein Auto fährt gleichmäßig mit <InlineMath math="8\text{ m/s}" />. Wähle Startzeit <InlineMath math="a" /> und Endzeit <InlineMath math="b" /> und lies den senkrechten Höhenunterschied ab.
+
+<MathVisual
+  title={<>Senkrechte Stufe im Ort-Zeit-Diagramm</>}
   description={
     <>
-      Wähle ein Intervall. Die Fahnen markieren die beiden Positionen auf der Straße, und die senkrechte Stufe im Diagramm ist die Positionsänderung.
+      Gerade <InlineMath math="x(t)=8t" /> eines gleichmäßig fahrenden Autos.
+      Die violette Senkrechte misst die Positionsänderung zwischen{" "}
+      <InlineMath math="a" /> und <InlineMath math="b" />.
     </>
   }
+  footer={<>Die violette Stufe misst direkt die Differenz aus End- und Anfangsposition.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -5, max: 90 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 4, value: 2, step: 1, label: "a" },
+      { name: "b", min: 5, max: 10, value: 6, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "cruise", kind: "function", appearance: "primary", formula: "8*x", domain: { min: 0, max: 10 } },
+      {
+        id: "run",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "a", y: "8*a" },
+          { x: "b", y: "8*a" },
+        ],
+      },
+      {
+        id: "rise",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "b", y: "8*a" },
+          { x: "b", y: "8*b" },
+        ],
+      },
+      { id: "p-start", kind: "marker", appearance: "secondary", x: "a", y: "8*a" },
+      { id: "p-end", kind: "marker", appearance: "answer", x: "b", y: "8*b" },
+    ],
+    labels: [
+      { key: "rise-lbl", objectId: "rise", at: { x: "b", y: "4*(a + b)" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "dt", formula: "b - a" },
+      { key: "dx", formula: "8*(b - a)" },
+    ],
+  }}
   labels={{
-    change: <>Verschiebung</>,
-    chooseInterval: "Zeitintervall wählen",
-    elapsed: <>Zeitintervall</>,
-    rate: <>Mittlere Geschwindigkeit</>,
-    viewLabel: "Autofahrt mit ihrem Ort-Zeit-Diagramm",
+    a: <>Startzeit <InlineMath math="a" /> (s)</>,
+    b: <>Endzeit <InlineMath math="b" /> (s)</>,
+    "rise-lbl": <InlineMath math="\Delta x" />,
+    dt: <>Zeitintervall (s)</>,
+    dx: <>Positionsänderung (m)</>,
   }}
 />
 
-Von <InlineMath math="2" /> bis <InlineMath math="6\text{ s}" /> fährt das Auto von <InlineMath math="16\text{ m}" /> nach <InlineMath math="48\text{ m}" />, also ist <InlineMath math="\Delta x=48-16=32\text{ m}" />. Über die vollen <InlineMath math="10\text{ s}" /> beträgt die Änderung <InlineMath math="80\text{ m}" />.
+Von <InlineMath math="2" /> bis <InlineMath math="6\text{ s}" /> fährt das Auto von <InlineMath math="16\text{ m}" /> nach <InlineMath math="48\text{ m}" />:
 
-## Der Bezugspunkt muss derselbe bleiben
+<BlockMath math="\Delta x=48\text{ m}-16\text{ m}=32\text{ m}" />
+
+Über die vollen <InlineMath math="10\text{ s}" /> beträgt die Positionsänderung <InlineMath math="80\text{ m}" />.
+
+## Denselben Bezugspunkt für Anfang und Ende beibehalten
 
 Für eine Positionsänderung müssen Anfangs- und Endposition **vom selben Bezugspunkt** aus gemessen werden. Eine Anfangsposition relativ zum Geschäft darf nicht mit einer Endposition relativ zu einem anderen Haus verrechnet werden. Sonst stammen beide Werte aus verschiedenen Bezugssystemen.
 
@@ -132,34 +215,69 @@ Für eine Positionsänderung müssen Anfangs- und Endposition **vom selben Bezug
 
 Die drei Zeilen enthalten unterschiedliche Koordinaten für Anfang und Ende, aber dieselbe Verschiebung. Der Bezugspunkt verschiebt die Koordinatenwerte. Die Differenz aus End- und Anfangsposition beschreibt weiterhin die gesamte Ortsänderung.
 
-## Ein neuer Bezugspunkt verschiebt jede Position
+Nimm eine Straße mit einem Laden bei null, Ranis Haus <InlineMath math="20\text{ m}" /> östlich davon und einem Fahnenmast bei <InlineMath math="50\text{ m}" />. Ein anderer Bezugspunkt verschiebt jede Position um denselben Betrag, also **bleibt die Positionsänderung gleich**. Verschiebe den Nullpunkt <InlineMath math="k" /> und beobachte die verschobene Strecke.
 
-Nimm eine Straße mit einem Laden bei null, Ranis Haus <InlineMath math="20\text{ m}" /> östlich davon und einem Fahnenmast bei <InlineMath math="50\text{ m}" />. Ein anderer Bezugspunkt verschiebt jede Position um denselben Betrag, also **bleibt die Positionsänderung gleich**.
-
-<StreetOriginPositionLab
-  title={<>Eine Fahrt, drei Bezugspunkte</>}
+<MathVisual
+  title={<>Verschobener Nullpunkt auf derselben Straße</>}
   description={
     <>
-      Eine Person fährt mit dem Rad von <InlineMath math="20\text{ m}" /> bis <InlineMath math="50\text{ m}" /> und zurück bis <InlineMath math="35\text{ m}" />, Osten positiv. Wechsle den Bezugspunkt und sieh, wie sich das ganze Diagramm verschiebt.
+      Anfangsposition <InlineMath math="20-k" /> und Endposition{" "}
+      <InlineMath math="35-k" /> eines Radfahrers bei gewähltem Nullpunkt{" "}
+      <InlineMath math="k" /> entlang der Straße in Metern.
     </>
   }
+  footer={<>Beide Punkte wandern gemeinsam mit <InlineMath math="k" />, sodass ihr Abstand <InlineMath math="+15\text{ m}" /> bleibt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -42, max: 48 }, y: { min: -12, max: 28 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0, max: 50, value: 0, step: 10, label: "k" },
+    ],
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -40, y: 0 }, to: { x: 45, y: 0 } },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      {
+        id: "move",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "20 - k", y: "12" },
+          { x: "35 - k", y: "12" },
+        ],
+      },
+      { id: "start", kind: "marker", appearance: "secondary", x: "20 - k", y: "12" },
+      { id: "finish", kind: "marker", appearance: "answer", x: "35 - k", y: "12" },
+    ],
+    labels: [
+      { key: "zero", objectId: "origin", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "start-lbl", objectId: "start", at: { x: "20 - k", y: "12" }, placement: "above" },
+      { key: "end-lbl", objectId: "finish", at: { x: "35 - k", y: "12" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "x0", formula: "20 - k" },
+      { key: "xf", formula: "35 - k" },
+      { key: "dx", formula: "(35 - k) - (20 - k)" },
+    ],
+  }}
   labels={{
-    change: <>Positionsänderung</>,
-    chooseOrigin: "Bezugspunkt wählen",
-    end: <>Endposition</>,
-    origins: {
-      store: <>Laden</>,
-      house: <>Ranis Haus</>,
-      pole: <>Fahnenmast</>,
-    },
-    start: <>Anfangsposition</>,
-    viewLabel: "Person auf einem Fahrrad in einer Straße mit drei Orten",
+    k: <>Gewählter Nullpunkt <InlineMath math="k" /> (m)</>,
+    zero: <InlineMath math="0" />,
+    "start-lbl": <InlineMath math="x_0" />,
+    "end-lbl": <InlineMath math="x_t" />,
+    x0: <>Anfangsposition (m)</>,
+    xf: <>Endposition (m)</>,
+    dx: <>Positionsänderung (m)</>,
   }}
 />
 
 Vom Laden aus geht die Fahrt von <InlineMath math="+20\text{ m}" /> nach <InlineMath math="+35\text{ m}" />. Vom Fahnenmast aus geht sie von <InlineMath math="-30\text{ m}" /> nach <InlineMath math="-15\text{ m}" />. Beides ergibt <InlineMath math="\Delta x=+15\text{ m}" />, solange du für beide Positionen denselben Bezugspunkt nimmst.
 
-## Lesen des Vorzeichens einer Positionsänderung
+## Das Vorzeichen einer Positionsänderung richtig lesen
+
+Auf einer gerichteten Achse trägt jede Positionsänderung **ein klares Vorzeichen**. Dieses Vorzeichen gibt ausschließlich die Richtung an und niemals, ob ein Weg kurz oder fehlerhaft war.
+
+### Lesen des Vorzeichens einer Positionsänderung
 
 Auf einer Geraden können wir eine Richtung als positiv wählen. In diesem Beispiel ist **Osten positiv**.
 
@@ -169,65 +287,108 @@ Auf einer Geraden können wir eine Richtung als positiv wählen. In diesem Beisp
 
 Ein negatives Vorzeichen bedeutet nicht, dass die Bewegung kleiner oder falsch ist. Es gibt nur die Richtung der Positionsänderung an.
 
-Nimm beide Positionen vom selben Bezugspunkt, rechne <InlineMath math="\Delta x=x_\text{Ende}-x_\text{Anfang}" /> und lies das Vorzeichen. Dieselben zwei Positionen ergeben <InlineMath math="+30\text{ m}" /> nach Osten und <InlineMath math="-30\text{ m}" /> zurück.
+Lies beide Positionen vom selben Bezugspunkt ab, bilde die Differenz aus End- und Anfangsposition und prüfe das Vorzeichen. Dieselben zwei Positionen ergeben <InlineMath math="+30\text{ m}" /> nach Osten und <InlineMath math="-30\text{ m}" /> zurück.
 
 <MathVisual
-  title={<>Vier Schritte zur Verschiebung</>}
-  description={<>Zwei Bewegungen zwischen <InlineMath math="20\text{ m}" /> und <InlineMath math="50\text{ m}" /> auf einer Achse. Ein Gitterschritt entspricht <InlineMath math="10\text{ m}" />.</>}
+  title={<>Gleiche Punkte, entgegengesetztes Vorzeichen</>}
+  description={<>Zwei Bewegungen zwischen <InlineMath math="20\text{ m}" /> und <InlineMath math="50\text{ m}" /> auf einer Achse in Metern.</>}
+  footer={<>Nach Osten ergibt die Differenz <InlineMath math="+30\text{ m}" />, in Gegenrichtung <InlineMath math="-30\text{ m}" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1.3, max: 2.3 } },
+    frame: { kind: "cartesian", x: { min: -5, max: 65 }, y: { min: -25, max: 35 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
-      { id: "east", kind: "segment", appearance: "primary", from: { x: 2, y: 1 }, to: { x: 5, y: 1 } },
-      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 1 }, { x: 4.75, y: 1.125 }, { x: 4.75, y: 0.875 }] },
-      { id: "west", kind: "segment", appearance: "secondary", from: { x: 5, y: 0.5 }, to: { x: 2, y: 0.5 } },
-      { id: "west-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 0.5 }, { x: 2.25, y: 0.625 }, { x: 2.25, y: 0.375 }] },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "east", kind: "vector", appearance: "primary", from: { x: 20, y: 14 }, to: { x: 50, y: 14 } },
+      { id: "west", kind: "vector", appearance: "secondary", from: { x: 50, y: 6 }, to: { x: 20, y: 6 } },
       { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
     ],
     labels: [
-      { key: "east", objectId: "east", at: { x: 3.5, y: 1 }, placement: "above" },
-      { key: "west", objectId: "west", at: { x: 3.5, y: 0.5 }, placement: "below" },
+      { key: "east", objectId: "east", at: { x: 35, y: 14 }, placement: "above" },
+      { key: "west", objectId: "west", at: { x: 35, y: 6 }, placement: "below" },
       { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below" },
     ],
   }}
   labels={{
-    east: <InlineMath math="\Delta x=50-20=+30\text{ m}" />,
-    west: <InlineMath math="\Delta x=20-50=-30\text{ m}" />,
+    east: <InlineMath math="\Delta x=+30\text{ m}" />,
+    west: <InlineMath math="\Delta x=-30\text{ m}" />,
     origin: <InlineMath math="x=0" />,
   }}
 />
 
-## Ein Spaziergang mit Ende im Westen
+Beide Pfeile sind genau <InlineMath math="30\text{ m}" /> lang. Nur ihre Richtung entscheidet über das Plus- oder Minuszeichen.
 
-Nimm Osten als positiv und geh <InlineMath math="250\text{ m}" /> nach Westen und dann <InlineMath math="100\text{ m}" /> zurück nach Osten. Deine Endposition liegt westlich vom Start, also ist **die Positionsänderung negativ**.
+### Ein Spaziergang mit Ende im Westen
 
-<CityWalkDisplacementLab
-  legs={[
-    { east: -250, north: 0 },
-    { east: 100, north: 0 },
-  ]}
-  pace={1.25}
-  title={<>Ein Spaziergang, der im Westen endet</>}
+Nimm Osten als positiv und geh <InlineMath math="250\text{ m}" /> nach Westen und dann eine wählbare Strecke <InlineMath math="c" /> zurück nach Osten, immer mit <InlineMath math="1{,}25\text{ m/s}" />. Solange deine Endposition westlich vom Start liegt, ist **die Positionsänderung negativ**. Verändere <InlineMath math="c" /> und verfolge die Endposition.
+
+<MathVisual
+  title={<>Spaziergang nach Westen und teilweise zurück</>}
   description={
     <>
-      Der violette Pfeil verbindet den Start mit deinem Standort. Seine Länge ist der Betrag der Positionsänderung, seine Richtung gibt das Vorzeichen.
+      Position in Metern über der Zeit für <InlineMath math="250\text{ m}" />{" "}
+      nach Westen und <InlineMath math="c\text{ m}" /> zurück nach Osten bei{" "}
+      <InlineMath math="1{,}25\text{ m/s}" />.
     </>
   }
+  footer={<>Bleibt der Endpunkt unter der Nullachse, trägt die Verschiebung ein Minuszeichen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 460 }, y: { min: -280, max: 90 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 50, max: 300, value: 100, step: 50, label: "c" },
+    ],
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 440, y: 0 } },
+      { id: "west", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 200, y: -250 } },
+      {
+        id: "east",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "200", y: "-250" },
+          { x: "200 + c/1.25", y: "-250 + c" },
+        ],
+      },
+      {
+        id: "net",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "200 + c/1.25", y: "0" },
+          { x: "200 + c/1.25", y: "-250 + c" },
+        ],
+      },
+      { id: "end-dot", kind: "marker", appearance: "answer", x: "200 + c/1.25", y: "-250 + c" },
+    ],
+    labels: [
+      { key: "end-lbl", objectId: "end-dot", at: { x: "200 + c/1.25", y: "-250 + c" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "dist", formula: "250 + c" },
+      { key: "disp", formula: "-250 + c" },
+      { key: "time", formula: "200 + c/1.25" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Mittlere Schnelligkeit</>,
-    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
-    displacement: <>Betrag der Verschiebung</>,
-    distance: <>Gegangene Strecke</>,
-    time: <>Zeit</>,
-    viewLabel: "Spaziergang durch eine Stadt von oben gesehen",
+    c: <>Rückweg nach Osten <InlineMath math="c" /> (m)</>,
+    "end-lbl": <InlineMath math="x_{\text{Ende}}" />,
+    dist: <>Gegangene Strecke (m)</>,
+    disp: <>Verschiebung (m)</>,
+    time: <>Gesamtzeit (s)</>,
   }}
 />
 
-Du gehst <InlineMath math="350\text{ m}" /> in <InlineMath math="280\text{ s}" />, landest aber nur <InlineMath math="150\text{ m}" /> vom Start entfernt. Mit Osten positiv ist <InlineMath math="\Delta x=-250+100=-150\text{ m}" />.
+Bei <InlineMath math="c=100\text{ m}" /> gehst du <InlineMath math="350\text{ m}" /> in <InlineMath math="280\text{ s}" />, landest aber <InlineMath math="150\text{ m}" /> westlich vom Start:
 
-## Endposition minus Anfangsposition
+<BlockMath math="\Delta x=-250\text{ m}+100\text{ m}=-150\text{ m}" />
+
+## Endposition minus Anfangsposition anwenden
+
+Die Regel **Endposition minus Anfangsposition** gilt auf waagerechten Wegen genauso wie bei senkrechten Würfen. Wer die Reihenfolge konsequent einhält, bestimmt Größe und Richtung sofort ohne Verwechslung.
+
+### Endposition minus Anfangsposition auf einer Geraden
 
 Eine Person beginnt <InlineMath math="10 \text{ m}" /> östlich eines Tores. Einige Sekunden später befindet sie sich <InlineMath math="40 \text{ m}" /> östlich des Tores. Die Positionsänderung beträgt:
 
@@ -246,29 +407,31 @@ Der Pfeil unten beginnt bei der Anfangsposition und endet bei der Endposition. S
 
 <MathVisual
   title={<>Die Verschiebung der Schülerin</>}
-  description={<>Positionen östlich des Tors, ein Gitterschritt pro <InlineMath math="10\text{ m}" />. Der Pfeil läuft von <InlineMath math="10\text{ m}" /> bis <InlineMath math="40\text{ m}" />.</>}
+  description={<>Positionen östlich des Tors in Metern. Der Pfeil läuft von <InlineMath math="10\text{ m}" /> bis <InlineMath math="40\text{ m}" />.</>}
+  footer={<>Der Pfeil von <InlineMath math="10\text{ m}" /> nach <InlineMath math="40\text{ m}" /> zeigt nach Osten und misst <InlineMath math="+30\text{ m}" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.2, max: 1.9 } },
+    frame: { kind: "cartesian", x: { min: -5, max: 55 }, y: { min: -15, max: 25 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "gate", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
-      { id: "walk", kind: "segment", appearance: "primary", from: { x: 1, y: 0.6 }, to: { x: 4, y: 0.6 } },
-      { id: "walk-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0.6 }, { x: 3.78, y: 0.71 }, { x: 3.78, y: 0.49 }] },
-      { id: "walk-start", kind: "point", appearance: "primary", at: { x: 1, y: 0.6 } },
+      { id: "gate", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 50, y: 0 } },
+      { id: "walk", kind: "vector", appearance: "primary", from: { x: 10, y: 8 }, to: { x: 40, y: 8 } },
+      { id: "walk-start", kind: "point", appearance: "primary", at: { x: 10, y: 8 } },
     ],
     labels: [
       { key: "gate", objectId: "gate", at: { x: 0, y: 0 }, placement: "below" },
-      { key: "change", objectId: "walk", at: { x: 2.5, y: 0.6 }, placement: "above" },
+      { key: "change", objectId: "walk", at: { x: 25, y: 8 }, placement: "above" },
     ],
   }}
   labels={{
     gate: <>Tor</>,
-    change: <InlineMath math="\Delta x=40-10=+30\text{ m}" />,
+    change: <InlineMath math="\Delta x=+30\text{ m}" />,
   }}
 />
 
-## Hoch und zurück in die Hand
+Da der Pfeil vom kleineren zum größeren Wert zeigt, ergibt die Subtraktion ein positives Vorzeichen und bestätigt die Bewegung nach Osten.
+
+### Hoch und zurück in die Hand
 
 Nach oben funktionieren Positionen genauso. Wirf eine Kugel mit <InlineMath math="5\text{ m/s}" /> senkrecht hoch und fang sie in der Höhe, in der sie deine Hand verlassen hat. Sie hat sich bewegt, doch **ihre Endposition ist gleich ihrer Anfangsposition**.
 
@@ -280,6 +443,7 @@ Nach oben funktionieren Positionen genauso. Wirf eine Kugel mit <InlineMath math
       Eine Lampe blitzt alle <InlineMath math="0{,}1\text{ s}" />. Oben ist positiv, und die Hand ist null.
     </>
   }
+  footer={<>Nach dem Aufstieg landet die Kugel wieder bei Höhe null in derselben Hand.</>}
   labels={{
     airTime: <>Zeit in der Luft</>,
     height: <>Starthöhe</>,
@@ -289,4 +453,6 @@ Nach oben funktionieren Positionen genauso. Wirf eine Kugel mit <InlineMath math
   }}
 />
 
-Die Kugel steigt in <InlineMath math="0{,}5\text{ s}" /> um <InlineMath math="1{,}25\text{ m}" /> und ist nach <InlineMath math="1\text{ s}" /> wieder in deiner Hand. Ihre Positionsänderung über den ganzen Wurf ist <InlineMath math="\Delta y=0-0=0" />, obwohl sie <InlineMath math="2{,}5\text{ m}" /> zurückgelegt hat.
+Die Kugel steigt in <InlineMath math="0{,}5\text{ s}" /> um <InlineMath math="1{,}25\text{ m}" /> und ist nach <InlineMath math="1\text{ s}" /> wieder in deiner Hand. Ihre Positionsänderung über den ganzen Wurf verschwindet, obwohl sie <InlineMath math="2{,}5\text{ m}" /> zurückgelegt hat:
+
+<BlockMath math="\Delta y=0\text{ m}-0\text{ m}=0\text{ m}" />

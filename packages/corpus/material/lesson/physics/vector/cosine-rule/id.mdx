@@ -23,6 +23,7 @@ Tarikan <InlineMath math="2{,}94\text{ N}" /> dan <InlineMath math="3{,}92\text{
 <ForceTableResultantLab
   title={<>Sudut Memperkecil Jumlah</>}
   description={<>Gantungan <InlineMath math="300\text{ g}" /> pada <InlineMath math="0^\circ" /> dan <InlineMath math="400\text{ g}" /> pada sudut pilihanmu.</>}
+  footer={<>Membuka sudut katrol menurunkan <InlineMath math="\cos\theta" /> dan memperkecil resultan.</>}
   pulls={[
     { angle: 0, mass: 300 },
     { angle: 60, mass: 400 },
@@ -38,36 +39,39 @@ Tarikan <InlineMath math="2{,}94\text{ N}" /> dan <InlineMath math="3{,}92\text{
   }}
 />
 
+Biarkan kedua beban tetap lalu putar tali kedua makin lebar: kedua tarikan makin kurang saling menguatkan sampai berlawanan penuh pada <InlineMath math="180^\circ" />.
+
 ## Kosinus dalam Rumus Segitiga
 
-Rumus kosinus muncul karena resultan dua vektor membentuk segitiga dengan dua sisi yang diketahui. Jika sudut antara kedua vektor kecil, kedua vektor saling menguatkan lebih besar. Jika sudutnya mendekati <InlineMath math="180^\circ" />, keduanya makin saling meniadakan.
-
-Jika kedua vektor disusun **pangkal ke ujung**, sudut dalam segitiga adalah pelurus sudut apit. Karena itu, tanda minus pada rumus kosinus segitiga berubah menjadi tanda plus pada rumus resultan.
+Rumus kosinus muncul karena resultan dua vektor membentuk segitiga dengan dua sisi yang diketahui. Saat kedua vektor disusun **pangkal ke ujung**, sudut dalam segitiga menjadi pelurus sudut apit <InlineMath math="\theta" />, sehingga tanda minus pada aturan kosinus segitiga berubah menjadi tanda plus.
 
 <BlockMath math="\begin{aligned}R^2 &= A^2+B^2-2AB\cos(180^\circ-\theta) \\ &= A^2+B^2-2AB(-\cos\theta) \\ &= A^2+B^2+2AB\cos\theta\end{aligned}" />
 
+Selalu cek tiga hal sebelum menghitung: ukur <InlineMath math="\theta" /> saat pangkal kedua vektor berimpit bukan sudut dalam segitiga, pertahankan **tanda plus** di depan <InlineMath math="2AB\cos\theta" />, dan pastikan kalkulator berada di mode derajat (cek bahwa <InlineMath math="\cos 60^\circ = 0{,}5" />) sebelum menarik akar di akhir.
+
 <MathVisual
-  title={<>Sudut apit dan sudut dalam segitiga</>}
-  description={<>Sudut apit <InlineMath math="\theta" /> diukur saat pangkal kedua vektor berimpit. Setelah <InlineMath math="\vec{B}" /> digeser ke ujung <InlineMath math="\vec{A}" />, sudut dalam segitiga menjadi <InlineMath math="180^\circ-\theta" />.</>}
+  title={<>Sudut Apit dan Sudut Dalam Segitiga</>}
+  description={<>Sudut <InlineMath math="\theta=60^\circ" /> berada di pangkal <InlineMath math="\vec A=10\text{ N}" /> dan <InlineMath math="\vec B=8\text{ N}" />, sedangkan menggeser <InlineMath math="\vec B" /> ujung ke pangkal memberi sudut dalam <InlineMath math="180^\circ-\theta=120^\circ" />.</>}
+  footer={<>Menggeser <InlineMath math="\vec B" /> ke ujung <InlineMath math="\vec A" /> mengubah sudut pangkal <InlineMath math="\theta" /> jadi <InlineMath math="180^\circ-\theta" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 4.5 } },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1.5, max: 16.5 }, y: { min: -1.5, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "primary" },
-      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) }, appearance: "secondary" },
-      { id: "moved", kind: "segment", from: { x: 5, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "construction" },
-      { id: "r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "answer" },
-      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
-      { id: "inner", kind: "arc", center: { x: 5, y: 0 }, radius: 0.8, startDegrees: 60, sweepDegrees: 120, appearance: "warning" },
+      { id: "a", kind: "vector", from: { x: 0, y: 0 }, to: { x: 10, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "vector", from: { x: 0, y: 0 }, to: { x: 4, y: 4 * Math.sqrt(3) }, appearance: "secondary" },
+      { id: "moved", kind: "vector", from: { x: 10, y: 0 }, to: { x: 14, y: 4 * Math.sqrt(3) }, appearance: "construction" },
+      { id: "r", kind: "vector", from: { x: 0, y: 0 }, to: { x: 14, y: 4 * Math.sqrt(3) }, appearance: "answer" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 2, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "inner", kind: "arc", center: { x: 10, y: 0 }, radius: 1.6, startDegrees: 60, sweepDegrees: 120, appearance: "warning" },
     ],
     labels: [
-      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
-      { key: "b", objectId: "b", at: { x: 1, y: Math.sqrt(3) }, placement: "left" },
-      { key: "moved", objectId: "moved", at: { x: 6, y: Math.sqrt(3) }, placement: "right" },
-      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above" },
-      { key: "theta", objectId: "theta", at: { x: Math.sqrt(3) / 2, y: 0.5 }, placement: "right" },
-      { key: "inner", objectId: "inner", at: { x: 4.6, y: 0.4 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "left" },
+      { key: "moved", objectId: "moved", at: { x: 12, y: 2 * Math.sqrt(3) }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 14, y: 4 * Math.sqrt(3) }, placement: "above" },
+      { key: "theta", objectId: "theta", at: { x: Math.sqrt(3), y: 1 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 9.2, y: 0.8 * Math.sqrt(3) }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -90,63 +94,82 @@ Tabel berikut menunjukkan hubungan antara sudut <InlineMath math="\theta" /> dan
 
 Ketika <InlineMath math="\theta=90^\circ" />, rumus kosinus berubah menjadi bentuk Pythagoras karena <InlineMath math="\cos90^\circ=0" />.
 
-Dengan hidung pesawat pada <InlineMath math="330^\circ" />, kecepatan udara <InlineMath math="400\text{ km/h}" /> dan angin <InlineMath math="300\text{ km/h}" /> membentuk sudut <InlineMath math="120^\circ" />, jadi **kelajuan terhadap tanah adalah** <InlineMath math="\sqrt{400^2+300^2+2(400)(300)\cos120^\circ}" />, sekitar <InlineMath math="361\text{ km/h}" />. Putar hidung pesawat, lalu bandingkan kartu dengan rumusnya.
+### Kelajuan terhadap Tanah saat Angin Samping
 
-<AircraftCrosswindLab
+Bayangkan pesawat dengan kecepatan udara <InlineMath math="400\text{ km/h}" /> bertemu angin <InlineMath math="300\text{ km/h}" /> yang membentuk sudut <InlineMath math="a" />. Saat <InlineMath math="a = 120^\circ" />, **suku kosinus menjadi negatif** dan menurunkan kelajuan terhadap tanah di bawah kecepatan udara:
+
+<BlockMath math="v_g = \sqrt{400^2+300^2+2(400)(300)\cos 120^\circ} \approx 361\text{ km/h}" />
+
+<MathVisual
   title={<>Kelajuan terhadap Tanah dengan Rumus Kosinus</>}
-  description={<>Kecepatan udara <InlineMath math="400\text{ km/h}" />, angin <InlineMath math="300\text{ km/h}" /> ke timur. Putar hidung pesawat.</>}
-  airspeed={400}
-  heading={330}
-  toward={90}
-  wind={300}
+  description={<>Kelajuan terhadap tanah untuk pesawat <InlineMath math="400\text{ km/h}" /> dalam angin <InlineMath math="300\text{ km/h}" /> terhadap sudut <InlineMath math="a" /> dalam derajat.</>}
+  footer={<>Lewat <InlineMath math="90^\circ" /> nilai kosinus negatif dan angin menahan laju pesawat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 195 }, y: { min: 0, max: 760 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 180, value: 120, step: 10, label: "wind-angle" },
+    ],
+    objects: [
+      { id: "speed-curve", kind: "function", appearance: "primary", formula: "sqrt(250000 + 240000*cos(x*pi/180))", domain: { min: 0, max: 180 } },
+      { id: "guide", kind: "path", appearance: "construction", points: [{ x: "a", y: "0" }, { x: "a", y: "sqrt(250000 + 240000*cos(a*pi/180))" }] },
+      { id: "pt", kind: "marker", appearance: "answer", x: "a", y: "sqrt(250000 + 240000*cos(a*pi/180))" },
+    ],
+    labels: [
+      { key: "pt", objectId: "pt", at: { x: "a", y: "sqrt(250000 + 240000*cos(a*pi/180))" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "gs", formula: "sqrt(250000 + 240000*cos(a*pi/180))" },
+    ],
+  }}
   labels={{
-    between: <>Sudut antara kecepatan udara dan angin</>,
-    drift: <>Sudut hanyut</>,
-    groundSpeed: <>Kelajuan terhadap tanah</>,
-    heading: <>Arah hidung pesawat</>,
-    headingName: "Arah hidung pesawat",
-    track: <>Arah lintasan di atas tanah</>,
-    viewLabel: "Pesawat di atas sawah saat angin samping",
+    "wind-angle": <>Sudut antara pesawat dan angin <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    pt: <InlineMath math="v_g" />,
+    gs: <>Kelajuan terhadap tanah (km/h)</>,
   }}
 />
 
-## Contoh Menghitung Resultan Gaya
+Menggeser <InlineMath math="a" /> dari <InlineMath math="0^\circ" /> (angin buritan penuh <InlineMath math="700\text{ km/h}" />) sampai <InlineMath math="180^\circ" /> (angin haluan <InlineMath math="100\text{ km/h}" />) melukis semua kemungkinan kelajuan resultan dalam satu kurva mulus.
 
-Dua gaya bekerja pada satu titik. Gaya pertama sebesar <InlineMath math="10\text{ N}" />, gaya kedua sebesar <InlineMath math="8\text{ N}" />, dan sudut di antara keduanya <InlineMath math="60^\circ" />. Tentukan besar resultannya.
+### Resultan Dua Gaya Bersudut
+
+Misalkan sebuah cincin ditarik gaya <InlineMath math="10\text{ N}" /> dan gaya <InlineMath math="8\text{ N}" /> yang mengapit sudut <InlineMath math="60^\circ" />. Tentukan besar resultannya.
 
 <MathVisual
   title={<>Segitiga Resultan Dua Gaya</>}
-  description={<>Geser sudut di antara kedua gaya. Panah oranye berpangkal di ujung panah teal, dan panah ungu adalah resultan yang menutup segitiganya. Satu kotak grid berarti <InlineMath math="2\text{ N}" />.</>}
+  description={<>Geser sudut <InlineMath math="a" /> antara gaya <InlineMath math="10\text{ N}" /> dan <InlineMath math="8\text{ N}" /> yang digambar langsung dalam newton.</>}
+  footer={<>Menggeser <InlineMath math="a" /> mengubah bentuk segitiga sambil <InlineMath math="\vec R" /> menutup sisi ketiga.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 10 }, y: { min: -1, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -1.5, max: 19.5 }, y: { min: -1.5, max: 10.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "a", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
-      { id: "b", kind: "path", appearance: "primary", points: [{ x: "5", y: "0" }, { x: "5 + 4 cos(a)", y: "4 sin(a)" }] },
-      { id: "r", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "5 + 4 cos(a)", y: "4 sin(a)" }] },
-      { id: "tip", kind: "marker", appearance: "answer", x: "5 + 4 cos(a)", y: "4 sin(a)" },
+      { id: "a", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "b", kind: "path", appearance: "primary", points: [{ x: "10", y: "0" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "r", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" },
     ],
     labels: [
-      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
-      { key: "b", objectId: "b", at: { x: "5 + 2 cos(a)", y: "2 sin(a)" }, placement: "right" },
-      { key: "r", objectId: "r", at: { x: "(5 + 4 cos(a))/2", y: "2 sin(a)" }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: "10 + 4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: "(10 + 8*cos(a*pi/180))/2", y: "4*sin(a*pi/180)" }, placement: "above-left" },
     ],
     parameters: [
-      { name: "a", min: 0, max: Math.PI, value: Math.PI / 3, step: 0.01, label: "angle" },
+      { name: "a", min: 0, max: 180, value: 60, step: 5, label: "angle" },
     ],
     readouts: [
-      { key: "deg", formula: "a * 180 / pi" },
-      { key: "result", formula: "2 sqrt(41 + 40 cos(a))" },
+      { key: "deg", formula: "a" },
+      { key: "result", formula: "sqrt(164 + 160*cos(a*pi/180))" },
     ],
   }}
   labels={{
-    angle: <InlineMath math="\theta" />,
+    angle: <>Sudut <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
     a: <InlineMath math="\vec A=10\text{ N}" />,
     b: <InlineMath math="\vec B=8\text{ N}" />,
     r: <InlineMath math="\vec R" />,
-    deg: <InlineMath math="\theta\ (^\circ)" />,
-    result: <InlineMath math="R=\sqrt{A^2+B^2+2AB\cos\theta}\ (\text{N})" />,
+    deg: <>Sudut (<InlineMath math="^\circ" />)</>,
+    result: <>Resultan <InlineMath math="R" /> (N)</>,
   }}
 />
 
@@ -160,25 +183,50 @@ R&=\sqrt{A^2+B^2+2AB\cos\theta} \\
 &\approx15{,}6\text{ N}
 \end{aligned}" />
 
-Resultannya lebih kecil dari <InlineMath math="18\text{ N}" /> karena kedua gaya tidak searah penuh, tetapi lebih besar dari tiap gaya tunggal karena keduanya masih memiliki arah yang cukup berdekatan. Periksa batasnya: <InlineMath math="15{,}6" /> berada di antara <InlineMath math="10 - 8 = 2" /> dan <InlineMath math="10 + 8 = 18" />. Arah resultan terhadap gaya pertama dihitung dengan [rumus sinus](/id/materi/fisika/vektor/penentuan-arah-resultan-vektor-dengan-rumus-sinus): <InlineMath math="\sin\varphi = \frac{8\sin 60^\circ}{\sqrt{244}}" />, sehingga <InlineMath math="\varphi \approx 26{,}3^\circ" />.
+Resultannya lebih kecil dari <InlineMath math="18\text{ N}" />, tetapi lebih besar dari tiap gaya tunggal. Pengecekan batas memastikan <InlineMath math="15{,}6\text{ N}" /> berada aman di antara <InlineMath math="2\text{ N}" /> dan <InlineMath math="18\text{ N}" />. Arah resultan terhadap gaya pertama dihitung dengan [rumus sinus](/id/materi/fisika/vektor/penentuan-arah-resultan-vektor-dengan-rumus-sinus):
 
-Ini angka yang sama di pelabuhan: kapal tunda yang menarik <InlineMath math="10\text{ kN}" /> dan <InlineMath math="8\text{ kN}" /> dengan sudut <InlineMath math="60^\circ" /> di antara talinya menghasilkan <InlineMath math="15{,}6\text{ kN}" />, yaitu **diagonal jajargenjang putus-putus**.
+<BlockMath math="\sin\varphi = \frac{8\sin 60^\circ}{\sqrt{244}} \quad\Longrightarrow\quad \varphi \approx 26{,}3^\circ" />
 
-<TugboatResultantLab
-  title={<>Resultan Dua Kapal Tunda</>}
-  description={<>Tarikan <InlineMath math="10\text{ kN}" /> dan <InlineMath math="8\text{ kN}" />. Buka atau tutup sudut talinya.</>}
-  between={60}
-  first={10}
-  second={8}
+Geometri yang sama muncul pada dua kapal tunda yang menarik <InlineMath math="10\text{ kN}" /> dan <InlineMath math="8\text{ kN}" /> di haluan kapal: **diagonal jajargenjangnya** memberi <InlineMath math="15{,}6\text{ kN}" /> saat sudut apit <InlineMath math="60^\circ" />.
+
+<MathVisual
+  title={<>Diagonal Jajargenjang Dua Tarikan Kapal Tunda</>}
+  description={<>Tarikan kapal tunda <InlineMath math="10\text{ kN}" /> dan <InlineMath math="8\text{ kN}" /> dengan sudut <InlineMath math="a" /> beserta jajargenjangnya dalam kilonewton.</>}
+  footer={<>Saat sudut tali <InlineMath math="a" /> melebar, diagonal turun mulus dari <InlineMath math="18\text{ kN}" /> ke <InlineMath math="2\text{ kN}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 20 }, y: { min: -2, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 150, value: 60, step: 10, label: "tug-angle" },
+    ],
+    objects: [
+      { id: "f1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "f2", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "top", kind: "path", appearance: "construction", points: [{ x: "8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "side", kind: "path", appearance: "construction", points: [{ x: "10", y: "0" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "diag", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "tip", objectId: "tip", at: { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "diag-r", formula: "sqrt(164 + 160*cos(a*pi/180))" },
+      { key: "cos-val", formula: "cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    between: <>Sudut antara kedua tali</>,
-    betweenName: "Sudut antara kedua tali",
-    fromFirst: <>Sudut <InlineMath math="\vec R" /> dari <InlineMath math="\vec F_1" /></>,
-    fromLine: <>Sudut dari garis kapal</>,
-    resultant: <>Resultan <InlineMath math="R" /></>,
-    viewLabel: "Dua kapal tunda menarik sebuah kapal",
+    "tug-angle": <>Sudut tali <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    f1: <InlineMath math="10\text{ kN}" />,
+    tip: <InlineMath math="\vec R" />,
+    "diag-r": <>Tarikan resultan (kN)</>,
+    "cos-val": <InlineMath math="\cos a" />,
   }}
 />
+
+Amati bacaan <InlineMath math="\cos a" /> yang melewati nol tepat di <InlineMath math="90^\circ" />: sudut lancip selalu memberi <InlineMath math="R" /> di atas <InlineMath math="12{,}8\text{ kN}" />, sedangkan sudut tumpul menurunkannya di bawah angka itu.
 
 ## Contoh Mencari Sudut Apit dari Resultan
 
@@ -192,87 +240,151 @@ Rumus kosinus juga bisa dibalik untuk mencari sudut. **Kuadratkan resultan**, la
   <BlockMath math="\cos\theta = \frac{15}{30} = \frac12 \quad\Longrightarrow\quad \theta = 60^\circ" />
 </MathContainer>
 
-Periksa dengan memasukkan sudut itu kembali: <InlineMath math="\sqrt{25 + 9 + 30 \cdot \frac12} = \sqrt{49} = 7\text{ N}" />. Resultan itu juga masuk akal karena berada di antara <InlineMath math="5 - 3 = 2" /> dan <InlineMath math="5 + 3 = 8" />.
+Masukkan kembali <InlineMath math="\theta = 60^\circ" /> untuk memeriksa besar resultannya:
+
+<BlockMath math="R = \sqrt{25 + 9 + 30\cdot\frac12} = \sqrt{49} = 7\text{ N}" />
+
+Hasilnya cocok dan <InlineMath math="7\text{ N}" /> berada rapi di antara batas bawah <InlineMath math="2\text{ N}" /> dan batas atas <InlineMath math="8\text{ N}" />.
 
 ## Memeriksa Jawaban dengan Kasus Batas
 
-**Kasus batas** membantu mengecek apakah hasil masuk akal. Jika sudutnya <InlineMath math="0^\circ" />, rumus harus memberi <InlineMath math="A+B" />.
+**Kasus batas** membantu mengecek apakah hasil rumus kosinus masuk akal sekaligus menangkap kesalahan lupa menarik akar. Setiap resultan dari <InlineMath math="A" /> dan <InlineMath math="B" /> wajib berada di antara <InlineMath math="\lvert A-B\rvert" /> hingga <InlineMath math="A+B" />.
 
-<BlockMath math="\begin{aligned} R &amp;=\sqrt{A^2+B^2+2AB} \\ &amp;=\sqrt{(A+B)^2} \\ &amp;=A+B \end{aligned}" />
+Pada <InlineMath math="0^\circ" /> rumus menyederhana menjadi jumlah biasa, sedangkan pada <InlineMath math="180^\circ" /> menjadi selisih mutlak:
 
-Jika sudutnya <InlineMath math="180^\circ" />, rumus harus memberi selisih besar vektor.
+<MathContainer>
+  <BlockMath math="\begin{aligned} R &=\sqrt{A^2+B^2+2AB} =\sqrt{(A+B)^2}=A+B \end{aligned}" />
+  <BlockMath math="\begin{aligned} R &=\sqrt{A^2+B^2-2AB} =\sqrt{(A-B)^2}=\lvert A-B\rvert \end{aligned}" />
+</MathContainer>
 
-<BlockMath math="\begin{aligned} R &amp;=\sqrt{A^2+B^2-2AB} \\ &amp;=\sqrt{(A-B)^2} \\ &amp;=\lvert A-B\rvert \end{aligned}" />
-
-Pengecekan ini menghubungkan rumus kosinus dengan kasus vektor searah, berlawanan arah, dan tegak lurus.
-
-Periksa setiap jawaban dengan kedua ujung kurva ini. <InlineMath math="R=\sqrt{A^2+B^2+2AB\cos\theta}" /> turun dari <InlineMath math="A+B" /> saat kedua gaya searah sampai <InlineMath math="\lvert A-B\rvert" /> saat keduanya berlawanan arah, jadi setiap resultan dari <InlineMath math="10\text{ N}" /> dan <InlineMath math="8\text{ N}" /> ada di antara <InlineMath math="2\text{ N}" /> dan <InlineMath math="18\text{ N}" />.
+Untuk gaya <InlineMath math="10\text{ N}" /> dan <InlineMath math="8\text{ N}" />, kurva di bawah melukis semua nilai resultan langsung dalam derajat dan newton di antara <InlineMath math="2\text{ N}" /> dan <InlineMath math="18\text{ N}" />.
 
 <MathVisual
   title={<>Resultan di antara Kasus Batasnya</>}
-  description={<>Resultan gaya <InlineMath math="10\text{ N}" /> dan <InlineMath math="8\text{ N}" /> terhadap sudut di antara keduanya. Mendatar: satu kotak grid berarti <InlineMath math="30^\circ" />. Tegak: satu kotak grid berarti <InlineMath math="2\text{ N}" />.</>}
+  description={<>Resultan gaya <InlineMath math="10\text{ N}" /> dan <InlineMath math="8\text{ N}" /> langsung terhadap sudut dalam derajat dan gaya dalam newton.</>}
+  footer={<>Setiap resultan selalu berada di antara <InlineMath math="18\text{ N}" /> di <InlineMath math="0^\circ" /> dan <InlineMath math="2\text{ N}" /> di <InlineMath math="180^\circ" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 10 } },
+    frame: { kind: "cartesian", x: { min: -15, max: 205 }, y: { min: -1, max: 20 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "curve", kind: "function", appearance: "secondary", formula: "sqrt(41 + 40 cos(pi x / 6))", domain: { min: 0, max: 6 } },
-      { id: "same", kind: "point", appearance: "answer", at: { x: 0, y: 9 } },
-      { id: "sixty", kind: "point", appearance: "primary", at: { x: 2, y: Math.sqrt(61) } },
-      { id: "right", kind: "point", appearance: "construction", at: { x: 3, y: Math.sqrt(41) } },
-      { id: "opposite", kind: "point", appearance: "answer", at: { x: 6, y: 1 } },
+      { id: "curve", kind: "function", appearance: "secondary", formula: "sqrt(164 + 160*cos(x*pi/180))", domain: { min: 0, max: 180 } },
+      { id: "same", kind: "point", appearance: "answer", at: { x: 0, y: 18 } },
+      { id: "sixty", kind: "point", appearance: "primary", at: { x: 60, y: Math.sqrt(244) } },
+      { id: "right", kind: "point", appearance: "construction", at: { x: 90, y: Math.sqrt(164) } },
+      { id: "opposite", kind: "point", appearance: "answer", at: { x: 180, y: 2 } },
     ],
     labels: [
-      { key: "same", objectId: "same", at: { x: 0, y: 9 }, placement: "right" },
-      { key: "sixty", objectId: "sixty", at: { x: 2, y: Math.sqrt(61) }, placement: "above-right" },
-      { key: "right", objectId: "right", at: { x: 3, y: Math.sqrt(41) }, placement: "above-right" },
-      { key: "opposite", objectId: "opposite", at: { x: 6, y: 1 }, placement: "above" },
+      { key: "same", objectId: "same", at: { x: 0, y: 18 }, placement: "right" },
+      { key: "sixty", objectId: "sixty", at: { x: 60, y: Math.sqrt(244) }, placement: "above-right" },
+      { key: "right", objectId: "right", at: { x: 90, y: Math.sqrt(164) }, placement: "above-right" },
+      { key: "opposite", objectId: "opposite", at: { x: 180, y: 2 }, placement: "above-left" },
     ],
   }}
   labels={{
-    same: <InlineMath math="0^\circ:\ R=10+8=18\text{ N}" />,
-    sixty: <InlineMath math="60^\circ:\ R=\sqrt{244}\approx15{,}6\text{ N}" />,
-    right: <InlineMath math="90^\circ:\ R=\sqrt{164}\approx12{,}8\text{ N}" />,
-    opposite: <InlineMath math="180^\circ:\ R=10-8=2\text{ N}" />,
+    same: <InlineMath math="0^\circ:\ 18\text{ N}" />,
+    sixty: <InlineMath math="60^\circ:\ 15{,}6\text{ N}" />,
+    right: <InlineMath math="90^\circ:\ 12{,}8\text{ N}" />,
+    opposite: <InlineMath math="180^\circ:\ 2\text{ N}" />,
   }}
 />
 
-## Tali sebagai Kasus Batas
+Begitu hasil hitungan jatuh di atas <InlineMath math="A+B" /> atau di bawah <InlineMath math="\lvert A-B\rvert" />, berhenti sejenak dan periksa kembali tanda kosinus atau penarikan akarnya.
 
-Dalam tarik tambang, kedua gaya membentuk sudut <InlineMath math="180^\circ" />, jadi <InlineMath math="\cos180^\circ=-1" /> dan **rumusnya tinggal** <InlineMath math="R=|F_R-F_L|" />: <InlineMath math="900\text{ N}" /> melawan <InlineMath math="600\text{ N}" /> menghasilkan <InlineMath math="300\text{ N}" />. Samakan kedua regu, maka resultannya menjadi nol.
+### Tarikan Berlawanan pada Sudut Maksimum
 
-<TugOfWarForceLab
-  title={<>Gaya yang Berlawanan Arah</>}
-  description={<>Setiap penarik menarik dengan <InlineMath math="300\text{ N}" />. Ubah anggota regunya.</>}
-  left={2}
-  pull={300}
-  right={3}
+Dalam tarik tambang kedua gaya terpisah <InlineMath math="180^\circ" />, jadi <InlineMath math="\cos180^\circ=-1" /> dan **rumus kosinus menyusut menjadi pengurangan**. Melawan tarikan kiri <InlineMath math="600\text{ N}" /> (<InlineMath math="2" /> orang masing-masing <InlineMath math="300\text{ N}" />), regu kanan beranggotakan <InlineMath math="p" /> orang memberi besar resultan <InlineMath math="\lvert 300p - 600\rvert" />.
+
+<MathVisual
+  title={<>Besar Resultan untuk Gaya Berlawanan</>}
+  description={<>Besar <InlineMath math="R = \lvert 300p - 600\rvert" /> dalam newton untuk <InlineMath math="p" /> penarik kanan melawan <InlineMath math="600\text{ N}" /> kiri pada <InlineMath math="180^\circ" />.</>}
+  footer={<>Saat <InlineMath math="p=2" /> dua tarikan berlawanan sama besar saling meniadakan ke <InlineMath math="0\text{ N}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: -100, max: 1050 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 5, value: 3, step: 1, label: "right-pullers" },
+    ],
+    objects: [
+      { id: "mag-curve", kind: "function", appearance: "primary", formula: "abs(300*x - 600)", domain: { min: 0, max: 5 } },
+      { id: "guide", kind: "path", appearance: "construction", points: [{ x: "p", y: "0" }, { x: "p", y: "abs(300*p - 600)" }] },
+      { id: "pt", kind: "marker", appearance: "answer", x: "p", y: "abs(300*p - 600)" },
+    ],
+    labels: [
+      { key: "pt", objectId: "pt", at: { x: "p", y: "abs(300*p - 600)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "right-n", formula: "300*p" },
+      { key: "net-n", formula: "abs(300*p - 600)" },
+    ],
+  }}
   labels={{
-    left: <>Regu kiri <InlineMath math="\vec F_L" /></>,
-    leftCount: <>Penarik di kiri</>,
-    leftName: "Penarik di kiri",
-    net: <>Gaya total <InlineMath math="\Sigma F" /></>,
-    right: <>Regu kanan <InlineMath math="\vec F_R" /></>,
-    rightCount: <>Penarik di kanan</>,
-    rightName: "Penarik di kanan",
-    viewLabel: "Lomba tarik tambang saat senja",
+    "right-pullers": <>Penarik di kanan <InlineMath math="p" /></>,
+    pt: <InlineMath math="R" />,
+    "right-n": <>Gaya kanan (N)</>,
+    "net-n": <>Besar resultan (N)</>,
   }}
 />
 
-## Pemakaian Rumus Kosinus yang Tepat
+Grafik berbentuk huruf V tidak pernah turun di bawah nol karena besar vektor tidak pernah negatif, dan tepat menyentuh nol saat kedua gaya sama-sama <InlineMath math="600\text{ N}" />.
 
-Pakai rumus kosinus ketika:
+### Gerak Tegak Lurus sebagai Kasus Khusus
 
-- hanya ada dua vektor
-- besar kedua vektor diketahui
-- **sudut apit** kedua vektor diketahui
-- yang ditanya adalah besar resultan
+Saat perahu diarahkan lurus menyeberang dengan <InlineMath math="4\text{ m/s}" /> di arus <InlineMath math="3\text{ m/s}" />, kedua kecepatan bertemu pada <InlineMath math="a = 90^\circ" /> dengan <InlineMath math="\cos 90^\circ = 0" />, sehingga **rumus kosinus menjadi Pythagoras** dan menghasilkan <InlineMath math="5\text{ m/s}" />. Putar sudut <InlineMath math="a" /> menjauh dari <InlineMath math="90^\circ" /> dan suku <InlineMath math="2AB\cos a" /> aktif kembali.
 
-Jika vektornya lebih dari dua, uraikan setiap vektor menjadi komponen koordinat, lalu jumlahkan semua komponen <InlineMath math="x" /> dan <InlineMath math="y" />. Cara ini adalah [metode analitis](/id/materi/fisika/vektor/penjumlahan-dan-pengurangan-vektor-dengan-metode-analitis). Rumus kosinus dapat langsung dipakai jika besar dua vektor dan sudut apitnya diketahui.
+<MathVisual
+  title={<>Pythagoras di dalam Rumus Kosinus</>}
+  description={<>Kecepatan perahu <InlineMath math="4\text{ m/s}" /> dan arus <InlineMath math="3\text{ m/s}" /> yang bertemu pada sudut <InlineMath math="a" /> langsung dalam m/s.</>}
+  footer={<>Hanya pada <InlineMath math="a=90^\circ" /> nilai <InlineMath math="\cos a" /> nol sehingga tersisa Pythagoras.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.8 }, y: { min: -0.8, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 150, value: 90, step: 15, label: "flow-angle" },
+    ],
+    objects: [
+      { id: "boat", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "curr", kind: "path", appearance: "secondary", points: [{ x: "4", y: "0" }, { x: "4 + 3*cos(a*pi/180)", y: "3*sin(a*pi/180)" }] },
+      { id: "res", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "4 + 3*cos(a*pi/180)", y: "3*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "4 + 3*cos(a*pi/180)", y: "3*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "boat", objectId: "boat", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "tip", objectId: "tip", at: { x: "4 + 3*cos(a*pi/180)", y: "3*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "cos-term", formula: "24*cos(a*pi/180)" },
+      { key: "speed-ms", formula: "sqrt(25 + 24*cos(a*pi/180))" },
+    ],
+  }}
+  labels={{
+    "flow-angle": <>Sudut <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    boat: <InlineMath math="4\text{ m/s}" />,
+    tip: <InlineMath math="\vec v" />,
+    "cos-term": <InlineMath math="2AB\cos a" />,
+    "speed-ms": <>Kelajuan resultan (m/s)</>,
+  }}
+/>
+
+Amati bacaan <InlineMath math="2AB\cos a" />: nilainya positif di bawah <InlineMath math="90^\circ" />, nol tepat di <InlineMath math="90^\circ" />, dan negatif di atas <InlineMath math="90^\circ" />, memperlihatkan Pythagoras sebagai satu irisan khusus rumus kosinus.
+
+## Memilih dan Mengecek Rumus Kosinus
+
+Pakai rumus kosinus secara langsung ketika keempat syarat terpenuhi:
+
+- hanya ada dua vektor.
+- besar kedua vektor diketahui.
+- **sudut apit** kedua vektor diketahui.
+- yang ditanya adalah besar resultan.
+
+Jika vektornya lebih dari dua, uraikan setiap vektor ke sumbu koordinat dengan [metode analitis](/id/materi/fisika/vektor/penjumlahan-dan-pengurangan-vektor-dengan-metode-analitis).
 
 <Mermaid
   title={<>Memilih cara menghitung resultan</>}
   description={<>Data yang diketahui menentukan rumus yang dipakai lebih dulu.</>}
+  footer={<>Kosinus untuk besar dua vektor, sinus untuk arah, komponen untuk tiga lebih.</>}
   chart={`flowchart TD
   A{"Apa yang diketahui dan ditanya?"} -->|"dua vektor dan sudut apit, cari besar"| B["Rumus kosinus"]
   A -->|"besar resultan sudah ada, cari arah"| C["Rumus sinus"]
@@ -280,58 +392,25 @@ Jika vektornya lebih dari dua, uraikan setiap vektor menjadi komponen koordinat,
   B -->|"arah juga ditanya"| C`}
 />
 
-## Sudut Siku-Siku di Sungai
+Ikuti diagram keputusan di atas sebelum mulai menghitung: begitu vektor ketiga muncul, langsung memakai komponen menghemat waktu dibanding menyusun segitiga berulang.
 
-Saat menyeberang lurus, kecepatan perahu <InlineMath math="4\text{ m/s}" /> dan arus <InlineMath math="3\text{ m/s}" /> membentuk <InlineMath math="90^\circ" />, <InlineMath math="\cos90^\circ=0" />, dan **rumus kosinus menyusut menjadi Pythagoras**: <InlineMath math="5\text{ m/s}" />. Putar haluannya, maka kamu butuh rumus lengkapnya lagi.
+Terapkan rumus kosinus beserta cek batas pada tiga kasus singkat:
 
-<RiverBoatCrossingLab
-  title={<>Pythagoras sebagai Kasus Khusus</>}
-  description={<>Sungai selebar <InlineMath math="60\text{ m}" /> yang mengalir <InlineMath math="3\text{ m/s}" />.</>}
-  boatSpeed={4}
-  current={3}
-  width={60}
-  labels={{
-    angle: <>Sudut dari arah tegak lurus tepi</>,
-    drift: <>Hanyut ke hilir</>,
-    groundSpeed: <>Kelajuan terhadap tepi</>,
-    heading: <>Arah haluan perahu</>,
-    headingName: "Arah haluan perahu",
-    time: <>Waktu menyeberang</>,
-    viewLabel: "Perahu menyeberangi sungai berarus",
-  }}
-/>
+1. Dua gaya tegak lurus <InlineMath math="6\text{ N}" /> dan <InlineMath math="8\text{ N}" /> memiliki <InlineMath math="\theta = 90^\circ" /> dan <InlineMath math="\cos 90^\circ = 0" />, dengan resultan di antara <InlineMath math="2\text{ N}" /> dan <InlineMath math="14\text{ N}" />:
 
-## Kesalahan yang Sering Terjadi
+<BlockMath math="R = \sqrt{6^2 + 8^2} = \sqrt{100} = 10\text{ N}" />
 
-| Kesalahan | Mengapa salah | Cara memeriksa |
-| --- | --- | --- |
-| Memakai sudut dalam segitiga pangkal ke ujung sebagai <InlineMath math="\theta" /> | Rumus resultan memakai **sudut antara kedua vektor saat pangkalnya berimpit** | Untuk vektor searah, <InlineMath math="\theta = 0^\circ" /> harus memberi <InlineMath math="A + B" /> |
-| Memakai tanda minus seperti rumus kosinus segitiga | Sudut dalam segitiga adalah pelurus <InlineMath math="\theta" />, sehingga tandanya berubah | Hasil untuk <InlineMath math="\theta = 60^\circ" /> harus lebih besar dari setiap vektor tunggal |
-| Lupa menarik akar | Rumus memberi <InlineMath math="R^2" />, bukan <InlineMath math="R" /> | Resultan harus berada di antara <InlineMath math="\lvert A - B \rvert" /> dan <InlineMath math="A + B" /> |
-| Kalkulator dalam mode radian | <InlineMath math="\cos 60" /> dalam radian bernilai sekitar <InlineMath math="-0{,}95" /> | Periksa bahwa <InlineMath math="\cos 60^\circ = 0{,}5" /> |
-
-## Latihan Soal
-
-Hitung dengan rumus kosinus, lalu **periksa bahwa resultan berada di antara <InlineMath math="\lvert A - B \rvert" /> dan <InlineMath math="A + B" />**.
-
-1. Dua gaya sebesar <InlineMath math="6\text{ N}" /> dan <InlineMath math="8\text{ N}" /> saling tegak lurus. Tentukan besar resultannya.
-
-2. Dua vektor sebesar <InlineMath math="12" /> dan <InlineMath math="5" /> satuan membentuk sudut <InlineMath math="120^\circ" />. Tentukan besar resultannya.
-
-3. Dua gaya yang sama besar, masing-masing <InlineMath math="4\text{ N}" />, menghasilkan resultan <InlineMath math="4\text{ N}" />. Tentukan sudut apitnya.
-
-### Pembahasan
-
-**Soal 1**. **Tegak lurus berarti** <InlineMath math="\theta = 90^\circ" /> dan <InlineMath math="\cos\theta = 0" />, jadi <InlineMath math="R = \sqrt{36 + 64} = 10\text{ N}" />. Periksa: <InlineMath math="10" /> berada di antara <InlineMath math="2" /> dan <InlineMath math="14" />.
-
-**Soal 2**. Dengan <InlineMath math="\cos 120^\circ = -\frac12" />:
+2. Dua vektor sebesar <InlineMath math="12" /> dan <InlineMath math="5" /> satuan pada <InlineMath math="120^\circ" /> memakai <InlineMath math="\cos 120^\circ = -\tfrac12" />:
 
 <BlockMath math="R = \sqrt{144 + 25 + 2(12)(5)\left(-\frac12\right)} = \sqrt{109} \approx 10{,}4" />
 
-Periksa: <InlineMath math="10{,}4" /> berada di antara <InlineMath math="12 - 5 = 7" /> dan <InlineMath math="17" />, dan lebih kecil dari besar yang sama pada sudut <InlineMath math="90^\circ" />, yaitu <InlineMath math="\sqrt{144 + 25} = 13" />, karena kedua vektor makin berlawanan arah.
+Nilai itu terletak di antara <InlineMath math="7" /> dan <InlineMath math="17" />, serta lebih kecil dari resultan tegak lurus <InlineMath math="13" /> karena sudut tumpul membuat kedua vektor sebagian berlawanan.
 
-**Soal 3**. Balik rumusnya:
+3. Dua gaya sama besar <InlineMath math="4\text{ N}" /> yang menghasilkan resultan <InlineMath math="4\text{ N}" /> membalik rumusnya:
 
-<BlockMath math="R^2 = 16 = 16 + 16 + 32\cos\theta \quad\Longrightarrow\quad \cos\theta = -\frac12 \quad\Longrightarrow\quad \theta = 120^\circ" />
+<MathContainer>
+  <BlockMath math="4^2 = 4^2 + 4^2 + 2(4)(4)\cos\theta \quad\Longrightarrow\quad \cos\theta = -\frac12 \quad\Longrightarrow\quad \theta = 120^\circ" />
+  <BlockMath math="R = \sqrt{16 + 16 + 32\left(-\frac12\right)} = \sqrt{16} = 4\text{ N}" />
+</MathContainer>
 
-Periksa: <InlineMath math="\sqrt{16 + 16 + 32 \cdot \left(-\frac12\right)} = \sqrt{16} = 4\text{ N}" />.
+Mengecek kembali nilai akhir terhadap <InlineMath math="\lvert A-B\rvert" /> dan <InlineMath math="A+B" /> membantu menangkap kesalahan hitung maupun tanda sejak awal.

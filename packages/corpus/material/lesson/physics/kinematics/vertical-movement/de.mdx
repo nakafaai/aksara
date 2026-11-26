@@ -32,6 +32,7 @@ Die Simulation des Balls zeigt beide Arten, wie sich der Ball in Bewegung setzen
       Höhe und Geschwindigkeit verändert.
     </>
   }
+  footer={<>Wurf und Fall haben verschiedene Startgeschwindigkeiten, die Schwerkraft bleibt.</>}
   labels={{
     condition: "Ausgangszustand",
     modeLabels: {
@@ -45,6 +46,8 @@ Die Simulation des Balls zeigt beide Arten, wie sich der Ball in Bewegung setzen
     viewLabel: "Darstellung eines Balls in vertikaler Bewegung",
   }}
 />
+
+Wechsle zwischen beiden Startarten und achte darauf, dass die nach unten gerichtete Beschleunigung nie ihr Vorzeichen wechselt. Ob der Ball zunächst steigt oder aus der Ruhe fällt, die Schwerkraft zieht seine Geschwindigkeit jede Sekunde um <InlineMath math="g" /> nach unten.
 
 ## Drei Arten senkrechter Bewegung
 
@@ -61,6 +64,7 @@ Bei allen dreien bleibt die Beschleunigung während der ganzen Bewegung <InlineM
 <Mermaid
   title={<>Die Art der vertikalen Bewegung wählen</>}
   description={<>Die Richtung der Anfangsgeschwindigkeit bestimmt die Bewegungsart, die Gleichungen bleiben dieselben.</>}
+  footer={<>Alle drei Startrichtungen führen in genau dieselben Bewegungsgleichungen.</>}
   chart={`flowchart TD
   A{"Richtung der Anfangsgeschwindigkeit?"} -->|"nach oben"| B["Wurf nach oben, v₀ positiv"]
   A -->|"null"| C["Freier Fall, v₀ = 0"]
@@ -79,6 +83,7 @@ Freier Fall heißt, dass nur die Schwerkraft wirkt. In Luft bremst der Luftwider
       Die Glasröhre ist <InlineMath math="1{,}1\text{ m}" /> hoch. Mit Luft darin bleibt die Feder zurück, also pumpe die Luft ab und vergleiche die beiden Landezeiten.
     </>
   }
+  footer={<>Ohne Luft fällt der Luftwiderstand weg, und Feder und Münze landen zugleich.</>}
   labels={{
     airs: {
       air: <>Mit Luft</>,
@@ -92,9 +97,17 @@ Freier Fall heißt, dass nur die Schwerkraft wirkt. In Luft bremst der Luftwider
   }}
 />
 
-Im Vakuum fallen beide <InlineMath math="1{,}1\text{ m}" /> in <InlineMath math="\sqrt{\frac{2(1{,}1)}{10}}\approx0{,}47\text{ s}" /> und landen gleichzeitig. Mit Luft landet die Münze weiter nach etwa <InlineMath math="0{,}47\text{ s}" />, die Feder schwebt aber etwa <InlineMath math="2{,}25\text{ s}" /> lang hinab.
+Im Vakuum fallen beide Körper <InlineMath math="1{,}1\text{ m}" /> tief und landen gleichzeitig nach:
 
-## Senkrechter Wurf nach oben
+<BlockMath math="t=\sqrt{\frac{2(1{,}1)}{10}}\approx0{,}47\text{ s}" />
+
+Mit Luft in der Röhre landet die Münze weiterhin nach etwa <InlineMath math="0{,}47\text{ s}" />, während der Luftwiderstand die Feder auf etwa <InlineMath math="2{,}25\text{ s}" /> bremst.
+
+## Würfe und freien Fall vergleichen
+
+Jede senkrechte Bewegung gehört zu einem von drei Fällen, die allein durch **die Anfangsgeschwindigkeit** <InlineMath math="v_0" /> getrennt sind. Der direkte Vergleich von Aufwärtswurf, freiem Fall und Abwärtswurf zeigt Symmetrie und Starttempo im Zusammenhang.
+
+### Senkrechter Wurf nach oben
 
 Beim Wurf nach oben ist die Geschwindigkeit zuerst positiv und **nimmt durch die Schwerkraft ständig ab**, bis sie im höchsten Punkt null ist. Aus <InlineMath math="v_y = 0" /> folgen Steigzeit und maximale Höhe über dem Abwurfpunkt:
 
@@ -103,11 +116,15 @@ Beim Wurf nach oben ist die Geschwindigkeit zuerst positiv und **nimmt durch die
   <BlockMath math="h_{\text{max}} = \frac{v_0^2}{2g}" />
 </MathContainer>
 
-Angenommen, ein Ball wird mit <InlineMath math="v_0 = 20\text{ m/s}" /> nach oben geworfen. Seine Steigzeit beträgt <InlineMath math="\frac{20}{10} = 2\text{ s}" />, seine maximale Höhe <InlineMath math="\frac{20^2}{2 \times 10} = 20\text{ m}" />. Die Ortsgleichung liefert dasselbe:
+Angenommen, ein Ball wird mit <InlineMath math="v_0 = 20\text{ m/s}" /> nach oben geworfen. Seine Steigzeit und Gipfelhöhe sind:
 
-<BlockMath math="y = 20(2) - \frac{1}{2}(10)(2^2) = 40 - 20 = 20\text{ m}" />
+<MathContainer>
+  <BlockMath math="t_{\text{Steig}} = \frac{20}{10} = 2\text{ s}" />
+  <BlockMath math="h_{\text{max}} = \frac{20^2}{2 \times 10} = 20\text{ m}" />
+  <BlockMath math="y = 20(2) - \frac{1}{2}(10)(2^2) = 40 - 20 = 20\text{ m}" />
+</MathContainer>
 
-Im höchsten Punkt ist die Geschwindigkeit des Balls kurz null, seine Beschleunigung aber weiterhin <InlineMath math="-g" />. Setze einige Werte von <InlineMath math="t" /> in <InlineMath math="y = 20t - 5t^2" /> und <InlineMath math="v_y = 20 - 10t" /> ein, um Auf- und Abstieg zu verfolgen:
+Im höchsten Punkt ist die Geschwindigkeit des Balls kurz null, seine Beschleunigung aber weiterhin <InlineMath math="-g" />. Setze einige Zeiten in <InlineMath math="y = 20t - 5t^2" /> und <InlineMath math="v_y = 20 - 10t" /> ein, um Auf- und Abstieg zu verfolgen:
 
 | Zeit | Höhe | Geschwindigkeit | Richtung |
 | --- | --- | --- | --- |
@@ -117,13 +134,14 @@ Im höchsten Punkt ist die Geschwindigkeit des Balls kurz null, seine Beschleuni
 | <InlineMath math="3\text{ s}" /> | <InlineMath math="15\text{ m}" /> | <InlineMath math="-10\text{ m/s}" /> | Abwärts |
 | <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="-20\text{ m/s}" /> | Zurück am Abwurfpunkt |
 
-Die Bewegung ist symmetrisch. Der Ball ist nach <InlineMath math="1\text{ s}" /> und nach <InlineMath math="3\text{ s}" /> in <InlineMath math="15\text{ m}" /> Höhe, mit gleicher Schnelligkeit, aber entgegengesetzter Richtung, und kommt mit seiner Anfangsschnelligkeit wieder am Abwurfpunkt an.
+Die Bewegung ist symmetrisch. Der Ball passiert <InlineMath math="15\text{ m}" /> nach <InlineMath math="1\text{ s}" /> und <InlineMath math="3\text{ s}" /> mit gleicher Schnelligkeit in entgegengesetzter Richtung und kehrt mit seinem Starttempo zum Abwurfpunkt zurück.
 
-Verschieb die Zeit für einen Ball, der mit <InlineMath math="20\text{ m/s}" /> nach oben geworfen wird. Der violette Pfeil ist seine Geschwindigkeit, gezeichnet als Strecke, die in einer Sekunde zurückgelegt wird: Er wird auf dem Weg nach oben kürzer, verschwindet bei <InlineMath math="t=2\text{ s}" /> oben und zeigt auf dem Rückweg nach unten.
+Verschieb die Zeit für einen Ball, der mit <InlineMath math="20\text{ m/s}" /> nach oben geworfen wird. Der violette Pfeil ist seine Geschwindigkeit: Er wird beim Steigen kürzer, verschwindet bei <InlineMath math="t=2\text{ s}" /> am Gipfel und zeigt beim Fallen nach unten.
 
 <MathVisual
   title={<>Sieh zu, wie die Geschwindigkeit umkehrt</>}
   description={<>Ein Ball, senkrecht mit <InlineMath math="20\text{ m/s}" /> nach oben geworfen, seine Position zur gewählten Zeit (fuchsia) und seine Geschwindigkeit (violett). Ein Gitterschritt entspricht <InlineMath math="5\text{ m}" />.</>}
+  footer={<>Der violette Pfeil schrumpft oben auf null und zeigt beim Fallen nach unten.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -4.5, max: 8.5 } },
@@ -152,66 +170,125 @@ Verschieb die Zeit für einen Ball, der mit <InlineMath math="20\text{ m/s}" /> 
   }}
 />
 
-Ein Stroboskopfoto zeigt einen Wurf in einem Bild. Eine Kugel, die mit <InlineMath math="5\text{ m/s}" /> hochgeworfen wird, **verliert jede Zehntelsekunde <InlineMath math="1\text{ m/s}" /> Geschwindigkeit nach oben**, also drängen sich ihre Bilder oben zusammen.
+Eine Blitzaufnahme eines Wurfs mit <InlineMath math="5\text{ m/s}" /> zeigt, wie Aufnahmen alle <InlineMath math="0{,}1\text{ s}" /> am Gipfel zusammenrücken, weil der Ball **jede Zehntelsekunde <InlineMath math="1\text{ m/s}" /> Aufwärtsgeschwindigkeit verliert**. Verschiebe unten die Blitzzeit <InlineMath math="a" /> und vergleiche die Höhenänderung je <InlineMath math="0{,}1\text{ s}" />.
 
-<StrobePhotoMotionLab
-  shot="toss"
+<MathVisual
   title={<>Eine hochgeworfene Kugel, Blitz für Blitz</>}
   description={
     <>
-      Eine Lampe blitzt alle <InlineMath math="0{,}1\text{ s}" />. Sieh, wie die Abstände beim Steigen schrumpfen und beim Fallen wachsen.
+      Höhe <InlineMath math="y=5t-5t^2" /> für einen Wurf mit <InlineMath math="5\text{ m/s}" />. Verschiebe die Blitzzeit <InlineMath math="a" />, um den Höhenschritt in den nächsten <InlineMath math="0{,}1\text{ s}" /> zu messen.
     </>
   }
+  footer={<>Gleiche Zeitschritte drängen sich oben eng, weil das Tempo dort gegen null geht.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 1.1 }, y: { min: -0.1, max: 1.45 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 0.9, value: 0.2, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "toss-curve", kind: "function", appearance: "primary", formula: "5*x - 5*x^2", domain: { min: 0, max: 1 } },
+      { id: "step-gap", kind: "path", appearance: "answer", points: [{ x: "a", y: "5*a - 5*a^2" }, { x: "a + 0.1", y: "5*(a + 0.1) - 5*(a + 0.1)^2" }] },
+      { id: "vert-drop", kind: "path", appearance: "secondary", points: [{ x: "a + 0.1", y: "5*a - 5*a^2" }, { x: "a + 0.1", y: "5*(a + 0.1) - 5*(a + 0.1)^2" }] },
+      { id: "peak", kind: "point", appearance: "reference", at: { x: 0.5, y: 1.25 } },
+      { id: "pt-a", kind: "marker", appearance: "secondary", x: "a", y: "5*a - 5*a^2" },
+      { id: "pt-b", kind: "marker", appearance: "answer", x: "a + 0.1", y: "5*(a + 0.1) - 5*(a + 0.1)^2" },
+    ],
+    labels: [
+      { key: "peak-lbl", objectId: "peak", at: { x: 0.5, y: 1.25 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "height-now", formula: "5*a - 5*a^2" },
+      { key: "step-shift", formula: "(5*(a + 0.1) - 5*(a + 0.1)^2) - (5*a - 5*a^2)" },
+      { key: "vel-now", formula: "5 - 10*a" },
+    ],
+  }}
   labels={{
-    airTime: <>Zeit in der Luft</>,
-    height: <>Starthöhe</>,
-    interval: <>Zeit zwischen den Blitzen</>,
-    outcome: <>Gipfelhöhe</>,
-    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+    a: <>Blitzzeit <InlineMath math="a" /> (s)</>,
+    "peak-lbl": <>Gipfel</>,
+    "height-now": <>Höhe beim Blitz (m)</>,
+    "step-shift": <>Höhenschritt in 0,1 s (m)</>,
+    "vel-now": <>Geschwindigkeit beim Blitz (m/s)</>,
   }}
 />
 
-Die Kugel hört nach <InlineMath math="\frac{5}{10}=0{,}5\text{ s}" /> in <InlineMath math="\frac{5^2}{2(10)}=1{,}25\text{ m}" /> Höhe auf zu steigen und ist nach <InlineMath math="1\text{ s}" /> wieder in der Hand, mit <InlineMath math="5\text{ m/s}" /> nach unten.
+Die hochgeworfene Kugel erreicht ihren Gipfel und kehrt nach <InlineMath math="1\text{ s}" /> mit <InlineMath math="5\text{ m/s}" /> abwärts zur Hand zurück:
 
-## Freier Fall
+<MathContainer>
+  <BlockMath math="t_{\text{Steig}}=\frac{5}{10}=0{,}5\text{ s}" />
+  <BlockMath math="h_{\text{max}}=\frac{5^2}{2(10)}=1{,}25\text{ m}" />
+</MathContainer>
 
-Im Schulunterricht heißt freier Fall, dass ein Körper **ohne Anfangsgeschwindigkeit** losgelassen wird, also <InlineMath math="v_0 = 0" />. Manche Bücher nennen jede Bewegung unter alleiniger Schwerkraft freien Fall, Würfe eingeschlossen, diese Seite nutzt aber die erste Bedeutung. Für eine Fallhöhe <InlineMath math="h" /> gelten Fallzeit und Aufprallgeschwindigkeit:
+### Freier Fall
+
+Im Schulunterricht heißt freier Fall, dass ein Körper **ohne Anfangsgeschwindigkeit** losgelassen wird, also <InlineMath math="v_0 = 0" />. Für eine Fallhöhe <InlineMath math="h" /> gelten Fallzeit und Aufprallgeschwindigkeit:
 
 <MathContainer>
   <BlockMath math="t = \sqrt{\frac{2h}{g}}" />
   <BlockMath math="v = \sqrt{2gh}" />
 </MathContainer>
 
-Ein Ball, der aus <InlineMath math="20\text{ m}" /> Höhe fallen gelassen wird, erreicht den Boden nach <InlineMath math="t = \sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />. Seine Geschwindigkeit in diesem Moment ist:
+Ein Ball, der aus <InlineMath math="20\text{ m}" /> Höhe fallen gelassen wird, erreicht den Boden mit Zeit und Geschwindigkeit:
 
-<BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
+<MathContainer>
+  <BlockMath math="t = \sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />
+  <BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
+  <BlockMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />
+</MathContainer>
 
-Das Minus bedeutet, dass sich der Ball nach unten bewegt. Prüfe den Betrag mit der zweiten Formel: <InlineMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />. Genau diese Schnelligkeit hat auch ein mit <InlineMath math="20\text{ m/s}" /> hochgeworfener Ball, wenn er wieder am Abwurfpunkt ankommt, denn beide fallen <InlineMath math="20\text{ m}" /> aus dem Stillstand.
+Das Minus bedeutet Bewegung nach unten. Dieselbe Schnelligkeit hat ein mit <InlineMath math="20\text{ m/s}" /> hochgeworfener Ball bei der Rückkehr, weil beide <InlineMath math="20\text{ m}" /> aus dem Stillstand fallen.
 
-## Freier Fall Blitz für Blitz
+Aus <InlineMath math="1{,}8\text{ m}" /> fallen gelassen, sinkt eine Kugel in der ersten Zehntelsekunde um <InlineMath math="5\text{ cm}" /> und **in jeder folgenden Zehntelsekunde weiter**, weil ihr Tempo jeweils um <InlineMath math="1\text{ m/s}" /> wächst. Verschiebe unten die Blitzzeit <InlineMath math="a" />.
 
-Aus der Ruhe fallen gelassen, fällt eine Kugel in der ersten Zehntelsekunde <InlineMath math="5\text{ cm}" /> und **danach in jeder Zehntelsekunde weiter**, weil ihre Schnelligkeit jedes Mal um <InlineMath math="1\text{ m/s}" /> wächst.
-
-<StrobePhotoMotionLab
-  shot="drop"
-  title={<>Eine fallende Kugel, Blitz für Blitz</>}
+<MathVisual
+  title={<>Freier Fall Blitz für Blitz</>}
   description={
     <>
-      Eine Lampe blitzt alle <InlineMath math="0{,}1\text{ s}" />, während der Verschluss offen bleibt. Vergleiche die Abstände von oben nach unten.
+      Höhe <InlineMath math="y=1{,}8-5t^2" /> beim Fall aus <InlineMath math="1{,}8\text{ m}" />. Verschiebe die Startzeit <InlineMath math="a" /> und sieh, wie der Fallweg je <InlineMath math="0{,}1\text{ s}" /> wächst.
     </>
   }
+  footer={<>In jeder Zehntelsekunde fällt der Ball weiter, weil sein Tempo stetig wächst.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 0.7 }, y: { min: -0.1, max: 2.0 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 0.5, value: 0.3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "drop-curve", kind: "function", appearance: "primary", formula: "1.8 - 5*x^2", domain: { min: 0, max: 0.6 } },
+      { id: "drop-step", kind: "path", appearance: "answer", points: [{ x: "a", y: "1.8 - 5*a^2" }, { x: "a + 0.1", y: "1.8 - 5*(a + 0.1)^2" }] },
+      { id: "vert-span", kind: "path", appearance: "secondary", points: [{ x: "a", y: "1.8 - 5*a^2" }, { x: "a", y: "1.8 - 5*(a + 0.1)^2" }] },
+      { id: "pt-start", kind: "marker", appearance: "secondary", x: "a", y: "1.8 - 5*a^2" },
+      { id: "pt-end", kind: "marker", appearance: "answer", x: "a + 0.1", y: "1.8 - 5*(a + 0.1)^2" },
+    ],
+    labels: [
+      { key: "p2", objectId: "pt-end", at: { x: "a + 0.1", y: "1.8 - 5*(a + 0.1)^2" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "drop-gap", formula: "5*(a + 0.1)^2 - 5*a^2" },
+      { key: "fall-speed", formula: "10*(a + 0.1)" },
+    ],
+  }}
   labels={{
-    airTime: <>Zeit in der Luft</>,
-    height: <>Starthöhe</>,
-    interval: <>Zeit zwischen den Blitzen</>,
-    outcome: <>Schnelligkeit am Boden</>,
-    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+    a: <>Startzeit <InlineMath math="a" /> (s)</>,
+    p2: <>Nächster Blitz</>,
+    "drop-gap": <>Fallweg in 0,1 s (m)</>,
+    "fall-speed": <>Tempo am Schrittende (m/s)</>,
   }}
 />
 
-Aus <InlineMath math="1{,}8\text{ m}" /> landet die Kugel nach <InlineMath math="\sqrt{\frac{2(1{,}8)}{10}}=0{,}6\text{ s}" /> mit <InlineMath math="10(0{,}6)=6\text{ m/s}" />. Die Abstände wachsen wie <InlineMath math="5" />, <InlineMath math="15" />, <InlineMath math="25" /> und so weiter bis <InlineMath math="55\text{ cm}" />.
+Aus <InlineMath math="1{,}8\text{ m}" /> Höhe betragen Fallzeit und Bodenschnelligkeit:
 
-## Senkrechter Wurf nach unten
+<MathContainer>
+  <BlockMath math="t=\sqrt{\frac{2(1{,}8)}{10}}=0{,}6\text{ s}" />
+  <BlockMath math="v=10(0{,}6)=6\text{ m/s}" />
+</MathContainer>
+
+Die Fallwege wachsen als ungerade Vielfache: <InlineMath math="5" />, <InlineMath math="15" />, <InlineMath math="25" />, <InlineMath math="35" />, <InlineMath math="45" /> und <InlineMath math="55\text{ cm}" />.
+
+### Senkrechter Wurf nach unten
 
 Ein nach unten geworfener Körper hat schon eine Anfangsgeschwindigkeit nach unten, **seine Anfangsgeschwindigkeit ist also negativ**. Die Schwerkraft erhöht seine Schnelligkeit von Anfang an, und er erreicht den Boden früher als ein Körper, der aus derselben Höhe fallen gelassen wird.
 
@@ -221,9 +298,10 @@ Angenommen, ein Stein wird aus <InlineMath math="30\text{ m}" /> Höhe mit <Inli
   <BlockMath math="0 = 30 - 5t - 5t^2" />
   <BlockMath math="t^2 + t - 6 = 0 \quad\Longrightarrow\quad (t + 3)(t - 2) = 0" />
   <BlockMath math="v_y = -5 - 10(2) = -25\text{ m/s}" />
+  <BlockMath math="v_y^2 = (-5)^2 + 2(10)(30) = 625" />
 </MathContainer>
 
-Der Wert <InlineMath math="t = -3" /> läge drei Sekunden vor dem Abwurf, also entfällt er, und der Stein landet nach <InlineMath math="2\text{ s}" />. Probe mit der dritten Gleichung: <InlineMath math="v_y^2 = (-5)^2 + 2(10)(30) = 625" />, die Schnelligkeit beträgt also <InlineMath math="25\text{ m/s}" />.
+Der Wert <InlineMath math="t = -3\text{ s}" /> läge vor dem Abwurf und entfällt, sodass der Stein nach <InlineMath math="2\text{ s}" /> mit <InlineMath math="25\text{ m/s}" /> auftrifft.
 
 ## Senkrechte Bewegung im schiefen Wurf
 
@@ -234,6 +312,7 @@ Deshalb ergibt sich die Flugzeit eines schräg geworfenen Körpers allein aus se
 <MathVisual
   title={<>Zwei Bälle mit derselben senkrechten Anfangsgeschwindigkeit</>}
   description={<>Ein Gitterkästchen steht für <InlineMath math="5\text{ m}" />. Der türkise Ball wird mit <InlineMath math="v_x=10\text{ m/s}" /> und <InlineMath math="v_{0y}=20\text{ m/s}" /> geschossen, der orange Ball senkrecht mit <InlineMath math="20\text{ m/s}" /> nach oben geworfen. Die grauen Linien verbinden ihre Positionen im selben Moment, und die Höhen stimmen immer überein.</>}
+  footer={<>Alle grauen Linien bleiben waagrecht, weil beide Bälle stets gleich hoch sind.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.5, max: 9 }, y: { min: -0.5, max: 5 } },
@@ -264,31 +343,65 @@ Deshalb ergibt sich die Flugzeit eines schräg geworfenen Körpers allein aus se
   }}
 />
 
-## Ein senkrechter Strahl neben schrägen
+Seitliche Bewegung bremst oder beschleunigt das Fallen nie. Zu jedem Zeitpunkt liegen beide Bälle genau gleich hoch, weil die Schwerkraft rein senkrecht zieht.
 
-Ein Gartenschlauch, der gerade nach oben zeigt, ist senkrechte Bewegung, die du auf einmal siehst. **Jeder Tropfen steigt und fällt zurück zur Düse**, und dieselbe Schnelligkeit schräg ergibt eine Parabel.
+Ein Gartenschlauch mit <InlineMath math="8\text{ m/s}" /> Ausströmtempo zeigt diesen Vergleich sofort. Senkrecht nach oben gerichtet, **steigt und fällt jeder Tropfen genau zurück zur Düse**. Neige unten den Düsenwinkel <InlineMath math="a" /> und vergleiche die Parabel mit dem <InlineMath math="3{,}2\text{ m}" /> hohen senkrechten Strahl.
 
-<HoseJetProjectileLab
-  angle={90}
-  speed={8}
-  title={<>Ein Gartenschlauch bei sechs Winkeln</>}
+<MathVisual
+  title={<>Senkrechter Wasserstrahl neben schrägen Strahlen</>}
   description={
     <>
-      Das Wasser verlässt die Düse mit <InlineMath math="8\text{ m/s}" />. Beginne senkrecht nach oben und neige dann die Düse.
+      Wasser tritt mit <InlineMath math="8\text{ m/s}" /> aus. Vergleiche den grauen senkrechten Strahl (<InlineMath math="3{,}2\text{ m}" />) mit dem orangen Strahl unter Winkel <InlineMath math="a" />.
     </>
   }
+  footer={<>Neigst du die Düse aus der Senkrechten, sinkt der Gipfel unter den grauen Strahl.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 7.2 }, y: { min: 0, max: 3.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 80, value: 60, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "vert-jet", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 3.2 } },
+      { id: "vert-top", kind: "point", appearance: "reference", at: { x: 0, y: 3.2 } },
+      { id: "jet-curve", kind: "function", appearance: "primary", formula: "x*tan(a*pi/180) - 5*x^2/(64*(cos(a*pi/180))^2)" },
+      { id: "peak-drop", kind: "path", appearance: "construction", points: [{ x: "0", y: "3.2*(sin(a*pi/180))^2" }, { x: "3.2*sin(2*a*pi/180)", y: "3.2*(sin(a*pi/180))^2" }] },
+      { id: "peak-pt", kind: "marker", appearance: "answer", x: "3.2*sin(2*a*pi/180)", y: "3.2*(sin(a*pi/180))^2" },
+      { id: "land-pt", kind: "marker", appearance: "secondary", x: "6.4*sin(2*a*pi/180)", y: "0" },
+    ],
+    labels: [
+      { key: "vtop", objectId: "vert-top", at: { x: 0, y: 3.2 }, placement: "above-right" },
+      { key: "atop", objectId: "peak-pt", at: { x: "3.2*sin(2*a*pi/180)", y: "3.2*(sin(a*pi/180))^2" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "top-height", formula: "3.2*(sin(a*pi/180))^2" },
+      { key: "air-time", formula: "1.6*sin(a*pi/180)" },
+      { key: "range", formula: "6.4*sin(2*a*pi/180)" },
+    ],
+  }}
   labels={{
-    chooseAngle: "Winkel der Düse wählen",
-    flight: <>Zeit in der Luft</>,
-    range: <>Reichweite</>,
-    top: <>Gipfelhöhe</>,
-    viewLabel: "Wasserstrahl aus einem Gartenschlauch",
+    a: <>Düsenwinkel <InlineMath math="a" /> (deg)</>,
+    vtop: <>Gipfel senkrecht</>,
+    atop: <>Gipfel schräg</>,
+    "top-height": <>Gipfelhöhe schräg (m)</>,
+    "air-time": <>Zeit in der Luft (s)</>,
+    range: <>Reichweite (m)</>,
   }}
 />
 
-Senkrecht steigt das Wasser <InlineMath math="\frac{8^2}{2(10)}=3{,}2\text{ m}" /> hoch und ist nach <InlineMath math="\frac{2(8)}{10}=1{,}6\text{ s}" /> zurück. Bei <InlineMath math="60^\circ" /> ist der senkrechte Anteil nur <InlineMath math="8\sin60^\circ\approx6{,}9\text{ m/s}" />, also steigt der Strahl auf <InlineMath math="2{,}4\text{ m}" />.
+Senkrecht steigt das Wasser <InlineMath math="3{,}2\text{ m}" /> hoch und fällt nach <InlineMath math="1{,}6\text{ s}" /> zurück, während bei <InlineMath math="60^\circ" /> der senkrechte Anteil auf etwa <InlineMath math="6{,}9\text{ m/s}" /> schrumpft und <InlineMath math="2{,}4\text{ m}" /> erreicht:
 
-## Häufige Fehler
+<MathContainer>
+  <BlockMath math="h_{\text{senkrecht}}=\frac{8^2}{2(10)}=3{,}2\text{ m},\quad t_{\text{Luft}}=\frac{2(8)}{10}=1{,}6\text{ s}" />
+  <BlockMath math="v_{0y}=8\sin60^\circ\approx6{,}9\text{ m/s},\quad h_{60^\circ}=2{,}4\text{ m}" />
+</MathContainer>
+
+## Vorzeichenprüfung und Rechenbeispiele zur senkrechten Bewegung
+
+Einheitliche Vorzeichen verhindern die häufigsten Rechenfehler bei Würfen und beim freien Fall. Wer **nach oben als positiv** festlegt, bevor die erste Zahl eingesetzt wird, kann jedes Ergebnis sofort auf Plausibilität prüfen.
+
+### Vorzeichen bei senkrechten Rechnungen prüfen
 
 Bevor du rechnest, legst du **die positive Richtung** fest und behältst sie bis zum Ende bei.
 
@@ -301,54 +414,44 @@ Bevor du rechnest, legst du **die positive Richtung** fest und behältst sie bis
 
 Vorzeichenfehler findest du am leichtesten am Ende. Ein Körper, der sich nach unten bewegt, muss ein negatives <InlineMath math="v_y" /> haben, und eine negative Zeit entfällt immer.
 
-## Übungen zur senkrechten Bewegung
+### Durchgerechnete Beispiele zu Würfen und freiem Fall
 
-Nutze <InlineMath math="g = 10\text{ m/s}^2" /> und wähle nach oben als positiv. Lege bei jeder Aufgabe zuerst **das Vorzeichen der Anfangsgeschwindigkeit** und den Startort fest.
+Nutze <InlineMath math="g = 10\text{ m/s}^2" /> und wähle nach oben als positiv. Lege bei jeder Aufgabe zuerst **das Vorzeichen der Anfangsgeschwindigkeit** und die Starthöhe fest.
 
-1. Ein Ball wird mit <InlineMath math="15\text{ m/s}" /> senkrecht nach oben geworfen. Bestimme Steigzeit und maximale Höhe.
-
-2. Eine Kokosnuss fällt von einer <InlineMath math="45\text{ m}" /> hohen Palme. Bestimme die Fallzeit und ihre Schnelligkeit beim Aufprall.
-
-3. Ein Ball wird vom Dach eines <InlineMath math="25\text{ m}" /> hohen Gebäudes mit <InlineMath math="20\text{ m/s}" /> nach oben geworfen. Wann trifft er auf den Boden, und welche Geschwindigkeit hat er dann?
-
-4. Ein Stein wird von einer <InlineMath math="15\text{ m}" /> hohen Brücke mit <InlineMath math="10\text{ m/s}" /> nach unten geworfen. Bestimme die Zeit bis zum Wasser und seine Schnelligkeit.
-
-### Lösungen
-
-**Aufgabe 1**. Im höchsten Punkt ist **die Geschwindigkeit null**, also:
+**Aufgabe 1.** Ein Ball wird mit <InlineMath math="15\text{ m/s}" /> senkrecht nach oben geworfen. Bestimme Steigzeit und maximale Höhe. Im höchsten Punkt ist die Geschwindigkeit null:
 
 <MathContainer>
   <BlockMath math="t_{\text{Steig}} = \frac{15}{10} = 1{,}5\text{ s}" />
   <BlockMath math="h_{\text{max}} = \frac{15^2}{2 \times 10} = 11{,}25\text{ m}" />
+  <BlockMath math="y = 15(1{,}5) - 5(1{,}5)^2 = 22{,}5 - 11{,}25 = 11{,}25\text{ m}" />
 </MathContainer>
 
-Probe mit der Ortsgleichung: <InlineMath math="15(1{,}5) - 5(1{,}5)^2 = 22{,}5 - 11{,}25 = 11{,}25\text{ m}" />.
-
-**Aufgabe 2**. Die Kokosnuss fällt **ohne Anfangsgeschwindigkeit**:
+**Aufgabe 2.** Eine Kokosnuss fällt ohne Anfangsgeschwindigkeit von einer <InlineMath math="45\text{ m}" /> hohen Palme. Bestimme Fallzeit und Aufprallschnelligkeit:
 
 <MathContainer>
   <BlockMath math="t = \sqrt{\frac{2 \times 45}{10}} = 3\text{ s}" />
   <BlockMath math="v = \sqrt{2 \times 10 \times 45} = 30\text{ m/s}" />
+  <BlockMath math="v_y = 0 - 10(3) = -30\text{ m/s}" />
 </MathContainer>
 
-Probe: <InlineMath math="v_y = 0 - 10(3) = -30\text{ m/s}" />, die Schnelligkeit beträgt also <InlineMath math="30\text{ m/s}" />.
-
-**Aufgabe 3**. Nimm das Dach als <InlineMath math="y_0 = 25" />, der Boden ist dann <InlineMath math="y = 0" />. Die Ortsgleichung ergibt **eine quadratische Gleichung in** <InlineMath math="t" />:
+**Aufgabe 3.** Ein Ball wird von einem <InlineMath math="25\text{ m}" /> hohen Dach mit <InlineMath math="20\text{ m/s}" /> nach oben geworfen (<InlineMath math="y_0 = 25" />, Boden bei <InlineMath math="y = 0" />). Wann trifft er auf den Boden, und welche Geschwindigkeit hat er dann?
 
 <MathContainer>
   <BlockMath math="0 = 25 + 20t - 5t^2" />
   <BlockMath math="t^2 - 4t - 5 = 0 \quad\Longrightarrow\quad (t - 5)(t + 1) = 0" />
   <BlockMath math="v_y = 20 - 10(5) = -30\text{ m/s}" />
+  <BlockMath math="v_y^2 = 20^2 + 2(10)(25) = 900" />
 </MathContainer>
 
-Die negative Zeit entfällt, der Ball trifft also nach <InlineMath math="5\text{ s}" /> mit <InlineMath math="30\text{ m/s}" /> nach unten auf. Probe: <InlineMath math="v_y^2 = 20^2 + 2(10)(25) = 900" />.
+Die negative Lösung entfällt, sodass der Ball nach <InlineMath math="5\text{ s}" /> mit <InlineMath math="-30\text{ m/s}" /> nach unten auftrifft.
 
-**Aufgabe 4**. Die Anfangsgeschwindigkeit ist **negativ**, <InlineMath math="v_0 = -10" />, und <InlineMath math="y_0 = 15" />:
+**Aufgabe 4.** Ein Stein wird von einer <InlineMath math="15\text{ m}" /> hohen Brücke mit <InlineMath math="10\text{ m/s}" /> nach unten geworfen (<InlineMath math="v_0 = -10" />, <InlineMath math="y_0 = 15" />). Bestimme die Zeit bis zum Wasser und seine Schnelligkeit:
 
 <MathContainer>
   <BlockMath math="0 = 15 - 10t - 5t^2" />
   <BlockMath math="t^2 + 2t - 3 = 0 \quad\Longrightarrow\quad (t + 3)(t - 1) = 0" />
   <BlockMath math="v_y = -10 - 10(1) = -20\text{ m/s}" />
+  <BlockMath math="v_y^2 = (-10)^2 + 2(10)(15) = 400" />
 </MathContainer>
 
-Der Stein erreicht das Wasser nach <InlineMath math="1\text{ s}" /> mit einer Schnelligkeit von <InlineMath math="20\text{ m/s}" />. Probe: <InlineMath math="(-10)^2 + 2(10)(15) = 400 = 20^2" />.
+Der Stein erreicht das Wasser nach <InlineMath math="1\text{ s}" /> mit einer Schnelligkeit von <InlineMath math="20\text{ m/s}" />.

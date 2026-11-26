@@ -30,6 +30,7 @@ The symbol <InlineMath math="\Delta x" /> or <InlineMath math="\Delta \vec{r}" /
       with the start-to-finish displacement.
     </>
   }
+  footer={<>The teal curve tracks total distance while the violet line gives displacement.</>}
   labels={{
     chooseCase: "Choose route",
     modeLabels: {
@@ -66,43 +67,69 @@ In the Smooth Bend case, the ball follows the curve, so its total distance is ab
 
 <BlockMath math="\begin{aligned} &amp;s_{\text{total}}\approx 16.7\text{ m} \\ &amp;|\Delta \vec r|=14\text{ m} \\ &amp;\Delta t=5\text{ s} \\ &amp;\text{average speed}&amp;\approx \frac{16.7}{5} \\ &amp;\approx3.3\text{ m/s} \\ &amp;|\bar{\vec v}| =\frac{14}{5} \\ &amp;=2.8\text{ m/s} \end{aligned}" />
 
-## A Speed Trap Reports an Average
+## Measuring Averages Over Gaps and Slopes
 
-A speed trap on a road never sees one instant. It times the car between two light beams a gap apart and divides the gap by that time, so its reading is **an average over the gap**.
+Every real measurement over a finite distance gives **an average across an interval**, not a single instant. On a position-time graph, that average shows up as the slope of the straight line joining two points.
 
-<SpeedTrapInstantSpeedLab
-  title={<>A Speed Trap on a Test Track</>}
+### A Speed Trap Reports an Average
+
+A speed trap on a road never sees one instant. It times the car between two light beams centered on the <InlineMath math="50\text{ m}" /> mark and computes **an average speed across that gap**. Shrink the half-gap <InlineMath math="h" /> below and watch the secant slope approach the speed at the center.
+
+<MathVisual
+  title={<>Average Speed Between Two Light Gates</>}
   description={
     <>
-      A car speeds up from rest at <InlineMath math="4\text{ m/s}^2" /> through
-      two light gates centred on the <InlineMath math="50\text{ m}" /> mark.
-      Change the gap and compare the trap's reading.
+      Position <InlineMath math="x(t)=2t^2" /> for a car accelerating at{" "}
+      <InlineMath math="4\text{ m/s}^2" /> and the secant joining gates at{" "}
+      <InlineMath math="50-h" /> and <InlineMath math="50+h" />.
     </>
   }
+  footer={<>The secant across both gates stays slightly below the speed at the midpoint.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7.2 }, y: { min: 0, max: 90 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 4, max: 20, value: 20, step: 4, label: "h" },
+    ],
+    objects: [
+      { id: "car-path", kind: "function", appearance: "primary", formula: "2*x^2", domain: { min: 0, max: 6.5 } },
+      { id: "mid", kind: "point", appearance: "secondary", at: { x: 5, y: 50 } },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "sqrt((50 - h)/2)", y: "50 - h" },
+          { x: "sqrt((50 + h)/2)", y: "50 + h" },
+        ],
+      },
+      { id: "gate-1", kind: "marker", appearance: "answer", x: "sqrt((50 - h)/2)", y: "50 - h" },
+      { id: "gate-2", kind: "marker", appearance: "answer", x: "sqrt((50 + h)/2)", y: "50 + h" },
+    ],
+    labels: [
+      { key: "g1", objectId: "gate-1", at: { x: "sqrt((50 - h)/2)", y: "50 - h" }, placement: "above-left" },
+      { key: "g2", objectId: "gate-2", at: { x: "sqrt((50 + h)/2)", y: "50 + h" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "gap", formula: "2*h" },
+      { key: "dt", formula: "sqrt((50 + h)/2) - sqrt((50 - h)/2)" },
+      { key: "v-bar", formula: "2*h / (sqrt((50 + h)/2) - sqrt((50 - h)/2))" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Trap reading</>,
-    chooseGap: "Choose the gap between the gates",
-    elapsed: <>Time between the beams</>,
-    gap: <>Gap between the gates</>,
-    instantSpeed: <>Speed at the centre</>,
-    viewLabel: "Car crossing two light gates on a test track",
+    h: <>Half gate gap <InlineMath math="h" /> (m)</>,
+    g1: <InlineMath math="G_1" />,
+    g2: <InlineMath math="G_2" />,
+    gap: <>Gate spacing (m)</>,
+    dt: <>Time between gates (s)</>,
+    "v-bar": <>Trap average speed (m/s)</>,
   }}
 />
 
-With the gates <InlineMath math="40\text{ m}" /> apart, the car takes <InlineMath math="2.043\text{ s}" />, so the trap reads <InlineMath math="19.58\text{ m/s}" />, a little below the <InlineMath math="20\text{ m/s}" /> the car has at the centre. The reading covers the whole gap, not one moment.
+With the gates <InlineMath math="40\text{ m}" /> apart, the car takes <InlineMath math="2.043\text{ s}" />, so the trap reads <InlineMath math="19.58\text{ m/s}" />, a little below the <InlineMath math="20\text{ m/s}" /> the car has at the center. The reading covers the whole gap, not one moment.
 
-## The Same Time Interval Can Describe Different Trips
-
-Suppose two trips both take <InlineMath math="3 \text{ s}" />. The first trip goes straight <InlineMath math="6 \text{ m}" /> to the right. The second trip goes <InlineMath math="6 \text{ m}" /> to the right and then <InlineMath math="3 \text{ m}" /> back to the left. The time is the same, but the **distance and displacement are different**.
-
-| Trip | Total Distance | Displacement | Comparison Result |
-| --- | --- | --- | --- |
-| Straight to the right | <InlineMath math="6 \text{ m}" /> | <InlineMath math="6 \text{ m}" /> to the right | Average speed and average velocity have the same magnitude |
-| Right then back | <InlineMath math="9 \text{ m}" /> | <InlineMath math="3 \text{ m}" /> to the right | Average speed is larger than average velocity magnitude |
-
-Both calculations use the same elapsed time, but average speed divides total distance by that time and average velocity divides displacement by it.
-
-## Average Velocity as a Slope
+### Average Velocity as a Slope
 
 On a position-time graph, the average velocity over an interval is **the slope of the straight line joining its two points**. A car's commute shows why different intervals of one trip give different averages.
 
@@ -115,6 +142,7 @@ On a position-time graph, the average velocity over an interval is **the slope o
       on. Pick an interval: the flags mark where the car was at its two ends.
     </>
   }
+  footer={<>Each chosen interval draws its own secant slope along the same commute.</>}
   labels={{
     change: <>Displacement</>,
     chooseInterval: "Choose a time interval",
@@ -126,11 +154,16 @@ On a position-time graph, the average velocity over an interval is **the slope o
 
 Over the whole trip the car covers <InlineMath math="110\text{ m}" /> in <InlineMath math="20\text{ s}" />, so <InlineMath math="\bar{v}=5.5\text{ m/s}" />. Between <InlineMath math="4" /> and <InlineMath math="10\text{ s}" /> it cruises at <InlineMath math="10\text{ m/s}" />, and between <InlineMath math="10" /> and <InlineMath math="16\text{ s}" /> it averages only about <InlineMath math="1.67\text{ m/s}" />, because it waits at the light.
 
-## Average Speed and Average Velocity on a Return Route
+## Comparing Path Length and Displacement
 
-On the return route, the object moves <InlineMath math="6 \text{ m}" /> to the right and then <InlineMath math="3 \text{ m}" /> to the left in <InlineMath math="3 \text{ s}" />.
+Two trips can share the exact same elapsed time and still yield **different average values**. Suppose two trips both take <InlineMath math="3 \text{ s}" />: the first goes straight <InlineMath math="6 \text{ m}" /> to the right, while the second goes <InlineMath math="6 \text{ m}" /> to the right and then <InlineMath math="3 \text{ m}" /> back to the left.
 
-The total distance is <InlineMath math="9 \text{ m}" />, but the displacement is only <InlineMath math="3 \text{ m}" /> to the right.
+| Trip | Total Distance | Displacement | Comparison Result |
+| --- | --- | --- | --- |
+| Straight to the right | <InlineMath math="6 \text{ m}" /> | <InlineMath math="6 \text{ m}" /> to the right | Average speed and average velocity have the same magnitude |
+| Right then back | <InlineMath math="9 \text{ m}" /> | <InlineMath math="3 \text{ m}" /> to the right | Average speed is larger than average velocity magnitude |
+
+Both calculations divide by the same <InlineMath math="3 \text{ s}" />, yet on the return route total distance is <InlineMath math="9 \text{ m}" /> while displacement is only <InlineMath math="3 \text{ m}" /> to the right.
 
 <MathContainer>
   <BlockMath math="\text{average speed}=\frac{9}{3}=3\text{ m/s}" />
@@ -143,34 +176,41 @@ Here are both trips as position against time, with A moving at a steady <InlineM
 
 <MathVisual
   title={<>Average Velocity Is the Slope from Start to End</>}
-  description={<>Trip A goes <InlineMath math="6\text{ m}" /> right, trip B goes <InlineMath math="6\text{ m}" /> right and <InlineMath math="3\text{ m}" /> back, each in <InlineMath math="3\text{ s}" />. Horizontal: time in s. Vertical: position in units of <InlineMath math="2\text{ m}" />.</>}
+  description={<>Trip A goes <InlineMath math="6\text{ m}" /> right, trip B goes <InlineMath math="6\text{ m}" /> right and <InlineMath math="3\text{ m}" /> back, each in <InlineMath math="3\text{ s}" />. Horizontal: time in s. Vertical: position in m.</>}
+  footer={<>Trip B's chord skips the turnaround and sits below trip A's steady line.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -1, max: 7.2 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 }] },
-      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 3 }, { x: 3, y: 1.5 }] },
-      { id: "chord", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 1.5 } },
-      { id: "a-end", kind: "point", appearance: "construction", at: { x: 3, y: 3 } },
-      { id: "b-turn", kind: "point", appearance: "primary", at: { x: 2, y: 3 } },
-      { id: "b-end", kind: "point", appearance: "primary", at: { x: 3, y: 1.5 } },
+      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }] },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 6 }, { x: 3, y: 3 }] },
+      { id: "chord", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 3 } },
+      { id: "a-end", kind: "point", appearance: "construction", at: { x: 3, y: 6 } },
+      { id: "b-turn", kind: "point", appearance: "primary", at: { x: 2, y: 6 } },
+      { id: "b-end", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
       { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
     ],
     labels: [
-      { key: "a", objectId: "a-end", at: { x: 3, y: 3 }, placement: "right" },
-      { key: "b", objectId: "b-turn", at: { x: 2, y: 3 }, placement: "above" },
-      { key: "chord", objectId: "chord", at: { x: 3, y: 1.5 }, placement: "below-right" },
+      { key: "a", objectId: "a-end", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "b", objectId: "b-turn", at: { x: 2, y: 6 }, placement: "above" },
+      { key: "chord", objectId: "chord", at: { x: 3, y: 3 }, placement: "below-right" },
     ],
   }}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
-    chord: <InlineMath math="\bar v_B=\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />,
+    chord: <InlineMath math="\bar v_B=1\text{ m/s}" />,
   }}
 />
 
-## The Sign of Average Velocity Shows Direction
+Even though trip B moves faster along every leg than trip A, turning back lowers its final position and drops its chord slope to <InlineMath math="1\text{ m/s}" />.
+
+## Reading Direction from the Sign
+
+Once a positive axis is chosen, average velocity inherits **the exact sign of displacement**. A minus sign points opposite to the chosen positive direction rather than meaning slower than zero.
+
+### The Sign of Average Velocity Shows Direction
 
 If we choose the **rightward direction as positive**, displacement to the right is positive and displacement to the left is negative. That sign carries into average velocity.
 
@@ -183,36 +223,76 @@ For example, an object starts at <InlineMath math="x=8 \text{ m}" /> and ends at
 
 A negative value does not mean the motion is "slower than zero." It means the average velocity points to the left relative to the axis we chose.
 
-## Walking Out and Partly Back
+### Walking Out and Partly Back
 
-A stroll along one street shows **where the sign comes from**. Take east as positive: walk <InlineMath math="300\text{ m}" /> east, then <InlineMath math="100\text{ m}" /> back west, at <InlineMath math="1\text{ m/s}" />.
+A stroll along one street shows **where the sign comes from**. Take east as positive: walk <InlineMath math="300\text{ m}" /> east, then walk a chosen distance <InlineMath math="w" /> back west at <InlineMath math="1\text{ m/s}" />. Drag <InlineMath math="w" /> to see where average velocity crosses zero and turns negative.
 
-<CityWalkDisplacementLab
-  legs={[
-    { east: 300, north: 0 },
-    { east: -100, north: 0 },
-  ]}
-  pace={1}
-  title={<>A Stroll Out and Partly Back</>}
+<MathVisual
+  title={<>Walking East Then Turning Back West</>}
   description={
     <>
-      The amber path is everything you walked. The violet arrow joins the start
-      to where you stand, and it still points east.
+      Position against time for walking <InlineMath math="300\text{ m}" /> east
+      and <InlineMath math="w\text{ m}" /> back west at <InlineMath math="1\text{ m/s}" />.
     </>
   }
+  footer={<>Passing west of the start tips the secant below the time axis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 760 }, y: { min: -160, max: 350 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 50, max: 400, value: 100, step: 50, label: "w" },
+    ],
+    objects: [
+      { id: "out", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 300, y: 300 } },
+      {
+        id: "back",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "300", y: "300" },
+          { x: "300 + w", y: "300 - w" },
+        ],
+      },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0", y: "0" },
+          { x: "300 + w", y: "300 - w" },
+        ],
+      },
+      { id: "turn", kind: "point", appearance: "primary", at: { x: 300, y: 300 } },
+      { id: "finish", kind: "marker", appearance: "answer", x: "300 + w", y: "300 - w" },
+    ],
+    labels: [
+      { key: "turn-lbl", objectId: "turn", at: { x: 300, y: 300 }, placement: "above" },
+      { key: "end-lbl", objectId: "finish", at: { x: "300 + w", y: "300 - w" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "dist", formula: "300 + w" },
+      { key: "disp", formula: "300 - w" },
+      { key: "v-avg", formula: "(300 - w) / (300 + w)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Average speed</>,
-    averageVelocity: <>Size of the average velocity</>,
-    displacement: <>Size of the displacement</>,
-    distance: <>Distance walked</>,
-    time: <>Time</>,
-    viewLabel: "Walk along a town street seen from above",
+    w: <>Westward return <InlineMath math="w" /> (m)</>,
+    "turn-lbl": <InlineMath math="300\text{ m}" />,
+    "end-lbl": <InlineMath math="x_{\text{end}}" />,
+    dist: <>Distance walked (m)</>,
+    disp: <>Displacement (m)</>,
+    "v-avg": <>Average velocity (m/s)</>,
   }}
 />
 
-You walk <InlineMath math="400\text{ m}" /> in <InlineMath math="400\text{ s}" />, so the average speed is <InlineMath math="1\text{ m/s}" />. The displacement is <InlineMath math="+200\text{ m}" />, so the average velocity is <InlineMath math="+0.5\text{ m/s}" />: positive, because you end up east of the start.
+At <InlineMath math="w=100\text{ m}" />, you walk <InlineMath math="400\text{ m}" /> in <InlineMath math="400\text{ s}" />, so the average speed is <InlineMath math="1\text{ m/s}" />. The displacement is <InlineMath math="+200\text{ m}" />, so the average velocity is <InlineMath math="+0.5\text{ m/s}" />: positive, because you end up east of the start.
 
-## A Loop Can Have Zero Average Velocity
+## Loops and Zero Average Velocity
+
+When motion **returns to its starting point**, its displacement drops to zero. Average velocity becomes zero too, while average speed stays positive because the path still has length.
+
+### Checking Which Quantity a Question Asks
 
 If an object returns to its starting point, its displacement is <InlineMath math="0 \text{ m}" />. As a result, its average velocity is <InlineMath math="0 \text{ m/s}" /> even though its average speed can still be greater than zero.
 
@@ -230,6 +310,7 @@ Trip B goes <InlineMath math="6\text{ m}" /> right and <InlineMath math="3\text{
 <MathVisual
   title={<>Speed or Velocity from the Question</>}
   description={<>The path of trip B (orange and violet) and its displacement (fuchsia).</>}
+  footer={<>Adding both legs gives <InlineMath math="3\text{ m/s}" />, while net displacement gives <InlineMath math="1\text{ m/s}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -1.55, max: 2.55 } },
@@ -253,29 +334,72 @@ Trip B goes <InlineMath math="6\text{ m}" /> right and <InlineMath math="3\text{
   }}
 />
 
-## One Lap of a Running Track
+Both ratios describe the exact same <InlineMath math="3\text{ s}" /> trip. Naming whether the question cares about total path or net shift keeps the two answers apart.
 
-A full lap is **a loop that ends exactly at its start**. A runner on lane <InlineMath math="1" /> of a <InlineMath math="400\text{ m}" /> track keeps a steady <InlineMath math="8\text{ m/s}" />, and the displacement from the start line grows, shrinks, and vanishes.
+### One Lap Around a Closed Track
 
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>One Lap of the Track</>}
+A full lap is **a loop that ends exactly at its start**. A runner keeps a steady <InlineMath math="8\text{ m/s}" /> around a circular <InlineMath math="400\text{ m}" /> track. Drag the distance run <InlineMath math="s" /> to watch the displacement chord peak halfway and collapse to zero at the finish.
+
+<MathVisual
+  title={<>Displacement Around a Circular Track</>}
   description={
     <>
-      Stop the runner after <InlineMath math="100" />,{" "}
-      <InlineMath math="200" />, <InlineMath math="300" />, or{" "}
-      <InlineMath math="400\text{ m}" /> and compare the violet displacement
-      with the amber path.
+      A runner starts on the right of a circular <InlineMath math="400\text{ m}" />{" "}
+      track at <InlineMath math="8\text{ m/s}" />. The violet chord shows the
+      displacement after <InlineMath math="s\text{ m}" />.
     </>
   }
+  footer={<>Displacement peaks across the diameter and drops to zero after one full lap.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -85, max: 85 }, y: { min: -85, max: 85 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 50, max: 400, value: 200, step: 50, label: "s" },
+    ],
+    objects: [
+      { id: "track", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 200 / Math.PI },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 200 / Math.PI, y: 0 } },
+      {
+        id: "chord",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "200/pi", y: "0" },
+          { x: "(200/pi)*cos(pi*s/200)", y: "(200/pi)*sin(pi*s/200)" },
+        ],
+      },
+      {
+        id: "runner",
+        kind: "marker",
+        appearance: "primary",
+        x: "(200/pi)*cos(pi*s/200)",
+        y: "(200/pi)*sin(pi*s/200)",
+      },
+    ],
+    labels: [
+      { key: "start-lbl", objectId: "start", at: { x: 200 / Math.PI, y: 0 }, placement: "right" },
+      {
+        key: "run-lbl",
+        objectId: "runner",
+        at: { x: "(200/pi)*cos(pi*s/200)", y: "(200/pi)*sin(pi*s/200)" },
+        placement: "above",
+      },
+    ],
+    readouts: [
+      { key: "disp", formula: "(400/pi)*abs(sin(pi*s/400))" },
+      { key: "t-run", formula: "s / 8" },
+      { key: "v-avg", formula: "(3200/pi)*abs(sin(pi*s/400)) / s" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Size of the average velocity</>,
-    chooseDistance: "Choose how far the runner goes",
-    displacement: <>Size of the displacement</>,
-    distance: <>Distance run</>,
-    time: <>Time</>,
-    viewLabel: "Runner on a 400 m athletics track seen from above",
+    s: <>Distance run <InlineMath math="s" /> (m)</>,
+    "start-lbl": <>Start</>,
+    "run-lbl": <>Runner</>,
+    disp: <>Displacement magnitude (m)</>,
+    "t-run": <>Elapsed time (s)</>,
+    "v-avg": <>Average velocity (m/s)</>,
   }}
 />
 
-After <InlineMath math="200\text{ m}" /> the runner is <InlineMath math="112\text{ m}" /> from the start, so the average velocity has size <InlineMath math="4.48\text{ m/s}" />. After the full lap the displacement is zero, so the average velocity is zero, while the average speed is still <InlineMath math="8\text{ m/s}" />.
+After <InlineMath math="200\text{ m}" /> the runner is straight across the track at <InlineMath math="127.3\text{ m}" /> from the start, so the average velocity has size <InlineMath math="5.09\text{ m/s}" />. After the full <InlineMath math="400\text{ m}" /> lap the displacement is zero, so the average velocity is zero, while the average speed is still <InlineMath math="8\text{ m/s}" />.

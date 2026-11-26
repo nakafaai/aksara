@@ -9,7 +9,11 @@ export const metadata = {
   subject: "Kinematik",
 };
 
-## Mengukur Laju dalam Selang Masa yang Semakin Pendek
+## Mengukur Laju pada Satu Ketika Tertentu
+
+Nilai seketika merakam gerakan pada **satu saat yang tepat**, bukan purata sepanjang perjalanan. Apabila selang pensampelan mengecil menghampiri sifar, kecerunan sekan bertukar menjadi halaju seketika.
+
+### Mengukur Laju dalam Selang Masa yang Semakin Pendek
 
 Laju seketika ialah laju objek pada satu masa tertentu atau pada satu titik tertentu di sepanjang laluannya. Contoh yang biasa ialah nombor yang dipaparkan oleh meter laju kenderaan ketika pemandu melihatnya.
 
@@ -35,6 +39,7 @@ Alat sebenar menganggarkan nilai ini dalam selang pensampelan yang pendek tetapi
       seketika kereta itu semasa kereta melalui titik pengukuran.
     </>
   }
+  footer={<>Setiap titik pengukuran merakam magnitud laju dan tanda arah pada saat itu.</>}
   labels={{
     chooseMoment: "Pilih masa pengukuran",
     factLabels: {
@@ -46,27 +51,30 @@ Alat sebenar menganggarkan nilai ini dalam selang pensampelan yang pendek tetapi
   }}
 />
 
+Magnitud halaju seketika sentiasa sepadan dengan bacaan laju seketika, manakala tandanya memberitahu arah kereta semasa melintasi titik itu.
+
 Perhatikan bagaimana had itu terbentuk pada satu contoh gerakan, <InlineMath math="x=t^2" />. Setiap garis berwarna ialah halaju purata yang bermula pada <InlineMath math="t=3\text{ s}" />, dalam selang <InlineMath math="2" />, <InlineMath math="1" /> dan <InlineMath math="0.5\text{ s}" />. Apabila selang itu mengecil, kecerunannya turun daripada <InlineMath math="8" /> kepada <InlineMath math="7" /> dan kemudian <InlineMath math="6.5\text{ m/s}" />, semakin hampir kepada halaju seketika <InlineMath math="6\text{ m/s}" />.
 
 <MathVisual
   title={<>Mengecilkan Selang Masa</>}
-  description={<>Garis sekan bagi <InlineMath math="x=t^2" /> dari <InlineMath math="t=3\text{ s}" /> dalam selang <InlineMath math="2\text{ s}" />, <InlineMath math="1\text{ s}" /> dan <InlineMath math="0.5\text{ s}" />. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit 4 m.</>}
+  description={<>Garis sekan bagi <InlineMath math="x=t^2" /> dari <InlineMath math="t=3\text{ s}" /> dalam selang <InlineMath math="2\text{ s}" />, <InlineMath math="1\text{ s}" /> dan <InlineMath math="0.5\text{ s}" />. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam m.</>}
+  footer={<>Selang makin pendek dari <InlineMath math="3\text{ s}" /> menghimpit kecerunan sekan ke arah <InlineMath math="6\text{ m/s}" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.8 }, y: { min: -2, max: 28 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "position", kind: "quadratic", appearance: "reference", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
-      { id: "step-2", kind: "segment", appearance: "warning", from: { x: 3, y: 2.25 }, to: { x: 5, y: 6.25 } },
-      { id: "step-1", kind: "segment", appearance: "primary", from: { x: 3, y: 2.25 }, to: { x: 4, y: 4 } },
-      { id: "step-half", kind: "segment", appearance: "secondary", from: { x: 3, y: 2.25 }, to: { x: 3.5, y: 3.5 ** 2 / 4 } },
-      { id: "now", kind: "point", appearance: "answer", at: { x: 3, y: 2.25 } },
+      { id: "position", kind: "function", appearance: "reference", formula: "x^2", domain: { min: 0, max: 5 } },
+      { id: "step-2", kind: "segment", appearance: "warning", from: { x: 3, y: 9 }, to: { x: 5, y: 25 } },
+      { id: "step-1", kind: "segment", appearance: "primary", from: { x: 3, y: 9 }, to: { x: 4, y: 16 } },
+      { id: "step-half", kind: "segment", appearance: "secondary", from: { x: 3, y: 9 }, to: { x: 3.5, y: 12.25 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 3, y: 9 } },
     ],
     labels: [
-      { key: "s2", objectId: "step-2", at: { x: 5, y: 6.25 }, placement: "right" },
-      { key: "s1", objectId: "step-1", at: { x: 4, y: 4 }, placement: "right" },
-      { key: "sh", objectId: "step-half", at: { x: 3.5, y: 3.5 ** 2 / 4 }, placement: "right" },
-      { key: "now", objectId: "now", at: { x: 3, y: 2.25 }, placement: "left" },
+      { key: "s2", objectId: "step-2", at: { x: 5, y: 25 }, placement: "right" },
+      { key: "s1", objectId: "step-1", at: { x: 4, y: 16 }, placement: "right" },
+      { key: "sh", objectId: "step-half", at: { x: 3.5, y: 12.25 }, placement: "right" },
+      { key: "now", objectId: "now", at: { x: 3, y: 9 }, placement: "left" },
     ],
   }}
   labels={{
@@ -77,7 +85,9 @@ Perhatikan bagaimana had itu terbentuk pada satu contoh gerakan, <InlineMath mat
   }}
 />
 
-## Perangkap Laju dengan Jarak yang Semakin Kecil
+Semakin hampir titik kedua dengan <InlineMath math="t=3\text{ s}" />, semakin rapat garis sekan menyamai garis tangen pada saat itu.
+
+### Perangkap Laju dengan Jarak yang Semakin Kecil
 
 Perangkap laju mengukur masa sepanjang satu jarak, jadi ia sentiasa melaporkan purata. Kecilkan jarak itu, dan **purata itu semakin hampir dengan laju di titik tengah**. Kereta memecut dari keadaan pegun pada <InlineMath math="4\text{ m/s}^2" /> dan melepasi titik tengah pada <InlineMath math="20\text{ m/s}" />.
 
@@ -88,6 +98,7 @@ Perangkap laju mengukur masa sepanjang satu jarak, jadi ia sentiasa melaporkan p
       Dua get cahaya terletak di sekitar tanda <InlineMath math="50\text{ m}" />. Pilih jarak antara get dan perhatikan sekan pada graf bertukar menjadi tangen di titik tengah.
     </>
   }
+  footer={<>Merapatkan kedua-dua get cahaya membawa bacaan perangkap menuju <InlineMath math="20\text{ m/s}" />.</>}
   labels={{
     averageSpeed: <>Bacaan perangkap</>,
     chooseGap: "Pilih jarak antara get",
@@ -100,7 +111,11 @@ Perangkap laju mengukur masa sepanjang satu jarak, jadi ia sentiasa melaporkan p
 
 Bacaan naik daripada <InlineMath math="19.58\text{ m/s}" /> dengan jarak <InlineMath math="40\text{ m}" /> kepada <InlineMath math="19.9" /> dan <InlineMath math="19.97\text{ m/s}" />, dan dengan jarak <InlineMath math="2\text{ m}" /> ia menunjukkan <InlineMath math="20\text{ m/s}" /> hingga dua tempat perpuluhan. Had itulah laju seketika.
 
-## Arah Menentukan Tanda Halaju Seketika
+## Arah Mengubah Halaju Seketika
+
+Halaju seketika sentiasa menggandingkan **kelajuan** dengan **arah gerakan**. Berpatah balik pada garis lurus mahupun membelok dalam bulatan sama-sama mengubah halaju walaupun laju tidak berubah.
+
+### Arah Menentukan Tanda Halaju Seketika
 
 Titik pengukuran dalam simulasi merekod kereta itu pada satu ketika. Laju memberikan magnitud gerakannya. **Arah gerakan** pula menentukan tanda halajunya.
 
@@ -119,21 +134,22 @@ Meter laju hanya memberikan saiz. Tambahkan arah sebagai tanda, iaitu ke kanan p
 
 <MathVisual
   title={<>Daripada Bacaan Laju kepada Halaju</>}
-  description={<>Halaju pada <InlineMath math="6\text{ s}" /> (hijau kebiruan, ke kanan) dan pada <InlineMath math="9\text{ s}" /> (ungu, ke kiri). Paksi menegak: satu petak grid mewakili <InlineMath math="5\text{ m/s}" />.</>}
+  description={<>Halaju pada <InlineMath math="6\text{ s}" /> (hijau kebiruan, ke kanan) dan pada <InlineMath math="9\text{ s}" /> (ungu, ke kiri) dalam m/s.</>}
+  footer={<>Arah menentukan sama ada bar halaju berdiri di atas atau di bawah sifar.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -2.5, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -12, max: 25 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
       { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
-      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
-      { id: "nine", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: -1.6 } },
-      { id: "six-top", kind: "point", appearance: "construction", at: { x: 6, y: 4 } },
-      { id: "nine-end", kind: "point", appearance: "secondary", at: { x: 9, y: -1.6 } },
+      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 20 } },
+      { id: "nine", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: -8 } },
+      { id: "six-top", kind: "point", appearance: "construction", at: { x: 6, y: 20 } },
+      { id: "nine-end", kind: "point", appearance: "secondary", at: { x: 9, y: -8 } },
     ],
     labels: [
-      { key: "six", objectId: "six-top", at: { x: 6, y: 4 }, placement: "above" },
-      { key: "nine", objectId: "nine-end", at: { x: 9, y: -1.6 }, placement: "below" },
+      { key: "six", objectId: "six-top", at: { x: 6, y: 20 }, placement: "above" },
+      { key: "nine", objectId: "nine-end", at: { x: 9, y: -8 }, placement: "below" },
     ],
   }}
   labels={{
@@ -142,38 +158,88 @@ Meter laju hanya memberikan saiz. Tambahkan arah sebagai tanda, iaitu ke kanan p
   }}
 />
 
-## Laju Sama tetapi Halaju Berubah
+Bar di atas paksi mewakili halaju ke kanan, manakala bar di bawah paksi mewakili halaju ke kiri. Laju sama dengan panjang bar dari sifar sahaja.
 
-Putar sebiji bola pada tali sepanjang <InlineMath math="0.8\text{ m}" /> sekali setiap <InlineMath math="0.8\text{ s}" />. Lajunya kekal <InlineMath math="6.28\text{ m/s}" />, tetapi **halaju seketikanya sentiasa menghala di sepanjang bulatan pada ketika itu**, jadi arahnya terus berpusing.
+### Laju Sama tetapi Halaju Berubah
 
-<StringWhirlReleaseLab
-  period={0.8}
-  radius={0.8}
-  title={<>Lepaskan Tali</>}
+Putar sebiji bola pada tali sepanjang <InlineMath math="0.8\text{ m}" /> sekali setiap <InlineMath math="0.8\text{ s}" />. Lajunya kekal <InlineMath math="6.28\text{ m/s}" />, tetapi **halaju seketikanya sentiasa bertangen kepada bulatan**, jadi arahnya terus berpusing. Laraskan sudut <InlineMath math="a" /> untuk melihat komponen <InlineMath math="v_x" /> dan <InlineMath math="v_y" /> berubah sementara laju kekal tetap.
+
+<MathVisual
+  title={<>Halaju Tangen di Sekeliling Bulatan</>}
   description={
     <>
-      Anak panah hijau kebiruan ialah halaju bola pada saat ini. Pilih titik lepas: bola akan meninggalkan bulatan di sepanjang anak panah itu.
+      Laluan bulatan berjejari <InlineMath math="0.8\text{ m}" /> dengan tempoh{" "}
+      <InlineMath math="0.8\text{ s}" />. Anak panah hijau kebiruan menunjukkan
+      halaju tangen pada sudut <InlineMath math="a" />.
     </>
   }
+  footer={<>Laju kekal pada <InlineMath math="6.28\text{ m/s}" /> walaupun arah anak panah tangen terus berputar.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.6 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 330, value: 90, step: 30, label: "a" },
+    ],
+    objects: [
+      { id: "orbit", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 0.8 },
+      {
+        id: "string",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "0", y: "0" },
+          { x: "0.8*cos(a*pi/180)", y: "0.8*sin(a*pi/180)" },
+        ],
+      },
+      {
+        id: "tangent",
+        kind: "path",
+        appearance: "construction",
+        points: [
+          { x: "0.8*cos(a*pi/180)", y: "0.8*sin(a*pi/180)" },
+          { x: "0.8*cos(a*pi/180) - 0.55*sin(a*pi/180)", y: "0.8*sin(a*pi/180) + 0.55*cos(a*pi/180)" },
+        ],
+      },
+      { id: "ball", kind: "marker", appearance: "primary", x: "0.8*cos(a*pi/180)", y: "0.8*sin(a*pi/180)" },
+      {
+        id: "tip",
+        kind: "marker",
+        appearance: "construction",
+        x: "0.8*cos(a*pi/180) - 0.55*sin(a*pi/180)",
+        y: "0.8*sin(a*pi/180) + 0.55*cos(a*pi/180)",
+      },
+    ],
+    labels: [
+      {
+        key: "v-lbl",
+        objectId: "tip",
+        at: { x: "0.8*cos(a*pi/180) - 0.55*sin(a*pi/180)", y: "0.8*sin(a*pi/180) + 0.55*cos(a*pi/180)" },
+        placement: "above",
+      },
+    ],
+    readouts: [
+      { key: "speed", formula: "2*pi" },
+      { key: "vx", formula: "-2*pi*sin(a*pi/180)" },
+      { key: "vy", formula: "2*pi*cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    acceleration: <>Pecutan memusat</>,
-    chooseRelease: "Pilih titik lepas",
-    period: <>Masa untuk satu pusingan</>,
-    radius: <>Panjang tali</>,
-    releases: {
-      east: <>Timur</>,
-      north: <>Utara</>,
-      west: <>Barat</>,
-      south: <>Selatan</>,
-    },
-    speed: <>Laju</>,
-    viewLabel: "Bola diputar dengan tali dilihat dari atas",
+    a: <>Sudut <InlineMath math="a" /> (darjah)</>,
+    "v-lbl": <InlineMath math="\vec{v}" />,
+    speed: <>Laju (m/s)</>,
+    vx: <>Komponen <InlineMath math="v_x" /> (m/s)</>,
+    vy: <>Komponen <InlineMath math="v_y" /> (m/s)</>,
   }}
 />
 
-Lepaskan di titik utara dan bola terbang ke barat, iaitu arah halajunya pada saat itu. Dua ketika dengan laju yang sama masih boleh mempunyai halaju yang berbeza, dan tanda atau arah yang kamu baca bergantung pada ketika itu.
+Lepaskan di titik utara pada <InlineMath math="a=90^\circ" /> dan bola terbang ke barat, iaitu arah halajunya pada saat itu. Dua ketika dengan laju yang sama masih boleh mempunyai halaju yang berbeza.
 
-## Perbezaan dengan Laju Purata
+## Membezakan Laju Seketika dengan Laju Purata
+
+Laju purata merangkumkan seluruh perjalanan kepada satu nilai, sedangkan laju seketika **boleh naik dan turun setiap saat**. Semasa berhenti di lampu merah atau jatuh bebas, kedua-duanya jarang sama.
+
+### Perbezaan dengan Laju Purata
 
 Laju purata merumuskan seluruh perjalanan dengan membahagikan jumlah jarak dengan jumlah masa. Laju seketika pula memberikan laju pada **satu masa yang dipilih**.
 
@@ -181,54 +247,129 @@ Jika meter laju menunjukkan <InlineMath math="15 \text{ m/s}" /> sekarang, itu t
 
 Contohnya, kenderaan mungkin berhenti di lampu merah, kemudian bergerak laju selepas itu. Laju puratanya boleh jadi kecil kerana seluruh masa perjalanan dikira, manakala laju seketikanya semasa bergerak boleh jauh lebih besar.
 
-## Bola yang Jatuh Tidak Pernah Mengekalkan Satu Laju
+### Bola yang Jatuh Tidak Pernah Mengekalkan Satu Laju
 
-Bola yang dijatuhkan dari <InlineMath math="1.8\text{ m}" /> jatuh selama <InlineMath math="0.6\text{ s}" />, jadi laju puratanya <InlineMath math="\frac{1.8}{0.6}=3\text{ m/s}" />. **Laju seketikanya tidak pernah kekal pada purata itu**, kerana ia bertambah <InlineMath math="1\text{ m/s}" /> pada setiap kilatan.
+Bola yang dijatuhkan dari <InlineMath math="1.8\text{ m}" /> jatuh selama <InlineMath math="0.6\text{ s}" />, jadi laju puratanya ialah:
 
-<StrobePhotoMotionLab
-  shot="drop"
-  title={<>Bola yang Dijatuhkan, Kilatan demi Kilatan</>}
+<BlockMath math="\bar{v}=\frac{1.8\text{ m}}{0.6\text{ s}}=3\text{ m/s}" />
+
+**Laju seketikanya tidak pernah kekal pada purata itu**, kerana ia bertambah <InlineMath math="1\text{ m/s}" /> setiap sepersepuluh saat. Laraskan masa jatuhan <InlineMath math="d" /> untuk membandingkan garis menaik dengan garis purata yang mendatar.
+
+<MathVisual
+  title={<>Laju Seketika melawan Purata Semasa Jatuh</>}
   description={
     <>
-      Sebuah lampu berkelip setiap <InlineMath math="0.1\text{ s}" /> dalam bilik gelap sementara pengatup kamera kekal terbuka. Setiap imej bola ialah satu kilatan.
+      Laju seketika <InlineMath math="v(t)=10t" /> bola yang dijatuhkan (jingga)
+      berbanding laju purata jatuhan <InlineMath math="3\text{ m/s}" /> (kelabu).
     </>
   }
+  footer={<>Hanya pada pertengahan masa <InlineMath math="0.3\text{ s}" /> laju seketika menyamai puratanya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 0.7 }, y: { min: -0.5, max: 6.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.1, max: 0.6, value: 0.3, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "v-inst", kind: "function", appearance: "primary", formula: "10*x", domain: { min: 0, max: 0.6 } },
+      { id: "v-avg", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 0.6, y: 3 } },
+      { id: "cross", kind: "point", appearance: "secondary", at: { x: 0.3, y: 3 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "d", y: "0" },
+          { x: "d", y: "10*d" },
+        ],
+      },
+      { id: "now", kind: "marker", appearance: "answer", x: "d", y: "10*d" },
+    ],
+    labels: [
+      { key: "avg-lbl", objectId: "cross", at: { x: 0.3, y: 3 }, placement: "above-left" },
+      { key: "now-lbl", objectId: "now", at: { x: "d", y: "10*d" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "v-now", formula: "10*d" },
+      { key: "fall", formula: "5*d^2" },
+    ],
+  }}
   labels={{
-    airTime: <>Masa di udara</>,
-    height: <>Tinggi awal</>,
-    interval: <>Masa antara kilatan</>,
-    outcome: <>Laju ketika mencecah lantai</>,
-    viewLabel: "Foto strob yang terbina kilatan demi kilatan",
+    d: <>Masa jatuh <InlineMath math="d" /> (s)</>,
+    "avg-lbl": <InlineMath math="3\text{ m/s}" />,
+    "now-lbl": <InlineMath math="v(d)" />,
+    "v-now": <>Laju seketika (m/s)</>,
+    fall: <>Jarak jatuh (m)</>,
   }}
 />
 
-Jarak antara imej bertambah daripada <InlineMath math="5\text{ cm}" /> kepada <InlineMath math="55\text{ cm}" />, dan bola mencecah lantai pada <InlineMath math="6\text{ m/s}" />, dua kali laju puratanya. Pada satu ketika, iaitu separuh masa jatuhan pada <InlineMath math="0.3\text{ s}" />, laju seketika sama dengan purata.
+Bola mencecah lantai pada <InlineMath math="6\text{ m/s}" />, dua kali laju puratanya. Hanya pada satu ketika, iaitu separuh masa jatuhan pada <InlineMath math="0.3\text{ s}" />, laju seketika sama dengan purata.
 
-## Meter Laju Mengukur Laju Semasa
+## Membaca Laju di Jalan Raya dan pada Roda
+
+Meter laju dan meter basikal menukar gerakan nyata kepada **bacaan laju seketika**. Nilai itu bergantung pada betapa pantas kenderaan melintas pengesan atau betapa kerap roda berputar.
+
+### Meter Laju Mengukur Laju Semasa
 
 Had laju <InlineMath math="80 \text{ km/j}" /> yang tertera pada papan tanda berlaku pada kenderaan itu pada **setiap ketika**. Oleh itu, alat pengesan di tepi jalan membaca laju seketika ketika kenderaan itu lalu.
 
 Kenderaan yang lalu pada <InlineMath math="90 \text{ km/j}" /> melebihi had itu walaupun laju puratanya bagi seluruh perjalanan hanya <InlineMath math="60 \text{ km/j}" />. Masa yang dihabiskan semasa berhenti di lampu merah menurunkan laju purata perjalanan, tetapi tidak mengubah bacaan pada alat pengesan.
 
-## Cara Meter Basikal Membaca Laju
+### Cara Meter Basikal Membaca Laju
 
-Meter basikal mengira berapa kerap magnet pada roda melepasi sensor. Laju satu titik pada roda ialah **lilitan bulatannya dibahagi dengan masa untuk satu pusingan**. Injap terletak pada rim, <InlineMath math="0.311\text{ m}" /> dari gandar.
+Meter basikal mengira berapa kerap magnet pada roda melepasi sensor. Laju satu titik pada roda ialah **lilitan bulatannya dibahagi dengan masa untuk satu pusingan**. Injap terletak pada rim di <InlineMath math="0.311\text{ m}" />, manakala pemantul di pertengahan jejari pada <InlineMath math="0.155\text{ m}" />. Laraskan tempoh pusingan <InlineMath math="p" /> untuk membandingkan kedua-dua laju.
 
-<BicycleWheelSpeedLab
-  title={<>Satu Roda, Dua Laju</>}
+<MathVisual
+  title={<>Laju Injap Rim berbanding Pemantul Jejari</>}
   description={
     <>
-      Injap dan pemantul di pertengahan jejari berpusing melalui sudut yang sama setiap saat. Bandingkan panjang anak panah halaju kedua-duanya.
+      Laju linear injap (jingga, <InlineMath math="r=0.311\text{ m}" />) dan
+      pemantul (hijau kebiruan, <InlineMath math="r=0.155\text{ m}" />) melawan
+      tempoh pusingan <InlineMath math="p" />.
     </>
   }
+  footer={<>Untuk setiap tempoh, injap rim bergerak dua kali lebih laju daripada pemantul.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.3, max: 1.7 }, y: { min: 0, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0.4, max: 1.6, value: 1, step: 0.1, label: "p" },
+    ],
+    objects: [
+      { id: "valve-curve", kind: "function", appearance: "primary", formula: "2*pi*0.311/x", domain: { min: 0.4, max: 1.6 } },
+      { id: "ref-curve", kind: "function", appearance: "construction", formula: "2*pi*0.155/x", domain: { min: 0.4, max: 1.6 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "p", y: "0" },
+          { x: "p", y: "2*pi*0.311/p" },
+        ],
+      },
+      { id: "valve-dot", kind: "marker", appearance: "primary", x: "p", y: "2*pi*0.311/p" },
+      { id: "ref-dot", kind: "marker", appearance: "construction", x: "p", y: "2*pi*0.155/p" },
+    ],
+    labels: [
+      { key: "v-valve", objectId: "valve-dot", at: { x: "p", y: "2*pi*0.311/p" }, placement: "above-right" },
+      { key: "v-ref", objectId: "ref-dot", at: { x: "p", y: "2*pi*0.155/p" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "valve-v", formula: "2*pi*0.311/p" },
+      { key: "ref-v", formula: "2*pi*0.155/p" },
+      { key: "omega", formula: "2*pi/p" },
+    ],
+  }}
   labels={{
-    angularSpeed: <>Laju sudut</>,
-    choosePeriod: "Pilih masa untuk satu pusingan",
-    reflectorSpeed: <>Laju pemantul</>,
-    valveAcceleration: <>Pecutan memusat injap</>,
-    valveSpeed: <>Laju injap</>,
-    viewLabel: "Roda basikal berputar pada pemegang",
+    p: <>Tempoh <InlineMath math="p" /> (s)</>,
+    "v-valve": <>Injap</>,
+    "v-ref": <>Pemantul</>,
+    "valve-v": <>Laju injap (m/s)</>,
+    "ref-v": <>Laju pemantul (m/s)</>,
+    omega: <>Laju sudut (rad/s)</>,
   }}
 />
 
-Pada satu pusingan sesaat, injap bergerak pada <InlineMath math="2\pi(0.311)\approx1.95\text{ m/s}" />, dan pemantul pada kira-kira <InlineMath math="0.97\text{ m/s}" />. Pilih <InlineMath math="T=0.5\text{ s}" /> dan kedua-dua laju menjadi dua kali ganda, sementara setiap anak panah kekal tangen kepada bulatannya.
+Pada satu pusingan sesaat, injap bergerak pada <InlineMath math="2\pi(0.311)\approx1.95\text{ m/s}" />, dan pemantul pada kira-kira <InlineMath math="0.97\text{ m/s}" />. Mengurangkan tempoh kepada <InlineMath math="p=0.5\text{ s}" /> menggandakan kedua-dua laju secara serentak.

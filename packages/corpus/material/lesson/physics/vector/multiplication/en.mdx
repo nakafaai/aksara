@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Vector Multiplication",
   description:
@@ -12,38 +10,41 @@ export const metadata = {
 
 ## Two Kinds of Vector Multiplication
 
-Vector multiplication does not always produce another vector. Two kinds of multiplication are common in physics: the **dot product** and the **cross product**.
+Vector multiplication does not always produce another vector. Two kinds of multiplication appear throughout physics: the **dot product** and the **cross product**.
 
-The dot product produces a scalar. The cross product produces a vector perpendicular to both original vectors. When the result is nonzero, its direction follows the **right-hand rule**.
+The dot product produces a scalar. The cross product produces a vector perpendicular to both original vectors, and when the result is nonzero its direction follows the **right-hand rule**.
 
 | Type of multiplication | Symbol | Result | Physics example |
 | :--------------------- | :----- | :----- | :-------------- |
 | dot product | <InlineMath math="\vec{A}\cdot\vec{B}" /> | scalar | work |
 | cross product | <InlineMath math="\vec{A}\times\vec{B}" /> | vector | torque |
 
-> The multiplication sign changes because the physical question changes: how much is in the same direction, or how strong is the turning effect.
+> The multiplication sign changes whenever the physical question shifts from alignment to turning effect.
 
 ## Dot Product Measures the Same Direction Part
 
-The dot product of <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" /> is defined as:
+The **dot product** of <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" /> projects one vector onto the other and returns a scalar value without a direction.
 
 <BlockMath math="\vec{A}\cdot\vec{B}=AB\cos\theta" />
 
-For two nonzero vectors, <InlineMath math="\theta" /> is the angle between them, while <InlineMath math="A" /> and <InlineMath math="B" /> are their magnitudes. The result is a scalar, so it has a value without a direction.
-
-For a **constant force** throughout the displacement, the work done by that force is:
+For two nonzero vectors, <InlineMath math="\theta" /> is the angle between them, while <InlineMath math="A" /> and <InlineMath math="B" /> are their magnitudes. For a **constant force** acting throughout a displacement, the work done equals the force component along the displacement times the distance moved:
 
 <BlockMath math="W=\vec{F}\cdot\vec{s}=Fs\cos\theta" />
 
-The force component **along the displacement axis** determines the work. This component is positive with the motion and negative against the motion.
+This component is positive when the force helps the motion and negative when it opposes the motion.
 
-## Sunlight on a Solar Panel
+### Sunlight on a Solar Panel
 
-A panel catches **the dot product of the sunlight and its area**: <InlineMath math="P=IA\cos\theta" />. With the sun <InlineMath math="60^\circ" /> high and the panel tilted <InlineMath math="10^\circ" />, the angle between <InlineMath math="\hat n" /> and <InlineMath math="\hat s" /> is <InlineMath math="20^\circ" /> and it catches <InlineMath math="1597\text{ W}" />. Tilt it to <InlineMath math="30^\circ" /> for the full <InlineMath math="1700\text{ W}" />.
+A solar panel captures **the dot product of incoming sunlight and panel area**, with power given by:
+
+<BlockMath math="P=IA\cos\theta" />
+
+With the sun <InlineMath math="60^\circ" /> high and the panel tilted <InlineMath math="10^\circ" />, the angle between the normal <InlineMath math="\hat n" /> and the sun direction <InlineMath math="\hat s" /> is <InlineMath math="20^\circ" />, capturing <InlineMath math="1597\text{ W}" />. Tilting the panel to <InlineMath math="30^\circ" /> aligns both vectors and reaches the full <InlineMath math="1700\text{ W}" />.
 
 <SolarPanelFluxLab
   title={<>Power as a Dot Product</>}
   description={<>A <InlineMath math="1.7\text{ m}^2" /> panel in sunlight of <InlineMath math="1000\text{ W/m}^2" />. Tilt the panel.</>}
+  footer="Power peaks when the panel normal points straight at the incoming sunlight."
   area={1.7}
   elevation={60}
   sunlight={1000}
@@ -58,7 +59,11 @@ A panel catches **the dot product of the sunlight and its area**: <InlineMath ma
   }}
 />
 
-A person pulls a box with a constant <InlineMath math="40\text{ N}" /> force while the box moves <InlineMath math="5\text{ m}" />. The force makes a <InlineMath math="60^\circ" /> angle with the displacement direction. The work is:
+Whenever the angle between <InlineMath math="\hat n" /> and <InlineMath math="\hat s" /> shrinks toward <InlineMath math="0^\circ" />, <InlineMath math="\cos\theta" /> approaches <InlineMath math="1" /> and captured power climbs to its maximum.
+
+### Work Done by an Angled Pull
+
+A person pulls a box with a constant <InlineMath math="40\text{ N}" /> force while the box moves <InlineMath math="5\text{ m}" />. The force makes a <InlineMath math="60^\circ" /> angle with the displacement direction, so the work is:
 
 <BlockMath math="\begin{aligned}
 W&=Fs\cos\theta \\
@@ -67,45 +72,47 @@ W&=Fs\cos\theta \\
 &=100\text{ J}
 \end{aligned}" />
 
-If the force is perpendicular to the displacement, <InlineMath math="\theta=90^\circ" /> and <InlineMath math="\cos90^\circ=0" />. In that case, the force does no work in the displacement direction.
-
-If the same constant force opposes the displacement, the angle is <InlineMath math="180^\circ" />. **Negative work** means the force removes energy from the motion:
+If the force stands perpendicular to the displacement, <InlineMath math="\theta=90^\circ" /> and <InlineMath math="\cos90^\circ=0" />, so the force does zero work along the path. If the same force opposes the displacement at <InlineMath math="180^\circ" />, **negative work** removes energy from the motion:
 
 <BlockMath math="W=40(5)\cos180^\circ=200(-1)=-200\text{ J}" />
 
-The graph below runs the same <InlineMath math="40\text{ N}" /> pull over <InlineMath math="5\text{ m}" /> through every angle from <InlineMath math="0^\circ" /> to <InlineMath math="180^\circ" />. The work starts at <InlineMath math="200\text{ J}" />, falls to zero when the force is perpendicular, and ends at <InlineMath math="-200\text{ J}" /> when the force points against the motion.
+The curve below plots the exact <InlineMath math="40\text{ N}" /> pull over <InlineMath math="5\text{ m}" /> in true degrees and joules across every angle from <InlineMath math="0^\circ" /> to <InlineMath math="180^\circ" />.
 
 <MathVisual
   title={<>Work Follows the Cosine of the Angle</>}
-  description={<><InlineMath math="W=Fs\cos\theta" /> for <InlineMath math="F=40\text{ N}" /> and <InlineMath math="s=5\text{ m}" />. Horizontal: angle in units of <InlineMath math="30^\circ" />. Vertical: work in units of <InlineMath math="50\text{ J}" />.</>}
+  description={<><InlineMath math="W=200\cos\theta" /> in joules for <InlineMath math="F=40\text{ N}" /> and <InlineMath math="s=5\text{ m}" /> across angles <InlineMath math="0^\circ" /> to <InlineMath math="180^\circ" />.</>}
+  footer="Work drops smoothly from +200 J to 0 J at 90 degrees and -200 J at 180 degrees."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.6 } },
-    view: { kind: "fit", padding: 0.06 },
+    frame: { kind: "cartesian", x: { min: -10, max: 195 }, y: { min: -230, max: 230 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "work", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 0.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 3, y: 0 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 3.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 3.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 3.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 4) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 4.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 4.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 4.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 5) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 5.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 5.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 5.75) / 6) }, { x: 6, y: -4 }] },
-      { id: "zero", kind: "point", appearance: "primary", at: { x: 0, y: 4 } },
-      { id: "right", kind: "point", appearance: "primary", at: { x: 3, y: 0 } },
-      { id: "back", kind: "point", appearance: "primary", at: { x: 6, y: -4 } },
+      { id: "work", kind: "function", appearance: "primary", formula: "200 * cos(x * pi / 180)", domain: { min: 0, max: 180 } },
+      { id: "zero", kind: "point", appearance: "primary", at: { x: 0, y: 200 } },
+      { id: "right", kind: "point", appearance: "primary", at: { x: 90, y: 0 } },
+      { id: "back", kind: "point", appearance: "primary", at: { x: 180, y: -200 } },
     ],
     labels: [
-      { key: "zero", objectId: "zero", at: { x: 0, y: 4 }, placement: "right" },
-      { key: "right", objectId: "right", at: { x: 3, y: 0 }, placement: "above-right" },
-      { key: "back", objectId: "back", at: { x: 6, y: -4 }, placement: "left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 200 }, placement: "right" },
+      { key: "right", objectId: "right", at: { x: 90, y: 0 }, placement: "above-right" },
+      { key: "back", objectId: "back", at: { x: 180, y: -200 }, placement: "left" },
     ],
   }}
   labels={{
-    zero: <InlineMath math="0^\circ:\ W=200\text{ J}" />,
-    right: <InlineMath math="90^\circ:\ W=0" />,
-    back: <InlineMath math="180^\circ:\ W=-200\text{ J}" />,
+    zero: <InlineMath math="0^\circ:\ 200\text{ J}" />,
+    right: <InlineMath math="90^\circ:\ 0\text{ J}" />,
+    back: <InlineMath math="180^\circ:\ -200\text{ J}" />,
   }}
 />
 
-Here is that pull on a sled: <InlineMath math="40\text{ N}" /> at <InlineMath math="60^\circ" /> over <InlineMath math="5\text{ m}" /> does <InlineMath math="100\text{ J}" />, because only <InlineMath math="20\text{ N}" /> of it lies along the snow. Lower the rope toward <InlineMath math="0^\circ" /> and the work climbs toward <InlineMath math="200\text{ J}" />.
+The sign of work flips cleanly at <InlineMath math="90^\circ" /> because the component along the motion reverses from helping to opposing.
+
+Test the same <InlineMath math="40\text{ N}" /> pull on a sled over <InlineMath math="5\text{ m}" />. At <InlineMath math="60^\circ" />, only <InlineMath math="20\text{ N}" /> lies along the snow, doing <InlineMath math="100\text{ J}" /> of work. Lowering the rope toward <InlineMath math="0^\circ" /> sends more force along the snow and raises work toward <InlineMath math="200\text{ J}" />.
 
 <SledPullWorkLab
   title={<>Only the Part Along the Motion Works</>}
   description={<>A <InlineMath math="15\text{ kg}" /> sled pulled <InlineMath math="5\text{ m}" /> with <InlineMath math="40\text{ N}" />. Raise or lower the rope.</>}
+  footer="Lowering the rope increases the forward pull and raises total work done."
   angle={60}
   distance={5}
   force={40}
@@ -121,13 +128,15 @@ Here is that pull on a sled: <InlineMath math="40\text{ N}" /> at <InlineMath ma
   }}
 />
 
+The upward part <InlineMath math="F\sin\theta" /> reduces the normal force from the snow, yet contributes zero work along the horizontal path.
+
 ## Cross Product Measures Turning Effect
 
-The cross product of <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" /> has magnitude:
+The **cross product** of <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" /> returns a vector perpendicular to the plane containing both inputs, with magnitude:
 
 <BlockMath math="\lvert\vec{A}\times\vec{B}\rvert=AB\sin\theta" />
 
-For two nonzero, nonparallel vectors, the result is a vector perpendicular to the plane containing <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" />. Its direction follows the **right-hand rule**: curl your fingers from the first vector toward the second through the smaller angle. Your thumb gives the resulting direction. Parallel vectors or a zero input vector give the zero vector, which has no defined direction.
+For two nonzero, nonparallel vectors, its direction follows the **right-hand rule**: curl your fingers from the first vector toward the second through the smaller angle, and your thumb points along the result. Parallel vectors or a zero input produce the zero vector with no defined direction.
 
 <MathVisual
   title={<>Direction of <InlineMath math="\vec{A}\times\vec{B}" /></>}
@@ -137,22 +146,20 @@ For two nonzero, nonparallel vectors, the result is a vector perpendicular to th
       one plane. Their cross product points perpendicular to that plane.
     </>
   }
+  footer="Right-hand curl from x to y points the cross product straight up along +z."
   labels={{
-    "l1": <InlineMath math="A" />,
-    "l2": <InlineMath math="B" />,
-    "l3": <InlineMath math="A\times B" />,
+    l1: <InlineMath math="\vec{A}" />,
+    l2: <InlineMath math="\vec{B}" />,
+    l3: <InlineMath math="\vec{A}\times\vec{B}" />,
   }}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -1.5, max: 13.5 } },
     view: { kind: "camera", position: { x: 9.9, y: 6.66, z: -7 }, target: { x: 1.5, y: 1.3, z: 5 } },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1.5, z: 0 }, { x: 0, y: 3, z: 0 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 0, y: 1.5, z: 0 }, to: { x: 0, y: 3, z: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 6 }, { x: 0, y: 0, z: 12 }], appearance: "answer" },
-      { id: "s3-head", kind: "vector", from: { x: 0, y: 0, z: 6 }, to: { x: 0, y: 0, z: 12 }, appearance: "answer" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 3, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 12 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2, y: 0, z: 0 }, placement: "below" },
@@ -162,7 +169,7 @@ For two nonzero, nonparallel vectors, the result is a vector perpendicular to th
   }}
 />
 
-In this visual, <InlineMath math="\vec{A}" /> points along the positive <InlineMath math="x" /> axis and <InlineMath math="\vec{B}" /> points along the positive <InlineMath math="y" /> axis. The cross-product formula gives the positive <InlineMath math="z" /> direction for <InlineMath math="\vec{A}\times\vec{B}" />. Both model vectors are dimensionless. Calculate the components: the first two are zero and the third is <InlineMath math="4\cdot3" />. The result arrow has a length of <InlineMath math="12" /> units. Rotate the model to compare this arrow with the plane of the original vectors.
+Here <InlineMath math="\vec{A}" /> points along positive <InlineMath math="x" /> with length <InlineMath math="4" /> and <InlineMath math="\vec{B}" /> points along positive <InlineMath math="y" /> with length <InlineMath math="3" />. Both vectors are dimensionless, and their cross product points along positive <InlineMath math="z" /> with length <InlineMath math="12" />:
 
 <BlockMath math="\begin{aligned}
 C_x&=0\cdot0-0\cdot3=0 \\
@@ -171,19 +178,20 @@ C_z&=4\cdot3-0\cdot0=12 \\
 \vec{A}\times\vec{B}&=(C_x,C_y,C_z)=(0,0,12)
 \end{aligned}" />
 
-For torque, the cross product is written:
+In rotational mechanics, **torque** uses this exact cross product:
 
 <BlockMath math="\vec{\tau}=\vec{r}\times\vec{F}" />
 
-Vector <InlineMath math="\vec{r}" /> is the position vector from a reference point on the hinge to the point where the force acts. The perpendicular lever arm has length <InlineMath math="r\sin\theta" />. At the same angle, the same force produces a larger torque when applied farther from a door hinge.
+Here <InlineMath math="\vec{r}" /> is the position vector from a pivot point to the force application point, and the perpendicular lever arm has length <InlineMath math="r\sin\theta" />.
 
-## Loosening a Wheel Nut
+### Loosening a Wheel Nut
 
-A hand pushes <InlineMath math="200\text{ N}" /> on a wheel brace <InlineMath math="0.4\text{ m}" /> from the nut. The torque <InlineMath math="\vec\tau=\vec r\times\vec F" /> **points along the nut's axis**, <InlineMath math="80\text{ N}\cdot\text{m}" /> when the push is square to the handle. Turn the push below the handle and the torque flips to the other side.
+A hand pushes <InlineMath math="200\text{ N}" /> on a wheel brace <InlineMath math="0.4\text{ m}" /> from the nut. The resulting torque <InlineMath math="\vec{\tau}" /> **points along the nut's axis** and reaches <InlineMath math="80\text{ N}\cdot\text{m}" /> when the push is perpendicular to the handle. Swinging the push below the handle reverses the rotation sense and flips the torque vector to the opposite side.
 
 <WrenchTorqueLab
   title={<>Torque on a Wheel Nut</>}
   description={<>A push of <InlineMath math="200\text{ N}" /> at <InlineMath math="0.4\text{ m}" /> from the nut. Turn the push.</>}
+  footer="Torque peaks at 90 degrees and flips sign when the push crosses the handle."
   angle={90}
   arm={0.4}
   force={200}
@@ -196,23 +204,24 @@ A hand pushes <InlineMath math="200\text{ N}" /> on a wheel brace <InlineMath ma
   }}
 />
 
-## Torque from Perpendicular Force
+Only the perpendicular part <InlineMath math="F\sin\theta" /> turns the nut, while any push directly along the handle produces zero rotation.
 
-Choose a reference point on the hinge at the height of the push. A door is pushed horizontally with a <InlineMath math="30\text{ N}" /> force at a distance of <InlineMath math="0.8\text{ m}" /> from the hinge. The force is **perpendicular to the door**, so <InlineMath math="\theta=90^\circ" />.
+### Pushing a Door Open
+
+Choose a reference point on the hinge at the height of the push. A door is pushed horizontally with <InlineMath math="30\text{ N}" /> at a distance of <InlineMath math="0.8\text{ m}" /> from the hinge, **perpendicular to the door** so <InlineMath math="\theta=90^\circ" />:
 
 <BlockMath math="\begin{aligned}
 \tau&=rF\sin\theta \\
 &=0.8(30)\sin90^\circ \\
-&=24\text{ N m}
+&=24\text{ N}\cdot\text{m}
 \end{aligned}" />
 
-For fixed <InlineMath math="r" /> and <InlineMath math="F" />, a perpendicular force gives the maximum torque because <InlineMath math="\sin90^\circ=1" />. A force almost parallel to the position vector <InlineMath math="\vec{r}" /> gives little torque because its sine factor is close to zero.
-
-Here is that door from the ceiling: <InlineMath math="30\text{ N}" /> square to the door at <InlineMath math="0.8\text{ m}" /> gives <InlineMath math="24\text{ N}\cdot\text{m}" />, and the door swings open. Slide the hand toward the hinge or slant the push, and the torque and the swing both fall.
+For fixed <InlineMath math="r" /> and <InlineMath math="F" />, a perpendicular push maximizes torque because <InlineMath math="\sin90^\circ=1" />. Sliding your hand closer to the hinge or slanting the push lowers both torque and door swing.
 
 <DoorHingeTorqueLab
   title={<>Pushing a Door Open</>}
   description={<>An <InlineMath math="18\text{ kg}" /> door <InlineMath math="0.9\text{ m}" /> wide, pushed with <InlineMath math="30\text{ N}" />.</>}
+  footer="Moving the push closer to the hinge or angling it shrinks the turning torque."
   angle={90}
   arm={0.8}
   force={30}
@@ -229,9 +238,11 @@ Here is that door from the ceiling: <InlineMath math="30\text{ N}" /> square to 
   }}
 />
 
+Doubling the distance from the hinge doubles the torque even when the push force stays unchanged.
+
 ## Comparing Dot and Cross Products
 
-Compare the operations with **both vector magnitudes fixed and nonzero**. The dot product is largest when two vectors point the same way because <InlineMath math="\cos0^\circ=1" />. The cross product is zero in that same condition because <InlineMath math="\sin0^\circ=0" />.
+Compare both operations with **both vector magnitudes fixed and nonzero**. The dot product peaks when vectors align because <InlineMath math="\cos0^\circ=1" />, whereas the cross product vanishes there because <InlineMath math="\sin0^\circ=0" />.
 
 | Angle condition | <InlineMath math="\vec{A}\cdot\vec{B}" /> | <InlineMath math="\lvert\vec{A}\times\vec{B}\rvert" /> |
 | :-------------- | :---------------------------------------- | :------------------------------------------------------ |
@@ -239,24 +250,25 @@ Compare the operations with **both vector magnitudes fixed and nonzero**. The do
 | <InlineMath math="90^\circ" /> | zero | maximum |
 | <InlineMath math="180^\circ" /> | negative | zero |
 
-So the dot product is useful for asking about alignment, while the cross product is useful for perpendicular effects such as rotation.
+### How Angle Separates Both Products
 
-Keep both magnitudes fixed and turn the angle. The orange dot product is largest when the vectors line up, while the violet cross product magnitude peaks at <InlineMath math="90^\circ" />. At <InlineMath math="0^\circ" /> and <InlineMath math="180^\circ" /> the cross product vanishes, because parallel vectors give no turning effect.
+Holding <InlineMath math="AB=200" /> fixed while sweeping the angle from <InlineMath math="0^\circ" /> to <InlineMath math="180^\circ" /> shows why the two products are **complementary measures** of alignment and perpendicularity.
 
 <MathVisual
-  title={<>Dot and Cross Products against the Angle</>}
-  description={<><InlineMath math="AB\cos\theta" /> and <InlineMath math="AB\sin\theta" /> with <InlineMath math="AB=200" /> for angles from <InlineMath math="0^\circ" /> to <InlineMath math="180^\circ" />. Horizontal: angle in units of <InlineMath math="30^\circ" />. Vertical: value in units of <InlineMath math="50" />.</>}
+  title={<>Dot and Cross Products Against Angle</>}
+  description={<>True-scale curves of <InlineMath math="200\cos\theta" /> and <InlineMath math="200\sin\theta" /> from <InlineMath math="0^\circ" /> to <InlineMath math="180^\circ" />.</>}
+  footer="Dot product peaks at 0 degrees while cross product magnitude peaks at 90 degrees."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.8 } },
-    view: { kind: "fit", padding: 0.06 },
+    frame: { kind: "cartesian", x: { min: -10, max: 195 }, y: { min: -230, max: 240 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "dot", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 0.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 3, y: 0 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 3.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 3.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 3.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 4) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 4.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 4.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 4.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 5) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 5.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 5.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 5.75) / 6) }, { x: 6, y: -4 }] },
-      { id: "cross", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 4 * Math.cos((Math.PI * -2.75) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * -2.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * -2.25) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * -2) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * -1.75) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * -1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * -1.25) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * -1) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * -0.75) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * -0.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * -0.25) / 6) }, { x: 3, y: 4 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 6, y: 0 }] },
+      { id: "dot", kind: "function", appearance: "primary", formula: "200 * cos(x * pi / 180)", domain: { min: 0, max: 180 } },
+      { id: "cross", kind: "function", appearance: "secondary", formula: "200 * sin(x * pi / 180)", domain: { min: 0, max: 180 } },
     ],
     labels: [
-      { key: "dot", objectId: "dot", at: { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, placement: "above-right" },
-      { key: "cross", objectId: "cross", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "dot", objectId: "dot", at: { x: 30, y: 173.2 }, placement: "above-right" },
+      { key: "cross", objectId: "cross", at: { x: 90, y: 200 }, placement: "above" },
     ],
   }}
   labels={{
@@ -265,24 +277,46 @@ Keep both magnitudes fixed and turn the angle. The orange dot product is largest
   }}
 />
 
-## Both Products on One Ramp
+When one curve reaches its extreme value, the other crosses zero. Alignment maximizes the dot product, while perpendicular geometry maximizes the cross product.
 
-As the block slides <InlineMath math="0.5\text{ m}" /> down the slope, the weight does work <InlineMath math="\vec W\cdot\vec s" />, which uses only the part along the slope, <InlineMath math="9.8\text{ N}" />: <InlineMath math="4.9\text{ J}" />. The part into the plank, <InlineMath math="16.97\text{ N}" />, **does no work at all**.
+### Which Weight Component Does Work on a Ramp
 
-<RampBlockComponentLab
-  title={<>Which Part Does Work</>}
-  description={<>A <InlineMath math="2\text{ kg}" /> block on a plank. It slips once <InlineMath math="\tan\theta" /> passes <InlineMath math="0.4" />.</>}
-  angle={30}
-  distance={0.5}
-  friction={0.4}
-  mass={2}
+When a <InlineMath math="2\text{ kg}" /> block slides <InlineMath math="0.5\text{ m}" /> down a <InlineMath math="30^\circ" /> slope, gravity does work through the **component parallel to the slope**. Only the <InlineMath math="9.8\text{ N}" /> down-slope part contributes <InlineMath math="4.9\text{ J}" />, while the <InlineMath math="16.97\text{ N}" /> perpendicular part does zero work.
+
+<MathVisual
+  title={<>Gravity Work Versus Ramp Angle</>}
+  description={<>Work <InlineMath math="W=mgs\sin\theta" /> done by weight on a <InlineMath math="2\text{ kg}" /> block over <InlineMath math="0.5\text{ m}" /> as ramp angle <InlineMath math="a" /> changes.</>}
+  footer="Steeper slopes raise parallel weight and work while normal work stays zero."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 90 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 10, max: 60, value: 30, step: 5, label: "ramp-angle" },
+    ],
+    objects: [
+      { id: "work-curve", kind: "function", appearance: "primary", formula: "9.8 * sin(x * pi / 180)", domain: { min: 0, max: 90 } },
+      { id: "normal-zero", kind: "function", appearance: "reference", formula: "0", domain: { min: 0, max: 90 } },
+      { id: "state", kind: "marker", appearance: "answer", x: "a", y: "9.8 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "curve", objectId: "work-curve", at: { x: 60, y: 8.5 }, placement: "above-left" },
+      { key: "zero", objectId: "normal-zero", at: { x: 65, y: 0 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "along-n", formula: "19.6 * sin(a * pi / 180)" },
+      { key: "into-n", formula: "19.6 * cos(a * pi / 180)" },
+      { key: "work-j", formula: "9.8 * sin(a * pi / 180)" },
+    ],
+  }}
   labels={{
-    along: <>Down the slope <InlineMath math="W\sin\theta" /></>,
-    angle: <>Ramp angle</>,
-    angleName: "Ramp angle",
-    into: <>Into the slope <InlineMath math="W\cos\theta" /></>,
-    viewLabel: "Wooden block on a tilted plank",
-    weight: <>Weight <InlineMath math="W" /></>,
-    work: <>Work of the weight over <InlineMath math="0.5\text{ m}" /></>,
+    curve: <InlineMath math="W=mgs\sin\theta" />,
+    zero: <InlineMath math="W_{\perp}=0\text{ J}" />,
+    "ramp-angle": <>Ramp angle (<InlineMath math="^\circ" />)</>,
+    "along-n": <>Along slope (N)</>,
+    "into-n": <>Into slope (N)</>,
+    "work-j": <>Gravity work (J)</>,
   }}
 />
+
+No matter how steep the ramp becomes, the perpendicular component remains at <InlineMath math="90^\circ" /> to the displacement and always yields zero work.

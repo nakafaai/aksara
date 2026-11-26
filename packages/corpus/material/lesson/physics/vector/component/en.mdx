@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Vector Components",
+  title: "Vector Components in Physics",
   description:
     "Express a vector as components along the x, y, and z axes using unit vectors.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
@@ -16,13 +16,12 @@ The horizontal component shows how much of the vector lies along the <InlineMath
 
 > A vector equals the sum of its components along the coordinate axes.
 
-## A Block on a Ramp
-
 The weight of a <InlineMath math="2\text{ kg}" /> block points straight down, <InlineMath math="19.6\text{ N}" />, but **the block can only slide along the plank**. Splitting the weight shows what matters: <InlineMath math="9.8\text{ N}" /> down the slope at <InlineMath math="30^\circ" /> and <InlineMath math="16.97\text{ N}" /> into it. Tilt the plank until the slope part wins and the block slides.
 
 <RampBlockComponentLab
   title={<>Weight Split on a Slope</>}
   description={<>A <InlineMath math="2\text{ kg}" /> oak block on a pine plank. The block slips once <InlineMath math="\tan\theta" /> passes <InlineMath math="0.7" />.</>}
+  footer={<>Tilting the plank transfers weight from pressing in to pulling downslope.</>}
   angle={30}
   friction={0.7}
   mass={2}
@@ -36,63 +35,80 @@ The weight of a <InlineMath math="2\text{ kg}" /> block points straight down, <I
   }}
 />
 
+Raising the ramp angle grows the downslope pull while shrinking the normal support into the plank, even though the block's total weight stays <InlineMath math="19.6\text{ N}" />.
+
 ## Reading Components in a Plane
 
-In a plane, vector <InlineMath math="\vec{A}" /> can be written as the combination of its <InlineMath math="x" /> and <InlineMath math="y" /> components.
+In a flat plane, every vector <InlineMath math="\vec{A}" /> splits cleanly into **unit vector** parts along the horizontal <InlineMath math="x" /> axis and the vertical <InlineMath math="y" /> axis.
 
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />
 
-The notation <InlineMath math="\hat{i}" /> is the **unit vector** in the <InlineMath math="x" /> direction, while <InlineMath math="\hat{j}" /> is the unit vector in the <InlineMath math="y" /> direction. The signed scalars <InlineMath math="A_x" /> and <InlineMath math="A_y" /> give the components along those axes. Each sign records which way along its axis the vector points.
+The notation <InlineMath math="\hat{i}" /> is the **unit vector** in the <InlineMath math="x" /> direction, while <InlineMath math="\hat{j}" /> is the unit vector in the <InlineMath math="y" /> direction. The signed scalars <InlineMath math="A_x" /> and <InlineMath math="A_y" /> give the components along those axes, and each sign records which way along its axis the vector points.
 
-## A Sled on a Rope
+### Pulling a Sled Along Two Axes
 
-The rope pulls the sled with <InlineMath math="80\text{ N}" /> at <InlineMath math="30^\circ" /> above the snow. On the axes that pull is <InlineMath math="69.3\text{ N}" /> along the snow and <InlineMath math="40\text{ N}" /> up, **drawn tip to tail under the rope**.
+A rope pulls a sled with <InlineMath math="80\text{ N}" /> at an adjustable angle <InlineMath math="a" /> above the snow. At <InlineMath math="a = 30^\circ" />, the pull splits into <InlineMath math="69.3\text{ N}" /> along the snow and <InlineMath math="40\text{ N}" /> upward, **drawn tip to tail under the rope**.
 
-<SledPullWorkLab
-  title={<>The Rope's Pull on Two Axes</>}
-  description={<>A <InlineMath math="25\text{ kg}" /> sled pulled <InlineMath math="5\text{ m}" /> with <InlineMath math="80\text{ N}" />. Raise or lower the rope.</>}
-  angle={30}
-  distance={5}
-  force={80}
-  mass={25}
+<MathVisual
+  title={<>The Rope Pull on Two Axes</>}
+  description={<>An <InlineMath math="80\text{ N}" /> pull at angle <InlineMath math="a" /> above the snow split into horizontal and vertical components in newtons.</>}
+  footer={<>Raise rope angle <InlineMath math="a" /> to trade forward pull for upward lift.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 95 }, y: { min: -10, max: 90 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 10, max: 75, value: 30, step: 5, label: "rope-angle" },
+    ],
+    objects: [
+      { id: "fx", kind: "path", appearance: "construction", points: [{ x: "0", y: "0" }, { x: "80*cos(a*pi/180)", y: "0" }] },
+      { id: "fy", kind: "path", appearance: "secondary", points: [{ x: "80*cos(a*pi/180)", y: "0" }, { x: "80*cos(a*pi/180)", y: "80*sin(a*pi/180)" }] },
+      { id: "pull", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "80*cos(a*pi/180)", y: "80*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "80*cos(a*pi/180)", y: "80*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "80*cos(a*pi/180)", y: "80*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "along", formula: "80*cos(a*pi/180)" },
+      { key: "up", formula: "80*sin(a*pi/180)" },
+    ],
+  }}
   labels={{
-    along: <>Along the snow <InlineMath math="F\cos\theta" /></>,
-    angle: <>Rope angle above the snow</>,
-    angleName: "Rope angle above the snow",
-    normal: <>Normal force from the snow</>,
-    up: <>Upward part <InlineMath math="F\sin\theta" /></>,
-    viewLabel: "Sled of firewood pulled across snow",
-    work: <>Work over <InlineMath math="5\text{ m}" /></>,
+    "rope-angle": <>Rope angle <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    tip: <InlineMath math="F=80\text{ N}" />,
+    along: <>Along snow <InlineMath math="F_x" /> (N)</>,
+    up: <>Upward lift <InlineMath math="F_y" /> (N)</>,
   }}
 />
+
+A flatter rope keeps more of the <InlineMath math="80\text{ N}" /> force pulling the sled forward, whereas a steeper rope shifts force into lifting the front of the sled.
+
+### Finding Length from Plane Components
 
 For example, <InlineMath math="\vec{A}=6\hat{i}+8\hat{j}" /> means the vector has a <InlineMath math="6" /> unit component in the positive <InlineMath math="x" /> direction and an <InlineMath math="8" /> unit component in the positive <InlineMath math="y" /> direction.
 
 <BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{6^2+8^2} \\ &= \sqrt{36+64} \\ &= \sqrt{100}=10\end{aligned}" />
 
-The vector length comes from the **Pythagorean theorem** because the <InlineMath math="x" /> and <InlineMath math="y" /> components are perpendicular.
-
-The two component arrows below and the vector form a right triangle, so the length is the hypotenuse: <InlineMath math="\sqrt{6^2+8^2}=10" />.
+The vector length comes from the **Pythagorean theorem** because the <InlineMath math="x" /> and <InlineMath math="y" /> components are perpendicular. The two component arrows and the vector form a right triangle whose hypotenuse has length <InlineMath math="10" />.
 
 <MathVisual
   title={<>A Vector and Its Two Components</>}
-  description={<><InlineMath math="\vec A=6\hat i+8\hat j" /> with its x and y components. One grid step is <InlineMath math="2" /> units.</>}
+  description={<><InlineMath math="\vec A=6\hat i+8\hat j" /> plotted directly in units with its horizontal and vertical components.</>}
+  footer={<>The right triangle of <InlineMath math="6" /> and <InlineMath math="8" /> fixes the vector length at <InlineMath math="10" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 9.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "ax", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "ax-head", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 0 }, { x: 2.75, y: 0.125 }, { x: 2.75, y: -0.125 }] },
-      { id: "ay", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
-      { id: "ay-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 4 }, { x: 3.125, y: 3.75 }, { x: 2.875, y: 3.75 }] },
-      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
-      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 4 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) + ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) + ((0.25 / 2) * 3) / Math.hypot(3, 4) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) - ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) - ((0.25 / 2) * 3) / Math.hypot(3, 4) }] },
+      { id: "ax", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "ay", kind: "vector", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 6, y: 8 } },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 8 } },
     ],
     labels: [
-      { key: "ax", objectId: "ax", at: { x: 1.5, y: 0 }, placement: "below" },
-      { key: "ay", objectId: "ay", at: { x: 3, y: 2 }, placement: "right" },
-      { key: "a", objectId: "a", at: { x: 1.5, y: 2 }, placement: "above-left" },
+      { key: "ax", objectId: "ax", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "ay", objectId: "ay", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 3, y: 4 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -102,13 +118,17 @@ The two component arrows below and the vector form a right triangle, so the leng
   }}
 />
 
+Whenever two components sit on perpendicular axes, the vector length is always the square root of the sum of their squares rather than their plain sum <InlineMath math="14" />.
+
 ## Components in Three Dimensional Space
 
-In three-dimensional space, a vector needs three components. The general form is:
+In three-dimensional space, a vector needs three perpendicular components along <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" />, written with the **third unit vector** <InlineMath math="\hat{k}" />.
 
 <BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}+A_z\hat{k}" />
 
-The unit vector <InlineMath math="\hat{k}" /> points along the **third coordinate axis**, the <InlineMath math="z" /> axis. This component is needed when motion or force is not limited to a flat plane, such as a drone moving east, north, and upward at the same time.
+### Stacking Perpendicular Axis Steps
+
+The unit vector <InlineMath math="\hat{k}" /> points along the **third coordinate axis**, the <InlineMath math="z" /> axis. This component is needed when motion or force leaves a flat plane, such as a drone moving east, north, and upward at once.
 
 <MathVisual
   title={<>Components of <InlineMath math="\vec{A}" /></>}
@@ -118,6 +138,7 @@ The unit vector <InlineMath math="\hat{k}" /> points along the **third coordinat
       into three perpendicular components.
     </>
   }
+  footer={<>Follow the three axis steps in order to reach the exact tip of <InlineMath math="\vec A" />.</>}
   labels={{
     "l1": <InlineMath math="A" />,
     "l2": <InlineMath math="A_x" />,
@@ -129,14 +150,10 @@ The unit vector <InlineMath math="\hat{k}" /> points along the **third coordinat
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 2.5 } },
     view: { kind: "camera", position: { x: 8, y: 6, z: -6 }, target: { x: 2, y: 1.5, z: 1 } },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2.4, y: 1.8, z: 1.2 }, { x: 4, y: 3, z: 2 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2.4, y: 1.8, z: 1.2 }, to: { x: 4, y: 3, z: 2 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 2, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 4, y: 0, z: 0 }, { x: 4, y: 1.5, z: 0 }, { x: 4, y: 3, z: 0 }], appearance: "answer" },
-      { id: "s3-head", kind: "vector", from: { x: 4, y: 1.5, z: 0 }, to: { x: 4, y: 3, z: 0 }, appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 3, z: 0 }, { x: 4, y: 3, z: 1 }, { x: 4, y: 3, z: 2 }], appearance: "highlight" },
-      { id: "s4-head", kind: "vector", from: { x: 4, y: 3, z: 1 }, to: { x: 4, y: 3, z: 2 }, appearance: "highlight" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 3, z: 2 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 4, y: 0, z: 0 }, to: { x: 4, y: 3, z: 0 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 4, y: 3, z: 0 }, to: { x: 4, y: 3, z: 2 }, appearance: "highlight" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.8, z: 1.2 }, placement: "above-right" },
@@ -147,32 +164,52 @@ The unit vector <InlineMath math="\hat{k}" /> points along the **third coordinat
   }}
 />
 
-The visual uses component steps in order: move along the <InlineMath math="x" /> axis, then the <InlineMath math="y" /> axis, then the <InlineMath math="z" /> axis. The final endpoint is the same as the endpoint of vector <InlineMath math="\vec{A}" />.
-
-
-Rotate the model to see that the <InlineMath math="z" /> component is **perpendicular to the <InlineMath math="xy" /> plane**. The <InlineMath math="x" /> and <InlineMath math="y" /> components form a vector in that plane. The spatial vector length also includes the <InlineMath math="z" /> component.
+The visual uses component steps in order: move along the <InlineMath math="x" /> axis, then the <InlineMath math="y" /> axis, then the <InlineMath math="z" /> axis. Rotate the model to see that the <InlineMath math="z" /> component is **perpendicular to the <InlineMath math="xy" /> plane**, so the spatial length includes all three squares:
 
 <BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{4^2+3^2+2^2} \\ &= \sqrt{16+9+4} \\ &= \sqrt{29}\end{aligned}" />
 
-The drone ends <InlineMath math="2\text{ m}" /> east, <InlineMath math="3\text{ m}" /> north and <InlineMath math="6\text{ m}" /> up from its pad. The three coloured arrows are those components, tip to tail, and the violet arrow is their sum, <InlineMath math="\sqrt{2^2+3^2+6^2}=7" /> metres long.
+### Three Components of a Flight
 
-<DroneDisplacementLab
+Suppose a drone flies <InlineMath math="2\text{ m}" /> east and <InlineMath math="3\text{ m}" /> north, giving a ground diagonal of <InlineMath math="\sqrt{13}\text{ m}" /> (about <InlineMath math="3.61\text{ m}" />), and also climbs <InlineMath math="h" /> meters upward. At <InlineMath math="h = 6\text{ m}" />, the **three-dimensional length** reaches an exact integer value:
+
+<BlockMath math="\lvert\vec{r}\rvert = \sqrt{2^2+3^2+6^2} = \sqrt{49} = 7\text{ m}" />
+
+<MathVisual
   title={<>Three Components of a Flight</>}
-  description={<>The drone climbs <InlineMath math="6\text{ m}" />, then flies <InlineMath math="2\text{ m}" /> east and <InlineMath math="3\text{ m}" /> north.</>}
-  hops={[
-    { east: 0, north: 0, up: 6 },
-    { east: 2, north: 0, up: 0 },
-    { east: 0, north: 3, up: 0 },
-  ]}
+  description={<>Ground diagonal <InlineMath math="\sqrt{13}\text{ m}" /> from <InlineMath math="2\text{ m}" /> east and <InlineMath math="3\text{ m}" /> north combined with climb <InlineMath math="h" />.</>}
+  footer={<>At <InlineMath math="h=6\text{ m}" /> the three components <InlineMath math="(2,3,6)" /> build a <InlineMath math="7\text{ m}" /> span.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 1, max: 10, value: 6, step: 0.5, label: "climb-h" },
+    ],
+    objects: [
+      { id: "horiz", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(13), y: 0 } },
+      { id: "vert", kind: "path", appearance: "secondary", points: [{ x: "sqrt(13)", y: "0" }, { x: "sqrt(13)", y: "h" }] },
+      { id: "span", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "sqrt(13)", y: "h" }] },
+      { id: "drone", kind: "marker", appearance: "answer", x: "sqrt(13)", y: "h" },
+    ],
+    labels: [
+      { key: "horiz", objectId: "horiz", at: { x: 1.8, y: 0 }, placement: "below" },
+      { key: "drone", objectId: "drone", at: { x: "sqrt(13)", y: "h" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "up-val", formula: "h" },
+      { key: "space-len", formula: "sqrt(13 + h^2)" },
+    ],
+  }}
   labels={{
-    chooseFactor: "Multiply the flight plan by k",
-    displacement: <>Displacement</>,
-    path: <>Path flown</>,
-    size: <>Distance from the pad</>,
-    viewLabel: "Drone flying from its pad",
+    "climb-h": <>Vertical climb <InlineMath math="h" /> (m)</>,
+    horiz: <InlineMath math="\sqrt{13}\text{ m}" />,
+    drone: <InlineMath math="\vec r" />,
+    "up-val": <>Height <InlineMath math="z" /> (m)</>,
+    "space-len": <>Total distance (m)</>,
   }}
 />
 
+Sliding <InlineMath math="h" /> confirms that the vertical step is perpendicular to the whole horizontal plane, so its square adds straight onto <InlineMath math="x^2 + y^2" />.
 
 ## Positive and Negative Component Signs
 
@@ -186,60 +223,74 @@ The vector's magnitude stays zero or positive. A component's sign marks <Highlig
 
 If <InlineMath math="\vec{B}=-5\hat{i}+2\hat{j}" />, the vector has a <InlineMath math="5" /> unit component toward negative <InlineMath math="x" /> and a <InlineMath math="2" /> unit component toward positive <InlineMath math="y" />.
 
-## A Ferry Heading South West
+On a compass bearing <InlineMath math="b" /> measured clockwise from north, an <InlineMath math="8\text{ km}" /> ferry trip points southwest at <InlineMath math="b = 225^\circ" />, so **both components turn negative**: <InlineMath math="-5.66\text{ km}" /> east and <InlineMath math="-5.66\text{ km}" /> north. Turn <InlineMath math="b" /> through every quadrant and watch the component signs flip.
 
-On a bearing of <InlineMath math="225^\circ" /> the ferry heads south west, so **both components are negative**: <InlineMath math="-5.66\text{ km}" /> east and <InlineMath math="-5.66\text{ km}" /> north. Turn the bearing through each quadrant and watch the signs flip.
-
-<ShipBearingComponentLab
-  title={<>Signs from the Compass</>}
-  description={<>A ferry sails <InlineMath math="8\text{ km}" /> from the harbour. Turn its bearing.</>}
-  courses={[{ bearing: 225, distance: 8 }]}
+<MathVisual
+  title={<>Component Signs from a Compass Bearing</>}
+  description={<>An <InlineMath math="8\text{ km}" /> ferry leg at compass bearing <InlineMath math="b" /> clockwise from north with its east and north components.</>}
+  footer={<>Turn bearing <InlineMath math="b" /> across each axis to see east and north signs flip.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -10, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 0, max: 360, value: 225, step: 15, label: "bearing" },
+    ],
+    objects: [
+      { id: "east-comp", kind: "path", appearance: "construction", points: [{ x: "0", y: "0" }, { x: "8*sin(b*pi/180)", y: "0" }] },
+      { id: "north-comp", kind: "path", appearance: "secondary", points: [{ x: "8*sin(b*pi/180)", y: "0" }, { x: "8*sin(b*pi/180)", y: "8*cos(b*pi/180)" }] },
+      { id: "ferry-leg", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "8*sin(b*pi/180)", y: "8*cos(b*pi/180)" }] },
+      { id: "ship", kind: "marker", appearance: "answer", x: "8*sin(b*pi/180)", y: "8*cos(b*pi/180)" },
+    ],
+    labels: [
+      { key: "ship", objectId: "ship", at: { x: "8*sin(b*pi/180)", y: "8*cos(b*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "east-km", formula: "8*sin(b*pi/180)" },
+      { key: "north-km", formula: "8*cos(b*pi/180)" },
+    ],
+  }}
   labels={{
-    bearing: <>Bearing of the last leg</>,
-    bearingName: "Bearing of the last leg",
-    direction: <>Bearing from the harbour</>,
-    distance: <>Distance from the harbour</>,
-    east: <>East component</>,
-    north: <>North component</>,
-    viewLabel: "Ferry sailing from a harbour",
+    bearing: <>Compass bearing <InlineMath math="b" /> (<InlineMath math="^\circ" />)</>,
+    ship: <InlineMath math="8\text{ km}" />,
+    "east-km": <>East component (km)</>,
+    "north-km": <>North component (km)</>,
   }}
 />
 
+Every quadrant produces a distinct pair of signs while the trip length remains <InlineMath math="8\text{ km}" />. Checking the quadrant prevents sign errors before you add vectors together.
+
 ## Displacement Written as Components
 
-A student walks <InlineMath math="3\text{ m}" /> east, then <InlineMath math="4\text{ m}" /> north. If east is the positive <InlineMath math="x" /> direction and north is the positive <InlineMath math="y" /> direction, the displacement is:
+Any path across a grid or city street breaks cleanly into **axis components with physical units**. Adding the east-west steps separately from the north-south steps produces the net displacement vector, its straight distance, and its angle directly from right-triangle geometry.
+
+### Two Perpendicular Steps on Foot
+
+A hiker walks <InlineMath math="3\text{ m}" /> east and then turns <InlineMath math="4\text{ m}" /> north. Taking east as positive <InlineMath math="x" /> and north as positive <InlineMath math="y" />, the displacement is:
 
 <MathContainer>
   <BlockMath math="\vec{s}=(3\hat{i}+4\hat{j})\text{ m}" />
   <BlockMath math="\begin{aligned}\lvert\vec{s}\rvert &= \sqrt{3^2+4^2}\text{ m} \\ &= \sqrt{9+16}\text{ m} \\ &= 5\text{ m}\end{aligned}" />
 </MathContainer>
 
-Displacement components have **units of meters**. Unit vectors specify direction only, so the vector equation must retain the physical unit.
-
-The component form shows a net displacement toward the east and north. Its magnitude <InlineMath math="5\text{ m}" /> comes from a right triangle with side lengths <InlineMath math="3\text{ m}" /> and <InlineMath math="4\text{ m}" />.
-
-Measure the displacement direction from east toward north. Both components are positive, so the angle is in the first quadrant.
+Displacement components carry **units of meters**. Unit vectors specify direction only, so the vector equation must retain the physical unit. Measuring the angle from east toward north in the first quadrant gives:
 
 <BlockMath math="\begin{aligned}\tan\theta &= \frac{4}{3} \\ \theta &= \arctan\left(\frac{4}{3}\right) \\ &\approx 53.1^\circ\end{aligned}" />
 
 The displacement therefore points about <InlineMath math="53.1^\circ" /> north of east.
 
-Here is the walk as components. The east and north parts are the components, and the orange arrow is the displacement written from them, <InlineMath math="3\hat{i}+4\hat{j}" /> meters, about <InlineMath math="53.1^\circ" /> from east.
-
 <MathVisual
   title={<>A Walk Written as Components</>}
-  description={<><InlineMath math="3\text{ m}" /> east, then <InlineMath math="4\text{ m}" /> north. One grid step is <InlineMath math="1\text{ m}" />.</>}
+  description={<>Walking <InlineMath math="3\text{ m}" /> east and <InlineMath math="4\text{ m}" /> north gives <InlineMath math="3\hat i+4\hat j\text{ m}" /> directly in meters.</>}
+  footer={<>The east and north legs meet at right angles to give <InlineMath math="5\text{ m}" /> at <InlineMath math="53.1^\circ" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "east", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "east-head", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 0 }, { x: 2.75, y: 0.125 }, { x: 2.75, y: -0.125 }] },
-      { id: "north", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
-      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 4 }, { x: 3.125, y: 3.75 }, { x: 2.875, y: 3.75 }] },
-      { id: "walk", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
-      { id: "walk-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 4 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) + ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) + ((0.25 / 2) * 3) / Math.hypot(3, 4) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) - ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) - ((0.25 / 2) * 3) / Math.hypot(3, 4) }] },
+      { id: "east", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "north", kind: "vector", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "walk", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
     ],
     labels: [
       { key: "east", objectId: "east", at: { x: 1.5, y: 0 }, placement: "below" },
@@ -254,25 +305,48 @@ Here is the walk as components. The east and north parts are the components, and
   }}
 />
 
-## A Walk in Three Legs
+Both components are positive, so the arrow sits cleanly in the first quadrant and its slope ratio <InlineMath math="4/3" /> matches <InlineMath math="\tan 53.1^\circ" />.
 
-The walk goes <InlineMath math="400\text{ m}" /> east, <InlineMath math="300\text{ m}" /> north and <InlineMath math="100\text{ m}" /> back west. **Add the components**: <InlineMath math="300\text{ m}" /> east and <InlineMath math="300\text{ m}" /> north, so the displacement is <InlineMath math="424\text{ m}" /> even though the path is <InlineMath math="800\text{ m}" /> long.
+### Adding Three Street Legs
 
-<CityWalkDisplacementLab
-  title={<>Adding the Legs of a Walk</>}
-  description={<>A walk at <InlineMath math="1.25\text{ m/s}" /> through the town's streets.</>}
-  legs={[
-    { east: 400, north: 0 },
-    { east: 0, north: 300 },
-    { east: -100, north: 0 },
-  ]}
-  pace={1.25}
+Now follow a three-leg town walk: <InlineMath math="400\text{ m}" /> east, <InlineMath math="300\text{ m}" /> north, and then <InlineMath math="w" /> meters back west. At <InlineMath math="w = 100\text{ m}" />, **adding the east components** leaves <InlineMath math="300\text{ m}" /> east and <InlineMath math="300\text{ m}" /> north, so the displacement is <InlineMath math="424\text{ m}" /> even though the path is <InlineMath math="800\text{ m}" /> long.
+
+<MathVisual
+  title={<>Adding the Legs of a Three Stage Walk</>}
+  description={<>Legs of <InlineMath math="400\text{ m}" /> east, <InlineMath math="300\text{ m}" /> north, and an adjustable westward return <InlineMath math="w" /> in meters.</>}
+  footer={<>Increase westward return <InlineMath math="w" /> to shrink net east displacement.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -50, max: 460 }, y: { min: -50, max: 380 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 400, value: 100, step: 50, label: "west-back" },
+    ],
+    objects: [
+      { id: "leg1", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 400, y: 0 } },
+      { id: "leg2", kind: "vector", appearance: "secondary", from: { x: 400, y: 0 }, to: { x: 400, y: 300 } },
+      { id: "leg3", kind: "path", appearance: "primary", points: [{ x: "400", y: "300" }, { x: "400 - w", y: "300" }] },
+      { id: "net-walk", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "400 - w", y: "300" }] },
+      { id: "end-pt", kind: "marker", appearance: "answer", x: "400 - w", y: "300" },
+    ],
+    labels: [
+      { key: "leg1", objectId: "leg1", at: { x: 200, y: 0 }, placement: "below" },
+      { key: "end-pt", objectId: "end-pt", at: { x: "400 - w", y: "300" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "net-east", formula: "400 - w" },
+      { key: "total-path", formula: "700 + w" },
+      { key: "disp-m", formula: "sqrt((400 - w)^2 + 90000)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Average speed</>,
-    averageVelocity: <>Average velocity</>,
-    displacement: <>Displacement</>,
-    distance: <>Distance walked</>,
-    time: <>Time</>,
-    viewLabel: "Walk through a town seen from above",
+    "west-back": <>Westward return <InlineMath math="w" /> (m)</>,
+    leg1: <InlineMath math="400\text{ m}" />,
+    "end-pt": <InlineMath math="\Delta\vec r" />,
+    "net-east": <>Net east component (m)</>,
+    "total-path": <>Path walked (m)</>,
+    "disp-m": <>Displacement (m)</>,
   }}
 />
+
+Walking farther back west lengthens the total distance walked while pulling the final position closer to the north axis, proving why negative components subtract directly along the <InlineMath math="x" /> axis.

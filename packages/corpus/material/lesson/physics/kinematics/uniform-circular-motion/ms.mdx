@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Gerakan Membulat Seragam",
   description:
@@ -26,6 +25,7 @@ Laju memberitahu kamu berapa pantas objek bergerak di sepanjang lintasan. Halaju
       Ubah tempoh untuk melihat kereta melengkapkan setiap pusingan pada laju yang berbeza.
     </>
   }
+  footer={<>Tempoh lebih singkat melajukan kereta dan membesarkan pecutan memusatnya.</>}
   labels={{
     choosePeriod: "Pilih tempoh",
     period: <>Tempoh</>,
@@ -36,29 +36,62 @@ Laju memberitahu kamu berapa pantas objek bergerak di sepanjang lintasan. Halaju
   }}
 />
 
-Setiap selekoh trek olahraga ialah separuh bulatan. Pelari yang mengekalkan <InlineMath math="8\text{ m/s}" /> di selekoh itu mempunyai **laju malar tetapi halaju yang berpusing**, jadi pelari itu sedang memecut.
+Setiap selekoh trek olahraga ialah separuh bulatan. Pelari yang mengekalkan <InlineMath math="8\text{ m/s}" /> di selekoh lorong <InlineMath math="1" /> berjejari <InlineMath math="36.8\text{ m}" /> mempunyai **laju malar tetapi halaju yang berpusing**, jadi pelari itu sedang memecut. Seret sudut <InlineMath math="a" /> di bawah untuk melihat anak panah halaju tangen berpusing sementara pecutan menghala ke pusat.
 
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>Mengelilingi Selekoh</>}
+<MathVisual
+  title={<>Halaju Berpusing di Selekoh Trek</>}
   description={
     <>
-      Pelari itu mengekalkan <InlineMath math="8\text{ m/s}" /> di lorong <InlineMath math="1" />. Perhatikan anak panah hijau kebiruan mengekalkan panjangnya sambil berpusing, dan hentikan larian pada <InlineMath math="100\text{ m}" /> untuk melihatnya di pertengahan.
+      Seret sudut <InlineMath math="a" /> di sepanjang selekoh separuh bulatan berjejari <InlineMath math="36.8\text{ m}" /> untuk melihat halaju tangen (hijau kebiruan) berpusing sementara pecutan (merah jambu) menghala ke pusat.
     </>
   }
+  footer={<>Anak panah halaju tangen terus berpusing semasa pelari mengikut selekoh.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -55, max: 55 }, y: { min: -22, max: 52 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 180, value: 45, step: 15, label: "a" },
+    ],
+    objects: [
+      { id: "bend", kind: "arc", appearance: "reference", center: { x: 0, y: 0 }, radius: 36.8, startDegrees: 0, sweepDegrees: 180 },
+      { id: "center-pt", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "radius-line", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" }] },
+      { id: "tangent-vel", kind: "path", appearance: "construction", points: [{ x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" }, { x: "36.8*cos(a*pi/180) - 16*sin(a*pi/180)", y: "36.8*sin(a*pi/180) + 16*cos(a*pi/180)" }] },
+      { id: "inward-acc", kind: "path", appearance: "warning", points: [{ x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" }, { x: "26.8*cos(a*pi/180)", y: "26.8*sin(a*pi/180)" }] },
+      { id: "runner-pt", kind: "marker", appearance: "primary", x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "center", objectId: "center-pt", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "runner", objectId: "runner-pt", at: { x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "arc-dist", formula: "36.8*a*pi/180" },
+      { key: "vx", formula: "-8*sin(a*pi/180)" },
+      { key: "vy", formula: "8*cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Magnitud halaju purata</>,
-    chooseDistance: "Pilih jarak larian",
-    displacement: <>Magnitud sesaran</>,
-    distance: <>Jarak larian</>,
-    time: <>Masa</>,
-    viewLabel: "Pelari di trek olahraga 400 m dilihat dari atas",
+    a: <>Sudut selekoh <InlineMath math="a" /> (deg)</>,
+    center: <>Pusat</>,
+    runner: <>Pelari</>,
+    "arc-dist": <>Lengkok dilalui (m)</>,
+    vx: <>Halaju x (m/s)</>,
+    vy: <>Halaju y (m/s)</>,
   }}
 />
 
-Di lorong <InlineMath math="1" />, jejari selekoh kira-kira <InlineMath math="36.8\text{ m}" />, jadi pecutan memusat pelari di situ ialah <InlineMath math="\frac{8^2}{36.8}\approx1.74\text{ m/s}^2" />. Di bahagian lurus, anak panah berhenti berpusing dan pecutannya sifar.
+Di lorong <InlineMath math="1" />, jejari selekoh ialah kira-kira <InlineMath math="36.8\text{ m}" />, jadi pecutan memusat pelari di selekoh ialah:
 
-## Kedudukan Sudut dan Sesaran Sudut
+<BlockMath math="a_c=\frac{8^2}{36.8}\approx1.74\text{ m/s}^2" />
+
+Di bahagian lurus, anak panah halaju berhenti berpusing dan pecutannya menjadi sifar.
+
+## Gerakan Sudut dan Masa Putaran
+
+Selain mengukur meter sepanjang garis lurus, gerakan membulat mengukur **sudut yang disapu** dan masa untuk satu putaran penuh. Menghubungkan sudut, putaran roda, tempoh dan frekuensi memberikan satu ukuran kadar putaran yang ringkas.
+
+### Kedudukan Sudut dan Sesaran Sudut
 
 Dalam gerakan garis lurus, satu koordinat memberikan kedudukan relatif kepada sifar. Dalam gerakan membulat, satu sudut memberikan kedudukan relatif kepada satu garis rujukan. Perubahan sudut itu dipanggil **sesaran sudut**.
 
@@ -68,7 +101,7 @@ Jika objek bergerak dari satu garis rujukan dan menyapu sudut bertanda <InlineMa
 
 Simbol <InlineMath math="\omega" /> dipanggil omega. Dalam gerakan membulat seragam, halaju sudut adalah malar, jadi nilainya sama dengan nilai purata bagi setiap selang masa. Unitnya ialah radian per saat, ditulis <InlineMath math="\text{rad/s}" />. Radian digunakan kerana satu pusingan penuh bersamaan <InlineMath math="2\pi" /> radian.
 
-## Satu Sudut bagi Seluruh Roda
+### Satu Sudut bagi Seluruh Roda
 
 Pada roda yang berputar, **setiap titik menyapu sudut yang sama dalam masa yang sama**, jadi seluruh roda mempunyai satu halaju sudut. Injap pada rim dan pemantul di pertengahan jejari memudahkan perbandingan itu.
 
@@ -79,6 +112,7 @@ Pada roda yang berputar, **setiap titik menyapu sudut yang sama dalam masa yang 
       Pilih masa untuk satu pusingan. Kedua-dua tanda berpusing melalui sudut yang sama, tetapi anak panah halajunya berbeza.
     </>
   }
+  footer={<>Kedua-dua tanda berkongsi halaju sudut sama, namun titik rim bergerak lebih laju.</>}
   labels={{
     angularSpeed: <>Laju sudut</>,
     choosePeriod: "Pilih masa untuk satu pusingan",
@@ -91,7 +125,7 @@ Pada roda yang berputar, **setiap titik menyapu sudut yang sama dalam masa yang 
 
 Pada satu pusingan sesaat, kedua-dua tanda menyapu <InlineMath math="2\pi\text{ rad}" /> setiap saat, jadi <InlineMath math="\omega\approx6.28\text{ rad/s}" /> bagi injap dan pemantul. Laju kedua-duanya berbeza, kira-kira <InlineMath math="1.95" /> dan <InlineMath math="0.97\text{ m/s}" />, kerana kedua-duanya berada pada jejari yang berbeza.
 
-## Tempoh dan Frekuensi Menerangkan Satu Putaran
+### Tempoh dan Frekuensi Menerangkan Satu Putaran
 
 Tempoh, ditulis <InlineMath math="T" />, ialah masa yang diperlukan untuk satu putaran. Frekuensi, ditulis <InlineMath math="f" />, ialah bilangan putaran lengkap dalam setiap saat.
 
@@ -104,7 +138,11 @@ Kedua-duanya ialah **salingan** antara satu sama lain:
 
 Apabila tempoh lebih kecil, objek melengkapkan satu putaran dengan lebih cepat. Akibatnya, frekuensi dan laju sudutnya <InlineMath math="\lvert\omega\rvert" /> menjadi lebih besar. Tanda bagi <InlineMath math="\omega" /> pula merekodkan arah putaran secara berasingan.
 
-## Arah Halaju dan Pecutan pada Bulatan
+## Halaju Tangen pada Bulatan
+
+Mengetahui seberapa pantas objek berpusing baru separuh gambaran. Kita juga perlu **arah dan magnitud halajunya sepanjang lilitan**. Meneliti vektor tangen dan melepaskan tali menunjukkan sebab laju linear bertambah bersama jejari.
+
+### Arah Halaju dan Pecutan pada Bulatan
 
 Pada setiap titik di lintasan membulat, <Highlight>halaju menghala secara tangen kepada bulatan</Highlight>. Pecutan memusat menghala ke pusat. Halaju dan pecutan saling berserenjang, jadi objek boleh mempunyai laju malar dan masih mempunyai pecutan.
 
@@ -115,6 +153,7 @@ Inilah kereta kecil daripada contoh tadi pada empat ketika, setiap satu berjarak
 <MathVisual
   title={<>Halaju dan Pecutan di Sekeliling Trek</>}
   description={<>Jejari <InlineMath math="4\text{ m}" /> dan tempoh <InlineMath math="6\text{ s}" />. Anak panah hijau kebiruan ialah halaju pada separuh skala, dan anak panah merah jambu ialah pecutan memusat pada separuh skala.</>}
+  footer={<>Setiap suku pusingan memutar kedua-dua panah sambil kekal berserenjang.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
@@ -152,7 +191,9 @@ Inilah kereta kecil daripada contoh tadi pada empat ketika, setiap satu berjarak
   }}
 />
 
-## Laju Tangen Berkait dengan Laju Sudut
+Tiada satu pun anak panah merah jambu yang selari dengan anak panah hijau kebiruan. Kerana pecutan ke pusat kekal berserenjang dengan halaju di setiap titik, pecutan itu membelokkan lintasan tanpa melajukan atau memperlahankan kereta.
+
+### Laju Tangen Berkait dengan Laju Sudut
 
 Laju tangen ialah magnitud halaju objek **di sepanjang lintasan membulat**. Jika jejarinya <InlineMath math="r" />, satu lilitan penuh ialah <InlineMath math="2\pi r" />. Kerana satu putaran mengambil masa <InlineMath math="T" />, laju tangennya ialah:
 
@@ -162,8 +203,6 @@ Laju tangen ialah magnitud halaju objek **di sepanjang lintasan membulat**. Jika
 </MathContainer>
 
 Rumus <InlineMath math="v=\lvert\omega\rvert r" /> bermaksud dua objek dengan laju sudut yang sama tidak semestinya mempunyai laju tangen yang sama. Objek yang lebih jauh dari pusat melalui lintasan yang lebih panjang, jadi laju tangennya lebih besar.
-
-## Lepaskan dan Bola Terbang Lurus
 
 Bola yang diputar pada tali menunjukkan sebab halaju menjadi tangen. Selagi tali menarik, **bola terus berpusing**, dan sebaik sahaja kamu melepaskannya ia terbang lurus di sepanjang tangen.
 
@@ -176,6 +215,7 @@ Bola yang diputar pada tali menunjukkan sebab halaju menjadi tangen. Selagi tali
       Panjang tali ialah <InlineMath math="0.8\text{ m}" /> dan satu pusingan mengambil masa <InlineMath math="0.8\text{ s}" />. Pilih titik tempat kamu melepaskannya.
     </>
   }
+  footer={<>Sebaik tarikan tali hilang, bola terus bergerak lurus di sepanjang tangen.</>}
   labels={{
     acceleration: <>Pecutan memusat</>,
     chooseRelease: "Pilih titik lepas",
@@ -192,7 +232,14 @@ Bola yang diputar pada tali menunjukkan sebab halaju menjadi tangen. Selagi tali
   }}
 />
 
-Di sini <InlineMath math="\omega=\frac{2\pi}{0.8}\approx7.85\text{ rad/s}" />, jadi <InlineMath math="v=\omega r\approx6.28\text{ m/s}" />. Lepaskan di titik timur dan bola menghala ke utara, berserenjang dengan tali yang baru ditinggalkannya.
+Bagi panjang tali dan tempoh ini, laju sudut dan laju tangennya ialah:
+
+<MathContainer>
+  <BlockMath math="\omega=\frac{2\pi}{0.8}\approx7.85\text{ rad/s}" />
+  <BlockMath math="v=\omega r\approx6.28\text{ m/s}" />
+</MathContainer>
+
+Lepaskan di titik timur dan bola menghala ke utara, berserenjang dengan tali yang baru ditinggalkannya.
 
 ## Pecutan Memusat Sentiasa Menghala ke Dalam
 
@@ -203,11 +250,9 @@ Walaupun lajunya malar, arah halaju terus berpusing. Untuk mengubah arah halaju,
   <BlockMath math="a_c=\omega^2 r" />
 </MathContainer>
 
-Pecutan memusat sentiasa menghala **ke pusat bulatan**. Jadi, jangan anggap pecutan ini menghala mengikut arah gerakan objek. Halaju menghala secara tangen kepada lintasan, manakala pecutan memusat menghala ke dalam.
+Pecutan memusat sentiasa menghala **ke pusat bulatan**. Halaju menghala secara tangen kepada lintasan, manakala pecutan memusat menghala ke dalam.
 
-## Graviti sebagai Tarikan Memusat
-
-Bagi satelit dalam orbit membulat, graviti membekalkan pecutan memusat. **Graviti menghala ke pusat Bumi**, tepat ke arah yang mesti dituju oleh <InlineMath math="a_c" />.
+Bagi satelit dalam orbit membulat, graviti membekalkan pecutan ke dalam ini. **Graviti menghala ke pusat Bumi**, tepat ke arah yang mesti dituju oleh <InlineMath math="a_c" />.
 
 <SatelliteOrbitCircularLab
   title={<>Satelit dalam Orbit Membulat</>}
@@ -216,6 +261,7 @@ Bagi satelit dalam orbit membulat, graviti membekalkan pecutan memusat. **Gravit
       Pilih satelit. Anak panah hijau kebiruan ialah halajunya dan anak panah magenta ialah pecutannya ke arah pusat Bumi.
     </>
   }
+  footer={<>Graviti Bumi menarik lurus ke pusat, berserenjang dengan lintasan orbit satelit.</>}
   labels={{
     acceleration: <>Pecutan memusat</>,
     chooseOrbit: "Pilih satelit",
@@ -231,7 +277,11 @@ Bagi satelit dalam orbit membulat, graviti membekalkan pecutan memusat. **Gravit
   }}
 />
 
-Stesen angkasa mengorbit pada kira-kira <InlineMath math="7.67\text{ km/s}" /> sekali setiap <InlineMath math="92.4\text{ min}" />, jadi <InlineMath math="a_c=\frac{v^2}{r}\approx8.69\text{ m/s}^2" />. Satelit geopegun mengambil masa kira-kira <InlineMath math="23.93\text{ h}" />, iaitu masa yang diperlukan oleh Bumi untuk berputar sekali.
+Stesen angkasa mengorbit pada kira-kira <InlineMath math="7.67\text{ km/s}" /> sekali setiap <InlineMath math="92.4\text{ min}" />, memberikan pecutan memusat:
+
+<BlockMath math="a_c=\frac{v^2}{r}\approx8.69\text{ m/s}^2" />
+
+Satelit geopegun berada jauh lebih tinggi dan mengambil masa kira-kira <InlineMath math="23.93\text{ h}" />, sepadan dengan masa Bumi berputar sekali.
 
 ## Satu Pusingan Penuh Kereta Kecil
 
@@ -243,19 +293,20 @@ Laju sudutnya ialah:
 
 Laju tangennya ialah:
 
-<BlockMath math="\begin{aligned} v &amp;=\lvert\omega\rvert r \\ &amp;=\frac{\pi}{3}(4) \\ &amp;=\frac{4\pi}{3}\text{ m/s} \\ &amp;\approx4.19\text{ m/s} \end{aligned}" />
+<BlockMath math="\begin{aligned} v &=\lvert\omega\rvert r \\ &=\frac{\pi}{3}(4) \\ &=\frac{4\pi}{3}\text{ m/s} \\ &\approx4.19\text{ m/s} \end{aligned}" />
 
 Pecutan memusatnya ialah:
 
 <BlockMath math="a_c=\frac{v^2}{r}=\frac{(4\pi/3)^2}{4}=\frac{16\pi^2}{36}=\frac{4\pi^2}{9}\text{ m/s}^2\approx4.39\text{ m/s}^2" />
 
-Jadi, kereta itu bergerak dengan **laju malar** kira-kira <InlineMath math="4.19\text{ m/s}" />, tetapi ia masih mempunyai pecutan kira-kira <InlineMath math="4.39\text{ m/s}^2" /> kerana arah halajunya sentiasa berubah.
+Jadi, kereta itu bergerak dengan **laju malar** kira-kira <InlineMath math="4.19\text{ m/s}" />, tetapi masih mempunyai pecutan ke pusat kira-kira <InlineMath math="4.39\text{ m/s}^2" /> kerana arah halajunya sentiasa berubah.
 
-Ikuti rantaian langkah ini bermula dengan tempoh. Dalam satu saat, jejari berpusing sebanyak <InlineMath math="\omega=2\pi/T" />, titik itu melalui lengkok <InlineMath math="v=\omega r" />, dan kemudian <InlineMath math="a_c=v^2/r=4\pi^2/9\text{ m/s}^2" />. Besarkan paparan pada lengkok oren yang dilalui dalam saat itu.
+Ikuti rantaian langkah daripada tempoh pada rajah di bawah. Dalam satu saat jejari berpusing sebanyak <InlineMath math="\omega" />, titik itu melalui lengkok oren <InlineMath math="v" />, dan pembelokan berterusan itu menetapkan nilai <InlineMath math="a_c" />.
 
 <MathVisual
   title={<>Daripada Tempoh kepada Pecutan Memusat</>}
   description={<>Sudut (jejari ungu) dan lengkok (oren) yang dilalui dalam <InlineMath math="1\text{ s}" /> pada bulatan berjejari <InlineMath math="4\text{ m}" /> dengan tempoh <InlineMath math="6\text{ s}" />.</>}
+  footer={<>Dalam satu saat jejari menyapu sudut omega dan melalui lengkok berwarna oren.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
@@ -277,3 +328,5 @@ Ikuti rantaian langkah ini bermula dengan tempoh. Dalam satu saat, jejari berpus
     arc: <InlineMath math="v=\omega r=\frac{4\pi}{3}\text{ m/s}" />,
   }}
 />
+
+Satu perenam bulatan bersamaan dengan <InlineMath math="60^\circ" />, atau <InlineMath math="\pi/3\text{ rad}" />, yang disapu dalam satu saat. Mendarabkan sudut itu dengan jejari <InlineMath math="4\text{ m}" /> memberikan panjang lengkok oren tepat <InlineMath math="4.19\text{ m}" /> setiap saat.

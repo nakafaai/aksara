@@ -1,9 +1,7 @@
-
-
 export const metadata = {
   title: "Vector Addition and Subtraction with Graphical Method",
   description:
-    "Find vector resultants using triangle, parallelogram, polygon, and negative-vector graphical methods.",
+    "Find vector resultants using triangle, parallelogram, polygon, and negative vector graphical methods.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
   dateModified: "2026-09-01",
@@ -25,6 +23,7 @@ The boat's own velocity of <InlineMath math="4\text{ m/s}" /> (teal) and the cur
 <RiverBoatCrossingLab
   title={<>Boat and Current Added</>}
   description={<>A river <InlineMath math="60\text{ m}" /> wide flowing at <InlineMath math="3\text{ m/s}" />.</>}
+  footer={<>Aiming upstream bends the velocity triangle and cuts downstream drift.</>}
   boatSpeed={4}
   current={3}
   width={60}
@@ -39,6 +38,8 @@ The boat's own velocity of <InlineMath math="4\text{ m/s}" /> (teal) and the cur
   }}
 />
 
+When the boat steers upstream, part of its own speed cancels the river current, reshaping the triangle so the violet resultant points closer to straight across.
+
 ### Head to Tail Triangle Method
 
 The triangle method is used to add two vectors. Draw the first vector, then place the tail of the second vector at the tip of the first. The resultant is drawn from the tail of the first vector to the tip of the second.
@@ -52,6 +53,7 @@ The triangle method is used to add two vectors. Draw the first vector, then plac
       connects the start point to the final point.
     </>
   }
+  footer={<>Joining <InlineMath math="\vec b" /> onto the tip of <InlineMath math="\vec a" /> lets <InlineMath math="\vec R" /> close the triangle.</>}
   labels={{
     "l1": <InlineMath math="a" />,
     "l2": <InlineMath math="b" />,
@@ -62,43 +64,60 @@ The triangle method is used to add two vectors. Draw the first vector, then plac
     frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -0.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0.5 }, { x: 4, y: 1 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2, y: 0.5 }, to: { x: 4, y: 1 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: 5, y: 2.5 }, { x: 6, y: 4 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 5, y: 2.5 }, to: { x: 6, y: 4 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.6, y: 2.4 }, { x: 6, y: 4 }], appearance: "answer" },
-      { id: "s3-head", kind: "vector", from: { x: 3.6, y: 2.4 }, to: { x: 6, y: 4 }, appearance: "answer" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 4, y: 1 }, to: { x: 6, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: 6, y: 4 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2, y: 0.5 }, placement: "below" },
       { key: "l2", objectId: "s2", at: { x: 5, y: 2.5 }, placement: "above-right" },
-      { key: "l3", objectId: "s3", at: { x: 3.6, y: 2.4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 3.6, y: 2.4 }, placement: "above-left" },
     ],
   }}
 />
 
-Place the **tail of the second vector at the tip of the first**. Coordinate units in the model are metres: the first displacement is <InlineMath math="(4,1)" />, followed by <InlineMath math="(2,3)" />. The endpoint is <InlineMath math="(6,4)" /> because you add the position changes along each axis.
+Place the **tail of the second vector at the tip of the first**. Coordinate units in the model are meters: the first displacement is <InlineMath math="(4,1)" />, followed by <InlineMath math="(2,3)" />. The endpoint is <InlineMath math="(6,4)" /> because you add the position changes along each axis.
 
 <BlockMath math="\vec{R}=(4+2,1+3)\text{ m}=(6,4)\text{ m}" />
 
-An airliner points north at <InlineMath math="400\text{ km/h}" /> while a <InlineMath math="300\text{ km/h}" /> wind blows east. Put the wind's tail on the tip of the air velocity: the third side of the triangle is the velocity over the ground, <InlineMath math="500\text{ km/h}" /> on a track of <InlineMath math="36.9^\circ" />.
+An airliner points north at <InlineMath math="400\text{ km/h}" /> while an eastward crosswind of speed <InlineMath math="w" /> pushes it sideways. Put the wind's tail on the tip of the air velocity: at <InlineMath math="w = 300\text{ km/h}" />, the third side of the triangle gives a ground velocity of <InlineMath math="500\text{ km/h}" /> on a drift angle of <InlineMath math="36.9^\circ" />.
 
-<AircraftCrosswindLab
-  title={<>Crosswind Triangle</>}
-  description={<>Airspeed <InlineMath math="400\text{ km/h}" />, wind <InlineMath math="300\text{ km/h}" /> toward the east. Turn the nose.</>}
-  airspeed={400}
-  toward={90}
-  wind={300}
+<MathVisual
+  title={<>Crosswind Velocity Triangle</>}
+  description={<>Northward airspeed <InlineMath math="400\text{ km/h}" /> joined head to tail with adjustable east wind <InlineMath math="w" /> in km/h.</>}
+  footer={<>Stronger crosswind <InlineMath math="w" /> stretches the third side and widens the drift.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -50, max: 560 }, y: { min: -50, max: 480 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 100, max: 500, value: 300, step: 50, label: "wind-speed" },
+    ],
+    objects: [
+      { id: "air", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 400 } },
+      { id: "wind", kind: "path", appearance: "secondary", points: [{ x: "0", y: "400" }, { x: "w", y: "400" }] },
+      { id: "ground", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "w", y: "400" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "w", y: "400" },
+    ],
+    labels: [
+      { key: "air", objectId: "air", at: { x: 0, y: 200 }, placement: "left" },
+      { key: "tip", objectId: "tip", at: { x: "w", y: "400" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "gs", formula: "sqrt(160000 + w^2)" },
+      { key: "drift", formula: "atan(w/400)*180/pi" },
+    ],
+  }}
   labels={{
-    between: <>Angle between airspeed and wind</>,
-    drift: <>Drift angle</>,
-    groundSpeed: <>Speed over the ground</>,
-    heading: <>Heading of the nose</>,
-    headingName: "Heading of the nose",
-    track: <>Track over the ground</>,
-    viewLabel: "Airliner over farmland in a crosswind",
+    "wind-speed": <>East wind <InlineMath math="w" /> (km/h)</>,
+    air: <InlineMath math="400\text{ km/h}" />,
+    tip: <InlineMath math="\vec v_g" />,
+    gs: <>Ground speed (km/h)</>,
+    drift: <>Drift angle (<InlineMath math="^\circ" />)</>,
   }}
 />
+
+Sliding the crosswind speed widens the right triangle immediately: the closing hypotenuse grows faster than airspeed alone, and the track drifts farther east of north.
 
 ### Parallelogram Method for Two Vectors with One Tail
 
@@ -107,6 +126,7 @@ Two forces acting at one point can be drawn from a **shared tail**. For example,
 <MathVisual
   title={<>The Parallelogram Diagonal</>}
   description={<>The purple arrow connects the shared tail to the endpoint of both paths. Vectors <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> remain equal to their parallel copies.</>}
+  footer={<>Both paths around the parallelogram meet at the same tip of <InlineMath math="\vec R" />.</>}
   labels={{
     "l1": <InlineMath math="a" />,
     "l2": <InlineMath math="b" />,
@@ -119,16 +139,11 @@ Two forces acting at one point can be drawn from a **shared tail**. For example,
     frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -0.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((1) - (0)) }, { x: 4, y: 1 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2, y: 0.5 }, to: { x: 4, y: 1 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((3) - (0)) }, { x: 2, y: 3 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 1, y: 1.5 }, to: { x: 2, y: 3 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: 3 }, { x: (2) + 0.5 * ((6) - (2)), y: (3) + 0.5 * ((4) - (3)) }, { x: 6, y: 4 }], appearance: "primary" },
-      { id: "s3-head", kind: "vector", from: { x: 4, y: 3.5 }, to: { x: 6, y: 4 }, appearance: "primary" },
-      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: (4) + 0.5 * ((6) - (4)), y: (1) + 0.5 * ((4) - (1)) }, { x: 6, y: 4 }], appearance: "secondary" },
-      { id: "s4-head", kind: "vector", from: { x: 5, y: 2.5 }, to: { x: 6, y: 4 }, appearance: "secondary" },
-      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((6) - (0)), y: (0) + 0.5 * ((4) - (0)) }, { x: 6, y: 4 }], appearance: "answer" },
-      { id: "s5-head", kind: "vector", from: { x: 3, y: 2 }, to: { x: 6, y: 4 }, appearance: "answer" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 2, y: 3 }, to: { x: 6, y: 4 }, appearance: "primary" },
+      { id: "s4", kind: "vector", from: { x: 4, y: 1 }, to: { x: 6, y: 4 }, appearance: "secondary" },
+      { id: "s5", kind: "vector", from: { x: 0, y: 0 }, to: { x: 6, y: 4 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2, y: 0.5 }, placement: "below" },
@@ -140,23 +155,46 @@ Two forces acting at one point can be drawn from a **shared tail**. For example,
   }}
 />
 
-Both tug cables start at the ship's bow, one tail. Their pulls of <InlineMath math="40\text{ kN}" /> and <InlineMath math="30\text{ kN}" /> span a parallelogram (dashed), and its diagonal from the bow is the resultant, <InlineMath math="50\text{ kN}" /> when the cables are square.
+Because opposite sides of a parallelogram are parallel and equal, the parallelogram method gives the exact same resultant as placing the vectors head to tail in either order.
 
-<TugboatResultantLab
-  title={<>Two Tugs, One Diagonal</>}
-  description={<>Tug pulls of <InlineMath math="40\text{ kN}" /> and <InlineMath math="30\text{ kN}" />. Open or close the cables.</>}
-  between={90}
-  first={40}
-  second={30}
+Two tug cables pulling a ship's bow from one shared tail show this directly. Their pulls of <InlineMath math="40\text{ kN}" /> and <InlineMath math="30\text{ kN}" /> separated by angle <InlineMath math="a" /> span a parallelogram whose diagonal from the bow is the resultant, <InlineMath math="50\text{ kN}" /> when the cables sit at <InlineMath math="90^\circ" />.
+
+<MathVisual
+  title={<>Two Tugs and One Diagonal</>}
+  description={<>Shared-tail pulls of <InlineMath math="40\text{ kN}" /> and <InlineMath math="30\text{ kN}" /> at angle <InlineMath math="a" /> spanning a parallelogram in kilonewtons.</>}
+  footer={<>Opening angle <InlineMath math="a" /> flattens the parallelogram and shortens its diagonal.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 75 }, y: { min: -15, max: 45 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 150, value: 90, step: 15, label: "cable-angle" },
+    ],
+    objects: [
+      { id: "tug1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 40, y: 0 } },
+      { id: "tug2", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "30*cos(a*pi/180)", y: "30*sin(a*pi/180)" }] },
+      { id: "side-top", kind: "path", appearance: "construction", points: [{ x: "30*cos(a*pi/180)", y: "30*sin(a*pi/180)" }, { x: "40 + 30*cos(a*pi/180)", y: "30*sin(a*pi/180)" }] },
+      { id: "side-right", kind: "path", appearance: "construction", points: [{ x: "40", y: "0" }, { x: "40 + 30*cos(a*pi/180)", y: "30*sin(a*pi/180)" }] },
+      { id: "diag", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "40 + 30*cos(a*pi/180)", y: "30*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "40 + 30*cos(a*pi/180)", y: "30*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "tug1", objectId: "tug1", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "tip", objectId: "tip", at: { x: "40 + 30*cos(a*pi/180)", y: "30*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "res-kn", formula: "sqrt(2500 + 2400*cos(a*pi/180))" },
+    ],
+  }}
   labels={{
-    between: <>Angle between the cables</>,
-    betweenName: "Angle between the cables",
-    fromFirst: <>Angle of <InlineMath math="\vec R" /> from <InlineMath math="\vec F_1" /></>,
-    fromLine: <>Angle from the ship's line</>,
-    resultant: <>Resultant <InlineMath math="R" /></>,
-    viewLabel: "Two tugboats towing a ship",
+    "cable-angle": <>Angle between cables <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    tug1: <InlineMath math="40\text{ kN}" />,
+    tip: <InlineMath math="\vec R" />,
+    "res-kn": <>Resultant pull (kN)</>,
   }}
 />
+
+When the cables pull closer together, the diagonal stretches toward <InlineMath math="70\text{ kN}" />. Pulling wider apart forces the two tugs to fight each other sideways, shrinking the diagonal.
 
 ## Polygon Method for Many Vectors
 
@@ -170,27 +208,46 @@ For example, add <InlineMath math="\vec{c}=(-6,-4)" /> after the two displacemen
 
 <BlockMath math="\vec{a}+\vec{b}+\vec{c}=(4+2-6,1+3-4)=(0,0)" />
 
-A walk of four legs is a polygon of four vectors, each starting where the last one ended. The violet arrow closes the polygon from start to finish: <InlineMath math="200\text{ m}" /> east and <InlineMath math="300\text{ m}" /> north, <InlineMath math="361\text{ m}" /> long.
+A four-leg walk traces a polygon of four arrows, each starting where the previous leg ended: <InlineMath math="300\text{ m}" /> east, <InlineMath math="200\text{ m}" /> north, <InlineMath math="100\text{ m}" /> west, and a final northward leg of <InlineMath math="n" /> meters. At <InlineMath math="n = 100\text{ m}" />, the closing arrow from start to finish reaches <InlineMath math="200\text{ m}" /> east and <InlineMath math="300\text{ m}" /> north, <InlineMath math="361\text{ m}" /> long.
 
-<CityWalkDisplacementLab
-  title={<>Four Legs, One Resultant</>}
-  description={<>A walk at <InlineMath math="1.25\text{ m/s}" /> along four streets.</>}
-  legs={[
-    { east: 300, north: 0 },
-    { east: 0, north: 200 },
-    { east: -100, north: 0 },
-    { east: 0, north: 100 },
-  ]}
-  pace={1.25}
+<MathVisual
+  title={<>Four Legs and One Closing Resultant</>}
+  description={<>Four head-to-tail street legs ending with an adjustable north leg <InlineMath math="n" /> directly in meters.</>}
+  footer={<>One arrow from the first tail to the final tip closes all four legs at once.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -40, max: 360 }, y: { min: -40, max: 490 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 0, max: 250, value: 100, step: 50, label: "final-north" },
+    ],
+    objects: [
+      { id: "l1", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 300, y: 0 } },
+      { id: "l2", kind: "vector", appearance: "construction", from: { x: 300, y: 0 }, to: { x: 300, y: 200 } },
+      { id: "l3", kind: "vector", appearance: "secondary", from: { x: 300, y: 200 }, to: { x: 200, y: 200 } },
+      { id: "l4", kind: "path", appearance: "primary", points: [{ x: "200", y: "200" }, { x: "200", y: "200 + n" }] },
+      { id: "close", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "200", y: "200 + n" }] },
+      { id: "end-pt", kind: "marker", appearance: "answer", x: "200", y: "200 + n" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 150, y: 0 }, placement: "below" },
+      { key: "end-pt", objectId: "end-pt", at: { x: "200", y: "200 + n" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "north-tot", formula: "200 + n" },
+      { key: "res-m", formula: "sqrt(40000 + (200 + n)^2)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Average speed</>,
-    averageVelocity: <>Average velocity</>,
-    displacement: <>Displacement</>,
-    distance: <>Distance walked</>,
-    time: <>Time</>,
-    viewLabel: "Walk through a town seen from above",
+    "final-north": <>Final north leg <InlineMath math="n" /> (m)</>,
+    l1: <InlineMath math="300\text{ m}" />,
+    "end-pt": <InlineMath math="\vec R" />,
+    "north-tot": <>Net north (m)</>,
+    "res-m": <>Resultant length (m)</>,
   }}
 />
+
+You never need intermediate sums to draw the resultant of a chain: simply link every arrow tip to tail and connect the starting point straight to the last tip.
 
 ## Graphical Vector Subtraction
 
@@ -202,6 +259,7 @@ For subtraction, **reverse the vector being subtracted**. With the same pair, th
   <MathVisual
     title={<>Adding the Negative Vector</>}
     description={<>From the tip of <InlineMath math="\vec{a}" /> at <InlineMath math="(4,1)" />, move two units left and three units down. The resultant ends at <InlineMath math="(2,-2)" />.</>}
+    footer={<>Flipping <InlineMath math="\vec b" /> into <InlineMath math="-\vec b" /> turns subtraction into head-to-tail addition.</>}
     labels={{
       "l1": <InlineMath math="a" />,
       "l2": <InlineMath math="-b" />,
@@ -212,12 +270,9 @@ For subtraction, **reverse the vector being subtracted**. With the same pair, th
       frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -2.5, max: 1.5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((1) - (0)) }, { x: 4, y: 1 }], appearance: "primary" },
-        { id: "s1-head", kind: "vector", from: { x: 2, y: 0.5 }, to: { x: 4, y: 1 }, appearance: "primary" },
-        { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: (4) + 0.5 * ((2) - (4)), y: (1) + 0.5 * ((-2) - (1)) }, { x: 2, y: -2 }], appearance: "secondary" },
-        { id: "s2-head", kind: "vector", from: { x: 3, y: -0.5 }, to: { x: 2, y: -2 }, appearance: "secondary" },
-        { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((-2) - (0)) }, { x: 2, y: -2 }], appearance: "answer" },
-        { id: "s3-head", kind: "vector", from: { x: 1, y: -1 }, to: { x: 2, y: -2 }, appearance: "answer" },
+        { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 4, y: 1 }, to: { x: 2, y: -2 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: 2, y: -2 }, appearance: "answer" },
       ],
       labels: [
         { key: "l1", objectId: "s1", at: { x: 2, y: 0.5 }, placement: "above" },
@@ -228,31 +283,48 @@ For subtraction, **reverse the vector being subtracted**. With the same pair, th
   />
 </ContentStack>
 
+Reversing <InlineMath math="\vec{b}" /> keeps the exact same length while pointing the opposite way, so the familiar head-to-tail triangle rule immediately yields <InlineMath math="\vec{a}-\vec{b}" />.
+
 ## From Start Positions to a Leg
 
-From the start <InlineMath math="O" />, the teal arrow <InlineMath math="\vec a" /> reaches checkpoint <InlineMath math="A" /> and the amber arrow <InlineMath math="\vec b" /> reaches <InlineMath math="B" />. **Their difference** <InlineMath math="\vec b-\vec a" /> is the arrow from the tip of <InlineMath math="\vec a" /> to the tip of <InlineMath math="\vec b" />: the leg from <InlineMath math="A" /> to <InlineMath math="B" />, <InlineMath math="100\text{ m}" /> long.
+From the start <InlineMath math="O" />, the arrow <InlineMath math="\vec a" /> reaches checkpoint <InlineMath math="A(40,30)\text{ m}" /> and the arrow <InlineMath math="\vec b" /> reaches checkpoint <InlineMath math="B(100,b)\text{ m}" />. **Their difference** <InlineMath math="\vec b-\vec a" /> points directly from the tip of <InlineMath math="\vec a" /> to the tip of <InlineMath math="\vec b" />. At <InlineMath math="b = 110\text{ m}" />, that leg from <InlineMath math="A" /> to <InlineMath math="B" /> is <InlineMath math="100\text{ m}" /> long.
 
-<OrienteeringMapVectorLab
+<MathVisual
   title={<>Subtracting Positions <InlineMath math="\vec b-\vec a" /></>}
-  description={<>The start <InlineMath math="O" /> is the fuchsia triangle. Switch between the difference and the leg.</>}
-  marks={{
-    a: { east: 40, north: 30 },
-    b: { east: 100, north: 110 },
-    c: { east: 150, north: -10 },
+  description={<>Position vectors <InlineMath math="\vec a=(40,30)\text{ m}" /> and <InlineMath math="\vec b=(100,b)\text{ m}" /> with their difference connecting <InlineMath math="A" /> to <InlineMath math="B" />.</>}
+  footer={<>Arrow <InlineMath math="\vec b-\vec a" /> always starts at the tip of <InlineMath math="\vec a" /> and ends at <InlineMath math="\vec b" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 130 }, y: { min: -15, max: 165 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 30, max: 150, value: 110, step: 20, label: "north-b" },
+    ],
+    objects: [
+      { id: "vec-a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 40, y: 30 } },
+      { id: "vec-b", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "100", y: "b" }] },
+      { id: "leg-ab", kind: "path", appearance: "answer", points: [{ x: "40", y: "30" }, { x: "100", y: "b" }] },
+      { id: "mark-a", kind: "point", appearance: "primary", at: { x: 40, y: 30 } },
+      { id: "mark-b", kind: "marker", appearance: "answer", x: "100", y: "b" },
+    ],
+    labels: [
+      { key: "mark-a", objectId: "mark-a", at: { x: 40, y: 30 }, placement: "below-right" },
+      { key: "mark-b", objectId: "mark-b", at: { x: "100", y: "b" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "leg-dx", formula: "60" },
+      { key: "leg-dy", formula: "b - 30" },
+      { key: "leg-len", formula: "sqrt(3600 + (b - 30)^2)" },
+    ],
   }}
-  views={["difference", "forward"]}
   labels={{
-    angle: <>Direction from east</>,
-    chooseView: "Choose which vector to show",
-    east: <>East part</>,
-    north: <>North part</>,
-    size: <>Length</>,
-    viewLabel: "Orienteering map of a park",
-    views: {
-      back: <><InlineMath math="B" /> to <InlineMath math="A" /></>,
-      copy: <>Same vector from <InlineMath math="C" /></>,
-      difference: <><InlineMath math="\vec b-\vec a" /></>,
-      forward: <><InlineMath math="A" /> to <InlineMath math="B" /></>,
-    },
+    "north-b": <>North coordinate <InlineMath math="b" /> of <InlineMath math="B" /> (m)</>,
+    "mark-a": <InlineMath math="A(40,30)" />,
+    "mark-b": <InlineMath math="B" />,
+    "leg-dx": <>East step (m)</>,
+    "leg-dy": <>North step (m)</>,
+    "leg-len": <>Leg length (m)</>,
   }}
 />
+
+Slide <InlineMath math="b" /> down to <InlineMath math="30\text{ m}" /> and notice the leg turns completely horizontal at <InlineMath math="60\text{ m}" />. Wherever <InlineMath math="B" /> sits, subtracting <InlineMath math="\vec a" /> from <InlineMath math="\vec b" /> yields the direct path from <InlineMath math="A" /> to <InlineMath math="B" />.

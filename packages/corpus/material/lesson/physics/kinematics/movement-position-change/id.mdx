@@ -8,7 +8,7 @@ export const metadata = {
   subject: "Kinematika",
 };
 
-## Membandingkan Posisi Benda pada Waktu yang Berbeda
+## Membandingkan Posisi Sepanjang Waktu
 
 Sebuah benda bergerak relatif terhadap kerangka acuan jika posisinya berubah seiring waktu. Karena itu, satu pengamatan saja tidak cukup. Rangkaian posisi dapat menunjukkan geraknya, sedangkan **posisi awal** dan **posisi akhir** merangkum perubahan bersih selama satu selang waktu.
 
@@ -16,44 +16,74 @@ Jika posisi awal benda adalah <InlineMath math="x_{\text{awal}}" /> dan posisi a
 
 <BlockMath math="\Delta x=x_{\text{akhir}}-x_{\text{awal}}" />
 
-Simbol <InlineMath math="\Delta x" /> dibaca "delta x" dan berarti perpindahan pada garis tersebut. Nilainya bisa positif, negatif, atau nol.
+Simbol <InlineMath math="\Delta x" /> dibaca "delta x" dan berarti perpindahan pada garis itu. Nilainya bisa positif, negatif, atau nol.
 
 > Gerak dikenali dari posisi yang berubah terhadap waktu. Perpindahan hanya membandingkan dua titik ujung yang dipilih.
 
-## Posisi yang Tercetak di Pita
+Pencatat waktu mengubah posisi pada berbagai saat menjadi tanda setiap <InlineMath math="0{,}1\text{ s}" />. Pada gerak beraturan, setiap tanda yang berdekatan merekam **perubahan posisi yang sama persis**. Ubah kelajuan troli <InlineMath math="s" /> di bawah untuk membandingkan langkah setiap sepersepuluh detik.
 
-Ticker timer mengubah posisi pada waktu yang berbeda menjadi titik. Alat itu mencetak satu titik setiap <InlineMath math="0{,}02\text{ s}" /> pada pita yang ditarik troli, jadi **setiap titik adalah posisi troli pada satu saat**.
-
-<TickerTapeMotionLab
-  motion="uniform"
-  title={<>Posisi di Pita Ticker Timer</>}
+<MathVisual
+  title={<>Titik Posisi Tetap pada Selang Sama</>}
   description={
     <>
-      Troli menarik pita melewati ticker timer. Hitung titiknya: waktu yang berlalu antara dua titik bertetangga selalu sama.
+      Posisi troli dalam sentimeter setiap <InlineMath math="0{,}1\text{ s}" />{" "}
+      pada kelajuan tetap <InlineMath math="s" />. Siku ungu menandai satu
+      langkah <InlineMath math="0{,}1\text{ s}" />.
     </>
   }
+  footer={<>Setiap sepersepuluh detik menggeser troli maju dengan jarak yang persis sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 0.6 }, y: { min: -5, max: 58 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0.4, max: 1, value: 0.6, step: 0.2, label: "s" },
+    ],
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "100*s*x", domain: { min: 0, max: 0.5 } },
+      { id: "p1", kind: "marker", appearance: "primary", x: "0.1", y: "10*s" },
+      { id: "p2", kind: "marker", appearance: "primary", x: "0.2", y: "20*s" },
+      { id: "p3", kind: "marker", appearance: "primary", x: "0.3", y: "30*s" },
+      { id: "p4", kind: "marker", appearance: "primary", x: "0.4", y: "40*s" },
+      { id: "p5", kind: "marker", appearance: "primary", x: "0.5", y: "50*s" },
+      {
+        id: "step",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0.2", y: "20*s" },
+          { x: "0.3", y: "20*s" },
+          { x: "0.3", y: "30*s" },
+        ],
+      },
+    ],
+    labels: [
+      { key: "step-lbl", objectId: "step", at: { x: "0.3", y: "25*s" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "strip", formula: "10*s" },
+      { key: "total", formula: "50*s" },
+    ],
+  }}
   labels={{
-    acceleration: <>Percepatan dari potongan pita</>,
-    chooseMotion: "Pilih gerak troli",
-    firstStrip: <>Potongan pertama</>,
-    interval: <>Selang waktu antartitik</>,
-    lastStrip: <>Potongan terakhir</>,
-    motions: {
-      uniform: <>Tetap</>,
-      speeding: <>Makin cepat</>,
-      slowing: <>Melambat</>,
-    },
-    viewLabel: "Troli menarik pita kertas melewati ticker timer",
+    s: <>Kelajuan <InlineMath math="s" /> (m/s)</>,
+    "step-lbl": <InlineMath math="\Delta x" />,
+    strip: <>Langkah per 0,1 s (cm)</>,
+    total: <>Total perubahan di 0,5 s (cm)</>,
   }}
 />
 
-Saat geraknya tetap, setiap potongan sepersepuluh detik panjangnya <InlineMath math="6\text{ cm}" />. Membandingkan dua titik memberi tahu seberapa jauh troli berpindah di antara dua saat itu, dan itulah perubahan posisi.
+Pada <InlineMath math="s=0{,}6\text{ m/s}" />, setiap langkah sepersepuluh detik panjangnya <InlineMath math="6\text{ cm}" />. Membandingkan dua titik mana pun langsung menunjukkan perubahan posisi troli di antara kedua saat itu.
 
-## Selisih Posisi pada Lintasan Lurus
+## Membaca Selisih Posisi pada Grafik
+
+Titik awal dan titik akhir yang sama belum menjamin dua gerak benar-benar serupa. Hanya **jejak posisi di antara keduanya** pada grafik posisi terhadap waktu yang membedakan diam dari pergi lalu pulang.
+
+### Selisih Posisi pada Lintasan Lurus
 
 Pada lintasan lurus dengan titik nol tetap, perubahan posisi hanya bergantung pada **selisih posisi akhir dan posisi awal**. Misalnya benda mula-mula di <InlineMath math="20 \text{ m}" /> lalu berada di <InlineMath math="50 \text{ m}" />, maka perubahan posisinya <InlineMath math="+30 \text{ m}" />.
 
-Jika posisi awal dan akhir sama, perpindahannya nol. Dua titik ujung itu saja belum dapat menunjukkan apakah benda tetap diam atau sempat bergerak lalu kembali. Kita memerlukan posisi di antaranya atau lintasan yang ditempuh untuk membedakan kedua keadaan tersebut.
+Jika posisi awal dan akhir sama, perpindahannya nol. Dua titik ujung itu saja belum dapat menunjukkan apakah benda tetap diam atau sempat bergerak lalu kembali. Kita memerlukan posisi di antaranya atau lintasan yang ditempuh untuk membedakan kedua keadaan itu.
 
 Bandingkan dua keadaan berikut. Benda A tetap diam selama pengamatan, sedangkan benda B bergerak lurus dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="50\text{ m}" />, lalu langsung kembali.
 
@@ -63,31 +93,37 @@ Bandingkan dua keadaan berikut. Benda A tetap diam selama pengamatan, sedangkan 
 | <InlineMath math="3\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="50\text{ m}" /> |
 | <InlineMath math="6\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="20\text{ m}" /> |
 
-Keduanya memiliki perpindahan <InlineMath math="20-20=0\text{ m}" />. Namun, A tidak menempuh jarak, sedangkan jarak B adalah <InlineMath math="(50-20)+(50-20)=60\text{ m}" />. Posisi di tengah pengamatan memperlihatkan perbedaan kedua keadaan.
+Keduanya sama-sama memiliki perpindahan nol, tetapi hanya benda B yang menempuh jarak:
+
+<BlockMath math="\begin{aligned}
+\Delta x_A &= \Delta x_B = 20\text{ m} - 20\text{ m} = 0\text{ m} \\
+s_B &= (50-20)+(50-20) = 60\text{ m}
+\end{aligned}" />
 
 Coba gambar kedua keadaan itu sebagai grafik posisi terhadap waktu, lalu ikuti setiap garis dari kiri ke kanan. Garis A tetap datar di <InlineMath math="20\text{ m}" />, sedangkan B naik sampai <InlineMath math="50\text{ m}" /> pada <InlineMath math="3\text{ s}" /> lalu kembali. Kedua garis mulai dan berakhir di titik yang sama, makanya perpindahan keduanya sama-sama nol.
 
 <MathVisual
   title={<>Titik Ujung Sama, Gerak Berbeda</>}
-  description={<>Waktu dalam sekon bergerak ke kanan. Posisi naik dalam satuan <InlineMath math="10\text{ m}" />, jadi <InlineMath math="5" /> berarti <InlineMath math="50\text{ m}" />. Bandingkan posisi A dan B pada <InlineMath math="3\text{ s}" />.</>}
+  description={<>Posisi A (teal) dan B (oranye) dalam meter terhadap waktu dalam sekon. Bandingkan posisi A dan B pada <InlineMath math="3\text{ s}" />.</>}
+  footer={<>A tetap datar di <InlineMath math="20\text{ m}" />, sedangkan B naik ke <InlineMath math="50\text{ m}" /> lalu kembali.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: 0, max: 6 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: 0, max: 60 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 2 }, { x: 3, y: 2 }, { x: 6, y: 2 }] },
-      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 2 }, { x: 3, y: 5 }, { x: 6, y: 2 }] },
-      { id: "a-0", kind: "point", appearance: "construction", at: { x: 0, y: 2 } },
-      { id: "a-3", kind: "point", appearance: "construction", at: { x: 3, y: 2 } },
-      { id: "a-6", kind: "point", appearance: "construction", at: { x: 6, y: 2 } },
-      { id: "b-0", kind: "point", appearance: "primary", at: { x: 0, y: 2 } },
-      { id: "b-3", kind: "point", appearance: "primary", at: { x: 3, y: 5 } },
-      { id: "b-6", kind: "point", appearance: "primary", at: { x: 6, y: 2 } },
+      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 20 }, { x: 3, y: 20 }, { x: 6, y: 20 }] },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 20 }, { x: 3, y: 50 }, { x: 6, y: 20 }] },
+      { id: "a-0", kind: "point", appearance: "construction", at: { x: 0, y: 20 } },
+      { id: "a-3", kind: "point", appearance: "construction", at: { x: 3, y: 20 } },
+      { id: "a-6", kind: "point", appearance: "construction", at: { x: 6, y: 20 } },
+      { id: "b-0", kind: "point", appearance: "primary", at: { x: 0, y: 20 } },
+      { id: "b-3", kind: "point", appearance: "primary", at: { x: 3, y: 50 } },
+      { id: "b-6", kind: "point", appearance: "primary", at: { x: 6, y: 20 } },
     ],
     labels: [
-      { key: "a", objectId: "a-6", at: { x: 6, y: 2 }, placement: "below-left" },
-      { key: "b", objectId: "b-3", at: { x: 3, y: 5 }, placement: "above" },
-      { key: "top", objectId: "b-3", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "a", objectId: "a-6", at: { x: 6, y: 20 }, placement: "below-left" },
+      { key: "b", objectId: "b-3", at: { x: 3, y: 50 }, placement: "above" },
+      { key: "top", objectId: "b-3", at: { x: 3, y: 50 }, placement: "right" },
     ],
   }}
   labels={{
@@ -97,30 +133,77 @@ Coba gambar kedua keadaan itu sebagai grafik posisi terhadap waktu, lalu ikuti s
   }}
 />
 
-## Membaca Perubahan Posisi dari Grafik
+Posisi tengah pada <InlineMath math="3\text{ s}" /> langsung membedakan kedua kasus: hanya garis mendatar yang menandakan benda benar-benar diam.
 
-Pada grafik posisi terhadap waktu, **perubahan posisi pada suatu selang adalah kenaikan di antara kedua titiknya**. Mobil yang melaju tetap <InlineMath math="8\text{ m/s}" /> menunjukkannya dengan jelas.
+### Membaca Perubahan Posisi sebagai Kenaikan Grafik
 
-<CarTripSecantSlopeLab
-  trip="cruise"
-  title={<>Perubahan Posisi Mobil yang Melaju Tetap</>}
+Pada grafik posisi terhadap waktu, **perubahan posisi pada suatu selang adalah kenaikan tegak di antara kedua titiknya**. Mobil melaju tetap pada <InlineMath math="8\text{ m/s}" />. Geser waktu awal <InlineMath math="a" /> dan waktu akhir <InlineMath math="b" /> untuk membaca tinggi anak tangga tegaknya.
+
+<MathVisual
+  title={<>Kenaikan Tegak pada Grafik Posisi terhadap Waktu</>}
   description={
     <>
-      Pilih selang waktu. Bendera menandai dua posisi di jalan, dan anak tangga tegak pada grafik adalah perubahan posisinya.
+      Garis posisi <InlineMath math="x(t)=8t" /> mobil yang melaju tetap.
+      Ruas tegak ungu mengukur perubahan posisi dari <InlineMath math="a" /> ke{" "}
+      <InlineMath math="b" />.
     </>
   }
+  footer={<>Ruas tegak ungu langsung menampilkan selisih posisi akhir dan posisi awal.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -5, max: 90 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 4, value: 2, step: 1, label: "a" },
+      { name: "b", min: 5, max: 10, value: 6, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "cruise", kind: "function", appearance: "primary", formula: "8*x", domain: { min: 0, max: 10 } },
+      {
+        id: "run",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "a", y: "8*a" },
+          { x: "b", y: "8*a" },
+        ],
+      },
+      {
+        id: "rise",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "b", y: "8*a" },
+          { x: "b", y: "8*b" },
+        ],
+      },
+      { id: "p-start", kind: "marker", appearance: "secondary", x: "a", y: "8*a" },
+      { id: "p-end", kind: "marker", appearance: "answer", x: "b", y: "8*b" },
+    ],
+    labels: [
+      { key: "rise-lbl", objectId: "rise", at: { x: "b", y: "4*(a + b)" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "dt", formula: "b - a" },
+      { key: "dx", formula: "8*(b - a)" },
+    ],
+  }}
   labels={{
-    change: <>Perpindahan</>,
-    chooseInterval: "Pilih selang waktu",
-    elapsed: <>Selang waktu</>,
-    rate: <>Kecepatan rata-rata</>,
-    viewLabel: "Perjalanan mobil dengan grafik posisi terhadap waktu",
+    a: <>Waktu awal <InlineMath math="a" /> (s)</>,
+    b: <>Waktu akhir <InlineMath math="b" /> (s)</>,
+    "rise-lbl": <InlineMath math="\Delta x" />,
+    dt: <>Selang waktu (s)</>,
+    dx: <>Perubahan posisi (m)</>,
   }}
 />
 
-Dari <InlineMath math="2" /> sampai <InlineMath math="6\text{ s}" />, mobil berpindah dari <InlineMath math="16\text{ m}" /> ke <InlineMath math="48\text{ m}" />, jadi <InlineMath math="\Delta x=48-16=32\text{ m}" />. Selama <InlineMath math="10\text{ s}" /> penuh, perubahannya <InlineMath math="80\text{ m}" />.
+Dari <InlineMath math="2" /> sampai <InlineMath math="6\text{ s}" />, mobil berpindah dari <InlineMath math="16\text{ m}" /> ke <InlineMath math="48\text{ m}" />:
 
-## Patokan Harus Konsisten
+<BlockMath math="\Delta x=48\text{ m}-16\text{ m}=32\text{ m}" />
+
+Selama <InlineMath math="10\text{ s}" /> penuh, perubahan posisinya adalah <InlineMath math="80\text{ m}" />.
+
+## Menjaga Konsistensi Satu Titik Acuan
 
 Saat menghitung perubahan posisi, posisi awal dan posisi akhir harus dibaca dari **patokan yang sama**. Jangan mengambil posisi awal dari toko, lalu posisi akhir dari rumah lain, karena hasilnya tidak lagi menjelaskan gerak benda yang sama dalam satu kerangka acuan.
 
@@ -132,34 +215,69 @@ Saat menghitung perubahan posisi, posisi awal dan posisi akhir harus dibaca dari
 
 Perubahan posisi tetap sama karena memindahkan titik acuan hanya mengubah nilai koordinat awal dan akhir. Selisih posisi akhir dan posisi awal tetap <InlineMath math="+30\text{ m}" /> pada ketiga baris.
 
-## Mengganti Titik Acuan Menggeser Semua Posisi
+Ambil sebuah jalan dengan toko di titik nol, rumah Rani <InlineMath math="20\text{ m}" /> di timurnya, dan tiang bendera di <InlineMath math="50\text{ m}" />. Memindahkan titik acuan menggeser semua posisi dengan jumlah yang sama, jadi **perubahan posisinya tetap**. Geser letak titik nol <InlineMath math="k" /> dan lihat kedua titik bergeser bersamaan.
 
-Ambil sebuah jalan dengan toko di titik nol, rumah Rani <InlineMath math="20\text{ m}" /> di timurnya, dan tiang bendera di <InlineMath math="50\text{ m}" />. Memindahkan titik acuan menggeser semua posisi dengan jumlah yang sama, jadi **perubahan posisinya tetap**.
-
-<StreetOriginPositionLab
-  title={<>Satu Perjalanan, Tiga Titik Acuan</>}
+<MathVisual
+  title={<>Menggeser Titik Nol pada Jalan yang Sama</>}
   description={
     <>
-      Pesepeda bergerak dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="50\text{ m}" /> lalu kembali ke <InlineMath math="35\text{ m}" />, dengan timur positif. Ganti titik acuannya dan perhatikan seluruh grafik bergeser.
+      Posisi awal <InlineMath math="20-k" /> dan posisi akhir{" "}
+      <InlineMath math="35-k" /> pesepeda saat titik nol berada di{" "}
+      <InlineMath math="k\text{ m}" /> sebelah timur toko.
     </>
   }
+  footer={<>Kedua titik bergeser bersama <InlineMath math="k" />, jadi selisihnya tetap <InlineMath math="+15\text{ m}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -42, max: 48 }, y: { min: -12, max: 28 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0, max: 50, value: 0, step: 10, label: "k" },
+    ],
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -40, y: 0 }, to: { x: 45, y: 0 } },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      {
+        id: "move",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "20 - k", y: "12" },
+          { x: "35 - k", y: "12" },
+        ],
+      },
+      { id: "start", kind: "marker", appearance: "secondary", x: "20 - k", y: "12" },
+      { id: "finish", kind: "marker", appearance: "answer", x: "35 - k", y: "12" },
+    ],
+    labels: [
+      { key: "zero", objectId: "origin", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "start-lbl", objectId: "start", at: { x: "20 - k", y: "12" }, placement: "above" },
+      { key: "end-lbl", objectId: "finish", at: { x: "35 - k", y: "12" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "x0", formula: "20 - k" },
+      { key: "xf", formula: "35 - k" },
+      { key: "dx", formula: "(35 - k) - (20 - k)" },
+    ],
+  }}
   labels={{
-    change: <>Perubahan posisi</>,
-    chooseOrigin: "Pilih titik acuan",
-    end: <>Posisi akhir</>,
-    origins: {
-      store: <>Toko</>,
-      house: <>Rumah Rani</>,
-      pole: <>Tiang bendera</>,
-    },
-    start: <>Posisi awal</>,
-    viewLabel: "Pesepeda di jalan dengan tiga tempat",
+    k: <>Letak titik nol <InlineMath math="k" /> (m)</>,
+    zero: <InlineMath math="0" />,
+    "start-lbl": <InlineMath math="x_0" />,
+    "end-lbl": <InlineMath math="x_t" />,
+    x0: <>Posisi awal (m)</>,
+    xf: <>Posisi akhir (m)</>,
+    dx: <>Perubahan posisi (m)</>,
   }}
 />
 
 Dari toko, perjalanannya dari <InlineMath math="+20\text{ m}" /> ke <InlineMath math="+35\text{ m}" />. Dari tiang bendera, perjalanannya dari <InlineMath math="-30\text{ m}" /> ke <InlineMath math="-15\text{ m}" />. Keduanya memberi <InlineMath math="\Delta x=+15\text{ m}" />, asalkan kamu memakai satu titik acuan untuk kedua posisi.
 
-## Membaca Tanda Perubahan Posisi
+## Menafsirkan Tanda Perubahan Posisi
+
+Pada sumbu yang punya arah positif, setiap perpindahan membawa **tanda penunjuk arah**. Tanda minus hanya memberi tahu bahwa posisi akhir berada di sisi negatif dari posisi awal.
+
+### Membaca Tanda Perubahan Posisi
 
 Pada jalan lurus, kita bebas memilih arah positif. Di contoh ini, **timur dipilih sebagai arah positif**.
 
@@ -169,65 +287,108 @@ Pada jalan lurus, kita bebas memilih arah positif. Di contoh ini, **timur dipili
 
 Tanda negatif tidak berarti geraknya "lebih kecil" atau "salah". Tanda itu hanya memberi tahu arah perubahan posisi.
 
-Ambil kedua posisi dari acuan yang sama, kurangkan <InlineMath math="\Delta x=x_\text{akhir}-x_\text{awal}" />, lalu baca tandanya. Dua posisi yang sama memberi <InlineMath math="+30\text{ m}" /> saat ke timur dan <InlineMath math="-30\text{ m}" /> saat kembali.
+Ambil kedua posisi dari acuan yang sama, kurangkan posisi awal dari posisi akhir, lalu baca tandanya. Dua posisi yang sama memberi <InlineMath math="+30\text{ m}" /> saat ke timur dan <InlineMath math="-30\text{ m}" /> saat kembali.
 
 <MathVisual
-  title={<>Empat Langkah Menuju Perpindahan</>}
-  description={<>Dua gerakan antara <InlineMath math="20\text{ m}" /> dan <InlineMath math="50\text{ m}" /> pada satu sumbu. Satu kotak grid berarti <InlineMath math="10\text{ m}" />.</>}
+  title={<>Posisi Sama, Tanda Berlawanan</>}
+  description={<>Dua gerakan antara <InlineMath math="20\text{ m}" /> dan <InlineMath math="50\text{ m}" /> pada satu sumbu dalam meter.</>}
+  footer={<>Bergerak ke timur menghasilkan <InlineMath math="+30\text{ m}" />, sedangkan kembali ke barat <InlineMath math="-30\text{ m}" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1.3, max: 2.3 } },
+    frame: { kind: "cartesian", x: { min: -5, max: 65 }, y: { min: -25, max: 35 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
-      { id: "east", kind: "segment", appearance: "primary", from: { x: 2, y: 1 }, to: { x: 5, y: 1 } },
-      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 1 }, { x: 4.75, y: 1.125 }, { x: 4.75, y: 0.875 }] },
-      { id: "west", kind: "segment", appearance: "secondary", from: { x: 5, y: 0.5 }, to: { x: 2, y: 0.5 } },
-      { id: "west-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 0.5 }, { x: 2.25, y: 0.625 }, { x: 2.25, y: 0.375 }] },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "east", kind: "vector", appearance: "primary", from: { x: 20, y: 14 }, to: { x: 50, y: 14 } },
+      { id: "west", kind: "vector", appearance: "secondary", from: { x: 50, y: 6 }, to: { x: 20, y: 6 } },
       { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
     ],
     labels: [
-      { key: "east", objectId: "east", at: { x: 3.5, y: 1 }, placement: "above" },
-      { key: "west", objectId: "west", at: { x: 3.5, y: 0.5 }, placement: "below" },
+      { key: "east", objectId: "east", at: { x: 35, y: 14 }, placement: "above" },
+      { key: "west", objectId: "west", at: { x: 35, y: 6 }, placement: "below" },
       { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below" },
     ],
   }}
   labels={{
-    east: <InlineMath math="\Delta x=50-20=+30\text{ m}" />,
-    west: <InlineMath math="\Delta x=20-50=-30\text{ m}" />,
+    east: <InlineMath math="\Delta x=+30\text{ m}" />,
+    west: <InlineMath math="\Delta x=-30\text{ m}" />,
     origin: <InlineMath math="x=0" />,
   }}
 />
 
-## Jalan Kaki yang Berakhir di Barat
+Kedua panah punya panjang persis <InlineMath math="30\text{ m}" />. Arahnyalah yang menentukan apakah tandanya positif atau negatif.
 
-Anggap timur positif, lalu berjalanlah <InlineMath math="250\text{ m}" /> ke barat dan <InlineMath math="100\text{ m}" /> kembali ke timur. Posisi akhirmu ada di sebelah barat titik awal, jadi **perubahan posisinya negatif**.
+### Jalan Kaki yang Berakhir di Barat
 
-<CityWalkDisplacementLab
-  legs={[
-    { east: -250, north: 0 },
-    { east: 100, north: 0 },
-  ]}
-  pace={1.25}
-  title={<>Jalan Kaki yang Berakhir di Barat</>}
+Anggap timur positif, lalu berjalanlah <InlineMath math="250\text{ m}" /> ke barat dan lanjutkan sejauh <InlineMath math="c" /> kembali ke timur pada <InlineMath math="1{,}25\text{ m/s}" />. Selama posisi akhirmu masih di sebelah barat titik awal, **perubahan posisinya negatif**. Geser <InlineMath math="c" /> untuk memantau posisi akhirnya.
+
+<MathVisual
+  title={<>Berjalan ke Barat lalu Kembali Sebagian ke Timur</>}
   description={
     <>
-      Panah ungu menghubungkan titik awal dengan posisimu sekarang. Panjangnya adalah besar perubahan posisi, dan arahnya menentukan tandanya.
+      Posisi dalam meter terhadap waktu saat berjalan <InlineMath math="250\text{ m}" />{" "}
+      ke barat lalu <InlineMath math="c\text{ m}" /> kembali ke timur pada{" "}
+      <InlineMath math="1{,}25\text{ m/s}" />.
     </>
   }
+  footer={<>Selama titik akhir di bawah sumbu nol, perpindahannya tetap bertanda negatif.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 460 }, y: { min: -280, max: 90 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 50, max: 300, value: 100, step: 50, label: "c" },
+    ],
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 440, y: 0 } },
+      { id: "west", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 200, y: -250 } },
+      {
+        id: "east",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "200", y: "-250" },
+          { x: "200 + c/1.25", y: "-250 + c" },
+        ],
+      },
+      {
+        id: "net",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "200 + c/1.25", y: "0" },
+          { x: "200 + c/1.25", y: "-250 + c" },
+        ],
+      },
+      { id: "end-dot", kind: "marker", appearance: "answer", x: "200 + c/1.25", y: "-250 + c" },
+    ],
+    labels: [
+      { key: "end-lbl", objectId: "end-dot", at: { x: "200 + c/1.25", y: "-250 + c" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "dist", formula: "250 + c" },
+      { key: "disp", formula: "-250 + c" },
+      { key: "time", formula: "200 + c/1.25" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Kelajuan rata-rata</>,
-    averageVelocity: <>Besar kecepatan rata-rata</>,
-    displacement: <>Besar perpindahan</>,
-    distance: <>Jarak tempuh</>,
-    time: <>Waktu</>,
-    viewLabel: "Jalan kaki di kota dilihat dari atas",
+    c: <>Jarak balik ke timur <InlineMath math="c" /> (m)</>,
+    "end-lbl": <InlineMath math="x_{\text{akhir}}" />,
+    dist: <>Jarak tempuh (m)</>,
+    disp: <>Perpindahan (m)</>,
+    time: <>Total waktu (s)</>,
   }}
 />
 
-Kamu berjalan <InlineMath math="350\text{ m}" /> dalam <InlineMath math="280\text{ s}" />, tetapi berakhir hanya <InlineMath math="150\text{ m}" /> dari titik awal. Dengan timur positif, <InlineMath math="\Delta x=-250+100=-150\text{ m}" />.
+Pada <InlineMath math="c=100\text{ m}" />, kamu berjalan <InlineMath math="350\text{ m}" /> dalam <InlineMath math="280\text{ s}" />, tetapi berakhir <InlineMath math="150\text{ m}" /> di barat titik awal:
 
-## Menghitung Selisih Akhir dan Awal
+<BlockMath math="\Delta x=-250\text{ m}+100\text{ m}=-150\text{ m}" />
+
+## Mengurangkan Posisi Awal dari Posisi Akhir
+
+Aturan **posisi akhir dikurangi posisi awal** berlaku sama pada gerak mendatar maupun lemparan vertikal. Menjaga urutan pengurangan ini langsung memberi besar sekaligus arah perpindahan tanpa tertukar.
+
+### Menghitung Selisih Akhir dan Awal di Garis Datar
 
 Seorang siswa mula-mula berada <InlineMath math="10 \text{ m}" /> di timur gerbang. Setelah beberapa detik, ia berada <InlineMath math="40 \text{ m}" /> di timur gerbang. Perubahan posisinya adalah:
 
@@ -238,7 +399,7 @@ Seorang siswa mula-mula berada <InlineMath math="10 \text{ m}" /> di timur gerba
 &=+30 \text{ m}
 \end{aligned}" />
 
-Jadi, **perpindahan siswa** adalah <InlineMath math="30 \text{ m}" /> ke timur. Dua posisi tersebut belum menentukan jarak tempuh. Jika siswa sempat berbalik arah, jarak tempuhnya lebih dari <InlineMath math="30 \text{ m}" />.
+Jadi, **perpindahan siswa** adalah <InlineMath math="30 \text{ m}" /> ke timur. Dua posisi itu belum menentukan jarak tempuh. Jika siswa sempat berbalik arah, jarak tempuhnya lebih dari <InlineMath math="30 \text{ m}" />.
 
 Perhatikan urutan pengurangannya. Kita selalu membaca <Highlight>posisi akhir dikurangi posisi awal</Highlight>, lalu tanda hasilnya dipakai untuk menentukan arah perubahan posisi.
 
@@ -246,29 +407,31 @@ Panah di bawah berawal di posisi awal dan berakhir di posisi akhir. Panjangnya a
 
 <MathVisual
   title={<>Perpindahan Siswa</>}
-  description={<>Posisi di sebelah timur gerbang, satu kotak grid untuk setiap <InlineMath math="10\text{ m}" />. Panahnya berjalan dari <InlineMath math="10\text{ m}" /> ke <InlineMath math="40\text{ m}" />.</>}
+  description={<>Posisi di sebelah timur gerbang dalam meter. Panahnya berjalan dari <InlineMath math="10\text{ m}" /> ke <InlineMath math="40\text{ m}" />.</>}
+  footer={<>Panah dari <InlineMath math="10\text{ m}" /> ke <InlineMath math="40\text{ m}" /> mengarah ke timur sepanjang <InlineMath math="+30\text{ m}" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.2, max: 1.9 } },
+    frame: { kind: "cartesian", x: { min: -5, max: 55 }, y: { min: -15, max: 25 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "gate", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
-      { id: "walk", kind: "segment", appearance: "primary", from: { x: 1, y: 0.6 }, to: { x: 4, y: 0.6 } },
-      { id: "walk-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0.6 }, { x: 3.78, y: 0.71 }, { x: 3.78, y: 0.49 }] },
-      { id: "walk-start", kind: "point", appearance: "primary", at: { x: 1, y: 0.6 } },
+      { id: "gate", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 50, y: 0 } },
+      { id: "walk", kind: "vector", appearance: "primary", from: { x: 10, y: 8 }, to: { x: 40, y: 8 } },
+      { id: "walk-start", kind: "point", appearance: "primary", at: { x: 10, y: 8 } },
     ],
     labels: [
       { key: "gate", objectId: "gate", at: { x: 0, y: 0 }, placement: "below" },
-      { key: "change", objectId: "walk", at: { x: 2.5, y: 0.6 }, placement: "above" },
+      { key: "change", objectId: "walk", at: { x: 25, y: 8 }, placement: "above" },
     ],
   }}
   labels={{
     gate: <>Gerbang</>,
-    change: <InlineMath math="\Delta x=40-10=+30\text{ m}" />,
+    change: <InlineMath math="\Delta x=+30\text{ m}" />,
   }}
 />
 
-## Naik lalu Kembali ke Tangan
+Karena panah bergerak dari koordinat lebih kecil ke lebih besar, pengurangannya menghasilkan tanda positif dan menegaskan gerak ke timur.
+
+### Naik lalu Kembali ke Tangan
 
 Posisi bekerja dengan cara yang sama ke arah atas. Lempar bola lurus ke atas dengan <InlineMath math="5\text{ m/s}" /> dan tangkap di ketinggian saat bola lepas dari tanganmu. Bola bergerak, tetapi **posisi akhirnya sama dengan posisi awalnya**.
 
@@ -280,6 +443,7 @@ Posisi bekerja dengan cara yang sama ke arah atas. Lempar bola lurus ke atas den
       Lampu berkedip setiap <InlineMath math="0{,}1\text{ s}" />. Arah atas positif, dan tanganmu adalah titik nol.
     </>
   }
+  footer={<>Usai mencapai puncak, bola kembali mendarat di ketinggian nol di tangan yang sama.</>}
   labels={{
     airTime: <>Waktu di udara</>,
     height: <>Tinggi awal</>,
@@ -289,4 +453,6 @@ Posisi bekerja dengan cara yang sama ke arah atas. Lempar bola lurus ke atas den
   }}
 />
 
-Bola naik <InlineMath math="1{,}25\text{ m}" /> dalam <InlineMath math="0{,}5\text{ s}" /> dan kembali ke tanganmu setelah <InlineMath math="1\text{ s}" />. Perubahan posisinya selama lemparan itu <InlineMath math="\Delta y=0-0=0" />, walaupun bola menempuh <InlineMath math="2{,}5\text{ m}" />.
+Bola naik <InlineMath math="1{,}25\text{ m}" /> dalam <InlineMath math="0{,}5\text{ s}" /> dan kembali ke tanganmu setelah <InlineMath math="1\text{ s}" />. Perubahan posisinya selama seluruh lemparan menjadi nol, walaupun bola menempuh <InlineMath math="2{,}5\text{ m}" />:
+
+<BlockMath math="\Delta y=0\text{ m}-0\text{ m}=0\text{ m}" />

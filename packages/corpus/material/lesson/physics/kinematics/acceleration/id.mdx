@@ -2,7 +2,7 @@
 export const metadata = {
   title: "Percepatan",
   description:
-    "Percepatan adalah perubahan kecepatan per satuan waktu dan dapat disajikan melalui jejak gerak, grafik kecepatan-waktu, serta perhitungan.",
+    "Percepatan adalah perubahan kecepatan per satuan waktu dan dapat disajikan melalui jejak gerak, grafik kecepatan waktu, serta perhitungan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
   dateModified: "2026-09-12",
@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Percepatan Menyatakan Perubahan Kecepatan
 
-Saat mobil baru mulai jalan, badan kita terasa terdorong ke belakang. Saat mobil direm, badan terasa terdorong ke depan. Dalam kedua kejadian tersebut, kecepatan mobil berubah.
+Saat mobil baru mulai jalan, badan kita terasa terdorong ke belakang. Saat mobil direm, badan terasa terdorong ke depan. Dalam kedua kejadian itu, kecepatan mobil berubah.
 
 Dalam fisika, percepatan rata-rata menyatakan <Highlight>perubahan kecepatan</Highlight> dalam suatu selang waktu. Karena kecepatan memiliki besar dan arah, percepatan juga perlu dibaca bersama arah positif yang kita pilih.
 
@@ -24,7 +24,11 @@ Dalam fisika, percepatan rata-rata menyatakan <Highlight>perubahan kecepatan</Hi
 
 Satuan percepatan adalah <InlineMath math="\text{m/s}^2" />. Jika percepatannya tetap pada <InlineMath math="a=2\text{ m/s}^2" />, kecepatan bertambah <InlineMath math="2\text{ m/s}" /> setiap <InlineMath math="1\text{ s}" />. Dalam keadaan khusus ini, percepatan rata-rata pada selang mana pun sama dengan percepatan pada setiap saat.
 
-## Dari Jejak Ticker Timer ke Gradien
+## Mengamati Percepatan pada Jejak dan Lintasan Miring
+
+Jejak gerak, grafik kecepatan, dan lintasan miring menampilkan **perubahan kecepatan tiap detik** yang sama. Jarak antartanda di ruang dan kemiringan garis pada grafik sama-sama mencatat percepatan tetap itu secara langsung.
+
+### Dari Jejak Ticker Timer ke Gradien
 
 Ticker timer memberi tanda pada pita kertas dalam **selang waktu yang sama**. Untuk gerak pada satu garis lurus tanpa berbalik arah, jarak antartanda yang makin renggang menunjukkan kelajuan yang membesar, jarak yang sama menunjukkan kelajuan tetap, dan jarak yang makin rapat menunjukkan kelajuan yang mengecil. Jarak antartanda saja tidak menunjukkan tanda kecepatan, sehingga arah positif yang dipilih tetap diperlukan.
 
@@ -37,6 +41,7 @@ Ticker timer memberi tanda pada pita kertas dalam **selang waktu yang sama**. Un
       atau makin rapat sesuai gerak yang kamu pilih.
     </>
   }
+  footer={<>Jarak antargerbang yang makin lebar tiap detik menandakan kelajuan bertambah.</>}
   labels={{
     chooseCase: "Pilih gerak",
     scenarioNames: {
@@ -54,7 +59,7 @@ Ticker timer memberi tanda pada pita kertas dalam **selang waktu yang sama**. Un
   }}
 />
 
-Grafik kecepatan-waktu menempatkan kecepatan pada sumbu vertikal dan waktu pada sumbu horizontal. Kemiringan segmennya, yaitu <InlineMath math="\Delta v/\Delta t" />, merupakan percepatan rata-rata pada selang tersebut. Pada segmen garis lurus, kemiringannya tetap dan memberi percepatan pada setiap saat di dalam segmen.
+Grafik kecepatan-waktu menempatkan kecepatan pada sumbu vertikal dan waktu pada sumbu horizontal. Kemiringan segmennya, yaitu <InlineMath math="\Delta v/\Delta t" />, adalah percepatan rata-rata pada selang itu. Pada segmen garis lurus, kemiringannya tetap dan memberi percepatan pada setiap saat di dalam segmen.
 
 Gunakan jejak gerak untuk membandingkan kecepatan dari satu selang ke selang berikutnya. Lalu gunakan kemiringan grafik untuk menghitung perubahan itu tiap detik.
 
@@ -66,6 +71,7 @@ Gunakan jejak gerak untuk membandingkan kecepatan dari satu selang ke selang ber
       sebagai perubahan kecepatan setiap detik.
     </>
   }
+  footer={<>Garis naik berarti makin cepat, garis datar berarti kecepatan tetap.</>}
   labels={{
     chooseCase: "Pilih Segmen",
     contextLine: "Grafik lengkap",
@@ -81,7 +87,7 @@ Gunakan jejak gerak untuk membandingkan kecepatan dari satu selang ke selang ber
 
 Pada grafik, garis putus-putus menunjukkan grafik lengkap yang saling tersambung. Garis tebal adalah segmen yang sedang dibaca. Jika garisnya naik, kecepatannya bertambah. Jika datar, kecepatannya tetap. Jika turun, kecepatannya berkurang. Percepatan rata-rata pada segmen itu adalah perbandingan <InlineMath math="\Delta v" /> terhadap <InlineMath math="\Delta t" />.
 
-## Bel di Lintasan Miring Galileo
+### Bel di Lintasan Miring Galileo
 
 Galileo memperlambat gerak jatuh dengan menggelindingkan bola di lintasan yang sedikit miring. Bola mendapat **tambahan kecepatan yang sama setiap detik**, jadi jarak tempuhnya tumbuh sebanding dengan kuadrat waktu. Bel yang dipasang di satu, empat, sembilan, dan enam belas kali jarak detik pertama berbunyi dengan ketukan yang rata.
 
@@ -95,6 +101,7 @@ Galileo memperlambat gerak jatuh dengan menggelindingkan bola di lintasan yang s
       kemiringannya, lalu bandingkan jarak antarbel.
     </>
   }
+  footer={<>Tiap detik bola menempuh jarak yang makin panjang dengan nisbah <InlineMath math="1:3:5:7" />.</>}
   labels={{
     acceleration: <>Percepatan menuruni lintasan</>,
     chooseAngle: "Pilih sudut kemiringan",
@@ -106,7 +113,11 @@ Galileo memperlambat gerak jatuh dengan menggelindingkan bola di lintasan yang s
 
 Pada <InlineMath math="3^\circ" />, kecepatan bola bertambah sekitar <InlineMath math="0{,}374\text{ m/s}^2" />, jadi pada detik pertama bola menempuh <InlineMath math="18{,}7\text{ cm}" />. Di sudut mana pun, jarak antarbel tetap berbanding <InlineMath math="1:3:5:7" />, karena percepatan yang tetap menambah kecepatan yang sama setiap detik.
 
-## Cara Membaca Tanda Percepatan
+## Membaca Tanda Positif dan Negatif Percepatan
+
+Tanda percepatan tidak berdiri sendiri sebagai arah gerak benda. Tanda itu menyatakan **arah perubahan kecepatan**, jadi kamu selalu memasangkannya dengan tanda kecepatan untuk tahu apakah kelajuan naik atau turun.
+
+### Cara Membaca Tanda Percepatan
 
 Tanda positif, nol, atau negatif tidak boleh dibaca sendirian. Tanda itu selalu bergantung pada arah positif yang dipilih. Pada contoh satu dimensi, kita anggap arah ke kanan sebagai positif.
 
@@ -125,6 +136,7 @@ Baca kedua tandanya bersama-sama. Dengan <InlineMath math="v>0" />, percepatan b
 <MathVisual
   title={<>Makin Cepat atau Makin Lambat</>}
   description={<>Kecepatan terhadap waktu untuk <InlineMath math="a=+1" /> (teal), <InlineMath math="a=-1" /> (merah muda), dan <InlineMath math="a=0" /> (abu-abu), semuanya dengan kecepatan positif. Mendatar: sekon. Tegak: m/s.</>}
+  footer={<>Saat kecepatan positif, <InlineMath math="a>0" /> menaikkan garis dan <InlineMath math="a<0" /> menurunkannya.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: 0, max: 7 } },
@@ -150,38 +162,73 @@ Baca kedua tandanya bersama-sama. Dengan <InlineMath math="v>0" />, percepatan b
   }}
 />
 
-## Potongan Pita yang Makin Pendek
+Ketiga garis tetap berada di atas sumbu waktu, artinya benda selalu bergerak ke kanan. Kemiringan garisnyalah yang menentukan apakah kelajuan bertambah, berkurang, atau tetap.
 
-Pita ticker timer menunjukkan hal yang sama di laboratorium. Saat troli bergerak ke kanan sambil melambat, setiap potongan pita sepersepuluh detik **lebih pendek dari potongan sebelumnya** dengan selisih yang sama, jadi perubahan kecepatannya mengarah ke sisi negatif.
+### Batang Kecepatan yang Makin Pendek Saat Mengerem
 
-<TickerTapeMotionLab
-  motion="slowing"
-  title={<>Pita Ticker Timer Troli yang Melambat</>}
+Saat troli melaju ke kanan sambil melambat beraturan, setiap potongan pita sepersepuluh detik **lebih pendek dari potongan sebelumnya** dengan selisih yang sama. Deretan tinggi batang ini langsung membentuk grafik kecepatan terhadap waktu yang miring turun. Geser besar pengereman <InlineMath math="b" /> untuk melihat penurunannya.
+
+<MathVisual
+  title={<>Batang Kecepatan Troli yang Mengerem</>}
   description={
     <>
-      Ticker timer mencetak titik setiap <InlineMath math="0{,}02\text{ s}" />.
-      Setiap potongan berisi <InlineMath math="0{,}1\text{ s}" /> pita dan
-      berdiri di diagram seperti satu batang grafik kecepatan terhadap waktu.
+      Kecepatan troli setiap <InlineMath math="0{,}1\text{ s}" /> dari kecepatan
+      awal <InlineMath math="1{,}0\text{ m/s}" /> saat besar pengereman{" "}
+      <InlineMath math="b" /> berubah.
     </>
   }
+  footer={<>Tiap batang turun sama besar, padahal troli masih bergerak ke kanan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.9 }, y: { min: 0, max: 1.15 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 0.4, max: 1.2, value: 1, step: 0.2, label: "b" },
+    ],
+    objects: [
+      { id: "trend", kind: "function", appearance: "warning", formula: "1 - b*x", domain: { min: 0.05, max: 0.75 } },
+      { id: "bar-1", kind: "path", appearance: "primary", points: [{ x: "0.05", y: "0" }, { x: "0.05", y: "1 - 0.05*b" }] },
+      { id: "bar-2", kind: "path", appearance: "primary", points: [{ x: "0.15", y: "0" }, { x: "0.15", y: "1 - 0.15*b" }] },
+      { id: "bar-3", kind: "path", appearance: "primary", points: [{ x: "0.25", y: "0" }, { x: "0.25", y: "1 - 0.25*b" }] },
+      { id: "bar-4", kind: "path", appearance: "primary", points: [{ x: "0.35", y: "0" }, { x: "0.35", y: "1 - 0.35*b" }] },
+      { id: "bar-5", kind: "path", appearance: "primary", points: [{ x: "0.45", y: "0" }, { x: "0.45", y: "1 - 0.45*b" }] },
+      { id: "bar-6", kind: "path", appearance: "primary", points: [{ x: "0.55", y: "0" }, { x: "0.55", y: "1 - 0.55*b" }] },
+      { id: "bar-7", kind: "path", appearance: "primary", points: [{ x: "0.65", y: "0" }, { x: "0.65", y: "1 - 0.65*b" }] },
+      { id: "bar-8", kind: "path", appearance: "primary", points: [{ x: "0.75", y: "0" }, { x: "0.75", y: "1 - 0.75*b" }] },
+      { id: "first-dot", kind: "marker", appearance: "answer", x: "0.05", y: "1 - 0.05*b" },
+      { id: "last-dot", kind: "marker", appearance: "answer", x: "0.75", y: "1 - 0.75*b" },
+    ],
+    labels: [
+      { key: "first-speed", objectId: "first-dot", at: { x: "0.05", y: "1 - 0.05*b" }, placement: "above-right" },
+      { key: "last-speed", objectId: "last-dot", at: { x: "0.75", y: "1 - 0.75*b" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "v-start", formula: "1 - 0.05*b" },
+      { key: "v-end", formula: "1 - 0.75*b" },
+      { key: "accel", formula: "-b" },
+    ],
+  }}
   labels={{
-    acceleration: <>Percepatan dari potongan pita</>,
-    chooseMotion: "Pilih gerak troli",
-    firstStrip: <>Potongan pertama</>,
-    interval: <>Selang waktu antartitik</>,
-    lastStrip: <>Potongan terakhir</>,
-    motions: {
-      uniform: <>Tetap</>,
-      speeding: <>Makin cepat</>,
-      slowing: <>Melambat</>,
-    },
-    viewLabel: "Troli menarik pita kertas melewati ticker timer",
+    b: <>Besar pengereman <InlineMath math="b" /> (<InlineMath math="\text{m/s}^2" />)</>,
+    "first-speed": <InlineMath math="v_1" />,
+    "last-speed": <InlineMath math="v_8" />,
+    "v-start": <>Potongan pertama (m/s)</>,
+    "v-end": <>Potongan terakhir (m/s)</>,
+    accel: <>Percepatan (<InlineMath math="\text{m/s}^2" />)</>,
   }}
 />
 
-Panjang potongan turun dari <InlineMath math="9{,}5\text{ cm}" /> ke <InlineMath math="2{,}5\text{ cm}" />, berkurang <InlineMath math="1\text{ cm}" /> setiap kali. Satu potongan berlangsung <InlineMath math="0{,}1\text{ s}" />, jadi percepatannya <InlineMath math="\frac{-0{,}01\text{ m}}{(0{,}1\text{ s})^2}=-1\text{ m/s}^2" />, padahal troli masih bergerak ke kanan.
+Pada <InlineMath math="b=1\text{ m/s}^2" />, panjang potongan turun dari <InlineMath math="9{,}5\text{ cm}" /> ke <InlineMath math="2{,}5\text{ cm}" />, berkurang <InlineMath math="1\text{ cm}" /> setiap <InlineMath math="0{,}1\text{ s}" />:
 
-## Menghitung Perubahan Kecepatan Setiap Detik
+<BlockMath math="a=\frac{-0{,}01\text{ m}}{(0{,}1\text{ s})^2}=-1\text{ m/s}^2" />
+
+Meski nilainya negatif, seluruh batang tetap berada di atas nol. Troli masih melaju ke kanan sambil melambat.
+
+## Menghitung Percepatan Tetap dan Rata-Rata
+
+Saat percepatan tetap, satu angka berlaku pada setiap saat. Pada perjalanan nyata dengan pengereman dan berhenti di lampu merah, **kemiringan garis potong antara dua titik** merangkum percepatan rata-ratanya.
+
+### Menghitung Perubahan Kecepatan Setiap Detik
 
 Misalkan kecepatan mobil berubah dari <InlineMath math="2\text{ m/s}" /> menjadi <InlineMath math="18\text{ m/s}" /> dalam <InlineMath math="4\text{ s}" />. Percepatan rata-ratanya:
 
@@ -191,7 +238,7 @@ a_{\text{rata-rata}} &= \frac{v_t-v_0}{\Delta t} \\
 &= 4\text{ m/s}^2
 \end{aligned}" />
 
-Jika percepatan **tetap selama empat detik tersebut**, kecepatan bertambah <InlineMath math="4\text{ m/s}" /> setiap detik. Urutannya menjadi <InlineMath math="2\text{ m/s}" />, <InlineMath math="6\text{ m/s}" />, <InlineMath math="10\text{ m/s}" />, dan seterusnya jika percepatannya tetap.
+Jika percepatan **tetap selama empat detik itu**, kecepatan bertambah <InlineMath math="4\text{ m/s}" /> setiap detik. Urutannya menjadi <InlineMath math="2\text{ m/s}" />, <InlineMath math="6\text{ m/s}" />, <InlineMath math="10\text{ m/s}" />, dan seterusnya jika percepatannya tetap.
 
 Karena contoh ini menganggap percepatannya tetap, nilai yang sama berlaku pada setiap saat. Sekarang bandingkan dengan mobil yang kecepatannya berubah dari <InlineMath math="18\text{ m/s}" /> menjadi <InlineMath math="2\text{ m/s}" /> dalam <InlineMath math="4\text{ s}" />.
 
@@ -202,27 +249,69 @@ a_{\text{rata-rata}} &= \frac{2-18}{4} \\
 
 Nilai <InlineMath math="-4\text{ m/s}^2" /> berarti kecepatan berkurang <InlineMath math="4\text{ m/s}" /> setiap detik jika mobil masih bergerak ke arah positif.
 
-## Percepatan Rata-Rata dalam Perjalanan
+### Percepatan Rata-Rata dalam Perjalanan
 
-Perjalanan nyata jarang punya satu percepatan saja. Pada grafik kecepatan terhadap waktu, percepatan rata-rata pada suatu selang adalah **kemiringan garis yang menghubungkan kedua titiknya**.
+Perjalanan nyata jarang punya satu percepatan saja. Pada grafik kecepatan terhadap waktu, percepatan rata-rata pada suatu selang adalah **kemiringan garis yang menghubungkan kedua titiknya**. Geser waktu akhir <InlineMath math="d" /> untuk melihat perubahan kemiringan garis potongnya.
 
-<CarTripSecantSlopeLab
-  graph="velocity"
-  trip="commute"
-  title={<>Percepatan Rata-Rata dalam Perjalanan</>}
+<MathVisual
+  title={<>Garis Potong pada Grafik Kecepatan Perjalanan</>}
   description={
     <>
-      Mobil bertambah cepat, melaju tetap, mengerem di lampu merah, menunggu,
-      lalu jalan lagi. Pilih selang waktu untuk menggambar garis potongnya pada
-      grafik kecepatan terhadap waktu.
+      Mobil bertambah cepat sampai <InlineMath math="4\text{ s}" />, melaju tetap,
+      mengerem di lampu merah, menunggu, lalu melaju lagi setelah{" "}
+      <InlineMath math="16\text{ s}" />. Mendatar: waktu dalam s. Tegak: kecepatan dalam m/s.
     </>
   }
+  footer={<>Garis potong ungu menyambung awal dan akhir tanpa melihat jeda di tengah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 22 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 4, max: 20, value: 20, step: 2, label: "d" },
+    ],
+    objects: [
+      { id: "leg-1", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 4, y: 10 } },
+      { id: "leg-2", kind: "segment", appearance: "primary", from: { x: 4, y: 10 }, to: { x: 10, y: 10 } },
+      { id: "leg-3", kind: "segment", appearance: "primary", from: { x: 10, y: 10 }, to: { x: 12, y: 0 } },
+      { id: "leg-4", kind: "segment", appearance: "primary", from: { x: 12, y: 0 }, to: { x: 16, y: 0 } },
+      { id: "leg-5", kind: "segment", appearance: "primary", from: { x: 16, y: 0 }, to: { x: 20, y: 10 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0", y: "0" },
+          { x: "d", y: "max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))" },
+        ],
+      },
+      {
+        id: "end-dot",
+        kind: "marker",
+        appearance: "answer",
+        x: "d",
+        y: "max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))",
+      },
+    ],
+    labels: [
+      {
+        key: "end-mark",
+        objectId: "end-dot",
+        at: { x: "d", y: "max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))" },
+        placement: "above",
+      },
+    ],
+    readouts: [
+      { key: "end-v", formula: "max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))" },
+      { key: "avg-a", formula: "(max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))) / d" },
+    ],
+  }}
   labels={{
-    change: <>Perubahan kecepatan</>,
-    chooseInterval: "Pilih selang waktu",
-    elapsed: <>Selang waktu</>,
-    rate: <>Percepatan rata-rata</>,
-    viewLabel: "Mobil dalam perjalanan dengan grafik kecepatan terhadap waktu",
+    d: <>Waktu akhir <InlineMath math="d" /> (s)</>,
+    "end-mark": <InlineMath math="v(d)" />,
+    "end-v": <>Kecepatan akhir (m/s)</>,
+    "avg-a": <>Percepatan rata-rata (<InlineMath math="\text{m/s}^2" />)</>,
   }}
 />
 

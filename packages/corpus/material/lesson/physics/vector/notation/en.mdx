@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Vector Symbols and Notation",
   description:
-    "Read vector symbols, two-point notation, vector magnitude, zero vectors, and unit vectors in physics.",
+    "Read vector symbols, two point notation, vector magnitude, zero vectors, and unit vectors in physics.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
   dateModified: "2026-09-01",
@@ -10,63 +10,76 @@ export const metadata = {
 
 ## What a Vector Arrow Shows
 
-A vector is commonly drawn as an <Highlight>arrow</Highlight>. Its tail shows the starting point, its tip shows the direction, and its length represents the vector magnitude.
+A vector is drawn as an <Highlight>arrow</Highlight>. Its tail marks the starting point, its tip marks the direction, and its length represents the magnitude on a chosen scale.
 
-If a force arrow is longer, the force is larger on the same drawing scale. If the arrow points up and to the right, the force acts up and to the right.
+If one force arrow is longer than another on the same scale, that force is larger. If the arrow points up and to the right, the force acts up and to the right.
 
 > A complete vector notation shows both magnitude and direction.
 
-## Arrows on a Wind Map
+Consider wind blowing toward <InlineMath math="45^\circ" /> north of east. As wind speed changes from <InlineMath math="8\text{ m/s}" /> upward, **only the arrow length changes** while its direction stays fixed.
 
-Each arrow on this map is drawn from a place, its tail, toward where the wind blows, its head, and **its length grows with the speed**. Slide the speed from <InlineMath math="8\text{ m/s}" /> up and watch only the length change.
-
-<WindMapVectorLab
-  title={<>Length and Direction of the Wind</>}
-  description={<>Wind of <InlineMath math="8\text{ m/s}" /> toward <InlineMath math="45^\circ" /> from east.</>}
-  angle={45}
-  speed={8}
+<MathVisual
+  title={<>Length and Direction of a Wind Vector</>}
+  description={<>Wind blowing at <InlineMath math="45^\circ" /> from east with an adjustable speed <InlineMath math="s" /> in meters per second.</>}
+  footer="Raising wind speed stretches the arrow while keeping its 45 degree direction."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -1, max: 13 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 2, max: 16, value: 8, step: 2, label: "wind-speed" },
+    ],
+    objects: [
+      { id: "wind", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "s * cos(45 * pi / 180)", y: "s * sin(45 * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "s * cos(45 * pi / 180)", y: "s * sin(45 * pi / 180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "s * cos(45 * pi / 180)", y: "s * sin(45 * pi / 180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "vx-ms", formula: "s * cos(45 * pi / 180)" },
+      { key: "vy-ms", formula: "s * sin(45 * pi / 180)" },
+    ],
+  }}
   labels={{
-    angle: <>Direction from east</>,
-    angleName: "Direction from east",
-    east: <>East component <InlineMath math="v_x" /></>,
-    north: <>North component <InlineMath math="v_y" /></>,
-    speed: <>Wind speed</>,
-    speedName: "Wind speed",
-    viewLabel: "Weather map of wind over islands",
+    tip: <InlineMath math="\vec{v}" />,
+    "wind-speed": <>Wind speed (m/s)</>,
+    "vx-ms": <>East component (m/s)</>,
+    "vy-ms": <>North component (m/s)</>,
   }}
 />
 
+Both east and north components scale in exact proportion to the arrow length whenever the direction angle remains unchanged.
+
 ## Two Point Notation
 
-A vector can be written from a starting point to an ending point. For example, <InlineMath math="\overrightarrow{AB}" /> means the vector from point <InlineMath math="A" /> to point <InlineMath math="B" />.
+A vector can be named from its **starting point** to its **ending point**. For example, <InlineMath math="\overrightarrow{AB}" /> means the vector starting at point <InlineMath math="A" /> and ending at point <InlineMath math="B" />.
 
-The order of the letters matters. <InlineMath math="\overrightarrow{AB}" /> and <InlineMath math="\overrightarrow{BA}" /> use the same two points, but their directions are opposite.
+Letter order always matters. Treating <InlineMath math="\overrightarrow{AB}" /> and <InlineMath math="\overrightarrow{BA}" /> as the same vector is a classic reading mistake: they connect the same two points, yet point in opposite directions.
 
 | Notation | How to read it | Direction meaning |
 | :------- | :------------- | :---------------- |
 | <InlineMath math="\overrightarrow{AB}" /> | vector from <InlineMath math="A" /> to <InlineMath math="B" /> | tail at <InlineMath math="A" />, tip at <InlineMath math="B" /> |
 | <InlineMath math="\overrightarrow{BA}" /> | vector from <InlineMath math="B" /> to <InlineMath math="A" /> | tail at <InlineMath math="B" />, tip at <InlineMath math="A" /> |
-| <InlineMath math="\lvert\overrightarrow{AB}\rvert" /> | magnitude of <InlineMath math="\overrightarrow{AB}" /> | Gives the vector's length. Direction does not affect this value |
+| <InlineMath math="\lvert\overrightarrow{AB}\rvert" /> | magnitude of <InlineMath math="\overrightarrow{AB}" /> | gives the length only without direction |
 
-<Highlight>The arrow above the letters</Highlight> tells us that the quantity is a vector. Absolute-value bars tell us that only the magnitude is being discussed.
+<Highlight>The arrow above the letters</Highlight> marks the quantity as a vector, whereas absolute-value bars isolate its length. Reversing the letter order reverses the vector:
 
-Both arrows below have the same length, but the order of the letters flips the direction: <InlineMath math="\overrightarrow{AB}" /> starts at <InlineMath math="A" /> and <InlineMath math="\overrightarrow{BA}" /> starts at <InlineMath math="B" />. So <InlineMath math="\overrightarrow{BA}=-\overrightarrow{AB}" />.
+<BlockMath math="\overrightarrow{BA}=-\overrightarrow{AB}" />
 
 <MathVisual
   title={<>The Order of the Points Sets the Direction</>}
-  description={<>Vectors <InlineMath math="\overrightarrow{AB}" /> and <InlineMath math="\overrightarrow{BA}" /> between the points <InlineMath math="A(1, 1)" /> and <InlineMath math="B(4, 3)" />, the second shifted down to sit beside the first.</>}
+  description={<>Vectors <InlineMath math="\overrightarrow{AB}" /> and <InlineMath math="\overrightarrow{BA}" /> between <InlineMath math="A(1, 1)" /> and <InlineMath math="B(4, 3)" />, shifted apart so both arrows stay clear.</>}
+  footer="Swapping the two point letters keeps the exact length but flips the arrow."
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -1, max: 3.8 } },
-    view: { kind: "fit", padding: 0.06 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "ab-line", kind: "segment", appearance: "reference", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
       { id: "a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
       { id: "b", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
-      { id: "ab", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
-      { id: "ab-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) + ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) + ((0.25 / 2) * 3) / Math.hypot(3, 2) }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) - ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) - ((0.25 / 2) * 3) / Math.hypot(3, 2) }] },
-      { id: "ba", kind: "segment", appearance: "secondary", from: { x: 4, y: 1.5 }, to: { x: 1, y: -0.5 } },
-      { id: "ba-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: -0.5 }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) + ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) + ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) - ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) - ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }] },
+      { id: "ab", kind: "vector", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "ba", kind: "vector", appearance: "secondary", from: { x: 4, y: 1.5 }, to: { x: 1, y: -0.5 } },
     ],
     labels: [
       { key: "ab", objectId: "ab", at: { x: 2.5, y: 2 }, placement: "above-left" },
@@ -83,103 +96,185 @@ Both arrows below have the same length, but the order of the letters flips the d
   }}
 />
 
-## Checkpoints on a Park Map
+Always read two-point notation from left to right: the first letter is the tail and the second letter is the tip.
 
-On an orienteering map, <InlineMath math="\overrightarrow{AB}" /> runs from checkpoint <InlineMath math="A" /> in the teal ring to <InlineMath math="B" /> in the amber ring: <InlineMath math="60\text{ m}" /> east and <InlineMath math="80\text{ m}" /> north, <InlineMath math="100\text{ m}" /> long. Switch to <InlineMath math="\overrightarrow{BA}" /> and **the length stays while the direction turns around**.
+Test this swap on a park map connecting checkpoint <InlineMath math="A(40, 30)" /> and checkpoint <InlineMath math="B(100, 110)" /> in meters. Going forward gives <InlineMath math="60\text{ m}" /> east and <InlineMath math="80\text{ m}" /> north, while reversing to <InlineMath math="\overrightarrow{BA}" /> flips both signs while keeping the <InlineMath math="100\text{ m}" /> length unchanged.
 
-<OrienteeringMapVectorLab
-  title={<>From <InlineMath math="A" /> to <InlineMath math="B" /> and Back</>}
-  description={<>The start <InlineMath math="O" /> is the fuchsia triangle. Choose which vector the map shows.</>}
-  marks={{
-    a: { east: 40, north: 30 },
-    b: { east: 100, north: 110 },
-    c: { east: 150, north: -10 },
+<MathVisual
+  title={<>From Checkpoint A to B and Back</>}
+  description={<>Switch orientation <InlineMath math="k" /> between <InlineMath math="+1" /> (<InlineMath math="\overrightarrow{AB}" />) and <InlineMath math="-1" /> (<InlineMath math="\overrightarrow{BA}" />) in meters.</>}
+  footer="Flipping from A to B to B to A reverses both components while length stays 100 m."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 140 }, y: { min: 0, max: 140 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "k", min: -1, max: 1, value: 1, step: 2, label: "leg-order" },
+    ],
+    objects: [
+      { id: "line", kind: "segment", appearance: "reference", from: { x: 40, y: 30 }, to: { x: 100, y: 110 } },
+      { id: "pt-a", kind: "point", appearance: "reference", at: { x: 40, y: 30 } },
+      { id: "pt-b", kind: "point", appearance: "reference", at: { x: 100, y: 110 } },
+      { id: "leg", kind: "path", appearance: "primary", points: [{ x: "70 - 30 * k", y: "70 - 40 * k" }, { x: "70 + 30 * k", y: "70 + 40 * k" }] },
+      { id: "head", kind: "marker", appearance: "answer", x: "70 + 30 * k", y: "70 + 40 * k" },
+    ],
+    labels: [
+      { key: "a", objectId: "pt-a", at: { x: 40, y: 30 }, placement: "below-left" },
+      { key: "b", objectId: "pt-b", at: { x: 100, y: 110 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "east-m", formula: "60 * k" },
+      { key: "north-m", formula: "80 * k" },
+      { key: "len-m", formula: "100 * abs(k)" },
+    ],
   }}
-  views={["forward", "back"]}
   labels={{
-    angle: <>Direction from east</>,
-    chooseView: "Choose which vector to show",
-    east: <>East part</>,
-    north: <>North part</>,
-    size: <>Length</>,
-    viewLabel: "Orienteering map of a park",
-    views: {
-      back: <><InlineMath math="B" /> to <InlineMath math="A" /></>,
-      copy: <>Same vector from <InlineMath math="C" /></>,
-      difference: <><InlineMath math="\vec b-\vec a" /></>,
-      forward: <><InlineMath math="A" /> to <InlineMath math="B" /></>,
-    },
+    a: <InlineMath math="A(40,30)" />,
+    b: <InlineMath math="B(100,110)" />,
+    "leg-order": <>Direction (<InlineMath math="+1" /> is <InlineMath math="A\to B" />)</>,
+    "east-m": <>East change (m)</>,
+    "north-m": <>North change (m)</>,
+    "len-m": <>Length (m)</>,
   }}
 />
 
+Whether you walk forward or back between two checkpoints, the distance stays <InlineMath math="100\text{ m}" /> while the signed components negate.
+
 ## Single Letter Notation
 
-In calculations, vectors are often named with **one letter carrying an arrow** such as <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" />, or <InlineMath math="\vec{F}" />. The letter helps identify the physical quantity.
-
-For example, <InlineMath math="\vec{F}" /> is often used for force, <InlineMath math="\vec{v}" /> for velocity, and <InlineMath math="\vec{s}" /> for displacement. The magnitude is written without the arrow, such as <InlineMath math="F" /> or <InlineMath math="\lvert\vec{F}\rvert" />.
+In calculations, vectors are usually named with **one letter carrying an arrow** such as <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" />, or <InlineMath math="\vec{F}" />. Writing <InlineMath math="F" /> or <InlineMath math="\lvert\vec{F}\rvert" /> drops the direction and refers only to the magnitude.
 
 <MathContainer>
   <BlockMath math="\vec{F}=20\text{ N to the right}" />
   <BlockMath math="\lvert\vec{F}\rvert=20\text{ N}" />
 </MathContainer>
 
-The first line still includes direction. The second line states only the force magnitude.
+A vector magnitude is **always zero or positive**, never negative. Writing <InlineMath math="-\vec{a}" /> does not give the vector a negative length: it keeps the exact same magnitude as <InlineMath math="\vec{a}" /> while reversing its direction.
 
-## One Letter for a Ferry Leg
+Name a ferry's <InlineMath math="10\text{ km}" /> leg simply <InlineMath math="\vec{s}" />. At bearing <InlineMath math="60^\circ" /> clockwise from north, that single symbol packages both the <InlineMath math="8.66\text{ km}" /> east component and the <InlineMath math="5\text{ km}" /> north component into one object.
 
-Call the ferry's displacement <InlineMath math="\vec s" />. **One letter carries everything**: <InlineMath math="10\text{ km}" /> on a bearing of <InlineMath math="60^\circ" />, which the card also writes as <InlineMath math="8.66\text{ km}" /> east and <InlineMath math="5\text{ km}" /> north. Turn the bearing and <InlineMath math="\vec s" /> still names the whole arrow.
-
-<ShipBearingComponentLab
-  title={<>The Ferry's Vector <InlineMath math="\vec s" /></>}
-  description={<>A ferry sails <InlineMath math="10\text{ km}" /> from the harbour. The bearing is measured clockwise from north.</>}
-  courses={[{ bearing: 60, distance: 10 }]}
+<MathVisual
+  title={<>One Symbol for a Ferry Displacement</>}
+  description={<>A <InlineMath math="10\text{ km}" /> ferry leg <InlineMath math="\vec{s}" /> at an adjustable clockwise compass bearing <InlineMath math="b" /> from north.</>}
+  footer="One vector symbol tracks both distance and components as the bearing turns."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 12 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "b", min: 0, max: 90, value: 60, step: 15, label: "ferry-bearing" },
+    ],
+    objects: [
+      { id: "leg", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "10 * sin(b * pi / 180)", y: "10 * cos(b * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "10 * sin(b * pi / 180)", y: "10 * cos(b * pi / 180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "10 * sin(b * pi / 180)", y: "10 * cos(b * pi / 180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "east-km", formula: "10 * sin(b * pi / 180)" },
+      { key: "north-km", formula: "10 * cos(b * pi / 180)" },
+      { key: "mag-km", formula: "10" },
+    ],
+  }}
   labels={{
-    bearing: <>Bearing of the last leg</>,
-    bearingName: "Bearing of the last leg",
-    direction: <>Bearing from the harbour</>,
-    distance: <>Distance from the harbour</>,
-    east: <>East component</>,
-    north: <>North component</>,
-    viewLabel: "Ferry sailing from a harbour",
+    tip: <InlineMath math="\vec{s}" />,
+    "ferry-bearing": <>Bearing from north (<InlineMath math="^\circ" />)</>,
+    "east-km": <>East component (km)</>,
+    "north-km": <>North component (km)</>,
+    "mag-km": <>Magnitude (km)</>,
   }}
 />
+
+Rotating the bearing shifts how much displacement points east versus north, while the single symbol <InlineMath math="\vec{s}" /> keeps magnitude <InlineMath math="10\text{ km}" />.
 
 ## Zero Vectors and Unit Vectors
 
-When calculating components, you need to distinguish a vector with no length from a vector used to specify direction. **Zero vectors** and **unit vectors** serve these two different roles.
+When working with components, you need two special symbols with opposite jobs. A **zero vector** records complete cancellation with length zero, whereas a **unit vector** isolates pure direction with length one.
 
 ### A Vector with Zero Magnitude
 
-A **zero vector** has magnitude <InlineMath math="0" />. Its tail and tip coincide, so its direction is undefined. In physics, a zero vector can appear when two equal and opposite forces cancel each other.
-
-For example, take right as the positive direction. Forces of <InlineMath math="20\text{ N}" /> to the right and to the left add to:
+A **zero vector** <InlineMath math="\vec{0}" /> has magnitude <InlineMath math="0" />. Its tail and tip coincide, so its direction is undefined. Taking right as positive, two opposite <InlineMath math="20\text{ N}" /> forces sum to zero:
 
 <BlockMath math="\begin{aligned}\vec{F}_1+\vec{F}_2 &= 20\hat{i}\text{ N}-20\hat{i}\text{ N} \\ &= (20-20)\hat{i}\text{ N} \\ &= \vec{0}\text{ N}\end{aligned}" />
 
-On this force table, three strings pull one ring. Turn the third pulley from <InlineMath math="200^\circ" /> toward <InlineMath math="233^\circ" />: the resultant shrinks until it is almost <InlineMath math="0\text{ N}" />, the zero vector, and the ring rests on the pin.
+Placed head to tail in true newtons, the second arrow returns straight to the starting point of the first.
 
-<ForceTableResultantLab
-  title={<>Balance the Ring</>}
-  description={<>Masses of <InlineMath math="300\text{ g}" />, <InlineMath math="400\text{ g}" /> and <InlineMath math="500\text{ g}" /> hang at <InlineMath math="0^\circ" />, <InlineMath math="90^\circ" /> and the angle you choose.</>}
-  pulls={[
-    { angle: 0, mass: 300 },
-    { angle: 90, mass: 400 },
-    { angle: 200, mass: 500 },
-  ]}
+<MathVisual
+  title={<>Two Forces That Cancel</>}
+  description={<>Opposite forces <InlineMath math="\vec{F}_1=20\hat{i}\text{ N}" /> and <InlineMath math="\vec{F}_2=-20\hat{i}\text{ N}" /> drawn head to tail in newtons.</>}
+  footer="Equal opposite arrows return to the origin, leaving the zero vector."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 24 }, y: { min: -6, max: 10 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "f1", kind: "vector", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 20, y: 3 } },
+      { id: "f2", kind: "vector", appearance: "secondary", from: { x: 20, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "sum", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 10, y: 3 }, placement: "above" },
+      { key: "f2", objectId: "f2", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
   labels={{
-    angle: <>Angle of the last string</>,
-    angleName: "Angle of the last string",
-    direction: <>Direction of <InlineMath math="\vec R" /></>,
-    resultant: <>Resultant <InlineMath math="R" /></>,
-    sumX: <>Sum along <InlineMath math="0^\circ" /></>,
-    sumY: <>Sum along <InlineMath math="90^\circ" /></>,
-    viewLabel: "Force table with hanging masses",
+    f1: <InlineMath math="\vec F_1=20\hat i\text{ N}" />,
+    f2: <InlineMath math="\vec F_2=-20\hat i\text{ N}" />,
+    sum: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />,
   }}
 />
 
+Because the final tip lands back on the initial tail, the net vector has zero length and no direction.
+
+Three forces can cancel just as cleanly. Combine <InlineMath math="3\text{ N}" /> at <InlineMath math="0^\circ" />, <InlineMath math="4\text{ N}" /> at <InlineMath math="90^\circ" />, and <InlineMath math="5\text{ N}" /> at an adjustable angle. Turning the third pull from <InlineMath math="200^\circ" /> to <InlineMath math="233^\circ" /> shrinks the resultant to nearly <InlineMath math="0\text{ N}" />.
+
+<MathVisual
+  title={<>Balancing Three Forces to the Zero Vector</>}
+  description={<>Forces <InlineMath math="3\text{ N}" /> at <InlineMath math="0^\circ" />, <InlineMath math="4\text{ N}" /> at <InlineMath math="90^\circ" />, and <InlineMath math="5\text{ N}" /> at angle <InlineMath math="a" /> added head to tail.</>}
+  footer="At 233 degrees the 5 N arrow closes the 3 4 5 triangle back to zero."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -2, max: 6 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 200, max: 260, value: 200, step: 3, label: "third-angle" },
+    ],
+    objects: [
+      { id: "f1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "f2", kind: "vector", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "f3", kind: "path", appearance: "highlight", points: [{ x: "3", y: "4" }, { x: "3 + 5 * cos(a * pi / 180)", y: "4 + 5 * sin(a * pi / 180)" }] },
+      { id: "res", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "3 + 5 * cos(a * pi / 180)", y: "4 + 5 * sin(a * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "3 + 5 * cos(a * pi / 180)", y: "4 + 5 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "f2", objectId: "f2", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "tip", objectId: "tip", at: { x: "3 + 5 * cos(a * pi / 180)", y: "4 + 5 * sin(a * pi / 180)" }, placement: "left" },
+    ],
+    readouts: [
+      { key: "sum-x", formula: "3 + 5 * cos(a * pi / 180)" },
+      { key: "sum-y", formula: "4 + 5 * sin(a * pi / 180)" },
+      { key: "res-n", formula: "sqrt((3 + 5 * cos(a * pi / 180))^2 + (4 + 5 * sin(a * pi / 180))^2)" },
+    ],
+  }}
+  labels={{
+    f1: <InlineMath math="3\text{ N}" />,
+    f2: <InlineMath math="4\text{ N}" />,
+    tip: <InlineMath math="\vec{R}" />,
+    "third-angle": <>Third force angle (<InlineMath math="^\circ" />)</>,
+    "sum-x": <>Sum along x (N)</>,
+    "sum-y": <>Sum along y (N)</>,
+    "res-n": <>Resultant R (N)</>,
+  }}
+/>
+
+Closing the vector polygon back to the origin gives <InlineMath math="R_x=0" /> and <InlineMath math="R_y=0" />, the exact signature of the zero vector.
+
 ### A Vector That Specifies Direction
 
-A **unit vector** has magnitude <InlineMath math="1" /> and only shows direction. Unit vectors do not tell us how strong a force is or how far a displacement is. In the standard three-dimensional Cartesian basis, each unit vector has one component equal to <InlineMath math="1" />:
+A **unit vector** has magnitude <InlineMath math="1" /> and carries direction only. In the standard three-dimensional Cartesian basis, each unit vector has a single component equal to <InlineMath math="1" />:
 
 <ContentStack>
   <MathContainer>
@@ -190,11 +285,12 @@ A **unit vector** has magnitude <InlineMath math="1" /> and only shows direction
 
   <MathVisual
     title={<>Directions of Three Unit Vectors</>}
-    description={<>Rotate the model to separate the three axis directions. Each arrow has length one, although perspective can make their displayed lengths differ.</>}
+    description={<>Rotate the model to inspect the three perpendicular axis unit vectors, each of true length one.</>}
+    footer="All three basis arrows have exact length one along x, y, and z."
     labels={{
-      "l1": <InlineMath math="\hat{i}" />,
-      "l2": <InlineMath math="\hat{j}" />,
-      "l3": <InlineMath math="\hat{k}" />,
+      l1: <InlineMath math="\hat{i}" />,
+      l2: <InlineMath math="\hat{j}" />,
+      l3: <InlineMath math="\hat{k}" />,
     }}
     scene={{
       space: "space",
@@ -214,44 +310,14 @@ A **unit vector** has magnitude <InlineMath math="1" /> and only shows direction
   />
 </ContentStack>
 
-All three arrows have **the same actual length**. Rotating the view changes their projection on the screen, but not the magnitude of a unit vector.
+All three arrows have **the same true length** even when perspective foreshortens one on screen. Writing <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" /> pairs those unit directions with signed scalar components.
 
-Later, when a vector is written as <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />, <InlineMath math="\hat{i}" /> and <InlineMath math="\hat{j}" /> give the positive axis directions, while the signed scalars <InlineMath math="A_x" /> and <InlineMath math="A_y" /> give the components along those axes.
-
-Place the two forces head to tail. The second arrow ends exactly where the first began, so the sum is the zero vector: no length and no direction.
-
-<MathVisual
-  title={<>Two Forces That Cancel</>}
-  description={<><InlineMath math="\vec F_1=20\hat i\text{ N}" /> and <InlineMath math="\vec F_2=-20\hat i\text{ N}" /> placed head to tail. One grid step is <InlineMath math="5\text{ N}" />.</>}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -1.1, max: 1.6 } },
-    view: { kind: "fit", padding: 0.06 },
-    objects: [
-      { id: "f1", kind: "segment", appearance: "primary", from: { x: 0, y: 0.6 }, to: { x: 4, y: 0.6 } },
-      { id: "f1-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0.6 }, { x: 3.75, y: 0.725 }, { x: 3.75, y: 0.475 }] },
-      { id: "f2", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 0, y: 0 } },
-      { id: "f2-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 0.125 }, { x: 0.25, y: -0.125 }] },
-      { id: "sum", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
-    ],
-    labels: [
-      { key: "f1", objectId: "f1", at: { x: 2, y: 0.6 }, placement: "above" },
-      { key: "f2", objectId: "f2", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "sum", objectId: "sum", at: { x: 0, y: 0 }, placement: "left" },
-    ],
-  }}
-  labels={{
-    f1: <InlineMath math="\vec F_1=20\hat i\text{ N}" />,
-    f2: <InlineMath math="\vec F_2=-20\hat i\text{ N}" />,
-    sum: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />,
-  }}
-/>
-
-The three short arrows at the pad are the unit vectors <InlineMath math="\hat\imath" />, <InlineMath math="\hat\jmath" /> and <InlineMath math="\hat k" />, each <InlineMath math="1\text{ m}" /> long, east, north and up. The drone's displacement is <InlineMath math="3\,\hat\imath+4\,\hat\jmath+12\,\hat k" /> metres, <InlineMath math="13\text{ m}" /> long.
+At the launch pad below, the three short <InlineMath math="1\text{ m}" /> arrows mark <InlineMath math="\hat\imath" />, <InlineMath math="\hat\jmath" />, and <InlineMath math="\hat k" /> pointing east, north, and up. Combining them expresses the drone's displacement as <InlineMath math="3\,\hat\imath+4\,\hat\jmath+12\,\hat k" /> meters, which is <InlineMath math="13\text{ m}" /> long.
 
 <DroneDisplacementLab
   title={<>Unit Vectors at the Pad</>}
   description={<>The drone climbs <InlineMath math="12\text{ m}" />, then flies <InlineMath math="3\text{ m}" /> east and <InlineMath math="4\text{ m}" /> north at once.</>}
+  footer="Unit vectors i, j, and k build the full 3D displacement of 13 m from the pad."
   hops={[
     { east: 0, north: 0, up: 12 },
     { east: 3, north: 4, up: 0 },
@@ -266,10 +332,4 @@ The three short arrows at the pad are the unit vectors <InlineMath math="\hat\im
   }}
 />
 
-## Common Reading Mistakes
-
-The first mistake is **ignoring the order of the points** and treating <InlineMath math="\overrightarrow{AB}" /> as the same vector as <InlineMath math="\overrightarrow{BA}" /> because they use the same two points. Their directions are opposite.
-
-The second mistake is writing a **negative vector magnitude**. A magnitude is always <InlineMath math="0" /> or positive. A negative sign on a vector usually points the vector opposite to the chosen reference direction. It does not make the length negative.
-
-For example, <InlineMath math="-\vec{a}" /> does not mean the vector has negative magnitude. It means the vector has the same magnitude as <InlineMath math="\vec{a}" /> but points in the opposite direction.
+Each coordinate multiplies its matching unit vector, turning a three-dimensional path into one compact algebraic expression.

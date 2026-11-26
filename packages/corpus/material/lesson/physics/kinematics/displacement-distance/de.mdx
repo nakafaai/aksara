@@ -30,10 +30,11 @@ Bei einer zweidimensionalen Bewegung wird die Verschiebung als gerade Linie vom 
   title={<>Pfadlänge und Verschiebung</>}
   description={
     <>
-    Wähle eine Route und vergleiche den zurückgelegten Weg mit der geradlinigen
-    Verschiebung vom Start zum Ziel.
-  </>
+      Wähle eine Route und vergleiche den zurückgelegten Weg mit der geradlinigen
+      Verschiebung vom Start zum Ziel.
+    </>
   }
+  footer={<>Jede Biegung verlängert den Weg, der Pfeil verbindet nur Start und Ziel.</>}
   labels={{
     chooseCase: "Route wählen",
     modeLabels: {
@@ -56,13 +57,13 @@ Bei einer zweidimensionalen Bewegung wird die Verschiebung als gerade Linie vom 
   }}
 />
 
-## Umwege verändern die Wegstrecke
+Sobald das Fahrzeug abbiegt oder umkehrt, wächst die Wegstrecke weiter an, während die Verschiebung kürzer bleibt oder auf null fällt.
 
-Vergleiche zwei Wege, auf denen ein Objekt vom selben Startpunkt zum selben Ziel gelangt. Auf der geraden Route ist die Wegstrecke genauso groß wie der Betrag der Verschiebung. Ein Umweg verlängert die Wegstrecke, während die Verschiebung weiterhin durch die Gerade vom Start zum Ziel bestimmt wird.
+## Warum Umwege Wegstrecke und Verschiebung trennen
 
-Wähle in der Simulation zuerst die Route mit Kurve und dann die Rückkehr zum Start. Vergleiche **Wegstrecke** und **Verschiebungsbetrag**. Bei der Rückkehr hat der zurückgelegte Weg weiterhin eine Länge, während die Verbindung zwischen Anfangs- und Endposition die Länge null hat.
+Auf einem geraden Weg ohne Richtungswechsel stimmen **Wegstrecke und Betrag der Verschiebung** überein. Ein Umweg verlängert die Wegstrecke, während die Verschiebung weiterhin durch die Gerade vom Start zum Ziel bestimmt wird.
 
-## Ein Umweg durch die Stadt
+Wähle in der Simulation oben zuerst die Route mit Kurve und dann die Rückkehr zum Start. Vergleiche **Wegstrecke** und **Verschiebungsbetrag**. Bei der Rückkehr hat der zurückgelegte Weg weiterhin eine Länge, während die Verbindung zwischen Anfangs- und Endposition die Länge null hat.
 
 Vergrößere das Beispiel auf eine Stadt und **vergleiche den Weg mit dem Pfeil**: Du gehst <InlineMath math="400\text{ m}" /> nach Osten eine Straße entlang und dann <InlineMath math="300\text{ m}" /> nach Süden, mit <InlineMath math="1{,}25\text{ m/s}" />.
 
@@ -78,6 +79,7 @@ Vergrößere das Beispiel auf eine Stadt und **vergleiche den Weg mit dem Pfeil*
       Der gelbe Weg ist die Strecke, die du gehst. Der violette Pfeil ist die Verschiebung, gerade vom Start bis zu deinem Standort.
     </>
   }
+  footer={<>Die beiden Straßenabschnitte summieren sich auf <InlineMath math="700\text{ m}" />, die Luftlinie auf <InlineMath math="500\text{ m}" />.</>}
   labels={{
     averageSpeed: <>Mittlere Schnelligkeit</>,
     averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
@@ -90,7 +92,11 @@ Vergrößere das Beispiel auf eine Stadt und **vergleiche den Weg mit dem Pfeil*
 
 Der Weg ist <InlineMath math="700\text{ m}" /> lang, der Pfeil aber nur <InlineMath math="500\text{ m}" />, dasselbe <InlineMath math="3:4:5" />-Dreieck wie vorher. In <InlineMath math="560\text{ s}" /> ergibt das eine mittlere Schnelligkeit von <InlineMath math="1{,}25\text{ m/s}" /> und eine mittlere Geschwindigkeit von nur etwa <InlineMath math="0{,}89\text{ m/s}" />.
 
-## Die Wegstrecke beschreibt die Länge des Weges
+## Die Wegstrecke wächst mit jedem Schritt weiter
+
+Die Wegstrecke kennt kein Minuszeichen, weil sie **jeden zurückgelegten Abschnitt addiert**. Selbst wenn eine Bahn zurück zum Start biegt, zählt jeder weitere Meter vollständig mit.
+
+### Die Wegstrecke beschreibt die Länge des Weges
 
 Die Wegstrecke ist **immer null oder positiv**. Sie beantwortet die Frage: „Wie lang ist der zurückgelegte Weg?“ Eine Richtung gehört daher nicht zu ihr.
 
@@ -100,31 +106,67 @@ Wenn sich ein Objekt um <InlineMath math="4 \text{ m}" /> nach Osten und dann um
 
 Das Symbol <InlineMath math="s" /> wird häufig für die zurückgelegte Strecke verwendet.
 
-## Die Wegstrecke wächst nur
+### Die Wegstrecke wächst auf der Laufbahn ständig weiter
 
-Die Wegstrecke **kann nur wachsen**, solange du dich bewegst. Auf einer <InlineMath math="400\text{ m}" />-Laufbahn kommen mit jeden weiteren <InlineMath math="100\text{ m}" /> Lauf genau <InlineMath math="100\text{ m}" /> Strecke dazu, egal wohin die Kurve führt.
+Die Wegstrecke **kann nur wachsen**, solange du dich bewegst. Auf einer runden <InlineMath math="400\text{ m}" />-Laufbahn kommen mit jeden weiteren <InlineMath math="100\text{ m}" /> Lauf genau <InlineMath math="100\text{ m}" /> Wegstrecke dazu, während die Verschiebung ab der Hälfte wieder schrumpft. Verschiebe die gelaufene Strecke <InlineMath math="s" /> und vergleiche beide Kurven.
 
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>Wegstrecke auf der Laufbahn</>}
+<MathVisual
+  title={<>Wegstrecke gegen Verschiebung auf der Bahn</>}
   description={
     <>
-      Ein Läufer auf Bahn <InlineMath math="1" /> hält <InlineMath math="8\text{ m/s}" />. Halte den Lauf an jeder Marke an: Die Wegstrecke steigt, die Verschiebung nicht.
+      Zurückgelegte Wegstrecke (orange) und Betrag der Verschiebung (türkis) auf
+      einer kreisförmigen <InlineMath math="400\text{ m}" />-Laufbahn bis zur Marke{" "}
+      <InlineMath math="s" />.
     </>
   }
+  footer={<>Die Strecke steigt bis <InlineMath math="400\text{ m}" />, die Verschiebung fällt auf null zurück.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 430 }, y: { min: -20, max: 430 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 50, max: 400, value: 200, step: 50, label: "s" },
+    ],
+    objects: [
+      { id: "dist-curve", kind: "function", appearance: "primary", formula: "x", domain: { min: 0, max: 400 } },
+      { id: "disp-curve", kind: "function", appearance: "construction", formula: "(400/pi)*abs(sin(pi*x/400))", domain: { min: 0, max: 400 } },
+      {
+        id: "gap",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "s", y: "(400/pi)*abs(sin(pi*s/400))" },
+          { x: "s", y: "s" },
+        ],
+      },
+      { id: "dist-dot", kind: "marker", appearance: "primary", x: "s", y: "s" },
+      { id: "disp-dot", kind: "marker", appearance: "construction", x: "s", y: "(400/pi)*abs(sin(pi*s/400))" },
+    ],
+    labels: [
+      { key: "dist-lbl", objectId: "dist-dot", at: { x: "s", y: "s" }, placement: "above-left" },
+      { key: "disp-lbl", objectId: "disp-dot", at: { x: "s", y: "(400/pi)*abs(sin(pi*s/400))" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "dist-val", formula: "s" },
+      { key: "disp-val", formula: "(400/pi)*abs(sin(pi*s/400))" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
-    chooseDistance: "Laufstrecke wählen",
-    displacement: <>Betrag der Verschiebung</>,
-    distance: <>Gelaufene Strecke</>,
-    time: <>Zeit</>,
-    viewLabel: "Läufer auf einer 400-m-Leichtathletikbahn von oben gesehen",
+    s: <>Laufstrecke <InlineMath math="s" /> (m)</>,
+    "dist-lbl": <InlineMath math="s" />,
+    "disp-lbl": <InlineMath math="|\Delta \vec{r}|" />,
+    "dist-val": <>Wegstrecke (m)</>,
+    "disp-val": <>Betrag der Verschiebung (m)</>,
   }}
 />
 
-Die Wegstrecke zeigt <InlineMath math="100" />, <InlineMath math="200" />, <InlineMath math="300" /> und <InlineMath math="400\text{ m}" />. Die Verschiebung geht von etwa <InlineMath math="72\text{ m}" /> auf <InlineMath math="112\text{ m}" />, zurück auf etwa <InlineMath math="100\text{ m}" /> und schließlich auf <InlineMath math="0" />.
+Die Wegstrecke wächst stetig über <InlineMath math="100" />, <InlineMath math="200" />, <InlineMath math="300" /> bis <InlineMath math="400\text{ m}" />. Die Verschiebung steigt dagegen nur bis zum Durchmesser von etwa <InlineMath math="127{,}3\text{ m}" /> und fällt danach wieder auf <InlineMath math="0\text{ m}" /> ab.
 
-## Die Verschiebung hat Betrag und Richtung
+## Die Verschiebung hängt nur von Start und Ziel ab
+
+Anders als die Wegstrecke ist die Verschiebung eine **gerichtete Differenz zweier Orte**. Sie ändert sich nicht, wenn du den Nullpunkt deiner Messskala an einen anderen Ort verschiebst.
+
+### Die Verschiebung hat Betrag und Richtung
 
 Verschiebung ist eine Vektorgröße. Das bedeutet, dass die Verschiebung Betrag und Richtung hat. Für das Beispiel <InlineMath math="4 \text{ m}" /> nach Osten und dann <InlineMath math="3 \text{ m}" /> nach Süden ist der Verschiebungsbetrag die Länge der geraden Verbindung vom Anfang bis zum Ende:
 
@@ -136,34 +178,80 @@ Verschiebung ist eine Vektorgröße. Das bedeutet, dass die Verschiebung Betrag 
 
 Die Richtung der Verschiebung <Highlight>zeigt geradlinig vom Startpunkt zum Endpunkt</Highlight>.
 
-## Dieselbe Verschiebung von jedem Ort aus
+### Dieselbe Verschiebung von jedem Bezugspunkt aus
 
-Die Verschiebung **hängt nicht davon ab, wo die Null liegt**. Eine Person fährt mit dem Rad von <InlineMath math="20\text{ m}" /> bis <InlineMath math="50\text{ m}" /> östlich eines Ladens und zurück bis <InlineMath math="35\text{ m}" />. Miss vom Laden, von Ranis Haus oder vom Fahnenmast aus.
+Die Verschiebung **hängt nicht davon ab, wo die Null liegt**. Eine Person fährt mit dem Rad von <InlineMath math="20\text{ m}" /> bis <InlineMath math="50\text{ m}" /> östlich eines Ladens und zurück bis <InlineMath math="35\text{ m}" />. Verschiebe den gewählten Nullpunkt <InlineMath math="k" /> entlang der Straße und prüfe die Positionsänderung.
 
-<StreetOriginPositionLab
-  title={<>Eine Fahrt, drei Bezugspunkte</>}
+<MathVisual
+  title={<>Eine Fahrt bei verschobenem Nullpunkt</>}
   description={
     <>
-      Osten ist positiv. Der gelbe Pfeil führt vom gewählten Bezugspunkt zum Fahrrad, und das Diagramm zeigt die Position über der Zeit.
+      Position des Fahrrads über der Zeit bei einem Nullpunkt bei{" "}
+      <InlineMath math="k\text{ m}" /> östlich des Ladens. Der violette Abstand
+      zeigt die Verschiebung.
     </>
   }
+  footer={<>Die ganze Kurve rückt vertikal mit <InlineMath math="k" />, aber der Höhenunterschied bleibt <InlineMath math="+15\text{ m}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -25, max: 75 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: -20, max: 40, value: 0, step: 10, label: "k" },
+    ],
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      {
+        id: "ride",
+        kind: "path",
+        appearance: "primary",
+        points: [
+          { x: "0", y: "20 - k" },
+          { x: "6", y: "50 - k" },
+          { x: "9", y: "35 - k" },
+        ],
+      },
+      {
+        id: "shift",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "9.8", y: "20 - k" },
+          { x: "9.8", y: "35 - k" },
+        ],
+      },
+      { id: "start-dot", kind: "marker", appearance: "secondary", x: "0", y: "20 - k" },
+      { id: "end-dot", kind: "marker", appearance: "answer", x: "9", y: "35 - k" },
+    ],
+    labels: [
+      { key: "start-lbl", objectId: "start-dot", at: { x: "0", y: "20 - k" }, placement: "above-right" },
+      { key: "end-lbl", objectId: "end-dot", at: { x: "9", y: "35 - k" }, placement: "above" },
+      { key: "delta-lbl", objectId: "shift", at: { x: "9.8", y: "27.5 - k" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "x-start", formula: "20 - k" },
+      { key: "x-end", formula: "35 - k" },
+      { key: "dx", formula: "(35 - k) - (20 - k)" },
+    ],
+  }}
   labels={{
-    change: <>Positionsänderung</>,
-    chooseOrigin: "Bezugspunkt wählen",
-    end: <>Endposition</>,
-    origins: {
-      store: <>Laden</>,
-      house: <>Ranis Haus</>,
-      pole: <>Fahnenmast</>,
-    },
-    start: <>Anfangsposition</>,
-    viewLabel: "Person auf einem Fahrrad in einer Straße mit drei Orten",
+    k: <>Nullpunkt-Verschiebung <InlineMath math="k" /> (m)</>,
+    "start-lbl": <InlineMath math="x_0" />,
+    "end-lbl": <InlineMath math="x_t" />,
+    "delta-lbl": <InlineMath math="\Delta x" />,
+    "x-start": <>Anfangsposition (m)</>,
+    "x-end": <>Endposition (m)</>,
+    dx: <>Verschiebung (m)</>,
   }}
 />
 
 Anfangs- und Endposition ändern sich mit dem Bezugspunkt, die Positionsänderung bleibt aber immer <InlineMath math="+15\text{ m}" />: <InlineMath math="15\text{ m}" /> nach Osten, während der gefahrene Weg <InlineMath math="45\text{ m}" /> lang ist.
 
-## Rückkehr zum Ausgangspunkt
+## Geschlossene Schleifen und abgewinkelte Routen
+
+Kehrt ein Objekt zu seinem Ausgangspunkt zurück, wird seine Verschiebung **exakt null**. Bei abgewinkelten Strecken im Raum liefert stattdessen der Satz des Pythagoras die kürzeste Verbindung.
+
+### Verschiebung null bei Rückkehr zum Start
 
 Wenn ein Objekt eine Runde zurücklegt und zum Startpunkt zurückkehrt, ist die Wegstrecke nicht null, da ein Weg zurückgelegt wurde. Die Verschiebung ist jedoch null, weil **Anfangs- und Endposition gleich** sind.
 
@@ -180,6 +268,7 @@ Drei Fahrten starten am selben Punkt. Bei der geraden ist die Strecke so groß w
 <MathVisual
   title={<>Drei Fahrten, ein Start</>}
   description={<>Eine gerade Fahrt (türkis), ein Umweg (orange) und eine Runde zurück zum Start (violett).</>}
+  footer={<>Gerade und Umweg teilen denselben Endpunkt, die Schleife endet wieder am Start.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -2.5, max: 2.8 } },
@@ -207,32 +296,67 @@ Drei Fahrten starten am selben Punkt. Bei der geraden ist die Strecke so groß w
   }}
 />
 
-## Hin und zurück im Diagramm
+Zwei völlig verschiedene Routen können also dieselbe Verschiebung haben, und eine lange Rundtour kann insgesamt eine Verschiebung von null ergeben.
 
-Ein Auto, das mit <InlineMath math="6\text{ m/s}" /> eine leichte Steigung hinaufrollt, rollt los, steht nach <InlineMath math="5\text{ s}" /> still und rollt zurück zu seinem Start. Sein Ort-Zeit-Diagramm **steigt und fällt wieder auf null**.
+### Hin und zurück im Ort Zeit Diagramm
 
-<CarTripSecantSlopeLab
-  trip="return"
-  title={<>Hin und zurück</>}
+Ein Auto rollt mit <InlineMath math="6\text{ m/s}" /> eine leichte Steigung hinauf, erreicht nach <InlineMath math="5\text{ s}" /> den **Umkehrpunkt** bei <InlineMath math="15\text{ m}" /> und rollt bis <InlineMath math="10\text{ s}" /> zurück zum Start. Verändere den Zeitpunkt <InlineMath math="d" /> und vergleiche Gesamtweg und Verschiebung.
+
+<MathVisual
+  title={<>Hin und zurück auf einer Steigung</>}
   description={
     <>
-      Wähle ein Intervall. Die Fahnen markieren die beiden Positionen des Autos, und die Sekante verbindet sie im Diagramm.
+      Position <InlineMath math="x(t)=6t-0{,}6t^2" /> eines Wagens, der bergauf
+      rollt und zurückkehrt. Die violette Linie verbindet Start und Zeitpunkt{" "}
+      <InlineMath math="d" />.
     </>
   }
+  footer={<>Nach dem Umkehrpunkt wächst die Strecke, die Verschiebung fällt auf null.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -1.5, max: 17 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 1, max: 10, value: 10, step: 1, label: "d" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "6*x - 0.6*x^2", domain: { min: 0, max: 10 } },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "peak", kind: "point", appearance: "secondary", at: { x: 5, y: 15 } },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0", y: "0" },
+          { x: "d", y: "6*d - 0.6*d^2" },
+        ],
+      },
+      { id: "car", kind: "marker", appearance: "answer", x: "d", y: "6*d - 0.6*d^2" },
+    ],
+    labels: [
+      { key: "peak-lbl", objectId: "peak", at: { x: 5, y: 15 }, placement: "above" },
+      { key: "car-lbl", objectId: "car", at: { x: "d", y: "6*d - 0.6*d^2" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "dist", formula: "15 + 0.6*(d - 5)*abs(d - 5)" },
+      { key: "disp", formula: "6*d - 0.6*d^2" },
+    ],
+  }}
   labels={{
-    change: <>Verschiebung</>,
-    chooseInterval: "Zeitintervall wählen",
-    elapsed: <>Zeitintervall</>,
-    rate: <>Mittlere Geschwindigkeit</>,
-    viewLabel: "Autofahrt mit ihrem Ort-Zeit-Diagramm",
+    d: <>Zeitpunkt <InlineMath math="d" /> (s)</>,
+    "peak-lbl": <InlineMath math="15\text{ m}" />,
+    "car-lbl": <InlineMath math="x(d)" />,
+    dist: <>Wegstrecke (m)</>,
+    disp: <>Verschiebung (m)</>,
   }}
 />
 
 Von <InlineMath math="0" /> bis <InlineMath math="10\text{ s}" /> fährt das Auto <InlineMath math="15\text{ m}" /> hin und <InlineMath math="15\text{ m}" /> zurück, also eine Wegstrecke von <InlineMath math="30\text{ m}" />, doch die Verschiebung ist <InlineMath math="0" /> und die Sekante liegt waagerecht.
 
-## Wegstrecke und Verschiebung auf einer abgewinkelten Route
+### Wegstrecke und Verschiebung auf einer abgewinkelten Route
 
-Ein Schüler geht <InlineMath math="8 \text{ m}" /> nach Osten und dann <InlineMath math="6 \text{ m}" /> nach Norden. Die zurückgelegte Strecke beträgt:
+Ein Wanderer geht <InlineMath math="8 \text{ m}" /> nach Osten entlang eines Weges und biegt dann <InlineMath math="6 \text{ m}" /> nach Norden ab. Die zurückgelegte Strecke beträgt:
 
 <BlockMath math="s=8 \text{ m}+6 \text{ m}=14 \text{ m}" />
 
@@ -250,23 +374,21 @@ Dreh den Weg unten. Der orange und der violette Pfeil sind die Strecke, <InlineM
 
 <MathVisual
   title={<>Strecke und Verschiebung mit Abbiegen</>}
-  description={<><InlineMath math="8\text{ m}" /> nach Osten, dann <InlineMath math="6\text{ m}" /> nach Norden, von oben gesehen. Ein Gitterschritt entspricht <InlineMath math="2\text{ m}" />.</>}
+  description={<><InlineMath math="8\text{ m}" /> nach Osten, dann <InlineMath math="6\text{ m}" /> nach Norden, von oben gesehen in Metern.</>}
+  footer={<>Die direkte Diagonale misst <InlineMath math="10\text{ m}" />, deutlich kürzer als die <InlineMath math="14\text{ m}" /> Weg.</>}
   scene={{
     space: "space",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 1 }, z: { min: -3.5, max: 0.5 } },
-    view: { kind: "camera", position: { x: 2, y: 7, z: 5 }, target: { x: 2, y: 0, z: -1.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: 0, max: 2 }, z: { min: -7, max: 1 } },
+    view: { kind: "camera", position: { x: 4, y: 12, z: 8 }, target: { x: 4, y: 0, z: -3 } },
     objects: [
-      { id: "east", kind: "segment", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 } },
-      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0, z: 0 }, { x: 3.75, y: 0, z: 0.125 }, { x: 3.75, y: 0, z: -0.125 }] },
-      { id: "north", kind: "segment", appearance: "secondary", from: { x: 4, y: 0, z: 0 }, to: { x: 4, y: 0, z: -3 } },
-      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 0, z: -3 }, { x: 4.125, y: 0, z: -2.75 }, { x: 3.875, y: 0, z: -2.75 }] },
-      { id: "straight", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: -3 } },
-      { id: "straight-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 0, z: -3 }, { x: 4 - (0.25 * 4) / Math.hypot(4, -3) + ((0.25 / 2) * 3) / Math.hypot(4, -3), y: 0, z: -3 - (0.25 * -3) / Math.hypot(4, -3) + ((0.25 / 2) * 4) / Math.hypot(4, -3) }, { x: 4 - (0.25 * 4) / Math.hypot(4, -3) - ((0.25 / 2) * 3) / Math.hypot(4, -3), y: 0, z: -3 - (0.25 * -3) / Math.hypot(4, -3) - ((0.25 / 2) * 4) / Math.hypot(4, -3) }] },
+      { id: "east", kind: "vector", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 8, y: 0, z: 0 } },
+      { id: "north", kind: "vector", appearance: "secondary", from: { x: 8, y: 0, z: 0 }, to: { x: 8, y: 0, z: -6 } },
+      { id: "straight", kind: "vector", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 8, y: 0, z: -6 } },
     ],
     labels: [
-      { key: "east", objectId: "east", at: { x: 2, y: 0, z: 0 }, placement: "below" },
-      { key: "north", objectId: "north", at: { x: 4, y: 0, z: -1.5 }, placement: "right" },
-      { key: "straight", objectId: "straight", at: { x: 2, y: 0, z: -1.5 }, placement: "above-left" },
+      { key: "east", objectId: "east", at: { x: 4, y: 0, z: 0 }, placement: "below" },
+      { key: "north", objectId: "north", at: { x: 8, y: 0, z: -3 }, placement: "right" },
+      { key: "straight", objectId: "straight", at: { x: 4, y: 0, z: -3 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -275,3 +397,5 @@ Dreh den Weg unten. Der orange und der violette Pfeil sind die Strecke, <InlineM
     straight: <InlineMath math="\sqrt{8^2+6^2}=10\text{ m}" />,
   }}
 />
+
+Da der Weg rechtwinklig abbiegt, bildet die Verschiebung die Hypotenuse des Dreiecks und bleibt immer kürzer als die Summe der beiden Teilabschnitte.

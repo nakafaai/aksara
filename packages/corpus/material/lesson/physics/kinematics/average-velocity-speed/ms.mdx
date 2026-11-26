@@ -30,6 +30,7 @@ Simbol <InlineMath math="\Delta x" /> atau <InlineMath math="\Delta \vec{r}" /> 
       laluan yang dilalui dengan sesaran dari titik mula ke titik akhir.
     </>
   }
+  footer={<>Laluan hijau kebiruan mengukur jumlah jarak, garis ungu menunjukkan sesaran.</>}
   labels={{
     chooseCase: "Pilih laluan",
     modeLabels: {
@@ -66,43 +67,69 @@ Dalam kes Selekoh Landai, bola mengikut lengkung, jadi jumlah jaraknya kira-kira
 
 <BlockMath math="\begin{aligned} &amp;s_{\text{jumlah}}\approx 16.7\text{ m} \\ &amp;|\Delta \vec r|=14\text{ m} \\ &amp;\Delta t=5\text{ s} \\ &amp;\text{laju purata}&amp;\approx \frac{16.7}{5} \\ &amp;\approx3.3\text{ m/s} \\ &amp;|\bar{\vec v}| =\frac{14}{5} \\ &amp;=2.8\text{ m/s} \end{aligned}" />
 
-## Perangkap Laju Melaporkan Purata
+## Mengukur Purata Melalui Jarak dan Kecerunan
 
-Perangkap laju di jalan raya tidak pernah melihat satu ketika sahaja. Ia mengukur masa kereta antara dua pancaran cahaya yang dipisahkan oleh satu jarak, lalu membahagikan jarak itu dengan masa tersebut, jadi bacaannya ialah **purata sepanjang jarak itu**.
+Setiap pengukuran sebenar merentasi satu jarak sentiasa memberikan **nilai purata bagi satu selang masa**. Pada graf kedudukan terhadap masa, purata itu muncul terus sebagai kecerunan garis lurus antara dua titik.
 
-<SpeedTrapInstantSpeedLab
-  title={<>Perangkap Laju di Trek Ujian</>}
+### Perangkap Laju Melaporkan Purata
+
+Perangkap laju di jalan raya tidak pernah melihat satu ketika sahaja. Alat ini mengukur masa kereta antara dua pancaran cahaya yang berpusat pada tanda <InlineMath math="50\text{ m}" />, lalu melaporkan **laju purata merentasi jarak get itu**. Kecilkan separuh jarak get <InlineMath math="h" /> untuk melihat kecerunan sekan menghampiri laju di titik tengah.
+
+<MathVisual
+  title={<>Laju Purata Antara Dua Get Cahaya</>}
   description={
     <>
-      Kereta memecut dari keadaan pegun pada <InlineMath math="4\text{ m/s}^2" /> melalui
-      dua get cahaya yang berpusat pada tanda <InlineMath math="50\text{ m}" />.
-      Ubah jarak antara get dan bandingkan bacaan perangkap.
+      Kedudukan <InlineMath math="x(t)=2t^2" /> kereta yang memecut pada{" "}
+      <InlineMath math="4\text{ m/s}^2" /> serta sekan antara{" "}
+      <InlineMath math="50-h" /> dan <InlineMath math="50+h" />.
     </>
   }
+  footer={<>Kecerunan sekan merentasi dua get kekal sedikit di bawah laju titik tengah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7.2 }, y: { min: 0, max: 90 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 4, max: 20, value: 20, step: 4, label: "h" },
+    ],
+    objects: [
+      { id: "car-path", kind: "function", appearance: "primary", formula: "2*x^2", domain: { min: 0, max: 6.5 } },
+      { id: "mid", kind: "point", appearance: "secondary", at: { x: 5, y: 50 } },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "sqrt((50 - h)/2)", y: "50 - h" },
+          { x: "sqrt((50 + h)/2)", y: "50 + h" },
+        ],
+      },
+      { id: "gate-1", kind: "marker", appearance: "answer", x: "sqrt((50 - h)/2)", y: "50 - h" },
+      { id: "gate-2", kind: "marker", appearance: "answer", x: "sqrt((50 + h)/2)", y: "50 + h" },
+    ],
+    labels: [
+      { key: "g1", objectId: "gate-1", at: { x: "sqrt((50 - h)/2)", y: "50 - h" }, placement: "above-left" },
+      { key: "g2", objectId: "gate-2", at: { x: "sqrt((50 + h)/2)", y: "50 + h" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "gap", formula: "2*h" },
+      { key: "dt", formula: "sqrt((50 + h)/2) - sqrt((50 - h)/2)" },
+      { key: "v-bar", formula: "2*h / (sqrt((50 + h)/2) - sqrt((50 - h)/2))" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Bacaan perangkap</>,
-    chooseGap: "Pilih jarak antara get",
-    elapsed: <>Masa antara dua pancaran cahaya</>,
-    gap: <>Jarak antara get</>,
-    instantSpeed: <>Laju di titik tengah</>,
-    viewLabel: "Kereta melalui dua get cahaya di trek ujian",
+    h: <>Separuh jarak get <InlineMath math="h" /> (m)</>,
+    g1: <InlineMath math="G_1" />,
+    g2: <InlineMath math="G_2" />,
+    gap: <>Jarak antara get (m)</>,
+    dt: <>Masa antara get (s)</>,
+    "v-bar": <>Laju purata perangkap (m/s)</>,
   }}
 />
 
 Apabila get dipisahkan <InlineMath math="40\text{ m}" />, kereta mengambil masa <InlineMath math="2.043\text{ s}" />, jadi perangkap membaca <InlineMath math="19.58\text{ m/s}" />, sedikit di bawah <InlineMath math="20\text{ m/s}" /> yang dimiliki kereta di titik tengah. Bacaan itu meliputi seluruh jarak, bukan satu ketika.
 
-## Selang Masa yang Sama Boleh Menggambarkan Perjalanan yang Berbeza
-
-Katakan dua perjalanan sama-sama mengambil masa <InlineMath math="3 \text{ s}" />. Perjalanan pertama bergerak lurus sejauh <InlineMath math="6 \text{ m}" /> ke kanan. Perjalanan kedua bergerak <InlineMath math="6 \text{ m}" /> ke kanan, kemudian <InlineMath math="3 \text{ m}" /> kembali ke kiri. Masanya sama, tetapi **jarak dan sesarannya berbeza**.
-
-| Perjalanan | Jumlah Jarak | Sesaran | Hasil Perbandingan |
-| --- | --- | --- | --- |
-| Lurus ke kanan | <InlineMath math="6 \text{ m}" /> | <InlineMath math="6 \text{ m}" /> ke kanan | Laju purata dan halaju purata mempunyai magnitud yang sama |
-| Ke kanan lalu berpatah balik | <InlineMath math="9 \text{ m}" /> | <InlineMath math="3 \text{ m}" /> ke kanan | Laju purata lebih besar daripada magnitud halaju purata |
-
-Kedua-dua pengiraan menggunakan masa diambil yang sama, tetapi laju purata membahagikan jumlah jarak dengan masa itu, manakala halaju purata membahagikan sesaran dengan masa itu.
-
-## Halaju Purata sebagai Kecerunan
+### Halaju Purata sebagai Kecerunan
 
 Pada graf kedudukan-masa, halaju purata dalam satu selang ialah **kecerunan garis lurus yang menyambungkan dua titiknya**. Perjalanan harian sebuah kereta menunjukkan sebab selang yang berbeza dalam satu perjalanan memberikan purata yang berbeza.
 
@@ -115,6 +142,7 @@ Pada graf kedudukan-masa, halaju purata dalam satu selang ialah **kecerunan gari
       bergerak semula. Pilih selang masa: bendera menandakan kedudukan kereta pada dua hujungnya.
     </>
   }
+  footer={<>Setiap selang masa yang dipilih melukis kecerunan sekannya sendiri.</>}
   labels={{
     change: <>Sesaran</>,
     chooseInterval: "Pilih selang masa",
@@ -126,11 +154,16 @@ Pada graf kedudukan-masa, halaju purata dalam satu selang ialah **kecerunan gari
 
 Sepanjang perjalanan, kereta itu melalui <InlineMath math="110\text{ m}" /> dalam <InlineMath math="20\text{ s}" />, jadi <InlineMath math="\bar{v}=5.5\text{ m/s}" />. Antara <InlineMath math="4" /> dan <InlineMath math="10\text{ s}" />, ia bergerak seragam pada <InlineMath math="10\text{ m/s}" />, dan antara <InlineMath math="10" /> dan <InlineMath math="16\text{ s}" /> puratanya hanya kira-kira <InlineMath math="1.67\text{ m/s}" />, kerana ia menunggu di lampu isyarat.
 
-## Laju Purata dan Halaju Purata pada Laluan Berpatah Balik
+## Membandingkan Panjang Laluan dan Sesaran
 
-Pada laluan berpatah balik, objek bergerak <InlineMath math="6 \text{ m}" /> ke kanan, kemudian <InlineMath math="3 \text{ m}" /> ke kiri dalam masa <InlineMath math="3 \text{ s}" />.
+Dua perjalanan boleh mengambil masa yang sama tepat tetapi menghasilkan **nilai purata yang berbeza**. Katakan dua perjalanan sama-sama mengambil masa <InlineMath math="3 \text{ s}" />: yang pertama bergerak lurus <InlineMath math="6 \text{ m}" /> ke kanan, manakala yang kedua bergerak <InlineMath math="6 \text{ m}" /> ke kanan lalu <InlineMath math="3 \text{ m}" /> kembali ke kiri.
 
-Jumlah jaraknya ialah <InlineMath math="9 \text{ m}" />, tetapi sesarannya hanya <InlineMath math="3 \text{ m}" /> ke kanan.
+| Perjalanan | Jumlah Jarak | Sesaran | Hasil Perbandingan |
+| --- | --- | --- | --- |
+| Lurus ke kanan | <InlineMath math="6 \text{ m}" /> | <InlineMath math="6 \text{ m}" /> ke kanan | Laju purata dan halaju purata mempunyai magnitud yang sama |
+| Ke kanan lalu berpatah balik | <InlineMath math="9 \text{ m}" /> | <InlineMath math="3 \text{ m}" /> ke kanan | Laju purata lebih besar daripada magnitud halaju purata |
+
+Kedua-dua pengiraan membahagi dengan masa <InlineMath math="3 \text{ s}" /> yang sama, namun pada laluan berpatah balik jumlah jaraknya <InlineMath math="9 \text{ m}" /> sedangkan sesarannya hanya <InlineMath math="3 \text{ m}" /> ke kanan.
 
 <MathContainer>
   <BlockMath math="\text{laju purata}=\frac{9}{3}=3\text{ m/s}" />
@@ -143,34 +176,41 @@ Berikut ialah kedua-dua perjalanan itu sebagai graf kedudukan melawan masa, deng
 
 <MathVisual
   title={<>Halaju Purata sebagai Kecerunan dari Mula ke Akhir</>}
-  description={<>Perjalanan A bergerak <InlineMath math="6\text{ m}" /> ke kanan, perjalanan B bergerak <InlineMath math="6\text{ m}" /> ke kanan dan <InlineMath math="3\text{ m}" /> kembali, masing-masing dalam <InlineMath math="3\text{ s}" />. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit 2 m.</>}
+  description={<>Perjalanan A bergerak <InlineMath math="6\text{ m}" /> ke kanan, perjalanan B bergerak <InlineMath math="6\text{ m}" /> ke kanan dan <InlineMath math="3\text{ m}" /> kembali, masing-masing dalam <InlineMath math="3\text{ s}" />. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam m.</>}
+  footer={<>Perentas perjalanan B melangkau titik patah balik dan lebih landai daripada A.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -1, max: 7.2 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 }] },
-      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 3 }, { x: 3, y: 1.5 }] },
-      { id: "chord", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 1.5 } },
-      { id: "a-end", kind: "point", appearance: "construction", at: { x: 3, y: 3 } },
-      { id: "b-turn", kind: "point", appearance: "primary", at: { x: 2, y: 3 } },
-      { id: "b-end", kind: "point", appearance: "primary", at: { x: 3, y: 1.5 } },
+      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }] },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 6 }, { x: 3, y: 3 }] },
+      { id: "chord", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 3 } },
+      { id: "a-end", kind: "point", appearance: "construction", at: { x: 3, y: 6 } },
+      { id: "b-turn", kind: "point", appearance: "primary", at: { x: 2, y: 6 } },
+      { id: "b-end", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
       { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
     ],
     labels: [
-      { key: "a", objectId: "a-end", at: { x: 3, y: 3 }, placement: "right" },
-      { key: "b", objectId: "b-turn", at: { x: 2, y: 3 }, placement: "above" },
-      { key: "chord", objectId: "chord", at: { x: 3, y: 1.5 }, placement: "below-right" },
+      { key: "a", objectId: "a-end", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "b", objectId: "b-turn", at: { x: 2, y: 6 }, placement: "above" },
+      { key: "chord", objectId: "chord", at: { x: 3, y: 3 }, placement: "below-right" },
     ],
   }}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
-    chord: <InlineMath math="\bar v_B=\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />,
+    chord: <InlineMath math="\bar v_B=1\text{ m/s}" />,
   }}
 />
 
-## Tanda Halaju Purata Menunjukkan Arah
+Walaupun B bergerak lebih laju di setiap bahagian berbanding A, gerakan berpatah balik merendahkan kedudukan akhirnya dan menurunkan kecerunan perentas kepada <InlineMath math="1\text{ m/s}" />.
+
+## Membaca Arah daripada Tanda Halaju Purata
+
+Apabila paksi positif dipilih, halaju purata terus mewarisi **tanda yang sama dengan sesaran**. Tanda negatif menunjukkan arah bertentangan dengan paksi positif, bukan gerakan yang lebih perlahan daripada sifar.
+
+### Tanda Halaju Purata Menunjukkan Arah
 
 Jika kita memilih **arah ke kanan sebagai positif**, sesaran ke kanan bernilai positif dan sesaran ke kiri bernilai negatif. Tanda itu terbawa ke dalam halaju purata.
 
@@ -183,36 +223,76 @@ Contohnya, satu objek bermula pada <InlineMath math="x=8 \text{ m}" /> dan berak
 
 Nilai negatif tidak bermaksud gerakan itu "lebih perlahan daripada sifar". Nilai negatif bermaksud halaju purata menghala ke kiri berbanding paksi yang kita pilih.
 
-## Berjalan Pergi dan Berpatah Sebahagian
+### Berjalan Pergi dan Berpatah Sebahagian
 
-Berjalan di sepanjang satu jalan menunjukkan **asal tanda positif atau negatif**. Ambil arah timur sebagai positif: berjalan <InlineMath math="300\text{ m}" /> ke timur, kemudian <InlineMath math="100\text{ m}" /> kembali ke barat, pada <InlineMath math="1\text{ m/s}" />.
+Berjalan di sepanjang satu jalan menunjukkan **asal tanda positif atau negatif**. Ambil arah timur sebagai positif: berjalan <InlineMath math="300\text{ m}" /> ke timur, kemudian kembali sejauh <InlineMath math="w" /> ke barat pada <InlineMath math="1\text{ m/s}" />. Laraskan <InlineMath math="w" /> untuk melihat bila halaju purata bertukar tanda menjadi negatif.
 
-<CityWalkDisplacementLab
-  legs={[
-    { east: 300, north: 0 },
-    { east: -100, north: 0 },
-  ]}
-  pace={1}
-  title={<>Berjalan Pergi dan Berpatah Sebahagian</>}
+<MathVisual
+  title={<>Berjalan ke Timur lalu Berpatah ke Barat</>}
   description={
     <>
-      Laluan kuning ialah semua jarak yang kamu jalan. Anak panah ungu menyambungkan titik mula
-      dengan tempat kamu berdiri, dan ia masih menghala ke timur.
+      Kedudukan melawan masa bagi perjalanan <InlineMath math="300\text{ m}" /> ke timur
+      dan <InlineMath math="w\text{ m}" /> kembali ke barat pada <InlineMath math="1\text{ m/s}" />.
     </>
   }
+  footer={<>Sebaik melintasi titik mula ke barat, garis sekan turun ke bawah paksi masa.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 760 }, y: { min: -160, max: 350 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 50, max: 400, value: 100, step: 50, label: "w" },
+    ],
+    objects: [
+      { id: "out", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 300, y: 300 } },
+      {
+        id: "back",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "300", y: "300" },
+          { x: "300 + w", y: "300 - w" },
+        ],
+      },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0", y: "0" },
+          { x: "300 + w", y: "300 - w" },
+        ],
+      },
+      { id: "turn", kind: "point", appearance: "primary", at: { x: 300, y: 300 } },
+      { id: "finish", kind: "marker", appearance: "answer", x: "300 + w", y: "300 - w" },
+    ],
+    labels: [
+      { key: "turn-lbl", objectId: "turn", at: { x: 300, y: 300 }, placement: "above" },
+      { key: "end-lbl", objectId: "finish", at: { x: "300 + w", y: "300 - w" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "dist", formula: "300 + w" },
+      { key: "disp", formula: "300 - w" },
+      { key: "v-avg", formula: "(300 - w) / (300 + w)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Laju purata</>,
-    averageVelocity: <>Magnitud halaju purata</>,
-    displacement: <>Magnitud sesaran</>,
-    distance: <>Jarak berjalan</>,
-    time: <>Masa</>,
-    viewLabel: "Berjalan di jalan pekan dilihat dari atas",
+    w: <>Jarak balik ke barat <InlineMath math="w" /> (m)</>,
+    "turn-lbl": <InlineMath math="300\text{ m}" />,
+    "end-lbl": <InlineMath math="x_{\text{akhir}}" />,
+    dist: <>Jarak berjalan (m)</>,
+    disp: <>Sesaran (m)</>,
+    "v-avg": <>Halaju purata (m/s)</>,
   }}
 />
 
-Kamu berjalan <InlineMath math="400\text{ m}" /> dalam <InlineMath math="400\text{ s}" />, jadi laju puratanya <InlineMath math="1\text{ m/s}" />. Sesarannya <InlineMath math="+200\text{ m}" />, jadi halaju puratanya <InlineMath math="+0.5\text{ m/s}" />: positif, kerana kamu berakhir di sebelah timur titik mula.
+Pada <InlineMath math="w=100\text{ m}" />, kamu berjalan <InlineMath math="400\text{ m}" /> dalam <InlineMath math="400\text{ s}" />, jadi laju puratanya <InlineMath math="1\text{ m/s}" />. Sesarannya <InlineMath math="+200\text{ m}" />, jadi halaju puratanya <InlineMath math="+0.5\text{ m/s}" />: positif, kerana kamu berakhir di sebelah timur titik mula.
 
-## Gelung Boleh Mempunyai Halaju Purata Sifar
+## Gelung dan Halaju Purata Sifar
+
+Apabila gerakan **kembali tepat ke titik mulanya**, sesarannya jatuh kepada sifar. Halaju purata turut menjadi sifar, sedangkan laju purata kekal positif kerana laluan masih mempunyai panjang.
+
+### Menyemak Kuantiti yang Ditanya dalam Soalan
 
 Jika objek kembali ke titik mulanya, sesarannya ialah <InlineMath math="0 \text{ m}" />. Akibatnya, halaju puratanya ialah <InlineMath math="0 \text{ m/s}" /> walaupun laju puratanya masih boleh lebih besar daripada sifar.
 
@@ -230,6 +310,7 @@ Perjalanan B bergerak <InlineMath math="6\text{ m}" /> ke kanan dan <InlineMath 
 <MathVisual
   title={<>Laju atau Halaju Bergantung pada Soalan</>}
   description={<>Laluan perjalanan B (jingga dan ungu) dan sesarannya (magenta).</>}
+  footer={<>Jumlah kedua-dua laluan memberi <InlineMath math="3\text{ m/s}" />, manakala sesaran hanya <InlineMath math="1\text{ m/s}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -1.55, max: 2.55 } },
@@ -253,29 +334,72 @@ Perjalanan B bergerak <InlineMath math="6\text{ m}" /> ke kanan dan <InlineMath 
   }}
 />
 
-## Satu Pusingan Trek Larian
+Kedua-dua nisbah itu datang daripada perjalanan <InlineMath math="3\text{ s}" /> yang sama. Mengenal pasti sama ada soalan meminta panjang laluan atau perubahan kedudukan mengelakkan kekeliruan antara kedua-duanya.
 
-Satu pusingan penuh ialah **laluan tertutup yang berakhir tepat di titik mulanya**. Seorang pelari di lorong <InlineMath math="1" /> pada trek <InlineMath math="400\text{ m}" /> berlari seragam pada <InlineMath math="8\text{ m/s}" />, dan sesarannya dari garisan mula bertambah, berkurang, lalu hilang.
+### Satu Pusingan Trek Larian
 
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>Satu Pusingan Trek</>}
+Satu pusingan penuh ialah **laluan tertutup yang berakhir tepat di titik mulanya**. Seorang pelari mengekalkan laju seragam <InlineMath math="8\text{ m/s}" /> di sekeliling trek membulat sepanjang <InlineMath math="400\text{ m}" />. Laraskan jarak larian <InlineMath math="s" /> untuk melihat perentas sesaran memuncak di separuh pusingan lalu lenyap di penamat.
+
+<MathVisual
+  title={<>Sesaran pada Trek Membulat</>}
   description={
     <>
-      Hentikan pelari selepas <InlineMath math="100" />,{" "}
-      <InlineMath math="200" />, <InlineMath math="300" /> atau{" "}
-      <InlineMath math="400\text{ m}" /> dan bandingkan sesaran ungu
-      dengan laluan kuning.
+      Pelari bermula di sebelah kanan trek membulat <InlineMath math="400\text{ m}" />{" "}
+      pada <InlineMath math="8\text{ m/s}" />. Perentas ungu menunjukkan sesaran
+      selepas <InlineMath math="s\text{ m}" />.
     </>
   }
+  footer={<>Sesaran memuncak merentasi diameter lalu kembali sifar selepas satu pusingan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -85, max: 85 }, y: { min: -85, max: 85 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 50, max: 400, value: 200, step: 50, label: "s" },
+    ],
+    objects: [
+      { id: "track", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 200 / Math.PI },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 200 / Math.PI, y: 0 } },
+      {
+        id: "chord",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "200/pi", y: "0" },
+          { x: "(200/pi)*cos(pi*s/200)", y: "(200/pi)*sin(pi*s/200)" },
+        ],
+      },
+      {
+        id: "runner",
+        kind: "marker",
+        appearance: "primary",
+        x: "(200/pi)*cos(pi*s/200)",
+        y: "(200/pi)*sin(pi*s/200)",
+      },
+    ],
+    labels: [
+      { key: "start-lbl", objectId: "start", at: { x: 200 / Math.PI, y: 0 }, placement: "right" },
+      {
+        key: "run-lbl",
+        objectId: "runner",
+        at: { x: "(200/pi)*cos(pi*s/200)", y: "(200/pi)*sin(pi*s/200)" },
+        placement: "above",
+      },
+    ],
+    readouts: [
+      { key: "disp", formula: "(400/pi)*abs(sin(pi*s/400))" },
+      { key: "t-run", formula: "s / 8" },
+      { key: "v-avg", formula: "(3200/pi)*abs(sin(pi*s/400)) / s" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Magnitud halaju purata</>,
-    chooseDistance: "Pilih jarak larian",
-    displacement: <>Magnitud sesaran</>,
-    distance: <>Jarak larian</>,
-    time: <>Masa</>,
-    viewLabel: "Pelari di trek olahraga 400 m dilihat dari atas",
+    s: <>Jarak larian <InlineMath math="s" /> (m)</>,
+    "start-lbl": <>Mula</>,
+    "run-lbl": <>Pelari</>,
+    disp: <>Magnitud sesaran (m)</>,
+    "t-run": <>Masa larian (s)</>,
+    "v-avg": <>Halaju purata (m/s)</>,
   }}
 />
 
-Selepas <InlineMath math="200\text{ m}" />, pelari berada <InlineMath math="112\text{ m}" /> dari titik mula, jadi magnitud halaju puratanya <InlineMath math="4.48\text{ m/s}" />. Selepas satu pusingan penuh, sesarannya sifar, jadi halaju puratanya sifar, sedangkan laju puratanya masih <InlineMath math="8\text{ m/s}" />.
+Selepas <InlineMath math="200\text{ m}" />, pelari berada tepat di seberang garisan mula sejauh <InlineMath math="127.3\text{ m}" />, jadi magnitud halaju puratanya <InlineMath math="5.09\text{ m/s}" />. Selepas satu pusingan penuh <InlineMath math="400\text{ m}" />, sesarannya sifar, jadi halaju puratanya sifar, sedangkan laju puratanya masih <InlineMath math="8\text{ m/s}" />.
