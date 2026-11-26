@@ -30,7 +30,6 @@ Air resistance is ignored and gravity is constant. Right and up are positive, an
       location at equal time intervals.
     </>
   }
-  footer={<>Horizontal velocity stays constant while the vertical component drops linearly.</>}
   labels={{
     chooseScenario: "Choose launch",
     scenarioNames: {
@@ -63,7 +62,6 @@ A falling-target setup shows that split directly on a coordinate graph. A launch
       (orange) at speed <InlineMath math="s" />, and target drop (violet).
     </>
   }
-  footer={<>Any launch speed above <InlineMath math="7.1\text{ m/s}" /> hits the falling target before the floor.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -0.2, max: 2.4 } },
@@ -132,7 +130,6 @@ Hold launch speed fixed at <InlineMath math="22\text{ m/s}" /> and vary only lau
       <InlineMath math="22\text{ m/s}" />.
     </>
   }
-  footer={<>Peak height climbs as <InlineMath math="\sin^2 a" /> all the way to a vertical throw at <InlineMath math="90^\circ" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 95 }, y: { min: -2, max: 27 } },
@@ -192,7 +189,6 @@ Because <InlineMath math="\sin 2\theta" /> is at most <InlineMath math="1" />, t
 <Mermaid
   title={<>The order of a projectile analysis</>}
   description={<>Every quantity comes from the two components of the initial velocity.</>}
-  footer={<>Split into components first, then compute peak time, height, and range in order.</>}
   chart={`flowchart TD
   A["v₀ and θ"] --> B["v₀x = v₀ cos θ and v₀y = v₀ sin θ"]
   B --> C["t_peak = v₀y / g"]
@@ -234,7 +230,6 @@ A ball kicked with <InlineMath math="v_x=6\text{ m/s}" /> and <InlineMath math="
       <InlineMath math="1.6\text{ s}" /> flight.
     </>
   }
-  footer={<>At the peak at <InlineMath math="0.8\text{ s}" />, <InlineMath math="v_y" /> crosses zero while <InlineMath math="v_x" /> stays flat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.1, max: 1.75 }, y: { min: -9.5, max: 9.5 } },
@@ -298,7 +293,6 @@ Move the time <InlineMath math="s" /> and follow the cannonball. The violet arro
 <MathVisual
   title={<>Follow the Velocity in Time</>}
   description={<>The cannonball fired at <InlineMath math="40\text{ m/s}" /> and <InlineMath math="60^\circ" /> (fuchsia) with its one-second velocity step (violet) in meters.</>}
-  footer={<>The tangent flattens horizontally at the peak and tips downward during descent.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -8, max: 160 }, y: { min: -10, max: 76 } },
@@ -367,7 +361,6 @@ At <InlineMath math="t = 2\text{ s}" /> the ball is still rising because <Inline
 <MathVisual
   title={<>The Cannonball Velocity Along Its Path</>}
   description={<>Four velocity arrows along the parabola in meters. The horizontal part stays <InlineMath math="20\text{ m/s}" /> while the vertical part drops by <InlineMath math="10\text{ m/s}" /> every second.</>}
-  footer={<>Arrows shorten toward the peak and mirror their launch speed upon landing.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -10, max: 170 }, y: { min: -45, max: 75 } },
@@ -381,8 +374,8 @@ At <InlineMath math="t = 2\text{ s}" /> the ball is still rising because <Inline
     ],
     labels: [
       { key: "v0", objectId: "v0", at: { x: 20, y: 20 * Math.sqrt(3) }, placement: "left" },
-      { key: "v1", objectId: "v1", at: { x: 60, y: 60 * Math.sqrt(3) - 40 }, placement: "above" },
-      { key: "v2", objectId: "v2", at: { x: 40 * Math.sqrt(3) + 20, y: 60 }, placement: "above" },
+      { key: "v1", objectId: "v1", at: { x: 60, y: 60 * Math.sqrt(3) - 40 }, placement: "left" },
+      { key: "v2", objectId: "v2", at: { x: 40 * Math.sqrt(3) + 20, y: 60 }, placement: "above-right" },
       { key: "v3", objectId: "v3", at: { x: 80 * Math.sqrt(3) + 20, y: -20 * Math.sqrt(3) }, placement: "right" },
     ],
   }}
@@ -419,7 +412,6 @@ A garden hose shows the best angle in one glance, because every drop follows the
       Water leaves the nozzle at <InlineMath math="8\text{ m/s}" />. The dashed line is the stream at <InlineMath math="45^\circ" />. Tilt the hose and compare.
     </>
   }
-  footer={<>Every other nozzle angle falls short of the dashed <InlineMath math="45^\circ" /> stream.</>}
   labels={{
     chooseAngle: "Choose the nozzle angle",
     flight: <>Time in the air</>,
