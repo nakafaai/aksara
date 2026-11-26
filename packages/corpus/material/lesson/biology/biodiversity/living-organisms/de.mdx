@@ -26,27 +26,37 @@ In einem Garten bauen Produzenten organisches Material auf, Konsumenten nehmen N
 
 > Verfolge zwei Wege durch das Ökosystem. Folge der Energie von einer Nahrungsquelle zu ihren Konsumenten. Folge anschließend den Stoffen, die Zersetzer in die Umwelt zurückführen und die Organismen erneut aufnehmen können.
 
-Energie gelangt über Produzenten in ein Ökosystem. Vergleiche eine Blattzelle mit einer Tierzelle, um zu sehen, wo dieser Fluss beginnt.
+Energie gelangt über Produzenten in ein Ökosystem. Vergleiche unten, wie eine Blattzelle mit Chloroplasten und eine tierische Konsumentenzelle auf steigende Lichtstärke reagieren, wenn der Atmungsbedarf <InlineMath math="r" /> variiert.
 
-<CellCutawayLab
-  title={<>Die Zelle eines Produzenten und eines Konsumenten</>}
-  description={<>Beide Zellen sind in echter Größe halbiert. Wähl eine Zelle und such nach Chloroplasten.</>}
-  cells={["plant", "animal"]}
+<MathVisual
+  title={<>Produzentenzelle und Konsumentenzelle im Licht</>}
+  description={
+    <>
+      Netto-Zuckerbilanz gegen Lichtstärke <InlineMath math="x" /> für eine
+      Blattzelle mit Chloroplasten (orange) und eine Tierzelle ohne
+      Chloroplasten (violett) bei Atmungsrate <InlineMath math="r" />.
+    </>
+  }
+  footer={<>Nur die Blattzelle wird im Licht positiv, die Tierzelle bleibt negativ.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: -4, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1, max: 3, value: 1.5, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "leaf", kind: "function", appearance: "primary", formula: "8 * x / (x + 2) - r", domain: { min: 0, max: 10 } },
+      { id: "animal", kind: "function", appearance: "secondary", formula: "-r + 0x", domain: { min: 0, max: 10 } },
+      { id: "zero", kind: "function", appearance: "reference", formula: "0x", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "leaf-net", formula: "8 * 6 / 8 - r" },
+    ],
+  }}
   labels={{
-    choose: "Zelle wählen",
-    cells: {
-      animal: "Tierzelle",
-      plant: "Blattzelle",
-    },
-    facts: {
-      animal: { nucleus: <>in einer Kernhülle</>, wall: <>keine</>, power: <>Mitochondrien</> },
-      plant: { nucleus: <>in einer Kernhülle</>, wall: <>Cellulose</>, power: <>Chloroplasten und Mitochondrien</> },
-    },
-    size: <>Länge</>,
-    nucleus: <>Erbgut</>,
-    wall: <>Zellwand</>,
-    power: <>Energie-Organellen</>,
-    viewLabel: "Eine halbierte Zelle mit ihren Organellen",
+    r: <>Atmungsrate <InlineMath math="r" /></>,
+    "leaf-net": <>Netto-Zuckergewinn bei Licht 6</>,
   }}
 />
 
@@ -73,6 +83,7 @@ Die Szene unten baut diese Pyramide aus Zahlen. Nimm an, die Grasschicht enthäl
 <MathVisual
   title={<>Eine Energiepyramide mit einem Zehntel pro Ebene</>}
   description={<>Die obere Fläche jeder Schicht ist proportional zur verfügbaren Energie dieser trophischen Ebene, ausgehend von beispielhaften <InlineMath math="10" /> <InlineMath math="000\text{ kJ}" /> im Gras.</>}
+  footer={<>Jede Trophiestufe schrumpft zehnfach in der Fläche durch Wärmeverlust.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: 0, max: 2.5 }, z: { min: -4, max: 4 } },
@@ -106,6 +117,7 @@ Nur etwa ein Zehntel der Energie einer Stufe kommt bei der nächsten an, also <I
 <MathVisual
   title={<>Ein Zehntel geht jede Stufe hinauf</>}
   description={<>Energie auf drei Stufen einer Nahrungskette, ausgehend von <InlineMath math="10{.}000\text{ kJ}" /> im Gras. Senkrecht: Ein Gitterschritt nach unten ist ein Zehntel so viel Energie.</>}
+  footer={<>Neun Zehntel entweichen auf jeder Stufe der Nahrungskette als Wärme.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 1, max: 4.5 } },
@@ -131,19 +143,36 @@ Nur etwa ein Zehntel der Energie einer Stufe kommt bei der nächsten an, also <I
   }}
 />
 
-Jede Ebene gibt nur einen Teil ihrer Energie weiter. Deshalb kann ein Feld nur eine begrenzte Zahl Ratten ernähren und die Ratten nur eine begrenzte Zahl Eulen.
+Jede Ebene gibt nur einen Teil ihrer Energie weiter. Deshalb kann ein Feld nur eine begrenzte Zahl Ratten ernähren und die Ratten nur eine begrenzte Zahl Eulen. Verändere unten die Dämpfung <InlineMath math="d" />, um zu sehen, wie Nahrungsgrenzen beide Populationen ins Gleichgewicht beruhigen.
 
-<PredatorPreyLab
+<MathVisual
   title={<>Nahrung begrenzt Ratten und Eulen</>}
-  description={<>Der Reis auf diesem Feld reicht für höchstens <InlineMath math="400" /> Ratten. Stell die Eulen zu Beginn ein und spiel <InlineMath math="20" /> Jahre ab.</>}
-  capacity={400}
+  description={
+    <>
+      Gedämpfte Wellen von Ratten (orange, Zielwert <InlineMath math="100" />)
+      und Schleiereulen (violett, Zielwert <InlineMath math="15" />) über{" "}
+      <InlineMath math="20" /> Jahre bei begrenztem Reisangebot.
+    </>
+  }
+  footer={<>Die Nahrungsgrenze dämpft die Wellen auf 100 Ratten und 15 Eulen ab.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 190 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.05, max: 0.3, value: 0.15, step: 0.05, label: "d" },
+    ],
+    objects: [
+      { id: "rats", kind: "function", appearance: "primary", formula: "100 + 80 * exp(-d * x) * sin(2 * pi * x / 4.4)", domain: { min: 0, max: 20 } },
+      { id: "owls", kind: "function", appearance: "secondary", formula: "15 + 10 * exp(-d * x) * sin(2 * pi * (x - 1.1) / 4.4)", domain: { min: 0, max: 20 } },
+    ],
+    readouts: [
+      { key: "rat-swing", formula: "80 * exp(-10 * d)" },
+    ],
+  }}
   labels={{
-    start: "Eulen zu Beginn",
-    prey: <>Ratten</>,
-    predators: <>Eulen</>,
-    peak: <>Meiste Ratten</>,
-    year: <>Jahr</>,
-    viewLabel: "Reisfeld mit Reisfeldratten und Schleiereulen",
+    d: <>Dämpfung durch Nahrungsgrenze <InlineMath math="d" /></>,
+    "rat-swing": <>Restliche Rattenschwankung im Jahr 10</>,
   }}
 />
 
@@ -162,6 +191,7 @@ Zersetzer setzen wie alle Lebewesen durch Zellatmung Energie frei: <InlineMath m
 <MathVisual
   title={<>Zellatmung behält jedes Atom</>}
   description={<>Kohlenstoff- (grau), Wasserstoff- (violett) und Sauerstoffatome (orange) in den Edukten (hinten) und den Produkten (vorne). Ein Gitterschritt nach oben entspricht <InlineMath math="4" /> Atomen.</>}
+  footer={<>Edukt- und Produktbalken stimmen für C, H und O exakt überein.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
@@ -187,6 +217,8 @@ Zersetzer setzen wie alle Lebewesen durch Zellatmung Energie frei: <InlineMath m
   }}
 />
 
+Jeder vordere Balken ist genau so hoch wie sein hinteres Gegenstück, weil die Zellatmung keine Atome zerstört: Zersetzer geben Energie als Wärme ab und führen jedes Kohlenstoff-, Wasserstoff- und Sauerstoffatom in Luft und Boden zurück.
+
 ## Die ökologische Nische beschreibt die Nutzung der Umwelt
 
 Eine **ökologische Nische** umfasst die Umweltbedingungen, die ein Organismus verträgt, die Ressourcen, die er nutzt, und seine Wechselwirkungen mit anderen Organismen. Der Lebensraum ist der Ort, an dem ein Organismus lebt. Seine Nische beschreibt, wie er dort lebt. Zwei Arten können denselben Lebensraum teilen und trotzdem unterschiedliche Nischen besetzen.
@@ -198,6 +230,7 @@ Viele Pflanzen sind [auf Bestäuber angewiesen](https://www.fao.org/pollination/
 <Mermaid
   title={<>Energiefluss und Stoffkreislauf</>}
   description={<>Das Diagramm zeigt den Energiefluss durch Konsumenten und den Stoffkreislauf über Zersetzer in einem Ökosystem.</>}
+  footer={<>Energie entweicht als Wärme, Zersetzer schließen den Nährstoffkreislauf.</>}
   chart={`flowchart TB
     subgraph energy["Energiefluss"]
       direction TB
@@ -213,6 +246,8 @@ Viele Pflanzen sind [auf Bestäuber angewiesen](https://www.fao.org/pollination/
     end
     energy ~~~ matter`}
 />
+
+Der Vergleich beider Hälften zeigt die Grundregel jedes Ökosystems: Sonnenlicht wandert als Einbahnstraße durch die Nahrungskette und verlässt sie als Wärme, während Zersetzer den Kreislauf schließen und Mineralstoffe immer wieder an Produzenten zurückgeben.
 
 ## Energiepfeile und Stoffkreisläufe zeigen verschiedene Wege
 

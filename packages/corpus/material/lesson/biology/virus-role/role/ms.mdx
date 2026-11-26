@@ -67,6 +67,8 @@ Struktur permukaan virus mengikat sel yang serasi, dan zarah virus membawa bahan
   }}
 />
 
+Tukar antara ketiga-tiga tab dan perhatikan bahawa mekanisme asas virus yang sama menghasilkan kesan yang sangat berbeza bergantung pada perumah dan kawalan manusia. Replikasi yang tidak terkawal dalam tisu manusia menyebabkan penyakit, bakteriofaj mengawal kelimpahan mikrob dalam ekosistem, dan vektor yang diubah suai menghantar gen terpilih ke sel sasaran dengan selamat.
+
 ## Virus Menggunakan Laluan Penularan yang Berbeza
 
 Influenza, denggi dan rabies merebak melalui **laluan biologi yang berbeza**. Nama penyakit sahaja tidak menunjukkan langkah pencegahan yang sesuai. Tentukan sama ada virus itu merebak melalui zarah pernafasan, pembawa seperti nyamuk, atau laluan lain.
@@ -77,25 +79,40 @@ Virus menyebabkan penyakit pada manusia, haiwan dan tumbuhan. Contoh pada manusi
 
 Untuk memahami penyakit yang disebabkan oleh virus, semak **laluan penularan dan tisu yang terjejas**. Virus denggi ditularkan terutamanya melalui gigitan nyamuk Aedes yang dijangkiti. Virus pernafasan boleh merebak apabila seseorang tersedut zarah pernafasan yang dilepaskan oleh orang yang dijangkiti. Virus tumbuhan boleh berpindah melalui serangga pembawa, luka pada tumbuhan atau bahan tanaman yang dijangkiti.
 
-Laluan penularan menentukan langkah yang berkesan. Tukar laluannya, kemudian cuba pelitup muka dan basuhan tangan.
+Laluan penularan menentukan langkah yang berkesan. Laraskan nombor pembiakan asas <InlineMath math="R" /> di bawah dan bandingkan bagaimana pelitup muka menurunkan penularan udara manakala basuhan tangan menurunkan penularan sentuhan merentasi kadar amalan daripada <InlineMath math="0" /> hingga <InlineMath math="1" />.
 
-<EpidemicSpreadLab
+<MathVisual
   title={<>Laluan Menentukan Langkah yang Berkesan</>}
-  description={<>Pilih sama ada virus merebak melalui udara atau melalui sentuhan, kemudian tetapkan pelitup muka dan basuhan tangan.</>}
-  measures={["masks", "washing"]}
-  routes={["air", "touch"]}
+  description={
+    <>
+      Penularan berkesan melawan kadar amalan <InlineMath math="x" /> bagi
+      pelitup muka untuk laluan udara (oren), basuhan tangan untuk laluan
+      sentuhan (ungu) dan langkah tidak sepadan (kelabu).
+    </>
+  }
+  footer={<>Hanya langkah sepadan dengan laluan menurunkan penularan ke arah R = 1.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 2, max: 4, value: 3, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "air-mask", kind: "function", appearance: "primary", formula: "r * (1 - 0.5 * x)^2", domain: { min: 0, max: 1 } },
+      { id: "touch-wash", kind: "function", appearance: "secondary", formula: "r * (1 - 0.5 * x)", domain: { min: 0, max: 1 } },
+      { id: "mismatched", kind: "function", appearance: "reference", formula: "r + 0x", domain: { min: 0, max: 1 } },
+      { id: "threshold", kind: "function", appearance: "warning", formula: "1 + 0x", domain: { min: 0, max: 1 } },
+    ],
+    readouts: [
+      { key: "full-mask", formula: "r * 0.25" },
+      { key: "full-wash", formula: "r * 0.5" },
+    ],
+  }}
   labels={{
-    chooseRoute: "Pilih laluan",
-    routes: { air: <>Melalui udara</>, touch: <>Melalui sentuhan</> },
-    masks: "Orang yang memakai pelitup muka",
-    washing: "Orang yang membasuh tangan",
-    reproduction: <>Setiap kes menjangkiti</>,
-    peak: <>Paling ramai sakit serentak</>,
-    susceptible: <>Masih boleh dijangkiti</>,
-    infected: <>Sedang dijangkiti</>,
-    recovered: <>Sudah pulih</>,
-    immune: <>Imun kerana vaksin</>,
-    viewLabel: "Dataran bandar dengan orang berjalan dan graf wabak",
+    r: <>Nilai asas <InlineMath math="R" /></>,
+    "full-mask": <>R udara pada pemakaian pelitup penuh</>,
+    "full-wash": <>R sentuhan pada basuhan tangan penuh</>,
   }}
 />
 
@@ -122,6 +139,7 @@ Putar vektor virus ini. Cangkerang proteinnya, iaitu bahagian yang sudah tahu ca
 <MathVisual
   title={<>Cangkerang Sama, Muatan Baharu</>}
   description={<>Cangkerang virus ikosahedron (ungu) yang membawa gen rawatan (magenta), dengan gen penyakit yang telah dibuang (merah jambu) di luarnya.</>}
+  footer={<>Cangkerang kapsid memasuki sel sasaran sambil membawa gen rawatan sahaja.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: 0, max: 4 }, z: { min: -2, max: 2 } },
@@ -163,23 +181,42 @@ Putar vektor virus ini. Cangkerang proteinnya, iaitu bahagian yang sudah tahu ca
   }}
 />
 
-Vaksin ialah satu penggunaan virus yang terkawal. Vaksin yang dibuat daripada virus yang dilemahkan atau dinyahaktifkan, atau daripada sebahagian virus seperti protein spike, melatih badan tanpa menyebabkan penyakit.
+Vaksin ialah satu penggunaan virus yang terkawal. Vaksin yang dibuat daripada virus yang dilemahkan atau dinyahaktifkan, atau daripada sebahagian virus seperti protein spike, melatih badan tanpa menyebabkan penyakit. Laraskan hari pertengahan gerak balas <InlineMath math="d" /> di bawah untuk menjejaki keimunan penghalang virion sepanjang tiga minggu.
 
-<AntibodyNeutralizeLab
+<MathVisual
   title={<>Antibodi Bertambah selepas Vaksinasi</>}
-  description={<>Gerakkan hari selepas dos pertama, kemudian tekan main untuk melihat sama ada virion masih boleh melekat.</>}
-  mode="days"
+  description={
+    <>
+      Peratusan peluang virion dihalang sepanjang <InlineMath math="21" /> hari
+      selepas dos pertama, dengan hari pertengahan <InlineMath math="d" /> yang
+      boleh dilaraskan.
+    </>
+  }
+  footer={<>Penghalangan kekal rendah pada minggu pertama dan melonjak pada minggu kedua.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 21 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 6, max: 12, value: 8, step: 1, label: "d" },
+    ],
+    objects: [
+      { id: "blocking", kind: "function", appearance: "primary", formula: "100 / (1 + exp(-0.4 * (x - d)))", domain: { min: 0, max: 21 } },
+      { id: "half", kind: "function", appearance: "reference", formula: "50 + 0x", domain: { min: 0, max: 21 } },
+    ],
+    readouts: [
+      { key: "day-seven", formula: "100 / (1 + exp(-0.4 * (7 - d)))" },
+      { key: "day-fourteen", formula: "100 / (1 + exp(-0.4 * (14 - d)))" },
+    ],
+  }}
   labels={{
-    day: "Hari selepas dos",
-    level: <>Aras antibodi</>,
-    covered: <>Spike yang dilitupi</>,
-    blocked: <>Virion yang dihalang</>,
-    chance: <>Peluang sesebuah virion dihalang</>,
-    viewLabel: "Virion SARS-CoV-2 menghampiri reseptor ACE2 pada permukaan sel, dengan antibodi pada spikenya",
+    d: <>Hari pertengahan gerak balas <InlineMath math="d" /></>,
+    "day-seven": <>Peluang dihalang pada hari ke-7 (%)</>,
+    "day-fourteen": <>Peluang dihalang pada hari ke-14 (%)</>,
   }}
 />
 
-Pada minggu pertama hampir tiada antibodi, jadi virion masih boleh melekat. Pada hari <InlineMath math="7" />, model ini memberikan setiap virion peluang kira-kira <InlineMath math="41\%" /> untuk dihalang. Sepanjang minggu kedua arasnya meningkat, dan menjelang kira-kira hari <InlineMath math="14" /> hampir setiap virion dihalang. Sebab itulah perlindungan bermula beberapa lama selepas vaksinasi, bukan pada hari yang sama.
+Aras antibodi masih sangat rendah sepanjang tujuh hari pertama selepas dos, jadi kebanyakan virion masih bebas melekat pada reseptor sel. Pada hari <InlineMath math="7" />, model ini memberikan setiap virion peluang kira-kira <InlineMath math="41\%" /> untuk dihalang. Sepanjang minggu kedua arasnya meningkat, dan menjelang kira-kira hari <InlineMath math="14" /> hampir setiap virion dihalang. Sebab itulah perlindungan bermula beberapa lama selepas vaksinasi, bukan pada hari yang sama.
 
 ## Cara Menilai Kesan Virus
 
@@ -190,6 +227,7 @@ Letakkan tiga soalan itu pada satu peta. Setiap titik menamakan satu perumah dan
 <MathVisual
   title={<>Perumah, Kesan dan Kawalan pada Satu Peta</>}
   description={<>Empat kes virus yang diletakkan mengikut kesannya terhadap perumah (mengufuk) dan tahap kawalannya (menegak).</>}
+  footer={<>Kawalan lebih tinggi mengalihkan virus daripada wabak liar ke alat bersasar.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 } },
@@ -220,3 +258,5 @@ Letakkan tiga soalan itu pada satu peta. Setiap titik menamakan satu perumah dan
     control: <>lebih terkawal</>,
   }}
 />
+
+Membaca peta ini dari kiri bawah ke kanan atas menunjukkan cara kawalan membezakan jangkitan semula jadi daripada bioteknologi. Virus selesema dan faj laut berada di bahagian bawah kerana berlaku tanpa seliaan manusia, manakala biopestisid dan vektor terapi gen naik ke atas kerana penyelidik mengehadkan perumah sasaran serta hasilnya.

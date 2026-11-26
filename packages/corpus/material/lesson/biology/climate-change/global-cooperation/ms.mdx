@@ -30,22 +30,25 @@ Perjanjian iklim antarabangsa menggunakan matlamat suhu untuk membimbing tindaka
 
 [Risiko dan kerugian iklim](https://www.ipcc.ch/report/ar6/syr/resources/spm-headline-statements/) meningkat dengan setiap tambahan pemanasan. Matlamat <InlineMath math="1.5\,^\circ\text{C}" /> dan <InlineMath math="2\,^\circ\text{C}" /> memberi ukuran bersama untuk menilai berapa cepat dan berapa banyak pelepasan perlu dikurangkan.
 
-Sasaran suhu boleh ditukar menjadi bajet karbon dioksida yang dikongsi bersama. IPCC menganggarkan bahawa, bermula awal tahun 2020, kira-kira <InlineMath math="500" /> bilion tan <InlineMath math="\mathrm{CO_2}" /> masih boleh dilepaskan dengan peluang sama rata untuk kekal dalam had <InlineMath math="1.5\,^\circ\text{C}" />. Rajah di bawah menghabiskan bajet itu pada kadar bulat <InlineMath math="40" /> bilion tan setahun dengan dua cara. Kedua-dua bentuk mempunyai luas yang sama, iaitu <InlineMath math="500" />. Jika pelepasan tetap sama, segi empat tepat merah jambu berakhir selepas <InlineMath math="12.5" /> tahun, manakala jika pelepasan dikurangkan secara berterusan hingga sifar, segi tiga hijau kebiruan memanjang hingga <InlineMath math="25" /> tahun. Sebab itulah sasaran ini memberitahu berapa cepat pelepasan mesti turun, bukan sekadar berapa banyak.
+Sasaran suhu boleh ditukar menjadi bajet karbon dioksida yang dikongsi bersama. IPCC menganggarkan bahawa, bermula awal tahun 2020, kira-kira <InlineMath math="500" /> bilion tan <InlineMath math="\mathrm{CO_2}" /> masih boleh dilepaskan dengan peluang sama rata untuk kekal dalam had <InlineMath math="1.5\,^\circ\text{C}" />.
+
+Rajah di bawah menghabiskan bajet itu pada kadar bulat <InlineMath math="40" /> bilion tan setahun dengan dua cara. Kedua-dua bentuk mempunyai luas yang sama, iaitu <InlineMath math="500" />. Jika pelepasan tetap sama, segi empat tepat merah jambu berakhir selepas <InlineMath math="12.5" /> tahun, manakala jika pelepasan dikurangkan secara berterusan hingga sifar, segi tiga hijau kebiruan memanjang hingga <InlineMath math="25" /> tahun. Sebab itulah sasaran ini memberitahu berapa cepat pelepasan mesti turun, bukan sekadar berapa banyak.
 
 <MathVisual
   title={<>Dua Cara Menghabiskan Satu Bajet Karbon</>}
-  description={<>Bajet <InlineMath math="500" /> <InlineMath math="\mathrm{GtCO_2}" /> yang dihabiskan bermula pada kadar <InlineMath math="40" /> <InlineMath math="\mathrm{GtCO_2}" /> setahun. Paksi mengufuk: tahun selepas 2020 dalam unit 5. Paksi menegak: pelepasan tahunan dalam unit 10 <InlineMath math="\mathrm{GtCO_2}" />.</>}
+  description={<>Bajet <InlineMath math="500" /> <InlineMath math="\mathrm{GtCO_2}" /> yang dihabiskan bermula pada kadar <InlineMath math="40" /> <InlineMath math="\mathrm{GtCO_2}" /> setahun. Paksi mengufuk: tahun selepas 2020. Paksi menegak: pelepasan tahunan dalam <InlineMath math="\mathrm{GtCO_2}" />.</>}
+  footer={<>Pelepasan tetap menghabiskan 500 GtCO2 dalam 12.5 tahun, potongan linear 25 tahun.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 36 }, y: { min: -2, max: 46 } },
     view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "constant", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 500 / 40 / 5, y: 0 }, { x: 500 / 40 / 5, y: 40 / 10 }, { x: 0, y: 40 / 10 }] },
-      { id: "decline", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: (2 * 500) / 40 / 5, y: 0 }, { x: 0, y: 40 / 10 }] },
+      { id: "constant", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 12.5, y: 0 }, { x: 12.5, y: 40 }, { x: 0, y: 40 }] },
+      { id: "decline", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 25, y: 0 }, { x: 0, y: 40 }] },
     ],
     labels: [
-      { key: "constant", objectId: "constant", at: { x: 500 / 40 / 5, y: 40 / 10 }, placement: "above-right" },
-      { key: "decline", objectId: "decline", at: { x: (2 * 500) / 40 / 5, y: 0 }, placement: "above" },
+      { key: "constant", objectId: "constant", at: { x: 12.5, y: 40 }, placement: "above-right" },
+      { key: "decline", objectId: "decline", at: { x: 25, y: 0 }, placement: "above" },
     ],
   }}
   labels={{
@@ -54,11 +57,12 @@ Sasaran suhu boleh ditukar menjadi bajet karbon dioksida yang dikongsi bersama. 
   }}
 />
 
-Sasaran suhu menjadi ukuran bersama sebaik sahaja kamu menukarnya menjadi bajet. IPCC menganggarkan berapa banyak karbon dioksida yang masih boleh dilepaskan bermula 2020 dengan peluang sama rata bagi setiap had: <InlineMath math="500" />, <InlineMath math="850" /> dan <InlineMath math="1350\ \mathrm{GtCO_2}" /> masing-masing bagi <InlineMath math="1.5" />, <InlineMath math="1.7" /> dan <InlineMath math="2\ ^\circ\mathrm{C}" />. Bahagikan setiap satu dengan <InlineMath math="40\ \mathrm{GtCO_2}" /> setahun untuk melihat berapa lama bajet itu bertahan pada kadar tersebut. Putar palang-palang ini dan bandingkan.
+Sasaran suhu menjadi ukuran bersama sebaik sahaja kamu menukarnya menjadi bajet. IPCC menganggarkan berapa banyak karbon dioksida yang masih boleh dilepaskan bermula 2020 dengan peluang sama rata bagi setiap had: <InlineMath math="500" />, <InlineMath math="850" /> dan <InlineMath math="1350\ \mathrm{GtCO_2}" /> masing-masing bagi <InlineMath math="1.5" />, <InlineMath math="1.7" /> dan <InlineMath math="2\ ^\circ\mathrm{C}" />. Bahagikan setiap satu dengan <InlineMath math="40\ \mathrm{GtCO_2}" /> setahun untuk melihat berapa lama bajet itu bertahan pada kadar itu. Putar palang-palang ini dan bandingkan.
 
 <MathVisual
   title={<>Setiap Sasaran Ada Bajetnya Sendiri</>}
   description={<>Baki bajet karbon dioksida bermula 2020 bagi peluang <InlineMath math="50" /> peratus untuk tiga had pemanasan. Setiap label membahagikan bajet dengan <InlineMath math="40\ \mathrm{GtCO_2}" /> setahun. Satu petak grid ke atas bersamaan <InlineMath math="250\ \mathrm{GtCO_2}" />.</>}
+  footer={<>Had lebih tinggi memberi masa lebih lama, dari 12.5 tahun (1.5 C) ke 33.75 (2 C).</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -86,6 +90,7 @@ Sasaran suhu penting bagi setiap pantai. Kampung di bawah menunjukkan makna seti
 <SeaLevelRiseLab
   title={<>Aras Laut pada 2100 Bergantung pada Laluan</>}
   description={<>Pilih satu laluan. Laut naik ke nilai mediannya bagi 2100, berbanding purata 1995 hingga 2014.</>}
+  footer={<>Pengurangan bersama menahan kenaikan laut 2100 dekat 0.44 m berbanding 0.77 m.</>}
   mode="scenario"
   labels={{
     choose: "Pilih laluan",
@@ -126,20 +131,44 @@ Selepas menyerahkan NDC, setiap negara melaporkan tindakan, kemajuan dan sokonga
 
 > Sasaran menetapkan hala tuju, pelan nasional menyatakan tindakan yang dirancang, laporan merekod kemajuan, dan inventori global menilai hasil gabungannya.
 
-Pengurangan oleh satu negara tidak dapat menahan iklim dengan sendirinya, kerana <InlineMath math="\mathrm{CO_2}" /> bercampur di seluruh atmosfera. Uji hal ini dalam model tab mandi di bawah.
+Pengurangan oleh satu negara tidak dapat menahan iklim dengan sendirinya, kerana <InlineMath math="\mathrm{CO_2}" /> bercampur di seluruh atmosfera. Gerakkan bahagian pelepasan global yang dikurangkan kepada sifar menjelang 2050 di bawah untuk melihat perubahan <InlineMath math="\mathrm{CO_2}" /> tahun 2100 berbanding paras hari ini sebanyak <InlineMath math="425\text{ ppm}" />.
 
-<CarbonBudgetLab
-  title={<>Setiap Rantau Mengisi Tab yang Sama</>}
-  description={<>Pelepasan mengalir masuk dari pili, lautan dan daratan mengalirkan sebahagiannya keluar, dan paras air ialah <InlineMath math="\mathrm{CO_2}" /> di udara. Pilih rantau yang mengurangkan <InlineMath math="\mathrm{CO_2}" /> fosilnya kepada sifar menjelang 2050.</>}
-  mode="cooperate"
+<MathVisual
+  title={<>Setiap Rantau Mengisi Atmosfera yang Sama</>}
+  description={
+    <>
+      Peratus perubahan <InlineMath math="\mathrm{CO_2}" /> tahun 2100 berbanding paras hari ini (<InlineMath math="425\text{ ppm}" />) terhadap bahagian <InlineMath math="x" /> (dalam <InlineMath math="\%" />) pelepasan fosil global yang dipotong kepada sifar menjelang 2050.
+    </>
+  }
+  footer={<>CO2 hanya turun di bawah 425 ppm pada 2100 jika lebih 55% pelepasan global dipotong.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 110 }, y: { min: -24, max: 30 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 100, value: 31, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "today", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 100, y: 0 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "22.6 - 0.407 * x", domain: { min: 0, max: 100 } },
+      { id: "china", kind: "point", appearance: "warning", at: { x: 31, y: 10 } },
+      { id: "all", kind: "point", appearance: "secondary", at: { x: 100, y: -18.1 } },
+    ],
+    readouts: [
+      { key: "co2-2100", formula: "521 - 1.73 * p" },
+    ],
+    labels: [
+      { key: "today", objectId: "today", at: { x: 55, y: 0 }, placement: "above-right" },
+      { key: "china", objectId: "china", at: { x: 31, y: 10 }, placement: "above-right" },
+      { key: "all", objectId: "all", at: { x: 100, y: -18.1 }, placement: "below-left" },
+    ],
+  }}
   labels={{
-    chooseRegions: "Pilih rantau",
-    regions: { china: <>China</>, usa: <>Amerika Syarikat</>, india: <>India</>, europe: <>EU</>, rest: <>Negara lain di dunia</> },
-    level: <><InlineMath math="\mathrm{CO_2}" /> pada 2100</>,
-    warming: <>Pemanasan pada 2100</>,
-    emissions: <><InlineMath math="\mathrm{CO_2}" /> yang dilepaskan setahun pada 2050</>,
-    peak: <><InlineMath math="\mathrm{CO_2}" /> tertinggi</>,
-    viewLabel: "Tab mandi atmosfera dengan pili pelepasan, lubang salir sinki karbon dan graf karbon dioksida",
+    today: <>Hari ini (425 ppm)</>,
+    china: <>China sahaja (31%, 467 ppm)</>,
+    all: <>Semua rantau (100%, 348 ppm)</>,
+    p: <>Pelepasan global dipotong <InlineMath math="p" /> (%)</>,
+    "co2-2100": <><InlineMath math="\mathrm{CO_2}" /> pada 2100 (ppm)</>,
   }}
 />
 
@@ -154,6 +183,7 @@ Dasar antarabangsa dan nasional menetapkan keadaan yang lebih besar. Memahami da
 <Mermaid
   title={<>Daripada Matlamat Global kepada Pelan Nasional</>}
   description={<>Rajah ini menghubungkan matlamat suhu global dengan pelan nasional, laporan ketelusan, inventori global dan pelan nasional yang dikemas kini.</>}
+  footer={<>NDC, laporan ketelusan dan inventori global berputar mengukuhkan pelan iklim.</>}
   chart={`flowchart LR
     A["Matlamat suhu bersama"] --> B["NDC negara"]
     B --> C["Laporan ketelusan"]
@@ -161,6 +191,8 @@ Dasar antarabangsa dan nasional menetapkan keadaan yang lebih besar. Memahami da
     D --> E["NDC seterusnya yang lebih kukuh"]
     E --> B`}
 />
+
+Perhatikan anak panah yang kembali daripada NDC seterusnya yang lebih kukuh ke permulaan kitaran: Perjanjian Paris direka sebagai kitaran berulang supaya setiap semakan lima tahun menolak pelan nasional lebih dekat kepada sasaran suhu bersama.
 
 ## Laporan Menunjukkan Sama Ada Pelan Iklim Berkesan
 
@@ -178,6 +210,7 @@ Kitaran ini berjalan mengikut dua jadual yang sama-sama berulang setiap lima tah
 <MathVisual
   title={<>Setiap Inventori Menjadi Panduan Pelan Seterusnya</>}
   description={<>Tahun pelan nasional (baris atas) dan inventori global (baris bawah) di bawah Perjanjian Paris. Satu petak grid ke kanan bersamaan <InlineMath math="2" /> tahun.</>}
+  footer={<>Setiap inventori tiba dua tahun sebelum pusingan NDC seterusnya sebagai panduan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 3 } },
@@ -206,3 +239,5 @@ Kitaran ini berjalan mengikut dua jadual yang sama-sama berulang setiap lima tah
     plan: <>pelan baharu, 2025</>,
   }}
 />
+
+Ikuti anak panah menyerong daripada inventori 2023, 2028 dan 2033 ke pelan 2025, 2030 dan 2035. Jurang dua tahun ini memastikan setiap negara menerima data kemajuan bersama tepat pada masanya untuk mengukuhkan komitmen seterusnya.

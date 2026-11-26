@@ -67,20 +67,36 @@ Der lytische und der lysogene Zyklus gelten für Bakteriophagen. Tierische Viren
   }}
 />
 
-Jeder lytische Zyklus setzt viele neue Virionen frei. In einer Bevölkerung läuft dieselbe Vermehrung von Mensch zu Mensch ab.
+Jeder lytische Zyklus setzt viele neue Virionen frei. In einer Bevölkerung läuft dieselbe Vermehrung von Mensch zu Mensch ab. Verändere unten die mittlere Zahl der Ansteckungen pro Fall <InlineMath math="R" /> und sieh, wie eine ungebremste Welle wächst und abflaut.
 
-<EpidemicSpreadLab
+<MathVisual
   title={<>Aus einem Fall wird ein Ausbruch</>}
-  description={<>Menschen spazieren über einen Marktplatz. Drück auf Abspielen und sieh, wie sich eine Infektion ausbreitet, wenn niemand etwas unternimmt.</>}
-  measures={[]}
+  description={
+    <>
+      Gesamtanteil der Infizierten (orange) und aktive Krankheitswelle (violett)
+      über <InlineMath math="40" /> Tage je nach Reproduktionszahl{" "}
+      <InlineMath math="R" />.
+    </>
+  }
+  footer={<>Höheres R hebt die Krankheitswelle und treibt den Gesamtanteil nahe 100%.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1.5, max: 4, value: 3, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "100 * (1 - exp(-r)) / (1 + 49 * exp(-0.18 * (r - 1) * x))", domain: { min: 0, max: 40 } },
+      { id: "active", kind: "function", appearance: "secondary", formula: "15 * (r - 1) * exp(-((x - 16) / 6)^2)", domain: { min: 0, max: 40 } },
+    ],
+    readouts: [
+      { key: "peak", formula: "15 * (r - 1)" },
+    ],
+  }}
   labels={{
-    reproduction: <>Ein Fall steckt an</>,
-    peak: <>Höchstens gleichzeitig krank</>,
-    susceptible: <>Noch empfänglich</>,
-    infected: <>Gerade angesteckt</>,
-    recovered: <>Genesen</>,
-    immune: <>Durch Impfung immun</>,
-    viewLabel: "Marktplatz mit spazierenden Menschen und einer Kurve des Ausbruchs",
+    r: <>Ansteckungen pro Fall <InlineMath math="R" /></>,
+    peak: <>Höchstwert gleichzeitig krank (%)</>,
   }}
 />
 
@@ -112,6 +128,7 @@ Während der Synthese werden Virusgenome kopiert und Virusproteine **als getrenn
 <Mermaid
   title={<>Virusbestandteile zu Virionen zusammensetzen</>}
   description={<>Die lytischen Phasen in der Reihenfolge der Pfeile: Adsorption, Penetration, Synthese, Assemblierung, Lyse.</>}
+  footer={<>Von links nach rechts: Erst entstehen Teile, dann fertige Virionen.</>}
   chart={`flowchart LR
     A(["Adsorption"]) --> B(["Penetration"])
     B --> C(["Synthese"])
@@ -124,6 +141,7 @@ Dreh diesen Bakteriophagen genau im Moment des Andockens. Seine Schwanzfasern ha
 <MathVisual
   title={<>Ein Phage dockt an und injiziert</>}
   description={<>Ein Bakteriophage auf einer Bakterienoberfläche: ein ikosaedrischer Kopf, ein Schwanz, sechs Schwanzfasern und das injizierte Genom unter der Oberfläche.</>}
+  footer={<>Nur das Genom dringt ein, die leere Proteinhülle bleibt außen zurück.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.5, max: 6 }, z: { min: -3, max: 3 } },
@@ -175,24 +193,40 @@ Dreh diesen Bakteriophagen genau im Moment des Andockens. Seine Schwanzfasern ha
   }}
 />
 
-Das Kopieren des Genoms beruht auf Basenpaarung. Bei einem DNA-Phagen öffnen sich die beiden Stränge, und jede Base bekommt ihren Partner: A zu T, G zu C.
+Das Kopieren des Genoms beruht auf Basenpaarung. Bei einem DNA-Phagen öffnen sich die beiden Stränge, und jede Base bekommt ihren Partner: A zu T, G zu C. Verändere unten das Kopiertempo <InlineMath math="r" /> der Polymerase und sieh, wie schnell die Wirtszelle das <InlineMath math="48{,}5\text{ kb}" /> große Lambda-Genom kopiert.
 
-<DnaHelixLab
+<MathVisual
   title={<>Ein Virusgenom wird Base für Base kopiert</>}
-  description={<>Ein Beispielstück DNA, <InlineMath math="27" /> Basenpaare lang. Verschieb das Kopieren oder drück auf Abspielen und sieh, wie neue Nukleotide sich an beide alten Stränge lagern.</>}
-  copy
-  sequence="ATG GCT AGC TTA GGC ATC GAT CCG TAA"
+  description={
+    <>
+      Kopierte Kilobasen über <InlineMath math="100" /> Sekunden bei einem Tempo
+      von <InlineMath math="r" /> Basenpaaren pro Sekunde, verglichen mit der{" "}
+      <InlineMath math="48{,}5\text{ kb}" />-Linie des Phagen Lambda.
+    </>
+  }
+  footer={<>Schnellere Polymerasen erreichen die 48,5-kb-Linie des Phagen früher.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 300, max: 1000, value: 600, step: 100, label: "r" },
+    ],
+    objects: [
+      { id: "copied", kind: "function", appearance: "primary", formula: "r * x / 1000", domain: { min: 0, max: 100 } },
+      { id: "lambda", kind: "function", appearance: "construction", formula: "48.5 + 0x", domain: { min: 0, max: 100 } },
+    ],
+    readouts: [
+      { key: "at-minute", formula: "r * 60 / 1000" },
+    ],
+  }}
   labels={{
-    copy: "Fortschritt des Kopierens",
-    length: <>Basenpaare</>,
-    span: <>Länge</>,
-    copied: <>Neu gepaarte Basen</>,
-    turns: <>Windungen der Helix</>,
-    viewLabel: "DNA-Helix, die sich öffnet und kopiert wird",
+    r: <>Kopiertempo <InlineMath math="r" /> (bp/s)</>,
+    "at-minute": <>Kopierte Kilobasen in 60 s</>,
   }}
 />
 
-Jeder neue Strang paart sich mit einem alten, deshalb gleichen beide Kopien genau dem Original. Dieses Stück aus <InlineMath math="27" /> Basenpaaren ist nur <InlineMath math="27 \times 0{,}34\text{ nm} \approx 9{,}2\text{ nm}" /> lang. Das Genom des Phagen Lambda hat <InlineMath math="48{.}502" /> Basenpaare, und die Wirtszelle liefert die Nukleotide und die Energie, um alle zu kopieren.
+Jeder neue Strang paart sich mit einem alten, deshalb gleichen beide Kopien genau dem Original. Dieses Stück aus <InlineMath math="27" /> Basenpaaren ist nur etwa <InlineMath math="9{,}2\text{ nm}" /> lang. Das Genom des Phagen Lambda hat <InlineMath math="48{.}502" /> Basenpaare, und die Wirtszelle liefert die Nukleotide und die Energie, um alle zu kopieren.
 
 ## Ein Prophage kann im Wirtsgenom verbleiben
 
@@ -207,6 +241,7 @@ Beide Zyklen kopieren das Virusgenom, aber sehr unterschiedlich schnell. Im lyti
 <MathVisual
   title={<>Platzen oder still mitkopieren</>}
   description={<>Beispielhafte Kopien nach jeder Runde im lytischen Zyklus (orange) und im lysogenen Zyklus (violett). Senkrecht: Ein Gitterschritt entspricht zehnmal so vielen Kopien.</>}
+  footer={<>Lytische Ausbrüche steigen um Größenordnungen schneller als Prophagen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 8.5 } },
@@ -235,6 +270,8 @@ Beide Zyklen kopieren das Virusgenom, aber sehr unterschiedlich schnell. Im lyti
     lyso: <InlineMath math="2^4=16" />,
   }}
 />
+
+Nach nur vier Runden schnellt die lytische Kurve auf hundert Millionen Kopien hoch, während der stille Prophagenweg sechzehn Kopien in lebenden Bakterien erreicht. Diese riesige Lücke erklärt, warum lytische Infektionen Kolonien rasch überrollen, während Lysogenie das Genom ruhig über Generationen erhält.
 
 ## Synthese und Assemblierung unterscheiden
 

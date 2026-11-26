@@ -43,11 +43,14 @@ Korallenriffe sehen wie Felsen aus, werden aber von Korallentieren aufgebaut, di
 
 Korallenbleiche zeigt starken Stress an und kann auftreten, bevor eine Koralle stirbt. Bleibt das Meerwasser zu warm, können Korallen geschwächt werden und sterben. Fische verlieren Lebensraum, während Küstengemeinschaften Fischereierträge und den Schutz der Riffe vor Wellen verlieren können.
 
-Hitzestress summiert sich an einem Riff Woche für Woche. NOAA Coral Reef Watch misst ihn in **Degree Heating Weeks**: Nimm jede Woche, um wie viel Grad das Wasser über der Bleichschwelle der Koralle liegt, und addier die Wochen auf. Im Beispiel unten ist die gelbe Linie diese wöchentliche Überwärme und die pinke Linie ihre laufende Summe. Folge der pinken Linie nach oben: Sie überschreitet <InlineMath math="4\ ^\circ\text{C-Wochen}" />, ab denen deutliche Bleiche wahrscheinlich wird, und dann <InlineMath math="8" />, ab denen starke Bleiche und Korallensterben wahrscheinlich werden. Achte darauf, dass die pinke Linie ihre Höhe behält, wenn das Wasser abkühlt, weil der Stress schon passiert ist.
+Hitzestress summiert sich an einem Riff Woche für Woche. NOAA Coral Reef Watch misst ihn in **Degree Heating Weeks**: Nimm jede Woche, um wie viel Grad das Wasser über der Bleichschwelle der Koralle liegt, und addier die Wochen auf.
+
+Im Beispiel unten ist die gelbe Linie diese wöchentliche Überwärme und die pinke Linie ihre laufende Summe. Folge der pinken Linie nach oben: Sie überschreitet <InlineMath math="4\ ^\circ\text{C-Wochen}" />, ab denen deutliche Bleiche wahrscheinlich wird, und dann <InlineMath math="8" />, ab denen starke Bleiche und Korallensterben wahrscheinlich werden. Achte darauf, dass die pinke Linie ihre Höhe behält, wenn das Wasser abkühlt, weil der Stress schon passiert ist.
 
 <MathVisual
   title={<>Hitzestress summiert sich am Riff</>}
   description={<>Eine beispielhafte Meereshitzewelle über sechs Wochen. Waagrecht: Woche. Senkrecht: Grad über der Bleichschwelle (gelb) und ihre laufende Summe in °C-Wochen (pink).</>}
+  footer={<>Sechs warme Wochen summieren sich auf 9 C-Wochen über beide Schwellen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 10 } },
@@ -73,6 +76,8 @@ Hitzestress summiert sich an einem Riff Woche für Woche. NOAA Coral Reef Watch 
   }}
 />
 
+Selbst wenn die gelbe wöchentliche Überwärme in Woche <InlineMath math="7" /> auf null sinkt, bleibt die pinke Summe bei <InlineMath math="9" /> °C-Wochen stehen. Ein Riff erholt sich erst, wenn das Wasser lange genug kühl bleibt, damit Korallen neue Algen aufnehmen.
+
 ### Blasse Farbe ist ein Stresssignal
 
 [Korallenbleiche](https://oceanservice.noaa.gov/facts/coral_bleach.html) ist eine Stressreaktion, bei der Korallen die in ihrem Gewebe lebenden Algen abstoßen. Ungewöhnlich warmes Wasser kann diese Beziehung stören. Ohne genügend Algen verlieren Korallen eine ihrer wichtigsten Energiequellen und können ausbleichen.
@@ -91,6 +96,7 @@ Riffforschende zählen Hitzestress zusammen. Jede Woche, in der das Wasser minde
 <MathVisual
   title={<>Hitzestress summiert sich Woche für Woche</>}
   description={<>Degree Heating Weeks über <InlineMath math="12" /> beispielhafte Wochen. Waagerecht: Wochen. Senkrecht: angesammelter Hitzestress in <InlineMath math="^\circ\mathrm{C}" />-Wochen.</>}
+  footer={<>Der Stress überschreitet 4 in Woche 6 und 8 in Woche 8, flach in kühlen Wochen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 10 } },
@@ -128,6 +134,7 @@ Im Riffaquarium unten kannst du Hitzestress selbst testen. Seine Korallen stamme
 <CoralBleachLab
   title={<>Hitzestress bleicht Korallen</>}
   description={<>Stell die Wassertemperatur ein und wie viele Wochen sie anhält. Sieh zu, wie die Korallen ihre Farbe verlieren.</>}
+  footer={<>Höhere Wassertemperatur oder längere Hitze treiben Korallen in die Bleiche.</>}
   labels={{
     temperature: "Wassertemperatur",
     weeks: "Wochen bei dieser Temperatur",
@@ -164,12 +171,15 @@ Bei wild lebenden Arten kann Klimawandel **das geografische Gebiet verschieben**
 <Mermaid
   title={<>Wirkungskette des Klimawandels</>}
   description={<>Ordne Veränderungen von Wasser und Lebensraum, Reaktionen der Organismen, Populationsänderungen und Risiken für Menschen.</>}
+  footer={<>Physikalische Klimaveränderungen wirken über Lebensräume bis zur Gesundheit.</>}
   chart={`flowchart LR
     A["Hitze oder Niederschlag verändern sich"] --> B["Wasser und Lebensraum verändern sich"]
     B --> C["Organismen geraten unter Stress"]
     C --> D["Populationen und Nahrungsnetze verändern sich"]
     D --> E["Risiken für Nahrung Wasser und Gesundheit steigen"]`}
 />
+
+Folge der Kette von links nach rechts: Veränderte Hitze oder Niederschläge verändern zuerst Wasser und Lebensraum, belasten Organismen, verschieben Nahrungsnetze und erhöhen schließlich Risiken für Nahrung, Wasser und Gesundheit.
 
 ## Die Wirkungskette vom Meer zur Küstengemeinschaft
 
@@ -182,6 +192,7 @@ An einer flachen Küste steigt das Land nur langsam an, also schiebt ein kleiner
 <MathVisual
   title={<>Einen halben Meter hoch, fünfzig Meter hinein</>}
   description={<>Eine flache Küste im Querschnitt, die Höhe gestreckt, damit die Steigung sichtbar wird. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="10" /> Metern. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="0{,}25" /> Metern.</>}
+  footer={<>Bei 1 % Steigung verschiebt 0,5 m Anstieg die Küstenlinie um 50 m landeinwärts.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.5, max: 10.5 }, y: { min: -1, max: 4.5 } },
@@ -207,21 +218,44 @@ An einer flachen Küste steigt das Land nur langsam an, also schiebt ein kleiner
   }}
 />
 
-Ein steigendes Meer zeigt seine Folgen vor allem bei Sturm. Heb den Meeresspiegel an und schalte den Sturm ein.
+Ein steigendes Meer zeigt seine Folgen vor allem bei Sturm. Verschieb den Meeresspiegelanstieg und vergleiche, wie weit ruhiges Wasser und eine <InlineMath math="1\text{ m}" /> hohe Sturmflut an einem flachen Strand (Anstieg <InlineMath math="1\text{ m}" /> je <InlineMath math="20\text{ m}" />) ins Land reichen.
 
-<SeaLevelRiseLab
+<MathVisual
   title={<>Ein Sturm auf einem höheren Meer</>}
-  description={<>Ein Dorf an einem Strand, der alle <InlineMath math="20\text{ m}" /> landeinwärts um <InlineMath math="1\text{ m}" /> ansteigt. Verschieb den Anstieg und schalte einen Sturm ein.</>}
-  mode="flood"
+  description={
+    <>
+      Reichweite landeinwärts (in Metern) gegen den Meeresspiegelanstieg <InlineMath math="x" /> (in Zentimetern) an einem Strand mit <InlineMath math="1\text{ m}" /> Anstieg je <InlineMath math="20\text{ m}" /> für ruhiges Wasser (violett) und eine <InlineMath math="1\text{ m}" />-Sturmflut (rosa).
+    </>
+  }
+  footer={<>Jede 50 cm Anstieg schieben ruhiges Wasser und Sturmflut 10 m weiter ins Land.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 108 }, y: { min: -2, max: 46 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0, max: 100, value: 50, step: 10, label: "r" },
+    ],
+    objects: [
+      { id: "storm", kind: "function", appearance: "warning", formula: "20 + 0.2 * x", domain: { min: 0, max: 100 } },
+      { id: "calm", kind: "function", appearance: "secondary", formula: "0.2 * x", domain: { min: 0, max: 100 } },
+      { id: "pt-s", kind: "point", appearance: "warning", at: { x: 50, y: 30 } },
+      { id: "pt-c", kind: "point", appearance: "secondary", at: { x: 50, y: 10 } },
+    ],
+    readouts: [
+      { key: "storm-reach", formula: "20 + 0.2 * r" },
+      { key: "calm-reach", formula: "0.2 * r" },
+    ],
+    labels: [
+      { key: "storm", objectId: "pt-s", at: { x: 50, y: 30 }, placement: "above-left" },
+      { key: "calm", objectId: "pt-c", at: { x: 50, y: 10 }, placement: "below-right" },
+    ],
+  }}
   labels={{
-    rise: "Meeresspiegelanstieg",
-    choose: "Bedingungen",
-    defences: { storm: <>Sturm</> },
-    level: <>Höchster Wasserstand</>,
-    wave: <>Wellenhöhe an der Küste</>,
-    flooded: <>Überflutete Häuser</>,
-    retreat: <>Küstenlinie weicht zurück</>,
-    viewLabel: "Küstendorf an einem flachen Strand mit Pegel",
+    storm: <>Sturmflut (30 m bei +50 cm)</>,
+    calm: <>Ruhig (10 m bei +50 cm)</>,
+    r: <>Meeresspiegelanstieg <InlineMath math="r" /> (cm)</>,
+    "storm-reach": <>Sturmflut-Reichweite (m)</>,
+    "calm-reach": <>Ruhige Uferlinie (m)</>,
   }}
 />
 

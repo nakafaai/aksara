@@ -18,7 +18,7 @@ Satu organisme dapat masuk kelompok berbeda jika **dasar pengelompokannya beruba
 
 ## Tiga Cara Klasifikasi
 
-Ketiga cara tersebut sama-sama menghasilkan kelompok, tetapi **memakai kriteria berbeda**. Organisme yang sama dapat masuk ke kelompok yang berbeda ketika tujuan pengelompokan atau bukti yang tersedia berubah.
+Ketiga cara ini sama-sama menghasilkan kelompok, tetapi **memakai kriteria berbeda**. Organisme yang sama dapat masuk ke kelompok yang berbeda ketika tujuan pengelompokan atau bukti yang tersedia berubah.
 
 > Mulailah dari dasar pengelompokannya: manfaat manusia, banyak ciri biologis, atau bukti kekerabatan.
 
@@ -45,6 +45,7 @@ Adegan di bawah mengelompokkan enam hewan dua kali. Lingkaran fuchsia memakai sa
 <MathVisual
   title={<>Hewan Sama, Dua Kriteria</>}
   description={<>Enam hewan dikelompokkan menurut kemampuan terbang (lingkaran fuchsia) dan menurut kelas dari ciri tubuh yang sama (lingkaran oranye, ungu, dan hijau toska).</>}
+  footer={<>Hanya lingkaran kelas mengikuti kekerabatan, sedangkan terbang memotongnya.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -2.5, max: 7.5 } },
@@ -88,41 +89,60 @@ Adegan di bawah mengelompokkan enam hewan dua kali. Lingkaran fuchsia memakai sa
   }}
 />
 
+Perhatikan bagaimana lingkaran terbang berwarna fuchsia menarik satu anggota dari tiga kelas berbeda sambil meninggalkan kerabat dekatnya di luar. Kriteria buatan bisa praktis di lapangan, tetapi memisahkan kerabat evolusi yang sebenarnya.
+
 ### Klasifikasi Alami Membandingkan Banyak Ciri
 
 Sistem lima kingdom dalam sejarah klasifikasi memakai gabungan ciri besar untuk menempatkan organisme ke Monera, Protista, Fungi, Plantae, dan Animalia. Bukti modern tidak lagi menyatukan semua prokariota sebagai Monera. Perbandingan RNA ribosom dan bukti lain membedakan **domain Bacteria dan Archaea** di samping Eukarya.
 
 Klasifikasi alami membandingkan beberapa ciri biologis sekaligus agar hasil pengelompokan tidak ditentukan oleh satu ciri saja.
 
-Klasifikasi alami membandingkan banyak ciri sekaligus, dan sel menyimpan beberapa ciri penting itu. Pilih tiap sel di bawah, lalu bandingkan letak materi genetiknya, dinding yang membungkusnya, dan organel yang menyediakan energinya.
+Klasifikasi alami membandingkan banyak ciri sekaligus, termasuk ukuran sel, susunan inti, bahan dinding sel, dan organel penghasil energi. Bandingkan panjang rata-rata sel bakteri, khamir, sel hewan, dan sel daun di bawah ini.
 
-<CellCutawayLab
-  title={<>Sel dari Empat Kelompok Makhluk Hidup</>}
-  description={<>Tiap sel dipotong separuh dan digambar sesuai ukuran aslinya. Pilih sel, lalu bandingkan inti, dinding, dan organel energinya.</>}
-  cells={["bacterium", "yeast", "plant", "animal"]}
+<MathVisual
+  title={<>Ukuran Sel pada Empat Kelompok Makhluk Hidup</>}
+  description={
+    <>
+      Panjang umum sel dalam mikrometer dari bakteri{" "}
+      <InlineMath math="2\ \mu\text{m}" /> dan khamir{" "}
+      <InlineMath math="8\ \mu\text{m}" /> hingga sel hewan{" "}
+      <InlineMath math="20\ \mu\text{m}" /> dan sel daun{" "}
+      <InlineMath math="40\ \mu\text{m}" />.
+    </>
+  }
+  footer={<>Sel eukariotik umumnya 4 hingga 20 kali lebih panjang daripada bakteri.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 48 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "bac-bar", kind: "segment", appearance: "warning", from: { x: 0, y: 1 }, to: { x: 2, y: 1 } },
+      { id: "bac", kind: "point", appearance: "warning", at: { x: 2, y: 1 } },
+      { id: "yeast-bar", kind: "segment", appearance: "secondary", from: { x: 0, y: 2 }, to: { x: 8, y: 2 } },
+      { id: "yeast", kind: "point", appearance: "secondary", at: { x: 8, y: 2 } },
+      { id: "animal-bar", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 20, y: 3 } },
+      { id: "animal", kind: "point", appearance: "primary", at: { x: 20, y: 3 } },
+      { id: "leaf-bar", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 40, y: 4 } },
+      { id: "leaf", kind: "point", appearance: "construction", at: { x: 40, y: 4 } },
+    ],
+    labels: [
+      { key: "bac", objectId: "bac", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "yeast", objectId: "yeast", at: { x: 8, y: 2 }, placement: "right" },
+      { key: "animal", objectId: "animal", at: { x: 20, y: 3 }, placement: "right" },
+      { key: "leaf", objectId: "leaf", at: { x: 40, y: 4 }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    choose: "Pilih sel",
-    cells: {
-      animal: "Sel hewan",
-      bacterium: "Bakteri",
-      plant: "Sel daun",
-      yeast: "Khamir",
-    },
-    facts: {
-      animal: { nucleus: <>di dalam membran inti</>, wall: <>tidak ada</>, power: <>mitokondria</> },
-      bacterium: { nucleus: <>nukleoid tanpa membran</>, wall: <>peptidoglikan</>, power: <>membran sel</> },
-      plant: { nucleus: <>di dalam membran inti</>, wall: <>selulosa</>, power: <>kloroplas dan mitokondria</> },
-      yeast: { nucleus: <>di dalam membran inti</>, wall: <>glukan dan kitin</>, power: <>mitokondria</> },
-    },
-    size: <>Panjang</>,
-    nucleus: <>Materi genetik</>,
-    wall: <>Dinding sel</>,
-    power: <>Organel energi</>,
-    viewLabel: "Sel yang dipotong separuh dengan organelnya",
+    bac: <>Bakteri (2 µm, nukleoid)</>,
+    yeast: <>Khamir (8 µm, dinding kitin)</>,
+    animal: <>Sel hewan (20 µm, inti)</>,
+    leaf: <>Sel daun (40 µm, selulosa)</>,
   }}
 />
 
-Bakteri tidak punya inti sel, jadi DNA-nya berada di **nukleoid**. Khamir, sel daun, dan sel hewan menyimpan DNA di dalam membran inti, sehingga ketiganya termasuk **eukariot**. Dinding sel memisahkan mereka lagi: selulosa pada tumbuhan, glukan dan kitin pada jamur, dan tidak ada dinding pada hewan. Ukurannya juga jauh berbeda. Sel daun sepanjang <InlineMath math="40\ \mu\text{m}" /> kira-kira <InlineMath math="20" /> kali panjang bakteri yang hanya <InlineMath math="2\ \mu\text{m}" />. Jadi, organisme masuk satu kelompok karena **banyak ciri yang cocok**, bukan karena satu ciri saja.
+Bakteri tidak punya inti sel, sehingga DNA-nya berada di **nukleoid** dengan dinding peptidoglikan. Khamir, sel daun, dan sel hewan menyimpan DNA di dalam membran inti, sehingga ketiganya termasuk **eukariot**.
+
+Dinding sel dan ukuran memisahkannya lebih lanjut: tumbuhan memakai selulosa dan kloroplas, jamur memakai glukan serta kitin, sedangkan sel hewan tidak berdinding. Sel daun sepanjang <InlineMath math="40\ \mu\text{m}" /> kira-kira <InlineMath math="20" /> kali panjang bakteri <InlineMath math="2\ \mu\text{m}" />, menunjukkan bahwa klasifikasi alami mengelompokkan organisme saat **banyak ciri cocok bersamaan**.
 
 ### Klasifikasi Filogenetik Menelusuri Kekerabatan
 
@@ -131,6 +151,7 @@ Klasifikasi filogenetik menyimpulkan hubungan evolusi. Bukti yang dipakai dapat 
 <Mermaid
   title={<>Kriteria dalam Tiga Cara Klasifikasi</>}
   description={<>Diagram membandingkan dasar klasifikasi buatan, alami, dan filogenetik.</>}
+  footer={<>Setiap cabang berangkat dari dasar berbeda dan menghasilkan sistem berbeda.</>}
   chart={`flowchart TD
     A["Dasar pengelompokan"] --> B["Kegunaan manusia"]
     A --> C["Ciri mirip"]
@@ -145,6 +166,7 @@ Kunci dengan pertanyaan ya atau tidak membelah tiap kelompok jadi dua. Setelah <
 <MathVisual
   title={<>Tiap Pertanyaan Menggandakan Kelompok</>}
   description={<>Kunci dikotom dengan tiga pertanyaan ya atau tidak. Tiap percabangan adalah satu pertanyaan, dan tiap titik ujung adalah satu kelompok.</>}
+  footer={<>Tiga pemilahan biner memisahkan hingga delapan kelompok organisme berbeda.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -8, max: 10 }, y: { min: -1, max: 4 } },
@@ -193,21 +215,37 @@ Kunci dengan pertanyaan ya atau tidak membelah tiap kelompok jadi dua. Setelah <
   }}
 />
 
-Klasifikasi filogenetik membandingkan urutan basa DNA. Semakin sedikit perbedaan pada gen yang sama, semakin dekat kekerabatan dua spesies, karena keduanya baru berpisah dari nenek moyang bersama.
+Klasifikasi filogenetik membandingkan urutan basa DNA. Semakin sedikit perbedaan pada gen yang sama, semakin dekat kekerabatan dua spesies, karena keduanya baru berpisah dari nenek moyang bersama. Geser panjang gen <InlineMath math="n" /> di bawah untuk melihat bagaimana tiap basa berbeda menurunkan kesamaan urutan.
 
-<DnaHelixLab
-  title={<>Membandingkan DNA Dua Spesies</>}
-  description={<>Potongan contoh dari gen yang sama pada dua spesies, sepanjang <InlineMath math="27" /> pasangan basa. Ganti spesiesnya dan lihat basa yang berbeda menyala.</>}
-  sequence="ATG GCT AAC CTG GTA CAG TTC GAA AGC"
-  variant="ATG GCC AAC CTG GTG CAG TTT GAA AGC"
+<MathVisual
+  title={<>Kesamaan Urutan DNA dan Perbedaan Basa</>}
+  description={
+    <>
+      Persentase basa identik saat jumlah posisi berbeda{" "}
+      <InlineMath math="x" /> naik dari <InlineMath math="0" /> ke{" "}
+      <InlineMath math="10" />, untuk segmen gen sepanjang{" "}
+      <InlineMath math="n" /> pasangan basa.
+    </>
+  }
+  footer={<>Perbedaan basa lebih sedikit menjaga kesamaan DNA tinggi dan kekerabatan dekat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 50, max: 102 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 20, max: 50, value: 27, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "identity", kind: "function", appearance: "primary", formula: "100 * (1 - x / n)", domain: { min: 0, max: 10 } },
+      { id: "three-diff", kind: "segment", appearance: "reference", from: { x: 3, y: 50 }, to: { x: 3, y: 100 } },
+    ],
+    readouts: [
+      { key: "at-three", formula: "100 * (1 - 3 / n)" },
+    ],
+  }}
   labels={{
-    choose: "Pilih spesies",
-    strands: { first: <>Spesies A</>, second: <>Spesies B</> },
-    length: <>Pasangan basa</>,
-    span: <>Panjang</>,
-    differences: <>Basa berbeda</>,
-    identity: <>Basa sama</>,
-    viewLabel: "Heliks ganda DNA dengan basa yang berbeda menyala",
+    n: <>Panjang pembanding <InlineMath math="n" /> (bp)</>,
+    "at-three": <>Kesamaan urutan dengan 3 perbedaan (%)</>,
   }}
 />
 
@@ -215,11 +253,11 @@ Dari <InlineMath math="27" /> basa, ada <InlineMath math="3" /> yang berbeda, ja
 
 ## Takson dan Peringkat dalam Hierarki
 
-Dalam klasifikasi, **takson** adalah kelompok tertentu yang diberi nama, sedangkan **peringkat** menunjukkan posisi takson dalam hierarki. Urutan yang umum dipakai dimulai dari kelompok paling luas, yaitu domain, lalu kingdom, filum atau divisi, kelas, ordo, famili, genus, dan spesies. Peringkat tambahan dapat disisipkan di antara peringkat tersebut.
+Dalam klasifikasi, **takson** adalah kelompok tertentu yang diberi nama, sedangkan **peringkat** menunjukkan posisi takson dalam hierarki. Urutan yang umum dipakai dimulai dari kelompok paling luas, yaitu domain, lalu kingdom, filum atau divisi, kelas, ordo, famili, genus, dan spesies. Peringkat tambahan dapat disisipkan di antara tingkat-tingkat ini.
 
 Dalam biologi, "famili" adalah nama peringkat, sedangkan *Hominidae* adalah nama takson pada peringkat famili. Semakin khusus suatu takson, semakin sedikit organisme yang menjadi anggotanya. Peringkat saja tidak mengukur waktu evolusi dan tidak cukup untuk membandingkan cabang yang berbeda secara langsung.
 
-Namun hierarki saja belum cukup. Sebutan sehari-hari seperti "hewan yang dapat terbang" belum tentu merupakan takson formal. Saat melihat nama kelompok, periksa apakah nama itu menjelaskan kegunaan praktis, kesamaan ciri, atau hipotesis hubungan evolusi.
+Namun hierarki saja belum cukup. Sebutan sehari-hari seperti "hewan yang dapat terbang" belum tentu termasuk takson formal. Saat melihat nama kelompok, periksa apakah nama itu menjelaskan kegunaan praktis, kesamaan ciri, atau hipotesis hubungan evolusi.
 
 Dalam penelitian genom, nama kelompok harus konsisten agar data dari banyak laboratorium dapat dianalisis bersama. Basis data sekuens publik memakai [klasifikasi dan tata nama yang sama](https://www.ncbi.nlm.nih.gov/taxonomy) untuk menghubungkan nama organisme dengan bukti genetik.
 
@@ -228,6 +266,7 @@ Ini satu jalur lengkap melewati semua tingkatan, untuk manusia. Tiap tingkatan a
 <MathVisual
   title={<>Tingkatan Bersarang dari Domain sampai Spesies</>}
   description={<>Tiap lingkaran adalah satu takson dalam klasifikasi manusia, di dalam takson satu tingkat di atasnya.</>}
+  footer={<>Setiap lingkaran dalam menyempitkan takson hingga tersisa Homo sapiens.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -0.5, max: 17 } },
@@ -266,8 +305,10 @@ Ini satu jalur lengkap melewati semua tingkatan, untuk manusia. Tiap tingkatan a
   }}
 />
 
+Bergerak masuk dari Domain Eukarya menuju Spesies *Homo sapiens* mempersempit jumlah anggota selangkah demi selangkah sambil memperbanyak ciri yang sama. Setiap lingkaran bersarang utuh di dalam tingkat di atasnya, menunjukkan bahwa hierarki biologi menyusun himpunan inklusif, bukan daftar lepas.
+
 ## Kriteria dan Tujuan Nama Kelompok
 
-Jika suatu kelompok hanya memakai satu ciri praktis, kelompok tersebut hanya berguna untuk tujuan terbatas. Kelompok "hewan yang dapat terbang" menunjukkan kemampuan terbang, tetapi **tidak menunjukkan kekerabatan**. Burung, kelelawar, dan serangga berasal dari cabang evolusi yang berbeda. Kita baru dapat menilai suatu kelompok setelah kriteria dan tujuan pengelompokannya jelas.
+Jika suatu kelompok hanya memakai satu ciri praktis, kelompok ini hanya berguna untuk tujuan terbatas. Kelompok "hewan yang dapat terbang" menunjukkan kemampuan terbang, tetapi **tidak menunjukkan kekerabatan**. Burung, kelelawar, dan serangga berasal dari cabang evolusi yang berbeda. Kita baru dapat menilai suatu kelompok setelah kriteria dan tujuan pengelompokannya jelas.
 
 Saat menemukan nama kelompok organisme yang belum dikenal, cari dulu kriteria pengelompokannya. Kriteria itu menunjukkan apakah kelompok dibuat berdasarkan kegunaan bagi manusia, kesamaan ciri tubuh, atau bukti kekerabatan.

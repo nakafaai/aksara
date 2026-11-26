@@ -39,6 +39,8 @@ Human activities, mainly through [greenhouse gas emissions](https://www.ipcc.ch/
   }}
 />
 
+Raise the gas level in the model and watch how more outgoing infrared arrows bounce back toward the surface instead of escaping to space. That extra trapped energy is what pushes Earth toward a warmer balance.
+
 ### Main Sources of Greenhouse Gases
 
 Human-caused carbon dioxide emissions come mainly from [burning fossil fuels and biological materials](https://www.epa.gov/ghgemissions/overview-greenhouse-gases). Methane is linked to **energy production, agriculture, and organic waste decay**. Nitrous oxide can come from agriculture, industry, combustion, and wastewater treatment.
@@ -57,6 +59,7 @@ In a simple textbook model, each layer of greenhouse gas absorbs all the heat ra
 <MathVisual
   title={<>More Layers, Warmer Ground</>}
   description={<>Ground temperature in the layer model with zero, one and two fully absorbing layers. One grid step up is <InlineMath math="50" /> kelvin.</>}
+  footer={<>One absorbing layer already raises ground temperature from 255 K to 303 K.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
@@ -79,24 +82,48 @@ In a simple textbook model, each layer of greenhouse gas absorbs all the heat ra
   }}
 />
 
-The three main greenhouse gases from human activity are <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{CH_4}" />, and <InlineMath math="\mathrm{N_2O}" />. Turn each molecule and compare its shape.
+The three main greenhouse gases from human activity are <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{CH_4}" />, and <InlineMath math="\mathrm{N_2O}" />. Compare how much <InlineMath math="100" />-year warming equivalent the same mass of each gas produces.
 
-<MoleculeShapeLab
-  title={<>Three Greenhouse Gases in 3D</>}
-  description={<>Pick carbon dioxide, methane, or nitrous oxide, then compare their bond angles.</>}
-  molecules={[
-    { id: "carbon-dioxide", name: "Carbon dioxide" },
-    { id: "methane", name: "Methane" },
-    { id: "dinitrogen-monoxide", name: "Nitrous oxide" },
-  ]}
+<MathVisual
+  title={<>Warming Potency of Three Greenhouse Gases</>}
+  description={
+    <>
+      Equivalent <InlineMath math="100" />-year warming (in <InlineMath math="\mathrm{kg\ CO_2e}" />) versus emitted gas mass <InlineMath math="x" /> (in grams) for <InlineMath math="\mathrm{N_2O}" /> (pink), <InlineMath math="\mathrm{CH_4}" /> (orange), and <InlineMath math="\mathrm{CO_2}" /> (gray).
+    </>
+  }
+  footer={<>Over 100 years, 10 g of N2O warms like 2.73 kg of CO2 and CH4 like 0.30 kg.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: -0.2, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1, max: 10, value: 10, step: 1, label: "m" },
+    ],
+    objects: [
+      { id: "n2o", kind: "function", appearance: "warning", formula: "0.273 * x", domain: { min: 0, max: 10 } },
+      { id: "ch4", kind: "function", appearance: "primary", formula: "0.03 * x", domain: { min: 0, max: 10 } },
+      { id: "co2", kind: "function", appearance: "reference", formula: "0.001 * x", domain: { min: 0, max: 10 } },
+      { id: "pt-n2o", kind: "point", appearance: "warning", at: { x: 10, y: 2.73 } },
+      { id: "pt-ch4", kind: "point", appearance: "primary", at: { x: 10, y: 0.3 } },
+      { id: "pt-co2", kind: "point", appearance: "reference", at: { x: 10, y: 0.01 } },
+    ],
+    readouts: [
+      { key: "n2o-eq", formula: "0.273 * m" },
+      { key: "ch4-eq", formula: "0.03 * m" },
+    ],
+    labels: [
+      { key: "n2o", objectId: "pt-n2o", at: { x: 10, y: 2.73 }, placement: "left" },
+      { key: "ch4", objectId: "pt-ch4", at: { x: 10, y: 0.3 }, placement: "above" },
+      { key: "co2", objectId: "pt-co2", at: { x: 10, y: 0.01 }, placement: "below" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
+    n2o: <InlineMath math="\mathrm{N_2O}\ (\times 273)" />,
+    ch4: <InlineMath math="\mathrm{CH_4}\ (\times 30)" />,
+    co2: <InlineMath math="\mathrm{CO_2}\ (\times 1)" />,
+    m: <>Gas mass <InlineMath math="m" /> (g)</>,
+    "n2o-eq": <><InlineMath math="\mathrm{N_2O}" /> warming (<InlineMath math="\mathrm{kg\ CO_2e}" />)</>,
+    "ch4-eq": <><InlineMath math="\mathrm{CH_4}" /> warming (<InlineMath math="\mathrm{kg\ CO_2e}" />)</>,
   }}
 />
 
@@ -114,28 +141,50 @@ Carbon dioxide is one of several greenhouse gases. Fossil-fuel combustion in veh
 
 Bottled cooking gas (LPG) is a mixture of propane and butane. When it burns, the carbon stored in it moves into the air as <InlineMath math="\mathrm{CO_2}" />.
 
-<ReactionBalanceLab
+<MathVisual
   title={<>Burning Fuel Releases Carbon Dioxide</>}
-  description={<>Run the reaction atom by atom. Compare burning propane and burning methane.</>}
-  reactions={[
-    { id: "propane-combustion", name: "Burning propane", tab: <InlineMath math="\mathrm{C_3H_8}" /> },
-    { id: "methane-combustion", name: "Burning methane", tab: <InlineMath math="\mathrm{CH_4}" /> },
-  ]}
-  reading="molecules"
+  description={
+    <>
+      <InlineMath math="\mathrm{CO_2}" /> molecules released versus <InlineMath math="\mathrm{O_2}" /> molecules consumed when burning propane (orange, <InlineMath math="3/5" />) compared with methane (violet, <InlineMath math="1/2" />).
+    </>
+  }
+  footer={<>Every 5 O2 molecules burning propane yield 3 CO2, versus 2.5 for methane.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 16 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 2, max: 15, value: 10, step: 1, label: "k" },
+    ],
+    objects: [
+      { id: "propane", kind: "function", appearance: "primary", formula: "0.6 * x", domain: { min: 0, max: 15 } },
+      { id: "methane", kind: "function", appearance: "secondary", formula: "0.5 * x", domain: { min: 0, max: 15 } },
+      { id: "pt-p", kind: "point", appearance: "primary", at: { x: 10, y: 6 } },
+      { id: "pt-m", kind: "point", appearance: "secondary", at: { x: 10, y: 5 } },
+    ],
+    readouts: [
+      { key: "propane-co2", formula: "0.6 * k" },
+      { key: "methane-co2", formula: "0.5 * k" },
+    ],
+    labels: [
+      { key: "propane", objectId: "pt-p", at: { x: 10, y: 6 }, placement: "above" },
+      { key: "methane", objectId: "pt-m", at: { x: 10, y: 5 }, placement: "below" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms of each element</>,
-    choose: "Choose a reaction",
-    equation: <>Balanced equation</>,
-    mass: <>Mass of reactants and products</>,
-    molecules: <>Number of molecules</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Reaction at the level of atoms",
+    propane: <InlineMath math="\mathrm{C_3H_8}" />,
+    methane: <InlineMath math="\mathrm{CH_4}" />,
+    k: <><InlineMath math="\mathrm{O_2}" /> molecules <InlineMath math="k" /></>,
+    "propane-co2": <><InlineMath math="\mathrm{CO_2}" /> from propane</>,
+    "methane-co2": <><InlineMath math="\mathrm{CO_2}" /> from methane</>,
   }}
 />
 
-The equation is <InlineMath math="\mathrm{C_3H_8} + 5\,\mathrm{O_2} \rightarrow 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}" />. One propane molecule gives three <InlineMath math="\mathrm{CO_2}" /> molecules, because each of its carbon atoms takes oxygen from the air. That is why about <InlineMath math="44\text{ g}" /> of propane gives about <InlineMath math="3 \times 44 = 132\text{ g}" /> of <InlineMath math="\mathrm{CO_2}" />, three times the mass of the fuel.
+The balanced equation for propane combustion is:
+
+<BlockMath math="\mathrm{C_3H_8} + 5\,\mathrm{O_2} \rightarrow 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}" />
+
+One propane molecule gives three <InlineMath math="\mathrm{CO_2}" /> molecules, because each of its carbon atoms takes oxygen from the air. That is why about <InlineMath math="44\text{ g}" /> of propane gives about <InlineMath math="132\text{ g}" /> of <InlineMath math="\mathrm{CO_2}" />, three times the mass of the fuel.
 
 ### Vehicle Catalysts Target Specific Pollutants
 
@@ -162,6 +211,7 @@ Plastic is linked to [emissions across its life cycle](https://www.oecd.org/en/p
 <Mermaid
   title={<>Three Carbon Paths Increase Warming</>}
   description={<>Connect fossil fuels, organic waste, and forest loss to the gases or sink changes that retain more heat.</>}
+  footer={<>Burning fuels, anoxic waste, and forest loss all push Earth toward warming.</>}
   chart={`flowchart LR
     A["Fossil fuels"] --> B["Carbon dioxide"]
     C["Organic waste decays with little oxygen"] --> D["Methane"]
@@ -176,6 +226,7 @@ Think of the air as a tub: emissions pour carbon in, and forests and oceans take
 <MathVisual
   title={<>Less Uptake, Faster Build-up</>}
   description={<>Extra carbon in the air in an illustrative tub model, with the whole forest (gray) and after clearing (pink). Horizontal: years. Vertical: one grid step is <InlineMath math="10" /> units of carbon.</>}
+  footer={<>Cutting forest uptake from 5 to 3 raises the yearly buildup from 5 to 7.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 7.5 } },
@@ -196,6 +247,8 @@ Think of the air as a tub: emissions pour carbon in, and forests and oceans take
     cleared: <InlineMath math="10-3=7" />,
   }}
 />
+
+Compare the two slopes after ten years: the intact forest line reaches <InlineMath math="50" /> units while the cleared-forest line climbs to <InlineMath math="70" /> units. Weakening carbon sinks accelerates atmospheric buildup even when annual emissions stay unchanged.
 
 ## From Human Activities to Warming
 

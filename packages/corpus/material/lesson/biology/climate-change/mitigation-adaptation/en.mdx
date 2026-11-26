@@ -32,11 +32,14 @@ Classify an action by its main result: reducing greenhouse gases, **reducing har
 
 > Mitigation reduces the cause of warming. Adaptation reduces harm from climate impacts. Some actions do both, but their main goal must still be stated clearly.
 
-Climate risk comes from three things meeting: a **hazard** such as a heatwave or storm surge, the **exposure** of people and places in its path, and their **vulnerability**, how easily they are harmed. The scene below uses a simple illustrative index that multiplies the three, drawn as a box with the hazard as its height. Mitigation works on the cause, so it lowers the box. Adaptation works on the harm, so it makes the box thinner from front to back. Rotate the scene: both halve the volume, but in different directions, and together they bring it down to a quarter.
+Climate risk comes from three things meeting: a **hazard** such as a heatwave or storm surge, the **exposure** of people and places in its path, and their **vulnerability**, how easily they are harmed.
+
+The scene below uses a simple illustrative index that multiplies the three, drawn as a box with the hazard as its height. Mitigation works on the cause, so it lowers the box. Adaptation works on the harm, so it makes the box thinner from front to back. Rotate the scene: both halve the volume, but in different directions, and together they bring it down to a quarter.
 
 <MathVisual
   title={<>Two Ways to Shrink Climate Risk</>}
   description={<>An illustrative risk index of <InlineMath math="\text{hazard}\times\text{exposure}\times\text{vulnerability}" />. Height is hazard, width is exposure, depth is vulnerability.</>}
+  footer={<>Mitigation or adaptation halves risk alone, and combining both cuts it to a quarter.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 12 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -62,6 +65,8 @@ Climate risk comes from three things meeting: a **hazard** such as a heatwave or
   }}
 />
 
+Notice how each response shrinks a different edge of the block: mitigation lowers the hazard height while adaptation trims vulnerability depth. Using both together cuts the risk volume from <InlineMath math="8" /> down to <InlineMath math="2" />.
+
 ## Mitigation Reduces Emissions or Protects Carbon Sinks
 
 Mitigation reduces greenhouse gas emissions or maintains the ability of forests, soils, and oceans to absorb carbon. Its success is measured by changes in **net emissions** and the amount of carbon stored.
@@ -77,6 +82,7 @@ Mitigation either cuts emissions or makes carbon sinks take up more. The bathtub
 <CarbonBudgetLab
   title={<>Cutting Emissions and Growing Forests</>}
   description={<>Slide how much fossil <InlineMath math="\mathrm{CO_2}" /> is cut by 2050 and how much <InlineMath math="\mathrm{CO_2}" /> new forests take up each year.</>}
+  footer={<>Deep fossil cuts paired with new forest uptake hold warming close to 1.5 C.</>}
   mode="mitigate"
   labels={{
     cut: "Fossil emissions cut by 2050",
@@ -111,21 +117,41 @@ One activity can have two benefits. Replanting mangroves, for example, can **sto
 
 [Protecting and restoring ecosystems](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/) can support both mitigation and adaptation. Carbon storage contributes to mitigation. Measures such as wetland restoration or urban greening can reduce some climate risks. Fossil-emission cuts remain necessary. The benefits depend on local ecology, governance, and implementation.
 
-Adaptation reduces the harm even while the sea keeps rising. Add a sea wall or a mangrove belt and let the storm come.
+Adaptation reduces the harm even while the sea keeps rising. Slide the sea-level rise below to compare peak storm water at a <InlineMath math="2.5\text{ m}" /> sea wall with and without a <InlineMath math="100\text{ m}" /> mangrove belt.
 
-<SeaLevelRiseLab
+<MathVisual
   title={<>A Sea Wall and Mangroves against a Storm</>}
-  description={<>The storm pushes the sea <InlineMath math="1\text{ m}" /> higher with waves <InlineMath math="1\text{ m}" /> high. Slide the sea level rise and choose the defences.</>}
-  mode="adapt"
+  description={
+    <>
+      Peak storm water height (in meters) versus incoming wave height <InlineMath math="x" /> (in meters) during a <InlineMath math="1\text{ m}" /> storm surge for a sea wall alone (pink) and a sea wall plus mangroves that halve waves (violet), compared with a <InlineMath math="2.5\text{ m}" /> wall crest (gray).
+    </>
+  }
+  footer={<>At +0.5 m rise, a 1 m wave tops a 2.5 m wall alone but stays at 2.0 m with mangroves.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0, max: 1, value: 0.5, step: 0.1, label: "r" },
+    ],
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 2.5 }, to: { x: 2.6, y: 2.5 } },
+      { id: "bare", kind: "function", appearance: "warning", formula: "1 + r + x", domain: { min: 0, max: 2.2 } },
+      { id: "mangrove", kind: "function", appearance: "secondary", formula: "1 + r + 0.5 * x", domain: { min: 0, max: 2.2 } },
+    ],
+    readouts: [
+      { key: "wall-alone", formula: "1 + r + 1" },
+      { key: "wall-mangrove", formula: "1 + r + 0.5" },
+    ],
+    labels: [
+      { key: "wall", objectId: "wall", at: { x: 2.5, y: 2.5 }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    rise: "Sea level rise",
-    choose: "Choose defences",
-    defences: { wall: <>Sea wall</>, mangrove: <>Mangroves</> },
-    level: <>Highest water</>,
-    wave: <>Wave height at the shore</>,
-    flooded: <>Houses flooded</>,
-    retreat: <>Shoreline moves inland</>,
-    viewLabel: "Coastal village on a gentle beach with a tide gauge",
+    wall: <>2.5 m wall crest</>,
+    r: <>Sea-level rise <InlineMath math="r" /> (m)</>,
+    "wall-alone": <>Peak height, wall alone (m)</>,
+    "wall-mangrove": <>Peak height, wall + mangroves (m)</>,
   }}
 />
 
@@ -143,6 +169,7 @@ A verb alone is insufficient. **Protecting** can describe either goal:
 <Mermaid
   title={<>Separate the Goal Before Choosing Action</>}
   description={<>Separate actions that reduce the causes from actions that help living things adapt.</>}
+  footer={<>Match each action to its main goal: cutting gases, reducing harm, or both.</>}
   chart={`flowchart TD
     A["Climate action"] --> B["Reduce greenhouse gases"]
     A --> C["Reduce impact harm"]
@@ -157,6 +184,7 @@ The two questions split actions into four corners. Moving right means the action
 <MathVisual
   title={<>Two Questions, Four Corners</>}
   description={<>Actions placed by their intended result: mitigation (orange), adaptation (violet), both (fuchsia) or neither (gray).</>}
+  footer={<>Forests sit in mitigation, flood walls in adaptation, and mangroves in both.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.8 } },
@@ -187,6 +215,8 @@ The two questions split actions into four corners. Moving right means the action
   }}
 />
 
+Check the top-right fuchsia corner: replanting mangroves sits there because it both locks away carbon and shields homes from waves. Separating the two axes keeps dual-benefit projects from blurring their primary goal.
+
 ## One Action Can Serve Two Purposes
 
 The sentence "a coastal village plants mangroves so erosion decreases and homes are better protected" mainly emphasizes adaptation because the action reduces coastal harm. Mangroves can still store carbon, but the stated result is protection for homes.
@@ -198,6 +228,7 @@ The coastal-protection side of mangroves can be modeled too. Roots and trunks ta
 <MathVisual
   title={<>Waves Shrink across the Mangroves</>}
   description={<>Wave height through a <InlineMath math="200" /> meter mangrove belt in an illustrative model. Horizontal: one grid step is <InlineMath math="25" /> meters. Vertical: one grid step is <InlineMath math="0.25" /> meters.</>}
+  footer={<>A 1 m wave drops to 0.37 m after 100 m of mangroves and 0.14 m after 200 m.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.3, max: 4.6 } },
@@ -221,3 +252,5 @@ The coastal-protection side of mangroves can be modeled too. Roots and trunks ta
     end: <InlineMath math="e^{-2}\approx0.14\ \mathrm{m}" />,
   }}
 />
+
+The exponential drop shows why belt width matters: the first <InlineMath math="100\text{ m}" /> of mangroves removes more than <InlineMath math="60\%" /> of the wave height, and a <InlineMath math="200\text{ m}" /> belt leaves only about <InlineMath math="14\%" /> reaching the village behind it.

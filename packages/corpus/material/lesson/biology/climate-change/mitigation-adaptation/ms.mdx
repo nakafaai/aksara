@@ -32,11 +32,14 @@ Kelaskan sesuatu tindakan mengikut hasil utamanya: mengurangkan gas rumah hijau,
 
 > Mitigasi mengurangkan punca pemanasan. Adaptasi mengurangkan kemudaratan akibat kesan iklim. Sesetengah tindakan melakukan kedua-duanya, tetapi matlamat utamanya tetap perlu dinyatakan dengan jelas.
 
-Risiko iklim datang daripada pertemuan tiga perkara: **bahaya** seperti gelombang haba atau lonjakan air laut akibat ribut, **pendedahan** manusia dan tempat yang berada di laluannya, dan **kerentanan** mereka, iaitu betapa mudahnya mereka dimudaratkan. Rajah di bawah menggunakan indeks contoh yang ringkas, iaitu hasil darab ketiga-tiganya, dan melukisnya sebagai sebuah kotak dengan bahaya sebagai tingginya. Mitigasi bertindak pada punca, jadi ia merendahkan kotak itu. Adaptasi bertindak pada kemudaratan, jadi ia menipiskan kotak itu dari depan ke belakang. Putar rajah ini: kedua-duanya mengurangkan isi padu kepada separuh, tetapi dalam arah yang berbeza, dan apabila digabungkan, isi padu itu turun kepada satu perempat.
+Risiko iklim datang daripada pertemuan tiga perkara: **bahaya** seperti gelombang haba atau lonjakan air laut akibat ribut, **pendedahan** manusia dan tempat yang berada di laluannya, dan **kerentanan** mereka, iaitu betapa mudahnya mereka dimudaratkan.
+
+Rajah di bawah menggunakan indeks contoh yang ringkas, iaitu hasil darab ketiga-tiganya, dan melukisnya sebagai sebuah kotak dengan bahaya sebagai tingginya. Mitigasi bertindak pada punca, jadi ia merendahkan kotak itu. Adaptasi bertindak pada kemudaratan, jadi ia menipiskan kotak itu dari depan ke belakang. Putar rajah ini: kedua-duanya mengurangkan isi padu kepada separuh, tetapi dalam arah yang berbeza, dan apabila digabungkan, isi padu itu turun kepada satu perempat.
 
 <MathVisual
   title={<>Dua Cara Mengecilkan Risiko Iklim</>}
   description={<>Indeks risiko contoh, <InlineMath math="\text{bahaya}\times\text{pendedahan}\times\text{kerentanan}" />. Tinggi mewakili bahaya, lebar mewakili pendedahan dan kedalaman mewakili kerentanan.</>}
+  footer={<>Mitigasi atau adaptasi membahagi risiko kepada separuh, keduanya seperempat.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 12 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -62,6 +65,8 @@ Risiko iklim datang daripada pertemuan tiga perkara: **bahaya** seperti gelomban
   }}
 />
 
+Perhatikan cara setiap respons mengecilkan sisi kotak yang berbeza: mitigasi merendahkan tinggi bahaya manakala adaptasi menipiskan kedalaman kerentanan. Menggabungkan kedua-duanya menurunkan isi padu risiko daripada <InlineMath math="8" /> kepada <InlineMath math="2" />.
+
 ## Mitigasi Mengurangkan Pelepasan atau Melindungi Penyerap Karbon
 
 Mitigasi mengurangkan pelepasan gas rumah hijau atau mengekalkan keupayaan hutan, tanah dan lautan untuk menyerap karbon. Kejayaannya diukur melalui perubahan **pelepasan bersih** dan jumlah karbon yang disimpan.
@@ -77,6 +82,7 @@ Mitigasi sama ada mengurangkan pelepasan atau menambah serapan sinki karbon. Mod
 <CarbonBudgetLab
   title={<>Mengurangkan Pelepasan dan Menanam Hutan</>}
   description={<>Gerakkan banyaknya <InlineMath math="\mathrm{CO_2}" /> fosil yang dikurangkan menjelang 2050 dan banyaknya <InlineMath math="\mathrm{CO_2}" /> yang diserap oleh hutan baharu setiap tahun.</>}
+  footer={<>Pengurangan pelepasan fosil bersama hutan baharu menahan pemanasan dekat 1.5 C.</>}
   mode="mitigate"
   labels={{
     cut: "Pengurangan pelepasan fosil menjelang 2050",
@@ -111,21 +117,41 @@ Satu aktiviti boleh memberi dua manfaat. Contohnya, menanam semula bakau boleh *
 
 [Melindungi dan memulihkan ekosistem](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/) boleh menyokong mitigasi dan adaptasi. Simpanan karbon menyumbang kepada mitigasi. Langkah seperti pemulihan tanah bencah atau penghijauan bandar boleh mengurangkan sebahagian risiko iklim. Pengurangan pelepasan fosil tetap perlu. Manfaatnya bergantung pada ekologi setempat, tadbir urus dan cara pelaksanaannya.
 
-Adaptasi mengurangkan kerosakan walaupun laut terus naik. Tambah benteng laut atau jalur bakau dan biarkan ribut datang.
+Adaptasi mengurangkan kerosakan walaupun laut terus naik. Gerakkan kenaikan aras laut di bawah untuk membandingkan paras air puncak ribut di benteng laut <InlineMath math="2.5\text{ m}" /> dengan dan tanpa jalur bakau <InlineMath math="100\text{ m}" />.
 
-<SeaLevelRiseLab
+<MathVisual
   title={<>Benteng Laut dan Bakau Menghadapi Ribut</>}
-  description={<>Ribut menolak laut <InlineMath math="1\text{ m}" /> lebih tinggi dengan ombak setinggi <InlineMath math="1\text{ m}" />. Gerakkan kenaikan aras laut dan pilih pertahanannya.</>}
-  mode="adapt"
+  description={
+    <>
+      Paras air puncak ribut (meter) berbanding tinggi ombak datang <InlineMath math="x" /> (meter) semasa lonjakan ribut <InlineMath math="1\text{ m}" /> bagi benteng laut sahaja (merah jambu) dan benteng bersama bakau yang membahagi dua ombak (ungu), berbanding puncak benteng <InlineMath math="2.5\text{ m}" /> (kelabu).
+    </>
+  }
+  footer={<>Pada kenaikan 0.5 m, bakau menahan paras air 2.0 m di bawah benteng 2.5 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0, max: 1, value: 0.5, step: 0.1, label: "r" },
+    ],
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 2.5 }, to: { x: 2.6, y: 2.5 } },
+      { id: "bare", kind: "function", appearance: "warning", formula: "1 + r + x", domain: { min: 0, max: 2.2 } },
+      { id: "mangrove", kind: "function", appearance: "secondary", formula: "1 + r + 0.5 * x", domain: { min: 0, max: 2.2 } },
+    ],
+    readouts: [
+      { key: "wall-alone", formula: "1 + r + 1" },
+      { key: "wall-mangrove", formula: "1 + r + 0.5" },
+    ],
+    labels: [
+      { key: "wall", objectId: "wall", at: { x: 2.5, y: 2.5 }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    rise: "Kenaikan aras laut",
-    choose: "Pilih pertahanan",
-    defences: { wall: <>Benteng laut</>, mangrove: <>Bakau</> },
-    level: <>Paras air tertinggi</>,
-    wave: <>Tinggi ombak di pantai</>,
-    flooded: <>Rumah yang dinaiki air</>,
-    retreat: <>Garis pantai beralih ke darat</>,
-    viewLabel: "Kampung pesisir di pantai yang landai dengan tolok pasang surut",
+    wall: <>Puncak benteng 2.5 m</>,
+    r: <>Kenaikan aras laut <InlineMath math="r" /> (m)</>,
+    "wall-alone": <>Paras puncak, benteng sahaja (m)</>,
+    "wall-mangrove": <>Paras puncak, benteng + bakau (m)</>,
   }}
 />
 
@@ -143,6 +169,7 @@ Kata kerja sahaja tidak mencukupi. **Melindungi** boleh merujuk kepada mana-mana
 <Mermaid
   title={<>Asingkan Matlamat Sebelum Memilih Tindakan</>}
   description={<>Asingkan tindakan yang mengurangkan punca daripada tindakan yang membantu benda hidup menyesuaikan diri.</>}
+  footer={<>Padankan tindakan dengan matlamat utama: kurangkan gas, mudarat atau kedua-duanya.</>}
   chart={`flowchart TD
     A["Tindakan iklim"] --> B["Kurangkan gas rumah hijau"]
     A --> C["Kurangkan kemudaratan akibat kesan"]
@@ -157,6 +184,7 @@ Dua soalan itu membahagikan tindakan kepada empat penjuru. Bergerak ke kanan ber
 <MathVisual
   title={<>Dua Soalan, Empat Penjuru</>}
   description={<>Tindakan diletakkan mengikut hasil yang diharapkan: mitigasi (jingga), adaptasi (ungu), kedua-duanya (merah jambu keunguan) atau tiada satu pun (kelabu).</>}
+  footer={<>Hutan pada mitigasi, rumah pada adaptasi, dan bakau pada kedua-duanya.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.8 } },
@@ -187,6 +215,8 @@ Dua soalan itu membahagikan tindakan kepada empat penjuru. Bergerak ke kanan ber
   }}
 />
 
+Lihat penjuru kanan atas berwarna merah jambu keunguan: penanaman semula bakau berada di situ kerana ia menyimpan karbon dan melindungi rumah daripada ombak. Memisahkan dua paksi ini memastikan matlamat utama projek manfaat berganda kekal jelas.
+
 ## Satu Tindakan Boleh Memenuhi Dua Tujuan
 
 Ayat "sebuah kampung pantai menanam bakau supaya hakisan berkurang dan rumah lebih terlindung" terutamanya menekankan adaptasi kerana tindakan itu mengurangkan kemudaratan di pantai. Bakau masih boleh menyimpan karbon, tetapi hasil yang dinyatakan ialah perlindungan bagi rumah.
@@ -198,6 +228,7 @@ Sisi perlindungan pantai bagi bakau juga boleh dimodelkan. Akar dan batang bakau
 <MathVisual
   title={<>Ombak Mengecil Merentasi Hutan Bakau</>}
   description={<>Tinggi ombak melalui jalur bakau selebar <InlineMath math="200" /> meter dalam model contoh. Paksi mengufuk: satu petak grid bersamaan <InlineMath math="25" /> meter. Paksi menegak: satu petak grid bersamaan <InlineMath math="0.25" /> meter.</>}
+  footer={<>Ombak 1 m mengecil kepada 0.37 m selepas 100 m bakau dan 0.14 m di 200 m.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.3, max: 4.6 } },
@@ -221,3 +252,5 @@ Sisi perlindungan pantai bagi bakau juga boleh dimodelkan. Akar dan batang bakau
     end: <InlineMath math="e^{-2}\approx0.14\ \mathrm{m}" />,
   }}
 />
+
+Penurunan eksponen ini menjelaskan mengapa kelebaran jalur penting: <InlineMath math="100\text{ m}" /> pertama bakau sudah menyerap lebih daripada <InlineMath math="60\%" /> tinggi ombak, dan jalur <InlineMath math="200\text{ m}" /> hanya meninggalkan kira-kira <InlineMath math="14\%" /> yang sampai ke kampung.

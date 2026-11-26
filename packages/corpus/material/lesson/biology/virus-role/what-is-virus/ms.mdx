@@ -71,43 +71,79 @@ Virus boleh dibandingkan dari segi komposisi, struktur, pengelasan dan kesannya 
   }}
 />
 
-Model seterusnya menunjukkan permukaan **SARS-CoV-2** dengan lebih terperinci berbanding rajah umum di atas. [Tomografi krio-elektron ke atas virion yang utuh](https://www.nature.com/articles/s41586-020-2665-2) mendapati dwilapisan lipid dengan trimer protein spike yang menonjol keluar daripadanya. Protein spike ini mengikat reseptor ACE2 dan menjadi perantara kemasukan virus ke dalam sel sasaran yang sesuai. Model ini mewakili satu virus bersampul. Virus lain boleh mempunyai bentuk dan bahagian yang berbeza.
+Model seterusnya mengukur kekuatan ikatan protein spike **SARS-CoV-2** pada reseptor sel perumah. [Tomografi krio-elektron ke atas virion yang utuh](https://www.nature.com/articles/s41586-020-2665-2) mendapati dwilapisan lipid dengan trimer protein spike yang menonjol keluar daripadanya. Protein spike ini mengikat reseptor ACE2 dan menjadi perantara kemasukan virus ke dalam sel sasaran yang sesuai. Laraskan pemalar penceraian <InlineMath math="K" /> di bawah untuk melihat bagaimana kekuatan ikatan menentukan pecahan reseptor ACE2 yang terikat.
 
-<SarsCov2VirionLab
-  title={<>Bentuk permukaan SARS-CoV-2</>}
+<MathVisual
+  title={<>Ikatan Spike dan Pengisian Reseptor ACE2</>}
   description={
     <>
-      Perhatikan virion bersampul yang mempunyai banyak unjuran protein pada permukaannya.
+      Pecahan reseptor perumah yang terikat apabila kepekatan spike meningkat,
+      bagi pemalar ikatan <InlineMath math="K" /> yang boleh dipilih.
     </>
   }
-  labels={{
-    chooseMode: "Pilih bahagian permukaan",
-    focusLabel: "Apa yang perlu diperhatikan",
-    takeawayLabel: "Maksud biologi",
-    viewLabel: "Model permukaan SARS-CoV-2",
-    items: [
-      {
-        tab: "Permukaan",
-        caption: <>SARS-CoV-2 kelihatan sebagai virion bersampul dengan permukaan kasar dan banyak unjuran protein.</>,
-        focus: <>Model ini menunjukkan sampul yang bulat dengan unjuran protein yang tersebar di seluruh permukaannya.</>,
-        takeaway: <>Protein spike SARS-CoV-2 boleh mengikat ACE2 pada sel yang sesuai dan menjadi perantara kemasukan virus ke dalam sel itu.</>,
-      },
+  footer={<>K lebih kecil bermakna ikatan spike lebih ketat dan reseptor cepat tepu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1.1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.5, max: 4, value: 1.5, step: 0.5, label: "k" },
     ],
+    objects: [
+      { id: "binding", kind: "function", appearance: "primary", formula: "x / (k + x)", domain: { min: 0, max: 10 } },
+      { id: "half", kind: "function", appearance: "reference", formula: "0.5 + 0x", domain: { min: 0, max: 10 } },
+      { id: "ceiling", kind: "function", appearance: "construction", formula: "1 + 0x", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "bound", formula: "5 / (k + 5)" },
+    ],
+  }}
+  labels={{
+    k: <>Pemalar penceraian <InlineMath math="K" /></>,
+    bound: <>Pecahan terikat pada kepekatan 5</>,
   }}
 />
 
-Virion jauh lebih kecil daripada sel yang dijangkitinya. Zum daripada sebuah sel haiwan yang lengkap hingga ke satu virion.
+Apabila <InlineMath math="K" /> kecil, protein spike melekat kuat pada ACE2 sehingga kepekatan virus yang sederhana pun cepat melepasi garis separuh tepu dan memulakan kemasukan. Virus lain membawa protein permukaan yang berbeza dan menyasarkan reseptor sel perumah yang berlainan.
 
-<CellScaleLab
-  title={<>Daripada Sel hingga ke Virus</>}
-  description={<>Gerakkan zum. Setiap langkah menyempitkan paparan dengan faktor yang sama, seperti menukar kepada kanta objektif mikroskop yang lebih kuat.</>}
+Virion jauh lebih kecil daripada sel yang dijangkitinya. Bandingkan sel haiwan, bakteria dan satu virion pada skala logaritma nanometer asas sepuluh di bawah.
+
+<MathVisual
+  title={<>Skala Saiz daripada Virion hingga Sel Haiwan</>}
+  description={
+    <>
+      Paksi mendatar menunjukkan <InlineMath math="\log_{10}" /> diameter dalam
+      nanometer, daripada virion <InlineMath math="100\text{ nm}" /> melepasi had
+      mikroskop cahaya <InlineMath math="200\text{ nm}" /> hingga sel haiwan{" "}
+      <InlineMath math="20{,}000\text{ nm}" />.
+    </>
+  }
+  footer={<>Virion berada di bawah had mikroskop cahaya, tidak seperti bakteria dan sel.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1.5, max: 4.8 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "limit", kind: "segment", appearance: "warning", from: { x: Math.log10(200), y: 0.2 }, to: { x: Math.log10(200), y: 3.8 } },
+      { id: "virion-bar", kind: "segment", appearance: "primary", from: { x: 1.5, y: 1 }, to: { x: Math.log10(100), y: 1 } },
+      { id: "virion", kind: "point", appearance: "primary", at: { x: Math.log10(100), y: 1 } },
+      { id: "bacterium-bar", kind: "segment", appearance: "secondary", from: { x: 1.5, y: 2 }, to: { x: Math.log10(2000), y: 2 } },
+      { id: "bacterium", kind: "point", appearance: "secondary", at: { x: Math.log10(2000), y: 2 } },
+      { id: "cell-bar", kind: "segment", appearance: "construction", from: { x: 1.5, y: 3 }, to: { x: Math.log10(20000), y: 3 } },
+      { id: "cell", kind: "point", appearance: "construction", at: { x: Math.log10(20000), y: 3 } },
+    ],
+    labels: [
+      { key: "virion", objectId: "virion", at: { x: Math.log10(100), y: 1 }, placement: "above-left" },
+      { key: "limit", objectId: "limit", at: { x: Math.log10(200), y: 3.8 }, placement: "right" },
+      { key: "bacterium", objectId: "bacterium", at: { x: Math.log10(2000), y: 2 }, placement: "right" },
+      { key: "cell", objectId: "cell", at: { x: Math.log10(20000), y: 3 }, placement: "left" },
+    ],
+  }}
   labels={{
-    zoom: "Zum",
-    view: <>Lebar paparan</>,
-    cell: <>Sel haiwan</>,
-    bacterium: <>Bakteria</>,
-    virion: <>Virion SARS-CoV-2</>,
-    viewLabel: "Sel haiwan, bakteria dan virion sebaris pada saiz sebenarnya",
+    virion: <>virion (100 nm)</>,
+    limit: <>had cahaya (200 nm)</>,
+    bacterium: <>bakteria (2,000 nm)</>,
+    cell: <>sel haiwan (20,000 nm)</>,
   }}
 />
 
@@ -123,25 +159,50 @@ Di luar sel perumah, virion boleh bertahan untuk seketika, melekat pada sel yang
 
 Di luar sel, virion tidak menjalankan metabolisme, tidak membuat protein dan tidak menyalin genomnya. Di dalam sel yang sesuai, genom virus boleh mengarahkan penghasilan protein virus dan salinan genom baharu. Jadi, virus membiak **hanya di dalam sel perumah yang serasi**.
 
-Sesetengah virus membawa DNA, yang lain membawa RNA. SARS-CoV-2 membawa satu bebenang RNA sepanjang hampir <InlineMath math="30{,}000" /> bes.
+Sesetengah virus membawa DNA, yang lain membawa RNA. SARS-CoV-2 membawa satu bebenang RNA sepanjang <InlineMath math="29{,}903" /> bes yang bermula dengan jujukan `AUUAAAGGUUUAUACCUUCCCAGGUAACAA`. Laraskan kadar penyalinan enzim <InlineMath math="r" /> di bawah untuk melihat bagaimana panjang genom menentukan masa penyalinan.
 
-<DnaHelixLab
-  title={<>Permulaan Genom RNA Sebuah Virus</>}
-  description={<>Inilah <InlineMath math="30" /> bes pertama genom rujukan SARS-CoV-2, sebagai satu bebenang RNA. Putar bebenang itu dan baca besnya.</>}
-  nucleic="rna"
-  genome={29903}
-  sequence="AUUAAAGGUUUAUACCUUCCCAGGUAACAA"
+<MathVisual
+  title={<>Panjang Genom Virus dan Masa Penyalinan</>}
+  description={
+    <>
+      Minit yang diperlukan untuk menyalin genom virus sepanjang <InlineMath math="x" />{" "}
+      kilobes pada kadar <InlineMath math="r" /> kilobes seminit, dengan penanda
+      poliovirus, SARS-CoV-2 dan faj lambda.
+    </>
+  }
+  footer={<>Genom virus lebih panjang memerlukan masa salinan lebih lama pada kadar sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 52 }, y: { min: 0, max: 25 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 2, max: 8, value: 4, step: 1, label: "r" },
+    ],
+    objects: [
+      { id: "time", kind: "function", appearance: "primary", formula: "x / r", domain: { min: 0, max: 50 } },
+      { id: "polio", kind: "segment", appearance: "reference", from: { x: 7.5, y: 0 }, to: { x: 7.5, y: 24 } },
+      { id: "sars", kind: "segment", appearance: "warning", from: { x: 29.9, y: 0 }, to: { x: 29.9, y: 24 } },
+      { id: "lambda", kind: "segment", appearance: "secondary", from: { x: 48.5, y: 0 }, to: { x: 48.5, y: 24 } },
+    ],
+    readouts: [
+      { key: "sars-time", formula: "29.9 / r" },
+    ],
+    labels: [
+      { key: "polio", objectId: "polio", at: { x: 7.5, y: 22 }, placement: "right" },
+      { key: "sars", objectId: "sars", at: { x: 29.9, y: 22 }, placement: "left" },
+      { key: "lambda", objectId: "lambda", at: { x: 48.5, y: 22 }, placement: "left" },
+    ],
+  }}
   labels={{
-    length: <>Bes yang ditunjukkan</>,
-    span: <>Panjang</>,
-    whole: <>Bes dalam seluruh genom</>,
-    share: <>Bahagian genom yang ditunjukkan</>,
-    gc: <>Bahagian G dan C</>,
-    viewLabel: "Satu bebenang RNA dengan besnya",
+    r: <>Kadar salin <InlineMath math="r" /> (kb/min)</>,
+    "sars-time": <>Masa salin SARS-CoV-2 (min)</>,
+    polio: <>Polio (7.5 kb)</>,
+    sars: <>SARS-CoV-2 (29.9 kb)</>,
+    lambda: <>Lambda (48.5 kb)</>,
   }}
 />
 
-Seluruh genom mengandungi <InlineMath math="29{,}903" /> bes, jadi bahagian ini hanya kira-kira <InlineMath math="0.1\%" /> daripadanya. Perhatikan bahawa RNA menggunakan U dan bukan T, dan bebenangnya tunggal. Untuk membiak, virus ini menggunakan enzimnya sendiri untuk menyalin RNA itu di dalam sel perumah.
+Keratan awal <InlineMath math="30" /> bes itu hanya kira-kira <InlineMath math="0.1\%" /> daripada keseluruhan bebenang RNA sepanjang <InlineMath math="29{,}903" /> bes. Perhatikan bahawa RNA menggunakan U dan bukan T, dan bebenangnya tunggal. Untuk membiak, virus ini menggunakan enzimnya sendiri untuk menyalin RNA itu di dalam sel perumah.
 
 ## Struktur Kapsid dan Sampul Menentukan Bentuk Virus
 

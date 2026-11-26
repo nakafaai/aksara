@@ -65,6 +65,7 @@ Ein kühles Jahr hebt einen Erwärmungstrend nicht auf. Die Jahreswerte hier spr
 <MathVisual
   title={<>Einzelne Jahre schwanken, Jahrzehnte steigen</>}
   description={<>Beispielhafte jährliche Temperaturabweichungen über <InlineMath math="40" /> Jahre mit ihrer Trendgeraden. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="4" /> Jahren. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="0{,}2\ ^\circ\mathrm{C}" />.</>}
+  footer={<>Einzeljahre schwanken, während der 40-Jahres-Trend um +0,8 C steigt.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 5.5 } },
@@ -88,18 +89,42 @@ Ein kühles Jahr hebt einen Erwärmungstrend nicht auf. Die Jahreswerte hier spr
 
 Eine lange Messreihe der Luft zeigt die Ursache hinter diesen Anzeichen. Seit 1958 misst das Observatorium Mauna Loa auf Hawaii das Kohlendioxid in der Luft.
 
-<CarbonBudgetLab
+<MathVisual
   title={<>Die <InlineMath math="\mathrm{CO_2}" />-Messreihe vom Mauna Loa</>}
-  description={<>Jahresmittel des <InlineMath math="\mathrm{CO_2}" />, gemessen von der NOAA. Verschieb das Jahr und sieh, wie sich die Wanne der Luft füllt.</>}
-  mode="record"
+  description={
+    <>
+      Prozentualer Anstieg des atmosphärischen <InlineMath math="\mathrm{CO_2}" /> über dem vorindustriellen Wert (<InlineMath math="280\text{ ppm}" />) gegen die Jahre seit 1960 (<InlineMath math="x=0" /> bis <InlineMath math="64" /> für 1960 bis 2024).
+    </>
+  }
+  footer={<>CO2 stieg von 13 % über vorindustriell (1960) auf 52 % im Jahr 2024.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 70 }, y: { min: -2, max: 58 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 0, max: 64, value: 64, step: 4, label: "n" },
+    ],
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 64, y: 0 } },
+      { id: "co2", kind: "function", appearance: "primary", formula: "13.2 + 0.303 * x + 0.00464 * x^2", domain: { min: 0, max: 64 } },
+      { id: "now", kind: "point", appearance: "warning", at: { x: 64, y: 51.6 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 0, y: 13.2 } },
+    ],
+    readouts: [
+      { key: "rise-pct", formula: "13.2 + 0.303 * n + 0.00464 * n^2" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 0, y: 13.2 }, placement: "above-right" },
+      { key: "now", objectId: "now", at: { x: 64, y: 51.6 }, placement: "above-left" },
+      { key: "base", objectId: "base", at: { x: 32, y: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    year: "Jahr",
-    level: <><InlineMath math="\mathrm{CO_2}" /> in der Luft</>,
-    rise: <>Anstieg seit 1960</>,
-    rate: <>Anstieg pro Jahr in den letzten 10 Jahren</>,
-    perYear: "Jahr",
-    above: <>Über dem vorindustriellen Wert</>,
-    viewLabel: "Badewanne der Atmosphäre mit Emissionshahn, Senkenabfluss und Kohlendioxidkurve",
+    start: <>1960 (+13 %)</>,
+    now: <>2024 (+52 %)</>,
+    base: <>Vorindustriell 280 ppm (0 %)</>,
+    n: <>Jahre seit 1960 <InlineMath math="n" /></>,
+    "rise-pct": <>Anstieg über vorindustriell (%)</>,
   }}
 />
 
@@ -131,18 +156,42 @@ Der globale mittlere Meeresspiegel steigt vor allem, weil sich erwärmtes Meerwa
 
 Pegelmessstationen auf der ganzen Welt messen das Meer seit mehr als einem Jahrhundert.
 
-<SeaLevelRiseLab
-  title={<>Das Meer steigt seit 1901</>}
-  description={<>Globaler Meeresspiegelanstieg nach dem IPCC. Verschieb das Jahr und sieh, wie das Wasser an diesem Dorf steigt.</>}
-  mode="record"
+<MathVisual
+  title={<>Das Meer steigt seit 1901 schneller</>}
+  description={
+    <>
+      Globale Anstiegsrate des Meeresspiegels laut IPCC (in <InlineMath math="\mathrm{mm/Jahr}" />) über Jahrzehnte seit 1901 (<InlineMath math="x=0" /> bis <InlineMath math="11{,}7" /> für 1901 bis 2018), mit Zeitraummitteln (orange) und Beschleunigungskurve (violett).
+    </>
+  }
+  footer={<>Der Meeresspiegelanstieg beschleunigte von 1,3 über 1,9 auf 3,7 mm/Jahr.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.5, max: 11.5, value: 11.5, step: 0.5, label: "d" },
+    ],
+    objects: [
+      { id: "p1", kind: "segment", appearance: "primary", from: { x: 0, y: 1.3 }, to: { x: 7, y: 1.3 } },
+      { id: "p2", kind: "segment", appearance: "primary", from: { x: 7, y: 1.9 }, to: { x: 10.5, y: 1.9 } },
+      { id: "p3", kind: "segment", appearance: "warning", from: { x: 10.5, y: 3.7 }, to: { x: 11.7, y: 3.7 } },
+      { id: "curve", kind: "function", appearance: "secondary", formula: "1.2 + 0.0014 * x^3", domain: { min: 0, max: 11.7 } },
+    ],
+    readouts: [
+      { key: "trend-rate", formula: "1.2 + 0.0014 * d^3" },
+    ],
+    labels: [
+      { key: "p1", objectId: "p1", at: { x: 3.5, y: 1.3 }, placement: "below" },
+      { key: "p2", objectId: "p2", at: { x: 8.75, y: 1.9 }, placement: "below" },
+      { key: "p3", objectId: "p3", at: { x: 11.1, y: 3.7 }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    year: "Jahr",
-    level: <>Globaler Anstieg seit 1901</>,
-    rate: <>Anstieg pro Jahr in diesem Zeitraum</>,
-    perYear: "Jahr",
-    span: <>Jahre seit 1901</>,
-    retreat: <>Küstenlinie weicht zurück</>,
-    viewLabel: "Küstendorf an einem flachen Strand mit Pegel",
+    p1: <>1,3 mm/Jahr (1901 bis 1971)</>,
+    p2: <>1,9 mm/Jahr</>,
+    p3: <>3,7 mm/Jahr (2006 bis 2018)</>,
+    d: <>Jahrzehnte seit 1901 <InlineMath math="d" /></>,
+    "trend-rate": <>Trendrate (mm/Jahr)</>,
   }}
 />
 
@@ -157,6 +206,7 @@ Temperatur, Ozeanwärme, Eis, Niederschlag, Dürre und Küstenereignisse müssen
 <Mermaid
   title={<>Klimadaten aus mehreren Indikatoren</>}
   description={<>Vergleiche langfristige Daten zu Temperatur, Ozean, Eis und Extremereignissen, bevor du den Klimawandel beurteilst.</>}
+  footer={<>Vier unabhängige Langzeitreihen stützen gemeinsam den Klimabefund.</>}
   chart={`flowchart LR
     A["Langzeitdaten"] --> B["Durchschnittstemperatur"]
     A --> C["Meereswärme"]
@@ -173,6 +223,7 @@ Verschieb die ganze Verteilung der Tagestemperaturen um <InlineMath math="1\ ^\c
 <MathVisual
   title={<>Kleine Verschiebung, viel mehr heiße Tage</>}
   description={<>Glockenkurven der täglichen Temperaturabweichung vor (grau) und nach (orange) einer Verschiebung um <InlineMath math="1\ ^\circ\mathrm{C}" />. Waagerecht: Grad vom alten Mittel. Senkrecht: wie oft jeder Wert vorkommt.</>}
+  footer={<>Eine Verschiebung um +1 C erhöht sehr heiße Tage von 2,3 % auf 15,9 %.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 5.5 }, y: { min: -0.3, max: 5 } },
@@ -196,6 +247,8 @@ Verschieb die ganze Verteilung der Tagestemperaturen um <InlineMath math="1\ ^\c
     after: <InlineMath math="\approx15{,}9\%" />,
   }}
 />
+
+Vergleiche die kleine Verschiebung am Gipfel mit der stark gewachsenen Fläche rechts der rosa Schwelle. Schon ein geringer Anstieg des langjährigen Mittels vervielfacht die Häufigkeit seltener Hitzetage weit stärker als erwartet.
 
 ## Klimaanzeichen erkennen ohne sich vom Tageswetter täuschen zu lassen
 

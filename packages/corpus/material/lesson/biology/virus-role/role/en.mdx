@@ -67,6 +67,8 @@ Viral surface structures bind compatible cells, and virus particles carry geneti
   }}
 />
 
+Switch across all three tabs and notice that the same basic viral mechanism produces completely different outcomes depending on the host and human control. Unchecked replication inside human tissue causes disease, bacteriophages regulate microbial abundance in ecosystems, and engineered vectors deliver selected genes safely to target cells.
+
 ## Viruses Use Different Transmission Routes
 
 Influenza, dengue, and rabies spread through **different biological routes**. The disease name alone does not identify the preventive measure. Determine whether the virus spreads through respiratory particles, a carrier such as a mosquito, or another route.
@@ -77,25 +79,40 @@ Viruses cause diseases in humans, animals, and plants. Human examples include fl
 
 To understand a viral disease, check its **transmission route and the tissue it affects**. Dengue viruses are transmitted mainly through bites from infected Aedes mosquitoes. Respiratory viruses can spread when someone inhales respiratory particles released by an infected person. Plant viruses can move through insect carriers, plant wounds, or infected planting material.
 
-The route decides which measure works. Switch the route, then try masks and handwashing.
+The route decides which measure works. Adjust the baseline reproduction number <InlineMath math="R" /> below and compare how masks cut airborne spread while handwashing cuts touch spread across adoption rates from <InlineMath math="0" /> to <InlineMath math="1" />.
 
-<EpidemicSpreadLab
+<MathVisual
   title={<>The Route Decides Which Measure Works</>}
-  description={<>Choose whether the virus spreads through the air or by touch, then set masks and handwashing.</>}
-  measures={["masks", "washing"]}
-  routes={["air", "touch"]}
+  description={
+    <>
+      Effective transmission versus measure adoption <InlineMath math="x" /> for
+      masks on an airborne route (orange), handwashing on a touch route (violet),
+      and a mismatched measure (gray).
+    </>
+  }
+  footer={<>Only the measure matched to the route pulls transmission toward R = 1.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 2, max: 4, value: 3, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "air-mask", kind: "function", appearance: "primary", formula: "r * (1 - 0.5 * x)^2", domain: { min: 0, max: 1 } },
+      { id: "touch-wash", kind: "function", appearance: "secondary", formula: "r * (1 - 0.5 * x)", domain: { min: 0, max: 1 } },
+      { id: "mismatched", kind: "function", appearance: "reference", formula: "r + 0x", domain: { min: 0, max: 1 } },
+      { id: "threshold", kind: "function", appearance: "warning", formula: "1 + 0x", domain: { min: 0, max: 1 } },
+    ],
+    readouts: [
+      { key: "full-mask", formula: "r * 0.25" },
+      { key: "full-wash", formula: "r * 0.5" },
+    ],
+  }}
   labels={{
-    chooseRoute: "Choose a route",
-    routes: { air: <>Through the air</>, touch: <>By touch</> },
-    masks: "People wearing masks",
-    washing: "People washing hands",
-    reproduction: <>Each case infects</>,
-    peak: <>Most ill at once</>,
-    susceptible: <>Still susceptible</>,
-    infected: <>Infected now</>,
-    recovered: <>Recovered</>,
-    immune: <>Immune from a vaccine</>,
-    viewLabel: "Town square with people walking and a graph of the outbreak",
+    r: <>Baseline <InlineMath math="R" /></>,
+    "full-mask": <>Airborne R at full masking</>,
+    "full-wash": <>Touch R at full handwashing</>,
   }}
 />
 
@@ -122,6 +139,7 @@ Rotate this viral vector. Its protein shell, the part that already knows how to 
 <MathVisual
   title={<>Same Shell, New Cargo</>}
   description={<>An icosahedral virus shell (violet) carrying a treatment gene (fuchsia), with the removed disease genes (pink) outside.</>}
+  footer={<>The capsid shell enters target cells while carrying only the therapeutic gene.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: 0, max: 4 }, z: { min: -2, max: 2 } },
@@ -163,23 +181,41 @@ Rotate this viral vector. Its protein shell, the part that already knows how to 
   }}
 />
 
-Vaccines are one controlled use of viruses. A vaccine made from a weakened or inactivated virus, or from a part of one such as the spike protein, trains the body without causing the disease.
+Vaccines are one controlled use of viruses. A vaccine made from a weakened or inactivated virus, or from a part of one such as the spike protein, trains the body without causing the disease. Adjust the midpoint response day <InlineMath math="d" /> below to track how virion-blocking immunity builds over three weeks.
 
-<AntibodyNeutralizeLab
+<MathVisual
   title={<>Antibodies Build Up after Vaccination</>}
-  description={<>Slide the days after the first dose, then press play to see whether virions can still dock.</>}
-  mode="days"
+  description={
+    <>
+      Percentage chance a virion is blocked across <InlineMath math="21" /> days
+      after the first dose, with adjustable midpoint day <InlineMath math="d" />.
+    </>
+  }
+  footer={<>Blocking stays low in week one and rises sharply during week two.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 21 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 6, max: 12, value: 8, step: 1, label: "d" },
+    ],
+    objects: [
+      { id: "blocking", kind: "function", appearance: "primary", formula: "100 / (1 + exp(-0.4 * (x - d)))", domain: { min: 0, max: 21 } },
+      { id: "half", kind: "function", appearance: "reference", formula: "50 + 0x", domain: { min: 0, max: 21 } },
+    ],
+    readouts: [
+      { key: "day-seven", formula: "100 / (1 + exp(-0.4 * (7 - d)))" },
+      { key: "day-fourteen", formula: "100 / (1 + exp(-0.4 * (14 - d)))" },
+    ],
+  }}
   labels={{
-    day: "Days after the dose",
-    level: <>Antibody level</>,
-    covered: <>Spikes covered</>,
-    blocked: <>Virions blocked</>,
-    chance: <>Chance a virion is blocked</>,
-    viewLabel: "SARS-CoV-2 virions approaching ACE2 receptors on a cell surface, with antibodies on their spikes",
+    d: <>Midpoint response day <InlineMath math="d" /></>,
+    "day-seven": <>Chance blocked on day 7 (%)</>,
+    "day-fourteen": <>Chance blocked on day 14 (%)</>,
   }}
 />
 
-In the first week there are hardly any antibodies, so virions can still dock. On day <InlineMath math="7" /> this model gives each virion about a <InlineMath math="41\%" /> chance of being blocked. Over the second week the level rises, and by about day <InlineMath math="14" /> nearly every virion is blocked. That is why protection starts some time after vaccination, not on the same day.
+Antibody levels stay very low during the first seven days after a dose, leaving most virions free to bind cell receptors. On day <InlineMath math="7" /> this model gives each virion about a <InlineMath math="41\%" /> chance of being blocked. Over the second week the level rises, and by about day <InlineMath math="14" /> nearly every virion is blocked. That is why protection starts some time after vaccination, not on the same day.
 
 ## How to Assess a Virus Effect
 
@@ -190,6 +226,7 @@ Put the three questions on a map. Each point names a host and the virus acting o
 <MathVisual
   title={<>Host, Effect and Control on One Map</>}
   description={<>Four virus cases placed by their effect on the host (across) and how controlled they are (up).</>}
+  footer={<>Higher control moves viruses from natural outbreaks into targeted tools.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 } },
@@ -220,3 +257,5 @@ Put the three questions on a map. Each point names a host and the virus acting o
     control: <>more controlled</>,
   }}
 />
+
+Reading the map from bottom-left to top-right shows how control separates natural infection from biotechnology. Flu and marine phages sit low because nature runs them without human oversight, while biopesticides and gene-therapy vectors rise to the top because researchers restrict both the host range and the outcome.

@@ -39,6 +39,8 @@ Tiada keraguan lagi bahawa aktiviti manusia, terutamanya melalui [pelepasan gas 
   }}
 />
 
+Naikkan aras gas dalam model ini dan lihat lebih banyak anak panah inframerah terpantul semula ke permukaan berbanding terlepas ke angkasa. Tenaga tambahan yang terperangkap itulah yang menolak Bumi ke keseimbangan lebih panas.
+
 ### Sumber Utama Gas Rumah Hijau
 
 Pelepasan karbon dioksida akibat aktiviti manusia datang terutamanya daripada [pembakaran bahan api fosil dan bahan biologi](https://www.epa.gov/ghgemissions/overview-greenhouse-gases). Metana berkait dengan **pengeluaran tenaga, pertanian dan pereputan sisa organik**. Nitrus oksida pula boleh datang daripada pertanian, industri, pembakaran dan rawatan air sisa.
@@ -57,6 +59,7 @@ Dalam model buku teks yang ringkas, setiap lapisan gas rumah hijau menyerap semu
 <MathVisual
   title={<>Lebih Banyak Lapisan, Tanah Lebih Panas</>}
   description={<>Suhu permukaan tanah dalam model lapisan dengan sifar, satu dan dua lapisan yang menyerap sepenuhnya. Satu petak grid ke atas bersamaan <InlineMath math="50" /> kelvin.</>}
+  footer={<>Satu lapisan penyerap sudah menaikkan suhu tanah daripada 255 K kepada 303 K.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
@@ -79,24 +82,48 @@ Dalam model buku teks yang ringkas, setiap lapisan gas rumah hijau menyerap semu
   }}
 />
 
-Tiga gas rumah hijau utama daripada aktiviti manusia ialah <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{CH_4}" /> dan <InlineMath math="\mathrm{N_2O}" />. Putar setiap molekul dan bandingkan bentuknya.
+Tiga gas rumah hijau utama daripada aktiviti manusia ialah <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{CH_4}" /> dan <InlineMath math="\mathrm{N_2O}" />. Bandingkan setara pemanasan selama <InlineMath math="100" /> tahun yang dihasilkan oleh jisim yang sama bagi setiap gas.
 
-<MoleculeShapeLab
-  title={<>Tiga Gas Rumah Hijau dalam 3D</>}
-  description={<>Pilih karbon dioksida, metana atau nitrus oksida, kemudian bandingkan sudut ikatannya.</>}
-  molecules={[
-    { id: "carbon-dioxide", name: "Karbon dioksida" },
-    { id: "methane", name: "Metana" },
-    { id: "dinitrogen-monoxide", name: "Nitrus oksida" },
-  ]}
+<MathVisual
+  title={<>Kekuatan Pemanasan Tiga Gas Rumah Hijau</>}
+  description={
+    <>
+      Setara pemanasan <InlineMath math="100" /> tahun (dalam <InlineMath math="\mathrm{kg\ CO_2e}" />) berbanding jisim gas <InlineMath math="x" /> (gram) bagi <InlineMath math="\mathrm{N_2O}" /> (merah jambu), <InlineMath math="\mathrm{CH_4}" /> (jingga) dan <InlineMath math="\mathrm{CO_2}" /> (kelabu).
+    </>
+  }
+  footer={<>Dalam 100 tahun, 10 g N2O setara 2.73 kg CO2 dan CH4 setara 0.30 kg CO2.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: -0.2, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1, max: 10, value: 10, step: 1, label: "m" },
+    ],
+    objects: [
+      { id: "n2o", kind: "function", appearance: "warning", formula: "0.273 * x", domain: { min: 0, max: 10 } },
+      { id: "ch4", kind: "function", appearance: "primary", formula: "0.03 * x", domain: { min: 0, max: 10 } },
+      { id: "co2", kind: "function", appearance: "reference", formula: "0.001 * x", domain: { min: 0, max: 10 } },
+      { id: "pt-n2o", kind: "point", appearance: "warning", at: { x: 10, y: 2.73 } },
+      { id: "pt-ch4", kind: "point", appearance: "primary", at: { x: 10, y: 0.3 } },
+      { id: "pt-co2", kind: "point", appearance: "reference", at: { x: 10, y: 0.01 } },
+    ],
+    readouts: [
+      { key: "n2o-eq", formula: "0.273 * m" },
+      { key: "ch4-eq", formula: "0.03 * m" },
+    ],
+    labels: [
+      { key: "n2o", objectId: "pt-n2o", at: { x: 10, y: 2.73 }, placement: "left" },
+      { key: "ch4", objectId: "pt-ch4", at: { x: 10, y: 0.3 }, placement: "above" },
+      { key: "co2", objectId: "pt-co2", at: { x: 10, y: 0.01 }, placement: "below" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom</>,
-    choose: "Pilih molekul",
-    fill: <>Model pengisian ruang</>,
-    formula: <>Formula molekul</>,
-    mass: <>Jisim molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    n2o: <InlineMath math="\mathrm{N_2O}\ (\times 273)" />,
+    ch4: <InlineMath math="\mathrm{CH_4}\ (\times 30)" />,
+    co2: <InlineMath math="\mathrm{CO_2}\ (\times 1)" />,
+    m: <>Jisim gas <InlineMath math="m" /> (g)</>,
+    "n2o-eq": <>Pemanasan <InlineMath math="\mathrm{N_2O}" /> (<InlineMath math="\mathrm{kg\ CO_2e}" />)</>,
+    "ch4-eq": <>Pemanasan <InlineMath math="\mathrm{CH_4}" /> (<InlineMath math="\mathrm{kg\ CO_2e}" />)</>,
   }}
 />
 
@@ -114,28 +141,50 @@ Karbon dioksida ialah salah satu daripada beberapa gas rumah hijau. Pembakaran b
 
 Gas memasak dalam tong (LPG) ialah campuran propana dan butana. Apabila gas ini terbakar, karbon yang tersimpan di dalamnya berpindah ke udara sebagai <InlineMath math="\mathrm{CO_2}" />.
 
-<ReactionBalanceLab
+<MathVisual
   title={<>Pembakaran Bahan Api Membebaskan Karbon Dioksida</>}
-  description={<>Jalankan tindak balas atom demi atom. Bandingkan pembakaran propana dengan pembakaran metana.</>}
-  reactions={[
-    { id: "propane-combustion", name: "Pembakaran propana", tab: <InlineMath math="\mathrm{C_3H_8}" /> },
-    { id: "methane-combustion", name: "Pembakaran metana", tab: <InlineMath math="\mathrm{CH_4}" /> },
-  ]}
-  reading="molecules"
+  description={
+    <>
+      Bilangan molekul <InlineMath math="\mathrm{CO_2}" /> yang dibebaskan berbanding molekul <InlineMath math="\mathrm{O_2}" /> yang digunakan apabila membakar propana (jingga, <InlineMath math="3/5" />) berbanding metana (ungu, <InlineMath math="1/2" />).
+    </>
+  }
+  footer={<>Setiap 5 molekul O2 bagi propana menghasilkan 3 CO2, bagi metana 2.5 CO2.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 16 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 2, max: 15, value: 10, step: 1, label: "k" },
+    ],
+    objects: [
+      { id: "propane", kind: "function", appearance: "primary", formula: "0.6 * x", domain: { min: 0, max: 15 } },
+      { id: "methane", kind: "function", appearance: "secondary", formula: "0.5 * x", domain: { min: 0, max: 15 } },
+      { id: "pt-p", kind: "point", appearance: "primary", at: { x: 10, y: 6 } },
+      { id: "pt-m", kind: "point", appearance: "secondary", at: { x: 10, y: 5 } },
+    ],
+    readouts: [
+      { key: "propane-co2", formula: "0.6 * k" },
+      { key: "methane-co2", formula: "0.5 * k" },
+    ],
+    labels: [
+      { key: "propane", objectId: "pt-p", at: { x: 10, y: 6 }, placement: "above" },
+      { key: "methane", objectId: "pt-m", at: { x: 10, y: 5 }, placement: "below" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom bagi setiap unsur</>,
-    choose: "Pilih tindak balas",
-    equation: <>Persamaan seimbang</>,
-    mass: <>Jisim bahan tindak balas dan hasil tindak balas</>,
-    molecules: <>Bilangan molekul</>,
-    products: <>Hasil tindak balas</>,
-    progress: "Kemajuan tindak balas",
-    reactants: <>Bahan tindak balas</>,
-    view: "Tindak balas pada peringkat atom",
+    propane: <InlineMath math="\mathrm{C_3H_8}" />,
+    methane: <InlineMath math="\mathrm{CH_4}" />,
+    k: <>Molekul <InlineMath math="\mathrm{O_2}" /> <InlineMath math="k" /></>,
+    "propane-co2": <><InlineMath math="\mathrm{CO_2}" /> daripada propana</>,
+    "methane-co2": <><InlineMath math="\mathrm{CO_2}" /> daripada metana</>,
   }}
 />
 
-Persamaannya ialah <InlineMath math="\mathrm{C_3H_8} + 5\,\mathrm{O_2} \rightarrow 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}" />. Satu molekul propana menghasilkan tiga molekul <InlineMath math="\mathrm{CO_2}" />, kerana setiap atom karbonnya mengambil oksigen daripada udara. Itulah sebabnya kira-kira <InlineMath math="44\text{ g}" /> propana menghasilkan kira-kira <InlineMath math="3 \times 44 = 132\text{ g}" /> <InlineMath math="\mathrm{CO_2}" />, tiga kali jisim bahan api itu.
+Persamaan seimbang bagi pembakaran propana ialah:
+
+<BlockMath math="\mathrm{C_3H_8} + 5\,\mathrm{O_2} \rightarrow 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}" />
+
+Satu molekul propana menghasilkan tiga molekul <InlineMath math="\mathrm{CO_2}" />, kerana setiap atom karbonnya mengambil oksigen daripada udara. Itulah sebabnya kira-kira <InlineMath math="44\text{ g}" /> propana menghasilkan kira-kira <InlineMath math="132\text{ g}" /> <InlineMath math="\mathrm{CO_2}" />, tiga kali jisim bahan api itu.
 
 ### Mangkin Kenderaan Menyasarkan Bahan Pencemar Tertentu
 
@@ -162,6 +211,7 @@ Plastik dikaitkan dengan [pelepasan sepanjang kitar hayatnya](https://www.oecd.o
 <Mermaid
   title={<>Tiga Laluan Karbon Menambah Pemanasan</>}
   description={<>Kaitkan bahan api fosil, sisa organik dan kehilangan hutan dengan perubahan gas atau penyerap karbon yang menahan lebih banyak haba.</>}
+  footer={<>Bahan api fosil, sisa kurang oksigen dan kehilangan hutan menambah pemanasan.</>}
   chart={`flowchart LR
     A["Bahan api fosil"] --> B["Karbon dioksida"]
     C["Sisa organik mereput dengan sedikit oksigen"] --> D["Metana"]
@@ -176,6 +226,7 @@ Bayangkan udara sebagai sebuah tab mandi: pelepasan menuang karbon masuk, manaka
 <MathVisual
   title={<>Kurang Penyerapan, Karbon Lebih Cepat Bertimbun</>}
   description={<>Karbon tambahan di udara dalam model tab mandi contoh, dengan hutan yang utuh (kelabu) dan selepas penebangan (merah jambu). Paksi mengufuk: tahun. Paksi menegak: satu petak grid bersamaan <InlineMath math="10" /> unit karbon.</>}
+  footer={<>Penyerapan turun dari 5 ke 3 menaikkan baki karbon tahunan dari 5 ke 7.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 7.5 } },
@@ -196,6 +247,8 @@ Bayangkan udara sebagai sebuah tab mandi: pelepasan menuang karbon masuk, manaka
     cleared: <InlineMath math="10-3=7" />,
   }}
 />
+
+Bandingkan kedua-dua garis selepas sepuluh tahun: garis hutan utuh mencecah <InlineMath math="50" /> unit manakala garis selepas penebangan naik hingga <InlineMath math="70" /> unit. Penyerap karbon yang melemah mempercepat penimbunan di atmosfera walaupun pelepasan tahunan tidak berubah.
 
 ## Daripada Aktiviti Manusia kepada Pemanasan
 

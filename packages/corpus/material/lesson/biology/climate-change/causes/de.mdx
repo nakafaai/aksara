@@ -39,6 +39,8 @@ Menschliche Aktivitäten, vor allem [Treibhausgasemissionen](https://www.ipcc.ch
   }}
 />
 
+Erhöhe den Gasanteil im Modell und beobachte, wie mehr Infrarotpfeile zur Oberfläche zurückkehren statt ins All zu entweichen. Diese zusätzlich zurückgehaltene Energie verschiebt das Gleichgewicht der Erde zu höheren Temperaturen.
+
 ### Hauptquellen der Treibhausgase
 
 Vom Menschen verursachte Kohlendioxidemissionen entstehen vor allem bei der [Verbrennung fossiler Brennstoffe und biologischer Materialien](https://www.epa.gov/ghgemissions/overview-greenhouse-gases). Methan steht unter anderem mit **Energiegewinnung, Landwirtschaft und der Zersetzung organischer Abfälle** in Verbindung. Distickstoffmonoxid kann aus Landwirtschaft, Industrie, Verbrennung und Abwasserbehandlung stammen.
@@ -57,6 +59,7 @@ In einem einfachen Lehrbuchmodell nimmt jede Schicht aus Treibhausgas die ganze 
 <MathVisual
   title={<>Mehr Schichten, wärmerer Boden</>}
   description={<>Bodentemperatur im Schichtmodell mit null, einer und zwei vollständig absorbierenden Schichten. Ein Gitterschritt nach oben entspricht <InlineMath math="50" /> Kelvin.</>}
+  footer={<>Schon eine Schicht hebt die Bodentemperatur von 255 K auf 303 K.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
@@ -79,24 +82,48 @@ In einem einfachen Lehrbuchmodell nimmt jede Schicht aus Treibhausgas die ganze 
   }}
 />
 
-Die drei wichtigsten Treibhausgase aus menschlicher Tätigkeit sind <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{CH_4}" /> und <InlineMath math="\mathrm{N_2O}" />. Dreh jedes Molekül und vergleiche seine Form.
+Die drei wichtigsten Treibhausgase aus menschlicher Tätigkeit sind <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{CH_4}" /> und <InlineMath math="\mathrm{N_2O}" />. Vergleiche, wie viel Erwärmung über <InlineMath math="100" /> Jahre dieselbe Masse jedes Gases bewirkt.
 
-<MoleculeShapeLab
-  title={<>Drei Treibhausgase in 3D</>}
-  description={<>Wähl Kohlendioxid, Methan oder Distickstoffmonoxid und vergleiche die Bindungswinkel.</>}
-  molecules={[
-    { id: "carbon-dioxide", name: "Kohlendioxid" },
-    { id: "methane", name: "Methan" },
-    { id: "dinitrogen-monoxide", name: "Distickstoffmonoxid" },
-  ]}
+<MathVisual
+  title={<>Wärmewirkung dreier Treibhausgase</>}
+  description={
+    <>
+      Erwärmungsäquivalent über <InlineMath math="100" /> Jahre (in <InlineMath math="\mathrm{kg\ CO_2e}" />) gegenüber der Gasmasse <InlineMath math="x" /> (in Gramm) für <InlineMath math="\mathrm{N_2O}" /> (rosa), <InlineMath math="\mathrm{CH_4}" /> (orange) und <InlineMath math="\mathrm{CO_2}" /> (grau).
+    </>
+  }
+  footer={<>Über 100 Jahre wirken 10 g N2O wie 2,73 kg CO2 und CH4 wie 0,30 kg CO2.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: -0.2, max: 3.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1, max: 10, value: 10, step: 1, label: "m" },
+    ],
+    objects: [
+      { id: "n2o", kind: "function", appearance: "warning", formula: "0.273 * x", domain: { min: 0, max: 10 } },
+      { id: "ch4", kind: "function", appearance: "primary", formula: "0.03 * x", domain: { min: 0, max: 10 } },
+      { id: "co2", kind: "function", appearance: "reference", formula: "0.001 * x", domain: { min: 0, max: 10 } },
+      { id: "pt-n2o", kind: "point", appearance: "warning", at: { x: 10, y: 2.73 } },
+      { id: "pt-ch4", kind: "point", appearance: "primary", at: { x: 10, y: 0.3 } },
+      { id: "pt-co2", kind: "point", appearance: "reference", at: { x: 10, y: 0.01 } },
+    ],
+    readouts: [
+      { key: "n2o-eq", formula: "0.273 * m" },
+      { key: "ch4-eq", formula: "0.03 * m" },
+    ],
+    labels: [
+      { key: "n2o", objectId: "pt-n2o", at: { x: 10, y: 2.73 }, placement: "left" },
+      { key: "ch4", objectId: "pt-ch4", at: { x: 10, y: 0.3 }, placement: "above" },
+      { key: "co2", objectId: "pt-co2", at: { x: 10, y: 0.01 }, placement: "below" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Summenformel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel oder -länge</>,
-    view: "Dreidimensionales Molekülmodell",
+    n2o: <InlineMath math="\mathrm{N_2O}\ (\times 273)" />,
+    ch4: <InlineMath math="\mathrm{CH_4}\ (\times 30)" />,
+    co2: <InlineMath math="\mathrm{CO_2}\ (\times 1)" />,
+    m: <>Gasmasse <InlineMath math="m" /> (g)</>,
+    "n2o-eq": <><InlineMath math="\mathrm{N_2O}" />-Wirkung (<InlineMath math="\mathrm{kg\ CO_2e}" />)</>,
+    "ch4-eq": <><InlineMath math="\mathrm{CH_4}" />-Wirkung (<InlineMath math="\mathrm{kg\ CO_2e}" />)</>,
   }}
 />
 
@@ -114,28 +141,50 @@ Kohlendioxid ist eines von mehreren Treibhausgasen. Seine Emissionsmenge ist gro
 
 Flüssiggas zum Kochen ist ein Gemisch aus Propan und Butan. Beim Verbrennen gelangt der darin gespeicherte Kohlenstoff als <InlineMath math="\mathrm{CO_2}" /> in die Luft.
 
-<ReactionBalanceLab
+<MathVisual
   title={<>Verbrennen setzt Kohlendioxid frei</>}
-  description={<>Lass die Reaktion Atom für Atom ablaufen. Vergleiche das Verbrennen von Propan und Methan.</>}
-  reactions={[
-    { id: "propane-combustion", name: "Propan verbrennen", tab: <InlineMath math="\mathrm{C_3H_8}" /> },
-    { id: "methane-combustion", name: "Methan verbrennen", tab: <InlineMath math="\mathrm{CH_4}" /> },
-  ]}
-  reading="molecules"
+  description={
+    <>
+      Freigesetzte <InlineMath math="\mathrm{CO_2}" />-Moleküle gegenüber verbrauchten <InlineMath math="\mathrm{O_2}" />-Molekülen beim Verbrennen von Propan (orange, <InlineMath math="3/5" />) und Methan (violett, <InlineMath math="1/2" />).
+    </>
+  }
+  footer={<>Je 5 O2-Moleküle liefern bei Propan 3 CO2, bei Methan 2,5 CO2.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 16 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 2, max: 15, value: 10, step: 1, label: "k" },
+    ],
+    objects: [
+      { id: "propane", kind: "function", appearance: "primary", formula: "0.6 * x", domain: { min: 0, max: 15 } },
+      { id: "methane", kind: "function", appearance: "secondary", formula: "0.5 * x", domain: { min: 0, max: 15 } },
+      { id: "pt-p", kind: "point", appearance: "primary", at: { x: 10, y: 6 } },
+      { id: "pt-m", kind: "point", appearance: "secondary", at: { x: 10, y: 5 } },
+    ],
+    readouts: [
+      { key: "propane-co2", formula: "0.6 * k" },
+      { key: "methane-co2", formula: "0.5 * k" },
+    ],
+    labels: [
+      { key: "propane", objectId: "pt-p", at: { x: 10, y: 6 }, placement: "above" },
+      { key: "methane", objectId: "pt-m", at: { x: 10, y: 5 }, placement: "below" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome je Element</>,
-    choose: "Reaktion wählen",
-    equation: <>Reaktionsgleichung</>,
-    mass: <>Masse der Edukte und Produkte</>,
-    molecules: <>Anzahl der Moleküle</>,
-    products: <>Produkte</>,
-    progress: "Reaktionsverlauf",
-    reactants: <>Edukte</>,
-    view: "Reaktion auf Teilchenebene",
+    propane: <InlineMath math="\mathrm{C_3H_8}" />,
+    methane: <InlineMath math="\mathrm{CH_4}" />,
+    k: <><InlineMath math="\mathrm{O_2}" />-Moleküle <InlineMath math="k" /></>,
+    "propane-co2": <><InlineMath math="\mathrm{CO_2}" /> aus Propan</>,
+    "methane-co2": <><InlineMath math="\mathrm{CO_2}" /> aus Methan</>,
   }}
 />
 
-Die Gleichung lautet <InlineMath math="\mathrm{C_3H_8} + 5\,\mathrm{O_2} \rightarrow 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}" />. Ein Propanmolekül liefert drei <InlineMath math="\mathrm{CO_2}" />-Moleküle, weil jedes seiner Kohlenstoffatome Sauerstoff aus der Luft aufnimmt. Deshalb entstehen aus etwa <InlineMath math="44\text{ g}" /> Propan etwa <InlineMath math="3 \times 44 = 132\text{ g}" /> <InlineMath math="\mathrm{CO_2}" />, dreimal so viel wie die Masse des Brennstoffs.
+Die ausgeglichene Gleichung für das Verbrennen von Propan lautet:
+
+<BlockMath math="\mathrm{C_3H_8} + 5\,\mathrm{O_2} \rightarrow 3\,\mathrm{CO_2} + 4\,\mathrm{H_2O}" />
+
+Ein Propanmolekül liefert drei <InlineMath math="\mathrm{CO_2}" />-Moleküle, weil jedes seiner Kohlenstoffatome Sauerstoff aus der Luft aufnimmt. Deshalb entstehen aus etwa <InlineMath math="44\text{ g}" /> Propan etwa <InlineMath math="132\text{ g}" /> <InlineMath math="\mathrm{CO_2}" />, dreimal so viel wie die Masse des Brennstoffs.
 
 ### Fahrzeugkatalysatoren behandeln bestimmte Schadstoffe
 
@@ -162,6 +211,7 @@ Kunststoff ist [über seinen gesamten Lebenszyklus mit Emissionen verbunden](htt
 <Mermaid
   title={<>Drei Kohlenstoffpfade verstärken die Erwärmung</>}
   description={<>Verbinde fossile Brennstoffe, organische Abfälle und Waldverlust mit den Gasen oder Senkenveränderungen, durch die mehr Wärme zurückgehalten wird.</>}
+  footer={<>Fossile Brennstoffe, Abfall und Waldverlust verstärken die Erwärmung.</>}
   chart={`flowchart LR
     A["Fossile Brennstoffe"] --> B["Kohlendioxid"]
     C["Organischer Abfall zerfällt unter Sauerstoffmangel"] --> D["Methan"]
@@ -176,6 +226,7 @@ Stell dir die Luft als Wanne vor: Emissionen gießen Kohlenstoff hinein, und Wä
 <MathVisual
   title={<>Weniger Aufnahme, schnellerer Anstieg</>}
   description={<>Zusätzlicher Kohlenstoff in der Luft in einem beispielhaften Wannenmodell, mit ganzem Wald (grau) und nach der Rodung (rosa). Waagerecht: Jahre. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="10" /> Einheiten Kohlenstoff.</>}
+  footer={<>Sinkt die Waldaufnahme von 5 auf 3, wächst der Rest von 5 auf 7 pro Jahr.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 7.5 } },
@@ -196,6 +247,8 @@ Stell dir die Luft als Wanne vor: Emissionen gießen Kohlenstoff hinein, und Wä
     cleared: <InlineMath math="10-3=7" />,
   }}
 />
+
+Vergleiche beide Linien nach zehn Jahren: Mit intaktem Wald stehen <InlineMath math="50" /> Einheiten in der Luft, nach der Rodung bereits <InlineMath math="70" /> Einheiten. Schwächere Kohlenstoffsenken beschleunigen den Anstieg selbst bei gleichbleibenden Emissionen.
 
 ## Von menschlichen Aktivitäten zur Erwärmung
 

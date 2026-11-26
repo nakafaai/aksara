@@ -45,6 +45,7 @@ Paparan di bawah mengelompokkan enam haiwan sebanyak dua kali. Bulatan magenta m
 <MathVisual
   title={<>Haiwan yang Sama, Dua Kriteria</>}
   description={<>Enam haiwan dikelompokkan mengikut kebolehan terbang (bulatan magenta) dan mengikut kelas berdasarkan ciri badan yang dikongsi (bulatan jingga, ungu dan hijau kebiruan).</>}
+  footer={<>Hanya bulatan kelas mengikut pertalian evolusi, bukan kebolehan terbang.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -2.5, max: 7.5 } },
@@ -88,41 +89,60 @@ Paparan di bawah mengelompokkan enam haiwan sebanyak dua kali. Bulatan magenta m
   }}
 />
 
+Perhatikan bagaimana bulatan terbang magenta mengambil satu anggota daripada tiga bulatan kelas berbeza sambil meninggalkan saudara dekat yang tidak terbang di luar. Kriteria buatan berguna secara praktikal, namun ia memisahkan saudara evolusi yang sebenar.
+
 ### Pengelasan Semula Jadi Membandingkan Banyak Ciri
 
 Sistem lima alam yang digunakan dahulu memakai gabungan ciri yang luas untuk meletakkan organisma dalam Monera, Protista, Fungi, Plantae dan Animalia. Bukti moden tidak lagi menyatukan semua prokariot dalam Monera. Perbandingan RNA ribosom dan bukti lain membezakan **domain Bacteria dan Archaea** di samping Eukarya.
 
 Pengelasan semula jadi membandingkan beberapa ciri biologi supaya pengelompokan tidak bergantung pada satu tabiat yang kelihatan sahaja.
 
-Pengelasan semula jadi membandingkan banyak ciri sekali gus, dan sel itu sendiri membawa beberapa daripadanya. Pilih setiap sel di bawah dan bandingkan kedudukan bahan genetiknya, dinding yang mengelilinginya, dan organel yang membekalkan tenaganya.
+Pengelasan semula jadi membandingkan banyak ciri sekali gus, termasuk saiz sel, susunan nukleus, bahan dinding sel dan organel tenaga. Bandingkan panjang lazim sel bakteria, yis, sel haiwan dan sel daun di bawah.
 
-<CellCutawayLab
-  title={<>Sel daripada Empat Kumpulan Organisma</>}
-  description={<>Setiap sel dipotong dua dan dilukis pada saiz sebenarnya. Pilih satu sel dan bandingkan nukleus, dinding dan organel tenaganya.</>}
-  cells={["bacterium", "yeast", "plant", "animal"]}
+<MathVisual
+  title={<>Saiz Sel daripada Empat Kumpulan Organisma</>}
+  description={
+    <>
+      Panjang lazim sel dalam mikrometer daripada bakteria{" "}
+      <InlineMath math="2\ \mu\text{m}" /> dan sel yis{" "}
+      <InlineMath math="8\ \mu\text{m}" /> hingga sel haiwan{" "}
+      <InlineMath math="20\ \mu\text{m}" /> dan sel daun{" "}
+      <InlineMath math="40\ \mu\text{m}" />.
+    </>
+  }
+  footer={<>Sel eukariot lazimnya 4 hingga 20 kali lebih panjang daripada bakteria.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 48 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "bac-bar", kind: "segment", appearance: "warning", from: { x: 0, y: 1 }, to: { x: 2, y: 1 } },
+      { id: "bac", kind: "point", appearance: "warning", at: { x: 2, y: 1 } },
+      { id: "yeast-bar", kind: "segment", appearance: "secondary", from: { x: 0, y: 2 }, to: { x: 8, y: 2 } },
+      { id: "yeast", kind: "point", appearance: "secondary", at: { x: 8, y: 2 } },
+      { id: "animal-bar", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 20, y: 3 } },
+      { id: "animal", kind: "point", appearance: "primary", at: { x: 20, y: 3 } },
+      { id: "leaf-bar", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 40, y: 4 } },
+      { id: "leaf", kind: "point", appearance: "construction", at: { x: 40, y: 4 } },
+    ],
+    labels: [
+      { key: "bac", objectId: "bac", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "yeast", objectId: "yeast", at: { x: 8, y: 2 }, placement: "right" },
+      { key: "animal", objectId: "animal", at: { x: 20, y: 3 }, placement: "right" },
+      { key: "leaf", objectId: "leaf", at: { x: 40, y: 4 }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    choose: "Pilih sel",
-    cells: {
-      animal: "Sel haiwan",
-      bacterium: "Bakteria",
-      plant: "Sel daun",
-      yeast: "Yis",
-    },
-    facts: {
-      animal: { nucleus: <>di dalam membran nukleus</>, wall: <>tiada</>, power: <>mitokondria</> },
-      bacterium: { nucleus: <>nukleoid, tanpa membran</>, wall: <>peptidoglikan</>, power: <>membran sel</> },
-      plant: { nucleus: <>di dalam membran nukleus</>, wall: <>selulosa</>, power: <>kloroplas dan mitokondria</> },
-      yeast: { nucleus: <>di dalam membran nukleus</>, wall: <>glukan dan kitin</>, power: <>mitokondria</> },
-    },
-    size: <>Panjang</>,
-    nucleus: <>Bahan genetik</>,
-    wall: <>Dinding sel</>,
-    power: <>Organel tenaga</>,
-    viewLabel: "Sebuah sel yang dipotong dua bersama organelnya",
+    bac: <>Bakteria (2 µm, nukleoid)</>,
+    yeast: <>Yis (8 µm, dinding kitin)</>,
+    animal: <>Sel haiwan (20 µm, nukleus)</>,
+    leaf: <>Sel daun (40 µm, selulosa)</>,
   }}
 />
 
-Bakteria tiada nukleus, jadi DNAnya terletak di dalam **nukleoid**. Sel yis, sel daun dan sel haiwan menyimpan DNA di dalam membran nukleus, jadi ketiga-tiganya ialah **eukariot**. Dinding sel membezakannya lagi: selulosa pada tumbuhan, glukan dan kitin pada fungi, dan tiada dinding langsung pada haiwan. Saiznya juga jauh berbeza. Sel daun sepanjang <InlineMath math="40\ \mu\text{m}" /> kira-kira <InlineMath math="20" /> kali lebih panjang daripada bakteria yang hanya <InlineMath math="2\ \mu\text{m}" />. Jadi organisma berada dalam satu kumpulan kerana **banyak cirinya sepadan**, bukan kerana satu ciri sahaja.
+Bakteria tiada nukleus, jadi DNAnya terletak di dalam **nukleoid** dengan dinding peptidoglikan. Sel yis, sel daun dan sel haiwan menyimpan DNA di dalam membran nukleus, jadi ketiga-tiganya ialah **eukariot**.
+
+Dinding sel dan saiz memisahkannya lagi: tumbuhan mempunyai selulosa dan kloroplas, fungi mempunyai glukan serta kitin, manakala sel haiwan tiada dinding langsung. Sel daun sepanjang <InlineMath math="40\ \mu\text{m}" /> kira-kira <InlineMath math="20" /> kali lebih panjang daripada bakteria <InlineMath math="2\ \mu\text{m}" />, menunjukkan pengelasan semula jadi menyatukan organisma apabila **banyak ciri sepadan serentak**.
 
 ### Pengelasan Filogenetik Menyimpulkan Nenek Moyang Sepunya
 
@@ -131,6 +151,7 @@ Pengelasan filogenetik menyimpulkan hubungan evolusi. Buktinya boleh termasuk st
 <Mermaid
   title={<>Kriteria dalam Tiga Kaedah Pengelasan</>}
   description={<>Rajah ini membandingkan asas pengelasan buatan, semula jadi dan filogenetik.</>}
+  footer={<>Setiap cabang bermula daripada asas berbeza dan membina pengelasan berbeza.</>}
   chart={`flowchart TD
     A["Asas pengelompokan"] --> B["Kegunaan manusia"]
     A --> C["Ciri sepadan"]
@@ -145,6 +166,7 @@ Kekunci dengan soalan ya atau tidak membahagikan setiap kumpulan kepada dua. Sel
 <MathVisual
   title={<>Setiap Soalan Menggandakan Bilangan Kumpulan</>}
   description={<>Kekunci dikotomi dengan tiga soalan ya atau tidak. Setiap simpang mewakili satu soalan, dan setiap titik hujung mewakili satu kumpulan.</>}
+  footer={<>Tiga cabang binari memisahkan sehingga lapan kumpulan organisma berbeza.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -8, max: 10 }, y: { min: -1, max: 4 } },
@@ -193,21 +215,37 @@ Kekunci dengan soalan ya atau tidak membahagikan setiap kumpulan kepada dua. Sel
   }}
 />
 
-Pengelasan filogenetik membandingkan jujukan bes DNA. Semakin sedikit perbezaan antara dua spesies pada gen yang sama, semakin rapat hubungannya, kerana kedua-duanya berpisah daripada moyang yang sama pada masa yang lebih hampir.
+Pengelasan filogenetik membandingkan jujukan bes DNA. Semakin sedikit perbezaan antara dua spesies pada gen yang sama, semakin rapat hubungannya, kerana kedua-duanya berpisah daripada moyang yang sama pada masa yang lebih hampir. Laraskan panjang gen <InlineMath math="n" /> di bawah untuk melihat bagaimana setiap perbezaan bes menurunkan kesamaan jujukan.
 
-<DnaHelixLab
-  title={<>Membandingkan DNA Dua Spesies</>}
-  description={<>Contoh satu bahagian gen yang sama pada dua spesies, sepanjang <InlineMath math="27" /> pasangan bes. Tukar spesies dan perhatikan bes yang berbeza menyala.</>}
-  sequence="ATG GCT AAC CTG GTA CAG TTC GAA AGC"
-  variant="ATG GCC AAC CTG GTG CAG TTT GAA AGC"
+<MathVisual
+  title={<>Kesamaan Jujukan DNA dan Perbezaan Bes</>}
+  description={
+    <>
+      Peratusan bes yang sama apabila bilangan tapak berbeza{" "}
+      <InlineMath math="x" /> meningkat daripada <InlineMath math="0" /> kepada{" "}
+      <InlineMath math="10" />, bagi segmen gen sepanjang{" "}
+      <InlineMath math="n" /> pasangan bes.
+    </>
+  }
+  footer={<>Lebih sedikit perbezaan bes mengekalkan kesamaan DNA dan pertalian rapat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 50, max: 102 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 20, max: 50, value: 27, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "identity", kind: "function", appearance: "primary", formula: "100 * (1 - x / n)", domain: { min: 0, max: 10 } },
+      { id: "three-diff", kind: "segment", appearance: "reference", from: { x: 3, y: 50 }, to: { x: 3, y: 100 } },
+    ],
+    readouts: [
+      { key: "at-three", formula: "100 * (1 - 3 / n)" },
+    ],
+  }}
   labels={{
-    choose: "Pilih spesies",
-    strands: { first: <>Spesies A</>, second: <>Spesies B</> },
-    length: <>Pasangan bes</>,
-    span: <>Panjang</>,
-    differences: <>Bes yang berbeza</>,
-    identity: <>Bes yang sama</>,
-    viewLabel: "Heliks ganda dua DNA dengan bes yang berbeza menyala",
+    n: <>Panjang perbandingan <InlineMath math="n" /> (bp)</>,
+    "at-three": <>Kesamaan jujukan dengan 3 perbezaan (%)</>,
   }}
 />
 
@@ -228,6 +266,7 @@ Berikut ialah satu laluan lengkap melalui peringkat-peringkat itu, untuk manusia
 <MathVisual
   title={<>Peringkat Bersarang dari Domain hingga Spesies</>}
   description={<>Setiap bulatan ialah satu takson dalam pengelasan manusia, terletak di dalam takson satu peringkat di atasnya.</>}
+  footer={<>Setiap bulatan dalam menyempitkan takson hingga tinggal Homo sapiens.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -0.5, max: 17 } },
@@ -265,6 +304,8 @@ Berikut ialah satu laluan lengkap melalui peringkat-peringkat itu, untuk manusia
     species: <>Spesies Homo sapiens</>,
   }}
 />
+
+Bergerak ke dalam dari Domain Eukarya hingga Spesies *Homo sapiens* mengecilkan bilangan ahli langkah demi langkah sambil menambah ciri yang dikongsi. Setiap bulatan terletak sepenuhnya di dalam peringkat di atasnya, menunjukkan bahawa hierarki biologi membina set bersarang, bukan senarai longgar.
 
 ## Kriteria dan Tujuan Nama Kumpulan
 

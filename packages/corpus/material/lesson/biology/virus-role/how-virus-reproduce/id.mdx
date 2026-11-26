@@ -11,21 +11,21 @@ export const metadata = {
 
 ## Virus Bereplikasi di Dalam Sel Inang
 
-Sel dapat memperbanyak diri dengan membelah. Virus memerlukan **ribosom dan energi sel inang** untuk menghasilkan virion baru. Sebagian virus membawa atau menghasilkan enzim penyalin genom sendiri, tetapi enzim tersebut tidak membuat virus mampu bereplikasi secara mandiri.
+Sel dapat memperbanyak diri dengan membelah. Virus memerlukan **ribosom dan energi sel inang** untuk menghasilkan virion baru. Sebagian virus membawa atau menghasilkan enzim penyalin genom sendiri, tetapi enzim itu tidak membuat virus mampu bereplikasi secara mandiri.
 
 ### Genom Virus Disalin dan Protein Virus Dibuat dalam Sel Inang
 
-Bakteri bereproduksi dengan membelah satu sel menjadi dua. Virus lebih dulu memasukkan genom ke sel inang. Enzim dari virus atau sel inang kemudian menyalin genom virus, sedangkan **ribosom sel inang membuat protein virus**. Salinan genom dan protein tersebut dirakit menjadi virion baru sebelum dilepaskan.
+Bakteri bereproduksi dengan membelah satu sel menjadi dua. Virus lebih dulu memasukkan genom ke sel inang. Enzim dari virus atau sel inang kemudian menyalin genom virus, sedangkan **ribosom sel inang membuat protein virus**. Salinan genom dan protein ini dirakit menjadi virion baru sebelum dilepaskan.
 
 Pada banyak virus, infeksi dimulai ketika protein permukaan virus berikatan dengan reseptor yang sesuai pada sel inang.
 
-Cara masuk dan menyalin genom berbeda pada setiap kelompok virus. Bakteriofag dapat menyuntikkan genom saja, sedangkan banyak virus hewan masuk sebagai partikel utuh. Enzim penyalin genom dapat berasal dari sel inang, virus, atau keduanya. Semua cara tersebut tetap membutuhkan sel inang yang sesuai.
+Cara masuk dan menyalin genom berbeda pada setiap kelompok virus. Bakteriofag dapat menyuntikkan genom saja, sedangkan banyak virus hewan masuk sebagai partikel utuh. Enzim penyalin genom dapat berasal dari sel inang, virus, atau keduanya. Semua cara ini tetap membutuhkan sel inang yang sesuai.
 
 ### Siklus Litik dan Lisogenik pada Bakteriofag
 
 Fag virulen mengikuti siklus litik. Fag temperat juga dapat mengalami lisogeni, ketika **genom fag bertahan dan ikut diwariskan** saat bakteri membelah. Pada contoh model ini, genom fag menyatu dengan kromosom inang. Sebagian fag lain mempertahankan genom terpisah dari kromosom. Genom fag dapat aktif kembali dan masuk ke siklus litik.
 
-Siklus litik dan lisogenik berikut berlaku untuk bakteriofag. Virus hewan dapat membentuk pola infeksi lain, termasuk infeksi laten dan persisten. Kedua pola tersebut berbeda dari siklus lisogenik bakteriofag.
+Siklus litik dan lisogenik berikut berlaku untuk bakteriofag. Virus hewan dapat membentuk pola infeksi lain, termasuk infeksi laten dan persisten. Kedua pola ini berbeda dari siklus lisogenik bakteriofag.
 
 <VirusReplicationLab
   title={<>Dua Jalur Replikasi Bakteriofag</>}
@@ -44,9 +44,9 @@ Siklus litik dan lisogenik berikut berlaku untuk bakteriofag. Virus hewan dapat 
     items: [
       {
         tab: "Litik",
-        caption: <>Fag menempel di permukaan sel inang. Jalur merah muda menunjukkan genom virus yang masuk. Setelah itu, genom virus disalin, protein virus dibuat, lalu komponen tersebut dirakit menjadi virion baru.</>,
+        caption: <>Fag menempel di permukaan sel inang. Jalur merah muda menunjukkan genom virus yang masuk. Setelah itu, genom virus disalin, protein virus dibuat, lalu komponen ini dirakit menjadi virion baru.</>,
         focus: <>Genom virus masuk ke dalam sel lebih dulu, sedangkan badan fag tetap berada di luar.</>,
-        takeaway: <>Pada siklus litik, genom virus disalin dan ribosom sel inang membuat protein virus. Komponen tersebut kemudian dirakit menjadi virion baru.</>,
+        takeaway: <>Pada siklus litik, genom virus disalin dan ribosom sel inang membuat protein virus. Komponen ini kemudian dirakit menjadi virion baru.</>,
         callouts: [
           { id: "host-cell", label: "Sel inang" },
           { id: "viral-genome", label: "Genom virus" },
@@ -66,20 +66,36 @@ Siklus litik dan lisogenik berikut berlaku untuk bakteriofag. Virus hewan dapat 
   }}
 />
 
-Setiap siklus litik melepaskan banyak virion baru. Di tengah masyarakat, perbanyakan yang sama berlangsung dari orang ke orang.
+Setiap siklus litik melepaskan banyak virion baru. Di tengah masyarakat, perbanyakan yang sama berlangsung dari orang ke orang. Geser rata-rata penularan tiap kasus <InlineMath math="R" /> di bawah untuk melihat bagaimana gelombang wabah tanpa pencegahan tumbuh lalu melambat.
 
-<EpidemicSpreadLab
+<MathVisual
   title={<>Satu Kasus Tumbuh Menjadi Wabah</>}
-  description={<>Orang-orang berjalan di alun-alun kota. Tekan putar untuk melihat satu infeksi menyebar saat tidak ada yang melakukan pencegahan.</>}
-  measures={[]}
+  description={
+    <>
+      Persentase kumulatif warga tertular (oranye) dan gelombang kasus aktif
+      (ungu) selama <InlineMath math="40" /> hari saat angka reproduksi{" "}
+      <InlineMath math="R" /> berubah.
+    </>
+  }
+  footer={<>Nilai R lebih tinggi menaikkan puncak sakit dan mendorong total mendekati 100%.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1.5, max: 4, value: 3, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "100 * (1 - exp(-r)) / (1 + 49 * exp(-0.18 * (r - 1) * x))", domain: { min: 0, max: 40 } },
+      { id: "active", kind: "function", appearance: "secondary", formula: "15 * (r - 1) * exp(-((x - 16) / 6)^2)", domain: { min: 0, max: 40 } },
+    ],
+    readouts: [
+      { key: "peak", formula: "15 * (r - 1)" },
+    ],
+  }}
   labels={{
-    reproduction: <>Satu kasus menulari</>,
-    peak: <>Paling banyak sakit bersamaan</>,
-    susceptible: <>Masih rentan</>,
-    infected: <>Sedang tertular</>,
-    recovered: <>Sudah sembuh</>,
-    immune: <>Kebal karena vaksin</>,
-    viewLabel: "Alun-alun kota dengan orang yang berjalan dan grafik wabah",
+    r: <>Rata-rata tertular per kasus <InlineMath math="R" /></>,
+    peak: <>Puncak sakit bersamaan (%)</>,
   }}
 />
 
@@ -91,26 +107,27 @@ Siklus litik berlangsung berurutan, mulai dari pengenalan sel hingga pelepasan v
 
 ### Kecocokan Reseptor Memungkinkan Virus Menempel
 
-Siklus litik dimulai dari **adsorpsi**, yaitu penempelan virus pada sel inang. Penempelan ini bergantung pada kecocokan protein virus dengan reseptor sel. Tanpa kecocokan molekuler tersebut, replikasi sulit dimulai.
+Siklus litik dimulai dari **adsorpsi**, yaitu penempelan virus pada sel inang. Penempelan ini bergantung pada kecocokan protein virus dengan reseptor sel. Tanpa kecocokan molekuler ini, replikasi sulit dimulai.
 
-Setelah menempel, virus melakukan **penetrasi**, yaitu memasukkan genom atau komponen lain yang diperlukan untuk replikasi ke dalam sel. Tahap berikutnya adalah **sintesis**. Pada tahap ini, genom virus disalin dan ribosom sel inang membuat protein kapsid. Setelah salinan genom dan protein kapsid tersedia, komponen tersebut dirakit menjadi virion baru. Pada banyak contoh litik, sel akhirnya mengalami **lisis**, yaitu pecahnya sel sehingga virion baru keluar.
+Setelah menempel, virus melakukan **penetrasi**, yaitu memasukkan genom atau komponen lain yang diperlukan untuk replikasi ke dalam sel. Tahap berikutnya adalah **sintesis**. Pada tahap ini, genom virus disalin dan ribosom sel inang membuat protein kapsid. Setelah salinan genom dan protein kapsid tersedia, komponen ini dirakit menjadi virion baru. Pada banyak contoh litik, sel akhirnya mengalami **lisis**, yaitu pecahnya sel sehingga virion baru keluar.
 
 ### Sintesis Komponen dan Perakitan Virion
 
-Pada tahap sintesis, genom virus disalin dan protein virus dibuat **sebagai komponen terpisah**. Pada tahap perakitan, salinan genom dan protein tersebut disusun menjadi virion baru yang kemudian keluar dari sel.
+Pada tahap sintesis, genom virus disalin dan protein virus dibuat **sebagai komponen terpisah**. Pada tahap perakitan, salinan genom dan protein ini disusun menjadi virion baru yang kemudian keluar dari sel.
 
 | Tahap litik fag | Yang terjadi | Kekeliruan yang perlu dihindari |
 | --- | --- | --- |
-| Adsorpsi | Virus menempel pada reseptor inang yang sesuai | Penempelan belum merupakan reproduksi |
+| Adsorpsi | Virus menempel pada reseptor inang yang sesuai | Penempelan belum berarti reproduksi |
 | Penetrasi | Genom virus atau materi pentingnya masuk | Selubung luar tidak selalu ikut masuk pada setiap virus |
 | Sintesis | Genom virus disalin dan protein virus dibuat | Komponen sedang dibuat dan belum dirakit menjadi partikel utuh |
-| Perakitan dan pelepasan | Virion baru terbentuk lalu keluar | Berbagai komponen bergabung membentuk virus baru, lalu virus tersebut keluar dari sel |
+| Perakitan dan pelepasan | Virion baru terbentuk lalu keluar | Berbagai komponen bergabung membentuk virus baru, lalu virus itu keluar dari sel |
 
 > Pada replikasi virus, genom virus disalin dan sel inang membuat protein virus. Salinan genom dan protein kemudian dirakit menjadi virion baru.
 
 <Mermaid
   title={<>Perakitan Komponen Virus Menjadi Virion</>}
   description={<>Tahap litik dalam urutan yang ditunjukkan panah: adsorpsi, penetrasi, sintesis, perakitan, lisis.</>}
+  footer={<>Ikuti kiri ke kanan: sintesis membuat komponen, perakitan menyusun virion.</>}
   chart={`flowchart LR
     A(["Adsorpsi"]) --> B(["Penetrasi"])
     B --> C(["Sintesis"])
@@ -123,6 +140,7 @@ Putar bakteriofag ini tepat saat menempel. Serabut ekornya mencengkeram permukaa
 <MathVisual
   title={<>Fag Mendarat lalu Menyuntik</>}
   description={<>Bakteriofag di permukaan bakteri: kepala ikosahedral, ekor, enam serabut ekor, dan genom yang disuntikkan di bawah permukaan.</>}
+  footer={<>Hanya genom virus yang masuk ke bakteri sementara selubung protein di luar.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.5, max: 6 }, z: { min: -3, max: 3 } },
@@ -174,24 +192,40 @@ Putar bakteriofag ini tepat saat menempel. Serabut ekornya mencengkeram permukaa
   }}
 />
 
-Penyalinan genom memanfaatkan pasangan basa. Pada fag DNA, kedua untai membuka, lalu setiap basa mendapat pasangannya: A dengan T, G dengan C.
+Penyalinan genom memanfaatkan pasangan basa. Pada fag DNA, kedua untai membuka, lalu setiap basa mendapat pasangannya: A dengan T, G dengan C. Geser kecepatan enzim polimerase <InlineMath math="r" /> di bawah untuk melihat seberapa cepat sel inang menyalin genom fag lambda sepanjang <InlineMath math="48{,}5\text{ kb}" />.
 
-<DnaHelixLab
+<MathVisual
   title={<>Genom Virus Disalin Basa demi Basa</>}
-  description={<>Contoh potongan DNA sepanjang <InlineMath math="27" /> pasangan basa. Geser penyalinannya atau tekan putar, lalu lihat nukleotida baru berpasangan dengan kedua untai lama.</>}
-  copy
-  sequence="ATG GCT AGC TTA GGC ATC GAT CCG TAA"
+  description={
+    <>
+      Kilobasa yang disalin selama <InlineMath math="100" /> detik pada kecepatan
+      polimerase <InlineMath math="r" /> pasangan basa per detik, dibandingkan
+      dengan garis genom fag lambda <InlineMath math="48{,}5\text{ kb}" />.
+    </>
+  }
+  footer={<>Kecepatan polimerase lebih tinggi mencapai garis genom 48,5 kb lebih cepat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 300, max: 1000, value: 600, step: 100, label: "r" },
+    ],
+    objects: [
+      { id: "copied", kind: "function", appearance: "primary", formula: "r * x / 1000", domain: { min: 0, max: 100 } },
+      { id: "lambda", kind: "function", appearance: "construction", formula: "48.5 + 0x", domain: { min: 0, max: 100 } },
+    ],
+    readouts: [
+      { key: "at-minute", formula: "r * 60 / 1000" },
+    ],
+  }}
   labels={{
-    copy: "Kemajuan penyalinan",
-    length: <>Pasangan basa</>,
-    span: <>Panjang</>,
-    copied: <>Basa baru yang berpasangan</>,
-    turns: <>Putaran heliks</>,
-    viewLabel: "Heliks DNA yang membuka dan disalin",
+    r: <>Kecepatan salin <InlineMath math="r" /> (bp/detik)</>,
+    "at-minute": <>Kilobasa tersalin dalam 60 detik</>,
   }}
 />
 
-Setiap untai baru berpasangan dengan satu untai lama, jadi kedua salinan sama persis dengan aslinya. Potongan <InlineMath math="27" /> pasangan basa ini hanya sepanjang <InlineMath math="27 \times 0{,}34\text{ nm} \approx 9{,}2\text{ nm}" />. Genom fag lambda punya <InlineMath math="48{.}502" /> pasangan basa, dan sel inang menyediakan nukleotida serta energi untuk menyalin semuanya.
+Setiap untai baru berpasangan dengan satu untai lama, jadi kedua salinan sama persis dengan aslinya. Potongan <InlineMath math="27" /> pasangan basa ini hanya sepanjang sekitar <InlineMath math="9{,}2\text{ nm}" />. Genom fag lambda punya <InlineMath math="48{.}502" /> pasangan basa, dan sel inang menyediakan nukleotida serta energi untuk menyalin semuanya.
 
 ## Profag Dapat Bertahan dalam Genom Inang
 
@@ -206,6 +240,7 @@ Kedua siklus menyalin genom virus, dengan kecepatan yang sangat berbeda. Pada si
 <MathVisual
   title={<>Pecah Sekaligus atau Menyalin Diam-diam</>}
   description={<>Salinan ilustratif setelah tiap putaran untuk siklus litik (oranye) dan siklus lisogenik (ungu). Tegak: satu kotak grid berarti sepuluh kali lebih banyak salinan.</>}
+  footer={<>Siklus litik melonjak jutaan kali lebih cepat dibanding pembelahan profag.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 8.5 } },
@@ -235,6 +270,8 @@ Kedua siklus menyalin genom virus, dengan kecepatan yang sangat berbeda. Pada si
   }}
 />
 
+Hanya dalam empat putaran, garis litik melesat hingga seratus juta salinan sedangkan jalur profag baru mencapai enam belas salinan di dalam bakteri yang tetap hidup. Jarak curam ini menjelaskan mengapa infeksi litik cepat menghancurkan koloni inang sementara lisogeni menjaga genom virus bertahan antargenerasi.
+
 ## Membedakan Sintesis dan Perakitan
 
-Pada tahap sintesis, genom virus disalin dan protein virus dibuat, tetapi bagian-bagian tersebut **belum menjadi virion utuh**. Pada tahap perakitan, salinan genom dan protein virus digabungkan menjadi virion baru. Pengulangan kedua tahap ini di dalam satu sel inang dapat menghasilkan banyak virion.
+Pada tahap sintesis, genom virus disalin dan protein virus dibuat, tetapi bagian-bagian ini **belum menjadi virion utuh**. Pada tahap perakitan, salinan genom dan protein virus digabungkan menjadi virion baru. Pengulangan kedua tahap ini di dalam satu sel inang dapat menghasilkan banyak virion.

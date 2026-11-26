@@ -70,44 +70,79 @@ Viren lassen sich anhand ihrer Zusammensetzung, Struktur, Klassifikation und Wir
   }}
 />
 
-Das nächste Modell zeigt die Oberfläche von **SARS-CoV-2** genauer als die allgemeine Darstellung darüber. [Kryoelektronentomografie intakter Virionen](https://www.nature.com/articles/s41586-020-2665-2) zeigte eine Lipiddoppelschicht, aus der Spike-Trimere herausragen. Diese Spikes binden an den ACE2-Rezeptor und vermitteln den Eintritt in geeignete Zielzellen. Dieses Modell steht für ein umhülltes Virus. Andere Viren können anders geformt und aufgebaut sein.
+Das nächste Modell zeigt, wie stark Spike-Proteine von **SARS-CoV-2** an Wirtsrezeptoren binden. [Kryoelektronentomografie intakter Virionen](https://www.nature.com/articles/s41586-020-2665-2) zeigte eine Lipiddoppelschicht, aus der Spike-Trimere herausragen. Diese Spikes binden an den ACE2-Rezeptor und vermitteln den Eintritt in geeignete Zielzellen. Verändere die Dissoziationskonstante <InlineMath math="K" /> unten und beobachte, wie die Bindungsstärke den Anteil besetzter ACE2-Rezeptoren steuert.
 
-<SarsCov2VirionLab
-  title={<>Die Oberfläche von SARS-CoV-2</>}
+<MathVisual
+  title={<>Spike-Bindung und ACE2-Rezeptorbesetzung</>}
   description={
     <>
-      Untersuche ein umhülltes Virion mit vielen Proteinfortsätzen auf seiner
-      Oberfläche.
+      Anteil besetzter Wirtsrezeptoren bei steigender Spike-Konzentration für eine
+      wählbare Bindungskonstante <InlineMath math="K" />.
     </>
   }
-  labels={{
-    chooseMode: "Wähle einen Oberflächenbestandteil",
-    focusLabel: "Darauf solltest du achten",
-    takeawayLabel: "Biologische Bedeutung",
-    viewLabel: "SARS-CoV-2-Oberflächenmodell",
-    items: [
-      {
-        tab: "Oberfläche",
-        caption: <>SARS-CoV-2 erscheint als umhülltes Virion mit rauer Oberfläche und vielen Proteinfortsätzen.</>,
-        focus: <>Achte auf die Gesamtform: Die Hülle ist abgerundet, die Fortsätze verteilen sich über viele Stellen der Oberfläche.</>,
-        takeaway: <>Die Spike-Proteine von SARS-CoV-2 können an ACE2 auf geeigneten Zellen binden und den Viruseintritt in die Zelle vermitteln.</>,
-      },
+  footer={<>Kleineres K bedeutet festere Spike-Bindung und schnellere Sättigung.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1.1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.5, max: 4, value: 1.5, step: 0.5, label: "k" },
     ],
+    objects: [
+      { id: "binding", kind: "function", appearance: "primary", formula: "x / (k + x)", domain: { min: 0, max: 10 } },
+      { id: "half", kind: "function", appearance: "reference", formula: "0.5 + 0x", domain: { min: 0, max: 10 } },
+      { id: "ceiling", kind: "function", appearance: "construction", formula: "1 + 0x", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "bound", formula: "5 / (k + 5)" },
+    ],
+  }}
+  labels={{
+    k: <>Dissoziationskonstante <InlineMath math="K" /></>,
+    bound: <>Gebundener Anteil bei Konzentration 5</>,
   }}
 />
 
-Virionen sind viel kleiner als die Zellen, die sie befallen. Zoome von einer ganzen Tierzelle bis zu einem einzelnen Virion.
+Ist <InlineMath math="K" /> klein, binden Spikes sehr fest an ACE2, sodass schon geringe Viruskonzentrationen die Halbsättigung rasch überschreiten und den Eintritt auslösen. Andere Viren tragen andere Oberflächenproteine und binden an ganz andere Wirtsrezeptoren.
 
-<CellScaleLab
-  title={<>Von der Zelle bis zum Virus</>}
-  description={<>Verschieb den Zoom. Jeder Schritt verengt den Blick um denselben Faktor, wie der Wechsel zu einem stärkeren Mikroskopobjektiv.</>}
+Virionen sind viel kleiner als die Zellen, die sie befallen. Vergleiche eine Tierzelle, ein Bakterium und ein einzelnes Virion auf einer dekadisch-logarithmischen Nanometerskala.
+
+<MathVisual
+  title={<>Größenskala vom Virion bis zur Tierzelle</>}
+  description={
+    <>
+      Die waagerechte Achse zeigt <InlineMath math="\log_{10}" /> des Durchmessers
+      in Nanometern, vom Virion (<InlineMath math="100\text{ nm}" />) über die
+      Lichtmikroskop-Grenze (<InlineMath math="200\text{ nm}" />) bis zur Tierzelle
+      (<InlineMath math="20{.}000\text{ nm}" />).
+    </>
+  }
+  footer={<>Ein Virion liegt unter der Lichtmikroskop-Grenze, anders als Bakterien.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1.5, max: 4.8 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "limit", kind: "segment", appearance: "warning", from: { x: Math.log10(200), y: 0.2 }, to: { x: Math.log10(200), y: 3.8 } },
+      { id: "virion-bar", kind: "segment", appearance: "primary", from: { x: 1.5, y: 1 }, to: { x: Math.log10(100), y: 1 } },
+      { id: "virion", kind: "point", appearance: "primary", at: { x: Math.log10(100), y: 1 } },
+      { id: "bacterium-bar", kind: "segment", appearance: "secondary", from: { x: 1.5, y: 2 }, to: { x: Math.log10(2000), y: 2 } },
+      { id: "bacterium", kind: "point", appearance: "secondary", at: { x: Math.log10(2000), y: 2 } },
+      { id: "cell-bar", kind: "segment", appearance: "construction", from: { x: 1.5, y: 3 }, to: { x: Math.log10(20000), y: 3 } },
+      { id: "cell", kind: "point", appearance: "construction", at: { x: Math.log10(20000), y: 3 } },
+    ],
+    labels: [
+      { key: "virion", objectId: "virion", at: { x: Math.log10(100), y: 1 }, placement: "above-left" },
+      { key: "limit", objectId: "limit", at: { x: Math.log10(200), y: 3.8 }, placement: "right" },
+      { key: "bacterium", objectId: "bacterium", at: { x: Math.log10(2000), y: 2 }, placement: "right" },
+      { key: "cell", objectId: "cell", at: { x: Math.log10(20000), y: 3 }, placement: "left" },
+    ],
+  }}
   labels={{
-    zoom: "Zoom",
-    view: <>Breite des Blickfelds</>,
-    cell: <>Tierzelle</>,
-    bacterium: <>Bakterium</>,
-    virion: <>SARS-CoV-2-Virion</>,
-    viewLabel: "Eine Tierzelle, ein Bakterium und ein Virion nebeneinander in echter Größe",
+    virion: <>Virion (100 nm)</>,
+    limit: <>Lichtgrenze (200 nm)</>,
+    bacterium: <>Bakterium (2.000 nm)</>,
+    cell: <>Tierzelle (20.000 nm)</>,
   }}
 />
 
@@ -123,25 +158,50 @@ Außerhalb einer Wirtszelle kann ein Virion eine Zeit lang bestehen, an eine gee
 
 Außerhalb einer Zelle betreibt ein Virion keinen Stoffwechsel, stellt keine Proteine her und kopiert sein Genom nicht. In einer geeigneten Zelle kann das Virusgenom die Herstellung von Virusproteinen und neuen Genomkopien steuern. Ein Virus vermehrt sich daher **nur in einer passenden Wirtszelle**.
 
-Manche Viren tragen DNA, andere RNA. SARS-CoV-2 trägt einen einzigen RNA-Strang von fast <InlineMath math="30{.}000" /> Basen.
+Manche Viren tragen DNA, andere RNA. SARS-CoV-2 trägt einen einzelnen RNA-Strang von <InlineMath math="29{.}903" /> Basen, der mit der Sequenz `AUUAAAGGUUUAUACCUUCCCAGGUAACAA` beginnt. Verändere die Kopierrate <InlineMath math="r" /> unten, um zu sehen, wie die Genomlänge die Kopierzeit bestimmt.
 
-<DnaHelixLab
-  title={<>Der Anfang des RNA-Genoms eines Virus</>}
-  description={<>Das sind die ersten <InlineMath math="30" /> Basen des SARS-CoV-2-Referenzgenoms als ein RNA-Strang. Dreh den Strang und lies seine Basen.</>}
-  nucleic="rna"
-  genome={29903}
-  sequence="AUUAAAGGUUUAUACCUUCCCAGGUAACAA"
+<MathVisual
+  title={<>Virusgenomlänge und Kopierzeit</>}
+  description={
+    <>
+      Minuten zum Kopieren eines Virusgenoms der Länge <InlineMath math="x" />{" "}
+      Kilobasen bei einer Rate <InlineMath math="r" /> Kilobasen pro Minute, mit
+      Markierungen für Poliovirus, SARS-CoV-2 und Phage Lambda.
+    </>
+  }
+  footer={<>Längere Virusgenome brauchen bei gleicher Rate proportional mehr Kopierzeit.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 52 }, y: { min: 0, max: 25 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 2, max: 8, value: 4, step: 1, label: "r" },
+    ],
+    objects: [
+      { id: "time", kind: "function", appearance: "primary", formula: "x / r", domain: { min: 0, max: 50 } },
+      { id: "polio", kind: "segment", appearance: "reference", from: { x: 7.5, y: 0 }, to: { x: 7.5, y: 24 } },
+      { id: "sars", kind: "segment", appearance: "warning", from: { x: 29.9, y: 0 }, to: { x: 29.9, y: 24 } },
+      { id: "lambda", kind: "segment", appearance: "secondary", from: { x: 48.5, y: 0 }, to: { x: 48.5, y: 24 } },
+    ],
+    readouts: [
+      { key: "sars-time", formula: "29.9 / r" },
+    ],
+    labels: [
+      { key: "polio", objectId: "polio", at: { x: 7.5, y: 22 }, placement: "right" },
+      { key: "sars", objectId: "sars", at: { x: 29.9, y: 22 }, placement: "left" },
+      { key: "lambda", objectId: "lambda", at: { x: 48.5, y: 22 }, placement: "left" },
+    ],
+  }}
   labels={{
-    length: <>Gezeigte Basen</>,
-    span: <>Länge</>,
-    whole: <>Basen im ganzen Genom</>,
-    share: <>Gezeigter Anteil des Genoms</>,
-    gc: <>Anteil von G und C</>,
-    viewLabel: "Ein einzelner RNA-Strang mit seinen Basen",
+    r: <>Kopierrate <InlineMath math="r" /> (kb/min)</>,
+    "sars-time": <>Kopierzeit SARS-CoV-2 (min)</>,
+    polio: <>Polio (7,5 kb)</>,
+    sars: <>SARS-CoV-2 (29,9 kb)</>,
+    lambda: <>Lambda (48,5 kb)</>,
   }}
 />
 
-Das ganze Genom umfasst <InlineMath math="29{.}903" /> Basen, dieses Stück ist also nur etwa <InlineMath math="0{,}1\%" /> davon. Achte darauf, dass RNA U statt T verwendet und der Strang einzeln ist. Um sich zu vermehren, kopiert dieses Virus seine RNA mit einem eigenen Enzym in der Wirtszelle.
+Dieses Anfangsstück aus <InlineMath math="30" /> Basen macht nur etwa <InlineMath math="0{,}1\%" /> des gesamten <InlineMath math="29{.}903" />-Basen-Strangs aus. Achte darauf, dass RNA U statt T verwendet und der Strang einzeln ist. Um sich zu vermehren, kopiert dieses Virus seine RNA mit einem eigenen Enzym in der Wirtszelle.
 
 ## Kapsid und Hülle bestimmen die Virusform
 

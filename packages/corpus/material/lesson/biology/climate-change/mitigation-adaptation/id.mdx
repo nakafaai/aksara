@@ -32,11 +32,14 @@ Kelompokkan tindakan berdasarkan hasil utama: mengurangi gas rumah kaca, mengura
 
 > Mitigasi mengurangi penyebab pemanasan. Adaptasi mengurangi kerugian akibat dampak perubahan iklim. Sebagian tindakan dapat melakukan keduanya, tetapi tujuan utama tindakan tetap harus dinyatakan dengan jelas.
 
-Risiko iklim muncul saat tiga hal bertemu: **bahaya** seperti gelombang panas atau gelombang badai, **keterpaparan** orang dan tempat yang dilaluinya, serta **kerentanan** mereka, yaitu seberapa mudah mereka dirugikan. Adegan di bawah memakai indeks ilustrasi sederhana yang mengalikan ketiganya, digambar sebagai balok dengan bahaya sebagai tingginya. Mitigasi bekerja pada penyebab, jadi baloknya makin rendah. Adaptasi bekerja pada kerugian, jadi baloknya makin tipis dari depan ke belakang. Putar adegannya: keduanya sama-sama membagi dua volume, tetapi ke arah yang berbeda, dan bersama-sama menurunkannya menjadi seperempat.
+Risiko iklim muncul saat tiga hal bertemu: **bahaya** seperti gelombang panas atau gelombang badai, **keterpaparan** orang dan tempat yang dilaluinya, serta **kerentanan** mereka, yaitu seberapa mudah mereka dirugikan.
+
+Adegan di bawah memakai indeks ilustrasi sederhana yang mengalikan ketiganya, digambar sebagai balok dengan bahaya sebagai tingginya. Mitigasi bekerja pada penyebab, jadi baloknya makin rendah. Adaptasi bekerja pada kerugian, jadi baloknya makin tipis dari depan ke belakang. Putar adegannya: keduanya sama-sama membagi dua volume, tetapi ke arah yang berbeda, dan bersama-sama menurunkannya menjadi seperempat.
 
 <MathVisual
   title={<>Dua Cara Mengecilkan Risiko Iklim</>}
   description={<>Indeks risiko ilustrasi <InlineMath math="\text{bahaya}\times\text{keterpaparan}\times\text{kerentanan}" />. Tinggi adalah bahaya, lebar adalah keterpaparan, kedalaman adalah kerentanan.</>}
+  footer={<>Mitigasi atau adaptasi membelah risiko jadi setengah, keduanya menjadi seperempat.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 12 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -62,6 +65,8 @@ Risiko iklim muncul saat tiga hal bertemu: **bahaya** seperti gelombang panas at
   }}
 />
 
+Perhatikan bagaimana tiap respons mengecilkan sisi balok yang berbeda: mitigasi menurunkan tinggi bahaya sedangkan adaptasi menipiskan kedalaman kerentanan. Memakai keduanya sekaligus memangkas volume risiko dari <InlineMath math="8" /> menjadi <InlineMath math="2" />.
+
 ## Mitigasi Mengurangi Emisi atau Melindungi Penyerap Karbon
 
 Mitigasi menurunkan emisi gas rumah kaca atau menjaga kemampuan hutan, tanah, dan laut dalam menyerap karbon. Keberhasilan mitigasi diukur dari **perubahan emisi bersih** dan jumlah karbon yang tersimpan.
@@ -77,6 +82,7 @@ Mitigasi memangkas emisi atau membuat penyerap karbon menyerap lebih banyak. Mod
 <CarbonBudgetLab
   title={<>Memangkas Emisi dan Menanam Hutan</>}
   description={<>Geser seberapa besar <InlineMath math="\mathrm{CO_2}" /> fosil dipangkas sampai 2050 dan berapa banyak <InlineMath math="\mathrm{CO_2}" /> yang diserap hutan baru setiap tahun.</>}
+  footer={<>Pemangkasan emisi fosil bersama hutan baru menahan pemanasan dekat 1,5 C.</>}
   mode="mitigate"
   labels={{
     cut: "Potongan emisi fosil pada 2050",
@@ -111,21 +117,41 @@ Satu kegiatan bisa memiliki dua manfaat. Menanam kembali mangrove, misalnya, dap
 
 [Perlindungan dan pemulihan ekosistem](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/) dapat membantu mitigasi sekaligus adaptasi. Penyimpanan karbon dapat menekan jumlah karbon dioksida di atmosfer, sedangkan pemulihan lahan basah atau penghijauan kota dapat mengurangi risiko banjir dan panas. Hasil setiap tindakan tetap bergantung pada kondisi ekologi, tata kelola, dan pelaksanaan setempat, sehingga pengurangan emisi fosil masih diperlukan.
 
-Adaptasi mengurangi kerugian meskipun laut tetap naik. Tambahkan tembok laut atau sabuk mangrove, lalu biarkan badai datang.
+Adaptasi mengurangi kerugian meskipun laut tetap naik. Geser kenaikan muka laut di bawah untuk membandingkan puncak air badai di tembok laut <InlineMath math="2{,}5\text{ m}" /> dengan dan tanpa sabuk mangrove <InlineMath math="100\text{ m}" />.
 
-<SeaLevelRiseLab
+<MathVisual
   title={<>Tembok Laut dan Mangrove Menghadapi Badai</>}
-  description={<>Badai mendorong laut <InlineMath math="1\text{ m}" /> lebih tinggi dengan ombak setinggi <InlineMath math="1\text{ m}" />. Geser kenaikan muka laut, lalu pilih pertahanannya.</>}
-  mode="adapt"
+  description={
+    <>
+      Tinggi puncak air badai (meter) terhadap tinggi ombak datang <InlineMath math="x" /> (meter) saat gelombang badai <InlineMath math="1\text{ m}" /> untuk tembok laut saja (merah muda) dan tembok plus mangrove yang membelah ombak (ungu), dibanding puncak tembok <InlineMath math="2{,}5\text{ m}" /> (abu-abu).
+    </>
+  }
+  footer={<>Pada kenaikan 0,5 m, mangrove menahan puncak air 2,0 m di bawah tembok 2,5 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0, max: 1, value: 0.5, step: 0.1, label: "r" },
+    ],
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 2.5 }, to: { x: 2.6, y: 2.5 } },
+      { id: "bare", kind: "function", appearance: "warning", formula: "1 + r + x", domain: { min: 0, max: 2.2 } },
+      { id: "mangrove", kind: "function", appearance: "secondary", formula: "1 + r + 0.5 * x", domain: { min: 0, max: 2.2 } },
+    ],
+    readouts: [
+      { key: "wall-alone", formula: "1 + r + 1" },
+      { key: "wall-mangrove", formula: "1 + r + 0.5" },
+    ],
+    labels: [
+      { key: "wall", objectId: "wall", at: { x: 2.5, y: 2.5 }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    rise: "Kenaikan muka laut",
-    choose: "Pilih pertahanan",
-    defences: { wall: <>Tembok laut</>, mangrove: <>Mangrove</> },
-    level: <>Air tertinggi</>,
-    wave: <>Tinggi ombak di pantai</>,
-    flooded: <>Rumah terendam</>,
-    retreat: <>Garis pantai mundur</>,
-    viewLabel: "Desa pesisir di pantai landai dengan papan pasang surut",
+    wall: <>Puncak tembok 2,5 m</>,
+    r: <>Kenaikan muka laut <InlineMath math="r" /> (m)</>,
+    "wall-alone": <>Puncak air, tembok saja (m)</>,
+    "wall-mangrove": <>Puncak air, tembok + mangrove (m)</>,
   }}
 />
 
@@ -143,6 +169,7 @@ Kata kerja saja belum cukup. Kata **melindungi** bisa dipakai untuk kedua tujuan
 <Mermaid
   title={<>Pisahkan Tujuan Sebelum Memilih Aksi</>}
   description={<>Bedakan tindakan yang mengurangi penyebab dari tindakan yang membantu makhluk hidup beradaptasi.</>}
+  footer={<>Cocokkan aksi dengan tujuan utamanya: tekan emisi, kurangi rugi, atau keduanya.</>}
   chart={`flowchart TD
     A["Tindakan iklim"] --> B["Menekan gas rumah kaca"]
     A --> C["Mengurangi kerugian dampak"]
@@ -157,6 +184,7 @@ Dua pertanyaan itu membagi tindakan ke empat sudut. Bergeser ke kanan berarti ti
 <MathVisual
   title={<>Dua Pertanyaan, Empat Sudut</>}
   description={<>Tindakan diletakkan menurut hasil yang dituju: mitigasi (oranye), adaptasi (ungu), keduanya (fuchsia), atau bukan keduanya (abu-abu).</>}
+  footer={<>Hutan di kuadran mitigasi, lindungi rumah di adaptasi, mangrove di keduanya.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.8 } },
@@ -187,9 +215,11 @@ Dua pertanyaan itu membagi tindakan ke empat sudut. Bergeser ke kanan berarti ti
   }}
 />
 
+Lihat sudut kanan atas berwarna fuchsia: penanaman ulang mangrove berada di sana karena sekaligus menyimpan karbon dan melindungi rumah dari gelombang. Memisahkan dua sumbu ini menjaga tujuan utama proyek manfaat ganda tetap jelas.
+
 ## Satu Tindakan Bisa Memiliki Dua Fungsi
 
-Kalimat "desa pesisir menanam mangrove agar abrasi berkurang dan rumah warga lebih terlindungi" terutama menekankan adaptasi karena tindakan tersebut mengurangi kerugian di pesisir. Mangrove tetap dapat menyimpan karbon, tetapi hasil yang disebut dalam kalimat itu adalah perlindungan rumah warga.
+Kalimat "desa pesisir menanam mangrove agar abrasi berkurang dan rumah warga lebih terlindungi" terutama menekankan adaptasi karena tindakan itu mengurangi kerugian di pesisir. Mangrove tetap dapat menyimpan karbon, tetapi hasil yang disebut dalam kalimat itu adalah perlindungan rumah warga.
 
 Kelompokkan tindakan **berdasarkan hasil yang disebutkan**. Pengurangan gas rumah kaca termasuk mitigasi. Pengurangan kerugian akibat perubahan iklim termasuk adaptasi. Pemulihan ekosistem dapat membantu salah satu atau kedua tujuan, bergantung pada perubahan yang dihasilkan.
 
@@ -198,6 +228,7 @@ Sisi perlindungan pantai dari mangrove juga bisa dimodelkan. Akar dan batangnya 
 <MathVisual
   title={<>Gelombang Mengecil di Hutan Mangrove</>}
   description={<>Tinggi gelombang melewati sabuk mangrove selebar <InlineMath math="200" /> meter dalam model ilustratif. Mendatar: satu kotak grid berarti <InlineMath math="25" /> meter. Tegak: satu kotak grid berarti <InlineMath math="0{,}25" /> meter.</>}
+  footer={<>Ombak 1 m menyusut jadi 0,37 m sesudah 100 m mangrove dan 0,14 m di 200 m.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.3, max: 4.6 } },
@@ -221,3 +252,5 @@ Sisi perlindungan pantai dari mangrove juga bisa dimodelkan. Akar dan batangnya 
     end: <InlineMath math="e^{-2}\approx0{,}14\ \mathrm{m}" />,
   }}
 />
+
+Penurunan eksponensial ini menjelaskan mengapa lebar sabuk penting: <InlineMath math="100\text{ m}" /> pertama mangrove sudah meredam lebih dari <InlineMath math="60\%" /> tinggi gelombang, dan sabuk <InlineMath math="200\text{ m}" /> hanya menyisakan sekitar <InlineMath math="14\%" /> saat mencapai permukiman.

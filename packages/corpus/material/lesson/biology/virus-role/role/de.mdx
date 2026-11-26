@@ -68,6 +68,8 @@ Virale Oberflächenstrukturen binden an passende Zellen, während Viruspartikel 
   }}
 />
 
+Wechsle zwischen allen drei Reitern und achte darauf, wie derselbe virale Grundmechanismus je nach Wirt und Kontrolle völlig unterschiedliche Folgen hat. Unkontrollierte Vermehrung im menschlichen Gewebe verursacht Krankheit, Bakteriophagen steuern die Häufigkeit von Mikroben im Ökosystem, und veränderte Vektoren bringen ausgewählte Gene gezielt in Zielzellen.
+
 ## Viren nutzen unterschiedliche Übertragungswege
 
 Grippe, Dengue und Tollwut verbreiten sich über **unterschiedliche biologische Wege**. Der Krankheitsname allein bestimmt die Präventionsmaßnahme noch nicht. Bestimme, ob sich das Virus über Atemwegspartikel, einen Überträger wie eine Mücke oder einen anderen Weg ausbreitet.
@@ -78,25 +80,40 @@ Viruserkrankungen betreffen Menschen, andere Tiere und Pflanzen. Beim Menschen k
 
 Um eine Viruserkrankung zu verstehen, prüfe **den Übertragungsweg** und das betroffene Gewebe. Dengueviren werden hauptsächlich durch Stiche infizierter Aedes-Mücken übertragen. Atemwegsviren können sich verbreiten, wenn jemand Atemwegspartikel einer infizierten Person einatmet. Pflanzenviren gelangen etwa durch Insekten, Verletzungen oder infiziertes Pflanzmaterial in neue Wirte.
 
-Der Übertragungsweg entscheidet, welche Maßnahme wirkt. Wechsle den Weg und probier Masken und Händewaschen aus.
+Der Übertragungsweg entscheidet, welche Maßnahme wirkt. Verändere unten die Basisreproduktionszahl <InlineMath math="R" /> und vergleiche, wie Masken die Luftübertragung und Händewaschen die Kontaktübertragung bei Umsetzungsraten von <InlineMath math="0" /> bis <InlineMath math="1" /> senken.
 
-<EpidemicSpreadLab
+<MathVisual
   title={<>Der Weg entscheidet über die Maßnahme</>}
-  description={<>Wähl, ob sich das Virus über die Luft oder durch Berührung verbreitet, und stell dann Masken und Händewaschen ein.</>}
-  measures={["masks", "washing"]}
-  routes={["air", "touch"]}
+  description={
+    <>
+      Effektive Übertragung gegen Umsetzungsanteil <InlineMath math="x" /> für
+      Masken bei Luftübertragung (orange), Händewaschen bei Kontakt (violett)
+      und eine unpassende Maßnahme (grau).
+    </>
+  }
+  footer={<>Nur die zum Weg passende Maßnahme drückt die Übertragung Richtung R = 1.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 2, max: 4, value: 3, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "air-mask", kind: "function", appearance: "primary", formula: "r * (1 - 0.5 * x)^2", domain: { min: 0, max: 1 } },
+      { id: "touch-wash", kind: "function", appearance: "secondary", formula: "r * (1 - 0.5 * x)", domain: { min: 0, max: 1 } },
+      { id: "mismatched", kind: "function", appearance: "reference", formula: "r + 0x", domain: { min: 0, max: 1 } },
+      { id: "threshold", kind: "function", appearance: "warning", formula: "1 + 0x", domain: { min: 0, max: 1 } },
+    ],
+    readouts: [
+      { key: "full-mask", formula: "r * 0.25" },
+      { key: "full-wash", formula: "r * 0.5" },
+    ],
+  }}
   labels={{
-    chooseRoute: "Übertragungsweg wählen",
-    routes: { air: <>Über die Luft</>, touch: <>Durch Berührung</> },
-    masks: "Menschen mit Maske",
-    washing: "Menschen, die Hände waschen",
-    reproduction: <>Ein Fall steckt an</>,
-    peak: <>Höchstens gleichzeitig krank</>,
-    susceptible: <>Noch empfänglich</>,
-    infected: <>Gerade angesteckt</>,
-    recovered: <>Genesen</>,
-    immune: <>Durch Impfung immun</>,
-    viewLabel: "Marktplatz mit spazierenden Menschen und einer Kurve des Ausbruchs",
+    r: <>Ausgangswert <InlineMath math="R" /></>,
+    "full-mask": <>Luft-R bei voller Maskenquote</>,
+    "full-wash": <>Kontakt-R bei vollem Händewaschen</>,
   }}
 />
 
@@ -123,6 +140,7 @@ Dreh diesen viralen Vektor. Seine Proteinhülle, der Teil, der schon weiß, wie 
 <MathVisual
   title={<>Gleiche Hülle, neue Fracht</>}
   description={<>Eine ikosaedrische Virushülle (violett) mit einem Therapiegen (fuchsia), daneben die entfernten Krankheitsgene (rosa).</>}
+  footer={<>Das Kapsid dringt in Zielzellen ein und liefert nur das Therapiegen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: 0, max: 4 }, z: { min: -2, max: 2 } },
@@ -164,19 +182,38 @@ Dreh diesen viralen Vektor. Seine Proteinhülle, der Teil, der schon weiß, wie 
   }}
 />
 
-Impfstoffe sind eine kontrollierte Nutzung von Viren. Ein Impfstoff aus abgeschwächten oder inaktivierten Viren oder aus einem Teil davon, etwa dem Spike-Protein, trainiert den Körper, ohne die Krankheit auszulösen.
+Impfstoffe sind eine kontrollierte Nutzung von Viren. Ein Impfstoff aus abgeschwächten oder inaktivierten Viren oder aus einem Teil davon, etwa dem Spike-Protein, trainiert den Körper, ohne die Krankheit auszulösen. Verändere unten den Halbwertstag <InlineMath math="d" /> der Immunantwort, um den Schutzaufbau über drei Wochen zu verfolgen.
 
-<AntibodyNeutralizeLab
+<MathVisual
   title={<>Antikörper bauen sich nach der Impfung auf</>}
-  description={<>Verschieb die Tage nach der ersten Dosis und drück auf Abspielen, um zu sehen, ob Virionen noch andocken können.</>}
-  mode="days"
+  description={
+    <>
+      Prozentuale Chance, dass ein Virion über <InlineMath math="21" /> Tage
+      nach der ersten Dosis blockiert wird, bei wählbarem Mittelpunkt{" "}
+      <InlineMath math="d" />.
+    </>
+  }
+  footer={<>In Woche eins bleibt der Schutz niedrig und steigt in Woche zwei steil an.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 21 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 6, max: 12, value: 8, step: 1, label: "d" },
+    ],
+    objects: [
+      { id: "blocking", kind: "function", appearance: "primary", formula: "100 / (1 + exp(-0.4 * (x - d)))", domain: { min: 0, max: 21 } },
+      { id: "half", kind: "function", appearance: "reference", formula: "50 + 0x", domain: { min: 0, max: 21 } },
+    ],
+    readouts: [
+      { key: "day-seven", formula: "100 / (1 + exp(-0.4 * (7 - d)))" },
+      { key: "day-fourteen", formula: "100 / (1 + exp(-0.4 * (14 - d)))" },
+    ],
+  }}
   labels={{
-    day: "Tage nach der Dosis",
-    level: <>Antikörperspiegel</>,
-    covered: <>Bedeckte Spikes</>,
-    blocked: <>Blockierte Virionen</>,
-    chance: <>Chance, dass ein Virion blockiert ist</>,
-    viewLabel: "SARS-CoV-2-Virionen nähern sich ACE2-Rezeptoren einer Zelloberfläche, mit Antikörpern an ihren Spikes",
+    d: <>Halbwertstag der Antwort <InlineMath math="d" /></>,
+    "day-seven": <>Blockierchance an Tag 7 (%)</>,
+    "day-fourteen": <>Blockierchance an Tag 14 (%)</>,
   }}
 />
 
@@ -191,6 +228,7 @@ Leg die drei Fragen auf eine Karte. Jeder Punkt nennt einen Wirt und das Virus, 
 <MathVisual
   title={<>Wirt, Wirkung und Kontrolle auf einer Karte</>}
   description={<>Vier Virusfälle nach ihrer Wirkung auf den Wirt (waagerecht) und danach, wie kontrolliert sie sind (senkrecht).</>}
+  footer={<>Stärkere Kontrolle verschiebt Viren von Ausbrüchen zu gezielten Werkzeugen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 } },
@@ -221,3 +259,5 @@ Leg die drei Fragen auf eine Karte. Jeder Punkt nennt einen Wirt und das Virus, 
     control: <>kontrollierter</>,
   }}
 />
+
+Liest man die Karte von links unten nach rechts oben, trennt das Maß an Kontrolle natürliche Infektionen klar von der Biotechnologie. Grippeviren und Meeresphagen liegen tief, weil sie ohne menschliche Steuerung ablaufen, während Biopestizide und Gentherapie-Vektoren weit oben stehen, weil Forschende sowohl den Wirt als auch die Wirkung eng begrenzen.

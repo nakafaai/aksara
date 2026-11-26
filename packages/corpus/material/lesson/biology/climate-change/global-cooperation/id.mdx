@@ -30,22 +30,25 @@ Perjanjian iklim internasional memakai sasaran suhu untuk mengarahkan tindakan b
 
 [Risiko dan kerugian akibat perubahan iklim](https://www.ipcc.ch/report/ar6/syr/resources/spm-headline-statements/) meningkat pada setiap tambahan pemanasan. Sasaran <InlineMath math="1{,}5\,^\circ\text{C}" /> dan <InlineMath math="2\,^\circ\text{C}" /> menjadi ukuran bersama untuk menilai seberapa cepat dan seberapa besar emisi perlu diturunkan.
 
-Target suhu bisa diubah menjadi anggaran karbon dioksida bersama. IPCC memperkirakan bahwa sejak awal 2020 masih ada sekitar <InlineMath math="500" /> miliar ton <InlineMath math="\mathrm{CO_2}" /> yang boleh dilepaskan untuk peluang separuh-separuh tetap di bawah <InlineMath math="1{,}5\,^\circ\text{C}" />. Adegan di bawah menghabiskan anggaran itu dengan dua cara, mulai dari angka bulat <InlineMath math="40" /> miliar ton per tahun. Kedua bangun luasnya sama, <InlineMath math="500" />. Kalau emisi tetap, persegi panjang merah muda habis setelah <InlineMath math="12{,}5" /> tahun. Kalau emisi diturunkan teratur sampai nol, segitiga hijau toska memanjang sampai <InlineMath math="25" /> tahun. Karena itu, target suhu juga menentukan seberapa cepat emisi harus turun, bukan hanya seberapa jauh.
+Target suhu bisa diubah menjadi anggaran karbon dioksida bersama. IPCC memperkirakan bahwa sejak awal 2020 masih ada sekitar <InlineMath math="500" /> miliar ton <InlineMath math="\mathrm{CO_2}" /> yang boleh dilepaskan untuk peluang separuh-separuh tetap di bawah <InlineMath math="1{,}5\,^\circ\text{C}" />.
+
+Adegan di bawah menghabiskan anggaran itu dengan dua cara, mulai dari angka bulat <InlineMath math="40" /> miliar ton per tahun. Kedua bangun luasnya sama, <InlineMath math="500" />. Kalau emisi tetap, persegi panjang merah muda habis setelah <InlineMath math="12{,}5" /> tahun. Kalau emisi diturunkan teratur sampai nol, segitiga hijau toska memanjang sampai <InlineMath math="25" /> tahun. Karena itu, target suhu juga menentukan seberapa cepat emisi harus turun, bukan hanya seberapa jauh.
 
 <MathVisual
   title={<>Dua Cara Menghabiskan Satu Anggaran Karbon</>}
-  description={<>Anggaran <InlineMath math="500" /> <InlineMath math="\mathrm{GtCO_2}" /> yang dihabiskan mulai dari <InlineMath math="40" /> <InlineMath math="\mathrm{GtCO_2}" /> per tahun. Mendatar: tahun sesudah 2020 dalam satuan <InlineMath math="5" />. Tegak: emisi tahunan dalam satuan <InlineMath math="10" /> <InlineMath math="\mathrm{GtCO_2}" />.</>}
+  description={<>Anggaran <InlineMath math="500" /> <InlineMath math="\mathrm{GtCO_2}" /> yang dihabiskan mulai dari <InlineMath math="40" /> <InlineMath math="\mathrm{GtCO_2}" /> per tahun. Mendatar: tahun sesudah 2020. Tegak: emisi tahunan dalam <InlineMath math="\mathrm{GtCO_2}" />.</>}
+  footer={<>Emisi tetap menghabiskan 500 GtCO2 dalam 12,5 tahun, penurunan linear butuh 25 tahun.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 36 }, y: { min: -2, max: 46 } },
     view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "constant", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 500 / 40 / 5, y: 0 }, { x: 500 / 40 / 5, y: 40 / 10 }, { x: 0, y: 40 / 10 }] },
-      { id: "decline", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: (2 * 500) / 40 / 5, y: 0 }, { x: 0, y: 40 / 10 }] },
+      { id: "constant", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 12.5, y: 0 }, { x: 12.5, y: 40 }, { x: 0, y: 40 }] },
+      { id: "decline", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 25, y: 0 }, { x: 0, y: 40 }] },
     ],
     labels: [
-      { key: "constant", objectId: "constant", at: { x: 500 / 40 / 5, y: 40 / 10 }, placement: "above-right" },
-      { key: "decline", objectId: "decline", at: { x: (2 * 500) / 40 / 5, y: 0 }, placement: "above" },
+      { key: "constant", objectId: "constant", at: { x: 12.5, y: 40 }, placement: "above-right" },
+      { key: "decline", objectId: "decline", at: { x: 25, y: 0 }, placement: "above" },
     ],
   }}
   labels={{
@@ -54,11 +57,12 @@ Target suhu bisa diubah menjadi anggaran karbon dioksida bersama. IPCC memperkir
   }}
 />
 
-Target suhu menjadi ukuran bersama begitu kamu mengubahnya menjadi anggaran. IPCC memperkirakan berapa banyak karbon dioksida yang masih bisa dilepas sejak 2020 untuk peluang separuh-separuh pada tiap batas: <InlineMath math="500" />, <InlineMath math="850" />, dan <InlineMath math="1350\ \mathrm{GtCO_2}" /> untuk <InlineMath math="1{,}5" />, <InlineMath math="1{,}7" />, dan <InlineMath math="2\ ^\circ\mathrm{C}" />. Bagi masing-masing dengan <InlineMath math="40\ \mathrm{GtCO_2}" /> per tahun untuk melihat berapa lama anggaran itu bertahan pada laju tersebut. Putar batangnya dan bandingkan.
+Target suhu menjadi ukuran bersama begitu kamu mengubahnya menjadi anggaran. IPCC memperkirakan berapa banyak karbon dioksida yang masih bisa dilepas sejak 2020 untuk peluang separuh-separuh pada tiap batas: <InlineMath math="500" />, <InlineMath math="850" />, dan <InlineMath math="1350\ \mathrm{GtCO_2}" /> untuk <InlineMath math="1{,}5" />, <InlineMath math="1{,}7" />, dan <InlineMath math="2\ ^\circ\mathrm{C}" />. Bagi masing-masing dengan <InlineMath math="40\ \mathrm{GtCO_2}" /> per tahun untuk melihat berapa lama anggaran itu bertahan pada laju itu. Putar batangnya dan bandingkan.
 
 <MathVisual
   title={<>Tiap Target Punya Anggarannya Sendiri</>}
   description={<>Sisa anggaran karbon dioksida sejak 2020 untuk peluang <InlineMath math="50" /> persen pada tiga batas pemanasan. Tiap label membagi anggaran dengan <InlineMath math="40\ \mathrm{GtCO_2}" /> per tahun. Satu kotak grid ke atas berarti <InlineMath math="250\ \mathrm{GtCO_2}" />.</>}
+  footer={<>Batas lebih tinggi memberi sisa lebih lama, dari 12,5 tahun (1,5 C) ke 33,75 (2 C).</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -86,6 +90,7 @@ Target suhu penting bagi setiap pantai. Desa di bawah menunjukkan arti setiap ja
 <SeaLevelRiseLab
   title={<>Muka Laut 2100 Bergantung pada Jalur Emisi</>}
   description={<>Pilih jalur emisi. Laut naik ke nilai tengahnya pada 2100, dibandingkan dengan rata-rata 1995 sampai 2014.</>}
+  footer={<>Pemangkasan bersama menahan kenaikan laut 2100 dekat 0,44 m alih-alih 0,77 m.</>}
   mode="scenario"
   labels={{
     choose: "Pilih jalur emisi",
@@ -114,7 +119,7 @@ Dalam kerja sama iklim, negara perlu menyepakati tujuan, mengukur dan melaporkan
 
 [Rencana iklim setiap negara](https://unfccc.int/process-and-meetings/the-paris-agreement/nationally-determined-contributions-ndcs) disebut NDC. Setiap NDC menjelaskan cara suatu negara akan menurunkan emisi dan beradaptasi terhadap dampak perubahan iklim. Laporan berikutnya kemudian dapat **dibandingkan dengan rencana** yang sudah diserahkan.
 
-Setelah menyerahkan NDC, negara melaporkan tindakan, kemajuan, dan dukungan melalui kerangka transparansi yang diperkuat. [Global stocktake](https://unfccc.int/topics/global-stocktake) kemudian menilai kemajuan bersama setiap lima tahun. Hasil penilaian tersebut menjadi dasar bagi setiap negara untuk memperbarui rencana iklim berikutnya. Penilaian tersebut juga membandingkan tindakan bersama dengan tujuan jangka panjang yang telah disepakati.
+Setelah menyerahkan NDC, negara melaporkan tindakan, kemajuan, dan dukungan melalui kerangka transparansi yang diperkuat. [Global stocktake](https://unfccc.int/topics/global-stocktake) kemudian menilai kemajuan bersama setiap lima tahun. Hasil penilaian ini menjadi dasar bagi setiap negara untuk memperbarui rencana iklim berikutnya. Penilaian ini juga membandingkan tindakan bersama dengan tujuan jangka panjang yang telah disepakati.
 
 | Unsur kerja sama | Yang ditetapkan atau dicatat | Mengapa dibutuhkan |
 | --- | --- | --- |
@@ -126,20 +131,44 @@ Setelah menyerahkan NDC, negara melaporkan tindakan, kemajuan, dan dukungan mela
 
 > Target menyatakan hasil yang ingin dicapai, rencana nasional memuat tindakan setiap negara, laporan mencatat kemajuan, dan global stocktake menilai hasil gabungan dari tindakan semua negara.
 
-Potongan emisi satu negara saja tidak cukup, karena <InlineMath math="\mathrm{CO_2}" /> bercampur di seluruh atmosfer. Coba buktikan dengan model bak mandi berikut.
+Potongan emisi satu negara saja tidak cukup, karena <InlineMath math="\mathrm{CO_2}" /> bercampur di seluruh atmosfer. Geser pangsa emisi global yang dipangkas hingga nol pada 2050 di bawah untuk melihat perubahan <InlineMath math="\mathrm{CO_2}" /> tahun 2100 dibanding kadar hari ini sebesar <InlineMath math="425\text{ ppm}" />.
 
-<CarbonBudgetLab
-  title={<>Emisi Semua Wilayah Mengisi Bak yang Sama</>}
-  description={<>Emisi mengalir dari keran, laut dan daratan menyerap sebagian lewat saluran, dan tinggi air adalah <InlineMath math="\mathrm{CO_2}" /> di udara. Pilih wilayah yang memangkas <InlineMath math="\mathrm{CO_2}" /> fosilnya sampai nol pada 2050.</>}
-  mode="cooperate"
+<MathVisual
+  title={<>Emisi Semua Wilayah Mengisi Atmosfer yang Sama</>}
+  description={
+    <>
+      Persentase perubahan <InlineMath math="\mathrm{CO_2}" /> tahun 2100 dibanding kadar hari ini (<InlineMath math="425\text{ ppm}" />) terhadap pangsa <InlineMath math="x" /> (dalam <InlineMath math="\%" />) emisi fosil global yang dipangkas hingga nol pada 2050.
+    </>
+  }
+  footer={<>CO2 baru turun di bawah 425 ppm pada 2100 jika lebih dari 55% emisi global dipangkas.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 110 }, y: { min: -24, max: 30 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 100, value: 31, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "today", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 100, y: 0 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "22.6 - 0.407 * x", domain: { min: 0, max: 100 } },
+      { id: "china", kind: "point", appearance: "warning", at: { x: 31, y: 10 } },
+      { id: "all", kind: "point", appearance: "secondary", at: { x: 100, y: -18.1 } },
+    ],
+    readouts: [
+      { key: "co2-2100", formula: "521 - 1.73 * p" },
+    ],
+    labels: [
+      { key: "today", objectId: "today", at: { x: 55, y: 0 }, placement: "above-right" },
+      { key: "china", objectId: "china", at: { x: 31, y: 10 }, placement: "above-right" },
+      { key: "all", objectId: "all", at: { x: 100, y: -18.1 }, placement: "below-left" },
+    ],
+  }}
   labels={{
-    chooseRegions: "Pilih wilayah",
-    regions: { china: <>Tiongkok</>, usa: <>AS</>, india: <>India</>, europe: <>Uni Eropa</>, rest: <>Negara lain</> },
-    level: <><InlineMath math="\mathrm{CO_2}" /> pada 2100</>,
-    warming: <>Pemanasan pada 2100</>,
-    emissions: <><InlineMath math="\mathrm{CO_2}" /> yang dilepas pada 2050 per tahun</>,
-    peak: <><InlineMath math="\mathrm{CO_2}" /> tertinggi</>,
-    viewLabel: "Bak mandi atmosfer dengan keran emisi, saluran penyerapan, dan grafik karbon dioksida",
+    today: <>Hari ini (425 ppm)</>,
+    china: <>Tiongkok saja (31%, 467 ppm)</>,
+    all: <>Semua wilayah (100%, 348 ppm)</>,
+    p: <>Pangsa emisi dipangkas <InlineMath math="p" /> (%)</>,
+    "co2-2100": <><InlineMath math="\mathrm{CO_2}" /> pada 2100 (ppm)</>,
   }}
 />
 
@@ -147,13 +176,14 @@ Kalau tidak ada wilayah yang ikut, <InlineMath math="\mathrm{CO_2}" /> dalam mod
 
 ## Kesepakatan Global Memengaruhi Keputusan Lokal
 
-Kesepakatan global menjadi acuan bagi rencana nasional. Rencana tersebut kemudian diterapkan melalui **kebijakan energi, perlindungan hutan, dan tata kota**. Setiap kebijakan memengaruhi sumber listrik, penyerapan karbon, transportasi, atau risiko banjir. Informasi yang jelas membuat masyarakat dapat membandingkan pilihan dan akibatnya.
+Kesepakatan global menjadi acuan bagi rencana nasional. Rencana itu kemudian diterapkan melalui **kebijakan energi, perlindungan hutan, dan tata kota**. Setiap kebijakan memengaruhi sumber listrik, penyerapan karbon, transportasi, atau risiko banjir. Informasi yang jelas membuat masyarakat dapat membandingkan pilihan dan akibatnya.
 
 Kebijakan nasional dapat diterapkan di daerah melalui program hemat energi, pengurangan sampah, dan perlindungan lingkungan setempat.
 
 <Mermaid
   title={<>Dari Tujuan Global ke Rencana Nasional</>}
   description={<>Diagram ini menghubungkan target suhu global dengan NDC nasional, laporan transparansi, global stocktake, dan pembaruan NDC.</>}
+  footer={<>NDC, laporan transparansi, dan global stocktake berputar memperkuat target iklim.</>}
   chart={`flowchart LR
     A["Sasaran suhu bersama"] --> B["NDC nasional"]
     B --> C["Laporan transparansi"]
@@ -161,6 +191,8 @@ Kebijakan nasional dapat diterapkan di daerah melalui program hemat energi, peng
     D --> E["NDC berikutnya diperkuat"]
     E --> B`}
 />
+
+Perhatikan panah balik dari NDC berikutnya yang diperkuat ke awal siklus: Perjanjian Paris dirancang sebagai putaran berulang agar tiap tinjauan lima tahunan mendorong rencana nasional makin mendekati sasaran suhu bersama.
 
 ## Laporan Menunjukkan Hasil Rencana Iklim
 
@@ -178,6 +210,7 @@ Siklus ini berjalan dengan dua jam yang sama-sama berdetak tiap lima tahun, deng
 <MathVisual
   title={<>Tiap Stocktake Mengisi Rencana Berikutnya</>}
   description={<>Tahun rencana nasional (baris atas) dan global stocktake (baris bawah) dalam Persetujuan Paris. Satu kotak grid mendatar berarti <InlineMath math="2" /> tahun.</>}
+  footer={<>Tiap global stocktake hadir dua tahun sebelum putaran NDC berikutnya untuk masukan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 3 } },
@@ -206,3 +239,5 @@ Siklus ini berjalan dengan dua jam yang sama-sama berdetak tiap lima tahun, deng
     plan: <>rencana baru, 2025</>,
   }}
 />
+
+Ikuti panah diagonal dari stocktake 2023, 2028, dan 2033 ke rencana 2025, 2030, dan 2035. Jeda dua tahun ini memastikan tiap negara menerima hasil penilaian bersama tepat waktu untuk memperkuat komitmen berikutnya.

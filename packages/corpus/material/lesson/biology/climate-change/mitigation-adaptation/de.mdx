@@ -32,11 +32,14 @@ Ordne eine Maßnahme nach ihrem wichtigsten Ergebnis ein: Sie begrenzt Treibhaus
 
 > Minderung begrenzt die Ursache der Erwärmung. Anpassung verringert Schäden durch Klimafolgen. Manche Maßnahmen erfüllen beide Zwecke, doch ihr Hauptziel muss weiterhin klar benannt werden.
 
-Klimarisiko entsteht, wenn drei Dinge zusammenkommen: eine **Gefahr** wie eine Hitzewelle oder Sturmflut, die **Exposition** der Menschen und Orte in ihrem Weg und ihre **Verwundbarkeit**, also wie leicht sie Schaden nehmen. Die Szene unten nutzt einen einfachen Beispielindex, der die drei multipliziert, gezeichnet als Quader mit der Gefahr als Höhe. Minderung wirkt auf die Ursache und macht den Quader niedriger. Anpassung wirkt auf den Schaden und macht ihn von vorn nach hinten dünner. Dreh die Szene: Beides halbiert das Volumen, aber in verschiedene Richtungen, und zusammen sinkt es auf ein Viertel.
+Klimarisiko entsteht, wenn drei Dinge zusammenkommen: eine **Gefahr** wie eine Hitzewelle oder Sturmflut, die **Exposition** der Menschen und Orte in ihrem Weg und ihre **Verwundbarkeit**, also wie leicht sie Schaden nehmen.
+
+Die Szene unten nutzt einen einfachen Beispielindex, der die drei multipliziert, gezeichnet als Quader mit der Gefahr als Höhe. Minderung wirkt auf die Ursache und macht den Quader niedriger. Anpassung wirkt auf den Schaden und macht ihn von vorn nach hinten dünner. Dreh die Szene: Beides halbiert das Volumen, aber in verschiedene Richtungen, und zusammen sinkt es auf ein Viertel.
 
 <MathVisual
   title={<>Zwei Wege, Klimarisiko zu verkleinern</>}
   description={<>Ein beispielhafter Risikoindex aus <InlineMath math="\text{Gefahr}\times\text{Exposition}\times\text{Verwundbarkeit}" />. Die Höhe ist die Gefahr, die Breite die Exposition, die Tiefe die Verwundbarkeit.</>}
+  footer={<>Minderung oder Anpassung halbiert das Risiko, zusammen sinkt es auf ein Viertel.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 12 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -62,6 +65,8 @@ Klimarisiko entsteht, wenn drei Dinge zusammenkommen: eine **Gefahr** wie eine H
   }}
 />
 
+Jede Maßnahme verkleinert eine andere Kante des Quaders: Minderung senkt die Höhe der Gefahr, während Anpassung die Tiefe der Verwundbarkeit verringert. Zusammen schrumpft das Risikovolumen von <InlineMath math="8" /> auf <InlineMath math="2" />.
+
 ## Minderung senkt Emissionen oder schützt Kohlenstoffsenken
 
 <Highlight>Minderung senkt Treibhausgasemissionen</Highlight> oder erhält die Fähigkeit von Wäldern, Böden und Meeren, Kohlenstoff aufzunehmen. Ihr Erfolg wird an Veränderungen der Nettoemissionen und der gespeicherten Kohlenstoffmenge gemessen.
@@ -77,6 +82,7 @@ Klimaschutz senkt entweder Emissionen oder lässt Kohlenstoffsenken mehr aufnehm
 <CarbonBudgetLab
   title={<>Emissionen senken und Wälder pflanzen</>}
   description={<>Stell ein, wie stark fossiles <InlineMath math="\mathrm{CO_2}" /> bis 2050 sinkt und wie viel <InlineMath math="\mathrm{CO_2}" /> neue Wälder jedes Jahr aufnehmen.</>}
+  footer={<>Starke Emissionssenkung plus neue Wälder halten die Erwärmung nahe 1,5 C.</>}
   mode="mitigate"
   labels={{
     cut: "Fossile Emissionen bis 2050 gesenkt um",
@@ -111,21 +117,41 @@ Wiederhergestellte Mangroven können **Kohlenstoff speichern und zugleich Küste
 
 Der [Schutz und die Wiederherstellung von Ökosystemen](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/) können Minderung und Anpassung unterstützen. Kohlenstoffspeicherung trägt zur Minderung bei. Maßnahmen wie die Wiederherstellung von Feuchtgebieten oder Stadtbegrünung können bestimmte Klimarisiken senken. Die Senkung fossiler Emissionen bleibt notwendig. Der Nutzen dieser Maßnahmen hängt von lokaler Ökologie, Steuerung und Umsetzung ab.
 
-Anpassung verringert den Schaden, auch wenn das Meer weiter steigt. Bau eine Ufermauer oder einen Mangrovengürtel und lass den Sturm kommen.
+Anpassung verringert den Schaden, auch wenn das Meer weiter steigt. Verschieb den Meeresspiegelanstieg unten und vergleiche den höchsten Wasserstand an einer <InlineMath math="2{,}5\text{ m}" /> hohen Ufermauer mit und ohne <InlineMath math="100\text{ m}" /> Mangrovengürtel.
 
-<SeaLevelRiseLab
+<MathVisual
   title={<>Ufermauer und Mangroven gegen einen Sturm</>}
-  description={<>Der Sturm drückt das Meer um <InlineMath math="1\text{ m}" /> höher, mit <InlineMath math="1\text{ m}" /> hohen Wellen. Verschieb den Anstieg und wähl den Schutz.</>}
-  mode="adapt"
+  description={
+    <>
+      Höchster Sturm-Wasserstand (in Metern) gegen die ankommende Wellenhöhe <InlineMath math="x" /> (in Metern) bei <InlineMath math="1\text{ m}" /> Sturmflut für die Mauer allein (rosa) und Mauer plus Mangroven, die Wellen halbieren (violett), im Vergleich zur <InlineMath math="2{,}5\text{ m}" />-Mauerkrone (grau).
+    </>
+  }
+  footer={<>Bei +0,5 m Anstieg halten Mangroven den Wasserstand bei 2,0 m unter der 2,5 m-Mauer.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0, max: 1, value: 0.5, step: 0.1, label: "r" },
+    ],
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 2.5 }, to: { x: 2.6, y: 2.5 } },
+      { id: "bare", kind: "function", appearance: "warning", formula: "1 + r + x", domain: { min: 0, max: 2.2 } },
+      { id: "mangrove", kind: "function", appearance: "secondary", formula: "1 + r + 0.5 * x", domain: { min: 0, max: 2.2 } },
+    ],
+    readouts: [
+      { key: "wall-alone", formula: "1 + r + 1" },
+      { key: "wall-mangrove", formula: "1 + r + 0.5" },
+    ],
+    labels: [
+      { key: "wall", objectId: "wall", at: { x: 2.5, y: 2.5 }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    rise: "Meeresspiegelanstieg",
-    choose: "Schutz wählen",
-    defences: { wall: <>Ufermauer</>, mangrove: <>Mangroven</> },
-    level: <>Höchster Wasserstand</>,
-    wave: <>Wellenhöhe an der Küste</>,
-    flooded: <>Überflutete Häuser</>,
-    retreat: <>Küstenlinie weicht zurück</>,
-    viewLabel: "Küstendorf an einem flachen Strand mit Pegel",
+    wall: <>2,5 m-Mauerkrone</>,
+    r: <>Meeresspiegelanstieg <InlineMath math="r" /> (m)</>,
+    "wall-alone": <>Spitzenstand, nur Mauer (m)</>,
+    "wall-mangrove": <>Spitzenstand, Mauer + Mangroven (m)</>,
   }}
 />
 
@@ -143,6 +169,7 @@ Ein Verb allein reicht nicht aus. **Schützen** kann beide Ziele beschreiben:
 <Mermaid
   title={<>Erst das Ziel erkennen, dann die Maßnahme einordnen</>}
   description={<>Unterscheide Maßnahmen, die Ursachen begrenzen, von Maßnahmen, die Menschen und Ökosysteme an Klimafolgen anpassen.</>}
+  footer={<>Ordne jede Maßnahme ihrem Hauptziel zu: Emissionen senken, Schäden mindern oder beides.</>}
   chart={`flowchart TD
     A["Klimaschutz"] --> B["Treibhausgase senken"]
     A --> C["Schäden durch Folgen verringern"]
@@ -157,6 +184,7 @@ Die zwei Fragen teilen Maßnahmen in vier Ecken. Nach rechts heißt, die Maßnah
 <MathVisual
   title={<>Zwei Fragen, vier Ecken</>}
   description={<>Maßnahmen nach ihrem beabsichtigten Ergebnis: Minderung (orange), Anpassung (violett), beides (fuchsia) oder keins von beiden (grau).</>}
+  footer={<>Waldschutz steht bei Minderung, Hochwasserschutz bei Anpassung, Mangroven bei beidem.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.8 } },
@@ -187,6 +215,8 @@ Die zwei Fragen teilen Maßnahmen in vier Ecken. Nach rechts heißt, die Maßnah
   }}
 />
 
+Schau in die obere rechte Ecke in Fuchsia: Neu gepflanzte Mangroven liegen dort, weil sie Kohlenstoff speichern und Häuser vor Wellen schützen. Die beiden Achsen helfen, das Hauptziel auch bei doppeltem Nutzen klar zu benennen.
+
 ## Eine Maßnahme kann zwei Wirkungen haben
 
 Der Satz „Ein Küstendorf pflanzt Mangroven, damit die Erosion abnimmt und Häuser besser geschützt sind“ betont vor allem die Anpassung. Das genannte Ziel ist, Schäden an der Küste zu verringern. Die Mangroven können zusätzlich Kohlenstoff speichern, doch dieser Satz richtet den Blick auf den Schutz.
@@ -198,6 +228,7 @@ Auch die Küstenschutzseite der Mangroven lässt sich modellieren. Wurzeln und S
 <MathVisual
   title={<>Wellen schrumpfen in den Mangroven</>}
   description={<>Wellenhöhe durch einen <InlineMath math="200" /> Meter breiten Mangrovengürtel in einem beispielhaften Modell. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="25" /> Metern. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="0{,}25" /> Metern.</>}
+  footer={<>Eine 1 m-Welle sinkt nach 100 m Mangroven auf 0,37 m und nach 200 m auf 0,14 m.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.3, max: 4.6 } },
@@ -221,3 +252,5 @@ Auch die Küstenschutzseite der Mangroven lässt sich modellieren. Wurzeln und S
     end: <InlineMath math="e^{-2}\approx0{,}14\ \mathrm{m}" />,
   }}
 />
+
+Der exponentielle Abfall zeigt, warum die Gürtelbreite zählt: Schon die ersten <InlineMath math="100\text{ m}" /> Mangroven nehmen über <InlineMath math="60\%" /> der Wellenhöhe weg, und nach <InlineMath math="200\text{ m}" /> erreichen nur noch etwa <InlineMath math="14\%" /> das Dorf dahinter.

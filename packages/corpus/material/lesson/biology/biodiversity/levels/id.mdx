@@ -10,13 +10,13 @@ export const metadata = {
 
 ## Tiga Tingkat Keanekaragaman di Tepi Sawah
 
-Di tepi sawah, kita dapat membandingkan variasi antarrumpun padi, spesies yang hidup bersama, dan kondisi habitat. Pengamatan tersebut mengarah pada pembahasan <Highlight>keanekaragaman genetik, spesies, dan ekosistem</Highlight>, tetapi sifat tanaman yang terlihat belum membuktikan adanya perbedaan genetik.
+Di tepi sawah, kita dapat membandingkan variasi antarrumpun padi, spesies yang hidup bersama, dan kondisi habitat. Pengamatan ini mengarah pada pembahasan <Highlight>keanekaragaman genetik, spesies, dan ekosistem</Highlight>, tetapi sifat tanaman yang terlihat belum membuktikan adanya perbedaan genetik.
 
 ### Mulai dari Organisme dan Habitatnya
 
 Perhatikan beberapa rumpun padi. Ada tanaman yang lebih tinggi, warna bulirnya berbeda, atau waktu masaknya lebih lama. Perbedaan itu belum tentu menunjukkan spesies atau susunan genetik yang berbeda. **Lingkungan juga dapat memengaruhi sifat** yang terlihat, sehingga variasi genetik perlu dibuktikan dengan data genetik atau hasil persilangan.
 
-Di sekitar padi juga ada jamur, ikan kecil, katak, serangga air, dan tumbuhan lain. Perbandingan organisme yang hadir menunjukkan keanekaragaman spesies. Jika tanah basah, arus air, cahaya, dan tempat berlindung ikut dibandingkan, perbandingan tersebut masuk ke tingkat keanekaragaman ekosistem.
+Di sekitar padi juga ada jamur, ikan kecil, katak, serangga air, dan tumbuhan lain. Perbandingan organisme yang hadir menunjukkan keanekaragaman spesies. Jika tanah basah, arus air, cahaya, dan tempat berlindung ikut dibandingkan, perbandingan ini masuk ke tingkat keanekaragaman ekosistem.
 
 ### Tiga Tingkat Keanekaragaman Hayati
 
@@ -49,6 +49,7 @@ Bayangkan dua populasi padi berisi <InlineMath math="10" /> tanaman, tiap tanama
 <MathVisual
   title={<>Keragaman Memberi Sebagian Tanaman Peluang</>}
   description={<>Ketahanan ilustratif dari <InlineMath math="10" /> tanaman dengan satu varian yang sama (atas) dan <InlineMath math="10" /> tanaman dengan varian berbeda (bawah). Titik di kanan garis merah muda bertahan dalam kondisi baru.</>}
+  footer={<>Hanya baris dengan variasi genetik yang memiliki tanaman melewati ambang.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 3.5 } },
@@ -89,21 +90,39 @@ Bayangkan dua populasi padi berisi <InlineMath math="10" /> tanaman, tiap tanama
   }}
 />
 
-Variasi genetik bisa sekecil satu basa. Kartu berikut membandingkan bagian awal gen beta-globin manusia (HBB), gen yang ikut membentuk hemoglobin, pada dua alel.
+Variasi genetik bisa sekecil satu basa pada gen beta-globin manusia (HBB), mengubah kodon `GAG` menjadi `GTG`. Geser frekuensi alel varian <InlineMath math="q" /> di bawah untuk melihat bagaimana satu alel berbeda menyebar dalam genotipe populasi.
 
-<DnaHelixLab
-  title={<>Satu Basa Membuat Alel Berbeda</>}
-  description={<>Bagian awal gen HBB manusia, <InlineMath math="27" /> pasangan basa. Ganti antara alel biasa dan alel sel sabit, lalu lihat basa yang berubah menyala.</>}
-  sequence="ATG GTG CAT CTG ACT CCT GAG GAG AAG"
-  variant="ATG GTG CAT CTG ACT CCT GTG GAG AAG"
+<MathVisual
+  title={<>Proporsi Genotipe dari Satu Alel Varian</>}
+  description={
+    <>
+      Persentase homozigot biasa (abu-abu), pembawa heterozigot (oranye), dan
+      homozigot varian (ungu) saat frekuensi alel <InlineMath math="x" /> naik
+      dari <InlineMath math="0" /> ke <InlineMath math="0{,}5" />.
+    </>
+  }
+  footer={<>Bahkan alel satu basa yang jarang tetap banyak hadir pada pembawa heterozigot.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0.05, max: 0.5, value: 0.1, step: 0.05, label: "q" },
+    ],
+    objects: [
+      { id: "usual", kind: "function", appearance: "reference", formula: "100 * (1 - x)^2", domain: { min: 0, max: 0.5 } },
+      { id: "carrier", kind: "function", appearance: "primary", formula: "200 * x * (1 - x)", domain: { min: 0, max: 0.5 } },
+      { id: "variant", kind: "function", appearance: "secondary", formula: "100 * x^2", domain: { min: 0, max: 0.5 } },
+    ],
+    readouts: [
+      { key: "carriers", formula: "200 * q * (1 - q)" },
+      { key: "homozygous", formula: "100 * q^2" },
+    ],
+  }}
   labels={{
-    choose: "Pilih alel",
-    strands: { first: <>Alel biasa</>, second: <>Alel sel sabit</> },
-    length: <>Pasangan basa</>,
-    span: <>Panjang</>,
-    differences: <>Basa berbeda</>,
-    identity: <>Basa sama</>,
-    viewLabel: "Heliks ganda DNA gen HBB dengan basa yang berubah menyala",
+    q: <>Frekuensi alel varian <InlineMath math="q" /></>,
+    carriers: <>Pembawa heterozigot (%)</>,
+    homozygous: <>Homozigot varian (%)</>,
   }}
 />
 
@@ -111,7 +130,7 @@ Hanya <InlineMath math="1" /> dari <InlineMath math="27" /> basa yang berbeda: k
 
 ## Membandingkan Keanekaragaman pada Skala Lebih Luas
 
-Keanekaragaman genetik membandingkan anggota satu spesies. Keanekaragaman spesies membandingkan spesies yang hidup bersama, sedangkan keanekaragaman ekosistem membandingkan habitat serta interaksi antara organisme dan lingkungan. Ketika luas pengamatan bertambah, **pisahkan jumlah spesies dari kondisi habitat** yang menopang organisme tersebut.
+Keanekaragaman genetik membandingkan anggota satu spesies. Keanekaragaman spesies membandingkan spesies yang hidup bersama, sedangkan keanekaragaman ekosistem membandingkan habitat serta interaksi antara organisme dan lingkungan. Ketika luas pengamatan bertambah, **pisahkan jumlah spesies dari kondisi habitat** yang menopang organisme di sana.
 
 ### Keanekaragaman Spesies Membandingkan Spesies yang Hadir
 
@@ -128,11 +147,16 @@ Bandingkan contoh pengamatan rekaan berikut. Luas petak dan cara menghitung dibu
 
 Kedua petak memiliki <InlineMath math="10" /> individu dan <InlineMath math="3" /> spesies. Namun, **kelimpahan lebih merata** di petak 2. Menghitung jumlah spesies saja akan melewatkan perbedaan ini.
 
-Adegan di bawah mengubah kedua petak menjadi batang, oranye untuk spesies A, ungu untuk B, dan hijau toska untuk C, dengan satu kotak grid untuk <InlineMath math="2" /> individu. Putar adegannya sampai kedua baris terlihat berdampingan. Petak 1 punya satu batang tinggi dan dua batang pendek, sedangkan petak 2 punya tiga batang yang tingginya mirip. Salah satu cara umum untuk memberi angka pada perbedaan ini adalah indeks Simpson, <InlineMath math="1-\sum p_i^2" />, dengan <InlineMath math="p_i" /> sebagai bagian setiap spesies dari seluruh individu. Nilainya <InlineMath math="0{,}34" /> untuk petak 1 dan <InlineMath math="0{,}66" /> untuk petak 2, jadi petak yang lebih merata nilainya hampir dua kali lipat walaupun jumlah spesiesnya sama.
+Adegan di bawah mengubah kedua petak menjadi batang: oranye untuk spesies A, ungu untuk B, dan hijau toska untuk C, dengan satu kotak grid mewakili <InlineMath math="2" /> individu. Petak 1 punya satu batang tinggi dan dua batang pendek, sedangkan petak 2 punya tiga batang yang tingginya hampir setara.
+
+Ahli ekologi merangkum perbedaan ini dengan **indeks keanekaragaman Simpson**, dengan <InlineMath math="p_i" /> sebagai proporsi individu tiap spesies:
+
+<BlockMath math="D = 1 - \sum p_i^2" />
 
 <MathVisual
   title={<>Kekayaan Sama, Kemerataan Berbeda</>}
   description={<>Individu spesies A (oranye), B (ungu), dan C (hijau toska) pada dua petak hipotetis yang sama luas. Satu kotak grid ke atas sama dengan <InlineMath math="2" /> individu.</>}
+  footer={<>Jumlah spesies lebih merata menaikkan indeks Simpson tanpa menambah spesies.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
@@ -156,6 +180,8 @@ Adegan di bawah mengubah kedua petak menjadi batang, oranye untuk spesies A, ung
   }}
 />
 
+Petak 1 mendapat nilai <InlineMath math="0{,}34" /> sedangkan petak 2 mencapai <InlineMath math="0{,}66" />, hampir dua kali lipat meski keduanya sama-sama berisi tiga spesies. Mengukur kemerataan bersama kekayaan spesies menunjukkan apakah satu spesies dominan mendesak spesies lain di komunitas.
+
 ### Keanekaragaman Ekosistem Membandingkan Habitat dan Interaksi Ekologis
 
 Keanekaragaman ekosistem lebih luas lagi. Sawah, sungai, hutan hujan, mangrove, savana, dan terumbu karang memiliki kondisi berbeda. **Cahaya, air, salinitas, tanah, suhu, dan interaksi organisme** membuat jenis yang hidup di sana tidak sama.
@@ -167,6 +193,7 @@ Data biodiversitas primer dapat berasal dari museum, koleksi ilmiah, DNA barcode
 <Mermaid
   title={<>Tiga Tingkat Keanekaragaman di Sawah</>}
   description={<>Diagram membandingkan keanekaragaman genetik, spesies, dan ekosistem pada lingkungan sawah.</>}
+  footer={<>Satu sawah sekaligus menyimpan keragaman gen, spesies, dan habitat.</>}
   chart={`flowchart TD
     A["Keanekaragaman hayati"] --> B["Tingkat gen"]
     A --> C["Tingkat spesies"]
@@ -181,6 +208,7 @@ Kekayaan spesies menghitung berapa jenis yang hidup di suatu tempat. Kedua petak
 <MathVisual
   title={<>Jumlah Sama, Kekayaan Berbeda</>}
   description={<>Dua petak dengan masing-masing <InlineMath math="12" /> individu. Tiap warna adalah satu spesies.</>}
+  footer={<>Jumlah individu yang sama bisa menyembunyikan kekayaan spesies berbeda.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 4.5 } },
@@ -224,18 +252,39 @@ Kekayaan spesies menghitung berapa jenis yang hidup di suatu tempat. Kedua petak
   }}
 />
 
-Keanekaragaman ekosistem juga mencakup hubungan antarorganisme, misalnya pemangsa dan mangsanya. Di tepi sawah, burung hantu memburu tikus sawah.
+Keanekaragaman ekosistem juga mencakup hubungan antarorganisme, misalnya pemangsa dan mangsanya. Di tepi sawah, burung hantu memburu tikus sawah. Geser amplitudo ayunan <InlineMath math="a" /> di bawah untuk melihat populasi tikus dan burung hantu naik turun saling menyusul selama <InlineMath math="20" /> tahun.
 
-<PredatorPreyLab
+<MathVisual
   title={<>Tikus dan Burung Hantu Naik Turun Bersama</>}
-  description={<>Atur jumlah burung hantu di awal, lalu tekan putar untuk menjalankan model selama <InlineMath math="20" /> tahun.</>}
+  description={
+    <>
+      Gelombang populasi tikus (oranye) di sekitar <InlineMath math="100" /> dan
+      burung hantu (ungu) di sekitar <InlineMath math="20" /> selama{" "}
+      <InlineMath math="20" /> tahun dengan siklus <InlineMath math="4{,}4" />{" "}
+      tahun.
+    </>
+  }
+  footer={<>Puncak burung hantu menyusul tepat sesudah puncak tikus lalu menurunkannya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 155 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 10, max: 45, value: 30, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "rats", kind: "function", appearance: "primary", formula: "100 + a * sin(2 * pi * x / 4.4)", domain: { min: 0, max: 20 } },
+      { id: "owls", kind: "function", appearance: "secondary", formula: "20 + 0.25 * a * sin(2 * pi * (x - 1.1) / 4.4)", domain: { min: 0, max: 20 } },
+    ],
+    readouts: [
+      { key: "peak-rats", formula: "100 + a" },
+      { key: "peak-owls", formula: "20 + 0.25 * a" },
+    ],
+  }}
   labels={{
-    start: "Burung hantu di awal",
-    prey: <>Tikus</>,
-    predators: <>Burung hantu</>,
-    peak: <>Tikus terbanyak</>,
-    year: <>Tahun</>,
-    viewLabel: "Sawah dengan tikus sawah dan burung hantu",
+    a: <>Amplitudo ayunan tikus <InlineMath math="a" /></>,
+    "peak-rats": <>Puncak jumlah tikus</>,
+    "peak-owls": <>Puncak jumlah burung hantu</>,
   }}
 />
 

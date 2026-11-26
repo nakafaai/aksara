@@ -30,6 +30,7 @@ Yogurt ialah contoh yang boleh kamu perhatikan sendiri. Bakteria asid laktik men
       balang untuk menguji sama ada susu sudah mengeras.
     </>
   }
+  footer={<>Apabila asid laktik menurunkan pH bawah 4.6, protein kasein memejal.</>}
   labels={{
     hours: "Jam pengeraman",
     tilt: "Kecondongan",
@@ -50,62 +51,55 @@ Dalam sel prokariot, DNA berada di kawasan nukleoid dan **tiada membran nukleus 
 
 > Bakteria ialah sel hidup kerana ia mempunyai membran, sitoplasma, DNA, ribosom dan metabolisme. Bentuk membantu pengecaman awal, tetapi pengecaman bakteria juga memerlukan bukti daripada struktur sel, metabolisme, habitat dan kesannya.
 
-<BacteriaStructureLab
-  title={<>Membandingkan bentuk, kandungan sel dan dinding sel bakteria</>}
+<MathVisual
+  title={<>Ketebalan Peptidoglikan dan Pengekalan Pewarna</>}
   description={
     <>
-      Model ini memisahkan bentuk luar, kandungan sel prokariot dan lapisan dinding sel.
-      Putar model untuk melihat susunan setiap bahagian dari sisi yang berbeza.
+      Peratusan pewarna ungu kristal yang dikekalkan melawan ketebalan dinding
+      peptidoglikan <InlineMath math="x" /> dalam nanometer, dengan penanda Gram
+      negatif nipis (<InlineMath math="5\text{ nm}" />) dan Gram positif tebal
+      (<InlineMath math="40\text{ nm}" />).
     </>
   }
-  labels={{
-    chooseMode: "Pilih paparan bakteria",
-    focusLabel: "Bahagian untuk diperhatikan",
-    takeawayLabel: "Fungsi setiap bahagian",
-    viewLabel: "Model struktur bakteria",
-    items: [
-      {
-        tab: "Bentuk",
-        scene: {
-          kind: "shape",
-          coccusLabel: "Kokus",
-          bacillusLabel: "Basilus",
-          spiralLabel: "Spiral",
-        },
-        caption: <>Dalam paparan awal, bentuk dari kiri ke kanan menunjukkan bakteria kokus, basilus dan spiral sebagai petunjuk pengecaman awal.</>,
-        focus: <>Bentuk memberi petunjuk pertama tentang morfologi bakteria. Bukti lain melengkapkan pengecamannya.</>,
-        takeaway: <>Pengecaman yang kukuh menggunakan bentuk luar bersama ciri-ciri lain.</>,
-      },
-      {
-        tab: "Dalaman",
-        scene: {
-          kind: "structure",
-          nucleoidDnaLabel: "DNA nukleoid",
-        },
-        caption: <>Nukleoid mengandungi DNA bakteria, manakala ribosom tersebar di seluruh sitoplasma untuk menghasilkan protein.</>,
-        focus: <>Tiada nukleus yang bermembran, tetapi DNA dan ribosom tetap ada.</>,
-        takeaway: <>Bakteria kekal hidup kerana membran, sitoplasma, DNA, ribosom dan metabolismenya bekerja bersama.</>,
-      },
-      {
-        tab: "Dinding",
-        scene: {
-          kind: "wall",
-          gramPositiveLabel: "Gram positif",
-          gramNegativeLabel: "Gram negatif",
-        },
-        caption: <>Dalam paparan awal, timbunan kiri menunjukkan dinding Gram positif yang lebih tebal, manakala timbunan kanan menunjukkan dinding Gram negatif yang mempunyai membran luar.</>,
-        focus: <>Bandingkan ketebalan peptidoglikan dan kehadiran membran luar.</>,
-        takeaway: <>Struktur sampul sel mempengaruhi bentuk, perlindungan, pewarnaan Gram dan kepekaan terhadap sesetengah antibiotik.</>,
-      },
+  footer={<>Peptidoglikan Gram positif yang tebal memerangkap pewarna jauh lebih kuat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 60 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 5, max: 25, value: 12, step: 5, label: "w" },
+    ],
+    objects: [
+      { id: "retention", kind: "function", appearance: "primary", formula: "100 * x / (x + w)", domain: { min: 0, max: 60 } },
+      { id: "neg", kind: "segment", appearance: "warning", from: { x: 5, y: 0 }, to: { x: 5, y: 100 } },
+      { id: "pos", kind: "segment", appearance: "secondary", from: { x: 40, y: 0 }, to: { x: 40, y: 100 } },
+    ],
+    readouts: [
+      { key: "gram-pos", formula: "100 * 40 / (40 + w)" },
+      { key: "gram-neg", formula: "100 * 5 / (5 + w)" },
+    ],
+    labels: [
+      { key: "neg", objectId: "neg", at: { x: 5, y: 95 }, placement: "right" },
+      { key: "pos", objectId: "pos", at: { x: 40, y: 95 }, placement: "left" },
     ],
   }}
+  labels={{
+    w: <>Pemalar bilasan <InlineMath math="w" /> (nm)</>,
+    "gram-pos": <>Pengekalan Gram positif pada 40 nm (%)</>,
+    "gram-neg": <>Pengekalan Gram negatif pada 5 nm (%)</>,
+    neg: <>Gram negatif (5 nm)</>,
+    pos: <>Gram positif (40 nm)</>,
+  }}
 />
+
+Membandingkan kedua-dua penanda menegak menunjukkan sebab struktur sampul sel memisahkan kumpulan bakteria dengan lebih tepat daripada bentuk luar semata-mata: lapisan peptidoglikan tebal menahan bilasan alkohol, manakala dinding Gram negatif nipis cepat luntur dan bergantung pada membran luar tambahan.
 
 Bakteria boleh mengubah makanan dengan begitu cepat kerana ia membiak dengan cara membelah. Satu sel membelah menjadi dua, jadi selepas <InlineMath math="n" /> kali pembelahan terdapat <InlineMath math="2^n" /> sel. Besarkan paparan pada titik-titik pertama, kemudian lihat betapa curamnya titik-titik terakhir naik.
 
 <MathVisual
   title={<>Pembelahan Menggandakan Bilangan Sel</>}
   description={<>Bilangan sel selepas setiap pembelahan, bermula daripada satu sel. Mengufuk: bilangan pembelahan. Menegak: satu selang grid mewakili <InlineMath math="10" /> sel.</>}
+  footer={<>Setiap pembelahan menggandakan jumlah sel sehingga graf melonjak curam.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
@@ -131,24 +125,40 @@ Bakteria boleh mengubah makanan dengan begitu cepat kerana ia membiak dengan car
   }}
 />
 
+Setiap langkah mengufuk menggandakan ketinggian sebelumnya, jadi pembelahan terakhir sahaja menambah <InlineMath math="32" /> sel baharu, lebih banyak daripada gabungan semua pembelahan awal. Lonjakan eksponen yang curam ini menjelaskan mengapa beberapa sel pada makanan suam cepat menyebabkan kerosakan dalam beberapa jam.
+
 ### Satu Sel Menjadi Satu Koloni
 
 Graf itu mengira sel, tetapi kamu juga boleh melihat cara sel membahagi. Sel berbentuk rod seperti Escherichia coli membesar hingga hampir dua kali panjangnya, mencerut di tengah, lalu terbahagi kepada **dua sel anak** yang serupa. Dalam kaldu nutrien pada <InlineMath math="37^\circ\text{C}" />, satu pusingan mengambil masa kira-kira <InlineMath math="20\text{ minit}" />.
 
-<BinaryFissionLab
+<MathVisual
   title={<>Pembelahan Dedua Membina Koloni</>}
   description={
     <>
-      Satu sel Escherichia coli membahagi setiap{" "}
-      <InlineMath math="20\text{ minit}" />. Gerakkan masanya atau mainkan
-      dua jam yang pertama.
+      Bilangan sel yang terhasil daripada satu bakteria Escherichia coli
+      sepanjang <InlineMath math="120\text{ minit}" /> apabila masa penggandaan{" "}
+      <InlineMath math="g" /> berubah antara <InlineMath math="20" /> hingga{" "}
+      <InlineMath math="40\text{ minit}" />.
     </>
   }
+  footer={<>Masa penggandaan lebih singkat menggandakan satu sel kepada puluhan dalam 2 jam.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 70 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "g", min: 20, max: 40, value: 20, step: 5, label: "g" },
+    ],
+    objects: [
+      { id: "colony", kind: "function", appearance: "primary", formula: "2^(x / g)", domain: { min: 0, max: 120 } },
+    ],
+    readouts: [
+      { key: "at-two-hours", formula: "2^(120 / g)" },
+    ],
+  }}
   labels={{
-    minutes: "Minit sejak sel pertama",
-    generations: <>Pembelahan</>,
-    cells: <>Bilangan sel</>,
-    viewLabel: "Koloni bakteria berbentuk rod di bawah mikroskop",
+    g: <>Masa penggandaan <InlineMath math="g" /> (minit)</>,
+    "at-two-hours": <>Bilangan sel selepas 120 minit</>,
   }}
 />
 
@@ -158,15 +168,9 @@ Dua jam memuatkan <InlineMath math="120/20=6" /> pembelahan, jadi satu sel menja
 
 Bentuk sel bakteria boleh diperhatikan dengan mikroskop dan memberi satu petunjuk awal. **Bentuk sel sahaja tidak dapat mengenal pasti** jenis bakteria. Pengecaman yang lengkap juga memerlukan bukti tentang struktur sel, kimia atau gen.
 
-### Tiga Bentuk Bakteria yang Biasa
+Bakteria sangat kecil, umumnya pada skala mikrometer. Bentuk yang biasa termasuk **kokus**, iaitu bakteria berbentuk sfera, **basilus**, iaitu bakteria berbentuk batang, dan bentuk **spiral**. Kokus boleh wujud secara berpasangan, berantai atau berkelompok, manakala sel berbentuk batang boleh wujud secara tunggal atau berkumpulan. Istilah morfologi ini menerangkan bentuk, sedangkan pengecaman taksonomi memerlukan lebih banyak bukti.
 
-Bakteria sangat kecil, umumnya pada skala mikrometer. Bentuk yang biasa termasuk **kokus**, iaitu bakteria berbentuk sfera, **basilus**, iaitu bakteria berbentuk batang, dan bentuk **spiral**. Kokus boleh wujud secara berpasangan, berantai atau berkelompok. Sel berbentuk batang juga boleh wujud secara tunggal atau tersusun dalam kumpulan. Istilah morfologi ini menerangkan bentuk. Pengecaman taksonomi memerlukan lebih banyak bukti.
-
-### Pengecaman Lengkap Menggabungkan Beberapa Ciri
-
-Bentuk membantu semasa pemerhatian awal. Dua bakteria berbentuk batang mungkin mempunyai cara hidup, dinding sel atau kesan yang berbeza, jadi pengecaman juga membandingkan **struktur, metabolisme dan habitat**.
-
-Lakaran bakteria hanya merekodkan bentuk. Pengecaman juga menyemak cara sel itu dibina, tempat ia hidup dan kesannya terhadap organisma di sekelilingnya.
+Dua bakteria berbentuk batang mungkin mempunyai cara hidup, dinding sel atau kesan yang berbeza, jadi pengecaman juga membandingkan **struktur, metabolisme dan habitat**. Lakaran bakteria hanya merekodkan bentuk, manakala pengecaman lengkap menyemak binaan sel, tempat hidup dan kesannya terhadap organisma sekeliling.
 
 | Petunjuk yang kelihatan | Apa yang dibantunya | Mengapa ia masih terhad |
 | --- | --- | --- |
@@ -198,6 +202,7 @@ Banyak bakteria mempunyai dinding sel yang mengandungi **peptidoglikan**, iaitu 
       langkah pewarnaan untuk melihat warna setiap bentuk.
     </>
   }
+  footer={<>Alkohol memisahkan sel Gram positif ungu daripada sel Gram negatif pucat.</>}
   labels={{
     chooseStep: "Pilih langkah pewarnaan",
     steps: {
@@ -221,6 +226,7 @@ Sel mengambil makanan dan menyingkirkan bahan buangan melalui permukaannya, mana
 <MathVisual
   title={<>Sel Kecil Mempunyai Lebih Banyak Permukaan bagi Setiap Isi Padu</>}
   description={<>Kubus dengan sisi <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="4" /> mikrometer. Setiap label membahagikan luas permukaan dengan isi padu.</>}
+  footer={<>Kubus lebih kecil mengekalkan nisbah luas per isi padu besar bagi resapan cepat.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 9.5 }, y: { min: 0, max: 4.5 }, z: { min: -2.5, max: 2.5 } },
@@ -243,6 +249,8 @@ Sel mengambil makanan dan menyingkirkan bahan buangan melalui permukaannya, mana
   }}
 />
 
+Menggandakan panjang sisi memotong nisbah luas permukaan per isi padu kepada separuh, daripada <InlineMath math="6" /> kepada <InlineMath math="3" /> dan kemudian <InlineMath math="1.5" />. Saiz pada skala mikrometer mengekalkan membran yang luas berbanding sitoplasmanya supaya nutrien meresap masuk dan bahan buangan keluar dengan cepat tanpa organ pengangkutan dalaman.
+
 ### Flagelum Membawa Sel ke Arah Makanan
 
 Banyak bakteria berbentuk rod berenang dengan **flagelum**, iaitu ekor panjang yang berputar seperti kipas bot. Escherichia coli berenang lurus pada kira-kira <InlineMath math="25\ \mu\text{m/s}" /> selama lebih kurang <InlineMath math="1\text{ s}" />, kemudian berguling selama kira-kira <InlineMath math="0.1\text{ s}" /> dan menghadap arah rawak yang baharu. Sel itu tidak dapat melihat makanan, tetapi dapat mengesan sama ada gula di sekelilingnya semakin bertambah.
@@ -256,6 +264,7 @@ Banyak bakteria berbentuk rod berenang dengan **flagelum**, iaitu ekor panjang y
       empat kali lebih cepat.
     </>
   }
+  footer={<>Renangan lebih panjang ke arah kecerunan gula memandu sel ke makanan.</>}
   labels={{
     sensing: <>Kemajuan ke arah gula, sel hijau kebiruan</>,
     mutant: <>Kemajuan ke arah gula, sel kelabu</>,
@@ -277,6 +286,7 @@ Untuk menilai peranan sesuatu bakteria, tanyakan di mana ia hidup, proses metabo
 <Mermaid
   title={<>Bukti untuk Mengenal Pasti Bakteria</>}
   description={<>Gabungkan bukti bentuk luar, kandungan sel dan dinding sel untuk mengenal pasti bakteria daripada beberapa petunjuk.</>}
+  footer={<>Tiga bukti berasingan bergabung menghasilkan pengecaman bakteria yang tepat.</>}
   chart={`flowchart LR
     A["Bentuk luar"] --> B["Petunjuk morfologi"]
     C["Kandungan sel"] --> D["DNA dan ribosom"]
@@ -285,6 +295,8 @@ Untuk menilai peranan sesuatu bakteria, tanyakan di mana ia hidup, proses metabo
     D --> G
     F --> G`}
 />
+
+Ikuti ketiga-tiga cabang ke kotak kanan: morfologi mengecilkan pilihan, kandungan sel mengesahkan sifat prokariot, dan pewarnaan Gram mendedahkan jenis sampul selnya. Menggabungkan ketiga-tiga bukti ini mengelakkan kekeliruan antara bakteria berbeza yang kebetulan mempunyai bentuk sama.
 
 ## Bahagian Sel dan Kepelbagaian Bakteria
 
