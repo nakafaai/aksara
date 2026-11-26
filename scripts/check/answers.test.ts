@@ -47,7 +47,7 @@ const VALID_SINGLE = Arr.join(
     "",
     "# Jawaban",
     "",
-    'Kecepatan benda adalah <InlineMath math="6\\text{ m/s}" />.',
+    'Kecepatan benda adalah **<InlineMath math="6\\text{ m/s}" />**.',
   ],
   "\n"
 );
@@ -76,7 +76,7 @@ const VALID_PARTS = Arr.join(
     "",
     "## Antwort",
     "",
-    'Die Ableitung lautet <InlineMath math="4x" />.',
+    'Die Ableitung lautet **<InlineMath math="4x" />**.',
   ],
   "\n"
 );
@@ -165,7 +165,7 @@ describe("answerStandardsReport", () => {
               "",
               "# Jawaban",
               "",
-              "Hasil empat.",
+              "Hasil akhirnya **empat**.",
             ],
             "\n"
           ),
@@ -194,6 +194,86 @@ describe("answerStandardsReport", () => {
             "unwrapped-math-stack",
             "section-body-highlight",
           ]);
+        }
+      }).pipe(Effect.scoped, Effect.provide(NodeServices.layer))
+  );
+
+  it.effect(
+    "blocks vague final-answer boilerplate, unhighlighted final answers, and generic visual takeaways",
+    () =>
+      Effect.gen(function* () {
+        const root = yield* makeRepository();
+        const vagueFile = `${PHYSICS}/question-3/answer.id.mdx`;
+        const unhighlightedFile = `${PHYSICS}/question-4/answer.id.mdx`;
+        yield* writeFiles(root, {
+          [unhighlightedFile]: Arr.join(
+            [
+              "# Diketahui",
+              "",
+              '**Massa benda** <InlineMath math="m = 2\\text{ kg}" />.',
+              "",
+              "# Ditanyakan",
+              "",
+              "**Berat benda** pada permukaan bumi.",
+              "",
+              "# Penyelesaian",
+              "",
+              "> Kalikan massa dengan percepatan gravitasi untuk mendapatkan berat.",
+              "",
+              "Hitung **gaya berat** langsung.",
+              "",
+              "Visual di atas menegaskan hubungan utama antarbesaran sehingga langkah perhitungan mudah dicek.",
+              "",
+              "# Jawaban",
+              "",
+              'Berat benda adalah <InlineMath math="20\\text{ N}" />.',
+            ],
+            "\n"
+          ),
+          [vagueFile]: Arr.join(
+            [
+              "# Diketahui",
+              "",
+              '**Massa benda** <InlineMath math="m = 2\\text{ kg}" />.',
+              "",
+              "# Ditanyakan",
+              "",
+              "**Berat benda** pada permukaan bumi.",
+              "",
+              "# Penyelesaian",
+              "",
+              "> Kalikan massa dengan percepatan gravitasi untuk mendapatkan berat.",
+              "",
+              "Hitung **gaya berat** langsung.",
+              "",
+              "# Jawaban",
+              "",
+              "Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.",
+            ],
+            "\n"
+          ),
+        });
+
+        const vagueFailed = yield* inDirectory(
+          root,
+          answerStandardsReport([vagueFile], [vagueFile])
+        ).pipe(Effect.flip);
+        expect(vagueFailed._tag).toBe("ExplanationStandardsError");
+        if (vagueFailed._tag === "ExplanationStandardsError") {
+          expect(Arr.map(vagueFailed.findings, ({ rule }) => rule)).toContain(
+            "vague-final-answer"
+          );
+        }
+
+        const unhighlightedFailed = yield* inDirectory(
+          root,
+          answerStandardsReport([unhighlightedFile], [unhighlightedFile])
+        ).pipe(Effect.flip);
+        expect(unhighlightedFailed._tag).toBe("ExplanationStandardsError");
+        if (unhighlightedFailed._tag === "ExplanationStandardsError") {
+          expect(
+            Arr.map(unhighlightedFailed.findings, ({ rule }) => rule)
+          ).toEqual(["answer-missing-highlight", "generic-visual-takeaway"]);
         }
       }).pipe(Effect.scoped, Effect.provide(NodeServices.layer))
   );
