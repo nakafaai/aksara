@@ -1,3 +1,17 @@
+# Gegeben
+
+**Die Exponentialfunktion** **<InlineMath math="f(x)" />** ist für alle reellen Zahlen <InlineMath math="x" /> definiert.
+
+<BlockMath math="f(x) = 9^x - 2 \cdot 3^{x+1} + 5" />
+
+# Gesucht
+
+Der **Wertebereich** der Funktion <InlineMath math="f" />.
+
+# Lösung
+
+> Ersetze drei hoch x durch eine stets positive Variable t, dann wird der Ausdruck eine nach oben offene Parabel mit leicht ablesbarem Minimum.
+
 Die Basen <InlineMath math="9" /> und <InlineMath math="3" /> hängen zusammen, denn <InlineMath math="9=3^2" />. Deshalb kannst du beide Exponentialterme mit einer Größe <InlineMath math="t=3^x" /> schreiben, und <InlineMath math="f" /> wird zu einer **quadratischen Funktion in <InlineMath math="t" />**.
 
 <BlockMath math="\begin{aligned}
@@ -34,11 +48,22 @@ Die Form <InlineMath math="(t-3)^2-4" /> zeigt, dass der kleinste Wert <InlineMa
   }}
 />
 
-Zur Kontrolle: <InlineMath math="f(1)=9-2\cdot9+5=-4" /> und <InlineMath math="f(2)=81-2\cdot27+5=32" />, also größer als <InlineMath math="-4" />.
+Zur Kontrolle: <InlineMath math="f(1)=-4" /> und <InlineMath math="f(2)=32" />, also größer als <InlineMath math="-4" />.
 
-Die Wertemenge von <InlineMath math="f" /> ist also <InlineMath math="[-4,\infty)" />.
+<BlockMath math="\begin{gathered}
+f(1)=9-2\cdot9+5=-4 \\
+f(2)=81-2\cdot27+5=32
+\end{gathered}" />
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="(-\infty,-4]" /> dreht das Intervall um. Die Parabel in <InlineMath math="t" /> ist nach oben geöffnet, also ist <InlineMath math="-4" /> der kleinste Wert, nicht der größte.
 - <InlineMath math="(-4,\infty)" /> nimmt an, dass <InlineMath math="-4" /> nie erreicht wird. Der Wert wird bei <InlineMath math="x=1" /> erreicht.
 - <InlineMath math="[-4,5)" /> berücksichtigt nur den Teil <InlineMath math="0<t\le3" />. Für <InlineMath math="t>3" /> steigt die Funktion weiter über <InlineMath math="5" /> hinaus.
 - <InlineMath math="[5,\infty)" /> nimmt an, dass die Funktion vom Wert <InlineMath math="5" /> nahe <InlineMath math="t=0" /> nur steigt. Der Scheitel bei <InlineMath math="t=3" /> liegt aber in <InlineMath math="t>0" />, also fällt die Funktion zuerst bis <InlineMath math="-4" />.
+
+# Antwort
+
+Die Wertemenge von <InlineMath math="f" /> ist also <InlineMath math="[-4,\infty)" />.

@@ -1,6 +1,23 @@
+# Gegeben
+
+Die rationale Funktion **<InlineMath math="f(x)" />** hat den **endlichen Grenzwert** der Wert <InlineMath math="7" />.
+
+<BlockMath math="\begin{gathered}
+f(x) = \frac{x^2 + ax + b}{x - 2} \\
+\lim_{x\to 2} f(x) = 7
+\end{gathered}" />
+
+# Gesucht
+
+**Alle wahren Aussagen** zu <InlineMath math="a" />, <InlineMath math="b" /> und den Grenzwerten.
+
+# Lösung
+
+> Geht der Nenner gegen null und bleibt der Grenzwert trotzdem endlich, muss auch der Zähler null werden, damit sich der Faktor kürzt.
+
 Der Nenner <InlineMath math="x-2" /> geht für <InlineMath math="x\to2" /> gegen <InlineMath math="0" />, trotzdem ist der Grenzwert endlich, nämlich <InlineMath math="7" />. Das ist nur möglich, wenn **auch der Zähler gegen <InlineMath math="0" /> geht**. Ginge der Zähler gegen eine Zahl ungleich null, würde der Bruch unbeschränkt wachsen, und der Grenzwert existierte nicht.
 
-# Bestimmung der Parameter
+## Bestimmung der Parameter
 
 Der Zähler ist ein Polynom. Dass er gegen <InlineMath math="0" /> geht, bedeutet also, dass **sein Wert an der Stelle <InlineMath math="x=2" /> gleich <InlineMath math="0" /> ist**.
 
@@ -48,14 +65,28 @@ Zeichne <InlineMath math="f" />, sobald <InlineMath math="a=3" /> und <InlineMat
   }}
 />
 
-Also gilt <InlineMath math="a=3" /> und <InlineMath math="b=-4-2\cdot3=-10" />, und damit <InlineMath math="f(x)=\frac{x^2+3x-10}{x-2}=x+5" /> für jedes <InlineMath math="x\ne2" />.
+Also gilt <InlineMath math="a=3" /> und <InlineMath math="b=-10" />, und damit <InlineMath math="f(x)=x+5" /> für jedes <InlineMath math="x\ne2" />.
 
-# Bewertung der Aussagen
+<BlockMath math="\begin{gathered}
+b=-4-2\cdot3=-10 \\
+f(x)=\frac{x^2+3x-10}{x-2}=x+5
+\end{gathered}" />
+
+## Bewertung der Aussagen
 
 1. Die Aussage, dass <InlineMath math="f" /> an der Stelle <InlineMath math="x=2" /> definiert ist und <InlineMath math="f(2)=7" /> gilt, ist falsch. Die Funktion <InlineMath math="f" /> ist nur für <InlineMath math="x\ne2" /> definiert, also **existiert <InlineMath math="f(2)" /> nicht**. Der Wert <InlineMath math="7" /> ist der Grenzwert in der Nähe von <InlineMath math="x=2" />, nicht der Funktionswert an dieser Stelle.
 2. Die Aussage <InlineMath math="a=3" /> ist wahr, wie die Rechnung oben zeigt.
-3. Die Aussage <InlineMath math="\lim_{x\to\infty}\frac{f(x)}{x}=2" /> ist falsch. Für große <InlineMath math="x" /> gilt <InlineMath math="\frac{f(x)}{x}=\frac{x+5}{x}=1+\frac5x" />, und das geht gegen <InlineMath math="1" />.
-4. Die Aussage <InlineMath math="b=-10" /> ist wahr, wie die Rechnung oben zeigt.
-5. Die Aussage <InlineMath math="\lim_{x\to-5}f(x)=0" /> ist wahr. In der Nähe von <InlineMath math="x=-5" /> gilt <InlineMath math="f(x)=x+5" />, also ist der Grenzwert <InlineMath math="-5+5=0" />. Einsetzen in die ursprüngliche Formel ergibt denselben Wert: <InlineMath math="\frac{25-15-10}{-7}=0" />.
+3. Die Aussage der Wert <InlineMath math="2" /> ist falsch. Für große <InlineMath math="x" /> gilt <InlineMath math="1+\frac5x" />, und das geht gegen <InlineMath math="1" />.
 
-Wahr sind also <InlineMath math="a=3" />, <InlineMath math="b=-10" /> und <InlineMath math="\lim_{x\to-5}f(x)=0" />.
+   <BlockMath math="\begin{gathered} \lim_{x\to\infty}\frac{f(x)}{x}=2 \\ \frac{f(x)}{x}=\frac{x+5}{x}=1+\frac5x \end{gathered}" />
+
+4. Die Aussage <InlineMath math="b=-10" /> ist wahr, wie die Rechnung oben zeigt.
+5. Die Aussage der Wert <InlineMath math="0" /> ist wahr. In der Nähe von <InlineMath math="x=-5" /> gilt <InlineMath math="f(x)=x+5" />, also ist der Grenzwert <InlineMath math="-5+5=0" />. Einsetzen in die ursprüngliche Formel ergibt denselben Wert: die folgende Gleichung.
+
+   <BlockMath math="\begin{gathered} \lim_{x\to-5}f(x)=0 \\ \frac{25-15-10}{-7}=0 \end{gathered}" />
+
+# Antwort
+
+Wahr sind also <InlineMath math="a=3" />, <InlineMath math="b=-10" /> und der Wert <InlineMath math="0" />.
+
+<BlockMath math="\lim_{x\to-5}f(x)=0" />

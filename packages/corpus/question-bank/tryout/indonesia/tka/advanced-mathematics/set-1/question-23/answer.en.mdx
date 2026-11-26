@@ -1,3 +1,17 @@
+# Given
+
+**The limit at** infinity **the expression below** takes the indeterminate infinity-minus-infinity form.
+
+<BlockMath math="\lim_{x\to\infty} \left(\frac{3x^2 + 7x}{x - 1} - 3x\right)" />
+
+# Asked
+
+The **value of the limit** as <InlineMath math="x" /> grows without bound.
+
+# Solution
+
+> Combine both terms over one common denominator first so the highest-degree terms cancel and the remaining ratio stands out clearly.
+
 Both parts grow without bound, and the form <InlineMath math="\infty-\infty" /> says nothing yet about the limit. So **combine everything into a single fraction first**. The squared terms then cancel.
 
 <BlockMath math="\begin{aligned}
@@ -9,7 +23,9 @@ Divide the numerator and the denominator by <InlineMath math="x" />.
 
 <BlockMath math="\lim_{x\to\infty}\frac{10}{1-\frac1x}=\frac{10}{1}=10" />
 
-Draw the combined difference, <InlineMath math="\frac{10x}{x-1}" />, for large <InlineMath math="x" />. **The curve falls and hugs the line <InlineMath math="y=10" />** without crossing it.
+Draw the combined difference, the expression below, for large <InlineMath math="x" />. **The curve falls and hugs the line <InlineMath math="y=10" />** without crossing it.
+
+<BlockMath math="\frac{10x}{x-1}" />
 
 <MathVisual
   title={<>The difference of the two parts for large <InlineMath math="x" /></>}
@@ -37,11 +53,22 @@ Draw the combined difference, <InlineMath math="\frac{10x}{x-1}" />, for large <
   }}
 />
 
-As a check, at <InlineMath math="x=1{,}001" /> the value is <InlineMath math="\frac{10\cdot1{,}001}{1{,}000}=10.01" />, close to <InlineMath math="10" />.
+As a check, at <InlineMath math="x=1{,}001" /> the value is the equation below, close to <InlineMath math="10" />.
 
-So the limit is <InlineMath math="10" />.
+<BlockMath math="\frac{10\cdot1{,}001}{1{,}000}=10.01" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="0" /> treats <InlineMath math="\infty-\infty" /> like an ordinary difference of equal numbers.
 - <InlineMath math="4" /> expands <InlineMath math="-3x(x-1)" /> wrongly as <InlineMath math="-3x^2-3x" /> (correct: <InlineMath math="-3x^2+3x" />) and gets the numerator <InlineMath math="4x" />.
-- <InlineMath math="7" /> divides <InlineMath math="3x^2+7x" /> by <InlineMath math="x" /> instead of <InlineMath math="x-1" /> and gets <InlineMath math="3x+7-3x=7" />.
+- <InlineMath math="7" /> divides <InlineMath math="3x^2+7x" /> by <InlineMath math="x" /> instead of <InlineMath math="x-1" /> and gets the equation below.
+
+  <BlockMath math="3x+7-3x=7" />
+
 - <InlineMath math="\infty" /> overlooks that the <InlineMath math="x^2" /> terms cancel.
+
+# Answer
+
+So the limit is <InlineMath math="10" />.

@@ -1,3 +1,15 @@
+# Diketahui
+
+Dua matriks <InlineMath math="2\times2" />, yaitu **matriks** <InlineMath math="A" /> dan matriks <InlineMath math="B" />, dihubungkan oleh persamaan **<InlineMath math="XA = B" />**.
+
+# Ditanyakan
+
+**Matriks** <InlineMath math="X" /> berordo <InlineMath math="2\times2" /> yang memenuhi persamaan.
+
+# Penyelesaian
+
+> Karena urutan perkalian matriks tidak boleh ditukar, hapus A dari sisi kanan X dengan mengalikan invers A juga dari sebelah kanan.
+
 Matriks <InlineMath math="X" /> berada **di sebelah kiri** <InlineMath math="A" />. Karena perkalian matriks tidak komutatif, <InlineMath math="A" /> harus dihilangkan dengan mengalikan kedua ruas dengan <InlineMath math="A^{-1}" /> dari **kanan**. Cara ini hanya sah jika <InlineMath math="A" /> memiliki invers, jadi periksa dulu determinannya.
 
 <BlockMath math="\det A=3\cdot2-1\cdot5=1" />
@@ -31,9 +43,28 @@ Periksa hasilnya dengan menghitung <InlineMath math="XA" />.
 
 <BlockMath math="\begin{pmatrix} 3 & -1 \\ 2 & -1 \end{pmatrix}\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}=\begin{pmatrix} 9-5 & 3-2 \\ 6-5 & 2-2 \end{pmatrix}=\begin{pmatrix} 4 & 1 \\ 1 & 0 \end{pmatrix}=B" />
 
-Jadi, matriks <InlineMath math="X" /> adalah <InlineMath math="\begin{pmatrix} 3 & -1 \\ 2 & -1 \end{pmatrix}" />.
+## Memeriksa pilihan pengecoh
 
-- <InlineMath math="\begin{pmatrix} 7 & 2 \\ -17 & -5 \end{pmatrix}" /> adalah <InlineMath math="A^{-1}B" />. Matriks ini menyelesaikan <InlineMath math="AX=B" />, bukan <InlineMath math="XA=B" />, karena urutan perkalian tertukar.
-- <InlineMath math="\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}" /> hanyalah <InlineMath math="A^{-1}" />. Langkah mengalikannya dengan <InlineMath math="B" /> terlewat.
-- <InlineMath math="\begin{pmatrix} 13 & 7 \\ 2 & 1 \end{pmatrix}" /> muncul jika tanda elemen diagonal sekunder tidak diubah, sehingga yang dipakai adalah <InlineMath math="\begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix}" />, bukan <InlineMath math="A^{-1}" />.
-- <InlineMath math="\begin{pmatrix} 17 & 6 \\ 3 & 1 \end{pmatrix}" /> adalah <InlineMath math="BA" />. Hasil ini muncul jika <InlineMath math="B" /> dikalikan dengan <InlineMath math="A" />, padahal yang menghapus <InlineMath math="A" /> adalah inversnya.
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
+
+- matriks berikut adalah <InlineMath math="A^{-1}B" />. Matriks ini menyelesaikan <InlineMath math="AX=B" />, bukan <InlineMath math="XA=B" />, karena urutan perkalian tertukar.
+
+  <BlockMath math="\begin{pmatrix} 7 & 2 \\ -17 & -5 \end{pmatrix}" />
+
+- matriks berikut hanyalah <InlineMath math="A^{-1}" />. Langkah mengalikannya dengan <InlineMath math="B" /> terlewat.
+
+  <BlockMath math="\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}" />
+
+- matriks berikut muncul jika tanda elemen diagonal sekunder tidak diubah, sehingga yang dipakai adalah matriks berikut, bukan <InlineMath math="A^{-1}" />.
+
+  <BlockMath math="\begin{gathered} \begin{pmatrix} 13 & 7 \\ 2 & 1 \end{pmatrix} \\ \begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix} \end{gathered}" />
+
+- matriks berikut adalah <InlineMath math="BA" />. Hasil ini muncul jika <InlineMath math="B" /> dikalikan dengan <InlineMath math="A" />, padahal yang menghapus <InlineMath math="A" /> adalah inversnya.
+
+  <BlockMath math="\begin{pmatrix} 17 & 6 \\ 3 & 1 \end{pmatrix}" />
+
+# Jawaban
+
+Jadi, matriks <InlineMath math="X" /> adalah matriks berikut.
+
+<BlockMath math="\begin{pmatrix} 3 & -1 \\ 2 & -1 \end{pmatrix}" />

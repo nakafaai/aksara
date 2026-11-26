@@ -1,3 +1,15 @@
+# Given
+
+Two <InlineMath math="2\times2" /> matrices, **matrix** <InlineMath math="A" /> and matrix <InlineMath math="B" />, satisfy the equation **<InlineMath math="XA = B" />**.
+
+# Asked
+
+The <InlineMath math="2\times2" /> **matrix** <InlineMath math="X" /> solving the equation.
+
+# Solution
+
+> Because matrix multiplication cannot swap sides, clear A from the right side of X by multiplying both sides by A inverse on the right too.
+
 The matrix <InlineMath math="X" /> stands **to the left of** <InlineMath math="A" />. Matrix multiplication is not commutative, so <InlineMath math="A" /> is removed by multiplying both sides by <InlineMath math="A^{-1}" /> on the **right**. This step is valid only if <InlineMath math="A" /> has an inverse, so check its determinant first.
 
 <BlockMath math="\det A=3\cdot2-1\cdot5=1" />
@@ -31,9 +43,28 @@ Check the result by computing <InlineMath math="XA" />.
 
 <BlockMath math="\begin{pmatrix} 3 & -1 \\ 2 & -1 \end{pmatrix}\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}=\begin{pmatrix} 9-5 & 3-2 \\ 6-5 & 2-2 \end{pmatrix}=\begin{pmatrix} 4 & 1 \\ 1 & 0 \end{pmatrix}=B" />
 
-So the matrix <InlineMath math="X" /> is <InlineMath math="\begin{pmatrix} 3 & -1 \\ 2 & -1 \end{pmatrix}" />.
+## Checking common traps
 
-- <InlineMath math="\begin{pmatrix} 7 & 2 \\ -17 & -5 \end{pmatrix}" /> is <InlineMath math="A^{-1}B" />. It solves <InlineMath math="AX=B" />, not <InlineMath math="XA=B" />, because the order of multiplication is reversed.
-- <InlineMath math="\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}" /> is only <InlineMath math="A^{-1}" />. The multiplication by <InlineMath math="B" /> is missing.
-- <InlineMath math="\begin{pmatrix} 13 & 7 \\ 2 & 1 \end{pmatrix}" /> comes from keeping the signs of the off-diagonal entries, so the matrix used is <InlineMath math="\begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix}" /> instead of <InlineMath math="A^{-1}" />.
-- <InlineMath math="\begin{pmatrix} 17 & 6 \\ 3 & 1 \end{pmatrix}" /> is <InlineMath math="BA" />. It appears when <InlineMath math="B" /> is multiplied by <InlineMath math="A" />, although only the inverse removes <InlineMath math="A" />.
+Let us check why these **common trap choices** miss the mark.
+
+- the matrix below is <InlineMath math="A^{-1}B" />. It solves <InlineMath math="AX=B" />, not <InlineMath math="XA=B" />, because the order of multiplication is reversed.
+
+  <BlockMath math="\begin{pmatrix} 7 & 2 \\ -17 & -5 \end{pmatrix}" />
+
+- the matrix below is only <InlineMath math="A^{-1}" />. The multiplication by <InlineMath math="B" /> is missing.
+
+  <BlockMath math="\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}" />
+
+- the matrix below comes from keeping the signs of the off-diagonal entries, so the matrix used is the matrix below instead of <InlineMath math="A^{-1}" />.
+
+  <BlockMath math="\begin{gathered} \begin{pmatrix} 13 & 7 \\ 2 & 1 \end{pmatrix} \\ \begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix} \end{gathered}" />
+
+- the matrix below is <InlineMath math="BA" />. It appears when <InlineMath math="B" /> is multiplied by <InlineMath math="A" />, although only the inverse removes <InlineMath math="A" />.
+
+  <BlockMath math="\begin{pmatrix} 17 & 6 \\ 3 & 1 \end{pmatrix}" />
+
+# Answer
+
+So the matrix <InlineMath math="X" /> is the matrix below.
+
+<BlockMath math="\begin{pmatrix} 3 & -1 \\ 2 & -1 \end{pmatrix}" />

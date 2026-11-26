@@ -1,3 +1,15 @@
+# Gegeben
+
+Eine Determinantengleichung setzt eine <InlineMath math="2\times2" /> **-Determinante** links gleich einer <InlineMath math="3\times3" /> **-Determinante** rechts mit der Unbekannten <InlineMath math="x" />.
+
+# Gesucht
+
+Die **Summe aller reellen Werte von** <InlineMath math="x" />, die die Gleichung erfüllen.
+
+# Lösung
+
+> Rechne beide Determinanten zuerst in einfache Algebra um, sodass eine gewöhnliche quadratische Gleichung entsteht.
+
 Die Gleichung vergleicht zwei Determinanten. Deshalb wandelst du zuerst **jede Determinante in einen algebraischen Ausdruck in** <InlineMath math="x" /> um. Danach wird aus der Determinantengleichung eine gewöhnliche quadratische Gleichung.
 
 Die Determinante einer <InlineMath math="2\times2" />-Matrix ist das Produkt der Hauptdiagonale minus das Produkt der Nebendiagonale.
@@ -56,11 +68,28 @@ Zeichne beide Seiten als Graphen. **Die zwei Schnittpunkte liegen symmetrisch zu
   }}
 />
 
-Die Diskriminante dieser quadratischen Gleichung ist <InlineMath math="D=(-2)^2-4(1)(-5)=24" />. Wegen <InlineMath math="D>0" /> gibt es zwei verschiedene reelle Werte für <InlineMath math="x" />, nämlich <InlineMath math="x=1+\sqrt6" /> und <InlineMath math="x=1-\sqrt6" />. Der Satz von Vieta liefert <InlineMath math="-\frac{b}{a}=-\frac{-2}{1}=2" />, und das direkte Addieren ergibt denselben Wert, <InlineMath math="(1+\sqrt6)+(1-\sqrt6)=2" />.
+Die Diskriminante dieser quadratischen Gleichung ist <InlineMath math="D=24" />. Wegen <InlineMath math="D>0" /> gibt es zwei verschiedene reelle Werte für <InlineMath math="x" />, nämlich <InlineMath math="x=1+\sqrt6" /> und <InlineMath math="x=1-\sqrt6" />. Der Satz von Vieta liefert <InlineMath math="2" />, und das direkte Addieren ergibt denselben Wert, <InlineMath math="2" />.
 
-Die Summe aller reellen Werte von <InlineMath math="x" />, die die Gleichung erfüllen, ist also <InlineMath math="2" />.
+<BlockMath math="\begin{gathered}
+D=(-2)^2-4(1)(-5)=24 \\
+-\frac{b}{a}=-\frac{-2}{1}=2 \\
+(1+\sqrt6)+(1-\sqrt6)=2
+\end{gathered}" />
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="-5" /> ist das **Produkt** der beiden Lösungen, <InlineMath math="\frac{c}{a}" />, nicht ihre Summe.
 - <InlineMath math="-2" /> entsteht, wenn das Minuszeichen in der Formel <InlineMath math="-\frac{b}{a}" /> vergessen wird.
-- <InlineMath math="1" /> entsteht, wenn nur <InlineMath math="x^2-x-6=0" /> gelöst wird, als wäre die rechte Seite null. Die <InlineMath math="3\times3" />-Determinante hat aber den Wert <InlineMath math="x-1" />.
-- <InlineMath math="6" /> entsteht, wenn der Minor des dritten Elements als <InlineMath math="x\cdot1-0\cdot1=x" /> statt als <InlineMath math="0\cdot1-x\cdot1=-x" /> berechnet wird. Die rechte Determinante wird dann zu <InlineMath math="5x-1" />, und die Gleichung <InlineMath math="x^2-6x-5=0" /> hat die Lösungssumme <InlineMath math="6" />.
+- <InlineMath math="1" /> entsteht, wenn nur die folgende Gleichung gelöst wird, als wäre die rechte Seite null. Die <InlineMath math="3\times3" />-Determinante hat aber den Wert <InlineMath math="x-1" />.
+
+  <BlockMath math="x^2-x-6=0" />
+
+- <InlineMath math="6" /> entsteht, wenn der Minor des dritten Elements als <InlineMath math="x\cdot1-0\cdot1=x" /> statt als <InlineMath math="0\cdot1-x\cdot1=-x" /> berechnet wird. Die rechte Determinante wird dann zu <InlineMath math="5x-1" />, und die folgende Gleichung hat die Lösungssumme <InlineMath math="6" />.
+
+  <BlockMath math="x^2-6x-5=0" />
+
+# Antwort
+
+Die Summe aller reellen Werte von <InlineMath math="x" />, die die Gleichung erfüllen, ist also <InlineMath math="2" />.

@@ -1,3 +1,15 @@
+# Given
+
+All nutrient and labor limits **stay unchanged with the same four corner points**, while **per-rack profits change** and growing a single crop is allowed.
+
+# Asked
+
+The **counts of lettuce and bok choy racks** that maximize total profit.
+
+# Solution
+
+> Because the feasible polygon did not budge, simply plug the exact same corner points into the new profit formula.
+
 The limits stay the same, so the feasible region still has the corners <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" /> and <InlineMath math="(0,40)" />. Only the objective has changed, and with it **the best corner can move**.
 
 <BlockMath math="\begin{aligned}
@@ -45,9 +57,15 @@ P(0,40)&=4{,}000{,}000
 
 Because the problem explicitly allows a single crop, the corner <InlineMath math="(40,0)" /> is a permitted plan. Comparing slopes gives the same result. The level lines <InlineMath math="180x+100y=k" /> have slope <InlineMath math="-1.8" />. They are steeper than the limit <InlineMath math="3x+2y=120" />, whose slope is <InlineMath math="-1.5" />. As a level line moves outward, it therefore leaves the region last at the corner <InlineMath math="(40,0)" />.
 
-So the most profitable choice is <InlineMath math="40" /> lettuce racks and <InlineMath math="0" /> pak choi racks.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="20" /> lettuce racks and <InlineMath math="30" /> pak choi racks were optimal with the old profits and now bring only <InlineMath math="\text{Rp}6{,}600{,}000.00" />.
 - <InlineMath math="0" /> lettuce racks and <InlineMath math="40" /> pak choi racks bring only <InlineMath math="\text{Rp}4{,}000{,}000.00" />.
 - <InlineMath math="30" /> lettuce racks and <InlineMath math="20" /> pak choi racks need <InlineMath math="90+40=130" /> litres of nutrient solution and lie outside the region.
 - <InlineMath math="80" /> lettuce racks respect only the care hours. They would need <InlineMath math="240" /> litres of nutrient solution.
+
+# Answer
+
+So the most profitable choice is <InlineMath math="40" /> lettuce racks and <InlineMath math="0" /> pak choi racks.

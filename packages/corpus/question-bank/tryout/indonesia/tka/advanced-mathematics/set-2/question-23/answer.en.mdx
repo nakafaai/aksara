@@ -1,9 +1,26 @@
-Both terms grow without bound, so the form is <InlineMath math="\infty-\infty" />, which does not give the limit yet. Multiply by **the conjugate** to turn the difference into a fraction. For large <InlineMath math="x" />, <InlineMath math="2x-1>0" />, so <InlineMath math="2x-1=\sqrt{(2x-1)^2}=\sqrt{4x^2-4x+1}" />.
+# Given
 
-<BlockMath math="\begin{aligned}
+**The radical limit** at infinity **the expression below** takes the infinity-minus-infinity form.
+
+<BlockMath math="\lim_{x\to\infty} \left(\sqrt{4x^2 + 12x - 1} - (2x - 1)\right)" />
+
+# Asked
+
+The **value of the limit** as <InlineMath math="x" /> goes to infinity.
+
+# Solution
+
+> Multiply by the conjugate to turn the square-root difference into a fraction, then divide top and bottom by x.
+
+Both terms grow without bound, so the form is <InlineMath math="\infty-\infty" />, which does not give the limit yet. Multiply by **the conjugate** to turn the difference into a fraction. For large <InlineMath math="x" />, <InlineMath math="2x-1>0" />, so <InlineMath math="\sqrt{4x^2-4x+1}" />.
+
+<BlockMath math="\begin{gathered}
+2x-1=\sqrt{(2x-1)^2}=\sqrt{4x^2-4x+1} \\
+\begin{aligned}
 \sqrt{4x^2+12x-1}-\sqrt{4x^2-4x+1}&=\frac{(4x^2+12x-1)-(4x^2-4x+1)}{\sqrt{4x^2+12x-1}+\sqrt{4x^2-4x+1}} \\
 &=\frac{16x-2}{\sqrt{4x^2+12x-1}+\sqrt{4x^2-4x+1}}
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
 Divide numerator and denominator by <InlineMath math="x" />. Inside a square root, dividing by <InlineMath math="x" /> means dividing by <InlineMath math="x^2" />, because <InlineMath math="x>0" />.
 
@@ -37,11 +54,25 @@ Draw the difference for large <InlineMath math="x" />. **The curve rises and hug
   }}
 />
 
-This matches the shortcut <InlineMath math="\frac{b-q}{2\sqrt a}=\frac{12-(-4)}{2\sqrt4}=4" /> for <InlineMath math="\sqrt{ax^2+bx+c}-\sqrt{ax^2+qx+r}" />.
+This matches the shortcut <InlineMath math="4" /> for the expression below.
 
-So the limit is <InlineMath math="4" />.
+<BlockMath math="\begin{gathered}
+\frac{b-q}{2\sqrt a}=\frac{12-(-4)}{2\sqrt4}=4 \\
+\sqrt{ax^2+bx+c}-\sqrt{ax^2+qx+r}
+\end{gathered}" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="3" /> treats <InlineMath math="2x-1" /> as <InlineMath math="\sqrt{4x^2-1}" />, which loses the <InlineMath math="-4x" /> term.
-- <InlineMath math="2" /> gets the sign of <InlineMath math="q" /> wrong and computes <InlineMath math="\frac{12-4}{4}" />.
+- <InlineMath math="2" /> gets the sign of <InlineMath math="q" /> wrong and computes the expression below.
+
+  <BlockMath math="\frac{12-4}{4}" />
+
 - <InlineMath math="\infty" /> assumes the bigger root wins. The <InlineMath math="2x" /> parts of both terms cancel.
 - <InlineMath math="8" /> forgets the factor <InlineMath math="2" /> in the denominator <InlineMath math="2\sqrt a" />.
+
+# Answer
+
+So the limit is <InlineMath math="4" />.

@@ -1,17 +1,38 @@
-Direct substitution of <InlineMath math="x=2" /> gives the numerator <InlineMath math="8-8=0" /> and the denominator <InlineMath math="4+2-6=0" />. The form <InlineMath math="\frac00" /> does not show the value of the limit. It signals that the numerator and denominator **share the factor** <InlineMath math="x-2" />, so factor both.
+# Given
 
-The numerator is a difference of cubes, <InlineMath math="a^3-b^3=(a-b)(a^2+ab+b^2)" /> with <InlineMath math="a=x" /> and <InlineMath math="b=2" />. The denominator is a quadratic with roots <InlineMath math="2" /> and <InlineMath math="-3" />.
+**The rational limit** **the expression below** gives the indeterminate zero-over-zero form upon direct substitution.
 
-<BlockMath math="\begin{aligned}
+<BlockMath math="\lim_{x\to 2} \frac{x^3 - 8}{x^2 + x - 6}" />
+
+# Asked
+
+The **value of the limit** as <InlineMath math="x" /> approaches <InlineMath math="2" />.
+
+# Solution
+
+> Zero over zero is a signpost that top and bottom share a matching factor causing the zero, so factor both and cancel it out.
+
+Direct substitution of <InlineMath math="x=2" /> gives the numerator <InlineMath math="8-8=0" /> and the denominator <InlineMath math="0" />. The form <InlineMath math="\frac00" /> does not show the value of the limit. It signals that the numerator and denominator **share the factor** <InlineMath math="x-2" />, so factor both.
+
+<BlockMath math="4+2-6=0" />
+
+The numerator is a difference of cubes, the equation below with <InlineMath math="a=x" /> and <InlineMath math="b=2" />. The denominator is a quadratic with roots <InlineMath math="2" /> and <InlineMath math="-3" />.
+
+<BlockMath math="\begin{gathered}
+a^3-b^3=(a-b)(a^2+ab+b^2) \\
+\begin{aligned}
 x^3-8&=(x-2)(x^2+2x+4) \\
 x^2+x-6&=(x-2)(x+3)
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
 A limit uses only values of <InlineMath math="x" /> near <InlineMath math="2" />, not <InlineMath math="x=2" /> itself. For <InlineMath math="x\ne2" />, the factor <InlineMath math="x-2" /> is not zero, so it may be cancelled. After that, direct substitution is safe.
 
 <BlockMath math="\lim_{x\to2}\frac{(x-2)(x^2+2x+4)}{(x-2)(x+3)}=\lim_{x\to2}\frac{x^2+2x+4}{x+3}=\frac{4+4+4}{2+3}=\frac{12}{5}" />
 
-Draw the original function near <InlineMath math="x=2" />. **Away from <InlineMath math="x=2" />, its graph is the same as <InlineMath math="\frac{x^2+2x+4}{x+3}" />**, so as <InlineMath math="x" /> approaches <InlineMath math="2" /> from both sides, the value approaches <InlineMath math="\tfrac{12}{5}" />.
+Draw the original function near <InlineMath math="x=2" />. **Away from <InlineMath math="x=2" />, its graph is the same as the expression below**, so as <InlineMath math="x" /> approaches <InlineMath math="2" /> from both sides, the value approaches <InlineMath math="\tfrac{12}{5}" />.
+
+<BlockMath math="\frac{x^2+2x+4}{x+3}" />
 
 <MathVisual
   title={<>The graph near <InlineMath math="x=2" /></>}
@@ -41,11 +62,22 @@ Draw the original function near <InlineMath math="x=2" />. **Away from <InlineMa
   }}
 />
 
-As a check, at <InlineMath math="x=2.01" /> the original fraction equals <InlineMath math="\frac{0.120601}{0.0501}\approx2.407" />, close to <InlineMath math="\frac{12}{5}=2.4" />.
+As a check, at <InlineMath math="x=2.01" /> the original fraction equals the equation below, close to the equation below.
 
-So the value of the limit is <InlineMath math="\frac{12}{5}" />.
+<BlockMath math="\begin{gathered}
+\frac{0.120601}{0.0501}\approx2.407 \\
+\frac{12}{5}=2.4
+\end{gathered}" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="0" /> comes from treating the form <InlineMath math="\frac00" /> as zero. The form is indeterminate, not zero.
 - <InlineMath math="\frac{5}{12}" /> is the reciprocal of the result. The numerator and denominator were swapped after cancelling.
 - <InlineMath math="12" /> uses only the remaining numerator factor, <InlineMath math="x^2+2x+4" />, and forgets the remaining denominator factor <InlineMath math="x+3" />.
 - <InlineMath math="\infty" /> comes from assuming that a denominator approaching zero always makes the limit infinite. The numerator also approaches zero, and the shared factor cancels.
+
+# Answer
+
+So the value of the limit is <InlineMath math="\frac{12}{5}" />.

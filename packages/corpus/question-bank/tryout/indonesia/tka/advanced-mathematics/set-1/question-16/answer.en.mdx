@@ -1,3 +1,15 @@
+# Given
+
+A **wiper blade** sweeps through <InlineMath math="120^\circ" /> with its inner tip <InlineMath math="15\text{ cm}" /> and outer tip <InlineMath math="60\text{ cm}" /> from the pivot.
+
+# Asked
+
+The **glass area swept** by the rubber blade in one sweep.
+
+# Solution
+
+> The swept band is just a big pizza slice minus a smaller inner slice, so subtract the squared radii rather than subtracting the lengths first.
+
 Every point of the wiper rubber moves on a circle centered at <InlineMath math="O" />. The nearest point traces an arc of radius <InlineMath math="15\text{ cm}" />, and the farthest point traces an arc of radius <InlineMath math="60\text{ cm}" />. The swept region is an **annular sector**: a large sector of radius <InlineMath math="60\text{ cm}" /> minus a small sector of radius <InlineMath math="15\text{ cm}" />, both with central angle <InlineMath math="120^\circ" />.
 
 <MathVisual
@@ -36,20 +48,35 @@ Every point of the wiper rubber moves on a circle centered at <InlineMath math="
   }}
 />
 
-The area of a sector with central angle <InlineMath math="\alpha" /> and radius <InlineMath math="r" /> is <InlineMath math="\frac{\alpha}{360^\circ}\pi r^2" />. Both sectors use the same angle, so the factor <InlineMath math="\frac{120^\circ}{360^\circ}=\frac13" /> can be taken out.
+The area of a sector with central angle <InlineMath math="\alpha" /> and radius <InlineMath math="r" /> is the expression below. Both sectors use the same angle, so the factor the equation below can be taken out.
 
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+\frac{\alpha}{360^\circ}\pi r^2 \\
+\frac{120^\circ}{360^\circ}=\frac13 \\
+\begin{aligned}
 A&=\frac{120^\circ}{360^\circ}\pi\cdot60^2-\frac{120^\circ}{360^\circ}\pi\cdot15^2 \\
 &=\frac13\pi\left(60^2-15^2\right) \\
 &=\frac13\pi(3{,}600-225) \\
 &=\frac13\pi\cdot3{,}375=1{,}125\pi\text{ cm}^2
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
-The result makes sense: it is less than the area of the large sector, <InlineMath math="\frac13\pi\cdot3{,}600=1{,}200\pi\text{ cm}^2" />, and the difference, <InlineMath math="75\pi\text{ cm}^2" />, equals the small sector <InlineMath math="\frac13\pi\cdot225" />.
+The result makes sense: it is less than the area of the large sector, the equation below, and the difference, <InlineMath math="75\pi\text{ cm}^2" />, equals the small sector <InlineMath math="\frac13\pi\cdot225" />.
 
-So the area of glass swept by the wiper rubber in one sweep is <InlineMath math="1{,}125\pi\text{ cm}^2" />.
+<BlockMath math="\frac13\pi\cdot3{,}600=1{,}200\pi\text{ cm}^2" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="675\pi\text{ cm}^2" /> comes from subtracting the radii first and then squaring: <InlineMath math="\frac13\pi(60-15)^2" />. The squares of the radii must be subtracted instead.
 - <InlineMath math="1{,}200\pi\text{ cm}^2" /> is the large sector alone. It includes the part near the pivot that the rubber never touches.
-- <InlineMath math="2{,}250\pi\text{ cm}^2" /> comes from writing the angle fraction as <InlineMath math="\frac{120^\circ}{180^\circ}" />, although a full turn is <InlineMath math="360^\circ" />.
+- <InlineMath math="2{,}250\pi\text{ cm}^2" /> comes from writing the angle fraction as the expression below, although a full turn is <InlineMath math="360^\circ" />.
+
+  <BlockMath math="\frac{120^\circ}{180^\circ}" />
+
 - <InlineMath math="3{,}375\pi\text{ cm}^2" /> is the area of a full ring. The factor <InlineMath math="\frac13" /> for the angle <InlineMath math="120^\circ" /> is missing.
+
+# Answer
+
+So the area of glass swept by the wiper rubber in one sweep is <InlineMath math="1{,}125\pi\text{ cm}^2" />.

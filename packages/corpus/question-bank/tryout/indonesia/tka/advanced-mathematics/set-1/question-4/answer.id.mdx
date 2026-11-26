@@ -1,3 +1,15 @@
+# Diketahui
+
+Petani menanam **rak selada (** <InlineMath math="x" />) dan rak pakcoy (<InlineMath math="y" />) dengan batasan larutan nutrisi, jam perawatan, serta keuntungan per rak.
+
+# Ditanyakan
+
+**Keuntungan maksimum** yang bisa diperoleh petani dalam satu periode tanam.
+
+# Penyelesaian
+
+> Keuntungan paling besar pada masalah program linear selalu nongkrong di salah satu titik pojok daerah aman, jadi cukup uji nilai tiap titik pojok.
+
 Misalkan <InlineMath math="x" /> banyak rak selada dan <InlineMath math="y" /> banyak rak pakcoy. Persediaan larutan nutrisi dan jam perawatan memberikan **dua batasan**, ditambah syarat bahwa banyak rak tidak negatif. Batasan jam perawatan dapat dibagi <InlineMath math="2" />.
 
 <BlockMath math="\begin{aligned}
@@ -59,9 +71,15 @@ K(20,30)&=3{.}600{.}000+6{.}000{.}000=9{.}600{.}000
 
 Sebagai pemeriksaan, pada <InlineMath math="(20,30)" /> terpakai tepat <InlineMath math="60+60=120" /> liter larutan nutrisi dan <InlineMath math="40+120=160" /> jam perawatan.
 
-Jadi, keuntungan maksimumnya adalah <InlineMath math="\text{Rp}9{.}600{.}000{,}00" />.
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
 
 - <InlineMath math="\text{Rp}7{.}200{.}000{,}00" /> milik titik pojok <InlineMath math="(40,0)" />, yaitu hanya menanam selada.
 - <InlineMath math="\text{Rp}8{.}000{.}000{,}00" /> milik titik pojok <InlineMath math="(0,40)" />, yaitu hanya menanam pakcoy.
 - <InlineMath math="\text{Rp}11{.}200{.}000{,}00" /> milik <InlineMath math="(40,20)" />. Titik itu memerlukan <InlineMath math="120+40=160" /> liter larutan nutrisi, melebihi persediaan <InlineMath math="120" /> liter.
 - <InlineMath math="\text{Rp}12{.}000{.}000{,}00" /> milik <InlineMath math="(0,60)" /> dan hanya memperhatikan batasan larutan nutrisi. Titik itu memerlukan <InlineMath math="240" /> jam perawatan.
+
+# Jawaban
+
+Jadi, keuntungan maksimumnya adalah <InlineMath math="\text{Rp}9{.}600{.}000{,}00" />.

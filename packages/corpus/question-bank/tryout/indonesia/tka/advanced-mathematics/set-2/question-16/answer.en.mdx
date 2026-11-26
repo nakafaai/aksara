@@ -1,8 +1,23 @@
+# Given
+
+A **straight line** <InlineMath math="y = x + 1" /> intersects circle <InlineMath math="x^2 + y^2 = 25" /> at two points.
+
+# Asked
+
+The **length of the chord** joining the two intersection points.
+
+# Solution
+
+> Drop a perpendicular from the center to the line to form a right triangle with the radius, then double the half-chord.
+
 A chord is a segment whose two end points lie on the circle. A tidy method uses **the distance from the centre to the line**. The perpendicular from the centre to a chord cuts the chord in half, which creates a right triangle with hypotenuse <InlineMath math="r" />.
 
-The circle has centre <InlineMath math="O(0,0)" /> and <InlineMath math="r=5" />. Write the line in general form <InlineMath math="x-y+1=0" /> and compute its distance from the centre.
+The circle has centre <InlineMath math="O(0,0)" /> and <InlineMath math="r=5" />. Write the line in general form the equation below and compute its distance from the centre.
 
-<BlockMath math="d=\frac{|0-0+1|}{\sqrt{1^2+(-1)^2}}=\frac{1}{\sqrt2}" />
+<BlockMath math="\begin{gathered}
+x-y+1=0 \\
+d=\frac{|0-0+1|}{\sqrt{1^2+(-1)^2}}=\frac{1}{\sqrt2}
+\end{gathered}" />
 
 Half of the chord is a leg of that right triangle.
 
@@ -51,11 +66,23 @@ Draw the circle, the line, and the segment from the centre to the line. **The pe
   }}
 />
 
-As a check, substitute <InlineMath math="y=x+1" /> into the circle: <InlineMath math="2x^2+2x-24=0" />, that is <InlineMath math="x^2+x-12=0" />, so <InlineMath math="x=3" /> or <InlineMath math="x=-4" />. The intersection points are <InlineMath math="(3,4)" /> and <InlineMath math="(-4,-3)" />, and their distance is <InlineMath math="\sqrt{7^2+7^2}=7\sqrt2" />.
+As a check, substitute <InlineMath math="y=x+1" /> into the circle: the equation below, that is the equation below, so <InlineMath math="x=3" /> or <InlineMath math="x=-4" />. The intersection points are <InlineMath math="(3,4)" /> and <InlineMath math="(-4,-3)" />, and their distance is the equation below.
 
-So the chord has length <InlineMath math="7\sqrt2" />.
+<BlockMath math="\begin{gathered}
+2x^2+2x-24=0 \\
+x^2+x-12=0 \\
+\sqrt{7^2+7^2}=7\sqrt2
+\end{gathered}" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="\frac72\sqrt2" /> is only half of the chord.
 - <InlineMath math="7" /> is only the difference of the <InlineMath math="x" />-coordinates, but the <InlineMath math="y" />-coordinates also differ by <InlineMath math="7" />.
 - <InlineMath math="10" /> is the diameter. This chord does not pass through the centre, so it is shorter.
 - <InlineMath math="14" /> adds the two coordinate differences instead of using Pythagoras.
+
+# Answer
+
+So the chord has length <InlineMath math="7\sqrt2" />.

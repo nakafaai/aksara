@@ -1,3 +1,17 @@
+# Gegeben
+
+**Der trigonometrische Grenzwert** **der folgende Ausdruck** nutzt <InlineMath math="x" /> im Bogenmaß.
+
+<BlockMath math="\lim_{x\to 0} \frac{\tan 3x \cdot \sin 2x}{1 - \cos 2x}" />
+
+# Gesucht
+
+Der **Wert des Grenzwerts** für <InlineMath math="x \to 0" />.
+
+# Lösung
+
+> Ersetze eins minus Kosinus zwei x durch zwei Sinus-Quadrat x, damit sich alle Faktoren sauber mit x paaren.
+
 Für <InlineMath math="x\to0" /> streben Zähler und Nenner gegen <InlineMath math="0" />. Forme den Nenner mit der **Identität <InlineMath math="1-\cos2x=2\sin^2x" />** um. Danach lässt sich der Bruch in Faktoren zerlegen, deren Grenzwerte bekannt sind.
 
 <BlockMath math="\begin{aligned}
@@ -5,9 +19,13 @@ Für <InlineMath math="x\to0" /> streben Zähler und Nenner gegen <InlineMath ma
 &=\frac12\cdot\frac{\tan3x}{\sin x}\cdot\frac{\sin2x}{\sin x}
 \end{aligned}" />
 
-Mit <InlineMath math="\lim\limits_{x\to0}\frac{\tan ax}{\sin x}=a" /> und <InlineMath math="\lim\limits_{x\to0}\frac{\sin bx}{\sin x}=b" /> folgt:
+Mit <InlineMath math="a" /> und <InlineMath math="b" /> folgt.
 
-<BlockMath math="\lim_{x\to0}\frac{\tan3x\cdot\sin2x}{1-\cos2x}=\frac12\cdot3\cdot2=3" />
+<BlockMath math="\begin{gathered}
+\lim\limits_{x\to0}\frac{\tan ax}{\sin x}=a \\
+\lim\limits_{x\to0}\frac{\sin bx}{\sin x}=b \\
+\lim_{x\to0}\frac{\tan3x\cdot\sin2x}{1-\cos2x}=\frac12\cdot3\cdot2=3
+\end{gathered}" />
 
 Zeichne die Funktion für kleine <InlineMath math="x" /> auf beiden Seiten der Null. **Beide Äste laufen zum selben Punkt <InlineMath math="(0,\ 3)" />**, obwohl die Funktion selbst bei <InlineMath math="x=0" /> nicht definiert ist.
 
@@ -41,9 +59,20 @@ Zeichne die Funktion für kleine <InlineMath math="x" /> auf beiden Seiten der N
 
 Zur Kontrolle: Für kleine <InlineMath math="x" /> ist der Zähler etwa <InlineMath math="3x\cdot2x=6x^2" /> und der Nenner etwa <InlineMath math="2x^2" />, der Quotient also etwa <InlineMath math="3" />.
 
-Der Grenzwert ist also <InlineMath math="3" />.
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="0" /> sieht nur, dass der Zähler gegen <InlineMath math="0" /> strebt, und übersieht, dass der Nenner ebenfalls gegen <InlineMath math="0" /> strebt.
-- <InlineMath math="\frac32" /> nähert den Nenner durch <InlineMath math="(2x)^2=4x^2" /> und vergisst den Faktor <InlineMath math="\frac12" /> aus <InlineMath math="1-\cos u\approx\frac{u^2}{2}" />.
+- <InlineMath math="\frac32" /> nähert den Nenner durch <InlineMath math="(2x)^2=4x^2" /> und vergisst den Faktor <InlineMath math="\frac12" /> aus die folgende Gleichung.
+
+  <BlockMath math="1-\cos u\approx\frac{u^2}{2}" />
+
 - <InlineMath math="6" /> verwendet die falsche Identität <InlineMath math="1-\cos2x=\sin^2x" />, also ohne den Faktor <InlineMath math="2" />.
-- <InlineMath math="12" /> setzt in <InlineMath math="1-\cos u\approx\frac{u^2}{2}" /> den Wert <InlineMath math="u=x" /> statt <InlineMath math="u=2x" /> ein.
+- <InlineMath math="12" /> setzt in die folgende Gleichung den Wert <InlineMath math="u=x" /> statt <InlineMath math="u=2x" /> ein.
+
+  <BlockMath math="1-\cos u\approx\frac{u^2}{2}" />
+
+# Antwort
+
+Der Grenzwert ist also <InlineMath math="3" />.
