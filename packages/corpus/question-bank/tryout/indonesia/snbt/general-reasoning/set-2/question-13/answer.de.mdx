@@ -1,3 +1,15 @@
+# Gegeben
+
+**Die zusammengesetzte Implikation** besagt, wenn Rendi ein Referenzbuch zu spät abgibt, zahlt er eine Gebühr oder seine Karte wird gesperrt.
+
+# Gesucht
+
+Welche logische Aussage in jedem Fall genau denselben Wahrheitswert hat.
+
+# Lösung
+
+> Schreibe jede Implikation in reine Oder-Form um, damit du die Teile fehlerfrei umstellen und direkt vergleichen kannst.
+
 Gesucht ist der Satz, der in jeder Situation denselben Wahrheitswert hat wie die ursprüngliche Aussage. Gib ihren vier Teilen je ein Symbol.
 
 - <InlineMath math="p" />: Rendi gibt das Buch zu spät zurück.
@@ -5,7 +17,11 @@ Gesucht ist der Satz, der in jeder Situation denselben Wahrheitswert hat wie die
 - <InlineMath math="r" />: Rendi zahlt eine Gebühr.
 - <InlineMath math="s" />: Rendis Bibliotheksausweis wird gesperrt.
 
-Die ursprüngliche Aussage ist <InlineMath math="(p \wedge q) \Rightarrow (r \vee s)" />. Am sichersten vergleichst du zusammengesetzte Implikationen, wenn du **alles in die "oder"-Form umschreibst**, mit der Regel <InlineMath math="(A \Rightarrow B) \equiv (\neg A \vee B)" />. Die Verneinung von "<InlineMath math="p" /> und <InlineMath math="q" />" ist "nicht <InlineMath math="p" /> oder nicht <InlineMath math="q" />" (Gesetz von De Morgan).
+Die ursprüngliche Aussage hat folgende Implikationsform.
+
+<BlockMath math="(p \wedge q) \Rightarrow (r \vee s)" />
+
+Am sichersten vergleichst du zusammengesetzte Implikationen, wenn du **alles in die "oder"-Form umschreibst**, denn eine Implikation entspricht der Verneinung der Bedingung oder der Folge. Die Verneinung von "<InlineMath math="p" /> und <InlineMath math="q" />" ist "nicht <InlineMath math="p" /> oder nicht <InlineMath math="q" />" (Gesetz von De Morgan).
 
 <BlockMath math="\begin{aligned}
 (p \wedge q) \Rightarrow (r \vee s) &\equiv \neg(p \wedge q) \vee r \vee s \\
@@ -44,5 +60,7 @@ Jede andere Antwort scheitert an einer Situation.
 - "Zu spät, Präsenzbestand und zahlt, also gesperrt" schiebt <InlineMath math="r" /> ohne Verneinung nach links. Ist Rendi mit einem Präsenzbuch zu spät, zahlt die Gebühr und wird nicht gesperrt, ist die ursprüngliche Aussage wahr, diese Antwort aber falsch.
 - "Zu spät und zahlt nicht, also Präsenzbestand oder gesperrt" schiebt <InlineMath math="q" /> ohne Verneinung nach rechts. Von der äquivalenten Antwort unterscheidet sie sich nur durch das Wort "kein" (*bukan*). Ist Rendi mit einem normalen Buch zu spät, zahlt nicht und wird nicht gesperrt, ist die ursprüngliche Aussage wahr, diese Antwort aber falsch.
 - "Nicht zu spät oder kein Präsenzbestand, also zahlt nicht und nicht gesperrt" ist die Inversion: Beide Seiten werden verneint, aber nicht getauscht. Ist Rendi nicht zu spät, zahlt aber aus einem anderen Grund eine Gebühr, ist die ursprüngliche Aussage wahr, diese Antwort aber falsch.
+
+# Antwort
 
 Äquivalent ist also "Wenn Rendi das Buch zu spät zurückgibt und keine Gebühr zahlt, dann gehört das Buch nicht zum Präsenzbestand oder sein Ausweis wird gesperrt."

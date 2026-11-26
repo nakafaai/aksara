@@ -1,3 +1,15 @@
+# Given
+
+**The compound implication** states that if Rendi returns a book late and it is a reference copy, he pays a fine or his card is frozen.
+
+# Asked
+
+Which logical statement is equivalent in every possible case.
+
+# Solution
+
+> Convert every implication into pure or-form so pieces can be rearranged cleanly and compared with zero arrow confusion.
+
 You're looking for the sentence that always has the same truth value as the original, in every situation. Give its four parts a symbol each.
 
 - <InlineMath math="p" />: Rendi returns the book late.
@@ -5,7 +17,11 @@ You're looking for the sentence that always has the same truth value as the orig
 - <InlineMath math="r" />: Rendi pays a fine.
 - <InlineMath math="s" />: Rendi's membership card is frozen.
 
-The original statement is <InlineMath math="(p \wedge q) \Rightarrow (r \vee s)" />. The safest way to compare compound implications is to **rewrite everything in "or" form**, using the rule <InlineMath math="(A \Rightarrow B) \equiv (\neg A \vee B)" />. The negation of "<InlineMath math="p" /> and <InlineMath math="q" />" is "not <InlineMath math="p" /> or not <InlineMath math="q" />" (De Morgan's law).
+The original statement has the compound implication form below.
+
+<BlockMath math="(p \wedge q) \Rightarrow (r \vee s)" />
+
+The safest way to compare compound implications is to **rewrite everything in "or" form** because an implication matches the negation of its premise or its conclusion. The negation of "<InlineMath math="p" /> and <InlineMath math="q" />" is "not <InlineMath math="p" /> or not <InlineMath math="q" />" (De Morgan's law).
 
 <BlockMath math="\begin{aligned}
 (p \wedge q) \Rightarrow (r \vee s) &\equiv \neg(p \wedge q) \vee r \vee s \\
@@ -44,5 +60,7 @@ Each of the other options fails in one situation.
 - "Late, reference and pays, so frozen" moves <InlineMath math="r" /> to the left without negating it. If Rendi is late with a reference book, pays the fine and his card isn't frozen, the original is true but this option is false.
 - "Late and doesn't pay, so reference or frozen" moves <InlineMath math="q" /> to the right without negating it. It differs from the equivalent option only by the word "not" (*bukan*). If Rendi is late with an ordinary book, doesn't pay and his card isn't frozen, the original is true but this option is false.
 - "Not late or not reference, so doesn't pay and not frozen" is the inverse: both sides negated but not swapped. If Rendi isn't late but pays a fine for something else, the original is true but this option is false.
+
+# Answer
 
 So the equivalent statement is "If Rendi returns the book late and doesn't pay a fine, then the book isn't a reference item or his membership card is frozen."

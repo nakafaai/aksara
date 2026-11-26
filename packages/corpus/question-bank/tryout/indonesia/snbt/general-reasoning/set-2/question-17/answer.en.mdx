@@ -1,3 +1,15 @@
+# Given
+
+**The six assignment rules** place eight volunteers across registration, medical, and logistics with Fikri and Galih paired together.
+
+# Asked
+
+The total number of distinct valid volunteer assignments.
+
+# Solution
+
+> Split cases by where the Fikri-Galih pair sits first because placing a locked pair immediately fills two slots in each branch.
+
 This question asks for the number of valid arrangements, so you have to find every one of them without missing any or counting any twice. The tidiest way is to **split the cases by the post of Fikri and Galih**, because that pair uses up two seats at once.
 
 Three facts first, since all of them are used in every case.
@@ -52,5 +64,7 @@ Here are all ten arrangements.
 A quick check on the table: Kurnia shows up in registration only in rows <InlineMath math="5" /> and <InlineMath math="6" />, and in both rows Nanda really is in logistics. In every row, Putri is with Hana or Indra, and Nanda is never with Fikri.
 
 Two wrong counts come up often. If you only work through the case with Fikri and Galih in registration, you stop at <InlineMath math="6" />. If you forget to **use the contrapositive of rule 6** in case 2, you also count two arrangements with Kurnia in registration and Nanda in medical, and you get <InlineMath math="12" />.
+
+# Answer
 
 So the number of arrangements that meet all six rules is <InlineMath math="10" />.

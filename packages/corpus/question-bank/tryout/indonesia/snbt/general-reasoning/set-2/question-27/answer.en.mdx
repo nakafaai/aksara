@@ -1,3 +1,15 @@
+# Given
+
+**An analog wall clock** numbered <InlineMath math="1" /> to <InlineMath math="12" /> loses <InlineMath math="6" /> minutes steadily every <InlineMath math="24" /> hours.
+
+# Asked
+
+The date when the clock first displays the correct time again.
+
+# Solution
+
+> An analog clock matches real time again as soon as it falls behind by one full <InlineMath math="12" />-hour dial turn, not <InlineMath math="24" /> hours.
+
 An analog clock numbered <InlineMath math="1" /> to <InlineMath math="12" /> repeats its display every <InlineMath math="12" /> hours. So a slow clock looks right again when it's behind by **one full turn of the dial**, which is <InlineMath math="12" /> hours or <InlineMath math="12\times60=720" /> minutes, not <InlineMath math="24" /> hours. Your job is to track how far behind it is until that reaches <InlineMath math="720" /> minutes.
 
 Step one: find how far behind it is when the battery dies. From 1 March at 12.00 to 1 May at 12.00 there are <InlineMath math="31" /> days in March and <InlineMath math="30" /> days in April.
@@ -41,5 +53,7 @@ The other options each skip one step:
 - 29 Juni 2027 (29 June) ignores the stop and counts <InlineMath math="720\div6=120" /> days from 1 March.
 - 30 Juli 2027 (30 July) uses only the <InlineMath math="180" /> minutes from the stop and forgets the <InlineMath math="366" /> minutes of delay before it, so it waits <InlineMath math="540\div6=90" /> days from 1 May.
 - 27 September 2027 waits for a delay of <InlineMath math="24" /> hours (<InlineMath math="1{,}440" /> minutes), as if it were a <InlineMath math="24" />-hour digital clock, so it waits <InlineMath math="(1{,}440-546)\div6=149" /> days.
+
+# Answer
 
 So the clock first shows the correct time again on 30 May 2027.

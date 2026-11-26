@@ -1,3 +1,15 @@
+# Diketahui
+
+**Barisan campuran huruf dan bilangan** dimulai dari B2, D3, G5, L9, U17 dengan huruf melingkar kembali ke A setelah Z.
+
+# Ditanyakan
+
+Bentuk suku ke-<InlineMath math="7" /> barisan.
+
+# Penyelesaian
+
+> Ubah huruf ke angka <InlineMath math="1" /> sampai <InlineMath math="26" /> agar terlihat bahwa lompatan hurufnya mengikuti tepat bilangan pada suku sebelumnya.
+
 Setiap suku punya dua bagian, huruf dan bilangan, dan keduanya punya aturan yang berjalan bersamaan. Supaya huruf bisa dihitung, ubah dulu setiap huruf menjadi nomor urutnya dalam alfabet, dengan <InlineMath math="\text{A} = 1" /> sampai <InlineMath math="\text{Z} = 26" />.
 
 | Suku ke- | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
@@ -14,11 +26,11 @@ Aturan kedua menghubungkan huruf dengan bilangan. Lompatan nomor huruf dari satu
 
 <BlockMath math="2 + 2 = 4,\quad 4 + 3 = 7,\quad 7 + 5 = 12,\quad 12 + 9 = 21" />
 
-Sekarang lanjutkan dua langkah. Untuk suku ke-<InlineMath math="6" />, bilangannya <InlineMath math="2 \times 17 - 1 = 33" />, dan nomor hurufnya <InlineMath math="21 + 17 = 38" />. Karena alfabet hanya sampai <InlineMath math="26" />, putar kembali ke A dengan mengurangi <InlineMath math="26" />.
+Sekarang lanjutkan dua langkah. Untuk suku ke-<InlineMath math="6" />, bilangannya <InlineMath math="33" />, dan nomor hurufnya <InlineMath math="38" />. Karena alfabet hanya sampai <InlineMath math="26" />, putar kembali ke A dengan mengurangi <InlineMath math="26" />.
 
 <BlockMath math="38 - 26 = 12 \quad\Rightarrow\quad \text{L}, \qquad \text{suku ke-6} = \text{L}33" />
 
-Untuk suku ke-<InlineMath math="7" />, bilangannya <InlineMath math="2 \times 33 - 1 = 65" />, dan huruf L bergeser sebanyak <InlineMath math="33" />, yaitu bilangan suku ke-<InlineMath math="6" />.
+Untuk suku ke-<InlineMath math="7" />, bilangannya <InlineMath math="65" />, dan huruf L bergeser sebanyak <InlineMath math="33" />, yaitu bilangan suku ke-<InlineMath math="6" />.
 
 <BlockMath math="12 + 33 = 45,\quad 45 - 26 = 19 \quad\Rightarrow\quad \text{S}, \qquad \text{suku ke-7} = \text{S}65" />
 
@@ -44,5 +56,7 @@ Pilihan lain muncul dari kesalahan berikut:
 - <InlineMath math="\text{O}65" /> muncul kalau huruf digeser dengan bilangan suku yang baru, bukan suku yang sedang dilihat: <InlineMath math="21 + 33 = 54" /> menjadi B, lalu <InlineMath math="2 + 65 = 67" /> menjadi O. Aturan ini tidak cocok dengan data, karena B digeser <InlineMath math="3" /> menghasilkan E, bukan D.
 - <InlineMath math="\text{T}68" /> muncul kalau bilangan dianggap selalu dikali dua, sehingga suku berikutnya <InlineMath math="34" /> lalu <InlineMath math="68" />. Aturan ini juga tidak cocok dengan data, karena <InlineMath math="2 \times 9 = 18" />, bukan <InlineMath math="17" />.
 - <InlineMath math="\text{F}129" /> adalah suku ke-<InlineMath math="8" />. Ini terjadi kalau kamu melangkah satu suku terlalu jauh.
+
+# Jawaban
 
 Jadi, suku ke-<InlineMath math="7" /> barisan itu adalah <InlineMath math="\text{S}65" />.

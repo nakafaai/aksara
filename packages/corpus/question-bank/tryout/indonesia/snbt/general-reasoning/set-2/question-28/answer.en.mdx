@@ -1,3 +1,15 @@
+# Given
+
+**Copier X prints** <InlineMath math="60" /> sheets per minute for <InlineMath math="8" /> minutes then rests <InlineMath math="2" /> minutes repeatedly, while copier Y runs nonstop.
+
+# Asked
+
+Whether each statement comparing copier X and copier Y at specific times is true or false.
+
+# Solution
+
+> Break time into full <InlineMath math="10" />-minute cycles for copier X, then check whether leftover minutes fall during printing or cooling.
+
 Machine X is faster while it works, but it keeps pausing. Machine Y is slower, but it never stops. So who's ahead **depends on the moment you look**, and each statement has to be checked at its own time.
 
 Look at X's pattern over one <InlineMath math="10" />-minute cycle: <InlineMath math="8" /> minutes of work make <InlineMath math="8\times60=480" /> sheets, then it rests for <InlineMath math="2" /> minutes. In the same <InlineMath math="10" /> minutes, Y makes <InlineMath math="500" /> sheets. While X works, it gains <InlineMath math="60-50=10" /> sheets per minute on Y. While X rests, Y pulls ahead by <InlineMath math="50" /> sheets per minute. This table records both totals at the end of each work spell and each rest.
@@ -36,6 +48,8 @@ Statement 3 is Benar (true). With a <InlineMath math="1" />-minute rest, a cycle
 
 X's lead at the lowest points keeps rising by <InlineMath math="30" /> sheets per cycle and never goes negative. At the very start, both totals are <InlineMath math="0" />. So X's total is never less than Y's.
 
-Statement 4 is Salah (false). For <InlineMath math="1{,}200" /> sheets, X needs <InlineMath math="1{,}200\div60=20" /> minutes of work, which is <InlineMath math="8+8+4" /> minutes. There are two <InlineMath math="2" />-minute rests in between, so X finishes at minute <InlineMath math="8+2+8+2+4=24" />. Y needs <InlineMath math="1{,}200\div50=24" /> minutes. They finish **at the same time**, so X isn't faster. The answer "X finishes in <InlineMath math="20" /> minutes" forgets the rests.
+Statement 4 is Salah (false). For <InlineMath math="1{,}200" /> sheets, X needs <InlineMath math="20" /> minutes of work, which is <InlineMath math="8+8+4" /> minutes. There are two <InlineMath math="2" />-minute rests in between, so X finishes at minute <InlineMath math="24" />. Y needs <InlineMath math="24" /> minutes. They finish **at the same time**, so X isn't faster. The answer "X finishes in <InlineMath math="20" /> minutes" forgets the rests.
+
+# Answer
 
 So statements 2 and 3 are true, and statements 1 and 4 are false.

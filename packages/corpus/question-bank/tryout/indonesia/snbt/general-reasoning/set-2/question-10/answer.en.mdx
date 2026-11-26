@@ -1,3 +1,15 @@
+# Given
+
+**The mixed letter-number sequence** starts B2, D3, G5, L9, U17 with letters wrapping back to A after Z.
+
+# Asked
+
+The <InlineMath math="7" />th term of the sequence.
+
+# Solution
+
+> Turn letters into numbers <InlineMath math="1" /> to <InlineMath math="26" /> so you spot right away that each letter jumps by the previous term's number.
+
 Each term has two parts, a letter and a number, and each part follows its own rule at the same time. To do arithmetic with the letters, first turn each letter into its position in the alphabet, from <InlineMath math="\text{A} = 1" /> to <InlineMath math="\text{Z} = 26" />.
 
 | Term | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
@@ -14,11 +26,11 @@ The second rule links the letters to the numbers. The jump in letter position fr
 
 <BlockMath math="2 + 2 = 4,\quad 4 + 3 = 7,\quad 7 + 5 = 12,\quad 12 + 9 = 21" />
 
-Now go two steps further. For the 6th term, the number is <InlineMath math="2 \times 17 - 1 = 33" />, and the letter position is <InlineMath math="21 + 17 = 38" />. The alphabet only goes up to <InlineMath math="26" />, so wrap back around to A by subtracting <InlineMath math="26" />.
+Now go two steps further. For the 6th term, the number is <InlineMath math="33" />, and the letter position is <InlineMath math="38" />. The alphabet only goes up to <InlineMath math="26" />, so wrap back around to A by subtracting <InlineMath math="26" />.
 
 <BlockMath math="38 - 26 = 12 \quad\Rightarrow\quad \text{L}, \qquad \text{6th term} = \text{L}33" />
 
-For the 7th term, the number is <InlineMath math="2 \times 33 - 1 = 65" />, and L moves forward by <InlineMath math="33" />, the number in the 6th term.
+For the 7th term, the number is <InlineMath math="65" />, and L moves forward by <InlineMath math="33" />, the number in the 6th term.
 
 <BlockMath math="12 + 33 = 45,\quad 45 - 26 = 19 \quad\Rightarrow\quad \text{S}, \qquad \text{7th term} = \text{S}65" />
 
@@ -44,5 +56,7 @@ The other options come from these slips:
 - <InlineMath math="\text{O}65" /> comes from moving the letter by the new term's number instead of the current one: <InlineMath math="21 + 33 = 54" /> gives B, then <InlineMath math="2 + 65 = 67" /> gives O. That rule doesn't fit the data, because B moved by <InlineMath math="3" /> gives E, not D.
 - <InlineMath math="\text{T}68" /> comes from treating the numbers as plain doubling, so the next ones are <InlineMath math="34" /> and <InlineMath math="68" />. That rule doesn't fit the data either, because <InlineMath math="2 \times 9 = 18" />, not <InlineMath math="17" />.
 - <InlineMath math="\text{F}129" /> is the 8th term. You get it if you go one step too far.
+
+# Answer
 
 So the 7th term of the sequence is <InlineMath math="\text{S}65" />.

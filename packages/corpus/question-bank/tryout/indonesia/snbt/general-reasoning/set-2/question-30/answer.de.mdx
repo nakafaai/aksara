@@ -1,3 +1,15 @@
+# Gegeben
+
+**Ein Laden packt zwei Körbe**, Sirupkörbe (<InlineMath math="1" /> Gebäck, <InlineMath math="2" /> Sirup) und Gebäckkörbe (<InlineMath math="4" /> Gebäck, <InlineMath math="1" /> Sirup), aus begrenztem Vorrat.
+
+# Gesucht
+
+Die größtmögliche Gesamtzahl an Geschenkkörben.
+
+# Lösung
+
+> Da beide Korbarten gegensätzliche Vorräte verbrauchen, liegt das Maximum nahe dem Gleichgewichtspunkt und muss ganzzahlig bleiben.
+
 Die beiden Präsentkörbe konkurrieren auf entgegengesetzte Weise um den Vorrat. Der *Parsel Sirup* (Sirupkorb) braucht wenig Gebäck, aber viel Sirup, der *Parsel Kue* (Gebäckkorb) braucht wenig Sirup, aber viel Gebäck. Wer fast nur eine Sorte packt, verbraucht also eine Zutat und lässt die andere liegen. Die größte Anzahl liegt meist bei **einer Mischung, die beide Zutaten fast aufbraucht**, und weil die Anzahlen ganzzahlig sein müssen, prüfst du diese Mischung sorgfältig.
 
 Sei <InlineMath math="x" /> die Anzahl der Sirupkörbe und <InlineMath math="y" /> die Anzahl der Gebäckkörbe. Die Bedingungen lauten:
@@ -15,9 +27,9 @@ Am klarsten testest du eine Zielsumme <InlineMath math="T=x+y" />. Ersetze <Inli
 \text{Gebäck} &: x+4(T-x)\le44 \quad\Rightarrow\quad x\ge\frac{4T-44}{3}
 \end{aligned}" />
 
-Probier <InlineMath math="T=19" />. Die Sirupbedingung verlangt <InlineMath math="x\le9" />, die Gebäckbedingung aber <InlineMath math="x\ge\frac{32}{3}\approx10{,}7" />. Keine Zahl erfüllt beides, also sind <InlineMath math="19" /> Körbe unmöglich. Für jedes größere <InlineMath math="T" /> sinkt die obere Grenze und steigt die untere, also ist auch das unmöglich.
+Probier <InlineMath math="T=19" />. Die Sirupbedingung verlangt <InlineMath math="x\le9" />, die Gebäckbedingung aber <InlineMath math="x \ge 10{,}7" />. Keine Zahl erfüllt beides, also sind <InlineMath math="19" /> Körbe unmöglich. Für jedes größere <InlineMath math="T" /> sinkt die obere Grenze und steigt die untere, also ist auch das unmöglich.
 
-Probier <InlineMath math="T=18" />. Die Sirupbedingung verlangt <InlineMath math="x\le10" />, die Gebäckbedingung <InlineMath math="x\ge\frac{28}{3}\approx9{,}3" />. Die einzige ganze Zahl dazwischen ist <InlineMath math="x=10" />, also <InlineMath math="y=8" />.
+Probier <InlineMath math="T=18" />. Die Sirupbedingung verlangt <InlineMath math="x\le10" />, die Gebäckbedingung <InlineMath math="x \ge 9{,}3" />. Die einzige ganze Zahl dazwischen ist <InlineMath math="x=10" />, also <InlineMath math="y=8" />.
 
 <BlockMath math="\begin{aligned}
 \text{Gläser Gebäck} &: 10+4(8) = 42 \le 44 \\
@@ -43,5 +55,7 @@ Die anderen Optionen entstehen durch zu schnelle Strategien:
 - <InlineMath math="15" /> entsteht, wenn du <InlineMath math="3" /> Gebäckkörbe packst und dann so viele Sirupkörbe wie möglich, weil sie weniger enthalten. Der Sirup reicht nur für <InlineMath math="12" /> Sirupkörbe, während noch <InlineMath math="20" /> Gläser Gebäck übrig sind.
 - <InlineMath math="17" /> entsteht aus dem Schnittpunkt von <InlineMath math="x+4y=44" /> und <InlineMath math="2x+y=28" />, also <InlineMath math="x\approx9{,}7" /> und <InlineMath math="y\approx8{,}6" />, abgerundet zu <InlineMath math="9+8" />, ohne die ganzzahligen Aufteilungen in der Nähe zu prüfen.
 - <InlineMath math="19" /> rundet diesen Schnittpunkt auf die nächsten ganzen Zahlen, <InlineMath math="10+9" />, aber diese Aufteilung braucht <InlineMath math="29" /> Flaschen Sirup und <InlineMath math="46" /> Gläser Gebäck.
+
+# Antwort
 
 Der Laden kann also höchstens <InlineMath math="18" /> Präsentkörbe packen.
