@@ -14,11 +14,12 @@ When a bottle cap diameter is read as <InlineMath math="3.12 \text{ cm}" />, a c
 
 Significant figures are <Highlight>the digits retained to communicate the resolution</Highlight> of a measured value. Write the value only to the decimal place supported by the instrument. The last reported digit shows the limit of the reading and can change when the value is rounded.
 
-Zoom in on the fuchsia line at the right edge of the cap. It sits past the <InlineMath math="3.1\text{ cm}" /> mark but before <InlineMath math="3.2\text{ cm}" />. So the digits <InlineMath math="3" /> and <InlineMath math="1" /> come straight from the marks, and the last <InlineMath math="2" /> is your estimate between two marks. That estimated digit is the last significant figure you report, and no calculator digit after it is supported.
+Zoom in on the fuchsia line at the cap's right edge. It sits past <InlineMath math="3.1\text{ cm}" /> and before <InlineMath math="3.2\text{ cm}" />. You read <InlineMath math="3" /> and <InlineMath math="1" /> directly from the marks, then estimate the final <InlineMath math="2" /> as your last significant figure.
 
 <MathVisual
   title={<>Reading a Cap on a Ruler</>}
   description={<>A ruler with a mark every <InlineMath math="0.1\text{ cm}" /> under a bottle cap. Zoom in where the fuchsia line crosses the ruler.</>}
+  footer={<>Read the two certain digits from the scale marks and estimate only the last.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 4.5 } },
@@ -121,7 +122,9 @@ With <InlineMath math="4" /> significant figures:
 
 <BlockMath math="1000\text{ m}=1.000\times10^3\text{ m}" />
 
-Here one steel rod is read with three tools. With the ruler it reads <InlineMath math="31.0\text{ cm}" />: three significant figures, and that last zero was measured. Switch to the tape and the zero is gone (<InlineMath math="31\text{ cm}" />). Switch to the caliper and you get one more (<InlineMath math="31.00\text{ cm}" />). Now write the ruler reading in metres, <InlineMath math="0.310\text{ m}" />: the zero in front only places the decimal point, so the count stays at three.
+Here one steel rod is read with three tools. With the ruler it reads <InlineMath math="31.0\text{ cm}" />, so that last zero was genuinely measured.
+
+Switch to the tape and the zero disappears (<InlineMath math="31\text{ cm}" />), or switch to the caliper for one more (<InlineMath math="31.00\text{ cm}" />). Writing the ruler reading in metres as <InlineMath math="0.310\text{ m}" /> adds a leading zero that only places the decimal point, keeping three significant figures.
 
 <SignificantZerosLab
   title={<>When a Zero Counts</>}
@@ -130,6 +133,7 @@ Here one steel rod is read with three tools. With the ruler it reads <InlineMath
       Switch the tool and the unit, and watch which zeros the tool measured and which only hold the decimal point's place.
     </>
   }
+  footer={<>Finer tools add measured zeros, while leading zeros only place the decimal.</>}
   labels={{
     chooseTool: "Choose a measuring tool",
     chooseUnit: "Choose a unit",
@@ -146,6 +150,8 @@ Here one steel rod is read with three tools. With the ruler it reads <InlineMath
     viewLabel: "Steel rod on a measuring tool, with a magnifier on its end",
   }}
 />
+
+Changing units never creates or destroys measurement precision. Notice how the scientific-notation readout keeps the exact same count of significant figures whether you display centimeters or metres.
 
 ## Round Once Using the First Dropped Digit
 
@@ -174,11 +180,14 @@ For an exact halfway case, round-to-even avoids a long series of values being bi
 
 Round directly from the unrounded value to the final precision. Do not round through several intermediate values.
 
+> Keep extra guard digits through every intermediate calculation and round only once at the final reported answer.
+
 Look only at the first dropped digit. Below <InlineMath math="5" /> you keep the last digit, above <InlineMath math="5" /> you raise it, and an exact <InlineMath math="5" /> followed by nothing goes to the even neighbor. Zoom in on the three readings between <InlineMath math="3.140" /> and <InlineMath math="3.150" />.
 
 <MathVisual
   title={<>Rounding from the First Dropped Digit</>}
   description={<>Three readings rounded to two decimal places on a magnified number line. One grid step is <InlineMath math="0.001" />.</>}
+  footer={<>Use only the first dropped digit and round exact halves to the even neighbor.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.3, max: 3.9 } },
@@ -211,7 +220,13 @@ Look only at the first dropped digit. Below <InlineMath math="5" /> you keep the
   }}
 />
 
-## Rounding Sums by Decimal Position
+Both <InlineMath math="3.142" /> and the exact midpoint <InlineMath math="3.145" /> move left to <InlineMath math="3.14" />, because <InlineMath math="4" /> is even, while <InlineMath math="3.146" /> steps right to <InlineMath math="3.15" />. One direct check of that first dropped digit keeps rounding unbiased.
+
+## Rounding Calculations by Operation
+
+Different arithmetic operations propagate precision in different ways. Addition tracks **decimal places**, whereas multiplication tracks **total significant figures**. Always check which operation combines your measurements before deciding how many digits to keep in the final rounded answer.
+
+### Rounding Sums by Decimal Position
 
 For addition and subtraction, the result keeps the decimal place of the measurement with the **fewest decimal places**.
 
@@ -224,7 +239,9 @@ Suppose an iron rod of length <InlineMath math="8.235 \text{ cm}" /> is joined t
 
 The value <InlineMath math="12.735 \text{ cm}" /> is rounded to <InlineMath math="1" /> decimal place because <InlineMath math="4.5 \text{ cm}" /> has only <InlineMath math="1" /> digit after the decimal point.
 
-Why does the ruler reading decide? Join the two rods below. The caliper reads the iron rod to <InlineMath math="0.005\text{ cm}" />, but the ruler reads the copper rod only to <InlineMath math="0.1\text{ cm}" />, so the joined end could sit anywhere in the teal band. That band is wider than every hundredth, so <InlineMath math="12.735\text{ cm}" /> is reported as <InlineMath math="12.7\text{ cm}" />. Read the copper rod with the caliper too, and the band shrinks so all three decimals stay.
+Why does the ruler reading decide? Join the two rods below. The caliper reads the iron rod to <InlineMath math="0.005\text{ cm}" />, while the ruler reads the copper rod only to <InlineMath math="0.1\text{ cm}" />, leaving the joined end anywhere inside the teal band.
+
+Because that band is wider than every hundredth, <InlineMath math="12.735\text{ cm}" /> must be reported as <InlineMath math="12.7\text{ cm}" />. Switch the copper rod to the caliper, and the band shrinks enough to keep all three decimals.
 
 <DecimalSumLab
   title={<>Adding Two Measured Lengths</>}
@@ -233,6 +250,7 @@ Why does the ruler reading decide? Join the two rods below. The caliper reads th
       Switch the tool for the copper rod and watch how wide the band of possible ends becomes in the magnifier.
     </>
   }
+  footer={<>The coarser tool's wide uncertainty band limits the sum's decimal places.</>}
   labels={{
     chooseTool: "Choose the tool for the copper rod",
     copper: <>Copper rod</>,
@@ -247,7 +265,9 @@ Why does the ruler reading decide? Join the two rods below. The caliper reads th
   }}
 />
 
-## Rounding Products by the Fewest Significant Figures
+Adding one coarse reading to a very fine reading spreads the joined end across the coarser tool's entire interval. That physical spread is why sums follow the fewest decimal places rather than the total digit count.
+
+### Rounding Products by the Fewest Significant Figures
 
 When a calculation tracks only significant figures, multiplication and division results are rounded to the **fewest significant figures** among the measured values. This shortcut does not replace a calculation of measurement uncertainty.
 
@@ -273,7 +293,7 @@ A &= \frac{1}{4}\pi d^2 \\
 
 If the International System of Units (SI) is required, convert <InlineMath math="\text{cm}^2" /> to <InlineMath math="\text{m}^2" />. SI is the international standard for measurement units used in science.
 
-<BlockMath math="\begin{aligned} 7.65 \text{ cm}^2 &amp;= 0.000765 \text{ m}^2 \\ &amp;= 7.65 \times 10^{-4} \text{ m}^2 \end{aligned}" />
+<BlockMath math="\begin{aligned} 7.65 \text{ cm}^2 &= 0.000765 \text{ m}^2 \\ &= 7.65 \times 10^{-4} \text{ m}^2 \end{aligned}" />
 
 For addition and subtraction, round by decimal position. For multiplication and division, round by the fewest significant figures among the measured values. [Round-to-even and one-step rounding](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation) prevent repeated rounding from biasing the result.
 
@@ -282,6 +302,7 @@ Pick the rule from the operation, then round once at the end. A sum keeps the fe
 <MathVisual
   title={<>Which Rounding Rule Applies</>}
   description={<>A sum (orange, one grid step is <InlineMath math="0.01" />) and a product (violet, one grid step is <InlineMath math="0.01" />) rounded by their rules.</>}
+  footer={<>Sums follow the fewest decimal places while products follow significant figures.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -2.05, max: 3.75 } },
@@ -306,3 +327,5 @@ Pick the rule from the operation, then round once at the end. A sum keeps the fe
     product: <InlineMath math="2.5\times3.42=8.55\to8.6" />,
   }}
 />
+
+The two arrows separate the two rules cleanly: the orange sum drops to one decimal place while the violet product rounds <InlineMath math="8.55" /> up to <InlineMath math="8.6" /> using round-to-even for two significant figures.

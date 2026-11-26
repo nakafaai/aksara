@@ -14,11 +14,14 @@ Saat lampu menyala, air mendidih, sepeda bergerak, atau ponsel terisi ulang, ada
 
 Energi <Highlight>dikenali dari perubahan yang terjadi</Highlight>: benda bergerak, suhu berubah, cahaya muncul, suara terdengar, atau muatan listrik mengalir.
 
-Contoh nyatanya ada pada lampu gravitasi. Lampu ini tidak memakai baterai atau colokan: sekantong pasir bermassa <InlineMath math="12\text{ kg}" /> turun sejauh <InlineMath math="1{,}8\text{ m}" /> sambil memutar generator kecil yang menyalakan LED. Perhatikan dua perubahan yang terjadi bersamaan: kantong makin rendah dan cahaya muncul. Dengan <InlineMath math="g=10\text{ m/s}^2" />, kantong selalu melepas <InlineMath math="mgh=216\text{ J}" />, jadi turun lebih lambat hanya membagi energi itu ke waktu yang lebih lama sehingga lampu menyala lebih redup.
+Contoh nyatanya ada pada lampu gravitasi. Lampu ini tidak memakai baterai atau colokan: sekantong pasir bermassa <InlineMath math="12\text{ kg}" /> turun sejauh <InlineMath math="1{,}8\text{ m}" /> sambil memutar generator kecil yang menyalakan LED. Perhatikan dua perubahan yang terjadi bersamaan: kantong makin rendah dan cahaya muncul.
+
+Dengan <InlineMath math="g=10\text{ m/s}^2" />, kantong selalu melepas <InlineMath math="mgh=216\text{ J}" />. Turun lebih lambat hanya membagi energi itu ke waktu yang lebih lama sehingga lampu menyala lebih redup.
 
 <WeightLampEnergyLab
   title={<>Lampu yang Menyala dari Kantong Pasir yang Turun</>}
   description={<>Kantong <InlineMath math="12\text{ kg}" /> turun <InlineMath math="1{,}8\text{ m}" /> dan memutar generator yang menyalakan LED. Pilih lama turunnya, lalu bandingkan terang lampu dengan daya yang diberikan kantong.</>}
+  footer={<>Turun lebih lambat menjaga total 216 J tetapi menurunkan daya lampu.</>}
   labels={{
     chooseDescent: "Lama kantong turun",
     drop: <>Tinggi jatuh</>,
@@ -30,7 +33,13 @@ Contoh nyatanya ada pada lampu gravitasi. Lampu ini tidak memakai baterai atau c
   }}
 />
 
-## Usaha Mengukur Energi yang Dipindahkan
+Perhatikan bahwa semua pilihan waktu melepas tepat <InlineMath math="216\text{ J}" />. Mengubah lama turunnya hanya mengubah seberapa terang dan seberapa lama lampu menyala, yang mengantar kita membedakan energi dari daya.
+
+## Usaha Mekanik dan Satuan Joule
+
+Untuk menghitung energi dengan angka, fisika menghubungkan **usaha mekanik** langsung dengan satuan SI untuk energi, yaitu joule. Mendorong benda sejauh jarak tertentu menunjukkan bagaimana gaya berubah menjadi energi yang berpindah.
+
+### Usaha Mengukur Energi yang Dipindahkan
 
 Energi sering dihitung lewat usaha. Pada kasus sederhana berikut, besar gaya yang bekerja tetap dan arahnya **searah dengan perpindahan**. Dalam kondisi itu, usaha dapat ditulis:
 
@@ -54,7 +63,7 @@ W &= F \Delta s \\
 &= 30 \text{ J}
 \end{aligned}" />
 
-Jadi, kotak menerima energi sebesar <InlineMath math="30 \text{ J}" /> melalui dorongan tersebut.
+Jadi, kotak menerima energi sebesar <InlineMath math="30 \text{ J}" /> melalui dorongan itu.
 
 > Kalau gaya diberikan tetapi benda tidak berpindah, usaha mekanik pada benda bernilai <InlineMath math="0 \text{ J}" />. Orang yang mendorong tetap memakai energi metabolik dan dapat merasa lelah, tetapi benda yang diam tidak menerima energi melalui perpindahan.
 
@@ -62,17 +71,18 @@ Gambar dorongan itu sebagai gaya terhadap perpindahan, maka usahanya menjadi lua
 
 <MathVisual
   title={<>Usaha sebagai Luas</>}
-  description={<>Gaya tetap <InlineMath math="15\text{ N}" /> sepanjang <InlineMath math="2\text{ m}" />. Mendatar: perpindahan dalam m. Tegak: gaya dalam satuan <InlineMath math="5\text{ N}" />.</>}
+  description={<>Gaya tetap <InlineMath math="15\text{ N}" /> sepanjang <InlineMath math="2\text{ m}" />. Mendatar: perpindahan dalam m. Tegak: gaya dalam N.</>}
+  footer={<>Luas persegi panjang sama dengan gaya kali perpindahan, yaitu 30 J.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.2 } },
+    frame: { kind: "cartesian", x: { min: -0.4, max: 3.2 }, y: { min: -2, max: 20 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "work", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }] },
+      { id: "work", kind: "region", appearance: "construction", inequalities: ["x >= 0", "x <= 2", "y >= 0", "y <= 15"] },
     ],
     labels: [
-      { key: "force", objectId: "work", at: { x: 1, y: 3 }, placement: "above" },
-      { key: "area", objectId: "work", at: { x: 1, y: 1.5 }, placement: "center" },
+      { key: "force", objectId: "work", at: { x: 1, y: 15 }, placement: "above" },
+      { key: "area", objectId: "work", at: { x: 1, y: 7.5 }, placement: "center" },
     ],
   }}
   labels={{
@@ -81,7 +91,9 @@ Gambar dorongan itu sebagai gaya terhadap perpindahan, maka usahanya menjadi lua
   }}
 />
 
-## Joule adalah Satuan Energi
+Cara pandang luas ini tetap berguna untuk gaya yang berubah. Setiap kali kamu menggambar gaya terhadap perpindahan, luas di bawah grafik menunjukkan besar energi yang dipindahkan oleh gaya itu.
+
+### Joule adalah Satuan Energi
 
 Dalam SI, satuan untuk energi adalah joule, dengan simbol <InlineMath math="\text{J}" />. Karena energi dapat dihitung dari **gaya dikali perpindahan**, satuan joule dapat dibaca sebagai:
 
@@ -93,11 +105,12 @@ Dalam SI, satuan untuk energi adalah joule, dengan simbol <InlineMath math="\tex
 
 [Joule](https://www.nist.gov/glossary-term/26261) adalah [satuan SI turunan](https://www.nist.gov/pml/special-publication-330/sp-330-section-2) untuk energi, usaha, dan kalor.
 
-Joule bisa kamu rasakan di proyek bangunan. Sebuah katrol bermotor mengangkat peti bermassa <InlineMath math="20\text{ kg}" /> ke lantai kerja setinggi <InlineMath math="5\text{ m}" />. Dengan <InlineMath math="g=10\text{ m/s}^2" />, tali menarik seberat peti, yaitu <InlineMath math="200\text{ N}" />, sehingga peti mendapat <InlineMath math="200\text{ N}\times5\text{ m}=1\,000\text{ J}" /> motor mana pun yang dipakai. Coba ganti motornya dan perhatikan apa yang berubah: hanya waktunya.
+Joule bisa kamu rasakan di proyek bangunan. Sebuah katrol bermotor mengangkat peti bermassa <InlineMath math="20\text{ kg}" /> ke lantai kerja setinggi <InlineMath math="5\text{ m}" />. Dengan <InlineMath math="g=10\text{ m/s}^2" />, tali menarik seberat peti yaitu <InlineMath math="200\text{ N}" />, sehingga peti mendapat <InlineMath math="1\,000\text{ J}" /> motor mana pun yang dipakai. Coba ganti motornya dan lihat apa yang berubah.
 
 <HoistWorkLab
   title={<>Joule Sama, Motor Berbeda</>}
   description={<>Katrol mengangkat peti <InlineMath math="20\text{ kg}" /> setinggi <InlineMath math="5\text{ m}" />. Pilih daya motornya, lalu bandingkan energi yang diterima peti dengan lama pengangkatan.</>}
+  footer={<>Motor lebih kuat mengangkat lebih cepat, tetapi peti tetap mendapat 1.000 J.</>}
   labels={{
     chooseMotor: "Daya motor",
     energy: <>Energi yang diterima</>,
@@ -109,13 +122,20 @@ Joule bisa kamu rasakan di proyek bangunan. Sebuah katrol bermotor mengangkat pe
   }}
 />
 
-## Energi Berpindah dari Sumber ke Alat
+Motor mana pun yang kamu pilih, peti tiba di ketinggian yang sama dengan tambahan tepat <InlineMath math="1\,000\text{ J}" />. Motor berdaya lebih besar hanya menyalurkan jumlah joule itu dalam waktu lebih singkat.
+
+## Perpindahan Energi dan Daya
+
+Setelah energi mengalir dari sumber ke alat, ada dua hal utama yang perlu kamu periksa: **bagian energi yang berguna** dan **seberapa cepat energi itu berpindah**.
+
+### Energi Berpindah dari Sumber ke Alat
 
 Energi berpindah dari sumber menuju alat, lalu berubah menjadi bentuk yang kita perlukan.
 
 <Mermaid
   title={<>Ikuti Energi dari Sumber ke Pemakaian</>}
   description={<>Ikuti contoh sehari-hari untuk melihat cara energi berubah bentuk dan berpindah tempat.</>}
+  footer={<>Setiap jalur menelusuri energi dari sumber alam sampai alat yang bekerja.</>}
   chart={`flowchart TD
     A["Energi di sekitar"] --> B["Cahaya ke panel"]
     B --> C["Listrik untuk lampu"]
@@ -126,11 +146,16 @@ Energi berpindah dari sumber menuju alat, lalu berubah menjadi bentuk yang kita 
 
 Pada panel surya, **energi cahaya berubah menjadi energi listrik**. Pada pembangkit listrik tenaga air, energi potensial gravitasi air berubah menjadi energi gerak turbin, lalu menjadi energi listrik. Pada tubuh, energi kimia dari makanan membantu otot melakukan kerja.
 
-Energi tidak pernah hilang dalam perubahan bentuk, hanya terbagi. Pada lampu ilustratif ini, setiap <InlineMath math="100\text{ J}" /> terbagi menjadi <InlineMath math="20\text{ J}" /> cahaya dan <InlineMath math="80\text{ J}" /> panas, jadi efisiensinya <InlineMath math="\eta=\tfrac{20}{100}=20\%" />. Perbesar kedua cabangnya.
+Energi tidak pernah hilang dalam perubahan bentuk, hanya terbagi. Pada lampu ilustratif ini, setiap <InlineMath math="100\text{ J}" /> terbagi menjadi <InlineMath math="20\text{ J}" /> cahaya dan <InlineMath math="80\text{ J}" /> panas, sehingga efisiensinya:
+
+<BlockMath math="\eta = \frac{20\text{ J}}{100\text{ J}} = 20\%" />
+
+Bandingkan lebar kedua cabang keluaran di bawah ini.
 
 <MathVisual
   title={<>Efisiensi adalah Bagian yang Berguna</>}
-  description={<>Aliran energi ilustratif lewat sebuah lampu, dengan lebar pita sesuai skala. Satu kotak grid berarti <InlineMath math="10\text{ J}" />.</>}
+  description={<>Aliran energi ilustratif lewat sebuah lampu, dengan tinggi pita sebanding dengan besar tiap bagian energi.</>}
+  footer={<>Hanya pita cahaya yang berguna, sedangkan 80 J sisanya menjadi panas.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -1.5, max: 11 } },
@@ -155,7 +180,9 @@ Energi tidak pernah hilang dalam perubahan bentuk, hanya terbagi. Pada lampu ilu
   }}
 />
 
-## Daya Mengukur Laju Perpindahan Energi
+Kedua pita keluaran tetap berjumlah <InlineMath math="100\text{ J}" />. Efisiensi menunjukkan bagian energi masuk yang benar-benar menjadi keluaran yang kamu inginkan, bukan panas buangan.
+
+### Daya Mengukur Laju Perpindahan Energi
 
 Energi menjawab pertanyaan *berapa banyak energi yang dipindahkan atau diubah bentuknya*. Daya menjawab pertanyaan *seberapa cepat perpindahan atau perubahan itu berlangsung*.
 
@@ -193,25 +220,26 @@ E &= P t \\
 
 Kalau lampu yang sama menyala lebih lama, energinya bertambah. Kalau dayanya lebih besar, energinya juga bertambah untuk durasi yang sama.
 
-Grafik di bawah menunjukkan kedua pernyataan itu sekaligus. Telusuri garis oranye untuk lampu <InlineMath math="10\text{ W}" />: makin lama lampu menyala, makin besar energinya, dan pada <InlineMath math="5\text{ jam}" /> energinya mencapai <InlineMath math="50\text{ Wh}" />. Garis ungu untuk lampu <InlineMath math="20\text{ W}" /> naik dua kali lebih curam, karena daya menunjukkan seberapa cepat energi terkumpul.
+Grafik di bawah menunjukkan kedua pengaruh itu sekaligus. Telusuri garis oranye untuk lampu <InlineMath math="10\text{ W}" />: pada <InlineMath math="5\text{ jam}" /> energinya mencapai <InlineMath math="50\text{ Wh}" />. Garis ungu untuk lampu <InlineMath math="20\text{ W}" /> naik dua kali lebih curam karena daya menunjukkan seberapa cepat energi terkumpul.
 
 <MathVisual
   title={<>Pemakaian Energi Bertambah seiring Waktu</>}
-  description={<>E = Pt untuk lampu <InlineMath math="10\text{ W}" /> dan <InlineMath math="20\text{ W}" />. Mendatar: waktu dalam jam. Tegak: energi dalam satuan <InlineMath math="20\text{ Wh}" />.</>}
+  description={<>Energi <InlineMath math="E = Pt" /> untuk lampu <InlineMath math="10\text{ W}" /> dan <InlineMath math="20\text{ W}" />. Mendatar: waktu dalam jam. Tegak: energi dalam Wh.</>}
+  footer={<>Daya lebih besar membuat garis energi naik lebih curam pada waktu sama.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -10, max: 135 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "ten", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 3 } },
-      { id: "twenty", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
-      { id: "used", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 5, y: 2.5 } },
-      { id: "used-top", kind: "point", appearance: "answer", at: { x: 5, y: 2.5 } },
+      { id: "ten", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 60 } },
+      { id: "twenty", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 120 } },
+      { id: "used", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 5, y: 50 } },
+      { id: "used-top", kind: "point", appearance: "answer", at: { x: 5, y: 50 } },
     ],
     labels: [
-      { key: "ten", objectId: "ten", at: { x: 6, y: 3 }, placement: "right" },
-      { key: "twenty", objectId: "twenty", at: { x: 6, y: 6 }, placement: "right" },
-      { key: "used", objectId: "used-top", at: { x: 5, y: 2.5 }, placement: "below-right" },
+      { key: "ten", objectId: "ten", at: { x: 6, y: 60 }, placement: "right" },
+      { key: "twenty", objectId: "twenty", at: { x: 6, y: 120 }, placement: "right" },
+      { key: "used", objectId: "used-top", at: { x: 5, y: 50 }, placement: "below-right" },
     ],
   }}
   labels={{
@@ -220,6 +248,8 @@ Grafik di bawah menunjukkan kedua pernyataan itu sekaligus. Telusuri garis orany
     used: <InlineMath math="E=50\text{ Wh}" />,
   }}
 />
+
+Kemiringan garis langsung menunjukkan daya lampu, sedangkan tinggi titik pada jam tertentu menunjukkan total energi yang tercatat pada meteran listrik.
 
 ## Analisis Energi pada Sumber Terbarukan
 

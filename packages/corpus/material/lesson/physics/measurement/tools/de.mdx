@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Arten von Messwerkzeugen",
   description:
@@ -13,7 +12,7 @@ export const metadata = {
 
 Wir messen, wenn wir Zutaten abwiegen, auf einen Tachometer schauen, die Körpertemperatur ablesen oder die Länge eines Tisches bestimmen. In der Physik ist Messen <Highlight>ein experimenteller Vorgang, durch den ein oder mehrere Größenwerte ermittelt werden</Highlight>. Eine Maßeinheit liefert <Highlight>den gemeinsamen Bezug</Highlight>.
 
-Ein Größenwert ist das Produkt aus Zahlenwert und Einheit.
+Jede Ablesung am Messgerät vereint den abgelesenen Zahlenwert mit der auf der Skala angegebenen Einheit.
 
 Hat ein Gegenstand beispielsweise die Länge <InlineMath math="8 \text{ cm}" />, ist <InlineMath math="8" /> der Zahlenwert und <InlineMath math="\text{cm}" /> die Einheit.
 
@@ -29,8 +28,9 @@ Nutze das folgende interaktive Modell, um drei Messwerkzeuge zu vergleichen. Wä
     <>
       Wähle ein Werkzeug und untersuche den Zusammenhang zwischen Größe,
       Gegenstand und Messwert.
-  </>
+    </>
   }
+  footer={<>Jedes Gerät ordnet einer physikalischen Größe seine Skala und Einheit zu.</>}
   labels={{
     chooseTool: "Messwerkzeug auswählen",
     decimalSeparator: ",",
@@ -60,6 +60,8 @@ Nutze das folgende interaktive Modell, um drei Messwerkzeuge zu vergleichen. Wä
   }}
 />
 
+Der Wechsel zwischen Lineal, Waage und Stoppuhr zeigt, dass jedes Messgerät eine eigene physikalische Eigenschaft erfasst und eine eigene Einheit liefert. Eine Zahl ohne Bezug zum Gerät bleibt unvollständig.
+
 ## Das passende Messwerkzeug auswählen
 
 Bestimme vor der Messung die gesuchte Größe. Ihr erwarteter Bereich und die benötigte Auflösung bestimmen das Messgerät. Die Art der Größe bestimmt die Einheit des Ergebnisses.
@@ -67,6 +69,7 @@ Bestimme vor der Messung die gesuchte Größe. Ihr erwarteter Bereich und die be
 <Mermaid
   title={<>Werkzeug und Größe zuordnen</>}
   description={<>Gehe von der gesuchten Größe aus und wähle das Werkzeug nach Messbereich, Auflösung und Ableseart.</>}
+  footer={<>Bestimme zuerst die Größe, damit Gerät, Bereich und Einheit zusammenpassen.</>}
   chart={`flowchart TD
     A["Gesuchte Größe"] --> B["Länge"]
     A --> C["Masse"]
@@ -109,6 +112,7 @@ Ein Messschieber liest feiner ab als ein Lineal. Im Labor unten schließen sich 
       Schieb die Backe an den Messingzylinder. Die Nonius-Null gibt die ganzen Millimeter, der passende Strich das Zehntel.
     </>
   }
+  footer={<>Lies ganze Millimeter an der Nonius-Null und Zehntel am deckenden Strich ab.</>}
   labels={{
     centimetres: <>In Zentimetern</>,
     line: <>Noniusstrich auf einer Marke</>,
@@ -119,13 +123,17 @@ Ein Messschieber liest feiner ab als ein Lineal. Im Labor unten schließen sich 
   }}
 />
 
+Beim Verschieben der Backe liefert immer der Strich links neben der Nonius-Null die ganzen Millimeter, während der einzige deckungsgleiche Noniusstrich das Zehntel nennt. Zusammen erreichst du so eine Auflösung von <InlineMath math="0{,}1\text{ mm}" />.
+
 ### Masse
 
 Die Masse beschreibt, wie stark sich ein Körper einer Bewegungsänderung widersetzt. Eine Waage bestimmt sie durch den Vergleich mit **bekannten Massen**. Zeigt die Waage <InlineMath math="250 \text{ g}" />, beträgt die Masse des Gegenstands:
 
 <BlockMath math="m = 250 \text{ g}" />
 
-Im Labor oben ist eine gleicharmige Waage dargestellt. Der Gegenstand liegt auf der linken Schale, eine Referenzmasse von <InlineMath math="250 \text{ g}" /> auf der rechten. Ist die Gegenstandsmasse größer als <InlineMath math="250 \text{ g}" />, sinkt ihre Seite. Ist sie kleiner als <InlineMath math="250 \text{ g}" />, sinkt die Referenzseite. Bei gleicher Masse bleibt die Waage im Gleichgewicht.
+Im Labor oben ist eine gleicharmige Waage dargestellt: Der Gegenstand liegt auf der linken Schale, eine Referenzmasse von <InlineMath math="250 \text{ g}" /> auf der rechten.
+
+Ist der Gegenstand schwerer als <InlineMath math="250 \text{ g}" />, sinkt seine Seite, ist er leichter, sinkt die Referenzseite. Stehen beide Schalen auf gleicher Höhe, sind die Massen gleich groß.
 
 Das Symbol <InlineMath math="\tau" /> bezeichnet den Betrag des Drehmoments, also der Drehwirkung einer Kraft auf die Waage. Beide Arme haben die Länge <InlineMath math="r" />, und <InlineMath math="g" /> ist der Betrag der Erdbeschleunigung. Gleiche Massen an gleich langen Armen erzeugen entgegengesetzte Drehmomente mit gleichem Betrag.
 
@@ -153,6 +161,7 @@ Ein Messschieber gewinnt einen Zehntelmillimeter, indem er zwei Skalen zur Decku
 <MathVisual
   title={<>Einen Messschieber ablesen</>}
   description={<>Die Hauptskala in Millimetern (oben) und die Noniusskala mit <InlineMath math="10" /> Teilen auf <InlineMath math="9\text{ mm}" /> (unten).</>}
+  footer={<>Nur ein Noniusstrich fluchtet exakt und liefert den Zehntelmillimeter.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 14 }, y: { min: -1.6, max: 1.4 } },
@@ -200,6 +209,8 @@ Ein Messschieber gewinnt einen Zehntelmillimeter, indem er zwei Skalen zur Decku
   }}
 />
 
+Weil jeder Noniusschritt um <InlineMath math="0{,}1\text{ mm}" /> kürzer ist als ein Millimeter auf der Hauptskala, schrumpft der Versatz bei jedem Strich um ein Zehntel, bis der siebte Strich exakt unter der <InlineMath math="3\text{ cm}" />-Marke steht.
+
 ## Messwerkzeuge um uns herum
 
 Viele Alltagsgrößen lassen sich direkt an einem Messgerät ablesen. Andere Größen wie die Dichte können aus mehreren Messwerten berechnet werden. Die Tabelle ordnet ein gängiges Messgerät der Größe zu, die es liefert, damit du das Werkzeug über die gesuchte Größe auswählst.
@@ -225,6 +236,7 @@ Für etwas so Dünnes wie einen Draht oder eine kleine Kugel nimmst du eine Mess
       Dreh die Trommel an die Stahlkugel. Die Hülse gibt ganze und halbe Millimeter, der Trommelstrich auf der Bezugslinie die Hundertstel.
     </>
   }
+  footer={<>Addiere die Millimeter der Hülse zu den Hundertsteln auf der Trommel.</>}
   labels={{
     division: <>Trommelstrich auf der Linie</>,
     reading: <>Ablesung</>,
@@ -233,6 +245,8 @@ Für etwas so Dünnes wie einen Draht oder eine kleine Kugel nimmst du eine Mess
     viewLabel: "Messschraube an einer Stahlkugel, mit Lupe auf Hülse und Trommel",
   }}
 />
+
+Prüfe vor dem Addieren der Trommel immer, ob der untere Halbmillimeter-Strich auf der Hülse schon sichtbar ist. Dieser kurze Blick vermeidet den häufigsten Ablesefehler von <InlineMath math="0{,}50\text{ mm}" />.
 
 ## Eine Länge aus zwei Messwerten bestimmen
 
@@ -254,6 +268,7 @@ Der Bleistift unten beginnt nicht bei null, also lies beide Enden ab. Sein Ende 
 <MathVisual
   title={<>Eine Länge aus zwei Marken ablesen</>}
   description={<>Ein Bleistift von der 1-cm-Marke bis zur 8-cm-Marke auf einem Lineal. Ein Gitterschritt ist <InlineMath math="1\text{ cm}" />.</>}
+  footer={<>Ziehe die Anfangsmarke von der Endmarke ab, wenn du nicht bei null startest.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -1.75, max: 3.25 } },
@@ -297,3 +312,5 @@ Der Bleistift unten beginnt nicht bei null, also lies beide Enden ab. Sein Ende 
     length: <InlineMath math="L=8-1=7\text{ cm}" />,
   }}
 />
+
+Bei einer sauberen Marke wie <InlineMath math="1\text{ cm}" /> zu starten ist sogar nützlich, wenn die Nullkante des Lineals abgenutzt ist. Solange du Anfangs- und Endwert voneinander abziehst, bleibt die Länge exakt.

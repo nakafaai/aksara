@@ -14,11 +14,14 @@ Wenn eine Lampe angeht, Wasser kocht, ein Fahrrad fährt oder ein Telefon aufgel
 
 Energie <Highlight>lässt sich an ihren Wirkungen erkennen</Highlight>: Ein Objekt bewegt sich, die Temperatur ändert sich, Licht erscheint, Geräusche werden erzeugt oder elektrische Ladung fließt.
 
-So sieht das in einem echten Gerät aus. Eine Schwerkraftlampe hat weder Batterie noch Stecker: Ein <InlineMath math="12\text{ kg}" /> schwerer Sandsack sinkt <InlineMath math="1{,}8\text{ m}" /> tief und dreht dabei einen kleinen Generator, der eine LED leuchten lässt. Achte auf die zwei Veränderungen, die gleichzeitig passieren: Der Sack sinkt, und Licht erscheint. Mit <InlineMath math="g=10\text{ m/s}^2" /> gibt der Sack immer <InlineMath math="mgh=216\text{ J}" /> ab, ein langsameres Absinken verteilt diese Energie also nur auf mehr Zeit, und die Lampe leuchtet schwächer.
+So sieht das in einem echten Gerät aus. Eine Schwerkraftlampe hat weder Batterie noch Stecker: Ein <InlineMath math="12\text{ kg}" /> schwerer Sandsack sinkt <InlineMath math="1{,}8\text{ m}" /> tief und dreht dabei einen kleinen Generator, der eine LED leuchten lässt. Achte auf die zwei Veränderungen, die gleichzeitig passieren: Der Sack sinkt, und Licht erscheint.
+
+Mit <InlineMath math="g=10\text{ m/s}^2" /> gibt der Sack immer <InlineMath math="mgh=216\text{ J}" /> ab. Ein langsameres Absinken verteilt diese Energie nur auf mehr Zeit, sodass die Lampe schwächer leuchtet.
 
 <WeightLampEnergyLab
   title={<>Eine Lampe, die ein sinkender Sack antreibt</>}
   description={<>Ein <InlineMath math="12\text{ kg}" /> schwerer Sack sinkt <InlineMath math="1{,}8\text{ m}" /> und dreht einen Generator, der eine LED leuchten lässt. Wähle, wie lange das Absinken dauert, und vergleiche das Leuchten mit der Leistung, die der Sack abgibt.</>}
+  footer={<>Langsameres Sinken hält 216 J konstant, senkt aber die Lampenleistung.</>}
   labels={{
     chooseDescent: "Dauer des Absinkens",
     drop: <>Fallhöhe</>,
@@ -30,7 +33,13 @@ So sieht das in einem echten Gerät aus. Eine Schwerkraftlampe hat weder Batteri
   }}
 />
 
-## Mechanische Arbeit überträgt Energie
+Jede Einstellung setzt genau dieselben <InlineMath math="216\text{ J}" /> frei. Die Dauer ändert nur Helligkeit und Leuchtzeit, was bereits den Unterschied zwischen Energie und Leistung zeigt.
+
+## Mechanische Arbeit und das Joule
+
+Um Energie zahlenmäßig zu erfassen, verknüpft die Physik **mechanische Arbeit** direkt mit der SI-Einheit der Energie, dem Joule. Sobald eine Kraft einen Körper über eine Strecke verschiebt, lässt sich die übertragene Energie exakt berechnen.
+
+### Mechanische Arbeit überträgt Energie
 
 Wirkt eine konstante Kraft **in Richtung der Verschiebung** eines Objekts, beträgt die durch mechanische Arbeit übertragene Energie:
 
@@ -62,17 +71,18 @@ Zeichne das Schieben als Kraft über der Verschiebung, dann wird die Arbeit zu e
 
 <MathVisual
   title={<>Arbeit als Fläche</>}
-  description={<>Eine konstante Kraft von <InlineMath math="15\text{ N}" /> über <InlineMath math="2\text{ m}" />. Waagrecht: Verschiebung in m. Senkrecht: Kraft in Einheiten von <InlineMath math="5\text{ N}" />.</>}
+  description={<>Eine konstante Kraft von <InlineMath math="15\text{ N}" /> über <InlineMath math="2\text{ m}" />. Waagrecht: Verschiebung in m. Senkrecht: Kraft in N.</>}
+  footer={<>Die markierte Rechteckfläche ergibt Kraft mal Weg, also 30 J Arbeit.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.2 } },
+    frame: { kind: "cartesian", x: { min: -0.4, max: 3.2 }, y: { min: -2, max: 20 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "work", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }] },
+      { id: "work", kind: "region", appearance: "construction", inequalities: ["x >= 0", "x <= 2", "y >= 0", "y <= 15"] },
     ],
     labels: [
-      { key: "force", objectId: "work", at: { x: 1, y: 3 }, placement: "above" },
-      { key: "area", objectId: "work", at: { x: 1, y: 1.5 }, placement: "center" },
+      { key: "force", objectId: "work", at: { x: 1, y: 15 }, placement: "above" },
+      { key: "area", objectId: "work", at: { x: 1, y: 7.5 }, placement: "center" },
     ],
   }}
   labels={{
@@ -81,7 +91,9 @@ Zeichne das Schieben als Kraft über der Verschiebung, dann wird die Arbeit zu e
   }}
 />
 
-## Energie wird in Joule gemessen
+Diese Flächensicht gilt auch bei veränderlicher Kraft. Sobald du die Kraft über dem Weg aufträgst, zeigt die Fläche unter dem Graphen die übertragene Energie.
+
+### Energie wird in Joule gemessen
 
 Im SI ist die Einheit für Energie das Joule mit dem Symbol <InlineMath math="\text{J}" />. Da Energie aus **Kraft mal Verschiebung** berechnet werden kann, kann ein Joule wie folgt gelesen werden:
 
@@ -93,11 +105,12 @@ Im SI ist die Einheit für Energie das Joule mit dem Symbol <InlineMath math="\t
 
 Das Joule ist die [abgeleitete SI-Einheit](https://www.nist.gov/pml/special-publication-330/sp-330-section-2) der Energie. [Ein Joule entspricht einem Newtonmeter](https://www.nist.gov/glossary-term/26261) oder einem Kilogramm-Meterquadrat pro Sekundequadrat.
 
-Das Joule kannst du auf einer Baustelle spüren. Ein Motorhebezeug hebt eine <InlineMath math="20\text{ kg}" /> schwere Kiste auf eine Plattform in <InlineMath math="5\text{ m}" /> Höhe. Mit <InlineMath math="g=10\text{ m/s}^2" /> zieht das Seil mit der Gewichtskraft der Kiste, <InlineMath math="200\text{ N}" />, also gewinnt die Kiste <InlineMath math="200\text{ N}\times5\text{ m}=1\,000\text{ J}" />, egal welcher Motor arbeitet. Wechsle den Motor und achte darauf, was sich ändert: nur die Zeit.
+Das Joule kannst du auf einer Baustelle spüren. Ein Motorhebezeug hebt eine <InlineMath math="20\text{ kg}" /> schwere Kiste auf eine Plattform in <InlineMath math="5\text{ m}" /> Höhe. Mit <InlineMath math="g=10\text{ m/s}^2" /> zieht das Seil mit <InlineMath math="200\text{ N}" />, sodass die Kiste bei jedem Motor <InlineMath math="1\,000\text{ J}" /> gewinnt. Wechsle den Motor und sieh, was sich ändert.
 
 <HoistWorkLab
   title={<>Gleiche Joule, andere Motoren</>}
   description={<>Ein Hebezeug hebt eine <InlineMath math="20\text{ kg}" /> schwere Kiste <InlineMath math="5\text{ m}" /> hoch. Wähle die Motorleistung und vergleiche die Energie, die die Kiste gewinnt, mit der Dauer des Hubs.</>}
+  footer={<>Stärkere Motoren heben schneller, aber die Kiste gewinnt stets 1.000 J.</>}
   labels={{
     chooseMotor: "Motorleistung",
     energy: <>Gewonnene Energie</>,
@@ -109,13 +122,20 @@ Das Joule kannst du auf einer Baustelle spüren. Ein Motorhebezeug hebt eine <In
   }}
 />
 
-## Energieübertragung und Energieumwandlung
+Egal welchen Motor du wählst, die Kiste erreicht dieselbe Höhe mit genau <InlineMath math="1\,000\text{ J}" /> Zuwachs. Ein stärkerer Motor liefert diese Joule lediglich in kürzerer Zeit.
+
+## Energieübertragung und Leistung
+
+Sobald Energie von einer Quelle in ein Gerät fließt, zählen zwei Größen: **wie viel Nutzenergie entsteht** und **wie schnell die Übertragung abläuft**. Diese Trennung hält Joule als Energiemenge und Watt als Rate klar auseinander.
+
+### Energieübertragung und Energieumwandlung
 
 Energie kann **von einer Quelle auf ein Gerät übertragen** werden. Das Gerät kann sie dann in eine Nutzenergie wie Licht, Bewegung, Wärme oder Strom umwandeln.
 
 <Mermaid
   title={<>Energieübertragung von der Quelle bis zur Nutzung</>}
   description={<>Alltagsbeispiele zeigen, wie Energie übertragen und umgewandelt wird.</>}
+  footer={<>Jeder Pfad verfolgt Energie von einer Naturquelle bis zum Gerät.</>}
   chart={`flowchart TD
     A["Energie um uns herum"] --> B["Sonnenlicht zum Panel"]
     B --> C["Strom für Lampe"]
@@ -126,11 +146,16 @@ Energie kann **von einer Quelle auf ein Gerät übertragen** werden. Das Gerät 
 
 In einem Solarpanel wird Lichtenergie in elektrische Energie umgewandelt. Bei der Wasserkraft wandelt sich die potentielle Gravitationsenergie des Wassers in Turbinenbewegung und dann in elektrische Energie um. Im Körper hilft die chemische Energie aus der Nahrung den Muskeln bei der Arbeit.
 
-Bei einer Umwandlung geht Energie nie verloren, sie wird nur aufgeteilt. In dieser beispielhaften Lampe teilt sich jedes <InlineMath math="100\text{ J}" /> in <InlineMath math="20\text{ J}" /> Licht und <InlineMath math="80\text{ J}" /> Wärme, also ist der Wirkungsgrad <InlineMath math="\eta=\tfrac{20}{100}=20\%" />. Zoom auf beide Zweige.
+Bei einer Umwandlung geht Energie nie verloren, sie wird nur aufgeteilt. In dieser beispielhaften Lampe teilen sich <InlineMath math="100\text{ J}" /> in <InlineMath math="20\text{ J}" /> Licht und <InlineMath math="80\text{ J}" /> Wärme, also ergibt sich der Wirkungsgrad:
+
+<BlockMath math="\eta = \frac{20\text{ J}}{100\text{ J}} = 20\%" />
+
+Vergleiche unten die Breite beider Ausgangszweige.
 
 <MathVisual
   title={<>Wirkungsgrad ist der nützliche Anteil</>}
-  description={<>Ein beispielhafter Energiefluss durch eine Lampe, die Bandbreiten maßstabsgetreu. Ein Gitterschritt entspricht <InlineMath math="10\text{ J}" />.</>}
+  description={<>Ein beispielhafter Energiefluss durch eine Lampe, bei dem die Bandhöhen den jeweiligen Energieanteilen entsprechen.</>}
+  footer={<>Nur das schmale Lichtband ist Nutzenergie, während 80 J zu Wärme werden.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -1.5, max: 11 } },
@@ -155,7 +180,9 @@ Bei einer Umwandlung geht Energie nie verloren, sie wird nur aufgeteilt. In dies
   }}
 />
 
-## Leistung misst die Geschwindigkeit der Energieübertragung
+Beide Ausgangsbänder summieren sich weiterhin auf <InlineMath math="100\text{ J}" />. Der Wirkungsgrad misst einfach den Anteil, der statt Abwärme das gewünschte Licht liefert.
+
+### Leistung misst die Geschwindigkeit der Energieübertragung
 
 Energie beantwortet die Frage, *wie viel Energie übertragen oder umgewandelt wird*. Leistung beantwortet die Frage, *wie schnell dieser Vorgang abläuft*.
 
@@ -193,25 +220,26 @@ E &= P t \\
 
 Bleibt dieselbe Lampe länger eingeschaltet, erhöht sich ihr Energieverbrauch. Bei höherer Leistung erhöht sich für die gleiche Dauer auch der Energieverbrauch.
 
-Das Diagramm unten zeigt beide Aussagen auf einmal. Folge der orangen Linie für die <InlineMath math="10\text{ W}" />-Lampe: Je länger sie brennt, desto mehr Energie braucht sie, und nach <InlineMath math="5\text{ h}" /> sind es <InlineMath math="50\text{ Wh}" />. Die violette Linie für eine <InlineMath math="20\text{ W}" />-Lampe steigt doppelt so steil, weil die Leistung angibt, wie schnell sich die Energie ansammelt.
+Das Diagramm unten zeigt beide Einflüsse zugleich. Folge der orangen Linie für die <InlineMath math="10\text{ W}" />-Lampe: Nach <InlineMath math="5\text{ h}" /> erreicht sie <InlineMath math="50\text{ Wh}" />. Die violette Linie für eine <InlineMath math="20\text{ W}" />-Lampe steigt doppelt so steil, weil Leistung die Zuwachsrate angibt.
 
 <MathVisual
   title={<>Der Energieverbrauch wächst mit der Zeit</>}
-  description={<>E = Pt für eine 10-W- und eine 20-W-Lampe. Waagrecht: Zeit in Stunden. Senkrecht: Energie in Einheiten von <InlineMath math="20\text{ Wh}" />.</>}
+  description={<>Energie <InlineMath math="E = Pt" /> für eine <InlineMath math="10\text{ W}" />- und eine <InlineMath math="20\text{ W}" />-Lampe. Waagrecht: Zeit in Stunden. Senkrecht: Energie in Wh.</>}
+  footer={<>Höhere Leistung macht die Energielinie im gleichen Zeitraum steiler.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -10, max: 135 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "ten", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 3 } },
-      { id: "twenty", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
-      { id: "used", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 5, y: 2.5 } },
-      { id: "used-top", kind: "point", appearance: "answer", at: { x: 5, y: 2.5 } },
+      { id: "ten", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 60 } },
+      { id: "twenty", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 120 } },
+      { id: "used", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 5, y: 50 } },
+      { id: "used-top", kind: "point", appearance: "answer", at: { x: 5, y: 50 } },
     ],
     labels: [
-      { key: "ten", objectId: "ten", at: { x: 6, y: 3 }, placement: "right" },
-      { key: "twenty", objectId: "twenty", at: { x: 6, y: 6 }, placement: "right" },
-      { key: "used", objectId: "used-top", at: { x: 5, y: 2.5 }, placement: "below-right" },
+      { key: "ten", objectId: "ten", at: { x: 6, y: 60 }, placement: "right" },
+      { key: "twenty", objectId: "twenty", at: { x: 6, y: 120 }, placement: "right" },
+      { key: "used", objectId: "used-top", at: { x: 5, y: 50 }, placement: "below-right" },
     ],
   }}
   labels={{
@@ -220,6 +248,8 @@ Das Diagramm unten zeigt beide Aussagen auf einmal. Folge der orangen Linie für
     used: <InlineMath math="E=50\text{ Wh}" />,
   }}
 />
+
+Die Steigung zeigt dir direkt die Leistung der Lampe, während die Höhe zu jeder Stunde den gesamten Energieverbrauch auf deiner Stromrechnung angibt.
 
 ## Energieanalyse bei erneuerbaren Quellen
 

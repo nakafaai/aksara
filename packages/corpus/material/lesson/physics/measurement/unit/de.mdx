@@ -14,7 +14,7 @@ Stell dir den Größenwert <InlineMath math="12" /> ohne Einheit vor. Sind damit
 
 Eine Einheit ist <Highlight>ein festgelegter Maßstab für eine physikalische Größe</Highlight>. Messungen verschiedener Personen, Geräte und Orte lassen sich nur vergleichen, wenn ihre Einheiten angegeben und bei Bedarf umgerechnet werden.
 
-Ein Größenwert ist das Produkt aus Zahlenwert und Einheit.
+Jede Messangabe verbindet eine reine Zahl multiplikativ mit dem vereinbarten Einheitensymbol.
 
 Der Zahlenwert sagt, *wie viel* gemessen wurde. Die Einheit nennt den *Vergleichsmaßstab*.
 
@@ -27,6 +27,7 @@ Hier messen drei Freunde denselben <InlineMath math="1{,}20\text{ m}" /> langen 
       Wechsel zwischen den drei Bleistiften und dem Meterstab und achte darauf, wie sich die Anzahl für denselben Tisch ändert.
     </>
   }
+  footer={<>Verschiedene private Maßstäbe liefern verschiedene Zahlen für denselben Tisch.</>}
   labels={{
     chooseReference: "Maßstab wählen",
     count: <>Anzahl</>,
@@ -42,6 +43,8 @@ Hier messen drei Freunde denselben <InlineMath math="1{,}20\text{ m}" /> langen 
   }}
 />
 
+Jeder Bleistift liefert eine andere Anzahl, obwohl der Tisch stets gleich lang bleibt. Erst der gemeinsame Meterstab sorgt dafür, dass alle drei denselben Messwert angeben.
+
 ## Von vielen Systemen zu SI
 
 Bevor sich ein gemeinsamer Standard durchsetzte, bestanden mehrere Einheitensysteme nebeneinander. Drei davon tauchen häufig in Physikbüchern auf:
@@ -54,7 +57,7 @@ Bevor sich ein gemeinsamer Standard durchsetzte, bestanden mehrere Einheitensyst
 
 In dieser FPS-Zeile bezeichnet <InlineMath math="\text{lb}" /> die Pfundmasse. Sie darf nicht mit der Pfundkraft verwechselt werden, die häufig als <InlineMath math="\text{lbf}" /> geschrieben wird.
 
-Ohne Angabe des Einheitensystems lassen sich solche Messwerte nur schwer vergleichen. Deshalb verwendet die moderne Wissenschaft das **Internationale Einheitensystem**, kurz **SI**. Die Abkürzung stammt vom französischen Namen *Système international d'unités*. Auf Englisch heißt es *International System of Units*. Das *Bureau International des Poids et Mesures*, kurz BIPM, betreut diesen internationalen Standard.
+Ohne Angabe des Einheitensystems lassen sich Messwerte kaum vergleichen. Deshalb nutzt die moderne Wissenschaft das **Internationale Einheitensystem** (**SI**), vom französischen *Système international d'unités*, das weltweit vom BIPM (*Bureau International des Poids et Mesures*) gepflegt wird.
 
 [Das BIPM legt die SI-Definitionen fest](https://www.bipm.org/en/measurement-units), damit die Einheiten einen gemeinsamen internationalen Bezug haben.
 
@@ -69,6 +72,7 @@ Ein Gegenstand reicht, um es zu sehen. Die Bowlingkugel unten ist die schwerste,
       Wechsel zwischen FPS, CGS und MKS und achte darauf, dass Zeiger und Kugel bleiben und sich nur die Zahlen ändern.
     </>
   }
+  footer={<>Ein Wechsel des Systems ändert nur die Zahlen, nie Masse oder Größe der Kugel.</>}
   labels={{
     chooseSystem: "Einheitensystem wählen",
     diameter: <>Durchmesser</>,
@@ -82,6 +86,8 @@ Ein Gegenstand reicht, um es zu sehen. Die Bowlingkugel unten ist die schwerste,
     viewLabel: "Bowlingkugel auf einer Zeigerwaage neben einem Zoll- und Zentimeterlineal",
   }}
 />
+
+Waagenzeiger und Linealkante bewegen sich kein Stück, wenn du zwischen FPS, CGS und MKS wechselst. Ein Einheitensystem ändert ausschließlich den Vergleichsmaßstab, nicht das gemessene Objekt.
 
 ## Die sieben Basiseinheiten des SI
 
@@ -121,11 +127,14 @@ Eine abgeleitete Einheit entsteht zusammen mit einer Größe, die aus Grundgrö�
 
 Die Arbeitsformel setzt eine konstante Kraft in Verschiebungsrichtung voraus. Die Formeln für Geschwindigkeit, Beschleunigung und Leistung in der Tabelle liefern Mittelwerte im betrachteten Zeitintervall.
 
-Dreh den Würfel unten. An jeder Kante zählst du <InlineMath math="10" /> kleine Würfel mit <InlineMath math="1\text{ dm}" />, also ist der große Würfel an jeder Seite <InlineMath math="1\text{ m}" /> lang. Sein Volumen ist <InlineMath math="(10\text{ dm})^3=1000\text{ dm}^3" />, also gilt <InlineMath math="1\text{ m}^3=1000\text{ dm}^3" />, und ein kleiner Würfel fasst genau <InlineMath math="1" /> Liter. Achte darauf, dass der Vorsatz zusammen mit der Einheit hoch drei genommen wird: <InlineMath math="1\text{ dm}=10^{-1}\text{ m}" />, also <InlineMath math="1\text{ dm}^3=10^{-3}\text{ m}^3" />.
+Dreh den Würfel unten. An jeder Kante zählst du <InlineMath math="10" /> kleine Würfel mit <InlineMath math="1\text{ dm}" />, also fasst dieser <InlineMath math="1\text{ m}" /> große Würfel genau <InlineMath math="1000\text{ dm}^3" /> oder <InlineMath math="1000" /> Liter.
+
+Achte darauf, dass der Vorsatz zusammen mit der Einheit hoch drei genommen wird: Aus <InlineMath math="1\text{ dm}=10^{-1}\text{ m}" /> folgt direkt <InlineMath math="1\text{ dm}^3=10^{-3}\text{ m}^3" />.
 
 <MathVisual
   title={<>Ein Kubikmeter aus Kubikdezimetern</>}
   description={<>Ein Gitterschritt ist <InlineMath math="1\text{ dm}" />. Die kleinen Würfel liegen an drei Kanten eines Würfels mit <InlineMath math="1\text{ m}" /> Kantenlänge. Dreh ihn, um sie zu zählen.</>}
+  footer={<>Hoch drei genommen fassen <InlineMath math="10\text{ dm}" /> je Kante <InlineMath math="1000\text{ dm}^3" /> in <InlineMath math="1\text{ m}^3" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 12 }, z: { min: -1, max: 11 } },
@@ -194,6 +203,7 @@ Jede abgeleitete Einheit ist ein Produkt aus Potenzen von kg, m und s. Dreh die 
 <MathVisual
   title={<>Vom Newton über das Joule zum Watt</>}
   description={<>Potenzen von kg (violett), m (orange) und s (türkis) im Newton, im Joule und im Watt. Balken unter dem Boden sind negative Potenzen.</>}
+  footer={<>Jeder Schritt von Newton über Joule zu Watt ändert einen Exponenten um eins.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: -3.5, max: 3 }, z: { min: -1, max: 1 } },
@@ -222,16 +232,24 @@ Jede abgeleitete Einheit ist ein Produkt aus Potenzen von kg, m und s. Dreh die 
   }}
 />
 
-## Große und kleine Werte kompakt schreiben
+Die drei Balkengruppen zeigen, dass besondere SI-Namen wie Newton, Joule und Watt Kurzformen für feste Kombinationen aus <InlineMath math="\text{kg}" />, <InlineMath math="\text{m}" /> und <InlineMath math="\text{s}" /> sind. Zerlegst du sie zurück in Basiseinheiten, gelingt jede Formelprüfung mühelos.
+
+## Metrische Präfixe für jede Größenordnung
+
+**Metrische Präfixe** skalieren Basis- und abgeleitete Einheiten mit exakten Zehnerpotenzen, damit Messwerte vom Atomdurchmesser bis zur Planetenbahn lesbar bleiben. Du ersetzt lange Nullreihen direkt durch ein kurzes Symbol vor der Einheit und rechnest im selben Schritt sauber um.
+
+### Große und kleine Werte kompakt schreiben
 
 Sehr große und sehr kleine Werte müssen nicht als lange Nullreihen erscheinen. **SI-Präfixe** drücken Potenzen von <InlineMath math="10" /> direkt im Einheitennamen aus.
 
 <Mermaid
   title={<>Kompakte Schreibweise durch metrische Präfixe</>}
   description={<>Verfolge, wie ein metrisches Präfix eine lange Nullfolge durch einen kompakten Einheitennamen ersetzt.</>}
+  footer={<>Ersetze das Präfix durch seine Zehnerpotenz, um direkt in Meter umzurechnen.</>}
   chart={`flowchart LR
     A["7,5 km"] --> B["7,5 × 1000 m"]
-    B --> C["7500 m"]`}/>
+    B --> C["7500 m"]`}
+/>
 
 Zu den gebräuchlichen Präfixen gehören:
 
@@ -250,7 +268,7 @@ Zu den gebräuchlichen Präfixen gehören:
 
 Die Tabelle enthält die Präfixe von Yokto bis Yotta. Das BIPM führt außerdem Ronna und Ronto für <InlineMath math="10^{27}" /> und <InlineMath math="10^{-27}" /> sowie Quetta und Quecto für <InlineMath math="10^{30}" /> und <InlineMath math="10^{-30}" />. Die vollständige aktuelle Liste findest du in der [BIPM-Tabelle der SI-Präfixe](https://www.bipm.org/en/measurement-units/si-prefixes).
 
-## Präfixe in Berechnungen lesen
+### Präfixe in Berechnungen lesen
 
 Ein SI-Präfix kann vor einer **Basiseinheit oder einer abgeleiteten Einheit** stehen. Kilometer verwendet beispielsweise Meter, Kilowatt dagegen Watt. <InlineMath math="\text{km}" /> bedeutet daher Kilometer und bleibt über das Präfix mit dem Meter verbunden.
 
@@ -279,6 +297,7 @@ Jeder Vorsatz ist eine Zehnerpotenz, also ist ein Wechsel zwischen Vorsätzen ei
 <MathVisual
   title={<>Vorsätze sind Zehnerpotenzen</>}
   description={<>Gängige SI-Vorsätze für das Meter an ihrem Zehnerexponenten.</>}
+  footer={<>Die Differenz zweier Exponenten liefert sofort den Umrechnungsfaktor.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -11, max: 5 }, y: { min: -1.2, max: 1.2 } },
@@ -310,3 +329,5 @@ Jeder Vorsatz ist eine Zehnerpotenz, also ist ein Wechsel zwischen Vorsätzen ei
     nm: <InlineMath math="\text{n}:\ 10^{-9}" />,
   }}
 />
+
+Siehst du Präfixe als Stellen auf einer Exponentenlinie, wird jede metrische Umrechnung zu einer einfachen Subtraktion. Sobald der Abstand zwischen zwei Exponenten feststeht, verschiebst du das Komma sicher und schnell.

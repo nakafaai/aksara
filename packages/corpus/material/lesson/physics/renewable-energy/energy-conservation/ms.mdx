@@ -20,11 +20,14 @@ Jika sesuatu alat membekalkan tenaga elektrik yang kurang daripada tenaga yang d
 
 Prinsip keabadian tenaga terpakai pada setiap pemindahan dan penukaran tenaga dalam sesuatu sistem.
 
-Lihat hal ini berlaku pada ladung yang berayun. Ladung <InlineMath math="1\text{ kg}" /> pada tali <InlineMath math="2\text{ m}" /> bermula pada <InlineMath math="40^\circ" /> dengan tenaga keupayaan <InlineMath math="4.59\text{ J}" />. Tanpa rintangan udara, tenaga itu hanya bertukar-tukar antara tenaga keupayaan dengan tenaga kinetik. Dengan rintangan udara, sebahagiannya berpindah ke persekitaran sebagai haba, namun ketiga-tiga jalur itu sentiasa berjumlah <InlineMath math="4.59\text{ J}" /> yang sama.
+> Tenaga tidak pernah lenyap apabila output berguna sesuatu alat lebih kecil daripada inputnya. Setiap baki joule berpindah ke persekitaran sebagai haba, bunyi, getaran atau tersimpan di dalam alat.
+
+Lihat hal ini berlaku pada ladung yang berayun. Ladung <InlineMath math="1\text{ kg}" /> pada tali <InlineMath math="2\text{ m}" /> bermula pada <InlineMath math="40^\circ" /> dengan tenaga keupayaan <InlineMath math="4.59\text{ J}" />. Tanpa rintangan udara, tenaga hanya bertukar antara keupayaan dengan kinetik. Dengan rintangan udara, sebahagiannya menjadi haba, namun ketiga-tiga jalur sentiasa berjumlah <InlineMath math="4.59\text{ J}" />.
 
 <PendulumEnergyLab
   title={<>Ayunan yang Mengekalkan Jumlah Tenaganya</>}
   description={<>Ladung <InlineMath math="1\text{ kg}" /> pada tali <InlineMath math="2\text{ m}" /> berayun dari <InlineMath math="40^\circ" />. Pilih rintangan udara dan perhatikan tenaga keupayaan, tenaga kinetik dan haba berkongsi satu jumlah yang tetap.</>}
+  footer={<>Rintangan udara mengecilkan ayunan, namun ketiga-tiga jalur kekal 4.59 J.</>}
   labels={{
     chooseDrag: "Rintangan udara",
     drags: {
@@ -40,13 +43,20 @@ Lihat hal ini berlaku pada ladung yang berayun. Ladung <InlineMath math="1\text{
   }}
 />
 
-## Pilih Sistem Dahulu
+Tukar daripada tanpa rintangan kepada rintangan besar dan perhatikan jalur haba selepas sepuluh saat. Ayunan semakin perlahan bukan kerana tenaga hilang, tetapi kerana geseran udara memindahkan tenaga mekanik menjadi tenaga haba.
+
+## Sempadan Sistem dan Tenaga Mekanik
+
+Mengira imbangan tenaga bermula dengan memilih **sempadan sistem yang jelas** sebelum kita meringkaskan model tanpa geseran. Sempadan itu menetapkan tenaga mana yang kekal di dalam dan mana yang keluar ke sekeliling.
+
+### Pilih Sistem Dahulu
 
 **Sistem** ialah bahagian yang kita pilih untuk dianalisis. Semua yang berada di luar sistem dipanggil **persekitaran**. Nyatakan sempadan sistem sebelum menggunakan prinsip keabadian tenaga, kerana sempadan itulah yang menentukan pemindahan tenaga mana yang masuk ke dalam atau keluar daripada pengiraan.
 
 <Mermaid
   title={<>Sempadan Sistem Menentukan Kiraan Tenaga</>}
   description={<>Pilih sempadan sistem dahulu supaya tenaga yang masuk, keluar dan tersimpan dapat diasingkan.</>}
+  footer={<>Setiap input terbahagi kepada output berguna dan tenaga ke persekitaran.</>}
   chart={`flowchart TD
     A["Tenaga input"] --> B["Sistem"]
     B --> C["Tenaga berguna"]
@@ -63,7 +73,7 @@ Rajah ini menjejaki setiap output. Sesuatu sistem boleh membekalkan tenaga bergu
 
 Dalam baris pertama, Bumi ialah sebahagian daripada sistem kerana tenaga keupayaan graviti dimiliki oleh interaksi antara air dan Bumi. Perubahan bentuk tenaga di dalam sistem berbeza daripada pemindahan tenaga merentasi sempadannya.
 
-## Apabila Geseran Diabaikan
+### Apabila Geseran Diabaikan
 
 Banyak soalan asas **mengabaikan geseran dan rintangan udara** supaya hanya tenaga kinetik dan tenaga keupayaan graviti yang tinggal dalam model. Tenaga mekanik kemudian ditulis sebagai:
 
@@ -88,26 +98,27 @@ E_p &= mgh \\
 
 Jika tiada tenaga yang merentas ke persekitaran, <InlineMath math="120 \text{ J}" /> itu bertukar menjadi tenaga kinetik air. Dalam alat sebenar, sebahagian tenaga berpindah ke persekitaran sebagai haba, bunyi dan getaran.
 
-Ikuti air yang jatuh pada graf di bawah, dari <InlineMath math="h=12\text{ m}" /> di sebelah kanan hingga ke tanah di sebelah kiri. Tenaga keupayaan berwarna oren berkurang tepat sebanyak tenaga kinetik berwarna hijau kebiruan bertambah, jadi garis ungu bagi jumlah kedua-duanya tidak pernah berganjak daripada <InlineMath math="120\text{ J}" />. Di separuh jalan, pada <InlineMath math="6\text{ m}" />, kedua-dua bentuk tenaga berkongsi tenaga itu sama banyak.
+Ikuti air yang jatuh pada graf di bawah, dari <InlineMath math="h=12\text{ m}" /> di sebelah kanan hingga ke tanah di sebelah kiri. Tenaga keupayaan berwarna oren berkurang tepat sebanyak tenaga kinetik berwarna hijau kebiruan bertambah, jadi garis ungu jumlahnya kekal rata pada <InlineMath math="120\text{ J}" />.
 
 <MathVisual
   title={<>Tenaga Keupayaan Bertukar Menjadi Tenaga Kinetik</>}
-  description={<>Air berjisim <InlineMath math="1\text{ kg}" /> jatuh dari ketinggian <InlineMath math="12\text{ m}" /> dengan <InlineMath math="g=10\text{ m/s}^2" /> tanpa kehilangan tenaga. Mengufuk: ketinggian dalam unit 2 m. Menegak: tenaga dalam unit 20 J.</>}
+  description={<>Air berjisim <InlineMath math="1\text{ kg}" /> jatuh dari ketinggian <InlineMath math="12\text{ m}" /> dengan <InlineMath math="g=10\text{ m/s}^2" /> tanpa kehilangan tenaga. Mengufuk: ketinggian dalam m. Menegak: tenaga dalam J.</>}
+  footer={<>Tenaga keupayaan dan kinetik bertukar nilai, bersilang di 60 J pada 6 m.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.8, max: 7 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 14 }, y: { min: -12, max: 140 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
-      { id: "kinetic", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 6, y: 0 } },
-      { id: "mechanical", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 6, y: 6 } },
-      { id: "half", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 12, y: 120 } },
+      { id: "kinetic", kind: "segment", appearance: "construction", from: { x: 0, y: 120 }, to: { x: 12, y: 0 } },
+      { id: "mechanical", kind: "segment", appearance: "secondary", from: { x: 0, y: 120 }, to: { x: 12, y: 120 } },
+      { id: "half", kind: "point", appearance: "answer", at: { x: 6, y: 60 } },
     ],
     labels: [
-      { key: "ep", objectId: "potential", at: { x: 5, y: 5 }, placement: "below-right" },
-      { key: "ek", objectId: "kinetic", at: { x: 1, y: 5 }, placement: "above-right" },
-      { key: "em", objectId: "mechanical", at: { x: 3, y: 6 }, placement: "above" },
-      { key: "half", objectId: "half", at: { x: 3, y: 3 }, placement: "below" },
+      { key: "ep", objectId: "potential", at: { x: 10, y: 100 }, placement: "below-right" },
+      { key: "ek", objectId: "kinetic", at: { x: 2, y: 100 }, placement: "above-right" },
+      { key: "em", objectId: "mechanical", at: { x: 6, y: 120 }, placement: "above" },
+      { key: "half", objectId: "half", at: { x: 6, y: 60 }, placement: "below" },
     ],
   }}
   labels={{
@@ -118,23 +129,33 @@ Ikuti air yang jatuh pada graf di bawah, dari <InlineMath math="h=12\text{ m}" /
   }}
 />
 
-Tanpa geseran, setiap joule tenaga keupayaan menjadi tenaga kinetik: <InlineMath math="mgh=\tfrac12mv^2" />, jadi <InlineMath math="v=\sqrt{2gh}" /> dan jisimnya terbatal. Ketinggian empat kali ganda hanya memberikan laju dua kali ganda. Ikuti lengkung itu dari <InlineMath math="5\text{ m}" /> hingga <InlineMath math="20\text{ m}" />.
+Di separuh jalan pada <InlineMath math="6\text{ m}" />, kedua-dua garis bersilang tepat pada <InlineMath math="60\text{ J}" />. Oleh sebab garis atas kekal mendatar, membaca mana-mana ketinggian terus menunjukkan agihan <InlineMath math="120\text{ J}" /> itu.
+
+Tanpa geseran, setiap joule tenaga keupayaan menjadi tenaga kinetik dan jisim <InlineMath math="m" /> terbatal:
+
+<BlockMath math="\begin{aligned}
+mgh &= \frac{1}{2}mv^2 \\
+v &= \sqrt{2gh}
+\end{aligned}" />
+
+Oleh sebab laju bertambah mengikut punca kuasa dua ketinggian, ketinggian empat kali ganda hanya memberi laju dua kali ganda. Ikuti lengkung dari <InlineMath math="5\text{ m}" /> hingga <InlineMath math="20\text{ m}" />.
 
 <MathVisual
   title={<>Ketinggian Menjadi Laju</>}
-  description={<>Laju di bahagian bawah melawan tinggi jatuhan dengan <InlineMath math="g=10\text{ m/s}^2" />. Mengufuk: satu petak grid ialah <InlineMath math="2\text{ m}" />. Menegak: satu petak grid ialah <InlineMath math="4\text{ m/s}" />.</>}
+  description={<>Laju di bahagian bawah melawan tinggi jatuhan dengan <InlineMath math="g=10\text{ m/s}^2" />. Mengufuk: tinggi jatuhan dalam m. Menegak: laju dalam m/s.</>}
+  footer={<>Tinggi jatuhan empat kali ganda dari 5 m ke 20 m cuma menggandakan laju.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -0.5, max: 6 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 22 }, y: { min: -2, max: 24 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "speed", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: Math.sqrt(2 * 10 * 1) / 4 }, { x: 1, y: Math.sqrt(2 * 10 * 2) / 4 }, { x: 1.5, y: Math.sqrt(2 * 10 * 3) / 4 }, { x: 2, y: Math.sqrt(2 * 10 * 4) / 4 }, { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, { x: 3, y: Math.sqrt(2 * 10 * 6) / 4 }, { x: 3.5, y: Math.sqrt(2 * 10 * 7) / 4 }, { x: 4, y: Math.sqrt(2 * 10 * 8) / 4 }, { x: 4.5, y: Math.sqrt(2 * 10 * 9) / 4 }, { x: 5, y: Math.sqrt(2 * 10 * 10) / 4 }, { x: 5.5, y: Math.sqrt(2 * 10 * 11) / 4 }, { x: 6, y: Math.sqrt(2 * 10 * 12) / 4 }, { x: 6.5, y: Math.sqrt(2 * 10 * 13) / 4 }, { x: 7, y: Math.sqrt(2 * 10 * 14) / 4 }, { x: 7.5, y: Math.sqrt(2 * 10 * 15) / 4 }, { x: 8, y: Math.sqrt(2 * 10 * 16) / 4 }, { x: 8.5, y: Math.sqrt(2 * 10 * 17) / 4 }, { x: 9, y: Math.sqrt(2 * 10 * 18) / 4 }, { x: 9.5, y: Math.sqrt(2 * 10 * 19) / 4 }, { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }] },
-      { id: "five", kind: "point", appearance: "secondary", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 } },
-      { id: "twenty", kind: "point", appearance: "answer", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 } },
+      { id: "speed", kind: "function", appearance: "primary", formula: "sqrt(20 * x)", domain: { min: 0, max: 20 } },
+      { id: "five", kind: "point", appearance: "secondary", at: { x: 5, y: 10 } },
+      { id: "twenty", kind: "point", appearance: "answer", at: { x: 20, y: 20 } },
     ],
     labels: [
-      { key: "five", objectId: "five", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, placement: "below-right" },
-      { key: "twenty", objectId: "twenty", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }, placement: "above-left" },
+      { key: "five", objectId: "five", at: { x: 5, y: 10 }, placement: "below-right" },
+      { key: "twenty", objectId: "twenty", at: { x: 20, y: 20 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -143,7 +164,13 @@ Tanpa geseran, setiap joule tenaga keupayaan menjadi tenaga kinetik: <InlineMath
   }}
 />
 
-## Tenaga Berguna Bergantung pada Tujuan Alat
+Lengkung yang semakin landai menerangkan sebab menaikkan empangan memberikan tambahan laju air yang semakin kecil berbanding pertambahan ketinggiannya.
+
+## Output Berguna dan Semakan Dakwaan
+
+Alat penukar sebenar sentiasa membahagikan input antara **output berguna** dengan **persekitaran**, tanpa mencipta tenaga baharu. Bandingkan kedua-dua bahagian itu apabila menguji sebarang dakwaan prestasi peranti.
+
+### Tenaga Berguna Bergantung pada Tujuan Alat
 
 Dalam teknologi tenaga boleh baharu, output yang dikehendaki biasanya ialah **tenaga berguna**, seperti tenaga elektrik. Prinsip keabadian tenaga tetap terpakai, tetapi bukan semua tenaga input menjadi elektrik.
 
@@ -166,7 +193,8 @@ Putar lajur-lajur itu: semua tenaga yang masuk ke dalam turbin keluar semula. Ju
 
 <MathVisual
   title={<>Imbangan Tenaga Turbin</>}
-  description={<>Tenaga yang masuk ke turbin dan penjana (kelabu) serta yang keluar sebagai elektrik (hijau kebiruan) dan ke persekitaran (merah jambu). Satu petak grid ke atas ialah <InlineMath math="20\text{ J}" />.</>}
+  description={<>Tenaga yang masuk ke turbin dan penjana (kelabu) dibandingkan dengan elektrik (hijau kebiruan) dan tenaga ke persekitaran (merah jambu).</>}
+  footer={<>Tindanan lajur elektrik dan rugi sama tinggi dengan lajur input 120 J.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
@@ -189,7 +217,9 @@ Putar lajur-lajur itu: semua tenaga yang masuk ke dalam turbin keluar semula. Ju
   }}
 />
 
-## Menguji Dakwaan Tenaga dengan Prinsip Keabadian
+Lihat puncak kedua-dua lajur: kedua-duanya sejajar pada paras yang sama. Kecekapan yang lebih tinggi mengecilkan bahagian merah jambu dan membesarkan lajur hijau kebiruan tanpa mengubah jumlah tingginya.
+
+### Menguji Dakwaan Tenaga dengan Prinsip Keabadian
 
 Prinsip keabadian tenaga boleh menguji sesuatu dakwaan tentang tenaga dengan mengambil kira setiap pemindahan dan penukaran.
 
@@ -219,11 +249,12 @@ Untuk menyemak keabadian tenaga dalam sesuatu teknologi tenaga boleh baharu, jaw
 
 Ketiga-tiga jawapan ini menunjukkan tenaga input, setiap pemindahan keluar daripada sistem dan pecahan output yang berguna.
 
-Cuba tiga soalan itu pada sebuah panel suria. Di bawah matahari terik, <InlineMath math="1\,000\text{ W/m}^2" /> jatuh pada panel seluas <InlineMath math="1.6\text{ m}^2" />, jadi <InlineMath math="1\,600\text{ W}" /> masuk. Kira-kira <InlineMath math="64\text{ W}" /> terpantul dari kacanya, <InlineMath math="274\text{ W}" /> keluar sebagai elektrik, dan baki <InlineMath math="1\,262\text{ W}" /> memanaskan panel hingga kira-kira <InlineMath math="61^\circ\text{C}" />. Lemahkan cahaya matahari dan semak bahawa tiga keluaran itu masih berjumlah sama dengan masukannya.
+Cuba tiga soalan itu pada sebuah panel suria. Di bawah matahari terik, <InlineMath math="1\,000\text{ W/m}^2" /> jatuh pada panel seluas <InlineMath math="1.6\text{ m}^2" />, jadi <InlineMath math="1\,600\text{ W}" /> masuk. Kira-kira <InlineMath math="64\text{ W}" /> terpantul dari kaca, <InlineMath math="274\text{ W}" /> keluar sebagai elektrik, dan <InlineMath math="1\,262\text{ W}" /> memanaskan panel hingga <InlineMath math="61^\circ\text{C}" />.
 
 <SolarPanelHeatLab
   title={<>Ke Mana Perginya Cahaya Matahari pada Panel</>}
   description={<>Panel seluas <InlineMath math="1.6\text{ m}^2" /> pada hari bersuhu <InlineMath math="30^\circ\text{C}" />. Ubah cahaya matahari, ikuti pembahagiannya kepada elektrik, pantulan dan haba, dan lihat sel yang lebih panas menukarkan bahagian yang lebih kecil.</>}
+  footer={<>Elektrik, pantulan dan haba sentiasa berjumlah sama dengan kuasa cahaya.</>}
   labels={{
     efficiency: <>Kecekapan</>,
     electric: <>Elektrik</>,
@@ -235,3 +266,5 @@ Cuba tiga soalan itu pada sebuah panel suria. Di bawah matahari terik, <InlineMa
     viewLabel: "Panel suria di atas bumbung dengan aliran cahaya, haba dan elektriknya",
   }}
 />
+
+Turunkan gelangsar cahaya matahari dan campurkan ketiga-tiga bacaan output itu. Walaupun suhu sel menurun dan kecekapan sedikit meningkat, jumlah kuasa yang meninggalkan panel sentiasa sama dengan kuasa cahaya yang tiba pada kacanya.

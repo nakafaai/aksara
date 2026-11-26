@@ -14,9 +14,9 @@ export const metadata = {
 
 In some areas, local resources such as water, sunlight, wind, organic waste, or geothermal heat can meet part of the energy demand.
 
-A complete plan connects the need to the final energy service:
+A complete plan connects the demand to the final energy service. Begin with the demand, <Highlight>identify a suitable local source</Highlight>, and plan how its energy will be converted. Then decide how to distribute or store the energy so it delivers the required service.
 
-Begin with the demand, <Highlight>identify a suitable local source</Highlight>, and plan how its energy will be converted. Then decide how to distribute or store the energy so it can provide the required service.
+> Having a local renewable resource is never enough on its own. A working energy plan matches demand over every hour, sizes storage or backup for low-output periods, and names who maintains the equipment.
 
 Cost, safety, maintenance, and environmental protection must be checked at every stage. The source and the equipment must also fit the location.
 
@@ -24,7 +24,8 @@ Start from the need, then check the source. A village of <InlineMath math="50" /
 
 <MathVisual
   title={<>From Need to Energy Service</>}
-  description={<>Daily energy need of <InlineMath math="50" /> homes (violet) and the daily output of a <InlineMath math="2.5\text{ kW}" /> micro-hydro (teal). One grid step up is <InlineMath math="10\text{ kWh}" />.</>}
+  description={<>Daily energy need of <InlineMath math="50" /> homes (violet) compared with the daily output of a <InlineMath math="2.5\text{ kW}" /> micro-hydro plant (teal) in kWh.</>}
+  footer={<>The 60 kWh supply bar clears the 50 kWh village need with a 10 kWh margin.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
@@ -43,6 +44,8 @@ Start from the need, then check the source. A village of <InlineMath math="50" /
     supply: <InlineMath math="2.5\cdot24=60\text{ kWh}" />,
   }}
 />
+
+That extra <InlineMath math="10\text{ kWh}" /> headroom is vital in practice. A daily match only works if supply stays above demand during evening peaks or dry weeks when stream flow dips.
 
 ## A Microhydro Example from Plaosan
 
@@ -69,15 +72,18 @@ Symbol notes:
 
 The formula estimates usable power from water density, gravity, flow rate, height difference, and efficiency. Larger flow and height difference increase the estimate, but a complete engineering design also requires site and safety data.
 
-For a **hypothetical calculation**, take water density <InlineMath math="1\,000 \text{ kg/m}^3" />, <InlineMath math="g=10 \text{ m/s}^2" />, flow rate <InlineMath math="0.02 \text{ m}^3/\text{s}" />, height difference <InlineMath math="10 \text{ m}" />, and efficiency <InlineMath math="0.7" />. These are not measurements from the project discussed next.
+For a **worked estimate**, take water density <InlineMath math="1\,000 \text{ kg/m}^3" />, <InlineMath math="g=10 \text{ m/s}^2" />, flow rate <InlineMath math="0.02 \text{ m}^3/\text{s}" />, height difference <InlineMath math="10 \text{ m}" />, and efficiency <InlineMath math="0.7" />. These values illustrate the formula separately from the real site discussed next.
 
 <BlockMath math="\begin{aligned} P &\approx \rho g Q h \eta \\ &= (1\,000)(10)(0.02)(10)(0.7) \text{ W} \\ &= 1\,400 \text{ W} \end{aligned}" />
 
-Rotate the surface below. Each point on it is the formula with one flow rate across and one height difference into the screen, and its height is the power in kilowatts. The fuchsia point is the hypothetical case above, <InlineMath math="1\,400\text{ W}" />. Walk along any orange line and the power rises steadily with the height difference. Walk along a teal line and it rises with the flow. The far corner, with the most water falling the farthest, is where the surface climbs highest.
+Rotate the surface below to inspect how power rises with both flow rate <InlineMath math="Q" /> and head <InlineMath math="h" />. The fuchsia point marks the <InlineMath math="1\,400\text{ W}" /> worked estimate above.
+
+Walk along any orange line and power grows steadily with head, while walking along a teal line raises power with flow. The far corner combines the highest flow and largest drop, so the surface climbs highest there.
 
 <MathVisual
   title={<>Microhydro Power from Flow and Height</>}
-  description={<><InlineMath math="P=\rho gQh\eta" /> with <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" /> and <InlineMath math="\eta=0.7" />. Across: flow in units of <InlineMath math="0.01\text{ m}^3\text{/s}" />. Into the screen: height difference in units of <InlineMath math="5\text{ m}" />. Up: power in kW.</>}
+  description={<><InlineMath math="P=\rho gQh\eta" /> with <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" /> and <InlineMath math="\eta=0.7" />. Across: flow <InlineMath math="Q" /> up to <InlineMath math="0.04\text{ m}^3\text{/s}" />. Depth: head <InlineMath math="h" /> up to <InlineMath math="20\text{ m}" />. Up: power in kW.</>}
+  footer={<>Power rises linearly with both flow and head, peaking at the far corner.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -0.5, max: 4.5 } },
@@ -108,11 +114,15 @@ Rotate the surface below. Each point on it is the formula with one flow rate acr
   }}
 />
 
-The [operator of the Kali Pedati microhydropower project](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) reports an installed capacity of <InlineMath math="7 \text{ kW}" />. A group of <InlineMath math="14" /> households manages the system, and the same operator reports about <InlineMath math="500 \text{ W}" /> per household. Check whether those figures agree: <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />, which is <InlineMath math="7 \text{ kW}" />. The project operator supplied these figures. Independent long-term measurements of electricity production would still be needed to judge the system's performance over time.
+The [operator of the Kali Pedati microhydropower project](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) reports an installed capacity of <InlineMath math="7 \text{ kW}" /> shared among <InlineMath math="14" /> households, or about <InlineMath math="500 \text{ W}" /> per household. Those numbers agree because <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />.
 
-The presence of water does not guarantee electricity. Check whether the water flow is stable enough, the height difference is large enough, the turbine is protected from flooding, and the community can maintain the system.
+Because the project operator supplied these figures, independent long-term production logs would still be needed to judge performance over time. Always check that flow stays stable, head is sufficient, floods cannot damage the turbine, and local residents can maintain the plant.
 
-## Energy Solutions Cover the Whole System
+## System Design and Energy Access
+
+Reliable electricity depends on **efficiency, storage, and fair access** working together across the whole community system. Choosing generators alone fails if batteries, wiring, and maintenance are left out of the plan.
+
+### Energy Solutions Cover the Whole System
 
 Energy demand can also be met by reducing waste. Efficiency is the ratio of **useful energy to input energy**. If a device is more efficient, it can provide the same lighting, cooling, pumping, or other service with less input energy.
 
@@ -129,11 +139,14 @@ Energy demand can also be met by reducing waste. Efficiency is the ratio of **us
 
 A complete plan combines equipment suited to the location, efficient use, a safe network, storage when needed, regular maintenance, and impact management.
 
-Storage is where a plan meets the night. A village health post has a <InlineMath math="3\text{ kWp}" /> solar roof that collects about <InlineMath math="22.9\text{ kWh}" /> a day, more than the <InlineMath math="13.6\text{ kWh}" /> it uses. But the vaccine fridge and the evening lights keep running after sunset. With a <InlineMath math="5\text{ kWh}" /> battery, <InlineMath math="4.3\text{ kWh}" /> of the night's need goes unsupplied. A <InlineMath math="10\text{ kWh}" /> battery gets through to morning.
+Storage is where a solar plan meets the night. A village health post has a <InlineMath math="3\text{ kWp}" /> solar roof collecting <InlineMath math="22.9\text{ kWh}" /> a day, well above its <InlineMath math="13.6\text{ kWh}" /> daily use.
+
+Yet the vaccine fridge and evening lights keep drawing power after sunset. With a <InlineMath math="5\text{ kWh}" /> battery, <InlineMath math="4.3\text{ kWh}" /> of night demand goes unmet, whereas a <InlineMath math="10\text{ kWh}" /> battery carries the clinic to morning.
 
 <SolarBatteryStorageLab
   title={<>Getting a Solar Health Post through the Night</>}
   description={<>A health post on a <InlineMath math="3\text{ kWp}" /> solar roof with a battery, through one day. Choose the battery size and watch whether its charge lasts until the sun returns.</>}
+  footer={<>A 10 kWh battery bridges the night gap that leaves a 5 kWh battery short.</>}
   labels={{
     chooseSize: "Battery size",
     demand: <>Energy used in a day</>,
@@ -144,21 +157,27 @@ Storage is where a plan meets the night. A village health post has a <InlineMath
   }}
 />
 
-## Four Conditions for Energy Access
+Compare the daily totals with the overnight curve: generating enough energy in a 24-hour total cannot keep vaccines cold unless the battery stores enough daytime surplus to cover every dark hour.
+
+### Four Conditions for Energy Access
 
 The [Sustainable Development Goals](https://sdgs.un.org/2030agenda) are a global agenda agreed by United Nations member states to improve human well-being and protect the environment. The <InlineMath math="2030" /> Agenda contains <InlineMath math="17" /> connected goals.
 
-Meeting energy demand relates directly to SDG <InlineMath math="7" />, which focuses on **affordable and clean energy**.
+Meeting energy demand relates directly to SDG <InlineMath math="7" />, which focuses on **affordable and clean energy**. SDG <InlineMath math="7" /> aims to ensure [access to affordable, reliable, sustainable, and modern energy](https://sdgs.un.org/goals/goal7) for all.
 
-SDG <InlineMath math="7" /> aims to ensure [access to affordable, reliable, sustainable, and modern energy](https://sdgs.un.org/goals/goal7) for all.
+Check those four conditions with direct questions:
 
-The four conditions can be checked with questions. Can households and public services pay for the energy while meeting other essential needs? Is the energy supply available when needed? Can the energy system continue while protecting people, ecosystems, and future generations? Is the energy service safe and capable enough for lighting, communication, productive work, and health care?
+- Can households and clinics pay for energy while meeting other basic needs?
+- Does the supply stay available whenever people need it?
+- Can the system continue while protecting people, ecosystems, and future generations?
+- Is the service safe and strong enough for lighting, communication, work, and health care?
 
-Score each option against the four questions and the shapes tell the story. In these illustrative scores out of <InlineMath math="4" />, a solar mini-grid with batteries covers more of the chart than a diesel generator, above all on the sustainable axis. Zoom in on each corner.
+Score each option against the four questions and the shapes tell the story. In these illustrative scores out of <InlineMath math="4" />, a solar mini-grid with batteries covers more of the chart than a diesel generator, above all on the sustainable axis.
 
 <MathVisual
   title={<>Four Questions for Energy Access</>}
   description={<>Illustrative scores out of <InlineMath math="4" /> for a solar mini-grid with batteries (teal) and a diesel generator (pink).</>}
+  footer={<>The solar mini-grid stretches farther, especially on sustainability.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -5, max: 5 } },
@@ -186,6 +205,8 @@ Score each option against the four questions and the shapes tell the story. In t
   }}
 />
 
+Notice that both systems tie on reliability once batteries back up the solar panels, while diesel pulls sharply inward on sustainability because fuel burning adds emissions and ongoing fuel cost.
+
 ## A Testable Local Energy Plan
 
 For a hamlet that needs electricity for night lighting, phone charging, a small water pump, and study activities, begin with those **needs and the local conditions**. Use the order below.
@@ -200,11 +221,14 @@ For a hamlet that needs electricity for night lighting, phone charging, a small 
 
 A testable plan states which demand must be met, which source is available, which device converts the energy, what impact must be limited, and who keeps the system working.
 
-Try the plan's source question with a small stream. A microhydro plant leads part of the stream through a pipe down to a turbine, and its usable power is <InlineMath math="P\approx\rho gQh\eta" />. With <InlineMath math="Q=20\text{ L/s}" />, <InlineMath math="h=10\text{ m}" /> and <InlineMath math="\eta=0.7" />, it gives <InlineMath math="1\,400\text{ W}" />, enough for <InlineMath math="5" /> of the hamlet's <InlineMath math="16" /> homes if each needs <InlineMath math="250\text{ W}" /> in the evening. Find a flow and head that light every home.
+Try the plan's source question with a small stream using <InlineMath math="P\approx\rho gQh\eta" />. With <InlineMath math="Q=20\text{ L/s}" />, <InlineMath math="h=10\text{ m}" />, and <InlineMath math="\eta=0.7" />, the plant gives <InlineMath math="1\,400\text{ W}" />.
+
+At <InlineMath math="250\text{ W}" /> per home in the evening, that powers <InlineMath math="5" /> of the hamlet's <InlineMath math="16" /> homes. Adjust flow and head below to find a pair that lights every home.
 
 <MicrohydroLab
   title={<>How Many Homes a Stream Can Light</>}
   description={<>A microhydro plant on a hillside at dusk. Change the flow and the head and count the homes its power can light at <InlineMath math="250\text{ W}" /> each.</>}
+  footer={<>Doubling flow or head doubles power and the number of lit homes.</>}
   labels={{
     flowControl: "Water flow",
     headControl: "Head",
@@ -213,3 +237,5 @@ Try the plan's source question with a small stream. A microhydro plant leads par
     viewLabel: "Microhydro plant on a hillside with a pipe to a powerhouse and a row of homes",
   }}
 />
+
+Notice that lighting all <InlineMath math="16" /> homes requires at least <InlineMath math="4\,000\text{ W}" />, which you can reach either with a steeper hillside drop or a stronger stream flow, showing why site geometry shapes every local energy solution.

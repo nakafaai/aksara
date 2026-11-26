@@ -17,6 +17,7 @@ Energi kinetik, energi potensial gravitasi, energi kimia, dan energi yang berpin
 <Mermaid
   title={<>Energi dalam Sistem dan Perpindahannya</>}
   description={<>Bedakan energi yang berada dalam suatu sistem dari proses yang memindahkan energi antarsistem.</>}
+  footer={<>Cabang kiri menunjukkan energi tersimpan, cabang kanan jalur perpindahan.</>}
   chart={`flowchart TD
     A["Energi"] --> B["Berada dalam sistem"]
     A --> C["Berpindah antarsistem"]
@@ -25,22 +26,45 @@ Energi kinetik, energi potensial gravitasi, energi kimia, dan energi yang berpin
     C --> F["Pemanasan dan radiasi"]
     C --> G["Kerja mekanis dan listrik"]`}/>
 
-Diagram tersebut membedakan energi yang tersimpan dalam sistem dari energi yang berpindah antarsistem. Bagian kiri berisi bentuk energi yang tersimpan, sedangkan bagian kanan berisi proses perpindahan energi. Kalor adalah energi yang berpindah karena perbedaan suhu, sedangkan [energi internal](https://openstax.org/books/college-physics-2e/pages/14-1-heat) berada dalam bahan.
+Diagram ini membedakan energi yang tersimpan dalam sistem dari energi yang berpindah antarsistem. Bagian kiri memuat bentuk energi tersimpan, sedangkan bagian kanan memuat proses perpindahannya.
 
-Ketel listrik memperlihatkan kedua pertanyaan itu sekaligus. Usaha listrik masuk ke ketel lewat elemen pemanas <InlineMath math="2\,100\text{ W}" />, lalu air menyimpan energi itu sebagai energi dalam, <InlineMath math="Q=mc\Delta T" />. Memanaskan air dari <InlineMath math="25^\circ\text{C}" /> sampai <InlineMath math="100^\circ\text{C}" /> berarti kenaikan <InlineMath math="75\text{ K}" />, jadi <InlineMath math="1\text{ kg}" /> air butuh <InlineMath math="315\,000\text{ J}" /> dan paling cepat <InlineMath math="150\text{ s}" />. Kalau airnya dua kali lipat, energi dan waktunya juga dua kali lipat.
+> Kalor bukan zat yang disimpan di dalam benda. Kalor adalah energi yang berpindah karena perbedaan suhu, sedangkan [energi internal](https://openstax.org/books/college-physics-2e/pages/14-1-heat) berada di dalam bahan.
 
-<KettleHeatingLab
-  title={<>Mendidihkan Air dalam Ketel</>}
-  description={<>Ketel <InlineMath math="2\,100\text{ W}" /> memanaskan air dari <InlineMath math="25^\circ\text{C}" /> sampai mendidih. Pilih banyak air di dalamnya, lalu bandingkan energi yang disimpan air dengan waktu yang dibutuhkan elemen kalau tidak ada energi yang keluar.</>}
+Memanaskan air dengan ketel listrik <InlineMath math="2{,}1\text{ kW}" /> memperlihatkan kedua hal itu sekaligus. Usaha listrik masuk ke ketel, lalu air menyimpannya sebagai energi dalam lewat <InlineMath math="Q=mc\Delta T" />. Menaikkan suhu <InlineMath math="1\text{ kg}" /> air sebesar <InlineMath math="75\text{ K}" /> butuh <InlineMath math="315\text{ kJ}" /> dan paling cepat <InlineMath math="150\text{ s}" />.
+
+<MathVisual
+  title={<>Energi Termal untuk Memanaskan Air</>}
+  description={<>Energi pemanasan <InlineMath math="Q=mc\Delta T" /> dalam kJ terhadap kenaikan suhu dalam K untuk air dengan <InlineMath math="c=4{,}2\text{ kJ/(kg K)}" />. Geser massa air <InlineMath math="m" /> untuk melihat energi dan waktu didih pada <InlineMath math="2{,}1\text{ kW}" />.</>}
+  footer={<>Menggandakan massa air menggandakan kemiringan, kJ, dan waktu pemanasan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 85 }, y: { min: -40, max: 720 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0.5, max: 2, step: 0.25, value: 1, label: "mass" },
+    ],
+    objects: [
+      { id: "heating", kind: "function", appearance: "primary", formula: "4.2 * m * x", domain: { min: 0, max: 80 } },
+      { id: "boil-drop", kind: "path", appearance: "construction", points: [{ x: "75", y: "0" }, { x: "75", y: "4.2 * m * 75" }] },
+      { id: "boil-point", kind: "marker", appearance: "answer", x: "75", y: "4.2 * m * 75" },
+    ],
+    readouts: [
+      { key: "energy-out", formula: "4.2 * m * 75" },
+      { key: "time-out", formula: "4.2 * m * 75 / 2.1" },
+    ],
+    labels: [
+      { key: "boil", objectId: "boil-point", at: { x: "75", y: "4.2 * m * 75" }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    chooseFill: "Air dalam ketel",
-    energy: <>Energi yang masuk ke air</>,
-    power: <>Daya elemen</>,
-    rise: <>Kenaikan suhu</>,
-    time: <>Waktu sampai mendidih</>,
-    viewLabel: "Ketel kaca memanaskan air di samping termometer",
+    mass: <>Massa air (kg)</>,
+    boil: <InlineMath math="\Delta T=75\text{ K}" />,
+    "energy-out": <>Energi pada <InlineMath math="75\text{ K}" /> (kJ)</>,
+    "time-out": <>Waktu min <InlineMath math="2{,}1\text{ kW}" /> (s)</>,
   }}
 />
+
+Geser massa air dari <InlineMath math="1\text{ kg}" /> ke <InlineMath math="2\text{ kg}" /> dan lihat garisnya menjadi dua kali lebih curam. Air dua kali lipat butuh energi dua kali lipat dan waktu dua kali lipat pada daya pemanas yang sama.
 
 ## Empat Perhitungan Energi yang Sering Dipakai
 
@@ -55,34 +79,41 @@ Sistem energi terbarukan sering melibatkan **gerak, ketinggian, perbedaan suhu**
 
 Biomassa dan baterai juga memiliki energi kimia, sedangkan panel surya menerima energi yang dibawa cahaya Matahari. Keempat rumus pada tabel menghitung energi dari gerak, ketinggian, perubahan suhu, dan daya listrik.
 
-Pegas yang diregangkan menyimpan energi elastis <InlineMath math="E=\tfrac12kx^2" />. Dengan <InlineMath math="k=200\text{ N/m}" />, regangan tiga kali lipat menyimpan energi sembilan kali lipat, <InlineMath math="1\text{ J}" /> pada <InlineMath math="10\text{ cm}" /> dan <InlineMath math="9\text{ J}" /> pada <InlineMath math="30\text{ cm}" />. Ikuti kurvanya.
+Pegas yang diregangkan menyimpan energi elastis <InlineMath math="E=\tfrac12kx^2" />. Dengan <InlineMath math="k=200\text{ N/m}" />, regangan tiga kali lipat menyimpan energi sembilan kali lipat, <InlineMath math="1\text{ J}" /> pada <InlineMath math="10\text{ cm}" /> dan <InlineMath math="9\text{ J}" /> pada <InlineMath math="30\text{ cm}" />. Ikuti kurva di bawah.
 
 <MathVisual
   title={<>Energi Elastis Tumbuh Mengikuti Kuadrat</>}
-  description={<>Energi elastis pegas dengan <InlineMath math="k=200\text{ N/m}" /> terhadap regangannya. Mendatar: satu kotak grid berarti <InlineMath math="5\text{ cm}" />. Tegak: joule.</>}
+  description={<>Energi elastis pegas dengan <InlineMath math="k=200\text{ N/m}" /> terhadap regangannya. Mendatar: regangan dalam cm. Tegak: energi dalam J.</>}
+  footer={<>Regangan tiga kali lipat dari 10 cm ke 30 cm menyimpan sembilan kali energi.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 10 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 34 }, y: { min: -0.5, max: 10.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "spring", kind: "quadratic", appearance: "secondary", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
-      { id: "ten", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
-      { id: "thirty", kind: "point", appearance: "answer", at: { x: 6, y: 9 } },
+      { id: "spring", kind: "quadratic", appearance: "secondary", coefficients: { a: 0.01, b: 0, c: 0 }, domain: { min: 0, max: 30 }, inputAxis: "x" },
+      { id: "ten", kind: "point", appearance: "primary", at: { x: 10, y: 1 } },
+      { id: "thirty", kind: "point", appearance: "answer", at: { x: 30, y: 9 } },
     ],
     labels: [
-      { key: "ten", objectId: "ten", at: { x: 2, y: 1 }, placement: "above-left" },
-      { key: "thirty", objectId: "thirty", at: { x: 6, y: 9 }, placement: "left" },
+      { key: "ten", objectId: "ten", at: { x: 10, y: 1 }, placement: "above-left" },
+      { key: "thirty", objectId: "thirty", at: { x: 30, y: 9 }, placement: "left" },
     ],
   }}
   labels={{
-    ten: <InlineMath math="x=0{,}1\text{ m}:\ E=1\text{ J}" />,
-    thirty: <InlineMath math="x=0{,}3\text{ m}:\ E=9\text{ J}" />,
+    ten: <InlineMath math="x=10\text{ cm}:\ E=1\text{ J}" />,
+    thirty: <InlineMath math="x=30\text{ cm}:\ E=9\text{ J}" />,
   }}
 />
 
+Perhatikan kelengkungan yang makin curam ke atas: setiap kali besaran dikuadratkan dalam rumus energi, tambahan kecil pada nilai besar memberi lonjakan energi jauh lebih besar daripada langkah yang sama dekat nol.
+
 ## Pilih Rumus Berdasarkan Keadaan
 
-Energi kinetik adalah energi yang dimiliki benda **karena geraknya**.
+Setiap model energi cocok untuk satu mekanisme fisika, mulai dari **energi mekanik** karena gerak dan ketinggian hingga **pemanasan dan listrik**. Kenali dulu besaran yang berubah agar rumus yang kamu pakai langsung tepat.
+
+### Gerak dan Ketinggian
+
+Energi kinetik adalah energi yang dimiliki benda **karena geraknya**. Nilainya bergantung pada massa sekaligus kuadrat kelajuan, bukan pada massa saja.
 
 <BlockMath math="E_k=\frac{1}{2}mv^2" />
 
@@ -102,24 +133,25 @@ E_k &= \frac{1}{2}mv^2 \\
 &= 9 \text{ J}
 \end{aligned}" />
 
-Grafik di bawah menjalankan rumus yang sama untuk setiap kelajuan dari <InlineMath math="0" /> sampai <InlineMath math="6\text{ m/s}" />. Bandingkan dua titik yang ditandai. Menggandakan kelajuan dari <InlineMath math="3\text{ m/s}" /> menjadi <InlineMath math="6\text{ m/s}" /> tidak menggandakan energinya: energinya naik dari <InlineMath math="9\text{ J}" /> menjadi <InlineMath math="36\text{ J}" />, empat kali lipat, karena kelajuannya dikuadratkan. Itulah sebabnya kenaikan kecil kelajuan angin sangat berpengaruh bagi turbin.
+Grafik di bawah menjalankan rumus yang sama dari <InlineMath math="0" /> sampai <InlineMath math="6\text{ m/s}" />. Menggandakan kelajuan dari <InlineMath math="3\text{ m/s}" /> menjadi <InlineMath math="6\text{ m/s}" /> menaikkan energi empat kali lipat dari <InlineMath math="9\text{ J}" /> menjadi <InlineMath math="36\text{ J}" /> karena kelajuan dikuadratkan.
 
 <MathVisual
   title={<>Energi Kinetik Tumbuh Sebanding Kuadrat Kelajuan</>}
-  description={<>Energi kinetik <InlineMath math="2\text{ kg}" /> udara pada kelajuan <InlineMath math="0" /> sampai <InlineMath math="6\text{ m/s}" />. Mendatar: kelajuan dalam m/s. Tegak: energi dalam satuan <InlineMath math="8\text{ J}" />.</>}
+  description={<>Energi kinetik <InlineMath math="2\text{ kg}" /> udara pada kelajuan <InlineMath math="0" /> sampai <InlineMath math="6\text{ m/s}" />. Mendatar: kelajuan dalam m/s. Tegak: energi dalam J.</>}
+  footer={<>Menggandakan laju angin dari 3 ke 6 m/s melipatempatkan energi ke 36 J.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -3, max: 40 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "kinetic", kind: "quadratic", appearance: "construction", coefficients: { a: 0.125, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
-      { id: "v3", kind: "point", appearance: "primary", at: { x: 3, y: 1.125 } },
-      { id: "v6", kind: "point", appearance: "answer", at: { x: 6, y: 4.5 } },
+      { id: "kinetic", kind: "quadratic", appearance: "construction", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
+      { id: "v3", kind: "point", appearance: "primary", at: { x: 3, y: 9 } },
+      { id: "v6", kind: "point", appearance: "answer", at: { x: 6, y: 36 } },
     ],
     labels: [
-      { key: "rule", objectId: "kinetic", at: { x: 5, y: 3.125 }, placement: "left" },
-      { key: "v3", objectId: "v3", at: { x: 3, y: 1.125 }, placement: "right" },
-      { key: "v6", objectId: "v6", at: { x: 6, y: 4.5 }, placement: "left" },
+      { key: "rule", objectId: "kinetic", at: { x: 4.8, y: 23 }, placement: "left" },
+      { key: "v3", objectId: "v3", at: { x: 3, y: 9 }, placement: "right" },
+      { key: "v6", objectId: "v6", at: { x: 6, y: 36 }, placement: "left" },
     ],
   }}
   labels={{
@@ -129,7 +161,7 @@ Grafik di bawah menjalankan rumus yang sama untuk setiap kelajuan dari <InlineMa
   }}
 />
 
-Teorema usaha-energi menghubungkan usaha total dengan perubahan energi kinetik.
+Kurva kuadratik yang curam itu menjelaskan mengapa perbedaan kecil pada kelajuan angin sangat berpengaruh bagi perancang turbin. Teorema usaha-energi juga menghubungkan usaha total langsung dengan perubahan energi kinetik ini.
 
 Energi potensial gravitasi adalah energi yang terkait dengan posisi benda dalam medan gravitasi. Untuk benda dekat permukaan Bumi, model yang umum dipakai adalah:
 
@@ -144,13 +176,40 @@ Keterangan simbol:
 | <InlineMath math="g" /> | percepatan gravitasi | <InlineMath math="\text{m/s}^2" /> |
 | <InlineMath math="h" /> | ketinggian terhadap titik acuan | <InlineMath math="\text{m}" /> |
 
-Nilai <InlineMath math="g" /> di dekat permukaan Bumi sekitar <InlineMath math="9{,}8 \text{ m/s}^2" />. Banyak perhitungan dasar memakai <InlineMath math="g=10 \text{ m/s}^2" /> agar perkalian dengan tangan lebih mudah. Hasil yang memakai nilai bulat tersebut merupakan hasil pendekatan.
+Nilai <InlineMath math="g" /> di dekat permukaan Bumi sekitar <InlineMath math="9{,}8 \text{ m/s}^2" />. Banyak perhitungan dasar memakai <InlineMath math="g=10 \text{ m/s}^2" /> agar perkalian dengan tangan lebih mudah. Hasil dengan nilai bulat itu adalah hasil pendekatan.
 
 Coba hitung energi potensial air bermassa <InlineMath math="2 \text{ kg}" /> pada ketinggian <InlineMath math="5 \text{ m}" /> di atas turbin. Dengan turbin sebagai acuan ketinggian nol dan pendekatan <InlineMath math="g=10 \text{ m/s}^2" />:
 
 <BlockMath math="\begin{aligned} E_p &= mgh \\ &= (2 \text{ kg})(10 \text{ m/s}^2)(5 \text{ m}) \\ &= 100 \text{ J} \end{aligned}" />
 
-Benda menyimpan energi internal. Ketika dua sistem berbeda suhu, sebagian energi berpindah dari sistem yang lebih panas ke sistem yang lebih dingin. Energi yang berpindah karena perbedaan suhu inilah yang disebut kalor. Jika zat tidak berubah wujud dan kalor jenisnya dianggap tetap pada rentang suhu yang dihitung, energi yang berpindah adalah:
+Bandingkan garis lurus ini dengan kurva energi kinetik di atas. Energi potensial tumbuh sebanding dengan ketinggian, jadi setiap tambahan satu meter menambah <InlineMath math="mg=20\text{ J}" /> yang sama.
+
+<MathVisual
+  title={<>Energi Potensial Tumbuh Rata seiring Ketinggian</>}
+  description={<><InlineMath math="E_p=mgh" /> untuk <InlineMath math="2\text{ kg}" /> dengan <InlineMath math="g=10\text{ m/s}^2" />. Mendatar: ketinggian dalam m. Tegak: energi dalam J.</>}
+  footer={<>Setiap tambahan satu meter menambah 20 J secara rata hingga 100 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -10, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 100 } },
+      { id: "top", kind: "point", appearance: "primary", at: { x: 5, y: 100 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 5, y: 100 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    top: <InlineMath math="h=5\text{ m}:\ E_p=100\text{ J}" />,
+  }}
+/>
+
+Berbeda dari grafik energi kinetik yang melengkung, kemiringan tetap ini menunjukkan hubungan linear langsung antara tinggi waduk dan energi gravitasi tersimpan.
+
+### Pemanasan dan Listrik
+
+Benda menyimpan energi internal. Ketika dua sistem berbeda suhu, sebagian energi berpindah dari sistem yang lebih panas ke sistem yang lebih dingin sebagai kalor. Jika zat tidak berubah wujud dan kalor jenisnya tetap, energi yang berpindah adalah:
 
 <BlockMath math="Q=mc\Delta T" />
 
@@ -167,7 +226,7 @@ Misalkan kita memanaskan air cair bermassa <InlineMath math="0{,}5 \text{ kg}" /
 
 <BlockMath math="\begin{aligned} Q &= mc\Delta T \\ &= (0{,}5 \text{ kg})(4\,200 \text{ J/(kg K)})(10 \text{ K}) \\ &= 21\,000 \text{ J} \end{aligned}" />
 
-Energi listrik dapat dihitung dari daya listrik selama selang waktu tertentu. Model berikut dipakai saat <InlineMath math="V" /> dan <InlineMath math="I" /> dianggap tetap selama interval waktu yang dihitung.
+Energi listrik dapat dihitung dari **daya listrik selama selang waktu tertentu**. Model berikut dipakai saat <InlineMath math="V" /> dan <InlineMath math="I" /> tetap selama selang waktu itu.
 
 <BlockMath math="\begin{aligned}
 P &= VI \\
@@ -185,49 +244,26 @@ Keterangan simbol:
 | <InlineMath math="I" /> | kuat arus listrik | <InlineMath math="\text{A}" /> |
 | <InlineMath math="t" /> | waktu | <InlineMath math="\text{s}" /> |
 
-Di sini <InlineMath math="E" /> menyatakan energi listrik. Huruf <InlineMath math="\text{W}" /> sudah dipakai sebagai simbol satuan watt, sehingga <InlineMath math="E" /> membedakan simbol energi dari satuan daya.
+Di sini <InlineMath math="E" /> menyatakan energi listrik. Satuan <InlineMath math="\text{kWh}" /> mengukur energi, bukan daya, karena berasal dari perkalian daya <InlineMath math="P" /> dengan waktu <InlineMath math="t" />. Huruf <InlineMath math="\text{W}" /> tegak dipakai untuk satuan watt agar tidak tertukar dengan simbol usaha.
 
 Sebuah alat bekerja pada tegangan tetap <InlineMath math="12 \text{ V}" /> dan arus tetap <InlineMath math="0{,}5 \text{ A}" /> selama <InlineMath math="60 \text{ s}" />. Hitung daya lebih dahulu, lalu energi:
 
 <BlockMath math="\begin{aligned} P &= VI = (12 \text{ V})(0{,}5 \text{ A})=6 \text{ W} \\ E &= Pt = (6 \text{ W})(60 \text{ s})=360 \text{ J} \end{aligned}" />
 
-Bandingkan garis lurus ini dengan kurva energi kinetik di atas. Energi potensial tumbuh sebanding dengan ketinggian, jadi setiap tambahan satu meter menambah <InlineMath math="mg=20\text{ J}" /> yang sama.
-
-<MathVisual
-  title={<>Energi Potensial Tumbuh Rata seiring Ketinggian</>}
-  description={<><InlineMath math="E_p=mgh" /> untuk <InlineMath math="2\text{ kg}" /> dengan <InlineMath math="g=10\text{ m/s}^2" />. Mendatar: ketinggian dalam m. Tegak: energi dalam satuan <InlineMath math="20\text{ J}" />.</>}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 6 } },
-    view: { kind: "fit", padding: 0.06 },
-    objects: [
-      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 5 } },
-      { id: "top", kind: "point", appearance: "primary", at: { x: 5, y: 5 } },
-    ],
-    labels: [
-      { key: "top", objectId: "top", at: { x: 5, y: 5 }, placement: "left" },
-    ],
-  }}
-  labels={{
-    top: <InlineMath math="h=5\text{ m}:\ E_p=100\text{ J}" />,
-  }}
-/>
-
 ## Satu Pembangkit Mengubah Beberapa Bentuk Energi
 
-Pembangkit listrik tenaga air, misalnya, mengikuti rantai berikut:
+Pada pembangkit listrik tenaga air, air mula-mula memiliki **energi potensial gravitasi**. Saat mengalir turun, energinya berubah menjadi energi kinetik aliran air, lalu energi kinetik turbin yang berputar, dan akhirnya energi listrik.
 
-Air mula-mula memiliki **energi potensial gravitasi**. Saat mengalir turun, energinya berubah menjadi energi kinetik aliran air, lalu energi kinetik turbin yang berputar, dan akhirnya energi listrik.
+Panel surya menerima energi radiasi dari cahaya Matahari, lalu mengubah sebagian energi itu menjadi energi listrik. Jangan mengira semua energi terbarukan langsung menjadi listrik: setiap alat konversi juga memindahkan sebagian energi ke lingkungan sebagai panas atau bunyi.
 
-Panel surya menerima energi radiasi dari cahaya Matahari, lalu mengubah sebagian energi itu menjadi energi listrik.
+Ikuti tahap-tahap itu pada bendungan sungguhan. Setiap detik, <InlineMath math="10\text{ m}^3" /> air turun melewati tinggi jatuh antara permukaan waduk dan turbin. Pada tinggi jatuh <InlineMath math="50\text{ m}" /> dengan <InlineMath math="g=10\text{ m/s}^2" />, air melepas <InlineMath math="5\text{ MW}" /> dan tiba di turbin sekitar <InlineMath math="31{,}6\text{ m/s}" />.
 
-Rantai energi yang lengkap menyebutkan energi awal, keluaran yang diinginkan, dan setiap tahap perubahannya.
-
-Ikuti bentuk-bentuk energi itu pada bendungan sungguhan. Setiap detik, <InlineMath math="10\text{ m}^3" /> air turun melewati tinggi jatuh, yaitu beda tinggi antara permukaan waduk dan turbin. Energi potensialnya tiap detik adalah <InlineMath math="\rho g Q h" />, jadi pada tinggi jatuh <InlineMath math="50\text{ m}" /> air melepas <InlineMath math="5\text{ MW}" /> dengan <InlineMath math="g=10\text{ m/s}^2" />. Air tiba di turbin dengan kelajuan <InlineMath math="\sqrt{2gh}\approx31{,}6\text{ m/s}" />, poros menyimpan <InlineMath math="90\%" />, dan generator mengirim <InlineMath math="95\%" /> dari itu ke jaringan. Naikkan tinggi jatuhnya dan lihat semua batang ikut tumbuh.
+Poros mempertahankan <InlineMath math="90\%" /> daya turbin, lalu generator mengirim <InlineMath math="95\%" /> daya poros ke jaringan listrik. Naikkan tinggi jatuhnya di bawah dan lihat semua batang ikut tumbuh.
 
 <HydroDamLab
   title={<>Bentuk Energi pada Bendungan PLTA</>}
   description={<>Air jatuh melewati tinggi jatuh dengan debit <InlineMath math="10\text{ m}^3\text{/s}" />. Ubah tinggi jatuhnya, lalu bandingkan daya di tiap tahap: energi potensial yang dilepas, energi kinetik di turbin, poros yang berputar, dan listrik.</>}
+  footer={<>Menaikkan tinggi jatuh memperbesar tiap tahap sambil menyisakan rugi alat.</>}
   labels={{
     electric: <>Listrik</>,
     head: <>Tinggi jatuh</>,
@@ -240,13 +276,4 @@ Ikuti bentuk-bentuk energi itu pada bendungan sungguhan. Setiap detik, <InlineMa
   }}
 />
 
-## Kesalahan yang Sering Terjadi
-
-| Kekeliruan | Penjelasan yang tepat |
-| :--------- | :--------------------------------- |
-| Energi kinetik dianggap hanya bergantung pada massa | Energi kinetik juga bergantung pada kuadrat kelajuan, yaitu <InlineMath math="v^2" /> |
-| Kalor dianggap zat yang disimpan benda | Kalor adalah energi yang berpindah karena perbedaan suhu |
-| <InlineMath math="\text{kWh}" /> dianggap satuan daya | <InlineMath math="\text{kWh}" /> adalah satuan energi karena berasal dari <InlineMath math="P \times t" /> |
-| Semua energi pada sumber terbarukan dianggap langsung menjadi listrik | Alat juga memindahkan sebagian energi ke lingkungan, sehingga hanya sebagian energi masuk yang menjadi keluaran listrik berguna |
-
-Untuk memilih rumus yang sesuai, <Highlight>tentukan bentuk energi yang masuk ke alat</Highlight>. Udara bergerak memiliki energi kinetik, air di tempat tinggi memiliki energi potensial gravitasi, fluida panas bumi membawa energi termal, biomassa menyimpan energi kimia, dan cahaya Matahari membawa energi radiasi.
+Perhatikan bahwa tiap batang turun sedikit dari daya potensial ke keluaran listrik, memperlihatkan rugi nyata pada turbin dan generator. Untuk memilih rumus yang tepat, <Highlight>tentukan bentuk energi yang masuk ke alat</Highlight>: udara bergerak membawa energi kinetik, air tinggi membawa energi potensial, fluida panas bumi membawa energi termal, biomassa menyimpan energi kimia, dan cahaya Matahari membawa energi radiasi.

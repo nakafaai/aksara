@@ -15,11 +15,14 @@ export const metadata = {
 
 Apabila kamu menghidupkan lampu suluh, tenaga kimia dalam bateri menjadi tenaga elektrik yang dibekalkan kepada mentol. Mentol itu menghasilkan **cahaya yang kamu perlukan** dan pada masa yang sama memanaskan bahagian lampu suluh serta persekitarannya. Pemanasan itu tetap dikira dalam imbangan tenaga, walaupun tujuan kamu ialah menerangi bilik.
 
-Tukar mentolnya, dan laluan tenaga tetap sama sedangkan bahagian yang berguna berubah. Dua sel AA menyimpan <InlineMath math="3\text{ V}\times2.5\text{ Aj}=27\,000\text{ J}" />, dan mentol menggunakan <InlineMath math="1\text{ W}" />, jadi bateri bertahan <InlineMath math="7.5\text{ j}" /> bagi kedua-dua mentol. Mentol filamen menukarkan kira-kira <InlineMath math="5\%" /> daripada kuasa itu kepada cahaya, manakala LED kira-kira <InlineMath math="40\%" />: lapan kali lebih banyak cahaya daripada bateri yang sama.
+Tukar mentolnya, dan laluan tenaga tetap sama sedangkan bahagian yang berguna berubah. Dua sel AA menyimpan <InlineMath math="27\,000\text{ J}" /> (<InlineMath math="3\text{ V}" /> pada <InlineMath math="2.5\text{ Aj}" />), dan mentol menggunakan <InlineMath math="1\text{ W}" />, jadi bateri bertahan <InlineMath math="7.5\text{ j}" /> bagi kedua-dua mentol.
+
+Mentol filamen menukarkan kira-kira <InlineMath math="5\%" /> kuasa itu kepada cahaya, manakala LED menukarkan kira-kira <InlineMath math="40\%" />. Bateri yang sama memberi kamu lapan kali lebih banyak cahaya.
 
 <FlashlightEfficiencyLab
   title={<>Bateri Sama, Mentol Berbeza</>}
   description={<>Lampu suluh menggunakan <InlineMath math="1\text{ W}" /> daripada dua sel AA. Pilih mentol dan bandingkan bahagian kuasa elektrik yang menjadi cahaya dengan bahagian yang menjadi haba.</>}
+  footer={<>Kedua-dua mentol tahan sama lama, namun LED memberi lapan kali lebih cahaya.</>}
   labels={{
     battery: <>Tenaga bateri</>,
     bulbs: {
@@ -36,18 +39,26 @@ Tukar mentolnya, dan laluan tenaga tetap sama sedangkan bahagian yang berguna be
   }}
 />
 
+Perhatikan bahawa kedua-dua mentol menarik kuasa yang sama dan menghabiskan bateri pada kadar yang sama. Alat yang lebih cekap tidak mencipta tenaga tambahan, tetapi mengarahkan bahagian input yang lebih besar kepada output yang kamu kehendaki.
+
 ## Laluan Penukaran di Stesen Janakuasa
+
+Setiap stesen janakuasa menggerakkan tenaga melalui **rantaian penukaran** daripada sumber semula jadi kepada elektrik dan persekitaran. Memetakan turbin, dandang atau sel suria menunjukkan punca output berguna serta bahagian haba yang terlepas.
+
+### Laluan Penukaran Mekanikal dan Suria
 
 Rajah di bawah menunjukkan bentuk tenaga yang dibekalkan oleh sumber yang berbeza dan cara stesen janakuasa menukarkannya untuk digunakan.
 
 <Mermaid
   title={<>Stesen Janakuasa Menukarkan Tenaga secara Berperingkat</>}
   description={<>Rajah ini menunjukkan laluan daripada sumber tenaga semula jadi, melalui alat penukar, hingga menjadi output berguna dan tenaga yang dipindahkan ke persekitaran.</>}
+  footer={<>Setiap tahap membahagi input kepada tenaga berguna dan tenaga ke persekitaran.</>}
   chart={`flowchart TD
     A["Sumber semula jadi"] --> B["Bentuk tenaga awal"]
     B --> C["Alat penukar"]
     C --> D["Tenaga berguna"]
-    C --> E["Tenaga ke persekitaran"]`}/>
+    C --> E["Tenaga ke persekitaran"]`}
+/>
 
 Dalam [kuasa hidro](https://www.energy.gov/cmei/water/how-hydropower-works), air mengalir melalui paip penstok dan memutarkan bilah turbin. Turbin itu memacu **penjana yang menghasilkan elektrik**.
 
@@ -61,6 +72,7 @@ Dalam [kuasa angin](https://www.energy.gov/cmei/systems/how-do-wind-turbines-wor
       udara ditukarkan kepada tenaga elektrik.
     </>
   }
+  footer={<>Angin lebih laju memutarkan rotor, tetapi had turbin tetap mengehadkan output.</>}
   labels={{
     flow: <>Angin memutarkan rotor, rotor memutarkan penjana, dan elektrik mengalir keluar.</>,
     flowLabel: "Laluan penukaran",
@@ -87,11 +99,20 @@ Dalam [panel fotovolta](https://www.eia.gov/energyexplained/solar/photovoltaics-
 
 [Stesen janakuasa geoterma](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation) menggunakan bendalir panas atau stim dari bawah permukaan Bumi untuk memacu turbin dan menghasilkan elektrik.
 
-Stesen janakuasa menukarkan tenaga secara berperingkat, dan setiap peringkat hanya menyalurkan sebahagian daripada tenaga yang diterimanya, jadi kecekapan setiap peringkat didarabkan bersama. Dengan nilai contoh <InlineMath math="90\%" /> bagi turbin dan <InlineMath math="95\%" /> masing-masing bagi penjana dan talian, rantaian ini menyampaikan <InlineMath math="\eta=0.9\times0.95\times0.95\approx81\%" /> daripada tenaga air. Putarkan bar-bar itu dan perhatikan bahagian kelabu semakin besar.
+### Mendarabkan Kecekapan Setiap Peringkat
+
+Stesen janakuasa menukarkan tenaga secara berperingkat, dan setiap peringkat hanya menyalurkan sebahagian daripada tenaga yang diterimanya. Oleh sebab itu, **kecekapan setiap peringkat didarabkan bersama**.
+
+Dengan nilai contoh <InlineMath math="90\%" /> bagi turbin dan <InlineMath math="95\%" /> masing-masing bagi penjana dan talian, rantaian ini menyampaikan:
+
+<BlockMath math="\eta = 0.9 \times 0.95 \times 0.95 \approx 81\%" />
+
+Putarkan bar-bar di bawah ini dan perhatikan bahagian kelabu yang semakin membesar pada setiap langkah.
 
 <MathVisual
   title={<>Kecekapan Setiap Peringkat Didarabkan</>}
-  description={<>Tenaga yang tinggal pada setiap peringkat dalam contoh rantaian kuasa hidro, bermula daripada <InlineMath math="100\text{ J}" /> tenaga air (hijau kebiruan, depan), dan tenaga yang hilang setakat itu (kelabu, belakang). Satu petak grid ke atas ialah <InlineMath math="20\text{ J}" />.</>}
+  description={<>Tenaga yang tinggal pada setiap peringkat dalam contoh rantaian kuasa hidro, bermula daripada <InlineMath math="100\text{ J}" /> tenaga air (hijau kebiruan, depan), dan tenaga yang hilang setakat itu (kelabu, belakang), dengan ketinggian bar mengikut skala.</>}
+  footer={<>Setiap peringkat mengambil baki sebelumnya, jadi kehilangan terus bertambah.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 6.5 }, z: { min: -1.8, max: 1.8 } },
@@ -120,9 +141,13 @@ Stesen janakuasa menukarkan tenaga secara berperingkat, dan setiap peringkat han
   }}
 />
 
+Walaupun setiap mesin mempunyai kecekapan melebihi <InlineMath math="90\%" />, kecekapan keseluruhan sentiasa lebih rendah daripada peringkat yang paling lemah. Pada setiap tahap, ketinggian bar hijau kebiruan dan bar kelabu tetap berjumlah <InlineMath math="100\text{ J}" />.
+
 ## Kecekapan Mengukur Bahagian yang Berguna
 
 Oleh sebab tidak semua tenaga input menjadi output yang kita perlukan, kita menggunakan **kecekapan**. Kecekapan membandingkan tenaga berguna dengan tenaga input.
+
+> Kecekapan di bawah <InlineMath math="100\%" /> tidak bermakna tenaga itu hilang. Angka itu sekadar menunjukkan berapa banyak tenaga yang keluar dalam bentuk yang tidak kamu sasarkan.
 
 <BlockMath math="\eta=\frac{E_{\text{berguna}}}{E_{\text{input}}}\times 100\%" />
 
@@ -156,11 +181,12 @@ Jadi, kecekapan <InlineMath math="20\%" /> tidak bermakna baki <InlineMath math=
 
 [Kecekapan tenaga](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php) mengukur bahagian tenaga input yang ditukarkan oleh sesuatu alat kepada output berguna.
 
-Gerakkan kecekapan panel itu dan perhatikan cara <InlineMath math="800\text{ J}" /> itu terbahagi. Pada <InlineMath math="\eta=20\%" />, jalur kuning ambar ialah <InlineMath math="160\text{ J}" /> elektrik daripada contoh tadi, dan jalur merah jambu ialah <InlineMath math="640\text{ J}" /> yang pergi ke persekitaran. Jumlah kedua-dua jalur itu sentiasa sama dengan input.
+Gerakkan kecekapan panel itu dan perhatikan cara <InlineMath math="800\text{ J}" /> itu terbahagi. Pada <InlineMath math="\eta=20\%" />, jalur kuning ambar ialah <InlineMath math="160\text{ J}" /> elektrik dan jalur merah jambu ialah <InlineMath math="640\text{ J}" /> yang pergi ke persekitaran.
 
 <MathVisual
   title={<>Kecekapan Membahagikan Input</>}
-  description={<><InlineMath math="800\text{ J}" /> cahaya yang masuk ke panel (kelabu) terbahagi kepada elektrik (kuning ambar) dan tenaga ke persekitaran (merah jambu), dengan lebar jalur dilukis mengikut skala. Satu petak grid ialah <InlineMath math="100\text{ J}" />.</>}
+  description={<><InlineMath math="800\text{ J}" /> cahaya yang masuk ke panel (kelabu) terbahagi kepada elektrik (kuning ambar) dan tenaga ke persekitaran (merah jambu), dengan tinggi jalur dilukis mengikut skala.</>}
+  footer={<>Gerakkan peluncur kecekapan dan lihat kedua-dua jalur sentiasa berjumlah 800 J.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -0.5, max: 9 } },
@@ -190,10 +216,12 @@ Gerakkan kecekapan panel itu dan perhatikan cara <InlineMath math="800\text{ J}"
     useful: <InlineMath math="\text{elektrik}" />,
     lost: <InlineMath math="\text{ke persekitaran}" />,
     eta: <InlineMath math="\eta\ (\%)" />,
-    out: <InlineMath math="E_{\text{berguna}}=\eta E_{\text{input}}\ (\text{J})" />,
-    rest: <InlineMath math="E_{\text{input}}-E_{\text{berguna}}\ (\text{J})" />,
+    out: <InlineMath math="E_{\text{berguna}}\ (\text{J})" />,
+    rest: <InlineMath math="E_{\text{persekitaran}}\ (\text{J})" />,
   }}
 />
+
+Meningkatkan kecekapan membesarkan jalur kuning ambar tepat sebanyak jalur merah jambu mengecil. Jumlah tinggi kedua-dua jalur tetap <InlineMath math="800\text{ J}" /> kerana keabadian tenaga sentiasa dipenuhi pada setiap tetapan kecekapan.
 
 ## Membandingkan Laluan Penukaran dalam Pelbagai Alat
 
@@ -209,11 +237,14 @@ Panel suria, turbin angin, penjana dan reaktor biogas menukarkan tenaga yang sed
 
 Laluan penukaran merekodkan sumber, bentuk tenaga awal, bentuk output, tenaga berguna dan tenaga yang dipindahkan ke persekitaran.
 
-Sekarang bandingkan keseluruhan rantaian secara bersebelahan. Dalam carta itu, <InlineMath math="100\text{ J}" /> masuk ke setiap loji, setiap mesin meneruskan bahagiannya, dan setiap kehilangan membelok turun ke persekitaran. Dengan nilai bundar yang lazim, panel suria menghantar <InlineMath math="19.2\text{ J}" />, turbin angin <InlineMath math="40.61\text{ J}" />, loji hidro <InlineMath math="85.5\text{ J}" />, enjin biogas <InlineMath math="33.25\text{ J}" />, dan loji geoterma <InlineMath math="11.4\text{ J}" />. Joule yang hilang itu tidak pernah lenyap: bersama dengan elektrik, jumlahnya sentiasa <InlineMath math="100\text{ J}" />.
+Sekarang bandingkan keseluruhan rantaian secara bersebelahan. Dalam carta itu, <InlineMath math="100\text{ J}" /> masuk ke setiap loji, setiap mesin meneruskan bahagiannya, dan setiap kehilangan membelok turun ke persekitaran.
+
+Dengan nilai lazim, panel suria menghantar <InlineMath math="19.2\text{ J}" />, turbin angin <InlineMath math="40.61\text{ J}" />, loji hidro <InlineMath math="85.5\text{ J}" />, enjin biogas <InlineMath math="33.25\text{ J}" />, dan loji geoterma <InlineMath math="11.4\text{ J}" />. Bersama joule yang hilang, jumlah setiap loji tetap <InlineMath math="100\text{ J}" />.
 
 <EnergyFlowLossLab
   title={<>Ke Mana <InlineMath math="100\text{ J}" /> Pergi dalam Lima Loji</>}
   description={<>Setiap jalur bermula dengan <InlineMath math="100\text{ J}" /> tenaga sumbernya. Pilih satu loji dan ikuti cara mesin-mesinnya menipiskan jalur itu dan menyerahkan bakinya kepada persekitaran.</>}
+  footer={<>Bandingkan lima loji untuk melihat berapa bahagian 100 J menjadi elektrik.</>}
   labels={{
     choosePlant: "Loji jana kuasa",
     efficiency: <>Kecekapan keseluruhan</>,
@@ -230,3 +261,5 @@ Sekarang bandingkan keseluruhan rantaian secara bersebelahan. Dalam carta itu, <
     viewLabel: "Carta aliran tenaga bagi peringkat penukaran dan kehilangan sebuah loji jana kuasa",
   }}
 />
+
+Loji yang memutarkan turbin secara terus menggunakan aliran air mengelakkan kehilangan enjin haba lalu mengekalkan bahagian berguna tertinggi. Loji terma seperti geoterma dan biogas melepaskan lebih banyak haba buangan, tetapi tetap berguna kerana dapat membekalkan elektrik yang stabil di tapak yang kaya dengan haba bawah tanah atau sisa organik.

@@ -16,15 +16,18 @@ Dalam Sistem Satuan Internasional (SI, International System of Units), semua ene
 
 Jika kita memasukkan sistem beserta lingkungan ke dalam satu batas luar, energi total di dalam batas itu tetap **selama tidak ada energi yang melintasi batas luar**.
 
-Jika energi listrik dari sebuah alat lebih kecil daripada energi masuknya, sisa energi telah berubah bentuk atau berpindah ke lingkungan. Energi tersebut biasanya menjadi kalor, bunyi, getaran, cahaya yang bukan keluaran yang diinginkan, atau energi internal pada komponen alat.
+Jika energi listrik dari sebuah alat lebih kecil daripada energi masuknya, sisa energi telah berubah bentuk atau berpindah ke lingkungan. Sisa itu biasanya menjadi kalor, bunyi, getaran, cahaya yang bukan keluaran yang diinginkan, atau energi internal pada komponen alat.
 
 Hukum kekekalan energi berlaku pada setiap perpindahan dan perubahan bentuk energi dalam sistem.
 
-Coba lihat pada bandul yang berayun. Bandul <InlineMath math="1\text{ kg}" /> pada tali <InlineMath math="2\text{ m}" /> dilepas dari <InlineMath math="40^\circ" /> dengan energi potensial <InlineMath math="4{,}59\text{ J}" />. Tanpa hambatan udara, energi itu hanya bertukar antara potensial dan kinetik. Dengan hambatan udara, sebagian energi berpindah ke lingkungan sebagai kalor, tetapi ketiga pita selalu bertumpuk sampai <InlineMath math="4{,}59\text{ J}" /> yang sama.
+> Energi tidak pernah lenyap saat keluaran berguna sebuah alat lebih kecil daripada masukannya. Setiap joule sisanya berpindah ke lingkungan sebagai kalor, bunyi, getaran, atau tersimpan di dalam alat.
+
+Coba lihat pada bandul yang berayun. Bandul <InlineMath math="1\text{ kg}" /> pada tali <InlineMath math="2\text{ m}" /> dilepas dari <InlineMath math="40^\circ" /> dengan energi potensial <InlineMath math="4{,}59\text{ J}" />. Tanpa hambatan udara, energi hanya bertukar antara potensial dan kinetik. Dengan hambatan udara, sebagian menjadi kalor, tetapi ketiga pita selalu berjumlah <InlineMath math="4{,}59\text{ J}" />.
 
 <PendulumEnergyLab
   title={<>Ayunan dengan Total Energi Tetap</>}
   description={<>Bandul <InlineMath math="1\text{ kg}" /> pada tali <InlineMath math="2\text{ m}" /> berayun dari <InlineMath math="40^\circ" />. Pilih hambatan udaranya dan lihat energi potensial, energi kinetik, dan kalor berbagi satu total yang tetap.</>}
+  footer={<>Hambatan udara mengecilkan ayunan, tetapi total ketiga pita tetap 4,59 J.</>}
   labels={{
     chooseDrag: "Hambatan udara",
     drags: {
@@ -40,20 +43,27 @@ Coba lihat pada bandul yang berayun. Bandul <InlineMath math="1\text{ kg}" /> pa
   }}
 />
 
-## Tentukan Batas Sistem Lebih Dahulu
+Ubah dari tanpa hambatan ke hambatan besar dan amati batang kalor setelah sepuluh detik. Ayunan melemah bukan karena energi hilang, melainkan karena gesekan udara memindahkan energi mekanik menjadi energi termal.
 
-**Sistem** adalah bagian yang kita pilih untuk dianalisis. Semua yang berada di luar sistem disebut **lingkungan**. Tentukan batas sistem sebelum memakai hukum kekekalan energi karena batas tersebut menentukan perpindahan energi mana yang masuk atau keluar dari perhitungan.
+## Batas Sistem dan Energi Mekanik
+
+Menghitung neraca energi selalu dimulai dari memilih **batas sistem yang jelas** sebelum kita menyederhanakan gesekan dalam model. Batas itu menentukan energi mana yang tetap di dalam dan mana yang keluar ke lingkungan.
+
+### Tentukan Batas Sistem Lebih Dahulu
+
+**Sistem** adalah bagian yang kita pilih untuk dianalisis. Semua yang berada di luar sistem disebut **lingkungan**. Tentukan batas sistem sebelum memakai hukum kekekalan energi karena batas itu menentukan perpindahan energi mana yang masuk atau keluar dari perhitungan.
 
 <Mermaid
   title={<>Batas Sistem Menentukan Hitungan Energi</>}
   description={<>Tentukan batas sistem lebih dulu supaya energi masuk, energi keluar, dan energi tersimpan dapat dibedakan.</>}
+  footer={<>Setiap masukan terbagi antara keluaran berguna dan perpindahan ke lingkungan.</>}
   chart={`flowchart TD
     A["Energi masuk"] --> B["Sistem"]
     B --> C["Energi berguna"]
     B --> D["Energi ke lingkungan"]
     D --> E["Kalor, bunyi, getaran"]`}/>
 
-Diagram tersebut menunjukkan setiap keluaran. Satu sistem dapat menghasilkan energi berguna sekaligus memindahkan energi ke lingkungan sebagai kalor, bunyi, atau getaran.
+Diagram ini menunjukkan setiap keluaran. Satu sistem dapat menghasilkan energi berguna sekaligus memindahkan energi ke lingkungan sebagai kalor, bunyi, atau getaran.
 
 | Pilihan sistem | Yang masuk ke sistem | Yang keluar dari sistem |
 | :------------- | :------------------- | :---------------------- |
@@ -63,7 +73,7 @@ Diagram tersebut menunjukkan setiap keluaran. Satu sistem dapat menghasilkan ene
 
 Pada baris pertama, Bumi termasuk dalam sistem karena energi potensial gravitasi terkait dengan interaksi air dan Bumi. Perubahan bentuk energi di dalam sistem berbeda dari perpindahan energi melintasi batas sistem.
 
-## Saat Gesekan Diabaikan
+### Saat Gesekan Diabaikan
 
 Pada banyak soal awal, **gesekan dan hambatan udara diabaikan** supaya model hanya memuat energi kinetik dan energi potensial gravitasi. Energi mekanik kemudian ditulis sebagai:
 
@@ -88,26 +98,27 @@ E_p &= mgh \\
 
 Jika tidak ada energi yang berpindah ke lingkungan, energi sebesar <InlineMath math="120 \text{ J}" /> berubah menjadi energi kinetik air. Pada perangkat sebenarnya, sebagian energi berpindah ke lingkungan sebagai kalor, bunyi, dan getaran.
 
-Ikuti air yang jatuh pada grafik di bawah, dari <InlineMath math="h=12\text{ m}" /> di kanan sampai ke tanah di kiri. Energi potensial yang oranye berkurang tepat sebanyak energi kinetik hijau toska bertambah, jadi garis ungu untuk jumlah keduanya tidak pernah bergeser dari <InlineMath math="120\text{ J}" />. Di tengah jalan, pada <InlineMath math="6\text{ m}" />, kedua bentuk energi itu membagi energinya sama besar.
+Ikuti air yang jatuh pada grafik di bawah, dari <InlineMath math="h=12\text{ m}" /> di kanan sampai ke tanah di kiri. Energi potensial oranye berkurang tepat sebanyak energi kinetik hijau toska bertambah, jadi garis ungu jumlah keduanya tetap datar di <InlineMath math="120\text{ J}" />.
 
 <MathVisual
   title={<>Energi Potensial Berubah Menjadi Energi Kinetik</>}
-  description={<>Air bermassa <InlineMath math="1\text{ kg}" /> jatuh dari <InlineMath math="12\text{ m}" /> dengan <InlineMath math="g=10\text{ m/s}^2" /> tanpa energi yang hilang. Mendatar: ketinggian dalam satuan <InlineMath math="2\text{ m}" />. Tegak: energi dalam satuan <InlineMath math="20\text{ J}" />.</>}
+  description={<>Air bermassa <InlineMath math="1\text{ kg}" /> jatuh dari <InlineMath math="12\text{ m}" /> dengan <InlineMath math="g=10\text{ m/s}^2" /> tanpa energi yang hilang. Mendatar: ketinggian dalam m. Tegak: energi dalam J.</>}
+  footer={<>Energi potensial dan kinetik saling bertukar, bertemu di 60 J pada 6 m.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.8, max: 7 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 14 }, y: { min: -12, max: 140 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
-      { id: "kinetic", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 6, y: 0 } },
-      { id: "mechanical", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 6, y: 6 } },
-      { id: "half", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 12, y: 120 } },
+      { id: "kinetic", kind: "segment", appearance: "construction", from: { x: 0, y: 120 }, to: { x: 12, y: 0 } },
+      { id: "mechanical", kind: "segment", appearance: "secondary", from: { x: 0, y: 120 }, to: { x: 12, y: 120 } },
+      { id: "half", kind: "point", appearance: "answer", at: { x: 6, y: 60 } },
     ],
     labels: [
-      { key: "ep", objectId: "potential", at: { x: 5, y: 5 }, placement: "below-right" },
-      { key: "ek", objectId: "kinetic", at: { x: 1, y: 5 }, placement: "above-right" },
-      { key: "em", objectId: "mechanical", at: { x: 3, y: 6 }, placement: "above" },
-      { key: "half", objectId: "half", at: { x: 3, y: 3 }, placement: "below" },
+      { key: "ep", objectId: "potential", at: { x: 10, y: 100 }, placement: "below-right" },
+      { key: "ek", objectId: "kinetic", at: { x: 2, y: 100 }, placement: "above-right" },
+      { key: "em", objectId: "mechanical", at: { x: 6, y: 120 }, placement: "above" },
+      { key: "half", objectId: "half", at: { x: 6, y: 60 }, placement: "below" },
     ],
   }}
   labels={{
@@ -118,23 +129,33 @@ Ikuti air yang jatuh pada grafik di bawah, dari <InlineMath math="h=12\text{ m}"
   }}
 />
 
-Tanpa gesekan, setiap joule energi potensial menjadi energi kinetik: <InlineMath math="mgh=\tfrac12mv^2" />, jadi <InlineMath math="v=\sqrt{2gh}" /> dan massanya saling menghapus. Ketinggian empat kali lipat hanya memberi kelajuan dua kali lipat. Ikuti kurvanya dari <InlineMath math="5\text{ m}" /> sampai <InlineMath math="20\text{ m}" />.
+Di tengah jalan pada <InlineMath math="6\text{ m}" />, kedua garis berpotongan tepat di <InlineMath math="60\text{ J}" />. Karena garis atas tetap mendatar, membaca ketinggian mana pun langsung menunjukkan cara <InlineMath math="120\text{ J}" /> terbagi.
+
+Tanpa gesekan, setiap joule energi potensial berubah menjadi energi kinetik sehingga massa <InlineMath math="m" /> saling menghapus:
+
+<BlockMath math="\begin{aligned}
+mgh &= \frac{1}{2}mv^2 \\
+v &= \sqrt{2gh}
+\end{aligned}" />
+
+Karena kelajuan bertambah sebanding dengan akar ketinggian, tinggi jatuh empat kali lipat hanya memberi kelajuan dua kali lipat. Ikuti kurvanya dari <InlineMath math="5\text{ m}" /> sampai <InlineMath math="20\text{ m}" />.
 
 <MathVisual
   title={<>Ketinggian Menjadi Kelajuan</>}
-  description={<>Kelajuan di dasar terhadap tinggi jatuh dengan <InlineMath math="g=10\text{ m/s}^2" />. Mendatar: satu kotak grid berarti <InlineMath math="2\text{ m}" />. Tegak: satu kotak grid berarti <InlineMath math="4\text{ m/s}" />.</>}
+  description={<>Kelajuan di dasar terhadap tinggi jatuh dengan <InlineMath math="g=10\text{ m/s}^2" />. Mendatar: tinggi jatuh dalam m. Tegak: kelajuan dalam m/s.</>}
+  footer={<>Tinggi jatuh empat kali lipat dari 5 m ke 20 m hanya menggandakan laju.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -0.5, max: 6 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 22 }, y: { min: -2, max: 24 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "speed", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: Math.sqrt(2 * 10 * 1) / 4 }, { x: 1, y: Math.sqrt(2 * 10 * 2) / 4 }, { x: 1.5, y: Math.sqrt(2 * 10 * 3) / 4 }, { x: 2, y: Math.sqrt(2 * 10 * 4) / 4 }, { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, { x: 3, y: Math.sqrt(2 * 10 * 6) / 4 }, { x: 3.5, y: Math.sqrt(2 * 10 * 7) / 4 }, { x: 4, y: Math.sqrt(2 * 10 * 8) / 4 }, { x: 4.5, y: Math.sqrt(2 * 10 * 9) / 4 }, { x: 5, y: Math.sqrt(2 * 10 * 10) / 4 }, { x: 5.5, y: Math.sqrt(2 * 10 * 11) / 4 }, { x: 6, y: Math.sqrt(2 * 10 * 12) / 4 }, { x: 6.5, y: Math.sqrt(2 * 10 * 13) / 4 }, { x: 7, y: Math.sqrt(2 * 10 * 14) / 4 }, { x: 7.5, y: Math.sqrt(2 * 10 * 15) / 4 }, { x: 8, y: Math.sqrt(2 * 10 * 16) / 4 }, { x: 8.5, y: Math.sqrt(2 * 10 * 17) / 4 }, { x: 9, y: Math.sqrt(2 * 10 * 18) / 4 }, { x: 9.5, y: Math.sqrt(2 * 10 * 19) / 4 }, { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }] },
-      { id: "five", kind: "point", appearance: "secondary", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 } },
-      { id: "twenty", kind: "point", appearance: "answer", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 } },
+      { id: "speed", kind: "function", appearance: "primary", formula: "sqrt(20 * x)", domain: { min: 0, max: 20 } },
+      { id: "five", kind: "point", appearance: "secondary", at: { x: 5, y: 10 } },
+      { id: "twenty", kind: "point", appearance: "answer", at: { x: 20, y: 20 } },
     ],
     labels: [
-      { key: "five", objectId: "five", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, placement: "below-right" },
-      { key: "twenty", objectId: "twenty", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }, placement: "above-left" },
+      { key: "five", objectId: "five", at: { x: 5, y: 10 }, placement: "below-right" },
+      { key: "twenty", objectId: "twenty", at: { x: 20, y: 20 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -143,7 +164,13 @@ Tanpa gesekan, setiap joule energi potensial menjadi energi kinetik: <InlineMath
   }}
 />
 
-## Energi Berguna Bergantung pada Tujuan Alat
+Kurva yang makin melandai menunjukkan mengapa meninggikan bendungan memberi tambahan kelajuan air yang makin kecil dibandingkan kenaikan tingginya.
+
+## Keluaran Berguna dan Pemeriksaan Klaim
+
+Alat konversi nyata selalu membagi energi masuk menjadi **keluaran berguna** dan **energi ke lingkungan**, sehingga hukum kekekalan energi bisa langsung menguji setiap klaim kinerja.
+
+### Energi Berguna Bergantung pada Tujuan Alat
 
 Pada teknologi energi terbarukan, yang biasanya kita inginkan adalah **energi berguna**, misalnya energi listrik. Hukum kekekalan energi tetap berlaku, tetapi energi masuk tidak seluruhnya menjadi energi listrik.
 
@@ -166,7 +193,8 @@ Putar kolomnya: energi yang masuk ke turbin seluruhnya keluar lagi. Energi listr
 
 <MathVisual
   title={<>Neraca Energi Turbin</>}
-  description={<>Energi yang masuk ke turbin dan generator (abu-abu) lalu keluar sebagai listrik (teal) dan ke lingkungan (merah muda). Satu kotak grid ke atas berarti <InlineMath math="20\text{ J}" />.</>}
+  description={<>Energi yang masuk ke turbin dan generator (abu-abu) dibandingkan dengan listrik (teal) dan energi ke lingkungan (merah muda).</>}
+  footer={<>Tumpukan batang listrik dan rugi sejajar dengan batang masukan 120 J.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
@@ -189,7 +217,9 @@ Putar kolomnya: energi yang masuk ke turbin seluruhnya keluar lagi. Energi listr
   }}
 />
 
-## Periksa Klaim dengan Neraca Energi
+Perhatikan puncak kedua tumpukan: tingginya sama persis. Meningkatkan efisiensi berarti mengecilkan bagian merah muda dan memperbesar bagian teal tanpa mengubah tinggi totalnya.
+
+### Periksa Klaim dengan Neraca Energi
 
 Hukum kekekalan energi dapat menguji klaim energi dengan menghitung setiap perpindahan dan perubahan bentuk.
 
@@ -219,11 +249,12 @@ Untuk memeriksa kekekalan energi pada teknologi energi terbarukan, jawab tiga pe
 
 Jawabannya menunjukkan sumber energi masuk, setiap perpindahan energi keluar dari sistem, dan bagian yang menjadi keluaran berguna.
 
-Coba jawab ketiga pertanyaan itu pada panel surya. Saat matahari terik, <InlineMath math="1\,000\text{ W/m}^2" /> jatuh pada panel <InlineMath math="1{,}6\text{ m}^2" />, jadi daya yang masuk <InlineMath math="1\,600\text{ W}" />. Sekitar <InlineMath math="64\text{ W}" /> dipantulkan kaca, <InlineMath math="274\text{ W}" /> keluar sebagai listrik, dan <InlineMath math="1\,262\text{ W}" /> sisanya memanaskan panel sampai sekitar <InlineMath math="61^\circ\text{C}" />. Lemahkan cahayanya dan cek bahwa ketiga keluaran itu tetap berjumlah sama dengan masukannya.
+Coba jawab ketiga pertanyaan itu pada panel surya. Saat matahari terik, <InlineMath math="1\,000\text{ W/m}^2" /> jatuh pada panel <InlineMath math="1{,}6\text{ m}^2" />, jadi daya yang masuk <InlineMath math="1\,600\text{ W}" />. Sekitar <InlineMath math="64\text{ W}" /> dipantulkan kaca, <InlineMath math="274\text{ W}" /> keluar sebagai listrik, dan <InlineMath math="1\,262\text{ W}" /> memanaskan panel sampai <InlineMath math="61^\circ\text{C}" />.
 
 <SolarPanelHeatLab
   title={<>Ke Mana Cahaya Matahari pada Panel Pergi</>}
   description={<>Panel <InlineMath math="1{,}6\text{ m}^2" /> pada hari bersuhu <InlineMath math="30^\circ\text{C}" />. Ubah cahaya mataharinya, ikuti pembagiannya menjadi listrik, pantulan, dan kalor, lalu lihat sel yang lebih panas mengubah bagian yang lebih kecil.</>}
+  footer={<>Listrik, pantulan, dan kalor selalu berjumlah sama dengan daya cahaya.</>}
   labels={{
     efficiency: <>Efisiensi</>,
     electric: <>Listrik</>,
@@ -235,3 +266,5 @@ Coba jawab ketiga pertanyaan itu pada panel surya. Saat matahari terik, <InlineM
     viewLabel: "Panel surya di atap dengan aliran cahaya, kalor, dan listrik",
   }}
 />
+
+Turunkan penggeser cahaya matahari lalu jumlahkan ketiga keluarannya. Meski suhu sel turun dan efisiensi sedikit naik, total daya yang keluar dari panel selalu sama dengan daya cahaya yang jatuh pada kacanya.

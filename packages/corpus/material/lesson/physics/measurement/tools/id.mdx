@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Berbagai Macam Alat Ukur",
   description:
@@ -13,7 +12,7 @@ export const metadata = {
 
 Setiap kali kita menimbang bahan makanan, melihat speedometer, membaca suhu tubuh, atau mengukur panjang meja, kita sedang melakukan pengukuran. Dalam fisika, pengukuran adalah <Highlight>proses eksperimental untuk memperoleh satu atau beberapa nilai besaran</Highlight>. Satuan pengukuran menyediakan <Highlight>acuan bersama</Highlight>.
 
-Nilai besaran adalah nilai numerik dikalikan dengan satuannya.
+Setiap hasil bacaan alat ukur memadukan angka yang terbaca dengan satuan yang tertera pada skalanya.
 
 Contohnya, jika panjang sebuah benda terbaca <InlineMath math="8 \text{ cm}" />, maka <InlineMath math="8" /> adalah nilai numerik dan <InlineMath math="\text{cm}" /> adalah satuannya.
 
@@ -31,6 +30,7 @@ Gunakan model interaktif berikut untuk membandingkan tiga alat ukur. Pilih alat,
       dan hasil bacaannya.
     </>
   }
+  footer={<>Setiap alat memasangkan satu besaran fisika dengan skala dan satuannya.</>}
   labels={{
     chooseTool: "Pilih alat ukur",
     decimalSeparator: ",",
@@ -60,6 +60,8 @@ Gunakan model interaktif berikut untuk membandingkan tiga alat ukur. Pilih alat,
   }}
 />
 
+Berpindah di antara penggaris, neraca, dan stopwatch menunjukkan bahwa setiap alat mencatat sifat fisika yang berbeda dan memakai satuannya sendiri. Membaca angka tanpa memastikan alat asalnya membuat hasil pengukuran belum lengkap.
+
 ## Memilih Alat Ukur
 
 Tentukan dulu besaran yang akan diukur. Rentang nilai yang diperkirakan dan ketelitian yang dibutuhkan menentukan alat yang sesuai, sedangkan jenis besaran menentukan satuan hasil pengukuran.
@@ -67,6 +69,7 @@ Tentukan dulu besaran yang akan diukur. Rentang nilai yang diperkirakan dan kete
 <Mermaid
   title={<>Cocokkan Alat dengan Besaran</>}
   description={<>Mulai dari benda yang diukur, lalu pilih alat berdasarkan ketelitian, rentang, dan cara membaca skalanya.</>}
+  footer={<>Tentukan besaran dulu agar alat cocok dengan rentang dan satuannya.</>}
   chart={`flowchart TD
     A["Apa yang ingin diukur?"] --> B["Panjang"]
     A --> C["Massa"]
@@ -82,7 +85,7 @@ Dalam SI, besaran pokok yang sering muncul di awal fisika antara lain panjang, m
 
 ## Membaca Hasil Pengukuran
 
-Tiga contoh berikut menunjukkan cara membaca **titik awal**, angka yang ditunjuk, dan satuan pada alat ukur. Setiap contoh juga menjelaskan besaran yang diwakili oleh angka tersebut.
+Tiga contoh berikut menunjukkan cara membaca **titik awal**, angka yang ditunjuk, dan satuan pada alat ukur. Setiap contoh juga menjelaskan besaran yang diwakili oleh angka itu.
 
 ### Panjang
 
@@ -109,6 +112,7 @@ Jangka sorong bisa membaca lebih teliti daripada penggaris. Di lab berikut, raha
       Geser rahang sampai menjepit silinder kuningan. Nol nonius memberi milimeter utuhnya, dan garis yang segaris dengan skala utama memberi persepuluhannya.
     </>
   }
+  footer={<>Baca milimeter utuh di nol nonius dan persepuluhan di garis yang segaris.</>}
   labels={{
     centimetres: <>Dalam sentimeter</>,
     line: <>Garis nonius yang segaris</>,
@@ -119,13 +123,17 @@ Jangka sorong bisa membaca lebih teliti daripada penggaris. Di lab berikut, raha
   }}
 />
 
+Saat rahang digeser, milimeter utuh selalu berasal dari garis tepat di kiri nol nonius, sedangkan satu garis nonius yang sejajar memberi angka persepuluhannya. Menggabungkan keduanya menghasilkan ketelitian <InlineMath math="0{,}1\text{ mm}" />.
+
 ### Massa
 
-Massa menunjukkan seberapa sulit kecepatan atau arah gerak benda diubah. Neraca mengukur massa dengan membandingkan benda dan **massa acuan**. Jika neraca menunjukkan <InlineMath math="250 \text{ g}" />, maka massa benda tersebut adalah:
+Massa menunjukkan seberapa sulit kecepatan atau arah gerak benda diubah. Neraca mengukur massa dengan membandingkan benda dan **massa acuan**. Jika neraca menunjukkan <InlineMath math="250 \text{ g}" />, maka massa benda itu adalah:
 
 <BlockMath math="m = 250 \text{ g}" />
 
-Pada model neraca di atas, neraca dibuat sebagai neraca lengan sama. Benda berada di kiri, sedangkan anak timbangan acuan <InlineMath math="250 \text{ g}" /> berada di kanan. Jika massa benda lebih besar dari <InlineMath math="250 \text{ g}" />, sisi benda turun. Jika massa benda lebih kecil dari <InlineMath math="250 \text{ g}" />, sisi anak timbangan turun. Jika kedua massa sama, neraca berada pada keadaan seimbang.
+Pada model neraca di atas, neraca dibuat sebagai neraca lengan sama dengan benda di piring kiri dan anak timbangan acuan <InlineMath math="250 \text{ g}" /> di piring kanan.
+
+Jika massa benda lebih besar dari <InlineMath math="250 \text{ g}" />, sisi benda turun, sedangkan jika lebih kecil, sisi anak timbangan yang turun. Saat kedua sisi sejajar, kedua massa sama besar.
 
 Simbol <InlineMath math="\tau" /> menyatakan besar momen gaya, yaitu efek gaya yang memutar neraca. Panjang lengan kedua sisi adalah <InlineMath math="r" />, dan <InlineMath math="g" /> adalah besar percepatan gravitasi. Karena lengan sama panjang, massa yang sama menghasilkan momen gaya berlawanan arah dengan besar yang sama.
 
@@ -153,6 +161,7 @@ Jangka sorong menambah sepersepuluh milimeter dengan menyejajarkan dua skala. Se
 <MathVisual
   title={<>Membaca Jangka Sorong</>}
   description={<>Skala utama dalam milimeter (atas) dan skala nonius dengan <InlineMath math="10" /> bagian sepanjang <InlineMath math="9\text{ mm}" /> (bawah).</>}
+  footer={<>Hanya satu garis nonius yang tepat sejajar untuk menunjukkan persepuluh mm.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 14 }, y: { min: -1.6, max: 1.4 } },
@@ -200,6 +209,8 @@ Jangka sorong menambah sepersepuluh milimeter dengan menyejajarkan dua skala. Se
   }}
 />
 
+Karena setiap bagian nonius lebih pendek <InlineMath math="0{,}1\text{ mm}" /> dari satu milimeter skala utama, tiap langkah menggeser selisih sepersepuluh milimeter hingga garis ketujuh tepat sejajar di bawah tanda <InlineMath math="3\text{ cm}" />.
+
 ## Contoh Alat Ukur di Sekitar Kita
 
 Banyak besaran sehari-hari dapat dibaca langsung pada alat ukur. Besaran lain, seperti massa jenis, dapat dihitung dari beberapa hasil pengukuran. Tabel berikut memasangkan alat ukur yang umum dengan besaran yang dilaporkannya, supaya kamu memilih alat dari besaran yang ingin diukur.
@@ -225,6 +236,7 @@ Untuk benda setipis kawat atau bola kecil, alat yang pas adalah mikrometer sekru
       Putar selubung sampai menjepit bola baja. Skala utama memberi milimeter dan setengah milimeter, lalu skala putar yang segaris dengan garis tengah menambah perseratusannya.
     </>
   }
+  footer={<>Jumlahkan bacaan skala utama dengan perseratusan pada skala putar.</>}
   labels={{
     division: <>Skala putar di garis tengah</>,
     reading: <>Hasil bacaan</>,
@@ -233,6 +245,8 @@ Untuk benda setipis kawat atau bola kecil, alat yang pas adalah mikrometer sekru
     viewLabel: "Mikrometer sekrup menjepit bola baja, dengan kaca pembesar pada skala utama dan skala putar",
   }}
 />
+
+Selalu periksa apakah garis setengah milimeter di bagian bawah skala utama terlihat sebelum menambahkan bacaan skala putar. Kebiasaan kecil ini mencegah kesalahan baca <InlineMath math="0{,}50\text{ mm}" /> yang paling sering terjadi pada mikrometer.
 
 ## Menghitung Panjang Pensil dari Dua Bacaan
 
@@ -254,6 +268,7 @@ Pensil di bawah tidak mulai dari nol, jadi baca kedua ujungnya. Pangkalnya di <I
 <MathVisual
   title={<>Membaca Panjang dari Dua Tanda</>}
   description={<>Pensil dari tanda <InlineMath math="1\text{ cm}" /> sampai tanda <InlineMath math="8\text{ cm}" /> pada mistar. Satu kotak grid sama dengan <InlineMath math="1\text{ cm}" />.</>}
+  footer={<>Kurangkan tanda awal dari tanda akhir saat benda tidak mulai dari nol.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -1.75, max: 3.25 } },
@@ -297,3 +312,5 @@ Pensil di bawah tidak mulai dari nol, jadi baca kedua ujungnya. Pangkalnya di <I
     length: <InlineMath math="L=8-1=7\text{ cm}" />,
   }}
 />
+
+Memulai dari tanda utuh seperti <InlineMath math="1\text{ cm}" /> justru membantu saat ujung nol penggaris sudah aus. Selama kamu mengurangkan tanda awal dari tanda akhir, panjang yang diperoleh tetap akurat.

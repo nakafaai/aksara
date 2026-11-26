@@ -14,11 +14,14 @@ When a lamp turns on, water boils, a bicycle moves, or a phone charges, energy i
 
 Energy is <Highlight>identified through its effects</Highlight>: an object moves, temperature changes, light appears, sound is produced, or electric charge flows.
 
-Here's that idea in a real device. A gravity lamp has no battery and no plug: a <InlineMath math="12\text{ kg}" /> bag of sand sinks <InlineMath math="1.8\text{ m}" /> and turns a small generator that lights an LED. Watch two changes happen together: the bag gets lower and light appears. Taking <InlineMath math="g=10\text{ m/s}^2" />, the bag always releases <InlineMath math="mgh=216\text{ J}" />, so a slower descent only spreads that energy over more time and the lamp glows dimmer.
+Here's that idea in a real device. A gravity lamp has no battery and no plug: a <InlineMath math="12\text{ kg}" /> bag of sand sinks <InlineMath math="1.8\text{ m}" /> and turns a small generator that lights an LED. Watch two changes happen together: the bag gets lower and light appears.
+
+Taking <InlineMath math="g=10\text{ m/s}^2" />, the bag always releases <InlineMath math="mgh=216\text{ J}" />. A slower descent only spreads that energy over more time, so the lamp glows dimmer.
 
 <WeightLampEnergyLab
   title={<>A Lamp Powered by a Sinking Bag</>}
   description={<>A <InlineMath math="12\text{ kg}" /> bag sinks <InlineMath math="1.8\text{ m}" /> and turns a generator that lights an LED. Choose how long the descent takes and compare the glow with the power the bag hands over.</>}
+  footer={<>Slower descent keeps total energy at 216 J while lowering lamp power.</>}
   labels={{
     chooseDescent: "How long the bag takes to sink",
     drop: <>Drop height</>,
@@ -30,7 +33,13 @@ Here's that idea in a real device. A gravity lamp has no battery and no plug: a 
   }}
 />
 
-## Mechanical Work Transfers Energy
+Notice that every setting releases the exact same <InlineMath math="216\text{ J}" />. Changing the descent time only changes how brightly and how briefly the lamp shines, which previews the difference between energy and power.
+
+## Mechanical Work and the Joule
+
+To measure energy in numbers, physics links **mechanical work** directly to the SI unit of energy, the joule. Pushing an object across a distance shows exactly how force turns into transferred energy.
+
+### Mechanical Work Transfers Energy
 
 When a constant force acts in the **same direction** as an object's displacement, the energy transferred by mechanical work is:
 
@@ -62,17 +71,18 @@ Draw the push as force against displacement and the work becomes an area. The re
 
 <MathVisual
   title={<>Work as an Area</>}
-  description={<>A constant force of <InlineMath math="15\text{ N}" /> over <InlineMath math="2\text{ m}" />. Horizontal: displacement in m. Vertical: force in units of <InlineMath math="5\text{ N}" />.</>}
+  description={<>A constant force of <InlineMath math="15\text{ N}" /> over <InlineMath math="2\text{ m}" />. Horizontal: displacement in m. Vertical: force in N.</>}
+  footer={<>The shaded rectangle area equals force times displacement, giving 30 J.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.2 } },
+    frame: { kind: "cartesian", x: { min: -0.4, max: 3.2 }, y: { min: -2, max: 20 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "work", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }] },
+      { id: "work", kind: "region", appearance: "construction", inequalities: ["x >= 0", "x <= 2", "y >= 0", "y <= 15"] },
     ],
     labels: [
-      { key: "force", objectId: "work", at: { x: 1, y: 3 }, placement: "above" },
-      { key: "area", objectId: "work", at: { x: 1, y: 1.5 }, placement: "center" },
+      { key: "force", objectId: "work", at: { x: 1, y: 15 }, placement: "above" },
+      { key: "area", objectId: "work", at: { x: 1, y: 7.5 }, placement: "center" },
     ],
   }}
   labels={{
@@ -81,7 +91,9 @@ Draw the push as force against displacement and the work becomes an area. The re
   }}
 />
 
-## Energy Is Measured in Joules
+That geometric view carries beyond constant pushes. Whenever you plot force against displacement, the area under the graph tells you how much energy the force transferred.
+
+### Energy Is Measured in Joules
 
 In SI, the unit for energy is the joule, with symbol <InlineMath math="\text{J}" />. Because energy can be calculated from **force times displacement**, a joule can be read as:
 
@@ -93,11 +105,12 @@ In SI, the unit for energy is the joule, with symbol <InlineMath math="\text{J}"
 
 The joule is the [SI derived unit](https://www.nist.gov/pml/special-publication-330/sp-330-section-2) of energy. [One joule equals one newton metre](https://www.nist.gov/glossary-term/26261), or one kilogram metre squared per second squared.
 
-You can feel the joule on a building site. A motor hoist lifts a <InlineMath math="20\text{ kg}" /> crate onto a platform <InlineMath math="5\text{ m}" /> up. With <InlineMath math="g=10\text{ m/s}^2" /> the rope pulls with the crate's weight, <InlineMath math="200\text{ N}" />, so the crate gains <InlineMath math="200\text{ N}\times5\text{ m}=1\,000\text{ J}" /> whichever motor runs the hoist. Switch motors and notice what changes: only the time.
+You can feel the joule on a building site. A motor hoist lifts a <InlineMath math="20\text{ kg}" /> crate onto a platform <InlineMath math="5\text{ m}" /> up. With <InlineMath math="g=10\text{ m/s}^2" />, the rope pulls with the crate's weight of <InlineMath math="200\text{ N}" />, so the crate gains <InlineMath math="1\,000\text{ J}" /> whichever motor runs the hoist. Switch motors and see what changes.
 
 <HoistWorkLab
   title={<>Same Joules, Different Motors</>}
   description={<>A hoist lifts a <InlineMath math="20\text{ kg}" /> crate <InlineMath math="5\text{ m}" /> up. Pick the motor's power and compare the energy the crate gains with the time the lift takes.</>}
+  footer={<>Stronger motors lift faster, yet the crate always gains 1,000 J.</>}
   labels={{
     chooseMotor: "Motor power",
     energy: <>Energy gained</>,
@@ -109,13 +122,20 @@ You can feel the joule on a building site. A motor hoist lifts a <InlineMath mat
   }}
 />
 
-## Energy Transfer and Conversion
+No matter which motor you pick, the crate reaches the same height with the same <InlineMath math="1\,000\text{ J}" /> gain. A stronger motor only delivers those joules in fewer seconds.
+
+## Energy Transfer and Power
+
+Once energy leaves a source, two quantities describe every device: **how much becomes useful output** and **how quickly it flows**. Separating total energy from rate of transfer keeps watt and joule clear.
+
+### Energy Transfer and Conversion
 
 Energy can be **transferred from a source to a device**. The device can then convert it into a useful output such as light, motion, heating, or electricity.
 
 <Mermaid
   title={<>Energy Transfer from Source to Use</>}
   description={<>Everyday examples show how energy is transferred and converted.</>}
+  footer={<>Each path traces energy from a natural source to a working device.</>}
   chart={`flowchart TD
     A["Energy around us"] --> B["Sunlight to panel"]
     B --> C["Electricity for lamp"]
@@ -126,11 +146,16 @@ Energy can be **transferred from a source to a device**. The device can then con
 
 In a solar panel, light energy changes into electrical energy. In hydropower, gravitational potential energy of water changes into turbine motion, then into electrical energy. In the body, chemical energy from food helps muscles do work.
 
-Energy is never lost in a conversion, only shared out. In this illustrative lamp every <InlineMath math="100\text{ J}" /> splits into <InlineMath math="20\text{ J}" /> of light and <InlineMath math="80\text{ J}" /> of heat, so the efficiency is <InlineMath math="\eta=\tfrac{20}{100}=20\%" />. Zoom in on the two branches.
+Energy is never lost in a conversion, only shared out. In this illustrative lamp every <InlineMath math="100\text{ J}" /> splits into <InlineMath math="20\text{ J}" /> of light and <InlineMath math="80\text{ J}" /> of heat, giving an efficiency of:
+
+<BlockMath math="\eta = \frac{20\text{ J}}{100\text{ J}} = 20\%" />
+
+Compare the width of the two outgoing branches below.
 
 <MathVisual
   title={<>Efficiency Is the Useful Share</>}
-  description={<>An illustrative energy flow through a lamp, with band widths drawn to scale. One grid step is <InlineMath math="10\text{ J}" />.</>}
+  description={<>An illustrative energy flow through a lamp, with band heights drawn in proportion to each energy share.</>}
+  footer={<>Only the narrow light band is useful output, while 80 J becomes heat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -1.5, max: 11 } },
@@ -155,7 +180,9 @@ Energy is never lost in a conversion, only shared out. In this illustrative lamp
   }}
 />
 
-## Power Measures the Rate of Energy Transfer
+Both outgoing bands still add up to <InlineMath math="100\text{ J}" />. Efficiency simply measures the fraction that reaches the intended output rather than warming the room.
+
+### Power Measures the Rate of Energy Transfer
 
 Energy answers the question *how much energy is transferred or transformed*. Power answers the question *how quickly that transfer or transformation happens*.
 
@@ -193,25 +220,26 @@ E &= P t \\
 
 If the same lamp stays on longer, its energy use increases. If the power is higher, the energy use also increases for the same duration.
 
-The graph below shows both statements at once. Walk along the orange line for the <InlineMath math="10\text{ W}" /> lamp: the longer it stays on, the higher the energy, and at <InlineMath math="5\text{ h}" /> it reaches <InlineMath math="50\text{ Wh}" />. The violet line for a <InlineMath math="20\text{ W}" /> lamp climbs twice as steeply, because power is how fast the energy piles up.
+The graph below shows both effects at once. Walk along the orange line for the <InlineMath math="10\text{ W}" /> lamp: at <InlineMath math="5\text{ h}" /> it reaches <InlineMath math="50\text{ Wh}" />. The violet line for a <InlineMath math="20\text{ W}" /> lamp climbs twice as steeply because power is how fast energy piles up.
 
 <MathVisual
   title={<>Energy Use Grows with Time</>}
-  description={<>E = Pt for a <InlineMath math="10\text{ W}" /> and a <InlineMath math="20\text{ W}" /> lamp. Horizontal: time in hours. Vertical: energy in units of <InlineMath math="20\text{ Wh}" />.</>}
+  description={<>Energy <InlineMath math="E = Pt" /> for a <InlineMath math="10\text{ W}" /> and a <InlineMath math="20\text{ W}" /> lamp. Horizontal: time in hours. Vertical: energy in Wh.</>}
+  footer={<>Higher power makes the energy line steeper over the same time span.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -10, max: 135 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "ten", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 3 } },
-      { id: "twenty", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
-      { id: "used", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 5, y: 2.5 } },
-      { id: "used-top", kind: "point", appearance: "answer", at: { x: 5, y: 2.5 } },
+      { id: "ten", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 60 } },
+      { id: "twenty", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 120 } },
+      { id: "used", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 5, y: 50 } },
+      { id: "used-top", kind: "point", appearance: "answer", at: { x: 5, y: 50 } },
     ],
     labels: [
-      { key: "ten", objectId: "ten", at: { x: 6, y: 3 }, placement: "right" },
-      { key: "twenty", objectId: "twenty", at: { x: 6, y: 6 }, placement: "right" },
-      { key: "used", objectId: "used-top", at: { x: 5, y: 2.5 }, placement: "below-right" },
+      { key: "ten", objectId: "ten", at: { x: 6, y: 60 }, placement: "right" },
+      { key: "twenty", objectId: "twenty", at: { x: 6, y: 120 }, placement: "right" },
+      { key: "used", objectId: "used-top", at: { x: 5, y: 50 }, placement: "below-right" },
     ],
   }}
   labels={{
@@ -220,6 +248,8 @@ The graph below shows both statements at once. Walk along the orange line for th
     used: <InlineMath math="E=50\text{ Wh}" />,
   }}
 />
+
+Reading the slope tells you the lamp's power directly, while reading the height at any hour tells you the cumulative energy on your bill.
 
 ## Energy Analysis for Renewable Sources
 

@@ -14,7 +14,7 @@ Imagine reading the quantity value <InlineMath math="12" /> without a unit. Is i
 
 A unit is <Highlight>an agreed reference size for a physical quantity</Highlight>. Measurements from different people, tools, and places can be compared only when their units are stated and converted when necessary.
 
-A quantity value is the numerical value multiplied by the unit.
+Every reported measurement multiplies a pure number by its agreed unit symbol.
 
 The numerical value answers *how much*. The unit answers *which reference it is compared with*.
 
@@ -27,6 +27,7 @@ Here three friends measure the same <InlineMath math="1.20\text{ m}" /> desk, ea
       Switch between the three pencils and the metre rule and watch the count change for the same desk.
     </>
   }
+  footer={<>Different personal references give different counts for the exact same desk.</>}
   labels={{
     chooseReference: "Choose what to measure with",
     count: <>Count</>,
@@ -42,6 +43,8 @@ Here three friends measure the same <InlineMath math="1.20\text{ m}" /> desk, ea
   }}
 />
 
+Every pencil produces a different count even though the desk never changes length. Only switching to the shared metre rule lets all three friends report the same measurement.
+
 ## From Many Systems to SI
 
 Before one standard became widely used, several unit systems existed side by side. Three names often appear in physics books:
@@ -54,7 +57,7 @@ Before one standard became widely used, several unit systems existed side by sid
 
 In this FPS row, <InlineMath math="\text{lb}" /> denotes pound-mass. It must not be confused with pound-force, commonly written <InlineMath math="\text{lbf}" />.
 
-These differences make measurements hard to compare when the unit system is unclear. That is why modern science uses the **International System of Units** or **SI**. SI comes from the French name *Système international d'unités* and is known in English as the *International System of Units*. BIPM, or the *Bureau International des Poids et Mesures*, is the international organization that maintains the SI standard.
+These differences make measurements hard to compare when the unit system is unclear. That is why modern science uses the **International System of Units** (**SI**), from the French *Système international d'unités*, maintained globally by BIPM (*Bureau International des Poids et Mesures*).
 
 [BIPM defines SI](https://www.bipm.org/en/measurement-units) so the units share an international reference.
 
@@ -69,6 +72,7 @@ One object makes the point. The bowling ball below is the heaviest the rules all
       Switch between FPS, CGS and MKS and watch the needle and the ball stay put while only the numbers change.
     </>
   }
+  footer={<>Changing unit systems alters the numbers, never the ball's real mass or size.</>}
   labels={{
     chooseSystem: "Choose a unit system",
     diameter: <>Diameter</>,
@@ -82,6 +86,8 @@ One object makes the point. The bowling ball below is the heaviest the rules all
     viewLabel: "Bowling ball on a dial scale beside an inch and centimetre ruler",
   }}
 />
+
+Notice that the scale needle and ruler edge never budge as you toggle between FPS, CGS, and MKS. A unit system only changes the reference size you count against, not the physical object itself.
 
 ## The Seven SI Base Units
 
@@ -119,11 +125,14 @@ A derived unit appears when a derived quantity is formed from base quantities. I
 
 The work row assumes a constant force parallel to the displacement. The speed, acceleration, and power formulas in the table give averages over the chosen interval.
 
-Turn the cube below. Along each edge you count <InlineMath math="10" /> small cubes of <InlineMath math="1\text{ dm}" />, so the big cube is <InlineMath math="1\text{ m}" /> on every side. Its volume is <InlineMath math="(10\text{ dm})^3=1000\text{ dm}^3" />, so <InlineMath math="1\text{ m}^3=1000\text{ dm}^3" />, and one small cube holds exactly <InlineMath math="1" /> liter. Notice that the prefix gets cubed together with the unit: <InlineMath math="1\text{ dm}=10^{-1}\text{ m}" />, so <InlineMath math="1\text{ dm}^3=10^{-3}\text{ m}^3" />.
+Turn the cube below. Along each edge you count <InlineMath math="10" /> small cubes of <InlineMath math="1\text{ dm}" />, so the big cube is <InlineMath math="1\text{ m}" /> on every side and holds <InlineMath math="1000\text{ dm}^3" />, or <InlineMath math="1000" /> liters.
+
+Notice that the prefix gets cubed together with the unit: because <InlineMath math="1\text{ dm}=10^{-1}\text{ m}" />, one cubic decimeter equals <InlineMath math="10^{-3}\text{ m}^3" />.
 
 <MathVisual
   title={<>A Cubic Meter Built from Cubic Decimeters</>}
   description={<>One grid step is <InlineMath math="1\text{ dm}" />. The small cubes run along three edges of a cube that is <InlineMath math="1\text{ m}" /> on each side. Rotate it to count them.</>}
+  footer={<>Cubing 10 dm per edge packs 1000 cubic decimeters inside one cubic meter.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 12 }, z: { min: -1, max: 11 } },
@@ -187,11 +196,12 @@ Once force is clear, work and power can be read step by step.
 = 1 \text{ kg m}^2\text{ s}^{-3}
 \end{aligned}" />
 
-Each derived unit is a product of powers of kg, m and s. Rotate the bars: the joule is a newton times a meter, so only the power of m grows, and the watt is a joule per second, so the power of s drops to <InlineMath math="-3" />.
+Each derived unit is a product of powers of kg, m, and s. Rotate the bars: the joule is a newton times a meter, so only the power of m grows, and the watt is a joule per second, so the power of s drops to <InlineMath math="-3" />.
 
 <MathVisual
   title={<>From Newton to Joule to Watt</>}
   description={<>Powers of kg (violet), m (orange) and s (teal) in the newton, the joule and the watt. Bars below the floor are negative powers.</>}
+  footer={<>Each step from newton to joule to watt changes one base-unit exponent by one.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: -3.5, max: 3 }, z: { min: -1, max: 1 } },
@@ -220,16 +230,24 @@ Each derived unit is a product of powers of kg, m and s. Rotate the bars: the jo
   }}
 />
 
-## Writing Large and Small Values Compactly
+Comparing the three bar groups shows that special SI names like newton, joule, and watt are shorthand for specific combinations of <InlineMath math="\text{kg}" />, <InlineMath math="\text{m}" />, and <InlineMath math="\text{s}" />. Breaking them back into base units makes every formula check straightforward.
+
+## Using SI Prefixes for Scale
+
+**SI prefixes** scale any base or derived unit up or down by exact powers of ten so readings stay readable from atomic widths to planetary orbits. Each short symbol replaces a long string of zeros and converts cleanly in one step.
+
+### Writing Large and Small Values Compactly
 
 When a measured value is very large or very small, **SI prefixes** can replace long rows of zeros with powers of <InlineMath math="10" />.
 
 <Mermaid
   title={<>Compact Notation with SI Prefixes</>}
   description={<>See how metric prefixes replace long strings of zeros with shorter unit names.</>}
+  footer={<>Replace each metric prefix with its power of ten to convert cleanly to meters.</>}
   chart={`flowchart LR
     A["7.5 km"] --> B["7.5 × 1000 m"]
-    B --> C["7500 m"]`}/>
+    B --> C["7500 m"]`}
+/>
 
 Common prefixes include:
 
@@ -248,9 +266,9 @@ Common prefixes include:
 
 The table above covers prefixes from yocto through yotta. BIPM also lists ronna and ronto for <InlineMath math="10^{27}" /> and <InlineMath math="10^{-27}" />, plus quetta and quecto for <InlineMath math="10^{30}" /> and <InlineMath math="10^{-30}" />. You can check the complete current list in the [BIPM table of SI prefixes](https://www.bipm.org/en/measurement-units/si-prefixes).
 
-## Reading Prefixes in Calculations
+### Reading Prefixes in Calculations
 
-An SI prefix can be attached to a **base unit or a derived unit**. For example, kilometer uses meter, while kilowatt uses watt. For example, <InlineMath math="\text{km}" /> means one thousand meters, so it remains a unit of length based on the meter.
+An SI prefix can be attached to a **base unit or a derived unit**. For example, kilometer uses meter, while kilowatt uses watt. Thus <InlineMath math="\text{km}" /> means one thousand meters, so it remains a unit of length based on the meter.
 
 <BlockMath math="\begin{aligned}
 7.5 \text{ km}
@@ -277,6 +295,7 @@ Each prefix is a power of ten, so moving between prefixes is a step along one ex
 <MathVisual
   title={<>Prefixes Are Powers of Ten</>}
   description={<>Common SI prefixes for the meter placed at their exponent of ten.</>}
+  footer={<>Subtract the two exponents to find the conversion factor between any prefixes.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -11, max: 5 }, y: { min: -1.2, max: 1.2 } },
@@ -308,3 +327,5 @@ Each prefix is a power of ten, so moving between prefixes is a step along one ex
     nm: <InlineMath math="\text{n}:\ 10^{-9}" />,
   }}
 />
+
+Reading prefixes as positions on one exponent line turns every metric conversion into simple subtraction. Once you know the exponent gap, moving the decimal point becomes fast and reliable.

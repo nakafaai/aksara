@@ -18,23 +18,49 @@ Sisihan piawai sampel <InlineMath math="s" /> menerangkan sejauh mana setiap bac
 
 > Pengukuran berulang menunjukkan variasi rawak melalui perubahan kecil antara satu bacaan dengan bacaan yang lain. Ralat sistematik, seperti alat yang tidak bermula pada sifar atau skala yang rosak, mesti disemak melalui pemeriksaan atau penentukuran.
 
-Membaca skala dari sudut yang sedikit berbeza ialah salah satu perubahan kecil itu. Dalam silinder penyukat di bawah, bahagian bawah permukaan air yang melengkung terletak pada paksi silinder, tetapi skalanya dicetak pada dinding hadapan. Apabila mata kamu berada <InlineMath math="6.0\text{ cm}" /> di atas paras air, garis penglihatan kamu memotong dinding itu di tempat yang lebih tinggi, dan <InlineMath math="42.0\text{ mL}" /> terbaca sebagai <InlineMath math="44.1\text{ mL}" />. Letakkan mata kamu separas dengan air, dan ralat itu menjadi sifar.
+Membaca skala dari sudut yang senget menghasilkan **anjakan paralaks**. Apabila meniskus sebenar terletak pada <InlineMath math="42.0\text{ mL}" /> di belakang skala dinding hadapan, menyengetkan mata pada sudut <InlineMath math="a" /> menganjakkan bacaan ketara sebanyak <InlineMath math="4\tan a" />. Seret sudut pandangan ke <InlineMath math="0^\circ" /> dan perhatikan anjakan itu lenyap.
 
-<ParallaxReadingLab
-  title={<>Paralaks pada Silinder Penyukat</>}
+<MathVisual
+  title={<>Anjakan Paralaks melawan Sudut Pandangan</>}
   description={
     <>
-      Gerakkan mata kamu ke atas atau ke bawah dan perhatikan tempat garis penglihatan kamu ke air memotong skala.
+      Bacaan ketara silinder penyukat melawan sudut pandangan mata <InlineMath math="a" /> di sekitar isi padu meniskus sebenar <InlineMath math="42.0\text{ mL}" />.
     </>
   }
+  footer={<>Melihat separas dengan meniskus menghapuskan ralat paralaks sepenuhnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -35, max: 35 }, y: { min: 38.5, max: 45.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -30, max: 30, value: 20, step: 2, label: "a" },
+    ],
+    objects: [
+      { id: "true-level", kind: "segment", appearance: "reference", from: { x: -30, y: 42 }, to: { x: 30, y: 42 } },
+      { id: "parallax-curve", kind: "function", appearance: "primary", formula: "42 + 4*tan(x*pi/180)", domain: { min: -30, max: 30 } },
+      { id: "angle-guide", kind: "path", appearance: "answer", points: [{ x: "a", y: "39" }, { x: "a", y: "42 + 4*tan(a*pi/180)" }] },
+      { id: "eye-point", kind: "marker", appearance: "answer", x: "a", y: "42 + 4*tan(a*pi/180)" },
+      { id: "zero-point", kind: "point", appearance: "secondary", at: { x: 0, y: 42 } },
+    ],
+    labels: [
+      { key: "true-vol", objectId: "zero-point", at: { x: 0, y: 42 }, placement: "below-right" },
+      { key: "shift", objectId: "eye-point", at: { x: "a", y: "42 + 4*tan(a*pi/180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "apparent-reading", formula: "42 + 4*tan(a*pi/180)" },
+      { key: "parallax-error", formula: "4*tan(a*pi/180)" },
+    ],
+  }}
   labels={{
-    error: <>Ralat paralaks</>,
-    eye: "Tinggi mata di atas paras air",
-    reading: <>Bacaan yang kamu lihat</>,
-    trueVolume: <>Isi padu sebenar</>,
-    viewLabel: "Mata membaca paras air dalam silinder penyukat, dengan kanta pembesar pada skala",
+    a: <>Sudut pandangan <InlineMath math="a" /> (darjah)</>,
+    "true-vol": <InlineMath math="42.0\text{ mL}" />,
+    shift: <InlineMath math="\Delta V" />,
+    "apparent-reading": <>Bacaan ketara (mL)</>,
+    "parallax-error": <>Anjakan paralaks (mL)</>,
   }}
 />
+
+Melihat dari atas menjadikan bacaan kelihatan terlalu tinggi, manakala melihat dari bawah menjadikannya terlalu rendah. Menyejajarkan mata tepat pada <InlineMath math="0^\circ" /> menjadikan ralat paralaks sifar dan mengelakkan anjakan bacaan yang boleh dicegah.
 
 ## Min bagi Pengukuran Berulang
 
@@ -52,37 +78,77 @@ Bagi data berulang yang serakannya lebih kurang simetri dan tiada pencilan yang 
 
 <BlockMath math="\bar d=\frac{\sum_{i=1}^{N} d_i}{N}" />
 
-Bagi data di atas:
-
-Mula-mula, tambahkan bacaan berangka dalam sentimeter:
+Bagi data di atas, tambahkan dahulu bacaan berangka dalam sentimeter:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} S &amp;=3.12+3.14+3.15 \\ &amp;\quad{}+3.11+3.14 \\ &amp;=15.66 \end{aligned}" />
+  <BlockMath math="\begin{aligned} S &=3.12+3.14+3.15 \\ &\quad{}+3.11+3.14 \\ &=15.66 \end{aligned}" />
 
   <BlockMath math="\bar d=\frac{15.66}{5}\text{ cm}=3.132\text{ cm}" />
 </MathContainer>
 
 Min sahaja belum mencukupi. Kita juga perlu tahu <Highlight>sama ada data itu berkumpul rapat di sekeliling min</Highlight> atau tersebar lebih jauh.
 
-Idea yang sama berguna untuk masa. Di bawah, masa sepuluh ayunan bandul <InlineMath math="0.80\text{ m}" /> diambil berulang kali, dan ibu jari kamu memulakan dan menghentikan jam randik sedikit awal atau lewat setiap kali. Dengan <InlineMath math="N=10" /> cubaan, minnya ialah <InlineMath math="\bar t=17.933\text{ s}" />, hampir dengan nilai sebenar <InlineMath math="17.943\text{ s}" />. Ubah <InlineMath math="N" /> dan perhatikan min itu semakin stabil sedangkan serakan bacaan tunggal lebih kurang sama.
+Serakan yang sama muncul apabila mengambil masa sepuluh ayunan bandul <InlineMath math="0.80\text{ m}" /> dengan tangan. Walaupun lima cubaan berpurata tepat pada <InlineMath math="\bar t = 17.94\text{ s}" />, masa tindak balas menarik bacaan tunggal naik atau turun sebanyak separuh julat <InlineMath math="h" />. Laraskan <InlineMath math="h" /> di bawah untuk membandingkan serakan rapat dan lebar.
 
-<StopwatchSpreadLab
-  title={<>Mengambil Masa Bandul dengan Tangan</>}
+<MathVisual
+  title={<>Serakan Cubaan Jam Randik dan Separuh Julat</>}
   description={
     <>
-      Tambah cubaan dan perhatikan min berwarna fuchsia semakin stabil sedangkan serakan bacaan tunggal lebih kurang sama.
+      Lima bacaan masa bandul berulang di sekeliling minnya <InlineMath math="17.94\text{ s}" /> apabila ketidakpastian separuh julat <InlineMath math="h" /> berubah.
     </>
   }
+  footer={<>Separuh julat antara cubaan tertinggi dengan terendah memberi serakan separuh.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.8 }, y: { min: 17.4, max: 18.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0.05, max: 0.4, value: 0.2, step: 0.05, label: "h" },
+    ],
+    objects: [
+      { id: "mean", kind: "segment", appearance: "reference", from: { x: 0.5, y: 17.94 }, to: { x: 5.5, y: 17.94 } },
+      { id: "upper-band", kind: "path", appearance: "answer", points: [{ x: "0.5", y: "17.94 + h" }, { x: "5.5", y: "17.94 + h" }] },
+      { id: "lower-band", kind: "path", appearance: "answer", points: [{ x: "0.5", y: "17.94 - h" }, { x: "5.5", y: "17.94 - h" }] },
+      { id: "stem-1", kind: "path", appearance: "construction", points: [{ x: "1", y: "17.94" }, { x: "1", y: "17.94 - 0.6*h" }] },
+      { id: "stem-2", kind: "path", appearance: "construction", points: [{ x: "2", y: "17.94" }, { x: "2", y: "17.94 + h" }] },
+      { id: "stem-3", kind: "path", appearance: "construction", points: [{ x: "3", y: "17.94" }, { x: "3", y: "17.94 + 0.2*h" }] },
+      { id: "stem-4", kind: "path", appearance: "construction", points: [{ x: "4", y: "17.94" }, { x: "4", y: "17.94 - h" }] },
+      { id: "stem-5", kind: "path", appearance: "construction", points: [{ x: "5", y: "17.94" }, { x: "5", y: "17.94 + 0.4*h" }] },
+      { id: "trial-1", kind: "marker", appearance: "primary", x: "1", y: "17.94 - 0.6*h" },
+      { id: "trial-2", kind: "marker", appearance: "primary", x: "2", y: "17.94 + h" },
+      { id: "trial-3", kind: "marker", appearance: "primary", x: "3", y: "17.94 + 0.2*h" },
+      { id: "trial-4", kind: "marker", appearance: "primary", x: "4", y: "17.94 - h" },
+      { id: "trial-5", kind: "marker", appearance: "primary", x: "5", y: "17.94 + 0.4*h" },
+    ],
+    labels: [
+      { key: "mean-line", objectId: "mean", at: { x: 5.5, y: 17.94 }, placement: "right" },
+      { key: "upper-bound", objectId: "upper-band", at: { x: "5.5", y: "17.94 + h" }, placement: "right" },
+      { key: "lower-bound", objectId: "lower-band", at: { x: "5.5", y: "17.94 - h" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "full-range", formula: "2*h" },
+      { key: "half-range", formula: "h" },
+      { key: "upper-reading", formula: "17.94 + h" },
+    ],
+  }}
   labels={{
-    mean: <>Min</>,
-    spread: <>Serakan satu bacaan</>,
-    trials: "Bilangan cubaan",
-    uncertainty: <>Ketidakpastian min</>,
-    viewLabel: "Masa ayunan bandul diambil dengan jam randik, dengan plot titik bagi bacaannya",
+    h: <>Separuh julat <InlineMath math="h" /> (s)</>,
+    "mean-line": <InlineMath math="\bar t" />,
+    "upper-bound": <InlineMath math="\bar t+h" />,
+    "lower-bound": <InlineMath math="\bar t-h" />,
+    "full-range": <>Julat penuh (s)</>,
+    "half-range": <>Ketidakpastian separuh julat (s)</>,
+    "upper-reading": <>Cubaan tertinggi (s)</>,
   }}
 />
 
-## Serakan Data di Sekeliling Min
+Perhatikan bahawa kelima-lima cubaan mengekalkan min yang sama, <InlineMath math="17.94\text{ s}" />, tidak kira selebar mana <InlineMath math="h" /> membesar. Melaporkan serakan bersama min menunjukkan sejauh mana bacaan masa berulang itu benar-benar konsisten.
+
+## Mengukur Serakan dan Ketidakpastian Min
+
+Untuk menilai bacaan berulang dengan tepat, bezakan **serakan bacaan tunggal** daripada **ketidakpastian nilai minnya**. Sisihan piawai sampel memerihalkan sejauh mana setiap bacaan tersebar, manakala ketidakpastian min menunjukkan setepat mana nilai purata itu ditentukan.
+
+### Serakan Data di Sekeliling Min
 
 Bagi data berulang, serakan sampel boleh dihitung daripada **jarak antara setiap bacaan dengan min**.
 
@@ -93,9 +159,9 @@ Penyebut <InlineMath math="N-1" /> digunakan kerana min sampel <InlineMath math=
 Mula-mula, jumlahkan kuasa dua bagi setiap sisihan berangka:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} V &amp;=(-0.012)^2+(0.008)^2 \\ &amp;\quad{}+(0.018)^2+(-0.022)^2 \\ &amp;\quad{}+(0.008)^2 \\ &amp;=0.00108 \end{aligned}" />
+  <BlockMath math="\begin{aligned} V &=(-0.012)^2+(0.008)^2 \\ &\quad{}+(0.018)^2+(-0.022)^2 \\ &\quad{}+(0.008)^2 \\ &=0.00108 \end{aligned}" />
 
-  <BlockMath math="\begin{aligned} &amp;s_d=\sqrt{\frac V4}\text{ cm} \\ &amp;=\sqrt{0.00027}\text{ cm} \\ &amp;\approx0.0164\text{ cm} \end{aligned}" />
+  <BlockMath math="\begin{aligned} s_d&=\sqrt{\frac{V}{4}}\text{ cm} \\ &=\sqrt{0.00027}\text{ cm} \\ &\approx0.0164\text{ cm} \end{aligned}" />
 </MathContainer>
 
 Jika kita melaporkan diameter bersama serakan data berulang itu, hasilnya menjadi:
@@ -109,6 +175,7 @@ Inilah lima bacaan daripada jadual tadi pada satu garis. Garis merah jambu ialah
 <MathVisual
   title={<>Daripada Bacaan kepada Serakan</>}
   description={<>Lima bacaan diameter (jingga), minnya (merah jambu) dan jalur satu sisihan piawai (hijau kebiruan). Satu petak grid ialah <InlineMath math="0.01\text{ cm}" />, bermula dari <InlineMath math="3.10\text{ cm}" />.</>}
+  footer={<>Kebanyakan bacaan berulang berada dalam satu sisihan piawai dari min.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.8, max: 2.7 } },
@@ -134,7 +201,9 @@ Inilah lima bacaan daripada jadual tadi pada satu garis. Garis merah jambu ialah
   }}
 />
 
-## Serakan Data dan Ketidakpastian Min
+Tiga daripada lima titik jingga berada di dalam jalur hijau kebiruan manakala dua bacaan paling hujung sedikit melepasinya. Keseimbangan visual ini menunjukkan mengapa <InlineMath math="s_d" /> merangkum jarak lazim satu bacaan daripada min.
+
+### Serakan Data dan Ketidakpastian Min
 
 Sesetengah latihan pengukuran berulang menggunakan bentuk algebra ringkas di bawah.
 
@@ -150,7 +219,7 @@ Rumus itu setara dengan sisihan piawai sampel:
 
 <BlockMath math="\Delta x=s_x=\sqrt{\frac{\sum_{i=1}^{N}(x_i-\bar x)^2}{N-1}}" />
 
-Jadi, faktor <InlineMath math="\frac{1}{\sqrt N}" /> dalam bentuk ringkas itu tidak secara automatik bermaksud hasilnya ialah ketidakpastian formal bagi min.
+Jadi, faktor <InlineMath math="1/\sqrt{N}" /> dalam bentuk ringkas itu tidak secara automatik bermaksud hasilnya ialah ketidakpastian formal bagi min.
 
 Dalam metrologi formal, NIST dan JCGM GUM menerangkan ketidakpastian piawai bagi min sebagai:
 
@@ -160,11 +229,14 @@ Bagi bacaan yang tak bersandar dengan serakan yang sama, **ketidakpastian piawai
 
 <BlockMath math="u(\bar d)=\frac{\sqrt{0.00027}}{\sqrt 5}\text{ cm}\approx0.00735\text{ cm}" />
 
-Rajah di bawah meletakkan kelima-lima bacaan bersebelahan. Setiap batang hijau kebiruan ialah jarak satu bacaan dari min, dilukis <InlineMath math="100" /> kali lebih besar. Garis jingga pada <InlineMath math="\pm s_d" /> menunjukkan sejauh mana bacaan tunggal tersebar, manakala garis ungu yang lebih dekat pada <InlineMath math="\pm u(\bar d)" /> menunjukkan sejauh mana nilai min itu sendiri diketahui dengan pasti. Cuba tambahkan batang di atas garis kelabu dengan batang di bawahnya: hasilnya saling membatalkan, kerana jumlah sisihan daripada min sentiasa sifar.
+Rajah di bawah meletakkan kelima-lima bacaan bersebelahan. Setiap batang hijau kebiruan ialah jarak satu bacaan dari min, dilukis <InlineMath math="100" /> kali lebih besar.
+
+Garis jingga pada <InlineMath math="\pm s_d" /> menunjukkan sejauh mana bacaan tunggal tersebar, manakala garis ungu pada <InlineMath math="\pm u(\bar d)" /> menunjukkan sejauh mana min itu sendiri diketahui. Menambah batang di atas dan di bawah garis kelabu sentiasa memberikan sifar.
 
 <MathVisual
   title={<>Lima Bacaan di Sekeliling Minnya</>}
   description={<>Setiap batang ialah bacaan tolak min, dengan satu petak bersamaan <InlineMath math="0.01\text{ cm}" />. Garis jingga menandakan serakan s, manakala garis ungu menandakan ketidakpastian min u.</>}
+  footer={<>Ketidakpastian min lebih sempit daripada serakan bacaan tunggal.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: -2.8, max: 2.5 } },
@@ -213,13 +285,14 @@ Rajah di bawah meletakkan kelima-lima bacaan bersebelahan. Setiap batang hijau k
   }}
 />
 
-Bagi soalan pengukuran, ikut tatatanda yang ditakrifkan dalam soalan itu. Jika <InlineMath math="\Delta x" /> mewakili rumus ringkas di atas, maka <InlineMath math="\Delta x" /> ialah sisihan piawai sampel bagi setiap pengukuran. Jangan keliru antara serakan ini dengan ketidakpastian piawai bagi min, <InlineMath math="u(\bar x)=s_x/\sqrt N" />.
+Bagi soalan pengukuran, ikut tatatanda yang ditakrifkan dalam soalan itu. Jika <InlineMath math="\Delta x" /> mewakili rumus ringkas di atas, maka <InlineMath math="\Delta x" /> ialah sisihan piawai sampel bagi setiap pengukuran. Jangan keliru antara serakan ini dengan ketidakpastian piawai bagi min, <InlineMath math="u(\bar x)" />.
 
 Graf di bawah mengekalkan serakan <InlineMath math="s_d" /> yang sama dan melihat apa yang berlaku apabila bacaan bertambah. Ketidakpastian min menurun dengan cepat pada mulanya, kemudian semakin perlahan, kerana nilainya mengecil mengikut <InlineMath math="\sqrt N" />: empat kali ganda bacaan hanya menjadikannya separuh.
 
 <MathVisual
   title={<>Lebih Banyak Bacaan, Min Lebih Tajam</>}
   description={<><InlineMath math="u=s/\sqrt N" /> bagi <InlineMath math="N=1" /> hingga <InlineMath math="20" /> bacaan dengan serakan penutup botol, <InlineMath math="s_d" />. Paksi mengufuk: N, satu petak bersamaan <InlineMath math="4" />. Paksi menegak: u, satu petak bersamaan <InlineMath math="0.004\text{ cm}" />.</>}
+  footer={<>Menggandakan cubaan empat kali hanya mengurangkan ketidakpastian min separuh.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 4.6 } },
@@ -239,6 +312,8 @@ Graf di bawah mengekalkan serakan <InlineMath math="s_d" /> yang sama dan meliha
     five: <InlineMath math="N=5:\ u\approx0.00735\text{ cm}" />,
   }}
 />
+
+Menambah bacaan daripada <InlineMath math="1" /> kepada <InlineMath math="5" /> menurunkan ketidakpastian min dengan ketara, namun menaikkannya daripada <InlineMath math="5" /> kepada <InlineMath math="15" /> hanya membawa pengurangan kecil. Selepas bilangan cubaan yang sederhana, menambah baik alat atau teknik jauh lebih berkesan daripada mengulang tanpa henti.
 
 ## Luas yang Dihitung daripada Data Diameter
 

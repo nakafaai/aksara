@@ -12,7 +12,7 @@ export const metadata = {
 
 Ein Größenwert wie <InlineMath math="0{,}60 \text{ m}" /> besteht aus <InlineMath math="2" /> Teilen.
 
-Ein Größenwert ist <Highlight>das Produkt aus Zahlenwert und Einheit</Highlight>.
+Jedes Messergebnis verknüpft <Highlight>einen Zahlenwert multiplikativ mit einer Referenzeinheit</Highlight>.
 
 Der Zahlenwert <InlineMath math="0{,}60" /> sagt, *wie viel* gemessen wurde. Die Einheit <InlineMath math="\text{m}" /> nennt den *Vergleichsmaßstab*. Die physikalische Größe beschreibt die gemessene Eigenschaft eines Objekts oder Vorgangs, etwa Länge, Masse, Zeit, Temperatur oder Geschwindigkeit. Ein vollständiges Messergebnis kann außerdem die Messunsicherheit und weitere relevante Informationen enthalten.
 
@@ -27,6 +27,7 @@ Jeder Messwert im Labor unten ist eine Zahl mal einer Einheit. Der Aluminiumbloc
       Wechsel das Material und achte darauf, dass Masse und Dichte sich ändern, während Kanten und Volumen gleich bleiben.
     </>
   }
+  footer={<>Ein anderes Material ändert Masse und Dichte, während das Volumen bleibt.</>}
   labels={{
     chooseMaterial: "Material wählen",
     density: <>Dichte</>,
@@ -43,9 +44,11 @@ Jeder Messwert im Labor unten ist eine Zahl mal einer Einheit. Der Aluminiumbloc
   }}
 />
 
+Wechselst du zwischen Kiefer, Aluminium und Messing, bleiben Kanten und Volumen unverändert, während sich die angezeigte Masse stark ändert. Die Dichte fasst diese Messwerte zu einer charakteristischen Stoffeigenschaft zusammen.
+
 ## Basisgrößen und abgeleitete Größen
 
-Das **Internationale Einheitensystem**, kurz SI, verwendet <InlineMath math="7" /> Grundgrößen. Weitere Größen entstehen durch Kombinationen dieser Grundgrößen.
+Das **Internationale Einheitensystem** (SI) legt genau <InlineMath math="7" /> voneinander unabhängige Grundgrößen fest. Weitere Größen entstehen durch Kombinationen dieser Grundgrößen.
 
 | Grundgröße | Typisches Symbol | SI-Einheit | Dimension |
 | :------------ | :------------- | :------ | :-------- |
@@ -57,7 +60,9 @@ Das **Internationale Einheitensystem**, kurz SI, verwendet <InlineMath math="7" 
 | Stoffmenge | <InlineMath math="n" /> | <InlineMath math="\text{mol}" /> | <InlineMath math="\mathrm{N}" /> |
 | Lichtstärke | <InlineMath math="I_v" /> | <InlineMath math="\text{cd}" /> | <InlineMath math="\mathrm{J}" /> |
 
-Eine abgeleitete Größe entsteht, wenn Grundgrößen miteinander verknüpft werden. Eine Fläche ergibt sich zum Beispiel aus Länge mal Breite.
+### Grundgrößen zu Fläche und Geschwindigkeit verknüpfen
+
+Eine **abgeleitete Größe** entsteht, wenn Grundgrößen miteinander verknüpft werden. Eine Fläche ergibt sich zum Beispiel aus Länge mal Breite.
 
 <BlockMath math="\begin{aligned}
 A &= l \times w \\
@@ -78,6 +83,7 @@ Das Tempo setzt sich aus zwei Basisgrößen zusammen, <InlineMath math="v=s/t" /
 <MathVisual
   title={<>Tempo aus Basisgrößen</>}
   description={<>Weg über der Zeit bei <InlineMath math="2\text{ m/s}" /> (violett) und <InlineMath math="5\text{ m/s}" /> (orange). Waagerecht: Sekunden. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="2\text{ m}" />.</>}
+  footer={<>Eine steilere Gerade im Weg-Zeit-Diagramm bedeutet höheres Tempo.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
@@ -99,7 +105,15 @@ Das Tempo setzt sich aus zwei Basisgrößen zusammen, <InlineMath math="v=s/t" /
   }}
 />
 
-Du kannst eine Geschwindigkeit auch direkt aus ihren zwei Basisgrößen messen. Unten rollt ein Wagen durch zwei Lichtschranken im Abstand von <InlineMath math="0{,}60\text{ m}" />, und der Zähler zeigt <InlineMath math="1{,}250\text{ s}" /> zwischen den Strahlen. Also ist <InlineMath math="v=\frac{0{,}60\text{ m}}{1{,}250\text{ s}}=0{,}48\text{ m/s}" />. Schieb die Schranken auseinander: Strecke und Zeit wachsen beide, ihr Verhältnis bleibt gleich.
+Beide Steigungsdreiecke haben denselben Höhengewinn von <InlineMath math="2\text{ m}" />, doch die orange Gerade braucht dafür nur <InlineMath math="0{,}4\text{ s}" /> statt <InlineMath math="1\text{ s}" /> bei der violetten. Der Quotient aus Weg und Zeit vereint beide Grundgrößen zu einer abgeleiteten Geschwindigkeit.
+
+### Geschwindigkeit direkt mit Lichtschranken messen
+
+Du kannst eine Geschwindigkeit auch direkt aus ihren **zwei Basisgrößen** messen. Unten rollt ein Wagen durch zwei Lichtschranken im Abstand von <InlineMath math="0{,}60\text{ m}" />, und der Zähler zeigt <InlineMath math="1{,}250\text{ s}" /> zwischen den Strahlen.
+
+<BlockMath math="v = \frac{0{,}60\text{ m}}{1{,}250\text{ s}} = 0{,}48\text{ m/s}" />
+
+Schieb die Schranken auseinander: Strecke und Zeit wachsen beide, ihr Verhältnis bleibt gleich.
 
 <LightGateSpeedLab
   title={<>Geschwindigkeit aus zwei Lichtschranken</>}
@@ -108,6 +122,7 @@ Du kannst eine Geschwindigkeit auch direkt aus ihren zwei Basisgrößen messen. 
       Schieb die Schranken auseinander und achte darauf, dass Strecke und Zeit wachsen, während die Geschwindigkeit gleich bleibt.
     </>
   }
+  footer={<>Größerer Abstand steigert Weg und Zeit, sodass ihr Verhältnis gleich bleibt.</>}
   labels={{
     distance: "Abstand der Lichtschranken",
     speed: <>Geschwindigkeit</>,
@@ -116,6 +131,8 @@ Du kannst eine Geschwindigkeit auch direkt aus ihren zwei Basisgrößen messen. 
   }}
 />
 
+Verdoppelst du den Abstand zwischen den Lichtschranken, verdoppelt sich die gemessene Durchlaufzeit im selben Maß. Der feste Quotient zeigt, dass die Geschwindigkeit vom Verhältnis aus Strecke und Zeit abhängt.
+
 ## Dimensionen und Formelprüfung
 
 Eine Dimension zeigt in kompakter Form, <Highlight>aus welchen Grundgrößen eine Größe aufgebaut ist</Highlight>. Sie ersetzt keine Einheit, hilft aber dabei, Formeln auf Plausibilität zu prüfen.
@@ -123,10 +140,12 @@ Eine Dimension zeigt in kompakter Form, <Highlight>aus welchen Grundgrößen ein
 <Mermaid
   title={<>Eine physikalische Größe prüfen</>}
   description={<>Gehe von der gemessenen Größe aus und verbinde ihre Grundgrößen anschließend mit SI-Einheit und Dimension.</>}
+  footer={<>Leite Einheit und Dimension jeder abgeleiteten Größe aus Grundgrößen ab.</>}
   chart={`flowchart TD
     A["Länge × Breite"] --> B["Fläche"]
     B --> C["Einheit: m × m = m²"]
-    B --> D["Dimension: L × L = L²"]`}/>
+    B --> D["Dimension: L × L = L²"]`}
+/>
 
 Die Fläche eines Schreibtisches und die eines Papierblatts können unterschiedliche Werte besitzen und gehören dennoch zur gleichen Größenart. Beide werden in der SI-Einheit <InlineMath math="\text{m}^2" /> angegeben und haben die Dimension <InlineMath math="\mathrm{L}^2" />.
 
@@ -137,6 +156,7 @@ Eine abgeleitete Größe entsteht aus Basisgrößen. Das Volumen multipliziert d
 <MathVisual
   title={<>Ein Volumen aus drei Längen</>}
   description={<>Eine Kiste von <InlineMath math="0{,}30\text{ m}" /> mal <InlineMath math="0{,}20\text{ m}" /> mal <InlineMath math="0{,}10\text{ m}" /> (orange) und eine Reihe Würfel mit <InlineMath math="0{,}10\text{ m}" /> Kante obendrauf (türkis).</>}
+  footer={<>Das Produkt dreier Längen ergibt eine Kubikeinheit mit Dimension <InlineMath math="\mathrm{L}^3" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: 0, max: 2.5 }, z: { min: -0.5, max: 2.5 } },
@@ -162,6 +182,8 @@ Eine abgeleitete Größe entsteht aus Basisgrößen. Das Volumen multipliziert d
   }}
 />
 
+Zwei Reihen aus je drei Würfeln ergeben sechs Bausteine zu je <InlineMath math="0{,}001\text{ m}^3" />, also genau <InlineMath math="0{,}006\text{ m}^3" />. Drei aufeinander senkrechte Längen führen stets zur Volumendimension <InlineMath math="\mathrm{L}^3" />.
+
 ## Die Fläche eines Papierblatts berechnen
 
 Ein Blatt Papier ist <InlineMath math="0{,}30 \text{ m}" /> lang und <InlineMath math="0{,}20 \text{ m}" /> breit. Seine Fläche beträgt:
@@ -172,11 +194,16 @@ A &= l \times w \\
 &= 0{,}060 \text{ m}^2
 \end{aligned}" />
 
-Die Szene unten zeichnet das Blatt mit einem Gitterschritt pro <InlineMath math="0{,}10\text{ m}" />. Zähl die kleinen Quadrate: <InlineMath math="3" /> entlang der Länge und <InlineMath math="2" /> entlang der Breite ergeben <InlineMath math="6" /> Quadrate. Jedes Quadrat hat <InlineMath math="0{,}10\text{ m}\times0{,}10\text{ m}=0{,}010\text{ m}^2" />, also ergeben sechs davon <InlineMath math="0{,}060\text{ m}^2" />, genau wie die Formel. Deshalb ist die Fläche eine Größe, die aus zwei Längen entsteht.
+Die Szene unten zeichnet das Blatt mit einem Gitterschritt pro <InlineMath math="0{,}10\text{ m}" />. Zähl die kleinen Quadrate: <InlineMath math="3" /> entlang der Länge und <InlineMath math="2" /> entlang der Breite ergeben <InlineMath math="6" /> Quadrate.
+
+<BlockMath math="0{,}10\text{ m} \times 0{,}10\text{ m} = 0{,}010\text{ m}^2" />
+
+Sechs dieser Quadrate ergeben <InlineMath math="0{,}060\text{ m}^2" />, genau wie die Formel, und zeigen unmittelbar, warum die Fläche aus zwei Längen besteht.
 
 <MathVisual
   title={<>Fläche in Quadraten gezählt</>}
   description={<>Das Blatt Papier mit einem Gitterschritt pro <InlineMath math="0{,}10\text{ m}" />. Jedes kleine Quadrat hat <InlineMath math="0{,}010\text{ m}^2" /> Fläche.</>}
+  footer={<>Sechs Quadrate zu <InlineMath math="0{,}010\text{ m}^2" /> ergeben dieselbe Fläche <InlineMath math="0{,}060\text{ m}^2" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 2.8 } },

@@ -20,11 +20,14 @@ Gibt ein Gerät weniger elektrische Energie ab, als ihm zugeführt wurde, wird d
 
 Die Energieerhaltung gilt für jede Übertragung und Umwandlung innerhalb eines Systems.
 
-Sieh es dir an einem schwingenden Pendel an. Ein <InlineMath math="1\text{ kg}" /> schwerer Pendelkörper an einer <InlineMath math="2\text{ m}" /> langen Schnur startet bei <InlineMath math="40^\circ" /> mit <InlineMath math="4{,}59\text{ J}" /> potenzieller Energie. Ohne Luftwiderstand wechselt diese Energie nur zwischen potenzieller und kinetischer Energie. Mit Luftwiderstand geht ein Teil als Wärme an die Umgebung, und trotzdem ergeben die drei Bänder immer dieselben <InlineMath math="4{,}59\text{ J}" />.
+> Energie verschwindet nie, wenn ein Gerät weniger Nutzenergie liefert als aufgenommen. Jedes fehlende Joule geht als Wärme, Schall oder Vibration an die Umgebung oder bleibt im Gerät gespeichert.
+
+Sieh es dir an einem schwingenden Pendel an. Ein <InlineMath math="1\text{ kg}" /> schwerer Pendelkörper an einer <InlineMath math="2\text{ m}" /> langen Schnur startet bei <InlineMath math="40^\circ" /> mit <InlineMath math="4{,}59\text{ J}" /> potenzieller Energie. Ohne Luftwiderstand wechselt die Energie nur zwischen potenzieller und kinetischer Energie. Mit Luftwiderstand geht ein Teil als Wärme an die Umgebung, doch alle drei Bänder ergeben stets <InlineMath math="4{,}59\text{ J}" />.
 
 <PendulumEnergyLab
   title={<>Eine Schwingung mit gleicher Gesamtenergie</>}
   description={<>Ein <InlineMath math="1\text{ kg}" /> schwerer Pendelkörper an einer <InlineMath math="2\text{ m}" /> langen Schnur schwingt ab <InlineMath math="40^\circ" />. Wähle den Luftwiderstand und sieh, wie potenzielle Energie, kinetische Energie und Wärme eine konstante Summe teilen.</>}
+  footer={<>Luftwiderstand bremst die Schwingung, doch alle drei Bänder bleiben 4,59 J.</>}
   labels={{
     chooseDrag: "Luftwiderstand",
     drags: {
@@ -40,13 +43,20 @@ Sieh es dir an einem schwingenden Pendel an. Ein <InlineMath math="1\text{ kg}" 
   }}
 />
 
-## Zuerst die Systemgrenze festlegen
+Wechsle von keinem zu starkem Widerstand und achte nach zehn Sekunden auf den Wärmebalken. Das Pendel wird langsamer, nicht weil Energie verschwindet, sondern weil Reibung mechanische Energie in thermische Energie der Luft verschiebt.
+
+## Systemgrenze und mechanische Energie
+
+Jede Energiebilanz beginnt mit einer **klaren Systemgrenze**, bevor man Reibung im Rechenmodell vernachlässigt. Diese Grenze legt fest, welche Anteile im System bleiben und welche an die Umgebung abfließen.
+
+### Zuerst die Systemgrenze festlegen
 
 Ein **System** ist der Teil, den wir analysieren möchten. Alles außerhalb des Systems wird **Umgebung** genannt. Lege die Systemgrenze vor der Energiebilanz fest, denn sie bestimmt, welche Energieübertragungen in die Rechnung hineinführen oder sie verlassen.
 
 <Mermaid
   title={<>Die Systemgrenze bestimmt die Energiebilanz</>}
   description={<>Eine klare Systemgrenze trennt zugeführte, abgegebene und gespeicherte Energie.</>}
+  footer={<>Jede Eingangsenergie teilt sich in Nutzenergie und Abgabe an die Umgebung.</>}
   chart={`flowchart TD
     A["Zugeführte Energie"] --> B["System"]
     B --> C["Nutzenergie"]
@@ -63,7 +73,7 @@ Das Diagramm zeigt jeden Ausgang. Ein System kann Nutzenergie abgeben und zuglei
 
 In der ersten Zeile gehört die Erde zum System, denn die potenzielle Gravitationsenergie hängt mit der Wechselwirkung zwischen Wasser und Erde zusammen. Eine Energieumwandlung innerhalb des Systems ist etwas anderes als eine Übertragung über die Systemgrenze.
 
-## Wenn Reibung ignoriert wird
+### Wenn Reibung ignoriert wird
 
 Viele Einführungsaufgaben **vernachlässigen Reibung und Luftwiderstand**, sodass im Modell nur kinetische Energie und potenzielle Gravitationsenergie verbleiben. Die mechanische Energie lautet dann:
 
@@ -88,26 +98,27 @@ E_p &= mgh \\
 
 Wenn keine Energie an die Umgebung gelangt, werden die <InlineMath math="120 \text{ J}" /> vollständig in kinetische Energie des Wassers umgewandelt. In einer realen Anlage gelangt dagegen ein Teil als Wärme, Schall oder Vibration an die Umgebung.
 
-Verfolge das fallende Wasser im Diagramm unten, von <InlineMath math="h=12\text{ m}" /> rechts bis zum Boden links. Die orange potenzielle Energie nimmt genau so stark ab, wie die türkise kinetische Energie zunimmt, deshalb bleibt die violette Linie ihrer Summe immer bei <InlineMath math="120\text{ J}" />. Auf halber Höhe, bei <InlineMath math="6\text{ m}" />, teilen sich beide Formen die Energie gleich auf.
+Verfolge das fallende Wasser im Diagramm unten, von <InlineMath math="h=12\text{ m}" /> rechts bis zum Boden links. Die orange potenzielle Energie sinkt genau so stark, wie die türkise kinetische Energie wächst, sodass ihre violette Summe flach bei <InlineMath math="120\text{ J}" /> bleibt.
 
 <MathVisual
   title={<>Potenzielle Energie wird zu kinetischer Energie</>}
-  description={<>Wasser mit <InlineMath math="1\text{ kg}" /> fällt aus <InlineMath math="12\text{ m}" /> mit <InlineMath math="g=10\text{ m/s}^2" /> ohne Verluste. Waagrecht: Höhe in Einheiten von <InlineMath math="2\text{ m}" />. Senkrecht: Energie in Einheiten von <InlineMath math="20\text{ J}" />.</>}
+  description={<>Wasser mit <InlineMath math="1\text{ kg}" /> fällt aus <InlineMath math="12\text{ m}" /> mit <InlineMath math="g=10\text{ m/s}^2" /> ohne Verluste. Waagrecht: Höhe in m. Senkrecht: Energie in J.</>}
+  footer={<>Potenzielle und kinetische Energie tauschen direkt und kreuzen bei 60 J.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.8, max: 7 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 14 }, y: { min: -12, max: 140 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
-      { id: "kinetic", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 6, y: 0 } },
-      { id: "mechanical", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 6, y: 6 } },
-      { id: "half", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 12, y: 120 } },
+      { id: "kinetic", kind: "segment", appearance: "construction", from: { x: 0, y: 120 }, to: { x: 12, y: 0 } },
+      { id: "mechanical", kind: "segment", appearance: "secondary", from: { x: 0, y: 120 }, to: { x: 12, y: 120 } },
+      { id: "half", kind: "point", appearance: "answer", at: { x: 6, y: 60 } },
     ],
     labels: [
-      { key: "ep", objectId: "potential", at: { x: 5, y: 5 }, placement: "below-right" },
-      { key: "ek", objectId: "kinetic", at: { x: 1, y: 5 }, placement: "above-right" },
-      { key: "em", objectId: "mechanical", at: { x: 3, y: 6 }, placement: "above" },
-      { key: "half", objectId: "half", at: { x: 3, y: 3 }, placement: "below" },
+      { key: "ep", objectId: "potential", at: { x: 10, y: 100 }, placement: "below-right" },
+      { key: "ek", objectId: "kinetic", at: { x: 2, y: 100 }, placement: "above-right" },
+      { key: "em", objectId: "mechanical", at: { x: 6, y: 120 }, placement: "above" },
+      { key: "half", objectId: "half", at: { x: 6, y: 60 }, placement: "below" },
     ],
   }}
   labels={{
@@ -118,23 +129,33 @@ Verfolge das fallende Wasser im Diagramm unten, von <InlineMath math="h=12\text{
   }}
 />
 
-Ohne Reibung wird jedes Joule Lageenergie zu Bewegungsenergie: <InlineMath math="mgh=\tfrac12mv^2" />, also <InlineMath math="v=\sqrt{2gh}" />, und die Masse kürzt sich weg. Die vierfache Höhe ergibt nur das doppelte Tempo. Folge der Kurve von <InlineMath math="5\text{ m}" /> bis <InlineMath math="20\text{ m}" />.
+Auf halber Höhe bei <InlineMath math="6\text{ m}" /> kreuzen sich beide Geraden genau bei <InlineMath math="60\text{ J}" />. Weil die obere Linie waagrecht bleibt, siehst du für jede Höhe sofort die Aufteilung der festen <InlineMath math="120\text{ J}" />.
+
+Ohne Reibung wird jedes Joule Lageenergie zu Bewegungsenergie, wobei sich die Masse <InlineMath math="m" /> herauskürzt:
+
+<BlockMath math="\begin{aligned}
+mgh &= \frac{1}{2}mv^2 \\
+v &= \sqrt{2gh}
+\end{aligned}" />
+
+Da das Tempo mit der Quadratwurzel der Höhe wächst, ergibt die vierfache Fallhöhe nur das doppelte Tempo. Folge der Kurve von <InlineMath math="5\text{ m}" /> bis <InlineMath math="20\text{ m}" />.
 
 <MathVisual
   title={<>Höhe wird zu Tempo</>}
-  description={<>Tempo unten über der Fallhöhe mit <InlineMath math="g=10\text{ m/s}^2" />. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="2\text{ m}" />. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="4\text{ m/s}" />.</>}
+  description={<>Tempo unten über der Fallhöhe mit <InlineMath math="g=10\text{ m/s}^2" />. Waagrecht: Fallhöhe in m. Senkrecht: Tempo in m/s.</>}
+  footer={<>Vierfache Fallhöhe von 5 m auf 20 m verdoppelt das Tempo nur.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -0.5, max: 6 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 22 }, y: { min: -2, max: 24 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "speed", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: Math.sqrt(2 * 10 * 1) / 4 }, { x: 1, y: Math.sqrt(2 * 10 * 2) / 4 }, { x: 1.5, y: Math.sqrt(2 * 10 * 3) / 4 }, { x: 2, y: Math.sqrt(2 * 10 * 4) / 4 }, { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, { x: 3, y: Math.sqrt(2 * 10 * 6) / 4 }, { x: 3.5, y: Math.sqrt(2 * 10 * 7) / 4 }, { x: 4, y: Math.sqrt(2 * 10 * 8) / 4 }, { x: 4.5, y: Math.sqrt(2 * 10 * 9) / 4 }, { x: 5, y: Math.sqrt(2 * 10 * 10) / 4 }, { x: 5.5, y: Math.sqrt(2 * 10 * 11) / 4 }, { x: 6, y: Math.sqrt(2 * 10 * 12) / 4 }, { x: 6.5, y: Math.sqrt(2 * 10 * 13) / 4 }, { x: 7, y: Math.sqrt(2 * 10 * 14) / 4 }, { x: 7.5, y: Math.sqrt(2 * 10 * 15) / 4 }, { x: 8, y: Math.sqrt(2 * 10 * 16) / 4 }, { x: 8.5, y: Math.sqrt(2 * 10 * 17) / 4 }, { x: 9, y: Math.sqrt(2 * 10 * 18) / 4 }, { x: 9.5, y: Math.sqrt(2 * 10 * 19) / 4 }, { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }] },
-      { id: "five", kind: "point", appearance: "secondary", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 } },
-      { id: "twenty", kind: "point", appearance: "answer", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 } },
+      { id: "speed", kind: "function", appearance: "primary", formula: "sqrt(20 * x)", domain: { min: 0, max: 20 } },
+      { id: "five", kind: "point", appearance: "secondary", at: { x: 5, y: 10 } },
+      { id: "twenty", kind: "point", appearance: "answer", at: { x: 20, y: 20 } },
     ],
     labels: [
-      { key: "five", objectId: "five", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, placement: "below-right" },
-      { key: "twenty", objectId: "twenty", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }, placement: "above-left" },
+      { key: "five", objectId: "five", at: { x: 5, y: 10 }, placement: "below-right" },
+      { key: "twenty", objectId: "twenty", at: { x: 20, y: 20 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -143,7 +164,13 @@ Ohne Reibung wird jedes Joule Lageenergie zu Bewegungsenergie: <InlineMath math=
   }}
 />
 
-## Nutzenergie hängt vom Zweck des Geräts ab
+Die immer flachere Kurve zeigt, warum ein höherer Staudamm das Wassertempo im Verhältnis zum Höhenzuwachs immer schwächer steigert.
+
+## Nutzenergie und Prüfung von Aussagen
+
+Reale Wandler teilen ihre Eingangsenergie immer in **Nutzenergie** und **Umgebungsabgabe**, sodass nie mehr Energie austritt als eintritt. Dieser Abgleich dient als direkter Prüfstein für jede Leistungsbehauptung.
+
+### Nutzenergie hängt vom Zweck des Geräts ab
 
 In einer Anlage für erneuerbare Energien ist die gewünschte Ausgabe meist **Nutzenergie**, etwa elektrische Energie. Die Energieerhaltung gilt weiterhin, doch die zugeführte Energie wird nicht vollständig in Strom umgewandelt.
 
@@ -166,7 +193,8 @@ Dreh die Säulen: Die Energie, die in die Turbine geht, kommt vollständig wiede
 
 <MathVisual
   title={<>Die Energiebilanz der Turbine</>}
-  description={<>Energie in Turbine und Generator (grau) und heraus als Strom (türkis) und an die Umgebung (rosa). Ein Gitterschritt nach oben entspricht <InlineMath math="20\text{ J}" />.</>}
+  description={<>Energie in Turbine und Generator (grau) im Vergleich zu Strom (türkis) und Abgabe an die Umgebung (rosa).</>}
+  footer={<>Strom- und Verlustsäule erreichen gestapelt genau die 120 J Eingangshöhe.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
@@ -189,7 +217,9 @@ Dreh die Säulen: Die Energie, die in die Turbine geht, kommt vollständig wiede
   }}
 />
 
-## Energieaussagen mit dem Erhaltungsgesetz prüfen
+Achte auf die Oberkanten beider Stapel: Sie liegen auf derselben Höhe. Höherer Wirkungsgrad verkleinert den rosa Aufsatz und vergrößert die türkise Säule bei gleicher Gesamthöhe.
+
+### Energieaussagen mit dem Erhaltungsgesetz prüfen
 
 Das Energieerhaltungsgesetz dient auch als Prüfwerkzeug. Bei einer Energieangabe müssen alle Umwandlungs- und Übertragungswege berücksichtigt werden.
 
@@ -219,11 +249,12 @@ Um die Energieerhaltung bei einer Technik für erneuerbare Energie zu prüfen, b
 
 Die Antworten zeigen die Energiequelle, alle Energieübertragungen aus dem System und den nutzbaren Anteil der Ausgabe.
 
-Probier die drei Fragen an einem Solarmodul aus. Bei voller Sonne fallen <InlineMath math="1\,000\text{ W/m}^2" /> auf ein Modul mit <InlineMath math="1{,}6\text{ m}^2" />, es kommen also <InlineMath math="1\,600\text{ W}" /> an. Etwa <InlineMath math="64\text{ W}" /> werden am Glas reflektiert, <InlineMath math="274\text{ W}" /> gehen als Strom hinaus, und die übrigen <InlineMath math="1\,262\text{ W}" /> erwärmen das Modul auf etwa <InlineMath math="61^\circ\text{C}" />. Schwäche das Sonnenlicht ab und prüfe, dass die drei Ausgänge zusammen immer noch den Eingang ergeben.
+Probier die drei Fragen an einem Solarmodul aus. Bei voller Sonne fallen <InlineMath math="1\,000\text{ W/m}^2" /> auf ein <InlineMath math="1{,}6\text{ m}^2" /> großes Modul, also kommen <InlineMath math="1\,600\text{ W}" /> an. Etwa <InlineMath math="64\text{ W}" /> werden reflektiert, <InlineMath math="274\text{ W}" /> verlassen das Modul als Strom, und <InlineMath math="1\,262\text{ W}" /> erwärmen es auf <InlineMath math="61^\circ\text{C}" />.
 
 <SolarPanelHeatLab
   title={<>Wohin das Sonnenlicht auf einem Modul geht</>}
   description={<>Ein Modul mit <InlineMath math="1{,}6\text{ m}^2" /> an einem <InlineMath math="30^\circ\text{C}" /> warmen Tag. Ändere das Sonnenlicht, verfolge die Aufteilung in Strom, Reflexion und Wärme und sieh, dass eine heißere Zelle einen kleineren Anteil umwandelt.</>}
+  footer={<>Strom, Reflexion und Wärme ergeben stets die einfallende Sonnenleistung.</>}
   labels={{
     efficiency: <>Wirkungsgrad</>,
     electric: <>Strom</>,
@@ -235,3 +266,5 @@ Probier die drei Fragen an einem Solarmodul aus. Bei voller Sonne fallen <Inline
     viewLabel: "Solarmodul auf einem Dach mit seinen Licht-, Wärme- und Stromflüssen",
   }}
 />
+
+Senke die Sonneneinstrahlung und addiere alle drei Ausgangswerte. Selbst wenn die Zelltemperatur fällt und der Wirkungsgrad leicht steigt, entspricht die abgegebene Gesamtleistung immer der einfallenden Sonnenleistung.

@@ -8,35 +8,38 @@ export const metadata = {
   subject: "Energi Terbarukan",
 };
 
-## Dampak Gangguan Pasokan Energi
+## Keandalan dan Permintaan pada Jaringan Listrik
 
-Pasokan energi harus tersedia saat dibutuhkan dan sampai ke tempat pemakaian. Kita juga perlu memperhitungkan biaya serta dampak penyediaan energi terhadap lingkungan. Jika pasokan gagal, lampu untuk belajar, pompa air, alat kesehatan, pendingin makanan, dan jaringan komunikasi dapat berhenti bekerja.
+**Jaringan listrik yang andal** harus memasok energi sepanjang hari sekaligus memenuhi daya puncak saat banyak alat menyala bersamaan.
+
+> Jaringan listrik gagal saat tidak sanggup memenuhi daya pada satu waktu, walaupun jumlah energi hariannya terlihat besar.
+
+### Dampak Gangguan Pasokan Energi
+
+Pasokan energi harus <Highlight>tersedia saat dibutuhkan</Highlight> dan <Highlight>sampai ke tempat pemakaian</Highlight>. Kita juga perlu memperhitungkan biaya serta dampak penyediaan energi terhadap lingkungan. Jika pasokan gagal, lampu untuk belajar, pompa air, alat kesehatan, pendingin makanan, dan jaringan komunikasi dapat berhenti bekerja.
 
 Listrik menyalakan banyak alat yang kita pakai setiap hari. Listrik termasuk [**sumber energi sekunder**](https://www.eia.gov/energyexplained/electricity/) karena dihasilkan dari sumber lain, seperti bahan bakar, air, angin, cahaya Matahari, atau panas bumi.
 
-Listrik sampai ke pemakai melalui beberapa tahap yang saling terhubung.
-
-Energi berasal dari sumbernya dan dikonversi menjadi listrik. Jaringan kemudian menyalurkannya kepada pemakai.
-
-Pembangkit harus mampu menghasilkan daya yang cukup, dan jaringan listrik harus mampu menyalurkannya ketika permintaan meningkat.
+Energi berasal dari sumbernya, dikonversi menjadi listrik, lalu disalurkan jaringan kepada pemakai. Pembangkit harus menghasilkan daya yang cukup dan jaringan harus menyalurkannya saat permintaan meningkat.
 
 Jaringan menyalurkan daya pada tegangan tinggi karena rugi di kabel sebesar <InlineMath math="I^2R" /> dan <InlineMath math="I=P/V" />. Mengirim <InlineMath math="100\text{ kW}" /> lewat <InlineMath math="1\ \Omega" /> kehilangan <InlineMath math="10\%" /> pada <InlineMath math="1\text{ kV}" />, tetapi hanya <InlineMath math="0{,}1\%" /> pada <InlineMath math="10\text{ kV}" />. Perbesar seberapa cepat kurvanya turun.
 
 <MathVisual
   title={<>Tegangan Makin Tinggi, Rugi Makin Kecil</>}
-  description={<>Bagian dari <InlineMath math="100\text{ kW}" /> yang hilang pada saluran <InlineMath math="1" /> ohm terhadap tegangan saluran. Mendatar: kV. Tegak: satu kotak grid berarti <InlineMath math="2" /> persen.</>}
+  description={<>Bagian dari <InlineMath math="100\text{ kW}" /> yang hilang pada saluran <InlineMath math="1" /> ohm terhadap tegangan saluran. Mendatar: tegangan dalam kV. Tegak: rugi saluran dalam persen.</>}
+  footer={<>Tegangan sepuluh kali lipat memangkas arus sepersepuluh dan rugi seperseratus.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0.5, max: 10.5 }, y: { min: -0.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: 0.5, max: 10.5 }, y: { min: -1, max: 11.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "loss", kind: "polyline", appearance: "warning", vertices: [{ x: 1, y: 5 }, { x: 1.25, y: 10 / (5 / 4) ** 2 / 2 }, { x: 1.5, y: 10 / (6 / 4) ** 2 / 2 }, { x: 1.75, y: 10 / (7 / 4) ** 2 / 2 }, { x: 2, y: 10 / (8 / 4) ** 2 / 2 }, { x: 2.25, y: 10 / (9 / 4) ** 2 / 2 }, { x: 2.5, y: 10 / (10 / 4) ** 2 / 2 }, { x: 2.75, y: 10 / (11 / 4) ** 2 / 2 }, { x: 3, y: 10 / (12 / 4) ** 2 / 2 }, { x: 3.25, y: 10 / (13 / 4) ** 2 / 2 }, { x: 3.5, y: 10 / (14 / 4) ** 2 / 2 }, { x: 3.75, y: 10 / (15 / 4) ** 2 / 2 }, { x: 4, y: 10 / (16 / 4) ** 2 / 2 }, { x: 4.25, y: 10 / (17 / 4) ** 2 / 2 }, { x: 4.5, y: 10 / (18 / 4) ** 2 / 2 }, { x: 4.75, y: 10 / (19 / 4) ** 2 / 2 }, { x: 5, y: 10 / (20 / 4) ** 2 / 2 }, { x: 5.25, y: 10 / (21 / 4) ** 2 / 2 }, { x: 5.5, y: 10 / (22 / 4) ** 2 / 2 }, { x: 5.75, y: 10 / (23 / 4) ** 2 / 2 }, { x: 6, y: 10 / (24 / 4) ** 2 / 2 }, { x: 6.25, y: 10 / (25 / 4) ** 2 / 2 }, { x: 6.5, y: 10 / (26 / 4) ** 2 / 2 }, { x: 6.75, y: 10 / (27 / 4) ** 2 / 2 }, { x: 7, y: 10 / (28 / 4) ** 2 / 2 }, { x: 7.25, y: 10 / (29 / 4) ** 2 / 2 }, { x: 7.5, y: 10 / (30 / 4) ** 2 / 2 }, { x: 7.75, y: 10 / (31 / 4) ** 2 / 2 }, { x: 8, y: 10 / (32 / 4) ** 2 / 2 }, { x: 8.25, y: 10 / (33 / 4) ** 2 / 2 }, { x: 8.5, y: 10 / (34 / 4) ** 2 / 2 }, { x: 8.75, y: 10 / (35 / 4) ** 2 / 2 }, { x: 9, y: 10 / (36 / 4) ** 2 / 2 }, { x: 9.25, y: 10 / (37 / 4) ** 2 / 2 }, { x: 9.5, y: 10 / (38 / 4) ** 2 / 2 }, { x: 9.75, y: 10 / (39 / 4) ** 2 / 2 }, { x: 10, y: 10 / (40 / 4) ** 2 / 2 }] },
-      { id: "low", kind: "point", appearance: "warning", at: { x: 1, y: 5 } },
-      { id: "high", kind: "point", appearance: "construction", at: { x: 10, y: 10 / 10 ** 2 / 2 } },
+      { id: "loss", kind: "function", appearance: "warning", formula: "10 / (x^2)", domain: { min: 1, max: 10 } },
+      { id: "low", kind: "point", appearance: "warning", at: { x: 1, y: 10 } },
+      { id: "high", kind: "point", appearance: "construction", at: { x: 10, y: 0.1 } },
     ],
     labels: [
-      { key: "low", objectId: "low", at: { x: 1, y: 5 }, placement: "right" },
-      { key: "high", objectId: "high", at: { x: 10, y: 10 / 10 ** 2 / 2 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: 1, y: 10 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: 10, y: 0.1 }, placement: "above" },
     ],
   }}
   labels={{
@@ -45,7 +48,9 @@ Jaringan menyalurkan daya pada tegangan tinggi karena rugi di kabel sebesar <Inl
   }}
 />
 
-## Kebutuhan Bertambah dari Banyak Alat
+Karena rugi kabel sebanding dengan kuadrat arus, menaikkan tegangan sebelum transmisi jarak jauh membuat jauh lebih banyak daya sampai ke rumah daripada terbuang sebagai kalor di kabel.
+
+### Kebutuhan Bertambah dari Banyak Alat
 
 Satu lampu memakai sedikit energi, tetapi kebutuhan total menjadi besar ketika banyak alat dipakai bersamaan.
 
@@ -72,7 +77,7 @@ E
 
 Angka <InlineMath math="0{,}2 \text{ kWh}" /> hanya mencakup lima lampu. Pola pemakaian yang sama di banyak rumah, sekolah, klinik, dan tempat usaha menghasilkan kebutuhan total yang jauh lebih besar.
 
-**Beban puncak** terjadi saat banyak alat memakai listrik secara bersamaan, sehingga jaringan harus menyediakan daya lebih besar pada waktu tersebut.
+**Beban puncak** terjadi saat banyak alat memakai listrik secara bersamaan, sehingga jaringan harus menyediakan daya lebih besar pada waktu itu.
 
 Bandingkan dua alat, masing-masing berdaya tetap <InlineMath math="1 \text{ kW}" />, yang masing-masing menyala selama satu jam.
 
@@ -81,11 +86,14 @@ Bandingkan dua alat, masing-masing berdaya tetap <InlineMath math="1 \text{ kW}"
 | Keduanya menyala pukul 18.00 sampai 19.00 | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWh}" /> |
 | Alat pertama pukul 18.00 sampai 19.00, alat kedua pukul 19.00 sampai 20.00 | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWh}" /> |
 
-Inilah kedua jadwal sebagai daya sepanjang malam. Jadwal oranye menyalakan kedua alat bersamaan, jadi dayanya melompat ke puncak <InlineMath math="2\text{ kW}" />. Jadwal ungu menyebar pekerjaan yang sama ke dua jam dan tidak pernah lebih dari <InlineMath math="1\text{ kW}" />. Coba hitung luas di bawah setiap garis, yaitu daya kali waktu: keduanya sama-sama <InlineMath math="2\text{ kWh}" />. Energinya sama, yang berubah hanya puncak daya yang harus disediakan jaringan.
+Inilah kedua jadwal sebagai daya sepanjang malam. Jadwal oranye menyalakan kedua alat bersamaan sehingga dayanya melompat ke puncak <InlineMath math="2\text{ kW}" />, sedangkan jadwal ungu menyebar kerja yang sama ke dua jam dan bertahan di <InlineMath math="1\text{ kW}" />.
+
+Hitung luas di bawah setiap garis, yaitu daya kali waktu. Kedua jadwal sama-sama mencakup <InlineMath math="2\text{ kWh}" />, jadi energinya identik dan hanya puncaknya yang berubah.
 
 <MathVisual
   title={<>Energi Sama, Puncak Berbeda</>}
-  description={<>Daya yang dipakai dua alat <InlineMath math="1\text{ kW}" /> dari pukul 17.00 sampai 21.00. Mendatar: jam dalam satuan jam. Tegak: daya dalam kW.</>}
+  description={<>Daya yang dipakai dua alat <InlineMath math="1\text{ kW}" /> dari pukul 17.00 sampai 21.00. Mendatar: waktu setelah pukul 17.00 dalam jam. Tegak: daya dalam kW.</>}
+  footer={<>Kedua luas sama-sama 2 kWh, tetapi jadwal bergiliran memangkas puncak separuh.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.3 }, y: { min: -0.6, max: 2.6 } },
@@ -111,6 +119,8 @@ Inilah kedua jadwal sebagai daya sepanjang malam. Jadwal oranye menyalakan kedua
   }}
 />
 
+Itu sebabnya perencana listrik memperhatikan jam pemakaian sama seriusnya dengan jumlah energi harian. Mengatur giliran alat memungkinkan pembangkit lebih kecil melayani kerja harian yang persis sama.
+
 ## Rasio Nasional dan Kesenjangan Akses Lokal
 
 **Rasio Elektrifikasi** adalah persentase rumah tangga yang memiliki akses listrik. **Rasio Desa Berlistrik** adalah persentase desa atau kelurahan yang sudah memiliki listrik.
@@ -128,29 +138,34 @@ Rasio nasional perlu dilengkapi dengan kondisi setempat. Wilayah yang belum terl
 | Konsumsi listrik meningkat | Apakah kapasitas pembangkit, jaringan, dan penyimpanan mampu memenuhi kebutuhan? |
 | Rasio elektrifikasi nasional mendekati <InlineMath math="100\%" /> | Apakah daerah terpencil punya solusi yang sesuai lokasi? |
 
-## Permintaan yang Naik Memerlukan Kapasitas Lebih Besar
+## Permintaan yang Naik dan Kapasitas Puncak
+
+Saat konsumsi listrik terus tumbuh setiap tahun, perencana perlu menyiapkan **kapasitas sistem** sekaligus mengatur jam beban puncak. Pembangunan pembangkit tambahan hanya bekerja baik bila jaringan juga sanggup menopang lonjakan malam hari.
+
+### Permintaan yang Naik Memerlukan Kapasitas Lebih Besar
 
 [Permintaan listrik global](https://www.iea.org/reports/electricity-2026/executive-summary) diperkirakan tumbuh rata-rata <InlineMath math="3{,}6\%" /> per tahun dari <InlineMath math="2026" /> sampai <InlineMath math="2030" />. Pendorong utamanya adalah industri, kendaraan listrik, pendingin ruangan, dan pusat data.
 
-Permintaan listrik dapat naik ketika lebih banyak orang memakai listrik untuk belajar, layanan kesehatan, produksi makanan, transportasi, atau usaha kecil. Jika pembangkit dan jaringan tidak mampu memenuhi kenaikan tersebut, listrik dapat padam, biaya dapat naik, atau sumber energi yang lebih mencemari dapat dipakai.
+Permintaan listrik dapat naik ketika lebih banyak orang memakai listrik untuk belajar, layanan kesehatan, produksi makanan, transportasi, atau usaha kecil. Jika pembangkit dan jaringan tidak mampu memenuhi kenaikan ini, listrik dapat padam, biaya dapat naik, atau sumber energi yang lebih mencemari dapat dipakai.
 
-Jumlah energi harian dan kapasitas daya menjawab dua kebutuhan yang berbeda. Sistem dapat memiliki energi yang cukup sepanjang hari tetapi tetap gagal memasok semua alat yang menyala bersamaan. Karena itu, energi total harus cukup dan daya juga harus <Highlight>mampu memenuhi beban puncak</Highlight>. Batas kapasitas dapat berasal dari sumber energi, pembangkit, jaringan, atau penyimpanan.
+Jumlah energi harian dan kapasitas daya menjawab dua kebutuhan yang berbeda. Sistem dapat memiliki energi yang cukup sepanjang hari tetapi tetap gagal memasok semua alat yang menyala bersamaan. Karena itu, energi total harus cukup dan daya juga harus <Highlight>mampu memenuhi beban puncak</Highlight>.
 
 Pertumbuhan <InlineMath math="3{,}6\%" /> per tahun itu berlipat. Kurva di bawah mengalikan dengan <InlineMath math="1{,}036" /> setiap tahun sejak 2026, jadi pada 2030 permintaan sekitar <InlineMath math="15{,}2\%" /> lebih tinggi, sedikit lebih dari empat kali <InlineMath math="3{,}6\%" />.
 
 <MathVisual
   title={<>Pertumbuhan Permintaan Berlipat</>}
-  description={<>Pertumbuhan permintaan listrik <InlineMath math="3{,}6\%" /> per tahun dari 2026 sampai 2030. Mendatar: tahun sesudah 2026. Tegak: pertumbuhan dalam satuan <InlineMath math="4\%" />.</>}
+  description={<>Pertumbuhan permintaan listrik <InlineMath math="3{,}6\%" /> per tahun dari 2026 sampai 2030. Mendatar: tahun sesudah 2026. Tegak: pertumbuhan kumulatif dalam persen.</>}
+  footer={<>Pertumbuhan berlipat naik di atas dasar makin besar hingga 15,2% pada 2030.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -0.3, max: 4.6 } },
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -1, max: 18 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "growth", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: ((1.036 ** (0 / 5) - 1) * 100) / 4 }, { x: 1 / 5, y: ((1.036 ** (1 / 5) - 1) * 100) / 4 }, { x: 2 / 5, y: ((1.036 ** (2 / 5) - 1) * 100) / 4 }, { x: 3 / 5, y: ((1.036 ** (3 / 5) - 1) * 100) / 4 }, { x: 4 / 5, y: ((1.036 ** (4 / 5) - 1) * 100) / 4 }, { x: 1, y: ((1.036 ** (5 / 5) - 1) * 100) / 4 }, { x: 6 / 5, y: ((1.036 ** (6 / 5) - 1) * 100) / 4 }, { x: 7 / 5, y: ((1.036 ** (7 / 5) - 1) * 100) / 4 }, { x: 8 / 5, y: ((1.036 ** (8 / 5) - 1) * 100) / 4 }, { x: 9 / 5, y: ((1.036 ** (9 / 5) - 1) * 100) / 4 }, { x: 2, y: ((1.036 ** (10 / 5) - 1) * 100) / 4 }, { x: 11 / 5, y: ((1.036 ** (11 / 5) - 1) * 100) / 4 }, { x: 12 / 5, y: ((1.036 ** (12 / 5) - 1) * 100) / 4 }, { x: 13 / 5, y: ((1.036 ** (13 / 5) - 1) * 100) / 4 }, { x: 14 / 5, y: ((1.036 ** (14 / 5) - 1) * 100) / 4 }, { x: 3, y: ((1.036 ** (15 / 5) - 1) * 100) / 4 }, { x: 16 / 5, y: ((1.036 ** (16 / 5) - 1) * 100) / 4 }, { x: 17 / 5, y: ((1.036 ** (17 / 5) - 1) * 100) / 4 }, { x: 18 / 5, y: ((1.036 ** (18 / 5) - 1) * 100) / 4 }, { x: 19 / 5, y: ((1.036 ** (19 / 5) - 1) * 100) / 4 }, { x: 4, y: ((1.036 ** (20 / 5) - 1) * 100) / 4 }] },
-      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: ((1.036 ** 4 - 1) * 100) / 4 } },
+      { id: "growth", kind: "function", appearance: "primary", formula: "(1.036^x - 1) * 100", domain: { min: 0, max: 4 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: (1.036 ** 4 - 1) * 100 } },
     ],
     labels: [
-      { key: "end", objectId: "end", at: { x: 4, y: ((1.036 ** 4 - 1) * 100) / 4 }, placement: "above-left" },
+      { key: "end", objectId: "end", at: { x: 4, y: (1.036 ** 4 - 1) * 100 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -158,7 +173,9 @@ Pertumbuhan <InlineMath math="3{,}6\%" /> per tahun itu berlipat. Kurva di bawah
   }}
 />
 
-## Enam Pertanyaan untuk Menilai Kebutuhan Energi
+Perhatikan lengkungan halus ke atas pada grafik. Karena persentase tiap tahun bekerja pada dasar permintaan yang sudah lebih besar, kapasitas pembangkit dan jaringan perlu dibangun lebih awal sebelum batas tercapai.
+
+### Enam Pertanyaan untuk Menilai Kebutuhan Energi
 
 Jangan melihat angka kebutuhan energi sendirian. Periksa juga siapa yang membutuhkan energi, kapan energi dibutuhkan, **berapa energi dan daya yang diperlukan**, sumber yang dipakai, kesiapan jaringan, serta dampak jika pasokan gagal.
 
@@ -173,11 +190,14 @@ Jangan melihat angka kebutuhan energi sendirian. Periksa juga siapa yang membutu
 
 Jika pasokan harian terlalu sedikit, kendalanya ada pada jumlah energi. Jika banyak alat menyala bersamaan, kendalanya mungkin ada pada daya puncak. Empat pertanyaan lain memeriksa apakah sumber, jaringan, atau penyimpanan membatasi pasokan serta apa yang terjadi jika pasokan gagal.
 
-Begini pertanyaan daya puncak pada desa sungguhan. Seratus rumah pada jaringan mini <InlineMath math="50\text{ kW}" /> memakai <InlineMath math="330\text{ kWh}" /> sehari, dan setiap rumah menyalakan penanak nasi <InlineMath math="0{,}4\text{ kW}" /> selama satu jam. Kalau semua memasak pukul 18.00, permintaan melonjak ke <InlineMath math="65\text{ kW}" /> dan lampu padam selama jam itu. Sebar waktu memasak dari pukul 16.00 sampai 20.00, dan puncaknya turun ke <InlineMath math="35\text{ kW}" /> dengan energi harian yang persis sama.
+Begini pertanyaan daya puncak pada desa sungguhan. Seratus rumah pada jaringan mini <InlineMath math="50\text{ kW}" /> memakai <InlineMath math="330\text{ kWh}" /> sehari, dan setiap rumah menyalakan penanak nasi <InlineMath math="0{,}4\text{ kW}" /> selama satu jam.
+
+Kalau semua memasak pukul 18.00, permintaan melonjak ke <InlineMath math="65\text{ kW}" /> dan lampu padam selama jam itu. Sebar waktu memasak dari pukul 16.00 sampai 20.00, dan puncaknya turun ke <InlineMath math="35\text{ kW}" /> dengan energi harian yang persis sama.
 
 <GridLoadCurveLab
   title={<>Beban Puncak Desa di Sore Hari</>}
   description={<>Seratus rumah pada jaringan mini <InlineMath math="50\text{ kW}" /> selama satu hari. Pilih waktu desa memasak, lalu bandingkan permintaan puncak dengan daya yang sanggup dipasok jaringan.</>}
+  footer={<>Menyebar jam memasak menjaga energi harian sama tanpa memicu pemadaman.</>}
   labels={{
     capacity: <>Kapasitas jaringan</>,
     chooseSchedule: "Waktu desa memasak",
@@ -191,6 +211,8 @@ Begini pertanyaan daya puncak pada desa sungguhan. Seratus rumah pada jaringan m
     viewLabel: "Desa selama satu hari di atas grafik permintaan per jam",
   }}
 />
+
+Bandingkan kedua jadwal pada angka pembacaan. Keduanya menyalurkan <InlineMath math="330\text{ kWh}" /> dalam sehari, tetapi mengatur giliran alat berdaya besar mengubah jaringan mini yang kelebihan beban menjadi pasokan yang stabil tanpa menambah pembangkit baru.
 
 ## Sesuaikan Sumber Terbarukan dengan Kondisi Lokasi
 
@@ -206,11 +228,14 @@ Sumber energi terbarukan cocok untuk suatu lokasi jika potensi sumber, teknologi
 
 Karena itu, sumber energi perlu disesuaikan dengan kebutuhan energi, kondisi lingkungan, dan kebutuhan masyarakat setempat.
 
-Angin memperlihatkan betapa pentingnya lokasi. Daya angin yang melewati rotor adalah <InlineMath math="P=\tfrac12\rho Av^3" />, jadi turbin yang sama dengan jari-jari rotor <InlineMath math="40\text{ m}" /> menghasilkan sekitar <InlineMath math="79\text{ kW}" /> pada angin lembah <InlineMath math="4\text{ m/s}" />, tetapi sekitar <InlineMath math="631\text{ kW}" /> pada angin pantai <InlineMath math="8\text{ m/s}" />: delapan kali lipat untuk kelajuan dua kali lipat. Kelajuan angin di sini adalah rata-rata tetap sebagai contoh. Lokasi nyata butuh pengukuran angin selama setahun.
+Angin memperlihatkan betapa pentingnya lokasi karena daya angin sebanding dengan pangkat tiga kelajuannya, <InlineMath math="P=\tfrac12\rho Av^3" />. Dengan jari-jari rotor <InlineMath math="40\text{ m}" />, turbin yang sama menghasilkan sekitar <InlineMath math="79\text{ kW}" /> pada angin lembah <InlineMath math="4\text{ m/s}" />, tetapi sekitar <InlineMath math="631\text{ kW}" /> pada angin pantai <InlineMath math="8\text{ m/s}" />.
+
+Itu delapan kali lipat daya untuk kelajuan dua kali lipat. Nilai ini hanyalah rata-rata tetap sebagai contoh, sehingga lokasi nyata tetap memerlukan pengukuran angin selama setahun penuh.
 
 <WindRotorLab
   title={<>Satu Turbin di Tiga Lokasi</>}
   description={<>Turbin angin yang sama berdiri di lembah, di bukit, dan di pantai. Pilih lokasinya, lalu bandingkan kelajuan angin dengan daya angin dan listrik yang dihasilkan turbin.</>}
+  footer={<>Angin dua kali lebih cepat memberi delapan kali daya pada turbin yang sama.</>}
   labels={{
     chooseSite: "Lokasi",
     daily: <>Energi sehari dengan angin tetap</>,
@@ -225,3 +250,5 @@ Angin memperlihatkan betapa pentingnya lokasi. Daya angin yang melewati rotor ad
     wind: <>Daya angin yang melewati rotor</>,
   }}
 />
+
+Coba ganti antara lembah, bukit, dan pantai untuk melihat seberapa cepat daya melonjak ketika angin sedikit lebih kencang. Kepekaan pangkat tiga ini menjelaskan mengapa memilih punggung bukit atau pesisir yang berangin jauh lebih menentukan daripada sedikit ubahan pada bilah.

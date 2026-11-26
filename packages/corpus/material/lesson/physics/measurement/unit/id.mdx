@@ -14,7 +14,7 @@ Bayangkan kamu membaca nilai besaran <InlineMath math="12" /> tanpa satuan. Apak
 
 Satuan adalah <Highlight>ukuran acuan untuk membandingkan suatu besaran</Highlight>. Dengan satuan yang sama, hasil pengukuran dari orang, alat, dan tempat yang berbeda dapat dibandingkan.
 
-Nilai besaran adalah nilai numerik dikalikan dengan satuannya.
+Setiap hasil pengukuran mengalikan angka murni dengan simbol satuan yang disepakati.
 
 Nilai numerik menjawab *berapa banyak*. Satuan menjawab *dibandingkan dengan acuan apa*.
 
@@ -27,6 +27,7 @@ Di sini tiga sahabat mengukur meja yang sama sepanjang <InlineMath math="1{,}20\
       Ganti di antara tiga pensil dan mistar meter, lalu perhatikan jumlahnya berubah untuk meja yang sama.
     </>
   }
+  footer={<>Acuan pribadi berbeda memberi angka berbeda untuk meja yang persis sama.</>}
   labels={{
     chooseReference: "Pilih alat acuan",
     count: <>Jumlah</>,
@@ -42,6 +43,8 @@ Di sini tiga sahabat mengukur meja yang sama sepanjang <InlineMath math="1{,}20\
   }}
 />
 
+Setiap pensil menghasilkan bilangan berbeda meski panjang mejanya tidak berubah sama sekali. Baru saat berpindah ke mistar meter bersama, ketiga sahabat itu mencatat hasil ukur yang sama.
+
 ## Dari Banyak Sistem Menuju SI
 
 Sebelum dunia memakai satu standar yang sama, beberapa sistem satuan digunakan pada waktu yang sama. Tiga sistem satuan yang pernah digunakan secara luas adalah:
@@ -54,7 +57,7 @@ Sebelum dunia memakai satu standar yang sama, beberapa sistem satuan digunakan p
 
 Pada baris FPS ini, <InlineMath math="\text{lb}" /> menyatakan pound-mass. Jangan mencampurkannya dengan pound-force, yang lazim ditulis <InlineMath math="\text{lbf}" />.
 
-Perbedaan sistem ini membuat hasil ukur sulit dibandingkan jika satuannya tidak dijelaskan. Karena itu, sains modern memakai **Sistem Satuan Internasional** atau **SI**. SI berasal dari nama Prancis *Système international d'unités* dan dalam bahasa Inggris disebut *International System of Units*. BIPM, yaitu *Bureau International des Poids et Mesures*, adalah lembaga internasional yang menjaga standar SI.
+Perbedaan sistem membuat hasil ukur sulit dibandingkan jika satuannya tidak dijelaskan. Karena itu, sains modern memakai **Sistem Satuan Internasional** (**SI**), dari bahasa Prancis *Système international d'unités*, yang dijaga secara global oleh BIPM (*Bureau International des Poids et Mesures*).
 
 [BIPM menetapkan definisi SI](https://www.bipm.org/en/measurement-units) agar satuan yang digunakan memiliki acuan internasional yang sama.
 
@@ -69,6 +72,7 @@ Satu benda sudah cukup untuk melihatnya. Bola boling di bawah adalah yang terber
       Ganti di antara FPS, CGS, dan MKS, lalu perhatikan jarum dan bolanya tetap diam sementara hanya angkanya yang berubah.
     </>
   }
+  footer={<>Mengganti sistem satuan mengubah angka, bukan massa atau ukuran bola aslinya.</>}
   labels={{
     chooseSystem: "Pilih sistem satuan",
     diameter: <>Diameter</>,
@@ -82,6 +86,8 @@ Satu benda sudah cukup untuk melihatnya. Bola boling di bawah adalah yang terber
     viewLabel: "Bola boling di atas timbangan jarum di samping penggaris inci dan sentimeter",
   }}
 />
+
+Perhatikan bahwa jarum timbangan dan tepi penggaris sama sekali tidak bergeser saat kamu berpindah antara FPS, CGS, dan MKS. Sistem satuan hanya mengganti ukuran acuan pembandingnya, bukan benda fisiknya.
 
 ## Tujuh Satuan Pokok SI
 
@@ -121,11 +127,14 @@ Satuan turunan muncul ketika besaran turunan dibentuk dari gabungan besaran poko
 
 Pada baris usaha, gaya dianggap tetap dan searah perpindahan. Rumus kelajuan, percepatan, dan daya pada tabel memberi nilai rata-rata selama selang yang dipakai.
 
-Putar kubus di bawah. Di setiap rusuk kamu bisa menghitung <InlineMath math="10" /> kubus kecil berukuran <InlineMath math="1\text{ dm}" />, jadi kubus besar panjang rusuknya <InlineMath math="1\text{ m}" />. Volumenya <InlineMath math="(10\text{ dm})^3=1000\text{ dm}^3" />, jadi <InlineMath math="1\text{ m}^3=1000\text{ dm}^3" />, dan satu kubus kecil tepat berisi <InlineMath math="1" /> liter. Perhatikan bahwa awalannya ikut dipangkatkan tiga bersama satuannya: <InlineMath math="1\text{ dm}=10^{-1}\text{ m}" />, jadi <InlineMath math="1\text{ dm}^3=10^{-3}\text{ m}^3" />.
+Putar kubus di bawah. Di setiap rusuk kamu bisa menghitung <InlineMath math="10" /> kubus kecil berukuran <InlineMath math="1\text{ dm}" />, jadi kubus besar bersisi <InlineMath math="1\text{ m}" /> ini memuat <InlineMath math="1000\text{ dm}^3" />, atau tepat <InlineMath math="1000" /> liter.
+
+Perhatikan bahwa awalannya ikut dipangkatkan tiga bersama satuannya: karena <InlineMath math="1\text{ dm}=10^{-1}\text{ m}" />, satu desimeter kubik sama dengan <InlineMath math="10^{-3}\text{ m}^3" />.
 
 <MathVisual
   title={<>Satu Meter Kubik dari Desimeter Kubik</>}
   description={<>Satu kotak grid sama dengan <InlineMath math="1\text{ dm}" />. Kubus kecil berjajar di tiga rusuk kubus yang panjang rusuknya <InlineMath math="1\text{ m}" />. Putar untuk menghitungnya.</>}
+  footer={<>Sepuluh kubus <InlineMath math="1\text{ dm}" /> per rusuk memuat <InlineMath math="1000\text{ dm}^3" /> per <InlineMath math="1\text{ m}^3" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 12 }, z: { min: -1, max: 11 } },
@@ -194,6 +203,7 @@ Setiap satuan turunan adalah hasil kali pangkat kg, m, dan s. Putar batangnya: j
 <MathVisual
   title={<>Dari Newton ke Joule ke Watt</>}
   description={<>Pangkat kg (ungu), m (oranye), dan s (teal) pada newton, joule, dan watt. Batang di bawah lantai adalah pangkat negatif.</>}
+  footer={<>Langkah dari newton ke joule lalu watt mengubah satu pangkat satuan pokok.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: -3.5, max: 3 }, z: { min: -1, max: 1 } },
@@ -222,16 +232,24 @@ Setiap satuan turunan adalah hasil kali pangkat kg, m, dan s. Putar batangnya: j
   }}
 />
 
-## Menulis Nilai Besar dan Kecil dengan Ringkas
+Membandingkan ketiga kelompok batang memperlihatkan bahwa nama khusus SI seperti newton, joule, dan watt adalah ringkasan untuk susunan tertentu dari <InlineMath math="\text{kg}" />, <InlineMath math="\text{m}" />, dan <InlineMath math="\text{s}" />. Menguraikannya kembali ke satuan pokok membuat pemeriksaan rumus jauh lebih mudah.
+
+## Memakai Awalan SI untuk Skala Ukuran
+
+**Awalan SI** menskalakan satuan pokok maupun turunan naik atau turun dengan pangkat sepuluh yang eksak agar bacaan tetap ringkas dari ukuran atom hingga orbit planet. Satu simbol singkat menggantikan deretan nol panjang dan memudahkan konversi langsung.
+
+### Menulis Nilai Besar dan Kecil dengan Ringkas
 
 Ketika ukuran terlalu besar atau terlalu kecil, kita tidak perlu menulis deretan nol panjang. SI memakai **awalan metrik** untuk menyatakan kelipatan pangkat <InlineMath math="10" />.
 
 <Mermaid
   title={<>Penulisan Ringkas dengan Awalan SI</>}
   description={<>Lihat bagaimana awalan metrik mengganti deretan nol menjadi nama satuan yang lebih ringkas.</>}
+  footer={<>Ganti awalan metrik dengan pangkat sepuluhnya untuk mengubah ke satuan dasar.</>}
   chart={`flowchart LR
     A["7,5 km"] --> B["7,5 × 1000 m"]
-    B --> C["7500 m"]`}/>
+    B --> C["7500 m"]`}
+/>
 
 Contoh awalan yang sering dipakai:
 
@@ -250,7 +268,7 @@ Contoh awalan yang sering dipakai:
 
 Tabel di atas memuat awalan dari yocto hingga yotta. BIPM juga mencantumkan ronna dan ronto untuk <InlineMath math="10^{27}" /> dan <InlineMath math="10^{-27}" />, serta quetta dan quecto untuk <InlineMath math="10^{30}" /> dan <InlineMath math="10^{-30}" />. Kamu dapat memeriksa daftar lengkap terbarunya di [tabel awalan SI dari BIPM](https://www.bipm.org/en/measurement-units/si-prefixes).
 
-## Membaca Awalan dalam Perhitungan
+### Membaca Awalan dalam Perhitungan
 
 Awalan SI dapat ditambahkan pada nama **satuan dasar maupun satuan turunan**. Contohnya, kilometer memakai meter, sedangkan kilowatt memakai watt. Misalnya, <InlineMath math="\text{km}" /> berarti seribu meter, sehingga tetap menjadi satuan panjang berbasis meter.
 
@@ -279,6 +297,7 @@ Setiap awalan adalah pangkat sepuluh, jadi berpindah antarawalan berarti melangk
 <MathVisual
   title={<>Awalan adalah Pangkat Sepuluh</>}
   description={<>Awalan SI yang umum untuk meter, diletakkan pada pangkat sepuluhnya.</>}
+  footer={<>Kurangkan kedua pangkatnya untuk menemukan faktor konversi antarawalan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -11, max: 5 }, y: { min: -1.2, max: 1.2 } },
@@ -310,3 +329,5 @@ Setiap awalan adalah pangkat sepuluh, jadi berpindah antarawalan berarti melangk
     nm: <InlineMath math="\text{n}:\ 10^{-9}" />,
   }}
 />
+
+Membaca awalan sebagai posisi di satu garis pangkat mengubah setiap konversi metrik menjadi pengurangan sederhana. Begitu selisih pangkatnya diketahui, menggeser koma desimal menjadi cepat dan bebas ragu.

@@ -12,7 +12,7 @@ export const metadata = {
 
 Apabila kita menulis nilai kuantiti seperti <InlineMath math="0.60 \text{ m}" />, ada <InlineMath math="2" /> bahagian yang sedang bekerjasama.
 
-Nilai kuantiti ialah <Highlight>nilai berangka yang didarab dengan unit</Highlight>.
+Setiap hasil pengukuran menggabungkan <Highlight>angka ukuran dengan unit rujukan</Highlight> melalui pendaraban.
 
 Dalam <InlineMath math="0.60 \text{ m}" />, <InlineMath math="0.60" /> ialah nilai berangka dan <InlineMath math="\text{m}" /> ialah unit rujukan. Kuantiti pula ialah sifat objek atau peristiwa yang diukur, seperti panjang, jisim, masa, suhu atau laju. Hasil pengukuran yang lengkap juga boleh membawa ketidakpastian dan maklumat lain yang berkaitan.
 
@@ -27,6 +27,7 @@ Setiap bacaan dalam makmal di bawah ialah satu nombor darab satu unit. Bongkah a
       Tukar bahannya dan perhatikan jisim dan ketumpatan berubah sedangkan sisi dan isi padunya tetap sama.
     </>
   }
+  footer={<>Menukar bahan mengubah jisim dan ketumpatan sedangkan isi padu kekal.</>}
   labels={{
     chooseMaterial: "Pilih bahan",
     density: <>Ketumpatan</>,
@@ -43,6 +44,8 @@ Setiap bacaan dalam makmal di bawah ialah satu nombor darab satu unit. Bongkah a
   }}
 />
 
+Bertukar antara kayu pain, aluminium dan loyang mengekalkan panjang tiga sisi dan isi padu, manakala jisim pada penimbang berubah ketara. Ketumpatan menggabungkan bacaan itu menjadi sifat yang mengenal pasti bahan itu.
+
 ## Kuantiti Asas dan Kuantiti Terbitan
 
 S.I. menetapkan <InlineMath math="7" /> kuantiti asas. Kuantiti fizik yang lain diterbitkan daripada **gabungan kuantiti asas itu**.
@@ -57,7 +60,9 @@ S.I. menetapkan <InlineMath math="7" /> kuantiti asas. Kuantiti fizik yang lain 
 | Kuantiti bahan | <InlineMath math="n" /> | <InlineMath math="\text{mol}" /> | <InlineMath math="\mathrm{N}" /> |
 | Keamatan berluminositi | <InlineMath math="I_v" /> | <InlineMath math="\text{cd}" /> | <InlineMath math="\mathrm{J}" /> |
 
-Kuantiti terbitan muncul apabila kuantiti asas digabungkan. Contohnya, luas diperoleh daripada panjang yang didarab dengan lebar.
+### Menggabungkan Kuantiti Asas menjadi Luas dan Laju
+
+**Kuantiti terbitan** muncul apabila kuantiti asas digabungkan. Contohnya, luas diperoleh daripada panjang yang didarab dengan lebar.
 
 <BlockMath math="\begin{aligned}
 A &= l \times w \\
@@ -78,6 +83,7 @@ Laju dibina daripada dua kuantiti asas, <InlineMath math="v=s/t" />, jadi unitny
 <MathVisual
   title={<>Laju Dibina daripada Kuantiti Asas</>}
   description={<>Jarak melawan masa pada <InlineMath math="2\text{ m/s}" /> (ungu) dan <InlineMath math="5\text{ m/s}" /> (oren). Paksi mengufuk: saat. Paksi menegak: satu petak grid ialah <InlineMath math="2\text{ m}" />.</>}
+  footer={<>Kecerunan lebih curam pada graf jarak-masa menunjukkan laju lebih tinggi.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
@@ -99,7 +105,15 @@ Laju dibina daripada dua kuantiti asas, <InlineMath math="v=s/t" />, jadi unitny
   }}
 />
 
-Kamu juga boleh mengukur laju terus daripada dua kuantiti asasnya. Di bawah, sebuah troli bergerak melalui dua get cahaya yang berjarak <InlineMath math="0.60\text{ m}" />, dan pemasa menunjukkan <InlineMath math="1.250\text{ s}" /> di antara dua alur cahaya itu. Jadi <InlineMath math="v=\frac{0.60\text{ m}}{1.250\text{ s}}=0.48\text{ m/s}" />. Jauhkan kedua-dua get itu: jarak dan masa sama-sama bertambah, dan nisbahnya tetap sama.
+Setiap segi tiga bersudut tegak meliputi kenaikan <InlineMath math="2\text{ m}" /> yang sama, namun garis oren hanya mengambil masa <InlineMath math="0.4\text{ s}" /> berbanding <InlineMath math="1\text{ s}" /> bagi garis ungu. Membahagi jarak dengan masa menggabungkan dua bacaan asas itu menjadi satu laju terbitan.
+
+### Mengukur Laju Secara Langsung dengan Get Cahaya
+
+Kamu juga boleh mengukur laju terus daripada **dua kuantiti asasnya**. Di bawah, sebuah troli bergerak melalui dua get cahaya yang berjarak <InlineMath math="0.60\text{ m}" />, dan pemasa menunjukkan <InlineMath math="1.250\text{ s}" /> di antara dua alur cahaya itu.
+
+<BlockMath math="v = \frac{0.60\text{ m}}{1.250\text{ s}} = 0.48\text{ m/s}" />
+
+Jauhkan kedua-dua get itu: jarak dan masa sama-sama bertambah, dan nisbahnya tetap sama.
 
 <LightGateSpeedLab
   title={<>Laju daripada Dua Get Cahaya</>}
@@ -108,6 +122,7 @@ Kamu juga boleh mengukur laju terus daripada dua kuantiti asasnya. Di bawah, seb
       Jauhkan kedua-dua get dan perhatikan jarak dan masa bertambah sedangkan lajunya tetap sama.
     </>
   }
+  footer={<>Jarak get lebih lebar menambah jarak dan masa supaya nisbahnya tetap.</>}
   labels={{
     distance: "Jarak antara get",
     speed: <>Laju</>,
@@ -116,6 +131,8 @@ Kamu juga boleh mengukur laju terus daripada dua kuantiti asasnya. Di bawah, seb
   }}
 />
 
+Walaupun jarak antara get digandakan, masa perjalanan yang direkodkan turut berganda seiring dengannya. Nisbah yang malar mengesahkan bahawa laju bergantung pada cara jarak berubah terhadap masa, bukan pada salah satu bacaan sahaja.
+
 ## Dimensi dan Semakan Rumus
 
 Dimensi merekodkan <Highlight>kuantiti asas dan kuasa yang membentuk sesuatu kuantiti lain</Highlight>. Unit memberikan rujukan bagi nilai yang diukur, manakala dimensi menguji sama ada kuantiti di kedua-dua belah rumus serasi.
@@ -123,10 +140,12 @@ Dimensi merekodkan <Highlight>kuantiti asas dan kuasa yang membentuk sesuatu kua
 <Mermaid
   title={<>Cara menyemak sesuatu kuantiti</>}
   description={<>Mulakan daripada kuantiti yang diukur, kemudian hubungkan kuantiti asasnya dengan unit S.I. dan dimensi.</>}
+  footer={<>Jejaki kuantiti terbitan ke kuantiti asas untuk unit dan dimensinya.</>}
   chart={`flowchart TD
     A["Panjang × lebar"] --> B["Luas"]
     B --> C["Unit: m × m = m²"]
-    B --> D["Dimensi: L × L = L²"]`}/>
+    B --> D["Dimensi: L × L = L²"]`}
+/>
 
 Contohnya, luas sebuah meja dan luas sehelai kertas boleh mempunyai nilai yang berbeza, tetapi kedua-duanya kuantiti yang sama jenis. Kedua-duanya ialah luas, menggunakan unit S.I. <InlineMath math="\text{m}^2" /> dan mempunyai dimensi <InlineMath math="\mathrm{L}^2" />.
 
@@ -137,6 +156,7 @@ Kuantiti terbitan dibina daripada kuantiti asas. Isi padu mendarab tiga panjang,
 <MathVisual
   title={<>Isi Padu daripada Tiga Panjang</>}
   description={<>Kotak berukuran <InlineMath math="0.30\text{ m}" /> kali <InlineMath math="0.20\text{ m}" /> kali <InlineMath math="0.10\text{ m}" /> (oren) dan satu barisan kiub <InlineMath math="0.10\text{ m}" /> di atasnya (hijau kebiruan).</>}
+  footer={<>Mendarab tiga panjang memberi unit padu dan dimensi <InlineMath math="\mathrm{L}^3" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: 0, max: 2.5 }, z: { min: -0.5, max: 2.5 } },
@@ -162,6 +182,8 @@ Kuantiti terbitan dibina daripada kuantiti asas. Isi padu mendarab tiga panjang,
   }}
 />
 
+Mengira dua baris yang masing-masing ada tiga kiub memberikan enam kiub <InlineMath math="0.001\text{ m}^3" />, sepadan dengan <InlineMath math="0.006\text{ m}^3" />. Tiga panjang yang berserenjang sentiasa bergabung membentuk dimensi isi padu <InlineMath math="\mathrm{L}^3" />.
+
 ## Mengira Luas Sehelai Kertas
 
 Sehelai kertas mempunyai panjang <InlineMath math="0.30 \text{ m}" /> dan lebar <InlineMath math="0.20 \text{ m}" />. Luasnya ialah:
@@ -172,11 +194,16 @@ A &= l \times w \\
 &= 0.060 \text{ m}^2
 \end{aligned}" />
 
-Rajah di bawah melukis kertas itu dengan satu petak grid bagi setiap <InlineMath math="0.10\text{ m}" />. Kira petak kecilnya: <InlineMath math="3" /> di sepanjang sisi panjang dan <InlineMath math="2" /> di sepanjang sisi lebar menghasilkan <InlineMath math="6" /> petak. Setiap petak ialah <InlineMath math="0.10\text{ m}\times0.10\text{ m}=0.010\text{ m}^2" />, jadi enam petak memberikan <InlineMath math="0.060\text{ m}^2" />, iaitu luas yang sama dengan hasil rumus tadi. Itulah sebabnya luas ialah kuantiti yang dibina daripada dua panjang.
+Rajah di bawah melukis kertas itu dengan satu petak grid bagi setiap <InlineMath math="0.10\text{ m}" />. Kira petak kecilnya: <InlineMath math="3" /> di sepanjang sisi panjang dan <InlineMath math="2" /> di sepanjang sisi lebar menghasilkan <InlineMath math="6" /> petak.
+
+<BlockMath math="0.10\text{ m} \times 0.10\text{ m} = 0.010\text{ m}^2" />
+
+Enam petak ini memberikan <InlineMath math="0.060\text{ m}^2" />, menyamai hasil rumus tadi dan menunjukkan mengapa luas dibina daripada dua panjang.
 
 <MathVisual
   title={<>Luas Dikira dalam Petak</>}
   description={<>Kertas itu dilukis dengan satu petak grid bagi setiap <InlineMath math="0.10\text{ m}" />. Setiap petak kecil mempunyai luas <InlineMath math="0.010\text{ m}^2" />.</>}
+  footer={<>Enam petak <InlineMath math="0.010\text{ m}^2" /> menghasilkan luas yang sama, <InlineMath math="0.060\text{ m}^2" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 2.8 } },

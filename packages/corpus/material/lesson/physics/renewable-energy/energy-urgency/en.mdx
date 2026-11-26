@@ -8,35 +8,38 @@ export const metadata = {
   subject: "Renewable Energy",
 };
 
-## Effects of an Energy Supply Failure
+## Reliability and Demand in Power Grids
+
+A **reliable power grid** must deliver electricity both over the full day and at the exact moment many people switch devices on together.
+
+> A power grid fails whenever it cannot meet the demand at a given moment, even if its daily energy supply looks large on paper.
+
+### Effects of an Energy Supply Failure
 
 An energy supply must be <Highlight>available when people need it</Highlight> and <Highlight>reach the places where it is used</Highlight>. Cost and environmental effects also matter. If the supply fails, lighting, water pumps, medical devices, food cooling, and communication networks can stop working.
 
 Electricity powers many devices used each day. It is an [energy carrier](https://www.eia.gov/energyexplained/electricity/) produced using fuels, water, wind, sunlight, or geothermal heat.
 
-Electricity reaches users through several connected stages.
+Energy starts at a source, converts into electricity, and travels across the grid to users. Generators must supply enough power, and the grid must carry it whenever demand rises.
 
-Energy starts at a source and is converted into electricity. The grid then carries it to the user.
-
-Generators must supply enough power, and the grid must deliver it when demand rises.
-
-Grids carry power at high voltage because the loss in the wires is <InlineMath math="I^2R" /> and <InlineMath math="I=P/V" />. Sending <InlineMath math="100\text{ kW}" /> through <InlineMath math="1\ \Omega" /> loses <InlineMath math="10\%" /> at <InlineMath math="1\text{ kV}" /> but only <InlineMath math="0.1\%" /> at <InlineMath math="10\text{ kV}" />. Zoom in on how fast the curve drops.
+Grids carry power at high voltage because wire loss is <InlineMath math="I^2R" /> and <InlineMath math="I=P/V" />. Sending <InlineMath math="100\text{ kW}" /> through <InlineMath math="1\ \Omega" /> loses <InlineMath math="10\%" /> at <InlineMath math="1\text{ kV}" />, but only <InlineMath math="0.1\%" /> at <InlineMath math="10\text{ kV}" />. Zoom in on how steeply the curve drops.
 
 <MathVisual
   title={<>Higher Voltage, Smaller Losses</>}
-  description={<>Share of <InlineMath math="100\text{ kW}" /> lost in a <InlineMath math="1" /> ohm line against the line voltage. Horizontal: kV. Vertical: one grid step is <InlineMath math="2" /> percent.</>}
+  description={<>Share of <InlineMath math="100\text{ kW}" /> lost in a <InlineMath math="1" /> ohm line against line voltage. Horizontal: voltage in kV. Vertical: line loss in percent.</>}
+  footer={<>Raising voltage tenfold cuts current to a tenth and line loss to one hundredth.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0.5, max: 10.5 }, y: { min: -0.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: 0.5, max: 10.5 }, y: { min: -1, max: 11.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "loss", kind: "polyline", appearance: "warning", vertices: [{ x: 1, y: 5 }, { x: 1.25, y: 10 / (5 / 4) ** 2 / 2 }, { x: 1.5, y: 10 / (6 / 4) ** 2 / 2 }, { x: 1.75, y: 10 / (7 / 4) ** 2 / 2 }, { x: 2, y: 10 / (8 / 4) ** 2 / 2 }, { x: 2.25, y: 10 / (9 / 4) ** 2 / 2 }, { x: 2.5, y: 10 / (10 / 4) ** 2 / 2 }, { x: 2.75, y: 10 / (11 / 4) ** 2 / 2 }, { x: 3, y: 10 / (12 / 4) ** 2 / 2 }, { x: 3.25, y: 10 / (13 / 4) ** 2 / 2 }, { x: 3.5, y: 10 / (14 / 4) ** 2 / 2 }, { x: 3.75, y: 10 / (15 / 4) ** 2 / 2 }, { x: 4, y: 10 / (16 / 4) ** 2 / 2 }, { x: 4.25, y: 10 / (17 / 4) ** 2 / 2 }, { x: 4.5, y: 10 / (18 / 4) ** 2 / 2 }, { x: 4.75, y: 10 / (19 / 4) ** 2 / 2 }, { x: 5, y: 10 / (20 / 4) ** 2 / 2 }, { x: 5.25, y: 10 / (21 / 4) ** 2 / 2 }, { x: 5.5, y: 10 / (22 / 4) ** 2 / 2 }, { x: 5.75, y: 10 / (23 / 4) ** 2 / 2 }, { x: 6, y: 10 / (24 / 4) ** 2 / 2 }, { x: 6.25, y: 10 / (25 / 4) ** 2 / 2 }, { x: 6.5, y: 10 / (26 / 4) ** 2 / 2 }, { x: 6.75, y: 10 / (27 / 4) ** 2 / 2 }, { x: 7, y: 10 / (28 / 4) ** 2 / 2 }, { x: 7.25, y: 10 / (29 / 4) ** 2 / 2 }, { x: 7.5, y: 10 / (30 / 4) ** 2 / 2 }, { x: 7.75, y: 10 / (31 / 4) ** 2 / 2 }, { x: 8, y: 10 / (32 / 4) ** 2 / 2 }, { x: 8.25, y: 10 / (33 / 4) ** 2 / 2 }, { x: 8.5, y: 10 / (34 / 4) ** 2 / 2 }, { x: 8.75, y: 10 / (35 / 4) ** 2 / 2 }, { x: 9, y: 10 / (36 / 4) ** 2 / 2 }, { x: 9.25, y: 10 / (37 / 4) ** 2 / 2 }, { x: 9.5, y: 10 / (38 / 4) ** 2 / 2 }, { x: 9.75, y: 10 / (39 / 4) ** 2 / 2 }, { x: 10, y: 10 / (40 / 4) ** 2 / 2 }] },
-      { id: "low", kind: "point", appearance: "warning", at: { x: 1, y: 5 } },
-      { id: "high", kind: "point", appearance: "construction", at: { x: 10, y: 10 / 10 ** 2 / 2 } },
+      { id: "loss", kind: "function", appearance: "warning", formula: "10 / (x^2)", domain: { min: 1, max: 10 } },
+      { id: "low", kind: "point", appearance: "warning", at: { x: 1, y: 10 } },
+      { id: "high", kind: "point", appearance: "construction", at: { x: 10, y: 0.1 } },
     ],
     labels: [
-      { key: "low", objectId: "low", at: { x: 1, y: 5 }, placement: "right" },
-      { key: "high", objectId: "high", at: { x: 10, y: 10 / 10 ** 2 / 2 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: 1, y: 10 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: 10, y: 0.1 }, placement: "above" },
     ],
   }}
   labels={{
@@ -45,7 +48,9 @@ Grids carry power at high voltage because the loss in the wires is <InlineMath m
   }}
 />
 
-## Demand Adds Up across Many Devices
+Because wire losses scale with the square of current, stepping voltage up before long-distance transmission keeps far more power reaching homes instead of heating the cables.
+
+### Demand Adds Up across Many Devices
 
 One lamp may look simple. However, energy demand becomes large when many devices are used by many people at the same time.
 
@@ -81,11 +86,14 @@ Compare two devices, each drawing a constant <InlineMath math="1 \text{ kW}" /> 
 | Both run from 18:00 to 19:00 | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWh}" /> |
 | First device runs from 18:00 to 19:00, second from 19:00 to 20:00 | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWh}" /> |
 
-Here are both schedules as power over the evening. The orange schedule runs both devices together and jumps to a <InlineMath math="2\text{ kW}" /> peak. The violet schedule spreads the same work over two hours and never goes above <InlineMath math="1\text{ kW}" />. Count the area under each line, power times time: both hold <InlineMath math="2\text{ kWh}" />. The energy is the same, and only the peak the grid must supply changes.
+Here are both schedules as power over the evening. The orange schedule runs both devices together and jumps to a <InlineMath math="2\text{ kW}" /> peak, while the violet schedule spreads the same work over two hours and stays at <InlineMath math="1\text{ kW}" />.
+
+Count the area under each line, which equals power times time. Both schedules enclose <InlineMath math="2\text{ kWh}" />, so the total energy stays identical while only the peak changes.
 
 <MathVisual
   title={<>Same Energy, Different Peak</>}
-  description={<>Power drawn by two <InlineMath math="1\text{ kW}" /> devices from 17:00 to 21:00. Horizontal: clock time in hours. Vertical: power in kW.</>}
+  description={<>Power drawn by two <InlineMath math="1\text{ kW}" /> devices from 17:00 to 21:00. Horizontal: hours after 17:00. Vertical: power in kW.</>}
+  footer={<>Both areas equal 2 kWh, yet staggering the two loads halves peak power.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.3 }, y: { min: -0.6, max: 2.6 } },
@@ -111,6 +119,8 @@ Here are both schedules as power over the evening. The orange schedule runs both
   }}
 />
 
+This explains why utility planners care about timing as much as total consumption. Shifting when appliances run lets a smaller generator and thinner wires serve the exact same daily work.
+
 ## National Rates and Local Access Gaps
 
 **Electrification Ratio** is the percentage of households with access to electricity. **Electrified Village Ratio** is the percentage of villages or urban villages that already have electricity.
@@ -128,7 +138,11 @@ National ratios need local context. The remaining unserved locations may be diff
 | Electricity consumption is rising | Whether generation, grid, and storage capacity can meet demand |
 | The national electrification ratio is close to <InlineMath math="100\%" /> | Whether remote areas have solutions that match their location |
 
-## Rising Demand Requires More System Capacity
+## Rising Demand and Peak Capacity
+
+As electricity use grows each year, planners must expand **system capacity** and manage peak hours together. Adding more power plants works only when grids can handle sudden evening spikes too.
+
+### Rising Demand Requires More System Capacity
 
 [Global electricity demand](https://www.iea.org/reports/electricity-2026/executive-summary) is forecast to grow by an average of <InlineMath math="3.6\%" /> per year from <InlineMath math="2026" /> to <InlineMath math="2030" />. The main drivers are industry, electric vehicles, air conditioning, and data centres.
 
@@ -140,17 +154,18 @@ Growth of <InlineMath math="3.6\%" /> a year compounds. The curve below multipli
 
 <MathVisual
   title={<>Demand Growth Compounds</>}
-  description={<>Growth of electricity demand at <InlineMath math="3.6\%" /> a year from 2026 to 2030. Horizontal: years after 2026. Vertical: growth in units of <InlineMath math="4\%" />.</>}
+  description={<>Growth of electricity demand at <InlineMath math="3.6\%" /> a year from 2026 to 2030. Horizontal: years after 2026. Vertical: cumulative growth in percent.</>}
+  footer={<>Compounding adds growth onto a bigger base each year, reaching 15.2% by 2030.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -0.3, max: 4.6 } },
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -1, max: 18 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "growth", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: ((1.036 ** (0 / 5) - 1) * 100) / 4 }, { x: 1 / 5, y: ((1.036 ** (1 / 5) - 1) * 100) / 4 }, { x: 2 / 5, y: ((1.036 ** (2 / 5) - 1) * 100) / 4 }, { x: 3 / 5, y: ((1.036 ** (3 / 5) - 1) * 100) / 4 }, { x: 4 / 5, y: ((1.036 ** (4 / 5) - 1) * 100) / 4 }, { x: 1, y: ((1.036 ** (5 / 5) - 1) * 100) / 4 }, { x: 6 / 5, y: ((1.036 ** (6 / 5) - 1) * 100) / 4 }, { x: 7 / 5, y: ((1.036 ** (7 / 5) - 1) * 100) / 4 }, { x: 8 / 5, y: ((1.036 ** (8 / 5) - 1) * 100) / 4 }, { x: 9 / 5, y: ((1.036 ** (9 / 5) - 1) * 100) / 4 }, { x: 2, y: ((1.036 ** (10 / 5) - 1) * 100) / 4 }, { x: 11 / 5, y: ((1.036 ** (11 / 5) - 1) * 100) / 4 }, { x: 12 / 5, y: ((1.036 ** (12 / 5) - 1) * 100) / 4 }, { x: 13 / 5, y: ((1.036 ** (13 / 5) - 1) * 100) / 4 }, { x: 14 / 5, y: ((1.036 ** (14 / 5) - 1) * 100) / 4 }, { x: 3, y: ((1.036 ** (15 / 5) - 1) * 100) / 4 }, { x: 16 / 5, y: ((1.036 ** (16 / 5) - 1) * 100) / 4 }, { x: 17 / 5, y: ((1.036 ** (17 / 5) - 1) * 100) / 4 }, { x: 18 / 5, y: ((1.036 ** (18 / 5) - 1) * 100) / 4 }, { x: 19 / 5, y: ((1.036 ** (19 / 5) - 1) * 100) / 4 }, { x: 4, y: ((1.036 ** (20 / 5) - 1) * 100) / 4 }] },
-      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: ((1.036 ** 4 - 1) * 100) / 4 } },
+      { id: "growth", kind: "function", appearance: "primary", formula: "(1.036^x - 1) * 100", domain: { min: 0, max: 4 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: (1.036 ** 4 - 1) * 100 } },
     ],
     labels: [
-      { key: "end", objectId: "end", at: { x: 4, y: ((1.036 ** 4 - 1) * 100) / 4 }, placement: "above-left" },
+      { key: "end", objectId: "end", at: { x: 4, y: (1.036 ** 4 - 1) * 100 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -158,7 +173,9 @@ Growth of <InlineMath math="3.6\%" /> a year compounds. The curve below multipli
   }}
 />
 
-## Questions for Assessing Energy Needs
+Notice the gentle upward bend in the curve. Because every new year's percentage applies to an already larger demand, grids must plan ahead rather than wait until power lines reach their limits.
+
+### Questions for Assessing Energy Needs
 
 Do not assess an energy-demand figure on its own. Also check who needs the energy, when it is needed, **how much energy and power are required**, which source is used, whether the grid is ready, and what happens if supply fails.
 
@@ -173,11 +190,14 @@ Do not assess an energy-demand figure on its own. Also check who needs the energ
 
 If the daily supply is too small, total energy is the problem. If many devices run at once, peak power may be the problem. The other questions check whether the source, grid, or storage is limiting supply and what will happen if supply fails.
 
-Here's the peak-power question in a real village. One hundred homes on a <InlineMath math="50\text{ kW}" /> mini-grid use <InlineMath math="330\text{ kWh}" /> a day, and each home runs a <InlineMath math="0.4\text{ kW}" /> rice cooker for one hour. If everyone cooks at 18:00, demand jumps to <InlineMath math="65\text{ kW}" /> and the lights go out for that hour. Spread the cooking from 16:00 to 20:00 and the peak drops to <InlineMath math="35\text{ kW}" />, with exactly the same daily energy.
+Here is the peak-power question in a real village. One hundred homes on a <InlineMath math="50\text{ kW}" /> mini-grid use <InlineMath math="330\text{ kWh}" /> a day, and each home runs a <InlineMath math="0.4\text{ kW}" /> rice cooker for one hour.
+
+If everyone cooks at 18:00, demand jumps to <InlineMath math="65\text{ kW}" /> and the lights go out for that hour. Spread cooking from 16:00 to 20:00 and the peak drops to <InlineMath math="35\text{ kW}" />, using the exact same daily energy.
 
 <GridLoadCurveLab
   title={<>A Village's Evening Peak</>}
   description={<>One hundred homes on a <InlineMath math="50\text{ kW}" /> mini-grid through one day. Choose when the village cooks and compare the peak demand with what the grid can supply.</>}
+  footer={<>Spreading cooking times keeps the same daily energy while avoiding a blackout.</>}
   labels={{
     capacity: <>Grid capacity</>,
     chooseSchedule: "When the village cooks",
@@ -191,6 +211,8 @@ Here's the peak-power question in a real village. One hundred homes on a <Inline
     viewLabel: "Village through one day above its hourly demand chart",
   }}
 />
+
+Compare the two schedules in the readout. Both deliver <InlineMath math="330\text{ kWh}" /> over the day, yet coordinating high-power appliances turns an overloaded mini-grid into a steady supply without adding a single extra generator.
 
 ## Match Renewable Sources to Site Conditions
 
@@ -206,11 +228,14 @@ A renewable-energy source suits a location when the local resource, technology, 
 
 The energy system therefore needs to match local demand, environmental conditions, and community needs.
 
-Wind shows how much the site matters. The power in the wind through a rotor is <InlineMath math="P=\tfrac12\rho Av^3" />, so the same turbine, its rotor <InlineMath math="40\text{ m}" /> in radius, makes about <InlineMath math="79\text{ kW}" /> in a <InlineMath math="4\text{ m/s}" /> valley wind but about <InlineMath math="631\text{ kW}" /> in an <InlineMath math="8\text{ m/s}" /> coastal wind: eight times as much for twice the speed. These wind speeds are illustrative steady averages. A real site needs a year of measured wind.
+Power in moving air scales with the cube of wind speed, <InlineMath math="P=\tfrac12\rho Av^3" />, so local wind speed changes turbine output sharply. With a <InlineMath math="40\text{ m}" /> rotor radius, the same turbine makes about <InlineMath math="79\text{ kW}" /> in a <InlineMath math="4\text{ m/s}" /> valley wind but about <InlineMath math="631\text{ kW}" /> in an <InlineMath math="8\text{ m/s}" /> coastal wind.
+
+That is eight times as much power for twice the wind speed. These speeds are illustrative steady averages, so a real site still needs a full year of measured wind data.
 
 <WindRotorLab
   title={<>One Turbine at Three Sites</>}
   description={<>The same wind turbine stands in a valley, on a hill and on a coast. Choose the site and compare the wind speed with the power in the wind and the electricity the turbine makes.</>}
+  footer={<>Doubling wind speed yields eight times the power from the very same turbine.</>}
   labels={{
     chooseSite: "Site",
     daily: <>Energy in a day of steady wind</>,
@@ -225,3 +250,5 @@ Wind shows how much the site matters. The power in the wind through a rotor is <
     wind: <>Power in the wind through the rotor</>,
   }}
 />
+
+Switch between valley, hill, and coast to see how fast output climbs with modest gains in wind speed. That cubic sensitivity explains why siting a turbine on a windy ridge or coastline matters far more than tweaking its blades.

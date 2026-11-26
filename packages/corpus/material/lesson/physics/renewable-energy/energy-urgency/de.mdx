@@ -8,35 +8,38 @@ export const metadata = {
   subject: "Erneuerbare Energie",
 };
 
-## Folgen einer gestörten Energieversorgung
+## Versorgungssicherheit und Bedarf im Stromnetz
 
-Energie muss zum benötigten Zeitpunkt verfügbar sein und den Ort erreichen, an dem sie genutzt wird. Auch Kosten und Umweltauswirkungen müssen berücksichtigt werden. Bei einem Versorgungsausfall können Beleuchtung, Wasserpumpen, medizinische Geräte, Lebensmittelkühlung und Kommunikationsnetze ausfallen.
+Eine **zuverlässige Stromversorgung** muss sowohl die Tagesenergie liefern als auch genau dann genug Leistung bereithalten, wenn viele Geräte gleichzeitig laufen.
+
+> Ein Stromnetz fällt aus, sobald es den Bedarf in einem Augenblick nicht decken kann, selbst wenn die Tagesenergie auf dem Papier reicht.
+
+### Folgen einer gestörten Energieversorgung
+
+Energie muss <Highlight>zum benötigten Zeitpunkt verfügbar sein</Highlight> und <Highlight>den Ort erreichen, an dem sie genutzt wird</Highlight>. Auch Kosten und Umweltauswirkungen müssen berücksichtigt werden. Bei einem Versorgungsausfall können Beleuchtung, Wasserpumpen, medizinische Geräte, Lebensmittelkühlung und Kommunikationsnetze ausfallen.
 
 Elektrizität versorgt viele Geräte, die täglich genutzt werden. Sie ist eine [**sekundäre Energiequelle**](https://www.eia.gov/energyexplained/electricity/), weil sie aus Quellen wie Brennstoffen, Wasser, Wind, Sonnenlicht oder Erdwärme erzeugt wird.
 
-Elektrizität erreicht die Nutzer über mehrere miteinander verbundene Stufen.
-
-Die Energie stammt aus einer Quelle und wird in elektrische Energie umgewandelt. Das Stromnetz leitet sie anschließend zu den Nutzern.
-
-Kraftwerke müssen genug Leistung erzeugen, und das Stromnetz muss sie bei steigendem Bedarf übertragen können.
+Die Energie stammt aus einer Quelle, wird in Strom umgewandelt und über das Stromnetz zu den Nutzern geleitet. Kraftwerke müssen genug Leistung erzeugen, und das Netz muss sie bei steigendem Bedarf übertragen können.
 
 Netze übertragen Leistung mit Hochspannung, weil der Verlust in den Leitungen <InlineMath math="I^2R" /> ist und <InlineMath math="I=P/V" /> gilt. Wer <InlineMath math="100\text{ kW}" /> durch <InlineMath math="1\ \Omega" /> schickt, verliert bei <InlineMath math="1\text{ kV}" /> <InlineMath math="10\%" />, bei <InlineMath math="10\text{ kV}" /> aber nur <InlineMath math="0{,}1\%" />. Zoom darauf, wie schnell die Kurve fällt.
 
 <MathVisual
   title={<>Höhere Spannung, kleinere Verluste</>}
-  description={<>Anteil von <InlineMath math="100\text{ kW}" />, der in einer 1-Ohm-Leitung verloren geht, über der Leitungsspannung. Waagerecht: kV. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="2" /> Prozent.</>}
+  description={<>Anteil von <InlineMath math="100\text{ kW}" />, der in einer 1-Ohm-Leitung verloren geht, über der Leitungsspannung. Waagerecht: Spannung in kV. Senkrecht: Leitungsverlust in Prozent.</>}
+  footer={<>Zehnfache Spannung zehntelt den Strom und hundertstelt die Leitungsverluste.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0.5, max: 10.5 }, y: { min: -0.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: 0.5, max: 10.5 }, y: { min: -1, max: 11.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "loss", kind: "polyline", appearance: "warning", vertices: [{ x: 1, y: 5 }, { x: 1.25, y: 10 / (5 / 4) ** 2 / 2 }, { x: 1.5, y: 10 / (6 / 4) ** 2 / 2 }, { x: 1.75, y: 10 / (7 / 4) ** 2 / 2 }, { x: 2, y: 10 / (8 / 4) ** 2 / 2 }, { x: 2.25, y: 10 / (9 / 4) ** 2 / 2 }, { x: 2.5, y: 10 / (10 / 4) ** 2 / 2 }, { x: 2.75, y: 10 / (11 / 4) ** 2 / 2 }, { x: 3, y: 10 / (12 / 4) ** 2 / 2 }, { x: 3.25, y: 10 / (13 / 4) ** 2 / 2 }, { x: 3.5, y: 10 / (14 / 4) ** 2 / 2 }, { x: 3.75, y: 10 / (15 / 4) ** 2 / 2 }, { x: 4, y: 10 / (16 / 4) ** 2 / 2 }, { x: 4.25, y: 10 / (17 / 4) ** 2 / 2 }, { x: 4.5, y: 10 / (18 / 4) ** 2 / 2 }, { x: 4.75, y: 10 / (19 / 4) ** 2 / 2 }, { x: 5, y: 10 / (20 / 4) ** 2 / 2 }, { x: 5.25, y: 10 / (21 / 4) ** 2 / 2 }, { x: 5.5, y: 10 / (22 / 4) ** 2 / 2 }, { x: 5.75, y: 10 / (23 / 4) ** 2 / 2 }, { x: 6, y: 10 / (24 / 4) ** 2 / 2 }, { x: 6.25, y: 10 / (25 / 4) ** 2 / 2 }, { x: 6.5, y: 10 / (26 / 4) ** 2 / 2 }, { x: 6.75, y: 10 / (27 / 4) ** 2 / 2 }, { x: 7, y: 10 / (28 / 4) ** 2 / 2 }, { x: 7.25, y: 10 / (29 / 4) ** 2 / 2 }, { x: 7.5, y: 10 / (30 / 4) ** 2 / 2 }, { x: 7.75, y: 10 / (31 / 4) ** 2 / 2 }, { x: 8, y: 10 / (32 / 4) ** 2 / 2 }, { x: 8.25, y: 10 / (33 / 4) ** 2 / 2 }, { x: 8.5, y: 10 / (34 / 4) ** 2 / 2 }, { x: 8.75, y: 10 / (35 / 4) ** 2 / 2 }, { x: 9, y: 10 / (36 / 4) ** 2 / 2 }, { x: 9.25, y: 10 / (37 / 4) ** 2 / 2 }, { x: 9.5, y: 10 / (38 / 4) ** 2 / 2 }, { x: 9.75, y: 10 / (39 / 4) ** 2 / 2 }, { x: 10, y: 10 / (40 / 4) ** 2 / 2 }] },
-      { id: "low", kind: "point", appearance: "warning", at: { x: 1, y: 5 } },
-      { id: "high", kind: "point", appearance: "construction", at: { x: 10, y: 10 / 10 ** 2 / 2 } },
+      { id: "loss", kind: "function", appearance: "warning", formula: "10 / (x^2)", domain: { min: 1, max: 10 } },
+      { id: "low", kind: "point", appearance: "warning", at: { x: 1, y: 10 } },
+      { id: "high", kind: "point", appearance: "construction", at: { x: 10, y: 0.1 } },
     ],
     labels: [
-      { key: "low", objectId: "low", at: { x: 1, y: 5 }, placement: "right" },
-      { key: "high", objectId: "high", at: { x: 10, y: 10 / 10 ** 2 / 2 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: 1, y: 10 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: 10, y: 0.1 }, placement: "above" },
     ],
   }}
   labels={{
@@ -45,7 +48,9 @@ Netze übertragen Leistung mit Hochspannung, weil der Verlust in den Leitungen <
   }}
 />
 
-## Der Bedarf vieler Geräte summiert sich
+Weil Leitungsverluste quadratisch mit der Stromstärke wachsen, bringt Hochspannung auf langen Strecken deutlich mehr Leistung zu den Haushalten, statt die Kabel aufzuheizen.
+
+### Der Bedarf vieler Geräte summiert sich
 
 Eine einzelne Lampe wirkt unbedeutend. Der Energiebedarf wird jedoch groß, wenn viele Menschen viele Geräte gleichzeitig nutzen.
 
@@ -81,11 +86,14 @@ Vergleiche zwei Geräte, die jeweils eine Stunde lang konstant <InlineMath math=
 | Beide laufen von 18:00 bis 19:00 Uhr | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWh}" /> |
 | Erstes Gerät von 18:00 bis 19:00 Uhr, zweites von 19:00 bis 20:00 Uhr | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWh}" /> |
 
-Hier sind beide Zeitpläne als Leistung über den Abend. Der orange Plan lässt beide Geräte gleichzeitig laufen und springt auf eine Spitze von <InlineMath math="2\text{ kW}" />. Der violette Plan verteilt dieselbe Arbeit auf zwei Stunden und kommt nie über <InlineMath math="1\text{ kW}" />. Zähl die Fläche unter jeder Linie, also Leistung mal Zeit: Beide enthalten <InlineMath math="2\text{ kWh}" />. Die Energie bleibt gleich, nur die Spitze, die das Netz liefern muss, ändert sich.
+Hier sind beide Zeitpläne als Leistung über den Abend. Der orange Plan lässt beide Geräte gleichzeitig laufen und springt auf <InlineMath math="2\text{ kW}" />, während der violette Plan dieselbe Arbeit auf zwei Stunden verteilt und bei <InlineMath math="1\text{ kW}" /> bleibt.
+
+Zähl die Fläche unter jeder Linie, also Leistung mal Zeit. Beide Zeitpläne enthalten <InlineMath math="2\text{ kWh}" />, sodass sich nur die Spitze ändert, die das Netz liefern muss.
 
 <MathVisual
   title={<>Gleiche Energie, andere Spitze</>}
-  description={<>Leistung zweier 1-kW-Geräte von 17:00 bis 21:00 Uhr. Waagrecht: Uhrzeit in Stunden. Senkrecht: Leistung in kW.</>}
+  description={<>Leistung zweier 1-kW-Geräte von 17:00 bis 21:00 Uhr. Waagrecht: Stunden nach 17:00 Uhr. Senkrecht: Leistung in kW.</>}
+  footer={<>Beide Flächen messen 2 kWh, doch versetztes Laufen halbiert die Spitzenlast.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.3 }, y: { min: -0.6, max: 2.6 } },
@@ -111,6 +119,8 @@ Hier sind beide Zeitpläne als Leistung über den Abend. Der orange Plan lässt 
   }}
 />
 
+Deshalb achten Netzplaner genauso sehr auf den Zeitpunkt wie auf den Tagesverbrauch. Wenn Geräte versetzt laufen, reicht ein kleineres Kraftwerk für dieselbe tägliche Arbeit.
+
 ## Landesweite Quoten und örtliche Versorgungslücken
 
 Die **Elektrifizierungsquote** gibt den Anteil der Haushalte mit Stromzugang an. Die **Quote elektrifizierter Dörfer** bezeichnet den Anteil der Dörfer und städtischen Ortsteile, die bereits mit Strom versorgt werden.
@@ -128,7 +138,11 @@ Landesweite Quoten brauchen örtlichen Kontext. Die verbleibenden unversorgten G
 | Der Stromverbrauch steigt | Ob Erzeugung, Netze und Speicher dafür ausreichen |
 | Die landesweite Elektrifizierungsquote liegt nahe bei <InlineMath math="100\%" /> | Ob abgelegene Gebiete standortgerechte Lösungen erhalten |
 
-## Steigende Nachfrage erfordert mehr Systemkapazität
+## Steigende Nachfrage und Spitzenleistung
+
+Wenn der Strombedarf jedes Jahr wächst, müssen Netzplaner die **Systemkapazität** ausbauen und gleichzeitig Spitzenzeiten abfedern. Zusätzliche Kraftwerke reichen nur aus, wenn Leitungen und Speicher auch abendliche Lastspitzen tragen.
+
+### Steigende Nachfrage erfordert mehr Systemkapazität
 
 [Der weltweite Strombedarf](https://www.iea.org/reports/electricity-2026/executive-summary) wird von <InlineMath math="2026" /> bis <InlineMath math="2030" /> voraussichtlich um durchschnittlich <InlineMath math="3{,}6\%" /> pro Jahr wachsen. Wichtige Treiber sind Industrie, Elektrofahrzeuge, Klimaanlagen und Rechenzentren.
 
@@ -140,17 +154,18 @@ Ein Wachstum von <InlineMath math="3{,}6\%" /> pro Jahr verzinst sich. Die Kurve
 
 <MathVisual
   title={<>Nachfragewachstum verzinst sich</>}
-  description={<>Wachstum der Stromnachfrage um <InlineMath math="3{,}6\%" /> pro Jahr von 2026 bis 2030. Waagrecht: Jahre nach 2026. Senkrecht: Wachstum in Einheiten von <InlineMath math="4\%" />.</>}
+  description={<>Wachstum der Stromnachfrage um <InlineMath math="3{,}6\%" /> pro Jahr von 2026 bis 2030. Waagrecht: Jahre nach 2026. Senkrecht: kumuliertes Wachstum in Prozent.</>}
+  footer={<>Verzinstes Wachstum steigt auf größerer Basis bis 2030 auf rund 15,2%.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -0.3, max: 4.6 } },
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -1, max: 18 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "growth", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: ((1.036 ** (0 / 5) - 1) * 100) / 4 }, { x: 1 / 5, y: ((1.036 ** (1 / 5) - 1) * 100) / 4 }, { x: 2 / 5, y: ((1.036 ** (2 / 5) - 1) * 100) / 4 }, { x: 3 / 5, y: ((1.036 ** (3 / 5) - 1) * 100) / 4 }, { x: 4 / 5, y: ((1.036 ** (4 / 5) - 1) * 100) / 4 }, { x: 1, y: ((1.036 ** (5 / 5) - 1) * 100) / 4 }, { x: 6 / 5, y: ((1.036 ** (6 / 5) - 1) * 100) / 4 }, { x: 7 / 5, y: ((1.036 ** (7 / 5) - 1) * 100) / 4 }, { x: 8 / 5, y: ((1.036 ** (8 / 5) - 1) * 100) / 4 }, { x: 9 / 5, y: ((1.036 ** (9 / 5) - 1) * 100) / 4 }, { x: 2, y: ((1.036 ** (10 / 5) - 1) * 100) / 4 }, { x: 11 / 5, y: ((1.036 ** (11 / 5) - 1) * 100) / 4 }, { x: 12 / 5, y: ((1.036 ** (12 / 5) - 1) * 100) / 4 }, { x: 13 / 5, y: ((1.036 ** (13 / 5) - 1) * 100) / 4 }, { x: 14 / 5, y: ((1.036 ** (14 / 5) - 1) * 100) / 4 }, { x: 3, y: ((1.036 ** (15 / 5) - 1) * 100) / 4 }, { x: 16 / 5, y: ((1.036 ** (16 / 5) - 1) * 100) / 4 }, { x: 17 / 5, y: ((1.036 ** (17 / 5) - 1) * 100) / 4 }, { x: 18 / 5, y: ((1.036 ** (18 / 5) - 1) * 100) / 4 }, { x: 19 / 5, y: ((1.036 ** (19 / 5) - 1) * 100) / 4 }, { x: 4, y: ((1.036 ** (20 / 5) - 1) * 100) / 4 }] },
-      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: ((1.036 ** 4 - 1) * 100) / 4 } },
+      { id: "growth", kind: "function", appearance: "primary", formula: "(1.036^x - 1) * 100", domain: { min: 0, max: 4 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: (1.036 ** 4 - 1) * 100 } },
     ],
     labels: [
-      { key: "end", objectId: "end", at: { x: 4, y: ((1.036 ** 4 - 1) * 100) / 4 }, placement: "above-left" },
+      { key: "end", objectId: "end", at: { x: 4, y: (1.036 ** 4 - 1) * 100 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -158,7 +173,9 @@ Ein Wachstum von <InlineMath math="3{,}6\%" /> pro Jahr verzinst sich. Die Kurve
   }}
 />
 
-## Sechs Fragen zur Bewertung des Energiebedarfs
+Achte auf die leichte Krümmung nach oben. Weil jeder neue Prozentzuwachs auf einem schon größeren Bedarf aufsetzt, müssen Kraftwerke und Leitungen rechtzeitig vor der Überlastung ausgebaut werden.
+
+### Sechs Fragen zur Bewertung des Energiebedarfs
 
 Eine Zahl zum Energiebedarf reicht allein nicht aus. Prüfe auch, wer die Energie benötigt, wann sie gebraucht wird, **wie viel Energie und Leistung nötig sind**, welche Quelle genutzt wird, ob das Netz bereit ist und welche Folgen ein Ausfall hätte.
 
@@ -173,11 +190,14 @@ Eine Zahl zum Energiebedarf reicht allein nicht aus. Prüfe auch, wer die Energi
 
 Ist die tägliche Versorgung zu klein, fehlt die benötigte Energiemenge. Laufen viele Geräte gleichzeitig, kann die Spitzenleistung zu niedrig sein. Die übrigen Fragen prüfen, ob Quelle, Netz oder Speicher die Versorgung begrenzen und welche Folgen ein Ausfall hätte.
 
-So sieht die Frage nach der Spitzenleistung in einem echten Dorf aus. Hundert Haushalte an einem Mini-Netz mit <InlineMath math="50\text{ kW}" /> verbrauchen <InlineMath math="330\text{ kWh}" /> am Tag, und jeder Haushalt betreibt eine Stunde lang einen Reiskocher mit <InlineMath math="0{,}4\text{ kW}" />. Kochen alle um 18:00 Uhr, springt der Bedarf auf <InlineMath math="65\text{ kW}" />, und für diese Stunde geht das Licht aus. Verteile das Kochen auf 16:00 bis 20:00 Uhr, und die Spitze sinkt auf <InlineMath math="35\text{ kW}" />, bei genau derselben Tagesenergie.
+So sieht die Frage nach der Spitzenleistung in einem echten Dorf aus. Hundert Haushalte an einem Mini-Netz mit <InlineMath math="50\text{ kW}" /> verbrauchen <InlineMath math="330\text{ kWh}" /> am Tag, und jeder Haushalt betreibt eine Stunde lang einen Reiskocher mit <InlineMath math="0{,}4\text{ kW}" />.
+
+Kochen alle um 18:00 Uhr, springt der Bedarf auf <InlineMath math="65\text{ kW}" />, und für diese Stunde geht das Licht aus. Verteilst du das Kochen auf 16:00 bis 20:00 Uhr, sinkt die Spitze auf <InlineMath math="35\text{ kW}" /> bei genau derselben Tagesenergie.
 
 <GridLoadCurveLab
   title={<>Die Abendspitze eines Dorfs</>}
   description={<>Hundert Haushalte an einem Mini-Netz mit <InlineMath math="50\text{ kW}" /> über einen Tag. Wähle, wann das Dorf kocht, und vergleiche den Spitzenbedarf mit dem, was das Netz liefern kann.</>}
+  footer={<>Verteilte Kochzeiten halten die Tagesenergie gleich und verhindern den Ausfall.</>}
   labels={{
     capacity: <>Netzkapazität</>,
     chooseSchedule: "Wann das Dorf kocht",
@@ -191,6 +211,8 @@ So sieht die Frage nach der Spitzenleistung in einem echten Dorf aus. Hundert Ha
     viewLabel: "Dorf über einen Tag über seinem stündlichen Bedarfsdiagramm",
   }}
 />
+
+Vergleiche beide Pläne an den Anzeigen. Beide liefern <InlineMath math="330\text{ kWh}" /> am Tag, doch das Abstimmen leistungsstarker Geräte macht aus einem überlasteten Mini-Netz eine stabile Versorgung ohne zusätzlichen Generator.
 
 ## Erneuerbare Quellen müssen zum Standort passen
 
@@ -206,11 +228,14 @@ Eine erneuerbare Energiequelle eignet sich für einen Standort, wenn örtliche R
 
 Das Energiesystem muss daher zum Energiebedarf, zu den Umweltbedingungen und zu den Bedürfnissen der örtlichen Gemeinschaft passen.
 
-Am Wind sieht man, wie viel der Standort ausmacht. Die Leistung des Winds durch einen Rotor ist <InlineMath math="P=\tfrac12\rho Av^3" />, also liefert dieselbe Anlage mit einem Rotorradius von <InlineMath math="40\text{ m}" /> in einem Tal mit <InlineMath math="4\text{ m/s}" /> etwa <InlineMath math="79\text{ kW}" />, an einer Küste mit <InlineMath math="8\text{ m/s}" /> aber etwa <InlineMath math="631\text{ kW}" />: achtmal so viel bei doppelter Geschwindigkeit. Diese Windgeschwindigkeiten sind beispielhafte, gleichbleibende Mittelwerte. Ein echter Standort braucht ein Jahr gemessener Winddaten.
+Am Wind sieht man, wie viel der Standort ausmacht, denn die Leistung im Wind wächst mit der dritten Potenz der Geschwindigkeit, <InlineMath math="P=\tfrac12\rho Av^3" />. Mit <InlineMath math="40\text{ m}" /> Rotorradius liefert dieselbe Anlage bei <InlineMath math="4\text{ m/s}" /> im Tal etwa <InlineMath math="79\text{ kW}" />, bei <InlineMath math="8\text{ m/s}" /> an der Küste aber etwa <InlineMath math="631\text{ kW}" />.
+
+Das ist achtmal so viel Leistung bei doppelter Geschwindigkeit. Diese Werte sind beispielhafte, gleichbleibende Mittelwerte, sodass ein echter Standort ein ganzes Jahr gemessener Winddaten braucht.
 
 <WindRotorLab
   title={<>Eine Anlage an drei Standorten</>}
   description={<>Dieselbe Windkraftanlage steht in einem Tal, auf einem Hügel und an einer Küste. Wähle den Standort und vergleiche die Windgeschwindigkeit mit der Leistung im Wind und dem erzeugten Strom.</>}
+  footer={<>Doppelter Wind liefert achtmal so viel Leistung aus derselben Windkraftanlage.</>}
   labels={{
     chooseSite: "Standort",
     daily: <>Energie an einem Tag mit gleichmäßigem Wind</>,
@@ -225,3 +250,5 @@ Am Wind sieht man, wie viel der Standort ausmacht. Die Leistung des Winds durch 
     wind: <>Leistung im Wind durch den Rotor</>,
   }}
 />
+
+Wechsle zwischen Tal, Hügel und Küste und sieh, wie stark die Leistung schon bei mäßig mehr Wind ansteigt. Diese kubische Abhängigkeit erklärt, warum ein windreicher Höhenzug oder eine Küste weit mehr zählt als kleine Änderungen am Rotorblatt.

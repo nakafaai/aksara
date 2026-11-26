@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Dimensions",
   description:
@@ -19,7 +18,7 @@ Length, diameter, radius, and distance all have the length dimension <InlineMath
 
 A dimension does not state the measured value. It identifies the *kind of physical quantity* being measured.
 
-## Reading Powers in Dimensional Formulas
+### Reading Powers in Dimensional Formulas
 
 The visual below focuses only on the length dimension. Switch from length to area and then volume. Notice how one, two, and three **length factors** give dimensions <InlineMath math="[\mathrm{L}]" />, <InlineMath math="[\mathrm{L}]^2" />, and <InlineMath math="[\mathrm{L}]^3" />.
 
@@ -31,6 +30,7 @@ The visual below focuses only on the length dimension. Switch from length to are
       dimension.
     </>
   }
+  footer={<>Each added length factor raises the dimension power by one.</>}
   labels={{
     chooseMode: "Choose a dimension shape",
     dimension: "Dimension",
@@ -44,7 +44,9 @@ The visual below focuses only on the length dimension. Switch from length to are
   }}
 />
 
-## Base Quantities in Dimensional Analysis
+Each time you multiply by another length, the exponent on <InlineMath math="[\mathrm{L}]" /> increases by one while the base dimension stays the same. Area and volume are simply higher powers of length.
+
+### Base Quantities in Dimensional Analysis
 
 The International System of Units or SI uses <InlineMath math="7" /> base quantities. The dimension of a derived quantity is written as a **product of powers** of the seven base dimensions.
 
@@ -60,7 +62,11 @@ The International System of Units or SI uses <InlineMath math="7" /> base quanti
 
 Dimensions are written in square brackets so they are not confused with units. For example, <InlineMath math="[\mathrm{L}]" /> is the dimension of length, while <InlineMath math="\text{m}" /> is the unit meter.
 
-Base dimensions can even predict a formula. Suppose a pendulum's period <InlineMath math="T" /> depends on the bob's mass <InlineMath math="[\mathrm{M}]" />, the string's length <InlineMath math="[\mathrm{L}]" /> and gravity <InlineMath math="[\mathrm{L}][\mathrm{T}]^{-2}" />. To end up with <InlineMath math="[\mathrm{T}]" />, mass must get the power <InlineMath math="0" />, length <InlineMath math="\tfrac12" /> and gravity <InlineMath math="-\tfrac12" />, so <InlineMath math="T=k\sqrt{l/g}" />. Experiments give <InlineMath math="k=2\pi" />. Below, three bobs of <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> and <InlineMath math="500\text{ g}" /> on <InlineMath math="0.80\text{ m}" /> strings swing in step, once every <InlineMath math="1.79\text{ s}" /> with <InlineMath math="g=9.81\text{ m/s}^2" />. Change the length and look for the one that falls behind: there is none.
+Base dimensions can even predict a formula. Suppose a pendulum's period <InlineMath math="T" /> depends on bob mass <InlineMath math="[\mathrm{M}]" />, string length <InlineMath math="[\mathrm{L}]" />, and gravity <InlineMath math="[\mathrm{L}][\mathrm{T}]^{-2}" />. To end up with <InlineMath math="[\mathrm{T}]" />, mass must carry power <InlineMath math="0" />, length <InlineMath math="\tfrac12" />, and gravity <InlineMath math="-\tfrac12" />.
+
+<BlockMath math="T = k\sqrt{\frac{l}{g}}" />
+
+Experiments give <InlineMath math="k = 2\pi" />. Below, three bobs of <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" />, and <InlineMath math="500\text{ g}" /> hang on <InlineMath math="0.80\text{ m}" /> strings and swing once every <InlineMath math="1.79\text{ s}" /> at <InlineMath math="g = 9.81\text{ m/s}^2" />. Change the length and see if any bob falls behind.
 
 <PendulumPeriodLab
   title={<>What Sets a Pendulum's Period</>}
@@ -69,6 +75,7 @@ Base dimensions can even predict a formula. Suppose a pendulum's period <InlineM
       Change the string length and watch the bobs of <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> and <InlineMath math="500\text{ g}" /> keep swinging in step.
     </>
   }
+  footer={<>All three masses stay in step as only string length changes the period.</>}
   labels={{
     check: <>Dimension check</>,
     gravity: <>Gravitational acceleration</>,
@@ -78,6 +85,8 @@ Base dimensions can even predict a formula. Suppose a pendulum's period <InlineM
     viewLabel: "Three pendulums with wooden, brass and lead bobs swinging from one bar",
   }}
 />
+
+None of the three bobs falls behind at any string length. Because mass carries exponent <InlineMath math="0" /> in the dimensional match, changing the bob mass cannot alter the period.
 
 ## Deriving Dimensions from Formulas
 
@@ -98,11 +107,12 @@ Force, work, and power can also be read as dimension structures.
 [P] &= \frac{[W]}{[t]} = [\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-3}
 \end{aligned}" />
 
-Put each quantity at its powers of length, mass and time: across, up and into the page. Multiplying adds the powers, so mass <InlineMath math="\mathrm{M}" /> plus acceleration <InlineMath math="\mathrm{LT^{-2}}" /> lands force at <InlineMath math="\mathrm{LMT^{-2}}" />. Rotate the scene and follow the steps.
+Put each quantity at its powers of length, mass, and time: across, up, and into the page. Multiplying adds the powers, so mass <InlineMath math="\mathrm{M}" /> plus acceleration <InlineMath math="\mathrm{LT^{-2}}" /> lands force at <InlineMath math="\mathrm{LMT^{-2}}" />. Rotate the scene and follow the steps.
 
 <MathVisual
   title={<>Three Steps of Dimensional Analysis</>}
   description={<>Powers of L (across), M (up) and T (depth) for mass, acceleration and force.</>}
+  footer={<>Adding exponents along L, M, and T turns mass and acceleration into force.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -2.5, max: 0.5 } },
@@ -128,6 +138,8 @@ Put each quantity at its powers of length, mass and time: across, up and into th
   }}
 />
 
+Following the segments tip to tail shows that multiplying physical quantities simply adds their exponent coordinates. That single rule builds the dimension of any derived quantity step by step.
+
 ## Checking Dimensional Consistency in a Formula
 
 Dimensions can help check whether a formula form could be correct. Every term being added <Highlight>must have the same dimension</Highlight>.
@@ -152,6 +164,7 @@ Write each dimension as its powers of L and T, and multiplying adds the powers l
 <MathVisual
   title={<>Every Term Must Have the Same Dimension</>}
   description={<>Powers of length (across) and time (up) for the terms of the motion formula.</>}
+  footer={<>Both motion terms land on L, confirming they can be added together.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.8, max: 2.5 }, y: { min: -2.4, max: 0.6 } },
@@ -184,6 +197,8 @@ Write each dimension as its powers of L and T, and multiplying adds the powers l
   }}
 />
 
+Notice that the two paths start with different negative powers of time, yet multiplying by <InlineMath math="t" /> and <InlineMath math="t^2" /> brings both arrows to the exact same point <InlineMath math="\mathrm{L}" />. Any term that misses that point cannot be added to displacement.
+
 ## One Object Can Have Many Quantities
 
 A bolt and a nut look like small objects, but measuring them can involve several different quantities. That is why one object sometimes needs more than one measuring tool.
@@ -201,6 +216,8 @@ So, two measuring tools can measure quantities with the same dimension, but they
 
 The limit of the check becomes clear if we omit <InlineMath math="\frac{1}{2}" /> from the displacement formula. The expression <InlineMath math="s=v_0t+at^2" /> still has length dimensions on both sides, but gives the wrong displacement for constant nonzero acceleration. **Dimensions do not determine numerical factors** such as <InlineMath math="\frac{1}{2}" />.
 
+> Dimensional checks catch impossible formulas right away, yet they never reveal whether a pure numerical factor like <InlineMath math="\frac{1}{2}" /> is missing.
+
 Try it on a real bolt. The lab below takes one <InlineMath math="\text{M}10" /> bolt whose shank counts as a cylinder <InlineMath math="10\text{ mm}" /> across and <InlineMath math="50\text{ mm}" /> long, and shows each quantity from the table on it: its value in SI units and its dimension. Length and diameter share <InlineMath math="[\mathrm{L}]" />, while density, mass over volume, ends at <InlineMath math="[\mathrm{M}][\mathrm{L}]^{-3}" />.
 
 <BoltDimensionsLab
@@ -210,6 +227,7 @@ Try it on a real bolt. The lab below takes one <InlineMath math="\text{M}10" /> 
       Pick a quantity of this <InlineMath math="\text{M}10" /> bolt and watch which part it measures, its value in SI units and its dimension.
     </>
   }
+  footer={<>Compare how length, area, volume, mass, and density differ on one bolt.</>}
   labels={{
     chooseQuantity: "Choose a quantity",
     dimension: <>Dimension</>,
@@ -225,3 +243,5 @@ Try it on a real bolt. The lab below takes one <InlineMath math="\text{M}10" /> 
     viewLabel: "Steel bolt with the chosen quantity marked on it",
   }}
 />
+
+Switching between the six quantities highlights how one piece of steel carries distinct dimensions even when several measurements share the same base length <InlineMath math="[\mathrm{L}]" />. Knowing the dimension tells you which instrument or formula fits each property.

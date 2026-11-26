@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Dimensi",
   description:
@@ -19,7 +18,7 @@ Panjang, diameter, jejari dan jarak semuanya mempunyai dimensi panjang <InlineMa
 
 Dimensi tidak menyatakan nilai yang diukur. Dimensi memberitahu kamu *jenis kuantiti fizik* yang sedang diukur.
 
-## Membaca Kuasa dalam Rumus Dimensi
+### Membaca Kuasa dalam Rumus Dimensi
 
 Rajah di bawah hanya memberi tumpuan kepada dimensi panjang. Tukar daripada panjang kepada luas, kemudian kepada isi padu. Perhatikan cara satu, dua dan tiga **faktor panjang** memberikan dimensi <InlineMath math="[\mathrm{L}]" />, <InlineMath math="[\mathrm{L}]^2" /> dan <InlineMath math="[\mathrm{L}]^3" />.
 
@@ -31,6 +30,7 @@ Rajah di bawah hanya memberi tumpuan kepada dimensi panjang. Tukar daripada panj
       dan dimensinya.
     </>
   }
+  footer={<>Setiap faktor panjang tambahan menaikkan kuasa dimensi sebanyak satu.</>}
   labels={{
     chooseMode: "Pilih bentuk dimensi",
     dimension: "Dimensi",
@@ -44,7 +44,9 @@ Rajah di bawah hanya memberi tumpuan kepada dimensi panjang. Tukar daripada panj
   }}
 />
 
-## Kuantiti Asas dalam Analisis Dimensi
+Setiap kali kamu mendarab dengan satu lagi faktor panjang, kuasa pada <InlineMath math="[\mathrm{L}]" /> naik satu sedangkan dimensi asasnya kekal sama. Luas dan isi padu hanyalah kuasa yang lebih tinggi bagi panjang.
+
+### Kuantiti Asas dalam Analisis Dimensi
 
 Sistem Unit Antarabangsa atau S.I. menggunakan <InlineMath math="7" /> kuantiti asas. Dimensi bagi kuantiti terbitan ditulis sebagai **hasil darab kuasa** tujuh dimensi asas itu.
 
@@ -60,7 +62,11 @@ Sistem Unit Antarabangsa atau S.I. menggunakan <InlineMath math="7" /> kuantiti 
 
 Dimensi ditulis dalam kurungan segi empat supaya tidak tertukar dengan unit. Contohnya, <InlineMath math="[\mathrm{L}]" /> ialah dimensi panjang, manakala <InlineMath math="\text{m}" /> ialah unit meter.
 
-Dimensi asas malah boleh meramal sesuatu rumus. Katakan tempoh bandul <InlineMath math="T" /> bergantung pada jisim ladung <InlineMath math="[\mathrm{M}]" />, panjang tali <InlineMath math="[\mathrm{L}]" /> dan graviti <InlineMath math="[\mathrm{L}][\mathrm{T}]^{-2}" />. Supaya hasilnya <InlineMath math="[\mathrm{T}]" />, jisim mesti berkuasa <InlineMath math="0" />, panjang berkuasa <InlineMath math="\tfrac12" /> dan graviti berkuasa <InlineMath math="-\tfrac12" />, jadi <InlineMath math="T=k\sqrt{l/g}" />. Eksperimen memberikan <InlineMath math="k=2\pi" />. Di bawah, tiga ladung berjisim <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> dan <InlineMath math="500\text{ g}" /> pada tali <InlineMath math="0.80\text{ m}" /> berayun serentak, sekali setiap <InlineMath math="1.79\text{ s}" /> dengan <InlineMath math="g=9.81\text{ m/s}^2" />. Ubah panjang tali dan cari ladung yang ketinggalan: tiada satu pun.
+Dimensi asas malah boleh meramal sesuatu rumus. Katakan tempoh bandul <InlineMath math="T" /> bergantung pada jisim ladung <InlineMath math="[\mathrm{M}]" />, panjang tali <InlineMath math="[\mathrm{L}]" /> dan graviti <InlineMath math="[\mathrm{L}][\mathrm{T}]^{-2}" />. Supaya hasilnya <InlineMath math="[\mathrm{T}]" />, jisim mesti berkuasa <InlineMath math="0" />, panjang berkuasa <InlineMath math="\tfrac12" /> dan graviti berkuasa <InlineMath math="-\tfrac12" />.
+
+<BlockMath math="T = k\sqrt{\frac{l}{g}}" />
+
+Eksperimen memberikan <InlineMath math="k = 2\pi" />. Di bawah, tiga ladung berjisim <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> dan <InlineMath math="500\text{ g}" /> pada tali <InlineMath math="0.80\text{ m}" /> berayun serentak sekali setiap <InlineMath math="1.79\text{ s}" /> dengan <InlineMath math="g = 9.81\text{ m/s}^2" />. Ubah panjang tali dan lihat jika ada ladung yang ketinggalan.
 
 <PendulumPeriodLab
   title={<>Apa yang Menentukan Tempoh Bandul</>}
@@ -69,6 +75,7 @@ Dimensi asas malah boleh meramal sesuatu rumus. Katakan tempoh bandul <InlineMat
       Ubah panjang tali dan perhatikan ladung berjisim <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" /> dan <InlineMath math="500\text{ g}" /> terus berayun serentak.
     </>
   }
+  footer={<>Ketiga-tiga ladung kekal serentak kerana hanya panjang tali mengubah tempoh.</>}
   labels={{
     check: <>Semakan dimensi</>,
     gravity: <>Pecutan graviti</>,
@@ -78,6 +85,8 @@ Dimensi asas malah boleh meramal sesuatu rumus. Katakan tempoh bandul <InlineMat
     viewLabel: "Tiga bandul dengan ladung kayu, loyang dan plumbum berayun pada satu palang",
   }}
 />
+
+Tiada satu pun ladung yang ketinggalan pada sebarang panjang tali. Oleh sebab jisim berkuasa <InlineMath math="0" /> dalam padanan dimensi, perubahan jisim ladung tidak mengubah tempoh ayunan.
 
 ## Menerbitkan Dimensi daripada Rumus
 
@@ -103,6 +112,7 @@ Letakkan setiap kuantiti mengikut kuasa panjang, jisim dan masanya: melintang, k
 <MathVisual
   title={<>Tiga Langkah Analisis Dimensi</>}
   description={<>Kuasa L (melintang), M (ke atas) dan T (kedalaman) bagi jisim, pecutan dan daya.</>}
+  footer={<>Menambah kuasa L, M dan T menggabungkan jisim dan pecutan menjadi daya.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -2.5, max: 0.5 } },
@@ -128,6 +138,8 @@ Letakkan setiap kuantiti mengikut kuasa panjang, jisim dan masanya: melintang, k
   }}
 />
 
+Mengikut segmen hujung ke pangkal menunjukkan bahawa mendarab kuantiti fizik hanya menambah koordinat kuasanya. Satu aturan ini membina dimensi mana-mana kuantiti terbitan langkah demi langkah.
+
 ## Menyemak Kekonsistenan Dimensi dalam Rumus
 
 Dengan dimensi, kamu boleh menyemak sama ada bentuk sesuatu rumus mungkin betul. Setiap sebutan yang dijumlahkan <Highlight>mesti mempunyai dimensi yang sama</Highlight>.
@@ -152,6 +164,7 @@ Tulis setiap dimensi sebagai kuasa L dan T, dan pendaraban menambah kuasa itu se
 <MathVisual
   title={<>Setiap Sebutan Mesti Mempunyai Dimensi yang Sama</>}
   description={<>Kuasa panjang (melintang) dan masa (ke atas) bagi sebutan dalam rumus gerakan.</>}
+  footer={<>Kedua-dua sebutan gerakan tiba di L, membuktikan kedua-duanya boleh ditambah.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.8, max: 2.5 }, y: { min: -2.4, max: 0.6 } },
@@ -184,6 +197,8 @@ Tulis setiap dimensi sebagai kuasa L dan T, dan pendaraban menambah kuasa itu se
   }}
 />
 
+Perhatikan bahawa kedua-dua laluan bermula dengan kuasa masa negatif yang berbeza, tetapi pendaraban dengan <InlineMath math="t" /> dan <InlineMath math="t^2" /> membawa kedua-dua anak panah ke titik <InlineMath math="\mathrm{L}" /> yang sama. Sebarang sebutan yang tersasar daripada titik itu tidak boleh ditambah kepada sesaran.
+
 ## Satu Objek Boleh Mempunyai Banyak Kuantiti
 
 Bolt dan nat nampak seperti objek kecil, tetapi mengukurnya boleh melibatkan beberapa kuantiti yang berbeza. Itulah sebabnya satu objek kadang-kadang memerlukan lebih daripada satu alat pengukur.
@@ -201,6 +216,8 @@ Jadi, dua alat pengukur boleh mengukur kuantiti yang dimensinya sama, tetapi set
 
 Had semakan ini menjadi jelas jika kita buang <InlineMath math="\frac{1}{2}" /> daripada rumus sesaran. Ungkapan <InlineMath math="s=v_0t+at^2" /> masih mempunyai dimensi panjang di kedua-dua belah, tetapi memberikan sesaran yang salah bagi pecutan malar yang bukan sifar. **Dimensi tidak menentukan faktor berangka** seperti <InlineMath math="\frac{1}{2}" />.
 
+> Semakan dimensi mengesan rumus yang mustahil dengan pantas, tetapi tidak pernah dapat memberitahu sama ada faktor nombor tulen seperti <InlineMath math="\frac{1}{2}" /> tercicir.
+
 Cuba pada bolt sebenar. Makmal di bawah menggunakan sebatang bolt <InlineMath math="\text{M}10" /> yang batangnya dianggap silinder berdiameter <InlineMath math="10\text{ mm}" /> dan sepanjang <InlineMath math="50\text{ mm}" />, lalu menunjukkan setiap kuantiti daripada jadual pada bolt itu: nilainya dalam unit SI dan dimensinya. Panjang dan diameter berkongsi dimensi <InlineMath math="[\mathrm{L}]" />, manakala ketumpatan, iaitu jisim bahagi isi padu, berakhir sebagai <InlineMath math="[\mathrm{M}][\mathrm{L}]^{-3}" />.
 
 <BoltDimensionsLab
@@ -210,6 +227,7 @@ Cuba pada bolt sebenar. Makmal di bawah menggunakan sebatang bolt <InlineMath ma
       Pilih satu kuantiti bolt <InlineMath math="\text{M}10" /> ini dan perhatikan bahagian yang diukurnya, nilainya dalam unit SI dan dimensinya.
     </>
   }
+  footer={<>Bandingkan dimensi panjang, luas, isi padu, jisim dan ketumpatan satu bolt.</>}
   labels={{
     chooseQuantity: "Pilih kuantiti",
     dimension: <>Dimensi</>,
@@ -225,3 +243,5 @@ Cuba pada bolt sebenar. Makmal di bawah menggunakan sebatang bolt <InlineMath ma
     viewLabel: "Bolt keluli dengan kuantiti yang dipilih ditandakan padanya",
   }}
 />
+
+Bertukar antara enam kuantiti ini menunjukkan bagaimana sebatang keluli membawa dimensi yang berbeza walaupun beberapa ukurannya berakar pada panjang <InlineMath math="[\mathrm{L}]" />. Daripada dimensinya, kamu terus tahu alat atau rumus yang tepat bagi setiap sifat.

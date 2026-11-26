@@ -8,64 +8,70 @@ export const metadata = {
   subject: "Erneuerbare Energie",
 };
 
-## Erneuerbare Quellen stehen durch natürliche Prozesse immer wieder zur Verfügung
+## Natürliche Flüsse und Ressourcengrenzen
 
-Natürliche Prozesse stellen erneuerbare Energiequellen wieder bereit. Dazu gehören Sonnenlicht, Wind, Wasser, Biomasse, Erdwärme und Meeresenergie. Fossile Brennstoffe entstehen über Millionen Jahre.
+Sonnenlicht, Wind, fließendes Wasser, Erdwärme und Meeresenergie stammen aus fortlaufenden Naturprozessen. Biomasse kann bei guter Bewirtschaftung nachwachsen, während fossile Brennstoffe über Millionen Jahre entstehen.
 
-Erneuerbare Quellen werden [**durch natürliche Prozesse nachgeliefert**](https://www.eia.gov/energyexplained/renewable-sources/). Die verfügbare Energiemenge hängt dennoch von den Bedingungen am jeweiligen Standort ab.
+Erneuerbare Quellen werden [**durch natürliche Prozesse nachgeliefert**](https://www.eia.gov/energyexplained/renewable-sources/), doch die nutzbare Leistung hängt von Ort, Zeit und lokalen Bedingungen ab. Der Begriff beschreibt, wie eine Quelle <Highlight>durch natürliche Prozesse wieder verfügbar wird</Highlight>.
 
-Vergleiche bei Biomasse **Ernterate und Nachwuchsrate**. Wird einem Wald schneller Holz entnommen, als seine Bäume nachwachsen, schrumpft der Holzvorrat, obwohl Biomasse eine erneuerbare Ressource ist.
+Betrachte eine Solaranlage mit <InlineMath math="3\text{ kW}" /> Spitzenleistung. Ihre Leistung steigt ab Sonnenaufgang um 6:00 Uhr, erreicht mittags den Gipfel, fällt um 18:00 Uhr auf null und bleibt nachts flach. Die Tagesenergie entspricht der Fläche unter dieser Halbwelle:
 
-Die Bezeichnung „erneuerbar“ beschreibt, wie eine Quelle <Highlight>durch natürliche Prozesse wieder verfügbar wird</Highlight>. Die nutzbare Leistung hängt weiterhin vom Ort, vom Zeitpunkt und vom Zustand der Quelle ab.
+<BlockMath math="E = P_{\text{peak}} \cdot \frac{24}{\pi}\text{ h}" />
 
-So sieht „hängt von der Zeit ab“ bei einer Solaranlage aus. In einem einfachen Modell folgt eine Anlage mit <InlineMath math="3\text{ kW}" /> Spitzenleistung einer halben Sinuswelle vom Sonnenaufgang um 6:00 Uhr bis zum Sonnenuntergang um 18:00 Uhr und liefert nachts nichts. Die Energie eines Tages ist die Fläche unter der Kurve, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ h}" />, an einem klaren Tag also etwa <InlineMath math="22{,}9\text{ kWh}" />. An einem bewölkten Tag mit halber Spitze enthält die violette Kurve nur halb so viel. Die Quelle erneuert sich jeden Morgen, aber die Leistung ist nicht immer da, wenn du sie brauchst.
+An einem klaren Tag liefert die Anlage etwa <InlineMath math="22{,}9\text{ kWh}" />, an einem bewölkten Tag mit halber Spitze nur etwa <InlineMath math="11{,}5\text{ kWh}" />. Die Sonne kehrt jeden Morgen zurück, aber die Leistung steht nicht jederzeit bereit.
 
 <MathVisual
   title={<>Solarleistung über einen Tag</>}
-  description={<>Ein einfaches Modell einer 3-kW-Anlage an einem klaren Tag und an einem bewölkten Tag mit halber Spitze. Waagrecht: Uhrzeit in Einheiten von <InlineMath math="2\text{ h}" />. Senkrecht: Leistung in kW.</>}
+  description={<>Modell einer <InlineMath math="3\text{ kW}" /> Solaranlage an einem klaren und einem bewölkten Tag über <InlineMath math="24" /> Stunden.</>}
+  footer={<>Klarer Mittag erreicht 3 kW, während die Nachtstunden bei null bleiben.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 4 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: -0.3, max: 3.8 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "night-1", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "night-2", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 12, y: 0 } },
-      { id: "big", kind: "polyline", appearance: "primary", vertices: [{ x: 3, y: 0 }, { x: 25 / 8, y: 3 * Math.cos((Math.PI * -2.875) / 6) }, { x: 27 / 8, y: 3 * Math.cos((Math.PI * -2.625) / 6) }, { x: 29 / 8, y: 3 * Math.cos((Math.PI * -2.375) / 6) }, { x: 31 / 8, y: 3 * Math.cos((Math.PI * -2.125) / 6) }, { x: 33 / 8, y: 3 * Math.cos((Math.PI * -1.875) / 6) }, { x: 35 / 8, y: 3 * Math.cos((Math.PI * -1.625) / 6) }, { x: 37 / 8, y: 3 * Math.cos((Math.PI * -1.375) / 6) }, { x: 39 / 8, y: 3 * Math.cos((Math.PI * -1.125) / 6) }, { x: 41 / 8, y: 3 * Math.cos((Math.PI * -0.875) / 6) }, { x: 43 / 8, y: 3 * Math.cos((Math.PI * -0.625) / 6) }, { x: 45 / 8, y: 3 * Math.cos((Math.PI * -0.375) / 6) }, { x: 47 / 8, y: 3 * Math.cos((Math.PI * -0.125) / 6) }, { x: 49 / 8, y: 3 * Math.cos((Math.PI * 0.125) / 6) }, { x: 51 / 8, y: 3 * Math.cos((Math.PI * 0.375) / 6) }, { x: 53 / 8, y: 3 * Math.cos((Math.PI * 0.625) / 6) }, { x: 55 / 8, y: 3 * Math.cos((Math.PI * 0.875) / 6) }, { x: 57 / 8, y: 3 * Math.cos((Math.PI * 1.125) / 6) }, { x: 59 / 8, y: 3 * Math.cos((Math.PI * 1.375) / 6) }, { x: 61 / 8, y: 3 * Math.cos((Math.PI * 1.625) / 6) }, { x: 63 / 8, y: 3 * Math.cos((Math.PI * 1.875) / 6) }, { x: 65 / 8, y: 3 * Math.cos((Math.PI * 2.125) / 6) }, { x: 67 / 8, y: 3 * Math.cos((Math.PI * 2.375) / 6) }, { x: 69 / 8, y: 3 * Math.cos((Math.PI * 2.625) / 6) }, { x: 71 / 8, y: 3 * Math.cos((Math.PI * 2.875) / 6) }, { x: 9, y: 0 }] },
-      { id: "small", kind: "polyline", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 26 / 8, y: 1.5 * Math.cos((Math.PI * -2.75) / 6) }, { x: 28 / 8, y: 1.5 * Math.cos((Math.PI * -2.5) / 6) }, { x: 30 / 8, y: 1.5 * Math.cos((Math.PI * -2.25) / 6) }, { x: 32 / 8, y: 1.5 * Math.cos((Math.PI * -2) / 6) }, { x: 34 / 8, y: 1.5 * Math.cos((Math.PI * -1.75) / 6) }, { x: 36 / 8, y: 1.5 * Math.cos((Math.PI * -1.5) / 6) }, { x: 38 / 8, y: 1.5 * Math.cos((Math.PI * -1.25) / 6) }, { x: 40 / 8, y: 1.5 * Math.cos((Math.PI * -1) / 6) }, { x: 42 / 8, y: 1.5 * Math.cos((Math.PI * -0.75) / 6) }, { x: 44 / 8, y: 1.5 * Math.cos((Math.PI * -0.5) / 6) }, { x: 46 / 8, y: 1.5 * Math.cos((Math.PI * -0.25) / 6) }, { x: 48 / 8, y: 1.5 * Math.cos((Math.PI * 0) / 6) }, { x: 50 / 8, y: 1.5 * Math.cos((Math.PI * 0.25) / 6) }, { x: 52 / 8, y: 1.5 * Math.cos((Math.PI * 0.5) / 6) }, { x: 54 / 8, y: 1.5 * Math.cos((Math.PI * 0.75) / 6) }, { x: 56 / 8, y: 1.5 * Math.cos((Math.PI * 1) / 6) }, { x: 58 / 8, y: 1.5 * Math.cos((Math.PI * 1.25) / 6) }, { x: 60 / 8, y: 1.5 * Math.cos((Math.PI * 1.5) / 6) }, { x: 62 / 8, y: 1.5 * Math.cos((Math.PI * 1.75) / 6) }, { x: 64 / 8, y: 1.5 * Math.cos((Math.PI * 2) / 6) }, { x: 66 / 8, y: 1.5 * Math.cos((Math.PI * 2.25) / 6) }, { x: 68 / 8, y: 1.5 * Math.cos((Math.PI * 2.5) / 6) }, { x: 70 / 8, y: 1.5 * Math.cos((Math.PI * 2.75) / 6) }, { x: 9, y: 0 }] },
-      { id: "big-top", kind: "point", appearance: "primary", at: { x: 6, y: 3 * Math.cos((Math.PI * 0) / 6) } },
-      { id: "small-top", kind: "point", appearance: "secondary", at: { x: 6, y: 1.5 * Math.cos((Math.PI * 0) / 6) } },
+      { id: "night-1", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "night-2", kind: "segment", appearance: "reference", from: { x: 18, y: 0 }, to: { x: 24, y: 0 } },
+      { id: "clear-day", kind: "function", appearance: "primary", formula: "3*sin((x-6)*pi/12)", domain: { min: 6, max: 18 } },
+      { id: "cloudy-day", kind: "function", appearance: "secondary", formula: "1.5*sin((x-6)*pi/12)", domain: { min: 6, max: 18 } },
+      { id: "clear-top", kind: "point", appearance: "primary", at: { x: 12, y: 3 } },
+      { id: "cloudy-top", kind: "point", appearance: "secondary", at: { x: 12, y: 1.5 } },
     ],
     labels: [
-      { key: "big", objectId: "big-top", at: { x: 6, y: 3 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
-      { key: "small", objectId: "small-top", at: { x: 6, y: 1.5 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+      { key: "clear", objectId: "clear-top", at: { x: 12, y: 3 }, placement: "above" },
+      { key: "cloudy", objectId: "cloudy-top", at: { x: 12, y: 1.5 }, placement: "above" },
     ],
   }}
   labels={{
-    big: <InlineMath math="P_{\text{peak}}=3\text{ kW},\ E\approx22{,}9\text{ kWh}" />,
-    small: <InlineMath math="P_{\text{peak}}=1{,}5\text{ kW},\ E\approx11{,}5\text{ kWh}" />,
+    clear: <InlineMath math="3\text{ kW},\ 22{,}9\text{ kWh}" />,
+    cloudy: <InlineMath math="1{,}5\text{ kW},\ 11{,}5\text{ kWh}" />,
   }}
 />
 
-Frage zuerst: „Ist diese Quelle erneuerbar?“ Prüfe danach, ob am benötigten Ort und zur benötigten Zeit genug davon verfügbar ist. Bei bewirtschafteten Ressourcen wie Biomasse und Wasser müssen zusätzlich die Grenzen des Ökosystems und die örtliche Erholungsrate geprüft werden.
+Der Vergleich beider Kurven zeigt, warum der Zeitpunkt ebenso zählt wie die Erneuerbarkeit. Dieselbe Anlage liefert bei Wolken nur die halbe Tagesfläche und nachts überhaupt keine Leistung.
 
-Probier es mit ausgedachten Zahlen: Ein Wald hat <InlineMath math="100" /> Einheiten Holz und wächst jedes Jahr um <InlineMath math="2" /> Einheiten nach. Die drei Linien unten ernten <InlineMath math="h=1" />, <InlineMath math="2" /> und <InlineMath math="3" /> Einheiten pro Jahr. Nur die pinke Linie, die schneller erntet, als der Wald nachwächst, verliert Holz, obwohl die Quelle erneuerbar ist.
+### Ernterate und Nachwuchs im Gleichgewicht
+
+Prüfe nach der Erneuerbarkeit immer, ob sich der Vorrat vor Ort so schnell erholt, wie er genutzt wird. Vergleiche bei Biomasse stets **Ernterate und Nachwuchsrate**.
+
+Ein bewirtschafteter Wald beginnt mit <InlineMath math="100" /> Einheiten Holz und wächst jedes Jahr um <InlineMath math="2" /> Einheiten nach. Die drei Geraden zeigen den Vorrat über zwanzig Jahre bei Entnahmen von <InlineMath math="h=1" />, <InlineMath math="2" /> und <InlineMath math="3" /> Einheiten pro Jahr.
 
 <MathVisual
   title={<>Erntemenge gegen Nachwachsen</>}
-  description={<>Ein ausgedachter Vorrat von <InlineMath math="100" /> Einheiten, der um <InlineMath math="2" /> Einheiten pro Jahr nachwächst, mit drei Ernteraten h. Waagrecht: Jahre in Einheiten von <InlineMath math="5" />. Senkrecht: Vorrat in Einheiten von <InlineMath math="25" />.</>}
+  description={<>Holzvorrat ab <InlineMath math="100" /> Einheiten bei <InlineMath math="2" /> Einheiten Zuwachs pro Jahr für drei Ernteraten über <InlineMath math="20" /> Jahre.</>}
+  footer={<>Nur eine Entnahme über der Zuwachsrate lässt den Holzvorrat schrumpfen.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: 2.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 23 }, y: { min: 70, max: 130 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "h1", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 1) * 20) / 25 } },
-      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 2) * 20) / 25 } },
-      { id: "h3", kind: "segment", appearance: "warning", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 3) * 20) / 25 } },
+      { id: "h1", kind: "segment", appearance: "construction", from: { x: 0, y: 100 }, to: { x: 20, y: 120 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 20, y: 100 } },
+      { id: "h3", kind: "segment", appearance: "warning", from: { x: 0, y: 100 }, to: { x: 20, y: 80 } },
     ],
     labels: [
-      { key: "h1", objectId: "h1", at: { x: 4, y: (100 + (2 - 1) * 20) / 25 }, placement: "right" },
-      { key: "h2", objectId: "h2", at: { x: 4, y: (100 + (2 - 2) * 20) / 25 }, placement: "right" },
-      { key: "h3", objectId: "h3", at: { x: 4, y: (100 + (2 - 3) * 20) / 25 }, placement: "right" },
+      { key: "h1", objectId: "h1", at: { x: 20, y: 120 }, placement: "right" },
+      { key: "h2", objectId: "h2", at: { x: 20, y: 100 }, placement: "right" },
+      { key: "h3", objectId: "h3", at: { x: 20, y: 80 }, placement: "right" },
     ],
   }}
   labels={{
@@ -75,27 +81,30 @@ Probier es mit ausgedachten Zahlen: Ein Wald hat <InlineMath math="100" /> Einhe
   }}
 />
 
-## Eine Quelle muss zum Standort passen
+Bleibt die Ernte bei höchstens <InlineMath math="2" /> Einheiten pro Jahr, bleibt der Wald stabil oder wächst. Bei <InlineMath math="h=3" /> sinkt der Vorrat stetig, sodass selbst eine erneuerbare Quelle übernutzt werden kann.
 
-Wähle eine erneuerbare Energiequelle anhand der **physikalischen Bedingungen am Standort**. Jede Quelle benötigt bestimmte Mengen an Sonnenlicht, Wind, Wasserdurchfluss, Wärme oder nutzbarem Material.
+### Jede Quelle passend zum Standort wählen
+
+Wähle eine erneuerbare Energiequelle anhand der **physikalischen Bedingungen am Standort**. Jede Technik benötigt eine andere Kombination aus Licht, Wind, Wasser, Erdwärme oder Rohstoffen.
 
 | Erneuerbare Quelle | Woran ihre Eignung geprüft wird |
-| :--------------- | :------------- |
-| Sonnenlicht | Ausgangspunkt ist die Sonnenstrahlung. Danach wird geprüft, ob die Panelfläche ausreichend frei von Schatten ist. |
-| Wind | Ausgangspunkt ist die kinetische Energie der Luft. Danach wird geprüft, ob die Windgeschwindigkeit für eine Turbine ausreichend und beständig ist. |
-| Wasser | Ausgangspunkt sind die potenzielle und kinetische Energie des Wassers. Danach wird geprüft, ob der Höhenunterschied ausreicht und der Durchfluss über die Jahreszeiten hinweg genügend groß bleibt. |
-| Erdwärme | Ausgangspunkt ist die thermische Energie im Erdinneren. Danach wird geprüft, ob sich das unterirdische Reservoir sicher erschließen lässt. |
-| Biomasse | Ausgangspunkt ist chemische Energie in organischem Material. Danach wird geprüft, ob die Nutzung des Rohstoffs mit der Nahrungsmittelversorgung konkurriert oder Ökosysteme schädigt. |
-| Biogas | Ausgangspunkt ist chemische Energie in Methan. Danach werden eine verlässliche Versorgung mit organischen Reststoffen und die Wartung der Anlage geprüft. |
-| Meeresenergie | Ausgangspunkt ist die mechanische Energie von Wellen, Gezeiten und Strömungen oder die thermische Energie aus dem Temperaturunterschied zwischen warmem Oberflächenwasser und kaltem Tiefenwasser. Danach wird geprüft, ob Wellen, Strömungen, Gezeiten oder Temperaturunterschiede am Standort für die gewählte Technik ausreichen. |
+| :----------------- | :------------------------------ |
+| Sonnenlicht | Prüfe die verfügbare Einstrahlung und ob die Module frei von dauerhaftem Schatten bleiben. |
+| Wind | Beginne bei der kinetischen Energie der Luft und prüfe, ob der Wind stetig genug weht. |
+| Wasser | Beginne bei Lage- und Bewegungsenergie und prüfe Fallhöhe sowie Durchfluss über die Jahreszeiten. |
+| Erdwärme | Beginne bei der inneren Wärme der Erde und prüfe, ob sich das Reservoir sicher erschließen lässt. |
+| Biomasse | Beginne bei der chemischen Energie im Rohstoff und prüfe Folgen für Nahrung und Ökosysteme. |
+| Biogas | Beginne bei der chemischen Energie in Methan und sichere stetige Reststoffe sowie Wartung. |
+| Meeresenergie | Beginne bei Wellen, Gezeiten, Strömungen oder Meerestemperaturen und prüfe deren lokale Stärke. |
 
-Nutze diese Bedingungen, um eine Quelle mit dem Standort zu vergleichen. Bei Solarmodulen werden Sonneneinstrahlung, verfügbare Fläche, Wetter, Wartung und Strombedarf gemeinsam geprüft.
+Auch der Einfallswinkel bestimmt den Solarertrag am Standort. Senkrechte Strahlen liefern rund <InlineMath math="1\,000\text{ W/m}^2" />, während eine um den Winkel <InlineMath math="\theta" /> weggedrehte Fläche denselben Strahl dehnt und nur <InlineMath math="1\,000\cos\theta\text{ W/m}^2" /> auffängt.
 
-Das Sonnenlicht an einem Standort hängt auch vom Einfallswinkel ab. Strahlen senkrecht auf eine Fläche bringen etwa <InlineMath math="1\,000\text{ W/m}^2" />. Ist die Fläche um den Winkel <InlineMath math="\theta" /> weggedreht, verteilen sich dieselben Strahlen, und jeder Quadratmeter fängt <InlineMath math="1\,000\cos\theta\text{ W/m}^2" />. Steht die Sonne <InlineMath math="30^\circ" /> hoch, fängt ein flaches Modul <InlineMath math="500\text{ W/m}^2" />. Kippst du es <InlineMath math="60^\circ" /> zur Sonne, fängt es die vollen <InlineMath math="1\,000\text{ W/m}^2" />. Zähl beim Kippen die Strahlen, die auf das Modul treffen.
+Steht die Sonne <InlineMath math="30^\circ" /> hoch, fängt ein flaches Modul <InlineMath math="500\text{ W/m}^2" />, doch gekippt um <InlineMath math="60^\circ" /> zur Sonne fängt es volle <InlineMath math="1\,000\text{ W/m}^2" />. Kippe das Modul unten und zähle die auftreffenden Strahlen.
 
 <SolarPanelAngleLab
   title={<>Ein Modul zur Sonne kippen</>}
   description={<>Parallele Sonnenstrahlen fallen auf ein Modul mit <InlineMath math="1{,}6\text{ m}^2" />. Bewege die Sonne und kippe das Modul, und vergleiche dann den Winkel zwischen Strahlen und Flächennormale mit dem Licht und der Leistung, die es einfängt.</>}
+  footer={<>Die Normale auf die Sonne auszurichten maximiert Licht und Modulleistung.</>}
   labels={{
     incidence: <>Winkel zwischen Strahlen und Normale</>,
     irradiance: <>Licht pro Quadratmeter</>,
@@ -106,23 +115,26 @@ Das Sonnenlicht an einem Standort hängt auch vom Einfallswinkel ab. Strahlen se
   }}
 />
 
-## Jede Quelle hat eine Umwandlungskette
+Ein kleinerer Winkel zwischen Strahlen und Flächennormale bündelt mehr Licht auf derselben Fläche. Darum beeinflussen Dachneigung und Breitengrad unmittelbar den jährlichen Stromertrag einer Solaranlage.
 
-Jede erneuerbare Quelle sollte als Energieumwandlungspfad erklärbar sein. Wenn der Weg unklar ist, ist die Behauptung schwer zu überprüfen.
+## Umwandlungsketten und besondere Bedingungen
 
-Nenne die Quelle und ihre ursprüngliche Energieform. Bestimme dann die Anlage, die diese Energie **in Nutzenergie umwandelt**.
+Jede erneuerbare Anlage folgt einer **Umwandlungskette** vom Naturfluss zur Nutzenergie. Wer sowohl den Energiewandler als auch die lokalen physikalischen Grenzen kennt, kann jede Leistungsangabe sauber einordnen und prüfen.
 
-[Photovoltaikzellen](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php) wandeln Sonnenlicht direkt in elektrische Energie um. Photovoltaik bedeutet, dass das Material einer Solarzelle beim Absorbieren von Licht eine elektrische Spannung erzeugt.
+### Den Weg von der Quelle zum Generator verfolgen
 
-In einer [Windkraftanlage](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work) setzt der Wind die Rotorblätter in Bewegung. Der Rotor treibt einen Generator an, der Strom erzeugt.
+Nenne bei jeder erneuerbaren Quelle ihre anfängliche Energieform und bestimme die Anlage, die diese Energie **in Nutzenergie umwandelt**.
 
-Bei der [Wasserkraft](https://www.energy.gov/cmei/water/how-hydropower-works) hängt die verfügbare Energie von Wasserdurchfluss und Höhenunterschied ab. Das Wasser strömt durch eine Druckrohrleitung, treibt eine Turbine an und bewegt dadurch einen Generator. Der Generator erzeugt Strom.
+[Photovoltaikzellen](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php) wandeln Sonnenlicht direkt in Strom um, weil ihr Halbleitermaterial beim Absorbieren von Licht eine elektrische Spannung erzeugt.
 
-Jeder Weg endet an einem Generator, aber jeder startet mit einem anderen Anteil der ankommenden Energie. Dreh die Balken mit typischen Werten: Eine Solarzelle macht etwa ein Fünftel des Sonnenlichts zu Strom, eine Windturbine kommt nie über die Betz-Grenze, und eine Wasserturbine gibt fast die ganze Energie des Wassers weiter.
+In einer [Windkraftanlage](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work) treibt bewegte Luft Rotorblätter und Generator an. Bei der [Wasserkraft](https://www.energy.gov/cmei/water/how-hydropower-works) strömt Wasser durch eine Druckrohrleitung auf eine Turbine, die den Generator dreht.
+
+Jeder Weg wandelt einen anderen Anteil der ankommenden Energie in Strom um. Vergleiche unten typische Wirkungsgrade zusammen mit der theoretischen Betz-Grenze für Wind.
 
 <MathVisual
   title={<>Drei Umwandlungswege</>}
-  description={<>Typische Wirkungsgrade einer Solarzelle, einer Windturbine und einer Wasserturbine, mit der Betz-Grenze für Wind (rosa). Ein Gitterschritt nach oben entspricht <InlineMath math="10" /> Prozent.</>}
+  description={<>Typische Wirkungsgrade einer Solarzelle, einer Windturbine und einer Wasserturbine im Vergleich zur Betz-Grenze für Wind.</>}
+  footer={<>Wasser liegt nahe 90 %, Wind unter 59,3 % und Solar nahe 20 %.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 10.5 }, z: { min: -1.5, max: 1.5 } },
@@ -144,31 +156,36 @@ Jeder Weg endet an einem Generator, aber jeder startet mit einem anderen Anteil 
     pv: <InlineMath math="\text{Solarzelle}\approx20\%" />,
     wind: <InlineMath math="\text{Windturbine}\approx45\%" />,
     hydro: <InlineMath math="\text{Wasserturbine}\approx90\%" />,
-    betz: <InlineMath math="\text{Betz-Grenze}\ \tfrac{16}{27}\approx59{,}3\%" />,
+    betz: <InlineMath math="\text{Betz}\approx59{,}3\%" />,
   }}
 />
 
-## Einige Quellen brauchen besondere Bedingungen
+Ein hoher Wirkungsgrad macht eine Technik nicht überall zur besten Wahl. Solarzellen nutzen zwar einen kleineren Anteil des Lichts als Wasserturbinen beim Flusswasser, doch Sonnenlicht erreicht auch Dächer weitab jedes Flusses.
 
-Erdwärme, Biogas und Meeresenergie erfordern jeweils bestimmte örtliche Bedingungen.
+### Grenzen von Erdwärme Biogas und Meeresenergie
 
-[**Geothermie**](https://www.energy.gov/hgeo/geothermal/geothermal-basics) ist Wärmeenergie aus dem Erdinneren. Geothermische Ressourcen können natürliche oder technisch erschlossene Warmwasserreservoirs unter der Erdoberfläche sein.
+Erdwärme, Biogas und Meeresenergie stellen engere Ansprüche an Geologie, Stoffströme oder Küstenbedingungen als Solar- und Windanlagen.
 
-**Biogas** entsteht, wenn Mikroorganismen organisches Material ohne Sauerstoff abbauen. Dieser Vorgang heißt [*anaerobe Vergärung*](https://www.epa.gov/anaerobic-digestion/basic-information-about-anaerobic-digestion). Biogas besteht vor allem aus Methan, <InlineMath math="\text{CH}_4" />, und Kohlendioxid, <InlineMath math="\text{CO}_2" />.
+[**Geothermie**](https://www.energy.gov/hgeo/geothermal/geothermal-basics) erschließt heiße Wasser- oder Dampfreservoirs unter der Erdoberfläche. **Biogas** entsteht bei der [*anaeroben Vergärung*](https://www.epa.gov/anaerobic-digestion/basic-information-about-anaerobic-digestion), wenn Mikroben feuchte organische Reststoffe ohne Sauerstoff zu einem Brenngas reich an <InlineMath math="\text{CH}_4" /> und <InlineMath math="\text{CO}_2" /> umsetzen.
 
-[**Meeresenergie**](https://www.energy.gov/cmei/water/marine-energy-basics) kann aus Wellen, Gezeiten, Strömungen und Temperaturunterschieden im Meerwasser stammen. Entsprechende Anlagen können die kinetische Energie von Wellen, Strömungen und Gezeiten nutzen. Die Meereswärmekraft nutzt dagegen den Temperaturunterschied zwischen warmem Oberflächenwasser und kälterem Tiefenwasser.
+[**Meeresenergie**](https://www.energy.gov/cmei/water/marine-energy-basics) nutzt entweder die Bewegung von Wellen, Gezeiten und Strömungen oder die Temperaturdifferenz zwischen warmem Oberflächenwasser und kalter Tiefsee.
 
 | Quelle | Praktische Grenze |
-| :----- | :-------------- |
-| Erdwärme | Die Wärmequelle kann Tag und Nacht stabil sein, Bohrungen und Geologie müssen jedoch geeignet sein. |
-| Biogas | Organische Abfälle können zu Brennstoff werden, doch Rohstoffversorgung und Anlagenwartung müssen dauerhaft gesichert sein. |
-| Ozean | Wellen, Strömungen und Gezeiten können Umwandlungsanlagen antreiben, doch Standortzugang, Korrosion und Sicherheit auf See müssen berücksichtigt werden. |
+| :----- | :---------------- |
+| Erdwärme | Die Wärmequelle läuft Tag und Nacht stabil, doch Geologie und Bohrtiefe müssen passen. |
+| Biogas | Der Betrieb braucht verlässliche organische Reststoffe und regelmäßige Wartung des Fermenters. |
+| Ozean | Küstenanlagen kämpfen mit Salzwasserkorrosion, schwierigem Zugang und Sicherheit auf See. |
 
-Deshalb braucht Geothermie ein ausreichend heißes Reservoir. In diesem Kraftwerk steigen jede Sekunde <InlineMath math="100\text{ kg}" /> Wasser auf, geben Wärme ab, bis sie auf <InlineMath math="70^\circ\text{C}" /> abgekühlt sind, und fließen wieder hinab. Eine Wärmekraftmaschine zwischen diesem Wasser und <InlineMath math="27^\circ\text{C}" /> warmer Luft kann <InlineMath math="\eta=1-T_c/T_h" /> nie überschreiten, und ein echtes Kraftwerk erreicht etwa <InlineMath math="40\%" /> dieser Grenze. Bei <InlineMath math="200^\circ\text{C}" /> liefert das Wasser <InlineMath math="54{,}6\text{ MW}" /> Wärme, und das Kraftwerk erzeugt etwa <InlineMath math="8\text{ MW}" />. Heißeres Wasser liefert mehr Wärme und wandelt einen größeren Anteil davon um.
+Geothermiestrom unterliegt zudem der Thermodynamik von Wärmekraftmaschinen. Steigen jede Sekunde <InlineMath math="100\text{ kg}" /> heißes Wasser auf, kühlen auf <InlineMath math="70^\circ\text{C}" /> ab und geben Wärme an <InlineMath math="27^\circ\text{C}" /> Luft ab, begrenzt der Carnot-Wirkungsgrad jede Umwandlung:
+
+<BlockMath math="\eta = 1 - \frac{T_c}{T_h}" />
+
+Reale Anlagen erreichen rund <InlineMath math="40\%" /> dieser Grenze. Bei <InlineMath math="200^\circ\text{C}" /> liefert der Kreislauf <InlineMath math="54{,}6\text{ MW}" /> Wärme und erzeugt rund <InlineMath math="8\text{ MW}" /> Strom.
 
 <GeothermalLoopLab
   title={<>Ein Geothermiekreislauf im Untergrund</>}
   description={<>Heißes Wasser steigt in der Förderbohrung auf, gibt seine Wärme an das Kraftwerk ab und kehrt mit <InlineMath math="70^\circ\text{C}" /> zurück. Ändere die Reservoirtemperatur und vergleiche entnommene Wärme, ideale Grenze, realen Wirkungsgrad und Strom.</>}
+  footer={<>Höhere Reservoirtemperatur steigert sowohl Wärmemenge als auch Wirkungsgrad.</>}
   labels={{
     electric: <>Strom</>,
     heat: <>Dem Wasser entnommene Wärme</>,
@@ -179,25 +196,29 @@ Deshalb braucht Geothermie ein ausreichend heißes Reservoir. In diesem Kraftwer
   }}
 />
 
-## Indonesischer Kontext
+Eine höhere Reservoirtemperatur steigert den Stromertrag überproportional, weil heißeres Wasser mehr Wärme pro Kilogramm liefert und gleichzeitig einen größeren Anteil davon in Strom umwandelt.
 
-Das indonesische Ministerium für Energie und Bodenschätze verwendet den Begriff „**Neue und erneuerbare Energie**“, in der indonesischen Politik als EBT abgekürzt, für Solar- und Windenergie, Wasserkraft, Bioenergie, Geothermie und Meeresenergie. Eine [Pressemitteilung](https://www.esdm.go.id/en/media-center/news-archives/miliki-potensi-ebt-3686-gw-sekjen-rida-modal-utama-jalankan-transisi-energi-indonesia) vom <InlineMath math="4" />. Februar <InlineMath math="2023" /> schätzte Indonesiens EBT-Potenzial auf ungefähr <InlineMath math="3\,686 \text{ GW}" />.
+## Potenzial und physikalische Prüfung
 
-Das Potenzial beschreibt hier eine mögliche installierbare Leistung. Wie viel Strom tatsächlich erzeugt wird, hängt außerdem von Technik, Kosten, Netzzugang, Genehmigungen, Wartung, Betriebsdauer und Umweltschutz ab.
+Nationale Potenzialschätzungen zeigen Ausbauräume, während physikalische Standortprüfungen klären, ob ein konkretes Projekt tatsächlich trägt.
+
+Indonesiens Energieministerium fasst Solar, Wind, Wasser, Bioenergie, Geothermie und Meeresenergie als **Neue und erneuerbare Energie** (EBT) zusammen. Eine [amtliche Schätzung](https://www.esdm.go.id/en/media-center/news-archives/miliki-potensi-ebt-3686-gw-sekjen-rida-modal-utama-jalankan-transisi-energi-indonesia) vom <InlineMath math="4" />. Februar <InlineMath math="2023" /> bezifferte das Gesamtpotenzial auf etwa <InlineMath math="3\,686\text{ GW}" />.
+
+Dieser Wert beschreibt eine theoretisch installierbare Leistung im ganzen Land. Wie viel Strom tatsächlich ankommt, bestimmen Stromnetze, Kosten, Genehmigungen, Betriebsstunden, Wartung und Naturschutz.
 
 > Eine erneuerbare Energiequelle, die an einem Ort gut funktioniert, kann an einem anderen ungeeignet sein.
 
-Ein einfaches Beispiel: Ein Gebiet mit großen Dachflächen und häufig klarem Himmel kann sich gut für Solarenergie eignen. Ein Dorf an einem verlässlich fließenden Fluss bietet möglicherweise bessere Bedingungen für ein kleines Wasserkraftsystem. Vergleiche die anfängliche Energieform, die Umwandlungsanlage und die Grenzen der Ressource, um die Eignung des Standorts zu beurteilen.
+Sonnige Dachflächen eignen sich für Photovoltaik, während ein Dorf an einem stetigen Bergfluss oft verlässlicheren Strom aus kleiner Wasserkraft gewinnt, sofern das Flussökosystem geschützt bleibt.
 
-## Prüfung der Angaben zu erneuerbaren Energien
+## Behauptungen physikalisch prüfen
 
-Behauptungen über erneuerbare Energien lassen sich mit einigen kurzen Fragen prüfen.
+Prüfe allgemeine Aussagen über erneuerbare Energien mit **vier kurzen physikalischen Fragen**, bevor du ein pauschales Versprechen übernimmst.
 
 | Überzeugend klingende Behauptung | Physikalische Prüfung |
-| :------------- | :------------ |
-| Diese Quelle wird niemals erschöpft sein. | Prüfe, **wann und wo der natürliche Fluss verfügbar ist**. Bei bewirtschafteter Biomasse und Wassernutzung sind zusätzlich Erholung und Ökosystemgrenzen zu prüfen. |
-| Diese Quelle funktioniert überall. | Prüfe lokale Wetter-, Geologie-, Wasser-, Wind-, Rohstoff- oder Meeresbedingungen. |
-| Diese Quelle ist immer umweltfreundlich. | Prüfe Folgen für Flächen, Abfälle, Rohstoffe, Ökosysteme und Bauarbeiten. |
-| Diese Quelle ist immer günstig. | Prüfe Anlage, Wartung, Speicherung, Netzanschluss und Lebensdauer. |
+| :------------------------------- | :-------------------- |
+| Diese Quelle wird niemals erschöpft sein. | Prüfe, **wann und wo der natürliche Fluss verfügbar ist**, sowie Erholungsgrenzen bei Biomasse und Wasser. |
+| Diese Quelle funktioniert überall. | Prüfe Wetter, Geologie, Wasser, Wind, Rohstoffe oder Meeresbedingungen direkt vor Ort. |
+| Diese Quelle ist immer umweltfreundlich. | Prüfe Flächenbedarf, Abfälle, Rohstoffkonkurrenz, Ökosysteme und Baufolgen. |
+| Diese Quelle ist immer günstig. | Prüfe Anlage, Wartung, Speicher, Netzanschluss und Lebensdauer. |
 
-Eine vollständige Bewertung erfasst die natürliche Quelle, die Umwandlungskette, die Nutzenergie, die Standortgrenzen und die messbaren Auswirkungen.
+Eine belastbare Bewertung verbindet stets Naturquelle, Umwandlungskette, Nutzenergie, Standortgrenzen und messbare Umweltfolgen.

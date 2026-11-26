@@ -18,38 +18,42 @@ export const metadata = {
 
 Das Symbol <InlineMath math="\gg" /> bedeutet „viel größer als“. Es reicht also nicht zu fragen, ob ein Brennstoff vorhanden ist. Ebenso wichtig ist, wie schnell sein Vorrat bei dauerhafter Nutzung schrumpft.
 
-Probier die Ungleichung mit runden, ausgedachten Zahlen aus. Ein Vorrat von <InlineMath math="S_0=100" /> Einheiten wird mit <InlineMath math="r_{\mathrm{use}}=2" /> Einheiten pro Jahr verbraucht und schrumpft also jedes Jahr um <InlineMath math="r_{\mathrm{use}}-r_{\mathrm{form}}" />. Würde die Natur die Hälfte des Verbrauchs nachbilden, würde die violette Linie ganze <InlineMath math="100" /> Jahre reichen, also doppelt so lange. Bei <InlineMath math="r_{\mathrm{use}}\gg r_{\mathrm{form}}" /> erreicht die orange Linie schon nach etwa <InlineMath math="50" /> Jahren null, fast so, als würde gar nichts nachgebildet.
+Probier die Ungleichung mit runden Beispielzahlen aus. Ein Vorrat von <InlineMath math="S_0=100" /> Einheiten wird mit <InlineMath math="r_{\mathrm{use}}=2" /> Einheiten pro Jahr verbraucht und schrumpft also jedes Jahr um <InlineMath math="r_{\mathrm{use}}-r_{\mathrm{form}}" />.
+
+Würde die Natur die Hälfte des Verbrauchs nachbilden, würde die violette Linie ganze <InlineMath math="100" /> Jahre reichen, also doppelt so lange. Bei <InlineMath math="r_{\mathrm{use}}\gg r_{\mathrm{form}}" /> erreicht die orange Linie schon nach etwa <InlineMath math="50" /> Jahren null, fast so, als würde gar nichts nachgebildet.
 
 <MathVisual
   title={<>Ein Vorrat, der zu langsam entsteht</>}
-  description={<>Ein ausgedachter Vorrat von <InlineMath math="100" /> Einheiten mit <InlineMath math="2" /> Einheiten Verbrauch pro Jahr und zwei Bildungsraten. Waagrecht: Zeit in Einheiten von <InlineMath math="20" /> Jahren. Senkrecht: Vorrat in Einheiten von <InlineMath math="20" />.</>}
+  description={<>Ein Beispielvorrat von <InlineMath math="100" /> Einheiten mit <InlineMath math="2" /> Einheiten Verbrauch pro Jahr und zwei Bildungsraten. Waagrecht: Zeit in Jahren. Senkrecht: Restvorrat in Einheiten.</>}
+  footer={<>Bildet sich fast nichts neu, leert sich der Vorrat doppelt so schnell.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.8, max: 5.8 } },
+    frame: { kind: "cartesian", x: { min: -5, max: 115 }, y: { min: -10, max: 115 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "slow", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 5, y: 0 } },
-      { id: "fast", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: 100 / (2 - 2 / 1000) / 20, y: 0 } },
-      { id: "fast-empty", kind: "point", appearance: "primary", at: { x: 100 / (2 - 2 / 1000) / 20, y: 0 } },
+      { id: "slow", kind: "segment", appearance: "secondary", from: { x: 0, y: 100 }, to: { x: 100, y: 0 } },
+      { id: "fast", kind: "segment", appearance: "primary", from: { x: 0, y: 100 }, to: { x: 100 / (2 - 2 / 1000), y: 0 } },
+      { id: "fast-empty", kind: "point", appearance: "primary", at: { x: 100 / (2 - 2 / 1000), y: 0 } },
     ],
     labels: [
-      { key: "slow", objectId: "slow", at: { x: 2.5, y: 2.5 }, placement: "above-right" },
-      { key: "fast", objectId: "fast", at: { x: 1.25, y: (100 - (2 - 2 / 1000) * 25) / 20 }, placement: "below-left" },
-      { key: "time", objectId: "fast-empty", at: { x: 100 / (2 - 2 / 1000) / 20, y: 0 }, placement: "above-right" },
+      { key: "slow", objectId: "slow", at: { x: 50, y: 50 }, placement: "above-right" },
+      { key: "fast", objectId: "fast", at: { x: 25, y: 100 - (2 - 2 / 1000) * 25 }, placement: "below-left" },
+      { key: "time", objectId: "fast-empty", at: { x: 100 / (2 - 2 / 1000), y: 0 }, placement: "above-right" },
     ],
   }}
   labels={{
     slow: <InlineMath math="r_{\mathrm{form}}=\tfrac12 r_{\mathrm{use}}" />,
     fast: <InlineMath math="r_{\mathrm{form}}=\tfrac{1}{1000} r_{\mathrm{use}}" />,
-    time: <InlineMath math="t=\frac{S_0}{r_{\mathrm{use}}-r_{\mathrm{form}}}\approx50\text{ Jahre}" />,
+    time: <InlineMath math="t\approx50\text{ Jahre}" />,
   }}
 />
 
-Ein endlicher Vorrat <InlineMath math="R" />, der mit gleichbleibender Rate <InlineMath math="P" /> verbraucht wird, reicht <InlineMath math="t=R/P" />. Bei einem beispielhaften Vorrat von <InlineMath math="1000" /> Einheiten halbiert ein doppelter Jahresverbrauch die verbleibende Zeit. Dreh die Balken: <InlineMath math="10" />, <InlineMath math="20" /> und <InlineMath math="40" /> Einheiten pro Jahr.
+Ist die Neubildung gegenüber dem Abbau winzig, verhält sich ein Vorrat wie ein Konto ohne Einzahlungen. Ein endlicher Vorrat <InlineMath math="R" />, der mit gleichbleibender Rate <InlineMath math="P" /> verbraucht wird, reicht <InlineMath math="t=R/P" />. Bei <InlineMath math="1000" /> Einheiten halbiert ein doppelter Jahresverbrauch die Restzeit. Dreh die Balken für <InlineMath math="10" />, <InlineMath math="20" /> und <InlineMath math="40" /> Einheiten pro Jahr.
 
 <MathVisual
   title={<>Ein endlicher Vorrat geht zu Ende</>}
-  description={<>Jahre, die ein beispielhafter Vorrat von <InlineMath math="1000" /> Einheiten bei drei gleichbleibenden Verbrauchsraten reicht. Ein Gitterschritt nach oben entspricht <InlineMath math="20" /> Jahren.</>}
+  description={<>Jahre, die ein beispielhafter Vorrat von <InlineMath math="1000" /> Einheiten bei drei gleichbleibenden Verbrauchsraten reicht, maßstabsgetreu dargestellt.</>}
+  footer={<>Verdoppelt sich der Jahresverbrauch, halbiert sich die verbleibende Reichweite.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -72,6 +76,8 @@ Ein endlicher Vorrat <InlineMath math="R" />, der mit gleichbleibender Rate <Inl
   }}
 />
 
+Jede Verdopplung der Entnahme verkürzt den Balken auf die Hälfte, von <InlineMath math="100" /> Jahren auf <InlineMath math="50" /> und dann auf <InlineMath math="25" />. Die Größe einer Reserve allein verrät erst zusammen mit der Verbrauchsrate, wie lange sie trägt.
+
 ## Fossile Brennstoffe und Kernbrennstoff
 
 Die zwei Hauptgruppen nicht erneuerbarer Quellen sind fossile Brennstoffe und Kernbrennstoffe. [**Fossile Brennstoffe**](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) entstanden aus Überresten früherer Lebewesen, die begraben und über Millionen von Jahren durch Druck und Wärme verändert wurden.
@@ -87,7 +93,11 @@ Die zwei Hauptgruppen nicht erneuerbarer Quellen sind fossile Brennstoffe und Ke
 
 Der Begriff „nicht erneuerbar“ <Highlight>umfasst fossile Brennstoffe und Kernbrennstoffe</Highlight>. Kohle, Erdöl und Erdgas werden verbrannt, während Uran Energie durch Kernspaltung freisetzt.
 
-## Wärme ist ein gemeinsamer Umwandlungsschritt
+## Wärmeumwandlung und Aufgaben im Stromnetz
+
+Die meisten nicht erneuerbaren Anlagen arbeiten als **Wärmekraftwerke**, übernehmen im Stromnetz aber sehr unterschiedliche Aufgaben. Anfahrzeit und Betriebskosten bestimmen, welche Anlage die Grundlast trägt und welche abendliche Lastspitzen abfängt.
+
+### Wärme ist ein gemeinsamer Umwandlungsschritt
 
 Viele Kraftwerke mit nicht erneuerbaren Quellen erzeugen Strom über den Zwischenschritt Wärme. Der Unterschied liegt darin, wie diese Wärme entsteht.
 
@@ -96,6 +106,7 @@ In Dampfkraftwerken erzeugen Verbrennung und Kernspaltung **Wärme durch untersc
 <Mermaid
   title={<>Von Wärme zu Strom</>}
   description={<>Zwei Vorgänge liefern Wärme für ein Dampfsystem.</>}
+  footer={<>Verbrennung und Spaltung unterscheiden sich zuerst, teilen dann den Dampfkreis.</>}
   chart={`flowchart TD
     A["Fossiler Brennstoff: Verbrennung"] --> C["Wärme erhitzt Wasser"]
     B["Uran: Kernspaltung"] --> C
@@ -106,11 +117,14 @@ In Dampfkraftwerken erzeugen Verbrennung und Kernspaltung **Wärme durch untersc
 
 Fossile Brennstoffe und Uran erreichen am Ende dieselbe Energieform: elektrischen Strom. Der Anfang der Kette ist unterschiedlich, doch jede Quelle benötigt Anlagen, die ihre ursprüngliche Energie in Nutzenergie umwandeln.
 
-Tausch die Wärmequelle und sieh, dass alles nach dem Kessel gleich bleibt. Dieses Kraftwerk nimmt <InlineMath math="1\,000\text{ MW}" /> Wärme auf. Mit Kohle erreicht der Dampf etwa <InlineMath math="540^\circ\text{C}" />, und <InlineMath math="380\text{ MW}" /> gehen als Strom hinaus, während der Kondensator <InlineMath math="620\text{ MW}" /> an den Kühlturm abgibt. Ein Reaktor arbeitet mit kühlerem Dampf, etwa <InlineMath math="285^\circ\text{C}" />, und liefert deshalb <InlineMath math="330\text{ MW}" />. Vergleiche auch den Brennstoff: <InlineMath math="150\,000\text{ kg}" /> Kohle pro Stunde gegenüber weniger als <InlineMath math="1\text{ kg}" /> Uranbrennstoff.
+Tausch die Wärmequelle und sieh, dass alles nach dem Kessel gleich bleibt. Dieses Kraftwerk nimmt <InlineMath math="1\,000\text{ MW}" /> Wärme auf. Mit Kohle erreicht der Dampf etwa <InlineMath math="540^\circ\text{C}" /> und <InlineMath math="380\text{ MW}" /> gehen als Strom hinaus, während der Kondensator <InlineMath math="620\text{ MW}" /> an den Kühlturm abgibt.
+
+Ein Reaktor arbeitet mit kühlerem Dampf um <InlineMath math="285^\circ\text{C}" /> und liefert deshalb <InlineMath math="330\text{ MW}" />. Vergleiche auch die stündliche Brennstoffmenge: <InlineMath math="150\,000\text{ kg}" /> Kohle gegenüber weniger als <InlineMath math="1\text{ kg}" /> Uranbrennstoff.
 
 <SteamPlantCycleLab
   title={<>Ein Dampfkreislauf, drei Wärmequellen</>}
   description={<>Ein Dampfkraftwerk nimmt <InlineMath math="1\,000\text{ MW}" /> Wärme aus Kohle, Gas oder Uran auf. Wähle den Brennstoff und vergleiche Strom, Abwärme, Dampftemperatur, ihre ideale Grenze und den Brennstoffverbrauch pro Stunde.</>}
+  footer={<>Heißerer Dampf hebt den Wirkungsgrad, während Uran winzige Mengen erfordert.</>}
   labels={{
     chooseFuel: "Brennstoff",
     electric: <>Strom</>,
@@ -128,7 +142,9 @@ Tausch die Wärmequelle und sieh, dass alles nach dem Kessel gleich bleibt. Dies
   }}
 />
 
-## Unterschiedliche Aufgaben im Stromnetz
+Jedes Dampfkraftwerk gibt aus thermodynamischen Gründen mehr als die Hälfte der zugeführten Wärme über den Kühlturm ab. Gleichzeitig zeigt der Wechsel zwischen den Brennstoffen, wie drastisch sich die benötigte Brennstoffmasse pro Stunde unterscheidet.
+
+### Unterschiedliche Aufgaben im Stromnetz
 
 Kraftwerkstypen speisen Strom auf unterschiedliche Weise ins Netz ein. Kernkraftwerke laufen meist durchgehend mit gleichmäßiger Leistung. Erdgasbetriebene GuD-Kraftwerke können ihre Leistung **an einen wechselnden Bedarf anpassen**. Bei Spitzenbedarf liefern Gasturbinen mit Erdgas oder Erdölprodukten für einige Stunden zusätzlichen Strom.
 
@@ -140,19 +156,20 @@ An diesem Beispieltag ist die graue Linie die gleichmäßige Grundlast, die ein 
 
 <MathVisual
   title={<>Grundlast und Spitze an einem Tag</>}
-  description={<>Eine beispielhafte Nachfragekurve über einen Tag oberhalb einer gleichmäßigen Grundlast. Waagrecht: Uhrzeit in Einheiten von <InlineMath math="2\text{ h}" />. Senkrecht: Leistung in beliebigen Einheiten.</>}
+  description={<>Eine beispielhafte Nachfragekurve über <InlineMath math="24" /> Stunden oberhalb einer gleichmäßigen Grundlast. Waagrecht: Tagesstunde. Senkrecht: relative Leistung.</>}
+  footer={<>Grundlastkraftwerke tragen das feste Band, flexible Anlagen decken Abendspitzen.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 25 }, y: { min: 0, max: 5.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 12, y: 2 } },
-      { id: "demand", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.5) / 6) }, { x: 0.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.75) / 6) }, { x: 0.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 3) / 6) }, { x: 0.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 3.25) / 6) }, { x: 1, y: 3.5 + 1.2 * Math.cos((Math.PI * 3.5) / 6) }, { x: 1.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 3.75) / 6) }, { x: 1.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 4) / 6) }, { x: 1.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 4.25) / 6) }, { x: 2, y: 3.5 + 1.2 * Math.cos((Math.PI * 4.5) / 6) }, { x: 2.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 4.75) / 6) }, { x: 2.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 5) / 6) }, { x: 2.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 5.25) / 6) }, { x: 3, y: 3.5 + 1.2 * Math.cos((Math.PI * 5.5) / 6) }, { x: 3.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 5.75) / 6) }, { x: 3.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -6) / 6) }, { x: 3.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -5.75) / 6) }, { x: 4, y: 3.5 + 1.2 * Math.cos((Math.PI * -5.5) / 6) }, { x: 4.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -5.25) / 6) }, { x: 4.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -5) / 6) }, { x: 4.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -4.75) / 6) }, { x: 5, y: 3.5 + 1.2 * Math.cos((Math.PI * -4.5) / 6) }, { x: 5.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -4.25) / 6) }, { x: 5.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -4) / 6) }, { x: 5.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -3.75) / 6) }, { x: 6, y: 3.5 + 1.2 * Math.cos((Math.PI * -3.5) / 6) }, { x: 6.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -3.25) / 6) }, { x: 6.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -3) / 6) }, { x: 6.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -2.75) / 6) }, { x: 7, y: 3.5 + 1.2 * Math.cos((Math.PI * -2.5) / 6) }, { x: 7.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -2.25) / 6) }, { x: 7.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -2) / 6) }, { x: 7.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -1.75) / 6) }, { x: 8, y: 3.5 + 1.2 * Math.cos((Math.PI * -1.5) / 6) }, { x: 8.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -1.25) / 6) }, { x: 8.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -1) / 6) }, { x: 8.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -0.75) / 6) }, { x: 9, y: 3.5 + 1.2 * Math.cos((Math.PI * -0.5) / 6) }, { x: 9.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -0.25) / 6) }, { x: 9.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 0) / 6) }, { x: 9.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 0.25) / 6) }, { x: 10, y: 3.5 + 1.2 * Math.cos((Math.PI * 0.5) / 6) }, { x: 10.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 0.75) / 6) }, { x: 10.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 1) / 6) }, { x: 10.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 1.25) / 6) }, { x: 11, y: 3.5 + 1.2 * Math.cos((Math.PI * 1.5) / 6) }, { x: 11.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 1.75) / 6) }, { x: 11.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 2) / 6) }, { x: 11.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.25) / 6) }, { x: 12, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.5) / 6) }] },
-      { id: "top", kind: "point", appearance: "primary", at: { x: 9.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 0) / 6) } },
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 24, y: 2 } },
+      { id: "demand", kind: "function", appearance: "primary", formula: "3.5 + 1.2 * cos(pi * (x - 19) / 12)", domain: { min: 0, max: 24 } },
+      { id: "top", kind: "point", appearance: "primary", at: { x: 19, y: 4.7 } },
     ],
     labels: [
-      { key: "base", objectId: "base", at: { x: 1, y: 2 }, placement: "below" },
-      { key: "peak", objectId: "top", at: { x: 9.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+      { key: "base", objectId: "base", at: { x: 3, y: 2 }, placement: "below" },
+      { key: "peak", objectId: "top", at: { x: 19, y: 4.7 }, placement: "above" },
     ],
   }}
   labels={{
@@ -160,6 +177,8 @@ An diesem Beispieltag ist die graue Linie die gleichmäßige Grundlast, die ein 
     peak: <>Abendspitze</>,
   }}
 />
+
+Der Abstand zwischen dem grauen Band und der orangen Kurve verändert sich jede Stunde. Stromnetze kombinieren gleichmäßige Grundlastkraftwerke mit schnell regelbaren Anlagen oder Speichern, damit Erzeugung und Verbrauch jederzeit im Gleichgewicht bleiben.
 
 ## Risiken entlang der gesamten Energiekette
 
@@ -178,11 +197,14 @@ Kohlendioxid wird als <InlineMath math="\text{CO}_2" /> geschrieben. Erdgas enth
 
 Beurteile jede Quelle anhand ihres Vorrats, ihrer Umwandlungskette, ihrer Nutzenergie, ihrer Rückstände und ihrer Auswirkungen auf Menschen und Ökosysteme.
 
-Deshalb setzt das Verbrennen eines Brennstoffs so viel Kohlenstoffdioxid frei. Jedes Kohlenstoffatom verbindet sich mit zwei Sauerstoffatomen aus der Luft, <InlineMath math="\mathrm{C}+\mathrm{O_2}\rightarrow\mathrm{CO_2}" />, also werden aus <InlineMath math="12\text{ g}" /> Kohlenstoff <InlineMath math="44\text{ g}" /> Gas. Verbrennst du <InlineMath math="1\text{ kg}" /> Kohle mit etwa <InlineMath math="70\%" /> Kohlenstoff, entstehen <InlineMath math="2{,}57\text{ kg}" /> <InlineMath math="\mathrm{CO_2}" />, mehr als der Brennstoff selbst, weil <InlineMath math="1{,}87\text{ kg}" /> davon Sauerstoff aus der Luft sind.
+Deshalb setzt das Verbrennen eines Brennstoffs so viel Kohlenstoffdioxid frei. Jedes Kohlenstoffatom verbindet sich mit zwei Sauerstoffatomen aus der Luft, <InlineMath math="\mathrm{C}+\mathrm{O_2}\rightarrow\mathrm{CO_2}" />, also werden aus <InlineMath math="12\text{ g}" /> Kohlenstoff <InlineMath math="44\text{ g}" /> Gas.
+
+Verbrennst du <InlineMath math="1\text{ kg}" /> Kohle mit etwa <InlineMath math="70\%" /> Kohlenstoff, entstehen <InlineMath math="2{,}57\text{ kg}" /> <InlineMath math="\mathrm{CO_2}" />. Das Gas wiegt mehr als der Brennstoff selbst, weil <InlineMath math="1{,}87\text{ kg}" /> davon Sauerstoff aus der Luft sind.
 
 <FuelCombustionCarbonLab
   title={<><InlineMath math="1\text{ kg}" /> Brennstoff verbrennen</>}
   description={<><InlineMath math="1\text{ kg}" /> Kohle, Diesel oder Methan verbrennt, und ein Ballon fängt das Kohlenstoffdioxid auf. Wähle den Brennstoff und vergleiche Kohlenstoff, Sauerstoff aus der Luft und das entstehende Gas.</>}
+  footer={<>Kohlenstoff bindet Luftsauerstoff, sodass mehr CO2 entsteht als Brennstoff wog.</>}
   labels={{
     carbon: <>Kohlenstoff im Brennstoff</>,
     chooseFuel: "Brennstoff",
@@ -198,3 +220,5 @@ Deshalb setzt das Verbrennen eines Brennstoffs so viel Kohlenstoffdioxid frei. J
     volume: <>Gasvolumen bei <InlineMath math="25^\circ\text{C}" /></>,
   }}
 />
+
+Vergleiche das Kohlenstoffdioxid pro Megajoule Wärme für alle drei Brennstoffe. Methan setzt je Wärmeeinheit weniger Kohlendioxid frei als Kohle, weil der Wasserstoff zu Wasserdampf verbrennt, doch jeder fossile Brennstoff führt der Atmosphäre zusätzlichen fossilen Kohlenstoff zu.

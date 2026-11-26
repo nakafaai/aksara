@@ -8,64 +8,70 @@ export const metadata = {
   subject: "Energi Terbarukan",
 };
 
-## Sumber Terbarukan Tersedia Kembali Melalui Proses Alam
+## Proses Alam dan Batas Sumber
 
-Cahaya Matahari, angin, aliran air, panas Bumi, dan laut tersedia melalui proses alam yang terus berlangsung. Biomassa dapat tumbuh kembali jika dikelola. Bahan bakar fosil memerlukan jutaan tahun untuk terbentuk.
+Cahaya Matahari, angin, aliran air, panas Bumi, dan laut tersedia lewat proses alam yang terus berlangsung. Biomassa bisa tumbuh kembali jika dikelola baik, sedangkan bahan bakar fosil butuh jutaan tahun untuk terbentuk.
 
-Proses alam dapat menyediakan [sumber terbarukan](https://www.eia.gov/energyexplained/renewable-sources/) kembali dalam waktu yang relatif singkat. Jumlah energi yang bisa dihasilkan tetap bergantung pada kondisi setempat, seperti intensitas cahaya Matahari, kecepatan angin, atau debit air.
+Proses alam menyediakan [sumber terbarukan](https://www.eia.gov/energyexplained/renewable-sources/) kembali dalam waktu singkat. Istilah terbarukan menjelaskan cara sumber <Highlight>tersedia kembali melalui proses alam</Highlight>, namun daya nyatanya tetap bergantung pada lokasi, waktu, dan kondisi setempat.
 
-Untuk biomassa, bandingkan **laju pemanenan dengan laju pertumbuhan kembali**. Hutan yang dipanen lebih cepat daripada pertumbuhan pohonnya akan kehilangan persediaan kayu meskipun biomassa termasuk sumber terbarukan.
+Bayangkan sistem panel surya berdaya puncak <InlineMath math="3\text{ kW}" />. Dayanya naik setelah matahari terbit pukul 06.00, memuncak siang hari, turun ke nol pukul 18.00, lalu datar sepanjang malam. Energi satu hari sama dengan luas di bawah kurva setengah gelombang itu:
 
-Istilah terbarukan menjelaskan cara sumber <Highlight>tersedia kembali melalui proses alam</Highlight>. Besar daya yang dihasilkan tetap ditentukan oleh lokasi, waktu, dan kondisi sumber.
+<BlockMath math="E = P_{\text{peak}} \cdot \frac{24}{\pi}\text{ jam}" />
 
-Begini wujud "bergantung pada waktu" untuk panel surya. Dalam model sederhana, sistem panel berdaya puncak <InlineMath math="3\text{ kW}" /> mengikuti setengah gelombang sinus dari matahari terbit pukul 06.00 sampai terbenam pukul 18.00, lalu tidak menghasilkan apa-apa di malam hari. Energi satu hari adalah luas di bawah kurva, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ jam}" />, jadi hari cerah memberi sekitar <InlineMath math="22{,}9\text{ kWh}" />. Pada hari berawan dengan puncak separuhnya, kurva ungu hanya berisi separuh energi itu. Sumbernya memang pulih setiap pagi, tetapi dayanya tidak selalu ada saat kamu butuhkan.
+Pada hari cerah hasilnya sekitar <InlineMath math="22{,}9\text{ kWh}" />, sementara hari berawan dengan puncak separuhnya hanya memberi sekitar <InlineMath math="11{,}5\text{ kWh}" />. Matahari terbit setiap pagi, tetapi dayanya tidak selalu hadir kapan pun kita butuh.
 
 <MathVisual
   title={<>Daya Surya dalam Satu Hari</>}
-  description={<>Model sederhana sistem panel <InlineMath math="3\text{ kW}" /> pada hari cerah dan hari berawan dengan puncak separuhnya. Mendatar: jam dalam satuan <InlineMath math="2" /> jam. Tegak: daya dalam kW.</>}
+  description={<>Model sistem panel surya <InlineMath math="3\text{ kW}" /> pada hari cerah dan hari berawan sepanjang <InlineMath math="24" /> jam.</>}
+  footer={<>Siang cerah memuncak di 3 kW, sedangkan malam hari tetap nol.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 4 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: -0.3, max: 3.8 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "night-1", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "night-2", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 12, y: 0 } },
-      { id: "big", kind: "polyline", appearance: "primary", vertices: [{ x: 3, y: 0 }, { x: 25 / 8, y: 3 * Math.cos((Math.PI * -2.875) / 6) }, { x: 27 / 8, y: 3 * Math.cos((Math.PI * -2.625) / 6) }, { x: 29 / 8, y: 3 * Math.cos((Math.PI * -2.375) / 6) }, { x: 31 / 8, y: 3 * Math.cos((Math.PI * -2.125) / 6) }, { x: 33 / 8, y: 3 * Math.cos((Math.PI * -1.875) / 6) }, { x: 35 / 8, y: 3 * Math.cos((Math.PI * -1.625) / 6) }, { x: 37 / 8, y: 3 * Math.cos((Math.PI * -1.375) / 6) }, { x: 39 / 8, y: 3 * Math.cos((Math.PI * -1.125) / 6) }, { x: 41 / 8, y: 3 * Math.cos((Math.PI * -0.875) / 6) }, { x: 43 / 8, y: 3 * Math.cos((Math.PI * -0.625) / 6) }, { x: 45 / 8, y: 3 * Math.cos((Math.PI * -0.375) / 6) }, { x: 47 / 8, y: 3 * Math.cos((Math.PI * -0.125) / 6) }, { x: 49 / 8, y: 3 * Math.cos((Math.PI * 0.125) / 6) }, { x: 51 / 8, y: 3 * Math.cos((Math.PI * 0.375) / 6) }, { x: 53 / 8, y: 3 * Math.cos((Math.PI * 0.625) / 6) }, { x: 55 / 8, y: 3 * Math.cos((Math.PI * 0.875) / 6) }, { x: 57 / 8, y: 3 * Math.cos((Math.PI * 1.125) / 6) }, { x: 59 / 8, y: 3 * Math.cos((Math.PI * 1.375) / 6) }, { x: 61 / 8, y: 3 * Math.cos((Math.PI * 1.625) / 6) }, { x: 63 / 8, y: 3 * Math.cos((Math.PI * 1.875) / 6) }, { x: 65 / 8, y: 3 * Math.cos((Math.PI * 2.125) / 6) }, { x: 67 / 8, y: 3 * Math.cos((Math.PI * 2.375) / 6) }, { x: 69 / 8, y: 3 * Math.cos((Math.PI * 2.625) / 6) }, { x: 71 / 8, y: 3 * Math.cos((Math.PI * 2.875) / 6) }, { x: 9, y: 0 }] },
-      { id: "small", kind: "polyline", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 26 / 8, y: 1.5 * Math.cos((Math.PI * -2.75) / 6) }, { x: 28 / 8, y: 1.5 * Math.cos((Math.PI * -2.5) / 6) }, { x: 30 / 8, y: 1.5 * Math.cos((Math.PI * -2.25) / 6) }, { x: 32 / 8, y: 1.5 * Math.cos((Math.PI * -2) / 6) }, { x: 34 / 8, y: 1.5 * Math.cos((Math.PI * -1.75) / 6) }, { x: 36 / 8, y: 1.5 * Math.cos((Math.PI * -1.5) / 6) }, { x: 38 / 8, y: 1.5 * Math.cos((Math.PI * -1.25) / 6) }, { x: 40 / 8, y: 1.5 * Math.cos((Math.PI * -1) / 6) }, { x: 42 / 8, y: 1.5 * Math.cos((Math.PI * -0.75) / 6) }, { x: 44 / 8, y: 1.5 * Math.cos((Math.PI * -0.5) / 6) }, { x: 46 / 8, y: 1.5 * Math.cos((Math.PI * -0.25) / 6) }, { x: 48 / 8, y: 1.5 * Math.cos((Math.PI * 0) / 6) }, { x: 50 / 8, y: 1.5 * Math.cos((Math.PI * 0.25) / 6) }, { x: 52 / 8, y: 1.5 * Math.cos((Math.PI * 0.5) / 6) }, { x: 54 / 8, y: 1.5 * Math.cos((Math.PI * 0.75) / 6) }, { x: 56 / 8, y: 1.5 * Math.cos((Math.PI * 1) / 6) }, { x: 58 / 8, y: 1.5 * Math.cos((Math.PI * 1.25) / 6) }, { x: 60 / 8, y: 1.5 * Math.cos((Math.PI * 1.5) / 6) }, { x: 62 / 8, y: 1.5 * Math.cos((Math.PI * 1.75) / 6) }, { x: 64 / 8, y: 1.5 * Math.cos((Math.PI * 2) / 6) }, { x: 66 / 8, y: 1.5 * Math.cos((Math.PI * 2.25) / 6) }, { x: 68 / 8, y: 1.5 * Math.cos((Math.PI * 2.5) / 6) }, { x: 70 / 8, y: 1.5 * Math.cos((Math.PI * 2.75) / 6) }, { x: 9, y: 0 }] },
-      { id: "big-top", kind: "point", appearance: "primary", at: { x: 6, y: 3 * Math.cos((Math.PI * 0) / 6) } },
-      { id: "small-top", kind: "point", appearance: "secondary", at: { x: 6, y: 1.5 * Math.cos((Math.PI * 0) / 6) } },
+      { id: "night-1", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "night-2", kind: "segment", appearance: "reference", from: { x: 18, y: 0 }, to: { x: 24, y: 0 } },
+      { id: "clear-day", kind: "function", appearance: "primary", formula: "3*sin((x-6)*pi/12)", domain: { min: 6, max: 18 } },
+      { id: "cloudy-day", kind: "function", appearance: "secondary", formula: "1.5*sin((x-6)*pi/12)", domain: { min: 6, max: 18 } },
+      { id: "clear-top", kind: "point", appearance: "primary", at: { x: 12, y: 3 } },
+      { id: "cloudy-top", kind: "point", appearance: "secondary", at: { x: 12, y: 1.5 } },
     ],
     labels: [
-      { key: "big", objectId: "big-top", at: { x: 6, y: 3 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
-      { key: "small", objectId: "small-top", at: { x: 6, y: 1.5 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+      { key: "clear", objectId: "clear-top", at: { x: 12, y: 3 }, placement: "above" },
+      { key: "cloudy", objectId: "cloudy-top", at: { x: 12, y: 1.5 }, placement: "above" },
     ],
   }}
   labels={{
-    big: <InlineMath math="P_{\text{peak}}=3\text{ kW},\ E\approx22{,}9\text{ kWh}" />,
-    small: <InlineMath math="P_{\text{peak}}=1{,}5\text{ kW},\ E\approx11{,}5\text{ kWh}" />,
+    clear: <InlineMath math="3\text{ kW},\ 22{,}9\text{ kWh}" />,
+    cloudy: <InlineMath math="1{,}5\text{ kW},\ 11{,}5\text{ kWh}" />,
   }}
 />
 
-Karena itu, periksa apakah sumber tersebut dapat tersedia kembali dan apakah jumlahnya cukup di lokasi serta waktu yang dibutuhkan. Untuk biomassa dan air yang dikelola, periksa juga berapa banyak bahan atau air yang dapat dipakai tanpa mengganggu pemulihan sumber dan ekosistem setempat.
+Kedua kurva itu menunjukkan mengapa faktor waktu sama pentingnya dengan sifat terbarukan. Panelnya sama persis, tetapi awan memotong luas kurva hingga separuhnya dan malam membuat keluaran daya menjadi nol.
 
-Coba dengan angka buatan: sebuah hutan menyimpan <InlineMath math="100" /> satuan kayu dan tumbuh kembali <InlineMath math="2" /> satuan per tahun. Tiga garis di bawah memanen <InlineMath math="h=1" />, <InlineMath math="2" />, dan <InlineMath math="3" /> satuan per tahun. Hanya garis merah muda, yang memanen lebih cepat daripada pertumbuhan hutannya, yang kehilangan kayu, walaupun sumbernya terbarukan.
+### Menyeimbangkan Laju Panen dan Pertumbuhan
+
+Setelah memastikan sumber bisa pulih secara alami, cek apakah jumlahnya cukup di lokasi dan waktu yang dibutuhkan. Untuk biomassa, selalu bandingkan **laju pemanenan dengan laju pertumbuhan kembali**.
+
+Misalkan sebuah hutan menyimpan <InlineMath math="100" /> satuan kayu dan tumbuh kembali <InlineMath math="2" /> satuan per tahun. Tiga garis di bawah membandingkan laju panen <InlineMath math="h=1" />, <InlineMath math="2" />, dan <InlineMath math="3" /> satuan per tahun selama dua puluh tahun.
 
 <MathVisual
   title={<>Laju Panen dan Laju Tumbuh Kembali</>}
-  description={<>Persediaan ilustrasi <InlineMath math="100" /> satuan yang tumbuh kembali <InlineMath math="2" /> satuan per tahun dengan tiga laju panen h. Mendatar: tahun dalam satuan <InlineMath math="5" />. Tegak: persediaan dalam satuan <InlineMath math="25" />.</>}
+  description={<>Persediaan kayu awal <InlineMath math="100" /> satuan dengan pertumbuhan <InlineMath math="2" /> satuan per tahun pada tiga laju panen selama <InlineMath math="20" /> tahun.</>}
+  footer={<>Hanya panen lebih cepat dari tumbuh kembali yang menguras stok kayu.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: 2.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 23 }, y: { min: 70, max: 130 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "h1", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 1) * 20) / 25 } },
-      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 2) * 20) / 25 } },
-      { id: "h3", kind: "segment", appearance: "warning", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 3) * 20) / 25 } },
+      { id: "h1", kind: "segment", appearance: "construction", from: { x: 0, y: 100 }, to: { x: 20, y: 120 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 20, y: 100 } },
+      { id: "h3", kind: "segment", appearance: "warning", from: { x: 0, y: 100 }, to: { x: 20, y: 80 } },
     ],
     labels: [
-      { key: "h1", objectId: "h1", at: { x: 4, y: (100 + (2 - 1) * 20) / 25 }, placement: "right" },
-      { key: "h2", objectId: "h2", at: { x: 4, y: (100 + (2 - 2) * 20) / 25 }, placement: "right" },
-      { key: "h3", objectId: "h3", at: { x: 4, y: (100 + (2 - 3) * 20) / 25 }, placement: "right" },
+      { key: "h1", objectId: "h1", at: { x: 20, y: 120 }, placement: "right" },
+      { key: "h2", objectId: "h2", at: { x: 20, y: 100 }, placement: "right" },
+      { key: "h3", objectId: "h3", at: { x: 20, y: 80 }, placement: "right" },
     ],
   }}
   labels={{
@@ -75,27 +81,30 @@ Coba dengan angka buatan: sebuah hutan menyimpan <InlineMath math="100" /> satua
   }}
 />
 
-## Cocokkan Setiap Sumber dengan Kondisi Lokasi
+Selama panen tidak melebihi <InlineMath math="2" /> satuan per tahun, persediaan kayu tetap stabil atau bertambah. Begitu naik ke <InlineMath math="h=3" />, stok menyusut terus meski sumbernya tergolong terbarukan.
 
-Pilih sumber terbarukan dengan memeriksa **kondisi fisik lokasi**. Setiap sumber membutuhkan jumlah sinar Matahari, angin, aliran air, panas, atau bahan yang berbeda.
+### Mencocokkan Setiap Sumber dengan Lokasi
+
+Pilih sumber terbarukan dengan memeriksa **kondisi fisik lokasi**. Setiap sumber menuntut ketersediaan sinar Matahari, angin, aliran air, panas bumi, atau bahan organik yang berbeda.
 
 | Sumber terbarukan | Kondisi yang diperiksa |
-| :---------------- | :-------------- |
-| Matahari | Periksa radiasi Matahari dan pastikan panel tidak tertutup bayangan selama waktu penyinaran. |
+| :---------------- | :--------------------- |
+| Matahari | Periksa radiasi Matahari dan pastikan panel bebas dari bayangan yang menetap. |
 | Angin | Mulai dari energi kinetik udara, lalu cek apakah kelajuan angin cukup stabil untuk turbin. |
-| Air | Mulai dari energi potensial gravitasi dan energi kinetik air, lalu cek apakah beda tinggi memadai dan debit air tetap cukup pada musim yang berbeda. |
-| Panas bumi | Mulai dari energi termal Bumi, lalu cek apakah reservoir panas bumi dapat dijangkau dan dimanfaatkan dengan aman. |
-| Biomassa | Mulai dari energi kimia bahan organik, lalu cek apakah penggunaan bahan baku mengurangi pasokan pangan atau merusak ekosistem. |
-| Biogas | Mulai dari energi kimia metana, lalu cek apakah limbah organik tersedia secara teratur dan unit pengolah biogas dirawat rutin. |
-| Laut | Mulai dari energi mekanik gelombang, pasang surut, dan arus, atau energi termal dari perbedaan suhu air permukaan yang hangat dan air dalam yang dingin. Lalu cek apakah gelombang, arus, pasang surut, atau perbedaan suhu di lokasi cukup untuk teknologi yang dipilih. |
+| Air | Mulai dari energi potensial gravitasi dan kinetik air, lalu cek beda tinggi dan debit lintas musim. |
+| Panas bumi | Mulai dari energi termal Bumi, lalu cek apakah reservoir panas bisa dijangkau dengan aman. |
+| Biomassa | Mulai dari energi kimia bahan organik, lalu cek dampaknya terhadap pangan dan ekosistem. |
+| Biogas | Mulai dari energi kimia metana, lalu pastikan pasokan limbah organik dan perawatan unit berjalan rutin. |
+| Laut | Mulai dari energi mekanik gelombang, pasang surut, dan arus, atau selisih suhu laut, lalu cek kekuatannya di lokasi. |
 
-Gunakan kondisi fisik untuk membandingkan setiap sumber dengan lokasi yang dinilai. Untuk panel surya, periksa sinar Matahari, ruang yang tersedia, cuaca, perawatan, dan kebutuhan listrik.
+Sudut datang cahaya juga menentukan daya panel surya di suatu lokasi. Sinar tegak lurus membawa sekitar <InlineMath math="1\,000\text{ W/m}^2" />, sedangkan permukaan yang miring sebesar sudut <InlineMath math="\theta" /> menyebarkan berkas itu sehingga tiap meter persegi hanya menangkap <InlineMath math="1\,000\cos\theta\text{ W/m}^2" />.
 
-Cahaya matahari di suatu lokasi juga bergantung pada sudut datangnya. Sinar yang tegak lurus permukaan membawa sekitar <InlineMath math="1\,000\text{ W/m}^2" />. Kalau permukaan itu diputar menjauh sebesar sudut <InlineMath math="\theta" />, sinar yang sama menyebar sehingga tiap meter persegi hanya menangkap <InlineMath math="1\,000\cos\theta\text{ W/m}^2" />. Saat matahari setinggi <InlineMath math="30^\circ" />, panel datar menangkap <InlineMath math="500\text{ W/m}^2" />. Miringkan <InlineMath math="60^\circ" /> ke arah matahari, dan panel menangkap penuh <InlineMath math="1\,000\text{ W/m}^2" />. Hitung sinar yang mengenai panel sambil kamu memiringkannya.
+Saat matahari setinggi <InlineMath math="30^\circ" />, panel datar menerima <InlineMath math="500\text{ W/m}^2" />, tetapi memiringkannya <InlineMath math="60^\circ" /> ke arah matahari mengembalikan penuh <InlineMath math="1\,000\text{ W/m}^2" />. Coba ubah sudut panel di bawah dan hitung sinar yang mengenai permukaannya.
 
 <SolarPanelAngleLab
   title={<>Miringkan Panel ke Arah Matahari</>}
   description={<>Sinar matahari sejajar jatuh pada panel <InlineMath math="1{,}6\text{ m}^2" />. Geser matahari dan miringkan panel, lalu bandingkan sudut antara sinar dan garis normal panel dengan cahaya dan daya yang ditangkapnya.</>}
+  footer={<>Mengarahkan normal panel ke matahari memaksimalkan cahaya dan daya.</>}
   labels={{
     incidence: <>Sudut sinar terhadap normal</>,
     irradiance: <>Cahaya per meter persegi</>,
@@ -106,23 +115,26 @@ Cahaya matahari di suatu lokasi juga bergantung pada sudut datangnya. Sinar yang
   }}
 />
 
-## Setiap Sumber Memiliki Jalur Konversi
+Mengecilkan sudut antara berkas sinar dan garis normal memadatkan lebih banyak cahaya pada luas panel yang sama. Karena itu, kemiringan atap dan lintang wilayah ikut menentukan listrik yang dihasilkan panel surya.
 
-Urutan konversi menunjukkan bagaimana energi dari sumber alam berubah menjadi listrik, kalor, atau gerak yang dapat digunakan.
+## Jalur Konversi dan Kondisi Khusus
 
-Sebutkan sumber dan bentuk energi awalnya, lalu kenali alat yang mengubah energi tersebut menjadi bentuk yang dapat digunakan.
+Setiap sistem energi terbarukan mengikuti **rantai konversi** dari aliran alam ke keluaran yang berguna. Mengenali alat pengubah energi sekaligus batas fisik di lokasi membuat setiap perkiraan proyek tetap masuk akal secara fisika.
 
-[Sel fotovoltaik](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php) mengubah cahaya Matahari langsung menjadi listrik. Istilah **fotovoltaik** berarti bahan pada sel surya menghasilkan beda potensial listrik ketika menyerap cahaya.
+### Melacak Energi dari Sumber ke Generator
 
-Pada [turbin angin](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work), angin memutar bilah turbin, rotor memutar generator, lalu generator menghasilkan listrik.
+Untuk mengecek klaim energi terbarukan, sebutkan sumber alam dan energi awalnya, lalu kenali **alat yang mengubah energi ini** menjadi listrik atau kalor.
 
-Pada [tenaga air](https://www.energy.gov/cmei/water/how-hydropower-works), energi yang tersedia dipengaruhi oleh debit air dan beda ketinggian. Air mengalir melalui penstock untuk memutar turbin, lalu turbin memutar generator. Generator tersebut menghasilkan listrik.
+[Sel fotovoltaik](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php) mengubah cahaya Matahari langsung menjadi listrik karena bahan semikonduktornya membangkitkan beda potensial saat menyerap cahaya.
 
-Setiap jalur berakhir di generator, tetapi masing-masing mulai dengan bagian energi masuk yang berbeda. Putar batangnya untuk nilai tipikal: sel surya mengubah sekitar seperlima cahaya matahari menjadi listrik, turbin angin tidak pernah bisa melewati batas Betz, dan turbin air meneruskan hampir semua energi airnya.
+Pada [turbin angin](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work), udara bergerak memutar bilah dan rotor yang menggerakkan generator. Pada [tenaga air](https://www.energy.gov/cmei/water/how-hydropower-works), air mengalir melewati penstock untuk memutar turbin yang tersambung ke generator penghasil listrik.
+
+Tiap teknologi mengubah bagian energi masuk yang berbeda menjadi listrik. Bandingkan efisiensi tipikalnya di bawah ini bersama batas teoretis Betz untuk angin.
 
 <MathVisual
   title={<>Tiga Jalur Konversi</>}
-  description={<>Efisiensi konversi tipikal sel surya, turbin angin, dan turbin air, dengan batas Betz untuk angin (merah muda). Satu kotak grid ke atas berarti <InlineMath math="10" /> persen.</>}
+  description={<>Efisiensi konversi tipikal sel surya, turbin angin, dan turbin air dibandingkan dengan batas Betz untuk angin.</>}
+  footer={<>Turbin air mendekati 90%, angin di bawah 59,3%, dan surya sekitar 20%.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 10.5 }, z: { min: -1.5, max: 1.5 } },
@@ -144,31 +156,36 @@ Setiap jalur berakhir di generator, tetapi masing-masing mulai dengan bagian ene
     pv: <InlineMath math="\text{sel surya}\approx20\%" />,
     wind: <InlineMath math="\text{turbin angin}\approx45\%" />,
     hydro: <InlineMath math="\text{turbin air}\approx90\%" />,
-    betz: <InlineMath math="\text{batas Betz}\ \tfrac{16}{27}\approx59{,}3\%" />,
+    betz: <InlineMath math="\text{Betz}\approx59{,}3\%" />,
   }}
 />
 
-## Kondisi untuk Panas Bumi Biogas dan Energi Laut
+Efisiensi tinggi tidak otomatis membuat satu sumber cocok di semua tempat. Sel surya mengubah porsi energi lebih kecil dibanding turbin air, tetapi sinar matahari hadir di atap rumah yang jauh dari sungai.
 
-Panas bumi memerlukan reservoir panas yang dapat dimanfaatkan, biogas memerlukan pasokan bahan organik, dan energi laut memerlukan kondisi pesisir yang sesuai.
+### Batas Panas Bumi Biogas dan Energi Laut
 
-[**Panas bumi**](https://www.energy.gov/hgeo/geothermal/geothermal-basics) adalah energi termal dari dalam Bumi. Sumber panas bumi dapat berupa reservoir air panas alami atau buatan di bawah permukaan Bumi.
+Panas bumi, biogas, dan energi laut menuntut kondisi geologi, pasokan bahan baku, atau lingkungan pesisir yang lebih spesifik dibanding surya dan angin.
 
-**Biogas** dihasilkan ketika mikroorganisme menguraikan bahan organik tanpa oksigen. Proses ini disebut [*anaerobic digestion*](https://www.epa.gov/anaerobic-digestion/basic-information-about-anaerobic-digestion) atau pencernaan anaerobik. Biogas terutama terdiri atas metana, yaitu <InlineMath math="\text{CH}_4" />, dan karbon dioksida, yaitu <InlineMath math="\text{CO}_2" />.
+[**Panas bumi**](https://www.energy.gov/hgeo/geothermal/geothermal-basics) memanfaatkan reservoir air panas atau uap bawah tanah yang dipanaskan perut Bumi. **Biogas** terbentuk lewat [*pencernaan anaerobik*](https://www.epa.gov/anaerobic-digestion/basic-information-about-anaerobic-digestion) saat mikroba mengurai limbah organik basah tanpa oksigen hingga menghasilkan gas bahan bakar kaya <InlineMath math="\text{CH}_4" /> bersama <InlineMath math="\text{CO}_2" />.
 
-[**Energi laut**](https://www.energy.gov/cmei/water/marine-energy-basics) dapat berasal dari gelombang, pasang surut, arus, dan perbedaan suhu air laut. Sebagian alat memakai energi kinetik gelombang, arus, dan pasang surut. Konversi energi termal laut memakai perbedaan suhu antara air permukaan yang hangat dan air dalam yang lebih dingin.
+[**Energi laut**](https://www.energy.gov/cmei/water/marine-energy-basics) menyerap gerak gelombang, pasang surut, dan arus, atau beda suhu antara permukaan laut yang hangat dan lapisan dalam yang dingin.
 
 | Sumber | Batas praktis |
 | :----- | :------------ |
-| Panas bumi | Panas dari reservoir dapat tersedia siang dan malam, tetapi kondisi geologi harus sesuai dan pengeboran harus aman. |
-| Biogas | Limbah organik bisa menjadi bahan bakar, tetapi pasokan limbah harus teratur dan unit pengolah harus dirawat secara rutin. |
-| Laut | Gelombang, arus, dan pasang surut dapat menggerakkan alat konversi, tetapi lokasi, korosi, dan keselamatan laut tetap harus diperhitungkan. |
+| Panas bumi | Pasokan panas bisa stabil siang dan malam, tetapi geologi batuan dan pengeboran harus aman. |
+| Biogas | Keluaran bergantung pada pasokan limbah organik yang teratur dan perawatan digester rutin. |
+| Laut | Peralatan pesisir menghadapi korosi air asin, akses lokasi sulit, dan tuntutan keselamatan laut. |
 
-Inilah alasan pembangkit panas bumi butuh reservoir yang cukup panas. Di pembangkit ini, <InlineMath math="100\text{ kg}" /> air naik setiap detik, melepas kalor sampai suhunya turun ke <InlineMath math="70^\circ\text{C}" />, lalu dikembalikan ke bawah. Mesin kalor antara air itu dan udara <InlineMath math="27^\circ\text{C}" /> tidak mungkin melewati <InlineMath math="\eta=1-T_c/T_h" />, dan pembangkit nyata mencapai sekitar <InlineMath math="40\%" /> dari batas itu. Pada <InlineMath math="200^\circ\text{C}" />, air memberi kalor <InlineMath math="54{,}6\text{ MW}" /> dan pembangkit menghasilkan sekitar <InlineMath math="8\text{ MW}" />. Air yang lebih panas memberi kalor lebih banyak sekaligus diubah dengan bagian yang lebih besar.
+Pembangkit panas bumi juga terikat batas termodinamika mesin kalor. Jika <InlineMath math="100\text{ kg}" /> air panas naik tiap detik, mendingin ke <InlineMath math="70^\circ\text{C}" />, lalu kembali ke bawah dengan udara luar <InlineMath math="27^\circ\text{C}" />, efisiensinya tidak dapat melewati batas ideal Carnot:
+
+<BlockMath math="\eta = 1 - \frac{T_c}{T_h}" />
+
+Pembangkit nyata biasanya mencapai sekitar <InlineMath math="40\%" /> dari batas ideal itu. Pada <InlineMath math="200^\circ\text{C}" />, aliran air memberi kalor <InlineMath math="54{,}6\text{ MW}" /> dan pembangkit menghasilkan sekitar <InlineMath math="8\text{ MW}" /> listrik.
 
 <GeothermalLoopLab
   title={<>Sirkulasi Panas Bumi di Bawah Tanah</>}
   description={<>Air panas naik lewat sumur produksi, menyerahkan kalornya ke pembangkit, lalu kembali pada <InlineMath math="70^\circ\text{C}" />. Ubah suhu reservoir, lalu bandingkan kalor yang diambil, batas ideal, efisiensi nyata, dan listriknya.</>}
+  footer={<>Suhu reservoir lebih tinggi menaikkan kalor sekaligus efisiensi listrik.</>}
   labels={{
     electric: <>Listrik</>,
     heat: <>Kalor yang diambil dari air</>,
@@ -179,25 +196,29 @@ Inilah alasan pembangkit panas bumi butuh reservoir yang cukup panas. Di pembang
   }}
 />
 
-## Konteks Indonesia
+Menaikkan suhu reservoir mendorong keluaran listrik lebih cepat dari kenaikan linear karena air yang lebih panas membawa kalor lebih besar per kilogram sekaligus meningkatkan efisiensi termodinamikanya.
 
-Dalam kebijakan energi Indonesia, Kementerian Energi dan Sumber Daya Mineral memakai istilah **Energi Baru dan Terbarukan**, atau EBT, untuk kelompok sumber seperti surya, bayu atau angin, hidro, bioenergi, panas bumi, dan laut. [Siaran pers](https://www.esdm.go.id/en/media-center/news-archives/miliki-potensi-ebt-3686-gw-sekjen-rida-modal-utama-jalankan-transisi-energi-indonesia) tanggal <InlineMath math="4" /> Februari <InlineMath math="2023" /> memperkirakan potensi EBT Indonesia sekitar <InlineMath math="3\,686 \text{ GW}" />.
+## Potensi Wilayah dan Cek Klaim
 
-Angka <InlineMath math="3\,686 \text{ GW}" /> adalah perkiraan potensi kapasitas. Kapasitas pembangkit yang benar-benar dapat dibangun dan digunakan masih bergantung pada teknologi, biaya, jaringan, izin, perawatan, dan perlindungan lingkungan, sehingga jumlah listrik yang dihasilkan bisa jauh lebih kecil.
+Angka potensi nasional menunjukkan ruang pengembangan energi terbarukan, sementara pemeriksaan fisika di tingkat lokasi menentukan apakah suatu proyek benar-benar layak.
+
+Kementerian Energi dan Sumber Daya Mineral mengelompokkan surya, angin, hidro, bioenergi, panas bumi, dan laut sebagai **Energi Baru dan Terbarukan** (EBT). [Perkiraan pemerintah](https://www.esdm.go.id/en/media-center/news-archives/miliki-potensi-ebt-3686-gw-sekjen-rida-modal-utama-jalankan-transisi-energi-indonesia) pada <InlineMath math="4" /> Februari <InlineMath math="2023" /> mencatat potensi total EBT Indonesia mendekati <InlineMath math="3\,686\text{ GW}" />.
+
+Angka <InlineMath math="3\,686\text{ GW}" /> mencerminkan potensi kapasitas pasang secara teoretis. Listrik yang benar-benar mengalir ke masyarakat tetap bergantung pada jaringan transmisi, biaya, izin, jam operasi, perawatan, dan perlindungan lingkungan.
 
 > Sumber terbarukan yang cocok untuk satu daerah belum tentu cocok untuk daerah lain.
 
-Daerah dengan atap luas dan cuaca yang sering cerah mungkin cocok untuk energi surya. Desa dekat sungai beraliran stabil mungkin cocok untuk kajian pembangkit listrik tenaga air skala kecil. Bandingkan energi awal, alat konversi, kondisi lokasi, dan faktor yang membatasi daya setiap sumber.
+Wilayah beratap luas dengan langit sering cerah cocok memakai panel surya, sedangkan desa dekat sungai berdebit stabil bisa mengandalkan mikrohidro selama ekosistem sungai tetap terjaga.
 
-## Cek Klaim Sumber Terbarukan
+## Menguji Klaim Energi Terbarukan
 
-Saat mendengar klaim tentang energi terbarukan, gunakan pertanyaan singkat ini.
+Saat mendengar klaim besar tentang energi terbarukan, uji dengan **empat pertanyaan fisika singkat** sebelum menerima janji angka di permukaan.
 
 | Klaim yang terdengar meyakinkan | Cara mengecek secara fisika |
 | :------------------------------ | :-------------------------- |
-| Sumber ini tidak akan habis. | Cek **kapan dan di mana aliran alami sumber tersedia**. |
+| Sumber ini tidak akan habis. | Cek **kapan dan di mana aliran alami tersedia**, serta batas pemulihan biomassa dan air. |
 | Sumber ini cocok untuk semua tempat. | Cek cuaca, geologi, air, angin, bahan baku, atau kondisi laut setempat. |
-| Sumber ini pasti ramah lingkungan. | Cek lahan, limbah, bahan baku, ekosistem, dan dampak pembangunan fasilitas energi. |
-| Sumber ini pasti murah. | Cek alat, perawatan, penyimpanan, jaringan, dan umur alat. |
+| Sumber ini pasti ramah lingkungan. | Cek penggunaan lahan, limbah, persaingan pangan, ekosistem, dan dampak pembangunan. |
+| Sumber ini pasti murah. | Cek biaya alat, perawatan, penyimpanan energi, sambungan jaringan, dan umur pakai. |
 
-Penilaian yang lengkap mencatat sumber alam, jalur konversi, energi yang dapat dipakai, batas lokasi, dan dampak yang dapat diukur.
+Penilaian teknik yang utuh selalu mencatat sumber alam, jalur konversi, energi berguna, batas lokasi, dan dampak lingkungan yang dapat diukur.

@@ -8,64 +8,70 @@ export const metadata = {
   subject: "Renewable Energy",
 };
 
-## Natural Processes Replenish Renewable Resources
+## Natural Processes and Resource Limits
 
-Sunlight, wind, flowing water, geothermal heat, and ocean energy are supplied by ongoing natural processes. Biomass can regrow if it is managed. Fossil fuels take millions of years to form.
+Sunlight, wind, flowing water, geothermal heat, and ocean energy are supplied by ongoing natural processes. Biomass can regrow when managed carefully, whereas fossil fuels take millions of years to form.
 
-Renewable sources are [**naturally replenished**](https://www.eia.gov/energyexplained/renewable-sources/), but the available energy still depends on local resource conditions.
+Renewable sources are [**naturally replenished**](https://www.eia.gov/energyexplained/renewable-sources/), yet usable output still depends on place, time, and local conditions. The word renewable describes how a source <Highlight>becomes available again through natural processes</Highlight>.
 
-For biomass, compare **the harvest rate with the regrowth rate**. A forest harvested faster than its trees grow loses wood stocks even though biomass is a renewable resource.
+Think of a rooftop solar system rated at <InlineMath math="3\text{ kW}" /> peak power. Its output rises after sunrise at 06:00, peaks at noon, drops to zero at 18:00, and stays flat all night. Total daily energy equals the area under that half-wave curve:
 
-The term renewable describes how a source <Highlight>becomes available again through natural processes</Highlight>. Available power still depends on the place, time, and condition of the resource.
+<BlockMath math="E = P_{\text{peak}} \cdot \frac{24}{\pi}\text{ h}" />
 
-Here's what "depends on time" looks like for a solar panel. In a simple model, a panel system rated <InlineMath math="3\text{ kW}" /> at its peak follows half a sine wave from sunrise at 06:00 to sunset at 18:00 and gives nothing at night. The energy of a day is the area under the curve, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ h}" />, so a clear day gives about <InlineMath math="22.9\text{ kWh}" />. On a cloudy day with half the peak, the violet curve holds only half as much. The source renews itself every morning, but the power isn't there whenever you want it.
+On a clear day that yields about <InlineMath math="22.9\text{ kWh}" />, while a cloudy day at half peak yields only about <InlineMath math="11.5\text{ kWh}" />. Sunlight returns every morning, yet power is not constant whenever you need it.
 
 <MathVisual
   title={<>Solar Power over One Day</>}
-  description={<>A simple model of a <InlineMath math="3\text{ kW}" /> panel system on a clear day and a cloudy day with half the peak. Horizontal: clock time in units of <InlineMath math="2\text{ h}" />. Vertical: power in kW.</>}
+  description={<>Model of a <InlineMath math="3\text{ kW}" /> solar panel system on a clear day and a cloudy day across <InlineMath math="24" /> clock hours.</>}
+  footer={<>Clear noon peaks at 3 kW while night hours stay at zero.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 4 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: -0.3, max: 3.8 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "night-1", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "night-2", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 12, y: 0 } },
-      { id: "big", kind: "polyline", appearance: "primary", vertices: [{ x: 3, y: 0 }, { x: 25 / 8, y: 3 * Math.cos((Math.PI * -2.875) / 6) }, { x: 27 / 8, y: 3 * Math.cos((Math.PI * -2.625) / 6) }, { x: 29 / 8, y: 3 * Math.cos((Math.PI * -2.375) / 6) }, { x: 31 / 8, y: 3 * Math.cos((Math.PI * -2.125) / 6) }, { x: 33 / 8, y: 3 * Math.cos((Math.PI * -1.875) / 6) }, { x: 35 / 8, y: 3 * Math.cos((Math.PI * -1.625) / 6) }, { x: 37 / 8, y: 3 * Math.cos((Math.PI * -1.375) / 6) }, { x: 39 / 8, y: 3 * Math.cos((Math.PI * -1.125) / 6) }, { x: 41 / 8, y: 3 * Math.cos((Math.PI * -0.875) / 6) }, { x: 43 / 8, y: 3 * Math.cos((Math.PI * -0.625) / 6) }, { x: 45 / 8, y: 3 * Math.cos((Math.PI * -0.375) / 6) }, { x: 47 / 8, y: 3 * Math.cos((Math.PI * -0.125) / 6) }, { x: 49 / 8, y: 3 * Math.cos((Math.PI * 0.125) / 6) }, { x: 51 / 8, y: 3 * Math.cos((Math.PI * 0.375) / 6) }, { x: 53 / 8, y: 3 * Math.cos((Math.PI * 0.625) / 6) }, { x: 55 / 8, y: 3 * Math.cos((Math.PI * 0.875) / 6) }, { x: 57 / 8, y: 3 * Math.cos((Math.PI * 1.125) / 6) }, { x: 59 / 8, y: 3 * Math.cos((Math.PI * 1.375) / 6) }, { x: 61 / 8, y: 3 * Math.cos((Math.PI * 1.625) / 6) }, { x: 63 / 8, y: 3 * Math.cos((Math.PI * 1.875) / 6) }, { x: 65 / 8, y: 3 * Math.cos((Math.PI * 2.125) / 6) }, { x: 67 / 8, y: 3 * Math.cos((Math.PI * 2.375) / 6) }, { x: 69 / 8, y: 3 * Math.cos((Math.PI * 2.625) / 6) }, { x: 71 / 8, y: 3 * Math.cos((Math.PI * 2.875) / 6) }, { x: 9, y: 0 }] },
-      { id: "small", kind: "polyline", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 26 / 8, y: 1.5 * Math.cos((Math.PI * -2.75) / 6) }, { x: 28 / 8, y: 1.5 * Math.cos((Math.PI * -2.5) / 6) }, { x: 30 / 8, y: 1.5 * Math.cos((Math.PI * -2.25) / 6) }, { x: 32 / 8, y: 1.5 * Math.cos((Math.PI * -2) / 6) }, { x: 34 / 8, y: 1.5 * Math.cos((Math.PI * -1.75) / 6) }, { x: 36 / 8, y: 1.5 * Math.cos((Math.PI * -1.5) / 6) }, { x: 38 / 8, y: 1.5 * Math.cos((Math.PI * -1.25) / 6) }, { x: 40 / 8, y: 1.5 * Math.cos((Math.PI * -1) / 6) }, { x: 42 / 8, y: 1.5 * Math.cos((Math.PI * -0.75) / 6) }, { x: 44 / 8, y: 1.5 * Math.cos((Math.PI * -0.5) / 6) }, { x: 46 / 8, y: 1.5 * Math.cos((Math.PI * -0.25) / 6) }, { x: 48 / 8, y: 1.5 * Math.cos((Math.PI * 0) / 6) }, { x: 50 / 8, y: 1.5 * Math.cos((Math.PI * 0.25) / 6) }, { x: 52 / 8, y: 1.5 * Math.cos((Math.PI * 0.5) / 6) }, { x: 54 / 8, y: 1.5 * Math.cos((Math.PI * 0.75) / 6) }, { x: 56 / 8, y: 1.5 * Math.cos((Math.PI * 1) / 6) }, { x: 58 / 8, y: 1.5 * Math.cos((Math.PI * 1.25) / 6) }, { x: 60 / 8, y: 1.5 * Math.cos((Math.PI * 1.5) / 6) }, { x: 62 / 8, y: 1.5 * Math.cos((Math.PI * 1.75) / 6) }, { x: 64 / 8, y: 1.5 * Math.cos((Math.PI * 2) / 6) }, { x: 66 / 8, y: 1.5 * Math.cos((Math.PI * 2.25) / 6) }, { x: 68 / 8, y: 1.5 * Math.cos((Math.PI * 2.5) / 6) }, { x: 70 / 8, y: 1.5 * Math.cos((Math.PI * 2.75) / 6) }, { x: 9, y: 0 }] },
-      { id: "big-top", kind: "point", appearance: "primary", at: { x: 6, y: 3 * Math.cos((Math.PI * 0) / 6) } },
-      { id: "small-top", kind: "point", appearance: "secondary", at: { x: 6, y: 1.5 * Math.cos((Math.PI * 0) / 6) } },
+      { id: "night-1", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "night-2", kind: "segment", appearance: "reference", from: { x: 18, y: 0 }, to: { x: 24, y: 0 } },
+      { id: "clear-day", kind: "function", appearance: "primary", formula: "3*sin((x-6)*pi/12)", domain: { min: 6, max: 18 } },
+      { id: "cloudy-day", kind: "function", appearance: "secondary", formula: "1.5*sin((x-6)*pi/12)", domain: { min: 6, max: 18 } },
+      { id: "clear-top", kind: "point", appearance: "primary", at: { x: 12, y: 3 } },
+      { id: "cloudy-top", kind: "point", appearance: "secondary", at: { x: 12, y: 1.5 } },
     ],
     labels: [
-      { key: "big", objectId: "big-top", at: { x: 6, y: 3 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
-      { key: "small", objectId: "small-top", at: { x: 6, y: 1.5 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+      { key: "clear", objectId: "clear-top", at: { x: 12, y: 3 }, placement: "above" },
+      { key: "cloudy", objectId: "cloudy-top", at: { x: 12, y: 1.5 }, placement: "above" },
     ],
   }}
   labels={{
-    big: <InlineMath math="P_{\text{peak}}=3\text{ kW},\ E\approx22.9\text{ kWh}" />,
-    small: <InlineMath math="P_{\text{peak}}=1.5\text{ kW},\ E\approx11.5\text{ kWh}" />,
+    clear: <InlineMath math="3\text{ kW},\ 22.9\text{ kWh}" />,
+    cloudy: <InlineMath math="1.5\text{ kW},\ 11.5\text{ kWh}" />,
   }}
 />
 
-After asking whether a source is renewable, ask whether enough of it is available at the location and time when energy is needed. For managed resources such as biomass and water, also check ecosystem limits and how quickly the local resource can recover.
+Comparing the two curves shows why timing matters as much as renewability. Both days start with the same solar panels, yet cloud cover cuts the area under the curve in half and night removes output completely.
 
-Try it with made-up numbers: a forest holds <InlineMath math="100" /> units of wood and regrows <InlineMath math="2" /> units a year. The three lines below harvest <InlineMath math="h=1" />, <InlineMath math="2" /> and <InlineMath math="3" /> units a year. Only the pink line, which harvests faster than the forest regrows, loses wood, even though the source is renewable.
+### Balancing Harvest Rate with Regrowth
+
+After checking whether a source renews naturally, check whether the local supply can recover as fast as people use it. For biomass, always compare **harvest rate with regrowth rate**.
+
+Suppose a managed forest starts with <InlineMath math="100" /> units of wood and regrows <InlineMath math="2" /> units each year. The lines below compare harvesting <InlineMath math="h=1" />, <InlineMath math="2" />, and <InlineMath math="3" /> units every year over two decades.
 
 <MathVisual
   title={<>Harvest Rate against Regrowth</>}
-  description={<>An illustrative stock of <InlineMath math="100" /> units regrowing <InlineMath math="2" /> units a year with three harvest rates h. Horizontal: years in units of <InlineMath math="5" />. Vertical: stock in units of <InlineMath math="25" />.</>}
+  description={<>Wood stock starting at <InlineMath math="100" /> units with regrowth of <InlineMath math="2" /> units per year under three harvest rates over <InlineMath math="20" /> years.</>}
+  footer={<>Only harvesting faster than regrowth shrinks the renewable wood stock.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: 2.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 23 }, y: { min: 70, max: 130 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "h1", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 1) * 20) / 25 } },
-      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 2) * 20) / 25 } },
-      { id: "h3", kind: "segment", appearance: "warning", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 3) * 20) / 25 } },
+      { id: "h1", kind: "segment", appearance: "construction", from: { x: 0, y: 100 }, to: { x: 20, y: 120 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 20, y: 100 } },
+      { id: "h3", kind: "segment", appearance: "warning", from: { x: 0, y: 100 }, to: { x: 20, y: 80 } },
     ],
     labels: [
-      { key: "h1", objectId: "h1", at: { x: 4, y: (100 + (2 - 1) * 20) / 25 }, placement: "right" },
-      { key: "h2", objectId: "h2", at: { x: 4, y: (100 + (2 - 2) * 20) / 25 }, placement: "right" },
-      { key: "h3", objectId: "h3", at: { x: 4, y: (100 + (2 - 3) * 20) / 25 }, placement: "right" },
+      { key: "h1", objectId: "h1", at: { x: 20, y: 120 }, placement: "right" },
+      { key: "h2", objectId: "h2", at: { x: 20, y: 100 }, placement: "right" },
+      { key: "h3", objectId: "h3", at: { x: 20, y: 80 }, placement: "right" },
     ],
   }}
   labels={{
@@ -75,27 +81,30 @@ Try it with made-up numbers: a forest holds <InlineMath math="100" /> units of w
   }}
 />
 
-## Match Each Source to the Site
+When harvest stays at or below <InlineMath math="2" /> units per year, the forest holds steady or grows. Crossing to <InlineMath math="h=3" /> drains the stock steadily, proving that a renewable resource can still be depleted by overuse.
 
-Choose a renewable source by checking the **physical conditions at the site**. Each source needs different amounts of sunlight, wind, water flow, heat, or usable material.
+### Matching Each Source to the Site
+
+Choose a renewable source by checking the **physical conditions at the site**. Each source relies on a distinct mix of sunlight, wind, water flow, underground heat, or organic feedstock.
 
 | Renewable source | Conditions to check |
-| :--------------- | :------------- |
-| Sunlight | Check the available solar radiation and whether panels receive enough light without persistent shading. |
-| Wind | Start from kinetic energy of air, then check whether wind speed is stable enough for a turbine. |
-| Water | Start from the water's gravitational potential and kinetic energy, then check whether the height difference is sufficient and the flow remains adequate across seasons. |
-| Geothermal heat | Start from thermal energy inside Earth, then check whether the geothermal reservoir can be reached and used safely. |
-| Biomass | Start from chemical energy in organic material, then check whether using the feedstock competes with food supply or harms ecosystems. |
-| Biogas | Start from chemical energy in methane, then check whether organic waste is supplied regularly and the biogas equipment is maintained. |
-| Ocean | Start from mechanical energy in waves, tides, and currents, or thermal energy in the difference between warm surface water and cold deep water. Then check whether the local waves, currents, tides, or temperature difference are sufficient for the chosen technology. |
+| :--------------- | :------------------ |
+| Sunlight | Check available solar radiation and verify panels stay clear of persistent shading. |
+| Wind | Start from air kinetic energy, then verify wind speed stays stable enough for a turbine. |
+| Water | Start from gravitational potential and kinetic energy, then check head height and seasonal flow. |
+| Geothermal heat | Start from thermal energy inside Earth, then check whether the hot reservoir can be reached safely. |
+| Biomass | Start from chemical energy in organic matter, then check food supply and ecosystem impacts. |
+| Biogas | Start from chemical energy in methane, then verify steady organic waste supply and maintenance. |
+| Ocean | Start from mechanical energy in waves, tides, and currents, or thermal contrast with depth, then check local sea strength. |
 
-Use these conditions to compare a source with the site. For solar panels, check sunlight, available space, weather, maintenance, and electricity needs.
+Site geometry also shapes how much sunlight a panel captures. Rays hitting straight on bring about <InlineMath math="1\,000\text{ W/m}^2" />, while tilting away by angle <InlineMath math="\theta" /> spreads the same beam across a wider patch so each square metre catches <InlineMath math="1\,000\cos\theta\text{ W/m}^2" />.
 
-Sunlight at a site also depends on the angle it arrives at. Rays square to a surface bring about <InlineMath math="1\,000\text{ W/m}^2" />. When the surface is turned away by an angle <InlineMath math="\theta" />, the same rays spread out and each square metre catches <InlineMath math="1\,000\cos\theta\text{ W/m}^2" />. With the sun <InlineMath math="30^\circ" /> high, a flat panel catches <InlineMath math="500\text{ W/m}^2" />. Tilt it <InlineMath math="60^\circ" /> toward the sun and it catches the full <InlineMath math="1\,000\text{ W/m}^2" />. Count the rays that land on the panel as you tilt it.
+With the sun <InlineMath math="30^\circ" /> high, a flat panel catches <InlineMath math="500\text{ W/m}^2" />, whereas tilting it <InlineMath math="60^\circ" /> toward the sun recovers the full <InlineMath math="1\,000\text{ W/m}^2" />. Tilt the panel below and count how many rays strike its face.
 
 <SolarPanelAngleLab
   title={<>Tilt a Panel toward the Sun</>}
   description={<>Parallel rays of sunlight fall on a <InlineMath math="1.6\text{ m}^2" /> panel. Move the sun and tilt the panel, then compare the angle between the rays and the panel's normal with the light and power it catches.</>}
+  footer={<>Aiming the panel normal toward the sun maximizes captured light and power.</>}
   labels={{
     incidence: <>Angle between rays and normal</>,
     irradiance: <>Light on each square metre</>,
@@ -106,23 +115,26 @@ Sunlight at a site also depends on the angle it arrives at. Rays square to a sur
   }}
 />
 
-## Every Source Has a Conversion Path
+Reducing the angle between incoming rays and the panel normal packs more sunlight onto the same surface area. That is why roof angle and local latitude directly affect how much electricity a solar installation delivers.
 
-Every renewable source should be explainable as an energy conversion path. If the path is unclear, the claim is hard to check.
+## Conversion Paths and Local Constraints
 
-Name the source and its initial energy form, then identify the **device that converts this energy** into a useful form.
+Every renewable system follows a **conversion chain** from natural input to useful output. Knowing both the conversion device and the local physical ceiling keeps every renewable energy estimate grounded in physics.
 
-[Photovoltaic cells](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php) convert sunlight directly into electricity. Photovoltaic means that the material in a solar cell produces an electric potential difference when it absorbs light.
+### Tracing Energy from Source to Generator
 
-In a [wind turbine](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work), wind turns the turbine blades, the rotor drives a generator, and the generator produces electricity.
+To check any renewable proposal, name the natural source, its starting energy form, and the **device that converts this energy** into electricity or heat.
 
-In [hydropower](https://www.energy.gov/cmei/water/how-hydropower-works), the available energy depends on water flow and height difference. Water flows through a penstock to spin a turbine, which then drives a generator. The generator produces electricity.
+[Photovoltaic cells](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php) convert sunlight directly into electricity by generating an electric potential difference when the semiconductor absorbs light.
 
-Each path ends at a generator, but each starts with a different share of the incoming energy. Rotate the bars for typical values: a solar cell turns about a fifth of the sunlight into electricity, a wind turbine can never pass the Betz limit, and a hydro turbine passes on almost all of the water's energy.
+In a [wind turbine](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work), moving air spins the blades and rotor, which drives a generator. In [hydropower](https://www.energy.gov/cmei/water/how-hydropower-works), falling water flows through a penstock to spin a turbine connected to a generator.
+
+Each technology converts a different fraction of incoming energy into electricity. Compare typical efficiencies below alongside the theoretical Betz ceiling for wind turbines.
 
 <MathVisual
   title={<>Three Conversion Paths</>}
-  description={<>Typical conversion efficiencies of a solar cell, a wind turbine and a hydro turbine, with the Betz limit for wind (pink). One grid step up is <InlineMath math="10" /> percent.</>}
+  description={<>Typical conversion efficiencies of a solar cell, a wind turbine, and a hydro turbine compared with the wind Betz limit.</>}
+  footer={<>Hydro converts near 90%, wind stays under 59.3%, and solar sits near 20%.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 10.5 }, z: { min: -1.5, max: 1.5 } },
@@ -144,31 +156,36 @@ Each path ends at a generator, but each starts with a different share of the inc
     pv: <InlineMath math="\text{solar cell}\approx20\%" />,
     wind: <InlineMath math="\text{wind turbine}\approx45\%" />,
     hydro: <InlineMath math="\text{hydro turbine}\approx90\%" />,
-    betz: <InlineMath math="\text{Betz limit}\ \tfrac{16}{27}\approx59.3\%" />,
+    betz: <InlineMath math="\text{Betz}\approx59.3\%" />,
   }}
 />
 
-## Some Sources Need More Specific Conditions
+High efficiency does not automatically make one source best for every location. Solar cells convert a smaller fraction of sunlight than hydro turbines convert water energy, yet sunlight reaches rooftops where no river exists.
 
-Geothermal heat, biogas, and ocean energy each require specific local conditions.
+### Geothermal Biogas and Ocean Constraints
 
-[**Geothermal energy**](https://www.energy.gov/hgeo/geothermal/geothermal-basics) is thermal energy from inside Earth. Geothermal resources can be natural or human-made hot-water reservoirs below Earth's surface.
+Geothermal heat, biogas, and ocean systems depend on tighter local geology, feedstock logistics, or marine conditions than solar and wind.
 
-**Biogas** is produced when microorganisms break down organic material without oxygen. This process is called [*anaerobic digestion*](https://www.epa.gov/anaerobic-digestion/basic-information-about-anaerobic-digestion). Biogas consists mainly of methane, <InlineMath math="\text{CH}_4" />, and carbon dioxide, <InlineMath math="\text{CO}_2" />.
+[**Geothermal energy**](https://www.energy.gov/hgeo/geothermal/geothermal-basics) taps hot underground water or steam reservoirs heated by Earth's interior. **Biogas** forms when microbes break down wet organic waste without oxygen via [*anaerobic digestion*](https://www.epa.gov/anaerobic-digestion/basic-information-about-anaerobic-digestion), releasing a fuel gas rich in <InlineMath math="\text{CH}_4" /> alongside <InlineMath math="\text{CO}_2" />.
 
-[**Ocean energy**](https://www.energy.gov/cmei/water/marine-energy-basics) can come from waves, tides, currents, and temperature differences in seawater. Some systems use the kinetic energy of waves, currents, and tides. Ocean thermal energy conversion uses the temperature difference between warm surface water and colder deep water.
+[**Ocean energy**](https://www.energy.gov/cmei/water/marine-energy-basics) harvests either the motion of waves, tides, and currents or the heat gap between warm surface seawater and cold deep layers.
 
 | Source | Practical limit |
 | :----- | :-------------- |
-| Geothermal heat | The heat source can be steady day and night, but drilling and geology must be suitable. |
-| Biogas | The system needs a steady supply of organic waste and regular maintenance. |
-| Ocean | Waves, currents, and tides can drive conversion equipment, but site access, corrosion, and marine safety must be considered. |
+| Geothermal heat | Underground heat runs day and night, yet drilling depth and local rock geology must be suitable. |
+| Biogas | Output depends on a reliable stream of organic waste and routine digester maintenance. |
+| Ocean | Coastal equipment faces saltwater corrosion, tough site access, and marine safety demands. |
 
-Here's why geothermal power needs a hot enough reservoir. In this plant, <InlineMath math="100\text{ kg}" /> of water rises every second, gives up heat until it cools to <InlineMath math="70^\circ\text{C}" />, and goes back down. A heat engine between that water and <InlineMath math="27^\circ\text{C}" /> air can never pass <InlineMath math="\eta=1-T_c/T_h" />, and a real plant reaches about <InlineMath math="40\%" /> of that limit. At <InlineMath math="200^\circ\text{C}" /> the water gives <InlineMath math="54.6\text{ MW}" /> of heat and the plant makes about <InlineMath math="8\text{ MW}" />. Hotter water gives more heat and converts a larger share of it.
+Geothermal electricity also obeys heat-engine thermodynamics. Suppose <InlineMath math="100\text{ kg}" /> of hot water rises each second, cools to <InlineMath math="70^\circ\text{C}" />, and returns underground while rejecting heat to <InlineMath math="27^\circ\text{C}" /> air. No heat engine can beat the ideal Carnot ceiling:
+
+<BlockMath math="\eta = 1 - \frac{T_c}{T_h}" />
+
+Real geothermal plants typically achieve about <InlineMath math="40\%" /> of that ceiling. At <InlineMath math="200^\circ\text{C}" />, the loop draws <InlineMath math="54.6\text{ MW}" /> of thermal power and generates roughly <InlineMath math="8\text{ MW}" /> of electricity.
 
 <GeothermalLoopLab
   title={<>A Geothermal Loop Underground</>}
   description={<>Hot water rises up the production well, gives its heat to the plant, and returns at <InlineMath math="70^\circ\text{C}" />. Change the reservoir temperature and compare the heat drawn, the ideal limit, the real efficiency and the electricity.</>}
+  footer={<>Higher reservoir temperature boosts both extracted heat and conversion efficiency.</>}
   labels={{
     electric: <>Electricity</>,
     heat: <>Heat drawn from the water</>,
@@ -179,25 +196,29 @@ Here's why geothermal power needs a hot enough reservoir. In this plant, <Inline
   }}
 />
 
-## Renewable Energy Potential in Indonesia
+Raising the reservoir temperature lifts electricity output faster than linear growth because hotter water carries more heat per kilogram and raises the thermodynamic conversion fraction at the same time.
 
-Indonesia's Ministry of Energy and Mineral Resources uses the term **New and Renewable Energy**, or EBT in Indonesian policy language, for sources such as solar, wind, hydropower, bioenergy, geothermal, and ocean energy. A [press release](https://www.esdm.go.id/en/media-center/news-archives/miliki-potensi-ebt-3686-gw-sekjen-rida-modal-utama-jalankan-transisi-energi-indonesia) dated <InlineMath math="4" /> February <InlineMath math="2023" /> estimated Indonesia's EBT potential at about <InlineMath math="3\,686 \text{ GW}" />.
+## Regional Potential and Physics Checks
 
-The potential estimates the possible power capacity of the equipment. Actual electricity generation also depends on technology, cost, grid access, permits, maintenance, operating time, and environmental protection.
+National resource estimates show where renewable energy could grow, while site-level physics checks tell you whether a specific project actually works.
+
+Indonesia's energy ministry tracks solar, wind, hydro, bioenergy, geothermal, and marine resources together as **New and Renewable Energy** (EBT). A [government estimate](https://www.esdm.go.id/en/media-center/news-archives/miliki-potensi-ebt-3686-gw-sekjen-rida-modal-utama-jalankan-transisi-energi-indonesia) from <InlineMath math="4" /> February <InlineMath math="2023" /> placed total EBT potential near <InlineMath math="3\,686\text{ GW}" />.
+
+That headline figure measures theoretical installable capacity across the archipelago. Actual electricity delivered still depends on transmission lines, upfront cost, permits, operating hours, maintenance, and land protection.
 
 > A renewable source that works well in one area may not work well in another area.
 
-An area with wide roofs and frequent clear skies may be suitable for solar panels. A village near a steady river may be suitable for small hydropower if the flow, height difference, seasonal changes, and ecosystem effects are acceptable.
+Sunny rooftops suit solar panels, while a mountain village beside a steady river may get far more reliable power from small hydro if seasonal flow and river ecology remain protected.
 
-## Checking Renewable Energy Claims
+## Testing Renewable Energy Claims
 
-When you hear a claim about renewable energy, use these short questions.
+Whenever you hear a bold claim about renewable energy, test it with **four quick physics questions** before accepting any headline promise.
 
 | Claim that sounds convincing | Physics check |
 | :--------------------------- | :------------ |
-| This source will never run out. | Check **when and where the natural flow is available**. For managed biomass and water resources, also check recovery and ecosystem limits. |
+| This source will never run out. | Check **when and where the natural flow is available**, plus recovery limits for biomass and water. |
 | This source works everywhere. | Check local weather, geology, water, wind, feedstock, or ocean conditions. |
-| This source is always environmentally friendly. | Check land, waste, feedstock, ecosystems, and construction impacts. |
-| This source is always cheap. | Check equipment, maintenance, storage, grid connection, and equipment lifetime. |
+| This source is always environmentally friendly. | Check land use, waste, feedstock competition, ecosystems, and construction impacts. |
+| This source is always cheap. | Check equipment, maintenance, storage, grid connection, and system lifetime. |
 
-A complete assessment records the natural source, conversion path, useful energy, site limits, and measurable impacts.
+A solid engineering assessment always pairs the natural source with its conversion path, usable output, local site limits, and measurable environmental effects.

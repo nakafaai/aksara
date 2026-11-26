@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Dimensi",
   description:
@@ -19,7 +18,7 @@ Panjang, diameter, jari-jari, dan jarak sama-sama memiliki dimensi panjang <Inli
 
 Dimensi tidak menyatakan nilai ukur. Dimensi menyatakan *jenis besaran fisika* yang diukur.
 
-## Melihat Pangkat Dimensi
+### Melihat Pangkat Dimensi
 
 Visual berikut hanya fokus pada dimensi panjang. Geser mode dari panjang ke luas lalu volume. Perhatikan bagaimana satu, dua, dan tiga **faktor panjang** menghasilkan dimensi <InlineMath math="[\mathrm{L}]" />, <InlineMath math="[\mathrm{L}]^2" />, dan <InlineMath math="[\mathrm{L}]^3" />.
 
@@ -31,6 +30,7 @@ Visual berikut hanya fokus pada dimensi panjang. Geser mode dari panjang ke luas
       dan dimensinya.
     </>
   }
+  footer={<>Setiap faktor panjang tambahan menaikkan pangkat dimensi sebesar satu.</>}
   labels={{
     chooseMode: "Pilih bentuk dimensi",
     dimension: "Dimensi",
@@ -44,7 +44,9 @@ Visual berikut hanya fokus pada dimensi panjang. Geser mode dari panjang ke luas
   }}
 />
 
-## Besaran Pokok dalam Analisis Dimensi
+Setiap kali kamu mengalikan dengan satu faktor panjang lagi, pangkat pada <InlineMath math="[\mathrm{L}]" /> naik satu sementara dimensi pokoknya tetap sama. Luas dan volume hanyalah perpangkatan lebih tinggi dari panjang.
+
+### Besaran Pokok dalam Analisis Dimensi
 
 Sistem Satuan Internasional atau SI memakai <InlineMath math="7" /> besaran pokok. Dimensi besaran turunan ditulis sebagai **hasil kali pangkat** dari tujuh dimensi pokok.
 
@@ -60,7 +62,11 @@ Sistem Satuan Internasional atau SI memakai <InlineMath math="7" /> besaran poko
 
 Dimensi ditulis dengan kurung siku supaya tidak tertukar dengan satuan. Misalnya <InlineMath math="[\mathrm{L}]" /> adalah dimensi panjang, sedangkan <InlineMath math="\text{m}" /> adalah satuan meter.
 
-Dimensi pokok bahkan bisa menebak bentuk rumus. Misalkan periode bandul <InlineMath math="T" /> bergantung pada massa beban <InlineMath math="[\mathrm{M}]" />, panjang tali <InlineMath math="[\mathrm{L}]" />, dan percepatan gravitasi <InlineMath math="[\mathrm{L}][\mathrm{T}]^{-2}" />. Supaya hasilnya <InlineMath math="[\mathrm{T}]" />, massa harus berpangkat <InlineMath math="0" />, panjang berpangkat <InlineMath math="\tfrac12" />, dan gravitasi berpangkat <InlineMath math="-\tfrac12" />, jadi <InlineMath math="T=k\sqrt{l/g}" />. Percobaan memberi <InlineMath math="k=2\pi" />. Di bawah, tiga beban <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" />, dan <InlineMath math="500\text{ g}" /> pada tali <InlineMath math="0{,}80\text{ m}" /> berayun serempak, sekali setiap <InlineMath math="1{,}79\text{ s}" /> dengan <InlineMath math="g=9{,}81\text{ m/s}^2" />. Ubah panjang talinya, lalu cari beban yang tertinggal: tidak ada.
+Dimensi pokok bahkan bisa menebak bentuk rumus. Misalkan periode bandul <InlineMath math="T" /> bergantung pada massa beban <InlineMath math="[\mathrm{M}]" />, panjang tali <InlineMath math="[\mathrm{L}]" />, dan percepatan gravitasi <InlineMath math="[\mathrm{L}][\mathrm{T}]^{-2}" />. Supaya hasilnya <InlineMath math="[\mathrm{T}]" />, massa harus berpangkat <InlineMath math="0" />, panjang berpangkat <InlineMath math="\tfrac12" />, dan gravitasi berpangkat <InlineMath math="-\tfrac12" />.
+
+<BlockMath math="T = k\sqrt{\frac{l}{g}}" />
+
+Percobaan memberi <InlineMath math="k = 2\pi" />. Di bawah, tiga beban <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" />, dan <InlineMath math="500\text{ g}" /> pada tali <InlineMath math="0{,}80\text{ m}" /> berayun serempak sekali setiap <InlineMath math="1{,}79\text{ s}" /> dengan <InlineMath math="g = 9{,}81\text{ m/s}^2" />. Ubah panjang talinya dan lihat apakah ada beban yang tertinggal.
 
 <PendulumPeriodLab
   title={<>Apa yang Menentukan Periode Bandul</>}
@@ -69,6 +75,7 @@ Dimensi pokok bahkan bisa menebak bentuk rumus. Misalkan periode bandul <InlineM
       Ubah panjang tali, lalu perhatikan beban <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" />, dan <InlineMath math="500\text{ g}" /> tetap berayun serempak.
     </>
   }
+  footer={<>Ketiga beban tetap serempak karena hanya panjang tali yang mengubah periode.</>}
   labels={{
     check: <>Cek dimensi</>,
     gravity: <>Percepatan gravitasi</>,
@@ -78,6 +85,8 @@ Dimensi pokok bahkan bisa menebak bentuk rumus. Misalkan periode bandul <InlineM
     viewLabel: "Tiga bandul dengan beban kayu, kuningan, dan timbal berayun dari satu batang",
   }}
 />
+
+Tidak ada satu pun beban yang tertinggal pada panjang tali berapa pun. Karena massa berpangkat <InlineMath math="0" /> dalam pencocokan dimensi, perubahan massa tidak ikut mengubah periode ayunan.
 
 ## Menurunkan Dimensi dari Rumus
 
@@ -103,6 +112,7 @@ Letakkan tiap besaran di pangkat panjang, massa, dan waktunya: mendatar, tegak, 
 <MathVisual
   title={<>Tiga Langkah Analisis Dimensi</>}
   description={<>Pangkat L (mendatar), M (tegak), dan T (kedalaman) untuk massa, percepatan, dan gaya.</>}
+  footer={<>Menjumlahkan pangkat L, M, dan T menggabungkan massa dan percepatan jadi gaya.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -2.5, max: 0.5 } },
@@ -128,6 +138,8 @@ Letakkan tiap besaran di pangkat panjang, massa, dan waktunya: mendatar, tegak, 
   }}
 />
 
+Mengikuti segmen dari ujung ke pangkal menunjukkan bahwa mengalikan besaran fisika cukup menjumlahkan koordinat pangkatnya. Satu aturan ini memudahkan kamu menyusun dimensi besaran turunan langkah demi langkah.
+
 ## Memeriksa Konsistensi Dimensi Rumus
 
 Dimensi bisa dipakai untuk mengecek apakah bentuk rumus mungkin benar. Setiap suku yang dijumlahkan <Highlight>harus punya dimensi yang sama</Highlight>.
@@ -152,6 +164,7 @@ Tulis tiap dimensi sebagai pangkat L dan T, maka perkalian menjumlahkan pangkatn
 <MathVisual
   title={<>Setiap Suku Harus Berdimensi Sama</>}
   description={<>Pangkat panjang (mendatar) dan waktu (tegak) untuk suku-suku rumus gerak.</>}
+  footer={<>Kedua suku gerak mendarat di L sehingga keduanya sah dijumlahkan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.8, max: 2.5 }, y: { min: -2.4, max: 0.6 } },
@@ -184,6 +197,8 @@ Tulis tiap dimensi sebagai pangkat L dan T, maka perkalian menjumlahkan pangkatn
   }}
 />
 
+Perhatikan bahwa kedua jalur berawal dari pangkat waktu negatif yang berbeda, namun perkalian dengan <InlineMath math="t" /> dan <InlineMath math="t^2" /> mengantarkan keduanya ke titik <InlineMath math="\mathrm{L}" /> yang sama. Suku apa pun yang meleset dari titik itu tidak bisa dijumlahkan dengan perpindahan.
+
 ## Satu Benda Dapat Memiliki Banyak Besaran
 
 Baut dan mur terlihat seperti benda kecil, tetapi pengukurannya bisa melibatkan beberapa besaran berbeda. Itulah alasan satu benda kadang memerlukan lebih dari satu alat ukur.
@@ -201,6 +216,8 @@ Jadi, dua alat ukur dapat mengukur besaran berdimensi sama, tetapi dipakai untuk
 
 Batas pemeriksaan ini terlihat jika faktor <InlineMath math="\frac{1}{2}" /> pada rumus perpindahan dihilangkan. Rumus <InlineMath math="s=v_0t+at^2" /> tetap memiliki dimensi panjang pada kedua ruas, tetapi menghasilkan perpindahan yang salah untuk gerak dengan percepatan tetap dan tak nol. **Dimensi tidak menentukan faktor numerik** seperti <InlineMath math="\frac{1}{2}" />.
 
+> Pemeriksaan dimensi langsung menangkap rumus yang mustahil, tetapi tidak pernah bisa memberi tahu apakah faktor angka murni seperti <InlineMath math="\frac{1}{2}" /> tertinggal.
+
 Coba pada baut sungguhan. Lab berikut memakai satu baut <InlineMath math="\text{M}10" /> yang batangnya dianggap silinder berdiameter <InlineMath math="10\text{ mm}" /> dan panjang <InlineMath math="50\text{ mm}" />, lalu menampilkan setiap besaran dari tabel di atas: nilainya dalam satuan SI dan dimensinya. Panjang dan diameter sama-sama berdimensi <InlineMath math="[\mathrm{L}]" />, sedangkan massa jenis, yaitu massa dibagi volume, berdimensi <InlineMath math="[\mathrm{M}][\mathrm{L}]^{-3}" />.
 
 <BoltDimensionsLab
@@ -210,6 +227,7 @@ Coba pada baut sungguhan. Lab berikut memakai satu baut <InlineMath math="\text{
       Pilih satu besaran baut <InlineMath math="\text{M}10" /> ini, lalu perhatikan bagian yang diukurnya, nilainya dalam satuan SI, dan dimensinya.
     </>
   }
+  footer={<>Bandingkan dimensi panjang, luas, volume, massa, dan massa jenis satu baut.</>}
   labels={{
     chooseQuantity: "Pilih besaran",
     dimension: <>Dimensi</>,
@@ -225,3 +243,5 @@ Coba pada baut sungguhan. Lab berikut memakai satu baut <InlineMath math="\text{
     viewLabel: "Baut baja dengan besaran yang dipilih ditandai",
   }}
 />
+
+Berpindah di antara enam besaran itu menunjukkan bagaimana satu batang baja membawa beberapa dimensi berbeda meski banyak ukurannya berakar dari panjang <InlineMath math="[\mathrm{L}]" />. Dari dimensinya, kamu langsung tahu alat ukur atau rumus yang pas untuk setiap sifat benda.

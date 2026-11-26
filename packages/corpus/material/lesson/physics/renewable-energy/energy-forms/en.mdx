@@ -17,6 +17,7 @@ All of these descriptions refer to the same physical quantity. The relevant form
 <Mermaid
   title={<>Energy in Systems and Energy Transfers</>}
   description={<>Separate energy present in a system from the processes that transfer energy between systems.</>}
+  footer={<>Left branches show stored forms while right branches show transfer paths.</>}
   chart={`flowchart TD
     A["Energy"] --> B["Present in a system"]
     A --> C["Transferred between systems"]
@@ -25,22 +26,45 @@ All of these descriptions refer to the same physical quantity. The relevant form
     C --> F["Heating and radiation"]
     C --> G["Mechanical and electrical work"]`}/>
 
-The diagram keeps two questions separate. The left branch asks where energy is present. The right branch asks how energy crosses from one system to another. Heat is energy transferred because of a temperature difference, while [internal energy](https://openstax.org/books/college-physics-2e/pages/14-1-heat) is energy present in the material.
+The diagram keeps two questions separate. The left branch asks where energy is present. The right branch asks how energy crosses from one system to another.
 
-An electric kettle shows both questions at once. Electrical work crosses into the kettle through its <InlineMath math="2\,100\text{ W}" /> element, and the water keeps that energy as internal energy, <InlineMath math="Q=mc\Delta T" />. Heating water from <InlineMath math="25^\circ\text{C}" /> to <InlineMath math="100^\circ\text{C}" /> is a rise of <InlineMath math="75\text{ K}" />, so <InlineMath math="1\text{ kg}" /> needs <InlineMath math="315\,000\text{ J}" />, which takes at least <InlineMath math="150\text{ s}" />. Double the water and both the energy and the time double.
+> Heat is not a substance stored inside an object. Heat is energy transferred because of a temperature difference, while [internal energy](https://openstax.org/books/college-physics-2e/pages/14-1-heat) is the energy stored inside the material.
 
-<KettleHeatingLab
-  title={<>Boiling Water in a Kettle</>}
-  description={<>A <InlineMath math="2\,100\text{ W}" /> kettle heats water from <InlineMath math="25^\circ\text{C}" /> to the boil. Choose how much water is inside and compare the energy the water stores with the time the element needs if no energy escapes.</>}
+Heating water in a <InlineMath math="2.1\text{ kW}" /> electric kettle shows both ideas at once. Electrical work enters the kettle, and the water stores it as internal energy via <InlineMath math="Q=mc\Delta T" />. Raising <InlineMath math="1\text{ kg}" /> of water by <InlineMath math="75\text{ K}" /> needs <InlineMath math="315\text{ kJ}" />, taking at least <InlineMath math="150\text{ s}" />.
+
+<MathVisual
+  title={<>Thermal Energy Needed to Heat Water</>}
+  description={<>Heating energy <InlineMath math="Q=mc\Delta T" /> in kJ against temperature rise in K for water with <InlineMath math="c=4.2\text{ kJ/(kg K)}" />. Adjust water mass <InlineMath math="m" /> to track energy and boiling time at <InlineMath math="2.1\text{ kW}" />.</>}
+  footer={<>Doubling the water mass doubles the slope, required kJ, and heating time.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 85 }, y: { min: -40, max: 720 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0.5, max: 2, step: 0.25, value: 1, label: "mass" },
+    ],
+    objects: [
+      { id: "heating", kind: "function", appearance: "primary", formula: "4.2 * m * x", domain: { min: 0, max: 80 } },
+      { id: "boil-drop", kind: "path", appearance: "construction", points: [{ x: "75", y: "0" }, { x: "75", y: "4.2 * m * 75" }] },
+      { id: "boil-point", kind: "marker", appearance: "answer", x: "75", y: "4.2 * m * 75" },
+    ],
+    readouts: [
+      { key: "energy-out", formula: "4.2 * m * 75" },
+      { key: "time-out", formula: "4.2 * m * 75 / 2.1" },
+    ],
+    labels: [
+      { key: "boil", objectId: "boil-point", at: { x: "75", y: "4.2 * m * 75" }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    chooseFill: "Water in the kettle",
-    energy: <>Energy into the water</>,
-    power: <>Element power</>,
-    rise: <>Temperature rise</>,
-    time: <>Time to boil</>,
-    viewLabel: "Glass kettle heating water beside a thermometer",
+    mass: <>Water mass (kg)</>,
+    boil: <InlineMath math="\Delta T=75\text{ K}" />,
+    "energy-out": <>Energy at <InlineMath math="75\text{ K}" /> (kJ)</>,
+    "time-out": <>Min time at <InlineMath math="2.1\text{ kW}" /> (s)</>,
   }}
 />
+
+Slide the water mass from <InlineMath math="1\text{ kg}" /> to <InlineMath math="2\text{ kg}" /> and watch the line get twice as steep. Twice the water needs twice the joules and twice the time at the same heater power.
 
 ## Four Common Energy Calculations
 
@@ -55,34 +79,41 @@ Renewable-energy systems often involve **motion, height, temperature differences
 
 Biomass and batteries also contain chemical energy, while solar panels receive energy carried by sunlight. The four formulas in the table calculate energy from motion, height, temperature change, and electrical power.
 
-A stretched spring stores elastic energy <InlineMath math="E=\tfrac12kx^2" />. With <InlineMath math="k=200\text{ N/m}" />, three times the stretch stores nine times the energy, <InlineMath math="1\text{ J}" /> at <InlineMath math="10\text{ cm}" /> and <InlineMath math="9\text{ J}" /> at <InlineMath math="30\text{ cm}" />. Follow the curve.
+A stretched spring stores elastic energy <InlineMath math="E=\tfrac12kx^2" />. With <InlineMath math="k=200\text{ N/m}" />, three times the stretch stores nine times the energy, <InlineMath math="1\text{ J}" /> at <InlineMath math="10\text{ cm}" /> and <InlineMath math="9\text{ J}" /> at <InlineMath math="30\text{ cm}" />. Follow the curve below.
 
 <MathVisual
   title={<>Elastic Energy Grows with the Square</>}
-  description={<>Elastic energy of a spring with <InlineMath math="k=200\text{ N/m}" /> against its stretch. Horizontal: one grid step is <InlineMath math="5\text{ cm}" />. Vertical: joules.</>}
+  description={<>Elastic energy of a spring with <InlineMath math="k=200\text{ N/m}" /> against stretch. Horizontal: stretch in cm. Vertical: energy in J.</>}
+  footer={<>Tripling spring stretch from 10 cm to 30 cm stores nine times the energy.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 10 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 34 }, y: { min: -0.5, max: 10.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "spring", kind: "quadratic", appearance: "secondary", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
-      { id: "ten", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
-      { id: "thirty", kind: "point", appearance: "answer", at: { x: 6, y: 9 } },
+      { id: "spring", kind: "quadratic", appearance: "secondary", coefficients: { a: 0.01, b: 0, c: 0 }, domain: { min: 0, max: 30 }, inputAxis: "x" },
+      { id: "ten", kind: "point", appearance: "primary", at: { x: 10, y: 1 } },
+      { id: "thirty", kind: "point", appearance: "answer", at: { x: 30, y: 9 } },
     ],
     labels: [
-      { key: "ten", objectId: "ten", at: { x: 2, y: 1 }, placement: "above-left" },
-      { key: "thirty", objectId: "thirty", at: { x: 6, y: 9 }, placement: "left" },
+      { key: "ten", objectId: "ten", at: { x: 10, y: 1 }, placement: "above-left" },
+      { key: "thirty", objectId: "thirty", at: { x: 30, y: 9 }, placement: "left" },
     ],
   }}
   labels={{
-    ten: <InlineMath math="x=0.1\text{ m}:\ E=1\text{ J}" />,
-    thirty: <InlineMath math="x=0.3\text{ m}:\ E=9\text{ J}" />,
+    ten: <InlineMath math="x=10\text{ cm}:\ E=1\text{ J}" />,
+    thirty: <InlineMath math="x=30\text{ cm}:\ E=9\text{ J}" />,
   }}
 />
 
+Notice the upward bend: whenever a variable is squared in an energy formula, small increases at larger values add far more energy than the same step near zero.
+
 ## Match the Formula to the Situation
 
-Kinetic energy is the energy an object has **because of its motion**.
+Each energy model matches one physical mechanism, starting with **mechanical energy** from motion and height before moving to **heating and electricity**. Identify which quantities change first so you pick the right equation immediately.
+
+### Motion and Height
+
+Kinetic energy is the energy an object has **because of its motion**. It depends on both mass and the square of speed, never on mass alone.
 
 <BlockMath math="E_k=\frac{1}{2}mv^2" />
 
@@ -102,24 +133,25 @@ E_k &= \frac{1}{2}mv^2 \\
 &= 9 \text{ J}
 \end{aligned}" />
 
-The graph below runs the same formula for every speed from <InlineMath math="0" /> to <InlineMath math="6\text{ m/s}" />. Compare the two marked points. Doubling the speed from <InlineMath math="3\text{ m/s}" /> to <InlineMath math="6\text{ m/s}" /> doesn't double the energy: it goes from <InlineMath math="9\text{ J}" /> to <InlineMath math="36\text{ J}" />, four times as much, because the speed is squared. That's why a small rise in wind speed matters so much for a turbine.
+The graph below runs the same formula from <InlineMath math="0" /> to <InlineMath math="6\text{ m/s}" />. Doubling speed from <InlineMath math="3\text{ m/s}" /> to <InlineMath math="6\text{ m/s}" /> quadruples the energy from <InlineMath math="9\text{ J}" /> to <InlineMath math="36\text{ J}" />, because speed is squared.
 
 <MathVisual
   title={<>Kinetic Energy Grows with the Square of Speed</>}
-  description={<>Kinetic energy of <InlineMath math="2\text{ kg}" /> of air at speeds from <InlineMath math="0" /> to <InlineMath math="6\text{ m/s}" />. Horizontal: speed in m/s. Vertical: energy in units of <InlineMath math="8\text{ J}" />.</>}
+  description={<>Kinetic energy of <InlineMath math="2\text{ kg}" /> of air from <InlineMath math="0" /> to <InlineMath math="6\text{ m/s}" />. Horizontal: speed in m/s. Vertical: energy in J.</>}
+  footer={<>Doubling wind speed from 3 to 6 m/s quadruples kinetic energy to 36 J.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -3, max: 40 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "kinetic", kind: "quadratic", appearance: "construction", coefficients: { a: 0.125, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
-      { id: "v3", kind: "point", appearance: "primary", at: { x: 3, y: 1.125 } },
-      { id: "v6", kind: "point", appearance: "answer", at: { x: 6, y: 4.5 } },
+      { id: "kinetic", kind: "quadratic", appearance: "construction", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
+      { id: "v3", kind: "point", appearance: "primary", at: { x: 3, y: 9 } },
+      { id: "v6", kind: "point", appearance: "answer", at: { x: 6, y: 36 } },
     ],
     labels: [
-      { key: "rule", objectId: "kinetic", at: { x: 5, y: 3.125 }, placement: "left" },
-      { key: "v3", objectId: "v3", at: { x: 3, y: 1.125 }, placement: "right" },
-      { key: "v6", objectId: "v6", at: { x: 6, y: 4.5 }, placement: "left" },
+      { key: "rule", objectId: "kinetic", at: { x: 4.8, y: 23 }, placement: "left" },
+      { key: "v3", objectId: "v3", at: { x: 3, y: 9 }, placement: "right" },
+      { key: "v6", objectId: "v6", at: { x: 6, y: 36 }, placement: "left" },
     ],
   }}
   labels={{
@@ -129,7 +161,7 @@ The graph below runs the same formula for every speed from <InlineMath math="0" 
   }}
 />
 
-The work-energy theorem relates net work to the change in kinetic energy.
+That steep quadratic curve explains why wind-turbine designers care so much about small differences in wind speed. The work-energy theorem also links net work directly to this change in kinetic energy.
 
 Gravitational potential energy is energy related to an object's position in a gravitational field. For objects near Earth's surface, the common model is:
 
@@ -150,7 +182,34 @@ Calculate the potential energy of <InlineMath math="2 \text{ kg}" /> of water <I
 
 <BlockMath math="\begin{aligned} E_p &= mgh \\ &= (2 \text{ kg})(10 \text{ m/s}^2)(5 \text{ m}) \\ &= 100 \text{ J} \end{aligned}" />
 
-An object contains internal energy. When two systems have different temperatures, energy moves from the hotter system to the colder system. Energy transferred because of this temperature difference is called heat. If the substance does not change phase and its specific heat is treated as constant over the temperature interval, the transferred energy is:
+Compare this straight line with the kinetic energy curve above. Potential energy grows in proportion to height, so every extra meter adds the same <InlineMath math="mg=20\text{ J}" />.
+
+<MathVisual
+  title={<>Potential Energy Grows Evenly with Height</>}
+  description={<><InlineMath math="E_p=mgh" /> for <InlineMath math="2\text{ kg}" /> with <InlineMath math="g=10\text{ m/s}^2" />. Horizontal: height in m. Vertical: energy in J.</>}
+  footer={<>Every extra meter adds a steady 20 J, forming a straight line to 100 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -10, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 100 } },
+      { id: "top", kind: "point", appearance: "primary", at: { x: 5, y: 100 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 5, y: 100 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    top: <InlineMath math="h=5\text{ m}:\ E_p=100\text{ J}" />,
+  }}
+/>
+
+Unlike the curving kinetic graph, the constant slope here shows a strictly linear trade between reservoir height and stored gravitational energy.
+
+### Heating and Electricity
+
+An object contains internal energy. When two systems have different temperatures, energy moves from the hotter system to the colder system as heat. If the substance does not change phase and its specific heat stays constant, the transferred energy is:
 
 <BlockMath math="Q=mc\Delta T" />
 
@@ -167,7 +226,7 @@ Suppose we heat <InlineMath math="0.5 \text{ kg}" /> of liquid water through <In
 
 <BlockMath math="\begin{aligned} Q &= mc\Delta T \\ &= (0.5 \text{ kg})(4\,200 \text{ J/(kg K)})(10 \text{ K}) \\ &= 21\,000 \text{ J} \end{aligned}" />
 
-Electrical energy can be calculated from electric power over a time interval. The model below is used when <InlineMath math="V" /> and <InlineMath math="I" /> are treated as constant during the time interval.
+Electrical energy can be calculated from **electric power over a time interval**. The model below applies when <InlineMath math="V" /> and <InlineMath math="I" /> stay constant during the interval.
 
 <BlockMath math="\begin{aligned}
 P &= VI \\
@@ -185,49 +244,26 @@ Symbol guide:
 | <InlineMath math="I" /> | electric current | <InlineMath math="\text{A}" /> |
 | <InlineMath math="t" /> | time | <InlineMath math="\text{s}" /> |
 
-Here <InlineMath math="E" /> denotes electrical energy. Upright <InlineMath math="\text{W}" /> is the unit symbol for watt, while italic <InlineMath math="W" /> often represents work.
+Here <InlineMath math="E" /> denotes electrical energy. Because <InlineMath math="\text{kWh}" /> comes from multiplying power <InlineMath math="P" /> by time <InlineMath math="t" />, it measures energy rather than power. Upright <InlineMath math="\text{W}" /> is the unit symbol for watt, while italic <InlineMath math="W" /> represents work.
 
 A device operates at a constant voltage of <InlineMath math="12 \text{ V}" /> and current of <InlineMath math="0.5 \text{ A}" /> for <InlineMath math="60 \text{ s}" />. First calculate power, then energy:
 
 <BlockMath math="\begin{aligned} P &= VI = (12 \text{ V})(0.5 \text{ A})=6 \text{ W} \\ E &= Pt = (6 \text{ W})(60 \text{ s})=360 \text{ J} \end{aligned}" />
 
-Compare this straight line with the kinetic energy curve above. Potential energy grows in proportion to height, so every extra meter adds the same <InlineMath math="mg=20\text{ J}" />.
-
-<MathVisual
-  title={<>Potential Energy Grows Evenly with Height</>}
-  description={<><InlineMath math="E_p=mgh" /> for <InlineMath math="2\text{ kg}" /> with <InlineMath math="g=10\text{ m/s}^2" />. Horizontal: height in m. Vertical: energy in units of <InlineMath math="20\text{ J}" />.</>}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 6 } },
-    view: { kind: "fit", padding: 0.06 },
-    objects: [
-      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 5 } },
-      { id: "top", kind: "point", appearance: "primary", at: { x: 5, y: 5 } },
-    ],
-    labels: [
-      { key: "top", objectId: "top", at: { x: 5, y: 5 }, placement: "left" },
-    ],
-  }}
-  labels={{
-    top: <InlineMath math="h=5\text{ m}:\ E_p=100\text{ J}" />,
-  }}
-/>
-
 ## One Power Plant Converts Several Forms of Energy
 
-Hydropower, for example, follows this chain:
+In hydropower, water starts with **gravitational potential energy**. As it flows downward, that energy becomes kinetic energy of the flowing water, then rotational kinetic energy of the turbine, and finally electrical energy.
 
-The water first has **gravitational potential energy**. As it flows downward, energy becomes kinetic energy of the flowing water, then kinetic energy of the turning turbine, and finally electrical energy.
+A solar panel receives radiant energy from sunlight, then changes part of that energy into electrical energy. Never assume all renewable input becomes electricity directly: every converter also transfers some energy to the surroundings as heat or sound.
 
-A solar panel receives radiant energy from sunlight, then changes part of that energy into electrical energy.
+Follow those stages through a real dam. Every second, <InlineMath math="10\text{ m}^3" /> of water drops through the head between the reservoir surface and the turbine. At a <InlineMath math="50\text{ m}" /> head with <InlineMath math="g=10\text{ m/s}^2" />, the water releases <InlineMath math="5\text{ MW}" /> and reaches the turbine near <InlineMath math="31.6\text{ m/s}" />.
 
-A complete energy chain names the initial energy, the desired output, and each conversion between them.
-
-Follow those forms through a real dam. Every second, <InlineMath math="10\text{ m}^3" /> of water drops through the head, the height between the reservoir's surface and the turbine. Its potential energy each second is <InlineMath math="\rho g Q h" />, so at a head of <InlineMath math="50\text{ m}" /> it releases <InlineMath math="5\text{ MW}" /> with <InlineMath math="g=10\text{ m/s}^2" />. The water reaches the turbine at <InlineMath math="\sqrt{2gh}\approx31.6\text{ m/s}" />, the shaft keeps <InlineMath math="90\%" />, and the generator sends <InlineMath math="95\%" /> of that to the grid. Raise the head and watch every bar grow in step.
+The shaft keeps <InlineMath math="90\%" /> of the turbine power, and the generator sends <InlineMath math="95\%" /> of that shaft power to the grid. Raise the head below and watch every bar grow in step.
 
 <HydroDamLab
   title={<>Energy Forms in a Hydropower Dam</>}
   description={<>Water falls through the head at <InlineMath math="10\text{ m}^3\text{/s}" />. Move the head and compare the power at each stage: potential energy released, kinetic energy at the turbine, the turning shaft, and electricity.</>}
+  footer={<>Raising the dam head scales every stage up while losses keep output below input.</>}
   labels={{
     electric: <>Electricity</>,
     head: <>Head</>,
@@ -240,13 +276,4 @@ Follow those forms through a real dam. Every second, <InlineMath math="10\text{ 
   }}
 />
 
-## Distinguish Commonly Confused Ideas
-
-| Misconception | Correction |
-| :------ | :------------------- |
-| Kinetic energy is treated as depending only on mass | Kinetic energy also depends on the square of speed, written as <InlineMath math="v^2" /> |
-| Heat is treated as a substance stored inside an object | Heat is energy transferred because of a temperature difference |
-| <InlineMath math="\text{kWh}" /> is treated as a unit of power | <InlineMath math="\text{kWh}" /> is a unit of energy because it comes from <InlineMath math="P \times t" /> |
-| All energy from a renewable source is treated as directly becoming electricity | A conversion device also transfers some energy to the surroundings, so only part of the input becomes useful electrical output |
-
-To choose the relevant formula for a renewable-energy device, <Highlight>identify the form of energy entering it</Highlight>. Moving air has kinetic energy, elevated water has gravitational potential energy, geothermal fluids carry thermal energy, biomass stores chemical energy, and sunlight carries radiant energy.
+Notice how each bar steps slightly lower from potential power to electrical output, showing real conversion losses at the turbine and generator. To choose the right formula for any renewable-energy device, <Highlight>identify the form of energy entering it</Highlight>: moving air brings kinetic energy, elevated water brings potential energy, geothermal fluid carries thermal energy, biomass stores chemical energy, and sunlight carries radiant energy.
