@@ -1,3 +1,15 @@
+# Given
+
+Five people sit in a row with **Ani and Budi required to sit side by side** and **Citra forbidden from either end seat**.
+
+# Asked
+
+The **number of valid seating arrangements**.
+
+# Solution
+
+> Tie Ani and Budi together as one pair first to count all adjacent seatings, then subtract the ones where Citra lands on an end.
+
 First count all arrangements with Ani and Budi together, then **subtract** those that put Citra at an end.
 
 Treat Ani and Budi as one block. The block with Citra, Dedi, and Eka makes <InlineMath math="4" /> units, which can be ordered in <InlineMath math="4!=24" /> ways. Inside the block, Ani and Budi can swap in <InlineMath math="2" /> ways.
@@ -18,5 +30,9 @@ The chart below splits the <InlineMath math="48" /> arrangements by Citra's seat
   series={[{ label: "Arrangements with Ani and Budi together", mark: "bar", values: [12, 2 * 2 * 2, 2 * 2 * 2, 2 * 2 * 2, 12] }]}
   valueLabel="Arrangements"
 />
+
+Subtracting the end-seat bar for Citra from all adjacent seatings leaves the exact twenty-four valid lineups.
+
+# Answer
 
 So there are <InlineMath math="24" /> possible seating arrangements.

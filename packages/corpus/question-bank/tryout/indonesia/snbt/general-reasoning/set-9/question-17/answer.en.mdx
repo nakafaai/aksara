@@ -1,3 +1,15 @@
+# Given
+
+Umar stays on **floor <InlineMath math="1" /> gardening**, while Rani, Sita, and Tika fill **floors <InlineMath math="2" /> through <InlineMath math="4" /> with the cook directly below the painter**.
+
+# Asked
+
+The **number of distinct valid floor-and-hobby arrangements**.
+
+# Solution
+
+> Count the two adjacent floor slots for the cook-and-painter pair and then check how many valid name assignments fit each slot.
+
 Umar is certainly on floor 1, gardening. Rani, Sita, and Tika take floors 2, 3, and 4 with cooking, painting, and photography. The cook and painter must be on **two adjacent floors** with the cook below, floors 2 and 3 or floors 3 and 4. Split the cases by **who photographs**, since Tika cannot.
 
 **Sita photographs**. As in the previous question, Sita is on floor 2, and Rani and Tika are on floors 3 and 4 with the cook below the painter. That is **<InlineMath math="2" />** arrangements.
@@ -17,5 +29,9 @@ The chart below counts the valid arrangements by who photographs. **Tika never p
   series={[{ label: "Valid arrangements", mark: "bar", values: [2, 2, 0] }]}
   valueLabel="Arrangements"
 />
+
+The two adjacent-floor bars show directly that each case yields two valid layouts for a total of four.
+
+# Answer
 
 The total is <InlineMath math="2+2=4" /> arrangements.

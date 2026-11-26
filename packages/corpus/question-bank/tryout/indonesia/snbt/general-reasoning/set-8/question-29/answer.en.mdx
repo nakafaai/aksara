@@ -1,3 +1,15 @@
+# Given
+
+Three-digit numbers must be **divisible by <InlineMath math="5" />** and use **three all-distinct digits**.
+
+# Asked
+
+The **number of valid three-digit numbers**.
+
+# Solution
+
+> Split numbers ending in zero from those ending in five, because zero still cannot take the hundreds place when five is at the end.
+
 Numbers divisible by <InlineMath math="5" /> end in <InlineMath math="0" /> or <InlineMath math="5" />. Count **the two cases** separately, because the condition on the hundreds digit differs.
 
 **Units digit <InlineMath math="0" />**. The hundreds digit can be <InlineMath math="1" /> to <InlineMath math="9" />, <InlineMath math="9" /> choices. The tens digit must differ from both, leaving <InlineMath math="8" /> choices.
@@ -18,5 +30,9 @@ The chart below compares the two cases. **The case ending in <InlineMath math="5
   series={[{ label: "Numbers", mark: "bar", values: [9 * 8, 8 * 8] }]}
   valueLabel="Numbers"
 />
+
+Splitting the bars for ending in zero versus ending in five highlights why ending in zero allows more hundreds-digit choices.
+
+# Answer
 
 The total is <InlineMath math="72+64=136" /> numbers.

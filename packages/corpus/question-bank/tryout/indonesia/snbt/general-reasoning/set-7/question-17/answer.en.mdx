@@ -1,3 +1,15 @@
+# Given
+
+All five rules apply with **only Ayu, Citra, or Dani able to occupy the center post**.
+
+# Asked
+
+The **number of distinct valid guard assignments**.
+
+# Solution
+
+> Split the count cleanly into three cases by who stands at the center post so every legal assignment is counted once.
+
 Split the cases by **who takes the middle post**. Bima cannot be in the middle (rule 4), and Eko cannot be either (Eko in the middle forces Ayu and Bima together). So the middle post goes to Ayu, Citra, or Dani.
 
 **Ayu in the middle**. As in the previous question, there is only one assignment: Bima and Eko north, Citra and Dani south. That is **<InlineMath math="1" />** assignment.
@@ -17,4 +29,8 @@ The chart below counts the valid assignments by who takes the middle post. **Bim
   valueLabel="Assignments"
 />
 
-The total is <InlineMath math="1+4+2=7" /> assignments.
+Comparing the three bars shows directly how branching by who stands at the center post adds up to all seven legal assignments.
+
+# Answer
+
+The total is <InlineMath math="7" /> assignments.
