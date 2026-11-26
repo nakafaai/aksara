@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Modern Periodic Table",
   description:
@@ -15,6 +14,8 @@ Each box in the modern periodic table represents one element. The elements are a
 
 Increasing atomic number <InlineMath math="Z" /> produces repeating patterns in chemical properties.
 
+> The periodic table is a map of proton counts where rows track shells and columns track outer electrons.
+
 <ModernPeriodicTableLab
   title={<>Modern Periodic Table Model</>}
   description={
@@ -24,6 +25,7 @@ Increasing atomic number <InlineMath math="Z" /> produces repeating patterns in 
       gases.
     </>
   }
+  footer={<>Select a region to see how proton order organizes groups, periods, and element families.</>}
   labels={{
     chooseFocus: "Choose a periodic-table focus",
     tableLabel: "Modern periodic table model",
@@ -80,25 +82,45 @@ Increasing atomic number <InlineMath math="Z" /> produces repeating patterns in 
   }}
 />
 
+Clicking across the raised blocks shows that every region sits where it does because of atomic number and electron layout, not arbitrary grouping.
+
 ## Mass Is Not the Order
 
-A mass spectrometer shows that one element can have atoms of different masses. That is why **the table is ordered by proton number, not by mass**: every isotope of an element still has the same number of protons.
+One element can have atoms with different mass numbers because its isotopes carry different numbers of neutrons. That is why **the table is ordered by proton number, not by mass**: every isotope of boron, carbon, or neon stays in the same box because its proton count never changes.
 
-<MassSpectrometerLab
-  title={<>Isotopes behind Each Element</>}
-  description={<>Choose boron, carbon or neon and read the average mass from its isotopes.</>}
-  samples={["boron", "carbon", "neon"]}
+<MathVisual
+  title={<>Same Atomic Number Different Isotope Masses</>}
+  description={<>Atomic number <InlineMath math="Z" /> (gray) compared with main isotope mass numbers <InlineMath math="A" /> (orange and violet) for boron, carbon, and neon. Vertical step is <InlineMath math="4" /> units.</>}
+  footer={<>Isotopes vary in mass number while sharing one fixed atomic number inside a single box.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3, y: 2.5, z: 0 } },
+    objects: [
+      { id: "b-z", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.625, z: -0.7 }, size: { length: 1.0, height: 1.25, width: 0.9 } },
+      { id: "b-10", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.25, z: 0.25 }, size: { length: 0.7, height: 2.5, width: 0.6 } },
+      { id: "b-11", kind: "cuboid", appearance: "secondary", center: { x: 0.85, y: 1.375, z: 0.25 }, size: { length: 0.7, height: 2.75, width: 0.6 } },
+      { id: "c-z", kind: "cuboid", appearance: "reference", center: { x: 3, y: 0.75, z: -0.7 }, size: { length: 1.0, height: 1.5, width: 0.9 } },
+      { id: "c-12", kind: "cuboid", appearance: "primary", center: { x: 3, y: 1.5, z: 0.25 }, size: { length: 0.7, height: 3.0, width: 0.6 } },
+      { id: "c-13", kind: "cuboid", appearance: "secondary", center: { x: 3.85, y: 1.625, z: 0.25 }, size: { length: 0.7, height: 3.25, width: 0.6 } },
+      { id: "ne-z", kind: "cuboid", appearance: "reference", center: { x: 6, y: 1.25, z: -0.7 }, size: { length: 1.0, height: 2.5, width: 0.9 } },
+      { id: "ne-20", kind: "cuboid", appearance: "primary", center: { x: 6, y: 2.5, z: 0.25 }, size: { length: 0.7, height: 5.0, width: 0.6 } },
+      { id: "ne-22", kind: "cuboid", appearance: "secondary", center: { x: 6.85, y: 2.75, z: 0.25 }, size: { length: 0.7, height: 5.5, width: 0.6 } },
+    ],
+    labels: [
+      { key: "b", objectId: "b-11", at: { x: 0.4, y: 3.2, z: 0.25 }, placement: "above" },
+      { key: "c", objectId: "c-13", at: { x: 3.4, y: 3.7, z: 0.25 }, placement: "above" },
+      { key: "ne", objectId: "ne-22", at: { x: 6.4, y: 5.9, z: 0.25 }, placement: "above" },
+    ],
+  }}
   labels={{
-    average: <>Average relative atomic mass</>,
-    choose: "Choose an element",
-    isotopes: <>Isotopes and abundance</>,
-    north: "N",
-    radius: <>Path radius</>,
-    ratio: <>Ratio of radii</>,
-    south: "S",
-    view: "Mass spectrometer",
+    b: <InlineMath math="\mathrm{B}:\ Z=5,\ A=10,11" />,
+    c: <InlineMath math="\mathrm{C}:\ Z=6,\ A=12,13" />,
+    ne: <InlineMath math="\mathrm{Ne}:\ Z=10,\ A=20,22" />,
   }}
 />
+
+Ordering by <InlineMath math="Z" /> keeps all isotopes of an element together and also explains why pairs such as argon (<InlineMath math="Z = 18" />) and potassium (<InlineMath math="Z = 19" />) sit in their chemical families despite their average atomic masses.
 
 ## Periods and Groups
 
@@ -113,6 +135,7 @@ Count the elements in each period of the modern table and a pattern appears: <In
 <MathVisual
   title={<>Elements in Each Period</>}
   description={<>The number of elements in periods <InlineMath math="1" /> to <InlineMath math="7" /> of the modern periodic table. One grid step up is <InlineMath math="4" /> elements.</>}
+  footer={<>Period lengths jump to 18 and 32 as d-block and f-block subshells open up.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -147,43 +170,72 @@ Count the elements in each period of the modern table and a pattern appears: <In
   }}
 />
 
+Each doubling or widening step matches the exact capacity of newly available electron subshells, which ties the geometry of the periodic table directly to quantum structure.
+
 ### Groups One and Seventeen Pair Up
 
-A metal from group <InlineMath math="1" /> and a halogen from group <InlineMath math="17" /> always meet one to one, because **each group has the same charge on its ions**. Every crystal here has the formula pattern <InlineMath math="\mathrm{MX}" />.
+A metal from group <InlineMath math="1" /> and a halogen from group <InlineMath math="17" /> always meet one to one, because **each group forms ions of opposite unit charge**. Moving down those groups keeps the <InlineMath math="\mathrm{MX}" /> formula identical while steadily widening the crystal unit cell from <InlineMath math="\mathrm{LiF}" /> to <InlineMath math="\mathrm{KCl}" />.
 
-<IonLatticeLab
-  title={<>Crystals from Two Groups</>}
-  description={<>Switch between three salts and compare their ion sizes and cell edges.</>}
-  crystals={["lithium-fluoride", "sodium-fluoride", "potassium-chloride"]}
+<MathVisual
+  title={<>Unit Cell Edge of Group 1 and 17 Salts</>}
+  description={<>Cubic unit cell edge length of <InlineMath math="\mathrm{LiF}" />, <InlineMath math="\mathrm{NaF}" />, and <InlineMath math="\mathrm{KCl}" />. Vertical step is <InlineMath math="100\ \mathrm{pm}" />.</>}
+  footer={<>Formula stays MX across all three salts while larger ions stretch the unit cell edge.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "lif", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2.015, z: 0 }, size: { length: 1.4, height: 4.03, width: 1.4 } },
+      { id: "naf", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2.31, z: 0 }, size: { length: 1.4, height: 4.62, width: 1.4 } },
+      { id: "kcl", kind: "cuboid", appearance: "primary", center: { x: 5, y: 3.145, z: 0 }, size: { length: 1.4, height: 6.29, width: 1.4 } },
+    ],
+    labels: [
+      { key: "lif", objectId: "lif", at: { x: 0, y: 4.4, z: 0 }, placement: "above" },
+      { key: "naf", objectId: "naf", at: { x: 2.5, y: 5.0, z: 0 }, placement: "above" },
+      { key: "kcl", objectId: "kcl", at: { x: 5, y: 6.7, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    cells: "Unit cells per edge",
-    choose: "Choose a crystal",
-    count: <>Number of ions</>,
-    formula: <>Formula</>,
-    ions: <>Ions and their radii</>,
-    lattice: <>Unit cell edge</>,
-    view: "Ionic crystal lattice",
+    lif: <InlineMath math="\mathrm{LiF}:\ 403\ \mathrm{pm}" />,
+    naf: <InlineMath math="\mathrm{NaF}:\ 462\ \mathrm{pm}" />,
+    kcl: <InlineMath math="\mathrm{KCl}:\ 629\ \mathrm{pm}" />,
   }}
 />
+
+That contrast captures how groups work: the combining ratio stays locked at <InlineMath math="1:1" />, while physical dimensions grow predictably as extra electron shells are added down the column.
 
 ### One Group Reacts Alike
 
-Elements in one group share similar chemistry. Lithium, sodium, and potassium all react with water to give an alkali and hydrogen gas, so water with phenolphthalein turns pink. **Further down the group, the reaction gets faster**. Choose each metal and compare the bubbles.
+Elements in one group share similar chemistry. Lithium, sodium, and potassium all react with water to give an alkali and hydrogen gas, so water with phenolphthalein turns pink. **Further down the group, the reaction gets faster** because the outer electron requires less energy to remove.
 
-<AlkaliWaterLab
-  title={<>Group One Metals in Water</>}
-  description={<>Metals lighter than water float as they react.</>}
-  metals={["lithium", "sodium", "potassium"]}
+<MathVisual
+  title={<>First Ionization Energy Down Group 1</>}
+  description={<>First ionization energy of <InlineMath math="\mathrm{Li}" />, <InlineMath math="\mathrm{Na}" />, and <InlineMath math="\mathrm{K}" />. Vertical step is <InlineMath math="100\ \mathrm{kJ/mol}" />.</>}
+  footer={<>Lower ionization energy down group 1 explains why potassium reacts fastest with water.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 3.8 }, y: { min: 3.5, max: 6.0 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "trend", kind: "polyline", appearance: "warning", vertices: [{ x: 1, y: 5.20 }, { x: 2, y: 4.96 }, { x: 3, y: 4.19 }] },
+      { id: "li", kind: "point", appearance: "primary", at: { x: 1, y: 5.20 } },
+      { id: "na", kind: "point", appearance: "secondary", at: { x: 2, y: 4.96 } },
+      { id: "k", kind: "point", appearance: "warning", at: { x: 3, y: 4.19 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li", at: { x: 1, y: 5.20 }, placement: "above-right" },
+      { key: "na", objectId: "na", at: { x: 2, y: 4.96 }, placement: "above-right" },
+      { key: "k", objectId: "k", at: { x: 3, y: 4.19 }, placement: "below-left" },
+    ],
+  }}
   labels={{
-    choose: "Choose a metal",
-    density: <>Density</>,
-    equation: <>Equation</>,
-    ionization: <>First ionization energy</>,
-    melting: <>Melting point</>,
-    radius: <>Atomic radius</>,
-    view: "Metal in a beaker of water",
+    li: <InlineMath math="\mathrm{Li}:\ 520\ \mathrm{kJ/mol}" />,
+    na: <InlineMath math="\mathrm{Na}:\ 496\ \mathrm{kJ/mol}" />,
+    k: <InlineMath math="\mathrm{K}:\ 419\ \mathrm{kJ/mol}" />,
   }}
 />
+
+Because potassium needs noticeably less energy to give up its outer electron than lithium does, all three metals follow the same reaction equation with water while their reaction vigor rises step by step down the column.
 
 ## Colors Mark Element Regions
 
@@ -222,6 +274,7 @@ Follow the atomic numbers from <InlineMath math="1" /> to <InlineMath math="18" 
 <MathVisual
   title={<>Reading the Table in Atomic-Number Order</>}
   description={<>The first <InlineMath math="18" /> elements in order of atomic number, placed by group (across) and period (rows).</>}
+  footer={<>Each jump back to group 1 starts a new electron shell and repeats the valence pattern.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 5 } },
@@ -266,21 +319,35 @@ Follow the atomic numbers from <InlineMath math="1" /> to <InlineMath math="18" 
   }}
 />
 
+That zig-zag path across rows shows why reading a single coordinate pair (period and group) immediately tells you an element's shell count and valence pattern.
+
 ## The Pattern of Groups One and Seventeen
 
 A group's position tells you how many electrons an atom readily gives or takes. Group <InlineMath math="1" /> metals such as lithium and potassium give up <InlineMath math="1" /> electron, while group <InlineMath math="17" /> halogens such as fluorine and chlorine take <InlineMath math="1" />. **That is why they combine in a <InlineMath math="1 : 1" /> ratio**.
 
-<IonFormationLab
-  title={<>Alkali Metals Meet Halogens</>}
-  description={<>One electron moves and both atoms become ions.</>}
-  pairs={["lithium-fluorine", "potassium-chlorine"]}
+<MathVisual
+  title={<>Valence Electron Counts Before and After Pairing</>}
+  description={<>Valence electrons of <InlineMath math="\mathrm{Li}" /> and <InlineMath math="\mathrm{K}" /> (back) versus <InlineMath math="\mathrm{F}" /> and <InlineMath math="\mathrm{Cl}" /> (front) shifting toward noble-gas shells of <InlineMath math="2" /> or <InlineMath math="8" />. Vertical step is <InlineMath math="2" /> electrons.</>}
+  footer={<>Losing one electron from group 1 and adding it to group 17 leaves both ions closed-shell.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "m-atom", kind: "cuboid", appearance: "warning", center: { x: 0, y: 0.25, z: -0.7 }, size: { length: 1.1, height: 0.5, width: 1.1 } },
+      { id: "m-ion", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.1, z: 0.7 }, size: { length: 1.1, height: 0.2, width: 1.1 } },
+      { id: "x-atom", kind: "cuboid", appearance: "secondary", center: { x: 3.5, y: 1.75, z: -0.7 }, size: { length: 1.1, height: 3.5, width: 1.1 } },
+      { id: "x-ion", kind: "cuboid", appearance: "primary", center: { x: 3.5, y: 2.0, z: 0.7 }, size: { length: 1.1, height: 4.0, width: 1.1 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m-atom", at: { x: 0, y: 1.0, z: -0.7 }, placement: "above" },
+      { key: "x", objectId: "x-ion", at: { x: 3.5, y: 4.3, z: 0.7 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Choose a pair of atoms",
-    metalRadius: <>Metal radius</>,
-    metalShells: <>Metal shells</>,
-    nonmetalRadius: <>Nonmetal radius</>,
-    nonmetalShells: <>Nonmetal shells</>,
-    progress: "Electron transfer",
-    view: "Metal and nonmetal atoms becoming ions",
+    m: <>Group 1: 1 to 0 outer</>,
+    x: <>Group 17: 7 to 8 outer</>,
   }}
 />
+
+Whenever you pair a group <InlineMath math="1" /> metal with a group <InlineMath math="17" /> nonmetal, one transferred electron completes both outer shells at once, turning periodic-table position into a direct predictor of chemical formulas.

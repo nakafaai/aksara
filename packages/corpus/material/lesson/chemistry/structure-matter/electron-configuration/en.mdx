@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Electron Configuration",
   description:
@@ -17,9 +16,12 @@ The Bohr model uses discrete energy levels to explain the line spectrum of hydro
 
 The word **discrete** means not every energy value is allowed. Picture a staircase. You can stand on the first, second, or third step, but not in the empty space between two steps. In an atom, electrons are only allowed at certain energy levels.
 
+> Electrons behave like footsteps on a staircase because they can stand on allowed levels and never hover in between.
+
 <Mermaid
   title={<>Flame Colors Show Energy Differences Between Electron States</>}
   description={<>Connect energy input, electron transitions, and emitted light with the color observed in a flame test.</>}
+  footer={<>Each arrow links absorbed energy to the light color emitted on return.</>}
   chart={`flowchart LR
     A["Energy enters"] --> B["Electron is excited"]
     B --> C["Electron returns"]
@@ -29,11 +31,20 @@ The word **discrete** means not every energy value is allowed. Picture a stairca
 
 **Excitation** means an electron absorbs energy and temporarily moves to a higher energy level. When the electron drops back down, energy is released as light. In a flame test, the experiment must follow safety procedures and use protective equipment because it involves heating chemicals.
 
-A flame color is light from electrons falling to a lower level. In hydrogen the levels sit at <InlineMath math="E_n=-\tfrac{13.6}{n^2}\ \mathrm{eV}" />, so a fall from <InlineMath math="n=3" /> to <InlineMath math="n=2" /> releases <InlineMath math="1.89\ \mathrm{eV}" />, and <InlineMath math="\lambda=\tfrac{1240}{1.89}\approx656\ \mathrm{nm}" /> is red light. Zoom in near the top, where the levels crowd together.
+A flame color is light from electrons falling to a lower level. In hydrogen, each level energy and the red transition from <InlineMath math="n = 3" /> to <InlineMath math="n = 2" /> follow these values.
+
+<BlockMath math="\begin{aligned}
+E_n &= -\frac{13.6}{n^2}\ \mathrm{eV} \\
+\Delta E &= 1.89\ \mathrm{eV} \\
+\lambda &= \frac{1240}{1.89} \approx 656\ \mathrm{nm}
+\end{aligned}" />
+
+That wavelength of <InlineMath math="656\ \mathrm{nm}" /> sits in the red part of the visible spectrum. Zoom in near the top of the diagram below, where the higher levels crowd together.
 
 <MathVisual
   title={<>Falling Electrons Give Colored Light</>}
-  description={<>Energy levels of the hydrogen atom and two falls to the level <InlineMath math="n=2" />, red (pink arrow) and blue-green (teal arrow). Vertical: energy in electronvolts.</>}
+  description={<>Energy levels of the hydrogen atom and two falls to the level <InlineMath math="n=2" />, red (pink arrow) and blue-green (teal arrow). Vertical axis shows energy in electronvolts.</>}
+  footer={<>Longer drops release more energy and produce shorter visible wavelengths.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -14.5, max: 0.5 } },
@@ -66,11 +77,13 @@ A flame color is light from electrons falling to a lower level. In hydrogen the 
   }}
 />
 
+Notice how the blue-green drop is longer than the red drop. Because the electron falls across a bigger energy gap, the emitted photon carries more energy and appears closer to the blue end of the spectrum.
+
 ## Electron Arrangement in the Shell Model
 
 **Electron configuration** is a way to write how electrons are distributed around the atomic nucleus. Here, we use a **simple shell model**, where electrons are grouped into shells <InlineMath math="\mathrm{K}" />, <InlineMath math="\mathrm{L}" />, <InlineMath math="\mathrm{M}" />, and <InlineMath math="\mathrm{N}" />.
 
-For a neutral atom:
+For a neutral atom, the electron count matches the atomic number.
 
 <BlockMath math="e^- = Z" />
 
@@ -80,22 +93,39 @@ This simple shell model is limited to light elements up to calcium, which means 
 
 ## Configurations in a Beaker
 
-Sodium is <InlineMath math="2, 8, 1" /> and magnesium is <InlineMath math="2, 8, 2" />: **one outer electron leaves more easily than two**, so sodium races across the water while magnesium barely stirs.
+Sodium is <InlineMath math="2, 8, 1" /> and magnesium is <InlineMath math="2, 8, 2" />. Because **one outer electron leaves more easily than two**, sodium reacts vigorously with water while magnesium reacts much more slowly. Compare their first ionization energies below alongside calcium.
 
-<AlkaliWaterLab
-  title={<>Outer Electrons and Reaction Speed</>}
-  description={<>Compare sodium, magnesium and calcium and read their ionization energies.</>}
-  metals={["sodium", "magnesium", "calcium"]}
+<MathVisual
+  title={<>Outer Electrons and Ionization Energy</>}
+  description={<>First ionization energy in kilojoules per mole for sodium, magnesium, and calcium. Lower stems mean the outer electron detaches more easily.</>}
+  footer={<>Sodium needs the least energy to lose its lone outer electron.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -40, max: 860 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0.4, y: 0 }, to: { x: 3.6, y: 0 } },
+      { id: "na-bar", kind: "segment", appearance: "primary", from: { x: 1, y: 0 }, to: { x: 1, y: 496 } },
+      { id: "mg-bar", kind: "segment", appearance: "secondary", from: { x: 2, y: 0 }, to: { x: 2, y: 738 } },
+      { id: "ca-bar", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 590 } },
+      { id: "na-pt", kind: "point", appearance: "primary", at: { x: 1, y: 496 } },
+      { id: "mg-pt", kind: "point", appearance: "secondary", at: { x: 2, y: 738 } },
+      { id: "ca-pt", kind: "point", appearance: "construction", at: { x: 3, y: 590 } },
+    ],
+    labels: [
+      { key: "na", objectId: "na-pt", at: { x: 1, y: 496 }, placement: "above" },
+      { key: "mg", objectId: "mg-pt", at: { x: 2, y: 738 }, placement: "above" },
+      { key: "ca", objectId: "ca-pt", at: { x: 3, y: 590 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Choose a metal",
-    density: <>Density</>,
-    equation: <>Equation</>,
-    ionization: <>First ionization energy</>,
-    melting: <>Melting point</>,
-    radius: <>Atomic radius</>,
-    view: "Metal in a beaker of water",
+    na: <InlineMath math="\mathrm{Na}\ (2,8,1):\ 496" />,
+    mg: <InlineMath math="\mathrm{Mg}\ (2,8,2):\ 738" />,
+    ca: <InlineMath math="\mathrm{Ca}\ (2,8,8,2):\ 590" />,
   }}
 />
+
+Sodium has the lowest ionization barrier among the three, so it parts with its outer electron fastest. Calcium sits lower than magnesium because its two outer electrons lie farther out in the fourth shell.
 
 ## Interactive Electron Shell Model
 
@@ -112,6 +142,7 @@ Choose a neutral atom below. First read its atomic number, then see how its elec
       <InlineMath math="\mathrm{N}" /> shells.
     </>
   }
+  footer={<>Inner shells fill completely before electrons enter the next outer shell.</>}
   labels={{
     chooseAtom: "Choose a neutral atom",
     atomicNumber: "Atomic number",
@@ -155,9 +186,11 @@ Choose a neutral atom below. First read its atomic number, then see how its elec
   }}
 />
 
+Click through sodium, magnesium, and chlorine in sequence. Adding one proton and one electron at each step builds the same outer shell until it holds eight and starts a new ring.
+
 ## Reading the Filling Order
 
-In the simple shell model for the first elements **up to calcium**, electrons are filled from the shell closer to the nucleus first. The order is:
+In the simple shell model for the first elements **up to calcium**, electrons are filled from the shell closer to the nucleus first.
 
 | Shell | Occupation in the atoms shown here | How to read it |
 | :---- | :------------------------------- | :------------- |
@@ -168,7 +201,7 @@ In the simple shell model for the first elements **up to calcium**, electrons ar
 
 The simple shell model can be used for the elements from hydrogen through calcium. The arrangement <InlineMath math="2, 8, 8, 2" /> is calcium's configuration. Each earlier element has the number of electrons given by its atomic number. Heavier elements require subshell filling because the <InlineMath math="\mathrm{M}" /> shell can hold more than <InlineMath math="8" /> electrons.
 
-Sodium example:
+Here is how the filling order works for sodium.
 
 <BlockMath math="\begin{aligned}
 \mathrm{Na}: Z &= 11 \\
@@ -176,7 +209,7 @@ e^- &= 11 \\
 \text{configuration} &= 2, 8, 1
 \end{aligned}" />
 
-Chlorine example:
+Applying the same steps to chlorine gives seven electrons in the third shell.
 
 <BlockMath math="\begin{aligned}
 \mathrm{Cl}: Z &= 17 \\
@@ -184,11 +217,12 @@ e^- &= 17 \\
 \text{configuration} &= 2, 8, 7
 \end{aligned}" />
 
-Fill the shells in order for the first <InlineMath math="20" /> elements, from hydrogen with <InlineMath math="Z=1" /> to calcium with <InlineMath math="Z=20" />. Each row is one shell and each column one element, so every column holds <InlineMath math="Z" /> electrons in all. Rotate the scene: the L shell fills up at neon, and from potassium on the next electrons go into the N shell.
+Fill the shells in order for the first <InlineMath math="20" /> elements, from hydrogen with <InlineMath math="Z=1" /> to calcium with <InlineMath math="Z=20" />. Each row is one shell and each column one element, so every column holds <InlineMath math="Z" /> electrons in all. Rotate the scene to see the L shell fill at neon and the N shell start at potassium.
 
 <MathVisual
-  title={<>Twenty Atoms, Shell by Shell</>}
+  title={<>Twenty Atoms Shell by Shell</>}
   description={<>Electrons in the K (gray), L (violet), M (orange) and N (fuchsia) shells for atomic numbers <InlineMath math="1" /> to <InlineMath math="20" />. One grid step up is <InlineMath math="2" /> electrons.</>}
+  footer={<>Each completed shell caps at its plateau before the next shell row begins.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: 0, max: 4.5 }, z: { min: -0.6, max: 4.2 } },
@@ -262,24 +296,51 @@ Fill the shells in order for the first <InlineMath math="20" /> elements, from h
   }}
 />
 
+Scanning across all twenty bars reveals the repeating rhythm of the periodic table. Every time a shell row reaches its flat top, a brand-new row starts right in front of it.
+
 ### Ions Reach a Noble Gas Pattern
 
-After the transfer, <InlineMath math="\mathrm{Na^+}" /> and <InlineMath math="\mathrm{Cl^-}" /> have the configurations of neon and argon. **Ions end on a full noble gas pattern**, which is why these configurations are so common.
+After one electron moves from sodium to chlorine, <InlineMath math="\mathrm{Na^+}" /> and <InlineMath math="\mathrm{Cl^-}" /> match the full configurations of neon and argon. **Ions end on a full noble gas pattern**, which explains why these transfers happen so frequently.
 
-<IonFormationLab
-  title={<>Configurations Before and After</>}
-  description={<>Move the electrons across and compare each atom's shells before and after.</>}
-  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+<MathVisual
+  title={<>Configurations Before and After Transfer</>}
+  description={<>Total electrons before and after sodium transfers one electron to chlorine. Both ions land on the noble gas totals of neon and argon.</>}
+  footer={<>Losing or gaining one electron shifts each atom onto a full noble gas shell.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 8.5, max: 19.5 }, y: { min: -1.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 9.5, y: 0 }, to: { x: 18.5, y: 0 } },
+      { id: "na-shift", kind: "segment", appearance: "primary", from: { x: 11, y: 0.8 }, to: { x: 10, y: 0.8 } },
+      { id: "cl-shift", kind: "segment", appearance: "secondary", from: { x: 17, y: 0.8 }, to: { x: 18, y: 0.8 } },
+      { id: "ne-pt", kind: "point", appearance: "answer", at: { x: 10, y: 0 } },
+      { id: "na-pt", kind: "point", appearance: "primary", at: { x: 11, y: 0.8 } },
+      { id: "na-ion", kind: "point", appearance: "answer", at: { x: 10, y: 0.8 } },
+      { id: "cl-pt", kind: "point", appearance: "secondary", at: { x: 17, y: 0.8 } },
+      { id: "cl-ion", kind: "point", appearance: "answer", at: { x: 18, y: 0.8 } },
+      { id: "ar-pt", kind: "point", appearance: "answer", at: { x: 18, y: 0 } },
+    ],
+    labels: [
+      { key: "ne", objectId: "ne-pt", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "na", objectId: "na-pt", at: { x: 11, y: 0.8 }, placement: "above" },
+      { key: "na-ion", objectId: "na-ion", at: { x: 10, y: 0.8 }, placement: "above" },
+      { key: "cl", objectId: "cl-pt", at: { x: 17, y: 0.8 }, placement: "above" },
+      { key: "cl-ion", objectId: "cl-ion", at: { x: 18, y: 0.8 }, placement: "above" },
+      { key: "ar", objectId: "ar-pt", at: { x: 18, y: 0 }, placement: "below" },
+    ],
+  }}
   labels={{
-    choose: "Choose a pair of atoms",
-    metalRadius: <>Metal radius</>,
-    metalShells: <>Metal shells</>,
-    nonmetalRadius: <>Nonmetal radius</>,
-    nonmetalShells: <>Nonmetal shells</>,
-    progress: "Electron transfer",
-    view: "Metal and nonmetal atoms becoming ions",
+    ne: <InlineMath math="\mathrm{Ne}:\ 2,8" />,
+    na: <InlineMath math="\mathrm{Na}:\ 2,8,1" />,
+    "na-ion": <InlineMath math="\mathrm{Na^+}:\ 2,8" />,
+    cl: <InlineMath math="\mathrm{Cl}:\ 2,8,7" />,
+    "cl-ion": <InlineMath math="\mathrm{Cl^-}:\ 2,8,8" />,
+    ar: <InlineMath math="\mathrm{Ar}:\ 2,8,8" />,
   }}
 />
+
+Both shifts are just one step long on the electron count line. Sodium steps down one to neon's shell layout, while chlorine steps up one to argon's layout.
 
 ### Shapes of s p and d Orbitals
 
@@ -288,6 +349,7 @@ The filling order uses subshell names such as <InlineMath math="2s" />, <InlineM
 <OrbitalCloudLab
   title={<>The s, p, and d Orbitals</>}
   description={<>Choose an orbital and turn its cloud to see its lobes and nodal planes.</>}
+  footer={<>Subshell letters tell you the three-dimensional shape of the electron cloud.</>}
   orbitals={["2s", "2pz", "3dz2", "3dxy"]}
   labels={{
     angular: <>Angular nodes</>,
@@ -299,17 +361,24 @@ The filling order uses subshell names such as <InlineMath math="2s" />, <InlineM
   }}
 />
 
+Rotating each cloud shows why heavier elements need more than flat Bohr rings. Electrons occupy distinct three-dimensional regions with specific nodes and lobes.
+
 ## Connecting Configuration to Spectra
 
 The configurations in the shell model show the arrangement of electrons in the ground state, meaning <Highlight>the lowest-energy state</Highlight>. A line spectrum appears when an electron receives energy and then returns to a lower energy level.
 
-The energy of the emitted light can be written as:
+The energy of the emitted light links directly to frequency and wavelength.
 
-<BlockMath math="\begin{aligned} E_{\text{photon}} &amp;= E_{\text{high}} - E_{\text{low}} \\ &amp;= h\nu \\ &amp;= \frac{hc}{\lambda} \end{aligned}" />
+<BlockMath math="\begin{aligned} E_{\text{photon}} &= E_{\text{high}} - E_{\text{low}} \\ &= h\nu \\ &= \frac{hc}{\lambda} \end{aligned}" />
 
-The symbol <InlineMath math="h" /> is Planck's constant, <InlineMath math="\nu" /> is the frequency of light, <InlineMath math="c" /> is the speed of light, and <InlineMath math="\lambda" /> is wavelength. The [exact values](https://physics.nist.gov/cuu/Constants/Table/allascii.txt) are <InlineMath math="h = 6.62607015 \times 10^{-34}\ \mathrm{J\,s}" /> and <InlineMath math="c = 2.99792458 \times 10^8\ \mathrm{m\,s^{-1}}" />.
+Here <InlineMath math="h" /> is Planck's constant, <InlineMath math="\nu" /> is light frequency, <InlineMath math="c" /> is the speed of light, and <InlineMath math="\lambda" /> is wavelength. Their [exact NIST values](https://physics.nist.gov/cuu/Constants/Table/allascii.txt) are written below.
 
-For example, calculate the energy of one photon with a vacuum wavelength of <InlineMath math="600\ \mathrm{nm}" />. Use the rounded constants <InlineMath math="h\approx6.626\times10^{-34}\ \mathrm{J\,s}" /> and <InlineMath math="c\approx3.00\times10^8\ \mathrm{m/s}" />:
+<BlockMath math="\begin{aligned}
+h &= 6.62607015 \times 10^{-34}\ \mathrm{J\,s} \\
+c &= 2.99792458 \times 10^8\ \mathrm{m\,s^{-1}}
+\end{aligned}" />
+
+For example, calculate the energy of one photon with a vacuum wavelength of <InlineMath math="600\ \mathrm{nm}" /> using three-significant-figure rounded values of <InlineMath math="h" /> and <InlineMath math="c" />.
 
 <BlockMath math="\begin{aligned}
 \lambda&=600\times10^{-9}\ \mathrm m=6.00\times10^{-7}\ \mathrm m\\
@@ -322,32 +391,46 @@ Electrons occupy specific energy levels. A transition to a lower energy level ca
 
 ## Lines the Eye Cannot See
 
-Not every electron jump gives visible light. A jump down to the first shell releases a high-energy ultraviolet photon, while a jump to the third shell releases an infrared photon. **The bigger the energy gap, the shorter the wavelength**. Compare the photon energy of each jump at the bottom of the card.
+Not every electron jump gives visible light. A jump down to the first shell releases a high-energy ultraviolet photon, while a jump to the third shell releases an infrared photon. **The bigger the energy gap, the shorter the wavelength**.
 
-<BohrEmissionLab
-  title={<>Ultraviolet and Infrared Series</>}
-  description={<>Pick a jump and compare its photon energy with the visible lines.</>}
-  falls={[{ from: 2, to: 1 }, { from: 3, to: 1 }, { from: 4, to: 3 }, { from: 5, to: 3 }]}
+<MathVisual
+  title={<>Ultraviolet Visible and Infrared Jumps</>}
+  description={<>Photon energies in electronvolts for three hydrogen transitions ending at shells <InlineMath math="n=1" />, <InlineMath math="n=2" />, and <InlineMath math="n=3" />.</>}
+  footer={<>Drops to the innermost shell release far more energy than visible jumps.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 11.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7.5, y: 7, z: 11 }, target: { x: 2.5, y: 4, z: 0 } },
+    objects: [
+      { id: "uv-bar", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 10.2 / 2, z: 0 }, size: { length: 1.3, height: 10.2, width: 1.3 } },
+      { id: "vis-bar", kind: "cuboid", appearance: "warning", center: { x: 2.5, y: 1.89 / 2, z: 0 }, size: { length: 1.3, height: 1.89, width: 1.3 } },
+      { id: "ir-bar", kind: "cuboid", appearance: "reference", center: { x: 5, y: 0.66 / 2, z: 0 }, size: { length: 1.3, height: 0.66, width: 1.3 } },
+    ],
+    labels: [
+      { key: "uv", objectId: "uv-bar", at: { x: 0, y: 10.7, z: 0 }, placement: "above" },
+      { key: "vis", objectId: "vis-bar", at: { x: 2.5, y: 2.4, z: 0 }, placement: "above" },
+      { key: "ir", objectId: "ir-bar", at: { x: 5, y: 1.2, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Choose an electron jump",
-    energy: <>Photon energy</>,
-    frequency: <>Photon frequency</>,
-    transition: <>Electron jump</>,
-    view: "Bohr model of hydrogen",
-    wavelength: <>Wavelength</>,
+    uv: <InlineMath math="\mathrm{UV}\ (2\to 1):\ 10.2\ \mathrm{eV}" />,
+    vis: <InlineMath math="\mathrm{Red}\ (3\to 2):\ 1.89\ \mathrm{eV}" />,
+    ir: <InlineMath math="\mathrm{IR}\ (4\to 3):\ 0.66\ \mathrm{eV}" />,
   }}
 />
 
+The drop into <InlineMath math="n = 1" /> towers over the visible red line by more than five times, placing it deep in the ultraviolet. The small drop into <InlineMath math="n = 3" /> carries too little energy for human eyes and falls in the infrared.
+
 ## Electron Count from Atomic Number
 
-When asked to write a simple electron configuration, use this order:
+When asked to write a simple electron configuration, follow this steady checklist.
 
 - Make sure whether the particle is a **neutral atom or an ion**.
 - If it is neutral, the electron count equals the atomic number.
 - Fill shells from inside to outside in the model being used.
 - Write the electron count in each shell with commas.
 
-For neutral magnesium:
+Here is how those steps work for neutral magnesium.
 
 <BlockMath math="\begin{aligned}
 Z &= 12 \\

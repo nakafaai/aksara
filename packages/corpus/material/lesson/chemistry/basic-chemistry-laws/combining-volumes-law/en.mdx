@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Combining Volumes",
   description:
@@ -15,37 +14,50 @@ The law of combining volumes states that reacting gases, and gaseous products, h
 
 When all gas volumes are measured at the same temperature and pressure, their ratios follow the coefficients in the balanced equation. Hydrogen and oxygen combine by volume in a <InlineMath math="2:1" /> ratio to form water.
 
+> Equal volumes of any gas under matching temperature and pressure hold the same number of molecules, so equation coefficients double as volume ratios.
+
 This rule applies only to substances in the gas phase. Their volumes must also be compared at the same temperature and pressure.
 
 We use the **ideal-gas approximation** and count the volumes that actually react or form. Any unreacted excess gas must be counted separately.
 
-## Coefficients Count Molecules
+### Coefficients Count Gas Molecules
 
-Gas volumes come in the same ratio as the coefficients because **the coefficients count molecules**. Choose the hydrogen chloride reaction and drag the slider. <InlineMath math="1" /> molecule of <InlineMath math="\mathrm{H_2}" /> and <InlineMath math="1" /> molecule of <InlineMath math="\mathrm{Cl_2}" /> give <InlineMath math="2" /> molecules of <InlineMath math="\mathrm{HCl}" />, exactly the volume ratio <InlineMath math="1 : 1 : 2" />.
+Gas volumes come in the same ratio as the coefficients because **the coefficients count molecules**. In hydrogen chloride synthesis, <InlineMath math="1" /> molecule of <InlineMath math="\mathrm{H_2}" /> and <InlineMath math="1" /> molecule of <InlineMath math="\mathrm{Cl_2}" /> give <InlineMath math="2" /> molecules of <InlineMath math="\mathrm{HCl}" />, keeping total gas volume at <InlineMath math="2" /> parts. In ammonia synthesis, <InlineMath math="1" /> part of <InlineMath math="\mathrm{N_2}" /> and <InlineMath math="3" /> parts of <InlineMath math="\mathrm{H_2}" /> drop from <InlineMath math="4" /> total parts down to <InlineMath math="2" /> parts of <InlineMath math="\mathrm{NH_3}" />.
 
-<ReactionBalanceLab
-  title={<>Gas Molecules Combine</>}
-  description={<>Compare the number of molecules before and after the reaction.</>}
-  reactions={[
-    { id: "hydrogen-chloride-synthesis", name: "Forming hydrogen chloride", tab: <InlineMath math="\mathrm{HCl}" /> },
-    { id: "ammonia-synthesis", name: "Forming ammonia", tab: <InlineMath math="\mathrm{NH_3}" /> },
-  ]}
-  reading="molecules"
+<MathVisual
+  title={<>Gas Volumes Before and After Synthesis</>}
+  description={<>Reactant gas parts stacked beside product gas parts for <InlineMath math="\mathrm{H_2}+\mathrm{Cl_2}\rightarrow2\mathrm{HCl}" /> (left) and <InlineMath math="\mathrm{N_2}+3\mathrm{H_2}\rightarrow2\mathrm{NH_3}" /> (right). One grid step up is <InlineMath math="1" /> volume part.</>}
+  footer={<>Total gas volume stays constant in HCl formation but drops from four parts to two in NH3.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 3.5, y: 2, z: 0 } },
+    objects: [
+      { id: "hcl-h2", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "hcl-cl2", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "hcl-prod", kind: "cuboid", appearance: "construction", center: { x: 2, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "nh3-n2", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "nh3-h2", kind: "cuboid", appearance: "secondary", center: { x: 5, y: 2.5, z: 0 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "nh3-prod", kind: "cuboid", appearance: "construction", center: { x: 7, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "hcl-in", objectId: "hcl-cl2", at: { x: 0, y: 2.3, z: 0 }, placement: "above" },
+      { key: "hcl-out", objectId: "hcl-prod", at: { x: 2, y: 2.3, z: 0 }, placement: "above" },
+      { key: "nh3-in", objectId: "nh3-h2", at: { x: 5, y: 4.3, z: 0 }, placement: "above" },
+      { key: "nh3-out", objectId: "nh3-prod", at: { x: 7, y: 2.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms of each element</>,
-    choose: "Choose a reaction",
-    economy: <>Atom economy</>,
-    equation: <>Balanced equation</>,
-    mass: <>Mass of reactants and products</>,
-    molecules: <>Number of molecules</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Reaction at the level of atoms",
+    "hcl-in": <InlineMath math="\mathrm{H_2}+\mathrm{Cl_2}:\ 2" />,
+    "hcl-out": <InlineMath math="2\mathrm{HCl}:\ 2" />,
+    "nh3-in": <InlineMath math="\mathrm{N_2}+3\mathrm{H_2}:\ 4" />,
+    "nh3-out": <InlineMath math="2\mathrm{NH_3}:\ 2" />,
   }}
 />
 
-## Water Must Be in the Gas Phase
+Comparing the two pairs shows an important lesson: mass is always conserved, yet total gas volume does not have to stay fixed. Whenever a reaction reduces the total number of gas molecules, the total gas volume shrinks in the exact same proportion.
+
+### Water Must Stay in the Gas Phase
 
 Look at the balanced equation for forming water vapor.
 
@@ -62,6 +74,7 @@ Each block below is one part of gas at the same temperature and pressure. Two pa
 <MathVisual
   title={<>Water Vapor by Volume</>}
   description={<><InlineMath math="2\mathrm{H_2(g)}+\mathrm{O_2(g)}\rightarrow2\mathrm{H_2O(g)}" /> drawn as equal gas parts at the same temperature and pressure.</>}
+  footer={<>Three reactant gas parts combine into two equal parts of water vapor, matching 2:1:2.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -86,6 +99,8 @@ Each block below is one part of gas at the same temperature and pressure. Two pa
   }}
 />
 
+Keep an eye on the state symbol <InlineMath math="\mathrm{(g)}" /> whenever you apply this picture. The moment water vapor cools into liquid droplets, its molecules pack tightly together and its volume drops by more than a thousand times, breaking the simple gas ratio.
+
 ## Comparing Gas Volumes by Tube
 
 Choose a reaction below. Each tube represents **one volume part of gas** at the same temperature and pressure.
@@ -97,6 +112,7 @@ Choose a reaction below. Each tube represents **one volume part of gas** at the 
       The tube heights compare gas volumes at the same temperature and pressure, so their ratios follow the reaction coefficients.
     </>
   }
+  footer={<>Switch reactions to see each tube stack match the coefficients of the balanced equation.</>}
   labels={{
     chooseMode: "Choose gas reaction",
     reactants: "Reactants",
@@ -185,9 +201,13 @@ Choose a reaction below. Each tube represents **one volume part of gas** at the 
   }}
 />
 
-Each tube height represents a gas volume at the shared temperature and pressure. The number of equal volume parts therefore matches the coefficient in the balanced equation.
+Each tube height represents a gas volume at the shared temperature and pressure. Because every equal volume holds the same molecule count, scaling one measured gas volume automatically scales every other gas in the reaction by the same factor.
 
-## Ammonia Decomposition Example
+## Ammonia Decomposition by Volume
+
+Breaking ammonia apart into nitrogen and hydrogen demonstrates how **gas volume can double while mass stays fixed**. Every two volumes of ammonia gas split into three volumes of hydrogen and one volume of nitrogen, turning two total reactant volumes into four product volumes without creating or losing a single atom.
+
+### Scaling Volumes from Coefficients
 
 Suppose <InlineMath math="600\ \mathrm{mL}" /> of ammonia gas decomposes completely at the same temperature and pressure. The balanced equation is:
 
@@ -206,28 +226,40 @@ V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
 
 So decomposing <InlineMath math="600\ \mathrm{mL}" /> of ammonia gas produces <InlineMath math="900\ \mathrm{mL}" /> of hydrogen gas and <InlineMath math="300\ \mathrm{mL}" /> of nitrogen gas.
 
-## The Molecules in the Ammonia Example
+### Why Two Volumes Become Four
 
-Ammonia breaks down into nitrogen and hydrogen. Turn all three molecules and count their atoms. Each <InlineMath math="\mathrm{NH_3}" /> carries <InlineMath math="1" /> nitrogen atom, while each <InlineMath math="\mathrm{N_2}" /> needs <InlineMath math="2" />. That is why <InlineMath math="2" /> volumes of ammonia **give only** <InlineMath math="1" /> volume of nitrogen.
+Ammonia breaks down into nitrogen and hydrogen while every single atom stays accounted for. Each <InlineMath math="\mathrm{NH_3}" /> carries <InlineMath math="1" /> nitrogen atom, while each <InlineMath math="\mathrm{N_2}" /> needs <InlineMath math="2" />. That is why <InlineMath math="2" /> volumes of ammonia **give only** <InlineMath math="1" /> volume of nitrogen alongside <InlineMath math="3" /> volumes of hydrogen, doubling the total gas volume from <InlineMath math="2" /> parts to <InlineMath math="4" />.
 
-<MoleculeShapeLab
-  title={<>Ammonia, Nitrogen, and Hydrogen</>}
-  description={<>Turn each model and count the nitrogen atoms in every molecule.</>}
-  molecules={[
-    { id: "ammonia", name: "Ammonia" },
-    { id: "nitrogen", name: "Nitrogen" },
-    { id: "hydrogen", name: "Hydrogen" },
-  ]}
+<MathVisual
+  title={<>Atoms Stay Fixed While Volume Doubles</>}
+  description={<>Reactants (back) versus products (front) for <InlineMath math="2\mathrm{NH_3}\rightarrow3\mathrm{H_2}+\mathrm{N_2}" />. One grid step up is <InlineMath math="1" /> atom or <InlineMath math="1" /> volume part.</>}
+  footer={<>Nitrogen stays at 2 and hydrogen at 6 atoms, yet gas volume doubles from 2 to 4 parts.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 8, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "n-in", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "n-out", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "h-in", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: -0.75 }, size: { length: 1.1, height: 6, width: 1.1 } },
+      { id: "h-out", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: 0.75 }, size: { length: 1.1, height: 6, width: 1.1 } },
+      { id: "vol-in", kind: "cuboid", appearance: "warning", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "vol-out", kind: "cuboid", appearance: "construction", center: { x: 5, y: 2, z: 0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-out", at: { x: 0, y: 2.4, z: 0.75 }, placement: "above" },
+      { key: "h", objectId: "h-out", at: { x: 2.5, y: 6.4, z: 0.75 }, placement: "above" },
+      { key: "vol", objectId: "vol-out", at: { x: 5, y: 4.4, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
+    n: <InlineMath math="\mathrm{N}:\ 2 = 2" />,
+    h: <InlineMath math="\mathrm{H}:\ 6 = 6" />,
+    vol: <>Volumes: 2 to 4</>,
   }}
 />
+
+Looking at the three pairs side by side clears up a classic confusion. Atoms are conserved on every single element bar, while the volume bar doubles because the same eight atoms now travel as four separate diatomic molecules instead of two ammonia molecules.
 
 ## Conditions for Using Volume Ratios
 
@@ -243,6 +275,7 @@ Here is why every volume needs the same temperature and pressure. A gas takes up
 <MathVisual
   title={<>Same Moles, Different Volumes</>}
   description={<>Gas volume against amount at <InlineMath math="1\ \mathrm{atm}" /> for <InlineMath math="0\ ^\circ\mathrm{C}" /> (violet) and <InlineMath math="25\ ^\circ\mathrm{C}" /> (orange). Horizontal: one grid step is <InlineMath math="1\text{ mol}" />. Vertical: one grid step is <InlineMath math="10\text{ L}" />.</>}
+  footer={<>Two moles expand from 44.8 L at 0 C to 49 L at 25 C, so conditions must match.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.5 }, y: { min: -0.3, max: 10.3 } },
@@ -263,3 +296,5 @@ Here is why every volume needs the same temperature and pressure. A gas takes up
     warm: <InlineMath math="25\ ^\circ\mathrm{C}:\ 2\cdot24.5=49\ \mathrm{L}" />,
   }}
 />
+
+Whenever temperature or pressure changes between measurements, the two lines split apart and a single volume ratio stops working. Check that all compared substances are gases under the same conditions first, and only then read their volumes straight from the balanced coefficients.

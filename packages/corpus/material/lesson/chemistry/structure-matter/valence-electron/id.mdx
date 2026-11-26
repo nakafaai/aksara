@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Elektron Valensi",
   description:
@@ -17,6 +16,8 @@ Kulit terluarnya adalah kulit <InlineMath math="\mathrm{N}" />, yaitu kulit terj
 
 Pada unsur golongan utama, elektron valensi adalah <Highlight>elektron pada kulit terluar yang masih terisi</Highlight>.
 
+> Kulit dalam tersimpan rapat dekat inti, sehingga reaksi kimia hampir seluruhnya berlangsung lewat elektron valensi di kulit terluar.
+
 Ketika atom membentuk ikatan atau ion, elektron terluar inilah yang paling sering dibagi, dilepas, atau diterima. Jumlah dan susunan elektron valensi ikut menentukan cara suatu unsur bereaksi.
 
 ## Model Elektron Valensi
@@ -31,6 +32,7 @@ Pilih atom netral. Baca konfigurasi kulitnya dari kiri ke kanan, lalu lihat **ku
       langsung terbaca dari model.
     </>
   }
+  footer={<>Pilih atom netral mana saja lalu baca cincin luar berwarna untuk jumlah valensinya.</>}
   labels={{
     chooseAtom: "Pilih atom netral",
     atomicNumber: "Nomor atom",
@@ -91,6 +93,8 @@ Pilih atom netral. Baca konfigurasi kulitnya dari kiri ke kanan, lalu lihat **ku
   }}
 />
 
+Membandingkan magnesium (<InlineMath math="2, 8, 2" />) dan kalsium (<InlineMath math="2, 8, 8, 2" />) pada model ini menjelaskan mengapa unsur satu golongan bereaksi serupa meski total elektronnya berbeda.
+
 ## Menentukan Elektron Valensi dari Kulit Terluar
 
 Urutan berikut membantu menentukan jumlah elektron pada kulit terluar.
@@ -115,6 +119,7 @@ Inilah klorin, <InlineMath math="2, 8, 7" />. Kulit terluar yang terisinya adala
 <MathVisual
   title={<>Tujuh Elektron Valensi Klorin</>}
   description={<><InlineMath math="17" /> elektron klorin di kulit K, L, dan M, dengan elektron valensi berwarna fuchsia.</>}
+  footer={<>Sepuluh elektron dalam tetap tenang sementara tujuh elektron kulit M mengatur ikatan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -155,23 +160,39 @@ Inilah klorin, <InlineMath math="2, 8, 7" />. Kulit terluar yang terisinya adala
   }}
 />
 
+Karena klorin hanya kurang satu elektron untuk melengkapi oktet di kulit <InlineMath math="\mathrm{M}" />, klorin jauh lebih mudah menerima atau berbagi satu elektron daripada melepas tujuh.
+
 ## Kulit Terluar sebagai Awan
 
-Elektron valensi menempati orbital di kulit terluar. Pada karbon, elektron valensinya ada di orbital <InlineMath math="2s" /> dan <InlineMath math="2p" />. Pada natrium, satu elektron valensinya ada di orbital <InlineMath math="3s" />. Bandingkan ukuran awannya. **Elektron valensi berada paling jauh dari inti**, jadi elektron inilah yang paling mudah dipakai dalam reaksi.
+Elektron valensi menempati orbital terluar yang terisi. Pada karbon dan oksigen elektron valensinya berada di kulit <InlineMath math="n = 2" />, sedangkan satu elektron valensi natrium berada jauh di luar pada orbital <InlineMath math="3s" />. **Elektron valensi berada paling jauh dari inti**, sehingga merekalah yang paling dulu bertemu atom tetangga saat bereaksi.
 
-<OrbitalCloudLab
-  title={<>Orbital Elektron Valensi</>}
-  description={<>Bandingkan seberapa jauh tiap awan menjangkau dari inti.</>}
-  orbitals={["2s", "2pz", "3s"]}
+<MathVisual
+  title={<>Jangkauan Kulit Valensi Terluar</>}
+  description={<>Jari-jari atom oksigen (<InlineMath math="73\ \mathrm{pm}" />), karbon (<InlineMath math="77\ \mathrm{pm}" />), dan natrium (<InlineMath math="186\ \mathrm{pm}" />). Satu kotak tegak berarti <InlineMath math="50\ \mathrm{pm}" />.</>}
+  footer={<>Elektron valensi 3s natrium menjangkau lebih dari dua kali lebih jauh dari kulit 2s dan 2p karbon.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "o", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.73, z: 0 }, size: { length: 1.3, height: 1.46, width: 1.3 } },
+      { id: "c", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 0.77, z: 0 }, size: { length: 1.3, height: 1.54, width: 1.3 } },
+      { id: "na", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.86, z: 0 }, size: { length: 1.3, height: 3.72, width: 1.3 } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 1.8, z: 0 }, placement: "above" },
+      { key: "c", objectId: "c", at: { x: 2.5, y: 1.9, z: 0 }, placement: "above" },
+      { key: "na", objectId: "na", at: { x: 5, y: 4.1, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    angular: <>Simpul sudut</>,
-    choose: "Pilih orbital",
-    numbers: <>Bilangan kuantum</>,
-    orbital: <>Orbital</>,
-    radial: <>Simpul radial</>,
-    view: "Awan elektron orbital",
+    o: <InlineMath math="\mathrm{O}\ (2p):\ 73\ \mathrm{pm}" />,
+    c: <InlineMath math="\mathrm{C}\ (2p):\ 77\ \mathrm{pm}" />,
+    na: <InlineMath math="\mathrm{Na}\ (3s):\ 186\ \mathrm{pm}" />,
   }}
 />
+
+Jangkauan yang jauh itu menjelaskan mengapa natrium mudah melepaskan elektron luarnya sementara nonlogam periode <InlineMath math="2" /> yang kecil menahan dan berbagi elektron dengan erat.
 
 ## Pola pada Golongan yang Sama
 
@@ -189,32 +210,48 @@ Tabel ini menyusun hidrogen sampai fransium menurut konfigurasi kulitnya:
 | <InlineMath math="\mathrm{Cs}" /> | <InlineMath math="55" /> | <InlineMath math="2" /> | <InlineMath math="8" /> | <InlineMath math="18" /> | <InlineMath math="18" /> | <InlineMath math="8" /> | <InlineMath math="1" /> | - | <InlineMath math="1" /> |
 | <InlineMath math="\mathrm{Fr}" /> | <InlineMath math="87" /> | <InlineMath math="2" /> | <InlineMath math="8" /> | <InlineMath math="18" /> | <InlineMath math="32" /> | <InlineMath math="18" /> | <InlineMath math="8" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
 
-Jumlah kulit bertambah dari atas ke bawah, sedangkan kulit terluar unsur-unsur tersebut tetap berisi <InlineMath math="1" /> elektron. Itulah sebabnya litium, natrium, kalium, rubidium, sesium, dan fransium ditempatkan dalam golongan yang sama.
+Jumlah kulit bertambah dari atas ke bawah, sedangkan kulit terluar unsur-unsur itu tetap berisi <InlineMath math="1" /> elektron. Itulah sebabnya litium, natrium, kalium, rubidium, sesium, dan fransium ditempatkan dalam golongan yang sama.
 
 Hidrogen juga memiliki <InlineMath math="1" /> elektron valensi, tetapi sifatnya tidak sama dengan logam alkali. Jumlah elektron valensi sering dipakai untuk memperkirakan cara suatu unsur bereaksi. Susunan elektron lainnya juga ikut berpengaruh.
 
 ## Valensi Sama dan Reaksi Sama
 
-Setiap logam di sini punya <InlineMath math="1" /> elektron valensi, jadi **semuanya bereaksi dengan air dengan cara yang sama**, menghasilkan hidrogen dan hidroksida. Hanya kecepatannya yang berubah ke bawah golongan.
+Setiap logam alkali membawa <InlineMath math="1" /> elektron valensi, sehingga **litium, natrium, dan kalium semuanya bereaksi dengan air dalam pola stoikiometri yang sama**, membentuk <InlineMath math="\mathrm{MOH}" /> dan <InlineMath math="\mathrm{H_2}" />. Hanya kecepatannya yang meningkat ke bawah golongan saat kulit terluar makin menjauh dari inti.
 
-<AlkaliWaterLab
-  title={<>Satu Elektron Valensi di Air</>}
-  description={<>Masukkan setiap logam dan bandingkan persamaan yang ditulisnya.</>}
-  metals={["lithium", "sodium", "potassium"]}
+<MathVisual
+  title={<>Satu Elektron Valensi pada Kulit yang Bertambah</>}
+  description={<>Jumlah kulit terisi (belakang) dibanding jumlah elektron valensi tetap (depan) bagi <InlineMath math="\mathrm{Li}" />, <InlineMath math="\mathrm{Na}" />, dan <InlineMath math="\mathrm{K}" />. Satu kotak tegak berarti <InlineMath math="1" /> kulit atau elektron.</>}
+  footer={<>Valensi tetap menjaga rumus reaksi sama sementara tambahan kulit menaikkan kereaktifan.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "li-s", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1.0, z: -0.7 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "li-v", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1, width: 1.1 } },
+      { id: "na-s", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 1.5, z: -0.7 }, size: { length: 1.1, height: 3, width: 1.1 } },
+      { id: "na-v", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1, width: 1.1 } },
+      { id: "k-s", kind: "cuboid", appearance: "reference", center: { x: 5, y: 2.0, z: -0.7 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "k-v", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1, width: 1.1 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li-s", at: { x: 0, y: 2.35, z: -0.7 }, placement: "above" },
+      { key: "na", objectId: "na-s", at: { x: 2.5, y: 3.35, z: -0.7 }, placement: "above" },
+      { key: "k", objectId: "k-s", at: { x: 5, y: 4.35, z: -0.7 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih logam",
-    density: <>Massa jenis</>,
-    equation: <>Persamaan reaksi</>,
-    ionization: <>Energi ionisasi pertama</>,
-    melting: <>Titik leleh</>,
-    radius: <>Jari-jari atom</>,
-    view: "Logam dalam gelas kimia berisi air",
+    li: <>Li: 2 kulit, 1 val</>,
+    na: <>Na: 3 kulit, 1 val</>,
+    k: <>K: 4 kulit, 1 val</>,
   }}
 />
 
+Memisahkan baris depan yang konstan (jumlah valensi) dari baris belakang yang menanjak (jumlah kulit) menjelaskan kemiripan sifat sekaligus tren laju reaksi di golongan <InlineMath math="1" />.
+
 ## Hubungan dengan Sifat Kimia
 
-Reaksi kimia banyak melibatkan elektron valensi, yaitu elektron pada kulit terluar. Atom dapat **melepas, menerima, atau berbagi elektron** tersebut.
+Reaksi kimia banyak melibatkan elektron valensi, yaitu elektron pada kulit terluar. Atom dapat **melepas, menerima, atau berbagi elektron** luar ini.
 
 Ringkasnya:
 
@@ -234,46 +271,77 @@ Pada unsur transisi, elektron di subkulit <InlineMath math="s" /> terluar dan su
 
 ### Elektron Valensi Menentukan Muatan
 
-Natrium punya <InlineMath math="1" /> elektron valensi dan magnesium punya <InlineMath math="2" />, jadi **keduanya melepas tepat sebanyak itu**: natrium menjadi <InlineMath math="\mathrm{Na^+}" />, magnesium menjadi <InlineMath math="\mathrm{Mg^{2+}}" />.
+Natrium punya <InlineMath math="1" /> elektron valensi dan magnesium punya <InlineMath math="2" />, jadi **keduanya melepas tepat sebanyak itu** untuk menjadi <InlineMath math="\mathrm{Na^+}" /> dan <InlineMath math="\mathrm{Mg^{2+}}" />, sedangkan klorin menerima <InlineMath math="1" /> (<InlineMath math="\mathrm{Cl^-}" />) dan oksigen menerima <InlineMath math="2" /> (<InlineMath math="\mathrm{O^{2-}}" />).
 
-<IonFormationLab
-  title={<>Dari Elektron Valensi ke Ion</>}
-  description={<>Pindahkan elektron untuk setiap pasangan dan hitung berapa yang meninggalkan logam.</>}
-  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+<MathVisual
+  title={<>Muatan Ion yang Diramalkan dari Jumlah Valensi</>}
+  description={<>Muatan ion lazim bagi <InlineMath math="\mathrm{Na}" />, <InlineMath math="\mathrm{Mg}" />, <InlineMath math="\mathrm{Cl}" />, dan <InlineMath math="\mathrm{O}" />. Batang positif menunjukkan elektron dilepas, batang negatif menunjukkan elektron diterima.</>}
+  footer={<>Logam melepas elektron valensi jadi kation sementara nonlogam menerimanya menuju oktet.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: -2.8, max: 2.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 6, z: 12 }, target: { x: 3.75, y: 0, z: 0 } },
+    objects: [
+      { id: "na", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.3, height: 1, width: 1.3 } },
+      { id: "mg", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 1.0, z: 0 }, size: { length: 1.3, height: 2, width: 1.3 } },
+      { id: "cl", kind: "cuboid", appearance: "secondary", center: { x: 5, y: -0.5, z: 0 }, size: { length: 1.3, height: 1, width: 1.3 } },
+      { id: "o", kind: "cuboid", appearance: "secondary", center: { x: 7.5, y: -1.0, z: 0 }, size: { length: 1.3, height: 2, width: 1.3 } },
+    ],
+    labels: [
+      { key: "na", objectId: "na", at: { x: 0, y: 1.35, z: 0 }, placement: "above" },
+      { key: "mg", objectId: "mg", at: { x: 2.5, y: 2.35, z: 0 }, placement: "above" },
+      { key: "cl", objectId: "cl", at: { x: 5, y: -1.35, z: 0 }, placement: "below" },
+      { key: "o", objectId: "o", at: { x: 7.5, y: -2.35, z: 0 }, placement: "below" },
+    ],
+  }}
   labels={{
-    choose: "Pilih pasangan atom",
-    metalRadius: <>Jari-jari logam</>,
-    metalShells: <>Kulit logam</>,
-    nonmetalRadius: <>Jari-jari nonlogam</>,
-    nonmetalShells: <>Kulit nonlogam</>,
-    progress: "Perpindahan elektron",
-    view: "Atom logam dan nonlogam menjadi ion",
+    na: <InlineMath math="\mathrm{Na^+}:\ +1" />,
+    mg: <InlineMath math="\mathrm{Mg^{2+}}:\ +2" />,
+    cl: <InlineMath math="\mathrm{Cl^-}:\ -1" />,
+    o: <InlineMath math="\mathrm{O^{2-}}:\ -2" />,
   }}
 />
+
+Melihat jarak suatu atom dari kulit terluar penuh membuatmu bisa meramalkan muatan ion golongan utama tanpa menghafal daftar terpisah.
 
 ### Jumlah Ikatan Mengikuti Elektron Valensi
 
-Elektron valensi menentukan berapa ikatan yang dibentuk sebuah atom. Karbon punya <InlineMath math="4" /> elektron valensi dan membentuk <InlineMath math="4" /> ikatan di <InlineMath math="\mathrm{CH_4}" />. Nitrogen membentuk <InlineMath math="3" /> ikatan di <InlineMath math="\mathrm{NH_3}" />, oksigen <InlineMath math="2" /> ikatan di <InlineMath math="\mathrm{H_2O}" />, dan klorin <InlineMath math="1" /> ikatan di <InlineMath math="\mathrm{HCl}" />. **Setiap atom berbagi elektron sampai kulit terluarnya penuh**.
+Elektron valensi menentukan berapa ikatan kovalen yang lazim dibentuk atom nonlogam. Karbon punya <InlineMath math="4" /> elektron valensi dan membentuk <InlineMath math="4" /> ikatan di <InlineMath math="\mathrm{CH_4}" />. Nitrogen membentuk <InlineMath math="3" /> ikatan di <InlineMath math="\mathrm{NH_3}" />, oksigen <InlineMath math="2" /> ikatan di <InlineMath math="\mathrm{H_2O}" />, dan klorin <InlineMath math="1" /> ikatan di <InlineMath math="\mathrm{HCl}" />. **Setiap atom berbagi elektron sampai kulit terluarnya mencapai delapan**.
 
-<MoleculeShapeLab
-  title={<>Empat Atom Pusat dan Ikatannya</>}
-  description={<>Hitung ikatan karbon, nitrogen, oksigen, dan klorin.</>}
-  molecules={[
-    { id: "methane", name: "Metana" },
-    { id: "ammonia", name: "Amonia" },
-    { id: "water", name: "Air" },
-    { id: "hydrogen-chloride", name: "Hidrogen klorida" },
-  ]}
+<MathVisual
+  title={<>Jumlah Ikatan Kovalen Menuju Oktet</>}
+  description={<>Jumlah ikatan tunggal bersama (depan) berdampingan dengan elektron valensi awal (belakang) untuk <InlineMath math="\mathrm{C}" />, <InlineMath math="\mathrm{N}" />, <InlineMath math="\mathrm{O}" />, dan <InlineMath math="\mathrm{Cl}" />. Satu kotak tegak berarti <InlineMath math="2" />.</>}
+  footer={<>Elektron valensi awal ditambah ikatan tunggal selalu berjumlah delapan pada keempat atom.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 4.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "c-v", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1.0, z: -0.7 }, size: { length: 1.1, height: 2.0, width: 1.1 } },
+      { id: "c-b", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.0, z: 0.7 }, size: { length: 1.1, height: 2.0, width: 1.1 } },
+      { id: "n-v", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 1.25, z: -0.7 }, size: { length: 1.1, height: 2.5, width: 1.1 } },
+      { id: "n-b", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 0.75, z: 0.7 }, size: { length: 1.1, height: 1.5, width: 1.1 } },
+      { id: "o-v", kind: "cuboid", appearance: "reference", center: { x: 5, y: 1.5, z: -0.7 }, size: { length: 1.1, height: 3.0, width: 1.1 } },
+      { id: "o-b", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1.0, width: 1.1 } },
+      { id: "cl-v", kind: "cuboid", appearance: "reference", center: { x: 7.5, y: 1.75, z: -0.7 }, size: { length: 1.1, height: 3.5, width: 1.1 } },
+      { id: "cl-b", kind: "cuboid", appearance: "primary", center: { x: 7.5, y: 0.25, z: 0.7 }, size: { length: 1.1, height: 0.5, width: 1.1 } },
+    ],
+    labels: [
+      { key: "c", objectId: "c-v", at: { x: 0, y: 2.4, z: 0 }, placement: "above" },
+      { key: "n", objectId: "n-v", at: { x: 2.5, y: 2.9, z: 0 }, placement: "above" },
+      { key: "o", objectId: "o-v", at: { x: 5, y: 3.4, z: 0 }, placement: "above" },
+      { key: "cl", objectId: "cl-v", at: { x: 7.5, y: 3.9, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang</>,
-    formula: <>Rumus molekul</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    c: <>CH4: 4 val + 4 ikatan</>,
+    n: <>NH3: 5 val + 3 ikatan</>,
+    o: <>H2O: 6 val + 2 ikatan</>,
+    cl: <>HCl: 7 val + 1 ikatan</>,
   }}
 />
+
+Saat batang belakang naik dari empat ke tujuh elektron valensi, batang ikatan di depan turun dari empat ke satu sehingga setiap molekul melengkapi oktet.
 
 ## Cek Mandiri Kulit Terluar
 
@@ -317,6 +385,7 @@ Tulis konfigurasi kulitnya, cari kulit terluar yang terisi, lalu hitung elektron
 <MathVisual
   title={<>Elektron Valensi Naik lalu Mulai Lagi</>}
   description={<>Elektron valensi untuk nomor atom <InlineMath math="1" /> sampai <InlineMath math="20" />. Mendatar: satu kotak grid berarti <InlineMath math="2" /> nomor atom. Tegak: jumlah elektron valensi.</>}
+  footer={<>Jumlah valensi naik sampai 8 di tiap gas mulia lalu kembali ke 1 saat kulit baru dibuka.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -0.5, max: 9 } },
@@ -359,3 +428,5 @@ Tulis konfigurasi kulitnya, cari kulit terluar yang terisi, lalu hitung elektron
     cl: <InlineMath math="\mathrm{Cl}:\ 2,8,7" />,
   }}
 />
+
+Pola gigi gergaji yang selalu naik hingga delapan lalu kembali ke satu inilah yang menjadi denyut utama di balik keluarga unsur periodik di seluruh tabel.

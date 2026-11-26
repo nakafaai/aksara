@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Gesetz der Volumenverhältnisse",
   description:
@@ -15,37 +14,50 @@ Das Gesetz der Volumenverhältnisse besagt, dass die Volumina reagierender Gase 
 
 Bei gleicher Temperatur und gleichem Druck geben die Koeffizienten einer ausgeglichenen Gleichung zugleich <Highlight>die Gasvolumenverhältnisse</Highlight> an. Wasserstoff und Sauerstoff verbinden sich nach Volumen im Verhältnis <InlineMath math="2:1" /> zu Wasser.
 
+> Gleiche Volumina beliebiger Gase enthalten bei gleicher Temperatur und gleichem Druck gleich viele Moleküle, sodass Koeffizienten direkt als Volumenverhältnisse gelten.
+
 Diese Regel gilt nur für Stoffe in der Gasphase. Ihre Volumina müssen außerdem bei gleicher Temperatur und gleichem Druck verglichen werden.
 
 Wir verwenden die **Näherung idealer Gase** und zählen die Volumina, die tatsächlich reagieren oder entstehen. Nicht umgesetztes überschüssiges Gas wird getrennt berechnet.
 
-## Koeffizienten zählen Moleküle
+### Koeffizienten zählen Gasmoleküle
 
-Gasvolumen stehen im selben Verhältnis wie die Koeffizienten, weil **die Koeffizienten Moleküle zählen**. Wähl die Reaktion zu Chlorwasserstoff und zieh den Regler. <InlineMath math="1" /> Molekül <InlineMath math="\mathrm{H_2}" /> und <InlineMath math="1" /> Molekül <InlineMath math="\mathrm{Cl_2}" /> ergeben <InlineMath math="2" /> Moleküle <InlineMath math="\mathrm{HCl}" />, genau das Volumenverhältnis <InlineMath math="1 : 1 : 2" />.
+Gasvolumina stehen im selben Verhältnis wie die Koeffizienten, weil **die Koeffizienten Moleküle zählen**. Bei der Chlorwasserstoffsynthese ergeben <InlineMath math="1" /> Molekül <InlineMath math="\mathrm{H_2}" /> und <InlineMath math="1" /> Molekül <InlineMath math="\mathrm{Cl_2}" /> genau <InlineMath math="2" /> Moleküle <InlineMath math="\mathrm{HCl}" />, sodass das Gesamtvolumen bei <InlineMath math="2" /> Teilen bleibt. Bei der Ammoniaksynthese sinken <InlineMath math="1" /> Teil <InlineMath math="\mathrm{N_2}" /> und <InlineMath math="3" /> Teile <InlineMath math="\mathrm{H_2}" /> dagegen von <InlineMath math="4" /> Teilen auf <InlineMath math="2" /> Teile <InlineMath math="\mathrm{NH_3}" />.
 
-<ReactionBalanceLab
-  title={<>Gasmoleküle verbinden sich</>}
-  description={<>Vergleiche die Zahl der Moleküle vor und nach der Reaktion.</>}
-  reactions={[
-    { id: "hydrogen-chloride-synthesis", name: "Bildung von Chlorwasserstoff", tab: <InlineMath math="\mathrm{HCl}" /> },
-    { id: "ammonia-synthesis", name: "Bildung von Ammoniak", tab: <InlineMath math="\mathrm{NH_3}" /> },
-  ]}
-  reading="molecules"
+<MathVisual
+  title={<>Gasvolumina vor und nach der Synthese</>}
+  description={<>Eduktvolumina neben Produktvolumina für <InlineMath math="\mathrm{H_2}+\mathrm{Cl_2}\rightarrow2\mathrm{HCl}" /> (links) und <InlineMath math="\mathrm{N_2}+3\mathrm{H_2}\rightarrow2\mathrm{NH_3}" /> (rechts). Ein Gitterschritt nach oben ist <InlineMath math="1" /> Volumenteil.</>}
+  footer={<>Das Gesamtvolumen bleibt bei HCl konstant, schrumpft aber bei NH3 von vier auf zwei Teile.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 3.5, y: 2, z: 0 } },
+    objects: [
+      { id: "hcl-h2", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "hcl-cl2", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "hcl-prod", kind: "cuboid", appearance: "construction", center: { x: 2, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "nh3-n2", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "nh3-h2", kind: "cuboid", appearance: "secondary", center: { x: 5, y: 2.5, z: 0 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "nh3-prod", kind: "cuboid", appearance: "construction", center: { x: 7, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "hcl-in", objectId: "hcl-cl2", at: { x: 0, y: 2.3, z: 0 }, placement: "above" },
+      { key: "hcl-out", objectId: "hcl-prod", at: { x: 2, y: 2.3, z: 0 }, placement: "above" },
+      { key: "nh3-in", objectId: "nh3-h2", at: { x: 5, y: 4.3, z: 0 }, placement: "above" },
+      { key: "nh3-out", objectId: "nh3-prod", at: { x: 7, y: 2.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome je Element</>,
-    choose: "Reaktion wählen",
-    economy: <>Atomökonomie</>,
-    equation: <>Reaktionsgleichung</>,
-    mass: <>Masse der Edukte und Produkte</>,
-    molecules: <>Anzahl der Moleküle</>,
-    products: <>Produkte</>,
-    progress: "Reaktionsverlauf",
-    reactants: <>Edukte</>,
-    view: "Reaktion auf Teilchenebene",
+    "hcl-in": <InlineMath math="\mathrm{H_2}+\mathrm{Cl_2}:\ 2" />,
+    "hcl-out": <InlineMath math="2\mathrm{HCl}:\ 2" />,
+    "nh3-in": <InlineMath math="\mathrm{N_2}+3\mathrm{H_2}:\ 4" />,
+    "nh3-out": <InlineMath math="2\mathrm{NH_3}:\ 2" />,
   }}
 />
 
-## Wasser muss gasförmig sein
+Der direkte Vergleich macht den Unterschied klar: Die Masse bleibt immer erhalten, das gesamte Gasvolumen aber nicht zwingend. Sobald eine Reaktion weniger Gasmoleküle hinterlässt, schrumpft das Gesamtvolumen genau im selben Verhältnis.
+
+### Wasser muss gasförmig bleiben
 
 Die ausgeglichene Gleichung zur Bildung von Wasserdampf lautet:
 
@@ -62,6 +74,7 @@ Jeder Block unten ist ein Teil Gas bei gleicher Temperatur und gleichem Druck. Z
 <MathVisual
   title={<>Wasserdampf nach Volumen</>}
   description={<><InlineMath math="2\mathrm{H_2(g)}+\mathrm{O_2(g)}\rightarrow2\mathrm{H_2O(g)}" /> als gleich große Gasteile bei gleicher Temperatur und gleichem Druck.</>}
+  footer={<>Drei Eduktteile ergeben zwei Teile Wasserdampf, genau im Verhältnis 2:1:2.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -86,6 +99,8 @@ Jeder Block unten ist ein Teil Gas bei gleicher Temperatur und gleichem Druck. Z
   }}
 />
 
+Achte bei diesem Blockmodell immer auf das Zustandssymbol <InlineMath math="\mathrm{(g)}" />. Kühlt der Wasserdampf zu flüssigen Tropfen ab, rücken die Moleküle eng zusammen und das Volumen fällt auf weniger als ein Tausendstel, sodass das einfache Gasverhältnis nicht mehr gilt.
+
 ## Gasvolumina mit Röhren vergleichen
 
 Wähle im Modell eine Reaktion aus. Jedes Rohr stellt **eine Volumeneinheit (VE) Gas** bei gleicher Temperatur und gleichem Druck dar.
@@ -98,6 +113,7 @@ Wähle im Modell eine Reaktion aus. Jedes Rohr stellt **eine Volumeneinheit (VE)
       Gasvolumenverhältnis.
     </>
   }
+  footer={<>Wechsle die Reaktion und prüfe, wie jede Rohrhöhe den Koeffizienten entspricht.</>}
   labels={{
     chooseMode: "Gasreaktion auswählen",
     reactants: "Reaktanten",
@@ -128,7 +144,7 @@ Wähle im Modell eine Reaktion aus. Jedes Rohr stellt **eine Volumeneinheit (VE)
             <InlineMath math="\mathrm{H_2}" /> reagieren mit{" "}
             <InlineMath math="100\ \mathrm{mL}" />{" "}
             <InlineMath math="\mathrm{O_2}" />.
-        </>
+          </>
         ),
       },
       "ammonia-synthesis": {
@@ -168,7 +184,7 @@ Wähle im Modell eine Reaktion aus. Jedes Rohr stellt **eine Volumeneinheit (VE)
         ratio: (
           <>
             <InlineMath math="\mathrm{NH_3:H_2:N_2} = 2:3:1" />.
-        </>
+          </>
         ),
         example: (
           <>
@@ -178,16 +194,20 @@ Wähle im Modell eine Reaktion aus. Jedes Rohr stellt **eine Volumeneinheit (VE)
             <InlineMath math="\mathrm{H_2}" /> und{" "}
             <InlineMath math="300\ \mathrm{mL}" />{" "}
             <InlineMath math="\mathrm{N_2}" />.
-        </>
+          </>
         ),
       },
     },
   }}
 />
 
-Das Modell vergleicht Gasvolumina. Weil Temperatur und Druck gleich bleiben, entspricht jeder Volumenteil einem Koeffizienten der ausgeglichenen Reaktion.
+Jede Rohrhöhe steht für ein Gasvolumen bei gemeinsamer Temperatur und gemeinsamem Druck. Weil gleiche Volumina gleich viele Moleküle tragen, skaliert ein gemessenes Volumen alle übrigen Gase der Reaktion mit demselben Faktor.
 
-## Ammoniak zersetzen
+## Ammoniak nach Volumen zersetzen
+
+Der Zerfall von Ammoniak in Stickstoff und Wasserstoff zeigt, wie sich **das Gasvolumen verdoppelt, während die Masse konstant bleibt**. Aus je zwei Volumina Ammoniak entstehen drei Volumina Wasserstoff und ein Volumen Stickstoff, sodass zwei Eduktvolumina vier Produktvolumina ergeben, ohne dass ein einziges Atom entsteht oder verloren geht.
+
+### Volumina aus Koeffizienten skalieren
 
 Angenommen, <InlineMath math="600\ \mathrm{mL}" /> Ammoniakgas zersetzt sich bei derselben Temperatur und demselben Druck vollständig. Die ausgeglichene Gleichung lautet:
 
@@ -206,28 +226,40 @@ V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
 
 Bei der Zersetzung von <InlineMath math="600\ \mathrm{mL}" /> Ammoniakgas entstehen also <InlineMath math="900\ \mathrm{mL}" /> Wasserstoffgas und <InlineMath math="300\ \mathrm{mL}" /> Stickstoffgas.
 
-## Die Moleküle im Ammoniakbeispiel
+### Warum aus zwei Volumina vier werden
 
-Ammoniak zerfällt in Stickstoff und Wasserstoff. Dreh alle drei Moleküle und zähl ihre Atome. Jedes <InlineMath math="\mathrm{NH_3}" /> trägt <InlineMath math="1" /> Stickstoffatom, jedes <InlineMath math="\mathrm{N_2}" /> braucht aber <InlineMath math="2" />. Deshalb ergeben <InlineMath math="2" /> Volumen Ammoniak **nur halb so viel Volumen** Stickstoff, also <InlineMath math="1" />.
+Ammoniak zerfällt in Stickstoff und Wasserstoff, ohne dass ein einziges Atom verloren geht. Jedes <InlineMath math="\mathrm{NH_3}" /> trägt <InlineMath math="1" /> Stickstoffatom, jedes <InlineMath math="\mathrm{N_2}" /> braucht aber <InlineMath math="2" />. Deshalb ergeben <InlineMath math="2" /> Volumina Ammoniak **nur halb so viel Volumen** Stickstoff neben <InlineMath math="3" /> Volumina Wasserstoff, wodurch sich das Gesamtvolumen von <InlineMath math="2" /> auf <InlineMath math="4" /> Teile verdoppelt.
 
-<MoleculeShapeLab
-  title={<>Ammoniak, Stickstoff und Wasserstoff</>}
-  description={<>Dreh jedes Modell und zähl die Stickstoffatome in jedem Molekül.</>}
-  molecules={[
-    { id: "ammonia", name: "Ammoniak" },
-    { id: "nitrogen", name: "Stickstoff" },
-    { id: "hydrogen", name: "Wasserstoff" },
-  ]}
+<MathVisual
+  title={<>Atome bleiben gleich, Volumen verdoppelt sich</>}
+  description={<>Edukte (hinten) gegen Produkte (vorne) für <InlineMath math="2\mathrm{NH_3}\rightarrow3\mathrm{H_2}+\mathrm{N_2}" />. Ein Gitterschritt nach oben ist <InlineMath math="1" /> Atom oder <InlineMath math="1" /> Volumenteil.</>}
+  footer={<>Stickstoff bleibt bei 2 und Wasserstoff bei 6 Atomen, das Gasvolumen verdoppelt sich.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 8, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "n-in", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "n-out", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "h-in", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: -0.75 }, size: { length: 1.1, height: 6, width: 1.1 } },
+      { id: "h-out", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: 0.75 }, size: { length: 1.1, height: 6, width: 1.1 } },
+      { id: "vol-in", kind: "cuboid", appearance: "warning", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "vol-out", kind: "cuboid", appearance: "construction", center: { x: 5, y: 2, z: 0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-out", at: { x: 0, y: 2.4, z: 0.75 }, placement: "above" },
+      { key: "h", objectId: "h-out", at: { x: 2.5, y: 6.4, z: 0.75 }, placement: "above" },
+      { key: "vol", objectId: "vol-out", at: { x: 5, y: 4.4, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Summenformel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel oder -länge</>,
-    view: "Dreidimensionales Molekülmodell",
+    n: <InlineMath math="\mathrm{N}:\ 2 = 2" />,
+    h: <InlineMath math="\mathrm{H}:\ 6 = 6" />,
+    vol: <>Volumen: 2 auf 4</>,
   }}
 />
+
+Die drei Balkenpaare räumen ein typisches Missverständnis aus. Jeder Elementbalken bleibt unverändert, während sich das Gasvolumen verdoppelt, weil dieselben acht Atome nun als vier getrennte zweiatomige Moleküle statt als zwei Ammoniakmoleküle vorliegen.
 
 ## Bedingungen für Volumenverhältnisse
 
@@ -245,6 +277,7 @@ Darum braucht jedes Volumen dieselbe Temperatur und denselben Druck. Ein Gas nim
 <MathVisual
   title={<>Gleiche Stoffmenge, verschiedene Volumen</>}
   description={<>Gasvolumen gegen Stoffmenge bei <InlineMath math="1\ \mathrm{atm}" /> für <InlineMath math="0\ ^\circ\mathrm{C}" /> (violett) und <InlineMath math="25\ ^\circ\mathrm{C}" /> (orange). Waagerecht: Ein Gitterschritt entspricht <InlineMath math="1\text{ mol}" />. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="10\text{ L}" />.</>}
+  footer={<>Zwei Mol dehnen sich von 44,8 L bei 0 C auf 49 L bei 25 C aus, also müssen Werte passen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.5 }, y: { min: -0.3, max: 10.3 } },
@@ -265,3 +298,5 @@ Darum braucht jedes Volumen dieselbe Temperatur und denselben Druck. Ein Gas nim
     warm: <InlineMath math="25\ ^\circ\mathrm{C}:\ 2\cdot24{,}5=49\ \mathrm{L}" />,
   }}
 />
+
+Sobald Temperatur oder Druck zwischen zwei Messungen wechseln, laufen beide Geraden auseinander und das direkte Volumenverhältnis bricht zusammen. Prüfe daher immer zuerst Gaszustand und Messbedingungen, bevor du Volumina aus Koeffizienten abliest.

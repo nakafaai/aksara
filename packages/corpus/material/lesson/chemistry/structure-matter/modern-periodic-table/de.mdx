@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Modernes Periodensystem",
   description:
@@ -15,6 +14,8 @@ Jedes Feld im modernen Periodensystem steht für ein Element. Die Elemente sind 
 
 Da die Protonenzahl ein Element identifiziert, erzeugt die steigende Ordnungszahl <InlineMath math="Z" /> ein wiederkehrendes Muster chemischer Eigenschaften.
 
+> Das Periodensystem ist eine Karte der Protonenzahlen, bei der Zeilen die Schalen und Spalten die Außenelektronen zeigen.
+
 <ModernPeriodicTableLab
   title={<>Mustermodell des modernen Periodensystems</>}
   description={
@@ -24,6 +25,7 @@ Da die Protonenzahl ein Element identifiziert, erzeugt die steigende Ordnungszah
       Edelgase.
     </>
   }
+  footer={<>Wähle einen Bereich, um zu sehen, wie die Ordnungszahl Gruppen und Perioden ordnet.</>}
   labels={{
     chooseFocus: "Bereich im Periodensystem auswählen",
     tableLabel: "Mustermodell des modernen Periodensystems",
@@ -80,25 +82,45 @@ Da die Protonenzahl ein Element identifiziert, erzeugt die steigende Ordnungszah
   }}
 />
 
+Beim Wechsel zwischen den hervorgehobenen Blöcken wird klar, dass jede Region direkt aus Ordnungszahl und Elektronenaufbau hervorgeht und nicht willkürlich sortiert ist.
+
 ## Die Masse ist nicht die Ordnung
 
-Ein Massenspektrometer zeigt, dass ein Element Atome verschiedener Masse haben kann. Deshalb **ordnet sich das Periodensystem nach der Ordnungszahl, nicht nach der Masse**: Jedes Isotop eines Elements hat dieselbe Protonenzahl.
+Ein Element kann Atome mit verschiedenen Massenzahlen besitzen, weil sich seine Isotope in der Neutronenzahl unterscheiden. Deshalb **ordnet sich das Periodensystem nach der Ordnungszahl, nicht nach der Masse**: Alle Isotope von Bor, Kohlenstoff oder Neon teilen dasselbe Feld, weil ihre Protonenzahl fest bleibt.
 
-<MassSpectrometerLab
-  title={<>Isotope hinter jedem Element</>}
-  description={<>Wähle Bor, Kohlenstoff oder Neon und lies die mittlere Masse aus seinen Isotopen ab.</>}
-  samples={["boron", "carbon", "neon"]}
+<MathVisual
+  title={<>Gleiche Ordnungszahl Verschiedene Isotopenmassen</>}
+  description={<>Ordnungszahl <InlineMath math="Z" /> (grau) neben den Hauptisotopen <InlineMath math="A" /> (orange und violett) für Bor, Kohlenstoff und Neon. Ein Schritt nach oben sind <InlineMath math="4" /> Einheiten.</>}
+  footer={<>Isotope ändern die Massenzahl, teilen sich aber genau eine Ordnungszahl im selben Feld.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3, y: 2.5, z: 0 } },
+    objects: [
+      { id: "b-z", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.625, z: -0.7 }, size: { length: 1.0, height: 1.25, width: 0.9 } },
+      { id: "b-10", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.25, z: 0.25 }, size: { length: 0.7, height: 2.5, width: 0.6 } },
+      { id: "b-11", kind: "cuboid", appearance: "secondary", center: { x: 0.85, y: 1.375, z: 0.25 }, size: { length: 0.7, height: 2.75, width: 0.6 } },
+      { id: "c-z", kind: "cuboid", appearance: "reference", center: { x: 3, y: 0.75, z: -0.7 }, size: { length: 1.0, height: 1.5, width: 0.9 } },
+      { id: "c-12", kind: "cuboid", appearance: "primary", center: { x: 3, y: 1.5, z: 0.25 }, size: { length: 0.7, height: 3.0, width: 0.6 } },
+      { id: "c-13", kind: "cuboid", appearance: "secondary", center: { x: 3.85, y: 1.625, z: 0.25 }, size: { length: 0.7, height: 3.25, width: 0.6 } },
+      { id: "ne-z", kind: "cuboid", appearance: "reference", center: { x: 6, y: 1.25, z: -0.7 }, size: { length: 1.0, height: 2.5, width: 0.9 } },
+      { id: "ne-20", kind: "cuboid", appearance: "primary", center: { x: 6, y: 2.5, z: 0.25 }, size: { length: 0.7, height: 5.0, width: 0.6 } },
+      { id: "ne-22", kind: "cuboid", appearance: "secondary", center: { x: 6.85, y: 2.75, z: 0.25 }, size: { length: 0.7, height: 5.5, width: 0.6 } },
+    ],
+    labels: [
+      { key: "b", objectId: "b-11", at: { x: 0.4, y: 3.2, z: 0.25 }, placement: "above" },
+      { key: "c", objectId: "c-13", at: { x: 3.4, y: 3.7, z: 0.25 }, placement: "above" },
+      { key: "ne", objectId: "ne-22", at: { x: 6.4, y: 5.9, z: 0.25 }, placement: "above" },
+    ],
+  }}
   labels={{
-    average: <>Mittlere relative Atommasse</>,
-    choose: "Element wählen",
-    isotopes: <>Isotope und Häufigkeit</>,
-    north: "N",
-    radius: <>Bahnradius</>,
-    ratio: <>Verhältnis der Radien</>,
-    south: "S",
-    view: "Massenspektrometer",
+    b: <InlineMath math="\mathrm{B}:\ Z=5,\ A=10,11" />,
+    c: <InlineMath math="\mathrm{C}:\ Z=6,\ A=12,13" />,
+    ne: <InlineMath math="\mathrm{Ne}:\ Z=10,\ A=20,22" />,
   }}
 />
+
+Die Sortierung nach <InlineMath math="Z" /> hält alle Isotope eines Elements zusammen und erklärt auch, warum Argon (<InlineMath math="Z = 18" />) trotz höherer mittlerer Atommasse vor Kalium (<InlineMath math="Z = 19" />) steht.
 
 ## Perioden und Gruppen
 
@@ -113,6 +135,7 @@ Zähl die Elemente jeder Periode im modernen Periodensystem, dann zeigt sich ein
 <MathVisual
   title={<>Elemente pro Periode</>}
   description={<>Die Anzahl der Elemente in den Perioden <InlineMath math="1" /> bis <InlineMath math="7" /> des modernen Periodensystems. Ein Gitterschritt nach oben sind <InlineMath math="4" /> Elemente.</>}
+  footer={<>Die Periodenlängen springen auf 18 und 32, sobald d- und f-Unterschalen hinzukommen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -147,43 +170,72 @@ Zähl die Elemente jeder Periode im modernen Periodensystem, dann zeigt sich ein
   }}
 />
 
+Jeder Schritt zu breiteren Zeilen entspricht exakt der Kapazität neu verfügbarer Unterschalen und verknüpft die Form der Tabelle direkt mit der Quantenstruktur.
+
 ### Die Gruppen eins und siebzehn finden zusammen
 
-Ein Metall aus Gruppe <InlineMath math="1" /> und ein Halogen aus Gruppe <InlineMath math="17" /> treffen sich immer eins zu eins, denn **jede Gruppe hat dieselbe Ionenladung**. Jeder Kristall hier hat das Formelmuster <InlineMath math="\mathrm{MX}" />.
+Ein Metall aus Gruppe <InlineMath math="1" /> und ein Halogen aus Gruppe <InlineMath math="17" /> treffen sich immer eins zu eins, denn **beide Gruppen bilden einfach entgegengesetzt geladene Ionen**. Geht man diese Spalten hinab, bleibt das Formelmuster <InlineMath math="\mathrm{MX}" /> erhalten, während die Elementarzelle von <InlineMath math="\mathrm{LiF}" /> zu <InlineMath math="\mathrm{KCl}" /> wächst.
 
-<IonLatticeLab
-  title={<>Kristalle aus zwei Gruppen</>}
-  description={<>Wechsle zwischen drei Salzen und vergleiche Ionengrößen und Zellkanten.</>}
-  crystals={["lithium-fluoride", "sodium-fluoride", "potassium-chloride"]}
+<MathVisual
+  title={<>Zellkanten von Salzen aus Gruppe 1 und 17</>}
+  description={<>Kantenlänge der kubischen Elementarzelle von <InlineMath math="\mathrm{LiF}" />, <InlineMath math="\mathrm{NaF}" /> und <InlineMath math="\mathrm{KCl}" />. Ein Schritt nach oben sind <InlineMath math="100\ \mathrm{pm}" />.</>}
+  footer={<>Die Formel bleibt MX bei allen drei Salzen, während größere Ionen die Zellkante dehnen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "lif", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2.015, z: 0 }, size: { length: 1.4, height: 4.03, width: 1.4 } },
+      { id: "naf", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2.31, z: 0 }, size: { length: 1.4, height: 4.62, width: 1.4 } },
+      { id: "kcl", kind: "cuboid", appearance: "primary", center: { x: 5, y: 3.145, z: 0 }, size: { length: 1.4, height: 6.29, width: 1.4 } },
+    ],
+    labels: [
+      { key: "lif", objectId: "lif", at: { x: 0, y: 4.4, z: 0 }, placement: "above" },
+      { key: "naf", objectId: "naf", at: { x: 2.5, y: 5.0, z: 0 }, placement: "above" },
+      { key: "kcl", objectId: "kcl", at: { x: 5, y: 6.7, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    cells: "Elementarzellen pro Kante",
-    choose: "Kristall wählen",
-    count: <>Anzahl der Ionen</>,
-    formula: <>Formel</>,
-    ions: <>Ionen und ihre Radien</>,
-    lattice: <>Kante der Elementarzelle</>,
-    view: "Ionengitter",
+    lif: <InlineMath math="\mathrm{LiF}:\ 403\ \mathrm{pm}" />,
+    naf: <InlineMath math="\mathrm{NaF}:\ 462\ \mathrm{pm}" />,
+    kcl: <InlineMath math="\mathrm{KCl}:\ 629\ \mathrm{pm}" />,
   }}
 />
+
+Genau darin zeigt sich die Aussagekraft von Gruppen: Das Bindungsverhältnis bleibt fest bei <InlineMath math="1:1" />, während die Kristallmaße mit jeder zusätzlichen Schale vorhersehbar wachsen.
 
 ### Eine Gruppe reagiert ähnlich
 
-Elemente einer Gruppe verhalten sich chemisch ähnlich. Lithium, Natrium und Kalium reagieren alle mit Wasser zu einer Lauge und Wasserstoff, deshalb färbt sich Wasser mit Phenolphthalein pink. **Je weiter unten in der Gruppe, desto schneller die Reaktion**. Wähl jedes Metall und vergleiche die Gasblasen.
+Elemente einer Gruppe verhalten sich chemisch ähnlich. Lithium, Natrium und Kalium reagieren alle mit Wasser zu einer Lauge und Wasserstoff, deshalb färbt sich Wasser mit Phenolphthalein pink. **Je weiter unten in der Gruppe, desto schneller die Reaktion**, weil das Außenelektron leichter abgelöst wird.
 
-<AlkaliWaterLab
-  title={<>Metalle der ersten Gruppe in Wasser</>}
-  description={<>Metalle, die leichter als Wasser sind, schwimmen beim Reagieren.</>}
-  metals={["lithium", "sodium", "potassium"]}
+<MathVisual
+  title={<>Erste Ionisierungsenergie in Gruppe 1</>}
+  description={<>Erste Ionisierungsenergie von <InlineMath math="\mathrm{Li}" />, <InlineMath math="\mathrm{Na}" /> und <InlineMath math="\mathrm{K}" />. Ein Schritt nach oben sind <InlineMath math="100\ \mathrm{kJ/mol}" />.</>}
+  footer={<>Die sinkende Ionisierungsenergie erklärt, warum Kalium am heftigsten mit Wasser reagiert.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 3.8 }, y: { min: 3.5, max: 6.0 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "trend", kind: "polyline", appearance: "warning", vertices: [{ x: 1, y: 5.20 }, { x: 2, y: 4.96 }, { x: 3, y: 4.19 }] },
+      { id: "li", kind: "point", appearance: "primary", at: { x: 1, y: 5.20 } },
+      { id: "na", kind: "point", appearance: "secondary", at: { x: 2, y: 4.96 } },
+      { id: "k", kind: "point", appearance: "warning", at: { x: 3, y: 4.19 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li", at: { x: 1, y: 5.20 }, placement: "above-right" },
+      { key: "na", objectId: "na", at: { x: 2, y: 4.96 }, placement: "above-right" },
+      { key: "k", objectId: "k", at: { x: 3, y: 4.19 }, placement: "below-left" },
+    ],
+  }}
   labels={{
-    choose: "Metall wählen",
-    density: <>Dichte</>,
-    equation: <>Reaktionsgleichung</>,
-    ionization: <>Erste Ionisierungsenergie</>,
-    melting: <>Schmelzpunkt</>,
-    radius: <>Atomradius</>,
-    view: "Metall in einem Becherglas mit Wasser",
+    li: <InlineMath math="\mathrm{Li}:\ 520\ \mathrm{kJ/mol}" />,
+    na: <InlineMath math="\mathrm{Na}:\ 496\ \mathrm{kJ/mol}" />,
+    k: <InlineMath math="\mathrm{K}:\ 419\ \mathrm{kJ/mol}" />,
   }}
 />
+
+Weil Kalium sein Außenelektron mit spürbar weniger Energie abgibt als Lithium, folgen alle drei Metalle derselben Wasserreaktion, werden dabei aber Schritt für Schritt heftiger.
 
 ## Farben kennzeichnen Elementbereiche
 
@@ -222,6 +274,7 @@ Folg den Ordnungszahlen von <InlineMath math="1" /> bis <InlineMath math="18" />
 <MathVisual
   title={<>Die Tabelle nach Ordnungszahlen lesen</>}
   description={<>Die ersten <InlineMath math="18" /> Elemente nach Ordnungszahl, nach Gruppe (waagerecht) und Periode (Zeilen) angeordnet.</>}
+  footer={<>Jeder Rücksprung zu Gruppe 1 eröffnet eine neue Schale und wiederholt das Valenzmuster.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 5 } },
@@ -266,21 +319,35 @@ Folg den Ordnungszahlen von <InlineMath math="1" /> bis <InlineMath math="18" />
   }}
 />
 
+Dieser Zickzackweg über die Zeilen zeigt, warum ein einziges Koordinatenpaar aus Periode und Gruppe sofort Schalenzahl und Valenzmuster eines Elements verrät.
+
 ## Das Muster der Gruppen eins und siebzehn
 
 Die Gruppe verrät dir, wie viele Elektronen ein Atom leicht abgibt oder aufnimmt. Metalle der Gruppe <InlineMath math="1" /> wie Lithium und Kalium geben <InlineMath math="1" /> Elektron ab, Halogene der Gruppe <InlineMath math="17" /> wie Fluor und Chlor nehmen <InlineMath math="1" /> auf. **Deshalb verbinden sie sich im Verhältnis <InlineMath math="1 : 1" />**.
 
-<IonFormationLab
-  title={<>Alkalimetalle treffen Halogene</>}
-  description={<>Ein Elektron wandert, und beide Atome werden zu Ionen.</>}
-  pairs={["lithium-fluorine", "potassium-chlorine"]}
+<MathVisual
+  title={<>Valenzelektronen vor und nach dem Elektronenübergang</>}
+  description={<>Außenelektronen von <InlineMath math="\mathrm{Li}" /> und <InlineMath math="\mathrm{K}" /> (hinten) gegenüber <InlineMath math="\mathrm{F}" /> und <InlineMath math="\mathrm{Cl}" /> (vorne) auf dem Weg zur Edelgasschale. Ein Schritt nach oben sind <InlineMath math="2" /> Elektronen.</>}
+  footer={<>Ein Elektron von Gruppe 1 zu Gruppe 17 schließt bei beiden Ionen die Außenschale ab.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "m-atom", kind: "cuboid", appearance: "warning", center: { x: 0, y: 0.25, z: -0.7 }, size: { length: 1.1, height: 0.5, width: 1.1 } },
+      { id: "m-ion", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.1, z: 0.7 }, size: { length: 1.1, height: 0.2, width: 1.1 } },
+      { id: "x-atom", kind: "cuboid", appearance: "secondary", center: { x: 3.5, y: 1.75, z: -0.7 }, size: { length: 1.1, height: 3.5, width: 1.1 } },
+      { id: "x-ion", kind: "cuboid", appearance: "primary", center: { x: 3.5, y: 2.0, z: 0.7 }, size: { length: 1.1, height: 4.0, width: 1.1 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m-atom", at: { x: 0, y: 1.0, z: -0.7 }, placement: "above" },
+      { key: "x", objectId: "x-ion", at: { x: 3.5, y: 4.3, z: 0.7 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Atompaar wählen",
-    metalRadius: <>Radius des Metalls</>,
-    metalShells: <>Schalen des Metalls</>,
-    nonmetalRadius: <>Radius des Nichtmetalls</>,
-    nonmetalShells: <>Schalen des Nichtmetalls</>,
-    progress: "Elektronenübergang",
-    view: "Metall- und Nichtmetallatom werden zu Ionen",
+    m: <>Gruppe 1: 1 auf 0 außen</>,
+    x: <>Gruppe 17: 7 auf 8 außen</>,
   }}
 />
+
+Sobald ein Metall der Gruppe <InlineMath math="1" /> auf ein Halogen der Gruppe <InlineMath math="17" /> trifft, genügt ein einzelnes übertragenes Elektron für zwei stabile Außenschalen, sodass die Tabellenposition direkt die Formel vorhersagt.

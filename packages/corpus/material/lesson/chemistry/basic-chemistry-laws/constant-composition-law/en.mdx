@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Constant Composition",
   description:
@@ -15,7 +14,9 @@ The law of constant composition states that every pure compound contains its con
 
 The law of constant composition applies to **pure compounds**. The composition of a mixture such as sugar water changes when the amount of sugar or water changes. Pure water always contains hydrogen and oxygen in the same mass ratio. A [chemical substance](https://goldbook.iupac.org/terms/view/C01039/plain) has a constant composition and characteristic properties.
 
-## Water Keeps the Same Ratio
+> Sample size changes how much compound you hold, never the fixed mass split baked into its chemical formula.
+
+### Water Keeps the Same Ratio
 
 The formula for water is <InlineMath math="\mathrm{H_2O}" />. That means each molecule of water contains <InlineMath math="2" /> hydrogen atoms and <InlineMath math="1" /> oxygen atom. Using the simple relative atomic masses <InlineMath math="A_r\mathrm{(H)} = 1" /> and <InlineMath math="A_r\mathrm{(O)} = 16" />, the hydrogen-to-oxygen mass ratio in water is:
 
@@ -26,7 +27,7 @@ m_{\mathrm{H}} : m_{\mathrm{O}}
   &= 1 : 8
 \end{aligned}" />
 
-Even when different amounts of water form, the **mass ratio of hydrogen to oxygen that reacts** stays <InlineMath math="1:8" /> with the rounded values used above. [Water](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula/JSON) has the formula <InlineMath math="\mathrm{H_2O}" />. The <InlineMath math="2024" /> [abridged standard atomic weights](https://www.ciaaw.org/abridged-atomic-weights.htm) are <InlineMath math="A_r\mathrm{(H)}=1.0080" /> and <InlineMath math="A_r\mathrm{(O)}=15.999" />. Substituting those two atomic weights gives the following molar mass:
+Even when different amounts of water form, the **mass ratio of hydrogen to oxygen that reacts** stays <InlineMath math="1:8" /> with the rounded values used above. [Water](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula/JSON) has the formula <InlineMath math="\mathrm{H_2O}" />. Taking the <InlineMath math="2024" /> [abridged standard atomic weights](https://www.ciaaw.org/abridged-atomic-weights.htm), <InlineMath math="A_r\mathrm{(H)}=1.0080" /> and <InlineMath math="A_r\mathrm{(O)}=15.999" />, gives a precise molar mass of:
 
 <BlockMath math="\begin{aligned} M(\mathrm{H_2O}) &amp;=2(1.0080)+15.999 \\ &amp;=18.015\ \mathrm{g\,mol^{-1}} \end{aligned}" />
 
@@ -35,6 +36,7 @@ Compare two samples of water, with hydrogen in violet and oxygen in orange and o
 <MathVisual
   title={<>Two Samples, One Mass Ratio</>}
   description={<><InlineMath math="9\text{ g}" /> and <InlineMath math="18\text{ g}" /> of water split into hydrogen (violet) and oxygen (orange) at about <InlineMath math="1:8" />. One grid step up is <InlineMath math="4\text{ g}" />.</>}
+  footer={<>Doubling the water sample doubles both bars together, keeping the 1:8 mass split fixed.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -56,29 +58,44 @@ Compare two samples of water, with hydrogen in violet and oxygen in orange and o
   }}
 />
 
-## One Molecule Holds the Ratio
+Whether you scoop up a small drop or a full beaker of pure water, every ninth of the mass belongs to hydrogen and the remaining eight ninths belong to oxygen.
 
-**A fixed mass ratio comes from one molecule**. Every water molecule has <InlineMath math="2" /> hydrogen atoms and <InlineMath math="1" /> oxygen atom, so its masses are always <InlineMath math="2 : 16" />, or <InlineMath math="1 : 8" />. Wherever the water comes from, the molecule has the same shape, the same angle, and the same ratio.
+### One Molecule Holds the Ratio
 
-<MoleculeShapeLab
-  title={<>Water and Carbon Dioxide</>}
-  description={<>The relative molecular mass adds up the mass of every atom in the model.</>}
-  molecules={[
-    { id: "water", name: "Water" },
-    { id: "carbon-dioxide", name: "Carbon dioxide" },
-  ]}
+**A fixed mass ratio comes from one molecule**. Every water molecule has <InlineMath math="2" /> hydrogen atoms and <InlineMath math="1" /> oxygen atom, so its element masses always sit at <InlineMath math="2 : 16" />, or <InlineMath math="1 : 8" />. In the same way, every carbon dioxide molecule bonds <InlineMath math="1" /> carbon atom (<InlineMath math="12" />) to <InlineMath math="2" /> oxygen atoms (<InlineMath math="32" />), locking its carbon-to-oxygen ratio at <InlineMath math="3 : 8" /> wherever the gas is collected.
+
+<MathVisual
+  title={<>Element Mass Split in Water and Carbon Dioxide</>}
+  description={<>One mole of <InlineMath math="\mathrm{H_2O}" /> (<InlineMath math="2\text{ g H}+16\text{ g O}" />) beside one mole of <InlineMath math="\mathrm{CO_2}" /> (<InlineMath math="12\text{ g C}+32\text{ g O}" />). One grid step up is <InlineMath math="8\text{ g}" />.</>}
+  footer={<>Each pure compound locks its own element mass ratio straight into every molecule.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 1.75, y: 2.5, z: 0 } },
+    objects: [
+      { id: "h2o-h", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.125, z: 0 }, size: { length: 1.4, height: 0.25, width: 1.4 } },
+      { id: "h2o-o", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.25, z: 0 }, size: { length: 1.4, height: 2, width: 1.4 } },
+      { id: "co2-c", kind: "cuboid", appearance: "reference", center: { x: 3.5, y: 0.75, z: 0 }, size: { length: 1.4, height: 1.5, width: 1.4 } },
+      { id: "co2-o", kind: "cuboid", appearance: "primary", center: { x: 3.5, y: 3.5, z: 0 }, size: { length: 1.4, height: 4, width: 1.4 } },
+    ],
+    labels: [
+      { key: "h2o", objectId: "h2o-o", at: { x: 0, y: 2.6, z: 0 }, placement: "above" },
+      { key: "co2", objectId: "co2-o", at: { x: 3.5, y: 5.9, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
+    h2o: <InlineMath math="\mathrm{H_2O}:\ 2 + 16 = 18\ \mathrm{g}" />,
+    co2: <InlineMath math="\mathrm{CO_2}:\ 12 + 32 = 44\ \mathrm{g}" />,
   }}
 />
 
+Because every molecule of a compound repeats the same blueprint of atoms, scaling up to trillions of molecules simply multiplies both element masses by the same count without altering their ratio.
+
 ## Extra Reactant Stays Extra
+
+When you mix reactants in arbitrary amounts, nature does not bend the formula to use up leftovers. Instead, the reaction consumes only the **exact combining ratio** and leaves the surplus untouched.
+
+### Testing Excess Reactants
 
 Change the starting masses in the model. A different starting mixture may **leave hydrogen or oxygen behind**. The hydrogen and oxygen that form water always react in a <InlineMath math="1:8" /> mass ratio.
 
@@ -94,6 +111,7 @@ This model counts the mass of each element. The next equation shows how the mole
       ratio <InlineMath math="1:8" />.
     </>
   }
+  footer={<>Switch starting mixtures to see water form strictly at 1:8 while extra mass stays behind.</>}
   labels={{
     chooseMode: "Choose starting mass",
     before: "Start",
@@ -177,7 +195,7 @@ This model counts the mass of each element. The next equation shows how the mole
   }}
 />
 
-In the excess-hydrogen case, <InlineMath math="16 \mathrm{g}" /> of oxygen requires hydrogen in the mass ratio <InlineMath math="1:8" />. Calculate the reacting amount before finding what remains:
+Notice that in all three starting setups, the mass of water produced never exceeds <InlineMath math="18\ \mathrm{g}" /> because the smaller partner runs out first. In the excess-hydrogen case, <InlineMath math="16\ \mathrm{g}" /> of oxygen requires hydrogen in the mass ratio <InlineMath math="1:8" />. Calculate the reacting amount before finding what remains:
 
 <BlockMath math="\begin{aligned} m_{\mathrm{H,reacting}} &= \frac{1}{8}\times16=2\ \mathrm{g} \\ m_{\mathrm{H,remaining}} &=3-2=1\ \mathrm{g} \end{aligned}" />
 
@@ -186,6 +204,7 @@ Water always holds hydrogen and oxygen in the mass ratio <InlineMath math="1:8" 
 <MathVisual
   title={<>The Extra Hydrogen Stays Extra</>}
   description={<>Hydrogen (violet, leftover in pink), oxygen (orange) and the water formed (teal). One grid step up is <InlineMath math="2" /> grams.</>}
+  footer={<>Only 2 g of hydrogen joins the 16 g of oxygen to yield 18 g of water, leaving 1 g behind.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 10 }, z: { min: -1.5, max: 1.5 } },
@@ -211,30 +230,42 @@ Water always holds hydrogen and oxygen in the mass ratio <InlineMath math="1:8" 
   }}
 />
 
-## Watching the Fixed Ratio Form
+Separating the reacted bar from the pink leftover bar shows how constant composition and mass conservation work hand in hand: the product takes only the exact <InlineMath math="1:8" /> share, while the leftover gram still stays in the container.
 
-When hydrogen and oxygen react, water molecules **always form in the same pattern**. Drag the slider and count: <InlineMath math="4" /> hydrogen atoms meet <InlineMath math="2" /> oxygen atoms and become <InlineMath math="2" /> water molecules. The reactant mass of <InlineMath math="36" /> equals the product mass of <InlineMath math="36" />. Extra oxygen would simply stay extra instead of entering the water.
+### Reading the Fixed Ratio Line
 
-<ReactionBalanceLab
-  title={<>Water Forming Atom by Atom</>}
-  description={<>Each water molecule takes two hydrogens and one oxygen.</>}
-  reactions={[
-    { id: "water-synthesis", name: "Forming water", tab: <InlineMath math="\mathrm{H_2O}" /> },
-  ]}
-  reading="molecules"
+Plotting oxygen mass against hydrogen mass turns the <InlineMath math="1:8" /> rule into a single straight line. Any starting mixture that lands **right on the line** reacts cleanly with nothing left over. A point to the right of the line carries extra hydrogen, while a point above the line carries extra oxygen.
+
+<MathVisual
+  title={<>Exact Mixtures Sit on the <InlineMath math="1:8" /> Line</>}
+  description={<>Oxygen mass against hydrogen mass for water formation. Horizontal step is <InlineMath math="1\text{ g H}" /> and vertical step is <InlineMath math="4\text{ g O}" />.</>}
+  footer={<>Points off the teal <InlineMath math="1:8" /> line leave the horizontal or vertical gap behind as unreacted excess.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.5 }, y: { min: -0.5, max: 6.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "ratio-line", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 6 } },
+      { id: "gap-h", kind: "segment", appearance: "warning", stroke: "dashed", from: { x: 2, y: 4 }, to: { x: 3, y: 4 } },
+      { id: "gap-o", kind: "segment", appearance: "primary", stroke: "dashed", from: { x: 2, y: 4 }, to: { x: 2, y: 5 } },
+      { id: "exact-pt", kind: "point", appearance: "construction", at: { x: 2, y: 4 } },
+      { id: "excess-h", kind: "point", appearance: "warning", at: { x: 3, y: 4 } },
+      { id: "excess-o", kind: "point", appearance: "primary", at: { x: 2, y: 5 } },
+    ],
+    labels: [
+      { key: "exact", objectId: "exact-pt", at: { x: 2, y: 4 }, placement: "below-left" },
+      { key: "exh", objectId: "excess-h", at: { x: 3, y: 4 }, placement: "below-right" },
+      { key: "exo", objectId: "excess-o", at: { x: 2, y: 5 }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms of each element</>,
-    choose: "Choose a reaction",
-    economy: <>Atom economy</>,
-    equation: <>Balanced equation</>,
-    mass: <>Mass of reactants and products</>,
-    molecules: <>Number of molecules</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Reaction at the level of atoms",
+    exact: <InlineMath math="(2,\ 16):\ 1:8" />,
+    exh: <>+1 g H left over</>,
+    exo: <>+4 g O left over</>,
   }}
 />
+
+Looking at the dashed segments makes limiting-reactant problems intuitive before you touch a formula: every mixture reacts only up to the nearest point on the line, and the dashed distance tells you how many grams remain unused.
 
 ## Testing Calcium Oxide Data
 

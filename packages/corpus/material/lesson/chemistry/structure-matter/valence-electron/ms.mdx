@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Elektron Valens",
   description:
@@ -17,6 +16,8 @@ Petala paling luar yang berisi elektron ialah petala <InlineMath math="\mathrm{N
 
 Bagi unsur kumpulan utama, elektron valens ialah <Highlight>elektron dalam petala paling luar yang berisi elektron</Highlight> bagi sesuatu atom.
 
+> Petala dalam tersembunyi rapat di sekeliling nukleus, maka tindak balas kimia hampir keseluruhannya berlaku melalui elektron valens di petala luar.
+
 Apabila atom membentuk ikatan atau ion, atom paling kerap berkongsi, melepaskan atau menerima elektron luar ini. Oleh itu, bilangan dan susunan elektron valens mempengaruhi cara sesuatu unsur bertindak balas.
 
 ## Model Elektron Valens
@@ -31,6 +32,7 @@ Pilih satu atom neutral. Baca susunan elektronnya dari kiri ke kanan, kemudian l
       boleh dilihat terus daripada model.
     </>
   }
+  footer={<>Pilih mana-mana atom neutral dan baca gelang luar berwarna bagi bilangan valensnya.</>}
   labels={{
     chooseAtom: "Pilih satu atom neutral",
     atomicNumber: "Nombor proton",
@@ -91,6 +93,8 @@ Pilih satu atom neutral. Baca susunan elektronnya dari kiri ke kanan, kemudian l
   }}
 />
 
+Membandingkan magnesium (<InlineMath math="2, 8, 2" />) dan kalsium (<InlineMath math="2, 8, 8, 2" />) dalam model ini menjelaskan sebab unsur sekumpulan bertindak balas serupa walaupun jumlah elektronnya berbeza.
+
 ## Mengenal Pasti Elektron Valens daripada Petala Paling Luar
 
 Langkah-langkah berikut menentukan bilangan elektron dalam **petala paling luar yang berisi elektron**.
@@ -115,6 +119,7 @@ Inilah klorin, <InlineMath math="2, 8, 7" />. Petala paling luar yang berisi ele
 <MathVisual
   title={<>Tujuh Elektron Valens Klorin</>}
   description={<><InlineMath math="17" /> elektron klorin dalam petala K, L dan M, dengan elektron valens berwarna fuchsia.</>}
+  footer={<>Sepuluh elektron dalam kekal stabil sementara tujuh elektron petala M memacu ikatan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -155,23 +160,39 @@ Inilah klorin, <InlineMath math="2, 8, 7" />. Petala paling luar yang berisi ele
   }}
 />
 
+Oleh sebab klorin hanya kurang satu elektron daripada oktet dalam petala <InlineMath math="\mathrm{M}" />, klorin mudah menerima atau berkongsi satu elektron berbanding melepaskan tujuh.
+
 ## Petala Terluar sebagai Awan
 
-Elektron valens menghuni orbital dalam petala terluar. Bagi karbon, elektron valensnya berada dalam orbital <InlineMath math="2s" /> dan <InlineMath math="2p" />. Bagi natrium, satu elektron valensnya berada dalam orbital <InlineMath math="3s" />. Bandingkan saiz awannya. **Elektron valens berada paling jauh dari nukleus**, jadi elektron inilah yang paling mudah digunakan dalam tindak balas.
+Elektron valens menghuni orbital paling luar yang terisi. Bagi karbon dan oksigen elektron valens berada dalam petala <InlineMath math="n = 2" />, manakala satu elektron valens natrium berada jauh di luar dalam orbital <InlineMath math="3s" />. **Elektron valens berada paling jauh dari nukleus**, jadi elektron inilah yang mula-mula bertemu atom jiran semasa tindak balas.
 
-<OrbitalCloudLab
-  title={<>Orbital Elektron Valens</>}
-  description={<>Bandingkan sejauh mana setiap awan menjangkau dari nukleus.</>}
-  orbitals={["2s", "2pz", "3s"]}
+<MathVisual
+  title={<>Jangkauan Petala Valens Paling Luar</>}
+  description={<>Jejari atom oksigen (<InlineMath math="73\ \mathrm{pm}" />), karbon (<InlineMath math="77\ \mathrm{pm}" />) dan natrium (<InlineMath math="186\ \mathrm{pm}" />). Satu langkah menegak ialah <InlineMath math="50\ \mathrm{pm}" />.</>}
+  footer={<>Elektron valens 3s natrium menjangkau lebih dua kali ganda jauh berbanding petala 2s dan 2p karbon.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "o", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.73, z: 0 }, size: { length: 1.3, height: 1.46, width: 1.3 } },
+      { id: "c", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 0.77, z: 0 }, size: { length: 1.3, height: 1.54, width: 1.3 } },
+      { id: "na", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.86, z: 0 }, size: { length: 1.3, height: 3.72, width: 1.3 } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 1.8, z: 0 }, placement: "above" },
+      { key: "c", objectId: "c", at: { x: 2.5, y: 1.9, z: 0 }, placement: "above" },
+      { key: "na", objectId: "na", at: { x: 5, y: 4.1, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    angular: <>Nod sudut</>,
-    choose: "Pilih orbital",
-    numbers: <>Nombor kuantum</>,
-    orbital: <>Orbital</>,
-    radial: <>Nod jejarian</>,
-    view: "Awan elektron orbital",
+    o: <InlineMath math="\mathrm{O}\ (2p):\ 73\ \mathrm{pm}" />,
+    c: <InlineMath math="\mathrm{C}\ (2p):\ 77\ \mathrm{pm}" />,
+    na: <InlineMath math="\mathrm{Na}\ (3s):\ 186\ \mathrm{pm}" />,
   }}
 />
+
+Jangkauan luas ini menjelaskan sebab natrium mudah melepaskan elektron luarnya manakala bukan logam kala <InlineMath math="2" /> yang kecil memegang dan berkongsi elektron dengan kuat.
 
 ## Corak dalam Kumpulan yang Sama
 
@@ -195,22 +216,38 @@ Hidrogen ialah pengecualian. Hidrogen mempunyai <InlineMath math="1" /> elektron
 
 ## Valens Sama dan Tindak Balas Sama
 
-Setiap logam di sini ada <InlineMath math="1" /> elektron valens, jadi **semuanya bertindak balas dengan air dengan cara yang sama**, menghasilkan hidrogen dan hidroksida. Hanya kelajuannya yang berubah ke bawah kumpulan.
+Setiap logam alkali mempunyai <InlineMath math="1" /> elektron valens, jadi **litium, natrium dan kalium semuanya bertindak balas dengan air mengikut corak stoikiometri yang sama**, menghasilkan <InlineMath math="\mathrm{MOH}" /> dan <InlineMath math="\mathrm{H_2}" />. Hanya kelajuan tindak balas meningkat ke bawah kumpulan apabila petala luar makin menjauh dari nukleus.
 
-<AlkaliWaterLab
-  title={<>Satu Elektron Valens dalam Air</>}
-  description={<>Masukkan setiap logam dan bandingkan persamaan yang ditulisnya.</>}
-  metals={["lithium", "sodium", "potassium"]}
+<MathVisual
+  title={<>Satu Elektron Valens Merentasi Petala yang Bertambah</>}
+  description={<>Bilangan petala berisi (belakang) berbanding bilangan elektron valens tetap (hadapan) bagi <InlineMath math="\mathrm{Li}" />, <InlineMath math="\mathrm{Na}" /> dan <InlineMath math="\mathrm{K}" />. Satu langkah menegak ialah <InlineMath math="1" /> petala atau elektron.</>}
+  footer={<>Bilangan valens tetap mengekalkan persamaan tindak balas sementara petala tambahan menaikkan kecergasan.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "li-s", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1.0, z: -0.7 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "li-v", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1, width: 1.1 } },
+      { id: "na-s", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 1.5, z: -0.7 }, size: { length: 1.1, height: 3, width: 1.1 } },
+      { id: "na-v", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1, width: 1.1 } },
+      { id: "k-s", kind: "cuboid", appearance: "reference", center: { x: 5, y: 2.0, z: -0.7 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "k-v", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1, width: 1.1 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li-s", at: { x: 0, y: 2.35, z: -0.7 }, placement: "above" },
+      { key: "na", objectId: "na-s", at: { x: 2.5, y: 3.35, z: -0.7 }, placement: "above" },
+      { key: "k", objectId: "k-s", at: { x: 5, y: 4.35, z: -0.7 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih logam",
-    density: <>Ketumpatan</>,
-    equation: <>Persamaan tindak balas</>,
-    ionization: <>Tenaga pengionan pertama</>,
-    melting: <>Takat lebur</>,
-    radius: <>Jejari atom</>,
-    view: "Logam dalam bikar berisi air",
+    li: <>Li: 2 petala, 1 val</>,
+    na: <>Na: 3 petala, 1 val</>,
+    k: <>K: 4 petala, 1 val</>,
   }}
 />
+
+Mengasingkan barisan hadapan yang tetap (bilangan valens) daripada barisan belakang yang meningkat (bilangan petala) menerangkan persamaan sifat dan trend kecergasan dalam kumpulan <InlineMath math="1" />.
 
 ## Kaitan dengan Sifat Kimia
 
@@ -234,46 +271,77 @@ Bagi unsur peralihan, elektron dalam subpetala <InlineMath math="s" /> paling lu
 
 ### Elektron Valens Menentukan Cas
 
-Natrium ada <InlineMath math="1" /> elektron valens dan magnesium ada <InlineMath math="2" />, jadi **kedua-duanya melepaskan tepat sebanyak itu**: natrium menjadi <InlineMath math="\mathrm{Na^+}" />, magnesium menjadi <InlineMath math="\mathrm{Mg^{2+}}" />.
+Natrium ada <InlineMath math="1" /> elektron valens dan magnesium ada <InlineMath math="2" />, jadi **kedua-duanya melepaskan tepat sebanyak itu** untuk menjadi <InlineMath math="\mathrm{Na^+}" /> dan <InlineMath math="\mathrm{Mg^{2+}}" />, manakala klorin menerima <InlineMath math="1" /> (<InlineMath math="\mathrm{Cl^-}" />) dan oksigen menerima <InlineMath math="2" /> (<InlineMath math="\mathrm{O^{2-}}" />).
 
-<IonFormationLab
-  title={<>Daripada Elektron Valens kepada Ion</>}
-  description={<>Pindahkan elektron bagi setiap pasangan dan kira berapa yang meninggalkan logam.</>}
-  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+<MathVisual
+  title={<>Cas Ion Diramal daripada Bilangan Valens</>}
+  description={<>Cas ion lazim bagi <InlineMath math="\mathrm{Na}" />, <InlineMath math="\mathrm{Mg}" />, <InlineMath math="\mathrm{Cl}" /> dan <InlineMath math="\mathrm{O}" />. Palang positif menunjukkan elektron dilepaskan, palang negatif menunjukkan elektron diterima.</>}
+  footer={<>Logam melepaskan elektron valens menjadi kation manakala bukan logam menerimanya ke oktet.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: -2.8, max: 2.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 6, z: 12 }, target: { x: 3.75, y: 0, z: 0 } },
+    objects: [
+      { id: "na", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.3, height: 1, width: 1.3 } },
+      { id: "mg", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 1.0, z: 0 }, size: { length: 1.3, height: 2, width: 1.3 } },
+      { id: "cl", kind: "cuboid", appearance: "secondary", center: { x: 5, y: -0.5, z: 0 }, size: { length: 1.3, height: 1, width: 1.3 } },
+      { id: "o", kind: "cuboid", appearance: "secondary", center: { x: 7.5, y: -1.0, z: 0 }, size: { length: 1.3, height: 2, width: 1.3 } },
+    ],
+    labels: [
+      { key: "na", objectId: "na", at: { x: 0, y: 1.35, z: 0 }, placement: "above" },
+      { key: "mg", objectId: "mg", at: { x: 2.5, y: 2.35, z: 0 }, placement: "above" },
+      { key: "cl", objectId: "cl", at: { x: 5, y: -1.35, z: 0 }, placement: "below" },
+      { key: "o", objectId: "o", at: { x: 7.5, y: -2.35, z: 0 }, placement: "below" },
+    ],
+  }}
   labels={{
-    choose: "Pilih pasangan atom",
-    metalRadius: <>Jejari logam</>,
-    metalShells: <>Petala logam</>,
-    nonmetalRadius: <>Jejari bukan logam</>,
-    nonmetalShells: <>Petala bukan logam</>,
-    progress: "Pemindahan elektron",
-    view: "Atom logam dan bukan logam menjadi ion",
+    na: <InlineMath math="\mathrm{Na^+}:\ +1" />,
+    mg: <InlineMath math="\mathrm{Mg^{2+}}:\ +2" />,
+    cl: <InlineMath math="\mathrm{Cl^-}:\ -1" />,
+    o: <InlineMath math="\mathrm{O^{2-}}:\ -2" />,
   }}
 />
+
+Jarak sesuatu atom daripada petala penuh menentukan terus cas ion kumpulan utama yang lazim terbentuk.
 
 ### Bilangan Ikatan Mengikut Elektron Valens
 
-Elektron valens menentukan berapa banyak ikatan yang dibentuk oleh sesuatu atom. Karbon ada <InlineMath math="4" /> elektron valens dan membentuk <InlineMath math="4" /> ikatan dalam <InlineMath math="\mathrm{CH_4}" />. Nitrogen membentuk <InlineMath math="3" /> ikatan dalam <InlineMath math="\mathrm{NH_3}" />, oksigen <InlineMath math="2" /> ikatan dalam <InlineMath math="\mathrm{H_2O}" /> dan klorin <InlineMath math="1" /> ikatan dalam <InlineMath math="\mathrm{HCl}" />. **Setiap atom berkongsi elektron sehingga petala terluarnya penuh**.
+Elektron valens menentukan berapa banyak ikatan kovalen yang lazim dibentuk oleh atom bukan logam. Karbon ada <InlineMath math="4" /> elektron valens dan membentuk <InlineMath math="4" /> ikatan dalam <InlineMath math="\mathrm{CH_4}" />. Nitrogen membentuk <InlineMath math="3" /> ikatan dalam <InlineMath math="\mathrm{NH_3}" />, oksigen <InlineMath math="2" /> ikatan dalam <InlineMath math="\mathrm{H_2O}" /> dan klorin <InlineMath math="1" /> ikatan dalam <InlineMath math="\mathrm{HCl}" />. **Setiap atom berkongsi elektron sehingga petala terluarnya mencapai lapan**.
 
-<MoleculeShapeLab
-  title={<>Empat Atom Pusat dan Ikatannya</>}
-  description={<>Kira ikatan karbon, nitrogen, oksigen dan klorin.</>}
-  molecules={[
-    { id: "methane", name: "Metana" },
-    { id: "ammonia", name: "Ammonia" },
-    { id: "water", name: "Air" },
-    { id: "hydrogen-chloride", name: "Hidrogen klorida" },
-  ]}
+<MathVisual
+  title={<>Bilangan Ikatan Kovalen Menuju Oktet</>}
+  description={<>Bilangan ikatan tunggal berkongsi (hadapan) di sisi elektron valens asal (belakang) bagi <InlineMath math="\mathrm{C}" />, <InlineMath math="\mathrm{N}" />, <InlineMath math="\mathrm{O}" /> dan <InlineMath math="\mathrm{Cl}" />. Satu langkah menegak ialah <InlineMath math="2" />.</>}
+  footer={<>Elektron valens asal ditambah ikatan tunggal sentiasa berjumlah lapan bagi keempat-empat atom.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 4.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "c-v", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1.0, z: -0.7 }, size: { length: 1.1, height: 2.0, width: 1.1 } },
+      { id: "c-b", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.0, z: 0.7 }, size: { length: 1.1, height: 2.0, width: 1.1 } },
+      { id: "n-v", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 1.25, z: -0.7 }, size: { length: 1.1, height: 2.5, width: 1.1 } },
+      { id: "n-b", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 0.75, z: 0.7 }, size: { length: 1.1, height: 1.5, width: 1.1 } },
+      { id: "o-v", kind: "cuboid", appearance: "reference", center: { x: 5, y: 1.5, z: -0.7 }, size: { length: 1.1, height: 3.0, width: 1.1 } },
+      { id: "o-b", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1.0, width: 1.1 } },
+      { id: "cl-v", kind: "cuboid", appearance: "reference", center: { x: 7.5, y: 1.75, z: -0.7 }, size: { length: 1.1, height: 3.5, width: 1.1 } },
+      { id: "cl-b", kind: "cuboid", appearance: "primary", center: { x: 7.5, y: 0.25, z: 0.7 }, size: { length: 1.1, height: 0.5, width: 1.1 } },
+    ],
+    labels: [
+      { key: "c", objectId: "c-v", at: { x: 0, y: 2.4, z: 0 }, placement: "above" },
+      { key: "n", objectId: "n-v", at: { x: 2.5, y: 2.9, z: 0 }, placement: "above" },
+      { key: "o", objectId: "o-v", at: { x: 5, y: 3.4, z: 0 }, placement: "above" },
+      { key: "cl", objectId: "cl-v", at: { x: 7.5, y: 3.9, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model isi ruang</>,
-    formula: <>Formula molekul</>,
-    mass: <>Jisim molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    c: <>CH4: 4 val + 4 ikatan</>,
+    n: <>NH3: 5 val + 3 ikatan</>,
+    o: <>H2O: 6 val + 2 ikatan</>,
+    cl: <>HCl: 7 val + 1 ikatan</>,
   }}
 />
+
+Apabila palang belakang meningkat daripada empat kepada tujuh elektron valens, palang ikatan hadapan menurun daripada empat kepada satu agar setiap molekul mencapai oktet.
 
 ## Menyemak Elektron Valens daripada Petala Paling Luar
 
@@ -317,6 +385,7 @@ Tulis susunan elektron, cari petala paling luar yang berisi elektron dan kira el
 <MathVisual
   title={<>Elektron Valens Naik dan Bermula Semula</>}
   description={<>Elektron valens bagi nombor proton <InlineMath math="1" /> hingga <InlineMath math="20" />. Paksi mengufuk: satu langkah grid ialah <InlineMath math="2" /> nombor proton. Paksi menegak: bilangan elektron valens.</>}
+  footer={<>Bilangan valens naik ke 8 pada setiap gas adi dan mula semula pada 1 di petala baharu.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -0.5, max: 9 } },
@@ -359,3 +428,5 @@ Tulis susunan elektron, cari petala paling luar yang berisi elektron dan kira el
     cl: <InlineMath math="\mathrm{Cl}:\ 2,8,7" />,
   }}
 />
+
+Corak gigi gergaji yang naik ke lapan lalu mula semula pada satu inilah nadi di sebalik kumpulan unsur berkala di seluruh Jadual Berkala Unsur.

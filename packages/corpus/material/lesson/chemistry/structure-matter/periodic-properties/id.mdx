@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Sifat Keperiodikan Unsur",
   description:
@@ -13,7 +12,9 @@ export const metadata = {
 
 Posisi unsur dalam tabel periodik memberi petunjuk tentang ukuran atom, energi yang diperlukan untuk melepaskan elektron, dan kekuatan tarikan atom terhadap elektron saat berikatan.
 
-Tren tersebut bergantung pada **tarikan inti terhadap elektron valensi**. Elektron valensi adalah elektron pada kulit terluar. Saat jumlah proton bertambah, tarikan inti cenderung makin kuat. Saat jumlah kulit bertambah, elektron valensi makin jauh dari inti dan tarikan yang dialaminya melemah.
+Tren ini bergantung pada **tarikan inti terhadap elektron valensi**. Elektron valensi adalah elektron pada kulit terluar. Saat jumlah proton bertambah, tarikan inti cenderung makin kuat. Saat jumlah kulit bertambah, elektron valensi makin jauh dari inti dan tarikan yang dialaminya melemah.
+
+> Setiap tren periodik bermuara pada tarik-menarik antara muatan inti yang makin kuat dan kulit dalam tambahan yang melindungi elektron terluar.
 
 <PeriodicPropertiesLab
   title={<>Model Tren Periodik</>}
@@ -23,6 +24,7 @@ Tren tersebut bergantung pada **tarikan inti terhadap elektron valensi**. Elektr
       dan satu golongan.
     </>
   }
+  footer={<>Ganti sifat untuk membandingkan arah perubahan sepanjang periode dan golongan.</>}
   labels={{
     chooseTrend: "Pilih sifat periodik",
     sceneLabel: "Model sifat keperiodikan unsur",
@@ -73,11 +75,14 @@ Tren tersebut bergantung pada **tarikan inti terhadap elektron valensi**. Elektr
   }}
 />
 
+Membandingkan keempat mode memperlihatkan bahwa jari-jari atom bergerak berlawanan dengan energi ionisasi dan keelektronegatifan karena tarikan inti yang lebih kuat sekaligus mengecilkan atom dan menahan elektron lebih erat.
+
 Natrium memperlihatkan mengapa letak bisa meramalkan sifat. Satu-satunya elektron terluarnya, yang berwarna fuchsia, sendirian di kulit M, jauh dari inti dan terlindung oleh sepuluh elektron di dalam, jadi mudah dilepas.
 
 <MathVisual
   title={<>Elektron Terluar Natrium yang Sendirian</>}
   description={<><InlineMath math="11" /> elektron natrium di kulit K, L, dan M, dengan elektron terluar berwarna fuchsia.</>}
+  footer={<>Sepuluh elektron dalam melindungi satu elektron kulit M natrium dari inti bermuatan +11.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -112,23 +117,79 @@ Natrium memperlihatkan mengapa letak bisa meramalkan sifat. Satu-satunya elektro
   }}
 />
 
-## Setiap Kulit Menjangkau Lebih Jauh
+Karena elektron luar yang sendirian itu hanya merasakan tarikan bersih yang lemah, natrium memiliki jari-jari atom besar dan energi ionisasi pertama yang rendah dibandingkan unsur lebih kanan di periode <InlineMath math="3" />.
 
-Turun satu golongan berarti menambah satu kulit, dan **setiap awan s yang baru menyebar lebih jauh dari inti**. Itulah gambaran di balik atom yang makin besar dari atas ke bawah golongan.
+### Setiap Kulit Menjangkau Lebih Jauh
 
-<OrbitalCloudLab
-  title={<>Awan Makin Besar ke Bawah Golongan</>}
-  description={<>Melangkah dari awan 1s ke 3s dan lihat simpul radialnya muncul.</>}
-  orbitals={["1s", "2s", "3s"]}
+Turun satu golongan berarti menambah satu kulit utama, dan **setiap kulit baru menjangkau lebih jauh dari inti**. Pelebaran kulit itulah alasan jari-jari atom terus membesar dari litium ke natrium hingga kalium.
+
+<MathVisual
+  title={<>Pertumbuhan Jari-Jari Atom Menuruni Golongan 1</>}
+  description={<>Lingkaran sepusat berskala jari-jari atom logam <InlineMath math="\mathrm{Li}" /> (<InlineMath math="152\ \mathrm{pm}" />), <InlineMath math="\mathrm{Na}" /> (<InlineMath math="186\ \mathrm{pm}" />), dan <InlineMath math="\mathrm{K}" /> (<InlineMath math="227\ \mathrm{pm}" />). Satu satuan grid adalah <InlineMath math="50\ \mathrm{pm}" />.</>}
+  footer={<>Penambahan kulit dari 2s ke 3s lalu 4s mendorong awan elektron luar makin menjauh.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.2, max: 5.2 }, y: { min: -5.2, max: 5.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "nuc", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "r-li", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 3.04 },
+      { id: "r-na", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 3.72 },
+      { id: "r-k", kind: "circle", appearance: "warning", center: { x: 0, y: 0 }, radius: 4.54 },
+    ],
+    labels: [
+      { key: "li", objectId: "r-li", at: { x: 0, y: 3.04 }, placement: "below" },
+      { key: "na", objectId: "r-na", at: { x: 0, y: 3.72 }, placement: "above" },
+      { key: "k", objectId: "r-k", at: { x: 0, y: 4.54 }, placement: "above" },
+    ],
+  }}
   labels={{
-    angular: <>Simpul sudut</>,
-    choose: "Pilih orbital",
-    numbers: <>Bilangan kuantum</>,
-    orbital: <>Orbital</>,
-    radial: <>Simpul radial</>,
-    view: "Awan elektron orbital",
+    li: <InlineMath math="\mathrm{Li}:\ 152\ \mathrm{pm}" />,
+    na: <InlineMath math="\mathrm{Na}:\ 186\ \mathrm{pm}" />,
+    k: <InlineMath math="\mathrm{K}:\ 227\ \mathrm{pm}" />,
   }}
 />
+
+Setiap lingkaran melebar keluar walau muatan inti meningkat, membuktikan bahwa tambahan kulit utama lebih berpengaruh daripada tambahan proton saat turun satu golongan.
+
+### Jari-Jari Berubah Saat Ion Terbentuk
+
+Melepas atau menerima elektron mengubah ukuran atom secara mencolok: **logam mengecil ketika kehilangan kulit terluarnya, sedangkan nonlogam membesar** saat tambahan elektron meningkatkan tolakan di kulit valensi.
+
+<MathVisual
+  title={<>Jari-Jari Atom Netral Dibanding Jari-Jari Ion</>}
+  description={<>Atom netral (belakang) dibandingkan ionnya (depan) untuk <InlineMath math="\mathrm{Li}" />, <InlineMath math="\mathrm{F}" />, <InlineMath math="\mathrm{K}" />, dan <InlineMath math="\mathrm{Cl}" />. Satu kotak tegak berarti <InlineMath math="50\ \mathrm{pm}" />.</>}
+  footer={<>Kation menyusut tajam di bawah atom netralnya, sedangkan anion mengembang di atasnya.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "li-a", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1.52, z: -0.7 }, size: { length: 1.0, height: 3.04, width: 1.0 } },
+      { id: "li-i", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.76, z: 0.7 }, size: { length: 1.0, height: 1.52, width: 1.0 } },
+      { id: "f-a", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 0.64, z: -0.7 }, size: { length: 1.0, height: 1.28, width: 1.0 } },
+      { id: "f-i", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.33, z: 0.7 }, size: { length: 1.0, height: 2.66, width: 1.0 } },
+      { id: "k-a", kind: "cuboid", appearance: "reference", center: { x: 5, y: 2.27, z: -0.7 }, size: { length: 1.0, height: 4.54, width: 1.0 } },
+      { id: "k-i", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.38, z: 0.7 }, size: { length: 1.0, height: 2.76, width: 1.0 } },
+      { id: "cl-a", kind: "cuboid", appearance: "reference", center: { x: 7.5, y: 0.99, z: -0.7 }, size: { length: 1.0, height: 1.98, width: 1.0 } },
+      { id: "cl-i", kind: "cuboid", appearance: "secondary", center: { x: 7.5, y: 1.81, z: 0.7 }, size: { length: 1.0, height: 3.62, width: 1.0 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li-a", at: { x: 0, y: 3.4, z: -0.7 }, placement: "above" },
+      { key: "f", objectId: "f-i", at: { x: 2.5, y: 3.0, z: 0.7 }, placement: "above" },
+      { key: "k", objectId: "k-a", at: { x: 5, y: 4.9, z: -0.7 }, placement: "above" },
+      { key: "cl", objectId: "cl-i", at: { x: 7.5, y: 4.0, z: 0.7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    li: <InlineMath math="\mathrm{Li}\rightarrow\mathrm{Li^+}" />,
+    f: <InlineMath math="\mathrm{F}\rightarrow\mathrm{F^-}" />,
+    k: <InlineMath math="\mathrm{K}\rightarrow\mathrm{K^+}" />,
+    cl: <InlineMath math="\mathrm{Cl}\rightarrow\mathrm{Cl^-}" />,
+  }}
+/>
+
+Membandingkan baris belakang dan depan menunjukkan bahwa jari-jari ion selalu bergerak mengikuti pelepasan atau penerimaan elektron, yang menentukan kerapatan susunan ion dalam kristal.
 
 ## Empat Sifat Periodik
 
@@ -141,34 +202,17 @@ Setiap sifat menjelaskan aspek atom yang berbeda. Panah tren menunjukkan perubah
 
 Perbedaan afinitas elektron dan keelektronegatifan ada pada keadaan elektron. Afinitas elektron berkaitan dengan penambahan elektron ke atom gas. Keelektronegatifan berkaitan dengan tarikan elektron di dalam ikatan.
 
-## Jari-Jari Berubah Saat Ion Terbentuk
-
-Baca angka jari-jari saat elektron berpindah: **logam mengecil ketika kehilangan kulit terluarnya dan nonlogam membesar** ketika menerima satu elektron lagi.
-
-<IonFormationLab
-  title={<>Jari-Jari Atom dan Ion</>}
-  description={<>Pilih litium dengan fluorin atau kalium dengan klorin, lalu bandingkan jari-jarinya sebelum dan sesudah.</>}
-  pairs={["lithium-fluorine", "potassium-chlorine"]}
-  labels={{
-    choose: "Pilih pasangan atom",
-    metalRadius: <>Jari-jari logam</>,
-    metalShells: <>Kulit logam</>,
-    nonmetalRadius: <>Jari-jari nonlogam</>,
-    nonmetalShells: <>Kulit nonlogam</>,
-    progress: "Perpindahan elektron",
-    view: "Atom logam dan nonlogam menjadi ion",
-  }}
-/>
-
 ## Tren dalam Periode dan Golongan
 
 Pada deret unsur golongan utama seperti natrium sampai klorin, jumlah proton bertambah, tetapi <Highlight>elektron valensi masih berada pada kulit utama</Highlight> yang sama. Tarikan inti efektif makin kuat. Akibatnya, jari-jari atom cenderung mengecil, sedangkan energi ionisasi dan keelektronegatifan cenderung membesar.
 
 Makin ke bawah dalam satu golongan, jumlah kulit yang terisi bertambah. Elektron valensi berada lebih jauh dari inti, sedangkan elektron bagian dalam mengurangi tarikan inti yang dirasakan elektron valensi. Pengurangan ini disebut **efek perisai elektron**.
 
-Afinitas elektron memakai dua konvensi tanda. [IUPAC Gold Book](https://goldbook.iupac.org/terms/view/E01977) memakai energi yang dilepas ketika elektron melekat. Dengan konvensi ini, pelekatan yang menguntungkan memiliki <InlineMath math="\mathrm{EA}>0" />. Jika proses yang sama ditulis sebagai perubahan energi reaksi, berlaku <InlineMath math="\Delta E=-\mathrm{EA}<0" />.
+Afinitas elektron memakai dua konvensi tanda. [IUPAC Gold Book](https://goldbook.iupac.org/terms/view/E01977) mendefinisikan <InlineMath math="\mathrm{EA}" /> sebagai energi yang dilepas ketika elektron melekat, sehingga pelekatan yang menguntungkan bernilai positif sementara perubahan energi reaksinya <InlineMath math="\Delta E" /> bernilai negatif.
 
-Pada atom klorin, penambahan elektron melepaskan energi. Afinitas elektronnya positif, <InlineMath math="\mathrm{EA}>0" />, sedangkan perubahan energi reaksinya negatif, <InlineMath math="\Delta E=-\mathrm{EA}<0" />:
+<BlockMath math="\mathrm{EA} > 0 \quad \Longleftrightarrow \quad \Delta E = -\mathrm{EA} < 0" />
+
+Pada atom klorin, penambahan elektron melepaskan energi sehingga afinitas elektronnya positif dan perubahan energi reaksinya negatif untuk proses berikut.
 
 <BlockMath math="\mathrm{Cl(g)}+e^- \rightarrow \mathrm{Cl^-(g)}" />
 
@@ -179,6 +223,7 @@ Ini kedua tren itu dalam data nyata. Sepanjang satu periode, inti mendapat tamba
 <MathVisual
   title={<>Energi Ionisasi Melintasi Dua Periode</>}
   description={<>Energi ionisasi pertama untuk nomor atom <InlineMath math="3" /> sampai <InlineMath math="18" />, periode <InlineMath math="2" /> (ungu) dan periode <InlineMath math="3" /> (oranye). Mendatar: satu kotak grid berarti <InlineMath math="2" /> nomor atom. Tegak: satu kotak grid berarti <InlineMath math="250\ \mathrm{kJ/mol}" />.</>}
+  footer={<>Energi ionisasi naik sepanjang periode lalu jatuh tajam saat kulit luar baru dimulai.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 1, max: 9.5 }, y: { min: 1, max: 9 } },
@@ -219,24 +264,74 @@ Ini kedua tren itu dalam data nyata. Sepanjang satu periode, inti mendapat tamba
   }}
 />
 
-## Kereaktifan dalam Periode dan Golongan
+Penurunan tajam antara neon dan natrium menjadi bukti eksperimen bahwa struktur kulit memulai siklus baru di awal setiap periode.
 
-Kereaktifan logam mengikuti energi ionisasi. Dari natrium ke magnesium dalam satu periode, **energi ionisasi naik dari <InlineMath math="496" /> ke <InlineMath math="738\ \mathrm{kJ/mol}" />**, jadi magnesium hampir tidak bereaksi dengan air dingin. Turun dari magnesium ke kalsium dalam satu golongan, energi ionisasi turun dan reaksinya lebih cepat. Bandingkan ketiga logam di gelas kimia.
+### Kereaktifan dalam Periode dan Golongan
 
-<AlkaliWaterLab
-  title={<>Natrium, Magnesium, dan Kalsium dalam Air</>}
-  description={<>Kalsium membuat air keruh karena kalsium hidroksida sukar larut.</>}
-  metals={["sodium", "magnesium", "calcium"]}
+Kereaktifan logam mengikuti energi ionisasi. Dari natrium ke magnesium dalam satu periode, **energi ionisasi naik dari <InlineMath math="496" /> ke <InlineMath math="738\ \mathrm{kJ/mol}" />**, jadi magnesium hampir tidak bereaksi dengan air dingin. Turun dari magnesium ke kalsium dalam golongan <InlineMath math="2" />, energi ionisasi turun menjadi <InlineMath math="590\ \mathrm{kJ/mol}" /> dan reaksinya lebih cepat.
+
+<MathVisual
+  title={<>Energi Ionisasi Natrium Magnesium dan Kalsium</>}
+  description={<>Energi ionisasi pertama <InlineMath math="\mathrm{Na}" />, <InlineMath math="\mathrm{Mg}" />, dan <InlineMath math="\mathrm{Ca}" />. Satu kotak tegak berarti <InlineMath math="150\ \mathrm{kJ/mol}" />.</>}
+  footer={<>Energi ionisasi lebih tinggi membuat magnesium kurang reaktif dibanding natrium dan kalsium.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "na", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.654, z: 0 }, size: { length: 1.4, height: 3.306, width: 1.4 } },
+      { id: "mg", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 2.46, z: 0 }, size: { length: 1.4, height: 4.92, width: 1.4 } },
+      { id: "ca", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.967, z: 0 }, size: { length: 1.4, height: 3.932, width: 1.4 } },
+    ],
+    labels: [
+      { key: "na", objectId: "na", at: { x: 0, y: 3.7, z: 0 }, placement: "above" },
+      { key: "mg", objectId: "mg", at: { x: 2.5, y: 5.3, z: 0 }, placement: "above" },
+      { key: "ca", objectId: "ca", at: { x: 5, y: 4.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih logam",
-    density: <>Massa jenis</>,
-    equation: <>Persamaan reaksi</>,
-    ionization: <>Energi ionisasi pertama</>,
-    melting: <>Titik leleh</>,
-    radius: <>Jari-jari atom</>,
-    view: "Logam dalam gelas kimia berisi air",
+    na: <InlineMath math="\mathrm{Na}:\ 496" />,
+    mg: <InlineMath math="\mathrm{Mg}:\ 738" />,
+    ca: <InlineMath math="\mathrm{Ca}:\ 590" />,
   }}
 />
+
+Membandingkan ketiga batang memperlihatkan mengapa kecepatan reaksi mengikuti energi ionisasi: batang tertinggi (<InlineMath math="\mathrm{Mg}" />) bereaksi paling lambat dengan air dingin, sedangkan yang terendah (<InlineMath math="\mathrm{Na}" />) bereaksi paling cepat.
+
+### Ion Halida Makin Besar ke Bawah
+
+Jari-jari bertambah dari atas ke bawah golongan karena kulit elektronnya bertambah. Bandingkan kristal <InlineMath math="\mathrm{NaF}" />, <InlineMath math="\mathrm{NaCl}" />, dan <InlineMath math="\mathrm{NaBr}" />. Kation <InlineMath math="\mathrm{Na^+}" /> tetap sama, tetapi **anion halida makin besar dari <InlineMath math="\mathrm{F^-}" /> ke <InlineMath math="\mathrm{Br^-}" />**, sehingga rusuk sel satuan kubusnya ikut memanjang.
+
+<MathVisual
+  title={<>Jari-Jari Anion Halida dan Rusuk Sel Satuan</>}
+  description={<>Jari-jari anion (belakang) dan rusuk sel satuan kubus (depan) bagi <InlineMath math="\mathrm{NaF}" />, <InlineMath math="\mathrm{NaCl}" />, dan <InlineMath math="\mathrm{NaBr}" />. Satu kotak tegak berarti <InlineMath math="100\ \mathrm{pm}" />.</>}
+  footer={<>Dengan natrium tetap sama, anion halida yang lebih besar langsung memperlebar kisi kristal.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "f-ion", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.665, z: -0.7 }, size: { length: 1.1, height: 1.33, width: 1.1 } },
+      { id: "naf-cell", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2.31, z: 0.7 }, size: { length: 1.1, height: 4.62, width: 1.1 } },
+      { id: "cl-ion", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 0.905, z: -0.7 }, size: { length: 1.1, height: 1.81, width: 1.1 } },
+      { id: "nacl-cell", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2.82, z: 0.7 }, size: { length: 1.1, height: 5.64, width: 1.1 } },
+      { id: "br-ion", kind: "cuboid", appearance: "secondary", center: { x: 5, y: 0.98, z: -0.7 }, size: { length: 1.1, height: 1.96, width: 1.1 } },
+      { id: "nabr-cell", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.985, z: 0.7 }, size: { length: 1.1, height: 5.97, width: 1.1 } },
+    ],
+    labels: [
+      { key: "naf", objectId: "naf-cell", at: { x: 0, y: 5.0, z: 0.7 }, placement: "above" },
+      { key: "nacl", objectId: "nacl-cell", at: { x: 2.5, y: 6.0, z: 0.7 }, placement: "above" },
+      { key: "nabr", objectId: "nabr-cell", at: { x: 5, y: 6.3, z: 0.7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    naf: <InlineMath math="\mathrm{NaF}:\ 462\ \mathrm{pm}" />,
+    nacl: <InlineMath math="\mathrm{NaCl}:\ 564\ \mathrm{pm}" />,
+    nabr: <InlineMath math="\mathrm{NaBr}:\ 597\ \mathrm{pm}" />,
+  }}
+/>
+
+Karena kationnya tidak berubah pada ketiga garam, kenaikan panjang rusuk sel mencerminkan langsung tambahan satu kulit elektron tiap langkah ke bawah golongan <InlineMath math="17" />.
 
 ## Membandingkan Dua Pasangan Unsur
 
@@ -248,22 +343,3 @@ Gunakan **periode atau golongan yang sama** agar alasan perbandingannya jelas:
 | Li dan Na pada golongan 1 | Elektron valensi Li berada pada kulit L, sedangkan Na pada kulit M. Na memiliki tambahan kulit dalam yang memberi efek perisai. | Jari-jari Na lebih besar. Elektron pertama lebih mudah dilepas dari Na. |
 
 Perbandingan ini menjelaskan tren umum. Untuk afinitas elektron atau pasangan seperti Mg dan Al, periksa data dan susunan subkulit karena arah umum saja tidak cukup.
-
-## Ion Halida Makin Besar ke Bawah
-
-Jari-jari bertambah dari atas ke bawah golongan karena kulit elektronnya bertambah. Bandingkan kristal <InlineMath math="\mathrm{NaF}" />, <InlineMath math="\mathrm{NaCl}" />, dan <InlineMath math="\mathrm{NaBr}" />. Kationnya sama, tetapi **anion halida makin besar dari <InlineMath math="\mathrm{F^-}" /> ke <InlineMath math="\mathrm{Br^-}" />**, sehingga rusuk sel satuannya juga makin panjang.
-
-<IonLatticeLab
-  title={<>Tiga Garam Natrium Halida</>}
-  description={<>Bandingkan ukuran anion dan rusuk sel satuan.</>}
-  crystals={["sodium-fluoride", "sodium-chloride", "sodium-bromide"]}
-  labels={{
-    cells: "Sel satuan per rusuk",
-    choose: "Pilih kristal",
-    count: <>Jumlah ion</>,
-    formula: <>Rumus</>,
-    ions: <>Ion dan jari-jarinya</>,
-    lattice: <>Rusuk sel satuan</>,
-    view: "Kisi kristal ion",
-  }}
-/>

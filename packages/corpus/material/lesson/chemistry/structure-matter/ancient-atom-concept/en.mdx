@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Ancient Greek Ideas about Atoms",
   description:
@@ -15,34 +14,42 @@ Imagine a piece of chalk, paper, or salt. If the object is cut in half, then eac
 
 Greek philosophers asked questions like this long before microscopes, modern test tubes, or particle instruments existed. They were not proving atomic structure through experiments the way scientists do today. They were trying to answer a basic question in a reasonable way: what is matter really **made of**?
 
-The ancient debate raised questions that later atomic theories answered with experimental evidence.
+> Breaking a substance into smaller grains changes the size of the sample, not the tiny building blocks waiting at the bottom.
 
-## Splitting Water Still Leaves Atoms
+Modern chemistry gives an answer you can count. Electricity can break liquid water into hydrogen gas and oxygen gas, yet **the atoms themselves do not split in a chemical reaction**. Two water molecules rearrange into two hydrogen molecules and one oxygen molecule, keeping <InlineMath math="4" /> hydrogen atoms and <InlineMath math="2" /> oxygen atoms on both sides.
 
-Democritus asked how far matter can be divided. Modern chemistry gives an answer you can watch: water can be broken down into hydrogen and oxygen, but **the atoms themselves do not split in a chemical reaction**. Drag the slider and count the atoms. There are <InlineMath math="4" /> hydrogen atoms and <InlineMath math="2" /> oxygen atoms before and after the breakdown.
-
-<ReactionBalanceLab
-  title={<>Breaking Down Water</>}
-  description={<>Water molecules split, but every atom stays whole.</>}
-  reactions={[
-    { id: "water-electrolysis", name: "Splitting water", tab: <InlineMath math="\mathrm{H_2O}" /> },
-  ]}
-  reading="molecules"
+<MathVisual
+  title={<>Water Splits While Atoms Stay Whole</>}
+  description={<>Atom counts before and after splitting two water molecules into hydrogen and oxygen. One grid step up is <InlineMath math="1" /> atom.</>}
+  footer={<>Water molecules break apart, yet all four H and two O atoms stay intact.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 3, y: 2, z: 0 } },
+    objects: [
+      { id: "before-h", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2, z: 0 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "before-o", kind: "cuboid", appearance: "secondary", center: { x: 1.5, y: 1, z: 0 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "after-h", kind: "cuboid", appearance: "primary", center: { x: 4.5, y: 2, z: 0 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "after-o", kind: "cuboid", appearance: "secondary", center: { x: 6, y: 1, z: 0 }, size: { length: 1.1, height: 2, width: 1.1 } },
+    ],
+    labels: [
+      { key: "before-h", objectId: "before-h", at: { x: 0, y: 4.2, z: 0 }, placement: "above" },
+      { key: "before-o", objectId: "before-o", at: { x: 1.5, y: 2.2, z: 0 }, placement: "above" },
+      { key: "after-h", objectId: "after-h", at: { x: 4.5, y: 4.2, z: 0 }, placement: "above" },
+      { key: "after-o", objectId: "after-o", at: { x: 6, y: 2.2, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms of each element</>,
-    choose: "Choose a reaction",
-    economy: <>Atom economy</>,
-    equation: <>Balanced equation</>,
-    mass: <>Mass of reactants and products</>,
-    molecules: <>Number of molecules</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Reaction at the level of atoms",
+    "before-h": <InlineMath math="\mathrm{H}:\ 4" />,
+    "before-o": <InlineMath math="\mathrm{O}:\ 2" />,
+    "after-h": <InlineMath math="\mathrm{H}:\ 4" />,
+    "after-o": <InlineMath math="\mathrm{O}:\ 2" />,
   }}
 />
 
-## Two Opposite Answers
+The matching bar heights on the left and right capture the answer Democritus was reaching for: chemical changes rearrange atoms into new groupings, while each individual atom survives whole.
+
+## Continuous Matter and Indivisible Units
 
 The early debate offered two opposite answers: matter can be divided without limit, or <Highlight>matter consists of smallest indivisible units</Highlight>.
 
@@ -60,6 +67,7 @@ Test Democritus's question with numbers. Halve a <InlineMath math="1\ \mathrm{cm
 <MathVisual
   title={<>Twenty-Seven Halvings to an Atom</>}
   description={<>Size of a grain after each halving, starting at <InlineMath math="1\text{ cm}" />. Horizontal: one grid step is <InlineMath math="3" /> halvings. Vertical: one grid step down is ten times smaller.</>}
+  footer={<>Each halving drops the line steadily until cut 27 reaches atomic scale.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.5, max: 9.5 } },
@@ -93,7 +101,9 @@ Test Democritus's question with numbers. Halve a <InlineMath math="1\ \mathrm{cm
   }}
 />
 
-## Following the Reasoning of Democritus
+Repeated halving shrinks a centimeter-sized grain to atomic scale remarkably fast, crossing eight orders of magnitude in fewer than thirty cuts.
+
+### Following the Reasoning of Democritus
 
 This visual presents a **thought experiment** about dividing matter. Imagine cutting an object repeatedly, then compare two positions: Aristotle held that division could continue, while Democritus proposed a smallest part. The visual does not display an atom's actual shape.
 
@@ -105,6 +115,7 @@ This visual presents a **thought experiment** about dividing matter. Imagine cut
       simple question about the limit of dividing matter.
     </>
   }
+  footer={<>Compare continuous cutting with Democritus stopping at an uncuttable unit.</>}
   labels={{
     chooseLevel: "Choose a matter-cutting stage",
     aristotleLabel: "Continuous",
@@ -136,11 +147,14 @@ This visual presents a **thought experiment** about dividing matter. Imagine cut
   }}
 />
 
+Walking through each cut shows why the debate stayed philosophical: both sides looked at the same shrinking pieces and asked what lies past the edge of sight.
+
 Follow the thought experiment as numbers. Each cut halves the piece, so after <InlineMath math="n" /> cuts it is <InlineMath math="1/2^n" /> of the start. The columns below show only four cuts, and the last piece is already one sixteenth of the first. Democritus's question was whether this can go on forever or must stop at an uncuttable unit.
 
 <MathVisual
   title={<>Halving a Piece Again and Again</>}
   description={<>A piece <InlineMath math="8" /> units tall cut in half four times. Each column is half the one before.</>}
+  footer={<>Four cuts shrink the height from 8 units to 0.5, one sixteenth of the start.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -163,76 +177,126 @@ Follow the thought experiment as numbers. Each cut halves the piece, so after <I
   }}
 />
 
-## Shapes from Tiny Particles
+Mathematically, dividing by two can continue without ever reaching zero, which made Aristotle's continuous picture easy to imagine until experiments tested real matter.
 
-Democritus guessed that **the shape of the tiny pieces decides the shape of what we see**. A salt crystal is a modern check of that hunch: its cube comes from ions stacked in a cubic pattern.
+### Shapes Built from Tiny Units
 
-<IonLatticeLab
-  title={<>Salt Cubes from Stacked Particles</>}
-  description={<>Switch between table salt and potassium chloride and grow the crystal cell by cell.</>}
-  crystals={["sodium-chloride", "potassium-chloride"]}
+Democritus guessed that **the arrangement of tiny pieces decides the shape of what we see**. A grain of table salt is a modern check of that hunch: its flat cubic faces emerge because alternating sodium and chloride ions pack into a neat square grid in every direction.
+
+<MathVisual
+  title={<>Ordered Packing Builds Flat Crystal Faces</>}
+  description={<>One layer of alternating sodium ions (orange) and chloride ions (violet) inside a salt crystal. Regular rows create straight edges.</>}
+  footer={<>Repeating particle rows align into straight edges on the visible crystal.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "face", kind: "polygon", appearance: "reference", vertices: [{ x: 0.6, y: 0.6 }, { x: 3.4, y: 0.6 }, { x: 3.4, y: 3.4 }, { x: 0.6, y: 3.4 }] },
+      { id: "ion-11", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+      { id: "ion-21", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "ion-31", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "ion-12", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "ion-22", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+      { id: "ion-32", kind: "point", appearance: "secondary", at: { x: 3, y: 2 } },
+      { id: "ion-13", kind: "point", appearance: "primary", at: { x: 1, y: 3 } },
+      { id: "ion-23", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+      { id: "ion-33", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "cation", objectId: "ion-13", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "anion", objectId: "ion-23", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "edge", objectId: "face", at: { x: 2, y: 0.6 }, placement: "below" },
+    ],
+  }}
   labels={{
-    cells: "Unit cells per edge",
-    choose: "Choose a crystal",
-    count: <>Number of ions</>,
-    formula: <>Formula</>,
-    ions: <>Ions and their radii</>,
-    lattice: <>Unit cell edge</>,
-    view: "Ionic crystal lattice",
+    cation: <InlineMath math="\mathrm{Na^+}" />,
+    anion: <InlineMath math="\mathrm{Cl^-}" />,
+    edge: <>Flat crystal face</>,
   }}
 />
 
-## Why the Ancient Atom Idea Was Not Modern Theory
+Visible salt cubes come from the repeating geometry of microscopic particles, showing how small-scale order shapes everyday solids.
 
-Democritus proposed a philosophical explanation **without experimental measurements**. He argued that matter consists of very small units. Modern chemistry also describes matter with particles, but atoms contain protons and electrons, and usually neutrons. Hydrogen-1 is an example of an atom without neutrons. The word “indivisible” belongs to Democritus's historical model.
+## Philosophy Without Experimental Measurements
+
+Democritus proposed a philosophical explanation **without experimental measurements**. He argued that matter consists of very small units. Modern chemistry also describes matter with particles, but atoms contain protons and electrons, and usually neutrons. Hydrogen-1 is an example of an atom without neutrons. The word "indivisible" belongs to Democritus's historical model.
 
 In Aristotle's view, dividing matter did not end at a smallest unit. Measurements of atomic structure had not yet settled this disagreement.
 
-## Weighing Atoms Today
+### Weighing Atoms with Modern Instruments
 
-Democritus could only reason, but today **a mass spectrometer measures atoms one beam at a time**. Heavier atoms bend less in the magnet, so their paths sort them by mass.
+Democritus could only reason, whereas today **a mass spectrometer sorts atoms directly by mass**. When neon gas enters the instrument, three distinct signals appear at mass numbers <InlineMath math="20" />, <InlineMath math="21" />, and <InlineMath math="22" />, giving hard numbers where ancient philosophy had only guesses.
 
-<MassSpectrometerLab
-  title={<>From Guess to Measurement</>}
-  description={<>Choose neon or copper and compare where each isotope lands on the detector.</>}
-  samples={["neon", "copper"]}
+<MathVisual
+  title={<>Measured Mass Spectrum of Neon</>}
+  description={<>Relative abundance of neon atoms by mass number. Horizontal: mass number. Vertical: one grid step is <InlineMath math="10\%" /> abundance.</>}
+  footer={<>Modern instruments measure each neon mass peak directly instead of guessing.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 19, max: 23 }, y: { min: -0.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "baseline", kind: "segment", appearance: "reference", from: { x: 19.3, y: 0 }, to: { x: 22.7, y: 0 } },
+      { id: "peak-20", kind: "segment", appearance: "primary", from: { x: 20, y: 0 }, to: { x: 20, y: 9.05 } },
+      { id: "peak-21", kind: "segment", appearance: "secondary", from: { x: 21, y: 0 }, to: { x: 21, y: 0.03 } },
+      { id: "peak-22", kind: "segment", appearance: "answer", from: { x: 22, y: 0 }, to: { x: 22, y: 0.92 } },
+      { id: "top-20", kind: "point", appearance: "primary", at: { x: 20, y: 9.05 } },
+      { id: "top-21", kind: "point", appearance: "secondary", at: { x: 21, y: 0.03 } },
+      { id: "top-22", kind: "point", appearance: "answer", at: { x: 22, y: 0.92 } },
+    ],
+    labels: [
+      { key: "ne20", objectId: "top-20", at: { x: 20, y: 9.05 }, placement: "right" },
+      { key: "ne21", objectId: "top-21", at: { x: 21, y: 0.03 }, placement: "above" },
+      { key: "ne22", objectId: "top-22", at: { x: 22, y: 0.92 }, placement: "above" },
+    ],
+  }}
   labels={{
-    average: <>Average relative atomic mass</>,
-    choose: "Choose an element",
-    isotopes: <>Isotopes and abundance</>,
-    north: "N",
-    radius: <>Path radius</>,
-    ratio: <>Ratio of radii</>,
-    south: "S",
-    view: "Mass spectrometer",
+    ne20: <InlineMath math="{}^{20}\mathrm{Ne}:\ 90.5\%" />,
+    ne21: <InlineMath math="{}^{21}\mathrm{Ne}:\ 0.3\%" />,
+    ne22: <InlineMath math="{}^{22}\mathrm{Ne}:\ 9.2\%" />,
   }}
 />
 
-## From Philosophy to Chemistry
+Because detectors count real atoms at exact mass values, atomic theory moved from pure argument into quantitative measurement.
+
+### From Philosophical Debate to Chemical Data
 
 The Greek atomic concept raised a question that later science could test: might matter consist of tiny units below direct observation? At the time, **no measurements supported the idea**.
 
 More than two thousand years later, John Dalton connected the atomic idea with modern chemistry. He used reaction mass data to study the structure of matter and developed an atomic model for chemical calculations. Atomic theory could then be tested against measured data.
 
-## Atoms Combine in Fixed Ratios
+## Fixed Whole Number Ratios in Compounds
 
-Two thousand years after Democritus, Dalton used the idea of atoms to explain experimental data. In Dalton's view, **compounds form from atoms joined in whole-number ratios**. Turn <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{H_2O}" />, and <InlineMath math="\mathrm{CH_4}" />. Each molecule has a fixed number of atoms, and the models are built from measured bond lengths and angles.
+Two thousand years after Democritus, Dalton used the idea of atoms to explain experimental data. In Dalton's view, **compounds form from atoms joined in whole-number ratios**. Compare carbon dioxide (<InlineMath math="\mathrm{CO_2}" />), water (<InlineMath math="\mathrm{H_2O}" />), and methane (<InlineMath math="\mathrm{CH_4}" />): each compound locks its elements into one exact small-integer count.
 
-<MoleculeShapeLab
-  title={<>Atoms in Real Molecules</>}
-  description={<>Turn each molecule and count its atoms.</>}
-  molecules={[
-    { id: "carbon-dioxide", name: "Carbon dioxide" },
-    { id: "water", name: "Water" },
-    { id: "methane", name: "Methane" },
-  ]}
+<MathVisual
+  title={<>Whole-Number Atom Ratios in Three Molecules</>}
+  description={<>Number of atoms of each element in one molecule of <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{H_2O}" />, and <InlineMath math="\mathrm{CH_4}" />. One grid step up is <InlineMath math="1" /> atom.</>}
+  footer={<>Each compound keeps a fixed whole-number count of atoms per molecule.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 10 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 6, z: 12 }, target: { x: 4.2, y: 2, z: 0 } },
+    objects: [
+      { id: "co2-c", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 0.9, height: 1, width: 0.9 } },
+      { id: "co2-o", kind: "cuboid", appearance: "secondary", center: { x: 1.1, y: 1, z: 0 }, size: { length: 0.9, height: 2, width: 0.9 } },
+      { id: "h2o-h", kind: "cuboid", appearance: "primary", center: { x: 3.7, y: 1, z: 0 }, size: { length: 0.9, height: 2, width: 0.9 } },
+      { id: "h2o-o", kind: "cuboid", appearance: "secondary", center: { x: 4.8, y: 0.5, z: 0 }, size: { length: 0.9, height: 1, width: 0.9 } },
+      { id: "ch4-c", kind: "cuboid", appearance: "primary", center: { x: 7.4, y: 0.5, z: 0 }, size: { length: 0.9, height: 1, width: 0.9 } },
+      { id: "ch4-h", kind: "cuboid", appearance: "answer", center: { x: 8.5, y: 2, z: 0 }, size: { length: 0.9, height: 4, width: 0.9 } },
+    ],
+    labels: [
+      { key: "co2", objectId: "co2-o", at: { x: 0.55, y: 2.3, z: 0 }, placement: "above" },
+      { key: "h2o", objectId: "h2o-h", at: { x: 4.25, y: 2.3, z: 0 }, placement: "above" },
+      { key: "ch4", objectId: "ch4-h", at: { x: 7.95, y: 4.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
+    co2: <InlineMath math="\mathrm{CO_2}:\ 1\ \mathrm{C},\ 2\ \mathrm{O}" />,
+    h2o: <InlineMath math="\mathrm{H_2O}:\ 2\ \mathrm{H},\ 1\ \mathrm{O}" />,
+    ch4: <InlineMath math="\mathrm{CH_4}:\ 1\ \mathrm{C},\ 4\ \mathrm{H}" />,
   }}
 />
+
+Those fixed integer ratios turned the ancient Greek question about dividing matter into a testable foundation for modern chemistry.

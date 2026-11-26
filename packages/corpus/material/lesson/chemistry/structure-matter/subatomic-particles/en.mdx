@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Subatomic Particles",
   description:
@@ -15,15 +14,16 @@ Dalton's model explained fixed ratios in chemical reactions, but it still pictur
 
 In the late 1800s, scientists began using low-pressure glass tubes and high voltage. A beam called a **cathode ray** appeared inside the tube. The beam could be bent by electric and magnetic fields. From this evidence, atoms started to look less like solid balls and more like structures with smaller particles inside.
 
-The evidence sequence runs from Thomson's cathode ray experiment through Rutherford's gold foil experiment to Chadwick's discovery of the neutron.
+> Every subatomic particle was uncovered by firing a beam or electric field at matter and tracking how it bent, bounced, or passed straight through.
 
-J. J. Thomson discovered the electron in <InlineMath math="1897" /> and showed that this particle was far lighter than an atom.
+The evidence sequence runs from Thomson's cathode ray experiment through Rutherford's gold foil experiment to Chadwick's discovery of the neutron. J. J. Thomson discovered the electron in <InlineMath math="1897" /> and showed that this particle was far lighter than an atom.
 
 Each experiment answered one question and opened the next. Dalton pictured solid spheres in 1803, Thomson found the electron in 1897, Rutherford's team found a tiny dense nucleus in 1911, hydrogen nuclei were identified as protons in 1919, and Chadwick found the neutron in 1932. Zoom along the line and notice how fast the last three came.
 
 <MathVisual
   title={<>From Solid Spheres to Three Particles</>}
   description={<>Five steps in the discovery of atomic structure on one time line. One grid step is <InlineMath math="14" /> years.</>}
+  footer={<>Almost a century passed before electrons appeared, then nucleus, proton, and neutron followed fast.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 1.5 } },
@@ -53,9 +53,9 @@ Each experiment answered one question and opened the next. Dalton pictured solid
   }}
 />
 
-## Evidence from Experimental Evidence and Atomic Structure
+That rapid cluster of discoveries between 1897 and 1932 happened because each newly identified particle became the probe used to expose the next layer of the atom.
 
-Switch the mode below and compare the **direction of motion**, **which path bends**, and **which path stays straight**. Use those observations to identify the particle.
+Switch the mode below and compare the **direction of motion**, **which path bends**, and **which path stays straight**. Use those observations to identify each particle.
 
 <SubatomicParticlesLab
   title={<>Subatomic Particle Mini Lab</>}
@@ -65,6 +65,7 @@ Switch the mode below and compare the **direction of motion**, **which path bend
       and established the internal structure of atoms.
     </>
   }
+  footer={<>Switch between cathode rays, gold foil, and the atom map to connect evidence to structure.</>}
   labels={{
     chooseMode: "Choose subatomic particle evidence",
     scene: {
@@ -133,19 +134,7 @@ Switch the mode below and compare the **direction of motion**, **which path bend
   }}
 />
 
-Millikan balanced charged oil drops between plates and found that **every charge is a whole multiple of one smallest charge**, <InlineMath math="1.6\times10^{-19}\text{ C}" />, the charge of one electron.
-
-<MillikanOilDropLab
-  title={<>Weighing Charge with Oil Drops</>}
-  description={<>Adjust the plate voltage until a drop hovers, then read its charge.</>}
-  labels={{
-    charge: <>Charge needed to hover</>,
-    field: <>Electric field</>,
-    multiple: <>Multiple of the elementary charge</>,
-    view: "Millikan oil drop experiment",
-    voltage: "Plate voltage",
-  }}
-/>
+Comparing all three views shows how electric deflection identified negative electrons while alpha scattering pinned down the tiny positive core.
 
 ## Cathode Rays Identified Electrons
 
@@ -157,23 +146,73 @@ Thomson also found that cathode ray particles were far lighter than atoms and ha
 
 In Thomson's model, positive charge is spread throughout the atom and electrons are embedded in that distribution. The model accounts for electrons, but it does not contain a small, dense nucleus. Rutherford's experiment later revealed that limitation.
 
-## Bending the Electron Beam
+### Bending the Electron Beam
 
-Thomson placed two charged plates inside a cathode ray tube. Slide the plate voltage to a positive value and then to a negative one. **The beam always bends toward the positive plate**, so the particles in it must be negative. The shift on the screen can be calculated too, and Thomson used such shifts to estimate the electron's charge-to-mass ratio.
+Thomson placed two charged plates inside a cathode ray tube. Reversing the plate voltage reverses the bend, and **doubling the plate voltage doubles the spot shift toward the positive plate**. Measuring that proportional shift let Thomson determine the electron's charge-to-mass ratio.
 
-<CathodeRayLab
-  title={<>Thomson's Cathode Ray Tube</>}
-  description={<>Change the plate voltage and watch which way the beam bends.</>}
+<MathVisual
+  title={<>Beam Deflection Against Plate Voltage</>}
+  description={<>Illustrative screen deflection <InlineMath math="y" /> versus plate voltage <InlineMath math="V" />. Horizontal step is <InlineMath math="50\ \mathrm{V}" /> and vertical step is <InlineMath math="1\ \mathrm{cm}" />.</>}
+  footer={<>Spot shift reverses sign with plate polarity and grows linearly with voltage.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "line", kind: "segment", appearance: "primary", from: { x: -4, y: -2.4 }, to: { x: 4, y: 2.4 } },
+      { id: "neg", kind: "point", appearance: "secondary", at: { x: -4, y: -2.4 } },
+      { id: "zero", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pos", kind: "point", appearance: "warning", at: { x: 4, y: 2.4 } },
+    ],
+    labels: [
+      { key: "neg", objectId: "neg", at: { x: -4, y: -2.4 }, placement: "above-right" },
+      { key: "pos", objectId: "pos", at: { x: 4, y: 2.4 }, placement: "below-left" },
+    ],
+  }}
   labels={{
-    anode: <>Accelerating voltage</>,
-    field: <>Electric field between the plates</>,
-    plates: "Plate voltage",
-    spot: <>Spot shift on the screen</>,
-    view: "Cathode ray tube",
+    neg: <>-200 V: -2.4 cm</>,
+    pos: <>+200 V: +2.4 cm</>,
   }}
 />
 
-## A Tiny Dense Nucleus
+That clean straight-line response proved the beam consisted of negatively charged particles obeying electrostatic force laws rather than uncharged light waves.
+
+### Measuring the Elementary Charge
+
+Millikan balanced charged oil drops between horizontal plates and found that **every measured charge is a whole-number multiple of one smallest charge**, <InlineMath math="1.6 \times 10^{-19}\ \mathrm{C}" />, the charge of a single electron.
+
+<MathVisual
+  title={<>Oil Drop Charges Come in Discrete Steps</>}
+  description={<>Measured charges on four illustrative oil drops in units of <InlineMath math="10^{-19}\ \mathrm{C}" />. Vertical step is <InlineMath math="1.6 \times 10^{-19}\ \mathrm{C}" /> (<InlineMath math="1e" />).</>}
+  footer={<>Every drop lands on a whole-number multiple of 1.6e-19 C with no fractions between.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 5.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "q1", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.3, height: 1, width: 1.3 } },
+      { id: "q2", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.0, z: 0 }, size: { length: 1.3, height: 2, width: 1.3 } },
+      { id: "q3", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.5, z: 0 }, size: { length: 1.3, height: 3, width: 1.3 } },
+      { id: "q4", kind: "cuboid", appearance: "warning", center: { x: 7.5, y: 2.0, z: 0 }, size: { length: 1.3, height: 4, width: 1.3 } },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 0, y: 1.3, z: 0 }, placement: "above" },
+      { key: "q2", objectId: "q2", at: { x: 2.5, y: 2.3, z: 0 }, placement: "above" },
+      { key: "q3", objectId: "q3", at: { x: 5, y: 3.3, z: 0 }, placement: "above" },
+      { key: "q4", objectId: "q4", at: { x: 7.5, y: 4.3, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    q1: <InlineMath math="1e:\ 1.6" />,
+    q2: <InlineMath math="2e:\ 3.2" />,
+    q3: <InlineMath math="3e:\ 4.8" />,
+    q4: <InlineMath math="4e:\ 6.4" />,
+  }}
+/>
+
+Combining Millikan's elementary charge with Thomson's charge-to-mass ratio immediately yielded the electron's tiny mass.
+
+## A Tiny Dense Nucleus and the Proton
 
 Rutherford's Manchester team tested Thomson's model. At Rutherford's direction, [Hans Geiger and Ernest Marsden](https://history.aip.org/exhibits/rutherford/sections/alpha-particles-atom.html) fired positively charged alpha particles at very thin metal foils, including gold. If positive charge were spread out evenly as Thomson's model suggested, almost all alpha particles should pass through with only small bends.
 
@@ -187,36 +226,50 @@ Now connect those observations to the location of positive charge inside the ato
 
 To picture the scale, imagine enlarging an atom until it is as wide as a <InlineMath math="100\ \text{m}" /> stadium. Its nucleus would be only about <InlineMath math="1\ \text{mm}" /> across, roughly the size of a grain of sand at the center. A real atom is about <InlineMath math="10^{-10}\ \text{m}" /> across, while its nucleus is about <InlineMath math="10^{-15}\ \text{m}" /> across. The nuclear diameter is therefore about <InlineMath math="10^5" /> times smaller than the atomic diameter.
 
-## Alpha Particles Bounce Back
+### Alpha Particles Bounce Back
 
-If positive charge were spread evenly, as in Thomson's model, alpha particles should pass straight through. In reality, particles that pass very close to the nucleus turn sharply, and one aimed straight at it bounces back. Raise the energy. **A faster particle gets closer to the nucleus** before it is pushed back.
+For a head-on alpha particle aimed straight at a gold nucleus, electric repulsion brings it to a momentary stop before pushing it backward. **A faster alpha particle gets closer to the nucleus** before turning around, giving an upper bound on how small the gold nucleus must be.
 
-<RutherfordScatteringLab
-  title={<>Scattering from a Gold Nucleus</>}
-  description={<>Raise the energy and watch the alphas come closer before they turn back.</>}
-  energy={5.3}
+<MathVisual
+  title={<>Closest Approach Versus Alpha Energy</>}
+  description={<>Head-on turning distance <InlineMath math="d" /> from a gold nucleus for alpha energies from <InlineMath math="4" /> to <InlineMath math="8\ \mathrm{MeV}" />. Horizontal step is <InlineMath math="1\ \mathrm{MeV}" /> and vertical step is <InlineMath math="10\ \mathrm{fm}" />.</>}
+  footer={<>Doubling alpha energy halves the turning distance and probes ever closer to the nucleus.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 3.5, max: 8.5 }, y: { min: 2.0, max: 6.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "curve", kind: "polyline", appearance: "primary", vertices: [{ x: 4, y: 5.69 }, { x: 5, y: 4.55 }, { x: 6, y: 3.79 }, { x: 7, y: 3.25 }, { x: 8, y: 2.84 }] },
+      { id: "e4", kind: "point", appearance: "secondary", at: { x: 4, y: 5.69 } },
+      { id: "e8", kind: "point", appearance: "warning", at: { x: 8, y: 2.84 } },
+    ],
+    labels: [
+      { key: "e4", objectId: "e4", at: { x: 4, y: 5.69 }, placement: "above-right" },
+      { key: "e8", objectId: "e8", at: { x: 8, y: 2.84 }, placement: "below-left" },
+    ],
+  }}
   labels={{
-    approach: <>Closest approach</>,
-    energy: "Alpha particle energy",
-    nucleus: <>Gold nucleus radius</>,
-    ratio: <>Atom versus nucleus</>,
-    view: "Alpha particle paths near a gold nucleus",
+    e4: <>4 MeV: 57 fm</>,
+    e8: <>8 MeV: 28 fm</>,
   }}
 />
 
-## Hydrogen Nuclei Identified the Proton
+Even at <InlineMath math="8\ \mathrm{MeV}" />, the alpha particle reverses tens of femtometers from the center, proving the nucleus is orders of magnitude smaller than the whole atom.
+
+### Hydrogen Nuclei Identified the Proton
 
 The gold-foil evidence located the atom's positive charge, but it did not yet identify the particles inside the nucleus. In <InlineMath math="1919" />, Rutherford bombarded nitrogen with alpha particles and detected fast hydrogen nuclei coming out. A hydrogen nucleus carries one positive elementary charge and is now called a **proton**.
 
 Rutherford interpreted the nuclear atom in <InlineMath math="1911" /> and demonstrated [free protons](https://www.nobelprize.org/prizes/physics/1990/9592-the-nobel-prize-in-physics-1990/) in <InlineMath math="1919" />. The two steps are related but distinct events.
 
-## Proton and Electron Side by Side
+### Proton and Electron Side by Side
 
-The proton carries the same size of charge as the electron but **about eighteen hundred times the mass**, so in the same field it sweeps a far wider curve.
+The proton carries the same size of charge as the electron but **about eighteen hundred times the mass**, so in the same magnetic field it sweeps a far wider curve.
 
 <ParticleTrackLab
   title={<>Same Charge, Different Mass</>}
   description={<>Turn the field up and compare the two radii in the readouts.</>}
+  footer={<>In the same magnetic field, the heavier proton bends on a far wider arc than the electron.</>}
   labels={{
     electron: <>Electron path radius</>,
     field: "Magnetic field strength",
@@ -225,6 +278,8 @@ The proton carries the same size of charge as the electron but **about eighteen 
     view: "Particle tracks in a magnetic field",
   }}
 />
+
+Comparing the two track radii makes the mass gap unmistakable: equal electric charge produces the same magnetic push, yet the proton's inertia keeps its path almost straight beside the tightly curled electron.
 
 ## Neutron Mass and Charge
 
@@ -246,7 +301,7 @@ This table compares each particle's charge, main location, and contribution to a
 | Proton | Nucleus | <InlineMath math="+1" /> | About <InlineMath math="1\ \text{u}" /> | The particle that determines element identity |
 | Neutron | Nucleus | <InlineMath math="0" /> | About <InlineMath math="1\ \text{u}" /> | Mass inside the nucleus without extra charge |
 
-A neutral atom has the same number of protons and electrons. For example, if an atom has <InlineMath math="6" /> protons and is still neutral, it also has <InlineMath math="6" /> electrons.
+Whenever an atom carries zero net charge, its proton count matches its electron count exactly. A neutral carbon atom with <InlineMath math="6" /> protons, for instance, also holds <InlineMath math="6" /> electrons.
 
 <BlockMath math="\begin{aligned} \text{neutral atom} &amp;\Rightarrow \text{number of } p^+ \\ &amp;= \text{number of } e^- \end{aligned}" />
 
@@ -257,6 +312,7 @@ Here are the relative charges as bars above and below zero. The electron reaches
 <MathVisual
   title={<>Relative Charges of the Three Particles</>}
   description={<>Electron at <InlineMath math="-1" /> below zero, proton at <InlineMath math="+1" /> above zero, neutron at <InlineMath math="0" />.</>}
+  footer={<>Equal opposite bars for electron and proton cancel cleanly while neutrons stay neutral.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -2, max: 2 }, z: { min: -1.5, max: 1.5 } },
@@ -277,3 +333,5 @@ Here are the relative charges as bars above and below zero. The electron reaches
     neutron: <InlineMath math="n^0:\ 0" />,
   }}
 />
+
+With those three relative charges fixed, every atomic symbol and ion charge comes down to counting protons and electrons directly.

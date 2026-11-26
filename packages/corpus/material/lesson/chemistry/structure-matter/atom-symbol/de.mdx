@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Atomsymbol",
   description:
@@ -25,26 +24,9 @@ Die Zeichen bedeuten:
 - <InlineMath math="Z" /> ist die Ordnungszahl
 - <InlineMath math="A" /> ist die Massenzahl
 
-## Die Ladung in der Ecke
+> Stell dir ein Atomsymbol als kurzes Adressschild vor, bei dem die Zahl unten links das Element nennt und die Zahl oben links den Kern wiegt.
 
-Ein Atomsymbol kann rechts oben auch eine Ladung tragen, wie bei <InlineMath math="\mathrm{Mg^{2+}}" /> und <InlineMath math="\mathrm{O^{2-}}" />. **Diese Ladung zählt die abgegebenen oder aufgenommenen Elektronen**, und hier siehst du sie wandern.
-
-<IonFormationLab
-  title={<>Woher die Ladung eines Ions kommt</>}
-  description={<>Wähle Magnesium mit Sauerstoff oder Kalium mit Chlor und zähle die wandernden Elektronen.</>}
-  pairs={["magnesium-oxygen", "potassium-chlorine"]}
-  labels={{
-    choose: "Atompaar wählen",
-    metalRadius: <>Radius des Metalls</>,
-    metalShells: <>Schalen des Metalls</>,
-    nonmetalRadius: <>Radius des Nichtmetalls</>,
-    nonmetalShells: <>Schalen des Nichtmetalls</>,
-    progress: "Elektronenübergang",
-    view: "Metall- und Nichtmetallatom werden zu Ionen",
-  }}
-/>
-
-## Massenzahl und Ordnungszahl ablesen
+### Massenzahl und Ordnungszahl ablesen
 
 Wähle unten ein Atom und ordne die beiden Zahlen im Symbol zu. **Oben links steht die Massenzahl** <InlineMath math="A" />, unten links die Ordnungszahl <InlineMath math="Z" />. Aus den Positionen ergibt sich, welche Protonen-, Neutronen- oder Elektronenzahl berechnet wird.
 
@@ -56,6 +38,7 @@ Wähle unten ein Atom und ordne die beiden Zahlen im Symbol zu. **Oben links ste
       angezeigten Teilchenzahlen ab.
     </>
   }
+  footer={<>Ordne A oben links und Z unten links direkt den Protonen- und Neutronenzahlen zu.</>}
   labels={{
     chooseAtom: "Atombeispiel auswählen",
     massNumber: "Massenzahl",
@@ -90,6 +73,39 @@ Wähle unten ein Atom und ordne die beiden Zahlen im Symbol zu. **Oben links ste
   }}
 />
 
+Jedes Beispiel bestätigt die feste Anordnung: Die größere Massenzahl steht immer oben, weil Protonen plus Neutronen nie kleiner sein können als die Protonenzahl allein.
+
+### Ladung in der rechten oberen Ecke
+
+Ein Atomsymbol kann rechts oben auch eine Ladung tragen, wie bei <InlineMath math="\mathrm{Mg^{2+}}" /> und <InlineMath math="\mathrm{O^{2-}}" />. **Diese Ladung zählt die abgegebenen oder aufgenommenen Elektronen**, während die Protonenzahl am Element festbleibt. Vergleiche Magnesium und Sauerstoff, nachdem zwei Elektronen von Magnesium zu Sauerstoff gewechselt sind.
+
+<MathVisual
+  title={<>Die Eckladung zeigt Elektronenverschiebungen</>}
+  description={<>Protonen (orange) und Elektronen (violett) in <InlineMath math="\mathrm{Mg^{2+}}" /> und <InlineMath math="\mathrm{O^{2-}}" />. Ein Gitterschritt nach oben entspricht <InlineMath math="2" /> Teilchen.</>}
+  footer={<>2+ steht für zwei Elektronen weniger als Protonen, 2- für zwei Elektronen mehr.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 7, z: 11 }, target: { x: 3, y: 3, z: 0 } },
+    objects: [
+      { id: "mg-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: 3, z: 0 }, size: { length: 1.1, height: 6, width: 1.1 } },
+      { id: "mg-e", kind: "cuboid", appearance: "secondary", center: { x: 1.4, y: 2.5, z: 0 }, size: { length: 1.1, height: 5, width: 1.1 } },
+      { id: "o-p", kind: "cuboid", appearance: "primary", center: { x: 4.6, y: 2, z: 0 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "o-e", kind: "cuboid", appearance: "answer", center: { x: 6, y: 2.5, z: 0 }, size: { length: 1.1, height: 5, width: 1.1 } },
+    ],
+    labels: [
+      { key: "mg", objectId: "mg-p", at: { x: 0.7, y: 6.3, z: 0 }, placement: "above" },
+      { key: "ox", objectId: "o-e", at: { x: 5.3, y: 5.3, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    mg: <InlineMath math="\mathrm{Mg^{2+}}:\ 12p^+,\ 10e^-" />,
+    ox: <InlineMath math="\mathrm{O^{2-}}:\ 8p^+,\ 10e^-" />,
+  }}
+/>
+
+Obwohl beide Ionen genau <InlineMath math="10" /> Elektronen besitzen, verraten die entgegengesetzten Vorzeichen in der Ecke sofort, welches Atom Elektronen abgegeben und welches welche aufgenommen hat.
+
 ## Teilchenzahlen im Atom
 
 Die Ordnungszahl wird als <InlineMath math="Z" /> geschrieben. Diese Zahl entspricht der Anzahl der Protonen im Kern.
@@ -113,6 +129,7 @@ Jede Teilchenzahl kommt aus den zwei Zahlen im Symbol <InlineMath math="^{A}_{Z}
 <MathVisual
   title={<>Von A und Z zu den Teilchenzahlen</>}
   description={<>Protonen (orange), Neutronen (grau) und Elektronen (violett) in neutralem Kohlenstoff-12, Natrium-23 und Chlor-35. Ein Gitterschritt nach oben entspricht <InlineMath math="4" /> Teilchen.</>}
+  footer={<>Neutrale Atome gleichen orange Protonen und violette Elektronen aus, grau zeigt A-Z.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -141,23 +158,44 @@ Jede Teilchenzahl kommt aus den zwei Zahlen im Symbol <InlineMath math="^{A}_{Z}
   }}
 />
 
-## Die drei Teilchen unterscheiden
+Bei schwereren Atomen wie Natrium und Chlor ragt der graue Neutronenbalken leicht über den Protonenbalken hinaus, weil zusätzliche Neutronen den Kern stabilisieren.
 
-Die Zahlen im Symbol zählen drei verschiedene Teilchen, und **ein Magnetfeld unterscheidet sie nach Ladung und Masse**: Proton und Elektron krümmen sich in entgegengesetzte Richtungen, das Neutron fliegt geradeaus.
+### Die drei Teilchen unterscheiden
 
-<ParticleTrackLab
-  title={<>Protonen, Elektronen und Neutronen im Feld</>}
-  description={<>Dreh das Feld auf und vergleiche, wie eng sich jede Spur krümmt.</>}
+Die Zahlen im Symbol zählen drei verschiedene Teilchen, und **ein Magnetfeld trennt sie nach Ladung und Masse**. Fliegen sie von links hinein, läuft das neutrale Neutron geradeaus weiter, das schwere positive Proton biegt sanft in eine Richtung ab und das viel leichtere negative Elektron krümmt sich stark in die Gegenrichtung.
+
+<MathVisual
+  title={<>Ablenkung nach Ladung und Masse</>}
+  description={<>Bahnen von Proton (orange), Neutron (grau) und Elektron (violett) beim Eintritt von links in ein Magnetfeld. Ladung bestimmt die Richtung, Masse die Krümmung.</>}
+  footer={<>Gegensätzliche Ladungen biegen entgegengesetzt, leichte Elektronen eng, Neutronen gerade.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.8 }, y: { min: -3.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "neutron-path", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "proton-path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1.5, y: 0.11 }, { x: 3, y: 0.45 }, { x: 4.5, y: 1.01 }, { x: 6, y: 1.8 }] },
+      { id: "electron-path", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.8, y: -0.22 }, { x: 1.6, y: -0.9 }, { x: 2.4, y: -2.0 }, { x: 3.1, y: -3.2 }] },
+      { id: "p-end", kind: "point", appearance: "primary", at: { x: 6, y: 1.8 } },
+      { id: "n-end", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "e-end", kind: "point", appearance: "secondary", at: { x: 3.1, y: -3.2 } },
+    ],
+    labels: [
+      { key: "proton", objectId: "p-end", at: { x: 6, y: 1.8 }, placement: "above-left" },
+      { key: "neutron", objectId: "n-end", at: { x: 6, y: 0 }, placement: "above-left" },
+      { key: "electron", objectId: "e-end", at: { x: 3.1, y: -3.2 }, placement: "right" },
+    ],
+  }}
   labels={{
-    electron: <>Bahnradius des Elektrons</>,
-    field: "Magnetische Flussdichte",
-    proton: <>Bahnradius des Protons</>,
-    ratio: <>Verhältnis der Radien</>,
-    view: "Teilchenspuren im Magnetfeld",
+    proton: <InlineMath math="p^+\ (+1)" />,
+    neutron: <InlineMath math="n^0\ (0)" />,
+    electron: <InlineMath math="e^-\ (-1)" />,
   }}
 />
 
-## Beispiel mit Kohlenstoff
+Jede Spur spiegelt die physikalische Natur hinter den Symbolen wider: Protonen und Neutronen tragen fast die gesamte Masse, während Protonen und Elektronen gleich große entgegengesetzte Ladungen tragen.
+
+### Rechenbeispiel mit Kohlenstoff zwölf
 
 Für ein Kohlenstoffatom mit der Massenzahl <InlineMath math="12" /> lautet das Symbol:
 
@@ -178,6 +216,7 @@ Hier sind die drei Anzahlen für Kohlenstoff-12 als Säulen, ein Gitterschritt f
 <MathVisual
   title={<>Teilchen in Kohlenstoff-12</>}
   description={<>Protonen, Neutronen und Elektronen eines neutralen Kohlenstoff-12-Atoms. Ein Gitterschritt nach oben sind <InlineMath math="2" /> Teilchen.</>}
+  footer={<>Neutraler Kohlenstoff-12 hat sechs Protonen, sechs Neutronen und sechs Elektronen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
@@ -200,6 +239,8 @@ Hier sind die drei Anzahlen für Kohlenstoff-12 als Säulen, ein Gitterschritt f
   }}
 />
 
+Wer diese drei Regeln auseinanderhält, bestimmt auch Ionen und schwerere Isotope sicher, sobald die drei Säulen nicht mehr gleich hoch sind.
+
 ## Massenzahl und relative Atommasse
 
 Im Periodensystem stehen häufig Dezimalwerte, etwa die relative Atommasse von Kohlenstoff mit ungefähr <InlineMath math="12{,}01" />. Diese Dezimalzahl ist nicht die Massenzahl eines bestimmten Kohlenstoffatoms.
@@ -215,27 +256,43 @@ Die beiden Größen müssen deshalb getrennt bleiben:
 | Massenzahl | Eine ganze Zahl, etwa <InlineMath math="12" /> in <InlineMath math="{}^{12}_{6}\mathrm{C}" /> | Die Anzahl der Protonen plus Neutronen in einem bestimmten Atom. |
 | Relative Atommasse | Oftmals dezimal, etwa <InlineMath math="12{,}01" /> für Kohlenstoff | Verhältnis der mittleren Atommasse des Materials zu einem Zwölftel der Masse eines Kohlenstoff-12-Atoms. |
 
-Beim Lesen eines Atomsymbols sind drei Angaben wichtig: Atomsymbole geben Protonen- und Neutronenzahl an, bei Ionen ändert sich die Elektronenzahl und bei Isotopen die Neutronenzahl. Die Protonenzahl bestimmt weiterhin das Element.
+Eine Massenzahl ist für ein Isotop immer ganzzahlig, die relative Atommasse im Periodensystem ist dagegen der Mittelwert aller natürlichen Isotope. Magnesium besitzt <InlineMath math="{}^{24}\mathrm{Mg}" />, <InlineMath math="{}^{25}\mathrm{Mg}" /> und <InlineMath math="{}^{26}\mathrm{Mg}" />, und **der gewichtete Mittelwert liegt bei etwa <InlineMath math="24{,}31" />**, knapp über <InlineMath math="24" />.
 
-## Von der Massenzahl zur relativen Atommasse
-
-Eine Massenzahl ist für ein Isotop immer ganzzahlig, die relative Atommasse im Periodensystem ist dagegen der Mittelwert aller Isotope. Wähl Magnesium. Es gibt <InlineMath math="{}^{24}\mathrm{Mg}" />, <InlineMath math="{}^{25}\mathrm{Mg}" /> und <InlineMath math="{}^{26}\mathrm{Mg}" />, und **der gewichtete Mittelwert liegt bei etwa <InlineMath math="24{,}31" />**, keiner ganzen Zahl.
-
-<MassSpectrometerLab
-  title={<>Isotope von Magnesium, Bor und Kupfer</>}
-  description={<>Die Peaks auf dem Detektor zeigen die Häufigkeit jeder Massenzahl.</>}
-  samples={["magnesium", "boron", "copper"]}
+<MathVisual
+  title={<>Magnesiumisotope ergeben im Mittel <InlineMath math="24{,}31" /></>}
+  description={<>Natürliche Häufigkeit von Magnesium-24, Magnesium-25 und Magnesium-26 samt gewichtetem Mittelwert (Fuchsia). Senkrecht: ein Gitterschritt steht für <InlineMath math="10\%" />.</>}
+  footer={<>Ganzzahlige Isotopenpeaks ergeben zusammen den Dezimalwert 24,31 für Magnesium.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 23.2, max: 26.8 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 23.4, y: 0 }, to: { x: 26.6, y: 0 } },
+      { id: "mg24", kind: "segment", appearance: "primary", from: { x: 24, y: 0 }, to: { x: 24, y: 7.9 } },
+      { id: "mg25", kind: "segment", appearance: "secondary", from: { x: 25, y: 0 }, to: { x: 25, y: 1.0 } },
+      { id: "mg26", kind: "segment", appearance: "secondary", from: { x: 26, y: 0 }, to: { x: 26, y: 1.1 } },
+      { id: "avg", kind: "segment", appearance: "answer", from: { x: 24.31, y: 0 }, to: { x: 24.31, y: 8.2 } },
+      { id: "p24", kind: "point", appearance: "primary", at: { x: 24, y: 7.9 } },
+      { id: "p25", kind: "point", appearance: "secondary", at: { x: 25, y: 1.0 } },
+      { id: "p26", kind: "point", appearance: "secondary", at: { x: 26, y: 1.1 } },
+      { id: "pavg", kind: "point", appearance: "answer", at: { x: 24.31, y: 8.2 } },
+    ],
+    labels: [
+      { key: "m24", objectId: "p24", at: { x: 24, y: 7.9 }, placement: "left" },
+      { key: "m25", objectId: "p25", at: { x: 25, y: 1.0 }, placement: "above" },
+      { key: "m26", objectId: "p26", at: { x: 26, y: 1.1 }, placement: "above" },
+      { key: "avg", objectId: "pavg", at: { x: 24.31, y: 8.2 }, placement: "right" },
+    ],
+  }}
   labels={{
-    average: <>Mittlere relative Atommasse</>,
-    choose: "Element wählen",
-    isotopes: <>Isotope und Häufigkeit</>,
-    north: "N",
-    radius: <>Bahnradius</>,
-    ratio: <>Verhältnis der Radien</>,
-    south: "S",
-    view: "Massenspektrometer",
+    m24: <InlineMath math="{}^{24}\mathrm{Mg}:\ 79{,}0\%" />,
+    m25: <InlineMath math="{}^{25}\mathrm{Mg}:\ 10{,}0\%" />,
+    m26: <InlineMath math="{}^{26}\mathrm{Mg}:\ 11{,}0\%" />,
+    avg: <InlineMath math="A_r\approx24{,}31" />,
   }}
 />
+
+Beim Lesen eines Atomsymbols sind drei Angaben wichtig: Atomsymbole geben Protonen- und Neutronenzahl an, bei Ionen ändert sich die Elektronenzahl und bei Isotopen die Neutronenzahl. Die Protonenzahl bestimmt weiterhin das Element.
 
 ## Großschreibung von Elementsymbolen
 
@@ -252,25 +309,39 @@ Vergleiche die letzten beiden Zeilen genau. In <InlineMath math="\mathrm{Co}" />
 
 Wenn du die aktuellen Elementsymbole und relativen Atommassen prüfen möchtest, öffne das [IUPAC-Periodensystem der Elemente](https://iupac.org/what-we-do/periodic-table-of-elements/).
 
-## Symbole in Formeln
+Großbuchstaben in einer Formel trennen ein Element vom nächsten. Vergleiche <InlineMath math="\mathrm{Co}" /> mit <InlineMath math="\mathrm{CO}" />, <InlineMath math="\mathrm{HCl}" /> und <InlineMath math="\mathrm{N_2}" />: **Jeder Großbuchstabe eröffnet ein eigenes Element**, während tiefgestellte Zahlen die Atomzahl vervielfachen.
 
-Großbuchstaben in einer Formel trennen ein Element vom nächsten. <InlineMath math="\mathrm{CO}" /> ist Kohlenstoffmonoxid, ein Molekül aus <InlineMath math="1" /> Kohlenstoffatom und <InlineMath math="1" /> Sauerstoffatom, während <InlineMath math="\mathrm{Co}" /> das Element Cobalt ist. In <InlineMath math="\mathrm{HCl}" /> gehört das kleine <InlineMath math="\mathrm{l}" /> noch zum Symbol von Chlor. Dreh jedes Modell und **zähl ein Atom für jeden Großbuchstaben**.
-
-<MoleculeShapeLab
-  title={<>Symbole in Molekülen lesen</>}
-  description={<>Jede Kugel trägt ihr Elementsymbol.</>}
-  molecules={[
-    { id: "carbon-monoxide", name: "Kohlenstoffmonoxid" },
-    { id: "hydrogen-chloride", name: "Chlorwasserstoff" },
-    { id: "nitrogen", name: "Stickstoff" },
-  ]}
+<MathVisual
+  title={<>Großbuchstaben trennen Elemente in Formeln</>}
+  description={<>Anzahl verschiedener Elemente (orange) und Gesamtzahl der Atome (violett) in <InlineMath math="\mathrm{Co}" />, <InlineMath math="\mathrm{CO}" />, <InlineMath math="\mathrm{HCl}" /> und <InlineMath math="\mathrm{N_2}" />. Ein Gitterschritt nach oben ist <InlineMath math="1" />.</>}
+  footer={<>Jeder Großbuchstabe beginnt ein neues Element, von einem Atom in Co zu zweien in CO.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 3.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 5, z: 12 }, target: { x: 5, y: 1.2, z: 0 } },
+    objects: [
+      { id: "co1-el", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 0.8, height: 1, width: 0.8 } },
+      { id: "co1-at", kind: "cuboid", appearance: "secondary", center: { x: 0.9, y: 0.5, z: 0 }, size: { length: 0.8, height: 1, width: 0.8 } },
+      { id: "co2-el", kind: "cuboid", appearance: "primary", center: { x: 3.1, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "co2-at", kind: "cuboid", appearance: "answer", center: { x: 4, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "hcl-el", kind: "cuboid", appearance: "primary", center: { x: 6.2, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "hcl-at", kind: "cuboid", appearance: "answer", center: { x: 7.1, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+      { id: "n2-el", kind: "cuboid", appearance: "primary", center: { x: 9.3, y: 0.5, z: 0 }, size: { length: 0.8, height: 1, width: 0.8 } },
+      { id: "n2-at", kind: "cuboid", appearance: "secondary", center: { x: 10.2, y: 1, z: 0 }, size: { length: 0.8, height: 2, width: 0.8 } },
+    ],
+    labels: [
+      { key: "co-el", objectId: "co1-el", at: { x: 0.45, y: 1.3, z: 0 }, placement: "above" },
+      { key: "co-mol", objectId: "co2-el", at: { x: 3.55, y: 2.3, z: 0 }, placement: "above" },
+      { key: "hcl", objectId: "hcl-el", at: { x: 6.65, y: 2.3, z: 0 }, placement: "above" },
+      { key: "n2", objectId: "n2-at", at: { x: 9.75, y: 2.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Summenformel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel oder -länge</>,
-    view: "Dreidimensionales Molekülmodell",
+    "co-el": <InlineMath math="\mathrm{Co}:\ 1\ \text{El},\ 1\ \text{At}" />,
+    "co-mol": <InlineMath math="\mathrm{CO}:\ 2\ \text{El},\ 2\ \text{At}" />,
+    hcl: <InlineMath math="\mathrm{HCl}:\ 2\ \text{El},\ 2\ \text{At}" />,
+    n2: <InlineMath math="\mathrm{N_2}:\ 1\ \text{El},\ 2\ \text{At}" />,
   }}
 />
+
+Saubere Groß- und Kleinschreibung verhindert, dass ein einzelnes Metallatom wie Kobalt (<InlineMath math="\mathrm{Co}" />) mit einem Gas aus zwei Elementen wie Kohlenmonoxid (<InlineMath math="\mathrm{CO}" />) verwechselt wird.

@@ -17,35 +17,63 @@ When a chemical reaction happens, atoms do not vanish or appear from nothing. Th
 
 The system boundary determines what is included in the mass. In a closed container, every substance remains inside the part being weighed. In an open container, gas may leave that boundary. The balance then shows less mass because the escaped gas is no longer on it. <Highlight>The total amount of matter</Highlight> stays the same during chemical and physical changes, so the reading dropped while the matter did not disappear.
 
+> Matter never vanishes in a reaction. When a balance reading shifts, look for gas leaving or entering the boundary you are weighing.
+
 ## A New Solid with the Same Mass
 
-A reaction can make a completely new substance without changing the mass. Silver nitrate solution and table salt solution are both clear. When you mix them, silver ions and chloride ions join into silver chloride, which doesn't dissolve, so a **white precipitate** appears like a cloud.
+A reaction can make a completely new substance without changing the mass. Silver nitrate solution and table salt solution are both clear. When you mix them, silver ions and chloride ions join into silver chloride, which does not dissolve, so a **white precipitate** appears like a cloud.
 
 <BlockMath math="\mathrm{AgNO_3(aq)} + \mathrm{NaCl(aq)} \rightarrow \mathrm{AgCl(s)} + \mathrm{NaNO_3(aq)}" />
 
-Each beaker holds <InlineMath math="50.00\ \mathrm{g}" /> of water with <InlineMath math="0.0050\ \mathrm{mol}" /> of its salt, that's <InlineMath math="0.85\ \mathrm{g}" /> of silver nitrate and <InlineMath math="0.29\ \mathrm{g}" /> of sodium chloride. Both beakers stand on the same balance before and after the pour.
+Each beaker holds <InlineMath math="50.00\ \mathrm{g}" /> of water with <InlineMath math="0.0050\ \mathrm{mol}" /> of its salt, which gives <InlineMath math="0.85\ \mathrm{g}" /> of silver nitrate and <InlineMath math="0.29\ \mathrm{g}" /> of sodium chloride. Since the <InlineMath math="100.00\ \mathrm{g}" /> of water stays unchanged on both sides, we can compare the dissolved reactant salts directly against the solid precipitate and dissolved product salt.
 
-<PrecipitateLab
-  title={<>A White Precipitate on the Balance</>}
+<MathVisual
+  title={<>Solute Mass Before and After Precipitation</>}
   description={
     <>
-      Play to pour the silver nitrate solution into the salt solution. A cloud
-      of silver chloride appears, and the reading stays put.
+      Reactants on the left (<InlineMath math="\mathrm{AgNO_3}" /> and{" "}
+      <InlineMath math="\mathrm{NaCl}" />) compared with products on the right (solid{" "}
+      <InlineMath math="\mathrm{AgCl}" /> and dissolved{" "}
+      <InlineMath math="\mathrm{NaNO_3}" />). One grid step up is{" "}
+      <InlineMath math="0.20\ \mathrm{g}" />.
     </>
   }
+  footer={<>Both stacks meet the same 1.14 g ceiling line while 100.00 g of water stays unchanged.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "total-line", kind: "segment", appearance: "reference", from: { x: 1, y: 5.7 }, to: { x: 7, y: 5.7 } },
+      { id: "agno3", kind: "segment", appearance: "primary", from: { x: 2, y: 0 }, to: { x: 2, y: 4.25 } },
+      { id: "nacl", kind: "segment", appearance: "secondary", from: { x: 2, y: 4.25 }, to: { x: 2, y: 5.7 } },
+      { id: "before-split", kind: "point", appearance: "primary", at: { x: 2, y: 4.25 } },
+      { id: "before-top", kind: "point", appearance: "secondary", at: { x: 2, y: 5.7 } },
+      { id: "agcl", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 3.6 } },
+      { id: "nano3", kind: "segment", appearance: "highlight", from: { x: 6, y: 3.6 }, to: { x: 6, y: 5.7 } },
+      { id: "after-split", kind: "point", appearance: "construction", at: { x: 6, y: 3.6 } },
+      { id: "after-top", kind: "point", appearance: "highlight", at: { x: 6, y: 5.7 } },
+    ],
+    labels: [
+      { key: "agno3", objectId: "agno3", at: { x: 2, y: 2.1 }, placement: "right" },
+      { key: "nacl", objectId: "nacl", at: { x: 2, y: 4.95 }, placement: "right" },
+      { key: "before-total", objectId: "before-top", at: { x: 2, y: 5.7 }, placement: "above" },
+      { key: "agcl", objectId: "agcl", at: { x: 6, y: 1.8 }, placement: "right" },
+      { key: "nano3", objectId: "nano3", at: { x: 6, y: 4.65 }, placement: "right" },
+      { key: "after-total", objectId: "after-top", at: { x: 6, y: 5.7 }, placement: "above" },
+    ],
+  }}
   labels={{
-    readingBefore: <>Reading before the pour</>,
-    readingAfter: <>Reading after the pour</>,
-    precipitate: (
-      <>
-        <InlineMath math="\mathrm{AgCl}" /> precipitate formed
-      </>
-    ),
-    viewLabel: "Two beakers on a balance",
+    agno3: <InlineMath math="\mathrm{AgNO_3}:\ 0.85\ \mathrm{g}" />,
+    nacl: <InlineMath math="\mathrm{NaCl}:\ 0.29\ \mathrm{g}" />,
+    "before-total": <InlineMath math="1.14\ \mathrm{g}" />,
+    agcl: <InlineMath math="\mathrm{AgCl}:\ 0.72\ \mathrm{g}" />,
+    nano3: <InlineMath math="\mathrm{NaNO_3}:\ 0.42\ \mathrm{g}" />,
+    "after-total": <InlineMath math="1.14\ \mathrm{g}" />,
   }}
 />
 
-The balance reads <InlineMath math="101.14\ \mathrm{g}" /> before and after the pour. About <InlineMath math="0.72\ \mathrm{g}" /> of solid silver chloride forms, but its atoms come from substances already in the beakers. No gas enters or leaves, so even open beakers keep the same mass.
+Together with the <InlineMath math="100.00\ \mathrm{g}" /> of water, the balance reads <InlineMath math="101.14\ \mathrm{g}" /> before and after mixing. About <InlineMath math="0.72\ \mathrm{g}" /> of solid silver chloride and <InlineMath math="0.42\ \mathrm{g}" /> of dissolved sodium nitrate form, and every atom comes from substances already in the beakers. No gas enters or leaves, so even open beakers keep the same mass.
 
 ## Measurements by Lavoisier
 
@@ -61,6 +89,7 @@ His best-known experiment is recorded in [Lavoisier's book Elements of Chemistry
       while the mercury inside the bell jar rises because the air is used up.
     </>
   }
+  footer={<>Air under the bell jar shrinks as red calx grows on the heated mercury.</>}
   labels={{
     day: "Day of heating",
     air: <>Air under the bell jar</>,
@@ -79,7 +108,7 @@ His best-known experiment is recorded in [Lavoisier's book Elements of Chemistry
   }}
 />
 
-Lavoisier collected <InlineMath math="45" /> grains of calx. When he heated that calx more strongly, it turned back into <InlineMath math="41.5" /> grains of mercury and <InlineMath math="7" /> to <InlineMath math="8" /> cubic inches of gas. The difference, <InlineMath math="45-41.5=3.5" /> grains, is the mass of gas the mercury had taken from the air. **Mass doesn't appear from nothing**: the calx is heavier because oxygen from the air joined it.
+Lavoisier collected <InlineMath math="45" /> grains of calx. When he heated that calx more strongly, it turned back into <InlineMath math="41.5" /> grains of mercury and <InlineMath math="7" /> to <InlineMath math="8" /> cubic inches of gas. The difference, <InlineMath math="45-41.5=3.5" /> grains, is the mass of gas the mercury had taken from the air. **Mass does not appear from nothing**, because the calx is heavier only after oxygen from the air joins it.
 
 Lavoisier helped establish the law of conservation of mass and connected combustion with oxygen.
 
@@ -97,6 +126,7 @@ The model balance is **tared with the empty container**. Its reading therefore c
       when one modeled portion crosses the boundary before reacting.
     </>
   }
+  footer={<>Switch between closed and open boundaries to watch how the reading responds.</>}
   labels={{
     chooseMode: "Choose the system boundary",
     before: "Before",
@@ -145,6 +175,8 @@ The model balance is **tared with the empty container**. Its reading therefore c
   }}
 />
 
+Notice that the scale only changes when matter crosses the dashed boundary. Keeping the container sealed holds the reading steady at <InlineMath math="12.00\ \mathrm{g}" />, while opening it lets one portion escape the weighing zone.
+
 ## Mass Balance in an Open System
 
 The open view starts with the same <InlineMath math="10.00\ \mathrm{g}" /> of zinc and <InlineMath math="2.00\ \mathrm{g}" /> of sulfur. It then models <InlineMath math="1.00\ \mathrm{g}" /> of sulfur **crossing the boundary as vapor** before it reacts. The 2024 [abridged standard atomic weights](https://www.ciaaw.org/abridged-atomic-weights.htm) are <InlineMath math="A_r(\mathrm{Zn})=65.38" /> and <InlineMath math="A_r(\mathrm{S})=32.06" />. With these values, the remaining sulfur reacts with about <InlineMath math="2.04\ \mathrm{g}" /> of zinc.
@@ -155,13 +187,14 @@ The open view starts with the same <InlineMath math="10.00\ \mathrm{g}" /> of zi
 <BlockMath math="\begin{aligned} &amp;m_{\mathrm{ZnS}} \approx 2.04 + 1.00 = 3.04\ \mathrm{g} \\ &amp;m_{\mathrm{Zn\ left}} \approx 10.00 - 2.04 = 7.96\ \mathrm{g} \\ &amp;m_{\mathrm{on\ balance}} \approx 3.04 + 7.96 = 11.00\ \mathrm{g} \\ &amp;m_{\mathrm{enlarged\ system}} = 11.00 + 1.00 \\ &amp;= 12.00\ \mathrm{g} \end{aligned}" />
 </MathContainer>
 
-The balance measures only the matter that remains inside the chosen boundary, so it reads <InlineMath math="11.00\ \mathrm{g}" /> after <InlineMath math="1.00\ \mathrm{g}" /> of sulfur vapor leaves. If the escaping vapor is included in the system, the total mass remains <InlineMath math="12.00\ \mathrm{g}" />.
+The balance measures only what stays inside the chosen boundary, so it reads <InlineMath math="11.00\ \mathrm{g}" /> once the vapor escapes. Count that escaped gram back in and the enlarged system still totals <InlineMath math="12.00\ \mathrm{g}" />.
 
-The three columns below are what the balance reads, with one grid step for <InlineMath math="4\ \mathrm{g}" />. With every substance kept inside, the closed column stays at <InlineMath math="12.00\ \mathrm{g}" />. In the open view, <InlineMath math="1.00\ \mathrm{g}" /> of sulfur crosses the boundary before it reacts, so the balance shows only <InlineMath math="11.00\ \mathrm{g}" />. The mass didn't vanish: it left the system you're weighing.
+The three columns below place those readings side by side at one grid step per <InlineMath math="4\ \mathrm{g}" />. Compare the starting column with the closed and open results to see how the missing gram shows up as a shorter orange bar.
 
 <MathVisual
   title={<>What the Balance Reads</>}
   description={<><InlineMath math="10.00\text{ g}" /> of zinc and <InlineMath math="2.00\text{ g}" /> of sulfur before the reaction, then after it in a closed and in an open system. One grid step up is <InlineMath math="4\text{ g}" />.</>}
+  footer={<>Closed weighing stays at 12.00 g while open weighing drops to 11.00 g.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
@@ -184,7 +217,7 @@ The three columns below are what the balance reads, with one grid step for <Inli
   }}
 />
 
-Gas can leave an open system, but gas from the air can also come in and take part in a reaction. The next two experiments show both directions on the same kind of balance.
+The open column drops only because part of the matter moved past the boundary we chose to weigh. Gas can leave an open system, yet gas from the air can also enter and join a reaction. The next two experiments test both directions on the same kind of balance.
 
 ### Gas Escapes from an Open Flask
 
@@ -192,7 +225,11 @@ Baking soda, sodium bicarbonate, reacts with the acetic acid in vinegar and make
 
 <BlockMath math="\mathrm{NaHCO_3} + \mathrm{CH_3COOH} \rightarrow \mathrm{CH_3COONa} + \mathrm{H_2O} + \mathrm{CO_2}" />
 
-Each mole of baking soda gives **one mole of carbon dioxide**. From <InlineMath math="2.00\ \mathrm{g}" /> of baking soda you get <InlineMath math="2.00\times\frac{44.01}{84.01}\approx1.05\ \mathrm{g}" /> of gas. The balance is tared with the empty flask and dish, so its first reading is the <InlineMath math="100.00\ \mathrm{g}" /> of vinegar plus the baking soda.
+Each mole of baking soda gives **one mole of carbon dioxide**. From <InlineMath math="2.00\ \mathrm{g}" /> of baking soda, we calculate the mass of carbon dioxide formed.
+
+<BlockMath math="m_{\mathrm{CO_2}} = 2.00\ \mathrm{g} \times \frac{44.01}{84.01} \approx 1.05\ \mathrm{g}" />
+
+The balance is tared with the empty flask and dish, so its first reading is the <InlineMath math="100.00\ \mathrm{g}" /> of vinegar plus the baking soda.
 
 <FizzBalanceLab
   title={<>Baking Soda and Vinegar on a Balance</>}
@@ -202,6 +239,7 @@ Each mole of baking soda gives **one mole of carbon dioxide**. From <InlineMath 
       a flask closed by a stopper.
     </>
   }
+  footer={<>A stopper traps the carbon dioxide so the balance stays at 102.00 g.</>}
   labels={{
     chooseSeal: "Choose the flask",
     seals: { open: "Open", closed: "Closed" },
@@ -229,7 +267,11 @@ Steel wool that burns actually gets **heavier**. Iron reacts with oxygen from th
 
 <BlockMath math="3\mathrm{Fe} + 2\mathrm{O_2} \rightarrow \mathrm{Fe_3O_4}" />
 
-Every <InlineMath math="3\times55.845=167.535\ \mathrm{g}" /> of iron binds <InlineMath math="4\times15.999=63.996\ \mathrm{g}" /> of oxygen. If all <InlineMath math="1.50\ \mathrm{g}" /> of steel wool burns, the oxygen that joins is <InlineMath math="1.50\times\frac{63.996}{167.535}\approx0.57\ \mathrm{g}" />. [The Royal Society of Chemistry's iron wool combustion experiment](https://edu.rsc.org/experiments/the-combustion-of-iron-wool/717.article) shows this gain in mass on a simple balance.
+In this reaction, <InlineMath math="3" /> moles of iron (<InlineMath math="167.535\ \mathrm{g}" />) bind <InlineMath math="4" /> moles of oxygen atoms (<InlineMath math="63.996\ \mathrm{g}" />). If all <InlineMath math="1.50\ \mathrm{g}" /> of steel wool burns, we compute the mass of oxygen that joins the solid.
+
+<BlockMath math="m_{\mathrm{O_2}} = 1.50\ \mathrm{g} \times \frac{63.996}{167.535} \approx 0.57\ \mathrm{g}" />
+
+[The Royal Society of Chemistry's iron wool combustion experiment](https://edu.rsc.org/experiments/the-combustion-of-iron-wool/717.article) shows this gain in mass on a simple balance.
 
 <SteelWoolLab
   title={<>Burning Steel Wool Gets Heavier</>}
@@ -239,6 +281,7 @@ Every <InlineMath math="3\times55.845=167.535\ \mathrm{g}" /> of iron binds <Inl
       air with burning inside a closed jar of air.
     </>
   }
+  footer={<>Open air supplies extra oxygen while a closed jar already holds it inside.</>}
   labels={{
     chooseSeal: "Choose the setting",
     seals: { open: "Open air", closed: "Closed jar" },
@@ -255,7 +298,7 @@ In the open air, the oxygen comes from outside the system on the balance, so the
 
 In one experiment, <InlineMath math="10.00\ \mathrm{g}" /> of zinc is heated with <InlineMath math="2.00\ \mathrm{g}" /> of sulfur. After the reaction, <InlineMath math="6.08\ \mathrm{g}" /> of zinc sulfide forms and <InlineMath math="5.92\ \mathrm{g}" /> of zinc **remains unreacted**.
 
-The particle-level stoichiometric shorthand is:
+At the particle level, we write the stoichiometric shorthand like this.
 
 <BlockMath math="\mathrm{Zn(s)} + \mathrm{S(s)} \rightarrow \mathrm{ZnS(s)}" />
 
@@ -265,9 +308,9 @@ The product mass does not have to equal the mass of every starting substance if 
 
 <BlockMath math="\begin{aligned} &amp;m_{\mathrm{Zn\ reacted}} = 10.00 - 5.92 = 4.08\ \mathrm{g} \\ &amp;m_{\mathrm{reactants\ reacted}} = 4.08 + 2.00 \\ &amp;= 6.08\ \mathrm{g} \\ &amp;m_{\mathrm{product}} = 6.08\ \mathrm{g} \end{aligned}" />
 
-In this example, mass conservation holds for the part that reacts: the mass of zinc that reacts plus the mass of sulfur equals the mass of zinc sulfide formed.
+In this example, mass conservation holds for the part that reacts, because the mass of zinc that reacts plus the mass of sulfur equals the mass of zinc sulfide formed.
 
-If the whole container is counted, the mass is also unchanged:
+When the whole container is counted, the total mass stays unchanged as well.
 
 <BlockMath math="\begin{aligned}
 m_{\mathrm{before}} &= 10.00 + 2.00 = 12.00\ \mathrm{g} \\
@@ -286,11 +329,12 @@ Chemical equations must be balanced because both sides contain the same number o
 
 The law of constant composition answers a different question. When two elements form the same compound, does their mass ratio stay fixed?
 
-Keep the three masses of the zinc and sulfur experiment apart. Before the reaction the column holds the zinc that will react, the zinc that won't, and the sulfur. After it, the reacted part has become <InlineMath math="6.08\ \mathrm{g}" /> of <InlineMath math="\mathrm{ZnS}" /> beside the same leftover zinc. Rotate the columns: both totals are <InlineMath math="12.00\ \mathrm{g}" />.
+Keep the three masses of the zinc and sulfur experiment apart. Before the reaction the column holds the zinc that will react, the zinc that will stay unreacted, and the sulfur. After it, the reacted part has become <InlineMath math="6.08\ \mathrm{g}" /> of <InlineMath math="\mathrm{ZnS}" /> beside the same leftover zinc.
 
 <MathVisual
   title={<>Three Mass Questions</>}
   description={<>Before (left): leftover zinc (gray), reacting zinc (orange) and sulfur (amber). After (right): leftover zinc (gray) and zinc sulfide (teal). One grid step up is <InlineMath math="1" /> gram.</>}
+  footer={<>Rotate the columns to see both stacks match at 12.00 g total mass.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 13 }, z: { min: -1.5, max: 1.5 } },
@@ -314,3 +358,5 @@ Keep the three masses of the zinc and sulfur experiment apart. Before the reacti
     left: <InlineMath math="\mathrm{Zn}:\ 5.92\ \mathrm{g}" />,
   }}
 />
+
+Both columns reach the exact same <InlineMath math="12.00\ \mathrm{g}" /> height even though the upper blocks rearranged into a new compound. Separating product mass from leftover reactant mass keeps every stoichiometry check accurate.

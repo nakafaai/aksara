@@ -15,7 +15,9 @@ Saat reaksi kimia terjadi, atom tidak hilang dan tidak muncul dari ketiadaan. At
 
 <BlockMath math="m_{\text{sistem sebelum}} = m_{\text{sistem sesudah}}" />
 
-Batas sistem menentukan zat mana yang ikut dihitung. Dalam wadah tertutup, semua zat tetap berada di bagian yang ditimbang. Dalam wadah terbuka, gas dapat keluar melewati batas tersebut. Neraca lalu menunjukkan massa yang lebih kecil karena gas itu tidak lagi berada di atas neraca. Materi tetap ada meskipun gas keluar dari wadah. Jika seluruh zat dihitung dalam satu sistem tertutup, <Highlight>jumlah total materi tetap sama</Highlight> selama perubahan kimia maupun fisika.
+Batas sistem menentukan zat mana yang ikut ditimbang. Di wadah tertutup, semua zat tetap berada di bagian yang masuk hitungan neraca. Di wadah terbuka, gas bisa lolos melewati batas wadah, sehingga angka neraca turun karena gas itu sudah berada di luar neraca. Materinya tetap ada meski tidak lagi ikut tertimbang. Jika seluruh zat dihitung dalam satu sistem tertutup, <Highlight>jumlah total materi tetap sama</Highlight> selama perubahan kimia maupun fisika.
+
+> Materi tidak pernah lenyap dalam reaksi kimia. Saat angka neraca berubah, cari gas yang keluar atau masuk melewati batas yang sedang kamu timbang.
 
 ## Endapan Baru dengan Massa yang Sama
 
@@ -23,29 +25,55 @@ Reaksi bisa membuat zat yang sama sekali baru tanpa mengubah massa. Larutan pera
 
 <BlockMath math="\mathrm{AgNO_3(aq)} + \mathrm{NaCl(aq)} \rightarrow \mathrm{AgCl(s)} + \mathrm{NaNO_3(aq)}" />
 
-Setiap gelas berisi <InlineMath math="50{,}00\ \mathrm{g}" /> air dengan <InlineMath math="0{,}0050\ \mathrm{mol}" /> garamnya, yaitu <InlineMath math="0{,}85\ \mathrm{g}" /> perak nitrat dan <InlineMath math="0{,}29\ \mathrm{g}" /> natrium klorida. Kedua gelas berdiri di atas neraca yang sama sebelum dan sesudah dituang.
+Tiap gelas berisi <InlineMath math="50{,}00\ \mathrm{g}" /> air dan <InlineMath math="0{,}0050\ \mathrm{mol}" /> garamnya, persisnya <InlineMath math="0{,}85\ \mathrm{g}" /> perak nitrat di satu gelas dan <InlineMath math="0{,}29\ \mathrm{g}" /> natrium klorida di gelas satunya. Karena <InlineMath math="100{,}00\ \mathrm{g}" /> air tidak berubah di kedua sisi, kita bisa membandingkan langsung massa garam pereaksi dengan massa endapan dan garam hasil.
 
-<PrecipitateLab
-  title={<>Endapan Putih di Atas Neraca</>}
+<MathVisual
+  title={<>Massa Zat Terlarut Sebelum dan Sesudah Pengendapan</>}
   description={
     <>
-      Putar untuk menuang larutan perak nitrat ke larutan garam dapur. Awan
-      perak klorida muncul, dan angka neraca tetap.
+      Pereaksi di kiri (<InlineMath math="\mathrm{AgNO_3}" /> dan{" "}
+      <InlineMath math="\mathrm{NaCl}" />) dibandingkan dengan hasil di kanan (padatan{" "}
+      <InlineMath math="\mathrm{AgCl}" /> dan larutan{" "}
+      <InlineMath math="\mathrm{NaNO_3}" />). Satu kotak grid ke atas sama dengan{" "}
+      <InlineMath math="0{,}20\ \mathrm{g}" />.
     </>
   }
+  footer={<>Kedua susunan menyentuh garis 1,14 g yang sama sementara 100,00 g air tetap.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "total-line", kind: "segment", appearance: "reference", from: { x: 1, y: 5.7 }, to: { x: 7, y: 5.7 } },
+      { id: "agno3", kind: "segment", appearance: "primary", from: { x: 2, y: 0 }, to: { x: 2, y: 4.25 } },
+      { id: "nacl", kind: "segment", appearance: "secondary", from: { x: 2, y: 4.25 }, to: { x: 2, y: 5.7 } },
+      { id: "before-split", kind: "point", appearance: "primary", at: { x: 2, y: 4.25 } },
+      { id: "before-top", kind: "point", appearance: "secondary", at: { x: 2, y: 5.7 } },
+      { id: "agcl", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 3.6 } },
+      { id: "nano3", kind: "segment", appearance: "highlight", from: { x: 6, y: 3.6 }, to: { x: 6, y: 5.7 } },
+      { id: "after-split", kind: "point", appearance: "construction", at: { x: 6, y: 3.6 } },
+      { id: "after-top", kind: "point", appearance: "highlight", at: { x: 6, y: 5.7 } },
+    ],
+    labels: [
+      { key: "agno3", objectId: "agno3", at: { x: 2, y: 2.1 }, placement: "right" },
+      { key: "nacl", objectId: "nacl", at: { x: 2, y: 4.95 }, placement: "right" },
+      { key: "before-total", objectId: "before-top", at: { x: 2, y: 5.7 }, placement: "above" },
+      { key: "agcl", objectId: "agcl", at: { x: 6, y: 1.8 }, placement: "right" },
+      { key: "nano3", objectId: "nano3", at: { x: 6, y: 4.65 }, placement: "right" },
+      { key: "after-total", objectId: "after-top", at: { x: 6, y: 5.7 }, placement: "above" },
+    ],
+  }}
   labels={{
-    readingBefore: <>Neraca sebelum dituang</>,
-    readingAfter: <>Neraca sesudah dituang</>,
-    precipitate: (
-      <>
-        Endapan <InlineMath math="\mathrm{AgCl}" /> yang terbentuk
-      </>
-    ),
-    viewLabel: "Dua gelas kimia di atas neraca",
+    agno3: <InlineMath math="\mathrm{AgNO_3}:\ 0{,}85\ \mathrm{g}" />,
+    nacl: <InlineMath math="\mathrm{NaCl}:\ 0{,}29\ \mathrm{g}" />,
+    "before-total": <InlineMath math="1{,}14\ \mathrm{g}" />,
+    agcl: <InlineMath math="\mathrm{AgCl}:\ 0{,}72\ \mathrm{g}" />,
+    nano3: <InlineMath math="\mathrm{NaNO_3}:\ 0{,}42\ \mathrm{g}" />,
+    "after-total": <InlineMath math="1{,}14\ \mathrm{g}" />,
   }}
 />
 
-Neraca membaca <InlineMath math="101{,}14\ \mathrm{g}" /> sebelum dan sesudah dituang. Sekitar <InlineMath math="0{,}72\ \mathrm{g}" /> perak klorida padat terbentuk, tetapi atomnya berasal dari zat yang sudah ada di gelas. Tidak ada gas yang masuk atau keluar, jadi gelas terbuka pun tetap menunjukkan massa yang sama.
+Bersama <InlineMath math="100{,}00\ \mathrm{g}" /> air, neraca membaca <InlineMath math="101{,}14\ \mathrm{g}" /> sebelum dan sesudah pencampuran. Sekitar <InlineMath math="0{,}72\ \mathrm{g}" /> perak klorida padat dan <InlineMath math="0{,}42\ \mathrm{g}" /> natrium nitrat terlarut terbentuk, dan semua atomnya berasal dari zat yang sudah ada di gelas. Tidak ada gas yang masuk atau keluar, jadi gelas terbuka pun tetap menunjukkan massa yang sama.
 
 ## Penimbangan oleh Lavoisier
 
@@ -61,6 +89,7 @@ Percobaan paling terkenalnya tercatat dalam [buku Elements of Chemistry karya La
       sementara raksa di dalam sungkup naik karena udaranya berkurang.
     </>
   }
+  footer={<>Udara di bawah sungkup menyusut seiring tumbuhnya kalx merah di atas raksa.</>}
   labels={{
     day: "Hari pemanasan",
     air: <>Udara di bawah sungkup</>,
@@ -79,7 +108,7 @@ Percobaan paling terkenalnya tercatat dalam [buku Elements of Chemistry karya La
   }}
 />
 
-Lavoisier mengumpulkan <InlineMath math="45" /> grain kalx. Saat kalx itu dipanaskan lebih kuat, ia kembali menjadi <InlineMath math="41{,}5" /> grain raksa dan <InlineMath math="7" /> sampai <InlineMath math="8" /> inci kubik gas. Selisih <InlineMath math="45-41{,}5=3{,}5" /> grain adalah massa gas yang tadi diambil raksa dari udara. **Massa tidak muncul dari ketiadaan**: kalx lebih berat karena oksigen dari udara ikut bergabung.
+Lavoisier mengumpulkan <InlineMath math="45" /> grain kalx. Saat kalx itu dipanaskan lebih kuat, ia kembali menjadi <InlineMath math="41{,}5" /> grain raksa dan <InlineMath math="7" /> sampai <InlineMath math="8" /> inci kubik gas. Selisih <InlineMath math="45-41{,}5=3{,}5" /> grain adalah massa gas yang tadi diambil raksa dari udara. **Massa tidak muncul dari ketiadaan**, karena kalx lebih berat hanya setelah oksigen dari udara bergabung dengannya.
 
 Lavoisier membantu menetapkan hukum kekekalan massa dan mengaitkan pembakaran dengan oksigen.
 
@@ -97,6 +126,7 @@ Neraca pada model sudah **ditara terhadap wadah kosong**. Karena itu, angka yang
       saat satu bagian model melewati batas sebelum bereaksi.
     </>
   }
+  footer={<>Bandingkan mode tertutup dan terbuka untuk melihat perubahan angka neraca.</>}
   labels={{
     chooseMode: "Pilih batas sistem",
     before: "Sebelum",
@@ -145,9 +175,11 @@ Neraca pada model sudah **ditara terhadap wadah kosong**. Karena itu, angka yang
   }}
 />
 
+Angka neraca baru berubah ketika ada zat yang keluar dari batas putus-putus. Saat wadah tertutup rapat, bacaannya bertahan di <InlineMath math="12{,}00\ \mathrm{g}" />, sedangkan wadah terbuka melepas sebagian zat dari area penimbangan.
+
 ## Neraca Massa pada Sistem Terbuka
 
-Tampilan terbuka dimulai dengan <InlineMath math="10{,}00\ \mathrm{g}" /> seng dan <InlineMath math="2{,}00\ \mathrm{g}" /> belerang yang sama. Model kemudian memperlihatkan <InlineMath math="1{,}00\ \mathrm{g}" /> belerang **melewati batas sebagai uap** sebelum bereaksi. [Bobot atom standar ringkas](https://www.ciaaw.org/abridged-atomic-weights.htm) tahun <InlineMath math="2024" /> adalah <InlineMath math="A_r(\mathrm{Zn})=65{,}38" /> dan <InlineMath math="A_r(\mathrm{S})=32{,}06" />. Dengan nilai ini, belerang yang tersisa bereaksi dengan sekitar <InlineMath math="2{,}04\ \mathrm{g}" /> seng.
+Tampilan terbuka dimulai dengan <InlineMath math="10{,}00\ \mathrm{g}" /> seng dan <InlineMath math="2{,}00\ \mathrm{g}" /> belerang yang sama. Model kemudian memperlihatkan <InlineMath math="1{,}00\ \mathrm{g}" /> belerang **lolos sebagai uap** sebelum sempat bereaksi. [Bobot atom standar ringkas](https://www.ciaaw.org/abridged-atomic-weights.htm) tahun <InlineMath math="2024" /> mencatat <InlineMath math="A_r(\mathrm{Zn})=65{,}38" /> dan <InlineMath math="A_r(\mathrm{S})=32{,}06" />, sehingga sisa belerang bereaksi dengan sekitar <InlineMath math="2{,}04\ \mathrm{g}" /> seng.
 
 <MathContainer>
 <BlockMath math="m_{\mathrm{Zn}}=1\ \mathrm{g}\times\frac{65{,}38}{32{,}06}\approx 2{,}04\ \mathrm{g}" />
@@ -155,13 +187,14 @@ Tampilan terbuka dimulai dengan <InlineMath math="10{,}00\ \mathrm{g}" /> seng d
 <BlockMath math="\begin{aligned} &amp;m_{\mathrm{ZnS}} \approx 2{,}04 + 1{,}00 = 3{,}04\ \mathrm{g} \\ &amp;m_{\mathrm{Zn\ tersisa}} \approx 10{,}00 - 2{,}04 = 7{,}96\ \mathrm{g} \\ &amp;m_{\mathrm{di\ neraca}} \approx 3{,}04 + 7{,}96 = 11{,}00\ \mathrm{g} \\ &amp;m_{\mathrm{sistem\ diperluas}} = 11{,}00 + 1{,}00 \\ &amp;= 12{,}00\ \mathrm{g} \end{aligned}" />
 </MathContainer>
 
-Neraca hanya mengukur materi yang masih berada di dalam batas sistem yang dipilih. Karena <InlineMath math="1{,}00\ \mathrm{g}" /> uap belerang keluar, neraca menunjukkan <InlineMath math="11{,}00\ \mathrm{g}" />. Jika uap yang keluar tetap dimasukkan ke dalam sistem, massa totalnya tetap <InlineMath math="12{,}00\ \mathrm{g}" />.
+Neraca hanya menimbang materi di dalam batas pilihan kita, jadi terbaca <InlineMath math="11{,}00\ \mathrm{g}" /> setelah uapnya pergi. Kalau satu gram uap itu ikut dihitung lagi, total sistem yang diperluas tetap <InlineMath math="12{,}00\ \mathrm{g}" />.
 
-Tiga kolom di bawah adalah angka yang dibaca neraca, dengan satu kotak grid untuk <InlineMath math="4\ \mathrm{g}" />. Kalau semua zat tetap di dalam, kolom tertutup tetap <InlineMath math="12{,}00\ \mathrm{g}" />. Pada sistem terbuka, <InlineMath math="1{,}00\ \mathrm{g}" /> belerang keluar melewati batas sistem sebelum bereaksi, jadi neraca hanya menunjukkan <InlineMath math="11{,}00\ \mathrm{g}" />. Massanya tidak hilang, tetapi keluar dari sistem yang sedang kamu timbang.
+Tiga kolom berikut membandingkan bacaan awal, hasil tertutup, dan hasil terbuka pada skala satu kotak grid untuk <InlineMath math="4\ \mathrm{g}" />. Bandingkan tinggi ketiganya untuk melihat selisih satu gram yang keluar dari penimbangan.
 
 <MathVisual
   title={<>Angka yang Dibaca Neraca</>}
   description={<><InlineMath math="10{,}00\text{ g}" /> seng dan <InlineMath math="2{,}00\text{ g}" /> belerang sebelum reaksi, lalu sesudahnya dalam sistem tertutup dan terbuka. Satu kotak grid ke atas sama dengan <InlineMath math="4\text{ g}" />.</>}
+  footer={<>Kolom tertutup bertahan di 12,00 g sedangkan kolom terbuka turun ke 11,00 g.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
@@ -184,7 +217,7 @@ Tiga kolom di bawah adalah angka yang dibaca neraca, dengan satu kotak grid untu
   }}
 />
 
-Gas bisa keluar dari sistem terbuka, tetapi gas dari udara juga bisa masuk dan ikut bereaksi. Dua percobaan berikut memperlihatkan kedua arah itu pada neraca yang sama.
+Kolom terbuka lebih pendek bukan karena massanya musnah, melainkan karena sebagian zat pindah ke luar batas timbang. Gas bisa keluar dari sistem terbuka, tetapi gas dari udara juga bisa masuk dan ikut bereaksi. Dua percobaan berikut menguji kedua arah itu pada neraca yang sama.
 
 ### Gas Keluar dari Labu Terbuka
 
@@ -192,7 +225,11 @@ Soda kue, natrium bikarbonat, bereaksi dengan asam asetat dalam cuka dan menghas
 
 <BlockMath math="\mathrm{NaHCO_3} + \mathrm{CH_3COOH} \rightarrow \mathrm{CH_3COONa} + \mathrm{H_2O} + \mathrm{CO_2}" />
 
-Setiap mol soda kue menghasilkan **satu mol karbon dioksida**. Dari <InlineMath math="2{,}00\ \mathrm{g}" /> soda kue terbentuk <InlineMath math="2{,}00\times\frac{44{,}01}{84{,}01}\approx1{,}05\ \mathrm{g}" /> gas. Neraca ditara terhadap labu dan cawan kosong, jadi angka awalnya adalah <InlineMath math="100{,}00\ \mathrm{g}" /> cuka ditambah soda kue.
+Setiap mol soda kue menghasilkan **satu mol karbon dioksida**. Dari <InlineMath math="2{,}00\ \mathrm{g}" /> soda kue, kita bisa menghitung massa gas yang terbentuk.
+
+<BlockMath math="m_{\mathrm{CO_2}} = 2{,}00\ \mathrm{g} \times \frac{44{,}01}{84{,}01} \approx 1{,}05\ \mathrm{g}" />
+
+Neraca ditara terhadap labu dan cawan kosong, jadi angka awalnya adalah <InlineMath math="100{,}00\ \mathrm{g}" /> cuka ditambah soda kue.
 
 <FizzBalanceLab
   title={<>Soda Kue dan Cuka di Atas Neraca</>}
@@ -202,6 +239,7 @@ Setiap mol soda kue menghasilkan **satu mol karbon dioksida**. Dari <InlineMath 
       labu yang ditutup sumbat.
     </>
   }
+  footer={<>Sumbat menahan karbon dioksida sehingga neraca bertahan di 102,00 g.</>}
   labels={{
     chooseSeal: "Pilih labu",
     seals: { open: "Terbuka", closed: "Tertutup" },
@@ -229,7 +267,11 @@ Wol baja yang terbakar justru menjadi **lebih berat**. Besi bereaksi dengan oksi
 
 <BlockMath math="3\mathrm{Fe} + 2\mathrm{O_2} \rightarrow \mathrm{Fe_3O_4}" />
 
-Setiap <InlineMath math="3\times55{,}845=167{,}535\ \mathrm{g}" /> besi mengikat <InlineMath math="4\times15{,}999=63{,}996\ \mathrm{g}" /> oksigen. Kalau seluruh <InlineMath math="1{,}50\ \mathrm{g}" /> wol baja terbakar, oksigen yang ikut bergabung adalah <InlineMath math="1{,}50\times\frac{63{,}996}{167{,}535}\approx0{,}57\ \mathrm{g}" />. [Percobaan pembakaran wol besi dari Royal Society of Chemistry](https://edu.rsc.org/experiments/the-combustion-of-iron-wool/717.article) memperlihatkan kenaikan massa ini pada neraca sederhana.
+Dalam reaksi ini, <InlineMath math="3" /> mol besi (<InlineMath math="167{,}535\ \mathrm{g}" />) mengikat <InlineMath math="4" /> mol atom oksigen (<InlineMath math="63{,}996\ \mathrm{g}" />). Kalau seluruh <InlineMath math="1{,}50\ \mathrm{g}" /> wol baja terbakar, kita hitung massa oksigen yang ikut bergabung.
+
+<BlockMath math="m_{\mathrm{O_2}} = 1{,}50\ \mathrm{g} \times \frac{63{,}996}{167{,}535} \approx 0{,}57\ \mathrm{g}" />
+
+[Percobaan pembakaran wol besi dari Royal Society of Chemistry](https://edu.rsc.org/experiments/the-combustion-of-iron-wool/717.article) memperlihatkan kenaikan massa ini pada neraca sederhana.
 
 <SteelWoolLab
   title={<>Wol Baja yang Terbakar Menjadi Lebih Berat</>}
@@ -239,6 +281,7 @@ Setiap <InlineMath math="3\times55{,}845=167{,}535\ \mathrm{g}" /> besi mengikat
       udara terbuka dengan pembakaran di dalam toples tertutup berisi udara.
     </>
   }
+  footer={<>Udara terbuka memasok oksigen baru, sedangkan toples tertutup sudah menimbangnya.</>}
   labels={{
     chooseSeal: "Pilih tempat",
     seals: { open: "Udara terbuka", closed: "Toples tertutup" },
@@ -255,19 +298,19 @@ Di udara terbuka, oksigen datang dari luar sistem yang ditimbang, jadi neraca na
 
 Seorang siswa memanaskan <InlineMath math="10{,}00\ \mathrm{g}" /> seng dengan <InlineMath math="2{,}00\ \mathrm{g}" /> belerang. Setelah reaksi, terbentuk <InlineMath math="6{,}08\ \mathrm{g}" /> seng sulfida dan masih ada <InlineMath math="5{,}92\ \mathrm{g}" /> seng yang tidak bereaksi.
 
-Notasi singkat stoikiometri pada tingkat partikel adalah:
+Di tingkat partikel, kita menulis reaksi ini dalam bentuk singkat stoikiometri berikut.
 
 <BlockMath math="\mathrm{Zn(s)} + \mathrm{S(s)} \rightarrow \mathrm{ZnS(s)}" />
 
-Persamaan tersebut menyatakan perbandingan satu atom seng untuk setiap atom belerang yang masuk ke seng sulfida. Notasi sederhana ini dipakai untuk menghitung perbandingan atom dalam reaksi. Bentuk partikel belerang unsur tidak ditampilkan dalam persamaan.
+Persamaan ini menunjukkan perbandingan satu atom seng untuk tiap atom belerang yang menyusun seng sulfida. Penulisan ringkas ini menyatakan perbandingan atom dalam reaksi secara langsung, meski bentuk partikel belerang unsur tidak ikut digambarkan.
 
 Produk tidak harus sama dengan jumlah semua zat awal kalau ada reaktan yang tersisa. Hitung dulu **seng yang benar-benar bereaksi**.
 
 <BlockMath math="\begin{aligned} &amp;m_{\mathrm{Zn\ bereaksi}} = 10{,}00 - 5{,}92 = 4{,}08\ \mathrm{g} \\ &amp;m_{\mathrm{reaktan\ bereaksi}} = 4{,}08 + 2{,}00 \\ &amp;= 6{,}08\ \mathrm{g} \\ &amp;m_{\mathrm{produk}} = 6{,}08\ \mathrm{g} \end{aligned}" />
 
-Pada contoh ini, hukum kekekalan massa terpenuhi: massa seng yang bereaksi ditambah massa belerang sama dengan massa seng sulfida yang terbentuk.
+Pada contoh ini, hukum kekekalan massa terpenuhi karena massa seng yang bereaksi ditambah massa belerang sama dengan massa seng sulfida yang terbentuk.
 
-Kalau seluruh wadah dihitung, massanya juga tetap:
+Kalau seluruh wadah ikut dihitung, massa totalnya juga tidak berubah.
 
 <BlockMath math="\begin{aligned}
 m_{\mathrm{sebelum}} &= 10{,}00 + 2{,}00 = 12{,}00\ \mathrm{g} \\
@@ -278,7 +321,7 @@ m_{\mathrm{sesudah}} &= 6{,}08 + 5{,}92 = 12{,}00\ \mathrm{g}
 
 Ada tiga pertanyaan yang perlu dipisahkan.
 
-- Berapa **massa produk**? Jawabannya hanya massa zat hasil, yaitu <InlineMath math="6{,}08\ \mathrm{g}" /> seng sulfida.
+- Berapa **massa produk**? Hanya massa zat hasil yang dihitung, jadi nilainya <InlineMath math="6{,}08\ \mathrm{g}" /> seng sulfida.
 - Apakah **massa sistem** tetap? Jawabannya ya, kalau produk dan sisa reaktan dihitung bersama.
 - Apakah **pembacaan neraca** bisa turun? Bisa, kalau gas keluar dari wadah terbuka dan tidak ikut ditimbang.
 
@@ -286,11 +329,12 @@ Persamaan reaksi harus setara karena kedua sisinya memuat jumlah atom yang sama 
 
 Hukum perbandingan tetap menjawab pertanyaan yang berbeda. Jika dua unsur membentuk senyawa yang sama, apakah perbandingan massanya selalu tetap?
 
-Pisahkan tiga massa dalam percobaan seng dan belerang. Sebelum reaksi, kolomnya berisi seng yang akan bereaksi, seng yang tidak bereaksi, dan belerang. Sesudahnya, bagian yang bereaksi sudah menjadi <InlineMath math="6{,}08\ \mathrm{g}" /> <InlineMath math="\mathrm{ZnS}" /> di samping sisa seng yang sama. Putar kolomnya: kedua totalnya <InlineMath math="12{,}00\ \mathrm{g}" />.
+Pisahkan tiga massa dalam percobaan seng dan belerang. Sebelum reaksi, kolomnya berisi seng yang akan bereaksi, seng yang tidak bereaksi, dan belerang. Sesudahnya, bagian yang bereaksi sudah menjadi <InlineMath math="6{,}08\ \mathrm{g}" /> <InlineMath math="\mathrm{ZnS}" /> di samping sisa seng yang sama.
 
 <MathVisual
   title={<>Tiga Pertanyaan tentang Massa</>}
   description={<>Sebelum (kiri): sisa seng (abu-abu), seng yang bereaksi (oranye), dan belerang (kuning). Sesudah (kanan): sisa seng (abu-abu) dan seng sulfida (teal). Satu kotak grid ke atas berarti <InlineMath math="1" /> gram.</>}
+  footer={<>Putar kolom untuk melihat kedua tumpukan berhenti tepat di 12,00 g.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 13 }, z: { min: -1.5, max: 1.5 } },
@@ -314,3 +358,5 @@ Pisahkan tiga massa dalam percobaan seng dan belerang. Sebelum reaksi, kolomnya 
     left: <InlineMath math="\mathrm{Zn}:\ 5{,}92\ \mathrm{g}" />,
   }}
 />
+
+Kedua kolom mencapai tinggi tepat <InlineMath math="12{,}00\ \mathrm{g}" /> walau balok bagian atas sudah berubah menjadi senyawa baru. Memisahkan massa produk dari sisa reaktan membuat setiap hitungan stoikiometri tetap akurat.

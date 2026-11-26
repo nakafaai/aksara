@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Daltons Atomtheorie",
   description:
@@ -30,6 +29,7 @@ Wähle einen Modus und beobachte, **was jeweils erhalten bleibt**: Atomzahl, Zus
       Vergleiche die Teilchen links und rechts sowie das angezeigte Verhältnis.
     </>
   }
+  footer={<>Wechsle den Modus, um Erhaltung, konstante Zusammensetzung und multiple Verhältnisse zu sehen.</>}
   labels={{
     chooseMode: "Beleg für Daltons Atomtheorie auswählen",
     modes: {
@@ -105,13 +105,14 @@ Bei gleichbleibender Kohlenstoffmasse bilden die Sauerstoffmassen in <InlineMath
 &= \frac{1}{2}
 \end{aligned}" />
 
-Das Verhältnis <InlineMath math="1:2" /> ist ein einfaches ganzzahliges Verhältnis. Dieses Muster unterstützt das Gesetz der multiplen Proportionen: Wenn zwei Elemente mehrere Verbindungen bilden, haben die Massen eines Elements, die sich mit einer festen Masse eines anderen Elements verbinden, ein einfaches ganzzahliges Verhältnis.
+Da <InlineMath math="1:2" /> ein sauberes ganzzahliges Verhältnis ergibt, deutete Dalton diesen Befund so, dass Kohlenstoff ganze Sauerstoffatome bindet und keine beliebigen Massenbruchteile.
 
 Bei festen <InlineMath math="12\ \mathrm{g}" /> Kohlenstoff enthält Kohlenmonoxid <InlineMath math="16\ \mathrm{g}" /> Sauerstoff und Kohlendioxid <InlineMath math="32\ \mathrm{g}" />, ein Gitterschritt für <InlineMath math="8\ \mathrm{g}" />. Die zweite Säule ist genau doppelt so hoch wie die erste, und Dalton las das als ein Sauerstoffatom gegen zwei.
 
 <MathVisual
   title={<>Sauerstoff pro <InlineMath math="12\text{ g}" /> Kohlenstoff</>}
   description={<>Sauerstoff, der in <InlineMath math="\mathrm{CO}" /> und <InlineMath math="\mathrm{CO_2}" /> mit <InlineMath math="12\text{ g}" /> Kohlenstoff verbunden ist. Ein Gitterschritt nach oben sind <InlineMath math="8\text{ g}" />.</>}
+  footer={<>Die genau doppelt so hohe Sauerstoffsäule weist direkt auf zählbare ganze Atome hin.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
@@ -131,6 +132,8 @@ Bei festen <InlineMath math="12\ \mathrm{g}" /> Kohlenstoff enthält Kohlenmonox
   }}
 />
 
+Weil die zweite Säule exakt doppelt so hoch steht wie die erste, wird sofort anschaulich, warum Dalton auf zählbare atomare Schritte schloss.
+
 ## Grenzen von Daltons Atomtheorie
 
 Daltons Modell erklärte die Massenverhältnisse in chemischen Reaktionen, aber nicht jede Beobachtung. Wenn Atome feste Kugeln ohne innere Bestandteile wären, warum leiten Metalle dann Strom? Und warum können elektrische und magnetische Felder Kathodenstrahlen ablenken?
@@ -138,6 +141,7 @@ Daltons Modell erklärte die Massenverhältnisse in chemischen Reaktionen, aber 
 <Mermaid
   title={<>Neue Befunde zur Atomstruktur</>}
   description={<>Das Diagramm zeigt, wie Reaktionsmassendaten zu Daltons Modell führten und Kathodenstrahlversuche Hinweise auf subatomare Teilchen lieferten.</>}
+  footer={<>Jede neue Messung zwang die Chemie, feste Kugeln durch ein inneres Atommodell zu ersetzen.</>}
   chart={`flowchart LR
     A["Atomidee"] --> B["Reaktionsmassendaten"]
     B --> C["Dalton-Modell"]
@@ -151,11 +155,16 @@ Dalton nahm an, dass alle Atome desselben Elements die gleiche Masse haben. Dies
 
 Daltons Modell erklärt die Massenerhaltung, die konstante Zusammensetzung und die multiplen Proportionen. Es erklärt weder elektrische Ladung noch Isotope oder den inneren Aufbau eines Atoms. Diese späteren Befunde erfordern ein Modell mit subatomaren Teilchen.
 
-Daltons feste Kugeln können Alphateilchen, die von Goldfolie zurückprallen, nicht erklären. Sitzt die ganze positive Ladung in einem winzigen Kern, wird ein Teilchen, das im Abstand <InlineMath math="b" /> vorbeifliegt, um <InlineMath math="\theta=2\arctan\tfrac{b_0}{b}" /> abgelenkt, wobei <InlineMath math="b_0" /> von der Energie und den Ladungen abhängt. Nur ein Beinahe-Treffer, viel näher als <InlineMath math="b_0" />, wird weit zurückgelenkt. Zoom auf das linke Ende der Kurve.
+Daltons feste Kugeln können Alphateilchen, die von Goldfolie zurückprallen, nicht erklären. Sitzt die gesamte positive Ladung in einem winzigen Kern, wird ein Teilchen im Abstand <InlineMath math="b" /> um den Winkel <InlineMath math="\theta" /> abgelenkt, wobei <InlineMath math="b_0" /> von Energie und Ladung abhängt.
+
+<BlockMath math="\theta = 2 \arctan\left(\frac{b_0}{b}\right)" />
+
+Nur ein Beinahe-Treffer, viel näher als <InlineMath math="b_0" />, wird weit zurückgelenkt. Zoom auf das linke Ende der Kurve.
 
 <MathVisual
   title={<>Nur ein Beinahe-Treffer prallt zurück</>}
   description={<>Ablenkwinkel eines Alphateilchens gegen seinen Abstand vom Kern. Waagerecht: Ein Gitterschritt entspricht dem halben Abstand <InlineMath math="b_0" />. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="30" /> Grad.</>}
+  footer={<>Große Ablenkwinkel entstehen erst, wenn das Alphateilchen extrem nah am Kern vorbeifliegt.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 10.5 }, y: { min: -0.3, max: 5.5 } },
@@ -179,6 +188,8 @@ Daltons feste Kugeln können Alphateilchen, die von Goldfolie zurückprallen, ni
   }}
 />
 
+Dieser steile Abfall des Ablenkwinkels erklärt, weshalb fast alle Alphateilchen die Goldfolie beinahe geradlinig durchquerten und nur seltene Frontalbegegnungen zurückprallten.
+
 ### Thomson findet das Elektron
 
 Der erste Riss in Daltons festem Atom kam aus einer leuchtenden Röhre. **Der Strahl biegt sich zur positiven Platte**, trägt also negative Ladung, und Thomson nannte seine Teilchen Elektronen.
@@ -186,6 +197,7 @@ Der erste Riss in Daltons festem Atom kam aus einer leuchtenden Röhre. **Der St
 <CathodeRayLab
   title={<>Ein Strahl, der sich biegt</>}
   description={<>Erhöh die Plattenspannung und sieh, wie der Fleck auf dem Schirm wandert.</>}
+  footer={<>Eine höhere Plattenspannung zieht den negativen Elektronenstrahl stärker zur positiven Platte.</>}
   labels={{
     anode: <>Beschleunigungsspannung</>,
     field: <>Elektrisches Feld zwischen den Platten</>,
@@ -195,6 +207,8 @@ Der erste Riss in Daltons festem Atom kam aus einer leuchtenden Röhre. **Der St
   }}
 />
 
+Weil ein Wechsel des Elektrodenmetalls die Ablenkung nie änderte, erkannte Thomson, dass Elektronen in den Atomen aller Elemente vorkommen und die unteilbare Kugel widerlegen.
+
 ### Rutherford findet den Kern
 
 Daltons Modell sah das Atom als feste Kugel. Geiger und Marsden schossen Alphateilchen auf eine dünne Goldfolie. Die meisten Teilchen flogen fast gerade hindurch, einige wurden aber stark abgelenkt, manche sogar zurückgeworfen. Rutherford folgerte, dass **Masse und positive Ladung des Atoms in einem sehr kleinen Kern sitzen**, etwa zwanzigtausendmal kleiner als das Atom.
@@ -202,6 +216,7 @@ Daltons Modell sah das Atom als feste Kugel. Geiger und Marsden schossen Alphate
 <RutherfordScatteringLab
   title={<>Alphateilchen nahe einem Goldkern</>}
   description={<>Die Bahnen folgen aus der elektrischen Abstoßung zwischen Alphateilchen und Goldkern.</>}
+  footer={<>Höhere Energie bringt Alphateilchen näher an den Goldkern, bevor die Abstoßung sie wendet.</>}
   energy={7.7}
   labels={{
     approach: <>Kleinster Abstand</>,
@@ -212,36 +227,64 @@ Daltons Modell sah das Atom als feste Kugel. Geiger und Marsden schossen Alphate
   }}
 />
 
-Rutherfords Kern hinterließ ein Rätsel: Warum stürzen die Elektronen nicht hinein? Bohr antwortete mit festen Bahnen, und **jeder Sprung zwischen Bahnen gibt Licht genau einer Farbe ab**, die Linien des Wasserstoffs.
+Rutherfords Kern hinterließ ein Rätsel: Warum stürzen die Elektronen nicht hinein? Bohr antwortete mit gequantelten Energieniveaus, bei denen **jeder Sprung nach unten ein Photon fester Wellenlänge aussendet** und die scharfen Spektrallinien des Wasserstoffs erzeugt.
 
-<BohrEmissionLab
-  title={<>Bohrs feste Bahnen</>}
-  description={<>Wähle einen Sprung hinab zur zweiten Stufe und lies die Farbe ab, die er abgibt.</>}
-  falls={[{ from: 3, to: 2 }, { from: 4, to: 2 }, { from: 5, to: 2 }]}
+<MathVisual
+  title={<>Balmer-Sprünge des Wasserstoffs und Photonenenergie</>}
+  description={<>Freigesetzte Energie beim Sprung auf <InlineMath math="n = 2" /> von <InlineMath math="n = 3" />, <InlineMath math="4" /> und <InlineMath math="5" />. Ein Schritt nach oben sind <InlineMath math="0{,}5\ \mathrm{eV}" />.</>}
+  footer={<>Größere Sprünge liefern energiereichere Photonen und verschieben das Licht von Rot nach Violett.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "j32", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.89, z: 0 }, size: { length: 1.4, height: 3.78, width: 1.4 } },
+      { id: "j42", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2.55, z: 0 }, size: { length: 1.4, height: 5.10, width: 1.4 } },
+      { id: "j52", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.86, z: 0 }, size: { length: 1.4, height: 5.72, width: 1.4 } },
+    ],
+    labels: [
+      { key: "j32", objectId: "j32", at: { x: 0, y: 4.1, z: 0 }, placement: "above" },
+      { key: "j42", objectId: "j42", at: { x: 2.5, y: 5.4, z: 0 }, placement: "above" },
+      { key: "j52", objectId: "j52", at: { x: 5, y: 6.1, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Elektronensprung wählen",
-    energy: <>Photonenenergie</>,
-    frequency: <>Photonenfrequenz</>,
-    transition: <>Elektronensprung</>,
-    view: "Bohrsches Wasserstoffatom",
-    wavelength: <>Wellenlänge</>,
+    j32: <>3 auf 2: 656 nm (rot)</>,
+    j42: <>4 auf 2: 486 nm (blau)</>,
+    j52: <>5 auf 2: 434 nm (violett)</>,
   }}
 />
+
+Diese diskreten Spektralschritte zeigten, dass Elektronen keine beliebigen Radien um den Kern einnehmen können, und bereiteten die Quantenmechanik vor.
 
 ### Von Bahnen zu Wahrscheinlichkeitswolken
 
-Nach der Entdeckung des Kerns wurde das Atommodell weiter verbessert. Das Quantenmodell zeichnet keine Elektronenbahn mehr. **Das Elektron erscheint als Wahrscheinlichkeitswolke** um den Kern. Wähl ein Orbital und dreh seine Wolke. Dichte Bereiche zeigen, wo das Elektron am häufigsten ist.
+Nach der Entdeckung des Kerns wurde das Atommodell weiter verbessert. Das Quantenmodell zeichnet keine Elektronenbahn mehr. **Das Elektron erscheint als Wahrscheinlichkeitswolke**, deren wahrscheinlichster Abstand vom Kern mit der Hauptquantenzahl <InlineMath math="n" /> rasch anwächst.
 
-<OrbitalCloudLab
-  title={<>Das Atom im Quantenmodell</>}
-  description={<>Wähl ein Orbital und dreh seine Wolke, um zu sehen, wo das Elektron am wahrscheinlichsten ist.</>}
-  orbitals={["1s", "2pz", "3dxy"]}
+<MathVisual
+  title={<>Wahrscheinlichster Radius von s-Orbitalen</>}
+  description={<>Abstand des radialen Wahrscheinlichkeitsmaximums für <InlineMath math="1s" />, <InlineMath math="2s" /> und <InlineMath math="3s" /> in Bohrradien <InlineMath math="a_0" />. Ein Schritt nach oben sind <InlineMath math="2\,a_0" />.</>}
+  footer={<>Höhere Quantenniveaus breiten die Elektronenwolke deutlich weiter vom Kern weg aus.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "s1", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.25, z: 0 }, size: { length: 1.4, height: 0.5, width: 1.4 } },
+      { id: "s2", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.31, z: 0 }, size: { length: 1.4, height: 2.62, width: 1.4 } },
+      { id: "s3", kind: "cuboid", appearance: "primary", center: { x: 5, y: 3.27, z: 0 }, size: { length: 1.4, height: 6.54, width: 1.4 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "s1", at: { x: 0, y: 0.9, z: 0 }, placement: "above" },
+      { key: "s2", objectId: "s2", at: { x: 2.5, y: 3.0, z: 0 }, placement: "above" },
+      { key: "s3", objectId: "s3", at: { x: 5, y: 6.9, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    angular: <>Winkelknoten</>,
-    choose: "Orbital wählen",
-    numbers: <>Quantenzahlen</>,
-    orbital: <>Orbital</>,
-    radial: <>Radialknoten</>,
-    view: "Elektronenwolke eines Orbitals",
+    s1: <InlineMath math="1s:\ 1{,}0\,a_0" />,
+    s2: <InlineMath math="2s:\ 5{,}2\,a_0" />,
+    s3: <InlineMath math="3s:\ 13{,}1\,a_0" />,
   }}
 />
+
+Jedes neue Atommodell bewahrte das, was frühere Messungen bereits belegt hatten, und fügte die tiefere Physik hinzu, die von Daltons festen Kugeln bis zu modernen Quantenorbitalen führte.

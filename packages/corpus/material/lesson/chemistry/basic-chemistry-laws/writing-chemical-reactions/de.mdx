@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Chemische Reaktionen schreiben",
   description:
@@ -19,31 +18,44 @@ Das Grundmuster sieht so aus.
 
 Der Pfeil wird als „ergibt“ gelesen. Ein Pluszeichen trennt mehrere Stoffe auf derselben Seite.
 
-## Jede Formel ist ein echtes Molekül
+### Jede Formel ist ein echtes Molekül
 
-Bevor du eine Gleichung schreibst, lern die Formeln kennen. Dreh die Modelle von <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{NO}" /> und <InlineMath math="\mathrm{SO_2}" />. Die kleinen Zahlen in einer Formel zählen die Atome in einem Molekül, deshalb darfst du sie **beim Ausgleichen nie ändern**.
+Bevor du eine Gleichung schreibst, lern die Formeln kennen. Schau dir den Atomaufbau von <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{NO}" /> und <InlineMath math="\mathrm{SO_2}" /> an. Die kleinen Indizes in einer Formel zählen die Atome in einem Molekül, deshalb darfst du sie **beim Ausgleichen nie ändern**.
 
-<MoleculeShapeLab
-  title={<>Formeln und Molekülformen</>}
-  description={<>Zähl die Atome in jedem Modell und vergleiche sie mit der Formel.</>}
-  molecules={[
-    { id: "nitrogen", name: "Stickstoff" },
-    { id: "oxygen", name: "Sauerstoff" },
-    { id: "nitrogen-monoxide", name: "Stickstoffmonoxid" },
-    { id: "sulfur-dioxide", name: "Schwefeldioxid" },
-  ]}
+<MathVisual
+  title={<>Atomzahlen in vier Molekülen</>}
+  description={<>Stickstoff (violett), Sauerstoff (orange) und Schwefel (gelb) gestapelt für je ein Molekül jeder Formel. Ein Gitterschritt ist <InlineMath math="1" /> Atom.</>}
+  footer={<>Indizes legen fest, wie viele Atome jedes Elements ein Molekül bilden.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 6.5, z: 11 }, target: { x: 3, y: 1.5, z: 0 } },
+    objects: [
+      { id: "n2", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o2", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "no-n", kind: "cuboid", appearance: "secondary", center: { x: 4, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "no-o", kind: "cuboid", appearance: "primary", center: { x: 4, y: 1.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "so2-s", kind: "cuboid", appearance: "highlight", center: { x: 6, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "so2-o", kind: "cuboid", appearance: "primary", center: { x: 6, y: 2, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "n2", objectId: "n2", at: { x: 0, y: 2.3, z: 0 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2, y: 2.3, z: 0 }, placement: "above" },
+      { key: "no", objectId: "no-o", at: { x: 4, y: 2.3, z: 0 }, placement: "above" },
+      { key: "so2", objectId: "so2-o", at: { x: 6, y: 3.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Summenformel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel oder -länge</>,
-    view: "Dreidimensionales Molekülmodell",
+    n2: <InlineMath math="\mathrm{N_2}:\ 2\mathrm{N}" />,
+    o2: <InlineMath math="\mathrm{O_2}:\ 2\mathrm{O}" />,
+    no: <InlineMath math="\mathrm{NO}:\ 1\mathrm{N}+1\mathrm{O}" />,
+    so2: <InlineMath math="\mathrm{SO_2}:\ 1\mathrm{S}+2\mathrm{O}" />,
   }}
 />
 
-## Reaktionsgleichung der Methanverbrennung
+Jeder Stapel steht für ein echtes Molekül, dessen Identität genau an diesen Atomzahlen hängt. Sobald eine Formel stimmt, bleiben ihre Indizes unverändert und du passt nur die Koeffizienten an.
+
+### Reaktionsgleichung der Methanverbrennung
 
 Ausgangspunkt ist ein gewöhnlicher Satz: Methan reagiert mit Sauerstoff zu Kohlendioxid und Wasser. Daraus werden zuerst die Stoffnamen und anschließend die **Formeln auf beiden Seiten des Pfeils**.
 
@@ -55,7 +67,7 @@ Ausgangspunkt ist ein gewöhnlicher Satz: Methan reagiert mit Sauerstoff zu Kohl
 
 Die erste Gleichung ist noch nicht ausgeglichen: Links stehen <InlineMath math="2" /> Sauerstoffatome, rechts aber <InlineMath math="3" />. Nach dem Einsetzen der Koeffizienten ist die Anzahl jedes Elements auf beiden Seiten gleich.
 
-Beginne mit Kohlenstoff, der auf jeder Seite bereits ein Atom hat. Links stehen vier Wasserstoffatome. Setze deshalb den Koeffizienten <InlineMath math="2" /> vor <InlineMath math="\mathrm{H_2O}" />, damit rechts ebenfalls <InlineMath math="2\times2=4" /> Wasserstoffatome stehen. Rechts befinden sich nun <InlineMath math="2+2=4" /> Sauerstoffatome. Daher braucht <InlineMath math="\mathrm{O_2}" /> den Koeffizienten <InlineMath math="2" />. Prüfe das Ergebnis:
+Beginne mit Kohlenstoff, der auf jeder Seite bereits ein Atom hat. Links stehen vier Wasserstoffatome. Setze deshalb den Koeffizienten <InlineMath math="2" /> vor <InlineMath math="\mathrm{H_2O}" />, damit rechts ebenfalls <InlineMath math="2\times2=4" /> Wasserstoffatome stehen. Rechts befinden sich nun <InlineMath math="2+2=4" /> Sauerstoffatome. Daher braucht <InlineMath math="\mathrm{O_2}" /> den Koeffizienten <InlineMath math="2" />. Prüfe die ausgeglichenen Zahlen in der Tabelle unten.
 
 | Element | Links | Rechts |
 | :------ | :--- | :---- |
@@ -65,27 +77,36 @@ Beginne mit Kohlenstoff, der auf jeder Seite bereits ein Atom hat. Links stehen 
 
 Die Koeffizienten bilden das Verhältnis <InlineMath math="1:2:1:2" />. Da alle vier Stoffe in diesem Beispiel molekular sind, lässt sich das Verhältnis unmittelbar als Molekülzahl darstellen: <InlineMath math="1" /> Methanmolekül reagiert mit <InlineMath math="2" /> Sauerstoffmolekülen zu <InlineMath math="1" /> Kohlendioxidmolekül und <InlineMath math="2" /> Wassermolekülen. Im Labor geben dieselben Koeffizienten das Stoffmengenverhältnis in Mol an.
 
-<MethaneCombustionEquationLab
-  title={<>Koeffizienten zeigen das Teilchenverhältnis</>}
-  description={
-    <>
-      In der Ausgangsansicht stehen die Reaktanten links und die Produkte rechts
-      in der ausgeglichenen Gleichung.
-    </>
-  }
+<MathVisual
+  title={<>Molekülverhältnis der Methanverbrennung</>}
+  description={<>Eduktmoleküle links (Methan grau, Sauerstoff orange) und Produktmoleküle rechts (Kohlendioxid gelb, Wasser violett). Ein Gitterschritt ist <InlineMath math="1" /> Molekül.</>}
+  footer={<>Koeffizienten legen das Teilchen- und Molverhältnis 1 zu 2 zu 1 zu 2 fest.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9.5, y: 6, z: 11 }, target: { x: 3.25, y: 1, z: 0 } },
+    objects: [
+      { id: "ch4", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "o2", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "co2", kind: "cuboid", appearance: "highlight", center: { x: 4.5, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "h2o", kind: "cuboid", appearance: "secondary", center: { x: 6.5, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "ch4", objectId: "ch4", at: { x: 0, y: 1.3, z: 0 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2, y: 2.3, z: 0 }, placement: "above" },
+      { key: "co2", objectId: "co2", at: { x: 4.5, y: 1.3, z: 0 }, placement: "above" },
+      { key: "h2o", objectId: "h2o", at: { x: 6.5, y: 2.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    moleculeView: "Modell der Methanverbrennungsgleichung",
-    reactants: "Reaktanten",
-    products: "Produkte",
-    equation: (
-      <>
-        Reaktanten: <InlineMath math="\mathrm{CH_4} + 2\mathrm{O_2}" />. Produkte: <InlineMath math="\mathrm{CO_2} + 2\mathrm{H_2O}" />. Die Anzahlen der <InlineMath math="\mathrm{C}" />-, <InlineMath math="\mathrm{H}" />- und <InlineMath math="\mathrm{O}" />-Atome sind auf beiden Seiten gleich.
-      </>
-    ),
+    ch4: <InlineMath math="1\ \mathrm{CH_4}" />,
+    o2: <InlineMath math="2\ \mathrm{O_2}" />,
+    co2: <InlineMath math="1\ \mathrm{CO_2}" />,
+    h2o: <InlineMath math="2\ \mathrm{H_2O}" />,
   }}
 />
 
-Das Molekülmodell gilt nicht unverändert für jeden Stoff. Bei einem ionischen Feststoff oder einem Netzwerkfeststoff beschreibt der Koeffizient eine stöchiometrische Menge oder ein Verhältnis von Formeleinheiten. Für makroskopische Reaktionen geben Koeffizienten immer relative Stoffmengen an.
+Dieses Molekülbild gilt unmittelbar für molekulare Stoffe wie Gase und Wasser. Bei einem ionischen Feststoff oder einem Netzwerkfeststoff beschreibt der Koeffizient ein Verhältnis von Formeleinheiten, und für makroskopische Reaktionen gibt er stets relative Stoffmengen in Mol an.
 
 ## Koeffizienten ändern Formeln nicht
 
@@ -95,11 +116,12 @@ Die Atomzahl ergibt sich aus **Koeffizient mal Index**. Koeffizienten dürfen ve
 
 Der Koeffizient <InlineMath math="2" /> vor <InlineMath math="\mathrm{O_2}" /> bedeutet zwei Sauerstoffmoleküle. Der Index in <InlineMath math="\mathrm{O_2}" /> ist Teil der Sauerstoffformel und darf daher nicht in <InlineMath math="\mathrm{O_4}" /> geändert werden.
 
-Zähl die Atome in <InlineMath math="\mathrm{CH_4}+2\mathrm{O_2}\rightarrow\mathrm{CO_2}+2\mathrm{H_2O}" />, indem du jeden Koeffizienten mit seinen Indizes multiplizierst. In der Szene hat jedes Element eine hintere Säule für die Edukte und eine vordere für die Produkte, ein Gitterschritt für <InlineMath math="2" /> Atome. Dreh sie: Jedes Paar ist gleich hoch, also ist die Gleichung ausgeglichen.
+Zähl die Atome in dieser ausgeglichenen Methangleichung, indem du jeden Koeffizienten mit seinen Indizes multiplizierst. In der Szene unten hat jedes Element eine hintere Säule für die Edukte und eine vordere für die Produkte, wobei ein Gitterschritt <InlineMath math="2" /> Atomen entspricht. Dreh die Ansicht und prüfe, ob jedes Paar gleich hoch ist.
 
 <MathVisual
-  title={<>Atome auf beiden Seiten der Gleichung</>}
+  title={<>Atombilanz der Methanverbrennung</>}
   description={<>Kohlenstoff (grau), Wasserstoff (violett) und Sauerstoff (orange), gezählt in den Edukten (hinten) und Produkten (vorn). Ein Gitterschritt nach oben sind <InlineMath math="2" /> Atome.</>}
+  footer={<>Gleich hohe Edukt- und Produktsäulen bestätigen den Ausgleich für C, H und O.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -125,9 +147,15 @@ Zähl die Atome in <InlineMath math="\mathrm{CH_4}+2\mathrm{O_2}\rightarrow\math
   }}
 />
 
-## Zustandssymbole stehen hinter der Formel
+Wenn du Koeffizienten und Indizes multiplizierst, stehen alle vorderen und hinteren Säulen exakt auf gleicher Höhe. Diese einfache Rechenprobe zeigt dir sofort, ob eine Gleichung wirklich stimmt.
 
-Ist der Aggregatzustand bekannt, steht sein Symbol direkt hinter der jeweiligen Formel. Bei der hohen Temperatur einer Methanflamme liegt das Wasserprodukt als Dampf vor. Die Gleichung kann daher so geschrieben werden:
+## Zustandssymbole und Fällungsbeispiel
+
+Chemische Formeln allein nennen nur die beteiligten Stoffe, verraten aber nicht, was im Reaktionsgefäß sichtbar passiert. Erst **Zustandssymbole hinter den Formeln** vervollständigen die Gleichung, weil sie zeigen, welche Edukte gelöst vorliegen und welches Produkt als Gas oder fester Niederschlag ausfällt.
+
+### Zustandssymbole stehen hinter der Formel
+
+Ist der Aggregatzustand bekannt, steht sein Symbol direkt hinter der jeweiligen Formel. Bei der hohen Temperatur einer Methanflamme liegt das Wasserprodukt als Dampf vor, weshalb die Gleichung wie folgt geschrieben wird.
 
 <BlockMath math="\begin{aligned} &amp;\mathrm{CH_4(g)} + 2\mathrm{O_2(g)} \\ &amp;\rightarrow \mathrm{CO_2(g)} + 2\mathrm{H_2O(g)} \end{aligned}" />
 
@@ -140,7 +168,7 @@ Zustandssymbole verändern die Atomzahl nicht. Sie zeigen, in welchem Zustand ei
 | <InlineMath math="\mathrm{(g)}" /> | Gas | <InlineMath math="\mathrm{CO_2(g)}" /> |
 | <InlineMath math="\mathrm{(aq)}" /> | in Wasser gelöst | <InlineMath math="\mathrm{NaCl(aq)}" /> |
 
-## Beispiel für einen Silberchloridniederschlag
+### Beispiel für einen Silberchloridniederschlag
 
 Auch zwei klare Lösungen können beim Mischen einen Feststoff bilden. So reagiert Silbernitratlösung mit Natriumchloridlösung, wobei ein Niederschlag aus Silberchlorid entsteht.
 
@@ -158,11 +186,20 @@ Mit dem Koeffizientenverhältnis <InlineMath math="1:1:1:1" /> ist diese Gleichu
 
 Eine falsche Stoffformel lässt sich nicht <Highlight>durch das Ausgleichen der Gleichung beheben</Highlight>. Prüfe deshalb jede Formel, bevor du die Koeffizienten anpasst.
 
-Mach den letzten Schritt mit dem Gas im Campingkocher: <InlineMath math="\mathrm{C_3H_8}+5\mathrm{O_2}\rightarrow3\mathrm{CO_2}+4\mathrm{H_2O}" />. Zähl nach dem Ausgleichen jedes Atom auf beiden Seiten. Dreh die Balken: Jedes Paar ist gleich hoch, also stimmen die Koeffizienten.
+> Ändere niemals einen Index, um eine Gleichung passend zu machen. Ein anderer Index beschreibt einen anderen Stoff, während ein Koeffizient nur die Teilchenzahl anpasst.
+
+### Propanverbrennung ausgleichen
+
+Wende diese Schritte auf Propan an, das Gas im Campingkocher. Beginne damit, **zuerst Kohlenstoff und Wasserstoff auszugleichen**, und lege den Sauerstoffkoeffizienten ganz zum Schluss fest.
+
+<BlockMath math="\mathrm{C_3H_8} + 5\mathrm{O_2} \rightarrow 3\mathrm{CO_2} + 4\mathrm{H_2O}" />
+
+Zähl nach dem Ausgleichen jedes Atom auf beiden Seiten. Dreh die Balken unten, um zu sehen, dass jedes Elementpaar exakt gleich hoch ist.
 
 <MathVisual
-  title={<>Atome auf beiden Seiten</>}
+  title={<>Atombilanz der Propanverbrennung</>}
   description={<>Atome von Kohlenstoff (grau), Wasserstoff (violett) und Sauerstoff (orange) in den Edukten (hinten) und den Produkten (vorne). Ein Gitterschritt nach oben entspricht <InlineMath math="2" /> Atomen.</>}
+  footer={<>Gleiche Balken bestätigen 3 Kohlenstoff-, 8 Wasserstoff- und 10 Sauerstoffatome.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -188,28 +225,47 @@ Mach den letzten Schritt mit dem Gas im Campingkocher: <InlineMath math="\mathrm
   }}
 />
 
-## Den Ausgleich Atom für Atom prüfen
+Bei größeren Kohlenwasserstoffen gleicht man zuerst Kohlenstoff und Wasserstoff aus, sodass Sauerstoff am Ende in einem klaren Schritt folgt. Der Blick auf alle drei Balkenpaare bestätigt die Koeffizienten <InlineMath math="1:5:3:4" />.
 
-Der letzte Schritt beim Aufstellen einer Gleichung ist die Kontrolle jedes Elements. Wähl eine Reaktion und schau dir die Atomzahlen an. Für jedes Element müssen die Zahlen links und rechts vom Gleichheitszeichen **übereinstimmen**. Koeffizienten dürfen sich ändern, Formeln nie.
+### Den Ausgleich Atom für Atom prüfen
 
-<ReactionBalanceLab
-  title={<>Ausgeglichene Gleichungen</>}
-  description={<>Wähl eine Reaktion und prüf die Atomzahl jedes Elements auf beiden Seiten.</>}
-  reactions={[
-    { id: "nitrogen-fixation", name: "Bildung von Stickstoffmonoxid", tab: <InlineMath math="\mathrm{NO}" /> },
-    { id: "sulfur-dioxide-oxidation", name: "Oxidation von Schwefeldioxid", tab: <InlineMath math="\mathrm{SO_3}" /> },
-  ]}
-  reading="molecules"
+Der letzte Schritt beim Aufstellen einer Gleichung ist die Kontrolle jedes Elements einzeln. Betrachte dazu zwei Gasreaktionen mit Stickstoff- und Schwefeloxiden.
+
+<BlockMath math="\begin{aligned} &amp;\mathrm{N_2} + \mathrm{O_2} \rightarrow 2\mathrm{NO} \\ &amp;2\mathrm{SO_2} + \mathrm{O_2} \rightarrow 2\mathrm{SO_3} \end{aligned}" />
+
+Für jedes Element müssen die Zahlen links und rechts vom Gleichheitszeichen **übereinstimmen**. Dreh die Szene unten, um Stickstoff, Schwefel und Sauerstoff in beiden ausgeglichenen Gleichungen zu prüfen.
+
+<MathVisual
+  title={<>Atomkontrolle für Stickstoff- und Schwefeloxide</>}
+  description={<>Eduktatome (hinten) und Produktatome (vorn) für die Bildung von <InlineMath math="\mathrm{NO}" /> (zwei Paare links) und <InlineMath math="\mathrm{SO_3}" /> (zwei Paare rechts). Ein Gitterschritt ist <InlineMath math="1" /> Atom.</>}
+  footer={<>Jedes Elementpaar stimmt bei beiden Stickstoff- und Schwefelreaktionen überein.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9.5, y: 9.5, z: 12 }, target: { x: 3.25, y: 3, z: 0 } },
+    objects: [
+      { id: "n-left", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "n-right", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o1-left", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o1-right", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "s-left", kind: "cuboid", appearance: "highlight", center: { x: 4.5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "s-right", kind: "cuboid", appearance: "highlight", center: { x: 4.5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o2-left", kind: "cuboid", appearance: "primary", center: { x: 6.5, y: 3, z: -0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
+      { id: "o2-right", kind: "cuboid", appearance: "primary", center: { x: 6.5, y: 3, z: 0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-right", at: { x: 0, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "o1", objectId: "o1-right", at: { x: 2, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "s", objectId: "s-right", at: { x: 4.5, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "o2", objectId: "o2-right", at: { x: 6.5, y: 6.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome je Element</>,
-    choose: "Reaktion wählen",
-    economy: <>Atomökonomie</>,
-    equation: <>Reaktionsgleichung</>,
-    mass: <>Masse der Edukte und Produkte</>,
-    molecules: <>Anzahl der Moleküle</>,
-    products: <>Produkte</>,
-    progress: "Reaktionsverlauf",
-    reactants: <>Edukte</>,
-    view: "Reaktion auf Teilchenebene",
+    n: <InlineMath math="\mathrm{N}:\ 2=2" />,
+    o1: <InlineMath math="\mathrm{O\ (NO)}:\ 2=2" />,
+    s: <InlineMath math="\mathrm{S}:\ 2=2" />,
+    o2: <InlineMath math="\mathrm{O\ (SO_3)}:\ 6=6" />,
   }}
 />
+
+Besteht jedes Element diese direkte Gegenprobe, ist deine Reaktionsgleichung vollständig und verlässlich. Wenn du die Atome immer zum Schluss prüfst, fallen fehlende Koeffizienten sofort auf, bevor sie Rechenfehler verursachen.

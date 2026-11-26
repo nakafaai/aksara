@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Susunan Elektron",
   description:
@@ -17,9 +16,12 @@ Model Bohr menggunakan aras tenaga yang diskret untuk menerangkan spektrum garis
 
 Perkataan **diskret** bermaksud tidak semua nilai tenaga dibenarkan. Bayangkan sebuah tangga. Kamu boleh berdiri di anak tangga pertama, kedua atau ketiga, tetapi tidak di ruang kosong antara dua anak tangga. Dalam atom, elektron hanya dibenarkan berada pada aras tenaga tertentu.
 
+> Elektron bertindak seperti langkah kaki di atas tangga kerana elektron hanya boleh berada pada aras tertentu dan tidak terapung di antaranya.
+
 <Mermaid
   title={<>Warna Nyalaan Menunjukkan Beza Tenaga antara Keadaan Elektron</>}
   description={<>Kaitkan input tenaga, peralihan elektron dan cahaya yang dipancarkan dengan warna yang diperhatikan dalam ujian nyalaan.</>}
+  footer={<>Setiap anak panah mengaitkan tenaga diserap dengan warna cahaya yang terpancar.</>}
   chart={`flowchart LR
     A["Tenaga masuk"] --> B["Elektron teruja"]
     B --> C["Elektron kembali"]
@@ -29,11 +31,20 @@ Perkataan **diskret** bermaksud tidak semua nilai tenaga dibenarkan. Bayangkan s
 
 **Pengujaan** bermaksud elektron menyerap tenaga dan berpindah ke aras tenaga yang lebih tinggi buat seketika. Apabila elektron itu jatuh semula, tenaga dibebaskan sebagai cahaya. Dalam ujian nyalaan, eksperimen mesti mengikut prosedur keselamatan dan menggunakan alat pelindung kerana ia melibatkan pemanasan bahan kimia.
 
-Warna nyalaan ialah cahaya daripada elektron yang jatuh ke aras yang lebih rendah. Dalam hidrogen, aras tenaganya berada pada <InlineMath math="E_n=-\tfrac{13.6}{n^2}\ \mathrm{eV}" />, jadi jatuhan dari <InlineMath math="n=3" /> ke <InlineMath math="n=2" /> membebaskan <InlineMath math="1.89\ \mathrm{eV}" />, dan <InlineMath math="\lambda=\tfrac{1240}{1.89}\approx656\ \mathrm{nm}" /> ialah cahaya merah. Zum ke bahagian atas, tempat aras-aras itu berhimpit rapat.
+Warna nyalaan ialah cahaya daripada elektron yang jatuh ke aras yang lebih rendah. Dalam hidrogen, tenaga setiap aras dan jatuhan merah dari <InlineMath math="n = 3" /> ke <InlineMath math="n = 2" /> mengikut nilai berikut.
+
+<BlockMath math="\begin{aligned}
+E_n &= -\frac{13.6}{n^2}\ \mathrm{eV} \\
+\Delta E &= 1.89\ \mathrm{eV} \\
+\lambda &= \frac{1240}{1.89} \approx 656\ \mathrm{nm}
+\end{aligned}" />
+
+Panjang gelombang <InlineMath math="656\ \mathrm{nm}" /> itu terletak dalam julat cahaya merah. Zum ke bahagian atas rajah di bawah, tempat aras-aras tinggi berhimpit rapat.
 
 <MathVisual
   title={<>Elektron yang Jatuh Menghasilkan Cahaya Berwarna</>}
-  description={<>Aras tenaga atom hidrogen dan dua jatuhan ke aras <InlineMath math="n=2" />, iaitu merah (anak panah merah jambu) dan biru kehijauan (anak panah teal). Menegak: tenaga dalam elektronvolt.</>}
+  description={<>Aras tenaga atom hidrogen dan dua jatuhan ke aras <InlineMath math="n=2" />, iaitu merah (anak panah merah jambu) dan biru kehijauan (anak panah teal). Paksi menegak menunjukkan tenaga dalam elektronvolt.</>}
+  footer={<>Jatuhan yang lebih panjang membebaskan tenaga lebih tinggi dengan panjang gelombang lebih pendek.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -14.5, max: 0.5 } },
@@ -66,11 +77,13 @@ Warna nyalaan ialah cahaya daripada elektron yang jatuh ke aras yang lebih renda
   }}
 />
 
+Perhatikan bahawa anak panah biru kehijauan lebih panjang daripada anak panah merah. Oleh sebab elektron jatuh merentasi jurang tenaga yang lebih besar, foton yang keluar membawa tenaga lebih tinggi dan mendekati warna biru.
+
 ## Susunan Elektron dalam Model Petala
 
 **Susunan elektron** ialah cara menulis bagaimana elektron diagihkan di sekeliling nukleus atom. Di sini, kita gunakan **model petala ringkas**, iaitu elektron dikumpulkan ke dalam petala <InlineMath math="\mathrm{K}" />, <InlineMath math="\mathrm{L}" />, <InlineMath math="\mathrm{M}" /> dan <InlineMath math="\mathrm{N}" />.
 
-Bagi atom neutral:
+Bagi atom neutral, bilangan elektron menyamai nombor proton.
 
 <BlockMath math="e^- = Z" />
 
@@ -80,22 +93,39 @@ Model petala ringkas ini terhad kepada unsur ringan sehingga kalsium, iaitu <Inl
 
 ## Konfigurasi dalam Bikar
 
-Natrium berkonfigurasi <InlineMath math="2, 8, 1" /> dan magnesium <InlineMath math="2, 8, 2" />: **satu elektron terluar lebih mudah dilepaskan daripada dua**, jadi natrium meluncur di atas air manakala magnesium hampir tidak bertindak balas.
+Natrium berkonfigurasi <InlineMath math="2, 8, 1" /> dan magnesium <InlineMath math="2, 8, 2" />. Oleh sebab **satu elektron terluar lebih mudah dilepaskan daripada dua**, natrium bertindak balas cergas dengan air manakala magnesium bertindak balas jauh lebih perlahan. Bandingkan tenaga pengionan pertama kedua-duanya bersama kalsium di bawah.
 
-<AlkaliWaterLab
-  title={<>Elektron Terluar dan Kelajuan Tindak Balas</>}
-  description={<>Bandingkan natrium, magnesium dan kalsium, kemudian baca tenaga pengionannya.</>}
-  metals={["sodium", "magnesium", "calcium"]}
+<MathVisual
+  title={<>Elektron Terluar dan Tenaga Pengionan</>}
+  description={<>Tenaga pengionan pertama dalam kilojoule per mol bagi natrium, magnesium dan kalsium. Garis lebih rendah bermaksud elektron terluar lebih mudah tanggal.</>}
+  footer={<>Natrium memerlukan tenaga paling rendah untuk melepaskan satu elektron terluarnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -40, max: 860 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0.4, y: 0 }, to: { x: 3.6, y: 0 } },
+      { id: "na-bar", kind: "segment", appearance: "primary", from: { x: 1, y: 0 }, to: { x: 1, y: 496 } },
+      { id: "mg-bar", kind: "segment", appearance: "secondary", from: { x: 2, y: 0 }, to: { x: 2, y: 738 } },
+      { id: "ca-bar", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 590 } },
+      { id: "na-pt", kind: "point", appearance: "primary", at: { x: 1, y: 496 } },
+      { id: "mg-pt", kind: "point", appearance: "secondary", at: { x: 2, y: 738 } },
+      { id: "ca-pt", kind: "point", appearance: "construction", at: { x: 3, y: 590 } },
+    ],
+    labels: [
+      { key: "na", objectId: "na-pt", at: { x: 1, y: 496 }, placement: "above" },
+      { key: "mg", objectId: "mg-pt", at: { x: 2, y: 738 }, placement: "above" },
+      { key: "ca", objectId: "ca-pt", at: { x: 3, y: 590 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih logam",
-    density: <>Ketumpatan</>,
-    equation: <>Persamaan tindak balas</>,
-    ionization: <>Tenaga pengionan pertama</>,
-    melting: <>Takat lebur</>,
-    radius: <>Jejari atom</>,
-    view: "Logam dalam bikar berisi air",
+    na: <InlineMath math="\mathrm{Na}\ (2,8,1):\ 496" />,
+    mg: <InlineMath math="\mathrm{Mg}\ (2,8,2):\ 738" />,
+    ca: <InlineMath math="\mathrm{Ca}\ (2,8,8,2):\ 590" />,
   }}
 />
+
+Natrium mempunyai halangan pengionan paling rendah antara ketiga-tiga logam ini, jadi elektron terluarnya paling cepat dilepaskan. Kalsium lebih rendah daripada magnesium kerana dua elektron terluarnya terletak lebih jauh dalam petala keempat.
 
 ## Model Petala Elektron Interaktif
 
@@ -112,6 +142,7 @@ Pilih satu atom neutral di bawah. Mula-mula, baca nombor protonnya, kemudian lih
       <InlineMath math="\mathrm{N}" />.
     </>
   }
+  footer={<>Petala dalam diisi penuh dahulu sebelum elektron memasuki petala luar seterusnya.</>}
   labels={{
     chooseAtom: "Pilih atom neutral",
     atomicNumber: "Nombor proton",
@@ -155,9 +186,11 @@ Pilih satu atom neutral di bawah. Mula-mula, baca nombor protonnya, kemudian lih
   }}
 />
 
+Cuba pilih natrium, magnesium dan klorin mengikut urutan. Penambahan satu proton dan satu elektron pada setiap langkah membina petala terluar yang sama hingga penuh lapan dan memulakan petala baharu.
+
 ## Membaca Urutan Pengisian
 
-Dalam model petala ringkas bagi unsur-unsur awal **sehingga kalsium**, elektron diisi bermula dari petala yang lebih dekat dengan nukleus. Urutannya ialah:
+Dalam model petala ringkas bagi unsur-unsur awal **sehingga kalsium**, elektron diisi bermula dari petala yang lebih dekat dengan nukleus.
 
 | Petala | Bilangan elektron dalam atom yang ditunjukkan di sini | Cara membacanya |
 | :---- | :------------------------------- | :------------- |
@@ -168,7 +201,7 @@ Dalam model petala ringkas bagi unsur-unsur awal **sehingga kalsium**, elektron 
 
 Model petala ringkas boleh digunakan bagi unsur dari hidrogen hingga kalsium. Susunan <InlineMath math="2, 8, 8, 2" /> ialah susunan elektron kalsium. Setiap unsur sebelumnya mempunyai bilangan elektron yang sama dengan nombor protonnya. Unsur yang lebih berat memerlukan pengisian subpetala kerana petala <InlineMath math="\mathrm{M}" /> boleh memuatkan lebih daripada <InlineMath math="8" /> elektron.
 
-Contoh natrium:
+Urutan pengisian ini dapat dilihat dengan jelas pada natrium.
 
 <BlockMath math="\begin{aligned}
 \mathrm{Na}: Z &= 11 \\
@@ -176,7 +209,7 @@ e^- &= 11 \\
 \text{susunan elektron} &= 2, 8, 1
 \end{aligned}" />
 
-Contoh klorin:
+Langkah yang sama bagi klorin menghasilkan tujuh elektron dalam petala ketiga.
 
 <BlockMath math="\begin{aligned}
 \mathrm{Cl}: Z &= 17 \\
@@ -184,11 +217,12 @@ e^- &= 17 \\
 \text{susunan elektron} &= 2, 8, 7
 \end{aligned}" />
 
-Isi petala mengikut urutan bagi <InlineMath math="20" /> unsur pertama, dari hidrogen dengan <InlineMath math="Z=1" /> hingga kalsium dengan <InlineMath math="Z=20" />. Setiap baris ialah satu petala dan setiap turus ialah satu unsur, jadi setiap turus memuatkan <InlineMath math="Z" /> elektron kesemuanya. Putar paparan ini: petala L menjadi penuh pada neon, dan bermula dengan kalium, elektron seterusnya masuk ke petala N.
+Isi petala mengikut urutan bagi <InlineMath math="20" /> unsur pertama, dari hidrogen dengan <InlineMath math="Z=1" /> hingga kalsium dengan <InlineMath math="Z=20" />. Setiap baris ialah satu petala dan setiap turus ialah satu unsur, jadi setiap turus memuatkan <InlineMath math="Z" /> elektron kesemuanya. Putar paparan ini untuk melihat petala L penuh pada neon dan petala N bermula pada kalium.
 
 <MathVisual
-  title={<>Dua Puluh Atom, Petala demi Petala</>}
+  title={<>Dua Puluh Atom Petala demi Petala</>}
   description={<>Elektron dalam petala K (kelabu), L (ungu), M (jingga) dan N (magenta) bagi nombor proton <InlineMath math="1" /> hingga <InlineMath math="20" />. Satu petak grid ke atas mewakili <InlineMath math="2" /> elektron.</>}
+  footer={<>Setiap baris petala berhenti pada aras penuh sebelum baris berikutnya bermula.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: 0, max: 4.5 }, z: { min: -0.6, max: 4.2 } },
@@ -262,24 +296,51 @@ Isi petala mengikut urutan bagi <InlineMath math="20" /> unsur pertama, dari hid
   }}
 />
 
+Meneliti kesemua dua puluh turus ini menampakkan rentak berulang Jadual Berkala Unsur. Setiap kali satu baris petala mencapai aras penuhnya, baris petala baharu bermula di hadapannya.
+
 ### Ion Mencapai Corak Gas Adi
 
-Selepas pemindahan, <InlineMath math="\mathrm{Na^+}" /> dan <InlineMath math="\mathrm{Cl^-}" /> mempunyai konfigurasi neon dan argon. **Ion berakhir pada corak gas adi yang penuh**, sebab itu konfigurasi ini sangat kerap muncul.
+Selepas satu elektron berpindah daripada natrium kepada klorin, <InlineMath math="\mathrm{Na^+}" /> dan <InlineMath math="\mathrm{Cl^-}" /> mencapai susunan penuh neon dan argon. **Ion berakhir pada corak gas adi yang penuh**, sebab itu pemindahan ini sangat kerap berlaku.
 
-<IonFormationLab
-  title={<>Konfigurasi Sebelum dan Selepas</>}
-  description={<>Pindahkan elektron dan bandingkan petala setiap atom sebelum dan selepas.</>}
-  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+<MathVisual
+  title={<>Konfigurasi Sebelum dan Selepas Pemindahan</>}
+  description={<>Jumlah elektron sebelum dan selepas natrium memindahkan satu elektron kepada klorin. Kedua-dua ion mencapai jumlah elektron gas adi neon dan argon.</>}
+  footer={<>Kehilangan atau penerimaan satu elektron membawa atom ke petala penuh gas adi.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 8.5, max: 19.5 }, y: { min: -1.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 9.5, y: 0 }, to: { x: 18.5, y: 0 } },
+      { id: "na-shift", kind: "segment", appearance: "primary", from: { x: 11, y: 0.8 }, to: { x: 10, y: 0.8 } },
+      { id: "cl-shift", kind: "segment", appearance: "secondary", from: { x: 17, y: 0.8 }, to: { x: 18, y: 0.8 } },
+      { id: "ne-pt", kind: "point", appearance: "answer", at: { x: 10, y: 0 } },
+      { id: "na-pt", kind: "point", appearance: "primary", at: { x: 11, y: 0.8 } },
+      { id: "na-ion", kind: "point", appearance: "answer", at: { x: 10, y: 0.8 } },
+      { id: "cl-pt", kind: "point", appearance: "secondary", at: { x: 17, y: 0.8 } },
+      { id: "cl-ion", kind: "point", appearance: "answer", at: { x: 18, y: 0.8 } },
+      { id: "ar-pt", kind: "point", appearance: "answer", at: { x: 18, y: 0 } },
+    ],
+    labels: [
+      { key: "ne", objectId: "ne-pt", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "na", objectId: "na-pt", at: { x: 11, y: 0.8 }, placement: "above" },
+      { key: "na-ion", objectId: "na-ion", at: { x: 10, y: 0.8 }, placement: "above" },
+      { key: "cl", objectId: "cl-pt", at: { x: 17, y: 0.8 }, placement: "above" },
+      { key: "cl-ion", objectId: "cl-ion", at: { x: 18, y: 0.8 }, placement: "above" },
+      { key: "ar", objectId: "ar-pt", at: { x: 18, y: 0 }, placement: "below" },
+    ],
+  }}
   labels={{
-    choose: "Pilih pasangan atom",
-    metalRadius: <>Jejari logam</>,
-    metalShells: <>Petala logam</>,
-    nonmetalRadius: <>Jejari bukan logam</>,
-    nonmetalShells: <>Petala bukan logam</>,
-    progress: "Pemindahan elektron",
-    view: "Atom logam dan bukan logam menjadi ion",
+    ne: <InlineMath math="\mathrm{Ne}:\ 2,8" />,
+    na: <InlineMath math="\mathrm{Na}:\ 2,8,1" />,
+    "na-ion": <InlineMath math="\mathrm{Na^+}:\ 2,8" />,
+    cl: <InlineMath math="\mathrm{Cl}:\ 2,8,7" />,
+    "cl-ion": <InlineMath math="\mathrm{Cl^-}:\ 2,8,8" />,
+    ar: <InlineMath math="\mathrm{Ar}:\ 2,8,8" />,
   }}
 />
+
+Kedua-dua anjakan itu hanya satu langkah pada garis bilangan elektron. Natrium turun satu langkah ke susunan neon, manakala klorin naik satu langkah ke susunan argon.
 
 ### Bentuk Orbital s p dan d
 
@@ -288,6 +349,7 @@ Susunan pengisian menggunakan nama subpetala seperti <InlineMath math="2s" />, <
 <OrbitalCloudLab
   title={<>Orbital s, p dan d</>}
   description={<>Pilih orbital dan putar awannya untuk melihat cuping dan satah nodnya.</>}
+  footer={<>Huruf subpetala menunjukkan bentuk tiga dimensi awan elektron di sekeliling nukleus.</>}
   orbitals={["2s", "2pz", "3dz2", "3dxy"]}
   labels={{
     angular: <>Nod sudut</>,
@@ -299,17 +361,24 @@ Susunan pengisian menggunakan nama subpetala seperti <InlineMath math="2s" />, <
   }}
 />
 
+Memutar setiap awan menunjukkan sebab unsur lebih berat memerlukan gambaran yang lebih kaya daripada cincin rata Bohr. Elektron menduduki ruang tiga dimensi dengan nod dan cuping tertentu.
+
 ## Mengaitkan Susunan Elektron dengan Spektrum
 
 Susunan elektron dalam model petala menunjukkan kedudukan elektron dalam keadaan asas, iaitu <Highlight>keadaan dengan tenaga paling rendah</Highlight>. Spektrum garis terhasil apabila elektron menerima tenaga, kemudian kembali ke aras tenaga yang lebih rendah.
 
-Tenaga cahaya yang dipancarkan boleh ditulis sebagai:
+Tenaga cahaya yang dipancarkan berhubung secara langsung dengan frekuensi dan panjang gelombangnya.
 
-<BlockMath math="\begin{aligned} E_{\text{foton}} &amp;= E_{\text{tinggi}} - E_{\text{rendah}} \\ &amp;= h\nu \\ &amp;= \frac{hc}{\lambda} \end{aligned}" />
+<BlockMath math="\begin{aligned} E_{\text{foton}} &= E_{\text{tinggi}} - E_{\text{rendah}} \\ &= h\nu \\ &= \frac{hc}{\lambda} \end{aligned}" />
 
-Simbol <InlineMath math="h" /> ialah pemalar Planck, <InlineMath math="\nu" /> ialah frekuensi cahaya, <InlineMath math="c" /> ialah laju cahaya, dan <InlineMath math="\lambda" /> ialah panjang gelombang. [Nilai tepatnya](https://physics.nist.gov/cuu/Constants/Table/allascii.txt) ialah <InlineMath math="h = 6.62607015 \times 10^{-34}\ \mathrm{J\,s}" /> dan <InlineMath math="c = 2.99792458 \times 10^8\ \mathrm{m\,s^{-1}}" />.
+Simbol <InlineMath math="h" /> ialah pemalar Planck, <InlineMath math="\nu" /> ialah frekuensi cahaya, <InlineMath math="c" /> ialah laju cahaya, dan <InlineMath math="\lambda" /> ialah panjang gelombang. [Nilai tepatnya daripada NIST](https://physics.nist.gov/cuu/Constants/Table/allascii.txt) dicatatkan di bawah.
 
-Sebagai contoh, hitung tenaga satu foton yang panjang gelombangnya dalam vakum ialah <InlineMath math="600\ \mathrm{nm}" />. Gunakan pemalar yang telah dibundarkan, iaitu <InlineMath math="h\approx6.626\times10^{-34}\ \mathrm{J\,s}" /> dan <InlineMath math="c\approx3.00\times10^8\ \mathrm{m/s}" />:
+<BlockMath math="\begin{aligned}
+h &= 6.62607015 \times 10^{-34}\ \mathrm{J\,s} \\
+c &= 2.99792458 \times 10^8\ \mathrm{m\,s^{-1}}
+\end{aligned}" />
+
+Sebagai contoh, hitung tenaga satu foton yang panjang gelombangnya dalam vakum ialah <InlineMath math="600\ \mathrm{nm}" /> dengan pemalar <InlineMath math="h" /> dan <InlineMath math="c" /> yang dibundarkan.
 
 <BlockMath math="\begin{aligned}
 \lambda&=600\times10^{-9}\ \mathrm m=6.00\times10^{-7}\ \mathrm m\\
@@ -322,32 +391,46 @@ Elektron berada pada aras tenaga tertentu. Peralihan ke aras tenaga yang lebih r
 
 ## Garis yang Tidak Kelihatan
 
-Bukan semua lompatan elektron menghasilkan cahaya nampak. Lompatan ke petala pertama membebaskan foton ultraungu yang bertenaga tinggi, manakala lompatan ke petala ketiga membebaskan foton inframerah. **Makin besar beza aras tenaga, makin pendek panjang gelombangnya**. Bandingkan tenaga foton setiap lompatan di bahagian bawah kad.
+Bukan semua lompatan elektron menghasilkan cahaya nampak. Lompatan ke petala pertama membebaskan foton ultraungu yang bertenaga tinggi, manakala lompatan ke petala ketiga membebaskan foton inframerah. **Makin besar beza aras tenaga, makin pendek panjang gelombangnya**.
 
-<BohrEmissionLab
-  title={<>Siri Ultraungu dan Inframerah</>}
-  description={<>Pilih satu lompatan dan bandingkan tenaga fotonnya dengan garis nampak.</>}
-  falls={[{ from: 2, to: 1 }, { from: 3, to: 1 }, { from: 4, to: 3 }, { from: 5, to: 3 }]}
+<MathVisual
+  title={<>Lompatan Ultraungu Nampak dan Inframerah</>}
+  description={<>Tenaga foton dalam elektronvolt bagi tiga peralihan hidrogen yang berakhir pada petala <InlineMath math="n=1" />, <InlineMath math="n=2" /> dan <InlineMath math="n=3" />.</>}
+  footer={<>Jatuhan ke petala terdalam membebaskan tenaga jauh lebih besar daripada cahaya nampak.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 11.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7.5, y: 7, z: 11 }, target: { x: 2.5, y: 4, z: 0 } },
+    objects: [
+      { id: "uv-bar", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 10.2 / 2, z: 0 }, size: { length: 1.3, height: 10.2, width: 1.3 } },
+      { id: "vis-bar", kind: "cuboid", appearance: "warning", center: { x: 2.5, y: 1.89 / 2, z: 0 }, size: { length: 1.3, height: 1.89, width: 1.3 } },
+      { id: "ir-bar", kind: "cuboid", appearance: "reference", center: { x: 5, y: 0.66 / 2, z: 0 }, size: { length: 1.3, height: 0.66, width: 1.3 } },
+    ],
+    labels: [
+      { key: "uv", objectId: "uv-bar", at: { x: 0, y: 10.7, z: 0 }, placement: "above" },
+      { key: "vis", objectId: "vis-bar", at: { x: 2.5, y: 2.4, z: 0 }, placement: "above" },
+      { key: "ir", objectId: "ir-bar", at: { x: 5, y: 1.2, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih lompatan elektron",
-    energy: <>Tenaga foton</>,
-    frequency: <>Frekuensi foton</>,
-    transition: <>Lompatan elektron</>,
-    view: "Atom hidrogen model Bohr",
-    wavelength: <>Panjang gelombang</>,
+    uv: <InlineMath math="\mathrm{UV}\ (2\to 1):\ 10.2\ \mathrm{eV}" />,
+    vis: <InlineMath math="\mathrm{Merah}\ (3\to 2):\ 1.89\ \mathrm{eV}" />,
+    ir: <InlineMath math="\mathrm{IR}\ (4\to 3):\ 0.66\ \mathrm{eV}" />,
   }}
 />
 
+Jatuhan ke <InlineMath math="n = 1" /> melebihi lima kali ganda tenaga garis merah nampak, lalu jatuh jauh dalam julat ultraungu. Jatuhan kecil ke <InlineMath math="n = 3" /> membawa tenaga terlalu rendah untuk dilihat mata manusia dan berada dalam julat inframerah.
+
 ## Bilangan Elektron daripada Nombor Proton
 
-Apabila kamu diminta menulis susunan elektron yang ringkas, ikut urutan ini:
+Apabila kamu diminta menulis susunan elektron yang ringkas, ikut urutan ini.
 
 - Pastikan sama ada zarah itu **atom neutral atau ion**.
 - Jika zarah itu neutral, bilangan elektron sama dengan nombor proton.
 - Isi petala dari dalam ke luar mengikut model yang digunakan.
 - Tulis bilangan elektron dalam setiap petala dan pisahkan dengan koma.
 
-Bagi magnesium neutral:
+Berikut ialah penerapan langkah ini bagi magnesium neutral.
 
 <BlockMath math="\begin{aligned}
 Z &= 12 \\

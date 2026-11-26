@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Ions",
   description:
@@ -11,32 +10,53 @@ export const metadata = {
 
 ## When an Atom Is No Longer Neutral
 
-A neutral atom has the same number of protons and electrons. An **ion** forms when an atom or group of atoms has an overall charge. Here, we focus first on ions made from one atom.
+An **ion** forms when an atom or group of atoms carries an overall electric charge. Here, we focus first on single-atom ions whose <Highlight>electron count differs from their proton count</Highlight>.
 
-An ion forms when the number of <Highlight>electrons differs from the number of protons</Highlight>.
+Protons stay inside the nucleus during ordinary chemical reactions. Only electrons leave or join the outer shells. That is why the proton count still defines the element, while the balance between protons and electrons sets the charge.
 
-Protons are in the nucleus and usually do not move during simple chemical processes. The electron count changes when an ion forms. The number of protons determines the element, while the difference between proton and electron counts determines the ion charge.
+> Protons lock in an element's identity while gaining or losing electrons shifts its electric charge.
 
-Each proton contributes <InlineMath math="+1" /> and each electron contributes <InlineMath math="-1" />. The ion charge is therefore the proton count minus the electron count. Equal counts give a neutral atom. Fewer electrons give a positive ion, while more electrons give a negative ion.
+Each proton contributes <InlineMath math="+1" /> and each electron contributes <InlineMath math="-1" />. Matching counts leave an atom electrically neutral. Fewer electrons leave a positive ion, and extra electrons create a negative ion.
 
 ## An Electron Moves from Metal to Nonmetal
 
-An ion forms when an electron moves. Sodium has <InlineMath math="1" /> electron in its outer shell, while chlorine needs <InlineMath math="1" /> more to fill its outer shell with <InlineMath math="8" />. Drag the slider and watch that electron cross over. **Sodium becomes a smaller <InlineMath math="\mathrm{Na^+}" />, and chlorine becomes a larger <InlineMath math="\mathrm{Cl^-}" />**, because the number of electrons changes while the number of protons stays the same.
+An ion forms when an electron moves. Sodium has <InlineMath math="1" /> electron in its outer shell, while chlorine needs <InlineMath math="1" /> more to fill its outer shell with <InlineMath math="8" />. **Sodium shrinks into a smaller <InlineMath math="\mathrm{Na^+}" />, and chlorine expands into a larger <InlineMath math="\mathrm{Cl^-}" />**, because the electron cloud changes while the nuclear pull stays constant.
 
-<IonFormationLab
-  title={<>Atoms Becoming Ions</>}
-  description={<>The glass spheres show the atomic and ionic radii at true scale.</>}
-  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+<MathVisual
+  title={<>Atomic and Ionic Radii Compared</>}
+  description={<>Measured radii in picometers for sodium and chlorine before and after one electron transfers from the metal to the nonmetal.</>}
+  footer={<>Losing an electron shrinks a cation while gaining an electron expands an anion.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -15, max: 225 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0.4, y: 0 }, to: { x: 4.6, y: 0 } },
+      { id: "na-atom", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 186 } },
+      { id: "na-ion", kind: "segment", appearance: "primary", from: { x: 2, y: 0 }, to: { x: 2, y: 102 } },
+      { id: "cl-atom", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 99 } },
+      { id: "cl-ion", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 181 } },
+      { id: "p-na", kind: "point", appearance: "reference", at: { x: 1, y: 186 } },
+      { id: "p-nai", kind: "point", appearance: "primary", at: { x: 2, y: 102 } },
+      { id: "p-cl", kind: "point", appearance: "reference", at: { x: 3, y: 99 } },
+      { id: "p-cli", kind: "point", appearance: "secondary", at: { x: 4, y: 181 } },
+    ],
+    labels: [
+      { key: "na-atom", objectId: "p-na", at: { x: 1, y: 186 }, placement: "above" },
+      { key: "na-ion", objectId: "p-nai", at: { x: 2, y: 102 }, placement: "above" },
+      { key: "cl-atom", objectId: "p-cl", at: { x: 3, y: 99 }, placement: "above" },
+      { key: "cl-ion", objectId: "p-cli", at: { x: 4, y: 181 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Choose a pair of atoms",
-    metalRadius: <>Metal radius</>,
-    metalShells: <>Metal shells</>,
-    nonmetalRadius: <>Nonmetal radius</>,
-    nonmetalShells: <>Nonmetal shells</>,
-    progress: "Electron transfer",
-    view: "Metal and nonmetal atoms becoming ions",
+    "na-atom": <InlineMath math="\mathrm{Na}:\ 186\ \mathrm{pm}" />,
+    "na-ion": <InlineMath math="\mathrm{Na^+}:\ 102\ \mathrm{pm}" />,
+    "cl-atom": <InlineMath math="\mathrm{Cl}:\ 99\ \mathrm{pm}" />,
+    "cl-ion": <InlineMath math="\mathrm{Cl^-}:\ 181\ \mathrm{pm}" />,
   }}
 />
+
+Sodium drops almost half its radius when its third shell empties. Chlorine moves in the opposite direction because the added electron increases repulsion inside its outer shell.
 
 ## Cations and Anions
 
@@ -50,10 +70,11 @@ An [ion](https://goldbook.iupac.org/terms/view/I03158) is an atomic or molecular
   title={<>Ion Formation Simulator</>}
   description={
     <>
-      Follow the left-to-right path: a neutral atom loses or gains electrons,
-      then becomes a cation or anion. Protons and neutrons stay the same.
+      Follow the left-to-right path where a neutral atom loses or gains electrons
+      and becomes a cation or anion while protons and neutrons stay fixed.
     </>
   }
+  footer={<>Switch examples to confirm that only electron count changes during ionization.</>}
   labels={{
     beforeChange: "Before",
     electronChange: "Electron count changes",
@@ -89,11 +110,14 @@ An [ion](https://goldbook.iupac.org/terms/view/I03158) is an atomic or molecular
   }}
 />
 
-The sign of <InlineMath math="q=p^{+}-e^{-}" /> tells you which kind of particle you have. Fewer electrons than protons leave a positive cation on the right, extra electrons give a negative anion on the left, and a neutral atom sits at zero. Zoom in and check each subtraction.
+Look at the proton and neutron rows across every sample in the simulator. Both numbers stay untouched while the electron count tilts the final charge positive or negative.
+
+The sign of <InlineMath math="q" /> tells you which kind of particle you have. Fewer electrons than protons leave a positive cation on the right, extra electrons give a negative anion on the left, and a neutral atom sits at zero. Zoom in and check each subtraction.
 
 <MathVisual
   title={<>Cation or Anion from the Charge</>}
   description={<>Five particles placed by their charge, protons minus electrons. Cations (orange) are on the right, anions (violet) on the left.</>}
+  footer={<>Positive charges sit to the right of zero and negative charges sit to the left.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1, max: 1 } },
@@ -123,55 +147,101 @@ The sign of <InlineMath math="q=p^{+}-e^{-}" /> tells you which kind of particle
   }}
 />
 
+Every species on this line has a charge fixed strictly by its proton minus electron difference. Neutral neon anchors the midpoint at zero.
+
 ### Cations Born in Water
 
-When sodium meets water, each atom gives up its outer electron and **turns into the cation <InlineMath math="\mathrm{Na^+}" />**, while the water around it turns into hydroxide and hydrogen gas.
+When an alkali metal meets water, each atom gives up its single outer electron and **turns into a <InlineMath math="+1" /> cation** such as <InlineMath math="\mathrm{Na^+}" /> or <InlineMath math="\mathrm{K^+}" />. Moving down the group makes that lone electron even easier to remove.
 
-<AlkaliWaterLab
-  title={<>A Metal Becomes Ions</>}
-  description={<>Compare sodium with potassium and read the equation each reaction writes.</>}
-  metals={["sodium", "potassium"]}
+<MathVisual
+  title={<>Alkali Metals Forming Positive Ions</>}
+  description={<>First ionization energy in kilojoules per mole for lithium, sodium, and potassium. Lower stems release their outer electron more readily.</>}
+  footer={<>Potassium loses its outer electron most easily to form a positive ion.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -30, max: 600 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0.4, y: 0 }, to: { x: 3.6, y: 0 } },
+      { id: "li-bar", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 520 } },
+      { id: "na-bar", kind: "segment", appearance: "primary", from: { x: 2, y: 0 }, to: { x: 2, y: 496 } },
+      { id: "k-bar", kind: "segment", appearance: "warning", from: { x: 3, y: 0 }, to: { x: 3, y: 419 } },
+      { id: "li-pt", kind: "point", appearance: "reference", at: { x: 1, y: 520 } },
+      { id: "na-pt", kind: "point", appearance: "primary", at: { x: 2, y: 496 } },
+      { id: "k-pt", kind: "point", appearance: "warning", at: { x: 3, y: 419 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li-pt", at: { x: 1, y: 520 }, placement: "above" },
+      { key: "na", objectId: "na-pt", at: { x: 2, y: 496 }, placement: "above" },
+      { key: "k", objectId: "k-pt", at: { x: 3, y: 419 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Choose a metal",
-    density: <>Density</>,
-    equation: <>Equation</>,
-    ionization: <>First ionization energy</>,
-    melting: <>Melting point</>,
-    radius: <>Atomic radius</>,
-    view: "Metal in a beaker of water",
+    li: <InlineMath math="\mathrm{Li}\to\mathrm{Li^+}:\ 520" />,
+    na: <InlineMath math="\mathrm{Na}\to\mathrm{Na^+}:\ 496" />,
+    k: <InlineMath math="\mathrm{K}\to\mathrm{K^+}:\ 419" />,
   }}
 />
+
+Because potassium holds its outer electron more loosely than sodium or lithium, it converts into <InlineMath math="\mathrm{K^+}" /> cations most rapidly in water.
 
 ### Cations and Anions Pack into a Crystal
 
-Cations and anions attract each other, so they pack tightly into a crystal. In table salt, **every <InlineMath math="\mathrm{Na^+}" /> ion is surrounded by <InlineMath math="6" /> <InlineMath math="\mathrm{Cl^-}" /> ions**, and the other way round. Grow the crystal with the slider. The numbers of cations and anions always stay nearly equal, which is why the formula is written <InlineMath math="\mathrm{NaCl}" />, a <InlineMath math="1 : 1" /> ratio.
+Cations and anions attract each other, so they pack tightly into an alternating crystal lattice. In table salt, **every <InlineMath math="\mathrm{Na^+}" /> ion sits directly beside <InlineMath math="\mathrm{Cl^-}" /> neighbors**, keeping positive and negative charges balanced in a <InlineMath math="1 : 1" /> ratio.
 
-<IonLatticeLab
-  title={<>Sodium Chloride and Magnesium Oxide Lattices</>}
-  description={<>The ions are drawn at their measured radii.</>}
-  crystals={["sodium-chloride", "magnesium-oxide"]}
+<MathVisual
+  title={<>Alternating Ions in a Salt Slice</>}
+  description={<>One flat layer of a sodium chloride crystal showing alternating sodium cations (orange) and chloride anions (violet) on a regular grid.</>}
+  footer={<>Alternating cations and anions keep the entire crystal electrically neutral.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.8 }, y: { min: -0.8, max: 2.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "h0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "h1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 2, y: 1 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 2, y: 2 } },
+      { id: "v0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 2 } },
+      { id: "v1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 2 } },
+      { id: "v2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "p00", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "p10", kind: "point", appearance: "secondary", at: { x: 1, y: 0 } },
+      { id: "p20", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+      { id: "p01", kind: "point", appearance: "secondary", at: { x: 0, y: 1 } },
+      { id: "p11", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+      { id: "p21", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "p02", kind: "point", appearance: "primary", at: { x: 0, y: 2 } },
+      { id: "p12", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "p22", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "center", objectId: "p11", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "right", objectId: "p21", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "top", objectId: "p12", at: { x: 1, y: 2 }, placement: "above" },
+    ],
+  }}
   labels={{
-    cells: "Unit cells per edge",
-    choose: "Choose a crystal",
-    count: <>Number of ions</>,
-    formula: <>Formula</>,
-    ions: <>Ions and their radii</>,
-    lattice: <>Unit cell edge</>,
-    view: "Ionic crystal lattice",
+    center: <InlineMath math="\mathrm{Na^+}" />,
+    right: <InlineMath math="\mathrm{Cl^-}" />,
+    top: <InlineMath math="\mathrm{Cl^-}" />,
   }}
 />
 
+Notice that every nearest neighbor of an orange <InlineMath math="\mathrm{Na^+}" /> ion is a violet <InlineMath math="\mathrm{Cl^-}" /> ion. That strict alternation cancels opposite charges throughout the whole crystal, giving the formula <InlineMath math="\mathrm{NaCl}" />.
+
 ## Ion Charge from the Difference between Proton and Electron Counts
+
+You can find any ion's charge number by subtracting its electron count from its proton count.
 
 <BlockMath math="q = p^+ - e^-" />
 
 The symbol <InlineMath math="q" /> is the ion charge number in **elementary-charge units**, not coulombs, <InlineMath math="p^+" /> is the number of protons, and <InlineMath math="e^-" /> is the number of electrons.
 
-To find the electron count of an ion, rearrange the same formula:
+To find the electron count of an ion, rearrange the same formula.
 
 <BlockMath math="e^- = p^+ - q" />
 
-Sodium example:
+Applying this rearrangement to a sodium cation removes one electron.
 
 <BlockMath math="\begin{aligned}
 {}^{23}_{11}\mathrm{Na}^{+} &: p^+ = 11,\ q = +1 \\
@@ -179,7 +249,7 @@ e^- &= 11 - (+1) \\
 &= 10
 \end{aligned}" />
 
-Fluoride example:
+Doing the same calculation for a fluoride anion adds one electron.
 
 <BlockMath math="\begin{aligned}
 {}^{19}_{9}\mathrm{F}^{-} &: p^+ = 9,\ q = -1 \\
@@ -187,22 +257,23 @@ e^- &= 9 - (-1) \\
 &= 10
 \end{aligned}" />
 
-The negative sign in <InlineMath math="\mathrm{F}^{-}" /> means there are more electrons than protons. That is why <InlineMath math="9 - (-1)" /> becomes <InlineMath math="10" />.
+The negative sign in <InlineMath math="\mathrm{F}^{-}" /> means there are more electrons than protons, so subtracting a negative charge raises the electron count to <InlineMath math="10" />.
 
-Compare a lithium atom with a lithium ion, protons in orange at the back and electrons in violet at the front. Losing one electron leaves <InlineMath math="3" /> protons against <InlineMath math="2" /> electrons, so <InlineMath math="q=3-2=+1" />.
+Compare a lithium atom with a lithium ion below, with protons in orange at the back and electrons in violet at the front. Losing one electron leaves <InlineMath math="3" /> protons against <InlineMath math="2" /> electrons, giving a charge of <InlineMath math="+1" />.
 
 <MathVisual
   title={<>Lithium Atom and Lithium Ion</>}
   description={<>Protons (orange, back) and electrons (violet, front) in <InlineMath math="\mathrm{Li}" /> and <InlineMath math="\mathrm{Li^+}" />. One grid step up is <InlineMath math="2" /> particles.</>}
+  footer={<>Only the violet electron column drops when neutral lithium becomes a cation.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 3 }, z: { min: -1.5, max: 1.5 } },
     view: { kind: "camera", position: { x: 6, y: 5, z: 8 }, target: { x: 1.5, y: 1, z: 0 } },
     objects: [
-      { id: "atom-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (3 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "atom-e", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (3 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "ion-p", kind: "cuboid", appearance: "primary", center: { x: 3, y: (3 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "ion-e", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 2 / 2, width: 1.2 } },
+      { id: "atom-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (3 / 2) / 2, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "atom-e", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (3 / 2) / 2, z: 0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "ion-p", kind: "cuboid", appearance: "primary", center: { x: 3, y: (3 / 2) / 2, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "ion-e", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 2) / 2, z: 0.75 }, size: { length: 1.2, height: 2 / 2, width: 1.2 } },
     ],
     labels: [
       { key: "atom", objectId: "atom-e", at: { x: 0, y: 2, z: 0.75 }, placement: "above" },
@@ -215,25 +286,44 @@ Compare a lithium atom with a lithium ion, protons in orange at the back and ele
   }}
 />
 
+Both orange proton columns stay at identical height. The extra positive charge appears purely because the violet electron bar steps down by one.
+
 ## Ions Inside a Mass Spectrometer
 
-A mass spectrometer first knocks one electron off each atom, because **only a charged particle bends in the magnet**. Every beam you see is a beam of positive ions.
+A mass spectrometer first knocks one electron off each atom, because **only a charged particle bends in a magnetic field**. Neutral atoms fly straight past, whereas positive ions deflect onto curved paths whose radius depends on their mass.
 
-<MassSpectrometerLab
-  title={<>Charged Atoms in a Magnet</>}
-  description={<>Choose chlorine or magnesium and watch the ion beams split by mass.</>}
-  samples={["chlorine", "magnesium"]}
+<MathVisual
+  title={<>How Ions Separate in a Magnetic Field</>}
+  description={<>Schematic paths of a neutral atom (straight gray line) and two chlorine cations curving downward by mass inside a magnetic separator.</>}
+  footer={<>Neutral atoms pass straight through while lighter ions bend more sharply.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "neutral", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.5, y: 0 } },
+      { id: "heavy-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.5, y: -0.6 } },
+      { id: "heavy-b", kind: "segment", appearance: "secondary", from: { x: 2.5, y: -0.6 }, to: { x: 5.2, y: -2.0 } },
+      { id: "light-a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.2, y: -1.1 } },
+      { id: "light-b", kind: "segment", appearance: "primary", from: { x: 2.2, y: -1.1 }, to: { x: 4.5, y: -3.2 } },
+      { id: "p-neu", kind: "point", appearance: "reference", at: { x: 5.5, y: 0 } },
+      { id: "p-heavy", kind: "point", appearance: "secondary", at: { x: 5.2, y: -2.0 } },
+      { id: "p-light", kind: "point", appearance: "primary", at: { x: 4.5, y: -3.2 } },
+    ],
+    labels: [
+      { key: "neu", objectId: "p-neu", at: { x: 5.5, y: 0 }, placement: "above" },
+      { key: "heavy", objectId: "p-heavy", at: { x: 5.2, y: -2.0 }, placement: "right" },
+      { key: "light", objectId: "p-light", at: { x: 4.5, y: -3.2 }, placement: "below" },
+    ],
+  }}
   labels={{
-    average: <>Average relative atomic mass</>,
-    choose: "Choose an element",
-    isotopes: <>Isotopes and abundance</>,
-    north: "N",
-    radius: <>Path radius</>,
-    ratio: <>Ratio of radii</>,
-    south: "S",
-    view: "Mass spectrometer",
+    neu: <InlineMath math="\mathrm{Cl}\ (q=0)" />,
+    heavy: <InlineMath math="^{37}\mathrm{Cl^+}" />,
+    light: <InlineMath math="^{35}\mathrm{Cl^+}" />,
   }}
 />
+
+Without ionizing the sample first, the magnet could never sort the particles. Giving every atom a <InlineMath math="+1" /> charge lets the detector separate heavier ions from lighter ones cleanly.
 
 ## Composition of an Ion
 
@@ -247,9 +337,9 @@ When an atom becomes an ion, its **proton and neutron counts stay the same**. It
 
 So <InlineMath math="\mathrm{Na}" /> and <InlineMath math="\mathrm{Na}^{+}" /> are both sodium because the proton count stays <InlineMath math="11" />. A neutral sodium atom has <InlineMath math="11" /> electrons. After losing one electron, <InlineMath math="\mathrm{Na}^{+}" /> has <InlineMath math="10" />.
 
-## Worked Table for Ion Counts
+## Reading Particle Counts from an Ion Symbol
 
-Use the table below as a completed example. Read each row from left to right: atomic number <InlineMath math="Z" /> gives the proton count, <InlineMath math="A - Z" /> gives the neutron count, and <InlineMath math="q = p^+ - e^-" /> **connects charge with the electron count**.
+Use the table below as a complete reference. Read each row from left to right because atomic number <InlineMath math="Z" /> gives the proton count, <InlineMath math="A - Z" /> gives the neutron count, and the charge formula **connects charge with the electron count**.
 
 | Symbol | Atomic number | Mass number | Charge | Protons | Electrons | Neutrons |
 | :----- | :------------ | :---------- | :----- | :------ | :-------- | :------- |
@@ -260,11 +350,11 @@ Use the table below as a completed example. Read each row from left to right: at
 | <InlineMath math="{}^{27}_{13}\mathrm{Al}" /> | <InlineMath math="13" /> | <InlineMath math="27" /> | <InlineMath math="0" /> | <InlineMath math="13" /> | <InlineMath math="13" /> | <InlineMath math="14" /> |
 | <InlineMath math="{}^{27}_{13}\mathrm{Al}^{3+}" /> | <InlineMath math="13" /> | <InlineMath math="27" /> | <InlineMath math="+3" /> | <InlineMath math="13" /> | <InlineMath math="10" /> | <InlineMath math="14" /> |
 
-Check one row, such as <InlineMath math="{}^{7}_{3}\mathrm{Li}^{+}" />. Its atomic number is <InlineMath math="3" />, so it has <InlineMath math="3" /> protons. Its charge is <InlineMath math="+1" />, so the electron count is:
+Check one row, such as <InlineMath math="{}^{7}_{3}\mathrm{Li}^{+}" />. Its atomic number is <InlineMath math="3" />, so it has <InlineMath math="3" /> protons. With a charge of <InlineMath math="+1" />, its electron count follows directly.
 
 <BlockMath math="e^- = 3 - (+1) = 2" />
 
-Its neutron count comes from the mass number:
+Its neutron count comes from subtracting the atomic number from the mass number.
 
 <BlockMath math="n^0 = 7 - 3 = 4" />
 

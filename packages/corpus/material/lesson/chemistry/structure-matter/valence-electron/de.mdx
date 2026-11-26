@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Valenzelektronen",
   description:
@@ -17,6 +16,8 @@ Die äußerste besetzte Schale ist <InlineMath math="\mathrm{N}" />. Sie enthäl
 
 Valenzelektronen sind die Elektronen in der äußersten besetzten Schale eines Atoms.
 
+> Innere Schalen liegen tief am Kern, sodass fast alle chemischen Reaktionen über die äußersten Valenzelektronen ablaufen.
+
 Wenn Atome Bindungen oder Ionen bilden, teilen, verlieren oder gewinnen sie meist diese äußeren Elektronen. <Highlight>Anzahl und Anordnung der Valenzelektronen</Highlight> beeinflussen daher die Reaktionen eines Elements.
 
 ## Valenzelektronenmodell
@@ -31,6 +32,7 @@ Wähle ein neutrales Atom und lies seine Schalenkonfiguration von links nach rec
       Valenzelektronen direkt am Modell ablesen.
     </>
   }
+  footer={<>Wähle ein neutrales Atom und lies am markierten Außenring seine Valenzelektronen ab.</>}
   labels={{
     chooseAtom: "Neutrales Atom auswählen",
     atomicNumber: "Ordnungszahl",
@@ -91,6 +93,8 @@ Wähle ein neutrales Atom und lies seine Schalenkonfiguration von links nach rec
   }}
 />
 
+Vergleicht man Magnesium (<InlineMath math="2, 8, 2" />) und Calcium (<InlineMath math="2, 8, 8, 2" />) im Modell, wird klar, warum Elemente derselben Gruppe trotz verschiedener Gesamtelektronenzahl ähnlich reagieren.
+
 ## Valenzelektronen aus der äußersten Schale bestimmen
 
 Mit den folgenden Schritten lässt sich die Elektronenzahl in der **äußersten besetzten Schale** bestimmen.
@@ -115,6 +119,7 @@ Hier ist Chlor, <InlineMath math="2, 8, 7" />. Seine äußerste besetzte Schale 
 <MathVisual
   title={<>Die sieben Valenzelektronen von Chlor</>}
   description={<>Die <InlineMath math="17" /> Elektronen von Chlor in den Schalen K, L und M, die Valenzelektronen in Fuchsia.</>}
+  footer={<>Zehn innere Elektronen bleiben fest gebunden, während die sieben M-Elektronen reagieren.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -155,23 +160,39 @@ Hier ist Chlor, <InlineMath math="2, 8, 7" />. Seine äußerste besetzte Schale 
   }}
 />
 
+Da Chlor in der Schale <InlineMath math="\mathrm{M}" /> nur ein Elektron bis zum Oktett fehlt, nimmt es leicht ein einzelnes Elektron auf oder teilt es, statt sieben abzugeben.
+
 ## Die äußere Schale als Wolke
 
-Valenzelektronen besetzen Orbitale in der äußersten Schale. Beim Kohlenstoff liegen sie in den Orbitalen <InlineMath math="2s" /> und <InlineMath math="2p" />. Beim Natrium liegt das eine Valenzelektron im Orbital <InlineMath math="3s" />. Vergleiche die Größe der Wolken. **Valenzelektronen sind am weitesten vom Kern entfernt**, deshalb werden gerade sie in Reaktionen am leichtesten genutzt.
+Valenzelektronen besetzen die äußersten besetzten Orbitale. Bei Kohlenstoff und Sauerstoff liegen sie in der Schale <InlineMath math="n = 2" />, während Natriums einziges Valenzelektron weit außen im <InlineMath math="3s" />-Orbital sitzt. **Valenzelektronen sind am weitesten vom Kern entfernt**, sodass sie bei Reaktionen als Erste auf Nachbaratome treffen.
 
-<OrbitalCloudLab
-  title={<>Orbitale der Valenzelektronen</>}
-  description={<>Vergleich, wie weit jede Wolke vom Kern reicht.</>}
-  orbitals={["2s", "2pz", "3s"]}
+<MathVisual
+  title={<>Reichweite der äußeren Valenzschalen</>}
+  description={<>Atomradien von Sauerstoff (<InlineMath math="73\ \mathrm{pm}" />), Kohlenstoff (<InlineMath math="77\ \mathrm{pm}" />) und Natrium (<InlineMath math="186\ \mathrm{pm}" />). Ein Schritt nach oben sind <InlineMath math="50\ \mathrm{pm}" />.</>}
+  footer={<>Natriums 3s-Valenzelektron reicht mehr als doppelt so weit hinaus wie Kohlenstoffs 2p-Schale.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "o", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.73, z: 0 }, size: { length: 1.3, height: 1.46, width: 1.3 } },
+      { id: "c", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 0.77, z: 0 }, size: { length: 1.3, height: 1.54, width: 1.3 } },
+      { id: "na", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.86, z: 0 }, size: { length: 1.3, height: 3.72, width: 1.3 } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 1.8, z: 0 }, placement: "above" },
+      { key: "c", objectId: "c", at: { x: 2.5, y: 1.9, z: 0 }, placement: "above" },
+      { key: "na", objectId: "na", at: { x: 5, y: 4.1, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    angular: <>Winkelknoten</>,
-    choose: "Orbital wählen",
-    numbers: <>Quantenzahlen</>,
-    orbital: <>Orbital</>,
-    radial: <>Radialknoten</>,
-    view: "Elektronenwolke eines Orbitals",
+    o: <InlineMath math="\mathrm{O}\ (2p):\ 73\ \mathrm{pm}" />,
+    c: <InlineMath math="\mathrm{C}\ (2p):\ 77\ \mathrm{pm}" />,
+    na: <InlineMath math="\mathrm{Na}\ (3s):\ 186\ \mathrm{pm}" />,
   }}
 />
+
+Diese große Reichweite erklärt, warum Natrium sein Außenelektron leicht verliert, während kleine Nichtmetalle der Periode <InlineMath math="2" /> Elektronen stark festhalten und teilen.
 
 ## Muster in derselben Gruppe
 
@@ -195,22 +216,38 @@ Wasserstoff ist eine Einschränkung dieser Gruppierungsregel: Er besitzt ebenfal
 
 ## Gleiche Valenz und gleiche Reaktion
 
-Jedes Metall hier hat <InlineMath math="1" /> Valenzelektron, also **reagieren alle auf dieselbe Weise mit Wasser**, zu Wasserstoff und einem Hydroxid. Nur das Tempo ändert sich nach unten.
+Jedes Alkalimetall trägt <InlineMath math="1" /> Valenzelektron, also **reagieren Lithium, Natrium und Kalium nach demselben Reaktionsmuster mit Wasser** zu <InlineMath math="\mathrm{MOH}" /> und <InlineMath math="\mathrm{H_2}" />. Nur das Tempo steigt nach unten, weil die äußerste Schale weiter vom Kern abrückt.
 
-<AlkaliWaterLab
-  title={<>Ein Valenzelektron im Wasser</>}
-  description={<>Wirf jedes Metall hinein und vergleiche die Gleichungen, die sie schreiben.</>}
-  metals={["lithium", "sodium", "potassium"]}
+<MathVisual
+  title={<>Ein Valenzelektron bei wachsender Schalenzahl</>}
+  description={<>Besetzte Schalen (hinten) gegenüber der konstanten Valenzelektronenzahl (vorne) für <InlineMath math="\mathrm{Li}" />, <InlineMath math="\mathrm{Na}" /> und <InlineMath math="\mathrm{K}" />. Ein Schritt nach oben ist <InlineMath math="1" /> Schale oder Elektron.</>}
+  footer={<>Die konstante Valenz hält die Reaktionsformel gleich, während neue Schalen das Tempo steigern.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "li-s", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1.0, z: -0.7 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "li-v", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1, width: 1.1 } },
+      { id: "na-s", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 1.5, z: -0.7 }, size: { length: 1.1, height: 3, width: 1.1 } },
+      { id: "na-v", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1, width: 1.1 } },
+      { id: "k-s", kind: "cuboid", appearance: "reference", center: { x: 5, y: 2.0, z: -0.7 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "k-v", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1, width: 1.1 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li-s", at: { x: 0, y: 2.35, z: -0.7 }, placement: "above" },
+      { key: "na", objectId: "na-s", at: { x: 2.5, y: 3.35, z: -0.7 }, placement: "above" },
+      { key: "k", objectId: "k-s", at: { x: 5, y: 4.35, z: -0.7 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Metall wählen",
-    density: <>Dichte</>,
-    equation: <>Reaktionsgleichung</>,
-    ionization: <>Erste Ionisierungsenergie</>,
-    melting: <>Schmelzpunkt</>,
-    radius: <>Atomradius</>,
-    view: "Metall in einem Becherglas mit Wasser",
+    li: <>Li: 2 Schalen, 1 Val</>,
+    na: <>Na: 3 Schalen, 1 Val</>,
+    k: <>K: 4 Schalen, 1 Val</>,
   }}
 />
+
+Die Trennung zwischen konstanter vorderer Reihe (Valenzelektronen) und wachsender hinterer Reihe (Schalen) erklärt Familienähnlichkeit und Reaktivitätstrend in Gruppe <InlineMath math="1" /> zugleich.
 
 ## Verbindung zu chemischen Eigenschaften
 
@@ -234,46 +271,77 @@ Bei Übergangselementen können Elektronen aus der äußersten <InlineMath math=
 
 ### Valenzelektronen bestimmen die Ladung
 
-Natrium hat <InlineMath math="1" /> Valenzelektron und Magnesium <InlineMath math="2" />, also **geben sie genau so viele ab**: Natrium wird zu <InlineMath math="\mathrm{Na^+}" />, Magnesium zu <InlineMath math="\mathrm{Mg^{2+}}" />.
+Natrium hat <InlineMath math="1" /> Valenzelektron und Magnesium <InlineMath math="2" />, also **geben sie genau so viele ab** und bilden <InlineMath math="\mathrm{Na^+}" /> sowie <InlineMath math="\mathrm{Mg^{2+}}" />, während Chlor <InlineMath math="1" /> Elektron aufnimmt (<InlineMath math="\mathrm{Cl^-}" />) und Sauerstoff <InlineMath math="2" /> (<InlineMath math="\mathrm{O^{2-}}" />).
 
-<IonFormationLab
-  title={<>Von Valenzelektronen zu Ionen</>}
-  description={<>Schieb die Elektronen bei jedem Paar hinüber und zähle, wie viele das Metall verlassen.</>}
-  pairs={["sodium-chlorine", "magnesium-oxygen"]}
+<MathVisual
+  title={<>Ionenladungen aus Valenzelektronen ableiten</>}
+  description={<>Typische Ionenladungen von <InlineMath math="\mathrm{Na}" />, <InlineMath math="\mathrm{Mg}" />, <InlineMath math="\mathrm{Cl}" /> und <InlineMath math="\mathrm{O}" />. Positive Balken zeigen abgegebene, negative Balken aufgenommene Elektronen.</>}
+  footer={<>Metalle geben Valenzelektronen zu Kationen ab, Nichtmetalle füllen damit zum Oktett auf.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: -2.8, max: 2.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 6, z: 12 }, target: { x: 3.75, y: 0, z: 0 } },
+    objects: [
+      { id: "na", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.3, height: 1, width: 1.3 } },
+      { id: "mg", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 1.0, z: 0 }, size: { length: 1.3, height: 2, width: 1.3 } },
+      { id: "cl", kind: "cuboid", appearance: "secondary", center: { x: 5, y: -0.5, z: 0 }, size: { length: 1.3, height: 1, width: 1.3 } },
+      { id: "o", kind: "cuboid", appearance: "secondary", center: { x: 7.5, y: -1.0, z: 0 }, size: { length: 1.3, height: 2, width: 1.3 } },
+    ],
+    labels: [
+      { key: "na", objectId: "na", at: { x: 0, y: 1.35, z: 0 }, placement: "above" },
+      { key: "mg", objectId: "mg", at: { x: 2.5, y: 2.35, z: 0 }, placement: "above" },
+      { key: "cl", objectId: "cl", at: { x: 5, y: -1.35, z: 0 }, placement: "below" },
+      { key: "o", objectId: "o", at: { x: 7.5, y: -2.35, z: 0 }, placement: "below" },
+    ],
+  }}
   labels={{
-    choose: "Atompaar wählen",
-    metalRadius: <>Radius des Metalls</>,
-    metalShells: <>Schalen des Metalls</>,
-    nonmetalRadius: <>Radius des Nichtmetalls</>,
-    nonmetalShells: <>Schalen des Nichtmetalls</>,
-    progress: "Elektronenübergang",
-    view: "Metall- und Nichtmetallatom werden zu Ionen",
+    na: <InlineMath math="\mathrm{Na^+}:\ +1" />,
+    mg: <InlineMath math="\mathrm{Mg^{2+}}:\ +2" />,
+    cl: <InlineMath math="\mathrm{Cl^-}:\ -1" />,
+    o: <InlineMath math="\mathrm{O^{2-}}:\ -2" />,
   }}
 />
+
+Wer zählt, wie weit ein Atom von einer vollen Außenschale entfernt ist, sagt Hauptgruppen-Ionenladungen direkt voraus, statt eine eigene Liste auswendig zu lernen.
 
 ### Bindungen folgen den Valenzelektronen
 
-Valenzelektronen bestimmen, wie viele Bindungen ein Atom eingeht. Kohlenstoff hat <InlineMath math="4" /> Valenzelektronen und bildet <InlineMath math="4" /> Bindungen im <InlineMath math="\mathrm{CH_4}" />. Stickstoff bildet <InlineMath math="3" /> Bindungen im <InlineMath math="\mathrm{NH_3}" />, Sauerstoff <InlineMath math="2" /> im <InlineMath math="\mathrm{H_2O}" /> und Chlor <InlineMath math="1" /> im <InlineMath math="\mathrm{HCl}" />. **Jedes Atom teilt Elektronen, bis seine äußere Schale voll ist**.
+Valenzelektronen bestimmen, wie viele kovalente Bindungen ein Nichtmetallatom typischerweise knüpft. Kohlenstoff hat <InlineMath math="4" /> Valenzelektronen und bildet <InlineMath math="4" /> Bindungen im <InlineMath math="\mathrm{CH_4}" />. Stickstoff bildet <InlineMath math="3" /> Bindungen im <InlineMath math="\mathrm{NH_3}" />, Sauerstoff <InlineMath math="2" /> im <InlineMath math="\mathrm{H_2O}" /> und Chlor <InlineMath math="1" /> im <InlineMath math="\mathrm{HCl}" />. **Jedes Atom teilt Elektronen, bis seine äußere Schale acht erreicht**.
 
-<MoleculeShapeLab
-  title={<>Vier Zentralatome und ihre Bindungen</>}
-  description={<>Zähl die Bindungen von Kohlenstoff, Stickstoff, Sauerstoff und Chlor.</>}
-  molecules={[
-    { id: "methane", name: "Methan" },
-    { id: "ammonia", name: "Ammoniak" },
-    { id: "water", name: "Wasser" },
-    { id: "hydrogen-chloride", name: "Chlorwasserstoff" },
-  ]}
+<MathVisual
+  title={<>Kovalente Bindungen auf dem Weg zum Oktett</>}
+  description={<>Anzahl gemeinsamer Einfachbindungen (vorne) neben ursprünglichen Valenzelektronen (hinten) für <InlineMath math="\mathrm{C}" />, <InlineMath math="\mathrm{N}" />, <InlineMath math="\mathrm{O}" /> und <InlineMath math="\mathrm{Cl}" />. Ein Schritt nach oben ist <InlineMath math="2" />.</>}
+  footer={<>Ursprüngliche Valenzelektronen plus Einfachbindungen ergeben bei allen vier Atomen acht.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 4.8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "c-v", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1.0, z: -0.7 }, size: { length: 1.1, height: 2.0, width: 1.1 } },
+      { id: "c-b", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.0, z: 0.7 }, size: { length: 1.1, height: 2.0, width: 1.1 } },
+      { id: "n-v", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 1.25, z: -0.7 }, size: { length: 1.1, height: 2.5, width: 1.1 } },
+      { id: "n-b", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 0.75, z: 0.7 }, size: { length: 1.1, height: 1.5, width: 1.1 } },
+      { id: "o-v", kind: "cuboid", appearance: "reference", center: { x: 5, y: 1.5, z: -0.7 }, size: { length: 1.1, height: 3.0, width: 1.1 } },
+      { id: "o-b", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: 0.7 }, size: { length: 1.1, height: 1.0, width: 1.1 } },
+      { id: "cl-v", kind: "cuboid", appearance: "reference", center: { x: 7.5, y: 1.75, z: -0.7 }, size: { length: 1.1, height: 3.5, width: 1.1 } },
+      { id: "cl-b", kind: "cuboid", appearance: "primary", center: { x: 7.5, y: 0.25, z: 0.7 }, size: { length: 1.1, height: 0.5, width: 1.1 } },
+    ],
+    labels: [
+      { key: "c", objectId: "c-v", at: { x: 0, y: 2.4, z: 0 }, placement: "above" },
+      { key: "n", objectId: "n-v", at: { x: 2.5, y: 2.9, z: 0 }, placement: "above" },
+      { key: "o", objectId: "o-v", at: { x: 5, y: 3.4, z: 0 }, placement: "above" },
+      { key: "cl", objectId: "cl-v", at: { x: 7.5, y: 3.9, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Summenformel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel oder -länge</>,
-    view: "Dreidimensionales Molekülmodell",
+    c: <>CH4: 4 Val + 4 Bind.</>,
+    n: <>NH3: 5 Val + 3 Bind.</>,
+    o: <>H2O: 6 Val + 2 Bind.</>,
+    cl: <>HCl: 7 Val + 1 Bind.</>,
   }}
 />
+
+Während der hintere Balken von vier auf sieben Valenzelektronen wächst, fällt der vordere Bindungsbalken von vier auf eins, sodass jedes Molekül ein Oktett vollendet.
 
 ## Selbstkontrolle an der äußersten Schale
 
@@ -317,6 +385,7 @@ Schreib die Schalenbesetzung auf, such die äußerste besetzte Schale und zähl 
 <MathVisual
   title={<>Valenzelektronen steigen und beginnen neu</>}
   description={<>Valenzelektronen für die Ordnungszahlen <InlineMath math="1" /> bis <InlineMath math="20" />. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="2" /> Ordnungszahlen. Senkrecht: Anzahl der Valenzelektronen.</>}
+  footer={<>Die Valenzelektronen steigen bis 8 am Edelgas und starten bei 1 in der nächsten Schale neu.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -0.5, max: 9 } },
@@ -359,3 +428,5 @@ Schreib die Schalenbesetzung auf, such die äußerste besetzte Schale und zähl 
     cl: <InlineMath math="\mathrm{Cl}:\ 2,8,7" />,
   }}
 />
+
+Dieses Sägezahnmuster aus Anstieg bis acht und Rücksprung auf eins bildet den Takt aller periodischen Elementfamilien im gesamten Periodensystem.

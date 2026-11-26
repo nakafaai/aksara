@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Hukum Gabungan Isi Padu",
   description:
@@ -15,37 +14,50 @@ Hukum gabungan isi padu menyatakan bahawa gas yang bertindak balas, dan hasil ti
 
 Apabila semua isi padu gas diukur pada suhu dan tekanan yang sama, nisbahnya mengikut pekali dalam persamaan seimbang. Hidrogen dan oksigen bergabung mengikut isi padu dalam nisbah <InlineMath math="2:1" /> untuk membentuk air.
 
+> Isi padu yang sama bagi mana-mana gas pada suhu dan tekanan yang sama mengandungi bilangan molekul yang sama, maka pekali persamaan terus menjadi nisbah isi padu.
+
 Peraturan ini hanya berlaku untuk bahan dalam fasa gas. Isi padu bahan itu juga mesti dibandingkan pada suhu dan tekanan yang sama.
 
 Kita menggunakan **anggaran gas unggul** dan mengira isi padu yang benar-benar bertindak balas atau terbentuk. Sebarang gas berlebihan yang tidak bertindak balas mesti dikira secara berasingan.
 
-## Pekali Mengira Molekul
+### Pekali Mengira Molekul Gas
 
-Nisbah isi padu gas sama dengan nisbah pekali kerana **pekali mengira molekul**. Pilih tindak balas hidrogen klorida, kemudian seret gelangsar. <InlineMath math="1" /> molekul <InlineMath math="\mathrm{H_2}" /> dan <InlineMath math="1" /> molekul <InlineMath math="\mathrm{Cl_2}" /> menghasilkan <InlineMath math="2" /> molekul <InlineMath math="\mathrm{HCl}" />, tepat seperti nisbah isi padu <InlineMath math="1 : 1 : 2" />.
+Nisbah isi padu gas sama dengan nisbah pekali kerana **pekali mengira molekul**. Dalam sintesis hidrogen klorida, <InlineMath math="1" /> molekul <InlineMath math="\mathrm{H_2}" /> dan <InlineMath math="1" /> molekul <InlineMath math="\mathrm{Cl_2}" /> menghasilkan <InlineMath math="2" /> molekul <InlineMath math="\mathrm{HCl}" />, mengekalkan jumlah isi padu gas pada <InlineMath math="2" /> bahagian. Dalam sintesis ammonia pula, <InlineMath math="1" /> bahagian <InlineMath math="\mathrm{N_2}" /> dan <InlineMath math="3" /> bahagian <InlineMath math="\mathrm{H_2}" /> menyusut daripada <InlineMath math="4" /> bahagian kepada <InlineMath math="2" /> bahagian <InlineMath math="\mathrm{NH_3}" />.
 
-<ReactionBalanceLab
-  title={<>Molekul Gas Bergabung</>}
-  description={<>Bandingkan bilangan molekul sebelum dan selepas tindak balas.</>}
-  reactions={[
-    { id: "hydrogen-chloride-synthesis", name: "Pembentukan hidrogen klorida", tab: <InlineMath math="\mathrm{HCl}" /> },
-    { id: "ammonia-synthesis", name: "Pembentukan ammonia", tab: <InlineMath math="\mathrm{NH_3}" /> },
-  ]}
-  reading="molecules"
+<MathVisual
+  title={<>Isi Padu Gas Sebelum dan Selepas Sintesis</>}
+  description={<>Bahagian isi padu bahan tindak balas di sisi hasil untuk <InlineMath math="\mathrm{H_2}+\mathrm{Cl_2}\rightarrow2\mathrm{HCl}" /> (kiri) dan <InlineMath math="\mathrm{N_2}+3\mathrm{H_2}\rightarrow2\mathrm{NH_3}" /> (kanan). Satu langkah grid ke atas ialah <InlineMath math="1" /> bahagian.</>}
+  footer={<>Jumlah isi padu gas kekal sama dalam HCl tetapi turun daripada 4 kepada 2 dalam NH3.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 3.5, y: 2, z: 0 } },
+    objects: [
+      { id: "hcl-h2", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "hcl-cl2", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "hcl-prod", kind: "cuboid", appearance: "construction", center: { x: 2, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "nh3-n2", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "nh3-h2", kind: "cuboid", appearance: "secondary", center: { x: 5, y: 2.5, z: 0 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "nh3-prod", kind: "cuboid", appearance: "construction", center: { x: 7, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "hcl-in", objectId: "hcl-cl2", at: { x: 0, y: 2.3, z: 0 }, placement: "above" },
+      { key: "hcl-out", objectId: "hcl-prod", at: { x: 2, y: 2.3, z: 0 }, placement: "above" },
+      { key: "nh3-in", objectId: "nh3-h2", at: { x: 5, y: 4.3, z: 0 }, placement: "above" },
+      { key: "nh3-out", objectId: "nh3-prod", at: { x: 7, y: 2.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Bilangan atom setiap unsur</>,
-    choose: "Pilih tindak balas",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan tindak balas</>,
-    mass: <>Jisim bahan dan hasil tindak balas</>,
-    molecules: <>Bilangan molekul</>,
-    products: <>Hasil tindak balas</>,
-    progress: "Perjalanan tindak balas",
-    reactants: <>Bahan tindak balas</>,
-    view: "Tindak balas pada aras atom",
+    "hcl-in": <InlineMath math="\mathrm{H_2}+\mathrm{Cl_2}:\ 2" />,
+    "hcl-out": <InlineMath math="2\mathrm{HCl}:\ 2" />,
+    "nh3-in": <InlineMath math="\mathrm{N_2}+3\mathrm{H_2}:\ 4" />,
+    "nh3-out": <InlineMath math="2\mathrm{NH_3}:\ 2" />,
   }}
 />
 
-## Air Mesti dalam Fasa Gas
+Membandingkan kedua-dua pasangan ini memberi pengajaran penting: jisim sentiasa dikekalkan, tetapi jumlah isi padu gas tidak semestinya kekal. Apabila tindak balas mengurangkan bilangan molekul gas, jumlah isi padu gas mengecut dalam nisbah yang sama.
+
+### Air Mesti Kekal dalam Fasa Gas
 
 Lihat persamaan seimbang bagi pembentukan wap air.
 
@@ -62,6 +74,7 @@ Setiap blok di bawah ialah satu bahagian gas pada suhu dan tekanan yang sama. Du
 <MathVisual
   title={<>Wap Air Mengikut Isi Padu</>}
   description={<><InlineMath math="2\mathrm{H_2(g)}+\mathrm{O_2(g)}\rightarrow2\mathrm{H_2O(g)}" /> dilukis sebagai bahagian gas yang sama besar pada suhu dan tekanan yang sama.</>}
+  footer={<>Tiga bahagian gas bahan tindak balas menjadi dua bahagian wap air, sepadan 2:1:2.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -86,6 +99,8 @@ Setiap blok di bawah ialah satu bahagian gas pada suhu dan tekanan yang sama. Du
   }}
 />
 
+Sentiasa semak simbol keadaan <InlineMath math="\mathrm{(g)}" /> sebelum menggunakan gambar blok ini. Sebaik sahaja wap air menyejuk menjadi cecair, molekulnya tersusun rapat sehingga isi padunya merosot lebih seribu kali ganda dan nisbah gas ringkas tidak lagi terpakai.
+
 ## Membandingkan Isi Padu Gas dengan Tiub
 
 Pilih satu tindak balas di bawah. Setiap tiub mewakili **satu bahagian isi padu gas** pada suhu dan tekanan yang sama.
@@ -97,6 +112,7 @@ Pilih satu tindak balas di bawah. Setiap tiub mewakili **satu bahagian isi padu 
       Ketinggian tiub membandingkan isi padu gas pada suhu dan tekanan yang sama, jadi nisbahnya mengikut pekali tindak balas.
     </>
   }
+  footer={<>Tukar tindak balas untuk melihat ketinggian tiub sentiasa mengikut pekali seimbang.</>}
   labels={{
     chooseMode: "Pilih tindak balas gas",
     reactants: "Bahan tindak balas",
@@ -185,9 +201,13 @@ Pilih satu tindak balas di bawah. Setiap tiub mewakili **satu bahagian isi padu 
   }}
 />
 
-Setiap ketinggian tiub mewakili isi padu gas pada suhu dan tekanan yang sama. Oleh itu, bilangan bahagian isi padu yang sama besar sepadan dengan pekali dalam persamaan seimbang.
+Setiap ketinggian tiub mewakili isi padu gas pada suhu dan tekanan yang sama. Oleh sebab isi padu yang sama memegang bilangan molekul yang sama, penskalaan satu isi padu gas yang diukur terus menskalakan setiap gas lain dengan faktor yang sama.
 
-## Contoh Penguraian Ammonia
+## Penguraian Ammonia Mengikut Isi Padu
+
+Penguraian ammonia kepada nitrogen dan hidrogen menunjukkan bagaimana **isi padu gas boleh berganda sambil jisim kekal sama**. Setiap dua isi padu gas ammonia terpecah menjadi tiga isi padu hidrogen dan satu isi padu nitrogen, menukar dua isi padu bahan tindak balas kepada empat isi padu hasil tanpa menambah atau menghilangkan sebarang atom.
+
+### Menskalakan Isi Padu daripada Pekali
 
 Katakan <InlineMath math="600\ \mathrm{mL}" /> gas ammonia terurai sepenuhnya pada suhu dan tekanan yang sama. Persamaan seimbangnya ialah:
 
@@ -206,28 +226,40 @@ V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
 
 Jadi, penguraian <InlineMath math="600\ \mathrm{mL}" /> gas ammonia menghasilkan <InlineMath math="900\ \mathrm{mL}" /> gas hidrogen dan <InlineMath math="300\ \mathrm{mL}" /> gas nitrogen.
 
-## Molekul dalam Contoh Ammonia
+### Mengapa Dua Isi Padu Menjadi Empat
 
-Ammonia terurai menjadi nitrogen dan hidrogen. Putar ketiga-tiga molekul dan kira atomnya. Setiap <InlineMath math="\mathrm{NH_3}" /> membawa <InlineMath math="1" /> atom nitrogen, manakala setiap <InlineMath math="\mathrm{N_2}" /> perlukan <InlineMath math="2" />. Itulah sebabnya <InlineMath math="2" /> isi padu ammonia **hanya menghasilkan** <InlineMath math="1" /> isi padu nitrogen.
+Ammonia terurai menjadi nitrogen dan hidrogen sambil setiap atom kekal lengkap. Setiap <InlineMath math="\mathrm{NH_3}" /> membawa <InlineMath math="1" /> atom nitrogen, manakala setiap <InlineMath math="\mathrm{N_2}" /> perlukan <InlineMath math="2" />. Itulah sebabnya <InlineMath math="2" /> isi padu ammonia **hanya menghasilkan** <InlineMath math="1" /> isi padu nitrogen bersama <InlineMath math="3" /> isi padu hidrogen, menggandakan jumlah isi padu gas daripada <InlineMath math="2" /> kepada <InlineMath math="4" /> bahagian.
 
-<MoleculeShapeLab
-  title={<>Ammonia, Nitrogen dan Hidrogen</>}
-  description={<>Putar setiap model dan kira atom nitrogen dalam setiap molekul.</>}
-  molecules={[
-    { id: "ammonia", name: "Ammonia" },
-    { id: "nitrogen", name: "Nitrogen" },
-    { id: "hydrogen", name: "Hidrogen" },
-  ]}
+<MathVisual
+  title={<>Atom Kekal Sambil Isi Padu Berganda</>}
+  description={<>Bahan tindak balas (belakang) berbanding hasil (depan) bagi <InlineMath math="2\mathrm{NH_3}\rightarrow3\mathrm{H_2}+\mathrm{N_2}" />. Satu langkah grid ke atas ialah <InlineMath math="1" /> atom atau <InlineMath math="1" /> bahagian isi padu.</>}
+  footer={<>Atom N kekal 2 dan H kekal 6, namun jumlah isi padu gas berganda daripada 2 kepada 4.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 8, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "n-in", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "n-out", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "h-in", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: -0.75 }, size: { length: 1.1, height: 6, width: 1.1 } },
+      { id: "h-out", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: 0.75 }, size: { length: 1.1, height: 6, width: 1.1 } },
+      { id: "vol-in", kind: "cuboid", appearance: "warning", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "vol-out", kind: "cuboid", appearance: "construction", center: { x: 5, y: 2, z: 0.75 }, size: { length: 1.1, height: 4, width: 1.1 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-out", at: { x: 0, y: 2.4, z: 0.75 }, placement: "above" },
+      { key: "h", objectId: "h-out", at: { x: 2.5, y: 6.4, z: 0.75 }, placement: "above" },
+      { key: "vol", objectId: "vol-out", at: { x: 5, y: 4.4, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model isi ruang</>,
-    formula: <>Formula molekul</>,
-    mass: <>Jisim molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    n: <InlineMath math="\mathrm{N}:\ 2 = 2" />,
+    h: <InlineMath math="\mathrm{H}:\ 6 = 6" />,
+    vol: <>Isi padu: 2 ke 4</>,
   }}
 />
+
+Melihat ketiga-tiga pasangan bar itu sebelah-menyebelah merungkai kekeliruan yang biasa timbul. Bilangan atom setiap unsur tidak berubah, manakala bar isi padu berganda kerana lapan atom yang sama kini bergerak sebagai empat molekul dwiatom berasingan dan bukan dua molekul ammonia.
 
 ## Syarat Menggunakan Nisbah Isi Padu
 
@@ -243,6 +275,7 @@ Inilah sebabnya setiap isi padu memerlukan suhu dan tekanan yang sama. Isi padu 
 <MathVisual
   title={<>Mol Sama, Isi Padu Berbeza</>}
   description={<>Isi padu gas berbanding bilangan mol pada <InlineMath math="1\ \mathrm{atm}" /> untuk <InlineMath math="0\ ^\circ\mathrm{C}" /> (ungu) dan <InlineMath math="25\ ^\circ\mathrm{C}" /> (jingga). Mengufuk: satu langkah grid ialah <InlineMath math="1\text{ mol}" />. Menegak: satu langkah grid ialah <InlineMath math="10\text{ L}" />.</>}
+  footer={<>Dua mol mengembang daripada 44.8 L pada 0 C ke 49 L pada 25 C apabila suhu naik.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.5 }, y: { min: -0.3, max: 10.3 } },
@@ -263,3 +296,5 @@ Inilah sebabnya setiap isi padu memerlukan suhu dan tekanan yang sama. Isi padu 
     warm: <InlineMath math="25\ ^\circ\mathrm{C}:\ 2\cdot24.5=49\ \mathrm{L}" />,
   }}
 />
+
+Setiap kali suhu atau tekanan berubah antara dua ukuran, kedua-dua garis terpisah dan nisbah isi padu ringkas tidak lagi sah. Pastikan dahulu semua bahan yang dibandingkan berbentuk gas pada keadaan yang sama sebelum membaca isi padunya terus daripada pekali seimbang.

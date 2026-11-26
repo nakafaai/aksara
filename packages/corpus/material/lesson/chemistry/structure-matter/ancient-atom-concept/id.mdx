@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Gagasan Atom pada Zaman Yunani Kuno",
   description:
@@ -15,34 +14,42 @@ Coba bayangkan sepotong kapur, kertas, atau garam. Jika benda itu dipotong menja
 
 Pertanyaan seperti ini sudah dipikirkan para filsuf Yunani jauh sebelum mikroskop, tabung reaksi modern, atau alat ukur partikel ada. Mereka belum membuktikan struktur atom dengan eksperimen seperti ilmuwan sekarang. Mereka sedang mencari cara masuk akal untuk menjawab pertanyaan: materi sebenarnya **tersusun seperti apa**?
 
-Perdebatan pada masa itu memunculkan pertanyaan yang kemudian dijawab teori atom melalui bukti eksperimen.
+> Memecah suatu zat menjadi butiran lebih kecil hanya mengubah ukuran sampel, bukan satuan penyusun terkecil di dasarnya.
 
-## Membelah Air Tetap Menyisakan Atom
+Kimia modern memberi jawaban yang bisa kamu hitung. Listrik dapat menguraikan air menjadi gas hidrogen dan gas oksigen, tetapi **atomnya sendiri tidak terbelah dalam reaksi kimia**. Dua molekul air tersusun ulang menjadi dua molekul hidrogen dan satu molekul oksigen, sehingga tetap ada <InlineMath math="4" /> atom hidrogen dan <InlineMath math="2" /> atom oksigen di kedua sisi.
 
-Democritus bertanya sampai kapan materi bisa dibagi. Kimia modern memberi jawaban yang bisa kamu lihat: air bisa diuraikan menjadi hidrogen dan oksigen, tetapi **atomnya sendiri tidak terbelah dalam reaksi kimia**. Geser slider dan hitung atomnya. Ada <InlineMath math="4" /> atom hidrogen dan <InlineMath math="2" /> atom oksigen sebelum dan sesudah penguraian.
-
-<ReactionBalanceLab
-  title={<>Penguraian Air</>}
-  description={<>Molekul air terpecah, tetapi setiap atomnya tetap utuh.</>}
-  reactions={[
-    { id: "water-electrolysis", name: "Penguraian air", tab: <InlineMath math="\mathrm{H_2O}" /> },
-  ]}
-  reading="molecules"
+<MathVisual
+  title={<>Air Terurai tetapi Atom Tetap Utuh</>}
+  description={<>Jumlah atom sebelum dan sesudah penguraian dua molekul air menjadi hidrogen dan oksigen. Satu kotak grid ke atas berarti <InlineMath math="1" /> atom.</>}
+  footer={<>Molekul air terpecah, namun keempat atom H dan dua atom O tetap utuh.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 3, y: 2, z: 0 } },
+    objects: [
+      { id: "before-h", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2, z: 0 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "before-o", kind: "cuboid", appearance: "secondary", center: { x: 1.5, y: 1, z: 0 }, size: { length: 1.1, height: 2, width: 1.1 } },
+      { id: "after-h", kind: "cuboid", appearance: "primary", center: { x: 4.5, y: 2, z: 0 }, size: { length: 1.1, height: 4, width: 1.1 } },
+      { id: "after-o", kind: "cuboid", appearance: "secondary", center: { x: 6, y: 1, z: 0 }, size: { length: 1.1, height: 2, width: 1.1 } },
+    ],
+    labels: [
+      { key: "before-h", objectId: "before-h", at: { x: 0, y: 4.2, z: 0 }, placement: "above" },
+      { key: "before-o", objectId: "before-o", at: { x: 1.5, y: 2.2, z: 0 }, placement: "above" },
+      { key: "after-h", objectId: "after-h", at: { x: 4.5, y: 4.2, z: 0 }, placement: "above" },
+      { key: "after-o", objectId: "after-o", at: { x: 6, y: 2.2, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Jumlah atom tiap unsur</>,
-    choose: "Pilih reaksi",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan reaksi</>,
-    mass: <>Massa pereaksi dan produk</>,
-    molecules: <>Jumlah molekul</>,
-    products: <>Produk</>,
-    progress: "Jalannya reaksi",
-    reactants: <>Pereaksi</>,
-    view: "Reaksi pada tingkat atom",
+    "before-h": <InlineMath math="\mathrm{H}:\ 4" />,
+    "before-o": <InlineMath math="\mathrm{O}:\ 2" />,
+    "after-h": <InlineMath math="\mathrm{H}:\ 4" />,
+    "after-o": <InlineMath math="\mathrm{O}:\ 2" />,
   }}
 />
 
-## Dua Jawaban yang Saling Berlawanan
+Tinggi batang yang sama di kiri dan kanan menegaskan jawaban yang dicari Demokritos: reaksi kimia menyusun ulang ikatan antaratom, sedangkan setiap atomnya tetap bertahan utuh.
+
+## Materi Kontinu dan Satuan yang Tidak Dapat Dibagi
 
 Perdebatan awal menawarkan dua jawaban yang berlawanan: materi dapat terus dibagi tanpa batas, atau materi tersusun dari bagian terkecil yang tidak dapat dibagi lagi.
 
@@ -55,11 +62,12 @@ Perdebatan awal menawarkan dua jawaban yang berlawanan: materi dapat terus dibag
 
 Demokritos menyebut bagian terkecil itu *atomos*, istilah Yunani yang berarti tidak dapat dipotong.
 
-Uji pertanyaan Demokritus dengan angka. Belah butiran berukuran <InlineMath math="1\ \mathrm{cm}" /> menjadi dua sebanyak <InlineMath math="n" /> kali, maka ukurannya <InlineMath math="2^{-n}\ \mathrm{cm}" />. Hanya sekitar <InlineMath math="27" /> kali pembelahan sudah membawanya ke ukuran atom, sekitar <InlineMath math="10^{-10}\ \mathrm{m}" />. Tiap kotak grid ke bawah berarti sepuluh kali lebih kecil, jadi telusuri garisnya dan hitung belahannya.
+Uji pertanyaan Demokritos dengan angka. Belah butiran berukuran <InlineMath math="1\ \mathrm{cm}" /> menjadi dua sebanyak <InlineMath math="n" /> kali, maka ukurannya <InlineMath math="2^{-n}\ \mathrm{cm}" />. Hanya sekitar <InlineMath math="27" /> kali pembelahan sudah membawanya ke ukuran atom, sekitar <InlineMath math="10^{-10}\ \mathrm{m}" />. Tiap kotak grid ke bawah berarti sepuluh kali lebih kecil, jadi telusuri garisnya dan hitung belahannya.
 
 <MathVisual
   title={<>Dua Puluh Tujuh Kali Dibelah sampai Seukuran Atom</>}
   description={<>Ukuran butiran setelah tiap pembelahan, mulai dari <InlineMath math="1\text{ cm}" />. Mendatar: satu kotak grid berarti <InlineMath math="3" /> kali pembelahan. Tegak: satu kotak grid ke bawah berarti sepuluh kali lebih kecil.</>}
+  footer={<>Setiap pembelahan menurunkan garis hingga belahan ke-27 menyentuh skala atom.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.5, max: 9.5 } },
@@ -93,7 +101,9 @@ Uji pertanyaan Demokritus dengan angka. Belah butiran berukuran <InlineMath math
   }}
 />
 
-## Mencoba Cara Pikir Demokritos
+Pembelahan berulang mengecilkan butiran satu sentimeter ke skala atom jauh lebih cepat dari perkiraan banyak orang, melewati delapan orde besar dalam kurang dari tiga puluh belahan.
+
+### Mencoba Cara Pikir Demokritos
 
 Visual ini menggambarkan **percobaan pikiran** tentang pembagian materi. Bayangkan sebuah benda dipotong berulang kali, lalu bandingkan dua pendapat: Aristoteles menganggap pembagian dapat terus berlanjut, sedangkan Demokritos menganggap ada bagian terkecil. Bentuk atom sebenarnya tidak ditampilkan.
 
@@ -105,6 +115,7 @@ Visual ini menggambarkan **percobaan pikiran** tentang pembagian materi. Bayangk
       pertanyaan sederhana tentang batas pembagian materi.
     </>
   }
+  footer={<>Bandingkan pemotongan kontinu dengan batas atomos menurut Demokritos.</>}
   labels={{
     chooseLevel: "Pilih tahap pemotongan materi",
     aristotleLabel: "Kontinu",
@@ -136,11 +147,14 @@ Visual ini menggambarkan **percobaan pikiran** tentang pembagian materi. Bayangk
   }}
 />
 
-Ikuti percobaan pikiran itu dengan angka. Setiap potongan membagi dua kepingannya, jadi setelah <InlineMath math="n" /> potongan ukurannya <InlineMath math="1/2^n" /> dari semula. Kolom di bawah hanya menunjukkan empat potongan, dan keping terakhir sudah seperenam belas keping pertama. Pertanyaan Demokritus adalah apakah ini bisa berlanjut selamanya atau harus berhenti di satuan yang tidak bisa dipotong.
+Menelusuri tiap tahap potongan memperlihatkan alasan perdebatan ini tetap berada di ranah filsafat: kedua kubu melihat kepingan yang makin kecil dan menebak apa yang ada di luar batas pandangan mata.
+
+Ikuti percobaan pikiran itu dengan angka. Setiap potongan membagi dua kepingannya, jadi setelah <InlineMath math="n" /> potongan ukurannya <InlineMath math="1/2^n" /> dari semula. Kolom di bawah hanya menunjukkan empat potongan, dan keping terakhir sudah seperenam belas keping pertama. Pertanyaan Demokritos adalah apakah ini bisa berlanjut selamanya atau harus berhenti di satuan yang tidak bisa dipotong.
 
 <MathVisual
   title={<>Membagi Dua Keping Berkali-kali</>}
   description={<>Keping setinggi <InlineMath math="8" /> satuan dipotong dua sebanyak empat kali. Setiap kolom separuh dari kolom sebelumnya.</>}
+  footer={<>Empat potongan mengecilkan tinggi dari 8 menjadi 0,5 satuan, seperenam belas semula.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -163,76 +177,126 @@ Ikuti percobaan pikiran itu dengan angka. Setiap potongan membagi dua kepinganny
   }}
 />
 
-## Bentuk dari Partikel Kecil
+Secara matematis, pembagian dua bisa diteruskan tanpa pernah mencapai nol, sehingga pandangan kontinu Aristoteles mudah dibayangkan sampai eksperimen menguji materi nyata.
 
-Demokritos menebak bahwa **bentuk kepingan kecil menentukan bentuk benda yang kita lihat**. Kristal garam adalah cara modern untuk menguji tebakan itu: bentuk kubusnya berasal dari ion yang tersusun dalam pola kubus.
+### Bentuk Benda dari Susunan Partikel Kecil
 
-<IonLatticeLab
-  title={<>Kubus Garam dari Partikel yang Tersusun</>}
-  description={<>Ganti garam dapur dan kalium klorida, lalu besarkan kristalnya sel demi sel.</>}
-  crystals={["sodium-chloride", "potassium-chloride"]}
+Demokritos menebak bahwa **susunan kepingan kecil menentukan bentuk benda yang kita lihat**. Butiran garam dapur adalah bukti modern atas dugaan itu: sisi kubusnya yang rata terbentuk karena ion natrium dan ion klorida tersusun berselang-seling dalam kisi persegi yang teratur.
+
+<MathVisual
+  title={<>Susunan Teratur Membentuk Sisi Kristal Rata</>}
+  description={<>Satu lapisan ion natrium (oranye) dan ion klorida (ungu) yang berselang-seling di dalam kristal garam. Barisan teratur membentuk tepi lurus.</>}
+  footer={<>Barisan partikel yang berulang membentuk sisi lurus pada kristal garam.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "face", kind: "polygon", appearance: "reference", vertices: [{ x: 0.6, y: 0.6 }, { x: 3.4, y: 0.6 }, { x: 3.4, y: 3.4 }, { x: 0.6, y: 3.4 }] },
+      { id: "ion-11", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+      { id: "ion-21", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "ion-31", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "ion-12", kind: "point", appearance: "secondary", at: { x: 1, y: 2 } },
+      { id: "ion-22", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+      { id: "ion-32", kind: "point", appearance: "secondary", at: { x: 3, y: 2 } },
+      { id: "ion-13", kind: "point", appearance: "primary", at: { x: 1, y: 3 } },
+      { id: "ion-23", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+      { id: "ion-33", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "cation", objectId: "ion-13", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "anion", objectId: "ion-23", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "edge", objectId: "face", at: { x: 2, y: 0.6 }, placement: "below" },
+    ],
+  }}
   labels={{
-    cells: "Sel satuan per rusuk",
-    choose: "Pilih kristal",
-    count: <>Jumlah ion</>,
-    formula: <>Rumus</>,
-    ions: <>Ion dan jari-jarinya</>,
-    lattice: <>Rusuk sel satuan</>,
-    view: "Kisi kristal ion",
+    cation: <InlineMath math="\mathrm{Na^+}" />,
+    anion: <InlineMath math="\mathrm{Cl^-}" />,
+    edge: <>Sisi kristal rata</>,
   }}
 />
 
-## Mengapa Gagasan Atom Kuno Belum Menjadi Teori Modern
+Bentuk kubus garam yang bisa kita lihat langsung lahir dari keteraturan susunan partikel mikroskopis di dalamnya.
 
-Demokritos mengusulkan penjelasan filsafat tanpa data hasil pengukuran. Ia berpendapat bahwa <Highlight>materi tersusun dari satuan yang sangat kecil</Highlight>. Kimia modern juga menjelaskan materi melalui partikel, tetapi atom memiliki proton dan elektron, serta umumnya neutron. Hidrogen-1 adalah contoh atom tanpa neutron. Ungkapan “tidak dapat dibagi” hanya berlaku pada model Demokritos pada masa itu.
+## Filsafat tanpa Data Pengukuran
+
+Demokritos mengusulkan penjelasan filsafat tanpa data hasil pengukuran. Ia berpendapat bahwa <Highlight>materi tersusun dari satuan yang sangat kecil</Highlight>. Kimia modern juga menjelaskan materi melalui partikel, tetapi atom memiliki proton dan elektron, serta umumnya neutron. Hidrogen-1 adalah contoh atom tanpa neutron. Ungkapan "tidak dapat dibagi" hanya berlaku pada model Demokritos pada masa itu.
 
 Pada pandangan Aristoteles, pembagian materi tidak berakhir pada satuan terkecil. Perbedaan pendapat ini belum diputuskan oleh pengukuran struktur atom.
 
-## Menimbang Atom Masa Kini
+### Menimbang Atom dengan Alat Masa Kini
 
-Demokritos hanya bisa bernalar, sedangkan sekarang **spektrometer massa mengukur atom berkas demi berkas**. Atom yang lebih berat lebih sedikit berbelok di dalam magnet, jadi lintasannya memilah atom menurut massa.
+Demokritos hanya bisa bernalar, sedangkan sekarang **spektrometer massa memilah atom langsung menurut massanya**. Ketika gas neon masuk ke alat ukur, muncul tiga puncak jelas pada nomor massa <InlineMath math="20" />, <InlineMath math="21" />, dan <InlineMath math="22" />, menggantikan tebakan filsafat dengan data yang bisa dihitung.
 
-<MassSpectrometerLab
-  title={<>Dari Tebakan ke Pengukuran</>}
-  description={<>Pilih neon atau tembaga, lalu bandingkan tempat setiap isotop mendarat di detektor.</>}
-  samples={["neon", "copper"]}
+<MathVisual
+  title={<>Spektrum Massa Neon Hasil Pengukuran</>}
+  description={<>Kelimpahan relatif atom neon menurut nomor massanya. Mendatar: nomor massa. Tegak: satu kotak grid berarti <InlineMath math="10\%" /> kelimpahan.</>}
+  footer={<>Alat modern mengukur tiap puncak massa neon langsung tanpa menebak.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 19, max: 23 }, y: { min: -0.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "baseline", kind: "segment", appearance: "reference", from: { x: 19.3, y: 0 }, to: { x: 22.7, y: 0 } },
+      { id: "peak-20", kind: "segment", appearance: "primary", from: { x: 20, y: 0 }, to: { x: 20, y: 9.05 } },
+      { id: "peak-21", kind: "segment", appearance: "secondary", from: { x: 21, y: 0 }, to: { x: 21, y: 0.03 } },
+      { id: "peak-22", kind: "segment", appearance: "answer", from: { x: 22, y: 0 }, to: { x: 22, y: 0.92 } },
+      { id: "top-20", kind: "point", appearance: "primary", at: { x: 20, y: 9.05 } },
+      { id: "top-21", kind: "point", appearance: "secondary", at: { x: 21, y: 0.03 } },
+      { id: "top-22", kind: "point", appearance: "answer", at: { x: 22, y: 0.92 } },
+    ],
+    labels: [
+      { key: "ne20", objectId: "top-20", at: { x: 20, y: 9.05 }, placement: "right" },
+      { key: "ne21", objectId: "top-21", at: { x: 21, y: 0.03 }, placement: "above" },
+      { key: "ne22", objectId: "top-22", at: { x: 22, y: 0.92 }, placement: "above" },
+    ],
+  }}
   labels={{
-    average: <>Massa atom relatif rata-rata</>,
-    choose: "Pilih unsur",
-    isotopes: <>Isotop dan kelimpahannya</>,
-    north: "U",
-    radius: <>Jari-jari lintasan</>,
-    ratio: <>Perbandingan jari-jari</>,
-    south: "S",
-    view: "Spektrometer massa",
+    ne20: <InlineMath math="{}^{20}\mathrm{Ne}:\ 90{,}5\%" />,
+    ne21: <InlineMath math="{}^{21}\mathrm{Ne}:\ 0{,}3\%" />,
+    ne22: <InlineMath math="{}^{22}\mathrm{Ne}:\ 9{,}2\%" />,
   }}
 />
 
-## Dari Filsafat Menuju Kimia
+Karena detektor menghitung atom nyata pada nilai massa yang tepat, gagasan atom bergeser dari perdebatan filsafat menjadi ilmu berbasis pengukuran.
 
-Konsep atom Yunani mengajukan pertanyaan yang kemudian dapat diuji oleh sains: apakah materi tersusun dari bagian sangat kecil yang belum dapat diamati langsung? Pada masa itu, **belum ada hasil pengukuran** yang mendukung gagasan tersebut.
+### Dari Perdebatan Filsafat ke Data Kimia
+
+Konsep atom Yunani mengajukan pertanyaan yang kemudian dapat diuji oleh sains: apakah materi tersusun dari bagian sangat kecil yang belum dapat diamati langsung? Pada masa itu, **belum ada hasil pengukuran** yang mendukung gagasan ini.
 
 Lebih dari dua ribu tahun kemudian, John Dalton menghubungkan gagasan atom dengan kimia modern. Ia memakai data massa reaksi untuk mempelajari susunan materi dan mengembangkan model atom untuk perhitungan kimia. Teori atom kemudian dapat diuji dengan data hasil pengukuran.
 
-## Atom Bergabung dengan Perbandingan Tetap
+## Perbandingan Bilangan Bulat Tetap dalam Senyawa
 
-Dua ribu tahun setelah Democritus, Dalton memakai gagasan atom untuk menjelaskan data percobaan. Menurut Dalton, **senyawa terbentuk dari atom yang bergabung dengan perbandingan bilangan bulat**. Putar <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{H_2O}" />, dan <InlineMath math="\mathrm{CH_4}" />. Setiap molekul punya jumlah atom yang tetap, dan model ini dibangun dari panjang serta sudut ikatan hasil pengukuran.
+Dua ribu tahun setelah Demokritos, Dalton memakai gagasan atom untuk menjelaskan data percobaan. Menurut Dalton, **senyawa terbentuk dari atom yang bergabung dengan perbandingan bilangan bulat**. Bandingkan karbon dioksida (<InlineMath math="\mathrm{CO_2}" />), air (<InlineMath math="\mathrm{H_2O}" />), dan metana (<InlineMath math="\mathrm{CH_4}" />): setiap senyawa mengunci unsurnya dalam hitungan bilangan bulat kecil yang tetap.
 
-<MoleculeShapeLab
-  title={<>Atom dalam Molekul Nyata</>}
-  description={<>Putar setiap molekul dan hitung atomnya.</>}
-  molecules={[
-    { id: "carbon-dioxide", name: "Karbon dioksida" },
-    { id: "water", name: "Air" },
-    { id: "methane", name: "Metana" },
-  ]}
+<MathVisual
+  title={<>Perbandingan Atom Bilangan Bulat pada Tiga Molekul</>}
+  description={<>Jumlah atom tiap unsur dalam satu molekul <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{H_2O}" />, dan <InlineMath math="\mathrm{CH_4}" />. Satu kotak grid ke atas berarti <InlineMath math="1" /> atom.</>}
+  footer={<>Setiap senyawa menjaga perbandingan bilangan bulat atom yang tetap.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 10 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 6, z: 12 }, target: { x: 4.2, y: 2, z: 0 } },
+    objects: [
+      { id: "co2-c", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 0.9, height: 1, width: 0.9 } },
+      { id: "co2-o", kind: "cuboid", appearance: "secondary", center: { x: 1.1, y: 1, z: 0 }, size: { length: 0.9, height: 2, width: 0.9 } },
+      { id: "h2o-h", kind: "cuboid", appearance: "primary", center: { x: 3.7, y: 1, z: 0 }, size: { length: 0.9, height: 2, width: 0.9 } },
+      { id: "h2o-o", kind: "cuboid", appearance: "secondary", center: { x: 4.8, y: 0.5, z: 0 }, size: { length: 0.9, height: 1, width: 0.9 } },
+      { id: "ch4-c", kind: "cuboid", appearance: "primary", center: { x: 7.4, y: 0.5, z: 0 }, size: { length: 0.9, height: 1, width: 0.9 } },
+      { id: "ch4-h", kind: "cuboid", appearance: "answer", center: { x: 8.5, y: 2, z: 0 }, size: { length: 0.9, height: 4, width: 0.9 } },
+    ],
+    labels: [
+      { key: "co2", objectId: "co2-o", at: { x: 0.55, y: 2.3, z: 0 }, placement: "above" },
+      { key: "h2o", objectId: "h2o-h", at: { x: 4.25, y: 2.3, z: 0 }, placement: "above" },
+      { key: "ch4", objectId: "ch4-h", at: { x: 7.95, y: 4.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang</>,
-    formula: <>Rumus molekul</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    co2: <InlineMath math="\mathrm{CO_2}:\ 1\ \mathrm{C},\ 2\ \mathrm{O}" />,
+    h2o: <InlineMath math="\mathrm{H_2O}:\ 2\ \mathrm{H},\ 1\ \mathrm{O}" />,
+    ch4: <InlineMath math="\mathrm{CH_4}:\ 1\ \mathrm{C},\ 4\ \mathrm{H}" />,
   }}
 />
+
+Perbandingan bilangan bulat yang tetap inilah yang mengubah pertanyaan Yunani kuno tentang pembagian materi menjadi landasan kimia modern yang dapat diuji.

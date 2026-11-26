@@ -1,8 +1,7 @@
-
 export const metadata = {
   title: "Isotope",
   description:
-    "Isotope als Atome desselben Elements mit gleicher Protonenzahl, aber unterschiedlicher Neutronen- und Massenzahl verstehen.",
+    "Isotope als Atome desselben Elements mit gleicher Protonenzahl sowie unterschiedlicher Neutronenzahl und Massenzahl verstehen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-09-12",
@@ -15,17 +14,13 @@ Wasserstoff in der Sonne, Kohlenstoff im Körper und Sauerstoff im Wasser könne
 
 [Isotope](https://goldbook.iupac.org/terms/view/I03331) sind Atome desselben Elements mit gleicher Ordnungszahl, aber unterschiedlichen Massenzahlen.
 
-Das Muster lässt sich knapp notieren:
-
-Isotope haben dasselbe <InlineMath math="Z" />, aber unterschiedliche Neutronenzahlen <InlineMath math="n^0" /> und Massenzahlen <InlineMath math="A" />.
+Kurz gesagt teilen Isotope dasselbe <InlineMath math="Z" />, während sich ihre Neutronenzahlen <InlineMath math="n^0" /> und Massenzahlen <InlineMath math="A" /> unterscheiden.
 
 Das Symbol <InlineMath math="Z" /> bezeichnet die Ordnungszahl und damit die Protonenzahl. <InlineMath math="A" /> ist die Massenzahl, also die Summe aus Protonen und Neutronen. Gleiches <InlineMath math="Z" /> bedeutet dasselbe Element. Eine andere Neutronenzahl <InlineMath math="n^0" /> verändert dagegen die Massenzahl.
 
-Isotope gehören zum selben Element, <Highlight>weil ihre Protonenzahl gleich ist</Highlight>. Unterschiedliche Neutronenzahlen ergeben unterschiedliche Massenzahlen.
+> Isotope bleiben Atome desselben Elements, weil ihre Protonenzahl unverändert bleibt, auch wenn zusätzliche Neutronen den Kern schwerer machen.
 
-## Isotope im interaktiven Vergleich
-
-Wähle unten ein Isotop. Prüfe zuerst die **unveränderte Protonenzahl** und vergleiche danach die Neutronenzahlen.
+Isotope gehören zum selben Element, <Highlight>weil ihre Protonenzahl gleich ist</Highlight>. Wähle unten ein Isotop und beobachte, wie die Protonenzahl gleich bleibt, während sich die Neutronenzahl ändert.
 
 <IsotopeLab
   title={<>Isotopenleser</>}
@@ -36,6 +31,7 @@ Wähle unten ein Isotop. Prüfe zuerst die **unveränderte Protonenzahl** und ve
       sich jedoch die Massenzahl.
     </>
   }
+  footer={<>Wechsle die Isotope und prüfe, dass Protonen fest bleiben, während Neutronen die Masse ändern.</>}
   labels={{
     chooseIsotope: "Isotopenbeispiel auswählen",
     atomicNumber: "Ordnungszahl",
@@ -91,7 +87,13 @@ Wähle unten ein Isotop. Prüfe zuerst die **unveränderte Protonenzahl** und ve
   }}
 />
 
-## Drei Wasserstoffisotope
+Der Vergleich der drei Wasserstoff- und drei Kohlenstoffbeispiele bestätigt eine klare Regel. Eine andere Neutronenzahl ändert die Massenzahl, macht aber niemals ein neues Element daraus.
+
+## Wasserstoffisotope und Kohlenstoffisotope
+
+Wasserstoff und Kohlenstoff zeigen am deutlichsten, wie **zusätzliche Neutronen die Masse erhöhen, ohne das Element zu verändern**. Beide Familien begegnen uns im Alltag und als Referenzwerte im Labor.
+
+### Drei Wasserstoffisotope
 
 Alle Wasserstoffisotope besitzen <InlineMath math="1" /> Proton und gehören deshalb weiterhin zu Wasserstoff. Ihre **Neutronenzahlen unterscheiden sich**.
 
@@ -108,16 +110,17 @@ Die Szene zeigt den Kern jedes Wasserstoffisotops, Protonen orange hinten, Neutr
 <MathVisual
   title={<>Drei Isotope des Wasserstoffs</>}
   description={<>Protonen (orange, hinten) und Neutronen (grau, vorn) in Wasserstoff-1, <InlineMath math="-2" /> und <InlineMath math="-3" />. Ein Gitterschritt nach oben ist <InlineMath math="1" /> Teilchen.</>}
+  footer={<>Alle Wasserstoffisotope behalten ein Proton, während Neutronen bis zwei steigen.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
     view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1, z: 0 } },
     objects: [
-      { id: "one-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "two-p", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "two-n", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: (1) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "three-p", kind: "cuboid", appearance: "primary", center: { x: 5, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "three-n", kind: "cuboid", appearance: "reference", center: { x: 5, y: (2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "one-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "two-p", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "two-n", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 0.5, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "three-p", kind: "cuboid", appearance: "primary", center: { x: 5, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "three-n", kind: "cuboid", appearance: "reference", center: { x: 5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
     ],
     labels: [
       { key: "one", objectId: "one-p", at: { x: 0, y: 1.5, z: -0.75 }, placement: "above" },
@@ -132,25 +135,47 @@ Die Szene zeigt den Kern jedes Wasserstoffisotops, Protonen orange hinten, Neutr
   }}
 />
 
-Protium, Deuterium und Tritium unterscheiden sich nur im Kern. Jedes hat weiter <InlineMath math="1" /> Proton und <InlineMath math="1" /> Elektron, also **teilen alle drei dieselben Elektronenwolken** und reagieren fast gleich.
+Schau zuerst auf die hintere Reihe. Jede orange Säule bleibt genau eine Einheit hoch und zeigt, dass Protium, Deuterium und Tritium dasselbe Element bleiben.
 
-<OrbitalCloudLab
-  title={<>Isotope teilen ihre Orbitale</>}
-  description={<>Wechsle zwischen den Wasserstofforbitalen, die jedes Isotop des Wasserstoffs nutzen kann.</>}
-  orbitals={["1s", "2s", "2pz"]}
+Protium, Deuterium und Tritium unterscheiden sich nur im Kern. Jedes hat weiter <InlineMath math="1" /> Proton und <InlineMath math="1" /> Elektron, also **teilen alle drei dieselbe äußere Elektronenhülle** und reagieren chemisch fast gleich.
+
+<MathVisual
+  title={<>Gleiche Elektronenzahl unterschiedliche Kernmasse</>}
+  description={<>Elektronenzahl (violett, flache Linie bei eins) im Vergleich zur Massenzahl (orange, steigend von eins auf drei) der drei Wasserstoffisotope.</>}
+  footer={<>Gleiche Elektronenzahlen erklären, warum Isotope fast identisch reagieren.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 3.5 }, y: { min: 0, max: 3.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "e-line", kind: "segment", appearance: "secondary", from: { x: 1, y: 1 }, to: { x: 3, y: 1 } },
+      { id: "m-line", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 3, y: 3 } },
+      { id: "e1", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "e2", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "e3", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "m2", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+      { id: "m3", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "h1", objectId: "e1", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "h2", objectId: "m2", at: { x: 2, y: 2 }, placement: "above" },
+      { key: "h3", objectId: "m3", at: { x: 3, y: 3 }, placement: "above" },
+      { key: "elec", objectId: "e3", at: { x: 3, y: 1 }, placement: "below" },
+    ],
+  }}
   labels={{
-    angular: <>Winkelknoten</>,
-    choose: "Orbital wählen",
-    numbers: <>Quantenzahlen</>,
-    orbital: <>Orbital</>,
-    radial: <>Radialknoten</>,
-    view: "Elektronenwolke eines Orbitals",
+    h1: <InlineMath math="^{1}\mathrm{H}:\ A=1" />,
+    h2: <InlineMath math="^{2}\mathrm{H}:\ A=2" />,
+    h3: <InlineMath math="^{3}\mathrm{H}:\ A=3" />,
+    elec: <InlineMath math="e^-=1" />,
   }}
 />
 
-## Kohlenstoffisotope unterscheiden sich in der Neutronenzahl
+Chemische Bindungen hängen von den Außenelektronen ab, deren Zahl bei allen drei Isotopen konstant bei eins liegt. Nur masseabhängige physikalische Größen wie Dichte oder Diffusionsgeschwindigkeit ändern sich spürbar.
 
-Kohlenstoff hat immer <InlineMath math="6" /> Protonen. In <InlineMath math="{}^{12}_{6}\mathrm{C}" />, <InlineMath math="{}^{13}_{6}\mathrm{C}" /> und <InlineMath math="{}^{14}_{6}\mathrm{C}" /> erhöht sich die Neutronenzahl.
+### Kohlenstoffisotope unterscheiden sich in der Neutronenzahl
+
+Kohlenstoff hat immer <InlineMath math="6" /> Protonen. In <InlineMath math="{}^{12}_{6}\mathrm{C}" />, <InlineMath math="{}^{13}_{6}\mathrm{C}" /> und <InlineMath math="{}^{14}_{6}\mathrm{C}" /> steigt die Neutronenzahl Schritt für Schritt.
 
 <BlockMath math="\begin{aligned}
 {}^{12}_{6}\mathrm{C} &: n^0 = 12 - 6 = 6 \\
@@ -169,19 +194,20 @@ Eine Ionenladung entsteht, wenn sich die Elektronenzahl ändert. Isotope desselb
 | Ion | Elektronen | Protonen |
 | Isotop | Neutronen | Protonen |
 
-So ist <InlineMath math="\mathrm{C}^{+}" /> ein Kohlenstoffion, das ein Elektron abgegeben hat. Bei <InlineMath math="6" /> Protonen und der Ladung <InlineMath math="+1" /> besitzt es <InlineMath math="6 - 1 = 5" /> Elektronen. <InlineMath math="{}^{14}_{6}\mathrm{C}" /> ist dagegen ein Kohlenstoffisotop, weil seine Neutronenzahl von derjenigen in <InlineMath math="{}^{12}_{6}\mathrm{C}" /> abweicht.
+So ist <InlineMath math="\mathrm{C}^{+}" /> ein Kohlenstoffion, das ein Elektron abgegeben hat. Bei <InlineMath math="6" /> Protonen und der Ladung <InlineMath math="+1" /> besitzt es <InlineMath math="5" /> Elektronen. <InlineMath math="{}^{14}_{6}\mathrm{C}" /> ist dagegen ein Kohlenstoffisotop, weil seine Neutronenzahl von derjenigen in <InlineMath math="{}^{12}_{6}\mathrm{C}" /> abweicht.
 
-Wenn das Atom neutral ist, sind Elektronen immer noch gleich Protonen:
+Wenn das Atom neutral ist, stimmt die Elektronenzahl weiterhin mit der Protonenzahl überein.
 
 <BlockMath math="\text{neutrales Atom} \Rightarrow e^- = p^+" />
 
 Ein neutrales <InlineMath math="{}^{14}_{6}\mathrm{C}" />-Atom besitzt also <InlineMath math="6" /> Protonen, <InlineMath math="6" /> Elektronen und <InlineMath math="8" /> Neutronen.
 
-Leg jeden Kern nach seinen Neutronen nach rechts und seinen Protonen nach oben. Isotope eines Elements haben dasselbe <InlineMath math="Z" />, also stehen die Kohlenstoffisotope in einer gelben Reihe. Ein Ion bewegt sich auf dieser Karte gar nicht, weil sich nur seine Elektronen geändert haben. Zoom hinein und vergleiche <InlineMath math="^{14}\mathrm{C}" /> mit <InlineMath math="^{14}\mathrm{N}" />: gleiche Massenzahl, verschiedene Elemente.
+Leg jeden Kern nach seinen Neutronen nach rechts und seinen Protonen nach oben. Isotope eines Elements haben dasselbe <InlineMath math="Z" />, also stehen die Kohlenstoffisotope in einer gelben Reihe. Ein Ion bewegt sich auf dieser Karte gar nicht, weil sich nur seine Elektronen geändert haben. Vergleiche <InlineMath math="^{14}\mathrm{C}" /> mit <InlineMath math="^{14}\mathrm{N}" />, die dieselbe Massenzahl haben, aber verschiedene Elemente sind.
 
 <MathVisual
-  title={<>Isotope reihen sich auf, Ionen bleiben stehen</>}
+  title={<>Isotope reihen sich auf Ionen bleiben stehen</>}
   description={<>Fünf Kerne nach Neutronenzahl (waagerecht) und Protonenzahl (senkrecht). Die gelbe Reihe enthält die drei Kohlenstoffisotope.</>}
+  footer={<>Waagerechte Nachbarn teilen dieselbe Protonenzahl als Isotope eines Elements.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 5, max: 9 }, y: { min: 5, max: 9 } },
@@ -211,21 +237,48 @@ Leg jeden Kern nach seinen Neutronen nach rechts und seinen Protonen nach oben. 
   }}
 />
 
-Ein Ion unterscheidet sich von seinem Atom durch die Ladung, ein Isotop durch Neutronen. Im Magnetfeld **krümmen sich nur geladene Teilchen**, das Neutron bleibt auf gerader Linie.
+Alle drei Kohlenstoffpunkte bleiben auf der waagerechten Linie <InlineMath math="Z = 6" />. Ein Schritt nach oben zu <InlineMath math="Z = 7" /> wechselt sofort zum Element Stickstoff.
 
-<ParticleTrackLab
-  title={<>Geladene und neutrale Teilchen</>}
-  description={<>Erhöh das Feld und sieh, welche Spuren sich krümmen und welche gerade bleiben.</>}
+Ein Ion unterscheidet sich von seinem Atom durch die Ladung, ein Isotop durch Neutronen. Im Magnetfeld **krümmen sich nur geladene Teilchen**, während das ungeladene Neutron auf gerader Bahn bleibt.
+
+<MathVisual
+  title={<>Geladene Ionen und ungeladene Neutronen</>}
+  description={<>Schematische Spuren beim Eintritt von links in ein Magnetfeld. Positive Protonen biegen in eine Richtung ab, negative Elektronen stark in die Gegenrichtung, Neutronen bleiben gerade.</>}
+  footer={<>Ein Magnetfeld lenkt geladene Teilchen nach Vorzeichen ab und lässt Neutronen gerade.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "n-track", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5.5, y: 0 } },
+      { id: "p-a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.8, y: 0.6 } },
+      { id: "p-b", kind: "segment", appearance: "primary", from: { x: 2.8, y: 0.6 }, to: { x: 5.4, y: 1.8 } },
+      { id: "e-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.0, y: -1.1 } },
+      { id: "e-b", kind: "segment", appearance: "secondary", from: { x: 2.0, y: -1.1 }, to: { x: 3.6, y: -2.9 } },
+      { id: "n-pt", kind: "point", appearance: "reference", at: { x: 5.5, y: 0 } },
+      { id: "p-pt", kind: "point", appearance: "primary", at: { x: 5.4, y: 1.8 } },
+      { id: "e-pt", kind: "point", appearance: "secondary", at: { x: 3.6, y: -2.9 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-pt", at: { x: 5.5, y: 0 }, placement: "above" },
+      { key: "p", objectId: "p-pt", at: { x: 5.4, y: 1.8 }, placement: "above" },
+      { key: "e", objectId: "e-pt", at: { x: 3.6, y: -2.9 }, placement: "right" },
+    ],
+  }}
   labels={{
-    electron: <>Bahnradius des Elektrons</>,
-    field: "Magnetische Flussdichte",
-    proton: <>Bahnradius des Protons</>,
-    ratio: <>Verhältnis der Radien</>,
-    view: "Teilchenspuren im Magnetfeld",
+    n: <InlineMath math="n^0\ (\text{gerade})" />,
+    p: <InlineMath math="p^+\ (\text{weite Kurve})" />,
+    e: <InlineMath math="e^-\ (\text{enge Kurve})" />,
   }}
 />
 
-## Verwendung von Isotopen
+Die Bahnformen trennen Ladung und Masse auf einen Blick. Die Ladung entscheidet über Richtung und Auftreten der Ablenkung, während die Masse bestimmt, wie eng die Kurve wird.
+
+## Kernstabilität und Verwendung von Isotopen
+
+Das Verhältnis von Neutronen zu Protonen bestimmt, **wie stabil ein Atomkern über die Zeit bleibt**. Davon hängt ab, ob ein Isotop als stabiler Bezugswert oder als radioaktive Uhr dient.
+
+### Praktische Anwendungen von Isotopen
 
 Die Neutronenzahl beeinflusst **Masse und Kernstabilität** eines Isotops. Diese Eigenschaften bestimmen, ob ein bestimmtes Isotop als Tracer, möglicher Energieträger oder Zeitmaß zur Altersbestimmung eines Materials eingesetzt werden kann.
 
@@ -235,13 +288,14 @@ Die Neutronenzahl beeinflusst **Masse und Kernstabilität** eines Isotops. Diese
 
 Jede Anwendung muss die Stabilität des Isotops berücksichtigen, also die Frage, ob sein Kern zerfällt. Radioaktive Isotope wie Tritium und <InlineMath math="{}^{14}_{6}\mathrm{C}" /> dürfen nur mit fachgerechten Verfahren und Strahlenschutzmaßnahmen verwendet werden.
 
-## Kohlenstoff vierzehn zerfällt langsam
+### Kohlenstoff vierzehn zerfällt langsam
 
-Die Radiokarbonmethode nutzt das Isotop <InlineMath math="{}^{14}_{6}\mathrm{C}" />, das zu <InlineMath math="{}^{14}_{7}\mathrm{N}" /> zerfällt. Niemand kann sagen, wann ein einzelner Kern zerfällt, aber **die Zahl der übrigen Kerne halbiert sich alle <InlineMath math="5730" /> Jahre**. Verschieb die Zeit. Nach <InlineMath math="11\,460" /> Jahren ist noch etwa ein Viertel der Kerne übrig.
+Die Radiokarbonmethode nutzt das Isotop <InlineMath math="{}^{14}_{6}\mathrm{C}" />, das zu <InlineMath math="{}^{14}_{7}\mathrm{N}" /> zerfällt. Niemand kann sagen, wann ein einzelner Kern zerfällt, aber **die Zahl der übrigen Kerne halbiert sich alle <InlineMath math="5730" /> Jahre**. Verschieb die Zeit und sieh, wie nach <InlineMath math="11\,460" /> Jahren noch etwa ein Viertel übrig ist.
 
 <RadioactiveDecayLab
   title={<>Zerfall von Kohlenstoff-14</>}
   description={<>Dunkle Kerne sind Kohlenstoff-14, violette sind schon zu Stickstoff-14 geworden.</>}
+  footer={<>Die Hälfte der übrigen Kohlenstoff-14 Kerne zerfällt alle 5730 Jahre.</>}
   labels={{
     counted: <>Verbliebene Kerne</>,
     expected: <>Nach dem Zerfallsgesetz</>,
@@ -252,13 +306,13 @@ Die Radiokarbonmethode nutzt das Isotop <InlineMath math="{}^{14}_{6}\mathrm{C}"
   }}
 />
 
+Zieh den Regler über eine, zwei und drei Halbwertszeiten, um die Zahl von der Hälfte auf ein Viertel und ein Achtel sinken zu sehen. Diese gleichmäßige Halbierung macht Kohlenstoff-14 zu einer verlässlichen archäologischen Uhr.
+
 ## Von Isotopen zur durchschnittlichen Atommasse
 
 Die relative Atommasse im Periodensystem ist häufig eine Dezimalzahl. Sie ist nicht die Massenzahl eines einzelnen Isotops. Die relative Atommasse wird aus der Masse jedes Isotops und seinem Anteil in einer Referenzprobe berechnet.
 
 Die tabellierten Anteile sind [**repräsentative Isotopenzusammensetzungen**](https://www.physics.nist.gov/PhysRefData/Compositions/notes.html) von Referenzmaterialien. Die Zusammensetzung kann je nach Herkunft und Behandlung des Materials variieren. Die folgenden Anteile sind daher Referenzwerte und keine universelle Zusammensetzung jeder natürlichen Probe.
-
-Kohlenstoff ist ein einfaches Beispiel:
 
 | Kohlenstoffisotop | Massenzahl | Repräsentative Isotopenzusammensetzung |
 | :------------- | :---------- | :---------------- |
@@ -268,35 +322,47 @@ Kohlenstoff ist ein einfaches Beispiel:
 
 Da <InlineMath math="{}^{12}_{6}\mathrm{C}" /> das am häufigsten vorkommende Kohlenstoffisotop ist, liegt die relative Atommasse von Kohlenstoff im Periodensystem nahe bei <InlineMath math="12" />, aber nicht genau bei <InlineMath math="12" />.
 
-## Ein Massenspektrometer trennt Isotope
+Die Anteile der Isotope misst man mit einem Massenspektrometer. Die Lage jedes Peaks zeigt die Isotopenmasse, und **seine Höhe spiegelt die natürliche Häufigkeit wider**. Schau auf die beiden Chlorpeaks unten und erkenne, warum der gewichtete Mittelwert bei <InlineMath math="35{,}45" /> liegt.
 
-Die Anteile der Isotope misst man mit einem Massenspektrometer. Ein Magnet lenkt die Ionen ab, und **ein schwereres Ion läuft auf einer weiteren Bahn**, also landet jedes Isotop an seiner eigenen Stelle. Die Höhe jedes Peaks folgt der Häufigkeit des Isotops. Wähl Chlor und vergleiche seine mittlere Masse mit <InlineMath math="35{,}45" /> im Periodensystem.
-
-<MassSpectrometerLab
-  title={<>Isotope von Chlor, Kohlenstoff und Neon</>}
-  description={<>Jedes Isotop trifft den Detektor in einem anderen Abstand.</>}
-  samples={["chlorine", "carbon", "neon"]}
+<MathVisual
+  title={<>Massenspektrum von Chlor und gewichteter Mittelwert</>}
+  description={<>Natürliche Häufigkeiten von Chlor-35 (<InlineMath math="75{,}8\%" />) und Chlor-37 (<InlineMath math="24{,}2\%" />) mit gelber Markierung des gewichteten Mittelwerts bei <InlineMath math="35{,}45" />.</>}
+  footer={<>Weil Chlor-35 dreimal häufiger ist, liegt der Mittelwert nahe bei 35,45.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 34, max: 38 }, y: { min: -5, max: 90 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "baseline", kind: "segment", appearance: "reference", from: { x: 34.4, y: 0 }, to: { x: 37.6, y: 0 } },
+      { id: "cl35", kind: "segment", appearance: "primary", from: { x: 35, y: 0 }, to: { x: 35, y: 75.8 } },
+      { id: "cl37", kind: "segment", appearance: "secondary", from: { x: 37, y: 0 }, to: { x: 37, y: 24.2 } },
+      { id: "avg-line", kind: "segment", appearance: "highlight", from: { x: 35.45, y: 0 }, to: { x: 35.45, y: 55 } },
+      { id: "p35", kind: "point", appearance: "primary", at: { x: 35, y: 75.8 } },
+      { id: "p37", kind: "point", appearance: "secondary", at: { x: 37, y: 24.2 } },
+      { id: "pavg", kind: "point", appearance: "highlight", at: { x: 35.45, y: 55 } },
+    ],
+    labels: [
+      { key: "c35", objectId: "p35", at: { x: 35, y: 75.8 }, placement: "above" },
+      { key: "c37", objectId: "p37", at: { x: 37, y: 24.2 }, placement: "above" },
+      { key: "avg", objectId: "pavg", at: { x: 35.45, y: 55 }, placement: "right" },
+    ],
+  }}
   labels={{
-    average: <>Mittlere relative Atommasse</>,
-    choose: "Element wählen",
-    isotopes: <>Isotope und Häufigkeit</>,
-    north: "N",
-    radius: <>Bahnradius</>,
-    ratio: <>Verhältnis der Radien</>,
-    south: "S",
-    view: "Massenspektrometer",
+    c35: <InlineMath math="^{35}\mathrm{Cl}:\ 75{,}8\%" />,
+    c37: <InlineMath math="^{37}\mathrm{Cl}:\ 24{,}2\%" />,
+    avg: <InlineMath math="A_r \approx 35{,}45" />,
   }}
 />
 
-## Isotope mit Ordnungszahl und Massenzahl unterscheiden
+Die gelbe Mittelwertlinie rückt stark an den höheren <InlineMath math="^{35}\mathrm{Cl}" /> Peak heran, statt genau in der Mitte bei <InlineMath math="36" /> zu stehen. Jede Dezimalmasse im Periodensystem spiegelt dieses gewichtete Übergewicht der häufigsten Isotope wider.
 
-Drei Fragen führen sicher durch jedes Isotopensymbol:
+Drei Fragen führen sicher durch jedes Isotopensymbol.
 
 - Wie viele Protonen gibt es?
 - Was ist die Massenzahl?
 - Wie viele Neutronen kommen von <InlineMath math="A - Z" />?
 
-Für <InlineMath math="{}^{92}_{40}\mathrm{Zr}" />:
+Wendet man diese Schritte auf <InlineMath math="{}^{92}_{40}\mathrm{Zr}" /> an, erhält man sofort die Neutronenzahl.
 
 <BlockMath math="\begin{aligned}
 n^0 &= A - Z \\
@@ -304,9 +370,9 @@ n^0 &= A - Z \\
 &= 52
 \end{aligned}" />
 
-<InlineMath math="{}^{92}_{40}\mathrm{Zr}" /> besitzt also <InlineMath math="52" /> Neutronen. Die Beziehung <InlineMath math="n=A-Z" /> gilt für jedes Isotop mit bekannter Ordnungs- und Massenzahl. Eine Neutronentabelle ist dafür nicht nötig.
+<InlineMath math="{}^{92}_{40}\mathrm{Zr}" /> besitzt also <InlineMath math="52" /> Neutronen. Die Beziehung <InlineMath math="n = A - Z" /> gilt für jedes Isotop mit bekannter Ordnungs- und Massenzahl. Eine Neutronentabelle ist dafür nicht nötig.
 
-Mit den Häufigkeiten aus der Tabelle kannst du **den gewichteten Mittelwert berechnen**. Für diese Übung nähern wir die Isotopenmassen von Kohlenstoff-12 und Kohlenstoff-13 durch <InlineMath math="12\ \mathrm{u}" /> und <InlineMath math="13\ \mathrm{u}" /> an und vernachlässigen den sehr kleinen Anteil an Kohlenstoff-14:
+Mit den Häufigkeiten aus der Tabelle kannst du **den gewichteten Mittelwert berechnen**. Nähert man die Isotopenmassen von Kohlenstoff-12 und Kohlenstoff-13 durch <InlineMath math="12\ \mathrm{u}" /> und <InlineMath math="13\ \mathrm{u}" /> an und vernachlässigt den winzigen Anteil an Kohlenstoff-14, ergibt sich der Wert aus dem Periodensystem.
 
 <BlockMath math="\begin{aligned}
 A_r(\mathrm C)&\approx 12(0{,}9893)+13(0{,}0107)\\

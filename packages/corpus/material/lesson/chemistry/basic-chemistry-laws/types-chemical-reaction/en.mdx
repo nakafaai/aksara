@@ -1,8 +1,7 @@
-
 export const metadata = {
   title: "Types of Chemical Reactions",
   description:
-    "Combustion, rusting, precipitation, and gas-forming reactions can be identified from observations and balanced chemical equations.",
+    "Combustion, rusting, precipitation, and gas formation can be identified from observations and balanced chemical equations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-05-03",
   dateModified: "2026-09-13",
@@ -13,36 +12,48 @@ export const metadata = {
 
 Changes in heat, color, precipitate formation, or gas production provide the first clues. The arrangement of reactants and products then determines the **reaction type**.
 
-Four common examples are combustion, rusting, precipitation, and gas formation. Reactions can also be classified as precipitation, acid-base, and oxidation-reduction reactions.
-
-These four names use two bases of classification. Combustion and rusting are identified by oxidation-reduction processes, while precipitation and gas formation are identified by observable products. One reaction <Highlight>can satisfy more than one description</Highlight>.
+Chemists group reactions in two ways, either by the underlying process such as oxidation-reduction and acid-base transfer, or by observable products such as a new solid or gas. Our four main examples sit across both groups. Combustion and rusting are oxidation-reduction processes, whereas precipitation and gas formation highlight what appears in the vessel, so one reaction <Highlight>can satisfy more than one description</Highlight>.
 
 ## Three Reaction Patterns
 
-A reaction pattern is easiest to spot from what happens to the molecules. When water forms, **two substances combine into one**. When water or hydrogen peroxide breaks down, **one substance splits into several**. Switch between the reactions and notice which side has more kinds of substances.
+A reaction pattern is easiest to spot from what happens to the molecules. When water forms, **two substances combine into one**, so the molecule count drops from three to two. When water or hydrogen peroxide breaks down, **one substance splits into several**, so the molecule count rises from two to three.
 
-<ReactionBalanceLab
-  title={<>Reaction Patterns at the Level of Atoms</>}
-  description={<>Switch reactions and see which side ends up with more kinds of substance.</>}
-  reactions={[
-    { id: "water-synthesis", name: "Forming water", tab: <InlineMath math="\mathrm{H_2O}" /> },
-    { id: "water-electrolysis", name: "Splitting water", tab: <InlineMath math="\mathrm{H_2O}" /> },
-    { id: "peroxide-decomposition", name: "Breaking down hydrogen peroxide", tab: <InlineMath math="\mathrm{H_2O_2}" /> },
-  ]}
-  reading="molecules"
+The three balanced equations below show these synthesis and decomposition patterns side by side.
+
+<BlockMath math="\begin{aligned} &amp;2\mathrm{H_2} + \mathrm{O_2} \rightarrow 2\mathrm{H_2O} \\ &amp;2\mathrm{H_2O} \rightarrow 2\mathrm{H_2} + \mathrm{O_2} \\ &amp;2\mathrm{H_2O_2} \rightarrow 2\mathrm{H_2O} + \mathrm{O_2} \end{aligned}" />
+
+Compare the height of each reactant bar in the back with its product bar in the front to see how synthesis and decomposition shift the number of molecules.
+
+<MathVisual
+  title={<>Molecule Counts in Synthesis and Decomposition</>}
+  description={<>Reactant molecules (back) and product molecules (front) for water synthesis (amber), water splitting (violet), and peroxide breakdown (orange). One grid step is <InlineMath math="1" /> molecule.</>}
+  footer={<>Synthesis reduces molecule count, while decomposition splits molecules into more.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8.5, y: 7, z: 11 }, target: { x: 2.5, y: 1.5, z: 0 } },
+    objects: [
+      { id: "syn-left", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 1.5, z: -0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "syn-right", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "elec-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "elec-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.5, z: 0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "perox-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "perox-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.5, z: 0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+    ],
+    labels: [
+      { key: "syn", objectId: "syn-left", at: { x: 0, y: 3.3, z: -0.75 }, placement: "above" },
+      { key: "elec", objectId: "elec-right", at: { x: 2.5, y: 3.3, z: 0.75 }, placement: "above" },
+      { key: "perox", objectId: "perox-right", at: { x: 5, y: 3.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms of each element</>,
-    choose: "Choose a reaction",
-    economy: <>Atom economy</>,
-    equation: <>Balanced equation</>,
-    mass: <>Mass of reactants and products</>,
-    molecules: <>Number of molecules</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Reaction at the level of atoms",
+    syn: <InlineMath math="\mathrm{H_2O}:\ 3 \rightarrow 2" />,
+    elec: <InlineMath math="\mathrm{H_2O}:\ 2 \rightarrow 3" />,
+    perox: <InlineMath math="\mathrm{H_2O_2}:\ 2 \rightarrow 3" />,
   }}
 />
+
+Even when the number of molecules rises or falls, every single hydrogen and oxygen atom stays accounted for. Watching whether molecules combine or split gives you a fast visual cue for the reaction pattern.
 
 ## Reaction Type Model
 
@@ -57,6 +68,7 @@ Choose one reaction type. Watch the visible change first, then **match it with t
       exact formulas and coefficients.
     </>
   }
+  footer={<>Pair each visible change with its balanced equation to confirm the reaction type.</>}
   labels={{
     chooseType: "Choose a chemical reaction type",
     before: "Reactants",
@@ -134,17 +146,19 @@ Choose one reaction type. Watch the visible change first, then **match it with t
   }}
 />
 
+Notice how each tab links what you observe in the vessel to the exact symbols in the equation. Once you connect the visible clue to the balanced formulas, classifying a new reaction feels much more straightforward.
+
 ## Four Examples of Chemical Reactions
 
 The four examples below show different clues: energy release, metal change, solid formation, and gas formation. No single clue settles the question on its own, so each example names the **observation that separates a chemical change from a physical one**.
 
 ### Combustion
 
-In the common oxygen-combustion examples studied here, a substance reacts with oxygen and **releases energy as heat or light**. White phosphorus combustion is represented by:
+In the common oxygen-combustion examples studied here, a substance reacts with oxygen and **releases energy as heat or light**. White phosphorus combustion follows the balanced equation below.
 
 <BlockMath math="\mathrm{P_4} + 5\mathrm{O_2} \rightarrow \mathrm{P_4O_{10}}" />
 
-[Phosphorus pentoxide](https://pubchem.ncbi.nlm.nih.gov/compound/P4O10) has the molecular formula <InlineMath math="\mathrm{P_4O_{10}}" />. <InlineMath math="\mathrm{P_2O_5}" /> is the commonly used empirical formula. The molecular form is used here because the 3D particle model explicitly counts <InlineMath math="4" /> phosphorus atoms and <InlineMath math="10" /> oxygen atoms.
+[Phosphorus pentoxide](https://pubchem.ncbi.nlm.nih.gov/compound/P4O10) has the molecular formula <InlineMath math="\mathrm{P_4O_{10}}" />. <InlineMath math="\mathrm{P_2O_5}" /> is the commonly used empirical formula. The molecular form is used here because the particle model explicitly counts <InlineMath math="4" /> phosphorus atoms and <InlineMath math="10" /> oxygen atoms.
 
 ### Rusting
 
@@ -176,11 +190,12 @@ Check the **atom count** of each element on both sides. Each ethanol molecule co
 | H | <InlineMath math="12" /> | <InlineMath math="2\times6=12" /> |
 | O | <InlineMath math="6" /> | <InlineMath math="2\times1+2\times2=6" /> |
 
-The combustion example <InlineMath math="\mathrm{P_4}+5\mathrm{O_2}\rightarrow\mathrm{P_4O_{10}}" /> releases energy as light and heat, and its atoms tell you it is balanced. Rotate the bars: four phosphorus atoms and ten oxygen atoms on each side.
+Look back at white phosphorus combustion to see how atom counts verify a balanced equation. Rotate the bars below to compare the four phosphorus atoms and ten oxygen atoms on each side.
 
 <MathVisual
-  title={<>Atoms on Both Sides</>}
+  title={<>Phosphorus Combustion Atom Balance</>}
   description={<>Phosphorus (amber) and oxygen (orange) atoms in the reactants (back) and the products (front). One grid step up is <InlineMath math="2" /> atoms.</>}
+  footer={<>Matching bar heights confirm four phosphorus and ten oxygen atoms on both sides.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -202,7 +217,9 @@ The combustion example <InlineMath math="\mathrm{P_4}+5\mathrm{O_2}\rightarrow\m
   }}
 />
 
-## Coefficients Do Not Change Formulas
+Because each front bar matches the bar behind it, no atoms appear out of nowhere or vanish during combustion. The same atom check applies to every reaction type.
+
+## Balancing Reaction Patterns Safely
 
 A coefficient is the number placed before a chemical formula. We may change coefficients so the number of atoms before and after the reaction matches.
 
@@ -210,31 +227,46 @@ A coefficient is the number placed before a chemical formula. We may change coef
 
 In this equation, <InlineMath math="5" /> before <InlineMath math="\mathrm{O_2}" /> is a coefficient. The subscripts in <InlineMath math="\mathrm{P_4}" />, <InlineMath math="\mathrm{O_2}" />, and <InlineMath math="\mathrm{P_4O_{10}}" /> are part of the formulas and **must not be altered** to force a balance.
 
+> Always check the balanced equation alongside what you see in the beaker. Visual clues point you in the right direction, and matching atom counts confirm the reaction.
+
 ## A Double Bond Opens Up
 
 There are also **addition reactions**, where a small molecule joins a double bond. In ethene, the double bond between the two carbon atoms opens and takes in <InlineMath math="\mathrm{H_2}" /> or <InlineMath math="\mathrm{H_2O}" />. Every coefficient is <InlineMath math="1" />, and every reactant atom ends up in one product.
 
-<ReactionBalanceLab
-  title={<>Addition Reactions of Ethene</>}
-  description={<>Pick hydrogen or water and watch the double bond open to take it in.</>}
-  reactions={[
-    { id: "ethene-hydrogenation", name: "Adding hydrogen to ethene", tab: <InlineMath math="\mathrm{C_2H_6}" /> },
-    { id: "ethene-hydration", name: "Adding water to ethene", tab: <InlineMath math="\mathrm{C_2H_5OH}" /> },
-  ]}
-  reading="molecules"
+Both addition reactions merge two molecules into a single product with zero leftover atoms.
+
+<BlockMath math="\begin{aligned} &amp;\mathrm{C_2H_4} + \mathrm{H_2} \rightarrow \mathrm{C_2H_6} \\ &amp;\mathrm{C_2H_4} + \mathrm{H_2O} \rightarrow \mathrm{C_2H_5OH} \end{aligned}" />
+
+Compare the stacked reactant blocks in the back with the single product block in the front to see every atom carried cleanly into the product.
+
+<MathVisual
+  title={<>Total Atoms in Ethene Addition</>}
+  description={<>Stacked reactant atoms (back, ethene in violet plus small molecule in amber) and single product atoms (front, orange). One grid step is <InlineMath math="2" /> atoms.</>}
+  footer={<>Every atom from both reactants stacks into the single product block with zero waste.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 8, z: 11 }, target: { x: 1.5, y: 2.25, z: 0 } },
+    objects: [
+      { id: "ethene-h", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1.5, z: -0.75 }, size: { length: 1.3, height: 3, width: 1.3 } },
+      { id: "h2-add", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 3.5, z: -0.75 }, size: { length: 1.3, height: 1, width: 1.3 } },
+      { id: "ethane", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2, z: 0.75 }, size: { length: 1.3, height: 4, width: 1.3 } },
+      { id: "ethene-w", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 1.5, z: -0.75 }, size: { length: 1.3, height: 3, width: 1.3 } },
+      { id: "h2o-add", kind: "cuboid", appearance: "highlight", center: { x: 3, y: 3.75, z: -0.75 }, size: { length: 1.3, height: 1.5, width: 1.3 } },
+      { id: "ethanol", kind: "cuboid", appearance: "primary", center: { x: 3, y: 2.25, z: 0.75 }, size: { length: 1.3, height: 4.5, width: 1.3 } },
+    ],
+    labels: [
+      { key: "ethane", objectId: "ethane", at: { x: 0, y: 4.3, z: 0.75 }, placement: "above" },
+      { key: "ethanol", objectId: "ethanol", at: { x: 3, y: 4.8, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms of each element</>,
-    choose: "Choose a reaction",
-    economy: <>Atom economy</>,
-    equation: <>Balanced equation</>,
-    mass: <>Mass of reactants and products</>,
-    molecules: <>Number of molecules</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Reaction at the level of atoms",
+    ethane: <InlineMath math="\mathrm{C_2H_6}:\ 6+2=8" />,
+    ethanol: <InlineMath math="\mathrm{C_2H_5OH}:\ 6+3=9" />,
   }}
 />
+
+When the double bond opens, ethene absorbs the entire incoming molecule without shedding any side product. That complete merge makes addition reactions easy to spot in both equations and atom tallies.
 
 ## Determining Reaction Types from Evidence
 
@@ -251,11 +283,12 @@ Use the following table to check each reaction type.
 
 After identifying the reaction type, write the reactants on the left and the products on the right. Then adjust the coefficients until each type of atom has the same count on both sides.
 
-Bubbles are the first clue, and the equation <InlineMath math="\mathrm{C_6H_{12}O_6}\rightarrow2\mathrm{C_2H_5OH}+2\mathrm{CO_2}" /> confirms fermentation. Take one mole of glucose and use <InlineMath math="\mathrm{C}=12" />, <InlineMath math="\mathrm{H}=1" /> and <InlineMath math="\mathrm{O}=16" />: <InlineMath math="180\ \mathrm{g}" /> of sugar becomes ethanol and carbon dioxide with the same total. Rotate the columns and compare their heights.
+Bubbles offer the first clue in glucose fermentation, and the balanced equation confirms the mass tally. Taking one mole of glucose with <InlineMath math="\mathrm{C}=12" />, <InlineMath math="\mathrm{H}=1" />, and <InlineMath math="\mathrm{O}=16" /> shows that <InlineMath math="180\ \mathrm{g}" /> of sugar turns into ethanol and carbon dioxide with the exact same total mass. Rotate the columns and compare their heights.
 
 <MathVisual
   title={<>Fermentation Keeps the Mass</>}
   description={<>One mole of glucose (left) and the ethanol and carbon dioxide it forms (right). One grid step up is <InlineMath math="20" /> grams.</>}
+  footer={<>Stacked ethanol and carbon dioxide match the starting glucose mass at 180 grams.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 10 }, z: { min: -1.5, max: 1.5 } },
@@ -277,3 +310,5 @@ Bubbles are the first clue, and the equation <InlineMath math="\mathrm{C_6H_{12}
     gas: <InlineMath math="2\mathrm{CO_2}:\ 2\cdot44=88\ \mathrm{g}" />,
   }}
 />
+
+Even though carbon dioxide escapes as bubbles in an open flask, its mass is still part of the products. Putting the liquid and gas back together gives the exact <InlineMath math="180\ \mathrm{g}" /> you started with, tying every reaction pattern back to conservation of mass.

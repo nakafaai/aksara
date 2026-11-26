@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Sistem Periodik Unsur Modern",
   description:
@@ -15,6 +14,8 @@ Setiap kotak dalam tabel periodik modern mewakili satu unsur. Unsur disusun menu
 
 Karena jumlah proton menentukan identitas unsur, kenaikan <InlineMath math="Z" /> menghasilkan pola sifat kimia yang berulang.
 
+> Tabel periodik adalah peta jumlah proton yang barisnya melacak kulit dan kolomnya melacak elektron terluar.
+
 <ModernPeriodicTableLab
   title={<>Model Pola Tabel Periodik Modern</>}
   description={
@@ -24,6 +25,7 @@ Karena jumlah proton menentukan identitas unsur, kenaikan <InlineMath math="Z" /
       mulia.
     </>
   }
+  footer={<>Pilih satu daerah untuk melihat bagaimana urutan proton menata golongan dan periode.</>}
   labels={{
     chooseFocus: "Pilih fokus tabel periodik",
     tableLabel: "Model pola sistem periodik unsur modern",
@@ -80,25 +82,45 @@ Karena jumlah proton menentukan identitas unsur, kenaikan <InlineMath math="Z" /
   }}
 />
 
+Berpindah antarblok yang terangkat memperlihatkan bahwa setiap wilayah di tabel lahir dari nomor atom dan susunan elektronnya, bukan pengelompokan acak.
+
 ## Massa Bukan Urutannya
 
-Spektrometer massa memperlihatkan bahwa satu unsur bisa punya atom dengan massa berbeda. Karena itulah **tabel disusun menurut nomor atom, bukan menurut massa**: setiap isotop sebuah unsur tetap punya jumlah proton yang sama.
+Satu unsur bisa memiliki atom dengan nomor massa berbeda karena isotop-isotopnya membawa jumlah neutron berbeda. Karena itulah **tabel disusun menurut nomor atom, bukan menurut massa**: semua isotop boron, karbon, maupun neon tetap menempati satu kotak yang sama karena jumlah protonnya tidak berubah.
 
-<MassSpectrometerLab
-  title={<>Isotop di Balik Setiap Unsur</>}
-  description={<>Pilih boron, karbon, atau neon, lalu baca massa rata-ratanya dari isotop-isotopnya.</>}
-  samples={["boron", "carbon", "neon"]}
+<MathVisual
+  title={<>Nomor Atom Sama Nomor Massa Isotop Berbeda</>}
+  description={<>Nomor atom <InlineMath math="Z" /> (abu-abu) dibandingkan nomor massa isotop utama <InlineMath math="A" /> (oranye dan ungu) untuk boron, karbon, dan neon. Satu kotak tegak berarti <InlineMath math="4" /> satuan.</>}
+  footer={<>Nomor massa isotop bisa berubah, tetapi nomor atomnya tetap satu di dalam kotak yang sama.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3, y: 2.5, z: 0 } },
+    objects: [
+      { id: "b-z", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.625, z: -0.7 }, size: { length: 1.0, height: 1.25, width: 0.9 } },
+      { id: "b-10", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.25, z: 0.25 }, size: { length: 0.7, height: 2.5, width: 0.6 } },
+      { id: "b-11", kind: "cuboid", appearance: "secondary", center: { x: 0.85, y: 1.375, z: 0.25 }, size: { length: 0.7, height: 2.75, width: 0.6 } },
+      { id: "c-z", kind: "cuboid", appearance: "reference", center: { x: 3, y: 0.75, z: -0.7 }, size: { length: 1.0, height: 1.5, width: 0.9 } },
+      { id: "c-12", kind: "cuboid", appearance: "primary", center: { x: 3, y: 1.5, z: 0.25 }, size: { length: 0.7, height: 3.0, width: 0.6 } },
+      { id: "c-13", kind: "cuboid", appearance: "secondary", center: { x: 3.85, y: 1.625, z: 0.25 }, size: { length: 0.7, height: 3.25, width: 0.6 } },
+      { id: "ne-z", kind: "cuboid", appearance: "reference", center: { x: 6, y: 1.25, z: -0.7 }, size: { length: 1.0, height: 2.5, width: 0.9 } },
+      { id: "ne-20", kind: "cuboid", appearance: "primary", center: { x: 6, y: 2.5, z: 0.25 }, size: { length: 0.7, height: 5.0, width: 0.6 } },
+      { id: "ne-22", kind: "cuboid", appearance: "secondary", center: { x: 6.85, y: 2.75, z: 0.25 }, size: { length: 0.7, height: 5.5, width: 0.6 } },
+    ],
+    labels: [
+      { key: "b", objectId: "b-11", at: { x: 0.4, y: 3.2, z: 0.25 }, placement: "above" },
+      { key: "c", objectId: "c-13", at: { x: 3.4, y: 3.7, z: 0.25 }, placement: "above" },
+      { key: "ne", objectId: "ne-22", at: { x: 6.4, y: 5.9, z: 0.25 }, placement: "above" },
+    ],
+  }}
   labels={{
-    average: <>Massa atom relatif rata-rata</>,
-    choose: "Pilih unsur",
-    isotopes: <>Isotop dan kelimpahannya</>,
-    north: "U",
-    radius: <>Jari-jari lintasan</>,
-    ratio: <>Perbandingan jari-jari</>,
-    south: "S",
-    view: "Spektrometer massa",
+    b: <InlineMath math="\mathrm{B}:\ Z=5,\ A=10,11" />,
+    c: <InlineMath math="\mathrm{C}:\ Z=6,\ A=12,13" />,
+    ne: <InlineMath math="\mathrm{Ne}:\ Z=10,\ A=20,22" />,
   }}
 />
+
+Mengurutkan menurut <InlineMath math="Z" /> menjaga semua isotop satu unsur tetap satu kotak sekaligus menjelaskan mengapa argon (<InlineMath math="Z = 18" />) tetap berada sebelum kalium (<InlineMath math="Z = 19" />) meski massa rata-ratanya lebih besar.
 
 ## Periode dan Golongan
 
@@ -113,6 +135,7 @@ Hitung unsur di setiap periode tabel modern, maka muncul pola: <InlineMath math=
 <MathVisual
   title={<>Banyak Unsur di Setiap Periode</>}
   description={<>Banyaknya unsur pada periode <InlineMath math="1" /> sampai <InlineMath math="7" /> tabel periodik modern. Satu kotak grid ke atas sama dengan <InlineMath math="4" /> unsur.</>}
+  footer={<>Panjang periode melonjak ke 18 dan 32 saat subkulit blok d dan f mulai terisi.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
@@ -147,43 +170,72 @@ Hitung unsur di setiap periode tabel modern, maka muncul pola: <InlineMath math=
   }}
 />
 
+Setiap pelebaran baris cocok persis dengan daya tampung subkulit elektron yang baru terbuka, sehingga bentuk tabel periodik mencerminkan langsung struktur kuantum atom.
+
 ### Golongan Satu dan Tujuh Belas Berpasangan
 
-Logam golongan <InlineMath math="1" /> dan halogen golongan <InlineMath math="17" /> selalu bertemu satu banding satu, karena **setiap golongan punya muatan ion yang sama**. Setiap kristal di sini punya pola rumus <InlineMath math="\mathrm{MX}" />.
+Logam golongan <InlineMath math="1" /> dan halogen golongan <InlineMath math="17" /> selalu bertemu satu banding satu, karena **setiap golongan membentuk ion bermuatan satuan yang berlawanan**. Turun di kolom itu mempertahankan pola rumus <InlineMath math="\mathrm{MX}" /> sambil memperpanjang rusuk sel satuan dari <InlineMath math="\mathrm{LiF}" /> ke <InlineMath math="\mathrm{KCl}" />.
 
-<IonLatticeLab
-  title={<>Kristal dari Dua Golongan</>}
-  description={<>Ganti tiga garam ini dan bandingkan ukuran ion serta panjang rusuk selnya.</>}
-  crystals={["lithium-fluoride", "sodium-fluoride", "potassium-chloride"]}
+<MathVisual
+  title={<>Rusuk Sel Satuan Garam Golongan 1 dan 17</>}
+  description={<>Panjang rusuk sel satuan kubus <InlineMath math="\mathrm{LiF}" />, <InlineMath math="\mathrm{NaF}" />, dan <InlineMath math="\mathrm{KCl}" />. Satu kotak tegak berarti <InlineMath math="100\ \mathrm{pm}" />.</>}
+  footer={<>Rumus tetap MX pada ketiga garam, sedangkan ion yang lebih besar melebarkan rusuk sel.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "lif", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2.015, z: 0 }, size: { length: 1.4, height: 4.03, width: 1.4 } },
+      { id: "naf", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2.31, z: 0 }, size: { length: 1.4, height: 4.62, width: 1.4 } },
+      { id: "kcl", kind: "cuboid", appearance: "primary", center: { x: 5, y: 3.145, z: 0 }, size: { length: 1.4, height: 6.29, width: 1.4 } },
+    ],
+    labels: [
+      { key: "lif", objectId: "lif", at: { x: 0, y: 4.4, z: 0 }, placement: "above" },
+      { key: "naf", objectId: "naf", at: { x: 2.5, y: 5.0, z: 0 }, placement: "above" },
+      { key: "kcl", objectId: "kcl", at: { x: 5, y: 6.7, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    cells: "Sel satuan per rusuk",
-    choose: "Pilih kristal",
-    count: <>Jumlah ion</>,
-    formula: <>Rumus</>,
-    ions: <>Ion dan jari-jarinya</>,
-    lattice: <>Rusuk sel satuan</>,
-    view: "Kisi kristal ion",
+    lif: <InlineMath math="\mathrm{LiF}:\ 403\ \mathrm{pm}" />,
+    naf: <InlineMath math="\mathrm{NaF}:\ 462\ \mathrm{pm}" />,
+    kcl: <InlineMath math="\mathrm{KCl}:\ 629\ \mathrm{pm}" />,
   }}
 />
+
+Perbandingan itu merangkum cara kerja golongan: perbandingan rumus tetap terkunci di <InlineMath math="1:1" />, sedangkan ukuran fisiknya tumbuh teratur karena kulit elektron bertambah ke bawah kolom.
 
 ### Satu Golongan Bereaksi Serupa
 
-Unsur dalam satu golongan punya sifat kimia yang mirip. Litium, natrium, dan kalium sama-sama bereaksi dengan air menghasilkan basa dan gas hidrogen, jadi air dengan fenolftalein berubah merah muda. **Makin ke bawah golongan, reaksinya makin cepat**. Pilih ketiga logam dan bandingkan gelembungnya.
+Unsur dalam satu golongan punya sifat kimia yang mirip. Litium, natrium, dan kalium sama-sama bereaksi dengan air menghasilkan basa dan gas hidrogen, jadi air dengan fenolftalein berubah merah muda. **Makin ke bawah golongan, reaksinya makin cepat** karena elektron terluarnya makin mudah dilepas.
 
-<AlkaliWaterLab
-  title={<>Logam Golongan Satu dalam Air</>}
-  description={<>Logam yang lebih ringan dari air mengapung sambil bereaksi.</>}
-  metals={["lithium", "sodium", "potassium"]}
+<MathVisual
+  title={<>Energi Ionisasi Pertama Menurun di Golongan 1</>}
+  description={<>Energi ionisasi pertama <InlineMath math="\mathrm{Li}" />, <InlineMath math="\mathrm{Na}" />, dan <InlineMath math="\mathrm{K}" />. Satu kotak tegak berarti <InlineMath math="100\ \mathrm{kJ/mol}" />.</>}
+  footer={<>Energi ionisasi yang makin kecil ke bawah golongan membuat kalium bereaksi paling cepat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 3.8 }, y: { min: 3.5, max: 6.0 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "trend", kind: "polyline", appearance: "warning", vertices: [{ x: 1, y: 5.20 }, { x: 2, y: 4.96 }, { x: 3, y: 4.19 }] },
+      { id: "li", kind: "point", appearance: "primary", at: { x: 1, y: 5.20 } },
+      { id: "na", kind: "point", appearance: "secondary", at: { x: 2, y: 4.96 } },
+      { id: "k", kind: "point", appearance: "warning", at: { x: 3, y: 4.19 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li", at: { x: 1, y: 5.20 }, placement: "above-right" },
+      { key: "na", objectId: "na", at: { x: 2, y: 4.96 }, placement: "above-right" },
+      { key: "k", objectId: "k", at: { x: 3, y: 4.19 }, placement: "below-left" },
+    ],
+  }}
   labels={{
-    choose: "Pilih logam",
-    density: <>Massa jenis</>,
-    equation: <>Persamaan reaksi</>,
-    ionization: <>Energi ionisasi pertama</>,
-    melting: <>Titik leleh</>,
-    radius: <>Jari-jari atom</>,
-    view: "Logam dalam gelas kimia berisi air",
+    li: <InlineMath math="\mathrm{Li}:\ 520\ \mathrm{kJ/mol}" />,
+    na: <InlineMath math="\mathrm{Na}:\ 496\ \mathrm{kJ/mol}" />,
+    k: <InlineMath math="\mathrm{K}:\ 419\ \mathrm{kJ/mol}" />,
   }}
 />
+
+Karena kalium membutuhkan energi lebih kecil untuk melepas elektron terluarnya dibanding litium, ketiga logam mengikuti pola reaksi air yang sama sambil menunjukkan laju reaksi yang makin hebat ke bawah golongan.
 
 ## Warna Menandai Daerah Unsur
 
@@ -200,7 +252,7 @@ Daftar unsur yang disebut semilogam dapat berbeda antara satu sumber dan sumber 
 
 ## Kenapa Ada Dua Baris di Bawah
 
-Jika lantanida dan aktinida diletakkan di tengah tabel utama, tabel periodik akan menjadi sangat lebar. Karena itu, keduanya biasanya dipindahkan ke bawah agar tabelnya mudah dibaca. Unsur-unsur tersebut **tetap memiliki tempat di dalam sistem periodik**.
+Jika lantanida dan aktinida diletakkan di tengah tabel utama, tabel periodik akan menjadi sangat lebar. Karena itu, keduanya biasanya dipindahkan ke bawah agar tabelnya mudah dibaca. Unsur-unsur itu **tetap memiliki tempat di dalam sistem periodik**.
 
 Lantanida tetap bagian dari periode <InlineMath math="6" />, sedangkan aktinida tetap bagian dari periode <InlineMath math="7" />.
 
@@ -222,6 +274,7 @@ Ikuti nomor atom dari <InlineMath math="1" /> sampai <InlineMath math="18" />, d
 <MathVisual
   title={<>Membaca Tabel Menurut Urutan Nomor Atom</>}
   description={<><InlineMath math="18" /> unsur pertama menurut urutan nomor atom, diletakkan menurut golongan (mendatar) dan periode (baris).</>}
+  footer={<>Setiap lompatan kembali ke golongan 1 membuka kulit elektron baru dan mengulang pola.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 5 } },
@@ -266,21 +319,35 @@ Ikuti nomor atom dari <InlineMath math="1" /> sampai <InlineMath math="18" />, d
   }}
 />
 
+Jalur zig-zag antarkala ini memperlihatkan mengapa satu pasang koordinat (periode dan golongan) langsung memberi tahu jumlah kulit dan pola elektron valensi suatu unsur.
+
 ## Pola Golongan Satu dan Tujuh Belas
 
 Posisi golongan memberi tahu berapa elektron yang mudah dilepas atau diterima. Logam golongan <InlineMath math="1" /> seperti litium dan kalium melepas <InlineMath math="1" /> elektron, sedangkan halogen golongan <InlineMath math="17" /> seperti fluorin dan klorin menerima <InlineMath math="1" /> elektron. **Itulah sebabnya keduanya bergabung dengan perbandingan <InlineMath math="1 : 1" />**.
 
-<IonFormationLab
-  title={<>Logam Alkali Bertemu Halogen</>}
-  description={<>Satu elektron berpindah dan kedua atom menjadi ion.</>}
-  pairs={["lithium-fluorine", "potassium-chlorine"]}
+<MathVisual
+  title={<>Elektron Valensi Sebelum dan Sesudah Berpasangan</>}
+  description={<>Elektron valensi <InlineMath math="\mathrm{Li}" /> dan <InlineMath math="\mathrm{K}" /> (belakang) melawan <InlineMath math="\mathrm{F}" /> dan <InlineMath math="\mathrm{Cl}" /> (depan) menuju kulit stabil gas mulia. Satu kotak tegak berarti <InlineMath math="2" /> elektron.</>}
+  footer={<>Satu elektron berpindah dari golongan 1 ke golongan 17 agar kedua ion punya kulit stabil.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "m-atom", kind: "cuboid", appearance: "warning", center: { x: 0, y: 0.25, z: -0.7 }, size: { length: 1.1, height: 0.5, width: 1.1 } },
+      { id: "m-ion", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.1, z: 0.7 }, size: { length: 1.1, height: 0.2, width: 1.1 } },
+      { id: "x-atom", kind: "cuboid", appearance: "secondary", center: { x: 3.5, y: 1.75, z: -0.7 }, size: { length: 1.1, height: 3.5, width: 1.1 } },
+      { id: "x-ion", kind: "cuboid", appearance: "primary", center: { x: 3.5, y: 2.0, z: 0.7 }, size: { length: 1.1, height: 4.0, width: 1.1 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m-atom", at: { x: 0, y: 1.0, z: -0.7 }, placement: "above" },
+      { key: "x", objectId: "x-ion", at: { x: 3.5, y: 4.3, z: 0.7 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih pasangan atom",
-    metalRadius: <>Jari-jari logam</>,
-    metalShells: <>Kulit logam</>,
-    nonmetalRadius: <>Jari-jari nonlogam</>,
-    nonmetalShells: <>Kulit nonlogam</>,
-    progress: "Perpindahan elektron",
-    view: "Atom logam dan nonlogam menjadi ion",
+    m: <>Golongan 1: 1 jadi 0 luar</>,
+    x: <>Golongan 17: 7 jadi 8 luar</>,
   }}
 />
+
+Setiap kali kamu memasangkan logam golongan <InlineMath math="1" /> dengan nonlogam golongan <InlineMath math="17" />, perpindahan satu elektron langsung menstabilkan kedua kulit terluar sekaligus, menjadikan posisi di tabel periodik sebagai penunjuk langsung rumus senyawa.

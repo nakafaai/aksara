@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Writing Chemical Reactions",
   description:
@@ -19,31 +18,44 @@ The basic pattern looks like this.
 
 Read the arrow as "yields". A plus sign means there is more than one substance on the same side.
 
-## Every Formula Is a Real Molecule
+### Formulas Represent Real Molecules
 
-Before you write an equation, get to know each formula. Turn the models of <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{NO}" />, and <InlineMath math="\mathrm{SO_2}" />. The small numbers in a formula count the atoms inside one molecule, so you must **never change them while balancing**.
+Before you write an equation, get to know each formula. Look at the atom makeup of <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{NO}" />, and <InlineMath math="\mathrm{SO_2}" />. The small subscripts in a formula count the atoms inside one molecule, so you must **never change them while balancing**.
 
-<MoleculeShapeLab
-  title={<>Formulas and Molecular Shapes</>}
-  description={<>Count the atoms in each model and match them to the formula.</>}
-  molecules={[
-    { id: "nitrogen", name: "Nitrogen" },
-    { id: "oxygen", name: "Oxygen" },
-    { id: "nitrogen-monoxide", name: "Nitrogen monoxide" },
-    { id: "sulfur-dioxide", name: "Sulfur dioxide" },
-  ]}
+<MathVisual
+  title={<>Atom Counts Inside Four Molecules</>}
+  description={<>Nitrogen (violet), oxygen (orange), and sulfur (amber) atoms stacked inside a single molecule of each formula. One grid step is <InlineMath math="1" /> atom.</>}
+  footer={<>Subscripts lock in how many atoms of each element build one molecule.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 6.5, z: 11 }, target: { x: 3, y: 1.5, z: 0 } },
+    objects: [
+      { id: "n2", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o2", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "no-n", kind: "cuboid", appearance: "secondary", center: { x: 4, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "no-o", kind: "cuboid", appearance: "primary", center: { x: 4, y: 1.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "so2-s", kind: "cuboid", appearance: "highlight", center: { x: 6, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "so2-o", kind: "cuboid", appearance: "primary", center: { x: 6, y: 2, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "n2", objectId: "n2", at: { x: 0, y: 2.3, z: 0 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2, y: 2.3, z: 0 }, placement: "above" },
+      { key: "no", objectId: "no-o", at: { x: 4, y: 2.3, z: 0 }, placement: "above" },
+      { key: "so2", objectId: "so2-o", at: { x: 6, y: 3.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
+    n2: <InlineMath math="\mathrm{N_2}:\ 2\mathrm{N}" />,
+    o2: <InlineMath math="\mathrm{O_2}:\ 2\mathrm{O}" />,
+    no: <InlineMath math="\mathrm{NO}:\ 1\mathrm{N}+1\mathrm{O}" />,
+    so2: <InlineMath math="\mathrm{SO_2}:\ 1\mathrm{S}+2\mathrm{O}" />,
   }}
 />
 
-## Methane Combustion Equation
+Each stack represents a real molecule whose identity depends on those exact atom counts. Once a formula is written correctly, leave its subscripts untouched and focus on coefficients.
+
+### Methane Combustion Equation
 
 Start from an ordinary sentence: methane reacts with oxygen to produce carbon dioxide and water. **Reactants go on the left**, products go on the right.
 
@@ -55,7 +67,7 @@ Start from an ordinary sentence: methane reacts with oxygen to produce carbon di
 
 The starting formulas are not balanced because the left side has only <InlineMath math="2" /> oxygen atoms, while the right side has <InlineMath math="3" />. After the coefficients are added, each element has the same atom count on both sides.
 
-Start with carbon, which already has one atom on each side. There are four hydrogen atoms on the left, so put coefficient <InlineMath math="2" /> before <InlineMath math="\mathrm{H_2O}" /> to give <InlineMath math="2\times2=4" /> hydrogen atoms on the right. The right now has <InlineMath math="2+2=4" /> oxygen atoms, so <InlineMath math="\mathrm{O_2}" /> needs coefficient <InlineMath math="2" />. Check the result:
+Start with carbon, which already has one atom on each side. There are four hydrogen atoms on the left, so put coefficient <InlineMath math="2" /> before <InlineMath math="\mathrm{H_2O}" /> to give <InlineMath math="2\times2=4" /> hydrogen atoms on the right. The right now has <InlineMath math="2+2=4" /> oxygen atoms, so <InlineMath math="\mathrm{O_2}" /> needs coefficient <InlineMath math="2" />. Check the balanced counts in the table below.
 
 | Element | Left | Right |
 | :------ | :--- | :---- |
@@ -65,27 +77,36 @@ Start with carbon, which already has one atom on each side. There are four hydro
 
 The coefficients read as the ratio <InlineMath math="1:2:1:2" />. Because all four substances in this example are molecular, the ratio may be pictured as <InlineMath math="1" /> methane molecule reacting with <InlineMath math="2" /> oxygen molecules to produce <InlineMath math="1" /> carbon dioxide molecule and <InlineMath math="2" /> water molecules. On a laboratory scale, the same coefficients give the mole ratio.
 
-<MethaneCombustionEquationLab
-  title={<>Coefficients show molecule counts</>}
-  description={
-    <>
-      In the starting view, the left side shows reactants and the right side
-      shows products in the balanced equation.
-    </>
-  }
+<MathVisual
+  title={<>Molecule Ratio in Methane Combustion</>}
+  description={<>Reactant molecules on the left (methane gray, oxygen orange) and product molecules on the right (carbon dioxide amber, water violet). One grid step is <InlineMath math="1" /> molecule.</>}
+  footer={<>Coefficients set the 1 to 2 to 1 to 2 molecule and mole ratio across the arrow.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9.5, y: 6, z: 11 }, target: { x: 3.25, y: 1, z: 0 } },
+    objects: [
+      { id: "ch4", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "o2", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "co2", kind: "cuboid", appearance: "highlight", center: { x: 4.5, y: 0.5, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "h2o", kind: "cuboid", appearance: "secondary", center: { x: 6.5, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "ch4", objectId: "ch4", at: { x: 0, y: 1.3, z: 0 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2, y: 2.3, z: 0 }, placement: "above" },
+      { key: "co2", objectId: "co2", at: { x: 4.5, y: 1.3, z: 0 }, placement: "above" },
+      { key: "h2o", objectId: "h2o", at: { x: 6.5, y: 2.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    moleculeView: "Methane combustion equation model",
-    reactants: "Reactants",
-    products: "Products",
-    equation: (
-      <>
-        Reactants: <InlineMath math="\mathrm{CH_4} + 2\mathrm{O_2}" />. Products: <InlineMath math="\mathrm{CO_2} + 2\mathrm{H_2O}" />. The <InlineMath math="\mathrm{C}" />, <InlineMath math="\mathrm{H}" />, and <InlineMath math="\mathrm{O}" /> atom counts stay the same on both sides.
-      </>
-    ),
+    ch4: <InlineMath math="1\ \mathrm{CH_4}" />,
+    o2: <InlineMath math="2\ \mathrm{O_2}" />,
+    co2: <InlineMath math="1\ \mathrm{CO_2}" />,
+    h2o: <InlineMath math="2\ \mathrm{H_2O}" />,
   }}
 />
 
-The molecule model is specific to molecular substances. For an ionic or network solid, the coefficient gives a stoichiometric amount or formula-unit ratio. In every case, the coefficients give relative mole amounts for a macroscopic reaction.
+The molecule picture applies directly to molecular substances like gases and water. For an ionic or network solid, the coefficient gives a stoichiometric amount or formula-unit ratio, while in every case it gives relative mole amounts for a macroscopic reaction.
 
 ## Coefficients Do Not Change Formulas
 
@@ -95,11 +116,12 @@ Atom counts come from **multiplying coefficients by subscripts**. Coefficients c
 
 The coefficient <InlineMath math="2" /> before <InlineMath math="\mathrm{O_2}" /> means two oxygen molecules. The subscript in <InlineMath math="\mathrm{O_2}" /> is part of the oxygen formula, so it must not be changed into <InlineMath math="\mathrm{O_4}" />.
 
-Count the atoms of <InlineMath math="\mathrm{CH_4}+2\mathrm{O_2}\rightarrow\mathrm{CO_2}+2\mathrm{H_2O}" /> by multiplying each coefficient by its subscripts. In the scene, each element has a back bar for the reactants and a front bar for the products, one grid step for <InlineMath math="2" /> atoms. Rotate it: every pair is equally tall, so the equation is balanced.
+Count the atoms in this balanced methane equation by multiplying each coefficient by its subscripts. In the scene below, each element has a back bar for the reactants and a front bar for the products, with one grid step for <InlineMath math="2" /> atoms. Rotate the view to verify that every pair is equally tall.
 
 <MathVisual
-  title={<>Atoms on Both Sides of the Equation</>}
+  title={<>Methane Combustion Atom Balance</>}
   description={<>Carbon (gray), hydrogen (violet) and oxygen (orange) counted in the reactants (back) and the products (front). One grid step up is <InlineMath math="2" /> atoms.</>}
+  footer={<>Equal reactant and product bars confirm every C, H, and O atom is balanced.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
@@ -125,9 +147,15 @@ Count the atoms of <InlineMath math="\mathrm{CH_4}+2\mathrm{O_2}\rightarrow\math
   }}
 />
 
-## State Symbols Come After Formulas
+Multiplying coefficients by subscripts keeps every element's front and back bars level. That simple arithmetic check tells you immediately when an equation is balanced.
 
-When the physical states are known, write the state symbol after each formula. At the high temperature of a methane flame, the water product is vapor, so the equation can be written as:
+## State Symbols and Precipitation
+
+Chemical formulas alone tell you which substances react, but they hide what happens in the flask. Adding **physical state symbols** completes the picture by showing which reactants start dissolved in water and which product separates out as a gas or a solid precipitate.
+
+### State Symbols Come After Formulas
+
+When the physical states are known, write the state symbol after each formula. At the high temperature of a methane flame, the water product is vapor, so the equation is written as shown below.
 
 <BlockMath math="\begin{aligned} &amp;\mathrm{CH_4(g)} + 2\mathrm{O_2(g)} \\ &amp;\rightarrow \mathrm{CO_2(g)} + 2\mathrm{H_2O(g)} \end{aligned}" />
 
@@ -140,7 +168,7 @@ State symbols do not change atom counts. They tell the reader the **physical for
 | <InlineMath math="\mathrm{(g)}" /> | gas | <InlineMath math="\mathrm{CO_2(g)}" /> |
 | <InlineMath math="\mathrm{(aq)}" /> | dissolved in water | <InlineMath math="\mathrm{NaCl(aq)}" /> |
 
-## Silver Chloride Precipitation Example
+### Silver Chloride Precipitation Example
 
 Two clear solutions can form a new solid. For example, silver nitrate solution reacts with sodium chloride solution to produce a silver chloride precipitate.
 
@@ -158,11 +186,20 @@ This equation is already balanced with the coefficient ratio <InlineMath math="1
 
 A wrong chemical formula <Highlight>cannot be fixed by balancing the equation</Highlight>. Check each formula before adjusting the coefficients.
 
-Run the last step on the gas in a camping stove: <InlineMath math="\mathrm{C_3H_8}+5\mathrm{O_2}\rightarrow3\mathrm{CO_2}+4\mathrm{H_2O}" />. Count every atom on both sides after you balance. Rotate the bars: each pair is equally tall, so the coefficients are right.
+> Never alter a subscript to force a match. Changing a subscript turns the substance into a different compound, while changing a coefficient only adjusts how many molecules take part.
+
+### Balancing Propane Combustion
+
+Try these steps on propane, the fuel inside a camping stove. Start by **balancing carbon and hydrogen first**, then set the oxygen coefficient last.
+
+<BlockMath math="\mathrm{C_3H_8} + 5\mathrm{O_2} \rightarrow 3\mathrm{CO_2} + 4\mathrm{H_2O}" />
+
+Count every atom on both sides after balancing. Rotate the bars below to see that each element pair has the exact same height.
 
 <MathVisual
-  title={<>Atoms on Both Sides</>}
+  title={<>Propane Combustion Atom Balance</>}
   description={<>Carbon (gray), hydrogen (violet) and oxygen (orange) atoms in the reactants (back) and the products (front). One grid step up is <InlineMath math="2" /> atoms.</>}
+  footer={<>Matching bars confirm 3 carbon, 8 hydrogen, and 10 oxygen atoms on each side.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -188,28 +225,47 @@ Run the last step on the gas in a camping stove: <InlineMath math="\mathrm{C_3H_
   }}
 />
 
-## Checking a Balance Atom by Atom
+With larger hydrocarbon fuels, balancing carbon and hydrogen first leaves oxygen as one clean final calculation. Checking all three bar pairs confirms that the coefficients <InlineMath math="1:5:3:4" /> are exact.
 
-The last step in writing an equation is to check each element. Choose a reaction and look at the atom count reading. The numbers on both sides of each equals sign **must match for every element**. Coefficients may change, but formulas never do.
+### Checking a Balance Atom by Atom
 
-<ReactionBalanceLab
-  title={<>Balanced Equations</>}
-  description={<>Pick a reaction and check each element's atom count on both sides.</>}
-  reactions={[
-    { id: "nitrogen-fixation", name: "Forming nitrogen monoxide", tab: <InlineMath math="\mathrm{NO}" /> },
-    { id: "sulfur-dioxide-oxidation", name: "Oxidising sulfur dioxide", tab: <InlineMath math="\mathrm{SO_3}" /> },
-  ]}
-  reading="molecules"
+The last step in writing an equation is to check each element one by one. Consider two gas reactions involving nitrogen and sulfur oxides.
+
+<BlockMath math="\begin{aligned} &amp;\mathrm{N_2} + \mathrm{O_2} \rightarrow 2\mathrm{NO} \\ &amp;2\mathrm{SO_2} + \mathrm{O_2} \rightarrow 2\mathrm{SO_3} \end{aligned}" />
+
+The counts on both sides of each equals sign **must match for every element**. Rotate the scene below to inspect nitrogen, sulfur, and oxygen across both balanced equations.
+
+<MathVisual
+  title={<>Atom Check for Nitrogen and Sulfur Oxides</>}
+  description={<>Reactant atoms (back) and product atoms (front) for forming <InlineMath math="\mathrm{NO}" /> (left two pairs) and <InlineMath math="\mathrm{SO_3}" /> (right two pairs). One grid step is <InlineMath math="1" /> atom.</>}
+  footer={<>Every element pair matches in height across both nitrogen and sulfur reactions.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9.5, y: 9.5, z: 12 }, target: { x: 3.25, y: 3, z: 0 } },
+    objects: [
+      { id: "n-left", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "n-right", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o1-left", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o1-right", kind: "cuboid", appearance: "primary", center: { x: 2, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "s-left", kind: "cuboid", appearance: "highlight", center: { x: 4.5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "s-right", kind: "cuboid", appearance: "highlight", center: { x: 4.5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o2-left", kind: "cuboid", appearance: "primary", center: { x: 6.5, y: 3, z: -0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
+      { id: "o2-right", kind: "cuboid", appearance: "primary", center: { x: 6.5, y: 3, z: 0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-right", at: { x: 0, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "o1", objectId: "o1-right", at: { x: 2, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "s", objectId: "s-right", at: { x: 4.5, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "o2", objectId: "o2-right", at: { x: 6.5, y: 6.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms of each element</>,
-    choose: "Choose a reaction",
-    economy: <>Atom economy</>,
-    equation: <>Balanced equation</>,
-    mass: <>Mass of reactants and products</>,
-    molecules: <>Number of molecules</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Reaction at the level of atoms",
+    n: <InlineMath math="\mathrm{N}:\ 2=2" />,
+    o1: <InlineMath math="\mathrm{O\ (NO)}:\ 2=2" />,
+    s: <InlineMath math="\mathrm{S}:\ 2=2" />,
+    o2: <InlineMath math="\mathrm{O\ (SO_3)}:\ 6=6" />,
   }}
 />
+
+When every element passes this side-by-side count, your chemical equation is complete and reliable. Keep this habit of checking atoms last, and you will catch missing coefficients before they cause calculation errors.

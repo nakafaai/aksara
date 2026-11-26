@@ -17,35 +17,63 @@ Bei einer chemischen Reaktion verschwinden Atome nicht und entstehen auch nicht 
 
 Die Systemgrenze legt fest, welche Stoffe zur Masse gehören. In einem geschlossenen Behälter bleiben alle Stoffe innerhalb des gewogenen Bereichs. Aus einem offenen Behälter kann Gas diese Grenze überschreiten. Die Waage zeigt dann weniger Masse an, weil sich das Gas außerhalb des gewogenen Bereichs befindet. Die Materie ist weiterhin vorhanden. Die Gesamtmenge an Materie bleibt bei chemischen und physikalischen Veränderungen unverändert.
 
+> Materie verschwindet bei einer Reaktion niemals. Wenn sich eine Waagenanzeige ändert, verlässt oder betritt Gas die gewogene Systemgrenze.
+
 ## Ein neuer Feststoff mit derselben Masse
 
 Eine Reaktion kann einen ganz neuen Stoff bilden, ohne die Masse zu ändern. Silbernitratlösung und Kochsalzlösung sind beide klar. Wenn du sie mischst, verbinden sich Silberionen und Chloridionen zu Silberchlorid, das sich nicht löst, und es erscheint ein **weißer Niederschlag** wie eine Wolke.
 
 <BlockMath math="\mathrm{AgNO_3(aq)} + \mathrm{NaCl(aq)} \rightarrow \mathrm{AgCl(s)} + \mathrm{NaNO_3(aq)}" />
 
-Jedes Becherglas enthält <InlineMath math="50{,}00\ \mathrm{g}" /> Wasser mit <InlineMath math="0{,}0050\ \mathrm{mol}" /> seines Salzes, also <InlineMath math="0{,}85\ \mathrm{g}" /> Silbernitrat und <InlineMath math="0{,}29\ \mathrm{g}" /> Natriumchlorid. Beide Bechergläser stehen vor und nach dem Umgießen auf derselben Waage.
+Jedes Becherglas enthält <InlineMath math="50{,}00\ \mathrm{g}" /> Wasser mit <InlineMath math="0{,}0050\ \mathrm{mol}" /> seines Salzes, also <InlineMath math="0{,}85\ \mathrm{g}" /> Silbernitrat und <InlineMath math="0{,}29\ \mathrm{g}" /> Natriumchlorid. Da die <InlineMath math="100{,}00\ \mathrm{g}" /> Wasser auf beiden Seiten unverändert bleiben, vergleichen wir die gelösten Ausgangssalze direkt mit dem festen Niederschlag und dem gelösten Produktsalz.
 
-<PrecipitateLab
-  title={<>Ein weißer Niederschlag auf der Waage</>}
+<MathVisual
+  title={<>Salzmasse vor und nach der Fällung</>}
   description={
     <>
-      Spiel das Umgießen der Silbernitratlösung in die Kochsalzlösung ab. Eine
-      Wolke aus Silberchlorid erscheint, und die Anzeige bleibt gleich.
+      Edukte links (<InlineMath math="\mathrm{AgNO_3}" /> und{" "}
+      <InlineMath math="\mathrm{NaCl}" />) im Vergleich zu den Produkten rechts (festes{" "}
+      <InlineMath math="\mathrm{AgCl}" /> und gelöstes{" "}
+      <InlineMath math="\mathrm{NaNO_3}" />). Ein Gitterschritt nach oben entspricht{" "}
+      <InlineMath math="0{,}20\ \mathrm{g}" />.
     </>
   }
+  footer={<>Beide Stapel treffen die Linie bei 1,14 g, während 100,00 g Wasser gleich bleiben.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "total-line", kind: "segment", appearance: "reference", from: { x: 1, y: 5.7 }, to: { x: 7, y: 5.7 } },
+      { id: "agno3", kind: "segment", appearance: "primary", from: { x: 2, y: 0 }, to: { x: 2, y: 4.25 } },
+      { id: "nacl", kind: "segment", appearance: "secondary", from: { x: 2, y: 4.25 }, to: { x: 2, y: 5.7 } },
+      { id: "before-split", kind: "point", appearance: "primary", at: { x: 2, y: 4.25 } },
+      { id: "before-top", kind: "point", appearance: "secondary", at: { x: 2, y: 5.7 } },
+      { id: "agcl", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 3.6 } },
+      { id: "nano3", kind: "segment", appearance: "highlight", from: { x: 6, y: 3.6 }, to: { x: 6, y: 5.7 } },
+      { id: "after-split", kind: "point", appearance: "construction", at: { x: 6, y: 3.6 } },
+      { id: "after-top", kind: "point", appearance: "highlight", at: { x: 6, y: 5.7 } },
+    ],
+    labels: [
+      { key: "agno3", objectId: "agno3", at: { x: 2, y: 2.1 }, placement: "right" },
+      { key: "nacl", objectId: "nacl", at: { x: 2, y: 4.95 }, placement: "right" },
+      { key: "before-total", objectId: "before-top", at: { x: 2, y: 5.7 }, placement: "above" },
+      { key: "agcl", objectId: "agcl", at: { x: 6, y: 1.8 }, placement: "right" },
+      { key: "nano3", objectId: "nano3", at: { x: 6, y: 4.65 }, placement: "right" },
+      { key: "after-total", objectId: "after-top", at: { x: 6, y: 5.7 }, placement: "above" },
+    ],
+  }}
   labels={{
-    readingBefore: <>Anzeige vor dem Umgießen</>,
-    readingAfter: <>Anzeige nach dem Umgießen</>,
-    precipitate: (
-      <>
-        Gebildeter Niederschlag <InlineMath math="\mathrm{AgCl}" />
-      </>
-    ),
-    viewLabel: "Zwei Bechergläser auf einer Waage",
+    agno3: <InlineMath math="\mathrm{AgNO_3}:\ 0{,}85\ \mathrm{g}" />,
+    nacl: <InlineMath math="\mathrm{NaCl}:\ 0{,}29\ \mathrm{g}" />,
+    "before-total": <InlineMath math="1{,}14\ \mathrm{g}" />,
+    agcl: <InlineMath math="\mathrm{AgCl}:\ 0{,}72\ \mathrm{g}" />,
+    nano3: <InlineMath math="\mathrm{NaNO_3}:\ 0{,}42\ \mathrm{g}" />,
+    "after-total": <InlineMath math="1{,}14\ \mathrm{g}" />,
   }}
 />
 
-Die Waage zeigt vor und nach dem Umgießen <InlineMath math="101{,}14\ \mathrm{g}" />. Etwa <InlineMath math="0{,}72\ \mathrm{g}" /> festes Silberchlorid entstehen, aber ihre Atome stammen aus Stoffen, die schon in den Gläsern waren. Kein Gas kommt hinzu oder entweicht, also behalten sogar offene Gläser dieselbe Masse.
+Zusammen mit den <InlineMath math="100{,}00\ \mathrm{g}" /> Wasser zeigt die Waage vor und nach dem Mischen <InlineMath math="101{,}14\ \mathrm{g}" />. Etwa <InlineMath math="0{,}72\ \mathrm{g}" /> festes Silberchlorid und <InlineMath math="0{,}42\ \mathrm{g}" /> gelöstes Natriumnitrat entstehen, und jedes Atom stammt aus Stoffen, die schon in den Gläsern waren. Kein Gas kommt hinzu oder entweicht, also behalten sogar offene Gläser dieselbe Masse.
 
 ## Messungen von Lavoisier
 
@@ -62,6 +90,7 @@ Sein bekanntester Versuch steht in [Lavoisiers Buch Elements of Chemistry](https
       verbraucht wird.
     </>
   }
+  footer={<>Die Luft unter der Glocke schrumpft, während roter Kalk auf dem Quecksilber wächst.</>}
   labels={{
     day: "Tag des Erhitzens",
     air: <>Luft unter der Glocke</>,
@@ -80,7 +109,7 @@ Sein bekanntester Versuch steht in [Lavoisiers Buch Elements of Chemistry](https
   }}
 />
 
-Lavoisier sammelte <InlineMath math="45" /> Gran Kalk. Als er diesen Kalk stärker erhitzte, wurde daraus wieder <InlineMath math="41{,}5" /> Gran Quecksilber und <InlineMath math="7" /> bis <InlineMath math="8" /> Kubikzoll Gas. Der Unterschied von <InlineMath math="45-41{,}5=3{,}5" /> Gran ist die Masse des Gases, das das Quecksilber der Luft entzogen hatte. **Masse entsteht nicht aus dem Nichts**: Der Kalk ist schwerer, weil sich Sauerstoff aus der Luft angelagert hat.
+Lavoisier sammelte <InlineMath math="45" /> Gran Kalk. Als er diesen Kalk stärker erhitzte, wurde daraus wieder <InlineMath math="41{,}5" /> Gran Quecksilber und <InlineMath math="7" /> bis <InlineMath math="8" /> Kubikzoll Gas. Der Unterschied von <InlineMath math="45-41{,}5=3{,}5" /> Gran ist die Masse des Gases, das das Quecksilber der Luft entzogen hatte. **Masse entsteht nicht aus dem Nichts**, denn der Kalk ist nur deshalb schwerer, weil sich Sauerstoff aus der Luft angelagert hat.
 
 Lavoisier begründete den Massenerhaltungssatz und verknüpfte Verbrennung mit Sauerstoff.
 
@@ -98,6 +127,7 @@ Die Modellwaage ist **mit dem leeren Behälter tariert**. Die Anzeige zählt dah
       dem Modellfall, in dem ein Anteil vor der Reaktion die Grenze überschreitet.
     </>
   }
+  footer={<>Wechsle zwischen geschlossenem und offenem Modus für die Waagenanzeige.</>}
   labels={{
     chooseMode: "Systemgrenze auswählen",
     before: "Vorher",
@@ -146,9 +176,11 @@ Die Modellwaage ist **mit dem leeren Behälter tariert**. Die Anzeige zählt dah
   }}
 />
 
+Die Waagenanzeige sinkt erst dann, wenn Materie die gestrichelte Grenze überschreitet. Im verschlossenen Gefäß bleibt der Wert bei <InlineMath math="12{,}00\ \mathrm{g}" />, während im offenen Gefäß ein Teil aus dem Wiegebereich austritt.
+
 ## Massenbilanz in einem offenen System
 
-Die offene Ansicht beginnt mit denselben <InlineMath math="10{,}00\ \mathrm{g}" /> Zink und <InlineMath math="2{,}00\ \mathrm{g}" /> Schwefel. Anschließend überschreitet im Modell <InlineMath math="1{,}00\ \mathrm{g}" /> Schwefel als Dampf die Grenze, bevor dieser Anteil reagiert. Die [verkürzten Standardatomgewichte](https://www.ciaaw.org/abridged-atomic-weights.htm) für 2024 betragen <InlineMath math="A_r(\mathrm{Zn})=65{,}38" /> und <InlineMath math="A_r(\mathrm{S})=32{,}06" />. Mit diesen Werten reagiert der verbleibende Schwefel mit ungefähr <InlineMath math="2{,}04\ \mathrm{g}" /> Zink.
+Die offene Ansicht beginnt mit denselben <InlineMath math="10{,}00\ \mathrm{g}" /> Zink und <InlineMath math="2{,}00\ \mathrm{g}" /> Schwefel. Anschließend entweicht im Modell <InlineMath math="1{,}00\ \mathrm{g}" /> Schwefel als Dampf, bevor dieser Anteil reagiert. Die [verkürzten Standardatomgewichte](https://www.ciaaw.org/abridged-atomic-weights.htm) für 2024 betragen <InlineMath math="A_r(\mathrm{Zn})=65{,}38" /> und <InlineMath math="A_r(\mathrm{S})=32{,}06" />, sodass der verbleibende Schwefel mit rund <InlineMath math="2{,}04\ \mathrm{g}" /> Zink reagiert.
 
 <MathContainer>
 <BlockMath math="m_{\mathrm{Zn}}=1\ \mathrm{g}\times\frac{65{,}38}{32{,}06}\approx 2{,}04\ \mathrm{g}" />
@@ -156,13 +188,14 @@ Die offene Ansicht beginnt mit denselben <InlineMath math="10{,}00\ \mathrm{g}" 
 <BlockMath math="\begin{aligned} &amp;m_{\mathrm{ZnS}} \approx 2{,}04 + 1{,}00 = 3{,}04\ \mathrm{g} \\ &amp;m_{\mathrm{Zn,rest}} \approx 10{,}00 - 2{,}04 = 7{,}96\ \mathrm{g} \\ &amp;m_{\mathrm{auf\ der\ Waage}} \approx 3{,}04 + 7{,}96 \\ &amp;= 11{,}00\ \mathrm{g} \\ &amp;m_{\mathrm{erweitertes\ System}} = 11{,}00 + 1{,}00 \\ &amp;= 12{,}00\ \mathrm{g} \end{aligned}" />
 </MathContainer>
 
-Die Waage erfasst nur die **Materie innerhalb der gewählten Systemgrenze**. Nachdem <InlineMath math="1{,}00\ \mathrm{g}" /> Schwefeldampf diese Grenze verlassen hat, zeigt sie <InlineMath math="11{,}00\ \mathrm{g}" /> an. Wird der entwichene Dampf weiterhin zum System gezählt, beträgt die Gesamtmasse unverändert <InlineMath math="12{,}00\ \mathrm{g}" />.
+Die Waage erfasst nur die **Materie innerhalb der gewählten Systemgrenze** und zeigt nach dem Dampfverlust <InlineMath math="11{,}00\ \mathrm{g}" /> an. Zählt man das entwichene Gramm wieder mit, bleibt die Gesamtmasse des erweiterten Systems unverändert bei <InlineMath math="12{,}00\ \mathrm{g}" />.
 
-Die drei Säulen unten sind die Anzeigen der Waage, ein Gitterschritt für <InlineMath math="4\ \mathrm{g}" />. Bleibt jeder Stoff drinnen, bleibt die geschlossene Säule bei <InlineMath math="12{,}00\ \mathrm{g}" />. Im offenen System überquert <InlineMath math="1{,}00\ \mathrm{g}" /> Schwefel die Grenze, bevor er reagiert, also zeigt die Waage nur <InlineMath math="11{,}00\ \mathrm{g}" />. Die Masse ist nicht verschwunden, sie hat nur das System verlassen, das du wiegst.
+Die drei Säulen unten vergleichen Ausgangswert, geschlossenes Gefäß und offenes Gefäß bei einem Gitterschritt für <InlineMath math="4\ \mathrm{g}" />. Im direkten Vergleich fällt sofort auf, wie das fehlende Gramm die letzte Säule verkürzt.
 
 <MathVisual
   title={<>Was die Waage anzeigt</>}
   description={<><InlineMath math="10{,}00\text{ g}" /> Zink und <InlineMath math="2{,}00\text{ g}" /> Schwefel vor der Reaktion, danach im geschlossenen und im offenen System. Ein Gitterschritt nach oben sind <InlineMath math="4\text{ g}" />.</>}
+  footer={<>Geschlossen bleibt die Säule bei 12,00 g, offen sinkt sie auf 11,00 g.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
@@ -185,7 +218,7 @@ Die drei Säulen unten sind die Anzeigen der Waage, ein Gitterschritt für <Inli
   }}
 />
 
-Gas kann ein offenes System verlassen, aber Gas aus der Luft kann auch hineinkommen und mitreagieren. Die nächsten beiden Versuche zeigen beide Richtungen auf derselben Art von Waage.
+Die offene Säule ist nur deshalb kürzer, weil ein Teil der Materie aus dem gewogenen Bereich gewandert ist. Gas kann ein offenes System verlassen, aber Gas aus der Luft kann auch hineinkommen und mitreagieren. Die nächsten beiden Versuche zeigen beide Richtungen auf derselben Art von Waage.
 
 ### Gas entweicht aus dem offenen Kolben
 
@@ -193,7 +226,11 @@ Natron, also Natriumhydrogencarbonat, reagiert mit der Essigsäure im Essig zu K
 
 <BlockMath math="\mathrm{NaHCO_3} + \mathrm{CH_3COOH} \rightarrow \mathrm{CH_3COONa} + \mathrm{H_2O} + \mathrm{CO_2}" />
 
-Jedes Mol Natron liefert **ein Mol Kohlenstoffdioxid**. Aus <InlineMath math="2{,}00\ \mathrm{g}" /> Natron entstehen <InlineMath math="2{,}00\times\frac{44{,}01}{84{,}01}\approx1{,}05\ \mathrm{g}" /> Gas. Die Waage ist mit dem leeren Kolben und Schälchen tariert, also zeigt sie am Anfang die <InlineMath math="100{,}00\ \mathrm{g}" /> Essig plus das Natron.
+Jedes Mol Natron liefert **ein Mol Kohlenstoffdioxid**. Aus <InlineMath math="2{,}00\ \mathrm{g}" /> Natron berechnen wir die gebildete Gasmasse.
+
+<BlockMath math="m_{\mathrm{CO_2}} = 2{,}00\ \mathrm{g} \times \frac{44{,}01}{84{,}01} \approx 1{,}05\ \mathrm{g}" />
+
+Die Waage ist mit dem leeren Kolben und Schälchen tariert, also zeigt sie am Anfang die <InlineMath math="100{,}00\ \mathrm{g}" /> Essig plus das Natron.
 
 <FizzBalanceLab
   title={<>Natron und Essig auf der Waage</>}
@@ -203,6 +240,7 @@ Jedes Mol Natron liefert **ein Mol Kohlenstoffdioxid**. Aus <InlineMath math="2{
       Kolben mit einem Kolben, der mit einem Stopfen verschlossen ist.
     </>
   }
+  footer={<>Ein Stopfen hält das Kohlenstoffdioxid fest, sodass 102,00 g stehen bleiben.</>}
   labels={{
     chooseSeal: "Kolben wählen",
     seals: { open: "Offen", closed: "Verschlossen" },
@@ -230,7 +268,11 @@ Brennende Stahlwolle wird sogar **schwerer**. Eisen reagiert mit Sauerstoff aus 
 
 <BlockMath math="3\mathrm{Fe} + 2\mathrm{O_2} \rightarrow \mathrm{Fe_3O_4}" />
 
-Je <InlineMath math="3\times55{,}845=167{,}535\ \mathrm{g}" /> Eisen binden <InlineMath math="4\times15{,}999=63{,}996\ \mathrm{g}" /> Sauerstoff. Verbrennen alle <InlineMath math="1{,}50\ \mathrm{g}" /> Stahlwolle, kommt <InlineMath math="1{,}50\times\frac{63{,}996}{167{,}535}\approx0{,}57\ \mathrm{g}" /> Sauerstoff hinzu. [Der Versuch der Royal Society of Chemistry zur Verbrennung von Eisenwolle](https://edu.rsc.org/experiments/the-combustion-of-iron-wool/717.article) zeigt diese Massenzunahme auf einer einfachen Waage.
+In dieser Reaktion binden <InlineMath math="3" /> Mol Eisen (<InlineMath math="167{,}535\ \mathrm{g}" />) genau <InlineMath math="4" /> Mol Sauerstoffatome (<InlineMath math="63{,}996\ \mathrm{g}" />). Verbrennen alle <InlineMath math="1{,}50\ \mathrm{g}" /> Stahlwolle, berechnen wir die aufgenommene Sauerstoffmasse.
+
+<BlockMath math="m_{\mathrm{O_2}} = 1{,}50\ \mathrm{g} \times \frac{63{,}996}{167{,}535} \approx 0{,}57\ \mathrm{g}" />
+
+[Der Versuch der Royal Society of Chemistry zur Verbrennung von Eisenwolle](https://edu.rsc.org/experiments/the-combustion-of-iron-wool/717.article) zeigt diese Massenzunahme auf einer einfachen Waage.
 
 <SteelWoolLab
   title={<>Brennende Stahlwolle wird schwerer</>}
@@ -241,6 +283,7 @@ Je <InlineMath math="3\times55{,}845=167{,}535\ \mathrm{g}" /> Eisen binden <Inl
       Glas voller Luft.
     </>
   }
+  footer={<>Offene Luft liefert zusätzlichen Sauerstoff, im geschlossenen Glas war er schon drin.</>}
   labels={{
     chooseSeal: "Ort wählen",
     seals: { open: "Offene Luft", closed: "Geschlossenes Glas" },
@@ -257,7 +300,7 @@ An offener Luft kommt der Sauerstoff von außerhalb des gewogenen Systems, also 
 
 In einem Versuch werden <InlineMath math="10{,}00\ \mathrm{g}" /> Zink mit <InlineMath math="2{,}00\ \mathrm{g}" /> Schwefel erhitzt. Nach der Reaktion sind <InlineMath math="6{,}08\ \mathrm{g}" /> Zinksulfid entstanden, während <InlineMath math="5{,}92\ \mathrm{g}" /> Zink **nicht reagiert haben**.
 
-Die stöchiometrische Kurzschreibweise auf Teilchenebene lautet:
+Auf Teilchenebene schreiben wir die stöchiometrische Kurzform folgendermaßen.
 
 <BlockMath math="\mathrm{Zn(s)} + \mathrm{S(s)} \rightarrow \mathrm{ZnS(s)}" />
 
@@ -267,9 +310,9 @@ Bleibt ein Reaktant übrig, entspricht die Produktmasse nicht der gesamten Ausga
 
 <BlockMath math="\begin{aligned} &amp;m_{\mathrm{umgesetztes\ Zn}} = 10{,}00 - 5{,}92 \\ &amp;= 4{,}08\ \mathrm{g} \\ &amp;m_{\mathrm{umgesetzte\ Reaktanten}} = 4{,}08 + 2{,}00 \\ &amp;= 6{,}08\ \mathrm{g} \\ &amp;m_{\mathrm{Produkt}} = 6{,}08\ \mathrm{g} \end{aligned}" />
 
-In diesem Beispiel gilt die Massenerhaltung für den reagierenden Teil: Die Masse des reagierenden Zinks plus die Masse des Schwefels entspricht der Masse des gebildeten Zinksulfids.
+In diesem Beispiel gilt die Massenerhaltung für den reagierenden Teil, weil die Masse des reagierenden Zinks plus die Masse des Schwefels genau die Masse des gebildeten Zinksulfids ergibt.
 
-Wird der gesamte Behälter gezählt, bleibt auch die Masse unverändert:
+Wird der gesamte Behälter gezählt, bleibt die Gesamtmasse ebenfalls unverändert.
 
 <BlockMath math="\begin{aligned}
 m_{\mathrm{vorher}} &= 10{,}00 + 2{,}00 = 12{,}00\ \mathrm{g} \\
@@ -288,11 +331,12 @@ Chemische Gleichungen müssen ausgeglichen sein, weil auf beiden Seiten dieselbe
 
 Das Gesetz der konstanten Zusammensetzung beantwortet eine andere Frage. Bleibt das Massenverhältnis gleich, wenn zwei Elemente dieselbe Verbindung bilden?
 
-Halte die drei Massen im Versuch mit Zink und Schwefel auseinander. Vor der Reaktion enthält die Säule das Zink, das reagieren wird, das Zink, das übrig bleibt, und den Schwefel. Danach ist der reagierte Teil zu <InlineMath math="6{,}08\ \mathrm{g}" /> <InlineMath math="\mathrm{ZnS}" /> geworden, neben demselben restlichen Zink. Dreh die Säulen: Beide Summen sind <InlineMath math="12{,}00\ \mathrm{g}" />.
+Halte die drei Massen im Versuch mit Zink und Schwefel auseinander. Vor der Reaktion enthält die Säule das Zink, das reagieren wird, das Zink, das übrig bleibt, und den Schwefel. Danach ist der reagierte Teil zu <InlineMath math="6{,}08\ \mathrm{g}" /> <InlineMath math="\mathrm{ZnS}" /> geworden, neben demselben restlichen Zink.
 
 <MathVisual
   title={<>Drei Fragen zur Masse</>}
   description={<>Vorher (links): restliches Zink (grau), reagierendes Zink (orange) und Schwefel (gelb). Nachher (rechts): restliches Zink (grau) und Zinksulfid (türkis). Ein Gitterschritt nach oben ist <InlineMath math="1" /> Gramm.</>}
+  footer={<>Dreh die Säulen und prüfe, dass beide Stapel bei 12,00 g enden.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 13 }, z: { min: -1.5, max: 1.5 } },
@@ -316,3 +360,5 @@ Halte die drei Massen im Versuch mit Zink und Schwefel auseinander. Vor der Reak
     left: <InlineMath math="\mathrm{Zn}:\ 5{,}92\ \mathrm{g}" />,
   }}
 />
+
+Beide Säulen erreichen exakt dieselbe Höhe von <InlineMath math="12{,}00\ \mathrm{g}" />, obwohl sich die oberen Blöcke zu einer neuen Verbindung umgruppiert haben. Wer Produktmasse und Reaktantenrest sauber trennt, hält jede stöchiometrische Bilanz stimmig.

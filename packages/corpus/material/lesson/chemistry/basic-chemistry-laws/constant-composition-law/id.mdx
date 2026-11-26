@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Hukum Perbandingan Tetap",
   description:
@@ -15,7 +14,9 @@ Hukum perbandingan tetap menyatakan bahwa setiap senyawa murni selalu mengandung
 
 Hukum perbandingan tetap berlaku pada **senyawa murni**. Komposisi campuran seperti air gula dapat berubah ketika jumlah gula atau air diubah. Air murni selalu tersusun dari hidrogen dan oksigen dengan perbandingan massa yang sama. [Zat kimia](https://goldbook.iupac.org/terms/view/C01039/plain) memiliki komposisi tetap dan sifat khas.
 
-## Rasio Massa dalam Air Tetap
+> Ukuran sampel hanya mengubah seberapa banyak senyawa yang kamu pegang, bukan pembagian massa tetap yang sudah melekat pada rumusnya.
+
+### Rasio Massa dalam Air Tetap
 
 Rumus air adalah <InlineMath math="\mathrm{H_2O}" />. Artinya, setiap molekul air tersusun dari <InlineMath math="2" /> atom hidrogen dan <InlineMath math="1" /> atom oksigen. Dengan massa atom relatif sederhana <InlineMath math="A_r\mathrm{(H)} = 1" /> dan <InlineMath math="A_r\mathrm{(O)} = 16" />, perbandingan massa hidrogen dan oksigen dalam air adalah:
 
@@ -26,7 +27,7 @@ m_{\mathrm{H}} : m_{\mathrm{O}}
   &= 1 : 8
 \end{aligned}" />
 
-Meskipun massa air yang terbentuk berbeda, perbandingan **massa hidrogen dan oksigen yang bereaksi** tetap <InlineMath math="1:8" /> dengan nilai pembulatan yang dipakai di atas. [Air](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula/JSON) memiliki rumus <InlineMath math="\mathrm{H_2O}" />. [Bobot atom standar ringkas](https://www.ciaaw.org/abridged-atomic-weights.htm) tahun <InlineMath math="2024" /> adalah <InlineMath math="A_r\mathrm{(H)}=1{,}0080" /> dan <InlineMath math="A_r\mathrm{(O)}=15{,}999" />. Substitusi kedua bobot atom tersebut menghasilkan massa molar berikut:
+Meskipun massa air yang terbentuk berbeda, perbandingan **massa hidrogen dan oksigen yang bereaksi** tetap <InlineMath math="1:8" /> dengan nilai pembulatan di atas. [Air](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula/JSON) ditulis dengan rumus <InlineMath math="\mathrm{H_2O}" />. Jika kita memakai nilai [bobot atom standar ringkas](https://www.ciaaw.org/abridged-atomic-weights.htm) edisi <InlineMath math="2024" />, yaitu <InlineMath math="A_r\mathrm{(H)}=1{,}0080" /> dan <InlineMath math="A_r\mathrm{(O)}=15{,}999" />, kita memperoleh massa molar yang lebih teliti:
 
 <BlockMath math="\begin{aligned} M(\mathrm{H_2O}) &amp;=2(1{,}0080)+15{,}999 \\ &amp;=18{,}015\ \mathrm{g\,mol^{-1}} \end{aligned}" />
 
@@ -35,6 +36,7 @@ Bandingkan dua sampel air, dengan hidrogen berwarna ungu, oksigen berwarna orany
 <MathVisual
   title={<>Dua Sampel, Satu Perbandingan Massa</>}
   description={<><InlineMath math="9\text{ g}" /> dan <InlineMath math="18\text{ g}" /> air yang terbagi menjadi hidrogen (ungu) dan oksigen (oranye) sekitar <InlineMath math="1:8" />. Satu kotak grid ke atas sama dengan <InlineMath math="4\text{ g}" />.</>}
+  footer={<>Menggandakan massa air menggandakan kedua batang sekaligus, rasio 1:8 tetap utuh.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
@@ -56,29 +58,44 @@ Bandingkan dua sampel air, dengan hidrogen berwarna ungu, oksigen berwarna orany
   }}
 />
 
-## Satu Molekul Menyimpan Perbandingannya
+Baik saat kamu menakar satu tetes maupun satu gelas penuh air murni, sepersembilan massanya selalu milik hidrogen dan delapan persembilan sisanya milik oksigen.
 
-**Perbandingan massa yang tetap berasal dari satu molekul**. Setiap molekul air punya <InlineMath math="2" /> atom hidrogen dan <InlineMath math="1" /> atom oksigen, jadi massanya selalu <InlineMath math="2 : 16" /> atau <InlineMath math="1 : 8" />. Dari mana pun air diambil, bentuk molekulnya sama, sudutnya sama, dan perbandingannya juga sama.
+### Satu Molekul Menyimpan Perbandingannya
 
-<MoleculeShapeLab
-  title={<>Air dan Karbon Dioksida</>}
-  description={<>Massa molekul relatif menjumlahkan massa setiap atom dalam model.</>}
-  molecules={[
-    { id: "water", name: "Air" },
-    { id: "carbon-dioxide", name: "Karbon dioksida" },
-  ]}
+**Perbandingan massa yang tetap berasal dari satu molekul**. Setiap molekul air punya <InlineMath math="2" /> atom hidrogen dan <InlineMath math="1" /> atom oksigen, jadi massanya selalu <InlineMath math="2 : 16" /> atau <InlineMath math="1 : 8" />. Dengan pola yang sama, setiap molekul karbon dioksida mengikat <InlineMath math="1" /> atom karbon (<InlineMath math="12" />) dan <InlineMath math="2" /> atom oksigen (<InlineMath math="32" />), sehingga rasio karbon terhadap oksigennya terkunci pada <InlineMath math="3 : 8" /> dari mana pun gas itu diambil.
+
+<MathVisual
+  title={<>Pembagian Massa Unsur dalam Air dan Karbon Dioksida</>}
+  description={<>Satu mol <InlineMath math="\mathrm{H_2O}" /> (<InlineMath math="2\text{ g H}+16\text{ g O}" />) di samping satu mol <InlineMath math="\mathrm{CO_2}" /> (<InlineMath math="12\text{ g C}+32\text{ g O}" />). Satu kotak grid ke atas berarti <InlineMath math="8\text{ g}" />.</>}
+  footer={<>Setiap senyawa murni mengunci rasio massa unsurnya langsung di dalam satu molekul.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 1.75, y: 2.5, z: 0 } },
+    objects: [
+      { id: "h2o-h", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.125, z: 0 }, size: { length: 1.4, height: 0.25, width: 1.4 } },
+      { id: "h2o-o", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.25, z: 0 }, size: { length: 1.4, height: 2, width: 1.4 } },
+      { id: "co2-c", kind: "cuboid", appearance: "reference", center: { x: 3.5, y: 0.75, z: 0 }, size: { length: 1.4, height: 1.5, width: 1.4 } },
+      { id: "co2-o", kind: "cuboid", appearance: "primary", center: { x: 3.5, y: 3.5, z: 0 }, size: { length: 1.4, height: 4, width: 1.4 } },
+    ],
+    labels: [
+      { key: "h2o", objectId: "h2o-o", at: { x: 0, y: 2.6, z: 0 }, placement: "above" },
+      { key: "co2", objectId: "co2-o", at: { x: 3.5, y: 5.9, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang</>,
-    formula: <>Rumus molekul</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    h2o: <InlineMath math="\mathrm{H_2O}:\ 2 + 16 = 18\ \mathrm{g}" />,
+    co2: <InlineMath math="\mathrm{CO_2}:\ 12 + 32 = 44\ \mathrm{g}" />,
   }}
 />
 
+Karena setiap molekul senyawa mengulang susunan atom yang sama persis, mengumpulkan triliunan molekul hanya mengalikan massa kedua unsur dengan faktor yang sama tanpa mengubah perbandingannya.
+
 ## Reaktan Berlebih Tetap Tersisa
+
+Saat kamu mencampurkan reaktan dalam jumlah sembarang, reaksi tidak mengubah rumus senyawa agar semua bahan habis. Reaksi hanya mengambil bagian yang sesuai **rasio penggabungan tetap**, lalu meninggalkan kelebihannya.
+
+### Menguji Reaktan Berlebih
 
 Ubah massa awal pada model berikut. Perubahan massa awal dapat **menyisakan hidrogen atau oksigen**. Hidrogen dan oksigen yang membentuk air selalu bereaksi dengan perbandingan massa <InlineMath math="1:8" />.
 
@@ -94,6 +111,7 @@ Model ini dipakai untuk menghitung massa unsur. Label <InlineMath math="\mathrm{
       perbandingan massa <InlineMath math="1:8" />.
     </>
   }
+  footer={<>Ganti campuran awal untuk melihat air selalu terbentuk 1:8 sementara sisanya tertinggal.</>}
   labels={{
     chooseMode: "Pilih massa awal",
     before: "Awal",
@@ -178,7 +196,7 @@ Model ini dipakai untuk menghitung massa unsur. Label <InlineMath math="\mathrm{
   }}
 />
 
-Pada pilihan hidrogen berlebih, <InlineMath math="16 \mathrm{g}" /> oksigen memerlukan hidrogen sesuai rasio massa <InlineMath math="1:8" />. Hitung bagian yang bereaksi sebelum menentukan sisa:
+Pada ketiga pilihan campuran awal, massa air yang terbentuk tidak pernah melampaui <InlineMath math="18\ \mathrm{g}" /> karena pasangan yang lebih sedikit habis lebih dulu. Pada pilihan hidrogen berlebih, <InlineMath math="16\ \mathrm{g}" /> oksigen memerlukan hidrogen sesuai rasio massa <InlineMath math="1:8" />. Hitung bagian yang bereaksi sebelum menentukan sisa:
 
 <BlockMath math="\begin{aligned} m_{\mathrm{H,bereaksi}} &= \frac{1}{8}\times16=2\ \mathrm{g} \\ m_{\mathrm{H,tersisa}} &=3-2=1\ \mathrm{g} \end{aligned}" />
 
@@ -187,6 +205,7 @@ Air selalu memuat hidrogen dan oksigen dengan perbandingan massa <InlineMath mat
 <MathVisual
   title={<>Hidrogen Berlebih Tetap Bersisa</>}
   description={<>Hidrogen (ungu, sisanya merah muda), oksigen (oranye), dan air yang terbentuk (teal). Satu kotak grid ke atas berarti <InlineMath math="2" /> gram.</>}
+  footer={<>Hanya 2 g hidrogen bergabung dengan 16 g oksigen menjadi 18 g air, 1 g tetap tersisa.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 10 }, z: { min: -1.5, max: 1.5 } },
@@ -212,30 +231,42 @@ Air selalu memuat hidrogen dan oksigen dengan perbandingan massa <InlineMath mat
   }}
 />
 
-## Melihat Perbandingan Tetap Terbentuk
+Memisahkan batang yang bereaksi dari batang sisa berwarna merah muda menunjukkan kerja sama hukum perbandingan tetap dan kekekalan massa: produk hanya mengambil jatah tepat <InlineMath math="1:8" />, sementara satu gram sisanya tetap ada di dalam wadah.
 
-Saat hidrogen dan oksigen bereaksi, molekul air **selalu terbentuk dengan pola yang sama**. Geser slider dan hitung: <InlineMath math="4" /> atom hidrogen bertemu <InlineMath math="2" /> atom oksigen menjadi <InlineMath math="2" /> molekul air. Massa pereaksi <InlineMath math="36" /> sama dengan massa produk <InlineMath math="36" />. Kalau ada oksigen lebih, kelebihannya tidak ikut masuk ke dalam air.
+### Membaca Garis Rasio Tetap
 
-<ReactionBalanceLab
-  title={<>Pembentukan Air Atom demi Atom</>}
-  description={<>Setiap molekul air menerima dua hidrogen dan satu oksigen.</>}
-  reactions={[
-    { id: "water-synthesis", name: "Pembentukan air", tab: <InlineMath math="\mathrm{H_2O}" /> },
-  ]}
-  reading="molecules"
+Menggambar massa oksigen terhadap massa hidrogen mengubah aturan <InlineMath math="1:8" /> menjadi satu garis lurus. Campuran awal yang jatuh **tepat di atas garis** habis bereaksi tanpa sisa. Titik di kanan garis membawa hidrogen berlebih, sedangkan titik di atas garis membawa oksigen berlebih.
+
+<MathVisual
+  title={<>Campuran Pas Berada di Garis <InlineMath math="1:8" /></>}
+  description={<>Massa oksigen terhadap massa hidrogen pada pembentukan air. Satu kotak mendatar berarti <InlineMath math="1\text{ g H}" /> dan tegak <InlineMath math="4\text{ g O}" />.</>}
+  footer={<>Titik di luar garis teal <InlineMath math="1:8" /> menyisakan jarak mendatar atau tegak sebagai reaktan sisa.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.5 }, y: { min: -0.5, max: 6.2 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "ratio-line", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 6 } },
+      { id: "gap-h", kind: "segment", appearance: "warning", stroke: "dashed", from: { x: 2, y: 4 }, to: { x: 3, y: 4 } },
+      { id: "gap-o", kind: "segment", appearance: "primary", stroke: "dashed", from: { x: 2, y: 4 }, to: { x: 2, y: 5 } },
+      { id: "exact-pt", kind: "point", appearance: "construction", at: { x: 2, y: 4 } },
+      { id: "excess-h", kind: "point", appearance: "warning", at: { x: 3, y: 4 } },
+      { id: "excess-o", kind: "point", appearance: "primary", at: { x: 2, y: 5 } },
+    ],
+    labels: [
+      { key: "exact", objectId: "exact-pt", at: { x: 2, y: 4 }, placement: "below-left" },
+      { key: "exh", objectId: "excess-h", at: { x: 3, y: 4 }, placement: "below-right" },
+      { key: "exo", objectId: "excess-o", at: { x: 2, y: 5 }, placement: "above-left" },
+    ],
+  }}
   labels={{
-    atoms: <>Jumlah atom tiap unsur</>,
-    choose: "Pilih reaksi",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan reaksi</>,
-    mass: <>Massa pereaksi dan produk</>,
-    molecules: <>Jumlah molekul</>,
-    products: <>Produk</>,
-    progress: "Jalannya reaksi",
-    reactants: <>Pereaksi</>,
-    view: "Reaksi pada tingkat atom",
+    exact: <InlineMath math="(2,\ 16):\ 1:8" />,
+    exh: <>Sisa +1 g H</>,
+    exo: <>Sisa +4 g O</>,
   }}
 />
+
+Garis putus-putus itu membuat soal pereaksi pembatas langsung terlihat jelas sebelum kamu menulis satu rumus pun: setiap campuran hanya bereaksi sampai titik terdekat pada garis, dan panjang garis putus-putus menunjukkan berapa gram yang tersisa.
 
 ## Menguji Data Kalsium Oksida
 
@@ -255,7 +286,7 @@ m_{\mathrm{Ca,1}} &= 2{,}8 - 0{,}8 = 2{,}0\ \mathrm{g} \\
 m_{\mathrm{Ca,2}} &= 3{,}5 - 1{,}0 = 2{,}5\ \mathrm{g}
 \end{aligned}" />
 
-Kedua percobaan menghasilkan massa senyawa yang berbeda. Rasio massa kalsium terhadap oksigen pada keduanya sama, yaitu <InlineMath math="2{,}5:1" />. Kesamaan rasio ini menunjukkan bahwa sampel tersebut mengikuti hukum perbandingan tetap.
+Kedua percobaan menghasilkan massa senyawa yang berbeda. Rasio massa kalsium terhadap oksigen pada keduanya sama, yaitu <InlineMath math="2{,}5:1" />. Kesamaan rasio ini menunjukkan bahwa kedua sampel mengikuti hukum perbandingan tetap.
 
 ## Menghitung Massa dari Rumus
 

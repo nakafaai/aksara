@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Sifat Berkala Unsur",
   description:
@@ -15,6 +14,8 @@ Kedudukan sesuatu unsur dalam Jadual Berkala Unsur memberikan petunjuk tentang s
 
 Trend ini bergantung pada **tarikan nukleus terhadap elektron valens**. Elektron valens ialah elektron dalam petala paling luar. Apabila bilangan proton bertambah, tarikan nukleus biasanya menjadi lebih kuat. Apabila bilangan petala bertambah, elektron valens berada lebih jauh dari nukleus dan mengalami tarikan yang lebih lemah.
 
+> Setiap trend berkala berpunca daripada persaingan antara tarikan nukleus yang semakin kuat dengan petala dalam tambahan yang memerisai elektron luar.
+
 <PeriodicPropertiesLab
   title={<>Model Trend Berkala</>}
   description={
@@ -23,6 +24,7 @@ Trend ini bergantung pada **tarikan nukleus terhadap elektron valens**. Elektron
       berkurang apabila merentasi kala dan menuruni kumpulan.
     </>
   }
+  footer={<>Tukar sifat untuk membandingkan arah perubahan merentasi kala dan menuruni kumpulan.</>}
   labels={{
     chooseTrend: "Pilih satu sifat berkala",
     sceneLabel: "Model tiga dimensi sifat berkala",
@@ -73,11 +75,14 @@ Trend ini bergantung pada **tarikan nukleus terhadap elektron valens**. Elektron
   }}
 />
 
+Membandingkan keempat-empat mod menunjukkan jejari atom berubah bertentangan dengan tenaga pengionan dan keelektronegatifan kerana tarikan nukleus yang kuat mengecilkan atom sambil memegang elektron lebih erat.
+
 Natrium menunjukkan sebab kedudukan boleh meramalkan kelakuan. Satu-satunya elektron luarnya, yang berwarna fuchsia, berada bersendirian dalam petala M, jauh dari nukleus dan diperisai oleh sepuluh elektron di petala dalam. Jadi, elektron ini mudah dikeluarkan.
 
 <MathVisual
   title={<>Elektron Luar Tunggal Natrium</>}
   description={<><InlineMath math="11" /> elektron natrium dalam petala K, L dan M, dengan elektron luar berwarna fuchsia.</>}
+  footer={<>Sepuluh elektron dalam memerisai satu elektron petala M natrium daripada nukleus +11.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
@@ -112,23 +117,79 @@ Natrium menunjukkan sebab kedudukan boleh meramalkan kelakuan. Satu-satunya elek
   }}
 />
 
-## Setiap Petala Menjangkau Lebih Jauh
+Oleh sebab elektron luar tunggal itu hanya merasai tarikan bersih yang lemah, natrium mempunyai jejari atom yang besar dan tenaga pengionan pertama yang rendah berbanding unsur di sebelah kanan kala <InlineMath math="3" />.
 
-Turun satu kumpulan bermakna menambah satu petala, dan **setiap awan s yang baharu tersebar lebih jauh dari nukleus**. Itulah gambaran di sebalik atom yang makin besar dari atas ke bawah kumpulan.
+### Setiap Petala Menjangkau Lebih Jauh
 
-<OrbitalCloudLab
-  title={<>Awan Makin Besar ke Bawah Kumpulan</>}
-  description={<>Melangkah dari awan 1s ke 3s dan lihat nod jejarinya muncul.</>}
-  orbitals={["1s", "2s", "3s"]}
+Turun satu kumpulan bermakna menambah satu petala utama baharu, dan **setiap petala luar baharu tersebar lebih jauh dari nukleus**. Pengembangan petala inilah yang menyebabkan jejari atom meningkat dari litium kepada natrium hingga kalium.
+
+<MathVisual
+  title={<>Pertambahan Jejari Atom Menuruni Kumpulan 1</>}
+  description={<>Bulatan sepusat mengikut skala jejari atom logam <InlineMath math="\mathrm{Li}" /> (<InlineMath math="152\ \mathrm{pm}" />), <InlineMath math="\mathrm{Na}" /> (<InlineMath math="186\ \mathrm{pm}" />) dan <InlineMath math="\mathrm{K}" /> (<InlineMath math="227\ \mathrm{pm}" />). Satu unit grid ialah <InlineMath math="50\ \mathrm{pm}" />.</>}
+  footer={<>Penambahan petala daripada 2s ke 3s lalu 4s menolak awan elektron luar semakin jauh.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.2, max: 5.2 }, y: { min: -5.2, max: 5.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "nuc", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "r-li", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 3.04 },
+      { id: "r-na", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 3.72 },
+      { id: "r-k", kind: "circle", appearance: "warning", center: { x: 0, y: 0 }, radius: 4.54 },
+    ],
+    labels: [
+      { key: "li", objectId: "r-li", at: { x: 0, y: 3.04 }, placement: "below" },
+      { key: "na", objectId: "r-na", at: { x: 0, y: 3.72 }, placement: "above" },
+      { key: "k", objectId: "r-k", at: { x: 0, y: 4.54 }, placement: "above" },
+    ],
+  }}
   labels={{
-    angular: <>Nod sudut</>,
-    choose: "Pilih orbital",
-    numbers: <>Nombor kuantum</>,
-    orbital: <>Orbital</>,
-    radial: <>Nod jejarian</>,
-    view: "Awan elektron orbital",
+    li: <InlineMath math="\mathrm{Li}:\ 152\ \mathrm{pm}" />,
+    na: <InlineMath math="\mathrm{Na}:\ 186\ \mathrm{pm}" />,
+    k: <InlineMath math="\mathrm{K}:\ 227\ \mathrm{pm}" />,
   }}
 />
+
+Setiap bulatan mengembang keluar walaupun cas nukleus meningkat, membuktikan bahawa penambahan satu petala utama mengatasi kesan pertambahan proton apabila menuruni kumpulan.
+
+### Jejari Berubah Apabila Ion Terbentuk
+
+Kehilangan atau penerimaan elektron mengubah saiz atom dengan ketara: **logam mengecil apabila kehilangan petala terluarnya, manakala bukan logam membesar** apabila elektron tambahan meningkatkan tolakan dalam petala valens.
+
+<MathVisual
+  title={<>Jejari Atom Neutral Berbanding Jejari Ion</>}
+  description={<>Atom neutral (belakang) berbanding ionnya (hadapan) bagi <InlineMath math="\mathrm{Li}" />, <InlineMath math="\mathrm{F}" />, <InlineMath math="\mathrm{K}" /> dan <InlineMath math="\mathrm{Cl}" />. Satu langkah menegak ialah <InlineMath math="50\ \mathrm{pm}" />.</>}
+  footer={<>Kation mengecil di bawah atom neutralnya, manakala anion membesar di atas atom neutralnya.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 13 }, target: { x: 3.75, y: 2, z: 0 } },
+    objects: [
+      { id: "li-a", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1.52, z: -0.7 }, size: { length: 1.0, height: 3.04, width: 1.0 } },
+      { id: "li-i", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.76, z: 0.7 }, size: { length: 1.0, height: 1.52, width: 1.0 } },
+      { id: "f-a", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 0.64, z: -0.7 }, size: { length: 1.0, height: 1.28, width: 1.0 } },
+      { id: "f-i", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.33, z: 0.7 }, size: { length: 1.0, height: 2.66, width: 1.0 } },
+      { id: "k-a", kind: "cuboid", appearance: "reference", center: { x: 5, y: 2.27, z: -0.7 }, size: { length: 1.0, height: 4.54, width: 1.0 } },
+      { id: "k-i", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.38, z: 0.7 }, size: { length: 1.0, height: 2.76, width: 1.0 } },
+      { id: "cl-a", kind: "cuboid", appearance: "reference", center: { x: 7.5, y: 0.99, z: -0.7 }, size: { length: 1.0, height: 1.98, width: 1.0 } },
+      { id: "cl-i", kind: "cuboid", appearance: "secondary", center: { x: 7.5, y: 1.81, z: 0.7 }, size: { length: 1.0, height: 3.62, width: 1.0 } },
+    ],
+    labels: [
+      { key: "li", objectId: "li-a", at: { x: 0, y: 3.4, z: -0.7 }, placement: "above" },
+      { key: "f", objectId: "f-i", at: { x: 2.5, y: 3.0, z: 0.7 }, placement: "above" },
+      { key: "k", objectId: "k-a", at: { x: 5, y: 4.9, z: -0.7 }, placement: "above" },
+      { key: "cl", objectId: "cl-i", at: { x: 7.5, y: 4.0, z: 0.7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    li: <InlineMath math="\mathrm{Li}\rightarrow\mathrm{Li^+}" />,
+    f: <InlineMath math="\mathrm{F}\rightarrow\mathrm{F^-}" />,
+    k: <InlineMath math="\mathrm{K}\rightarrow\mathrm{K^+}" />,
+    cl: <InlineMath math="\mathrm{Cl}\rightarrow\mathrm{Cl^-}" />,
+  }}
+/>
+
+Membandingkan barisan belakang dan hadapan menunjukkan jejari ion sentiasa bergerak mengikut kehilangan atau penerimaan elektron, yang menentukan kerapatan susunan ion dalam pepejal.
 
 ## Empat Sifat Berkala
 
@@ -141,34 +202,17 @@ Setiap sifat menerangkan aspek atom yang berbeza. Anak panah trend menerangkan p
 
 Perbezaan antara afiniti elektron dan keelektronegatifan terletak pada keadaan elektron itu. Afiniti elektron menerangkan perubahan tenaga apabila elektron ditambah kepada atom dalam keadaan gas. Keelektronegatifan pula menerangkan tarikan terhadap elektron yang dikongsi dalam ikatan.
 
-## Jejari Berubah Apabila Ion Terbentuk
-
-Baca nilai jejari semasa elektron berpindah: **logam mengecil apabila kehilangan petala terluarnya dan bukan logam membesar** apabila menerima satu lagi elektron.
-
-<IonFormationLab
-  title={<>Jejari Atom dan Ion</>}
-  description={<>Pilih litium dengan fluorin atau kalium dengan klorin, kemudian bandingkan jejarinya sebelum dan selepas.</>}
-  pairs={["lithium-fluorine", "potassium-chlorine"]}
-  labels={{
-    choose: "Pilih pasangan atom",
-    metalRadius: <>Jejari logam</>,
-    metalShells: <>Petala logam</>,
-    nonmetalRadius: <>Jejari bukan logam</>,
-    nonmetalShells: <>Petala bukan logam</>,
-    progress: "Pemindahan elektron",
-    view: "Atom logam dan bukan logam menjadi ion",
-  }}
-/>
-
 ## Trend Merentasi Kala dan Kumpulan
 
 Merentasi siri kumpulan utama seperti natrium hingga klorin, nombor proton bertambah sementara <Highlight>elektron valens memasuki petala utama yang sama</Highlight>. Perisaian berubah lebih sedikit berbanding cas nukleus, jadi cas nukleus berkesan yang dirasai oleh elektron valens secara umumnya bertambah. Oleh itu, jejari atom cenderung berkurang, manakala tenaga pengionan pertama dan keelektronegatifan cenderung bertambah.
 
 Apabila menuruni satu kumpulan, bilangan petala berisi elektron bertambah. Elektron valens berada lebih jauh dari nukleus, dan elektron di petala dalam mengurangkan tarikan nukleus yang dirasainya. Pengurangan ini dipanggil **perisaian elektron**.
 
-Dua konvensyen tanda digunakan untuk afiniti elektron. [IUPAC Gold Book](https://goldbook.iupac.org/terms/view/E01977) menggunakan tenaga yang dibebaskan apabila elektron melekat, jadi pelekatan yang menguntungkan dari segi tenaga mempunyai <InlineMath math="\mathrm{EA}>0" />. Apabila proses yang sama ditulis sebagai perubahan tenaga tindak balas, <InlineMath math="\Delta E=-\mathrm{EA}<0" />.
+Dua konvensyen tanda digunakan untuk afiniti elektron. [IUPAC Gold Book](https://goldbook.iupac.org/terms/view/E01977) mentakrifkan <InlineMath math="\mathrm{EA}" /> sebagai tenaga yang dibebaskan apabila elektron melekat, jadi pelekatan yang menguntungkan bernilai positif sementara perubahan tenaga tindak balas <InlineMath math="\Delta E" /> bernilai negatif.
 
-Bagi klorin, pelekatan elektron membebaskan tenaga. Kita menulis <InlineMath math="\mathrm{EA}>0" /> untuk afiniti elektronnya yang positif dan <InlineMath math="\Delta E=-\mathrm{EA}<0" /> untuk perubahan tenaga tindak balas yang negatif:
+<BlockMath math="\mathrm{EA} > 0 \quad \Longleftrightarrow \quad \Delta E = -\mathrm{EA} < 0" />
+
+Bagi klorin, pelekatan elektron membebaskan tenaga, memberikan afiniti elektron yang positif dan perubahan tenaga tindak balas yang negatif untuk proses berikut.
 
 <BlockMath math="\mathrm{Cl(g)}+e^- \rightarrow \mathrm{Cl^-(g)}" />
 
@@ -179,6 +223,7 @@ Inilah kedua-dua trend itu dalam data sebenar. Merentasi satu kala, nukleus mend
 <MathVisual
   title={<>Tenaga Pengionan Merentasi Dua Kala</>}
   description={<>Tenaga pengionan pertama bagi nombor proton <InlineMath math="3" /> hingga <InlineMath math="18" />, kala <InlineMath math="2" /> (ungu) dan kala <InlineMath math="3" /> (jingga). Paksi mengufuk: satu langkah grid ialah <InlineMath math="2" /> nombor proton. Paksi menegak: satu langkah grid ialah <InlineMath math="250\ \mathrm{kJ/mol}" />.</>}
+  footer={<>Tenaga pengionan naik merentasi kala lalu menjunam sebaik petala luar baharu bermula.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 1, max: 9.5 }, y: { min: 1, max: 9 } },
@@ -219,24 +264,74 @@ Inilah kedua-dua trend itu dalam data sebenar. Merentasi satu kala, nukleus mend
   }}
 />
 
-## Kereaktifan dalam Kala dan Kumpulan
+Kejatuhan mendadak antara neon dengan natrium ialah bukti eksperimen bahawa susunan petala memulakan kitaran baharu pada awal setiap kala.
 
-Kereaktifan logam mengikut tenaga pengionannya. Dari natrium ke magnesium dalam satu kala, **tenaga pengionan naik dari <InlineMath math="496" /> ke <InlineMath math="738\ \mathrm{kJ/mol}" />**, jadi magnesium hampir tidak bertindak balas dengan air sejuk. Turun dari magnesium ke kalsium dalam satu kumpulan, tenaga pengionan turun dan tindak balasnya lebih cepat. Bandingkan ketiga-tiga logam dalam bikar.
+### Kereaktifan dalam Kala dan Kumpulan
 
-<AlkaliWaterLab
-  title={<>Natrium, Magnesium dan Kalsium dalam Air</>}
-  description={<>Kalsium mengeruhkan air kerana kalsium hidroksida sukar larut.</>}
-  metals={["sodium", "magnesium", "calcium"]}
+Kereaktifan logam mengikut tenaga pengionannya. Dari natrium ke magnesium dalam satu kala, **tenaga pengionan naik dari <InlineMath math="496" /> ke <InlineMath math="738\ \mathrm{kJ/mol}" />**, jadi magnesium hampir tidak bertindak balas dengan air sejuk. Turun dari magnesium ke kalsium dalam kumpulan <InlineMath math="2" />, tenaga pengionan turun kepada <InlineMath math="590\ \mathrm{kJ/mol}" /> dan tindak balasnya lebih cepat.
+
+<MathVisual
+  title={<>Tenaga Pengionan Natrium Magnesium dan Kalsium</>}
+  description={<>Tenaga pengionan pertama bagi <InlineMath math="\mathrm{Na}" />, <InlineMath math="\mathrm{Mg}" /> dan <InlineMath math="\mathrm{Ca}" />. Satu langkah menegak ialah <InlineMath math="150\ \mathrm{kJ/mol}" />.</>}
+  footer={<>Tenaga pengionan lebih tinggi menjadikan magnesium kurang reaktif berbanding natrium dan kalsium.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "na", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.654, z: 0 }, size: { length: 1.4, height: 3.306, width: 1.4 } },
+      { id: "mg", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: 2.46, z: 0 }, size: { length: 1.4, height: 4.92, width: 1.4 } },
+      { id: "ca", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1.967, z: 0 }, size: { length: 1.4, height: 3.932, width: 1.4 } },
+    ],
+    labels: [
+      { key: "na", objectId: "na", at: { x: 0, y: 3.7, z: 0 }, placement: "above" },
+      { key: "mg", objectId: "mg", at: { x: 2.5, y: 5.3, z: 0 }, placement: "above" },
+      { key: "ca", objectId: "ca", at: { x: 5, y: 4.3, z: 0 }, placement: "above" },
+    ],
+  }}
   labels={{
-    choose: "Pilih logam",
-    density: <>Ketumpatan</>,
-    equation: <>Persamaan tindak balas</>,
-    ionization: <>Tenaga pengionan pertama</>,
-    melting: <>Takat lebur</>,
-    radius: <>Jejari atom</>,
-    view: "Logam dalam bikar berisi air",
+    na: <InlineMath math="\mathrm{Na}:\ 496" />,
+    mg: <InlineMath math="\mathrm{Mg}:\ 738" />,
+    ca: <InlineMath math="\mathrm{Ca}:\ 590" />,
   }}
 />
+
+Membandingkan ketiga-tiga palang menunjukkan sebab kecergasan logam mengikut tenaga pengionan: palang tertinggi (<InlineMath math="\mathrm{Mg}" />) paling perlahan dalam air sejuk, manakala palang terendah (<InlineMath math="\mathrm{Na}" />) bertindak balas paling cergas.
+
+### Ion Halida Makin Besar ke Bawah
+
+Jejari bertambah dari atas ke bawah kumpulan kerana petala elektronnya bertambah. Bandingkan hablur <InlineMath math="\mathrm{NaF}" />, <InlineMath math="\mathrm{NaCl}" /> dan <InlineMath math="\mathrm{NaBr}" />. Kation <InlineMath math="\mathrm{Na^+}" /> kekal sama, tetapi **anion halida makin besar dari <InlineMath math="\mathrm{F^-}" /> ke <InlineMath math="\mathrm{Br^-}" />**, jadi sisi sel unit kubiknya juga semakin panjang.
+
+<MathVisual
+  title={<>Jejari Anion Halida dan Sisi Sel Unit</>}
+  description={<>Jejari anion (belakang) dan sisi sel unit kubik (hadapan) bagi <InlineMath math="\mathrm{NaF}" />, <InlineMath math="\mathrm{NaCl}" /> dan <InlineMath math="\mathrm{NaBr}" />. Satu langkah menegak ialah <InlineMath math="100\ \mathrm{pm}" />.</>}
+  footer={<>Dengan natrium kekal sama, anion halida yang lebih besar terus melebarkan kekisi hablur.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.0 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "f-ion", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.665, z: -0.7 }, size: { length: 1.1, height: 1.33, width: 1.1 } },
+      { id: "naf-cell", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2.31, z: 0.7 }, size: { length: 1.1, height: 4.62, width: 1.1 } },
+      { id: "cl-ion", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 0.905, z: -0.7 }, size: { length: 1.1, height: 1.81, width: 1.1 } },
+      { id: "nacl-cell", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2.82, z: 0.7 }, size: { length: 1.1, height: 5.64, width: 1.1 } },
+      { id: "br-ion", kind: "cuboid", appearance: "secondary", center: { x: 5, y: 0.98, z: -0.7 }, size: { length: 1.1, height: 1.96, width: 1.1 } },
+      { id: "nabr-cell", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.985, z: 0.7 }, size: { length: 1.1, height: 5.97, width: 1.1 } },
+    ],
+    labels: [
+      { key: "naf", objectId: "naf-cell", at: { x: 0, y: 5.0, z: 0.7 }, placement: "above" },
+      { key: "nacl", objectId: "nacl-cell", at: { x: 2.5, y: 6.0, z: 0.7 }, placement: "above" },
+      { key: "nabr", objectId: "nabr-cell", at: { x: 5, y: 6.3, z: 0.7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    naf: <InlineMath math="\mathrm{NaF}:\ 462\ \mathrm{pm}" />,
+    nacl: <InlineMath math="\mathrm{NaCl}:\ 564\ \mathrm{pm}" />,
+    nabr: <InlineMath math="\mathrm{NaBr}:\ 597\ \mathrm{pm}" />,
+  }}
+/>
+
+Oleh sebab kationnya tidak berubah dalam ketiga-tiga garam, peningkatan panjang sisi sel mencerminkan terus penambahan satu petala elektron pada setiap langkah ke bawah kumpulan <InlineMath math="17" />.
 
 ## Membandingkan Dua Pasangan Unsur
 
@@ -248,22 +343,3 @@ Bandingkan unsur **dalam kala atau kumpulan yang sama** supaya sebabnya jelas:
 | Li dan Na dalam kumpulan 1 | Elektron valens Li berada dalam petala L, manakala elektron valens Na berada dalam petala M. Na mempunyai satu petala dalam tambahan yang menyumbang kepada perisaian. | Jejari Na lebih besar. Elektron pertamanya lebih mudah dikeluarkan. |
 
 Perbandingan ini menerangkan trend umum. Bagi afiniti elektron atau pasangan seperti Mg dan Al, semak data dan susunan subpetala, kerana arah umum sahaja tidak mencukupi.
-
-## Ion Halida Makin Besar ke Bawah
-
-Jejari bertambah dari atas ke bawah kumpulan kerana petala elektronnya bertambah. Bandingkan hablur <InlineMath math="\mathrm{NaF}" />, <InlineMath math="\mathrm{NaCl}" /> dan <InlineMath math="\mathrm{NaBr}" />. Kationnya sama, tetapi **anion halida makin besar dari <InlineMath math="\mathrm{F^-}" /> ke <InlineMath math="\mathrm{Br^-}" />**, jadi sisi sel unitnya juga makin panjang.
-
-<IonLatticeLab
-  title={<>Tiga Garam Natrium Halida</>}
-  description={<>Bandingkan saiz anion dan sisi sel unit.</>}
-  crystals={["sodium-fluoride", "sodium-chloride", "sodium-bromide"]}
-  labels={{
-    cells: "Sel unit setiap sisi",
-    choose: "Pilih hablur",
-    count: <>Bilangan ion</>,
-    formula: <>Formula</>,
-    ions: <>Ion dan jejarinya</>,
-    lattice: <>Sisi sel unit</>,
-    view: "Kekisi hablur ion",
-  }}
-/>
