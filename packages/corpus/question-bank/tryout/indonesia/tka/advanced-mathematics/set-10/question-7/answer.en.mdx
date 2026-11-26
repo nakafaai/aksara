@@ -1,10 +1,25 @@
+# Given
+
+Real numbers <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" /> satisfy a **polynomial identity** for every real <InlineMath math="x" />.
+
+# Asked
+
+The **values of** <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" /> or their requested combination.
+
+# Solution
+
+> Identical polynomials match coefficient by coefficient, and plugging in smart test numbers isolates one unknown at a time.
+
 Two polynomials are identical when **the coefficients of matching powers are equal**. Expand the left-hand side.
 
 <BlockMath math="(x-1)(ax^2+bx+c)=ax^3+(b-a)x^2+(c-b)x-c" />
 
-Compare with <InlineMath math="2x^3-x^2-4x+3" />: <InlineMath math="a=2" />, <InlineMath math="b-a=-1" /> so <InlineMath math="b=1" />, and <InlineMath math="-c=3" /> so <InlineMath math="c=-3" />. The <InlineMath math="x" /> coefficient fits: <InlineMath math="c-b=-4" />.
+Compare with the expression below: <InlineMath math="a=2" />, <InlineMath math="b-a=-1" /> so <InlineMath math="b=1" />, and <InlineMath math="-c=3" /> so <InlineMath math="c=-3" />. The <InlineMath math="x" /> coefficient fits: <InlineMath math="c-b=-4" />.
 
-<BlockMath math="2x^3-x^2-4x+3=(x-1)(2x^2+x-3)=(x-1)(x-1)(2x+3)" />
+<BlockMath math="\begin{gathered}
+2x^3-x^2-4x+3 \\
+2x^3-x^2-4x+3=(x-1)(2x^2+x-3)=(x-1)(x-1)(2x+3)
+\end{gathered}" />
 
 Draw the curve. **At <InlineMath math="x=1" /> the curve only touches the horizontal axis and turns back**, the sign of a double root, while at <InlineMath math="x=-\tfrac32" /> it crosses the axis.
 
@@ -37,10 +52,23 @@ Draw the curve. **At <InlineMath math="x=1" /> the curve only touches the horizo
   }}
 />
 
+The visual above confirms the core relationship between the quantities so both the calculation steps and final answer are easy to verify at a glance.
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - **False.** <InlineMath math="c=-3" />, not <InlineMath math="3" />.
-- **True.** <InlineMath math="a+b+c=2+1-3=0" />. This is the value of <InlineMath math="2x^2+x-3" /> at <InlineMath math="x=1" />.
+- **True.** <InlineMath math="0" />. This is the value of <InlineMath math="2x^2+x-3" /> at <InlineMath math="x=1" />.
+
+  <BlockMath math="a+b+c=2+1-3=0" />
+
 - **True.** Since <InlineMath math="2x^2+x-3" /> is also zero at <InlineMath math="x=1" />, the factor <InlineMath math="x-1" /> appears twice, so <InlineMath math="x=1" /> is a double root.
 - **False.** The roots are <InlineMath math="1" />, <InlineMath math="1" /> and <InlineMath math="-\frac32" />, so there are only two different real roots.
-- **True.** <InlineMath math="1\cdot1\cdot\left(-\frac32\right)=-\frac32" />, matching minus the constant divided by the <InlineMath math="x^3" /> coefficient, <InlineMath math="-\frac32" />.
+- **True.** The equation below, matching minus the constant divided by the <InlineMath math="x^3" /> coefficient, <InlineMath math="-\frac32" />.
+
+  <BlockMath math="1\cdot1\cdot\left(-\frac32\right)=-\frac32" />
+
+# Answer
 
 So the true statements are the second, third and fifth.

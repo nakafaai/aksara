@@ -1,8 +1,22 @@
+# Given
+
+A **drone flies straight** from <InlineMath math="A(1,2,3)" /> through <InlineMath math="B(3,4,1)" /> to a stop point on the same line.
+
+# Asked
+
+The **stopping coordinates** of the drone from its straight-line ratio.
+
+# Solution
+
+> Along a straight flight path, the total displacement is simply a scaled multiple of the first leg vector.
+
 Point <InlineMath math="P" /> lies on the extension of <InlineMath math="AB" /> beyond <InlineMath math="B" />. So <InlineMath math="B" /> sits between <InlineMath math="A" /> and <InlineMath math="P" />, and **<InlineMath math="P" /> divides <InlineMath math="AB" /> externally** in the ratio <InlineMath math="3:1" />. Since <InlineMath math="AP=3PB" />, the length <InlineMath math="AB" /> equals <InlineMath math="AP-PB=2PB" />. That means <InlineMath math="BP=\frac12AB" />.
 
 <MathContainer>
-<BlockMath math="\overrightarrow{AB}=(3-1,\,4-2,\,1-3)=(2,2,-2)" />
-<BlockMath math="P=B+\frac12\overrightarrow{AB}=(3,4,1)+(1,1,-1)=(4,5,0)" />
+<BlockMath math="\begin{gathered}
+\overrightarrow{AB}=(3-1,\,4-2,\,1-3)=(2,2,-2) \\
+P=B+\frac12\overrightarrow{AB}=(3,4,1)+(1,1,-1)=(4,5,0)
+\end{gathered}" />
 </MathContainer>
 
 Draw the three points on the drone's line of flight. **For <InlineMath math="AP=3PB" /> with <InlineMath math="P" /> outside the segment, the step <InlineMath math="BP" /> must be half of <InlineMath math="AB" />**, so that <InlineMath math="AP" /> is three times <InlineMath math="BP" />.
@@ -42,13 +56,28 @@ Draw the three points on the drone's line of flight. **For <InlineMath math="AP=
   }}
 />
 
-The external division formula gives the same point: <InlineMath math="P=\frac{3B-A}{3-1}=\frac{(9,12,3)-(1,2,3)}{2}=(4,5,0)" />.
+The external division formula gives the same point: <InlineMath math="P=(4,5,0)" />.
 
-Check: <InlineMath math="\overrightarrow{AP}=(3,3,-3)" /> and <InlineMath math="\overrightarrow{PB}=(-1,-1,1)" />, so <InlineMath math="AP" /> is three times as long as <InlineMath math="PB" />.
+<BlockMath math="P=\frac{3B-A}{3-1}=\frac{(9,12,3)-(1,2,3)}{2}=(4,5,0)" />
+
+Check: the equation below and the equation below, so <InlineMath math="AP" /> is three times as long as <InlineMath math="PB" />.
+
+<BlockMath math="\begin{gathered}
+\overrightarrow{AP}=(3,3,-3) \\
+\overrightarrow{PB}=(-1,-1,1)
+\end{gathered}" />
 
 So <InlineMath math="P(4,5,0)" />.
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="\left(\frac52,\frac72,\frac32\right)" /> divides <InlineMath math="AB" /> internally in the ratio <InlineMath math="3:1" />. That point lies between <InlineMath math="A" /> and <InlineMath math="B" />, not on the extension.
 - <InlineMath math="(0,1,4)" /> lies on the extension beyond <InlineMath math="A" />. There <InlineMath math="AP:PB=1:3" />.
 - <InlineMath math="(7,8,-3)" /> takes <InlineMath math="AP=3AB" />, reading the ratio as <InlineMath math="AP:AB" />.
 - <InlineMath math="(2,3,2)" /> is the midpoint of <InlineMath math="AB" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

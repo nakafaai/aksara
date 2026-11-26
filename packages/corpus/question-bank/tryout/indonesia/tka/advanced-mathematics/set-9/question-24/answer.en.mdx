@@ -1,3 +1,15 @@
+# Given
+
+We are given a **parametric algebraic limit** with unknowns <InlineMath math="a" /> and <InlineMath math="b" /> equal to <InlineMath math="7" />.
+
+# Asked
+
+The **values of** <InlineMath math="a" /> and <InlineMath math="b" /> making the limit equal <InlineMath math="7" />.
+
+# Solution
+
+> For a finite limit when the denominator vanishes, the numerator must vanish too, locking down the first parameter immediately.
+
 The denominator tends to <InlineMath math="0" />. For the limit to exist and be finite, **the numerator must also be <InlineMath math="0" /> at <InlineMath math="x=2" />**. Otherwise the fraction grows without bound.
 
 <BlockMath math="4a+2b-6=0\ \Rightarrow\ b=3-2a" />
@@ -6,11 +18,16 @@ With that condition, <InlineMath math="x-2" /> is a factor of the numerator.
 
 <BlockMath math="ax^2+(3-2a)x-6=(x-2)(ax+3)" />
 
-Check the factorisation: <InlineMath math="(x-2)(ax+3)=ax^2+3x-2ax-6" />, which matches. Once the factor <InlineMath math="x-2" /> is cancelled, the limit is just substitution.
+Check the factorisation: the equation below, which matches. Once the factor <InlineMath math="x-2" /> is cancelled, the limit is just substitution.
 
-<BlockMath math="\lim_{x\to2}(ax+3)=2a+3=7\ \Rightarrow\ a=2,\quad b=3-4=-1" />
+<BlockMath math="\begin{gathered}
+(x-2)(ax+3)=ax^2+3x-2ax-6 \\
+\lim_{x\to2}(ax+3)=2a+3=7\ \Rightarrow\ a=2,\quad b=3-4=-1
+\end{gathered}" />
 
-Draw <InlineMath math="y=\tfrac{2x^2-x-6}{x-2}" />. **Its graph is the line <InlineMath math="y=2x+3" /> with one hole at <InlineMath math="x=2" />**, and both sides of the line head to height <InlineMath math="7" /> at that hole.
+Draw <InlineMath math="y" />. **Its graph is the line <InlineMath math="y=2x+3" /> with one hole at <InlineMath math="x=2" />**, and both sides of the line head to height <InlineMath math="7" /> at that hole.
+
+<BlockMath math="y=\tfrac{2x^2-x-6}{x-2}" />
 
 <MathVisual
   title={<>The graph of <InlineMath math="\tfrac{2x^2-x-6}{x-2}" /> near <InlineMath math="x=2" /></>}
@@ -39,11 +56,23 @@ Draw <InlineMath math="y=\tfrac{2x^2-x-6}{x-2}" />. **Its graph is the line <Inl
   }}
 />
 
-Check: <InlineMath math="\frac{2x^2-x-6}{x-2}=\frac{(x-2)(2x+3)}{x-2}=2x+3" />, which tends to <InlineMath math="7" /> at <InlineMath math="x=2" />.
+Check: <InlineMath math="2x+3" />, which tends to <InlineMath math="7" /> at <InlineMath math="x=2" />.
 
-So <InlineMath math="a+b=2+(-1)=1" />.
+<BlockMath math="\frac{2x^2-x-6}{x-2}=\frac{(x-2)(2x+3)}{x-2}=2x+3" />
+
+So <InlineMath math="1" />.
+
+<BlockMath math="a+b=2+(-1)=1" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="3" /> is <InlineMath math="a-b" />, not <InlineMath math="a+b" />.
 - <InlineMath math="-1" /> is just the value of <InlineMath math="b" />.
 - <InlineMath math="7" /> is the value of the limit, not <InlineMath math="a+b" />.
 - <InlineMath math="-2" /> is the product <InlineMath math="ab" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

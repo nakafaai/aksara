@@ -1,3 +1,15 @@
+# Given
+
+We are given a **quadratic function** <InlineMath math="f(x)" /> and a **linear function** <InlineMath math="g(x)" /> on all real numbers.
+
+# Asked
+
+The **composite function formula** combining <InlineMath math="f" /> and <InlineMath math="g" />.
+
+# Solution
+
+> Drop the entire inner function formula right into the outer variable slot, then simplify cleanly.
+
 The notation <InlineMath math="(g\circ f)(x)" /> means <InlineMath math="g(f(x))" />: **<InlineMath math="f" /> acts first**, and its output becomes the input of <InlineMath math="g" />. So replace every <InlineMath math="x" /> in the rule for <InlineMath math="g" /> with <InlineMath math="f(x)=x^2+1" />.
 
 <BlockMath math="\begin{aligned}
@@ -22,7 +34,21 @@ Check at <InlineMath math="x=2" />: <InlineMath math="f(2)=5" /> and <InlineMath
 
 So <InlineMath math="(g\circ f)(x)=2x^2-1" />.
 
-- <InlineMath math="4x^2-12x+10" /> is <InlineMath math="(f\circ g)(x)=(2x-3)^2+1" />, the composition in the wrong order.
-- <InlineMath math="2x^3-3x^2+2x-3" /> is the product <InlineMath math="f(x)\cdot g(x)" />, not the composition.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- <InlineMath math="4x^2-12x+10" /> is the equation below, the composition in the wrong order.
+
+  <BlockMath math="(f\circ g)(x)=(2x-3)^2+1" />
+
+- The expression below is the product <InlineMath math="f(x)\cdot g(x)" />, not the composition.
+
+  <BlockMath math="2x^3-3x^2+2x-3" />
+
 - <InlineMath math="2x^2-2" /> multiplies only <InlineMath math="x^2" /> by <InlineMath math="2" /> and leaves the <InlineMath math="1" /> alone.
 - <InlineMath math="x^2-2" /> is <InlineMath math="f(x)-3" />, forgetting the factor <InlineMath math="2" /> in <InlineMath math="g" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

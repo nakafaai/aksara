@@ -1,9 +1,24 @@
-Titik-titik pada cermin tidak berpindah oleh pencerminan. Jadi garis <InlineMath math="y=mx" /> adalah **himpunan titik yang dipetakan <InlineMath math="M" /> ke dirinya sendiri**. Cari vektor tak nol <InlineMath math="(x,y)" /> dengan <InlineMath math="M\begin{pmatrix} x \\ y \end{pmatrix}=\begin{pmatrix} x \\ y \end{pmatrix}" />.
+# Diketahui
 
-<BlockMath math="\begin{aligned}
+Diberikan **matriks pencerminan** <InlineMath math="M" /> terhadap suatu garis melalui titik asal <InlineMath math="y=mx" />.
+
+# Ditanyakan
+
+**Gradien garis cermin** <InlineMath math="m" /> atau persamaan garis cerminnya.
+
+# Penyelesaian
+
+> Setiap titik yang berada tepat pada garis cermin tidak berpindah sama sekali saat dikalikan dengan matriks pencerminannya.
+
+Titik-titik pada cermin tidak berpindah oleh pencerminan. Jadi garis <InlineMath math="y=mx" /> adalah **himpunan titik yang dipetakan <InlineMath math="M" /> ke dirinya sendiri**. Cari vektor tak nol <InlineMath math="(x,y)" /> dengan matriks berikut.
+
+<BlockMath math="\begin{gathered}
+M\begin{pmatrix} x \\ y \end{pmatrix}=\begin{pmatrix} x \\ y \end{pmatrix} \\
+\begin{aligned}
 0{,}6x+0{,}8y&=x\ \Rightarrow\ 0{,}8y=0{,}4x\ \Rightarrow\ y=\frac12x \\
 0{,}8x-0{,}6y&=y\ \Rightarrow\ 0{,}8x=1{,}6y\ \Rightarrow\ y=\frac12x
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
 Gambar garis cermin, satu titik yang tetap, dan satu vektor beserta bayangannya. **Titik <InlineMath math="(2,1)" /> tidak berpindah, dan <InlineMath math="(1,0)" /> dibawa ke <InlineMath math="(0{,}6;\ 0{,}8)" /> di sisi lain garis**, dengan garis cermin tepat di tengahnya.
 
@@ -40,11 +55,25 @@ Gambar garis cermin, satu titik yang tetap, dan satu vektor beserta bayangannya.
   }}
 />
 
-Kedua persamaan memberi garis yang sama, <InlineMath math="y=\frac12x" />. Pemeriksaan: <InlineMath math="M\begin{pmatrix} 2 \\ 1 \end{pmatrix}=\begin{pmatrix} 1{,}2+0{,}8 \\ 1{,}6-0{,}6 \end{pmatrix}=\begin{pmatrix} 2 \\ 1 \end{pmatrix}" />. Arah yang tegak lurus cermin justru dibalik: <InlineMath math="M\begin{pmatrix} 1 \\ -2 \end{pmatrix}=\begin{pmatrix} -1 \\ 2 \end{pmatrix}" />.
+Kedua persamaan memberi garis yang sama, <InlineMath math="y=\frac12x" />. Pemeriksaan: matriks berikut. Arah yang tegak lurus cermin justru dibalik: matriks berikut.
+
+<BlockMath math="\begin{gathered}
+M\begin{pmatrix} 2 \\ 1 \end{pmatrix}=\begin{pmatrix} 1{,}2+0{,}8 \\ 1{,}6-0{,}6 \end{pmatrix}=\begin{pmatrix} 2 \\ 1 \end{pmatrix} \\
+M\begin{pmatrix} 1 \\ -2 \end{pmatrix}=\begin{pmatrix} -1 \\ 2 \end{pmatrix}
+\end{gathered}" />
 
 Jadi, <InlineMath math="m=\frac12" />.
 
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
+
 - <InlineMath math="2" /> membalik gradien, seakan-akan <InlineMath math="x=\frac12y" />.
-- <InlineMath math="\frac43" /> adalah <InlineMath math="\frac{0{,}8}{0{,}6}" />, yaitu <InlineMath math="\tan2\theta" /> dengan <InlineMath math="\theta" /> sudut garis cermin. Gradien cermin adalah <InlineMath math="\tan\theta" />, setengah sudut itu.
-- <InlineMath math="\frac34" /> adalah <InlineMath math="\frac{0{,}6}{0{,}8}" />, membalik perbandingan entri matriks.
+- <InlineMath math="\frac43" /> adalah hasil bagi <InlineMath math="0{,}8" /> dengan <InlineMath math="0{,}6" />, yaitu <InlineMath math="\tan2\theta" /> dengan <InlineMath math="\theta" /> sudut garis cermin. Gradien cermin adalah <InlineMath math="\tan\theta" />, setengah sudut itu.
+- <InlineMath math="\frac34" /> adalah hasil bagi <InlineMath math="0{,}6" /> dengan <InlineMath math="0{,}8" />, membalik perbandingan entri matriks.
+
 - <InlineMath math="-2" /> adalah gradien arah <InlineMath math="(1,-2)" />, yang tegak lurus cermin dan dibalik oleh <InlineMath math="M" />.
+
+# Jawaban
+
+Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.

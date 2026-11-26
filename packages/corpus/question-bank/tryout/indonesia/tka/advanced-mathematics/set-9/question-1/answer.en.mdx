@@ -1,8 +1,24 @@
-Let <InlineMath math="K=\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}" />. To decode, **multiply the code on the left by the inverse of <InlineMath math="K" />**, since <InlineMath math="K^{-1}K=I" />.
+# Given
+
+Two **secret numbers** <InlineMath math="p" /> and <InlineMath math="q" /> are encoded into <InlineMath math="(u,v)" /> via a matrix rule.
+
+# Asked
+
+The **original numbers** <InlineMath math="p" /> and <InlineMath math="q" /> recovered by decoding.
+
+# Solution
+
+> Decoding simply multiplies the coded pair by the inverse of the encoding matrix.
+
+Let the matrix below. To decode, **multiply the code on the left by the inverse of <InlineMath math="K" />**, since <InlineMath math="K^{-1}K=I" />.
+
+<BlockMath math="K=\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}" />
 
 <MathContainer>
-<BlockMath math="\det K=2\cdot1-1\cdot1=1,\qquad K^{-1}=\frac{1}{1}\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}" />
-<BlockMath math="\begin{pmatrix} p \\ q \end{pmatrix}=\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}\begin{pmatrix} 17 \\ 10 \end{pmatrix}=\begin{pmatrix} 17-10 \\ -17+20 \end{pmatrix}=\begin{pmatrix} 7 \\ 3 \end{pmatrix}" />
+<BlockMath math="\begin{gathered}
+\det K=2\cdot1-1\cdot1=1,\qquad K^{-1}=\frac{1}{1}\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix} \\
+\begin{pmatrix} p \\ q \end{pmatrix}=\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}\begin{pmatrix} 17 \\ 10 \end{pmatrix}=\begin{pmatrix} 17-10 \\ -17+20 \end{pmatrix}=\begin{pmatrix} 7 \\ 3 \end{pmatrix}
+\end{gathered}" />
 </MathContainer>
 
 Each row of the code is a line in the <InlineMath math="(p,q)" /> plane. **The secret pair is the only point on both lines**, which is where they cross.
@@ -40,7 +56,18 @@ Check: <InlineMath math="2\cdot7+3=17" /> and <InlineMath math="7+3=10" />, matc
 
 So <InlineMath math="(p,q)=(7,3)" />.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="(3,7)" /> swaps <InlineMath math="p" /> and <InlineMath math="q" />. The code for that pair is <InlineMath math="(13,10)" />.
 - <InlineMath math="(44,27)" /> multiplies the code by <InlineMath math="K" /> again instead of by <InlineMath math="K^{-1}" />.
-- <InlineMath math="(27,37)" /> swaps the diagonal entries without changing the signs of the others, using <InlineMath math="\begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix}" />.
+- <InlineMath math="(27,37)" /> swaps the diagonal entries without changing the signs of the others, using the matrix below.
+
+  <BlockMath math="\begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix}" />
+
 - <InlineMath math="(-7,-3)" /> flips the sign of the whole inverse.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

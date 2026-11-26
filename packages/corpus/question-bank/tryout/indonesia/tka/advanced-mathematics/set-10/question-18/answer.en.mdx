@@ -1,3 +1,15 @@
+# Given
+
+We are given a **reflection transformation** across the vertical <InlineMath math="y" />-axis in the coordinate plane.
+
+# Asked
+
+The **<InlineMath math="2\times2" /> transformation matrix** representing reflection across the <InlineMath math="y" />-axis.
+
+# Solution
+
+> Track where the two unit basis arrows land: flipping across the vertical axis reverses horizontal direction while keeping vertical fixed.
+
 The columns of a transformation matrix are **the images of the unit vectors <InlineMath math="(1,0)" /> and <InlineMath math="(0,1)" />**. Reflection in the <InlineMath math="y" />-axis flips the sign of the <InlineMath math="x" />-coordinate and keeps the <InlineMath math="y" />-coordinate, <InlineMath math="(x,y)\mapsto(-x,y)" />.
 
 <BlockMath math="(1,0)\mapsto(-1,0),\qquad (0,1)\mapsto(0,1)\qquad\Rightarrow\qquad \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
@@ -43,9 +55,30 @@ Draw both unit vectors and their images in the <InlineMath math="y" />-axis. **T
 
 Check: the point <InlineMath math="(3,2)" /> maps to <InlineMath math="(-3,2)" />, its mirror image across the <InlineMath math="y" />-axis.
 
-So the matrix is <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />.
+So the matrix is the matrix below.
 
-- <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" /> is the reflection in the <InlineMath math="x" />-axis.
-- <InlineMath math="\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" /> is the reflection in the line <InlineMath math="y=x" />.
-- <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> is the <InlineMath math="90^\circ" /> anticlockwise rotation about <InlineMath math="O" />.
-- <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> is the <InlineMath math="180^\circ" /> rotation, the reflection in the origin.
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- The matrix below is the reflection in the <InlineMath math="x" />-axis.
+
+  <BlockMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+- The matrix below is the reflection in the line <InlineMath math="y=x" />.
+
+  <BlockMath math="\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
+
+- The matrix below is the <InlineMath math="90^\circ" /> anticlockwise rotation about <InlineMath math="O" />.
+
+  <BlockMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+
+- The matrix below is the <InlineMath math="180^\circ" /> rotation, the reflection in the origin.
+
+  <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

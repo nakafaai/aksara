@@ -1,3 +1,15 @@
+# Given
+
+Plane vector <InlineMath math="\vec{c}" /> with positive first component is **perpendicular** to <InlineMath math="\vec{a}" /> with known length.
+
+# Asked
+
+The **components of vector** <InlineMath math="\vec{c}" /> satisfying both conditions.
+
+# Solution
+
+> Perpendicularity sets the dot product to zero, and the given length scales the vector to its exact size.
+
 There are **two conditions for the two unknowns**: perpendicular means the dot product is zero, and the length is <InlineMath math="10" />.
 
 <BlockMath math="\begin{aligned}
@@ -42,11 +54,23 @@ Draw <InlineMath math="\vec a" />, the line perpendicular to <InlineMath math="\
 
 So <InlineMath math="x^2=64" />. The condition <InlineMath math="x>0" /> picks <InlineMath math="x=8" />, so <InlineMath math="y=-6" />.
 
-Check: <InlineMath math="3(8)+4(-6)=0" /> and <InlineMath math="\sqrt{64+36}=10" />. Without the condition <InlineMath math="x>0" />, the vector <InlineMath math="(-8,6)" /> would also work, since it points exactly the opposite way.
+Check: <InlineMath math="3(8)+4(-6)=0" /> and <InlineMath math="10" />. Without the condition <InlineMath math="x>0" />, the vector <InlineMath math="(-8,6)" /> would also work, since it points exactly the opposite way.
 
-So <InlineMath math="\vec{c}=\begin{pmatrix} 8 \\ -6 \end{pmatrix}" />.
+<BlockMath math="\sqrt{64+36}=10" />
+
+So the matrix below.
+
+<BlockMath math="\vec{c}=\begin{pmatrix} 8 \\ -6 \end{pmatrix}" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="(6,8)" /> points along <InlineMath math="\vec{a}" />, not perpendicular to it, because <InlineMath math="(6,8)=2\vec{a}" />.
 - <InlineMath math="(-8,6)" /> is perpendicular with length <InlineMath math="10" />, but breaks the condition <InlineMath math="x>0" />.
 - <InlineMath math="(4,-3)" /> is perpendicular, but its length is only <InlineMath math="5" />.
 - <InlineMath math="(6,-8)" /> swaps the components the wrong way, so <InlineMath math="3(6)+4(-8)=-14\ne0" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

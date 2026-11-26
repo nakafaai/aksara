@@ -1,13 +1,31 @@
+# Diketahui
+
+Diberikan **limit gabungan sinus dan bentuk akar** dalam radian saat <InlineMath math="x" /> mendekati nol.
+
+# Ditanyakan
+
+**Nilai limit pecahan** setelah menghilangkan bentuk tak tentu nol per nol.
+
+# Penyelesaian
+
+> Kalikan dengan sekawan penyebut akarnya dulu supaya faktor pembuat nol muncul jelas untuk dipasangkan dengan sinus.
+
 Substitusi langsung memberi <InlineMath math="\frac00" />. Penyebutnya selisih akar, jadi **kalikan pembilang dan penyebut dengan bentuk sekawan <InlineMath math="\sqrt{4+x^2}+2" />**.
 
 <MathContainer>
-<BlockMath math="\left(\sqrt{4+x^2}-2\right)\left(\sqrt{4+x^2}+2\right)=4+x^2-4=x^2" />
-<BlockMath math="\frac{x\sin3x}{\sqrt{4+x^2}-2}=\frac{x\sin3x\left(\sqrt{4+x^2}+2\right)}{x^2}=\frac{\sin3x}{x}\cdot\left(\sqrt{4+x^2}+2\right)" />
+<BlockMath math="\begin{gathered}
+\left(\sqrt{4+x^2}-2\right)\left(\sqrt{4+x^2}+2\right)=4+x^2-4=x^2 \\
+\frac{x\sin3x}{\sqrt{4+x^2}-2}=\frac{x\sin3x\left(\sqrt{4+x^2}+2\right)}{x^2}=\frac{\sin3x}{x}\cdot\left(\sqrt{4+x^2}+2\right)
+\end{gathered}" />
 </MathContainer>
 
-Sekarang kedua faktor punya limit yang jelas: <InlineMath math="\lim_{x\to0}\frac{\sin3x}{x}=3" /> dan <InlineMath math="\sqrt{4+0}+2=4" />.
+Sekarang kedua faktor punya limit yang jelas: hasilnya <InlineMath math="3" /> dan <InlineMath math="4" />.
 
-<BlockMath math="\lim_{x\to0}\frac{x\sin3x}{\sqrt{4+x^2}-2}=3\cdot4=12" />
+<BlockMath math="\begin{gathered}
+\lim_{x\to0}\frac{\sin3x}{x}=3 \\
+\sqrt{4+0}+2=4 \\
+\lim_{x\to0}\frac{x\sin3x}{\sqrt{4+x^2}-2}=3\cdot4=12
+\end{gathered}" />
 
 Gambar fungsi itu setelah dikalikan bentuk sekawan. **Untuk <InlineMath math="x\ne0" />, grafiknya sama dengan <InlineMath math="\frac{\sin3x}{x}\left(\sqrt{4+x^2}+2\right)" />**, dan kedua cabangnya naik ke <InlineMath math="(0,\ 12)" />.
 
@@ -42,7 +60,18 @@ Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, nilai pecahan itu sek
 
 Jadi, nilai limitnya <InlineMath math="12" />.
 
-- <InlineMath math="3" /> menganggap <InlineMath math="\sqrt{4+x^2}-2" /> mendekati <InlineMath math="x^2" />, padahal mendekati <InlineMath math="\frac{x^2}{4}" />.
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
+
+- <InlineMath math="3" /> menganggap <InlineMath math="\sqrt{4+x^2}-2" /> mendekati <InlineMath math="x^2" />, padahal mendekati ekspresi berikut.
+
+  <BlockMath math="\frac{x^2}{4}" />
+
 - <InlineMath math="6" /> memakai <InlineMath math="2" /> sebagai nilai bentuk sekawan, padahal <InlineMath math="\sqrt4+2=4" />.
 - <InlineMath math="0" /> hanya melihat pembilang yang menuju <InlineMath math="0" />, padahal penyebutnya juga menuju <InlineMath math="0" />.
 - <InlineMath math="4" /> memperlakukan <InlineMath math="\sin3x" /> seperti <InlineMath math="x" />, sehingga faktor <InlineMath math="3" /> hilang.
+
+# Jawaban
+
+Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.

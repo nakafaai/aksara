@@ -1,10 +1,25 @@
+# Given
+
+We are given a **fraction limit** combining a square root and sine in radians near <InlineMath math="x=0" />.
+
+# Asked
+
+The **limit value** after simplifying both the square root and sine.
+
+# Solution
+
+> Multiply by the conjugate to expose a linear factor, then pair it directly with the small-angle sine.
+
 Direct substitution gives <InlineMath math="\frac00" />. The numerator is a difference involving a root, so **multiply by its conjugate**, <InlineMath math="\sqrt{x+4}+2" />.
 
 <BlockMath math="\frac{\sqrt{x+4}-2}{\sin\frac{x}{4}}\cdot\frac{\sqrt{x+4}+2}{\sqrt{x+4}+2}=\frac{x}{\sin\frac{x}{4}\,\left(\sqrt{x+4}+2\right)}" />
 
-Split it into a standard sine limit and a part you can substitute into directly. Since <InlineMath math="\lim_{x\to0}\frac{x}{\sin\frac{x}{4}}=4" />, you get the following.
+Split it into a standard sine limit and a part you can substitute into directly. Since the value <InlineMath math="4" />, you get the following.
 
-<BlockMath math="\lim_{x\to0}\frac{x}{\sin\frac{x}{4}}\cdot\lim_{x\to0}\frac{1}{\sqrt{x+4}+2}=4\cdot\frac14=1" />
+<BlockMath math="\begin{gathered}
+\lim_{x\to0}\frac{x}{\sin\frac{x}{4}}=4 \\
+\lim_{x\to0}\frac{x}{\sin\frac{x}{4}}\cdot\lim_{x\to0}\frac{1}{\sqrt{x+4}+2}=4\cdot\frac14=1
+\end{gathered}" />
 
 Draw the function on both sides of zero. **The curve falls gently and passes height <InlineMath math="1" /> right at <InlineMath math="x=0" />**, even though the function itself isn't defined there.
 
@@ -39,7 +54,15 @@ Numerical check: at <InlineMath math="x=0.01" /> the fraction is about <InlineMa
 
 So the limit is <InlineMath math="1" />.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="0" /> only looks at the numerator tending to <InlineMath math="0" />, but the denominator tends to <InlineMath math="0" /> as well.
 - <InlineMath math="2" /> takes <InlineMath math="\sqrt{x+4}+2" /> to be <InlineMath math="2" /> at <InlineMath math="x=0" />, but it is <InlineMath math="4" />.
 - <InlineMath math="\frac14" /> treats <InlineMath math="\sin\frac{x}{4}" /> like <InlineMath math="\sin x" />, losing the factor <InlineMath math="4" /> from the sine limit.
 - <InlineMath math="\infty" /> only looks at the denominator tending to <InlineMath math="0" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

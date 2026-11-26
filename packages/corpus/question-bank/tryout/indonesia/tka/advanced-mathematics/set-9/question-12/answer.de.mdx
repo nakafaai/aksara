@@ -1,9 +1,23 @@
+# Gegeben
+
+Gegeben sind zwei **Raumvektoren** <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" />.
+
+# Gesucht
+
+Die **orthogonale Vektorprojektion** von <InlineMath math="\vec{a}" /> auf <InlineMath math="\vec{b}" />.
+
+# Lösung
+
+> Die Projektion auf einen Zielvektor ist einfach der Zielvektor mal Skalarprodukt geteilt durch sein Längenquadrat.
+
 Die Projektion von <InlineMath math="\vec{a}" /> auf <InlineMath math="\vec{b}" /> ist ein Vektor **in Richtung von <InlineMath math="\vec{b}" />** und berechnet sich wie unten. Beachte, dass im Nenner <InlineMath math="\left|\vec{b}\right|^2" /> steht, nicht <InlineMath math="\left|\vec{b}\right|" />.
 
 <MathContainer>
-<BlockMath math="\operatorname{proj}_{\vec{b}}\vec{a}=\frac{\vec{a}\cdot\vec{b}}{\left|\vec{b}\right|^2}\,\vec{b}" />
-<BlockMath math="\vec{a}\cdot\vec{b}=5\cdot2+0\cdot(-1)+4\cdot2=18,\qquad \left|\vec{b}\right|^2=4+1+4=9" />
-<BlockMath math="\operatorname{proj}_{\vec{b}}\vec{a}=\frac{18}{9}(2,-1,2)=(4,-2,4)" />
+<BlockMath math="\begin{gathered}
+\operatorname{proj}_{\vec{b}}\vec{a}=\frac{\vec{a}\cdot\vec{b}}{\left|\vec{b}\right|^2}\,\vec{b} \\
+\vec{a}\cdot\vec{b}=5\cdot2+0\cdot(-1)+4\cdot2=18,\qquad \left|\vec{b}\right|^2=4+1+4=9 \\
+\operatorname{proj}_{\vec{b}}\vec{a}=\frac{18}{9}(2,-1,2)=(4,-2,4)
+\end{gathered}" />
 </MathContainer>
 
 Zeichne <InlineMath math="\vec a" /> und <InlineMath math="\vec b" /> in der Ebene, die beide enthält. **Der Schatten von <InlineMath math="\vec a" /> auf der Geraden von <InlineMath math="\vec b" /> ist <InlineMath math="6" /> lang, doppelt so lang wie <InlineMath math="\vec b" />**, also ist die Projektion <InlineMath math="2\vec b" />.
@@ -40,11 +54,24 @@ Zeichne <InlineMath math="\vec a" /> und <InlineMath math="\vec b" /> in der Ebe
   }}
 />
 
-Probe: Der Rest <InlineMath math="\vec{a}-(4,-2,4)=(1,2,0)" /> muss senkrecht auf <InlineMath math="\vec{b}" /> stehen, und tatsächlich ist <InlineMath math="2-2+0=0" />.
+Probe: Der Rest <InlineMath math="\vec{a}-(4,-2,4)=(1,2,0)" /> muss senkrecht auf <InlineMath math="\vec{b}" /> stehen, und tatsächlich ist <InlineMath math="0" />.
+
+<BlockMath math="2-2+0=0" />
 
 Die Projektion ist also <InlineMath math="(4,-2,4)" />, also <InlineMath math="4\vec{i}-2\vec{j}+4\vec{k}" />.
 
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
 - <InlineMath math="(12,-6,12)" /> teilt durch <InlineMath math="\left|\vec{b}\right|=3" /> statt durch <InlineMath math="\left|\vec{b}\right|^2=9" />.
-- <InlineMath math="6" /> ist die skalare Projektion <InlineMath math="\frac{\vec{a}\cdot\vec{b}}{\left|\vec{b}\right|}" />, also die Länge der Projektion, nicht der Vektor.
+- <InlineMath math="6" /> ist die skalare Projektion der folgende Ausdruck, also die Länge der Projektion, nicht der Vektor.
+
+  <BlockMath math="\frac{\vec{a}\cdot\vec{b}}{\left|\vec{b}\right|}" />
+
 - <InlineMath math="(2,-1,2)" /> ist <InlineMath math="\vec{b}" /> selbst. Die Richtung stimmt, die Länge aber nicht.
 - <InlineMath math="\frac{18}{41}(5,0,4)" /> ist die Projektion von <InlineMath math="\vec{b}" /> auf <InlineMath math="\vec{a}" />, also falsch herum.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

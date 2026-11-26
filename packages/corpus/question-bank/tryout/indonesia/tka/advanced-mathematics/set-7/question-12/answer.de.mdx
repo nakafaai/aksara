@@ -1,13 +1,27 @@
+# Gegeben
+
+Die Raumgerade <InlineMath math="g" /> verläuft durch den **Ursprung** <InlineMath math="O(0,0,0)" /> mit Richtungsvektor <InlineMath math="\vec{d}" />.
+
+# Gesucht
+
+Der **Projektionspunkt oder Abstand** zur Geraden <InlineMath math="g" />.
+
+# Lösung
+
+> Die Projektion auf den Richtungsvektor fällt direkt das Lot auf den nächstgelegenen Punkt der Geraden.
+
 Der Abstand eines Punktes von einer Geraden wird entlang **des Lotes vom Punkt auf die Gerade** gemessen. Der Vektor <InlineMath math="\overrightarrow{OP}" /> zerfällt in einen Teil parallel zu <InlineMath math="g" /> und einen Teil senkrecht zu <InlineMath math="g" />. Die Länge des senkrechten Teils ist der Abstand, und der Satz des Pythagoras verbindet alle drei.
 
 Die Länge des parallelen Teils ist die skalare Projektion von <InlineMath math="\overrightarrow{OP}" /> auf <InlineMath math="\vec{d}" />.
 
 <MathContainer>
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+\begin{aligned}
 \overrightarrow{OP}\cdot\vec{d}&=2+6+2=10,\qquad |\vec{d}|=\sqrt{1+4+4}=3 \\
 \text{Projektion}&=\frac{10}{3},\qquad |\overrightarrow{OP}|^2=4+9+1=14
-\end{aligned}" />
-<BlockMath math="\text{Abstand}^2=|\overrightarrow{OP}|^2-\left(\frac{10}{3}\right)^2=14-\frac{100}{9}=\frac{26}{9}\ \Rightarrow\ \text{Abstand}=\frac{\sqrt{26}}{3}" />
+\end{aligned} \\
+\text{Abstand}^2=|\overrightarrow{OP}|^2-\left(\frac{10}{3}\right)^2=14-\frac{100}{9}=\frac{26}{9}\ \Rightarrow\ \text{Abstand}=\frac{\sqrt{26}}{3}
+\end{gathered}" />
 </MathContainer>
 
 Zeichne <InlineMath math="O" />, <InlineMath math="P" /> und die Gerade <InlineMath math="g" /> in der Ebene, die alle drei enthält. **Die Strecke <InlineMath math="OP" /> zerfällt in einen Teil entlang <InlineMath math="g" /> und einen Teil senkrecht zu <InlineMath math="g" />**, und dieser senkrechte Teil ist der Abstand.
@@ -50,11 +64,26 @@ Zeichne <InlineMath math="O" />, <InlineMath math="P" /> und die Gerade <InlineM
   }}
 />
 
-Probe: Der Lotfußpunkt ist <InlineMath math="Q=\frac{10}{9}(1,2,2)" />, und <InlineMath math="\overrightarrow{QP}=\left(\frac89,\frac79,-\frac{11}{9}\right)" /> steht tatsächlich senkrecht auf <InlineMath math="\vec{d}" />, denn <InlineMath math="8+14-22=0" />. Seine Länge ist <InlineMath math="\frac{\sqrt{64+49+121}}{9}=\frac{\sqrt{234}}{9}=\frac{\sqrt{26}}{3}" />.
+Probe: Der Lotfußpunkt ist <InlineMath math="Q" />, und die folgende Gleichung steht tatsächlich senkrecht auf <InlineMath math="\vec{d}" />, denn <InlineMath math="0" />. Seine Länge ist <InlineMath math="\frac{1}{3}\sqrt{26}" />.
 
-Der Abstand von <InlineMath math="P" /> zu <InlineMath math="g" /> beträgt also <InlineMath math="\frac{\sqrt{26}}{3}" />.
+<BlockMath math="\begin{gathered}
+Q=\frac{10}{9}(1,2,2) \\
+\overrightarrow{QP}=\left(\frac89,\frac79,-\frac{11}{9}\right) \\
+8+14-22=0 \\
+\frac{\sqrt{64+49+121}}{9}=\frac{1}{9}\sqrt{234}=\frac{1}{3}\sqrt{26}
+\end{gathered}" />
+
+Der Abstand von <InlineMath math="P" /> zu <InlineMath math="g" /> beträgt also <InlineMath math="\frac{1}{3}\sqrt{26}" />.
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="\frac{10}{3}" /> ist die Länge des Teils parallel zur Geraden, nicht der Abstand.
 - <InlineMath math="\sqrt{14}" /> ist der Abstand von <InlineMath math="P" /> zum Punkt <InlineMath math="O" />, nicht zur Geraden.
 - <InlineMath math="\frac{26}{9}" /> ist das Abstandsquadrat, noch ohne Wurzel.
-- <InlineMath math="\frac{4\sqrt6}{3}" /> zieht <InlineMath math="\frac{10}{3}" /> ab, ohne es zu quadrieren, <InlineMath math="\sqrt{14-\frac{10}{3}}" />.
+- <InlineMath math="\frac{4}{3}\sqrt{6}" /> zieht <InlineMath math="\frac{10}{3}" /> ab, ohne es zu quadrieren, <InlineMath math="\sqrt{14-\frac{10}{3}}" />.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

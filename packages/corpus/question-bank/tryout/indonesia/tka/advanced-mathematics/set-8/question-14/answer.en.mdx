@@ -1,10 +1,25 @@
-For a circle <InlineMath math="x^2+y^2+Ax+By+C=0" />, a point lies **inside the circle when the left-hand side is negative** after substituting its coordinates. Zero means exactly on the circle, and a positive value means outside.
+# Given
 
-<BlockMath math="\begin{aligned}
+Point <InlineMath math="P(1,k)" /> sits **strictly inside a circle** with a known general equation.
+
+# Asked
+
+The **range of** <InlineMath math="k" /> keeping <InlineMath math="P" /> inside the circle.
+
+# Solution
+
+> A point lies inside the circle precisely when plugging its coordinates into the circle expression gives a negative result.
+
+For a circle the equation below, a point lies **inside the circle when the left-hand side is negative** after substituting its coordinates. Zero means exactly on the circle, and a positive value means outside.
+
+<BlockMath math="\begin{gathered}
+x^2+y^2+Ax+By+C=0 \\
+\begin{aligned}
 1+k^2-4+2k-5&<0 \\
 k^2+2k-8&<0 \\
 (k+4)(k-2)&<0
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
 Draw the circle and the vertical line <InlineMath math="x=1" />, where every point <InlineMath math="P(1,k)" /> lies. **The part of the line inside the circle runs from <InlineMath math="k=-4" /> to <InlineMath math="k=2" />**, without the two ends, which sit exactly on the circle.
 
@@ -42,13 +57,34 @@ Draw the circle and the vertical line <InlineMath math="x=1" />, where every poi
   }}
 />
 
-The product is negative when <InlineMath math="k" /> lies between the two roots, so <InlineMath math="-4<k<2" />.
+The product is negative when <InlineMath math="k" /> lies between the two roots, so <InlineMath math="2" />.
 
-Another way: the circle has centre <InlineMath math="(2,-1)" /> and <InlineMath math="r^2=4+1+5=10" />. Being inside means <InlineMath math="(1-2)^2+(k+1)^2<10" />, that is <InlineMath math="(k+1)^2<9" />, so <InlineMath math="-3<k+1<3" />.
+<BlockMath math="-4<k<2" />
 
-So <InlineMath math="-4<k<2" />.
+Another way: the circle has centre <InlineMath math="(2,-1)" /> and <InlineMath math="r^2=10" />. Being inside means the equation below, that is <InlineMath math="(k+1)^2<9" />, so <InlineMath math="3" />.
+
+<BlockMath math="\begin{gathered}
+r^2=4+1+5=10 \\
+(1-2)^2+(k+1)^2<10 \\
+-3<k+1<3
+\end{gathered}" />
+
+So <InlineMath math="2" />.
+
+<BlockMath math="-4<k<2" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="k<-4" /> or <InlineMath math="k>2" /> is the condition for the point to lie outside.
-- <InlineMath math="-2<k<4" /> gets the signs wrong when factoring, as if it were <InlineMath math="(k-4)(k+2)" />.
+- <InlineMath math="4" /> gets the signs wrong when factoring, as if it were <InlineMath math="(k-4)(k+2)" />.
+
+  <BlockMath math="-2<k<4" />
+
 - <InlineMath math="-4\leq k\leq2" /> also includes points exactly on the circle.
 - <InlineMath math="k=-4" /> or <InlineMath math="k=2" /> is the condition for the point to lie exactly on the circle.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

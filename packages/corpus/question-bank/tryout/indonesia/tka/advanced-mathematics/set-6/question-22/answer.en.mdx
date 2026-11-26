@@ -1,13 +1,31 @@
+# Given
+
+We are given a **combined sine and radical limit** in radians as <InlineMath math="x" /> approaches zero.
+
+# Asked
+
+The **limit value** after resolving the zero-over-zero indeterminate form.
+
+# Solution
+
+> Rationalize the square root first so a clean linear factor appears to pair up with the sine term.
+
 Direct substitution gives <InlineMath math="\frac00" />. The denominator is a difference involving a root, so **multiply top and bottom by the conjugate <InlineMath math="\sqrt{4+x^2}+2" />**.
 
 <MathContainer>
-<BlockMath math="\left(\sqrt{4+x^2}-2\right)\left(\sqrt{4+x^2}+2\right)=4+x^2-4=x^2" />
-<BlockMath math="\frac{x\sin3x}{\sqrt{4+x^2}-2}=\frac{x\sin3x\left(\sqrt{4+x^2}+2\right)}{x^2}=\frac{\sin3x}{x}\cdot\left(\sqrt{4+x^2}+2\right)" />
+<BlockMath math="\begin{gathered}
+\left(\sqrt{4+x^2}-2\right)\left(\sqrt{4+x^2}+2\right)=4+x^2-4=x^2 \\
+\frac{x\sin3x}{\sqrt{4+x^2}-2}=\frac{x\sin3x\left(\sqrt{4+x^2}+2\right)}{x^2}=\frac{\sin3x}{x}\cdot\left(\sqrt{4+x^2}+2\right)
+\end{gathered}" />
 </MathContainer>
 
-Now both factors have clear limits: <InlineMath math="\lim_{x\to0}\frac{\sin3x}{x}=3" /> and <InlineMath math="\sqrt{4+0}+2=4" />.
+Now both factors have clear limits: the value <InlineMath math="3" /> and <InlineMath math="4" />.
 
-<BlockMath math="\lim_{x\to0}\frac{x\sin3x}{\sqrt{4+x^2}-2}=3\cdot4=12" />
+<BlockMath math="\begin{gathered}
+\lim_{x\to0}\frac{\sin3x}{x}=3 \\
+\sqrt{4+0}+2=4 \\
+\lim_{x\to0}\frac{x\sin3x}{\sqrt{4+x^2}-2}=3\cdot4=12
+\end{gathered}" />
 
 Draw the function after multiplying by the conjugate. **For <InlineMath math="x\ne0" />, its graph is the same as <InlineMath math="\frac{\sin3x}{x}\left(\sqrt{4+x^2}+2\right)" />**, and both branches rise to <InlineMath math="(0,\ 12)" />.
 
@@ -42,7 +60,18 @@ Numerical check: at <InlineMath math="x=0.01" /> the fraction is about <InlineMa
 
 So the limit is <InlineMath math="12" />.
 
-- <InlineMath math="3" /> takes <InlineMath math="\sqrt{4+x^2}-2" /> to behave like <InlineMath math="x^2" />, but it behaves like <InlineMath math="\frac{x^2}{4}" />.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- <InlineMath math="3" /> takes <InlineMath math="\sqrt{4+x^2}-2" /> to behave like <InlineMath math="x^2" />, but it behaves like the expression below.
+
+  <BlockMath math="\frac{x^2}{4}" />
+
 - <InlineMath math="6" /> uses <InlineMath math="2" /> as the value of the conjugate, but <InlineMath math="\sqrt4+2=4" />.
 - <InlineMath math="0" /> only looks at the numerator tending to <InlineMath math="0" />, but the denominator tends to <InlineMath math="0" /> as well.
 - <InlineMath math="4" /> treats <InlineMath math="\sin3x" /> like <InlineMath math="x" />, losing the factor <InlineMath math="3" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

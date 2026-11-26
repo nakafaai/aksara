@@ -1,8 +1,22 @@
+# Gegeben
+
+Eine **Drohne fliegt geradlinig** von <InlineMath math="A(1,2,3)" /> über <InlineMath math="B(3,4,1)" /> zu einem weiteren Punkt auf derselben Geraden.
+
+# Gesucht
+
+Die **Zielkoordinaten** der Drohne aus dem Streckenverhältnis.
+
+# Lösung
+
+> Auf gerader Flugbahn ist die Gesamtverschiebung einfach ein Vielfaches des ersten Streckenvektors.
+
 Der Punkt <InlineMath math="P" /> liegt auf der Verlängerung von <InlineMath math="AB" /> hinter <InlineMath math="B" />. Also liegt <InlineMath math="B" /> zwischen <InlineMath math="A" /> und <InlineMath math="P" />, und **<InlineMath math="P" /> teilt <InlineMath math="AB" /> äußerlich** im Verhältnis <InlineMath math="3:1" />. Wegen <InlineMath math="AP=3PB" /> ist die Länge <InlineMath math="AB" /> gleich <InlineMath math="AP-PB=2PB" />. Das heißt <InlineMath math="BP=\frac12AB" />.
 
 <MathContainer>
-<BlockMath math="\overrightarrow{AB}=(3-1,\,4-2,\,1-3)=(2,2,-2)" />
-<BlockMath math="P=B+\frac12\overrightarrow{AB}=(3,4,1)+(1,1,-1)=(4,5,0)" />
+<BlockMath math="\begin{gathered}
+\overrightarrow{AB}=(3-1,\,4-2,\,1-3)=(2,2,-2) \\
+P=B+\frac12\overrightarrow{AB}=(3,4,1)+(1,1,-1)=(4,5,0)
+\end{gathered}" />
 </MathContainer>
 
 Zeichne die drei Punkte auf der Fluglinie der Drohne. **Damit <InlineMath math="AP=3PB" /> mit <InlineMath math="P" /> außerhalb der Strecke gilt, muss der Schritt <InlineMath math="BP" /> die Hälfte von <InlineMath math="AB" /> sein**, sodass <InlineMath math="AP" /> dreimal <InlineMath math="BP" /> ist.
@@ -42,13 +56,28 @@ Zeichne die drei Punkte auf der Fluglinie der Drohne. **Damit <InlineMath math="
   }}
 />
 
-Die Formel für die äußere Teilung liefert denselben Punkt: <InlineMath math="P=\frac{3B-A}{3-1}=\frac{(9,12,3)-(1,2,3)}{2}=(4,5,0)" />.
+Die Formel für die äußere Teilung liefert denselben Punkt: <InlineMath math="P=(4,5,0)" />.
 
-Probe: <InlineMath math="\overrightarrow{AP}=(3,3,-3)" /> und <InlineMath math="\overrightarrow{PB}=(-1,-1,1)" />, also ist <InlineMath math="AP" /> dreimal so lang wie <InlineMath math="PB" />.
+<BlockMath math="P=\frac{3B-A}{3-1}=\frac{(9,12,3)-(1,2,3)}{2}=(4,5,0)" />
+
+Probe: die folgende Gleichung und die folgende Gleichung, also ist <InlineMath math="AP" /> dreimal so lang wie <InlineMath math="PB" />.
+
+<BlockMath math="\begin{gathered}
+\overrightarrow{AP}=(3,3,-3) \\
+\overrightarrow{PB}=(-1,-1,1)
+\end{gathered}" />
 
 Also ist <InlineMath math="P(4,5,0)" />.
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="\left(\frac52,\frac72,\frac32\right)" /> teilt <InlineMath math="AB" /> innerlich im Verhältnis <InlineMath math="3:1" />. Dieser Punkt liegt zwischen <InlineMath math="A" /> und <InlineMath math="B" />, nicht auf der Verlängerung.
 - <InlineMath math="(0,1,4)" /> liegt auf der Verlängerung hinter <InlineMath math="A" />. Dort gilt <InlineMath math="AP:PB=1:3" />.
 - <InlineMath math="(7,8,-3)" /> nimmt <InlineMath math="AP=3AB" />, liest das Verhältnis also als <InlineMath math="AP:AB" />.
 - <InlineMath math="(2,3,2)" /> ist der Mittelpunkt von <InlineMath math="AB" />.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

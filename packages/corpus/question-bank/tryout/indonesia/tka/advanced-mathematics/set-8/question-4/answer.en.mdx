@@ -1,3 +1,15 @@
+# Given
+
+A print shop produces **two book packs** under printing and binding machine hour caps with known pack profits.
+
+# Asked
+
+The **maximum monthly profit** the print shop can achieve.
+
+# Solution
+
+> Set up each machine hour cap and compare profit across all corner points of the feasible region.
+
 Let <InlineMath math="x" /> be the packs of exercise books and <InlineMath math="y" /> the packs of drawing books per month. Each machine gives **one limit on working hours**.
 
 <BlockMath math="\begin{aligned}
@@ -6,7 +18,7 @@ x+2y&\le80\quad(\text{cutting}) \\
 x\ge0,\quad y&\ge0
 \end{aligned}" />
 
-The profit, in thousands of rupiah, is <InlineMath math="P=50x+40y" />. The corner where both machines run at full capacity comes from subtracting the equations.
+The profit (each unit standing for <InlineMath math="\text{Rp}1{,}000" />) is <InlineMath math="P=50x+40y" />. The corner where both machines run at full capacity comes from subtracting the equations.
 
 <BlockMath math="(3x+2y)-(x+2y)=120-80\ \Rightarrow\ 2x=40\ \Rightarrow\ x=20,\quad y=30" />
 
@@ -58,7 +70,15 @@ Draw the feasible region. **The two machine-hour lines cut it into a quadrilater
 
 So the maximum profit is <InlineMath math="\text{Rp}2{,}200{,}000.00" />, from <InlineMath math="20" /> packs of exercise books and <InlineMath math="30" /> packs of drawing books.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="\text{Rp}2{,}000{,}000.00" /> is the profit at <InlineMath math="(40,0)" />, exercise books only.
 - <InlineMath math="\text{Rp}1{,}600{,}000.00" /> is the profit at <InlineMath math="(0,40)" />, drawing books only.
 - <InlineMath math="\text{Rp}2{,}500{,}000.00" /> is the profit of <InlineMath math="(30,25)" />. That plan needs <InlineMath math="140" /> binding hours.
 - <InlineMath math="\text{Rp}3{,}600{,}000.00" /> adds the profits of <InlineMath math="(40,0)" /> and <InlineMath math="(0,40)" />, as if both plans could run at once.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

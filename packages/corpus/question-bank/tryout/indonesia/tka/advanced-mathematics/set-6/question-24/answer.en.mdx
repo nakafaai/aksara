@@ -1,8 +1,25 @@
-A function is continuous at <InlineMath math="x=0" /> exactly when **its value equals its limit**, <InlineMath math="k=\lim_{x\to0}f(x)" />. So you need the limit of the part for <InlineMath math="x\ne0" />.
+# Given
 
-Use the identity <InlineMath math="1-\cos x=2\sin^2\frac x2" /> so that the basic sine limit appears.
+We are given a **piecewise trigonometric function** <InlineMath math="f(x)" /> in radians with one real parameter <InlineMath math="k" />.
 
-<BlockMath math="\lim_{x\to0}\frac{1-\cos x}{x^2}=\lim_{x\to0}\frac{2\sin^2\frac x2}{x^2}=2\left(\lim_{x\to0}\frac{\sin\frac x2}{x}\right)^2=2\cdot\left(\frac12\right)^2=\frac12" />
+# Asked
+
+The **parameter value** <InlineMath math="k" /> making the function continuous at the boundary.
+
+# Solution
+
+> Compute the trigonometric branch limit first, then set it equal to the constant piece so the graph joins seamlessly.
+
+A function is continuous at <InlineMath math="x=0" /> exactly when **its value equals its limit**, the expression below. So you need the limit of the part for <InlineMath math="x\ne0" />.
+
+<BlockMath math="k=\lim_{x\to0}f(x)" />
+
+Use the identity the equation below so that the basic sine limit appears.
+
+<BlockMath math="\begin{gathered}
+1-\cos x=2\sin^2\frac x2 \\
+\lim_{x\to0}\frac{1-\cos x}{x^2}=\lim_{x\to0}\frac{2\sin^2\frac x2}{x^2}=2\left(\lim_{x\to0}\frac{\sin\frac x2}{x}\right)^2=2\cdot\left(\frac12\right)^2=\frac12
+\end{gathered}" />
 
 Draw the <InlineMath math="x\ne0" /> part of <InlineMath math="f" />. **Both branches rise to height <InlineMath math="\tfrac12" /> at <InlineMath math="x=0" />**, so the point that fills the hole is <InlineMath math="\left(0,\ \tfrac12\right)" />.
 
@@ -33,11 +50,26 @@ Draw the <InlineMath math="x\ne0" /> part of <InlineMath math="f" />. **Both bra
   }}
 />
 
-Numerical check: for <InlineMath math="x=0.1" />, <InlineMath math="\frac{1-\cos0.1}{0.01}\approx0.4996" />.
+Numerical check: for <InlineMath math="x=0.1" />, the equation below.
+
+<BlockMath math="\frac{1-\cos0.1}{0.01}\approx0.4996" />
 
 So <InlineMath math="k=\frac12" />.
 
-- <InlineMath math="1" /> uses <InlineMath math="1-\cos x\approx x^2" />, but the approximation is <InlineMath math="\frac{x^2}{2}" />.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- <InlineMath math="1" /> uses <InlineMath math="1-\cos x\approx x^2" />, but the approximation is the expression below.
+
+  <BlockMath math="\frac{x^2}{2}" />
+
 - <InlineMath math="0" /> only looks at the numerator tending to zero.
 - <InlineMath math="2" /> turns the fraction <InlineMath math="\frac12" /> upside down.
-- <InlineMath math="-\frac12" /> has a sign slip in the identity, as if <InlineMath math="1-\cos x=-2\sin^2\frac x2" />.
+- <InlineMath math="-\frac12" /> has a sign slip in the identity, as if the equation below.
+
+  <BlockMath math="1-\cos x=-2\sin^2\frac x2" />
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

@@ -1,3 +1,15 @@
+# Gegeben
+
+Gegeben ist die **Spiegelung an der senkrechten Achse** im Koordinatensystem.
+
+# Gesucht
+
+Die **Abbildungsmatrix** der Spiegelung an der <InlineMath math="y" />-Achse.
+
+# Lösung
+
+> Verfolge die beiden Basisvektoren: Die Achsenspiegelung kehrt nur die waagerechte Richtung um und lässt die senkrechte fest.
+
 Die Spalten einer Abbildungsmatrix sind **die Bilder der Einheitsvektoren <InlineMath math="(1,0)" /> und <InlineMath math="(0,1)" />**. Die Spiegelung an der <InlineMath math="y" />-Achse dreht das Vorzeichen der <InlineMath math="x" />-Koordinate um und lässt die <InlineMath math="y" />-Koordinate gleich, <InlineMath math="(x,y)\mapsto(-x,y)" />.
 
 <BlockMath math="(1,0)\mapsto(-1,0),\qquad (0,1)\mapsto(0,1)\qquad\Rightarrow\qquad \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
@@ -43,9 +55,30 @@ Zeichne beide Einheitsvektoren und ihre Bilder bei der Spiegelung an der <Inline
 
 Probe: Der Punkt <InlineMath math="(3,2)" /> wird auf <InlineMath math="(-3,2)" /> abgebildet, sein Spiegelbild jenseits der <InlineMath math="y" />-Achse.
 
-Die Matrix ist also <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />.
+Die Matrix ist also die folgende Matrix.
 
-- <InlineMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" /> ist die Spiegelung an der <InlineMath math="x" />-Achse.
-- <InlineMath math="\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" /> ist die Spiegelung an der Geraden <InlineMath math="y=x" />.
-- <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /> ist die Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um <InlineMath math="O" />.
-- <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" /> ist die Drehung um <InlineMath math="180^\circ" />, also die Spiegelung am Ursprung.
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
+- Die folgende Matrix ist die Spiegelung an der <InlineMath math="x" />-Achse.
+
+  <BlockMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+- Die folgende Matrix ist die Spiegelung an der Geraden <InlineMath math="y=x" />.
+
+  <BlockMath math="\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
+
+- Die folgende Matrix ist die Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um <InlineMath math="O" />.
+
+  <BlockMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+
+- Die folgende Matrix ist die Drehung um <InlineMath math="180^\circ" />, also die Spiegelung am Ursprung.
+
+  <BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

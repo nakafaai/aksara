@@ -1,15 +1,32 @@
-Ketika <InlineMath math="x\to-2" />, kedua pecahan membesar tanpa batas dengan tanda yang berlawanan, jadi bentuknya <InlineMath math="\infty-\infty" /> dan limitnya belum terlihat. **Samakan penyebutnya lebih dulu**, karena <InlineMath math="x^2-4=(x+2)(x-2)" />.
+# Diketahui
 
-<BlockMath math="\begin{aligned}
+Diberikan **jumlah dua pecahan** yang masing-masing tak terdefinisi di <InlineMath math="x=-2" /> namun jumlahnya memiliki limit.
+
+# Ditanyakan
+
+**Nilai limit jumlah kedua pecahan** saat <InlineMath math="x" /> mendekati <InlineMath math="-2" />.
+
+# Penyelesaian
+
+> Samakan penyebut kedua pecahan dulu menjadi satu pecahan tunggal agar faktor pembuat nol bisa saling mencoret.
+
+Ketika <InlineMath math="x\to-2" />, kedua pecahan membesar tanpa batas dengan tanda yang berlawanan, jadi bentuknya <InlineMath math="\infty-\infty" /> dan limitnya belum terlihat. **Samakan penyebutnya lebih dulu**, karena persamaan berikut.
+
+<BlockMath math="\begin{gathered}
+x^2-4=(x+2)(x-2) \\
+\begin{aligned}
 \frac{1}{x+2}+\frac{4}{(x+2)(x-2)}&=\frac{(x-2)+4}{(x+2)(x-2)} \\
 &=\frac{x+2}{(x+2)(x-2)}=\frac{1}{x-2},\qquad x\neq-2
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
 Setelah faktor <InlineMath math="x+2" /> dicoret, substitusi langsung aman.
 
 <BlockMath math="\lim_{x\to-2}\frac{1}{x-2}=\frac{1}{-4}=-\frac14" />
 
-Gambar jumlah kedua pecahan setelah disederhanakan. **Kedua bagian yang membesar saling menghapus, dan yang tersisa adalah kurva <InlineMath math="\frac{1}{x-2}" />** dengan satu lubang di <InlineMath math="x=-2" />.
+Gambar jumlah kedua pecahan setelah disederhanakan. **Kedua bagian yang membesar saling menghapus, dan yang tersisa adalah kurva ekspresi berikut** dengan satu lubang di <InlineMath math="x=-2" />.
+
+<BlockMath math="\frac{1}{x-2}" />
 
 <MathVisual
   title={<>Jumlah kedua pecahan di sekitar <InlineMath math="x=-2" /></>}
@@ -37,11 +54,26 @@ Gambar jumlah kedua pecahan setelah disederhanakan. **Kedua bagian yang membesar
   }}
 />
 
-Pemeriksaan numerik: untuk <InlineMath math="x=-1{,}99" />, nilai <InlineMath math="\frac{1}{0{,}01}+\frac{4}{-0{,}0399}\approx100-100{,}25=-0{,}25" />.
+Pemeriksaan numerik: untuk <InlineMath math="x=-1{,}99" />, nilai <InlineMath math="-0{,}25" />.
+
+<BlockMath math="\frac{1}{0{,}01}+\frac{4}{-0{,}0399}\approx100-100{,}25=-0{,}25" />
 
 Jadi, nilai limitnya <InlineMath math="-\frac14" />.
 
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
+
 - <InlineMath math="0" /> menganggap kedua bagian yang tak terbatas itu saling menghapus sepenuhnya.
 - <InlineMath math="\infty" /> hanya melihat pecahan pertama yang membesar.
-- <InlineMath math="\frac14" /> salah memfaktorkan <InlineMath math="x^2-4" /> menjadi <InlineMath math="(x+2)(2-x)" />, sehingga sisanya <InlineMath math="\frac{1}{2-x}" />.
-- <InlineMath math="-4" /> menyubstitusi ke <InlineMath math="x-2" /> dan lupa bahwa sisanya berbentuk pecahan <InlineMath math="\frac{1}{x-2}" />.
+- <InlineMath math="\frac14" /> salah memfaktorkan <InlineMath math="x^2-4" /> menjadi <InlineMath math="(x+2)(2-x)" />, sehingga sisanya ekspresi berikut.
+
+  <BlockMath math="\frac{1}{2-x}" />
+
+- <InlineMath math="-4" /> menyubstitusi ke <InlineMath math="x-2" /> dan lupa bahwa sisanya berbentuk pecahan ekspresi berikut.
+
+  <BlockMath math="\frac{1}{x-2}" />
+
+# Jawaban
+
+Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.

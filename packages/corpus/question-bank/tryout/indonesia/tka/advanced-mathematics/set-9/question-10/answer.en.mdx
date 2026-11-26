@@ -1,10 +1,22 @@
+# Given
+
+The **park bicycle rental fee** for <InlineMath math="t" /> hours is modeled by piecewise function <InlineMath math="B(t)" />.
+
+# Asked
+
+The **truth value of each statement** about rental costs across different durations.
+
+# Solution
+
+> Always check which time bracket a rental duration falls into before plugging into that piece formula.
+
 The function has two rules: **a flat fee for the first two hours**, then an extra <InlineMath math="\text{Rp}6{,}000.00" /> per hour after that. Pick the rule that matches the value of <InlineMath math="t" />.
 
 Draw the rental cost against the rental time. **The graph is flat for the first two hours, then rises in a straight line**, so one cost can come from many rental times, and the line at <InlineMath math="45" /> hits the graph at <InlineMath math="t=7" />.
 
 <MathVisual
   title={<>Bike rental cost by rental time</>}
-  description={<>The horizontal axis is the rental time <InlineMath math="t" /> in hours, and the vertical axis is the cost in thousands of rupiah. For <InlineMath math="0<t\le2" />, the cost stays at <InlineMath math="15" />. After that it rises by <InlineMath math="6" /> per hour, passing <InlineMath math="(5,\ 33)" /> and reaching the horizontal line at <InlineMath math="45" /> at <InlineMath math="(7,\ 45)" />.</>}
+  description={<>The horizontal axis is the rental time <InlineMath math="t" /> in hours, and the vertical axis is the cost per <InlineMath math="\text{Rp}1{,}000" /> unit. For <InlineMath math="0<t\le2" />, the cost stays at <InlineMath math="15" />. After that it rises by <InlineMath math="6" /> per hour, passing <InlineMath math="(5,\ 33)" /> and reaching the horizontal line at <InlineMath math="45" /> at <InlineMath math="(7,\ 45)" />.</>}
   labels={{
     flat: <InlineMath math="15" />,
     rise: <InlineMath math="15+6(t-2)" />,
@@ -37,9 +49,17 @@ Draw the rental cost against the rental time. **The graph is flat for the first 
   }}
 />
 
-1. **False.** <InlineMath math="t=5>2" />, so <InlineMath math="B(5)=15{,}000+6{,}000\cdot3=33{,}000" />, not <InlineMath math="30{,}000" />.
-2. **True.** Both <InlineMath math="1" /> and <InlineMath math="2" /> lie in <InlineMath math="0<t\le2" />, so <InlineMath math="B(1)=B(2)=15{,}000" />.
+1. **False.** <InlineMath math="t>2" />, so <InlineMath math="B(5)=33{,}000" />, not <InlineMath math="30{,}000" />.
+
+   <BlockMath math="\begin{gathered} t=5>2 \\ B(5)=15{,}000+6{,}000\cdot3=33{,}000 \end{gathered}" />
+
+2. **True.** Both <InlineMath math="1" /> and <InlineMath math="2" /> lie in <InlineMath math="0<t\le2" />, so <InlineMath math="B(1)=15{,}000" />.
+
+   <BlockMath math="B(1)=B(2)=15{,}000" />
+
 3. **True.** For <InlineMath math="t>2" />, the condition is <InlineMath math="15{,}000+6{,}000(t-2)\le45{,}000" />, that is <InlineMath math="t-2\le5" />, so <InlineMath math="t\le7" />. Exactly <InlineMath math="7" /> hours costs <InlineMath math="B(7)=45{,}000" />.
 4. **False.** A function has an inverse only if each output comes from exactly one value of <InlineMath math="t" />. Here the output <InlineMath math="15{,}000" /> comes from every <InlineMath math="t" /> in <InlineMath math="0<t\le2" />, for example <InlineMath math="t=1" /> and <InlineMath math="t=2" />.
+
+# Answer
 
 So the answers are False, True, True, False.

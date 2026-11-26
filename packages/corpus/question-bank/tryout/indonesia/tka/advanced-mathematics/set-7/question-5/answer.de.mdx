@@ -1,3 +1,15 @@
+# Gegeben
+
+Der Teamarzt begrenzt die **Gesamtmenge** auf höchstens <InlineMath math="6" /> Beutel pro Woche bei gleichen Nährstoffzielen.
+
+# Gesucht
+
+Die **neuen minimalen Kosten** unter der Obergrenze von sechs Beuteln.
+
+# Lösung
+
+> Die neue Obergrenze beschneidet den Bereich von oben, daher prüfen wir die verbleibenden zulässigen Ecken.
+
 Bevor du den günstigsten Plan suchst, prüfe, **ob überhaupt noch ein Plan alle Bedingungen erfüllt**. Ein sauberer Weg: Bestimme die kleinste Zahl von Beuteln, die beide Nährstoffbedarfe decken kann.
 
 In der vorigen Aufgabe trafen sich Kalzium- und Proteingrenze bei <InlineMath math="(3,4)" />, also bei <InlineMath math="7" /> Beuteln. Der Bereich, der beide Bedarfe deckt, ist nach oben offen und hat die Ecken <InlineMath math="(0,10)" />, <InlineMath math="(3,4)" /> und <InlineMath math="(15,0)" />. Die Beutelzahlen <InlineMath math="x+y" /> in diesen Ecken sind <InlineMath math="10" />, <InlineMath math="7" /> und <InlineMath math="15" />.
@@ -45,7 +57,15 @@ Jeder Plan mit genug Kalzium und Protein braucht also mindestens <InlineMath mat
 
 Es gibt also keinen Plan, der alle Bedingungen erfüllt.
 
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
 - Der Plan <InlineMath math="(3,4)" /> braucht <InlineMath math="7" /> Beutel, mehr als die neue Grenze <InlineMath math="6" />.
 - Der Plan <InlineMath math="(2,3)" /> liefert nur <InlineMath math="7" /> Einheiten Kalzium.
 - Der Plan <InlineMath math="(4,2)" /> deckt das Kalzium, liefert aber nur <InlineMath math="10" /> Einheiten Protein.
 - Der Plan <InlineMath math="(3,3)" /> liefert <InlineMath math="9" /> Einheiten Kalzium, weniger als <InlineMath math="10" />.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

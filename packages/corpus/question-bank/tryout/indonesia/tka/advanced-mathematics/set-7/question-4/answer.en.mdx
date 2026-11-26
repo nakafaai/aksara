@@ -1,3 +1,15 @@
+# Given
+
+An athlete uses **two milk supplements** to meet minimum weekly nutrition targets at known costs per sachet.
+
+# Asked
+
+The **minimum weekly cost** for the athlete milk supplements.
+
+# Solution
+
+> With lower-bound nutrition rules, the cheapest valid mix always sits at a lower corner of the feasible region.
+
 Let <InlineMath math="x" /> be the sachets of milk A and <InlineMath math="y" /> the sachets of milk B. There are **two lower limits** from the nutrition needs and **one upper limit** on the number of sachets.
 
 <BlockMath math="\begin{aligned}
@@ -7,7 +19,7 @@ x+y&\le9 \\
 x\ge0,\quad y&\ge0
 \end{aligned}" />
 
-The cost, in thousands of rupiah, is <InlineMath math="C=4x+6y" />. The feasible region is a triangle. Find its three corners from pairs of boundary lines.
+The cost (each unit standing for <InlineMath math="\text{Rp}1{,}000" />) is <InlineMath math="C=4x+6y" />. The feasible region is a triangle. Find its three corners from pairs of boundary lines.
 
 <BlockMath math="\begin{aligned}
 2x+y=10,\ x+3y=15&\ \Rightarrow\ (3,4) \\
@@ -66,7 +78,15 @@ Draw the feasible region. **The two nutrition needs give lower limits and the sa
 
 So the minimum cost is <InlineMath math="\text{Rp}36{,}000.00" />, with <InlineMath math="3" /> sachets of milk A and <InlineMath math="4" /> of milk B.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="\text{Rp}42{,}000.00" /> is the cost at the corner <InlineMath math="(6,3)" />.
 - <InlineMath math="\text{Rp}52{,}000.00" /> is the cost at the corner <InlineMath math="(1,8)" />.
 - <InlineMath math="\text{Rp}30{,}000.00" /> is the cost of <InlineMath math="5" /> sachets of milk B alone. That covers protein but gives only <InlineMath math="5" /> units of calcium.
 - <InlineMath math="\text{Rp}20{,}000.00" /> is the cost of <InlineMath math="5" /> sachets of milk A alone. That covers calcium but gives only <InlineMath math="5" /> units of protein.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

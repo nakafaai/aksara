@@ -1,9 +1,24 @@
-Points on the mirror do not move under the reflection. So the line <InlineMath math="y=mx" /> is **the set of points that <InlineMath math="M" /> maps to themselves**. Find a nonzero vector <InlineMath math="(x,y)" /> with <InlineMath math="M\begin{pmatrix} x \\ y \end{pmatrix}=\begin{pmatrix} x \\ y \end{pmatrix}" />.
+# Given
 
-<BlockMath math="\begin{aligned}
+We are given a **reflection matrix** <InlineMath math="M" /> across a line <InlineMath math="y=mx" /> through the origin.
+
+# Asked
+
+The **mirror line slope** <InlineMath math="m" /> or its equation.
+
+# Solution
+
+> Every point sitting right on the mirror line stays fixed when multiplied by the reflection matrix.
+
+Points on the mirror do not move under the reflection. So the line <InlineMath math="y=mx" /> is **the set of points that <InlineMath math="M" /> maps to themselves**. Find a nonzero vector <InlineMath math="(x,y)" /> with the matrix below.
+
+<BlockMath math="\begin{gathered}
+M\begin{pmatrix} x \\ y \end{pmatrix}=\begin{pmatrix} x \\ y \end{pmatrix} \\
+\begin{aligned}
 0.6x+0.8y&=x\ \Rightarrow\ 0.8y=0.4x\ \Rightarrow\ y=\frac12x \\
 0.8x-0.6y&=y\ \Rightarrow\ 0.8x=1.6y\ \Rightarrow\ y=\frac12x
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
 Draw the mirror line, one fixed point, and one vector with its image. **The point <InlineMath math="(2,1)" /> doesn't move, and <InlineMath math="(1,0)" /> is sent to <InlineMath math="(0.6,\ 0.8)" /> on the other side of the line**, with the mirror line exactly in the middle.
 
@@ -40,11 +55,24 @@ Draw the mirror line, one fixed point, and one vector with its image. **The poin
   }}
 />
 
-Both equations give the same line, <InlineMath math="y=\frac12x" />. Check: <InlineMath math="M\begin{pmatrix} 2 \\ 1 \end{pmatrix}=\begin{pmatrix} 1.2+0.8 \\ 1.6-0.6 \end{pmatrix}=\begin{pmatrix} 2 \\ 1 \end{pmatrix}" />. The direction perpendicular to the mirror is reversed instead: <InlineMath math="M\begin{pmatrix} 1 \\ -2 \end{pmatrix}=\begin{pmatrix} -1 \\ 2 \end{pmatrix}" />.
+Both equations give the same line, <InlineMath math="y=\frac12x" />. Check: the matrix below. The direction perpendicular to the mirror is reversed instead: the matrix below.
+
+<BlockMath math="\begin{gathered}
+M\begin{pmatrix} 2 \\ 1 \end{pmatrix}=\begin{pmatrix} 1.2+0.8 \\ 1.6-0.6 \end{pmatrix}=\begin{pmatrix} 2 \\ 1 \end{pmatrix} \\
+M\begin{pmatrix} 1 \\ -2 \end{pmatrix}=\begin{pmatrix} -1 \\ 2 \end{pmatrix}
+\end{gathered}" />
 
 So <InlineMath math="m=\frac12" />.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="2" /> flips the slope, as if <InlineMath math="x=\frac12y" />.
-- <InlineMath math="\frac43" /> is <InlineMath math="\frac{0.8}{0.6}" />, which is <InlineMath math="\tan2\theta" /> for the mirror's angle <InlineMath math="\theta" />. The mirror's slope is <InlineMath math="\tan\theta" />, half that angle.
-- <InlineMath math="\frac34" /> is <InlineMath math="\frac{0.6}{0.8}" />, the ratio of the entries turned around.
+- <InlineMath math="\frac43" /> is the ratio of <InlineMath math="0.8" /> to <InlineMath math="0.6" />, which is <InlineMath math="\tan2\theta" /> for the mirror's angle <InlineMath math="\theta" />. The mirror's slope is <InlineMath math="\tan\theta" />, half that angle.
+- <InlineMath math="\frac34" /> is the ratio of <InlineMath math="0.6" /> to <InlineMath math="0.8" />, turning the entry ratio around.
 - <InlineMath math="-2" /> is the slope of the direction <InlineMath math="(1,-2)" />, which is perpendicular to the mirror and reversed by <InlineMath math="M" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

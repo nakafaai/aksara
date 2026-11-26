@@ -1,8 +1,22 @@
+# Gegeben
+
+Die **Museumseintrittspreise** für Erwachsene <InlineMath math="d" /> und Kinder <InlineMath math="a" /> ergeben sich aus zwei Gruppenkäufen.
+
+# Gesucht
+
+Die **einzelnen Ticketpreise** oder der gesuchte Gruppenpreis mithilfe von Matrizen.
+
+# Lösung
+
+> Fasse beide Gruppenkäufe als Matrixsystem zusammen und löse es direkt per Inverser oder Elimination.
+
 Bestimme zuerst die Einzelpreise mit **der Inversen der Koeffizientenmatrix** und berechne dann die Kosten der dritten Gruppe.
 
 <MathContainer>
-<BlockMath math="\det\begin{pmatrix} 3 & 2 \\ 2 & 3 \end{pmatrix}=9-4=5,\qquad \begin{pmatrix} d \\ a \end{pmatrix}=\frac15\begin{pmatrix} 3 & -2 \\ -2 & 3 \end{pmatrix}\begin{pmatrix} 190 \\ 185 \end{pmatrix}" />
-<BlockMath math="\begin{pmatrix} d \\ a \end{pmatrix}=\frac15\begin{pmatrix} 570-370 \\ -380+555 \end{pmatrix}=\frac15\begin{pmatrix} 200 \\ 175 \end{pmatrix}=\begin{pmatrix} 40 \\ 35 \end{pmatrix}" />
+<BlockMath math="\begin{gathered}
+\det\begin{pmatrix} 3 & 2 \\ 2 & 3 \end{pmatrix}=9-4=5,\qquad \begin{pmatrix} d \\ a \end{pmatrix}=\frac15\begin{pmatrix} 3 & -2 \\ -2 & 3 \end{pmatrix}\begin{pmatrix} 190 \\ 185 \end{pmatrix} \\
+\begin{pmatrix} d \\ a \end{pmatrix}=\frac15\begin{pmatrix} 570-370 \\ -380+555 \end{pmatrix}=\frac15\begin{pmatrix} 200 \\ 175 \end{pmatrix}=\begin{pmatrix} 40 \\ 35 \end{pmatrix}
+\end{gathered}" />
 </MathContainer>
 
 Jede Zeile der Matrixgleichung ist eine Gerade in der <InlineMath math="(d,a)" />-Ebene. **Die Einzelpreise sind der Schnittpunkt der beiden Geraden**, also <InlineMath math="d=40" /> und <InlineMath math="a=35" />.
@@ -42,7 +56,15 @@ Ein Erwachsenenticket kostet <InlineMath math="\text{Rp}40{.}000{,}00" />, ein K
 
 Die dritte Gruppe zahlt also <InlineMath math="\text{Rp}335{.}000{,}00" />.
 
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
 - <InlineMath math="\text{Rp}340{.}000{,}00" /> vertauscht die beiden Preise und nimmt <InlineMath math="35" /> Tausend für Erwachsene und <InlineMath math="40" /> Tausend für Kinder.
 - <InlineMath math="\text{Rp}375{.}000{,}00" /> addiert die Kosten der beiden Gruppen, also <InlineMath math="5" /> Erwachsene und <InlineMath math="5" /> Kinder, nicht <InlineMath math="4" /> Erwachsene und <InlineMath math="5" /> Kinder.
 - <InlineMath math="\text{Rp}337{.}500{,}00" /> nimmt den Durchschnittspreis von <InlineMath math="37{,}5" /> Tausend für alle <InlineMath math="9" /> Personen.
 - <InlineMath math="\text{Rp}360{.}000{,}00" /> berechnet für alle <InlineMath math="9" /> Personen den Erwachsenenpreis.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

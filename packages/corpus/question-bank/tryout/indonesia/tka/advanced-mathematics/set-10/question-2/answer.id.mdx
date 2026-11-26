@@ -1,8 +1,22 @@
+# Diketahui
+
+Matriks <InlineMath math="X" /> berordo <InlineMath math="2\times2" /> memenuhi **persamaan matriks linear** bersama matriks <InlineMath math="A" /> dan <InlineMath math="B" />.
+
+# Ditanyakan
+
+**Matriks solusi** <InlineMath math="X" /> atau nilai determinannya.
+
+# Penyelesaian
+
+> Kumpulkan semua suku yang memuat matriks target di satu ruas menggunakan matriks identitas sebelum mengalikan dengan inversnya.
+
 Kumpulkan suku-suku yang memuat <InlineMath math="X" /> di satu ruas. Karena <InlineMath math="2X=2IX" />, **faktor <InlineMath math="X" /> ditarik ke kanan**.
 
 <MathContainer>
-<BlockMath math="AX-2IX=-B\ \Leftrightarrow\ (A-2I)X=-B" />
-<BlockMath math="A-2I=\begin{pmatrix} 2 & 1 \\ 3 & 1 \end{pmatrix},\qquad \det(A-2I)=2-3=-1,\qquad (A-2I)^{-1}=\begin{pmatrix} -1 & 1 \\ 3 & -2 \end{pmatrix}" />
+<BlockMath math="\begin{gathered}
+AX-2IX=-B\ \Leftrightarrow\ (A-2I)X=-B \\
+A-2I=\begin{pmatrix} 2 & 1 \\ 3 & 1 \end{pmatrix},\qquad \det(A-2I)=2-3=-1,\qquad (A-2I)^{-1}=\begin{pmatrix} -1 & 1 \\ 3 & -2 \end{pmatrix}
+\end{gathered}" />
 </MathContainer>
 
 Kalikan kedua ruas dengan <InlineMath math="(A-2I)^{-1}" /> dari kiri, karena <InlineMath math="X" /> berada di kanan <InlineMath math="A-2I" />.
@@ -20,11 +34,37 @@ Ikuti urutan langkahnya. **Langkah kedua mengalikan dari kiri**, karena <InlineM
   X --> R["X berbaris (0, 1) dan (−1, −4)"]`}
 />
 
-Pemeriksaan: <InlineMath math="AX=\begin{pmatrix} -1 & 0 \\ -3 & -9 \end{pmatrix}" />, jadi <InlineMath math="AX+B=\begin{pmatrix} 0 & 2 \\ -2 & -8 \end{pmatrix}" />, sama dengan <InlineMath math="2X" />.
+Pemeriksaan: matriks berikut, jadi matriks berikut, sama dengan <InlineMath math="2X" />.
 
-Jadi, <InlineMath math="X=\begin{pmatrix} 0 & 1 \\ -1 & -4 \end{pmatrix}" />.
+<BlockMath math="\begin{gathered}
+AX=\begin{pmatrix} -1 & 0 \\ -3 & -9 \end{pmatrix} \\
+AX+B=\begin{pmatrix} 0 & 2 \\ -2 & -8 \end{pmatrix}
+\end{gathered}" />
 
-- <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 4 \end{pmatrix}" /> lupa tanda negatif pada <InlineMath math="-B" />.
-- <InlineMath math="\begin{pmatrix} -5 & 3 \\ -2 & 1 \end{pmatrix}" /> mengalikan invers dari kanan, yaitu <InlineMath math="-B(A-2I)^{-1}" />.
-- <InlineMath math="\begin{pmatrix} -3 & -5 \\ -4 & -7 \end{pmatrix}" /> mengalikan dengan <InlineMath math="A-2I" />, bukan dengan inversnya.
-- <InlineMath math="\begin{pmatrix} 1 & -1 \\ -3 & 2 \end{pmatrix}" /> adalah <InlineMath math="-(A-2I)^{-1}" />, lupa dikalikan dengan <InlineMath math="B" />.
+Jadi, matriks berikut.
+
+<BlockMath math="X=\begin{pmatrix} 0 & 1 \\ -1 & -4 \end{pmatrix}" />
+
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
+
+- Matriks berikut lupa tanda negatif pada <InlineMath math="-B" />.
+
+  <BlockMath math="\begin{pmatrix} 0 & -1 \\ 1 & 4 \end{pmatrix}" />
+
+- Matriks berikut mengalikan invers dari kanan, yaitu <InlineMath math="-B(A-2I)^{-1}" />.
+
+  <BlockMath math="\begin{pmatrix} -5 & 3 \\ -2 & 1 \end{pmatrix}" />
+
+- Matriks berikut mengalikan dengan <InlineMath math="A-2I" />, bukan dengan inversnya.
+
+  <BlockMath math="\begin{pmatrix} -3 & -5 \\ -4 & -7 \end{pmatrix}" />
+
+- Matriks berikut adalah <InlineMath math="-(A-2I)^{-1}" />, lupa dikalikan dengan <InlineMath math="B" />.
+
+  <BlockMath math="\begin{pmatrix} 1 & -1 \\ -3 & 2 \end{pmatrix}" />
+
+# Jawaban
+
+Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.

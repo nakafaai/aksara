@@ -1,8 +1,22 @@
+# Given
+
+Point <InlineMath math="P(3,-4)" /> is rotated **ninety degrees clockwise** about the origin <InlineMath math="O(0,0)" />.
+
+# Asked
+
+The **image coordinates** of point <InlineMath math="P" /> after the clockwise rotation.
+
+# Solution
+
+> A clockwise quarter turn swaps the two coordinates and flips the sign of the new second coordinate.
+
 A <InlineMath math="90^\circ" /> clockwise rotation is a rotation by <InlineMath math="-90^\circ" />. **Its rule is <InlineMath math="(x,y)\mapsto(y,-x)" />**, with the matrix below.
 
 <MathContainer>
-<BlockMath math="\begin{pmatrix} \cos(-90^\circ) & -\sin(-90^\circ) \\ \sin(-90^\circ) & \cos(-90^\circ) \end{pmatrix}=\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}" />
-<BlockMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}\begin{pmatrix} 3 \\ -4 \end{pmatrix}=\begin{pmatrix} -4 \\ -3 \end{pmatrix}" />
+<BlockMath math="\begin{gathered}
+\begin{pmatrix} \cos(-90^\circ) & -\sin(-90^\circ) \\ \sin(-90^\circ) & \cos(-90^\circ) \end{pmatrix}=\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \\
+\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}\begin{pmatrix} 3 \\ -4 \end{pmatrix}=\begin{pmatrix} -4 \\ -3 \end{pmatrix}
+\end{gathered}" />
 </MathContainer>
 
 Draw <InlineMath math="P" /> and its image on the coordinate plane. **The point turns along the circle of radius <InlineMath math="5" />**, from quadrant IV to quadrant III, and its segment to the origin turns <InlineMath math="90^\circ" /> with it.
@@ -46,7 +60,15 @@ Check: <InlineMath math="P" /> is in quadrant IV. Turning it <InlineMath math="9
 
 So the image is <InlineMath math="(-4,-3)" />.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="(4,3)" /> is the result of a <InlineMath math="90^\circ" /> anticlockwise rotation.
 - <InlineMath math="(-3,4)" /> is the result of a <InlineMath math="180^\circ" /> rotation.
 - <InlineMath math="(3,4)" /> is the reflection in the <InlineMath math="x" />-axis.
 - <InlineMath math="(-4,3)" /> only swaps the coordinates, which is the reflection in <InlineMath math="y=x" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

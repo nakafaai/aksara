@@ -1,3 +1,15 @@
+# Gegeben
+
+Gegeben sind eine **quadratische Matrix** <InlineMath math="A" /> und die Einheitsmatrix <InlineMath math="I" />.
+
+# Gesucht
+
+Das **Ergebnis der Matrixrechnung** aus <InlineMath math="A" /> und <InlineMath math="I" />.
+
+# Lösung
+
+> Berechne zuerst das Matrixquadrat über Zeile mal Spalte und fasse dann passende Einträge zusammen.
+
 Bestimme zuerst die Inverse von <InlineMath math="A" /> und addiere sie dann zu <InlineMath math="A" />. Die Determinante ist <InlineMath math="2\cdot2-1\cdot3=1" />, also musst du für die Inverse nur **die Hauptdiagonale vertauschen und die Vorzeichen der Nebendiagonale ändern**.
 
 <BlockMath math="\begin{aligned}
@@ -21,11 +33,21 @@ Das Diagramm addiert <InlineMath math="A" /> und <InlineMath math="A^{-1}" /> Ei
   E22 --> R`}
 />
 
-Die Einträge außerhalb der Diagonale heben sich auf, und beide Diagonaleinträge sind <InlineMath math="4" />. Das Ergebnis ist also wirklich ein Vielfaches von <InlineMath math="I" />. Probe: <InlineMath math="AA^{-1}=\begin{pmatrix} 4-3 & -2+2 \\ 6-6 & -3+4 \end{pmatrix}=I" />.
+Die Einträge außerhalb der Diagonale heben sich auf, und beide Diagonaleinträge sind <InlineMath math="4" />. Das Ergebnis ist also wirklich ein Vielfaches von <InlineMath math="I" />. Probe: die folgende Matrix.
+
+<BlockMath math="AA^{-1}=\begin{pmatrix} 4-3 & -2+2 \\ 6-6 & -3+4 \end{pmatrix}=I" />
 
 Also ist <InlineMath math="k=4" />.
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="2" /> liest nur einen Diagonaleintrag von <InlineMath math="A" /> ab, ohne die Inverse zu addieren.
 - <InlineMath math="0" /> ist die Summe der Einträge außerhalb der Diagonale, kein Diagonaleintrag.
 - <InlineMath math="5" /> addiert die Determinante <InlineMath math="1" /> zu <InlineMath math="4" />, dabei dient die Determinante nur als Teiler der Adjunkte.
 - <InlineMath math="1" /> ist die Determinante von <InlineMath math="A" />.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

@@ -1,10 +1,29 @@
-Substitusi langsung memberi <InlineMath math="\frac00" />. Ubah penyebut dengan <InlineMath math="1-\cos3x=2\sin^2\frac{3x}{2}" />, lalu **pasangkan setiap fungsi trigonometri dengan sudutnya sendiri**.
+# Diketahui
 
-<BlockMath math="\frac{x\tan6x}{2\sin^2\frac{3x}{2}}=\frac12\cdot\frac{\tan6x}{x}\cdot\left(\frac{x}{\sin\frac{3x}{2}}\right)^2" />
+Diberikan **limit pecahan trigonometri** dalam radian dengan tangen di pembilang dan kosinus di penyebut.
 
-Gunakan <InlineMath math="\lim_{x\to0}\frac{\tan6x}{x}=6" /> dan <InlineMath math="\lim_{x\to0}\frac{x}{\sin\frac{3x}{2}}=\frac23" />.
+# Ditanyakan
 
-<BlockMath math="\lim_{x\to0}\frac{x\tan6x}{1-\cos3x}=\frac12\cdot6\cdot\left(\frac23\right)^2=\frac12\cdot6\cdot\frac49=\frac43" />
+**Nilai limit trigonometri** di dekat titik nol.
+
+# Penyelesaian
+
+> Ubah selisih kosinus menjadi bentuk sinus kuadrat sudut setengah agar faktor nol di pembilang dan penyebut saling menyederhanakan.
+
+Substitusi langsung memberi <InlineMath math="\frac00" />. Ubah penyebut dengan persamaan berikut, lalu **pasangkan setiap fungsi trigonometri dengan sudutnya sendiri**.
+
+<BlockMath math="\begin{gathered}
+1-\cos3x=2\sin^2\frac{3x}{2} \\
+\frac{x\tan6x}{2\sin^2\frac{3x}{2}}=\frac12\cdot\frac{\tan6x}{x}\cdot\left(\frac{x}{\sin\frac{3x}{2}}\right)^2
+\end{gathered}" />
+
+Gunakan hasilnya <InlineMath math="6" /> dan hasilnya <InlineMath math="\frac23" />.
+
+<BlockMath math="\begin{gathered}
+\lim_{x\to0}\frac{\tan6x}{x}=6 \\
+\lim_{x\to0}\frac{x}{\sin\frac{3x}{2}}=\frac23 \\
+\lim_{x\to0}\frac{x\tan6x}{1-\cos3x}=\frac12\cdot6\cdot\left(\frac23\right)^2=\frac12\cdot6\cdot\frac49=\frac43
+\end{gathered}" />
 
 Gambar grafik pecahan itu di dekat <InlineMath math="x=0" />. **Dari kiri maupun kanan, kurvanya turun menuju ketinggian <InlineMath math="\tfrac43" />**, walaupun di <InlineMath math="x=0" /> sendiri pecahannya tidak terdefinisi.
 
@@ -40,7 +59,20 @@ Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, nilainya sekitar <Inl
 
 Jadi, nilai limitnya <InlineMath math="\frac43" />.
 
-- <InlineMath math="\frac23" /> menganggap <InlineMath math="1-\cos3x" /> mendekati <InlineMath math="9x^2" />, padahal mendekati <InlineMath math="\frac{9x^2}{2}" />.
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
+
+- <InlineMath math="\frac23" /> menganggap <InlineMath math="1-\cos3x" /> mendekati <InlineMath math="9x^2" />, padahal mendekati ekspresi berikut.
+
+  <BlockMath math="\frac{9x^2}{2}" />
+
 - <InlineMath math="\frac34" /> membalik pecahannya.
 - <InlineMath math="0" /> hanya melihat pembilang yang menuju <InlineMath math="0" />, padahal penyebutnya juga menuju <InlineMath math="0" />.
-- <InlineMath math="\frac83" /> lupa faktor <InlineMath math="2" /> pada <InlineMath math="2\sin^2\frac{3x}{2}" />, sehingga memakai <InlineMath math="1-\cos3x\approx\frac{9x^2}{4}" />.
+- <InlineMath math="\frac83" /> lupa faktor <InlineMath math="2" /> pada <InlineMath math="2\sin^2\frac{3x}{2}" />, sehingga memakai persamaan berikut.
+
+  <BlockMath math="1-\cos3x\approx\frac{9x^2}{4}" />
+
+# Jawaban
+
+Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.

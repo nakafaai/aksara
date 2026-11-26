@@ -1,8 +1,26 @@
-Suche zuerst eine ganzzahlige Nullstelle. Rationale Kandidaten haben die Form <InlineMath math="\pm\frac{\text{Teiler von }12}{\text{Teiler von }4}" />, und <InlineMath math="P(4)=256-192-76+12=0" />. Also ist <InlineMath math="x-4" /> ein Faktor, und **das Horner-Schema liefert den restlichen Faktor**.
+# Gegeben
 
-<BlockMath math="P(x)=(x-4)(4x^2+4x-3)=(x-4)(2x-1)(2x+3)" />
+Gegeben ist ein **kubisches Polynom** <InlineMath math="P(x)" /> mit ganzzahligen Koeffizienten.
 
-Zeichne <InlineMath math="P(x)=(x-4)(2x-1)(2x+3)" />. **Der Graph schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="-\tfrac32" />, <InlineMath math="\tfrac12" /> und <InlineMath math="4" />**, also ist die Summe der Nullstellen <InlineMath math="3" />.
+# Gesucht
+
+Alle **wahren Aussagen** über rationale Nullstellen, Faktoren und Eigenschaften von <InlineMath math="P(x)" />.
+
+# Lösung
+
+> Finde zuerst eine rationale Nullstelle und zerlege dann den quadratischen Quotienten in die übrigen beiden Nullstellen.
+
+Suche zuerst eine ganzzahlige Nullstelle. Rationale Kandidaten haben die Form der folgende Ausdruck, und <InlineMath math="P(4)=0" />. Also ist <InlineMath math="x-4" /> ein Faktor, und **das Horner-Schema liefert den restlichen Faktor**.
+
+<BlockMath math="\begin{gathered}
+\pm\frac{\text{Teiler von }12}{\text{Teiler von }4} \\
+P(4)=256-192-76+12=0 \\
+P(x)=(x-4)(4x^2+4x-3)=(x-4)(2x-1)(2x+3)
+\end{gathered}" />
+
+Zeichne <InlineMath math="P(x)" />. **Der Graph schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="-\tfrac32" />, <InlineMath math="\tfrac12" /> und <InlineMath math="4" />**, also ist die Summe der Nullstellen <InlineMath math="3" />.
+
+<BlockMath math="P(x)=(x-4)(2x-1)(2x+3)" />
 
 <MathVisual
   title={<>Der Graph von <InlineMath math="P(x)" /> und seine Nullstellen</>}
@@ -38,10 +56,24 @@ Zeichne <InlineMath math="P(x)=(x-4)(2x-1)(2x+3)" />. **Der Graph schneidet die 
 
 Die Nullstellen sind <InlineMath math="4" />, <InlineMath math="\frac12" /> und <InlineMath math="-\frac32" />.
 
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
 - **Wahr.** <InlineMath math="P(4)=0" />, also ist <InlineMath math="x-4" /> ein Faktor.
-- **Falsch.** Der Rest ist <InlineMath math="P(-1)=-4-12+19+12=15" />. Der Wert <InlineMath math="12" /> ist <InlineMath math="P(0)" />.
-- **Wahr.** <InlineMath math="4+\frac12-\frac32=3" />, passend zu minus dem Koeffizienten von <InlineMath math="x^2" /> geteilt durch den von <InlineMath math="x^3" />, also <InlineMath math="\frac{12}{4}=3" />.
+- **Falsch.** Der Rest ist <InlineMath math="15" />. Der Wert <InlineMath math="12" /> ist <InlineMath math="P(0)" />.
+
+  <BlockMath math="P(-1)=-4-12+19+12=15" />
+
+- **Wahr.** Die folgende Gleichung, passend zu minus dem Koeffizienten von <InlineMath math="x^2" /> geteilt durch den von <InlineMath math="x^3" />, also die folgende Gleichung.
+
+  <BlockMath math="\begin{gathered} 4+\frac12-\frac32=3 \\ \frac{12}{4}=3 \end{gathered}" />
+
 - **Wahr.** <InlineMath math="4x^2+4x-3" /> ist der Quotient von <InlineMath math="P(x)" /> und <InlineMath math="x-4" />, also ist <InlineMath math="P(x)" /> durch ihn teilbar.
-- **Falsch.** Zwischen <InlineMath math="\frac12" /> und <InlineMath math="4" /> haben die drei Faktoren die Vorzeichen <InlineMath math="(-)(+)(+)" />, also ist <InlineMath math="P(x)" /> negativ. Zum Beispiel ist <InlineMath math="P(1)=4-12-19+12=-15" />.
+- **Falsch.** Zwischen <InlineMath math="\frac12" /> und <InlineMath math="4" /> haben die drei Faktoren die Vorzeichen <InlineMath math="(-)(+)(+)" />, also ist <InlineMath math="P(x)" /> negativ. Zum Beispiel ist <InlineMath math="P(1)=-15" />.
+
+  <BlockMath math="P(1)=4-12-19+12=-15" />
+
+# Antwort
 
 Wahr sind also die erste, dritte und vierte Aussage.
