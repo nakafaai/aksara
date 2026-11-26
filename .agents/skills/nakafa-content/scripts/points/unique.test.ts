@@ -118,7 +118,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           const root = yield* commitBase({
             [OTHER_FILE]: lesson(
               element("VirusStructureLab", false),
-              element("HeartCycleLab"),
+              element("HeartCycleLab", false),
               element("SynapseLab")
             ),
           });
