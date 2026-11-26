@@ -266,4 +266,32 @@ describe("findCohesionFindings", () => {
     );
     assert.deepStrictEqual(findCohesionFindings("en", { type: "root" }), []);
   });
+
+  it("blocks generic copy-paste visual takeaway filler across locales", () => {
+    const idGeneric = [
+      "## Grafik",
+      "",
+      "Amati hubungan antara kedua variabel berikut.",
+      "",
+      LAB_A,
+      "",
+      "Visual di atas menegaskan hubungan utama yang digunakan dalam langkah perhitungan ini.",
+    ].join("\n");
+    assert.deepStrictEqual(cohesion(idGeneric, "id"), [
+      "generic-visual-takeaway block 7",
+    ]);
+
+    const enGeneric = [
+      "## Graph",
+      "",
+      "Watch how the two curves meet below.",
+      "",
+      LAB_A,
+      "",
+      "The visual above confirms the core relationship used in this solution step.",
+    ].join("\n");
+    assert.deepStrictEqual(cohesion(enGeneric, "en"), [
+      "generic-visual-takeaway block 7",
+    ]);
+  });
 });
