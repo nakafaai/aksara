@@ -1,3 +1,15 @@
+# Given
+
+We have an **upper triangular matrix** <InlineMath math="A" /> of size <InlineMath math="2\times2" /> with diagonal entries <InlineMath math="2" />.
+
+# Asked
+
+The **sum of all entries** of the matrix power <InlineMath math="A^5" />.
+
+# Solution
+
+> Raising a matrix to a power means multiplying it repeatedly, and the pattern jumps out after the first couple of steps.
+
 A matrix power is not the power of each entry. Multiply <InlineMath math="A" /> by itself a few times and **look for the pattern in the entries**.
 
 <BlockMath math="\begin{aligned}
@@ -22,9 +34,22 @@ Compare the two kinds of entries for each power. **The top-right entry catches t
 
 The diagonal entries are always <InlineMath math="2^n" />. The top right entry follows <InlineMath math="n\cdot2^{n-1}" />: <InlineMath math="4" />, <InlineMath math="12" />, <InlineMath math="32" />, <InlineMath math="80" /> for <InlineMath math="n=2,3,4,5" />. It grows faster than the diagonal because each multiplication adds two contributions to it, one from the previous top right entry and one from a diagonal entry.
 
-The entries of <InlineMath math="A^5" /> add up to <InlineMath math="32+80+0+32=144" />.
+The entries of <InlineMath math="A^5" /> add up to <InlineMath math="144" />.
 
-- <InlineMath math="65" /> raises each entry to the fifth power: <InlineMath math="2^5+1^5+0+2^5" />.
+<BlockMath math="32+80+0+32=144" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- <InlineMath math="65" /> raises each entry to the fifth power: the expression below.
+
+  <BlockMath math="2^5+1^5+0+2^5" />
+
 - <InlineMath math="160" /> uses <InlineMath math="n\cdot2^n" /> for the top right entry, or multiplies the entry sum of <InlineMath math="A" /> by <InlineMath math="2^5" />.
 - <InlineMath math="224" /> takes <InlineMath math="5\cdot2^5=160" /> for the top right entry and adds both diagonal entries.
 - <InlineMath math="96" /> assumes the top right entry doubles like the diagonal, giving <InlineMath math="32" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

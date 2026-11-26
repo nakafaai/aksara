@@ -1,3 +1,15 @@
+# Gegeben
+
+Vom äußeren Punkt <InlineMath math="P(7,1)" /> wird eine **Tangente** an den gegebenen Kreis im Berührpunkt <InlineMath math="S" /> gelegt.
+
+# Gesucht
+
+Die **Länge der Tangentenstrecke** <InlineMath math="PS" />.
+
+# Lösung
+
+> Der Radius steht immer senkrecht auf der Tangente, sodass Mittelpunkt, Berührpunkt und Außenpunkt ein rechtwinkliges Dreieck bilden.
+
 Der Radius zum Berührpunkt steht **immer senkrecht auf der Tangente**. Mittelpunkt <InlineMath math="M" />, Berührpunkt <InlineMath math="S" /> und der Punkt <InlineMath math="P" /> bilden also ein bei <InlineMath math="S" /> rechtwinkliges Dreieck mit der Hypotenuse <InlineMath math="MP" />.
 
 Quadratische Ergänzung liefert Mittelpunkt und Radius.
@@ -12,7 +24,9 @@ Der Mittelpunkt ist <InlineMath math="M(2,-1)" />, und <InlineMath math="r=3" />
 |PS|&=\sqrt{20}=2\sqrt5
 \end{aligned}" />
 
-Zeichne den Kreis, den Punkt <InlineMath math="P" /> und seine Tangente. **Der Radius <InlineMath math="MS" /> steht senkrecht auf <InlineMath math="PS" />**, also hat das Dreieck <InlineMath math="MSP" /> seinen rechten Winkel bei <InlineMath math="S" />, mit der Hypotenuse <InlineMath math="MP=\sqrt{29}" />.
+Zeichne den Kreis, den Punkt <InlineMath math="P" /> und seine Tangente. **Der Radius <InlineMath math="MS" /> steht senkrecht auf <InlineMath math="PS" />**, also hat das Dreieck <InlineMath math="MSP" /> seinen rechten Winkel bei <InlineMath math="S" />, mit der Hypotenuse die folgende Gleichung.
+
+<BlockMath math="MP=\sqrt{29}" />
 
 <MathVisual
   title={<>Die Tangente von <InlineMath math="P(7,1)" /> aus</>}
@@ -51,11 +65,24 @@ Zeichne den Kreis, den Punkt <InlineMath math="P" /> und seine Tangente. **Der R
   }}
 />
 
-Der Punkt <InlineMath math="P" /> liegt außerhalb des Kreises, denn <InlineMath math="|MP|^2=29>9" />. Eine Tangente von <InlineMath math="P" /> aus existiert also.
+Der Punkt <InlineMath math="P" /> liegt außerhalb des Kreises, denn <InlineMath math="|MP|^2>9" />. Eine Tangente von <InlineMath math="P" /> aus existiert also.
+
+<BlockMath math="|MP|^2=29>9" />
 
 Der Tangentenabschnitt <InlineMath math="PS" /> ist also <InlineMath math="2\sqrt5" /> lang.
 
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
 - <InlineMath math="\sqrt{29}" /> ist der Abstand von <InlineMath math="P" /> zum Mittelpunkt, also die Hypotenuse.
 - <InlineMath math="\sqrt{38}" /> rechnet <InlineMath math="29+9" />, das Radiusquadrat muss aber abgezogen werden.
-- <InlineMath math="2\sqrt7" /> nimmt <InlineMath math="r^2=4+1-4=1" />, ein Vorzeichenfehler bei der Konstanten.
+- <InlineMath math="2\sqrt7" /> nimmt <InlineMath math="r^2=1" />, ein Vorzeichenfehler bei der Konstanten.
+
+  <BlockMath math="r^2=4+1-4=1" />
+
 - <InlineMath math="4" /> verwendet nur den Unterschied der <InlineMath math="x" />-Koordinaten, <InlineMath math="\sqrt{25-9}" />, und vergisst den der <InlineMath math="y" />-Koordinaten.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

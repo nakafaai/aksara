@@ -1,3 +1,15 @@
+# Gegeben
+
+Gegeben ist eine **obere Dreiecksmatrix** <InlineMath math="A" /> mit Diagonaleinträgen <InlineMath math="2" />.
+
+# Gesucht
+
+Die **Summe aller Einträge** der Matrixpotenz <InlineMath math="A^5" />.
+
+# Lösung
+
+> Eine Matrix zu potenzieren bedeutet wiederholtes Multiplizieren, und das Muster zeigt sich schon nach den ersten Schritten.
+
 Eine Matrixpotenz ist nicht die Potenz der einzelnen Einträge. Multipliziere <InlineMath math="A" /> ein paarmal mit sich selbst und **such das Muster in den Einträgen**.
 
 <BlockMath math="\begin{aligned}
@@ -22,9 +34,22 @@ Vergleiche die beiden Arten von Einträgen für jede Potenz. **Der Eintrag oben 
 
 Die Diagonaleinträge sind immer <InlineMath math="2^n" />. Der Eintrag oben rechts folgt <InlineMath math="n\cdot2^{n-1}" />: <InlineMath math="4" />, <InlineMath math="12" />, <InlineMath math="32" />, <InlineMath math="80" /> für <InlineMath math="n=2,3,4,5" />. Er wächst schneller als die Diagonale, weil er bei jeder Multiplikation zwei Beiträge bekommt, einen vom vorigen Eintrag oben rechts und einen von einem Diagonaleintrag.
 
-Die Einträge von <InlineMath math="A^5" /> ergeben zusammen <InlineMath math="32+80+0+32=144" />.
+Die Einträge von <InlineMath math="A^5" /> ergeben zusammen <InlineMath math="144" />.
 
-- <InlineMath math="65" /> potenziert jeden Eintrag: <InlineMath math="2^5+1^5+0+2^5" />.
+<BlockMath math="32+80+0+32=144" />
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
+- <InlineMath math="65" /> potenziert jeden Eintrag: der folgende Ausdruck.
+
+  <BlockMath math="2^5+1^5+0+2^5" />
+
 - <InlineMath math="160" /> nimmt <InlineMath math="n\cdot2^n" /> für den Eintrag oben rechts oder multipliziert die Eintragssumme von <InlineMath math="A" /> mit <InlineMath math="2^5" />.
 - <InlineMath math="224" /> nimmt <InlineMath math="5\cdot2^5=160" /> für den Eintrag oben rechts und addiert beide Diagonaleinträge.
 - <InlineMath math="96" /> nimmt an, dass sich der Eintrag oben rechts wie die Diagonale verdoppelt, und erhält <InlineMath math="32" />.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

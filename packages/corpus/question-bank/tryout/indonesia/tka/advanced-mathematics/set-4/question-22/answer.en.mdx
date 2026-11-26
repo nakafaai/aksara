@@ -1,6 +1,21 @@
-Direct substitution gives <InlineMath math="\frac{1-1}{0}=\frac00" />. **Write <InlineMath math="\sec(2x)" /> as <InlineMath math="\frac{1}{\cos2x}" />** so the numerator takes the form <InlineMath math="1-\cos2x" />.
+# Given
 
-<BlockMath math="\sec(2x)-1=\frac{1-\cos2x}{\cos2x}=\frac{2\sin^2x}{\cos2x}" />
+We are given a **trigonometric limit** near <InlineMath math="x=0" /> involving secant and tangent.
+
+# Asked
+
+The **value of the trigonometric limit** as <InlineMath math="x" /> approaches zero.
+
+# Solution
+
+> Rewrite secant and tangent in terms of sine and cosine first so the zero-over-zero form simplifies cleanly.
+
+Direct substitution gives the equation below. **Write <InlineMath math="\sec(2x)" /> as <InlineMath math="\frac{1}{\cos2x}" />** so the numerator takes the form <InlineMath math="1-\cos2x" />.
+
+<BlockMath math="\begin{gathered}
+\frac{1-1}{0}=\frac00 \\
+\sec(2x)-1=\frac{1-\cos2x}{\cos2x}=\frac{2\sin^2x}{\cos2x}
+\end{gathered}" />
 
 That line uses <InlineMath math="1-\cos2x=2\sin^2x" />. Now split it into standard limits.
 
@@ -42,7 +57,18 @@ Numerical check: at <InlineMath math="x=0.01" /> the fraction is about <InlineMa
 
 So the limit is <InlineMath math="2" />.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="0" /> only looks at the numerator tending to <InlineMath math="0" />, but the denominator tends to <InlineMath math="0" /> too.
-- <InlineMath math="\frac12" /> uses <InlineMath math="1-\cos2x\approx\frac{x^2}{2}" />, the rule for <InlineMath math="1-\cos x" />, not for <InlineMath math="1-\cos2x" />.
+- <InlineMath math="\frac12" /> uses the equation below, the rule for <InlineMath math="1-\cos x" />, not for <InlineMath math="1-\cos2x" />.
+
+  <BlockMath math="1-\cos2x\approx\frac{x^2}{2}" />
+
 - <InlineMath math="1" /> forgets the factor <InlineMath math="2" /> in <InlineMath math="1-\cos2x=2\sin^2x" />.
 - <InlineMath math="4" /> uses <InlineMath math="1-\cos2x\approx(2x)^2" /> without the factor <InlineMath math="\frac12" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

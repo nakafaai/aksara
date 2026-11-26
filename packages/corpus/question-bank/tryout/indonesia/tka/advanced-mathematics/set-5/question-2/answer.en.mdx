@@ -1,3 +1,15 @@
+# Given
+
+Subscribers of **two internet providers** <InlineMath math="P" /> and <InlineMath math="Q" /> switch each month at fixed transition rates.
+
+# Asked
+
+The **subscriber count** after the given months using the transition matrix.
+
+# Solution
+
+> Pack the staying and switching fractions into a transition matrix, then multiply by the starting counts month by month.
+
 Each month the vector of customer numbers is multiplied by the transition matrix. The first row counts next month's customers of <InlineMath math="P" />: **those who stay with <InlineMath math="P" /> plus those who switch from <InlineMath math="Q" />**. Do it twice.
 
 <BlockMath math="\begin{aligned}
@@ -22,7 +34,15 @@ Check: the total stays <InlineMath math="1{,}000" /> every month, because each c
 
 So after <InlineMath math="2" /> months, <InlineMath math="P" /> has <InlineMath math="575" /> customers.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="550" /> is only one month.
 - <InlineMath math="500" /> uses the transpose of the matrix, as if <InlineMath math="20\%" /> of <InlineMath math="Q" />'s customers switched to <InlineMath math="P" />. With that transpose the numbers never move from the start.
 - <InlineMath math="600" /> is the long-run balance, the number of <InlineMath math="P" /> customers after very many months, not after two.
 - <InlineMath math="425" /> is the number of <InlineMath math="Q" /> customers after two months.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

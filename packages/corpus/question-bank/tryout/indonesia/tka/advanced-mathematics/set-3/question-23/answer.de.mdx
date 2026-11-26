@@ -1,3 +1,15 @@
+# Gegeben
+
+Gegeben ist ein **Grenzwert im Unendlichen** mit einer Differenz aus einer Quadratwurzel.
+
+# Gesucht
+
+Der **Grenzwert**, wenn <InlineMath math="x" /> über alle Grenzen wächst.
+
+# Lösung
+
+> Erweitern mit dem konjugierten Ausdruck verwandelt die Wurzeldifferenz in einen Bruch mit klar sichtbarem Verhalten.
+
 Der Faktor <InlineMath math="x" /> wächst unbeschränkt, die Differenz in der Klammer geht dagegen gegen <InlineMath math="0" />. Diese Form <InlineMath math="\infty\cdot0" /> zeigt den Grenzwert noch nicht, also **erweitere mit dem konjugierten Term** <InlineMath math="\sqrt{x^2+6}+x" />, damit die Wurzeldifferenz verschwindet.
 
 <BlockMath math="\begin{aligned}
@@ -5,9 +17,12 @@ x\left(\sqrt{x^2+6}-x\right)&=x\cdot\frac{(x^2+6)-x^2}{\sqrt{x^2+6}+x} \\
 &=\frac{6x}{\sqrt{x^2+6}+x}
 \end{aligned}" />
 
-Teile Zähler und Nenner durch <InlineMath math="x" />. Für <InlineMath math="x>0" /> ist <InlineMath math="\frac{\sqrt{x^2+6}}{x}=\sqrt{1+\frac{6}{x^2}}" />.
+Teile Zähler und Nenner durch <InlineMath math="x" />. Für <InlineMath math="x>0" /> ist die folgende Gleichung.
 
-<BlockMath math="\lim_{x\to\infty}\frac{6}{\sqrt{1+\frac{6}{x^2}}+1}=\frac{6}{1+1}=3" />
+<BlockMath math="\begin{gathered}
+\frac{\sqrt{x^2+6}}{x}=\sqrt{1+\frac{6}{x^2}} \\
+\lim_{x\to\infty}\frac{6}{\sqrt{1+\frac{6}{x^2}}+1}=\frac{6}{1+1}=3
+\end{gathered}" />
 
 Zeichne das Produkt für große <InlineMath math="x" />. **Der wachsende Faktor <InlineMath math="x" /> und die schrumpfende Differenz gleichen sich aus**, also schmiegt sich die Kurve an die Gerade <InlineMath math="y=3" />.
 
@@ -41,7 +56,15 @@ Numerische Probe: Für <InlineMath math="x=100" /> ist der Wert <InlineMath math
 
 Der Grenzwert ist also <InlineMath math="3" />.
 
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
 - <InlineMath math="6" /> übersieht, dass sich der Nenner <InlineMath math="\sqrt{x^2+6}+x" /> wie <InlineMath math="2x" /> verhält, nicht wie <InlineMath math="x" />.
 - <InlineMath math="0" /> sieht nur, dass die Klammer gegen <InlineMath math="0" /> geht, und übergeht den Faktor <InlineMath math="x" />.
 - <InlineMath math="\infty" /> sieht nur den wachsenden Faktor <InlineMath math="x" />.
 - <InlineMath math="\frac32" /> teilt <InlineMath math="6" /> durch <InlineMath math="4" />, als verhielte sich der Nenner wie <InlineMath math="4x" />.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

@@ -1,3 +1,15 @@
+# Diketahui
+
+Diberikan **matriks segitiga atas** <InlineMath math="A" /> berordo <InlineMath math="2\times2" /> dengan entri diagonal <InlineMath math="2" />.
+
+# Ditanyakan
+
+**Jumlah semua entri** dari matriks pangkat <InlineMath math="A^5" />.
+
+# Penyelesaian
+
+> Memangkatkan matriks berarti mengalikannya berulang kali, dan pola pangkatnya langsung terlihat setelah dua langkah pertama.
+
 Pangkat matriks bukan pangkat setiap entrinya. Kalikan <InlineMath math="A" /> dengan dirinya sendiri beberapa kali, lalu **cari pola entri-entrinya**.
 
 <BlockMath math="\begin{aligned}
@@ -22,9 +34,22 @@ Bandingkan kedua jenis entri untuk setiap pangkat. **Entri kanan atas menyusul d
 
 Entri diagonal selalu <InlineMath math="2^n" />. Entri kanan atas mengikuti <InlineMath math="n\cdot2^{n-1}" />, yaitu <InlineMath math="4" />, <InlineMath math="12" />, <InlineMath math="32" />, <InlineMath math="80" /> untuk <InlineMath math="n=2,3,4,5" />. Entri itu tumbuh lebih cepat daripada diagonal karena pada setiap perkalian ia menerima dua sumbangan, yaitu dari entri kanan atas sebelumnya dan dari entri diagonal.
 
-Jumlah semua entri <InlineMath math="A^5" /> adalah <InlineMath math="32+80+0+32=144" />.
+Jumlah semua entri <InlineMath math="A^5" /> adalah <InlineMath math="144" />.
 
-- <InlineMath math="65" /> memangkatkan setiap entri: <InlineMath math="2^5+1^5+0+2^5" />.
+<BlockMath math="32+80+0+32=144" />
+
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
+
+- <InlineMath math="65" /> memangkatkan setiap entri: ekspresi berikut.
+
+  <BlockMath math="2^5+1^5+0+2^5" />
+
 - <InlineMath math="160" /> memakai <InlineMath math="n\cdot2^n" /> untuk entri kanan atas, atau mengalikan jumlah entri <InlineMath math="A" /> dengan <InlineMath math="2^5" />.
 - <InlineMath math="224" /> memakai <InlineMath math="5\cdot2^5=160" /> untuk entri kanan atas, lalu menambahkan kedua entri diagonal.
 - <InlineMath math="96" /> menganggap entri kanan atas ikut berlipat dua seperti diagonal, sehingga menjadi <InlineMath math="32" />.
+
+# Jawaban
+
+Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.

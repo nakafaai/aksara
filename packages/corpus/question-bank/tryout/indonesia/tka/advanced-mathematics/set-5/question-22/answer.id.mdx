@@ -1,6 +1,22 @@
-Substitusi langsung memberi <InlineMath math="\frac{1-1}{0}=\frac00" />. **Ubah selisih kosinus menjadi hasil kali sinus**, karena limit dasar <InlineMath math="\lim_{u\to0}\frac{\sin u}{u}=1" /> hanya bisa dipakai pada bentuk sinus.
+# Diketahui
 
-<BlockMath math="\cos A-\cos B=-2\sin\frac{A+B}{2}\sin\frac{A-B}{2}\ \Rightarrow\ \cos3x-\cos x=-2\sin2x\sin x" />
+Diberikan **fungsi pecahan trigonometri** <InlineMath math="k(x)" /> dalam radian yang memuat selisih kosinus di dekat nol.
+
+# Ditanyakan
+
+**Nilai limit trigonometri** saat <InlineMath math="x" /> mendekati nol.
+
+# Penyelesaian
+
+> Ubah selisih kosinus menjadi perkalian sinus agar faktor pembuat nol langsung tersederhanakan dengan penyebutnya.
+
+Substitusi langsung memberi persamaan berikut. **Ubah selisih kosinus menjadi hasil kali sinus**, karena limit dasar hasilnya <InlineMath math="1" /> hanya bisa dipakai pada bentuk sinus.
+
+<BlockMath math="\begin{gathered}
+\frac{1-1}{0}=\frac00 \\
+\lim_{u\to0}\frac{\sin u}{u}=1 \\
+\cos A-\cos B=-2\sin\frac{A+B}{2}\sin\frac{A-B}{2}\ \Rightarrow\ \cos3x-\cos x=-2\sin2x\sin x
+\end{gathered}" />
 
 Sekarang pisahkan menjadi limit-limit dasar.
 
@@ -35,11 +51,27 @@ Gambar <InlineMath math="k" /> di kedua sisi nol. **Kedua cabang turun ke titik 
   }}
 />
 
-Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, <InlineMath math="\cos0{,}03-\cos0{,}01\approx-0{,}0004" />, sehingga <InlineMath math="k(0{,}01)\approx\frac{-0{,}0004}{0{,}0001}=-4" />.
+Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, persamaan berikut, sehingga <InlineMath math="k(0{,}01)=-4" />.
 
-Jadi, nilai limit tersebut adalah <InlineMath math="-4" />.
+<BlockMath math="\begin{gathered}
+\cos0{,}03-\cos0{,}01\approx-0{,}0004 \\
+k(0{,}01)\approx\frac{-0{,}0004}{0{,}0001}=-4
+\end{gathered}" />
+
+Jadi, nilai limit itu adalah <InlineMath math="-4" />.
+
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
 
 - <InlineMath math="4" /> melupakan tanda minus pada rumus selisih kosinus.
 - <InlineMath math="-2" /> memakai <InlineMath math="\frac{\sin2x}{x}\to1" />, padahal limitnya <InlineMath math="2" />.
-- <InlineMath math="-8" /> memakai pendekatan <InlineMath math="\cos u\approx1-u^2" />, padahal pendekatannya <InlineMath math="1-\frac{u^2}{2}" />.
+- <InlineMath math="-8" /> memakai pendekatan <InlineMath math="\cos u\approx1-u^2" />, padahal pendekatannya ekspresi berikut.
+
+  <BlockMath math="1-\frac{u^2}{2}" />
+
 - <InlineMath math="0" /> hanya melihat pembilang yang menuju nol.
+
+# Jawaban
+
+Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.

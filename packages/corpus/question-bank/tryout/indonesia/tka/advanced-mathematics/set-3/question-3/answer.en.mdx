@@ -1,4 +1,21 @@
-Compute both determinants first, because two statements use them: <InlineMath math="\det C=2\cdot(-1)-0\cdot1=-2" /> and <InlineMath math="\det D=1\cdot2-3\cdot0=2" />.
+# Given
+
+We are given two **square matrices** <InlineMath math="C" /> and <InlineMath math="D" /> of size <InlineMath math="2\times2" />.
+
+# Asked
+
+The **truth value of each statement** about determinants, products, and matrix inverses.
+
+# Solution
+
+> Find each matrix determinant first because the determinant of a product is simply the product of those two numbers.
+
+Compute both determinants first, because two statements use them: <InlineMath math="\det C=-2" /> and <InlineMath math="\det D=2" />.
+
+<BlockMath math="\begin{gathered}
+\det C=2\cdot(-1)-0\cdot1=-2 \\
+\det D=1\cdot2-3\cdot0=2
+\end{gathered}" />
 
 1. The statement <InlineMath math="(CD)^T=C^TD^T" /> is false. The correct rule is <InlineMath math="(CD)^T=D^TC^T" />, so **the order of the product reverses**. The computation shows the difference.
 
@@ -36,8 +53,18 @@ See statement two as a change of area. **Both columns of <InlineMath math="C+D" 
   }}
 />
 
-2. The statement that <InlineMath math="C+D" /> has no inverse is true. <InlineMath math="C+D=\begin{pmatrix} 3 & 3 \\ 1 & 1 \end{pmatrix}" /> and its determinant is <InlineMath math="3-3=0" />. A matrix with determinant zero has no inverse.
-3. The statement <InlineMath math="\det\left(C^3\right)=8" /> is false. The determinant of a product is the product of the determinants, so <InlineMath math="\det\left(C^3\right)=(\det C)^3=(-2)^3=-8" />.
-4. The statement about <InlineMath math="D^{-1}" /> is true. Swap the main diagonal entries, change the signs of the other two, and divide by <InlineMath math="\det D=2" />. Check: <InlineMath math="D\cdot\frac12\begin{pmatrix} 2 & -3 \\ 0 & 1 \end{pmatrix}=\frac12\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}=I" />.
+2. The statement that <InlineMath math="C+D" /> has no inverse is true. The matrix below and its determinant is <InlineMath math="3-3=0" />. A matrix with determinant zero has no inverse.
+
+   <BlockMath math="C+D=\begin{pmatrix} 3 & 3 \\ 1 & 1 \end{pmatrix}" />
+
+3. The statement <InlineMath math="\det\left(C^3\right)=8" /> is false. The determinant of a product is the product of the determinants, so <InlineMath math="-8" />.
+
+   <BlockMath math="\det\left(C^3\right)=(\det C)^3=(-2)^3=-8" />
+
+4. The statement about <InlineMath math="D^{-1}" /> is true. Swap the main diagonal entries, change the signs of the other two, and divide by <InlineMath math="\det D=2" />. Check: the matrix below.
+
+   <BlockMath math="D\cdot\frac12\begin{pmatrix} 2 & -3 \\ 0 & 1 \end{pmatrix}=\frac12\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}=I" />
+
+# Answer
 
 So the statements about <InlineMath math="C+D" /> and <InlineMath math="D^{-1}" /> are true, and the statements about <InlineMath math="(CD)^T" /> and <InlineMath math="\det\left(C^3\right)" /> are false.

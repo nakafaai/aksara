@@ -1,6 +1,21 @@
-Direct substitution gives <InlineMath math="\frac00" />. Use the basic limit <InlineMath math="\lim_{x\to0}\frac{\sin ax}{x}=a" />. To apply it, **divide numerator and denominator by** <InlineMath math="x" />.
+# Given
 
-<BlockMath math="\lim_{x\to0}h(x)=\lim_{x\to0}\frac{\sin5x-\sin x}{\sin2x}=\lim_{x\to0}\frac{\dfrac{\sin5x}{x}-\dfrac{\sin x}{x}}{\dfrac{\sin2x}{x}}=\frac{5-1}{2}=2" />
+We are given a **trigonometric function** <InlineMath math="h(x)" /> in radians near <InlineMath math="x=0" />.
+
+# Asked
+
+The **trigonometric limit** as <InlineMath math="x" /> approaches zero.
+
+# Solution
+
+> For tiny angles in radians, sine and tangent closely match the angle itself, letting us read the limit ratio cleanly.
+
+Direct substitution gives <InlineMath math="\frac00" />. Use the basic limit the value <InlineMath math="a" />. To apply it, **divide numerator and denominator by** <InlineMath math="x" />.
+
+<BlockMath math="\begin{gathered}
+\lim_{x\to0}\frac{\sin ax}{x}=a \\
+\lim_{x\to0}h(x)=\lim_{x\to0}\frac{\sin5x-\sin x}{\sin2x}=\lim_{x\to0}\frac{\dfrac{\sin5x}{x}-\dfrac{\sin x}{x}}{\dfrac{\sin2x}{x}}=\frac{5-1}{2}=2
+\end{gathered}" />
 
 Draw <InlineMath math="h" /> near zero. **Its graph is the same as <InlineMath math="2\cos3x" />, whose peak sits exactly at <InlineMath math="(0,\ 2)" />**, even though <InlineMath math="h(0)" /> itself isn't defined.
 
@@ -33,11 +48,21 @@ Draw <InlineMath math="h" /> near zero. **Its graph is the same as <InlineMath m
 
 Dividing by <InlineMath math="x" /> is allowed because <InlineMath math="x\ne0" /> near the limit point, and all three basic limits exist with a nonzero limit in the denominator.
 
-The sum-to-product formula agrees: <InlineMath math="\sin5x-\sin x=2\cos3x\sin2x" />, so the fraction becomes <InlineMath math="2\cos3x" />, which tends to <InlineMath math="2\cos0=2" />.
+The sum-to-product formula agrees: the equation below, so the fraction becomes <InlineMath math="2\cos3x" />, which tends to <InlineMath math="2\cos0=2" />.
+
+<BlockMath math="\sin5x-\sin x=2\cos3x\sin2x" />
 
 So as <InlineMath math="x" /> gets closer to <InlineMath math="0" />, <InlineMath math="h(x)" /> gets closer to <InlineMath math="2" />.
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="3" /> adds <InlineMath math="5+1" /> on top, a sign slip on <InlineMath math="-\sin x" />.
 - <InlineMath math="\frac12" /> turns <InlineMath math="\frac{4}{2}" /> upside down to <InlineMath math="\frac24" /> and simplifies.
 - <InlineMath math="4" /> forgets to divide by the coefficient <InlineMath math="2" /> of <InlineMath math="\sin2x" />.
 - <InlineMath math="\frac52" /> ignores the term <InlineMath math="-\sin x" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

@@ -1,8 +1,22 @@
+# Given
+
+We are given a **linear system** written as a matrix equation in <InlineMath math="x" /> and <InlineMath math="y" />.
+
+# Asked
+
+The **values of** <InlineMath math="x" /> and <InlineMath math="y" /> or their requested combination.
+
+# Solution
+
+> Multiplying on the left by the inverse coefficient matrix unlocks both unknowns in one clean step.
+
 The equation has the form <InlineMath math="AX=B" />, so <InlineMath math="X=A^{-1}B" />. **The inverse goes on the left**, because <InlineMath math="A" /> stands to the left of <InlineMath math="X" />.
 
 <MathContainer>
-<BlockMath math="\det A=2\cdot3-1\cdot5=1,\qquad A^{-1}=\frac{1}{1}\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}" />
-<BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}=\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}\begin{pmatrix} 4 \\ 7 \end{pmatrix}=\begin{pmatrix} 12-7 \\ -20+14 \end{pmatrix}=\begin{pmatrix} 5 \\ -6 \end{pmatrix}" />
+<BlockMath math="\begin{gathered}
+\det A=2\cdot3-1\cdot5=1,\qquad A^{-1}=\frac{1}{1}\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix} \\
+\begin{pmatrix} x \\ y \end{pmatrix}=\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}\begin{pmatrix} 4 \\ 7 \end{pmatrix}=\begin{pmatrix} 12-7 \\ -20+14 \end{pmatrix}=\begin{pmatrix} 5 \\ -6 \end{pmatrix}
+\end{gathered}" />
 </MathContainer>
 
 Each row of the matrix equation is a line. **The solution of the system is where the two lines cross**, and the determinant <InlineMath math="1\ne0" /> guarantees they aren't parallel.
@@ -38,9 +52,22 @@ Each row of the matrix equation is a line. **The solution of the system is where
 
 Check in the original equation: <InlineMath math="2(5)+(-6)=4" /> and <InlineMath math="5(5)+3(-6)=7" />.
 
-So <InlineMath math="x-y=5-(-6)=11" />.
+So <InlineMath math="11" />.
+
+<BlockMath math="x-y=5-(-6)=11" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="-1" /> is <InlineMath math="x+y" />.
 - <InlineMath math="-11" /> is <InlineMath math="y-x" />.
-- <InlineMath math="-33" /> uses the transpose of the adjugate, <InlineMath math="\begin{pmatrix} 3 & -5 \\ -1 & 2 \end{pmatrix}" />, which gives <InlineMath math="x=-23" /> and <InlineMath math="y=10" />.
+- <InlineMath math="-33" /> uses the transpose of the adjugate, the matrix below, which gives <InlineMath math="x=-23" /> and <InlineMath math="y=10" />.
+
+  <BlockMath math="\begin{pmatrix} 3 & -5 \\ -1 & 2 \end{pmatrix}" />
+
 - <InlineMath math="1" /> is the determinant of <InlineMath math="A" />, not yet used to solve the system.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

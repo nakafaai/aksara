@@ -1,3 +1,15 @@
+# Given
+
+The workshop receives an **extra order** requiring at least <InlineMath math="12" /> lamps while keeping all previous resource limits.
+
+# Asked
+
+The **new maximum profit** after adding the minimum lamp requirement.
+
+# Solution
+
+> Adding a new constraint slices off part of the old region, so we just test the new corners along that boundary line.
+
 The order adds a new limit <InlineMath math="x\ge12" />. The old best plan <InlineMath math="(10,20)" /> **no longer meets that limit**, so the optimum has to be found again on the smaller feasible region.
 
 With <InlineMath math="x\ge12" />, the assembly limit <InlineMath math="2x+y\le40" /> becomes the tightest. Find the new corners.
@@ -53,7 +65,15 @@ Draw the new limit <InlineMath math="x\ge12" /> over the old region. **All that'
 
 So next week's maximum profit is <InlineMath math="\text{Rp}1{,}360{,}000.00" />, from <InlineMath math="12" /> lamps and <InlineMath math="16" /> fans. It is below <InlineMath math="\text{Rp}1{,}400{,}000.00" />, as expected, because an extra limit can only shrink the set of choices.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="\text{Rp}1{,}400{,}000.00" /> keeps the old plan <InlineMath math="(10,20)" />, which assembles only <InlineMath math="10" /> lamps.
 - <InlineMath math="\text{Rp}1{,}200{,}000.00" /> is the profit at the corner <InlineMath math="(20,0)" />.
 - <InlineMath math="\text{Rp}1{,}440{,}000.00" /> uses <InlineMath math="(12,18)" /> from the testing limit. That plan needs <InlineMath math="24+18=42" /> assembly hours.
 - <InlineMath math="\text{Rp}720{,}000.00" /> assembles <InlineMath math="12" /> lamps and no fans.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

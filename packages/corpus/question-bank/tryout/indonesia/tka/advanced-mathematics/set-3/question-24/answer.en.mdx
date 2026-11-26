@@ -1,9 +1,24 @@
-Remove the absolute value first, and how you do it depends on **the sign of what is inside**. A left-hand limit only uses <InlineMath math="x<2" />, so <InlineMath math="x-2<0" /> and <InlineMath math="|x-2|=-(x-2)" />.
+# Given
 
-<BlockMath math="\begin{aligned}
+We are given a **left-hand limit** at <InlineMath math="x=2" /> containing an absolute value.
+
+# Asked
+
+The **left-hand limit value** at the absolute-value boundary.
+
+# Solution
+
+> Approaching from the left makes the expression inside the absolute value negative, so removing the bars flips its sign.
+
+Remove the absolute value first, and how you do it depends on **the sign of what is inside**. A left-hand limit only uses <InlineMath math="x<2" />, so <InlineMath math="x-2<0" /> and <InlineMath math="|x-2|" />.
+
+<BlockMath math="\begin{gathered}
+|x-2|=-(x-2) \\
+\begin{aligned}
 \lim_{x\to2^-}\frac{x^2-4}{|x-2|}&=\lim_{x\to2^-}\frac{(x-2)(x+2)}{-(x-2)} \\
 &=\lim_{x\to2^-}\big(-(x+2)\big)=-4
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
 Draw the function on both sides of <InlineMath math="x=2" />. **The absolute value splits the graph: from the left it heads to <InlineMath math="-4" />, from the right to <InlineMath math="4" />**. The left-hand limit reads only the left branch.
 
@@ -39,11 +54,21 @@ Draw the function on both sides of <InlineMath math="x=2" />. **The absolute val
   }}
 />
 
-Cancelling <InlineMath math="x-2" /> is allowed because <InlineMath math="x\ne2" />. Numerical check: for <InlineMath math="x=1.99" />, the value is <InlineMath math="\frac{3.9601-4}{0.01}=-3.99" />, close to <InlineMath math="-4" />.
+Cancelling <InlineMath math="x-2" /> is allowed because <InlineMath math="x\ne2" />. Numerical check: for <InlineMath math="x=1.99" />, the value is the equation below, close to <InlineMath math="-4" />.
+
+<BlockMath math="\frac{3.9601-4}{0.01}=-3.99" />
 
 So the left-hand limit is <InlineMath math="-4" />.
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="4" /> treats <InlineMath math="|x-2|" /> as <InlineMath math="x-2" />, which only holds for <InlineMath math="x>2" />. That is the right-hand limit.
 - <InlineMath math="0" /> only looks at the numerator tending to zero.
 - <InlineMath math="-\infty" /> assumes a denominator tending to zero makes the limit infinite. The numerator also tends to zero, with the same factor.
 - <InlineMath math="-2" /> cancels correctly but then keeps only <InlineMath math="-x" /> from <InlineMath math="-(x+2)" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

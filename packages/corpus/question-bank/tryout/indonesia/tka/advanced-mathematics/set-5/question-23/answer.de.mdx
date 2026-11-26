@@ -1,8 +1,25 @@
-Für <InlineMath math="x" /> mit sehr großem Betrag verhält sich <InlineMath math="\sqrt{x^2+1}" /> wie <InlineMath math="\sqrt{x^2}" />. Entscheidend ist: **<InlineMath math="\sqrt{x^2}=|x|" />, und das ist für <InlineMath math="x<0" /> gleich <InlineMath math="-x" />**, nicht <InlineMath math="x" />.
+# Gegeben
 
-Teile Zähler und Nenner durch <InlineMath math="x" />. Weil <InlineMath math="x<0" /> ist, braucht das Hineinziehen von <InlineMath math="x" /> unter die Wurzel ein Minuszeichen: <InlineMath math="\frac{\sqrt{x^2+1}}{x}=-\sqrt{\frac{x^2+1}{x^2}}=-\sqrt{1+\frac{1}{x^2}}" />.
+Gegeben ist eine **Wurzelfunktion im Bruch** <InlineMath math="q(x)" /> für <InlineMath math="x" /> gegen minus unendlich.
 
-<BlockMath math="\lim_{x\to-\infty}\frac{\sqrt{x^2+1}}{2x-3}=\lim_{x\to-\infty}\frac{-\sqrt{1+\frac{1}{x^2}}}{2-\frac3x}=\frac{-1}{2}=-\frac12" />
+# Gesucht
+
+Der **Grenzwert** für <InlineMath math="x" /> gegen minus unendlich.
+
+# Lösung
+
+> Eine Quadratwurzel ist stets positiv, daher bringt das Herausziehen einer negativen Variablen ein Minuszeichen mit.
+
+Für <InlineMath math="x" /> mit sehr großem Betrag verhält sich <InlineMath math="\sqrt{x^2+1}" /> wie <InlineMath math="\sqrt{x^2}" />. Entscheidend ist: **die folgende Gleichung, und das ist für <InlineMath math="x<0" /> gleich <InlineMath math="-x" />**, nicht <InlineMath math="x" />.
+
+<BlockMath math="\sqrt{x^2}=|x|" />
+
+Teile Zähler und Nenner durch <InlineMath math="x" />. Weil <InlineMath math="x<0" /> ist, braucht das Hineinziehen von <InlineMath math="x" /> unter die Wurzel ein Minuszeichen: der folgende Ausdruck.
+
+<BlockMath math="\begin{gathered}
+\frac{\sqrt{x^2+1}}{x}=-\sqrt{\frac{x^2+1}{x^2}}=-\sqrt{1+\frac{1}{x^2}} \\
+\lim_{x\to-\infty}\frac{\sqrt{x^2+1}}{2x-3}=\lim_{x\to-\infty}\frac{-\sqrt{1+\frac{1}{x^2}}}{2-\frac3x}=\frac{-1}{2}=-\frac12
+\end{gathered}" />
 
 Zeichne <InlineMath math="q" /> für immer kleinere negative <InlineMath math="x" />. **Die Kurve bleibt unter der <InlineMath math="x" />-Achse und schmiegt sich an die Gerade <InlineMath math="y=-\tfrac12" />**, weil der Zähler positiv und der Nenner negativ ist.
 
@@ -32,11 +49,24 @@ Zeichne <InlineMath math="q" /> für immer kleinere negative <InlineMath math="x
   }}
 />
 
-Vorzeichenprobe: Für negatives <InlineMath math="x" /> ist der Zähler positiv und der Nenner negativ, der Bruch also negativ. Zum Beispiel ist <InlineMath math="q(-100)=\frac{\sqrt{10{.}001}}{-203}\approx-0{,}4926" />.
+Vorzeichenprobe: Für negatives <InlineMath math="x" /> ist der Zähler positiv und der Nenner negativ, der Bruch also negativ. Zum Beispiel ist <InlineMath math="-0{,}4926" />.
+
+<BlockMath math="q(-100)=\frac{\sqrt{10{.}001}}{-203}\approx-0{,}4926" />
 
 Der Grenzwert ist also <InlineMath math="-\frac12" />.
 
-- <InlineMath math="\frac12" /> schreibt <InlineMath math="\sqrt{x^2}=x" />, was nur für <InlineMath math="x\ge0" /> stimmt. Das ist der Grenzwert bei <InlineMath math="+\infty" />.
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
+- <InlineMath math="\frac12" /> schreibt die folgende Gleichung, was nur für <InlineMath math="x\ge0" /> stimmt. Das ist der Grenzwert bei <InlineMath math="+\infty" />.
+
+  <BlockMath math="\sqrt{x^2}=x" />
+
 - <InlineMath math="0" /> nimmt an, die Wurzel senke den Grad des Zählers. Tatsächlich wächst <InlineMath math="\sqrt{x^2+1}" /> wie <InlineMath math="|x|" />, mit demselben Grad wie der Nenner.
 - <InlineMath math="-\infty" /> nimmt an, der Zähler wachse viel schneller als der Nenner.
 - <InlineMath math="1" /> vergisst den Koeffizienten <InlineMath math="2" /> im Nenner und das Vorzeichen.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.
