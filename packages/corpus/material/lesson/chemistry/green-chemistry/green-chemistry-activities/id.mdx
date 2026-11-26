@@ -8,218 +8,325 @@ export const metadata = {
   subject: "Kimia Hijau",
 };
 
-## Kegiatan Kimia Hijau Merancang Ulang Produk atau Proses
+## Menghubungkan Kegiatan Kimia Hijau dengan Tujuan Global
 
-**Kegiatan kimia hijau** mengubah desain atau penggunaan produk maupun proses kimia agar bahaya dan limbah dicegah sejak sumbernya. Tindakan yang baik bagi lingkungan belum tentu termasuk kimia hijau. Kita tetap perlu mengidentifikasi bahan yang masuk, perubahan kimianya, hasil yang keluar, dan bahaya yang berkurang.
+**Kegiatan kimia hijau** mengubah desain atau pemakaian produk maupun proses kimia agar bahaya dan limbah dicegah sejak sumbernya. Tindakan peduli lingkungan tidak otomatis termasuk kimia hijau. Kita tetap perlu melacak bahan yang masuk, perubahan kimianya, zat yang keluar, dan bahaya yang benar-benar berkurang.
 
-[Perserikatan Bangsa-Bangsa (PBB)](https://sdgs.un.org/goals) memakai istilah **Tujuan Pembangunan Berkelanjutan (Sustainable Development Goals, SDGs)** untuk <InlineMath math="17" /> tujuan global dalam Agenda <InlineMath math="2030" />. Kimia hijau tidak menggantikan SDGs, dan label SDG bukan bukti bahwa suatu kegiatan termasuk kimia hijau. Kimia hijau dapat mendukung beberapa tujuan ketika desain kimia mengurangi bahaya bahan dan limbah, menekan pemakaian energi, serta mengurangi pencemaran air dan udara secara terukur.
+[Perserikatan Bangsa-Bangsa](https://sdgs.un.org/goals) menetapkan <InlineMath math="17" /> **Tujuan Pembangunan Berkelanjutan** atau SDGs dalam Agenda <InlineMath math="2030" />. Kimia hijau mendukung berbagai [tantangan SDG](https://www.acs.org/green-chemistry-sustainability/education/chemistry-sustainable-development-goals.html) saat perancangan ulang kimia menurunkan zat berbahaya, kebutuhan energi, pencemaran air atau udara, atau limbah secara terukur.
 
-Kimia dapat membantu menjawab beberapa tantangan dalam [Tujuan Pembangunan Berkelanjutan](https://www.acs.org/green-chemistry-sustainability/education/chemistry-sustainable-development-goals.html), termasuk kesehatan, energi bersih, dan produksi yang lebih bertanggung jawab.
+> Klaim hijau baru layak dipercaya saat pengukuran membuktikan bahaya atau limbah benar-benar turun sementara produk tetap menjalankan fungsinya.
 
-Tabel berikut menghubungkan setiap SDG dengan hal yang dinilai dalam desain kimia dan hasil yang dapat diperiksa.
+Tabel berikut menghubungkan tujuan utama SDG dengan pertanyaan desain kimia dan hasil yang dapat diperiksa.
 
 | Tujuan | Hal yang dinilai | Hasil yang diperiksa |
-| :----- | :--------------------- | :------------ |
+| :----- | :--------------- | :------------------- |
 | SDG <InlineMath math="3" /> | Paparan zat berbahaya | Bahan dan dosis dibuat lebih aman. |
 | SDG <InlineMath math="6" /> | Sisa zat masuk ke air | Limbah cair dikurangi dari sumbernya. |
-| SDG <InlineMath math="7" /> | Energi yang dipakai proses | Proses dibuat lebih hemat panas atau listrik. |
-| SDG <InlineMath math="12" /> | Bahan sekali pakai | Pemakaian bahan dibuat cukup dan tidak boros. |
-| SDG <InlineMath math="13" /> | Emisi dari pembakaran | Pembakaran terbuka dan energi fosil dikurangi. |
+| SDG <InlineMath math="7" /> | Energi yang dipakai proses | Kebutuhan panas atau listrik menurun. |
+| SDG <InlineMath math="12" /> | Bahan sekali pakai | Pemakaian bahan berlebih berkurang. |
+| SDG <InlineMath math="13" /> | Emisi dari pembakaran | Pembakaran terbuka dan energi fosil turun. |
 | SDG <InlineMath math="14" /> dan SDG <InlineMath math="15" /> | Polutan di air, tanah, dan makhluk hidup | Polutan dicegah sebelum menyebar. |
 
-Desain ulang kimia mendukung suatu SDG jika perubahan yang dilakukan dan bukti dampak perubahan dinyatakan dengan jelas.
+### Memangkas Limbah Proses dengan Katalis Daur Ulang
 
-## Membersihkan Gas Buang
+Konverter katalitik pada knalpot kendaraan menggambarkan peran **katalisis** dalam mengubah zat berbahaya sebelum lepas ke udara. Di atas unggun katalis logam padat, karbon monoksida beracun bereaksi dengan oksigen menjadi karbon dioksida yang jauh kurang beracun tanpa menghabiskan katalisnya:
 
-Konverter katalitik di knalpot kendaraan adalah contoh kegiatan kimia hijau yang mengubah zat berbahaya sebelum lepas ke udara. Di dalamnya, karbon monoksida bereaksi dengan oksigen menjadi karbon dioksida. Geser slider: <InlineMath math="3" /> molekul pereaksi menjadi <InlineMath math="2" /> molekul produk, dan **gas yang sangat beracun berubah menjadi gas yang jauh kurang beracun**.
+<BlockMath math="2\mathrm{CO(g)} + \mathrm{O_2(g)} \xrightarrow{\text{katalis}} 2\mathrm{CO_2(g)}" />
 
-<ReactionBalanceLab
-  title={<>Reaksi di Konverter Katalitik</>}
-  description={<>Karbon monoksida dari mesin diubah menjadi karbon dioksida.</>}
-  reactions={[
-    { id: "carbon-monoxide-oxidation", name: "Oksidasi karbon monoksida", tab: <InlineMath math="\mathrm{CO}" /> },
-  ]}
-  reading="molecules"
+Dalam industri kimia, mengganti pereaksi stoikiometris sekali pakai dengan katalis daur ulang menekan **faktor-E** (kilogram limbah per kilogram produk) sepanjang siklus produksi berulang. Amati empat mode katalisis dan atur jumlah siklus batch di bawah ini.
+
+<GreenCatalystCycleLab
+  title={<>Siklus Katalis Daur Ulang dan Pengurangan Limbah</>}
+  description={
+    <>
+      Bandingkan pereaksi stoikiometris sekali pakai dengan katalis homogen,
+      katalis heterogen, dan biokatalis enzim sepanjang siklus berulang.
+    </>
+  }
+  footer={
+    <>
+      Memakai ulang katalis menjaga limbah jauh di bawah batch stoikiometris.
+    </>
+  }
+  modes={["stoichiometric", "homogeneous", "heterogeneous", "biocatalyst"]}
+  cycles={{ min: 1, max: 20, value: 10 }}
   labels={{
-    atoms: <>Jumlah atom tiap unsur</>,
-    choose: "Pilih reaksi",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan reaksi</>,
-    mass: <>Massa pereaksi dan produk</>,
-    molecules: <>Jumlah molekul</>,
-    products: <>Produk</>,
-    progress: "Jalannya reaksi",
-    reactants: <>Pereaksi</>,
-    view: "Reaksi pada tingkat atom",
+    cycles: "Siklus batch",
+    eFactor: <>Faktor-E</>,
+    mode: "Mode katalisis",
+    modes: {
+      stoichiometric: {
+        eFactor: <><InlineMath math="6{,}5\text{ kg}" /> limbah per <InlineMath math="\text{kg}" /> produk</>,
+        name: "Pereaksi stoikiometris",
+        recoveryNote: <>Habis di tiap batch dan dibuang sebagai limbah garam.</>,
+      },
+      homogeneous: {
+        eFactor: <><InlineMath math="1{,}8\text{ kg}" /> limbah per <InlineMath math="\text{kg}" /> produk</>,
+        name: "Katalis homogen",
+        recoveryNote: <>Larut dalam campuran reaksi sehingga perlu pemisahan pelarut.</>,
+      },
+      heterogeneous: {
+        eFactor: <><InlineMath math="0{,}4\text{ kg}" /> limbah per <InlineMath math="\text{kg}" /> produk</>,
+        name: "Katalis heterogen",
+        recoveryNote: <>Unggun padat disaring bersih dan dipakai ulang berkali-kali.</>,
+      },
+      biocatalyst: {
+        eFactor: <><InlineMath math="0{,}2\text{ kg}" /> limbah per <InlineMath math="\text{kg}" /> produk</>,
+        name: "Biokatalis enzim",
+        recoveryNote: <>Bekerja dalam air pada suhu ruang dengan selektivitas tinggi.</>,
+      },
+    },
+    parts: {
+      catalystBed: "Unggun katalis",
+      productOut: "Aliran produk",
+      reactantStream: "Umpan reaktan",
+      recoveryLoop: "Lingkar pemulihan",
+      wasteBin: "Penampung limbah",
+    },
+    recoveryNote: <>Pemulihan katalis</>,
+    view: "Lingkar pemulihan katalis hijau tiga dimensi",
   }}
 />
 
-## Aliran Bahan dari Masukan hingga Limbah
+Amati penampung limbah yang cepat penuh pada mode stoikiometris karena setiap batch mengubah pereaksi baru menjadi buangan. Beralih ke katalis heterogen padat atau enzim selektif menjaga katalis terus berputar sambil menyisakan produk yang jauh lebih bersih.
 
-Mulailah dengan mencatat setiap bahan yang dipakai, perubahan yang terjadi, produk, sisa, dan bahayanya. Saat membandingkan dua proses, pastikan keduanya menghasilkan fungsi yang sama bagi pengguna.
+### Melacak Aliran Bahan dari Masukan hingga Residu
+
+Mulai setiap audit proses dengan mencatat semua bahan masuk, perubahan yang terjadi, produk, residu, dan bahayanya. Saat membandingkan dua cara kerja, pertahankan **fungsi yang sama** agar perbandingannya adil.
 
 | Bagian proses | Pertanyaan yang perlu dijawab |
-| :--------- | :---------------------------- |
+| :------------ | :---------------------------- |
 | Bahan masuk | Zat apa yang dipakai, dan apakah ada yang berbahaya? |
 | Proses | Apakah zat dicampur, dipakai ulang, diurai, atau bereaksi? |
-| Produk atau sisa | Apa yang keluar setelah proses berlangsung? |
-| Bukti | Apa yang bisa diamati atau diukur dalam kondisi yang sama? |
-| Risiko | Bahaya bawaan atau paparan apa yang berkurang dibanding cara lama? |
+| Produk atau sisa | Apa yang keluar setelah proses selesai? |
+| Bukti | Apa yang bisa diamati atau diukur pada kondisi sama? |
+| Risiko | Bahaya bawaan atau paparan apa yang turun dibanding cara lama? |
 
-Klaim hijau <Highlight>baru dapat diuji jika disertai bukti</Highlight>. Kata "alami", "hemat", atau "ramah lingkungan" belum menjelaskan bahaya atau limbah apa yang berkurang. Perbandingan juga harus mempertahankan fungsi yang sama. Memakai lebih sedikit pembersih bukan perbaikan jika permukaannya tetap kotor, dan bahan pengganti harus mampu menjalankan fungsi yang sama.
+Klaim hijau <Highlight>baru dapat diuji jika disertai bukti</Highlight>. Kata alami atau ramah lingkungan tidak menjelaskan bahaya apa yang berkurang. Setiap kilogram bahan masuk pasti keluar sebagai produk berguna atau residu:
 
-Telusuri satu kegiatan sebagai massa masuk dan massa keluar. Setiap kilogram yang masuk keluar lagi sebagai produk atau residu, jadi <InlineMath math="m_\text{masuk}=m_\text{produk}+m_\text{residu}" />. Pitanya terbelah menurut massa: dengan angka ilustrasi, <InlineMath math="10\ \mathrm{kg}" /> yang masuk menghasilkan <InlineMath math="8\ \mathrm{kg}" /> produk dan <InlineMath math="2\ \mathrm{kg}" /> residu. Perbesar cabang merah muda, bagian yang ingin diperkecil oleh proses yang lebih hijau.
+<BlockMath math="m_{\text{masuk}} = m_{\text{produk}} + m_{\text{residu}}" />
+
+Pada proses ilustratif yang mengubah <InlineMath math="80\%" /> massa masukan menjadi produk dan <InlineMath math="20\%" /> menjadi residu, geser <InlineMath math="m" /> di bawah untuk melihat pertumbuhan kedua aliran keluaran.
 
 <MathVisual
-  title={<>Massa Masuk Sama dengan Massa Keluar</>}
-  description={<>Aliran massa ilustratif: pita masukan (abu-abu) terbelah menjadi produk (teal) dan residu (merah muda), dengan lebar sesuai skala. Satu kotak grid berarti <InlineMath math="1" /> kilogram.</>}
+  title={<>Pembagian Aliran Massa antara Produk dan Residu</>}
+  description={
+    <>
+      Neraca massa ilustratif dengan <InlineMath math="80\%" /> massa produk dan{" "}
+      <InlineMath math="20\%" /> massa residu untuk total masukan{" "}
+      <InlineMath math="m" />.
+    </>
+  }
+  footer={
+    <>
+      Semua masukan keluar sebagai produk atau residu, dan desain hijau menekan
+      residu.
+    </>
+  }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -1.5, max: 11 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 18 } },
     view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1, max: 20, value: 10, step: 0.5, label: "input-mass" },
+    ],
     objects: [
-      { id: "input", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 10 }, { x: 0, y: 10 }] },
-      { id: "product", kind: "polygon", appearance: "construction", vertices: [{ x: 5, y: 2 }, { x: 8, y: 2 }, { x: 8, y: 10 }, { x: 5, y: 10 }] },
-      { id: "residue", kind: "polygon", appearance: "warning", vertices: [{ x: 5, y: -1 }, { x: 8, y: -1 }, { x: 8, y: 1 }, { x: 5, y: 1 }] },
-      { id: "to-product", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 2 }, { x: 5, y: 2 }, { x: 5, y: 10 }, { x: 3, y: 10 }] },
-      { id: "to-residue", kind: "polygon", appearance: "warning", vertices: [{ x: 3, y: 0 }, { x: 5, y: -1 }, { x: 5, y: 1 }, { x: 3, y: 2 }] },
+      { id: "product-flow", kind: "function", appearance: "construction", formula: "0.8*x", domain: { min: 0, max: 20 } },
+      { id: "residue-flow", kind: "function", appearance: "warning", formula: "0.2*x", domain: { min: 0, max: 20 } },
+      { id: "now-product", kind: "marker", x: "m", y: "0.8*m", appearance: "construction" },
+      { id: "now-residue", kind: "marker", x: "m", y: "0.2*m", appearance: "warning" },
     ],
     labels: [
-      { key: "input", objectId: "input", at: { x: 1.5, y: 10 }, placement: "above" },
-      { key: "product", objectId: "product", at: { x: 6.5, y: 10 }, placement: "above" },
-      { key: "residue", objectId: "residue", at: { x: 8, y: 0 }, placement: "right" },
+      { key: "product-line", objectId: "product-flow", at: { x: 15, y: 12 }, placement: "above-left" },
+      { key: "residue-line", objectId: "residue-flow", at: { x: 15, y: 3 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "product-mass", formula: "0.8*m" },
+      { key: "residue-mass", formula: "0.2*m" },
     ],
   }}
   labels={{
-    input: <InlineMath math="10\ \mathrm{kg}\ \text{masuk}" />,
-    product: <InlineMath math="8\ \mathrm{kg}\ \text{produk}" />,
-    residue: <InlineMath math="10-8=2\ \mathrm{kg}\ \text{residu}" />,
+    "input-mass": <>Total masukan (<InlineMath math="\text{kg}" />)</>,
+    "product-line": <>Produk</>,
+    "residue-line": <>Residu</>,
+    "product-mass": <>Massa produk (<InlineMath math="\text{kg}" />)</>,
+    "residue-mass": <>Massa residu (<InlineMath math="\text{kg}" />)</>,
   }}
 />
 
-## Gunakan Sabun Secukupnya tanpa Menambah Residu
+Pada masukan <InlineMath math="10\text{ kg}" />, terbentuk <InlineMath math="8\text{ kg}" /> produk dan <InlineMath math="2\text{ kg}" /> residu. Karena massa kekal, perbaikan proses berarti mengangkat garis produk setinggi mungkin sambil melandaikan garis residu mendekati nol.
 
-Busa yang banyak sering disangka sebagai tanda bahwa sabun membersihkan lebih baik. Padahal, terlalu banyak sabun cuci piring dapat memperlama pembilasan dan menambah sisa zat pembersih di air buangan. Bandingkan dosis yang cukup membersihkan dengan dosis yang lebih besar, lalu periksa residu dan air bilas. Perbandingan ini hanya menilai dosis sabun saat dipakai. Rancangan bahan pembersih tetap sama.
+## Membandingkan Dosis Pembersih dan Pengolahan Limbah Organik
 
-**Surfaktan** adalah zat dalam pembersih yang membantu air mengangkat minyak dan kotoran. Surfaktan berguna, tetapi tetap perlu dipakai secukupnya.
+Pilihan harian soal pembersih dapur dan sampah organik memperlihatkan beda nyata antara **pengurangan di sumber** dan **pengolahan limbah**. Keduanya berguna untuk menjaga lingkungan rumah, tetapi pengukuran dosis sabun serta pelacakan karbon di tumpukan kompos menunjukkan seberapa besar dampak nyata masing-masing tindakan.
+
+### Mengukur Dosis Sabun Efektif tanpa Residu Berlebih
+
+Busa tebal sering keliru dianggap tanda pencucian lebih bersih. Pemakaian sabun cuci piring berlebihan memperlama pembilasan dan menambah **surfaktan** ke air buangan. Surfaktan mengangkat minyak ke dalam air, tetapi kelebihan sabun melampaui dosis efektif hanya menambah residu tanpa membuat piring lebih bersih.
 
 | Yang dibandingkan | Proses kimia | Hasil yang diamati |
-| :---------------- | :-------------- | :------------------ |
-| Sabun sangat sedikit | Surfaktan mungkin belum cukup mengangkat minyak. | Noda masih menempel. |
-| Sabun secukupnya | Surfaktan cukup bekerja tanpa sisa berlebihan. | Noda hilang dan bilasan tidak banyak. |
-| Sabun terlalu banyak | Sisa surfaktan ikut masuk ke air buangan. | Busa sulit hilang saat dibilas. |
+| :---------------- | :----------- | :----------------- |
+| Sabun sangat sedikit | Surfaktan belum cukup mengemulsikan lemak. | Noda masih menempel di piring. |
+| Sabun secukupnya | Surfaktan mengangkat minyak tanpa kelebihan besar. | Noda hilang dan pembilasan cepat. |
+| Sabun terlalu banyak | Kelebihan surfaktan masuk ke air buangan. | Busa bandel memerlukan lebih banyak air bilas. |
 
-Gunakan sabun dengan dosis efektif sesuai petunjuk. Dosis yang tepat harus tetap membersihkan noda. Sabun tambahan yang tidak membantu membersihkan hanya menambah residu dan air bilasan. Perancangan kimia hijau juga dapat mengubah produk pembersih agar fungsi yang sama memerlukan lebih sedikit bahan atau air dan menghasilkan bahaya yang lebih kecil.
+Dalam **contoh perbandingan hipotetis** pada noda dan luas permukaan sama, Formula A memerlukan <InlineMath math="10\text{ mL}" /> per cucian sedangkan Formula B rancangan baru memberi hasil bersih sama dengan <InlineMath math="8\text{ mL}" />. Penurunan volume per cucian sebesar:
 
-Sebagai **contoh data rekaan**, dua formula pembersih diuji pada noda dan luas permukaan yang sama. Formula A memerlukan <InlineMath math="10 \mathrm{mL}" />, sedangkan formula B memerlukan <InlineMath math="8 \mathrm{mL}" /> untuk hasil kebersihan yang sama. Pengurangan volume produk adalah:
+<BlockMath math="\frac{10 - 8}{10} \times 100\% = 20\%" />
 
-<BlockMath math="\frac{10-8}{10}\times100\%=\frac{2}{10}\times100\%=20\%" />
-
-Pada adegan di bawah, setiap kolom adalah dosis yang dibutuhkan untuk permukaan yang sama bersihnya, dengan satu kotak grid untuk <InlineMath math="2 \mathrm{mL}" />. Balok abu-abu di atas B adalah bagian yang tidak lagi dibutuhkan B. Ukurannya tepat seperlima kolom A, yaitu <InlineMath math="20\%" /> dari perhitungan tadi. Putar adegannya: penghematan itu baru bermakna karena kedua kolom mengerjakan tugas yang sama.
+Geser <InlineMath math="w" /> di bawah untuk melihat akumulasi penghematan <InlineMath math="20\%" /> sepanjang lima puluh kali pencucian identik.
 
 <MathVisual
-  title={<>Permukaan Sama Bersih dengan Produk Lebih Sedikit</>}
-  description={<>Dosis hipotetis dua formulasi pembersih untuk noda dan luas permukaan yang sama. Satu kotak grid ke atas sama dengan <InlineMath math="2\text{ mL}" />.</>}
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6.5 }, z: { min: -1, max: 1 } },
-    view: { kind: "camera", position: { x: 6, y: 6, z: 10 }, target: { x: 1.5, y: 2.5, z: 0 } },
-    objects: [
-      { id: "dose-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 10 / 4, z: 0 }, size: { length: 1.4, height: 10 / 2, width: 1.4 } },
-      { id: "dose-b", kind: "cuboid", appearance: "construction", center: { x: 3, y: 8 / 4, z: 0 }, size: { length: 1.4, height: 8 / 2, width: 1.4 } },
-      { id: "saved", kind: "cuboid", appearance: "reference", center: { x: 3, y: 8 / 2 + (10 - 8) / 4, z: 0 }, size: { length: 1.4, height: (10 - 8) / 2, width: 1.4 } },
-    ],
-    labels: [
-      { key: "a", objectId: "dose-a", at: { x: 0, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
-      { key: "saved", objectId: "saved", at: { x: 3, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
-      { key: "b", objectId: "dose-b", at: { x: 3, y: 8 / 4, z: 0.9 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A:\ 10\ \mathrm{mL}" />,
-    saved: <InlineMath math="\frac{10-8}{10}\times100\%=20\%" />,
-    b: <InlineMath math="B:\ 8\ \mathrm{mL}" />,
-  }}
-/>
-
-Hasil ini membuktikan pengurangan volume produk pada uji tersebut. Untuk menyatakan B lebih aman atau lebih hemat air, kita masih perlu data komposisi, bahaya, dan air bilas.
-
-## Pengomposan Mengolah Limbah yang Sudah Terbentuk
-
-Daun kering, kulit buah, dan sisa makanan mengandung bahan organik. Pembakaran menyebabkan oksidasi cepat dan menghasilkan asap. Dalam pengomposan yang benar, mikroorganisme menguraikan bahan secara bertahap. Pengomposan merupakan **pengolahan limbah biologis**. Jika produk atau proses kimia dirancang ulang untuk mencegah bahaya atau limbah sejak awal, perubahan desain tersebut juga dapat dinilai dengan prinsip kimia hijau.
-
-| Cara menangani sisa organik | Yang terjadi | Klasifikasi yang cermat |
-| :-------------------------- | :----------- | :----------------- |
-| Dibakar | Bahan organik bereaksi dengan oksigen dan membentuk asap. | Limbah menghasilkan asap dan polutan lain. |
-| Dibuang ke sampah campuran | Bahan tetap menjadi limbah yang perlu ditangani. | Jalur pembuangan berubah, sedangkan produk dan proses awal tetap sama. |
-| Dikomposkan dengan benar | Mikroorganisme mengurai bahan organik secara bertahap. | Pengolahan biologis menangani limbah organik setelah limbah terbentuk. |
-
-[Pengomposan](https://www.epa.gov/sustainable-management-food/approaches-composting) tetap membutuhkan pengaturan kelembapan, aliran oksigen, struktur tumpukan, dan keseimbangan nutrien. Tumpukan yang kekurangan oksigen dapat berbau atau melepaskan lindi, yaitu cairan yang keluar dari tumpukan dan membawa zat terlarut. Kondisi tersebut memengaruhi aktivitas mikroba dan suhu. Pada contoh ini, pengomposan termasuk pengolahan limbah. Suatu kegiatan termasuk perancangan ulang produk atau proses jika desain kimianya diubah untuk mencegah limbah sejak awal.
-
-Ikuti karbon dalam tumpukan daun yang sama. Pembakaran mengoksidasi hampir semuanya dalam hitungan menit, jadi karbonnya keluar sebagai asap dan karbon dioksida. Dalam model kompos ilustratif, karbon yang tersisa adalah <InlineMath math="40+60e^{-t/4}" /> persen setelah <InlineMath math="t" /> minggu, jadi mikroorganisme bekerja pelan-pelan dan sebagian karbon tetap tersimpan di kompos untuk tanah. Perbesar kedua kurva di dekat awal.
-
-<MathVisual
-  title={<>Membakar atau Mengompos Daun yang Sama</>}
-  description={<>Bagian karbon tumpukan yang tersisa setelah dibakar (merah muda) dan selama dikompos (teal). Mendatar: satu kotak grid berarti satu minggu. Tegak: satu kotak grid berarti <InlineMath math="20" /> persen.</>}
+  title={<>Volume Kumulatif Sabun Cuci pada Pencucian Berulang</>}
+  description={
+    <>
+      Total volume pembersih selama <InlineMath math="w" /> kali pencucian sama
+      untuk Formula A <InlineMath math="10\text{ mL}" /> dan Formula B{" "}
+      <InlineMath math="8\text{ mL}" />.
+    </>
+  }
+  footer={
+    <>
+      Dosis lebih hemat memangkas volume sabun secara stabil di tiap cucian.
+    </>
+  }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.3, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 520 } },
     view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 1, max: 50, value: 20, step: 1, label: "wash-count" },
+    ],
     objects: [
-      { id: "burn", kind: "polyline", appearance: "warning", vertices: [{ x: 0, y: 5 }, { x: 0.003, y: 0.25 }, { x: 12, y: 0.25 }] },
-      { id: "compost", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: (40 + 60 * Math.exp(-0.5 / 4)) / 20 }, { x: 1, y: (40 + 60 * Math.exp(-1 / 4)) / 20 }, { x: 1.5, y: (40 + 60 * Math.exp(-1.5 / 4)) / 20 }, { x: 2, y: (40 + 60 * Math.exp(-2 / 4)) / 20 }, { x: 2.5, y: (40 + 60 * Math.exp(-2.5 / 4)) / 20 }, { x: 3, y: (40 + 60 * Math.exp(-3 / 4)) / 20 }, { x: 3.5, y: (40 + 60 * Math.exp(-3.5 / 4)) / 20 }, { x: 4, y: (40 + 60 * Math.exp(-4 / 4)) / 20 }, { x: 4.5, y: (40 + 60 * Math.exp(-4.5 / 4)) / 20 }, { x: 5, y: (40 + 60 * Math.exp(-5 / 4)) / 20 }, { x: 5.5, y: (40 + 60 * Math.exp(-5.5 / 4)) / 20 }, { x: 6, y: (40 + 60 * Math.exp(-6 / 4)) / 20 }, { x: 6.5, y: (40 + 60 * Math.exp(-6.5 / 4)) / 20 }, { x: 7, y: (40 + 60 * Math.exp(-7 / 4)) / 20 }, { x: 7.5, y: (40 + 60 * Math.exp(-7.5 / 4)) / 20 }, { x: 8, y: (40 + 60 * Math.exp(-8 / 4)) / 20 }, { x: 8.5, y: (40 + 60 * Math.exp(-8.5 / 4)) / 20 }, { x: 9, y: (40 + 60 * Math.exp(-9 / 4)) / 20 }, { x: 9.5, y: (40 + 60 * Math.exp(-9.5 / 4)) / 20 }, { x: 10, y: (40 + 60 * Math.exp(-10 / 4)) / 20 }, { x: 10.5, y: (40 + 60 * Math.exp(-10.5 / 4)) / 20 }, { x: 11, y: (40 + 60 * Math.exp(-11 / 4)) / 20 }, { x: 11.5, y: (40 + 60 * Math.exp(-11.5 / 4)) / 20 }, { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 }] },
-      { id: "kept", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 12, y: 2 } },
-      { id: "compost-end", kind: "point", appearance: "construction", at: { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 } },
+      { id: "formula-a", kind: "function", appearance: "primary", formula: "10*x", domain: { min: 0, max: 50 } },
+      { id: "formula-b", kind: "function", appearance: "construction", formula: "8*x", domain: { min: 0, max: 50 } },
+      { id: "now-a", kind: "marker", x: "w", y: "10*w", appearance: "primary" },
+      { id: "now-b", kind: "marker", x: "w", y: "8*w", appearance: "construction" },
     ],
     labels: [
-      { key: "burn", objectId: "burn", at: { x: 0.003, y: 0.25 }, placement: "above-right" },
-      { key: "compost", objectId: "compost-end", at: { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 }, placement: "above-left" },
-      { key: "kept", objectId: "kept", at: { x: 12, y: 2 }, placement: "below-left" },
+      { key: "line-a", objectId: "formula-a", at: { x: 40, y: 400 }, placement: "above-left" },
+      { key: "line-b", objectId: "formula-b", at: { x: 40, y: 320 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "volume-a", formula: "10*w" },
+      { key: "volume-b", formula: "8*w" },
+      { key: "volume-saved", formula: "2*w" },
     ],
   }}
   labels={{
-    burn: <>dibakar: habis dalam menit</>,
-    compost: <>dikompos: berminggu-minggu</>,
-    kept: <>karbon tersimpan di kompos</>,
+    "wash-count": <>Jumlah cucian (<InlineMath math="w" />)</>,
+    "line-a": <>Formula A</>,
+    "line-b": <>Formula B</>,
+    "volume-a": <>Formula A (<InlineMath math="\text{mL}" />)</>,
+    "volume-b": <>Formula B (<InlineMath math="\text{mL}" />)</>,
+    "volume-saved": <>Hemat volume (<InlineMath math="\text{mL}" />)</>,
   }}
 />
 
-## Gas dari Tumpukan Kompos
+Jarak kedua garis melebar konstan di tiap cucian, membuktikan volume produk lebih hemat untuk kebersihan setara. Menyatakan Formula B lebih aman secara menyeluruh tetap membutuhkan data toksisitas bahan, biodegradabilitas, dan kebutuhan air bilas.
 
-Kompos yang mendapat cukup udara melepas terutama <InlineMath math="\mathrm{CO_2}" />. Kalau tumpukan terlalu padat dan kekurangan oksigen, mikroba juga menghasilkan metana <InlineMath math="\mathrm{CH_4}" />, amonia <InlineMath math="\mathrm{NH_3}" />, dan dinitrogen monoksida <InlineMath math="\mathrm{N_2O}" />. Metana dan <InlineMath math="\mathrm{N_2O}" /> adalah **gas rumah kaca yang kuat**, jadi membalik kompos secara rutin membantu mengurangi dampaknya.
+### Mengompos Bahan Organik dan Mengendalikan Gas Tumpukan
 
-<MoleculeShapeLab
-  title={<>Molekul Gas dari Kompos</>}
-  description={<>Putar setiap model dan bandingkan bentuk serta massa relatifnya.</>}
-  molecules={[
-    { id: "carbon-dioxide", name: "Karbon dioksida" },
-    { id: "methane", name: "Metana" },
-    { id: "ammonia", name: "Amonia" },
-    { id: "dinitrogen-monoxide", name: "Dinitrogen monoksida" },
-  ]}
+Daun kering, kulit buah, dan sisa makanan menyimpan karbon organik. Pembakaran terbuka mengoksidasi karbon dalam hitungan menit menjadi asap dan gas, sedangkan [pengomposan](https://www.epa.gov/sustainable-management-food/approaches-composting) yang baik adalah **pengolahan limbah biologis** dengan mikroba yang mengurai bahan perlahan saat kelembapan, oksigen, dan nutrien terjaga.
+
+| Cara menangani sisa organik | Yang terjadi | Klasifikasi yang cermat |
+| :-------------------------- | :----------- | :---------------------- |
+| Dibakar | Bahan organik teroksidasi cepat menjadi asap. | Menghasilkan asap dan polutan udara. |
+| Dibuang ke sampah campuran | Bahan tetap menjadi beban pembuangan. | Jalur buang berubah tetapi produk awal tetap sama. |
+| Dikomposkan dengan benar | Mikroorganisme mengurai bahan secara bertahap. | Pengolahan biologis menangani limbah organik yang sudah ada. |
+
+Dalam kurva kompos ilustratif, persentase karbon tumpukan yang masih bertahan setelah <InlineMath math="w" /> minggu mengikuti persamaan:
+
+<BlockMath math="C(w) = 40 + 60e^{-w/4}" />
+
+Geser slider minggu di bawah untuk membandingkan penguraian mikroba yang perlahan dengan hilangnya karbon seketika saat dibakar.
+
+<MathVisual
+  title={<>Karbon Tersimpan pada Kompos Dibanding Pembakaran Terbuka</>}
+  description={
+    <>
+      Persentase ilustratif karbon tumpukan daun yang tersisa selama dua belas
+      minggu pengomposan dibanding abu hasil pembakaran terbuka.
+    </>
+  }
+  footer={
+    <>
+      Pengomposan menahan karbon untuk tanah sedangkan pembakaran melepasnya
+      seketika.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 108 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 12, value: 4, step: 0.5, label: "compost-weeks" },
+    ],
+    objects: [
+      { id: "compost-curve", kind: "function", appearance: "construction", formula: "40 + 60*exp(-x/4)", domain: { min: 0, max: 12 } },
+      { id: "burn-curve", kind: "function", appearance: "warning", formula: "5", domain: { min: 0, max: 12 } },
+      { id: "soil-floor", kind: "function", appearance: "reference", formula: "40", domain: { min: 0, max: 12 } },
+      { id: "now-compost", kind: "marker", x: "w", y: "40 + 60*exp(-w/4)", appearance: "construction" },
+    ],
+    labels: [
+      { key: "compost-line", objectId: "compost-curve", at: { x: 8, y: 48.1 }, placement: "above-right" },
+      { key: "burn-line", objectId: "burn-curve", at: { x: 8, y: 5 }, placement: "above-right" },
+      { key: "floor-line", objectId: "soil-floor", at: { x: 2, y: 40 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "carbon-kept", formula: "40 + 60*exp(-w/4)" },
+      { key: "carbon-released", formula: "60 - 60*exp(-w/4)" },
+    ],
+  }}
   labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang</>,
-    formula: <>Rumus molekul</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    "compost-weeks": <>Waktu (<InlineMath math="\text{minggu}" />)</>,
+    "compost-line": <>Pengomposan</>,
+    "burn-line": <>Abu bakaran</>,
+    "floor-line": <>Batas karbon tanah</>,
+    "carbon-kept": <>Karbon tersimpan (<InlineMath math="\%" />)</>,
+    "carbon-released": <>Karbon dilepas (<InlineMath math="\%" />)</>,
   }}
 />
 
-## Bahan Alami Tetap Perlu Bukti
+Berbeda dari pembakaran terbuka yang langsung jatuh ke sekitar <InlineMath math="5\%" /> abu, pengomposan mendekati lantai <InlineMath math="40\%" /> karbon organik yang menyuburkan struktur tanah.
 
-Plastik berbasis hayati dari sisa pisang atau singkong terdengar menjanjikan karena memakai bahan baku terbarukan atau sisa. Namun, "berbasis hayati" **tidak otomatis berarti aman**, hemat energi, mudah terurai, atau dapat dikomposkan dalam kondisi setempat. Istilah [berbasis hayati, mudah terurai, dan dapat dikomposkan](https://www.epa.gov/trash-free-waters/frequently-asked-questions-about-plastic-recycling-and-composting) menunjukkan sifat yang berbeda. Karena itu, periksa seluruh daur hidup plastik, mulai dari bahan baku dan aditif, proses pembuatan, penggunaan, sampai akhir pemakaian.
+Aliran udara juga menentukan jenis gas yang lepas dari tumpukan. Kompos beraerasi baik melepas sebagian besar <InlineMath math="\mathrm{CO_2}" />, sedangkan tumpukan padat yang kurang oksigen memunculkan metana (<InlineMath math="\mathrm{CH_4}" />), amonia (<InlineMath math="\mathrm{NH_3}" />), dan dinitrogen monoksida (<InlineMath math="\mathrm{N_2O}" />). Bandingkan massa molekul relatif keempat gas kompos ini di bawah.
+
+<Chart
+  title={<>Massa Molekul Relatif Gas Tumpukan Kompos</>}
+  description={
+    <>
+      Massa molekul relatif karbon dioksida dari tumpukan cukup udara serta
+      metana, amonia, dan dinitrogen monoksida dari tumpukan kurang oksigen.
+    </>
+  }
+  footer={
+    <>
+      Membalik tumpukan mencegah mikroba anaerob membentuk metana dan dinitrogen
+      monoksida.
+    </>
+  }
+  bars="apart"
+  categories={["Karbon dioksida", "Metana", "Amonia", "Dinitrogen monoksida"]}
+  series={[
+    { label: "Massa molekul relatif", mark: "bar", values: [44, 16, 17, 44] },
+  ]}
+  valueLabel="Massa molekul relatif"
+  valueRange={{ min: 0, max: 50 }}
+/>
+
+Karbon dioksida dan dinitrogen monoksida berbagi massa molekul relatif sama sebesar <InlineMath math="44" />, tetapi dinitrogen monoksida serta metana yang ringan (<InlineMath math="M_r = 16" />) adalah **gas rumah kaca jauh lebih kuat** per molekul. Pembalikan rutin menjaga penguraian tetap aerob serta menekan emisi dan bau.
+
+## Memeriksa Bukti di Balik Klaim Bahan Alami
+
+Plastik berbasis hayati dari sisa pisang atau singkong terdengar menjanjikan karena memakai bahan baku terbarukan. Namun **berbasis hayati tidak otomatis berarti aman**, hemat energi, mudah terurai, atau dapat dikomposkan pada kondisi setempat. [Berbasis hayati, mudah terurai, dan dapat dikomposkan](https://www.epa.gov/trash-free-waters/frequently-asked-questions-about-plastic-recycling-and-composting) merujuk sifat berbeda yang wajib diuji terpisah sepanjang daur hidup.
 
 | Klaim | Yang harus dicek |
 | :---- | :--------------- |
-| Bahannya dari limbah organik. | Bahan tambahan apa yang dipakai bersama limbah itu? |
-| Produk disebut mudah terurai. | Pada suhu, kelembapan, oksigen, dan waktu seperti apa produk terurai, serta menjadi apa? |
-| Proses pembuatan produk terlihat sederhana. | Berapa banyak panas, air, atau listrik yang dipakai selama proses pembuatan? |
-| Produk menggantikan plastik biasa. | Apakah produk cukup kuat untuk fungsi yang sama? |
-| Produk disebut ramah lingkungan. | Bahaya apa yang benar-benar berkurang dibanding pilihan lama? |
+| Bahannya dari limbah organik. | Bahan tambahan dan pemlastis apa yang dicampur bersama limbah? |
+| Produk disebut mudah terurai. | Pada suhu, kelembapan, oksigen, dan waktu berapa produk terurai, dan menjadi apa? |
+| Prosesnya terlihat sederhana. | Berapa panas, air, atau listrik yang dipakai selama pengolahan? |
+| Produk menggantikan plastik biasa. | Apakah kekuatannya cukup untuk fungsi yang sama persis? |
+| Produk disebut ramah lingkungan. | Bahaya spesifik apa yang turun dibanding pilihan konvensional? |
 
-[Kimia hijau](https://www.epa.gov/greenchemistry/basics-green-chemistry) merancang produk dan proses kimia untuk mengurangi atau menghilangkan zat berbahaya sepanjang daur hidupnya. Kimia hijau berfokus pada pencegahan polusi sejak awal. Pengolahan tetap diperlukan jika polusi sudah terbentuk.
-
-Suatu kegiatan termasuk kimia hijau ketika mengubah produk atau proses kimia, mencegah bahaya atau limbah sejak sumber, mempertahankan fungsi yang dibutuhkan, dan membuktikan perbaikan melalui perbandingan yang adil. Tindakan lingkungan umum dapat mengurangi dampak lain, tetapi harus dinamai dengan tepat. Kata "alami" atau "hijau" tidak pernah menggantikan bukti.
+Suatu kegiatan masuk dalam [kimia hijau](https://www.epa.gov/greenchemistry/basics-green-chemistry) bila merancang ulang produk atau proses kimia, mencegah bahaya atau limbah sejak sumber, mempertahankan fungsi yang dibutuhkan, dan membuktikan perbaikan lewat perbandingan adil. Kata alami atau hijau tidak pernah menggantikan bukti.

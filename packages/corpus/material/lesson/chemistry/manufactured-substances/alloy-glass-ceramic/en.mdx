@@ -1,34 +1,36 @@
 export const metadata = {
-  title: "Manufactured Substances in Industry Notes for Form Four",
+  title: "Alloys Glass Ceramics and Industrial Materials",
   description:
-    "Form 4 Chemistry Chapter 8: explain why alloys are harder, choose glass and ceramics by their properties, and recognise composite materials, with practice.",
+    "Explain why alloys resist slip, compare glass expansion and ceramic lattices, follow sulfuric acid synthesis, and evaluate composite materials.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Manufactured Substances in Industry",
 };
 
-## Manufactured Substances and Why Their Properties Change
+## How Particle Arrangement Sets Material Properties
 
-A **manufactured substance** is a material that industry makes to get properties its raw materials don't have. The four main groups are **alloys**, **glass**, **ceramics** and **composite materials**. In every group, a material's properties depend on **how its particles are arranged**. Adding other atoms to a metal makes it harder, adding boron oxide to glass lets it survive sudden heating, and strong ionic or covalent bonds let ceramics withstand high temperatures. In these notes, you slide layers of metal atoms, heat three kinds of glass, and rotate a ceramic lattice.
+A **manufactured substance** is engineered in industry to achieve properties that raw materials lack. Four major classes stand out: **alloys**, **glass**, **ceramics**, and **composite materials**, supported by bulk industrial chemicals such as sulfuric acid. Across every class, macroscopic behaviour tracks back to **how particles pack and bond**. Inserting foreign atoms hardens metals, adding boron oxide protects glass against sudden temperature swings, and rigid three-dimensional bonding allows ceramics to survive furnace heat.
 
-These materials are all around you. A clay plate is a ceramic, a window is soda-lime glass, a spoon is stainless steel, and a building's columns are reinforced concrete.
+> Every engineered property traces back to particle size, bond strength, and layer arrangement.
 
-## Alloys Are Harder than Pure Metals
+You encounter these materials daily in clay cookware (ceramic), soda-lime windows (glass), stainless steel cutlery (alloy), and reinforced concrete bridge piers (composite).
 
-An **alloy** is a mixture of two or more elements in which the main element is a metal. In a pure metal, all the atoms are the same size and sit in orderly layers. When a force is applied, the layers of atoms **slide** over each other easily. That's why pure metals are soft, ductile and malleable.
+## Alloys Resist Layer Slip
 
-In an alloy, foreign atoms of a different size **disrupt that orderly arrangement**. The layers of atoms can't slide easily, so the alloy is harder and stronger. Move slider <InlineMath math="s" /> to slide the top layer. Then make the foreign atom bigger with slider <InlineMath math="f" /> and watch the top layer get pushed up as it passes over.
+An **alloy** is a mixture of two or more elements in which the primary element is a metal. In a pure metal, identical atoms sit in orderly planes that **slide past one another** smoothly under force, making pure metals soft, ductile, and malleable.
+
+In an alloy, foreign atoms of a different size **disrupt those regular planes**. Do not claim that alloys are harder simply because the foreign atoms are stronger. Hardness rises because mismatched atom sizes lock the planes against sliding. Slide <InlineMath math="s" /> and enlarge the foreign atom <InlineMath math="f" /> below to watch the upper layer lift over the obstacle.
 
 <MathVisual
   title={<>Layers of Atoms in a Pure Metal and an Alloy</>}
   description={
     <>
-      The circles are atoms. The middle atom of the bottom layer is a foreign
-      atom with radius <InlineMath math="f" />. At{" "}
-      <InlineMath math="f = 0.5" />, every atom is the same size, as in a pure
-      metal.
+      Circles represent metal atoms, with a foreign atom of radius{" "}
+      <InlineMath math="f" /> in the bottom row. At{" "}
+      <InlineMath math="f = 0.5" />, all atoms match like a pure metal.
     </>
   }
+  footer={<>A larger or smaller foreign atom forces neighbouring layers to climb before sliding.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: -0.75, max: 3.75 } },
@@ -59,17 +61,67 @@ In an alloy, foreign atoms of a different size **disrupt that orderly arrangemen
     ],
   }}
   labels={{
-    s: <>Shift of the top layer <InlineMath math="s" /></>,
-    f: <>Radius of the foreign atom <InlineMath math="f" /></>,
-    lift: <>Height the top layer has to climb</>,
+    s: <>Top layer shift <InlineMath math="s" /></>,
+    f: <>Foreign atom radius <InlineMath math="f" /></>,
+    lift: <>Top layer lift height</>,
   }}
 />
 
-At <InlineMath math="f = 0.5" />, the top layer slides flat with nothing in the way. As <InlineMath math="f" /> grows, the atoms above the foreign atom get lifted. It takes a bigger force to push the layer past that obstacle, and that's what **an alloy being harder** means.
+Now compare pure iron against steel, bronze, and brass in three dimensions by applying shear force across the crystal slip planes below.
+
+<AlloySlipPlaneLab
+  title={<>Three Dimensional Slip Planes in Pure Metals and Alloys</>}
+  description={
+    <>
+      Pick pure iron or an alloy and increase shear force to see how interstitial
+      carbon or substitutional tin and zinc atoms pin atomic planes.
+    </>
+  }
+  footer={<>Mismatched solute atoms jam slip planes and raise resistance to deformation.</>}
+  metals={["pureIron", "steel", "bronze", "brass"]}
+  shearForce={{ min: 0, max: 100, value: 45 }}
+  labels={{
+    metal: "Select metal or alloy",
+    shearForce: "Applied shear force (%)",
+    structureNote: <>Lattice arrangement</>,
+    hardnessNote: <>Mechanical hardness</>,
+    view: "Three dimensional alloy slip plane model",
+    metals: {
+      pureIron: {
+        name: "Pure iron",
+        structureNote: <>Uniform <InlineMath math="\mathrm{Fe}" /> atoms aligned in smooth slip planes.</>,
+        hardnessNote: <>Layers glide under low shear force, leaving the metal soft.</>,
+      },
+      steel: {
+        name: "Carbon steel",
+        structureNote: <>Small carbon atoms sit in gaps between iron layers.</>,
+        hardnessNote: <>Distorted iron planes resist sliding and boost tensile strength.</>,
+      },
+      bronze: {
+        name: "Bronze",
+        structureNote: <>Larger tin atoms replace copper atoms in the host lattice.</>,
+        hardnessNote: <>Locked layers make bronze hard and wear-resistant.</>,
+      },
+      brass: {
+        name: "Brass",
+        structureNote: <>Zinc atoms of different radius disrupt copper rows.</>,
+        hardnessNote: <>Harder than pure copper while remaining easy to machine.</>,
+      },
+    },
+    parts: {
+      hostAtom: "Host metal atom",
+      foreignAtom: "Foreign alloying atom",
+      slipPlane: "Atomic slip plane",
+      shearArrow: "Shear force direction",
+    },
+  }}
+/>
+
+A complete explanation of alloy hardness always connects three facts: **atoms of different sizes**, a **disrupted crystal arrangement**, and **layers that cannot slide easily**.
 
 ### Composition of Common Alloys
 
-Each alloy is made for a purpose. This chart compares the percentage of the main metal with the percentage of other elements in the alloys you'll be asked about most.
+Industrial alloys tune **strength, mass, and corrosion resistance** by adjusting the balance between the main metal and added elements.
 
 <Chart
   title={<>Composition of Six Alloys</>}
@@ -93,55 +145,56 @@ Each alloy is made for a purpose. This chart compares the percentage of the main
       <InlineMath math="96\%" /> tin with copper and antimony.
     </>
   }
+  footer={<>Small additions of carbon, tin, or chromium dramatically reshape metal performance.</>}
 />
+
+Match each alloy to its improved property and industrial role:
 
 | Alloy | Improved property | Use |
 | :--- | :--- | :--- |
 | Bronze | Hard, resists corrosion, shiny | Medals, monuments |
-| Brass | Hard, doesn't rust | Musical instruments, keys |
-| Stainless steel | Doesn't rust, strong | Spoons, surgical instruments |
+| Brass | Hard, resists rust | Musical instruments, keys |
+| Stainless steel | Rust-free, strong | Cutlery, surgical tools |
 | Duralumin | Light and strong | Aircraft bodies |
 | Pewter | Shiny, resists corrosion | Souvenirs |
 
-Now work out **the mass of each element in an alloy**. A bronze medal has a mass of <InlineMath math="500\text{ g}" />. Find the mass of copper and tin in it.
+Find the mass of copper and tin in a <InlineMath math="500\text{ g}" /> bronze medal:
 
 <MathContainer>
 <BlockMath math="m(\mathrm{Cu}) = \frac{90}{100} \times 500 = 450\text{ g}" />
 <BlockMath math="m(\mathrm{Sn}) = \frac{10}{100} \times 500 = 50\text{ g}" />
 </MathContainer>
 
-Check: <InlineMath math="450 + 50 = 500\text{ g}" />, the mass of the medal.
+Check the total: <InlineMath math="450 + 50 = 500\text{ g}" />.
 
-### Rust and Stainless Steel
+### Rust Prevention in Stainless Steel
 
-Ordinary steel rusts easily because iron reacts with oxygen and water. In stainless steel, chromium forms a thin layer of chromium(III) oxide on the surface. That layer **shields the iron** underneath from oxygen and water, so stainless steel doesn't rust even when it's washed every day.
-
-This example shows that the extra elements in an alloy do more than add hardness. They can also add corrosion resistance, cut the mass, or change the colour of the metal.
+Ordinary steel rusts rapidly when iron meets oxygen and water. In **stainless steel**, chromium reacts with air to form an invisible, tightly adhering film of chromium(III) oxide that **shields the iron beneath** from oxygen and moisture. Alloying therefore upgrades corrosion resistance, density, and appearance alongside mechanical hardness.
 
 ## Types of Glass and Thermal Expansion
 
-The main component of every glass is **silica**, <InlineMath math="\mathrm{SiO_2}" />. Other substances are added to change its properties:
+Every commercial glass starts with **silica**, <InlineMath math="\mathrm{SiO_2}" />, modified with metal or non-metal oxides to tune melting point, clarity, and thermal stability:
 
 | Type of glass | Composition | Main property | Use |
 | :--- | :--- | :--- | :--- |
-| Fused silica glass | Silica only | Withstands very high temperatures, transparent | Lenses, optical fibres |
-| Soda-lime glass | Silica, sodium carbonate, calcium carbonate | Cheap, easy to shape, cracks if heated suddenly | Windows, bottles |
-| Borosilicate glass | Silica, boron oxide and a little sodium oxide and aluminium oxide | Resists thermal shock | Lab apparatus, cookware |
-| Lead crystal glass | Silica, lead(II) oxide and sodium oxide | Sparkles, high refractive index | Decorative items |
+| Fused silica glass | Pure silica | Withstands extreme heat, transparent | Lenses, optical fibres |
+| Soda-lime glass | Silica, sodium carbonate, calcium carbonate | Low cost, easy to mold, cracks on sudden heating | Windows, bottles |
+| Borosilicate glass | Silica, boron oxide, small amounts of sodium and aluminium oxides | Resists thermal shock | Lab glassware, cookware |
+| Lead crystal glass | Silica, lead(II) oxide, sodium oxide | High refractive index, sparkles | Decorative glassware |
 
-Glass cracks when it's heated suddenly because the hot part expands faster than the cold part. Glass that **expands only a little** resists thermal shock better. The extension of a glass rod is <InlineMath math="\Delta L = \alpha L \Delta T" />, where <InlineMath math="\alpha" /> is the linear expansion coefficient. Move the temperature change slider and compare how much a <InlineMath math="10\text{ cm}" /> rod of each glass grows.
+Never heat ordinary soda-lime glass directly over a flame. Sudden heating cracks glass whenever the hot region expands much faster than the cooler region beside it. Using <InlineMath math="\Delta L = \alpha L \Delta T" />, move slider <InlineMath math="d" /> below to compare the expansion of three <InlineMath math="10\text{ cm}" /> glass rods.
 
 <MathVisual
   title={<>Extension of a Glass Rod <InlineMath math="10\text{ cm}" /> Long</>}
   description={
     <>
-      Each line shows the extension in micrometres against the temperature
-      change in kelvin, using <InlineMath math="\alpha" /> for soda-lime glass{" "}
-      <InlineMath math="9 \times 10^{-6}\text{ K}^{-1}" />, borosilicate glass{" "}
-      <InlineMath math="3.25 \times 10^{-6}\text{ K}^{-1}" /> and fused silica
-      glass <InlineMath math="0.55 \times 10^{-6}\text{ K}^{-1}" />.
+      Extension in micrometres against temperature rise in kelvin for soda-lime
+      glass (<InlineMath math="9 \times 10^{-6}\text{ K}^{-1}" />), borosilicate
+      glass (<InlineMath math="3.25 \times 10^{-6}\text{ K}^{-1}" />), and fused
+      silica (<InlineMath math="0.55 \times 10^{-6}\text{ K}^{-1}" />).
     </>
   }
+  footer={<>Lower thermal expansion lets borosilicate and fused silica survive rapid heating.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 100 } },
@@ -167,53 +220,79 @@ Glass cracks when it's heated suddenly because the hot part expands faster than 
     ],
   }}
   labels={{
-    d: <>Temperature change <InlineMath math="d" /> in K</>,
+    d: <>Temperature rise <InlineMath math="d" /> (<InlineMath math="\text{K}" />)</>,
     "soda-lime": <>Soda-lime</>,
     borosilicate: <>Borosilicate</>,
     silica: <>Fused silica</>,
-    "soda-reading": <>Soda-lime in <InlineMath math="\mu\text{m}" /></>,
-    "boro-reading": <>Borosilicate in <InlineMath math="\mu\text{m}" /></>,
-    "silica-reading": <>Fused silica in <InlineMath math="\mu\text{m}" /></>,
+    "soda-reading": <>Soda-lime (<InlineMath math="\mu\text{m}" />)</>,
+    "boro-reading": <>Borosilicate (<InlineMath math="\mu\text{m}" />)</>,
+    "silica-reading": <>Fused silica (<InlineMath math="\mu\text{m}" />)</>,
   }}
 />
 
-Now compare **two kinds of glass**. A <InlineMath math="10\text{ cm}" /> rod is heated by <InlineMath math="80\text{ K}" />. Compare the extension of soda-lime glass with borosilicate glass.
+When a <InlineMath math="10\text{ cm}" /> rod warms by <InlineMath math="80\text{ K}" />, compare soda-lime and borosilicate glass:
 
 <MathContainer>
 <BlockMath math="\Delta L_{\text{soda}} = (9 \times 10^{-6})(100\text{ mm})(80) = 0.072\text{ mm} = 72\ \mu\text{m}" />
 <BlockMath math="\Delta L_{\text{boro}} = (3.25 \times 10^{-6})(100\text{ mm})(80) = 0.026\text{ mm} = 26\ \mu\text{m}" />
 </MathContainer>
 
-Soda-lime glass expands about <InlineMath math="72 \div 26 \approx 2.8" /> times as much. The stress between the hot and cold parts is bigger, so soda-lime glass cracks more easily. Check it with the model at <InlineMath math="d = 80" />.
+Soda-lime glass expands roughly <InlineMath math="2.8" /> times as much, building sharper internal stress that triggers cracks.
 
-## Ceramics Withstand High Temperatures
+## Ceramics and Silicate Networks
 
-A **ceramic** is an inorganic solid made by heating non-metallic materials, such as clay, to very high temperatures. Traditional ceramics such as pottery and bricks are made from clay. Advanced ceramics such as aluminium oxide and silicon carbide are made from pure compounds for special uses, such as engine parts and electrical insulators.
+A **ceramic** is an inorganic non-metallic solid shaped and fired at high temperatures. Traditional ceramics such as bricks and pottery come from clay, whereas advanced ceramics such as aluminium oxide, magnesium oxide, and silicon carbide use pure compounds for engine parts, furnace linings, and electrical insulators.
 
-Most ceramics are made of ions or atoms bonded strongly in a giant structure. Rotate the lattice of magnesium oxide, an advanced ceramic used to line furnaces. Each <InlineMath math="\mathrm{Mg^{2+}}" /> ion sits among six <InlineMath math="\mathrm{O^{2-}}" /> ions and is held by very strong ionic bonds between doubly charged ions.
+Compare the disordered silicate network of glass with layered clay and tightly bonded crystalline ceramic grains below.
 
-<IonLatticeLab
-  title={<>The Magnesium Oxide Lattice in a Ceramic</>}
+<GlassCeramicLatticeLab
+  title={<>Atomic Networks of Glass and Ceramics</>}
   description={
     <>
-      Rotate the crystal and notice that each ion sits among six ions of
-      opposite charge. Bonds this strong have to break before the ceramic can
-      melt.
+      Switch between soda-lime glass, borosilicate glass, traditional clay
+      ceramic, and advanced crystalline ceramic to compare structure and
+      thermal endurance.
     </>
   }
-  crystals={["magnesium-oxide"]}
+  footer={<>Boron links tighten glass against shock, while rigid ceramic grains resist extreme heat.</>}
+  materials={["sodaLimeGlass", "borosilicateGlass", "traditionalCeramic", "advancedCeramic"]}
   labels={{
-    cells: "Unit cells per edge",
-    choose: "Pick a crystal",
-    count: <>Number of ions</>,
-    formula: <>Formula</>,
-    ions: <>Ions and their radii</>,
-    lattice: <>Unit cell edge</>,
-    view: "Magnesium oxide crystal lattice",
+    material: "Select a glass or ceramic",
+    propertyNote: <>Key physical property</>,
+    useNote: <>Industrial application</>,
+    view: "Glass and ceramic microstructure comparison",
+    materials: {
+      sodaLimeGlass: {
+        name: "Soda-lime glass",
+        propertyNote: <>Disordered <InlineMath math="\mathrm{SiO_2}" /> network with high thermal expansion.</>,
+        useNote: <>Window panes, jars, and beverage bottles.</>,
+      },
+      borosilicateGlass: {
+        name: "Borosilicate glass",
+        propertyNote: <>Boron nodes strengthen the silica network against thermal shock.</>,
+        useNote: <>Laboratory beakers, flasks, and oven cookware.</>,
+      },
+      traditionalCeramic: {
+        name: "Traditional ceramic",
+        propertyNote: <>Fired clay silicate layers that insulate heat and resist corrosion.</>,
+        useNote: <>Bricks, roof tiles, and pottery tableware.</>,
+      },
+      advancedCeramic: {
+        name: "Advanced ceramic",
+        propertyNote: <>Dense ionic or covalent crystal grains with ultra-high melting point.</>,
+        useNote: <>Furnace linings, spark plug insulators, and turbine parts.</>,
+      },
+    },
+    parts: {
+      silicaTetrahedron: "Silica tetrahedron",
+      boronNode: "Boron oxide node",
+      clayLayer: "Aluminosilicate clay layer",
+      crystalGrain: "Advanced crystal grain",
+    },
   }}
 />
 
-Those strong bonds give ceramics very high melting points. Compare them with common metals:
+Strong ionic and covalent bonds give ceramics far higher melting points than everyday metals.
 
 <Chart
   title={<>Melting Points of Ceramics and Metals</>}
@@ -232,64 +311,105 @@ Those strong bonds give ceramics very high melting points. Compare them with com
       <InlineMath math="2{,}852^\circ\text{C}" />.
     </>
   }
+  footer={<>Ceramic oxides melt hundreds of degrees above iron, copper, and aluminium.</>}
 />
 
-Ceramics are also hard, resist corrosion and insulate heat and electricity well. Their weakness is that they're **brittle**: a ceramic shatters when struck, because layers of ions can't slide the way layers of metal atoms do.
+Do not confuse hardness with impact toughness. Ceramics are hard, heat-resistant, and chemically inert, yet **brittle**: a sharp blow shatters them because rigid ionic or covalent networks cannot slip like metallic planes.
+
+## Sulfuric Acid Manufacture by the Contact Process
+
+Manufacturing fertilisers, detergents, batteries, and metal treatments depends on industrial **sulfuric acid** produced through the **Contact process**. Follow all four stages in the plant tower below to track how sulfur dioxide is oxidised over vanadium(V) oxide and safely converted through oleum.
+
+<ContactSulfuricTowerLab
+  title={<>Contact Process Sulfuric Acid Plant</>}
+  description={
+    <>
+      Step through sulfur roasting, catalytic oxidation over vanadium(V) oxide,
+      oleum absorption, and controlled dilution to sulfuric acid.
+    </>
+  }
+  footer={<>Absorbing sulfur trioxide into concentrated acid avoids hazardous acid mist.</>}
+  stages={["roasting", "catalyticOxidation", "oleumAbsorption", "dilution"]}
+  labels={{
+    stage: "Select a Contact process stage",
+    equation: <>Stage equation</>,
+    conditions: <>Operating conditions</>,
+    view: "Contact process converter and absorption tower",
+    stages: {
+      roasting: {
+        name: "Sulfur combustion",
+        equation: <><InlineMath math="\mathrm{S(s)} + \mathrm{O_2(g)} \rightarrow \mathrm{SO_2(g)}" /></>,
+        conditions: <>Dry air burns molten sulfur in a furnace burner.</>,
+      },
+      catalyticOxidation: {
+        name: "Catalytic oxidation",
+        equation: <><InlineMath math="2\mathrm{SO_2(g)} + \mathrm{O_2(g)} \rightleftharpoons 2\mathrm{SO_3(g)}" /></>,
+        conditions: <><InlineMath math="450^\circ\text{C}" />, <InlineMath math="1\text{ atm}" />, vanadium(V) oxide catalyst.</>,
+      },
+      oleumAbsorption: {
+        name: "Oleum formation",
+        equation: <><InlineMath math="\mathrm{SO_3(g)} + \mathrm{H_2SO_4(l)} \rightarrow \mathrm{H_2S_2O_7(l)}" /></>,
+        conditions: <>Dissolve <InlineMath math="\mathrm{SO_3}" /> in concentrated acid to prevent acid mist.</>,
+      },
+      dilution: {
+        name: "Controlled dilution",
+        equation: <><InlineMath math="\mathrm{H_2S_2O_7(l)} + \mathrm{H_2O(l)} \rightarrow 2\mathrm{H_2SO_4(l)}" /></>,
+        conditions: <>Add measured water safely to yield concentrated sulfuric acid.</>,
+      },
+    },
+    parts: {
+      burner: "Sulfur burner",
+      vanadiumBed: "Vanadium(V) oxide bed",
+      absorptionTower: "Absorption tower",
+      oleumTank: "Oleum holding tank",
+      acidPipe: "Sulfuric acid outlet",
+    },
+  }}
+/>
+
+Sulfur trioxide is never bubbled directly into water because the reaction is intensely exothermic and creates dense, corrosive sulfuric acid mist. Absorbing <InlineMath math="\mathrm{SO_3}" /> into concentrated sulfuric acid forms liquid **oleum** (<InlineMath math="\mathrm{H_2S_2O_7}" />), which dilutes smoothly and safely.
 
 ## Composite Materials Combine Strengths
 
-A **composite material** is made from two or more materials with different properties. The new material has better properties than each of its components. One component is usually a **matrix** that holds the second component, the reinforcement.
+A **composite material** combines two or more distinct substances so the finished product outperforms each ingredient alone. A continuous **matrix** surrounds and binds a **reinforcement**. Do not call reinforced concrete an alloy. An alloy mixes elements at the atomic level with a metal as the main element, whereas reinforced concrete pairs distinct macroscopic steel rods inside a concrete matrix.
 
-| Composite material | Components | New property |
+| Composite material | Components | Combined advantage |
 | :--- | :--- | :--- |
-| Reinforced concrete | Concrete and steel rods | Withstands compression and tension |
-| Fibreglass | Glass fibres and polyester plastic | Light, strong and doesn't rust |
-| Optical fibre | A glass core and a glass cladding of lower refractive index | Carries light far with little loss |
-| Photochromic glass | Glass and silver chloride | Darkens in bright light |
-| Superconductor | A metal oxide ceramic | Zero resistance below a certain temperature |
+| Reinforced concrete | Concrete and steel rods | Resists both compression and tension |
+| Fibreglass | Glass fibres and polyester plastic | Light, strong, rust-free |
+| Optical fibre | Glass core and lower-index glass cladding | Guides light over long distances with low loss |
+| Photochromic glass | Glass and silver chloride | Darkens reversibly in bright sunlight |
+| Superconductor | Metal oxide ceramic | Zero electrical resistance below critical temperature |
 
-Concrete on its own is strong when squeezed but cracks easily when stretched. Steel is strong when stretched. When steel rods are set into concrete, the composite withstands **both** kinds of force, so reinforced concrete is used for bridges and building columns.
+Concrete resists crushing under compression yet cracks under tension, whereas steel resists stretching under tension. Embedding steel rods inside concrete produces bridge decks and columns that withstand **both forces simultaneously**.
 
-## Common Mistakes about Manufactured Substances
+## Choosing Materials and Checking Calculations
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Alloys are harder because the foreign atoms are stronger. | The hardness comes from the disrupted arrangement, not from stronger foreign atoms. | Explain it with layers of atoms that can't slide easily. |
-| Any glass can be heated over a burner. | Soda-lime glass expands a lot and cracks easily. | Compare the linear expansion coefficients. |
-| Ceramics are strong, so they don't break. | Ceramics are hard but brittle, and they shatter when struck. | Separate hardness from brittleness. |
-| Reinforced concrete is an alloy. | Reinforced concrete is a composite, because not all its components are metals. | An alloy has a metal as its main element and mixes at the level of atoms. |
+Work through these four exercises by **linking each macroscopic property to particle arrangement**, then compare your steps against the worked answers directly below.
 
-The first mistake is the most common one in structured questions. A complete answer mentions **atoms of different sizes**, **a disrupted arrangement** and **layers that can't slide easily**.
-
-## Practice on Manufactured Substances
-
-These questions move from a short calculation to choosing materials. **Link each property to the arrangement of particles** in your answer.
-
-1. An aircraft frame contains <InlineMath math="2.0\text{ kg}" /> of duralumin with <InlineMath math="93\%" /> aluminium. Find the mass of aluminium in the frame.
+1. An aircraft frame contains <InlineMath math="2.0\text{ kg}" /> of duralumin containing <InlineMath math="93\%" /> aluminium. Find the mass of aluminium in the frame.
 
 2. Explain why bronze is harder than pure copper.
 
-3. A fused silica glass rod <InlineMath math="10\text{ cm}" /> long is heated by <InlineMath math="200\text{ K}" />. Find its extension and compare it with soda-lime glass.
+3. A fused silica glass rod <InlineMath math="10\text{ cm}" /> long is heated by <InlineMath math="200\text{ K}" />. Calculate its extension and compare it with soda-lime glass.
 
-4. Choose the best material for a furnace lining, an aircraft body and a beaker heated directly over a burner. Give a reason for each choice.
+4. Choose the best material for a furnace lining, an aircraft body, and a beaker heated directly over a burner, giving a reason for each choice.
 
-### Solutions
-
-**Solution 1**: The mass of aluminium is <InlineMath math="93\%" /> of the mass of duralumin:
+**Answer 1**: Multiply the total duralumin mass by the aluminium fraction:
 
 <BlockMath math="m(\mathrm{Al}) = \frac{93}{100} \times 2.0 = 1.86\text{ kg}" />
 
-Check: the remaining <InlineMath math="2.0 - 1.86 = 0.14\text{ kg}" /> is <InlineMath math="7\%" />, which is the copper, magnesium and manganese.
+The remaining <InlineMath math="0.14\text{ kg}" /> (<InlineMath math="7\%" />) consists of copper, magnesium, and manganese.
 
-**Solution 2**: In pure copper, all the atoms are the same size and sit in orderly layers that slide easily. In bronze, tin atoms of **a different size** disrupt that arrangement. The layers of copper atoms can't slide easily, so bronze is harder.
+**Answer 2**: In pure copper, identical atoms form regular layers that slide readily under force. In bronze, larger tin atoms of **different size** disrupt that orderly arrangement, stopping copper layers from sliding easily and making bronze harder.
 
-**Solution 3**: Use <InlineMath math="\Delta L = \alpha L \Delta T" /> with <InlineMath math="L = 100\text{ mm}" />:
+**Answer 3**: Apply <InlineMath math="\Delta L = \alpha L \Delta T" /> with <InlineMath math="L = 100\text{ mm}" />:
 
 <MathContainer>
 <BlockMath math="\Delta L_{\text{silica}} = (0.55 \times 10^{-6})(100)(200) = 0.011\text{ mm} = 11\ \mu\text{m}" />
 <BlockMath math="\Delta L_{\text{soda}} = (9 \times 10^{-6})(100)(200) = 0.18\text{ mm} = 180\ \mu\text{m}" />
 </MathContainer>
 
-Soda-lime glass expands about <InlineMath math="16" /> times as much, so fused silica glass resists thermal shock far better.
+Soda-lime glass expands roughly <InlineMath math="16" /> times as much, so fused silica survives sudden heating far better.
 
-**Solution 4**: A furnace lining needs a **ceramic** such as magnesium oxide, because its melting point is <InlineMath math="2{,}852^\circ\text{C}" /> and ceramics insulate heat. An aircraft body needs **duralumin**, because this alloy is light but strong. A beaker heated directly needs **borosilicate glass**, because its expansion coefficient is small and it resists thermal shock.
+**Answer 4**: A furnace lining needs an advanced **ceramic** such as magnesium oxide because it melts at <InlineMath math="2{,}852^\circ\text{C}" /> and insulates heat. An aircraft body needs **duralumin**, which combines low density with high strength. A beaker heated directly over a flame needs **borosilicate glass** because its small expansion coefficient resists thermal shock.

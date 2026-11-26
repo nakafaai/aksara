@@ -1,15 +1,15 @@
 export const metadata = {
   title: "Nota Polimer Tingkatan Lima",
   description:
-    "Nota Kimia Tingkatan 5 Bab 4: bezakan pempolimeran penambahan dan kondensasi, terangkan penggumpalan lateks dan pemvulkanan getah, serta kira bilangan monomer.",
+    "Bezakan pempolimeran penambahan dan kondensasi, hitung bilangan unit ulangan serta panjang rantai, dan terangkan penggumpalan lateks serta pemvulkanan getah.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Polimer",
 };
 
-## Polimer Dibina daripada Monomer
+## Pempolimeran Penambahan Sepanjang Rantai Karbon
 
-**Polimer** ialah molekul besar yang terbentuk apabila banyak molekul kecil, **monomer**, bergabung dalam rantai panjang. Proses itu dipanggil **pempolimeran**. Jisim molekul relatif polimer ialah <InlineMath math="n" /> kali jisim unit ulangan, dengan <InlineMath math="n" /> bilangan unit ulangan. Dalam nota ini kamu putar model monomer, kira bilangan monomer dalam rantai, bandingkan pempolimeran penambahan dengan kondensasi, dan lihat cara getah asli dikuatkan.
+Perhatikan sekeliling bilik: penebat kabel lentur, paip air, dan bekas makanan hampir semuanya dibina daripada rantai molekul gergasi. **Polimer** ialah molekul besar yang terbentuk apabila ribuan molekul kecil, **monomer**, bersambung hujung ke hujung melalui **pempolimeran**. Sesetengah polimer wujud secara semula jadi dalam organisma hidup, manakala polimer sintetik dihasilkan daripada petroleum atau sumber tumbuhan bagi memenuhi keperluan kekuatan dan ketahanan haba.
 
 | Polimer | Monomer | Jenis |
 | :--- | :--- | :--- |
@@ -21,40 +21,75 @@ export const metadata = {
 | Polipropena | Propena | Sintetik |
 | Nilon | Asid heksanadioik dan heksana-1,6-diamina | Sintetik |
 
-Monomer bagi **pempolimeran penambahan** mesti mempunyai ikatan ganda dua <InlineMath math="\mathrm{C{=}C}" />. Putar tiga monomer di bawah dan bandingkan dengan etana yang tidak mempunyai ikatan ganda dua.
+### Membuka Ikatan Ganda Dua untuk Membina Rantai
 
-<MoleculeShapeLab
-  title={<>Monomer bagi Pempolimeran Penambahan</>}
-  description={
-    <>
-      Etena, propena dan kloroetena mempunyai ikatan ganda dua, jadi boleh
-      bergabung menjadi polimer. Etana hanya mempunyai ikatan tunggal.
-    </>
-  }
-  molecules={[
-    { id: "ethene", name: "etena" },
-    { id: "propene", name: "propena" },
-    { id: "chloroethene", name: "kloroetena" },
-    { id: "ethane", name: "etana" },
-  ]}
-  labels={{
-    atoms: <>Atom</>,
-    choose: "Pilih molekul",
-    fill: <>Model pengisian ruang</>,
-    formula: <>Formula</>,
-    mass: <>Jisim molekul relatif</>,
-    shape: <>Sudut ikatan</>,
-    view: "Molekul monomer",
-  }}
-/>
-
-## Pempolimeran Penambahan
-
-Dalam pempolimeran penambahan, ikatan ganda dua setiap monomer terbuka dan monomer bergabung **tanpa kehilangan sebarang atom**. Etena menjadi polietena:
+Syarat bagi **pempolimeran penambahan** ialah setiap monomer mesti mempunyai ikatan ganda dua karbon, <InlineMath math="\mathrm{C{=}C}" />. Molekul tepu seperti etana hanya memiliki ikatan tunggal, jadi tidak dapat membuka ikatan untuk menyambung rantai. Semasa pempolimeran, satu ikatan daripada setiap ikatan ganda dua terbuka lalu menggabungkan monomer bersebelahan **tanpa kehilangan sebarang atom**:
 
 <BlockMath math="n\,\mathrm{CH_2{=}CH_2} \rightarrow \mathrm{-[CH_2{-}CH_2]_n-}" />
 
-Oleh sebab tiada atom hilang, jisim polimer sama dengan jumlah jisim monomer. Ubah bilangan unit ulangan di bawah dan bandingkan jisim tiga polimer.
+Kesilapan lazim ialah mengekalkan ikatan ganda dua dalam unit ulangan sebagai <InlineMath math="\mathrm{-CH_2{=}CH_2-}" />, sedangkan bentuk sebenar ialah <InlineMath math="\mathrm{-CH_2{-}CH_2-}" />. Sentiasa pastikan setiap atom karbon pada rantai utama mempunyai empat ikatan kovalen. Bagi propena, <InlineMath math="\mathrm{CH_2{=}CHCH_3}" />, kumpulan metil kekal sebagai cabang sisi pada rantai tunggal karbon:
+
+<BlockMath math="\mathrm{-[CH_2{-}CH(CH_3)]_n-}" />
+
+Tukar antara empat monomer alkena dan laraskan panjang rantai di bawah untuk melihat bagaimana ikatan ganda dua terbuka menjadi rantai tunggal dengan kumpulan sisi tersendiri.
+
+<AdditionPolymerChainLab
+  title={<>Pertumbuhan Rantai dalam Pempolimeran Penambahan</>}
+  description={
+    <>
+      Pilih etena, propena, kloroetena, atau tetrafluoroetena dan laraskan
+      bilangan unit ulangan untuk meneliti rantai karbon serta kumpulan sisinya.
+    </>
+  }
+  footer={
+    <>
+      Pembukaan ikatan ganda dua menyambung monomer tanpa sebarang atom hilang.
+    </>
+  }
+  monomers={["ethene", "propene", "chloroethene", "tetrafluoroethene"]}
+  chainLength={{ min: 2, max: 10, value: 4 }}
+  labels={{
+    chainLength: "Bilangan unit ulangan (n)",
+    monomer: "Monomer alkena",
+    monomers: {
+      ethene: {
+        name: "Etena",
+        polymerName: <>Polietena</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CH_2{-}CH_2]-}" />,
+      },
+      propene: {
+        name: "Propena",
+        polymerName: <>Polipropena</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CH_2{-}CH(CH_3)]-}" />,
+      },
+      chloroethene: {
+        name: "Kloroetena",
+        polymerName: <>Polivinil klorida, PVC</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CH_2{-}CHCl]-}" />,
+      },
+      tetrafluoroethene: {
+        name: "Tetrafluoroetena",
+        polymerName: <>Politetrafluoroetena, PTFE</>,
+        repeatUnit: <InlineMath math="\mathrm{-[CF_2{-}CF_2]-}" />,
+      },
+    },
+    parts: {
+      monomerUnit: "Unit monomer",
+      doubleBond: "Ikatan ganda dua C=C",
+      singleBackbone: "Rantai tunggal C-C",
+      sideGroup: "Kumpulan sisi",
+    },
+    polymerName: <>Polimer terhasil</>,
+    repeatUnit: <>Unit ulangan</>,
+    view: "Model tiga dimensi rantai polimer penambahan",
+  }}
+/>
+
+Perhatikan bahawa menggantikan atom hidrogen dengan kumpulan metil, klorin, atau fluorin mengekalkan tulang belakang karbon ikatan tunggal tetapi mengubah sifat bahan secara ketara daripada beg plastik lentur kepada paip tegar dan salutan tidak melekat.
+
+### Jisim Molekul Relatif Rantai Polimer Penambahan
+
+Oleh sebab pempolimeran penambahan tidak menyingkirkan atom, **jisim molekul relatif** polimer menyamai <InlineMath math="n" /> kali jisim satu unit ulangan dengan **ekonomi atom** <InlineMath math="100\%" />. Atom sisi lebih berat seperti klorin dalam PVC menyebabkan garis jisim naik jauh lebih curam berbanding polietena bagi bilangan unit yang sama. Laraskan <InlineMath math="n" /> di bawah untuk membandingkan kadar pertambahan jisim tiga polimer.
 
 <MathVisual
   title={<>Jisim Molekul Relatif Polimer melawan Bilangan Unit Ulangan</>}
@@ -63,6 +98,11 @@ Oleh sebab tiada atom hilang, jisim polimer sama dengan jumlah jisim monomer. Ub
       Polietena <InlineMath math="28n" />, polipropena <InlineMath math="42n" />{" "}
       dan PVC <InlineMath math="62.5n" />. Bagi <InlineMath math="n = 1000" />,
       polietena berjisim molekul relatif <InlineMath math="28\,000" />.
+    </>
+  }
+  footer={
+    <>
+      Unit monomer lebih berat menghasilkan garis jisim yang jauh lebih curam.
     </>
   }
   scene={{
@@ -91,16 +131,18 @@ Oleh sebab tiada atom hilang, jisim polimer sama dengan jumlah jisim monomer. Ub
   }}
 />
 
-Cuba satu contoh. Sebatang rantai polietena mempunyai jisim molekul relatif <InlineMath math="28\,000" />. Hitung bilangan monomer etena dalam rantai itu.
+Setiap garis melalui asalan kerana jisim polimer berkadar terus dengan bilangan monomer yang bergabung. Membahagikan jisim molekul relatif polimer dengan jisim satu monomer terus memberikan bilangan unit dalam rantai. Teliti rantai polietena berjisim <InlineMath math="28\,000" /> dan rantai PVC berjisim <InlineMath math="125\,000" /> (jisim atom relatif Cl ialah <InlineMath math="35.5" />):
 
 <MathContainer>
-<BlockMath math="M(\mathrm{C_2H_4}) = 2 \times 12 + 4 \times 1 = 28" />
-<BlockMath math="n = \frac{28\,000}{28} = 1000" />
+<BlockMath math="M(\mathrm{C_2H_4}) = 2 \times 12 + 4 \times 1 = 28 \Rightarrow n = \frac{28\,000}{28} = 1000" />
+<BlockMath math="M(\mathrm{C_2H_3Cl}) = 2 \times 12 + 3 \times 1 + 35.5 = 62.5 \Rightarrow n = \frac{125\,000}{62.5} = 2000" />
 </MathContainer>
 
-Semak dengan graf: pada <InlineMath math="n = 1000" />, bacaan jisim polietena ialah <InlineMath math="28\,000" />. Sama.
+Semak kedua-dua jawapan pada graf di atas dengan menggerakkan <InlineMath math="n" /> kepada <InlineMath math="1000" /> bagi polietena dan <InlineMath math="2000" /> bagi PVC. Bacaan graf sepadan tepat dengan pengiraan.
 
-Rantai seperti ini sangat panjang berbanding saiz monomer. Setiap unit etena menambah kira-kira <InlineMath math="0.255\text{ nm}" /> pada panjang rantai polietena. Ubah bilangan unit di bawah.
+### Menganggar Panjang Rantai Molekul Polimer
+
+Rantai polimer sintetik merangkumi ribuan unit ulangan sehingga jauh melebihi saiz molekul biasa. Setiap unit etena menambah kira-kira <InlineMath math="0.255\text{ nm}" /> kepada panjang **rantai polietena** yang terentang. Ubah bilangan unit di bawah untuk melihat skala nanometer berkembang ke skala mikrometer.
 
 <MathVisual
   title={<>Panjang Rantai Polietena melawan Bilangan Unit</>}
@@ -109,6 +151,11 @@ Rantai seperti ini sangat panjang berbanding saiz monomer. Setiap unit etena men
       Panjang rantai ialah <InlineMath math="0.255n" /> nanometer. Rantai{" "}
       <InlineMath math="10\,000" /> unit sepanjang kira-kira{" "}
       <InlineMath math="2550\text{ nm}" />, iaitu <InlineMath math="2.55\ \mu\text{m}" />.
+    </>
+  }
+  footer={
+    <>
+      Ribuan unit etena halus terhimpun menjadi untaian berskala mikrometer.
     </>
   }
   scene={{
@@ -128,17 +175,70 @@ Rantai seperti ini sangat panjang berbanding saiz monomer. Setiap unit etena men
   }}
   labels={{
     c: <>Bilangan unit etena</>,
-    length: <>Panjang rantai dalam <InlineMath math="\text{nm}" /></>,
+    length: <>Panjang rantai (<InlineMath math="\text{nm}" />)</>,
   }}
 />
 
-## Pempolimeran Kondensasi
+Pada <InlineMath math="20\,000" /> unit ulangan, sebatang molekul polietena melebihi <InlineMath math="5\ \mu\text{m}" />, setanding dengan panjang sel bakteria. Rantai sepanjang ini mudah berselirat rapat, menjelaskan sebab polietena berketumpatan tinggi tahan lasak dan sukar terkoyak.
 
-Dalam **pempolimeran kondensasi**, monomer mempunyai dua kumpulan berfungsi, dan setiap kali dua monomer bergabung, satu molekul kecil seperti air **disingkirkan**. Nilon-6,6 terbentuk daripada asid heksanadioik dan heksana-1,6-diamina:
+## Pempolimeran Kondensasi dan Penyingkiran Air
+
+Tidak semua polimer dibina melalui pembukaan ikatan ganda dua. Dalam **pempolimeran kondensasi**, setiap monomer membawa dua kumpulan berfungsi reaktif pada hujung bertentangan, dan setiap sambungan baharu menyingkirkan satu molekul kecil seperti air, <InlineMath math="\mathrm{H_2O}" />. Laluan ini menghasilkan gentian sintetik teguh bagi tali, layar, dan fabrik tahan kedut.
+
+### Pautan Amida dan Ester dalam Nilon serta Terilena
+
+**Nilon-6,6** ialah poliamida yang terbina daripada asid heksanadioik dan heksana-1,6-diamina. Kumpulan karboksil (<InlineMath math="\mathrm{-COOH}" />) bertindak balas dengan kumpulan amina (<InlineMath math="\mathrm{-NH_2}" />) untuk membentuk **pautan amida** (<InlineMath math="\mathrm{-CONH-}" />) sambil menyingkirkan air:
 
 <BlockMath math="n\,\mathrm{HOOC(CH_2)_4COOH} + n\,\mathrm{H_2N(CH_2)_6NH_2} \rightarrow \mathrm{-[OC(CH_2)_4CONH(CH_2)_6NH]_n-} + 2n\,\mathrm{H_2O}" />
 
-Satu mol asid berjisim <InlineMath math="146\text{ g}" /> dan satu mol diamina berjisim <InlineMath math="116\text{ g}" />, jumlahnya <InlineMath math="262\text{ g}" />. Unit ulangan nilon berjisim <InlineMath math="226\text{ g}" />, jadi <InlineMath math="36\text{ g}" /> hilang sebagai dua mol air. Bandingkan jisim polimer yang terhasil daripada jisim monomer yang sama di bawah.
+Apabila diamina digantikan dengan diol, terhasillah **terilena**, sejenis poliester yang disatukan oleh **pautan ester** (<InlineMath math="\mathrm{-COO-}" />) dengan penyingkiran air pada setiap sambungan. Teliti kedua-dua rantai berselang-seli di bawah dan perhatikan pelepasan molekul air.
+
+<CondensationNylonLab
+  title={<>Pautan Amida dan Ester dalam Polimer Kondensasi</>}
+  description={
+    <>
+      Bandingkan nilon-6,6 dengan terilena untuk melihat dua monomer berkumpulan
+      berfungsi ganda berselang-seli sambil menyingkirkan air pada setiap pautan.
+    </>
+  }
+  footer={
+    <>
+      Setiap pautan monomer kondensasi menyingkirkan satu molekul air kecil.
+    </>
+  }
+  polymers={["nylon66", "terylene"]}
+  labels={{
+    polymer: "Polimer kondensasi",
+    polymers: {
+      nylon66: {
+        name: "Nilon-6,6",
+        linkage: <>Pautan amida <InlineMath math="\mathrm{-CONH-}" /></>,
+        byproduct: <>Air, <InlineMath math="\mathrm{H_2O}" /></>,
+      },
+      terylene: {
+        name: "Terilena",
+        linkage: <>Pautan ester <InlineMath math="\mathrm{-COO-}" /></>,
+        byproduct: <>Air, <InlineMath math="\mathrm{H_2O}" /></>,
+      },
+    },
+    parts: {
+      monomerA: "Diamina atau diol",
+      monomerB: "Asid dikarboksilik",
+      esterOrAmideLink: "Pautan amida atau ester",
+      waterByproduct: "Air tersingkir",
+      polymerChain: "Rantai berselang-seli",
+    },
+    byproduct: <>Molekul kecil tersingkir</>,
+    linkage: <>Pautan terbentuk</>,
+    view: "Model tiga dimensi pempolimeran kondensasi",
+  }}
+/>
+
+Perhatikan susunan blok berselang-seli pada rantai: polimer kondensasi sentiasa menggabungkan dua jenis unit monomer melalui pautan amida atau ester, dan air yang disingkirkan menjadikan jisim polimer lebih ringan daripada jumlah bahan tindak balas asal.
+
+### Perbandingan Hasil Jisim dan Ekonomi Atom
+
+Mengandaikan jisim polimer kondensasi menyamai jisim monomer asal ialah kesilapan pengiraan yang kerap berlaku. Satu mol asid heksanadioik berjisim <InlineMath math="146\text{ g}" /> dan satu mol heksana-1,6-diamina berjisim <InlineMath math="116\text{ g}" />, berjumlah <InlineMath math="262\text{ g}" />. Oleh sebab dua mol air (<InlineMath math="36\text{ g}" />) disingkirkan bagi setiap unit ulangan, hanya <InlineMath math="226\text{ g}" /> kekal dalam rantai nilon. Bandingkan **hasil jisim polimer** penambahan dengan kondensasi di bawah.
 
 <MathVisual
   title={<>Jisim Polimer daripada Pempolimeran Penambahan dan Kondensasi</>}
@@ -148,6 +248,11 @@ Satu mol asid berjisim <InlineMath math="146\text{ g}" /> dan satu mol diamina b
       Pempolimeran kondensasi nilon menghasilkan{" "}
       <InlineMath math="\dfrac{226}{262} \approx 86.3\%" /> jisim monomer, dan
       bakinya ialah air.
+    </>
+  }
+  footer={
+    <>
+      Air yang tersingkir mencipta jurang jisim di bawah garis penambahan.
     </>
   }
   scene={{
@@ -168,51 +273,38 @@ Satu mol asid berjisim <InlineMath math="146\text{ g}" /> dan satu mol diamina b
     ],
   }}
   labels={{
-    m: <>Jisim monomer dalam <InlineMath math="\text{g}" /></>,
-    nylon: <>Jisim nilon dalam <InlineMath math="\text{g}" /></>,
-    water: <>Jisim air yang disingkirkan dalam <InlineMath math="\text{g}" /></>,
+    m: <>Jisim monomer (<InlineMath math="\text{g}" />)</>,
+    nylon: <>Jisim nilon (<InlineMath math="\text{g}" />)</>,
+    water: <>Jisim air tersingkir (<InlineMath math="\text{g}" />)</>,
   }}
 />
 
-Semak bacaan permulaan: <InlineMath math="524\text{ g}" /> monomer ialah dua mol setiap monomer, jadi nilon yang terhasil <InlineMath math="2 \times 226 = 452\text{ g}" /> dan air <InlineMath math="2 \times 36 = 72\text{ g}" />. Jumlahnya <InlineMath math="524\text{ g}" />.
+Semak bacaan awal pada <InlineMath math="524\text{ g}" />, yang mewakili dua mol bagi setiap monomer:
 
-Etena untuk polietena kebanyakannya datang daripada petroleum, tetapi etena juga boleh dihasilkan melalui penyahhidratan etanol daripada tebu. Bandingkan **ekonomi atom** dua tindak balas di bawah: penghidratan etena tidak membazirkan atom, tetapi penyahhidratan etanol menyingkirkan air.
+<MathContainer>
+<BlockMath math="m(\text{nilon}) = 2 \times 226 = 452\text{ g}, \quad m(\mathrm{H_2O}) = 2 \times 36 = 72\text{ g}" />
+<BlockMath math="452\text{ g} + 72\text{ g} = 524\text{ g}" />
+</MathContainer>
 
-<ReactionBalanceLab
-  title={<>Ekonomi Atom Tindak Balas yang Melibatkan Etena</>}
-  description={
-    <>
-      Penyahhidratan etanol menghasilkan monomer etena dan air. Penghidratan
-      etena pula menggabungkan semua atom bahan menjadi etanol.
-    </>
-  }
-  reactions={[
-    { id: "ethanol-dehydration", name: "Penyahhidratan etanol", tab: <>Penyahhidratan</> },
-    { id: "ethene-hydration", name: "Penghidratan etena", tab: <>Penghidratan</> },
-  ]}
-  reading="economy"
-  labels={{
-    atoms: <>Atom</>,
-    choose: "Pilih tindak balas",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan</>,
-    mass: <>Jisim</>,
-    products: <>Hasil</>,
-    progress: "Kemajuan tindak balas",
-    reactants: <>Bahan tindak balas</>,
-    view: "Model tindak balas etena dan etanol",
-  }}
-/>
+Jumlah jisim tetap terabadi sebaik air yang tersingkir turut dijumlahkan. Semakan **ekonomi atom** yang sama turut berguna apabila menghasilkan monomer etena melalui penyahhidratan bioetanol daripada tebu: kerana air turut disingkirkan, ekonomi atomnya lebih rendah berbanding pempolimeran penambahan yang mencapai <InlineMath math="100\%" />:
 
-Semak ekonomi atom penyahhidratan: hasil yang dikehendaki ialah etena, jadi <InlineMath math="\dfrac{28}{46} \times 100\% = 60.9\%" />. Pempolimeran penambahan pula mempunyai ekonomi atom <InlineMath math="100\%" />, seperti penghidratan etena.
+<BlockMath math="\text{Ekonomi atom} = \frac{28}{46} \times 100\% = 60.9\%" />
 
-## Getah Asli dan Pemvulkanan
+## Getah Asli Penggumpalan Lateks dan Pemvulkanan Sulfur
 
-**Getah asli** ialah polimer isoprena yang diperoleh daripada **lateks** pokok getah. Lateks ialah ampaian zarah getah yang dikelilingi membran protein **bercas negatif**. Cas negatif itu membuatkan zarah saling menolak, jadi lateks kekal cecair.
+Ditoreh terus daripada kulit pokok *Hevea brasiliensis*, **getah asli** diperoleh sebagai **lateks** putih susu, iaitu polimer isoprena (<InlineMath math="\mathrm{C_5H_8}" />). Getah mentah mudah lembut dan melekit dalam cuaca panas, tetapi gabungan penggumpalan asid serta pemanasan sulfur menukarkannya kepada tayar kenderaan yang lasak.
 
-Apabila asid ditambah, ion <InlineMath math="\mathrm{H^+}" /> meneutralkan cas negatif itu. Zarah getah tidak lagi menolak antara satu sama lain, jadi zarah berlanggar dan **lateks menggumpal**. Lateks juga menggumpal perlahan-lahan secara semula jadi kerana bakteria menghasilkan asid laktik. Untuk mengelakkan penggumpalan semasa disimpan, **ammonia** ditambah: ion <InlineMath math="\mathrm{OH^-}" /> meneutralkan asid yang terhasil, jadi membran kekal bercas negatif.
+### Mengawal Penggumpalan Lateks dengan Asid dan Ammonia
 
-**Pemvulkanan** ialah pemanasan getah dengan sulfur. Atom sulfur membentuk **rangkai silang** antara rantai polimer. Rangkai silang itu menghalang rantai menggelongsor antara satu sama lain, jadi getah tervulkan:
+Lateks segar kekal cecair kerana setiap zarah getah mikroskopik dibaluti **membran protein bercas negatif**. Cas yang sama saling menolak, mengekalkan zarah getah terampai jauh antara satu sama lain dalam air. Apabila asid seperti asid etanoik ditambah, ion <InlineMath math="\mathrm{H^+}" /> meneutralkan membran negatif itu sehingga zarah berlanggar, pecah, lalu bergumpal membentuk **getah tergumpal**. Jika dibiarkan di udara panas, bakteria menukarkan gula dalam lateks kepada asid laktik, menyebabkan penggumpalan semula jadi secara perlahan.
+
+Untuk mengekalkan lateks segar dalam bentuk cecair semasa pengangkutan, penoreh menambah **larutan ammonia**. Ramai pelajar sering tertukar antara peranan asid dengan ammonia, jadi ingatkan melalui ion: ammonia ialah alkali yang membekalkan ion <InlineMath math="\mathrm{OH^-}" /> bagi meneutralkan asid bakteria sebelum sempat meneutralkan membran protein.
+
+> Asid meneutralkan membran protein bercas negatif supaya zarah getah menggumpal, manakala ammonia meneutralkan asid agar lateks kekal cecair.
+
+### Rangkai Silang Sulfur dan Pemulihan Kekenyalan
+
+Selepas digumpalkan, getah tak tervulkan masih lemah kerana rantai poliisoprena panjang mudah menggelongsor melepasi satu sama lain apabila diregang dan gagal kembali ke bentuk asal. Pemanasan getah asli bersama sulfur memulakan **pemvulkanan**: atom sulfur bertindak balas pada ikatan ganda dua karbon lalu membina **rangkai silang sulfur** antara rantai bersebelahan.
 
 | Sifat | Getah tak tervulkan | Getah tervulkan |
 | :--- | :--- | :--- |
@@ -221,49 +313,48 @@ Apabila asid ditambah, ion <InlineMath math="\mathrm{H^+}" /> meneutralkan cas n
 | Ketahanan haba | Melekit apabila panas | Tahan haba |
 | Ketahanan pengoksidaan | Mudah teroksida | Lebih tahan |
 
-**Getah sintetik**, seperti neoprena, tahan minyak dan haba, jadi digunakan untuk hos minyak dan pakaian selam. Namun kebanyakan polimer sintetik **tidak terbiodegradasikan**. Pembakaran PVC membebaskan hidrogen klorida yang toksik, jadi plastik perlu dikurangkan, diguna semula dan dikitar semula.
+Tukar keadaan antara getah tak tervulkan dengan getah tervulkan di bawah, kemudian laraskan regangan untuk memerhatikan cara rangkai silang sulfur mengawal pergerakan rantai.
 
-## Kesilapan Lazim tentang Polimer
+<RubberVulcanizationLab
+  title={<>Rangkai Silang Sulfur dan Kekenyalan Getah</>}
+  description={
+    <>
+      Bandingkan rantai poliisoprena tanpa rangkai silang dalam lateks semula
+      jadi dengan rantai berpautan sulfur dalam getah tervulkan di bawah regangan.
+    </>
+  }
+  footer={
+    <>
+      Rangkai silang sulfur menghalang gelongsoran dan menarik getah kembali.
+    </>
+  }
+  states={["naturalLatex", "vulcanisedRubber"]}
+  stretch={{ min: 0, max: 100, value: 40 }}
+  labels={{
+    state: "Keadaan getah",
+    states: {
+      naturalLatex: {
+        name: "Getah tak tervulkan",
+        elasticityNote: <>Rantai menggelongsor secara kekal apabila diregang.</>,
+        heatNote: <>Menjadi lembut dan melekit apabila dipanaskan.</>,
+      },
+      vulcanisedRubber: {
+        name: "Getah tervulkan",
+        elasticityNote: <>Rangkai silang sulfur menarik rantai balik ke kedudukan asal.</>,
+        heatNote: <>Kekal kukuh dan tahan lembut pada suhu tinggi.</>,
+      },
+    },
+    parts: {
+      isopreneChain: "Rantai poliisoprena",
+      sulfurCrosslink: "Rangkai silang sulfur (-S-S-)",
+      doubleBond: "Ikatan ganda dua C=C",
+      tensionArrow: "Daya regangan",
+    },
+    stretch: "Regangan dikenakan (%)",
+    elasticityNote: <>Sifat kekenyalan</>,
+    heatNote: <>Ketahanan haba</>,
+    view: "Model tiga dimensi berkas rantai pemvulkanan getah",
+  }}
+/>
 
-| Kesilapan | Sebab salah | Cara semak |
-| :--- | :--- | :--- |
-| Semua monomer boleh mengalami pempolimeran penambahan. | Pempolimeran penambahan memerlukan ikatan ganda dua <InlineMath math="\mathrm{C{=}C}" />. | Etana tidak mempunyai ikatan ganda dua, jadi tidak membentuk polimer. |
-| Unit ulangan polietena ialah <InlineMath math="\mathrm{-CH_2{=}CH_2-}" />. | Ikatan ganda dua terbuka semasa pempolimeran, jadi unit ulangan ialah <InlineMath math="\mathrm{-CH_2{-}CH_2-}" />. | Setiap atom karbon dalam rantai mesti mempunyai empat ikatan. |
-| Jisim polimer kondensasi sama dengan jumlah jisim monomer. | Molekul kecil seperti air disingkirkan, jadi jisim polimer lebih kecil. | Tolak jisim air daripada jumlah jisim monomer. |
-| Ammonia ditambah untuk menggumpalkan lateks. | Ammonia mengekalkan cas negatif membran, jadi lateks kekal cecair. | Asid yang menggumpalkan lateks. |
-| Pemvulkanan menjadikan getah lebih lembut. | Rangkai silang sulfur menjadikan getah lebih kuat, kenyal dan tahan haba. | Bandingkan tayar kereta dengan getah gelang yang lama. |
-
-Kesilapan keempat paling kerap muncul. Ingat pasangan ini: **asid menggumpalkan lateks, ammonia mengekalkannya cecair**.
-
-## Latihan Polimer
-
-Soalan ini bergerak daripada pengiraan monomer kepada jenis pempolimeran dan getah. **Tunjukkan ikatan yang terbuka** apabila kamu menulis unit ulangan.
-
-1. Sebatang rantai PVC mempunyai jisim molekul relatif <InlineMath math="125\,000" />. Hitung bilangan monomer kloroetena, <InlineMath math="\mathrm{CH_2{=}CHCl}" />, dalam rantai itu. Jisim atom relatif Cl ialah <InlineMath math="35.5" />.
-
-2. Namakan monomer bagi polipropena dan tulis unit ulangannya.
-
-3. Terangkan sebab ammonia ditambah kepada lateks yang baru ditoreh.
-
-4. Terangkan sebab getah tervulkan lebih kenyal daripada getah tak tervulkan.
-
-### Penyelesaian
-
-**Penyelesaian 1**: Kira jisim monomer, kemudian bahagi:
-
-<MathContainer>
-<BlockMath math="M(\mathrm{C_2H_3Cl}) = 2 \times 12 + 3 \times 1 + 35.5 = 62.5" />
-<BlockMath math="n = \frac{125\,000}{62.5} = 2000" />
-</MathContainer>
-
-Semak dengan graf jisim: bacaan PVC pada <InlineMath math="n = 2000" /> ialah <InlineMath math="62.5 \times 2000 = 125\,000" />.
-
-**Penyelesaian 2**: Monomer bagi polipropena ialah **propena**, <InlineMath math="\mathrm{CH_2{=}CHCH_3}" />. Ikatan ganda dua terbuka, jadi unit ulangannya mempunyai kumpulan metil sebagai cabang:
-
-<BlockMath math="\mathrm{-[CH_2{-}CH(CH_3)]_n-}" />
-
-Semak: unit ulangan mempunyai tiga atom karbon dan enam atom hidrogen, sama dengan propena.
-
-**Penyelesaian 3**: Bakteria dalam lateks menghasilkan asid, dan ion <InlineMath math="\mathrm{H^+}" /> meneutralkan membran protein yang bercas negatif. **Ammonia** ialah alkali, jadi ion <InlineMath math="\mathrm{OH^-}" /> meneutralkan asid itu. Membran **kekal bercas negatif**, zarah getah terus menolak antara satu sama lain, dan lateks tidak menggumpal.
-
-**Penyelesaian 4**: Dalam getah tervulkan, **rangkai silang sulfur** menghubungkan rantai polimer. Apabila getah diregang, rantai tidak boleh menggelongsor jauh antara satu sama lain. Apabila daya dilepaskan, rangkai silang **menarik rantai kembali** ke kedudukan asal, jadi getah kembali ke bentuk asalnya.
+Lihat cara rangkai silang sulfur bertindak seperti spring mikroskopik: pemvulkanan tidak melembutkan getah, sebaliknya mengunci rantai daripada menggelongsor kekal sambil memberikan kekuatan serta ketahanan haba pada tayar di jalan raya panas. **Getah sintetik** seperti neoprena meluaskan lagi ketahanan terhadap minyak bagi hos bahan api dan pakaian selam. Oleh sebab kebanyakan polimer sintetik **tidak terbiodegradasikan** dan pembakaran PVC membebaskan gas hidrogen klorida yang toksik, amalan kurangkan, guna semula, dan kitar semula plastik mesti sentiasa diutamakan.

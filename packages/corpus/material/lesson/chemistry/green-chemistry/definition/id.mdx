@@ -8,231 +8,276 @@ export const metadata = {
   subject: "Kimia Hijau",
 };
 
-## Mengurangi Bahaya sejak Perancangan Proses Kimia
+## Pengurangan di Sumber Sepanjang Daur Hidup Produk
 
-**Kimia hijau** adalah cara merancang produk dan proses kimia supaya penggunaan atau pembentukan zat berbahaya dapat dikurangi sejak awal. Istilah "hijau" menjelaskan tujuan tersebut. Istilah ini tidak merujuk pada warna bahan atau kewajiban memakai tumbuhan.
+**Kimia hijau** adalah cara merancang produk dan proses kimia agar penggunaan atau pembentukan zat berbahaya berkurang sejak awal. Kata hijau menggambarkan tujuan rancangan itu, bukan warna bahan dan bukan kewajiban memakai bahan nabati.
 
-Kimia hijau mempertimbangkan [seluruh daur hidup produk kimia](https://www.epa.gov/greenchemistry/basics-green-chemistry), mulai dari perancangan dan pembuatan sampai penggunaan serta pengelolaan setelah produk selesai dipakai.
+Kimia hijau mencakup seluruh [daur hidup produk kimia](https://www.epa.gov/greenchemistry/basics-green-chemistry), mulai dari bahan awal dan sintesis sampai pemakaian serta nasib akhirnya. Pengolahan limbah tetap penting setelah limbah muncul, tetapi kimia hijau melangkah lebih awal dengan memeriksa bahan baku, pelarut, energi, katalis, dan produk sebelum reaksi berjalan.
 
-Penilaian dimulai dari **rancangan**. Pengolahan limbah tetap penting setelah limbah terbentuk. Dalam kimia hijau, bahan, pelarut, energi, katalis, dan produk akhir dinilai sebelum proses dijalankan.
+> Kimia hijau bekerja di meja perancangan bukan di ujung cerobong buangan, memotong bahaya dan limbah sebelum reaksi dimulai.
 
-Tahap terakhir siklus hidup juga pilihan rancangan. Kalau suatu produk kehilangan separuh massanya yang tersisa tiap <InlineMath math="T" /> bulan, yang masih ada setelah <InlineMath math="t" /> bulan adalah <InlineMath math="\left(\tfrac{1}{2}\right)^{t/T}" /> bagian. Dengan <InlineMath math="T=2" /> sebagai ilustrasi, produk teal hampir habis dalam dua tahun, sementara produk yang awet dengan <InlineMath math="T=120" /> masih tersisa sekitar <InlineMath math="87\%" />. Telusuri kedua kurvanya.
+Tahap akhir daur hidup juga ditentukan sejak perancangan molekul. Jika suatu bahan kehilangan separuh massa tersisanya setiap <InlineMath math="T" /> bulan, bagian yang tersisa setelah <InlineMath math="t" /> bulan mengikuti peluruhan eksponensial:
+
+<BlockMath math="\text{bagian tersisa} = 100\% \times \left(\frac{1}{2}\right)^{t/T}" />
+
+Dengan waktu paruh ilustratif <InlineMath math="T = 2" /> bulan, **rancangan mudah terurai** hampir lenyap dalam dua tahun, sedangkan rancangan awet dengan <InlineMath math="T = 120" /> bulan masih menyisakan sekitar <InlineMath math="87\%" />. Geser slider di bawah untuk membandingkan kedua kurva selama dua puluh empat bulan.
 
 <MathVisual
-  title={<>Dirancang untuk Terurai</>}
-  description={<>Bagian dua produk ilustratif yang tersisa selama <InlineMath math="24" /> bulan: rancangan yang mudah terurai (teal) dan yang awet (abu-abu). Mendatar: satu kotak grid berarti <InlineMath math="2" /> bulan. Tegak: satu kotak grid berarti <InlineMath math="20" /> persen.</>}
+  title={<>Peluruhan Produk Mudah Terurai dan Produk Awet</>}
+  description={
+    <>
+      Persentase dua produk ilustratif yang tersisa selama dua puluh empat bulan
+      dengan waktu paruh <InlineMath math="2" /> bulan dan{" "}
+      <InlineMath math="120" /> bulan.
+    </>
+  }
+  footer={
+    <>
+      Waktu paruh singkat meluruh cepat sedangkan bahan awet bertahan lama.
+    </>
+  }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.3, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: 0, max: 108 } },
     view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0, max: 24, value: 6, step: 1, label: "elapsed-months" },
+    ],
     objects: [
-      { id: "persistent", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * 0.5 ** (1 / 120) }, { x: 1, y: 5 * 0.5 ** (2 / 120) }, { x: 1.5, y: 5 * 0.5 ** (3 / 120) }, { x: 2, y: 5 * 0.5 ** (4 / 120) }, { x: 2.5, y: 5 * 0.5 ** (5 / 120) }, { x: 3, y: 5 * 0.5 ** (6 / 120) }, { x: 3.5, y: 5 * 0.5 ** (7 / 120) }, { x: 4, y: 5 * 0.5 ** (8 / 120) }, { x: 4.5, y: 5 * 0.5 ** (9 / 120) }, { x: 5, y: 5 * 0.5 ** (10 / 120) }, { x: 5.5, y: 5 * 0.5 ** (11 / 120) }, { x: 6, y: 5 * 0.5 ** (12 / 120) }, { x: 6.5, y: 5 * 0.5 ** (13 / 120) }, { x: 7, y: 5 * 0.5 ** (14 / 120) }, { x: 7.5, y: 5 * 0.5 ** (15 / 120) }, { x: 8, y: 5 * 0.5 ** (16 / 120) }, { x: 8.5, y: 5 * 0.5 ** (17 / 120) }, { x: 9, y: 5 * 0.5 ** (18 / 120) }, { x: 9.5, y: 5 * 0.5 ** (19 / 120) }, { x: 10, y: 5 * 0.5 ** (20 / 120) }, { x: 10.5, y: 5 * 0.5 ** (21 / 120) }, { x: 11, y: 5 * 0.5 ** (22 / 120) }, { x: 11.5, y: 5 * 0.5 ** (23 / 120) }, { x: 12, y: 5 * 0.5 ** (24 / 120) }] },
-      { id: "degradable", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * 0.5 ** (1 / 2) }, { x: 1, y: 5 * 0.5 ** (2 / 2) }, { x: 1.5, y: 5 * 0.5 ** (3 / 2) }, { x: 2, y: 5 * 0.5 ** (4 / 2) }, { x: 2.5, y: 5 * 0.5 ** (5 / 2) }, { x: 3, y: 5 * 0.5 ** (6 / 2) }, { x: 3.5, y: 5 * 0.5 ** (7 / 2) }, { x: 4, y: 5 * 0.5 ** (8 / 2) }, { x: 4.5, y: 5 * 0.5 ** (9 / 2) }, { x: 5, y: 5 * 0.5 ** (10 / 2) }, { x: 5.5, y: 5 * 0.5 ** (11 / 2) }, { x: 6, y: 5 * 0.5 ** (12 / 2) }, { x: 6.5, y: 5 * 0.5 ** (13 / 2) }, { x: 7, y: 5 * 0.5 ** (14 / 2) }, { x: 7.5, y: 5 * 0.5 ** (15 / 2) }, { x: 8, y: 5 * 0.5 ** (16 / 2) }, { x: 8.5, y: 5 * 0.5 ** (17 / 2) }, { x: 9, y: 5 * 0.5 ** (18 / 2) }, { x: 9.5, y: 5 * 0.5 ** (19 / 2) }, { x: 10, y: 5 * 0.5 ** (20 / 2) }, { x: 10.5, y: 5 * 0.5 ** (21 / 2) }, { x: 11, y: 5 * 0.5 ** (22 / 2) }, { x: 11.5, y: 5 * 0.5 ** (23 / 2) }, { x: 12, y: 5 * 0.5 ** (24 / 2) }] },
-      { id: "persist-end", kind: "point", appearance: "reference", at: { x: 12, y: 5 * 0.5 ** (24 / 120) } },
-      { id: "degrade-half", kind: "point", appearance: "construction", at: { x: 1, y: 2.5 } },
+      { id: "persistent", kind: "function", appearance: "reference", formula: "100 * 0.5^(x/120)", domain: { min: 0, max: 24 } },
+      { id: "degradable", kind: "function", appearance: "construction", formula: "100 * 0.5^(x/2)", domain: { min: 0, max: 24 } },
+      { id: "now-persistent", kind: "marker", x: "m", y: "100 * 0.5^(m/120)", appearance: "reference" },
+      { id: "now-degradable", kind: "marker", x: "m", y: "100 * 0.5^(m/2)", appearance: "construction" },
     ],
     labels: [
-      { key: "persist", objectId: "persist-end", at: { x: 12, y: 5 * 0.5 ** (24 / 120) }, placement: "above-left" },
-      { key: "half", objectId: "degrade-half", at: { x: 1, y: 2.5 }, placement: "right" },
+      { key: "persist-line", objectId: "persistent", at: { x: 18, y: 90.1 }, placement: "above-left" },
+      { key: "degrade-line", objectId: "degradable", at: { x: 4, y: 25 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "degradable-left", formula: "100 * 0.5^(m/2)" },
+      { key: "persistent-left", formula: "100 * 0.5^(m/120)" },
     ],
   }}
   labels={{
-    persist: <InlineMath math="\left(\tfrac{1}{2}\right)^{24/120}\approx87\%" />,
-    half: <InlineMath math="\left(\tfrac{1}{2}\right)^{2/2}=50\%" />,
+    "elapsed-months": <>Waktu (<InlineMath math="\text{bulan}" />)</>,
+    "persist-line": <>Awet</>,
+    "degrade-line": <>Mudah terurai</>,
+    "degradable-left": <>Sisa mudah terurai (<InlineMath math="\%" />)</>,
+    "persistent-left": <>Sisa bahan awet (<InlineMath math="\%" />)</>,
   }}
 />
 
-## Mencegah Limbah sejak Tahap Perancangan
+Pada bulan keenam, bahan mudah terurai sudah turun menjadi <InlineMath math="12{,}5\%" />, sedangkan senyawa awet masih di atas <InlineMath math="96\%" />. Merancang ikatan yang mudah pecah mencegah residu menumpuk di tanah dan perairan setelah masa pakai selesai.
 
-Pencegahan mengubah bahan atau proses sebelum limbah terbentuk. Pembersihan menangani limbah yang sudah terbentuk. Kimia hijau mengutamakan pencegahan sejak tahap perancangan.
+### Merancang Proses Aman Sebelum Limbah Terbentuk
 
-EPA mengaitkan kimia hijau dengan **source reduction**, yaitu pengurangan polutan dari sumbernya sebelum polutan itu perlu didaur ulang, diolah, atau dibuang. Kimia hijau memperbaiki rancangan proses agar polutan berkurang sejak awal.
-
-Dalam reaksi kimia, pikirkan zat hasil dan seluruh proses yang membentuknya.
+Pengolahan limbah membatasi dampak setelah limbah terlanjur tercipta. Kimia hijau mengubah bahan awal atau jalur reaksi sebelumnya agar limbah berbahaya yang terbentuk jauh lebih sedikit. EPA menamai strategi ini **pengurangan di sumber**, dan penilaiannya mencakup setiap bagian proses selain produk utama.
 
 | Bagian proses | Pertanyaan kimia hijau |
 | :------------ | :--------------------- |
-| Bahan awal | Apakah bahan ini berbahaya, langka, atau bisa diganti dengan pilihan yang lebih aman? |
-| Pelarut dan bahan bantu | Apakah pelarutnya benar-benar perlu, dan apakah ada pilihan yang lebih aman? |
-| Energi | Apakah reaksi perlu suhu atau tekanan sangat tinggi, atau bisa berjalan lebih hemat energi? |
-| Produk | Apakah produk tetap berguna tetapi lebih rendah toksisitasnya? |
-| Akhir pemakaian | Apakah produk mudah terurai atau mudah dipulihkan setelah dipakai? |
+| Bahan awal | Apakah bahan ini berbahaya, langka, atau bisa diganti pilihan lebih aman? |
+| Pelarut dan bahan bantu | Apakah pelarut benar-benar diperlukan, dan apakah ada pilihan lebih aman? |
+| Energi | Apakah reaksi butuh suhu atau tekanan ekstrem, atau bisa berjalan lebih ringan? |
+| Produk | Apakah produk tetap berfungsi dengan toksisitas lebih rendah? |
+| Akhir pemakaian | Apakah produk bisa terurai aman atau dipulihkan setelah dipakai? |
 
-**Zat berbahaya** mencakup zat yang mematikan, mudah terbakar, mudah meledak, korosif, beracun, sulit terurai, atau mudah mencemari air dan udara.
+Dalam penilaian ini, **zat berbahaya** mencakup zat mudah terbakar, mudah meledak, korosif, beracun, sulit terurai, dan pembentuk polusi, walaupun paparannya tidak langsung mematikan.
 
-## Rancang Reaksi untuk Mengurangi Bahaya
+### Menilai Sumber Energi dalam Elektrolisis Air
 
-Reaksi kimia dapat dirancang untuk menjalankan fungsi yang dibutuhkan <Highlight>sekaligus mengurangi bahaya, limbah, dan pemakaian energi</Highlight>.
+Reaksi kimia dapat dirancang untuk menjalankan fungsi berguna <Highlight>sambil menurunkan bahaya, limbah, dan kebutuhan energi</Highlight>. **Elektrolisis air** menguraikan air cair menjadi gas hidrogen dan gas oksigen dengan energi listrik:
 
-Elektrolisis air menunjukkan bahwa penilaian kimia hijau harus memasukkan sumber listrik. Proses ini menguraikan air menjadi hidrogen dan oksigen.
+<BlockMath math="2\mathrm{H_2O(l)} \xrightarrow{\text{energi listrik}} 2\mathrm{H_2(g)} + \mathrm{O_2(g)}" />
 
-<BlockMath math="\begin{aligned} &amp;2\mathrm{H_2O(l)} \xrightarrow{\text{energi listrik}} 2\mathrm{H_2(g)} + \mathrm{O_2(g)} \end{aligned}" />
-
-Reaksi ini tidak menghasilkan karbon dioksida secara langsung. Namun, emisi daur hidup bergantung pada sumber listrik. [Elektrolisis](https://www.energy.gov/cmei/fuels/hydrogen-production-electrolysis) dapat menghasilkan emisi sangat rendah jika memakai listrik terbarukan atau nuklir. Jika listrik berasal dari pembangkit berbahan bakar fosil, emisi daur hidupnya lebih tinggi.
-
-Adegan di bawah menggambar molekul reaksi ini sesuai skala. Hitung atom di setiap sisi: empat atom hidrogen ungu dan dua atom oksigen oranye sebelum panah, lalu empat dan dua yang sama sesudahnya. Elektrolisis hanya menata ulang atom-atom itu, jadi tidak ada zat baru yang muncul di elektroliser. Yang dibutuhkan adalah energi listrik di atas panah, dan ke sanalah pertanyaan kimia hijau berikutnya bergerak.
+Setiap <InlineMath math="18\text{ kg}" /> air memuat <InlineMath math="2\text{ kg}" /> hidrogen dan <InlineMath math="16\text{ kg}" /> oksigen, sehingga menguraikan <InlineMath math="m\text{ kg}" /> air selalu menghasilkan <InlineMath math="\frac{1}{9}m\text{ kg}" /> hidrogen dan <InlineMath math="\frac{8}{9}m\text{ kg}" /> oksigen. Geser <InlineMath math="m" /> di bawah untuk melihat massa gas yang keluar dari alat elektrolisis.
 
 <MathVisual
-  title={<>Air Terurai Menjadi Hidrogen dan Oksigen</>}
-  description={<>Molekul digambar sesuai skala dalam angstrom: <InlineMath math="\mathrm{O{-}H}\ 0{,}96\ \text{Å}" /> dengan sudut <InlineMath math="104{,}5^\circ" />, <InlineMath math="\mathrm{H{-}H}\ 0{,}74\ \text{Å}" />, <InlineMath math="\mathrm{O{=}O}\ 1{,}21\ \text{Å}" />. Titik oranye adalah atom oksigen, titik ungu atom hidrogen.</>}
+  title={<>Massa Hidrogen dan Oksigen dari Elektrolisis Air</>}
+  description={
+    <>
+      Massa gas hidrogen dan gas oksigen yang terbentuk ketika{" "}
+      <InlineMath math="m" /> kilogram air cair dielektrolisis sempurna.
+    </>
+  }
+  footer={
+    <>
+      Oksigen menyumbang delapan persembilan massa air sedangkan hidrogen satu
+      persembilan.
+    </>
+  }
   scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -3, max: 2.5 }, z: { min: -1, max: 1 } },
-    view: { kind: "camera", position: { x: -1, y: 0.5, z: 7 }, target: { x: -0.5, y: -0.25, z: 0 } },
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 18 }, y: { min: 0, max: 17 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1, max: 18, value: 9, step: 0.5, label: "water-mass" },
+    ],
     objects: [
-      { id: "water-1-oxygen", kind: "point", appearance: "primary", at: { x: -3, y: 1, z: 0 } },
-      { id: "water-1-hydrogen-left", kind: "point", appearance: "secondary", at: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-1-hydrogen-right", kind: "point", appearance: "secondary", at: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-1-bond-left", kind: "segment", appearance: "reference", from: { x: -3, y: 1, z: 0 }, to: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-1-bond-right", kind: "segment", appearance: "reference", from: { x: -3, y: 1, z: 0 }, to: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-2-oxygen", kind: "point", appearance: "primary", at: { x: -3, y: -1.5, z: 0 } },
-      { id: "water-2-hydrogen-left", kind: "point", appearance: "secondary", at: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-2-hydrogen-right", kind: "point", appearance: "secondary", at: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-2-bond-left", kind: "segment", appearance: "reference", from: { x: -3, y: -1.5, z: 0 }, to: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-2-bond-right", kind: "segment", appearance: "reference", from: { x: -3, y: -1.5, z: 0 }, to: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "arrow", kind: "segment", appearance: "highlight", from: { x: -1.5, y: 0, z: 0 }, to: { x: 0, y: 0, z: 0 } },
-      { id: "arrow-head-up", kind: "segment", appearance: "highlight", from: { x: -0.3, y: 0.2, z: 0 }, to: { x: 0, y: 0, z: 0 } },
-      { id: "arrow-head-down", kind: "segment", appearance: "highlight", from: { x: -0.3, y: -0.2, z: 0 }, to: { x: 0, y: 0, z: 0 } },
-      { id: "hydrogen-1-left", kind: "point", appearance: "secondary", at: { x: 1.5, y: 1.25, z: 0 } },
-      { id: "hydrogen-1-right", kind: "point", appearance: "secondary", at: { x: 1.5 + 0.74, y: 1.25, z: 0 } },
-      { id: "hydrogen-1-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: 1.25, z: 0 }, to: { x: 1.5 + 0.74, y: 1.25, z: 0 } },
-      { id: "hydrogen-2-left", kind: "point", appearance: "secondary", at: { x: 1.5, y: 0.25, z: 0 } },
-      { id: "hydrogen-2-right", kind: "point", appearance: "secondary", at: { x: 1.5 + 0.74, y: 0.25, z: 0 } },
-      { id: "hydrogen-2-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: 0.25, z: 0 }, to: { x: 1.5 + 0.74, y: 0.25, z: 0 } },
-      { id: "oxygen-left", kind: "point", appearance: "primary", at: { x: 1.5, y: -1.25, z: 0 } },
-      { id: "oxygen-right", kind: "point", appearance: "primary", at: { x: 1.5 + 1.21, y: -1.25, z: 0 } },
-      { id: "oxygen-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: -1.25, z: 0 }, to: { x: 1.5 + 1.21, y: -1.25, z: 0 } },
+      { id: "oxygen-out", kind: "function", appearance: "primary", formula: "8*x/9", domain: { min: 0, max: 18 } },
+      { id: "hydrogen-out", kind: "function", appearance: "secondary", formula: "x/9", domain: { min: 0, max: 18 } },
+      { id: "now-oxygen", kind: "marker", x: "m", y: "8*m/9", appearance: "primary" },
+      { id: "now-hydrogen", kind: "marker", x: "m", y: "m/9", appearance: "secondary" },
     ],
     labels: [
-      { key: "water", objectId: "water-1-oxygen", at: { x: -3, y: 1.6, z: 0 }, placement: "above" },
-      { key: "energy", objectId: "arrow", at: { x: -0.75, y: 0.35, z: 0 }, placement: "above" },
-      { key: "hydrogen", objectId: "hydrogen-1-bond", at: { x: 1.5 + 0.74 / 2, y: 1.7, z: 0 }, placement: "above" },
-      { key: "oxygen", objectId: "oxygen-bond", at: { x: 1.5 + 1.21 / 2, y: -1.7, z: 0 }, placement: "below" },
+      { key: "oxygen-line", objectId: "oxygen-out", at: { x: 13.5, y: 12 }, placement: "above-left" },
+      { key: "hydrogen-line", objectId: "hydrogen-out", at: { x: 13.5, y: 1.5 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "hydrogen-mass", formula: "m/9" },
+      { key: "oxygen-mass", formula: "8*m/9" },
     ],
   }}
   labels={{
-    water: <InlineMath math="2\mathrm{H_2O}" />,
-    energy: "energi listrik",
-    hydrogen: <InlineMath math="2\mathrm{H_2}" />,
-    oxygen: <InlineMath math="\mathrm{O_2}" />,
+    "water-mass": <>Air dielektrolisis (<InlineMath math="\text{kg}" />)</>,
+    "oxygen-line": <><InlineMath math="\mathrm{O_2}" /></>,
+    "hydrogen-line": <><InlineMath math="\mathrm{H_2}" /></>,
+    "hydrogen-mass": <>Hidrogen (<InlineMath math="\text{kg}" />)</>,
+    "oxygen-mass": <>Oksigen (<InlineMath math="\text{kg}" />)</>,
   }}
 />
 
-Bandingkan dua pasokan listrik untuk reaksi yang sama. Produk langsungnya tetap hidrogen dan oksigen, tetapi sumber emisi di luar alat elektrolisis berbeda.
+Proses elektrolisis sendiri tidak melepas karbon dioksida di sel karena hanya air yang masuk dan hanya hidrogen serta oksigen yang keluar. Jejak daur hidupnya ditentukan oleh sumber listrik. [Elektrolisis](https://www.energy.gov/cmei/fuels/hydrogen-production-electrolysis) menghasilkan emisi sangat rendah dengan listrik surya, angin, atau nuklir, sedangkan listrik batu bara memindahkan emisi karbon besar ke pembangkit.
 
 | Bagian yang dinilai | Listrik dari pembakaran batu bara | Listrik dari panel surya |
-| :--- | :--- | :--- |
+| :------------------ | :-------------------------------- | :----------------------- |
 | Di alat elektrolisis | Hidrogen dan oksigen | Hidrogen dan oksigen |
 | Di pembangkit | Pembakaran menghasilkan karbon dioksida | Tidak ada pembakaran bahan bakar saat panel bekerja |
 | Sepanjang daur hidup | Tambang, bahan, konstruksi, operasi, limbah | Bahan, pembuatan panel, konstruksi, akhir pemakaian |
 
-## Satu Atom Mengubah Bahaya
+## Membandingkan Bahaya dan Massa pada Sintesis Metanol
 
-Rancangan proses yang lebih aman dimulai dari mengenali zatnya. Bandingkan <InlineMath math="\mathrm{CO}" /> dan <InlineMath math="\mathrm{CO_2}" />. Selisihnya hanya satu atom oksigen, tetapi **karbon monoksida sangat beracun** karena mengikat hemoglobin dalam darah, sedangkan karbon dioksida jauh kurang berbahaya pada kadar biasa. Metanol juga beracun kalau tertelan, jadi proses yang memakainya perlu wadah dan prosedur yang aman.
+Metanol dipakai luas sebagai bahan baku industri dan bahan bakar, tetapi merancang **sintesis metanol yang lebih hijau** menuntut pemeriksaan toksisitas zat sekaligus aliran massa stoikiometrisnya. Jalur yang unggul dalam efisiensi atom tetap dapat membawa risiko penanganan berat jika reaktannya gas beracun.
 
-<MoleculeShapeLab
-  title={<>Zat dalam Proses Metanol</>}
-  description={<>Bandingkan bentuk karbon monoksida, karbon dioksida, dan metanol.</>}
-  molecules={[
-    { id: "carbon-monoxide", name: "Karbon monoksida" },
-    { id: "carbon-dioxide", name: "Karbon dioksida" },
-    { id: "methanol", name: "Metanol" },
+### Dampak Satu Atom Oksigen pada Toksisitas Zat
+
+Rancangan proses yang aman berawal dari mengenali zat yang terlibat. Bandingkan karbon monoksida, <InlineMath math="\mathrm{CO}" />, dengan karbon dioksida, <InlineMath math="\mathrm{CO_2}" />. Selisihnya hanya satu atom oksigen, tetapi **karbon monoksida sangat beracun** karena mengikat kuat hemoglobin dalam darah, sedangkan karbon dioksida jauh kurang berbahaya pada kadar normal. Metanol cair, <InlineMath math="\mathrm{CH_3OH}" />, juga beracun jika tertelan sehingga memerlukan wadah rapat dan prosedur ketat.
+
+<Chart
+  title={<>Komposisi Massa Unsur pada Zat Proses Metanol</>}
+  description={
+    <>
+      Massa karbon, oksigen, dan hidrogen per mol dalam karbon monoksida, karbon
+      dioksida, dan metanol.
+    </>
+  }
+  footer={
+    <>
+      Satu atom oksigen tambahan menaikkan massa molar dan mengubah toksisitas.
+    </>
+  }
+  bars="apart"
+  categories={["Karbon monoksida", "Karbon dioksida", "Metanol"]}
+  series={[
+    { label: "Massa karbon", mark: "bar", values: [12, 12, 12] },
+    { label: "Massa oksigen", mark: "bar", values: [16, 32, 16] },
+    { label: "Massa hidrogen", mark: "bar", values: [0, 0, 4] },
   ]}
-  labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang</>,
-    formula: <>Rumus molekul</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
-  }}
+  valueLabel="Massa (g/mol)"
+  valueRange={{ min: 0, max: 36 }}
 />
 
-## Metanol dari Karbon Dioksida
+Ketiga zat membawa tepat <InlineMath math="12\text{ g mol}^{-1}" /> karbon per mol, namun menambah satu atom oksigen atau empat atom hidrogen mengubah ikatan, wujud fisik, dan bahaya biologis molekulnya. Perancang proses menimbang bahaya bawaan ini bersama efisiensi reaksi.
 
-Metanol dipakai sebagai bahan baku industri dan bahan bakar. Produksi konvensionalnya sering memakai bahan baku fosil. Salah satu proses yang sedang dikembangkan mereaksikan karbon dioksida dengan hidrogen di atas katalis.
+### Menyeimbangkan Masukan dan Produk Samping Metanol
 
-<BlockMath math="\begin{aligned} &amp;\mathrm{CO_2(g)} + 3\mathrm{H_2(g)} \\ &amp;\xrightarrow{\text{katalis}} \mathrm{CH_3OH(l)} + \mathrm{H_2O(l)} \end{aligned}" />
+Produksi metanol konvensional sering bertumpu pada bahan baku fosil, sedangkan proses baru mereaksikan karbon dioksida tangkapan dengan hidrogen di atas katalis padat:
 
-<InlineMath math="\mathrm{CO_2}" /> relatif stabil. Karena itu, sintesis metanol dari <InlineMath math="\mathrm{CO_2}" /> membutuhkan **masukan energi dan katalis yang efisien**.
+<BlockMath math="\mathrm{CO_2(g)} + 3\mathrm{H_2(g)} \xrightarrow{\text{katalis}} \mathrm{CH_3OH(l)} + \mathrm{H_2O(l)}" />
 
-Pemakaian <InlineMath math="\mathrm{CO_2}" /> saja belum membuktikan bahwa proses metanol ini termasuk kimia hijau. Periksa juga masukan dan hasil lainnya:
+Karena <InlineMath math="\mathrm{CO_2}" /> stabil secara termodinamika, sintesis ini membutuhkan **masukan energi dan katalis yang efisien**. Memakai <InlineMath math="\mathrm{CO_2}" /> saja belum membuktikan jalur ini hijau. Empat pertanyaan berikut tetap wajib diperiksa:
 
 - Dari mana <InlineMath math="\mathrm{H_2}" /> diperoleh?
-- Dari mana energi untuk reaksinya?
-- Apakah katalisnya aman dan tahan lama?
-- Apakah produk dan limbah sampingnya dikelola dengan baik?
+- Dari mana energi reaksinya berasal?
+- Apakah katalisnya aman, selektif, dan tahan lama?
+- Apakah produk samping dan limbah dikelola dengan aman?
 
-Penilaian kimia hijau mencakup bahan, energi, bahaya, produk, dan limbah sejak proses dimulai sampai produk selesai digunakan.
-
-Reaktor mengubah karbon dioksida menjadi metanol lewat <InlineMath math="\mathrm{CO_2}+3\mathrm{H_2}\rightarrow\mathrm{CH_3OH}+\mathrm{H_2O}" />. Setiap atom hidrogen di batang itu harus berasal dari suatu sumber, jadi jalur ini hanya sehijau hidrogen, energi, dan katalisnya. Putar batangnya dan hitung hidrogen di tiap ruas.
+Setiap mol <InlineMath math="\mathrm{CO_2}" /> yang bereaksi menghasilkan <InlineMath math="32\text{ g}" /> metanol bersama <InlineMath math="18\text{ g}" /> air sebagai produk samping. Geser <InlineMath math="n" /> di bawah untuk mengamati pertumbuhan kedua aliran keluaran saat skala naik.
 
 <MathVisual
-  title={<>Atom di Kedua Ruas</>}
-  description={<>Atom karbon (abu-abu), hidrogen (ungu), dan oksigen (oranye) di pereaksi (belakang) dan hasil reaksi (depan). Satu kotak grid ke atas berarti <InlineMath math="1" /> atom.</>}
+  title={<>Keluaran Metanol dan Air dari Karbon Dioksida</>}
+  description={
+    <>
+      Massa metanol yang diinginkan dan air produk samping ketika{" "}
+      <InlineMath math="n" /> mol karbon dioksida bereaksi sempurna dengan
+      hidrogen.
+    </>
+  }
+  footer={
+    <>
+      Setiap mol karbon dioksida menyisakan delapan belas gram air bersama
+      metanol.
+    </>
+  }
   scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 8, y: 10, z: 11 }, target: { x: 2.5, y: 3, z: 0 } },
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 350 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 1, max: 10, value: 5, step: 0.5, label: "co2-moles" },
+    ],
     objects: [
-      { id: "c-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "c-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "h-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: -0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
-      { id: "h-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: 0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
-      { id: "o-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
-      { id: "o-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "methanol-mass", kind: "function", appearance: "answer", formula: "32*x", domain: { min: 0, max: 10 } },
+      { id: "water-mass", kind: "function", appearance: "warning", formula: "18*x", domain: { min: 0, max: 10 } },
+      { id: "now-methanol", kind: "marker", x: "n", y: "32*n", appearance: "answer" },
+      { id: "now-water", kind: "marker", x: "n", y: "18*n", appearance: "warning" },
     ],
     labels: [
-      { key: "c", objectId: "c-right", at: { x: 0, y: 1.3, z: 0.75 }, placement: "above" },
-      { key: "h", objectId: "h-right", at: { x: 2.5, y: 6.3, z: 0.75 }, placement: "above" },
-      { key: "o", objectId: "o-right", at: { x: 5, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "methanol-line", objectId: "methanol-mass", at: { x: 8, y: 256 }, placement: "above-left" },
+      { key: "water-line", objectId: "water-mass", at: { x: 8, y: 144 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "methanol-out", formula: "32*n" },
+      { key: "water-out", formula: "18*n" },
     ],
   }}
   labels={{
-    c: <InlineMath math="\mathrm{C}:\ 1=1" />,
-    h: <InlineMath math="\mathrm{H}:\ 3\cdot2=4+2" />,
-    o: <InlineMath math="\mathrm{O}:\ 2=1+1" />,
+    "co2-moles": <><InlineMath math="\mathrm{CO_2}" /> bereaksi (<InlineMath math="\text{mol}" />)</>,
+    "methanol-line": <>Metanol</>,
+    "water-line": <>Air</>,
+    "methanol-out": <>Metanol (<InlineMath math="\text{g}" />)</>,
+    "water-out": <>Air samping (<InlineMath math="\text{g}" />)</>,
   }}
 />
 
-## Dua Jalan Menuju Metanol
+Atom oksigen kedua dari <InlineMath math="\mathrm{CO_2}" /> selalu keluar sebagai air. Bandingkan jalur ini dengan sintesis dari karbon monoksida, saat semua atom reaktan masuk ke molekul metanol:
 
-Dari karbon dioksida, setiap molekul metanol datang bersama satu molekul air sebagai produk samping. Geser slider dan lihat atom oksigen kedua dari <InlineMath math="\mathrm{CO_2}" /> berakhir di air. Lalu pilih jalan dari karbon monoksida: **semua atom pereaksi masuk ke metanol**, jadi ekonomi atomnya <InlineMath math="100\%" />, bukan <InlineMath math="64\%" />.
+<BlockMath math="\mathrm{CO(g)} + 2\mathrm{H_2(g)} \xrightarrow{\text{katalis}} \mathrm{CH_3OH(l)}" />
 
-<ReactionBalanceLab
-  title={<>Ekonomi Atom Dua Rute Metanol</>}
-  description={<>Geser slider dan lihat rute mana yang menyisakan air.</>}
-  reactions={[
-    { id: "methanol-synthesis", name: "Metanol dari karbon dioksida", tab: <InlineMath math="\mathrm{CO_2}" /> },
-    { id: "carbon-monoxide-methanol", name: "Metanol dari karbon monoksida", tab: <InlineMath math="\mathrm{CO}" /> },
+<Chart
+  title={<>Ekonomi Atom Dua Jalur Sintesis Metanol</>}
+  description={
+    <>
+      Persentase massa reaktan yang masuk ke metanol dibanding produk samping
+      air untuk jalur karbon dioksida dan karbon monoksida.
+    </>
+  }
+  footer={
+    <>
+      Jalur karbon monoksida mencapai ekonomi atom penuh namun memakai gas
+      beracun.
+    </>
+  }
+  bars="apart"
+  categories={["Dari karbon dioksida", "Dari karbon monoksida"]}
+  series={[
+    { label: "Ekonomi atom (%)", mark: "bar", values: [64, 100] },
+    { label: "Massa pada produk samping air (%)", mark: "bar", values: [36, 0] },
   ]}
-  reading="economy"
-  labels={{
-    atoms: <>Jumlah atom tiap unsur</>,
-    choose: "Pilih reaksi",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan reaksi</>,
-    mass: <>Massa pereaksi dan produk</>,
-    molecules: <>Jumlah molekul</>,
-    products: <>Produk</>,
-    progress: "Jalannya reaksi",
-    reactants: <>Pereaksi</>,
-    view: "Reaksi pada tingkat atom",
-  }}
+  valueLabel="Persentase (%)"
+  valueRange={{ min: 0, max: 100 }}
 />
 
-## Memeriksa Klaim Hijau
+Jalur karbon monoksida mencapai ekonomi atom <InlineMath math="100\%" /> alih-alih <InlineMath math="64\%" />, sehingga pemisahan air tidak diperlukan. Namun karbon monoksida jauh lebih beracun daripada karbon dioksida, menegaskan alasan kimia hijau menimbang ekonomi atom bersama toksisitas, asal bahan baku, dan sumber energi.
 
-Saat produk atau proses disebut "lebih hijau", periksa bahan, **sumber energi, bahaya, limbah**, fungsi, serta apa yang terjadi setelah produk selesai digunakan atau proses selesai dijalankan.
+## Menguji Klaim Keberlanjutan dengan Bukti Daur Hidup
+
+Saat produk atau proses dipromosikan sebagai lebih hijau, periksa bahan baku, **sumber energi, bahaya, limbah**, kinerja, dan nasib akhirnya sebelum memercayai klaimnya.
 
 | Klaim yang sering muncul | Cara memeriksa klaim |
-| :----------------------- | :---------------- |
-| Bahannya alami | Alami belum tentu aman. Tetap cek toksisitas, dosis, dan limbahnya. |
-| Limbahnya bisa diolah | Mengolah limbah mengurangi bahaya setelah limbah terbentuk. Mencegah limbah sejak awal mengurangi jumlah limbah yang harus ditangani. |
-| Memakai energi terbarukan | Cek apakah seluruh proses memakai energi itu atau hanya sebagian kecil. |
-| Produk akhirnya berguna | Produk berguna tetap perlu dicek dampaknya saat dibuat, dipakai, dan dibuang. |
+| :----------------------- | :------------------- |
+| Bahannya alami | Alami tidak menjamin aman. Periksa toksisitas, dosis, dan limbahnya. |
+| Limbahnya bisa diolah | Pengolahan menekan dampak setelah limbah ada. Pencegahan mengurangi limbah sejak awal. |
+| Memakai energi terbarukan | Cek apakah seluruh proses memakai energi ini atau hanya sebagian kecil. |
+| Produk akhirnya berguna | Produk berguna tetap perlu diperiksa saat dibuat, dipakai, dan dibuang. |
 
-[Dua belas prinsip kimia hijau](https://www.acs.org/green-chemistry-sustainability/principles/12-principles-of-green-chemistry.html) mencakup pencegahan limbah, ekonomi atom, pelarut yang lebih aman, katalis, efisiensi energi, dan rancangan produk yang dapat terurai.
-
-Gunakan prinsip-prinsip tersebut untuk menilai rancangan reaksi dan produk akhirnya.
+[Dua belas prinsip kimia hijau](https://www.acs.org/green-chemistry-sustainability/principles/12-principles-of-green-chemistry.html) menyatukan pencegahan limbah, ekonomi atom, pelarut aman, katalisis, efisiensi energi, dan rancangan mudah terurai ke dalam satu daftar periksa praktis bagi rancangan reaksi maupun produk akhirnya.

@@ -1,43 +1,124 @@
 export const metadata = {
   title: "Acid Base and Salt Notes for Form Four",
   description:
-    "Form 4 Chemistry Chapter 6: calculate pH and concentration, solve titrations and choose how to prepare a salt, with worked examples and practice.",
+    "Calculate pH and molar concentration, test solutions with indicators, run titrations, and choose how to prepare soluble and insoluble salts.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Acid, Base and Salt",
 };
 
-## Acids and Alkalis Depend on Water
+## Why Acids and Alkalis Need Water to Act
 
-An **acid** is a chemical that ionises in water to produce **hydrogen ions**, <InlineMath math="\mathrm{H^+}" />. An **alkali** is a base that dissolves in water and ionises to produce **hydroxide ions**, <InlineMath math="\mathrm{OH^-}" />. Acidity is measured by the pH value, <InlineMath math="\mathrm{pH} = -\log[\mathrm{H^+}]" />, on a scale from <InlineMath math="0" /> to <InlineMath math="14" />. In the models here, you dilute an acid and watch its pH change, run a titration, and build a neutralisation curve.
+Think of fresh lemon juice tasting sharp on your tongue and soapy water feeling slippery between your fingers. Those everyday clues come from two opposing chemical families, and both stay completely quiet until water enters the glass.
 
-The <InlineMath math="\mathrm{H^+}" /> ion actually joins a water molecule to form a **hydroxonium ion**, <InlineMath math="\mathrm{H_3O^+}" />:
+An **acid** is a substance that ionises in water to produce **hydrogen ions**, <InlineMath math="\mathrm{H^+}" />. An **alkali** is a soluble base that ionises in water to produce **hydroxide ions**, <InlineMath math="\mathrm{OH^-}" />. Every <InlineMath math="\mathrm{H^+}" /> ion immediately latches onto a water molecule to form a **hydroxonium ion**, <InlineMath math="\mathrm{H_3O^+}" />:
 
 <BlockMath math="\mathrm{HCl} + \mathrm{H_2O} \rightarrow \mathrm{H_3O^+} + \mathrm{Cl^-}" />
 
-Without water, those ions never form. Hydrogen chloride dissolved in methylbenzene stays as molecules, so the solution doesn't turn blue litmus paper red. Dissolve hydrogen chloride in water instead, and its molecules ionise and acidic properties appear. Alkalis behave the same way: dry ammonia doesn't change red litmus, but aqueous ammonia turns it blue because water lets <InlineMath math="\mathrm{OH^-}" /> ions form.
+> Water is the switch that wakes an acid or an alkali up. Without water, hydrogen chloride stays trapped as neutral molecules and cannot release hydrogen ions.
 
-A **base** is any substance that reacts with an acid to produce a salt and water only. Every alkali is a base, but not every base dissolves in water. Copper(II) oxide, for example, is a base but not an alkali.
+This explains a classic lab surprise. Hydrogen chloride dissolved in methylbenzene remains as whole molecules, so blue litmus paper stays blue and dry magnesium will not fizz. Pour hydrogen chloride into water instead, and the molecules split into free ions that turn blue litmus red. Dry ammonia gas acts the same way until water dissolves it and frees <InlineMath math="\mathrm{OH^-}" /> ions to turn red litmus blue.
 
-## pH and the Concentration of Hydrogen Ions
+A **base** is any substance that reacts with an acid to form a salt and water only. Every alkali belongs to the base family, yet not every base dissolves in water. Copper(II) oxide reacts smoothly with acids, so it is a base, even though it stays insoluble and is not an alkali.
 
-A smaller pH means a higher concentration of <InlineMath math="\mathrm{H^+}" /> ions. A neutral solution at <InlineMath math="25^\circ\text{C}" /> has <InlineMath math="\mathrm{pH} = 7" />. Acidic solutions have a pH below <InlineMath math="7" />, and alkaline solutions have a pH above <InlineMath math="7" />. For an alkali, find the pOH first, then use this relationship:
+## Testing Solutions with Indicators and the pH Scale
+
+Acidity is measured on the **pH scale** from <InlineMath math="0" /> to <InlineMath math="14" />. A neutral solution at <InlineMath math="25^\circ\text{C}" /> sits at <InlineMath math="\mathrm{pH} = 7" />, acidic solutions sit below <InlineMath math="7" />, and alkaline solutions sit above <InlineMath math="7" />. The exact pH comes from the hydrogen ion concentration:
+
+<BlockMath math="\mathrm{pH} = -\log[\mathrm{H^+}]" />
+
+For an alkali, find the pOH from the hydroxide ion concentration first, then connect it to pH:
 
 <MathContainer>
 <BlockMath math="\mathrm{pOH} = -\log[\mathrm{OH^-}]" />
 <BlockMath math="\mathrm{pH} + \mathrm{pOH} = 14" />
 </MathContainer>
 
-The pH scale is logarithmic. Every time the <InlineMath math="\mathrm{H^+}" /> concentration drops **tenfold**, the pH rises by just **one unit**. Move the dilution factor slider for <InlineMath math="0.1\text{ mol dm}^{-3}" /> hydrochloric acid and watch the curve flatten out.
+In the lab, **indicators** translate those invisible ion counts into vivid colours. Test five everyday and laboratory liquids with four common indicators below to see which dye tells the whole pH story and which one only flips at one boundary.
+
+<PhIndicatorScaleLab
+  title={<>Testing Five Solutions with Four pH Indicators</>}
+  description={
+    <>
+      Compare strong and weak acids, pure water, and weak and strong alkalis
+      using universal indicator, litmus, phenolphthalein, and methyl orange.
+    </>
+  }
+  footer={
+    <>
+      Universal indicator separates every pH step while litmus splits acid from
+      alkali.
+    </>
+  }
+  samples={[
+    "hydrochloricAcid",
+    "vinegar",
+    "pureWater",
+    "bakingSoda",
+    "sodiumHydroxide",
+  ]}
+  indicators={["universal", "litmus", "phenolphthalein", "methylOrange"]}
+  labels={{
+    classification: <>Solution type</>,
+    indicator: "Indicator",
+    indicators: {
+      litmus: "Litmus",
+      methylOrange: "Methyl orange",
+      phenolphthalein: "Phenolphthalein",
+      universal: "Universal indicator",
+    },
+    parts: {
+      beaker: "Beaker",
+      dropper: "Dropper",
+      ionCloud: "Dissolved ions",
+      phStrip: "pH strip",
+      solution: "Test solution",
+    },
+    phValue: <>pH value</>,
+    sample: "Sample",
+    samples: {
+      bakingSoda: {
+        formula: <InlineMath math="\mathrm{NaHCO_3}" />,
+        name: "Baking soda solution",
+      },
+      hydrochloricAcid: {
+        formula: <InlineMath math="\mathrm{HCl}" />,
+        name: "Hydrochloric acid",
+      },
+      pureWater: {
+        formula: <InlineMath math="\mathrm{H_2O}" />,
+        name: "Pure water",
+      },
+      sodiumHydroxide: {
+        formula: <InlineMath math="\mathrm{NaOH}" />,
+        name: "Sodium hydroxide",
+      },
+      vinegar: {
+        formula: <InlineMath math="\mathrm{CH_3COOH}" />,
+        name: "Vinegar",
+      },
+    },
+    view: "Interactive bench comparing five solutions across four pH indicators",
+  }}
+/>
+
+Notice how **universal indicator** shifts cleanly across the rainbow from red to violet, revealing whether an acid is strong or weak. By contrast, phenolphthalein stays colourless through acids and neutral water alike and only turns pink in alkaline solutions.
+
+Because the pH scale is **logarithmic**, each single step on the scale hides a big change in ions. Every time the <InlineMath math="\mathrm{H^+}" /> concentration drops **tenfold**, the pH rises by just **one unit**. Slide the dilution factor for <InlineMath math="0.1\text{ mol dm}^{-3}" /> hydrochloric acid and watch how quickly the curve flattens.
 
 <MathVisual
   title={<>pH of Hydrochloric Acid as It Is Diluted</>}
   description={
     <>
       Hydrochloric acid at <InlineMath math="0.1\text{ mol dm}^{-3}" /> is
-      diluted <InlineMath math="d" /> times. The curve is{" "}
-      <InlineMath math="\mathrm{pH} = 1 + \log d" />. A tenfold dilution raises
-      the pH from <InlineMath math="1" /> to <InlineMath math="2" />.
+      diluted <InlineMath math="d" /> times along the logarithmic curve, raising
+      the pH from <InlineMath math="1" /> to <InlineMath math="2" /> at tenfold
+      dilution.
+    </>
+  }
+  footer={
+    <>
+      Tenfold dilution adds only one pH unit because the scale is logarithmic.
     </>
   }
   scene={{
@@ -71,17 +152,25 @@ The pH scale is logarithmic. Every time the <InlineMath math="\mathrm{H^+}" /> c
   }}
 />
 
-So a solution at pH <InlineMath math="2" /> isn't twice as acidic as one at pH <InlineMath math="4" />. The difference is two units, which means a **hundred times** the <InlineMath math="\mathrm{H^+}" /> concentration:
+Watch the marker climb fast at the start and then crawl gently as <InlineMath math="d" /> approaches <InlineMath math="10" />. That is why a solution at <InlineMath math="\mathrm{pH}\ 2" /> is **not** twice as acidic as one at <InlineMath math="\mathrm{pH}\ 4" />. Two pH units equal a **hundred times** the hydrogen ion concentration:
 
 <BlockMath math="\frac{10^{-2}}{10^{-4}} = 100" />
 
-## Strength and Concentration of an Acid
+Check this rule with a quick calculation for <InlineMath math="0.01\text{ mol dm}^{-3}" /> hydrochloric acid. Because hydrochloric acid is a strong monoprotic acid, <InlineMath math="[\mathrm{H^+}]" /> equals <InlineMath math="0.01\text{ mol dm}^{-3}" />, which is ten times more dilute than <InlineMath math="0.1\text{ mol dm}^{-3}" /> acid:
 
-The **strength** of an acid or alkali depends on its **degree of ionisation** in water, not on its concentration. A strong acid like hydrochloric acid ionises **completely**, so every molecule gives an <InlineMath math="\mathrm{H^+}" /> ion. A weak acid like ethanoic acid ionises **partially**, so most of its molecules stay un-ionised. In the same way, sodium hydroxide is a strong alkali, while aqueous ammonia is a weak alkali.
+<BlockMath math="\mathrm{pH} = -\log(0.01) = -\log(10^{-2}) = 2" />
+
+The dilution intuition agrees right away: lowering concentration tenfold lifts the pH from <InlineMath math="1" /> by one exact unit to <InlineMath math="2" />.
+
+## Acid Strength Versus Molar Concentration
+
+Two labels get mixed up more than any others in chemistry: **strong** versus **concentrated**. **Strength** describes the **degree of ionisation** in water, whereas **concentration** counts how much solute sits inside one cubic decimetre of solution. Concentrated vinegar is packed with molecules, yet it stays a weak acid.
+
+A **strong acid** like hydrochloric acid ionises completely, so every dissolved molecule splits to release an <InlineMath math="\mathrm{H^+}" /> ion. A **weak acid** like ethanoic acid ionises only partially, leaving most molecules intact in reversible equilibrium:
 
 <BlockMath math="\mathrm{CH_3COOH} \rightleftharpoons \mathrm{CH_3COO^-} + \mathrm{H^+}" />
 
-Compare solutions of **the same concentration**, <InlineMath math="0.1\text{ mol dm}^{-3}" />. The values for ethanoic acid and ammonia are calculated from their ionisation constants at <InlineMath math="25^\circ\text{C}" />.
+In the same way, sodium hydroxide is a **strong alkali** that ionises fully, whereas aqueous ammonia is a **weak alkali**. Compare four solutions that all share the exact same molarity, <InlineMath math="0.1\text{ mol dm}^{-3}" />, at <InlineMath math="25^\circ\text{C}" />.
 
 <Chart
   title={<>pH of Strong and Weak Acids and Alkalis</>}
@@ -98,25 +187,30 @@ Compare solutions of **the same concentration**, <InlineMath math="0.1\text{ mol
   valueRange={{ min: 0, max: 14 }}
   description={
     <>
-      Every solution is <InlineMath math="0.1\text{ mol dm}^{-3}" />.
-      Hydrochloric acid pH <InlineMath math="1.0" />, ethanoic acid pH{" "}
-      <InlineMath math="2.9" />, aqueous ammonia pH <InlineMath math="11.1" />,
-      sodium hydroxide pH <InlineMath math="13.0" />.
+      Four solutions at identical <InlineMath math="0.1\text{ mol dm}^{-3}" />{" "}
+      concentration show very different pH values because their degrees of
+      ionisation differ.
+    </>
+  }
+  footer={
+    <>
+      Equal molarity still produces distinct pH values when ionisation is
+      partial.
     </>
   }
 />
 
-**Concentration**, on the other hand, is the quantity of solute in <InlineMath math="1\text{ dm}^3" /> of solution. You can write it in <InlineMath math="\text{g dm}^{-3}" /> or as **molarity**, in <InlineMath math="\text{mol dm}^{-3}" />:
+Even with identical concentration, hydrochloric acid sits near <InlineMath math="\mathrm{pH}\ 1.0" /> while ethanoic acid sits near <InlineMath math="\mathrm{pH}\ 2.9" />, and sodium hydroxide reaches <InlineMath math="\mathrm{pH}\ 13.0" /> while aqueous ammonia stops near <InlineMath math="\mathrm{pH}\ 11.1" />. Keep the pair clear: **strong or weak** describes ionisation, while **concentrated or dilute** describes solute amount.
+
+### Calculating Molarity for a Standard Solution
+
+**Concentration** measures solute per <InlineMath math="1\text{ dm}^3" /> of solution, written in <InlineMath math="\text{g dm}^{-3}" /> or as **molarity** in <InlineMath math="\text{mol dm}^{-3}" />:
 
 <BlockMath math="M = \frac{n}{V}" />
 
-Here <InlineMath math="n" /> is the number of moles of solute and <InlineMath math="V" /> is the volume of solution in <InlineMath math="\text{dm}^3" />. A solution whose concentration is known exactly is a **standard solution**, and you prepare it in a volumetric flask.
+Here <InlineMath math="n" /> is the moles of solute and <InlineMath math="V" /> is the solution volume in <InlineMath math="\text{dm}^3" />. A **standard solution** has a precisely known concentration and is made in a volumetric flask.
 
-### Example Preparing a Standard Solution
-
-You dissolve <InlineMath math="2.0\text{ g}" /> of sodium hydroxide in water and make it up to <InlineMath math="250\text{ cm}^3" /> of solution. Find its molarity. The molar mass of <InlineMath math="\mathrm{NaOH}" /> is <InlineMath math="40\text{ g mol}^{-1}" />.
-
-**Convert the mass to moles**, then convert the volume to <InlineMath math="\text{dm}^3" />:
+Suppose you dissolve <InlineMath math="2.0\text{ g}" /> of sodium hydroxide, molar mass <InlineMath math="40\text{ g mol}^{-1}" />, and make the volume up to <InlineMath math="250\text{ cm}^3" />. Convert mass into moles and volume into <InlineMath math="\text{dm}^3" /> first so unit mix-ups cannot sneak in:
 
 <MathContainer>
 <BlockMath math="n = \frac{2.0}{40} = 0.050\text{ mol}" />
@@ -124,36 +218,54 @@ You dissolve <InlineMath math="2.0\text{ g}" /> of sodium hydroxide in water and
 <BlockMath math="M = \frac{0.050}{0.250} = 0.20\text{ mol dm}^{-3}" />
 </MathContainer>
 
-Check it with the mass concentration. The mass in <InlineMath math="1\text{ dm}^3" /> is four times <InlineMath math="2.0\text{ g}" />, which is <InlineMath math="8.0\text{ g dm}^{-3}" />, and <InlineMath math="8.0 \div 40 = 0.20" />. Both routes give the same answer.
+Verify the answer with mass concentration: four portions of <InlineMath math="250\text{ cm}^3" /> fill <InlineMath math="1\text{ dm}^3" />, giving <InlineMath math="8.0\text{ g dm}^{-3}" />, and dividing by the molar mass confirms the same molarity:
 
-### Example Diluting a Solution
+<BlockMath math="\frac{8.0}{40} = 0.20\text{ mol dm}^{-3}" />
 
-When you add water, the number of moles of solute doesn't change. Only the volume grows. That's the basis of the **dilution formula**:
+### Diluting a Concentrated Acid or Alkali
+
+When you pour distilled water into a stock solution, the **number of moles of solute stays constant** while the total volume expands. That conservation gives the **dilution equation**:
 
 <BlockMath math="M_1V_1 = M_2V_2" />
 
-To prepare <InlineMath math="500\text{ cm}^3" /> of <InlineMath math="0.10\text{ mol dm}^{-3}" /> hydrochloric acid from <InlineMath math="1.0\text{ mol dm}^{-3}" /> acid:
+To prepare <InlineMath math="500\text{ cm}^3" /> of <InlineMath math="0.10\text{ mol dm}^{-3}" /> hydrochloric acid from <InlineMath math="1.0\text{ mol dm}^{-3}" /> stock acid, solve for the stock volume <InlineMath math="V_1" />:
 
 <BlockMath math="V_1 = \frac{M_2V_2}{M_1} = \frac{0.10 \times 500}{1.0} = 50\text{ cm}^3" />
 
-Measure out <InlineMath math="50\text{ cm}^3" /> of the concentrated acid, then add distilled water until the volume reaches <InlineMath math="500\text{ cm}^3" />. Check: the moles at the start are <InlineMath math="1.0 \times 0.050 = 0.050" /> mol, and the moles at the end are <InlineMath math="0.10 \times 0.500 = 0.050" /> mol. They match.
+Measure <InlineMath math="50\text{ cm}^3" /> of stock acid and top up with distilled water to <InlineMath math="500\text{ cm}^3" />. Check the conserved moles before and after dilution:
 
-## Neutralisation and Titration
+<MathContainer>
+<BlockMath math="n_1 = 1.0 \times 0.050 = 0.050\text{ mol}" />
+<BlockMath math="n_2 = 0.10 \times 0.500 = 0.050\text{ mol}" />
+</MathContainer>
 
-**Neutralisation** is the reaction between an acid and a base that produces a salt and water only. In every neutralisation of an acid by an alkali, the real reaction is hydrogen ions joining hydroxide ions:
+Try the same logic on a stock alkali: preparing <InlineMath math="500\text{ cm}^3" /> of <InlineMath math="0.40\text{ mol dm}^{-3}" /> sodium hydroxide from <InlineMath math="2.0\text{ mol dm}^{-3}" /> stock requires:
+
+<BlockMath math="V_1 = \frac{0.40 \times 500}{2.0} = 100\text{ cm}^3" />
+
+Both the starting <InlineMath math="100\text{ cm}^3" /> stock and the final <InlineMath math="500\text{ cm}^3" /> diluted solution hold <InlineMath math="0.20\text{ mol}" /> of sodium hydroxide, confirming the preparation step.
+
+## Neutralisation and Titration Curves
+
+**Neutralisation** happens when an acid reacts with a base to produce a salt and water only. Across every acid and alkali pair, the core ionic event is always the same union of hydrogen and hydroxide ions into liquid water:
 
 <BlockMath math="\mathrm{H^+} + \mathrm{OH^-} \rightarrow \mathrm{H_2O}" />
 
-A **titration** finds the exact volume needed for complete neutralisation. One solution runs from a burette into the other in a conical flask until the indicator changes colour. That moment is the **end point**. Run the titration below and watch the phenolphthalein.
+A **titration** measures the exact volume of alkali needed to neutralise a fixed portion of acid. Alkali drips from a burette into a conical flask containing acid and indicator until the sudden colour flip marks the **end point**. Run the titration below and watch the phenolphthalein transform.
 
 <TitrationLab
   title={<>Titrating Hydrochloric Acid with Sodium Hydroxide</>}
   description={
     <>
-      Sodium hydroxide at <InlineMath math="0.10\text{ mol dm}^{-3}" /> runs
-      from the burette into <InlineMath math="10.0\text{ cm}^3" /> of{" "}
+      Sodium hydroxide at <InlineMath math="0.10\text{ mol dm}^{-3}" /> drips
+      from a burette into <InlineMath math="10.0\text{ cm}^3" /> of{" "}
       <InlineMath math="0.10\text{ mol dm}^{-3}" /> hydrochloric acid with
-      phenolphthalein.
+      phenolphthalein indicator.
+    </>
+  }
+  footer={
+    <>
+      One drop past neutral flips phenolphthalein from colourless to pale pink.
     </>
   }
   analyte={{ concentration: 0.1, solute: "hydrochloric-acid", volume: 10 }}
@@ -181,17 +293,24 @@ A **titration** finds the exact volume needed for complete neutralisation. One s
   }}
 />
 
-This curve shows the pH in the same flask as the alkali goes in. It's calculated from the excess <InlineMath math="\mathrm{H^+}" /> ions together with the ionisation of water. Notice the sharp jump in pH near <InlineMath math="10\text{ cm}^3" />. Phenolphthalein changes colour inside that jump.
+Right up until <InlineMath math="9.9\text{ cm}^3" />, the flask stays completely colourless because excess acid dominates. The single drop that crosses <InlineMath math="10.0\text{ cm}^3" /> leaves excess <InlineMath math="\mathrm{OH^-}" /> ions and snaps the indicator to pink.
+
+Now track the exact pH inside that same flask as alkali runs in. Move the slider across the **equivalence point** at <InlineMath math="10.0\text{ cm}^3" /> to see why one tiny drop produces such a dramatic colour change.
 
 <MathVisual
   title={<>pH Curve for a Strong Acid and a Strong Alkali</>}
   description={
     <>
+      Adding <InlineMath math="0.10\text{ mol dm}^{-3}" /> sodium hydroxide to{" "}
       <InlineMath math="10.0\text{ cm}^3" /> of{" "}
-      <InlineMath math="0.10\text{ mol dm}^{-3}" /> hydrochloric acid with{" "}
-      <InlineMath math="0.10\text{ mol dm}^{-3}" /> sodium hydroxide. The
-      horizontal axis is the volume of alkali in{" "}
-      <InlineMath math="\text{cm}^3" />, and the vertical axis is the pH.
+      <InlineMath math="0.10\text{ mol dm}^{-3}" /> hydrochloric acid traces a
+      steep vertical jump right through neutral pH.
+    </>
+  }
+  footer={
+    <>
+      The vertical jump at neutral lets phenolphthalein catch the exact end
+      point.
     </>
   }
   scene={{
@@ -220,42 +339,79 @@ This curve shows the pH in the same flask as the alkali goes in. It's calculated
   }}
 />
 
-Now use a titration to find an unknown concentration. A <InlineMath math="25.0\text{ cm}^3" /> portion of <InlineMath math="0.10\text{ mol dm}^{-3}" /> sodium hydroxide is neutralised by <InlineMath math="12.50\text{ cm}^3" /> of sulfuric acid. Find the molarity of the sulfuric acid.
+Between <InlineMath math="9.9\text{ cm}^3" /> and <InlineMath math="10.1\text{ cm}^3" />, the curve rockets vertically from roughly <InlineMath math="\mathrm{pH}\ 3" /> past <InlineMath math="\mathrm{pH}\ 10" />. Because phenolphthalein flips inside that steep cliff, its end point matches the true equivalence point with minimal error.
 
-Write the balanced equation first, because the mole ratio comes from it:
+### Balancing Diprotic and Monoprotic Titration Ratios
+
+Never assume every acid and alkali react in a <InlineMath math="1 : 1" /> ratio. Always write the **balanced chemical equation** first so the mole coefficients <InlineMath math="a" /> and <InlineMath math="b" /> come directly from the chemistry:
+
+<BlockMath math="\frac{M_aV_a}{M_bV_b} = \frac{a}{b}" />
+
+Suppose <InlineMath math="25.0\text{ cm}^3" /> of <InlineMath math="0.10\text{ mol dm}^{-3}" /> sodium hydroxide is neutralised by <InlineMath math="12.50\text{ cm}^3" /> of sulfuric acid. Sulfuric acid is a **diprotic acid**, donating two hydrogen ions per molecule:
 
 <BlockMath math="\mathrm{H_2SO_4} + 2\mathrm{NaOH} \rightarrow \mathrm{Na_2SO_4} + 2\mathrm{H_2O}" />
 
-Sulfuric acid is a **diprotic acid**, so one mole of acid needs two moles of alkali. Use <InlineMath math="\dfrac{M_aV_a}{M_bV_b} = \dfrac{a}{b}" /> with <InlineMath math="a = 1" /> and <InlineMath math="b = 2" />:
+Here <InlineMath math="a = 1" /> and <InlineMath math="b = 2" />, so substituting into the titration ratio gives the sulfuric acid molarity:
 
 <BlockMath math="M_a = \frac{1}{2} \times \frac{0.10 \times 25.0}{12.50} = 0.10\text{ mol dm}^{-3}" />
 
-Check it with moles. The sodium hydroxide is <InlineMath math="0.10 \times 0.0250 = 0.0025" /> mol. The sulfuric acid is <InlineMath math="0.10 \times 0.01250 = 0.00125" /> mol, exactly half. The <InlineMath math="1 : 2" /> ratio holds.
+Check the result directly from moles to confirm the <InlineMath math="1 : 2" /> stoichiometry:
 
-## Salts and How to Prepare Them
+<MathContainer>
+<BlockMath math="n(\mathrm{NaOH}) = 0.10 \times 0.0250 = 0.0025\text{ mol}" />
+<BlockMath math="n(\mathrm{H_2SO_4}) = 0.10 \times 0.01250 = 0.00125\text{ mol}" />
+</MathContainer>
 
-A **salt** is an ionic compound formed when the <InlineMath math="\mathrm{H^+}" /> ions of an acid are replaced by metal ions or ammonium ions. Examples are sodium chloride from hydrochloric acid and copper(II) sulfate from sulfuric acid. How you prepare a salt depends on **whether it dissolves in water**:
+Contrast that with a **monoprotic acid** like hydrochloric acid titrated against potassium hydroxide, where <InlineMath math="20.0\text{ cm}^3" /> of <InlineMath math="0.50\text{ mol dm}^{-3}" /> acid neutralises <InlineMath math="25.0\text{ cm}^3" /> of alkali. The balanced equation fixes a <InlineMath math="1 : 1" /> ratio:
 
-| Salt | Soluble in water | Insoluble in water |
+<MathContainer>
+<BlockMath math="\mathrm{HCl} + \mathrm{KOH} \rightarrow \mathrm{KCl} + \mathrm{H_2O}" />
+<BlockMath math="M_b = \frac{M_aV_a}{V_b} = \frac{0.50 \times 20.0}{25.0} = 0.40\text{ mol dm}^{-3}" />
+</MathContainer>
+
+Both flasks hold <InlineMath math="0.010\text{ mol}" /> of reactant at neutralisation, confirming complete reaction.
+
+### Why Weak and Strong Acids Need Equal Alkali
+
+Picture two flasks holding equal volumes of <InlineMath math="0.1\text{ mol dm}^{-3}" /> hydrochloric acid and <InlineMath math="0.1\text{ mol dm}^{-3}" /> ethanoic acid. Students often guess that ethanoic acid needs less sodium hydroxide because its starting pH is higher, around <InlineMath math="2.9" /> instead of <InlineMath math="1.0" />.
+
+In reality, both flasks require the **exact same volume of alkali**. Both acids are **monoprotic** and both contain the same total number of acid moles. As incoming <InlineMath math="\mathrm{OH^-}" /> ions remove free <InlineMath math="\mathrm{H^+}" /> ions from ethanoic acid, more un-ionised <InlineMath math="\mathrm{CH_3COOH}" /> molecules split up to replace them until every single molecule has reacted.
+
+## Preparing Soluble and Insoluble Salts
+
+A **salt** is an ionic compound formed when the <InlineMath math="\mathrm{H^+}" /> ions of an acid are replaced by metal ions or ammonium ions, such as sodium chloride from hydrochloric acid or copper(II) sulfate from sulfuric acid. Before touching any glassware, check the **solubility rules in water**, because solubility decides the entire preparation method.
+
+| Salt family | Soluble in water | Insoluble in water |
 | :--- | :--- | :--- |
-| Sodium, potassium and ammonium salts | All | None |
+| Sodium, potassium, and ammonium salts | All | None |
 | Nitrate salts | All | None |
 | Chloride salts | Most | Lead(II) chloride and silver chloride |
-| Sulfate salts | Most | Barium sulfate, lead(II) sulfate and calcium sulfate |
-| Carbonate salts | Sodium, potassium and ammonium carbonate | The rest |
+| Sulfate salts | Most | Barium sulfate, lead(II) sulfate, and calcium sulfate |
+| Carbonate salts | Sodium, potassium, and ammonium carbonate | All others |
 
-Sodium, potassium and ammonium salts are prepared by **titration** of an acid with an alkali, because both reactants dissolve and the product can't be filtered off. Other soluble salts are prepared by adding a metal, metal oxide or metal carbonate **in excess** to an acid, filtering off the excess, and crystallising the salt from the filtrate.
+> Match the preparation route to solubility first. Titrate for sodium, potassium, and ammonium salts, add excess solid for other soluble salts, and precipitate for insoluble salts.
 
-Insoluble salts are prepared by a **precipitation reaction**, also called double decomposition. You mix two salt solutions that contain the cation and the anion of the salt, and a precipitate forms at once. Pour silver nitrate solution into sodium chloride and watch the white precipitate of silver chloride:
+Sodium, potassium, and ammonium salts must be made by **titration** of an acid with an alkali, because both reactants dissolve and no leftover solid can be filtered away. Every other **soluble salt** is prepared by adding an insoluble metal, metal oxide, or metal carbonate **in excess** to an acid, filtering off the unreacted solid, and crystallising clean crystals from the filtrate.
+
+**Insoluble salts** cannot be prepared by reacting an unreactive metal directly with an acid. Adding silver metal to hydrochloric acid produces nothing because silver does not react with dilute acid, and silver chloride is insoluble anyway. Instead, insoluble salts are made by a **precipitation reaction**, also known as double decomposition, mixing two soluble salt solutions that supply the target cation and anion:
 
 <BlockMath math="\mathrm{Ag^+(aq)} + \mathrm{Cl^-(aq)} \rightarrow \mathrm{AgCl(s)}" />
+
+Pour silver nitrate solution into sodium chloride solution on the balance below and watch the solid cloud form instantly.
 
 <PrecipitateLab
   title={<>Precipitating Silver Chloride</>}
   description={
     <>
-      Silver nitrate solution is poured into sodium chloride solution on a
-      balance. A white precipitate of silver chloride forms at once.
+      Silver nitrate solution pours into sodium chloride solution on an
+      electronic balance, immediately forming a dense white precipitate of
+      silver chloride.
+    </>
+  }
+  footer={
+    <>
+      Solid silver chloride forms at once while total mass stays constant on the
+      pan.
     </>
   }
   labels={{
@@ -266,50 +422,4 @@ Insoluble salts are prepared by a **precipitation reaction**, also called double
   }}
 />
 
-You then filter off the precipitate, rinse it with distilled water to remove the other ions, and dry it between filter papers. Look at the balance reading too: the mass doesn't change because nothing leaves the beaker.
-
-## Common Mistakes about Acids and Salts
-
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| A solution at pH <InlineMath math="2" /> is twice as acidic as one at pH <InlineMath math="4" />. | The pH scale is logarithmic. Two units mean <InlineMath math="100" /> times the <InlineMath math="\mathrm{H^+}" /> concentration. | Work out <InlineMath math="10^{-2} \div 10^{-4}" />. |
-| A strong acid means a concentrated acid. | Strength depends on the degree of ionisation. Concentration depends on the amount of solute. | Concentrated ethanoic acid is still a weak acid. |
-| Hydrogen chloride in methylbenzene shows acidic properties. | Without water, hydrogen chloride doesn't ionise, so there are no <InlineMath math="\mathrm{H^+}" /> ions. | Look for water in the system. |
-| Silver chloride is prepared by adding silver metal to hydrochloric acid. | Silver doesn't react with hydrochloric acid, and silver chloride is an insoluble salt. | Insoluble salts are prepared by precipitation. |
-| In a titration of sulfuric acid with sodium hydroxide, the ratio is one to one. | Sulfuric acid is diprotic, so the mole ratio of acid to alkali is <InlineMath math="1 : 2" />. | Balance the equation first. |
-
-The second mistake is the hardest to spot because the two words sound alike. Keep this pair in mind: **strong or weak** describes ionisation, while **concentrated or dilute** describes the amount of solute.
-
-## Practice on Acids and Alkalis
-
-These questions move from a pH calculation to titrations and explanation. **Write the units at every step** so that a mix-up between <InlineMath math="\text{cm}^3" /> and <InlineMath math="\text{dm}^3" /> shows up quickly.
-
-1. Calculate the pH of <InlineMath math="0.01\text{ mol dm}^{-3}" /> hydrochloric acid.
-
-2. What volume of <InlineMath math="2.0\text{ mol dm}^{-3}" /> sodium hydroxide solution do you need to prepare <InlineMath math="500\text{ cm}^3" /> of <InlineMath math="0.40\text{ mol dm}^{-3}" /> solution?
-
-3. A <InlineMath math="20.0\text{ cm}^3" /> portion of <InlineMath math="0.50\text{ mol dm}^{-3}" /> hydrochloric acid neutralises <InlineMath math="25.0\text{ cm}^3" /> of potassium hydroxide solution. Find the molarity of the potassium hydroxide solution.
-
-4. Hydrochloric acid and ethanoic acid, both <InlineMath math="0.1\text{ mol dm}^{-3}" />, are titrated with the same sodium hydroxide. Explain why ethanoic acid starts at a higher pH but needs the same volume of alkali for neutralisation.
-
-### Solutions
-
-**Solution 1**: Hydrochloric acid is a strong, monoprotic acid, so <InlineMath math="[\mathrm{H^+}] = 0.01\text{ mol dm}^{-3}" />.
-
-<BlockMath math="\mathrm{pH} = -\log(0.01) = -\log(10^{-2}) = 2" />
-
-Check it with the dilution idea: <InlineMath math="0.1\text{ mol dm}^{-3}" /> acid has pH <InlineMath math="1" />, and this acid is ten times more dilute, so the pH rises by one unit to <InlineMath math="2" />.
-
-**Solution 2**: The moles of sodium hydroxide don't change on dilution, so use <InlineMath math="M_1V_1 = M_2V_2" />:
-
-<BlockMath math="V_1 = \frac{0.40 \times 500}{2.0} = 100\text{ cm}^3" />
-
-Measure out <InlineMath math="100\text{ cm}^3" /> of the concentrated solution and add distilled water up to <InlineMath math="500\text{ cm}^3" />. Check: <InlineMath math="2.0 \times 0.100 = 0.20" /> mol, and <InlineMath math="0.40 \times 0.500 = 0.20" /> mol.
-
-**Solution 3**: The equation is <InlineMath math="\mathrm{HCl} + \mathrm{KOH} \rightarrow \mathrm{KCl} + \mathrm{H_2O}" />, with a mole ratio of <InlineMath math="1 : 1" />.
-
-<BlockMath math="M_b = \frac{M_aV_a}{V_b} = \frac{0.50 \times 20.0}{25.0} = 0.40\text{ mol dm}^{-3}" />
-
-Check: the acid is <InlineMath math="0.50 \times 0.0200 = 0.010" /> mol, and the alkali is <InlineMath math="0.40 \times 0.0250 = 0.010" /> mol. They match, so neutralisation is complete.
-
-**Solution 4**: Ethanoic acid is a **weak acid** that ionises partially, so its starting <InlineMath math="\mathrm{H^+}" /> concentration is much lower than that of hydrochloric acid, which ionises completely. That's why its starting pH is higher, about <InlineMath math="2.9" /> compared with <InlineMath math="1" />. But both acids contain **the same number of moles of acid**, and both are monoprotic. As the <InlineMath math="\mathrm{OH^-}" /> ions remove <InlineMath math="\mathrm{H^+}" /> ions, more ethanoic acid molecules ionise, until every acid molecule has been neutralised. So the volume of sodium hydroxide needed is the same.
+Filter off the white <InlineMath math="\mathrm{AgCl}" /> residue, rinse it with distilled water to wash away spectator sodium and nitrate ions, and pat it dry between filter papers. Notice the unchanged balance reading too: rearranging dissolved ions into a solid precipitate conserves every gram of matter inside the beaker.

@@ -8,85 +8,101 @@ export const metadata = {
   subject: "Green Chemistry",
 };
 
-## Principles for Evaluating Process Design
+## Framework of the Twelve Green Chemistry Principles
 
-The **principles of green chemistry** provide a framework for evaluating the design of materials, reactions, and products. The evaluation checks whether a process prevents waste, reduces hazardous substances, and uses energy and resources more efficiently from the start.
+The **twelve principles of green chemistry** provide a practical framework for evaluating materials, reactions, and products across their entire [life cycle](https://www.epa.gov/greenchemistry/basics-green-chemistry). An eco-friendly label alone never proves a design improvement. For bioplastic from fruit peels, reused plastic bottles, or a new cleaner, identify the exact hazard, waste, or energy demand that actually drops.
 
-[Green chemistry](https://www.epa.gov/greenchemistry/basics-green-chemistry) applies across the life cycle of a chemical product, from design to final disposal, and emphasizes preventing pollution at its source.
+> Prevent waste before it forms, design safer molecules from the start, and back every green claim with measurable process evidence.
 
-An "eco-friendly" label does not identify a change in the design. For bioplastic from fruit peels, used plastic bottles turned into plant pots, or a new cleaning liquid, identify the hazardous material, energy use, or waste that actually decreases.
-
-## The Twelve Green Chemistry Principles
-
-The [twelve green chemistry principles](https://www.acs.org/green-chemistry-sustainability/principles/12-principles-of-green-chemistry.html) form a framework for making greener chemicals, processes, and products.
+The [twelve green chemistry principles](https://www.acs.org/green-chemistry-sustainability/principles/12-principles-of-green-chemistry.html) turn broad sustainability goals into twelve direct engineering checks.
 
 | Principle | Quick question |
 | :-------- | :------------- |
 | Prevent waste | Can waste be **avoided before it exists**? |
-| Atom economy | How much of the starting material becomes the desired product? |
+| Atom economy | How much starting mass enters the desired product? |
 | Safer synthesis | Does the reaction pathway reduce hazardous substances? |
 | Safer products | Can the product keep its function with lower toxicity? |
-| Safer solvents | Are solvents and auxiliaries truly needed, and are they safer choices? |
+| Safer solvents | Are solvents truly needed, and are safer options available? |
 | Energy efficiency | Can the process run under milder temperature and pressure? |
 | Renewable feedstocks | Can the starting material be replenished as it is used? |
-| Fewer derivatives | Can temporary protection or modification steps be avoided? |
-| Catalysts | Can a catalyst drive the reaction without many single-use reagents? |
+| Fewer derivatives | Can temporary blocking or modification steps be avoided? |
+| Catalysts | Can a catalyst drive the reaction without single-use reagents? |
 | Design for degradation | After use, can the product break down into safer substances? |
 | Real-time analysis | Can the process be monitored before pollution forms? |
 | Accident prevention | Does the design reduce fire, leak, explosion, or exposure risks? |
 
-Together, these principles check waste, energy, solvents, catalysts, toxicity, process monitoring, and workplace safety. Each judgment must be supported by evidence from the process being assessed.
+### Calculating Atom Economy Across Synthesis Routes
 
-## Atom Economy and Waste
+**Atom economy** is the percentage of total stoichiometric reactant mass that enters the desired product. Let <InlineMath math="m_P" /> be the stoichiometric formula mass of the desired product and <InlineMath math="m_R" /> the total formula mass of all reactants in the balanced equation:
 
-Atom economy is the percentage of the total stoichiometric mass of the reactants that enters the desired product.
+<BlockMath math="\text{atom economy} = \frac{m_P}{m_R} \times 100\%" />
 
-Let <InlineMath math="m_P" /> be the sum of the stoichiometric formula masses of the desired products, and <InlineMath math="m_R" /> the corresponding sum for all reactants.
+Unlike experimental percent yield, [percent atom economy](https://www.acs.org/green-chemistry-sustainability/principles/12-principles-of-green-chemistry.html) is a theoretical equation metric and does not count solvents or excess reagents on its own. High atom economy puts more reactant atoms into the target product rather than side products.
 
-<BlockMath math="\text{atom economy}=\frac{m_P}{m_R}\times100\%" />
-
-[Percent atom economy](https://www.acs.org/green-chemistry-sustainability/principles/12-principles-of-green-chemistry.html) is the formula weight of the desired product or products divided by the sum of the formula weights of all reactants in the balanced equation. This theoretical metric is different from experimental percent yield and does not by itself count solvent, excess reagent, or processing waste. When atom economy is high, more reactant atoms enter the desired product. When it is low, more atoms enter side products.
-
-Take methanol synthesis, with **methanol as the desired product**. Use rounded relative atomic masses <InlineMath math="A_r(\mathrm{C})=12" />, <InlineMath math="A_r(\mathrm{H})=1" />, and <InlineMath math="A_r(\mathrm{O})=16" />.
+Take methanol synthesis from carbon dioxide using rounded atomic masses <InlineMath math="A_r(\mathrm{C}) = 12" />, <InlineMath math="A_r(\mathrm{H}) = 1" />, and <InlineMath math="A_r(\mathrm{O}) = 16" />:
 
 <MathContainer>
-<BlockMath math="\mathrm{CO_2}+3\mathrm{H_2}\rightarrow\mathrm{CH_3OH}+\mathrm{H_2O}" />
-
-<BlockMath math="\begin{aligned} m_R &= (12+2\times16)+3(2\times1)=50 \\ m_P &=12+4\times1+16=32 \\ \text{atom economy} &=\frac{32}{50}\times100\%=64\% \end{aligned}" />
+<BlockMath math="\mathrm{CO_2} + 3\mathrm{H_2} \rightarrow \mathrm{CH_3OH} + \mathrm{H_2O}" />
+<BlockMath math="\begin{aligned} m_R &= (12 + 2 \times 16) + 3(2 \times 1) = 50 \\ m_P &= 12 + 4 \times 1 + 16 = 32 \\ \text{atom economy} &= \frac{32}{50} \times 100\% = 64\% \end{aligned}" />
 </MathContainer>
 
-The remaining formula mass, <InlineMath math="50-32=18" />, enters water as a by-product. The <InlineMath math="64\%" /> value comes from the equation, not from measuring reaction yield.
+The remaining <InlineMath math="36\%" /> of reactant mass exits as water by-product. By contrast, reacting carbon monoxide with hydrogen puts every atom into methanol at <InlineMath math="100\%" /> atom economy:
 
-The scene below compares this route with a second one that also makes methanol, <InlineMath math="\mathrm{CO}+2\mathrm{H_2}\rightarrow\mathrm{CH_3OH}" />. Each block is a formula mass, with one grid step for <InlineMath math="8" /> units. In both routes the reactant column and the product column are equally tall, because mass is conserved. Look at the top of the first product column: the pink block is water, the <InlineMath math="18" /> units that miss the desired product. The second route has no by-product, so its atom economy is <InlineMath math="100\%" />. Rotate the scene and compare the two product columns.
+<BlockMath math="\mathrm{CO} + 2\mathrm{H_2} \rightarrow \mathrm{CH_3OH}" />
+
+Slide the reactant feed mass <InlineMath math="m" /> below to compare desired methanol output and water waste across both routes.
 
 <MathVisual
-  title={<>Atom Economy of Two Routes to Methanol</>}
-  description={<>Formula masses with <InlineMath math="A_r(\mathrm{H})=1" />, <InlineMath math="A_r(\mathrm{C})=12" /> and <InlineMath math="A_r(\mathrm{O})=16" />, one grid step up for <InlineMath math="8" />. Gray and violet are reactants, fuchsia is methanol, pink is water.</>}
+  title={<>Methanol Output and Byproduct Mass for Two Routes</>}
+  description={
+    <>
+      Desired methanol mass from <InlineMath math="m" /> kilograms of reactants
+      via carbon monoxide at <InlineMath math="100\%" /> atom economy and carbon
+      dioxide at <InlineMath math="64\%" /> atom economy.
+    </>
+  }
+  footer={
+    <>
+      Higher atom economy converts more reactant mass into useful product.
+    </>
+  }
   scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 10.5 }, y: { min: 0, max: 7.5 }, z: { min: -1, max: 1 } },
-    view: { kind: "camera", position: { x: 11, y: 8, z: 13 }, target: { x: 4.5, y: 2.5, z: 0 } },
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 108 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 10, max: 100, value: 50, step: 5, label: "reactant-mass" },
+    ],
     objects: [
-      { id: "carbon-dioxide", kind: "cuboid", appearance: "reference", center: { x: 0, y: (12 + 2 * 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 2 * 16) / 8, width: 1.4 } },
-      { id: "hydrogen-three", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (12 + 2 * 16) / 8 + (3 * 2 * 1) / 16, z: 0 }, size: { length: 1.4, height: (3 * 2 * 1) / 8, width: 1.4 } },
-      { id: "methanol-one", kind: "cuboid", appearance: "answer", center: { x: 2.5, y: (12 + 4 * 1 + 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 4 * 1 + 16) / 8, width: 1.4 } },
-      { id: "water", kind: "cuboid", appearance: "warning", center: { x: 2.5, y: (12 + 4 * 1 + 16) / 8 + (2 * 1 + 16) / 16, z: 0 }, size: { length: 1.4, height: (2 * 1 + 16) / 8, width: 1.4 } },
-      { id: "carbon-monoxide", kind: "cuboid", appearance: "reference", center: { x: 6.5, y: (12 + 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 16) / 8, width: 1.4 } },
-      { id: "hydrogen-two", kind: "cuboid", appearance: "secondary", center: { x: 6.5, y: (12 + 16) / 8 + (2 * 2 * 1) / 16, z: 0 }, size: { length: 1.4, height: (2 * 2 * 1) / 8, width: 1.4 } },
-      { id: "methanol-two", kind: "cuboid", appearance: "answer", center: { x: 9, y: (12 + 4 * 1 + 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 4 * 1 + 16) / 8, width: 1.4 } },
+      { id: "co-route", kind: "function", appearance: "answer", formula: "x", domain: { min: 0, max: 100 } },
+      { id: "co2-route", kind: "function", appearance: "primary", formula: "0.64*x", domain: { min: 0, max: 100 } },
+      { id: "water-waste", kind: "function", appearance: "warning", formula: "0.36*x", domain: { min: 0, max: 100 } },
+      { id: "now-co", kind: "marker", x: "m", y: "m", appearance: "answer" },
+      { id: "now-co2", kind: "marker", x: "m", y: "0.64*m", appearance: "primary" },
     ],
     labels: [
-      { key: "first", objectId: "water", at: { x: 2.5, y: (12 + 2 * 16 + 3 * 2 * 1) / 8 + 0.5, z: 0 }, placement: "above" },
-      { key: "second", objectId: "methanol-two", at: { x: 9, y: (12 + 4 * 1 + 16) / 8 + 0.5, z: 0 }, placement: "above" },
+      { key: "co-line", objectId: "co-route", at: { x: 80, y: 80 }, placement: "above-left" },
+      { key: "co2-line", objectId: "co2-route", at: { x: 80, y: 51.2 }, placement: "above-left" },
+      { key: "waste-line", objectId: "water-waste", at: { x: 80, y: 28.8 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "co-yield", formula: "m" },
+      { key: "co2-yield", formula: "0.64*m" },
+      { key: "co2-waste", formula: "0.36*m" },
     ],
   }}
   labels={{
-    first: <InlineMath math="\frac{32}{50}\times100\%=64\%" />,
-    second: <InlineMath math="\frac{32}{32}\times100\%=100\%" />,
+    "reactant-mass": <>Reactant mass (<InlineMath math="\text{kg}" />)</>,
+    "co-line": <><InlineMath math="\mathrm{CO}" /> route</>,
+    "co2-line": <><InlineMath math="\mathrm{CO_2}" /> route</>,
+    "waste-line": <>Water waste</>,
+    "co-yield": <><InlineMath math="\mathrm{CO}" /> methanol (<InlineMath math="\text{kg}" />)</>,
+    "co2-yield": <><InlineMath math="\mathrm{CO_2}" /> methanol (<InlineMath math="\text{kg}" />)</>,
+    "co2-waste": <>Water waste (<InlineMath math="\text{kg}" />)</>,
   }}
 />
 
-Atom economy shows how reactant atoms are distributed. A complete assessment also checks solvent hazards, the energy used to reach the operating temperature and pressure, and what happens to the product after use.
+At <InlineMath math="50\text{ kg}" /> of reactants, the carbon monoxide route yields <InlineMath math="50\text{ kg}" /> of methanol, whereas the carbon dioxide route yields <InlineMath math="32\text{ kg}" /> of methanol and <InlineMath math="18\text{ kg}" /> of water. A full green assessment still checks solvent hazards, operating energy, and end-of-use fate alongside atom economy.
 
 | What you notice | Principle being checked |
 | :-------------- | :---------------------- |
@@ -95,143 +111,212 @@ Atom economy shows how reactant atoms are distributed. A complete assessment als
 | Flammable solvent | Safer solvents and accident prevention |
 | Product persists in the environment | Design for degradation |
 
-## Addition versus Elimination
+### Comparing Addition Substitution Elimination and Fermentation
 
-Atom economy is easiest to understand by comparing two kinds of reaction. When hydrogen adds to ethene, **every reactant atom enters the product**, so the atom economy is <InlineMath math="100\%" />. When ethanol loses water, one water molecule leaves, so only about <InlineMath math="60.9\%" /> of the reactant mass becomes ethene. Drag the slider and find the atoms that miss the wanted product.
+Reaction class strongly shapes **intrinsic waste**. In an **addition** reaction such as hydrogenating ethene to ethane, every reactant atom enters the product for <InlineMath math="100\%" /> atom economy. Substitution, elimination, and fermentation routes necessarily split off salt, water, or carbon dioxide byproducts. Switch between all four synthesis routes inside the continuous reactor below.
 
-<ReactionBalanceLab
-  title={<>Atom Economy in Addition and Elimination</>}
-  description={<>One reaction without a by-product and one that gives off water.</>}
-  reactions={[
-    { id: "ethene-hydrogenation", name: "Adding hydrogen to ethene", tab: <InlineMath math="\mathrm{C_2H_6}" /> },
-    { id: "ethanol-dehydration", name: "Removing water from ethanol", tab: <InlineMath math="\mathrm{C_2H_4}" /> },
-  ]}
-  reading="economy"
+<AtomEconomyReactorLab
+  title={<>Atom Economy Across Four Synthesis Routes</>}
+  description={
+    <>
+      Compare how reactant atoms divide between desired product and byproduct
+      waste across addition, substitution, elimination, and fermentation.
+    </>
+  }
+  footer={
+    <>
+      Addition routes retain every atom while elimination and fermentation
+      split off waste.
+    </>
+  }
+  routes={["addition", "substitution", "elimination", "fermentation"]}
   labels={{
-    atoms: <>Atoms of each element</>,
-    choose: "Choose a reaction",
-    economy: <>Atom economy</>,
-    equation: <>Balanced equation</>,
-    mass: <>Mass of reactants and products</>,
-    molecules: <>Number of molecules</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Reaction at the level of atoms",
+    atomEconomy: <>Atom economy</>,
+    parts: {
+      byproductWaste: "Byproduct waste",
+      desiredProduct: "Desired product",
+      reactantFeed: "Reactant feed",
+      reactorChamber: "Reactor chamber",
+    },
+    route: "Synthesis route",
+    routes: {
+      addition: {
+        economy: <InlineMath math="100\%" />,
+        name: "Addition",
+        wasteNote: <>Zero stoichiometric byproduct atoms leave the reactor.</>,
+      },
+      substitution: {
+        economy: <InlineMath math="58\%" />,
+        name: "Substitution",
+        wasteNote: <>Displaced leaving group exits as salt byproduct waste.</>,
+      },
+      elimination: {
+        economy: <InlineMath math="60.9\%" />,
+        name: "Elimination",
+        wasteNote: <>Ethanol dehydration splits off one water molecule per ethene.</>,
+      },
+      fermentation: {
+        economy: <InlineMath math="51.1\%" />,
+        name: "Fermentation",
+        wasteNote: <>Glucose fermentation vents two moles of <InlineMath math="\mathrm{CO_2}" /> per mole of sugar.</>,
+      },
+    },
+    view: "3D atom economy synthesis reactor",
+    wasteNote: <>Byproduct stream</>,
   }}
 />
 
-## Risk from Material Hazards and Exposure
+Notice that **fermentation** uses renewable sugar feedstock yet still carries a low stoichiometric atom economy of <InlineMath math="51.1\%" /> because carbon dioxide leaves alongside ethanol. Green chemistry compares every principle together instead of relying on a single metric.
 
-Natural materials can also be hazardous. [Capsaicin](https://pubchem.ncbi.nlm.nih.gov/compound/Capsaicin) can irritate skin and eyes. [Ethanol](https://pubchem.ncbi.nlm.nih.gov/compound/Ethanol) is highly flammable. A substance's properties determine its intrinsic hazards, such as flammability or irritation. Dose, concentration, and route of exposure <Highlight>affect the level of risk</Highlight>. Intrinsic hazards, dose, concentration, and exposure route must be checked for both natural and synthetic materials. A synthetic material can be designed for low toxicity, useful stability, and safer degradation after use.
+## Managing Chemical Risk and Reaction Energy
 
-Bioplastic from fruit peels uses organic waste as a feedstock. This supports the renewable feedstock and waste prevention principles, but it is not enough to evaluate the full process. We also need to check processing energy, additives, product durability, and how the material degrades after use.
+Green chemistry reduces both **chemical risk** and **energy demand** by rethinking molecules and reaction pathways rather than relying solely on protective gear and heavy heating. Lowering intrinsic hazards and activation barriers together makes chemical manufacturing safer and cleaner from the start.
 
-Reusing a plastic bottle as a plant pot reduces waste by keeping the material in use. Green chemistry addresses a different step by designing a chemical reaction or product so it creates less hazard from the start.
+### Lowering Risk Through Hazard and Exposure Control
 
-Risk needs both a hazard and an exposure, so an illustrative risk score is <InlineMath math="R=\text{hazard}\cdot\text{exposure}" />. Every curve joins points with the same risk. Starting at <InlineMath math="16" />, a safer material halves the hazard and a smaller dose or less contact cuts the exposure. Zoom in and see which curve each change lands on.
+Natural substances can carry real hazards. [Capsaicin](https://pubchem.ncbi.nlm.nih.gov/compound/Capsaicin) irritates skin and eyes, and [ethanol](https://pubchem.ncbi.nlm.nih.gov/compound/Ethanol) is highly flammable. Chemical risk depends on both **intrinsic hazard** and **exposure** (dose, concentration, and contact route):
+
+<BlockMath math="R = \text{hazard} \times \text{exposure}" />
+
+Adjust both sliders below to see how replacing a hazardous substance cuts risk vertically while reducing exposure cuts risk horizontally onto lower iso-risk curves.
 
 <MathVisual
-  title={<>Two Places to Cut Chemical Risk</>}
-  description={<>Illustrative risk scores with exposure across and hazard up. The curves join equal risk: <InlineMath math="16" /> (pink), <InlineMath math="8" /> (amber) and <InlineMath math="4" /> (teal).</>}
+  title={<>Two Levers to Cut Chemical Risk</>}
+  description={
+    <>
+      Illustrative risk score <InlineMath math="R = p \cdot h" /> across
+      iso-risk curves at <InlineMath math="4" />, <InlineMath math="8" />, and{" "}
+      <InlineMath math="16" /> as exposure and hazard change.
+    </>
+  }
+  footer={
+    <>
+      Cutting intrinsic hazard reduces risk permanently even when protective
+      barriers fail.
+    </>
+  }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: 0, max: 5.5 } },
     view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 1, max: 5, value: 4, step: 0.5, label: "exposure-level" },
+      { name: "h", min: 1, max: 5, value: 2, step: 0.5, label: "hazard-level" },
+    ],
     objects: [
-      { id: "risk-4", kind: "polyline", appearance: "construction", vertices: [{ x: 1, y: 4 / 1.0 }, { x: 1.25, y: 4 / 1.25 }, { x: 1.5, y: 4 / 1.5 }, { x: 1.75, y: 4 / 1.75 }, { x: 2, y: 4 / 2.0 }, { x: 2.25, y: 4 / 2.25 }, { x: 2.5, y: 4 / 2.5 }, { x: 2.75, y: 4 / 2.75 }, { x: 3, y: 4 / 3.0 }, { x: 3.25, y: 4 / 3.25 }, { x: 3.5, y: 4 / 3.5 }, { x: 3.75, y: 4 / 3.75 }, { x: 4, y: 4 / 4.0 }, { x: 4.25, y: 4 / 4.25 }, { x: 4.5, y: 4 / 4.5 }, { x: 4.75, y: 4 / 4.75 }, { x: 5, y: 4 / 5.0 }] },
-      { id: "risk-8", kind: "polyline", appearance: "highlight", vertices: [{ x: 1.75, y: 8 / 1.75 }, { x: 2, y: 8 / 2.0 }, { x: 2.25, y: 8 / 2.25 }, { x: 2.5, y: 8 / 2.5 }, { x: 2.75, y: 8 / 2.75 }, { x: 3, y: 8 / 3.0 }, { x: 3.25, y: 8 / 3.25 }, { x: 3.5, y: 8 / 3.5 }, { x: 3.75, y: 8 / 3.75 }, { x: 4, y: 8 / 4.0 }, { x: 4.25, y: 8 / 4.25 }, { x: 4.5, y: 8 / 4.5 }, { x: 4.75, y: 8 / 4.75 }, { x: 5, y: 8 / 5.0 }] },
-      { id: "risk-16", kind: "polyline", appearance: "warning", vertices: [{ x: 3.25, y: 16 / 3.25 }, { x: 3.5, y: 16 / 3.5 }, { x: 3.75, y: 16 / 3.75 }, { x: 4, y: 16 / 4.0 }, { x: 4.25, y: 16 / 4.25 }, { x: 4.5, y: 16 / 4.5 }, { x: 4.75, y: 16 / 4.75 }, { x: 5, y: 16 / 5.0 }] },
-      { id: "start", kind: "point", appearance: "warning", at: { x: 4, y: 4 } },
-      { id: "safer", kind: "point", appearance: "highlight", at: { x: 4, y: 2 } },
-      { id: "less", kind: "point", appearance: "construction", at: { x: 1, y: 4 } },
+      { id: "risk-4", kind: "function", appearance: "construction", formula: "4/x", domain: { min: 0.8, max: 5 } },
+      { id: "risk-8", kind: "function", appearance: "highlight", formula: "8/x", domain: { min: 1.6, max: 5 } },
+      { id: "risk-16", kind: "function", appearance: "warning", formula: "16/x", domain: { min: 3.2, max: 5 } },
+      { id: "risk-now", kind: "marker", x: "p", y: "h", appearance: "primary" },
     ],
     labels: [
-      { key: "start", objectId: "start", at: { x: 4, y: 4 }, placement: "above-right" },
-      { key: "safer", objectId: "safer", at: { x: 4, y: 2 }, placement: "right" },
-      { key: "less", objectId: "less", at: { x: 1, y: 4 }, placement: "above-right" },
+      { key: "curve-4", objectId: "risk-4", at: { x: 1, y: 4 }, placement: "above-right" },
+      { key: "curve-8", objectId: "risk-8", at: { x: 2, y: 4 }, placement: "above-right" },
+      { key: "curve-16", objectId: "risk-16", at: { x: 4, y: 4 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "risk-score", formula: "p*h" },
     ],
   }}
   labels={{
-    start: <InlineMath math="4\cdot4=16" />,
-    safer: <InlineMath math="\text{safer material: }4\cdot2=8" />,
-    less: <InlineMath math="\text{less contact: }1\cdot4=4" />,
+    "exposure-level": <>Exposure (<InlineMath math="p" />)</>,
+    "hazard-level": <>Hazard (<InlineMath math="h" />)</>,
+    "curve-4": <InlineMath math="R = 4" />,
+    "curve-8": <InlineMath math="R = 8" />,
+    "curve-16": <InlineMath math="R = 16" />,
+    "risk-score": <>Risk score (<InlineMath math="R" />)</>,
   }}
 />
 
-## Same Element with Different Hazards
+Protective gear only shrinks exposure and can fail during spills or leaks. Green chemistry lowers the **hazard axis directly**, making accidents far less severe by design.
 
-A substance's hazard does not depend only on its elements. We breathe oxygen, <InlineMath math="\mathrm{O_2}" />, all the time, while ozone, <InlineMath math="\mathrm{O_3}" />, near the ground **irritates the airways**. Both contain only oxygen, but the number of atoms and the shape of the molecule differ. Turn both models and compare the bond angle of ozone.
+Intrinsic hazard also depends on molecular bonding, not just element names or mass. We breathe oxygen (<InlineMath math="\mathrm{O_2}" />) safely, whereas ground-level ozone (<InlineMath math="\mathrm{O_3}" />) irritates airways even though both consist purely of oxygen. Compare the relative molecular masses of four substances with very different hazard profiles below.
 
-<MoleculeShapeLab
-  title={<>Ozone and Oxygen</>}
-  description={<>Turn both models and compare the bond angle of ozone.</>}
-  molecules={[
-    { id: "ozone", name: "Ozone" },
-    { id: "oxygen", name: "Oxygen" },
+<Chart
+  title={<>Relative Molecular Mass of Four Everyday Substances</>}
+  description={
+    <>
+      Comparison of relative molecular mass across water, breathable oxygen,
+      flammable ethanol, and airway-irritating ozone.
+    </>
+  }
+  footer={
+    <>
+      Similar molar masses still bring opposite hazards because bonding drives
+      reactivity.
+    </>
+  }
+  bars="apart"
+  categories={["Water", "Oxygen", "Ethanol", "Ozone"]}
+  series={[
+    { label: "Relative molecular mass", mark: "bar", values: [18, 32, 46, 48] },
   ]}
-  labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
-  }}
+  valueLabel="Relative molecular mass"
+  valueRange={{ min: 0, max: 55 }}
 />
 
-## Evaluating Reactions and Feedstocks
+Ethanol (<InlineMath math="M_r = 46" />) and ozone (<InlineMath math="M_r = 48" />) sit almost side by side in mass, yet one is a flammable liquid solvent and the other is a reactive oxidizing gas. Always judge safety from structure, dose, and exposure rather than whether a substance sounds natural.
 
-Some chemical processes use less energy when a reaction can run at room temperature or ordinary pressure. A catalyst can provide a pathway with **lower activation energy**, which may let a particular process run under milder conditions. A selective catalyst may also reduce by-product formation. Its effect depends on the reaction mechanism, selectivity, catalyst lifetime, and separation requirements.
+### Reducing Activation Energy with Selective Catalysts
 
-A [catalyst](https://goldbook.iupac.org/terms/view/C00876) increases the reaction rate without changing the reaction's overall standard Gibbs energy change. It participates in the reaction and is regenerated overall. It can still deactivate or be lost during a real process. The change in energy use and waste depends on the operating temperature and pressure, selectivity, toxicity, scarcity, recoverability, and useful lifetime.
+Many reactions consume far less energy when they run near room temperature and ambient pressure. A [catalyst](https://goldbook.iupac.org/terms/view/C00876) opens an alternative pathway with **lower activation energy**, increasing reaction rate without shifting the overall energy difference between reactants and products. Selective catalysts also suppress side reactions.
 
-Renewable feedstocks also need careful study. Fruit peels, starch, and plant oils can be replenished, but growing, transporting, extracting, and processing them still uses land, water, and energy. Include all of those stages in the assessment.
-
-A catalyst opens a lower path over the energy hill between reactants and products. Fewer particles need extreme heat or pressure to get over it, so the reaction can run in milder conditions, and a selective catalyst can also cut by-products. Zoom in on both ends: the start and the finish don't move, only the height of the hill.
+Slide the catalyzed activation energy <InlineMath math="b" /> below to compare the uncatalyzed barrier of <InlineMath math="60\text{ kJ mol}^{-1}" /> against a catalyzed pathway.
 
 <MathVisual
-  title={<>A Catalyst Lowers the Hill</>}
-  description={<>An illustrative energy profile of one reaction without a catalyst (gray) and with one (teal). Vertical: energy. Horizontal: progress of the reaction.</>}
+  title={<>Catalyst Effect on Reaction Activation Barrier</>}
+  description={
+    <>
+      Illustrative reaction energy profile comparing an uncatalyzed barrier of{" "}
+      <InlineMath math="60\text{ kJ mol}^{-1}" /> against a catalyzed barrier{" "}
+      <InlineMath math="b" />.
+    </>
+  }
+  footer={
+    <>
+      A catalyst lowers only the activation hill while start and end energies
+      stay fixed.
+    </>
+  }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: 0, max: 7 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 112 } },
     view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 20, max: 60, value: 35, step: 5, label: "catalyzed-ea" },
+    ],
     objects: [
-      { id: "plain", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 3 - 1.5 * (0 / 10) ** 2 * (3 - 2 * (0 / 10)) + 4 * Math.sin((Math.PI * 0) / 10) ** 2 }, { x: 0.25, y: 3 - 1.5 * (0.25 / 10) ** 2 * (3 - 2 * (0.25 / 10)) + 4 * Math.sin((Math.PI * 0.25) / 10) ** 2 }, { x: 0.5, y: 3 - 1.5 * (0.5 / 10) ** 2 * (3 - 2 * (0.5 / 10)) + 4 * Math.sin((Math.PI * 0.5) / 10) ** 2 }, { x: 0.75, y: 3 - 1.5 * (0.75 / 10) ** 2 * (3 - 2 * (0.75 / 10)) + 4 * Math.sin((Math.PI * 0.75) / 10) ** 2 }, { x: 1, y: 3 - 1.5 * (1 / 10) ** 2 * (3 - 2 * (1 / 10)) + 4 * Math.sin((Math.PI * 1) / 10) ** 2 }, { x: 1.25, y: 3 - 1.5 * (1.25 / 10) ** 2 * (3 - 2 * (1.25 / 10)) + 4 * Math.sin((Math.PI * 1.25) / 10) ** 2 }, { x: 1.5, y: 3 - 1.5 * (1.5 / 10) ** 2 * (3 - 2 * (1.5 / 10)) + 4 * Math.sin((Math.PI * 1.5) / 10) ** 2 }, { x: 1.75, y: 3 - 1.5 * (1.75 / 10) ** 2 * (3 - 2 * (1.75 / 10)) + 4 * Math.sin((Math.PI * 1.75) / 10) ** 2 }, { x: 2, y: 3 - 1.5 * (2 / 10) ** 2 * (3 - 2 * (2 / 10)) + 4 * Math.sin((Math.PI * 2) / 10) ** 2 }, { x: 2.25, y: 3 - 1.5 * (2.25 / 10) ** 2 * (3 - 2 * (2.25 / 10)) + 4 * Math.sin((Math.PI * 2.25) / 10) ** 2 }, { x: 2.5, y: 3 - 1.5 * (2.5 / 10) ** 2 * (3 - 2 * (2.5 / 10)) + 4 * Math.sin((Math.PI * 2.5) / 10) ** 2 }, { x: 2.75, y: 3 - 1.5 * (2.75 / 10) ** 2 * (3 - 2 * (2.75 / 10)) + 4 * Math.sin((Math.PI * 2.75) / 10) ** 2 }, { x: 3, y: 3 - 1.5 * (3 / 10) ** 2 * (3 - 2 * (3 / 10)) + 4 * Math.sin((Math.PI * 3) / 10) ** 2 }, { x: 3.25, y: 3 - 1.5 * (3.25 / 10) ** 2 * (3 - 2 * (3.25 / 10)) + 4 * Math.sin((Math.PI * 3.25) / 10) ** 2 }, { x: 3.5, y: 3 - 1.5 * (3.5 / 10) ** 2 * (3 - 2 * (3.5 / 10)) + 4 * Math.sin((Math.PI * 3.5) / 10) ** 2 }, { x: 3.75, y: 3 - 1.5 * (3.75 / 10) ** 2 * (3 - 2 * (3.75 / 10)) + 4 * Math.sin((Math.PI * 3.75) / 10) ** 2 }, { x: 4, y: 3 - 1.5 * (4 / 10) ** 2 * (3 - 2 * (4 / 10)) + 4 * Math.sin((Math.PI * 4) / 10) ** 2 }, { x: 4.25, y: 3 - 1.5 * (4.25 / 10) ** 2 * (3 - 2 * (4.25 / 10)) + 4 * Math.sin((Math.PI * 4.25) / 10) ** 2 }, { x: 4.5, y: 3 - 1.5 * (4.5 / 10) ** 2 * (3 - 2 * (4.5 / 10)) + 4 * Math.sin((Math.PI * 4.5) / 10) ** 2 }, { x: 4.75, y: 3 - 1.5 * (4.75 / 10) ** 2 * (3 - 2 * (4.75 / 10)) + 4 * Math.sin((Math.PI * 4.75) / 10) ** 2 }, { x: 5, y: 3 - 1.5 * (5 / 10) ** 2 * (3 - 2 * (5 / 10)) + 4 * Math.sin((Math.PI * 5) / 10) ** 2 }, { x: 5.25, y: 3 - 1.5 * (5.25 / 10) ** 2 * (3 - 2 * (5.25 / 10)) + 4 * Math.sin((Math.PI * 5.25) / 10) ** 2 }, { x: 5.5, y: 3 - 1.5 * (5.5 / 10) ** 2 * (3 - 2 * (5.5 / 10)) + 4 * Math.sin((Math.PI * 5.5) / 10) ** 2 }, { x: 5.75, y: 3 - 1.5 * (5.75 / 10) ** 2 * (3 - 2 * (5.75 / 10)) + 4 * Math.sin((Math.PI * 5.75) / 10) ** 2 }, { x: 6, y: 3 - 1.5 * (6 / 10) ** 2 * (3 - 2 * (6 / 10)) + 4 * Math.sin((Math.PI * 6) / 10) ** 2 }, { x: 6.25, y: 3 - 1.5 * (6.25 / 10) ** 2 * (3 - 2 * (6.25 / 10)) + 4 * Math.sin((Math.PI * 6.25) / 10) ** 2 }, { x: 6.5, y: 3 - 1.5 * (6.5 / 10) ** 2 * (3 - 2 * (6.5 / 10)) + 4 * Math.sin((Math.PI * 6.5) / 10) ** 2 }, { x: 6.75, y: 3 - 1.5 * (6.75 / 10) ** 2 * (3 - 2 * (6.75 / 10)) + 4 * Math.sin((Math.PI * 6.75) / 10) ** 2 }, { x: 7, y: 3 - 1.5 * (7 / 10) ** 2 * (3 - 2 * (7 / 10)) + 4 * Math.sin((Math.PI * 7) / 10) ** 2 }, { x: 7.25, y: 3 - 1.5 * (7.25 / 10) ** 2 * (3 - 2 * (7.25 / 10)) + 4 * Math.sin((Math.PI * 7.25) / 10) ** 2 }, { x: 7.5, y: 3 - 1.5 * (7.5 / 10) ** 2 * (3 - 2 * (7.5 / 10)) + 4 * Math.sin((Math.PI * 7.5) / 10) ** 2 }, { x: 7.75, y: 3 - 1.5 * (7.75 / 10) ** 2 * (3 - 2 * (7.75 / 10)) + 4 * Math.sin((Math.PI * 7.75) / 10) ** 2 }, { x: 8, y: 3 - 1.5 * (8 / 10) ** 2 * (3 - 2 * (8 / 10)) + 4 * Math.sin((Math.PI * 8) / 10) ** 2 }, { x: 8.25, y: 3 - 1.5 * (8.25 / 10) ** 2 * (3 - 2 * (8.25 / 10)) + 4 * Math.sin((Math.PI * 8.25) / 10) ** 2 }, { x: 8.5, y: 3 - 1.5 * (8.5 / 10) ** 2 * (3 - 2 * (8.5 / 10)) + 4 * Math.sin((Math.PI * 8.5) / 10) ** 2 }, { x: 8.75, y: 3 - 1.5 * (8.75 / 10) ** 2 * (3 - 2 * (8.75 / 10)) + 4 * Math.sin((Math.PI * 8.75) / 10) ** 2 }, { x: 9, y: 3 - 1.5 * (9 / 10) ** 2 * (3 - 2 * (9 / 10)) + 4 * Math.sin((Math.PI * 9) / 10) ** 2 }, { x: 9.25, y: 3 - 1.5 * (9.25 / 10) ** 2 * (3 - 2 * (9.25 / 10)) + 4 * Math.sin((Math.PI * 9.25) / 10) ** 2 }, { x: 9.5, y: 3 - 1.5 * (9.5 / 10) ** 2 * (3 - 2 * (9.5 / 10)) + 4 * Math.sin((Math.PI * 9.5) / 10) ** 2 }, { x: 9.75, y: 3 - 1.5 * (9.75 / 10) ** 2 * (3 - 2 * (9.75 / 10)) + 4 * Math.sin((Math.PI * 9.75) / 10) ** 2 }, { x: 10, y: 3 - 1.5 * (10 / 10) ** 2 * (3 - 2 * (10 / 10)) + 4 * Math.sin((Math.PI * 10) / 10) ** 2 }] },
-      { id: "catalyst", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 3 - 1.5 * (0 / 10) ** 2 * (3 - 2 * (0 / 10)) + 1.8 * Math.sin((Math.PI * 0) / 10) ** 2 }, { x: 0.25, y: 3 - 1.5 * (0.25 / 10) ** 2 * (3 - 2 * (0.25 / 10)) + 1.8 * Math.sin((Math.PI * 0.25) / 10) ** 2 }, { x: 0.5, y: 3 - 1.5 * (0.5 / 10) ** 2 * (3 - 2 * (0.5 / 10)) + 1.8 * Math.sin((Math.PI * 0.5) / 10) ** 2 }, { x: 0.75, y: 3 - 1.5 * (0.75 / 10) ** 2 * (3 - 2 * (0.75 / 10)) + 1.8 * Math.sin((Math.PI * 0.75) / 10) ** 2 }, { x: 1, y: 3 - 1.5 * (1 / 10) ** 2 * (3 - 2 * (1 / 10)) + 1.8 * Math.sin((Math.PI * 1) / 10) ** 2 }, { x: 1.25, y: 3 - 1.5 * (1.25 / 10) ** 2 * (3 - 2 * (1.25 / 10)) + 1.8 * Math.sin((Math.PI * 1.25) / 10) ** 2 }, { x: 1.5, y: 3 - 1.5 * (1.5 / 10) ** 2 * (3 - 2 * (1.5 / 10)) + 1.8 * Math.sin((Math.PI * 1.5) / 10) ** 2 }, { x: 1.75, y: 3 - 1.5 * (1.75 / 10) ** 2 * (3 - 2 * (1.75 / 10)) + 1.8 * Math.sin((Math.PI * 1.75) / 10) ** 2 }, { x: 2, y: 3 - 1.5 * (2 / 10) ** 2 * (3 - 2 * (2 / 10)) + 1.8 * Math.sin((Math.PI * 2) / 10) ** 2 }, { x: 2.25, y: 3 - 1.5 * (2.25 / 10) ** 2 * (3 - 2 * (2.25 / 10)) + 1.8 * Math.sin((Math.PI * 2.25) / 10) ** 2 }, { x: 2.5, y: 3 - 1.5 * (2.5 / 10) ** 2 * (3 - 2 * (2.5 / 10)) + 1.8 * Math.sin((Math.PI * 2.5) / 10) ** 2 }, { x: 2.75, y: 3 - 1.5 * (2.75 / 10) ** 2 * (3 - 2 * (2.75 / 10)) + 1.8 * Math.sin((Math.PI * 2.75) / 10) ** 2 }, { x: 3, y: 3 - 1.5 * (3 / 10) ** 2 * (3 - 2 * (3 / 10)) + 1.8 * Math.sin((Math.PI * 3) / 10) ** 2 }, { x: 3.25, y: 3 - 1.5 * (3.25 / 10) ** 2 * (3 - 2 * (3.25 / 10)) + 1.8 * Math.sin((Math.PI * 3.25) / 10) ** 2 }, { x: 3.5, y: 3 - 1.5 * (3.5 / 10) ** 2 * (3 - 2 * (3.5 / 10)) + 1.8 * Math.sin((Math.PI * 3.5) / 10) ** 2 }, { x: 3.75, y: 3 - 1.5 * (3.75 / 10) ** 2 * (3 - 2 * (3.75 / 10)) + 1.8 * Math.sin((Math.PI * 3.75) / 10) ** 2 }, { x: 4, y: 3 - 1.5 * (4 / 10) ** 2 * (3 - 2 * (4 / 10)) + 1.8 * Math.sin((Math.PI * 4) / 10) ** 2 }, { x: 4.25, y: 3 - 1.5 * (4.25 / 10) ** 2 * (3 - 2 * (4.25 / 10)) + 1.8 * Math.sin((Math.PI * 4.25) / 10) ** 2 }, { x: 4.5, y: 3 - 1.5 * (4.5 / 10) ** 2 * (3 - 2 * (4.5 / 10)) + 1.8 * Math.sin((Math.PI * 4.5) / 10) ** 2 }, { x: 4.75, y: 3 - 1.5 * (4.75 / 10) ** 2 * (3 - 2 * (4.75 / 10)) + 1.8 * Math.sin((Math.PI * 4.75) / 10) ** 2 }, { x: 5, y: 3 - 1.5 * (5 / 10) ** 2 * (3 - 2 * (5 / 10)) + 1.8 * Math.sin((Math.PI * 5) / 10) ** 2 }, { x: 5.25, y: 3 - 1.5 * (5.25 / 10) ** 2 * (3 - 2 * (5.25 / 10)) + 1.8 * Math.sin((Math.PI * 5.25) / 10) ** 2 }, { x: 5.5, y: 3 - 1.5 * (5.5 / 10) ** 2 * (3 - 2 * (5.5 / 10)) + 1.8 * Math.sin((Math.PI * 5.5) / 10) ** 2 }, { x: 5.75, y: 3 - 1.5 * (5.75 / 10) ** 2 * (3 - 2 * (5.75 / 10)) + 1.8 * Math.sin((Math.PI * 5.75) / 10) ** 2 }, { x: 6, y: 3 - 1.5 * (6 / 10) ** 2 * (3 - 2 * (6 / 10)) + 1.8 * Math.sin((Math.PI * 6) / 10) ** 2 }, { x: 6.25, y: 3 - 1.5 * (6.25 / 10) ** 2 * (3 - 2 * (6.25 / 10)) + 1.8 * Math.sin((Math.PI * 6.25) / 10) ** 2 }, { x: 6.5, y: 3 - 1.5 * (6.5 / 10) ** 2 * (3 - 2 * (6.5 / 10)) + 1.8 * Math.sin((Math.PI * 6.5) / 10) ** 2 }, { x: 6.75, y: 3 - 1.5 * (6.75 / 10) ** 2 * (3 - 2 * (6.75 / 10)) + 1.8 * Math.sin((Math.PI * 6.75) / 10) ** 2 }, { x: 7, y: 3 - 1.5 * (7 / 10) ** 2 * (3 - 2 * (7 / 10)) + 1.8 * Math.sin((Math.PI * 7) / 10) ** 2 }, { x: 7.25, y: 3 - 1.5 * (7.25 / 10) ** 2 * (3 - 2 * (7.25 / 10)) + 1.8 * Math.sin((Math.PI * 7.25) / 10) ** 2 }, { x: 7.5, y: 3 - 1.5 * (7.5 / 10) ** 2 * (3 - 2 * (7.5 / 10)) + 1.8 * Math.sin((Math.PI * 7.5) / 10) ** 2 }, { x: 7.75, y: 3 - 1.5 * (7.75 / 10) ** 2 * (3 - 2 * (7.75 / 10)) + 1.8 * Math.sin((Math.PI * 7.75) / 10) ** 2 }, { x: 8, y: 3 - 1.5 * (8 / 10) ** 2 * (3 - 2 * (8 / 10)) + 1.8 * Math.sin((Math.PI * 8) / 10) ** 2 }, { x: 8.25, y: 3 - 1.5 * (8.25 / 10) ** 2 * (3 - 2 * (8.25 / 10)) + 1.8 * Math.sin((Math.PI * 8.25) / 10) ** 2 }, { x: 8.5, y: 3 - 1.5 * (8.5 / 10) ** 2 * (3 - 2 * (8.5 / 10)) + 1.8 * Math.sin((Math.PI * 8.5) / 10) ** 2 }, { x: 8.75, y: 3 - 1.5 * (8.75 / 10) ** 2 * (3 - 2 * (8.75 / 10)) + 1.8 * Math.sin((Math.PI * 8.75) / 10) ** 2 }, { x: 9, y: 3 - 1.5 * (9 / 10) ** 2 * (3 - 2 * (9 / 10)) + 1.8 * Math.sin((Math.PI * 9) / 10) ** 2 }, { x: 9.25, y: 3 - 1.5 * (9.25 / 10) ** 2 * (3 - 2 * (9.25 / 10)) + 1.8 * Math.sin((Math.PI * 9.25) / 10) ** 2 }, { x: 9.5, y: 3 - 1.5 * (9.5 / 10) ** 2 * (3 - 2 * (9.5 / 10)) + 1.8 * Math.sin((Math.PI * 9.5) / 10) ** 2 }, { x: 9.75, y: 3 - 1.5 * (9.75 / 10) ** 2 * (3 - 2 * (9.75 / 10)) + 1.8 * Math.sin((Math.PI * 9.75) / 10) ** 2 }, { x: 10, y: 3 - 1.5 * (10 / 10) ** 2 * (3 - 2 * (10 / 10)) + 1.8 * Math.sin((Math.PI * 10) / 10) ** 2 }] },
-      { id: "start", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
-      { id: "end", kind: "point", appearance: "secondary", at: { x: 10, y: 1.5 } },
-      { id: "plain-top", kind: "point", appearance: "reference", at: { x: 5, y: 6.25 } },
-      { id: "cat-top", kind: "point", appearance: "construction", at: { x: 5, y: 4.05 } },
+      { id: "uncatalyzed", kind: "function", appearance: "reference", formula: "40 - 20*(x/10)^2*(3 - 2*x/10) + 70*sin^2(pi*x/10)", domain: { min: 0, max: 10 } },
+      { id: "catalyzed", kind: "function", appearance: "construction", formula: "40 - 20*(x/10)^2*(3 - 2*x/10) + (b + 10)*sin^2(pi*x/10)", domain: { min: 0, max: 10 } },
+      { id: "cat-peak", kind: "marker", x: "5", y: "40 + b", appearance: "construction" },
     ],
     labels: [
-      { key: "plain", objectId: "plain-top", at: { x: 5, y: 6.25 }, placement: "above" },
-      { key: "cat", objectId: "cat-top", at: { x: 5, y: 4.05 }, placement: "right" },
-      { key: "start", objectId: "start", at: { x: 0, y: 3 }, placement: "above-right" },
-      { key: "end", objectId: "end", at: { x: 10, y: 1.5 }, placement: "above-left" },
+      { key: "plain-hill", objectId: "uncatalyzed", at: { x: 5, y: 100 }, placement: "above" },
+      { key: "cat-hill", objectId: "catalyzed", at: { x: "5", y: "40 + b" }, placement: "below" },
+    ],
+    readouts: [
+      { key: "ea-active", formula: "b" },
+      { key: "ea-saved", formula: "60 - b" },
     ],
   }}
   labels={{
-    plain: <>without a catalyst</>,
-    cat: <>with a catalyst</>,
-    start: <>reactants</>,
-    end: <>products</>,
+    "catalyzed-ea": <>Catalyzed <InlineMath math="E_a" /> (<InlineMath math="\text{kJ mol}^{-1}" />)</>,
+    "plain-hill": <>Without catalyst</>,
+    "cat-hill": <>With catalyst</>,
+    "ea-active": <>Catalyzed <InlineMath math="E_a" /> (<InlineMath math="\text{kJ mol}^{-1}" />)</>,
+    "ea-saved": <>Barrier drop (<InlineMath math="\text{kJ mol}^{-1}" />)</>,
   }}
 />
 
-## Checking Green Claims
+Watch both ends of the curves as the slider moves: reactant energy stays pinned at <InlineMath math="40\text{ kJ mol}^{-1}" /> and product energy at <InlineMath math="20\text{ kJ mol}^{-1}" />, while only the activation hill shrinks. Renewable feedstocks like starch or plant oils also require checking farming land, water, transport, and catalyst recovery before declaring a net gain.
 
-Imagine two ways to make a simple glue for paper labels.
+## Auditing Process Tradeoffs with the Twelve Principles
+
+Comparing two designs for a simple paper-label glue shows how to apply the **twelve principles** without jumping to conclusions.
 
 | Option | Process design |
 | :----- | :------------- |
-| A | Uses a flammable solvent, long heating, and leaves a large liquid waste stream. |
-| B | Uses water as the solvent, lower temperature, and little leftover material, with enough adhesion for paper labels. |
+| A | Uses a flammable solvent, extended heating, and leaves a large liquid waste stream. |
+| B | Uses water as solvent, lower temperature, and minimal leftovers while keeping adequate adhesion. |
 
-Now compare options **A** and **B** by their operating temperature, solvent, and leftover material.
-
-Option **B** replaces a flammable solvent with water and leaves less material. Measure its total energy use before claiming an energy reduction, because a lower temperature alone does not prove that less energy is consumed. The glue still requires checks for how long it lasts, whether its feedstock is renewable, and what happens after the label is discarded.
-
-Use the <InlineMath math="12" /> green chemistry principles as questions for the process: What materials enter it? Where does the energy come from? Which hazards are prevented? Which waste can be avoided?
+Option **B** clearly eliminates a flammable solvent and cuts liquid waste. Still, measure total energy consumed rather than assuming a lower temperature uses less energy if heating lasts longer, and verify shelf life, feedstock origin, and safe disposal. Use the twelve principles as a structured audit of materials, energy, hazards, and waste before calling any process green.

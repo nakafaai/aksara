@@ -8,229 +8,279 @@ export const metadata = {
   subject: "Kimia Hijau",
 };
 
-## Mereka Bentuk Proses Kimia untuk Mengurangkan Bahaya
+## Pengurangan di Punca Sepanjang Kitar Hayat Produk
 
-**Kimia hijau** bermaksud mereka bentuk produk dan proses kimia supaya penggunaan atau pembentukan bahan berbahaya berkurang sejak awal lagi. Perkataan "hijau" merujuk kepada matlamat itu, bukan kepada warna sesuatu bahan, dan kimia hijau tidak mewajibkan ramuan berasaskan tumbuhan.
+**Kimia hijau** bermaksud mereka bentuk produk dan proses kimia supaya penggunaan atau pembentukan bahan berbahaya berkurang sejak awal. Perkataan hijau menggambarkan matlamat reka bentuk itu, bukan warna bahan dan bukan syarat ramuan berasaskan tumbuhan.
 
-Kimia hijau diguna pakai sepanjang [kitar hayat sesuatu produk kimia](https://www.epa.gov/greenchemistry/basics-green-chemistry), dari reka bentuk dan pembuatan hingga ke penggunaan dan apa yang berlaku kepadanya pada akhirnya.
+Kimia hijau meliputi seluruh [kitar hayat sesuatu produk kimia](https://www.epa.gov/greenchemistry/basics-green-chemistry), dari bahan permulaan dan sintesis hingga penggunaan aktif serta akhir hayatnya. Rawatan sisa masih penting selepas sisa wujud, namun kimia hijau bertindak lebih awal dengan menilai bahan mentah, pelarut, tenaga, mangkin dan produk sebelum tindak balas dijalankan.
 
-Kimia hijau bermula dengan **reka bentuk proses**. Rawatan sisa tetap penting selepas sisa terbentuk. Sebelum proses dijalankan lagi, kimia hijau menilai sama ada bahan permulaan, pelarut, penggunaan tenaga, mangkin dan produk akhir boleh dibuat lebih selamat.
+> Kimia hijau bertindak di meja reka bentuk bukan di hujung paip ekzos, mengurangkan bahaya dan sisa sebelum tindak balas bermula.
 
-Peringkat akhir kitar hayat juga satu pilihan reka bentuk. Jika sesuatu produk kehilangan separuh daripada jisim yang masih ada setiap <InlineMath math="T" /> bulan, <InlineMath math="\left(\tfrac{1}{2}\right)^{t/T}" /> daripadanya masih tinggal selepas <InlineMath math="t" /> bulan. Dengan nilai contoh <InlineMath math="T=2" />, produk hijau kebiruan hampir habis dalam dua tahun, manakala produk yang kekal lama dengan <InlineMath math="T=120" /> masih tinggal kira-kira <InlineMath math="87\%" />. Zum dan ikuti kedua-dua lengkung.
+Peringkat akhir hayat produk juga pilihan reka bentuk molekul. Jika sesuatu bahan kehilangan separuh jisim berbakinya setiap <InlineMath math="T" /> bulan, bahagian yang tinggal selepas <InlineMath math="t" /> bulan mengikut susutan eksponen:
+
+<BlockMath math="\text{bahagian tinggal} = 100\% \times \left(\frac{1}{2}\right)^{t/T}" />
+
+Dengan separuh hayat contoh <InlineMath math="T = 2" /> bulan, **reka bentuk boleh terurai** hampir lenyap dalam dua tahun, manakala reka bentuk kekal lama dengan <InlineMath math="T = 120" /> bulan masih mengekalkan kira-kira <InlineMath math="87\%" />. Gerakkan gelangsar di bawah untuk membandingkan kedua-dua lengkung sepanjang dua puluh empat bulan.
 
 <MathVisual
-  title={<>Direka Bentuk untuk Terurai</>}
-  description={<>Peratusan yang masih tinggal bagi dua produk contoh sepanjang <InlineMath math="24" /> bulan: reka bentuk yang boleh terurai (hijau kebiruan) dan reka bentuk yang kekal lama (kelabu). Mengufuk: satu petak grid ialah <InlineMath math="2" /> bulan. Menegak: satu petak grid ialah <InlineMath math="20" /> peratus.</>}
+  title={<>Penguraian Produk Boleh Terurai dan Kekal Lama</>}
+  description={
+    <>
+      Peratusan dua produk contoh yang tinggal sepanjang dua puluh empat bulan
+      bagi separuh hayat <InlineMath math="2" /> bulan dan{" "}
+      <InlineMath math="120" /> bulan.
+    </>
+  }
+  footer={
+    <>
+      Separuh hayat pendek menyingkirkan residu cepat manakala bahan kekal
+      bertahan lama.
+    </>
+  }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.3, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: 0, max: 108 } },
     view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0, max: 24, value: 6, step: 1, label: "elapsed-months" },
+    ],
     objects: [
-      { id: "persistent", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * 0.5 ** (1 / 120) }, { x: 1, y: 5 * 0.5 ** (2 / 120) }, { x: 1.5, y: 5 * 0.5 ** (3 / 120) }, { x: 2, y: 5 * 0.5 ** (4 / 120) }, { x: 2.5, y: 5 * 0.5 ** (5 / 120) }, { x: 3, y: 5 * 0.5 ** (6 / 120) }, { x: 3.5, y: 5 * 0.5 ** (7 / 120) }, { x: 4, y: 5 * 0.5 ** (8 / 120) }, { x: 4.5, y: 5 * 0.5 ** (9 / 120) }, { x: 5, y: 5 * 0.5 ** (10 / 120) }, { x: 5.5, y: 5 * 0.5 ** (11 / 120) }, { x: 6, y: 5 * 0.5 ** (12 / 120) }, { x: 6.5, y: 5 * 0.5 ** (13 / 120) }, { x: 7, y: 5 * 0.5 ** (14 / 120) }, { x: 7.5, y: 5 * 0.5 ** (15 / 120) }, { x: 8, y: 5 * 0.5 ** (16 / 120) }, { x: 8.5, y: 5 * 0.5 ** (17 / 120) }, { x: 9, y: 5 * 0.5 ** (18 / 120) }, { x: 9.5, y: 5 * 0.5 ** (19 / 120) }, { x: 10, y: 5 * 0.5 ** (20 / 120) }, { x: 10.5, y: 5 * 0.5 ** (21 / 120) }, { x: 11, y: 5 * 0.5 ** (22 / 120) }, { x: 11.5, y: 5 * 0.5 ** (23 / 120) }, { x: 12, y: 5 * 0.5 ** (24 / 120) }] },
-      { id: "degradable", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * 0.5 ** (1 / 2) }, { x: 1, y: 5 * 0.5 ** (2 / 2) }, { x: 1.5, y: 5 * 0.5 ** (3 / 2) }, { x: 2, y: 5 * 0.5 ** (4 / 2) }, { x: 2.5, y: 5 * 0.5 ** (5 / 2) }, { x: 3, y: 5 * 0.5 ** (6 / 2) }, { x: 3.5, y: 5 * 0.5 ** (7 / 2) }, { x: 4, y: 5 * 0.5 ** (8 / 2) }, { x: 4.5, y: 5 * 0.5 ** (9 / 2) }, { x: 5, y: 5 * 0.5 ** (10 / 2) }, { x: 5.5, y: 5 * 0.5 ** (11 / 2) }, { x: 6, y: 5 * 0.5 ** (12 / 2) }, { x: 6.5, y: 5 * 0.5 ** (13 / 2) }, { x: 7, y: 5 * 0.5 ** (14 / 2) }, { x: 7.5, y: 5 * 0.5 ** (15 / 2) }, { x: 8, y: 5 * 0.5 ** (16 / 2) }, { x: 8.5, y: 5 * 0.5 ** (17 / 2) }, { x: 9, y: 5 * 0.5 ** (18 / 2) }, { x: 9.5, y: 5 * 0.5 ** (19 / 2) }, { x: 10, y: 5 * 0.5 ** (20 / 2) }, { x: 10.5, y: 5 * 0.5 ** (21 / 2) }, { x: 11, y: 5 * 0.5 ** (22 / 2) }, { x: 11.5, y: 5 * 0.5 ** (23 / 2) }, { x: 12, y: 5 * 0.5 ** (24 / 2) }] },
-      { id: "persist-end", kind: "point", appearance: "reference", at: { x: 12, y: 5 * 0.5 ** (24 / 120) } },
-      { id: "degrade-half", kind: "point", appearance: "construction", at: { x: 1, y: 2.5 } },
+      { id: "persistent", kind: "function", appearance: "reference", formula: "100 * 0.5^(x/120)", domain: { min: 0, max: 24 } },
+      { id: "degradable", kind: "function", appearance: "construction", formula: "100 * 0.5^(x/2)", domain: { min: 0, max: 24 } },
+      { id: "now-persistent", kind: "marker", x: "m", y: "100 * 0.5^(m/120)", appearance: "reference" },
+      { id: "now-degradable", kind: "marker", x: "m", y: "100 * 0.5^(m/2)", appearance: "construction" },
     ],
     labels: [
-      { key: "persist", objectId: "persist-end", at: { x: 12, y: 5 * 0.5 ** (24 / 120) }, placement: "above-left" },
-      { key: "half", objectId: "degrade-half", at: { x: 1, y: 2.5 }, placement: "right" },
+      { key: "persist-line", objectId: "persistent", at: { x: 18, y: 90.1 }, placement: "above-left" },
+      { key: "degrade-line", objectId: "degradable", at: { x: 4, y: 25 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "degradable-left", formula: "100 * 0.5^(m/2)" },
+      { key: "persistent-left", formula: "100 * 0.5^(m/120)" },
     ],
   }}
   labels={{
-    persist: <InlineMath math="\left(\tfrac{1}{2}\right)^{24/120}\approx87\%" />,
-    half: <InlineMath math="\left(\tfrac{1}{2}\right)^{2/2}=50\%" />,
+    "elapsed-months": <>Tempoh (<InlineMath math="\text{bulan}" />)</>,
+    "persist-line": <>Kekal lama</>,
+    "degrade-line": <>Boleh terurai</>,
+    "degradable-left": <>Baki boleh terurai (<InlineMath math="\%" />)</>,
+    "persistent-left": <>Baki kekal lama (<InlineMath math="\%" />)</>,
   }}
 />
 
-## Mencegah Sisa semasa Reka Bentuk Proses
+Pada bulan keenam, bahan boleh terurai sudah menyusut kepada <InlineMath math="12.5\%" /> sementara sebatian kekal lama masih melebihi <InlineMath math="96\%" />. Mereka bentuk ikatan mudah terputus menghalang residu daripada terkumpul dalam tanah dan air selepas penggunaan tamat.
 
-Rawatan sisa mengurangkan kemudaratan selepas sisa terbentuk. Kimia hijau pula mengubah bahan atau proses sebelum pengeluaran, supaya sisa berbahaya yang terbentuk lebih sedikit sejak awal lagi. EPA menamakan cara ini **pengurangan di punca**. Sebab itulah kimia hijau menilai bahan permulaan, pelarut, penggunaan tenaga, mangkin, produk dan akhir penggunaan.
+### Mereka Bentuk Proses Selamat Sebelum Sisa Terbentuk
 
-Dalam tindak balas kimia, hasil tindak balas bukan satu-satunya bahagian yang penting.
+Rawatan sisa mengurangkan kemudaratan selepas sisa terhasil. Kimia hijau mengubah bahan permulaan atau laluan tindak balas terlebih dahulu supaya sisa berbahaya yang terbentuk jauh lebih sedikit. EPA menamakan pendekatan ini **pengurangan di punca**, yang menyemak setiap bahagian proses selain produk sasaran.
 
 | Bahagian proses | Soalan kimia hijau |
-| :----------- | :----------------------- |
-| Bahan permulaan | Adakah bahan ini berbahaya, sukar didapati atau boleh diganti dengan pilihan yang lebih selamat? |
-| Pelarut dan bahan bantu | Adakah pelarut itu benar-benar perlu, dan adakah pilihan yang lebih selamat? |
-| Tenaga | Adakah tindak balas memerlukan suhu atau tekanan yang sangat tinggi, atau bolehkah ia berlaku dengan tenaga yang lebih sedikit? |
-| Produk | Bolehkah produk mengekalkan fungsinya dengan ketoksikan yang lebih rendah? |
-| Akhir penggunaan | Bolehkah produk terurai atau diperoleh semula selepas digunakan? |
+| :-------------- | :----------------- |
+| Bahan permulaan | Adakah bahan ini berbahaya, terhad atau boleh diganti pilihan lebih selamat? |
+| Pelarut dan bahan bantu | Adakah pelarut benar-benar diperlukan, dan adakah pilihan lebih selamat? |
+| Tenaga | Adakah tindak balas perlukan suhu atau tekanan melampau, atau boleh berjalan lebih sederhana? |
+| Produk | Bolehkah produk mengekalkan fungsinya dengan ketoksikan lebih rendah? |
+| Akhir penggunaan | Bolehkah produk terurai dengan selamat atau diperoleh semula selepas digunakan? |
 
-Di sini, **bahan berbahaya** termasuk bahan yang mudah terbakar, mudah meletup, mengakis, toksik, kekal lama di alam sekitar dan yang membentuk pencemaran, walaupun bahan itu tidak membawa maut serta-merta.
+Dalam konteks ini, **bahan berbahaya** merangkumi bahan mudah terbakar, mudah meletup, mengakis, toksik, kekal lama dan pencemar, walaupun pendedahannya tidak membawa maut serta-merta.
 
-## Mereka Bentuk Tindak Balas untuk Mengurangkan Bahaya
+### Menilai Sumber Tenaga dalam Elektrolisis Air
 
-Tindak balas kimia boleh direka bentuk untuk menjalankan fungsi yang berguna <Highlight>sambil mengurangkan bahaya, sisa dan penggunaan tenaga</Highlight>.
+Tindak balas kimia boleh direka bentuk untuk fungsi berguna <Highlight>sambil menurunkan bahaya, sisa dan keperluan tenaga</Highlight>. **Elektrolisis air** memecahkan air cecair kepada gas hidrogen dan gas oksigen menggunakan tenaga elektrik:
 
-Elektrolisis air menunjukkan sebab penilaian kimia hijau mesti mengambil kira sumber tenaga. Proses ini memecahkan air kepada hidrogen dan oksigen.
+<BlockMath math="2\mathrm{H_2O(l)} \xrightarrow{\text{tenaga elektrik}} 2\mathrm{H_2(g)} + \mathrm{O_2(g)}" />
 
-<BlockMath math="\begin{aligned} &amp;2\mathrm{H_2O(l)} \\ &amp;\xrightarrow{\text{tenaga elektrik}} 2\mathrm{H_2(g)} + \mathrm{O_2(g)} \end{aligned}" />
-
-Tindak balas ini tidak menghasilkan karbon dioksida secara langsung. Pelepasan sepanjang kitar hayatnya bergantung pada cara elektrik itu dijana. [Elektrolisis](https://www.energy.gov/cmei/fuels/hydrogen-production-electrolysis) boleh mempunyai pelepasan yang sangat rendah apabila menggunakan elektrik daripada sumber boleh baharu atau nuklear. Elektrik daripada stesen janakuasa bahan api fosil pula memberi proses ini pelepasan kitar hayat yang lebih tinggi.
-
-Rajah di bawah melukis molekul tindak balas ini mengikut skala. Kira atom di setiap belah: empat atom hidrogen ungu dan dua atom oksigen jingga sebelum anak panah, dan empat serta dua atom yang sama selepasnya. Elektrolisis hanya menyusun semula atom, jadi tiada benda baharu yang muncul di elektroliser. Yang diperlukannya ialah tenaga elektrik yang tertulis pada anak panah, dan ke situlah soalan kimia hijau beralih seterusnya.
+Setiap <InlineMath math="18\text{ kg}" /> air mengandungi <InlineMath math="2\text{ kg}" /> hidrogen dan <InlineMath math="16\text{ kg}" /> oksigen, maka memecahkan <InlineMath math="m\text{ kg}" /> air sentiasa menghasilkan <InlineMath math="\frac{1}{9}m\text{ kg}" /> hidrogen dan <InlineMath math="\frac{8}{9}m\text{ kg}" /> oksigen. Gerakkan <InlineMath math="m" /> di bawah untuk melihat jisim gas yang keluar daripada elektroliser.
 
 <MathVisual
-  title={<>Air Terurai kepada Hidrogen dan Oksigen</>}
-  description={<>Molekul dilukis mengikut skala dalam angstrom: <InlineMath math="\mathrm{O{-}H}\ 0.96\ \text{Å}" /> pada sudut <InlineMath math="104.5^\circ" />, <InlineMath math="\mathrm{H{-}H}\ 0.74\ \text{Å}" />, <InlineMath math="\mathrm{O{=}O}\ 1.21\ \text{Å}" />. Titik jingga ialah atom oksigen, titik ungu ialah atom hidrogen.</>}
+  title={<>Jisim Hidrogen dan Oksigen daripada Elektrolisis Air</>}
+  description={
+    <>
+      Jisim gas hidrogen dan gas oksigen yang terhasil apabila{" "}
+      <InlineMath math="m" /> kilogram air cecair menjalani elektrolisis
+      lengkap.
+    </>
+  }
+  footer={
+    <>
+      Oksigen membentuk lapan persembilan jisim air manakala hidrogen satu
+      persembilan.
+    </>
+  }
   scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -3, max: 2.5 }, z: { min: -1, max: 1 } },
-    view: { kind: "camera", position: { x: -1, y: 0.5, z: 7 }, target: { x: -0.5, y: -0.25, z: 0 } },
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 18 }, y: { min: 0, max: 17 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1, max: 18, value: 9, step: 0.5, label: "water-mass" },
+    ],
     objects: [
-      { id: "water-1-oxygen", kind: "point", appearance: "primary", at: { x: -3, y: 1, z: 0 } },
-      { id: "water-1-hydrogen-left", kind: "point", appearance: "secondary", at: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-1-hydrogen-right", kind: "point", appearance: "secondary", at: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-1-bond-left", kind: "segment", appearance: "reference", from: { x: -3, y: 1, z: 0 }, to: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-1-bond-right", kind: "segment", appearance: "reference", from: { x: -3, y: 1, z: 0 }, to: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-2-oxygen", kind: "point", appearance: "primary", at: { x: -3, y: -1.5, z: 0 } },
-      { id: "water-2-hydrogen-left", kind: "point", appearance: "secondary", at: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-2-hydrogen-right", kind: "point", appearance: "secondary", at: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-2-bond-left", kind: "segment", appearance: "reference", from: { x: -3, y: -1.5, z: 0 }, to: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "water-2-bond-right", kind: "segment", appearance: "reference", from: { x: -3, y: -1.5, z: 0 }, to: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
-      { id: "arrow", kind: "segment", appearance: "highlight", from: { x: -1.5, y: 0, z: 0 }, to: { x: 0, y: 0, z: 0 } },
-      { id: "arrow-head-up", kind: "segment", appearance: "highlight", from: { x: -0.3, y: 0.2, z: 0 }, to: { x: 0, y: 0, z: 0 } },
-      { id: "arrow-head-down", kind: "segment", appearance: "highlight", from: { x: -0.3, y: -0.2, z: 0 }, to: { x: 0, y: 0, z: 0 } },
-      { id: "hydrogen-1-left", kind: "point", appearance: "secondary", at: { x: 1.5, y: 1.25, z: 0 } },
-      { id: "hydrogen-1-right", kind: "point", appearance: "secondary", at: { x: 1.5 + 0.74, y: 1.25, z: 0 } },
-      { id: "hydrogen-1-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: 1.25, z: 0 }, to: { x: 1.5 + 0.74, y: 1.25, z: 0 } },
-      { id: "hydrogen-2-left", kind: "point", appearance: "secondary", at: { x: 1.5, y: 0.25, z: 0 } },
-      { id: "hydrogen-2-right", kind: "point", appearance: "secondary", at: { x: 1.5 + 0.74, y: 0.25, z: 0 } },
-      { id: "hydrogen-2-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: 0.25, z: 0 }, to: { x: 1.5 + 0.74, y: 0.25, z: 0 } },
-      { id: "oxygen-left", kind: "point", appearance: "primary", at: { x: 1.5, y: -1.25, z: 0 } },
-      { id: "oxygen-right", kind: "point", appearance: "primary", at: { x: 1.5 + 1.21, y: -1.25, z: 0 } },
-      { id: "oxygen-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: -1.25, z: 0 }, to: { x: 1.5 + 1.21, y: -1.25, z: 0 } },
+      { id: "oxygen-out", kind: "function", appearance: "primary", formula: "8*x/9", domain: { min: 0, max: 18 } },
+      { id: "hydrogen-out", kind: "function", appearance: "secondary", formula: "x/9", domain: { min: 0, max: 18 } },
+      { id: "now-oxygen", kind: "marker", x: "m", y: "8*m/9", appearance: "primary" },
+      { id: "now-hydrogen", kind: "marker", x: "m", y: "m/9", appearance: "secondary" },
     ],
     labels: [
-      { key: "water", objectId: "water-1-oxygen", at: { x: -3, y: 1.6, z: 0 }, placement: "above" },
-      { key: "energy", objectId: "arrow", at: { x: -0.75, y: 0.35, z: 0 }, placement: "above" },
-      { key: "hydrogen", objectId: "hydrogen-1-bond", at: { x: 1.5 + 0.74 / 2, y: 1.7, z: 0 }, placement: "above" },
-      { key: "oxygen", objectId: "oxygen-bond", at: { x: 1.5 + 1.21 / 2, y: -1.7, z: 0 }, placement: "below" },
+      { key: "oxygen-line", objectId: "oxygen-out", at: { x: 13.5, y: 12 }, placement: "above-left" },
+      { key: "hydrogen-line", objectId: "hydrogen-out", at: { x: 13.5, y: 1.5 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "hydrogen-mass", formula: "m/9" },
+      { key: "oxygen-mass", formula: "8*m/9" },
     ],
   }}
   labels={{
-    water: <InlineMath math="2\mathrm{H_2O}" />,
-    energy: "tenaga elektrik",
-    hydrogen: <InlineMath math="2\mathrm{H_2}" />,
-    oxygen: <InlineMath math="\mathrm{O_2}" />,
+    "water-mass": <>Air dielektrolisis (<InlineMath math="\text{kg}" />)</>,
+    "oxygen-line": <><InlineMath math="\mathrm{O_2}" /></>,
+    "hydrogen-line": <><InlineMath math="\mathrm{H_2}" /></>,
+    "hydrogen-mass": <>Hidrogen (<InlineMath math="\text{kg}" />)</>,
+    "oxygen-mass": <>Oksigen (<InlineMath math="\text{kg}" />)</>,
   }}
 />
 
-Bandingkan dua bekalan elektrik untuk tindak balas yang sama. Hasil langsungnya tetap hidrogen dan oksigen, tetapi sumber pelepasan di luar elektroliser berbeza.
+Elektrolisis sendiri tidak membebaskan karbon dioksida di sel kerana hanya air masuk dan hanya hidrogen serta oksigen keluar. Jejak kitar hayatnya bergantung pada punca elektrik. [Elektrolisis](https://www.energy.gov/cmei/fuels/hydrogen-production-electrolysis) mencapai pelepasan sangat rendah dengan tenaga suria, angin atau nuklear, manakala elektrik arang batu memindahkan pelepasan karbon tinggi ke stesen janakuasa.
 
 | Sempadan penilaian | Elektrik daripada pembakaran arang batu | Elektrik daripada panel suria |
-| :--- | :--- | :--- |
+| :----------------- | :-------------------------------------- | :---------------------------- |
 | Di elektroliser | Hidrogen dan oksigen | Hidrogen dan oksigen |
 | Di penjana | Pembakaran membebaskan karbon dioksida | Tiada pembakaran bahan api semasa panel beroperasi |
 | Sepanjang kitar hayat | Perlombongan, bahan, pembinaan, operasi, sisa | Bahan, pembuatan panel, pembinaan, akhir penggunaan |
 
-## Satu Atom Mengubah Bahaya
+## Membandingkan Bahaya dan Jisim dalam Sintesis Metanol
 
-Reka bentuk proses yang lebih selamat bermula dengan mengenali bahannya. Bandingkan <InlineMath math="\mathrm{CO}" /> dan <InlineMath math="\mathrm{CO_2}" />. Bezanya hanya satu atom oksigen, tetapi **karbon monoksida sangat beracun** kerana ia terikat pada hemoglobin dalam darah, manakala karbon dioksida jauh kurang berbahaya pada aras biasa. Metanol juga beracun jika tertelan, jadi proses yang menggunakannya perlukan bekas dan prosedur yang selamat.
+Metanol digunakan meluas sebagai bahan mentah industri dan bahan api, namun mereka bentuk **sintesis metanol yang lebih hijau** memerlukan semakan ketoksikan bahan serta aliran jisim stoikiometrinya. Laluan yang cekap dari segi atom masih boleh membawa risiko pengendalian tinggi jika bahan tindak balasnya gas beracun.
 
-<MoleculeShapeLab
-  title={<>Bahan dalam Proses Metanol</>}
-  description={<>Bandingkan bentuk karbon monoksida, karbon dioksida dan metanol.</>}
-  molecules={[
-    { id: "carbon-monoxide", name: "Karbon monoksida" },
-    { id: "carbon-dioxide", name: "Karbon dioksida" },
-    { id: "methanol", name: "Metanol" },
+### Kesan Satu Atom Oksigen terhadap Ketoksikan Bahan
+
+Reka bentuk proses selamat bermula dengan mengenali bahannya. Bandingkan karbon monoksida, <InlineMath math="\mathrm{CO}" />, dengan karbon dioksida, <InlineMath math="\mathrm{CO_2}" />. Bezanya hanya satu atom oksigen, namun **karbon monoksida sangat beracun** kerana ia terikat kuat pada hemoglobin darah, manakala karbon dioksida jauh kurang berbahaya pada aras biasa. Metanol cecair, <InlineMath math="\mathrm{CH_3OH}" />, juga beracun jika tertelan dan memerlukan bekas kedap serta tatacara ketat.
+
+<Chart
+  title={<>Komposisi Jisim Unsur bagi Bahan Proses Metanol</>}
+  description={
+    <>
+      Jisim karbon, oksigen dan hidrogen per mol dalam karbon monoksida, karbon
+      dioksida dan metanol.
+    </>
+  }
+  footer={
+    <>
+      Menambah satu atom oksigen menaikkan jisim molar dan mengubah ketoksikan
+      sepenuhnya.
+    </>
+  }
+  bars="apart"
+  categories={["Karbon monoksida", "Karbon dioksida", "Metanol"]}
+  series={[
+    { label: "Jisim karbon", mark: "bar", values: [12, 12, 12] },
+    { label: "Jisim oksigen", mark: "bar", values: [16, 32, 16] },
+    { label: "Jisim hidrogen", mark: "bar", values: [0, 0, 4] },
   ]}
-  labels={{
-    atoms: <>Atom penyusun</>,
-    choose: "Pilih molekul",
-    fill: <>Model isi ruang</>,
-    formula: <>Formula molekul</>,
-    mass: <>Jisim molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
-  }}
+  valueLabel="Jisim (g/mol)"
+  valueRange={{ min: 0, max: 36 }}
 />
 
-## Metanol daripada Karbon Dioksida
+Ketiga-tiga bahan membawa tepat <InlineMath math="12\text{ g mol}^{-1}" /> karbon bagi setiap mol, tetapi menambah satu atom oksigen atau empat atom hidrogen mengubah ikatan, keadaan fizikal dan bahaya biologinya. Jurutera proses menimbang bahaya intrinsik ini bersama kecekapan tindak balas.
 
-Metanol digunakan sebagai bahan mentah industri dan bahan api. Pengeluaran konvensional selalunya bermula dengan bahan mentah fosil. Satu proses yang masih dibangunkan menggunakan mangkin untuk menindakbalaskan karbon dioksida dengan hidrogen.
+### Menyeimbangkan Input dan Hasil Sampingan Metanol
 
-<BlockMath math="\begin{aligned} &amp;\mathrm{CO_2(g)} + 3\mathrm{H_2(g)} \\ &amp;\xrightarrow{\text{mangkin}} \mathrm{CH_3OH(l)} + \mathrm{H_2O(l)} \end{aligned}" />
+Pengeluaran metanol lazim sering menggunakan bahan mentah fosil, manakala proses baharu menindakbalaskan karbon dioksida yang ditangkap dengan hidrogen di atas mangkin pepejal:
 
-<InlineMath math="\mathrm{CO_2}" /> agak stabil, jadi sintesis metanol daripada <InlineMath math="\mathrm{CO_2}" /> memerlukan **bekalan tenaga dan mangkin yang cekap**.
+<BlockMath math="\mathrm{CO_2(g)} + 3\mathrm{H_2(g)} \xrightarrow{\text{mangkin}} \mathrm{CH_3OH(l)} + \mathrm{H_2O(l)}" />
 
-Menggunakan <InlineMath math="\mathrm{CO_2}" /> sahaja belum menjadikan proses metanol itu hijau. Nilai juga input dan output yang lain:
+Oleh sebab <InlineMath math="\mathrm{CO_2}" /> stabil dari segi termodinamik, sintesis ini memerlukan **bekalan tenaga dan mangkin yang cekap**. Menggunakan <InlineMath math="\mathrm{CO_2}" /> sahaja belum membuktikan laluan ini hijau. Empat soalan berikut tetap perlu disemak:
 
 - Dari mana datangnya <InlineMath math="\mathrm{H_2}" />?
-- Dari mana datangnya tenaga untuk tindak balas itu?
-- Adakah mangkin itu selamat dan tahan lama?
+- Dari mana datangnya tenaga tindak balas?
+- Adakah mangkin itu selamat, selektif dan tahan lama?
 - Adakah hasil sampingan dan sisa dikendalikan dengan selamat?
 
-Penilaian kimia hijau merangkumi bahan, tenaga, bahaya, produk dan sisa, dari permulaan proses hingga ke akhir penggunaan.
-
-Reaktor menukarkan karbon dioksida kepada metanol melalui <InlineMath math="\mathrm{CO_2}+3\mathrm{H_2}\rightarrow\mathrm{CH_3OH}+\mathrm{H_2O}" />. Setiap atom hidrogen dalam bar itu mesti datang dari suatu tempat, jadi laluan ini hanya sehijau hidrogen, tenaga dan mangkinnya. Putar bar itu dan kira hidrogen di setiap belah.
+Setiap mol <InlineMath math="\mathrm{CO_2}" /> yang bertindak balas menghasilkan <InlineMath math="32\text{ g}" /> metanol bersama <InlineMath math="18\text{ g}" /> air sebagai hasil sampingan. Gerakkan <InlineMath math="n" /> di bawah untuk menjejaki pertumbuhan kedua-dua aliran output mengikut skala.
 
 <MathVisual
-  title={<>Atom di Kedua-dua Belah</>}
-  description={<>Atom karbon (kelabu), hidrogen (ungu) dan oksigen (jingga) dalam bahan tindak balas (belakang) dan hasil tindak balas (hadapan). Satu petak grid ke atas ialah <InlineMath math="1" /> atom.</>}
+  title={<>Hasil Metanol dan Air daripada Karbon Dioksida</>}
+  description={
+    <>
+      Jisim metanol yang dikehendaki dan hasil sampingan air apabila{" "}
+      <InlineMath math="n" /> mol karbon dioksida bertindak balas lengkap dengan
+      hidrogen.
+    </>
+  }
+  footer={
+    <>
+      Setiap mol karbon dioksida meninggalkan lapan belas gram air bersama
+      metanol.
+    </>
+  }
   scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 8, y: 10, z: 11 }, target: { x: 2.5, y: 3, z: 0 } },
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 350 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 1, max: 10, value: 5, step: 0.5, label: "co2-moles" },
+    ],
     objects: [
-      { id: "c-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "c-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
-      { id: "h-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: -0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
-      { id: "h-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: 0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
-      { id: "o-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
-      { id: "o-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "methanol-mass", kind: "function", appearance: "answer", formula: "32*x", domain: { min: 0, max: 10 } },
+      { id: "water-mass", kind: "function", appearance: "warning", formula: "18*x", domain: { min: 0, max: 10 } },
+      { id: "now-methanol", kind: "marker", x: "n", y: "32*n", appearance: "answer" },
+      { id: "now-water", kind: "marker", x: "n", y: "18*n", appearance: "warning" },
     ],
     labels: [
-      { key: "c", objectId: "c-right", at: { x: 0, y: 1.3, z: 0.75 }, placement: "above" },
-      { key: "h", objectId: "h-right", at: { x: 2.5, y: 6.3, z: 0.75 }, placement: "above" },
-      { key: "o", objectId: "o-right", at: { x: 5, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "methanol-line", objectId: "methanol-mass", at: { x: 8, y: 256 }, placement: "above-left" },
+      { key: "water-line", objectId: "water-mass", at: { x: 8, y: 144 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "methanol-out", formula: "32*n" },
+      { key: "water-out", formula: "18*n" },
     ],
   }}
   labels={{
-    c: <InlineMath math="\mathrm{C}:\ 1=1" />,
-    h: <InlineMath math="\mathrm{H}:\ 3\cdot2=4+2" />,
-    o: <InlineMath math="\mathrm{O}:\ 2=1+1" />,
+    "co2-moles": <><InlineMath math="\mathrm{CO_2}" /> bertindak balas (<InlineMath math="\text{mol}" />)</>,
+    "methanol-line": <>Metanol</>,
+    "water-line": <>Air</>,
+    "methanol-out": <>Metanol (<InlineMath math="\text{g}" />)</>,
+    "water-out": <>Air sampingan (<InlineMath math="\text{g}" />)</>,
   }}
 />
 
-## Dua Laluan Menuju Metanol
+Atom oksigen kedua daripada <InlineMath math="\mathrm{CO_2}" /> sentiasa keluar sebagai air. Bandingkan laluan itu dengan sintesis daripada karbon monoksida, apabila semua atom bahan tindak balas masuk ke dalam molekul metanol:
 
-Daripada karbon dioksida, setiap molekul metanol datang bersama satu molekul air sebagai hasil sampingan. Seret gelangsar dan lihat atom oksigen kedua daripada <InlineMath math="\mathrm{CO_2}" /> berakhir dalam air. Kemudian pilih laluan daripada karbon monoksida: **semua atom bahan tindak balas masuk ke dalam metanol**, jadi ekonomi atomnya <InlineMath math="100\%" />, bukan <InlineMath math="64\%" />.
+<BlockMath math="\mathrm{CO(g)} + 2\mathrm{H_2(g)} \xrightarrow{\text{mangkin}} \mathrm{CH_3OH(l)}" />
 
-<ReactionBalanceLab
-  title={<>Ekonomi Atom Dua Laluan Metanol</>}
-  description={<>Seret gelangsar dan lihat laluan mana yang meninggalkan air.</>}
-  reactions={[
-    { id: "methanol-synthesis", name: "Metanol daripada karbon dioksida", tab: <InlineMath math="\mathrm{CO_2}" /> },
-    { id: "carbon-monoxide-methanol", name: "Metanol daripada karbon monoksida", tab: <InlineMath math="\mathrm{CO}" /> },
+<Chart
+  title={<>Ekonomi Atom Dua Laluan Sintesis Metanol</>}
+  description={
+    <>
+      Peratusan jisim bahan tindak balas yang masuk ke dalam metanol berbanding
+      hasil sampingan air bagi laluan karbon dioksida dan karbon monoksida.
+    </>
+  }
+  footer={
+    <>
+      Laluan karbon monoksida mencapai ekonomi atom penuh namun memakai gas
+      beracun.
+    </>
+  }
+  bars="apart"
+  categories={["Daripada karbon dioksida", "Daripada karbon monoksida"]}
+  series={[
+    { label: "Ekonomi atom (%)", mark: "bar", values: [64, 100] },
+    { label: "Jisim dalam hasil sampingan air (%)", mark: "bar", values: [36, 0] },
   ]}
-  reading="economy"
-  labels={{
-    atoms: <>Bilangan atom setiap unsur</>,
-    choose: "Pilih tindak balas",
-    economy: <>Ekonomi atom</>,
-    equation: <>Persamaan tindak balas</>,
-    mass: <>Jisim bahan dan hasil tindak balas</>,
-    molecules: <>Bilangan molekul</>,
-    products: <>Hasil tindak balas</>,
-    progress: "Perjalanan tindak balas",
-    reactants: <>Bahan tindak balas</>,
-    view: "Tindak balas pada aras atom",
-  }}
+  valueLabel="Peratus (%)"
+  valueRange={{ min: 0, max: 100 }}
 />
 
-## Menyemak Dakwaan Hijau
+Laluan karbon monoksida mencapai ekonomi atom <InlineMath math="100\%" /> berbanding <InlineMath math="64\%" />, sekali gus menghapuskan langkah pemisahan air. Namun karbon monoksida jauh lebih toksik daripada karbon dioksida, menunjukkan sebab kimia hijau mengimbangi ekonomi atom dengan ketoksikan, sumber bahan mentah dan bekalan tenaga.
 
-Apabila sesuatu produk atau proses digambarkan sebagai "lebih hijau", semak bahannya, **sumber tenaga, bahaya, sisa**, fungsi dan akhir penggunaannya sebelum kamu menilai dakwaan itu.
+## Menguji Dakwaan Kelestarian dengan Bukti Kitar Hayat
+
+Apabila sesuatu produk atau proses dipasarkan sebagai lebih hijau, semak bahan mentah, **sumber tenaga, bahaya, sisa**, prestasi dan akhir hayatnya sebelum menerima dakwaan itu.
 
 | Dakwaan biasa | Cara menyemaknya |
-| :----------- | :-------------- |
-| Bahan itu semula jadi | Semula jadi tidak semestinya selamat. Semak ketoksikan, dos dan sisa. |
-| Sisa boleh dirawat | Merawat sisa mengurangkan kemudaratan selepas sisa terbentuk. Mencegah sisa mengurangkan jumlah yang perlu dikendalikan. |
-| Ia menggunakan tenaga boleh baharu | Semak sama ada seluruh proses menggunakan tenaga itu atau hanya sebahagian kecil. |
-| Produk akhir berguna | Produk yang berguna tetap perlu disemak semasa pembuatan, penggunaan dan pelupusan. |
+| :------------ | :--------------- |
+| Bahan itu semula jadi | Semula jadi tidak menjamin keselamatan. Semak ketoksikan, dos dan sisa. |
+| Sisa boleh dirawat | Rawatan mengurangkan mudarat selepas sisa wujud. Pencegahan mengurangkan sisa sejak awal. |
+| Ia menggunakan tenaga boleh baharu | Semak sama ada seluruh proses memakai tenaga itu atau satu langkah kecil sahaja. |
+| Produk akhir berguna | Produk berguna tetap perlu disemak semasa pembuatan, penggunaan dan pelupusan. |
 
-[Dua belas prinsip kimia hijau](https://www.acs.org/green-chemistry-sustainability/principles/12-principles-of-green-chemistry.html) termasuk pencegahan sisa, ekonomi atom, pelarut yang lebih selamat, mangkin, kecekapan tenaga dan reka bentuk untuk penguraian.
-
-Gunakan prinsip-prinsip itu untuk menyemak reka bentuk tindak balas dan juga produk akhirnya.
+[Dua belas prinsip kimia hijau](https://www.acs.org/green-chemistry-sustainability/principles/12-principles-of-green-chemistry.html) menyatukan pencegahan sisa, ekonomi atom, pelarut selamat, pemangkinan, kecekapan tenaga dan reka bentuk untuk penguraian menjadi satu senarai semak praktikal bagi reka bentuk tindak balas dan produk akhir.

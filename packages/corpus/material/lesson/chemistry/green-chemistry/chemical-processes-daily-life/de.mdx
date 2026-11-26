@@ -8,64 +8,104 @@ export const metadata = {
   subject: "Grüne Chemie",
 };
 
-## Stoffveränderungen und ihre Auswirkungen untersuchen
+## Chemische Veränderungen im Alltag erkennen
 
-Bevor wir eine Aktivität als „grün“ oder „nicht grün“ beurteilen, müssen wir wissen, <Highlight>welcher chemische Prozess abläuft</Highlight>. Beim Verbrennen von Abfällen, beim Waschen von Kleidung, beim Kompostieren, beim Kochen, bei der Photosynthese in Pflanzen und beim Rosten von Eisen verändern sich Substanzen oder interagieren miteinander.
+Bevor wir eine Aktivität als grün oder nicht grün beurteilen, klären wir zuerst, <Highlight>welcher chemische Prozess abläuft</Highlight>. Beim Verbrennen von Abfall, beim Waschen von Kleidung, beim Kompostieren, beim Kochen, bei der Photosynthese in Pflanzen und beim Rosten von Eisen **verändern sich Stoffe oder reagieren miteinander**.
 
-[Grüne Chemie](https://www.epa.gov/greenchemistry/basics-green-chemistry) bewertet die Gestaltung eines chemischen Produkts oder Verfahrens von Anfang an. Die Gestaltung soll Gefahren, Abfall, unnötigen Energieverbrauch, Einwegmaterialien und Unfallrisiken verringern. Ziel ist außerdem, den Einsatz oder die Entstehung gefährlicher Stoffe zu verringern.
+[Grüne Chemie](https://www.epa.gov/greenchemistry/basics-green-chemistry) bewertet die Gestaltung eines chemischen Produkts oder Verfahrens von Anfang an. Eine durchdachte Gestaltung senkt Gefahren, Abfall, übermäßigen Energiebedarf, Einwegmaterialien und Unfallrisiken und verringert den Einsatz oder die Entstehung gefährlicher Stoffe.
 
-Die Prüfung eines Prozesses bedeutet, vier Fragen zu beantworten, eine für jeden Teil des Prozesses.
+> Jede grüne Bewertung beginnt mit der Chemie selbst, denn Abfälle und Gefahren lassen sich erst senken, wenn Ausgangsstoffe und Produkte bekannt sind.
+
+Einen Alltagsprozess zu prüfen bedeutet, vier Fragen zu beantworten, eine für jeden Abschnitt des Vorgangs.
 
 | Teil des Prozesses | Frage |
-| :----------- | :------- |
+| :----------------- | :---- |
 | Ausgangsstoffe | Welche Stoffe gelangen in den Prozess? |
 | Veränderung | Vermischen sich die Stoffe nur, oder entstehen neue Stoffe? |
 | Produkte | Welche Stoffe entstehen nach Ablauf des Prozesses? |
-| Auswirkungen | Gibt es Abfall, überschüssige Hitze, gefährliches Gas oder schwer abbaubares Material? |
+| Auswirkungen | Entstehen Abfall, überschüssige Wärme, gefährliches Gas oder schwer abbaubare Rückstände? |
 
-## Brennstoff im Haushalt verbrennen
+### Verbrennung von Haushaltsbrennstoffen verfolgen
 
-Ein Biogaskocher verbrennt Methan, eine Spirituslampe verbrennt Ethanol. Beides sind chemische Veränderungen: **Die Kohlenstoff- und Wasserstoffatome des Brennstoffs wandern in Kohlenstoffdioxid und Wasser**. Wähl einen Brennstoff, zieh den Regler und zähl die Moleküle vor und nach der Verbrennung.
+Ein Biogaskocher verbrennt Methan, eine Spirituslampe verbrennt Ethanol. Beide Vorgänge sind chemische Reaktionen, bei denen **die Kohlenstoffatome und Wasserstoffatome des Brennstoffs in Kohlenstoffdioxid und Wasser übergehen**. Die ausgeglichenen Gleichungen zeigen, wie viel Kohlenstoffdioxid je Mol Brennstoff entsteht:
 
-<ReactionBalanceLab
-  title={<>Verbrennung von Ethanol und Methan</>}
-  description={<>Wähl einen Brennstoff und zähl die Moleküle vor und nach dem Verbrennen.</>}
-  reactions={[
-    { id: "ethanol-combustion", name: "Verbrennung von Ethanol", tab: <InlineMath math="\mathrm{C_2H_5OH}" /> },
-    { id: "methane-combustion", name: "Verbrennung von Methan", tab: <InlineMath math="\mathrm{CH_4}" /> },
-  ]}
-  reading="molecules"
+<MathContainer>
+<BlockMath math="\mathrm{CH_4(g)} + 2\mathrm{O_2(g)} \rightarrow \mathrm{CO_2(g)} + 2\mathrm{H_2O(l)}" />
+<BlockMath math="\mathrm{C_2H_5OH(l)} + 3\mathrm{O_2(g)} \rightarrow 2\mathrm{CO_2(g)} + 3\mathrm{H_2O(l)}" />
+</MathContainer>
+
+Ein Mol Kohlenstoffdioxid hat eine Masse von <InlineMath math="44\text{ g}" />. Beim Verbrennen von <InlineMath math="n" /> Mol Methan entstehen <InlineMath math="44n\text{ g}" /> Kohlenstoffdioxid, bei <InlineMath math="n" /> Mol Ethanol dagegen <InlineMath math="88n\text{ g}" />. Bewege den Regler unten, um die Masse an Kohlenstoffdioxid für beide Brennstoffe zu vergleichen.
+
+<MathVisual
+  title={<>Kohlenstoffdioxid aus Methan und Ethanol</>}
+  description={
+    <>
+      Masse des gebildeten Kohlenstoffdioxids, wenn <InlineMath math="n" /> Mol
+      Methan oder Ethanol vollständig mit Sauerstoff verbrennen.
+    </>
+  }
+  footer={
+    <>
+      Ein Mol Ethanol trägt zwei Kohlenstoffatome und verdoppelt die Gasmasse.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 920 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 1, max: 10, value: 4, step: 0.5, label: "fuel-moles" },
+    ],
+    objects: [
+      { id: "ethanol-co2", kind: "function", appearance: "warning", formula: "88*x", domain: { min: 0, max: 10 } },
+      { id: "methane-co2", kind: "function", appearance: "primary", formula: "44*x", domain: { min: 0, max: 10 } },
+      { id: "now-ethanol", kind: "marker", x: "n", y: "88*n", appearance: "warning" },
+      { id: "now-methane", kind: "marker", x: "n", y: "44*n", appearance: "primary" },
+    ],
+    labels: [
+      { key: "ethanol-line", objectId: "ethanol-co2", at: { x: 7.5, y: 660 }, placement: "above-left" },
+      { key: "methane-line", objectId: "methane-co2", at: { x: 7.5, y: 330 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "methane-mass", formula: "44*n" },
+      { key: "ethanol-mass", formula: "88*n" },
+    ],
+  }}
   labels={{
-    atoms: <>Atome je Element</>,
-    choose: "Reaktion wählen",
-    economy: <>Atomökonomie</>,
-    equation: <>Reaktionsgleichung</>,
-    mass: <>Masse der Edukte und Produkte</>,
-    molecules: <>Anzahl der Moleküle</>,
-    products: <>Produkte</>,
-    progress: "Reaktionsverlauf",
-    reactants: <>Edukte</>,
-    view: "Reaktion auf Teilchenebene",
+    "fuel-moles": <>Brennstoff (<InlineMath math="\text{mol}" />)</>,
+    "ethanol-line": <>Ethanol</>,
+    "methane-line": <>Methan</>,
+    "methane-mass": <>Methan <InlineMath math="\mathrm{CO_2}" /> (<InlineMath math="\text{g}" />)</>,
+    "ethanol-mass": <>Ethanol <InlineMath math="\mathrm{CO_2}" /> (<InlineMath math="\text{g}" />)</>,
   }}
 />
 
-## Atome und Moleküle richtig einordnen
+Beide Geraden steigen linear vom Ursprung an, wobei die Ethanolgerade doppelt so steil verläuft wie die Methangerade. Schon die Zahl der Kohlenstoffatome in der Formel sagt den stöchiometrischen Kohlenstoffdioxidausstoß pro Mol voraus.
 
-Im Periodensystem lassen sich die Symbole der Elemente ablesen. Für ihre chemische Bedeutung muss zusätzlich geklärt werden, ob das Symbol hier für ein **Atom, ein Element, ein elementares Molekül oder ein zusammengesetztes Molekül** steht.
+### Atome Elemente und Moleküle unterscheiden
 
-Ein [Atom](https://goldbook.iupac.org/terms/view/A00493) ist das kleinste Teilchen, das ein chemisches Element noch charakterisiert. [Ein chemisches Element](https://goldbook.iupac.org/terms/view/C01022) ist eine Atomsorte mit derselben Protonenzahl. Ein [Molekül](https://goldbook.iupac.org/terms/view/M04002) ist eine elektrisch neutrale Einheit aus mehr als einem Atom.
+Das Periodensystem ordnet jedem Element ein Symbol zu, aber das Symbol allein nennt noch keine Teilchenart. Zum sicheren Lesen von Reaktionen unterscheiden wir **ein Atom, ein Element, ein Elementmolekül und ein Verbindungsmolekül**.
+
+Ein [Atom](https://goldbook.iupac.org/terms/view/A00493) ist das kleinste Teilchen, das ein chemisches Element noch kennzeichnet. Ein [chemisches Element](https://goldbook.iupac.org/terms/view/C01022) besteht aus Atomen mit derselben Protonenzahl. Ein [Molekül](https://goldbook.iupac.org/terms/view/M04002) ist eine elektrisch neutrale Einheit aus mehr als einem gebundenen Atom.
 
 <MatterParticleReaderLab
   title={<>Modell für Atome und Moleküle</>}
   description={
     <>
       Drehe das Modell und unterscheide ein Atom, ein Element, ein
-      Elementmolekül und ein Verbindungsmolekül, bevor du Reaktionsgleichungen liest.
+      Elementmolekül und ein Verbindungsmolekül, bevor du Reaktionsgleichungen
+      liest.
+    </>
+  }
+  footer={
+    <>
+      Bindungen innerhalb eines Elements bilden ein Elementmolekül, keine
+      Verbindung.
     </>
   }
   labels={{
     chooseMode: "Stoffart auswählen",
-    particleView: "Atom-, Element- und Molekülmodell",
+    particleView: "Modell für Atome, Elemente und Moleküle",
     categoryLabel: "Was gerade dargestellt ist",
     readingLabel: "Wie man es liest",
     modes: {
@@ -77,7 +117,7 @@ Ein [Atom](https://goldbook.iupac.org/terms/view/A00493) ist das kleinste Teilch
         ),
         category: (
           <>
-            Ein <InlineMath math="\mathrm{C}" />-Atom.
+            Ein einzelnes <InlineMath math="\mathrm{C}" /> Atom.
           </>
         ),
         reading: <>Das Symbol <InlineMath math="\mathrm{C}" /> kennzeichnet dieses Atom als Kohlenstoff.</>,
@@ -127,177 +167,221 @@ Ein [Atom](https://goldbook.iupac.org/terms/view/A00493) ist das kleinste Teilch
   }}
 />
 
-Die folgende Tabelle unterscheidet vier Begriffe aus den Reaktionsbeispielen.
+Achte auf die dritte und vierte Ansicht im Modell. Beide zeigen gebundene Moleküle, aber nur die vierte kombiniert verschiedene Elementsorten innerhalb derselben Einheit. Die Tabelle fasst die vier Begriffe zusammen.
 
 | Begriff | Bedeutung | Beispiel |
-| :--- | :------------- | :------ |
-| Atom | Ein Teilchen eines Elements. | ein <InlineMath math="\mathrm{C}" />-Atom oder ein <InlineMath math="\mathrm{O}" />-Atom |
+| :------ | :-------- | :------- |
+| Atom | Ein Teilchen eines Elements. | ein Atom <InlineMath math="\mathrm{C}" /> oder ein Atom <InlineMath math="\mathrm{O}" /> |
 | Element | Eine Art von Atomen mit derselben Protonenzahl. | Eisen, Kohlenstoff, Sauerstoff |
-| Elementares Molekül | Ein Molekül, das aus Atomen desselben Elements besteht. | <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{P_4}" />, <InlineMath math="\mathrm{S_8}" /> |
-| Zusammengesetztes Molekül | Ein Molekül, das aus Atomen verschiedener Elemente besteht. | <InlineMath math="\mathrm{H_2O}" />, <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{C_6H_{12}O_6}" /> |
+| Elementares Molekül | Ein Molekül aus Atomen desselben Elements. | <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{P_4}" />, <InlineMath math="\mathrm{S_8}" /> |
+| Zusammengesetztes Molekül | Ein Molekül aus Atomen verschiedener Elemente. | <InlineMath math="\mathrm{H_2O}" />, <InlineMath math="\mathrm{CO_2}" />, <InlineMath math="\mathrm{C_6H_{12}O_6}" /> |
 
-Nicht jede Verbindung besteht aus einzelnen Molekülen. Kochsalz bildet zum Beispiel eine sich wiederholende Ionenanordnung. Die folgenden Beispiele zeigen mit Molekülen, wie einfache Reaktionsgleichungen gelesen werden.
+Nicht jede Verbindung liegt in einzelnen Molekülen vor. Kochsalz bildet zum Beispiel ein regelmäßiges Ionengitter. Vergleiche unten die Gesamtatomzahl und die Anzahl verschiedener Elemente bei fünf bekannten Molekülen.
 
-## Moleküle von Elementen und von Verbindungen
-
-Ein Molekül kann aus einer Atomsorte oder aus mehreren bestehen. <InlineMath math="\mathrm{O_2}" /> und <InlineMath math="\mathrm{O_3}" /> enthalten nur Sauerstoff, also sind beide **Moleküle eines Elements**. Wasser und Ethanol enthalten mehr als ein Element, also sind beide **Moleküle einer Verbindung**. Dreh jedes Modell und schau dir seine Atome an.
-
-<MoleculeShapeLab
-  title={<>Element oder Verbindung</>}
-  description={<>Dreh jedes Modell und sortier es nach den Atomsorten, die es enthält.</>}
-  molecules={[
-    { id: "oxygen", name: "Sauerstoff" },
-    { id: "ozone", name: "Ozon" },
-    { id: "water", name: "Wasser" },
-    { id: "ethanol", name: "Ethanol" },
+<Chart
+  title={<>Atome und Elemente in fünf häufigen Molekülen</>}
+  description={
+    <>
+      Gesamtzahl der Atome je Molekül im Vergleich zur Anzahl verschiedener
+      Elementsorten bei Sauerstoff, Ozon, Wasser, Kohlenstoffdioxid und Ethanol.
+    </>
+  }
+  footer={
+    <>
+      Elementmoleküle bleiben unabhängig von ihrer Atomzahl bei genau einem
+      Element.
+    </>
+  }
+  bars="apart"
+  categories={["Sauerstoff", "Ozon", "Wasser", "Kohlenstoffdioxid", "Ethanol"]}
+  series={[
+    { label: "Atome pro Molekül", mark: "bar", values: [2, 3, 3, 3, 9] },
+    { label: "Verschiedene Elemente", mark: "bar", values: [1, 1, 2, 2, 3] },
   ]}
-  labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Summenformel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel oder -länge</>,
-    view: "Dreidimensionales Molekülmodell",
-  }}
+  valueLabel="Anzahl"
+  valueRange={{ min: 0, max: 10 }}
 />
 
-## Bestandteile einer Reaktionsgleichung
+Ozon, Wasser und Kohlenstoffdioxid tragen alle drei Atome pro Molekül, dennoch bleibt Ozon ein **Elementmolekül**, weil alle drei Atome Sauerstoff sind. Wasser, Kohlenstoffdioxid und Ethanol vereinen zwei oder drei Elemente und gehören daher zu den Verbindungen.
 
-Eine chemische Reaktionsgleichung hält Reaktanten, Produkte und ihre relativen Mengen fest. Die Stoffe links vom Pfeil sind **Reaktanten**, die Stoffe rechts davon sind **Produkte**. Der Pfeil bedeutet „ergibt“, und die Zahlen vor den Formeln heißen **Koeffizienten**.
+## Chemische Reaktionsgleichungen lesen und ausgleichen
 
-Das Grundmuster ist:
+Eine chemische Reaktionsgleichung hält Edukte, Produkte und ihre Mengenverhältnisse fest. Die Stoffe links vom Pfeil sind **Edukte**, die Stoffe rechts davon sind **Produkte**. Der Pfeil bedeutet reagiert zu, und die Zahlen vor den Formeln heißen **Koeffizienten**.
 
-<BlockMath math="\text{Reaktanten} \rightarrow \text{Produkte}" />
+<BlockMath math="\text{Edukte} \rightarrow \text{Produkte}" />
 
-Zustandssymbole werden nach der Formel geschrieben.
+Zustandssymbole stehen direkt hinter der Formel und benennen den Aggregatzustand während des Vorgangs.
 
 | Symbol | Bedeutung |
-| :----- | :------ |
+| :----- | :-------- |
 | <InlineMath math="\mathrm{(s)}" /> | fest |
 | <InlineMath math="\mathrm{(l)}" /> | flüssig |
-| <InlineMath math="\mathrm{(g)}" /> | Gas |
+| <InlineMath math="\mathrm{(g)}" /> | gasförmig |
 | <InlineMath math="\mathrm{(aq)}" /> | in Wasser gelöst |
 
-Zum Ausgleichen einer Reaktion dürfen wir die Koeffizienten ändern. Die tiefgestellten Zahlen in einer Formel dürfen wir dagegen nicht beliebig verändern, denn sie bestimmen den Stoff. <InlineMath math="\mathrm{H_2O}" /> bezeichnet Wasser, <InlineMath math="\mathrm{H_2O_2}" /> dagegen Wasserstoffperoxid.
+Ändere beim Ausgleichen ausschließlich die Koeffizienten. Die tiefgestellten Zahlen einer Formel bleiben unangetastet, weil sie den Stoff festlegen: <InlineMath math="\mathrm{H_2O}" /> ist Wasser, während <InlineMath math="\mathrm{H_2O_2}" /> Wasserstoffperoxid bezeichnet.
 
-## Die Photosynthesegleichung ausgleichen
+### Die Summengleichung der Photosynthese ausgleichen
 
-Photosynthese wird oft als summarische Reaktion geschrieben. Der eigentliche Prozess besteht aus vielen Schritten, aber die zusammenfassende Gleichung hält die Atome vor und nach der Reaktion fest. Bei der Photosynthese entstehen aus Kohlendioxid und Wasser Zucker und Sauerstoff.
+Photosynthese wird als Summengleichung über viele biochemische Einzelschritte geschrieben. Pflanzen verbinden **Kohlenstoffdioxid und Wasser** mithilfe von Lichtenergie zu Zucker und Sauerstoff. Der unausgeglichene Entwurf lautet:
 
-Eine unausgeglichene Gleichung kann wie folgt geschrieben werden:
+<BlockMath math="\mathrm{CO_2(g)} + \mathrm{H_2O(l)} \rightarrow \mathrm{C_6H_{12}O_6} + \mathrm{O_2(g)}" />
 
-<BlockMath math="\begin{aligned} &amp;\mathrm{CO_2(g)} + \mathrm{H_2O(l)} \\ &amp;\rightarrow \mathrm{C_6H_{12}O_6} + \mathrm{O_2(g)} \end{aligned}" />
-
-Wenn wir Atome zählen, stimmen die beiden Seiten nicht überein.
+Zählt man die Atome auf beiden Seiten, stimmen die Zahlen noch nicht überein.
 
 | Element | Links | Rechts |
-| :------ | :--- | :---- |
+| :------ | :---- | :----- |
 | <InlineMath math="\mathrm{C}" /> | <InlineMath math="1" /> | <InlineMath math="6" /> |
 | <InlineMath math="\mathrm{H}" /> | <InlineMath math="2" /> | <InlineMath math="12" /> |
 | <InlineMath math="\mathrm{O}" /> | <InlineMath math="3" /> | <InlineMath math="8" /> |
 
-Beginne mit den sechs Kohlenstoffatomen in einem Zuckermolekül. Dafür brauchen wir links <InlineMath math="6\mathrm{CO_2}" />. Für die zwölf Wasserstoffatome des Zuckers sind <InlineMath math="6\mathrm{H_2O}" /> nötig. Links stehen jetzt <InlineMath math="6\times2+6=18" /> Sauerstoffatome. Sechs stecken bereits im Zucker. Die übrigen <InlineMath math="18-6=12" /> Sauerstoffatome bilden <InlineMath math="6\mathrm{O_2}" />:
+Beginne mit den sechs Kohlenstoffatomen eines Zuckermoleküls über <InlineMath math="6\mathrm{CO_2}" /> links und gleiche dann die zwölf Wasserstoffatome mit <InlineMath math="6\mathrm{H_2O}" /> aus. Links stehen nun <InlineMath math="18" /> Sauerstoffatome. Sechs davon bindet der Zucker, die übrigen <InlineMath math="12" /> bilden <InlineMath math="6\mathrm{O_2}" />:
 
-<BlockMath math="\begin{aligned} &amp;6\mathrm{CO_2(g)} + 6\mathrm{H_2O(l)} \\ &amp;\xrightarrow{\text{Licht}} \mathrm{C_6H_{12}O_6} + 6\mathrm{O_2(g)} \end{aligned}" />
+<BlockMath math="6\mathrm{CO_2(g)} + 6\mathrm{H_2O(l)} \xrightarrow{\text{Licht}} \mathrm{C_6H_{12}O_6} + 6\mathrm{O_2(g)}" />
 
-Dies ist eine formale Zusammenfassung und keine einzelne Elementarreaktion. Deshalb steht die Kohlenhydratformel ohne Zustandssymbol.
-
-Die Anzahl der Atome jedes Elements ist nun auf beiden Seiten der Gleichung gleich.
+Weil diese formale Zusammenfassung zahlreiche Zwischenschritte bündelt, trägt die Zuckerformel kein Zustandssymbol. Jetzt sind auf beiden Seiten gleich viele Atome jedes Elements vorhanden.
 
 | Element | Links | Rechts |
-| :------ | :--- | :---- |
+| :------ | :---- | :----- |
 | <InlineMath math="\mathrm{C}" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
 | <InlineMath math="\mathrm{H}" /> | <InlineMath math="12" /> | <InlineMath math="12" /> |
 | <InlineMath math="\mathrm{O}" /> | <InlineMath math="18" /> | <InlineMath math="18" /> |
 
-Beim Ausgleichen bleiben die chemischen Formeln unverändert. <Highlight>Passe nur die Koeffizienten an</Highlight> und prüfe anschließend, ob auf beiden Seiten gleich viele Atome jedes Elements stehen.
-
-Hier ist die ausgeglichene Fotosynthesegleichung Atom für Atom gezählt, Edukte hinten, Produkte vorn, ein Gitterschritt für <InlineMath math="4" /> Atome. Sechs Kohlenstoff-, zwölf Wasserstoff- und achtzehn Sauerstoffatome auf jeder Seite: Licht ordnet sie neu, es erzeugt keine.
+Lass beim Ausgleichen jede Formel unverändert, <Highlight>passe nur die Koeffizienten an</Highlight> und prüfe alle Elemente auf beiden Seiten. Verschiebe <InlineMath math="n" /> unten, um die Anzahl gebildeter Glucosemoleküle und die zugehörigen Atomzahlen zu beobachten.
 
 <MathVisual
-  title={<>Atome in der ausgeglichenen Fotosynthese</>}
-  description={<><InlineMath math="6\mathrm{CO_2}+6\mathrm{H_2O}\rightarrow\mathrm{C_6H_{12}O_6}+6\mathrm{O_2}" /> mit Kohlenstoff (grau), Wasserstoff (violett) und Sauerstoff (orange). Ein Gitterschritt nach oben sind <InlineMath math="4" /> Atome.</>}
+  title={<>Ausgeglichene Atomzahlen bei der Photosynthese</>}
+  description={
+    <>
+      Kohlenstoffatome, Wasserstoffatome und Sauerstoffatome auf beiden Seiten
+      der ausgeglichenen Gleichung für <InlineMath math="n" /> gebildete
+      Glucosemoleküle.
+    </>
+  }
+  footer={
+    <>
+      Sauerstoff, Wasserstoff und Kohlenstoff bleiben stets im Verhältnis drei
+      zwei eins.
+    </>
+  }
   scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 2.5, y: 2, z: 0 } },
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: 0, max: 96 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 1, max: 5, value: 2, step: 1, label: "glucose-count" },
+    ],
     objects: [
-      { id: "carbon-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: (6 / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 6 / 4, width: 1.2 } },
-      { id: "carbon-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: (6 / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 6 / 4, width: 1.2 } },
-      { id: "hydrogen-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: ((6 * 2) / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: (6 * 2) / 4, width: 1.2 } },
-      { id: "hydrogen-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: (12 / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 12 / 4, width: 1.2 } },
-      { id: "oxygen-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: ((6 * 2 + 6 * 1) / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: (6 * 2 + 6 * 1) / 4, width: 1.2 } },
-      { id: "oxygen-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: ((6 + 6 * 2) / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: (6 + 6 * 2) / 4, width: 1.2 } },
+      { id: "oxygen-curve", kind: "function", appearance: "primary", formula: "18*x", domain: { min: 0, max: 5 } },
+      { id: "hydrogen-curve", kind: "function", appearance: "secondary", formula: "12*x", domain: { min: 0, max: 5 } },
+      { id: "carbon-curve", kind: "function", appearance: "reference", formula: "6*x", domain: { min: 0, max: 5 } },
+      { id: "oxygen-now", kind: "marker", x: "n", y: "18*n", appearance: "primary" },
+      { id: "hydrogen-now", kind: "marker", x: "n", y: "12*n", appearance: "secondary" },
+      { id: "carbon-now", kind: "marker", x: "n", y: "6*n", appearance: "reference" },
     ],
     labels: [
-      { key: "carbon", objectId: "carbon-right", at: { x: 0, y: 2, z: 0.75 }, placement: "above" },
-      { key: "hydrogen", objectId: "hydrogen-right", at: { x: 2.5, y: 3.5, z: 0.75 }, placement: "above" },
-      { key: "oxygen", objectId: "oxygen-right", at: { x: 5, y: 5, z: 0.75 }, placement: "above" },
+      { key: "oxygen-line", objectId: "oxygen-curve", at: { x: 4, y: 72 }, placement: "above-left" },
+      { key: "hydrogen-line", objectId: "hydrogen-curve", at: { x: 4, y: 48 }, placement: "above-left" },
+      { key: "carbon-line", objectId: "carbon-curve", at: { x: 4, y: 24 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "carbon-atoms", formula: "6*n" },
+      { key: "hydrogen-atoms", formula: "12*n" },
+      { key: "oxygen-atoms", formula: "18*n" },
     ],
   }}
   labels={{
-    carbon: <InlineMath math="\mathrm{C}:\ 6=6" />,
-    hydrogen: <InlineMath math="\mathrm{H}:\ 12=12" />,
-    oxygen: <InlineMath math="\mathrm{O}:\ 18=18" />,
+    "glucose-count": <>Glucosemoleküle (<InlineMath math="n" />)</>,
+    "oxygen-line": <><InlineMath math="\mathrm{O}" /> Atome</>,
+    "hydrogen-line": <><InlineMath math="\mathrm{H}" /> Atome</>,
+    "carbon-line": <><InlineMath math="\mathrm{C}" /> Atome</>,
+    "carbon-atoms": <>Kohlenstoffatome (<InlineMath math="\mathrm{C}" />)</>,
+    "hydrogen-atoms": <>Wasserstoffatome (<InlineMath math="\mathrm{H}" />)</>,
+    "oxygen-atoms": <>Sauerstoffatome (<InlineMath math="\mathrm{O}" />)</>,
   }}
 />
 
-## Den Prozess nach grüner Chemie beurteilen
+Jeder Schritt des Reglers vervielfacht Kohlenstoff, Wasserstoff und Sauerstoff gemeinsam, ohne ein einziges Atom zu erzeugen oder zu verlieren. Lichtenergie ordnet die vorhandenen Bindungen lediglich neu.
 
-Nachdem wir eine Reaktion ablesen können, können wir beurteilen, ob der Prozess den Prinzipien der grünen Chemie entspricht. Ein Prozess kann nützlich, aber dennoch nicht umweltfreundlich sein, wenn er **Schadstoffe erzeugt**, unnötig gefährliche Stoffe verwendet oder zu viel Energie benötigt.
+### Massenerhaltung beim Verbrennen von trockenem Laub
+
+Beim Verbrennen von trockenem Laub verschwindet keine Materie. Eine Einheit Cellulose reagiert vollständig mit Luftsauerstoff zu **Kohlenstoffdioxid und Wasserdampf**:
+
+<BlockMath math="\mathrm{C_6H_{10}O_5} + 6\mathrm{O_2} \rightarrow 6\mathrm{CO_2} + 5\mathrm{H_2O}" />
+
+Je <InlineMath math="162\text{ g}" /> Cellulose binden <InlineMath math="192\text{ g}" /> Sauerstoff aus der Luft und entweichen als <InlineMath math="264\text{ g}" /> Kohlenstoffdioxid und <InlineMath math="90\text{ g}" /> Wasserdampf. Die gesamte Abgasmasse von <InlineMath math="354\text{ g}" /> ist mehr als doppelt so schwer wie das Laub allein, weil Luftsauerstoff in die Produkte eingeht.
+
+<MathVisual
+  title={<>Abgasmasse beim Verbrennen von trockenem Laub</>}
+  description={
+    <>
+      Masse an Kohlenstoffdioxid, Wasserdampf und gesamten Abgasen beim
+      vollständigen Verbrennen von <InlineMath math="m" /> Gramm Cellulose aus
+      trockenem Laub.
+    </>
+  }
+  footer={
+    <>
+      Die Abgase übertreffen das Laubgewicht, weil Luftsauerstoff hinzukommt.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 500 }, y: { min: 0, max: 1150 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 50, max: 500, value: 162, step: 1, label: "leaf-mass" },
+    ],
+    objects: [
+      { id: "total-gas", kind: "function", appearance: "warning", formula: "354*x/162", domain: { min: 0, max: 500 } },
+      { id: "co2-gas", kind: "function", appearance: "primary", formula: "264*x/162", domain: { min: 0, max: 500 } },
+      { id: "water-vapor", kind: "function", appearance: "secondary", formula: "90*x/162", domain: { min: 0, max: 500 } },
+      { id: "now-total", kind: "marker", x: "m", y: "354*m/162", appearance: "warning" },
+      { id: "now-co2", kind: "marker", x: "m", y: "264*m/162", appearance: "primary" },
+    ],
+    labels: [
+      { key: "total-line", objectId: "total-gas", at: { x: 400, y: 874 }, placement: "above-left" },
+      { key: "co2-line", objectId: "co2-gas", at: { x: 400, y: 652 }, placement: "below-right" },
+      { key: "vapor-line", objectId: "water-vapor", at: { x: 400, y: 222 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "co2-out", formula: "264*m/162" },
+      { key: "vapor-out", formula: "90*m/162" },
+      { key: "total-out", formula: "354*m/162" },
+    ],
+  }}
+  labels={{
+    "leaf-mass": <>Cellulosemasse (<InlineMath math="\text{g}" />)</>,
+    "total-line": <>Gesamtes Abgas</>,
+    "co2-line": <><InlineMath math="\mathrm{CO_2}" /></>,
+    "vapor-line": <><InlineMath math="\mathrm{H_2O}" /> Dampf</>,
+    "co2-out": <><InlineMath math="\mathrm{CO_2}" /> Masse (<InlineMath math="\text{g}" />)</>,
+    "vapor-out": <><InlineMath math="\mathrm{H_2O}" /> Dampf (<InlineMath math="\text{g}" />)</>,
+    "total-out": <>Gesamtes Abgas (<InlineMath math="\text{g}" />)</>,
+  }}
+/>
+
+Schau auf die Werte bei <InlineMath math="162\text{ g}" /> Cellulose: Jedes Gramm Blattkohlenstoff landet als Kohlenstoffdioxid in der Luft, begleitet von Wasserdampf und Rauchpartikeln aus unvollständiger Verbrennung. Offenes Verbrennen verlagert Abfall in die Atmosphäre, statt ihn zu beseitigen.
+
+## Alltagsprozesse nach grünen Kriterien bewerten
+
+Sobald die Reaktion klar ist, prüfst du, ob der Ablauf zu den Kriterien der grünen Chemie passt. Ein Verfahren kann nützlich und dennoch nicht grün sein, wenn es **Schadstoffe erzeugt**, unnötige Gefahrstoffe einsetzt oder zu viel Energie verbraucht.
 
 | Alltagsprozess | Chemische Veränderung | Beurteilung nach grüner Chemie |
-| :--------------- | :--------------- | :------------------- |
-| Plastikmüll verbrennen | Organische Stoffe im Kunststoff reagieren mit Sauerstoff. Dabei entstehen Wärme, Rauch und gasförmige Produkte. | Diese Entsorgung erzeugt zusätzliche Schadstoffe und verhindert den Abfall nicht an der Quelle. |
-| Reiniger richtig dosieren | Reinigungsmittel lösen Schmutz, ohne dass unnötig viel davon verwendet wird. | Die richtige Dosierung vermeidet zusätzlichen Verbrauch und Rückstände. Die Gefahrenhinweise auf dem Produkt gelten trotzdem. |
-| Essensreste kompostieren | Mikroorganismen bauen organische Stoffe schrittweise ab. | Fachgerechte Kompostierung kann organische Abfälle verringern. Feuchtigkeit und Sauerstoffzufuhr müssen so eingestellt sein, dass möglichst wenig Geruch, Sickerwasser und Schädlingsbefall entstehen. |
-| Haushaltsreiniger wahllos mischen | Stoffe, die einzeln sicher verwendbar sind, können miteinander reagieren und gefährliche Gase bilden. | Dadurch steigt das Unfallrisiko. Reinigungsmittel dürfen nur nach ausdrücklicher Herstelleranweisung gemischt werden. |
+| :------------- | :-------------------- | :----------------------------- |
+| Plastikmüll verbrennen | Organische Polymere reagieren mit Sauerstoff und setzen Wärme, Rauch und Gase frei. | Diese Entsorgung erzeugt zusätzliche Schadstoffe und verhindert Abfall nicht an der Quelle. |
+| Reiniger richtig dosieren | Reinigungsmittel lösen Schmutz ohne Überdosierung. | Die passende Dosis senkt Verbrauch und Rückstände, während alle Gefahrenhinweise weiterhin gelten. |
+| Essensreste kompostieren | Mikroorganismen bauen organische Stoffe schrittweise ab. | Fachgerechte Kompostierung mindert Bioabfall, wenn Feuchte und Luftzufuhr Geruch, Sickerwasser und Schädlinge begrenzen. |
+| Haushaltsreiniger wahllos mischen | Einzeln sichere Stoffe reagieren miteinander zu gefährlichen Gasen. | Das Unfallrisiko steigt deutlich. Reiniger nur nach ausdrücklicher Herstellerangabe mischen. |
 
-[Haushaltsbleiche und Desinfektionsmittel](https://www.cdc.gov/hygiene/about/cleaning-and-disinfecting-with-bleach.html) dürfen nicht mit anderen Reinigern gemischt werden. Dabei können Dämpfe entstehen, deren Einatmen gefährlich ist. Beachte die Produktkennzeichnung und die Hinweise zur Belüftung.
+Mische niemals [Haushaltsbleiche oder Desinfektionsmittel](https://www.cdc.gov/hygiene/about/cleaning-and-disinfecting-with-bleach.html) mit anderen Reinigern, da giftige Dämpfe entstehen können. Beachte stets das Produktetikett und die Hinweise zur Belüftung.
 
-Die Herkunft eines Stoffes reicht nicht aus, um seine Sicherheit zu beurteilen. Dafür müssen auch Zusammensetzung, Dosis und Verwendung betrachtet werden. Kompostierung kann helfen, bei schlechter Durchführung aber weiterhin Gerüche, Sickerwasser oder Schädlinge verursachen. Ein hergestellter Reiniger kann sicherer sein, wenn seine Zusammensetzung bekannt ist, die Dosierung stimmt und weniger Abfall entsteht.
-
-## Beurteilung von Prozessen anhand von Stoffen und Auswirkungen
-
-Vergleichen wir drei Möglichkeiten, mit trockenem Laub im Garten umzugehen.
+Die Herkunft eines Stoffes allein belegt keine Sicherheit. Prüfe Zusammensetzung, Dosis und Anwendung gemeinsam. Ein Vergleich dreier Wege für trockenes Gartenlaub trennt Abfallbehandlung klar vom Design der grünen Chemie.
 
 | Option | Was passiert | Urteil |
-| :----- | :----------- | :------- |
-| Verbrenne sie | Blätter reagieren mit Sauerstoff und erzeugen Rauch. | Für grüne Chemie nicht geeignet, da Verschmutzung entsteht. |
-| In den Restmüll werfen | Das Laub reagiert nicht sofort, muss aber zusammen mit anderem Abfall behandelt werden. | Besser als Verbrennen, verhindert den Abfall aber nicht. |
-| Richtig kompostieren | Organisches Material wird langsam zu Kompost abgebaut. | Für diese Entsorgungsfrage die beste Wahl, weil Verbrennung vermieden und organisches Material weiter genutzt wird. Kompostierung allein ist jedoch noch kein Design eines chemischen Produkts oder Verfahrens. |
+| :----- | :----------- | :----- |
+| Verbrennen | Laub reagiert mit Sauerstoff und erzeugt Rauch. | Unvereinbar mit grüner Chemie, weil **Schadstoffe entstehen**. |
+| In den Restmüll geben | Laub erhöht die Abfallmenge für die Entsorgung. | Besser als Verbrennen, obwohl weiterhin Abfall anfällt. |
+| Richtig kompostieren | Organisches Material zerfällt langsam zu Kompost. | Vermeidet Verbrennung und führt Nährstoffe zurück, behandelt aber bereits vorhandenen Abfall statt ein chemisches Verfahren neu zu gestalten. |
 
-Unter diesen drei Möglichkeiten der Abfallbehandlung ist **richtiges Kompostieren** die beste Wahl. Dieser Weg vermeidet die Verbrennung, verringert den Restmüll und nutzt vorhandene organische Stoffe weiter. Das ist verantwortungsvolle Abfallwirtschaft. Grüne Chemie beginnt hier erst, wenn zusätzlich ein chemisches Produkt oder Verfahren gezielt neu gestaltet wird.
-
-Bestimme bei einem alltäglichen chemischen Prozess die Stoffe am Anfang, die Veränderungen, die Stoffe am Ende und die Gefahren, die sich bereits an der Quelle vermeiden lassen.
-
-Verbranntes Laub lässt keine Materie verschwinden. Eine Einheit Cellulose verbrennt nach <InlineMath math="\mathrm{C_6H_{10}O_5}+6\mathrm{O_2}\rightarrow6\mathrm{CO_2}+5\mathrm{H_2O}" />, also verlassen <InlineMath math="162\ \mathrm{g}" /> Blattmaterial und <InlineMath math="192\ \mathrm{g}" /> Sauerstoff das Feuer als <InlineMath math="354\ \mathrm{g}" /> Gas und Dampf, schwerer als das Laub allein. Dreh die Säulen: Die Summen stimmen überein, und der ganze Kohlenstoff landet in der Luft.
-
-<MathVisual
-  title={<>Verbranntes Laub verschwindet nicht</>}
-  description={<>Cellulose aus Laub und Sauerstoff (links) gegen das Kohlenstoffdioxid und den Wasserdampf, die daraus werden (rechts). Ein Gitterschritt nach oben entspricht <InlineMath math="40" /> Gramm.</>}
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 9.85 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 8.5, y: 11.85, z: 11 }, target: { x: 1.5, y: 4.425, z: 0 } },
-    objects: [
-      { id: "leaves", kind: "cuboid", appearance: "construction", center: { x: 0, y: 2.025, z: 0 }, size: { length: 1.6, height: 4.05, width: 1.6 } },
-      { id: "air-oxygen", kind: "cuboid", appearance: "primary", center: { x: 0, y: 6.45, z: 0 }, size: { length: 1.6, height: 4.8, width: 1.6 } },
-      { id: "smoke-gas", kind: "cuboid", appearance: "reference", center: { x: 3, y: 3.3, z: 0 }, size: { length: 1.6, height: 6.6, width: 1.6 } },
-      { id: "vapor", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 7.725, z: 0 }, size: { length: 1.6, height: 2.25, width: 1.6 } },
-    ],
-    labels: [
-      { key: "leaves", objectId: "leaves", at: { x: 0, y: 2.025, z: 0.85 }, placement: "right" },
-      { key: "oxygen", objectId: "air-oxygen", at: { x: 0, y: 6.45, z: 0.85 }, placement: "right" },
-      { key: "gas", objectId: "smoke-gas", at: { x: 3, y: 3.3, z: 0.85 }, placement: "right" },
-      { key: "vapor", objectId: "vapor", at: { x: 3, y: 7.725, z: 0.85 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    leaves: <InlineMath math="\mathrm{C_6H_{10}O_5}:\ 162\ \mathrm{g}" />,
-    oxygen: <InlineMath math="6\mathrm{O_2}:\ 192\ \mathrm{g}" />,
-    gas: <InlineMath math="6\mathrm{CO_2}:\ 264\ \mathrm{g}" />,
-    vapor: <InlineMath math="5\mathrm{H_2O}:\ 90\ \mathrm{g}" />,
-  }}
-/>
+Kompostierung ist verantwortungsvolle biologische Abfallbehandlung, während grüne Chemie ein chemisches Produkt oder Verfahren neu gestaltet, um Schäden an der Quelle zu verhindern. Bestimme bei jedem Alltagsprozess Eingangsstoffe, Veränderung, Ausgangsstoffe und vermeidbare Gefahren vor der Abfallentstehung.

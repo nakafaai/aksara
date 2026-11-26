@@ -8,218 +8,324 @@ export const metadata = {
   subject: "Green Chemistry",
 };
 
-## A Green Chemistry Activity Redesigns a Product or Process
+## Linking Green Chemistry Activities to Global Goals
 
-A **green chemistry activity** changes the design or use of a chemical product or process so hazards and waste are prevented at the source. A helpful environmental action is not automatically green chemistry. We still need to identify what enters the process, what changes chemically, what leaves it, and which hazard is reduced.
+A **green chemistry activity** changes the design or use of a chemical product or process so hazards and waste are prevented at the source. A helpful environmental action does not automatically qualify as green chemistry. You still need to trace what enters the process, what changes chemically, what leaves it, and which hazard actually declines.
 
-The [United Nations](https://sdgs.un.org/goals) has <InlineMath math="17" /> **Sustainable Development Goals**, or SDGs, in its <InlineMath math="2030" /> Agenda. Green chemistry can support these goals when a design measurably reduces hazardous materials, energy use, water or air pollution, or waste.
+The [United Nations](https://sdgs.un.org/goals) defines <InlineMath math="17" /> **Sustainable Development Goals**, or SDGs, in its <InlineMath math="2030" /> Agenda. Green chemistry supports several [SDG challenges](https://www.acs.org/green-chemistry-sustainability/education/chemistry-sustainable-development-goals.html) when a chemical redesign measurably cuts hazardous materials, energy demand, water or air pollution, or waste.
 
-Chemistry can help address several [SDG challenges](https://www.acs.org/green-chemistry-sustainability/education/chemistry-sustainable-development-goals.html), including health, clean energy, and more responsible production.
+> A green claim becomes credible only when measurements prove that hazard or waste dropped while the product still performs its intended job.
 
-The table links each SDG to a chemical design question and a result that can be checked.
+The table connects key SDGs to concrete chemical design questions and verifiable outcomes.
 
 | Goal | Chemical issue to examine | Result to check |
-| :--- | :------------------- | :------------- |
+| :--- | :------------------------ | :-------------- |
 | SDG <InlineMath math="3" /> | Exposure to hazardous substances | Materials and doses are made safer. |
 | SDG <InlineMath math="6" /> | Residues entering water | Liquid waste is reduced at the source. |
-| SDG <InlineMath math="7" /> | Energy used by a process | Heat or electricity demand is reduced. |
-| SDG <InlineMath math="12" /> | Single-use materials | The activity reduces unnecessary material use. |
-| SDG <InlineMath math="13" /> | Emissions from burning | Open burning and fossil energy use are reduced. |
+| SDG <InlineMath math="7" /> | Energy used by a process | Heat or electricity demand declines. |
+| SDG <InlineMath math="12" /> | Single-use materials | Unnecessary material consumption drops. |
+| SDG <InlineMath math="13" /> | Emissions from burning | Open burning and fossil energy use fall. |
 | SDG <InlineMath math="14" /> and SDG <InlineMath math="15" /> | Pollutants in water, soil, and living things | Pollutants are prevented before they spread. |
 
-A chemical redesign contributes to an SDG when measurements show that it reduces the stated hazard, resource use, emission, or waste.
+### Cutting Process Waste with Recyclable Catalysts
 
-## Cleaning Exhaust Gas
+A catalytic converter in a car exhaust illustrates how **catalysis** transforms hazardous substances before they enter the air. Over a solid metal catalyst bed, toxic carbon monoxide reacts with oxygen to form far less toxic carbon dioxide without consuming the catalyst:
 
-The catalytic converter in a car exhaust is a green chemistry measure that changes a harmful substance before it reaches the air. Inside it, carbon monoxide reacts with oxygen to form carbon dioxide. Drag the slider: <InlineMath math="3" /> reactant molecules become <InlineMath math="2" /> product molecules, and **a highly toxic gas turns into a far less toxic one**.
+<BlockMath math="2\mathrm{CO(g)} + \mathrm{O_2(g)} \xrightarrow{\text{catalyst}} 2\mathrm{CO_2(g)}" />
 
-<ReactionBalanceLab
-  title={<>The Reaction in a Catalytic Converter</>}
-  description={<>Carbon monoxide from the engine becomes carbon dioxide.</>}
-  reactions={[
-    { id: "carbon-monoxide-oxidation", name: "Oxidising carbon monoxide", tab: <InlineMath math="\mathrm{CO}" /> },
-  ]}
-  reading="molecules"
+In industrial chemical manufacturing, replacing single-use stoichiometric reagents with recyclable catalysts cuts the **E-factor** (kilograms of waste per kilogram of product) across repeated production batches. Explore the four catalysis modes and adjust the batch cycle counter below.
+
+<GreenCatalystCycleLab
+  title={<>Recyclable Catalyst Loops and Waste Reduction</>}
+  description={
+    <>
+      Compare single-use stoichiometric reagents against homogeneous,
+      heterogeneous, and enzyme biocatalysts over repeated batch cycles.
+    </>
+  }
+  footer={
+    <>
+      Reusing a catalyst across cycles keeps waste far below stoichiometric
+      batches.
+    </>
+  }
+  modes={["stoichiometric", "homogeneous", "heterogeneous", "biocatalyst"]}
+  cycles={{ min: 1, max: 20, value: 10 }}
   labels={{
-    atoms: <>Atoms of each element</>,
-    choose: "Choose a reaction",
-    economy: <>Atom economy</>,
-    equation: <>Balanced equation</>,
-    mass: <>Mass of reactants and products</>,
-    molecules: <>Number of molecules</>,
-    products: <>Products</>,
-    progress: "Reaction progress",
-    reactants: <>Reactants</>,
-    view: "Reaction at the level of atoms",
+    cycles: "Batch cycles",
+    eFactor: <>E-factor</>,
+    mode: "Catalysis mode",
+    modes: {
+      stoichiometric: {
+        eFactor: <><InlineMath math="6.5\text{ kg}" /> waste per <InlineMath math="\text{kg}" /> product</>,
+        name: "Stoichiometric reagent",
+        recoveryNote: <>Consumed in every batch and discarded as salt waste.</>,
+      },
+      homogeneous: {
+        eFactor: <><InlineMath math="1.8\text{ kg}" /> waste per <InlineMath math="\text{kg}" /> product</>,
+        name: "Homogeneous catalyst",
+        recoveryNote: <>Dissolved in the reaction mixture and needs solvent separation.</>,
+      },
+      heterogeneous: {
+        eFactor: <><InlineMath math="0.4\text{ kg}" /> waste per <InlineMath math="\text{kg}" /> product</>,
+        name: "Heterogeneous catalyst",
+        recoveryNote: <>Solid bed filtered cleanly and reused across many cycles.</>,
+      },
+      biocatalyst: {
+        eFactor: <><InlineMath math="0.2\text{ kg}" /> waste per <InlineMath math="\text{kg}" /> product</>,
+        name: "Enzyme biocatalyst",
+        recoveryNote: <>Operates in mild water near room temperature with high selectivity.</>,
+      },
+    },
+    parts: {
+      catalystBed: "Catalyst bed",
+      productOut: "Product stream",
+      reactantStream: "Reactant feed",
+      recoveryLoop: "Recovery loop",
+      wasteBin: "Waste collector",
+    },
+    recoveryNote: <>Catalyst recovery</>,
+    view: "3D green catalyst recovery loop",
   }}
 />
 
-## Material Flow from Inputs to Waste
+Watch how the waste collector fills rapidly in stoichiometric mode because a fresh batch of reagent turns into waste every single run. Switching to a solid heterogeneous bed or a selective enzyme keeps the catalyst circulating while leaving mostly clean product.
 
-Begin by recording every material used, the changes it undergoes, the products, the residues, and the hazards. When comparing two processes, make sure they perform the same task.
+### Tracking Material Flow from Inputs to Residue
+
+Begin any process audit by listing every material used, the changes it undergoes, the products, the residues, and the hazards. Whenever you compare two processes, keep the **required task constant** so the comparison stays fair.
 
 | Part of the process | Question to answer |
-| :------------ | :----------------- |
-| Input materials | Which substances are used, and are any of them hazardous? |
+| :------------------ | :----------------- |
+| Input materials | Which substances enter, and are any of them hazardous? |
 | Process | Are substances mixed, reused, decomposed, or reacted? |
-| Product or residue | What leaves the process after it happens? |
-| Evidence | What can be observed or measured under the same conditions? |
-| Risk | Which intrinsic hazard or exposure is reduced compared with the old method? |
+| Product or residue | What leaves the process after it finishes? |
+| Evidence | What can be observed or measured under identical conditions? |
+| Risk | Which intrinsic hazard or exposure declines relative to the old method? |
 
-A green claim is <Highlight>testable only when it includes evidence</Highlight>. Words such as "natural", "efficient", and "eco-friendly" do not identify which hazard or waste has decreased. A fair comparison must also keep the required function constant. Using less cleaner is not an improvement if the surface remains dirty, and a replacement material must still perform the same task.
+A green claim is <Highlight>testable only when it includes evidence</Highlight>. Labels like natural or eco-friendly never specify which hazard dropped. Every kilogram entering a process leaves either as useful product or as residue:
 
-Trace one activity as mass in and mass out. Every kilogram that goes in leaves either in the product or in the residue, so <InlineMath math="m_\text{in}=m_\text{product}+m_\text{residue}" />. The band splits by mass: with illustrative numbers, <InlineMath math="10\ \mathrm{kg}" /> in gives <InlineMath math="8\ \mathrm{kg}" /> of product and <InlineMath math="2\ \mathrm{kg}" /> of residue. Zoom in on the pink branch, the part a greener process tries to shrink.
+<BlockMath math="m_{\text{in}} = m_{\text{product}} + m_{\text{residue}}" />
+
+For an illustrative process that converts <InlineMath math="80\%" /> of input mass into product and <InlineMath math="20\%" /> into residue, slide <InlineMath math="m" /> below to see how both output streams grow with total input mass.
 
 <MathVisual
-  title={<>Mass In Equals Mass Out</>}
-  description={<>An illustrative mass flow: the input band (gray) splits into product (teal) and residue (pink), with widths drawn to scale. One grid step is <InlineMath math="1" /> kilogram.</>}
+  title={<>Material Flow Split Between Product and Residue</>}
+  description={
+    <>
+      Illustrative mass balance showing product mass at{" "}
+      <InlineMath math="80\%" /> and residue mass at <InlineMath math="20\%" />{" "}
+      for total input mass <InlineMath math="m" />.
+    </>
+  }
+  footer={
+    <>
+      All input exits as product or residue, and green design shrinks residue.
+    </>
+  }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -1.5, max: 11 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 18 } },
     view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1, max: 20, value: 10, step: 0.5, label: "input-mass" },
+    ],
     objects: [
-      { id: "input", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 10 }, { x: 0, y: 10 }] },
-      { id: "product", kind: "polygon", appearance: "construction", vertices: [{ x: 5, y: 2 }, { x: 8, y: 2 }, { x: 8, y: 10 }, { x: 5, y: 10 }] },
-      { id: "residue", kind: "polygon", appearance: "warning", vertices: [{ x: 5, y: -1 }, { x: 8, y: -1 }, { x: 8, y: 1 }, { x: 5, y: 1 }] },
-      { id: "to-product", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 2 }, { x: 5, y: 2 }, { x: 5, y: 10 }, { x: 3, y: 10 }] },
-      { id: "to-residue", kind: "polygon", appearance: "warning", vertices: [{ x: 3, y: 0 }, { x: 5, y: -1 }, { x: 5, y: 1 }, { x: 3, y: 2 }] },
+      { id: "product-flow", kind: "function", appearance: "construction", formula: "0.8*x", domain: { min: 0, max: 20 } },
+      { id: "residue-flow", kind: "function", appearance: "warning", formula: "0.2*x", domain: { min: 0, max: 20 } },
+      { id: "now-product", kind: "marker", x: "m", y: "0.8*m", appearance: "construction" },
+      { id: "now-residue", kind: "marker", x: "m", y: "0.2*m", appearance: "warning" },
     ],
     labels: [
-      { key: "input", objectId: "input", at: { x: 1.5, y: 10 }, placement: "above" },
-      { key: "product", objectId: "product", at: { x: 6.5, y: 10 }, placement: "above" },
-      { key: "residue", objectId: "residue", at: { x: 8, y: 0 }, placement: "right" },
+      { key: "product-line", objectId: "product-flow", at: { x: 15, y: 12 }, placement: "above-left" },
+      { key: "residue-line", objectId: "residue-flow", at: { x: 15, y: 3 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "product-mass", formula: "0.8*m" },
+      { key: "residue-mass", formula: "0.2*m" },
     ],
   }}
   labels={{
-    input: <InlineMath math="10\ \mathrm{kg}\ \text{in}" />,
-    product: <InlineMath math="8\ \mathrm{kg}\ \text{product}" />,
-    residue: <InlineMath math="10-8=2\ \mathrm{kg}\ \text{residue}" />,
+    "input-mass": <>Total input (<InlineMath math="\text{kg}" />)</>,
+    "product-line": <>Product</>,
+    "residue-line": <>Residue</>,
+    "product-mass": <>Product mass (<InlineMath math="\text{kg}" />)</>,
+    "residue-mass": <>Residue mass (<InlineMath math="\text{kg}" />)</>,
   }}
 />
 
-## Use Enough Soap without Adding Excess Residue
+At <InlineMath math="10\text{ kg}" /> of total input, <InlineMath math="8\text{ kg}" /> become product and <InlineMath math="2\text{ kg}" /> leave as residue. Because mass is conserved, improving the process means pushing the product line higher while flattening the residue line toward zero.
 
-Lots of foam can be mistaken for better cleaning. With dish soap, too much product can lengthen rinsing and add more cleaning residue to wastewater. Compare the dose that removes the dirt with a larger dose, then check the residue and water needed for rinsing. This comparison measures the soap dose during use. The cleaner formulation remains unchanged.
+## Comparing Household Dosing and Organic Waste Treatment
 
-A **surfactant** is a substance in a cleaner that helps water lift oil and dirt. Surfactants are useful, but they still need to be used in a sufficient amount.
+Everyday choices around kitchen cleaners and organic scraps show the contrast between **source reduction** and **waste treatment**. Both matter in daily life, yet measuring exact doses and tracking where carbon goes reveal what each choice actually achieves.
+
+### Measuring Effective Soap Doses Without Extra Residue
+
+Thick foam is often mistaken for stronger cleaning. With dish soap, overdosing lengthens rinsing and sends extra **surfactant** into wastewater. A surfactant lifts oil and grease into water, yet extra soap beyond the effective dose adds residue without cleaning better.
 
 | What is compared | Chemical effect | Observed result |
-| :--------------- | :---------------- | :--------------- |
-| Very little soap | The surfactant may not be enough to lift oil. | The stain still sticks. |
-| Enough soap | The surfactant works without much excess residue. | The stain is gone and rinsing is not excessive. |
-| Too much soap | Extra surfactant enters wastewater. | Foam is hard to remove while rinsing. |
+| :--------------- | :-------------- | :-------------- |
+| Very little soap | Too little surfactant to emulsify grease. | The stain remains on the plate. |
+| Enough soap | Surfactant lifts oil without heavy surplus. | The stain clears and rinsing stays quick. |
+| Too much soap | Excess surfactant enters household wastewater. | Persistent foam demands extra rinse water. |
 
-Use the effective dose on the label. Extra product adds residue and rinse water without improving the cleaning result. A cleaner formulation can also be redesigned to use safer ingredients, less material, or less water.
+In a **hypothetical comparison** on the same stain and surface area, Formulation A needs <InlineMath math="10\text{ mL}" /> per wash whereas redesigned Formulation B achieves the same cleanliness with <InlineMath math="8\text{ mL}" />. The volume cut per wash is:
 
-As a **hypothetical data example**, two cleaner formulations are tested on the same stain and surface area. Formulation A requires <InlineMath math="10 \mathrm{mL}" />, while B requires <InlineMath math="8 \mathrm{mL}" /> for the same cleaning result. The reduction in product volume is:
+<BlockMath math="\frac{10 - 8}{10} \times 100\% = 20\%" />
 
-<BlockMath math="\frac{10-8}{10}\times100\%=\frac{2}{10}\times100\%=20\%" />
-
-In the scene below, each column is the dose needed for the same clean surface, with one grid step for <InlineMath math="2 \mathrm{mL}" />. The gray block on top of B is the part B no longer needs. It is exactly one fifth of A's column, which is the <InlineMath math="20\%" /> from the calculation. Rotate the scene: the saving shows up only because both columns do the same job.
+Slide <InlineMath math="w" /> below to track how that <InlineMath math="20\%" /> reduction adds up across fifty identical washes.
 
 <MathVisual
-  title={<>The Same Clean Surface with Less Product</>}
-  description={<>Hypothetical doses of two cleaner formulations for the same stain and surface area. One grid step up is <InlineMath math="2\text{ mL}" />.</>}
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6.5 }, z: { min: -1, max: 1 } },
-    view: { kind: "camera", position: { x: 6, y: 6, z: 10 }, target: { x: 1.5, y: 2.5, z: 0 } },
-    objects: [
-      { id: "dose-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 10 / 4, z: 0 }, size: { length: 1.4, height: 10 / 2, width: 1.4 } },
-      { id: "dose-b", kind: "cuboid", appearance: "construction", center: { x: 3, y: 8 / 4, z: 0 }, size: { length: 1.4, height: 8 / 2, width: 1.4 } },
-      { id: "saved", kind: "cuboid", appearance: "reference", center: { x: 3, y: 8 / 2 + (10 - 8) / 4, z: 0 }, size: { length: 1.4, height: (10 - 8) / 2, width: 1.4 } },
-    ],
-    labels: [
-      { key: "a", objectId: "dose-a", at: { x: 0, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
-      { key: "saved", objectId: "saved", at: { x: 3, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
-      { key: "b", objectId: "dose-b", at: { x: 3, y: 8 / 4, z: 0.9 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A:\ 10\ \mathrm{mL}" />,
-    saved: <InlineMath math="\frac{10-8}{10}\times100\%=20\%" />,
-    b: <InlineMath math="B:\ 8\ \mathrm{mL}" />,
-  }}
-/>
-
-This result shows reduced product volume in that test. Claiming that B is safer or saves water still requires data on composition, hazards, and rinse water.
-
-## Composting Treats Waste That Already Exists
-
-Dry leaves, fruit peels, and food scraps contain organic matter. Burning causes rapid oxidation and produces smoke. During proper composting, microorganisms break the matter down gradually. Composting is useful **biological waste treatment**. When a chemical product or process is redesigned to prevent hazards or waste at the source, that design change can also be assessed using green chemistry principles.
-
-| Way to handle organic waste | What happens | Careful classification |
-| :-------------------------- | :----------- | :---------------------- |
-| Burn it | Organic matter reacts with oxygen and forms smoke. | The waste produces smoke and other pollutants. |
-| Put it in mixed trash | The material remains a waste burden that must be handled. | The disposal route changes while the original product and process stay the same. |
-| Compost it properly | Microorganisms gradually decompose the organic matter. | Biological treatment handles the organic waste after it has been produced. |
-
-[Composting](https://www.epa.gov/sustainable-management-food/approaches-composting) still needs controlled moisture, oxygen flow, pile structure, and nutrient balance. A poorly managed pile can become anaerobic, smell, or release leachate. These conditions affect microbial activity and temperature. In this example, composting is waste treatment. An activity is product or process redesign when it changes the chemical design to prevent waste at the source.
-
-Follow the carbon in the same pile of leaves. Burning oxidizes almost all of it within minutes, so it leaves as smoke and carbon dioxide. In an illustrative compost model the carbon left is <InlineMath math="40+60e^{-t/4}" /> percent after <InlineMath math="t" /> weeks, so microorganisms work slowly and part of the carbon stays in the compost for the soil. Zoom in on both curves near the start.
-
-<MathVisual
-  title={<>Burning or Composting the Same Leaves</>}
-  description={<>Share of the pile's carbon left after burning (pink) and during composting (teal). Horizontal: one grid step is one week. Vertical: one grid step is <InlineMath math="20" /> percent.</>}
+  title={<>Cumulative Dish Soap Volume Across Repeated Washes</>}
+  description={
+    <>
+      Total cleaner volume used over <InlineMath math="w" /> identical washes
+      for Formulation A at <InlineMath math="10\text{ mL}" /> and Formulation B
+      at <InlineMath math="8\text{ mL}" />.
+    </>
+  }
+  footer={
+    <>
+      A twenty percent dose cut saves forty millilitres every twenty identical
+      washes.
+    </>
+  }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.3, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 520 } },
     view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 1, max: 50, value: 20, step: 1, label: "wash-count" },
+    ],
     objects: [
-      { id: "burn", kind: "polyline", appearance: "warning", vertices: [{ x: 0, y: 5 }, { x: 0.003, y: 0.25 }, { x: 12, y: 0.25 }] },
-      { id: "compost", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: (40 + 60 * Math.exp(-0.5 / 4)) / 20 }, { x: 1, y: (40 + 60 * Math.exp(-1 / 4)) / 20 }, { x: 1.5, y: (40 + 60 * Math.exp(-1.5 / 4)) / 20 }, { x: 2, y: (40 + 60 * Math.exp(-2 / 4)) / 20 }, { x: 2.5, y: (40 + 60 * Math.exp(-2.5 / 4)) / 20 }, { x: 3, y: (40 + 60 * Math.exp(-3 / 4)) / 20 }, { x: 3.5, y: (40 + 60 * Math.exp(-3.5 / 4)) / 20 }, { x: 4, y: (40 + 60 * Math.exp(-4 / 4)) / 20 }, { x: 4.5, y: (40 + 60 * Math.exp(-4.5 / 4)) / 20 }, { x: 5, y: (40 + 60 * Math.exp(-5 / 4)) / 20 }, { x: 5.5, y: (40 + 60 * Math.exp(-5.5 / 4)) / 20 }, { x: 6, y: (40 + 60 * Math.exp(-6 / 4)) / 20 }, { x: 6.5, y: (40 + 60 * Math.exp(-6.5 / 4)) / 20 }, { x: 7, y: (40 + 60 * Math.exp(-7 / 4)) / 20 }, { x: 7.5, y: (40 + 60 * Math.exp(-7.5 / 4)) / 20 }, { x: 8, y: (40 + 60 * Math.exp(-8 / 4)) / 20 }, { x: 8.5, y: (40 + 60 * Math.exp(-8.5 / 4)) / 20 }, { x: 9, y: (40 + 60 * Math.exp(-9 / 4)) / 20 }, { x: 9.5, y: (40 + 60 * Math.exp(-9.5 / 4)) / 20 }, { x: 10, y: (40 + 60 * Math.exp(-10 / 4)) / 20 }, { x: 10.5, y: (40 + 60 * Math.exp(-10.5 / 4)) / 20 }, { x: 11, y: (40 + 60 * Math.exp(-11 / 4)) / 20 }, { x: 11.5, y: (40 + 60 * Math.exp(-11.5 / 4)) / 20 }, { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 }] },
-      { id: "kept", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 12, y: 2 } },
-      { id: "compost-end", kind: "point", appearance: "construction", at: { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 } },
+      { id: "formula-a", kind: "function", appearance: "primary", formula: "10*x", domain: { min: 0, max: 50 } },
+      { id: "formula-b", kind: "function", appearance: "construction", formula: "8*x", domain: { min: 0, max: 50 } },
+      { id: "now-a", kind: "marker", x: "w", y: "10*w", appearance: "primary" },
+      { id: "now-b", kind: "marker", x: "w", y: "8*w", appearance: "construction" },
     ],
     labels: [
-      { key: "burn", objectId: "burn", at: { x: 0.003, y: 0.25 }, placement: "above-right" },
-      { key: "compost", objectId: "compost-end", at: { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 }, placement: "above-left" },
-      { key: "kept", objectId: "kept", at: { x: 12, y: 2 }, placement: "below-left" },
+      { key: "line-a", objectId: "formula-a", at: { x: 40, y: 400 }, placement: "above-left" },
+      { key: "line-b", objectId: "formula-b", at: { x: 40, y: 320 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "volume-a", formula: "10*w" },
+      { key: "volume-b", formula: "8*w" },
+      { key: "volume-saved", formula: "2*w" },
     ],
   }}
   labels={{
-    burn: <>burning: gone in minutes</>,
-    compost: <>composting: weeks</>,
-    kept: <>carbon kept in compost</>,
+    "wash-count": <>Number of washes (<InlineMath math="w" />)</>,
+    "line-a": <>Formulation A</>,
+    "line-b": <>Formulation B</>,
+    "volume-a": <>Formulation A (<InlineMath math="\text{mL}" />)</>,
+    "volume-b": <>Formulation B (<InlineMath math="\text{mL}" />)</>,
+    "volume-saved": <>Volume saved (<InlineMath math="\text{mL}" />)</>,
   }}
 />
 
-## Gases from a Compost Heap
+The gap between the two lines widens steadily with every wash, proving lower product volume for identical cleaning performance. Claiming that Formulation B is safer overall still requires checking ingredient toxicity, biodegradability, and rinse-water use.
 
-Compost with enough air gives off mostly <InlineMath math="\mathrm{CO_2}" />. When a heap is packed too tightly and runs short of oxygen, microbes also make methane, <InlineMath math="\mathrm{CH_4}" />, ammonia, <InlineMath math="\mathrm{NH_3}" />, and nitrous oxide, <InlineMath math="\mathrm{N_2O}" />. Methane and <InlineMath math="\mathrm{N_2O}" /> are **strong greenhouse gases**, so turning the compost regularly helps reduce its impact.
+### Composting Organic Matter and Controlling Heap Gases
 
-<MoleculeShapeLab
-  title={<>Gas Molecules from Compost</>}
-  description={<>Turn each model and compare its shape and relative mass.</>}
-  molecules={[
-    { id: "carbon-dioxide", name: "Carbon dioxide" },
-    { id: "methane", name: "Methane" },
-    { id: "ammonia", name: "Ammonia" },
-    { id: "dinitrogen-monoxide", name: "Dinitrogen monoxide" },
-  ]}
+Dry leaves, fruit peels, and food scraps contain organic carbon. Open burning oxidizes that carbon within minutes into smoke and gas, whereas proper [composting](https://www.epa.gov/sustainable-management-food/approaches-composting) is **biological waste treatment** where microbes decompose matter gradually when moisture, oxygen flow, and nutrients stay balanced.
+
+| Way to handle organic waste | What happens | Careful classification |
+| :-------------------------- | :----------- | :--------------------- |
+| Burn it | Organic matter oxidizes rapidly into smoke. | Generates smoke and airborne pollutants. |
+| Put it in mixed trash | Material stays a waste burden for disposal. | Disposal route changes while original product stays unchanged. |
+| Compost it properly | Microorganisms break matter down gradually. | Biological waste treatment handles existing organic waste. |
+
+In an illustrative composting curve, the share of pile carbon still held in the heap after <InlineMath math="w" /> weeks follows:
+
+<BlockMath math="C(w) = 40 + 60e^{-w/4}" />
+
+Move the week slider below to compare slow microbial breakdown against near-instant carbon loss during open burning.
+
+<MathVisual
+  title={<>Carbon Retained in Compost Versus Open Burning</>}
+  description={
+    <>
+      Illustrative percentage of leaf-pile carbon retained over twelve weeks of
+      composting compared with ash left after open burning.
+    </>
+  }
+  footer={
+    <>
+      Composting keeps stable carbon for soil while burning vents it at once.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 108 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 12, value: 4, step: 0.5, label: "compost-weeks" },
+    ],
+    objects: [
+      { id: "compost-curve", kind: "function", appearance: "construction", formula: "40 + 60*exp(-x/4)", domain: { min: 0, max: 12 } },
+      { id: "burn-curve", kind: "function", appearance: "warning", formula: "5", domain: { min: 0, max: 12 } },
+      { id: "soil-floor", kind: "function", appearance: "reference", formula: "40", domain: { min: 0, max: 12 } },
+      { id: "now-compost", kind: "marker", x: "w", y: "40 + 60*exp(-w/4)", appearance: "construction" },
+    ],
+    labels: [
+      { key: "compost-line", objectId: "compost-curve", at: { x: 8, y: 48.1 }, placement: "above-right" },
+      { key: "burn-line", objectId: "burn-curve", at: { x: 8, y: 5 }, placement: "above-right" },
+      { key: "floor-line", objectId: "soil-floor", at: { x: 2, y: 40 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "carbon-kept", formula: "40 + 60*exp(-w/4)" },
+      { key: "carbon-released", formula: "60 - 60*exp(-w/4)" },
+    ],
+  }}
   labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Molecular formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle or length</>,
-    view: "Three-dimensional molecular model",
+    "compost-weeks": <>Time (<InlineMath math="\text{weeks}" />)</>,
+    "compost-line": <>Composting</>,
+    "burn-line": <>Burned ash</>,
+    "floor-line": <>Soil carbon floor</>,
+    "carbon-kept": <>Carbon retained (<InlineMath math="\%" />)</>,
+    "carbon-released": <>Carbon released (<InlineMath math="\%" />)</>,
   }}
 />
 
-## Natural Materials Still Need Evidence
+Unlike open burning, which drops immediately to roughly <InlineMath math="5\%" /> ash, composting approaches a <InlineMath math="40\%" /> organic carbon floor that enriches soil structure.
 
-A biobased plastic made from banana or cassava residue may sound promising because it uses renewable or discarded feedstock. Yet "biobased" **does not automatically mean safe**, energy efficient, biodegradable, or compostable under local conditions. [Biobased, biodegradable, and compostable](https://www.epa.gov/trash-free-waters/frequently-asked-questions-about-plastic-recycling-and-composting) describe different properties. Evaluate the full life cycle, from feedstock and additives through manufacturing, use, and end of life.
+Airflow also controls which gases leave the pile. Well-aerated compost releases mostly <InlineMath math="\mathrm{CO_2}" />, whereas compacted, oxygen-starved heaps produce methane (<InlineMath math="\mathrm{CH_4}" />), ammonia (<InlineMath math="\mathrm{NH_3}" />), and nitrous oxide (<InlineMath math="\mathrm{N_2O}" />). Compare the relative molecular masses of these four compost gases below.
+
+<Chart
+  title={<>Relative Molecular Mass of Compost Heap Gases</>}
+  description={
+    <>
+      Relative molecular masses of carbon dioxide from aerated piles and
+      methane, ammonia, and nitrous oxide from oxygen-poor piles.
+    </>
+  }
+  footer={
+    <>
+      Turning the heap prevents microbes from forming methane and nitrous oxide.
+    </>
+  }
+  bars="apart"
+  categories={["Carbon dioxide", "Methane", "Ammonia", "Nitrous oxide"]}
+  series={[
+    { label: "Relative molecular mass", mark: "bar", values: [44, 16, 17, 44] },
+  ]}
+  valueLabel="Relative molecular mass"
+  valueRange={{ min: 0, max: 50 }}
+/>
+
+Carbon dioxide and nitrous oxide share the same relative molecular mass of <InlineMath math="44" />, yet nitrous oxide and lighter methane (<InlineMath math="M_r = 16" />) are **far stronger greenhouse gases** per molecule. Regular aeration keeps decomposition aerobic and limits both emissions and odor.
+
+## Checking Evidence Behind Natural Material Claims
+
+A biobased plastic from banana or cassava waste sounds promising because it uses renewable feedstock. Yet **biobased never automatically means safe**, energy efficient, biodegradable, or compostable under local conditions. [Biobased, biodegradable, and compostable](https://www.epa.gov/trash-free-waters/frequently-asked-questions-about-plastic-recycling-and-composting) describe distinct properties that must be tested separately across the full life cycle.
 
 | Claim | What to check |
 | :---- | :------------ |
-| The material comes from organic waste. | Which additives are used with that waste? |
-| The product is called degradable. | Under which temperature, moisture, oxygen, and time conditions does it actually degrade, and into what? |
-| The process looks simple. | How much heat, water, or electricity is used? |
-| The product replaces ordinary plastic. | Is it strong enough for the same function? |
-| The product is called eco-friendly. | Which hazard is truly reduced compared with the old option? |
+| The material comes from organic waste. | Which additives and plasticizers are blended with that waste? |
+| The product is called degradable. | Under which temperature, moisture, oxygen, and time does it break down, and into what? |
+| The process looks simple. | How much heat, water, or electricity does processing consume? |
+| The product replaces ordinary plastic. | Is it durable enough to perform the exact same task? |
+| The product is called eco-friendly. | Which specific hazard declined compared with the conventional option? |
 
-[Green chemistry](https://www.epa.gov/greenchemistry/basics-green-chemistry) designs chemical products and processes to reduce or eliminate hazardous substances across their life cycle. Prevention at the source reduces the pollution that later needs treatment.
-
-An activity belongs under green chemistry when it changes a chemical product or process, prevents hazard or waste at the source, preserves the required function, and supports the claim with a fair comparison. General environmental actions may reduce other impacts, but they should be named accurately. Calling a material "natural" or an activity "green" is never a substitute for evidence.
+An activity belongs under [green chemistry](https://www.epa.gov/greenchemistry/basics-green-chemistry) when it redesigns a chemical product or process, prevents hazard or waste at the source, preserves the required function, and backs the improvement with fair comparison data. Words like natural or green never replace evidence.

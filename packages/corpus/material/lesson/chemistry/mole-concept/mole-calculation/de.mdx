@@ -1,15 +1,17 @@
 export const metadata = {
   title: "Stoffmenge Mol und Stöchiometrie",
   description:
-    "Rechne Stoffmengen in Masse, Teilchenzahl und Gasvolumen um, bestimme Verhältnisformeln und nutze Reaktionsgleichungen mit Beispielen und Übungen.",
+    "Rechne zwischen Stoffmenge, Teilchenzahl, Masse und Gasvolumen um, bestimme Verhältnisformeln sowie Molekülformeln und nutze ausgeglichene Reaktionsgleichungen für die Stöchiometrie.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Stoffmenge, chemische Formeln und Reaktionsgleichungen",
 };
 
-## Was ein Mol bedeutet
+## Unsichtbare Teilchen mit einem Mol zählen
 
-Das **Mol** ist die Einheit der Stoffmenge. Ein Mol eines Stoffs enthält **<InlineMath math="6{,}02 \cdot 10^{23}" /> Teilchen**, die **Avogadro-Konstante** <InlineMath math="N_A" />. Die Teilchen können Atome, Moleküle oder Ionen sein. Drei Formeln verbinden die Stoffmenge mit Größen, die du messen kannst:
+Wenn du auf dem Markt Eier kaufst, zählt niemand sie einzeln in deinen Korb. Du verlangst ein Dutzend und bekommst zwölf auf einmal. Chemiker stehen vor einer noch viel feineren Aufgabe, weil Atome und Moleküle unvorstellbar winzig sind, und bündeln Teilchen deshalb in einer riesigen Zähleinheit namens **Mol**.
+
+Ein Mol eines jeden Stoffs enthält **<InlineMath math="6{,}02 \cdot 10^{23}" /> Teilchen**, die **Avogadro-Konstante** <InlineMath math="N_A" />. Diese Teilchen können Atome, Moleküle oder Ionen sein. Da Laborwaagen Massen messen und Kolbenprober Gasvolumina ablesen, verknüpfen drei kurze Formeln unsichtbare Teilchenzahlen direkt mit handfesten Messwerten:
 
 <MathContainer>
 <BlockMath math="n = \frac{N}{N_A}" />
@@ -17,17 +19,19 @@ Das **Mol** ist die Einheit der Stoffmenge. Ein Mol eines Stoffs enthält **<Inl
 <BlockMath math="n = \frac{V}{V_m}" />
 </MathContainer>
 
-Dabei ist <InlineMath math="N" /> die Teilchenzahl, <InlineMath math="m" /> die Masse in Gramm, <InlineMath math="M" /> die molare Masse in <InlineMath math="\text{g/mol}" /> und <InlineMath math="V_m" /> das molare Volumen eines Gases. In den Modellen hier wiegst du Atome im Massenspektrometer, drehst Moleküle, um ihre Masse abzulesen, und rechnest Stoffmengen in Masse und Volumen um.
+Dabei ist <InlineMath math="n" /> die Stoffmenge, <InlineMath math="N" /> die Teilchenzahl, <InlineMath math="m" /> die Masse in Gramm, <InlineMath math="M" /> die molare Masse in <InlineMath math="\text{g/mol}" /> und <InlineMath math="V_m" /> das molare Volumen eines Gases.
 
-Teilchen sind viel zu klein, um sie einzeln zu zählen, aber ihre Masse lässt sich im Labor wiegen. Deshalb wiegen Chemiker zuerst den Stoff und rechnen die Masse dann in die Stoffmenge um.
+> Ein Mol enthält immer genau dieselbe Zahl an Teilchen, selbst wenn zwei verschiedene Stoffe auf der Waage ganz unterschiedlich schwer sind.
+
+Behalt dieses Grundbild bei jeder Umrechnung im Kopf. Das Rechnen in Mol macht aus jeder Laborwaage einen Teilchenzähler.
 
 ## Relative Atommasse und relative Molekülmasse
 
-Die **relative Atommasse** <InlineMath math="A_r" /> ist die mittlere Masse eines Atoms eines Elements im Vergleich zu <InlineMath math="\tfrac{1}{12}" /> der Masse eines Kohlenstoff-12-Atoms. Sie ist ein gewichteter Mittelwert über alle Isotope des Elements. Chlor besteht zum Beispiel zu etwa <InlineMath math="75\ \%" /> aus Chlor-35 und zu <InlineMath math="25\ \%" /> aus Chlor-37:
+Da ein einzelnes Atom für jede Waage viel zu leicht ist, vergleichen Chemiker Atommassen mit einem festen Bezugsmaß. Die **relative Atommasse** <InlineMath math="A_r" /> ist die mittlere Masse eines Atoms eines Elements im Vergleich zu <InlineMath math="\tfrac{1}{12}" /> der Masse eines Kohlenstoff-12-Atoms. Weil fast alle Elemente in der Natur als Isotopengemisch vorkommen, ist <InlineMath math="A_r" /> ein gewichteter Mittelwert. Chlor besteht zum Beispiel zu etwa <InlineMath math="75\ \%" /> aus Chlor-35 und zu <InlineMath math="25\ \%" /> aus Chlor-37:
 
 <BlockMath math="A_r(\mathrm{Cl}) = \frac{75 \cdot 35 + 25 \cdot 37}{100} = 35{,}5" />
 
-Ein Massenspektrometer misst diesen Wert. Schwerere Ionen werden im Magnetfeld weniger abgelenkt, und die Höhe jedes Peaks gibt die Häufigkeit eines Isotops an. Wähle ein Element im Modell und vergleich den Mittelwert mit der Masse jedes Isotops.
+Ein Massenspektrometer misst diese Isotopenmassen direkt. Schwerere Ionen werden im Magnetfeld schwächer abgelenkt, und die Höhe jedes Peaks zeigt die Häufigkeit seines Isotops an. Wähle unten ein Element und vergleich den Mittelwert mit der Masse jedes einzelnen Isotops.
 
 <MassSpectrometerLab
   title={<>Ein Massenspektrometer wiegt Isotope</>}
@@ -36,6 +40,11 @@ Ein Massenspektrometer misst diesen Wert. Schwerere Ionen werden im Magnetfeld w
       Wähle ein Element. Jedes Isotop wird auf seiner eigenen Bahn abgelenkt,
       und der nach Häufigkeit gewichtete Mittelwert ergibt die relative
       Atommasse.
+    </>
+  }
+  footer={
+    <>
+      Schwerere Isotope krümmen schwächer und verschieben die mittlere Masse.
     </>
   }
   samples={["chlorine", "magnesium", "boron", "copper"]}
@@ -51,48 +60,40 @@ Ein Massenspektrometer misst diesen Wert. Schwerere Ionen werden im Magnetfeld w
   }}
 />
 
-Die **relative Molekülmasse** <InlineMath math="M_r" /> ist die Summe der relativen Atommassen aller Atome eines Moleküls. Für Wasser gilt <InlineMath math="M_r(\mathrm{H_2O}) = 2(1) + 16 = 18" />. Bei Ionenverbindungen heißt dieselbe Summe relative Formelmasse. Dreh die Moleküle im Modell und prüf die angezeigte <InlineMath math="M_r" />.
+Achte darauf, dass <InlineMath math="A_r" /> immer am nächsten beim häufigsten Isotop liegt, weshalb der Wert für Chlor bei <InlineMath math="35{,}5" /> landet und nicht in der Mitte bei <InlineMath math="36" />.
 
-<MoleculeShapeLab
-  title={<>Relative Molekülmasse von fünf Molekülen</>}
-  description={
-    <>
-      Wähle ein Molekül und zähl seine Atome. Die Summe ihrer relativen
-      Atommassen ist die relative Molekülmasse.
-    </>
-  }
-  molecules={[
-    { id: "water", name: "Wasser" },
-    { id: "carbon-dioxide", name: "Kohlenstoffdioxid" },
-    { id: "ammonia", name: "Ammoniak" },
-    { id: "methane", name: "Methan" },
-    { id: "ethanol", name: "Ethanol" },
-  ]}
-  labels={{
-    atoms: <>Atome</>,
-    choose: "Wähle ein Molekül",
-    fill: <>Kalottenmodell</>,
-    formula: <>Formel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel</>,
-    view: "Moleküle und ihre Masse",
-  }}
-/>
+Kennst du die Atommassen, ist die Masse eines ganzen Moleküls bloßes Zusammenzählen. Die **relative Molekülmasse** <InlineMath math="M_r" /> ist die Summe der relativen Atommassen aller Atome in einem Molekül. Für Wasser ergibt die Summe aus zwei Wasserstoffatomen und einem Sauerstoffatom:
+
+<BlockMath math="M_r(\mathrm{H_2O}) = 2(1) + 16 = 18" />
+
+Bei Ionenverbindungen wie Calciumcarbonat, <InlineMath math="\mathrm{CaCO_3}" />, heißt dieselbe Summe **relative Formelmasse**. Wiegst du <InlineMath math="25\ \text{g}" /> Calciumcarbonat ab und nutzt <InlineMath math="A_r" /> gleich <InlineMath math="40" /> für Calcium, <InlineMath math="12" /> für Kohlenstoff und <InlineMath math="16" /> für Sauerstoff, summierst du zuerst die Formelmasse und teilst dann für die Stoffmenge:
+
+<MathContainer>
+<BlockMath math="M_r(\mathrm{CaCO_3}) = 40 + 12 + 3(16) = 100" />
+<BlockMath math="n = \frac{25}{100} = 0{,}25\ \text{mol}" />
+</MathContainer>
+
+Wer die Formel Atom für Atom aufschlüsselt, übersieht nie einen Index wie die drei Sauerstoffatome im Carbonat.
 
 ## Molare Masse und Teilchenzahl
 
-Die **molare Masse** <InlineMath math="M" /> ist die Masse eines Mols eines Stoffs. In Gramm ist sie gleich <InlineMath math="A_r" /> oder <InlineMath math="M_r" />. Ein Mol Wasser wiegt also <InlineMath math="18\ \text{g}" />, ein Mol Kohlenstoff <InlineMath math="12\ \text{g}" /> und ein Mol Kohlenstoffdioxid <InlineMath math="44\ \text{g}" />, und doch enthalten alle drei gleich viele Teilchen.
+Die **molare Masse** <InlineMath math="M" /> ist die Masse eines Mols eines Stoffs in Gramm und stimmt zahlenmäßig mit <InlineMath math="A_r" /> oder <InlineMath math="M_r" /> überein. Ein Mol Kohlenstoff wiegt <InlineMath math="12\ \text{g}" />, ein Mol Wasser <InlineMath math="18\ \text{g}" /> und ein Mol Kohlenstoffdioxid <InlineMath math="44\ \text{g}" />. Ein häufiger Denkfehler setzt gleiche Stoffmengen mit gleichen Massen gleich, doch alle drei Proben tragen dieselbe Teilchenzahl bei völlig verschiedenem Gewicht.
 
-Beweg den Regler für die Stoffmenge. Die drei Geraden zeigen die Masse von Kohlenstoff, Wasser und Kohlenstoffdioxid. Die Steigung jeder Geraden ist ihre molare Masse.
+Verschieb den Stoffmengenregler unten, um die Massen von Kohlenstoff, Wasser und Kohlenstoffdioxid direkt zu vergleichen. Die Steigung jeder Geraden entspricht ihrer molaren Masse.
 
 <MathVisual
   title={<>Masse gegen Stoffmenge</>}
   description={
     <>
-      Die Geraden <InlineMath math="m = nM" /> für Kohlenstoff (
-      <InlineMath math="M = 12" />), Wasser (<InlineMath math="M = 18" />) und
-      Kohlenstoffdioxid (<InlineMath math="M = 44" />). Waagerecht ist die
-      Stoffmenge aufgetragen, senkrecht die Masse in Gramm.
+      Die Geraden für Kohlenstoff (<InlineMath math="M = 12" />), Wasser (
+      <InlineMath math="M = 18" />) und Kohlenstoffdioxid (
+      <InlineMath math="M = 44" />). Waagerecht liegt die Stoffmenge, senkrecht
+      die Masse in Gramm.
+    </>
+  }
+  footer={
+    <>
+      Steilere Geraden bedeuten größere molare Massen bei gleicher Stoffmenge.
     </>
   }
   scene={{
@@ -132,39 +133,102 @@ Beweg den Regler für die Stoffmenge. Die drei Geraden zeigen die Masse von Kohl
   }}
 />
 
-### Beispiel Stoffmenge aus der Masse
+An jeder Stellung des Reglers gilt dieselbe Teilchenzahl für alle drei Stoffe, während die Massendifferenz rasch wächst, weil ein Molekül Kohlenstoffdioxid fast viermal so schwer ist wie ein Kohlenstoffatom.
 
-Berechne **Stoffmenge und Molekülzahl** in <InlineMath math="9{,}0\ \text{g}" /> Wasser.
+### Stoffmenge und Atomzahl aus der Masse
+
+Angenommen, du suchst **Stoffmenge, Molekülzahl und Atomzahl** in <InlineMath math="9{,}0\ \text{g}" /> Wasser. Rechne zuerst die Masse in Stoffmenge um und multipliziere dann mit der Avogadro-Konstante für die Moleküle:
 
 <MathContainer>
 <BlockMath math="n = \frac{m}{M} = \frac{9{,}0}{18} = 0{,}50\ \text{mol}" />
-<BlockMath math="N = nN_A = 0{,}50 \cdot 6{,}02 \cdot 10^{23} = 3{,}01 \cdot 10^{23}" />
+<BlockMath math="N(\mathrm{H_2O}) = 0{,}50 \cdot 6{,}02 \cdot 10^{23} = 3{,}01 \cdot 10^{23}" />
 </MathContainer>
 
-Jedes Wassermolekül hat drei Atome, die Atomzahl beträgt also <InlineMath math="3 \cdot 3{,}01 \cdot 10^{23} = 9{,}03 \cdot 10^{23}" />. Prüf das im Modell: Bei <InlineMath math="n = 0{,}5" /> liest du eine Wassermasse von <InlineMath math="9\ \text{g}" /> ab.
+Achte auf die Verwechslungsfalle zwischen Molekülen und Atomen. Jedes Wassermolekül besteht aus drei Atomen (zwei Wasserstoffatome und ein Sauerstoffatom), also beträgt die gesamte **Atomzahl** das Dreifache der Molekülzahl:
 
-### Beispiel Masse aus der Teilchenzahl
+<BlockMath math="N(\text{Atome}) = 3 \cdot 3{,}01 \cdot 10^{23} = 9{,}03 \cdot 10^{23}" />
 
-Welche Masse haben <InlineMath math="1{,}204 \cdot 10^{24}" /> Magnesiumatome? Rechne die Teilchen zuerst in die Stoffmenge um, dann **die Stoffmenge in die Masse**:
+Wende dieselbe Regel auf <InlineMath math="0{,}20\ \text{mol}" /> Ammoniak, <InlineMath math="\mathrm{NH_3}" />, an. Weil jedes Ammoniakmolekül vier Atome enthält, liefert die Multiplikation mit vier sofort die gesamte Atomzahl:
+
+<BlockMath math="N(\text{Atome}) = 0{,}20 \cdot 4 \cdot 6{,}02 \cdot 10^{23} = 4{,}82 \cdot 10^{23}" />
+
+Prüf vor dem letzten Schritt immer genau, ob nach Molekülen oder nach einzelnen Atomen gefragt ist.
+
+### Masse aus der Teilchenzahl berechnen
+
+Dreh den Weg jetzt um. Welche Masse haben <InlineMath math="1{,}204 \cdot 10^{24}" /> Magnesiumatome bei <InlineMath math="A_r(\mathrm{Mg}) = 24" />? Rechne erst die Teilchenzahl in Stoffmenge um und danach **die Stoffmenge in Masse**:
 
 <MathContainer>
 <BlockMath math="n = \frac{1{,}204 \cdot 10^{24}}{6{,}02 \cdot 10^{23}} = 2{,}0\ \text{mol}" />
 <BlockMath math="m = nM = 2{,}0 \cdot 24 = 48\ \text{g}" />
 </MathContainer>
 
-Probe: <InlineMath math="48\ \text{g}" /> ist das Doppelte der molaren Masse von Magnesium, passend zu zwei Mol.
+Mach die kurze Probe: <InlineMath math="48\ \text{g}" /> sind exakt das Doppelte der molaren Masse von Magnesium und passen genau zu zwei Mol Atomen.
 
-## Molares Volumen eines Gases
+## Molares Volumen eines Gases bei Norm und Raumbedingungen
 
-Bei gleicher Temperatur und gleichem Druck nimmt ein Mol **jedes Gases** dasselbe Volumen ein. Das ist das **molare Volumen**: <InlineMath math="24\ \text{L/mol}" /> bei Raumbedingungen und <InlineMath math="22{,}4\ \text{L/mol}" /> bei Normbedingungen. Beweg den Regler und vergleich beide Geraden.
+Gasmoleküle fliegen mit riesigen leeren Abständen umher, sodass die Eigengröße einzelner Moleküle kaum ins Gewicht fällt. Daher füllt bei gleicher Temperatur und gleichem Druck ein Mol **jedes Gases** genau dasselbe Volumen. Diese Konstante heißt **molares Volumen** <InlineMath math="V_m" />: <InlineMath math="22{,}4\ \text{dm}^3\text{ mol}^{-1}" /> bei Normbedingungen (STP) und <InlineMath math="24{,}0\ \text{dm}^3\text{ mol}^{-1}" /> bei Raumbedingungen (RTP).
+
+Das molare Volumen gilt **nur für Gase**, niemals für Feststoffe oder Flüssigkeiten, deren Teilchen dicht gepackt liegen. Wechsel unten im Gaszylinder zwischen STP und RTP und verändere die Stoffmenge, um den Kolben steigen zu sehen.
+
+<AvogadroGasVolumeLab
+  title={<>Molares Gasvolumen im Zylinder mit beweglichem Kolben</>}
+  description={
+    <>
+      Wechsel zwischen STP und RTP und verändere die Stoffmenge des Gases.
+      Beobachte, wie der Kolben gleichmäßig steigt, sobald mehr Gasteilchen im
+      Zylinder sind.
+    </>
+  }
+  footer={
+    <>
+      Wärmere Raumbedingungen dehnen jedes Mol Gas stärker aus als STP.
+    </>
+  }
+  conditions={["stp", "rtp"]}
+  moles={{ min: 0.25, max: 4, value: 1 }}
+  labels={{
+    condition: "Gasbedingung wählen",
+    conditions: {
+      stp: {
+        molarVolume: <InlineMath math="22{,}4\ \mathrm{dm^3\,mol^{-1}}" />,
+        name: "STP",
+      },
+      rtp: {
+        molarVolume: <InlineMath math="24{,}0\ \mathrm{dm^3\,mol^{-1}}" />,
+        name: "RTP",
+      },
+    },
+    gasVolume: <>Gasvolumen <InlineMath math="V" /></>,
+    moles: "Stoffmenge",
+    particleCount: <>Teilchenzahl <InlineMath math="N" /></>,
+    parts: {
+      piston: "Beweglicher Kolben",
+      cylinder: "Skalierter Zylinder",
+      gasParticles: "Gasteilchen",
+      volumeScale: "Volumenskala",
+      thermometer: "Thermometer",
+    },
+    view: "Avogadro-Gasvolumenzylinder",
+  }}
+/>
+
+Ob der Zylinder leichten Wasserstoff oder schweres Kohlenstoffdioxid enthält: Bei <InlineMath math="1\ \text{mol}" /> hebt sich der Kolben unter jeder Temperatur genau bis zur selben Marke.
+
+Vergleich beide Geraden direkt im Koordinatensystem unten. Beide beginnen im Ursprung, und die wärmere Gerade für Raumbedingungen steigt etwas steiler an als die Gerade für Normbedingungen.
 
 <MathVisual
   title={<>Gasvolumen gegen Stoffmenge</>}
   description={
     <>
-      Die obere Gerade ist <InlineMath math="V = 24n" /> bei Raumbedingungen,
-      die untere <InlineMath math="V = 22{,}4n" /> bei Normbedingungen, mit{" "}
+      Die obere Gerade zeigt <InlineMath math="V = 24n" /> bei Raumbedingungen
+      und die untere <InlineMath math="V = 22{,}4n" /> bei Normbedingungen, mit{" "}
       <InlineMath math="V" /> in Litern.
+    </>
+  }
+  footer={
+    <>
+      Lies das Gasvolumen für beide Standardbedingungen direkt am Regler ab.
     </>
   }
   scene={{
@@ -197,17 +261,20 @@ Bei gleicher Temperatur und gleichem Druck nimmt ein Mol **jedes Gases** dasselb
   }}
 />
 
-Jetzt nutzt du das molare Volumen. Bei Raumbedingungen nehmen <InlineMath math="0{,}25" /> mol Kohlenstoffdioxid dieses Volumen ein:
+Prüf einen Punkt auf der Geraden für <InlineMath math="n = 0{,}25\ \text{mol}" /> Kohlenstoffdioxid bei Raumbedingungen. Multipliziere die Stoffmenge mit dem molaren Volumen für den Raumbedarf und mit der molaren Masse für das Gewicht:
 
+<MathContainer>
 <BlockMath math="V = nV_m = 0{,}25 \cdot 24 = 6{,}0\ \text{L}" />
+<BlockMath math="m = nM = 0{,}25 \cdot 44 = 11\ \text{g}" />
+</MathContainer>
 
-Die Masse beträgt <InlineMath math="0{,}25 \cdot 44 = 11\ \text{g}" />. Prüf das im Modell bei <InlineMath math="n = 0{,}25" />.
+Die Anzeige im Modell trifft genau <InlineMath math="6{,}0\ \text{L}" /> und verknüpft Gasvolumen und Masse sauber über die Stoffmenge.
 
 ## Verhältnisformel und Molekülformel
 
-Die **Verhältnisformel** gibt das einfachste ganzzahlige Verhältnis der Atome jedes Elements in einer Verbindung an. Die **Molekülformel** gibt die tatsächliche Zahl der Atome in einem Molekül an. Glucose hat die Molekülformel <InlineMath math="\mathrm{C_6H_{12}O_6}" /> und die Verhältnisformel <InlineMath math="\mathrm{CH_2O}" />.
+Die **Verhältnisformel** nennt das einfachste ganzzahlige Atomverhältnis einer Verbindung, während die **Molekülformel** die tatsächliche Atomzahl in einem Molekül angibt. Glucose trägt die Molekülformel <InlineMath math="\mathrm{C_6H_{12}O_6}" /> und die gekürzte Verhältnisformel <InlineMath math="\mathrm{CH_2O}" />.
 
-Die Verhältnisformel ermittelst du aus der Masse jedes Elements. In einem Versuch verbrennen <InlineMath math="2{,}4\ \text{g}" /> Magnesiumband zu <InlineMath math="4{,}0\ \text{g}" /> Magnesiumoxid. Die gebundene Sauerstoffmasse beträgt <InlineMath math="4{,}0 - 2{,}4 = 1{,}6\ \text{g}" />. Ordne die Rechnung in einer Tabelle:
+Um eine Verhältnisformel aus Messwerten zu bestimmen, rechnest du jede Elementmasse in Stoffmenge um und teilst durch den kleinsten Wert. In einem klassischen Tiegelversuch verbrennen <InlineMath math="2{,}4\ \text{g}" /> Magnesiumband an der Luft zu <InlineMath math="4{,}0\ \text{g}" /> Magnesiumoxid. Zieht man die Bandmasse ab, haben sich genau <InlineMath math="1{,}6\ \text{g}" /> Sauerstoff mit dem Magnesium verbunden:
 
 | Element | Magnesium | Sauerstoff |
 | :--- | :--- | :--- |
@@ -215,19 +282,39 @@ Die Verhältnisformel ermittelst du aus der Masse jedes Elements. In einem Versu
 | Stoffmenge | <InlineMath math="2{,}4 : 24 = 0{,}10" /> | <InlineMath math="1{,}6 : 16 = 0{,}10" /> |
 | Einfachstes Verhältnis | <InlineMath math="1" /> | <InlineMath math="1" /> |
 
-Das Verhältnis ist eins zu eins, die Verhältnisformel lautet also <InlineMath math="\mathrm{MgO}" />. Probe: Die Formelmasse ist <InlineMath math="24 + 16 = 40" />, und <InlineMath math="0{,}10 \cdot 40 = 4{,}0\ \text{g}" />, die gewogene Oxidmasse.
+Das Eins-zu-eins-Verhältnis liefert die Verhältnisformel <InlineMath math="\mathrm{MgO}" />. Mit der Formelmasse <InlineMath math="40" /> ergeben <InlineMath math="0{,}10\ \text{mol}" /> exakt die abgewogenen <InlineMath math="4{,}0\ \text{g}" /> Oxid.
 
-## Reaktionsgleichungen und Stoffmengenverhältnisse
+Dieselbe Tabelle löst Aufgaben mit Massenprozenten. Enthält eine unbekannte Verbindung nach Masse <InlineMath math="40{,}0\ \%" /> Kohlenstoff, <InlineMath math="6{,}7\ \%" /> Wasserstoff und <InlineMath math="53{,}3\ \%" /> Sauerstoff bei einer relativen Molekülmasse von <InlineMath math="180" />, nimm einfach <InlineMath math="100\ \text{g}" /> Probe an, sodass aus Prozent sofort Gramm werden:
 
-Eine ausgeglichene Reaktionsgleichung liefert das **Stoffmengenverhältnis** von Edukten und Produkten. Der Koeffizient vor jeder Formel ist eine Stoffmenge, keine Masse. Wähle im Modell eine Reaktion und zähl die Moleküle auf beiden Seiten der Gleichung.
+| Element | C | H | O |
+| :--- | :--- | :--- | :--- |
+| Stoffmenge | <InlineMath math="40{,}0 : 12 = 3{,}33" /> | <InlineMath math="6{,}7 : 1 = 6{,}7" /> | <InlineMath math="53{,}3 : 16 = 3{,}33" /> |
+| Einfachstes Verhältnis | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
+
+Daraus folgt die Verhältnisformel <InlineMath math="\mathrm{CH_2O}" /> mit der Einheitsmasse <InlineMath math="30" />. Teilst du die Molekülmasse durch diese Einheitsmasse, findest du den Faktor:
+
+<BlockMath math="\frac{180}{30} = 6" />
+
+Multiplizierst du jeden Index in <InlineMath math="\mathrm{CH_2O}" /> mit <InlineMath math="6" />, erhältst du die wahre Molekülformel <InlineMath math="\mathrm{C_6H_{12}O_6}" />, also Glucose.
+
+## Stöchiometrie mit ausgeglichenen Reaktionsgleichungen
+
+Eine ausgeglichene Reaktionsgleichung funktioniert wie ein Kochrezept in Mol statt in Gramm. Die Koeffizienten vor den Formeln geben das **Stoffmengenverhältnis** zwischen Edukten und Produkten an. Der häufigste Fehler in der Stöchiometrie besteht darin, diese Koeffizienten direkt als Massenverhältnis einzusetzen. **Geh immer über die Stoffmenge**: Rechne die gegebene Größe in Mol um, nutze das Stoffmengenverhältnis der Gleichung und rechne am Ende in die gesuchte Einheit um.
+
+Wähle unten eine Reaktion und starte die Animation, um zu beobachten, wie sich Atome neu anordnen, während die Molekülzahlen den Koeffizienten folgen.
 
 <ReactionBalanceLab
   title={<>Moleküle auf beiden Seiten einer Gleichung</>}
   description={
     <>
-      Wähle eine Reaktion und starte die Animation. Jede Atomsorte kommt links
-      und rechts gleich oft vor, und die Koeffizienten geben das
-      Stoffmengenverhältnis an.
+      Wähle eine Reaktion und starte die Animation. Jede Atomsorte bleibt links
+      und rechts gleich zahlreich, während die Koeffizienten das
+      Stoffmengenverhältnis angeben.
+    </>
+  }
+  footer={
+    <>
+      Ausgeglichene Koeffizienten zählen Moleküle und Mol statt Gramm.
     </>
   }
   reactions={[
@@ -249,13 +336,15 @@ Eine ausgeglichene Reaktionsgleichung liefert das **Stoffmengenverhältnis** von
   }}
 />
 
-### Beispiel Masse eines Produkts
+Die Atomzähler bleiben von Anfang bis Ende unverändert, selbst wenn sich die Gesamtzahl der Moleküle ändert, und bestätigen so die Massenerhaltung in jeder Reaktion.
 
-Berechne **die Masse an Kohlenstoffdioxid**, die entsteht, wenn <InlineMath math="8{,}0\ \text{g}" /> Methan vollständig verbrennen.
+### Produktmasse aus einer Reaktionsgleichung
+
+Berechne **die Masse an Kohlenstoffdioxid**, die entsteht, wenn <InlineMath math="8{,}0\ \text{g}" /> Methan vollständig in Sauerstoff verbrennen. Beginne mit der ausgeglichenen Gleichung:
 
 <BlockMath math="\mathrm{CH_4} + 2\mathrm{O_2} \rightarrow \mathrm{CO_2} + 2\mathrm{H_2O}" />
 
-Geh in drei Schritten vor: Masse zu Stoffmenge, Stoffmengenverhältnis, dann Stoffmenge zu Masse.
+Führe den Dreischritt über die Stoffmenge sauber aus und schreib in jeder Zeile die Einheit dazu:
 
 <MathContainer>
 <BlockMath math="n(\mathrm{CH_4}) = \frac{8{,}0}{16} = 0{,}50\ \text{mol}" />
@@ -263,68 +352,30 @@ Geh in drei Schritten vor: Masse zu Stoffmenge, Stoffmengenverhältnis, dann Sto
 <BlockMath math="m(\mathrm{CO_2}) = 0{,}50 \cdot 44 = 22\ \text{g}" />
 </MathContainer>
 
-Prüf das mit der Massenerhaltung: Verbraucht werden <InlineMath math="1{,}0 \cdot 32 = 32\ \text{g}" /> Sauerstoff, es entstehen <InlineMath math="1{,}0 \cdot 18 = 18\ \text{g}" /> Wasser. Die Edukte wiegen <InlineMath math="8 + 32 = 40\ \text{g}" />, genauso viel wie die Produkte <InlineMath math="22 + 18 = 40\ \text{g}" />.
+Prüf das Ergebnis mit der Massenerhaltung. Das Verbrennen von <InlineMath math="0{,}50\ \text{mol}" /> Methan verbraucht <InlineMath math="1{,}0\ \text{mol}" /> Sauerstoff (<InlineMath math="32\ \text{g}" />) und erzeugt <InlineMath math="1{,}0\ \text{mol}" /> Wasser (<InlineMath math="18\ \text{g}" />):
 
-### Beispiel Gasvolumen aus einer Gleichung
+<BlockMath math="8 + 32 = 40\ \text{g} = 22 + 18" />
 
-<InlineMath math="0{,}10" /> mol Stickstoff reagieren vollständig mit Wasserstoff. Berechne **das Volumen an Ammoniak** bei Raumbedingungen.
+Eduktmasse und Produktmasse stimmen auf das Gramm genau überein und sichern jeden Rechenschritt ab.
+
+### Gasvolumen aus einer Reaktionsgleichung
+
+Verknüpfe nun das Stoffmengenverhältnis mit dem Gasvolumen bei Raumbedingungen (<InlineMath math="V_m = 24\ \text{L/mol}" />). Zunächst reagieren <InlineMath math="0{,}10\ \text{mol}" /> Stickstoff vollständig mit Wasserstoff zu **Ammoniakgas**:
 
 <MathContainer>
 <BlockMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightarrow 2\mathrm{NH_3}" />
 <BlockMath math="n(\mathrm{NH_3}) = 2 \cdot 0{,}10 = 0{,}20\ \text{mol}" />
-<BlockMath math="V = 0{,}20 \cdot 24 = 4{,}8\ \text{L}" />
+<BlockMath math="V(\mathrm{NH_3}) = 0{,}20 \cdot 24 = 4{,}8\ \text{L}" />
 </MathContainer>
 
-Prüf das Verhältnis: Aus einem Stickstoffmolekül entstehen zwei Ammoniakmoleküle, wie das Reaktionsmodell zeigt.
+Das stimmt direkt mit dem Reaktionsmodell überein: Aus einem Stickstoffmolekül gehen zwei Ammoniakmoleküle hervor.
 
-## Typische Fehler bei der Stoffmenge
-
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Ein Mol Wasser und ein Mol Kohlenstoffdioxid sind gleich schwer. | Sie enthalten gleich viele Teilchen, haben aber verschiedene molare Massen. | Vergleich <InlineMath math="M" />, nicht <InlineMath math="n" />. |
-| Die Koeffizienten der Gleichung als Massenverhältnis nutzen. | Die Koeffizienten sind ein Stoffmengenverhältnis. | Rechne Massen vorher in Stoffmengen um. |
-| <InlineMath math="24\ \text{L}" /> für einen Feststoff oder eine Flüssigkeit verwenden. | Das molare Volumen gilt nur für Gase. | Prüf den Aggregatzustand des Stoffs. |
-| Die Atomzahl ist gleich der Molekülzahl. | Ein Molekül kann mehrere Atome enthalten. | Multipliziere mit der Zahl der Atome in der Formel. |
-
-Der zweite Fehler kommt bei Stöchiometrieaufgaben am häufigsten vor. **Geh immer über die Stoffmenge**: Masse zu Stoffmenge, Stoffmengenverhältnis, dann Stoffmenge zur gesuchten Größe.
-
-## Übungen zur Stoffmenge
-
-Die Aufgaben beginnen mit einer Umrechnung und enden mit Formeln und Gleichungen. Nutze <InlineMath math="A_r" />: H <InlineMath math="1" />, C <InlineMath math="12" />, N <InlineMath math="14" />, O <InlineMath math="16" />, Ca <InlineMath math="40" />, Zn <InlineMath math="65" />. **Schreib in jedem Schritt die Einheit dazu**.
-
-1. Berechne die Atomzahl in <InlineMath math="0{,}20" /> mol Ammoniak, <InlineMath math="\mathrm{NH_3}" />.
-
-2. Berechne die Stoffmenge in <InlineMath math="25\ \text{g}" /> Calciumcarbonat, <InlineMath math="\mathrm{CaCO_3}" />.
-
-3. Eine Verbindung enthält nach Masse <InlineMath math="40{,}0\ \%" /> Kohlenstoff, <InlineMath math="6{,}7\ \%" /> Wasserstoff und <InlineMath math="53{,}3\ \%" /> Sauerstoff. Ihre relative Molekülmasse ist <InlineMath math="180" />. Bestimme Verhältnis- und Molekülformel.
-
-4. <InlineMath math="6{,}5\ \text{g}" /> Zink reagieren mit Salzsäure im Überschuss. Berechne das Volumen an Wasserstoff bei Raumbedingungen.
-
-### Lösungen
-
-**Lösung 1**: Jedes <InlineMath math="\mathrm{NH_3}" />-Molekül enthält vier Atome.
-
-<BlockMath math="N = 0{,}20 \cdot 4 \cdot 6{,}02 \cdot 10^{23} = 4{,}82 \cdot 10^{23}" />
-
-**Lösung 2**: Berechne zuerst die relative Formelmasse, <InlineMath math="40 + 12 + 3(16) = 100" />.
-
-<BlockMath math="n = \frac{25}{100} = 0{,}25\ \text{mol}" />
-
-**Lösung 3**: Nimm <InlineMath math="100\ \text{g}" /> der Verbindung an, dann werden aus Prozent Gramm.
-
-| Element | C | H | O |
-| :--- | :--- | :--- | :--- |
-| Stoffmenge | <InlineMath math="40{,}0 : 12 = 3{,}33" /> | <InlineMath math="6{,}7 : 1 = 6{,}7" /> | <InlineMath math="53{,}3 : 16 = 3{,}33" /> |
-| Einfachstes Verhältnis | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
-
-Die Verhältnisformel ist <InlineMath math="\mathrm{CH_2O}" /> mit der Formelmasse <InlineMath math="30" />. Weil <InlineMath math="180 : 30 = 6" />, lautet die Molekülformel <InlineMath math="\mathrm{C_6H_{12}O_6}" />, also Glucose.
-
-**Lösung 4**: Stell die Gleichung auf und folge dem Stoffmengenverhältnis <InlineMath math="1 : 1" /> von Zink zu Wasserstoff.
+Verbinde als Nächstes eine abgewogene Metallmasse mit einem Gasvolumen. Lösen sich <InlineMath math="6{,}5\ \text{g}" /> Zink (<InlineMath math="A_r = 65" />) vollständig in überschüssiger Salzsäure, bestimme das bei Raumtemperatur und Raumdruck frei werdende Wasserstoffvolumen. Stell die Gleichung auf und folge dem Verhältnis <InlineMath math="1 : 1" /> zwischen Zink und Wasserstoff:
 
 <MathContainer>
 <BlockMath math="\mathrm{Zn} + 2\mathrm{HCl} \rightarrow \mathrm{ZnCl_2} + \mathrm{H_2}" />
 <BlockMath math="n(\mathrm{Zn}) = \frac{6{,}5}{65} = 0{,}10\ \text{mol} = n(\mathrm{H_2})" />
-<BlockMath math="V = 0{,}10 \cdot 24 = 2{,}4\ \text{L}" />
+<BlockMath math="V(\mathrm{H_2}) = 0{,}10 \cdot 24 = 2{,}4\ \text{L}" />
 </MathContainer>
 
-Die Säure liegt im Überschuss vor, also **bestimmt das Zink die Gasmenge**.
+Da Salzsäure im Überschuss vorliegt, **legt die begrenzende Zinkmasse das genaue Volumen des gesammelten Wasserstoffs fest**.
