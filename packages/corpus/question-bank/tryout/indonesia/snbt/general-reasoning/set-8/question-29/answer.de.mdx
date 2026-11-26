@@ -1,3 +1,15 @@
+# Gegeben
+
+Dreistellige Zahlen müssen **durch <InlineMath math="5" /> teilbar** sein und **drei verschiedene Ziffern** haben.
+
+# Gesucht
+
+Die **Anzahl gültiger dreistelliger Zahlen**.
+
+# Lösung
+
+> Trenne die Fälle mit Endziffer null und Endziffer fünf, weil die Null bei Endziffer fünf vorn am Hunderter verboten bleibt.
+
 Durch <InlineMath math="5" /> teilbare Zahlen enden auf <InlineMath math="0" /> oder <InlineMath math="5" />. Zähle **die beiden Fälle** getrennt, weil die Bedingung für die Hunderterziffer verschieden ist.
 
 **Einerziffer <InlineMath math="0" />**. Die Hunderterziffer kann <InlineMath math="1" /> bis <InlineMath math="9" /> sein, also <InlineMath math="9" /> Möglichkeiten. Die Zehnerziffer muss von beiden verschieden sein, es bleiben <InlineMath math="8" /> Möglichkeiten.
@@ -18,5 +30,9 @@ Das Diagramm vergleicht die beiden Fälle. **Der Fall mit Einerziffer <InlineMat
   series={[{ label: "Zahlen", mark: "bar", values: [9 * 8, 8 * 8] }]}
   valueLabel="Zahlen"
 />
+
+Die getrennten Balken für Endziffer null und fünf machen sofort klar, warum Endziffer null mehr Hunderter erlaubt.
+
+# Antwort
 
 Zusammen sind es <InlineMath math="72+64=136" /> Zahlen.

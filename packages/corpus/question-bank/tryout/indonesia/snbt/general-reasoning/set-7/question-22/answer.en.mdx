@@ -1,6 +1,18 @@
+# Given
+
+A square grid pattern puts **black tiles along both diagonals and white tiles everywhere else**, starting with <InlineMath math="3 \times 3" /> in pattern <InlineMath math="1" />.
+
+# Asked
+
+The **number of white tiles** in pattern <InlineMath math="6" />.
+
+# Solution
+
+> Find all tiles in the square and subtract both diagonals, remembering not to subtract the shared center tile twice.
+
 Count **all the tiles**, then subtract **the black tiles** on the two diagonals.
 
-Pattern <InlineMath math="6" /> measures <InlineMath math="(2\times6+1)\times(2\times6+1)=13\times13" />, so there are <InlineMath math="169" /> tiles in all.
+Pattern <InlineMath math="6" /> measures <InlineMath math="13\times13" />, so there are <InlineMath math="169" /> tiles in all.
 
 Each diagonal holds <InlineMath math="13" /> tiles. The diagonals cross at the center tile, so do not count it twice:
 
@@ -23,6 +35,8 @@ The chart below draws the black and white tiles in all six patterns. **The black
   valueLabel="Tiles"
 />
 
-Check with pattern <InlineMath math="1" />: <InlineMath math="9-(3+3-1)=4" /> white tiles, matching the <InlineMath math="5" /> black tiles in the question. In general <InlineMath math="(2n+1)^2-(4n+1)=4n^2=(2n)^2" />, and for <InlineMath math="n=6" /> this is <InlineMath math="12^2=144" />.
+Check with pattern <InlineMath math="1" />: <InlineMath math="4" /> white tiles, matching the <InlineMath math="5" /> black tiles in the question. In general the white count is <InlineMath math="(2n)^2" />, giving <InlineMath math="144" /> for <InlineMath math="n=6" />.
+
+# Answer
 
 The value <InlineMath math="169" /> is the total number of tiles, not the white ones. So pattern <InlineMath math="6" /> has <InlineMath math="144" /> white tiles.

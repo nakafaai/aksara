@@ -1,8 +1,20 @@
+# Given
+
+Three parcels have **actual weight, box dimensions, zone A or B rate**, and a rule **billing the larger of actual or volumetric weight rounded up**.
+
+# Asked
+
+The **total shipping cost** for all three parcels.
+
+# Solution
+
+> Compare scale weight against volumetric weight for each box first, then round up to whole kilograms before applying the zone rate.
+
 For each parcel, work out **the volume weight**, take the larger weight, round up, and multiply by the zone rate.
 
-- **Parcel 1**: volume weight <InlineMath math="\frac{30\times20\times10}{6{,}000}=1" /> kg. The larger is the actual <InlineMath math="2.3" /> kg, rounded up to <InlineMath math="3" /> kg. The cost is <InlineMath math="3\times8{,}000=24{,}000" />.
-- **Parcel 2**: volume weight <InlineMath math="\frac{40\times30\times25}{6{,}000}=5" /> kg, larger than <InlineMath math="1.2" /> kg. The cost is <InlineMath math="5\times12{,}000=60{,}000" />.
-- **Parcel 3**: volume weight <InlineMath math="\frac{20\times20\times15}{6{,}000}=1" /> kg. The actual <InlineMath math="4" /> kg is larger. The cost is <InlineMath math="4\times8{,}000=32{,}000" />.
+- **Parcel 1**: volume weight <InlineMath math="1" /> kg. The larger is the actual <InlineMath math="2.3" /> kg, rounded up to <InlineMath math="3" /> kg. The cost is <InlineMath math="3\times8{,}000=24{,}000" />.
+- **Parcel 2**: volume weight <InlineMath math="5" /> kg, larger than <InlineMath math="1.2" /> kg. The cost is <InlineMath math="5\times12{,}000=60{,}000" />.
+- **Parcel 3**: volume weight <InlineMath math="1" /> kg. The actual <InlineMath math="4" /> kg is larger. The cost is <InlineMath math="4\times8{,}000=32{,}000" />.
 
 The chart below puts each parcel's two weights side by side. **Only for parcel 2 is the volume-weight bar taller**, so parcel 2 is charged for <InlineMath math="5" /> kg.
 
@@ -19,5 +31,7 @@ The chart below puts each parcel's two weights side by side. **Only for parcel 2
 />
 
 <BlockMath math="24{,}000+60{,}000+32{,}000=116{,}000" />
+
+# Answer
 
 <InlineMath math="\text{Rp}80{,}000" /> comes from ignoring parcel 2's volume weight, and <InlineMath math="\text{Rp}110{,}400" /> from not rounding parcel 1 up. So the three parcels cost <InlineMath math="\text{Rp}116{,}000" /> in total.

@@ -1,3 +1,15 @@
+# Given
+
+A teacher picks from **<InlineMath math="7" /> storybooks** under the rule that **two sequel volumes must either both be chosen or both skipped**.
+
+# Asked
+
+The **number of valid ways to choose the books**.
+
+# Solution
+
+> Split into two clean cases, taking both volumes together or leaving both out, and add the counts from each case.
+
 Split into **two cases** by the two volumes, since they are always chosen together or not at all. Besides those two, there are <InlineMath math="5" /> other books.
 
 **Both volumes chosen**. One more book comes from the <InlineMath math="5" /> others:
@@ -10,8 +22,6 @@ Split into **two cases** by the two volumes, since they are always chosen togeth
 
 Choosing exactly one volume is not allowed, so that case is not counted. The total is <InlineMath math="5+10=15" /> ways.
 
-The chart below puts the three possibilities side by side. **The one-volume case is zero**, so the total is <InlineMath math="5+10=15" />.
-
 <Chart
   title={<>Ways to choose the books by the two volumes</>}
   description={<>Choosing both volumes gives <InlineMath math="5" /> ways. Choosing neither gives <InlineMath math="10" /> ways. Choosing exactly one volume isn't allowed, so it gives <InlineMath math="0" /> ways.</>}
@@ -20,3 +30,9 @@ The chart below puts the three possibilities side by side. **The one-volume case
   series={[{ label: "Ways", mark: "bar", values: [5, (5 * 4 * 3) / 6, 0] }]}
   valueLabel="Ways"
 />
+
+Comparing the two bars makes it easy to see how splitting by the two sequel volumes yields all fifteen legal choices with no overlap.
+
+# Answer
+
+The chart below puts the three possibilities side by side. **The one-volume case is zero**, so the total is <InlineMath math="5+10=15" />.

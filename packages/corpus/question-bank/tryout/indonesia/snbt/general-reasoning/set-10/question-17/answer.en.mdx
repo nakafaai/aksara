@@ -1,3 +1,15 @@
+# Given
+
+Booth X-B stays fixed at **spot <InlineMath math="6" />**, while **X-A and X-C take two non-adjacent spots among <InlineMath math="1" /> through <InlineMath math="4" />**.
+
+# Asked
+
+The **total number of distinct valid booth layouts**.
+
+# Solution
+
+> List the legal non-adjacent pairs for X-A and X-C first, then count how many valid ways the Grade XI booths complete each case.
+
 Class X booths are never adjacent and X-B is always at <InlineMath math="6" />, so X-A and X-C take **two non-adjacent numbers from <InlineMath math="1" /> to <InlineMath math="4" />**, not <InlineMath math="5" />.
 
 - X-C at <InlineMath math="1" />, XI-A at <InlineMath math="2" />. X-A at <InlineMath math="3" /> or <InlineMath math="4" />, with XI-B and XI-C filling the rest. That gives <InlineMath math="2" /> arrangements.
@@ -18,5 +30,9 @@ The chart below sums up the arrangements for each starting placement. **The thre
   series={[{ label: "Valid arrangements", mark: "bar", values: [2, 2, 1] }]}
   valueLabel="Arrangements"
 />
+
+The bars for each non-adjacent X-A and X-C pair add straight up to all five legal booth layouts.
+
+# Answer
 
 So <InlineMath math="5" /> arrangements meet every rule.

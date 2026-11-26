@@ -1,3 +1,15 @@
+# Gegeben
+
+Fünf Personen sitzen in einer Reihe, wobei **Ani und Budi nebeneinander sitzen müssen** und **Citra an keinem Randplatz sitzen darf**.
+
+# Gesucht
+
+Die **Anzahl möglicher Sitzordnungen**.
+
+# Lösung
+
+> Fasse Ani und Budi zuerst zu einem Block zusammen, zähle alle Nachbarschaftsfälle und ziehe dann die Randfälle von Citra ab.
+
 Zähle zuerst alle Anordnungen, in denen Ani und Budi nebeneinander sitzen, und **ziehe** dann die ab, in denen Citra am Rand sitzt.
 
 Fasse Ani und Budi zu einem Block zusammen. Der Block bildet mit Citra, Dedi und Eka <InlineMath math="4" /> Einheiten, die sich auf <InlineMath math="4!=24" /> Arten anordnen lassen. Im Block können Ani und Budi auf <InlineMath math="2" /> Arten tauschen.
@@ -18,5 +30,9 @@ Das Diagramm teilt die <InlineMath math="48" /> Anordnungen nach Citras Platz au
   series={[{ label: "Anordnungen mit Ani und Budi nebeneinander", mark: "bar", values: [12, 2 * 2 * 2, 2 * 2 * 2, 2 * 2 * 2, 12] }]}
   valueLabel="Anordnungen"
 />
+
+Zieht man den Balken für Citra am Rand von allen Nachbarschaftsfällen ab, bleiben genau vierundzwanzig gültige Ordnungen.
+
+# Antwort
 
 Es gibt also <InlineMath math="24" /> mögliche Sitzordnungen.

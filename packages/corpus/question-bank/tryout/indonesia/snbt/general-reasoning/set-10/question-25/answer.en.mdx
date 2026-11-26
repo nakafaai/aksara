@@ -1,3 +1,15 @@
+# Given
+
+A family needs at least **<InlineMath math="150\text{ GB}" /> of monthly main data** and may stack multiple plans, including repeats.
+
+# Asked
+
+The **lowest monthly cost** (expressed as rupiah divided by <InlineMath math="1{,}000" />) to reach the target.
+
+# Solution
+
+> Cover most of the need with the cheapest price-per-GB plan first, then compare combinations for the remaining gigabytes.
+
 Start from the package with **the cheapest price per GB of main quota**, Keluarga (<InlineMath math="\text{Rp}2{,}000" /> per GB), then fill the gap as cheaply as possible.
 
 - Two Keluarga packages give <InlineMath math="120" /> GB for <InlineMath math="240" /> thousand. That is <InlineMath math="30" /> GB short.
@@ -9,7 +21,7 @@ Compare with other mixes that reach <InlineMath math="150" /> GB:
 
 - One Keluarga and three Pelajar: <InlineMath math="120+210=330" /> thousand.
 - Two Super: <InlineMath math="340" /> thousand.
-- Super, Keluarga, and Hemat: <InlineMath math="170+120+55=345" /> thousand.
+- Super, Keluarga, and Hemat: <InlineMath math="345" /> thousand.
 - Five Pelajar: <InlineMath math="350" /> thousand.
 
 The chart below compares every mix that reaches <InlineMath math="150" /> GB. **The bar for two Keluarga and one Pelajar is the shortest**.
@@ -22,5 +34,9 @@ The chart below compares every mix that reaches <InlineMath math="150" /> GB. **
   series={[{ label: "Cost per month (thousand rupiah)", mark: "bar", values: [2 * 120 + 70, 120 + 3 * 70, 2 * 170, 170 + 120 + 55, 5 * 70] }]}
   valueLabel="Thousand rupiah"
 />
+
+Comparing the cost bars across combinations makes it clear why three hundred ten thousand rupiah is the cheapest valid plan.
+
+# Answer
 
 All cost more. So the lowest cost is <InlineMath math="310" /> thousand rupiah a month.

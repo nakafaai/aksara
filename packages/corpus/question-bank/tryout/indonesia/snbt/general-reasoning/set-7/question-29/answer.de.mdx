@@ -1,3 +1,15 @@
+# Gegeben
+
+Eine Lehrkraft wählt aus **<InlineMath math="7" /> Büchern**, wobei **zwei zusammengehörige Bände nur gemeinsam oder gar nicht gewählt werden dürfen**.
+
+# Gesucht
+
+Die **Anzahl möglicher Buchauswahlen**.
+
+# Lösung
+
+> Teile in zwei saubere Fälle auf, beide Bände gemeinsam nehmen oder beide weglassen, und addiere die Ergebnisse.
+
 Teile in **zwei Fälle** nach den beiden Bänden, denn sie werden immer zusammen oder gar nicht gewählt. Außer diesen beiden gibt es <InlineMath math="5" /> andere Bücher.
 
 **Beide Bände gewählt**. Ein weiteres Buch kommt aus den <InlineMath math="5" /> anderen:
@@ -10,8 +22,6 @@ Teile in **zwei Fälle** nach den beiden Bänden, denn sie werden immer zusammen
 
 Genau einen Band zu wählen ist nicht erlaubt, dieser Fall zählt also nicht. Insgesamt gibt es <InlineMath math="5+10=15" /> Möglichkeiten.
 
-Das Diagramm stellt die drei Möglichkeiten nebeneinander. **Der Fall mit nur einem Band ist null**, also sind es insgesamt <InlineMath math="5+10=15" />.
-
 <Chart
   title={<>Möglichkeiten der Buchauswahl nach den beiden Bänden</>}
   description={<>Beide Bände zu wählen ergibt <InlineMath math="5" /> Möglichkeiten. Keinen der beiden zu wählen ergibt <InlineMath math="10" />. Genau einen Band zu wählen ist nicht erlaubt, also <InlineMath math="0" />.</>}
@@ -20,3 +30,9 @@ Das Diagramm stellt die drei Möglichkeiten nebeneinander. **Der Fall mit nur ei
   series={[{ label: "Möglichkeiten", mark: "bar", values: [5, (5 * 4 * 3) / 6, 0] }]}
   valueLabel="Möglichkeiten"
 />
+
+Der Vergleich beider Balken zeigt sofort, wie die Trennung nach den beiden Bänden alle fünfzehn zulässigen Auswahlen sauber liefert.
+
+# Antwort
+
+Das Diagramm stellt die drei Möglichkeiten nebeneinander. **Der Fall mit nur einem Band ist null**, also sind es insgesamt <InlineMath math="5+10=15" />.
