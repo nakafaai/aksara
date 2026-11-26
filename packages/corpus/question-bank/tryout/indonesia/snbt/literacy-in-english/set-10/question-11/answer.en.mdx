@@ -1,4 +1,18 @@
+# Given
+
+**Lumen's subscriber table tracks** starting subscribers, sign-ups, cancellations, ending subscribers, and free-trial accounts across all four quarters of the year.
+
+# Asked
+
+Which statements about Lumen's paying subscribers and churn rates can be concluded.
+
+# Solution
+
 Two ideas do most of the work. **Paying** subscribers are the subscribers at the end minus those still on a free trial, and before July there were no trials at all. The **churn rate** is cancellations divided by the subscribers at the start of the quarter.
+
+> Guests tasting free samples at the shop door inflate the crowd inside, so you have to subtract free trials to see how many people actually bought a ticket.
+
+## Computing paying counts and churn rates per quarter
 
 | Quarter | Paying at end | Churn rate |
 | --- | --- | --- |
@@ -7,15 +21,19 @@ Two ideas do most of the work. **Paying** subscribers are the subscribers at the
 | July to September | <InlineMath math="580 - 90 = 490" /> | <InlineMath math="60 \div 480 = 12.5\%" /> |
 | October to December | <InlineMath math="592 - 10 = 582" /> | <InlineMath math="58 \div 580 = 10\%" /> |
 
-Statement 1. Paying subscribers went from <InlineMath math="480" /> to <InlineMath math="490" /> thousand, a rise of only <InlineMath math="10" /> thousand. Yes.
+Statement <InlineMath math="1" />. Paying subscribers went from <InlineMath math="480" /> to <InlineMath math="490" /> thousand, a rise of only <InlineMath math="10" /> thousand. Yes.
 
-Statement 2. October to December grew by <InlineMath math="12" /> on <InlineMath math="580" />, about <InlineMath math="2\%" />. July to September grew by <InlineMath math="100" /> on <InlineMath math="480" />, about <InlineMath math="21\%" />. No.
+Statement <InlineMath math="2" />. October to December grew by <InlineMath math="12" /> on <InlineMath math="580" />, about <InlineMath math="2\%" />. July to September grew by <InlineMath math="100" /> on <InlineMath math="480" />, about <InlineMath math="21\%" />. No.
 
-Statement 3. <InlineMath math="582" /> paying at the end of December against <InlineMath math="490" /> at the end of September. Yes.
+Statement <InlineMath math="3" />. <InlineMath math="582" /> paying at the end of December against <InlineMath math="490" /> at the end of September. Yes.
 
-Statement 4. <InlineMath math="10\%" /> is lower than <InlineMath math="12.5\%" />. No.
+Statement <InlineMath math="4" />. <InlineMath math="10\%" /> is lower than <InlineMath math="12.5\%" />. No.
 
-Statement 5. The number of paying subscribers rose by <InlineMath math="582 - 490 = 92" /> thousand in October to December, and by <InlineMath math="40 + 40 = 80" /> thousand in January to June. This is the net change in the count, not the number of sign-ups. **<InlineMath math="92" /> is more than <InlineMath math="80" />**. Yes.
+Statement <InlineMath math="5" />. The number of paying subscribers rose by <InlineMath math="582 - 490 = 92" /> thousand in October to December, and by <InlineMath math="40 + 40 = 80" /> thousand in January to June. This is the net change in the count, not the number of sign-ups. **<InlineMath math="92" /> is more than <InlineMath math="80" />**. Yes.
+
+# Answer
+
+Subtracting trial accounts and dividing cancellations by starting subscribers confirms statements <InlineMath math="1" />, <InlineMath math="3" />, and <InlineMath math="5" />.
 
 | Statement | Answer |
 | --- | --- |
