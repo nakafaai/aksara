@@ -1,3 +1,15 @@
+# Given
+
+**Bakung warehouse** receives a single truck delivery at the end of the first week its stock drops below <InlineMath math="60" /> tonnes.
+
+# Asked
+
+The minimum number of trucks needed so Bakung's stock covers the next five weeks.
+
+# Solution
+
+> Include weekly shrinkage in Bakung's burn rate, then round the truck count upward because you cannot send a fraction of a truck.
+
 This question runs in three steps: find when the trucks arrive, find Bakung's stock at that moment, then find how many trucks cover the five weeks after that. The key point is that **Bakung's stock must include shrinkage**, because shrinkage lowers the stock every week.
 
 Bakung's stock changes each week by
@@ -45,5 +57,7 @@ Some wrong answers come up often:
 - <InlineMath math="7" /> trucks comes from rounding <InlineMath math="7.33" /> down. You also get <InlineMath math="7" /> if you forget shrinkage, because then the trucks come in week <InlineMath math="10" /> with <InlineMath math="50" /> tonnes and a drop of only <InlineMath math="10" /> tonnes a week.
 - <InlineMath math="6" /> trucks comes from sending the trucks in week <InlineMath math="8" />, even though <InlineMath math="62" /> tonnes isn't below <InlineMath math="60" />, or from checking only four weeks.
 - <InlineMath math="11" /> trucks comes from keeping the stock at <InlineMath math="60" /> or more, but the limit asked for is the safety stock of <InlineMath math="40" /> tonnes.
+
+# Answer
 
 So the cooperative needs to send at least <InlineMath math="8" /> trucks to the Bakung warehouse.

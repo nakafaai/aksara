@@ -1,3 +1,15 @@
+# Given
+
+**The number sequence** starts with <InlineMath math="3, 4, 7, 15, 31, 58" /> and continues by the same rule.
+
+# Asked
+
+The first term in the sequence that exceeds <InlineMath math="200" />.
+
+# Solution
+
+> When first differences keep changing, take differences of differences until a steady pattern appears, then build back up term by term.
+
 This question asks for two things: find the rule of the sequence, then keep extending it until a term goes past <InlineMath math="200" />. The gaps between terms aren't constant, so look for a pattern in the **differences at several levels**: the differences between terms, then the differences of those differences, and so on.
 
 <BlockMath math="\begin{aligned}
@@ -36,5 +48,7 @@ The chart below draws the first nine terms. **The bar for term <InlineMath math=
 Check it the other way round. The new first differences are <InlineMath math="41, 58, 78" />, and the gaps between them are <InlineMath math="17" /> and <InlineMath math="20" />. Both continue the pattern <InlineMath math="2, 5, 8, 11, 14" />, which rises by <InlineMath math="3" />, so the work is consistent.
 
 Two wrong shortcuts are common. If you treat the second difference as a constant <InlineMath math="11" />, the sequence becomes <InlineMath math="96, 145, 205" />, and you'd answer <InlineMath math="205" />. If you stop at the very next term, you get <InlineMath math="99" />, but <InlineMath math="99" /> hasn't passed <InlineMath math="200" /> yet.
+
+# Answer
 
 So the first term of the sequence that's greater than <InlineMath math="200" /> is <InlineMath math="235" />.

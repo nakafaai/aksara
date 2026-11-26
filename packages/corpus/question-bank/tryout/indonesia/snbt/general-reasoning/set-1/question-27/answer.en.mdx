@@ -1,3 +1,15 @@
+# Given
+
+**The Javanese calendar** pairs a <InlineMath math="7" />-day week with a <InlineMath math="5" />-day market cycle, with <InlineMath math="20" /> July falling on Monday Pahing.
+
+# Asked
+
+The weekday and market day for <InlineMath math="1" /> December of the same year.
+
+# Solution
+
+> Count the total days from <InlineMath math="20" /> July to <InlineMath math="1" /> December once, then take remainders modulo <InlineMath math="7" /> for the weekday and modulo <InlineMath math="5" /> for the market day.
+
 Two cycles run side by side: the weekday repeats every <InlineMath math="7" /> days, and the market day (*pasaran*) repeats every <InlineMath math="5" /> days. So all you need is **how many days lie between 20 July and 1 December**, then the remainder of that number divided by <InlineMath math="7" /> and, separately, by <InlineMath math="5" />. The options use the Indonesian weekday names: *Senin* is Monday, *Selasa* Tuesday, *Rabu* Wednesday, and *Kamis* Thursday.
 
 Count the gap month by month. Remember the month lengths: July has <InlineMath math="31" /> days, August <InlineMath math="31" />, September <InlineMath math="30" />, October <InlineMath math="31" />, and November <InlineMath math="30" />.
@@ -42,5 +54,7 @@ The other options come from different counting slips:
 - Rabu Pahing comes from a gap of <InlineMath math="135" /> days because 20 July itself was counted. A gap from a date doesn't include the starting date.
 - Kamis Pon comes from giving September and November <InlineMath math="31" /> days each, which makes the gap <InlineMath math="136" /> days.
 - Senin Kliwon comes from stopping at 30 November, <InlineMath math="133" /> days, and forgetting the last day to 1 December.
+
+# Answer
 
 So in that year, 1 December falls on Selasa Legi, a Tuesday with the market day Legi.

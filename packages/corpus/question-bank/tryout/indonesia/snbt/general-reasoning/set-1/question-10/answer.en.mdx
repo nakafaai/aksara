@@ -1,3 +1,15 @@
+# Given
+
+**The letter-pair sequence** begins BS, DZ, GG, KN, PU, wrapping around from Z back to A.
+
+# Asked
+
+The letter pair at term <InlineMath math="10" /> of the sequence.
+
+# Solution
+
+> Split the first and second letters into two separate number tracks from <InlineMath math="1" /> to <InlineMath math="26" /> so each step rule stays crystal clear.
+
 Each term has two letters, and the two letters move by **different rules**. To make counting easy, turn each letter into its position in the alphabet: <InlineMath math="\text{A} = 1" />, <InlineMath math="\text{B} = 2" />, and so on up to <InlineMath math="\text{Z} = 26" />.
 
 The first letters are B, D, G, K, P, which is <InlineMath math="2, 4, 7, 11, 16" />. The steps are <InlineMath math="+2, +3, +4, +5" />, so the next steps are <InlineMath math="+6, +7, +8, +9, +10" />.
@@ -27,7 +39,7 @@ The chart below draws the position of both letters in each term. **Every time a 
   valueLabel="Letter position"
 />
 
-Check by jumping straight from term <InlineMath math="5" />. The first letter moves <InlineMath math="6 + 7 + 8 + 9 + 10 = 40" /> places, and the second letter moves <InlineMath math="5 \times 7 = 35" /> places:
+Check by jumping straight from term <InlineMath math="5" />. The first letter moves <InlineMath math="40" /> places, and the second letter moves <InlineMath math="35" /> places:
 
 <BlockMath math="\begin{aligned} \text{First letter: } & 16 + 40 = 56 = 2(26) + 4 \\ \text{Second letter: } & 21 + 35 = 56 = 2(26) + 4 \end{aligned}" />
 
@@ -37,7 +49,9 @@ The other options come from these slips:
 
 - TW is term <InlineMath math="9" />, so it stops one term too early.
 - OD appears if you assume the first letter always moves <InlineMath math="5" /> and miss that its steps keep growing.
-- YD appears if the first letter's steps restart at <InlineMath math="+5" /> instead of <InlineMath math="+6" />: <InlineMath math="16 + 5 + 6 + 7 + 8 + 9 = 51" />, then <InlineMath math="51 - 26 = 25" />, which is Y.
+- YD appears if the first letter's steps restart at <InlineMath math="+5" /> instead of <InlineMath math="+6" />, giving position <InlineMath math="51" />, which wraps to <InlineMath math="25" /> (Y).
 - DW appears if you move the second letter only as far as term <InlineMath math="9" />.
+
+# Answer
 
 So term <InlineMath math="10" /> of the sequence is DD.

@@ -1,3 +1,15 @@
+# Given
+
+**The six ordering rules** restrict all seven students across performance slots <InlineMath math="1" /> through <InlineMath math="7" />.
+
+# Asked
+
+The total number of distinct valid orderings satisfying all six rules.
+
+# Solution
+
+> Split the count into clean, non-overlapping cases so every legal ordering is counted once and none is missed.
+
 The question asks how many complete orders meet all six conditions. Guessing a pattern won't do. You need to split into cases until every order shows up exactly once, and then count.
 
 Start with Citra, because three conditions hold her in place. Eka can't take turn <InlineMath math="1" /> (condition 4) and Eka comes before Citra (condition 3), so Citra is in turn <InlineMath math="3" /> at the earliest. Dimas comes exactly two turns after Citra (condition 2) and can't go past turn <InlineMath math="7" />, so Citra is in turn <InlineMath math="5" /> at the latest.
@@ -54,5 +66,7 @@ Recount from the case split:
 <BlockMath math="0 + 0 + (8 + 2) = 10" />
 
 Two common wrong answers come from a lost case. You get <InlineMath math="5" /> if you forget that Galih and Hesti can swap places. You get <InlineMath math="8" /> if you assume turn <InlineMath math="6" /> always goes to Bayu and miss orders 9 and 10, where Bayu sits in the even turn <InlineMath math="4" />.
+
+# Answer
 
 So the number of presentation orders that meet all six conditions is <InlineMath math="10" />.

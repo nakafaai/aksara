@@ -1,3 +1,15 @@
+# Given
+
+**The warehouse stock table** lists initial rice stock plus weekly inflows, outflows, and shrinkage for Bakung, Cempaka, and Anggrek.
+
+# Asked
+
+The ranking of the three warehouses from largest to smallest stock at the end of the first week total stock drops below <InlineMath math="200" /> tonnes.
+
+# Solution
+
+> Compute each warehouse's weekly net drop and their combined weekly drop first so you can pinpoint the exact week total stock dips below <InlineMath math="200" /> tonnes.
+
 This question has two stages. First, find the week when the combined stock of the three warehouses first drops below <InlineMath math="200" /> tonnes. Second, work out each warehouse's stock in that week and rank them. Both stages use the same number: **the change in each warehouse's stock per week**.
 
 Stock goes up with rice coming in, then goes down with rice going out and with shrinkage (*susut*). The text says shrinkage is recorded separately from rice going out, so you have to subtract it too:
@@ -8,7 +20,7 @@ Stock goes up with rice coming in, then goes down with rice going out and with s
 \text{Cempaka}: \quad 15-18-2 &= -5
 \end{aligned}" />
 
-The three warehouses start with <InlineMath math="180+150+96=426" /> tonnes in total, and the total falls by <InlineMath math="16+11+5=32" /> tonnes every week. After <InlineMath math="w" /> weeks, the total is <InlineMath math="426-32w" />. Find the smallest whole <InlineMath math="w" /> that makes it less than <InlineMath math="200" />:
+The three warehouses start with <InlineMath math="426" /> tonnes in total, and the total falls by <InlineMath math="32" /> tonnes every week. After <InlineMath math="w" /> weeks, the total is <InlineMath math="426-32w" />. Find the smallest whole <InlineMath math="w" /> that makes it less than <InlineMath math="200" />:
 
 <BlockMath math="\begin{aligned}
 426-32w &< 200 \\
@@ -26,7 +38,7 @@ Now find each warehouse's stock after <InlineMath math="8" /> weeks:
 \text{Cempaka}: \quad 96-8\times5 &= 56
 \end{aligned}" />
 
-From largest to smallest: Bakung with <InlineMath math="62" /> tonnes, Cempaka with <InlineMath math="56" />, then Anggrek with <InlineMath math="52" />. Check: <InlineMath math="62+56+52=170" />, which matches the total found above.
+From largest to smallest: Bakung with <InlineMath math="62" /> tonnes, Cempaka with <InlineMath math="56" />, then Anggrek with <InlineMath math="52" />. Check: they sum to <InlineMath math="170" />, which matches the total found above.
 
 The chart below follows the three warehouses' stock from the start to the end of week <InlineMath math="8" />. **Anggrek's line falls the most steeply**, so the warehouse that starts on top ends at the bottom.
 
@@ -50,5 +62,7 @@ The other orders come from specific wrong steps:
 - Cempaka, Bakung, Anggrek ranks the warehouses by how slowly they decline, from <InlineMath math="-5" /> to <InlineMath math="-16" />. It forgets the starting stock.
 - Cempaka, Anggrek, Bakung comes from forgetting shrinkage at every step. The weekly drops become <InlineMath math="13" />, <InlineMath math="10" />, and <InlineMath math="3" /> tonnes, the total only goes below <InlineMath math="200" /> in week <InlineMath math="9" />, and the stocks become Anggrek <InlineMath math="63" />, Bakung <InlineMath math="60" />, Cempaka <InlineMath math="69" />.
 - Anggrek, Cempaka, Bakung comes from finding the right week but forgetting shrinkage for each warehouse, giving Anggrek <InlineMath math="76" />, Bakung <InlineMath math="70" />, Cempaka <InlineMath math="72" />.
+
+# Answer
 
 So at the end of that week, the stocks from largest to smallest are Bakung, Cempaka, then Anggrek.

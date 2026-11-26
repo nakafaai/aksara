@@ -1,3 +1,15 @@
+# Diketahui
+
+**Tabel stok tiga gudang beras** Bakung, Cempaka, dan Anggrek memuat stok awal, masuk, keluar, dan susut setiap minggu.
+
+# Ditanyakan
+
+Urutan ketiga gudang dari stok terbesar ke terkecil pada akhir minggu saat total stok pertama kali di bawah <InlineMath math="200" /> ton.
+
+# Penyelesaian
+
+> Cari dulu perubahan bersih mingguan tiap gudang beserta total penurunannya agar waktu tembus di bawah <InlineMath math="200" /> ton langsung ketemu.
+
 Soal ini punya dua tahap. Pertama, cari minggu ketika jumlah stok ketiga gudang pertama kali turun di bawah <InlineMath math="200\text{ ton}" />. Kedua, hitung stok tiap gudang pada minggu itu, lalu urutkan. Kedua tahap memakai satu angka yang sama, yaitu **perubahan stok tiap gudang dalam seminggu**.
 
 Stok bertambah karena beras masuk, lalu berkurang karena beras keluar dan karena susut. Teks menyebut susut dicatat terpisah dari beras keluar, jadi susut juga harus dikurangkan:
@@ -8,7 +20,7 @@ Stok bertambah karena beras masuk, lalu berkurang karena beras keluar dan karena
 \text{Cempaka}: \quad 15-18-2 &= -5
 \end{aligned}" />
 
-Jumlah stok ketiga gudang mula-mula <InlineMath math="180+150+96=426\text{ ton}" /> dan turun <InlineMath math="16+11+5=32\text{ ton}" /> setiap minggu. Setelah <InlineMath math="w" /> minggu, jumlah stoknya <InlineMath math="426-32w" />. Cari <InlineMath math="w" /> bulat terkecil yang membuat jumlah itu kurang dari <InlineMath math="200" />:
+Jumlah stok ketiga gudang mula-mula <InlineMath math="426\text{ ton}" /> dan turun <InlineMath math="32\text{ ton}" /> setiap minggu. Setelah <InlineMath math="w" /> minggu, jumlah stoknya <InlineMath math="426-32w" />. Cari <InlineMath math="w" /> bulat terkecil yang membuat jumlah itu kurang dari <InlineMath math="200" />:
 
 <BlockMath math="\begin{aligned}
 426-32w &< 200 \\
@@ -26,7 +38,7 @@ Sekarang hitung stok tiap gudang setelah <InlineMath math="8" /> minggu:
 \text{Cempaka}: \quad 96-8\times5 &= 56
 \end{aligned}" />
 
-Urutannya dari terbesar: Bakung <InlineMath math="62\text{ ton}" />, Cempaka <InlineMath math="56\text{ ton}" />, lalu Anggrek <InlineMath math="52\text{ ton}" />. Cek: <InlineMath math="62+56+52=170" />, sama dengan jumlah yang dihitung tadi.
+Urutannya dari terbesar: Bakung <InlineMath math="62\text{ ton}" />, Cempaka <InlineMath math="56\text{ ton}" />, lalu Anggrek <InlineMath math="52\text{ ton}" />. Cek: totalnya <InlineMath math="170" />, sama dengan jumlah yang dihitung tadi.
 
 Grafik berikut mengikuti stok ketiga gudang dari awal sampai akhir minggu ke-<InlineMath math="8" />. **Garis Anggrek turun paling curam**, sehingga gudang yang mulai paling atas berakhir paling bawah.
 
@@ -50,5 +62,7 @@ Urutan lain berasal dari salah langkah tertentu:
 - Cempaka, Bakung, Anggrek adalah urutan laju penurunan, dari yang paling lambat (<InlineMath math="-5" />) sampai yang paling cepat (<InlineMath math="-16" />). Urutan ini melupakan stok awal.
 - Cempaka, Anggrek, Bakung muncul jika susut dilupakan di semua langkah. Penurunan per minggu menjadi <InlineMath math="13" />, <InlineMath math="10" />, dan <InlineMath math="3\text{ ton}" />, jumlah stok baru kurang dari <InlineMath math="200" /> pada minggu ke-<InlineMath math="9" />, dan stoknya menjadi Anggrek <InlineMath math="63" />, Bakung <InlineMath math="60" />, dan Cempaka <InlineMath math="69" />.
 - Anggrek, Cempaka, Bakung muncul jika minggunya benar, tetapi susut lupa dikurangkan saat menghitung stok tiap gudang, sehingga stoknya menjadi Anggrek <InlineMath math="76" />, Bakung <InlineMath math="70" />, dan Cempaka <InlineMath math="72" />.
+
+# Jawaban
 
 Jadi, pada akhir minggu itu urutan stok dari terbesar ke terkecil adalah Bakung, Cempaka, lalu Anggrek.

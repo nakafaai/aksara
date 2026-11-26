@@ -1,3 +1,15 @@
+# Given
+
+**Organizers rent medium buses** holding <InlineMath math="31" /> passengers at <InlineMath math="\text{Rp}2{,}100{,}000" /> each plus minibuses for at least <InlineMath math="96" /> people, requiring at least one medium bus.
+
+# Asked
+
+The lowest total rental cost satisfying capacity and the one-medium-bus requirement.
+
+# Solution
+
+> Since vehicles come in whole numbers, test each integer count of medium buses from <InlineMath math="1" /> upward and pick the cheapest valid mix.
+
 You're looking for a mix of medium buses and minibuses that seats at least <InlineMath math="96" /> people, includes at least one medium bus, and costs as little as possible. The number of vehicles has to be whole, so a "cost per seat" rule alone won't settle it. The safe method is **checking every possible number of medium buses**, then adding just enough minibuses for the remaining passengers.
 
 For each number of medium buses <InlineMath math="b" />, the passengers left over are <InlineMath math="96-31b" />. The number of minibuses is that remainder divided by <InlineMath math="14" />, rounded up, since you can't rent part of a minibus. The case <InlineMath math="b=0" /> isn't allowed, because at least one medium bus is required. With <InlineMath math="b=4" />, there are already <InlineMath math="124" /> seats, so a fifth bus would only add cost.
@@ -32,5 +44,7 @@ The other options come from different traps:
 - <InlineMath math="\text{Rp}7{,}250{,}000" /> comes from a greedy approach: a medium bus is slightly cheaper per seat (about <InlineMath math="\text{Rp}67{,}742" /> against <InlineMath math="\text{Rp}67{,}857" />), so you use as many as possible. That gives three medium buses and one minibus with <InlineMath math="11" /> empty seats. You still pay for those empty seats, so this plan costs more.
 - <InlineMath math="\text{Rp}8{,}400{,}000" /> is the cost of using medium buses only.
 - <InlineMath math="\text{Rp}8{,}750{,}000" /> comes from adding one medium bus to the seven-minibus plan without removing any minibuses.
+
+# Answer
 
 So the cheapest rental that meets every condition costs <InlineMath math="\text{Rp}6{,}850{,}000" />.
