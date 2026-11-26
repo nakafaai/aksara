@@ -31,7 +31,6 @@ Der Luftwiderstand wird vernachlässigt, und die Schwerkraft ist konstant. Recht
       gleiche Zeitabstände und folgen denselben Formeln wie die Rechnung.
     </>
   }
-  footer={<>Die waagerechte Komponente bleibt konstant, während die senkrechte linear fällt.</>}
   labels={{
     chooseScenario: "Abwurf wählen",
     scenarioNames: {
@@ -64,7 +63,6 @@ Ein Zielversuch belegt dieselbe Zerlegung direkt im Diagramm: Ein Rohr zielt ger
       des Ziels (violett).
     </>
   }
-  footer={<>Bei jeder Geschwindigkeit über <InlineMath math="7{,}1\text{ m/s}" /> treffen sich Kugel und Ziel vor dem Boden.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -0.2, max: 2.4 } },
@@ -133,7 +131,6 @@ Bleibt die Abwurfschnelligkeit fest bei <InlineMath math="22\text{ m/s}" />, wä
       Startgeschwindigkeit <InlineMath math="22\text{ m/s}" />.
     </>
   }
-  footer={<>Die Gipfelhöhe wächst mit <InlineMath math="\sin^2 a" /> bis zum senkrechten Wurf bei <InlineMath math="90^\circ" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 95 }, y: { min: -2, max: 27 } },
@@ -193,7 +190,6 @@ Weil <InlineMath math="\sin 2\theta" /> höchstens <InlineMath math="1" /> wird,
 <Mermaid
   title={<>Die Reihenfolge einer Wurfanalyse</>}
   description={<>Jede Größe folgt aus den beiden Komponenten der Anfangsgeschwindigkeit.</>}
-  footer={<>Zerlege zuerst in Komponenten, dann folgen Zeit, Höhe und Weite nacheinander.</>}
   chart={`flowchart TD
   A["v₀ und θ"] --> B["v₀x = v₀ cos θ und v₀y = v₀ sin θ"]
   B --> C["t_Scheitel = v₀y / g"]
@@ -235,7 +231,6 @@ Ein Ball, geschossen mit <InlineMath math="v_x=6\text{ m/s}" /> und <InlineMath 
       <InlineMath math="1{,}6\text{ s}" />.
     </>
   }
-  footer={<>Im Scheitelpunkt bei <InlineMath math="0{,}8\text{ s}" /> schneidet <InlineMath math="v_y" /> null, während <InlineMath math="v_x" /> bleibt.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.1, max: 1.75 }, y: { min: -9.5, max: 9.5 } },
@@ -299,7 +294,6 @@ Verschieb die Zeit <InlineMath math="s" /> und folge der Kanonenkugel. Der viole
 <MathVisual
   title={<>Folge der Geschwindigkeit durch die Zeit</>}
   description={<>Die mit <InlineMath math="40\text{ m/s}" /> unter <InlineMath math="60^\circ" /> abgeschossene Kanonenkugel (fuchsia) und ihre Ein-Sekunden-Geschwindigkeit (violett) in Metern.</>}
-  footer={<>Die Tangente kippt über dem Scheitelpunkt waagerecht und neigt sich dann abwärts.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -8, max: 160 }, y: { min: -10, max: 76 } },
@@ -368,7 +362,6 @@ Bei <InlineMath math="t = 2\text{ s}" /> steigt die Kugel noch, weil <InlineMath
 <MathVisual
   title={<>Die Geschwindigkeit der Kanonenkugel entlang ihrer Bahn</>}
   description={<>Vier Geschwindigkeitsvektoren entlang der Parabel in Metern. Der waagerechte Anteil bleibt immer <InlineMath math="20\text{ m/s}" />, der senkrechte sinkt jede Sekunde um <InlineMath math="10\text{ m/s}" />.</>}
-  footer={<>Die Pfeile werden zum Gipfel kürzer und kehren symmetrisch zur Landung zurück.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -10, max: 170 }, y: { min: -45, max: 75 } },
@@ -382,8 +375,8 @@ Bei <InlineMath math="t = 2\text{ s}" /> steigt die Kugel noch, weil <InlineMath
     ],
     labels: [
       { key: "v0", objectId: "v0", at: { x: 20, y: 20 * Math.sqrt(3) }, placement: "left" },
-      { key: "v1", objectId: "v1", at: { x: 60, y: 60 * Math.sqrt(3) - 40 }, placement: "above" },
-      { key: "v2", objectId: "v2", at: { x: 40 * Math.sqrt(3) + 20, y: 60 }, placement: "above" },
+      { key: "v1", objectId: "v1", at: { x: 60, y: 60 * Math.sqrt(3) - 40 }, placement: "left" },
+      { key: "v2", objectId: "v2", at: { x: 40 * Math.sqrt(3) + 20, y: 60 }, placement: "above-right" },
       { key: "v3", objectId: "v3", at: { x: 80 * Math.sqrt(3) + 20, y: -20 * Math.sqrt(3) }, placement: "right" },
     ],
   }}
@@ -420,7 +413,6 @@ Ein Gartenschlauch zeigt diesen besten Winkel auf einen Blick, denn jeder Tropfe
       Das Wasser verlässt die Düse mit <InlineMath math="8\text{ m/s}" />. Die gestrichelte Linie ist der Strahl bei <InlineMath math="45^\circ" />. Neige den Schlauch und vergleiche.
     </>
   }
-  footer={<>Jeder andere Winkel landet kürzer als der gestrichelte Strahl bei <InlineMath math="45^\circ" />.</>}
   labels={{
     chooseAngle: "Winkel der Düse wählen",
     flight: <>Zeit in der Luft</>,

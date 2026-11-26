@@ -31,7 +31,6 @@ Hambatan udara diabaikan dan gravitasi dianggap tetap. Arah ke kanan dan ke atas
       waktu yang ditampilkan di lintasan.
     </>
   }
-  footer={<>Kecepatan mendatar tetap konstan, sedangkan komponen vertikal turun secara linear.</>}
   labels={{
     chooseScenario: "Pilih tembakan",
     scenarioNames: {
@@ -64,7 +63,6 @@ Susunan sasaran jatuh memperlihatkan pemisahan ini langsung pada grafik koordina
       pada kelajuan <InlineMath math="s" />, dan jarak jatuh sasaran (ungu).
     </>
   }
-  footer={<>Setiap kelajuan di atas <InlineMath math="7{,}1\text{ m/s}" /> mengenai sasaran sebelum menyentuh tanah.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -0.2, max: 2.4 } },
@@ -133,7 +131,6 @@ Pertahankan kelajuan awal di <InlineMath math="22\text{ m/s}" /> dan ubah sudut 
       <InlineMath math="22\text{ m/s}" />.
     </>
   }
-  footer={<>Tinggi puncak tumbuh mengikuti <InlineMath math="\sin^2 a" /> hingga lemparan tegak di <InlineMath math="90^\circ" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 95 }, y: { min: -2, max: 27 } },
@@ -193,7 +190,6 @@ Karena nilai <InlineMath math="\sin 2\theta" /> paling besar <InlineMath math="1
 <Mermaid
   title={<>Urutan analisis gerak parabola</>}
   description={<>Semua besaran berasal dari dua komponen kecepatan awal.</>}
-  footer={<>Uraikan komponen dahulu, lalu waktu puncak, tinggi, dan jangkauan menyusul.</>}
   chart={`flowchart TD
   A["v₀ dan θ"] --> B["v₀x = v₀ cos θ dan v₀y = v₀ sin θ"]
   B --> C["t_puncak = v₀y / g"]
@@ -235,7 +231,6 @@ Bola yang ditendang dengan <InlineMath math="v_x=6\text{ m/s}" /> dan <InlineMat
       <InlineMath math="1{,}6\text{ s}" />.
     </>
   }
-  footer={<>Di puncak pada <InlineMath math="0{,}8\text{ s}" />, <InlineMath math="v_y" /> melintasi nol sementara <InlineMath math="v_x" /> tetap datar.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.1, max: 1.75 }, y: { min: -9.5, max: 9.5 } },
@@ -299,7 +294,6 @@ Geser waktu <InlineMath math="s" /> dan ikuti peluru meriamnya. Panah ungu adala
 <MathVisual
   title={<>Ikuti Kecepatan dari Waktu ke Waktu</>}
   description={<>Peluru meriam dengan <InlineMath math="40\text{ m/s}" /> dan <InlineMath math="60^\circ" /> (fuchsia) beserta langkah kecepatan satu detiknya (ungu) dalam meter.</>}
-  footer={<>Garis singgung mendatar tepat di puncak lalu miring ke bawah saat peluru turun.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -8, max: 160 }, y: { min: -10, max: 76 } },
@@ -368,7 +362,6 @@ Pada <InlineMath math="t = 2\text{ s}" />, bola masih naik karena <InlineMath ma
 <MathVisual
   title={<>Kecepatan Peluru Meriam di Sepanjang Lintasannya</>}
   description={<>Empat vektor kecepatan sepanjang parabola dalam meter. Bagian mendatarnya selalu <InlineMath math="20\text{ m/s}" />, sedangkan bagian tegaknya turun <InlineMath math="10\text{ m/s}" /> setiap detik.</>}
-  footer={<>Panah memendek menuju puncak lalu kembali simetris ke kelajuan awal saat mendarat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -10, max: 170 }, y: { min: -45, max: 75 } },
@@ -382,8 +375,8 @@ Pada <InlineMath math="t = 2\text{ s}" />, bola masih naik karena <InlineMath ma
     ],
     labels: [
       { key: "v0", objectId: "v0", at: { x: 20, y: 20 * Math.sqrt(3) }, placement: "left" },
-      { key: "v1", objectId: "v1", at: { x: 60, y: 60 * Math.sqrt(3) - 40 }, placement: "above" },
-      { key: "v2", objectId: "v2", at: { x: 40 * Math.sqrt(3) + 20, y: 60 }, placement: "above" },
+      { key: "v1", objectId: "v1", at: { x: 60, y: 60 * Math.sqrt(3) - 40 }, placement: "left" },
+      { key: "v2", objectId: "v2", at: { x: 40 * Math.sqrt(3) + 20, y: 60 }, placement: "above-right" },
       { key: "v3", objectId: "v3", at: { x: 80 * Math.sqrt(3) + 20, y: -20 * Math.sqrt(3) }, placement: "right" },
     ],
   }}
@@ -420,7 +413,6 @@ Selang taman menunjukkan sudut terbaik dalam sekali lihat, karena setiap tetes a
       Air keluar dari nosel dengan <InlineMath math="8\text{ m/s}" />. Garis putus-putus adalah semburan pada <InlineMath math="45^\circ" />. Miringkan selangnya dan bandingkan.
     </>
   }
-  footer={<>Semua sudut lain jatuh lebih dekat dibandingkan semburan putus-putus <InlineMath math="45^\circ" />.</>}
   labels={{
     chooseAngle: "Pilih sudut nosel",
     flight: <>Waktu di udara</>,
