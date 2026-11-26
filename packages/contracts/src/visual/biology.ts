@@ -9,6 +9,7 @@ import { climateVisuals } from "#contracts/visual/biology/climate";
 import { denatureVisuals } from "#contracts/visual/biology/denature";
 import { drawingVisuals } from "#contracts/visual/biology/drawing";
 import { ecologyVisuals } from "#contracts/visual/biology/ecology";
+import { ecosystemVisuals } from "#contracts/visual/biology/ecosystem";
 import { enzymeVisuals } from "#contracts/visual/biology/enzyme";
 import { equipmentVisuals } from "#contracts/visual/biology/equipment";
 import { flowerVisuals } from "#contracts/visual/biology/flower";
@@ -39,6 +40,7 @@ import { placentaVisuals } from "#contracts/visual/biology/placenta";
 import { planesVisuals } from "#contracts/visual/biology/planes";
 import { plantVisuals } from "#contracts/visual/biology/plant";
 import { proteinVisuals } from "#contracts/visual/biology/protein";
+import { respirationVisuals } from "#contracts/visual/biology/respiration";
 import { saturationVisuals } from "#contracts/visual/biology/saturation";
 import { secretionVisuals } from "#contracts/visual/biology/secretion";
 import { spillVisuals } from "#contracts/visual/biology/spill";
@@ -179,6 +181,7 @@ export function biologyVisuals<E>(rich: RichSlot<E>) {
     ...denatureVisuals(rich),
     ...drawingVisuals(rich),
     ...ecologyVisuals(rich),
+    ...ecosystemVisuals(rich),
     ...enzymeVisuals(rich),
     ...equipmentVisuals(rich),
     ...flowerVisuals(rich),
@@ -209,6 +212,7 @@ export function biologyVisuals<E>(rich: RichSlot<E>) {
     ...planesVisuals(rich),
     ...plantVisuals(rich),
     ...proteinVisuals(rich),
+    ...respirationVisuals(rich),
     ...saturationVisuals(rich),
     ...secretionVisuals(rich),
     ...spillVisuals(rich),
