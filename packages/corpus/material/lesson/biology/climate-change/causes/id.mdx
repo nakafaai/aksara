@@ -59,7 +59,6 @@ Dalam model sederhana di buku pelajaran, tiap lapisan gas rumah kaca menyerap se
 <MathVisual
   title={<>Lapisan Bertambah, Permukaan Makin Hangat</>}
   description={<>Suhu permukaan dalam model lapisan dengan nol, satu, dan dua lapisan yang menyerap penuh. Satu kotak grid ke atas berarti <InlineMath math="50" /> kelvin.</>}
-  footer={<>Satu lapisan penyerap sudah menaikkan suhu permukaan dari 255 K ke 303 K.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
@@ -91,7 +90,6 @@ Tiga gas rumah kaca utama dari kegiatan manusia adalah <InlineMath math="\mathrm
       Setara pemanasan <InlineMath math="100" /> tahun (dalam <InlineMath math="\mathrm{kg\ CO_2e}" />) terhadap massa gas <InlineMath math="x" /> (gram) untuk <InlineMath math="\mathrm{N_2O}" /> (merah muda), <InlineMath math="\mathrm{CH_4}" /> (oranye), dan <InlineMath math="\mathrm{CO_2}" /> (abu-abu).
     </>
   }
-  footer={<>Dalam 100 tahun, 10 g N2O setara 2,73 kg CO2 dan CH4 setara 0,30 kg CO2.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: -0.2, max: 3.2 } },
@@ -106,6 +104,10 @@ Tiga gas rumah kaca utama dari kegiatan manusia adalah <InlineMath math="\mathrm
       { id: "pt-n2o", kind: "point", appearance: "warning", at: { x: 10, y: 2.73 } },
       { id: "pt-ch4", kind: "point", appearance: "primary", at: { x: 10, y: 0.3 } },
       { id: "pt-co2", kind: "point", appearance: "reference", at: { x: 10, y: 0.01 } },
+      { id: "probe-m", kind: "path", appearance: "reference", points: [{ x: "m", y: "0" }, { x: "m", y: "0.273 * m" }] },
+      { id: "probe-n2o", kind: "marker", appearance: "warning", x: "m", y: "0.273 * m" },
+      { id: "probe-ch4", kind: "marker", appearance: "primary", x: "m", y: "0.03 * m" },
+      { id: "probe-co2", kind: "marker", appearance: "reference", x: "m", y: "0.001 * m" },
     ],
     readouts: [
       { key: "n2o-eq", formula: "0.273 * m" },
@@ -148,7 +150,6 @@ Elpiji yang dipakai untuk memasak adalah campuran propana dan butana. Saat dibak
       Jumlah molekul <InlineMath math="\mathrm{CO_2}" /> yang dilepas terhadap molekul <InlineMath math="\mathrm{O_2}" /> yang dipakai saat membakar propana (oranye, <InlineMath math="3/5" />) dibanding metana (ungu, <InlineMath math="1/2" />).
     </>
   }
-  footer={<>Tiap 5 molekul O2 pada propana menghasilkan 3 CO2, pada metana 2,5 CO2.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 16 }, y: { min: 0, max: 10 } },
@@ -161,6 +162,9 @@ Elpiji yang dipakai untuk memasak adalah campuran propana dan butana. Saat dibak
       { id: "methane", kind: "function", appearance: "secondary", formula: "0.5 * x", domain: { min: 0, max: 15 } },
       { id: "pt-p", kind: "point", appearance: "primary", at: { x: 10, y: 6 } },
       { id: "pt-m", kind: "point", appearance: "secondary", at: { x: 10, y: 5 } },
+      { id: "probe-k", kind: "path", appearance: "reference", points: [{ x: "k", y: "0" }, { x: "k", y: "0.6 * k" }] },
+      { id: "probe-p", kind: "marker", appearance: "primary", x: "k", y: "0.6 * k" },
+      { id: "probe-m", kind: "marker", appearance: "secondary", x: "k", y: "0.5 * k" },
     ],
     readouts: [
       { key: "propane-co2", formula: "0.6 * k" },
@@ -211,7 +215,6 @@ Plastik menghasilkan [emisi sepanjang daur hidup](https://www.oecd.org/en/public
 <Mermaid
   title={<>Tiga Aktivitas Manusia yang Menambah Pemanasan</>}
   description={<>Hubungkan bahan bakar fosil, limbah organik, dan kehilangan hutan dengan perubahan gas rumah kaca atau penyerapan karbon.</>}
-  footer={<>Bahan bakar fosil, sampah anoksik, dan kehilangan hutan menambah pemanasan.</>}
   chart={`flowchart LR
     A["Bahan bakar fosil"] --> B["Karbon dioksida"]
     C["Limbah organik membusuk tanpa cukup oksigen"] --> D["Metana"]
@@ -226,7 +229,6 @@ Bayangkan udara sebagai bak: emisi menuangkan karbon ke dalamnya, dan hutan sert
 <MathVisual
   title={<>Serapan Berkurang, Penumpukan Makin Cepat</>}
   description={<>Karbon tambahan di udara dalam model bak ilustratif, dengan hutan utuh (abu-abu) dan setelah penebangan (merah muda). Mendatar: tahun. Tegak: satu kotak grid berarti <InlineMath math="10" /> satuan karbon.</>}
-  footer={<>Serapan turun dari 5 ke 3 menaikkan sisa karbon tahunan dari 5 jadi 7.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 7.5 } },

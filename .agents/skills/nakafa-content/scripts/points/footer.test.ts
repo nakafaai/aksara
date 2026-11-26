@@ -1,99 +1,81 @@
 import { assert, describe, it } from "@effect/vitest";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import {
-  findMissingFooters,
-  requiresVisualFooter,
+  findBannedFooters,
+  isCatalogVisual,
 } from "#nakafa-content/points/footer";
 
-describe("requiresVisualFooter", () => {
-  it("requires a footer only on catalog figures whose contract declares a footer prop", () => {
-    for (const name of ["MathVisual", "YogurtLab", "BarChart", "Mermaid"]) {
-      assert.isTrue(requiresVisualFooter(name), name);
-    }
+describe("isCatalogVisual", () => {
+  it("recognises Visual Catalog figures and ignores layout and prose elements", () => {
     for (const name of [
-      "Youtube",
+      "MathVisual",
+      "YogurtLab",
+      "BarChart",
+      "Mermaid",
       "VirusStructureLab",
-      "FungiMyceliumLab",
-      "GreenhouseEffectLab",
-      "AtomShellLab",
-      "ParabolicMovementLab",
-      "ContentBlock",
-      "InlineMath",
-      "BlockMath",
-      "div",
     ]) {
-      assert.isFalse(requiresVisualFooter(name), name);
+      assert.isTrue(isCatalogVisual(name), name);
+    }
+    for (const name of ["ContentBlock", "InlineMath", "BlockMath", "div"]) {
+      assert.isFalse(isCatalogVisual(name), name);
     }
   });
 });
 
-describe("findMissingFooters", () => {
-  it("passes figures with a non-empty authored footer and ignores figures without a footer contract", () => {
-    const source = [
-      "<MathVisual title={<>Line</>} description={<>Slope.</>} footer={<>Watch the steepness rise.</>} scene={{}} />",
-      '<YogurtLab title={<>Yogurt</>} description={<>Fermentation.</>} footer="Slide temperature to track lactic acid." />',
-      "<VirusStructureLab title={<>Virus</>} description={<>Coat.</>} />",
-      '<Youtube videoId="abc123" />',
-      "<ContentBlock>",
-      "<Mermaid title={<>Flow</>} description={<>Steps.</>} footer={<>Follow each arrow left to right.</>} chart={`graph LR; A-->B`} />",
-      "</ContentBlock>",
-    ].join("\n");
-    assert.deepStrictEqual(findMissingFooters(parseLessonMdx(source)), []);
-  });
-
-  it("reports missing or blank footers on direct and expression-wrapped visual cards", () => {
+describe("findBannedFooters", () => {
+  it("passes catalog figures without a footer prop and ignores non-visual elements", () => {
     const source = [
       "<MathVisual title={<>Line</>} description={<>Slope.</>} scene={{}} />",
-      "<YogurtLab title={<>Yogurt</>} description={<>Fermentation.</>} footer={<>   </>} />",
+      "<YogurtLab title={<>Yogurt</>} description={<>Fermentation.</>} />",
+      "<VirusStructureLab title={<>Virus</>} description={<>Coat.</>} />",
+      '<Youtube videoId="abc123" />',
+      '<ContentBlock footer="ok">',
+      "<Mermaid title={<>Flow</>} description={<>Steps.</>} chart={`graph LR; A-->B`} />",
+      "</ContentBlock>",
+    ].join("\n");
+    assert.deepStrictEqual(findBannedFooters(parseLessonMdx(source)), []);
+  });
+
+  it("rejects plain-text footer props on direct and expression-wrapped catalog visuals", () => {
+    const source = [
+      "<MathVisual title={<>Line</>} description={<>Slope.</>} footer={<>Watch the steepness rise.</>} scene={{}} />",
+      '<YogurtLab title={<>Yogurt</>} description={<>Fermentation.</>} footer="Slide temperature." />',
       '<BarChart title={<>Bars</>} description={<>Counts.</>} footer="" />',
       "{<CellCutawayLab title={<>Cell</>} description={<>Parts.</>} />}",
-      "{<HeartCycleLab title={<>Heart</>} description={<>Beat.</>} footer={<>Watch the valves snap shut.</>} />}",
-      '{<FunctionMachine title={<>Map</>} description={<>Input.</>} footer="Each input maps once." />}',
-      '{<Mermaid title={<>Flow</>} description={<>Steps.</>} footer="" chart="graph LR; A-->B" />}',
+      "{<HeartCycleLab title={<>Heart</>} description={<>Beat.</>} footer={<>Watch valves.</>} />}",
+      '{<FunctionMachine {...props} title={<>Map</>} description={<>Input.</>} footer="Each input maps once." />}',
+      "{<UnknownWidget footer={<>Allowed</>} />}",
       "{<ContentBlock />}",
     ].join("\n");
     assert.deepStrictEqual(
-      findMissingFooters(parseLessonMdx(source)).map(({ line, rule }) => [
+      findBannedFooters(parseLessonMdx(source)).map(({ line, rule }) => [
         line,
         rule,
       ]),
       [
-        [1, "missing-visual-footer"],
-        [2, "missing-visual-footer"],
-        [3, "missing-visual-footer"],
-        [4, "missing-visual-footer"],
-        [7, "missing-visual-footer"],
+        [1, "banned-visual-footer"],
+        [2, "banned-visual-footer"],
+        [3, "banned-visual-footer"],
+        [5, "banned-visual-footer"],
+        [6, "banned-visual-footer"],
       ]
     );
   });
 
-  it("rejects dynamic empty footer expressions and preserves non-figure expressions", () => {
-    const source = [
-      "<YogurtLab footer={undefined} />",
-      "<YogurtLab footer />",
-      "<YogurtLab footer={<>First <b>second</b></>} />",
-      "{<YogurtLab {...props} footer /> }",
-      "{<YogurtLab {...props} footer={<>Shown <b>here</b></>} /> }",
-      "{<UnknownWidget />}",
-    ].join("\n");
+  it("handles synthetic MDX nodes without source position or attributes", () => {
     assert.deepStrictEqual(
-      findMissingFooters(parseLessonMdx(source)).map(({ line, rule }) => [
-        line,
-        rule,
-      ]),
-      [
-        [1, "missing-visual-footer"],
-        [2, "missing-visual-footer"],
-        [4, "missing-visual-footer"],
-      ]
-    );
-    // Synthetic MDX node without source position or attributes still reports line 1.
-    assert.deepStrictEqual(
-      findMissingFooters({
-        children: [{ name: "YogurtLab", type: "mdxJsxFlowElement" }],
+      findBannedFooters({
+        children: [
+          { name: "YogurtLab", type: "mdxJsxFlowElement" },
+          {
+            attributes: [{ name: "footer", type: "mdxJsxAttribute" }],
+            name: "YogurtLab",
+            type: "mdxJsxFlowElement",
+          },
+        ],
         type: "root",
       }).map(({ column, line, rule }) => [line, column, rule]),
-      [[1, 1, "missing-visual-footer"]]
+      [[1, 1, "banned-visual-footer"]]
     );
   });
 });

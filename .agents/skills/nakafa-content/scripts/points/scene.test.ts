@@ -29,11 +29,9 @@ function parse(...blocks: readonly string[]) {
   return inspectDocument(parseLessonMdx(lesson(...blocks)));
 }
 
-/** Writes one self-closing catalog element, with an optional footer prop. */
-const element = (name: string, withFooter = true) =>
-  withFooter
-    ? `<${name} title="${name}" description="A ${name}." footer={<>Notice the main detail in ${name}.</>} />`
-    : `<${name} title="${name}" description="A ${name}." />`;
+/** Writes one self-closing catalog element, without a banned plain-text footer prop. */
+const element = (name: string) =>
+  `<${name} title="${name}" description="A ${name}." />`;
 
 const ROOT = "packages/corpus/material/lesson/biology/cells";
 const SECTION = `${ROOT}/membrane`;
@@ -219,17 +217,11 @@ layer(NodeServices.layer, { excludeTestServices: true })(
       () =>
         Effect.gen(function* () {
           const root = yield* commitBase({
-            [SECTION_FILE]: lesson(
-              element("VirusStructureLab", false),
-              lineFigure(1)
-            ),
+            [SECTION_FILE]: lesson(element("VirusStructureLab"), lineFigure(1)),
             [SIBLING_FILE]: lesson(element("CellCutawayLab")),
           });
           yield* writeFiles(root, {
-            [SECTION_FILE]: lesson(
-              element("VirusStructureLab", false),
-              lineFigure(2)
-            ),
+            [SECTION_FILE]: lesson(element("VirusStructureLab"), lineFigure(2)),
           });
           const result = yield* capture(
             runMain([ROOT, "--base", "HEAD"], root)

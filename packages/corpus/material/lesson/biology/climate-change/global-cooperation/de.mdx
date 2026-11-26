@@ -37,7 +37,6 @@ Die Szene unten verbraucht dieses Budget auf zwei Arten, ausgehend von runden <I
 <MathVisual
   title={<>Zwei Arten, ein Kohlenstoffbudget zu verbrauchen</>}
   description={<>Ein Budget von <InlineMath math="500" /> <InlineMath math="\mathrm{GtCO_2}" />, verbraucht ab <InlineMath math="40" /> <InlineMath math="\mathrm{GtCO_2}" /> pro Jahr. Waagrecht: Jahre nach 2020. Senkrecht: jährliche Emissionen in <InlineMath math="\mathrm{GtCO_2}" />.</>}
-  footer={<>Konstante Emissionen brauchen 500 GtCO2 in 12,5 Jahren auf, linearer Rückgang in 25.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2, max: 36 }, y: { min: -2, max: 46 } },
@@ -62,7 +61,6 @@ Ein Temperaturziel wird zum gemeinsamen Maßstab, sobald du es in ein Budget ver
 <MathVisual
   title={<>Jedes Ziel hat sein eigenes Budget</>}
   description={<>Verbleibende Kohlenstoffdioxidbudgets ab 2020 für eine Chance von <InlineMath math="50" /> Prozent bei drei Erwärmungsgrenzen. Jedes Label teilt das Budget durch <InlineMath math="40\ \mathrm{GtCO_2}" /> pro Jahr. Ein Gitterschritt nach oben entspricht <InlineMath math="250\ \mathrm{GtCO_2}" />.</>}
-  footer={<>Höhere Grenzen lassen größere Budgets, von 12,5 Jahren bei 1,5 C bis 33,75 bei 2 C.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -90,7 +88,6 @@ Temperaturziele zählen für jede Küste. Das Dorf unten zeigt, was jeder Emissi
 <SeaLevelRiseLab
   title={<>Der Meeresspiegel 2100 hängt vom Pfad ab</>}
   description={<>Wähl einen Pfad. Das Meer steigt bis zu seinem Medianwert für 2100, verglichen mit dem Mittel von 1995 bis 2014.</>}
-  footer={<>Gemeinsame Senkungen halten den Anstieg bis 2100 nahe 0,44 m statt 0,77 m.</>}
   mode="scenario"
   labels={{
     choose: "Pfad wählen",
@@ -140,7 +137,6 @@ Die Senkungen eines einzigen Landes reichen nicht, weil sich <InlineMath math="\
       Prozentuale Veränderung des <InlineMath math="\mathrm{CO_2}" /> im Jahr 2100 gegenüber heute (<InlineMath math="425\text{ ppm}" />) gegen den Anteil <InlineMath math="x" /> (in <InlineMath math="\%" />) der globalen fossilen Emissionen, die bis 2050 auf null sinken.
     </>
   }
-  footer={<>CO2 sinkt bis 2100 erst unter 425 ppm, wenn über 55 % der globalen Emissionen fallen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 110 }, y: { min: -24, max: 30 } },
@@ -153,6 +149,8 @@ Die Senkungen eines einzigen Landes reichen nicht, weil sich <InlineMath math="\
       { id: "curve", kind: "function", appearance: "primary", formula: "22.6 - 0.407 * x", domain: { min: 0, max: 100 } },
       { id: "china", kind: "point", appearance: "warning", at: { x: 31, y: 10 } },
       { id: "all", kind: "point", appearance: "secondary", at: { x: 100, y: -18.1 } },
+      { id: "probe-p", kind: "path", appearance: "reference", points: [{ x: "p", y: "0" }, { x: "p", y: "22.6 - 0.407 * p" }] },
+      { id: "probe-co2", kind: "marker", appearance: "highlight", x: "p", y: "22.6 - 0.407 * p" },
     ],
     readouts: [
       { key: "co2-2100", formula: "521 - 1.73 * p" },
@@ -183,7 +181,6 @@ Internationale und nationale Politik setzen die größeren Rahmenbedingungen. Da
 <Mermaid
   title={<>Von globalen Zielen zu nationalen Plänen</>}
   description={<>Das Diagramm verbindet das globale Temperaturziel mit nationalen Plänen, Transparenzberichten, der globalen Bestandsaufnahme und aktualisierten nationalen Plänen.</>}
-  footer={<>NDCs, Transparenzberichte und Bestandsaufnahme schärfen im Kreislauf die Klimapläne.</>}
   chart={`flowchart LR
     A["Gemeinsames Temperaturziel"] --> B["Nationales NDC"]
     B --> C["Transparenzbericht"]
@@ -210,7 +207,6 @@ Der Kreislauf läuft mit zwei Uhren, die beide alle fünf Jahre ticken, um drei 
 <MathVisual
   title={<>Jede Bestandsaufnahme speist die nächsten Pläne</>}
   description={<>Jahre der nationalen Pläne (obere Reihe) und der globalen Bestandsaufnahmen (untere Reihe) im Übereinkommen von Paris. Ein Gitterschritt nach rechts entspricht <InlineMath math="2" /> Jahren.</>}
-  footer={<>Jede Bestandsaufnahme kommt zwei Jahre vor der nächsten NDC-Runde als Grundlage.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 3 } },

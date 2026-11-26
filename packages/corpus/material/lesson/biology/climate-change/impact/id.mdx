@@ -50,7 +50,6 @@ Pada contoh ilustrasi di bawah, garis kuning adalah kelebihan panas mingguan itu
 <MathVisual
   title={<>Stres Panas Menumpuk pada Terumbu</>}
   description={<>Gelombang panas laut ilustrasi selama enam minggu. Mendatar: minggu. Tegak: derajat di atas ambang pemutihan (kuning) dan jumlah berjalannya dalam °C-minggu (merah muda).</>}
-  footer={<>Enam minggu hangat menumpuk 9 C-minggu, melewati dua ambang pemutihan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 10 } },
@@ -96,7 +95,6 @@ Ilmuwan terumbu menjumlahkan tekanan panas. Tiap minggu ketika air setidaknya <I
 <MathVisual
   title={<>Tekanan Panas Bertambah dari Minggu ke Minggu</>}
   description={<>Degree heating weeks selama <InlineMath math="12" /> minggu ilustratif. Mendatar: minggu. Tegak: tekanan panas yang terkumpul dalam <InlineMath math="^\circ\mathrm{C}" /> minggu.</>}
-  footer={<>Tekanan melewati 4 C-minggu di minggu 6 dan 8 C-minggu di minggu 8.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 10 } },
@@ -134,7 +132,6 @@ Kamu bisa menguji tekanan panas sendiri di akuarium terumbu berikut. Karangnya b
 <CoralBleachLab
   title={<>Tekanan Panas Memutihkan Karang</>}
   description={<>Atur suhu air dan berapa minggu suhu itu bertahan. Perhatikan karang kehilangan warnanya.</>}
-  footer={<>Menaikkan suhu air atau lama gelombang panas mendorong karang ke ambang pemutihan.</>}
   labels={{
     temperature: "Suhu air",
     weeks: "Minggu pada suhu ini",
@@ -171,7 +168,6 @@ Pada satwa liar, perubahan iklim dapat **menggeser wilayah geografis** tempat su
 <Mermaid
   title={<>Jalur Dampak Perubahan Iklim</>}
   description={<>Urutkan perubahan kondisi air dan habitat, respons organisme, perubahan populasi, lalu risiko bagi manusia.</>}
-  footer={<>Perubahan iklim fisik menjalar ke habitat, jaring makanan, dan kesehatan.</>}
   chart={`flowchart LR
     A["Panas atau hujan berubah"] --> B["Air dan habitat berubah"]
     B --> C["Organisme tertekan"]
@@ -192,7 +188,6 @@ Di pantai yang landai, daratan naik pelan-pelan, jadi kenaikan muka laut yang ke
 <MathVisual
   title={<>Naik Setengah Meter, Masuk Lima Puluh Meter</>}
   description={<>Penampang pantai yang landai, dengan tinggi diregangkan supaya kemiringannya terlihat. Mendatar: satu kotak grid berarti <InlineMath math="10" /> meter. Tegak: satu kotak grid berarti <InlineMath math="0{,}25" /> meter.</>}
-  footer={<>Di pantai landai 1%, kenaikan laut 0,5 m menggeser garis pantai 50 m ke darat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.5, max: 10.5 }, y: { min: -1, max: 4.5 } },
@@ -227,7 +222,6 @@ Kenaikan muka laut paling terasa saat badai datang. Geser kenaikan muka laut unt
       Jangkauan air ke darat (dalam meter) terhadap kenaikan muka laut <InlineMath math="x" /> (sentimeter) di pantai yang naik <InlineMath math="1\text{ m}" /> tiap <InlineMath math="20\text{ m}" /> untuk air tenang (ungu) dan gelombang badai <InlineMath math="1\text{ m}" /> (merah muda).
     </>
   }
-  footer={<>Tiap 50 cm kenaikan laut menggeser air tenang dan gelombang badai 10 m ke darat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 108 }, y: { min: -2, max: 46 } },
@@ -240,6 +234,9 @@ Kenaikan muka laut paling terasa saat badai datang. Geser kenaikan muka laut unt
       { id: "calm", kind: "function", appearance: "secondary", formula: "0.2 * x", domain: { min: 0, max: 100 } },
       { id: "pt-s", kind: "point", appearance: "warning", at: { x: 50, y: 30 } },
       { id: "pt-c", kind: "point", appearance: "secondary", at: { x: 50, y: 10 } },
+      { id: "probe-line", kind: "path", appearance: "reference", points: [{ x: "r", y: "0" }, { x: "r", y: "20 + 0.2 * r" }] },
+      { id: "probe-storm", kind: "marker", appearance: "warning", x: "r", y: "20 + 0.2 * r" },
+      { id: "probe-calm", kind: "marker", appearance: "secondary", x: "r", y: "0.2 * r" },
     ],
     readouts: [
       { key: "storm-reach", formula: "20 + 0.2 * r" },

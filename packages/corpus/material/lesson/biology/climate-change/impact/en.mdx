@@ -50,7 +50,6 @@ In the illustrative case below, the amber line is that weekly excess, and the pi
 <MathVisual
   title={<>Heat Stress Adds Up on a Reef</>}
   description={<>An illustrative six-week marine heatwave. Horizontal: week. Vertical: degrees above the bleaching threshold (amber) and their running sum in °C-weeks (pink).</>}
-  footer={<>Six warm weeks accumulate 9 C-weeks, crossing both bleaching thresholds.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 10 } },
@@ -96,7 +95,6 @@ Reef scientists add up heat stress. Every week the water is at least <InlineMath
 <MathVisual
   title={<>Heat Stress Adds Up Week by Week</>}
   description={<>Degree heating weeks over <InlineMath math="12" /> illustrative weeks. Horizontal: weeks. Vertical: accumulated heat stress in <InlineMath math="^\circ\mathrm{C}" /> weeks.</>}
-  footer={<>Stress passes 4 C-weeks in week 6 and 8 C-weeks in week 8, pausing in cool weeks.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 10 } },
@@ -134,7 +132,6 @@ You can test heat stress yourself in the reef tank below. Its corals come from a
 <CoralBleachLab
   title={<>Heat Stress Bleaches Corals</>}
   description={<>Set the water temperature and how many weeks it stays there. Watch the corals lose their color.</>}
-  footer={<>Raising water temperature or heatwave duration pushes corals past bleaching limits.</>}
   labels={{
     temperature: "Water temperature",
     weeks: "Weeks at this temperature",
@@ -171,7 +168,6 @@ In wildlife, climate change can **shift the geographic range** in which a specie
 <Mermaid
   title={<>Pathway of Climate Change Impacts</>}
   description={<>Order the changes in water and habitat, organism responses, population changes, and risks to people.</>}
-  footer={<>Physical climate shifts ripple through habitats, food webs, and human health.</>}
   chart={`flowchart LR
     A["Heat or rain changes"] --> B["Water and habitat change"]
     B --> C["Organisms are stressed"]
@@ -192,7 +188,6 @@ On a gentle coast the land rises slowly, so a small rise in sea level moves the 
 <MathVisual
   title={<>Half a Meter Up, Fifty Meters In</>}
   description={<>A gentle coast in cross-section, with the height stretched so the slope is visible. Horizontal: one grid step is <InlineMath math="10" /> meters. Vertical: one grid step is <InlineMath math="0.25" /> meters.</>}
-  footer={<>On a 1% slope, a 0.5 m sea-level rise pushes the shoreline 50 m inland.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.5, max: 10.5 }, y: { min: -1, max: 4.5 } },
@@ -227,7 +222,6 @@ Rising seas matter most when a storm comes. Slide the sea-level rise to compare 
       Inland water reach (in meters) versus sea-level rise <InlineMath math="x" /> (in centimeters) on a beach rising <InlineMath math="1\text{ m}" /> every <InlineMath math="20\text{ m}" /> for calm water (violet) and a <InlineMath math="1\text{ m}" /> storm surge (pink).
     </>
   }
-  footer={<>Each 50 cm of sea-level rise shifts both calm water and storm surge 10 m inland.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 108 }, y: { min: -2, max: 46 } },
@@ -240,6 +234,9 @@ Rising seas matter most when a storm comes. Slide the sea-level rise to compare 
       { id: "calm", kind: "function", appearance: "secondary", formula: "0.2 * x", domain: { min: 0, max: 100 } },
       { id: "pt-s", kind: "point", appearance: "warning", at: { x: 50, y: 30 } },
       { id: "pt-c", kind: "point", appearance: "secondary", at: { x: 50, y: 10 } },
+      { id: "probe-line", kind: "path", appearance: "reference", points: [{ x: "r", y: "0" }, { x: "r", y: "20 + 0.2 * r" }] },
+      { id: "probe-storm", kind: "marker", appearance: "warning", x: "r", y: "20 + 0.2 * r" },
+      { id: "probe-calm", kind: "marker", appearance: "secondary", x: "r", y: "0.2 * r" },
     ],
     readouts: [
       { key: "storm-reach", formula: "20 + 0.2 * r" },

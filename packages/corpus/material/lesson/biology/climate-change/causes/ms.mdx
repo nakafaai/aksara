@@ -59,7 +59,6 @@ Dalam model buku teks yang ringkas, setiap lapisan gas rumah hijau menyerap semu
 <MathVisual
   title={<>Lebih Banyak Lapisan, Tanah Lebih Panas</>}
   description={<>Suhu permukaan tanah dalam model lapisan dengan sifar, satu dan dua lapisan yang menyerap sepenuhnya. Satu petak grid ke atas bersamaan <InlineMath math="50" /> kelvin.</>}
-  footer={<>Satu lapisan penyerap sudah menaikkan suhu tanah daripada 255 K kepada 303 K.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
@@ -91,7 +90,6 @@ Tiga gas rumah hijau utama daripada aktiviti manusia ialah <InlineMath math="\ma
       Setara pemanasan <InlineMath math="100" /> tahun (dalam <InlineMath math="\mathrm{kg\ CO_2e}" />) berbanding jisim gas <InlineMath math="x" /> (gram) bagi <InlineMath math="\mathrm{N_2O}" /> (merah jambu), <InlineMath math="\mathrm{CH_4}" /> (jingga) dan <InlineMath math="\mathrm{CO_2}" /> (kelabu).
     </>
   }
-  footer={<>Dalam 100 tahun, 10 g N2O setara 2.73 kg CO2 dan CH4 setara 0.30 kg CO2.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: -0.2, max: 3.2 } },
@@ -106,6 +104,10 @@ Tiga gas rumah hijau utama daripada aktiviti manusia ialah <InlineMath math="\ma
       { id: "pt-n2o", kind: "point", appearance: "warning", at: { x: 10, y: 2.73 } },
       { id: "pt-ch4", kind: "point", appearance: "primary", at: { x: 10, y: 0.3 } },
       { id: "pt-co2", kind: "point", appearance: "reference", at: { x: 10, y: 0.01 } },
+      { id: "probe-m", kind: "path", appearance: "reference", points: [{ x: "m", y: "0" }, { x: "m", y: "0.273 * m" }] },
+      { id: "probe-n2o", kind: "marker", appearance: "warning", x: "m", y: "0.273 * m" },
+      { id: "probe-ch4", kind: "marker", appearance: "primary", x: "m", y: "0.03 * m" },
+      { id: "probe-co2", kind: "marker", appearance: "reference", x: "m", y: "0.001 * m" },
     ],
     readouts: [
       { key: "n2o-eq", formula: "0.273 * m" },
@@ -148,7 +150,6 @@ Gas memasak dalam tong (LPG) ialah campuran propana dan butana. Apabila gas ini 
       Bilangan molekul <InlineMath math="\mathrm{CO_2}" /> yang dibebaskan berbanding molekul <InlineMath math="\mathrm{O_2}" /> yang digunakan apabila membakar propana (jingga, <InlineMath math="3/5" />) berbanding metana (ungu, <InlineMath math="1/2" />).
     </>
   }
-  footer={<>Setiap 5 molekul O2 bagi propana menghasilkan 3 CO2, bagi metana 2.5 CO2.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 16 }, y: { min: 0, max: 10 } },
@@ -161,6 +162,9 @@ Gas memasak dalam tong (LPG) ialah campuran propana dan butana. Apabila gas ini 
       { id: "methane", kind: "function", appearance: "secondary", formula: "0.5 * x", domain: { min: 0, max: 15 } },
       { id: "pt-p", kind: "point", appearance: "primary", at: { x: 10, y: 6 } },
       { id: "pt-m", kind: "point", appearance: "secondary", at: { x: 10, y: 5 } },
+      { id: "probe-k", kind: "path", appearance: "reference", points: [{ x: "k", y: "0" }, { x: "k", y: "0.6 * k" }] },
+      { id: "probe-p", kind: "marker", appearance: "primary", x: "k", y: "0.6 * k" },
+      { id: "probe-m", kind: "marker", appearance: "secondary", x: "k", y: "0.5 * k" },
     ],
     readouts: [
       { key: "propane-co2", formula: "0.6 * k" },
@@ -211,7 +215,6 @@ Plastik dikaitkan dengan [pelepasan sepanjang kitar hayatnya](https://www.oecd.o
 <Mermaid
   title={<>Tiga Laluan Karbon Menambah Pemanasan</>}
   description={<>Kaitkan bahan api fosil, sisa organik dan kehilangan hutan dengan perubahan gas atau penyerap karbon yang menahan lebih banyak haba.</>}
-  footer={<>Bahan api fosil, sisa kurang oksigen dan kehilangan hutan menambah pemanasan.</>}
   chart={`flowchart LR
     A["Bahan api fosil"] --> B["Karbon dioksida"]
     C["Sisa organik mereput dengan sedikit oksigen"] --> D["Metana"]
@@ -226,7 +229,6 @@ Bayangkan udara sebagai sebuah tab mandi: pelepasan menuang karbon masuk, manaka
 <MathVisual
   title={<>Kurang Penyerapan, Karbon Lebih Cepat Bertimbun</>}
   description={<>Karbon tambahan di udara dalam model tab mandi contoh, dengan hutan yang utuh (kelabu) dan selepas penebangan (merah jambu). Paksi mengufuk: tahun. Paksi menegak: satu petak grid bersamaan <InlineMath math="10" /> unit karbon.</>}
-  footer={<>Penyerapan turun dari 5 ke 3 menaikkan baki karbon tahunan dari 5 ke 7.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 7.5 } },

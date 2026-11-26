@@ -50,8 +50,10 @@ misses an element below is not finished.
    folder in every subject holds at least three distinct custom scenes across
    its sections, and aims for five: Visual Catalog figures drawn in three.js or
    p5, or animated labs. Every custom visual component is unique to its lesson
-   (zero cross-lesson reuse and zero within-lesson filler repetition), and
-   every visual card carries an authored `footer` (D3). `MathVisual`, the
+   (zero cross-lesson reuse and zero within-lesson filler repetition), every
+   `MathVisual` slider visibly drives at least one scene object, and no visual
+   card passes a plain-text `footer` prop (structured key-value readouts belong
+   to the component's single footer band). `MathVisual`, the
    charts, Mermaid diagrams, tables, and videos come on top and never count
    toward the three. Every main idea a learner can see gets its own
    interactive visual, usually one in each teaching section, and the lesson
@@ -121,8 +123,8 @@ invented context never count toward it.
    job. Keep every one, fixing any that is wrong, and add a unique custom
    visual for each main idea that has none. Never reuse a custom lab from
    another lesson or repeat a custom lab as filler inside one lesson; build a
-   dedicated component when needed under [visuals](visuals.md). Write an
-   authored `footer` for every visual card. A rewrite never ends with fewer
+   dedicated component when needed under [visuals](visuals.md). Never pass a
+   plain-text `footer` prop on a visual card. A rewrite never ends with fewer
    interactive visuals than it started with.
 4. Rewrite the Indonesian lesson to this standard through the
    [editorial workflow](editorial.md), then recreate English, Malay, and German

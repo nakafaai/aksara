@@ -65,7 +65,6 @@ Satu tahun yang sejuk tidak membatalkan tren pemanasan. Nilai tahunan di sini na
 <MathVisual
   title={<>Tiap Tahun Naik Turun, Puluhan Tahun Naik</>}
   description={<>Selisih suhu tahunan ilustratif selama <InlineMath math="40" /> tahun beserta garis trennya. Mendatar: satu kotak grid berarti <InlineMath math="4" /> tahun. Tegak: satu kotak grid berarti <InlineMath math="0{,}2\ ^\circ\mathrm{C}" />.</>}
-  footer={<>Suhu tahunan naik turun sementara garis tren 40 tahun naik +0,8 C.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 5.5 } },
@@ -96,7 +95,6 @@ Catatan udara yang panjang memperlihatkan penyebab di balik gejala-gejala ini. S
       Persentase kenaikan <InlineMath math="\mathrm{CO_2}" /> atmosfer di atas acuan praindustri <InlineMath math="280\text{ ppm}" /> terhadap tahun sesudah 1960 (<InlineMath math="x=0" /> sampai <InlineMath math="64" /> untuk 1960 sampai 2024).
     </>
   }
-  footer={<>CO2 udara naik dari 13% di atas praindustri pada 1960 menjadi 52% pada 2024.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2, max: 70 }, y: { min: -2, max: 58 } },
@@ -109,6 +107,8 @@ Catatan udara yang panjang memperlihatkan penyebab di balik gejala-gejala ini. S
       { id: "co2", kind: "function", appearance: "primary", formula: "13.2 + 0.303 * x + 0.00464 * x^2", domain: { min: 0, max: 64 } },
       { id: "now", kind: "point", appearance: "warning", at: { x: 64, y: 51.6 } },
       { id: "start", kind: "point", appearance: "secondary", at: { x: 0, y: 13.2 } },
+      { id: "probe-n", kind: "path", appearance: "reference", points: [{ x: "n", y: "0" }, { x: "n", y: "13.2 + 0.303 * n + 0.00464 * n^2" }] },
+      { id: "probe-co2", kind: "marker", appearance: "highlight", x: "n", y: "13.2 + 0.303 * n + 0.00464 * n^2" },
     ],
     readouts: [
       { key: "rise-pct", formula: "13.2 + 0.303 * n + 0.00464 * n^2" },
@@ -163,7 +163,6 @@ Alat pengukur pasang surut di seluruh dunia sudah mengukur laut selama lebih dar
       Laju kenaikan muka laut global IPCC (dalam <InlineMath math="\mathrm{mm/tahun}" />) terhadap dekade sejak 1901 (<InlineMath math="x=0" /> sampai <InlineMath math="11{,}7" /> untuk 1901 sampai 2018), membandingkan rata-rata periode (oranye) dengan kurva percepatan (ungu).
     </>
   }
-  footer={<>Laju kenaikan muka laut meningkat dari 1,3 ke 1,9 lalu 3,7 mm/tahun.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 4.5 } },
@@ -176,6 +175,8 @@ Alat pengukur pasang surut di seluruh dunia sudah mengukur laut selama lebih dar
       { id: "p2", kind: "segment", appearance: "primary", from: { x: 7, y: 1.9 }, to: { x: 10.5, y: 1.9 } },
       { id: "p3", kind: "segment", appearance: "warning", from: { x: 10.5, y: 3.7 }, to: { x: 11.7, y: 3.7 } },
       { id: "curve", kind: "function", appearance: "secondary", formula: "1.2 + 0.0014 * x^3", domain: { min: 0, max: 11.7 } },
+      { id: "probe-d", kind: "path", appearance: "reference", points: [{ x: "d", y: "0" }, { x: "d", y: "1.2 + 0.0014 * d^3" }] },
+      { id: "probe-rate", kind: "marker", appearance: "highlight", x: "d", y: "1.2 + 0.0014 * d^3" },
     ],
     readouts: [
       { key: "trend-rate", formula: "1.2 + 0.0014 * d^3" },
@@ -206,7 +207,6 @@ Suhu, panas laut, es, hujan, kekeringan, dan kejadian pesisir harus dibandingkan
 <Mermaid
   title={<>Data Iklim dari Beberapa Indikator</>}
   description={<>Bandingkan catatan jangka panjang tentang suhu, laut, es, dan pola ekstrem sebelum menilai perubahan iklim.</>}
-  footer={<>Kesesuaian empat catatan panjang yang terpisah memperkuat bukti iklim.</>}
   chart={`flowchart LR
     A["Data jangka panjang"] --> B["Suhu rata-rata"]
     A --> C["Panas laut"]
@@ -223,7 +223,6 @@ Geser seluruh sebaran suhu harian naik <InlineMath math="1\ ^\circ\mathrm{C}" />
 <MathVisual
   title={<>Geser Sedikit, Hari Panas Jauh Lebih Banyak</>}
   description={<>Kurva lonceng selisih suhu harian sebelum (abu-abu) dan sesudah (oranye) bergeser <InlineMath math="1\ ^\circ\mathrm{C}" />. Mendatar: derajat dari rata-rata lama. Tegak: seberapa sering tiap nilai muncul.</>}
-  footer={<>Pergeseran +1 C menaikkan hari panas ekstrem dari 2,3% menjadi 15,9%.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 5.5 }, y: { min: -0.3, max: 5 } },

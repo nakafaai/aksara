@@ -1,10 +1,10 @@
 import { issueAtOffset } from "#nakafa-content/math/finding";
 
 type PointsRule =
+  | "banned-visual-footer"
   | "interactive-visuals-fell"
   | "literal-points"
-  | "long-decimal"
-  | "missing-visual-footer";
+  | "long-decimal";
 
 /** One violation of the points gate at a position inside one document. */
 export interface PointsFinding {

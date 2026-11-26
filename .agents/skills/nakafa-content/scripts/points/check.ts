@@ -25,7 +25,7 @@ import { PointsCheckError, unreadable } from "#nakafa-content/points/error";
 import { figureCorrections, keptScenes } from "#nakafa-content/points/figure";
 import { collectFiles } from "#nakafa-content/points/files";
 import type { PointsFinding } from "#nakafa-content/points/finding";
-import { findMissingFooters } from "#nakafa-content/points/footer";
+import { findBannedFooters } from "#nakafa-content/points/footer";
 import { findLiteralPoints } from "#nakafa-content/points/literal";
 import type { CheckOptions } from "#nakafa-content/points/options";
 import { parseOptions } from "#nakafa-content/points/options";
@@ -168,7 +168,7 @@ const checkPoints = Effect.fn("PointsCheck.checkPoints")(function* (
       }
     }
     if (options.all || (HashSet.has(touchedSet, file) && !figureOnly)) {
-      found.push(...findMissingFooters(tree));
+      found.push(...findBannedFooters(tree));
     }
     findings.push(
       ...found.sort(byPosition).map((entry) => ({ ...entry, file }))

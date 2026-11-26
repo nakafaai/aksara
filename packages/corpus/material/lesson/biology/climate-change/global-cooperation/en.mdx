@@ -37,7 +37,6 @@ The scene below spends that budget at a round <InlineMath math="40" /> billion t
 <MathVisual
   title={<>Two Ways to Spend One Carbon Budget</>}
   description={<>A <InlineMath math="500" /> <InlineMath math="\mathrm{GtCO_2}" /> budget spent from <InlineMath math="40" /> <InlineMath math="\mathrm{GtCO_2}" /> per year. Horizontal: years after 2020. Vertical: yearly emissions in <InlineMath math="\mathrm{GtCO_2}" />.</>}
-  footer={<>Steady emissions exhaust 500 GtCO2 in 12.5 years, while linear cuts double that to 25.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2, max: 36 }, y: { min: -2, max: 46 } },
@@ -62,7 +61,6 @@ A temperature target becomes a common measure once you turn it into a budget. Th
 <MathVisual
   title={<>Each Target Has Its Own Budget</>}
   description={<>Remaining carbon dioxide budgets from 2020 for a <InlineMath math="50" /> percent chance of three warming limits. Each label divides the budget by <InlineMath math="40\ \mathrm{GtCO_2}" /> per year. One grid step up is <InlineMath math="250\ \mathrm{GtCO_2}" />.</>}
-  footer={<>Higher warming limits leave larger budgets, from 12.5 years at 1.5 C to 33.75 at 2 C.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
@@ -90,7 +88,6 @@ Temperature targets matter for every coast. The village below shows what each em
 <SeaLevelRiseLab
   title={<>Sea Level in 2100 Depends on the Pathway</>}
   description={<>Choose a pathway. The sea rises to its median for 2100, compared with the 1995 to 2014 average.</>}
-  footer={<>Stronger collective cuts hold 2100 sea-level rise near 0.44 m instead of 0.77 m.</>}
   mode="scenario"
   labels={{
     choose: "Choose a pathway",
@@ -140,7 +137,6 @@ One country's cuts cannot hold the climate on their own, because <InlineMath mat
       Percentage change in year-2100 <InlineMath math="\mathrm{CO_2}" /> relative to today's <InlineMath math="425\text{ ppm}" /> versus the share <InlineMath math="x" /> (in <InlineMath math="\%" />) of global fossil emissions cut to zero by 2050.
     </>
   }
-  footer={<>CO2 only falls below today's 425 ppm by 2100 once over 55% of global emissions are cut.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 110 }, y: { min: -24, max: 30 } },
@@ -153,6 +149,8 @@ One country's cuts cannot hold the climate on their own, because <InlineMath mat
       { id: "curve", kind: "function", appearance: "primary", formula: "22.6 - 0.407 * x", domain: { min: 0, max: 100 } },
       { id: "china", kind: "point", appearance: "warning", at: { x: 31, y: 10 } },
       { id: "all", kind: "point", appearance: "secondary", at: { x: 100, y: -18.1 } },
+      { id: "probe-p", kind: "path", appearance: "reference", points: [{ x: "p", y: "0" }, { x: "p", y: "22.6 - 0.407 * p" }] },
+      { id: "probe-co2", kind: "marker", appearance: "highlight", x: "p", y: "22.6 - 0.407 * p" },
     ],
     readouts: [
       { key: "co2-2100", formula: "521 - 1.73 * p" },
@@ -183,7 +181,6 @@ International and national policy set the larger conditions. Understanding data,
 <Mermaid
   title={<>From Global Goals to National Plans</>}
   description={<>The diagram connects the global temperature goal with national plans, transparency reports, the global stocktake, and updated national plans.</>}
-  footer={<>National plans, transparency reports, and stocktakes loop to tighten climate action.</>}
   chart={`flowchart LR
     A["Shared temperature goal"] --> B["National NDC"]
     B --> C["Transparency report"]
@@ -210,7 +207,6 @@ The cycle runs on two clocks that both tick every five years, three years apart.
 <MathVisual
   title={<>Each Stocktake Feeds the Next Plans</>}
   description={<>Years of national plans (top row) and global stocktakes (bottom row) under the Paris Agreement. One grid step across is <InlineMath math="2" /> years.</>}
-  footer={<>Every stocktake arrives two years before the next NDC round to inform stronger pledges.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 3 } },
