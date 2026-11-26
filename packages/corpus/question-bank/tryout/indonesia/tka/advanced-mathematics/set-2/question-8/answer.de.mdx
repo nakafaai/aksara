@@ -1,3 +1,17 @@
+# Gegeben
+
+**Die Funktionen** **<InlineMath math="f(x) = 2x + 1" />** und **<InlineMath math="g(x)" />** bilden eine umkehrbare Verkettung <InlineMath math="f \circ g" />.
+
+<BlockMath math="g(x) = \frac{x - 3}{x}" />
+
+# Gesucht
+
+Der **Wert von** <InlineMath math="(f \circ g)^{-1}(5)" />.
+
+# Lösung
+
+> Du brauchst keine komplette Umkehrfunktion aufzustellen, sondern suchst einfach das x, das auf fünf abgebildet wird.
+
 Der Wert <InlineMath math="(f\circ g)^{-1}(5)" /> ist **die Zahl <InlineMath math="x" />, die <InlineMath math="f\circ g" /> auf <InlineMath math="5" /> abbildet**. Du brauchst also keine Formel für die Umkehrfunktion. Löse einfach <InlineMath math="f\big(g(x)\big)=5" /> von außen nach innen.
 
 Die äußere Schicht ist <InlineMath math="f" />. Bestimme den Wert von <InlineMath math="g(x)" />, für den <InlineMath math="f" /> den Wert <InlineMath math="5" /> hat.
@@ -24,13 +38,26 @@ Das Diagramm zeigt beide Richtungen. **Der Hinweg geht zuerst durch <InlineMath 
   G -.->|"g⁻¹"| X`}
 />
 
-Probe: <InlineMath math="g(-3)=\frac{-6}{-3}=2" /> und <InlineMath math="f(2)=5" />, also <InlineMath math="(f\circ g)(-3)=5" />.
+Probe: <InlineMath math="2" /> und <InlineMath math="f(2)=5" />, also <InlineMath math="(f\circ g)(-3)=5" />.
 
-Ein anderer Weg nutzt <InlineMath math="(f\circ g)^{-1}=g^{-1}\circ f^{-1}" />: <InlineMath math="f^{-1}(5)=2" />, dann <InlineMath math="g^{-1}(2)=-3" />. Die Reihenfolge ist umgekehrt zur ursprünglichen Verkettung.
+<BlockMath math="g(-3)=\frac{-6}{-3}=2" />
 
-Also ist <InlineMath math="(f\circ g)^{-1}(5)=-3" />.
+Ein anderer Weg nutzt die folgende Gleichung: <InlineMath math="f^{-1}(5)=2" />, dann <InlineMath math="g^{-1}(2)=-3" />. Die Reihenfolge ist umgekehrt zur ursprünglichen Verkettung.
+
+<BlockMath math="(f\circ g)^{-1}=g^{-1}\circ f^{-1}" />
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="\frac95" /> berechnet <InlineMath math="(f\circ g)(5)=f\left(\frac25\right)" />, also die Funktion statt der Umkehrfunktion.
-- <InlineMath math="-\frac78" /> verwendet die falsche Reihenfolge, <InlineMath math="f^{-1}\big(g^{-1}(5)\big)=f^{-1}\left(-\frac34\right)" />.
+- <InlineMath math="-\frac78" /> verwendet die falsche Reihenfolge, die folgende Gleichung.
+
+  <BlockMath math="f^{-1}\big(g^{-1}(5)\big)=f^{-1}\left(-\frac34\right)" />
+
 - <InlineMath math="2" /> bleibt bei <InlineMath math="f^{-1}(5)" /> stehen und macht <InlineMath math="g" /> nicht rückgängig.
 - <InlineMath math="-\frac34" /> ist <InlineMath math="g^{-1}(5)" />, ohne zuerst <InlineMath math="f" /> rückgängig zu machen.
+
+# Antwort
+
+Also ist <InlineMath math="(f\circ g)^{-1}(5)=-3" />.

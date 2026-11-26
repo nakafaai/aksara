@@ -1,3 +1,15 @@
+# Diketahui
+
+Dua matriks <InlineMath math="2\times2" />, yaitu **matriks** <InlineMath math="A" /> dan matriks <InlineMath math="B" />, diuji lewat empat pernyataan operasi matriks.
+
+# Ditanyakan
+
+Kategori **Benar** atau **Salah** untuk setiap pernyataan tentang transpos, determinan, dan perkalian matriks.
+
+# Penyelesaian
+
+> Hitung determinan kedua matriks sekali di awal dan ingat bahwa perkalian matriks pada umumnya tidak bisa dibalik urutannya.
+
 Keempat pernyataan menguji **sifat dasar operasi matriks**: transpos, determinan invers, determinan kelipatan, dan sifat tidak komutatif perkalian. Hitung dulu dua determinan yang dipakai berulang kali.
 
 <BlockMath math="\begin{aligned}
@@ -34,9 +46,18 @@ Determinan adalah faktor perubahan luas. **Matriks <InlineMath math="B" /> mengu
   }}
 />
 
-1. Pernyataan tentang <InlineMath math="(A+B)^T" /> benar. Jumlahkan entri yang seletak, lalu tukar baris menjadi kolom: <InlineMath math="A+B=\begin{pmatrix} 2 & 0 \\ 2 & 8 \end{pmatrix}" />, sehingga transposnya <InlineMath math="\begin{pmatrix} 2 & 2 \\ 0 & 8 \end{pmatrix}" />.
-2. Pernyataan <InlineMath math="\det\left(A^{-1}\right)=10" /> salah. Karena <InlineMath math="AA^{-1}=I" />, berlaku <InlineMath math="\det A\cdot\det\left(A^{-1}\right)=1" />, jadi <InlineMath math="\det\left(A^{-1}\right)=\frac{1}{10}" />.
-3. Pernyataan <InlineMath math="\det(2B)=8" /> benar. Faktor <InlineMath math="2" /> masuk ke kedua baris matriks berordo <InlineMath math="2\times2" />, sehingga <InlineMath math="\det(2B)=2^2\det B=4\cdot2=8" />.
+1. Pernyataan tentang <InlineMath math="(A+B)^T" /> benar. Jumlahkan entri yang seletak, lalu tukar baris menjadi kolom: matriks berikut, sehingga transposnya matriks berikut.
+
+   <BlockMath math="\begin{gathered} A+B=\begin{pmatrix} 2 & 0 \\ 2 & 8 \end{pmatrix} \\ \begin{pmatrix} 2 & 2 \\ 0 & 8 \end{pmatrix} \end{gathered}" />
+
+2. Pernyataan <InlineMath math="\det\left(A^{-1}\right)=10" /> salah. Karena <InlineMath math="AA^{-1}=I" />, berlaku <InlineMath math="\det A\cdot\det\left(A^{-1}\right)=1" />, jadi <InlineMath math="\frac{1}{10}" />.
+
+   <BlockMath math="\det\left(A^{-1}\right)=\frac{1}{10}" />
+
+3. Pernyataan <InlineMath math="\det(2B)=8" /> benar. Faktor <InlineMath math="2" /> masuk ke kedua baris matriks berordo <InlineMath math="2\times2" />, sehingga <InlineMath math="\det(2B)=8" />.
+
+   <BlockMath math="\det(2B)=2^2\det B=4\cdot2=8" />
+
 4. Pernyataan <InlineMath math="AB=BA" /> salah. Hitung kedua hasil kali.
 
 <BlockMath math="\begin{aligned}
@@ -44,6 +65,10 @@ AB&=\begin{pmatrix} 2\cdot0+(-1)(-2) & 2\cdot1+(-1)\cdot5 \\ 4\cdot0+3\cdot(-2) 
 BA&=\begin{pmatrix} 0\cdot2+1\cdot4 & 0\cdot(-1)+1\cdot3 \\ -2\cdot2+5\cdot4 & -2\cdot(-1)+5\cdot3 \end{pmatrix}=\begin{pmatrix} 4 & 3 \\ 16 & 17 \end{pmatrix}
 \end{aligned}" />
 
-Entri-entrinya berbeda, jadi <InlineMath math="AB\ne BA" />. Perhatikan bahwa determinan keduanya tetap sama, yaitu <InlineMath math="20" />, karena <InlineMath math="\det(AB)=\det(BA)=\det A\cdot\det B" />. Determinan yang sama tidak berarti matriksnya sama.
+Entri-entrinya berbeda, jadi <InlineMath math="AB\ne BA" />. Perhatikan bahwa determinan keduanya tetap sama, yaitu <InlineMath math="20" />, karena <InlineMath math="\det(AB)=\det A\cdot\det B" />. Determinan yang sama tidak berarti matriksnya sama.
+
+<BlockMath math="\det(AB)=\det(BA)=\det A\cdot\det B" />
+
+# Jawaban
 
 Jadi, pernyataan tentang <InlineMath math="(A+B)^T" /> dan <InlineMath math="\det(2B)" /> benar, sedangkan pernyataan tentang <InlineMath math="\det\left(A^{-1}\right)" /> dan <InlineMath math="AB=BA" /> salah.

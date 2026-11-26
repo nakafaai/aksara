@@ -1,3 +1,15 @@
+# Gegeben
+
+Zwei <InlineMath math="2\times2" />-Matrizen, **Matrix** <InlineMath math="A" /> und Matrix <InlineMath math="B" />, erfüllen die Gleichung **<InlineMath math="XA = B" />**.
+
+# Gesucht
+
+Die <InlineMath math="2\times2" />-**Matrix** <InlineMath math="X" /> als Lösung der Gleichung.
+
+# Lösung
+
+> Da man Matrizen beim Multiplizieren nicht vertauschen darf, multipliziere beide Seiten von rechts mit der Inversen von A.
+
 Die Matrix <InlineMath math="X" /> steht **links von** <InlineMath math="A" />. Die Matrizenmultiplikation ist nicht kommutativ, also entfernst du <InlineMath math="A" />, indem du beide Seiten **von rechts** mit <InlineMath math="A^{-1}" /> multiplizierst. Das geht nur, wenn <InlineMath math="A" /> invertierbar ist, deshalb prüfst du zuerst die Determinante.
 
 <BlockMath math="\det A=3\cdot2-1\cdot5=1" />
@@ -31,9 +43,28 @@ Zur Kontrolle berechnest du <InlineMath math="XA" />.
 
 <BlockMath math="\begin{pmatrix} 3 & -1 \\ 2 & -1 \end{pmatrix}\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}=\begin{pmatrix} 9-5 & 3-2 \\ 6-5 & 2-2 \end{pmatrix}=\begin{pmatrix} 4 & 1 \\ 1 & 0 \end{pmatrix}=B" />
 
-Die Matrix <InlineMath math="X" /> ist also <InlineMath math="\begin{pmatrix} 3 & -1 \\ 2 & -1 \end{pmatrix}" />.
+## Häufige Fehlerquellen
 
-- <InlineMath math="\begin{pmatrix} 7 & 2 \\ -17 & -5 \end{pmatrix}" /> ist <InlineMath math="A^{-1}B" />. Diese Matrix löst <InlineMath math="AX=B" />, nicht <InlineMath math="XA=B" />, weil die Reihenfolge der Faktoren vertauscht ist.
-- <InlineMath math="\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}" /> ist nur <InlineMath math="A^{-1}" />. Die Multiplikation mit <InlineMath math="B" /> fehlt.
-- <InlineMath math="\begin{pmatrix} 13 & 7 \\ 2 & 1 \end{pmatrix}" /> entsteht, wenn die Vorzeichen der Nebenelemente nicht geändert werden. Dann wird <InlineMath math="\begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix}" /> statt <InlineMath math="A^{-1}" /> verwendet.
-- <InlineMath math="\begin{pmatrix} 17 & 6 \\ 3 & 1 \end{pmatrix}" /> ist <InlineMath math="BA" />. Dieses Ergebnis entsteht, wenn <InlineMath math="B" /> mit <InlineMath math="A" /> statt mit <InlineMath math="A^{-1}" /> multipliziert wird. Nur die Inverse hebt <InlineMath math="A" /> auf.
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
+- die folgende Matrix ist <InlineMath math="A^{-1}B" />. Diese Matrix löst <InlineMath math="AX=B" />, nicht <InlineMath math="XA=B" />, weil die Reihenfolge der Faktoren vertauscht ist.
+
+  <BlockMath math="\begin{pmatrix} 7 & 2 \\ -17 & -5 \end{pmatrix}" />
+
+- die folgende Matrix ist nur <InlineMath math="A^{-1}" />. Die Multiplikation mit <InlineMath math="B" /> fehlt.
+
+  <BlockMath math="\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}" />
+
+- die folgende Matrix entsteht, wenn die Vorzeichen der Nebenelemente nicht geändert werden. Dann wird die folgende Matrix statt <InlineMath math="A^{-1}" /> verwendet.
+
+  <BlockMath math="\begin{gathered} \begin{pmatrix} 13 & 7 \\ 2 & 1 \end{pmatrix} \\ \begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix} \end{gathered}" />
+
+- die folgende Matrix ist <InlineMath math="BA" />. Dieses Ergebnis entsteht, wenn <InlineMath math="B" /> mit <InlineMath math="A" /> statt mit <InlineMath math="A^{-1}" /> multipliziert wird. Nur die Inverse hebt <InlineMath math="A" /> auf.
+
+  <BlockMath math="\begin{pmatrix} 17 & 6 \\ 3 & 1 \end{pmatrix}" />
+
+# Antwort
+
+Die Matrix <InlineMath math="X" /> ist also die folgende Matrix.
+
+<BlockMath math="\begin{pmatrix} 3 & -1 \\ 2 & -1 \end{pmatrix}" />

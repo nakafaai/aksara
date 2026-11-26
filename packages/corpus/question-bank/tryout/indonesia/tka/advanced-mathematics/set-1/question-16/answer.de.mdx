@@ -1,3 +1,15 @@
+# Gegeben
+
+**Ein Scheibenwischer überstreicht** **<InlineMath math="120^\circ" />** mit innerem Radius **<InlineMath math="15\text{ cm}" />** und äußerem Radius **<InlineMath math="60\text{ cm}" />**.
+
+# Gesucht
+
+Die **vom Wischerblatt überstrichene Glasfläche** bei einem Wischvorgang.
+
+# Lösung
+
+> Die gewischte Fläche ist ein großer Kreissektor minus der innere kleine Sektor, also subtrahiere die Quadrate der Radien.
+
 Jeder Punkt des Wischergummis bewegt sich auf einem Kreis um <InlineMath math="O" />. Der nächste Punkt beschreibt einen Bogen mit Radius <InlineMath math="15\text{ cm}" />, der äußerste einen Bogen mit Radius <InlineMath math="60\text{ cm}" />. Die überstrichene Fläche ist ein **Kreisringausschnitt**: ein großer Kreisausschnitt mit Radius <InlineMath math="60\text{ cm}" /> minus ein kleiner mit Radius <InlineMath math="15\text{ cm}" />, beide mit dem Mittelpunktswinkel <InlineMath math="120^\circ" />.
 
 <MathVisual
@@ -36,20 +48,35 @@ Jeder Punkt des Wischergummis bewegt sich auf einem Kreis um <InlineMath math="O
   }}
 />
 
-Ein Kreisausschnitt mit Mittelpunktswinkel <InlineMath math="\alpha" /> und Radius <InlineMath math="r" /> hat den Flächeninhalt <InlineMath math="\frac{\alpha}{360^\circ}\pi r^2" />. Beide Ausschnitte haben denselben Winkel, also kannst du den Faktor <InlineMath math="\frac{120^\circ}{360^\circ}=\frac13" /> ausklammern.
+Ein Kreisausschnitt mit Mittelpunktswinkel <InlineMath math="\alpha" /> und Radius <InlineMath math="r" /> hat den Flächeninhalt der folgende Ausdruck. Beide Ausschnitte haben denselben Winkel, also kannst du den Faktor die folgende Gleichung ausklammern.
 
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+\frac{\alpha}{360^\circ}\pi r^2 \\
+\frac{120^\circ}{360^\circ}=\frac13 \\
+\begin{aligned}
 A&=\frac{120^\circ}{360^\circ}\pi\cdot60^2-\frac{120^\circ}{360^\circ}\pi\cdot15^2 \\
 &=\frac13\pi\left(60^2-15^2\right) \\
 &=\frac13\pi(3{.}600-225) \\
 &=\frac13\pi\cdot3{.}375=1{.}125\pi\text{ cm}^2
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
-Das Ergebnis ist plausibel: Es ist kleiner als der große Ausschnitt, <InlineMath math="\frac13\pi\cdot3{.}600=1{.}200\pi\text{ cm}^2" />, und die Differenz <InlineMath math="75\pi\text{ cm}^2" /> ist genau der kleine Ausschnitt <InlineMath math="\frac13\pi\cdot225" />.
+Das Ergebnis ist plausibel: Es ist kleiner als der große Ausschnitt, die folgende Gleichung, und die Differenz <InlineMath math="75\pi\text{ cm}^2" /> ist genau der kleine Ausschnitt <InlineMath math="\frac13\pi\cdot225" />.
 
-Die Glasfläche, die das Wischergummi bei einem Wischvorgang überstreicht, beträgt also <InlineMath math="1{.}125\pi\text{ cm}^2" />.
+<BlockMath math="\frac13\pi\cdot3{.}600=1{.}200\pi\text{ cm}^2" />
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="675\pi\text{ cm}^2" /> entsteht, wenn zuerst die Radien subtrahiert und dann quadriert werden: <InlineMath math="\frac13\pi(60-15)^2" />. Subtrahiert werden müssen aber die Quadrate der Radien.
 - <InlineMath math="1{.}200\pi\text{ cm}^2" /> ist nur der große Ausschnitt. Er enthält auch den Bereich nahe der Achse, den das Gummi nie berührt.
-- <InlineMath math="2{.}250\pi\text{ cm}^2" /> entsteht, wenn der Winkelanteil als <InlineMath math="\frac{120^\circ}{180^\circ}" /> geschrieben wird, obwohl eine volle Drehung <InlineMath math="360^\circ" /> beträgt.
+- <InlineMath math="2{.}250\pi\text{ cm}^2" /> entsteht, wenn der Winkelanteil als der folgende Ausdruck geschrieben wird, obwohl eine volle Drehung <InlineMath math="360^\circ" /> beträgt.
+
+  <BlockMath math="\frac{120^\circ}{180^\circ}" />
+
 - <InlineMath math="3{.}375\pi\text{ cm}^2" /> ist der Flächeninhalt eines vollen Kreisrings. Der Faktor <InlineMath math="\frac13" /> für den Winkel <InlineMath math="120^\circ" /> fehlt.
+
+# Antwort
+
+Die Glasfläche, die das Wischergummi bei einem Wischvorgang überstreicht, beträgt also <InlineMath math="1{.}125\pi\text{ cm}^2" />.

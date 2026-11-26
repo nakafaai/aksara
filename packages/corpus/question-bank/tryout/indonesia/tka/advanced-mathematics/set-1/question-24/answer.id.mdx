@@ -1,3 +1,17 @@
+# Diketahui
+
+**Limit trigonometri** **ekspresi berikut** diberikan dengan sudut <InlineMath math="x" /> dalam radian.
+
+<BlockMath math="\lim_{x\to 0} \frac{\tan 3x \cdot \sin 2x}{1 - \cos 2x}" />
+
+# Ditanyakan
+
+**Nilai limit** pecahan trigonometri saat <InlineMath math="x" /> menuju nol.
+
+# Penyelesaian
+
+> Ubah satu kurang kosinus dua x menjadi dua sinus kuadrat x supaya semua potongan tangen dan sinus berpasangan rapi dengan x.
+
 Untuk <InlineMath math="x\to0" />, pembilang dan penyebut sama-sama menuju <InlineMath math="0" />. Ubah penyebut dengan **identitas <InlineMath math="1-\cos2x=2\sin^2x" />**. Setelah itu, pecahan dapat dipecah menjadi faktor-faktor yang nilai limitnya sudah dikenal.
 
 <BlockMath math="\begin{aligned}
@@ -5,9 +19,13 @@ Untuk <InlineMath math="x\to0" />, pembilang dan penyebut sama-sama menuju <Inli
 &=\frac12\cdot\frac{\tan3x}{\sin x}\cdot\frac{\sin2x}{\sin x}
 \end{aligned}" />
 
-Dengan <InlineMath math="\lim\limits_{x\to0}\frac{\tan ax}{\sin x}=a" /> dan <InlineMath math="\lim\limits_{x\to0}\frac{\sin bx}{\sin x}=b" /> diperoleh:
+Dengan <InlineMath math="a" /> dan <InlineMath math="b" /> diperoleh.
 
-<BlockMath math="\lim_{x\to0}\frac{\tan3x\cdot\sin2x}{1-\cos2x}=\frac12\cdot3\cdot2=3" />
+<BlockMath math="\begin{gathered}
+\lim\limits_{x\to0}\frac{\tan ax}{\sin x}=a \\
+\lim\limits_{x\to0}\frac{\sin bx}{\sin x}=b \\
+\lim_{x\to0}\frac{\tan3x\cdot\sin2x}{1-\cos2x}=\frac12\cdot3\cdot2=3
+\end{gathered}" />
 
 Gambar fungsi itu untuk <InlineMath math="x" /> kecil di kedua sisi nol. **Kedua cabang turun ke titik yang sama, <InlineMath math="(0,\ 3)" />**, meskipun fungsinya sendiri tidak terdefinisi di <InlineMath math="x=0" />.
 
@@ -41,9 +59,20 @@ Gambar fungsi itu untuk <InlineMath math="x" /> kecil di kedua sisi nol. **Kedua
 
 Sebagai pemeriksaan, untuk <InlineMath math="x" /> kecil, pembilang kira-kira <InlineMath math="3x\cdot2x=6x^2" /> dan penyebut kira-kira <InlineMath math="2x^2" />, jadi hasil baginya kira-kira <InlineMath math="3" />.
 
-Jadi, nilai limitnya adalah <InlineMath math="3" />.
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
 
 - <InlineMath math="0" /> hanya melihat bahwa pembilang menuju <InlineMath math="0" /> dan melupakan bahwa penyebut juga menuju <InlineMath math="0" />.
-- <InlineMath math="\frac32" /> menghampiri penyebut dengan <InlineMath math="(2x)^2=4x^2" /> dan melupakan faktor <InlineMath math="\frac12" /> pada <InlineMath math="1-\cos u\approx\frac{u^2}{2}" />.
+- <InlineMath math="\frac32" /> menghampiri penyebut dengan <InlineMath math="(2x)^2=4x^2" /> dan melupakan faktor <InlineMath math="\frac12" /> pada persamaan berikut.
+
+  <BlockMath math="1-\cos u\approx\frac{u^2}{2}" />
+
 - <InlineMath math="6" /> memakai identitas yang salah, <InlineMath math="1-\cos2x=\sin^2x" />, tanpa faktor <InlineMath math="2" />.
-- <InlineMath math="12" /> memasukkan <InlineMath math="u=x" />, bukan <InlineMath math="u=2x" />, ke <InlineMath math="1-\cos u\approx\frac{u^2}{2}" />.
+- <InlineMath math="12" /> memasukkan <InlineMath math="u=x" />, bukan <InlineMath math="u=2x" />, ke persamaan berikut.
+
+  <BlockMath math="1-\cos u\approx\frac{u^2}{2}" />
+
+# Jawaban
+
+Jadi, nilai limitnya adalah <InlineMath math="3" />.

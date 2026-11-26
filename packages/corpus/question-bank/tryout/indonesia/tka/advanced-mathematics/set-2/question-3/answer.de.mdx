@@ -1,3 +1,15 @@
+# Gegeben
+
+Zwei <InlineMath math="2\times2" />-Matrizen, **Matrix** <InlineMath math="A" /> und Matrix <InlineMath math="B" />, werden mit vier Aussagen geprüft.
+
+# Gesucht
+
+Ob jede Aussage zu Transponierter, Determinante und Produkt **wahr** oder **falsch** ist.
+
+# Lösung
+
+> Berechne beide Determinanten vorab und beachte, dass die Matrixmultiplikation im Allgemeinen nicht kommutativ ist.
+
 Die vier Aussagen prüfen **Grundregeln für Matrizen**: die Transponierte, die Determinante einer Inversen, die Determinante eines Vielfachen und die Tatsache, dass die Matrixmultiplikation nicht kommutativ ist. Berechne zuerst die beiden Determinanten, die du mehrmals brauchst.
 
 <BlockMath math="\begin{aligned}
@@ -34,9 +46,18 @@ Eine Determinante ist ein Flächenfaktor. **Die Matrix <InlineMath math="B" /> m
   }}
 />
 
-1. Die Aussage über <InlineMath math="(A+B)^T" /> ist richtig. Addiere die Einträge an gleicher Stelle und mach dann aus Zeilen Spalten: <InlineMath math="A+B=\begin{pmatrix} 2 & 0 \\ 2 & 8 \end{pmatrix}" />, also ist die Transponierte <InlineMath math="\begin{pmatrix} 2 & 2 \\ 0 & 8 \end{pmatrix}" />.
-2. Die Aussage <InlineMath math="\det\left(A^{-1}\right)=10" /> ist falsch. Aus <InlineMath math="AA^{-1}=I" /> folgt <InlineMath math="\det A\cdot\det\left(A^{-1}\right)=1" />, also <InlineMath math="\det\left(A^{-1}\right)=\frac{1}{10}" />.
-3. Die Aussage <InlineMath math="\det(2B)=8" /> ist richtig. Der Faktor <InlineMath math="2" /> steckt in beiden Zeilen einer <InlineMath math="2\times2" />-Matrix, deshalb gilt <InlineMath math="\det(2B)=2^2\det B=4\cdot2=8" />.
+1. Die Aussage über <InlineMath math="(A+B)^T" /> ist richtig. Addiere die Einträge an gleicher Stelle und mach dann aus Zeilen Spalten: die folgende Matrix, also ist die Transponierte die folgende Matrix.
+
+   <BlockMath math="\begin{gathered} A+B=\begin{pmatrix} 2 & 0 \\ 2 & 8 \end{pmatrix} \\ \begin{pmatrix} 2 & 2 \\ 0 & 8 \end{pmatrix} \end{gathered}" />
+
+2. Die Aussage <InlineMath math="\det\left(A^{-1}\right)=10" /> ist falsch. Aus <InlineMath math="AA^{-1}=I" /> folgt <InlineMath math="\det A\cdot\det\left(A^{-1}\right)=1" />, also <InlineMath math="\frac{1}{10}" />.
+
+   <BlockMath math="\det\left(A^{-1}\right)=\frac{1}{10}" />
+
+3. Die Aussage <InlineMath math="\det(2B)=8" /> ist richtig. Der Faktor <InlineMath math="2" /> steckt in beiden Zeilen einer <InlineMath math="2\times2" />-Matrix, deshalb gilt <InlineMath math="\det(2B)=8" />.
+
+   <BlockMath math="\det(2B)=2^2\det B=4\cdot2=8" />
+
 4. Die Aussage <InlineMath math="AB=BA" /> ist falsch. Berechne beide Produkte.
 
 <BlockMath math="\begin{aligned}
@@ -44,6 +65,10 @@ AB&=\begin{pmatrix} 2\cdot0+(-1)(-2) & 2\cdot1+(-1)\cdot5 \\ 4\cdot0+3\cdot(-2) 
 BA&=\begin{pmatrix} 0\cdot2+1\cdot4 & 0\cdot(-1)+1\cdot3 \\ -2\cdot2+5\cdot4 & -2\cdot(-1)+5\cdot3 \end{pmatrix}=\begin{pmatrix} 4 & 3 \\ 16 & 17 \end{pmatrix}
 \end{aligned}" />
 
-Die Einträge sind verschieden, also <InlineMath math="AB\ne BA" />. Beide Produkte haben trotzdem die Determinante <InlineMath math="20" />, denn <InlineMath math="\det(AB)=\det(BA)=\det A\cdot\det B" />. Gleiche Determinanten bedeuten nicht gleiche Matrizen.
+Die Einträge sind verschieden, also <InlineMath math="AB\ne BA" />. Beide Produkte haben trotzdem die Determinante <InlineMath math="20" />, denn <InlineMath math="\det(AB)=\det A\cdot\det B" />. Gleiche Determinanten bedeuten nicht gleiche Matrizen.
+
+<BlockMath math="\det(AB)=\det(BA)=\det A\cdot\det B" />
+
+# Antwort
 
 Richtig sind also die Aussagen über <InlineMath math="(A+B)^T" /> und <InlineMath math="\det(2B)" />, falsch sind die Aussagen über <InlineMath math="\det\left(A^{-1}\right)" /> und <InlineMath math="AB=BA" />.

@@ -1,3 +1,15 @@
+# Given
+
+A determinant equation sets a <InlineMath math="2\times2" /> **determinant** on the left equal to a <InlineMath math="3\times3" /> **determinant** on the right containing <InlineMath math="x" />.
+
+# Asked
+
+The **sum of all real values of** <InlineMath math="x" /> satisfying the equation.
+
+# Solution
+
+> Turn both determinants into plain algebra first so the matrix problem becomes an ordinary quadratic whose root sum you can read straight off.
+
 The equation compares two determinants, so the first step is to **turn each determinant into an algebraic expression in** <InlineMath math="x" />. After that, the determinant equation becomes an ordinary quadratic equation.
 
 The determinant of a <InlineMath math="2\times2" /> matrix is the product of the main diagonal minus the product of the other diagonal.
@@ -56,11 +68,28 @@ Draw both sides as graphs. **The two crossing points sit symmetrically about the
   }}
 />
 
-The discriminant of this quadratic is <InlineMath math="D=(-2)^2-4(1)(-5)=24" />. Since <InlineMath math="D>0" />, there are two different real values of <InlineMath math="x" />, namely <InlineMath math="x=1+\sqrt6" /> and <InlineMath math="x=1-\sqrt6" />. The sum-of-roots formula gives <InlineMath math="-\frac{b}{a}=-\frac{-2}{1}=2" />, and adding the roots directly gives the same value, <InlineMath math="(1+\sqrt6)+(1-\sqrt6)=2" />.
+The discriminant of this quadratic is <InlineMath math="D=24" />. Since <InlineMath math="D>0" />, there are two different real values of <InlineMath math="x" />, namely <InlineMath math="x=1+\sqrt6" /> and <InlineMath math="x=1-\sqrt6" />. The sum-of-roots formula gives <InlineMath math="2" />, and adding the roots directly gives the same value, <InlineMath math="2" />.
 
-So the sum of all real values of <InlineMath math="x" /> that satisfy the equation is <InlineMath math="2" />.
+<BlockMath math="\begin{gathered}
+D=(-2)^2-4(1)(-5)=24 \\
+-\frac{b}{a}=-\frac{-2}{1}=2 \\
+(1+\sqrt6)+(1-\sqrt6)=2
+\end{gathered}" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="-5" /> is the **product** of the two roots, <InlineMath math="\frac{c}{a}" />, not their sum.
 - <InlineMath math="-2" /> comes from dropping the minus sign in the formula <InlineMath math="-\frac{b}{a}" />.
-- <InlineMath math="1" /> comes from solving only <InlineMath math="x^2-x-6=0" />, as if the right side were zero. The <InlineMath math="3\times3" /> determinant equals <InlineMath math="x-1" />, not zero.
-- <InlineMath math="6" /> appears if the minor of the third entry is computed as <InlineMath math="x\cdot1-0\cdot1=x" /> instead of <InlineMath math="0\cdot1-x\cdot1=-x" />. The right-hand determinant then becomes <InlineMath math="5x-1" />, and the equation <InlineMath math="x^2-6x-5=0" /> has root sum <InlineMath math="6" />.
+- <InlineMath math="1" /> comes from solving only the equation below, as if the right side were zero. The <InlineMath math="3\times3" /> determinant equals <InlineMath math="x-1" />, not zero.
+
+  <BlockMath math="x^2-x-6=0" />
+
+- <InlineMath math="6" /> appears if the minor of the third entry is computed as <InlineMath math="x\cdot1-0\cdot1=x" /> instead of <InlineMath math="0\cdot1-x\cdot1=-x" />. The right-hand determinant then becomes <InlineMath math="5x-1" />, and the equation below has root sum <InlineMath math="6" />.
+
+  <BlockMath math="x^2-6x-5=0" />
+
+# Answer
+
+So the sum of all real values of <InlineMath math="x" /> that satisfy the equation is <InlineMath math="2" />.

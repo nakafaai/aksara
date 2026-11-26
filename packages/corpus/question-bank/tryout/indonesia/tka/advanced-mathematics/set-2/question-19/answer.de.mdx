@@ -1,16 +1,31 @@
+# Gegeben
+
+Die Parabel **<InlineMath math="y = x^2 - 2x" />** wird erst an der <InlineMath math="X" /> **-Achse gespiegelt** und dann um den Vektor **<InlineMath math="T" />** verschoben.
+
+# Gesucht
+
+Die **Gleichung der Bildparabel** nach beiden Schritten in dieser Reihenfolge.
+
+# Lösung
+
+> Spiegele zuerst durch Vorzeichenwechsel bei y und verschiebe erst danach, weil die Reihenfolge den Scheitelpunkt verändert.
+
 Führe die Abbildungen **in der angegebenen Reihenfolge** aus: erst die Spiegelung, dann die Verschiebung. Drücke bei jedem Schritt die alten Koordinaten durch die neuen aus und setze in die Gleichung ein.
 
 Die Spiegelung an der <InlineMath math="x" />-Achse bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(x,-y)" /> ab. Ersetze also <InlineMath math="y" /> durch <InlineMath math="-y" />.
 
 <BlockMath math="-y=x^2-2x\iff y=-x^2+2x" />
 
-Die Verschiebung um <InlineMath math="\begin{pmatrix} 3 \\ 1 \end{pmatrix}" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(x+3,y+1)" /> ab. Ersetze also <InlineMath math="x" /> durch <InlineMath math="x-3" /> und <InlineMath math="y" /> durch <InlineMath math="y-1" />.
+Die Verschiebung um die folgende Matrix bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(x+3,y+1)" /> ab. Ersetze also <InlineMath math="x" /> durch <InlineMath math="x-3" /> und <InlineMath math="y" /> durch <InlineMath math="y-1" />.
 
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+\begin{pmatrix} 3 \\ 1 \end{pmatrix} \\
+\begin{aligned}
 y-1&=-(x-3)^2+2(x-3) \\
 y&=-(x^2-6x+9)+2x-6+1 \\
 y&=-x^2+8x-14
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
 Verfolge den Scheitel durch beide Schritte. **Die Spiegelung klappt die Parabel um, dann verschiebt die Translation sie als Ganzes um <InlineMath math="3" /> nach rechts und <InlineMath math="1" /> nach oben**.
 
@@ -53,11 +68,32 @@ Verfolge den Scheitel durch beide Schritte. **Die Spiegelung klappt die Parabel 
   }}
 />
 
-Prüfe mit dem Scheitelpunkt. Der Scheitel von <InlineMath math="y=x^2-2x" /> ist <InlineMath math="(1,-1)" />. Die Spiegelung bringt ihn nach <InlineMath math="(1,1)" />, die Verschiebung nach <InlineMath math="(4,2)" />. In der Endgleichung gilt <InlineMath math="-16+32-14=2" />, der Scheitel ist also tatsächlich <InlineMath math="(4,2)" />.
+Prüfe mit dem Scheitelpunkt. Der Scheitel von <InlineMath math="y=x^2-2x" /> ist <InlineMath math="(1,-1)" />. Die Spiegelung bringt ihn nach <InlineMath math="(1,1)" />, die Verschiebung nach <InlineMath math="(4,2)" />. In der Endgleichung gilt <InlineMath math="2" />, der Scheitel ist also tatsächlich <InlineMath math="(4,2)" />.
 
-Die Bildparabel hat also die Gleichung <InlineMath math="y=-x^2+8x-14" />.
+<BlockMath math="-16+32-14=2" />
 
-- <InlineMath math="y=-x^2+8x-16" /> verschiebt zuerst und spiegelt danach. Ihr Scheitel ist <InlineMath math="(4,0)" />.
-- <InlineMath math="y=x^2-8x+16" /> verschiebt nur und vergisst die Spiegelung.
-- <InlineMath math="y=-x^2-4x-4" /> ersetzt <InlineMath math="x" /> durch <InlineMath math="x+3" /> und <InlineMath math="y" /> durch <InlineMath math="y+1" />. Damit wird die Parabel um <InlineMath math="\begin{pmatrix} -3 \\ -1 \end{pmatrix}" /> verschoben, also in die Gegenrichtung.
-- <InlineMath math="y=x^2-4x+4" /> spiegelt an der <InlineMath math="y" />-Achse statt an der <InlineMath math="x" />-Achse.
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
+- <InlineMath math="y" /> verschiebt zuerst und spiegelt danach. Ihr Scheitel ist <InlineMath math="(4,0)" />.
+
+  <BlockMath math="y=-x^2+8x-16" />
+
+- <InlineMath math="y" /> verschiebt nur und vergisst die Spiegelung.
+
+  <BlockMath math="y=x^2-8x+16" />
+
+- <InlineMath math="y" /> ersetzt <InlineMath math="x" /> durch <InlineMath math="x+3" /> und <InlineMath math="y" /> durch <InlineMath math="y+1" />. Damit wird die Parabel um die folgende Matrix verschoben, also in die Gegenrichtung.
+
+  <BlockMath math="\begin{gathered} y=-x^2-4x-4 \\ \begin{pmatrix} -3 \\ -1 \end{pmatrix} \end{gathered}" />
+
+- <InlineMath math="y" /> spiegelt an der <InlineMath math="y" />-Achse statt an der <InlineMath math="x" />-Achse.
+
+  <BlockMath math="y=x^2-4x+4" />
+
+# Antwort
+
+Die Bildparabel hat also die Gleichung <InlineMath math="y" />.
+
+<BlockMath math="y=-x^2+8x-14" />

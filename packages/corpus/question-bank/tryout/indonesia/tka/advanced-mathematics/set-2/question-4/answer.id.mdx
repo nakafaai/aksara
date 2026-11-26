@@ -1,3 +1,15 @@
+# Diketahui
+
+Peternak membeli **pakan I (** <InlineMath math="x" />) dan pakan II (<InlineMath math="y" />) yang harus memenuhi batas bawah kebutuhan protein dan lemak setiap minggu.
+
+# Ditanyakan
+
+**Biaya minimum** yang harus dikeluarkan peternak dalam satu minggu.
+
+# Penyelesaian
+
+> Untuk masalah biaya minimum dengan batas bawah, biaya termurah selalu muncul di salah satu titik pojok batas bawah daerah aman.
+
 Misalkan <InlineMath math="x" /> banyak karung pakan I dan <InlineMath math="y" /> banyak karung pakan II. Kebutuhan protein dan lemak memberi **dua batas bawah**, dan banyak karung tidak mungkin negatif. Batas protein bisa dibagi <InlineMath math="2" />.
 
 <BlockMath math="\begin{aligned}
@@ -6,7 +18,10 @@ Misalkan <InlineMath math="x" /> banyak karung pakan I dan <InlineMath math="y" 
 x\ge0,\quad y&\ge0
 \end{aligned}" />
 
-Fungsi biaya, dalam ribuan rupiah, adalah <InlineMath math="B=300x+250y" />. Daerah penyelesaiannya terbuka ke atas, karena menambah karung selalu tetap memenuhi kebutuhan. Biaya minimum ada di salah satu titik pojok daerah itu.
+Fungsi biaya total dalam rupiah dinyatakan oleh rumus berikut.
+
+<BlockMath math="B(x,y) = 300{.}000x + 250{.}000y" />
+ Daerah penyelesaiannya terbuka ke atas, karena menambah karung selalu tetap memenuhi kebutuhan. Biaya minimum ada di salah satu titik pojok daerah itu.
 
 Titik pojok tempat kedua batas tepat terpenuhi didapat dengan mengurangkan kedua persamaan.
 
@@ -18,9 +33,9 @@ Titik pojok tempat kedua batas tepat terpenuhi didapat dengan mengurangkan kedua
 Dua titik pojok lain ada di sumbu. Pada sumbu <InlineMath math="Y" />, garis <InlineMath math="2x+y=20" /> memberi <InlineMath math="(0,20)" />, dan titik itu juga memenuhi batas lemak karena <InlineMath math="3\cdot20=60\ge36" />. Pada sumbu <InlineMath math="X" />, garis <InlineMath math="2x+3y=36" /> memberi <InlineMath math="(18,0)" />, dan titik itu memenuhi batas protein karena <InlineMath math="2\cdot18=36\ge20" />.
 
 <BlockMath math="\begin{aligned}
-B(0,20)&=250\cdot20=5{.}000 \\
-B(6,8)&=1{.}800+2{.}000=3{.}800 \\
-B(18,0)&=300\cdot18=5{.}400
+B(0,20)&=250{.}000\cdot20=5{.}000{.}000 \\
+B(6,8)&=1{.}800{.}000+2{.}000{.}000=3{.}800{.}000 \\
+B(18,0)&=300{.}000\cdot18=5{.}400{.}000
 \end{aligned}" />
 
 Gambar daerah penyelesaiannya. **Daerah itu terbuka ke kanan atas dan punya tiga titik pojok**, jadi cukup bandingkan biaya di ketiga titik itu.
@@ -61,9 +76,17 @@ Gambar daerah penyelesaiannya. **Daerah itu terbuka ke kanan atas dan punya tiga
   }}
 />
 
-Jadi, biaya minimum peternak itu adalah <InlineMath math="\text{Rp}3{.}800{.}000{,}00" />, dengan membeli <InlineMath math="6" /> karung pakan I dan <InlineMath math="8" /> karung pakan II.
+Terlihat pada daerah berarsir bahwa titik pojok <InlineMath math="(6,8)" /> berada paling dekat dengan titik asal di sepanjang batas bawah, sehingga biayanya paling kecil.
+
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
 
 - <InlineMath math="\text{Rp}5{.}000{.}000{,}00" /> adalah biaya di titik pojok <InlineMath math="(0,20)" />, hanya pakan II.
 - <InlineMath math="\text{Rp}5{.}400{.}000{,}00" /> adalah biaya di titik pojok <InlineMath math="(18,0)" />, hanya pakan I.
 - <InlineMath math="\text{Rp}3{.}000{.}000{,}00" /> adalah biaya <InlineMath math="10" /> karung pakan I saja. Pilihan itu memenuhi protein, tetapi lemaknya hanya <InlineMath math="20" /> kg.
 - <InlineMath math="\text{Rp}4{.}250{.}000{,}00" /> adalah biaya <InlineMath math="(6,10)" />. Rencana itu memenuhi kebutuhan, tetapi dua karung pakan II lebih banyak daripada yang diperlukan.
+
+# Jawaban
+
+Jadi, biaya minimum peternak itu adalah <InlineMath math="\text{Rp}3{.}800{.}000{,}00" />, dengan membeli <InlineMath math="6" /> karung pakan I dan <InlineMath math="8" /> karung pakan II.

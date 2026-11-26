@@ -1,3 +1,15 @@
+# Given
+
+Line <InlineMath math="g" /> is transformed by **matrix** <InlineMath math="M" /> sending each original point <InlineMath math="(x, y)" /> to image point <InlineMath math="(x', y')" />.
+
+# Asked
+
+The **equation of the image line** of <InlineMath math="g" />.
+
+# Solution
+
+> Invert the matrix first so old coordinates x and y are written in terms of the new image coordinates, then plug them straight into line g.
+
 The image line consists of the points <InlineMath math="(x',y')" /> whose **preimage lies on <InlineMath math="g" />**. So express <InlineMath math="x" /> and <InlineMath math="y" /> in terms of <InlineMath math="x'" /> and <InlineMath math="y'" /> with the inverse matrix.
 
 <BlockMath math="\begin{aligned}
@@ -52,11 +64,35 @@ x'-2y'+6x'-15y'+2&=0 \\
   }}
 />
 
-As a check with two points of <InlineMath math="g" />, <InlineMath math="M(1,1)=(7,3)" /> and <InlineMath math="49-51+2=0" />, and <InlineMath math="M(-2,0)=(-10,-4)" /> and <InlineMath math="-70+68+2=0" />.
+As a check with two points of <InlineMath math="g" />, <InlineMath math="M(1,1)=(7,3)" /> and <InlineMath math="0" />, and <InlineMath math="M(-2,0)=(-10,-4)" /> and <InlineMath math="0" />.
 
-So the image line has the equation <InlineMath math="7x-17y+2=0" />.
+<BlockMath math="\begin{gathered}
+49-51+2=0 \\
+-70+68+2=0
+\end{gathered}" />
 
-- <InlineMath math="x+y-2=0" /> substitutes <InlineMath math="M" /> instead of <InlineMath math="M^{-1}" />, that is, <InlineMath math="x=5x'+2y'" /> and <InlineMath math="y=2x'+y'" />.
-- <InlineMath math="7x-17y-2=0" /> loses the sign of the constant while rearranging. The image point <InlineMath math="(7,3)" /> does not satisfy it.
-- <InlineMath math="5x+13y-2=0" /> comes from a wrong inverse in which the off-diagonal entries keep their signs.
-- <InlineMath math="17x-7y-2=0" /> swaps the roles of <InlineMath math="x" /> and <InlineMath math="y" /> in the correct equation.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- the equation below substitutes <InlineMath math="M" /> instead of <InlineMath math="M^{-1}" />, that is, <InlineMath math="x=5x'+2y'" /> and <InlineMath math="y=2x'+y'" />.
+
+  <BlockMath math="x+y-2=0" />
+
+- the equation below loses the sign of the constant while rearranging. The image point <InlineMath math="(7,3)" /> does not satisfy it.
+
+  <BlockMath math="7x-17y-2=0" />
+
+- the equation below comes from a wrong inverse in which the off-diagonal entries keep their signs.
+
+  <BlockMath math="5x+13y-2=0" />
+
+- the equation below swaps the roles of <InlineMath math="x" /> and <InlineMath math="y" /> in the correct equation.
+
+  <BlockMath math="17x-7y-2=0" />
+
+# Answer
+
+So the image line has the equation below.
+
+<BlockMath math="7x-17y+2=0" />

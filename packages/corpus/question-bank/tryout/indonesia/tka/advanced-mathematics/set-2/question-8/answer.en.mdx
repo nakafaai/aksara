@@ -1,3 +1,17 @@
+# Given
+
+Two **given functions** <InlineMath math="f(x) = 2x + 1" /> and <InlineMath math="g(x)" /> form an invertible composite <InlineMath math="f \circ g" />.
+
+<BlockMath math="g(x) = \frac{x - 3}{x}" />
+
+# Asked
+
+The **value of** <InlineMath math="(f \circ g)^{-1}(5)" />.
+
+# Solution
+
+> Skip building the whole inverse formula and simply solve for the input x that the composite maps to five.
+
 The value <InlineMath math="(f\circ g)^{-1}(5)" /> is **the number <InlineMath math="x" /> that <InlineMath math="f\circ g" /> sends to <InlineMath math="5" />**. So you do not need a formula for the inverse. Just solve <InlineMath math="f\big(g(x)\big)=5" /> from the outside in.
 
 The outer layer is <InlineMath math="f" />. Find the value of <InlineMath math="g(x)" /> that makes <InlineMath math="f" /> equal <InlineMath math="5" />.
@@ -24,13 +38,26 @@ The diagram below shows both directions. **The forward path goes through <Inline
   G -.->|"g⁻¹"| X`}
 />
 
-Check: <InlineMath math="g(-3)=\frac{-6}{-3}=2" /> and <InlineMath math="f(2)=5" />, so <InlineMath math="(f\circ g)(-3)=5" />.
+Check: <InlineMath math="2" /> and <InlineMath math="f(2)=5" />, so <InlineMath math="(f\circ g)(-3)=5" />.
 
-Another route uses <InlineMath math="(f\circ g)^{-1}=g^{-1}\circ f^{-1}" />: <InlineMath math="f^{-1}(5)=2" />, then <InlineMath math="g^{-1}(2)=-3" />. The order is the reverse of the original composition.
+<BlockMath math="g(-3)=\frac{-6}{-3}=2" />
 
-So <InlineMath math="(f\circ g)^{-1}(5)=-3" />.
+Another route uses the equation below: <InlineMath math="f^{-1}(5)=2" />, then <InlineMath math="g^{-1}(2)=-3" />. The order is the reverse of the original composition.
+
+<BlockMath math="(f\circ g)^{-1}=g^{-1}\circ f^{-1}" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="\frac95" /> computes <InlineMath math="(f\circ g)(5)=f\left(\frac25\right)" />, the function rather than its inverse.
-- <InlineMath math="-\frac78" /> uses the wrong order, <InlineMath math="f^{-1}\big(g^{-1}(5)\big)=f^{-1}\left(-\frac34\right)" />.
+- <InlineMath math="-\frac78" /> uses the wrong order, the equation below.
+
+  <BlockMath math="f^{-1}\big(g^{-1}(5)\big)=f^{-1}\left(-\frac34\right)" />
+
 - <InlineMath math="2" /> stops at <InlineMath math="f^{-1}(5)" /> and never undoes <InlineMath math="g" />.
 - <InlineMath math="-\frac34" /> is <InlineMath math="g^{-1}(5)" />, without undoing <InlineMath math="f" /> first.
+
+# Answer
+
+So <InlineMath math="(f\circ g)^{-1}(5)=-3" />.

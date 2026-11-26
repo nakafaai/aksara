@@ -1,18 +1,45 @@
+# Gegeben
+
+Ein Kreis hat den **Mittelpunkt** <InlineMath math="(3, -2)" /> und **berührt die Gerade** die folgende Gleichung.
+
+<BlockMath math="4x - 3y + 2 = 0" />
+
+# Gesucht
+
+Die **Kreisgleichung**.
+
+# Lösung
+
+> Der Radius entspricht genau dem senkrechten Abstand vom Mittelpunkt zur Tangente, danach schreibst du die Kreisgleichung sofort auf.
+
 Der Mittelpunkt ist bekannt, es fehlt nur **der Radius**. Eine Tangente berührt den Kreis in genau einem Punkt, und der Radius zu diesem Punkt steht senkrecht auf der Tangente. Der Radius ist also **der Abstand des Mittelpunkts von der Tangente**.
 
-Der Abstand eines Punktes <InlineMath math="(x_0,y_0)" /> von der Geraden <InlineMath math="ax+by+c=0" /> ist <InlineMath math="\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}" />. Für den Mittelpunkt <InlineMath math="(3,-2)" /> und die Gerade <InlineMath math="4x-3y+2=0" /> achtest du auf das Vorzeichen des Terms <InlineMath math="-3y" /> bei <InlineMath math="y=-2" />.
+Der Abstand eines Punktes <InlineMath math="(x_0,y_0)" /> von der Geraden die folgende Gleichung ist der folgende Ausdruck. Für den Mittelpunkt <InlineMath math="(3,-2)" /> und die Gerade der folgenden Gleichung achtest du auf das Vorzeichen des Terms <InlineMath math="-3y" /> bei <InlineMath math="y=-2" />.
 
-<BlockMath math="r=\frac{|4\cdot3-3\cdot(-2)+2|}{\sqrt{4^2+(-3)^2}}=\frac{|12+6+2|}{\sqrt{25}}=\frac{20}{5}=4" />
+<BlockMath math="\begin{gathered}
+ax+by+c=0 \\
+\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}} \\
+4x-3y+2=0 \\
+r=\frac{|4\cdot3-3\cdot(-2)+2|}{\sqrt{4^2+(-3)^2}}=\frac{|12+6+2|}{\sqrt{25}}=\frac{20}{5}=4
+\end{gathered}" />
 
-Ein Kreis mit Mittelpunkt <InlineMath math="(a,b)" /> und Radius <InlineMath math="r" /> hat die Gleichung <InlineMath math="(x-a)^2+(y-b)^2=r^2" />. Setze Mittelpunkt und Radius ein und multipliziere zur allgemeinen Form aus.
+Ein Kreis mit Mittelpunkt <InlineMath math="(a,b)" /> und Radius <InlineMath math="r" /> hat die folgende Gleichung. Setze Mittelpunkt und Radius ein und multipliziere zur allgemeinen Form aus.
 
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+(x-a)^2+(y-b)^2=r^2 \\
+\begin{aligned}
 (x-3)^2+(y+2)^2&=16 \\
 x^2-6x+9+y^2+4y+4&=16 \\
 x^2+y^2-6x+4y-3&=0
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
-Zur Kontrolle: Der Berührpunkt ist <InlineMath math="\left(-\frac15,\frac25\right)" />. Er liegt auf der Geraden, denn <InlineMath math="4\left(-\frac15\right)-3\cdot\frac25+2=-\frac45-\frac65+2=0" />, und sein Abstand vom Mittelpunkt ist <InlineMath math="\sqrt{\left(\frac{16}{5}\right)^2+\left(\frac{12}{5}\right)^2}=\sqrt{\frac{400}{25}}=4" />.
+Zur Kontrolle: Der Berührpunkt ist <InlineMath math="\left(-\frac15,\frac25\right)" />. Er liegt auf der Geraden, denn <InlineMath math="0" />, und sein Abstand vom Mittelpunkt ist <InlineMath math="4" />.
+
+<BlockMath math="\begin{gathered}
+4\left(-\frac15\right)-3\cdot\frac25+2=-\frac45-\frac65+2=0 \\
+\sqrt{\left(\frac{16}{5}\right)^2+\left(\frac{12}{5}\right)^2}=\sqrt{\frac{400}{25}}=4
+\end{gathered}" />
 
 <MathVisual
   title={<>Kreis, der eine Gerade berührt</>}
@@ -47,9 +74,30 @@ Zur Kontrolle: Der Berührpunkt ist <InlineMath math="\left(-\frac15,\frac25\rig
   }}
 />
 
-Die Kreisgleichung lautet also <InlineMath math="x^2+y^2-6x+4y-3=0" />.
+Im Graphen berührt die Tangente den Kreis in genau einem Punkt und steht senkrecht auf dem Radius zum Mittelpunkt <InlineMath math="(3,-2)" />.
 
-- <InlineMath math="x^2+y^2+6x-4y-3=0" /> ist der Kreis mit Mittelpunkt <InlineMath math="(-3,2)" />. Beim Aufstellen von <InlineMath math="(x-a)^2+(y-b)^2" /> wurden die Vorzeichen der Mittelpunktskoordinaten vertauscht.
-- <InlineMath math="x^2+y^2-6x+4y+9=0" /> stammt aus <InlineMath math="(x-3)^2+(y+2)^2=4" />, also wurde der Radius <InlineMath math="4" /> rechts nicht quadriert.
-- <InlineMath math="x^2+y^2-6x+4y-7=0" /> stammt aus <InlineMath math="r^2=20" />. Der Zähler der Abstandsformel, <InlineMath math="20" />, wurde als <InlineMath math="r^2" /> genommen, ohne durch <InlineMath math="\sqrt{25}=5" /> zu teilen.
-- <InlineMath math="x^2+y^2-6x+4y-12=0" /> stammt aus <InlineMath math="r=5" />. Hier wurde die Länge <InlineMath math="\sqrt{4^2+(-3)^2}" /> im Nenner der Abstandsformel für den Radius gehalten.
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
+- die folgende Gleichung ist der Kreis mit Mittelpunkt <InlineMath math="(-3,2)" />. Beim Aufstellen von der folgende Ausdruck wurden die Vorzeichen der Mittelpunktskoordinaten vertauscht.
+
+  <BlockMath math="\begin{gathered} x^2+y^2+6x-4y-3=0 \\ (x-a)^2+(y-b)^2 \end{gathered}" />
+
+- die folgende Gleichung stammt aus die folgende Gleichung, also wurde der Radius <InlineMath math="4" /> rechts nicht quadriert.
+
+  <BlockMath math="\begin{gathered} x^2+y^2-6x+4y+9=0 \\ (x-3)^2+(y+2)^2=4 \end{gathered}" />
+
+- die folgende Gleichung stammt aus <InlineMath math="r^2=20" />. Der Zähler der Abstandsformel, <InlineMath math="20" />, wurde als <InlineMath math="r^2" /> genommen, ohne durch <InlineMath math="5" /> zu teilen.
+
+  <BlockMath math="\begin{gathered} x^2+y^2-6x+4y-7=0 \\ \sqrt{25}=5 \end{gathered}" />
+
+- die folgende Gleichung stammt aus <InlineMath math="r=5" />. Hier wurde die Länge <InlineMath math="\sqrt{4^2+(-3)^2}" /> im Nenner der Abstandsformel für den Radius gehalten.
+
+  <BlockMath math="x^2+y^2-6x+4y-12=0" />
+
+# Antwort
+
+Die Kreisgleichung lautet also die folgende Gleichung.
+
+<BlockMath math="x^2+y^2-6x+4y-3=0" />

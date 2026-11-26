@@ -1,18 +1,45 @@
+# Given
+
+A circle has **center** <InlineMath math="(3, -2)" /> and is **tangent to the line** the equation below.
+
+<BlockMath math="4x - 3y + 2 = 0" />
+
+# Asked
+
+The **equation of the circle**.
+
+# Solution
+
+> A tangent line touches the circle at one point, so the radius equals the exact perpendicular distance from the center to that line.
+
 The center is already known, so only **the radius** is missing. A tangent line touches the circle at one point, and the radius to that point is perpendicular to the line. So the radius equals **the distance from the center to the tangent line**.
 
-The distance from a point <InlineMath math="(x_0,y_0)" /> to the line <InlineMath math="ax+by+c=0" /> is <InlineMath math="\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}" />. For the center <InlineMath math="(3,-2)" /> and the line <InlineMath math="4x-3y+2=0" />, watch the sign of the term <InlineMath math="-3y" /> when <InlineMath math="y=-2" />.
+The distance from a point <InlineMath math="(x_0,y_0)" /> to the line given below is the expression below. For the center <InlineMath math="(3,-2)" /> and the line given below, watch the sign of the term <InlineMath math="-3y" /> when <InlineMath math="y=-2" />.
 
-<BlockMath math="r=\frac{|4\cdot3-3\cdot(-2)+2|}{\sqrt{4^2+(-3)^2}}=\frac{|12+6+2|}{\sqrt{25}}=\frac{20}{5}=4" />
+<BlockMath math="\begin{gathered}
+ax+by+c=0 \\
+\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}} \\
+4x-3y+2=0 \\
+r=\frac{|4\cdot3-3\cdot(-2)+2|}{\sqrt{4^2+(-3)^2}}=\frac{|12+6+2|}{\sqrt{25}}=\frac{20}{5}=4
+\end{gathered}" />
 
-A circle with center <InlineMath math="(a,b)" /> and radius <InlineMath math="r" /> has the equation <InlineMath math="(x-a)^2+(y-b)^2=r^2" />. Substitute the center and radius, then expand into general form.
+A circle with center <InlineMath math="(a,b)" /> and radius <InlineMath math="r" /> has the equation below. Substitute the center and radius, then expand into general form.
 
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+(x-a)^2+(y-b)^2=r^2 \\
+\begin{aligned}
 (x-3)^2+(y+2)^2&=16 \\
 x^2-6x+9+y^2+4y+4&=16 \\
 x^2+y^2-6x+4y-3&=0
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
-As a check, the point of tangency is <InlineMath math="\left(-\frac15,\frac25\right)" />. It lies on the line, because <InlineMath math="4\left(-\frac15\right)-3\cdot\frac25+2=-\frac45-\frac65+2=0" />, and its distance from the center is <InlineMath math="\sqrt{\left(\frac{16}{5}\right)^2+\left(\frac{12}{5}\right)^2}=\sqrt{\frac{400}{25}}=4" />.
+As a check, the point of tangency is <InlineMath math="\left(-\frac15,\frac25\right)" />. It lies on the line, because <InlineMath math="0" />, and its distance from the center is <InlineMath math="4" />.
+
+<BlockMath math="\begin{gathered}
+4\left(-\frac15\right)-3\cdot\frac25+2=-\frac45-\frac65+2=0 \\
+\sqrt{\left(\frac{16}{5}\right)^2+\left(\frac{12}{5}\right)^2}=\sqrt{\frac{400}{25}}=4
+\end{gathered}" />
 
 <MathVisual
   title={<>Circle touching a line</>}
@@ -47,9 +74,30 @@ As a check, the point of tangency is <InlineMath math="\left(-\frac15,\frac25\ri
   }}
 />
 
-So the equation of the circle is <InlineMath math="x^2+y^2-6x+4y-3=0" />.
+The graph shows the tangent touching the circle at a single point, perpendicular to the radius from center <InlineMath math="(3,-2)" />.
 
-- <InlineMath math="x^2+y^2+6x-4y-3=0" /> is the circle with center <InlineMath math="(-3,2)" />. The signs of the center coordinates were reversed when writing <InlineMath math="(x-a)^2+(y-b)^2" />.
-- <InlineMath math="x^2+y^2-6x+4y+9=0" /> comes from <InlineMath math="(x-3)^2+(y+2)^2=4" />, with the radius <InlineMath math="4" /> written on the right side without squaring it.
-- <InlineMath math="x^2+y^2-6x+4y-7=0" /> comes from <InlineMath math="r^2=20" />. The numerator of the distance formula, <InlineMath math="20" />, was used as <InlineMath math="r^2" /> without dividing by <InlineMath math="\sqrt{25}=5" />.
-- <InlineMath math="x^2+y^2-6x+4y-12=0" /> comes from <InlineMath math="r=5" />, mistaking the length <InlineMath math="\sqrt{4^2+(-3)^2}" /> in the denominator of the distance formula for the radius.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- the equation below is the circle with center <InlineMath math="(-3,2)" />. The signs of the center coordinates were reversed when writing the expression below.
+
+  <BlockMath math="\begin{gathered} x^2+y^2+6x-4y-3=0 \\ (x-a)^2+(y-b)^2 \end{gathered}" />
+
+- the equation below comes from the equation below, with the radius <InlineMath math="4" /> written on the right side without squaring it.
+
+  <BlockMath math="\begin{gathered} x^2+y^2-6x+4y+9=0 \\ (x-3)^2+(y+2)^2=4 \end{gathered}" />
+
+- the equation below comes from <InlineMath math="r^2=20" />. The numerator of the distance formula, <InlineMath math="20" />, was used as <InlineMath math="r^2" /> without dividing by <InlineMath math="5" />.
+
+  <BlockMath math="\begin{gathered} x^2+y^2-6x+4y-7=0 \\ \sqrt{25}=5 \end{gathered}" />
+
+- the equation below comes from <InlineMath math="r=5" />, mistaking the length <InlineMath math="\sqrt{4^2+(-3)^2}" /> in the denominator of the distance formula for the radius.
+
+  <BlockMath math="x^2+y^2-6x+4y-12=0" />
+
+# Answer
+
+So the equation of the circle is the equation below.
+
+<BlockMath math="x^2+y^2-6x+4y-3=0" />

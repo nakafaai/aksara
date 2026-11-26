@@ -1,3 +1,15 @@
+# Gegeben
+
+Ein Landwirt baut **Salatregale (** <InlineMath math="x" />) und Pak-Choi-Regale (<InlineMath math="y" />) unter Nährlösungs-, Pflegezeit- und Gewinnbedingungen an.
+
+# Gesucht
+
+Der **maximale Gewinn** innerhalb einer Anbauperiode.
+
+# Lösung
+
+> Bei linearer Optimierung liegt das Maximum immer an einer Ecke des zulässigen Bereichs, also prüfe einfach jeden Eckpunkt.
+
 Es seien <InlineMath math="x" /> die Zahl der Salatregale und <InlineMath math="y" /> die Zahl der Pak-Choi-Regale. Nährlösung und Pflegestunden liefern **zwei Grenzen**, dazu kommt, dass die Zahl der Regale nicht negativ ist. Die Grenze für die Pflegestunden lässt sich durch <InlineMath math="2" /> teilen.
 
 <BlockMath math="\begin{aligned}
@@ -59,9 +71,15 @@ G(20,30)&=3{.}600{.}000+6{.}000{.}000=9{.}600{.}000
 
 Zur Kontrolle: Bei <InlineMath math="(20,30)" /> werden genau <InlineMath math="60+60=120" /> Liter Nährlösung und <InlineMath math="40+120=160" /> Pflegestunden gebraucht.
 
-Der höchste Gewinn beträgt also <InlineMath math="\text{Rp}9{.}600{.}000{,}00" />.
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="\text{Rp}7{.}200{.}000{,}00" /> gehört zur Ecke <InlineMath math="(40,0)" />, also nur Salat.
 - <InlineMath math="\text{Rp}8{.}000{.}000{,}00" /> gehört zur Ecke <InlineMath math="(0,40)" />, also nur Pak Choi.
 - <InlineMath math="\text{Rp}11{.}200{.}000{,}00" /> gehört zu <InlineMath math="(40,20)" />. Dafür wären <InlineMath math="120+40=160" /> Liter Nährlösung nötig, mehr als die <InlineMath math="120" /> vorhandenen Liter.
 - <InlineMath math="\text{Rp}12{.}000{.}000{,}00" /> gehört zu <InlineMath math="(0,60)" /> und beachtet nur die Nährlösung. Dafür wären <InlineMath math="240" /> Pflegestunden nötig.
+
+# Antwort
+
+Der höchste Gewinn beträgt also <InlineMath math="\text{Rp}9{.}600{.}000{,}00" />.

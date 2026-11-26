@@ -1,3 +1,17 @@
+# Given
+
+**The trigonometric limit** **the expression below** uses <InlineMath math="x" /> in radians.
+
+<BlockMath math="\lim_{x\to 0} \frac{\tan 3x \cdot \sin 2x}{1 - \cos 2x}" />
+
+# Asked
+
+The **value of the trigonometric limit** as <InlineMath math="x" /> approaches zero.
+
+# Solution
+
+> Rewrite one minus cosine of two x as two sine squared x so every tangent and sine factor pairs neatly with x.
+
 As <InlineMath math="x\to0" />, both the numerator and the denominator tend to <InlineMath math="0" />. Rewrite the denominator with the **identity <InlineMath math="1-\cos2x=2\sin^2x" />**. The fraction then splits into factors with known limits.
 
 <BlockMath math="\begin{aligned}
@@ -5,9 +19,13 @@ As <InlineMath math="x\to0" />, both the numerator and the denominator tend to <
 &=\frac12\cdot\frac{\tan3x}{\sin x}\cdot\frac{\sin2x}{\sin x}
 \end{aligned}" />
 
-With <InlineMath math="\lim\limits_{x\to0}\frac{\tan ax}{\sin x}=a" /> and <InlineMath math="\lim\limits_{x\to0}\frac{\sin bx}{\sin x}=b" />:
+With <InlineMath math="a" /> and <InlineMath math="b" />.
 
-<BlockMath math="\lim_{x\to0}\frac{\tan3x\cdot\sin2x}{1-\cos2x}=\frac12\cdot3\cdot2=3" />
+<BlockMath math="\begin{gathered}
+\lim\limits_{x\to0}\frac{\tan ax}{\sin x}=a \\
+\lim\limits_{x\to0}\frac{\sin bx}{\sin x}=b \\
+\lim_{x\to0}\frac{\tan3x\cdot\sin2x}{1-\cos2x}=\frac12\cdot3\cdot2=3
+\end{gathered}" />
 
 Draw the function for small <InlineMath math="x" /> on both sides of zero. **Both branches come down to the same point, <InlineMath math="(0,\ 3)" />**, even though the function itself isn't defined at <InlineMath math="x=0" />.
 
@@ -41,9 +59,20 @@ Draw the function for small <InlineMath math="x" /> on both sides of zero. **Bot
 
 As a check, for small <InlineMath math="x" /> the numerator is about <InlineMath math="3x\cdot2x=6x^2" /> and the denominator about <InlineMath math="2x^2" />, so the quotient is about <InlineMath math="3" />.
 
-So the limit is <InlineMath math="3" />.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="0" /> sees only that the numerator tends to <InlineMath math="0" /> and overlooks that the denominator does too.
-- <InlineMath math="\frac32" /> approximates the denominator by <InlineMath math="(2x)^2=4x^2" /> and forgets the factor <InlineMath math="\frac12" /> in <InlineMath math="1-\cos u\approx\frac{u^2}{2}" />.
+- <InlineMath math="\frac32" /> approximates the denominator by <InlineMath math="(2x)^2=4x^2" /> and forgets the factor <InlineMath math="\frac12" /> in the equation below.
+
+  <BlockMath math="1-\cos u\approx\frac{u^2}{2}" />
+
 - <InlineMath math="6" /> uses the wrong identity <InlineMath math="1-\cos2x=\sin^2x" />, without the factor <InlineMath math="2" />.
-- <InlineMath math="12" /> puts <InlineMath math="u=x" /> instead of <InlineMath math="u=2x" /> into <InlineMath math="1-\cos u\approx\frac{u^2}{2}" />.
+- <InlineMath math="12" /> puts <InlineMath math="u=x" /> instead of <InlineMath math="u=2x" /> into the equation below.
+
+  <BlockMath math="1-\cos u\approx\frac{u^2}{2}" />
+
+# Answer
+
+So the limit is <InlineMath math="3" />.

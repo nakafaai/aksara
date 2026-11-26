@@ -1,3 +1,15 @@
+# Given
+
+A farmer grows **lettuce racks (** <InlineMath math="x" />) and bok choy racks (<InlineMath math="y" />) under nutrient, care-hour, and per-rack profit constraints.
+
+# Asked
+
+The **maximum profit** achievable in one growing cycle.
+
+# Solution
+
+> In linear programming, the biggest profit always sits at a corner of the feasible region, so test each corner point directly.
+
 Let <InlineMath math="x" /> be the number of lettuce racks and <InlineMath math="y" /> the number of pak choi racks. The nutrient solution and the care hours give **two limits**, plus the condition that the numbers of racks are not negative. The care-hours limit can be divided by <InlineMath math="2" />.
 
 <BlockMath math="\begin{aligned}
@@ -59,9 +71,15 @@ P(20,30)&=3{,}600{,}000+6{,}000{,}000=9{,}600{,}000
 
 As a check, at <InlineMath math="(20,30)" /> exactly <InlineMath math="60+60=120" /> litres of nutrient solution and <InlineMath math="40+120=160" /> care hours are used.
 
-So the largest profit is <InlineMath math="\text{Rp}9{,}600{,}000.00" />.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="\text{Rp}7{,}200{,}000.00" /> belongs to the corner <InlineMath math="(40,0)" />, lettuce only.
 - <InlineMath math="\text{Rp}8{,}000{,}000.00" /> belongs to the corner <InlineMath math="(0,40)" />, pak choi only.
 - <InlineMath math="\text{Rp}11{,}200{,}000.00" /> belongs to <InlineMath math="(40,20)" />. That would need <InlineMath math="120+40=160" /> litres of nutrient solution, more than the <InlineMath math="120" /> litres available.
 - <InlineMath math="\text{Rp}12{,}000{,}000.00" /> belongs to <InlineMath math="(0,60)" /> and respects only the nutrient limit. It would need <InlineMath math="240" /> care hours.
+
+# Answer
+
+So the largest profit is <InlineMath math="\text{Rp}9{,}600{,}000.00" />.

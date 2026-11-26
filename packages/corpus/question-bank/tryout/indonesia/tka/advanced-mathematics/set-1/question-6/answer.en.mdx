@@ -1,3 +1,17 @@
+# Given
+
+**The polynomial** **<InlineMath math="P(x)" />** is divisible by **<InlineMath math="(x+1)(x-2)" />**.
+
+<BlockMath math="P(x) = x^4 + ax^3 - 3x^2 + bx + 4" />
+
+# Asked
+
+The **remainder when** <InlineMath math="P(x)" /> is divided by <InlineMath math="x - 3" />.
+
+# Solution
+
+> Divisibility means plugging in each root gives zero, so solve for a and b from those two roots and evaluate the polynomial at three.
+
 The remainder on division by <InlineMath math="x-3" /> is <InlineMath math="P(3)" />, but that value can be computed only after <InlineMath math="a" /> and <InlineMath math="b" /> are known. Both coefficients follow from the fact that <InlineMath math="P(x)" /> is **divisible by** <InlineMath math="(x+1)(x-2)" />.
 
 By the factor theorem, <InlineMath math="P(x)" /> is divisible by <InlineMath math="x-c" /> exactly when <InlineMath math="P(c)=0" />. Since <InlineMath math="x+1" /> and <InlineMath math="x-2" /> are both factors, <InlineMath math="P(-1)=0" /> and <InlineMath math="P(2)=0" />.
@@ -16,11 +30,16 @@ a&=-2 \\
 b&=2-a=4
 \end{aligned}" />
 
-The polynomial is <InlineMath math="P(x)=x^4-2x^3-3x^2+4x+4" />. By the remainder theorem, the remainder on division by <InlineMath math="x-3" /> equals <InlineMath math="P(3)" />.
+The polynomial is <InlineMath math="P(x)" />. By the remainder theorem, the remainder on division by <InlineMath math="x-3" /> equals <InlineMath math="P(3)" />.
 
-<BlockMath math="P(3)=81-2\cdot27-3\cdot9+4\cdot3+4=81-54-27+12+4=16" />
+<BlockMath math="\begin{gathered}
+P(x)=x^4-2x^3-3x^2+4x+4 \\
+P(3)=81-2\cdot27-3\cdot9+4\cdot3+4=81-54-27+12+4=16
+\end{gathered}" />
 
-Draw <InlineMath math="P(x)=(x^2-x-2)^2" />. **The graph touches the <InlineMath math="x" />-axis at both factors <InlineMath math="x=-1" /> and <InlineMath math="x=2" />**, and the remainder on division by <InlineMath math="x-3" /> is the graph's height at <InlineMath math="x=3" />.
+Draw <InlineMath math="P(x)" />. **The graph touches the <InlineMath math="x" />-axis at both factors <InlineMath math="x=-1" /> and <InlineMath math="x=2" />**, and the remainder on division by <InlineMath math="x-3" /> is the graph's height at <InlineMath math="x=3" />.
+
+<BlockMath math="P(x)=(x^2-x-2)^2" />
 
 <MathVisual
   title={<>The graph of <InlineMath math="P(x)" /> and the value <InlineMath math="P(3)" /></>}
@@ -55,11 +74,25 @@ Draw <InlineMath math="P(x)=(x^2-x-2)^2" />. **The graph touches the <InlineMath
   }}
 />
 
-As a check, divide <InlineMath math="P(x)" /> by <InlineMath math="(x+1)(x-2)=x^2-x-2" />. The quotient is also <InlineMath math="x^2-x-2" />, so <InlineMath math="P(x)=(x^2-x-2)^2" />. In this form, <InlineMath math="P(3)=(9-3-2)^2=4^2=16" />, the same result.
+As a check, divide <InlineMath math="P(x)" /> by the equation below. The quotient is also <InlineMath math="x^2-x-2" />, so <InlineMath math="P(x)" />. In this form, <InlineMath math="P(3)=16" />, the same result.
 
-So the remainder when <InlineMath math="P(x)" /> is divided by <InlineMath math="x-3" /> is <InlineMath math="16" />.
+<BlockMath math="\begin{gathered}
+(x+1)(x-2)=x^2-x-2 \\
+P(x)=(x^2-x-2)^2 \\
+P(3)=(9-3-2)^2=4^2=16
+\end{gathered}" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="4" /> is the constant term of <InlineMath math="P(x)" />, that is, <InlineMath math="P(0)" />. The remainder on division by <InlineMath math="x-3" /> is the value of the polynomial at <InlineMath math="x=3" />, not at <InlineMath math="x=0" />.
 - <InlineMath math="12" /> comes from forgetting the constant term <InlineMath math="4" /> while computing <InlineMath math="P(3)" />.
 - <InlineMath math="100" /> comes from taking the zeros of the factors as <InlineMath math="x=1" /> and <InlineMath math="x=-2" />, which gives <InlineMath math="a=2" /> and <InlineMath math="b=-4" />. The value <InlineMath math="100" /> is also obtained when the correct <InlineMath math="P(x)" /> is evaluated at <InlineMath math="x=-3" />, since <InlineMath math="P(-3)=100" />.
-- <InlineMath math="160" /> comes from swapping the values of <InlineMath math="a" /> and <InlineMath math="b" />, so that <InlineMath math="3^4+4\cdot3^3-3\cdot3^2-2\cdot3+4" /> is computed.
+- <InlineMath math="160" /> comes from swapping the values of <InlineMath math="a" /> and <InlineMath math="b" />, so that the expression below is computed.
+
+  <BlockMath math="3^4+4\cdot3^3-3\cdot3^2-2\cdot3+4" />
+
+# Answer
+
+So the remainder when <InlineMath math="P(x)" /> is divided by <InlineMath math="x-3" /> is <InlineMath math="16" />.

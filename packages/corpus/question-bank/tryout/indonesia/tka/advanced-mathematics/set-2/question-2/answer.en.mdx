@@ -1,3 +1,15 @@
+# Given
+
+A three-variable linear system contains a **real parameter** <InlineMath math="a" /> inside its coefficient matrix.
+
+# Asked
+
+The **value of** <InlineMath math="a" /> for which the system does **not** have a unique solution.
+
+# Solution
+
+> A square linear system fails to have a unique solution precisely when its coefficient determinant hits zero.
+
 A linear system of three equations in three unknowns has a unique solution exactly when the determinant of its coefficient matrix is not zero. So you are looking for the value of <InlineMath math="a" /> that **makes that determinant zero**.
 
 Write the coefficient matrix and expand its determinant along the first row. The cofactor signs alternate <InlineMath math="+,-,+" />.
@@ -38,9 +50,15 @@ Draw the determinant of the coefficient matrix as a function of <InlineMath math
 
 The determinant is zero when <InlineMath math="a-7=0" />, that is <InlineMath math="a=7" />. For every other value of <InlineMath math="a" /> the determinant is nonzero and the system has exactly one solution.
 
-So the system has no unique solution when <InlineMath math="a=7" />.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="-7" /> comes from a sign slip when solving <InlineMath math="a-7=0" />.
 - <InlineMath math="-13" /> comes from giving the second cofactor a plus sign, which turns the determinant into <InlineMath math="a+13" />.
 - <InlineMath math="8" /> comes from writing the first minor as just <InlineMath math="2a" /> and losing the <InlineMath math="+1" /> from <InlineMath math="-(-1)\cdot1" />.
 - <InlineMath math="13" /> combines the wrong cofactor sign with a sign slip when solving.
+
+# Answer
+
+So the system has no unique solution when <InlineMath math="a=7" />.

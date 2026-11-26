@@ -1,3 +1,15 @@
+# Gegeben
+
+**Das Dreieck** **<InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, <InlineMath math="C(2,5)" />** wird durch eine <InlineMath math="2\times2" />-Matrix abgebildet.
+
+# Gesucht
+
+Der **Flächeninhalt des Bilddreiecks**.
+
+# Lösung
+
+> Eine Matrixabbildung skaliert jede Fläche genau mit dem Betrag ihrer Determinante, sodass du nur die Startfläche und die Determinante brauchst.
+
 Eine Abbildung mit der Matrix <InlineMath math="M" /> multipliziert jeden Flächeninhalt mit **dem Betrag der Determinante** von <InlineMath math="M" />. Es genügt also, den Flächeninhalt des ursprünglichen Dreiecks und die Determinante zu berechnen. Der Betrag ist nötig, weil eine negative Determinante nur anzeigt, dass sich die Reihenfolge der Ecken umkehrt, während ein Flächeninhalt immer positiv ist.
 
 Die Seite <InlineMath math="AB" /> liegt waagerecht, denn <InlineMath math="A" /> und <InlineMath math="B" /> haben beide die y-Koordinate <InlineMath math="1" />. Ihre Länge ist <InlineMath math="4-1=3" />, und die Höhe auf diese Seite ist der Abstand von <InlineMath math="C" /> zur Geraden <InlineMath math="y=1" />, also <InlineMath math="5-1=4" />.
@@ -43,9 +55,17 @@ A_{A'B'C'}&=\frac12\left|4(3-(-3))+13(-3-0)+11(0-3)\right|=\frac12|24-39-33|=24
   }}
 />
 
-Das Bilddreieck hat also den Flächeninhalt <InlineMath math="24" /> Flächeneinheiten.
+Man sieht sofort, dass das Bilddreieck um den Betrag der Matrixdeterminante gestreckt wird und sich der Flächeninhalt genau mit diesem Faktor ändert.
+
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
 
 - <InlineMath math="-24" /> verwendet die Determinante ohne Betrag. Ein Flächeninhalt ist nie negativ.
 - <InlineMath math="6" /> ist der Flächeninhalt des ursprünglichen Dreiecks. Die Wirkung der Abbildung fehlt.
 - <InlineMath math="10" /> entsteht, wenn Flächeninhalt und Betrag der Determinante **addiert** werden, <InlineMath math="6+4" />. Die Determinante ist aber ein Faktor, mit dem der Flächeninhalt multipliziert wird.
 - <InlineMath math="12" /> verwendet die Summe der Hauptdiagonale, <InlineMath math="3+(-1)=2" />, als Faktor. Der Flächenfaktor ist <InlineMath math="|\det M|" />, nicht die Diagonalsumme.
+
+# Antwort
+
+Das Bilddreieck hat also den Flächeninhalt <InlineMath math="24" /> Flächeneinheiten.

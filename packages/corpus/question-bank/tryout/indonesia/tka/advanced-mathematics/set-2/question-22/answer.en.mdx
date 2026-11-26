@@ -1,3 +1,19 @@
+# Given
+
+**The trigonometric function** **<InlineMath math="h(x)" />** is defined near <InlineMath math="x = \pi" />.
+
+<BlockMath math="h(x) = \frac{1 + \cos x}{(x - \pi)\sin x}" />
+
+# Asked
+
+The **value of** the expression below.
+
+<BlockMath math="\lim_{x\to\pi} h(x)" />
+
+# Solution
+
+> Shift the variable by letting t equal x minus pi so the limit moves to zero where standard sine and cosine limits apply directly.
+
 At <InlineMath math="x=\pi" />, the numerator <InlineMath math="1+\cos\pi=0" /> and the denominator is <InlineMath math="0" /> too. To use the basic limits near zero, **shift the point to zero** with <InlineMath math="t=x-\pi" />. As <InlineMath math="x\to\pi" />, <InlineMath math="t\to0" />.
 
 The angle formulas for <InlineMath math="\pi+t" /> give <InlineMath math="\cos(\pi+t)=-\cos t" /> and <InlineMath math="\sin(\pi+t)=-\sin t" />.
@@ -7,9 +23,12 @@ The angle formulas for <InlineMath math="\pi+t" /> give <InlineMath math="\cos(\
 &=-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}
 \end{aligned}" />
 
-The second line uses <InlineMath math="1-\cos t=2\sin^2\frac t2" />. Split it into basic limits.
+The second line uses the equation below. Split it into basic limits.
 
-<BlockMath math="-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}=-2\cdot\lim_{t\to0}\left(\frac{\sin\frac t2}{t}\right)^2\cdot\lim_{t\to0}\frac{t}{\sin t}=-2\cdot\left(\frac12\right)^2\cdot1=-\frac12" />
+<BlockMath math="\begin{gathered}
+1-\cos t=2\sin^2\frac t2 \\
+-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}=-2\cdot\lim_{t\to0}\left(\frac{\sin\frac t2}{t}\right)^2\cdot\lim_{t\to0}\frac{t}{\sin t}=-2\cdot\left(\frac12\right)^2\cdot1=-\frac12
+\end{gathered}" />
 
 Draw <InlineMath math="h" /> on both sides of <InlineMath math="x=\pi" />. **Both branches rise to the same point at height <InlineMath math="-\tfrac12" />**, even though <InlineMath math="h(\pi)" /> itself isn't defined.
 
@@ -41,11 +60,22 @@ Draw <InlineMath math="h" /> on both sides of <InlineMath math="x=\pi" />. **Bot
   }}
 />
 
-Numerical check: for <InlineMath math="x=\pi+0.01" />, the value is about <InlineMath math="\frac{0.0000500}{0.01\cdot(-0.0099998)}\approx-0.50" />.
+Numerical check: for <InlineMath math="x=\pi+0.01" />, the value is about the equation below.
 
-So the limit is <InlineMath math="-\frac12" />.
+<BlockMath math="\frac{0.0000500}{0.01\cdot(-0.0099998)}\approx-0.50" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="\frac12" /> takes <InlineMath math="\sin(\pi+t)=\sin t" />, which loses the minus sign.
-- <InlineMath math="-1" /> uses <InlineMath math="1-\cos t\approx t^2" />, but the approximation is <InlineMath math="\frac{t^2}{2}" />.
+- <InlineMath math="-1" /> uses <InlineMath math="1-\cos t\approx t^2" />, but the approximation is the expression below.
+
+  <BlockMath math="\frac{t^2}{2}" />
+
 - <InlineMath math="0" /> only looks at the numerator tending to zero.
 - <InlineMath math="-2" /> turns the fraction <InlineMath math="\frac12" /> upside down at the end.
+
+# Answer
+
+So the limit is <InlineMath math="-\frac12" />.
