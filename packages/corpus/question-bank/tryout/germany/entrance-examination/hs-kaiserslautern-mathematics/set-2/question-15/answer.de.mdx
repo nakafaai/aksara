@@ -1,4 +1,16 @@
-# Fahrten zählen, nicht Liter
+# Gegeben
+
+**Eine Molkerei holt täglich Milch** von vier Höfen an einer geraden Straße ab: <InlineMath math="A" /> bei km <InlineMath math="0" /> (<InlineMath math="2500\text{ l}" />), <InlineMath math="B" /> bei km <InlineMath math="6" /> (<InlineMath math="10\,000\text{ l}" />), <InlineMath math="C" /> bei km <InlineMath math="10" /> (<InlineMath math="5500\text{ l}" />) und <InlineMath math="D" /> bei km <InlineMath math="16" /> (<InlineMath math="3200\text{ l}" />). Ein <InlineMath math="3000\text{ l}" />-Tankwagen fährt je Tour zu genau einem Hof und zurück, und im Schutzgebiet <InlineMath math="5 < x < 9" /> darf die Sammelstelle nicht stehen.
+
+# Gesucht
+
+Wie viele Kilometer fährt der Tankwagen im besten Fall pro Tag?
+
+# Lösung
+
+> Entscheidend ist **die Zahl der Fahrten pro Hof**, nicht die Literzahl, und wenn der ideale gewichtete Median im Sperrgebiet liegt, gewinnt zwingend einer der beiden erlaubten Randpunkte.
+
+## Fahrten statt Liter zählen
 
 Ein Tankwagen mit <InlineMath math="3000" /> Litern muss jedes Mal neu losfahren, wenn er voll ist. **Jeder Hof braucht so viele Fahrten, wie <InlineMath math="3000" /> Liter in seine Milch passen, aufgerundet**:
 
@@ -9,7 +21,7 @@ n_C&=\left\lceil\tfrac{5500}{3000}\right\rceil=2,\qquad n_D=\left\lceil\tfrac{32
 
 Hof <InlineMath math="D" /> ist die Falle: <InlineMath math="3200" /> Liter sind knapp mehr als eine Ladung, also braucht er <InlineMath math="2" /> Fahrten.
 
-# Die Strecke als Summe von Beträgen
+## Die Strecke als Summe von Beträgen
 
 Jede Fahrt führt von der Sammelstelle bei <InlineMath math="x" /> zu einem Hof und zurück. **Einfach gezählt ergeben alle Fahrten eines Tages eine Summe von Beträgen, und die Tagesstrecke ist doppelt so lang**:
 
@@ -20,7 +32,7 @@ D(x)&=2f(x)
 
 Stell dir vor, du gehst die Straße entlang: Ein Schritt nach rechts bringt dich jeder Fahrt rechts von dir näher und jeder Fahrt links von dir ferner. **Die Steigung von <InlineMath math="f" /> ist deshalb die Zahl der Fahrten links minus die Zahl der Fahrten rechts**.
 
-# Der beste Punkt ist verboten
+## Der beste Punkt ist verboten
 
 Ohne Schutzgebiet liegt der tiefste Punkt von <InlineMath math="f" /> dort, wo die Steigung von negativ zu positiv wechselt. Von links gezählt sind es <InlineMath math="1" />, dann <InlineMath math="1+4=5" /> Fahrten, mehr als die Hälfte der <InlineMath math="9" />, und das geschieht am Hof <InlineMath math="B" />. Das Minimum liegt also bei Kilometer <InlineMath math="6" /> mit <InlineMath math="f(6)=34" />. **Kilometer <InlineMath math="6" /> liegt aber im Schutzgebiet, also bleiben nur dessen beide Ränder**:
 
@@ -79,8 +91,13 @@ Ohne Schutzgebiet liegt der tiefste Punkt von <InlineMath math="f" /> dort, wo d
   }}
 />
 
-# Der ferne Rand gewinnt
+Die Kurve fällt zum gesperrten Minimum bei <InlineMath math="x=6" /> und steigt nach rechts flacher an als nach links, weshalb der Randpunkt <InlineMath math="x=9" /> mit <InlineMath math="37\text{ km}" /> einfachem Weg (<InlineMath math="74\text{ km}" /> hin und zurück) gewinnt.
+## Der ferne Rand gewinnt
 
 Der Rand bei Kilometer <InlineMath math="5" /> liegt näher am Minimum, doch dort ist <InlineMath math="f" /> steil: Jeder Kilometer kostet <InlineMath math="7" />. Richtung Kilometer <InlineMath math="9" /> kostet jeder Kilometer nur <InlineMath math="1" />. **Die Sammelstelle kommt also an Kilometer <InlineMath math="9" />, und der Tankwagen fährt <InlineMath math="2\cdot37=74\text{ km}" /> am Tag**.
 
 Der nähere Rand bei Kilometer <InlineMath math="5" /> ergäbe <InlineMath math="82\text{ km}" />, und ohne Rückweg kämst du nur auf <InlineMath math="37\text{ km}" />. Gewichtest du mit Tausenden von Litern statt mit den Fahrten, erhältst du <InlineMath math="160{,}8" />, eine Zahl, die gar keine Strecke ist. Zählst du <InlineMath math="D" /> als eine Fahrt, landest du bei <InlineMath math="60\text{ km}" />.
+
+# Antwort
+
+Der Tankwagen fährt mindestens <InlineMath math="74\text{ km}" /> pro Tag.

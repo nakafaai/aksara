@@ -1,4 +1,16 @@
-# Was Kasten B über den umgelegten Widerstand verrät
+# Gegeben
+
+**Kasten A enthält** <InlineMath math="2" /> Widerstände mit <InlineMath math="100\,\Omega" /> und <InlineMath math="4" /> mit <InlineMath math="200\,\Omega" />, **Kasten B** enthält <InlineMath math="1" /> mit <InlineMath math="100\,\Omega" /> und <InlineMath math="3" /> mit <InlineMath math="200\,\Omega" />. Ein zufälliger Widerstand wandert von A nach B, danach werden zwei Widerstände ohne Zurücklegen aus B gezogen und beide haben <InlineMath math="200\,\Omega" />. Anschließend werden zwei der fünf übrigen Widerstände aus A gezogen.
+
+# Gesucht
+
+Mit welcher Wahrscheinlichkeit in Prozent haben beide aus Kasten A gezogenen Widerstände denselben Wert?
+
+# Lösung
+
+> Zwei gezogene <InlineMath math="200\,\Omega" />-Widerstände aus B sind ein **Hinweis darauf, dass eher ein <InlineMath math="200\,\Omega" />-Widerstand aus A kam**, weshalb wir zuerst die bedingten Gewichte aktualisieren.
+
+## Was Kasten B über den umgelegten Widerstand verrät
 
 Steckst du blind eine Münze aus der linken Tasche in die rechte und ziehst dann zwei Goldmünzen aus der rechten, war die umgelegte Münze deutlich eher eine Goldmünze. **Bezeichne die beiden Übergaben mit <InlineMath math="H_{100}" /> und <InlineMath math="H_{200}" /> und das Ereignis zweier <InlineMath math="200\,\Omega" />-Widerstände aus B mit <InlineMath math="E" />**. Vor dem Zug aus B gilt <InlineMath math="P(H_{100})=\tfrac13" /> und <InlineMath math="P(H_{200})=\tfrac23" />.
 
@@ -9,7 +21,7 @@ P(H_{100}\cap E)=\tfrac26\cdot\tfrac35\cdot\tfrac24=\tfrac1{10},\qquad P(H_{200}
 P(E)=\tfrac1{10}+\tfrac4{10}=\tfrac12,\qquad P(H_{100}\mid E)=\tfrac15=20\,\%,\qquad P(H_{200}\mid E)=\tfrac45=80\,\%
 \end{aligned}" />
 
-# Was in jedem Fall in Kasten A übrig bleibt
+## Was in jedem Fall in Kasten A übrig bleibt
 
 Schau jetzt zurück in Kasten A mit seinen fünf übrigen Widerständen, und nenne das Ereignis zweier gleicher Werte <InlineMath math="G" />. **Hier steckt die Falle: Bei <InlineMath math="H_{100}" /> bleibt nur ein <InlineMath math="100\,\Omega" />-Widerstand in A, ein <InlineMath math="100\,\Omega" />-Paar ist also unmöglich, während bei <InlineMath math="H_{200}" /> sowohl <InlineMath math="200\,\Omega" />-Paare als auch das <InlineMath math="100\,\Omega" />-Paar zählen**.
 
@@ -33,3 +45,7 @@ P(G\mid E)=0{,}20\cdot0{,}60+0{,}80\cdot0{,}40=0{,}12+0{,}32=0{,}44=44\,\%
 />
 
 Die aktualisierten Gewichte <InlineMath math="20\,\%" /> und <InlineMath math="80\,\%" /> führen zusammen auf **<InlineMath math="44\,\%" />**. Wer das <InlineMath math="100\,\Omega" />-Paar bei <InlineMath math="H_{200}" /> vergisst, landet bei <InlineMath math="36\,\%" />, und wer Kasten B ignoriert, bleibt bei <InlineMath math="\tfrac{7}{15}" /> hängen.
+
+# Antwort
+
+Die Wahrscheinlichkeit für zwei gleiche Widerstände aus Kasten A beträgt <InlineMath math="44\,\%" />.

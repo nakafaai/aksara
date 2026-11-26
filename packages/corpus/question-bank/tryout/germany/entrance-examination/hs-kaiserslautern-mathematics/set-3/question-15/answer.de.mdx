@@ -1,12 +1,24 @@
-# Tagesertrag als symmetrische Parabelfläche
+# Gegeben
 
-Mit <InlineMath math="u=t-12" /> liegt die Parabel mittig um zwölf Uhr, und jede waagerecht abgeschnittene Kappe der halben Breite <InlineMath math="w" /> hat die Fläche <InlineMath math="\tfrac23\int_{-w}^{w}(w^2-u^2)\,\mathrm du=\tfrac89 w^3" />. **Über den ganzen Tag mit <InlineMath math="w=6" /> liefert die Anlage genau <InlineMath math="192\text{ kWh}" />**.
+**Eine Photovoltaikanlage** liefert zwischen <InlineMath math="6" /> und <InlineMath math="18" /> Uhr <InlineMath math="P(t)" />. Die Halle verbraucht durchgehend <InlineMath math="10{,}5\text{ kW}" />, während Überschuss lädt einen leeren <InlineMath math="60\text{ kWh}" />-Speicher mit höchstens <InlineMath math="7{,}5\text{ kW}" /> (der Rest geht ins Netz), und abends wird der Speicher vollständig in der Halle genutzt.
+
+# Gesucht
+
+Wie viel Prozent der Solarenergie dieses Tages werden in der Halle genutzt?
+
+# Lösung
+
+> Stell dir die Solarkurve wie einen Hügel mit zwei horizontalen Schnitten vor: **Nur die gekappte Spitze oberhalb von <InlineMath math="10{,}5 + 7{,}5 = 18\text{ kW}" /> geht ins Netz**, sofern das mittlere Speicherband unter <InlineMath math="60\text{ kWh}" /> bleibt.
+
+## Tagesertrag als symmetrische Parabelfläche
+
+Mit <InlineMath math="u=t-12" /> liegt die Parabel mittig um zwölf Uhr, und jede waagerecht abgeschnittene Kappe der halben Breite <InlineMath math="w" /> hat die Fläche <InlineMath math="\frac{8}{9} w^3" />. **Über den ganzen Tag mit <InlineMath math="w=6" /> liefert die Anlage genau <InlineMath math="192\text{ kWh}" />**.
 
 <BlockMath math="\begin{aligned}
 u=t-12:\quad P=\tfrac23(36-u^2),\qquad E_{\text{Tag}}=\tfrac23\int_{-6}^{6}(36-u^2)\,\mathrm du=\tfrac89\cdot6^3=192\text{ kWh}
 \end{aligned}" />
 
-# Ladeleistungsdeckel und Speicherkapazität gemeinsam prüfen
+## Ladeleistungsdeckel und Speicherkapazität gemeinsam prüfen
 
 **Hier steckt die doppelte Falle: Über <InlineMath math="10{,}5\text{ kW}" /> fallen <InlineMath math="81\text{ kWh}" /> Überschuss an, also mehr als die <InlineMath math="60\text{ kWh}" /> Kapazität, weshalb ein schneller Blick annimmt, der Speicher werde voll und nur <InlineMath math="21\text{ kWh}" /> gingen verloren**. Tatsächlich begrenzt der Wechselrichter das Laden auf <InlineMath math="7{,}5\text{ kW}" /> und schneidet zwischen <InlineMath math="9" /> und <InlineMath math="15" /> Uhr alles oberhalb von <InlineMath math="10{,}5+7{,}5=18\text{ kW}" /> ins Netz ab.
 
@@ -53,3 +65,7 @@ E_{\text{Speicher}}=81-24=57\text{ kWh}<60\text{ kWh}\ \Longrightarrow\ \frac{19
 />
 
 Nach Abzug dieser <InlineMath math="24\text{ kWh}" /> Mittagskappe gelangen nur <InlineMath math="57\text{ kWh}" /> in den Speicher, sodass er die <InlineMath math="60\text{ kWh}" />-Grenze gar nicht erreicht. Genau <InlineMath math="168\text{ kWh}" /> bleiben in der Halle, also **<InlineMath math="87{,}5\,\%" />** der Solarenergie.
+
+# Antwort
+
+Genau <InlineMath math="87{,}5\,\%" /> der Solarenergie werden in der Halle genutzt.

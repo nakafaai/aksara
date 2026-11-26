@@ -1,8 +1,20 @@
-# Tariff B has three pieces
+# Given
+
+**Tariff A charges** a <InlineMath math="15\text{ €}" /> base fee plus <InlineMath math="0.25\text{ €}" /> per kWh. Tariff B has no base fee, charges <InlineMath math="0.20\text{ €}" /> per kWh for the first <InlineMath math="100\text{ kWh}" /> and <InlineMath math="0.35\text{ €}" /> per kWh beyond that, with a <InlineMath math="18\text{ €}" /> monthly minimum.
+
+# Asked
+
+How many kWh wide is the monthly usage range where Tariff B is cheaper than Tariff A?
+
+# Solution
+
+> A piecewise tariff bends at each threshold, so **Tariff A crosses Tariff B once on the flat minimum floor and once on the steeper upper slope**.
+
+## Tariff B has three pieces
 
 A phone plan with a minimum fee works like this: use a little and you still pay the floor. Tariff B adds a second rule on top, the expensive kilowatt hours after the first <InlineMath math="100" />. **So B is <InlineMath math="18\text{ €}" /> flat up to <InlineMath math="90\text{ kWh}" />, then <InlineMath math="0.20x" /> up to <InlineMath math="100\text{ kWh}" />, and after that <InlineMath math="20+0.35\,(x-100)" />**.
 
-# The lower limit
+## The lower limit
 
 At very small use B still charges <InlineMath math="18\text{ €}" /> while A charges only a little more than <InlineMath math="15\text{ €}" />. **B wins once A climbs past the minimum**:
 
@@ -13,7 +25,7 @@ x&>12
 
 Between <InlineMath math="90" /> and <InlineMath math="100\text{ kWh}" /> B costs at most <InlineMath math="20\text{ €}" /> while A costs at least <InlineMath math="37.5\text{ €}" />, so B stays cheaper there.
 
-# The upper limit
+## The upper limit
 
 Above <InlineMath math="100\text{ kWh}" /> each extra unit costs more with B than with A, so A catches up. **Only the units after the first <InlineMath math="100" /> cost <InlineMath math="0.35\text{ €}" />**:
 
@@ -58,6 +70,12 @@ The value <InlineMath math="300" /> lies in this third piece, so it counts. Char
   }}
 />
 
-# The width of the range
+Tariff B stays **below Tariff A strictly between the two crossover points**, spanning a width of exactly <InlineMath math="288\text{ kWh}" />.
+
+## The width of the range
 
 B is cheaper from <InlineMath math="12" /> to <InlineMath math="300\text{ kWh}" />. **The limits lie <InlineMath math="300-12=288\text{ kWh}" /> apart**.
+
+# Answer
+
+The two crossover boundaries are <InlineMath math="288\text{ kWh}" /> apart.

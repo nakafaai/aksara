@@ -1,8 +1,20 @@
-# Angkanya dulu, baru urutannya
+# Diketahui
+
+**Sebuah kunci kombinasi** memiliki empat cincin angka <InlineMath math="0" /> sampai <InlineMath math="9" />. Keempat angkanya harus berbeda, jumlahnya <InlineMath math="10" />, dan angka pertama tidak boleh <InlineMath math="0" />.
+
+# Ditanyakan
+
+Berapa banyak kode berbeda yang memenuhi semua syarat itu?
+
+# Penyelesaian
+
+> Pilih dulu **kumpulan empat angka berbeda yang jumlahnya sepuluh** baru hitung urutan susunannya, karena urutan tidak mengubah jumlah angka.
+
+## Angkanya dulu baru urutannya
 
 Bayangkan kamu memilih empat stiker yang berbeda dulu, baru menentukan letak masing-masing. Di sini stikernya adalah angka. **Pilih dulu himpunan empat angka**, lalu hitung cara menyusunnya.
 
-Empat angka berbeda berjumlah <InlineMath math="10" /> dimulai dari himpunan terkecil, <InlineMath math="0+1+2+3=6" />. Masih kurang <InlineMath math="4" /> tanpa membuat dua angka sama. Dengan menaikkan angka terbesar kamu dapat <InlineMath math="\{0,1,2,7\}" />, <InlineMath math="\{0,1,3,6\}" />, dan <InlineMath math="\{0,1,4,5\}" />, lalu <InlineMath math="\{0,2,3,5\}" />, dan tanpa <InlineMath math="0" /> hanya <InlineMath math="\{1,2,3,4\}" />. Percobaan lain mengulang angka atau melewati <InlineMath math="10" />.
+Empat angka berbeda berjumlah <InlineMath math="10" /> dimulai dari himpunan terkecil, <InlineMath math="6" />. Masih kurang <InlineMath math="4" /> tanpa membuat dua angka sama. Dengan menaikkan angka terbesar kamu dapat <InlineMath math="\{0,1,2,7\}" />, <InlineMath math="\{0,1,3,6\}" />, dan <InlineMath math="\{0,1,4,5\}" />, lalu <InlineMath math="\{0,2,3,5\}" />, dan tanpa <InlineMath math="0" /> hanya <InlineMath math="\{1,2,3,4\}" />. Percobaan lain mengulang angka atau melewati <InlineMath math="10" />.
 
 <Mermaid
   title={<>Dari himpunan angka ke banyak kode</>}
@@ -19,7 +31,9 @@ Empat angka berbeda berjumlah <InlineMath math="10" /> dimulai dari himpunan ter
   `}
 />
 
-# Cincin pertama yang terlarang
+Setiap gugus di grafik menunjukkan **jumlah susunan yang lolos** sesudah membuang kode berawalan nol, dan jumlah seluruh batangnya memberi total <InlineMath math="96" /> kode.
+
+## Cincin pertama yang terlarang
 
 Empat angka berbeda bisa disusun dalam <InlineMath math="4!=24" /> urutan. **Himpunan yang memuat <InlineMath math="0" /> kehilangan urutan yang diawali <InlineMath math="0" />**, yaitu <InlineMath math="3!=6" /> susunan tiga angka lainnya. Tiap himpunan dengan <InlineMath math="0" /> menyisakan <InlineMath math="18" /> kode.
 
@@ -29,3 +43,7 @@ Empat angka berbeda bisa disusun dalam <InlineMath math="4!=24" /> urutan. **Him
 \end{aligned}" />
 
 Kalau aturan cincin pertama terlupa, hasilnya <InlineMath math="5\cdot24=120" />. Lena akan mencoba <InlineMath math="24" /> kode yang sebenarnya sudah dilarang. **Ada <InlineMath math="96" /> kode yang mungkin**.
+
+# Jawaban
+
+Ada <InlineMath math="96" /> kode yang memenuhi semua syarat itu.

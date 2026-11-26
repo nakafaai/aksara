@@ -1,8 +1,20 @@
-# Erst die Ziffern, dann ihre Reihenfolge
+# Gegeben
+
+**Ein vierstelliges Zahlenschloss** verwendet Ziffern von <InlineMath math="0" /> bis <InlineMath math="9" />. Alle vier Ziffern sind verschieden, ihre Summe beträgt <InlineMath math="10" />, und die erste Ziffer ist ungleich <InlineMath math="0" />.
+
+# Gesucht
+
+Wie viele Codes erfüllen alle diese Bedingungen?
+
+# Lösung
+
+> Bestimme zuerst **welche vier verschiedenen Ziffern zusammen zehn ergeben**, und zähle erst danach ihre erlaubten Anordnungen.
+
+## Erst die Ziffern dann ihre Reihenfolge
 
 Stell dir vor, du suchst erst vier verschiedene Sticker aus und entscheidest danach, wohin jeder kommt. Hier sind die Sticker Ziffern. **Wähle zuerst den Satz aus vier Ziffern**, dann zählst du, wie viele Anordnungen er hat.
 
-Vier verschiedene Ziffern mit der Summe <InlineMath math="10" /> beginnen beim kleinsten Satz, <InlineMath math="0+1+2+3=6" />. Es fehlen noch <InlineMath math="4" />, ohne dass zwei Ziffern gleich werden. Hebst du die größte Ziffer an, entstehen <InlineMath math="\{0,1,2,7\}" />, <InlineMath math="\{0,1,3,6\}" /> und <InlineMath math="\{0,1,4,5\}" />, dann <InlineMath math="\{0,2,3,5\}" />, und ohne <InlineMath math="0" /> nur <InlineMath math="\{1,2,3,4\}" />. Jeder andere Versuch wiederholt eine Ziffer oder überschreitet <InlineMath math="10" />.
+Vier verschiedene Ziffern mit der Summe <InlineMath math="10" /> beginnen beim kleinsten Satz, <InlineMath math="6" />. Es fehlen noch <InlineMath math="4" />, ohne dass zwei Ziffern gleich werden. Hebst du die größte Ziffer an, entstehen <InlineMath math="\{0,1,2,7\}" />, <InlineMath math="\{0,1,3,6\}" /> und <InlineMath math="\{0,1,4,5\}" />, dann <InlineMath math="\{0,2,3,5\}" />, und ohne <InlineMath math="0" /> nur <InlineMath math="\{1,2,3,4\}" />. Jeder andere Versuch wiederholt eine Ziffer oder überschreitet <InlineMath math="10" />.
 
 <Mermaid
   title={<>Vom Ziffernsatz zur Zahl der Codes</>}
@@ -19,7 +31,9 @@ Vier verschiedene Ziffern mit der Summe <InlineMath math="10" /> beginnen beim k
   `}
 />
 
-# Der verbotene erste Ring
+Jede Balkengruppe zeigt, **wie viele gültige Anordnungen nach dem Ausschluss der führenden Null bleiben**, was zusammen genau <InlineMath math="96" /> Codes ergibt.
+
+## Der verbotene erste Ring
 
 Vier verschiedene Ziffern lassen sich auf <InlineMath math="4!=24" /> Arten anordnen. **Ein Satz mit <InlineMath math="0" /> verliert die Anordnungen, die mit <InlineMath math="0" /> beginnen**, und das sind die <InlineMath math="3!=6" /> Anordnungen der anderen drei Ziffern. Für jeden der vier Sätze mit <InlineMath math="0" /> bleiben <InlineMath math="18" /> Codes.
 
@@ -29,3 +43,7 @@ Vier verschiedene Ziffern lassen sich auf <InlineMath math="4!=24" /> Arten anor
 \end{aligned}" />
 
 Wer die Regel für den ersten Ring vergisst, kommt auf <InlineMath math="5\cdot24=120" />. Lena würde dann <InlineMath math="24" /> Codes ausprobieren, die die Regel schon ausschließt. **Es gibt <InlineMath math="96" /> mögliche Codes**.
+
+# Antwort
+
+Es gibt <InlineMath math="96" /> passende Codes.

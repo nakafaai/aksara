@@ -1,6 +1,18 @@
-# Dua petunjuk, satu nisbah
+# Diberi
 
-Bayangkan set kotak bersarang yang setiap kotaknya pecahan yang sama daripada kotak di bawahnya. Pecahan tetap itu ialah nisbah <InlineMath math="q" /> bagi janjang geometri. **Kubus kedua memberi <InlineMath math="a_1=\frac{1.2}{q}" />, dan kubus pertama serta ketiga bersama memberi persamaan bagi <InlineMath math="q" />**:
+**Panjang sisi kubus** bertingkat membentuk janjang geometri dari bawah ke atas, dan setiap kubus atas mesti terletak sepenuhnya di atas kubus di bawahnya. Kubus kedua mempunyai sisi <InlineMath math="1.2\text{ m}" />, manakala jumlah tinggi kubus pertama dan ketiga ialah <InlineMath math="2.6\text{ m}" />.
+
+# Ditanya
+
+Berapakah bilangan minimum kubus supaya menara lebih tinggi daripada <InlineMath math="5\text{ m}" />?
+
+# Penyelesaian
+
+> Syarat tiada bahagian terjulur bermakna **setiap kubus di atas mesti lebih kecil daripada kubus di bawahnya**, maka nisbah sepunya mesti kurang daripada satu.
+
+## Dua petunjuk satu nisbah
+
+Bayangkan set kotak bersarang yang setiap kotaknya pecahan yang sama daripada kotak di bawahnya. Pecahan tetap itu ialah nisbah <InlineMath math="q" /> bagi janjang geometri. **Kubus kedua memberi <InlineMath math="a_1" />, dan kubus pertama serta ketiga bersama memberi persamaan bagi <InlineMath math="q" />**:
 
 <BlockMath math="\begin{aligned}
 a_1q&=1.2,\qquad a_1+a_1q^2=2.6\\
@@ -9,13 +21,13 @@ a_1q&=1.2,\qquad a_1+a_1q^2=2.6\\
 q&=\tfrac{3}{2}\ \vee\ q=\tfrac{2}{3}
 \end{aligned}" />
 
-# Peraturan tapak memilih nisbah
+## Peraturan tapak memilih nisbah
 
-Kubus besar di atas kubus kecil akan terjulur keluar seperti topi yang terlalu lebar. Teks melarang keadaan itu, kerana seluruh tapak setiap kubus mesti terletak pada kubus di bawahnya. **Jadi setiap kubus lebih kecil daripada kubus di bawahnya, dan <InlineMath math="q=\frac{2}{3}" />**. Maka <InlineMath math="a_1=1.8\text{ m}" />, dan kubusnya berukuran <InlineMath math="1.8" />, <InlineMath math="1.2" />, <InlineMath math="0.8\text{ m}" /> dan seterusnya. Kalau kamu mengekalkan <InlineMath math="q=\frac{3}{2}" />, menara itu melebar ke atas dan sudah melepasi <InlineMath math="5\text{ m}" /> selepas <InlineMath math="4" /> kubus sahaja.
+Kubus besar di atas kubus kecil akan terjulur keluar seperti topi yang terlalu lebar. Teks melarang keadaan itu, kerana seluruh tapak setiap kubus mesti terletak pada kubus di bawahnya. **Jadi setiap kubus lebih kecil daripada kubus di bawahnya, dan <InlineMath math="q = 2/3" />**. Maka <InlineMath math="a_1=1.8\text{ m}" />, dan kubusnya berukuran <InlineMath math="1.8" />, <InlineMath math="1.2" />, <InlineMath math="0.8\text{ m}" /> dan seterusnya. Kalau kamu mengekalkan <InlineMath math="q = 3/2" />, menara itu melebar ke atas dan sudah melepasi <InlineMath math="5\text{ m}" /> selepas <InlineMath math="4" /> kubus sahaja.
 
-# Setinggi mana menara boleh naik
+## Setinggi mana menara boleh naik
 
-Menambah kubus yang semakin kecil serupa berjalan setiap kali hanya sebahagian daripada baki jalan: kamu makin hampir ke hujung yang tidak pernah dilepasi. **Malah kubus yang tiada penghujung tetap di bawah <InlineMath math="\frac{1.8}{1-\frac{2}{3}}=5.4\text{ m}" />, jadi had <InlineMath math="5\text{ m}" /> hanya dicapai lewat**.
+Menambah kubus yang semakin kecil serupa berjalan setiap kali hanya sebahagian daripada baki jalan: kamu makin hampir ke hujung yang tidak pernah dilepasi. **Malah kubus yang tiada penghujung tetap di bawah <InlineMath math="5.4\text{ m}" />, jadi had <InlineMath math="5\text{ m}" /> hanya dicapai lewat**.
 
 <BlockMath math="\begin{aligned}
 S_n&=\frac{1.8\left(1-\left(\frac{2}{3}\right)^n\right)}{1-\frac{2}{3}}=5.4\left(1-\left(\tfrac{2}{3}\right)^n\right)\\
@@ -27,7 +39,7 @@ Samakan penyebut kedua-dua pecahan kepada <InlineMath math="3^n" />. Untuk <Inli
 
 <Chart
   title={<>Tinggi menara</>}
-  description={<>Tinggi menara selepas <InlineMath math="n" /> kubus dengan <InlineMath math="q=\frac{2}{3}" /> dan <InlineMath math="a_1=1.8\text{ m}" />, bersama had <InlineMath math="5\text{ m}" />. Hanya kubus ketujuh yang menaikkan menara melepasi had, dan berapa banyak pun kubusnya, tingginya tidak sampai <InlineMath math="5.4\text{ m}" />.</>}
+  description={<>Tinggi menara selepas <InlineMath math="n" /> kubus dengan <InlineMath math="q = 2/3" /> dan <InlineMath math="a_1=1.8\text{ m}" />, bersama had <InlineMath math="5\text{ m}" />. Hanya kubus ketujuh yang menaikkan menara melepasi had, dan berapa banyak pun kubusnya, tingginya tidak sampai <InlineMath math="5.4\text{ m}" />.</>}
   categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
   series={[
     { label: "Tinggi menara", mark: "line", values: [1.8, 3.0, 3.8, 4.33, 4.69, 4.93, 5.08, 5.19] },
@@ -35,3 +47,9 @@ Samakan penyebut kedua-dua pecahan kepada <InlineMath math="3^n" />. Untuk <Inli
   ]}
   valueLabel="Tinggi (m)"
 />
+
+Lengkung jumlah tinggi semakin mendatar dan **mula melepasi garisan <InlineMath math="5\text{ m}" /> tepat pada kubus ketujuh**.
+
+# Jawapan
+
+Menara memerlukan sekurang-kurangnya <InlineMath math="7" /> kubus.

@@ -1,8 +1,20 @@
-# Two arrivals become one point
+# Given
+
+**Anna and Ben** each arrive independently and uniformly between 17:00 and 17:40. Anna waits until 17:30, and always at least <InlineMath math="10" /> minutes after arriving. Ben waits at most <InlineMath math="20" /> minutes after arriving.
+
+# Asked
+
+What is the probability that Anna and Ben meet, written as a decimal?
+
+# Solution
+
+> Turn both arrival times into a point inside a <InlineMath math="40 \times 40" /> square so **probability becomes simple area**: subtract the two miss corners from the whole square.
+
+## Two arrivals become one point
 
 Write Anna's arrival as <InlineMath math="x" /> and Ben's as <InlineMath math="y" />, in minutes after 17:00, both between <InlineMath math="0" /> and <InlineMath math="40" />. **Each pair of arrivals is one point of a square with side <InlineMath math="40" />, and because every moment is equally likely, a probability is a share of its area <InlineMath math="1600" />**. It is like a raindrop landing anywhere on a square tile: the chance of hitting a region is that region's share of the tile.
 
-# Ben first: one clean cut
+## Ben first gives one clean cut
 
 If Ben is there first, so <InlineMath math="y<x" />, only his patience counts. **He waits <InlineMath math="20" /> minutes, so the two miss each other when <InlineMath math="x-y>20" />**. That is the corner below the line <InlineMath math="y=x-20" />, a right triangle with legs <InlineMath math="20" />:
 
@@ -10,7 +22,7 @@ If Ben is there first, so <InlineMath math="y<x" />, only his patience counts. *
 A_1&=\tfrac12\cdot20\cdot20=200
 \end{aligned}" />
 
-# Anna first: her edge bends
+## Anna first bends her edge
 
 Anna leaves at the later of two times: 17:30, or <InlineMath math="10" /> minutes after she arrives. Up to <InlineMath math="x=20" /> the 17:30 deadline is later, after that her <InlineMath math="10" /> minutes win. **So her edge is not one straight line: it runs flat at <InlineMath math="y=30" /> until <InlineMath math="x=20" /> and then climbs along <InlineMath math="y=x+10" /> to the corner <InlineMath math="(30\mid40)" />**. Above it Ben comes too late, a strip of <InlineMath math="20" /> by <InlineMath math="10" /> and a small triangle with legs <InlineMath math="10" />:
 
@@ -50,3 +62,9 @@ The two meet with probability <InlineMath math="0.71875" />. Letting Anna wait o
     ],
   }}
 />
+
+In the meeting square, the shaded meeting region fills the whole <InlineMath math="1600" />-unit square except Ben's <InlineMath math="200" />-unit corner and Anna's <InlineMath math="250" />-unit corner, leaving <InlineMath math="0.71875" />.
+
+# Answer
+
+The probability that they meet is <InlineMath math="0.71875" />.

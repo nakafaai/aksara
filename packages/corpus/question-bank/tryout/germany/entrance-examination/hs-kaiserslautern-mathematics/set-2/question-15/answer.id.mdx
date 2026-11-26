@@ -1,4 +1,16 @@
-# Hitung perjalanan, bukan liter
+# Diketahui
+
+**Sebuah pabrik susu mengambil susu** harian dari empat peternakan di jalan lurus: <InlineMath math="A" /> di km <InlineMath math="0" /> (<InlineMath math="2500\text{ l}" />), <InlineMath math="B" /> di km <InlineMath math="6" /> (<InlineMath math="10\,000\text{ l}" />), <InlineMath math="C" /> di km <InlineMath math="10" /> (<InlineMath math="5500\text{ l}" />), dan <InlineMath math="D" /> di km <InlineMath math="16" /> (<InlineMath math="3200\text{ l}" />). Truk tangki <InlineMath math="3000\text{ l}" /> pulang-pergi ke satu peternakan tiap perjalanan, dan pos tidak boleh dibangun di zona larangan <InlineMath math="5 < x < 9" />.
+
+# Ditanyakan
+
+Berapa kilometer jarak tempuh harian terpendek truk tangki itu?
+
+# Penyelesaian
+
+> Yang menentukan jarak adalah **jumlah perjalanan pulang-pergi tiap peternakan**, bukan liter mentah, dan saat titik median terbaik jatuh di zona terlarang, pemenang sesungguhnya pasti berada di salah satu tepi batas yang diizinkan.
+
+## Hitung perjalanan bukan liter
 
 Truk tangki yang memuat <InlineMath math="3000" /> liter harus berangkat lagi setiap kali penuh. **Setiap peternakan memerlukan perjalanan sebanyak <InlineMath math="3000" /> liter muat dalam susunya, dibulatkan ke atas**:
 
@@ -9,7 +21,7 @@ n_C&=\left\lceil\tfrac{5500}{3000}\right\rceil=2,\qquad n_D=\left\lceil\tfrac{32
 
 Peternakan <InlineMath math="D" /> adalah jebakannya: <InlineMath math="3200" /> liter sedikit lebih dari satu muatan, jadi perlu <InlineMath math="2" /> perjalanan.
 
-# Jarak sebagai jumlah nilai mutlak
+## Jarak sebagai jumlah nilai mutlak
 
 Setiap perjalanan berangkat dari tempat pengumpulan di <InlineMath math="x" /> ke satu peternakan lalu kembali. **Dihitung sekali jalan, semua perjalanan sehari menjadi jumlah nilai mutlak, dan jarak hariannya dua kali lipat**:
 
@@ -20,7 +32,7 @@ D(x)&=2f(x)
 
 Bayangkan kamu berjalan menyusuri jalan: satu langkah ke kanan membuatmu lebih dekat ke setiap perjalanan di sebelah kanan dan lebih jauh dari setiap perjalanan di sebelah kiri. **Jadi kemiringan <InlineMath math="f" /> adalah banyak perjalanan di kiri dikurangi banyak perjalanan di kanan**.
 
-# Titik terbaik terlarang
+## Titik terbaik terlarang
 
 Tanpa zona itu, titik terendah <InlineMath math="f" /> ada di tempat kemiringan berubah dari negatif ke positif. Dihitung dari kiri ada <InlineMath math="1" />, lalu <InlineMath math="1+4=5" /> perjalanan, lebih dari separuh dari <InlineMath math="9" />, dan itu terjadi di peternakan <InlineMath math="B" />. Jadi minimumnya di kilometer <InlineMath math="6" /> dengan <InlineMath math="f(6)=34" />. **Tetapi kilometer <InlineMath math="6" /> berada di dalam zona perlindungan air, jadi hanya kedua tepinya yang tersisa**:
 
@@ -79,8 +91,13 @@ Tanpa zona itu, titik terendah <InlineMath math="f" /> ada di tempat kemiringan 
   }}
 />
 
-# Tepi yang jauh menang
+Grafik jarak menukik menuju lembah terlarang di <InlineMath math="x=6" /> dan naik lebih landai ke kanan daripada ke kiri, sehingga tepi <InlineMath math="x=9" /> mengalahkan <InlineMath math="x=5" /> dengan <InlineMath math="37\text{ km}" /> sekali jalan (<InlineMath math="74\text{ km}" /> pulang-pergi).
+## Tepi yang jauh menang
 
 Tepi di kilometer <InlineMath math="5" /> lebih dekat ke minimum, tetapi <InlineMath math="f" /> curam di sana: setiap kilometer menambah <InlineMath math="7" />. Ke arah kilometer <InlineMath math="9" /> setiap kilometer hanya menambah <InlineMath math="1" />. **Jadi tempat pengumpulan dibangun di kilometer <InlineMath math="9" />, dan truk tangki menempuh <InlineMath math="2\cdot37=74\text{ km}" /> sehari**.
 
 Tepi yang lebih dekat di kilometer <InlineMath math="5" /> memberi <InlineMath math="82\text{ km}" />, dan tanpa perjalanan pulang hasilnya hanya <InlineMath math="37\text{ km}" />. Kalau diberi bobot ribuan liter, bukan perjalanan, hasilnya <InlineMath math="160{,}8" />, angka yang bahkan bukan jarak. Kalau <InlineMath math="D" /> dihitung satu perjalanan, hasilnya <InlineMath math="60\text{ km}" />.
+
+# Jawaban
+
+Truk tangki menempuh minimal <InlineMath math="74\text{ km}" /> per hari.

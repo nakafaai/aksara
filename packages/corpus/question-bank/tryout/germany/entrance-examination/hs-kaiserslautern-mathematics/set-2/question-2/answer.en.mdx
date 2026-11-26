@@ -1,4 +1,16 @@
-# Every route is a word of letters
+# Given
+
+**A bike courier** moves on a street grid from <InlineMath math="S(0\mid0)" /> to <InlineMath math="Z(6\mid4)" /> going only east or north. The route must visit at least one pharmacy at <InlineMath math="A(2\mid2)" /> or <InlineMath math="B(4\mid1)" />, and the street segment from <InlineMath math="(3\mid2)" /> to <InlineMath math="(4\mid2)" /> is closed.
+
+# Asked
+
+How many different valid routes can the courier take?
+
+# Solution
+
+> Because the courier never walks backward, **routes through <InlineMath math="A" /> and routes through <InlineMath math="B" /> cannot overlap** at all, so you simply add both counts after removing the blocked edge.
+
+## Every route is a word of letters
 
 Write down the route as a string: E for a step east, N for a step north. From <InlineMath math="S" /> to <InlineMath math="Z" /> that is always six E and four N, only in a different order. **Counting routes between two crossings means choosing where the N steps go, a binomial coefficient**. For the routes through pharmacy <InlineMath math="A" /> you multiply the two halves:
 
@@ -7,7 +19,7 @@ S\to A&:\ \tbinom{4}{2}=6,\qquad A\to Z:\ \tbinom{6}{2}=15\\
 6\cdot15&=90
 \end{aligned}" />
 
-# The closed street only hurts the routes through A
+## The closed street only hurts the routes through A
 
 A route through <InlineMath math="A" /> uses the closed section if it goes from <InlineMath math="A" /> straight east to <InlineMath math="(3\mid2)" />, which is one way only, then along the section, then from <InlineMath math="(4\mid2)" /> to <InlineMath math="Z" />. **Those routes must come off**:
 
@@ -66,7 +78,8 @@ A route through <InlineMath math="A" /> uses the closed section if it goes from 
   }}
 />
 
-# Pharmacy B and the overlap
+Notice on the grid that <InlineMath math="B(4\mid1)" /> sits below <InlineMath math="A(2\mid2)" /> and to its right, which makes it impossible to pass both pharmacies while moving only east and north.
+## Pharmacy B and the overlap
 
 For <InlineMath math="B(4\mid1)" /> the same counting works. **No route passes both pharmacies, because after <InlineMath math="A" /> at height <InlineMath math="2" /> the courier can never come down to height <InlineMath math="1" /> at <InlineMath math="B" />, and before <InlineMath math="A" /> he would need <InlineMath math="x=4" /> and then <InlineMath math="x=2" />**. So nothing is counted twice. A route through <InlineMath math="B" /> reaches height <InlineMath math="2" /> only at <InlineMath math="x\ge4" />, so it never uses the closed section either:
 
@@ -76,3 +89,7 @@ S\to B&:\ \tbinom{5}{1}=5,\qquad B\to Z:\ \tbinom{5}{2}=10\\
 \end{aligned}" />
 
 The courier has <InlineMath math="104" /> different routes. Forgetting the roadworks gives <InlineMath math="140" />.
+
+# Answer
+
+The courier can take <InlineMath math="104" /> different routes.

@@ -1,4 +1,16 @@
-# Drei Gleichungen für drei Mengen
+# Gegeben
+
+**Ein Reitstall mischt** <InlineMath math="100\text{ kg}" /> Kraftfutter aus Sorte A (<InlineMath math="12\,\%" /> Eiweiß, <InlineMath math="8\,\%" /> Fett, <InlineMath math="0{,}40\text{ €}/\text{kg}" />), Sorte B (<InlineMath math="18\,\%" /> Eiweiß, <InlineMath math="6\,\%" /> Fett, <InlineMath math="0{,}30\text{ €}/\text{kg}" />) und Sorte C (<InlineMath math="30\,\%" /> Eiweiß, <InlineMath math="2\,\%" /> Fett, <InlineMath math="0{,}60\text{ €}/\text{kg}" />). Die Mischung braucht genau <InlineMath math="21\,\%" /> Eiweiß und <InlineMath math="5\,\%" /> Fett, wobei eine Sorte auch fehlen darf.
+
+# Gesucht
+
+Wie viel Euro kostet die günstigste Mischung, die diese Bedingungen erfüllt?
+
+# Lösung
+
+> Weil der Fettgehalt bei allen drei Sorten im gleichen Takt sinkt wie der Eiweißgehalt steigt, **ist eine Gleichung automatisch erfüllt**, und die günstigste Mischung liegt am Rand mit möglichst wenig der teuren Sorte C.
+
+## Drei Gleichungen für drei Mengen
 
 Nenne die Kilogramm der Sorten <InlineMath math="a, b, c" />. Eiweiß und Fett zählst du als Prozent mal Kilogramm. **Gesamtmenge, Eiweiß und Fett liefern je eine Gleichung**:
 
@@ -8,7 +20,7 @@ a+b+c&=100\\
 8a+6b+2c&=500
 \end{aligned}" />
 
-# Die Fettbedingung wiederholt die anderen
+## Die Fettbedingung wiederholt die anderen
 
 Zieh das Zwölffache der ersten Gleichung von der zweiten ab. Es bleibt <InlineMath math="6b+18c=900" />, also <InlineMath math="b=150-3c" /> und damit <InlineMath math="a=2c-50" />. **Setzt du beides in die Fettgleichung ein, wird daraus <InlineMath math="500=500" />, wahr für jedes <InlineMath math="c" />**:
 
@@ -20,7 +32,7 @@ a&=100-b-c=2c-50\\
 
 Das ist wie bei zwei Zeugen, die dieselbe Geschichte erzählen: Der zweite bringt nichts Neues. Der Grund steckt in den Angaben: Bei jeder Sorte ist der Fettanteil <InlineMath math="12" /> minus ein Drittel des Eiweißanteils, beim Ziel auch, <InlineMath math="5=12-7" />. **Es gibt also nicht eine Mischung, sondern eine ganze Schar mit freiem <InlineMath math="c" />**. Mengen sind nie negativ, also folgt aus <InlineMath math="2c-50\ge0" /> und <InlineMath math="150-3c\ge0" /> die Bedingung <InlineMath math="25\le c\le50" />.
 
-# Das günstigste Mitglied der Schar
+## Das günstigste Mitglied der Schar
 
 Jetzt entscheidet der Preis. **Mit jedem Kilogramm C mehr steigen die Kosten um <InlineMath math="0{,}50\text{ €}" />, also nimmt die günstigste Mischung so wenig C wie erlaubt**:
 
@@ -44,3 +56,9 @@ Diese Mischung besteht aus <InlineMath math="75\text{ kg}" /> B und <InlineMath 
   ]}
   valueLabel="Menge in kg"
 />
+
+Das Balkendiagramm zeigt, dass das Minimum von <InlineMath math="25\text{ kg}" /> **Sorte C** die günstigste **Sorte B** auf <InlineMath math="75\text{ kg}" /> maximiert und **Sorte A** ganz weglässt, was den Tiefstpreis von <InlineMath math="37{,}5\text{ €}" /> ergibt.
+
+# Antwort
+
+Die günstigste gültige Mischung kostet <InlineMath math="37{,}5\text{ €}" />.

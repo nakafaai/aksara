@@ -1,4 +1,16 @@
-# Three fences around the plan
+# Given
+
+**A farmer has** at most <InlineMath math="40\text{ ha}" /> of land, <InlineMath math="900" /> labour hours, and <InlineMath math="13{,}000\text{ €}" /> of working capital. Each hectare of potatoes uses <InlineMath math="30" /> hours and <InlineMath math="400\text{ €}" /> for <InlineMath math="900\text{ €}" /> profit, while wheat uses <InlineMath math="10" /> hours and <InlineMath math="300\text{ €}" /> for <InlineMath math="400\text{ €}" /> profit.
+
+# Asked
+
+What is the largest possible profit in euros?
+
+# Solution
+
+> Because every constraint and the profit formula are straight lines, **the highest profit must sit at a corner of the feasible polygon**.
+
+## Three fences around the plan
 
 Each limit is like a fence on a map: you may stand anywhere inside all the fences. With <InlineMath math="x" /> hectares of potatoes and <InlineMath math="y" /> of wheat, **three fences close the plan in**:
 
@@ -44,10 +56,16 @@ x+y&\le40\\
   }}
 />
 
-# Where the corners are
+The top corner of the shaded polygon marks **the optimal mix of <InlineMath math="20\text{ ha}" /> potatoes and <InlineMath math="20\text{ ha}" /> wheat** for a peak profit of <InlineMath math="27{,}600\text{ €}" />.
+
+## Where the corners are
 
 A straight profit line <InlineMath math="900x+400y" /> slid across a region with straight edges touches it last at a corner, so **only the corners need checking**. Land and labour cross at <InlineMath math="(25\mid15)" />, but that needs <InlineMath math="14{,}500\text{ €}" /> of capital, more than she has. The corners that count are <InlineMath math="(30\mid0)" />, <InlineMath math="(28\mid6)" /> from labour and capital, <InlineMath math="(10\mid30)" /> from capital and land, and <InlineMath math="(0\mid40)" />.
 
-# Comparing the corners
+## Comparing the corners
 
 Profits: <InlineMath math="(30\mid0)" /> gives <InlineMath math="27{,}000\text{ €}" />, <InlineMath math="(28\mid6)" /> gives <InlineMath math="25{,}200+2400=27{,}600\text{ €}" />, <InlineMath math="(10\mid30)" /> gives <InlineMath math="21{,}000\text{ €}" />, <InlineMath math="(0\mid40)" /> gives <InlineMath math="16{,}000\text{ €}" />. **The best plan is <InlineMath math="28\text{ ha}" /> of potatoes and <InlineMath math="6\text{ ha}" /> of wheat, for <InlineMath math="27{,}600\text{ €}" />**, with <InlineMath math="6\text{ ha}" /> left bare. Planting all <InlineMath math="40\text{ ha}" /> feels thrifty but earns <InlineMath math="6600\text{ €}" /> less.
+
+# Answer
+
+The maximum achievable profit is <InlineMath math="27{,}600\text{ €}" />.

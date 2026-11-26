@@ -1,4 +1,16 @@
-# Each candle shrinks at its own pace
+# Given
+
+**Two candles are** lit together and burn steadily: the first burns out in <InlineMath math="8" /> hours and the second in <InlineMath math="6" /> hours. Their combined starting length is <InlineMath math="45\text{ cm}" />, after <InlineMath math="3" /> hours their lengths differ by <InlineMath math="9\text{ cm}" />, and they reach the same length once while both are burning.
+
+# Asked
+
+How many minutes after being lit are both candles the same length?
+
+# Solution
+
+> Two burning candles can only cross in height if **the faster-burning candle starts taller**, otherwise the gap only widens until it burns out.
+
+## Each candle shrinks at its own pace
 
 Think of a candle as a pencil that a sharpener eats from the top at a steady speed. If the whole candle lasts <InlineMath math="8" /> hours, each hour takes away <InlineMath math="\frac18" /> of its length. **After <InlineMath math="3" /> hours the first candle keeps <InlineMath math="\frac58" /> of its length <InlineMath math="L_1" /> and the second keeps <InlineMath math="\frac36=\frac12" /> of <InlineMath math="L_2" />**. With the total length that gives two equations:
 
@@ -7,7 +19,7 @@ L_1+L_2&=45\\
 \left|\tfrac58L_1-\tfrac12L_2\right|&=9
 \end{aligned}" />
 
-# A gap without a direction
+## A gap without a direction
 
 If someone says two friends' heights differ by <InlineMath math="9\text{ cm}" />, you still do not know who is taller. **The absolute value hides the same choice, so try both signs**. Put <InlineMath math="L_2=45-L_1" /> into each case:
 
@@ -17,13 +29,13 @@ If someone says two friends' heights differ by <InlineMath math="9\text{ cm}" />
 L_1&=28\ \text{or}\ L_1=12
 \end{aligned}" />
 
-So the pair is <InlineMath math="L_1=28\text{ cm},\ L_2=17\text{ cm}" /> or <InlineMath math="L_1=12\text{ cm},\ L_2=33\text{ cm}" />. Both pairs pass every equation so far.
+So the pair is <InlineMath math="L_1=28\text{ cm}" /> / <InlineMath math="L_2=17\text{ cm}" /> or <InlineMath math="L_1=12\text{ cm}" /> / <InlineMath math="L_2=33\text{ cm}" />. Both pairs pass every equation so far.
 
-# Only one pair ever meets
+## Only one pair ever meets
 
 A car only catches up with another one if it is faster. **The longer candle must burn down faster than the shorter one, and the meeting must come before the second candle is gone after <InlineMath math="6" /> hours**.
 
-In the first pair the first candle is longer by <InlineMath math="11\text{ cm}" /> and loses <InlineMath math="\frac{28}{8}=3.5\text{ cm}" /> per hour against <InlineMath math="\frac{17}{6}\approx2.83\text{ cm}" />. It closes the gap by only <InlineMath math="\frac23\text{ cm}" /> per hour and would need <InlineMath math="16.5" /> hours, long after both candles have burned out. Reading <InlineMath math="990" /> minutes off this case is the trap.
+In the first pair the first candle is longer by <InlineMath math="11\text{ cm}" /> and loses <InlineMath math="3.5\text{ cm}" /> per hour against <InlineMath math="2.83\text{ cm}" />. It closes the gap by only <InlineMath math="\frac23\text{ cm}" /> per hour and would need <InlineMath math="16.5" /> hours, long after both candles have burned out. Reading <InlineMath math="990" /> minutes off this case is the trap.
 
 In the second pair the second candle is longer by <InlineMath math="21\text{ cm}" /> and loses <InlineMath math="5.5\text{ cm}" /> per hour, the first only <InlineMath math="1.5\text{ cm}" />:
 
@@ -47,3 +59,9 @@ That is before the second candle goes out after <InlineMath math="6" /> hours. *
   ]}
   valueLabel="Length (cm)"
 />
+
+The two straight candle-height lines **intersect once at <InlineMath math="315" /> minutes**, where the taller faster-burning candle is finally caught by the slower one.
+
+# Answer
+
+The two candles reach equal length after <InlineMath math="315\text{ min}" />.

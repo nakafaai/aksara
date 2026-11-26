@@ -1,12 +1,24 @@
-# Daily solar yield as a symmetric parabola area
+# Given
 
-Shifting to <InlineMath math="u=t-12" /> centres the parabola at noon, where every horizontal slice of half-width <InlineMath math="w" /> encloses area <InlineMath math="\tfrac23\int_{-w}^{w}(w^2-u^2)\,\mathrm du=\tfrac89 w^3" />. **Over the full day <InlineMath math="w=6" />, the array generates <InlineMath math="192\text{ kWh}" />**.
+**A rooftop solar array** generates <InlineMath math="P(t)" /> between 6:00 and 18:00. The workshop constantly draws <InlineMath math="10.5\text{ kW}" /> directly, while surplus power charges an empty <InlineMath math="60\text{ kWh}" /> battery at most <InlineMath math="7.5\text{ kW}" /> (excess spills to the grid), and the stored energy is fully used in the evening.
+
+# Asked
+
+What percentage of the day's solar energy is used inside the workshop (directly or via the battery)?
+
+# Solution
+
+> Think of the solar curve as a hill cut by two horizontal ceilings: **only the clipped tip sticking above <InlineMath math="10.5 + 7.5 = 18\text{ kW}" /> escapes to the grid**, as long as the middle battery band fits inside <InlineMath math="60\text{ kWh}" />.
+
+## Daily solar yield as a symmetric parabola area
+
+Shifting to <InlineMath math="u=t-12" /> centres the parabola at noon, where every horizontal slice of half-width <InlineMath math="w" /> encloses area <InlineMath math="\frac{8}{9} w^3" />. **Over the full day <InlineMath math="w=6" />, the array generates <InlineMath math="192\text{ kWh}" />**.
 
 <BlockMath math="\begin{aligned}
 u=t-12:\quad P=\tfrac23(36-u^2),\qquad E_{\text{day}}=\tfrac23\int_{-6}^{6}(36-u^2)\,\mathrm du=\tfrac89\cdot6^3=192\text{ kWh}
 \end{aligned}" />
 
-# Checking both the charger power ceiling and the storage capacity
+## Checking both the charger power ceiling and the storage capacity
 
 **Here sits the double trap: raw surplus above <InlineMath math="10.5\text{ kW}" /> is <InlineMath math="81\text{ kWh}" />, bigger than the <InlineMath math="60\text{ kWh}" /> battery, so a quick reading assumes the battery fills to <InlineMath math="60\text{ kWh}" /> and loses only <InlineMath math="21\text{ kWh}" />**. Yet the inverter caps charging at <InlineMath math="7.5\text{ kW}" />, slicing off every watt above <InlineMath math="10.5+7.5=18\text{ kW}" /> between <InlineMath math="9" /> and <InlineMath math="15" /> o'clock.
 
@@ -53,3 +65,7 @@ E_{\text{stored}}=81-24=57\text{ kWh}<60\text{ kWh}\ \Longrightarrow\ \frac{192-
 />
 
 Clipping those <InlineMath math="24\text{ kWh}" /> off the noon peak leaves only <InlineMath math="57\text{ kWh}" /> entering the battery, which stays below its <InlineMath math="60\text{ kWh}" /> ceiling all day. Thus exactly <InlineMath math="168\text{ kWh}" /> stay on site, or **<InlineMath math="87.5\,\%" />** of the day's solar energy.
+
+# Answer
+
+Exactly <InlineMath math="87.5\,\%" /> of the solar energy is used in the workshop.

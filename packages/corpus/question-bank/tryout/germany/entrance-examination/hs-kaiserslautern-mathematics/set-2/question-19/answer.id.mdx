@@ -1,4 +1,16 @@
-# Berapa banyak tanah di tanggul lama
+# Diketahui
+
+**Penampang tanggul lama** dibatasi sumbu-<InlineMath math="x" /> dan <InlineMath math="f(x)" /> (satuan <InlineMath math="1\text{ m}" />). Tanggul baru <InlineMath math="g(x)" /> (<InlineMath math="a>0" />) harus menutupi tanggul lama sepenuhnya dengan kemiringan <InlineMath math="\lvert g'(x)\rvert \le 2" /> di seluruh bagian di atas sumbu-<InlineMath math="x" />, sepanjang <InlineMath math="50\text{ m}" />.
+
+# Ditanyakan
+
+Berapa meter kubik minimal tambahan tanah yang dibutuhkan untuk ruas tanggul sepanjang <InlineMath math="50\text{ m}" />?
+
+# Penyelesaian
+
+> Parabola terbuka ke bawah **paling curam tepat saat menyentuh tanah**, sehingga memasang kemiringan di kaki tepat <InlineMath math="2" /> memberi tanggul baru teramping yang aman, lalu kita hanya menghitung selisih tanah tambahan di atas tanggul lama.
+
+## Berapa banyak tanah di tanggul lama
 
 Potong roti tawar menjadi irisan, maka setiap irisan punya bentuk yang sama. Tanggul juga begitu: **volumenya sama dengan luas penampang kali panjang, dan luas di bawah parabola adalah sebuah integral**:
 
@@ -7,9 +19,9 @@ A_{0}&=\int_{-3}^{3}\left(3-\frac{x^2}{3}\right)dx\\
 &=\left[3x-\frac{x^3}{9}\right]_{-3}^{3}=2\,(9-3)=12\text{ m}^2
 \end{aligned}" />
 
-# Batas kemiringan menentukan bentuknya
+## Batas kemiringan menentukan bentuknya
 
-Parabola baru menyentuh tanah di <InlineMath math="6-ax^2=0" />. Makin besar <InlineMath math="a" />, makin sempit dan curam tanggulnya, dan kemiringan <InlineMath math="\lvert g'(x)\rvert=2a\lvert x\rvert" /> paling besar tepat di kaki tanggul. **Jadi aturannya cukup dipenuhi di kaki <InlineMath math="x=r" />**:
+Parabola baru menyentuh tanah di <InlineMath math="g(x)=0" />. Makin besar <InlineMath math="a" />, makin sempit dan curam tanggulnya, dan kemiringan <InlineMath math="\lvert g'(x)\rvert" /> paling besar tepat di kaki tanggul. **Jadi aturannya cukup dipenuhi di kaki <InlineMath math="x=r" />**:
 
 <BlockMath math="\begin{aligned}
 r&=\sqrt{\frac{6}{a}},\qquad \lvert g'(r)\rvert=2ar=2\sqrt{6a}\\
@@ -20,7 +32,7 @@ Meregangkan bentuk lama menjadi setinggi <InlineMath math="6\text{ m}" />, denga
 
 <MathVisual
   title={<>Tanggul lama dan baru dalam penampang</>}
-  description={<>Tanggul lama <InlineMath math="f(x)=3-\frac{x^2}{3}" /> berpenampang <InlineMath math="12\text{ m}^2" />, yang baru <InlineMath math="g(x)=6-\frac{x^2}{6}" /> berpenampang <InlineMath math="48\text{ m}^2" /> dan di kakinya tepat securam yang diizinkan. Calon yang lebih sempit <InlineMath math="6-\frac{x^2}{3}" /> terlalu curam di kakinya.</>}
+  description={<>Tanggul lama <InlineMath math="f(x)" /> berpenampang <InlineMath math="12\text{ m}^2" />, yang baru <InlineMath math="g(x)=6-\frac{x^2}{6}" /> berpenampang <InlineMath math="48\text{ m}^2" /> dan di kakinya tepat securam yang diizinkan. Calon yang lebih sempit <InlineMath math="6-\frac{x^2}{3}" /> terlalu curam di kakinya.</>}
   labels={{
     old: <>tanggul lama</>,
     new: <>tanggul baru</>,
@@ -48,7 +60,8 @@ Meregangkan bentuk lama menjadi setinggi <InlineMath math="6\text{ m}" />, denga
   }}
 />
 
-# Tanah sesedikit yang diizinkan
+Pada penampang, parabola baru melingkupi tanggul lama sepenuhnya sehingga mengurangkan luas lama <InlineMath math="12\text{ m}^2" /> dari luas baru <InlineMath math="48\text{ m}^2" /> menyisakan <InlineMath math="36\text{ m}^2 \times 50\text{ m} = 1800\text{ m}^3" /> tanah tambahan.
+## Tanah sesedikit yang diizinkan
 
 Kaki yang lebih lebar berarti lebih banyak tanah, sebab dengan <InlineMath math="r^2=\frac6a" /> luasnya menjadi <InlineMath math="8r" />, yang bertambah bersama setengah lebar kaki <InlineMath math="r" />. **Tanah paling sedikit berarti <InlineMath math="a" /> terbesar yang diizinkan, yaitu <InlineMath math="\frac16" />**:
 
@@ -58,4 +71,8 @@ a=\tfrac16&:\ r=6,\quad A=48\text{ m}^2\\
 V&=(48-12)\cdot50=1800\text{ m}^3
 \end{aligned}" />
 
-Tanggul ini tetap menutupi yang lama, karena <InlineMath math="g(x)-f(x)=3+\frac{x^2}{6}>0" />. Seluruh tanggul baru berisi <InlineMath math="2400\text{ m}^3" />, tetapi <InlineMath math="600\text{ m}^3" /> di antaranya sudah ada.
+Tanggul ini tetap menutupi yang lama, karena <InlineMath math="g(x) > f(x)" />. Seluruh tanggul baru berisi <InlineMath math="2400\text{ m}^3" />, tetapi <InlineMath math="600\text{ m}^3" /> di antaranya sudah ada.
+
+# Jawaban
+
+Dibutuhkan minimal <InlineMath math="1800\text{ m}^3" /> tanah tambahan.

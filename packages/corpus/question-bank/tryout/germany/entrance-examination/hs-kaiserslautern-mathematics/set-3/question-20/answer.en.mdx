@@ -1,4 +1,16 @@
-# Placing the centre on the angle bisector
+# Given
+
+**In a park map** (unit <InlineMath math="1\text{ m}" />), a circular pond lies in the acute wedge <InlineMath math="y>0" />, <InlineMath math="4x-3y>0" />, touching both straight paths <InlineMath math="y=0" /> and <InlineMath math="4x-3y=0" /> while passing through inspection shaft <InlineMath math="P(7\mid1)" />. The entire pond must lie strictly on the side <InlineMath math="3x+4y<65" /> of a straight canal.
+
+# Asked
+
+What is the shortest distance between the edge of the pond and the canal, in metres?
+
+# Solution
+
+> A circle touching both paths must place its centre **right on their angle bisector <InlineMath math="x = 2r" />**, leaving only two candidate circles through <InlineMath math="P(7\mid1)" />, and the canal boundary immediately disqualifies the huge one.
+
+## Placing the centre on the angle bisector
 
 Tuck a coin into the corner between two rulers: its centre always sits equally far from both edges. **Because the basin touches <InlineMath math="y=0" /> from above, its centre is <InlineMath math="M(x_M\mid r)" />, and in the acute wedge <InlineMath math="4x-3y>0" /> its distance to <InlineMath math="4x-3y=0" /> fixes <InlineMath math="x_M=2r" />**. Substituting the manhole <InlineMath math="P(7\mid1)" /> gives two candidate radii.
 
@@ -9,9 +21,9 @@ y_M=r,\qquad \frac{4x_M-3y_M}{\sqrt{4^2+(-3)^2}}=\frac{4x_M-3r}{5}=r\ \Longright
 
 Two circles fit both paths and the manhole: <InlineMath math="r_1=2.5\text{ m}" /> around <InlineMath math="M_1(5\mid2.5)" /> and <InlineMath math="r_2=5\text{ m}" /> around <InlineMath math="M_2(10\mid5)" />.
 
-# Checking the whole circle against the canal
+## Checking the whole circle against the canal
 
-**Here sits the trap: checking only the centre is not enough**. At <InlineMath math="M_2(10\mid5)" /> we have <InlineMath math="3\cdot10+4\cdot5=50<65" />, so the centre lies on the allowed side, yet its Hesse distance to the canal is only <InlineMath math="3\text{ m}" />, smaller than <InlineMath math="r_2=5\text{ m}" />, meaning the big circle cuts right across the canal.
+**Here sits the trap: checking only the centre is not enough**. At <InlineMath math="M_2(10\mid5)" /> we have <InlineMath math="50 < 65" />, so the centre lies on the allowed side, yet its Hesse distance to the canal is only <InlineMath math="3\text{ m}" />, smaller than <InlineMath math="r_2=5\text{ m}" />, meaning the big circle cuts right across the canal.
 
 <BlockMath math="\begin{aligned}
 M_2(10\mid5):\quad d(M_2,K)=\frac{65-(3\cdot10+4\cdot5)}{5}=\frac{15}{5}=3<5=r_2\\
@@ -59,3 +71,7 @@ d_{\min}=8-2.5=5.5\text{ m}
 />
 
 Only the small basin around <InlineMath math="M_1(5\mid2.5)" /> stays entirely inside the safe side, and subtracting its radius <InlineMath math="2.5\text{ m}" /> from the centre distance <InlineMath math="8\text{ m}" /> gives **<InlineMath math="5.5\text{ m}" />** clearance (forgetting to subtract the radius gives the trap <InlineMath math="8\text{ m}" />).
+
+# Answer
+
+The shortest distance between the pond edge and the canal is <InlineMath math="5.5\text{ m}" />.

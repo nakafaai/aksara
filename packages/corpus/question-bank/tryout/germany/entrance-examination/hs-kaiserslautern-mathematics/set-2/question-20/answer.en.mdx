@@ -1,4 +1,16 @@
-# It is the gap that halves
+# Given
+
+**A cup of** <InlineMath math="300\text{ ml}" /> tea starts at <InlineMath math="100\,^\circ\text{C}" /> in a <InlineMath math="20\,^\circ\text{C}" /> room, and its temperature excess above room temperature decays exponentially with constant half-life. After <InlineMath math="10" /> minutes the tea is <InlineMath math="60\,^\circ\text{C}" />, and <InlineMath math="50\text{ ml}" /> of <InlineMath math="4\,^\circ\text{C}" /> milk is poured in (volume-weighted average).
+
+# Asked
+
+How many minutes after pouring the tea does the drink first reach <InlineMath math="36\,^\circ\text{C}" />?
+
+# Solution
+
+> Track **how far the drink sits above the <InlineMath math="20\,^\circ\text{C}" /> room**, not the raw thermometer reading: the first <InlineMath math="10" /> minutes halve that gap from <InlineMath math="80" /> to <InlineMath math="40" />, the milk knocks it down to <InlineMath math="32" />, and one more <InlineMath math="10" />-minute half-life halves it to <InlineMath math="16" />.
+
+## It is the gap that halves
 
 Hot tea does not cool towards zero, it cools towards the room. **So track the gap <InlineMath math="\Delta" /> between drink and room, not the temperature itself**. The gap starts at <InlineMath math="80" /> and is <InlineMath math="40" /> after ten minutes:
 
@@ -9,7 +21,7 @@ Hot tea does not cool towards zero, it cools towards the room. **So track the ga
 
 The gap halves every <InlineMath math="10" /> minutes. The temperature does not halve: <InlineMath math="100" /> became <InlineMath math="60" />, not <InlineMath math="50" />.
 
-# The milk starts a new curve
+## The milk starts a new curve
 
 Pouring cold milk into the cup is like mixing two bowls of water of different warmth: the bigger one counts more. **Weight each temperature by its volume**:
 
@@ -31,7 +43,8 @@ A plain average of <InlineMath math="60" /> and <InlineMath math="4" /> would gi
   valueLabel="Temperature in °C"
 />
 
-# One more half-life
+The cooling chart shows the vertical drop from <InlineMath math="60\,^\circ\text{C}" /> to <InlineMath math="52\,^\circ\text{C}" /> at minute <InlineMath math="10" /> when milk is added, letting the drink hit <InlineMath math="36\,^\circ\text{C}" /> at exactly <InlineMath math="20" /> minutes instead of <InlineMath math="23.2" />.
+## One more half life
 
 From the new gap of <InlineMath math="32" /> the same halving continues. **The target <InlineMath math="36\,^\circ\text{C}" /> is a gap of <InlineMath math="16" />, exactly one half-life later**:
 
@@ -42,3 +55,7 @@ s&=10\text{ min}\\
 \end{aligned}" />
 
 Without milk the drink would need about <InlineMath math="13.2" /> more minutes from <InlineMath math="60\,^\circ\text{C}" />, so the milk saves time.
+
+# Answer
+
+The drink first reaches <InlineMath math="36\,^\circ\text{C}" /> after <InlineMath math="20" /> minutes.

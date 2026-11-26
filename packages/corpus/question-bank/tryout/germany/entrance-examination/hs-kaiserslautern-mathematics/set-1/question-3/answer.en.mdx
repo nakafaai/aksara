@@ -1,8 +1,20 @@
-# The arch as a parabola
+# Given
 
-Lay the picture on graph paper: feet on the <InlineMath math="x" />-axis at <InlineMath math="x=\pm10" />, top on the <InlineMath math="y" />-axis at height <InlineMath math="10" />. **The parabola that is <InlineMath math="0" /> at both feet and <InlineMath math="10" /> in the middle** is <InlineMath math="y=10-\frac{x^2}{10}" />, because <InlineMath math="10-\frac{100}{10}=0" />.
+**A parabolic bridge** arch spans <InlineMath math="20\text{ m}" /> between its feet and rises <InlineMath math="10\text{ m}" /> above them. The flat road sits <InlineMath math="1\text{ m}" /> above the feet. A <InlineMath math="6\text{ m}" /> tall rectangular truck keeps at least <InlineMath math="1\text{ m}" /> right of the centre line with at least <InlineMath math="0.5\text{ m}" /> vertical clearance above its roof.
 
-# How high the arch must be
+# Asked
+
+What is the maximum possible width of the truck in metres?
+
+# Solution
+
+> Because the arch drops as you move outward, **the outer top corner of the truck is always the tightest point**, so checking that single corner decides the maximum width.
+
+## The arch as a parabola
+
+Lay the picture on graph paper: feet on the <InlineMath math="x" />-axis at <InlineMath math="x=\pm10" />, top on the <InlineMath math="y" />-axis at height <InlineMath math="10" />. **The parabola that is <InlineMath math="0" /> at both feet and <InlineMath math="10" /> in the middle** is <InlineMath math="y(x)" />, because <InlineMath math="y(\pm 10) = 0" />.
+
+## How high the arch must be
 
 Measure everything from the feet, like stacking boxes on a shelf. The road adds <InlineMath math="1\text{ m}" />, the truck <InlineMath math="6\text{ m}" />, the gap <InlineMath math="0.5\text{ m}" />. **Wherever the roof is, the arch must be at least <InlineMath math="7.5\text{ m}" /> high**. Measuring from the road and forgetting its <InlineMath math="1\text{ m}" /> makes the truck look far too small.
 
@@ -16,9 +28,9 @@ x&\le5
 
 <MathVisual
   title={<>The truck under the arch</>}
-  description={<>The arch <InlineMath math="y=10-\frac{x^2}{10}" /> above the feet, the road at <InlineMath math="y=1" /> and the truck from <InlineMath math="x=1" /> to <InlineMath math="x=5" /> with its roof at <InlineMath math="y=7" />. Above the outer roof edge at <InlineMath math="x=5" /> exactly <InlineMath math="0.5\text{ m}" /> stays free.</>}
+  description={<>The arch <InlineMath math="y(x)" /> above the feet, the road at <InlineMath math="y=1" /> and the truck from <InlineMath math="x=1" /> to <InlineMath math="x=5" /> with its roof at <InlineMath math="y=7" />. Above the outer roof edge at <InlineMath math="x=5" /> exactly <InlineMath math="0.5\text{ m}" /> stays free.</>}
   labels={{
-    arch: <><InlineMath math="y=10-\frac{x^2}{10}" /></>,
+    arch: <><InlineMath math="y(x)" /></>,
     road: <>road</>,
     mid: <>centre line</>,
     edge: <><InlineMath math="(5\mid7.5)" /></>,
@@ -51,6 +63,12 @@ x&\le5
   }}
 />
 
-# The gap at the centre line
+The diagram shows **the outer top corner of the truck touching the clearance limit** at <InlineMath math="5\text{ m}" /> from the centre line, locking the safe width at <InlineMath math="4\text{ m}" />.
+
+## The gap at the centre line
 
 The truck may not hug the centre line. Its inner side stands at <InlineMath math="x=1" /> and its outer side at most at <InlineMath math="x=5" />. **So it can be at most <InlineMath math="5-1=4\text{ m}" /> wide**. Starting the truck at <InlineMath math="x=0" /> would give <InlineMath math="5\text{ m}" /> and break the rule about the gap.
+
+# Answer
+
+The truck can be at most <InlineMath math="4\text{ m}" /> wide.

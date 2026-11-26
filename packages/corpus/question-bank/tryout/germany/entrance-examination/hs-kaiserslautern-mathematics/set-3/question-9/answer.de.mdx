@@ -1,4 +1,16 @@
-# Jede Überholung kostet Gebühr und einen Monat Erlös
+# Gegeben
+
+**Eine Werkstatt betreibt** eine Fräsmaschine über <InlineMath math="17" /> Monate. Jeder Betriebsmonat bringt <InlineMath math="1500\text{ €}" /> Erlös, die Wartung startet im ersten Monat eines Abschnitts bei <InlineMath math="200\text{ €}" /> und steigt monatlich um <InlineMath math="100\text{ €}" />. Eine einmonatige Überholung kostet <InlineMath math="400\text{ €}" /> ohne Erlös und setzt die Wartung auf <InlineMath math="200\text{ €}" /> zurück.
+
+# Gesucht
+
+Welchen Gesamtgewinn in € kann die Werkstatt über die <InlineMath math="17" /> Monate höchstens erzielen?
+
+# Lösung
+
+> Da die Wartungssumme quadratisch mit der Abschnittslänge wächst, **minimiert eine möglichst gleichmäßige Aufteilung der Betriebsmonate** die Kosten für jede gewählte Anzahl an Überholungen.
+
+## Jede Überholung kostet Gebühr und einen Monat Erlös
 
 Erst zu warten, bis die Wartung den Monatserlös auffrisst, klingt vernünftig, doch frühes Zurücksetzen spart quadratisch wachsende Kosten. **Summiere zuerst die arithmetische Reihe für einen Block aus <InlineMath math="n" /> Monaten und beachte, dass <InlineMath math="k" /> Überholungen nur <InlineMath math="17-k" /> Betriebsmonate in <InlineMath math="k+1" /> Blöcken übrig lassen**.
 
@@ -7,11 +19,15 @@ W(n)=\sum_{j=0}^{n-1}(200+100j)=\frac{n}{2}\bigl(400+100\,(n-1)\bigr)=150n+50n^2
 G=1500\,(17-k)-400k-\sum_{i=1}^{k+1}\bigl(150n_i+50n_i^2\bigr)=22\,950-1750k-50\sum_{i=1}^{k+1}n_i^2
 \end{aligned}" />
 
-Wegen <InlineMath math="\sum n_i=17-k" /> kostet jede zusätzliche Überholung <InlineMath math="1500-150=1350\text{ €}" /> an linearem Deckungsbeitrag plus <InlineMath math="400\text{ €}" /> Gebühr, also <InlineMath math="1750\text{ €}" />, während sie den quadratischen Term <InlineMath math="50\sum n_i^2" /> drückt.
+Wegen <InlineMath math="17-k" /> kostet jede zusätzliche Überholung <InlineMath math="1500-150=1350\text{ €}" /> an linearem Deckungsbeitrag plus <InlineMath math="400\text{ €}" /> Gebühr, also <InlineMath math="1750\text{ €}" />, während sie den quadratischen Term <InlineMath math="50 S" /> drückt.
 
-# Gleich lange Blöcke machen die Quadratsumme minimal
+## Gleich lange Blöcke machen die Quadratsumme minimal
 
-**Bei festem <InlineMath math="k" /> ist <InlineMath math="\sum n_i^2" /> am kleinsten, wenn sich die Blocklängen höchstens um <InlineMath math="1" /> unterscheiden**. Sobald <InlineMath math="a-b\ge2" /> gilt, senkt das Verschieben eines Monats vom längeren in den kürzeren Block die Summe, denn <InlineMath math="(a-1)^2+(b+1)^2=a^2+b^2-2(a-b-1)<a^2+b^2" />.
+**Bei festem <InlineMath math="k" /> ist <InlineMath math="S" /> am kleinsten, wenn sich die Blocklängen höchstens um <InlineMath math="1" /> unterscheiden**. Sobald <InlineMath math="a-b\ge2" /> gilt, senkt das Verschieben eines Monats vom längeren in den kürzeren Block die Summe:
+
+<BlockMath math="(a-1)^2+(b+1)^2 = a^2+b^2-2(a-b-1) < a^2+b^2" />
+
+Vergleiche nun den Gesamtgewinn für jede sinnvolle Zahl an Überholungen <InlineMath math="k" />:
 
 <BlockMath math="\begin{aligned}
 k=0\ (17)&:\quad 22\,950-50\cdot289=8500\\
@@ -33,3 +49,7 @@ k=3\ (4,4,3,3)&:\quad 22\,950-5250-50\cdot50=15\,200
 />
 
 Ab <InlineMath math="k=3" /> liegt die Einsparung bei den Quadraten unter <InlineMath math="1750\text{ €}" /> pro weiterer Überholung (bei <InlineMath math="k=4" /> ergeben die Blöcke <InlineMath math="3,3,3,2,2" /> nur <InlineMath math="14\,200\text{ €}" />), sodass kein größeres <InlineMath math="k" /> besser wird. Wer bis Monat <InlineMath math="14" /> wartet, erreicht nur <InlineMath math="11\,200\text{ €}" />. **Der höchstmögliche Gesamtgewinn beträgt <InlineMath math="15\,700\text{ €}" />**.
+
+# Antwort
+
+Der maximale Gesamtgewinn über die <InlineMath math="17" /> Monate beträgt <InlineMath math="15\,700\text{ €}" />.

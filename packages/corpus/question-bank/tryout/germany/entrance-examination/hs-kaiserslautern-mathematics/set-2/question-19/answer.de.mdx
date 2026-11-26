@@ -1,4 +1,16 @@
-# Wie viel Erde im alten Deich steckt
+# Gegeben
+
+**Der alte Deichquerschnitt** liegt zwischen der <InlineMath math="x" />-Achse und <InlineMath math="f(x)" /> (Einheit <InlineMath math="1\text{ m}" />). Der neue Deich <InlineMath math="g(x)" /> (<InlineMath math="a>0" />) muss den alten vollständig enthalten und überall oberhalb der <InlineMath math="x" />-Achse <InlineMath math="\lvert g'(x)\rvert \le 2" /> einhalten, auf <InlineMath math="50\text{ m}" /> Länge.
+
+# Gesucht
+
+Wie viele Kubikmeter Erde werden für den <InlineMath math="50\text{ m}" /> langen Abschnitt mindestens zusätzlich benötigt?
+
+# Lösung
+
+> Eine nach unten offene Parabel ist **am Fußpunkt auf der <InlineMath math="x" />-Achse am steilsten**, sodass die maximale erlaubte Steigung <InlineMath math="2" /> dort den schmalsten sicheren Deich festlegt, und nur die Differenz zum alten Deich neu aufgeschüttet wird.
+
+## Wie viel Erde im alten Deich steckt
 
 Schneidest du ein Kastenbrot in Scheiben, hat jede Scheibe dieselbe Form. Beim Deich ist es genauso: **Sein Volumen ist Querschnittsfläche mal Länge, und die Fläche unter der Parabel ist ein Integral**:
 
@@ -7,9 +19,9 @@ A_{\text{alt}}&=\int_{-3}^{3}\left(3-\frac{x^2}{3}\right)dx\\
 &=\left[3x-\frac{x^3}{9}\right]_{-3}^{3}=2\,(9-3)=12\text{ m}^2
 \end{aligned}" />
 
-# Die Steigungsgrenze legt die Form fest
+## Die Steigungsgrenze legt die Form fest
 
-Die neue Parabel trifft den Boden bei <InlineMath math="6-ax^2=0" />. Je größer <InlineMath math="a" />, desto schmaler und steiler wird der Deich, und die Steigung <InlineMath math="\lvert g'(x)\rvert=2a\lvert x\rvert" /> ist direkt am Fuß am größten. **Die Regel muss also nur am Fuß <InlineMath math="x=r" /> gelten**:
+Die neue Parabel trifft den Boden bei <InlineMath math="g(x)=0" />. Je größer <InlineMath math="a" />, desto schmaler und steiler wird der Deich, und die Steigung <InlineMath math="\lvert g'(x)\rvert" /> ist direkt am Fuß am größten. **Die Regel muss also nur am Fuß <InlineMath math="x=r" /> gelten**:
 
 <BlockMath math="\begin{aligned}
 r&=\sqrt{\frac{6}{a}},\qquad \lvert g'(r)\rvert=2ar=2\sqrt{6a}\\
@@ -20,7 +32,7 @@ Die alte Form einfach auf <InlineMath math="6\text{ m}" /> zu strecken, mit <Inl
 
 <MathVisual
   title={<>Alter und neuer Deich im Querschnitt</>}
-  description={<>Der alte Deich <InlineMath math="f(x)=3-\frac{x^2}{3}" /> hat <InlineMath math="12\text{ m}^2" /> Querschnitt, der neue <InlineMath math="g(x)=6-\frac{x^2}{6}" /> hat <InlineMath math="48\text{ m}^2" /> und ist am Fuß genau so steil wie erlaubt. Der schmalere Kandidat <InlineMath math="6-\frac{x^2}{3}" /> wäre am Fuß zu steil.</>}
+  description={<>Der alte Deich <InlineMath math="f(x)" /> hat <InlineMath math="12\text{ m}^2" /> Querschnitt, der neue <InlineMath math="g(x)=6-\frac{x^2}{6}" /> hat <InlineMath math="48\text{ m}^2" /> und ist am Fuß genau so steil wie erlaubt. Der schmalere Kandidat <InlineMath math="6-\frac{x^2}{3}" /> wäre am Fuß zu steil.</>}
   labels={{
     old: <>alter Deich</>,
     new: <>neuer Deich</>,
@@ -48,7 +60,8 @@ Die alte Form einfach auf <InlineMath math="6\text{ m}" /> zu strecken, mit <Inl
   }}
 />
 
-# So wenig Erde wie erlaubt
+Im Querschnitt umschließt der neue Deich den alten vollständig, sodass die Differenz aus <InlineMath math="48\text{ m}^2" /> und <InlineMath math="12\text{ m}^2" /> mal <InlineMath math="50\text{ m}" /> genau <InlineMath math="1800\text{ m}^3" /> zusätzliche Erde ergibt.
+## So wenig Erde wie erlaubt
 
 Ein breiterer Fuß bedeutet mehr Erde, denn mit <InlineMath math="r^2=\frac6a" /> vereinfacht sich die Fläche zu <InlineMath math="8r" />, und die wächst mit der halben Fußbreite <InlineMath math="r" />. **Am wenigsten Erde braucht also das größte erlaubte <InlineMath math="a" />, nämlich <InlineMath math="\frac16" />**:
 
@@ -58,4 +71,8 @@ a=\tfrac16&:\ r=6,\quad A=48\text{ m}^2\\
 V&=(48-12)\cdot50=1800\text{ m}^3
 \end{aligned}" />
 
-Dieser Deich umschließt den alten noch, denn <InlineMath math="g(x)-f(x)=3+\frac{x^2}{6}>0" />. Der ganze neue Deich hätte <InlineMath math="2400\text{ m}^3" />, davon sind <InlineMath math="600\text{ m}^3" /> aber schon vorhanden.
+Dieser Deich umschließt den alten noch, denn <InlineMath math="g(x) > f(x)" />. Der ganze neue Deich hätte <InlineMath math="2400\text{ m}^3" />, davon sind <InlineMath math="600\text{ m}^3" /> aber schon vorhanden.
+
+# Antwort
+
+Es werden mindestens <InlineMath math="1800\text{ m}^3" /> Erde zusätzlich benötigt.

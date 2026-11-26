@@ -1,6 +1,18 @@
-# Zwei Angaben, ein Quotient
+# Gegeben
 
-Stell dir ineinander passende Schachteln vor, bei denen jede Schachtel denselben Bruchteil der Schachtel darunter hat. Dieser feste Bruchteil ist der Quotient <InlineMath math="q" /> einer geometrischen Folge. **Der zweite Würfel liefert <InlineMath math="a_1=\frac{1{,}2}{q}" />, und der erste und der dritte Würfel zusammen liefern die Gleichung für <InlineMath math="q" />**:
+**Gestapelte Würfel haben** von unten nach oben geometrisch abgestufte Kantenlängen, ohne dass ein Würfel übersteht. Der zweite Würfel misst <InlineMath math="1{,}2\text{ m}" />, und der erste und dritte sind zusammen <InlineMath math="2{,}6\text{ m}" /> hoch.
+
+# Gesucht
+
+Aus wie vielen Würfeln muss der Turm mindestens bestehen, um höher als <InlineMath math="5\text{ m}" /> zu sein?
+
+# Lösung
+
+> Ohne Überstand muss **jeder obere Würfel kleiner sein als der darunter**, wodurch der Wachstumsfaktor größer als eins sofort ausscheidet.
+
+## Zwei Angaben ein Quotient
+
+Stell dir ineinander passende Schachteln vor, bei denen jede Schachtel denselben Bruchteil der Schachtel darunter hat. Dieser feste Bruchteil ist der Quotient <InlineMath math="q" /> einer geometrischen Folge. **Der zweite Würfel liefert <InlineMath math="a_1" />, und der erste und der dritte Würfel zusammen liefern die Gleichung für <InlineMath math="q" />**:
 
 <BlockMath math="\begin{aligned}
 a_1q&=1{,}2,\qquad a_1+a_1q^2=2{,}6\\
@@ -9,13 +21,13 @@ a_1q&=1{,}2,\qquad a_1+a_1q^2=2{,}6\\
 q&=\tfrac{3}{2}\ \vee\ q=\tfrac{2}{3}
 \end{aligned}" />
 
-# Die Auflageregel wählt den Quotienten
+## Die Auflageregel wählt den Quotienten
 
-Ein großer Würfel auf einem kleinen ragt über den Rand hinaus wie ein zu breiter Hut. Genau das verbietet der Text, denn jeder Würfel muss mit seiner ganzen Unterseite aufliegen. **Also ist jeder Würfel kleiner als der darunter, und es gilt <InlineMath math="q=\frac{2}{3}" />**. Dann ist <InlineMath math="a_1=1{,}8\text{ m}" />, und die Würfel messen <InlineMath math="1{,}8" />, <InlineMath math="1{,}2" />, <InlineMath math="0{,}8\text{ m}" /> und so weiter. Wer <InlineMath math="q=\frac{3}{2}" /> behält, baut einen Turm, der nach oben breiter wird und schon nach <InlineMath math="4" /> Würfeln über <InlineMath math="5\text{ m}" /> liegt.
+Ein großer Würfel auf einem kleinen ragt über den Rand hinaus wie ein zu breiter Hut. Genau das verbietet der Text, denn jeder Würfel muss mit seiner ganzen Unterseite aufliegen. **Also ist jeder Würfel kleiner als der darunter, und es gilt <InlineMath math="q = 2/3" />**. Dann ist <InlineMath math="a_1=1{,}8\text{ m}" />, und die Würfel messen <InlineMath math="1{,}8" />, <InlineMath math="1{,}2" />, <InlineMath math="0{,}8\text{ m}" /> und so weiter. Wer <InlineMath math="q = 3/2" /> behält, baut einen Turm, der nach oben breiter wird und schon nach <InlineMath math="4" /> Würfeln über <InlineMath math="5\text{ m}" /> liegt.
 
-# Wie hoch der Turm werden kann
+## Wie hoch der Turm werden kann
 
-Immer kleinere Würfel aufzusetzen ist wie ein Weg, auf dem du jedes Mal nur einen Teil des Rests gehst: Du kommst einem Ende näher, das du nie überschreitest. **Selbst unendlich viele Würfel bleiben unter <InlineMath math="\frac{1{,}8}{1-\frac{2}{3}}=5{,}4\text{ m}" />, darum wird die Grenze von <InlineMath math="5\text{ m}" /> erst spät erreicht**.
+Immer kleinere Würfel aufzusetzen ist wie ein Weg, auf dem du jedes Mal nur einen Teil des Rests gehst: Du kommst einem Ende näher, das du nie überschreitest. **Selbst unendlich viele Würfel bleiben unter <InlineMath math="5{,}4\text{ m}" />, darum wird die Grenze von <InlineMath math="5\text{ m}" /> erst spät erreicht**.
 
 <BlockMath math="\begin{aligned}
 S_n&=\frac{1{,}8\left(1-\left(\frac{2}{3}\right)^n\right)}{1-\frac{2}{3}}=5{,}4\left(1-\left(\tfrac{2}{3}\right)^n\right)\\
@@ -27,7 +39,7 @@ Bring beide Brüche auf den Nenner <InlineMath math="3^n" />. Für <InlineMath m
 
 <Chart
   title={<>Die Höhe des Turms</>}
-  description={<>Die Höhe des Turms nach <InlineMath math="n" /> Würfeln mit <InlineMath math="q=\frac{2}{3}" /> und <InlineMath math="a_1=1{,}8\text{ m}" />, dazu die Grenze von <InlineMath math="5\text{ m}" />. Erst der siebte Würfel hebt den Turm über die Grenze, und keine Zahl von Würfeln erreicht <InlineMath math="5{,}4\text{ m}" />.</>}
+  description={<>Die Höhe des Turms nach <InlineMath math="n" /> Würfeln mit <InlineMath math="q = 2/3" /> und <InlineMath math="a_1=1{,}8\text{ m}" />, dazu die Grenze von <InlineMath math="5\text{ m}" />. Erst der siebte Würfel hebt den Turm über die Grenze, und keine Zahl von Würfeln erreicht <InlineMath math="5{,}4\text{ m}" />.</>}
   categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
   series={[
     { label: "Turmhöhe", mark: "line", values: [1.8, 3.0, 3.8, 4.33, 4.69, 4.93, 5.08, 5.19] },
@@ -35,3 +47,9 @@ Bring beide Brüche auf den Nenner <InlineMath math="3^n" />. Für <InlineMath m
   ]}
   valueLabel="Höhe (m)"
 />
+
+Die Gesamthöhe steigt immer flacher an und **überschreitet die <InlineMath math="5\text{ m}" />-Marke genau beim siebten Würfel**.
+
+# Antwort
+
+Der Turm braucht mindestens <InlineMath math="7" /> Würfel.

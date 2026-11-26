@@ -1,4 +1,16 @@
-# Two jugs, one mixture
+# Given
+
+**At a university**, subject A has <InlineMath math="400" /> male applicants (<InlineMath math="60\,\%" /> admitted) and <InlineMath math="100" /> female applicants (<InlineMath math="70\,\%" /> admitted). Subject B has <InlineMath math="100" /> male applicants (<InlineMath math="20\,\%" /> admitted) and <InlineMath math="x" /> female applicants (<InlineMath math="25\,\%" /> admitted). Overall, women have a lower admission rate than men.
+
+# Asked
+
+What is the minimum number of women who applied to subject B?
+
+# Solution
+
+> Mixing two rates works like pouring strong and weak juice into one bowl: **even when women win in every single subject, applying heavily to the harder subject B drags their overall average below the men's <InlineMath math="52\,\%" />**.
+
+## Two jugs in one mixture
 
 Pour a jug of strong juice and a jug of weak juice into one bowl. How strong the bowl tastes depends on how much came from each jug. **An overall admission rate works the same way: it mixes the two subject rates, weighted by the number of applicants**. For the men there are <InlineMath math="240" /> admissions in A and <InlineMath math="20" /> in B.
 
@@ -9,7 +21,7 @@ Pour a jug of strong juice and a jug of weak juice into one bowl. How strong the
 
 Overall, <InlineMath math="52\,\%" /> of the men get a place.
 
-# The women's rate depends on x
+## How the rate for women depends on x
 
 Call the number of women applying for B <InlineMath math="x" />. Then <InlineMath math="70" /> women are admitted in A and <InlineMath math="0.25x" /> in B, out of <InlineMath math="100+x" /> women. **Their overall rate drops below the men's <InlineMath math="52\,\%" /> once the harder subject B carries enough weight**.
 
@@ -55,8 +67,12 @@ x&>\frac{200}{3}\approx66.67
 
 Inside each subject nothing changes. Only the weight of B grows, pulling the mixed curve below the men's horizontal line.
 
-# Admissions come in whole people
+## Admissions come in whole people
 
 Now the word exactly in the text decides the integer value. **Exactly <InlineMath math="25\,\%" /> of the women in B are admitted, and nobody is admitted in part, so <InlineMath math="x" /> must be a multiple of <InlineMath math="4" />**. That rules out <InlineMath math="67" />, and the next multiple of <InlineMath math="4" /> above <InlineMath math="66.67" /> is <InlineMath math="68" />.
 
 A quick check confirms it. With <InlineMath math="68" /> women in B, <InlineMath math="70+17=87" /> of <InlineMath math="168" /> women are admitted, while <InlineMath math="0.52\cdot168=87.36" />, so the women stay just below the men. With <InlineMath math="64" /> they would have <InlineMath math="86" /> of <InlineMath math="164" />, about <InlineMath math="52.4\,\%" />. **At least <InlineMath math="68" /> women applied for subject B**.
+
+# Answer
+
+At least <InlineMath math="68" /> women applied to subject B.

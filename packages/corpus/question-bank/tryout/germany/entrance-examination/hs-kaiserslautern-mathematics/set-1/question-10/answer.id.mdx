@@ -1,14 +1,26 @@
-# Seberapa besar gedungnya
+# Diketahui
 
-Baris-barisnya bertambah seperti anak tangga, dua kursi per anak tangga. Dari <InlineMath math="16" /> sampai <InlineMath math="54" /> ada <InlineMath math="\frac{54-16}{2}=19" /> langkah, jadi **gedung itu punya <InlineMath math="20" /> baris**. Pasangkan baris pertama dengan baris terakhir, baris kedua dengan baris kedua dari belakang, dan seterusnya, maka tiap pasangan berisi <InlineMath math="70" /> kursi:
+**Baris pertama gedung** teater memiliki <InlineMath math="16" /> kursi, tiap baris berikutnya bertambah <InlineMath math="2" /> kursi, dan baris terakhir memiliki <InlineMath math="54" /> kursi. Baris-baris terdepan dilepas sebanyak mungkin asalkan masih tersisa minimal <InlineMath math="560" /> kursi.
+
+# Ditanyakan
+
+Berapa kursi pada baris terdepan yang masih digunakan saat pertunjukan?
+
+# Penyelesaian
+
+> Jumlah seluruh kursi tetap, jadi **melepas baris depan sebanyak mungkin sama dengan menjaga total kursi yang dibuang tidak melampaui kelebihan kursi** di atas batas minimal.
+
+## Seberapa besar gedungnya
+
+Baris-barisnya bertambah seperti anak tangga, dua kursi per anak tangga. Dari <InlineMath math="16" /> sampai <InlineMath math="54" /> ada <InlineMath math="19" /> langkah, jadi **gedung itu punya <InlineMath math="20" /> baris**. Pasangkan baris pertama dengan baris terakhir, baris kedua dengan baris kedua dari belakang, dan seterusnya, maka tiap pasangan berisi <InlineMath math="70" /> kursi:
 
 <BlockMath math="\begin{aligned}
 S&=\tfrac{20}{2}\,(16+54)=700
 \end{aligned}" />
 
-# Berapa baris depan yang boleh dihapus
+## Berapa baris depan yang boleh dihapus
 
-Supaya tersisa <InlineMath math="560" /> kursi, paling banyak <InlineMath math="700-560=140" /> yang boleh hilang. Baris <InlineMath math="m" /> pertama berisi <InlineMath math="16+18+\dots" /> kursi, sebuah deret aritmetika, jadi **baris-baris depan berisi <InlineMath math="m(m+15)" /> kursi**: <InlineMath math="m\cdot\tfrac{16+(14+2m)}{2}=m(m+15)" />.
+Supaya tersisa <InlineMath math="560" /> kursi, paling banyak <InlineMath math="140" /> yang boleh hilang. Baris <InlineMath math="m" /> pertama berisi <InlineMath math="16+18+\dots" /> kursi, sebuah deret aritmetika, jadi **baris-baris depan berisi <InlineMath math="m(m+15)" /> kursi**: <InlineMath math="m(m+15)" />.
 
 <BlockMath math="\begin{aligned}
 m(m+15)&\le140\\
@@ -27,6 +39,12 @@ m(m+15)&\le140\\
   valueLabel="Kursi"
 />
 
-# Baris terdepan yang masih dipakai
+Setiap batang yang dibuang dari kiri mengurangi cadangan kursi, dan **batas <InlineMath math="140" /> kursi terlampaui bila baris ketujuh ikut dilepas** sehingga baris ketujuh harus dipertahankan.
+
+## Baris terdepan yang masih dipakai
 
 Enam baris dihapus, jadi penonton mulai dari baris <InlineMath math="7" />. **Baris itu berisi <InlineMath math="16+6\cdot2=28" /> kursi**. Menjawab <InlineMath math="26" />, yaitu baris terakhir yang dihapus, atau menghapus tujuh baris, sama-sama meleset satu langkah.
+
+# Jawaban
+
+Baris terdepan yang masih digunakan memiliki <InlineMath math="28" /> kursi.

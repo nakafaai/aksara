@@ -1,4 +1,16 @@
-# Measure the queue in turnstile minutes
+# Given
+
+**Outside a stadium**, a fixed starting queue waits when gates open, fans arrive at a constant rate until kick-off at <InlineMath math="45" /> minutes (then stop arriving), and each turnstile admits fans at one constant rate. With <InlineMath math="4" /> turnstiles the queue clears in <InlineMath math="30" /> minutes, and with <InlineMath math="6" /> turnstiles it clears in <InlineMath math="15" /> minutes. Today only <InlineMath math="3" /> turnstiles open.
+
+# Asked
+
+How many minutes after the gates open is the queue cleared with <InlineMath math="3" /> turnstiles?
+
+# Solution
+
+> Measure both the queue and incoming fans in **turnstile-minutes**: two turnstiles are needed just to cancel the new arrivals, so three turnstiles shrink the starting queue slowly until kick-off shuts off the inflow.
+
+## Measure the queue in turnstile minutes
 
 Imagine a bathtub with the tap still running while a few plugholes are open. The water already in the tub and the water still flowing in all have to leave through the holes. **Count everything in turnstile minutes, the number of fans one turnstile lets through in one minute**. Call the starting queue <InlineMath math="S" /> and the arrivals per minute <InlineMath math="z" />. On both known days the turnstiles let through exactly the starting queue plus everyone who came meanwhile:
 
@@ -9,7 +21,7 @@ Imagine a bathtub with the tap still running while a few plugholes are open. The
 
 Subtracting gives <InlineMath math="30=15z" />, so <InlineMath math="z=2" /> and <InlineMath math="S=60" />. You never learn how many fans one turnstile handles, and you never need to.
 
-# Three turnstiles barely beat the stream
+## Three turnstiles barely beat the stream
 
 With <InlineMath math="3" /> turnstiles the queue shrinks by only <InlineMath math="3-2=1" /> turnstile minute per minute. At that pace the <InlineMath math="60" /> would take <InlineMath math="60" /> minutes. **But kick-off comes first, after <InlineMath math="45" /> minutes, so the pace changes before the queue is gone**. At kick-off this much is left:
 
@@ -30,7 +42,8 @@ Answering <InlineMath math="60" /> minutes overlooks that the stream stops.
   valueLabel="Queue (turnstile minutes)"
 />
 
-# After kick-off the stream dries up
+The line chart shows the <InlineMath math="3" />-turnstile queue falling gently to <InlineMath math="15" /> turnstile-minutes at kick-off (<InlineMath math="45\text{ min}" />), then dropping three times faster to zero at <InlineMath math="50\text{ min}" />.
+## After kickoff the stream dries up
 
 Now nobody joins any more, and all <InlineMath math="3" /> turnstiles work through the rest. **The last <InlineMath math="15" /> turnstile minutes take**:
 
@@ -40,3 +53,7 @@ T&=45+5=50\text{ min}
 \end{aligned}" />
 
 The queue is gone <InlineMath math="50" /> minutes after the gates open.
+
+# Answer
+
+The queue is cleared <InlineMath math="50" /> minutes after the gates open.

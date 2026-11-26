@@ -1,10 +1,22 @@
-# Listing the ways to win
+# Given
+
+**Mia shoots independent** free throws with hit probability <InlineMath math="0.8" /> each. She gets at most four shots and wins immediately, stopping play, as soon as she makes two shots in a row.
+
+# Asked
+
+What is the probability that Mia wins, expressed as a decimal?
+
+# Solution
+
+> Stopping the instant two consecutive shots go in makes **every winning sequence completely disjoint**, so we simply multiply along each path and add them up.
+
+## Listing the ways to win
 
 Think of a path of stepping stones: you stop the moment you land on two hits in a row. Write <InlineMath math="H" /> for a hit and <InlineMath math="M" /> for a miss. **The game ends at the first <InlineMath math="HH" />, so each win is a sequence that has no <InlineMath math="HH" /> before its last two throws**. With at most four throws there are exactly four such sequences: <InlineMath math="HH" />, <InlineMath math="MHH" />, <InlineMath math="HMHH" /> and <InlineMath math="MMHH" />.
 
 A sequence like <InlineMath math="HHMH" /> is not a fifth case. Mia already stopped after <InlineMath math="HH" />, so it is the same win as the first one. Counting it again would add probability twice.
 
-# Multiplying along each path
+## Multiplying along each path
 
 Independent throws multiply, like choosing from separate menus. **A miss has probability <InlineMath math="0.2" />, a hit <InlineMath math="0.8" />**:
 
@@ -26,3 +38,7 @@ P&=0.8^2+0.2\cdot0.8^2+0.8\cdot0.2\cdot0.8^2+0.2^2\cdot0.8^2\\
 />
 
 Stopping after three throws would give only <InlineMath math="0.64+0.128=0.768" />. **Mia wins with probability <InlineMath math="0.896" />**.
+
+# Answer
+
+Mia wins with probability <InlineMath math="0.896" />.

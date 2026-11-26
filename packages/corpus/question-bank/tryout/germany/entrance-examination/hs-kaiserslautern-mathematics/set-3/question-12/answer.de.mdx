@@ -1,4 +1,16 @@
-# Die Windgeschwindigkeit aus dem Testflug bestimmen
+# Gegeben
+
+**Eine Lieferdrohne** fliegt mit <InlineMath math="40\text{ km/h}" /> Eigengeschwindigkeit bei konstantem Westwind <InlineMath math="w" />. Ein Test-Hin-und-Rückflug über <InlineMath math="7\text{ km}" /> nach Osten dauert <InlineMath math="48" /> Minuten. Danach fliegt sie in Richtung <InlineMath math="(3\mid4)" /> zum Kunden, schwebt <InlineMath math="4" /> Minuten und kehrt mit mindestens <InlineMath math="20\,\%" /> Restakku (von <InlineMath math="125" /> Minuten) zurück.
+
+# Gesucht
+
+Wie weit darf der Kunde höchstens in Luftlinie vom Lager entfernt wohnen (in km)?
+
+# Lösung
+
+> Zerlege den schrägen Wind in zwei Anteile: **Der Seitenwind zwingt die Drohne zum Vorhalten und verringert ihr Vorwärtstempo auf Hin- und Rückflug gleich stark**, während der Rückenwind hin hilft und zurück bremst.
+
+## Die Windgeschwindigkeit aus dem Testflug bestimmen
 
 Auf dem Ost-West-Testflug wirkt der Wind hin genau als Rückenwind und zurück genau als Gegenwind. **Fasse beide Strecken der <InlineMath math="7\text{ km}" />-Runde zusammen, um die Windgeschwindigkeit <InlineMath math="w" /> aus den <InlineMath math="48" /> Minuten zu berechnen**.
 
@@ -7,7 +19,7 @@ Auf dem Ost-West-Testflug wirkt der Wind hin genau als Rückenwind und zurück g
 1600-w^2=700\ \Longrightarrow\ w^2=900\ \Longrightarrow\ w=30\,\tfrac{\text{km}}{\text{h}}
 \end{aligned}" />
 
-# Den schrägen Wind längs und quer zur Fluglinie zerlegen
+## Den schrägen Wind längs und quer zur Fluglinie zerlegen
 
 **Hier steckt die entscheidende Falle: Auf der <InlineMath math="(3\mid4)" />-Linie hat der Ostwind sowohl einen Bahn- als auch einen Queranteil, und die Drohne muss zuerst den Querwind ausgleichen**. Mit dem Einheitsvektor <InlineMath math="(\tfrac35\mid\tfrac45)" /> schrumpft die Eigenflugkomponente längs der Bahn durch den Querwind <InlineMath math="24\,\tfrac{\text{km}}{\text{h}}" /> von <InlineMath math="40" /> auf <InlineMath math="32\,\tfrac{\text{km}}{\text{h}}" />.
 
@@ -49,7 +61,7 @@ v_{\text{hin}}=32+18=50\,\tfrac{\text{km}}{\text{h}},\qquad v_{\text{rück}}=32-
 
 Wer den Querwind vergisst und mit <InlineMath math="40\pm18" /> rechnet, landet weit daneben bei <InlineMath math="25{,}52\text{ km}" /> statt bei <InlineMath math="17{,}5\text{ km}" />.
 
-# Maximale Entfernung aus der reinen Flugzeit berechnen
+## Maximale Entfernung aus der reinen Flugzeit berechnen
 
 **Nach Abzug der <InlineMath math="20\,\%" /> Reserve und der <InlineMath math="4" /> Minuten Schweben bleiben genau <InlineMath math="96" /> Minuten (<InlineMath math="\tfrac85\text{ h}" />) reine Flugzeit**.
 
@@ -59,3 +71,7 @@ t_{\text{Flug}}=0{,}8\cdot125-4=96\text{ min}=\tfrac85\text{ h}\\
 \end{aligned}" />
 
 Probe bei <InlineMath math="17{,}5\text{ km}" />: <InlineMath math="21" /> Minuten hin plus <InlineMath math="75" /> Minuten zurück ergeben genau <InlineMath math="96" /> Minuten. **Der Kunde darf höchstens <InlineMath math="17{,}5\text{ km}" /> entfernt wohnen**.
+
+# Antwort
+
+Der Kunde darf höchstens <InlineMath math="17{,}5\text{ km}" /> vom Lager entfernt wohnen.

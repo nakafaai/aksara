@@ -1,4 +1,16 @@
-# What box B tells you about the moved resistor
+# Given
+
+**Box A holds** <InlineMath math="2" /> resistors of <InlineMath math="100\,\Omega" /> and <InlineMath math="4" /> of <InlineMath math="200\,\Omega" />, while **Box B holds** <InlineMath math="1" /> of <InlineMath math="100\,\Omega" /> and <InlineMath math="3" /> of <InlineMath math="200\,\Omega" />. One blind resistor moves from A to B, then two resistors drawn without replacement from B both turn out to be <InlineMath math="200\,\Omega" />. Next, two resistors are drawn without replacement from the remaining five in A.
+
+# Asked
+
+What is the probability in percent that the two resistors drawn from box A have the same resistance?
+
+# Solution
+
+> Pulling two <InlineMath math="200\,\Omega" /> resistors from B is a **clue that tilts the odds toward a <InlineMath math="200\,\Omega" /> resistor having moved over from A**, so update those posterior weights before checking what remains in A.
+
+## What box B tells you about the moved resistor
 
 If you drop one unknown coin from your left pocket into your right pocket and then pull two gold coins out of the right pocket, it becomes much more likely that you moved a gold coin. **Let <InlineMath math="H_{100}" /> and <InlineMath math="H_{200}" /> be the two transfer cases and <InlineMath math="E" /> the event that both resistors drawn from B are <InlineMath math="200\,\Omega" />**. Before looking at B, <InlineMath math="P(H_{100})=\tfrac13" /> and <InlineMath math="P(H_{200})=\tfrac23" />.
 
@@ -9,7 +21,7 @@ P(H_{100}\cap E)=\tfrac26\cdot\tfrac35\cdot\tfrac24=\tfrac1{10},\qquad P(H_{200}
 P(E)=\tfrac1{10}+\tfrac4{10}=\tfrac12,\qquad P(H_{100}\mid E)=\tfrac15=20\,\%,\qquad P(H_{200}\mid E)=\tfrac45=80\,\%
 \end{aligned}" />
 
-# What is left inside box A in each case
+## What is left inside box A in each case
 
 Now move back to box A, which holds five resistors, and write <InlineMath math="G" /> for drawing two resistors of the same value. **Here sits the trap: under <InlineMath math="H_{100}" /> only one <InlineMath math="100\,\Omega" /> resistor stays in A, so a <InlineMath math="100\,\Omega" /> pair is impossible, whereas under <InlineMath math="H_{200}" /> both <InlineMath math="200\,\Omega" /> pairs and <InlineMath math="100\,\Omega" /> pairs count**.
 
@@ -33,3 +45,7 @@ P(G\mid E)=0.20\cdot0.60+0.80\cdot0.40=0.12+0.32=0.44=44\,\%
 />
 
 Weighting <InlineMath math="60\,\%" /> and <InlineMath math="40\,\%" /> by the updated <InlineMath math="20\,\%" /> and <InlineMath math="80\,\%" /> weights gives **<InlineMath math="44\,\%" />**. Forgetting the <InlineMath math="100\,\Omega" /> pair under <InlineMath math="H_{200}" /> drops the answer to <InlineMath math="36\,\%" />, and ignoring box B leaves the unconditioned fraction <InlineMath math="\tfrac{7}{15}" />.
+
+# Answer
+
+The probability that both resistors from box A match is <InlineMath math="44\,\%" />.

@@ -1,4 +1,16 @@
-# Four minutes are two kilometres
+# Given
+
+**A city forms** the square <InlineMath math="0 \le x \le 8" />, <InlineMath math="0 \le y \le 8" /> (in km) with Manhattan street distance. Professional station <InlineMath math="A(0\mid0)" /> leaves immediately at <InlineMath math="30\text{ km/h}" />, while volunteer station <InlineMath math="B(6\mid4)" /> leaves <InlineMath math="4" /> minutes later at the same speed.
+
+# Asked
+
+What is the area in <InlineMath math="\text{km}^2" /> of the region where station A arrives earlier than station B?
+
+# Solution
+
+> Turn the <InlineMath math="4" />-minute head start into a **<InlineMath math="2\text{ km}" /> distance bonus** so the race boundary splits cleanly across the four quadrants around <InlineMath math="B(6\mid4)" />.
+
+## Four minutes are two kilometres
 
 In a race where one runner starts a little later, you could just as well push that runner's start line back. **At <InlineMath math="30\,\tfrac{\text{km}}{\text{h}}" /> an engine covers <InlineMath math="0.5\text{ km}" /> a minute, so B's <InlineMath math="4" /> minutes of delay act like <InlineMath math="2\text{ km}" /> of extra distance**. Inside the city <InlineMath math="x" /> and <InlineMath math="y" /> are never negative, so A arrives first whenever this inequality holds.
 
@@ -7,7 +19,7 @@ In a race where one runner starts a little later, you could just as well push th
 x+y&<|x-6|+|y-4|+2
 \end{aligned}" />
 
-# Four cases around B
+## Four cases around B
 
 The absolute-value bars only switch signs on the lines <InlineMath math="x=6" /> and <InlineMath math="y=4" /> through B. **Cut the city into the four rectangles around B and drop the bars in each one**.
 
@@ -58,7 +70,7 @@ The last two conditions never hold inside the city, so B wins everywhere east of
 
 The shaded pentagon shows both parts clearly: a trapezoid below <InlineMath math="y=4" /> and a vertical strip from <InlineMath math="y=4" /> to <InlineMath math="y=8" />.
 
-# The size of A's district
+## The size of district A
 
 **Add the trapezoid with parallel sides <InlineMath math="6" /> and <InlineMath math="2" /> and height <InlineMath math="4" /> to the <InlineMath math="2" /> by <InlineMath math="4" /> northern strip**.
 
@@ -68,3 +80,7 @@ The shaded pentagon shows both parts clearly: a trapezoid below <InlineMath math
 \end{aligned}" />
 
 The professional crew arrives first on **<InlineMath math="24\text{ km}^2" />** of the <InlineMath math="64\text{ km}^2" />. Stopping at <InlineMath math="y=4" /> and missing the northern strip leaves only <InlineMath math="16\text{ km}^2" />.
+
+# Answer
+
+Station A arrives first over an area of <InlineMath math="24\text{ km}^2" />.

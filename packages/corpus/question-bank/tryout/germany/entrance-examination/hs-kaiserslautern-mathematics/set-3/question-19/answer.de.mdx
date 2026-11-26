@@ -1,8 +1,20 @@
-# Prozentwerte zuerst in kWh umrechnen
+# Gegeben
+
+**Eine Doppelschnellladesäule** liefert maximal <InlineMath math="120\text{ kW}" /> gesamt (<InlineMath math="60/60" /> wenn beide über <InlineMath math="60\text{ kW}" /> laden können, sonst bekommt der langsamere sein Limit und der andere den Rest). Transporter A (<InlineMath math="100\text{ kWh}" />, <InlineMath math="90\text{ kW}" /> bis <InlineMath math="80\,\%" />, dann <InlineMath math="30\text{ kW}" />) startet 8:00 bei <InlineMath math="20\,\%" />. Transporter B (<InlineMath math="180\text{ kWh}" />, <InlineMath math="120\text{ kW}" /> bis <InlineMath math="80\,\%" />, dann <InlineMath math="45\text{ kW}" />) startet 8:20 bei <InlineMath math="10\,\%" />.
+
+# Gesucht
+
+Wie viele Minuten dauert der Ladevorgang von Transporter B ab 8:20 Uhr bis <InlineMath math="100\,\%" />?
+
+# Lösung
+
+> Rechne alle Prozentmarken zuerst in **echte Kilowattstunden** um und verfolge dann jeden Leistungssprung der Reihe nach, bis Transporter B <InlineMath math="180\text{ kWh}" /> erreicht.
+
+## Prozentwerte zuerst in kWh umrechnen
 
 Teilen sich zwei Gartenschläuche denselben Wasserhahn, bekommt der zweite sofort mehr Druck, sobald der erste gedrosselt oder zugedreht wird. **Rechne zuerst alle Ladestände in kWh um: Transporter A startet bei <InlineMath math="20\text{ kWh}" /> und drosselt bei <InlineMath math="80\text{ kWh}" />, Transporter B startet bei <InlineMath math="18\text{ kWh}" /> und drosselt bei <InlineMath math="144\text{ kWh}" />**. Zähle die Zeit <InlineMath math="t" /> in Minuten ab 8:00 Uhr.
 
-# Jeden Leistungswechsel Schritt für Schritt verfolgen
+## Jeden Leistungswechsel Schritt für Schritt verfolgen
 
 **Prüfe in jedem Abschnitt, welcher Transporter seine nächste Schwelle zuerst erreicht, denn genau dann wechselt die Leistungsaufteilung**. Ab <InlineMath math="t=50" /> drosselt Transporter A auf <InlineMath math="30\text{ kW}" /> und ist in <InlineMath math="40" /> Minuten voll, während Transporter B bei <InlineMath math="90\text{ kW}" /> noch <InlineMath math="64" /> Minuten bis <InlineMath math="144\text{ kWh}" /> bräuchte, also steckt Transporter A bei <InlineMath math="t=90" /> zuerst ab und gibt volle <InlineMath math="120\text{ kW}" /> frei.
 
@@ -55,6 +67,10 @@ Teilen sich zwei Gartenschläuche denselben Wasserhahn, bekommt der zweite sofor
 
 Jeder steilere oder flachere Knick in der Kurve von Transporter B gehört zu einem dieser vier Leistungswechsel.
 
-# Den Startversatz abziehen
+## Den Startversatz abziehen
 
-**Transporter B startet bei <InlineMath math="t=20" /> und erreicht <InlineMath math="100\,\%" /> bei <InlineMath math="t=156" />, sein Ladevorgang dauert also <InlineMath math="156-20=136" /> Minuten** (direkt <InlineMath math="30+40+18+48=136" /> Minuten). Wer <InlineMath math="156" /> angibt, zählt ab 8:00 statt 8:20 Uhr, wer Transporter B im dritten Abschnitt bei <InlineMath math="60\text{ kW}" /> lässt, landet bei <InlineMath math="146" /> Minuten, und wer den Sprung von <InlineMath math="90" /> auf <InlineMath math="120\text{ kW}" /> bei <InlineMath math="t=90" /> übersieht, kommt auf <InlineMath math="142" /> Minuten.
+**Transporter B startet bei <InlineMath math="t=20" /> und erreicht <InlineMath math="100\,\%" /> bei <InlineMath math="t=156" />, sein Ladevorgang dauert also <InlineMath math="156-20=136" /> Minuten** (direkt <InlineMath math="136" /> Minuten). Wer <InlineMath math="156" /> angibt, zählt ab 8:00 statt 8:20 Uhr, wer Transporter B im dritten Abschnitt bei <InlineMath math="60\text{ kW}" /> lässt, landet bei <InlineMath math="146" /> Minuten, und wer den Sprung von <InlineMath math="90" /> auf <InlineMath math="120\text{ kW}" /> bei <InlineMath math="t=90" /> übersieht, kommt auf <InlineMath math="142" /> Minuten.
+
+# Antwort
+
+Der Ladevorgang von Transporter B dauert <InlineMath math="136" /> Minuten.

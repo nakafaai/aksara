@@ -1,4 +1,16 @@
-# Massen vor und nach dem Abwurf verfolgen
+# Gegeben
+
+**Eine zweistufige Rakete** trägt <InlineMath math="50\text{ kg}" /> Nutzlast mit Leermassen <InlineMath math="200\text{ kg}" /> (<InlineMath math="u_1=4\text{ km/s}" />) und <InlineMath math="50\text{ kg}" /> (<InlineMath math="u_2=2\text{ km/s}" />) sowie <InlineMath math="600\text{ kg}" /> Gesamttreibstoff (<InlineMath math="T_1+T_2=600" />). Gefordert sind <InlineMath math="2\ln(10)\text{ km/s}" /> und <InlineMath math="2\ln(2)\text{ km/s}" />.
+
+# Gesucht
+
+Wie viel Treibstoff T1 in kg erhält die erste Stufe?
+
+# Lösung
+
+> Da die Ausströmgeschwindigkeit der ersten Stufe **genau doppelt so groß ist wie bei Stufe 2**, quadriert das Zusammenfassen der Logarithmen ihr Massenverhältnis und liefert eine saubere quadratische Gleichung in <InlineMath math="T_2" />.
+
+## Massen vor und nach dem Abwurf verfolgen
 
 Stell dir eine Wanderin vor, die vor dem letzten Anstieg eine schwere leere Flasche abstellt: Die zweite Stufe schleppt die leeren <InlineMath math="200\text{ kg}" /> der ersten Stufe nicht mehr mit. **Setze <InlineMath math="x=T_2" /> für den Treibstoff der zweiten Stufe, dann gilt <InlineMath math="T_1=600-x" />, und alle vier Massen hängen nur von <InlineMath math="x" /> ab**.
 
@@ -7,7 +19,7 @@ m_{\text{Start},1}=50+50+200+600=900\text{ kg},\qquad m_{\text{Ende},1}=900-(600
 m_{\text{Start},2}=100+x,\qquad m_{\text{Ende},2}=50+50=100\text{ kg}
 \end{aligned}" />
 
-# Die Logarithmen zu einer quadratischen Gleichung zusammenfassen
+## Die Logarithmen zu einer quadratischen Gleichung zusammenfassen
 
 **Teile beide Seiten durch <InlineMath math="2" /> und nutze <InlineMath math="2\ln A+\ln B=\ln(A^2 B)" />, damit alle Logarithmen auf einen Schlag verschwinden**.
 
@@ -55,13 +67,17 @@ Zwei Aufteilungen treffen das Ziel exakt: <InlineMath math="x=60\text{ kg}" /> u
 
 Der Hochpunkt liegt genau bei <InlineMath math="x=100\text{ kg}" />, sodass die Ziellinie die Kurve links und rechts der Grenze jeweils einmal trifft.
 
-# Die Mindestbedingung der zweiten Stufe prüfen
+## Die Mindestbedingung der zweiten Stufe prüfen
 
-**Die zweite Stufe muss allein mindestens <InlineMath math="2\ln(2)\,\tfrac{\text{km}}{\text{s}}" /> liefern, womit <InlineMath math="x=60\text{ kg}" /> wegen <InlineMath math="\tfrac{160}{100}=1{,}6<2" /> ausscheidet**.
+**Die zweite Stufe muss allein mindestens <InlineMath math="2\ln(2)\,\tfrac{\text{km}}{\text{s}}" /> liefern, womit <InlineMath math="x=60\text{ kg}" /> wegen <InlineMath math="1{,}6 < 2" /> ausscheidet**.
 
 <BlockMath math="\begin{aligned}
 2\ln\!\left(\frac{100+x}{100}\right)\ge2\ln(2)\ \Longleftrightarrow\ \frac{100+x}{100}\ge2\ \Longleftrightarrow\ x\ge100\\
 T_2=150\text{ kg}\ \Longrightarrow\ T_1=600-150=450\text{ kg}
 \end{aligned}" />
 
-Zur Probe: Mit <InlineMath math="T_1=450\text{ kg}" /> und <InlineMath math="T_2=150\text{ kg}" /> liefert Stufe eins das Verhältnis <InlineMath math="\tfrac{900}{450}=2" /> und Stufe zwei <InlineMath math="\tfrac{250}{100}=2{,}5" />, zusammen <InlineMath math="4\ln 2+2\ln 2{,}5=2\ln(4\cdot2{,}5)=2\ln 10" />. Mit <InlineMath math="x=60\text{ kg}" /> kämst du in die Falle <InlineMath math="540\text{ kg}" />. **Die erste Stufe erhält <InlineMath math="450\text{ kg}" /> Treibstoff**.
+Zur Probe: Mit <InlineMath math="T_1=450\text{ kg}" /> und <InlineMath math="T_2=150\text{ kg}" /> liefert Stufe eins das Verhältnis <InlineMath math="\tfrac{900}{450}=2" /> und Stufe zwei <InlineMath math="\tfrac{250}{100}=2{,}5" />, zusammen <InlineMath math="2\ln 10" />. Mit <InlineMath math="x=60\text{ kg}" /> kämst du in die Falle <InlineMath math="540\text{ kg}" />. **Die erste Stufe erhält <InlineMath math="450\text{ kg}" /> Treibstoff**.
+
+# Antwort
+
+Die erste Stufe erhält <InlineMath math="450\text{ kg}" /> Treibstoff.

@@ -1,4 +1,16 @@
-# Von der Haustür aus pflastern
+# Gegeben
+
+**Ein Gartenweg** ist <InlineMath math="2\text{ m}" /> breit und <InlineMath math="7\text{ m}" /> lang. Er wird lückenlos mit beliebig vielen <InlineMath math="1\text{ m} \times 2\text{ m}" />-Platten (längs oder quer) und höchstens einer <InlineMath math="2\text{ m} \times 2\text{ m}" />-Quadratplatte belegt.
+
+# Gesucht
+
+Wie viele verschiedene Verlegemuster gibt es?
+
+# Lösung
+
+> Mit reinen <InlineMath math="1 \times 2" />-Platten entstehen die Fibonacci-Zahlen, und **die eine Quadratplatte zerlegt den Weg sauber in einen linken und rechten Reststreifen**, deren Musteranzahlen sich einfach multiplizieren.
+
+## Von der Haustür aus pflastern
 
 Leg den Weg Platte für Platte, beginnend an der Haustür. **Schau auf den ersten Meter: Entweder liegt dort eine Platte quer, oder zwei Platten liegen längs nebeneinander und füllen die ersten zwei Meter, also folgt <InlineMath math="a_n" /> der Fibonacci-Rekursion**.
 
@@ -9,7 +21,7 @@ a_0,\dots,a_7&:\quad 1,\ 1,\ 2,\ 3,\ 5,\ 8,\ 13,\ 21
 
 Ohne die quadratische Platte gibt es <InlineMath math="a_7=21" /> Muster.
 
-# Wo das Quadrat liegen kann
+## Wo das Quadrat liegen kann
 
 **Das Quadrat füllt auf zwei Metern die ganze Breite und zerlegt den Weg deshalb in ein linkes und ein rechtes Stück, die unabhängig voneinander belegt werden**. Belegt es die Meter <InlineMath math="k" /> und <InlineMath math="k+1" />, sind die Stücke <InlineMath math="k-1" /> und <InlineMath math="6-k" /> Meter lang.
 
@@ -53,6 +65,10 @@ Ohne die quadratische Platte gibt es <InlineMath math="a_7=21" /> Muster.
 
 Die sechs Produkte ergeben zusammen <InlineMath math="38" /> Muster mit der quadratischen Platte.
 
-# Alle Muster zusammen
+## Alle Muster zusammen
 
 Ein Muster hat entweder kein Quadrat oder genau eins, nie beides, **also addieren sich beide Anzahlen zu <InlineMath math="21+38=59" /> Mustern**. Zwei längs nebeneinanderliegende Platten bedecken zwar auch ein <InlineMath math="2\times2" />-Feld, bilden aber ein anderes Muster als die quadratische Platte. Wer zu <InlineMath math="21" /> nur die <InlineMath math="6" /> Lagen des Quadrats zählt, landet bei der Falle <InlineMath math="27" />.
+
+# Antwort
+
+Es gibt <InlineMath math="59" /> verschiedene Verlegemuster.

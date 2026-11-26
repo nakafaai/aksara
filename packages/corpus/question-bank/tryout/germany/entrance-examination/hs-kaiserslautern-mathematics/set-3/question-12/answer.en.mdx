@@ -1,4 +1,16 @@
-# Finding the wind speed from the test flight
+# Given
+
+**A delivery drone** flies at <InlineMath math="40\text{ km/h}" /> airspeed in a constant west-to-east wind <InlineMath math="w" />. A test round trip of <InlineMath math="7\text{ km}" /> east and back takes <InlineMath math="48" /> minutes. Next, it flies along direction <InlineMath math="(3\mid4)" /> to a customer, hovers <InlineMath math="4" /> minutes, and returns, using at most <InlineMath math="80\,\%" /> of its <InlineMath math="125" />-minute battery.
+
+# Asked
+
+What is the maximum straight-line distance from the warehouse to the customer in kilometres?
+
+# Solution
+
+> Split the crosswind into two parts: **the sideways wind forces the drone to crab slightly into the wind, shrinking its forward airspeed equally on both legs**, while the along-track component helps going out and slows coming back.
+
+## Finding the wind speed from the test flight
 
 An east-west round trip feels the wind straight behind on the way out and straight against on the way back. **Combine both legs of the <InlineMath math="7\text{ km}" /> test flight to pull the unknown wind speed <InlineMath math="w" /> directly from the <InlineMath math="48" />-minute total**.
 
@@ -7,7 +19,7 @@ An east-west round trip feels the wind straight behind on the way out and straig
 1600-w^2=700\ \Longrightarrow\ w^2=900\ \Longrightarrow\ w=30\,\tfrac{\text{km}}{\text{h}}
 \end{aligned}" />
 
-# Splitting the oblique wind along and across the corridor
+## Splitting the oblique wind along and across the corridor
 
 **Here hides the key trap: because the corridor runs along <InlineMath math="(3\mid4)" />, the east wind has both an along-track part and a crosswind part, and you must spend airspeed cancelling the crosswind first**. Along the unit vector <InlineMath math="(\tfrac35\mid\tfrac45)" /> the crosswind is <InlineMath math="24\,\tfrac{\text{km}}{\text{h}}" />, cutting the forward airspeed component from <InlineMath math="40" /> down to <InlineMath math="32\,\tfrac{\text{km}}{\text{h}}" />.
 
@@ -49,7 +61,7 @@ v_{\text{out}}=32+18=50\,\tfrac{\text{km}}{\text{h}},\qquad v_{\text{back}}=32-1
 
 Forgetting the crosswind compensation and taking <InlineMath math="40\pm18" /> would grossly overestimate the range at <InlineMath math="25.52\text{ km}" /> instead of <InlineMath math="17.5\text{ km}" />.
 
-# Computing the maximum distance from usable flight time
+## Computing the maximum distance from usable flight time
 
 **Keep <InlineMath math="20\,\%" /> battery reserve and subtract the <InlineMath math="4" />-minute hover, leaving <InlineMath math="96" /> minutes (<InlineMath math="\tfrac85\text{ h}" />) of flying time**.
 
@@ -59,3 +71,7 @@ t_{\text{fly}}=0.8\cdot125-4=96\text{ min}=\tfrac85\text{ h}\\
 \end{aligned}" />
 
 Check both legs at <InlineMath math="17.5\text{ km}" />: <InlineMath math="21" /> minutes out plus <InlineMath math="75" /> minutes back equals <InlineMath math="96" /> minutes. **The customer may live at most <InlineMath math="17.5\text{ km}" /> away**.
+
+# Answer
+
+The customer can live at most <InlineMath math="17.5\text{ km}" /> from the warehouse.

@@ -1,4 +1,16 @@
-# Setiap rute adalah sebuah kata
+# Diketahui
+
+**Seorang kurir sepeda** bergerak di jaringan jalan dari <InlineMath math="S(0\mid0)" /> ke <InlineMath math="Z(6\mid4)" /> hanya ke timur atau utara. Rute wajib melewati minimal satu apotek di <InlineMath math="A(2\mid2)" /> atau <InlineMath math="B(4\mid1)" />, sementara ruas jalan dari <InlineMath math="(3\mid2)" /> ke <InlineMath math="(4\mid2)" /> ditutup.
+
+# Ditanyakan
+
+Berapa banyak rute berbeda yang dapat ditempuh kurir itu?
+
+# Penyelesaian
+
+> Karena kurir tidak pernah mundur, **rute lewat <InlineMath math="A" /> dan rute lewat <InlineMath math="B" /> tidak mungkin beririsan**, sehingga kita cukup menjumlahkan keduanya setelah membuang ruas yang ditutup.
+
+## Setiap rute adalah sebuah kata
 
 Tulis rutenya sebagai deretan huruf: T untuk satu langkah ke timur, U untuk satu langkah ke utara. Dari <InlineMath math="S" /> ke <InlineMath math="Z" /> selalu ada enam T dan empat U, hanya urutannya yang berbeda. **Menghitung rute antara dua persimpangan berarti memilih letak huruf U, yaitu koefisien binomial**. Untuk rute lewat apotek <InlineMath math="A" />, kalikan kedua bagiannya:
 
@@ -7,7 +19,7 @@ S\to A&:\ \tbinom{4}{2}=6,\qquad A\to Z:\ \tbinom{6}{2}=15\\
 6\cdot15&=90
 \end{aligned}" />
 
-# Ruas yang ditutup hanya mengganggu rute lewat A
+## Ruas yang ditutup hanya mengganggu rute lewat A
 
 Rute lewat <InlineMath math="A" /> memakai ruas yang ditutup kalau dari <InlineMath math="A" /> langsung ke timur menuju <InlineMath math="(3\mid2)" />, dan caranya cuma satu, lalu melewati ruas itu, lalu dari <InlineMath math="(4\mid2)" /> ke <InlineMath math="Z" />. **Rute-rute ini harus dibuang**:
 
@@ -66,7 +78,8 @@ Rute lewat <InlineMath math="A" /> memakai ruas yang ditutup kalau dari <InlineM
   }}
 />
 
-# Apotek B dan irisannya
+Perhatikan pada grid bahwa <InlineMath math="B(4\mid1)" /> berada di bawah dan di kanan <InlineMath math="A(2\mid2)" />, sehingga mustahil melewati kedua apotek sekaligus saat hanya bergerak ke timur dan utara.
+## Apotek B dan irisannya
 
 Untuk <InlineMath math="B(4\mid1)" /> caranya sama. **Tidak ada rute yang melewati kedua apotek, sebab setelah <InlineMath math="A" /> di ketinggian <InlineMath math="2" /> kurir tidak bisa turun lagi ke ketinggian <InlineMath math="1" /> di <InlineMath math="B" />, dan sebelum <InlineMath math="A" /> ia harus mencapai <InlineMath math="x=4" /> lalu <InlineMath math="x=2" />**. Jadi tidak ada yang terhitung dua kali. Rute lewat <InlineMath math="B" /> baru mencapai ketinggian <InlineMath math="2" /> pada <InlineMath math="x\ge4" />, sehingga tidak pernah memakai ruas yang ditutup:
 
@@ -76,3 +89,7 @@ S\to B&:\ \tbinom{5}{1}=5,\qquad B\to Z:\ \tbinom{5}{2}=10\\
 \end{aligned}" />
 
 Kurir punya <InlineMath math="104" /> rute berbeda. Kalau proyek jalannya terlupa, hasilnya <InlineMath math="140" />.
+
+# Jawaban
+
+Kurir itu dapat menempuh <InlineMath math="104" /> rute berbeda.

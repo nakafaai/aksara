@@ -1,4 +1,16 @@
-# Start with the shared diagonal BD
+# Given
+
+**A convex quadrilateral** <InlineMath math="ABCD" /> has <InlineMath math="\overline{AB}=30\text{ m}" />, <InlineMath math="\overline{AD}=14\text{ m}" />, <InlineMath math="\overline{BC}=30\text{ m}" />, <InlineMath math="\cos(\angle BAD)=-0.6" />, <InlineMath math="\cos(\angle BDC)=0.8" />, and an acute interior angle <InlineMath math="\angle BCD < 90^\circ" />.
+
+# Asked
+
+What is the length of diagonal AC in metres?
+
+# Solution
+
+> Find the shared bridge <InlineMath math="BD = 40\text{ m}" /> first, because **the acute-angle condition at <InlineMath math="C" /> picks the right triangle corner uniquely** and opens straight into <InlineMath math="AC" /> via the law of cosines at <InlineMath math="D" />.
+
+## Start with the shared diagonal BD
 
 Split the quadrilateral along <InlineMath math="BD" /> into two triangles that share that bridge. **In <InlineMath math="\triangle ABD" /> you know two sides and the cosine of the angle between them, so the law of cosines gives <InlineMath math="BD" /> at once**. Notice the negative cosine turns the minus sign into a plus.
 
@@ -6,7 +18,7 @@ Split the quadrilateral along <InlineMath math="BD" /> into two triangles that s
 BD^2=30^2+14^2-2\cdot30\cdot14\cdot\left(-\tfrac35\right)=900+196+504=1600\ \Longrightarrow\ BD=40\text{ m}
 \end{aligned}" />
 
-# Two candidate places for C
+## Two candidate places for C
 
 Now move to <InlineMath math="\triangle BCD" /> and write <InlineMath math="x=CD" />. **Because <InlineMath math="BC=30\text{ m}" /> is shorter than <InlineMath math="BD=40\text{ m}" />, a circle of radius <InlineMath math="30\text{ m}" /> around <InlineMath math="B" /> cuts the ray from <InlineMath math="D" /> twice, giving two candidates for <InlineMath math="CD" />**.
 
@@ -15,7 +27,7 @@ Now move to <InlineMath math="\triangle BCD" /> and write <InlineMath math="x=CD
 (x-14)(x-50)=0\ \Longrightarrow\ CD=14\text{ m}\quad\text{or}\quad CD=50\text{ m}
 \end{aligned}" />
 
-Now the condition <InlineMath math="\angle BCD<90^\circ" /> decides. At <InlineMath math="CD=14\text{ m}" /> we have <InlineMath math="30^2+14^2=1096<1600=40^2" />, so the angle at <InlineMath math="C'" /> is obtuse and ruled out. At <InlineMath math="CD=50\text{ m}" /> we have <InlineMath math="30^2+40^2=2500=50^2" /> (a right angle at <InlineMath math="B" />), so <InlineMath math="\angle BCD" /> is acute and **<InlineMath math="CD=50\text{ m}" /> survives**.
+Now the condition <InlineMath math="\angle BCD<90^\circ" /> decides. At <InlineMath math="CD=14\text{ m}" /> we have <InlineMath math="1096 < 1600" />, so the angle at <InlineMath math="C'" /> is obtuse and ruled out. At <InlineMath math="CD=50\text{ m}" /> we have <InlineMath math="2500 = 50^2" /> (a right angle at <InlineMath math="B" />), so <InlineMath math="\angle BCD" /> is acute and **<InlineMath math="CD=50\text{ m}" /> survives**.
 
 <MathVisual
   title={<>The parcel and the rejected corner</>}
@@ -61,9 +73,9 @@ Now the condition <InlineMath math="\angle BCD<90^\circ" /> decides. At <InlineM
 
 In the drawing you can see both intersections on the ray from <InlineMath math="D" /> and why only the farther one keeps <InlineMath math="\angle BCD" /> sharp.
 
-# Combining the two angles at D
+## Combining the two angles at D
 
-Since <InlineMath math="A" /> and <InlineMath math="C" /> lie on opposite sides of <InlineMath math="BD" />, the corner angle is <InlineMath math="\angle ADC=\angle ADB+\angle BDC" />. **Find <InlineMath math="\cos(\angle ADB)" /> from <InlineMath math="\triangle ABD" />, apply the cosine addition formula, and finish with the law of cosines in <InlineMath math="\triangle ADC" />**.
+Since <InlineMath math="A" /> and <InlineMath math="C" /> lie on opposite sides of <InlineMath math="BD" />, the corner angle is <InlineMath math="\angle ADC" />. **Find <InlineMath math="\cos(\angle ADB)" /> from <InlineMath math="\triangle ABD" />, apply the cosine addition formula, and finish with the law of cosines in <InlineMath math="\triangle ADC" />**.
 
 <BlockMath math="\begin{aligned}
 \cos(\angle ADB)=\frac{14^2+40^2-30^2}{2\cdot14\cdot40}=\frac{896}{1120}=\tfrac45,\qquad \sin(\angle ADB)=\tfrac35\\
@@ -72,3 +84,7 @@ AC^2=14^2+50^2-2\cdot14\cdot50\cdot\tfrac{7}{25}=196+2500-392=2304\ \Longrightar
 \end{aligned}" />
 
 The diagonal <InlineMath math="AC" /> is **<InlineMath math="48\text{ m}" />** long. Picking the rejected corner <InlineMath math="C'" /> with <InlineMath math="CD=14\text{ m}" /> would give the trap diagonal <InlineMath math="16.8\text{ m}" />.
+
+# Answer
+
+The diagonal <InlineMath math="AC" /> has a length of <InlineMath math="48\text{ m}" />.

@@ -1,4 +1,16 @@
-# Paving from the door outwards
+# Given
+
+**A garden path** is <InlineMath math="2\text{ m}" /> wide and <InlineMath math="7\text{ m}" /> long. It is paved seamlessly using unlimited <InlineMath math="1\text{ m} \times 2\text{ m}" /> slabs (laid either way) plus at most one <InlineMath math="2\text{ m} \times 2\text{ m}" /> square slab.
+
+# Asked
+
+How many different paving patterns are possible?
+
+# Solution
+
+> Using only <InlineMath math="1 \times 2" /> slabs gives the classic Fibonacci counts, and **placing the one square slab splits the path cleanly into independent left and right strips** whose Fibonacci counts simply multiply.
+
+## Paving from the door outwards
 
 Lay the path slab by slab, starting at the door. **Look at the first metre: either one slab lies across it, or two slabs lie lengthwise side by side and fill the first two metres, so the count <InlineMath math="a_n" /> of patterns without the square follows the Fibonacci recurrence**.
 
@@ -9,7 +21,7 @@ a_0,\dots,a_7&:\quad 1,\ 1,\ 2,\ 3,\ 5,\ 8,\ 13,\ 21
 
 Without the square slab there are <InlineMath math="a_7=21" /> patterns.
 
-# Where the square can go
+## Where the square can go
 
 **The square fills the full width over two metres, so it cuts the path into a left part and a right part that are paved independently**. Covering metres <InlineMath math="k" /> and <InlineMath math="k+1" /> leaves lengths <InlineMath math="k-1" /> and <InlineMath math="6-k" />.
 
@@ -53,6 +65,10 @@ Without the square slab there are <InlineMath math="a_7=21" /> patterns.
 
 Summing those six products gives <InlineMath math="38" /> patterns that contain the square slab.
 
-# All patterns together
+## All patterns together
 
 A pattern either uses no square or exactly one, never both, **so the two counts add to <InlineMath math="21+38=59" /> patterns**. Two lengthwise slabs side by side also cover a <InlineMath math="2\times2" /> block, yet they form a different pattern from the single square slab. Adding only the <InlineMath math="6" /> positions of the square to <InlineMath math="21" /> gives the trap <InlineMath math="27" />.
+
+# Answer
+
+There are <InlineMath math="59" /> different paving patterns.

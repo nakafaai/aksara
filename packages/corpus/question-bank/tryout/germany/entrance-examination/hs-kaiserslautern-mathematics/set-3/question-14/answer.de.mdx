@@ -1,4 +1,16 @@
-# Beide Kennlinien und Abregelgrenzen bestimmen
+# Gegeben
+
+**Zwei Windkraftanlagen** folgen <InlineMath math="P \propto d^2 v^3" /> bis zu ihrer Nennleistung <InlineMath math="P_{\max}" />. Anlage A (<InlineMath math="d=30\text{ m}" />, <InlineMath math="P_{\max}=1152\text{ kW}" />) liefert bei <InlineMath math="4\text{ m/s}" /> genau <InlineMath math="144\text{ kW}" />. Anlage B hat <InlineMath math="d=40\text{ m}" /> und <InlineMath math="P_{\max}=500\text{ kW}" />. Bei genau zwei Windgeschwindigkeiten <InlineMath math="v_1 < v_2" /> liefert B <InlineMath math="14\text{ kW}" /> mehr als A, und der Wind weht <InlineMath math="3\text{ h}" /> mit <InlineMath math="v_1" /> und <InlineMath math="5\text{ h}" /> mit <InlineMath math="v_2" />.
+
+# Gesucht
+
+Wie viel elektrische Energie liefern beide Anlagen zusammen in diesen <InlineMath math="8" /> Stunden (in kWh)?
+
+# Lösung
+
+> Anlage B startet mit größerem Rotor vorn, **stößt aber früh an ihre <InlineMath math="500\text{ kW}" />-Deckelung, sodass Anlage A von unten aufholt**, wodurch der <InlineMath math="14\text{ kW}" />-Vorsprung einmal im Anstieg und einmal am Deckel auftritt.
+
+## Beide Kennlinien und Abregelgrenzen bestimmen
 
 Unterhalb der Nennleistung wächst die Leistung proportional zu <InlineMath math="d^2" />, sodass Anlage B anfangs steiler steigt, bis ihr kleinerer Generator abregelt. **Bestimme <InlineMath math="k_A=c d_A^2" /> aus dem Messwert, skaliere mit <InlineMath math="\left(\tfrac{40}{30}\right)^2=\tfrac{16}{9}" /> zu <InlineMath math="k_B" /> und berechne beide Nennwindgeschwindigkeiten**.
 
@@ -7,7 +19,7 @@ k_A=\frac{144}{4^3}=\frac94,\qquad \frac94 v_A^3=1152\ \Longrightarrow\ v_A^3=51
 k_B=\frac94\cdot\left(\frac{40}{30}\right)^2=4,\qquad 4v_B^3=500\ \Longrightarrow\ v_B^3=125\ \Longrightarrow\ v_B=5\,\tfrac{\text{m}}{\text{s}}
 \end{aligned}" />
 
-# Beide Windgeschwindigkeiten für den Vorsprung finden
+## Beide Windgeschwindigkeiten für den Vorsprung finden
 
 **Wer das Abregeln bei <InlineMath math="5\,\tfrac{\text{m}}{\text{s}}" /> übersieht, bekommt mit <InlineMath math="\tfrac74 v^3" /> eine streng wachsende Differenz und findet nur eine Lösung**. Sobald B bei <InlineMath math="500\text{ kW}" /> stehen bleibt und A weiter steigt, fällt der Vorsprung ein zweites Mal genau durch <InlineMath math="14\text{ kW}" />.
 
@@ -51,9 +63,9 @@ v\le5:\quad \left(4-\tfrac94\right)v_1^3=\tfrac74 v_1^3=14\ \Longrightarrow\ v_1
   }}
 />
 
-Wegen <InlineMath math="v_2=6<8" /> regelt A dort noch nicht ab, und ab <InlineMath math="v\ge8" /> liefert A schon <InlineMath math="1152\text{ kW}>500\text{ kW}" />, sodass dies die einzigen beiden Lösungen sind.
+Wegen <InlineMath math="v_2 = 6" /> regelt A dort noch nicht ab, und ab <InlineMath math="v\ge8" /> liefert A schon <InlineMath math="1152\text{ kW}>500\text{ kW}" />, sodass dies die einzigen beiden Lösungen sind.
 
-# Gesamtenergie über alle acht Stunden addieren
+## Gesamtenergie über alle acht Stunden addieren
 
 **Addiere die Leistungen beider Anlagen bei <InlineMath math="v_1=2" /> und <InlineMath math="v_2=6" /> und gewichte mit <InlineMath math="3" /> und <InlineMath math="5" /> Stunden**.
 
@@ -64,3 +76,7 @@ E=3\cdot50+5\cdot986=150+4930=5080\text{ kWh}
 \end{aligned}" />
 
 **Zusammen liefern beide Anlagen genau <InlineMath math="5080\text{ kWh}" />**.
+
+# Antwort
+
+Beide Anlagen zusammen liefern <InlineMath math="5080\text{ kWh}" /> elektrische Energie.

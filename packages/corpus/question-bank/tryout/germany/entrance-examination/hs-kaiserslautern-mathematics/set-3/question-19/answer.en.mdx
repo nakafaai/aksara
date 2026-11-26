@@ -1,8 +1,20 @@
-# Converting percentages to kWh first
+# Given
+
+**A dual fast charger** delivers up to <InlineMath math="120\text{ kW}" /> total (splitting <InlineMath math="60/60" /> if both vans want over <InlineMath math="60\text{ kW}" />, otherwise giving the slower van its cap and the rest to the other). Van A (<InlineMath math="100\text{ kWh}" />, <InlineMath math="90\text{ kW}" /> up to <InlineMath math="80\,\%" />, then <InlineMath math="30\text{ kW}" />) plugs in at 8:00 at <InlineMath math="20\,\%" />. Van B (<InlineMath math="180\text{ kWh}" />, <InlineMath math="120\text{ kW}" /> up to <InlineMath math="80\,\%" />, then <InlineMath math="45\text{ kW}" />) plugs in at 8:20 at <InlineMath math="10\,\%" />.
+
+# Asked
+
+How many minutes does van B's charging session take from 8:20 until it reaches <InlineMath math="100\,\%" />?
+
+# Solution
+
+> Convert every percentage milestone into **actual kilowatt-hours first**, then step cleanly from one power-switch event to the next until van B hits <InlineMath math="180\text{ kWh}" />.
+
+## Converting percentages to kWh first
 
 When two garden hoses share one main tap, shutting down one hose immediately sends more water to the other. **First turn every state of charge into kWh: van A starts at <InlineMath math="20\text{ kWh}" /> with its throttle at <InlineMath math="80\text{ kWh}" />, and van B starts at <InlineMath math="18\text{ kWh}" /> with its throttle at <InlineMath math="144\text{ kWh}" />**. Measure time <InlineMath math="t" /> in minutes from 8:00.
 
-# Following each power switch in order
+## Following each power switch in order
 
 **At every milestone check which van hits its next threshold first, because that event shifts the charger's split immediately**. From <InlineMath math="t=50" /> van A throttles to <InlineMath math="30\text{ kW}" /> and finishes in <InlineMath math="40" /> minutes, whereas van B needs <InlineMath math="64" /> minutes at <InlineMath math="90\text{ kW}" /> to reach <InlineMath math="144\text{ kWh}" />, so van A unplugs first at <InlineMath math="t=90" /> and releases the full <InlineMath math="120\text{ kW}" /> to van B.
 
@@ -55,6 +67,10 @@ When two garden hoses share one main tap, shutting down one hose immediately sen
 
 Each steepening or flattening bend on van B's graph matches one of those four power transitions.
 
-# Subtracting the start offset
+## Subtracting the start offset
 
-**Van B plugs in at <InlineMath math="t=20" /> and reaches <InlineMath math="100\,\%" /> at <InlineMath math="t=156" />, so its charging session lasts <InlineMath math="156-20=136" /> minutes** (or directly <InlineMath math="30+40+18+48=136" /> minutes). Answering <InlineMath math="156" /> counts from 8:00 instead of 8:20, leaving van B at <InlineMath math="60\text{ kW}" /> during phase three gives <InlineMath math="146" /> minutes, and forgetting the jump from <InlineMath math="90" /> to <InlineMath math="120\text{ kW}" /> at <InlineMath math="t=90" /> gives <InlineMath math="142" /> minutes.
+**Van B plugs in at <InlineMath math="t=20" /> and reaches <InlineMath math="100\,\%" /> at <InlineMath math="t=156" />, so its charging session lasts <InlineMath math="156-20=136" /> minutes** (or directly <InlineMath math="136" /> minutes). Answering <InlineMath math="156" /> counts from 8:00 instead of 8:20, leaving van B at <InlineMath math="60\text{ kW}" /> during phase three gives <InlineMath math="146" /> minutes, and forgetting the jump from <InlineMath math="90" /> to <InlineMath math="120\text{ kW}" /> at <InlineMath math="t=90" /> gives <InlineMath math="142" /> minutes.
+
+# Answer
+
+Charging van B takes <InlineMath math="136" /> minutes.

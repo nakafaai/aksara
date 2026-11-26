@@ -1,4 +1,16 @@
-# Setiap baik pulih menelan yuran dan sebulan hasil
+# Diberi
+
+**Sebuah bengkel mengendalikan** mesin pengisar selama <InlineMath math="17" /> bulan berturut-turut. Setiap bulan operasi menjana <InlineMath math="1500\text{ €}" />, manakala penyelenggaraan bermula pada <InlineMath math="200\text{ €}" /> pada bulan pertama dan naik <InlineMath math="100\text{ €}" /> setiap bulan berturutan. Baik pulih <InlineMath math="1" /> bulan berharga <InlineMath math="400\text{ €}" /> (tiada hasil) dan menetapkan semula kos kepada <InlineMath math="200\text{ €}" />.
+
+# Ditanya
+
+Berapa eurokah jumlah keuntungan bersih maksimum sepanjang <InlineMath math="17" /> bulan itu?
+
+# Penyelesaian
+
+> Oleh sebab jumlah kos penyelenggaraan meningkat secara kuadratik mengikut panjang kitaran, **membahagikan bulan kerja seimbang mungkin antara kitaran** sentiasa meminimumkan kos bagi sebarang bilangan baik pulih.
+
+## Setiap baik pulih menelan yuran dan sebulan hasil
 
 Menunggu sehingga kos penyelenggaraan menyamai hasil bulanan kedengaran masuk akal, namun menetapkan semula lebih awal menjimatkan kos yang meningkat secara kuadratik. **Jumlahkan dahulu janjang aritmetik kos penyelenggaraan bagi satu blok <InlineMath math="n" /> bulan, dan ingat bahawa <InlineMath math="k" /> baik pulih hanya meninggalkan <InlineMath math="17-k" /> bulan operasi dalam <InlineMath math="k+1" /> blok**.
 
@@ -7,11 +19,15 @@ W(n)=\sum_{j=0}^{n-1}(200+100j)=\frac{n}{2}\bigl(400+100\,(n-1)\bigr)=150n+50n^2
 G=1500\,(17-k)-400k-\sum_{i=1}^{k+1}\bigl(150n_i+50n_i^2\bigr)=22\,950-1750k-50\sum_{i=1}^{k+1}n_i^2
 \end{aligned}" />
 
-Oleh sebab <InlineMath math="\sum n_i=17-k" />, setiap baik pulih mengurangkan margin linear <InlineMath math="1500-150=1350\text{ €}" /> serta yuran <InlineMath math="400\text{ €}" />, jumlahnya <InlineMath math="1750\text{ €}" />, sambil mengecilkan sebutan kuadratik <InlineMath math="50\sum n_i^2" />.
+Oleh sebab <InlineMath math="17-k" />, setiap baik pulih mengurangkan margin linear <InlineMath math="1500-150=1350\text{ €}" /> serta yuran <InlineMath math="400\text{ €}" />, jumlahnya <InlineMath math="1750\text{ €}" />, sambil mengecilkan sebutan kuadratik <InlineMath math="50 S" />.
 
-# Blok seimbang meminimumkan hasil tambah kuasa dua
+## Blok seimbang meminimumkan hasil tambah kuasa dua
 
-**Bagi setiap <InlineMath math="k" /> yang tetap, <InlineMath math="\sum n_i^2" /> paling kecil apabila panjang blok berbeza paling banyak <InlineMath math="1" />**. Setiap kali <InlineMath math="a-b\ge2" />, memindahkan satu bulan dari blok panjang ke blok pendek menurunkan jumlah kuasa dua kerana <InlineMath math="(a-1)^2+(b+1)^2=a^2+b^2-2(a-b-1)<a^2+b^2" />.
+**Bagi setiap <InlineMath math="k" /> yang tetap, <InlineMath math="S" /> paling kecil apabila panjang blok berbeza paling banyak <InlineMath math="1" />**. Setiap kali <InlineMath math="a-b\ge2" />, memindahkan satu bulan dari blok panjang ke blok pendek menurunkan jumlah kuasa dua:
+
+<BlockMath math="(a-1)^2+(b+1)^2 = a^2+b^2-2(a-b-1) < a^2+b^2" />
+
+Sekarang bandingkan jumlah keuntungan bersih bagi setiap pilihan bilangan baik pulih <InlineMath math="k" />:
 
 <BlockMath math="\begin{aligned}
 k=0\ (17)&:\quad 22\,950-50\cdot289=8500\\
@@ -33,3 +49,7 @@ k=3\ (4,4,3,3)&:\quad 22\,950-5250-50\cdot50=15\,200
 />
 
 Mulai <InlineMath math="k=3" /> penjimatan kuadratiknya kurang daripada <InlineMath math="1750\text{ €}" /> bagi setiap baik pulih tambahan (pada <InlineMath math="k=4" /> blok <InlineMath math="3,3,3,2,2" /> hanya memberi <InlineMath math="14\,200\text{ €}" />), maka tiada <InlineMath math="k" /> lebih besar yang mengatasi <InlineMath math="k=2" />. Menunggu hingga bulan ke-<InlineMath math="14" /> hanya memberi <InlineMath math="11\,200\text{ €}" />. **Keuntungan bersih maksimum ialah <InlineMath math="15\,700\text{ €}" />**.
+
+# Jawapan
+
+Keuntungan bersih maksimum sepanjang <InlineMath math="17" /> bulan ialah <InlineMath math="15\,700\text{ €}" />.

@@ -1,13 +1,25 @@
-# Preis und Räder auf einer Wippe
+# Gegeben
 
-Preis und Nachfrage sitzen auf einer Wippe: Steigt der Preis um <InlineMath math="1\text{ €}" />, gehen <InlineMath math="4" /> Kunden weg. Beim Preis <InlineMath math="p" /> verleiht der Laden <InlineMath math="n=40-4(p-12)=88-4p" /> Räder, und **jedes Rad bringt nach der Reinigung <InlineMath math="p-2" /> Euro**:
+Bei <InlineMath math="12\text{ €}" /> **Tagespreis** werden <InlineMath math="40" /> Räder verliehen, je Euro Preisänderung ändert sich die Nachfrage um <InlineMath math="4" /> Räder. Jedes verliehene Rad kostet <InlineMath math="2\text{ €}" /> Wartung, und der Bestand beträgt nur <InlineMath math="36" /> Räder.
+
+# Gesucht
+
+Wie hoch ist der maximal mögliche Tagesgewinn in Euro?
+
+# Lösung
+
+> Prüfe immer, ob **der Scheitelpunkt der Gewinnparabel im zulässigen Bestandsbereich liegt**, denn sonst bestimmt der Randwert das echte Maximum.
+
+## Preis und Räder auf einer Wippe
+
+Preis und Nachfrage sitzen auf einer Wippe: Steigt der Preis um <InlineMath math="1\text{ €}" />, gehen <InlineMath math="4" /> Kunden weg. Beim Preis <InlineMath math="p" /> verleiht der Laden <InlineMath math="n = 88 - 4p" /> Räder, und **jedes Rad bringt nach der Reinigung <InlineMath math="p-2" /> Euro**:
 
 <BlockMath math="\begin{aligned}
 G(p)&=(p-2)(88-4p)\\
 &=-4p^2+96p-176
 \end{aligned}" />
 
-# Der Scheitel ist nicht erreichbar
+## Der Scheitel ist nicht erreichbar
 
 Die Parabel ist nach unten geöffnet, ihr Scheitel liegt in der Mitte zwischen den Nullstellen <InlineMath math="p=2" /> und <InlineMath math="p=22" />, also bei <InlineMath math="p=12" /> mit <InlineMath math="G=400\text{ €}" />. **Bei <InlineMath math="12\text{ €}" /> bräuchte der Laden aber <InlineMath math="40" /> Räder, er hat nur <InlineMath math="36" />**. Aus <InlineMath math="88-4p\le36" /> folgt <InlineMath math="p\ge13" />.
 
@@ -22,6 +34,12 @@ Die Parabel ist nach unten geöffnet, ihr Scheitel liegt in der Mitte zwischen d
   valueLabel="Gewinn in Euro"
 />
 
-# Der beste erlaubte Preis
+Der Parabelscheitel liegt außerhalb des realen Fahrradbestands, weshalb **der höchste erreichbare Gewinn genau auf dem Rand bei <InlineMath math="13\text{ €}" /> liegt**.
 
-Rechts vom Scheitel fällt die Parabel nur noch, also ist auf <InlineMath math="p\ge13" /> der Rand selbst der beste Preis. **Bei <InlineMath math="13\text{ €}" /> sind alle <InlineMath math="36" /> Räder unterwegs, und <InlineMath math="G=11\cdot36=396\text{ €}" />**. Die Antwort <InlineMath math="400\text{ €}" /> rechnet mit vier Rädern, die der Laden nicht hat.
+## Der beste erlaubte Preis
+
+Rechts vom Scheitel fällt die Parabel nur noch, also ist auf <InlineMath math="p\ge13" /> der Rand selbst der beste Preis. **Bei <InlineMath math="13\text{ €}" /> sind alle <InlineMath math="36" /> Räder unterwegs, und <InlineMath math="396\text{ €}" />**. Die Antwort <InlineMath math="400\text{ €}" /> rechnet mit vier Rädern, die der Laden nicht hat.
+
+# Antwort
+
+Der höchste Tagesgewinn beträgt <InlineMath math="396\text{ €}" />.

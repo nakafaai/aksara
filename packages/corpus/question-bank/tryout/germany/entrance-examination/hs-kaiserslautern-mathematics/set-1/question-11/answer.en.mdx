@@ -1,4 +1,16 @@
-# How fast the culture doubles
+# Given
+
+**A bacterial culture** starts at 8:00 and grows exponentially, reaching <InlineMath math="5000" /> at 9:30 and <InlineMath math="40000" /> at 11:00. At 12:00 an agent is added that alone cuts the count to one-sixteenth per hour while the original growth continues.
+
+# Asked
+
+How many minutes after the agent is added does the population return to its 8:00 starting size?
+
+# Solution
+
+> When exponential growth and decay act together, **the combined hourly factor is simply the product of the growth factor and the decay factor**.
+
+## How fast the culture doubles
 
 Think of a pile of coins that doubles on a fixed beat. Between the two counts the number of bacteria becomes eight times as large in <InlineMath math="90" /> minutes. **Eight is three doublings, so the culture doubles every <InlineMath math="30" /> minutes and grows fourfold each hour**:
 
@@ -7,7 +19,7 @@ Think of a pile of coins that doubles on a fixed beat. Between the two counts th
 T_2&=\frac{90\text{ min}}{3}=30\text{ min}
 \end{aligned}" />
 
-# Back to the start and on to noon
+## Back to the start and on to noon
 
 Going back in time is halving instead of doubling. **The culture was set up <InlineMath math="90" /> minutes before the first count, three halvings back, and the agent comes one hour after the second count, two doublings on**:
 
@@ -16,11 +28,11 @@ N_0&=\frac{5000}{2^3}=625\\
 N_{12}&=40000\cdot2^2=160000
 \end{aligned}" />
 
-# Two effects at the same time
+## Two effects at the same time
 
-Imagine a bathtub with the tap running and the plug pulled out. What is left after an hour depends on both. **The agent alone would leave <InlineMath math="\frac{1}{16}" /> each hour, but in that same hour the bacteria multiply by <InlineMath math="4" />, so the net factor is <InlineMath math="4\cdot\frac{1}{16}=\frac14" /> per hour**. Using only <InlineMath math="\frac{1}{16}" /> forgets the growth and gives <InlineMath math="120" /> minutes. Starting from <InlineMath math="40000" /> instead of <InlineMath math="160000" /> forgets the last hour of growth and gives <InlineMath math="180" /> minutes.
+Imagine a bathtub with the tap running and the plug pulled out. What is left after an hour depends on both. **The agent alone would leave <InlineMath math="\frac{1}{16}" /> each hour, but in that same hour the bacteria multiply by <InlineMath math="4" />, so the net factor is <InlineMath math="1/4" /> per hour**. Using only <InlineMath math="\frac{1}{16}" /> forgets the growth and gives <InlineMath math="120" /> minutes. Starting from <InlineMath math="40000" /> instead of <InlineMath math="160000" /> forgets the last hour of growth and gives <InlineMath math="180" /> minutes.
 
-# Back to the starting count
+## Back to the starting count
 
 Now count how many quarterings bring <InlineMath math="160000" /> down to <InlineMath math="625" />:
 
@@ -42,3 +54,9 @@ s&=4\text{ h}=240\text{ min}
   ]}
   valueLabel="Bacteria (thousands)"
 />
+
+The chart highlights **the symmetric rise until noon and quarter-per-hour decline afterwards**, returning to the exact starting count four hours later.
+
+# Answer
+
+The culture returns to its starting size after <InlineMath math="240\text{ min}" />.

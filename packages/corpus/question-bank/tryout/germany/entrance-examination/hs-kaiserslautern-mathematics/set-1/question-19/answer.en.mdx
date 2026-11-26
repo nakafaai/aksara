@@ -1,8 +1,20 @@
-# In minus out
+# Given
 
-Think of a bathtub with the tap on and the plug pulled. The water rises only while more flows in than drains out. **The net rate is <InlineMath math="18t-3t^2-15=-3(t-1)(t-5)" />**: negative before <InlineMath math="t=1" />, positive between <InlineMath math="1" /> and <InlineMath math="5" />, negative again after <InlineMath math="5" />.
+Over <InlineMath math="0\le t\le6" /> hours, **rainwater enters** a basin at rate <InlineMath math="z(t)=18t-3t^2" /> cubic metres per hour while a pump drains a steady <InlineMath math="15\text{ m}^3" /> per hour. The basin must never hold less than <InlineMath math="4\text{ m}^3" />, and starts with the smallest volume that satisfies this.
 
-# Adding up the change
+# Asked
+
+What is the maximum amount of water in the basin during the first six hours in cubic metres?
+
+# Solution
+
+> Water drops whenever pumping beats inflow and rises whenever inflow beats pumping, so **the lowest trough pins the starting volume and the rise to the peak gives the maximum**.
+
+## In minus out
+
+Think of a bathtub with the tap on and the plug pulled. The water rises only while more flows in than drains out. **The net rate is <InlineMath math="-3(t-1)(t-5)" />**: negative before <InlineMath math="t=1" />, positive between <InlineMath math="1" /> and <InlineMath math="5" />, negative again after <InlineMath math="5" />.
+
+## Adding up the change
 
 The integral collects the net flow hour by hour, like counting coins dropped into and taken from a jar:
 
@@ -24,6 +36,12 @@ At <InlineMath math="t=1" /> this is <InlineMath math="-7" />, at <InlineMath ma
   valueLabel="Water in m³"
 />
 
-# The smallest safe start
+The volume curve touches **the <InlineMath math="4\text{ m}^3" /> safety floor at hour one and climbs to its <InlineMath math="36\text{ m}^3" /> peak at hour five**.
+
+## The smallest safe start
 
 The basin must never drop below <InlineMath math="4\text{ m}^3" />, and it drops by <InlineMath math="7\text{ m}^3" /> in the first hour, so it starts with <InlineMath math="11\text{ m}^3" />. **At <InlineMath math="t=5" /> it holds <InlineMath math="11+25=36\text{ m}^3" />**. Starting with only <InlineMath math="4\text{ m}^3" /> would let the pump suck air in the first hour.
+
+# Answer
+
+The basin holds at most <InlineMath math="36\text{ m}^3" /> of water during the six hours.
