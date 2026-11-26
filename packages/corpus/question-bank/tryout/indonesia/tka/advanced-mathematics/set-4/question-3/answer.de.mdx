@@ -1,3 +1,15 @@
+# Gegeben
+
+Gegeben sind zwei **quadratische Matrizen** <InlineMath math="P" /> und <InlineMath math="Q" />.
+
+# Gesucht
+
+Der **Wahrheitswert jeder Aussage** über Rechenregeln, Transponierte und Determinanten.
+
+# Lösung
+
+> Bei der Matrixmultiplikation zählt die Reihenfolge, denn ein Vertauschen liefert meist ein anderes Ergebnis.
+
 Jede Aussage verwendet **eine Grundoperation mit Matrizen**. Geh sie einzeln durch.
 
 Bevor du die Aussage zur Determinante prüfst, sieh dir an, was <InlineMath math="P" /> mit dem Einheitsquadrat macht. **Die Spalten von <InlineMath math="P" /> spannen ein Parallelogramm mit Flächeninhalt <InlineMath math="6" /> auf**, und die Drehung von der ersten zur zweiten Spalte verläuft gegen den Uhrzeigersinn, also gilt <InlineMath math="\det P=6" />, nicht <InlineMath math="-6" />.
@@ -32,11 +44,22 @@ Bevor du die Aussage zur Determinante prüfst, sieh dir an, was <InlineMath math
   }}
 />
 
-1. Die Aussage über <InlineMath math="P+Q" /> ist richtig. Addiere die Einträge an gleicher Stelle: <InlineMath math="\begin{pmatrix} 1+2 & -2+1 \\ 3-1 & 0+4 \end{pmatrix}=\begin{pmatrix} 3 & -1 \\ 2 & 4 \end{pmatrix}" />.
-2. Die Aussage <InlineMath math="\det P=-6" /> ist falsch. Die Determinante ist das Produkt der Hauptdiagonale minus das Produkt der Nebendiagonale: <InlineMath math="1\cdot0-(-2)\cdot3=0+6=6" />. Der Wert <InlineMath math="-6" /> übersieht, dass das abgezogene Produkt schon negativ ist.
-3. Die Aussage <InlineMath math="Q^T=Q" /> ist falsch. Beim Transponieren tauschen die Einträge außerhalb der Diagonale: <InlineMath math="Q^T=\begin{pmatrix} 2 & -1 \\ 1 & 4 \end{pmatrix}" />. Wegen <InlineMath math="1\ne-1" /> ist <InlineMath math="Q" /> nicht symmetrisch.
+1. Die Aussage über <InlineMath math="P+Q" /> ist richtig. Addiere die Einträge an gleicher Stelle: die folgende Matrix.
+
+   <BlockMath math="\begin{pmatrix} 1+2 & -2+1 \\ 3-1 & 0+4 \end{pmatrix}=\begin{pmatrix} 3 & -1 \\ 2 & 4 \end{pmatrix}" />
+
+2. Die Aussage <InlineMath math="\det P=-6" /> ist falsch. Die Determinante ist das Produkt der Hauptdiagonale minus das Produkt der Nebendiagonale: <InlineMath math="6" />. Der Wert <InlineMath math="-6" /> übersieht, dass das abgezogene Produkt schon negativ ist.
+
+   <BlockMath math="1\cdot0-(-2)\cdot3=0+6=6" />
+
+3. Die Aussage <InlineMath math="Q^T=Q" /> ist falsch. Beim Transponieren tauschen die Einträge außerhalb der Diagonale: die folgende Matrix. Wegen <InlineMath math="1\ne-1" /> ist <InlineMath math="Q" /> nicht symmetrisch.
+
+   <BlockMath math="Q^T=\begin{pmatrix} 2 & -1 \\ 1 & 4 \end{pmatrix}" />
+
 4. Die Aussage über <InlineMath math="2P-Q" /> ist richtig. Verdopple jeden Eintrag von <InlineMath math="P" /> und zieh dann die Einträge von <InlineMath math="Q" /> an gleicher Stelle ab.
 
 <BlockMath math="2P-Q=\begin{pmatrix} 2 & -4 \\ 6 & 0 \end{pmatrix}-\begin{pmatrix} 2 & 1 \\ -1 & 4 \end{pmatrix}=\begin{pmatrix} 0 & -5 \\ 7 & -4 \end{pmatrix}" />
+
+# Antwort
 
 Richtig sind also die Aussagen über <InlineMath math="P+Q" /> und <InlineMath math="2P-Q" />, falsch sind die Aussagen über <InlineMath math="\det P" /> und <InlineMath math="Q^T" />.

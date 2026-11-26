@@ -1,8 +1,22 @@
-The limits are now <InlineMath math="2x+5y\ge40" /> and <InlineMath math="x+y\le10" />, with <InlineMath math="C=500x+1{,}400y" /> in thousands of rupiah. The corner where the two lines cross comes from substituting <InlineMath math="y=10-x" />.
+# Given
+
+The **parking limit shrinks** to at most <InlineMath math="10" /> vehicles while all other rules stay unchanged.
+
+# Asked
+
+The **new minimum rental cost** under the tighter parking cap.
+
+# Solution
+
+> When parking shrinks, the old best plan may no longer fit, so we evaluate the new corners on the tighter line.
+
+The limits are now <InlineMath math="2x+5y\ge40" /> and <InlineMath math="x+y\le10" />, with cost <InlineMath math="C=500x+1{,}400y" /> (each unit representing <InlineMath math="\text{Rp}1{,}000" />). The corner where the two lines cross comes from substituting <InlineMath math="y=10-x" />.
 
 <BlockMath math="2x+5(10-x)=40\ \Rightarrow\ x=\frac{10}{3},\quad y=\frac{20}{3}" />
 
-That corner would cost <InlineMath math="\frac{5{,}000+28{,}000}{3}=11{,}000" />, but its coordinates are not whole numbers. **Nobody can rent a third of a vehicle**, so it is not a possible plan. Check the whole-number points of the region, starting from the number of buses.
+That corner would cost the equation below, but its coordinates are not whole numbers. **Nobody can rent a third of a vehicle**, so it is not a possible plan. Check the whole-number points of the region, starting from the number of buses.
+
+<BlockMath math="\frac{5{,}000+28{,}000}{3}=11{,}000" />
 
 | Buses <InlineMath math="y" /> | Condition on minibuses <InlineMath math="x" /> | Cheapest plan | Cost (thousand rupiah) |
 | --- | --- | --- | --- |
@@ -55,7 +69,18 @@ For <InlineMath math="y\le6" />, the seating condition needs more minibuses than
 
 So the minimum rental cost is now <InlineMath math="\text{Rp}11{,}200{,}000.00" />, with <InlineMath math="8" /> buses only.
 
-- <InlineMath math="\text{Rp}11{,}000{,}000.00" /> is the cost at the corner <InlineMath math="\left(\frac{10}{3},\frac{20}{3}\right)" />, which cannot be rented.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- <InlineMath math="\text{Rp}11{,}000{,}000.00" /> is the cost at the corner the expression below, which cannot be rented.
+
+  <BlockMath math="\left(\frac{10}{3},\frac{20}{3}\right)" />
+
 - <InlineMath math="\text{Rp}11{,}300{,}000.00" /> is the cost of <InlineMath math="(3,7)" />, the whole-number point closest to that corner, but not the cheapest.
 - <InlineMath math="\text{Rp}10{,}600{,}000.00" /> is the old minimum. The plan <InlineMath math="(10,4)" /> needs <InlineMath math="14" /> parking places.
 - <InlineMath math="\text{Rp}14{,}000{,}000.00" /> is the cost of <InlineMath math="10" /> buses, which meets every condition but is expensive.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

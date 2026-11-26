@@ -1,12 +1,29 @@
-Substitusi langsung memberi <InlineMath math="\frac00" />. Pembilang memuat faktor <InlineMath math="x-1" />, sedangkan penyebutnya <InlineMath math="\sqrt x-1" />. Hubungkan keduanya lewat **selisih kuadrat**: <InlineMath math="x-1=(\sqrt x-1)(\sqrt x+1)" /> untuk <InlineMath math="x\ge0" />.
+# Diketahui
 
-<BlockMath math="x^3-1=(x-1)(x^2+x+1)=(\sqrt x-1)(\sqrt x+1)(x^2+x+1)" />
+Diberikan **fungsi aljabar berakar** <InlineMath math="r(x)" /> untuk <InlineMath math="x\ge0" /> dan <InlineMath math="x\ne1" />.
+
+# Ditanyakan
+
+**Nilai limit** fungsi <InlineMath math="r(x)" /> saat <InlineMath math="x" /> mendekati <InlineMath math="1" />.
+
+# Penyelesaian
+
+> Faktorkan pembilang dan rasionalkan akar penyebut agar faktor pembuat nol dapat dicoret sebelum substitusi akhir.
+
+Substitusi langsung memberi <InlineMath math="\frac00" />. Pembilang memuat faktor <InlineMath math="x-1" />, sedangkan penyebutnya <InlineMath math="\sqrt x-1" />. Hubungkan keduanya lewat **selisih kuadrat**: persamaan berikut untuk <InlineMath math="x\ge0" />.
+
+<BlockMath math="\begin{gathered}
+x-1=(\sqrt x-1)(\sqrt x+1) \\
+x^3-1=(x-1)(x^2+x+1)=(\sqrt x-1)(\sqrt x+1)(x^2+x+1)
+\end{gathered}" />
 
 Untuk <InlineMath math="x\ne1" />, faktor <InlineMath math="\sqrt x-1" /> tidak nol dan boleh dicoret.
 
 <BlockMath math="\lim_{x\to1}\frac{(\sqrt x-1)(\sqrt x+1)(x^2+x+1)}{\sqrt x-1}=\lim_{x\to1}(\sqrt x+1)(x^2+x+1)=2\cdot3=6" />
 
-Gambar <InlineMath math="r" /> di sekitar <InlineMath math="x=1" />. **Setelah faktor <InlineMath math="\sqrt x-1" /> dicoret, grafiknya sama dengan <InlineMath math="(\sqrt x+1)(x^2+x+1)" />**, yang melewati ketinggian <InlineMath math="6" /> di <InlineMath math="x=1" />.
+Gambar <InlineMath math="r" /> di sekitar <InlineMath math="x=1" />. **Setelah faktor <InlineMath math="\sqrt x-1" /> dicoret, grafiknya sama dengan ekspresi berikut**, yang melewati ketinggian <InlineMath math="6" /> di <InlineMath math="x=1" />.
+
+<BlockMath math="(\sqrt x+1)(x^2+x+1)" />
 
 <MathVisual
   title={<>Grafik <InlineMath math="r" /> di sekitar <InlineMath math="x=1" /></>}
@@ -34,11 +51,21 @@ Gambar <InlineMath math="r" /> di sekitar <InlineMath math="x=1" />. **Setelah f
   }}
 />
 
-Pemeriksaan numerik: untuk <InlineMath math="x=1{,}01" />, <InlineMath math="r(x)=\frac{0{,}030301}{0{,}0049876}\approx6{,}075" />, dekat dengan <InlineMath math="6" />.
+Pemeriksaan numerik: untuk <InlineMath math="x=1{,}01" />, <InlineMath math="r(x) \approx 6{,}075" />, dekat dengan <InlineMath math="6" />.
 
-Jadi, nilai limit tersebut adalah <InlineMath math="6" />.
+<BlockMath math="r(x)=\frac{0{,}030301}{0{,}0049876}\approx6{,}075" />
+
+Jadi, nilai limit itu adalah <InlineMath math="6" />.
+
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
 
 - <InlineMath math="3" /> lupa faktor <InlineMath math="\sqrt x+1" />, yang bernilai <InlineMath math="2" /> di <InlineMath math="x=1" />.
 - <InlineMath math="2" /> lupa faktor <InlineMath math="x^2+x+1" />, yang bernilai <InlineMath math="3" /> di <InlineMath math="x=1" />.
 - <InlineMath math="0" /> hanya melihat pembilang yang menuju nol.
 - <InlineMath math="\frac32" /> membagi <InlineMath math="x^2+x+1" /> dengan <InlineMath math="\sqrt x+1" />, padahal keduanya dikalikan.
+
+# Jawaban
+
+Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.

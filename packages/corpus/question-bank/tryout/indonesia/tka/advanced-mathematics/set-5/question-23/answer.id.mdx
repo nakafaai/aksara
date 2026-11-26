@@ -1,8 +1,25 @@
-Untuk <InlineMath math="x" /> yang sangat besar nilai mutlaknya, <InlineMath math="\sqrt{x^2+1}" /> mendekati <InlineMath math="\sqrt{x^2}" />. Kuncinya, **<InlineMath math="\sqrt{x^2}=|x|" />, dan untuk <InlineMath math="x<0" /> nilainya <InlineMath math="-x" />**, bukan <InlineMath math="x" />.
+# Diketahui
 
-Bagi pembilang dan penyebut dengan <InlineMath math="x" />. Karena <InlineMath math="x<0" />, membawa <InlineMath math="x" /> masuk ke akar memerlukan tanda minus: <InlineMath math="\frac{\sqrt{x^2+1}}{x}=-\sqrt{\frac{x^2+1}{x^2}}=-\sqrt{1+\frac{1}{x^2}}" />.
+Diberikan **fungsi pecahan berakar** <InlineMath math="q(x)" /> untuk nilai <InlineMath math="x" /> negatif yang makin kecil tanpa batas.
 
-<BlockMath math="\lim_{x\to-\infty}\frac{\sqrt{x^2+1}}{2x-3}=\lim_{x\to-\infty}\frac{-\sqrt{1+\frac{1}{x^2}}}{2-\frac3x}=\frac{-1}{2}=-\frac12" />
+# Ditanyakan
+
+**Nilai limit** ketika <InlineMath math="x" /> menuju negatif tak hingga.
+
+# Penyelesaian
+
+> Akar kuadrat selalu positif, jadi saat variabel bernilai negatif mengeluarkan variabel dari akar wajib membawa tanda minus.
+
+Untuk <InlineMath math="x" /> yang sangat besar nilai mutlaknya, <InlineMath math="\sqrt{x^2+1}" /> mendekati <InlineMath math="\sqrt{x^2}" />. Kuncinya, **persamaan berikut, dan untuk <InlineMath math="x<0" /> nilainya <InlineMath math="-x" />**, bukan <InlineMath math="x" />.
+
+<BlockMath math="\sqrt{x^2}=|x|" />
+
+Bagi pembilang dan penyebut dengan <InlineMath math="x" />. Karena <InlineMath math="x<0" />, membawa <InlineMath math="x" /> masuk ke akar memerlukan tanda minus: ekspresi berikut.
+
+<BlockMath math="\begin{gathered}
+\frac{\sqrt{x^2+1}}{x}=-\sqrt{\frac{x^2+1}{x^2}}=-\sqrt{1+\frac{1}{x^2}} \\
+\lim_{x\to-\infty}\frac{\sqrt{x^2+1}}{2x-3}=\lim_{x\to-\infty}\frac{-\sqrt{1+\frac{1}{x^2}}}{2-\frac3x}=\frac{-1}{2}=-\frac12
+\end{gathered}" />
 
 Gambar <InlineMath math="q" /> untuk <InlineMath math="x" /> negatif yang makin kecil. **Kurvanya tetap di bawah sumbu <InlineMath math="x" /> dan merapat ke garis <InlineMath math="y=-\tfrac12" />**, karena pembilang positif dan penyebut negatif.
 
@@ -32,11 +49,24 @@ Gambar <InlineMath math="q" /> untuk <InlineMath math="x" /> negatif yang makin 
   }}
 />
 
-Pemeriksaan tanda: untuk <InlineMath math="x" /> negatif, pembilang positif dan penyebut negatif, jadi pecahannya negatif. Contohnya <InlineMath math="q(-100)=\frac{\sqrt{10{.}001}}{-203}\approx-0{,}4926" />.
+Pemeriksaan tanda: untuk <InlineMath math="x" /> negatif, pembilang positif dan penyebut negatif, jadi pecahannya negatif. Contohnya <InlineMath math="-0{,}4926" />.
 
-Jadi, nilai limit tersebut adalah <InlineMath math="-\frac12" />.
+<BlockMath math="q(-100)=\frac{\sqrt{10{.}001}}{-203}\approx-0{,}4926" />
 
-- <InlineMath math="\frac12" /> menulis <InlineMath math="\sqrt{x^2}=x" />, yang hanya benar untuk <InlineMath math="x\ge0" />. Itu nilai limit di <InlineMath math="+\infty" />.
+Jadi, nilai limit itu adalah <InlineMath math="-\frac12" />.
+
+## Memeriksa pilihan pengecoh
+
+Mari kita periksa mengapa **pilihan pengecoh** berikut kurang tepat.
+
+- <InlineMath math="\frac12" /> menulis persamaan berikut, yang hanya benar untuk <InlineMath math="x\ge0" />. Itu nilai limit di <InlineMath math="+\infty" />.
+
+  <BlockMath math="\sqrt{x^2}=x" />
+
 - <InlineMath math="0" /> menganggap akar membuat pembilang berderajat lebih rendah. Padahal <InlineMath math="\sqrt{x^2+1}" /> tumbuh seperti <InlineMath math="|x|" />, sederajat dengan penyebut.
 - <InlineMath math="-\infty" /> menganggap pembilang tumbuh jauh lebih cepat daripada penyebut.
 - <InlineMath math="1" /> melupakan koefisien <InlineMath math="2" /> pada penyebut sekaligus tandanya.
+
+# Jawaban
+
+Dengan menggabungkan seluruh langkah di atas, diperoleh **hasil akhir** yang sesuai dengan pertanyaan soal.

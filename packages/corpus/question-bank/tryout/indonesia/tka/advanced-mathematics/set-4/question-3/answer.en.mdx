@@ -1,3 +1,15 @@
+# Given
+
+We are given two **square matrices** <InlineMath math="P" /> and <InlineMath math="Q" /> of size <InlineMath math="2\times2" />.
+
+# Asked
+
+The **truth value of each statement** about operations, transposes, and determinants.
+
+# Solution
+
+> Order matters in matrix multiplication because swapping two matrices usually changes the result.
+
 Each statement uses **one basic matrix operation**. Work through them one at a time.
 
 Before judging the determinant statement, see what <InlineMath math="P" /> does to the unit square. **The columns of <InlineMath math="P" /> span a parallelogram of area <InlineMath math="6" />**, and turning from the first column to the second goes anticlockwise, so <InlineMath math="\det P=6" />, not <InlineMath math="-6" />.
@@ -32,11 +44,22 @@ Before judging the determinant statement, see what <InlineMath math="P" /> does 
   }}
 />
 
-1. The statement about <InlineMath math="P+Q" /> is true. Add matching entries: <InlineMath math="\begin{pmatrix} 1+2 & -2+1 \\ 3-1 & 0+4 \end{pmatrix}=\begin{pmatrix} 3 & -1 \\ 2 & 4 \end{pmatrix}" />.
-2. The statement <InlineMath math="\det P=-6" /> is false. The determinant is the product of the main diagonal minus the product of the other diagonal: <InlineMath math="1\cdot0-(-2)\cdot3=0+6=6" />. The value <InlineMath math="-6" /> forgets that the subtracted product is already negative.
-3. The statement <InlineMath math="Q^T=Q" /> is false. Transposing swaps the off-diagonal entries: <InlineMath math="Q^T=\begin{pmatrix} 2 & -1 \\ 1 & 4 \end{pmatrix}" />. Since <InlineMath math="1\ne-1" />, <InlineMath math="Q" /> is not symmetric.
+1. The statement about <InlineMath math="P+Q" /> is true. Add matching entries: the matrix below.
+
+   <BlockMath math="\begin{pmatrix} 1+2 & -2+1 \\ 3-1 & 0+4 \end{pmatrix}=\begin{pmatrix} 3 & -1 \\ 2 & 4 \end{pmatrix}" />
+
+2. The statement <InlineMath math="\det P=-6" /> is false. The determinant is the product of the main diagonal minus the product of the other diagonal: <InlineMath math="6" />. The value <InlineMath math="-6" /> forgets that the subtracted product is already negative.
+
+   <BlockMath math="1\cdot0-(-2)\cdot3=0+6=6" />
+
+3. The statement <InlineMath math="Q^T=Q" /> is false. Transposing swaps the off-diagonal entries: the matrix below. Since <InlineMath math="1\ne-1" />, <InlineMath math="Q" /> is not symmetric.
+
+   <BlockMath math="Q^T=\begin{pmatrix} 2 & -1 \\ 1 & 4 \end{pmatrix}" />
+
 4. The statement about <InlineMath math="2P-Q" /> is true. Double every entry of <InlineMath math="P" />, then subtract the matching entries of <InlineMath math="Q" />.
 
 <BlockMath math="2P-Q=\begin{pmatrix} 2 & -4 \\ 6 & 0 \end{pmatrix}-\begin{pmatrix} 2 & 1 \\ -1 & 4 \end{pmatrix}=\begin{pmatrix} 0 & -5 \\ 7 & -4 \end{pmatrix}" />
+
+# Answer
 
 So the statements about <InlineMath math="P+Q" /> and <InlineMath math="2P-Q" /> are true, and the statements about <InlineMath math="\det P" /> and <InlineMath math="Q^T" /> are false.

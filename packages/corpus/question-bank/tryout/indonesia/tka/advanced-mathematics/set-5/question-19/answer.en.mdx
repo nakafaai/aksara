@@ -1,11 +1,25 @@
+# Given
+
+A **straight line** undergoes a **shear transformation** given by a <InlineMath math="2\times2" /> matrix.
+
+# Asked
+
+The **equation of the image line** after the matrix transformation.
+
+# Solution
+
+> Invert the coordinate rule to express old variables in terms of new ones, then substitute into the starting line.
+
 The rule is <InlineMath math="x'=x+2y" /> and <InlineMath math="y'=y" />. To get the image equation, **write <InlineMath math="x" /> and <InlineMath math="y" /> in terms of <InlineMath math="x'" /> and <InlineMath math="y'" />** and substitute into the original line.
 
 <MathContainer>
-<BlockMath math="y=y',\qquad x=x'-2y'" />
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+y=y',\qquad x=x'-2y' \\
+\begin{aligned}
 2(x'-2y')-y'+3&=0 \\
 2x'-5y'+3&=0
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 </MathContainer>
 
 This matrix slides each point horizontally by twice its height. **Points on the <InlineMath math="X" />-axis stay put, and a point at height <InlineMath math="3" /> slides <InlineMath math="6" /> to the right**, so the line becomes flatter.
@@ -46,11 +60,37 @@ This matrix slides each point horizontally by twice its height. **Points on the 
   }}
 />
 
-Check with two points on the original line: <InlineMath math="(0,3)" /> maps to <InlineMath math="(6,3)" />, and <InlineMath math="12-15+3=0" />. The point <InlineMath math="\left(-\frac32,0\right)" /> maps to itself because <InlineMath math="y=0" />, and <InlineMath math="-3-0+3=0" />.
+Check with two points on the original line: <InlineMath math="(0,3)" /> maps to <InlineMath math="(6,3)" />, and <InlineMath math="0" />. The point <InlineMath math="\left(-\frac32,0\right)" /> maps to itself because <InlineMath math="y=0" />, and <InlineMath math="0" />.
 
-So the image line is <InlineMath math="2x-5y+3=0" />.
+<BlockMath math="\begin{gathered}
+12-15+3=0 \\
+-3-0+3=0
+\end{gathered}" />
 
-- <InlineMath math="2x-y+3=0" /> assumes the line does not change. Only points on the <InlineMath math="x" />-axis stay fixed under this transformation.
-- <InlineMath math="2x+3y+3=0" /> substitutes the wrong way, <InlineMath math="x=x'+2y'" />.
-- <InlineMath math="4x-y+3=0" /> uses the transpose of the matrix, so <InlineMath math="y'=2x+y" />.
-- <InlineMath math="2x-5y-3=0" /> has the wrong sign on the constant.
+So the image line is the equation below.
+
+<BlockMath math="2x-5y+3=0" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- The equation below assumes the line does not change. Only points on the <InlineMath math="x" />-axis stay fixed under this transformation.
+
+  <BlockMath math="2x-y+3=0" />
+
+- The equation below substitutes the wrong way, <InlineMath math="x=x'+2y'" />.
+
+  <BlockMath math="2x+3y+3=0" />
+
+- The equation below uses the transpose of the matrix, so <InlineMath math="y'=2x+y" />.
+
+  <BlockMath math="4x-y+3=0" />
+
+- The equation below has the wrong sign on the constant.
+
+  <BlockMath math="2x-5y-3=0" />
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

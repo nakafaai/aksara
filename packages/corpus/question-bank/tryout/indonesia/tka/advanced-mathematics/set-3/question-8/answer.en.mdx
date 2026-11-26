@@ -1,4 +1,18 @@
-For <InlineMath math="(f\circ g)(x)=f\big(g(x)\big)" /> to be defined, **two conditions must hold together**: <InlineMath math="x" /> must lie in the domain of <InlineMath math="g" />, and the value <InlineMath math="g(x)" /> must lie in the domain of <InlineMath math="f" />.
+# Given
+
+We are given two **real functions** <InlineMath math="f" /> and <InlineMath math="g" /> with their natural domains.
+
+# Asked
+
+The **natural domain** of the composite function <InlineMath math="f\circ g" />.
+
+# Solution
+
+> For a composition to work safely, the input must pass the inner machine first and its output must pass the outer machine too.
+
+For the equation below to be defined, **two conditions must hold together**: <InlineMath math="x" /> must lie in the domain of <InlineMath math="g" />, and the value <InlineMath math="g(x)" /> must lie in the domain of <InlineMath math="f" />.
+
+<BlockMath math="(f\circ g)(x)=f\big(g(x)\big)" />
 
 First condition: <InlineMath math="x\ne3" />. Second condition: the number under the square root is not negative, so <InlineMath math="g(x)-1\ge0" />. Simplify the left side.
 
@@ -43,11 +57,26 @@ Draw <InlineMath math="g" /> with the line <InlineMath math="y=1" />. **The squa
 
 The numerator <InlineMath math="5" /> is always positive, so the fraction is non-negative exactly when the denominator is positive, <InlineMath math="x-3>0" />. This already includes <InlineMath math="x\ne3" />.
 
-Check two points: for <InlineMath math="x=4" />, <InlineMath math="g(4)=6" /> and <InlineMath math="f(6)=\sqrt5" /> is defined. For <InlineMath math="x=0" />, <InlineMath math="g(0)=-\frac23" /> and <InlineMath math="f\left(-\frac23\right)=\sqrt{-\frac53}" /> is not defined.
+Check two points: for <InlineMath math="x=4" />, <InlineMath math="g(4)=6" /> and <InlineMath math="f(6)=\sqrt5" /> is defined. For <InlineMath math="x=0" />, <InlineMath math="g(0)=-\frac23" /> and the equation below is not defined.
+
+<BlockMath math="f\left(-\frac23\right)=\sqrt{-\frac53}" />
 
 So the natural domain of <InlineMath math="f\circ g" /> is <InlineMath math="\{x\mid x>3\}" />.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="\{x\mid x\ge1\}" /> is the domain of <InlineMath math="f" />, not of the composition.
 - <InlineMath math="\{x\mid x\ne3\}" /> only checks the domain of <InlineMath math="g" />.
-- <InlineMath math="\{x\mid x\le-2\text{ or }x>3\}" /> solves <InlineMath math="g(x)\ge0" />, but the condition is <InlineMath math="g(x)\ge1" />.
-- <InlineMath math="\{x\mid -2\le x<3\}" /> reverses the inequality <InlineMath math="g(x)\ge0" />.
+- The expression below solves <InlineMath math="g(x)\ge0" />, but the condition is <InlineMath math="g(x)\ge1" />.
+
+  <BlockMath math="\{x\mid x\le-2\text{ or }x>3\}" />
+
+- The expression below reverses the inequality <InlineMath math="g(x)\ge0" />.
+
+  <BlockMath math="\{x\mid -2\le x<3\}" />
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

@@ -1,4 +1,18 @@
-Now <InlineMath math="P=10x+10y=10(x+y)" />. The profit depends only on **the total number of kilograms** <InlineMath math="x+y" />, so you want every plan with the largest <InlineMath math="x+y" />.
+# Given
+
+The **cassava chip profit drops** to match the banana chip profit while all production limits stay the same.
+
+# Asked
+
+The **new maximum profit** and optimal production plans.
+
+# Solution
+
+> When both products earn the exact same profit per kilogram, we simply maximize the total kilograms produced.
+
+Now <InlineMath math="P=10(x+y)" />. The profit depends only on **the total number of kilograms** <InlineMath math="x+y" />, so you want every plan with the largest <InlineMath math="x+y" />.
+
+<BlockMath math="P=10x+10y=10(x+y)" />
 
 The capacity limit gives <InlineMath math="x+y\le50" />, and <InlineMath math="50" /> can be reached, for example at the corner <InlineMath math="(30,20)" />. The level lines <InlineMath math="10x+10y=k" /> are parallel to the boundary <InlineMath math="x+y=50" />, so the maximum profit of <InlineMath math="\text{Rp}500{,}000.00" /> is reached along the whole part of that line inside the feasible region, not at a single corner.
 
@@ -42,11 +56,21 @@ With equal profit per kilogram, the level line is parallel to the frying limit. 
   }}
 />
 
-So the optimal plans are <InlineMath math="(x,50-x)" /> with <InlineMath math="10\le x\le30" />. Since production comes in whole kilograms, <InlineMath math="x" /> can be <InlineMath math="10,11,\ldots,30" />, which is <InlineMath math="30-10+1=21" /> values.
+So the optimal plans are <InlineMath math="(x,50-x)" /> with <InlineMath math="10\le x\le30" />. Since production comes in whole kilograms, <InlineMath math="x" /> can be <InlineMath math="10,11,\ldots,30" />, which is <InlineMath math="21" /> values.
+
+<BlockMath math="30-10+1=21" />
 
 So <InlineMath math="21" /> production plans give the maximum profit.
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
 
 - <InlineMath math="2" /> counts only the corners <InlineMath math="(10,40)" /> and <InlineMath math="(30,20)" />, but every whole-number point between them is just as good.
 - <InlineMath math="20" /> computes <InlineMath math="30-10" /> and forgets that both ends count.
 - <InlineMath math="1" /> assumes the optimum is always a single corner.
 - <InlineMath math="51" /> counts every <InlineMath math="x" /> from <InlineMath math="0" /> to <InlineMath math="50" /> and ignores the oil and packaging limits.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

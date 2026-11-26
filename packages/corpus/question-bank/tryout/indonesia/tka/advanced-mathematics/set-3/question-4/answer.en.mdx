@@ -1,3 +1,15 @@
+# Given
+
+A workshop assembles **lamps and fans** under weekly limits on assembly hours, testing hours, and parts, with known unit profits.
+
+# Asked
+
+The **maximum weekly profit** the workshop can earn.
+
+# Solution
+
+> Maximum profit always sits at one of the corners of the region that respects every time and material limit.
+
 Let <InlineMath math="x" /> be the number of lamps and <InlineMath math="y" /> the number of fans per week. There are **three limits**: assembly hours, testing hours, and the stock of fan blades.
 
 <BlockMath math="\begin{aligned}
@@ -7,7 +19,7 @@ y&\le25 \\
 x\ge0,\quad y&\ge0
 \end{aligned}" />
 
-The objective, in thousands of rupiah, is <InlineMath math="P=60x+40y" />. Its maximum sits at a corner of the feasible region. Find the corners where neighbouring boundary lines cross.
+The profit objective (each unit standing for <InlineMath math="\text{Rp}1{,}000" />) is <InlineMath math="P=60x+40y" />. Its maximum sits at a corner of the feasible region. Find the corners where neighbouring boundary lines cross.
 
 <BlockMath math="\begin{aligned}
 2x+y=40,\ x+y=30&\ \Rightarrow\ x=10,\ y=20 \\
@@ -66,7 +78,15 @@ Draw the feasible region. **The three limit lines cut it into a pentagon**, so y
 
 So the maximum profit is <InlineMath math="\text{Rp}1{,}400{,}000.00" />, from assembling <InlineMath math="10" /> lamps and <InlineMath math="20" /> fans.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="\text{Rp}1{,}300{,}000.00" /> is the profit at the corner <InlineMath math="(5,25)" />.
 - <InlineMath math="\text{Rp}1{,}200{,}000.00" /> is the profit at <InlineMath math="(20,0)" />, lamps only.
 - <InlineMath math="\text{Rp}1{,}600{,}000.00" /> is the profit of <InlineMath math="(20,10)" />. That plan needs <InlineMath math="50" /> assembly hours, more than <InlineMath math="40" />.
 - <InlineMath math="\text{Rp}1{,}000{,}000.00" /> is the profit at <InlineMath math="(0,25)" />, fans only.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

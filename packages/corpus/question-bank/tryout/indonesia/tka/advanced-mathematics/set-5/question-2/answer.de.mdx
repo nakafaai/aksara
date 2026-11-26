@@ -1,3 +1,15 @@
+# Gegeben
+
+Kunden von **zwei Internetanbietern** <InlineMath math="P" /> und <InlineMath math="Q" /> wechseln jeden Monat mit festen Anteilen.
+
+# Gesucht
+
+Die **Kundenzahl** nach den vorgegebenen Monaten mithilfe der Übergangsmatrix.
+
+# Lösung
+
+> Ordne Bleibe- und Wechselanteile in einer Übergangsmatrix an und multipliziere sie Schritt für Schritt mit dem Startbestand.
+
 Jeden Monat wird der Vektor der Kundenzahlen mit der Übergangsmatrix multipliziert. Die erste Zeile zählt die Kunden von <InlineMath math="P" /> im nächsten Monat: **die bei <InlineMath math="P" /> bleiben, plus die von <InlineMath math="Q" /> wechseln**. Rechne das zweimal.
 
 <BlockMath math="\begin{aligned}
@@ -22,7 +34,15 @@ Probe: Die Gesamtzahl bleibt jeden Monat <InlineMath math="1{.}000" />, weil jed
 
 Nach <InlineMath math="2" /> Monaten hat <InlineMath math="P" /> also <InlineMath math="575" /> Kunden.
 
+## Häufige Fehlerquellen
+
+Schauen wir uns an, warum diese **typischen Fehlerquellen** nicht stimmen.
+
 - <InlineMath math="550" /> ist erst ein Monat.
 - <InlineMath math="500" /> verwendet die transponierte Matrix, als würden <InlineMath math="20\%" /> der Kunden von <InlineMath math="Q" /> zu <InlineMath math="P" /> wechseln. Damit bewegen sich die Zahlen nie vom Anfangswert weg.
 - <InlineMath math="600" /> ist das Gleichgewicht, also die Kundenzahl von <InlineMath math="P" /> nach sehr vielen Monaten, nicht nach zwei.
 - <InlineMath math="425" /> ist die Kundenzahl von <InlineMath math="Q" /> nach zwei Monaten.
+
+# Antwort
+
+Aus den obigen Schritten ergibt sich unmittelbar das gesuchte **Endergebnis**.

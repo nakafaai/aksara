@@ -1,8 +1,25 @@
-For <InlineMath math="x" /> very large in absolute value, <InlineMath math="\sqrt{x^2+1}" /> behaves like <InlineMath math="\sqrt{x^2}" />. The key is that **<InlineMath math="\sqrt{x^2}=|x|" />, which equals <InlineMath math="-x" /> for <InlineMath math="x<0" />**, not <InlineMath math="x" />.
+# Given
 
-Divide numerator and denominator by <InlineMath math="x" />. Since <InlineMath math="x<0" />, moving <InlineMath math="x" /> inside the root needs a minus sign: <InlineMath math="\frac{\sqrt{x^2+1}}{x}=-\sqrt{\frac{x^2+1}{x^2}}=-\sqrt{1+\frac{1}{x^2}}" />.
+We are given a **radical rational function** <InlineMath math="q(x)" /> as <InlineMath math="x" /> heads toward negative infinity.
 
-<BlockMath math="\lim_{x\to-\infty}\frac{\sqrt{x^2+1}}{2x-3}=\lim_{x\to-\infty}\frac{-\sqrt{1+\frac{1}{x^2}}}{2-\frac3x}=\frac{-1}{2}=-\frac12" />
+# Asked
+
+The **limit value** as <InlineMath math="x" /> approaches negative infinity.
+
+# Solution
+
+> A square root is always positive, so pulling a negative variable out of a square root must introduce a minus sign.
+
+For <InlineMath math="x" /> very large in absolute value, <InlineMath math="\sqrt{x^2+1}" /> behaves like <InlineMath math="\sqrt{x^2}" />. The key is that **the equation below, which equals <InlineMath math="-x" /> for <InlineMath math="x<0" />**, not <InlineMath math="x" />.
+
+<BlockMath math="\sqrt{x^2}=|x|" />
+
+Divide numerator and denominator by <InlineMath math="x" />. Since <InlineMath math="x<0" />, moving <InlineMath math="x" /> inside the root needs a minus sign: the expression below.
+
+<BlockMath math="\begin{gathered}
+\frac{\sqrt{x^2+1}}{x}=-\sqrt{\frac{x^2+1}{x^2}}=-\sqrt{1+\frac{1}{x^2}} \\
+\lim_{x\to-\infty}\frac{\sqrt{x^2+1}}{2x-3}=\lim_{x\to-\infty}\frac{-\sqrt{1+\frac{1}{x^2}}}{2-\frac3x}=\frac{-1}{2}=-\frac12
+\end{gathered}" />
 
 Draw <InlineMath math="q" /> for negative <InlineMath math="x" /> heading further left. **The curve stays below the <InlineMath math="x" />-axis and hugs the line <InlineMath math="y=-\tfrac12" />**, because the numerator is positive and the denominator negative.
 
@@ -32,11 +49,24 @@ Draw <InlineMath math="q" /> for negative <InlineMath math="x" /> heading furthe
   }}
 />
 
-Sign check: for negative <InlineMath math="x" />, the numerator is positive and the denominator negative, so the fraction is negative. For example <InlineMath math="q(-100)=\frac{\sqrt{10{,}001}}{-203}\approx-0.4926" />.
+Sign check: for negative <InlineMath math="x" />, the numerator is positive and the denominator negative, so the fraction is negative. For example <InlineMath math="-0.4926" />.
+
+<BlockMath math="q(-100)=\frac{\sqrt{10{,}001}}{-203}\approx-0.4926" />
 
 So the limit is <InlineMath math="-\frac12" />.
 
-- <InlineMath math="\frac12" /> writes <InlineMath math="\sqrt{x^2}=x" />, which only holds for <InlineMath math="x\ge0" />. That is the limit at <InlineMath math="+\infty" />.
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- <InlineMath math="\frac12" /> writes the equation below, which only holds for <InlineMath math="x\ge0" />. That is the limit at <InlineMath math="+\infty" />.
+
+  <BlockMath math="\sqrt{x^2}=x" />
+
 - <InlineMath math="0" /> assumes the root lowers the degree of the numerator. In fact <InlineMath math="\sqrt{x^2+1}" /> grows like <InlineMath math="|x|" />, the same degree as the denominator.
 - <InlineMath math="-\infty" /> assumes the numerator grows much faster than the denominator.
 - <InlineMath math="1" /> forgets both the coefficient <InlineMath math="2" /> in the denominator and the sign.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

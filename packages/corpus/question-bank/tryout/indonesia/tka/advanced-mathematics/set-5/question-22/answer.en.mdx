@@ -1,6 +1,22 @@
-Direct substitution gives <InlineMath math="\frac{1-1}{0}=\frac00" />. **Turn the difference of cosines into a product of sines**, because the basic limit <InlineMath math="\lim_{u\to0}\frac{\sin u}{u}=1" /> only works on sines.
+# Given
 
-<BlockMath math="\cos A-\cos B=-2\sin\frac{A+B}{2}\sin\frac{A-B}{2}\ \Rightarrow\ \cos3x-\cos x=-2\sin2x\sin x" />
+We are given a **trigonometric fraction** <InlineMath math="k(x)" /> in radians with a cosine difference near zero.
+
+# Asked
+
+The **trigonometric limit value** as <InlineMath math="x" /> approaches zero.
+
+# Solution
+
+> Turn the difference of cosines into a product of sines so the zero factors cancel neatly with the denominator.
+
+Direct substitution gives the equation below. **Turn the difference of cosines into a product of sines**, because the basic limit the value <InlineMath math="1" /> only works on sines.
+
+<BlockMath math="\begin{gathered}
+\frac{1-1}{0}=\frac00 \\
+\lim_{u\to0}\frac{\sin u}{u}=1 \\
+\cos A-\cos B=-2\sin\frac{A+B}{2}\sin\frac{A-B}{2}\ \Rightarrow\ \cos3x-\cos x=-2\sin2x\sin x
+\end{gathered}" />
 
 Now split into basic limits.
 
@@ -35,11 +51,27 @@ Draw <InlineMath math="k" /> on both sides of zero. **Both branches come down to
   }}
 />
 
-Numerical check: for <InlineMath math="x=0.01" />, <InlineMath math="\cos0.03-\cos0.01\approx-0.0004" />, so <InlineMath math="k(0.01)\approx\frac{-0.0004}{0.0001}=-4" />.
+Numerical check: for <InlineMath math="x=0.01" />, the equation below, so <InlineMath math="k(0.01)=-4" />.
+
+<BlockMath math="\begin{gathered}
+\cos0.03-\cos0.01\approx-0.0004 \\
+k(0.01)\approx\frac{-0.0004}{0.0001}=-4
+\end{gathered}" />
 
 So the limit is <InlineMath math="-4" />.
 
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
 - <InlineMath math="4" /> drops the minus sign in the difference formula.
 - <InlineMath math="-2" /> uses <InlineMath math="\frac{\sin2x}{x}\to1" />, but that limit is <InlineMath math="2" />.
-- <InlineMath math="-8" /> uses <InlineMath math="\cos u\approx1-u^2" />, but the approximation is <InlineMath math="1-\frac{u^2}{2}" />.
+- <InlineMath math="-8" /> uses <InlineMath math="\cos u\approx1-u^2" />, but the approximation is the expression below.
+
+  <BlockMath math="1-\frac{u^2}{2}" />
+
 - <InlineMath math="0" /> only looks at the numerator tending to zero.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

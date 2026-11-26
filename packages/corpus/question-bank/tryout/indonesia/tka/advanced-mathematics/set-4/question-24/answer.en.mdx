@@ -1,3 +1,15 @@
+# Given
+
+We are given a **radical limit** at <InlineMath math="x=2" /> with finite value <InlineMath math="b" /> and unknown parameter <InlineMath math="a" />.
+
+# Asked
+
+The **values of parameters** <InlineMath math="a" /> and <InlineMath math="b" /> that make the limit finite.
+
+# Solution
+
+> Since the denominator hits zero, the numerator must hit zero too for a finite limit, and the conjugate then reveals the value.
+
 The denominator tends to <InlineMath math="0" />. If the numerator tended to anything other than zero, the fraction would grow without bound and have no real limit. So **the numerator must tend to zero too**.
 
 <BlockMath math="\sqrt{2\cdot2+5}-a=0\ \Rightarrow\ a=\sqrt9=3" />
@@ -9,7 +21,9 @@ With <InlineMath math="a=3" /> the form is <InlineMath math="\frac00" />. Multip
 &=\lim_{x\to2}\frac{2(x-2)}{(x-2)\left(\sqrt{2x+5}+3\right)}=\frac{2}{3+3}=\frac13
 \end{aligned}" />
 
-Draw the function with <InlineMath math="a=3" />. **After multiplying by the conjugate, its graph is the same as <InlineMath math="\frac{2}{\sqrt{2x+5}+3}" /> for <InlineMath math="x\ne2" />**, and that graph passes height <InlineMath math="\tfrac13" /> at <InlineMath math="x=2" />.
+Draw the function with <InlineMath math="a=3" />. **After multiplying by the conjugate, its graph is the same as the expression below for <InlineMath math="x\ne2" />**, and that graph passes height <InlineMath math="\tfrac13" /> at <InlineMath math="x=2" />.
+
+<BlockMath math="\frac{2}{\sqrt{2x+5}+3}" />
 
 <MathVisual
   title={<>The graph near <InlineMath math="x=2" /> for <InlineMath math="a=3" /></>}
@@ -37,9 +51,22 @@ Draw the function with <InlineMath math="a=3" />. **After multiplying by the con
   }}
 />
 
-So <InlineMath math="b=\frac13" /> and <InlineMath math="a+b=3+\frac13=\frac{10}{3}" />.
+So <InlineMath math="b=\frac13" /> and <InlineMath math="\frac{10}{3}" />.
 
-- <InlineMath math="\frac{19}{6}" /> uses <InlineMath math="b=\frac16" />, losing the factor <InlineMath math="2" /> in <InlineMath math="2x-4=2(x-2)" />.
+<BlockMath math="a+b=3+\frac13=\frac{10}{3}" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- <InlineMath math="\frac{19}{6}" /> uses <InlineMath math="b=\frac16" />, losing the factor <InlineMath math="2" /> in the equation below.
+
+  <BlockMath math="2x-4=2(x-2)" />
+
 - <InlineMath math="3" /> is only the value of <InlineMath math="a" />.
 - <InlineMath math="-\frac83" /> uses <InlineMath math="a=-3" />. Then the numerator tends to <InlineMath math="6" /> and the limit does not exist.
 - <InlineMath math="\frac13" /> is only the value of <InlineMath math="b" />.
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.

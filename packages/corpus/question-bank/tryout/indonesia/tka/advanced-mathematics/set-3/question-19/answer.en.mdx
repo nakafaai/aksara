@@ -1,14 +1,32 @@
+# Given
+
+A **straight line** is reflected across <InlineMath math="y=-x" /> and then dilated from the origin <InlineMath math="O(0,0)" />.
+
+# Asked
+
+The **equation of the image line** after both transformations.
+
+# Solution
+
+> Combine both moves into one point rule, then write old coordinates in terms of new ones to transform the line equation.
+
 Combine the two transformations into one rule, then **write the old coordinates in terms of the image coordinates** and substitute into the line.
 
-Reflection in <InlineMath math="y=-x" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(-y,-x)" />. The dilation <InlineMath math="[O,2]" /> doubles both coordinates. So the image is <InlineMath math="(x',y')=(-2y,-2x)" />, which means <InlineMath math="x=-\frac{y'}{2}" /> and <InlineMath math="y=-\frac{x'}{2}" />.
+Reflection in <InlineMath math="y=-x" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(-y,-x)" />. The dilation <InlineMath math="[O,2]" /> doubles both coordinates. So the image is <InlineMath math="(x',y')=(-2y,-2x)" />, which means <InlineMath math="x" /> and <InlineMath math="y" />.
 
-<BlockMath math="\begin{aligned}
+<BlockMath math="\begin{gathered}
+x=-\frac{y'}{2} \\
+y=-\frac{x'}{2} \\
+\begin{aligned}
 2\left(-\frac{y'}{2}\right)-\left(-\frac{x'}{2}\right)+4&=0 \\
 -y'+\frac{x'}{2}+4&=0 \\
 x'-2y'+8&=0
-\end{aligned}" />
+\end{aligned}
+\end{gathered}" />
 
-Follow the line and one of its points through both steps. **The reflection turns the line into the gentler line <InlineMath math="x-2y+4=0" />, then the dilation pushes it away from <InlineMath math="O" />** without changing its slope.
+Follow the line and one of its points through both steps. **The reflection turns the line into the gentler line the equation below, then the dilation pushes it away from <InlineMath math="O" />** without changing its slope.
+
+<BlockMath math="x-2y+4=0" />
 
 <MathVisual
   title={<>The line before and after both transformations</>}
@@ -49,11 +67,34 @@ Follow the line and one of its points through both steps. **The reflection turns
   }}
 />
 
-Check with one point: <InlineMath math="(0,4)" /> lies on the original line. The reflection sends it to <InlineMath math="(-4,0)" />, the dilation to <InlineMath math="(-8,0)" />, and <InlineMath math="-8-0+8=0" />.
+Check with one point: <InlineMath math="(0,4)" /> lies on the original line. The reflection sends it to <InlineMath math="(-4,0)" />, the dilation to <InlineMath math="(-8,0)" />, and <InlineMath math="0" />.
 
-So the image line is <InlineMath math="x-2y+8=0" />.
+<BlockMath math="-8-0+8=0" />
 
-- <InlineMath math="x-2y-8=0" /> reflects in <InlineMath math="y=x" /> instead of <InlineMath math="y=-x" />.
-- <InlineMath math="x-2y+4=0" /> only reflects and forgets the dilation.
-- <InlineMath math="x-2y+2=0" /> substitutes <InlineMath math="x=-2y'" /> and <InlineMath math="y=-2x'" />, multiplying by <InlineMath math="2" /> where it should divide.
-- <InlineMath math="2x-y+8=0" /> only dilates and forgets the reflection.
+So the image line is the equation below.
+
+<BlockMath math="x-2y+8=0" />
+
+## Checking common traps
+
+Let us check why these **common trap choices** miss the mark.
+
+- The equation below reflects in <InlineMath math="y=x" /> instead of <InlineMath math="y=-x" />.
+
+  <BlockMath math="x-2y-8=0" />
+
+- The equation below only reflects and forgets the dilation.
+
+  <BlockMath math="x-2y+4=0" />
+
+- The equation below substitutes <InlineMath math="x=-2y'" /> and <InlineMath math="y=-2x'" />, multiplying by <InlineMath math="2" /> where it should divide.
+
+  <BlockMath math="x-2y+2=0" />
+
+- The equation below only dilates and forgets the reflection.
+
+  <BlockMath math="2x-y+8=0" />
+
+# Answer
+
+Combining all the steps above gives the **final answer** requested by the problem.
