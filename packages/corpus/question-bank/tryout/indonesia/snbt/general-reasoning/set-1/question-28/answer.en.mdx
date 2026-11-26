@@ -1,10 +1,22 @@
+# Given
+
+**Two study-room tariffs** for Room P and Room Q round any partial hour upward to a full hour, with a daily cap of <InlineMath math="\text{Rp}72{,}000" /> for Room Q.
+
+# Asked
+
+Whether each statement comparing Room P and Room Q costs is true or false.
+
+# Solution
+
+> Round every session up to the next whole hour first, then cap Room Q at <InlineMath math="\text{Rp}72{,}000" /> per day before comparing costs.
+
 Mark each statement Benar (true) or Salah (false). Two rules make this question tricky. First, **time is rounded up to whole hours**, so <InlineMath math="3" /> hours <InlineMath math="30" /> minutes is charged as <InlineMath math="4" /> hours. Second, room Q has a daily cap of <InlineMath math="\text{Rp}72{,}000" />. So turn every length of stay into charged hours first, and only then compare the costs.
 
-Let <InlineMath math="c" /> be the time after rounding up. In thousands of rupiah, the two costs are
+Let <InlineMath math="c" /> be the time after rounding up. Measured directly in rupiah (thousand-rupiah units), the two cost formulas are
 
 <BlockMath math="P=\begin{cases} 40, & c\le4 \\ 40+8(c-4), & c>4 \end{cases} \qquad Q=\min(10c,\ 72)" />
 
-The symbol <InlineMath math="\min" /> means the smaller of the two values. This table holds every value you'll need (in thousands of rupiah):
+The symbol <InlineMath math="\min" /> means the smaller of the two values. This table holds every value you'll need (using thousand-rupiah units):
 
 | <InlineMath math="c" /> (hours) | Room P | Room Q |
 | --- | --- | --- |
@@ -39,5 +51,7 @@ The chart below draws both costs by charged hours. **The two lines meet twice, a
 **Statement 3** is Salah. One counterexample is enough. A stay of <InlineMath math="3" /> hours <InlineMath math="30" /> minutes is less than <InlineMath math="4" /> hours but is charged as <InlineMath math="4" /> hours. Room Q then costs <InlineMath math="40" /> thousand, the same as room P, so Q isn't cheaper. Q is cheaper for stays of at most <InlineMath math="3" /> hours, but not for every stay under <InlineMath math="4" /> hours.
 
 **Statement 4** is Benar. A stay between <InlineMath math="7" /> and <InlineMath math="8" /> hours, such as <InlineMath math="7" /> hours <InlineMath math="30" /> minutes, is charged as <InlineMath math="8" /> hours. Room P costs <InlineMath math="40+8\times4=72" /> thousand, and room Q's <InlineMath math="80" /> thousand is cut by the cap to <InlineMath math="72" /> thousand. They're equal. Without rounding and the cap, the two costs only match at exactly <InlineMath math="4" /> hours, so the statement looks false.
+
+# Answer
 
 So statements 1 and 4 are Benar, and statements 2 and 3 are Salah.

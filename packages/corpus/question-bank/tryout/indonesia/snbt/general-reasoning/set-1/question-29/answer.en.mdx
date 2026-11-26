@@ -1,3 +1,15 @@
+# Given
+
+**Membership counts** cover yoga, pilates, and swimming classes, every two-class overlap, and <InlineMath math="8" /> members taking all three.
+
+# Asked
+
+How many free swim vouchers go to members taking yoga or pilates but not swimming.
+
+# Solution
+
+> Use inclusion-exclusion first to count everyone in yoga or pilates, then subtract the part of that group that already takes swimming.
+
 A voucher goes to every member in the "yoga or pilates" group who doesn't take swimming. So first count the whole "yoga or pilates" group, then remove the members of that group who also swim. **Both counts use inclusion-exclusion**: add two groups, then subtract the part that got counted twice.
 
 Step one: the members who take yoga or pilates. Add yoga and pilates, then subtract the <InlineMath math="25" /> members who take both once, because they were counted twice:
@@ -39,5 +51,7 @@ Some wrong results come up often:
 - <InlineMath math="50" /> comes from removing <InlineMath math="40+30=70" />, which removes the <InlineMath math="8" /> members who take all three classes twice.
 - <InlineMath math="83" /> comes from not subtracting the <InlineMath math="25" /> members who take yoga and pilates, so the first group is counted as <InlineMath math="145" />.
 - <InlineMath math="120" /> comes from forgetting the "doesn't take swimming" condition.
+
+# Answer
 
 So the fitness center hands out <InlineMath math="58" /> vouchers.

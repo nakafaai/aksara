@@ -1,3 +1,15 @@
+# Diketahui
+
+**Toko membuat dua jenis parsel**, Parsel Sirup (<InlineMath math="1" /> kue, <InlineMath math="2" /> sirup) dan Parsel Kue (<InlineMath math="4" /> kue, <InlineMath math="1" /> sirup), dari persediaan bahan yang terbatas.
+
+# Ditanyakan
+
+Jumlah total parsel terbanyak yang dapat dibuat dari persediaan bahan.
+
+# Penyelesaian
+
+> Dua jenis parsel menguras bahan secara berlawanan, jadi jumlah total terbanyak muncul saat kedua bahan habis seimbang dan harus tetap bilangan bulat.
+
 Kedua jenis parsel saling berebut bahan dengan cara yang berlawanan. Parsel Sirup hemat kue tetapi boros sirup, sedangkan Parsel Kue hemat sirup tetapi boros kue. Jadi, memperbanyak satu jenis saja akan menghabiskan satu bahan dan menyisakan bahan lain. Jumlah terbanyak biasanya ada di **campuran yang membuat kedua bahan hampir habis**, dan karena banyak parsel harus bulat, campuran itu perlu dicek satu per satu.
 
 Misalkan <InlineMath math="x" /> banyak Parsel Sirup dan <InlineMath math="y" /> banyak Parsel Kue. Syaratnya:
@@ -15,9 +27,9 @@ Cara paling jelas adalah menguji target jumlah parsel <InlineMath math="T=x+y" /
 \text{kue} &: x+4(T-x)\le44 \quad\Rightarrow\quad x\ge\frac{4T-44}{3}
 \end{aligned}" />
 
-Coba <InlineMath math="T=19" />. Syarat sirup meminta <InlineMath math="x\le9" />, tetapi syarat kue meminta <InlineMath math="x\ge\frac{32}{3}\approx10{,}7" />. Tidak ada bilangan yang memenuhi keduanya, jadi <InlineMath math="19" /> parsel mustahil. Untuk <InlineMath math="T" /> yang lebih besar, batas atas makin turun dan batas bawah makin naik, jadi juga mustahil.
+Coba <InlineMath math="T=19" />. Syarat sirup meminta <InlineMath math="x\le9" />, tetapi syarat kue meminta <InlineMath math="x \ge 10{,}7" />. Tidak ada bilangan yang memenuhi keduanya, jadi <InlineMath math="19" /> parsel mustahil. Untuk <InlineMath math="T" /> yang lebih besar, batas atas makin turun dan batas bawah makin naik, jadi juga mustahil.
 
-Coba <InlineMath math="T=18" />. Syarat sirup meminta <InlineMath math="x\le10" />, dan syarat kue meminta <InlineMath math="x\ge\frac{28}{3}\approx9{,}3" />. Satu-satunya bilangan bulat di antaranya adalah <InlineMath math="x=10" />, sehingga <InlineMath math="y=8" />.
+Coba <InlineMath math="T=18" />. Syarat sirup meminta <InlineMath math="x\le10" />, dan syarat kue meminta <InlineMath math="x \ge 9{,}3" />. Satu-satunya bilangan bulat di antaranya adalah <InlineMath math="x=10" />, sehingga <InlineMath math="y=8" />.
 
 <BlockMath math="\begin{aligned}
 \text{toples kue} &: 10+4(8) = 42 \le 44 \\
@@ -43,5 +55,7 @@ Pilihan lain muncul dari strategi yang terlalu cepat:
 - <InlineMath math="15" /> muncul kalau kamu membuat <InlineMath math="3" /> Parsel Kue lalu Parsel Sirup sebanyak mungkin karena isinya lebih sedikit. Sirup hanya cukup untuk <InlineMath math="12" /> Parsel Sirup, padahal kuenya masih tersisa <InlineMath math="20" /> toples.
 - <InlineMath math="17" /> muncul dari titik potong <InlineMath math="x+4y=44" /> dan <InlineMath math="2x+y=28" />, yaitu <InlineMath math="x\approx9{,}7" /> dan <InlineMath math="y\approx8{,}6" />, yang dibulatkan ke bawah menjadi <InlineMath math="9+8" /> tanpa mengecek susunan bulat di sekitarnya.
 - <InlineMath math="19" /> membulatkan titik potong itu ke terdekat menjadi <InlineMath math="10+9" />, padahal susunan itu butuh <InlineMath math="29" /> botol sirup dan <InlineMath math="46" /> toples kue.
+
+# Jawaban
 
 Jadi, toko itu dapat membuat paling banyak <InlineMath math="18" /> parsel.

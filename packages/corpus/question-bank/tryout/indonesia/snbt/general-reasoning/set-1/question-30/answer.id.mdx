@@ -1,3 +1,15 @@
+# Diketahui
+
+**Panitia menyewa bus sedang** berkapasitas <InlineMath math="31" /> penumpang seharga <InlineMath math="\text{Rp}2{.}100{.}000" /> dan minibus untuk minimal <InlineMath math="96" /> orang dengan wajib memakai minimal satu bus sedang.
+
+# Ditanyakan
+
+Biaya sewa paling murah yang memenuhi syarat kapasitas dan kebutuhan minimal satu bus sedang.
+
+# Penyelesaian
+
+> Karena jumlah kendaraan harus bilangan bulat, cek setiap pilihan jumlah bus sedang mulai dari <InlineMath math="1" /> ke atas lalu pilih total biaya terkecil.
+
 Yang dicari adalah gabungan bus sedang dan minibus yang memuat paling sedikit <InlineMath math="96" /> orang, memakai paling sedikit satu bus sedang, dan biayanya paling kecil. Banyak kendaraan harus bilangan bulat, jadi rumus "biaya per kursi" saja tidak cukup. Cara yang aman adalah **memeriksa setiap kemungkinan banyak bus sedang**, lalu menambah minibus secukupnya untuk sisa penumpang.
 
 Untuk setiap banyak bus sedang <InlineMath math="b" />, sisa penumpang adalah <InlineMath math="96-31b" />. Banyak minibus adalah sisa itu dibagi <InlineMath math="14" />, lalu dibulatkan ke atas, karena minibus tidak bisa disewa sebagian. Kasus <InlineMath math="b=0" /> tidak boleh dipakai karena panitia wajib menyewa bus sedang. Kasus <InlineMath math="b=4" /> sudah memuat <InlineMath math="124" /> orang, jadi bus kelima hanya menambah biaya.
@@ -32,5 +44,7 @@ Pilihan lain berasal dari jebakan yang berbeda:
 - <InlineMath math="\text{Rp}7{.}250{.}000" /> muncul dari cara rakus: bus sedang sedikit lebih murah per kursi (sekitar <InlineMath math="\text{Rp}67{.}742" /> lawan <InlineMath math="\text{Rp}67{.}857" />), lalu dipakai sebanyak mungkin. Hasilnya tiga bus sedang dan satu minibus dengan <InlineMath math="11" /> kursi kosong. Kursi kosong itu tetap dibayar, jadi cara ini lebih mahal.
 - <InlineMath math="\text{Rp}8{.}400{.}000" /> adalah biaya jika hanya memakai bus sedang.
 - <InlineMath math="\text{Rp}8{.}750{.}000" /> muncul jika satu bus sedang ditambahkan ke rencana tujuh minibus tanpa mengurangi minibusnya.
+
+# Jawaban
 
 Jadi, biaya sewa paling murah yang memenuhi semua syarat adalah <InlineMath math="\text{Rp}6{.}850{.}000" />.

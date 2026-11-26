@@ -1,3 +1,15 @@
+# Given
+
+**An extra condition** places Fani before Eka alongside the six existing rules for the seven students.
+
+# Asked
+
+Whether each statement holds in every ordering that satisfies all seven conditions.
+
+# Solution
+
+> List every valid ordering left once Fani precedes Eka, and mark True only when a claim holds across the entire list.
+
 The extra condition "Fani presents before Eka" narrows things down. The safest route is to list every order that's still possible and then judge the four statements against that list. A statement is Benar (true) only if it holds in every order on the list, and Salah (false) if at least one valid order breaks it.
 
 First, find Citra's turn. Fani now comes before Eka, and Eka comes before Citra (condition 3). Eka also can't take turn <InlineMath math="1" /> (condition 4), so Citra is in turn <InlineMath math="3" /> at the earliest. Dimas comes exactly two turns after Citra (condition 2), so Citra is in turn <InlineMath math="5" /> at the latest.
@@ -40,5 +52,7 @@ Statement 2 is Salah. In the order Fani, Eka, Galih, Hesti, Citra, Bayu, Dimas, 
 Statement 3 is Salah. In the order Fani, Galih, Hesti, Eka, Citra, Bayu, Dimas, Fani is in turn <InlineMath math="1" /> and Eka in turn <InlineMath math="4" />. Fani does come before Eka, but not right before.
 
 Statement 4 is Benar. It's an if-then statement, so you only need the orders that put Hesti in turn <InlineMath math="1" />. Hesti in turn <InlineMath math="1" /> means the pair takes turns <InlineMath math="1" /> and <InlineMath math="2" />. In the table, that row only allows Fani in turn <InlineMath math="3" /> and Eka in turn <InlineMath math="4" />, so Eka really is always in turn <InlineMath math="4" />.
+
+# Answer
 
 So statements 1 and 4 are true, while statements 2 and 3 are false.

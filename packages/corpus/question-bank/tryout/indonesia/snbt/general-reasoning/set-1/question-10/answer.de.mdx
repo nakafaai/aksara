@@ -1,3 +1,15 @@
+# Gegeben
+
+**Die Buchstabenpaar-Folge** beginnt mit BS, DZ, GG, KN, PU und läuft nach Z wieder bei A weiter.
+
+# Gesucht
+
+Das Buchstabenpaar am <InlineMath math="10" />. Glied der Folge.
+
+# Lösung
+
+> Trenne ersten und zweiten Buchstaben in zwei eigene Zahlenfolgen von <InlineMath math="1" /> bis <InlineMath math="26" />, um jede Schrittregel sauber zu verfolgen.
+
 Jedes Glied besteht aus zwei Buchstaben, und die beiden Buchstaben bewegen sich nach **verschiedenen Regeln**. Damit das Zählen leicht wird, ersetzt du jeden Buchstaben durch seine Stelle im Alphabet: <InlineMath math="\text{A} = 1" />, <InlineMath math="\text{B} = 2" /> und so weiter bis <InlineMath math="\text{Z} = 26" />.
 
 Die ersten Buchstaben sind B, D, G, K, P, also <InlineMath math="2, 4, 7, 11, 16" />. Die Schritte sind <InlineMath math="+2, +3, +4, +5" />, also folgen <InlineMath math="+6, +7, +8, +9, +10" />.
@@ -27,7 +39,7 @@ Das Diagramm zeigt die Position beider Buchstaben in jedem Glied. **Jedes Mal, w
   valueLabel="Buchstabenposition"
 />
 
-Zur Kontrolle springst du direkt vom <InlineMath math="5" />. Glied aus. Der erste Buchstabe rückt um <InlineMath math="6 + 7 + 8 + 9 + 10 = 40" /> Stellen vor, der zweite um <InlineMath math="5 \cdot 7 = 35" /> Stellen:
+Zur Kontrolle springst du direkt vom <InlineMath math="5" />. Glied aus. Der erste Buchstabe rückt um <InlineMath math="40" /> Stellen vor, der zweite um <InlineMath math="35" /> Stellen:
 
 <BlockMath math="\begin{aligned} \text{Erster Buchstabe: } & 16 + 40 = 56 = 2(26) + 4 \\ \text{Zweiter Buchstabe: } & 21 + 35 = 56 = 2(26) + 4 \end{aligned}" />
 
@@ -37,7 +49,9 @@ Die anderen Optionen entstehen durch diese Fehler:
 
 - TW ist das <InlineMath math="9" />. Glied, hier wird also ein Glied zu früh aufgehört.
 - OD entsteht, wenn du annimmst, der erste Buchstabe rücke immer um <InlineMath math="5" /> vor, und übersiehst, dass die Schritte weiter wachsen.
-- YD entsteht, wenn die Schritte des ersten Buchstabens wieder bei <InlineMath math="+5" /> statt bei <InlineMath math="+6" /> beginnen: <InlineMath math="16 + 5 + 6 + 7 + 8 + 9 = 51" />, dann <InlineMath math="51 - 26 = 25" />, also Y.
+- YD entsteht, wenn die Schritte des ersten Buchstabens wieder bei <InlineMath math="+5" /> statt bei <InlineMath math="+6" /> beginnen, was auf Position <InlineMath math="51" /> und damit nach Abzug von <InlineMath math="26" /> auf <InlineMath math="25" /> (Y) führt.
 - DW entsteht, wenn du den zweiten Buchstaben nur bis zum <InlineMath math="9" />. Glied weiterrückst.
+
+# Antwort
 
 Das <InlineMath math="10" />. Glied der Folge ist also DD.

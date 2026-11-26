@@ -1,3 +1,15 @@
+# Given
+
+Next week **daily passengers in each direction are projected to rise** by <InlineMath math="20\%" />, with each sailing holding at most <InlineMath math="200" /> people.
+
+# Asked
+
+The **minimum total number of sailings** needed from both ports during next week.
+
+# Solution
+
+> A ferry cannot run a fraction of a trip, so round each direction up to whole sailings day by day before adding them together.
+
 The question asks for the smallest total number of departures from both ports over the next week. Three conditions work together: every day and every direction gets <InlineMath math="20\%" /> more passengers, each departure carries at most <InlineMath math="200" /> people, and on any given day both ports must have the same number of departures.
 
 Work it out **day by day**, because Sunday's passengers can't use Tuesday's empty seats. Since both ports need the same number of departures, the busier direction decides. For each day, multiply each bar by <InlineMath math="1.2" />, take the busier direction, and find the smallest multiple of <InlineMath math="200" /> that fits it.
@@ -38,8 +50,10 @@ Add up the departures per port, then double it because there are two ports.
 Some shortcuts give the wrong number.
 
 - If you round the weekly totals, for example <InlineMath math="4{,}128 \div 200" /> up to <InlineMath math="21" /> and <InlineMath math="4{,}248 \div 200" /> up to <InlineMath math="22" />, you get <InlineMath math="43" />. That treats passengers as if they could switch days.
-- If you pool both directions on the same day, for example Monday's <InlineMath math="(432+672) \div 200 = 5.52" /> rounded up to <InlineMath math="6" />, you get <InlineMath math="45" />. That treats a boat leaving Batu Lintang as if it could carry people waiting in Karang Mas, and it breaks the equal-departures rule.
+- If you pool both directions on the same day, for example Monday's giving <InlineMath math="5.52" /> rounded up to <InlineMath math="6" />, you get <InlineMath math="45" />. That treats a boat leaving Batu Lintang as if it could carry people waiting in Karang Mas, and it breaks the equal-departures rule.
 - If you forget the <InlineMath math="20\%" /> increase, you get <InlineMath math="44" />.
 - If you stop at <InlineMath math="27" />, you've only counted one port.
+
+# Answer
 
 So the operator needs at least <InlineMath math="54" /> departures from the two ports over the next week.

@@ -1,3 +1,15 @@
+# Gegeben
+
+**Die Lagertabelle** nennt Anfangsbestand, wöchentlichen Zugang, Abgang und Schwund für die Lager Bakung, Cempaka und Anggrek.
+
+# Gesucht
+
+Die Reihenfolge der drei Lager vom größten zum kleinsten Bestand am Ende der ersten Woche unter <InlineMath math="200" /> Tonnen Gesamtbestand.
+
+# Lösung
+
+> Bestimme zuerst die wöchentliche Nettoänderung jedes Lagers und des Gesamtbestands, um genau die Woche unter <InlineMath math="200" /> Tonnen zu finden.
+
 Die Aufgabe hat zwei Stufen. Zuerst suchst du die Woche, in der der gemeinsame Bestand der drei Lager zum ersten Mal unter <InlineMath math="200" /> Tonnen fällt. Dann berechnest du den Bestand jedes Lagers in dieser Woche und ordnest sie. Beide Stufen brauchen dieselbe Zahl: **die Änderung des Bestands jedes Lagers pro Woche**.
 
 Der Bestand wächst durch eingehenden Reis und sinkt durch ausgehenden Reis und durch Schwund (*susut*). Laut Text wird der Schwund getrennt vom ausgehenden Reis erfasst, also musst du ihn ebenfalls abziehen:
@@ -8,7 +20,7 @@ Der Bestand wächst durch eingehenden Reis und sinkt durch ausgehenden Reis und 
 \text{Cempaka}: \quad 15-18-2 &= -5
 \end{aligned}" />
 
-Zusammen starten die drei Lager mit <InlineMath math="180+150+96=426" /> Tonnen, und dieser Gesamtbestand sinkt jede Woche um <InlineMath math="16+11+5=32" /> Tonnen. Nach <InlineMath math="w" /> Wochen beträgt er <InlineMath math="426-32w" />. Such das kleinste ganze <InlineMath math="w" />, bei dem er unter <InlineMath math="200" /> liegt:
+Zusammen starten die drei Lager mit <InlineMath math="426" /> Tonnen, und dieser Gesamtbestand sinkt jede Woche um <InlineMath math="32" /> Tonnen. Nach <InlineMath math="w" /> Wochen beträgt er <InlineMath math="426-32w" />. Such das kleinste ganze <InlineMath math="w" />, bei dem er unter <InlineMath math="200" /> liegt:
 
 <BlockMath math="\begin{aligned}
 426-32w &< 200 \\
@@ -26,7 +38,7 @@ Berechne jetzt den Bestand jedes Lagers nach <InlineMath math="8" /> Wochen:
 \text{Cempaka}: \quad 96-8\times5 &= 56
 \end{aligned}" />
 
-Vom größten zum kleinsten: Bakung mit <InlineMath math="62" /> Tonnen, Cempaka mit <InlineMath math="56" />, dann Anggrek mit <InlineMath math="52" />. Kontrolle: <InlineMath math="62+56+52=170" />, genau der Gesamtbestand von oben.
+Vom größten zum kleinsten: Bakung mit <InlineMath math="62" /> Tonnen, Cempaka mit <InlineMath math="56" />, dann Anggrek mit <InlineMath math="52" />. Kontrolle: zusammen sind es <InlineMath math="170" />, genau der Gesamtbestand von oben.
 
 Das Diagramm verfolgt den Bestand der drei Lager vom Anfang bis zum Ende von Woche <InlineMath math="8" />. **Die Linie von Anggrek fällt am steilsten**, also endet das Lager, das oben beginnt, ganz unten.
 
@@ -50,5 +62,7 @@ Die anderen Reihenfolgen entstehen aus bestimmten Fehlern:
 - Cempaka, Bakung, Anggrek ordnet die Lager danach, wie langsam sie schrumpfen, von <InlineMath math="-5" /> bis <InlineMath math="-16" />. Dabei fehlt der Anfangsbestand.
 - Cempaka, Anggrek, Bakung entsteht, wenn du den Schwund überall vergisst. Die wöchentlichen Rückgänge werden dann <InlineMath math="13" />, <InlineMath math="10" /> und <InlineMath math="3" /> Tonnen, der Gesamtbestand fällt erst in Woche <InlineMath math="9" /> unter <InlineMath math="200" />, und die Bestände sind Anggrek <InlineMath math="63" />, Bakung <InlineMath math="60" />, Cempaka <InlineMath math="69" />.
 - Anggrek, Cempaka, Bakung entsteht, wenn die Woche stimmt, du aber beim Bestand jedes Lagers den Schwund vergisst. Dann kommen Anggrek <InlineMath math="76" />, Bakung <InlineMath math="70" />, Cempaka <InlineMath math="72" /> heraus.
+
+# Antwort
 
 Am Ende dieser Woche lautet die Reihenfolge vom größten zum kleinsten Bestand also Bakung, Cempaka, dann Anggrek.

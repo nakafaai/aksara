@@ -1,3 +1,15 @@
+# Diketahui
+
+Diagram menunjukkan **jumlah penumpang harian dari dua pelabuhan**, sedangkan bacaan memberi banyak keberangkatan dan kapasitas per keberangkatan tiap hari.
+
+# Ditanyakan
+
+Hari dengan **persentase keterisian kapal paling tinggi** untuk kedua arah.
+
+# Penyelesaian
+
+> Keterisian adalah jumlah penumpang dibagi total kursi yang tersedia hari itu, jadi hari paling ramai belum tentu yang paling penuh jika jadwalnya lebih banyak.
+
 Soal ini menanyakan hari ketika kapasitas kapal paling banyak terpakai. Kamu butuh dua data: total penumpang kedua arah dari diagram, dan banyak keberangkatan setiap hari dari bacaan.
 
 Kuncinya, **kapasitas harian tidak sama setiap hari**. Pada Senin sampai Jumat ada tiga keberangkatan dari setiap pelabuhan, sedangkan pada Sabtu dan Minggu ada empat. Setiap keberangkatan memuat paling banyak <InlineMath math="200" /> penumpang, dan ada dua pelabuhan keberangkatan. Jadi, kapasitas hariannya seperti ini.
@@ -31,7 +43,7 @@ Grafik berikut menggambar kolom keterisian dari tabel. **Batang Jumat paling tin
   valueRange={{ min: 0, max: 100 }}
 />
 
-Keterisian tertinggi ada pada hari Jumat. Coba cek pesaing terdekatnya, Sabtu. Supaya Sabtu menyamai Jumat, Sabtu butuh sekitar <InlineMath math="0{,}883 \times 1{.}600 \approx 1{.}413" /> penumpang. Penumpang Sabtu hanya <InlineMath math="1{.}300" />, jadi Sabtu memang kalah.
+Keterisian tertinggi ada pada hari Jumat. Coba cek pesaing terdekatnya, Sabtu. Supaya Sabtu menyamai Jumat, Sabtu butuh sekitar <InlineMath math="1{.}413" /> penumpang. Penumpang Sabtu hanya <InlineMath math="1{.}300" />, jadi Sabtu memang kalah.
 
 Sekarang lihat kenapa pilihan lain menggoda.
 
@@ -39,5 +51,7 @@ Sekarang lihat kenapa pilihan lain menggoda.
 - Minggu punya batang tertinggi, yaitu <InlineMath math="690" /> penumpang dari Karang Mas. Satu batang belum mewakili seluruh hari, dan keterisian gabungan Minggu hanya sekitar <InlineMath math="76{,}9\%" />.
 - Senin muncul kalau kamu hanya melihat arah Karang Mas: <InlineMath math="560" /> dari kapasitas <InlineMath math="600" />, sekitar <InlineMath math="93{,}3\%" />. Arah Batu Lintang hari itu jauh lebih sepi, jadi keterisian gabungannya hanya sekitar <InlineMath math="76{,}7\%" />.
 - Kamis muncul kalau kamu hanya melihat arah Batu Lintang: <InlineMath math="550" /> dari <InlineMath math="600" />, sekitar <InlineMath math="91{,}7\%" />. Keterisian gabungannya hanya <InlineMath math="77{,}5\%" />.
+
+# Jawaban
 
 Jadi, persentase keterisian kedua arah paling tinggi terjadi pada hari Jumat, sekitar <InlineMath math="88{,}3\%" />.

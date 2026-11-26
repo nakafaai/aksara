@@ -1,3 +1,15 @@
+# Given
+
+**Three residents Raka, Sekar, and Tegar** are each either truth-tellers or liars, with statements linking one another's types.
+
+# Asked
+
+The exact type of each of Raka, Sekar, and Tegar.
+
+# Solution
+
+> Test truth-teller versus liar cleanly, every sentence must come out true for a truth-teller and false for a liar.
+
 An honest villager (*jujur*) only says true sentences, and a liar (*pembohong*) only says false ones. So you're looking for the assignment of types that makes **every sentence match its speaker's type**.
 
 Start with Sekar's sentence, because a false "if" sentence tells you the most. A sentence "if <InlineMath math="P" />, <InlineMath math="Q" />" is false in only one situation: when <InlineMath math="P" /> happens and <InlineMath math="Q" /> doesn't.
@@ -44,5 +56,7 @@ The chart below counts the sentences that match their speaker's type in each opt
 - Raka honest, Sekar liar, Tegar honest is exactly what denying Sekar's sentence gives. The trap is stopping there, even though this assignment has only one liar.
 - Raka liar, Sekar honest, Tegar liar forgets that Raka counts himself. With two liars, Raka's sentence would be true, yet Raka is a liar.
 - Raka honest, Sekar liar, Tegar liar fits Raka's sentence. It comes from wrongly denying Sekar's sentence as "Raka is honest and Tegar is a liar".
+
+# Answer
 
 So Raka is a liar, while Sekar and Tegar are both honest.

@@ -1,3 +1,15 @@
+# Gegeben
+
+**Kopierer X druckt** <InlineMath math="60" /> Blatt pro Minute für <InlineMath math="8" /> Minuten mit je <InlineMath math="2" /> Minuten Pause, während Kopierer Y pausenlos läuft.
+
+# Gesucht
+
+Ob jede Aussage zum Vergleich von Kopierer X und Y zu bestimmten Zeiten wahr oder falsch ist.
+
+# Lösung
+
+> Zerlege die Zeit für Kopierer X in volle <InlineMath math="10" />-Minuten-Zyklen und prüfe genau, ob Restminuten in Druck- oder Pausenzeit fallen.
+
 Maschine X ist schneller, solange sie arbeitet, legt aber regelmäßig Pausen ein. Maschine Y ist langsamer, hält aber nie an. Wer vorne liegt, **hängt also vom Zeitpunkt ab**, und jede Aussage musst du zu ihrem eigenen Zeitpunkt prüfen.
 
 Sieh dir das Muster von X in einem Zyklus von <InlineMath math="10" /> Minuten an: <InlineMath math="8" /> Minuten Arbeit ergeben <InlineMath math="8\times60=480" /> Blatt, dann ruht X <InlineMath math="2" /> Minuten. In denselben <InlineMath math="10" /> Minuten schafft Y <InlineMath math="500" /> Blatt. Solange X arbeitet, holt X <InlineMath math="60-50=10" /> Blatt pro Minute auf. Solange X ruht, zieht Y um <InlineMath math="50" /> Blatt pro Minute davon. Die Tabelle zeigt beide Summen am Ende jeder Arbeitsphase und jeder Pause.
@@ -36,6 +48,8 @@ Aussage 3 ist Benar (richtig). Mit <InlineMath math="1" /> Minute Pause dauert e
 
 Der Vorsprung von X an den tiefsten Punkten steigt pro Zyklus um <InlineMath math="30" /> Blatt und wird nie negativ. Ganz am Anfang stehen beide bei <InlineMath math="0" />. Die Summe von X ist also nie kleiner als die von Y.
 
-Aussage 4 ist Salah (falsch). Für <InlineMath math="1{.}200" /> Blatt braucht X <InlineMath math="1{.}200\div60=20" /> Minuten Arbeit, also <InlineMath math="8+8+4" /> Minuten. Dazwischen liegen zwei Pausen von je <InlineMath math="2" /> Minuten, X ist also in Minute <InlineMath math="8+2+8+2+4=24" /> fertig. Y braucht <InlineMath math="1{.}200\div50=24" /> Minuten. Beide sind **gleichzeitig** fertig, X ist also nicht schneller. Die Antwort "X ist nach <InlineMath math="20" /> Minuten fertig" vergisst die Pausen.
+Aussage 4 ist Salah (falsch). Für <InlineMath math="1{.}200" /> Blatt braucht X <InlineMath math="20" /> Minuten Arbeit, also <InlineMath math="8+8+4" /> Minuten. Dazwischen liegen zwei Pausen von je <InlineMath math="2" /> Minuten, X ist also in Minute <InlineMath math="24" /> fertig. Y braucht <InlineMath math="24" /> Minuten. Beide sind **gleichzeitig** fertig, X ist also nicht schneller. Die Antwort "X ist nach <InlineMath math="20" /> Minuten fertig" vergisst die Pausen.
+
+# Antwort
 
 Die Aussagen 2 und 3 sind also richtig, die Aussagen 1 und 4 falsch.

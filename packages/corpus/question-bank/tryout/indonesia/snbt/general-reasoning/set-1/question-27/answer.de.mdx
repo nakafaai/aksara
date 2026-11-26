@@ -1,3 +1,15 @@
+# Gegeben
+
+**Der javanische Kalender** kombiniert eine <InlineMath math="7" />-Tage-Woche mit einem <InlineMath math="5" />-Tage-Marktzyklus, wobei der <InlineMath math="20" />. Juli auf Montag Pahing fällt.
+
+# Gesucht
+
+Wochentag und Markttag für den <InlineMath math="1" />. Dezember desselben Jahres.
+
+# Lösung
+
+> Zähle einmal die Tage vom <InlineMath math="20" />. Juli bis zum <InlineMath math="1" />. Dezember und bestimme den Rest modulo <InlineMath math="7" /> für den Wochentag und modulo <InlineMath math="5" /> für den Markttag.
+
 Hier laufen zwei Zyklen nebeneinander: Der Wochentag wiederholt sich alle <InlineMath math="7" /> Tage, der Markttag (*pasaran*) alle <InlineMath math="5" /> Tage. Du brauchst also nur, **wie viele Tage zwischen dem 20. Juli und dem 1. Dezember liegen**, und dann den Rest dieser Zahl bei Division durch <InlineMath math="7" /> und getrennt davon durch <InlineMath math="5" />. Die Optionen nennen die indonesischen Wochentage: *Senin* ist Montag, *Selasa* Dienstag, *Rabu* Mittwoch und *Kamis* Donnerstag.
 
 Zähl den Abstand Monat für Monat. Denk an die Monatslängen: Juli hat <InlineMath math="31" /> Tage, August <InlineMath math="31" />, September <InlineMath math="30" />, Oktober <InlineMath math="31" /> und November <InlineMath math="30" />.
@@ -42,5 +54,7 @@ Die anderen Optionen entstehen aus verschiedenen Zählfehlern:
 - Rabu Pahing entsteht bei einem Abstand von <InlineMath math="135" /> Tagen, weil der 20. Juli mitgezählt wurde. Der Abstand von einem Datum zählt den Starttag nicht mit.
 - Kamis Pon entsteht, wenn September und November je <InlineMath math="31" /> Tage bekommen. Dann ist der Abstand <InlineMath math="136" /> Tage.
 - Senin Kliwon entsteht, wenn du beim 30. November mit <InlineMath math="133" /> Tagen aufhörst und den letzten Tag bis zum 1. Dezember vergisst.
+
+# Antwort
 
 Der 1. Dezember fällt in diesem Jahr also auf Selasa Legi, einen Dienstag mit dem Markttag Legi.

@@ -1,3 +1,15 @@
+# Gegeben
+
+Das Diagramm zeigt die **täglichen Fahrgäste beider Häfen**, während der Text die tägliche Fahrtenzahl und Kapazität je Fahrt nennt.
+
+# Gesucht
+
+An welchem Tag die **prozentuale Auslastung** in beiden Richtungen am höchsten ist.
+
+# Lösung
+
+> Auslastung teilt Fahrgäste durch alle angebotenen Plätze des Tages, daher ist der besucherreichste Tag bei mehr Fahrten nicht automatisch am vollsten.
+
 Gefragt ist der Tag, an dem die Kapazität der Fähre am stärksten genutzt wird. Dafür brauchst du zwei Angaben: die Fahrgäste beider Richtungen aus dem Diagramm und die Zahl der Abfahrten pro Tag aus dem Text.
 
 Der Knackpunkt: **Die Tageskapazität ist nicht jeden Tag gleich**. Von Montag bis Freitag gibt es drei Abfahrten pro Hafen, am Samstag und Sonntag vier. Jede Abfahrt nimmt höchstens <InlineMath math="200" /> Fahrgäste mit, und es gibt zwei Abfahrtshäfen. Die Tageskapazität ist also:
@@ -31,7 +43,7 @@ Das Diagramm zeichnet die Spalte Auslastung aus der Tabelle. **Der Freitagsbalke
   valueRange={{ min: 0, max: 100 }}
 />
 
-Die höchste Auslastung hat der Freitag. Vergleich ihn mit seinem stärksten Konkurrenten, dem Samstag. Um mit dem Freitag gleichzuziehen, bräuchte der Samstag etwa <InlineMath math="0{,}883 \times 1{.}600 \approx 1{.}413" /> Fahrgäste. Er hatte nur <InlineMath math="1{.}300" />, also liegt er wirklich darunter.
+Die höchste Auslastung hat der Freitag. Vergleich ihn mit seinem stärksten Konkurrenten, dem Samstag. Um mit dem Freitag gleichzuziehen, bräuchte der Samstag etwa <InlineMath math="1{.}413" /> Fahrgäste. Er hatte nur <InlineMath math="1{.}300" />, also liegt er wirklich darunter.
 
 So entstehen die anderen Antworten.
 
@@ -39,5 +51,7 @@ So entstehen die anderen Antworten.
 - Der Sonntag hat den höchsten Balken, <InlineMath math="690" /> Fahrgäste ab Karang Mas. Ein einzelner Balken beschreibt nicht den ganzen Tag, und die gemeinsame Auslastung am Sonntag beträgt nur etwa <InlineMath math="76{,}9\%" />.
 - Den Montag bekommst du, wenn du nur die Richtung ab Karang Mas ansiehst: <InlineMath math="560" /> von <InlineMath math="600" /> Plätzen, etwa <InlineMath math="93{,}3\%" />. Ab Batu Lintang war an dem Tag viel weniger los, deshalb liegt die gemeinsame Auslastung nur bei etwa <InlineMath math="76{,}7\%" />.
 - Den Donnerstag bekommst du, wenn du nur die Richtung ab Batu Lintang ansiehst: <InlineMath math="550" /> von <InlineMath math="600" />, etwa <InlineMath math="91{,}7\%" />. Die gemeinsame Auslastung beträgt nur <InlineMath math="77{,}5\%" />.
+
+# Antwort
 
 Die gemeinsame Auslastung beider Richtungen ist also am Freitag am höchsten, mit etwa <InlineMath math="88{,}3\%" />.

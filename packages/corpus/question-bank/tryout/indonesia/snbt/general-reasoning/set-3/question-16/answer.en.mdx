@@ -1,3 +1,15 @@
+# Given
+
+All seating rules apply together with the extra condition that **Hamid sits in chair <InlineMath math="7" />**.
+
+# Asked
+
+Whether each statement is **True** (must be true) or **False** (not guaranteed).
+
+# Solution
+
+> Locking one person into a chair triggers a domino effect, so list the surviving layouts first and check which claims hold in all of them.
+
 The extra condition puts Hamid in chair 7. A statement is *Benar* ("true") only if it holds in **every arrangement that's still valid** after adding that condition. Otherwise it's *Salah*.
 
 First use the structure that holds in every arrangement.
@@ -40,5 +52,7 @@ Now judge each statement.
 - Asri in chair 1 is *Salah*. It's true in arrangements I and II, but arrangement III puts Asri in chair 5. The case with Bonar in chair 1 is easy to miss, because there Galuh has to move to chair 4 to stay below Hamid.
 - Fajar next to Asri is *Salah*. Only arrangement I puts Fajar next to Asri. In arrangement II Fajar is in chair 6, and in arrangement III Fajar is in chair 8 while Asri is in chair 5.
 - Galuh facing Fajar is *Benar*. Their chair pairs are <InlineMath math="6" /> and <InlineMath math="2" />, <InlineMath math="2" /> and <InlineMath math="6" />, and <InlineMath math="4" /> and <InlineMath math="8" />. Each pair differs by <InlineMath math="4" />, so they always face each other.
+
+# Answer
 
 So the statements about Cahya in chair 3 and about Galuh facing Fajar are *Benar*, while the statements about Asri in chair 1 and about Fajar sitting next to Asri are *Salah*.

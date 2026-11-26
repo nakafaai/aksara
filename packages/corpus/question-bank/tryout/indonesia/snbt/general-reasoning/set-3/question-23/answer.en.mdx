@@ -1,3 +1,15 @@
+# Given
+
+The chart shows **daily passengers from both ports**, while the passage gives the number of sailings and capacity per sailing each day.
+
+# Asked
+
+The day with the **highest overall occupancy percentage** across both directions.
+
+# Solution
+
+> Occupancy divides total passengers by total seats offered that day, so the busiest day is not always the fullest when extra sailings run.
+
 The question asks for the day when the ferry's capacity is used the most. You need two things: the total passengers in both directions from the chart, and the number of departures each day from the text.
 
 Here's the catch: **the daily capacity changes during the week**. From Monday to Friday there are three departures from each port, while on Saturday and Sunday there are four. Each departure carries at most <InlineMath math="200" /> passengers, and there are two ports of departure. So the daily capacity is:
@@ -31,7 +43,7 @@ The chart below draws the occupancy column from the table. **Friday's bar is the
   valueRange={{ min: 0, max: 100 }}
 />
 
-The highest occupancy is on Friday. Check it against the closest rival, Saturday. To match Friday, Saturday would need about <InlineMath math="0.883 \times 1{,}600 \approx 1{,}413" /> passengers. It only had <InlineMath math="1{,}300" />, so Saturday really does fall short.
+The highest occupancy is on Friday. Check it against the closest rival, Saturday. To match Friday, Saturday would need about <InlineMath math="1{,}413" /> passengers. It only had <InlineMath math="1{,}300" />, so Saturday really does fall short.
 
 Here's why the other options are tempting.
 
@@ -39,5 +51,7 @@ Here's why the other options are tempting.
 - Sunday has the tallest bar, <InlineMath math="690" /> passengers from Karang Mas. One bar doesn't describe the whole day, and Sunday's combined occupancy is only about <InlineMath math="76.9\%" />.
 - Monday comes from looking only at the Karang Mas direction: <InlineMath math="560" /> out of a capacity of <InlineMath math="600" />, about <InlineMath math="93.3\%" />. The Batu Lintang direction was much quieter that day, so the combined occupancy is only about <InlineMath math="76.7\%" />.
 - Thursday comes from looking only at the Batu Lintang direction: <InlineMath math="550" /> out of <InlineMath math="600" />, about <InlineMath math="91.7\%" />. Its combined occupancy is only <InlineMath math="77.5\%" />.
+
+# Answer
 
 So the combined occupancy of both directions is highest on Friday, at about <InlineMath math="88.3\%" />.

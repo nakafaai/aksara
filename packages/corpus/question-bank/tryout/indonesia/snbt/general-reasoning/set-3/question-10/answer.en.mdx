@@ -1,3 +1,15 @@
+# Given
+
+The sequence of four-letter groups from A to Z runs **DIMA, JNBE, PDGL, GJOS** followed by one missing group.
+
+# Asked
+
+The four-letter group that best completes the sequence.
+
+# Solution
+
+> Break a tricky letter puzzle into two simple moves, tracking how the four positions rotate and how many alphabet steps each letter shifts forward.
+
 Compare two neighboring groups letter by letter. You'll find **two rules working at the same time**: the order of the letters rotates, and every letter moves forward in the alphabet by a step that keeps growing.
 
 Start with the rotation. Move the first letter of DIMA to the end and you get IMAD. Now compare IMAD with JNBE: <InlineMath math="\mathrm{I}\to\mathrm{J}" />, <InlineMath math="\mathrm{M}\to\mathrm{N}" />, <InlineMath math="\mathrm{A}\to\mathrm{B}" />, <InlineMath math="\mathrm{D}\to\mathrm{E}" />. Every letter moves forward <InlineMath math="1" /> step.
@@ -27,7 +39,7 @@ The chart below records the size of the shift at each step. **The shift grows by
 
 For the fifth group, rotate GJOS to JOSG, then move every letter forward <InlineMath math="4" /> steps: <InlineMath math="\mathrm{J}\to\mathrm{N}" />, <InlineMath math="\mathrm{O}\to\mathrm{S}" />, <InlineMath math="\mathrm{S}\to\mathrm{W}" />, <InlineMath math="\mathrm{G}\to\mathrm{K}" />. The result is NSWK.
 
-Here's a quick check. Four rotations of a four-letter group bring back the original order, and the total shift is <InlineMath math="1+2+3+4=10" />. So the fifth group must be DIMA with every letter moved forward <InlineMath math="10" /> steps: <InlineMath math="\mathrm{D}\to\mathrm{N}" />, <InlineMath math="\mathrm{I}\to\mathrm{S}" />, <InlineMath math="\mathrm{M}\to\mathrm{W}" />, <InlineMath math="\mathrm{A}\to\mathrm{K}" />. Same answer, NSWK.
+Here's a quick check. Four rotations of a four-letter group bring back the original order, and the total shift is <InlineMath math="10" /> steps. So the fifth group must be DIMA with every letter moved forward <InlineMath math="10" /> steps: <InlineMath math="\mathrm{D}\to\mathrm{N}" />, <InlineMath math="\mathrm{I}\to\mathrm{S}" />, <InlineMath math="\mathrm{M}\to\mathrm{W}" />, <InlineMath math="\mathrm{A}\to\mathrm{K}" />. Same answer, NSWK.
 
 Here's why the other options fail.
 
@@ -35,5 +47,7 @@ Here's why the other options fail.
 - KNSW is shifted <InlineMath math="4" /> steps but never rotated.
 - WKNS is rotated the wrong way, with the last letter moved to the front, and then shifted <InlineMath math="4" /> steps.
 - MRVJ is rotated correctly but shifted <InlineMath math="3" /> steps again, as if the shift stayed fixed.
+
+# Answer
 
 So the group that fills the blank is NSWK.

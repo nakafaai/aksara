@@ -1,3 +1,15 @@
+# Diketahui
+
+**Tim cerdas cermat beranggotakan <InlineMath math="4" /> orang** dipilih dari <InlineMath math="6" /> putra (termasuk Dimas dan Rafi) dan <InlineMath math="5" /> putri dengan larangan satu gender saja serta larangan Dimas setim dengan Rafi.
+
+# Ditanyakan
+
+Jumlah seluruh tim berbeda yang dapat dibentuk memenuhi kedua syarat.
+
+# Penyelesaian
+
+> Saat membuang tim yang melanggar dua aturan sekaligus, tambahkan kembali tim yang melanggar keduanya agar tidak terbuang dua kali.
+
 Soal ini punya dua larangan: tim tidak boleh berisi satu jenis kelamin saja, dan Dimas tidak boleh setim dengan Rafi. Cara yang rapi adalah menghitung semua tim, lalu membuang tim yang melanggar. Hati-hati, ada tim yang **melanggar kedua larangan sekaligus**, dan tim seperti itu hanya boleh dibuang satu kali.
 
 Urutan anggota tidak diperhatikan, jadi banyak cara memilih <InlineMath math="r" /> orang dari <InlineMath math="n" /> orang adalah kombinasi <InlineMath math="C(n,r)" />. Mulai dari semua tim tanpa larangan, yaitu memilih <InlineMath math="4" /> dari <InlineMath math="6+5=11" /> siswa.
@@ -28,7 +40,7 @@ Cek dengan cara lain, yaitu menghitung menurut banyak putra di dalam tim. Dengan
 3 \text{ putra} &: \big(C(6,3)-4\big)\times C(5,1) = 16\times5 = 80
 \end{aligned}" />
 
-Jumlahnya <InlineMath math="60+140+80=280" />, sama dengan hasil pertama.
+Jumlahnya <InlineMath math="280" />, sama dengan hasil pertama.
 
 Grafik berikut memecah semua tim yang sah menurut banyak siswa putranya. **Tim dengan dua putra paling banyak**, dan ketiga batang berjumlah <InlineMath math="280" />.
 
@@ -46,5 +58,7 @@ Beberapa hasil yang menggoda tetapi salah:
 - <InlineMath math="274" /> muncul kalau kamu mengurangkan seluruh <InlineMath math="36" /> tim Dimas dan Rafi dari <InlineMath math="310" />. Enam tim putra semua jadi terbuang dua kali.
 - <InlineMath math="294" /> muncul kalau kamu hanya memakai larangan Dimas dan Rafi, yaitu <InlineMath math="330-36" />, dan lupa syarat putra dan putri.
 - <InlineMath math="310" /> muncul kalau kamu lupa larangan Dimas dan Rafi.
+
+# Jawaban
 
 Jadi, banyak tim berbeda yang dapat dibentuk adalah <InlineMath math="280" /> tim.

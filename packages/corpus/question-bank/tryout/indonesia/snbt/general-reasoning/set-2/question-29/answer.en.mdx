@@ -1,3 +1,15 @@
+# Given
+
+**A <InlineMath math="4" />-person quiz team** is chosen from <InlineMath math="6" /> boys (including Dimas and Rafi) and <InlineMath math="5" /> girls, banning single-gender teams and banning Dimas and Rafi together.
+
+# Asked
+
+How many distinct valid teams can be formed.
+
+# Solution
+
+> When subtracting teams that break either rule, add back the overlap that breaks both rules so those teams are never subtracted twice.
+
 This question has two bans: a team can't be all one gender, and Dimas can't be on the same team as Rafi. The tidy approach is to count every team, then remove the ones that break a rule. Be careful: some teams **break both rules at once**, and those may only be removed once.
 
 The order of members doesn't matter, so the number of ways to choose <InlineMath math="r" /> people from <InlineMath math="n" /> is the combination <InlineMath math="C(n,r)" />. Start with every team and no bans, which means choosing <InlineMath math="4" /> from <InlineMath math="6+5=11" /> students.
@@ -28,7 +40,7 @@ Check it another way by counting according to the number of boys on the team. Wi
 3 \text{ boys} &: \big(C(6,3)-4\big)\times C(5,1) = 16\times5 = 80
 \end{aligned}" />
 
-That's <InlineMath math="60+140+80=280" />, the same as before.
+That's <InlineMath math="280" />, the same as before.
 
 The chart below splits all the valid teams by number of boys. **Teams with two boys are the most common**, and the three bars add up to <InlineMath math="280" />.
 
@@ -46,5 +58,7 @@ Some tempting results that are wrong:
 - <InlineMath math="274" /> comes from subtracting all <InlineMath math="36" /> Dimas-and-Rafi teams from <InlineMath math="310" />. The six all-boy teams then get removed twice.
 - <InlineMath math="294" /> comes from using only the Dimas-and-Rafi ban, <InlineMath math="330-36" />, and forgetting the boys-and-girls rule.
 - <InlineMath math="310" /> comes from forgetting the Dimas-and-Rafi ban.
+
+# Answer
 
 So <InlineMath math="280" /> different teams can be formed.
