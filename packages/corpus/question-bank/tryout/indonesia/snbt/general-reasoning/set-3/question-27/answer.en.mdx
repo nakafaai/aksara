@@ -1,3 +1,15 @@
+# Given
+
+The pharmacy opens every day except Sunday, five pharmacists rotate in fixed order, and the reference shift starts on **15 February 2028**.
+
+# Asked
+
+Which pharmacist is on duty on **8 March 2028**.
+
+# Solution
+
+> The roster moves forward only on open days, so count the working days between the two dates while watching for the leap day and Sundays.
+
 The question asks which pharmacist is on duty on 8 March 2028. The rota only moves on days the pharmacy is open, so you need to count **how many open days** pass after 15 February, not how many calendar days. There are two traps along the way: the year 2028 and Sundays.
 
 Step one: count the days. The year 2028 is divisible by <InlineMath math="4" /> and isn't a century year, so 2028 is a leap year and February has <InlineMath math="29" /> days.
@@ -12,7 +24,7 @@ Step two: drop the Sundays. 15 February is a Tuesday, so the Sundays after it ar
 
 <BlockMath math="22 - 3 = 19" />
 
-Also make sure 8 March isn't a Sunday. The gap is <InlineMath math="22 = 3 \times 7 + 1" /> days, so 8 March falls one day after a Tuesday, on a Wednesday. The pharmacy is open that day.
+Also make sure 8 March isn't a Sunday. The gap is <InlineMath math="22" /> days (three full weeks plus one day), so 8 March falls one day after a Tuesday, on a Wednesday. The pharmacy is open that day.
 
 Step three: the rota repeats every <InlineMath math="5" /> open days. Divide <InlineMath math="19" /> by <InlineMath math="5" />:
 
@@ -42,5 +54,7 @@ Each other option comes from one counting slip:
 - Made comes from forgetting 29 February and also not dropping Sundays, which gives <InlineMath math="21" /> steps.
 - Nina comes from counting all <InlineMath math="22" /> calendar days without dropping Sundays.
 - Oka comes from dropping Sundays but forgetting that 2028 is a leap year, which gives only <InlineMath math="18" /> open days.
+
+# Answer
 
 So the pharmacist on duty on 8 March 2028 is Putri.

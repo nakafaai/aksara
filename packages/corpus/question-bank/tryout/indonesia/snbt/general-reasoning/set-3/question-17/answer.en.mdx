@@ -1,3 +1,15 @@
+# Given
+
+**All seven seating rules** apply on numbered chairs, and two layouts differ whenever at least one person changes chair number.
+
+# Asked
+
+The exact **number of distinct valid seating arrangements**.
+
+# Solution
+
+> Branch neatly from one anchor person chair by chair so every legal seating plan is counted once and nothing slips through.
+
 This question asks how many arrangements satisfy **all seven rules at once**. The chairs are numbered, so two arrangements that differ only because everyone moved one chair along still count as two.
 
 The safest method is to lock down the most constrained people first, then place everyone else one by one. Whenever there's more than one choice, record it as a new branch.
@@ -57,5 +69,7 @@ The first factor comes from the two choices for Asri's chair, the second from th
 To check, take the last row: Bonar <InlineMath math="1" />, Galuh <InlineMath math="2" />, Hamid <InlineMath math="3" />, Elok <InlineMath math="4" />, Asri <InlineMath math="5" />, Fajar <InlineMath math="6" />, Cahya <InlineMath math="7" />, Dimas <InlineMath math="8" />. Asri faces Bonar, Dimas sits next to Cahya but not next to Asri, Elok in chair 4 faces Dimas in chair 8, Fajar in chair 6 is two chairs from Elok, Galuh's number is smaller than Hamid's, and Hamid in chair 3 isn't next to Cahya in chair 7. Every rule holds.
 
 Other common answers come from a skipped step. You get <InlineMath math="8" /> if you forget rule 7. You get <InlineMath math="3" /> if you only count the case with Asri in chair 1. You get <InlineMath math="12" /> if you ignore rule 6, because then Galuh and Hamid can swap places.
+
+# Answer
 
 So the number of seating arrangements that satisfy every rule is <InlineMath math="6" />.

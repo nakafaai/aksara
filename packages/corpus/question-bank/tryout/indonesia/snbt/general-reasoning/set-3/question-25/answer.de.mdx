@@ -1,3 +1,15 @@
+# Gegeben
+
+Nächste Woche steigen die **Fahrgastzahlen an jedem Tag und in jeder Richtung** um <InlineMath math="20\%" />, bei höchstens <InlineMath math="200" /> Personen pro Fahrt.
+
+# Gesucht
+
+Die **kleinste nötige Gesamtzahl an Fahrten** aus beiden Häfen für die nächste Woche.
+
+# Lösung
+
+> Eine Fähre fährt keine halben Fahrten, daher rundet man pro Tag und Richtung zuerst auf ganze Fahrten auf und summiert erst danach.
+
 Gesucht ist die kleinste Gesamtzahl an Abfahrten aus beiden Häfen in der nächsten Woche. Drei Bedingungen wirken zusammen: An jedem Tag und in jeder Richtung gibt es <InlineMath math="20\%" /> mehr Fahrgäste, jede Abfahrt nimmt höchstens <InlineMath math="200" /> Personen mit, und an einem Tag müssen beide Häfen gleich viele Abfahrten haben.
 
 Rechne **Tag für Tag**, denn die Fahrgäste vom Sonntag können keine freien Plätze vom Dienstag nutzen. Weil beide Häfen gleich viele Abfahrten brauchen, entscheidet die stärkere Richtung. Für jeden Tag gilt: Multipliziere jeden Balken mit <InlineMath math="1{,}2" />, nimm die stärkere Richtung und such das kleinste Vielfache von <InlineMath math="200" />, das reicht.
@@ -38,8 +50,10 @@ Addiere die Abfahrten pro Hafen und verdopple, weil es zwei Häfen gibt.
 Manche Abkürzungen führen zu einer falschen Zahl.
 
 - Rundest du die Wochensummen, etwa <InlineMath math="4{.}128 \div 200" /> auf <InlineMath math="21" /> und <InlineMath math="4{.}248 \div 200" /> auf <InlineMath math="22" />, erhältst du <InlineMath math="43" />. Damit tust du so, als könnten Fahrgäste den Tag wechseln.
-- Legst du beide Richtungen eines Tages zusammen, etwa am Montag <InlineMath math="(432+672) \div 200 = 5{,}52" /> aufgerundet auf <InlineMath math="6" />, erhältst du <InlineMath math="45" />. Damit tust du so, als könnte ein Schiff ab Batu Lintang Leute mitnehmen, die in Karang Mas warten, und du verletzt die Regel der gleichen Abfahrtszahl.
+- Legst du beide Richtungen eines Tages zusammen, etwa am Montag mit <InlineMath math="5{,}52" /> aufgerundet auf <InlineMath math="6" />, erhältst du <InlineMath math="45" />. Damit tust du so, als könnte ein Schiff ab Batu Lintang Leute mitnehmen, die in Karang Mas warten, und du verletzt die Regel der gleichen Abfahrtszahl.
 - Vergisst du den Anstieg um <InlineMath math="20\%" />, erhältst du <InlineMath math="44" />.
 - Hörst du bei <InlineMath math="27" /> auf, hast du nur einen Hafen gezählt.
+
+# Antwort
 
 Der Betreiber braucht in der nächsten Woche also mindestens <InlineMath math="54" /> Abfahrten aus beiden Häfen.

@@ -1,3 +1,15 @@
+# Gegeben
+
+Die Folge aus Vier-Buchstaben-Gruppen von A bis Z lautet **DIMA, JNBE, PDGL, GJOS** gefolgt von einer gesuchten Gruppe.
+
+# Gesucht
+
+Welche Buchstabengruppe die Folge richtig fortsetzt.
+
+# Lösung
+
+> Zerlege ein Buchstabenrätsel in zwei klare Schritte, nämlich die Drehung der Plätze und die Schrittweite jeder einzelnen Verschiebung im Alphabet.
+
 Vergleiche zwei benachbarte Gruppen Buchstabe für Buchstabe. Du findest **zwei Regeln, die gleichzeitig wirken**: Die Reihenfolge der Buchstaben wird rotiert, und jeder Buchstabe rückt im Alphabet um eine Schrittweite vor, die immer größer wird.
 
 Beginne mit der Rotation. Schieb den ersten Buchstaben von DIMA ans Ende, dann erhältst du IMAD. Vergleiche IMAD jetzt mit JNBE: <InlineMath math="\mathrm{I}\to\mathrm{J}" />, <InlineMath math="\mathrm{M}\to\mathrm{N}" />, <InlineMath math="\mathrm{A}\to\mathrm{B}" />, <InlineMath math="\mathrm{D}\to\mathrm{E}" />. Jeder Buchstabe rückt <InlineMath math="1" /> Schritt vor.
@@ -27,7 +39,7 @@ Das Diagramm hält fest, wie weit in jedem Schritt verschoben wird. **Die Versch
 
 Für die fünfte Gruppe rotierst du GJOS zu JOSG und schiebst dann jeden Buchstaben <InlineMath math="4" /> Schritte vor: <InlineMath math="\mathrm{J}\to\mathrm{N}" />, <InlineMath math="\mathrm{O}\to\mathrm{S}" />, <InlineMath math="\mathrm{S}\to\mathrm{W}" />, <InlineMath math="\mathrm{G}\to\mathrm{K}" />. Das ergibt NSWK.
 
-Es gibt eine schnelle Probe. Vier Rotationen einer Gruppe aus vier Buchstaben stellen die ursprüngliche Reihenfolge wieder her, und die gesamte Verschiebung ist <InlineMath math="1+2+3+4=10" />. Die fünfte Gruppe muss also DIMA sein, jeder Buchstabe um <InlineMath math="10" /> Schritte verschoben: <InlineMath math="\mathrm{D}\to\mathrm{N}" />, <InlineMath math="\mathrm{I}\to\mathrm{S}" />, <InlineMath math="\mathrm{M}\to\mathrm{W}" />, <InlineMath math="\mathrm{A}\to\mathrm{K}" />. Wieder NSWK.
+Es gibt eine schnelle Probe. Vier Rotationen einer Gruppe aus vier Buchstaben stellen die ursprüngliche Reihenfolge wieder her, und die gesamte Verschiebung ist <InlineMath math="10" /> Schritte. Die fünfte Gruppe muss also DIMA sein, jeder Buchstabe um <InlineMath math="10" /> Schritte verschoben: <InlineMath math="\mathrm{D}\to\mathrm{N}" />, <InlineMath math="\mathrm{I}\to\mathrm{S}" />, <InlineMath math="\mathrm{M}\to\mathrm{W}" />, <InlineMath math="\mathrm{A}\to\mathrm{K}" />. Wieder NSWK.
 
 Darum scheitern die anderen Optionen.
 
@@ -35,5 +47,7 @@ Darum scheitern die anderen Optionen.
 - KNSW ist um <InlineMath math="4" /> Schritte verschoben, aber nie rotiert.
 - WKNS ist in die falsche Richtung rotiert, mit dem letzten Buchstaben nach vorn, und dann um <InlineMath math="4" /> Schritte verschoben.
 - MRVJ ist richtig rotiert, aber wieder nur um <InlineMath math="3" /> Schritte verschoben, als bliebe die Verschiebung gleich.
+
+# Antwort
 
 Die passende Gruppe für die Lücke ist also NSWK.

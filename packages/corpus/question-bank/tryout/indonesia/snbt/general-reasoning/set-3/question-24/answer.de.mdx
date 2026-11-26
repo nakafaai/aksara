@@ -1,3 +1,15 @@
+# Gegeben
+
+Text und Diagramm enthalten **tägliche Fahrgastzahlen beider Häfen, Fahrpläne und die maximale Kapazität** pro Fahrt.
+
+# Gesucht
+
+Ob jede der vier Aussagen laut Text und Diagramm **wahr** oder **falsch** ist.
+
+# Lösung
+
+> Prüfe jede Aussage mit ihrer eigenen Bezugsgröße und allen betroffenen Tagen, damit keine Abkürzung das Ergebnis verfälscht.
+
 Prüf jede Aussage mit ihren eigenen Daten. Eine hängt an der Kapazitätsgrenze aus dem Text, zwei hängen am richtigen Nenner, und für eine musst du die ganze Woche aufsummieren.
 
 Aussage 1: Salah (falsch). Am Montag fuhren <InlineMath math="560" /> Fahrgäste ab Karang Mas. Sie verteilten sich auf genau drei Abfahrten, und jede Abfahrt nimmt höchstens <InlineMath math="200" /> Personen mit. Stell dir vor, eine Abfahrt ist so leer wie möglich. Die anderen beiden nehmen höchstens <InlineMath math="2 \times 200 = 400" /> Personen mit, also trägt die leerste Abfahrt immer noch mindestens:
@@ -19,7 +31,7 @@ Aussage 3: Benar (richtig). Summiere jede Richtung über die sieben Tage.
 \text{Karang Mas} &: 560+340+400+380+530+640+690 = 3{.}540
 \end{aligned}" />
 
-Karang Mas liegt mit <InlineMath math="100" /> Fahrgästen vorn. Der Mitarbeiter im Text hat sich täuschen lassen, weil Batu Lintang tatsächlich an vier Tagen vorn liegt: Dienstag, Mittwoch, Donnerstag und Samstag. Diese Vorsprünge sind aber klein: <InlineMath math="40 + 20 + 170 + 20 = 250" />. Karang Mas liegt nur am Montag und Sonntag vorn, dafür deutlich: <InlineMath math="200 + 150 = 350" />. Am Freitag sind beide gleich. An mehr Tagen vorn zu liegen heißt also nicht, in der Summe vorn zu liegen.
+Karang Mas liegt mit <InlineMath math="100" /> Fahrgästen vorn. Der Mitarbeiter im Text hat sich täuschen lassen, weil Batu Lintang tatsächlich an vier Tagen vorn liegt: Dienstag, Mittwoch, Donnerstag und Samstag. Diese Vorsprünge sind aber klein: insgesamt nur <InlineMath math="250" />. Karang Mas liegt nur am Montag und Sonntag vorn, dafür deutlich: insgesamt <InlineMath math="350" />. Am Freitag sind beide gleich. An mehr Tagen vorn zu liegen heißt also nicht, in der Summe vorn zu liegen.
 
 Das Diagramm zeichnet den täglichen Abstand der beiden Richtungen. **Es gibt mehr Balken unter null, aber die zwei Balken über null sind viel länger**, also gewinnt Karang Mas trotzdem die Summe.
 
@@ -37,5 +49,7 @@ Aussage 4: Salah (falsch). Samstag und Sonntag zusammen hatten <InlineMath math=
 <BlockMath math="\frac{2{.}530}{6{.}980} \approx 36{,}2\% < 40\%" />
 
 Teilst du nur durch die Fahrgäste von Montag bis Freitag, <InlineMath math="4{.}450" />, erhältst du etwa <InlineMath math="56{,}9\%" /> und hältst die Aussage fälschlich für richtig.
+
+# Antwort
 
 Richtig sind also die Aussagen über den Anstieg von Freitag auf Samstag und über die Gesamtzahl ab Karang Mas, falsch die Aussagen über die Montagsabfahrt und über den Anteil des Wochenendes.

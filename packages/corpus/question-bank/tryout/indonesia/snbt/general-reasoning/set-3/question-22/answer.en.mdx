@@ -1,3 +1,15 @@
+# Given
+
+**A durian nursery** loses <InlineMath math="10\%" /> of its starting seedlings in month one, transplants <InlineMath math="50\%" /> of the survivors in month two, and sows new seedlings equal to <InlineMath math="60\%" /> of the starting count.
+
+# Asked
+
+The number of seedlings **transplanted to the orchard in month two**.
+
+# Solution
+
+> Express every step as a clean fraction of the original count so you never mix up percentages of the survivors with percentages of the start.
+
 This question uses three percentages, and **each one has a different base**. The <InlineMath math="10\%" /> is taken from the starting number, the <InlineMath math="50\%" /> from the seedlings still alive, and the <InlineMath math="60\%" /> from the starting number again. You only know the final count, <InlineMath math="840" />, so the safest move is to write everything in one unit: the starting number of seedlings.
 
 Let the starting number be <InlineMath math="N" />. Follow the seedlings month by month.
@@ -32,9 +44,11 @@ The chart below traces the seedlings from the start to the end of the season wit
 
 Each of the other options comes from mixing up a base.
 
-- <InlineMath math="378" /> comes from just adding the percentages: <InlineMath math="-10\% - 50\% + 60\% = 0\%" />. You then think the starting number was <InlineMath math="840" />, so the number moved is <InlineMath math="0.5 \times 0.9 \times 840 = 378" />.
+- <InlineMath math="378" /> comes from just adding the percentages: giving a net zero percent change. You then think the starting number was <InlineMath math="840" />, so the number moved is <InlineMath math="378" />.
 - <InlineMath math="400" /> comes from taking <InlineMath math="50\%" /> of the starting <InlineMath math="800" />, even though only half of the surviving seedlings were moved.
 - <InlineMath math="420" /> comes from taking <InlineMath math="50\%" /> of the final <InlineMath math="840" />.
 - <InlineMath math="525" /> comes from treating the new seedlings as <InlineMath math="60\%" /> of what was left after moving. Then the final count is <InlineMath math="1.6" /> times that remainder, so the remainder is <InlineMath math="840 \div 1.6 = 525" />, and since half were moved, the number moved is taken to equal that remainder.
+
+# Answer
 
 So <InlineMath math="360" /> seedlings were moved to the orchard in the second month.
