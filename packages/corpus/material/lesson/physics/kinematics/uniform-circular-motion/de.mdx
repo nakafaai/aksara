@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Gleichförmige Kreisbewegung",
   description:
@@ -26,8 +25,9 @@ Der Geschwindigkeitsbetrag beschreibt nur, wie schnell sich das Objekt entlang d
     <>
       Verändere die Umlaufzeit und beobachte, wie das Auto jede Runde mit einem
       anderen Geschwindigkeitsbetrag zurücklegt.
-  </>
+    </>
   }
+  footer={<>Kürzere Umlaufzeit macht das Auto schneller und erhöht die Beschleunigung.</>}
   labels={{
     choosePeriod: "Umlaufzeit wählen",
     period: <>Umlaufzeit</>,
@@ -38,29 +38,62 @@ Der Geschwindigkeitsbetrag beschreibt nur, wie schnell sich das Objekt entlang d
   }}
 />
 
-Jede Kurve einer Laufbahn ist ein Halbkreis. Ein Läufer, der dort <InlineMath math="8\text{ m/s}" /> hält, hat zwar **eine konstante Schnelligkeit**, doch seine Geschwindigkeit dreht sich, also wird er beschleunigt.
+Jede Kurve einer Laufbahn ist ein Halbkreis. Ein Läufer, der auf Bahn <InlineMath math="1" /> mit Radius <InlineMath math="36{,}8\text{ m}" /> konstant <InlineMath math="8\text{ m/s}" /> hält, hat zwar **eine konstante Schnelligkeit**, doch seine Geschwindigkeit dreht sich, also wird er beschleunigt. Verschiebe unten den Winkel <InlineMath math="a" /> und verfolge die drehende Tangente.
 
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>Durch die Kurve</>}
+<MathVisual
+  title={<>Drehende Geschwindigkeit in einer Bahnkurve</>}
   description={
     <>
-      Der Läufer hält <InlineMath math="8\text{ m/s}" /> auf Bahn <InlineMath math="1" />. Sieh zu, wie der türkise Pfeil beim Drehen seine Länge behält, und halte den Lauf bei <InlineMath math="100\text{ m}" /> an, um ihn auf halbem Weg zu sehen.
+      Verschiebe den Winkel <InlineMath math="a" /> entlang des <InlineMath math="36{,}8\text{ m}" /> großen Halbkreises und beobachte, wie die Tangentialgeschwindigkeit (türkis) dreht, während die Beschleunigung (pink) zur Mitte zeigt.
     </>
   }
+  footer={<>Der tangentiale Pfeil dreht sich stetig, während der Läufer der Kurve folgt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -55, max: 55 }, y: { min: -22, max: 52 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 180, value: 45, step: 15, label: "a" },
+    ],
+    objects: [
+      { id: "bend", kind: "arc", appearance: "reference", center: { x: 0, y: 0 }, radius: 36.8, startDegrees: 0, sweepDegrees: 180 },
+      { id: "center-pt", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "radius-line", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" }] },
+      { id: "tangent-vel", kind: "path", appearance: "construction", points: [{ x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" }, { x: "36.8*cos(a*pi/180) - 16*sin(a*pi/180)", y: "36.8*sin(a*pi/180) + 16*cos(a*pi/180)" }] },
+      { id: "inward-acc", kind: "path", appearance: "warning", points: [{ x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" }, { x: "26.8*cos(a*pi/180)", y: "26.8*sin(a*pi/180)" }] },
+      { id: "runner-pt", kind: "marker", appearance: "primary", x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "center", objectId: "center-pt", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "runner", objectId: "runner-pt", at: { x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "arc-dist", formula: "36.8*a*pi/180" },
+      { key: "vx", formula: "-8*sin(a*pi/180)" },
+      { key: "vy", formula: "8*cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
-    chooseDistance: "Laufstrecke wählen",
-    displacement: <>Betrag der Verschiebung</>,
-    distance: <>Gelaufene Strecke</>,
-    time: <>Zeit</>,
-    viewLabel: "Läufer auf einer 400-m-Leichtathletikbahn von oben gesehen",
+    a: <>Kurvenwinkel <InlineMath math="a" /> (deg)</>,
+    center: <>Mitte</>,
+    runner: <>Läufer</>,
+    "arc-dist": <>Gelaufener Bogen (m)</>,
+    vx: <>Geschwindigkeit x (m/s)</>,
+    vy: <>Geschwindigkeit y (m/s)</>,
   }}
 />
 
-Auf Bahn <InlineMath math="1" /> hat die Kurve einen Radius von etwa <InlineMath math="36{,}8\text{ m}" />, also beträgt die Zentripetalbeschleunigung dort <InlineMath math="\frac{8^2}{36{,}8}\approx1{,}74\text{ m/s}^2" />. Auf den Geraden hört der Pfeil auf, sich zu drehen, und die Beschleunigung ist null.
+Auf Bahn <InlineMath math="1" /> hat die Kurve einen Radius von etwa <InlineMath math="36{,}8\text{ m}" />, sodass die Zentripetalbeschleunigung dort folgenden Wert annimmt:
 
-## Die Winkelverschiebung beschreibt die Position auf dem Kreis
+<BlockMath math="a_c=\frac{8^2}{36{,}8}\approx1{,}74\text{ m/s}^2" />
+
+Auf den Geraden hört der Pfeil auf, sich zu drehen, und die Beschleunigung fällt auf null.
+
+## Winkelbewegung und Umlaufzeit
+
+Statt Meter auf einer Geraden zu zählen, misst die Kreisbewegung den **überstrichenen Winkel** und die Zeit für einen vollen Umlauf. Winkel, Radumdrehung, Umlaufzeit und Frequenz fassen die Drehgeschwindigkeit kompakt zusammen.
+
+### Die Winkelverschiebung beschreibt die Position auf dem Kreis
 
 Bei geradliniger Bewegung geben wir die Position oft als Abstand vom Nullpunkt an. Bei kreisförmiger Bewegung beschreibt ein Winkel die Position. Der vom Objekt **überstrichene Winkel** wird als Winkelverschiebung bezeichnet.
 
@@ -70,7 +103,7 @@ Wenn sich ein Objekt von einer Referenzlinie aus bewegt und in der Zeit <InlineM
 
 Das Symbol <InlineMath math="\omega" /> wird Omega gelesen. Bei einer gleichförmigen Kreisbewegung ist die Winkelgeschwindigkeit konstant und entspricht deshalb dem Mittelwert in jedem Zeitintervall. Ihre Einheit ist Radiant pro Sekunde, geschrieben als <InlineMath math="\text{rad/s}" />. Das Bogenmaß eignet sich hier besonders gut, weil eine volle Umdrehung <InlineMath math="2\pi" /> Radiant entspricht.
 
-## Ein Winkel für das ganze Rad
+### Ein Winkel für das ganze Rad
 
 An einem drehenden Rad **überstreicht jeder Punkt in gleicher Zeit denselben Winkel**, also hat das ganze Rad eine Winkelgeschwindigkeit. Ein Ventil auf der Felge und ein Reflektor auf halbem Weg machen den Vergleich leicht.
 
@@ -81,6 +114,7 @@ An einem drehenden Rad **überstreicht jeder Punkt in gleicher Zeit denselben Wi
       Wähle die Zeit für eine Umdrehung. Beide Marken drehen sich um denselben Winkel, aber ihre Geschwindigkeitspfeile unterscheiden sich.
     </>
   }
+  footer={<>Beide Marken teilen eine Winkelgeschwindigkeit, doch der Rand läuft schneller.</>}
   labels={{
     angularSpeed: <>Winkelgeschwindigkeit</>,
     choosePeriod: "Zeit für eine Umdrehung wählen",
@@ -93,7 +127,7 @@ An einem drehenden Rad **überstreicht jeder Punkt in gleicher Zeit denselben Wi
 
 Bei einer Umdrehung pro Sekunde überstreichen beide Marken jede Sekunde <InlineMath math="2\pi\text{ rad}" />, also ist <InlineMath math="\omega\approx6{,}28\text{ rad/s}" /> für Ventil und Reflektor gleich. Ihre Schnelligkeiten unterscheiden sich, etwa <InlineMath math="1{,}95" /> und <InlineMath math="0{,}97\text{ m/s}" />, weil sie auf verschiedenen Radien sitzen.
 
-## Umlaufzeit und Frequenz beschreiben dieselbe Runde
+### Umlaufzeit und Frequenz beschreiben dieselbe Runde
 
 Eine volle Umdrehung lässt sich auf zwei Arten beschreiben. Die Umlaufzeit <InlineMath math="T" /> ist die Zeit für eine Umdrehung. Die Frequenz <InlineMath math="f" /> gibt die Anzahl der Umdrehungen pro Sekunde an.
 
@@ -106,7 +140,11 @@ Beide Größen sind **Kehrwerte** voneinander:
 
 Wenn die Umlaufzeit kleiner ist, vollendet das Objekt eine Umdrehung schneller. Dadurch sind seine Frequenz und sein Winkelgeschwindigkeitsbetrag <InlineMath math="\lvert\omega\rvert" /> größer. Das Vorzeichen von <InlineMath math="\omega" /> erfasst getrennt davon die Drehrichtung.
 
-## Geschwindigkeit und Beschleunigung zeigen in verschiedene Richtungen
+## Tangentialgeschwindigkeit auf der Kreisbahn
+
+Die Drehgeschwindigkeit allein reicht noch nicht, denn wir brauchen auch **Richtung und Betrag der Bahngeschwindigkeit**. Die Tangentenvektoren und das Loslassen einer Schnur zeigen, warum das Tempo mit dem Radius wächst.
+
+### Geschwindigkeit und Beschleunigung zeigen in verschiedene Richtungen
 
 An jedem Punkt der Kreisbahn zeigt die Geschwindigkeit tangential zum Kreis. Die Zentripetalbeschleunigung ist dagegen zum Mittelpunkt gerichtet. Beide Richtungen stehen **senkrecht aufeinander**. Deshalb kann sich ein Objekt mit konstantem Geschwindigkeitsbetrag bewegen und dennoch beschleunigt sein.
 
@@ -117,6 +155,7 @@ Hier ist das kleine Auto aus dem Beispiel zu vier Zeitpunkten, jeweils eine Vier
 <MathVisual
   title={<>Geschwindigkeit und Beschleunigung auf der Bahn</>}
   description={<>Radius <InlineMath math="4\text{ m}" /> und Periode <InlineMath math="6\text{ s}" />. Türkise Pfeile sind die Geschwindigkeit in halbem Maßstab, pinke die Zentripetalbeschleunigung in halbem Maßstab.</>}
+  footer={<>Jede Vierteldrehung dreht beide Pfeile, doch sie bleiben stets senkrecht.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
@@ -154,7 +193,9 @@ Hier ist das kleine Auto aus dem Beispiel zu vier Zeitpunkten, jeweils eine Vier
   }}
 />
 
-## Tangentialer Geschwindigkeitsbetrag und Winkelgeschwindigkeit gehören zusammen
+Keiner der pinken Pfeile zeigt jemals entlang eines türkisen Pfeils. Weil die Beschleunigung zur Mitte überall im rechten Winkel zur Geschwindigkeit steht, krümmt sie die Bahn, ohne das Tempo zu ändern.
+
+### Tangentialer Geschwindigkeitsbetrag und Winkelgeschwindigkeit gehören zusammen
 
 Der tangentiale Geschwindigkeitsbetrag beschreibt, wie schnell sich das Objekt **entlang der Kreisbahn** bewegt. Bei einem Radius <InlineMath math="r" /> hat eine volle Runde die Länge <InlineMath math="2\pi r" />. Da eine Umdrehung die Zeit <InlineMath math="T" /> benötigt, gilt:
 
@@ -164,8 +205,6 @@ Der tangentiale Geschwindigkeitsbetrag beschreibt, wie schnell sich das Objekt *
 </MathContainer>
 
 Die Formel <InlineMath math="v=\lvert\omega\rvert r" /> zeigt, dass zwei Objekte mit demselben Winkelgeschwindigkeitsbetrag nicht unbedingt denselben tangentialen Geschwindigkeitsbetrag besitzen. Das weiter vom Mittelpunkt entfernte Objekt legt in derselben Zeit einen längeren Weg zurück und bewegt sich deshalb schneller.
-
-## Loslassen und die Kugel fliegt gerade
 
 Eine Kugel an einer Schnur zeigt, warum die Geschwindigkeit tangential ist. Solange die Schnur zieht, **biegt die Kugel weiter ab**, und sobald du loslässt, fliegt sie gerade entlang der Tangente.
 
@@ -178,6 +217,7 @@ Eine Kugel an einer Schnur zeigt, warum die Geschwindigkeit tangential ist. Sola
       Die Schnur ist <InlineMath math="0{,}8\text{ m}" /> lang, und eine Umdrehung dauert <InlineMath math="0{,}8\text{ s}" />. Wähle den Punkt, an dem du loslässt.
     </>
   }
+  footer={<>Fällt der Zug der Schnur weg, fliegt die Kugel gerade entlang der Tangente.</>}
   labels={{
     acceleration: <>Zentripetalbeschleunigung</>,
     chooseRelease: "Loslasspunkt wählen",
@@ -194,7 +234,14 @@ Eine Kugel an einer Schnur zeigt, warum die Geschwindigkeit tangential ist. Sola
   }}
 />
 
-Hier ist <InlineMath math="\omega=\frac{2\pi}{0{,}8}\approx7{,}85\text{ rad/s}" />, also <InlineMath math="v=\omega r\approx6{,}28\text{ m/s}" />. Lässt du am Ostpunkt los, fliegt die Kugel nach Norden, senkrecht zur Schnur, die sie gerade verlassen hat.
+Für diese Schnurlänge und Umlaufzeit ergeben sich folgende Werte:
+
+<MathContainer>
+  <BlockMath math="\omega=\frac{2\pi}{0{,}8}\approx7{,}85\text{ rad/s}" />
+  <BlockMath math="v=\omega r\approx6{,}28\text{ m/s}" />
+</MathContainer>
+
+Lässt du am Ostpunkt los, fliegt die Kugel nach Norden, senkrecht zur Schnur, die sie gerade verlassen hat.
 
 ## Zentripetalbeschleunigung zeigt immer nach innen
 
@@ -205,11 +252,9 @@ Auch bei konstantem Geschwindigkeitsbetrag dreht sich der Geschwindigkeitsvektor
   <BlockMath math="a_c=\omega^2 r" />
 </MathContainer>
 
-Die Zentripetalbeschleunigung <Highlight>zeigt stets zum Mittelpunkt des Kreises</Highlight>. Sie wirkt also nicht entlang der Bewegungsbahn: Die Geschwindigkeit verläuft tangential, die Zentripetalbeschleunigung weist nach innen.
+Die Zentripetalbeschleunigung <Highlight>zeigt stets zum Mittelpunkt des Kreises</Highlight>. Die Geschwindigkeit verläuft tangential, die Zentripetalbeschleunigung weist nach innen.
 
-## Die Schwerkraft als Zentripetalzug
-
-Bei einem Satelliten auf einer Kreisbahn liefert die Schwerkraft die Zentripetalbeschleunigung. **Die Schwerkraft zeigt zum Erdmittelpunkt**, genau dorthin, wohin <InlineMath math="a_c" /> zeigen muss.
+Bei einem Satelliten auf einer Kreisbahn liefert die Schwerkraft genau diesen Zug nach innen. **Die Schwerkraft zeigt zum Erdmittelpunkt**, genau dorthin, wohin <InlineMath math="a_c" /> zeigen muss.
 
 <SatelliteOrbitCircularLab
   title={<>Satelliten auf Kreisbahnen</>}
@@ -218,6 +263,7 @@ Bei einem Satelliten auf einer Kreisbahn liefert die Schwerkraft die Zentripetal
       Wähle einen Satelliten. Der türkise Pfeil ist seine Geschwindigkeit, der fuchsiafarbene seine Beschleunigung zum Erdmittelpunkt.
     </>
   }
+  footer={<>Die Erdanziehung zieht stets nach innen, senkrecht zur Bahn jedes Satelliten.</>}
   labels={{
     acceleration: <>Zentripetalbeschleunigung</>,
     chooseOrbit: "Satellit wählen",
@@ -233,7 +279,11 @@ Bei einem Satelliten auf einer Kreisbahn liefert die Schwerkraft die Zentripetal
   }}
 />
 
-Die Raumstation kreist mit etwa <InlineMath math="7{,}67\text{ km/s}" /> einmal in <InlineMath math="92{,}4\text{ min}" />, also ist <InlineMath math="a_c=\frac{v^2}{r}\approx8{,}69\text{ m/s}^2" />. Ein geostationärer Satellit braucht etwa <InlineMath math="23{,}93\text{ h}" />, so lange, wie sich die Erde einmal dreht.
+Die Raumstation kreist mit etwa <InlineMath math="7{,}67\text{ km/s}" /> einmal in <InlineMath math="92{,}4\text{ min}" />, was folgende Zentripetalbeschleunigung ergibt:
+
+<BlockMath math="a_c=\frac{v^2}{r}\approx8{,}69\text{ m/s}^2" />
+
+Ein geostationärer Satellit kreist viel weiter außen und braucht etwa <InlineMath math="23{,}93\text{ h}" />, so lange wie eine volle Erddrehung.
 
 ## Eine volle Umdrehung eines Kleinwagens
 
@@ -245,7 +295,7 @@ Sein Winkelgeschwindigkeitsbetrag beträgt:
 
 Sein tangentialer Geschwindigkeitsbetrag ist:
 
-<BlockMath math="\begin{aligned} v &amp;=\lvert\omega\rvert r \\ &amp;=\frac{\pi}{3}(4) \\ &amp;=\frac{4\pi}{3}\text{ m/s} \\ &amp;\approx4{,}19\text{ m/s} \end{aligned}" />
+<BlockMath math="\begin{aligned} v &=\lvert\omega\rvert r \\ &=\frac{\pi}{3}(4) \\ &=\frac{4\pi}{3}\text{ m/s} \\ &\approx4{,}19\text{ m/s} \end{aligned}" />
 
 Seine Zentripetalbeschleunigung beträgt:
 
@@ -253,11 +303,12 @@ Seine Zentripetalbeschleunigung beträgt:
 
 Das Auto bewegt sich also mit einem **konstanten Geschwindigkeitsbetrag** von etwa <InlineMath math="4{,}19\text{ m/s}" />. Trotzdem beträgt seine Beschleunigung ungefähr <InlineMath math="4{,}39\text{ m/s}^2" />, weil sich die Richtung seiner Geschwindigkeit fortlaufend ändert.
 
-Folge der Kette ab der Periode. In einer Sekunde dreht sich der Radius um <InlineMath math="\omega=2\pi/T" />, der Punkt legt den Bogen <InlineMath math="v=\omega r" /> zurück, und dann gilt <InlineMath math="a_c=v^2/r=4\pi^2/9\text{ m/s}^2" />. Zoom auf den orangen Bogen dieser Sekunde.
+Folge der Kette ab der Periode in der Grafik unten. In einer Sekunde dreht sich der Radius um <InlineMath math="\omega" />, der Punkt legt den orangen Bogen <InlineMath math="v" /> zurück, und dieses stetige Drehen bestimmt die Zentripetalbeschleunigung <InlineMath math="a_c" />.
 
 <MathVisual
   title={<>Von der Periode zur Zentripetalbeschleunigung</>}
   description={<>Der Winkel (violette Radien) und der Bogen (orange) in <InlineMath math="1\text{ s}" /> auf einem Kreis mit Radius <InlineMath math="4\text{ m}" /> und Periode <InlineMath math="6\text{ s}" />.</>}
+  footer={<>In einer Sekunde überstreicht der Radius den Winkel und zeichnet den Bogen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
@@ -279,3 +330,5 @@ Folge der Kette ab der Periode. In einer Sekunde dreht sich der Radius um <Inlin
     arc: <InlineMath math="v=\omega r=\frac{4\pi}{3}\text{ m/s}" />,
   }}
 />
+
+Ein Sechstel des Kreises entspricht <InlineMath math="60^\circ" />, also <InlineMath math="\pi/3\text{ rad}" /> in einer einzelnen Sekunde. Multipliziert mit dem Radius von <InlineMath math="4\text{ m}" /> ergibt sich genau die orange Bogenlänge von <InlineMath math="4{,}19\text{ m}" /> pro Sekunde.

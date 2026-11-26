@@ -2,14 +2,18 @@
 export const metadata = {
   title: "Gerak Lurus Berubah Beraturan",
   description:
-    "Gerak lurus berubah beraturan mengikuti lintasan lurus dengan percepatan tetap dan dapat disajikan melalui jejak posisi serta grafik kecepatan-waktu.",
+    "Gerak lurus berubah beraturan mengikuti lintasan lurus dengan percepatan tetap dan dapat disajikan melalui jejak posisi serta grafik kecepatan waktu.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
   dateModified: "2026-09-12",
   subject: "Kinematika",
 };
 
-## Kecepatan Berubah dengan Percepatan Tetap
+## Percepatan Tetap Mengubah Kecepatan Secara Merata
+
+Pada gerak lurus dengan percepatan tetap, kecepatan bertambah atau berkurang **dengan besar yang sama persis** pada setiap selang waktu sama. Aturan ini melahirkan tiga persamaan GLBB sekaligus pola kuadrat jarak dari diam.
+
+### Kecepatan Berubah dengan Percepatan Tetap
 
 Gerak lurus berubah beraturan, disingkat GLBB, adalah gerak pada lintasan lurus dengan percepatan tetap. Percepatan tetap berarti kecepatan <Highlight>berubah dengan tambahan yang sama</Highlight> setiap selang waktu yang sama.
 
@@ -25,29 +29,59 @@ Jika mobil awalnya <InlineMath math="0\text{ m/s}" /> lalu kecepatannya bertamba
 
 Di sini, <InlineMath math="v_0" /> adalah kecepatan awal, <InlineMath math="v_t" /> kecepatan setelah waktu <InlineMath math="t" />, <InlineMath math="a" /> percepatan, dan <InlineMath math="\Delta x" /> perpindahan.
 
-## Galileo Mengukurnya dengan Bel
+### Menguji Pola Jarak Kuadrat pada Bidang Miring
 
-Galileo menguji gerak dengan percepatan tetap dengan menggelindingkan bola di lintasan yang sedikit miring. **Kecepatannya bertambah dengan jumlah yang sama setiap detik**, jadi pada <InlineMath math="3^\circ" /> bola bergerak sekitar <InlineMath math="0{,}374" />, <InlineMath math="0{,}748" />, <InlineMath math="1{,}12" />, dan <InlineMath math="1{,}50\text{ m/s}" /> setelah setiap detik.
+Galileo menguji gerak dengan percepatan tetap dengan menggelindingkan bola di lintasan yang sedikit miring. **Kecepatannya bertambah dengan jumlah yang sama setiap detik**, sehingga jarak tempuhnya tumbuh sebanding dengan kuadrat waktu. Ubah sudut kemiringan <InlineMath math="g" /> untuk mengamati posisi tiap detik.
 
-<GalileoInclineBellsLab
-  title={<>Lintasan Miring dan Bel Galileo</>}
+<MathVisual
+  title={<>Jarak Kuadrat pada Lintasan Miring Galileo</>}
   description={
     <>
-      Empat bel dipasang di posisi bola setelah <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="4\text{ s}" />. Bel berbunyi dengan ketukan rata walaupun jarak antarbelnya makin besar.
+      Jarak tempuh bola menggelinding dari diam selama{" "}
+      <InlineMath math="4\text{ s}" /> pada sudut kemiringan{" "}
+      <InlineMath math="g" />.
     </>
   }
+  footer={<>Pada setiap sudut kemiringan, posisi empat detik berbanding <InlineMath math="1:4:9:16" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.5 }, y: { min: -0.4, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "g", min: 2, max: 8, value: 3, step: 1, label: "g" },
+    ],
+    objects: [
+      { id: "ramp-curve", kind: "function", appearance: "primary", formula: "0.5*(50/7)*sin(g*pi/180)*x^2", domain: { min: 0, max: 4 } },
+      { id: "b1", kind: "marker", appearance: "answer", x: "1", y: "0.5*(50/7)*sin(g*pi/180)" },
+      { id: "b2", kind: "marker", appearance: "answer", x: "2", y: "2*(50/7)*sin(g*pi/180)" },
+      { id: "b3", kind: "marker", appearance: "answer", x: "3", y: "4.5*(50/7)*sin(g*pi/180)" },
+      { id: "b4", kind: "marker", appearance: "answer", x: "4", y: "8*(50/7)*sin(g*pi/180)" },
+    ],
+    labels: [
+      { key: "b4-lbl", objectId: "b4", at: { x: "4", y: "8*(50/7)*sin(g*pi/180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "accel", formula: "(50/7)*sin(g*pi/180)" },
+      { key: "s1", formula: "0.5*(50/7)*sin(g*pi/180)" },
+      { key: "s4", formula: "8*(50/7)*sin(g*pi/180)" },
+    ],
+  }}
   labels={{
-    acceleration: <>Percepatan menuruni lintasan</>,
-    chooseAngle: "Pilih sudut kemiringan",
-    firstSecond: <>Jarak pada detik pertama</>,
-    gaps: <>Jarak antarbel</>,
-    viewLabel: "Bola baja menggelinding di lintasan miring Galileo melewati empat bel",
+    g: <>Sudut kemiringan <InlineMath math="g" /> (derajat)</>,
+    "b4-lbl": <InlineMath math="s(4)" />,
+    accel: <>Percepatan (<InlineMath math="\text{m/s}^2" />)</>,
+    s1: <>Jarak pada 1 s (m)</>,
+    s4: <>Jarak pada 4 s (m)</>,
   }}
 />
 
-Bel berada sekitar <InlineMath math="0{,}19" />, <InlineMath math="0{,}75" />, <InlineMath math="1{,}68" />, dan <InlineMath math="2{,}99\text{ m}" /> dari titik awal, jadi jarak antarbelnya berbanding <InlineMath math="1:3:5:7" />. Perubahan kecepatan yang sama dalam waktu yang sama selalu memberi pola itu jika benda mulai dari diam.
+Pada <InlineMath math="3^\circ" />, tanda posisi setelah <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="4\text{ s}" /> berada di sekitar <InlineMath math="0{,}19" />, <InlineMath math="0{,}75" />, <InlineMath math="1{,}68" />, dan <InlineMath math="2{,}99\text{ m}" />, sehingga selisih antartanda berbanding <InlineMath math="1:3:5:7" />.
 
-## Jejak Benda Tidak Lagi Berjarak Sama
+## Membaca Jarak Renggang pada Jejak dan Batang Kecepatan
+
+Saat percepatan tetap, tanda posisi tiap detik **makin merenggang** dan melengkungkan grafik posisi menjadi parabola. Pada saat yang sama, batang kecepatan pada selang tetap naik setinggi langkah yang sama.
+
+### Jejak Benda Tidak Lagi Berjarak Sama
 
 Pada GLB, jejak posisi tiap detik berjarak sama. Pada GLBB, jaraknya dapat berubah. Selama **benda terus bergerak searah**, jarak antartitik membesar ketika kelajuannya bertambah dan mengecil ketika kelajuannya berkurang. Jika benda berbalik arah, urutan dan sisi setiap tanda juga harus diperiksa.
 
@@ -61,6 +95,7 @@ Pada gerak "Dari Diam", mobil belum melaju pada detik awal. Jarak antartanda pos
       <InlineMath math="1\text{ s}" /> saat percepatan tetap.
     </>
   }
+  footer={<>Mulai dari diam membuat jarak antartitik pada rel makin lebar setiap detik.</>}
   labels={{
     chooseScenario: "Pilih gerak",
     scenarioNames: {
@@ -78,25 +113,26 @@ Pada gerak "Dari Diam", mobil belum melaju pada detik awal. Jarak antartanda pos
   }}
 />
 
-Untuk mobil mainan yang mulai dari diam, tanda setiap sekon jatuh di <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="9" />, <InlineMath math="16" />, dan <InlineMath math="25\text{ m}" />. Jaraknya bertambah <InlineMath math="2\text{ m}" /> setiap sekon, jadi grafik posisinya melengkung menjadi parabola, bukan garis lurus.
+Untuk mobil mainan yang mulai dari diam dengan <InlineMath math="a=2\text{ m/s}^2" />, tanda setiap sekon jatuh di <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="9" />, <InlineMath math="16" />, dan <InlineMath math="25\text{ m}" />. Jaraknya bertambah <InlineMath math="2\text{ m}" /> setiap sekon, jadi grafik posisinya melengkung menjadi parabola, bukan garis lurus.
 
 <MathVisual
   title={<>Tanda Posisi Makin Renggang</>}
-  description={<><InlineMath math="x=\tfrac12at^2" /> dengan <InlineMath math="a=2\text{ m/s}^2" /> selama <InlineMath math="5\text{ s}" />. Mendatar: waktu dalam s. Tegak: posisi dalam satuan <InlineMath math="5\text{ m}" />.</>}
+  description={<><InlineMath math="x=\tfrac12at^2" /> dengan <InlineMath math="a=2\text{ m/s}^2" /> selama <InlineMath math="5\text{ s}" />. Mendatar: waktu dalam s. Tegak: posisi dalam m.</>}
+  footer={<>Kurva melengkung ke atas karena tiap detik baru menambah jarak lebih besar.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -1, max: 28 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "position", kind: "quadratic", appearance: "primary", coefficients: { a: 0.2, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
-      { id: "mark-1", kind: "point", appearance: "answer", at: { x: 1, y: 1 ** 2 / 5 } },
-      { id: "mark-2", kind: "point", appearance: "answer", at: { x: 2, y: 2 ** 2 / 5 } },
-      { id: "mark-3", kind: "point", appearance: "answer", at: { x: 3, y: 3 ** 2 / 5 } },
-      { id: "mark-4", kind: "point", appearance: "answer", at: { x: 4, y: 4 ** 2 / 5 } },
-      { id: "mark-5", kind: "point", appearance: "answer", at: { x: 5, y: 5 ** 2 / 5 } },
+      { id: "position", kind: "function", appearance: "primary", formula: "x^2", domain: { min: 0, max: 5 } },
+      { id: "mark-1", kind: "point", appearance: "answer", at: { x: 1, y: 1 } },
+      { id: "mark-2", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+      { id: "mark-3", kind: "point", appearance: "answer", at: { x: 3, y: 9 } },
+      { id: "mark-4", kind: "point", appearance: "answer", at: { x: 4, y: 16 } },
+      { id: "mark-5", kind: "point", appearance: "answer", at: { x: 5, y: 25 } },
     ],
     labels: [
-      { key: "marks", objectId: "mark-5", at: { x: 5, y: 5 }, placement: "left" },
+      { key: "marks", objectId: "mark-5", at: { x: 5, y: 25 }, placement: "left" },
     ],
   }}
   labels={{
@@ -104,36 +140,73 @@ Untuk mobil mainan yang mulai dari diam, tanda setiap sekon jatuh di <InlineMath
   }}
 />
 
-## Potongan Pita yang Bertambah Satu Sentimeter
+Karena kemiringan parabola makin curam setiap detik, satu kurva ini sekaligus menampilkan jarak yang membesar dan kecepatan yang meningkat.
 
-Pita ticker timer mengubah gagasan yang sama menjadi kertas. Troli bertambah cepat dengan <InlineMath math="1\text{ m/s}^2" />, dan **setiap potongan sepersepuluh detik lebih panjang <InlineMath math="1\text{ cm}" /> dari potongan sebelumnya**.
+### Batang Kecepatan yang Tumbuh Merata
 
-<TickerTapeMotionLab
-  motion="speeding"
-  title={<>Pita Ticker Timer Troli yang Makin Cepat</>}
+Troli yang dipercepat menempuh **potongan lintasan yang makin panjang** tiap sepersepuluh detik. Saat batang kecepatannya disejajarkan, puncaknya membentuk satu garis lurus menanjak. Geser percepatan <InlineMath math="a" /> untuk melihat total jarak tempuhnya.
+
+<MathVisual
+  title={<>Batang Kecepatan Troli yang Makin Cepat</>}
   description={
     <>
-      Ticker timer mencetak titik setiap <InlineMath math="0{,}02\text{ s}" />. Saat disusun berdampingan, potongan pita membentuk diagram kecepatan terhadap waktu yang puncaknya naik lurus.
+      Kecepatan setiap <InlineMath math="0{,}1\text{ s}" /> dari{" "}
+      <InlineMath math="0{,}2\text{ m/s}" /> saat percepatan{" "}
+      <InlineMath math="a" /> berubah.
     </>
   }
+  footer={<>Puncak batang membentuk garis lurus dengan kemiringan sama dengan percepatan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.9 }, y: { min: 0, max: 1.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.4, max: 1.4, value: 1, step: 0.2, label: "a" },
+    ],
+    objects: [
+      { id: "slope", kind: "function", appearance: "construction", formula: "0.2 + a*x", domain: { min: 0.05, max: 0.75 } },
+      { id: "b1", kind: "path", appearance: "primary", points: [{ x: "0.05", y: "0" }, { x: "0.05", y: "0.2 + 0.05*a" }] },
+      { id: "b2", kind: "path", appearance: "primary", points: [{ x: "0.15", y: "0" }, { x: "0.15", y: "0.2 + 0.15*a" }] },
+      { id: "b3", kind: "path", appearance: "primary", points: [{ x: "0.25", y: "0" }, { x: "0.25", y: "0.2 + 0.25*a" }] },
+      { id: "b4", kind: "path", appearance: "primary", points: [{ x: "0.35", y: "0" }, { x: "0.35", y: "0.2 + 0.35*a" }] },
+      { id: "b5", kind: "path", appearance: "primary", points: [{ x: "0.45", y: "0" }, { x: "0.45", y: "0.2 + 0.45*a" }] },
+      { id: "b6", kind: "path", appearance: "primary", points: [{ x: "0.55", y: "0" }, { x: "0.55", y: "0.2 + 0.55*a" }] },
+      { id: "b7", kind: "path", appearance: "primary", points: [{ x: "0.65", y: "0" }, { x: "0.65", y: "0.2 + 0.65*a" }] },
+      { id: "b8", kind: "path", appearance: "primary", points: [{ x: "0.75", y: "0" }, { x: "0.75", y: "0.2 + 0.75*a" }] },
+      { id: "top-first", kind: "marker", appearance: "answer", x: "0.05", y: "0.2 + 0.05*a" },
+      { id: "top-last", kind: "marker", appearance: "answer", x: "0.75", y: "0.2 + 0.75*a" },
+    ],
+    labels: [
+      { key: "v1-lbl", objectId: "top-first", at: { x: "0.05", y: "0.2 + 0.05*a" }, placement: "above-right" },
+      { key: "v8-lbl", objectId: "top-last", at: { x: "0.75", y: "0.2 + 0.75*a" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "v1", formula: "0.2 + 0.05*a" },
+      { key: "v8", formula: "0.2 + 0.75*a" },
+      { key: "dist", formula: "0.8*(0.2 + 0.4*a)" },
+    ],
+  }}
   labels={{
-    acceleration: <>Percepatan dari potongan pita</>,
-    chooseMotion: "Pilih gerak troli",
-    firstStrip: <>Potongan pertama</>,
-    interval: <>Selang waktu antartitik</>,
-    lastStrip: <>Potongan terakhir</>,
-    motions: {
-      uniform: <>Tetap</>,
-      speeding: <>Makin cepat</>,
-      slowing: <>Melambat</>,
-    },
-    viewLabel: "Troli menarik pita kertas melewati ticker timer",
+    a: <>Percepatan <InlineMath math="a" /> (<InlineMath math="\text{m/s}^2" />)</>,
+    "v1-lbl": <InlineMath math="v_1" />,
+    "v8-lbl": <InlineMath math="v_8" />,
+    v1: <>Potongan pertama (m/s)</>,
+    v8: <>Potongan terakhir (m/s)</>,
+    dist: <>Jarak total selama 0,8 s (m)</>,
   }}
 />
 
-Potongan pitanya bertambah dari <InlineMath math="2{,}5\text{ cm}" /> ke <InlineMath math="9{,}5\text{ cm}" />. Satu potongan berlangsung <InlineMath math="0{,}1\text{ s}" />, jadi <InlineMath math="a=\frac{0{,}01\text{ m}}{(0{,}1\text{ s})^2}=1\text{ m/s}^2" />, dan jumlah panjang semua potongan adalah <InlineMath math="48\text{ cm}" /> yang ditempuh troli.
+Pada <InlineMath math="a=1\text{ m/s}^2" />, potongan pitanya bertambah dari <InlineMath math="2{,}5\text{ cm}" /> ke <InlineMath math="9{,}5\text{ cm}" />, naik <InlineMath math="1\text{ cm}" /> tiap <InlineMath math="0{,}1\text{ s}" />:
 
-## Menghitung Perpindahan dari Luas Grafik
+<BlockMath math="a=\frac{0{,}01\text{ m}}{(0{,}1\text{ s})^2}=1\text{ m/s}^2" />
+
+Jumlah panjang kedelapan potongan tepat sama dengan <InlineMath math="48\text{ cm}" /> yang ditempuh troli.
+
+## Menentukan Perpindahan dari Luas Grafik dan Rumus
+
+Luas daerah di antara garis kecepatan dan sumbu waktu menghasilkan **perpindahan yang sama persis** dengan rumus kinematika. Memakai keduanya membuatmu dapat memeriksa hasil hitungan secara geometris.
+
+### Menghitung Perpindahan dari Luas Grafik
 
 Grafik kecepatan-waktu menunjukkan kecepatan dan perpindahan. **Luas bertanda** antara grafik dan sumbu waktu menyatakan perpindahan. Pada GLBB di atas sumbu waktu, daerah itu dapat berupa segitiga atau trapesium. Daerah di bawah sumbu menyumbang perpindahan negatif.
 
@@ -145,6 +218,7 @@ Grafik kecepatan-waktu menunjukkan kecepatan dan perpindahan. **Luas bertanda** 
       waktu untuk memperoleh perpindahan benda.
     </>
   }
+  footer={<>Luas segitiga atau trapesium di bawah garis langsung memberi nilai perpindahan.</>}
   labels={{
     chooseScenario: "Pilih Gerak",
     scenarioNames: {
@@ -163,9 +237,9 @@ Grafik kecepatan-waktu menunjukkan kecepatan dan perpindahan. **Luas bertanda** 
 | Kecepatan awal dan akhir positif | Trapesium | <InlineMath math="\Delta x=\frac{1}{2}(v_0+v_t)t" /> |
 | Ingin langsung memakai percepatan | Gabungan persegi panjang dan segitiga | <InlineMath math="\Delta x=v_0t+\frac{1}{2}at^2" /> |
 
-Rumus-rumus tersebut menyatakan hubungan yang sama: perpindahan adalah luas bertanda antara grafik kecepatan-waktu dan sumbu waktu.
+Rumus-rumus ini menyatakan hubungan yang sama: perpindahan adalah luas bertanda antara grafik kecepatan-waktu dan sumbu waktu.
 
-## Mobil Mulai dari Diam
+### Mobil Mulai dari Diam
 
 Sebuah mobil mainan mulai dari diam, lalu mendapat percepatan tetap <InlineMath math="2\text{ m/s}^2" /> selama <InlineMath math="5\text{ s}" />.
 
@@ -193,30 +267,74 @@ Kamu juga bisa memeriksa perpindahan melalui **luas segitiga di bawah grafik kec
 
 <BlockMath math="\Delta x=\frac{1}{2}(5\text{ s})(10\text{ m/s})=25\text{ m}" />
 
-## Mulai dari Diam dalam Foto Stroboskop
+## Pola Gerak Jatuh Bebas dan Tanda Percepatan
 
-Bola yang dijatuhkan adalah contoh paling murni gerak dari diam: kecepatannya bertambah <InlineMath math="10\text{ m/s}" /> setiap detik. **Dari diam, jarak jatuhnya sebanding dengan kuadrat waktu**, <InlineMath math="h=\frac{1}{2}gt^2" />.
+Benda yang dilepas dari keadaan diam menampilkan hukum kuadrat jarak terhadap waktu secara murni. Sementara itu, gerak pengereman menunjukkan bahwa **tanda percepatan** menyatakan arah perubahan kecepatan dan bukan arah geraknya.
 
-<StrobePhotoMotionLab
-  shot="drop"
-  title={<>Bola Dijatuhkan dari Diam</>}
+### Jarak Jatuh Kuadrat dari Keadaan Diam
+
+Bola yang dijatuhkan adalah contoh paling murni gerak dari diam: kecepatannya bertambah <InlineMath math="10\text{ m/s}" /> setiap detik. **Dari diam, jarak jatuhnya sebanding dengan kuadrat waktu**:
+
+<BlockMath math="h=\frac{1}{2}gt^2" />
+
+Geser waktu jatuh <InlineMath math="d" /> di bawah untuk memeriksa pola perbandingan <InlineMath math="1:4:9:16:25:36" />.
+
+<MathVisual
+  title={<>Jarak Jatuh Kuadrat dari Keadaan Diam</>}
   description={
     <>
-      Lampu berkedip setiap <InlineMath math="0{,}1\text{ s}" /> sementara rana tetap terbuka, jadi setiap gambar adalah satu kilatan.
+      Jarak jatuh <InlineMath math="h(t)=5t^2" /> bola yang dilepas dari diam
+      selama <InlineMath math="0{,}6\text{ s}" />.
     </>
   }
+  footer={<>Menggandakan waktu jatuh membuat jarak jatuhnya empat kali lebih besar.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 0.7 }, y: { min: -0.15, max: 2.1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.1, max: 0.6, value: 0.3, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "drop-curve", kind: "function", appearance: "primary", formula: "5*x^2", domain: { min: 0, max: 0.6 } },
+      { id: "f1", kind: "point", appearance: "secondary", at: { x: 0.1, y: 0.05 } },
+      { id: "f2", kind: "point", appearance: "secondary", at: { x: 0.2, y: 0.2 } },
+      { id: "f3", kind: "point", appearance: "secondary", at: { x: 0.3, y: 0.45 } },
+      { id: "f4", kind: "point", appearance: "secondary", at: { x: 0.4, y: 0.8 } },
+      { id: "f5", kind: "point", appearance: "secondary", at: { x: 0.5, y: 1.25 } },
+      { id: "f6", kind: "point", appearance: "secondary", at: { x: 0.6, y: 1.8 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "d", y: "0" },
+          { x: "d", y: "5*d^2" },
+        ],
+      },
+      { id: "ball", kind: "marker", appearance: "answer", x: "d", y: "5*d^2" },
+    ],
+    labels: [
+      { key: "h-lbl", objectId: "ball", at: { x: "d", y: "5*d^2" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "fall", formula: "5*d^2" },
+      { key: "speed", formula: "10*d" },
+      { key: "ratio", formula: "(d/0.1)^2" },
+    ],
+  }}
   labels={{
-    airTime: <>Waktu di udara</>,
-    height: <>Tinggi awal</>,
-    interval: <>Selang antarkilatan</>,
-    outcome: <>Kelajuan saat menyentuh lantai</>,
-    viewLabel: "Foto stroboskop yang terbentuk kilatan demi kilatan",
+    d: <>Waktu jatuh <InlineMath math="d" /> (s)</>,
+    "h-lbl": <InlineMath math="h(d)" />,
+    fall: <>Jarak jatuh (m)</>,
+    speed: <>Kelajuan (m/s)</>,
+    ratio: <>Kelipatan 0,1 s pertama</>,
   }}
 />
 
 Setelah <InlineMath math="0{,}1" />, <InlineMath math="0{,}2" />, dan <InlineMath math="0{,}3\text{ s}" />, bola sudah jatuh <InlineMath math="5" />, <InlineMath math="20" />, dan <InlineMath math="45\text{ cm}" />, pola <InlineMath math="1:4:9" /> yang sama seperti mobil yang mulai dari diam. Bola menyentuh lantai <InlineMath math="1{,}8\text{ m}" /> di bawahnya setelah <InlineMath math="0{,}6\text{ s}" />.
 
-## Tanda Percepatan Bergantung pada Arah Positif
+### Tanda Percepatan Bergantung pada Arah Positif
 
 Dalam gerak satu dimensi, tanda positif dan negatif selalu bergantung pada **arah positif yang kita pilih**. Jika kanan dipilih sebagai arah positif, percepatan positif berarti perubahan kecepatan mengarah ke kanan.
 

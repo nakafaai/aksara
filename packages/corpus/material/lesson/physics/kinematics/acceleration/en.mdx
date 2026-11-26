@@ -2,7 +2,7 @@
 export const metadata = {
   title: "Acceleration",
   description:
-    "Acceleration is the change in velocity per unit time and can be represented with motion traces, velocity-time graphs, and calculations.",
+    "Acceleration is the change in velocity per unit time and can be represented with motion traces, graphs, and calculations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
   dateModified: "2026-09-12",
@@ -24,7 +24,11 @@ In physics, average acceleration describes the <Highlight>change in velocity</Hi
 
 The unit of acceleration is <InlineMath math="\text{m/s}^2" />. If acceleration is constant at <InlineMath math="a=2\text{ m/s}^2" />, the velocity increases by <InlineMath math="2\text{ m/s}" /> every <InlineMath math="1\text{ s}" />. In that special case, the average acceleration over any interval equals the acceleration at each instant.
 
-## From Ticker Tape to Graph Slope
+## Observing Acceleration in Traces and Ramps
+
+Motion traces, velocity graphs, and inclined ramps all reveal the same **velocity change each second**. Comparing growing gaps in space with slopes on a graph shows what constant acceleration looks like.
+
+### From Ticker Tape to Graph Slope
 
 A ticker timer marks a paper tape at **equal time intervals**. For motion along one straight line without reversing direction, wider gaps mean a larger speed, equal gaps mean constant speed, and narrower gaps mean a smaller speed. The gaps alone do not show the sign of velocity, so the chosen positive direction still matters.
 
@@ -37,6 +41,7 @@ A ticker timer marks a paper tape at **equal time intervals**. For motion along 
       narrow with the motion you choose.
     </>
   }
+  footer={<>Widening gaps between one-second gates show growing speed.</>}
   labels={{
     chooseCase: "Choose motion",
     scenarioNames: {
@@ -66,6 +71,7 @@ Use the trace to compare velocity from one interval to the next. Then use the gr
       velocity change per second.
     </>
   }
+  footer={<>Rising segments mean speeding up, while flat segments mean steady velocity.</>}
   labels={{
     chooseCase: "Choose Segment",
     contextLine: "Full graph",
@@ -81,7 +87,7 @@ Use the trace to compare velocity from one interval to the next. Then use the gr
 
 On the graph, the dashed line shows the full connected graph. The thick line is the segment being read. If the line rises, velocity increases. If it stays flat, velocity is constant. If it slopes downward, velocity decreases. The segment's average acceleration is the ratio of <InlineMath math="\Delta v" /> to <InlineMath math="\Delta t" />.
 
-## A Ramp That Keeps the Beat
+### A Ramp That Keeps the Beat
 
 Galileo slowed falling down by letting a ball roll down a gentle ramp. The ball gains **the same velocity every second**, so the distance it covers grows with the square of the time. Bells placed at one, four, nine, and sixteen times the first second's distance ring at an even beat.
 
@@ -95,6 +101,7 @@ Galileo slowed falling down by letting a ball roll down a gentle ramp. The ball 
       the ramp and compare the gaps.
     </>
   }
+  footer={<>Each second covers more ramp length in the exact ratio <InlineMath math="1:3:5:7" />.</>}
   labels={{
     acceleration: <>Acceleration down the ramp</>,
     chooseAngle: "Choose the ramp angle",
@@ -106,7 +113,11 @@ Galileo slowed falling down by letting a ball roll down a gentle ramp. The ball 
 
 At <InlineMath math="3^\circ" /> the ball speeds up by about <InlineMath math="0.374\text{ m/s}^2" />, so it rolls <InlineMath math="18.7\text{ cm}" /> in the first second. At every angle the gaps keep the ratio <InlineMath math="1:3:5:7" />, because a constant acceleration adds the same velocity each second.
 
-## Reading the Sign of Acceleration
+## Reading Positive and Negative Acceleration
+
+The sign of acceleration never tells direction of motion by itself. Instead, it tells **which way velocity changes**, so you always pair it with the sign of velocity to see whether speed grows or shrinks.
+
+### Reading the Sign of Acceleration
 
 The sign of acceleration cannot be read by itself. It always depends on the positive direction we choose. In this one-dimensional example, let the rightward direction be positive.
 
@@ -125,6 +136,7 @@ Read the signs together. With <InlineMath math="v>0" />, an acceleration of the 
 <MathVisual
   title={<>Speeding Up or Slowing Down</>}
   description={<>Velocity against time for <InlineMath math="a=+1" /> (teal), <InlineMath math="a=-1" /> (pink) and <InlineMath math="a=0" /> (gray), all with positive velocity. Horizontal: seconds. Vertical: m/s.</>}
+  footer={<>With positive velocity, <InlineMath math="a>0" /> tilts the line upward and <InlineMath math="a<0" /> tilts it down.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: 0, max: 7 } },
@@ -150,38 +162,72 @@ Read the signs together. With <InlineMath math="v>0" />, an acceleration of the 
   }}
 />
 
-## Strips That Shrink
+All three lines stay above the time axis, so the object keeps moving to the right in every case. Only the slope decides whether speed grows, falls, or stays steady.
 
-A ticker tape shows the same reading in the lab. When a trolley rolls to the right and slows down, every tenth-of-a-second strip is **shorter than the one before** by the same amount, so the velocity change points to the negative side.
+### Velocity Bars That Shrink Evenly
 
-<TickerTapeMotionLab
-  motion="slowing"
-  title={<>Ticker Tape of a Slowing Trolley</>}
+When a trolley rolls to the right and slows down steadily, every tenth-of-a-second strip is **shorter than the one before** by the same amount. Standing those strips side by side forms a velocity-time graph with a downward slope. Adjust the braking strength <InlineMath math="b" /> to watch the bars drop.
+
+<MathVisual
+  title={<>Shrinking Velocity Bars of a Braking Trolley</>}
   description={
     <>
-      The timer prints a dot every <InlineMath math="0.02\text{ s}" />. Each
-      strip holds <InlineMath math="0.1\text{ s}" /> of tape and stands on
-      the chart like one bar of a velocity-time graph.
+      Trolley velocity every <InlineMath math="0.1\text{ s}" /> starting from{" "}
+      <InlineMath math="1.0\text{ m/s}" /> as braking magnitude <InlineMath math="b" /> changes.
     </>
   }
+  footer={<>Each bar drops by the same step while the trolley still moves right.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.9 }, y: { min: 0, max: 1.15 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 0.4, max: 1.2, value: 1, step: 0.2, label: "b" },
+    ],
+    objects: [
+      { id: "trend", kind: "function", appearance: "warning", formula: "1 - b*x", domain: { min: 0.05, max: 0.75 } },
+      { id: "bar-1", kind: "path", appearance: "primary", points: [{ x: "0.05", y: "0" }, { x: "0.05", y: "1 - 0.05*b" }] },
+      { id: "bar-2", kind: "path", appearance: "primary", points: [{ x: "0.15", y: "0" }, { x: "0.15", y: "1 - 0.15*b" }] },
+      { id: "bar-3", kind: "path", appearance: "primary", points: [{ x: "0.25", y: "0" }, { x: "0.25", y: "1 - 0.25*b" }] },
+      { id: "bar-4", kind: "path", appearance: "primary", points: [{ x: "0.35", y: "0" }, { x: "0.35", y: "1 - 0.35*b" }] },
+      { id: "bar-5", kind: "path", appearance: "primary", points: [{ x: "0.45", y: "0" }, { x: "0.45", y: "1 - 0.45*b" }] },
+      { id: "bar-6", kind: "path", appearance: "primary", points: [{ x: "0.55", y: "0" }, { x: "0.55", y: "1 - 0.55*b" }] },
+      { id: "bar-7", kind: "path", appearance: "primary", points: [{ x: "0.65", y: "0" }, { x: "0.65", y: "1 - 0.65*b" }] },
+      { id: "bar-8", kind: "path", appearance: "primary", points: [{ x: "0.75", y: "0" }, { x: "0.75", y: "1 - 0.75*b" }] },
+      { id: "first-dot", kind: "marker", appearance: "answer", x: "0.05", y: "1 - 0.05*b" },
+      { id: "last-dot", kind: "marker", appearance: "answer", x: "0.75", y: "1 - 0.75*b" },
+    ],
+    labels: [
+      { key: "first-speed", objectId: "first-dot", at: { x: "0.05", y: "1 - 0.05*b" }, placement: "above-right" },
+      { key: "last-speed", objectId: "last-dot", at: { x: "0.75", y: "1 - 0.75*b" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "v-start", formula: "1 - 0.05*b" },
+      { key: "v-end", formula: "1 - 0.75*b" },
+      { key: "accel", formula: "-b" },
+    ],
+  }}
   labels={{
-    acceleration: <>Acceleration from the strips</>,
-    chooseMotion: "Choose the trolley's motion",
-    firstStrip: <>First strip</>,
-    interval: <>Time between dots</>,
-    lastStrip: <>Last strip</>,
-    motions: {
-      uniform: <>Steady</>,
-      speeding: <>Speeding up</>,
-      slowing: <>Slowing down</>,
-    },
-    viewLabel: "Trolley pulling paper tape through a ticker timer",
+    b: <>Braking strength <InlineMath math="b" /> (<InlineMath math="\text{m/s}^2" />)</>,
+    "first-speed": <InlineMath math="v_1" />,
+    "last-speed": <InlineMath math="v_8" />,
+    "v-start": <>First strip speed (m/s)</>,
+    "v-end": <>Last strip speed (m/s)</>,
+    accel: <>Acceleration (<InlineMath math="\text{m/s}^2" />)</>,
   }}
 />
 
-The strips fall from <InlineMath math="9.5\text{ cm}" /> to <InlineMath math="2.5\text{ cm}" />, losing <InlineMath math="1\text{ cm}" /> each time. One strip lasts <InlineMath math="0.1\text{ s}" />, so the acceleration is <InlineMath math="\frac{-0.01\text{ m}}{(0.1\text{ s})^2}=-1\text{ m/s}^2" /> while the trolley is still moving to the right.
+At <InlineMath math="b=1\text{ m/s}^2" />, the strips fall from <InlineMath math="9.5\text{ cm}" /> to <InlineMath math="2.5\text{ cm}" />, losing <InlineMath math="1\text{ cm}" /> each <InlineMath math="0.1\text{ s}" />:
 
-## Calculating Velocity Change Each Second
+<BlockMath math="a=\frac{-0.01\text{ m}}{(0.1\text{ s})^2}=-1\text{ m/s}^2" />
+
+Even though the acceleration is negative, every bar stays above zero. The trolley is still moving to the right while losing speed.
+
+## Calculating Constant and Average Acceleration
+
+When acceleration stays steady, one number describes every instant. On a real commute with braking and stops, **the secant slope between two endpoints** captures the average acceleration across the interval.
+
+### Calculating Velocity Change Each Second
 
 Suppose a car changes velocity from <InlineMath math="2\text{ m/s}" /> to <InlineMath math="18\text{ m/s}" /> in <InlineMath math="4\text{ s}" />. Its average acceleration is:
 
@@ -202,26 +248,69 @@ a_{\text{avg}} &= \frac{2-18}{4} \\
 
 The value <InlineMath math="-4\text{ m/s}^2" /> means the velocity decreases by <InlineMath math="4\text{ m/s}" /> each second if the car is still moving in the positive direction.
 
-## Average Acceleration on a Commute
+### Average Acceleration on a Commute
 
-A real trip rarely keeps one acceleration. On the velocity-time graph of a commute, the average acceleration over any interval is **the slope of the line joining its two points**.
+A real trip rarely keeps one acceleration. On the velocity-time graph of a commute, the average acceleration over any interval is **the slope of the line joining its two points**. Drag the end time <InlineMath math="d" /> to see how the secant slope changes across the trip.
 
-<CarTripSecantSlopeLab
-  graph="velocity"
-  trip="commute"
-  title={<>Average Acceleration on a Commute</>}
+<MathVisual
+  title={<>Secant Slope on a Commute Velocity Graph</>}
   description={
     <>
-      The car speeds up, cruises, brakes for a red light, waits, and drives
-      on. Pick an interval to draw its secant on the velocity-time graph.
+      The car speeds up until <InlineMath math="4\text{ s}" />, cruises, brakes
+      for a red light, waits, and speeds up again after <InlineMath math="16\text{ s}" />.
+      Horizontal: time in s. Vertical: velocity in m/s.
     </>
   }
+  footer={<>The violet secant joins start and finish and ignores braking in between.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 22 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 4, max: 20, value: 20, step: 2, label: "d" },
+    ],
+    objects: [
+      { id: "leg-1", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 4, y: 10 } },
+      { id: "leg-2", kind: "segment", appearance: "primary", from: { x: 4, y: 10 }, to: { x: 10, y: 10 } },
+      { id: "leg-3", kind: "segment", appearance: "primary", from: { x: 10, y: 10 }, to: { x: 12, y: 0 } },
+      { id: "leg-4", kind: "segment", appearance: "primary", from: { x: 12, y: 0 }, to: { x: 16, y: 0 } },
+      { id: "leg-5", kind: "segment", appearance: "primary", from: { x: 16, y: 0 }, to: { x: 20, y: 10 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0", y: "0" },
+          { x: "d", y: "max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))" },
+        ],
+      },
+      {
+        id: "end-dot",
+        kind: "marker",
+        appearance: "answer",
+        x: "d",
+        y: "max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))",
+      },
+    ],
+    labels: [
+      {
+        key: "end-mark",
+        objectId: "end-dot",
+        at: { x: "d", y: "max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))" },
+        placement: "above",
+      },
+    ],
+    readouts: [
+      { key: "end-v", formula: "max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))" },
+      { key: "avg-a", formula: "(max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))) / d" },
+    ],
+  }}
   labels={{
-    change: <>Change in velocity</>,
-    chooseInterval: "Choose a time interval",
-    elapsed: <>Time interval</>,
-    rate: <>Average acceleration</>,
-    viewLabel: "Car on a commute with its velocity-time graph",
+    d: <>End time <InlineMath math="d" /> (s)</>,
+    "end-mark": <InlineMath math="v(d)" />,
+    "end-v": <>End velocity (m/s)</>,
+    "avg-a": <>Average acceleration (<InlineMath math="\text{m/s}^2" />)</>,
   }}
 />
 

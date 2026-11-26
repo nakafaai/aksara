@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Gerak Lurus Beraturan",
   description:
@@ -24,38 +23,54 @@ x(t) &= x(t_0)+v(t-t_0)
 
 Simbol <InlineMath math="x(t_0)" /> dan <InlineMath math="x(t)" /> menyatakan posisi pada waktu awal dan akhir, <InlineMath math="v" /> menyatakan kecepatan tetap, <InlineMath math="\Delta t=t-t_0" /> menyatakan selang waktu, dan <InlineMath math="\Delta x" /> menyatakan perpindahan.
 
-## Kereta dengan Kecepatan Tetap
+Kereta komuter di jalur lurus dengan kecepatan <InlineMath math="20\text{ m/s}" /> adalah gerak lurus beraturan yang mudah kamu amati dari peron. Kereta menempuh **<InlineMath math="20\text{ m}" /> setiap detik dalam arah yang sama**. Ubah kecepatan tetap <InlineMath math="s" /> dan waktu <InlineMath math="a" /> di bawah untuk melihat posisi bertambah secara linier.
 
-Kereta komuter di jalur lurus dengan <InlineMath math="20\text{ m/s}" /> adalah gerak lurus beraturan yang bisa kamu lihat dari peron. Kereta menempuh **<InlineMath math="20\text{ m}" /> setiap detik dengan arah yang sama**.
-
-<TrainPassengerRelativeLab
-  title={<>Kereta Melintasi Peron</>}
+<MathVisual
+  title={<>Kereta Melaju dengan Kecepatan Tetap</>}
   description={
     <>
-      Amati dari peron dulu. Panah merah muda adalah kecepatan kereta yang tetap, dan panah hijau toska milik penumpang yang berjalan di dalamnya.
+      Ubah kecepatan tetap kereta <InlineMath math="s" /> dan waktu tempuh <InlineMath math="a" /> untuk membaca perpindahan di sepanjang rel lurus.
     </>
   }
+  footer={<>Kecepatan tetap membuat posisi naik dengan langkah sama pada satu garis lurus.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -5, max: 130 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 5, max: 25, value: 20, step: 5, label: "s" },
+      { name: "a", min: 1, max: 5, value: 4, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "track-line", kind: "function", appearance: "primary", formula: "s*x", domain: { min: 0, max: 5 } },
+      { id: "time-drop", kind: "path", appearance: "construction", points: [{ x: "a", y: "0" }, { x: "a", y: "s*a" }] },
+      { id: "pos-drop", kind: "path", appearance: "secondary", points: [{ x: "0", y: "s*a" }, { x: "a", y: "s*a" }] },
+      { id: "train-pt", kind: "marker", appearance: "answer", x: "a", y: "s*a" },
+    ],
+    labels: [
+      { key: "pos-lbl", objectId: "train-pt", at: { x: "a", y: "s*a" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "step-per-s", formula: "s" },
+      { key: "elapsed-dist", formula: "s*a" },
+    ],
+  }}
   labels={{
-    chooseObserver: "Pilih pengamat",
-    chooseWay: "Pilih arah jalan",
-    observers: {
-      platform: <>Dari peron</>,
-      train: <>Dari kursi kereta</>,
-    },
-    passenger: <>Kecepatan penumpang</>,
-    train: <>Kecepatan kereta</>,
-    viewLabel: "Penumpang berjalan di kereta yang melaju",
-    walk: <>Kecepatan jalan di dalam gerbong</>,
-    ways: {
-      forward: <>Jalan ke depan</>,
-      backward: <>Jalan ke belakang</>,
-    },
+    s: <>Kecepatan <InlineMath math="s" /> (m/s)</>,
+    a: <>Waktu <InlineMath math="a" /> (s)</>,
+    "pos-lbl": <InlineMath math="x(t)" />,
+    "step-per-s": <>Jarak tiap sekon (m)</>,
+    "elapsed-dist": <>Total perpindahan (m)</>,
   }}
 />
 
-Dilihat dari peron, panah kereta tidak pernah berubah, dan itulah arti kecepatan tetap. Dilihat dari kursi kereta, kereta diam, jadi gerak yang sama bisa beraturan bagi satu pengamat dan tidak ada bagi pengamat lain.
+Dilihat dari peron, kecepatan kereta tidak pernah berubah sehingga tiap tambahan satu detik selalu menambah jumlah meter yang sama. Menggandakan waktu tempuh otomatis menggandakan perpindahannya karena garis lurus melewati titik asal.
 
-## Posisi pada Selang Waktu yang Sama
+## Langkah Sama pada Selang Waktu Sama
+
+Mencatat posisi benda pada selang waktu teratur memberi uji visual langsung untuk **kecepatan tetap**. Baik potret jejak di jalan maupun potongan pita ticker timer di laboratorium langsung memperlihatkan gerak seragam lewat jarak yang sama.
+
+### Posisi pada Selang Waktu yang Sama
 
 Jika posisi benda dicatat setiap **selang waktu yang sama**, GLB menghasilkan jarak antartitik yang sama. Pita pencatat waktu bekerja dengan memberi tanda pada pita dalam selang waktu yang tetap. Jarak antartanda menunjukkan seberapa jauh benda bergerak selama setiap selang waktu.
 
@@ -80,6 +95,7 @@ Posisi benda berubah, tetapi selisih antara dua posisi berturut-turut tetap <Inl
       setiap detik.
     </>
   }
+  footer={<>Setiap detik meninggalkan jejak berjarak sama selama kecepatan tetap konstan.</>}
   labels={{
     chooseSpeed: "Pilih kecepatan tetap",
     speed: <>Kecepatan tetap</>,
@@ -90,7 +106,9 @@ Posisi benda berubah, tetapi selisih antara dua posisi berturut-turut tetap <Inl
   }}
 />
 
-## Potongan Pita yang Sama Panjang
+Menaikkan kecepatan yang dipilih memperlebar jarak antarjejak, namun semua jarak dalam satu perjalanan tetap seragam. Keseragaman jarak antartitik inilah tanda paling jelas bahwa percepatan benda sama dengan nol.
+
+### Potongan Pita yang Sama Panjang
 
 Pita ticker timer adalah versi laboratorium dari jejak posisi yang berjarak sama. Alat mencetak titik setiap <InlineMath math="0{,}02\text{ s}" />, dan pada kecepatan tetap **setiap potongan sepersepuluh detik sama panjang**.
 
@@ -102,6 +120,7 @@ Pita ticker timer adalah versi laboratorium dari jejak posisi yang berjarak sama
       Susun potongan pitanya berdampingan: potongan yang sama panjang membentuk diagram kecepatan yang datar.
     </>
   }
+  footer={<>Potongan pita sama panjang membentuk deretan datar pada grafik kecepatan.</>}
   labels={{
     acceleration: <>Percepatan dari potongan pita</>,
     chooseMotion: "Pilih gerak troli",
@@ -117,9 +136,17 @@ Pita ticker timer adalah versi laboratorium dari jejak posisi yang berjarak sama
   }}
 />
 
-Setiap potongan panjangnya <InlineMath math="6\text{ cm}" />, jadi troli bergerak <InlineMath math="\frac{0{,}06\text{ m}}{0{,}1\text{ s}}=0{,}6\text{ m/s}" />, dan percepatan dari potongan pitanya <InlineMath math="0" />.
+Setiap potongan panjangnya <InlineMath math="6\text{ cm}" /> untuk selang <InlineMath math="0{,}1\text{ s}" />, sehingga troli bergerak dengan kecepatan tetap:
 
-## Menghitung Posisi Akhir
+<BlockMath math="v=\frac{0{,}06\text{ m}}{0{,}1\text{ s}}=0{,}6\text{ m/s}" />
+
+Karena semua potongan pita sama tinggi, percepatan yang dihitung dari potongan pita bernilai <InlineMath math="0" />.
+
+## Menghitung Posisi dan Kemiringan
+
+Ketika kecepatan tidak berubah, menentukan lokasi benda pada waktu tertentu cukup dengan satu perkalian dan satu penjumlahan. Pada grafik posisi terhadap waktu, aturan sama menjamin **setiap selang waktu menghasilkan kemiringan identik**.
+
+### Menghitung Posisi Akhir
 
 Misalkan benda mulai dari <InlineMath math="x_0=1\text{ m}" /> dan bergerak ke kanan dengan kecepatan tetap <InlineMath math="v=2\text{ m/s}" /> selama <InlineMath math="5\text{ s}" />. Perpindahannya:
 
@@ -143,22 +170,23 @@ Titik-titik di bawah adalah tanda posisi, satu setiap sekon. Titik itu naik <Inl
 
 <MathVisual
   title={<>Langkah Sama Membentuk Garis Lurus</>}
-  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> selama <InlineMath math="5\text{ s}" />. Mendatar: waktu dalam s. Tegak: posisi dalam satuan <InlineMath math="2\text{ m}" />.</>}
+  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> selama <InlineMath math="5\text{ s}" />. Sumbu mendatar menunjukkan waktu dalam sekon dan sumbu tegak menunjukkan posisi dalam meter.</>}
+  footer={<>Setiap langkah satu sekon naik dua meter sehingga semua titik segaris.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -1, max: 13 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "position", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: (1 + 2 * 0) / 2 }, { x: 1, y: (1 + 2 * 1) / 2 }, { x: 2, y: (1 + 2 * 2) / 2 }, { x: 3, y: (1 + 2 * 3) / 2 }, { x: 4, y: (1 + 2 * 4) / 2 }, { x: 5, y: (1 + 2 * 5) / 2 }] },
-      { id: "t-0", kind: "point", appearance: "primary", at: { x: 0, y: (1 + 2 * 0) / 2 } },
-      { id: "t-1", kind: "point", appearance: "primary", at: { x: 1, y: (1 + 2 * 1) / 2 } },
-      { id: "t-2", kind: "point", appearance: "primary", at: { x: 2, y: (1 + 2 * 2) / 2 } },
-      { id: "t-3", kind: "point", appearance: "primary", at: { x: 3, y: (1 + 2 * 3) / 2 } },
-      { id: "t-4", kind: "point", appearance: "primary", at: { x: 4, y: (1 + 2 * 4) / 2 } },
-      { id: "t-5", kind: "point", appearance: "primary", at: { x: 5, y: (1 + 2 * 5) / 2 } },
+      { id: "position", kind: "function", appearance: "primary", formula: "1 + 2*x", domain: { min: 0, max: 5 } },
+      { id: "t-0", kind: "point", appearance: "primary", at: { x: 0, y: 1 } },
+      { id: "t-1", kind: "point", appearance: "primary", at: { x: 1, y: 3 } },
+      { id: "t-2", kind: "point", appearance: "primary", at: { x: 2, y: 5 } },
+      { id: "t-3", kind: "point", appearance: "primary", at: { x: 3, y: 7 } },
+      { id: "t-4", kind: "point", appearance: "primary", at: { x: 4, y: 9 } },
+      { id: "t-5", kind: "point", appearance: "primary", at: { x: 5, y: 11 } },
     ],
     labels: [
-      { key: "end", objectId: "t-5", at: { x: 5, y: 5.5 }, placement: "left" },
+      { key: "end", objectId: "t-5", at: { x: 5, y: 11 }, placement: "left" },
     ],
   }}
   labels={{
@@ -166,28 +194,60 @@ Titik-titik di bawah adalah tanda posisi, satu setiap sekon. Titik itu naik <Inl
   }}
 />
 
-## Setiap Selang Memberi Kemiringan yang Sama
+Titik potong tegak saat <InlineMath math="t=0" /> menunjukkan posisi awal <InlineMath math="1\text{ m}" />, sedangkan kenaikan tetap <InlineMath math="2\text{ m}" /> tiap sekon membawa garis tepat ke <InlineMath math="11\text{ m}" /> pada <InlineMath math="5\text{ s}" />.
 
-Pada grafik posisi terhadap waktu untuk GLB, **setiap garis potong punya kemiringan yang sama**, karena grafiknya berupa satu garis lurus. Mobil yang melaju tetap <InlineMath math="8\text{ m/s}" /> mengikuti <InlineMath math="x=8t" />.
+### Setiap Selang Memberi Kemiringan yang Sama
 
-<CarTripSecantSlopeLab
-  trip="cruise"
-  title={<>Mobil yang Melaju dengan Kecepatan Tetap</>}
+Pada grafik posisi terhadap waktu untuk GLB, **setiap garis potong punya kemiringan yang sama**, karena grafiknya berupa satu garis lurus. Mobil yang melaju tetap <InlineMath math="8\text{ m/s}" /> mengikuti <InlineMath math="x=8t" />. Geser waktu awal <InlineMath math="a" /> dan waktu akhir <InlineMath math="b" /> di bawah untuk membandingkan selang mana saja.
+
+<MathVisual
+  title={<>Kemiringan Sama di Setiap Selang Waktu</>}
   description={
     <>
-      Pilih selang mana pun. Garis potongnya selalu berimpit dengan grafik itu sendiri.
+      Geser waktu awal <InlineMath math="a" /> dan akhir <InlineMath math="b" /> pada <InlineMath math="x=8t" />. Perubahan posisi dan waktu berubah sebanding sehingga kemiringan tetap <InlineMath math="8\text{ m/s}" />.
     </>
   }
+  footer={<>Menggeser batas selang mengubah naik dan maju sebanding, gradien tetap sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -5, max: 88 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 4, value: 2, step: 1, label: "a" },
+      { name: "b", min: 5, max: 10, value: 8, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "cruise-line", kind: "function", appearance: "reference", formula: "8*x", domain: { min: 0, max: 10 } },
+      { id: "secant-seg", kind: "path", appearance: "primary", points: [{ x: "a", y: "8*a" }, { x: "b", y: "8*b" }] },
+      { id: "run-seg", kind: "path", appearance: "construction", points: [{ x: "a", y: "8*a" }, { x: "b", y: "8*a" }] },
+      { id: "rise-seg", kind: "path", appearance: "secondary", points: [{ x: "b", y: "8*a" }, { x: "b", y: "8*b" }] },
+      { id: "start-pt", kind: "marker", appearance: "primary", x: "a", y: "8*a" },
+      { id: "end-pt", kind: "marker", appearance: "answer", x: "b", y: "8*b" },
+    ],
+    labels: [
+      { key: "p1", objectId: "start-pt", at: { x: "a", y: "8*a" }, placement: "above-left" },
+      { key: "p2", objectId: "end-pt", at: { x: "b", y: "8*b" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "delta-x", formula: "8*(b - a)" },
+      { key: "delta-t", formula: "b - a" },
+      { key: "avg-v", formula: "(8*b - 8*a)/(b - a)" },
+    ],
+  }}
   labels={{
-    change: <>Perpindahan</>,
-    chooseInterval: "Pilih selang waktu",
-    elapsed: <>Selang waktu</>,
-    rate: <>Kecepatan rata-rata</>,
-    viewLabel: "Perjalanan mobil dengan grafik posisi terhadap waktu",
+    a: <>Waktu awal <InlineMath math="a" /> (s)</>,
+    b: <>Waktu akhir <InlineMath math="b" /> (s)</>,
+    p1: <InlineMath math="t_1" />,
+    p2: <InlineMath math="t_2" />,
+    "delta-x": <>Perpindahan (m)</>,
+    "delta-t": <>Selang waktu (s)</>,
+    "avg-v": <>Kemiringan kecepatan (m/s)</>,
   }}
 />
 
-Dari <InlineMath math="0" /> sampai <InlineMath math="2\text{ s}" />, mobil menempuh <InlineMath math="16\text{ m}" />, dari <InlineMath math="4" /> sampai <InlineMath math="10\text{ s}" /> menempuh <InlineMath math="48\text{ m}" />, dan keduanya memberi <InlineMath math="\bar{v}=8\text{ m/s}" />. Setelah <InlineMath math="10\text{ s}" />, posisi akhirnya <InlineMath math="x=8(10)=80\text{ m}" />.
+Dari <InlineMath math="0" /> sampai <InlineMath math="2\text{ s}" />, mobil menempuh <InlineMath math="16\text{ m}" />, dan dari <InlineMath math="4" /> sampai <InlineMath math="10\text{ s}" /> menempuh <InlineMath math="48\text{ m}" />, keduanya menghasilkan <InlineMath math="\bar{v}=8\text{ m/s}" />. Setelah <InlineMath math="10\text{ s}" />, posisi akhirnya adalah:
+
+<BlockMath math="x=8(10)=80\text{ m}" />
 
 ## Membaca GLB dari Grafik
 
@@ -207,6 +267,7 @@ Pada grafik kecepatan terhadap waktu, gerak yang sama menjadi garis datar di <In
 <MathVisual
   title={<>Kecepatan Tetap dan Luasnya</>}
   description={<><InlineMath math="v=2\text{ m/s}" /> selama <InlineMath math="5\text{ s}" />. Mendatar: waktu dalam s. Tegak: kecepatan dalam m/s.</>}
+  footer={<>Lebar kali tinggi persegi panjang terarsir sama dengan total perpindahan benda.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 3 } },
@@ -223,32 +284,60 @@ Pada grafik kecepatan terhadap waktu, gerak yang sama menjadi garis datar di <In
   }}
 />
 
+Selama kecepatan tetap, daerah di bawah garis selalu membentuk persegi panjang yang luasnya langsung memberi nilai perpindahan. Membaca kemiringan pada grafik posisi dan luas pada grafik kecepatan menyatukan dua sudut pandang dari gerak yang sama.
+
 ## Arah Membedakan Kelajuan Tetap dan Kecepatan Tetap
 
 GLB membutuhkan kecepatan tetap. Artinya, besar dan arah gerak harus tetap. Kelajuan tetap hanya memastikan besarnya.
 
-Mobil yang bergerak dengan kelajuan tetap di lintasan melingkar tidak termasuk GLB, <Highlight>karena arah kecepatannya terus berubah</Highlight>. Sebaliknya, kereta yang bergerak lurus dengan besar dan arah kecepatan tetap termasuk GLB.
+Mobil yang bergerak dengan kelajuan tetap di lintasan melingkar tidak termasuk GLB, <Highlight>karena arah kecepatannya terus berubah</Highlight>. Pelari yang mempertahankan <InlineMath math="8\text{ m/s}" /> mengelilingi lintasan melingkar <InlineMath math="400\text{ m}" /> punya kelajuan tetap, tetapi **panah kecepatannya terus berputar**. Geser sudut <InlineMath math="a" /> di bawah untuk melihat komponennya berubah.
 
-## Kelajuan Tetap di Lintasan Melengkung
-
-Pelari yang mempertahankan <InlineMath math="8\text{ m/s}" /> mengelilingi lintasan atletik punya kelajuan tetap, tetapi **arah kecepatannya berubah di setiap tikungan**, jadi geraknya bukan GLB.
-
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>Kelajuan Tetap Bukan Kecepatan Tetap</>}
+<MathVisual
+  title={<>Kelajuan Tetap pada Lintasan Melengkung</>}
   description={
     <>
-      Pelari bertahan di <InlineMath math="8\text{ m/s}" /> pada lajur <InlineMath math="1" />. Hentikan larinya di setiap tanda, lalu bandingkan panah hijau toska dari satu tanda ke tanda berikutnya.
+      Pelari bertahan di <InlineMath math="8\text{ m/s}" /> pada lintasan <InlineMath math="400\text{ m}" />. Geser sudut <InlineMath math="a" /> dan lihat arah kecepatan (teal) serta tali busur perpindahan (ungu) berubah.
     </>
   }
+  footer={<>Meski kelajuan tetap, arah dan komponen kecepatan terus berubah di tikungan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -95, max: 95 }, y: { min: -95, max: 95 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 330, value: 90, step: 30, label: "a" },
+    ],
+    objects: [
+      { id: "track", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 63.66 },
+      { id: "start-pt", kind: "point", appearance: "reference", at: { x: 63.66, y: 0 } },
+      { id: "chord", kind: "path", appearance: "secondary", points: [{ x: "63.66", y: "0" }, { x: "63.66*cos(a*pi/180)", y: "63.66*sin(a*pi/180)" }] },
+      { id: "vel-vec", kind: "path", appearance: "construction", points: [{ x: "63.66*cos(a*pi/180)", y: "63.66*sin(a*pi/180)" }, { x: "63.66*cos(a*pi/180) - 24*sin(a*pi/180)", y: "63.66*sin(a*pi/180) + 24*cos(a*pi/180)" }] },
+      { id: "runner-pt", kind: "marker", appearance: "primary", x: "63.66*cos(a*pi/180)", y: "63.66*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "start", objectId: "start-pt", at: { x: 63.66, y: 0 }, placement: "right" },
+      { key: "runner", objectId: "runner-pt", at: { x: "63.66*cos(a*pi/180)", y: "63.66*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "arc-dist", formula: "63.66*a*pi/180" },
+      { key: "disp-mag", formula: "2*63.66*sin(a*pi/360)" },
+      { key: "vx", formula: "-8*sin(a*pi/180)" },
+      { key: "vy", formula: "8*cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Besar kecepatan rata-rata</>,
-    chooseDistance: "Pilih jarak lari",
-    displacement: <>Besar perpindahan</>,
-    distance: <>Jarak lari</>,
-    time: <>Waktu</>,
-    viewLabel: "Pelari di lintasan atletik 400 m dilihat dari atas",
+    a: <>Sudut lintasan <InlineMath math="a" /> (deg)</>,
+    start: <>Mulai</>,
+    runner: <>Pelari</>,
+    "arc-dist": <>Jarak lari (m)</>,
+    "disp-mag": <>Besar perpindahan (m)</>,
+    vx: <>Kecepatan x (m/s)</>,
+    vy: <>Kecepatan y (m/s)</>,
   }}
 />
 
-Hanya di lintasan lurus panah itu mempertahankan panjang sekaligus arahnya. Satu putaran butuh <InlineMath math="\frac{400}{8}=50\text{ s}" /> dengan kelajuan tetap, tetapi pelari berakhir di titik awal, dengan kecepatan rata-rata <InlineMath math="0" />.
+Satu putaran penuh <InlineMath math="400\text{ m}" /> dengan kelajuan tetap <InlineMath math="8\text{ m/s}" /> memerlukan waktu:
+
+<BlockMath math="t=\frac{400\text{ m}}{8\text{ m/s}}=50\text{ s}" />
+
+Karena pelari kembali ke garis awal, perpindahan dan kecepatan rata-ratanya sama dengan <InlineMath math="0" />, menegaskan bahwa kelajuan tetap di lintasan melengkung bukan gerak lurus beraturan.

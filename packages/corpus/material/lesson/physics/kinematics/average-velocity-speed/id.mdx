@@ -9,7 +9,7 @@ export const metadata = {
   subject: "Kinematika",
 };
 
-## Nilai Rata-rata Menggunakan Seluruh Selang Waktu
+## Nilai Rata-Rata Menggunakan Seluruh Selang Waktu
 
 Nilai rata-rata merangkum gerak selama <Highlight>satu selang waktu penuh</Highlight>. Kecepatan rata-rata dihitung dari posisi awal, posisi akhir, dan seluruh waktu yang berlalu.
 
@@ -33,6 +33,7 @@ Simbol <InlineMath math="\Delta x" /> atau <InlineMath math="\Delta \vec{r}" /> 
       lintasan dengan perpindahan awal-ke-akhir.
     </>
   }
+  footer={<>Garis toska mengikuti seluruh jarak tempuh, garis ungu menunjukkan perpindahan.</>}
   labels={{
     chooseCase: "Pilih rute",
     modeLabels: {
@@ -69,44 +70,69 @@ Pada pilihan Belokan Halus, bola mengikuti tikungan, sehingga jarak totalnya sek
 
 <BlockMath math="\begin{aligned} &amp;s_{\text{total}}\approx 16{,}7\text{ m} \\ &amp;|\Delta \vec r|=14\text{ m} \\ &amp;\Delta t=5\text{ s} \\ &amp;\text{kelajuan rata-rata}&amp;\approx \frac{16{,}7}{5} \\ &amp;\approx3{,}3\text{ m/s} \\ &amp;|\bar{\vec v}| =\frac{14}{5} \\ &amp;=2{,}8\text{ m/s} \end{aligned}" />
 
-## Alat Pengukur Kecepatan Mencatat Rata-Rata
+## Mengukur Nilai Rata-Rata dari Jarak dan Kemiringan
 
-Alat pengukur kecepatan di jalan tidak pernah melihat satu saat saja. Alat itu mencatat waktu mobil di antara dua sinar yang berjarak tertentu, lalu membagi jarak itu dengan waktunya, jadi angkanya adalah **rata-rata sepanjang jarak itu**.
+Setiap pengukuran nyata pada satu bentang jarak selalu memberi **nilai rata-rata pada selang waktu tertentu**. Pada grafik posisi terhadap waktu, nilai itu tampak langsung sebagai kemiringan garis lurus yang menyambung dua titik.
 
-<SpeedTrapInstantSpeedLab
-  title={<>Pengukur Kecepatan di Lintasan Uji</>}
+### Alat Pengukur Kecepatan Mencatat Rata-Rata
+
+Alat pengukur kecepatan di jalan tidak pernah melihat satu saat saja. Alat itu mencatat waktu mobil di antara dua sinar yang berpusat di tanda <InlineMath math="50\text{ m}" />, lalu menghitung **kelajuan rata-rata sepanjang jarak gerbang**. Perkecil setengah jarak antargerbang <InlineMath math="h" /> untuk melihat garis potongnya mendekati kelajuan di titik tengah.
+
+<MathVisual
+  title={<>Kelajuan Rata-Rata di Antara Dua Gerbang Sinar</>}
   description={
     <>
-      Mobil bertambah cepat dari diam dengan percepatan{" "}
-      <InlineMath math="4\text{ m/s}^2" /> melewati dua gerbang sinar yang
-      berpusat di tanda <InlineMath math="50\text{ m}" />. Ubah jarak gerbang
-      dan bandingkan angka yang tercatat.
+      Posisi <InlineMath math="x(t)=2t^2" /> mobil yang dipercepat{" "}
+      <InlineMath math="4\text{ m/s}^2" /> beserta garis potong antara{" "}
+      <InlineMath math="50-h" /> dan <InlineMath math="50+h" />.
     </>
   }
+  footer={<>Kemiringan garis potong di antara dua gerbang sedikit di bawah laju titik tengah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7.2 }, y: { min: 0, max: 90 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 4, max: 20, value: 20, step: 4, label: "h" },
+    ],
+    objects: [
+      { id: "car-path", kind: "function", appearance: "primary", formula: "2*x^2", domain: { min: 0, max: 6.5 } },
+      { id: "mid", kind: "point", appearance: "secondary", at: { x: 5, y: 50 } },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "sqrt((50 - h)/2)", y: "50 - h" },
+          { x: "sqrt((50 + h)/2)", y: "50 + h" },
+        ],
+      },
+      { id: "gate-1", kind: "marker", appearance: "answer", x: "sqrt((50 - h)/2)", y: "50 - h" },
+      { id: "gate-2", kind: "marker", appearance: "answer", x: "sqrt((50 + h)/2)", y: "50 + h" },
+    ],
+    labels: [
+      { key: "g1", objectId: "gate-1", at: { x: "sqrt((50 - h)/2)", y: "50 - h" }, placement: "above-left" },
+      { key: "g2", objectId: "gate-2", at: { x: "sqrt((50 + h)/2)", y: "50 + h" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "gap", formula: "2*h" },
+      { key: "dt", formula: "sqrt((50 + h)/2) - sqrt((50 - h)/2)" },
+      { key: "v-bar", formula: "2*h / (sqrt((50 + h)/2) - sqrt((50 - h)/2))" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Angka yang tercatat</>,
-    chooseGap: "Pilih jarak antargerbang",
-    elapsed: <>Waktu antara dua sinar</>,
-    gap: <>Jarak antargerbang</>,
-    instantSpeed: <>Kelajuan di titik tengah</>,
-    viewLabel: "Mobil melewati dua gerbang sinar di lintasan uji",
+    h: <>Setengah jarak gerbang <InlineMath math="h" /> (m)</>,
+    g1: <InlineMath math="G_1" />,
+    g2: <InlineMath math="G_2" />,
+    gap: <>Jarak antargerbang (m)</>,
+    dt: <>Waktu antargerbang (s)</>,
+    "v-bar": <>Kelajuan rata-rata (m/s)</>,
   }}
 />
 
 Dengan gerbang berjarak <InlineMath math="40\text{ m}" />, mobil butuh <InlineMath math="2{,}043\text{ s}" />, jadi alat mencatat <InlineMath math="19{,}58\text{ m/s}" />, sedikit di bawah <InlineMath math="20\text{ m/s}" /> yang dimiliki mobil di titik tengah. Angka itu mewakili seluruh jarak, bukan satu saat.
 
-## Gerak yang Berbeda Dapat Memiliki Selang Waktu yang Sama
-
-Misalkan dua perjalanan sama-sama berlangsung <InlineMath math="3 \text{ s}" />. Perjalanan pertama lurus <InlineMath math="6 \text{ m}" /> ke kanan. Perjalanan kedua bergerak <InlineMath math="6 \text{ m}" /> ke kanan lalu <InlineMath math="3 \text{ m}" /> ke kiri. Waktunya sama, tetapi **jarak dan perpindahannya berbeda**.
-
-| Perjalanan | Jarak Total | Perpindahan | Makna Rata-Rata |
-| --- | --- | --- | --- |
-| Lurus ke kanan | <InlineMath math="6 \text{ m}" /> | <InlineMath math="6 \text{ m}" /> ke kanan | Kelajuan dan kecepatan rata-rata sama besar |
-| Ke kanan lalu kembali | <InlineMath math="9 \text{ m}" /> | <InlineMath math="3 \text{ m}" /> ke kanan | Kelajuan rata-rata lebih besar daripada besar kecepatan rata-rata |
-
-Tabel ini menunjukkan penyebab perbedaan antara kelajuan rata-rata dan kecepatan rata-rata. Selang waktu kedua perhitungan sama, tetapi pembilang pada kedua rumus berbeda.
-
-## Kecepatan Rata-Rata sebagai Kemiringan
+### Kecepatan Rata-Rata sebagai Kemiringan
 
 Pada grafik posisi terhadap waktu, kecepatan rata-rata pada suatu selang adalah **kemiringan garis lurus yang menghubungkan kedua titiknya**. Perjalanan mobil menunjukkan kenapa selang yang berbeda dari satu perjalanan memberi rata-rata yang berbeda.
 
@@ -120,6 +146,7 @@ Pada grafik posisi terhadap waktu, kecepatan rata-rata pada suatu selang adalah 
       kedua ujungnya.
     </>
   }
+  footer={<>Setiap selang waktu membentuk kemiringan garis potongnya sendiri pada rute sama.</>}
   labels={{
     change: <>Perpindahan</>,
     chooseInterval: "Pilih selang waktu",
@@ -131,11 +158,16 @@ Pada grafik posisi terhadap waktu, kecepatan rata-rata pada suatu selang adalah 
 
 Sepanjang perjalanan, mobil menempuh <InlineMath math="110\text{ m}" /> dalam <InlineMath math="20\text{ s}" />, jadi <InlineMath math="\bar{v}=5{,}5\text{ m/s}" />. Antara <InlineMath math="4" /> dan <InlineMath math="10\text{ s}" /> mobil melaju tetap <InlineMath math="10\text{ m/s}" />, sedangkan antara <InlineMath math="10" /> dan <InlineMath math="16\text{ s}" /> rata-ratanya hanya sekitar <InlineMath math="1{,}67\text{ m/s}" /> karena mobil menunggu di lampu merah.
 
-## Kelajuan Rata-rata dan Kecepatan Rata-rata pada Rute Balik
+## Membandingkan Panjang Lintasan dan Perpindahan
 
-Pada rute balik, benda bergerak <InlineMath math="6 \text{ m}" /> ke kanan lalu <InlineMath math="3 \text{ m}" /> ke kiri dalam <InlineMath math="3 \text{ s}" />.
+Dua perjalanan bisa berlangsung dalam selang waktu persis sama tetapi menghasilkan **nilai rata-rata yang berbeda**. Misalkan dua perjalanan sama-sama berlangsung <InlineMath math="3 \text{ s}" />: yang pertama lurus <InlineMath math="6 \text{ m}" /> ke kanan, sedangkan yang kedua bergerak <InlineMath math="6 \text{ m}" /> ke kanan lalu <InlineMath math="3 \text{ m}" /> ke kiri.
 
-Jarak totalnya <InlineMath math="9 \text{ m}" />, tetapi perpindahannya hanya <InlineMath math="3 \text{ m}" /> ke kanan.
+| Perjalanan | Jarak Total | Perpindahan | Makna Rata-Rata |
+| --- | --- | --- | --- |
+| Lurus ke kanan | <InlineMath math="6 \text{ m}" /> | <InlineMath math="6 \text{ m}" /> ke kanan | Kelajuan dan kecepatan rata-rata sama besar |
+| Ke kanan lalu kembali | <InlineMath math="9 \text{ m}" /> | <InlineMath math="3 \text{ m}" /> ke kanan | Kelajuan rata-rata lebih besar daripada besar kecepatan rata-rata |
+
+Kedua perhitungan membagi dengan selang <InlineMath math="3 \text{ s}" /> yang sama, namun pada rute balik jarak totalnya <InlineMath math="9 \text{ m}" /> sementara perpindahannya hanya <InlineMath math="3 \text{ m}" /> ke kanan.
 
 <MathContainer>
   <BlockMath math="\text{kelajuan rata-rata}=\frac{9}{3}=3\text{ m/s}" />
@@ -148,34 +180,41 @@ Inilah kedua perjalanan sebagai posisi terhadap waktu, dengan A bergerak tetap <
 
 <MathVisual
   title={<>Kecepatan Rata-rata adalah Kemiringan dari Awal ke Akhir</>}
-  description={<>Perjalanan A bergerak <InlineMath math="6\text{ m}" /> ke kanan, perjalanan B <InlineMath math="6\text{ m}" /> ke kanan lalu <InlineMath math="3\text{ m}" /> kembali, masing-masing dalam <InlineMath math="3\text{ s}" />. Mendatar: waktu dalam s. Tegak: posisi dalam satuan <InlineMath math="2\text{ m}" />.</>}
+  description={<>Perjalanan A bergerak <InlineMath math="6\text{ m}" /> ke kanan, perjalanan B <InlineMath math="6\text{ m}" /> ke kanan lalu <InlineMath math="3\text{ m}" /> kembali, masing-masing dalam <InlineMath math="3\text{ s}" />. Mendatar: waktu dalam s. Tegak: posisi dalam m.</>}
+  footer={<>Tali busur perjalanan B melompati titik balik dan lebih landai dari garis A.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -1, max: 7.2 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 }] },
-      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 3 }, { x: 3, y: 1.5 }] },
-      { id: "chord", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 1.5 } },
-      { id: "a-end", kind: "point", appearance: "construction", at: { x: 3, y: 3 } },
-      { id: "b-turn", kind: "point", appearance: "primary", at: { x: 2, y: 3 } },
-      { id: "b-end", kind: "point", appearance: "primary", at: { x: 3, y: 1.5 } },
+      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }] },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 6 }, { x: 3, y: 3 }] },
+      { id: "chord", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 3 } },
+      { id: "a-end", kind: "point", appearance: "construction", at: { x: 3, y: 6 } },
+      { id: "b-turn", kind: "point", appearance: "primary", at: { x: 2, y: 6 } },
+      { id: "b-end", kind: "point", appearance: "primary", at: { x: 3, y: 3 } },
       { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
     ],
     labels: [
-      { key: "a", objectId: "a-end", at: { x: 3, y: 3 }, placement: "right" },
-      { key: "b", objectId: "b-turn", at: { x: 2, y: 3 }, placement: "above" },
-      { key: "chord", objectId: "chord", at: { x: 3, y: 1.5 }, placement: "below-right" },
+      { key: "a", objectId: "a-end", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "b", objectId: "b-turn", at: { x: 2, y: 6 }, placement: "above" },
+      { key: "chord", objectId: "chord", at: { x: 3, y: 3 }, placement: "below-right" },
     ],
   }}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
-    chord: <InlineMath math="\bar v_B=\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />,
+    chord: <InlineMath math="\bar v_B=1\text{ m/s}" />,
   }}
 />
 
-## Tanda Menunjukkan Arah Kecepatan Rata-rata
+Walau B bergerak lebih cepat di setiap segmen daripada A, arah baliknya menarik posisi akhir ke bawah sehingga kemiringan tali busurnya turun menjadi <InlineMath math="1\text{ m/s}" />.
+
+## Membaca Arah dari Tanda Kecepatan Rata-Rata
+
+Setelah arah sumbu positif ditentukan, kecepatan rata-rata langsung mewarisi **tanda yang sama dengan perpindahan**. Tanda negatif menunjukkan arah berlawanan dari sumbu positif, bukan gerak lebih lambat daripada nol.
+
+### Tanda Menunjukkan Arah Kecepatan Rata-Rata
 
 Jika **arah kanan dipilih sebagai arah positif**, perpindahan ke kanan bernilai positif dan perpindahan ke kiri bernilai negatif. Karena kecepatan rata-rata dihitung dari perpindahan, tanda perpindahan juga menentukan tanda kecepatan rata-rata.
 
@@ -188,36 +227,76 @@ Misalnya benda mulai dari <InlineMath math="x=8 \text{ m}" /> dan berakhir di <I
 
 Nilai negatif bukan berarti geraknya "lebih lambat dari nol". Nilai negatif berarti kecepatan rata-ratanya mengarah ke kiri terhadap sumbu yang kita pilih.
 
-## Berjalan Pergi lalu Kembali Sebagian
+### Berjalan Pergi lalu Kembali Sebagian
 
-Berjalan santai di satu jalan menunjukkan **asal tanda itu**. Anggap timur positif: kamu berjalan <InlineMath math="300\text{ m}" /> ke timur, lalu <InlineMath math="100\text{ m}" /> kembali ke barat, dengan kelajuan <InlineMath math="1\text{ m/s}" />.
+Berjalan santai di satu jalan menunjukkan **asal tanda itu**. Anggap timur positif: kamu berjalan <InlineMath math="300\text{ m}" /> ke timur, lalu kembali sejauh <InlineMath math="w" /> ke barat dengan kelajuan <InlineMath math="1\text{ m/s}" />. Geser <InlineMath math="w" /> untuk melihat kapan kecepatan rata-rata berubah tanda menjadi negatif.
 
-<CityWalkDisplacementLab
-  legs={[
-    { east: 300, north: 0 },
-    { east: -100, north: 0 },
-  ]}
-  pace={1}
-  title={<>Jalan Santai Pergi dan Kembali Sebagian</>}
+<MathVisual
+  title={<>Berjalan ke Timur lalu Berbalik ke Barat</>}
   description={
     <>
-      Jalur kuning adalah semua yang kamu tempuh. Panah ungu menghubungkan
-      titik awal ke posisimu sekarang, dan panah itu tetap mengarah ke timur.
+      Posisi terhadap waktu saat berjalan <InlineMath math="300\text{ m}" /> ke timur
+      dan <InlineMath math="w\text{ m}" /> kembali ke barat pada <InlineMath math="1\text{ m/s}" />.
     </>
   }
+  footer={<>Saat posisi akhir melewati titik awal ke barat, garis potong turun di bawah sumbu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 760 }, y: { min: -160, max: 350 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 50, max: 400, value: 100, step: 50, label: "w" },
+    ],
+    objects: [
+      { id: "out", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 300, y: 300 } },
+      {
+        id: "back",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "300", y: "300" },
+          { x: "300 + w", y: "300 - w" },
+        ],
+      },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0", y: "0" },
+          { x: "300 + w", y: "300 - w" },
+        ],
+      },
+      { id: "turn", kind: "point", appearance: "primary", at: { x: 300, y: 300 } },
+      { id: "finish", kind: "marker", appearance: "answer", x: "300 + w", y: "300 - w" },
+    ],
+    labels: [
+      { key: "turn-lbl", objectId: "turn", at: { x: 300, y: 300 }, placement: "above" },
+      { key: "end-lbl", objectId: "finish", at: { x: "300 + w", y: "300 - w" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "dist", formula: "300 + w" },
+      { key: "disp", formula: "300 - w" },
+      { key: "v-avg", formula: "(300 - w) / (300 + w)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Kelajuan rata-rata</>,
-    averageVelocity: <>Besar kecepatan rata-rata</>,
-    displacement: <>Besar perpindahan</>,
-    distance: <>Jarak tempuh</>,
-    time: <>Waktu</>,
-    viewLabel: "Jalan kaki di jalan kota dilihat dari atas",
+    w: <>Jarak balik ke barat <InlineMath math="w" /> (m)</>,
+    "turn-lbl": <InlineMath math="300\text{ m}" />,
+    "end-lbl": <InlineMath math="x_{\text{akhir}}" />,
+    dist: <>Jarak tempuh (m)</>,
+    disp: <>Perpindahan (m)</>,
+    "v-avg": <>Kecepatan rata-rata (m/s)</>,
   }}
 />
 
-Kamu berjalan <InlineMath math="400\text{ m}" /> dalam <InlineMath math="400\text{ s}" />, jadi kelajuan rata-ratanya <InlineMath math="1\text{ m/s}" />. Perpindahanmu <InlineMath math="+200\text{ m}" />, jadi kecepatan rata-ratanya <InlineMath math="+0{,}5\text{ m/s}" />: positif, karena kamu berakhir di sebelah timur titik awal.
+Pada <InlineMath math="w=100\text{ m}" />, kamu berjalan <InlineMath math="400\text{ m}" /> dalam <InlineMath math="400\text{ s}" />, jadi kelajuan rata-ratanya <InlineMath math="1\text{ m/s}" />. Perpindahanmu <InlineMath math="+200\text{ m}" />, jadi kecepatan rata-ratanya <InlineMath math="+0{,}5\text{ m/s}" />: positif, karena kamu berakhir di sebelah timur titik awal.
 
-## Kembali ke Titik Awal Membuat Kecepatan Rata-rata Nol
+## Lintasan Tertutup dengan Kecepatan Rata-Rata Nol
+
+Saat benda **kembali tepat ke titik awalnya**, perpindahannya habis menjadi nol. Kecepatan rata-ratanya ikut nol, padahal kelajuan rata-ratanya tetap positif karena panjang lintasannya tidak nol.
+
+### Memilih Besaran Sesuai Pertanyaan
 
 Jika benda kembali ke titik awal, perpindahannya <InlineMath math="0 \text{ m}" />. Akibatnya, kecepatan rata-ratanya <InlineMath math="0 \text{ m/s}" /> walaupun kelajuan rata-ratanya masih bisa lebih dari nol.
 
@@ -228,13 +307,14 @@ Lintasan tetap memiliki panjang, tetapi perubahan posisi menjadi nol karena bend
 | Seberapa panjang lintasan ditempuh tiap detik? | Jarak total | Kelajuan rata-rata |
 | Seberapa besar perubahan posisi tiap detik? | Perpindahan | Kecepatan rata-rata |
 
-Sebelum memakai rumus, periksa apakah <Highlight>soal meminta jarak atau perpindahan</Highlight>. Pilihan besaran tersebut menentukan apakah yang dihitung adalah kelajuan rata-rata atau kecepatan rata-rata.
+Sebelum memakai rumus, periksa apakah <Highlight>soal meminta jarak atau perpindahan</Highlight>. Pilihan besaran itu menentukan apakah yang dihitung adalah kelajuan rata-rata atau kecepatan rata-rata.
 
 Perjalanan B bergerak <InlineMath math="6\text{ m}" /> ke kanan lalu <InlineMath math="3\text{ m}" /> kembali dalam <InlineMath math="3\text{ s}" />. Kalau yang ditanya lintasannya, bagilah jarak total, dan kalau yang ditanya perubahan posisinya, bagilah perpindahannya. Perbesar kedua jawabannya.
 
 <MathVisual
   title={<>Kelajuan atau Kecepatan dari Pertanyaannya</>}
   description={<>Lintasan perjalanan B (oranye dan ungu) dan perpindahannya (fuchsia).</>}
+  footer={<>Menjumlahkan lintasan memberi <InlineMath math="3\text{ m/s}" />, sedangkan perpindahan hanya <InlineMath math="1\text{ m/s}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -1.55, max: 2.55 } },
@@ -258,29 +338,72 @@ Perjalanan B bergerak <InlineMath math="6\text{ m}" /> ke kanan lalu <InlineMath
   }}
 />
 
-## Satu Putaran Lintasan Lari
+Kedua angka lahir dari gerak dan waktu <InlineMath math="3\text{ s}" /> yang persis sama. Memastikan apakah soal menanyakan panjang lintasan atau perubahan posisi mencegah kedua nilai ini tertukar.
 
-Satu putaran penuh adalah **lintasan tertutup yang berakhir tepat di titik awalnya**. Pelari di lajur <InlineMath math="1" /> lintasan <InlineMath math="400\text{ m}" /> berlari tetap <InlineMath math="8\text{ m/s}" />, dan perpindahannya dari garis start bertambah, mengecil, lalu hilang.
+### Satu Putaran Lintasan Lari
 
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>Satu Putaran Lintasan</>}
+Satu putaran penuh adalah **lintasan tertutup yang berakhir tepat di titik awalnya**. Pelari berlari tetap <InlineMath math="8\text{ m/s}" /> mengelilingi lintasan melingkar sepanjang <InlineMath math="400\text{ m}" />. Geser jarak lari <InlineMath math="s" /> untuk melihat tali busur perpindahan memuncak di setengah putaran lalu menghilang saat kembali ke start.
+
+<MathVisual
+  title={<>Perpindahan pada Lintasan Lingkaran</>}
   description={
     <>
-      Hentikan pelari setelah <InlineMath math="100" />,{" "}
-      <InlineMath math="200" />, <InlineMath math="300" />, atau{" "}
-      <InlineMath math="400\text{ m}" />, lalu bandingkan perpindahan ungu
-      dengan jalur kuning.
+      Pelari mulai dari sisi kanan lintasan lingkaran{" "}
+      <InlineMath math="400\text{ m}" /> dengan laju <InlineMath math="8\text{ m/s}" />.
+      Tali busur ungu menunjukkan perpindahan setelah <InlineMath math="s\text{ m}" />.
     </>
   }
+  footer={<>Perpindahan mencapai puncak di seberang start lalu kembali nol di akhir putaran.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -85, max: 85 }, y: { min: -85, max: 85 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 50, max: 400, value: 200, step: 50, label: "s" },
+    ],
+    objects: [
+      { id: "track", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 200 / Math.PI },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 200 / Math.PI, y: 0 } },
+      {
+        id: "chord",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "200/pi", y: "0" },
+          { x: "(200/pi)*cos(pi*s/200)", y: "(200/pi)*sin(pi*s/200)" },
+        ],
+      },
+      {
+        id: "runner",
+        kind: "marker",
+        appearance: "primary",
+        x: "(200/pi)*cos(pi*s/200)",
+        y: "(200/pi)*sin(pi*s/200)",
+      },
+    ],
+    labels: [
+      { key: "start-lbl", objectId: "start", at: { x: 200 / Math.PI, y: 0 }, placement: "right" },
+      {
+        key: "run-lbl",
+        objectId: "runner",
+        at: { x: "(200/pi)*cos(pi*s/200)", y: "(200/pi)*sin(pi*s/200)" },
+        placement: "above",
+      },
+    ],
+    readouts: [
+      { key: "disp", formula: "(400/pi)*abs(sin(pi*s/400))" },
+      { key: "t-run", formula: "s / 8" },
+      { key: "v-avg", formula: "(3200/pi)*abs(sin(pi*s/400)) / s" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Besar kecepatan rata-rata</>,
-    chooseDistance: "Pilih jarak lari",
-    displacement: <>Besar perpindahan</>,
-    distance: <>Jarak lari</>,
-    time: <>Waktu</>,
-    viewLabel: "Pelari di lintasan atletik 400 m dilihat dari atas",
+    s: <>Jarak lari <InlineMath math="s" /> (m)</>,
+    "start-lbl": <>Start</>,
+    "run-lbl": <>Pelari</>,
+    disp: <>Besar perpindahan (m)</>,
+    "t-run": <>Waktu lari (s)</>,
+    "v-avg": <>Kecepatan rata-rata (m/s)</>,
   }}
 />
 
-Setelah <InlineMath math="200\text{ m}" />, pelari berjarak <InlineMath math="112\text{ m}" /> dari start, jadi besar kecepatan rata-ratanya <InlineMath math="4{,}48\text{ m/s}" />. Setelah satu putaran penuh, perpindahannya nol, jadi kecepatan rata-ratanya nol, sementara kelajuan rata-ratanya tetap <InlineMath math="8\text{ m/s}" />.
+Setelah <InlineMath math="200\text{ m}" />, pelari berada tepat di seberang garis start sejauh <InlineMath math="127{,}3\text{ m}" />, jadi besar kecepatan rata-ratanya <InlineMath math="5{,}09\text{ m/s}" />. Setelah satu putaran penuh <InlineMath math="400\text{ m}" />, perpindahannya nol sehingga kecepatan rata-ratanya nol, sementara kelajuan rata-ratanya tetap <InlineMath math="8\text{ m/s}" />.

@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Vektormultiplikation",
   description:
@@ -12,38 +10,41 @@ export const metadata = {
 
 ## Zwei Arten der Vektormultiplikation
 
-Bei der Multiplikation von Vektoren entsteht nicht immer wieder ein Vektor. In der Physik sind zwei Arten wichtig: das **Skalarprodukt** und das **Kreuzprodukt**.
+Bei der Multiplikation von Vektoren entsteht nicht immer wieder ein Vektor. In der Physik treten zwei Arten überall auf: das **Skalarprodukt** und das **Kreuzprodukt**.
 
-Das Skalarprodukt ergibt einen Skalar. Das Kreuzprodukt erzeugt einen Vektor senkrecht auf beiden ursprünglichen Vektoren. Ist das Ergebnis nicht der Nullvektor, folgt seine Richtung der **Rechte-Hand-Regel**.
+Das Skalarprodukt liefert einen Skalar. Das Kreuzprodukt erzeugt einen Vektor senkrecht auf beiden Ausgangsvektoren, dessen Richtung bei einem Ergebnis ungleich null der **Rechte-Hand-Regel** folgt.
 
 | Art der Multiplikation | Symbol | Ergebnis | Physikbeispiel |
 | :--------------------- | :----- | :----- | :-------------- |
 | Skalarprodukt | <InlineMath math="\vec{A}\cdot\vec{B}" /> | Skalar | Arbeit |
 | Kreuzprodukt | <InlineMath math="\vec{A}\times\vec{B}" /> | Vektor | Drehmoment |
 
-> Das Rechenzeichen hängt von der physikalischen Frage ab: Wie groß ist der gleichgerichtete Anteil, oder wie stark ist die Drehwirkung?
+> Das Rechenzeichen ändert sich immer dann, wenn die physikalische Frage von Ausrichtung zu Drehwirkung wechselt.
 
 ## Das Skalarprodukt misst den gleichgerichteten Anteil
 
-Das Skalarprodukt von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> ist definiert als:
+Das **Skalarprodukt** von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> projiziert einen Vektor auf den anderen und liefert einen reinen Skalarwert ohne Richtung.
 
 <BlockMath math="\vec{A}\cdot\vec{B}=AB\cos\theta" />
 
-Für zwei Vektoren ungleich null ist <InlineMath math="\theta" /> der Zwischenwinkel. <InlineMath math="A" /> und <InlineMath math="B" /> sind ihre Beträge. Das Ergebnis ist ein Skalar, weil es nur einen Wert und keine Richtung besitzt.
-
-Für eine während der Verschiebung **konstante Kraft** lautet die von dieser Kraft verrichtete Arbeit:
+Für zwei Vektoren ungleich null ist <InlineMath math="\theta" /> der Zwischenwinkel, während <InlineMath math="A" /> und <InlineMath math="B" /> ihre Beträge sind. Bei einer während der Verschiebung **konstanten Kraft** entspricht die verrichtete Arbeit der Kraftkomponente entlang des Weges mal der Strecke:
 
 <BlockMath math="W=\vec{F}\cdot\vec{s}=Fs\cos\theta" />
 
-Die Kraftkomponente **entlang der Verschiebungsachse** bestimmt die Arbeit. Sie ist positiv in Bewegungsrichtung und negativ entgegen der Bewegungsrichtung.
+Diese Komponente ist positiv in Bewegungsrichtung und negativ entgegen der Bewegung.
 
-## Sonnenlicht auf einem Solarmodul
+### Sonnenlicht auf einem Solarmodul
 
-Ein Modul fängt **das Skalarprodukt aus Sonnenlicht und Fläche** ein: <InlineMath math="P=IA\cos\theta" />. Steht die Sonne <InlineMath math="60^\circ" /> hoch und ist das Modul um <InlineMath math="10^\circ" /> geneigt, liegt zwischen <InlineMath math="\hat n" /> und <InlineMath math="\hat s" /> ein Winkel von <InlineMath math="20^\circ" />, und es nimmt <InlineMath math="1597\text{ W}" /> auf. Neig es auf <InlineMath math="30^\circ" />, dann sind es volle <InlineMath math="1700\text{ W}" />.
+Ein Solarmodul nutzt das **Skalarprodukt aus Sonnenlicht und Modulfläche**, mit der aufgenommenen Leistung:
+
+<BlockMath math="P=IA\cos\theta" />
+
+Steht die Sonne <InlineMath math="60^\circ" /> hoch und ist das Modul um <InlineMath math="10^\circ" /> geneigt, schließen Flächennormale <InlineMath math="\hat n" /> und Sonnenrichtung <InlineMath math="\hat s" /> einen Winkel von <InlineMath math="20^\circ" /> ein und liefern <InlineMath math="1597\text{ W}" />. Bei <InlineMath math="30^\circ" /> Neigung zeigen beide parallel und erreichen volle <InlineMath math="1700\text{ W}" />.
 
 <SolarPanelFluxLab
   title={<>Leistung als Skalarprodukt</>}
   description={<>Ein Modul mit <InlineMath math="1{,}7\text{ m}^2" /> in Sonnenlicht von <InlineMath math="1000\text{ W/m}^2" />. Neig das Modul.</>}
+  footer="Die Leistung ist maximal, wenn die Modulnormale genau zur Sonne zeigt."
   area={1.7}
   elevation={60}
   sunlight={1000}
@@ -58,7 +59,11 @@ Ein Modul fängt **das Skalarprodukt aus Sonnenlicht und Fläche** ein: <InlineM
   }}
 />
 
-Eine Person zieht eine Kiste mit einer konstanten Kraft von <InlineMath math="40\text{ N}" /> über eine Strecke von <InlineMath math="5\text{ m}" />. Die Kraft schließt mit der Verschiebungsrichtung einen Winkel von <InlineMath math="60^\circ" /> ein. Für die Arbeit gilt:
+Je kleiner der Winkel zwischen <InlineMath math="\hat n" /> und <InlineMath math="\hat s" /> wird, desto näher rückt <InlineMath math="\cos\theta" /> an <InlineMath math="1" /> und desto mehr Leistung nimmt das Modul auf.
+
+### Arbeit durch einen schrägen Zug
+
+Eine Person zieht eine Kiste mit einer konstanten Kraft von <InlineMath math="40\text{ N}" /> über eine Strecke von <InlineMath math="5\text{ m}" />. Die Kraft schließt <InlineMath math="60^\circ" /> mit der Verschiebung ein, sodass die Arbeit beträgt:
 
 <BlockMath math="\begin{aligned}
 W&=Fs\cos\theta \\
@@ -67,45 +72,47 @@ W&=Fs\cos\theta \\
 &=100\text{ J}
 \end{aligned}" />
 
-Steht die Kraft senkrecht auf der Verschiebung, dann gelten <InlineMath math="\theta=90^\circ" /> und <InlineMath math="\cos90^\circ=0" />. In diesem Fall verrichtet die Kraft keine Arbeit in Verschiebungsrichtung.
-
-Wirkt dieselbe konstante Kraft entgegen der Verschiebung, beträgt der Winkel <InlineMath math="180^\circ" />. **Negative Arbeit** bedeutet, dass die Kraft der Bewegung Energie entzieht:
+Steht die Kraft senkrecht auf der Verschiebung, gilt <InlineMath math="\theta=90^\circ" /> und <InlineMath math="\cos90^\circ=0" />, sodass keine Arbeit entlang des Weges verrichtet wird. Wirkt dieselbe Kraft bei <InlineMath math="180^\circ" /> entgegen der Verschiebung, entzieht **negative Arbeit** der Bewegung Energie:
 
 <BlockMath math="W=40(5)\cos180^\circ=200(-1)=-200\text{ J}" />
 
-Das Diagramm unten nimmt denselben Zug von <InlineMath math="40\text{ N}" /> über <InlineMath math="5\text{ m}" /> für jeden Winkel von <InlineMath math="0^\circ" /> bis <InlineMath math="180^\circ" />. Die Arbeit beginnt bei <InlineMath math="200\text{ J}" />, fällt auf null, wenn die Kraft senkrecht steht, und endet bei <InlineMath math="-200\text{ J}" />, wenn die Kraft gegen die Bewegung zeigt.
+Die Kurve unten zeigt denselben Zug von <InlineMath math="40\text{ N}" /> über <InlineMath math="5\text{ m}" /> direkt in Grad und Joule für jeden Winkel von <InlineMath math="0^\circ" /> bis <InlineMath math="180^\circ" />.
 
 <MathVisual
   title={<>Arbeit folgt dem Kosinus des Winkels</>}
-  description={<><InlineMath math="W=Fs\cos\theta" /> für <InlineMath math="F=40\text{ N}" /> und <InlineMath math="s=5\text{ m}" />. Waagrecht: Winkel in Einheiten von <InlineMath math="30^\circ" />. Senkrecht: Arbeit in Einheiten von <InlineMath math="50\text{ J}" />.</>}
+  description={<><InlineMath math="W=200\cos\theta" /> in Joule für <InlineMath math="F=40\text{ N}" /> und <InlineMath math="s=5\text{ m}" /> über Winkel von <InlineMath math="0^\circ" /> bis <InlineMath math="180^\circ" />.</>}
+  footer="Die Arbeit fällt von +200 J über 0 J bei 90 Grad bis auf -200 J bei 180 Grad."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.6 } },
-    view: { kind: "fit", padding: 0.06 },
+    frame: { kind: "cartesian", x: { min: -10, max: 195 }, y: { min: -230, max: 230 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "work", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 0.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 3, y: 0 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 3.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 3.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 3.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 4) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 4.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 4.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 4.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 5) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 5.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 5.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 5.75) / 6) }, { x: 6, y: -4 }] },
-      { id: "zero", kind: "point", appearance: "primary", at: { x: 0, y: 4 } },
-      { id: "right", kind: "point", appearance: "primary", at: { x: 3, y: 0 } },
-      { id: "back", kind: "point", appearance: "primary", at: { x: 6, y: -4 } },
+      { id: "work", kind: "function", appearance: "primary", formula: "200 * cos(x * pi / 180)", domain: { min: 0, max: 180 } },
+      { id: "zero", kind: "point", appearance: "primary", at: { x: 0, y: 200 } },
+      { id: "right", kind: "point", appearance: "primary", at: { x: 90, y: 0 } },
+      { id: "back", kind: "point", appearance: "primary", at: { x: 180, y: -200 } },
     ],
     labels: [
-      { key: "zero", objectId: "zero", at: { x: 0, y: 4 }, placement: "right" },
-      { key: "right", objectId: "right", at: { x: 3, y: 0 }, placement: "above-right" },
-      { key: "back", objectId: "back", at: { x: 6, y: -4 }, placement: "left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 200 }, placement: "right" },
+      { key: "right", objectId: "right", at: { x: 90, y: 0 }, placement: "above-right" },
+      { key: "back", objectId: "back", at: { x: 180, y: -200 }, placement: "left" },
     ],
   }}
   labels={{
-    zero: <InlineMath math="0^\circ:\ W=200\text{ J}" />,
-    right: <InlineMath math="90^\circ:\ W=0" />,
-    back: <InlineMath math="180^\circ:\ W=-200\text{ J}" />,
+    zero: <InlineMath math="0^\circ:\ 200\text{ J}" />,
+    right: <InlineMath math="90^\circ:\ 0\text{ J}" />,
+    back: <InlineMath math="180^\circ:\ -200\text{ J}" />,
   }}
 />
 
-Hier ist dieser Zug an einem Schlitten: <InlineMath math="40\text{ N}" /> unter <InlineMath math="60^\circ" /> über <InlineMath math="5\text{ m}" /> verrichten <InlineMath math="100\text{ J}" />, weil nur <InlineMath math="20\text{ N}" /> davon entlang dem Schnee liegen. Senk das Seil Richtung <InlineMath math="0^\circ" />, und die Arbeit steigt auf <InlineMath math="200\text{ J}" />.
+Bei <InlineMath math="90^\circ" /> wechselt das Vorzeichen der Arbeit, weil die Kraftkomponente entlang der Bewegung von antreibend auf bremsend umschlägt.
+
+Prüfe denselben <InlineMath math="40\text{ N}" />-Zug an einem Schlitten über <InlineMath math="5\text{ m}" />. Bei <InlineMath math="60^\circ" /> liegen nur <InlineMath math="20\text{ N}" /> entlang dem Schnee und verrichten <InlineMath math="100\text{ J}" />. Senkst du das Seil Richtung <InlineMath math="0^\circ" />, steigt die Arbeit bis auf <InlineMath math="200\text{ J}" />.
 
 <SledPullWorkLab
   title={<>Nur der Anteil in Bewegungsrichtung arbeitet</>}
   description={<>Ein <InlineMath math="15\text{ kg}" /> schwerer Schlitten wird mit <InlineMath math="40\text{ N}" /> über <InlineMath math="5\text{ m}" /> gezogen. Heb oder senk das Seil.</>}
+  footer="Ein flacheres Seil vergrößert die Zugkomponente am Boden und steigert die Arbeit."
   angle={60}
   distance={5}
   force={40}
@@ -121,13 +128,15 @@ Hier ist dieser Zug an einem Schlitten: <InlineMath math="40\text{ N}" /> unter 
   }}
 />
 
+Der nach oben gerichtete Anteil <InlineMath math="F\sin\theta" /> entlastet den Schnee, leistet aber entlang der waagrechten Strecke keine Arbeit.
+
 ## Das Kreuzprodukt misst die Drehwirkung
 
-Das Kreuzprodukt von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> hat den Betrag:
+Das **Kreuzprodukt** von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> erzeugt einen Vektor senkrecht auf der von beiden aufgespannten Ebene mit dem Betrag:
 
 <BlockMath math="\lvert\vec{A}\times\vec{B}\rvert=AB\sin\theta" />
 
-Für zwei Vektoren ungleich null, die nicht parallel sind, steht das Ergebnis senkrecht auf der von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> aufgespannten Ebene. Seine Richtung folgt der **Rechte-Hand-Regel**: Krümme die Finger vom ersten zum zweiten Vektor über den kleineren Winkel. Der Daumen zeigt die Ergebnisrichtung. Bei parallelen Vektoren oder einem Nullvektor als Eingabe entsteht der Nullvektor ohne bestimmte Richtung.
+Für zwei nicht parallele Vektoren ungleich null gilt die **Rechte-Hand-Regel**: Krümme die Finger vom ersten zum zweiten Vektor über den kleineren Winkel, dann zeigt der Daumen in die Ergebnisrichtung. Parallele Vektoren oder ein Nullvektor ergeben den Nullvektor ohne bestimmte Richtung.
 
 <MathVisual
   title={<>Richtung <InlineMath math="\vec{A}\times\vec{B}" /></>}
@@ -137,22 +146,20 @@ Für zwei Vektoren ungleich null, die nicht parallel sind, steht das Ergebnis se
       liegen in einer Ebene. Ihr Kreuzprodukt steht senkrecht auf dieser Ebene.
     </>
   }
+  footer="Drehung von x nach y richtet das Kreuzprodukt nach der Rechten Hand auf +z."
   labels={{
-    "l1": <InlineMath math="A" />,
-    "l2": <InlineMath math="B" />,
-    "l3": <InlineMath math="A\times B" />,
+    l1: <InlineMath math="\vec{A}" />,
+    l2: <InlineMath math="\vec{B}" />,
+    l3: <InlineMath math="\vec{A}\times\vec{B}" />,
   }}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -1.5, max: 13.5 } },
     view: { kind: "camera", position: { x: 9.9, y: 6.66, z: -7 }, target: { x: 1.5, y: 1.3, z: 5 } },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1.5, z: 0 }, { x: 0, y: 3, z: 0 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 0, y: 1.5, z: 0 }, to: { x: 0, y: 3, z: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 6 }, { x: 0, y: 0, z: 12 }], appearance: "answer" },
-      { id: "s3-head", kind: "vector", from: { x: 0, y: 0, z: 6 }, to: { x: 0, y: 0, z: 12 }, appearance: "answer" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 3, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 12 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2, y: 0, z: 0 }, placement: "below" },
@@ -162,7 +169,7 @@ Für zwei Vektoren ungleich null, die nicht parallel sind, steht das Ergebnis se
   }}
 />
 
-In der Darstellung zeigt <InlineMath math="\vec{A}" /> entlang der positiven <InlineMath math="x" />-Achse und <InlineMath math="\vec{B}" /> entlang der positiven <InlineMath math="y" />-Achse. Die Rechnung liefert für <InlineMath math="\vec{A}\times\vec{B}" /> die positive <InlineMath math="z" />-Richtung. Beide Modellvektoren sind dimensionslos. Berechne die Komponenten: Die ersten beiden sind null und die dritte ist <InlineMath math="4\cdot3" />. Der Ergebnispfeil ist <InlineMath math="12" /> Einheiten lang. Drehe das Modell und vergleiche diesen Pfeil mit der Ebene der ursprünglichen Vektoren.
+Hier zeigt <InlineMath math="\vec{A}" /> mit Länge <InlineMath math="4" /> entlang der positiven <InlineMath math="x" />-Achse und <InlineMath math="\vec{B}" /> mit Länge <InlineMath math="3" /> entlang der positiven <InlineMath math="y" />-Achse. Beide Modellvektoren sind dimensionslos, und ihr Kreuzprodukt zeigt mit Länge <InlineMath math="12" /> in positive <InlineMath math="z" />-Richtung:
 
 <BlockMath math="\begin{aligned}
 C_x&=0\cdot0-0\cdot3=0 \\
@@ -171,19 +178,20 @@ C_z&=4\cdot3-0\cdot0=12 \\
 \vec{A}\times\vec{B}&=(C_x,C_y,C_z)=(0,0,12)
 \end{aligned}" />
 
-Für das Drehmoment lautet das Kreuzprodukt:
+In der Drehmechanik beschreibt das **Drehmoment** genau dieses Kreuzprodukt:
 
 <BlockMath math="\vec{\tau}=\vec{r}\times\vec{F}" />
 
-Der Vektor <InlineMath math="\vec{r}" /> ist der Ortsvektor von einem Bezugspunkt am Scharnier bis zum Angriffspunkt der Kraft. Der senkrechte Hebelarm hat die Länge <InlineMath math="r\sin\theta" />. Bei gleichem Winkel erzeugt dieselbe Kraft ein größeres Drehmoment, wenn sie weiter vom Türscharnier entfernt angreift.
+Dabei weist <InlineMath math="\vec{r}" /> vom Drehpunkt zum Angriffspunkt der Kraft, und der senkrechte Hebelarm hat die Länge <InlineMath math="r\sin\theta" />.
 
-## Eine Radmutter lösen
+### Eine Radmutter lösen
 
-Eine Hand drückt mit <InlineMath math="200\text{ N}" /> auf ein Radkreuz, <InlineMath math="0{,}4\text{ m}" /> von der Mutter entfernt. Das Drehmoment <InlineMath math="\vec\tau=\vec r\times\vec F" /> **zeigt entlang der Achse der Mutter**, <InlineMath math="80\text{ N}\cdot\text{m}" />, wenn der Druck senkrecht zum Griff steht. Dreh den Druck unter den Griff, und das Drehmoment kippt auf die andere Seite.
+Eine Hand drückt mit <InlineMath math="200\text{ N}" /> auf ein Radkreuz in <InlineMath math="0{,}4\text{ m}" /> Abstand von der Mutter. Das Drehmoment <InlineMath math="\vec{\tau}" /> **zeigt entlang der Achse der Mutter** und erreicht <InlineMath math="80\text{ N}\cdot\text{m}" /> bei senkrechtem Druck. Kippt der Druck unter den Griff, dreht sich der Drehsinn um und der Drehmomentvektor zeigt zur Gegenseite.
 
 <WrenchTorqueLab
   title={<>Drehmoment an einer Radmutter</>}
   description={<>Ein Druck von <InlineMath math="200\text{ N}" /> in <InlineMath math="0{,}4\text{ m}" /> Abstand von der Mutter. Dreh den Druck.</>}
+  footer="Das Drehmoment ist bei 90 Grad maximal und dreht sich jenseits des Griffs um."
   angle={90}
   arm={0.4}
   force={200}
@@ -196,23 +204,24 @@ Eine Hand drückt mit <InlineMath math="200\text{ N}" /> auf ein Radkreuz, <Inli
   }}
 />
 
-## Drehmoment einer senkrechten Kraft
+Nur der senkrechte Anteil <InlineMath math="F\sin\theta" /> dreht die Mutter, während ein Druck genau entlang des Griffs keine Drehung erzeugt.
 
-Wähle am Scharnier einen Bezugspunkt auf der Höhe des Kraftangriffspunkts. Eine Tür wird horizontal im Abstand <InlineMath math="0{,}8\text{ m}" /> vom Scharnier mit einer Kraft von <InlineMath math="30\text{ N}" /> gedrückt. Die Kraft wirkt **senkrecht zur Tür**, also gilt <InlineMath math="\theta=90^\circ" />.
+### Eine Tür aufdrücken
+
+Wähle am Scharnier einen Bezugspunkt auf Höhe des Drucks. Eine Tür wird horizontal im Abstand <InlineMath math="0{,}8\text{ m}" /> mit <InlineMath math="30\text{ N}" /> gedrückt, **senkrecht zur Tür**, sodass <InlineMath math="\theta=90^\circ" /> gilt:
 
 <BlockMath math="\begin{aligned}
 \tau&=rF\sin\theta \\
 &=0{,}8(30)\sin90^\circ \\
-&=24\text{ N m}
+&=24\text{ N}\cdot\text{m}
 \end{aligned}" />
 
-Bei festen Werten von <InlineMath math="r" /> und <InlineMath math="F" /> erzeugt eine senkrechte Kraft das maximale Drehmoment, weil <InlineMath math="\sin90^\circ=1" /> gilt. Eine fast parallel zum Ortsvektor <InlineMath math="\vec{r}" /> wirkende Kraft erzeugt nur ein kleines Drehmoment, weil ihr Sinusfaktor nahe null liegt.
-
-Hier ist diese Tür von der Decke aus: <InlineMath math="30\text{ N}" /> senkrecht zur Tür in <InlineMath math="0{,}8\text{ m}" /> Abstand ergeben <InlineMath math="24\text{ N}\cdot\text{m}" />, und die Tür schwingt auf. Schieb die Hand zum Scharnier oder drück schräg, dann werden Drehmoment und Schwung kleiner.
+Bei festen Werten von <InlineMath math="r" /> und <InlineMath math="F" /> maximiert ein senkrechter Druck das Drehmoment, weil <InlineMath math="\sin90^\circ=1" /> gilt. Schiebst du die Hand zum Scharnier oder drückst schräg, sinken Drehmoment und Schwung.
 
 <DoorHingeTorqueLab
   title={<>Eine Tür aufdrücken</>}
   description={<>Eine <InlineMath math="18\text{ kg}" /> schwere, <InlineMath math="0{,}9\text{ m}" /> breite Tür, mit <InlineMath math="30\text{ N}" /> gedrückt.</>}
+  footer="Kleinerer Abstand zum Scharnier oder schräger Druck verringert das Drehmoment."
   angle={90}
   arm={0.8}
   force={30}
@@ -229,9 +238,11 @@ Hier ist diese Tür von der Decke aus: <InlineMath math="30\text{ N}" /> senkrec
   }}
 />
 
+Verdoppelst du den Abstand vom Scharnier, verdoppelt sich das Drehmoment auch bei unveränderter Druckkraft.
+
 ## Skalarprodukt und Kreuzprodukt vergleichen
 
-Vergleiche die Operationen bei **festen Vektorbeträgen ungleich null**. Das Skalarprodukt ist am größten, wenn zwei Vektoren gleichgerichtet sind, denn <InlineMath math="\cos0^\circ=1" />. Das Kreuzprodukt ist in diesem Fall null, denn <InlineMath math="\sin0^\circ=0" />.
+Vergleiche beide Operationen bei **festen Vektorbeträgen ungleich null**. Das Skalarprodukt wird bei parallelen Vektoren maximal, weil <InlineMath math="\cos0^\circ=1" /> gilt, während das Kreuzprodukt dort wegen <InlineMath math="\sin0^\circ=0" /> verschwindet.
 
 | Winkelbedingung | <InlineMath math="\vec{A}\cdot\vec{B}" /> | <InlineMath math="\lvert\vec{A}\times\vec{B}\rvert" /> |
 | :-------------- | :------------------------- | :---------------------------------------- |
@@ -239,24 +250,25 @@ Vergleiche die Operationen bei **festen Vektorbeträgen ungleich null**. Das Ska
 | <InlineMath math="90^\circ" /> | null | maximal |
 | <InlineMath math="180^\circ" /> | negativ | null |
 
-Das Skalarprodukt beschreibt damit die gegenseitige Ausrichtung zweier Vektoren. Das Kreuzprodukt erfasst dagegen senkrechte Wirkungen, etwa eine Drehung.
+### Wie der Winkel beide Produkte trennt
 
-Halt beide Beträge fest und dreh den Winkel. Das orange Skalarprodukt ist am größten, wenn die Vektoren in einer Linie liegen, der Betrag des violetten Kreuzprodukts erreicht bei <InlineMath math="90^\circ" /> sein Maximum. Bei <InlineMath math="0^\circ" /> und <InlineMath math="180^\circ" /> verschwindet das Kreuzprodukt, weil parallele Vektoren keine Drehwirkung haben.
+Hältst du <InlineMath math="AB=200" /> fest und variierst den Winkel von <InlineMath math="0^\circ" /> bis <InlineMath math="180^\circ" />, zeigen die Kurven zwei **komplementäre Maße** für Gleichrichtung und Senkrechtstellung.
 
 <MathVisual
-  title={<>Skalar- und Kreuzprodukt gegen den Winkel</>}
-  description={<><InlineMath math="AB\cos\theta" /> und <InlineMath math="AB\sin\theta" /> mit <InlineMath math="AB=200" /> für Winkel von <InlineMath math="0^\circ" /> bis <InlineMath math="180^\circ" />. Waagrecht: Winkel in Einheiten von <InlineMath math="30^\circ" />. Senkrecht: Wert in Einheiten von <InlineMath math="50" />.</>}
+  title={<>Skalarprodukt und Kreuzprodukt gegen den Winkel</>}
+  description={<>Maßstabsgetreue Kurven von <InlineMath math="200\cos\theta" /> und <InlineMath math="200\sin\theta" /> von <InlineMath math="0^\circ" /> bis <InlineMath math="180^\circ" />.</>}
+  footer="Skalarprodukt hat bei 0 Grad sein Maximum, Kreuzproduktbetrag bei 90 Grad."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.8 } },
-    view: { kind: "fit", padding: 0.06 },
+    frame: { kind: "cartesian", x: { min: -10, max: 195 }, y: { min: -230, max: 240 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "dot", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 0.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 3, y: 0 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 3.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 3.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 3.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 4) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 4.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 4.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 4.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 5) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 5.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 5.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 5.75) / 6) }, { x: 6, y: -4 }] },
-      { id: "cross", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 4 * Math.cos((Math.PI * -2.75) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * -2.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * -2.25) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * -2) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * -1.75) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * -1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * -1.25) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * -1) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * -0.75) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * -0.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * -0.25) / 6) }, { x: 3, y: 4 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 6, y: 0 }] },
+      { id: "dot", kind: "function", appearance: "primary", formula: "200 * cos(x * pi / 180)", domain: { min: 0, max: 180 } },
+      { id: "cross", kind: "function", appearance: "secondary", formula: "200 * sin(x * pi / 180)", domain: { min: 0, max: 180 } },
     ],
     labels: [
-      { key: "dot", objectId: "dot", at: { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, placement: "above-right" },
-      { key: "cross", objectId: "cross", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "dot", objectId: "dot", at: { x: 30, y: 173.2 }, placement: "above-right" },
+      { key: "cross", objectId: "cross", at: { x: 90, y: 200 }, placement: "above" },
     ],
   }}
   labels={{
@@ -265,24 +277,46 @@ Halt beide Beträge fest und dreh den Winkel. Das orange Skalarprodukt ist am gr
   }}
 />
 
-## Beide Produkte an einer Rampe
+Immer wenn eine Kurve ihren Extremwert erreicht, schneidet die andere die Nulllinie. Parallele Lage maximiert das Skalarprodukt, senkrechte Lage das Kreuzprodukt.
 
-Rutscht der Klotz <InlineMath math="0{,}5\text{ m}" /> hangabwärts, verrichtet die Gewichtskraft die Arbeit <InlineMath math="\vec W\cdot\vec s" />, und die nutzt nur den Anteil entlang des Hangs, <InlineMath math="9{,}8\text{ N}" />: <InlineMath math="4{,}9\text{ J}" />. Der Anteil senkrecht ins Brett, <InlineMath math="16{,}97\text{ N}" />, **verrichtet gar keine Arbeit**.
+### Welcher Gewichtskraftanteil an einer Rampe arbeitet
 
-<RampBlockComponentLab
-  title={<>Welcher Anteil Arbeit verrichtet</>}
-  description={<>Ein <InlineMath math="2\text{ kg}" /> schwerer Klotz auf einem Brett. Er rutscht, sobald <InlineMath math="\tan\theta" /> größer als <InlineMath math="0{,}4" /> ist.</>}
-  angle={30}
-  distance={0.5}
-  friction={0.4}
-  mass={2}
+Rutscht ein <InlineMath math="2\text{ kg}" /> schwerer Klotz <InlineMath math="0{,}5\text{ m}" /> eine <InlineMath math="30^\circ" />-Rampe hinab, verrichtet die Gewichtskraft Arbeit nur über die **hangparallele Komponente**. Nur die <InlineMath math="9{,}8\text{ N}" /> entlang des Hangs leisten <InlineMath math="4{,}9\text{ J}" />, während die <InlineMath math="16{,}97\text{ N}" /> senkrecht ins Brett null Arbeit verrichten.
+
+<MathVisual
+  title={<>Arbeit der Gewichtskraft gegen den Rampenwinkel</>}
+  description={<>Arbeit <InlineMath math="W=mgs\sin\theta" /> der Gewichtskraft an einem <InlineMath math="2\text{ kg}" />-Klotz auf <InlineMath math="0{,}5\text{ m}" /> bei variablem Winkel <InlineMath math="a" />.</>}
+  footer="Steilere Rampen erhöhen Hangabtrieb und Arbeit, Normalkraftarbeit bleibt null."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 90 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 10, max: 60, value: 30, step: 5, label: "ramp-angle" },
+    ],
+    objects: [
+      { id: "work-curve", kind: "function", appearance: "primary", formula: "9.8 * sin(x * pi / 180)", domain: { min: 0, max: 90 } },
+      { id: "normal-zero", kind: "function", appearance: "reference", formula: "0", domain: { min: 0, max: 90 } },
+      { id: "state", kind: "marker", appearance: "answer", x: "a", y: "9.8 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "curve", objectId: "work-curve", at: { x: 60, y: 8.5 }, placement: "above-left" },
+      { key: "zero", objectId: "normal-zero", at: { x: 65, y: 0 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "along-n", formula: "19.6 * sin(a * pi / 180)" },
+      { key: "into-n", formula: "19.6 * cos(a * pi / 180)" },
+      { key: "work-j", formula: "9.8 * sin(a * pi / 180)" },
+    ],
+  }}
   labels={{
-    along: <>Hangabwärts <InlineMath math="W\sin\theta" /></>,
-    angle: <>Neigungswinkel</>,
-    angleName: "Neigungswinkel",
-    into: <>Senkrecht zur Ebene <InlineMath math="W\cos\theta" /></>,
-    viewLabel: "Holzklotz auf einem schrägen Brett",
-    weight: <>Gewichtskraft <InlineMath math="W" /></>,
-    work: <>Arbeit der Gewichtskraft auf <InlineMath math="0{,}5\text{ m}" /></>,
+    curve: <InlineMath math="W=mgs\sin\theta" />,
+    zero: <InlineMath math="W_{\perp}=0\text{ J}" />,
+    "ramp-angle": <>Rampenwinkel (<InlineMath math="^\circ" />)</>,
+    "along-n": <>Hangabwärts (N)</>,
+    "into-n": <>Senkrecht (N)</>,
+    "work-j": <>Arbeit (J)</>,
   }}
 />
+
+Wie steil die Rampe auch wird, die senkrechte Komponente steht immer im Winkel von <InlineMath math="90^\circ" /> zur Verschiebung und leistet null Arbeit.

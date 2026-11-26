@@ -2,14 +2,18 @@
 export const metadata = {
   title: "Gerakan Linear dengan Pecutan Seragam",
   description:
-    "Gerakan linear dengan pecutan seragam berlaku pada lintasan lurus dengan pecutan malar, dan boleh diwakili oleh jejak kedudukan serta graf halaju-masa.",
+    "Gerakan linear dengan pecutan seragam berlaku pada lintasan lurus dengan pecutan malar, dan boleh diwakili oleh jejak kedudukan serta graf halaju masa.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
   dateModified: "2026-09-12",
   subject: "Kinematik",
 };
 
-## Perubahan Halaju yang Sama dalam Sela Masa yang Sama
+## Pecutan Malar Mengubah Halaju Secara Sekata
+
+Dalam gerakan lurus dengan pecutan malar, halaju bertambah atau berkurang **dengan nilai yang sama tepat** pada setiap sela masa yang sama. Aturan tunggal ini melahirkan tiga persamaan kinematik serta pola jarak kuasa dua dari keadaan pegun.
+
+### Perubahan Halaju yang Sama dalam Sela Masa yang Sama
 
 Gerakan linear dengan pecutan seragam ialah gerakan pada lintasan lurus dengan pecutan malar. Pecutan malar bermaksud halaju <Highlight>berubah dengan nilai yang sama</Highlight> dalam setiap sela masa yang sama.
 
@@ -25,29 +29,58 @@ Katakan sebuah kereta bermula pada <InlineMath math="0\text{ m/s}" /> dan halaju
 
 Di sini, <InlineMath math="v_0" /> ialah halaju awal, <InlineMath math="v_t" /> ialah halaju selepas masa <InlineMath math="t" />, <InlineMath math="a" /> ialah pecutan dan <InlineMath math="\Delta x" /> ialah sesaran.
 
-## Galileo Mengukurnya dengan Loceng
+### Menguji Jarak Kuasa Dua pada Landasan Landai
 
-Galileo menguji gerakan dengan pecutan seragam dengan menggolekkan bola menuruni landasan yang landai. **Halaju bertambah sebanyak yang sama setiap saat**, jadi pada <InlineMath math="3^\circ" /> bola bergerak pada kira-kira <InlineMath math="0.374" />, <InlineMath math="0.748" />, <InlineMath math="1.12" /> dan <InlineMath math="1.50\text{ m/s}" /> selepas setiap saat.
+Galileo menguji gerakan dengan pecutan seragam dengan menggolekkan bola menuruni landasan yang landai. **Halaju bertambah sebanyak yang sama setiap saat**, jadi jarak yang dilalui bertambah mengikut kuasa dua masa. Laraskan sudut landasan <InlineMath math="g" /> dan semak kedudukan setiap saat.
 
-<GalileoInclineBellsLab
-  title={<>Landasan dan Loceng Galileo</>}
+<MathVisual
+  title={<>Jarak Kuasa Dua Menuruni Landasan Galileo</>}
   description={
     <>
-      Empat loceng diletakkan di tempat bola berada selepas <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> dan <InlineMath math="4\text{ s}" />. Loceng itu berbunyi dengan rentak yang sekata walaupun jarak antaranya bertambah.
+      Jarak landasan yang dilalui bola dari pegun selama{" "}
+      <InlineMath math="4\text{ s}" /> pada sudut condong <InlineMath math="g" />.
     </>
   }
+  footer={<>Pada setiap sudut condong, empat tanda saat berskala mengikut <InlineMath math="1:4:9:16" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.5 }, y: { min: -0.4, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "g", min: 2, max: 8, value: 3, step: 1, label: "g" },
+    ],
+    objects: [
+      { id: "ramp-curve", kind: "function", appearance: "primary", formula: "0.5*(50/7)*sin(g*pi/180)*x^2", domain: { min: 0, max: 4 } },
+      { id: "b1", kind: "marker", appearance: "answer", x: "1", y: "0.5*(50/7)*sin(g*pi/180)" },
+      { id: "b2", kind: "marker", appearance: "answer", x: "2", y: "2*(50/7)*sin(g*pi/180)" },
+      { id: "b3", kind: "marker", appearance: "answer", x: "3", y: "4.5*(50/7)*sin(g*pi/180)" },
+      { id: "b4", kind: "marker", appearance: "answer", x: "4", y: "8*(50/7)*sin(g*pi/180)" },
+    ],
+    labels: [
+      { key: "b4-lbl", objectId: "b4", at: { x: "4", y: "8*(50/7)*sin(g*pi/180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "accel", formula: "(50/7)*sin(g*pi/180)" },
+      { key: "s1", formula: "0.5*(50/7)*sin(g*pi/180)" },
+      { key: "s4", formula: "8*(50/7)*sin(g*pi/180)" },
+    ],
+  }}
   labels={{
-    acceleration: <>Pecutan menuruni landasan</>,
-    chooseAngle: "Pilih sudut landasan",
-    firstSecond: <>Jarak dalam saat pertama</>,
-    gaps: <>Jarak antara loceng</>,
-    viewLabel: "Bola keluli bergolek menuruni landasan Galileo melepasi empat loceng",
+    g: <>Sudut landasan <InlineMath math="g" /> (darjah)</>,
+    "b4-lbl": <InlineMath math="s(4)" />,
+    accel: <>Pecutan (<InlineMath math="\text{m/s}^2" />)</>,
+    s1: <>Jarak pada 1 s (m)</>,
+    s4: <>Jarak pada 4 s (m)</>,
   }}
 />
 
-Loceng berada pada kira-kira <InlineMath math="0.19" />, <InlineMath math="0.75" />, <InlineMath math="1.68" /> dan <InlineMath math="2.99\text{ m}" /> di sepanjang landasan, jadi jarak antaranya bertambah mengikut <InlineMath math="1:3:5:7" />. Perubahan halaju yang sama dalam masa yang sama sentiasa memberikan corak itu jika bermula dari keadaan pegun.
+Pada <InlineMath math="3^\circ" />, tanda selepas <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> dan <InlineMath math="4\text{ s}" /> terletak pada kira-kira <InlineMath math="0.19" />, <InlineMath math="0.75" />, <InlineMath math="1.68" /> dan <InlineMath math="2.99\text{ m}" />, jadi jarak antara tanda bertambah mengikut nisbah <InlineMath math="1:3:5:7" />.
 
-## Tanda Kedudukan Tidak Lagi Berjarak Sekata
+## Membaca Jarak Renggang pada Jejak dan Bar Halaju
+
+Dengan pecutan malar, tanda setiap saat **semakin merenggang** dan melengkungkan graf kedudukan menjadi parabola. Serentak itu, bar halaju pada sela sama naik dengan langkah ketinggian yang tetap.
+
+### Tanda Kedudukan Tidak Lagi Berjarak Sekata
 
 Dalam gerakan linear seragam, tanda kedudukan pada setiap saat berjarak sama. Dalam gerakan dengan pecutan seragam, jarak antara tanda itu boleh berubah. Selagi objek terus bergerak dalam **arah yang sama**, jarak antara tanda bertambah apabila lajunya meningkat dan berkurang apabila lajunya menurun. Jika objek berpatah balik, kamu juga perlu memeriksa susunan tanda dan di sebelah mana setiap tanda itu jatuh.
 
@@ -61,6 +94,7 @@ Lihat gerakan "Dari Pegun". Pada mulanya, kereta belum bergerak, kemudian jarak 
       <InlineMath math="1\text{ s}" /> sementara pecutannya kekal malar.
     </>
   }
+  footer={<>Bermula dari pegun merenggangkan jarak antara tanda landasan setiap saat.</>}
   labels={{
     chooseScenario: "Pilih gerakan",
     scenarioNames: {
@@ -78,25 +112,26 @@ Lihat gerakan "Dari Pegun". Pada mulanya, kereta belum bergerak, kemudian jarak 
   }}
 />
 
-Bagi kereta mainan yang bermula dari keadaan pegun, tanda pada setiap saat jatuh pada <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="9" />, <InlineMath math="16" /> dan <InlineMath math="25\text{ m}" />. Jarak antara tanda bertambah <InlineMath math="2\text{ m}" /> setiap saat, jadi graf kedudukan melengkung menjadi parabola, bukan garis lurus.
+Bagi kereta mainan yang bermula dari keadaan pegun dengan <InlineMath math="a=2\text{ m/s}^2" />, tanda pada setiap saat jatuh pada <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="9" />, <InlineMath math="16" /> dan <InlineMath math="25\text{ m}" />. Jarak antara tanda bertambah <InlineMath math="2\text{ m}" /> setiap saat, jadi graf kedudukan melengkung menjadi parabola, bukan garis lurus.
 
 <MathVisual
   title={<>Tanda Kedudukan Semakin Renggang</>}
-  description={<><InlineMath math="x=\tfrac12at^2" /> dengan <InlineMath math="a=2\text{ m/s}^2" /> selama <InlineMath math="5\text{ s}" />. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit 5 m.</>}
+  description={<><InlineMath math="x=\tfrac12at^2" /> dengan <InlineMath math="a=2\text{ m/s}^2" /> selama <InlineMath math="5\text{ s}" />. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam m.</>}
+  footer={<>Lengkung menaik semakin curam kerana setiap saat baharu menambah jarak lebih jauh.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -1, max: 28 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "position", kind: "quadratic", appearance: "primary", coefficients: { a: 0.2, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
-      { id: "mark-1", kind: "point", appearance: "answer", at: { x: 1, y: 1 ** 2 / 5 } },
-      { id: "mark-2", kind: "point", appearance: "answer", at: { x: 2, y: 2 ** 2 / 5 } },
-      { id: "mark-3", kind: "point", appearance: "answer", at: { x: 3, y: 3 ** 2 / 5 } },
-      { id: "mark-4", kind: "point", appearance: "answer", at: { x: 4, y: 4 ** 2 / 5 } },
-      { id: "mark-5", kind: "point", appearance: "answer", at: { x: 5, y: 5 ** 2 / 5 } },
+      { id: "position", kind: "function", appearance: "primary", formula: "x^2", domain: { min: 0, max: 5 } },
+      { id: "mark-1", kind: "point", appearance: "answer", at: { x: 1, y: 1 } },
+      { id: "mark-2", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+      { id: "mark-3", kind: "point", appearance: "answer", at: { x: 3, y: 9 } },
+      { id: "mark-4", kind: "point", appearance: "answer", at: { x: 4, y: 16 } },
+      { id: "mark-5", kind: "point", appearance: "answer", at: { x: 5, y: 25 } },
     ],
     labels: [
-      { key: "marks", objectId: "mark-5", at: { x: 5, y: 5 }, placement: "left" },
+      { key: "marks", objectId: "mark-5", at: { x: 5, y: 25 }, placement: "left" },
     ],
   }}
   labels={{
@@ -104,36 +139,73 @@ Bagi kereta mainan yang bermula dari keadaan pegun, tanda pada setiap saat jatuh
   }}
 />
 
-## Jalur yang Bertambah Satu Sentimeter
+Oleh sebab parabola semakin curam setiap saat, satu lengkung yang sama menunjukkan kedudukan yang membesar dan laju yang meningkat sekali gus.
 
-Pita detik menukar idea yang sama menjadi kertas. Troli memecut pada <InlineMath math="1\text{ m/s}^2" />, dan **setiap jalur sepersepuluh saat lebih panjang <InlineMath math="1\text{ cm}" /> daripada jalur sebelumnya**.
+### Bar Halaju yang Bertambah Sekata
 
-<TickerTapeMotionLab
-  motion="speeding"
-  title={<>Pita Detik bagi Troli yang Semakin Laju</>}
+Troli yang memecut merentasi **jalur laluan yang semakin panjang** setiap sepersepuluh saat. Apabila bar halaju disusun bersebelahan, hujungnya naik dalam satu garis lurus. Laraskan pecutan <InlineMath math="a" /> di bawah dan baca jumlah jarak yang dilalui.
+
+<MathVisual
+  title={<>Bar Halaju Troli yang Semakin Laju</>}
   description={
     <>
-      Jangka masa detik mencetak satu titik setiap <InlineMath math="0.02\text{ s}" />. Apabila disusun bersebelahan, jalur-jalur itu membentuk carta halaju-masa yang hujungnya naik dalam satu garis lurus.
+      Halaju setiap <InlineMath math="0.1\text{ s}" /> bermula dari{" "}
+      <InlineMath math="0.2\text{ m/s}" /> apabila pecutan <InlineMath math="a" />{" "}
+      diubah.
     </>
   }
+  footer={<>Hujung bar membentuk garis lurus yang kecerunannya menyamai nilai pecutan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.9 }, y: { min: 0, max: 1.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.4, max: 1.4, value: 1, step: 0.2, label: "a" },
+    ],
+    objects: [
+      { id: "slope", kind: "function", appearance: "construction", formula: "0.2 + a*x", domain: { min: 0.05, max: 0.75 } },
+      { id: "b1", kind: "path", appearance: "primary", points: [{ x: "0.05", y: "0" }, { x: "0.05", y: "0.2 + 0.05*a" }] },
+      { id: "b2", kind: "path", appearance: "primary", points: [{ x: "0.15", y: "0" }, { x: "0.15", y: "0.2 + 0.15*a" }] },
+      { id: "b3", kind: "path", appearance: "primary", points: [{ x: "0.25", y: "0" }, { x: "0.25", y: "0.2 + 0.25*a" }] },
+      { id: "b4", kind: "path", appearance: "primary", points: [{ x: "0.35", y: "0" }, { x: "0.35", y: "0.2 + 0.35*a" }] },
+      { id: "b5", kind: "path", appearance: "primary", points: [{ x: "0.45", y: "0" }, { x: "0.45", y: "0.2 + 0.45*a" }] },
+      { id: "b6", kind: "path", appearance: "primary", points: [{ x: "0.55", y: "0" }, { x: "0.55", y: "0.2 + 0.55*a" }] },
+      { id: "b7", kind: "path", appearance: "primary", points: [{ x: "0.65", y: "0" }, { x: "0.65", y: "0.2 + 0.65*a" }] },
+      { id: "b8", kind: "path", appearance: "primary", points: [{ x: "0.75", y: "0" }, { x: "0.75", y: "0.2 + 0.75*a" }] },
+      { id: "top-first", kind: "marker", appearance: "answer", x: "0.05", y: "0.2 + 0.05*a" },
+      { id: "top-last", kind: "marker", appearance: "answer", x: "0.75", y: "0.2 + 0.75*a" },
+    ],
+    labels: [
+      { key: "v1-lbl", objectId: "top-first", at: { x: "0.05", y: "0.2 + 0.05*a" }, placement: "above-right" },
+      { key: "v8-lbl", objectId: "top-last", at: { x: "0.75", y: "0.2 + 0.75*a" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "v1", formula: "0.2 + 0.05*a" },
+      { key: "v8", formula: "0.2 + 0.75*a" },
+      { key: "dist", formula: "0.8*(0.2 + 0.4*a)" },
+    ],
+  }}
   labels={{
-    acceleration: <>Pecutan daripada jalur pita</>,
-    chooseMotion: "Pilih gerakan troli",
-    firstStrip: <>Jalur pertama</>,
-    interval: <>Masa antara titik</>,
-    lastStrip: <>Jalur terakhir</>,
-    motions: {
-      uniform: <>Seragam</>,
-      speeding: <>Semakin laju</>,
-      slowing: <>Semakin perlahan</>,
-    },
-    viewLabel: "Troli menarik pita kertas melalui jangka masa detik",
+    a: <>Pecutan <InlineMath math="a" /> (<InlineMath math="\text{m/s}^2" />)</>,
+    "v1-lbl": <InlineMath math="v_1" />,
+    "v8-lbl": <InlineMath math="v_8" />,
+    v1: <>Jalur pertama (m/s)</>,
+    v8: <>Jalur terakhir (m/s)</>,
+    dist: <>Jumlah jarak dalam 0.8 s (m)</>,
   }}
 />
 
-Panjang jalur bertambah daripada <InlineMath math="2.5\text{ cm}" /> kepada <InlineMath math="9.5\text{ cm}" />. Satu jalur mengambil masa <InlineMath math="0.1\text{ s}" />, jadi <InlineMath math="a=\frac{0.01\text{ m}}{(0.1\text{ s})^2}=1\text{ m/s}^2" />, dan luas semua jalur bersama ialah <InlineMath math="48\text{ cm}" /> yang dilalui troli.
+Pada <InlineMath math="a=1\text{ m/s}^2" />, panjang jalur bertambah daripada <InlineMath math="2.5\text{ cm}" /> kepada <InlineMath math="9.5\text{ cm}" />, iaitu <InlineMath math="1\text{ cm}" /> setiap <InlineMath math="0.1\text{ s}" />:
 
-## Mengira Sesaran daripada Luas Graf
+<BlockMath math="a=\frac{0.01\text{ m}}{(0.1\text{ s})^2}=1\text{ m/s}^2" />
+
+Jumlah panjang kelapan-lapan jalur memberikan tepat <InlineMath math="48\text{ cm}" /> yang dilalui troli.
+
+## Mencari Sesaran daripada Luas Graf dan Persamaan
+
+Luas antara garis halaju dengan paksi masa menghasilkan **nilai sesaran yang sama tepat** dengan rumus kinematik. Segi tiga atau trapezium di bawah graf merekodkan perubahan kedudukan yang sama secara geometri.
+
+### Mengira Sesaran daripada Luas Graf
 
 Graf halaju-masa bukan sekadar menunjukkan halaju. **Luas bertanda** antara graf dengan paksi masa mewakili sesaran. Dalam gerakan dengan pecutan seragam di atas paksi masa, luas itu boleh berbentuk segi tiga atau trapezium. Luas di bawah paksi pula menyumbang sesaran negatif.
 
@@ -145,6 +217,7 @@ Graf halaju-masa bukan sekadar menunjukkan halaju. **Luas bertanda** antara graf
       paksi masa untuk mendapatkan sesaran objek itu.
     </>
   }
+  footer={<>Luas segi tiga atau trapezium berlorek terus memberikan jumlah sesaran.</>}
   labels={{
     chooseScenario: "Pilih Gerakan",
     scenarioNames: {
@@ -165,7 +238,7 @@ Graf halaju-masa bukan sekadar menunjukkan halaju. **Luas bertanda** antara graf
 
 Rumus-rumus ini menyatakan hubungan yang sama: sesaran ialah luas bertanda antara graf halaju-masa dengan paksi masa.
 
-## Kereta Bermula dari Pegun
+### Kereta Bermula dari Pegun
 
 Sebuah kereta mainan bermula dari keadaan pegun, kemudian bergerak dengan pecutan malar <InlineMath math="2\text{ m/s}^2" /> selama <InlineMath math="5\text{ s}" />.
 
@@ -193,31 +266,75 @@ Kamu boleh menyemak sesaran ini dengan **luas segi tiga di bawah graf halaju-mas
 
 <BlockMath math="\Delta x=\frac{1}{2}(5\text{ s})(10\text{ m/s})=25\text{ m}" />
 
-## Bermula dari Pegun dalam Foto Strob
+## Pola Jatuhan Bebas dan Tanda Pecutan
 
-Bola yang dijatuhkan ialah contoh paling mudah bagi gerakan dari keadaan pegun: halajunya bertambah <InlineMath math="10\text{ m/s}" /> setiap saat. **Dari keadaan pegun, jarak jatuhan bertambah mengikut kuasa dua masa**, <InlineMath math="h=\frac{1}{2}gt^2" />.
+Objek yang dilepaskan dari keadaan pegun menonjolkan pola kuasa dua dengan jelas, manakala membrek membuktikan bahawa **tanda pecutan** menghala mengikut perubahan halaju dan bukan arah gerakan.
 
-<StrobePhotoMotionLab
-  shot="drop"
-  title={<>Bola Dijatuhkan dari Keadaan Pegun</>}
+### Jarak Jatuhan Kuasa Dua dari Pegun
+
+Bola yang dijatuhkan ialah contoh paling mudah bagi gerakan dari keadaan pegun: halajunya bertambah <InlineMath math="10\text{ m/s}" /> setiap saat. **Dari keadaan pegun, jarak jatuhan bertambah mengikut kuasa dua masa**:
+
+<BlockMath math="h=\frac{1}{2}gt^2" />
+
+Laraskan masa jatuhan <InlineMath math="d" /> di bawah untuk menyemak nisbah <InlineMath math="1:4:9:16:25:36" />.
+
+<MathVisual
+  title={<>Jarak Jatuhan Kuasa Dua dari Pegun</>}
   description={
     <>
-      Sebuah lampu berkelip setiap <InlineMath math="0.1\text{ s}" /> sementara pengatup kekal terbuka, jadi setiap imej ialah satu kilatan.
+      Jarak jatuhan <InlineMath math="h(t)=5t^2" /> bagi bola yang dilepaskan
+      dari pegun selama <InlineMath math="0.6\text{ s}" />.
     </>
   }
+  footer={<>Menggandakan masa jatuhan menjadikan jarak jatuhan empat kali lebih besar.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 0.7 }, y: { min: -0.15, max: 2.1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.1, max: 0.6, value: 0.3, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "drop-curve", kind: "function", appearance: "primary", formula: "5*x^2", domain: { min: 0, max: 0.6 } },
+      { id: "f1", kind: "point", appearance: "secondary", at: { x: 0.1, y: 0.05 } },
+      { id: "f2", kind: "point", appearance: "secondary", at: { x: 0.2, y: 0.2 } },
+      { id: "f3", kind: "point", appearance: "secondary", at: { x: 0.3, y: 0.45 } },
+      { id: "f4", kind: "point", appearance: "secondary", at: { x: 0.4, y: 0.8 } },
+      { id: "f5", kind: "point", appearance: "secondary", at: { x: 0.5, y: 1.25 } },
+      { id: "f6", kind: "point", appearance: "secondary", at: { x: 0.6, y: 1.8 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "d", y: "0" },
+          { x: "d", y: "5*d^2" },
+        ],
+      },
+      { id: "ball", kind: "marker", appearance: "answer", x: "d", y: "5*d^2" },
+    ],
+    labels: [
+      { key: "h-lbl", objectId: "ball", at: { x: "d", y: "5*d^2" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "fall", formula: "5*d^2" },
+      { key: "speed", formula: "10*d" },
+      { key: "ratio", formula: "(d/0.1)^2" },
+    ],
+  }}
   labels={{
-    airTime: <>Masa di udara</>,
-    height: <>Tinggi awal</>,
-    interval: <>Masa antara kilatan</>,
-    outcome: <>Laju ketika mencecah lantai</>,
-    viewLabel: "Foto strob yang terbina kilatan demi kilatan",
+    d: <>Masa jatuh <InlineMath math="d" /> (s)</>,
+    "h-lbl": <InlineMath math="h(d)" />,
+    fall: <>Jarak jatuh (m)</>,
+    speed: <>Laju (m/s)</>,
+    ratio: <>Gandaan 0.1 s pertama</>,
   }}
 />
 
 Selepas <InlineMath math="0.1" />, <InlineMath math="0.2" /> dan <InlineMath math="0.3\text{ s}" />, bola telah jatuh <InlineMath math="5" />, <InlineMath math="20" /> dan <InlineMath math="45\text{ cm}" />, corak <InlineMath math="1:4:9" /> yang sama seperti kereta yang bermula dari pegun. Bola mencecah lantai <InlineMath math="1.8\text{ m}" /> di bawah selepas <InlineMath math="0.6\text{ s}" />.
 
-## Tanda Pecutan Bergantung pada Arah Positif
+### Tanda Pecutan Bergantung pada Arah Positif
 
 Dalam gerakan satu dimensi, tanda positif dan negatif bergantung pada **arah positif yang kita pilih**. Jika arah ke kanan dipilih sebagai positif, pecutan positif bermaksud perubahan halaju menghala ke kanan.
 
-Pecutan negatif tidak semestinya bermaksud objek bergerak ke kiri. Kereta yang sedang membrek masih boleh bergerak ke kanan walaupun pecutannya negatif. Halajunya tetap menghala ke kanan, tetapi nilainya semakin kecil.
+Tanda pecutan negatif tidak serta-merta menunjukkan objek itu sedang menuju ke kiri. Kereta yang sedang membrek masih boleh bergerak ke kanan walaupun pecutannya negatif. Halajunya tetap menghala ke kanan, tetapi nilainya semakin kecil.

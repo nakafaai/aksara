@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Gleichförmige geradlinige Bewegung",
   description:
@@ -11,7 +10,7 @@ export const metadata = {
 
 ## Bewegung ohne Änderung der Geschwindigkeit
 
-Bei einer gleichförmigen geradlinigen Bewegung bewegt sich ein Objekt auf einer geraden Bahn mit <Highlight>konstanter Geschwindigkeit</Highlight>. Sowohl der Betrag als auch die Richtung der Geschwindigkeit bleiben unverändert.
+Bei einer gleichförmigen geradlinigen Bewegung bewegt sich ein Objekt auf einer geraden Bahn mit <Highlight>konstantem Tempo und fester Richtung</Highlight>. Sowohl der Betrag als auch die Richtung der Geschwindigkeit bleiben unverändert.
 
 Stelle dir einen kleinen Schienenwagen auf einem geraden Gleis vor. Legt er in jeder Zeitspanne von <InlineMath math="1\text{ s}" /> genau <InlineMath math="2\text{ m}" /> zurück und in der folgenden Sekunde wieder <InlineMath math="2\text{ m}" />, bewegt er sich gleichförmig und geradlinig.
 
@@ -24,38 +23,54 @@ x(t) &= x(t_0)+v(t-t_0)
 
 Die Symbole <InlineMath math="x(t_0)" /> und <InlineMath math="x(t)" /> bezeichnen die Positionen zum Anfangs- und Endzeitpunkt, <InlineMath math="v" /> die konstante Geschwindigkeit, <InlineMath math="\Delta t=t-t_0" /> die verstrichene Zeit und <InlineMath math="\Delta x" /> die Verschiebung.
 
-## Ein Zug mit konstanter Geschwindigkeit
+Ein Pendlerzug auf gerader Strecke mit <InlineMath math="20\text{ m/s}" /> zeigt diese Bewegung direkt am Bahnsteig. Er legt **jede Sekunde <InlineMath math="20\text{ m}" /> in dieselbe Richtung** zurück. Ändere unten Geschwindigkeit <InlineMath math="s" /> und Fahrzeit <InlineMath math="a" /> für das lineare Wachstum der Position.
 
-Ein Pendlerzug, der auf gerader Strecke mit <InlineMath math="20\text{ m/s}" /> fährt, ist eine gleichförmige Bewegung, neben der du stehen kannst. Er legt **jede Sekunde <InlineMath math="20\text{ m}" /> in dieselbe Richtung** zurück.
-
-<TrainPassengerRelativeLab
-  title={<>Ein Zug fährt am Bahnsteig vorbei</>}
+<MathVisual
+  title={<>Ein Zug mit konstanter Geschwindigkeit</>}
   description={
     <>
-      Schau zuerst vom Bahnsteig aus. Der pinke Pfeil ist die konstante Geschwindigkeit des Zuges, der türkise gehört zu einer Person, die darin geht.
+      Ändere die konstante Geschwindigkeit <InlineMath math="s" /> und die Fahrzeit <InlineMath math="a" /> und lies die zurückgelegte Strecke auf gerader Bahn ab.
     </>
   }
+  footer={<>Konstante Geschwindigkeit erzeugt eine gerade Linie mit festen Schrittweiten.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -5, max: 130 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 5, max: 25, value: 20, step: 5, label: "s" },
+      { name: "a", min: 1, max: 5, value: 4, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "track-line", kind: "function", appearance: "primary", formula: "s*x", domain: { min: 0, max: 5 } },
+      { id: "time-drop", kind: "path", appearance: "construction", points: [{ x: "a", y: "0" }, { x: "a", y: "s*a" }] },
+      { id: "pos-drop", kind: "path", appearance: "secondary", points: [{ x: "0", y: "s*a" }, { x: "a", y: "s*a" }] },
+      { id: "train-pt", kind: "marker", appearance: "answer", x: "a", y: "s*a" },
+    ],
+    labels: [
+      { key: "pos-lbl", objectId: "train-pt", at: { x: "a", y: "s*a" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "step-per-s", formula: "s" },
+      { key: "elapsed-dist", formula: "s*a" },
+    ],
+  }}
   labels={{
-    chooseObserver: "Beobachter wählen",
-    chooseWay: "Gehrichtung wählen",
-    observers: {
-      platform: <>Vom Bahnsteig</>,
-      train: <>Von einem Sitzplatz</>,
-    },
-    passenger: <>Geschwindigkeit der Person</>,
-    train: <>Geschwindigkeit des Zuges</>,
-    viewLabel: "Person geht durch einen fahrenden Zug",
-    walk: <>Gehgeschwindigkeit im Wagen</>,
-    ways: {
-      forward: <>Nach vorn gehen</>,
-      backward: <>Nach hinten gehen</>,
-    },
+    s: <>Geschwindigkeit <InlineMath math="s" /> (m/s)</>,
+    a: <>Zeit <InlineMath math="a" /> (s)</>,
+    "pos-lbl": <InlineMath math="x(t)" />,
+    "step-per-s": <>Weg pro Sekunde (m)</>,
+    "elapsed-dist": <>Gesamtverschiebung (m)</>,
   }}
 />
 
-Vom Bahnsteig aus ändert sich der Pfeil des Zuges nie, und genau das bedeutet konstante Geschwindigkeit. Von einem Sitzplatz aus steht der Zug still, also kann dieselbe Bewegung für einen Beobachter gleichförmig und für einen anderen gar nicht vorhanden sein.
+Vom Bahnsteig aus bleibt die Geschwindigkeit unverändert, sodass jede weitere Sekunde genau dieselbe Meterzahl hinzufügt. Verdoppelt sich die Fahrzeit, verdoppelt sich auch die Verschiebung entlang dieser Ursprungsgeraden.
 
-## Positionsmarkierungen mit gleichem Abstand
+## Gleiche Schritte in gleichen Zeiten
+
+Zeichnet man die Position in festen Zeittakten auf, zeigt sich **konstante Geschwindigkeit** sofort am gleichmäßigen Muster. Sowohl Positionsmarken auf einer Strecke als auch Streifen eines Tickerbands machen gleichförmige Bewegung direkt sichtbar.
+
+### Positionsmarkierungen mit gleichem Abstand
 
 Wird die Position eines Objekts in **gleichen Zeitabständen** aufgezeichnet, entstehen bei gleichförmiger geradliniger Bewegung gleichmäßig verteilte Marken. Ihre Abstände zeigen unmittelbar, wie weit sich das Objekt in jedem Zeitintervall bewegt.
 
@@ -76,10 +91,11 @@ Der Positionswert ändert sich, während die Differenz zwischen aufeinanderfolge
   title={<>Positionsmarken bei gleichförmiger Bewegung</>}
   description={
     <>
-    Verändere die konstante Geschwindigkeit und beobachte, dass die Abstände
-    zwischen aufeinanderfolgenden Sekunden jeweils gleich bleiben.
-  </>
+      Verändere die konstante Geschwindigkeit und beobachte, dass die Abstände
+      zwischen aufeinanderfolgenden Sekunden jeweils gleich bleiben.
+    </>
   }
+  footer={<>Bei konstanter Geschwindigkeit haben alle Sekundenmarken genau gleichen Abstand.</>}
   labels={{
     chooseSpeed: "Konstante Geschwindigkeit wählen",
     speed: <>Konstante Geschwindigkeit</>,
@@ -90,7 +106,9 @@ Der Positionswert ändert sich, während die Differenz zwischen aufeinanderfolge
   }}
 />
 
-## Gleich lange Streifen auf dem Tickerband
+Eine höhere gewählte Geschwindigkeit vergrößert den Abstand zwischen benachbarten Marken, doch alle Abstände einer Fahrt bleiben untereinander gleich. Genau dieses gleichmäßige Muster zeigt eine Beschleunigung von null an.
+
+### Gleich lange Streifen auf dem Tickerband
 
 Ein Tickerband ist die Laborversion gleich weit verteilter Positionsmarken. Der Ticker druckt alle <InlineMath math="0{,}02\text{ s}" /> einen Punkt, und bei konstanter Geschwindigkeit **ist jeder Streifen von einer Zehntelsekunde gleich lang**.
 
@@ -102,6 +120,7 @@ Ein Tickerband ist die Laborversion gleich weit verteilter Positionsmarken. Der 
       Stell die Streifen nebeneinander: Gleich lange Streifen ergeben ein flaches Geschwindigkeitsdiagramm.
     </>
   }
+  footer={<>Gleich lange Papierstreifen ergeben nebeneinander ein waagrechtes Profil.</>}
   labels={{
     acceleration: <>Beschleunigung aus den Streifen</>,
     chooseMotion: "Bewegung des Wagens wählen",
@@ -117,9 +136,17 @@ Ein Tickerband ist die Laborversion gleich weit verteilter Positionsmarken. Der 
   }}
 />
 
-Jeder Streifen ist <InlineMath math="6\text{ cm}" /> lang, also fährt der Wagen mit <InlineMath math="\frac{0{,}06\text{ m}}{0{,}1\text{ s}}=0{,}6\text{ m/s}" />, und die Beschleunigung aus den Streifen ist <InlineMath math="0" />.
+Jeder Streifen ist <InlineMath math="6\text{ cm}" /> lang in <InlineMath math="0{,}1\text{ s}" />, sodass der Wagen mit konstanter Geschwindigkeit fährt:
 
-## Die Endposition berechnen
+<BlockMath math="v=\frac{0{,}06\text{ m}}{0{,}1\text{ s}}=0{,}6\text{ m/s}" />
+
+Da jeder Papierstreifen genau gleich hoch bleibt, beträgt die aus den Streifen bestimmte Beschleunigung <InlineMath math="0" />.
+
+## Endposition und Steigung bestimmen
+
+Bleibt die Geschwindigkeit unverändert, reichen eine Multiplikation und eine Addition für jede spätere Position. Im Ort-Zeit-Diagramm sorgt dasselbe Gesetz dafür, dass **jedes Zeitintervall genau dieselbe Steigung** liefert.
+
+### Die Endposition berechnen
 
 Angenommen, ein Objekt startet bei <InlineMath math="x_0=1\text{ m}" /> und bewegt sich mit konstanter Geschwindigkeit <InlineMath math="v=2\text{ m/s}" /> für <InlineMath math="5\text{ s}" /> nach rechts. Seine Verschiebung beträgt:
 
@@ -143,22 +170,23 @@ Die Punkte unten sind die Positionsmarken, eine pro Sekunde. Sie steigen jede Se
 
 <MathVisual
   title={<>Gleiche Schritte ergeben eine Gerade</>}
-  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> für <InlineMath math="5\text{ s}" />. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von <InlineMath math="2\text{ m}" />.</>}
+  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> für <InlineMath math="5\text{ s}" />. Waagrecht steht die Zeit in Sekunden und senkrecht die Position in Metern.</>}
+  footer={<>Jede Sekunde bringt zwei Meter dazu, daher liegen alle Punkte auf einer Geraden.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -1, max: 13 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "position", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: (1 + 2 * 0) / 2 }, { x: 1, y: (1 + 2 * 1) / 2 }, { x: 2, y: (1 + 2 * 2) / 2 }, { x: 3, y: (1 + 2 * 3) / 2 }, { x: 4, y: (1 + 2 * 4) / 2 }, { x: 5, y: (1 + 2 * 5) / 2 }] },
-      { id: "t-0", kind: "point", appearance: "primary", at: { x: 0, y: (1 + 2 * 0) / 2 } },
-      { id: "t-1", kind: "point", appearance: "primary", at: { x: 1, y: (1 + 2 * 1) / 2 } },
-      { id: "t-2", kind: "point", appearance: "primary", at: { x: 2, y: (1 + 2 * 2) / 2 } },
-      { id: "t-3", kind: "point", appearance: "primary", at: { x: 3, y: (1 + 2 * 3) / 2 } },
-      { id: "t-4", kind: "point", appearance: "primary", at: { x: 4, y: (1 + 2 * 4) / 2 } },
-      { id: "t-5", kind: "point", appearance: "primary", at: { x: 5, y: (1 + 2 * 5) / 2 } },
+      { id: "position", kind: "function", appearance: "primary", formula: "1 + 2*x", domain: { min: 0, max: 5 } },
+      { id: "t-0", kind: "point", appearance: "primary", at: { x: 0, y: 1 } },
+      { id: "t-1", kind: "point", appearance: "primary", at: { x: 1, y: 3 } },
+      { id: "t-2", kind: "point", appearance: "primary", at: { x: 2, y: 5 } },
+      { id: "t-3", kind: "point", appearance: "primary", at: { x: 3, y: 7 } },
+      { id: "t-4", kind: "point", appearance: "primary", at: { x: 4, y: 9 } },
+      { id: "t-5", kind: "point", appearance: "primary", at: { x: 5, y: 11 } },
     ],
     labels: [
-      { key: "end", objectId: "t-5", at: { x: 5, y: 5.5 }, placement: "left" },
+      { key: "end", objectId: "t-5", at: { x: 5, y: 11 }, placement: "left" },
     ],
   }}
   labels={{
@@ -166,28 +194,60 @@ Die Punkte unten sind die Positionsmarken, eine pro Sekunde. Sie steigen jede Se
   }}
 />
 
-## Jedes Intervall liefert dieselbe Steigung
+Der Achsenabschnitt bei <InlineMath math="t=0" /> markiert die Startposition <InlineMath math="1\text{ m}" />, während der feste Zuwachs von <InlineMath math="2\text{ m}" /> pro Sekunde die Gerade nach <InlineMath math="5\text{ s}" /> exakt auf <InlineMath math="11\text{ m}" /> führt.
 
-Im Ort-Zeit-Diagramm einer gleichförmigen Bewegung **hat jede Sekante dieselbe Steigung**, weil das Diagramm eine einzige Gerade ist. Ein Auto, das gleichmäßig mit <InlineMath math="8\text{ m/s}" /> fährt, folgt <InlineMath math="x=8t" />.
+### Jedes Intervall liefert dieselbe Steigung
 
-<CarTripSecantSlopeLab
-  trip="cruise"
-  title={<>Ein Auto mit konstanter Geschwindigkeit</>}
+Im Ort-Zeit-Diagramm einer gleichförmigen Bewegung **hat jede Sekante dieselbe Steigung**, weil das Diagramm eine einzige Gerade ist. Ein Auto mit <InlineMath math="8\text{ m/s}" /> folgt <InlineMath math="x=8t" />. Verschiebe Startzeit <InlineMath math="a" /> und Endzeit <InlineMath math="b" /> unten für beliebige Intervalle.
+
+<MathVisual
+  title={<>Gleiche Steigung in jedem Zeitintervall</>}
   description={
     <>
-      Wähle ein beliebiges Intervall. Die Sekante liegt immer auf dem Diagramm selbst.
+      Verschiebe Startzeit <InlineMath math="a" /> und Endzeit <InlineMath math="b" /> entlang <InlineMath math="x=8t" />. Höhe und Breite skalieren gleich, sodass die Steigung immer <InlineMath math="8\text{ m/s}" /> bleibt.
     </>
   }
+  footer={<>Verschiebst du die Grenzen, wachsen Höhe und Breite gleich, die Steigung bleibt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -5, max: 88 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 4, value: 2, step: 1, label: "a" },
+      { name: "b", min: 5, max: 10, value: 8, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "cruise-line", kind: "function", appearance: "reference", formula: "8*x", domain: { min: 0, max: 10 } },
+      { id: "secant-seg", kind: "path", appearance: "primary", points: [{ x: "a", y: "8*a" }, { x: "b", y: "8*b" }] },
+      { id: "run-seg", kind: "path", appearance: "construction", points: [{ x: "a", y: "8*a" }, { x: "b", y: "8*a" }] },
+      { id: "rise-seg", kind: "path", appearance: "secondary", points: [{ x: "b", y: "8*a" }, { x: "b", y: "8*b" }] },
+      { id: "start-pt", kind: "marker", appearance: "primary", x: "a", y: "8*a" },
+      { id: "end-pt", kind: "marker", appearance: "answer", x: "b", y: "8*b" },
+    ],
+    labels: [
+      { key: "p1", objectId: "start-pt", at: { x: "a", y: "8*a" }, placement: "above-left" },
+      { key: "p2", objectId: "end-pt", at: { x: "b", y: "8*b" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "delta-x", formula: "8*(b - a)" },
+      { key: "delta-t", formula: "b - a" },
+      { key: "avg-v", formula: "(8*b - 8*a)/(b - a)" },
+    ],
+  }}
   labels={{
-    change: <>Verschiebung</>,
-    chooseInterval: "Zeitintervall wählen",
-    elapsed: <>Zeitintervall</>,
-    rate: <>Mittlere Geschwindigkeit</>,
-    viewLabel: "Autofahrt mit ihrem Ort-Zeit-Diagramm",
+    a: <>Startzeit <InlineMath math="a" /> (s)</>,
+    b: <>Endzeit <InlineMath math="b" /> (s)</>,
+    p1: <InlineMath math="t_1" />,
+    p2: <InlineMath math="t_2" />,
+    "delta-x": <>Verschiebung (m)</>,
+    "delta-t": <>Zeitintervall (s)</>,
+    "avg-v": <>Steigungsgeschwindigkeit (m/s)</>,
   }}
 />
 
-Von <InlineMath math="0" /> bis <InlineMath math="2\text{ s}" /> legt das Auto <InlineMath math="16\text{ m}" /> zurück, von <InlineMath math="4" /> bis <InlineMath math="10\text{ s}" /> <InlineMath math="48\text{ m}" />, und beides ergibt <InlineMath math="\bar{v}=8\text{ m/s}" />. Nach <InlineMath math="10\text{ s}" /> ist seine Endposition <InlineMath math="x=8(10)=80\text{ m}" />.
+Von <InlineMath math="0" /> bis <InlineMath math="2\text{ s}" /> legt das Auto <InlineMath math="16\text{ m}" /> zurück, und von <InlineMath math="4" /> bis <InlineMath math="10\text{ s}" /> sind es <InlineMath math="48\text{ m}" />, was jedes Mal <InlineMath math="\bar{v}=8\text{ m/s}" /> ergibt. Nach <InlineMath math="10\text{ s}" /> lautet die Endposition:
+
+<BlockMath math="x=8(10)=80\text{ m}" />
 
 ## Gleichförmige Bewegung in Diagrammen erkennen
 
@@ -207,6 +267,7 @@ Im Geschwindigkeit-Zeit-Diagramm ist dieselbe Bewegung eine flache Linie bei <In
 <MathVisual
   title={<>Konstante Geschwindigkeit und ihre Fläche</>}
   description={<><InlineMath math="v=2\text{ m/s}" /> für <InlineMath math="5\text{ s}" />. Waagrecht: Zeit in s. Senkrecht: Geschwindigkeit in m/s.</>}
+  footer={<>Breite mal Höhe des markierten Rechtecks ergibt genau die gesamte Verschiebung.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 3 } },
@@ -223,32 +284,60 @@ Im Geschwindigkeit-Zeit-Diagramm ist dieselbe Bewegung eine flache Linie bei <In
   }}
 />
 
+Bleibt die Geschwindigkeit konstant, bildet die Fläche unter der Linie stets ein Rechteck, dessen Flächeninhalt direkt die Verschiebung angibt. Steigung im Ort-Zeit-Diagramm und Fläche im Geschwindigkeit-Zeit-Diagramm zeigen so zwei Ansichten derselben Bewegung.
+
 ## Die Richtung unterscheidet konstante Schnelligkeit von konstanter Geschwindigkeit
 
 Eine gleichförmige geradlinige Bewegung verlangt eine konstante Geschwindigkeit. Betrag und Richtung müssen gleich bleiben. Ein konstanter Geschwindigkeitsbetrag legt nur das Tempo fest.
 
-Ein Auto, das mit konstantem Geschwindigkeitsbetrag auf einer Kreisstraße fährt, führt keine gleichförmige geradlinige Bewegung aus, <Highlight>denn die Richtung seiner Geschwindigkeit ändert sich fortlaufend</Highlight>. Ein Schienenwagen, der sich mit konstantem Betrag und konstanter Richtung geradeaus bewegt, erfüllt beide Bedingungen.
+Ein Auto, das mit konstantem Geschwindigkeitsbetrag auf einer Kreisstraße fährt, führt keine gleichförmige geradlinige Bewegung aus, <Highlight>denn die Richtung seiner Geschwindigkeit ändert sich fortlaufend</Highlight>. Ein Läufer mit stetigen <InlineMath math="8\text{ m/s}" /> auf einer <InlineMath math="400\text{ m}" /> langen Kreisbahn hat konstantes Tempo, doch **sein Geschwindigkeitspfeil dreht sich stetig**. Verschiebe Winkel <InlineMath math="a" /> unten und verfolge die Komponenten.
 
-## Konstante Schnelligkeit auf einer Kurvenbahn
-
-Ein Läufer, der auf einer Laufbahn <InlineMath math="8\text{ m/s}" /> hält, hat eine konstante Schnelligkeit, doch **die Geschwindigkeit ändert in jeder Kurve ihre Richtung**, also ist das keine gleichförmige geradlinige Bewegung.
-
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>Konstante Schnelligkeit ist keine konstante Geschwindigkeit</>}
+<MathVisual
+  title={<>Konstante Schnelligkeit auf einer Kurvenbahn</>}
   description={
     <>
-      Ein Läufer hält <InlineMath math="8\text{ m/s}" /> auf Bahn <InlineMath math="1" />. Halte den Lauf an jeder Marke an und vergleiche den türkisen Pfeil von Marke zu Marke.
+      Ein Läufer hält <InlineMath math="8\text{ m/s}" /> auf einer <InlineMath math="400\text{ m}" /> langen Runde. Verschiebe Winkel <InlineMath math="a" /> und sieh, wie Geschwindigkeit (türkis) und Sehne (violett) sich ändern.
     </>
   }
+  footer={<>Trotz festem Tempo ändern sich die Geschwindigkeitskomponenten in jeder Kurve.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -95, max: 95 }, y: { min: -95, max: 95 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 330, value: 90, step: 30, label: "a" },
+    ],
+    objects: [
+      { id: "track", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 63.66 },
+      { id: "start-pt", kind: "point", appearance: "reference", at: { x: 63.66, y: 0 } },
+      { id: "chord", kind: "path", appearance: "secondary", points: [{ x: "63.66", y: "0" }, { x: "63.66*cos(a*pi/180)", y: "63.66*sin(a*pi/180)" }] },
+      { id: "vel-vec", kind: "path", appearance: "construction", points: [{ x: "63.66*cos(a*pi/180)", y: "63.66*sin(a*pi/180)" }, { x: "63.66*cos(a*pi/180) - 24*sin(a*pi/180)", y: "63.66*sin(a*pi/180) + 24*cos(a*pi/180)" }] },
+      { id: "runner-pt", kind: "marker", appearance: "primary", x: "63.66*cos(a*pi/180)", y: "63.66*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "start", objectId: "start-pt", at: { x: 63.66, y: 0 }, placement: "right" },
+      { key: "runner", objectId: "runner-pt", at: { x: "63.66*cos(a*pi/180)", y: "63.66*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "arc-dist", formula: "63.66*a*pi/180" },
+      { key: "disp-mag", formula: "2*63.66*sin(a*pi/360)" },
+      { key: "vx", formula: "-8*sin(a*pi/180)" },
+      { key: "vy", formula: "8*cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
-    chooseDistance: "Laufstrecke wählen",
-    displacement: <>Betrag der Verschiebung</>,
-    distance: <>Gelaufene Strecke</>,
-    time: <>Zeit</>,
-    viewLabel: "Läufer auf einer 400-m-Leichtathletikbahn von oben gesehen",
+    a: <>Bahnwinkel <InlineMath math="a" /> (deg)</>,
+    start: <>Start</>,
+    runner: <>Läufer</>,
+    "arc-dist": <>Gelaufene Strecke (m)</>,
+    "disp-mag": <>Betrag der Verschiebung (m)</>,
+    vx: <>Geschwindigkeit x (m/s)</>,
+    vy: <>Geschwindigkeit y (m/s)</>,
   }}
 />
 
-Nur auf den Geraden behält der Pfeil Länge und Richtung. Eine Runde dauert bei gleichmäßiger Schnelligkeit <InlineMath math="\frac{400}{8}=50\text{ s}" />, doch der Läufer endet am Start, mit einer mittleren Geschwindigkeit von <InlineMath math="0" />.
+Eine volle Runde von <InlineMath math="400\text{ m}" /> bei konstanten <InlineMath math="8\text{ m/s}" /> dauert:
+
+<BlockMath math="t=\frac{400\text{ m}}{8\text{ m/s}}=50\text{ s}" />
+
+Da der Läufer wieder am Start ankommt, sind Gesamtverschiebung und mittlere Geschwindigkeit gleich <InlineMath math="0" />, was zeigt, dass konstantes Tempo auf einer Kurve keine gleichförmige geradlinige Bewegung ist.

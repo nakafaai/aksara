@@ -2,7 +2,7 @@
 export const metadata = {
   title: "Beschleunigung",
   description:
-    "Beschleunigung ist die Geschwindigkeitsänderung pro Zeit und lässt sich durch Bewegungsspuren, Geschwindigkeits-Zeit-Diagramme und Berechnungen darstellen.",
+    "Beschleunigung ist die Geschwindigkeitsänderung pro Zeit und lässt sich durch Bewegungsspuren, Diagramme und Berechnungen darstellen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-09-12",
@@ -24,7 +24,11 @@ In der Physik beschreibt die mittlere Beschleunigung die <Highlight>Geschwindigk
 
 Die Einheit der Beschleunigung ist <InlineMath math="\text{m/s}^2" />. Ist die Beschleunigung konstant <InlineMath math="a=2\text{ m/s}^2" />, erhöht sich die Geschwindigkeit alle <InlineMath math="1\text{ s}" /> um <InlineMath math="2\text{ m/s}" />. In diesem Sonderfall entspricht die mittlere Beschleunigung in jedem Intervall der Beschleunigung zu jedem Zeitpunkt.
 
-## Vom Tickerband zur Diagrammsteigung
+## Beschleunigung in Spuren und Rampen erkennen
+
+Bewegungsspuren, Diagramme und schiefe Ebenen machen dieselbe **Geschwindigkeitsänderung pro Sekunde** sichtbar. Vergleiche wachsende Abstände im Raum mit der Steigung im Diagramm, um eine konstante Beschleunigung sicher zu erkennen.
+
+### Vom Tickerband zur Diagrammsteigung
 
 Ein Zeitmarkengeber setzt in **gleichen Zeitabständen** Punkte auf ein Papierband. Bei einer geradlinigen Bewegung ohne Richtungswechsel bedeuten wachsende Abstände einen größeren Geschwindigkeitsbetrag, gleich große Abstände einen konstanten Betrag und schrumpfende Abstände einen kleineren Betrag. Die Abstände allein zeigen nicht das Vorzeichen der Geschwindigkeit. Dafür bleibt die gewählte positive Richtung notwendig.
 
@@ -37,6 +41,7 @@ Ein Zeitmarkengeber setzt in **gleichen Zeitabständen** Punkte auf ein Papierba
       wachsen die Abstände, bleiben gleich oder werden kleiner.
     </>
   }
+  footer={<>Wachsende Torabstände pro Sekunde zeigen eine zunehmende Geschwindigkeit.</>}
   labels={{
     chooseCase: "Bewegungsart wählen",
     scenarioNames: {
@@ -66,6 +71,7 @@ Vergleiche in der Bewegungsspur die Geschwindigkeit von einem Intervall zum näc
       Geschwindigkeitsänderung pro Sekunde.
     </>
   }
+  footer={<>Steigende Abschnitte erhöhen das Tempo, flache halten es konstant.</>}
   labels={{
     chooseCase: "Abschnitt wählen",
     contextLine: "Vollständiger Graph",
@@ -81,7 +87,7 @@ Vergleiche in der Bewegungsspur die Geschwindigkeit von einem Intervall zum näc
 
 Die gestrichelte Linie zeigt den vollständigen Verlauf, die dicke Linie den ausgewählten Abschnitt. Eine steigende Linie bedeutet zunehmende Geschwindigkeit, eine waagerechte Linie konstante Geschwindigkeit und eine fallende Linie abnehmende Geschwindigkeit. Die mittlere Beschleunigung des Abschnitts ist das Verhältnis von <InlineMath math="\Delta v" /> zu <InlineMath math="\Delta t" />.
 
-## Galileis Rampe hält den Takt
+### Galileis Rampe hält den Takt
 
 Galilei hat das Fallen verlangsamt, indem er eine Kugel eine flache Rampe hinabrollen ließ. Die Kugel gewinnt **jede Sekunde dieselbe Geschwindigkeit dazu**, deshalb wächst ihr Weg mit dem Quadrat der Zeit. Glocken beim Einfachen, Vierfachen, Neunfachen und Sechzehnfachen des Wegs der ersten Sekunde läuten in einem gleichmäßigen Takt.
 
@@ -95,6 +101,7 @@ Galilei hat das Fallen verlangsamt, indem er eine Kugel eine flache Rampe hinabr
       Neige die Rampe und vergleiche die Abstände.
     </>
   }
+  footer={<>Jede neue Sekunde bringt ein größeres Stück Weg im Verhältnis <InlineMath math="1:3:5:7" />.</>}
   labels={{
     acceleration: <>Beschleunigung die Rampe hinab</>,
     chooseAngle: "Neigungswinkel wählen",
@@ -106,7 +113,11 @@ Galilei hat das Fallen verlangsamt, indem er eine Kugel eine flache Rampe hinabr
 
 Bei <InlineMath math="3^\circ" /> beschleunigt die Kugel mit etwa <InlineMath math="0{,}374\text{ m/s}^2" />, also rollt sie in der ersten Sekunde <InlineMath math="18{,}7\text{ cm}" /> weit. Bei jedem Winkel bleiben die Abstände im Verhältnis <InlineMath math="1:3:5:7" />, weil eine konstante Beschleunigung jede Sekunde dieselbe Geschwindigkeit dazugibt.
 
-## Das Zeichen der Beschleunigung lesen
+## Das Zeichen der Beschleunigung richtig deuten
+
+Das Vorzeichen der Beschleunigung beschreibt nicht allein die Bewegungsrichtung, sondern **die Richtung der Geschwindigkeitsänderung**. Erst im Vergleich mit dem Vorzeichen der Geschwindigkeit zeigt sich, ob das Tempo steigt oder sinkt.
+
+### Vorzeichen zusammen mit der Geschwindigkeit lesen
 
 Das Vorzeichen der Beschleunigung ist nur zusammen mit der gewählten positiven Richtung aussagekräftig. In diesem eindimensionalen Beispiel sei die Richtung nach rechts positiv.
 
@@ -125,6 +136,7 @@ Lies die Vorzeichen zusammen. Bei <InlineMath math="v>0" /> lässt eine Beschleu
 <MathVisual
   title={<>Schneller oder langsamer</>}
   description={<>Geschwindigkeit über der Zeit für <InlineMath math="a=+1" /> (teal), <InlineMath math="a=-1" /> (rosa) und <InlineMath math="a=0" /> (grau), jeweils mit positiver Geschwindigkeit. Waagerecht: Sekunden. Senkrecht: m/s.</>}
+  footer={<>Bei positiver Geschwindigkeit hebt <InlineMath math="a>0" /> die Linie an und <InlineMath math="a<0" /> senkt sie ab.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: 0, max: 7 } },
@@ -150,38 +162,73 @@ Lies die Vorzeichen zusammen. Bei <InlineMath math="v>0" /> lässt eine Beschleu
   }}
 />
 
-## Immer kürzere Streifen
+Alle drei Linien bleiben im positiven Geschwindigkeitsbereich, bewegen sich also nach rechts. Nur ihre Steigung entscheidet darüber, ob das Objekt schneller wird, bremst oder sein Tempo hält.
 
-Ein Tickerband zeigt dasselbe im Labor. Rollt ein Wagen nach rechts und wird langsamer, ist jeder Streifen von einer Zehntelsekunde **um denselben Betrag kürzer als der davor**, also zeigt die Geschwindigkeitsänderung zur negativen Seite.
+### Immer kürzere Geschwindigkeitsbalken beim Bremsen
 
-<TickerTapeMotionLab
-  motion="slowing"
-  title={<>Tickerband eines bremsenden Wagens</>}
+Rollt ein Wagen nach rechts und bremst gleichmäßig ab, wird jeder Streifen von einer Zehntelsekunde **um denselben Betrag kürzer als der davor**. Die Balkenhöhen bilden direkt ein Geschwindigkeits-Zeit-Diagramm mit negativer Steigung. Verändere die Bremsstärke <InlineMath math="b" /> und beobachte, wie die Balken schrumpfen.
+
+<MathVisual
+  title={<>Schrumpfende Geschwindigkeitsbalken beim Bremsen</>}
   description={
     <>
-      Der Ticker druckt alle <InlineMath math="0{,}02\text{ s}" /> einen
-      Punkt. Jeder Streifen umfasst <InlineMath math="0{,}1\text{ s}" /> Band
-      und steht im Diagramm wie ein Balken eines Geschwindigkeit-Zeit-Diagramms.
+      Geschwindigkeit eines nach rechts rollenden Wagens alle{" "}
+      <InlineMath math="0{,}1\text{ s}" /> bei Startgeschwindigkeit{" "}
+      <InlineMath math="1{,}0\text{ m/s}" /> und Bremsstärke <InlineMath math="b" />.
     </>
   }
+  footer={<>Jeder Balken sinkt um denselben Schritt, obwohl der Wagen weiter rechts fährt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.9 }, y: { min: 0, max: 1.15 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 0.4, max: 1.2, value: 1, step: 0.2, label: "b" },
+    ],
+    objects: [
+      { id: "trend", kind: "function", appearance: "warning", formula: "1 - b*x", domain: { min: 0.05, max: 0.75 } },
+      { id: "bar-1", kind: "path", appearance: "primary", points: [{ x: "0.05", y: "0" }, { x: "0.05", y: "1 - 0.05*b" }] },
+      { id: "bar-2", kind: "path", appearance: "primary", points: [{ x: "0.15", y: "0" }, { x: "0.15", y: "1 - 0.15*b" }] },
+      { id: "bar-3", kind: "path", appearance: "primary", points: [{ x: "0.25", y: "0" }, { x: "0.25", y: "1 - 0.25*b" }] },
+      { id: "bar-4", kind: "path", appearance: "primary", points: [{ x: "0.35", y: "0" }, { x: "0.35", y: "1 - 0.35*b" }] },
+      { id: "bar-5", kind: "path", appearance: "primary", points: [{ x: "0.45", y: "0" }, { x: "0.45", y: "1 - 0.45*b" }] },
+      { id: "bar-6", kind: "path", appearance: "primary", points: [{ x: "0.55", y: "0" }, { x: "0.55", y: "1 - 0.55*b" }] },
+      { id: "bar-7", kind: "path", appearance: "primary", points: [{ x: "0.65", y: "0" }, { x: "0.65", y: "1 - 0.65*b" }] },
+      { id: "bar-8", kind: "path", appearance: "primary", points: [{ x: "0.75", y: "0" }, { x: "0.75", y: "1 - 0.75*b" }] },
+      { id: "first-dot", kind: "marker", appearance: "answer", x: "0.05", y: "1 - 0.05*b" },
+      { id: "last-dot", kind: "marker", appearance: "answer", x: "0.75", y: "1 - 0.75*b" },
+    ],
+    labels: [
+      { key: "first-speed", objectId: "first-dot", at: { x: "0.05", y: "1 - 0.05*b" }, placement: "above-right" },
+      { key: "last-speed", objectId: "last-dot", at: { x: "0.75", y: "1 - 0.75*b" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "v-start", formula: "1 - 0.05*b" },
+      { key: "v-end", formula: "1 - 0.75*b" },
+      { key: "accel", formula: "-b" },
+    ],
+  }}
   labels={{
-    acceleration: <>Beschleunigung aus den Streifen</>,
-    chooseMotion: "Bewegung des Wagens wählen",
-    firstStrip: <>Erster Streifen</>,
-    interval: <>Zeit zwischen zwei Punkten</>,
-    lastStrip: <>Letzter Streifen</>,
-    motions: {
-      uniform: <>Gleichmäßig</>,
-      speeding: <>Schneller werdend</>,
-      slowing: <>Langsamer werdend</>,
-    },
-    viewLabel: "Wagen zieht ein Papierband durch einen Ticker",
+    b: <>Bremsstärke <InlineMath math="b" /> (<InlineMath math="\text{m/s}^2" />)</>,
+    "first-speed": <InlineMath math="v_1" />,
+    "last-speed": <InlineMath math="v_8" />,
+    "v-start": <>Erster Streifen (m/s)</>,
+    "v-end": <>Letzter Streifen (m/s)</>,
+    accel: <>Beschleunigung (<InlineMath math="\text{m/s}^2" />)</>,
   }}
 />
 
-Die Streifen schrumpfen von <InlineMath math="9{,}5\text{ cm}" /> auf <InlineMath math="2{,}5\text{ cm}" />, jedes Mal um <InlineMath math="1\text{ cm}" />. Ein Streifen dauert <InlineMath math="0{,}1\text{ s}" />, also ist die Beschleunigung <InlineMath math="\frac{-0{,}01\text{ m}}{(0{,}1\text{ s})^2}=-1\text{ m/s}^2" />, obwohl der Wagen noch nach rechts fährt.
+Bei <InlineMath math="b=1\text{ m/s}^2" /> schrumpfen die Streifen von <InlineMath math="9{,}5\text{ cm}" /> auf <InlineMath math="2{,}5\text{ cm}" />, jedes Mal um <InlineMath math="1\text{ cm}" /> pro <InlineMath math="0{,}1\text{ s}" />:
 
-## Berechnung der Geschwindigkeitsänderung pro Sekunde
+<BlockMath math="a=\frac{-0{,}01\text{ m}}{(0{,}1\text{ s})^2}=-1\text{ m/s}^2" />
+
+Obwohl das Vorzeichen negativ ist, bleiben alle Balken über null. Der Wagen fährt also weiter nach rechts, nur immer langsamer.
+
+## Konstante und mittlere Beschleunigung berechnen
+
+Bei einer konstanten Beschleunigung gilt derselbe Wert in jedem Moment. Bei einer echten Fahrt mit Bremsen und Anfahren fasst dagegen die **Sekantensteigung zwischen zwei Zeitpunkten** die mittlere Beschleunigung zusammen.
+
+### Berechnung der Geschwindigkeitsänderung pro Sekunde
 
 Angenommen, ein Auto ändert seine Geschwindigkeit in <InlineMath math="4\text{ s}" /> von <InlineMath math="2\text{ m/s}" /> auf <InlineMath math="18\text{ m/s}" />. Seine mittlere Beschleunigung beträgt:
 
@@ -202,27 +249,69 @@ a_{\text{mittel}} &= \frac{2-18}{4} \\
 
 Der Wert <InlineMath math="-4\text{ m/s}^2" /> bedeutet, dass die Geschwindigkeit jede Sekunde um <InlineMath math="4\text{ m/s}" /> abnimmt, wenn sich das Auto noch in positiver Richtung bewegt.
 
-## Mittlere Beschleunigung auf dem Arbeitsweg
+### Mittlere Beschleunigung auf dem Arbeitsweg
 
-Eine echte Fahrt hat selten nur eine Beschleunigung. Im Geschwindigkeit-Zeit-Diagramm ist die mittlere Beschleunigung über ein Intervall **die Steigung der Geraden durch seine beiden Punkte**.
+Eine echte Fahrt hat selten nur eine Beschleunigung. Im Geschwindigkeits-Zeit-Diagramm ist die mittlere Beschleunigung über ein Intervall **die Steigung der Geraden durch seine beiden Punkte**. Verschiebe den Endzeitpunkt <InlineMath math="d" /> und vergleiche die Sekante mit dem tatsächlichen Fahrtverlauf.
 
-<CarTripSecantSlopeLab
-  graph="velocity"
-  trip="commute"
-  title={<>Mittlere Beschleunigung auf dem Arbeitsweg</>}
+<MathVisual
+  title={<>Sekantensteigung im Geschwindigkeits-Zeit-Diagramm</>}
   description={
     <>
-      Das Auto beschleunigt, fährt gleichmäßig, bremst an einer roten Ampel,
-      wartet und fährt weiter. Wähle ein Intervall und zeichne seine Sekante
-      ins Geschwindigkeit-Zeit-Diagramm.
+      Das Auto beschleunigt bis <InlineMath math="4\text{ s}" />, fährt gleichmäßig,
+      bremst an einer Ampel ab und fährt ab <InlineMath math="16\text{ s}" /> wieder an.
+      Waagerecht: Zeit in s. Senkrecht: Geschwindigkeit in m/s.
     </>
   }
+  footer={<>Die violette Sekante verbindet Start und Endpunkt und blendet Zwischenstopps aus.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 22 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 4, max: 20, value: 20, step: 2, label: "d" },
+    ],
+    objects: [
+      { id: "leg-1", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 4, y: 10 } },
+      { id: "leg-2", kind: "segment", appearance: "primary", from: { x: 4, y: 10 }, to: { x: 10, y: 10 } },
+      { id: "leg-3", kind: "segment", appearance: "primary", from: { x: 10, y: 10 }, to: { x: 12, y: 0 } },
+      { id: "leg-4", kind: "segment", appearance: "primary", from: { x: 12, y: 0 }, to: { x: 16, y: 0 } },
+      { id: "leg-5", kind: "segment", appearance: "primary", from: { x: 16, y: 0 }, to: { x: 20, y: 10 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0", y: "0" },
+          { x: "d", y: "max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))" },
+        ],
+      },
+      {
+        id: "end-dot",
+        kind: "marker",
+        appearance: "answer",
+        x: "d",
+        y: "max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))",
+      },
+    ],
+    labels: [
+      {
+        key: "end-mark",
+        objectId: "end-dot",
+        at: { x: "d", y: "max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))" },
+        placement: "above",
+      },
+    ],
+    readouts: [
+      { key: "end-v", formula: "max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))" },
+      { key: "avg-a", formula: "(max(0, min(10, min(2.5*d, 60 - 5*d))) + max(0, 2.5*(d - 16))) / d" },
+    ],
+  }}
   labels={{
-    change: <>Geschwindigkeitsänderung</>,
-    chooseInterval: "Zeitintervall wählen",
-    elapsed: <>Zeitintervall</>,
-    rate: <>Mittlere Beschleunigung</>,
-    viewLabel: "Auto auf dem Arbeitsweg mit seinem Geschwindigkeit-Zeit-Diagramm",
+    d: <>Endzeitpunkt <InlineMath math="d" /> (s)</>,
+    "end-mark": <InlineMath math="v(d)" />,
+    "end-v": <>Endgeschwindigkeit (m/s)</>,
+    "avg-a": <>Mittlere Beschleunigung (<InlineMath math="\text{m/s}^2" />)</>,
   }}
 />
 

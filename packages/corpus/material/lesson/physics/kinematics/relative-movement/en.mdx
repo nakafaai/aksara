@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Relative Motion",
   description:
@@ -28,6 +27,7 @@ The positive and negative signs record direction along the chosen axis.
       Choose the direction of car <InlineMath math="B" /> to see its motion as observed from car <InlineMath math="A" />.
     </>
   }
+  footer={<>Flipping car B's direction changes both the sign and size of relative velocity.</>}
   labels={{
     chooseCase: "Choose direction",
     modeLabels: {
@@ -48,7 +48,13 @@ The positive and negative signs record direction along the chosen axis.
   }}
 />
 
-## Observer Velocity Changes Relative Velocity
+Switch between the two modes and watch the sign of the relative velocity flip. Even when car <InlineMath math="A" /> keeps its exact same road velocity, reversing car <InlineMath math="B" /> dramatically changes what the driver in car <InlineMath math="A" /> observes.
+
+## Relative Velocity Along One Line
+
+When objects travel along the same straight track, comparing their motion comes down to **subtracting signed velocities**. Checking a faster observer, a walking train passenger, and a stationary observer shows how one subtraction handles every case.
+
+### Observer Velocity Changes Relative Velocity
 
 An object's velocity according to an observer changes when the observer is also moving. The calculation must compare the **object's motion with the observer's motion**.
 
@@ -60,7 +66,7 @@ The negative value means the relative motion points left.
 
 When two vehicles move in the same direction, the faster observer can see the other vehicle as moving backward. The car still moves forward relative to the road, but its velocity relative to the taxi is negative.
 
-## A Walk inside a Train
+### A Walk inside a Train
 
 Velocities measured from a moving observer simply subtract that observer's velocity. A train runs at <InlineMath math="20\text{ m/s}" /> and a passenger walks inside it at <InlineMath math="1.5\text{ m/s}" />, so **the answer depends on who is watching**.
 
@@ -71,6 +77,7 @@ Velocities measured from a moving observer simply subtract that observer's veloc
       The train runs at <InlineMath math="20\text{ m/s}" /> and the passenger walks at <InlineMath math="1.5\text{ m/s}" />. Switch the observer and the walking direction, then read the velocities below.
     </>
   }
+  footer={<>Subtracting the observer's speed links the platform and seat readings exactly.</>}
   labels={{
     chooseObserver: "Choose the observer",
     chooseWay: "Choose the walking direction",
@@ -89,48 +96,19 @@ Velocities measured from a moving observer simply subtract that observer's veloc
   }}
 />
 
-Walking back, the passenger moves at <InlineMath math="20-1.5=18.5\text{ m/s}" /> relative to the platform but at <InlineMath math="-1.5\text{ m/s}" /> relative to the seat. Subtract the observer's velocity, <InlineMath math="v_{AB}=v_A-v_B" />, and both readings agree.
+Walking back, the passenger moves at <InlineMath math="18.5\text{ m/s}" /> relative to the platform but at <InlineMath math="-1.5\text{ m/s}" /> relative to the seat. Subtracting the observer's velocity reconciles both readings cleanly.
 
-## When the Observer Is Still
+### When the Observer Is Still
 
 If the observer is stationary relative to the ground, relative velocity is the same as velocity relative to the ground.
 
-<BlockMath math="\begin{aligned} &amp;v_{\text{object/observer}} = v_{\text{object/ground}}-0 \\ &amp;= v_{\text{object/ground}} \end{aligned}" />
+<BlockMath math="\begin{aligned} v_{\text{object/observer}} &= v_{\text{object/ground}}-0 \\ &= v_{\text{object/ground}} \end{aligned}" />
 
 That is why, in many simple problems, a velocity with no extra frame stated is usually assumed to be relative to the ground.
 
 An object can also be **at rest relative to a moving observer**. If the car and taxi both move right at <InlineMath math="12\text{ m/s}" />, their velocity difference is zero:
 
 <BlockMath math="v_{\text{car/taxi}}=12-12=0\text{ m/s}" />
-
-## Rain Seen from a Moving Car
-
-On a still day rain falls straight down. **Seen from a moving car the rain comes at a slant**, because its velocity relative to the car is its own velocity minus the car's.
-
-<RainDriveRelativeVelocityLab
-  car={10}
-  title={<>Rain on a Moving Car</>}
-  description={
-    <>
-      Large raindrops fall at about <InlineMath math="6.5\text{ m/s}" />. Switch observers and change the car's speed.
-    </>
-  }
-  labels={{
-    angle: <>Slant from the vertical</>,
-    apparentSpeed: <>Speed of the rain as seen</>,
-    carSpeed: <>Car speed</>,
-    carSpeedName: "Car speed",
-    chooseFrame: "Choose the observer",
-    frames: {
-      ground: <>From the roadside</>,
-      car: <>From the car</>,
-    },
-    rainSpeed: <>Speed the rain falls</>,
-    viewLabel: "Rain falling on a moving car",
-  }}
-/>
-
-At <InlineMath math="10\text{ m/s}" /> the rain seems to arrive at <InlineMath math="\sqrt{6.5^2+10^2}\approx11.9\text{ m/s}" />, tilted about <InlineMath math="57^\circ" /> from the vertical. From the roadside the same drops still fall straight down.
 
 ## When Both Are Moving
 
@@ -142,29 +120,28 @@ To the truck driver, the car's velocity is:
 
 The value <InlineMath math="+20 \text{ m/s}" /> means the car's position relative to the truck changes rightward at a relative speed of <InlineMath math="20\text{ m/s}" />. Whether the vehicles are approaching or separating also depends on which one is initially to the left.
 
-Different observers assign different relative velocities to the same physical motion.
-
-Here are the car, the taxi and the truck leaving the same spot. The gap between two lines is the position of one vehicle as the other sees it. The car and the taxi drift apart slowly, <InlineMath math="2\text{ m}" /> each second, while the car and the truck separate by <InlineMath math="20\text{ m}" /> each second.
+Here are the car, the taxi, and the truck leaving the same spot. The vertical gap between two lines is the position of one vehicle as the other sees it. The car and the taxi drift apart slowly, <InlineMath math="2\text{ m}" /> each second, while the car and the truck separate by <InlineMath math="20\text{ m}" /> each second.
 
 <MathVisual
   title={<>Gaps Grow at the Relative Velocity</>}
-  description={<>Positions of three vehicles relative to the ground, starting together. Horizontal: time in s. Vertical: position in units of <InlineMath math="10\text{ m}" />.</>}
+  description={<>Positions of three vehicles relative to the ground starting together, with time in seconds on the horizontal axis and position in metres on the vertical axis.</>}
+  footer={<>Vertical separation between two lines grows each second by their speed gap.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -3, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.6 }, y: { min: -30, max: 50 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "car", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: (12 * 3) / 10 } },
-      { id: "taxi", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: (14 * 3) / 10 } },
-      { id: "truck", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: (-8 * 3) / 10 } },
-      { id: "car-end", kind: "point", appearance: "primary", at: { x: 3, y: (12 * 3) / 10 } },
-      { id: "taxi-end", kind: "point", appearance: "secondary", at: { x: 3, y: (14 * 3) / 10 } },
-      { id: "truck-end", kind: "point", appearance: "construction", at: { x: 3, y: (-8 * 3) / 10 } },
+      { id: "car", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 36 } },
+      { id: "taxi", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 42 } },
+      { id: "truck", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: -24 } },
+      { id: "car-end", kind: "point", appearance: "primary", at: { x: 3, y: 36 } },
+      { id: "taxi-end", kind: "point", appearance: "secondary", at: { x: 3, y: 42 } },
+      { id: "truck-end", kind: "point", appearance: "construction", at: { x: 3, y: -24 } },
     ],
     labels: [
-      { key: "car", objectId: "car-end", at: { x: 3, y: (12 * 3) / 10 }, placement: "right" },
-      { key: "taxi", objectId: "taxi-end", at: { x: 3, y: (14 * 3) / 10 }, placement: "right" },
-      { key: "truck", objectId: "truck-end", at: { x: 3, y: (-8 * 3) / 10 }, placement: "right" },
+      { key: "car", objectId: "car-end", at: { x: 3, y: 36 }, placement: "right" },
+      { key: "taxi", objectId: "taxi-end", at: { x: 3, y: 42 }, placement: "right" },
+      { key: "truck", objectId: "truck-end", at: { x: 3, y: -24 }, placement: "right" },
     ],
   }}
   labels={{
@@ -174,34 +151,13 @@ Here are the car, the taxi and the truck leaving the same spot. The gap between 
   }}
 />
 
-## A Boat on a Moving River
-
-A boat moves through the water, and the water moves past the bank. **The boat's velocity relative to the bank is the sum of the two**, drawn tip to tail.
-
-<RiverBoatCrossingLab
-  boatSpeed={4}
-  current={3}
-  width={60}
-  title={<>Crossing a Flowing River</>}
-  description={
-    <>
-      The boat makes <InlineMath math="4\text{ m/s}" /> through the water and the current flows at <InlineMath math="3\text{ m/s}" />. Turn the heading.
-    </>
-  }
-  labels={{
-    angle: <>Angle from straight across</>,
-    drift: <>Drift downstream</>,
-    groundSpeed: <>Speed over the ground</>,
-    heading: <>Heading</>,
-    headingName: "Boat heading",
-    time: <>Crossing time</>,
-    viewLabel: "Boat crossing a river seen from above",
-  }}
-/>
-
-Heading straight across, the boat moves at <InlineMath math="\sqrt{4^2+3^2}=5\text{ m/s}" /> relative to the bank, crosses the <InlineMath math="60\text{ m}" /> river in <InlineMath math="15\text{ s}" />, and lands <InlineMath math="45\text{ m}" /> downstream.
+At <InlineMath math="3\text{ s}" />, the taxi is only <InlineMath math="6\text{ m}" /> ahead of the car, while the truck is already <InlineMath math="60\text{ m}" /> behind it. The steeper the angle between two lines on a position graph, the larger their relative speed.
 
 ## Relative Velocity Is a Difference
+
+Every observer applies the exact same subtraction rule to the same car:
+
+<BlockMath math="v_{\text{rel}}=v_{\text{car}}-v_{\text{observer}}" />
 
 | Situation | Calculation | Meaning of the **relative motion** |
 | :-------- | :---------- | :----------------------------- |
@@ -209,13 +165,12 @@ Heading straight across, the boat moves at <InlineMath math="\sqrt{4^2+3^2}=5\te
 | Observer is faster in the same direction | <InlineMath math="12-14=-2 \text{ m/s}" /> | The object appears to move in the negative direction |
 | Observer moves in the opposite direction | <InlineMath math="12-(-8)=+20 \text{ m/s}" /> | The object appears to move in the positive direction |
 
-So, before saying an object is fast, slow, still, or moving backward, always check the frame of reference.
-
-Every observer uses the same subtraction, <InlineMath math="v_\text{rel}=v_\text{car}-v_\text{observer}" />. Standing still you see <InlineMath math="12\text{ m/s}" />, the faster taxi sees the car drift back, and the oncoming truck sees it rush in at <InlineMath math="20\text{ m/s}" />. Zoom in on each bar.
+Standing still you see <InlineMath math="+12\text{ m/s}" />, the faster taxi sees the car drift back at <InlineMath math="-2\text{ m/s}" />, and the oncoming truck sees it rush past at <InlineMath math="+20\text{ m/s}" />.
 
 <MathVisual
   title={<>One Subtraction for Every Observer</>}
-  description={<>The car's velocity in m/s seen from the roadside (gray), the taxi (violet) and the truck (teal). One grid step is <InlineMath math="4\text{ m/s}" />.</>}
+  description={<>The car's velocity in m/s seen from the roadside (gray), the taxi (violet), and the truck (teal). One grid step is <InlineMath math="4\text{ m/s}" />.</>}
+  footer={<>One car velocity produces three different bars when three observers subtract.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1.5, max: 6 } },
@@ -239,25 +194,144 @@ Every observer uses the same subtraction, <InlineMath math="v_\text{rel}=v_\text
   }}
 />
 
-## Straight Lines Relative to a Falling Can
+Before calling an object fast, slow, still, or moving backward, check the observer's frame first. The same physical car changes sign and magnitude purely because each observer subtracts a different velocity.
 
-Relative motion explains a famous demonstration. A launcher aims straight at a can that drops at the moment of firing. Both fall the same way, so **relative to the can the ball moves in a straight line** toward it.
+## Relative Motion in Two Dimensions
 
-<FallingTargetAimLab
-  speed={10}
-  title={<>Aim at a Falling Can</>}
+When two velocities point in different directions, subtraction and addition work **component by component as vectors**. Watching rain from a moving car, crossing a flowing river, and aiming at a falling target all follow this two-dimensional rule.
+
+### Rain Seen from a Moving Car
+
+On a still day rain falls straight down. **Seen from a moving car the rain comes at a slant**, because its velocity relative to the car is its own velocity minus the car's.
+
+<RainDriveRelativeVelocityLab
+  car={10}
+  title={<>Rain on a Moving Car</>}
   description={
     <>
-      The can hangs <InlineMath math="4\text{ m}" /> away and <InlineMath math="2\text{ m}" /> up. Change the launch speed and watch the gap between them shrink along the aiming line.
+      Large raindrops fall at about <InlineMath math="6.5\text{ m/s}" />. Switch observers and change the car's speed.
     </>
   }
+  footer={<>Faster driving tilts the apparent rain further away from the vertical drop.</>}
   labels={{
-    drop: <>Drop of the can at the meeting</>,
-    meetTime: <>Time to meet</>,
-    speed: <>Launch speed</>,
-    speedName: "Launch speed",
-    viewLabel: "Launcher aimed at a falling can",
+    angle: <>Slant from the vertical</>,
+    apparentSpeed: <>Speed of the rain as seen</>,
+    carSpeed: <>Car speed</>,
+    carSpeedName: "Car speed",
+    chooseFrame: "Choose the observer",
+    frames: {
+      ground: <>From the roadside</>,
+      car: <>From the car</>,
+    },
+    rainSpeed: <>Speed the rain falls</>,
+    viewLabel: "Rain falling on a moving car",
   }}
 />
 
-At <InlineMath math="10\text{ m/s}" /> the ball meets the can after <InlineMath math="0.45\text{ s}" />, when both have dropped <InlineMath math="1\text{ m}" />. Subtract the can's velocity from the ball's, and gravity cancels out.
+At <InlineMath math="10\text{ m/s}" />, the drops appear tilted about <InlineMath math="57^\circ" /> from the vertical with an apparent speed of:
+
+<BlockMath math="v_{\text{rain/car}}=\sqrt{6.5^2+10^2}\approx11.9\text{ m/s}" />
+
+From the roadside, the exact same raindrops still fall straight down.
+
+### A Boat on a Moving River
+
+A boat moves through the water at <InlineMath math="4\text{ m/s}" />, and the river flows downstream at <InlineMath math="3\text{ m/s}" /> past the bank. **The boat's velocity relative to the bank is the vector sum of the two**, drawn tip to tail. Adjust the boat's heading angle <InlineMath math="a" /> below to see how the resultant velocity changes.
+
+<MathVisual
+  title={<>Adding Boat and River Velocities</>}
+  description={
+    <>
+      The orange boat velocity (<InlineMath math="4\text{ m/s}" />) and violet river current (<InlineMath math="3\text{ m/s}" />) add tip to tail to form the fuchsia velocity over the ground.
+    </>
+  }
+  footer={<>The fuchsia resultant joins the boat's heading vector to the current tip to tail.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -3.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -45, max: 30, value: 0, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "boat-vel", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }] },
+      { id: "current-vel", kind: "path", appearance: "secondary", points: [{ x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }, { x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" }] },
+      { id: "ground-vel", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" }] },
+      { id: "boat-tip", kind: "marker", appearance: "primary", x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" },
+      { id: "sum-tip", kind: "marker", appearance: "answer", x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "boat-lbl", objectId: "boat-tip", at: { x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }, placement: "below-right" },
+      { key: "sum-lbl", objectId: "sum-tip", at: { x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "ground-speed", formula: "sqrt((4*cos(a*pi/180))^2 + (3 + 4*sin(a*pi/180))^2)" },
+      { key: "cross-time", formula: "60/(4*cos(a*pi/180))" },
+      { key: "drift", formula: "60*(3 + 4*sin(a*pi/180))/(4*cos(a*pi/180))" },
+    ],
+  }}
+  labels={{
+    a: <>Heading <InlineMath math="a" /> (deg)</>,
+    "boat-lbl": <InlineMath math="\vec v_{\text{b/w}}" />,
+    "sum-lbl": <InlineMath math="\vec v_{\text{b/g}}" />,
+    "ground-speed": <>Speed over ground (m/s)</>,
+    "cross-time": <>Time for 60 m river (s)</>,
+    drift: <>Downstream drift (m)</>,
+  }}
+/>
+
+Heading straight across at <InlineMath math="0^\circ" />, the boat crosses the <InlineMath math="60\text{ m}" /> river in <InlineMath math="15\text{ s}" />, drifts <InlineMath math="45\text{ m}" /> downstream, and moves relative to the bank at:
+
+<BlockMath math="v_{\text{boat/bank}}=\sqrt{4^2+3^2}=5\text{ m/s}" />
+
+### Straight Lines Relative to a Falling Can
+
+Relative motion explains a famous demonstration. A launcher at <InlineMath math="(0,0)" /> aims straight at a can hanging <InlineMath math="4\text{ m}" /> away and <InlineMath math="2\text{ m}" /> high that drops the instant the ball fires. Both accelerate downward at <InlineMath math="g" />, so **relative to the can the ball travels straight along the aiming line**.
+
+<MathVisual
+  title={<>Aiming Straight at a Falling Can</>}
+  description={
+    <>
+      Change the launch speed <InlineMath math="s" /> (in m/s). Both the ball (orange curve) and the can (violet drop) fall by the same vertical distance below the aiming line.
+    </>
+  }
+  footer={<>Raising launch speed lifts the meeting point, yet the ball always hits the can.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.8 }, y: { min: -0.2, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 8, max: 14, value: 10, step: 1, label: "s" },
+    ],
+    objects: [
+      { id: "aim-line", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4, y: 2 } },
+      { id: "ball-curve", kind: "function", appearance: "primary", formula: "0.5*x - 6.25*x^2/s^2", domain: { min: 0, max: 4 } },
+      { id: "can-drop", kind: "path", appearance: "secondary", points: [{ x: "4", y: "2" }, { x: "4", y: "2 - 100/s^2" }] },
+      { id: "launcher", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "can-start", kind: "point", appearance: "reference", at: { x: 4, y: 2 } },
+      { id: "meet-pt", kind: "marker", appearance: "answer", x: "4", y: "2 - 100/s^2" },
+    ],
+    labels: [
+      { key: "launch", objectId: "launcher", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "can", objectId: "can-start", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "hit", objectId: "meet-pt", at: { x: "4", y: "2 - 100/s^2" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "meet-time", formula: "2*sqrt(5)/s" },
+      { key: "drop-dist", formula: "100/s^2" },
+      { key: "meet-height", formula: "2 - 100/s^2" },
+    ],
+  }}
+  labels={{
+    s: <>Launch speed <InlineMath math="s" /> (m/s)</>,
+    launch: <>Launcher</>,
+    can: <>Can start</>,
+    hit: <>Hit</>,
+    "meet-time": <>Time to meet (s)</>,
+    "drop-dist": <>Shared drop (m)</>,
+    "meet-height": <>Meeting height (m)</>,
+  }}
+/>
+
+At <InlineMath math="10\text{ m/s}" /> with <InlineMath math="g=10\text{ m/s}^2" />, the ball meets the can after <InlineMath math="0.45\text{ s}" /> when both have dropped <InlineMath math="1\text{ m}" />. Subtract the can's velocity from the ball's, and gravity cancels out completely.

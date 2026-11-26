@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Vector Concept",
+  title: "Vectors and Scalars in Physics",
   description:
     "Vectors have magnitude and direction, differ from scalars, and represent directed quantities in physical situations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
@@ -18,7 +18,9 @@ Magnitude and direction are two pieces of information describing a vector. They 
 
 Examples include a displacement of <InlineMath math="5 \text{ m}" /> east, a force of <InlineMath math="20 \text{ N}" /> upward, or a velocity of <InlineMath math="12 \text{ m s}^{-1}" /> to the right. If the direction is missing, the physical information is incomplete.
 
-## Seeing Vectors on a Bridge
+> Every vector carries two inseparable facts, how large it is and which way it points. Drop the direction and the physical prediction breaks.
+
+### Seeing Vectors on a Bridge
 
 In this model, a small load moves along a bridge deck. Two cables pull the load toward the towers. Each cable pull is a vector because it has a force magnitude and a pulling direction. Move the load and notice how the **arrow length and direction** change together.
 
@@ -30,6 +32,7 @@ In this model, a small load moves along a bridge deck. Two cables pull the load 
       acting on the load.
     </>
   }
+  footer={<>Slide the load off center and watch each cable arrow tilt and resize.</>}
   labels={{
     bridgeView: "Cable bridge model",
     chooseLoadPosition: "Move the load position",
@@ -46,9 +49,60 @@ In this model, a small load moves along a bridge deck. Two cables pull the load 
 
 When the load is off-center, the cables no longer carry equal tension. Their directions determine the tension each cable needs to hold the load.
 
+### Reading a Vector Arrow
+
+Vectors are often drawn as arrows. The **tail** shows where the vector starts, the **head** shows the direction, and the **length** represents the vector magnitude.
+
+For example, the magnitude of a force directed to the right can be written as <InlineMath math="\lvert\vec{F}\rvert = 20 \text{ N}" />. The symbol <InlineMath math="\vec{F}" /> denotes the force vector, <InlineMath math="20 \text{ N}" /> is its magnitude, and "to the right" is its direction.
+
+A vector can also be written from one point to another, such as <InlineMath math="\overrightarrow{AB}" />. This means the vector starts at point <InlineMath math="A" /> and ends at point <InlineMath math="B" />. The notation <InlineMath math="\lvert\overrightarrow{AB}\rvert" /> gives only the length from <InlineMath math="A" /> to <InlineMath math="B" />, without its direction.
+
+Consider a drone that travels <InlineMath math="6\text{ m}" /> east and <InlineMath math="8\text{ m}" /> north, putting it <InlineMath math="10\text{ m}" /> across the ground from its pad, and also climbs to height <InlineMath math="h" />. At <InlineMath math="h = 4\text{ m}" />, its straight arrow from the pad to the drone is <InlineMath math="10.8\text{ m}" /> long even though the flown path is <InlineMath math="18\text{ m}" />.
+
+<MathVisual
+  title={<>Tail at the Pad and Head at the Drone</>}
+  description={<>Ground run of <InlineMath math="10\text{ m}" /> paired with adjustable climb <InlineMath math="h" /> to compare path length and straight arrow length.</>}
+  footer={<>Raise height <InlineMath math="h" /> and compare the straight purple arrow against total path.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 12 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0, max: 10, value: 4, step: 0.5, label: "height" },
+    ],
+    objects: [
+      { id: "ground-run", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "climb", kind: "path", appearance: "secondary", points: [{ x: "10", y: "0" }, { x: "10", y: "h" }] },
+      { id: "straight", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "10", y: "h" }] },
+      { id: "drone", kind: "marker", appearance: "answer", x: "10", y: "h" },
+    ],
+    labels: [
+      { key: "ground-run", objectId: "ground-run", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "drone", objectId: "drone", at: { x: "10", y: "h" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "path-len", formula: "14 + h" },
+      { key: "disp-len", formula: "sqrt(100 + h^2)" },
+    ],
+  }}
+  labels={{
+    height: <>Climb height <InlineMath math="h" /> (m)</>,
+    "ground-run": <InlineMath math="10\text{ m}" />,
+    drone: <InlineMath math="\Delta\vec r" />,
+    "path-len": <>Path flown (m)</>,
+    "disp-len": <>Straight distance (m)</>,
+  }}
+/>
+
+No matter how high you slide <InlineMath math="h" />, the direct arrow from tail to head stays shorter than the full path flown. Its length records only the straight span between start and finish.
+
 ## Vectors and Scalars
 
-Not every quantity needs direction. A **scalar** is described well enough by a value and a unit. A **vector** needs a value, a unit, and a direction.
+Not every quantity needs direction. A **scalar** is described completely by a value and a unit, whereas a **vector** needs a value, a unit, and a direction to make physical sense.
+
+### Comparing Speed and Velocity
+
+The table below sorts everyday quantities into **scalars and vectors** based on whether direction changes the physical meaning.
 
 | Situation | Quantity | Type |
 | :-------- | :------- | :--- |
@@ -61,20 +115,19 @@ Not every quantity needs direction. A **scalar** is described well enough by a v
 
 A quick way to decide is this: if the question "which way?" matters for understanding the quantity, you are probably looking at a vector.
 
-Ask whether the quantity needs a direction. These two carts have the same speed, a scalar, but opposite velocities, because velocity is a vector and keeps the direction. Zoom in on both arrows.
+These two carts travel at the same speed, a scalar, yet carry opposite velocities because velocity is a vector and keeps track of direction.
 
 <MathVisual
   title={<>Scalar or Vector</>}
-  description={<>Two carts moving at the same speed in opposite directions.</>}
+  description={<>Two carts moving at the same speed of <InlineMath math="3\text{ m/s}" /> in opposite directions.</>}
+  footer={<>Same arrow length means equal speed, while opposite tips mean opposite velocity.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1.3, max: 2.3 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "east", kind: "segment", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 3, y: 1 } },
-      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 1 }, { x: 2.75, y: 1.125 }, { x: 2.75, y: 0.875 }] },
-      { id: "west", kind: "segment", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "west-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 3.25, y: 0.125 }, { x: 3.25, y: -0.125 }] },
+      { id: "east", kind: "vector", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 3, y: 1 } },
+      { id: "west", kind: "vector", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 3, y: 0 } },
       { id: "east-start", kind: "point", appearance: "primary", at: { x: 0, y: 1 } },
       { id: "west-start", kind: "point", appearance: "secondary", at: { x: 6, y: 0 } },
     ],
@@ -84,18 +137,21 @@ Ask whether the quantity needs a direction. These two carts have the same speed,
     ],
   }}
   labels={{
-    east: <InlineMath math="\text{speed }3\text{ m/s},\ v=+3\text{ m/s}" />,
-    west: <InlineMath math="\text{speed }3\text{ m/s},\ v=-3\text{ m/s}" />,
+    east: <InlineMath math="v=+3\text{ m/s}" />,
+    west: <InlineMath math="v=-3\text{ m/s}" />,
   }}
 />
 
-## Wind on a Weather Map
+Both carts read <InlineMath math="3\text{ m/s}" /> on a speedometer, yet one moves right and the other moves left. The sign on velocity preserves the directional difference that scalar speed discards.
+
+### Wind on a Weather Map
 
 A weather map **needs a vector for the wind**: <InlineMath math="12\text{ m/s}" /> alone does not tell a sailor where the boat drifts. Turn the direction and watch every arrow on the map turn with it, while the speed only sets their length.
 
 <WindMapVectorLab
   title={<>Wind over the Islands</>}
   description={<>A steady wind of <InlineMath math="12\text{ m/s}" /> blows toward <InlineMath math="30^\circ" /> from east. Change its speed and direction.</>}
+  footer={<>Speed changes arrow length while heading turns every arrow across the map.</>}
   angle={30}
   speed={12}
   labels={{
@@ -109,70 +165,58 @@ A weather map **needs a vector for the wind**: <InlineMath math="12\text{ m/s}" 
   }}
 />
 
-## Reading a Vector Arrow
-
-Vectors are often drawn as arrows. The **tail** shows where the vector starts, the **head** shows the direction, and the **length** represents the vector magnitude.
-
-For example, the magnitude of a force directed to the right can be written as <InlineMath math="\lvert\vec{F}\rvert = 20 \text{ N}" />. The symbol <InlineMath math="\vec{F}" /> denotes the force vector, <InlineMath math="20 \text{ N}" /> is its magnitude, and "to the right" is its direction.
-
-A vector can also be written from one point to another, such as <InlineMath math="\overrightarrow{AB}" />. This means the vector starts at point <InlineMath math="A" /> and ends at point <InlineMath math="B" />.
-
-<InlineMath math="\lvert\overrightarrow{AB}\rvert" /> is the length of the vector from <InlineMath math="A" /> to <InlineMath math="B" />.
-
-The absolute value bars around a vector denote its magnitude. Direction is not part of that value.
-
-## A Drone Leaves Its Pad
-
-The violet arrow starts at the pad, its tail, and ends at the drone, its head. Its length is **the straight distance from the pad**, <InlineMath math="10.8\text{ m}" />, even though the drone flew <InlineMath math="18\text{ m}" /> along its path. Press play to watch it fly.
-
-<DroneDisplacementLab
-  title={<>Tail at the Pad, Head at the Drone</>}
-  description={<>The drone climbs <InlineMath math="4\text{ m}" />, flies <InlineMath math="6\text{ m}" /> east, then <InlineMath math="8\text{ m}" /> north.</>}
-  hops={[
-    { east: 0, north: 0, up: 4 },
-    { east: 6, north: 0, up: 0 },
-    { east: 0, north: 8, up: 0 },
-  ]}
-  labels={{
-    chooseFactor: "Multiply the flight plan by k",
-    displacement: <>Displacement</>,
-    path: <>Path flown</>,
-    size: <>Distance from the pad</>,
-    viewLabel: "Drone flying from its pad",
-  }}
-/>
+Notice that changing wind direction alters both the east and north components even when the wind speed stays fixed at <InlineMath math="12\text{ m/s}" />. A sailor needs the full vector to steer safely.
 
 ## Vector Equality Depends on Magnitude and Direction
 
-Two vectors are equal if they have <Highlight>the same magnitude and the same direction</Highlight>. Their locations may be different.
+Two vectors match completely only when they share <Highlight>both magnitude and direction</Highlight>, regardless of where they are drawn on a page.
 
-Two forces of <InlineMath math="15 \text{ N}" /> directed to the right have equal vector values, even when the arrows are drawn at different locations. The point where a force acts affects the torque on a rigid body. Moving that point can change the torque even when the magnitude and direction stay the same.
+Two forces of <InlineMath math="15 \text{ N}" /> directed to the right have equal vector values, even when the arrows are drawn at different locations. The point where a force acts affects the torque on a rigid body, so moving that point can change rotation even when the force vector stays the same.
 
-By contrast, a force of <InlineMath math="15 \text{ N}" /> to the right and a force of <InlineMath math="15 \text{ N}" /> to the left are not equal vectors. Their magnitudes are equal, but their directions are opposite.
+By contrast, a force of <InlineMath math="15 \text{ N}" /> to the right and a force of <InlineMath math="15 \text{ N}" /> to the left are not equal vectors. Their magnitudes match, yet their directions oppose each other.
 
-## Two Teams on One Rope
+Picture two tug-of-war teams pulling opposite ways on one rope, with each puller exerting <InlineMath math="400\text{ N}" />. The left team keeps <InlineMath math="3" /> pullers (<InlineMath math="-1200\text{ N}" />) while the right team has <InlineMath math="p" /> pullers. At <InlineMath math="p = 3" />, both forces have size <InlineMath math="1200\text{ N}" /> yet cancel to zero because they point opposite ways.
 
-Both teams start with three pullers of <InlineMath math="400\text{ N}" /> each, so both forces are <InlineMath math="1200\text{ N}" /> big. They still are not equal vectors, because **they point opposite ways**, and together they give a net force of <InlineMath math="0\text{ N}" />. Add one puller to a side and see the rope move.
-
-<TugOfWarForceLab
-  title={<>Same Size, Opposite Pull</>}
-  description={<>Each puller pulls with <InlineMath math="400\text{ N}" />. Change the size of each team.</>}
-  left={3}
-  pull={400}
-  right={3}
+<MathVisual
+  title={<>Equal Size with Opposite Pulls</>}
+  description={<>Net horizontal force <InlineMath math="\Sigma F = 400p - 1200" /> in newtons against right-team pullers <InlineMath math="p" /> facing a <InlineMath math="1200\text{ N}" /> left pull.</>}
+  footer={<>At <InlineMath math="p=3" /> both pulls have size <InlineMath math="1200\text{ N}" /> yet sum to <InlineMath math="0\text{ N}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 5.5 }, y: { min: -1000, max: 1000 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 1, max: 5, value: 3, step: 1, label: "pullers" },
+    ],
+    objects: [
+      { id: "zero-line", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "net-curve", kind: "function", appearance: "primary", formula: "400*x - 1200", domain: { min: 1, max: 5 } },
+      { id: "guide", kind: "path", appearance: "construction", points: [{ x: "p", y: "0" }, { x: "p", y: "400*p - 1200" }] },
+      { id: "net-pt", kind: "marker", appearance: "answer", x: "p", y: "400*p - 1200" },
+    ],
+    labels: [
+      { key: "net-pt", objectId: "net-pt", at: { x: "p", y: "400*p - 1200" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "right-pull", formula: "400*p" },
+      { key: "net-force", formula: "400*p - 1200" },
+    ],
+  }}
   labels={{
-    left: <>Left team <InlineMath math="\vec F_L" /></>,
-    leftCount: <>Pullers on the left</>,
-    leftName: "Pullers on the left",
-    net: <>Net force <InlineMath math="\Sigma F" /></>,
-    right: <>Right team <InlineMath math="\vec F_R" /></>,
-    rightCount: <>Pullers on the right</>,
-    rightName: "Pullers on the right",
-    viewLabel: "Tug of war at sunset",
+    pullers: <>Right-team pullers <InlineMath math="p" /></>,
+    "net-pt": <InlineMath math="\Sigma F" />,
+    "right-pull": <>Right force (N)</>,
+    "net-force": <>Net force (N)</>,
   }}
 />
 
+When the marker crosses zero at <InlineMath math="p = 3" />, equal magnitudes in opposite directions produce cancellation rather than doubling. Add or remove one puller and the net force tilts the rope immediately.
+
 ## Distance and Displacement Measure Different Quantities
+
+Following a bent path adds every step into scalar **distance**, while vector **displacement** draws one straight arrow from start to finish. Comparing both side by side keeps the two quantities clear.
+
+### Right Angle Path and Displacement
 
 A person walks <InlineMath math="4 \text{ m}" /> east, then <InlineMath math="3 \text{ m}" /> north. The distance traveled is the **total path length**:
 
@@ -191,22 +235,18 @@ For direction, measure the angle from east toward north. The ratio of opposite t
 
 The distance is <InlineMath math="7 \text{ m}" />. The displacement has magnitude <InlineMath math="5 \text{ m}" /> and points about <InlineMath math="36.9^\circ" /> north of east.
 
-The path below is <InlineMath math="7\text{ m}" /> of walking, but the fuchsia arrow, the displacement, is only <InlineMath math="5\text{ m}" /> long and points about <InlineMath math="36.9^\circ" /> north of east.
-
 <MathVisual
   title={<>Walking <InlineMath math="7\text{ m}" />, Moving <InlineMath math="5\text{ m}" /></>}
-  description={<><InlineMath math="4\text{ m}" /> east, then <InlineMath math="3\text{ m}" /> north. One grid step is <InlineMath math="1\text{ m}" />.</>}
+  description={<>Walking <InlineMath math="4\text{ m}" /> east and <InlineMath math="3\text{ m}" /> north gives a <InlineMath math="5\text{ m}" /> displacement directly in meters.</>}
+  footer={<>The two street legs total <InlineMath math="7\text{ m}" />, while the straight arrow is <InlineMath math="5\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "east", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
-      { id: "east-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: 0 }, { x: 3.75, y: 0.125 }, { x: 3.75, y: -0.125 }] },
-      { id: "north", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 3 } },
-      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 3 }, { x: 4.125, y: 2.75 }, { x: 3.875, y: 2.75 }] },
-      { id: "walk", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
-      { id: "walk-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) + ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) + ((0.25 / 2) * 4) / Math.hypot(4, 3) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) - ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) - ((0.25 / 2) * 4) / Math.hypot(4, 3) }] },
+      { id: "east", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "north", kind: "vector", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "walk", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
     ],
     labels: [
       { key: "east", objectId: "east", at: { x: 2, y: 0 }, placement: "below" },
@@ -221,24 +261,45 @@ The path below is <InlineMath math="7\text{ m}" /> of walking, but the fuchsia a
   }}
 />
 
-## A Walk Through Town
+The right triangle makes the distinction visual: distance sums the two perpendicular legs, while displacement is the hypotenuse connecting start to end.
 
-The walker follows the streets <InlineMath math="300\text{ m}" /> east and then <InlineMath math="400\text{ m}" /> north, so the distance is <InlineMath math="700\text{ m}" />. The displacement is **the straight violet arrow from start to finish**, only <InlineMath math="500\text{ m}" /> long.
+### Multi Block Walk in Town
 
-<CityWalkDisplacementLab
+On larger city streets, the same gap between distance and displacement grows even clearer. A walker follows streets <InlineMath math="300\text{ m}" /> east and then <InlineMath math="b" /> meters north. At <InlineMath math="b = 400\text{ m}" />, the distance walked is <InlineMath math="700\text{ m}" />, yet **the straight displacement arrow from start to finish** is only <InlineMath math="500\text{ m}" /> long.
+
+<MathVisual
   title={<>Distance Walked and Displacement</>}
-  description={<>A walk at <InlineMath math="1.25\text{ m/s}" /> along two streets of the town.</>}
-  legs={[
-    { east: 300, north: 0 },
-    { east: 0, north: 400 },
-  ]}
-  pace={1.25}
+  description={<>A city walk of <InlineMath math="300\text{ m}" /> east followed by an adjustable northward leg <InlineMath math="b" /> in meters.</>}
+  footer={<>Slide north leg <InlineMath math="b" /> and see path distance always stay above displacement.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -50, max: 500 }, y: { min: -50, max: 650 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 100, max: 600, value: 400, step: 50, label: "north-leg" },
+    ],
+    objects: [
+      { id: "street-east", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 300, y: 0 } },
+      { id: "street-north", kind: "path", appearance: "secondary", points: [{ x: "300", y: "0" }, { x: "300", y: "b" }] },
+      { id: "net-disp", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "300", y: "b" }] },
+      { id: "finish", kind: "marker", appearance: "answer", x: "300", y: "b" },
+    ],
+    labels: [
+      { key: "street-east", objectId: "street-east", at: { x: 150, y: 0 }, placement: "below" },
+      { key: "finish", objectId: "finish", at: { x: "300", y: "b" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "walked", formula: "300 + b" },
+      { key: "straight", formula: "sqrt(90000 + b^2)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Average speed</>,
-    averageVelocity: <>Average velocity</>,
-    displacement: <>Displacement</>,
-    distance: <>Distance walked</>,
-    time: <>Time</>,
-    viewLabel: "Walk through a town seen from above",
+    "north-leg": <>North street leg <InlineMath math="b" /> (m)</>,
+    "street-east": <InlineMath math="300\text{ m}" />,
+    finish: <InlineMath math="\Delta\vec r" />,
+    walked: <>Distance walked (m)</>,
+    straight: <>Displacement (m)</>,
   }}
 />
+
+As you increase <InlineMath math="b" />, both numbers rise, yet the straight arrow stays strictly shorter than the two-street detour because a right triangle's hypotenuse is always shorter than the sum of its legs.

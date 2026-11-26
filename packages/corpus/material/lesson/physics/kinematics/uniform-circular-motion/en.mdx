@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Uniform Circular Motion",
   description:
@@ -26,6 +25,7 @@ Speed describes how fast the object moves along the path. Velocity describes bot
       Change the period to see the car complete each lap at a different speed.
     </>
   }
+  footer={<>Shortening the period makes the car circle faster and raises inward acceleration.</>}
   labels={{
     choosePeriod: "Choose period",
     period: <>Period</>,
@@ -36,29 +36,62 @@ Speed describes how fast the object moves along the path. Velocity describes bot
   }}
 />
 
-Every bend of an athletics track is half a circle. A runner who keeps <InlineMath math="8\text{ m/s}" /> around it has **a constant speed but a turning velocity**, so the runner is accelerating.
+Every bend of an athletics track is half a circle. A runner who keeps <InlineMath math="8\text{ m/s}" /> around a lane <InlineMath math="1" /> bend of radius <InlineMath math="36.8\text{ m}" /> has **a constant speed but a turning velocity**, so the runner is accelerating. Drag angle <InlineMath math="a" /> around the semicircle below to watch the teal tangent direction turn while the inward acceleration points toward the center.
 
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>Around the Bend</>}
+<MathVisual
+  title={<>Turning Velocity Around a Track Bend</>}
   description={
     <>
-      The runner keeps <InlineMath math="8\text{ m/s}" /> on lane <InlineMath math="1" />. Watch the teal arrow keep its length while it turns, and stop the run at <InlineMath math="100\text{ m}" /> to see it halfway.
+      Slide angle <InlineMath math="a" /> along the <InlineMath math="36.8\text{ m}" /> semicircular bend to watch the runner's tangent velocity (teal) turn while inward acceleration (pink) always aims at the center.
     </>
   }
+  footer={<>The tangent velocity arrow keeps turning as the runner follows the curved bend.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -55, max: 55 }, y: { min: -22, max: 52 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 180, value: 45, step: 15, label: "a" },
+    ],
+    objects: [
+      { id: "bend", kind: "arc", appearance: "reference", center: { x: 0, y: 0 }, radius: 36.8, startDegrees: 0, sweepDegrees: 180 },
+      { id: "center-pt", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "radius-line", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" }] },
+      { id: "tangent-vel", kind: "path", appearance: "construction", points: [{ x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" }, { x: "36.8*cos(a*pi/180) - 16*sin(a*pi/180)", y: "36.8*sin(a*pi/180) + 16*cos(a*pi/180)" }] },
+      { id: "inward-acc", kind: "path", appearance: "warning", points: [{ x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" }, { x: "26.8*cos(a*pi/180)", y: "26.8*sin(a*pi/180)" }] },
+      { id: "runner-pt", kind: "marker", appearance: "primary", x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "center", objectId: "center-pt", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "runner", objectId: "runner-pt", at: { x: "36.8*cos(a*pi/180)", y: "36.8*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "arc-dist", formula: "36.8*a*pi/180" },
+      { key: "vx", formula: "-8*sin(a*pi/180)" },
+      { key: "vy", formula: "8*cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Size of the average velocity</>,
-    chooseDistance: "Choose how far the runner goes",
-    displacement: <>Size of the displacement</>,
-    distance: <>Distance run</>,
-    time: <>Time</>,
-    viewLabel: "Runner on a 400 m athletics track seen from above",
+    a: <>Bend angle <InlineMath math="a" /> (deg)</>,
+    center: <>Centre</>,
+    runner: <>Runner</>,
+    "arc-dist": <>Arc covered (m)</>,
+    vx: <>Velocity x (m/s)</>,
+    vy: <>Velocity y (m/s)</>,
   }}
 />
 
-On lane <InlineMath math="1" /> the bend has a radius of about <InlineMath math="36.8\text{ m}" />, so the runner's centripetal acceleration there is <InlineMath math="\frac{8^2}{36.8}\approx1.74\text{ m/s}^2" />. On the straights the arrow stops turning and the acceleration is zero.
+On lane <InlineMath math="1" /> the bend has a radius of about <InlineMath math="36.8\text{ m}" />, so the runner's centripetal acceleration around the curve is:
 
-## Angular Position and Displacement
+<BlockMath math="a_c=\frac{8^2}{36.8}\approx1.74\text{ m/s}^2" />
+
+On the straight sections the velocity arrow stops turning and the acceleration drops to zero.
+
+## Angular Motion and Revolution Time
+
+Instead of tracking metres along a straight line, circular motion tracks **swept angle** and the time needed to complete one full turn. Linking angle, wheel rotation, period, and frequency gives one compact description of rotation rate.
+
+### Angular Position and Displacement
 
 In straight-line motion, a coordinate gives the position relative to zero. In circular motion, an angle gives the position relative to a reference line. The change in that angle is called **angular displacement**.
 
@@ -68,7 +101,7 @@ If an object moves from a reference line and sweeps a signed angle <InlineMath m
 
 The symbol <InlineMath math="\omega" /> is called omega. In uniform circular motion, angular velocity is constant, so its value equals the average over every interval. Its unit is radians per second, written <InlineMath math="\text{rad/s}" />. Radians are used because one full turn equals <InlineMath math="2\pi" /> radians.
 
-## One Angle for the Whole Wheel
+### One Angle for the Whole Wheel
 
 On a spinning wheel, **every point sweeps the same angle in the same time**, so the whole wheel has one angular velocity. A valve on the rim and a reflector halfway out make that easy to compare.
 
@@ -79,6 +112,7 @@ On a spinning wheel, **every point sweeps the same angle in the same time**, so 
       Choose the time for one turn. Both marks turn through the same angle, but their velocity arrows differ.
     </>
   }
+  footer={<>Both marks share one angular speed, yet the outer rim point moves faster.</>}
   labels={{
     angularSpeed: <>Angular speed</>,
     choosePeriod: "Choose the time for one turn",
@@ -91,7 +125,7 @@ On a spinning wheel, **every point sweeps the same angle in the same time**, so 
 
 At one turn per second both marks sweep <InlineMath math="2\pi\text{ rad}" /> each second, so <InlineMath math="\omega\approx6.28\text{ rad/s}" /> for the valve and the reflector alike. Their speeds differ, about <InlineMath math="1.95" /> and <InlineMath math="0.97\text{ m/s}" />, because they sit at different radii.
 
-## Period and Frequency Describe One Revolution
+### Period and Frequency Describe One Revolution
 
 The period, written <InlineMath math="T" />, is the time needed for one revolution. The frequency, written <InlineMath math="f" />, is the number of revolutions completed each second.
 
@@ -104,7 +138,11 @@ They are **reciprocals**:
 
 When the period is smaller, the object completes a revolution faster. As a result, its frequency and angular speed <InlineMath math="\lvert\omega\rvert" /> are larger. The sign of <InlineMath math="\omega" /> separately records the rotation direction.
 
-## Velocity and Acceleration Directions on a Circle
+## Tangential Velocity on a Circle
+
+Knowing how fast an object turns is only half the story. We also need the **direction and magnitude of its velocity along the rim**. Examining the tangent vector and releasing a whirling ball shows why linear speed grows with radius.
+
+### Velocity and Acceleration Directions on a Circle
 
 At every point on a circular path, <Highlight>velocity points tangent to the circle</Highlight>. Centripetal acceleration points toward the center. Velocity and acceleration are perpendicular, so an object can have constant speed and still have acceleration.
 
@@ -115,6 +153,7 @@ Here is the small car from the example at four moments, one quarter turn apart. 
 <MathVisual
   title={<>Velocity and Acceleration around the Track</>}
   description={<>Radius <InlineMath math="4\text{ m}" /> and period <InlineMath math="6\text{ s}" />. Teal arrows are velocity at half scale, pink arrows centripetal acceleration at half scale.</>}
+  footer={<>Every quarter turn rotates both arrows while keeping them strictly perpendicular.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
@@ -152,7 +191,9 @@ Here is the small car from the example at four moments, one quarter turn apart. 
   }}
 />
 
-## Tangential Speed Connects to Angular Speed
+Notice that no pink arrow ever points along a teal arrow. Because the inward acceleration stays at a right angle to velocity everywhere on the track, it curves the path without speeding the car up or slowing it down.
+
+### Tangential Speed Connects to Angular Speed
 
 Tangential speed is the magnitude of the object's velocity **along the circular path**. If the radius is <InlineMath math="r" />, one full circumference is <InlineMath math="2\pi r" />. Because one revolution takes time <InlineMath math="T" />, the tangential speed is:
 
@@ -162,8 +203,6 @@ Tangential speed is the magnitude of the object's velocity **along the circular 
 </MathContainer>
 
 The formula <InlineMath math="v=\lvert\omega\rvert r" /> means two objects with the same angular speed do not always have the same tangential speed. The object farther from the center travels a longer path, so its tangential speed is larger.
-
-## Let Go and the Ball Flies Straight
 
 A ball whirled on a string shows why velocity is tangent. While the string pulls, **the ball keeps turning**, and the moment you let go it flies straight along the tangent.
 
@@ -176,6 +215,7 @@ A ball whirled on a string shows why velocity is tangent. While the string pulls
       The string is <InlineMath math="0.8\text{ m}" /> long and one turn takes <InlineMath math="0.8\text{ s}" />. Pick the point where you let go.
     </>
   }
+  footer={<>Once the inward string pull vanishes, the ball keeps moving along the tangent.</>}
   labels={{
     acceleration: <>Centripetal acceleration</>,
     chooseRelease: "Choose where to let go",
@@ -192,7 +232,14 @@ A ball whirled on a string shows why velocity is tangent. While the string pulls
   }}
 />
 
-Here <InlineMath math="\omega=\frac{2\pi}{0.8}\approx7.85\text{ rad/s}" />, so <InlineMath math="v=\omega r\approx6.28\text{ m/s}" />. Let go at the east point and the ball heads north, perpendicular to the string it just left.
+For this string and period, the angular and tangential speeds are:
+
+<MathContainer>
+  <BlockMath math="\omega=\frac{2\pi}{0.8}\approx7.85\text{ rad/s}" />
+  <BlockMath math="v=\omega r\approx6.28\text{ m/s}" />
+</MathContainer>
+
+Let go at the east point and the ball heads north, perpendicular to the string it just left.
 
 ## Centripetal Acceleration Always Points Inward
 
@@ -203,11 +250,9 @@ Even though speed is constant, the velocity direction keeps turning. Changing th
   <BlockMath math="a_c=\omega^2 r" />
 </MathContainer>
 
-Centripetal acceleration always points **toward the center of the circle**. So do not think of this acceleration as pointing along the object's motion. Velocity is tangent to the path, while centripetal acceleration points inward.
+Centripetal acceleration always points **toward the center of the circle**. Velocity is tangent to the path, while centripetal acceleration points inward.
 
-## Gravity as the Centripetal Pull
-
-For a satellite in a circular orbit, gravity supplies the centripetal acceleration. **Gravity points at the Earth's centre**, exactly where <InlineMath math="a_c" /> must point.
+For a satellite in a circular orbit, gravity supplies this inward acceleration. **Gravity points at the Earth's centre**, exactly where <InlineMath math="a_c" /> must point.
 
 <SatelliteOrbitCircularLab
   title={<>Satellites in Circular Orbit</>}
@@ -216,6 +261,7 @@ For a satellite in a circular orbit, gravity supplies the centripetal accelerati
       Pick a satellite. The teal arrow is its velocity and the fuchsia arrow its acceleration toward the Earth's centre.
     </>
   }
+  footer={<>Earth's gravity pulls straight inward, perpendicular to each satellite's path.</>}
   labels={{
     acceleration: <>Centripetal acceleration</>,
     chooseOrbit: "Choose the satellite",
@@ -231,7 +277,11 @@ For a satellite in a circular orbit, gravity supplies the centripetal accelerati
   }}
 />
 
-The space station circles at about <InlineMath math="7.67\text{ km/s}" /> once every <InlineMath math="92.4\text{ min}" />, so <InlineMath math="a_c=\frac{v^2}{r}\approx8.69\text{ m/s}^2" />. A geostationary satellite takes about <InlineMath math="23.93\text{ h}" />, the time the Earth needs to turn once.
+The space station circles at about <InlineMath math="7.67\text{ km/s}" /> once every <InlineMath math="92.4\text{ min}" />, giving an inward acceleration of:
+
+<BlockMath math="a_c=\frac{v^2}{r}\approx8.69\text{ m/s}^2" />
+
+A geostationary satellite sits much farther out and takes about <InlineMath math="23.93\text{ h}" />, matching the time Earth needs to turn once.
 
 ## One Full Turn of a Small Car
 
@@ -243,19 +293,20 @@ Its angular speed is:
 
 Its tangential speed is:
 
-<BlockMath math="\begin{aligned} v &amp;=\lvert\omega\rvert r \\ &amp;=\frac{\pi}{3}(4) \\ &amp;=\frac{4\pi}{3}\text{ m/s} \\ &amp;\approx4.19\text{ m/s} \end{aligned}" />
+<BlockMath math="\begin{aligned} v &=\lvert\omega\rvert r \\ &=\frac{\pi}{3}(4) \\ &=\frac{4\pi}{3}\text{ m/s} \\ &\approx4.19\text{ m/s} \end{aligned}" />
 
 Its centripetal acceleration is:
 
 <BlockMath math="a_c=\frac{v^2}{r}=\frac{(4\pi/3)^2}{4}=\frac{16\pi^2}{36}=\frac{4\pi^2}{9}\text{ m/s}^2\approx4.39\text{ m/s}^2" />
 
-So the car moves with **constant speed** of about <InlineMath math="4.19\text{ m/s}" />, but it still has acceleration of about <InlineMath math="4.39\text{ m/s}^2" /> because the direction of its velocity keeps changing.
+So the car moves with **constant speed** of about <InlineMath math="4.19\text{ m/s}" />, yet it still accelerates inward at about <InlineMath math="4.39\text{ m/s}^2" /> because the direction of its velocity keeps changing.
 
-Follow the chain from the period. In one second the radius turns <InlineMath math="\omega=2\pi/T" />, the point travels the arc <InlineMath math="v=\omega r" />, and then <InlineMath math="a_c=v^2/r=4\pi^2/9\text{ m/s}^2" />. Zoom in on the orange arc covered in that second.
+Follow the chain from the period in the diagram below. In one second the radius turns through <InlineMath math="\omega" />, the point traces the orange arc <InlineMath math="v" />, and that continuous turning fixes the inward acceleration <InlineMath math="a_c" />.
 
 <MathVisual
   title={<>From Period to Centripetal Acceleration</>}
   description={<>The angle (violet radii) and the arc (orange) covered in <InlineMath math="1\text{ s}" /> on a circle of radius <InlineMath math="4\text{ m}" /> with period <InlineMath math="6\text{ s}" />.</>}
+  footer={<>In one second the radius sweeps one radian angle and traces the orange arc.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
@@ -277,3 +328,5 @@ Follow the chain from the period. In one second the radius turns <InlineMath mat
     arc: <InlineMath math="v=\omega r=\frac{4\pi}{3}\text{ m/s}" />,
   }}
 />
+
+One sixth of the circle corresponds to <InlineMath math="60^\circ" />, or <InlineMath math="\pi/3\text{ rad}" />, swept in a single second. Multiplying that angle by the <InlineMath math="4\text{ m}" /> radius yields the exact orange arc length of <InlineMath math="4.19\text{ m}" /> covered each second.

@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Gerakan Relatif",
   description:
@@ -28,6 +27,7 @@ Tanda positif dan negatif merekodkan arah sepanjang paksi yang dipilih.
       Pilih arah kereta <InlineMath math="B" /> untuk melihat gerakannya seperti yang diperhatikan dari kereta <InlineMath math="A" />.
     </>
   }
+  footer={<>Membalik arah kereta B mengubah tanda dan magnitud halaju relatifnya.</>}
   labels={{
     chooseCase: "Pilih arah",
     modeLabels: {
@@ -48,7 +48,13 @@ Tanda positif dan negatif merekodkan arah sepanjang paksi yang dipilih.
   }}
 />
 
-## Halaju Pemerhati Mengubah Halaju Relatif
+Tukar antara kedua-dua mod dan lihat tanda halaju relatif berubah arah. Walaupun halaju kereta <InlineMath math="A" /> di atas jalan kekal sama, membalikkan arah kereta <InlineMath math="B" /> mengubah secara ketara apa yang dilihat oleh pemandu kereta <InlineMath math="A" />.
+
+## Halaju Relatif Sepanjang Satu Garis
+
+Apabila objek bergerak di sepanjang satu lintasan lurus yang sama, perbandingan gerakannya bergantung pada **penolakan halaju bertanda**. Meneliti pemerhati lebih laju, penumpang kereta api dan pemerhati pegun menunjukkan satu rumus yang sama bagi semua kes.
+
+### Halaju Pemerhati Mengubah Halaju Relatif
 
 Halaju sesuatu objek menurut seorang pemerhati berubah apabila pemerhati itu juga bergerak. Pengiraan mesti membandingkan **gerakan objek dengan gerakan pemerhati**.
 
@@ -60,7 +66,7 @@ Nilai negatif ini bermaksud gerakan relatif itu menghala ke kiri.
 
 Apabila dua kenderaan bergerak dalam arah yang sama, pemerhati yang lebih laju boleh melihat kenderaan yang satu lagi seolah-olah bergerak ke belakang. Kereta itu masih bergerak ke hadapan relatif kepada jalan, tetapi halajunya relatif kepada teksi adalah negatif.
 
-## Berjalan di dalam Kereta Api
+### Berjalan di dalam Kereta Api
 
 Untuk halaju yang diukur oleh pemerhati yang bergerak, tolak sahaja halaju pemerhati itu. Kereta api bergerak pada <InlineMath math="20\text{ m/s}" /> dan seorang penumpang berjalan di dalamnya pada <InlineMath math="1.5\text{ m/s}" />, jadi **jawapannya bergantung pada siapa yang memerhati**.
 
@@ -71,6 +77,7 @@ Untuk halaju yang diukur oleh pemerhati yang bergerak, tolak sahaja halaju pemer
       Kereta api bergerak pada <InlineMath math="20\text{ m/s}" /> dan penumpang berjalan pada <InlineMath math="1.5\text{ m/s}" />. Tukar pemerhati dan arah berjalan, kemudian baca halajunya di bawah.
     </>
   }
+  footer={<>Menolak halaju pemerhati menyelaraskan bacaan dari platform dan kerusi.</>}
   labels={{
     chooseObserver: "Pilih pemerhati",
     chooseWay: "Pilih arah berjalan",
@@ -89,48 +96,19 @@ Untuk halaju yang diukur oleh pemerhati yang bergerak, tolak sahaja halaju pemer
   }}
 />
 
-Apabila berjalan ke belakang, penumpang bergerak pada <InlineMath math="20-1.5=18.5\text{ m/s}" /> relatif kepada platform tetapi pada <InlineMath math="-1.5\text{ m/s}" /> relatif kepada tempat duduk. Tolak halaju pemerhati, <InlineMath math="v_{AB}=v_A-v_B" />, dan kedua-dua bacaan itu sepadan.
+Apabila berjalan ke belakang, penumpang bergerak pada <InlineMath math="18.5\text{ m/s}" /> relatif kepada platform tetapi pada <InlineMath math="-1.5\text{ m/s}" /> relatif kepada tempat duduk. Menolak halaju pemerhati menyelaraskan kedua-dua bacaan itu dengan tepat.
 
-## Apabila Pemerhati Pegun
+### Apabila Pemerhati Pegun
 
 Jika pemerhati pegun relatif kepada tanah, halaju relatif adalah sama dengan halaju relatif kepada tanah.
 
-<BlockMath math="\begin{aligned} &amp;v_{\text{objek/pemerhati}} = v_{\text{objek/tanah}}-0 \\ &amp;= v_{\text{objek/tanah}} \end{aligned}" />
+<BlockMath math="\begin{aligned} v_{\text{objek/pemerhati}} &= v_{\text{objek/tanah}}-0 \\ &= v_{\text{objek/tanah}} \end{aligned}" />
 
 Itulah sebabnya, dalam banyak soalan mudah, halaju yang tidak menyebut kerangka lain biasanya dianggap relatif kepada tanah.
 
 Sesuatu objek juga boleh **pegun relatif kepada pemerhati yang bergerak**. Jika kereta dan teksi kedua-duanya bergerak ke kanan pada <InlineMath math="12\text{ m/s}" />, beza halaju antara kedua-duanya ialah sifar:
 
 <BlockMath math="v_{\text{kereta/teksi}}=12-12=0\text{ m/s}" />
-
-## Hujan Dilihat dari Kereta yang Bergerak
-
-Pada hari tanpa angin, hujan turun tegak ke bawah. **Dilihat dari kereta yang bergerak hujan datang secara condong**, kerana halajunya relatif kepada kereta ialah halajunya sendiri ditolak halaju kereta.
-
-<RainDriveRelativeVelocityLab
-  car={10}
-  title={<>Hujan pada Kereta yang Bergerak</>}
-  description={
-    <>
-      Titisan hujan yang besar jatuh pada kira-kira <InlineMath math="6.5\text{ m/s}" />. Tukar pemerhati dan ubah laju kereta.
-    </>
-  }
-  labels={{
-    angle: <>Kecondongan dari garis menegak</>,
-    apparentSpeed: <>Laju hujan yang dilihat</>,
-    carSpeed: <>Laju kereta</>,
-    carSpeedName: "Laju kereta",
-    chooseFrame: "Pilih pemerhati",
-    frames: {
-      ground: <>Dari tepi jalan</>,
-      car: <>Dari dalam kereta</>,
-    },
-    rainSpeed: <>Laju hujan jatuh</>,
-    viewLabel: "Hujan turun ke atas kereta yang bergerak",
-  }}
-/>
-
-Pada <InlineMath math="10\text{ m/s}" />, hujan kelihatan tiba pada <InlineMath math="\sqrt{6.5^2+10^2}\approx11.9\text{ m/s}" />, condong kira-kira <InlineMath math="57^\circ" /> dari garis menegak. Dari tepi jalan, titisan yang sama masih jatuh tegak ke bawah.
 
 ## Apabila Objek dan Pemerhati Bergerak
 
@@ -142,29 +120,28 @@ Bagi pemandu lori, halaju kereta itu ialah:
 
 Nilai <InlineMath math="+20 \text{ m/s}" /> bermaksud kedudukan kereta relatif kepada lori berubah ke arah kanan dengan laju relatif <InlineMath math="20\text{ m/s}" />. Sama ada kedua-dua kenderaan itu semakin dekat atau semakin jauh juga bergantung pada kenderaan mana yang berada di sebelah kiri pada mulanya.
 
-Pemerhati yang berbeza memberikan halaju relatif yang berbeza kepada gerakan fizikal yang sama.
-
-Berikut ialah kereta, teksi dan lori yang bertolak dari tempat yang sama. Jurang antara dua garis ialah kedudukan satu kenderaan seperti yang dilihat oleh kenderaan yang satu lagi. Kereta dan teksi semakin berjauhan secara perlahan, <InlineMath math="2\text{ m}" /> setiap saat, manakala kereta dan lori berpisah sejauh <InlineMath math="20\text{ m}" /> setiap saat.
+Berikut ialah kereta, teksi dan lori yang bertolak dari tempat yang sama. Jurang menegak antara dua garis ialah kedudukan satu kenderaan seperti yang dilihat oleh kenderaan yang satu lagi. Kereta dan teksi semakin berjauhan secara perlahan, <InlineMath math="2\text{ m}" /> setiap saat, manakala kereta dan lori berpisah sejauh <InlineMath math="20\text{ m}" /> setiap saat.
 
 <MathVisual
   title={<>Jurang Bertambah pada Kadar Halaju Relatif</>}
-  description={<>Kedudukan tiga kenderaan relatif kepada tanah, bermula bersama. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit <InlineMath math="10\text{ m}" />.</>}
+  description={<>Kedudukan tiga kenderaan relatif kepada tanah yang bermula bersama, dengan masa dalam saat pada paksi mengufuk dan kedudukan dalam meter pada paksi menegak.</>}
+  footer={<>Jarak menegak antara garis melebar setiap saat sebesar beza halajunya.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -3, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.6 }, y: { min: -30, max: 50 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "car", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: (12 * 3) / 10 } },
-      { id: "taxi", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: (14 * 3) / 10 } },
-      { id: "truck", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: (-8 * 3) / 10 } },
-      { id: "car-end", kind: "point", appearance: "primary", at: { x: 3, y: (12 * 3) / 10 } },
-      { id: "taxi-end", kind: "point", appearance: "secondary", at: { x: 3, y: (14 * 3) / 10 } },
-      { id: "truck-end", kind: "point", appearance: "construction", at: { x: 3, y: (-8 * 3) / 10 } },
+      { id: "car", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 36 } },
+      { id: "taxi", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 42 } },
+      { id: "truck", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: -24 } },
+      { id: "car-end", kind: "point", appearance: "primary", at: { x: 3, y: 36 } },
+      { id: "taxi-end", kind: "point", appearance: "secondary", at: { x: 3, y: 42 } },
+      { id: "truck-end", kind: "point", appearance: "construction", at: { x: 3, y: -24 } },
     ],
     labels: [
-      { key: "car", objectId: "car-end", at: { x: 3, y: (12 * 3) / 10 }, placement: "right" },
-      { key: "taxi", objectId: "taxi-end", at: { x: 3, y: (14 * 3) / 10 }, placement: "right" },
-      { key: "truck", objectId: "truck-end", at: { x: 3, y: (-8 * 3) / 10 }, placement: "right" },
+      { key: "car", objectId: "car-end", at: { x: 3, y: 36 }, placement: "right" },
+      { key: "taxi", objectId: "taxi-end", at: { x: 3, y: 42 }, placement: "right" },
+      { key: "truck", objectId: "truck-end", at: { x: 3, y: -24 }, placement: "right" },
     ],
   }}
   labels={{
@@ -174,34 +151,13 @@ Berikut ialah kereta, teksi dan lori yang bertolak dari tempat yang sama. Jurang
   }}
 />
 
-## Bot di Sungai yang Mengalir
-
-Bot bergerak melalui air, dan air bergerak melepasi tebing. **Halaju bot relatif kepada tebing ialah hasil tambah kedua-duanya**, dilukis hujung ke pangkal.
-
-<RiverBoatCrossingLab
-  boatSpeed={4}
-  current={3}
-  width={60}
-  title={<>Menyeberangi Sungai yang Mengalir</>}
-  description={
-    <>
-      Bot bergerak <InlineMath math="4\text{ m/s}" /> melalui air dan arus mengalir pada <InlineMath math="3\text{ m/s}" />. Ubah haluan.
-    </>
-  }
-  labels={{
-    angle: <>Sudut dari arah lurus menyeberang</>,
-    drift: <>Hanyutan ke hilir</>,
-    groundSpeed: <>Laju relatif kepada tebing</>,
-    heading: <>Haluan</>,
-    headingName: "Haluan bot",
-    time: <>Masa menyeberang</>,
-    viewLabel: "Bot menyeberangi sungai dilihat dari atas",
-  }}
-/>
-
-Apabila dihalakan lurus menyeberang, bot bergerak pada <InlineMath math="\sqrt{4^2+3^2}=5\text{ m/s}" /> relatif kepada tebing, menyeberangi sungai <InlineMath math="60\text{ m}" /> dalam <InlineMath math="15\text{ s}" />, dan mendarat <InlineMath math="45\text{ m}" /> ke hilir.
+Pada <InlineMath math="3\text{ s}" />, teksi hanya <InlineMath math="6\text{ m}" /> di hadapan kereta, manakala lori sudah terpisah <InlineMath math="60\text{ m}" /> di belakangnya. Semakin besar bukaan antara dua garis kedudukan, semakin besar laju relatifnya.
 
 ## Halaju Relatif sebagai Perbezaan
+
+Setiap pemerhati menggunakan penolakan yang sama bagi kereta yang sama:
+
+<BlockMath math="v_{\text{rel}}=v_{\text{kereta}}-v_{\text{pemerhati}}" />
 
 | Situasi | Pengiraan | Maksud **gerakan relatif** |
 | :-------- | :---------- | :----------------------------- |
@@ -209,13 +165,12 @@ Apabila dihalakan lurus menyeberang, bot bergerak pada <InlineMath math="\sqrt{4
 | Pemerhati lebih laju dalam arah yang sama | <InlineMath math="12-14=-2 \text{ m/s}" /> | Objek kelihatan bergerak dalam arah negatif |
 | Pemerhati bergerak dalam arah bertentangan | <InlineMath math="12-(-8)=+20 \text{ m/s}" /> | Objek kelihatan bergerak dalam arah positif |
 
-Jadi, sebelum mengatakan sesuatu objek laju, perlahan, pegun atau bergerak ke belakang, sentiasa semak kerangka rujukannya dahulu.
-
-Setiap pemerhati menggunakan penolakan yang sama, <InlineMath math="v_\text{rel}=v_\text{kereta}-v_\text{pemerhati}" />. Jika kamu berdiri pegun, kamu melihat <InlineMath math="12\text{ m/s}" />, teksi yang lebih laju melihat kereta itu seolah-olah berundur, dan lori dari arah bertentangan melihat kereta itu meluru ke arahnya pada <InlineMath math="20\text{ m/s}" />. Besarkan paparan pada setiap bar.
+Jika kamu berdiri pegun, kamu melihat <InlineMath math="+12\text{ m/s}" />, teksi yang lebih laju melihat kereta berundur <InlineMath math="-2\text{ m/s}" />, dan lori dari arah bertentangan melihatnya meluru pada <InlineMath math="+20\text{ m/s}" />.
 
 <MathVisual
   title={<>Satu Penolakan untuk Setiap Pemerhati</>}
   description={<>Halaju kereta dalam m/s seperti yang dilihat dari tepi jalan (kelabu), teksi (ungu) dan lori (hijau kebiruan). Satu langkah grid ialah <InlineMath math="4\text{ m/s}" />.</>}
+  footer={<>Satu halaju kereta memberi tiga bar berbeza apabila pemerhati menolak.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1.5, max: 6 } },
@@ -239,25 +194,144 @@ Setiap pemerhati menggunakan penolakan yang sama, <InlineMath math="v_\text{rel}
   }}
 />
 
-## Garis Lurus Relatif kepada Tin yang Jatuh
+Sebelum mengatakan sesuatu objek laju, perlahan, pegun atau bergerak ke belakang, sentiasa semak kerangka rujukannya dahulu. Kereta fizikal yang sama berubah tanda dan nilai semata-mata kerana setiap pemerhati menolak halaju yang berbeza.
 
-Gerakan relatif menerangkan satu demonstrasi yang terkenal. Sebuah pelancar dihalakan tepat ke arah tin yang jatuh pada saat lontaran. Kedua-duanya jatuh dengan cara yang sama, jadi **relatif kepada tin bola bergerak dalam garis lurus** ke arahnya.
+## Gerakan Relatif dalam Dua Dimensi
 
-<FallingTargetAimLab
-  speed={10}
-  title={<>Halakan ke Tin yang Jatuh</>}
+Apabila dua halaju menghala ke arah yang berbeza, penolakan dan penambahan dilakukan **mengikut komponen sebagai vektor**. Hujan dari kereta bergerak, bot menyeberangi sungai dan membidik tin jatuh semuanya mengikut petua dua dimensi ini.
+
+### Hujan Dilihat dari Kereta yang Bergerak
+
+Pada hari tanpa angin, hujan turun tegak ke bawah. **Dilihat dari kereta yang bergerak hujan datang secara condong**, kerana halajunya relatif kepada kereta ialah halajunya sendiri ditolak halaju kereta.
+
+<RainDriveRelativeVelocityLab
+  car={10}
+  title={<>Hujan pada Kereta yang Bergerak</>}
   description={
     <>
-      Tin itu tergantung <InlineMath math="4\text{ m}" /> jauhnya dan <InlineMath math="2\text{ m}" /> tingginya. Ubah laju lontaran dan perhatikan jarak antara kedua-duanya mengecil di sepanjang garis bidikan.
+      Titisan hujan yang besar jatuh pada kira-kira <InlineMath math="6.5\text{ m/s}" />. Tukar pemerhati dan ubah laju kereta.
     </>
   }
+  footer={<>Kereta yang lebih laju mencondongkan arah hujan lebih jauh dari menegak.</>}
   labels={{
-    drop: <>Jarak tin jatuh ketika bertemu</>,
-    meetTime: <>Masa untuk bertemu</>,
-    speed: <>Laju lontaran</>,
-    speedName: "Laju lontaran",
-    viewLabel: "Pelancar dihalakan ke tin yang jatuh",
+    angle: <>Kecondongan dari garis menegak</>,
+    apparentSpeed: <>Laju hujan yang dilihat</>,
+    carSpeed: <>Laju kereta</>,
+    carSpeedName: "Laju kereta",
+    chooseFrame: "Pilih pemerhati",
+    frames: {
+      ground: <>Dari tepi jalan</>,
+      car: <>Dari dalam kereta</>,
+    },
+    rainSpeed: <>Laju hujan jatuh</>,
+    viewLabel: "Hujan turun ke atas kereta yang bergerak",
   }}
 />
 
-Pada <InlineMath math="10\text{ m/s}" />, bola bertemu dengan tin selepas <InlineMath math="0.45\text{ s}" />, ketika kedua-duanya telah jatuh <InlineMath math="1\text{ m}" />. Tolak halaju tin daripada halaju bola, dan kesan graviti terbatal.
+Pada <InlineMath math="10\text{ m/s}" />, hujan kelihatan condong kira-kira <InlineMath math="57^\circ" /> dari garis menegak dengan laju ketara:
+
+<BlockMath math="v_{\text{hujan/kereta}}=\sqrt{6.5^2+10^2}\approx11.9\text{ m/s}" />
+
+Dari tepi jalan, titisan hujan yang sama masih jatuh tegak ke bawah.
+
+### Bot di Sungai yang Mengalir
+
+Bot bergerak melalui air pada <InlineMath math="4\text{ m/s}" />, dan arus sungai mengalir ke hilir pada <InlineMath math="3\text{ m/s}" />. **Halaju bot relatif kepada tebing ialah hasil tambah vektor kedua-duanya**, dilukis pangkal ke hujung. Ubah sudut haluan <InlineMath math="a" /> di bawah untuk melihat vektor paduannya.
+
+<MathVisual
+  title={<>Penambahan Halaju Bot dan Sungai</>}
+  description={
+    <>
+      Halaju bot (jingga, <InlineMath math="4\text{ m/s}" />) dan arus sungai (ungu, <InlineMath math="3\text{ m/s}" />) ditambah hujung ke pangkal membentuk halaju relatif kepada tebing (merah jambu).
+    </>
+  }
+  footer={<>Paduan merah jambu menyambung vektor bot dan arus dari pangkal ke hujung.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -3.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -45, max: 30, value: 0, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "boat-vel", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }] },
+      { id: "current-vel", kind: "path", appearance: "secondary", points: [{ x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }, { x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" }] },
+      { id: "ground-vel", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" }] },
+      { id: "boat-tip", kind: "marker", appearance: "primary", x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" },
+      { id: "sum-tip", kind: "marker", appearance: "answer", x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "boat-lbl", objectId: "boat-tip", at: { x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }, placement: "below-right" },
+      { key: "sum-lbl", objectId: "sum-tip", at: { x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "ground-speed", formula: "sqrt((4*cos(a*pi/180))^2 + (3 + 4*sin(a*pi/180))^2)" },
+      { key: "cross-time", formula: "60/(4*cos(a*pi/180))" },
+      { key: "drift", formula: "60*(3 + 4*sin(a*pi/180))/(4*cos(a*pi/180))" },
+    ],
+  }}
+  labels={{
+    a: <>Sudut haluan <InlineMath math="a" /> (deg)</>,
+    "boat-lbl": <InlineMath math="\vec v_{\text{b/a}}" />,
+    "sum-lbl": <InlineMath math="\vec v_{\text{b/t}}" />,
+    "ground-speed": <>Laju terhadap tebing (m/s)</>,
+    "cross-time": <>Masa sungai 60 m (s)</>,
+    drift: <>Hanyutan ke hilir (m)</>,
+  }}
+/>
+
+Apabila dihalakan lurus menyeberang pada <InlineMath math="0^\circ" />, bot menyeberangi sungai selebar <InlineMath math="60\text{ m}" /> dalam <InlineMath math="15\text{ s}" />, mendarat <InlineMath math="45\text{ m}" /> ke hilir dan bergerak relatif kepada tebing pada:
+
+<BlockMath math="v_{\text{bot/tebing}}=\sqrt{4^2+3^2}=5\text{ m/s}" />
+
+### Garis Lurus Relatif kepada Tin yang Jatuh
+
+Gerakan relatif menerangkan satu demonstrasi yang terkenal. Sebuah pelancar di <InlineMath math="(0,0)" /> dihalakan lurus ke arah tin pada jarak <InlineMath math="4\text{ m}" /> dan ketinggian <InlineMath math="2\text{ m}" /> yang jatuh pada saat lontaran. Kedua-duanya memecut ke bawah oleh <InlineMath math="g" />, jadi **relatif kepada tin bola bergerak lurus di sepanjang garis bidikan**.
+
+<MathVisual
+  title={<>Membidik Tin yang Jatuh</>}
+  description={
+    <>
+      Ubah laju lontaran <InlineMath math="s" /> (dalam m/s). Bola (lengkung jingga) dan tin (garis ungu) sentiasa jatuh pada jarak menegak yang sama di bawah garis bidikan.
+    </>
+  }
+  footer={<>Menaikkan laju lontaran menaikkan titik temu, namun bola tetap mengenai tin.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.8 }, y: { min: -0.2, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 8, max: 14, value: 10, step: 1, label: "s" },
+    ],
+    objects: [
+      { id: "aim-line", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4, y: 2 } },
+      { id: "ball-curve", kind: "function", appearance: "primary", formula: "0.5*x - 6.25*x^2/s^2", domain: { min: 0, max: 4 } },
+      { id: "can-drop", kind: "path", appearance: "secondary", points: [{ x: "4", y: "2" }, { x: "4", y: "2 - 100/s^2" }] },
+      { id: "launcher", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "can-start", kind: "point", appearance: "reference", at: { x: 4, y: 2 } },
+      { id: "meet-pt", kind: "marker", appearance: "answer", x: "4", y: "2 - 100/s^2" },
+    ],
+    labels: [
+      { key: "launch", objectId: "launcher", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "can", objectId: "can-start", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "hit", objectId: "meet-pt", at: { x: "4", y: "2 - 100/s^2" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "meet-time", formula: "2*sqrt(5)/s" },
+      { key: "drop-dist", formula: "100/s^2" },
+      { key: "meet-height", formula: "2 - 100/s^2" },
+    ],
+  }}
+  labels={{
+    s: <>Laju lontaran <InlineMath math="s" /> (m/s)</>,
+    launch: <>Pelancar</>,
+    can: <>Mula tin</>,
+    hit: <>Tembus</>,
+    "meet-time": <>Masa bertemu (s)</>,
+    "drop-dist": <>Jarak jatuh bersama (m)</>,
+    "meet-height": <>Tinggi titik temu (m)</>,
+  }}
+/>
+
+Pada <InlineMath math="10\text{ m/s}" /> dengan <InlineMath math="g=10\text{ m/s}^2" />, bola bertemu dengan tin selepas <InlineMath math="0.45\text{ s}" /> ketika kedua-duanya telah jatuh <InlineMath math="1\text{ m}" />. Tolak halaju tin daripada halaju bola, dan kesan graviti terbatal sepenuhnya.

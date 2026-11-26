@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Gerakan Linear Seragam",
   description:
@@ -24,38 +23,54 @@ x(t) &= x(t_0)+v(t-t_0)
 
 Simbol <InlineMath math="x(t_0)" /> dan <InlineMath math="x(t)" /> ialah kedudukan pada masa awal dan masa akhir, <InlineMath math="v" /> ialah halaju malar, <InlineMath math="\Delta t=t-t_0" /> ialah masa yang berlalu, dan <InlineMath math="\Delta x" /> ialah sesaran.
 
-## Kereta Api pada Halaju Malar
+Kereta api komuter di landasan lurus pada <InlineMath math="20\text{ m/s}" /> ialah gerakan linear seragam yang boleh kamu perhatikan dari platform. Ia melalui **<InlineMath math="20\text{ m}" /> setiap saat dalam arah yang sama**. Ubah halaju malar <InlineMath math="s" /> dan masa <InlineMath math="a" /> di bawah untuk melihat kedudukan bertambah secara linear.
 
-Kereta api komuter di landasan lurus pada <InlineMath math="20\text{ m/s}" /> ialah gerakan linear seragam yang boleh kamu perhatikan dari dekat. Ia melalui **<InlineMath math="20\text{ m}" /> setiap saat dalam arah yang sama**.
-
-<TrainPassengerRelativeLab
-  title={<>Kereta Api Melepasi Platform</>}
+<MathVisual
+  title={<>Kereta Api Bergerak pada Halaju Malar</>}
   description={
     <>
-      Perhatikan dari platform dahulu. Anak panah merah jambu ialah halaju malar kereta api, dan anak panah hijau kebiruan ialah halaju penumpang yang berjalan di dalamnya.
+      Ubah halaju malar kereta api <InlineMath math="s" /> dan masa perjalanan <InlineMath math="a" /> untuk membaca sesaran di sepanjang landasan lurus.
     </>
   }
+  footer={<>Halaju malar menaikkan kedudukan dengan langkah sama pada satu garis lurus.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -5, max: 130 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 5, max: 25, value: 20, step: 5, label: "s" },
+      { name: "a", min: 1, max: 5, value: 4, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "track-line", kind: "function", appearance: "primary", formula: "s*x", domain: { min: 0, max: 5 } },
+      { id: "time-drop", kind: "path", appearance: "construction", points: [{ x: "a", y: "0" }, { x: "a", y: "s*a" }] },
+      { id: "pos-drop", kind: "path", appearance: "secondary", points: [{ x: "0", y: "s*a" }, { x: "a", y: "s*a" }] },
+      { id: "train-pt", kind: "marker", appearance: "answer", x: "a", y: "s*a" },
+    ],
+    labels: [
+      { key: "pos-lbl", objectId: "train-pt", at: { x: "a", y: "s*a" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "step-per-s", formula: "s" },
+      { key: "elapsed-dist", formula: "s*a" },
+    ],
+  }}
   labels={{
-    chooseObserver: "Pilih pemerhati",
-    chooseWay: "Pilih arah berjalan",
-    observers: {
-      platform: <>Dari platform</>,
-      train: <>Dari tempat duduk</>,
-    },
-    passenger: <>Halaju penumpang</>,
-    train: <>Halaju kereta api</>,
-    viewLabel: "Penumpang berjalan dalam kereta api yang bergerak",
-    walk: <>Halaju berjalan dalam gerabak</>,
-    ways: {
-      forward: <>Berjalan ke hadapan</>,
-      backward: <>Berjalan ke belakang</>,
-    },
+    s: <>Halaju <InlineMath math="s" /> (m/s)</>,
+    a: <>Masa <InlineMath math="a" /> (s)</>,
+    "pos-lbl": <InlineMath math="x(t)" />,
+    "step-per-s": <>Jarak setiap saat (m)</>,
+    "elapsed-dist": <>Jumlah sesaran (m)</>,
   }}
 />
 
-Dilihat dari platform, anak panah kereta api tidak pernah berubah, dan itulah maksud halaju malar. Dilihat dari tempat duduk, kereta api itu pegun, jadi gerakan yang sama boleh seragam bagi seorang pemerhati dan tidak bergerak langsung bagi pemerhati lain.
+Dilihat dari platform, halaju kereta api tidak pernah berubah sehingga setiap saat tambahan menambah bilangan meter yang sama. Menggandakan masa perjalanan turut menggandakan sesaran kerana garis itu melalui asalan.
 
-## Tanda Kedudukan dengan Jarak yang Sama
+## Langkah Sama dalam Masa yang Sama
+
+Merekodkan kedudukan objek pada selang masa yang sekata memberikan ujian visual terus bagi **halaju malar**. Kedua-dua tanda kedudukan di jalan dan jalur pita detik makmal memaparkan gerakan seragam melalui jarak yang sekata.
+
+### Tanda Kedudukan dengan Jarak yang Sama
 
 Jika kedudukan objek direkodkan pada **selang masa yang sama**, gerakan linear seragam menghasilkan tanda-tanda yang sama jaraknya. Ini seperti pita detik: tanda dibuat secara tetap, jadi jarak antara tanda menunjukkan berapa jauh objek bergerak dalam setiap selang masa.
 
@@ -80,6 +95,7 @@ Nilai kedudukan berubah, manakala beza antara dua kedudukan berturutan kekal sam
       setiap saat.
     </>
   }
+  footer={<>Setiap saat meninggalkan tanda sama jarak selagi halaju kekal malar.</>}
   labels={{
     chooseSpeed: "Pilih halaju malar",
     speed: <>Halaju malar</>,
@@ -90,7 +106,9 @@ Nilai kedudukan berubah, manakala beza antara dua kedudukan berturutan kekal sam
   }}
 />
 
-## Jalur Sama Panjang pada Pita Detik
+Meningkatkan halaju yang dipilih melebarkan jurang antara tanda bersebelahan, namun setiap jurang dalam satu larian tetap sama. Keseragaman jarak itulah tanda paling jelas bahawa pecutan objek ialah sifar.
+
+### Jalur Sama Panjang pada Pita Detik
 
 Pita detik ialah versi makmal bagi tanda kedudukan yang sama jarak. Jangka masa detik mencetak satu titik setiap <InlineMath math="0.02\text{ s}" />, dan pada halaju malar **setiap jalur sepersepuluh saat mempunyai panjang yang sama**.
 
@@ -102,6 +120,7 @@ Pita detik ialah versi makmal bagi tanda kedudukan yang sama jarak. Jangka masa 
       Susun jalur-jalur itu bersebelahan: jalur yang sama panjang menghasilkan carta halaju-masa yang mendatar.
     </>
   }
+  footer={<>Jalur pita yang sama panjang membentuk carta halaju mendatar apabila disusun.</>}
   labels={{
     acceleration: <>Pecutan daripada jalur pita</>,
     chooseMotion: "Pilih gerakan troli",
@@ -117,9 +136,17 @@ Pita detik ialah versi makmal bagi tanda kedudukan yang sama jarak. Jangka masa 
   }}
 />
 
-Setiap jalur panjangnya <InlineMath math="6\text{ cm}" />, jadi troli bergerak pada <InlineMath math="\frac{0.06\text{ m}}{0.1\text{ s}}=0.6\text{ m/s}" />, dan pecutan daripada jalur ialah <InlineMath math="0" />.
+Setiap jalur panjangnya <InlineMath math="6\text{ cm}" /> dalam selang <InlineMath math="0.1\text{ s}" />, jadi troli bergerak dengan halaju malar:
 
-## Mengira Kedudukan Akhir
+<BlockMath math="v=\frac{0.06\text{ m}}{0.1\text{ s}}=0.6\text{ m/s}" />
+
+Oleh sebab semua jalur pita sama tinggi, pecutan daripada pita itu ialah <InlineMath math="0" />.
+
+## Mengira Kedudukan dan Kecerunan
+
+Apabila halaju kekal tetap, mencari kedudukan akhir hanya memerlukan satu pendaraban dan satu penambahan. Pada graf kedudukan-masa, aturan yang sama menjamin **setiap selang masa memberikan kecerunan yang serupa**.
+
+### Mengira Kedudukan Akhir
 
 Katakan sebuah objek bermula dari <InlineMath math="x_0=1\text{ m}" /> dan bergerak ke kanan dengan halaju malar <InlineMath math="v=2\text{ m/s}" /> selama <InlineMath math="5\text{ s}" />. Sesarannya ialah:
 
@@ -143,22 +170,23 @@ Titik-titik di bawah ialah tanda kedudukan, satu bagi setiap saat. Titik itu nai
 
 <MathVisual
   title={<>Langkah yang Sama Menghasilkan Garis Lurus</>}
-  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> selama <InlineMath math="5\text{ s}" />. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit 2 m.</>}
+  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> selama <InlineMath math="5\text{ s}" />. Paksi mengufuk menunjukkan masa dalam saat dan paksi menegak menunjukkan kedudukan dalam meter.</>}
+  footer={<>Setiap langkah satu saat naik dua meter, meletakkan semua titik segaris.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -1, max: 13 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "position", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: (1 + 2 * 0) / 2 }, { x: 1, y: (1 + 2 * 1) / 2 }, { x: 2, y: (1 + 2 * 2) / 2 }, { x: 3, y: (1 + 2 * 3) / 2 }, { x: 4, y: (1 + 2 * 4) / 2 }, { x: 5, y: (1 + 2 * 5) / 2 }] },
-      { id: "t-0", kind: "point", appearance: "primary", at: { x: 0, y: (1 + 2 * 0) / 2 } },
-      { id: "t-1", kind: "point", appearance: "primary", at: { x: 1, y: (1 + 2 * 1) / 2 } },
-      { id: "t-2", kind: "point", appearance: "primary", at: { x: 2, y: (1 + 2 * 2) / 2 } },
-      { id: "t-3", kind: "point", appearance: "primary", at: { x: 3, y: (1 + 2 * 3) / 2 } },
-      { id: "t-4", kind: "point", appearance: "primary", at: { x: 4, y: (1 + 2 * 4) / 2 } },
-      { id: "t-5", kind: "point", appearance: "primary", at: { x: 5, y: (1 + 2 * 5) / 2 } },
+      { id: "position", kind: "function", appearance: "primary", formula: "1 + 2*x", domain: { min: 0, max: 5 } },
+      { id: "t-0", kind: "point", appearance: "primary", at: { x: 0, y: 1 } },
+      { id: "t-1", kind: "point", appearance: "primary", at: { x: 1, y: 3 } },
+      { id: "t-2", kind: "point", appearance: "primary", at: { x: 2, y: 5 } },
+      { id: "t-3", kind: "point", appearance: "primary", at: { x: 3, y: 7 } },
+      { id: "t-4", kind: "point", appearance: "primary", at: { x: 4, y: 9 } },
+      { id: "t-5", kind: "point", appearance: "primary", at: { x: 5, y: 11 } },
     ],
     labels: [
-      { key: "end", objectId: "t-5", at: { x: 5, y: 5.5 }, placement: "left" },
+      { key: "end", objectId: "t-5", at: { x: 5, y: 11 }, placement: "left" },
     ],
   }}
   labels={{
@@ -166,28 +194,60 @@ Titik-titik di bawah ialah tanda kedudukan, satu bagi setiap saat. Titik itu nai
   }}
 />
 
-## Setiap Selang Memberikan Kecerunan yang Sama
+Pintasan menegak pada <InlineMath math="t=0" /> menunjukkan kedudukan awal <InlineMath math="1\text{ m}" />, manakala kenaikan tetap <InlineMath math="2\text{ m}" /> setiap saat membawa garis tepat ke <InlineMath math="11\text{ m}" /> pada <InlineMath math="5\text{ s}" />.
 
-Pada graf kedudukan-masa bagi gerakan seragam, **setiap sekan mempunyai kecerunan yang sama**, kerana graf itu satu garis lurus. Kereta yang bergerak seragam pada <InlineMath math="8\text{ m/s}" /> mengikut <InlineMath math="x=8t" />.
+### Setiap Selang Memberikan Kecerunan yang Sama
 
-<CarTripSecantSlopeLab
-  trip="cruise"
-  title={<>Kereta Bergerak pada Halaju Malar</>}
+Pada graf kedudukan-masa bagi gerakan seragam, **setiap sekan mempunyai kecerunan yang sama**, kerana graf itu satu garis lurus. Kereta yang bergerak seragam pada <InlineMath math="8\text{ m/s}" /> mengikut <InlineMath math="x=8t" />. Seret masa mula <InlineMath math="a" /> dan masa akhir <InlineMath math="b" /> di bawah untuk membandingkan sebarang selang.
+
+<MathVisual
+  title={<>Kecerunan Sama pada Setiap Selang Masa</>}
   description={
     <>
-      Pilih mana-mana selang masa. Sekan sentiasa terletak di sepanjang graf itu sendiri.
+      Gerakkan masa mula <InlineMath math="a" /> dan masa akhir <InlineMath math="b" /> pada <InlineMath math="x=8t" />. Naik dan lari berubah sekadar supaya kecerunan kekal <InlineMath math="8\text{ m/s}" />.
     </>
   }
+  footer={<>Menggerakkan hujung selang mengubah naik dan lari sekadar, kecerunan tetap sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -5, max: 88 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 4, value: 2, step: 1, label: "a" },
+      { name: "b", min: 5, max: 10, value: 8, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "cruise-line", kind: "function", appearance: "reference", formula: "8*x", domain: { min: 0, max: 10 } },
+      { id: "secant-seg", kind: "path", appearance: "primary", points: [{ x: "a", y: "8*a" }, { x: "b", y: "8*b" }] },
+      { id: "run-seg", kind: "path", appearance: "construction", points: [{ x: "a", y: "8*a" }, { x: "b", y: "8*a" }] },
+      { id: "rise-seg", kind: "path", appearance: "secondary", points: [{ x: "b", y: "8*a" }, { x: "b", y: "8*b" }] },
+      { id: "start-pt", kind: "marker", appearance: "primary", x: "a", y: "8*a" },
+      { id: "end-pt", kind: "marker", appearance: "answer", x: "b", y: "8*b" },
+    ],
+    labels: [
+      { key: "p1", objectId: "start-pt", at: { x: "a", y: "8*a" }, placement: "above-left" },
+      { key: "p2", objectId: "end-pt", at: { x: "b", y: "8*b" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "delta-x", formula: "8*(b - a)" },
+      { key: "delta-t", formula: "b - a" },
+      { key: "avg-v", formula: "(8*b - 8*a)/(b - a)" },
+    ],
+  }}
   labels={{
-    change: <>Sesaran</>,
-    chooseInterval: "Pilih selang masa",
-    elapsed: <>Selang masa</>,
-    rate: <>Halaju purata</>,
-    viewLabel: "Perjalanan kereta dengan graf kedudukan-masa",
+    a: <>Masa mula <InlineMath math="a" /> (s)</>,
+    b: <>Masa akhir <InlineMath math="b" /> (s)</>,
+    p1: <InlineMath math="t_1" />,
+    p2: <InlineMath math="t_2" />,
+    "delta-x": <>Sesaran (m)</>,
+    "delta-t": <>Selang masa (s)</>,
+    "avg-v": <>Kecerunan halaju (m/s)</>,
   }}
 />
 
-Dari <InlineMath math="0" /> hingga <InlineMath math="2\text{ s}" />, kereta melalui <InlineMath math="16\text{ m}" />, dari <InlineMath math="4" /> hingga <InlineMath math="10\text{ s}" /> ia melalui <InlineMath math="48\text{ m}" />, dan kedua-duanya memberikan <InlineMath math="\bar{v}=8\text{ m/s}" />. Selepas <InlineMath math="10\text{ s}" />, kedudukan akhirnya ialah <InlineMath math="x=8(10)=80\text{ m}" />.
+Dari <InlineMath math="0" /> hingga <InlineMath math="2\text{ s}" />, kereta melalui <InlineMath math="16\text{ m}" />, dan dari <InlineMath math="4" /> hingga <InlineMath math="10\text{ s}" /> ia melalui <InlineMath math="48\text{ m}" />, kedua-duanya memberi <InlineMath math="\bar{v}=8\text{ m/s}" />. Selepas <InlineMath math="10\text{ s}" />, kedudukan akhirnya ialah:
+
+<BlockMath math="x=8(10)=80\text{ m}" />
 
 ## Mengenal Pasti Gerakan Seragam pada Graf
 
@@ -207,6 +267,7 @@ Pada graf halaju-masa, gerakan yang sama ialah garis mendatar pada <InlineMath m
 <MathVisual
   title={<>Halaju Malar dan Luasnya</>}
   description={<><InlineMath math="v=2\text{ m/s}" /> selama <InlineMath math="5\text{ s}" />. Paksi mengufuk: masa dalam s. Paksi menegak: halaju dalam m/s.</>}
+  footer={<>Lebar darab tinggi segi empat tepat berlorek bersamaan jumlah sesaran objek.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 3 } },
@@ -223,32 +284,60 @@ Pada graf halaju-masa, gerakan yang sama ialah garis mendatar pada <InlineMath m
   }}
 />
 
+Selagi halaju kekal malar, luas di bawah garis membentuk satu segi empat tepat mudah yang terus menunjukkan nilai sesaran. Membaca kecerunan graf kedudukan dan luas graf halaju menghubungkan dua gambaran bagi gerakan yang sama.
+
 ## Arah Membezakan Laju Malar daripada Halaju Malar
 
 Gerakan linear seragam memerlukan halaju malar. Saiz dan arah gerakan kedua-duanya mesti kekal tetap. Laju malar hanya menetapkan saiznya.
 
-Sebuah kereta yang bergerak dengan laju malar di jalan yang membulat tidak berada dalam gerakan linear seragam, <Highlight>kerana arah halajunya sentiasa berubah</Highlight>. Sebuah troli kecil yang bergerak lurus dengan laju dan arah yang tetap berada dalam gerakan linear seragam.
+Sebuah kereta yang bergerak dengan laju malar di jalan yang membulat tidak berada dalam gerakan linear seragam, <Highlight>kerana arah halajunya sentiasa berubah</Highlight>. Pelari yang mengekalkan <InlineMath math="8\text{ m/s}" /> di sekeliling trek membulat <InlineMath math="400\text{ m}" /> mempunyai laju malar, tetapi **anak panah halajunya terus berpusing**. Seret sudut <InlineMath math="a" /> di bawah untuk melihat komponennya berubah.
 
-## Laju Malar di Trek Melengkung
-
-Pelari yang mengekalkan <InlineMath math="8\text{ m/s}" /> di sekeliling trek olahraga mempunyai laju malar, tetapi **arah halajunya berubah di setiap selekoh**, jadi gerakan itu bukan gerakan linear seragam.
-
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>Laju Malar Bukan Halaju Malar</>}
+<MathVisual
+  title={<>Laju Malar pada Trek Melengkung</>}
   description={
     <>
-      Seorang pelari mengekalkan <InlineMath math="8\text{ m/s}" /> di lorong <InlineMath math="1" />. Hentikan larian pada setiap tanda, kemudian bandingkan anak panah hijau kebiruan dari satu tanda ke tanda yang berikutnya.
+      Pelari mengekalkan <InlineMath math="8\text{ m/s}" /> pada gelung <InlineMath math="400\text{ m}" />. Gerakkan sudut <InlineMath math="a" /> dan lihat arah halaju (hijau kebiruan) serta perentas sesaran (ungu) berubah.
     </>
   }
+  footer={<>Walaupun laju malar, arah dan komponen halaju terus berubah sepanjang lengkung.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -95, max: 95 }, y: { min: -95, max: 95 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 330, value: 90, step: 30, label: "a" },
+    ],
+    objects: [
+      { id: "track", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 63.66 },
+      { id: "start-pt", kind: "point", appearance: "reference", at: { x: 63.66, y: 0 } },
+      { id: "chord", kind: "path", appearance: "secondary", points: [{ x: "63.66", y: "0" }, { x: "63.66*cos(a*pi/180)", y: "63.66*sin(a*pi/180)" }] },
+      { id: "vel-vec", kind: "path", appearance: "construction", points: [{ x: "63.66*cos(a*pi/180)", y: "63.66*sin(a*pi/180)" }, { x: "63.66*cos(a*pi/180) - 24*sin(a*pi/180)", y: "63.66*sin(a*pi/180) + 24*cos(a*pi/180)" }] },
+      { id: "runner-pt", kind: "marker", appearance: "primary", x: "63.66*cos(a*pi/180)", y: "63.66*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "start", objectId: "start-pt", at: { x: 63.66, y: 0 }, placement: "right" },
+      { key: "runner", objectId: "runner-pt", at: { x: "63.66*cos(a*pi/180)", y: "63.66*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "arc-dist", formula: "63.66*a*pi/180" },
+      { key: "disp-mag", formula: "2*63.66*sin(a*pi/360)" },
+      { key: "vx", formula: "-8*sin(a*pi/180)" },
+      { key: "vy", formula: "8*cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Magnitud halaju purata</>,
-    chooseDistance: "Pilih jarak larian",
-    displacement: <>Magnitud sesaran</>,
-    distance: <>Jarak larian</>,
-    time: <>Masa</>,
-    viewLabel: "Pelari di trek olahraga 400 m dilihat dari atas",
+    a: <>Sudut trek <InlineMath math="a" /> (deg)</>,
+    start: <>Mula</>,
+    runner: <>Pelari</>,
+    "arc-dist": <>Jarak larian (m)</>,
+    "disp-mag": <>Magnitud sesaran (m)</>,
+    vx: <>Halaju x (m/s)</>,
+    vy: <>Halaju y (m/s)</>,
   }}
 />
 
-Hanya di bahagian lurus anak panah mengekalkan panjang dan arahnya. Satu pusingan mengambil masa <InlineMath math="\frac{400}{8}=50\text{ s}" /> pada laju malar, tetapi pelari berakhir di titik mula, dengan halaju purata <InlineMath math="0" />.
+Satu pusingan penuh <InlineMath math="400\text{ m}" /> pada laju malar <InlineMath math="8\text{ m/s}" /> mengambil masa:
+
+<BlockMath math="t=\frac{400\text{ m}}{8\text{ m/s}}=50\text{ s}" />
+
+Kerana pelari kembali ke garis permulaan, sesaran dan halaju puratanya ialah <InlineMath math="0" />, mengesahkan bahawa laju malar pada lengkung bukan gerakan linear seragam.

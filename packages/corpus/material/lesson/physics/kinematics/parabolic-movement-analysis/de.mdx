@@ -1,6 +1,7 @@
 export const metadata = {
   title: "Formeln zum schiefen Wurf",
-  description: "Zerlege die Anfangsgeschwindigkeit in zwei Komponenten und berechne Steigzeit, Wurfhöhe, Wurfweite und die Geschwindigkeit zu jedem Zeitpunkt.",
+  description:
+    "Zerlege die Anfangsgeschwindigkeit in zwei Komponenten und berechne Steigzeit, Wurfhöhe, Wurfweite und die Geschwindigkeit zu jedem Zeitpunkt.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-11-08",
@@ -17,6 +18,8 @@ Die Analyse des schiefen Wurfs beginnt damit, **die Anfangsgeschwindigkeit zu ze
   <BlockMath math="T=2t_{\text{Steig}},\qquad R=v_{0x}T=\frac{v_0^2\sin 2\theta}{g}" />
 </MathContainer>
 
+> Jede Formel des schiefen Wurfs stammt aus genau zwei getrennten Komponenten, die nur über die gemeinsame Zeit verknüpft sind.
+
 Der Luftwiderstand wird vernachlässigt, und die Schwerkraft ist konstant. Rechts und oben sind positiv, und die Beispiele auf dieser Seite nutzen <InlineMath math="g = 10\text{ m/s}^2" />. Die Simulation der Kanonenkugel zeigt für mehrere Schüsse die konstante waagerechte und die sich ändernde senkrechte Komponente.
 
 <ParabolicMovementAnalysisLab
@@ -24,10 +27,11 @@ Der Luftwiderstand wird vernachlässigt, und die Schwerkraft ist konstant. Recht
   title={<>Komponentenanalyse einer Kanonenkugel</>}
   description={
     <>
-    Beobachte die Flugbahn der Kanonenkugel. Halbtransparente Positionsmarken zeigen
-    gleiche Zeitabstände und folgen denselben Formeln wie die Rechnung.
-  </>
+      Beobachte die Flugbahn der Kanonenkugel. Halbtransparente Positionsmarken zeigen
+      gleiche Zeitabstände und folgen denselben Formeln wie die Rechnung.
+    </>
   }
+  footer={<>Die waagerechte Komponente bleibt konstant, während die senkrechte linear fällt.</>}
   labels={{
     chooseScenario: "Abwurf wählen",
     scenarioNames: {
@@ -47,75 +51,149 @@ Der Luftwiderstand wird vernachlässigt, und die Schwerkraft ist konstant. Recht
   }}
 />
 
-Der Schatten der Kugel auf dem Wasser bewegt sich mit konstanter Schnelligkeit wie bei einer [gleichförmigen geradlinigen Bewegung](/de/faecher/physik/kinematik/gleichfoermige-geradlinige-bewegung), weil er nur der waagerechten Komponente folgt. Die Kugel selbst steigt und fällt, weil ihre senkrechte Komponente <InlineMath math="v_y = v_{0y} - gt" /> ständig abnimmt.
+Der Schatten der Kugel auf dem Wasser bewegt sich mit konstanter Schnelligkeit wie bei einer [gleichförmigen geradlinigen Bewegung](/de/faecher/physik/kinematik/gleichfoermige-geradlinige-bewegung), weil er nur der waagerechten Komponente folgt. Die Kugel selbst steigt und fällt, weil ihre senkrechte Komponente ständig um <InlineMath math="g" /> pro Sekunde abnimmt.
 
-Ein klassischer Versuch beweist die Aufteilung in zwei Komponenten. Ein Rohr zielt genau auf eine Dose, und die Dose fällt in dem Moment, in dem die Kugel das Rohr verlässt. **Die Schwerkraft zieht beide in gleicher Zeit gleich weit nach unten**, also trifft die Kugel die Dose.
+Ein Zielversuch belegt dieselbe Zerlegung direkt im Diagramm: Ein Rohr zielt geradeaus auf ein Ziel bei <InlineMath math="(4\text{ m}, 2\text{ m})" />, das im Abschussmoment frei fällt. **Die Schwerkraft senkt beide in derselben Zeit um denselben Betrag**. Ändere die Abschussgeschwindigkeit <InlineMath math="s" /> und prüfe den Treffpunkt.
 
-<FallingTargetAimLab
-  speed={12}
-  title={<>Ziel auf eine fallende Dose</>}
+<MathVisual
+  title={<>Schuss auf ein frei fallendes Ziel</>}
   description={
     <>
-      Die Dose hängt <InlineMath math="4\text{ m}" /> entfernt und <InlineMath math="2\text{ m}" /> hoch. Schattenbilder alle <InlineMath math="0{,}05\text{ s}" /> zeigen beide Bahnen. Ändere die Abschussschnelligkeit und versuch, daneben zu schießen.
+      Gerade Ziellinie (grau) zum Ziel bei <InlineMath math="(4\text{ m}, 2\text{ m})" />,
+      gekrümmte Flugbahn (orange) bei Tempo <InlineMath math="s" /> und Fallstrecke
+      des Ziels (violett).
     </>
   }
+  footer={<>Bei jeder Geschwindigkeit über <InlineMath math="7{,}1\text{ m/s}" /> treffen sich Kugel und Ziel vor dem Boden.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -0.2, max: 2.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 8, max: 16, value: 12, step: 2, label: "s" },
+    ],
+    objects: [
+      { id: "aim", kind: "segment", appearance: "reference", stroke: "dashed", from: { x: 0, y: 0 }, to: { x: 4, y: 2 } },
+      { id: "target-top", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "arc", kind: "function", appearance: "primary", formula: "0.5*x - 6.25*x^2 / s^2", domain: { min: 0, max: 4 } },
+      {
+        id: "fall",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "4", y: "2" },
+          { x: "4", y: "2 - 100 / s^2" },
+        ],
+      },
+      { id: "meet", kind: "marker", appearance: "answer", x: "4", y: "2 - 100 / s^2" },
+    ],
+    labels: [
+      { key: "meet-lbl", objectId: "meet", at: { x: "4", y: "2 - 100 / s^2" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "t-hit", formula: "2*sqrt(5) / s" },
+      { key: "drop", formula: "100 / s^2" },
+      { key: "y-hit", formula: "2 - 100 / s^2" },
+    ],
+  }}
   labels={{
-    drop: <>Fallhöhe der Dose beim Treffen</>,
-    meetTime: <>Zeit bis zum Treffen</>,
-    speed: <>Abschussschnelligkeit</>,
-    speedName: "Abschussschnelligkeit",
-    viewLabel: "Abschussrohr zielt auf eine fallende Dose",
+    s: <>Abschusstempo <InlineMath math="s" /> (m/s)</>,
+    "meet-lbl": <>Treffpunkt</>,
+    "t-hit": <>Zeit bis Treffen (s)</>,
+    drop: <>Fallhöhe beider Körper (m)</>,
+    "y-hit": <>Treffhöhe (m)</>,
   }}
 />
 
 Bei <InlineMath math="12\text{ m/s}" /> treffen sie sich nach <InlineMath math="0{,}37\text{ s}" />, wenn beide <InlineMath math="0{,}69\text{ m}" /> unter ihre geraden Linien gefallen sind. Jede Schnelligkeit über etwa <InlineMath math="7{,}1\text{ m/s}" /> trifft, denn die waagerechte Bewegung entscheidet nur, wann die Kugel ankommt.
 
-## Steigzeit und Wurfhöhe
+## Gipfelhöhe und Wurfweite auf ebenem Boden
 
-Im Scheitelpunkt bewegt sich der Körper noch waagerecht, aber **seine senkrechte Geschwindigkeit ist null**. Aus <InlineMath math="v_y = v_{0y} - gt = 0" /> folgt die Steigzeit, aus der dritten Gleichung der senkrechten Bewegung die Wurfhöhe:
+Auf ebenem Boden bestimmen **senkrechte Steigzeit** und **waagerechte Geschwindigkeit** alle Kenngrößen eines Wurfs. Bevor man Kurzformeln nutzt, muss jedoch immer feststehen, dass Abwurf und Landung auf derselben Höhe liegen.
+
+### Steigzeit und Wurfhöhe aus der senkrechten Komponente
+
+Im Scheitelpunkt bewegt sich der Körper noch waagerecht, aber **seine senkrechte Geschwindigkeit ist null**. Aus dem Nullsetzen der senkrechten Geschwindigkeit folgen Steigzeit und maximale Höhe:
 
 <MathContainer>
-  <BlockMath math="t_{\text{Steig}}=\frac{v_{0y}}{g}" />
+  <BlockMath math="v_y = v_{0y} - gt = 0 \quad\Longrightarrow\quad t_{\text{Steig}}=\frac{v_{0y}}{g}" />
   <BlockMath math="0 = v_{0y}^2 - 2g\,h_{\text{max}} \quad\Longrightarrow\quad h_{\text{max}}=\frac{v_{0y}^2}{2g}" />
 </MathContainer>
 
 Beide Formeln nutzen nur die senkrechte Komponente. Diese Komponente bewegt sich wie ein Körper beim [senkrechten Wurf](/de/faecher/physik/kinematik/vertikale-bewegung) nach oben mit <InlineMath math="v_{0y}" />.
 
-Lass die Abwurfschnelligkeit gleich und ändere nur den Winkel. **Ein steilerer Wurf steigt länger und deshalb höher**, weil die senkrechte Komponente <InlineMath math="v_0\sin\theta" /> wächst.
+Bleibt die Abwurfschnelligkeit fest bei <InlineMath math="22\text{ m/s}" />, wächst mit einem steileren Winkel <InlineMath math="a" /> die senkrechte Komponente <InlineMath math="v_0\sin a" />. **Ein steilerer Wurf steigt länger und deshalb höher**. Verschiebe <InlineMath math="a" /> und lies Gipfelhöhe und Steigzeit ab.
 
-<ParabolicMovementLab
-  decimalSeparator="comma"
-  title={<>Gipfelhöhe bei verschiedenen Winkeln</>}
+<MathVisual
+  title={<>Gipfelhöhe über dem Abwurfwinkel</>}
   description={
     <>
-      Jeder Wurf startet hier mit <InlineMath math="22\text{ m/s}" />, also ändert sich von Winkel zu Winkel nur die senkrechte Komponente.
+      Maximale Höhe <InlineMath math="h_{\max}" /> in Metern über dem
+      Abwurfwinkel <InlineMath math="a" /> in Grad bei konstanter
+      Startgeschwindigkeit <InlineMath math="22\text{ m/s}" />.
     </>
   }
+  footer={<>Die Gipfelhöhe wächst mit <InlineMath math="\sin^2 a" /> bis zum senkrechten Wurf bei <InlineMath math="90^\circ" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 95 }, y: { min: -2, max: 27 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 15, max: 85, value: 60, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "h-curve", kind: "function", appearance: "primary", formula: "24.2*sin(x*pi/180)^2", domain: { min: 0, max: 90 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "a", y: "0" },
+          { x: "a", y: "24.2*sin(a*pi/180)^2" },
+        ],
+      },
+      { id: "peak", kind: "marker", appearance: "answer", x: "a", y: "24.2*sin(a*pi/180)^2" },
+    ],
+    labels: [
+      { key: "h-lbl", objectId: "peak", at: { x: "a", y: "24.2*sin(a*pi/180)^2" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "v0y", formula: "22*sin(a*pi/180)" },
+      { key: "t-top", formula: "2.2*sin(a*pi/180)" },
+      { key: "h-max", formula: "24.2*sin(a*pi/180)^2" },
+    ],
+  }}
   labels={{
-    chooseLaunch: "Abwurfwinkel wählen",
-    factLabels: {
-      initialSpeed: <>Anfangsgeschwindigkeitsbetrag</>,
-      flightTime: <>Zeit in der Luft</>,
-      range: <>Wurfweite</>,
-      peakHeight: <>Maximale Höhe</>,
-    },
-    viewLabel: "Visualisierung der Flugbahn eines geworfenen Balls",
+    a: <>Abwurfwinkel <InlineMath math="a" /> (Grad)</>,
+    "h-lbl": <InlineMath math="h_{\max}" />,
+    v0y: <>Senkrechte Startkomponente (m/s)</>,
+    "t-top": <>Steigzeit (s)</>,
+    "h-max": <>Gipfelhöhe (m)</>,
   }}
 />
 
-Die Steigzeit ist <InlineMath math="t_{\text{Gipfel}}=\frac{v_0\sin\theta}{g}" /> und die Gipfelhöhe <InlineMath math="h_{\max}=\frac{(v_0\sin\theta)^2}{2g}" />, also steigt der steilste Wurf am höchsten und bleibt am längsten oben.
+Steigzeit und Gipfelhöhe hängen beide nur von <InlineMath math="v_0\sin\theta" /> ab:
 
-## Flugzeit und Wurfweite
+<BlockMath math="t_{\text{Gipfel}}=\frac{v_0\sin\theta}{g},\qquad h_{\max}=\frac{(v_0\sin\theta)^2}{2g}" />
+
+Deshalb steigt der steilste Wurf immer am höchsten und bleibt am längsten oben.
+
+### Flugzeit und Wurfweite bei gleicher Höhe
 
 Landet der Körper auf **derselben Höhe**, von der er abgeworfen wurde, dauert der Abstieg so lange wie der Aufstieg, die gesamte Flugzeit ist also <InlineMath math="T = 2t_{\text{Steig}}" />. Die Wurfweite ist die waagerechte Komponente mal die Flugzeit:
 
 <BlockMath math="R = v_0\cos\theta \cdot \frac{2v_0\sin\theta}{g} = \frac{v_0^2 \cdot 2\sin\theta\cos\theta}{g} = \frac{v_0^2\sin 2\theta}{g}" />
 
-Der letzte Schritt nutzt die Identität <InlineMath math="2\sin\theta\cos\theta = \sin 2\theta" />. Weil <InlineMath math="\sin 2\theta" /> höchstens <InlineMath math="1" /> ist, ergibt sich die größte Wurfweite bei <InlineMath math="\theta = 45^\circ" />. Zwei Winkel, die zusammen <InlineMath math="90^\circ" /> ergeben, etwa <InlineMath math="30^\circ" /> und <InlineMath math="60^\circ" />, liefern dieselbe Wurfweite, weil <InlineMath math="\sin 60^\circ = \sin 120^\circ" /> ist. Mit <InlineMath math="v_0 = 20\text{ m/s}" /> landen beide <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" /> entfernt, dasselbe Ergebnis, das Flugzeit und waagerechte Geschwindigkeit beim [schiefen und waagerechten Wurf](/de/faecher/physik/kinematik/parabelfoermige-bewegung) liefern. Liegt der Auftreffpunkt höher oder tiefer als der Abwurfpunkt, gilt diese Formel nicht.
+Der letzte Schritt nutzt die Identität:
+
+<BlockMath math="2\sin\theta\cos\theta = \sin 2\theta" />
+
+Weil <InlineMath math="\sin 2\theta" /> höchstens <InlineMath math="1" /> wird, ergibt sich die größte Wurfweite bei <InlineMath math="45^\circ" />. Zwei Winkel mit Summe <InlineMath math="90^\circ" />, etwa <InlineMath math="30^\circ" /> und <InlineMath math="60^\circ" />, liefern denselben Sinuswert und bei <InlineMath math="20\text{ m/s}" /> dieselbe Wurfweite von etwa <InlineMath math="34{,}6\text{ m}" />, genau wie beim [schiefen und waagerechten Wurf](/de/faecher/physik/kinematik/parabelfoermige-bewegung). Liegt der Auftreffpunkt höher oder tiefer als der Abwurfpunkt, gilt diese Kurzformel nicht.
 
 <Mermaid
   title={<>Die Reihenfolge einer Wurfanalyse</>}
   description={<>Jede Größe folgt aus den beiden Komponenten der Anfangsgeschwindigkeit.</>}
+  footer={<>Zerlege zuerst in Komponenten, dann folgen Zeit, Höhe und Weite nacheinander.</>}
   chart={`flowchart TD
   A["v₀ und θ"] --> B["v₀x = v₀ cos θ und v₀y = v₀ sin θ"]
   B --> C["t_Scheitel = v₀y / g"]
@@ -125,76 +203,140 @@ Der letzte Schritt nutzt die Identität <InlineMath math="2\sin\theta\cos\theta 
   B --> G["Geschwindigkeit zur Zeit t: v_y = v₀y - gt"]`}
 />
 
-## Ein Schuss in Komponenten zerlegt
+Dieses Schema fasst jede Standardrechnung zusammen: Von den beiden Startkomponenten führt ein direkter Weg zu jeder gesuchten Größe.
 
-Ein Stroboskopfoto zeigt die beiden Komponenten als zwei Muster. Ein Ball, geschossen mit <InlineMath math="v_x=6\text{ m/s}" /> und <InlineMath math="v_{0y}=8\text{ m/s}" />, wird alle <InlineMath math="0{,}2\text{ s}" /> fotografiert. **Die waagerechten Pfeile ändern sich nie**, während die senkrechten schrumpfen, umklappen und wieder wachsen.
+### Bedingungen der Kurzformeln vor dem Rechnen prüfen
 
-<StrobePhotoMotionLab
-  shot="components"
-  title={<>Ein Schuss in Komponenten</>}
+Bevor du die kurzen Formeln nutzt, prüfst du, **ob der Auftreffpunkt so hoch liegt wie der Abwurfpunkt**.
+
+| Fehlgriff | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| Ganzes <InlineMath math="v_0" /> für die Steigzeit nutzen | Steigzeit hängt nur von <InlineMath math="v_{0y}" /> ab | Zeitformel enthält immer <InlineMath math="\sin\theta" /> |
+| Sinus und Kosinus vertauschen | Waagerecht nutzt Kosinus, senkrecht Sinus | Bei kleinem Winkel ist <InlineMath math="v_{0x}" /> größer |
+| Wurfweitenformel an Klippe oder Dach anwenden | Gilt nur bei gleicher Anfangs- und Endhöhe | Vergleiche Start- und Landehöhe zuerst |
+| Vorzeichen bei <InlineMath math="\tan^{-1}" /> übersehen | Abwärtsbewegung liefert negativen Winkel | Winkelvorzeichen passt zum Vorzeichen von <InlineMath math="v_y" /> |
+
+Den Fehler mit Sinus und Kosinus erkennst du am leichtesten bei <InlineMath math="30^\circ" />. Ein flacher Wurf muss eine größere waagerechte als senkrechte Komponente haben.
+
+## Geschwindigkeitsvektoren entlang der Flugbahn verfolgen
+
+Entlang der gesamten Parabel bleibt der waagerechte Geschwindigkeitsanteil stabil, während der senkrechte linear fällt. Aus **beiden Komponenten zur selben Zeit** ergeben sich Betrag und Richtung der Momentangeschwindigkeit.
+
+### Waagerechte und senkrechte Komponente im Zeitverlauf
+
+Ein Ball, geschossen mit <InlineMath math="v_x=6\text{ m/s}" /> und <InlineMath math="v_{0y}=8\text{ m/s}" />, zeigt beide Komponenten im Diagramm als zwei völlig verschiedene Linien. **Die waagerechte Linie bleibt konstant**, während die senkrechte durch null ins Negative fällt. Verschiebe die Zeit <InlineMath math="d" /> und verfolge beide Werte.
+
+<MathVisual
+  title={<>Beide Geschwindigkeitskomponenten über der Zeit</>}
   description={
     <>
-      Türkise Pfeile sind die waagerechte, violette Pfeile die senkrechte Komponente bei jedem Blitz.
+      Konstantes <InlineMath math="v_x=6\text{ m/s}" /> (türkis) und fallendes{" "}
+      <InlineMath math="v_y=8-10t" /> (violett) über der Flugzeit von{" "}
+      <InlineMath math="1{,}6\text{ s}" />.
     </>
   }
+  footer={<>Im Scheitelpunkt bei <InlineMath math="0{,}8\text{ s}" /> schneidet <InlineMath math="v_y" /> null, während <InlineMath math="v_x" /> bleibt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.75 }, y: { min: -9.5, max: 9.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 1.6, value: 0.8, step: 0.2, label: "d" },
+    ],
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 1.6, y: 0 } },
+      { id: "vx-line", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 1.6, y: 6 } },
+      { id: "vy-line", kind: "function", appearance: "secondary", formula: "8 - 10*x", domain: { min: 0, max: 1.6 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "d", y: "8 - 10*d" },
+          { x: "d", y: "6" },
+        ],
+      },
+      { id: "vx-dot", kind: "marker", appearance: "construction", x: "d", y: "6" },
+      { id: "vy-dot", kind: "marker", appearance: "secondary", x: "d", y: "8 - 10*d" },
+    ],
+    labels: [
+      { key: "vx-lbl", objectId: "vx-dot", at: { x: "d", y: "6" }, placement: "above" },
+      { key: "vy-lbl", objectId: "vy-dot", at: { x: "d", y: "8 - 10*d" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "vx-val", formula: "6" },
+      { key: "vy-val", formula: "8 - 10*d" },
+      { key: "height", formula: "8*d - 5*d^2" },
+    ],
+  }}
   labels={{
-    airTime: <>Zeit in der Luft</>,
-    height: <>Starthöhe</>,
-    interval: <>Zeit zwischen den Blitzen</>,
-    outcome: <>Reichweite</>,
-    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+    d: <>Zeit <InlineMath math="d" /> (s)</>,
+    "vx-lbl": <InlineMath math="v_x" />,
+    "vy-lbl": <InlineMath math="v_y" />,
+    "vx-val": <>Waagerecht (m/s)</>,
+    "vy-val": <>Senkrecht (m/s)</>,
+    height: <>Höhe (m)</>,
   }}
 />
 
-Der Ball erreicht nach <InlineMath math="0{,}8\text{ s}" /> seine Gipfelhöhe <InlineMath math="\frac{8^2}{2(10)}=3{,}2\text{ m}" />, landet nach <InlineMath math="1{,}6\text{ s}" /> und kommt <InlineMath math="6(1{,}6)=9{,}6\text{ m}" /> weit. Die gleichen waagerechten Abstände sind das konstante <InlineMath math="v_x" />.
+Der Ball erreicht nach <InlineMath math="0{,}8\text{ s}" /> seine Gipfelhöhe und landet nach <InlineMath math="1{,}6\text{ s}" />:
 
-## Die Geschwindigkeit entlang der Bahn
+<BlockMath math="h_{\max}=\frac{8^2}{2(10)}=3{,}2\text{ m},\qquad R=6(1{,}6)=9{,}6\text{ m}" />
+
+### Momentane Geschwindigkeit entlang der Flugbahn
 
 Für die Geschwindigkeit zur Zeit <InlineMath math="t" /> bestimmst du **beide Komponenten zu diesem Zeitpunkt** und verbindest sie mit dem Satz des Pythagoras:
 
 <MathContainer>
   <BlockMath math="v_x = v_{0x},\qquad v_y = v_{0y} - gt" />
-  <BlockMath math="v = \sqrt{v_x^2 + v_y^2}" />
+  <BlockMath math="v = \sqrt{v_x^2 + v_y^2},\qquad \alpha = \operatorname{atan2}(v_y, v_x)" />
 </MathContainer>
 
-Die Richtung der Geschwindigkeit gegen die Waagerechte ist <InlineMath math="\alpha = \operatorname{atan2}(v_y, v_x)" />. Für <InlineMath math="v_x > 0" /> ist das gleichbedeutend mit <InlineMath math="\tan\alpha = \frac{v_y}{v_x}" />. Ein positives <InlineMath math="v_y" /> bedeutet, dass sich der Körper schräg nach oben bewegt, ein negatives, dass er schräg nach unten fliegt.
+Für <InlineMath math="v_x > 0" /> ergibt sich der Winkel ebenso über den Tangens des Quotienten aus <InlineMath math="v_y" /> und <InlineMath math="v_x" />. Ein positives <InlineMath math="v_y" /> bedeutet, dass sich der Körper schräg nach oben bewegt, ein negatives, dass er schräg nach unten fliegt.
 
-Verschieb die Zeit und folge der Kanonenkugel. Der violette Pfeil ist die Geschwindigkeit in diesem Moment: Ihr waagerechter Anteil ändert sich nie, ihr senkrechter sinkt jede Sekunde um <InlineMath math="10\text{ m/s}" />, und oben, bei etwa <InlineMath math="t\approx3{,}46\text{ s}" />, liegt der Pfeil flach.
+Verschieb die Zeit <InlineMath math="s" /> und folge der Kanonenkugel. Der violette Pfeil ist die Geschwindigkeit in diesem Moment: Ihr waagerechter Anteil ändert sich nie, ihr senkrechter sinkt jede Sekunde um <InlineMath math="10\text{ m/s}" />, und oben, bei etwa <InlineMath math="3{,}46\text{ s}" />, liegt der Pfeil flach.
 
 <MathVisual
   title={<>Folge der Geschwindigkeit durch die Zeit</>}
-  description={<>Die mit <InlineMath math="40\text{ m/s}" /> unter <InlineMath math="60^\circ" /> abgeschossene Kanonenkugel, ihre Position zur gewählten Zeit (fuchsia) und die Strecke, die sie in der nächsten Sekunde mit dieser Geschwindigkeit zurücklegt (violett). Ein Gitterschritt entspricht <InlineMath math="10\text{ m}" />.</>}
+  description={<>Die mit <InlineMath math="40\text{ m/s}" /> unter <InlineMath math="60^\circ" /> abgeschossene Kanonenkugel (fuchsia) und ihre Ein-Sekunden-Geschwindigkeit (violett) in Metern.</>}
+  footer={<>Die Tangente kippt über dem Scheitelpunkt waagerecht und neigt sich dann abwärts.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -1, max: 7.5 } },
+    frame: { kind: "cartesian", x: { min: -8, max: 160 }, y: { min: -10, max: 76 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "path", kind: "function", appearance: "construction", formula: "sqrt(3) x - x^2 / 8", domain: { min: 0, max: 8 * Math.sqrt(3) } },
-      { id: "ball", kind: "marker", appearance: "answer", x: "2s", y: "2 sqrt(3) s - s^2/2" },
-      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "2s", y: "2 sqrt(3) s - s^2/2" }, { x: "2s + 2", y: "2 sqrt(3) s - s^2/2 + 2 sqrt(3) - s" }] },
+      { id: "path", kind: "function", appearance: "construction", formula: "sqrt(3)*x - x^2 / 80", domain: { min: 0, max: 80 * Math.sqrt(3) } },
+      { id: "ball", kind: "marker", appearance: "answer", x: "20*s", y: "20*sqrt(3)*s - 5*s^2" },
+      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "20*s", y: "20*sqrt(3)*s - 5*s^2" }, { x: "20*s + 20", y: "20*sqrt(3)*s - 5*s^2 + 20*sqrt(3) - 10*s" }] },
     ],
     labels: [
-      { key: "ball", objectId: "ball", at: { x: "2s", y: "2 sqrt(3) s - s^2/2" }, placement: "below" },
+      { key: "ball", objectId: "ball", at: { x: "20*s", y: "20*sqrt(3)*s - 5*s^2" }, placement: "below" },
     ],
     parameters: [
-      { name: "s", min: 0, max: 4 * Math.sqrt(3), value: 2, step: 0.01, label: "time" },
+      { name: "s", min: 0, max: 4 * Math.sqrt(3), value: 2, step: 0.05, label: "time" },
     ],
     readouts: [
       { key: "vx", formula: "20" },
-      { key: "vy", formula: "20 sqrt(3) - 10 s" },
-      { key: "speed", formula: "sqrt(400 + (20 sqrt(3) - 10 s)^2)" },
+      { key: "vy", formula: "20*sqrt(3) - 10*s" },
+      { key: "speed", formula: "sqrt(400 + (20*sqrt(3) - 10*s)^2)" },
     ],
   }}
   labels={{
     time: <InlineMath math="t\ (\text{s})" />,
     ball: <InlineMath math="(x,y)" />,
     vx: <InlineMath math="v_x\ (\text{m/s})" />,
-    vy: <InlineMath math="v_y=v_0\sin60^\circ-gt\ (\text{m/s})" />,
-    speed: <InlineMath math="v=\sqrt{v_x^2+v_y^2}\ (\text{m/s})" />,
+    vy: <InlineMath math="v_y\ (\text{m/s})" />,
+    speed: <InlineMath math="v\ (\text{m/s})" />,
   }}
 />
 
-## Eine Kanonenkugel unter sechzig Grad
+Der Geschwindigkeitsvektor bleibt jederzeit tangential an der Parabel und schrumpft bis zum Scheitelpunkt auf seinen kleinsten Betrag <InlineMath math="20\text{ m/s}" />.
+
+## Durchgerechnete Bahnen bei sechzig und fünfundvierzig Grad
+
+Zwei klassische Winkel zeigen die ganze Stärke der Komponentenformeln: Bei <InlineMath math="60^\circ" /> bleiben **alle Zwischenwerte exakt**, und bei <InlineMath math="45^\circ" /> erreichen beide Komponenten denselben Wert für die größte Wurfweite.
+
+### Eine Kanonenkugel unter sechzig Grad
 
 Eine Kugel wird mit <InlineMath math="40\text{ m/s}" /> unter einem Winkel von <InlineMath math="60^\circ" /> abgefeuert. Weil <InlineMath math="\sin 60^\circ" /> und <InlineMath math="\cos 60^\circ" /> **exakte Werte** haben, lässt sich jedes Ergebnis bis zum letzten Schritt ohne Runden schreiben.
 
@@ -205,7 +347,9 @@ Eine Kugel wird mit <InlineMath math="40\text{ m/s}" /> unter einem Winkel von <
   <BlockMath math="R=20 \times 4\sqrt{3}=80\sqrt{3}\approx 138{,}6\text{ m}" />
 </MathContainer>
 
-Probe der Wurfweite mit der direkten Formel: <InlineMath math="\frac{40^2\sin 120^\circ}{10} = \frac{1600 \times \frac{\sqrt{3}}{2}}{10} = 80\sqrt{3}" />.
+Die Probe mit der direkten Wurfweitenformel bestätigt das Ergebnis:
+
+<BlockMath math="R = \frac{40^2\sin 120^\circ}{10} = \frac{1600 \times \frac{\sqrt{3}}{2}}{10} = 80\sqrt{3}\text{ m}" />
 
 Die Geschwindigkeit bei <InlineMath math="t = 2\text{ s}" /> nutzt die senkrechte Komponente zu diesem Zeitpunkt:
 
@@ -215,62 +359,57 @@ Die Geschwindigkeit bei <InlineMath math="t = 2\text{ s}" /> nutzt die senkrecht
   <BlockMath math="\alpha = \operatorname{atan2}(20\sqrt{3} - 20, 20) \approx 36{,}2^\circ" />
 </MathContainer>
 
-Probe der Schnelligkeit: <InlineMath math="v^2 = 20^2 + 14{,}64^2 \approx 614{,}4" />, und <InlineMath math="\sqrt{614{,}4} \approx 24{,}8" />.
+Die Probe über das Quadrat der Komponenten passt auf die Nachkommastelle:
+
+<BlockMath math="v^2 = 20^2 + 14{,}64^2 \approx 614{,}4 \quad\Longrightarrow\quad v \approx 24{,}8\text{ m/s}" />
 
 Bei <InlineMath math="t = 2\text{ s}" /> steigt die Kugel noch, weil <InlineMath math="v_y" /> positiv ist, und dieser Zeitpunkt liegt tatsächlich vor der Steigzeit von <InlineMath math="3{,}46\text{ s}" />.
 
 <MathVisual
   title={<>Die Geschwindigkeit der Kanonenkugel entlang ihrer Bahn</>}
-  description={<>Ein Gitterkästchen steht für <InlineMath math="10\text{ m}" />. Jeder Pfeil zeigt die Strecke, die in einer Sekunde mit der Geschwindigkeit dieses Moments zurückgelegt wird. Sein waagerechter Anteil bleibt immer <InlineMath math="20\text{ m/s}" />, sein senkrechter Anteil sinkt jede Sekunde um <InlineMath math="10\text{ m/s}" />.</>}
+  description={<>Vier Geschwindigkeitsvektoren entlang der Parabel in Metern. Der waagerechte Anteil bleibt immer <InlineMath math="20\text{ m/s}" />, der senkrechte sinkt jede Sekunde um <InlineMath math="10\text{ m/s}" />.</>}
+  footer={<>Die Pfeile werden zum Gipfel kürzer und kehren symmetrisch zur Landung zurück.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -4.2, max: 7.5 } },
+    frame: { kind: "cartesian", x: { min: -10, max: 170 }, y: { min: -45, max: 75 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "path", kind: "function", appearance: "construction", formula: "sqrt(3) x - x^2 / 8", domain: { min: 0, max: 8 * Math.sqrt(3) } },
-      { id: "at-0", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
-      { id: "v0", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) } },
-      { id: "v0-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
-      { id: "at-1", kind: "point", appearance: "secondary", at: { x: 4, y: 4 * Math.sqrt(3) - 2 } },
-      { id: "v1", kind: "segment", appearance: "secondary", from: { x: 4, y: 4 * Math.sqrt(3) - 2 }, to: { x: 6, y: 6 * Math.sqrt(3) - 4 } },
-      { id: "v1-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: 6 * Math.sqrt(3) - 4 }, { x: 6 - (0.25 * 2) / Math.hypot(2, 1.4641016151377553) + ((0.25 / 2) * -1.4641016151377553) / Math.hypot(2, 1.4641016151377553), y: 6 * Math.sqrt(3) - 4 - (0.25 * 1.4641016151377553) / Math.hypot(2, 1.4641016151377553) + ((0.25 / 2) * 2) / Math.hypot(2, 1.4641016151377553) }, { x: 6 - (0.25 * 2) / Math.hypot(2, 1.4641016151377553) - ((0.25 / 2) * -1.4641016151377553) / Math.hypot(2, 1.4641016151377553), y: 6 * Math.sqrt(3) - 4 - (0.25 * 1.4641016151377553) / Math.hypot(2, 1.4641016151377553) - ((0.25 / 2) * 2) / Math.hypot(2, 1.4641016151377553) }] },
-      { id: "at-2", kind: "point", appearance: "secondary", at: { x: 4 * Math.sqrt(3), y: 6 } },
-      { id: "v2", kind: "segment", appearance: "secondary", from: { x: 4 * Math.sqrt(3), y: 6 }, to: { x: 4 * Math.sqrt(3) + 2, y: 6 } },
-      { id: "v2-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4 * Math.sqrt(3) + 2, y: 6 }, { x: 4 * Math.sqrt(3) + 2 + -0.25, y: 6.125 }, { x: 4 * Math.sqrt(3) + 2 + -0.25, y: 5.875 }] },
-      { id: "at-3", kind: "point", appearance: "secondary", at: { x: 8 * Math.sqrt(3), y: 0 } },
-      { id: "v3", kind: "segment", appearance: "secondary", from: { x: 8 * Math.sqrt(3), y: 0 }, to: { x: 8 * Math.sqrt(3) + 2, y: -2 * Math.sqrt(3) } },
-      { id: "v3-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 8 * Math.sqrt(3) + 2, y: -2 * Math.sqrt(3) }, { x: 8 * Math.sqrt(3) + 2 - (0.25 * 2.0) / Math.hypot(2.0, -3.4641016151377544) + ((0.25 / 2) * 3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544), y: -2 * Math.sqrt(3) - (0.25 * -3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544) + ((0.25 / 2) * 2.0) / Math.hypot(2.0, -3.4641016151377544) }, { x: 8 * Math.sqrt(3) + 2 - (0.25 * 2.0) / Math.hypot(2.0, -3.4641016151377544) - ((0.25 / 2) * 3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544), y: -2 * Math.sqrt(3) - (0.25 * -3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544) - ((0.25 / 2) * 2.0) / Math.hypot(2.0, -3.4641016151377544) }] },
+      { id: "path", kind: "function", appearance: "construction", formula: "sqrt(3)*x - x^2 / 80", domain: { min: 0, max: 80 * Math.sqrt(3) } },
+      { id: "v0", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 20, y: 20 * Math.sqrt(3) } },
+      { id: "v1", kind: "vector", appearance: "secondary", from: { x: 40, y: 40 * Math.sqrt(3) - 20 }, to: { x: 60, y: 60 * Math.sqrt(3) - 40 } },
+      { id: "v2", kind: "vector", appearance: "secondary", from: { x: 40 * Math.sqrt(3), y: 60 }, to: { x: 40 * Math.sqrt(3) + 20, y: 60 } },
+      { id: "v3", kind: "vector", appearance: "secondary", from: { x: 80 * Math.sqrt(3), y: 0 }, to: { x: 80 * Math.sqrt(3) + 20, y: -20 * Math.sqrt(3) } },
     ],
     labels: [
-      { key: "v0", objectId: "v0", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "left" },
-      { key: "v1", objectId: "v1", at: { x: 6, y: 6 * Math.sqrt(3) - 4 }, placement: "above" },
-      { key: "v2", objectId: "v2", at: { x: 4 * Math.sqrt(3) + 2, y: 6 }, placement: "above" },
-      { key: "v3", objectId: "v3", at: { x: 8 * Math.sqrt(3) + 2, y: -2 * Math.sqrt(3) }, placement: "right" },
+      { key: "v0", objectId: "v0", at: { x: 20, y: 20 * Math.sqrt(3) }, placement: "left" },
+      { key: "v1", objectId: "v1", at: { x: 60, y: 60 * Math.sqrt(3) - 40 }, placement: "above" },
+      { key: "v2", objectId: "v2", at: { x: 40 * Math.sqrt(3) + 20, y: 60 }, placement: "above" },
+      { key: "v3", objectId: "v3", at: { x: 80 * Math.sqrt(3) + 20, y: -20 * Math.sqrt(3) }, placement: "right" },
     ],
   }}
   labels={{
     v0: <InlineMath math="v=40\text{ m/s}" />,
     v1: <InlineMath math="v\approx24{,}8\text{ m/s}" />,
-    v2: <InlineMath math="v=v_x=20\text{ m/s}" />,
+    v2: <InlineMath math="v=20\text{ m/s}" />,
     v3: <InlineMath math="v=40\text{ m/s}" />,
   }}
 />
 
-## Ein Schuss unter fünfundvierzig Grad
+Am Landepunkt erreicht die Kugel wieder exakt ihre Startgeschwindigkeit von <InlineMath math="40\text{ m/s}" />, nun aber spiegelbildlich abwärts gerichtet.
 
-Ein Ball wird mit <InlineMath math="20\text{ m/s}" /> unter einem Winkel von <InlineMath math="45^\circ" /> vom Boden geschossen. Bei diesem Winkel sind **beide Komponenten gleich groß**, weil <InlineMath math="\sin 45^\circ = \cos 45^\circ" />.
+### Maximale Wurfweite bei fünfundvierzig Grad
+
+Ein Ball wird mit <InlineMath math="20\text{ m/s}" /> unter einem Winkel von <InlineMath math="45^\circ" /> vom Boden geschossen. Bei diesem Winkel sind **beide Komponenten gleich groß**:
 
 <MathContainer>
   <BlockMath math="v_{0x} = v_{0y} = 20 \times \frac{\sqrt{2}}{2} = 10\sqrt{2}\text{ m/s}" />
   <BlockMath math="t_{\text{Steig}} = \frac{10\sqrt{2}}{10} = \sqrt{2} \approx 1{,}41\text{ s},\qquad h_{\text{max}} = \frac{(10\sqrt{2})^2}{20} = 10\text{ m}" />
-  <BlockMath math="R = 10\sqrt{2} \times 2\sqrt{2} = 40\text{ m}" />
+  <BlockMath math="R = 10\sqrt{2} \times 2\sqrt{2} = 40\text{ m},\qquad \frac{20^2 \sin 90^\circ}{10} = 40\text{ m}" />
 </MathContainer>
 
-Probe mit der direkten Formel: <InlineMath math="\frac{20^2 \sin 90^\circ}{10} = 40\text{ m}" />. Diese Wurfweite ist größer als bei einem Wurf unter <InlineMath math="30^\circ" /> oder <InlineMath math="60^\circ" /> mit derselben Anfangsgeschwindigkeit, die beide bei <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" /> landen.
+Diese Wurfweite übertrifft jeden Wurf unter <InlineMath math="30^\circ" /> oder <InlineMath math="60^\circ" /> bei derselben Anfangsgeschwindigkeit, die beide bei etwa <InlineMath math="34{,}6\text{ m}" /> landen.
 
-## Fünfundvierzig Grad mit dem Gartenschlauch
-
-Ein Gartenschlauch zeigt den besten Winkel auf einen Blick, denn jeder Tropfen folgt derselben Parabel. **Auf ebenem Boden ist die Wurfweite bei <InlineMath math="45^\circ" /> am größten**, wo <InlineMath math="\sin2\theta=1" /> ist.
+Ein Gartenschlauch zeigt diesen besten Winkel auf einen Blick, denn jeder Tropfen folgt derselben Parabel. **Auf ebenem Boden ist die Wurfweite bei <InlineMath math="45^\circ" /> am größten**.
 
 <HoseJetProjectileLab
   angle={45}
@@ -281,6 +420,7 @@ Ein Gartenschlauch zeigt den besten Winkel auf einen Blick, denn jeder Tropfen f
       Das Wasser verlässt die Düse mit <InlineMath math="8\text{ m/s}" />. Die gestrichelte Linie ist der Strahl bei <InlineMath math="45^\circ" />. Neige den Schlauch und vergleiche.
     </>
   }
+  footer={<>Jeder andere Winkel landet kürzer als der gestrichelte Strahl bei <InlineMath math="45^\circ" />.</>}
   labels={{
     chooseAngle: "Winkel der Düse wählen",
     flight: <>Zeit in der Luft</>,
@@ -290,54 +430,31 @@ Ein Gartenschlauch zeigt den besten Winkel auf einen Blick, denn jeder Tropfen f
   }}
 />
 
-Bei <InlineMath math="45^\circ" /> landet das Wasser nach <InlineMath math="1{,}13\text{ s}" /> in <InlineMath math="\frac{8^2}{10}=6{,}4\text{ m}" /> Entfernung. Bei <InlineMath math="30^\circ" /> und <InlineMath math="60^\circ" /> landet es an derselben Stelle, <InlineMath math="5{,}54\text{ m}" />, weil sich diese Winkel zu <InlineMath math="90^\circ" /> ergänzen.
+Bei <InlineMath math="45^\circ" /> landet das Wasser nach <InlineMath math="1{,}13\text{ s}" /> in <InlineMath math="6{,}4\text{ m}" /> Entfernung:
 
-## Häufige Fehler
+<BlockMath math="R = \frac{8^2}{10} = 6{,}4\text{ m}" />
 
-Bevor du die kurzen Formeln nutzt, prüfst du, **ob der Auftreffpunkt so hoch liegt wie der Abwurfpunkt**.
+Bei <InlineMath math="30^\circ" /> und <InlineMath math="60^\circ" /> landet es an derselben Stelle bei <InlineMath math="5{,}54\text{ m}" />, weil sich beide Winkel zu <InlineMath math="90^\circ" /> ergänzen.
 
-| Fehler | Warum er falsch ist | So prüfst du |
-| --- | --- | --- |
-| Für die Steigzeit das ganze <InlineMath math="v_0" /> nehmen | Die Steigzeit hängt nur von <InlineMath math="v_{0y}" /> ab | Die Formel für die Zeit muss <InlineMath math="\sin\theta" /> enthalten |
-| Sinus und Kosinus vertauschen | Die waagerechte Komponente nutzt den Kosinus, die senkrechte den Sinus | Bei kleinem Winkel muss <InlineMath math="v_{0x}" /> größer sein |
-| <InlineMath math="R = \frac{v_0^2\sin 2\theta}{g}" /> für eine Klippe oder ein Dach nutzen | Die Formel gilt nur, wenn der Auftreffpunkt so hoch liegt wie der Abwurfpunkt | Vergleiche Anfangs- und Endhöhe |
-| Die Richtung mit <InlineMath math="\tan^{-1}" /> bestimmen und das Vorzeichen übersehen | Eine Richtung nach unten ergibt einen negativen Winkel | Das Vorzeichen des Winkels muss zu dem von <InlineMath math="v_y" /> passen |
+## Angewandte Berechnungen mit den Wurfformeln
 
-Den Fehler mit Sinus und Kosinus erkennst du am leichtesten bei <InlineMath math="30^\circ" />. Ein flacher Wurf muss eine größere waagerechte als senkrechte Komponente haben.
-
-## Übungen zu den Wurfformeln
-
-Nutze <InlineMath math="g = 10\text{ m/s}^2" />. Schreibe bei jeder Aufgabe zuerst **beide Komponenten der Anfangsgeschwindigkeit** auf.
-
-1. Ein Ball wird mit <InlineMath math="20\text{ m/s}" /> unter <InlineMath math="30^\circ" /> vom Boden abgeworfen. Bestimme Steigzeit, Wurfhöhe, Flugzeit und Wurfweite.
-
-2. Ein Geschoss wird mit <InlineMath math="30\text{ m/s}" /> unter einem Winkel abgefeuert, dessen Sinus <InlineMath math="0{,}8" /> und dessen Kosinus <InlineMath math="0{,}6" /> ist. Bestimme Wurfhöhe und Wurfweite.
-
-3. Bestimme für das Geschoss aus Aufgabe 2 Schnelligkeit und Richtung seiner Geschwindigkeit bei <InlineMath math="t = 1\text{ s}" />.
-
-4. Ein Ball wird unter <InlineMath math="45^\circ" /> geschossen und landet auf ebenem Boden <InlineMath math="40\text{ m}" /> entfernt. Bestimme seine Anfangsgeschwindigkeit.
-
-### Lösungen
-
-**Aufgabe 1**. Die Komponenten sind <InlineMath math="v_{0x} = 20\cos30^\circ = 10\sqrt{3}\text{ m/s}" /> und **die senkrechte Komponente** <InlineMath math="v_{0y} = 20\sin30^\circ = 10\text{ m/s}" />:
+Schreibe bei jeder Rechnung mit <InlineMath math="g = 10\text{ m/s}^2" /> zuerst **beide Komponenten der Anfangsgeschwindigkeit** auf. Ein Ball wird mit <InlineMath math="20\text{ m/s}" /> unter <InlineMath math="30^\circ" /> vom Boden abgeworfen. Seine **Komponenten, Flugzeit und Wurfweite** lauten:
 
 <MathContainer>
+  <BlockMath math="v_{0x} = 20\cos30^\circ = 10\sqrt{3}\text{ m/s},\qquad v_{0y} = 20\sin30^\circ = 10\text{ m/s}" />
   <BlockMath math="t_{\text{Steig}} = \frac{10}{10} = 1\text{ s},\qquad h_{\text{max}} = \frac{10^2}{20} = 5\text{ m}" />
   <BlockMath math="T = 2\text{ s},\qquad R = 10\sqrt{3} \times 2 = 20\sqrt{3} \approx 34{,}6\text{ m}" />
 </MathContainer>
 
-Probe: <InlineMath math="\frac{20^2 \sin 60^\circ}{10} = 20\sqrt{3}" />.
-
-**Aufgabe 2**. Die Komponenten sind <InlineMath math="v_{0x} = 30(0{,}6) = 18\text{ m/s}" /> und <InlineMath math="v_{0y} = 30(0{,}8) = 24\text{ m/s}" />. Die Steigzeit beträgt <InlineMath math="2{,}4\text{ s}" />, **die Flugzeit** also <InlineMath math="4{,}8\text{ s}" />:
+Als zweite Anwendung startet ein Geschoss mit <InlineMath math="30\text{ m/s}" /> bei <InlineMath math="\sin\theta = 0{,}8" /> und <InlineMath math="\cos\theta = 0{,}6" />. Seine Steigzeit beträgt <InlineMath math="2{,}4\text{ s}" /> und **die gesamte Flugzeit** <InlineMath math="4{,}8\text{ s}" />:
 
 <MathContainer>
-  <BlockMath math="h_{\text{max}} = \frac{24^2}{20} = 28{,}8\text{ m}" />
-  <BlockMath math="R = 18 \times 4{,}8 = 86{,}4\text{ m}" />
+  <BlockMath math="v_{0x} = 30(0{,}6) = 18\text{ m/s},\qquad v_{0y} = 30(0{,}8) = 24\text{ m/s}" />
+  <BlockMath math="h_{\text{max}} = \frac{24^2}{20} = 28{,}8\text{ m},\qquad R = 18 \times 4{,}8 = 86{,}4\text{ m}" />
+  <BlockMath math="\sin 2\theta = 2(0{,}8)(0{,}6) = 0{,}96 \quad\Longrightarrow\quad R = \frac{30^2 \times 0{,}96}{10} = 86{,}4\text{ m}" />
 </MathContainer>
 
-Probe mit der direkten Formel: <InlineMath math="\sin 2\theta = 2(0{,}8)(0{,}6) = 0{,}96" />, und <InlineMath math="\frac{30^2 \times 0{,}96}{10} = 86{,}4\text{ m}" />.
-
-**Aufgabe 3**. Bei <InlineMath math="t = 1\text{ s}" /> ist die waagerechte Komponente unverändert, und **die senkrechte Komponente sinkt** um <InlineMath math="10\text{ m/s}" />:
+Für dasselbe Geschoss mit <InlineMath math="v_{0x}=18\text{ m/s}" /> und <InlineMath math="v_{0y}=24\text{ m/s}" /> bleibt die waagerechte Komponente bei <InlineMath math="t = 1\text{ s}" /> unverändert, während **die senkrechte Komponente sinkt**:
 
 <MathContainer>
   <BlockMath math="v_x = 18\text{ m/s},\qquad v_y = 24 - 10(1) = 14\text{ m/s}" />
@@ -345,10 +462,10 @@ Probe mit der direkten Formel: <InlineMath math="\sin 2\theta = 2(0{,}8)(0{,}6) 
   <BlockMath math="\alpha = \tan^{-1}\frac{14}{18} \approx 37{,}9^\circ" />
 </MathContainer>
 
-Der Winkel ist positiv und kleiner als der Abwurfwinkel, weil das Geschoss noch steigt, aber <InlineMath math="v_y" /> kleiner wird, während <InlineMath math="v_x" /> gleich bleibt, sodass seine Bahn immer flacher wird.
+Der Winkel ist positiv und kleiner als der Abwurfwinkel, weil das Geschoss noch steigt, aber <InlineMath math="v_y" /> kleiner wird und die Bahn abflacht.
 
-**Aufgabe 4**. Bei <InlineMath math="45^\circ" /> ist <InlineMath math="\sin 90^\circ = 1" />, die Formel für die Wurfweite wird also **sehr einfach**:
+Soll schließlich ein Ball unter <InlineMath math="45^\circ" /> auf ebenem Boden genau <InlineMath math="40\text{ m}" /> weit fliegen, vereinfacht sich die Wurfweitenformel mit <InlineMath math="\sin 90^\circ = 1" /> direkt:
 
 <BlockMath math="40 = \frac{v_0^2 \times 1}{10} \quad\Longrightarrow\quad v_0^2 = 400 \quad\Longrightarrow\quad v_0 = 20\text{ m/s}" />
 
-Eine Schnelligkeit kann nicht negativ sein, also entfällt <InlineMath math="v_0 = -20" />. Probe: <InlineMath math="\frac{20^2}{10} = 40\text{ m}" />.
+Eine Schnelligkeit kann nicht negativ sein, also entfällt die negative Lösung, und die Rückrechnung ergibt wieder genau <InlineMath math="40\text{ m}" />.

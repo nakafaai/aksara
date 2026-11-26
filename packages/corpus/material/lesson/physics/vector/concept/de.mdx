@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Vektorkonzept",
+  title: "Vektoren und Skalare in der Physik",
   description:
     "Vektoren besitzen Betrag und Richtung, unterscheiden sich von Skalaren und stellen gerichtete Größen in physikalischen Situationen dar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
@@ -18,7 +18,9 @@ Betrag und Richtung sind zwei Angaben zu einem Vektor. Sie werden nicht als Zahl
 
 Beispiele hierfür sind eine Verschiebung von <InlineMath math="5 \text{ m}" /> nach Osten, eine Kraft von <InlineMath math="20 \text{ N}" /> nach oben oder eine Geschwindigkeit von <InlineMath math="12 \text{ m s}^{-1}" /> nach rechts. Fehlt die Richtung, sind die physikalischen Informationen unvollständig.
 
-## Vektoren auf einer Brücke sehen
+> Jeder Vektor trägt zwei untrennbare Angaben, nämlich seinen Betrag und seine Richtung. Fehlt die Richtung, lässt sich der physikalische Vorgang nicht mehr vorhersagen.
+
+### Vektoren auf einer Brücke sehen
 
 In diesem Modell bewegt sich eine kleine Last über ein Brückendeck. Zwei Seile ziehen sie zu den Türmen. Jede Seilkraft ist ein Vektor, denn sie besitzt einen Betrag und eine Richtung. Verschiebe die Last und beobachte, wie sich **Pfeillänge und Pfeilrichtung** gemeinsam ändern.
 
@@ -30,6 +32,7 @@ In diesem Modell bewegt sich eine kleine Last über ein Brückendeck. Zwei Seile
       die beiden Seile an ihr ziehen.
     </>
   }
+  footer={<>Schieb die Last aus der Mitte und sieh beide Seilpfeile kippen und wachsen.</>}
   labels={{
     bridgeView: "Kabelbrückenmodell",
     chooseLoadPosition: "Position der Last verschieben",
@@ -46,9 +49,60 @@ In diesem Modell bewegt sich eine kleine Last über ein Brückendeck. Zwei Seile
 
 Liegt die Last nicht genau in der Mitte, tragen die beiden Seile sie mit unterschiedlicher Spannung. Die Richtung jedes Seils bestimmt, welche Spannung zum Halten der Last erforderlich ist.
 
+### Lesen eines Vektorpfeils
+
+Vektoren werden oft als Pfeile gezeichnet. Der **Fußpunkt** markiert den Anfang, die **Spitze** zeigt die Richtung und die **Pfeillänge** stellt den Betrag dar.
+
+Der Betrag einer nach rechts gerichteten Kraft kann beispielsweise als <InlineMath math="\lvert\vec{F}\rvert = 20 \text{ N}" /> geschrieben werden. Das Symbol <InlineMath math="\vec{F}" /> bezeichnet den Kraftvektor, <InlineMath math="20 \text{ N}" /> seinen Betrag und „nach rechts“ seine Richtung.
+
+Ein Vektor kann auch von einem Punkt zum anderen geschrieben werden, beispielsweise <InlineMath math="\overrightarrow{AB}" />. Das bedeutet, dass der Vektor am Punkt <InlineMath math="A" /> beginnt und am Punkt <InlineMath math="B" /> endet. Die Schreibweise <InlineMath math="\lvert\overrightarrow{AB}\rvert" /> gibt nur die Länge von <InlineMath math="A" /> nach <InlineMath math="B" /> an, ohne die Richtung einzubeziehen.
+
+Stell dir eine Drohne vor, die <InlineMath math="6\text{ m}" /> nach Osten und <InlineMath math="8\text{ m}" /> nach Norden fliegt, also <InlineMath math="10\text{ m}" /> horizontal vom Startplatz entfernt ist, und zusätzlich auf Höhe <InlineMath math="h" /> steigt. Bei <InlineMath math="h = 4\text{ m}" /> ist der direkte Pfeil vom Startplatz zur Drohne <InlineMath math="10{,}8\text{ m}" /> lang, obwohl sie insgesamt <InlineMath math="18\text{ m}" /> geflogen ist.
+
+<MathVisual
+  title={<>Fuß am Startplatz und Spitze an der Drohne</>}
+  description={<>Horizontale Strecke von <InlineMath math="10\text{ m}" /> mit verstellbarer Steighöhe <InlineMath math="h" />, um Flugweg und direkte Pfeillänge zu vergleichen.</>}
+  footer={<>Erhöh <InlineMath math="h" /> und vergleich den geraden Pfeil mit dem gesamten Flugweg.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 12 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0, max: 10, value: 4, step: 0.5, label: "height" },
+    ],
+    objects: [
+      { id: "ground-run", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "climb", kind: "path", appearance: "secondary", points: [{ x: "10", y: "0" }, { x: "10", y: "h" }] },
+      { id: "straight", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "10", y: "h" }] },
+      { id: "drone", kind: "marker", appearance: "answer", x: "10", y: "h" },
+    ],
+    labels: [
+      { key: "ground-run", objectId: "ground-run", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "drone", objectId: "drone", at: { x: "10", y: "h" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "path-len", formula: "14 + h" },
+      { key: "disp-len", formula: "sqrt(100 + h^2)" },
+    ],
+  }}
+  labels={{
+    height: <>Steighöhe <InlineMath math="h" /> (m)</>,
+    "ground-run": <InlineMath math="10\text{ m}" />,
+    drone: <InlineMath math="\Delta\vec r" />,
+    "path-len": <>Geflogene Strecke (m)</>,
+    "disp-len": <>Gerader Abstand (m)</>,
+  }}
+/>
+
+Egal wie hoch du <InlineMath math="h" /> stellst, der direkte Pfeil vom Fuß zur Spitze bleibt kürzer als der gesamte Flugweg. Seine Länge erfasst nur die direkte Verbindung zwischen Start und Ziel.
+
 ## Vektoren und Skalare
 
-Nicht jede Größe braucht eine Richtung. Ein **Skalar** ist mit Zahlenwert und Einheit vollständig beschrieben. Ein **Vektor** benötigt zusätzlich eine Richtung.
+Nicht jede physikalische Größe braucht eine Richtung. Ein **Skalar** ist schon mit Zahlenwert und Einheit vollständig beschrieben, während ein **Vektor** zusätzlich immer eine eindeutige Richtung verlangt. Ohne diese Trennung verwechselst du leicht Weglänge und Verschiebung.
+
+### Tempo und Geschwindigkeit im Vergleich
+
+Die Tabelle ordnet alltägliche physikalische Größen in **Skalare und Vektoren** danach ein, ob eine Richtung ihre Bedeutung verändert.
 
 | Situation | Größe | Typ |
 | :-------- | :------- | :--- |
@@ -61,20 +115,19 @@ Nicht jede Größe braucht eine Richtung. Ein **Skalar** ist mit Zahlenwert und 
 
 Eine schnelle Entscheidungshilfe lautet: Ist die Frage „In welche Richtung?“ für die vollständige Beschreibung nötig, handelt es sich wahrscheinlich um einen Vektor.
 
-Frag dich, ob die Größe eine Richtung braucht. Diese zwei Wagen haben dasselbe Tempo, ein Skalar, aber entgegengesetzte Geschwindigkeiten, weil die Geschwindigkeit ein Vektor ist und die Richtung behält. Zoom auf beide Pfeile.
+Diese zwei Wagen haben dasselbe Tempo, ein Skalar, aber entgegengesetzte Geschwindigkeiten, weil die Geschwindigkeit als Vektor die Richtung mitführt.
 
 <MathVisual
   title={<>Skalar oder Vektor</>}
-  description={<>Zwei Wagen mit gleichem Tempo in entgegengesetzte Richtungen.</>}
+  description={<>Zwei Wagen mit gleichem Tempo von <InlineMath math="3\text{ m/s}" /> in entgegengesetzte Richtungen.</>}
+  footer={<>Gleiche Länge heißt gleiches Tempo, entgegengesetzte Spitzen andere Richtung.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1.3, max: 2.3 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "east", kind: "segment", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 3, y: 1 } },
-      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 1 }, { x: 2.75, y: 1.125 }, { x: 2.75, y: 0.875 }] },
-      { id: "west", kind: "segment", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "west-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 3.25, y: 0.125 }, { x: 3.25, y: -0.125 }] },
+      { id: "east", kind: "vector", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 3, y: 1 } },
+      { id: "west", kind: "vector", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 3, y: 0 } },
       { id: "east-start", kind: "point", appearance: "primary", at: { x: 0, y: 1 } },
       { id: "west-start", kind: "point", appearance: "secondary", at: { x: 6, y: 0 } },
     ],
@@ -84,18 +137,21 @@ Frag dich, ob die Größe eine Richtung braucht. Diese zwei Wagen haben dasselbe
     ],
   }}
   labels={{
-    east: <InlineMath math="\text{Tempo }3\text{ m/s},\ v=+3\text{ m/s}" />,
-    west: <InlineMath math="\text{Tempo }3\text{ m/s},\ v=-3\text{ m/s}" />,
+    east: <InlineMath math="v=+3\text{ m/s}" />,
+    west: <InlineMath math="v=-3\text{ m/s}" />,
   }}
 />
 
-## Wind auf der Wetterkarte
+Auf dem Tacho zeigen beide Wagen <InlineMath math="3\text{ m/s}" />, doch einer fährt nach rechts und der andere nach links. Das Vorzeichen der Geschwindigkeit bewahrt genau diese Richtungsinformation.
+
+### Wind auf der Wetterkarte
 
 Eine Wetterkarte **braucht für den Wind einen Vektor**: <InlineMath math="12\text{ m/s}" /> allein sagt einer Seglerin nicht, wohin ihr Boot treibt. Dreh die Richtung und schau, wie sich jeder Pfeil auf der Karte mitdreht, während die Geschwindigkeit nur seine Länge bestimmt.
 
 <WindMapVectorLab
   title={<>Wind über den Inseln</>}
   description={<>Ein gleichmäßiger Wind mit <InlineMath math="12\text{ m/s}" /> weht in Richtung <InlineMath math="30^\circ" /> ab Osten. Ändere Geschwindigkeit und Richtung.</>}
+  footer={<>Das Tempo ändert die Pfeillänge, während der Winkel alle Pfeile dreht.</>}
   angle={30}
   speed={12}
   labels={{
@@ -109,70 +165,58 @@ Eine Wetterkarte **braucht für den Wind einen Vektor**: <InlineMath math="12\te
   }}
 />
 
-## Lesen eines Vektorpfeils
-
-Vektoren werden oft als Pfeile gezeichnet. Der **Fußpunkt** markiert den Anfang, die **Spitze** zeigt die Richtung und die **Pfeillänge** stellt den Betrag dar.
-
-Der Betrag einer nach rechts gerichteten Kraft kann beispielsweise als <InlineMath math="\lvert\vec{F}\rvert = 20 \text{ N}" /> geschrieben werden. Das Symbol <InlineMath math="\vec{F}" /> bezeichnet den Kraftvektor, <InlineMath math="20 \text{ N}" /> seinen Betrag und „nach rechts“ seine Richtung.
-
-Ein Vektor kann auch von einem Punkt zum anderen geschrieben werden, beispielsweise <InlineMath math="\overrightarrow{AB}" />. Das bedeutet, dass der Vektor am Punkt <InlineMath math="A" /> beginnt und am Punkt <InlineMath math="B" /> endet.
-
-<InlineMath math="\lvert\overrightarrow{AB}\rvert" /> ist die Länge des Vektors von <InlineMath math="A" /> nach <InlineMath math="B" />.
-
-Die Betragsstriche um einen Vektor bezeichnen seinen Betrag. Die Richtung gehört nicht zu diesem Wert.
-
-## Eine Drohne verlässt ihren Startplatz
-
-Der violette Pfeil beginnt am Startplatz, seinem Fuß, und endet an der Drohne, seiner Spitze. Seine Länge ist **der gerade Abstand vom Startplatz**, <InlineMath math="10{,}8\text{ m}" />, obwohl die Drohne entlang ihres Wegs <InlineMath math="18\text{ m}" /> geflogen ist. Drück auf Abspielen und sieh ihr beim Fliegen zu.
-
-<DroneDisplacementLab
-  title={<>Fuß am Startplatz, Spitze an der Drohne</>}
-  description={<>Die Drohne steigt <InlineMath math="4\text{ m}" />, fliegt <InlineMath math="6\text{ m}" /> nach Osten und dann <InlineMath math="8\text{ m}" /> nach Norden.</>}
-  hops={[
-    { east: 0, north: 0, up: 4 },
-    { east: 6, north: 0, up: 0 },
-    { east: 0, north: 8, up: 0 },
-  ]}
-  labels={{
-    chooseFactor: "Flugplan mit k multiplizieren",
-    displacement: <>Verschiebung</>,
-    path: <>Geflogene Strecke</>,
-    size: <>Abstand vom Startplatz</>,
-    viewLabel: "Drohne fliegt von ihrem Startplatz",
-  }}
-/>
+Sobald sich die Windrichtung dreht, ändern sich Ost- und Nordkomponente selbst dann, wenn die Windgeschwindigkeit bei <InlineMath math="12\text{ m/s}" /> bleibt. Für eine sichere Navigation zählt der gesamte Vektor.
 
 ## Vektorgleichheit hängt von Betrag und Richtung ab
 
-Zwei Vektoren sind gleich, <Highlight>wenn Betrag und Richtung übereinstimmen</Highlight>. Sie müssen nicht am selben Ort eingezeichnet sein.
+Zwei Vektoren stimmen nur dann vollständig überein, <Highlight>wenn Betrag und Richtung gleich sind</Highlight>. Sie müssen nicht am selben Ort eingezeichnet sein.
 
 Zwei nach rechts gerichtete Kräfte mit jeweils <InlineMath math="15 \text{ N}" /> haben denselben Vektorwert, auch wenn die Pfeile an verschiedenen Stellen eingezeichnet sind. Bei einem starren Körper bleibt der Angriffspunkt wichtig, weil er das Drehmoment verändern kann.
 
 Eine Kraft von <InlineMath math="15 \text{ N}" /> nach rechts und eine Kraft von <InlineMath math="15 \text{ N}" /> nach links sind dagegen nicht gleich. Ihre Beträge stimmen überein, ihre Richtungen sind entgegengesetzt.
 
-## Zwei Teams an einem Seil
+Stell dir zwei Teams beim Tauziehen vor, bei dem jede Person mit <InlineMath math="400\text{ N}" /> zieht. Links bleiben <InlineMath math="3" /> Personen (<InlineMath math="-1200\text{ N}" />), während rechts <InlineMath math="p" /> Personen ziehen. Bei <InlineMath math="p = 3" /> sind beide Kräfte <InlineMath math="1200\text{ N}" /> groß, heben sich aber wegen ihrer entgegengesetzten Richtung zu null auf.
 
-Beide Teams beginnen mit drei Ziehenden zu je <InlineMath math="400\text{ N}" />, also sind beide Kräfte <InlineMath math="1200\text{ N}" /> groß. Gleiche Vektoren sind sie trotzdem nicht, weil sie **in entgegengesetzte Richtungen zeigen**, und zusammen ergeben sie eine Gesamtkraft von <InlineMath math="0\text{ N}" />. Gib einer Seite eine Person dazu und sieh, wie das Seil wandert.
-
-<TugOfWarForceLab
-  title={<>Gleich groß, entgegengesetzt</>}
-  description={<>Jede Person zieht mit <InlineMath math="400\text{ N}" />. Ändere die Größe der Teams.</>}
-  left={3}
-  pull={400}
-  right={3}
+<MathVisual
+  title={<>Gleich groß bei entgegengesetzter Richtung</>}
+  description={<>Gesamtkraft <InlineMath math="\Sigma F = 400p - 1200" /> in Newton gegenüber der Personenzahl <InlineMath math="p" /> rechts gegen <InlineMath math="1200\text{ N}" /> links.</>}
+  footer={<>Bei <InlineMath math="p=3" /> sind beide Kräfte <InlineMath math="1200\text{ N}" /> groß und ergeben <InlineMath math="0\text{ N}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 5.5 }, y: { min: -1000, max: 1000 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 1, max: 5, value: 3, step: 1, label: "pullers" },
+    ],
+    objects: [
+      { id: "zero-line", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "net-curve", kind: "function", appearance: "primary", formula: "400*x - 1200", domain: { min: 1, max: 5 } },
+      { id: "guide", kind: "path", appearance: "construction", points: [{ x: "p", y: "0" }, { x: "p", y: "400*p - 1200" }] },
+      { id: "net-pt", kind: "marker", appearance: "answer", x: "p", y: "400*p - 1200" },
+    ],
+    labels: [
+      { key: "net-pt", objectId: "net-pt", at: { x: "p", y: "400*p - 1200" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "right-pull", formula: "400*p" },
+      { key: "net-force", formula: "400*p - 1200" },
+    ],
+  }}
   labels={{
-    left: <>Linkes Team <InlineMath math="\vec F_L" /></>,
-    leftCount: <>Ziehende links</>,
-    leftName: "Ziehende links",
-    net: <>Gesamtkraft <InlineMath math="\Sigma F" /></>,
-    right: <>Rechtes Team <InlineMath math="\vec F_R" /></>,
-    rightCount: <>Ziehende rechts</>,
-    rightName: "Ziehende rechts",
-    viewLabel: "Tauziehen bei Sonnenuntergang",
+    pullers: <>Ziehende rechts <InlineMath math="p" /></>,
+    "net-pt": <InlineMath math="\Sigma F" />,
+    "right-pull": <>Kraft rechts (N)</>,
+    "net-force": <>Gesamtkraft (N)</>,
   }}
 />
 
+Wenn der Punkt bei <InlineMath math="p = 3" /> die Nulllinie schneidet, heben sich gleich große, aber entgegengesetzte Kräfte vollständig auf. Schon eine Person mehr oder weniger bringt sofort eine resultierende Kraft ins Spiel.
+
 ## Strecke und Verschiebung messen unterschiedliche Größen
+
+Ein geknickter Weg summiert jeden einzelnen Schritt zur skalaren **Strecke**, während die vektorielle **Verschiebung** nur den direkten Pfeil vom Start zum Ziel zieht. Der direkte Vergleich trennt beide Größen sauber.
+
+### Rechtwinkliger Weg und Verschiebung
 
 Eine Person geht <InlineMath math="4 \text{ m}" /> nach Osten und dann <InlineMath math="3 \text{ m}" /> nach Norden. Die zurückgelegte Strecke ist die **Gesamtweglänge**:
 
@@ -191,22 +235,18 @@ Miss den Richtungswinkel von Osten nach Norden. Das Verhältnis von Gegenkathete
 
 Die zurückgelegte Strecke beträgt <InlineMath math="7 \text{ m}" />. Der Betrag der Verschiebung ist <InlineMath math="5 \text{ m}" />. Ihre Richtung liegt etwa <InlineMath math="36{,}9^\circ" /> nördlich von Osten.
 
-Der Weg unten umfasst <InlineMath math="7\text{ m}" /> Gehen, aber der fuchsiafarbene Pfeil, die Verschiebung, ist nur <InlineMath math="5\text{ m}" /> lang und zeigt etwa <InlineMath math="36{,}9^\circ" /> nördlich von Osten.
-
 <MathVisual
   title={<><InlineMath math="7\text{ m}" /> gehen, <InlineMath math="5\text{ m}" /> verschoben</>}
-  description={<><InlineMath math="4\text{ m}" /> nach Osten, dann <InlineMath math="3\text{ m}" /> nach Norden. Ein Gitterschritt ist <InlineMath math="1\text{ m}" />.</>}
+  description={<><InlineMath math="4\text{ m}" /> nach Osten und <InlineMath math="3\text{ m}" /> nach Norden ergeben eine Verschiebung von <InlineMath math="5\text{ m}" /> direkt in Metern.</>}
+  footer={<>Die beiden Wegstücke messen <InlineMath math="7\text{ m}" />, der gerade Pfeil nur <InlineMath math="5\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "east", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
-      { id: "east-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: 0 }, { x: 3.75, y: 0.125 }, { x: 3.75, y: -0.125 }] },
-      { id: "north", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 3 } },
-      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 3 }, { x: 4.125, y: 2.75 }, { x: 3.875, y: 2.75 }] },
-      { id: "walk", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
-      { id: "walk-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) + ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) + ((0.25 / 2) * 4) / Math.hypot(4, 3) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) - ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) - ((0.25 / 2) * 4) / Math.hypot(4, 3) }] },
+      { id: "east", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "north", kind: "vector", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "walk", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
     ],
     labels: [
       { key: "east", objectId: "east", at: { x: 2, y: 0 }, placement: "below" },
@@ -221,24 +261,45 @@ Der Weg unten umfasst <InlineMath math="7\text{ m}" /> Gehen, aber der fuchsiafa
   }}
 />
 
-## Ein Spaziergang durch die Stadt
+Das rechtwinklige Dreieck zeigt den Unterschied auf einen Blick: Die Strecke addiert beide Katheten, während die Verschiebung als Hypotenuse Start und Ziel verbindet.
 
-Die Person läuft die Straßen entlang, <InlineMath math="300\text{ m}" /> nach Osten und dann <InlineMath math="400\text{ m}" /> nach Norden, also ist die Strecke <InlineMath math="700\text{ m}" /> lang. Die Verschiebung ist **der gerade violette Pfeil vom Start zum Ziel**, nur <InlineMath math="500\text{ m}" /> lang.
+### Spaziergang über mehrere Straßenblöcke
 
-<CityWalkDisplacementLab
-  title={<>Strecke und Verschiebung</>}
-  description={<>Ein Spaziergang mit <InlineMath math="1{,}25\text{ m/s}" /> entlang zweier Straßen der Stadt.</>}
-  legs={[
-    { east: 300, north: 0 },
-    { east: 0, north: 400 },
-  ]}
-  pace={1.25}
+Auf größeren Straßen wird die Lücke zwischen Strecke und Verschiebung noch deutlicher. Eine Person geht <InlineMath math="300\text{ m}" /> nach Osten und anschließend <InlineMath math="b" /> Meter nach Norden. Bei <InlineMath math="b = 400\text{ m}" /> beträgt der Weg <InlineMath math="700\text{ m}" />, aber **der gerade Verschiebungspfeil vom Start zum Ziel** ist nur <InlineMath math="500\text{ m}" /> lang.
+
+<MathVisual
+  title={<>Zurückgelegte Strecke und Verschiebung</>}
+  description={<>Ein Stadtweg von <InlineMath math="300\text{ m}" /> nach Osten gefolgt von einer verstellbaren Nordstrecke <InlineMath math="b" /> in Metern.</>}
+  footer={<>Verstell die Nordstrecke <InlineMath math="b" /> und sieh, dass der Weg länger bleibt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -50, max: 500 }, y: { min: -50, max: 650 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 100, max: 600, value: 400, step: 50, label: "north-leg" },
+    ],
+    objects: [
+      { id: "street-east", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 300, y: 0 } },
+      { id: "street-north", kind: "path", appearance: "secondary", points: [{ x: "300", y: "0" }, { x: "300", y: "b" }] },
+      { id: "net-disp", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "300", y: "b" }] },
+      { id: "finish", kind: "marker", appearance: "answer", x: "300", y: "b" },
+    ],
+    labels: [
+      { key: "street-east", objectId: "street-east", at: { x: 150, y: 0 }, placement: "below" },
+      { key: "finish", objectId: "finish", at: { x: "300", y: "b" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "walked", formula: "300 + b" },
+      { key: "straight", formula: "sqrt(90000 + b^2)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Durchschnittliches Tempo</>,
-    averageVelocity: <>Mittlere Geschwindigkeit</>,
-    displacement: <>Verschiebung</>,
-    distance: <>Zurückgelegte Strecke</>,
-    time: <>Zeit</>,
-    viewLabel: "Spaziergang durch eine Stadt von oben",
+    "north-leg": <>Nordstrecke <InlineMath math="b" /> (m)</>,
+    "street-east": <InlineMath math="300\text{ m}" />,
+    finish: <InlineMath math="\Delta\vec r" />,
+    walked: <>Zurückgelegte Strecke (m)</>,
+    straight: <>Verschiebung (m)</>,
   }}
 />
+
+Vergrößerst du <InlineMath math="b" />, wachsen beide Werte an, doch der direkte Pfeil bleibt stets kürzer als der Umweg über zwei rechtwinklige Straßen.

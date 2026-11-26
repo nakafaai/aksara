@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Vector Properties",
   description:
@@ -10,9 +8,15 @@ export const metadata = {
   subject: "Vector",
 };
 
-## Equal Vectors Do Not Depend on Location
+## Equal and Negative Vectors
 
-Two vectors are equal if they have the <Highlight>same magnitude and direction</Highlight>. Their positions in a diagram may be different. This equality compares the vectors themselves. For a force, its point of application can still change the physical turning effect even when the force vector is unchanged.
+Two vectors are judged solely by their **magnitude and direction**, never by where their tails sit on a page. Flipping the direction while keeping the exact same length creates the **negative vector** that cancels the original.
+
+> Equal vectors share the same magnitude and direction regardless of where they are drawn.
+
+### Equal Vectors Do Not Depend on Location
+
+Two vectors are equal when they share the <Highlight>same magnitude and direction</Highlight>. Their starting positions in a diagram may differ. This equality compares the vectors themselves, whereas a physical force applied at a different point on a rigid body can still change its torque.
 
 <MathVisual
   title={<>Equal and Opposite Vectors</>}
@@ -23,22 +27,20 @@ Two vectors are equal if they have the <Highlight>same magnitude and direction</
       length. Vector <InlineMath math="-\vec{a}" /> points the opposite way.
     </>
   }
+  footer="Parallel arrows of equal length match even when shifted to separate positions."
   labels={{
-    "l1": <InlineMath math="a" />,
-    "l2": <InlineMath math="b" />,
-    "l3": <InlineMath math="-a" />,
+    l1: <InlineMath math="\vec{a}" />,
+    l2: <InlineMath math="\vec{b}" />,
+    l3: <InlineMath math="-\vec{a}" />,
   }}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -2.5, max: 2.5 }, z: { min: -2.5, max: 2.5 } },
     view: { kind: "camera", position: { x: 3.5, y: 4.5, z: 8 }, target: { x: 1, y: 0, z: 0 } },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2.4, y: 1.2, z: 0 }, { x: 4, y: 2, z: 0 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2.4, y: 1.2, z: 0 }, to: { x: 4, y: 2, z: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 2 }, { x: 2.4, y: 1.2, z: 2 }, { x: 4, y: 2, z: 2 }], appearance: "primary" },
-      { id: "s2-head", kind: "vector", from: { x: 2.4, y: 1.2, z: 2 }, to: { x: 4, y: 2, z: 2 }, appearance: "primary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0, z: -2 }, { x: -2, y: -1, z: -2 }, { x: -4, y: -2, z: -2 }], appearance: "secondary" },
-      { id: "s3-head", kind: "vector", from: { x: -2, y: -1, z: -2 }, to: { x: -4, y: -2, z: -2 }, appearance: "secondary" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 2, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 2 }, to: { x: 4, y: 2, z: 2 }, appearance: "primary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: -2 }, to: { x: -4, y: -2, z: -2 }, appearance: "secondary" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.2, z: 0 }, placement: "above-right" },
@@ -48,48 +50,64 @@ Two vectors are equal if they have the <Highlight>same magnitude and direction</
   }}
 />
 
-In the visual, <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> appear at different positions. They are still equal because both have the same magnitude and direction.
+Sliding an arrow across space leaves both its length and its heading untouched, so <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> represent the same vector.
 
-This freedom to slide an abstract vector in a diagram does not mean every physical application point is interchangeable. A force applied at a different point may produce a different torque.
+A steady sea wind of <InlineMath math="10\text{ m/s}" /> toward <InlineMath math="150^\circ" /> from east illustrates this idea across multiple stations. Three arrows anchored at different coordinates remain **identical vectors** because every arrow shares the exact same speed and heading.
 
-## The Same Wind over Every Island
-
-A steady sea wind of <InlineMath math="10\text{ m/s}" /> is **the same vector over every island**: fifteen arrows in fifteen places, all equal, because each has the same length and the same direction. Change the wind and all of them change together.
-
-<WindMapVectorLab
-  title={<>One Wind, Many Places</>}
-  description={<>Wind of <InlineMath math="10\text{ m/s}" /> toward <InlineMath math="150^\circ" /> from east.</>}
-  angle={150}
-  speed={10}
+<MathVisual
+  title={<>One Uniform Wind at Three Stations</>}
+  description={<>Three wind arrows at different stations sharing direction <InlineMath math="150^\circ" /> and adjustable speed <InlineMath math="s" /> in m/s.</>}
+  footer="Changing wind speed updates every arrow together while keeping all three equal."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -16, max: 14 }, y: { min: -2, max: 18 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 4, max: 16, value: 10, step: 2, label: "wind-speed" },
+    ],
+    objects: [
+      { id: "w1", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "s * cos(150 * pi / 180)", y: "s * sin(150 * pi / 180)" }] },
+      { id: "w2", kind: "path", appearance: "primary", points: [{ x: "12", y: "0" }, { x: "12 + s * cos(150 * pi / 180)", y: "s * sin(150 * pi / 180)" }] },
+      { id: "w3", kind: "path", appearance: "primary", points: [{ x: "6", y: "8" }, { x: "6 + s * cos(150 * pi / 180)", y: "8 + s * sin(150 * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "s * cos(150 * pi / 180)", y: "s * sin(150 * pi / 180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "s * cos(150 * pi / 180)", y: "s * sin(150 * pi / 180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "vx-ms", formula: "s * cos(150 * pi / 180)" },
+      { key: "vy-ms", formula: "s * sin(150 * pi / 180)" },
+      { key: "spd-ms", formula: "s" },
+    ],
+  }}
   labels={{
-    angle: <>Direction from east</>,
-    angleName: "Direction from east",
-    east: <>East component <InlineMath math="v_x" /></>,
-    north: <>North component <InlineMath math="v_y" /></>,
-    speed: <>Wind speed</>,
-    speedName: "Wind speed",
-    viewLabel: "Weather map of wind over islands",
+    tip: <InlineMath math="\vec{v}" />,
+    "wind-speed": <>Wind speed (m/s)</>,
+    "vx-ms": <>East component (m/s)</>,
+    "vy-ms": <>North component (m/s)</>,
+    "spd-ms": <>Magnitude (m/s)</>,
   }}
 />
 
-## A Negative Vector Reverses Direction
+Because each arrow has the same east and north components, all three stations experience the exact same velocity vector.
 
-The <Highlight>negative vector</Highlight> of <InlineMath math="\vec{a}" /> is written as <InlineMath math="-\vec{a}" />. It has the same magnitude as <InlineMath math="\vec{a}" />, but points in the opposite direction.
+### Negative Vectors Reverse Direction
+
+The <Highlight>negative vector</Highlight> of <InlineMath math="\vec{a}" /> is written <InlineMath math="-\vec{a}" />. It preserves the magnitude of <InlineMath math="\vec{a}" /> while reversing its direction:
 
 <MathContainer>
   <BlockMath math="\lvert-\vec{a}\rvert=\lvert\vec{a}\rvert" />
   <BlockMath math="\vec{a}+(-\vec{a})=\vec{0}" />
 </MathContainer>
 
-For example, a <InlineMath math="12\text{ N}" /> force to the right and a <InlineMath math="12\text{ N}" /> force to the left form an opposite-vector pair. If both act on the same object along the same line, their resultant is the zero vector.
+A <InlineMath math="12\text{ N}" /> pull to the right and a <InlineMath math="12\text{ N}" /> pull to the left along the same line form an opposite pair whose sum is the zero vector.
 
-## Running a Leg Backward
-
-The leg from <InlineMath math="A" /> to <InlineMath math="B" /> is <InlineMath math="60\text{ m}" /> east and <InlineMath math="80\text{ m}" /> north. Running it back from <InlineMath math="B" /> to <InlineMath math="A" /> gives <InlineMath math="-60\text{ m}" /> and <InlineMath math="-80\text{ m}" />: the same <InlineMath math="100\text{ m}" />, **the negative vector**. Drawn from <InlineMath math="C" />, the original leg stays the very same vector.
+On the park map below, running from <InlineMath math="A" /> to <InlineMath math="B" /> covers <InlineMath math="60\text{ m}" /> east and <InlineMath math="80\text{ m}" /> north. Running back from <InlineMath math="B" /> to <InlineMath math="A" /> gives <InlineMath math="-60\text{ m}" /> and <InlineMath math="-80\text{ m}" />, the same <InlineMath math="100\text{ m}" /> length as **the negative vector**, while drawing the original leg from <InlineMath math="C" /> keeps the exact same vector.
 
 <OrienteeringMapVectorLab
   title={<>Forward, Backward, Moved</>}
   description={<>Checkpoints <InlineMath math="A" />, <InlineMath math="B" /> and <InlineMath math="C" /> in teal, amber and pink rings. Choose a vector.</>}
+  footer="Moving a leg preserves the vector while reversing endpoints creates its negative."
   marks={{
     a: { east: 20, north: 10 },
     b: { east: 80, north: 90 },
@@ -112,9 +130,11 @@ The leg from <InlineMath math="A" /> to <InlineMath math="B" /> is <InlineMath m
   }}
 />
 
+Comparing the three views confirms that translation keeps both signs unchanged while reversal flips both signs together.
+
 ## Scalar Multiplication Changes Magnitude and Direction
 
-A scalar is an ordinary number with no direction. When a vector is multiplied by a scalar <InlineMath math="k" />, the vector length changes by a factor of <InlineMath math="\lvert k\rvert" />.
+A scalar is an ordinary number without direction. Multiplying a vector by a scalar <InlineMath math="k" /> scales its length by <InlineMath math="\lvert k\rvert" />, and a **negative scalar reverses direction** without ever making length negative.
 
 | Form | Result magnitude | Result direction |
 | :--- | :--------------- | :--------------- |
@@ -123,15 +143,16 @@ A scalar is an ordinary number with no direction. When a vector is multiplied by
 | <InlineMath math="-3\vec{a}" /> | <InlineMath math="3\lvert\vec{a}\rvert" /> | opposite to <InlineMath math="\vec{a}" /> |
 | <InlineMath math="0\vec{a}" /> | <InlineMath math="0" /> | becomes the zero vector |
 
-A negative scalar <Highlight>does not make the magnitude negative</Highlight>. It reverses the vector direction.
+A negative scalar <Highlight>does not make the magnitude negative</Highlight>. It flips the arrow along the same line.
 
-## More Hands on the Rope
+### Scaling Teams and Coordinates
 
-Every puller adds the same <InlineMath math="350\text{ N}" />, so **a team of four pulls with** <InlineMath math="4\vec F" />, <InlineMath math="1400\text{ N}" />, and a team of two with half of that. The left team's force carries a negative sign because it points the other way.
+Each puller on a tug-of-war rope adds the same <InlineMath math="350\text{ N}" />, so **a team of four pulls with** <InlineMath math="4\vec{F}" />, or <InlineMath math="1400\text{ N}" />, and a team of two pulls with half as much. The left team carries a negative sign because it pulls in the opposite direction.
 
 <TugOfWarForceLab
   title={<>A Team Is a Multiple of One Pull</>}
   description={<>Each puller pulls with <InlineMath math="350\text{ N}" />. Change how many pull on each side.</>}
+  footer="Adding identical pullers scales one pull vector while opposite sides carry minus."
   left={2}
   pull={350}
   right={4}
@@ -147,39 +168,36 @@ Every puller adds the same <InlineMath math="350\text{ N}" />, so **a team of fo
   }}
 />
 
-For the vector in the model, take <InlineMath math="\vec{a}=(4,2,0)" />. Multiply **every component** by the same scalar. A negative scalar reverses the component signs, while the resulting magnitude remains nonnegative.
+When both sides have the same number of pullers, their scaled force vectors are exact negatives and sum to zero.
+
+In coordinates, multiply **every component** by the same scalar. For <InlineMath math="\vec{a}=(4,2,0)" />, the original length is <InlineMath math="2\sqrt{5}" />, and multiplying by <InlineMath math="-3" /> triples the length while reversing every sign:
 
 <MathContainer>
   <BlockMath math="-3\vec{a}=(-3\cdot4,-3\cdot2,-3\cdot0)=(-12,-6,0)" />
   <BlockMath math="\lvert-3\vec{a}\rvert=\sqrt{(-12)^2+(-6)^2}=\sqrt{180}=6\sqrt{5}" />
 </MathContainer>
 
-The original magnitude is <InlineMath math="\sqrt{4^2+2^2}=2\sqrt{5}" />. The new magnitude <InlineMath math="6\sqrt{5}" /> is exactly three times the original, matching the factor <InlineMath math="\lvert-3\rvert=3" />.
-
-Every arrow below is <InlineMath math="k\vec a" /> for <InlineMath math="\vec a=(4,2)" />, drawn at half scale. Doubling makes it twice as long, a half makes it half as long, and <InlineMath math="k=-1" /> keeps the length but turns it around. The slope of every arrow stays the same.
+The figure below draws <InlineMath math="2\vec{a}" />, <InlineMath math="\vec{a}" />, <InlineMath math="0.5\vec{a}" />, and <InlineMath math="-\vec{a}" /> for <InlineMath math="\vec{a}=(4,2)" /> directly at true coordinate scale on separate rows.
 
 <MathVisual
   title={<>Scalar Multiples of One Vector</>}
-  description={<><InlineMath math="2\vec a" />, <InlineMath math="\vec a" />, <InlineMath math="0.5\vec a" /> and <InlineMath math="-\vec a" /> for <InlineMath math="\vec a=(4,2)" />, drawn at half scale on separate rows.</>}
+  description={<>True-scale arrows for <InlineMath math="2\vec{a}" />, <InlineMath math="\vec{a}" />, <InlineMath math="0.5\vec{a}" />, and <InlineMath math="-\vec{a}" /> where <InlineMath math="\vec{a}=(4,2)" />.</>}
+  footer="Every multiple keeps the exact same slope while scaling length by absolute k."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -6, max: 2.5 } },
-    view: { kind: "fit", padding: 0.06 },
+    frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: -12, max: 5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "k0", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 2 } },
-      { id: "k0-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 2 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 2) + ((0.25 / 2) * -2) / Math.hypot(4, 2), y: 2 - (0.25 * 2) / Math.hypot(4, 2) + ((0.25 / 2) * 4) / Math.hypot(4, 2) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 2) - ((0.25 / 2) * -2) / Math.hypot(4, 2), y: 2 - (0.25 * 2) / Math.hypot(4, 2) - ((0.25 / 2) * 4) / Math.hypot(4, 2) }] },
-      { id: "k1", kind: "segment", appearance: "primary", from: { x: 0, y: -1.5 }, to: { x: 2, y: -0.5 } },
-      { id: "k1-head", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: -0.5 }, { x: 2 - (0.25 * 2) / Math.hypot(2, 1.0) + ((0.25 / 2) * -1.0) / Math.hypot(2, 1.0), y: -0.5 - (0.25 * 1.0) / Math.hypot(2, 1.0) + ((0.25 / 2) * 2) / Math.hypot(2, 1.0) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 1.0) - ((0.25 / 2) * -1.0) / Math.hypot(2, 1.0), y: -0.5 - (0.25 * 1.0) / Math.hypot(2, 1.0) - ((0.25 / 2) * 2) / Math.hypot(2, 1.0) }] },
-      { id: "k2", kind: "segment", appearance: "construction", from: { x: 0, y: -3 }, to: { x: 1, y: -2.5 } },
-      { id: "k2-head", kind: "polygon", appearance: "construction", vertices: [{ x: 1, y: -2.5 }, { x: 1.0 - (0.25 * 1.0) / Math.hypot(1.0, 0.5) + ((0.25 / 2) * -0.5) / Math.hypot(1.0, 0.5), y: -2.5 - (0.25 * 0.5) / Math.hypot(1.0, 0.5) + ((0.25 / 2) * 1.0) / Math.hypot(1.0, 0.5) }, { x: 1.0 - (0.25 * 1.0) / Math.hypot(1.0, 0.5) - ((0.25 / 2) * -0.5) / Math.hypot(1.0, 0.5), y: -2.5 - (0.25 * 0.5) / Math.hypot(1.0, 0.5) - ((0.25 / 2) * 1.0) / Math.hypot(1.0, 0.5) }] },
-      { id: "k3", kind: "segment", appearance: "secondary", from: { x: 4, y: -4.5 }, to: { x: 2, y: -5.5 } },
-      { id: "k3-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: -5.5 }, { x: 2 - (0.25 * -2) / Math.hypot(-2, -1.0) + ((0.25 / 2) * 1.0) / Math.hypot(-2, -1.0), y: -5.5 - (0.25 * -1.0) / Math.hypot(-2, -1.0) + ((0.25 / 2) * -2) / Math.hypot(-2, -1.0) }, { x: 2 - (0.25 * -2) / Math.hypot(-2, -1.0) - ((0.25 / 2) * 1.0) / Math.hypot(-2, -1.0), y: -5.5 - (0.25 * -1.0) / Math.hypot(-2, -1.0) - ((0.25 / 2) * -2) / Math.hypot(-2, -1.0) }] },
+      { id: "k0", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 8, y: 4 } },
+      { id: "k1", kind: "vector", appearance: "primary", from: { x: 0, y: -3 }, to: { x: 4, y: -1 } },
+      { id: "k2", kind: "vector", appearance: "construction", from: { x: 0, y: -6 }, to: { x: 2, y: -5 } },
+      { id: "k3", kind: "vector", appearance: "secondary", from: { x: 8, y: -9 }, to: { x: 4, y: -11 } },
     ],
     labels: [
-      { key: "k0", objectId: "k0", at: { x: 4, y: 2 }, placement: "right" },
-      { key: "k1", objectId: "k1", at: { x: 2, y: -0.5 }, placement: "right" },
-      { key: "k2", objectId: "k2", at: { x: 1, y: -2.5 }, placement: "right" },
-      { key: "k3", objectId: "k3", at: { x: 2, y: -5.5 }, placement: "left" },
+      { key: "k0", objectId: "k0", at: { x: 8, y: 4 }, placement: "right" },
+      { key: "k1", objectId: "k1", at: { x: 4, y: -1 }, placement: "right" },
+      { key: "k2", objectId: "k2", at: { x: 2, y: -5 }, placement: "right" },
+      { key: "k3", objectId: "k3", at: { x: 4, y: -11 }, placement: "left" },
     ],
   }}
   labels={{
@@ -190,47 +208,63 @@ Every arrow below is <InlineMath math="k\vec a" /> for <InlineMath math="\vec a=
   }}
 />
 
-Multiply the whole flight plan by <InlineMath math="k" />. With <InlineMath math="k=2" /> every component doubles, from <InlineMath math="4\,\hat\imath+4\,\hat\jmath+2\,\hat k" /> metres to twice that, and the distance from the pad grows from <InlineMath math="6\text{ m}" /> to <InlineMath math="12\text{ m}" />. With <InlineMath math="k=-1" /> the drone flies the same plan the opposite way.
+Doubling stretches the arrow to twice its length, halving cuts it to half, and multiplying by <InlineMath math="-1" /> turns it completely around on the same line.
 
-<DroneDisplacementLab
-  title={<>Scale the Flight by <InlineMath math="k" /></>}
-  description={<>The plan climbs <InlineMath math="2\text{ m}" />, flies <InlineMath math="4\text{ m}" /> east and <InlineMath math="4\text{ m}" /> north. Choose <InlineMath math="k" />.</>}
-  factors={[-1, 0.5, 1, 2]}
-  hops={[
-    { east: 0, north: 0, up: 2 },
-    { east: 4, north: 0, up: 0 },
-    { east: 0, north: 4, up: 0 },
-  ]}
+### Scaling a Three Dimensional Flight Plan
+
+Scale an entire drone displacement <InlineMath math="4\,\hat\imath+4\,\hat\jmath+2\,\hat k" /> meters (length <InlineMath math="6\text{ m}" />) by scalar <InlineMath math="k" />. Setting <InlineMath math="k=2" /> **doubles every coordinate** and doubles the distance to <InlineMath math="12\text{ m}" />, while <InlineMath math="k=-1" /> reverses every component with distance still <InlineMath math="6\text{ m}" />.
+
+<MathVisual
+  title={<>Scaling a Flight Plan by k</>}
+  description={<>Ground projection of <InlineMath math="k(4\hat\imath+4\hat\jmath+2\hat k)" /> in meters as scalar <InlineMath math="k" /> changes from <InlineMath math="-2" /> to <InlineMath math="2" />.</>}
+  footer="All three coordinates scale by k while distance from the pad grows as 6|k|."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -10, max: 10 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "k", min: -2, max: 2, value: 1, step: 0.5, label: "scale-factor" },
+    ],
+    objects: [
+      { id: "track", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "4 * k", y: "4 * k" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "4 * k", y: "4 * k" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "4 * k", y: "4 * k" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "east-m", formula: "4 * k" },
+      { key: "north-m", formula: "4 * k" },
+      { key: "up-m", formula: "2 * k" },
+      { key: "dist-m", formula: "6 * abs(k)" },
+    ],
+  }}
   labels={{
-    chooseFactor: "Multiply the flight plan by k",
-    displacement: <>Displacement</>,
-    path: <>Path flown</>,
-    size: <>Distance from the pad</>,
-    viewLabel: "Drone flying from its pad",
+    tip: <InlineMath math="k\vec{s}" />,
+    "scale-factor": <>Scalar <InlineMath math="k" /></>,
+    "east-m": <>East (m)</>,
+    "north-m": <>North (m)</>,
+    "up-m": <>Up (m)</>,
+    "dist-m": <>3D distance (m)</>,
   }}
 />
 
-## The Zero Vector as Cancellation
+When <InlineMath math="k" /> passes through zero, every component changes sign together while the three-dimensional distance bounces off zero and stays nonnegative.
 
-The zero vector is written as <InlineMath math="\vec{0}" />. Its magnitude is <InlineMath math="0" />, and its <Highlight>direction is undefined</Highlight> because the tail and tip coincide.
+## How Scalar Magnitude Behaves Near Zero
 
-The zero vector often appears when vectors cancel each other. For example, two students may pull a box with equal forces in opposite directions. If the forces are exactly along the same line, their combination does not produce a net push to the right or to the left.
-
-<BlockMath math="\vec{F}_1+\vec{F}_2=\vec{0}" />
-
-In equilibrium, an object can remain at rest while several forces act on it because their resultant is zero.
-
-Multiplying by <InlineMath math="k" /> scales the length to <InlineMath math="\lvert k\rvert\,\lvert\vec a\rvert" />, and the sign of <InlineMath math="k" /> decides the direction. The V shape is the length for a unit vector: it grows on both sides, but only the right side keeps the direction. Zoom in near <InlineMath math="k=0" />.
+Multiplying a unit vector by <InlineMath math="k" /> produces length <InlineMath math="\lvert k\rvert" />. That **V-shaped graph** grows symmetrically on both sides of <InlineMath math="k=0" />, yet only the positive branch keeps the original direction.
 
 <MathVisual
   title={<>What a Scalar Does to a Vector</>}
-  description={<>Length of <InlineMath math="k\vec a" /> against <InlineMath math="k" /> for a vector of length <InlineMath math="1" />. The gray marks show <InlineMath math="k=\tfrac12" /> and <InlineMath math="k=1" />.</>}
+  description={<>Magnitude <InlineMath math="\lvert k\vec{a}\rvert=\lvert k\rvert" /> for a unit vector plotted against scalar <InlineMath math="k" />.</>}
+  footer="Magnitude grows symmetrically on both sides of zero while direction flips left."
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.8, max: 2.6 } },
-    view: { kind: "fit", padding: 0.06 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "length", kind: "polyline", appearance: "primary", vertices: [{ x: -2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }] },
+      { id: "length", kind: "function", appearance: "primary", formula: "abs(x)", domain: { min: -2.4, max: 2.4 } },
       { id: "zero", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
       { id: "one", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 1 } },
       { id: "half", kind: "segment", appearance: "reference", from: { x: 0.5, y: 0 }, to: { x: 0.5, y: 0.5 } },
@@ -248,25 +282,54 @@ Multiplying by <InlineMath math="k" /> scales the length to <InlineMath math="\l
   }}
 />
 
-## Three Equal Strings
+Right at <InlineMath math="k=0" />, the vector collapses to the zero vector where direction ceases to exist.
 
-Three strings each pull with the weight of <InlineMath math="200\text{ g}" />, <InlineMath math="1.96\text{ N}" />. Turn the last pulley to <InlineMath math="240^\circ" />: the three pulls are then <InlineMath math="120^\circ" /> apart, **they cancel**, and the resultant is the zero vector.
+## The Zero Vector as Cancellation
 
-<ForceTableResultantLab
-  title={<>Pulls That Cancel</>}
-  description={<>Three hangers of <InlineMath math="200\text{ g}" /> each. Turn the last pulley.</>}
-  pulls={[
-    { angle: 0, mass: 200 },
-    { angle: 120, mass: 200 },
-    { angle: 200, mass: 200 },
-  ]}
+The zero vector <InlineMath math="\vec{0}" /> has magnitude <InlineMath math="0" /> and an <Highlight>undefined direction</Highlight> because its tail and tip coincide. It appears whenever balanced vectors cancel each other:
+
+<BlockMath math="\vec{F}_1+\vec{F}_2=\vec{0}" />
+
+In mechanical equilibrium, an object stays at rest even while several nonzero forces act on it, because their vector sum closes back to zero. Three equal <InlineMath math="1.96\text{ N}" /> pulls spaced <InlineMath math="120^\circ" /> apart show this exact symmetry.
+
+<MathVisual
+  title={<>Three Equal Pulls That Cancel</>}
+  description={<>Three <InlineMath math="1.96\text{ N}" /> forces at <InlineMath math="0^\circ" />, <InlineMath math="120^\circ" />, and an adjustable angle <InlineMath math="a" /> added head to tail.</>}
+  footer="At 240 degrees the three 1.96 N pulls form a closed equilateral triangle."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.2, max: 2.8 }, y: { min: -2.2, max: 2.8 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 180, max: 300, value: 200, step: 10, label: "third-angle" },
+    ],
+    objects: [
+      { id: "f1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1.96, y: 0 } },
+      { id: "f2", kind: "vector", appearance: "secondary", from: { x: 1.96, y: 0 }, to: { x: 0.98, y: 0.98 * Math.sqrt(3) } },
+      { id: "f3", kind: "path", appearance: "highlight", points: [{ x: "0.98", y: "0.98 * sqrt(3)" }, { x: "0.98 + 1.96 * cos(a * pi / 180)", y: "0.98 * sqrt(3) + 1.96 * sin(a * pi / 180)" }] },
+      { id: "res", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "0.98 + 1.96 * cos(a * pi / 180)", y: "0.98 * sqrt(3) + 1.96 * sin(a * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "0.98 + 1.96 * cos(a * pi / 180)", y: "0.98 * sqrt(3) + 1.96 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 0.98, y: 0 }, placement: "below" },
+      { key: "f2", objectId: "f2", at: { x: 1.5, y: 0.85 }, placement: "above-right" },
+      { key: "tip", objectId: "tip", at: { x: "0.98 + 1.96 * cos(a * pi / 180)", y: "0.98 * sqrt(3) + 1.96 * sin(a * pi / 180)" }, placement: "left" },
+    ],
+    readouts: [
+      { key: "sum-x", formula: "0.98 + 1.96 * cos(a * pi / 180)" },
+      { key: "sum-y", formula: "0.98 * sqrt(3) + 1.96 * sin(a * pi / 180)" },
+      { key: "res-n", formula: "sqrt((0.98 + 1.96 * cos(a * pi / 180))^2 + (0.98 * sqrt(3) + 1.96 * sin(a * pi / 180))^2)" },
+    ],
+  }}
   labels={{
-    angle: <>Angle of the last string</>,
-    angleName: "Angle of the last string",
-    direction: <>Direction of <InlineMath math="\vec R" /></>,
-    resultant: <>Resultant <InlineMath math="R" /></>,
-    sumX: <>Sum along <InlineMath math="0^\circ" /></>,
-    sumY: <>Sum along <InlineMath math="90^\circ" /></>,
-    viewLabel: "Force table with hanging masses",
+    f1: <InlineMath math="\vec{F}_1" />,
+    f2: <InlineMath math="\vec{F}_2" />,
+    tip: <InlineMath math="\vec{R}" />,
+    "third-angle": <>Third pull angle (<InlineMath math="^\circ" />)</>,
+    "sum-x": <>Sum along x (N)</>,
+    "sum-y": <>Sum along y (N)</>,
+    "res-n": <>Resultant R (N)</>,
   }}
 />
+
+Rotating the third pull to <InlineMath math="240^\circ" /> drives both component sums and the resultant magnitude to <InlineMath math="0\text{ N}" />, producing exact vector equilibrium.

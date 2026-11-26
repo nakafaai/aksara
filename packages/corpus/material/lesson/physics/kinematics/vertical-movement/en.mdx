@@ -31,6 +31,7 @@ The ball simulation shows both ways the ball can start moving. Choose thrown upw
       and velocity.
     </>
   }
+  footer={<>Throw and drop differ in initial velocity, yet gravity pulls down in both.</>}
   labels={{
     condition: "Initial condition",
     modeLabels: {
@@ -44,6 +45,8 @@ The ball simulation shows both ways the ball can start moving. Choose thrown upw
     viewLabel: "Ball in vertical motion visual",
   }}
 />
+
+Switch between the two launch modes and notice that the downward acceleration never flips sign. Whether the ball starts by rising or immediately falls from rest, gravity changes its velocity downward by <InlineMath math="g" /> every second.
 
 ## Three Ways an Object Moves Vertically
 
@@ -60,6 +63,7 @@ In all three, the acceleration stays <InlineMath math="-g" /> for the whole moti
 <Mermaid
   title={<>Choosing the type of vertical motion</>}
   description={<>The direction of the initial velocity sets the type of motion, but the equations stay the same.</>}
+  footer={<>All three initial directions feed into the exact same kinematic equations.</>}
   chart={`flowchart TD
   A{"Direction of the initial velocity?"} -->|"up"| B["Thrown up, v₀ positive"]
   A -->|"zero"| C["Free fall, v₀ = 0"]
@@ -78,6 +82,7 @@ Free fall means only gravity acts. In air, drag holds a feather back, so **pump 
       The glass tube is <InlineMath math="1.1\text{ m}" /> tall. With air inside, the feather drifts behind, so pump the air out and compare the two landing times.
     </>
   }
+  footer={<>Pumping out air removes drag so the feather and coin hit the bottom together.</>}
   labels={{
     airs: {
       air: <>With air</>,
@@ -91,9 +96,17 @@ Free fall means only gravity acts. In air, drag holds a feather back, so **pump 
   }}
 />
 
-In the vacuum both fall <InlineMath math="1.1\text{ m}" /> in <InlineMath math="\sqrt{\frac{2(1.1)}{10}}\approx0.47\text{ s}" /> and land together. With air the coin still lands after about <InlineMath math="0.47\text{ s}" />, but the feather drifts down for about <InlineMath math="2.25\text{ s}" />.
+In the vacuum both objects fall <InlineMath math="1.1\text{ m}" /> and land together in:
 
-## An Object Thrown Upward
+<BlockMath math="t=\sqrt{\frac{2(1.1)}{10}}\approx0.47\text{ s}" />
+
+With air inside, the coin still lands after about <InlineMath math="0.47\text{ s}" />, whereas air drag slows the feather to about <InlineMath math="2.25\text{ s}" />.
+
+## Comparing Throws and Free Fall
+
+Every vertical launch belongs to one of three cases determined by **the initial velocity** <InlineMath math="v_0" />. Tracing upward throws, free fall from rest, and downward throws side by side reveals how symmetry and initial speed shape the flight.
+
+### An Object Thrown Upward
 
 When an object is thrown upward, its velocity starts positive and **keeps decreasing because of gravity** until it reaches zero at the highest point. Setting <InlineMath math="v_y = 0" /> gives the rise time and the maximum height above the launch point:
 
@@ -102,11 +115,15 @@ When an object is thrown upward, its velocity starts positive and **keeps decrea
   <BlockMath math="h_{\text{max}} = \frac{v_0^2}{2g}" />
 </MathContainer>
 
-Suppose a ball is thrown upward with <InlineMath math="v_0 = 20\text{ m/s}" />. Its rise time is <InlineMath math="\frac{20}{10} = 2\text{ s}" />, and its maximum height is <InlineMath math="\frac{20^2}{2 \times 10} = 20\text{ m}" />. The position equation gives the same result:
+Suppose a ball is thrown upward with <InlineMath math="v_0 = 20\text{ m/s}" />. Its rise time and peak height are:
 
-<BlockMath math="y = 20(2) - \frac{1}{2}(10)(2^2) = 40 - 20 = 20\text{ m}" />
+<MathContainer>
+  <BlockMath math="t_{\text{rise}} = \frac{20}{10} = 2\text{ s}" />
+  <BlockMath math="h_{\text{max}} = \frac{20^2}{2 \times 10} = 20\text{ m}" />
+  <BlockMath math="y = 20(2) - \frac{1}{2}(10)(2^2) = 40 - 20 = 20\text{ m}" />
+</MathContainer>
 
-At the highest point the ball's velocity is momentarily zero, but its acceleration is still <InlineMath math="-g" />. Substitute a few values of <InlineMath math="t" /> into <InlineMath math="y = 20t - 5t^2" /> and <InlineMath math="v_y = 20 - 10t" /> to follow the way up and down:
+At the highest point the ball's velocity is momentarily zero, yet its acceleration is still <InlineMath math="-g" />. Substitute times into <InlineMath math="y = 20t - 5t^2" /> and <InlineMath math="v_y = 20 - 10t" /> to follow the way up and down:
 
 | Time | Height | Velocity | Direction |
 | --- | --- | --- | --- |
@@ -116,13 +133,14 @@ At the highest point the ball's velocity is momentarily zero, but its accelerati
 | <InlineMath math="3\text{ s}" /> | <InlineMath math="15\text{ m}" /> | <InlineMath math="-10\text{ m/s}" /> | Falling |
 | <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="-20\text{ m/s}" /> | Back at the launch point |
 
-The motion is symmetric. The ball is at a height of <InlineMath math="15\text{ m}" /> at <InlineMath math="1\text{ s}" /> and at <InlineMath math="3\text{ s}" />, with the same speed but opposite directions, and it returns to the launch point with its starting speed.
+The motion is symmetric. The ball passes <InlineMath math="15\text{ m}" /> at <InlineMath math="1\text{ s}" /> and <InlineMath math="3\text{ s}" /> with the same speed in opposite directions, and returns to the launch point at its starting speed.
 
-Slide the time for a ball thrown up at <InlineMath math="20\text{ m/s}" />. The violet arrow is its velocity, drawn as the distance it covers in one second: it shrinks on the way up, vanishes at <InlineMath math="t=2\text{ s}" /> at the top, and points down on the way back.
+Slide the time for a ball thrown up at <InlineMath math="20\text{ m/s}" />. The violet arrow shows its velocity: it shrinks on the way up, vanishes at <InlineMath math="t=2\text{ s}" /> at the top, and points down on the way back.
 
 <MathVisual
   title={<>Watch the Velocity Turn Around</>}
   description={<>A ball thrown straight up at <InlineMath math="20\text{ m/s}" />, its position at the chosen time (fuchsia) and its velocity (violet). One grid step is <InlineMath math="5\text{ m}" />.</>}
+  footer={<>The violet velocity arrow shrinks to zero at the peak, then flips downward.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -4.5, max: 8.5 } },
@@ -151,66 +169,125 @@ Slide the time for a ball thrown up at <InlineMath math="20\text{ m/s}" />. The 
   }}
 />
 
-A strobe photo shows a toss in one picture. A ball thrown up at <InlineMath math="5\text{ m/s}" /> **loses <InlineMath math="1\text{ m/s}" /> of upward velocity every tenth of a second**, so its images bunch together near the top.
+A strobe record of a smaller toss at <InlineMath math="5\text{ m/s}" /> shows equal <InlineMath math="0.1\text{ s}" /> snapshots crowding together near the top because the ball **loses <InlineMath math="1\text{ m/s}" /> of upward velocity every tenth of a second**. Slide the flash time <InlineMath math="a" /> below to measure the vertical step during each <InlineMath math="0.1\text{ s}" /> interval.
 
-<StrobePhotoMotionLab
-  shot="toss"
+<MathVisual
   title={<>A Tossed Ball, Flash by Flash</>}
   description={
     <>
-      A lamp flashes every <InlineMath math="0.1\text{ s}" />. Watch the gaps shrink on the way up and grow on the way down.
+      Height <InlineMath math="y=5t-5t^2" /> for a <InlineMath math="5\text{ m/s}" /> toss. Slide flash time <InlineMath math="a" /> to inspect the vertical gap covered in the next <InlineMath math="0.1\text{ s}" />.
     </>
   }
+  footer={<>Equal time flashes crowd together near the peak where vertical speed nears zero.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 1.1 }, y: { min: -0.1, max: 1.45 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 0.9, value: 0.2, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "toss-curve", kind: "function", appearance: "primary", formula: "5*x - 5*x^2", domain: { min: 0, max: 1 } },
+      { id: "step-gap", kind: "path", appearance: "answer", points: [{ x: "a", y: "5*a - 5*a^2" }, { x: "a + 0.1", y: "5*(a + 0.1) - 5*(a + 0.1)^2" }] },
+      { id: "vert-drop", kind: "path", appearance: "secondary", points: [{ x: "a + 0.1", y: "5*a - 5*a^2" }, { x: "a + 0.1", y: "5*(a + 0.1) - 5*(a + 0.1)^2" }] },
+      { id: "peak", kind: "point", appearance: "reference", at: { x: 0.5, y: 1.25 } },
+      { id: "pt-a", kind: "marker", appearance: "secondary", x: "a", y: "5*a - 5*a^2" },
+      { id: "pt-b", kind: "marker", appearance: "answer", x: "a + 0.1", y: "5*(a + 0.1) - 5*(a + 0.1)^2" },
+    ],
+    labels: [
+      { key: "peak-lbl", objectId: "peak", at: { x: 0.5, y: 1.25 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "height-now", formula: "5*a - 5*a^2" },
+      { key: "step-shift", formula: "(5*(a + 0.1) - 5*(a + 0.1)^2) - (5*a - 5*a^2)" },
+      { key: "vel-now", formula: "5 - 10*a" },
+    ],
+  }}
   labels={{
-    airTime: <>Time in the air</>,
-    height: <>Start height</>,
-    interval: <>Time between flashes</>,
-    outcome: <>Top height</>,
-    viewLabel: "Strobe photograph built up flash by flash",
+    a: <>Flash time <InlineMath math="a" /> (s)</>,
+    "peak-lbl": <>Peak</>,
+    "height-now": <>Height at flash (m)</>,
+    "step-shift": <>Height change in 0.1 s (m)</>,
+    "vel-now": <>Velocity at flash (m/s)</>,
   }}
 />
 
-The ball stops rising after <InlineMath math="\frac{5}{10}=0.5\text{ s}" /> at a height of <InlineMath math="\frac{5^2}{2(10)}=1.25\text{ m}" />, and it is back at the hand after <InlineMath math="1\text{ s}" />, moving down at <InlineMath math="5\text{ m/s}" />.
+The tossed ball reaches its highest point and returns to the hand after <InlineMath math="1\text{ s}" /> at <InlineMath math="5\text{ m/s}" /> downward:
 
-## An Object in Free Fall
+<MathContainer>
+  <BlockMath math="t_{\text{rise}}=\frac{5}{10}=0.5\text{ s}" />
+  <BlockMath math="h_{\text{max}}=\frac{5^2}{2(10)}=1.25\text{ m}" />
+</MathContainer>
 
-In school physics, free fall means an object released **with no initial velocity**, so <InlineMath math="v_0 = 0" />. Some books call any motion under gravity alone free fall, throws included, but this page uses the first meaning. For an object falling through a height <InlineMath math="h" />, the fall time and the speed on reaching the ground are:
+### An Object in Free Fall
+
+In school physics, free fall means an object released **with no initial velocity**, so <InlineMath math="v_0 = 0" />. For an object falling through a height <InlineMath math="h" />, the fall time and the speed on reaching the ground are:
 
 <MathContainer>
   <BlockMath math="t = \sqrt{\frac{2h}{g}}" />
   <BlockMath math="v = \sqrt{2gh}" />
 </MathContainer>
 
-A ball dropped from a height of <InlineMath math="20\text{ m}" /> reaches the ground after <InlineMath math="t = \sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />. Its velocity at that moment is:
+A ball dropped from a height of <InlineMath math="20\text{ m}" /> reaches the ground with velocity and speed:
 
-<BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
+<MathContainer>
+  <BlockMath math="t = \sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />
+  <BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
+  <BlockMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />
+</MathContainer>
 
-The minus sign means the ball is moving downward. Check its speed with the second formula: <InlineMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />. This is the same speed a ball thrown up at <InlineMath math="20\text{ m/s}" /> has when it gets back to its launch point, because both fall <InlineMath math="20\text{ m}" /> from a moment of rest.
+The minus sign means downward motion. This matches the landing speed of a ball thrown upward at <InlineMath math="20\text{ m/s}" />, because both fall <InlineMath math="20\text{ m}" /> from rest.
 
-## Free Fall Flash by Flash
+Dropped from <InlineMath math="1.8\text{ m}" />, a ball falls <InlineMath math="5\text{ cm}" /> in the first tenth of a second and **farther in every tenth that follows**, because its speed grows by <InlineMath math="1\text{ m/s}" /> each step. Slide flash time <InlineMath math="a" /> below to compare consecutive <InlineMath math="0.1\text{ s}" /> drops.
 
-Dropped from rest, a ball falls <InlineMath math="5\text{ cm}" /> in the first tenth of a second and **then farther in every tenth that follows**, because its speed grows by <InlineMath math="1\text{ m/s}" /> each time.
-
-<StrobePhotoMotionLab
-  shot="drop"
-  title={<>A Dropped Ball, Flash by Flash</>}
+<MathVisual
+  title={<>Free Fall Flash by Flash</>}
   description={
     <>
-      A lamp flashes every <InlineMath math="0.1\text{ s}" /> while the shutter stays open. Compare the gaps from top to bottom.
+      Height <InlineMath math="y=1.8-5t^2" /> for a ball dropped from <InlineMath math="1.8\text{ m}" />. Slide flash time <InlineMath math="a" /> to see each <InlineMath math="0.1\text{ s}" /> vertical drop grow.
     </>
   }
+  footer={<>Each tenth-second step drops farther than the last as downward speed increases.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 0.7 }, y: { min: -0.1, max: 2.0 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 0.5, value: 0.3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "drop-curve", kind: "function", appearance: "primary", formula: "1.8 - 5*x^2", domain: { min: 0, max: 0.6 } },
+      { id: "drop-step", kind: "path", appearance: "answer", points: [{ x: "a", y: "1.8 - 5*a^2" }, { x: "a + 0.1", y: "1.8 - 5*(a + 0.1)^2" }] },
+      { id: "vert-span", kind: "path", appearance: "secondary", points: [{ x: "a", y: "1.8 - 5*a^2" }, { x: "a", y: "1.8 - 5*(a + 0.1)^2" }] },
+      { id: "pt-start", kind: "marker", appearance: "secondary", x: "a", y: "1.8 - 5*a^2" },
+      { id: "pt-end", kind: "marker", appearance: "answer", x: "a + 0.1", y: "1.8 - 5*(a + 0.1)^2" },
+    ],
+    labels: [
+      { key: "p2", objectId: "pt-end", at: { x: "a + 0.1", y: "1.8 - 5*(a + 0.1)^2" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "drop-gap", formula: "5*(a + 0.1)^2 - 5*a^2" },
+      { key: "fall-speed", formula: "10*(a + 0.1)" },
+    ],
+  }}
   labels={{
-    airTime: <>Time in the air</>,
-    height: <>Start height</>,
-    interval: <>Time between flashes</>,
-    outcome: <>Speed at the floor</>,
-    viewLabel: "Strobe photograph built up flash by flash",
+    a: <>Flash start <InlineMath math="a" /> (s)</>,
+    p2: <>Next flash</>,
+    "drop-gap": <>Drop in 0.1 s (m)</>,
+    "fall-speed": <>Speed at end of step (m/s)</>,
   }}
 />
 
-From <InlineMath math="1.8\text{ m}" /> the ball lands after <InlineMath math="\sqrt{\frac{2(1.8)}{10}}=0.6\text{ s}" /> at <InlineMath math="10(0.6)=6\text{ m/s}" />. The gaps grow as <InlineMath math="5" />, <InlineMath math="15" />, <InlineMath math="25" />, and so on up to <InlineMath math="55\text{ cm}" />.
+From <InlineMath math="1.8\text{ m}" />, the fall time and floor speed are:
 
-## An Object Thrown Downward
+<MathContainer>
+  <BlockMath math="t=\sqrt{\frac{2(1.8)}{10}}=0.6\text{ s}" />
+  <BlockMath math="v=10(0.6)=6\text{ m/s}" />
+</MathContainer>
+
+The drop gaps grow in odd multiples: <InlineMath math="5" />, <InlineMath math="15" />, <InlineMath math="25" />, <InlineMath math="35" />, <InlineMath math="45" />, and <InlineMath math="55\text{ cm}" />.
+
+### An Object Thrown Downward
 
 An object thrown downward already has a downward initial velocity, so **its initial velocity is negative**. Gravity adds to its speed from the start, and it reaches the ground sooner than an object dropped from the same height.
 
@@ -220,9 +297,10 @@ Suppose a stone is thrown downward at <InlineMath math="5\text{ m/s}" /> from a 
   <BlockMath math="0 = 30 - 5t - 5t^2" />
   <BlockMath math="t^2 + t - 6 = 0 \quad\Longrightarrow\quad (t + 3)(t - 2) = 0" />
   <BlockMath math="v_y = -5 - 10(2) = -25\text{ m/s}" />
+  <BlockMath math="v_y^2 = (-5)^2 + 2(10)(30) = 625" />
 </MathContainer>
 
-The value <InlineMath math="t = -3" /> would mean three seconds before the stone was thrown, so it is rejected, and the stone lands after <InlineMath math="2\text{ s}" />. Check with the third equation: <InlineMath math="v_y^2 = (-5)^2 + 2(10)(30) = 625" />, so the speed is <InlineMath math="25\text{ m/s}" />.
+The value <InlineMath math="t = -3\text{ s}" /> lies before the throw and is rejected, so the stone lands after <InlineMath math="2\text{ s}" /> at a speed of <InlineMath math="25\text{ m/s}" />.
 
 ## Vertical Motion Inside Projectile Motion
 
@@ -233,6 +311,7 @@ That is why the time a projectile spends in the air comes from its vertical moti
 <MathVisual
   title={<>Two balls with the same initial vertical velocity</>}
   description={<>One grid square stands for <InlineMath math="5\text{ m}" />. The teal ball is kicked with <InlineMath math="v_x=10\text{ m/s}" /> and <InlineMath math="v_{0y}=20\text{ m/s}" />, and the orange ball is thrown straight up at <InlineMath math="20\text{ m/s}" />. The gray lines join their positions at the same moment, and the heights always match.</>}
+  footer={<>Horizontal gray tie lines stay level because both balls share the same height.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.5, max: 9 }, y: { min: -0.5, max: 5 } },
@@ -263,31 +342,65 @@ That is why the time a projectile spends in the air comes from its vertical moti
   }}
 />
 
-## A Vertical Jet beside Angled Ones
+Sideways motion never slows down or speeds up the fall. Every second, both balls sit at the exact same altitude because gravity pulls strictly vertically.
 
-A garden hose pointed straight up is vertical motion you can watch all at once. **Every drop rises and falls back to the nozzle**, and the same speed tilted over gives a parabola.
+A garden hose spraying water at <InlineMath math="8\text{ m/s}" /> shows this contrast immediately. Pointed straight up, **every drop rises and falls back to the nozzle** along the vertical line. Tilt the nozzle angle <InlineMath math="a" /> below to compare the angled parabola against the <InlineMath math="3.2\text{ m}" /> vertical stream.
 
-<HoseJetProjectileLab
-  angle={90}
-  speed={8}
-  title={<>A Garden Hose at Six Angles</>}
+<MathVisual
+  title={<>Vertical Water Jet Beside Angled Streams</>}
   description={
     <>
-      The water leaves at <InlineMath math="8\text{ m/s}" />. Start straight up, then tilt the nozzle.
+      Water leaves at <InlineMath math="8\text{ m/s}" />. Compare the gray straight-up stream (<InlineMath math="3.2\text{ m}" />) with the orange stream at nozzle angle <InlineMath math="a" />.
     </>
   }
+  footer={<>Tilting the nozzle below straight up lowers the peak below the gray vertical jet.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 7.2 }, y: { min: 0, max: 3.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 80, value: 60, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "vert-jet", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 3.2 } },
+      { id: "vert-top", kind: "point", appearance: "reference", at: { x: 0, y: 3.2 } },
+      { id: "jet-curve", kind: "function", appearance: "primary", formula: "x*tan(a*pi/180) - 5*x^2/(64*(cos(a*pi/180))^2)" },
+      { id: "peak-drop", kind: "path", appearance: "construction", points: [{ x: "0", y: "3.2*(sin(a*pi/180))^2" }, { x: "3.2*sin(2*a*pi/180)", y: "3.2*(sin(a*pi/180))^2" }] },
+      { id: "peak-pt", kind: "marker", appearance: "answer", x: "3.2*sin(2*a*pi/180)", y: "3.2*(sin(a*pi/180))^2" },
+      { id: "land-pt", kind: "marker", appearance: "secondary", x: "6.4*sin(2*a*pi/180)", y: "0" },
+    ],
+    labels: [
+      { key: "vtop", objectId: "vert-top", at: { x: 0, y: 3.2 }, placement: "above-right" },
+      { key: "atop", objectId: "peak-pt", at: { x: "3.2*sin(2*a*pi/180)", y: "3.2*(sin(a*pi/180))^2" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "top-height", formula: "3.2*(sin(a*pi/180))^2" },
+      { key: "air-time", formula: "1.6*sin(a*pi/180)" },
+      { key: "range", formula: "6.4*sin(2*a*pi/180)" },
+    ],
+  }}
   labels={{
-    chooseAngle: "Choose the nozzle angle",
-    flight: <>Time in the air</>,
-    range: <>Range</>,
-    top: <>Top height</>,
-    viewLabel: "Water jet from a garden hose",
+    a: <>Nozzle angle <InlineMath math="a" /> (deg)</>,
+    vtop: <>Vertical peak</>,
+    atop: <>Angled peak</>,
+    "top-height": <>Angled peak height (m)</>,
+    "air-time": <>Time in air (s)</>,
+    range: <>Horizontal range (m)</>,
   }}
 />
 
-Straight up the water climbs <InlineMath math="\frac{8^2}{2(10)}=3.2\text{ m}" /> and is back after <InlineMath math="\frac{2(8)}{10}=1.6\text{ s}" />. At <InlineMath math="60^\circ" /> the vertical part is only <InlineMath math="8\sin60^\circ\approx6.9\text{ m/s}" />, so the stream rises to <InlineMath math="2.4\text{ m}" />.
+Straight up, the water climbs to <InlineMath math="3.2\text{ m}" /> and returns after <InlineMath math="1.6\text{ s}" />, whereas at <InlineMath math="60^\circ" /> the vertical component shrinks to about <InlineMath math="6.9\text{ m/s}" /> and reaches <InlineMath math="2.4\text{ m}" />:
 
-## Common Mistakes
+<MathContainer>
+  <BlockMath math="h_{\text{vertical}}=\frac{8^2}{2(10)}=3.2\text{ m},\quad t_{\text{air}}=\frac{2(8)}{10}=1.6\text{ s}" />
+  <BlockMath math="v_{0y}=8\sin60^\circ\approx6.9\text{ m/s},\quad h_{60^\circ}=2.4\text{ m}" />
+</MathContainer>
+
+## Sign Checks and Worked Vertical Problems
+
+Consistent sign conventions prevent the most frequent errors in vertical motion. Fixing **upward as positive** before writing any number makes every check straightforward across throws and drops.
+
+### Checking Signs in Vertical Calculations
 
 Before you calculate, fix **the positive direction** and use it throughout.
 
@@ -300,54 +413,44 @@ Before you calculate, fix **the positive direction** and use it throughout.
 
 Sign mistakes are easiest to catch at the end. An object moving down must have a negative <InlineMath math="v_y" />, and a negative time is always rejected.
 
-## Practice on Vertical Motion
+### Worked Problems on Throws and Free Fall
 
-Use <InlineMath math="g = 10\text{ m/s}^2" /> and take up as positive. For each problem, first decide **the sign of the initial velocity** and the starting position.
+Use <InlineMath math="g = 10\text{ m/s}^2" /> and take up as positive. For each problem, decide **the sign of the initial velocity** and starting height first.
 
-1. A ball is thrown straight up at <InlineMath math="15\text{ m/s}" />. Find its rise time and maximum height.
-
-2. A coconut falls from a tree <InlineMath math="45\text{ m}" /> high. Find the fall time and its speed when it hits the ground.
-
-3. A ball is thrown upward at <InlineMath math="20\text{ m/s}" /> from the roof of a building <InlineMath math="25\text{ m}" /> high. When does it hit the ground, and what is its velocity then?
-
-4. A stone is thrown downward at <InlineMath math="10\text{ m/s}" /> from a bridge <InlineMath math="15\text{ m}" /> high. Find the time to reach the water and its speed.
-
-### Answers
-
-**Problem 1**. At the highest point **the velocity is zero**, so:
+**Problem 1.** A ball is thrown straight up at <InlineMath math="15\text{ m/s}" />. Find its rise time and maximum height. At the highest point the velocity is zero:
 
 <MathContainer>
   <BlockMath math="t_{\text{rise}} = \frac{15}{10} = 1.5\text{ s}" />
   <BlockMath math="h_{\text{max}} = \frac{15^2}{2 \times 10} = 11.25\text{ m}" />
+  <BlockMath math="y = 15(1.5) - 5(1.5)^2 = 22.5 - 11.25 = 11.25\text{ m}" />
 </MathContainer>
 
-Check with the position equation: <InlineMath math="15(1.5) - 5(1.5)^2 = 22.5 - 11.25 = 11.25\text{ m}" />.
-
-**Problem 2**. The coconut falls **with no initial velocity**:
+**Problem 2.** A coconut falls from a tree <InlineMath math="45\text{ m}" /> high with no initial velocity. Find the fall time and impact speed:
 
 <MathContainer>
   <BlockMath math="t = \sqrt{\frac{2 \times 45}{10}} = 3\text{ s}" />
   <BlockMath math="v = \sqrt{2 \times 10 \times 45} = 30\text{ m/s}" />
+  <BlockMath math="v_y = 0 - 10(3) = -30\text{ m/s}" />
 </MathContainer>
 
-Check: <InlineMath math="v_y = 0 - 10(3) = -30\text{ m/s}" />, so the speed is <InlineMath math="30\text{ m/s}" />.
-
-**Problem 3**. Take the roof as <InlineMath math="y_0 = 25" />, so the ground is <InlineMath math="y = 0" />. The position equation gives **a quadratic in** <InlineMath math="t" />:
+**Problem 3.** A ball is thrown upward at <InlineMath math="20\text{ m/s}" /> from a roof <InlineMath math="25\text{ m}" /> high (<InlineMath math="y_0 = 25" />, ground at <InlineMath math="y = 0" />). Find when it hits the ground and its impact velocity:
 
 <MathContainer>
   <BlockMath math="0 = 25 + 20t - 5t^2" />
   <BlockMath math="t^2 - 4t - 5 = 0 \quad\Longrightarrow\quad (t - 5)(t + 1) = 0" />
   <BlockMath math="v_y = 20 - 10(5) = -30\text{ m/s}" />
+  <BlockMath math="v_y^2 = 20^2 + 2(10)(25) = 900" />
 </MathContainer>
 
-The negative time is rejected, so the ball hits the ground after <InlineMath math="5\text{ s}" /> at <InlineMath math="30\text{ m/s}" /> downward. Check: <InlineMath math="v_y^2 = 20^2 + 2(10)(25) = 900" />.
+Rejecting the negative root leaves <InlineMath math="5\text{ s}" /> and a downward landing velocity of <InlineMath math="-30\text{ m/s}" />.
 
-**Problem 4**. The initial velocity is **negative**, <InlineMath math="v_0 = -10" />, and <InlineMath math="y_0 = 15" />:
+**Problem 4.** A stone is thrown downward at <InlineMath math="10\text{ m/s}" /> (<InlineMath math="v_0 = -10" />) from a bridge <InlineMath math="15\text{ m}" /> high (<InlineMath math="y_0 = 15" />). Find the time to reach the water and its speed:
 
 <MathContainer>
   <BlockMath math="0 = 15 - 10t - 5t^2" />
   <BlockMath math="t^2 + 2t - 3 = 0 \quad\Longrightarrow\quad (t + 3)(t - 1) = 0" />
   <BlockMath math="v_y = -10 - 10(1) = -20\text{ m/s}" />
+  <BlockMath math="v_y^2 = (-10)^2 + 2(10)(15) = 400" />
 </MathContainer>
 
-The stone reaches the water after <InlineMath math="1\text{ s}" /> at a speed of <InlineMath math="20\text{ m/s}" />. Check: <InlineMath math="(-10)^2 + 2(10)(15) = 400 = 20^2" />.
+The stone reaches the water after <InlineMath math="1\text{ s}" /> at a speed of <InlineMath math="20\text{ m/s}" />.

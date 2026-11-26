@@ -9,7 +9,11 @@ export const metadata = {
   subject: "Kinematika",
 };
 
-## Angka pada Speedometer dan Arah Gerak Kendaraan
+## Mengukur Kelajuan pada Satu Saat Tertentu
+
+Nilai sesaat menangkap gerak benda pada **satu waktu persis**, bukan rata-rata sepanjang perjalanan. Saat selang pengukuran diperkecil mendekati nol, kemiringan garis potong berubah menjadi kecepatan sesaat.
+
+### Angka pada Speedometer dan Arah Gerak Kendaraan
 
 Kelajuan sesaat adalah kelajuan benda pada waktu tertentu atau pada titik tertentu di lintasannya. Contohnya adalah angka yang ditunjukkan speedometer kendaraan saat pengendara membaca speedometer.
 
@@ -21,11 +25,11 @@ Kecepatan sesaat juga diukur pada waktu tertentu, tetapi kecepatan menyertakan a
 
 Kelajuan sesaat adalah besar dari kecepatan sesaat.
 
-Jika posisi merupakan fungsi waktu yang dapat diturunkan, kecepatan sesaat adalah <Highlight>limit kecepatan rata-rata</Highlight> ketika selang pengamatan diperkecil menuju nol.
+Jika posisi adalah fungsi waktu yang dapat diturunkan, kecepatan sesaat adalah <Highlight>limit kecepatan rata-rata</Highlight> ketika selang pengamatan diperkecil menuju nol.
 
 <BlockMath math="v_x(t)=\lim_{\Delta t\to 0}\frac{\Delta x}{\Delta t}=\frac{dx}{dt}" />
 
-Alat ukur nyata menaksir nilai ini dalam selang pencuplikan yang singkat tetapi tetap berhingga. Jika geraknya berubah mulus, selang yang lebih singkat dapat mendekati nilai pada saat tersebut dengan lebih baik.
+Alat ukur nyata menaksir nilai ini dalam selang pencuplikan yang singkat tetapi tetap berhingga. Jika geraknya berubah mulus, selang yang lebih singkat dapat mendekati nilai pada saat itu dengan lebih baik.
 
 <InstantaneousVelocitySpeedLab
   title={<>Pengukuran di Satu Titik</>}
@@ -35,6 +39,7 @@ Alat ukur nyata menaksir nilai ini dalam selang pencuplikan yang singkat tetapi 
       mobil ketika melewati titik ukur.
     </>
   }
+  footer={<>Tiap titik ukur mencatat besar kelajuan sekaligus tanda arah tepat pada saat itu.</>}
   labels={{
     chooseMoment: "Pilih waktu pengukuran",
     factLabels: {
@@ -46,27 +51,30 @@ Alat ukur nyata menaksir nilai ini dalam selang pencuplikan yang singkat tetapi 
   }}
 />
 
+Besar kecepatan sesaat selalu cocok dengan angka kelajuan sesaat, sementara tandanya menunjukkan arah mobil saat melintasi titik ukur.
+
 Lihat limit itu terjadi pada gerak ilustrasi, <InlineMath math="x=t^2" />. Setiap garis berwarna adalah kecepatan rata-rata yang dimulai di <InlineMath math="t=3\text{ s}" />, selama <InlineMath math="2" />, <InlineMath math="1" />, dan <InlineMath math="0{,}5\text{ s}" />. Saat selangnya mengecil, kemiringannya turun dari <InlineMath math="8" /> ke <InlineMath math="7" /> lalu ke <InlineMath math="6{,}5\text{ m/s}" />, makin dekat ke kecepatan sesaat <InlineMath math="6\text{ m/s}" />.
 
 <MathVisual
   title={<>Memperkecil Selang Waktu</>}
-  description={<>Garis potong <InlineMath math="x=t^2" /> dari <InlineMath math="t=3\text{ s}" /> selama <InlineMath math="2\text{ s}" />, <InlineMath math="1\text{ s}" />, dan <InlineMath math="0{,}5\text{ s}" />. Mendatar: waktu dalam s. Tegak: posisi dalam satuan <InlineMath math="4\text{ m}" />.</>}
+  description={<>Garis potong <InlineMath math="x=t^2" /> dari <InlineMath math="t=3\text{ s}" /> selama <InlineMath math="2\text{ s}" />, <InlineMath math="1\text{ s}" />, dan <InlineMath math="0{,}5\text{ s}" />. Mendatar: waktu dalam s. Tegak: posisi dalam m.</>}
+  footer={<>Selang makin sempit dari <InlineMath math="3\text{ s}" /> menekan kemiringan garis potong menuju <InlineMath math="6\text{ m/s}" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.8 }, y: { min: -2, max: 28 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "position", kind: "quadratic", appearance: "reference", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
-      { id: "step-2", kind: "segment", appearance: "warning", from: { x: 3, y: 2.25 }, to: { x: 5, y: 6.25 } },
-      { id: "step-1", kind: "segment", appearance: "primary", from: { x: 3, y: 2.25 }, to: { x: 4, y: 4 } },
-      { id: "step-half", kind: "segment", appearance: "secondary", from: { x: 3, y: 2.25 }, to: { x: 3.5, y: 3.5 ** 2 / 4 } },
-      { id: "now", kind: "point", appearance: "answer", at: { x: 3, y: 2.25 } },
+      { id: "position", kind: "function", appearance: "reference", formula: "x^2", domain: { min: 0, max: 5 } },
+      { id: "step-2", kind: "segment", appearance: "warning", from: { x: 3, y: 9 }, to: { x: 5, y: 25 } },
+      { id: "step-1", kind: "segment", appearance: "primary", from: { x: 3, y: 9 }, to: { x: 4, y: 16 } },
+      { id: "step-half", kind: "segment", appearance: "secondary", from: { x: 3, y: 9 }, to: { x: 3.5, y: 12.25 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 3, y: 9 } },
     ],
     labels: [
-      { key: "s2", objectId: "step-2", at: { x: 5, y: 6.25 }, placement: "right" },
-      { key: "s1", objectId: "step-1", at: { x: 4, y: 4 }, placement: "right" },
-      { key: "sh", objectId: "step-half", at: { x: 3.5, y: 3.5 ** 2 / 4 }, placement: "right" },
-      { key: "now", objectId: "now", at: { x: 3, y: 2.25 }, placement: "left" },
+      { key: "s2", objectId: "step-2", at: { x: 5, y: 25 }, placement: "right" },
+      { key: "s1", objectId: "step-1", at: { x: 4, y: 16 }, placement: "right" },
+      { key: "sh", objectId: "step-half", at: { x: 3.5, y: 12.25 }, placement: "right" },
+      { key: "now", objectId: "now", at: { x: 3, y: 9 }, placement: "left" },
     ],
   }}
   labels={{
@@ -77,7 +85,9 @@ Lihat limit itu terjadi pada gerak ilustrasi, <InlineMath math="x=t^2" />. Setia
   }}
 />
 
-## Pengukur Kecepatan dengan Celah yang Menyempit
+Makin dekat titik kedua mendekati <InlineMath math="t=3\text{ s}" />, makin rapat garis potong menempel pada garis singgung saat itu.
+
+### Pengukur Kecepatan dengan Celah yang Menyempit
 
 Alat pengukur kecepatan mencatat waktu pada suatu celah, jadi hasilnya selalu rata-rata. Persempit celahnya, maka **rata-rata itu makin dekat dengan kelajuan di titik tengah**. Mobil bertambah cepat dari diam dengan <InlineMath math="4\text{ m/s}^2" /> dan melewati titik tengah dengan <InlineMath math="20\text{ m/s}" />.
 
@@ -88,6 +98,7 @@ Alat pengukur kecepatan mencatat waktu pada suatu celah, jadi hasilnya selalu ra
       Dua gerbang sinar mengapit tanda <InlineMath math="50\text{ m}" />. Pilih celahnya dan perhatikan garis potong pada grafik berubah menjadi garis singgung di titik tengah.
     </>
   }
+  footer={<>Mendekatkan kedua gerbang sinar mendorong bacaan menuju <InlineMath math="20\text{ m/s}" />.</>}
   labels={{
     averageSpeed: <>Angka yang tercatat</>,
     chooseGap: "Pilih jarak antargerbang",
@@ -100,7 +111,11 @@ Alat pengukur kecepatan mencatat waktu pada suatu celah, jadi hasilnya selalu ra
 
 Angkanya naik dari <InlineMath math="19{,}58\text{ m/s}" /> dengan celah <InlineMath math="40\text{ m}" /> ke <InlineMath math="19{,}9" /> dan <InlineMath math="19{,}97\text{ m/s}" />, dan dengan celah <InlineMath math="2\text{ m}" /> alat menunjukkan <InlineMath math="20\text{ m/s}" /> sampai dua desimal. Nilai batas itulah kelajuan sesaat.
 
-## Arah Menentukan Tanda Kecepatan Sesaat
+## Arah Mengubah Kecepatan Sesaat
+
+Kecepatan sesaat selalu memasangkan **seberapa cepat** dengan **ke arah mana**. Berbalik arah di garis lurus maupun membelok di lintasan melingkar sama-sama mengubah kecepatan meski kelajuannya tetap.
+
+### Arah Menentukan Tanda Kecepatan Sesaat
 
 Titik ukur pada simulasi mencatat gerak mobil pada satu saat. Kelajuan menyatakan besar gerak mobil, sedangkan **arah mobil** saat melewati titik ukur menentukan tanda kecepatannya.
 
@@ -119,21 +134,22 @@ Spidometer hanya memberi besarnya. Tambahkan arahnya sebagai tanda: ke kanan pos
 
 <MathVisual
   title={<>Dari Bacaan Kelajuan ke Kecepatan</>}
-  description={<>Kecepatan pada <InlineMath math="6\text{ s}" /> (teal, ke kanan) dan pada <InlineMath math="9\text{ s}" /> (ungu, ke kiri). Tegak: satu kotak grid berarti <InlineMath math="5\text{ m/s}" />.</>}
+  description={<>Kecepatan pada <InlineMath math="6\text{ s}" /> (teal, ke kanan) dan pada <InlineMath math="9\text{ s}" /> (ungu, ke kiri) dalam m/s.</>}
+  footer={<>Arah gerak menentukan apakah batang kecepatan berdiri di atas atau di bawah nol.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -2.5, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -12, max: 25 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
       { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
-      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
-      { id: "nine", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: -1.6 } },
-      { id: "six-top", kind: "point", appearance: "construction", at: { x: 6, y: 4 } },
-      { id: "nine-end", kind: "point", appearance: "secondary", at: { x: 9, y: -1.6 } },
+      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 20 } },
+      { id: "nine", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: -8 } },
+      { id: "six-top", kind: "point", appearance: "construction", at: { x: 6, y: 20 } },
+      { id: "nine-end", kind: "point", appearance: "secondary", at: { x: 9, y: -8 } },
     ],
     labels: [
-      { key: "six", objectId: "six-top", at: { x: 6, y: 4 }, placement: "above" },
-      { key: "nine", objectId: "nine-end", at: { x: 9, y: -1.6 }, placement: "below" },
+      { key: "six", objectId: "six-top", at: { x: 6, y: 20 }, placement: "above" },
+      { key: "nine", objectId: "nine-end", at: { x: 9, y: -8 }, placement: "below" },
     ],
   }}
   labels={{
@@ -142,38 +158,88 @@ Spidometer hanya memberi besarnya. Tambahkan arahnya sebagai tanda: ke kanan pos
   }}
 />
 
-## Kelajuan Sama tetapi Kecepatan Berubah
+Batang di atas sumbu menunjukkan gerak ke kanan, sedangkan batang di bawah sumbu menunjukkan gerak ke kiri. Kelajuan sama dengan panjang batang dari nol saja.
 
-Putar bola dengan tali sepanjang <InlineMath math="0{,}8\text{ m}" /> sekali setiap <InlineMath math="0{,}8\text{ s}" />. Kelajuannya tetap <InlineMath math="6{,}28\text{ m/s}" />, tetapi **kecepatan sesaatnya selalu menyinggung lingkaran pada saat itu**, jadi arahnya terus berputar.
+### Kelajuan Sama tetapi Kecepatan Berubah
 
-<StringWhirlReleaseLab
-  period={0.8}
-  radius={0.8}
-  title={<>Lepaskan Talinya</>}
+Putar bola dengan tali sepanjang <InlineMath math="0{,}8\text{ m}" /> sekali setiap <InlineMath math="0{,}8\text{ s}" />. Kelajuannya tetap <InlineMath math="6{,}28\text{ m/s}" />, tetapi **kecepatan sesaatnya selalu menyinggung lingkaran**, jadi arahnya terus berputar. Geser sudut <InlineMath math="a" /> untuk melihat komponen <InlineMath math="v_x" /> dan <InlineMath math="v_y" /> berubah walau kelajuannya tetap.
+
+<MathVisual
+  title={<>Kecepatan Singgung pada Lintasan Lingkaran</>}
   description={
     <>
-      Panah hijau toska adalah kecepatan bola saat ini. Pilih titik lepasnya: bola akan pergi searah panah itu.
+      Lintasan melingkar berjari-jari <InlineMath math="0{,}8\text{ m}" /> dengan
+      periode <InlineMath math="0{,}8\text{ s}" />. Panah toska menunjukkan
+      kecepatan singgung pada sudut <InlineMath math="a" />.
     </>
   }
+  footer={<>Kelajuan bertahan di <InlineMath math="6{,}28\text{ m/s}" /> meski arah panah singgung terus berputar.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.6 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 330, value: 90, step: 30, label: "a" },
+    ],
+    objects: [
+      { id: "orbit", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 0.8 },
+      {
+        id: "string",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "0", y: "0" },
+          { x: "0.8*cos(a*pi/180)", y: "0.8*sin(a*pi/180)" },
+        ],
+      },
+      {
+        id: "tangent",
+        kind: "path",
+        appearance: "construction",
+        points: [
+          { x: "0.8*cos(a*pi/180)", y: "0.8*sin(a*pi/180)" },
+          { x: "0.8*cos(a*pi/180) - 0.55*sin(a*pi/180)", y: "0.8*sin(a*pi/180) + 0.55*cos(a*pi/180)" },
+        ],
+      },
+      { id: "ball", kind: "marker", appearance: "primary", x: "0.8*cos(a*pi/180)", y: "0.8*sin(a*pi/180)" },
+      {
+        id: "tip",
+        kind: "marker",
+        appearance: "construction",
+        x: "0.8*cos(a*pi/180) - 0.55*sin(a*pi/180)",
+        y: "0.8*sin(a*pi/180) + 0.55*cos(a*pi/180)",
+      },
+    ],
+    labels: [
+      {
+        key: "v-lbl",
+        objectId: "tip",
+        at: { x: "0.8*cos(a*pi/180) - 0.55*sin(a*pi/180)", y: "0.8*sin(a*pi/180) + 0.55*cos(a*pi/180)" },
+        placement: "above",
+      },
+    ],
+    readouts: [
+      { key: "speed", formula: "2*pi" },
+      { key: "vx", formula: "-2*pi*sin(a*pi/180)" },
+      { key: "vy", formula: "2*pi*cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    acceleration: <>Percepatan sentripetal</>,
-    chooseRelease: "Pilih titik lepas",
-    period: <>Waktu satu putaran</>,
-    radius: <>Panjang tali</>,
-    releases: {
-      east: <>Timur</>,
-      north: <>Utara</>,
-      west: <>Barat</>,
-      south: <>Selatan</>,
-    },
-    speed: <>Kelajuan</>,
-    viewLabel: "Bola diputar dengan tali dilihat dari atas",
+    a: <>Sudut <InlineMath math="a" /> (derajat)</>,
+    "v-lbl": <InlineMath math="\vec{v}" />,
+    speed: <>Kelajuan (m/s)</>,
+    vx: <>Komponen <InlineMath math="v_x" /> (m/s)</>,
+    vy: <>Komponen <InlineMath math="v_y" /> (m/s)</>,
   }}
 />
 
-Lepaskan di titik utara, maka bola melesat ke barat, yaitu arah kecepatannya pada saat itu. Dua saat dengan kelajuan yang sama tetap bisa punya kecepatan yang berbeda, dan arah yang kamu baca bergantung pada saatnya.
+Lepaskan di titik utara pada <InlineMath math="a=90^\circ" />, maka bola melesat ke barat, yaitu arah kecepatannya pada saat itu. Dua saat dengan kelajuan yang sama tetap bisa punya kecepatan yang berbeda.
 
-## Membandingkan Kelajuan Sesaat dan Kelajuan Rata-rata
+## Membedakan Kelajuan Sesaat dan Kelajuan Rata-Rata
+
+Kelajuan rata-rata meringkas seluruh perjalanan ke dalam satu angka, sedangkan kelajuan sesaat **dapat berubah naik turun tiap detik**. Saat berhenti di lampu merah atau jatuh bebas, keduanya hampir selalu berbeda.
+
+### Membandingkan Kelajuan Sesaat dan Rata-Rata
 
 Kelajuan rata-rata merangkum seluruh perjalanan dengan membagi jarak total oleh waktu total. Kelajuan sesaat menunjukkan kelajuan pada **satu waktu tertentu**.
 
@@ -181,54 +247,130 @@ Jika speedometer menunjukkan <InlineMath math="15 \text{ m/s}" /> sekarang, itu 
 
 Misalnya kendaraan sempat berhenti di lampu merah, lalu melaju cepat setelahnya. Kelajuan rata-ratanya bisa kecil karena seluruh waktu perjalanan ikut dihitung, sementara kelajuan sesaat saat kendaraan melaju bisa jauh lebih besar.
 
-## Bola Jatuh Tidak Pernah Punya Satu Kelajuan
+### Bola Jatuh Tidak Pernah Punya Satu Kelajuan
 
-Bola yang dijatuhkan dari <InlineMath math="1{,}8\text{ m}" /> jatuh selama <InlineMath math="0{,}6\text{ s}" />, jadi kelajuan rata-ratanya <InlineMath math="\frac{1{,}8}{0{,}6}=3\text{ m/s}" />. **Kelajuan sesaatnya tidak pernah bertahan di rata-rata itu**, karena nilainya bertambah <InlineMath math="1\text{ m/s}" /> di setiap kilatan.
+Bola yang dijatuhkan dari <InlineMath math="1{,}8\text{ m}" /> jatuh selama <InlineMath math="0{,}6\text{ s}" />, sehingga kelajuan rata-ratanya adalah:
 
-<StrobePhotoMotionLab
-  shot="drop"
-  title={<>Bola Jatuh, Kilatan demi Kilatan</>}
+<BlockMath math="\bar{v}=\frac{1{,}8\text{ m}}{0{,}6\text{ s}}=3\text{ m/s}" />
+
+**Kelajuan sesaatnya tidak pernah bertahan di rata-rata itu**, karena nilainya bertambah <InlineMath math="1\text{ m/s}" /> setiap sepersepuluh detik. Geser waktu jatuh <InlineMath math="d" /> untuk membandingkan garis menanjak ini dengan garis rata-ratanya.
+
+<MathVisual
+  title={<>Kelajuan Sesaat terhadap Rata-Rata Saat Jatuh</>}
   description={
     <>
-      Lampu berkedip setiap <InlineMath math="0{,}1\text{ s}" /> di ruang gelap, sementara rana kamera tetap terbuka. Setiap gambar bola adalah satu kilatan.
+      Kelajuan sesaat <InlineMath math="v(t)=10t" /> bola yang jatuh (oranye)
+      dibandingkan dengan rata-rata seluruh jatuhan <InlineMath math="3\text{ m/s}" />{" "}
+      (abu-abu).
     </>
   }
+  footer={<>Hanya pada tengah jatuhan <InlineMath math="0{,}3\text{ s}" /> kelajuan sesaat menyamai rata-ratanya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 0.7 }, y: { min: -0.5, max: 6.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.1, max: 0.6, value: 0.3, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "v-inst", kind: "function", appearance: "primary", formula: "10*x", domain: { min: 0, max: 0.6 } },
+      { id: "v-avg", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 0.6, y: 3 } },
+      { id: "cross", kind: "point", appearance: "secondary", at: { x: 0.3, y: 3 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "d", y: "0" },
+          { x: "d", y: "10*d" },
+        ],
+      },
+      { id: "now", kind: "marker", appearance: "answer", x: "d", y: "10*d" },
+    ],
+    labels: [
+      { key: "avg-lbl", objectId: "cross", at: { x: 0.3, y: 3 }, placement: "above-left" },
+      { key: "now-lbl", objectId: "now", at: { x: "d", y: "10*d" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "v-now", formula: "10*d" },
+      { key: "fall", formula: "5*d^2" },
+    ],
+  }}
   labels={{
-    airTime: <>Waktu di udara</>,
-    height: <>Tinggi awal</>,
-    interval: <>Selang antarkilatan</>,
-    outcome: <>Kelajuan saat menyentuh lantai</>,
-    viewLabel: "Foto stroboskop yang terbentuk kilatan demi kilatan",
+    d: <>Waktu jatuh <InlineMath math="d" /> (s)</>,
+    "avg-lbl": <InlineMath math="3\text{ m/s}" />,
+    "now-lbl": <InlineMath math="v(d)" />,
+    "v-now": <>Kelajuan sesaat (m/s)</>,
+    fall: <>Jarak jatuh (m)</>,
   }}
 />
 
-Jarak antargambar bertambah dari <InlineMath math="5\text{ cm}" /> sampai <InlineMath math="55\text{ cm}" />, dan bola menyentuh lantai dengan <InlineMath math="6\text{ m/s}" />, dua kali kelajuan rata-ratanya. Hanya pada satu saat, di tengah waktu jatuh yaitu <InlineMath math="0{,}3\text{ s}" />, kelajuan sesaatnya sama dengan rata-ratanya.
+Bola menyentuh lantai dengan <InlineMath math="6\text{ m/s}" />, dua kali kelajuan rata-ratanya. Hanya pada satu saat, di tengah waktu jatuh yaitu <InlineMath math="0{,}3\text{ s}" />, kelajuan sesaatnya sama dengan rata-ratanya.
 
-## Speedometer Mengukur Kelajuan Saat Kendaraan Melintas
+## Membaca Kelajuan di Jalan dan pada Roda
+
+Speedometer kendaraan dan spidometer sepeda mengubah gerak nyata menjadi **bacaan kelajuan sesaat**. Yang menentukan angkanya adalah seberapa cepat kendaraan melintas atau seberapa cepat roda berputar.
+
+### Speedometer Mengukur Kelajuan Saat Kendaraan Melintas
 
 Batas kelajuan <InlineMath math="80 \text{ km/jam}" /> berlaku pada kendaraan **setiap saat**. Alat pengukur di tepi jalan mengukur kelajuan sesaat ketika kendaraan melintas.
 
-Kendaraan yang melintas dengan kelajuan <InlineMath math="90 \text{ km/jam}" /> melewati batas tersebut, meskipun kelajuan rata-rata seluruh perjalanannya hanya <InlineMath math="60 \text{ km/jam}" />. Waktu berhenti di lampu merah menurunkan rata-rata perjalanan, tetapi tidak mengubah bacaan saat kendaraan melintas.
+Kendaraan yang melintas dengan kelajuan <InlineMath math="90 \text{ km/jam}" /> melewati batas itu, meskipun kelajuan rata-rata seluruh perjalanannya hanya <InlineMath math="60 \text{ km/jam}" />. Waktu berhenti di lampu merah menurunkan rata-rata perjalanan, tetapi tidak mengubah bacaan saat kendaraan melintas.
 
-## Cara Spidometer Sepeda Membaca Kelajuan
+### Cara Spidometer Sepeda Membaca Kelajuan
 
-Spidometer sepeda menghitung seberapa sering magnet di roda melewati sensor. Kelajuan suatu titik di roda adalah **keliling lingkarannya dibagi waktu satu putaran**. Pentil ban berada di pelek, <InlineMath math="0{,}311\text{ m}" /> dari poros.
+Spidometer sepeda menghitung seberapa sering magnet di roda melewati sensor. Kelajuan suatu titik di roda adalah **keliling lingkarannya dibagi waktu satu putaran**. Pentil ban berada di pelek pada <InlineMath math="0{,}311\text{ m}" />, sedangkan reflektor di tengah jari-jari pada <InlineMath math="0{,}155\text{ m}" />. Ubah periode putaran <InlineMath math="p" /> untuk membandingkan kedua kelajuannya.
 
-<BicycleWheelSpeedLab
-  title={<>Satu Roda, Dua Kelajuan</>}
+<MathVisual
+  title={<>Kelajuan Pentil Pelek vs Reflektor Jari-Jari</>}
   description={
     <>
-      Pentil dan reflektor di tengah jari-jari berputar dengan sudut yang sama setiap detik. Bandingkan panjang panah kecepatannya.
+      Kelajuan linear pentil (oranye, <InlineMath math="r=0{,}311\text{ m}" />)
+      dan reflektor (teal, <InlineMath math="r=0{,}155\text{ m}" />) terhadap
+      waktu satu putaran <InlineMath math="p" />.
     </>
   }
+  footer={<>Pada setiap periode putaran, pentil di pelek melaju dua kali kelajuan reflektor.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.3, max: 1.7 }, y: { min: 0, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0.4, max: 1.6, value: 1, step: 0.1, label: "p" },
+    ],
+    objects: [
+      { id: "valve-curve", kind: "function", appearance: "primary", formula: "2*pi*0.311/x", domain: { min: 0.4, max: 1.6 } },
+      { id: "ref-curve", kind: "function", appearance: "construction", formula: "2*pi*0.155/x", domain: { min: 0.4, max: 1.6 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "p", y: "0" },
+          { x: "p", y: "2*pi*0.311/p" },
+        ],
+      },
+      { id: "valve-dot", kind: "marker", appearance: "primary", x: "p", y: "2*pi*0.311/p" },
+      { id: "ref-dot", kind: "marker", appearance: "construction", x: "p", y: "2*pi*0.155/p" },
+    ],
+    labels: [
+      { key: "v-valve", objectId: "valve-dot", at: { x: "p", y: "2*pi*0.311/p" }, placement: "above-right" },
+      { key: "v-ref", objectId: "ref-dot", at: { x: "p", y: "2*pi*0.155/p" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "valve-v", formula: "2*pi*0.311/p" },
+      { key: "ref-v", formula: "2*pi*0.155/p" },
+      { key: "omega", formula: "2*pi/p" },
+    ],
+  }}
   labels={{
-    angularSpeed: <>Kelajuan sudut</>,
-    choosePeriod: "Pilih waktu satu putaran",
-    reflectorSpeed: <>Kelajuan reflektor</>,
-    valveAcceleration: <>Percepatan sentripetal pentil</>,
-    valveSpeed: <>Kelajuan pentil</>,
-    viewLabel: "Roda sepeda berputar di penyangga",
+    p: <>Periode <InlineMath math="p" /> (s)</>,
+    "v-valve": <>Pentil</>,
+    "v-ref": <>Reflektor</>,
+    "valve-v": <>Kelajuan pentil (m/s)</>,
+    "ref-v": <>Kelajuan reflektor (m/s)</>,
+    omega: <>Kelajuan sudut (rad/s)</>,
   }}
 />
 
-Pada satu putaran per detik, pentil bergerak <InlineMath math="2\pi(0{,}311)\approx1{,}95\text{ m/s}" />, sedangkan reflektor sekitar <InlineMath math="0{,}97\text{ m/s}" />. Pilih <InlineMath math="T=0{,}5\text{ s}" />, maka kedua kelajuan itu menjadi dua kali lipat, sementara setiap panah tetap menyinggung lingkarannya.
+Pada satu putaran per detik, pentil bergerak <InlineMath math="2\pi(0{,}311)\approx1{,}95\text{ m/s}" />, sedangkan reflektor sekitar <InlineMath math="0{,}97\text{ m/s}" />. Memotong periode menjadi <InlineMath math="p=0{,}5\text{ s}" /> menggandakan kedua kelajuan itu sekaligus.

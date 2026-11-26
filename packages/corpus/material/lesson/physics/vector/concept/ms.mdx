@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Konsep Vektor",
+  title: "Konsep Vektor dalam Fizik",
   description:
     "Vektor mempunyai magnitud dan arah, berbeza daripada skalar, dan mewakili kuantiti berarah dalam situasi fizik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
@@ -18,7 +18,9 @@ Magnitud dan arah ialah dua maklumat yang menerangkan sesuatu vektor. Kedua-duan
 
 Contohnya, sesaran <InlineMath math="5 \text{ m}" /> ke timur, daya <InlineMath math="20 \text{ N}" /> ke atas atau halaju <InlineMath math="12 \text{ m s}^{-1}" /> ke kanan. Jika arahnya tiada, maklumat fizik itu tidak lengkap.
 
-## Melihat Vektor pada Jambatan
+> Setiap vektor sentiasa membawa dua maklumat yang tidak boleh dipisahkan, iaitu magnitud dan arah. Apabila arahnya dibuang, ramalan fizik terus menjadi tidak lengkap.
+
+### Melihat Vektor pada Jambatan
 
 Dalam model ini, satu beban kecil bergerak di sepanjang lantai jambatan. Dua kabel menarik beban itu ke arah menara. Setiap tarikan kabel ialah vektor kerana tarikan itu mempunyai magnitud daya dan arah tarikan. Gerakkan beban itu dan perhatikan bagaimana **panjang dan arah anak panah** berubah bersama-sama.
 
@@ -30,6 +32,7 @@ Dalam model ini, satu beban kecil bergerak di sepanjang lantai jambatan. Dua kab
       kabel yang bertindak pada beban.
     </>
   }
+  footer={<>Alih beban dari tengah dan lihat kedua-dua anak panah kabel berubah saiz.</>}
   labels={{
     bridgeView: "Model jambatan kabel",
     chooseLoadPosition: "Gerakkan kedudukan beban",
@@ -46,9 +49,60 @@ Dalam model ini, satu beban kecil bergerak di sepanjang lantai jambatan. Dua kab
 
 Apabila beban tidak berada di tengah, tegangan dalam kedua-dua kabel tidak lagi sama. Arah setiap kabel menentukan tegangan yang perlu ditanggung oleh kabel itu untuk menahan beban.
 
+### Membaca Anak Panah Vektor
+
+Vektor selalunya dilukis sebagai anak panah. **Pangkal** anak panah ialah titik mula vektor, **hujung** anak panah menunjukkan arah, dan **panjang** anak panah mewakili magnitud vektor.
+
+Contohnya, magnitud daya yang berarah ke kanan boleh ditulis sebagai <InlineMath math="\lvert\vec{F}\rvert = 20 \text{ N}" />. Simbol <InlineMath math="\vec{F}" /> mewakili vektor daya, <InlineMath math="20 \text{ N}" /> ialah magnitudnya, dan "ke kanan" ialah arahnya.
+
+Vektor juga boleh ditulis dari satu titik ke titik lain, contohnya <InlineMath math="\overrightarrow{AB}" />. Maksudnya, vektor itu bermula di titik <InlineMath math="A" /> dan berakhir di titik <InlineMath math="B" />. Tanda nilai mutlak pada <InlineMath math="\lvert\overrightarrow{AB}\rvert" /> hanya menyatakan panjangnya tanpa memasukkan arah.
+
+Bayangkan sebuah dron yang terbang <InlineMath math="6\text{ m}" /> ke timur dan <InlineMath math="8\text{ m}" /> ke utara supaya berada <InlineMath math="10\text{ m}" /> secara mengufuk dari tapak, sambil naik setinggi <InlineMath math="h" />. Pada <InlineMath math="h = 4\text{ m}" />, anak panah lurus dari tapak ke dron panjangnya <InlineMath math="10.8\text{ m}" />, walaupun lintasan yang diterbangi ialah <InlineMath math="18\text{ m}" />.
+
+<MathVisual
+  title={<>Pangkal di Tapak dan Hujung di Dron</>}
+  description={<>Jarak mengufuk <InlineMath math="10\text{ m}" /> digabungkan dengan ketinggian naik <InlineMath math="h" /> untuk membandingkan lintasan dengan anak panah lurus.</>}
+  footer={<>Naikkan <InlineMath math="h" /> dan bandingkan panjang panah lurus dengan jumlah lintasan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 12 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0, max: 10, value: 4, step: 0.5, label: "height" },
+    ],
+    objects: [
+      { id: "ground-run", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "climb", kind: "path", appearance: "secondary", points: [{ x: "10", y: "0" }, { x: "10", y: "h" }] },
+      { id: "straight", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "10", y: "h" }] },
+      { id: "drone", kind: "marker", appearance: "answer", x: "10", y: "h" },
+    ],
+    labels: [
+      { key: "ground-run", objectId: "ground-run", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "drone", objectId: "drone", at: { x: "10", y: "h" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "path-len", formula: "14 + h" },
+      { key: "disp-len", formula: "sqrt(100 + h^2)" },
+    ],
+  }}
+  labels={{
+    height: <>Ketinggian naik <InlineMath math="h" /> (m)</>,
+    "ground-run": <InlineMath math="10\text{ m}" />,
+    drone: <InlineMath math="\Delta\vec r" />,
+    "path-len": <>Lintasan diterbangi (m)</>,
+    "disp-len": <>Jarak lurus (m)</>,
+  }}
+/>
+
+Walau setinggi mana pun kamu laraskan <InlineMath math="h" />, anak panah lurus dari pangkal ke hujung sentiasa lebih pendek daripada keseluruhan lintasan. Panjang anak panah hanya merakam jarak terus dari mula hingga akhir.
+
 ## Vektor dan Skalar
 
-Bukan semua kuantiti memerlukan arah. **Skalar** sudah cukup diterangkan dengan nilai dan unit. **Vektor** pula memerlukan nilai, unit dan arah.
+Bukan semua kuantiti memerlukan arah. **Skalar** sudah cukup diterangkan dengan nilai dan unit, manakala **vektor** sentiasa memerlukan nilai, unit dan arah supaya maksud fiziknya lengkap.
+
+### Membandingkan Laju dan Halaju
+
+Jadual di bawah mengasingkan kuantiti harian kepada **skalar dan vektor** mengikut sama ada arah mengubah maksud fiziknya.
 
 | Situasi | Kuantiti | Jenis |
 | :-------- | :------- | :--- |
@@ -61,20 +115,19 @@ Bukan semua kuantiti memerlukan arah. **Skalar** sudah cukup diterangkan dengan 
 
 Cara cepat untuk membezakannya begini: jika soalan "ke arah mana?" penting untuk memahami kuantiti itu, kemungkinan besar kamu sedang melihat vektor.
 
-Tanya diri kamu sama ada kuantiti itu memerlukan arah. Dua troli ini mempunyai laju yang sama, iaitu suatu skalar, tetapi halajunya bertentangan, kerana halaju ialah vektor dan menyimpan maklumat arah. Zum pada kedua-dua anak panah.
+Dua troli di bawah bergerak pada laju yang sama, iaitu suatu skalar, tetapi halajunya bertentangan kerana halaju ialah vektor yang membawa arah gerakan.
 
 <MathVisual
   title={<>Skalar atau Vektor</>}
-  description={<>Dua troli yang bergerak dengan laju yang sama dalam arah bertentangan.</>}
+  description={<>Dua troli yang bergerak dengan laju sama <InlineMath math="3\text{ m/s}" /> dalam arah bertentangan.</>}
+  footer={<>Panjang sama bererti laju sama, hujung bertentangan bererti halaju berbeza.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1.3, max: 2.3 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "east", kind: "segment", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 3, y: 1 } },
-      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 1 }, { x: 2.75, y: 1.125 }, { x: 2.75, y: 0.875 }] },
-      { id: "west", kind: "segment", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "west-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 3.25, y: 0.125 }, { x: 3.25, y: -0.125 }] },
+      { id: "east", kind: "vector", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 3, y: 1 } },
+      { id: "west", kind: "vector", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 3, y: 0 } },
       { id: "east-start", kind: "point", appearance: "primary", at: { x: 0, y: 1 } },
       { id: "west-start", kind: "point", appearance: "secondary", at: { x: 6, y: 0 } },
     ],
@@ -84,18 +137,21 @@ Tanya diri kamu sama ada kuantiti itu memerlukan arah. Dua troli ini mempunyai l
     ],
   }}
   labels={{
-    east: <InlineMath math="\text{laju }3\text{ m/s},\ v=+3\text{ m/s}" />,
-    west: <InlineMath math="\text{laju }3\text{ m/s},\ v=-3\text{ m/s}" />,
+    east: <InlineMath math="v=+3\text{ m/s}" />,
+    west: <InlineMath math="v=-3\text{ m/s}" />,
   }}
 />
 
-## Angin pada Peta Cuaca
+Meter laju kedua-dua troli menunjukkan <InlineMath math="3\text{ m/s}" />, namun satu bergerak ke kanan dan satu lagi ke kiri. Tanda positif atau negatif pada halaju mengekalkan perbezaan arah itu.
+
+### Angin pada Peta Cuaca
 
 Peta cuaca **memerlukan vektor untuk angin**: <InlineMath math="12\text{ m/s}" /> sahaja tidak memberitahu pelaut ke mana botnya hanyut. Putar arahnya dan perhatikan setiap anak panah pada peta turut berputar, sedangkan laju hanya menentukan panjangnya.
 
 <WindMapVectorLab
   title={<>Angin di Atas Pulau-pulau</>}
   description={<>Angin mantap <InlineMath math="12\text{ m/s}" /> bertiup ke arah <InlineMath math="30^\circ" /> dari timur. Ubah laju dan arahnya.</>}
+  footer={<>Laju mengubah panjang panah manakala sudut memusingkan semua panah peta.</>}
   angle={30}
   speed={12}
   labels={{
@@ -109,70 +165,58 @@ Peta cuaca **memerlukan vektor untuk angin**: <InlineMath math="12\text{ m/s}" /
   }}
 />
 
-## Membaca Anak Panah Vektor
-
-Vektor selalunya dilukis sebagai anak panah. **Pangkal** anak panah ialah titik mula vektor, **hujung** anak panah menunjukkan arah, dan **panjang** anak panah mewakili magnitud vektor.
-
-Contohnya, magnitud daya yang berarah ke kanan boleh ditulis sebagai <InlineMath math="\lvert\vec{F}\rvert = 20 \text{ N}" />. Simbol <InlineMath math="\vec{F}" /> mewakili vektor daya, <InlineMath math="20 \text{ N}" /> ialah magnitudnya, dan "ke kanan" ialah arahnya.
-
-Vektor juga boleh ditulis dari satu titik ke titik lain, contohnya <InlineMath math="\overrightarrow{AB}" />. Maksudnya, vektor itu bermula di titik <InlineMath math="A" /> dan berakhir di titik <InlineMath math="B" />.
-
-<InlineMath math="\lvert\overrightarrow{AB}\rvert" /> ialah panjang vektor dari <InlineMath math="A" /> ke <InlineMath math="B" />.
-
-Tanda nilai mutlak di sekeliling vektor menandakan magnitudnya. Arah tidak termasuk dalam nilai itu.
-
-## Dron Meninggalkan Tapaknya
-
-Anak panah ungu bermula di tapak, iaitu pangkalnya, dan berakhir di dron, iaitu hujungnya. Panjangnya ialah **jarak lurus dari tapak**, <InlineMath math="10.8\text{ m}" />, walaupun dron itu terbang <InlineMath math="18\text{ m}" /> di sepanjang lintasannya. Tekan main untuk melihatnya terbang.
-
-<DroneDisplacementLab
-  title={<>Pangkal di Tapak, Hujung di Dron</>}
-  description={<>Dron naik <InlineMath math="4\text{ m}" />, terbang <InlineMath math="6\text{ m}" /> ke timur, kemudian <InlineMath math="8\text{ m}" /> ke utara.</>}
-  hops={[
-    { east: 0, north: 0, up: 4 },
-    { east: 6, north: 0, up: 0 },
-    { east: 0, north: 8, up: 0 },
-  ]}
-  labels={{
-    chooseFactor: "Darabkan pelan penerbangan dengan k",
-    displacement: <>Sesaran</>,
-    path: <>Lintasan yang diterbangi</>,
-    size: <>Jarak dari tapak</>,
-    viewLabel: "Dron terbang dari tapaknya",
-  }}
-/>
+Mengubah arah angin terus mengubah komponen timur dan utara walaupun laju angin kekal <InlineMath math="12\text{ m/s}" />. Pelaut memerlukan vektor lengkap untuk mengemudi bot dengan selamat.
 
 ## Kesamaan Vektor Bergantung pada Magnitud dan Arah
 
-Dua vektor adalah sama jika kedua-duanya mempunyai <Highlight>magnitud yang sama dan arah yang sama</Highlight>. Kedudukan kedua-dua vektor itu boleh berbeza.
+Dua vektor hanya benar-benar sama jika kedua-duanya berkongsi <Highlight>magnitud yang sama dan arah yang sama</Highlight>, biarpun kedudukannya pada rajah berbeza.
 
 Dua daya <InlineMath math="15 \text{ N}" /> yang berarah ke kanan mempunyai nilai vektor yang sama, walaupun anak panahnya dilukis di tempat yang berbeza. Titik tindakan daya mempengaruhi tork pada jasad tegar. Jika titik itu dialihkan, tork boleh berubah walaupun magnitud dan arah daya kekal sama.
 
 Sebaliknya, daya <InlineMath math="15 \text{ N}" /> ke kanan dan daya <InlineMath math="15 \text{ N}" /> ke kiri bukan vektor yang sama. Magnitudnya sama, tetapi arahnya bertentangan.
 
-## Dua Pasukan pada Satu Tali
+Bayangkan dua pasukan tarik tali menarik bertentangan arah dengan daya <InlineMath math="400\text{ N}" /> seorang. Pasukan kiri kekal dengan <InlineMath math="3" /> penarik (<InlineMath math="-1200\text{ N}" />), manakala pasukan kanan mempunyai <InlineMath math="p" /> penarik. Pada <InlineMath math="p = 3" />, kedua-dua daya bermagnitud <InlineMath math="1200\text{ N}" /> tetapi saling membatalkan kerana arahnya bertentangan.
 
-Kedua-dua pasukan bermula dengan tiga orang penarik yang masing-masing menarik <InlineMath math="400\text{ N}" />, jadi kedua-dua daya bermagnitud <InlineMath math="1200\text{ N}" />. Namun kedua-duanya bukan vektor yang sama, kerana **arahnya bertentangan**, dan bersama-sama memberikan daya bersih <InlineMath math="0\text{ N}" />. Tambah seorang penarik pada satu pihak dan lihat tali bergerak.
-
-<TugOfWarForceLab
-  title={<>Magnitud Sama, Tarikan Bertentangan</>}
-  description={<>Setiap penarik menarik dengan <InlineMath math="400\text{ N}" />. Ubah saiz setiap pasukan.</>}
-  left={3}
-  pull={400}
-  right={3}
+<MathVisual
+  title={<>Magnitud Sama dengan Tarikan Bertentangan</>}
+  description={<>Daya bersih <InlineMath math="\Sigma F = 400p - 1200" /> dalam newton melawan bilangan penarik kanan <InlineMath math="p" /> menentang <InlineMath math="1200\text{ N}" /> di kiri.</>}
+  footer={<>Pada <InlineMath math="p=3" /> kedua-dua tarikan ialah <InlineMath math="1200\text{ N}" /> tetapi jumlahnya <InlineMath math="0\text{ N}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 5.5 }, y: { min: -1000, max: 1000 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 1, max: 5, value: 3, step: 1, label: "pullers" },
+    ],
+    objects: [
+      { id: "zero-line", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "net-curve", kind: "function", appearance: "primary", formula: "400*x - 1200", domain: { min: 1, max: 5 } },
+      { id: "guide", kind: "path", appearance: "construction", points: [{ x: "p", y: "0" }, { x: "p", y: "400*p - 1200" }] },
+      { id: "net-pt", kind: "marker", appearance: "answer", x: "p", y: "400*p - 1200" },
+    ],
+    labels: [
+      { key: "net-pt", objectId: "net-pt", at: { x: "p", y: "400*p - 1200" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "right-pull", formula: "400*p" },
+      { key: "net-force", formula: "400*p - 1200" },
+    ],
+  }}
   labels={{
-    left: <>Pasukan kiri <InlineMath math="\vec F_L" /></>,
-    leftCount: <>Penarik di sebelah kiri</>,
-    leftName: "Penarik di sebelah kiri",
-    net: <>Daya bersih <InlineMath math="\Sigma F" /></>,
-    right: <>Pasukan kanan <InlineMath math="\vec F_R" /></>,
-    rightCount: <>Penarik di sebelah kanan</>,
-    rightName: "Penarik di sebelah kanan",
-    viewLabel: "Lumba tarik tali ketika matahari terbenam",
+    pullers: <>Penarik kanan <InlineMath math="p" /></>,
+    "net-pt": <InlineMath math="\Sigma F" />,
+    "right-pull": <>Daya kanan (N)</>,
+    "net-force": <>Daya bersih (N)</>,
   }}
 />
 
+Apabila penanda berada pada garis sifar di <InlineMath math="p = 3" />, magnitud yang sama dalam arah bertentangan menghasilkan pembatalan dan bukannya penggandaan. Tambah atau kurangkan seorang penarik sahaja sudah menggerakkan tali.
+
 ## Jarak dan Sesaran Mengukur Kuantiti Berbeza
+
+Laluan yang berbelok mencampurkan setiap langkah menjadi **jarak** skalar, manakala **sesaran** ialah satu anak panah vektor lurus dari kedudukan mula ke kedudukan akhir. Membandingkan kedua-duanya secara langsung membezakan kedua-dua konsep itu dengan jelas.
+
+### Laluan Bersudut Tegak dan Sesaran
 
 Seseorang berjalan <InlineMath math="4 \text{ m}" /> ke timur, kemudian <InlineMath math="3 \text{ m}" /> ke utara. Jarak yang dilalui ialah **jumlah panjang laluan**:
 
@@ -191,22 +235,18 @@ Untuk arah, ukur sudut dari timur ke arah utara. Nisbah sisi bertentangan kepada
 
 Jaraknya ialah <InlineMath math="7 \text{ m}" />. Sesaran pula mempunyai magnitud <InlineMath math="5 \text{ m}" /> dan berarah kira-kira <InlineMath math="36.9^\circ" /> dari timur ke arah utara.
 
-Dalam rajah di bawah, kamu berjalan sejauh <InlineMath math="7\text{ m}" />, tetapi anak panah magenta, iaitu sesaran, hanya sepanjang <InlineMath math="5\text{ m}" /> dan berarah kira-kira <InlineMath math="36.9^\circ" /> dari timur ke arah utara.
-
 <MathVisual
   title={<>Berjalan <InlineMath math="7\text{ m}" />, Beranjak <InlineMath math="5\text{ m}" /></>}
-  description={<><InlineMath math="4\text{ m}" /> ke timur, kemudian <InlineMath math="3\text{ m}" /> ke utara. Satu petak grid ialah <InlineMath math="1\text{ m}" />.</>}
+  description={<>Langkah <InlineMath math="4\text{ m}" /> ke timur dan <InlineMath math="3\text{ m}" /> ke utara menghasilkan sesaran <InlineMath math="5\text{ m}" /> terus dalam meter.</>}
+  footer={<>Dua ruas jalan berjumlah <InlineMath math="7\text{ m}" />, manakala panah lurusnya <InlineMath math="5\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "east", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
-      { id: "east-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: 0 }, { x: 3.75, y: 0.125 }, { x: 3.75, y: -0.125 }] },
-      { id: "north", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 3 } },
-      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 3 }, { x: 4.125, y: 2.75 }, { x: 3.875, y: 2.75 }] },
-      { id: "walk", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
-      { id: "walk-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) + ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) + ((0.25 / 2) * 4) / Math.hypot(4, 3) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) - ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) - ((0.25 / 2) * 4) / Math.hypot(4, 3) }] },
+      { id: "east", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "north", kind: "vector", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "walk", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
     ],
     labels: [
       { key: "east", objectId: "east", at: { x: 2, y: 0 }, placement: "below" },
@@ -221,24 +261,45 @@ Dalam rajah di bawah, kamu berjalan sejauh <InlineMath math="7\text{ m}" />, tet
   }}
 />
 
-## Berjalan Melalui Bandar
+Segi tiga bersudut tegak itu menampakkan perbezaannya serta-merta: jarak menjumlahkan dua sisi tegak lurus, manakala sesaran ialah hipotenus yang menyambungkan mula ke akhir.
 
-Pejalan kaki itu mengikut jalan <InlineMath math="300\text{ m}" /> ke timur dan kemudian <InlineMath math="400\text{ m}" /> ke utara, jadi jaraknya <InlineMath math="700\text{ m}" />. Sesarannya ialah **anak panah ungu yang lurus dari mula hingga akhir**, hanya sepanjang <InlineMath math="500\text{ m}" />.
+### Perjalanan Merentasi Blok Bandar
 
-<CityWalkDisplacementLab
+Pada jalan bandar yang lebih panjang, jurang antara jarak dengan sesaran semakin ketara. Seorang pejalan kaki mengikut jalan <InlineMath math="300\text{ m}" /> ke timur lalu <InlineMath math="b" /> meter ke utara. Pada <InlineMath math="b = 400\text{ m}" />, jarak yang dilalui ialah <InlineMath math="700\text{ m}" />, tetapi **anak panah sesaran lurus dari mula hingga akhir** hanya sepanjang <InlineMath math="500\text{ m}" />.
+
+<MathVisual
   title={<>Jarak yang Dilalui dan Sesaran</>}
-  description={<>Berjalan pada <InlineMath math="1.25\text{ m/s}" /> di sepanjang dua jalan di bandar.</>}
-  legs={[
-    { east: 300, north: 0 },
-    { east: 0, north: 400 },
-  ]}
-  pace={1.25}
+  description={<>Perjalanan bandar sejauh <InlineMath math="300\text{ m}" /> ke timur diikuti laluan utara <InlineMath math="b" /> yang boleh dilaraskan dalam meter.</>}
+  footer={<>Laras laluan utara <InlineMath math="b" /> dan lihat jarak sentiasa melebihi sesaran.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -50, max: 500 }, y: { min: -50, max: 650 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 100, max: 600, value: 400, step: 50, label: "north-leg" },
+    ],
+    objects: [
+      { id: "street-east", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 300, y: 0 } },
+      { id: "street-north", kind: "path", appearance: "secondary", points: [{ x: "300", y: "0" }, { x: "300", y: "b" }] },
+      { id: "net-disp", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "300", y: "b" }] },
+      { id: "finish", kind: "marker", appearance: "answer", x: "300", y: "b" },
+    ],
+    labels: [
+      { key: "street-east", objectId: "street-east", at: { x: 150, y: 0 }, placement: "below" },
+      { key: "finish", objectId: "finish", at: { x: "300", y: "b" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "walked", formula: "300 + b" },
+      { key: "straight", formula: "sqrt(90000 + b^2)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Laju purata</>,
-    averageVelocity: <>Halaju purata</>,
-    displacement: <>Sesaran</>,
-    distance: <>Jarak yang dilalui</>,
-    time: <>Masa</>,
-    viewLabel: "Perjalanan melalui bandar dilihat dari atas",
+    "north-leg": <>Laluan utara <InlineMath math="b" /> (m)</>,
+    "street-east": <InlineMath math="300\text{ m}" />,
+    finish: <InlineMath math="\Delta\vec r" />,
+    walked: <>Jarak dilalui (m)</>,
+    straight: <>Sesaran (m)</>,
   }}
 />
+
+Apabila <InlineMath math="b" /> bertambah, kedua-dua bacaan meningkat, namun anak panah lurus kekal lebih pendek daripada laluan dua jalan kerana hipotenus segi tiga sentiasa lebih pendek daripada hasil tambah dua sisi tegaknya.

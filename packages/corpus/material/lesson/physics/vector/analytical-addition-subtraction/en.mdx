@@ -21,26 +21,22 @@ The method is to resolve every vector into [vector components](/en/subjects/phys
 
 > In the analytical method, add the vector components on each axis. The arrow lengths alone do not give the sum.
 
-Split every vector into its x and y parts, add the parts on each axis, then rebuild the resultant. The teal components of the sum are just the x parts added and the y parts added. Zoom in on each step.
+Split every vector into its <InlineMath math="x" /> and <InlineMath math="y" /> parts, add the parts on each axis, then rebuild the resultant. The teal components of the sum are the added <InlineMath math="x" /> parts and the added <InlineMath math="y" /> parts. Zoom in on each step.
 
 <MathVisual
   title={<>The Component Method in Four Steps</>}
-  description={<>Two vectors joined head to tail (orange, violet), the components of their sum (teal) and the resultant (fuchsia).</>}
+  description={<>Two vectors joined head to tail (orange, violet), the components of their sum (teal), and the resultant (fuchsia).</>}
+  footer={<>Adding <InlineMath math="x" /> parts and <InlineMath math="y" /> parts builds the right triangle of <InlineMath math="\vec R" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 4.8 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 1 } },
-      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 1 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 1) + ((0.25 / 2) * -1) / Math.hypot(3, 1), y: 1 - (0.25 * 1) / Math.hypot(3, 1) + ((0.25 / 2) * 3) / Math.hypot(3, 1) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 1) - ((0.25 / 2) * -1) / Math.hypot(3, 1), y: 1 - (0.25 * 1) / Math.hypot(3, 1) - ((0.25 / 2) * 3) / Math.hypot(3, 1) }] },
-      { id: "b", kind: "segment", appearance: "secondary", from: { x: 3, y: 1 }, to: { x: 4, y: 4 } },
-      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 4 }, { x: 4 - (0.25 * 1) / Math.hypot(1, 3) + ((0.25 / 2) * -3) / Math.hypot(1, 3), y: 4 - (0.25 * 3) / Math.hypot(1, 3) + ((0.25 / 2) * 1) / Math.hypot(1, 3) }, { x: 4 - (0.25 * 1) / Math.hypot(1, 3) - ((0.25 / 2) * -3) / Math.hypot(1, 3), y: 4 - (0.25 * 3) / Math.hypot(1, 3) - ((0.25 / 2) * 1) / Math.hypot(1, 3) }] },
-      { id: "rx", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
-      { id: "rx-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: 0 }, { x: 3.75, y: 0.125 }, { x: 3.75, y: -0.125 }] },
-      { id: "ry", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: 4 } },
-      { id: "ry-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: 4 }, { x: 4.125, y: 3.75 }, { x: 3.875, y: 3.75 }] },
-      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 4 } },
-      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 4 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 4) + ((0.25 / 2) * -4) / Math.hypot(4, 4), y: 4 - (0.25 * 4) / Math.hypot(4, 4) + ((0.25 / 2) * 4) / Math.hypot(4, 4) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 4) - ((0.25 / 2) * -4) / Math.hypot(4, 4), y: 4 - (0.25 * 4) / Math.hypot(4, 4) - ((0.25 / 2) * 4) / Math.hypot(4, 4) }] },
+      { id: "a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 1 } },
+      { id: "b", kind: "vector", appearance: "secondary", from: { x: 3, y: 1 }, to: { x: 4, y: 4 } },
+      { id: "rx", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "ry", kind: "vector", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "r", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 4 } },
     ],
     labels: [
       { key: "a", objectId: "a", at: { x: 1.5, y: 0.5 }, placement: "below-right" },
@@ -53,33 +49,58 @@ Split every vector into its x and y parts, add the parts on each axis, then rebu
   labels={{
     a: <InlineMath math="\vec A=(3,1)" />,
     b: <InlineMath math="\vec B=(1,3)" />,
-    rx: <InlineMath math="R_x=3+1=4" />,
-    ry: <InlineMath math="R_y=1+3=4" />,
-    r: <InlineMath math="R=\sqrt{4^2+4^2}\approx5.66,\ \theta=45^\circ" />,
+    rx: <InlineMath math="R_x=4" />,
+    ry: <InlineMath math="R_y=4" />,
+    r: <InlineMath math="R\approx5.66,\ \theta=45^\circ" />,
   }}
 />
 
-## Components on a Force Table
+Notice that the teal legs meet at a right angle at <InlineMath math="(4,0)" />. Once you know <InlineMath math="R_x" /> and <InlineMath math="R_y" />, Pythagoras and inverse tangent recover the exact length and direction of the resultant.
 
-Two strings pull with <InlineMath math="1.96\text{ N}" /> at <InlineMath math="30^\circ" /> and <InlineMath math="2.94\text{ N}" /> at <InlineMath math="120^\circ" />. The card **adds their components** along <InlineMath math="0^\circ" /> and <InlineMath math="90^\circ" />, <InlineMath math="0.23\text{ N}" /> and <InlineMath math="3.53\text{ N}" />, then rebuilds the resultant, <InlineMath math="3.53\text{ N}" /> at <InlineMath math="86.3^\circ" />. Turn the second pulley and redo the sum.
+## Adding Two Pulled Strings by Components
 
-<ForceTableResultantLab
+Two strings pull with <InlineMath math="1.96\text{ N}" /> at <InlineMath math="30^\circ" /> and <InlineMath math="2.94\text{ N}" /> at an adjustable angle <InlineMath math="a" />. At <InlineMath math="a = 120^\circ" />, **adding their components** along <InlineMath math="0^\circ" /> and <InlineMath math="90^\circ" /> gives <InlineMath math="0.23\text{ N}" /> and <InlineMath math="3.53\text{ N}" />, which rebuild to a <InlineMath math="3.53\text{ N}" /> resultant at <InlineMath math="86.3^\circ" />. Slide <InlineMath math="a" /> and watch both component sums update.
+
+<MathVisual
   title={<>Adding Pulls by Components</>}
-  description={<>Hangers of <InlineMath math="200\text{ g}" /> and <InlineMath math="300\text{ g}" />. Turn the second pulley.</>}
-  pulls={[
-    { angle: 30, mass: 200 },
-    { angle: 120, mass: 300 },
-  ]}
+  description={<>First force <InlineMath math="1.96\text{ N}" /> at <InlineMath math="30^\circ" /> plus a <InlineMath math="2.94\text{ N}" /> force at angle <InlineMath math="a" /> in newtons.</>}
+  footer={<>Turn angle <InlineMath math="a" /> to see <InlineMath math="R_x" /> shrink or flip while <InlineMath math="R_y" /> rises or falls.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 5 }, y: { min: -0.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 180, value: 120, step: 5, label: "angle" },
+    ],
+    objects: [
+      { id: "f1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1.96 * Math.cos(Math.PI / 6), y: 1.96 * Math.sin(Math.PI / 6) } },
+      { id: "f2", kind: "path", appearance: "secondary", points: [{ x: "1.96*cos(pi/6)", y: "1.96*sin(pi/6)" }, { x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "1.96*sin(pi/6) + 2.94*sin(a*pi/180)" }] },
+      { id: "rx-leg", kind: "path", appearance: "construction", points: [{ x: "0", y: "0" }, { x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "0" }] },
+      { id: "ry-leg", kind: "path", appearance: "construction", points: [{ x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "0" }, { x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "1.96*sin(pi/6) + 2.94*sin(a*pi/180)" }] },
+      { id: "res", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "1.96*sin(pi/6) + 2.94*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "1.96*sin(pi/6) + 2.94*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 0.85, y: 0.49 }, placement: "below-right" },
+      { key: "res", objectId: "tip", at: { x: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)", y: "1.96*sin(pi/6) + 2.94*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "sum-x", formula: "1.96*cos(pi/6) + 2.94*cos(a*pi/180)" },
+      { key: "sum-y", formula: "1.96*sin(pi/6) + 2.94*sin(a*pi/180)" },
+      { key: "mag", formula: "sqrt((1.96*cos(pi/6) + 2.94*cos(a*pi/180))^2 + (1.96*sin(pi/6) + 2.94*sin(a*pi/180))^2)" },
+    ],
+  }}
   labels={{
-    angle: <>Angle of the last string</>,
-    angleName: "Angle of the last string",
-    direction: <>Direction of <InlineMath math="\vec R" /></>,
-    resultant: <>Resultant <InlineMath math="R" /></>,
-    sumX: <>Sum along <InlineMath math="0^\circ" /></>,
-    sumY: <>Sum along <InlineMath math="90^\circ" /></>,
-    viewLabel: "Force table with hanging masses",
+    angle: <>Second pull angle <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    f1: <InlineMath math="\vec F_1" />,
+    res: <InlineMath math="\vec R" />,
+    "sum-x": <><InlineMath math="R_x" /> (N)</>,
+    "sum-y": <><InlineMath math="R_y" /> (N)</>,
+    mag: <><InlineMath math="R" /> (N)</>,
   }}
 />
+
+When the second pull swings past <InlineMath math="90^\circ" />, its horizontal component turns negative and partially cancels the first pull. Adding components keeps that sign change automatic without redrawing the scale figure.
 
 ## Steps for Vector Addition
 
@@ -111,6 +132,7 @@ Pilots **add vectors by components every day**. With the nose on <InlineMath mat
 <AircraftCrosswindLab
   title={<>Ground Velocity by Components</>}
   description={<>Airspeed <InlineMath math="400\text{ km/h}" />, wind <InlineMath math="300\text{ km/h}" /> toward the east. Turn the nose.</>}
+  footer={<>Turning the nose changes airspeed components while the wind stays fixed.</>}
   airspeed={400}
   heading={30}
   toward={90}
@@ -125,6 +147,8 @@ Pilots **add vectors by components every day**. With the nose on <InlineMath mat
     viewLabel: "Airliner over farmland in a crosswind",
   }}
 />
+
+As you rotate the heading into the wind, the east components partially oppose each other and ground speed drops. Turning with the wind makes both east components reinforce each other instead.
 
 A person walks in two stages. The first stage is equivalent to <InlineMath math="80\text{ m}" /> east and <InlineMath math="60\text{ m}" /> north. The second stage is equivalent to <InlineMath math="120\text{ m}" /> east and <InlineMath math="90\text{ m}" /> north.
 
@@ -156,75 +180,117 @@ The resultant direction is:
 
 The total displacement is <InlineMath math="250\text{ m}" /> at <InlineMath math="36.9^\circ" /> north of east.
 
-Add the stages component by component and the resultant drops out: <InlineMath math="R_x=80+120=200\text{ m}" /> and <InlineMath math="R_y=60+90=150\text{ m}" />. The fuchsia arrow is that sum, <InlineMath math="250\text{ m}" /> at about <InlineMath math="36.9^\circ" /> north of east.
+Adding the east components gives <InlineMath math="200\text{ m}" /> and adding the north components gives <InlineMath math="150\text{ m}" />. The fuchsia arrow below shows that combined displacement directly in meters.
 
 <MathVisual
   title={<>Two Stages Added by Components</>}
-  description={<>Stage displacements <InlineMath math="(80, 60)" /> m and <InlineMath math="(120, 90)" /> m placed head to tail. One grid step is <InlineMath math="50\text{ m}" />.</>}
+  description={<>Stage displacements <InlineMath math="(80, 60)\text{ m}" /> and <InlineMath math="(120, 90)\text{ m}" /> placed head to tail directly in meters.</>}
+  footer={<>Both stages share the same slope, so the resultant runs straight along them.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 4 } },
+    frame: { kind: "cartesian", x: { min: -15, max: 235 }, y: { min: -15, max: 175 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "first", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1.6, y: 1.2 } },
-      { id: "first-head", kind: "polygon", appearance: "primary", vertices: [{ x: 1.6, y: 1.2 }, { x: 1.6 - (0.25 * 1.6) / Math.hypot(1.6, 1.2) + ((0.25 / 2) * -1.2) / Math.hypot(1.6, 1.2), y: 1.2 - (0.25 * 1.2) / Math.hypot(1.6, 1.2) + ((0.25 / 2) * 1.6) / Math.hypot(1.6, 1.2) }, { x: 1.6 - (0.25 * 1.6) / Math.hypot(1.6, 1.2) - ((0.25 / 2) * -1.2) / Math.hypot(1.6, 1.2), y: 1.2 - (0.25 * 1.2) / Math.hypot(1.6, 1.2) - ((0.25 / 2) * 1.6) / Math.hypot(1.6, 1.2) }] },
-      { id: "second", kind: "segment", appearance: "secondary", from: { x: 1.6, y: 1.2 }, to: { x: 4, y: 3 } },
-      { id: "second-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 2.4) / Math.hypot(2.4, 1.8) + ((0.25 / 2) * -1.8) / Math.hypot(2.4, 1.8), y: 3 - (0.25 * 1.8) / Math.hypot(2.4, 1.8) + ((0.25 / 2) * 2.4) / Math.hypot(2.4, 1.8) }, { x: 4 - (0.25 * 2.4) / Math.hypot(2.4, 1.8) - ((0.25 / 2) * -1.8) / Math.hypot(2.4, 1.8), y: 3 - (0.25 * 1.8) / Math.hypot(2.4, 1.8) - ((0.25 / 2) * 2.4) / Math.hypot(2.4, 1.8) }] },
-      { id: "result", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
-      { id: "result-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) + ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) + ((0.25 / 2) * 4) / Math.hypot(4, 3) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) - ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) - ((0.25 / 2) * 4) / Math.hypot(4, 3) }] },
+      { id: "first", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 80, y: 60 } },
+      { id: "second", kind: "vector", appearance: "secondary", from: { x: 80, y: 60 }, to: { x: 200, y: 150 } },
+      { id: "result", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 200, y: 150 } },
     ],
     labels: [
-      { key: "first", objectId: "first", at: { x: 0.8, y: 0.6 }, placement: "below-right" },
-      { key: "second", objectId: "second", at: { x: 2.8, y: 2.1 }, placement: "below-right" },
-      { key: "result", objectId: "result", at: { x: 2, y: 1.5 }, placement: "above-left" },
+      { key: "first", objectId: "first", at: { x: 40, y: 30 }, placement: "below-right" },
+      { key: "second", objectId: "second", at: { x: 140, y: 105 }, placement: "below-right" },
+      { key: "result", objectId: "result", at: { x: 100, y: 75 }, placement: "above-left" },
     ],
   }}
   labels={{
-    first: <InlineMath math="(80,60)" />,
-    second: <InlineMath math="(120,90)" />,
-    result: <InlineMath math="R=\sqrt{200^2+150^2}=250\text{ m}" />,
+    first: <InlineMath math="(80,60)\text{ m}" />,
+    second: <InlineMath math="(120,90)\text{ m}" />,
+    result: <InlineMath math="R=250\text{ m}" />,
   }}
 />
 
-A ferry makes the same kind of two stage trip: <InlineMath math="6\text{ km}" /> due east, then <InlineMath math="10\text{ km}" /> on a bearing of <InlineMath math="30^\circ" />. The east parts add to <InlineMath math="11\text{ km}" /> and the north parts to <InlineMath math="8.66\text{ km}" />, so it ends <InlineMath math="14\text{ km}" /> from the harbour.
+Because both stages have the same ratio of north to east components, they line up along one ray and their lengths add straight to <InlineMath math="250\text{ m}" />.
 
-<ShipBearingComponentLab
+A ferry makes a two-leg trip in different directions: <InlineMath math="6\text{ km}" /> due east, then <InlineMath math="10\text{ km}" /> on a bearing <InlineMath math="b" /> measured clockwise from north. At <InlineMath math="b = 30^\circ" />, the east parts add to <InlineMath math="11\text{ km}" /> and the north parts to <InlineMath math="8.66\text{ km}" />, placing the ferry <InlineMath math="14\text{ km}" /> from the harbour.
+
+<MathVisual
   title={<>A Ferry in Two Legs</>}
-  description={<>First leg <InlineMath math="6\text{ km}" /> east, second leg <InlineMath math="10\text{ km}" />. Turn the second bearing.</>}
-  courses={[
-    { bearing: 90, distance: 6 },
-    { bearing: 30, distance: 10 },
-  ]}
+  description={<>First leg <InlineMath math="6\text{ km}" /> east, second leg <InlineMath math="10\text{ km}" /> at bearing <InlineMath math="b" /> clockwise from north.</>}
+  footer={<>Turn bearing <InlineMath math="b" /> to see the east and north totals update together.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 18.5 }, y: { min: -6.5, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 0, max: 120, value: 30, step: 5, label: "bearing" },
+    ],
+    objects: [
+      { id: "leg-one", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "leg-two", kind: "path", appearance: "secondary", points: [{ x: "6", y: "0" }, { x: "6 + 10*sin(b*pi/180)", y: "10*cos(b*pi/180)" }] },
+      { id: "harbour-net", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "6 + 10*sin(b*pi/180)", y: "10*cos(b*pi/180)" }] },
+      { id: "ship-end", kind: "marker", appearance: "answer", x: "6 + 10*sin(b*pi/180)", y: "10*cos(b*pi/180)" },
+    ],
+    labels: [
+      { key: "leg-one", objectId: "leg-one", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "ship-end", objectId: "ship-end", at: { x: "6 + 10*sin(b*pi/180)", y: "10*cos(b*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "east-sum", formula: "6 + 10*sin(b*pi/180)" },
+      { key: "north-sum", formula: "10*cos(b*pi/180)" },
+      { key: "harbour-dist", formula: "sqrt((6 + 10*sin(b*pi/180))^2 + (10*cos(b*pi/180))^2)" },
+    ],
+  }}
   labels={{
-    bearing: <>Bearing of the last leg</>,
-    bearingName: "Bearing of the last leg",
-    direction: <>Bearing from the harbour</>,
-    distance: <>Distance from the harbour</>,
-    east: <>East component</>,
-    north: <>North component</>,
-    viewLabel: "Ferry sailing from a harbour",
+    bearing: <>Second leg bearing <InlineMath math="b" /> (<InlineMath math="^\circ" />)</>,
+    "leg-one": <InlineMath math="6\text{ km}" />,
+    "ship-end": <InlineMath math="\vec R" />,
+    "east-sum": <>East total (km)</>,
+    "north-sum": <>North total (km)</>,
+    "harbour-dist": <>Distance from harbour (km)</>,
   }}
 />
+
+Even when the two legs point in different directions, adding east with east and north with north gives the exact harbour distance with one square root.
 
 ### Two Stages in Space
 
-The same steps work in space **with a third component**. A drone climbs to <InlineMath math="3\text{ m}" /> while flying <InlineMath math="4\text{ m}" /> east, then flies <InlineMath math="12\text{ m}" /> north: the sums are <InlineMath math="4\text{ m}" />, <InlineMath math="12\text{ m}" /> and <InlineMath math="3\text{ m}" />, and the displacement is <InlineMath math="13\text{ m}" />.
+The same steps work in space **with a third component**. A drone climbs <InlineMath math="h" /> meters while flying <InlineMath math="4\text{ m}" /> east, then flies <InlineMath math="12\text{ m}" /> north. Along the ground those two horizontal stages combine to <InlineMath math="\sqrt{4^2+12^2}\approx12.65\text{ m}" />. At <InlineMath math="h = 3\text{ m}" />, adding the vertical component gives a total displacement of <InlineMath math="13\text{ m}" />.
 
-<DroneDisplacementLab
-  title={<>Adding Two Flight Stages</>}
-  description={<>Stage one rises <InlineMath math="3\text{ m}" /> over <InlineMath math="4\text{ m}" /> east. Stage two goes <InlineMath math="12\text{ m}" /> north.</>}
-  hops={[
-    { east: 4, north: 0, up: 3 },
-    { east: 0, north: 12, up: 0 },
-  ]}
+<MathVisual
+  title={<>Adding a Vertical Stage in Space</>}
+  description={<>Horizontal ground displacement <InlineMath math="\sqrt{160}\text{ m}" /> paired with adjustable climb <InlineMath math="h" /> in meters.</>}
+  footer={<>Raising climb <InlineMath math="h" /> adds <InlineMath math="h^2" /> under the square root for <InlineMath math="R" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 15 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0, max: 10, value: 3, step: 0.5, label: "climb" },
+    ],
+    objects: [
+      { id: "ground", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(160), y: 0 } },
+      { id: "climb-leg", kind: "path", appearance: "secondary", points: [{ x: "sqrt(160)", y: "0" }, { x: "sqrt(160)", y: "h" }] },
+      { id: "space-res", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "sqrt(160)", y: "h" }] },
+      { id: "drone-pos", kind: "marker", appearance: "answer", x: "sqrt(160)", y: "h" },
+    ],
+    labels: [
+      { key: "ground", objectId: "ground", at: { x: 6.3, y: 0 }, placement: "below" },
+      { key: "drone-pos", objectId: "drone-pos", at: { x: "sqrt(160)", y: "h" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "climb-out", formula: "h" },
+      { key: "total-r", formula: "sqrt(160 + h^2)" },
+    ],
+  }}
   labels={{
-    chooseFactor: "Multiply the flight plan by k",
-    displacement: <>Displacement</>,
-    path: <>Path flown</>,
-    size: <>Distance from the pad</>,
-    viewLabel: "Drone flying from its pad",
+    climb: <>Climb <InlineMath math="h" /> (m)</>,
+    ground: <InlineMath math="\sqrt{4^2+12^2}\text{ m}" />,
+    "drone-pos": <InlineMath math="\vec R" />,
+    "climb-out": <>Vertical component (m)</>,
+    "total-r": <>Space displacement <InlineMath math="R" /> (m)</>,
   }}
 />
+
+Adding a third axis changes nothing about the rule: sum along <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> separately, then square and add all three totals under one root.
 
 ## Subtraction with Components
 
@@ -247,6 +313,7 @@ The negative sign in <InlineMath math="-2\hat{j}" /> means the resulting <Inline
 <MathVisual
   title={<>The Difference of Two Vectors</>}
   description={<>Arrow <InlineMath math="\vec{C}" /> from the tip of <InlineMath math="\vec{B}" /> to the tip of <InlineMath math="\vec{A}" /> has components <InlineMath math="(5,-2)" />. The purple arrow starting at the origin is the same vector, translated.</>}
+  footer={<>Both purple arrows share components <InlineMath math="(5,-2)" />, right and downward.</>}
   labels={{
     "l1": <InlineMath math="A" />,
     "l2": <InlineMath math="B" />,
@@ -258,14 +325,10 @@ The negative sign in <InlineMath math="-2\hat{j}" /> means the resulting <Inline
     frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -3, max: 7 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.85, y: (0) + 0.55 * ((4) - (0)) }, { x: 7, y: 4 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 3.85, y: 2.2 }, to: { x: 7, y: 4 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((6) - (0)) }, { x: 2, y: 6 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 1, y: 3 }, to: { x: 2, y: 6 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: 6 }, { x: (2) + 0.5 * ((7) - (2)), y: (6) + 0.5 * ((4) - (6)) }, { x: 7, y: 4 }], appearance: "answer" },
-      { id: "s3-head", kind: "vector", from: { x: 4.5, y: 5 }, to: { x: 7, y: 4 }, appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((5) - (0)), y: (0) + 0.5 * ((-2) - (0)) }, { x: 5, y: -2 }], appearance: "answer" },
-      { id: "s4-head", kind: "vector", from: { x: 2.5, y: -1 }, to: { x: 5, y: -2 }, appearance: "answer" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 7, y: 4 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 2, y: 6 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 2, y: 6 }, to: { x: 7, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: 0 }, to: { x: 5, y: -2 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 3.85, y: 2.2 }, placement: "below" },
@@ -280,34 +343,48 @@ The component signs give a rightward and downward direction. To find the arrow l
 
 <BlockMath math="\lvert\vec{C}\rvert=\sqrt{5^2+(-2)^2}=\sqrt{25+4}=\sqrt{29}" />
 
-
 So subtraction does not need a new rule. Keep the same axes, subtract matching components, then read the signs to recover the direction of the result.
 
 ## Subtracting Map Positions
 
-Checkpoint <InlineMath math="A" /> sits at <InlineMath math="60\text{ m}" /> east and <InlineMath math="20\text{ m}" /> north of the start, <InlineMath math="B" /> at <InlineMath math="20\text{ m}" /> east and <InlineMath math="50\text{ m}" /> north. **Subtract component by component**: <InlineMath math="\vec b-\vec a" /> is <InlineMath math="-40\text{ m}" /> east and <InlineMath math="30\text{ m}" /> north, <InlineMath math="50\text{ m}" /> long.
+Checkpoint <InlineMath math="A" /> sits at <InlineMath math="60\text{ m}" /> east and <InlineMath math="20\text{ m}" /> north of the start, while checkpoint <InlineMath math="B" /> sits <InlineMath math="50\text{ m}" /> north at an adjustable east position <InlineMath math="p" />. At <InlineMath math="p = 20\text{ m}" />, **subtracting component by component** gives <InlineMath math="\vec b-\vec a" /> as <InlineMath math="-40\text{ m}" /> east and <InlineMath math="30\text{ m}" /> north, <InlineMath math="50\text{ m}" /> long.
 
-<OrienteeringMapVectorLab
-  title={<>Difference of Two Positions</>}
-  description={<>The start <InlineMath math="O" /> is the fuchsia triangle. Compare <InlineMath math="\vec b-\vec a" /> with the leg from <InlineMath math="B" /> to <InlineMath math="A" />.</>}
-  marks={{
-    a: { east: 60, north: 20 },
-    b: { east: 20, north: 50 },
-    c: { east: 110, north: 70 },
+<MathVisual
+  title={<>Difference of Two Map Positions</>}
+  description={<>Position <InlineMath math="\vec a=(60,20)\text{ m}" /> and adjustable <InlineMath math="\vec b=(p,50)\text{ m}" /> with their difference <InlineMath math="\vec b-\vec a" /> from <InlineMath math="A" /> to <InlineMath math="B" />.</>}
+  footer={<>Slide <InlineMath math="p" /> past <InlineMath math="60\text{ m}" /> and watch the east difference flip sign.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 115 }, y: { min: -10, max: 75 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 100, value: 20, step: 10, label: "east-b" },
+    ],
+    objects: [
+      { id: "pos-a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 60, y: 20 } },
+      { id: "pos-b", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "p", y: "50" }] },
+      { id: "diff-ab", kind: "path", appearance: "answer", points: [{ x: "60", y: "20" }, { x: "p", y: "50" }] },
+      { id: "pt-a", kind: "point", appearance: "primary", at: { x: 60, y: 20 } },
+      { id: "pt-b", kind: "marker", appearance: "answer", x: "p", y: "50" },
+    ],
+    labels: [
+      { key: "pt-a", objectId: "pt-a", at: { x: 60, y: 20 }, placement: "below-right" },
+      { key: "pt-b", objectId: "pt-b", at: { x: "p", y: "50" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "dx", formula: "p - 60" },
+      { key: "dy", formula: "30" },
+      { key: "dist", formula: "sqrt((p - 60)^2 + 30^2)" },
+    ],
   }}
-  views={["difference", "back"]}
   labels={{
-    angle: <>Direction from east</>,
-    chooseView: "Choose which vector to show",
-    east: <>East part</>,
-    north: <>North part</>,
-    size: <>Length</>,
-    viewLabel: "Orienteering map of a park",
-    views: {
-      back: <><InlineMath math="B" /> to <InlineMath math="A" /></>,
-      copy: <>Same vector from <InlineMath math="C" /></>,
-      difference: <><InlineMath math="\vec b-\vec a" /></>,
-      forward: <><InlineMath math="A" /> to <InlineMath math="B" /></>,
-    },
+    "east-b": <>East coordinate <InlineMath math="p" /> of <InlineMath math="B" /> (m)</>,
+    "pt-a": <InlineMath math="A(60,20)" />,
+    "pt-b": <InlineMath math="B" />,
+    dx: <>East difference (m)</>,
+    dy: <>North difference (m)</>,
+    dist: <>Leg length (m)</>,
   }}
 />
+
+Whenever <InlineMath math="p" /> is smaller than <InlineMath math="60\text{ m}" />, the negative east component tells you immediately to head west from <InlineMath math="A" /> to reach <InlineMath math="B" />. Moving <InlineMath math="p" /> past <InlineMath math="60\text{ m}" /> flips that sign positive so the leg points east instead.

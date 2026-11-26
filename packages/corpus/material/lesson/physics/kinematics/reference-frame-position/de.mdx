@@ -22,38 +22,57 @@ Wenn die Bewegung entlang einer geraden Linie erfolgt, können wir eine Richtung
 
 Diese Gleichung lässt das Objekt unverändert und verschiebt den Koordinatenursprung, während die Achse und ihre positive Richtung gleich bleiben.
 
-## Bewegung hängt vom Bezugssystem ab
+Ein Bezugssystem legt auch fest, **was als bewegt gilt**. Ein Zug fährt mit <InlineMath math="20\text{ m/s}" /> nach Osten, während eine Person im Wagen mit Geschwindigkeit <InlineMath math="a" /> relativ zum Sitz geht. Verschiebe <InlineMath math="a" /> und vergleiche die Position vom Bahnsteig aus mit der Fahrt des Zuges.
 
-Ein Bezugssystem legt auch fest, **was als bewegt gilt**. Eine Person geht durch einen Wagen, während der Zug mit <InlineMath math="20\text{ m/s}" /> fährt, und zwei Leute schauen zu.
-
-<TrainPassengerRelativeLab
-  title={<>Gehen in einem fahrenden Zug</>}
+<MathVisual
+  title={<>Position einer Person in zwei Systemen</>}
   description={
     <>
-      Schau vom Bahnsteig aus zu und dann von einem Sitzplatz im Zug. Die Pfeile zeigen die Geschwindigkeiten, die jeder Beobachter misst, in Fahrtrichtung positiv.
+      Vergleiche die Zugposition (grau) mit der Position der Person vom Bahnsteig aus (orange), wenn sich die Gehgeschwindigkeit <InlineMath math="a" /> ändert.
     </>
   }
+  footer={<>Der Abstand der Linien wächst, weil die Person im fahrenden Zug weitergeht.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: 0, max: 120 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -2, max: 2, value: 1.5, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "train-line", kind: "function", appearance: "reference", formula: "20*x", domain: { min: 0, max: 5 } },
+      { id: "person-line", kind: "function", appearance: "primary", formula: "(20 + a)*x", domain: { min: 0, max: 5 } },
+      { id: "time-guide", kind: "path", appearance: "construction", points: [{ x: "4", y: "0" }, { x: "4", y: "4*(20 + a)" }] },
+      { id: "train-dot", kind: "point", appearance: "reference", at: { x: 4, y: 80 } },
+      { id: "person-dot", kind: "marker", appearance: "answer", x: "4", y: "4*(20 + a)" },
+    ],
+    labels: [
+      { key: "train", objectId: "train-line", at: { x: 5, y: 100 }, placement: "below-right" },
+      { key: "person", objectId: "person-dot", at: { x: "4", y: "4*(20 + a)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "platform-speed", formula: "20 + a" },
+      { key: "train-speed", formula: "a" },
+      { key: "seat-shift", formula: "4*a" },
+    ],
+  }}
   labels={{
-    chooseObserver: "Beobachter wählen",
-    chooseWay: "Gehrichtung wählen",
-    observers: {
-      platform: <>Vom Bahnsteig</>,
-      train: <>Von einem Sitzplatz</>,
-    },
-    passenger: <>Geschwindigkeit der Person</>,
-    train: <>Geschwindigkeit des Zuges</>,
-    viewLabel: "Person geht durch einen fahrenden Zug",
-    walk: <>Gehgeschwindigkeit im Wagen</>,
-    ways: {
-      forward: <>Nach vorn gehen</>,
-      backward: <>Nach hinten gehen</>,
-    },
+    a: <>Gehgeschwindigkeit <InlineMath math="a" /> (m/s)</>,
+    train: <>Zug</>,
+    person: <>Person</>,
+    "platform-speed": <>Vom Bahnsteig (m/s)</>,
+    "train-speed": <>Vom Sitzplatz (m/s)</>,
+    "seat-shift": <>Weg im Wagen nach 4 s (m)</>,
   }}
 />
 
-Vom Bahnsteig aus bewegt sich die Person mit <InlineMath math="+21{,}5\text{ m/s}" />. Von einem Sitzplatz aus bewegt sich dieselbe Person nur mit <InlineMath math="+1{,}5\text{ m/s}" />, und der Bahnsteig gleitet nach hinten.
+Vom Bahnsteig aus bewegt sich die Person mit <InlineMath math="+21{,}5\text{ m/s}" />, wenn sie mit <InlineMath math="+1{,}5\text{ m/s}" /> nach vorn geht. Von einem Sitzplatz aus bewegt sich dieselbe Person nur mit <InlineMath math="+1{,}5\text{ m/s}" />, und der Bahnsteig gleitet nach hinten.
 
-## Position bei verschiedenen Ursprüngen
+## Den Ursprung auf einer Linie wechseln
+
+Entlang einer geraden Straße kann jeder markante Ort als Nullpunkt derselben **Koordinatenachse** dienen. Das Verschieben des Nullpunkts ändert die vorzeichenbehaftete Koordinate eines Objekts, obwohl das Objekt selbst stehen bleibt.
+
+### Position bei verschiedenen Ursprüngen
 
 Ein Objekt liegt bei der Koordinate <InlineMath math="30 \text{ m}" />, wenn das Geschäft als Nullpunkt dient. Wird der Ursprung zu Ranis Haus bei <InlineMath math="20 \text{ m}" /> verschoben, lautet die neue Koordinate des Objekts <InlineMath math="+10 \text{ m}" />.
 
@@ -64,6 +83,7 @@ Schau dir die Szene unten an. Die graue Linie ist das Objekt, und sie verschiebt
 <MathVisual
   title={<>Ein Objekt, drei Ursprünge</>}
   description={<>Jede Zeile misst dasselbe Objekt von einem anderen Ursprung aus, Osten liegt rechts. Ein Gitterschritt entspricht <InlineMath math="10\text{ m}" />.</>}
+  footer={<>Das graue Objekt bleibt fest, doch jeder Ursprung liefert einen anderen Pfeil.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1, max: 3 } },
@@ -98,7 +118,17 @@ Schau dir die Szene unten an. Die graue Linie ist das Objekt, und sie verschiebt
   }}
 />
 
-## Drei Ursprünge an einer Straße
+Das Vorzeichen einer Position sagt uns, <Highlight>auf welcher Seite des Bezugspunkts</Highlight> sich das Objekt befindet. Im Straßenbeispiel wird Osten positiv gewählt. Ein positiver Wert bedeutet also, dass sich das Objekt östlich des Bezugspunkts befindet, während ein negativer Wert bedeutet, dass sich das Objekt westlich davon befindet.
+
+| Ursprung im selben Bezugssystem | Objektkoordinate auf der Straßenachse | Koordinate relativ zum Ursprung |
+| :-------------- | :------------------------------------------------ | :--------- |
+| Geschäft bei <InlineMath math="0 \text{ m}" /> | Objekt bei <InlineMath math="30 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> östlich |
+| Ranis Haus bei <InlineMath math="20 \text{ m}" /> | Objekt bei <InlineMath math="30 \text{ m}" /> | <InlineMath math="+10 \text{ m}" /> östlich |
+| Nayas Haus bei <InlineMath math="50 \text{ m}" /> | Objekt bei <InlineMath math="30 \text{ m}" /> | <InlineMath math="-20 \text{ m}" /> oder <InlineMath math="20 \text{ m}" /> westlich |
+
+Der Wert <InlineMath math="-20 \text{ m}" /> bedeutet nicht, dass der Abstand negativ ist. Das negative Vorzeichen gibt nur die Richtung relativ zum Bezugspunkt an.
+
+### Drei Ursprünge an einer Straße
 
 Hier ist die Formel <InlineMath math="x'=x_{\text{Objekt}}-x_{\text{Ursprung}}" /> im Einsatz. Ein Laden steht bei null, Ranis Haus bei <InlineMath math="20\text{ m}" /> und ein Fahnenmast bei <InlineMath math="50\text{ m}" />, Osten positiv. Ein anderer Ursprung **verschiebt jede Position um die Koordinate dieses Ursprungs**.
 
@@ -109,6 +139,7 @@ Hier ist die Formel <InlineMath math="x'=x_{\text{Objekt}}-x_{\text{Ursprung}}" 
       Eine Person fährt mit dem Rad von <InlineMath math="20\text{ m}" /> bis <InlineMath math="50\text{ m}" /> und zurück bis <InlineMath math="35\text{ m}" />. Wähle den Ursprung und lies die Positionen ab.
     </>
   }
+  footer={<>Ein neuer Ursprung verschiebt Start und Ziel gleich, die Änderung bleibt fest.</>}
   labels={{
     change: <>Positionsänderung</>,
     chooseOrigin: "Bezugspunkt wählen",
@@ -125,45 +156,109 @@ Hier ist die Formel <InlineMath math="x'=x_{\text{Objekt}}-x_{\text{Ursprung}}" 
 
 Von Ranis Haus aus gemessen beginnt die Fahrt bei <InlineMath math="0" /> und endet bei <InlineMath math="+15\text{ m}" />. Vom Fahnenmast aus beginnt sie bei <InlineMath math="-30\text{ m}" /> und endet bei <InlineMath math="-15\text{ m}" />, westlich der neuen Null.
 
-## Vorzeichen und Richtung lesen
+## Position in zwei Dimensionen
 
-Das Vorzeichen einer Position sagt uns, <Highlight>auf welcher Seite des Bezugspunkts</Highlight> sich das Objekt befindet. Im Straßenbeispiel wird Osten positiv gewählt. Ein positiver Wert bedeutet also, dass sich das Objekt östlich des Bezugspunkts befindet, während ein negativer Wert bedeutet, dass sich das Objekt westlich davon befindet.
+Verlässt eine Bewegung eine gerade Linie, reicht eine einzige Zahl mit Vorzeichen nicht mehr aus. Eine flache Karte oder eine Flussquerung braucht **zwei senkrechte Achsen** und einen festen Ursprung für ein eindeutiges Koordinatenpaar.
 
-| Ursprung im selben Bezugssystem | Objektkoordinate auf der Straßenachse | Koordinate relativ zum Ursprung |
-| :-------------- | :------------------------------------------------ | :--------- |
-| Geschäft bei <InlineMath math="0 \text{ m}" /> | Objekt bei <InlineMath math="30 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> östlich |
-| Ranis Haus bei <InlineMath math="20 \text{ m}" /> | Objekt bei <InlineMath math="30 \text{ m}" /> | <InlineMath math="+10 \text{ m}" /> östlich |
-| Nayas Haus bei <InlineMath math="50 \text{ m}" /> | Objekt bei <InlineMath math="30 \text{ m}" /> | <InlineMath math="-20 \text{ m}" /> oder <InlineMath math="20 \text{ m}" /> westlich |
+### Zwei Richtungen auf der Karte
 
-Der Wert <InlineMath math="-20 \text{ m}" /> bedeutet nicht, dass der Abstand negativ ist. Das negative Vorzeichen gibt nur die Richtung relativ zum Bezugspunkt an.
+Auf einem Stadtplan braucht eine Position **zwei Zahlen mit Vorzeichen**, eine für jede Richtung. Nimm Osten und Norden als positiv und geh <InlineMath math="150\text{ m}" /> nach Westen und dann <InlineMath math="200\text{ m}" /> nach Norden. Ändere die Ost-West-Strecke <InlineMath math="a" /> und die Nord-Süd-Strecke <InlineMath math="b" /> unten für andere Zielpunkte.
 
-## Zwei Richtungen auf der Karte
-
-Auf einem Stadtplan braucht eine Position **zwei Zahlen mit Vorzeichen**, eine für jede Richtung. Nimm Osten und Norden als positiv und geh <InlineMath math="150\text{ m}" /> nach Westen und dann <InlineMath math="200\text{ m}" /> nach Norden.
-
-<CityWalkDisplacementLab
-  legs={[
-    { east: -150, north: 0 },
-    { east: 0, north: 200 },
-  ]}
-  pace={1.25}
-  title={<>Ein Weg auf zwei Achsen</>}
+<MathVisual
+  title={<>Ein Weg auf zwei Kartenachsen</>}
   description={
     <>
-      Der violette Pfeil zeigt vom Zuhause zu deinem Standort. Sein Ostanteil ist negativ, sein Nordanteil positiv.
+      Der violette Pfad zeigt beide Wegstücke ab Zuhause, während die fuchsia Linie direkt zu deinem Standort <InlineMath math="(a,b)" /> führt.
     </>
   }
+  footer={<>Die Diagonale verbindet das Zuhause direkt mit deinem Ziel auf beiden Achsen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -240, max: 240 }, y: { min: -240, max: 240 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -200, max: 200, value: -150, step: 50, label: "a" },
+      { name: "b", min: -200, max: 200, value: 200, step: 50, label: "b" },
+    ],
+    objects: [
+      { id: "home", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "walk-legs", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "a", y: "0" }, { x: "a", y: "b" }] },
+      { id: "direct-pos", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "a", y: "b" }] },
+      { id: "end-spot", kind: "marker", appearance: "primary", x: "a", y: "b" },
+    ],
+    labels: [
+      { key: "home", objectId: "home", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "end", objectId: "end-spot", at: { x: "a", y: "b" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "straight-dist", formula: "sqrt(a^2 + b^2)" },
+      { key: "walk-dist", formula: "abs(a) + abs(b)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Mittlere Schnelligkeit</>,
-    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
-    displacement: <>Betrag der Verschiebung</>,
-    distance: <>Gegangene Strecke</>,
-    time: <>Zeit</>,
-    viewLabel: "Spaziergang durch eine Stadt von oben gesehen",
+    a: <>Ostkoordinate <InlineMath math="a" /> (m)</>,
+    b: <>Nordkoordinate <InlineMath math="b" /> (m)</>,
+    home: <>Zuhause</>,
+    end: <>Ziel</>,
+    "straight-dist": <>Luftlinie ab Zuhause (m)</>,
+    "walk-dist": <>Gegangene Strecke (m)</>,
   }}
 />
 
-Du landest bei <InlineMath math="x=-150\text{ m}" /> und <InlineMath math="y=+200\text{ m}" /> vom Zuhause, also <InlineMath math="\sqrt{150^2+200^2}=250\text{ m}" /> Luftlinie entfernt, obwohl du <InlineMath math="350\text{ m}" /> gegangen bist.
+Du landest bei <InlineMath math="x=-150\text{ m}" /> und <InlineMath math="y=+200\text{ m}" /> vom Zuhause. Obwohl du <InlineMath math="350\text{ m}" /> gegangen bist, beträgt die Luftlinie:
+
+<BlockMath math="r=\sqrt{(-150)^2+200^2}=250\text{ m}" />
+
+### Der Landepunkt eines Boots
+
+Ein Boot, das einen <InlineMath math="60\text{ m}" /> breiten Fluss überquert, zeigt eine Positionsangabe mit zwei Bezügen zugleich. Der Landepunkt wird **entlang des Gegenufers vom Punkt genau gegenüber gemessen**. Das Boot fährt mit <InlineMath math="4\text{ m/s}" /> unter dem Kurswinkel <InlineMath math="a" />, während der Fluss mit <InlineMath math="3\text{ m/s}" /> flussabwärts strömt.
+
+<MathVisual
+  title={<>Landepunkt am gegenüberliegenden Ufer</>}
+  description={
+    <>
+      Ändere den Kurswinkel <InlineMath math="a" /> (negativ zeigt flussaufwärts) und verfolge, wie der Landepunkt am Gegenufer wandert.
+    </>
+  }
+  footer={<>Weiter flussaufwärts zu steuern zieht den Landepunkt am Gegenufer näher an null.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 72 }, y: { min: -10, max: 52 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -50, max: 0, value: -30, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "near-bank", kind: "segment", appearance: "reference", from: { x: 0, y: -8 }, to: { x: 0, y: 50 } },
+      { id: "far-bank", kind: "segment", appearance: "reference", from: { x: 60, y: -8 }, to: { x: 60, y: 50 } },
+      { id: "across-guide", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "start-pt", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "across-pt", kind: "point", appearance: "reference", at: { x: 60, y: 0 } },
+      { id: "boat-track", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "60", y: "15*(3 + 4*sin(a*pi/180))/cos(a*pi/180)" }] },
+      { id: "drift-seg", kind: "path", appearance: "answer", points: [{ x: "60", y: "0" }, { x: "60", y: "15*(3 + 4*sin(a*pi/180))/cos(a*pi/180)" }] },
+      { id: "land-pt", kind: "marker", appearance: "answer", x: "60", y: "15*(3 + 4*sin(a*pi/180))/cos(a*pi/180)" },
+    ],
+    labels: [
+      { key: "start", objectId: "start-pt", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "across", objectId: "across-pt", at: { x: 60, y: 0 }, placement: "below-right" },
+      { key: "landing", objectId: "land-pt", at: { x: "60", y: "15*(3 + 4*sin(a*pi/180))/cos(a*pi/180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "drift-dist", formula: "15*(3 + 4*sin(a*pi/180))/cos(a*pi/180)" },
+      { key: "cross-time", formula: "15/cos(a*pi/180)" },
+    ],
+  }}
+  labels={{
+    a: <>Kurswinkel <InlineMath math="a" /> (deg)</>,
+    start: <>Start</>,
+    across: <>Gegenüber</>,
+    landing: <>Landepunkt</>,
+    "drift-dist": <>Position flussabwärts (m)</>,
+    "cross-time": <>Querungszeit (s)</>,
+  }}
+/>
+
+Mit einem Kurs von <InlineMath math="-30^\circ" /> flussaufwärts landet das Boot etwa <InlineMath math="17{,}3\text{ m}" /> flussabwärts vom Punkt genau gegenüber. Eine vollständige Antwort nennt diesen Bezugspunkt, die Entfernung und die Richtung flussabwärts.
 
 ## Eine vollständige Positionsangabe
 
@@ -172,6 +267,7 @@ Ein Positionssatz besteht aus vier Teilen. Fehlt ein Teil, kann eine andere Pers
 <Mermaid
   title={<>Eine eindeutige Positionsangabe aufbauen</>}
   description={<>Diese Reihenfolge verhindert, dass die Position vom falschen Bezugspunkt aus gelesen wird.</>}
+  footer={<>Jeder Schritt ergänzt ein Merkmal, damit alle denselben Ort eindeutig ablesen.</>}
   chart={`flowchart LR
     A["Beobachtetes Objekt"] --> B["Ursprung und positive Richtung"]
     B --> C["Koordinatenwert und Einheit"]
@@ -187,6 +283,7 @@ In zwei Dimensionen braucht eine Ortsangabe einen Ursprung und zwei Zahlen. Von 
 <MathVisual
   title={<>Ein Punkt, zwei Ursprünge</>}
   description={<>Die Position von P von O aus (orange) und von O' aus (fuchsia), mit der Verschiebung zwischen den Ursprüngen (violett).</>}
+  footer={<>Das Abziehen des Verschiebungsvektors verlegt den Ortspfeil zum neuen Ursprung.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.8, max: 4 }, y: { min: -0.8, max: 2.8 } },
@@ -219,35 +316,66 @@ In zwei Dimensionen braucht eine Ortsangabe einen Ursprung und zwei Zahlen. Von 
   }}
 />
 
-## Höhe von zwei Ursprüngen aus
+Der orange Pfeil und der fuchsia Pfeil zeigen beide auf genau denselben Punkt <InlineMath math="P" />. Nur der Ursprung hat gewechselt, sodass das Abziehen der Verschiebung <InlineMath math="\vec r_0=(1,1)" /> aus <InlineMath math="(3,2)" /> den Vektor <InlineMath math="(2,1)" /> macht.
+
+## Position von zwei Ursprüngen aus messen
+
+In realen Messungen tauchen oft zwei verschiedene Zahlen für dasselbe Objekt auf, weil **zwei verschiedene Ursprünge** praktisch sind. Der Vergleich zwischen Satellitenhöhe und Straßenmarkierung zeigt, wie ein genannter Ursprung Missverständnisse verhindert.
+
+### Höhe von zwei Ursprüngen aus
 
 Auch die Position eines Satelliten braucht ihren Bezug. Die Raumstation kreist etwa <InlineMath math="400\text{ km}" /> über dem Boden, das sind <InlineMath math="6771\text{ km}" /> vom Erdmittelpunkt. Beide Zahlen stimmen, weil **sie von verschiedenen Ursprüngen aus gemessen sind**.
 
-<SatelliteOrbitCircularLab
-  title={<>Satelliten um die Erde</>}
+<MathVisual
+  title={<>Satellitenhöhe und Bahnradius</>}
   description={
     <>
-      Wähle einen Satelliten. Der Bahnradius wird vom Erdmittelpunkt aus gemessen, nicht vom Boden.
+      Verschiebe die Höhe <InlineMath math="h" /> über der Erdoberfläche und vergleiche den Bodenabstand (fuchsia) mit dem Radius ab Erdmittelpunkt.
     </>
   }
+  footer={<>Der Bahnradius addiert immer den Erdradius zur Höhe über der Oberfläche.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7200, max: 11200 }, y: { min: -7600, max: 7600 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 400, max: 3600, value: 400, step: 200, label: "h" },
+    ],
+    objects: [
+      { id: "earth", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 6371 },
+      { id: "earth-center", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "surface", kind: "point", appearance: "secondary", at: { x: 6371, y: 0 } },
+      { id: "earth-radius", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6371, y: 0 } },
+      { id: "altitude-seg", kind: "path", appearance: "answer", points: [{ x: "6371", y: "0" }, { x: "6371 + h", y: "0" }] },
+      { id: "satellite", kind: "marker", appearance: "primary", x: "6371 + h", y: "0" },
+    ],
+    labels: [
+      { key: "center", objectId: "earth-center", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "ground", objectId: "surface", at: { x: 6371, y: 0 }, placement: "below-left" },
+      { key: "sat", objectId: "satellite", at: { x: "6371 + h", y: "0" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "ground-height", formula: "h" },
+      { key: "center-radius", formula: "6371 + h" },
+    ],
+  }}
   labels={{
-    acceleration: <>Zentripetalbeschleunigung</>,
-    chooseOrbit: "Satellit wählen",
-    orbits: {
-      station: <>Raumstation</>,
-      gps: <>GPS</>,
-      geostationary: <>Geostationär</>,
-    },
-    period: <>Zeit für einen Umlauf</>,
-    radius: <>Bahnradius</>,
-    speed: <>Schnelligkeit</>,
-    viewLabel: "Satelliten umkreisen die Erde",
+    h: <>Höhe <InlineMath math="h" /> (km)</>,
+    center: <>Zentrum</>,
+    ground: <>Boden</>,
+    sat: <>Satellit</>,
+    "ground-height": <>Über Boden (km)</>,
+    "center-radius": <>Ab Erdmittelpunkt (km)</>,
   }}
 />
 
-Addiere den mittleren Erdradius, <InlineMath math="6371\text{ km}" />, zur Höhe über dem Boden, dann erhältst du den Radius vom Mittelpunkt: <InlineMath math="6371+400=6771\text{ km}" />. Eine vollständige Angabe nennt, welcher gemeint ist.
+Addiere den mittleren Erdradius <InlineMath math="6371\text{ km}" /> zur Höhe über dem Boden, um den Bahnradius vom Mittelpunkt zu erhalten:
 
-## Eine Positionsangabe relativ zum Geschäft
+<BlockMath math="r=6371\text{ km}+400\text{ km}=6771\text{ km}" />
+
+Eine vollständige Angabe nennt immer, welcher Ursprung gemeint ist.
+
+### Eine Positionsangabe relativ zum Geschäft
 
 Mit dem Geschäft als Ursprung befindet sich eine Markierung an der Koordinate <InlineMath math="40 \text{ m}" />. Dimas' Haus liegt im selben Bezugssystem bei <InlineMath math="30 \text{ m}" />. Wird der **Ursprung zu Dimas' Haus verschoben**, lautet die Koordinate der Markierung:
 
@@ -265,6 +393,7 @@ Beide Pfeile unten enden an derselben Markierung. Nur ihr Startpunkt, der Urspru
 <MathVisual
   title={<>Eine Markierung, zwei Ursprünge</>}
   description={<>Die Markierung bei <InlineMath math="40\text{ m}" /> vom Geschäft, gemessen vom Geschäft und von Dimas' Haus bei <InlineMath math="30\text{ m}" />. Ein Gitterschritt entspricht <InlineMath math="10\text{ m}" />.</>}
+  footer={<>Beide Pfeile enden an derselben Markierung, weil nur der Ursprung wechselte.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1, max: 2 } },
@@ -293,30 +422,4 @@ Beide Pfeile unten enden an derselben Markierung. Nur ihr Startpunkt, der Urspru
   }}
 />
 
-## Der Landepunkt eines Boots
-
-Ein Boot, das einen Fluss überquert, zeigt eine Positionsangabe mit zwei Bezügen zugleich. Der Landepunkt wird **entlang des Ufers vom Punkt genau gegenüber gemessen**. Das Boot steuert mit <InlineMath math="4\text{ m/s}" /> um <InlineMath math="30^\circ" /> flussaufwärts, während der Fluss mit <InlineMath math="3\text{ m/s}" /> strömt.
-
-<RiverBoatCrossingLab
-  boatSpeed={4}
-  current={3}
-  heading={-30}
-  width={60}
-  title={<>Über einen strömenden Fluss</>}
-  description={
-    <>
-      Dreh den Kurs und achte darauf, wo das Boot am <InlineMath math="60\text{ m}" /> entfernten Ufer landet.
-    </>
-  }
-  labels={{
-    angle: <>Winkel zur direkten Querung</>,
-    drift: <>Abdrift flussabwärts</>,
-    groundSpeed: <>Schnelligkeit über Grund</>,
-    heading: <>Kurs</>,
-    headingName: "Kurs des Boots",
-    time: <>Zeit für die Querung</>,
-    viewLabel: "Boot überquert einen Fluss, von oben gesehen",
-  }}
-/>
-
-Mit diesem Kurs landet das Boot etwa <InlineMath math="17{,}3\text{ m}" /> flussabwärts vom Punkt genau gegenüber. Eine vollständige Antwort nennt diesen Punkt, die Entfernung und die Richtung flussabwärts.
+Der violette Pfeil ist genau <InlineMath math="30\text{ m}" /> kürzer als der orange Pfeil, was dem Abstand zwischen dem Geschäft und Dimas' Haus entspricht. Erst der genannte Ursprung macht klar, welcher Pfeil gemeint ist.

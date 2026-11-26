@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Pendaraban Vektor",
   description:
@@ -12,38 +10,41 @@ export const metadata = {
 
 ## Dua Jenis Pendaraban Vektor
 
-Pendaraban vektor tidak semestinya menghasilkan vektor lain. Ada dua jenis pendaraban yang biasa digunakan dalam fizik, iaitu **hasil darab skalar** dan **hasil darab vektor**.
+Pendaraban vektor tidak semestinya menghasilkan vektor baharu. Dua jenis pendaraban sentiasa muncul dalam fizik: **hasil darab skalar** dan **hasil darab vektor**.
 
-Hasil darab skalar menghasilkan skalar. Hasil darab vektor pula menghasilkan vektor yang berserenjang dengan kedua-dua vektor asal. Apabila hasilnya bukan sifar, arahnya mengikut **petua tangan kanan**.
+Hasil darab skalar menghasilkan skalar. Hasil darab vektor menghasilkan vektor yang berserenjang dengan kedua-dua vektor asal, dan apabila hasilnya bukan sifar arahnya mengikut **petua tangan kanan**.
 
 | Jenis pendaraban | Simbol | Hasil | Contoh dalam fizik |
 | :--------------------- | :----- | :----- | :-------------- |
 | hasil darab skalar | <InlineMath math="\vec{A}\cdot\vec{B}" /> | skalar | kerja |
 | hasil darab vektor | <InlineMath math="\vec{A}\times\vec{B}" /> | vektor | tork |
 
-> Tanda darab berubah kerana soalan fizik yang ditanya juga berubah: berapa banyak bahagian yang searah, atau berapa kuat kesan putarannya.
+> Tanda darab bertukar setiap kali soalan fizik beralih daripada kesearahan kepada kesan putaran.
 
 ## Hasil Darab Skalar Mengukur Bahagian yang Searah
 
-Hasil darab skalar bagi <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" /> ditakrifkan seperti berikut:
+**Hasil darab skalar** bagi <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" /> mengunjurkan satu vektor ke atas vektor yang satu lagi lalu menghasilkan nilai skalar tanpa arah.
 
 <BlockMath math="\vec{A}\cdot\vec{B}=AB\cos\theta" />
 
-Bagi dua vektor yang bukan sifar, <InlineMath math="\theta" /> ialah sudut di antara kedua-duanya, manakala <InlineMath math="A" /> dan <InlineMath math="B" /> ialah magnitud masing-masing. Hasilnya ialah skalar, jadi ia mempunyai nilai tanpa arah.
-
-Jika **daya malar** bertindak sepanjang sesaran, kerja yang dilakukan oleh daya itu ialah:
+Bagi dua vektor bukan sifar, <InlineMath math="\theta" /> ialah sudut di antara kedua-duanya manakala <InlineMath math="A" /> dan <InlineMath math="B" /> ialah magnitud masing-masing. Bagi **daya malar** sepanjang sesaran, kerja bersamaan komponen daya sepanjang gerakan didarab dengan jarak:
 
 <BlockMath math="W=\vec{F}\cdot\vec{s}=Fs\cos\theta" />
 
-Komponen daya **di sepanjang paksi sesaran** yang menentukan kerja. Komponen ini positif jika searah dengan gerakan dan negatif jika menentang gerakan.
+Komponen ini positif apabila daya membantu gerakan dan negatif apabila daya menentang gerakan.
 
-## Cahaya Matahari pada Panel Suria
+### Cahaya Matahari pada Panel Suria
 
-Panel menerima **hasil darab skalar cahaya matahari dengan luasnya**: <InlineMath math="P=IA\cos\theta" />. Dengan matahari setinggi <InlineMath math="60^\circ" /> dan panel condong <InlineMath math="10^\circ" />, sudut di antara <InlineMath math="\hat n" /> dengan <InlineMath math="\hat s" /> ialah <InlineMath math="20^\circ" /> dan panel menerima <InlineMath math="1597\text{ W}" />. Condongkannya kepada <InlineMath math="30^\circ" /> untuk mendapat <InlineMath math="1700\text{ W}" /> sepenuhnya.
+Panel suria menerima **hasil darab skalar cahaya matahari dengan luas panel**, dengan kuasa diberikan oleh:
+
+<BlockMath math="P=IA\cos\theta" />
+
+Dengan matahari setinggi <InlineMath math="60^\circ" /> dan panel condong <InlineMath math="10^\circ" />, sudut di antara normal <InlineMath math="\hat n" /> dengan arah matahari <InlineMath math="\hat s" /> ialah <InlineMath math="20^\circ" />, lalu menerima <InlineMath math="1597\text{ W}" />. Mencondongkan panel kepada <InlineMath math="30^\circ" /> menjajarkan kedua-dua vektor dan mencapai <InlineMath math="1700\text{ W}" /> sepenuhnya.
 
 <SolarPanelFluxLab
   title={<>Kuasa sebagai Hasil Darab Skalar</>}
   description={<>Panel seluas <InlineMath math="1.7\text{ m}^2" /> dalam cahaya matahari <InlineMath math="1000\text{ W/m}^2" />. Condongkan panel.</>}
+  footer="Kuasa memuncak apabila normal panel menghala tepat ke arah cahaya matahari."
   area={1.7}
   elevation={60}
   sunlight={1000}
@@ -58,7 +59,11 @@ Panel menerima **hasil darab skalar cahaya matahari dengan luasnya**: <InlineMat
   }}
 />
 
-Seseorang menarik sebuah kotak dengan daya malar <InlineMath math="40\text{ N}" /> sementara kotak itu bergerak sejauh <InlineMath math="5\text{ m}" />. Daya itu membentuk sudut <InlineMath math="60^\circ" /> dengan arah sesaran. Kerjanya ialah:
+Setiap kali sudut di antara <InlineMath math="\hat n" /> dengan <InlineMath math="\hat s" /> mengecil menuju <InlineMath math="0^\circ" />, <InlineMath math="\cos\theta" /> menghampiri <InlineMath math="1" /> dan kuasa meningkat ke paras maksimum.
+
+### Kerja oleh Tarikan Bersudut
+
+Seseorang menarik sebuah kotak dengan daya malar <InlineMath math="40\text{ N}" /> sejauh <InlineMath math="5\text{ m}" />. Daya itu membentuk sudut <InlineMath math="60^\circ" /> dengan arah sesaran, maka kerjanya ialah:
 
 <BlockMath math="\begin{aligned}
 W&=Fs\cos\theta \\
@@ -67,45 +72,47 @@ W&=Fs\cos\theta \\
 &=100\text{ J}
 \end{aligned}" />
 
-Jika daya berserenjang dengan sesaran, <InlineMath math="\theta=90^\circ" /> dan <InlineMath math="\cos90^\circ=0" />. Dalam keadaan ini, daya itu tidak melakukan kerja pada arah sesaran.
-
-Jika daya malar yang sama menentang sesaran, sudutnya ialah <InlineMath math="180^\circ" />. **Kerja negatif** bermaksud daya itu mengambil tenaga daripada gerakan:
+Jika daya berserenjang dengan sesaran, <InlineMath math="\theta=90^\circ" /> dan <InlineMath math="\cos90^\circ=0" />, maka tiada kerja dilakukan di sepanjang lintasan. Jika daya yang sama menentang sesaran pada <InlineMath math="180^\circ" />, **kerja negatif** mengambil tenaga daripada gerakan:
 
 <BlockMath math="W=40(5)\cos180^\circ=200(-1)=-200\text{ J}" />
 
-Graf di bawah menggunakan tarikan <InlineMath math="40\text{ N}" /> yang sama sejauh <InlineMath math="5\text{ m}" /> pada setiap sudut dari <InlineMath math="0^\circ" /> hingga <InlineMath math="180^\circ" />. Kerja bermula pada <InlineMath math="200\text{ J}" />, jatuh ke sifar apabila daya berserenjang, dan berakhir pada <InlineMath math="-200\text{ J}" /> apabila daya menghala bertentangan dengan gerakan.
+Lengkung di bawah memplot tarikan <InlineMath math="40\text{ N}" /> sejauh <InlineMath math="5\text{ m}" /> terus dalam unit darjah dan joule dari <InlineMath math="0^\circ" /> hingga <InlineMath math="180^\circ" />.
 
 <MathVisual
   title={<>Kerja Mengikut Kosinus Sudut</>}
-  description={<><InlineMath math="W=Fs\cos\theta" /> bagi <InlineMath math="F=40\text{ N}" /> dan <InlineMath math="s=5\text{ m}" />. Paksi mengufuk: sudut, setiap unit <InlineMath math="30^\circ" />. Paksi menegak: kerja, setiap unit <InlineMath math="50\text{ J}" />.</>}
+  description={<><InlineMath math="W=200\cos\theta" /> dalam joule bagi <InlineMath math="F=40\text{ N}" /> dan <InlineMath math="s=5\text{ m}" /> dari <InlineMath math="0^\circ" /> hingga <InlineMath math="180^\circ" />.</>}
+  footer="Kerja turun daripada +200 J ke 0 J pada 90 darjah hingga -200 J di 180 darjah."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.6 } },
-    view: { kind: "fit", padding: 0.06 },
+    frame: { kind: "cartesian", x: { min: -10, max: 195 }, y: { min: -230, max: 230 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "work", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 0.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 3, y: 0 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 3.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 3.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 3.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 4) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 4.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 4.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 4.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 5) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 5.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 5.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 5.75) / 6) }, { x: 6, y: -4 }] },
-      { id: "zero", kind: "point", appearance: "primary", at: { x: 0, y: 4 } },
-      { id: "right", kind: "point", appearance: "primary", at: { x: 3, y: 0 } },
-      { id: "back", kind: "point", appearance: "primary", at: { x: 6, y: -4 } },
+      { id: "work", kind: "function", appearance: "primary", formula: "200 * cos(x * pi / 180)", domain: { min: 0, max: 180 } },
+      { id: "zero", kind: "point", appearance: "primary", at: { x: 0, y: 200 } },
+      { id: "right", kind: "point", appearance: "primary", at: { x: 90, y: 0 } },
+      { id: "back", kind: "point", appearance: "primary", at: { x: 180, y: -200 } },
     ],
     labels: [
-      { key: "zero", objectId: "zero", at: { x: 0, y: 4 }, placement: "right" },
-      { key: "right", objectId: "right", at: { x: 3, y: 0 }, placement: "above-right" },
-      { key: "back", objectId: "back", at: { x: 6, y: -4 }, placement: "left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 200 }, placement: "right" },
+      { key: "right", objectId: "right", at: { x: 90, y: 0 }, placement: "above-right" },
+      { key: "back", objectId: "back", at: { x: 180, y: -200 }, placement: "left" },
     ],
   }}
   labels={{
-    zero: <InlineMath math="0^\circ:\ W=200\text{ J}" />,
-    right: <InlineMath math="90^\circ:\ W=0" />,
-    back: <InlineMath math="180^\circ:\ W=-200\text{ J}" />,
+    zero: <InlineMath math="0^\circ:\ 200\text{ J}" />,
+    right: <InlineMath math="90^\circ:\ 0\text{ J}" />,
+    back: <InlineMath math="180^\circ:\ -200\text{ J}" />,
   }}
 />
 
-Inilah tarikan itu pada sebuah kereta luncur: <InlineMath math="40\text{ N}" /> pada <InlineMath math="60^\circ" /> sepanjang <InlineMath math="5\text{ m}" /> melakukan kerja <InlineMath math="100\text{ J}" />, kerana hanya <InlineMath math="20\text{ N}" /> daripadanya terletak di sepanjang salji. Turunkan tali ke arah <InlineMath math="0^\circ" /> dan kerjanya meningkat ke arah <InlineMath math="200\text{ J}" />.
+Tanda kerja bertukar tepat pada <InlineMath math="90^\circ" /> kerana komponen daya di sepanjang gerakan beralih daripada membantu kepada menentang.
+
+Uji tarikan <InlineMath math="40\text{ N}" /> yang sama pada kereta luncur sejauh <InlineMath math="5\text{ m}" />. Pada sudut <InlineMath math="60^\circ" />, hanya <InlineMath math="20\text{ N}" /> terletak di sepanjang salji dan melakukan kerja <InlineMath math="100\text{ J}" />. Menurunkan tali ke arah <InlineMath math="0^\circ" /> menambahkan daya mengufuk dan menaikkan kerja menuju <InlineMath math="200\text{ J}" />.
 
 <SledPullWorkLab
   title={<>Hanya Bahagian di Sepanjang Gerakan Melakukan Kerja</>}
   description={<>Kereta luncur <InlineMath math="15\text{ kg}" /> ditarik sejauh <InlineMath math="5\text{ m}" /> dengan <InlineMath math="40\text{ N}" />. Naikkan atau turunkan tali.</>}
+  footer="Menurunkan sudut tali meningkatkan tarikan mengufuk dan jumlah kerja."
   angle={60}
   distance={5}
   force={40}
@@ -121,13 +128,15 @@ Inilah tarikan itu pada sebuah kereta luncur: <InlineMath math="40\text{ N}" /> 
   }}
 />
 
+Bahagian ke atas <InlineMath math="F\sin\theta" /> mengurangkan daya normal daripada salji, tetapi tidak menyumbang kerja di sepanjang lintasan mengufuk.
+
 ## Hasil Darab Vektor Mengukur Kesan Putaran
 
-Hasil darab vektor bagi <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" /> mempunyai magnitud:
+**Hasil darab vektor** bagi <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" /> menghasilkan vektor yang berserenjang dengan satah kedua-dua vektor, dengan magnitud:
 
 <BlockMath math="\lvert\vec{A}\times\vec{B}\rvert=AB\sin\theta" />
 
-Bagi dua vektor bukan sifar yang tidak selari, hasilnya ialah vektor yang berserenjang dengan satah yang mengandungi <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" />. Arahnya mengikut **petua tangan kanan**: lengkungkan jari kamu dari vektor pertama ke arah vektor kedua melalui sudut yang lebih kecil. Ibu jari kamu menunjukkan arah hasilnya. Dua vektor yang selari, atau salah satu vektor yang bernilai sifar, memberikan vektor sifar yang arahnya tidak tertakrif.
+Bagi dua vektor bukan sifar yang tidak selari, arahnya mengikut **petua tangan kanan**: lengkungkan jari kamu dari vektor pertama ke vektor kedua melalui sudut terkecil, dan ibu jari kamu menunjukkan arah hasilnya. Vektor yang selari atau vektor sifar menghasilkan vektor sifar tanpa arah tertakrif.
 
 <MathVisual
   title={<>Arah <InlineMath math="\vec{A}\times\vec{B}" /></>}
@@ -137,22 +146,20 @@ Bagi dua vektor bukan sifar yang tidak selari, hasilnya ialah vektor yang berser
       satu satah. Hasil darab vektornya menghala berserenjang dengan satah itu.
     </>
   }
+  footer="Lengkungan tangan kanan dari x ke y menghalakan hasil darab vektor ke +z."
   labels={{
-    "l1": <InlineMath math="A" />,
-    "l2": <InlineMath math="B" />,
-    "l3": <InlineMath math="A\times B" />,
+    l1: <InlineMath math="\vec{A}" />,
+    l2: <InlineMath math="\vec{B}" />,
+    l3: <InlineMath math="\vec{A}\times\vec{B}" />,
   }}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -1.5, max: 13.5 } },
     view: { kind: "camera", position: { x: 9.9, y: 6.66, z: -7 }, target: { x: 1.5, y: 1.3, z: 5 } },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1.5, z: 0 }, { x: 0, y: 3, z: 0 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 0, y: 1.5, z: 0 }, to: { x: 0, y: 3, z: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 6 }, { x: 0, y: 0, z: 12 }], appearance: "answer" },
-      { id: "s3-head", kind: "vector", from: { x: 0, y: 0, z: 6 }, to: { x: 0, y: 0, z: 12 }, appearance: "answer" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 3, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 12 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2, y: 0, z: 0 }, placement: "below" },
@@ -162,7 +169,7 @@ Bagi dua vektor bukan sifar yang tidak selari, hasilnya ialah vektor yang berser
   }}
 />
 
-Dalam rajah ini, <InlineMath math="\vec{A}" /> menghala di sepanjang paksi <InlineMath math="x" /> positif dan <InlineMath math="\vec{B}" /> menghala di sepanjang paksi <InlineMath math="y" /> positif. Rumus hasil darab vektor memberikan arah <InlineMath math="z" /> positif bagi <InlineMath math="\vec{A}\times\vec{B}" />. Kedua-dua vektor model ini tidak berdimensi. Kira komponennya: dua komponen pertama ialah sifar dan komponen ketiga ialah <InlineMath math="4\cdot3" />. Anak panah hasilnya mempunyai panjang <InlineMath math="12" /> unit. Putar model ini untuk membandingkan anak panah itu dengan satah vektor asal.
+Dalam rajah ini, <InlineMath math="\vec{A}" /> sepanjang <InlineMath math="4" /> menghala sepanjang paksi <InlineMath math="x" /> positif dan <InlineMath math="\vec{B}" /> sepanjang <InlineMath math="3" /> menghala sepanjang paksi <InlineMath math="y" /> positif. Kedua-duanya tidak berdimensi dan hasil darab vektornya menghala ke <InlineMath math="z" /> positif sepanjang <InlineMath math="12" />:
 
 <BlockMath math="\begin{aligned}
 C_x&=0\cdot0-0\cdot3=0 \\
@@ -171,19 +178,20 @@ C_z&=4\cdot3-0\cdot0=12 \\
 \vec{A}\times\vec{B}&=(C_x,C_y,C_z)=(0,0,12)
 \end{aligned}" />
 
-Bagi tork, hasil darab vektor ditulis sebagai:
+Dalam mekanik putaran, **tork** menggunakan hasil darab vektor yang sama:
 
 <BlockMath math="\vec{\tau}=\vec{r}\times\vec{F}" />
 
-Vektor <InlineMath math="\vec{r}" /> ialah vektor kedudukan dari titik rujukan pada engsel ke titik tempat daya bertindak. Lengan tuas yang berserenjang mempunyai panjang <InlineMath math="r\sin\theta" />. Pada sudut yang sama, daya yang sama menghasilkan tork yang lebih besar apabila dikenakan lebih jauh dari engsel pintu.
+Vektor <InlineMath math="\vec{r}" /> ialah vektor kedudukan dari pangsi ke titik tindakan daya, manakala lengan tuas berserenjang mempunyai panjang <InlineMath math="r\sin\theta" />.
 
-## Melonggarkan Nat Roda
+### Melonggarkan Nat Roda
 
-Tangan menolak dengan <InlineMath math="200\text{ N}" /> pada spanar roda <InlineMath math="0.4\text{ m}" /> dari nat. Tork <InlineMath math="\vec\tau=\vec r\times\vec F" /> **menghala di sepanjang paksi nat**, <InlineMath math="80\text{ N}\cdot\text{m}" /> apabila tolakan itu bersudut tegak dengan pemegang. Putar tolakan ke bawah pemegang dan tork bertukar ke sebelah yang lain.
+Tangan menolak dengan <InlineMath math="200\text{ N}" /> pada spanar roda <InlineMath math="0.4\text{ m}" /> dari nat. Tork <InlineMath math="\vec{\tau}" /> **menghala di sepanjang paksi nat** dan mencecah <InlineMath math="80\text{ N}\cdot\text{m}" /> apabila tolakan berserenjang dengan pemegang. Memutar tolakan ke bawah pemegang membalikkan arah putaran lalu membalikkan vektor tork ke sebelah lawan.
 
 <WrenchTorqueLab
   title={<>Tork pada Nat Roda</>}
   description={<>Tolakan <InlineMath math="200\text{ N}" /> pada <InlineMath math="0.4\text{ m}" /> dari nat. Putar tolakan itu.</>}
+  footer="Tork memuncak pada 90 darjah dan bertukar tanda apabila melepasi pemegang."
   angle={90}
   arm={0.4}
   force={200}
@@ -196,23 +204,24 @@ Tangan menolak dengan <InlineMath math="200\text{ N}" /> pada spanar roda <Inlin
   }}
 />
 
-## Tork daripada Daya Berserenjang
+Hanya bahagian berserenjang <InlineMath math="F\sin\theta" /> memutarkan nat, manakala tolakan di sepanjang pemegang tidak menghasilkan putaran.
 
-Pilih titik rujukan pada engsel, sama tinggi dengan tempat pintu ditolak. Sebuah pintu ditolak secara mengufuk dengan daya <InlineMath math="30\text{ N}" /> pada jarak <InlineMath math="0.8\text{ m}" /> dari engsel. Daya itu **berserenjang dengan pintu**, jadi <InlineMath math="\theta=90^\circ" />.
+### Menolak Pintu hingga Terbuka
+
+Pilih titik rujukan pada engsel sama tinggi dengan titik tolakan. Pintu ditolak secara mengufuk dengan <InlineMath math="30\text{ N}" /> pada jarak <InlineMath math="0.8\text{ m}" /> dari engsel, **berserenjang dengan pintu** supaya <InlineMath math="\theta=90^\circ" />:
 
 <BlockMath math="\begin{aligned}
 \tau&=rF\sin\theta \\
 &=0.8(30)\sin90^\circ \\
-&=24\text{ N m}
+&=24\text{ N}\cdot\text{m}
 \end{aligned}" />
 
-Bagi <InlineMath math="r" /> dan <InlineMath math="F" /> yang tetap, daya yang berserenjang memberikan tork maksimum kerana <InlineMath math="\sin90^\circ=1" />. Daya yang hampir selari dengan vektor kedudukan <InlineMath math="\vec{r}" /> memberikan tork yang kecil kerana faktor sinusnya hampir sifar.
-
-Inilah pintu itu dilihat dari siling: <InlineMath math="30\text{ N}" /> yang bersudut tegak dengan pintu pada <InlineMath math="0.8\text{ m}" /> memberikan <InlineMath math="24\text{ N}\cdot\text{m}" />, dan pintu terbuka. Gerakkan tangan ke arah engsel atau serongkan tolakan, dan tork serta ayunan pintu sama-sama berkurang.
+Bagi <InlineMath math="r" /> dan <InlineMath math="F" /> yang tetap, tolakan berserenjang memaksimumkan tork kerana <InlineMath math="\sin90^\circ=1" />. Menggerakkan tangan mendekati engsel atau menyerongkan tolakan mengurangkan tork dan ayunan pintu.
 
 <DoorHingeTorqueLab
   title={<>Menolak Pintu hingga Terbuka</>}
   description={<>Pintu <InlineMath math="18\text{ kg}" /> selebar <InlineMath math="0.9\text{ m}" />, ditolak dengan <InlineMath math="30\text{ N}" />.</>}
+  footer="Mendekati engsel atau menyerongkan tolakan mengecilkan tork putaran pintu."
   angle={90}
   arm={0.8}
   force={30}
@@ -229,9 +238,11 @@ Inilah pintu itu dilihat dari siling: <InlineMath math="30\text{ N}" /> yang ber
   }}
 />
 
+Menggandakan jarak dari engsel menggandakan tork walaupun magnitud daya tolakan kekal sama.
+
 ## Membandingkan Hasil Darab Skalar dan Hasil Darab Vektor
 
-Bandingkan kedua-dua operasi ini dengan **kedua-dua magnitud vektor tetap dan bukan sifar**. Hasil darab skalar paling besar apabila dua vektor menghala ke arah yang sama kerana <InlineMath math="\cos0^\circ=1" />. Hasil darab vektor pula bernilai sifar dalam keadaan yang sama kerana <InlineMath math="\sin0^\circ=0" />.
+Bandingkan kedua-dua operasi apabila **kedua-dua magnitud vektor tetap dan bukan sifar**. Hasil darab skalar paling besar apabila dua vektor searah kerana <InlineMath math="\cos0^\circ=1" />, manakala hasil darab vektor bernilai sifar di situ kerana <InlineMath math="\sin0^\circ=0" />.
 
 | Keadaan sudut | <InlineMath math="\vec{A}\cdot\vec{B}" /> | <InlineMath math="\lvert\vec{A}\times\vec{B}\rvert" /> |
 | :-------------- | :---------------------------------------- | :------------------------------------------------------ |
@@ -239,24 +250,25 @@ Bandingkan kedua-dua operasi ini dengan **kedua-dua magnitud vektor tetap dan bu
 | <InlineMath math="90^\circ" /> | sifar | maksimum |
 | <InlineMath math="180^\circ" /> | negatif | sifar |
 
-Jadi, hasil darab skalar berguna untuk melihat sejauh mana dua vektor searah, manakala hasil darab vektor berguna untuk kesan berserenjang seperti putaran.
+### Cara Sudut Memisahkan Dua Hasil Darab
 
-Kekalkan kedua-dua magnitud dan ubah sudutnya. Hasil darab skalar yang berwarna jingga paling besar apabila kedua-dua vektor searah, manakala magnitud hasil darab vektor yang berwarna ungu mencapai puncak pada <InlineMath math="90^\circ" />. Pada <InlineMath math="0^\circ" /> dan <InlineMath math="180^\circ" />, hasil darab vektor menjadi sifar kerana vektor yang selari tidak memberikan kesan putaran.
+Mengekalkan <InlineMath math="AB=200" /> sambil mengubah sudut dari <InlineMath math="0^\circ" /> hingga <InlineMath math="180^\circ" /> memperlihatkan kedua-dua hasil darab sebagai **ukuran saling melengkapi** bagi kesearahan dan keserenjangan.
 
 <MathVisual
   title={<>Hasil Darab Skalar dan Vektor Berbanding Sudut</>}
-  description={<><InlineMath math="AB\cos\theta" /> dan <InlineMath math="AB\sin\theta" /> dengan <InlineMath math="AB=200" /> bagi sudut dari <InlineMath math="0^\circ" /> hingga <InlineMath math="180^\circ" />. Paksi mengufuk: sudut, setiap unit 30°. Paksi menegak: nilai, setiap unit 50.</>}
+  description={<>Lengkung berskala sebenar bagi <InlineMath math="200\cos\theta" /> dan <InlineMath math="200\sin\theta" /> dari <InlineMath math="0^\circ" /> hingga <InlineMath math="180^\circ" />.</>}
+  footer="Hasil darab skalar memuncak di 0 darjah, magnitud vektor di 90 darjah."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.8 } },
-    view: { kind: "fit", padding: 0.06 },
+    frame: { kind: "cartesian", x: { min: -10, max: 195 }, y: { min: -230, max: 240 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "dot", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 0.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 3, y: 0 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 3.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 3.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 3.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 4) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 4.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 4.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 4.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 5) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 5.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 5.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 5.75) / 6) }, { x: 6, y: -4 }] },
-      { id: "cross", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 4 * Math.cos((Math.PI * -2.75) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * -2.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * -2.25) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * -2) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * -1.75) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * -1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * -1.25) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * -1) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * -0.75) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * -0.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * -0.25) / 6) }, { x: 3, y: 4 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 6, y: 0 }] },
+      { id: "dot", kind: "function", appearance: "primary", formula: "200 * cos(x * pi / 180)", domain: { min: 0, max: 180 } },
+      { id: "cross", kind: "function", appearance: "secondary", formula: "200 * sin(x * pi / 180)", domain: { min: 0, max: 180 } },
     ],
     labels: [
-      { key: "dot", objectId: "dot", at: { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, placement: "above-right" },
-      { key: "cross", objectId: "cross", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "dot", objectId: "dot", at: { x: 30, y: 173.2 }, placement: "above-right" },
+      { key: "cross", objectId: "cross", at: { x: 90, y: 200 }, placement: "above" },
     ],
   }}
   labels={{
@@ -265,24 +277,46 @@ Kekalkan kedua-dua magnitud dan ubah sudutnya. Hasil darab skalar yang berwarna 
   }}
 />
 
-## Dua Hasil Darab pada Satu Satah Condong
+Apabila satu lengkung mencapai nilai ekstrem, lengkung yang satu lagi memotong sifar. Arah selari memaksimumkan hasil darab skalar manakala arah berserenjang memaksimumkan hasil darab vektor.
 
-Semasa bongkah menggelongsor <InlineMath math="0.5\text{ m}" /> menuruni cerun, berat melakukan kerja <InlineMath math="\vec W\cdot\vec s" />, yang hanya menggunakan bahagian di sepanjang cerun, <InlineMath math="9.8\text{ N}" />: <InlineMath math="4.9\text{ J}" />. Bahagian yang menekan ke dalam papan, <InlineMath math="16.97\text{ N}" />, **tidak melakukan kerja langsung**.
+### Komponen Berat yang Melakukan Kerja pada Satah Condong
 
-<RampBlockComponentLab
-  title={<>Bahagian Mana yang Melakukan Kerja</>}
-  description={<>Bongkah <InlineMath math="2\text{ kg}" /> di atas papan. Bongkah mula menggelongsor apabila <InlineMath math="\tan\theta" /> melebihi <InlineMath math="0.4" />.</>}
-  angle={30}
-  distance={0.5}
-  friction={0.4}
-  mass={2}
+Semasa bongkah <InlineMath math="2\text{ kg}" /> menggelongsor <InlineMath math="0.5\text{ m}" /> menuruni cerun <InlineMath math="30^\circ" />, berat melakukan kerja melalui **komponen yang selari dengan cerun**. Hanya bahagian <InlineMath math="9.8\text{ N}" /> menuruni papan menyumbang <InlineMath math="4.9\text{ J}" />, manakala bahagian <InlineMath math="16.97\text{ N}" /> berserenjang dengan papan melakukan kerja sifar.
+
+<MathVisual
+  title={<>Kerja oleh Berat Berbanding Sudut Satah Condong</>}
+  description={<>Kerja <InlineMath math="W=mgs\sin\theta" /> oleh berat pada bongkah <InlineMath math="2\text{ kg}" /> sepanjang <InlineMath math="0.5\text{ m}" /> apabila sudut <InlineMath math="a" /> berubah.</>}
+  footer="Cerun lebih curam menaikkan daya selari dan kerja, kerja normal kekal sifar."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 90 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 10, max: 60, value: 30, step: 5, label: "ramp-angle" },
+    ],
+    objects: [
+      { id: "work-curve", kind: "function", appearance: "primary", formula: "9.8 * sin(x * pi / 180)", domain: { min: 0, max: 90 } },
+      { id: "normal-zero", kind: "function", appearance: "reference", formula: "0", domain: { min: 0, max: 90 } },
+      { id: "state", kind: "marker", appearance: "answer", x: "a", y: "9.8 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "curve", objectId: "work-curve", at: { x: 60, y: 8.5 }, placement: "above-left" },
+      { key: "zero", objectId: "normal-zero", at: { x: 65, y: 0 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "along-n", formula: "19.6 * sin(a * pi / 180)" },
+      { key: "into-n", formula: "19.6 * cos(a * pi / 180)" },
+      { key: "work-j", formula: "9.8 * sin(a * pi / 180)" },
+    ],
+  }}
   labels={{
-    along: <>Menuruni cerun <InlineMath math="W\sin\theta" /></>,
-    angle: <>Sudut satah condong</>,
-    angleName: "Sudut satah condong",
-    into: <>Ke dalam cerun <InlineMath math="W\cos\theta" /></>,
-    viewLabel: "Bongkah kayu di atas papan yang condong",
-    weight: <>Berat <InlineMath math="W" /></>,
-    work: <>Kerja oleh berat sepanjang <InlineMath math="0.5\text{ m}" /></>,
+    curve: <InlineMath math="W=mgs\sin\theta" />,
+    zero: <InlineMath math="W_{\perp}=0\text{ J}" />,
+    "ramp-angle": <>Sudut cerun (<InlineMath math="^\circ" />)</>,
+    "along-n": <>Menuruni cerun (N)</>,
+    "into-n": <>Ke dalam cerun (N)</>,
+    "work-j": <>Kerja berat (J)</>,
   }}
 />
+
+Walau seberapa curam satah condong itu, komponen yang menekan papan sentiasa bersudut <InlineMath math="90^\circ" /> dengan sesaran lalu menghasilkan kerja sifar.

@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Vektoren mithilfe der Trigonometrie zerlegen",
   description:
@@ -12,79 +10,99 @@ export const metadata = {
 
 ## Der Winkel bestimmt die Komponenten
 
-Bildet ein Vektor mit einer Achse einen Winkel, lassen sich seine Komponenten trigonometrisch bestimmen. Dabei ist der schräge Vektor <Highlight>die Hypotenuse eines rechtwinkligen Dreiecks</Highlight>. Seine horizontale und vertikale Komponente bilden die beiden Katheten.
+Bildet ein Vektor mit einer Achse einen Winkel, zerlegt die Trigonometrie ihn sauber in Achsenkomponenten. Der schräge Vektor bildet <Highlight>die Hypotenuse eines rechtwinkligen Dreiecks</Highlight>, während seine waagrechte und senkrechte Komponente die beiden Katheten liefern.
 
-Für einen Vektor im ersten Quadranten messen wir <InlineMath math="\theta" /> von der positiven <InlineMath math="x" />-Achse aus. Die horizontale Komponente ist die Ankathete, die vertikale die Gegenkathete. Teile für den Vektorbetrag <InlineMath math="F>0" /> jede Kathete durch die Hypotenuse und multipliziere anschließend wieder mit <InlineMath math="F" />.
+Für einen Vektor im ersten Quadranten misst du <InlineMath math="\theta" /> ab der positiven <InlineMath math="x" />-Achse. Die horizontale Komponente ist die Ankathete und die vertikale die Gegenkathete. Teilst du jede Kathete durch den positiven Betrag <InlineMath math="F" /> und multiplizierst wieder mit <InlineMath math="F" />, folgt:
 
 <MathContainer>
   <BlockMath math="\cos\theta=\frac{F_x}{F}\quad\Rightarrow\quad F_x=F\cos\theta" />
   <BlockMath math="\sin\theta=\frac{F_y}{F}\quad\Rightarrow\quad F_y=F\sin\theta" />
 </MathContainer>
 
-> Bestimme zuerst die Ankathete zum Bezugswinkel für <InlineMath math="\cos" /> und anschließend die Gegenkathete für <InlineMath math="\sin" />.
+> Bestimme zuerst die Ankathete zum Bezugswinkel für den Kosinus und anschließend die Gegenkathete für den Sinus.
 
-## Eine Rampe kippen
+Auf einer Rampe unter <InlineMath math="37^\circ" /> zerfällt die Gewichtskraft von <InlineMath math="19{,}6\text{ N}" /> in <InlineMath math="11{,}8\text{ N}" /> hangabwärts und <InlineMath math="15{,}65\text{ N}" /> senkrecht ins Brett. Ändert sich die Neigung, tauschen beide Anteile an Stärke, während **die gesamte Gewichtskraft konstant bleibt**.
 
-Auf einer Rampe mit <InlineMath math="37^\circ" /> zerfällt die Gewichtskraft von <InlineMath math="19{,}6\text{ N}" /> in <InlineMath math="W\sin\theta" />, etwa <InlineMath math="11{,}8\text{ N}" /> hangabwärts, und <InlineMath math="W\cos\theta" />, etwa <InlineMath math="15{,}65\text{ N}" /> senkrecht in die Ebene. Ändere den Winkel, dann tauschen die beiden Anteile ihre Größe, während **die Gewichtskraft selbst gleich bleibt**.
-
-<RampBlockComponentLab
-  title={<>Sinus und Kosinus an der Rampe</>}
-  description={<>Ein <InlineMath math="2\text{ kg}" /> schwerer Klotz auf einem Brett. Er rutscht, sobald <InlineMath math="\tan\theta" /> größer als <InlineMath math="0{,}8" /> ist.</>}
-  angle={37}
-  friction={0.8}
-  mass={2}
+<MathVisual
+  title={<>Sinus und Kosinus an einer Rampe</>}
+  description={<>Hangabtrieb <InlineMath math="W\sin\theta" /> und Normalkomponente <InlineMath math="W\cos\theta" /> für einen <InlineMath math="2\text{ kg}" />-Klotz über dem Rampenwinkel <InlineMath math="a" />.</>}
+  footer="Steigt der Rampenwinkel, wächst der Hangabtrieb und die Normalkomponente sinkt."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 90 }, y: { min: 0, max: 22 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 10, max: 70, value: 37, step: 1, label: "ramp-angle" },
+    ],
+    objects: [
+      { id: "along", kind: "function", appearance: "primary", formula: "19.6 * sin(x * pi / 180)", domain: { min: 0, max: 90 } },
+      { id: "into", kind: "function", appearance: "secondary", formula: "19.6 * cos(x * pi / 180)", domain: { min: 0, max: 90 } },
+      { id: "pt-along", kind: "marker", appearance: "primary", x: "a", y: "19.6 * sin(a * pi / 180)" },
+      { id: "pt-into", kind: "marker", appearance: "secondary", x: "a", y: "19.6 * cos(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "along", objectId: "along", at: { x: 68, y: 18.2 }, placement: "above-left" },
+      { key: "into", objectId: "into", at: { x: 22, y: 18.2 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "along-n", formula: "19.6 * sin(a * pi / 180)" },
+      { key: "into-n", formula: "19.6 * cos(a * pi / 180)" },
+      { key: "total-n", formula: "19.6" },
+    ],
+  }}
   labels={{
-    along: <>Hangabwärts <InlineMath math="W\sin\theta" /></>,
-    angle: <>Neigungswinkel</>,
-    angleName: "Neigungswinkel",
-    into: <>Senkrecht zur Ebene <InlineMath math="W\cos\theta" /></>,
-    viewLabel: "Holzklotz auf einem schrägen Brett",
-    weight: <>Gewichtskraft <InlineMath math="W" /></>,
+    along: <InlineMath math="W\sin\theta" />,
+    into: <InlineMath math="W\cos\theta" />,
+    "ramp-angle": <>Rampenwinkel (<InlineMath math="^\circ" />)</>,
+    "along-n": <>Hangabwärts (N)</>,
+    "into-n": <>Senkrecht (N)</>,
+    "total-n": <>Gewichtskraft (N)</>,
   }}
 />
 
-## Eine schräge Kraft im Koordinatensystem
+Bei <InlineMath math="45^\circ" /> schneiden sich beide Kurven auf exakt demselben Wert, weil <InlineMath math="\sin45^\circ" /> gleich <InlineMath math="\cos45^\circ" /> ist.
 
-Ein Seil zieht eine Kiste mit der schräg nach rechts oben gerichteten Kraft <InlineMath math="\vec{F}" />. Die Kraft besitzt **Komponenten nach rechts und nach oben**. Die Komponente nach oben hebt die Kiste nicht zwingend an: Ihre Bewegung hängt auch von der Gewichtskraft und der Normalkraft des Bodens ab.
+## Eine schräge Kraft im Koordinatensystem zerlegen
+
+Stell dir ein Seil vor, das eine Kiste schräg nach rechts oben zieht. Der Zug zerfällt in **Komponenten nach rechts und nach oben**, deren Vektorsumme die ursprüngliche Kraft ohne Verlust ihrer Gesamtwirkung nachbildet.
+
+### Näherung und exakte Komponenten
+
+Zeichne eine Kraft von <InlineMath math="50\text{ N}" /> unter <InlineMath math="37^\circ" /> über der Horizontalen direkt auf Newton-Achsen. Gehst du erst <InlineMath math="F_x" /> und dann <InlineMath math="F_y" />, triffst du genau die Spitze von <InlineMath math="\vec{F}" />.
 
 <MathVisual
   title={<>Eine schräge Kraft auflösen</>}
   description={
     <>
-      Die Kraft <InlineMath math="F=50\text{ N}" /> bildet einen Winkel von{" "}
-      <InlineMath math="37^\circ" /> mit der Horizontalen. Ihre Komponenten lassen
-      sich daher mit <InlineMath math="\cos37^\circ" /> und{" "}
-      <InlineMath math="\sin37^\circ" /> abschätzen.
+      Die Kraft <InlineMath math="F=50\text{ N}" /> unter{" "}
+      <InlineMath math="37^\circ" /> über der Waagrechten direkt in Newton mit
+      ihrer horizontalen und vertikalen Komponente.
     </>
   }
+  footer="Waagrechtes Fx gefolgt von senkrechtem Fy erreicht exakt die Spitze von F."
   labels={{
-    "l1": <InlineMath math="F" />,
-    "l2": <InlineMath math="F_x" />,
-    "l3": <InlineMath math="F_y" />,
+    l1: <InlineMath math="\vec{F}" />,
+    l2: <InlineMath math="F_x" />,
+    l3: <InlineMath math="F_y" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
-    view: { kind: "fit", padding: 0.2 },
+    frame: { kind: "cartesian", x: { min: -5, max: 48 }, y: { min: -5, max: 36 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2.4, y: 1.81 }, { x: 3.99, y: 3.01 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2.4, y: 1.81 }, to: { x: 3.99, y: 3.01 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 3.99, y: 0 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 2, y: 0 }, to: { x: 3.99, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 3.99, y: 0 }, { x: 3.99, y: 1.5 }, { x: 3.99, y: 3.01 }], appearance: "answer" },
-      { id: "s3-head", kind: "vector", from: { x: 3.99, y: 1.5 }, to: { x: 3.99, y: 3.01 }, appearance: "answer" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 39.93, y: 30.09 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 39.93, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 39.93, y: 0 }, to: { x: 39.93, y: 30.09 }, appearance: "answer" },
     ],
     labels: [
-      { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.81 }, placement: "above-right" },
-      { key: "l2", objectId: "s2", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "l3", objectId: "s3", at: { x: 3.99, y: 1.5 }, placement: "right" },
+      { key: "l1", objectId: "s1", at: { x: 20, y: 16 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 39.93, y: 15 }, placement: "right" },
     ],
   }}
 />
 
-Jede Koordinateneinheit im Modell entspricht <InlineMath math="10\text{ N}" />. Werden <InlineMath math="F_x" /> und anschließend <InlineMath math="F_y" /> aneinandergefügt, wird derselbe Endpunkt wie mit dem Vektor <InlineMath math="\vec{F}" /> erreicht. Die Komponenten stellen also dieselbe Kraft in zwei Richtungen dar.
-
-Eine Kraft von <InlineMath math="50\text{ N}" /> wirkt unter einem Winkel von <InlineMath math="37^\circ" /> über der Horizontalen. Als **trigonometrische Näherungen** gelten <InlineMath math="\cos37^\circ\approx0{,}8" /> und <InlineMath math="\sin37^\circ\approx0{,}6" />.
+Mit den **trigonometrischen Näherungen** <InlineMath math="\cos37^\circ\approx0{,}8" /> und <InlineMath math="\sin37^\circ\approx0{,}6" /> erhältst du schnelle Schätzwerte:
 
 <MathContainer>
   <BlockMath math="\begin{aligned}
@@ -100,78 +118,96 @@ Eine Kraft von <InlineMath math="50\text{ N}" /> wirkt unter einem Winkel von <I
   \end{aligned}" />
 </MathContainer>
 
-Die schräge Kraft von <InlineMath math="50\text{ N}" /> hat mit dieser Rundung näherungsweise eine horizontale Komponente von <InlineMath math="40\text{ N}" /> nach rechts und eine vertikale Komponente von <InlineMath math="30\text{ N}" /> nach oben.
-
-Ohne vorzeitiges Runden erhältst du etwa <InlineMath math="39{,}93\text{ N}" /> und <InlineMath math="30{,}09\text{ N}" />. Das Modell verwendet den Winkel <InlineMath math="37^\circ" /> direkt. Seine Koordinaten sind daher nicht genau <InlineMath math="4" /> und <InlineMath math="3" />.
-
-Hier ist die Seilkraft auf die Achsen zerlegt. Der Kosinus liefert den waagrechten, der Sinus den senkrechten Teil, etwa <InlineMath math="40\text{ N}" /> und <InlineMath math="30\text{ N}" />, und beide Teile setzen die Kraft von <InlineMath math="50\text{ N}" /> wieder zusammen.
+Ohne frühes Runden liegen die genauen Werte bei <InlineMath math="39{,}93\text{ N}" /> nach rechts und <InlineMath math="30{,}09\text{ N}" /> nach oben. Beide Teile setzen zusammen wieder die volle Seilkraft von <InlineMath math="50\text{ N}" /> zusammen.
 
 <MathVisual
   title={<>Die Zugkraft zerlegen</>}
-  description={<><InlineMath math="F=50\text{ N}" /> unter <InlineMath math="37^\circ" /> über der Waagrechten mit ihren Komponenten. Ein Gitterschritt entspricht <InlineMath math="10\text{ N}" />.</>}
+  description={<><InlineMath math="F=50\text{ N}" /> unter <InlineMath math="37^\circ" /> über der Waagrechten mit beschrifteten Komponenten direkt in Newton.</>}
+  footer="Der Kosinus liefert rund 40 N waagrecht, der Sinus rund 30 N senkrecht."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 3.8 } },
-    view: { kind: "fit", padding: 0.06 },
+    frame: { kind: "cartesian", x: { min: -5, max: 52 }, y: { min: -8, max: 38 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "fx", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 } },
-      { id: "fx-head", kind: "polygon", appearance: "construction", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.25, y: 0.125 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.25, y: -0.125 }] },
-      { id: "fy", kind: "segment", appearance: "secondary", from: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) } },
-      { id: "fy-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) }, { x: 5 * Math.cos((37 * Math.PI) / 180) + 0.125, y: 5 * Math.sin((37 * Math.PI) / 180) + -0.25 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.125, y: 5 * Math.sin((37 * Math.PI) / 180) + -0.25 }] },
-      { id: "f", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) } },
-      { id: "f-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) }, { x: 5 * Math.cos((37 * Math.PI) / 180) - (0.25 * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) + ((0.25 / 2) * -3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416), y: 5 * Math.sin((37 * Math.PI) / 180) - (0.25 * 3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416) + ((0.25 / 2) * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) }, { x: 5 * Math.cos((37 * Math.PI) / 180) - (0.25 * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) - ((0.25 / 2) * -3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416), y: 5 * Math.sin((37 * Math.PI) / 180) - (0.25 * 3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416) - ((0.25 / 2) * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) }] },
+      { id: "fx", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 0 } },
+      { id: "fy", kind: "vector", appearance: "secondary", from: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 0 }, to: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 50 * Math.sin((37 * Math.PI) / 180) } },
+      { id: "f", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 50 * Math.sin((37 * Math.PI) / 180) } },
     ],
     labels: [
-      { key: "fx", objectId: "fx", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "fy", objectId: "fy", at: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 1.5 }, placement: "right" },
-      { key: "f", objectId: "f", at: { x: 2, y: 1.5 }, placement: "above-left" },
+      { key: "fx", objectId: "fx", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "fy", objectId: "fy", at: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 15 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: 20, y: 15 }, placement: "above-left" },
     ],
   }}
   labels={{
-    fx: <InlineMath math="F_x=F\cos37^\circ\approx40\text{ N}" />,
-    fy: <InlineMath math="F_y=F\sin37^\circ\approx30\text{ N}" />,
+    fx: <InlineMath math="F_x\approx40\text{ N}" />,
+    fy: <InlineMath math="F_y\approx30\text{ N}" />,
     f: <InlineMath math="F=50\text{ N}" />,
   }}
 />
 
-Hier ist derselbe Zug von <InlineMath math="50\text{ N}" /> unter <InlineMath math="37^\circ" /> an einem echten Schlitten. Die Karte rechnet ohne frühes Runden, also zeigt sie <InlineMath math="39{,}9\text{ N}" /> entlang dem Schnee und <InlineMath math="30{,}1\text{ N}" /> nach oben, nah an den <InlineMath math="40\text{ N}" /> und <InlineMath math="30\text{ N}" /> von oben.
+Eine Komponente nach oben hebt die Kiste nicht automatisch an, weil die Bewegung ebenso von Gewichtskraft und Normalkraft abhängt.
 
-<SledPullWorkLab
-  title={<>Einen Schlitten schräg ziehen</>}
-  description={<>Ein <InlineMath math="20\text{ kg}" /> schwerer Schlitten mit Brennholz, mit <InlineMath math="50\text{ N}" /> über <InlineMath math="10\text{ m}" /> gezogen.</>}
-  angle={37}
-  distance={10}
-  force={50}
-  mass={20}
+### Einen Schlitten unter variablem Winkel ziehen
+
+Wende denselben Zug von <InlineMath math="50\text{ N}" /> über <InlineMath math="10\text{ m}" /> auf einen Schlitten an und verändere den **Seilwinkel** <InlineMath math="a" />. Bei <InlineMath math="37^\circ" /> liefert die exakte Rechnung <InlineMath math="39{,}9\text{ N}" /> entlang dem Schnee, <InlineMath math="30{,}1\text{ N}" /> nach oben und <InlineMath math="399{,}3\text{ J}" /> Arbeit.
+
+<MathVisual
+  title={<>Schlittenzug nach Seilwinkel zerlegen</>}
+  description={<>Zugkraft <InlineMath math="50\text{ N}" /> zerlegt in waagrechtes <InlineMath math="F_x" /> und senkrechtes <InlineMath math="F_y" /> in Newton bei variablem Winkel <InlineMath math="a" />.</>}
+  footer="Ein steileres Seil tauscht Vortrieb gegen Hubkraft bei konstanten 50 N."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 55 }, y: { min: -5, max: 55 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 0, max: 80, value: 37, step: 1, label: "rope-angle" },
+    ],
+    objects: [
+      { id: "fx", kind: "path", appearance: "construction", points: [{ x: "0", y: "0" }, { x: "50 * cos(a * pi / 180)", y: "0" }] },
+      { id: "fy", kind: "path", appearance: "secondary", points: [{ x: "50 * cos(a * pi / 180)", y: "0" }, { x: "50 * cos(a * pi / 180)", y: "50 * sin(a * pi / 180)" }] },
+      { id: "pull", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "50 * cos(a * pi / 180)", y: "50 * sin(a * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "50 * cos(a * pi / 180)", y: "50 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "50 * cos(a * pi / 180)", y: "50 * sin(a * pi / 180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "fx-n", formula: "50 * cos(a * pi / 180)" },
+      { key: "fy-n", formula: "50 * sin(a * pi / 180)" },
+      { key: "work-j", formula: "500 * cos(a * pi / 180)" },
+    ],
+  }}
   labels={{
-    along: <>Entlang dem Schnee <InlineMath math="F\cos\theta" /></>,
-    angle: <>Seilwinkel über dem Schnee</>,
-    angleName: "Seilwinkel über dem Schnee",
-    normal: <>Normalkraft des Schnees</>,
-    up: <>Anteil nach oben <InlineMath math="F\sin\theta" /></>,
-    viewLabel: "Schlitten mit Brennholz wird über Schnee gezogen",
-    work: <>Arbeit auf <InlineMath math="10\text{ m}" /></>,
+    tip: <InlineMath math="\vec{F}" />,
+    "rope-angle": <>Seilwinkel (<InlineMath math="^\circ" />)</>,
+    "fx-n": <>Entlang Schnee (N)</>,
+    "fy-n": <>Nach oben (N)</>,
+    "work-j": <>Arbeit auf 10 m (J)</>,
   }}
 />
 
+Unabhängig vom Seilwinkel erfüllen die quadrierten Komponenten stets <InlineMath math="F_x^2+F_y^2=2500\text{ N}^2" />.
+
 ## Wenn der Winkel von der vertikalen Achse gemessen wird
 
-Die Kraft bleibt im ersten Quadranten, aber wir messen den **Winkel von der positiven vertikalen Achse** zur Kraft. Jetzt ist <InlineMath math="F_y" /> die Ankathete zum Winkel <InlineMath math="\theta" />, während <InlineMath math="F_x" /> die Gegenkathete ist.
+Die Kraft bleibt im ersten Quadranten, aber wir messen den **Winkel von der positiven vertikalen Achse** aus. Jetzt ist <InlineMath math="F_y" /> die Ankathete zu <InlineMath math="\theta" /> und bekommt den Kosinus, während <InlineMath math="F_x" /> die Gegenkathete ist und den Sinus erhält:
 
 <MathContainer>
   <BlockMath math="F_y=F\cos\theta" />
   <BlockMath math="F_x=F\sin\theta" />
 </MathContainer>
 
-Vor dem Einsetzen sollte deshalb immer geklärt werden: Von welcher Achse aus wird der Winkel gemessen? Diese kurze Prüfung verhindert einen häufigen Fehler bei der Vektorzerlegung.
+Prüfe vor jeder Formel, an welcher Achse der gegebene Winkel anliegt.
 
 ### Eine Drachenschnur
 
-Eine Drachenschnur zieht ihren Pflock mit <InlineMath math="40\text{ N}" /> unter <InlineMath math="60^\circ" /> zur Senkrechten. Von dieser Achse aus gemessen **bekommt der senkrechte Anteil den Kosinus**, <InlineMath math="20\text{ N}" />, und der waagrechte Anteil den Sinus, <InlineMath math="34{,}6\text{ N}" />.
+Eine Drachenschnur zieht ihren Pflock mit <InlineMath math="40\text{ N}" /> unter <InlineMath math="60^\circ" /> zur Senkrechten. Weil der Winkel an der vertikalen Achse anliegt, **bekommt der senkrechte Anteil den Kosinus** (<InlineMath math="20\text{ N}" />) und der waagrechte Anteil den Sinus (<InlineMath math="34{,}6\text{ N}" />).
 
 <KiteStringTensionLab
   title={<>Winkel zur Senkrechten gemessen</>}
   description={<>Eine <InlineMath math="30\text{ m}" /> lange Schnur mit einer Spannkraft von <InlineMath math="40\text{ N}" />. Neig sie von der Senkrechten weg.</>}
+  footer="Ab der Senkrechten gibt Kosinus die Hubkraft und Sinus den waagrechten Zug."
   angle={60}
   length={30}
   tension={40}
@@ -184,13 +220,16 @@ Eine Drachenschnur zieht ihren Pflock mit <InlineMath math="40\text{ N}" /> unte
   }}
 />
 
+Neigst du die Schnur näher zur Senkrechten, steigt die Zugkraft nach oben, während der seitliche Zug am Pflock kleiner wird.
+
 ### Ein Kurswinkel ab Norden
 
-Auch der Kurswinkel eines Schiffs ist **ein Winkel zur senkrechten Achse**, nach Norden. Bei <InlineMath math="30^\circ" /> werden <InlineMath math="10\text{ km}" /> Fahrt zu <InlineMath math="10\cos30^\circ" />, etwa <InlineMath math="8{,}66\text{ km}" />, nach Norden und <InlineMath math="10\sin30^\circ" />, also <InlineMath math="5\text{ km}" />, nach Osten.
+Der Kurswinkel eines Schiffs ist **ebenfalls ein Winkel zur senkrechten Nordachse**. Bei einem Kurs von <InlineMath math="30^\circ" /> zerfällt eine <InlineMath math="10\text{ km}" />-Fahrt in <InlineMath math="8{,}66\text{ km}" /> nach Norden (<InlineMath math="10\cos30^\circ" />) und <InlineMath math="5\text{ km}" /> nach Osten (<InlineMath math="10\sin30^\circ" />).
 
 <ShipBearingComponentLab
   title={<>Kosinus nach Norden, Sinus nach Osten</>}
   description={<>Eine Fähre fährt <InlineMath math="10\text{ km}" />. Dreh ihren Kurswinkel, im Uhrzeigersinn ab Norden gemessen.</>}
+  footer="Kurswinkel ab Norden ordnen den Kosinus nach Norden und den Sinus nach Osten."
   courses={[{ bearing: 30, distance: 10 }]}
   labels={{
     bearing: <>Kurswinkel der letzten Etappe</>,
@@ -203,9 +242,11 @@ Auch der Kurswinkel eines Schiffs ist **ein Winkel zur senkrechten Achse**, nach
   }}
 />
 
+Immer wenn ein Winkel ab Norden gezählt wird, bildet Norden die Ankathete und Osten die Gegenkathete.
+
 ## Die Vorzeichen der Komponenten folgen dem Quadranten
 
-Ist <InlineMath math="\theta" /> der **vollständige Standardwinkel**, der von der positiven <InlineMath math="x" />-Achse gegen den Uhrzeigersinn gemessen wird, liefern <InlineMath math="\cos\theta" /> und <InlineMath math="\sin\theta" /> bereits die Vorzeichen der Komponenten. Bei einem spitzen Bezugswinkel berechnest du zuerst die Komponentenbeträge und bestimmst ihre Vorzeichen anschließend aus dem Quadranten.
+Ist <InlineMath math="\theta" /> der **vollständige Standardwinkel** gegen den Uhrzeigersinn ab der positiven <InlineMath math="x" />-Achse, liefern <InlineMath math="\cos\theta" /> und <InlineMath math="\sin\theta" /> die richtigen Vorzeichen von selbst. Bei einem spitzen Bezugswinkel berechnest du erst die Beträge und setzt dann die Vorzeichen nach dem Quadranten.
 
 | Vektorrichtung | Vorzeichen von <InlineMath math="F_x" /> | Vorzeichen von <InlineMath math="F_y" /> |
 | :-------------- | :----------------------------------- | :----------------------------------- |
@@ -214,28 +255,23 @@ Ist <InlineMath math="\theta" /> der **vollständige Standardwinkel**, der von d
 | unten und links | negativ | negativ |
 | rechts unten | positiv | negativ |
 
-Zeigt eine Kraft nach links oben, ist ihre horizontale Komponente negativ, weil sie der positiven <InlineMath math="x" />-Richtung entgegenwirkt. Die vertikale Komponente bleibt dagegen positiv.
-
-Miss den Winkel von der positiven x-Achse gegen den Uhrzeigersinn, und der Quadrant gibt die Vorzeichen. Jeder Pfeil ist gleich groß, aber seine Komponenten bekommen die Vorzeichen des Quadranten, in den er zeigt. Zoom auf jede Pfeilspitze.
+Die vier gleich langen Pfeile unten zeigen unter <InlineMath math="30^\circ" />, <InlineMath math="150^\circ" />, <InlineMath math="210^\circ" /> und <InlineMath math="330^\circ" /> in alle vier Quadranten.
 
 <MathVisual
   title={<>Vorzeichen der Komponenten nach Quadrant</>}
-  description={<>Vier gleich große Kräfte bei <InlineMath math="30^\circ" />, <InlineMath math="150^\circ" />, <InlineMath math="210^\circ" /> und <InlineMath math="330^\circ" />.</>}
+  description={<>Vier gleich große Kräfte von <InlineMath math="3\text{ N}" /> bei <InlineMath math="30^\circ" />, <InlineMath math="150^\circ" />, <InlineMath math="210^\circ" /> und <InlineMath math="330^\circ" />.</>}
+  footer="Vier gleich lange Pfeile tragen in jedem Quadranten eigene Vorzeichenpaare."
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -3, max: 3 } },
-    view: { kind: "fit", padding: 0.06 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
       { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 3 } },
-      { id: "q30", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 } },
-      { id: "q30-head", kind: "polygon", appearance: "primary", vertices: [{ x: (3 * Math.sqrt(3)) / 2, y: 1.5 }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) + ((0.25 / 2) * -1.5) / Math.hypot(2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(2.598076211353316, 1.5) + ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) - ((0.25 / 2) * -1.5) / Math.hypot(2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(2.598076211353316, 1.5) - ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) }] },
-      { id: "q150", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: 1.5 } },
-      { id: "q150-head", kind: "polygon", appearance: "secondary", vertices: [{ x: -(3 * Math.sqrt(3)) / 2, y: 1.5 }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) + ((0.25 / 2) * -1.5) / Math.hypot(-2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(-2.598076211353316, 1.5) + ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) - ((0.25 / 2) * -1.5) / Math.hypot(-2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(-2.598076211353316, 1.5) - ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) }] },
-      { id: "q210", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: -1.5 } },
-      { id: "q210-head", kind: "polygon", appearance: "construction", vertices: [{ x: -(3 * Math.sqrt(3)) / 2, y: -1.5 }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) + ((0.25 / 2) * 1.5) / Math.hypot(-2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(-2.598076211353316, -1.5) + ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) - ((0.25 / 2) * 1.5) / Math.hypot(-2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(-2.598076211353316, -1.5) - ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) }] },
-      { id: "q330", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: -1.5 } },
-      { id: "q330-head", kind: "polygon", appearance: "answer", vertices: [{ x: (3 * Math.sqrt(3)) / 2, y: -1.5 }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) + ((0.25 / 2) * 1.5) / Math.hypot(2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(2.598076211353316, -1.5) + ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) - ((0.25 / 2) * 1.5) / Math.hypot(2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(2.598076211353316, -1.5) - ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) }] },
+      { id: "q30", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 } },
+      { id: "q150", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: 1.5 } },
+      { id: "q210", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: -1.5 } },
+      { id: "q330", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: -1.5 } },
     ],
     labels: [
       { key: "q30", objectId: "q30", at: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 }, placement: "above" },
@@ -252,22 +288,41 @@ Miss den Winkel von der positiven x-Achse gegen den Uhrzeigersinn, und der Quadr
   }}
 />
 
-## Wind aus jedem Quadranten
+Alle vier Pfeile teilen denselben spitzen <InlineMath math="30^\circ" />-Bezugswinkel zur Waagrechten, sodass allein die Vorzeichen die Quadranten trennen.
 
-Wind mit <InlineMath math="10\text{ m/s}" /> in Richtung <InlineMath math="210^\circ" /> weht in den dritten Quadranten, also sind **Kosinus und Sinus beide negativ**: <InlineMath math="-8{,}66\text{ m/s}" /> nach Osten und <InlineMath math="-5\text{ m/s}" /> nach Norden. Dreh die Richtung durch alle vier Quadranten und lies die Vorzeichen ab.
+Drehe einen <InlineMath math="10\text{ m/s}" />-Windvektor durch volle <InlineMath math="360^\circ" />. Bei <InlineMath math="210^\circ" /> im dritten Quadranten sind **Kosinus und Sinus beide negativ** und ergeben <InlineMath math="-8{,}66\text{ m/s}" /> Ost sowie <InlineMath math="-5\text{ m/s}" /> Nord.
 
-<WindMapVectorLab
-  title={<>Vorzeichen der Windkomponenten</>}
-  description={<>Wind mit <InlineMath math="10\text{ m/s}" />. Die Richtung wird gegen den Uhrzeigersinn ab Osten gemessen.</>}
-  angle={210}
-  speed={10}
+<MathVisual
+  title={<>Windkomponenten durch alle vier Quadranten</>}
+  description={<>Wind mit <InlineMath math="10\text{ m/s}" /> bei Standardwinkel <InlineMath math="a" /> gegen den Uhrzeigersinn ab Osten mit <InlineMath math="v_x" /> und <InlineMath math="v_y" />.</>}
+  footer="Über 360 Grad wechseln die Vorzeichen der Komponenten an jeder Koordinatenachse."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 12 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 0, max: 360, value: 210, step: 15, label: "wind-angle" },
+    ],
+    objects: [
+      { id: "vx", kind: "path", appearance: "construction", points: [{ x: "0", y: "0" }, { x: "10 * cos(a * pi / 180)", y: "0" }] },
+      { id: "vy", kind: "path", appearance: "secondary", points: [{ x: "10 * cos(a * pi / 180)", y: "0" }, { x: "10 * cos(a * pi / 180)", y: "10 * sin(a * pi / 180)" }] },
+      { id: "wind", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "10 * cos(a * pi / 180)", y: "10 * sin(a * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "10 * cos(a * pi / 180)", y: "10 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "10 * cos(a * pi / 180)", y: "10 * sin(a * pi / 180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "vx-ms", formula: "10 * cos(a * pi / 180)" },
+      { key: "vy-ms", formula: "10 * sin(a * pi / 180)" },
+    ],
+  }}
   labels={{
-    angle: <>Richtung ab Osten</>,
-    angleName: "Richtung ab Osten",
-    east: <>Ostkomponente <InlineMath math="v_x" /></>,
-    north: <>Nordkomponente <InlineMath math="v_y" /></>,
-    speed: <>Windgeschwindigkeit</>,
-    speedName: "Windgeschwindigkeit",
-    viewLabel: "Wetterkarte mit Wind über Inseln",
+    tip: <InlineMath math="\vec{v}" />,
+    "wind-angle": <>Winkel ab Ost (<InlineMath math="^\circ" />)</>,
+    "vx-ms": <>Ostkomponente (m/s)</>,
+    "vy-ms": <>Nordkomponente (m/s)</>,
   }}
 />
+
+Beim Überschreiten von <InlineMath math="90^\circ" /> oder <InlineMath math="270^\circ" /> wechselt das Vorzeichen von <InlineMath math="v_x" />, bei <InlineMath math="180^\circ" /> oder <InlineMath math="360^\circ" /> das von <InlineMath math="v_y" />.

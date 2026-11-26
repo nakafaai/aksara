@@ -1,4 +1,3 @@
-
 export const metadata = {
   title: "Relative Bewegung",
   description:
@@ -25,9 +24,10 @@ Positive und negative Vorzeichen geben die Richtung entlang der gewählten Achse
   title={<>Relativbewegung zweier Autos</>}
   description={
     <>
-    Wähle die Richtung von Auto <InlineMath math="B" /> und beobachte seine Bewegung aus der Sicht von Auto <InlineMath math="A" />.
-  </>
+      Wähle die Richtung von Auto <InlineMath math="B" /> und beobachte seine Bewegung aus der Sicht von Auto <InlineMath math="A" />.
+    </>
   }
+  footer={<>Kehrt Auto B um, ändern sich Vorzeichen und Betrag der Relativgeschwindigkeit.</>}
   labels={{
     chooseCase: "Richtung wählen",
     modeLabels: {
@@ -48,7 +48,13 @@ Positive und negative Vorzeichen geben die Richtung entlang der gewählten Achse
   }}
 />
 
-## Die Beobachtergeschwindigkeit verändert die Relativgeschwindigkeit
+Wechsle zwischen beiden Modi und sieh, wie das Vorzeichen der Relativgeschwindigkeit kippt. Selbst wenn Auto <InlineMath math="A" /> unverändert weiterfährt, ändert die Gegenrichtung von Auto <InlineMath math="B" /> das Bild aus Sicht von Auto <InlineMath math="A" /> grundlegend.
+
+## Relativgeschwindigkeit auf einer Linie
+
+Bewegen sich Objekte entlang derselben Geraden, reicht das **Subtrahieren vorzeichenbehafteter Geschwindigkeiten**. Ein schnellerer Beobachter, ein Gang durch den Zug und ein ruhender Beobachter folgen derselben einfachen Regel.
+
+### Die Beobachtergeschwindigkeit verändert die Relativgeschwindigkeit
 
 Bewegt sich auch der Beobachter, erhält er für das beobachtete Objekt eine andere Geschwindigkeit. Deshalb muss die Bewegung des Objekts mit der **Bewegung des Beobachters** verglichen werden.
 
@@ -60,7 +66,7 @@ Das negative Vorzeichen zeigt, dass die relative Bewegung nach links gerichtet i
 
 Fahren zwei Fahrzeuge in dieselbe Richtung, kann das langsamere Fahrzeug für die Person im schnelleren Fahrzeug rückwärts erscheinen. Das Auto hat seine Fahrtrichtung relativ zur Straße nicht geändert. Nur die Beschreibung aus dem fahrenden Taxi fällt anders aus.
 
-## Gehen in einem Zug
+### Gehen in einem Zug
 
 Geschwindigkeiten, die ein bewegter Beobachter misst, sind einfach um seine eigene Geschwindigkeit verringert. Ein Zug fährt mit <InlineMath math="20\text{ m/s}" />, und eine Person geht darin mit <InlineMath math="1{,}5\text{ m/s}" />, also **hängt die Antwort vom Beobachter ab**.
 
@@ -71,6 +77,7 @@ Geschwindigkeiten, die ein bewegter Beobachter misst, sind einfach um seine eige
       Der Zug fährt <InlineMath math="20\text{ m/s}" />, und der Fahrgast geht <InlineMath math="1{,}5\text{ m/s}" />. Wechsle Beobachter und Gehrichtung und lies darunter die Geschwindigkeiten ab.
     </>
   }
+  footer={<>Das Abziehen der Beobachtergeschwindigkeit verbindet Bahnsteig und Sitzplatz.</>}
   labels={{
     chooseObserver: "Beobachter wählen",
     chooseWay: "Gehrichtung wählen",
@@ -89,13 +96,13 @@ Geschwindigkeiten, die ein bewegter Beobachter misst, sind einfach um seine eige
   }}
 />
 
-Geht die Person nach hinten, bewegt sie sich gegenüber dem Bahnsteig mit <InlineMath math="20-1{,}5=18{,}5\text{ m/s}" />, gegenüber dem Sitz aber mit <InlineMath math="-1{,}5\text{ m/s}" />. Ziehst du die Geschwindigkeit des Beobachters ab, <InlineMath math="v_{AB}=v_A-v_B" />, passen beide Werte zusammen.
+Geht die Person nach hinten, bewegt sie sich gegenüber dem Bahnsteig mit <InlineMath math="18{,}5\text{ m/s}" />, gegenüber dem Sitz aber mit <InlineMath math="-1{,}5\text{ m/s}" />. Durch Subtrahieren der Beobachtergeschwindigkeit passen beide Werte exakt zusammen.
 
-## Wenn der Beobachter still steht
+### Wenn der Beobachter still steht
 
 Wenn der Beobachter relativ zum Boden stillsteht, ist die Relativgeschwindigkeit dieselbe wie die Geschwindigkeit relativ zum Boden.
 
-<BlockMath math="\begin{aligned} &amp;v_{\text{Objekt/Beobachter}} = v_{\text{Objekt/Boden}}-0 \\ &amp;= v_{\text{Objekt/Boden}} \end{aligned}" />
+<BlockMath math="\begin{aligned} v_{\text{Objekt/Beobachter}} &= v_{\text{Objekt/Boden}}-0 \\ &= v_{\text{Objekt/Boden}} \end{aligned}" />
 
 Deshalb wird bei vielen einfachen Aufgaben stillschweigend angenommen, dass eine angegebene Geschwindigkeit relativ zum Boden gilt.
 
@@ -103,38 +110,9 @@ Ein Objekt kann auch **relativ zu einem bewegten Beobachter ruhen**. Fahren Auto
 
 <BlockMath math="v_{\text{Auto/Taxi}}=12-12=0\text{ m/s}" />
 
-## Regen aus einem fahrenden Auto
-
-Bei Windstille fällt Regen senkrecht. **Aus einem fahrenden Auto gesehen kommt der Regen schräg**, weil seine Geschwindigkeit relativ zum Auto seine eigene minus die des Autos ist.
-
-<RainDriveRelativeVelocityLab
-  car={10}
-  title={<>Regen auf ein fahrendes Auto</>}
-  description={
-    <>
-      Große Regentropfen fallen mit etwa <InlineMath math="6{,}5\text{ m/s}" />. Wechsle den Beobachter und ändere die Schnelligkeit des Autos.
-    </>
-  }
-  labels={{
-    angle: <>Neigung gegen die Senkrechte</>,
-    apparentSpeed: <>Gesehene Schnelligkeit des Regens</>,
-    carSpeed: <>Schnelligkeit des Autos</>,
-    carSpeedName: "Schnelligkeit des Autos",
-    chooseFrame: "Beobachter wählen",
-    frames: {
-      ground: <>Vom Straßenrand</>,
-      car: <>Aus dem Auto</>,
-    },
-    rainSpeed: <>Fallschnelligkeit des Regens</>,
-    viewLabel: "Regen fällt auf ein fahrendes Auto",
-  }}
-/>
-
-Bei <InlineMath math="10\text{ m/s}" /> scheint der Regen mit <InlineMath math="\sqrt{6{,}5^2+10^2}\approx11{,}9\text{ m/s}" /> zu kommen, etwa <InlineMath math="57^\circ" /> gegen die Senkrechte geneigt. Vom Straßenrand aus fallen dieselben Tropfen weiter senkrecht.
-
 ## Wenn sich beide bewegen
 
-Wenn sich zwei Objekte in entgegengesetzte Richtungen bewegen, kann ihr Relativgeschwindigkeitsbetrag größer sein als der Geschwindigkeitsbetrag jedes Objekts relativ zum Boden. Beispielsweise bewegt sich ein Auto bei <InlineMath math="+12 \text{ m/s}" /> nach rechts, während sich ein Lkw bei <InlineMath math="-8 \text{ m/s}" /> nach links bewegt.
+Wenn sich zwei Objekte in **entgegengesetzte Richtungen** bewegen, kann ihr Relativgeschwindigkeitsbetrag größer sein als der Geschwindigkeitsbetrag jedes Objekts relativ zum Boden. Beispielsweise bewegt sich ein Auto bei <InlineMath math="+12 \text{ m/s}" /> nach rechts, während sich ein Lkw bei <InlineMath math="-8 \text{ m/s}" /> nach links bewegt.
 
 Für den LKW-Fahrer beträgt die Geschwindigkeit des Autos:
 
@@ -142,29 +120,28 @@ Für den LKW-Fahrer beträgt die Geschwindigkeit des Autos:
 
 Der Wert <InlineMath math="+20 \text{ m/s}" /> bedeutet, dass sich die Position des Autos relativ zum Lkw mit <InlineMath math="20\text{ m/s}" /> nach rechts ändert. Ob sich beide Fahrzeuge nähern oder voneinander entfernen, hängt zusätzlich davon ab, welches anfangs weiter links steht.
 
-Eine relative Beschreibung verändert die tatsächliche Bewegung nicht. Sie ändert nur, **wie verschiedene Beobachter dieselbe Bewegung wahrnehmen**.
-
-Hier fahren Auto, Taxi und Lastwagen vom selben Punkt los. Der Abstand zwischen zwei Linien ist die Position des einen Fahrzeugs aus Sicht des anderen. Auto und Taxi entfernen sich langsam, <InlineMath math="2\text{ m}" /> pro Sekunde, Auto und Lastwagen dagegen um <InlineMath math="20\text{ m}" /> pro Sekunde.
+Hier fahren Auto, Taxi und Lastwagen vom selben Punkt los. Der senkrechte Abstand zwischen zwei Linien ist die Position des einen Fahrzeugs aus Sicht des anderen. Auto und Taxi entfernen sich langsam, <InlineMath math="2\text{ m}" /> pro Sekunde, Auto und Lastwagen dagegen um <InlineMath math="20\text{ m}" /> pro Sekunde.
 
 <MathVisual
   title={<>Abstände wachsen mit der Relativgeschwindigkeit</>}
-  description={<>Positionen dreier Fahrzeuge gegenüber dem Boden, gemeinsamer Start. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von <InlineMath math="10\text{ m}" />.</>}
+  description={<>Positionen dreier Fahrzeuge gegenüber dem Boden ab gemeinsamem Start, mit der Zeit in Sekunden waagrecht und der Position in Metern senkrecht.</>}
+  footer={<>Der senkrechte Abstand zweier Linien wächst jede Sekunde um ihre Differenz.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -3, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.6 }, y: { min: -30, max: 50 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "car", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: (12 * 3) / 10 } },
-      { id: "taxi", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: (14 * 3) / 10 } },
-      { id: "truck", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: (-8 * 3) / 10 } },
-      { id: "car-end", kind: "point", appearance: "primary", at: { x: 3, y: (12 * 3) / 10 } },
-      { id: "taxi-end", kind: "point", appearance: "secondary", at: { x: 3, y: (14 * 3) / 10 } },
-      { id: "truck-end", kind: "point", appearance: "construction", at: { x: 3, y: (-8 * 3) / 10 } },
+      { id: "car", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 36 } },
+      { id: "taxi", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 42 } },
+      { id: "truck", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: -24 } },
+      { id: "car-end", kind: "point", appearance: "primary", at: { x: 3, y: 36 } },
+      { id: "taxi-end", kind: "point", appearance: "secondary", at: { x: 3, y: 42 } },
+      { id: "truck-end", kind: "point", appearance: "construction", at: { x: 3, y: -24 } },
     ],
     labels: [
-      { key: "car", objectId: "car-end", at: { x: 3, y: (12 * 3) / 10 }, placement: "right" },
-      { key: "taxi", objectId: "taxi-end", at: { x: 3, y: (14 * 3) / 10 }, placement: "right" },
-      { key: "truck", objectId: "truck-end", at: { x: 3, y: (-8 * 3) / 10 }, placement: "right" },
+      { key: "car", objectId: "car-end", at: { x: 3, y: 36 }, placement: "right" },
+      { key: "taxi", objectId: "taxi-end", at: { x: 3, y: 42 }, placement: "right" },
+      { key: "truck", objectId: "truck-end", at: { x: 3, y: -24 }, placement: "right" },
     ],
   }}
   labels={{
@@ -174,34 +151,13 @@ Hier fahren Auto, Taxi und Lastwagen vom selben Punkt los. Der Abstand zwischen 
   }}
 />
 
-## Ein Boot auf einem strömenden Fluss
-
-Ein Boot bewegt sich durch das Wasser, und das Wasser bewegt sich am Ufer vorbei. **Die Geschwindigkeit des Boots gegenüber dem Ufer ist die Summe aus beiden**, Spitze an Ende gezeichnet.
-
-<RiverBoatCrossingLab
-  boatSpeed={4}
-  current={3}
-  width={60}
-  title={<>Über einen strömenden Fluss</>}
-  description={
-    <>
-      Das Boot fährt mit <InlineMath math="4\text{ m/s}" /> durch das Wasser, und die Strömung fließt mit <InlineMath math="3\text{ m/s}" />. Dreh den Kurs.
-    </>
-  }
-  labels={{
-    angle: <>Winkel zur direkten Querung</>,
-    drift: <>Abdrift flussabwärts</>,
-    groundSpeed: <>Schnelligkeit über Grund</>,
-    heading: <>Kurs</>,
-    headingName: "Kurs des Boots",
-    time: <>Zeit für die Querung</>,
-    viewLabel: "Boot überquert einen Fluss, von oben gesehen",
-  }}
-/>
-
-Bei Kurs genau quer bewegt sich das Boot gegenüber dem Ufer mit <InlineMath math="\sqrt{4^2+3^2}=5\text{ m/s}" />, überquert den <InlineMath math="60\text{ m}" /> breiten Fluss in <InlineMath math="15\text{ s}" /> und landet <InlineMath math="45\text{ m}" /> flussabwärts.
+Nach <InlineMath math="3\text{ s}" /> liegt das Taxi nur <InlineMath math="6\text{ m}" /> vor dem Auto, während der Lkw bereits <InlineMath math="60\text{ m}" /> dahinter liegt. Je weiter sich zwei Linien öffnen, desto größer ist ihre Relativgeschwindigkeit.
 
 ## Relativgeschwindigkeit ist eine Differenz
+
+Jeder Beobachter rechnet für dasselbe Auto exakt dieselbe Subtraktion:
+
+<BlockMath math="v_{\text{rel}}=v_{\text{Auto}}-v_{\text{Beobachter}}" />
 
 | Situation | Berechnung | Bedeutung der Relativbewegung |
 | :-------- | :---------- | :-------------- |
@@ -209,13 +165,12 @@ Bei Kurs genau quer bewegt sich das Boot gegenüber dem Ufer mit <InlineMath mat
 | **Beobachter ist in gleicher Richtung schneller** | <InlineMath math="12-14=-2 \text{ m/s}" /> | Das Objekt scheint sich in die negative Richtung zu bewegen |
 | Beobachter bewegt sich in die entgegengesetzte Richtung | <InlineMath math="12-(-8)=+20 \text{ m/s}" /> | Das Objekt scheint sich in die positive Richtung zu bewegen |
 
-Bevor eine Bewegung als schnell, langsam, stillstehend oder rückwärts beschrieben wird, muss deshalb immer das Bezugssystem geklärt sein.
-
-Jeder Beobachter rechnet dieselbe Subtraktion, <InlineMath math="v_\text{rel}=v_\text{Auto}-v_\text{Beobachter}" />. Am Straßenrand siehst du <InlineMath math="12\text{ m/s}" />, das schnellere Taxi sieht das Auto zurückfallen, und der entgegenkommende Lkw sieht es mit <InlineMath math="20\text{ m/s}" /> heranrasen. Zoom auf jeden Balken.
+Am Straßenrand siehst du <InlineMath math="+12\text{ m/s}" />, das schnellere Taxi sieht das Auto mit <InlineMath math="-2\text{ m/s}" /> zurückfallen, und der entgegenkommende Lkw sieht es mit <InlineMath math="+20\text{ m/s}" /> vorbeiziehen.
 
 <MathVisual
   title={<>Eine Subtraktion für jeden Beobachter</>}
   description={<>Die Geschwindigkeit des Autos in m/s vom Straßenrand (grau), vom Taxi (violett) und vom Lkw (türkis). Ein Gitterschritt entspricht <InlineMath math="4\text{ m/s}" />.</>}
+  footer={<>Eine Autogeschwindigkeit ergibt drei Balken, wenn drei Beobachter abziehen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1.5, max: 6 } },
@@ -239,25 +194,144 @@ Jeder Beobachter rechnet dieselbe Subtraktion, <InlineMath math="v_\text{rel}=v_
   }}
 />
 
-## Gerade Linien relativ zu einer fallenden Dose
+Bevor eine Bewegung als schnell, langsam, stillstehend oder rückwärts beschrieben wird, muss immer das Bezugssystem geklärt sein. Dasselbe Auto ändert Vorzeichen und Wert allein durch die abgezogene Beobachtergeschwindigkeit.
 
-Relativbewegung erklärt einen berühmten Versuch. Ein Rohr zielt genau auf eine Dose, die im Moment des Abschusses fällt. Beide fallen gleich, also **bewegt sich die Kugel relativ zur Dose geradlinig** auf sie zu.
+## Relativbewegung in zwei Dimensionen
 
-<FallingTargetAimLab
-  speed={10}
-  title={<>Ziel auf eine fallende Dose</>}
+Zeigen zwei Geschwindigkeiten in verschiedene Richtungen, wirken Addition und Subtraktion **komponentenweise als Vektoren**. Regen aus dem fahrenden Auto, ein Boot im Fluss und das Zielen auf eine fallende Dose folgen alle dieser Regel.
+
+### Regen aus einem fahrenden Auto
+
+Bei Windstille fällt Regen senkrecht. **Aus einem fahrenden Auto gesehen kommt der Regen schräg**, weil seine Geschwindigkeit relativ zum Auto seine eigene minus die des Autos ist.
+
+<RainDriveRelativeVelocityLab
+  car={10}
+  title={<>Regen auf ein fahrendes Auto</>}
   description={
     <>
-      Die Dose hängt <InlineMath math="4\text{ m}" /> entfernt und <InlineMath math="2\text{ m}" /> hoch. Ändere die Abschussschnelligkeit und sieh, wie der Abstand entlang der Ziellinie schrumpft.
+      Große Regentropfen fallen mit etwa <InlineMath math="6{,}5\text{ m/s}" />. Wechsle den Beobachter und ändere die Schnelligkeit des Autos.
     </>
   }
+  footer={<>Schnelleres Fahren neigt den scheinbaren Regen weiter aus der Senkrechten.</>}
   labels={{
-    drop: <>Fallhöhe der Dose beim Treffen</>,
-    meetTime: <>Zeit bis zum Treffen</>,
-    speed: <>Abschussschnelligkeit</>,
-    speedName: "Abschussschnelligkeit",
-    viewLabel: "Abschussrohr zielt auf eine fallende Dose",
+    angle: <>Neigung gegen die Senkrechte</>,
+    apparentSpeed: <>Gesehene Schnelligkeit des Regens</>,
+    carSpeed: <>Schnelligkeit des Autos</>,
+    carSpeedName: "Schnelligkeit des Autos",
+    chooseFrame: "Beobachter wählen",
+    frames: {
+      ground: <>Vom Straßenrand</>,
+      car: <>Aus dem Auto</>,
+    },
+    rainSpeed: <>Fallschnelligkeit des Regens</>,
+    viewLabel: "Regen fällt auf ein fahrendes Auto",
   }}
 />
 
-Bei <InlineMath math="10\text{ m/s}" /> trifft die Kugel die Dose nach <InlineMath math="0{,}45\text{ s}" />, wenn beide <InlineMath math="1\text{ m}" /> gefallen sind. Ziehst du die Geschwindigkeit der Dose von der der Kugel ab, hebt sich die Schwerkraft heraus.
+Bei <InlineMath math="10\text{ m/s}" /> erscheint der Regen etwa <InlineMath math="57^\circ" /> gegen die Senkrechte geneigt mit einer scheinbaren Schnelligkeit von:
+
+<BlockMath math="v_{\text{Regen/Auto}}=\sqrt{6{,}5^2+10^2}\approx11{,}9\text{ m/s}" />
+
+Vom Straßenrand aus fallen genau dieselben Tropfen weiter senkrecht nach unten.
+
+### Ein Boot auf einem strömenden Fluss
+
+Ein Boot bewegt sich mit <InlineMath math="4\text{ m/s}" /> durch das Wasser, während die Strömung mit <InlineMath math="3\text{ m/s}" /> flussabwärts fließt. **Die Geschwindigkeit des Boots gegenüber dem Ufer ist die Vektorsumme aus beiden**, Spitze an Ende gezeichnet. Ändere unten den Kurswinkel <InlineMath math="a" /> und verfolge die Resultierende.
+
+<MathVisual
+  title={<>Addition von Boots- und Flussgeschwindigkeit</>}
+  description={
+    <>
+      Bootsgeschwindigkeit (orange, <InlineMath math="4\text{ m/s}" />) und Strömung (violett, <InlineMath math="3\text{ m/s}" />) addieren sich Spitze an Ende zur Geschwindigkeit über Grund (fuchsia).
+    </>
+  }
+  footer={<>Die fuchsia Resultierende verbindet Bootskurs und Strömung Spitze an Ende.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -3.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -45, max: 30, value: 0, step: 5, label: "a" },
+    ],
+    objects: [
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "boat-vel", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }] },
+      { id: "current-vel", kind: "path", appearance: "secondary", points: [{ x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }, { x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" }] },
+      { id: "ground-vel", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" }] },
+      { id: "boat-tip", kind: "marker", appearance: "primary", x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" },
+      { id: "sum-tip", kind: "marker", appearance: "answer", x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "boat-lbl", objectId: "boat-tip", at: { x: "4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }, placement: "below-right" },
+      { key: "sum-lbl", objectId: "sum-tip", at: { x: "4*cos(a*pi/180)", y: "3 + 4*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "ground-speed", formula: "sqrt((4*cos(a*pi/180))^2 + (3 + 4*sin(a*pi/180))^2)" },
+      { key: "cross-time", formula: "60/(4*cos(a*pi/180))" },
+      { key: "drift", formula: "60*(3 + 4*sin(a*pi/180))/(4*cos(a*pi/180))" },
+    ],
+  }}
+  labels={{
+    a: <>Kurswinkel <InlineMath math="a" /> (deg)</>,
+    "boat-lbl": <InlineMath math="\vec v_{\text{B/W}}" />,
+    "sum-lbl": <InlineMath math="\vec v_{\text{B/U}}" />,
+    "ground-speed": <>Schnelligkeit über Grund (m/s)</>,
+    "cross-time": <>Querungszeit für 60 m (s)</>,
+    drift: <>Abdrift flussabwärts (m)</>,
+  }}
+/>
+
+Bei Kurs <InlineMath math="0^\circ" /> genau quer überquert das Boot den <InlineMath math="60\text{ m}" /> breiten Fluss in <InlineMath math="15\text{ s}" />, treibt <InlineMath math="45\text{ m}" /> flussabwärts ab und bewegt sich gegenüber dem Ufer mit:
+
+<BlockMath math="v_{\text{Boot/Ufer}}=\sqrt{4^2+3^2}=5\text{ m/s}" />
+
+### Gerade Linien relativ zu einer fallenden Dose
+
+Relativbewegung erklärt einen berühmten Versuch. Ein Rohr bei <InlineMath math="(0,0)" /> zielt genau auf eine Dose in <InlineMath math="4\text{ m}" /> Entfernung und <InlineMath math="2\text{ m}" /> Höhe, die beim Abschuss fällt. Beide beschleunigen mit <InlineMath math="g" /> nach unten, also **bewegt sich die Kugel relativ zur Dose geradewegs auf der Ziellinie**.
+
+<MathVisual
+  title={<>Zielen auf eine fallende Dose</>}
+  description={
+    <>
+      Ändere die Abschussgeschwindigkeit <InlineMath math="s" /> (in m/s). Kugel (orange Kurve) und Dose (violetter Fall) sinken immer gleich weit unter die Ziellinie.
+    </>
+  }
+  footer={<>Höheres Tempo hebt den Treffpunkt an, doch die Kugel trifft die Dose immer.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.8 }, y: { min: -0.2, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 8, max: 14, value: 10, step: 1, label: "s" },
+    ],
+    objects: [
+      { id: "aim-line", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4, y: 2 } },
+      { id: "ball-curve", kind: "function", appearance: "primary", formula: "0.5*x - 6.25*x^2/s^2", domain: { min: 0, max: 4 } },
+      { id: "can-drop", kind: "path", appearance: "secondary", points: [{ x: "4", y: "2" }, { x: "4", y: "2 - 100/s^2" }] },
+      { id: "launcher", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "can-start", kind: "point", appearance: "reference", at: { x: 4, y: 2 } },
+      { id: "meet-pt", kind: "marker", appearance: "answer", x: "4", y: "2 - 100/s^2" },
+    ],
+    labels: [
+      { key: "launch", objectId: "launcher", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "can", objectId: "can-start", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "hit", objectId: "meet-pt", at: { x: "4", y: "2 - 100/s^2" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "meet-time", formula: "2*sqrt(5)/s" },
+      { key: "drop-dist", formula: "100/s^2" },
+      { key: "meet-height", formula: "2 - 100/s^2" },
+    ],
+  }}
+  labels={{
+    s: <>Abschussgeschwindigkeit <InlineMath math="s" /> (m/s)</>,
+    launch: <>Rohr</>,
+    can: <>Start Dose</>,
+    hit: <>Treffer</>,
+    "meet-time": <>Zeit bis zum Treffer (s)</>,
+    "drop-dist": <>Gemeinsame Fallhöhe (m)</>,
+    "meet-height": <>Treffhöhe (m)</>,
+  }}
+/>
+
+Bei <InlineMath math="10\text{ m/s}" /> mit <InlineMath math="g=10\text{ m/s}^2" /> trifft die Kugel die Dose nach <InlineMath math="0{,}45\text{ s}" />, wenn beide <InlineMath math="1\text{ m}" /> gefallen sind. Ziehst du die Geschwindigkeit der Dose von der der Kugel ab, hebt sich die Schwerkraft vollständig heraus.

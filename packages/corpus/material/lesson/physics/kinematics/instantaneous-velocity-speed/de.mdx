@@ -9,7 +9,11 @@ export const metadata = {
   subject: "Kinematik",
 };
 
-## Den Momentanwert von einem Mittelwert unterscheiden
+## Momentanwerte über schrumpfende Zeitintervalle bestimmen
+
+Ein Momentanwert beschreibt die Bewegung in **einem einzigen Augenblick** statt über eine lange Strecke. Verkleinert man das Messintervall immer weiter, verwandelt sich die Sekantensteigung in die momentane Geschwindigkeit.
+
+### Den Momentanwert von einem Mittelwert unterscheiden
 
 Die momentane Schnelligkeit beschreibt, wie schnell sich ein Objekt zu einem bestimmten Zeitpunkt oder an einem bestimmten Punkt seiner Bahn bewegt. Ein vertrautes Beispiel ist die Zahl, die ein Tachometer genau beim Ablesen anzeigt.
 
@@ -36,6 +40,7 @@ Reale Messgeräte schätzen diesen Wert über ein kurzes, aber endliches Abtasti
       Geschwindigkeit.
     </>
   }
+  footer={<>Jeder Messpunkt liefert Betrag und Vorzeichen genau für diesen Augenblick.</>}
   labels={{
     chooseMoment: "Messzeitpunkt wählen",
     factLabels: {
@@ -47,27 +52,30 @@ Reale Messgeräte schätzen diesen Wert über ein kurzes, aber endliches Abtasti
   }}
 />
 
+Der Betrag der Geschwindigkeit stimmt mit der Anzeige der Schnelligkeit überein, während das Vorzeichen die Richtung am Messpunkt festhält.
+
 Sieh dir den Grenzwert an einer Beispielbewegung an, <InlineMath math="x=t^2" />. Jede farbige Linie ist eine Durchschnittsgeschwindigkeit ab <InlineMath math="t=3\text{ s}" />, über <InlineMath math="2" />, <InlineMath math="1" /> und <InlineMath math="0{,}5\text{ s}" />. Wird das Intervall kleiner, fallen die Steigungen von <InlineMath math="8" /> auf <InlineMath math="7" /> und <InlineMath math="6{,}5\text{ m/s}" /> und nähern sich der Momentangeschwindigkeit <InlineMath math="6\text{ m/s}" />.
 
 <MathVisual
   title={<>Das Zeitintervall verkleinern</>}
-  description={<>Sekanten von <InlineMath math="x=t^2" /> ab <InlineMath math="t=3\text{ s}" /> über <InlineMath math="2\text{ s}" />, <InlineMath math="1\text{ s}" /> und <InlineMath math="0{,}5\text{ s}" />. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von <InlineMath math="4\text{ m}" />.</>}
+  description={<>Sekanten von <InlineMath math="x=t^2" /> ab <InlineMath math="t=3\text{ s}" /> über <InlineMath math="2\text{ s}" />, <InlineMath math="1\text{ s}" /> und <InlineMath math="0{,}5\text{ s}" />. Waagerecht: Zeit in s. Senkrecht: Position in m.</>}
+  footer={<>Kürzere Intervalle ab <InlineMath math="3\text{ s}" /> drücken die Sekantensteigung gegen <InlineMath math="6\text{ m/s}" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.8 }, y: { min: -2, max: 28 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "position", kind: "quadratic", appearance: "reference", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
-      { id: "step-2", kind: "segment", appearance: "warning", from: { x: 3, y: 2.25 }, to: { x: 5, y: 6.25 } },
-      { id: "step-1", kind: "segment", appearance: "primary", from: { x: 3, y: 2.25 }, to: { x: 4, y: 4 } },
-      { id: "step-half", kind: "segment", appearance: "secondary", from: { x: 3, y: 2.25 }, to: { x: 3.5, y: 3.5 ** 2 / 4 } },
-      { id: "now", kind: "point", appearance: "answer", at: { x: 3, y: 2.25 } },
+      { id: "position", kind: "function", appearance: "reference", formula: "x^2", domain: { min: 0, max: 5 } },
+      { id: "step-2", kind: "segment", appearance: "warning", from: { x: 3, y: 9 }, to: { x: 5, y: 25 } },
+      { id: "step-1", kind: "segment", appearance: "primary", from: { x: 3, y: 9 }, to: { x: 4, y: 16 } },
+      { id: "step-half", kind: "segment", appearance: "secondary", from: { x: 3, y: 9 }, to: { x: 3.5, y: 12.25 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 3, y: 9 } },
     ],
     labels: [
-      { key: "s2", objectId: "step-2", at: { x: 5, y: 6.25 }, placement: "right" },
-      { key: "s1", objectId: "step-1", at: { x: 4, y: 4 }, placement: "right" },
-      { key: "sh", objectId: "step-half", at: { x: 3.5, y: 3.5 ** 2 / 4 }, placement: "right" },
-      { key: "now", objectId: "now", at: { x: 3, y: 2.25 }, placement: "left" },
+      { key: "s2", objectId: "step-2", at: { x: 5, y: 25 }, placement: "right" },
+      { key: "s1", objectId: "step-1", at: { x: 4, y: 16 }, placement: "right" },
+      { key: "sh", objectId: "step-half", at: { x: 3.5, y: 12.25 }, placement: "right" },
+      { key: "now", objectId: "now", at: { x: 3, y: 9 }, placement: "left" },
     ],
   }}
   labels={{
@@ -78,7 +86,9 @@ Sieh dir den Grenzwert an einer Beispielbewegung an, <InlineMath math="x=t^2" />
   }}
 />
 
-## Lichtschranken mit schrumpfendem Abstand
+Je enger die beiden Punkte zusammenrücken, desto genauer stimmt die Sekante mit der Tangente bei <InlineMath math="t=3\text{ s}" /> überein.
+
+### Lichtschranken mit schrumpfendem Abstand
 
 Eine Lichtschranke misst die Zeit über einen Abstand, also liefert sie immer einen Mittelwert. Verkleinere den Abstand, dann **nähert sich der Mittelwert der Schnelligkeit in der Mitte**. Das Auto beschleunigt aus dem Stand mit <InlineMath math="4\text{ m/s}^2" /> und passiert die Mitte mit <InlineMath math="20\text{ m/s}" />.
 
@@ -89,6 +99,7 @@ Eine Lichtschranke misst die Zeit über einen Abstand, also liefert sie immer ei
       Zwei Lichtschranken stehen um die <InlineMath math="50\text{ m}" />-Marke. Wähle den Abstand und sieh zu, wie die Sekante im Diagramm zur Tangente in der Mitte wird.
     </>
   }
+  footer={<>Rücken beide Lichtschranken zusammen, nähert sich die Anzeige den <InlineMath math="20\text{ m/s}" /> an.</>}
   labels={{
     averageSpeed: <>Angezeigter Wert</>,
     chooseGap: "Abstand der Lichtschranken wählen",
@@ -101,7 +112,11 @@ Eine Lichtschranke misst die Zeit über einen Abstand, also liefert sie immer ei
 
 Der Wert steigt von <InlineMath math="19{,}58\text{ m/s}" /> bei <InlineMath math="40\text{ m}" /> Abstand auf <InlineMath math="19{,}9" /> und <InlineMath math="19{,}97\text{ m/s}" />, und bei <InlineMath math="2\text{ m}" /> zeigt die Messung <InlineMath math="20\text{ m/s}" /> auf zwei Nachkommastellen. Dieser Grenzwert ist die Momentanschnelligkeit.
 
-## Die Richtung bestimmt das Vorzeichen der Geschwindigkeit
+## Wie die Richtung die momentane Geschwindigkeit verändert
+
+Die momentane Geschwindigkeit enthält immer **Betrag und Richtung** zugleich. Sowohl eine Umkehr auf einer Geraden als auch eine Kreisbewegung verändern sie, selbst wenn der Tacho denselben Wert anzeigt.
+
+### Die Richtung bestimmt das Vorzeichen der Geschwindigkeit
 
 Der Messpunkt in der Simulation erfasst das Auto zu einem bestimmten Zeitpunkt. Die Schnelligkeit gibt den Betrag der Bewegung an. Die **Fahrtrichtung** beim Passieren des Messpunkts bestimmt das Vorzeichen der Geschwindigkeit.
 
@@ -120,21 +135,22 @@ Ein Tacho zeigt nur den Betrag. Ergänze die Richtung als Vorzeichen: nach recht
 
 <MathVisual
   title={<>Von der Tachoanzeige zur Geschwindigkeit</>}
-  description={<>Geschwindigkeit bei <InlineMath math="6\text{ s}" /> (türkis, nach rechts) und bei <InlineMath math="9\text{ s}" /> (violett, nach links). Senkrecht: Ein Gitterschritt entspricht <InlineMath math="5\text{ m/s}" />.</>}
+  description={<>Geschwindigkeit bei <InlineMath math="6\text{ s}" /> (türkis, nach rechts) und bei <InlineMath math="9\text{ s}" /> (violett, nach links) in m/s.</>}
+  footer={<>Die Richtung entscheidet, ob der Balken über oder unter null liegt.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -2.5, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -12, max: 25 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
       { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
-      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
-      { id: "nine", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: -1.6 } },
-      { id: "six-top", kind: "point", appearance: "construction", at: { x: 6, y: 4 } },
-      { id: "nine-end", kind: "point", appearance: "secondary", at: { x: 9, y: -1.6 } },
+      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 20 } },
+      { id: "nine", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: -8 } },
+      { id: "six-top", kind: "point", appearance: "construction", at: { x: 6, y: 20 } },
+      { id: "nine-end", kind: "point", appearance: "secondary", at: { x: 9, y: -8 } },
     ],
     labels: [
-      { key: "six", objectId: "six-top", at: { x: 6, y: 4 }, placement: "above" },
-      { key: "nine", objectId: "nine-end", at: { x: 9, y: -1.6 }, placement: "below" },
+      { key: "six", objectId: "six-top", at: { x: 6, y: 20 }, placement: "above" },
+      { key: "nine", objectId: "nine-end", at: { x: 9, y: -8 }, placement: "below" },
     ],
   }}
   labels={{
@@ -143,38 +159,88 @@ Ein Tacho zeigt nur den Betrag. Ergänze die Richtung als Vorzeichen: nach recht
   }}
 />
 
-## Gleiche Schnelligkeit bei wechselnder Geschwindigkeit
+Ein positiver Balken zeigt eine Bewegung nach rechts an, ein negativer eine Bewegung nach links. Die Schnelligkeit liest allein den Abstand zur Nullachse ab.
 
-Lass eine Kugel an einer <InlineMath math="0{,}8\text{ m}" /> langen Schnur einmal alle <InlineMath math="0{,}8\text{ s}" /> kreisen. Ihre Schnelligkeit bleibt <InlineMath math="6{,}28\text{ m/s}" />, aber **ihre Momentangeschwindigkeit zeigt immer entlang des Kreises in diesem Moment**, also dreht sich die Richtung ständig.
+### Gleiche Schnelligkeit bei wechselnder Geschwindigkeit
 
-<StringWhirlReleaseLab
-  period={0.8}
-  radius={0.8}
-  title={<>Lass die Schnur los</>}
+Lass eine Kugel an einer <InlineMath math="0{,}8\text{ m}" /> langen Schnur einmal alle <InlineMath math="0{,}8\text{ s}" /> kreisen. Ihre Schnelligkeit bleibt <InlineMath math="6{,}28\text{ m/s}" />, aber **ihre Momentangeschwindigkeit zeigt immer tangential zum Kreis**, dreht also ständig ihre Richtung. Verändere den Winkel <InlineMath math="a" /> und verfolge die Komponenten <InlineMath math="v_x" /> und <InlineMath math="v_y" />.
+
+<MathVisual
+  title={<>Tangentiale Geschwindigkeit auf dem Kreis</>}
   description={
     <>
-      Der türkise Pfeil ist die Geschwindigkeit der Kugel in diesem Moment. Wähle, wo du loslässt: Die Kugel fliegt entlang dieses Pfeils davon.
+      Kreisbahn mit Radius <InlineMath math="0{,}8\text{ m}" /> und Umlaufzeit{" "}
+      <InlineMath math="0{,}8\text{ s}" />. Der türkise Pfeil zeigt die
+      tangentiale Geschwindigkeit am Winkel <InlineMath math="a" />.
     </>
   }
+  footer={<>Die Schnelligkeit bleibt bei <InlineMath math="6{,}28\text{ m/s}" />, während sich die Pfeilrichtung dreht.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.6 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 330, value: 90, step: 30, label: "a" },
+    ],
+    objects: [
+      { id: "orbit", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 0.8 },
+      {
+        id: "string",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "0", y: "0" },
+          { x: "0.8*cos(a*pi/180)", y: "0.8*sin(a*pi/180)" },
+        ],
+      },
+      {
+        id: "tangent",
+        kind: "path",
+        appearance: "construction",
+        points: [
+          { x: "0.8*cos(a*pi/180)", y: "0.8*sin(a*pi/180)" },
+          { x: "0.8*cos(a*pi/180) - 0.55*sin(a*pi/180)", y: "0.8*sin(a*pi/180) + 0.55*cos(a*pi/180)" },
+        ],
+      },
+      { id: "ball", kind: "marker", appearance: "primary", x: "0.8*cos(a*pi/180)", y: "0.8*sin(a*pi/180)" },
+      {
+        id: "tip",
+        kind: "marker",
+        appearance: "construction",
+        x: "0.8*cos(a*pi/180) - 0.55*sin(a*pi/180)",
+        y: "0.8*sin(a*pi/180) + 0.55*cos(a*pi/180)",
+      },
+    ],
+    labels: [
+      {
+        key: "v-lbl",
+        objectId: "tip",
+        at: { x: "0.8*cos(a*pi/180) - 0.55*sin(a*pi/180)", y: "0.8*sin(a*pi/180) + 0.55*cos(a*pi/180)" },
+        placement: "above",
+      },
+    ],
+    readouts: [
+      { key: "speed", formula: "2*pi" },
+      { key: "vx", formula: "-2*pi*sin(a*pi/180)" },
+      { key: "vy", formula: "2*pi*cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    acceleration: <>Zentripetalbeschleunigung</>,
-    chooseRelease: "Loslasspunkt wählen",
-    period: <>Zeit für eine Umdrehung</>,
-    radius: <>Schnurlänge</>,
-    releases: {
-      east: <>Osten</>,
-      north: <>Norden</>,
-      west: <>Westen</>,
-      south: <>Süden</>,
-    },
-    speed: <>Schnelligkeit</>,
-    viewLabel: "Kugel an einer Schnur von oben gesehen",
+    a: <>Winkel <InlineMath math="a" /> (Grad)</>,
+    "v-lbl": <InlineMath math="\vec{v}" />,
+    speed: <>Schnelligkeit (m/s)</>,
+    vx: <>Komponente <InlineMath math="v_x" /> (m/s)</>,
+    vy: <>Komponente <InlineMath math="v_y" /> (m/s)</>,
   }}
 />
 
-Lässt du am Nordpunkt los, fliegt die Kugel nach Westen, in die Richtung ihrer Geschwindigkeit in genau diesem Augenblick. Zwei Momente mit gleicher Schnelligkeit können also verschiedene Geschwindigkeiten haben, und welche Richtung du abliest, hängt vom Moment ab.
+Lässt du am Nordpunkt bei <InlineMath math="a=90^\circ" /> los, fliegt die Kugel nach Westen, in die Richtung ihrer Geschwindigkeit in genau diesem Augenblick. Zwei Momente mit gleicher Schnelligkeit können also verschiedene Geschwindigkeiten haben.
 
-## Unterschied zur mittleren Schnelligkeit
+## Momentane und mittlere Schnelligkeit im Vergleich
+
+Eine mittlere Schnelligkeit fasst eine ganze Fahrt in einer einzigen Zahl zusammen, während die momentane Schnelligkeit **in jedem Augenblick schwanken kann**. Gerade beim Beschleunigen oder Fallen liegen beide fast immer auseinander.
+
+### Unterschied zur mittleren Schnelligkeit
 
 Die momentane Schnelligkeit unterscheidet sich von der mittleren Schnelligkeit. Die mittlere Schnelligkeit nutzt die gesamte Wegstrecke und die gesamte Zeit, während die momentane Schnelligkeit den Zustand zu **einem einzigen Zeitpunkt** beschreibt.
 
@@ -182,54 +248,130 @@ Wenn ein Tacho gerade <InlineMath math="15 \text{ m/s}" /> anzeigt, bedeutet das
 
 Ein Fahrzeug kann etwa an einer roten Ampel stehen und danach schnell weiterfahren. Seine mittlere Schnelligkeit kann niedrig sein, weil die gesamte Fahrzeit zählt, obwohl seine momentane Schnelligkeit während der Fahrt deutlich höher ist.
 
-## Eine fallende Kugel hat nie eine feste Schnelligkeit
+### Eine fallende Kugel hat nie eine feste Schnelligkeit
 
-Eine Kugel, die aus <InlineMath math="1{,}8\text{ m}" /> fällt, ist <InlineMath math="0{,}6\text{ s}" /> unterwegs, also beträgt ihre mittlere Schnelligkeit <InlineMath math="\frac{1{,}8}{0{,}6}=3\text{ m/s}" />. **Ihre Momentanschnelligkeit bleibt nie bei diesem Mittelwert**, denn sie wächst mit jedem Blitz um <InlineMath math="1\text{ m/s}" />.
+Eine Kugel, die aus <InlineMath math="1{,}8\text{ m}" /> fällt, ist <InlineMath math="0{,}6\text{ s}" /> unterwegs. Ihre mittlere Schnelligkeit beträgt daher:
 
-<StrobePhotoMotionLab
-  shot="drop"
-  title={<>Eine fallende Kugel, Blitz für Blitz</>}
+<BlockMath math="\bar{v}=\frac{1{,}8\text{ m}}{0{,}6\text{ s}}=3\text{ m/s}" />
+
+**Ihre Momentanschnelligkeit bleibt nie bei diesem Mittelwert**, denn sie wächst jede Zehntelsekunde um <InlineMath math="1\text{ m/s}" />. Verschiebe die Fallzeit <InlineMath math="d" /> und vergleiche die steigende Gerade mit dem konstanten Mittelwert.
+
+<MathVisual
+  title={<>Momentane gegen mittlere Schnelligkeit im freien Fall</>}
   description={
     <>
-      Eine Lampe blitzt alle <InlineMath math="0{,}1\text{ s}" /> in einem dunklen Raum, während der Verschluss der Kamera offen bleibt. Jedes Bild der Kugel ist ein Blitz.
+      Momentane Schnelligkeit <InlineMath math="v(t)=10t" /> einer fallenden
+      Kugel (orange) im Vergleich zum Gesamtmittelwert <InlineMath math="3\text{ m/s}" />{" "}
+      (grau).
     </>
   }
+  footer={<>Nur zur halben Fallzeit <InlineMath math="0{,}3\text{ s}" /> trifft die Momentanschnelligkeit den Mittelwert.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 0.7 }, y: { min: -0.5, max: 6.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.1, max: 0.6, value: 0.3, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "v-inst", kind: "function", appearance: "primary", formula: "10*x", domain: { min: 0, max: 0.6 } },
+      { id: "v-avg", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 0.6, y: 3 } },
+      { id: "cross", kind: "point", appearance: "secondary", at: { x: 0.3, y: 3 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "d", y: "0" },
+          { x: "d", y: "10*d" },
+        ],
+      },
+      { id: "now", kind: "marker", appearance: "answer", x: "d", y: "10*d" },
+    ],
+    labels: [
+      { key: "avg-lbl", objectId: "cross", at: { x: 0.3, y: 3 }, placement: "above-left" },
+      { key: "now-lbl", objectId: "now", at: { x: "d", y: "10*d" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "v-now", formula: "10*d" },
+      { key: "fall", formula: "5*d^2" },
+    ],
+  }}
   labels={{
-    airTime: <>Zeit in der Luft</>,
-    height: <>Starthöhe</>,
-    interval: <>Zeit zwischen den Blitzen</>,
-    outcome: <>Schnelligkeit am Boden</>,
-    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+    d: <>Fallzeit <InlineMath math="d" /> (s)</>,
+    "avg-lbl": <InlineMath math="3\text{ m/s}" />,
+    "now-lbl": <InlineMath math="v(d)" />,
+    "v-now": <>Momentane Schnelligkeit (m/s)</>,
+    fall: <>Fallstrecke (m)</>,
   }}
 />
 
-Die Abstände wachsen von <InlineMath math="5\text{ cm}" /> auf <InlineMath math="55\text{ cm}" />, und die Kugel erreicht den Boden mit <InlineMath math="6\text{ m/s}" />, dem Doppelten ihrer mittleren Schnelligkeit. Nur in einem Moment, nach der halben Fallzeit bei <InlineMath math="0{,}3\text{ s}" />, ist die Momentanschnelligkeit gleich dem Mittelwert.
+Die Kugel erreicht den Boden mit <InlineMath math="6\text{ m/s}" />, dem Doppelten ihrer mittleren Schnelligkeit. Nur in einem Moment, nach der halben Fallzeit bei <InlineMath math="0{,}3\text{ s}" />, ist die Momentanschnelligkeit gleich dem Mittelwert.
 
-## Ein Tachometer misst die aktuelle Schnelligkeit
+## Messgeräte für die momentane Schnelligkeit im Alltag
+
+Im Verkehr und am Fahrrad liefern Sensoren **aktuelle Schnelligkeitswerte direkt aus der Bewegung**. Entscheidend ist, wie schnell das Fahrzeug in genau diesem Moment einen Punkt passiert oder wie oft sich ein Rad dreht.
+
+### Ein Tachometer misst die aktuelle Schnelligkeit
 
 Eine ausgeschilderte Grenze von <InlineMath math="80 \text{ km/h}" /> gilt für das Fahrzeug **zu jedem Zeitpunkt**. Ein Messgerät am Straßenrand erfasst deshalb die momentane Schnelligkeit beim Vorbeifahren.
 
 Ein Fahrzeug mit <InlineMath math="90 \text{ km/h}" /> beim Vorbeifahren überschreitet diese Grenze auch dann, wenn seine mittlere Schnelligkeit auf der gesamten Fahrt nur <InlineMath math="60 \text{ km/h}" /> beträgt. Wartezeit an einer roten Ampel senkt den Mittelwert, verändert aber nicht den Messwert beim Vorbeifahren.
 
-## So misst ein Fahrradcomputer die Schnelligkeit
+### So misst ein Fahrradcomputer die Schnelligkeit
 
-Ein Fahrradcomputer zählt, wie oft ein Magnet am Rad an einem Sensor vorbeikommt. Die Schnelligkeit eines Punkts am Rad ist **sein Kreisumfang geteilt durch die Zeit für eine Umdrehung**. Das Ventil sitzt auf der Felge, <InlineMath math="0{,}311\text{ m}" /> von der Achse entfernt.
+Ein Fahrradcomputer zählt, wie oft ein Magnet am Rad an einem Sensor vorbeikommt. Die Schnelligkeit eines Punkts am Rad ist **sein Kreisumfang geteilt durch die Zeit für eine Umdrehung**. Das Ventil sitzt bei <InlineMath math="0{,}311\text{ m}" /> auf der Felge, ein Reflektor bei <InlineMath math="0{,}155\text{ m}" /> auf halber Speichenhöhe. Verändere die Umlaufzeit <InlineMath math="p" /> und vergleiche beide Schnelligkeiten.
 
-<BicycleWheelSpeedLab
-  title={<>Ein Rad, zwei Schnelligkeiten</>}
+<MathVisual
+  title={<>Felge und Speichenreflektor bei gleicher Umlaufzeit</>}
   description={
     <>
-      Das Ventil und ein Reflektor auf halber Höhe der Speichen drehen sich jede Sekunde um denselben Winkel. Vergleiche die Längen ihrer Geschwindigkeitspfeile.
+      Bahnschnelligkeit des Ventils (orange, <InlineMath math="r=0{,}311\text{ m}" />)
+      und des Reflektors (türkis, <InlineMath math="r=0{,}155\text{ m}" />) über der
+      Umlaufzeit <InlineMath math="p" />.
     </>
   }
+  footer={<>Das Ventil bewegt sich bei jeder Umlaufzeit doppelt so schnell wie der Reflektor.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.3, max: 1.7 }, y: { min: 0, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0.4, max: 1.6, value: 1, step: 0.1, label: "p" },
+    ],
+    objects: [
+      { id: "valve-curve", kind: "function", appearance: "primary", formula: "2*pi*0.311/x", domain: { min: 0.4, max: 1.6 } },
+      { id: "ref-curve", kind: "function", appearance: "construction", formula: "2*pi*0.155/x", domain: { min: 0.4, max: 1.6 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "p", y: "0" },
+          { x: "p", y: "2*pi*0.311/p" },
+        ],
+      },
+      { id: "valve-dot", kind: "marker", appearance: "primary", x: "p", y: "2*pi*0.311/p" },
+      { id: "ref-dot", kind: "marker", appearance: "construction", x: "p", y: "2*pi*0.155/p" },
+    ],
+    labels: [
+      { key: "v-valve", objectId: "valve-dot", at: { x: "p", y: "2*pi*0.311/p" }, placement: "above-right" },
+      { key: "v-ref", objectId: "ref-dot", at: { x: "p", y: "2*pi*0.155/p" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "valve-v", formula: "2*pi*0.311/p" },
+      { key: "ref-v", formula: "2*pi*0.155/p" },
+      { key: "omega", formula: "2*pi/p" },
+    ],
+  }}
   labels={{
-    angularSpeed: <>Winkelgeschwindigkeit</>,
-    choosePeriod: "Zeit für eine Umdrehung wählen",
-    reflectorSpeed: <>Schnelligkeit des Reflektors</>,
-    valveAcceleration: <>Zentripetalbeschleunigung des Ventils</>,
-    valveSpeed: <>Schnelligkeit des Ventils</>,
-    viewLabel: "Fahrradrad dreht sich auf einem Ständer",
+    p: <>Umlaufzeit <InlineMath math="p" /> (s)</>,
+    "v-valve": <>Ventil</>,
+    "v-ref": <>Reflektor</>,
+    "valve-v": <>Schnelligkeit des Ventils (m/s)</>,
+    "ref-v": <>Schnelligkeit des Reflektors (m/s)</>,
+    omega: <>Winkelgeschwindigkeit (rad/s)</>,
   }}
 />
 
-Bei einer Umdrehung pro Sekunde bewegt sich das Ventil mit <InlineMath math="2\pi(0{,}311)\approx1{,}95\text{ m/s}" /> und der Reflektor mit etwa <InlineMath math="0{,}97\text{ m/s}" />. Wähle <InlineMath math="T=0{,}5\text{ s}" />, dann verdoppeln sich beide, und jeder Pfeil bleibt tangential an seinem Kreis.
+Bei einer Umdrehung pro Sekunde bewegt sich das Ventil mit <InlineMath math="2\pi(0{,}311)\approx1{,}95\text{ m/s}" /> und der Reflektor mit etwa <InlineMath math="0{,}97\text{ m/s}" />. Halbierst du die Umlaufzeit auf <InlineMath math="p=0{,}5\text{ s}" />, verdoppeln sich beide Schnelligkeiten gleichzeitig.

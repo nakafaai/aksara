@@ -9,7 +9,11 @@ export const metadata = {
   subject: "Kinematics",
 };
 
-## Measuring Speed over a Shrinking Time Interval
+## Measuring Speed at a Single Instant
+
+An instantaneous value captures motion at **one exact moment** instead of averaging over a long stretch. As a sampling interval shrinks toward zero, the average slope settles onto the instantaneous velocity.
+
+### Measuring Speed Over a Shrinking Time Interval
 
 Instantaneous speed is the speed of an object at a particular time or at a particular point on its path. A common example is the number shown by a vehicle speedometer when the driver looks at it.
 
@@ -35,6 +39,7 @@ Real instruments estimate this value over a short but finite sampling interval. 
       velocity as it passes the measuring point.
     </>
   }
+  footer={<>Each checkpoint reports the car's speed magnitude and sign at that exact instant.</>}
   labels={{
     chooseMoment: "Choose measurement time",
     factLabels: {
@@ -46,27 +51,30 @@ Real instruments estimate this value over a short but finite sampling interval. 
   }}
 />
 
+Notice that instantaneous speed always matches the size of instantaneous velocity, while the sign tells which way the car crosses the marker.
+
 Watch the limit happen on an illustrative motion, <InlineMath math="x=t^2" />. Each colored line is an average velocity starting at <InlineMath math="t=3\text{ s}" />, over <InlineMath math="2" />, <InlineMath math="1" /> and <InlineMath math="0.5\text{ s}" />. As the interval shrinks, the slopes fall from <InlineMath math="8" /> to <InlineMath math="7" /> to <InlineMath math="6.5\text{ m/s}" />, closing in on the instantaneous velocity <InlineMath math="6\text{ m/s}" />.
 
 <MathVisual
   title={<>Shrinking the Time Interval</>}
-  description={<>Secant lines of <InlineMath math="x=t^2" /> from <InlineMath math="t=3\text{ s}" /> over <InlineMath math="2\text{ s}" />, <InlineMath math="1\text{ s}" /> and <InlineMath math="0.5\text{ s}" />. Horizontal: time in s. Vertical: position in units of <InlineMath math="4\text{ m}" />.</>}
+  description={<>Secant lines of <InlineMath math="x=t^2" /> from <InlineMath math="t=3\text{ s}" /> over <InlineMath math="2\text{ s}" />, <InlineMath math="1\text{ s}" /> and <InlineMath math="0.5\text{ s}" />. Horizontal: time in s. Vertical: position in m.</>}
+  footer={<>Shorter intervals starting at <InlineMath math="3\text{ s}" /> squeeze the secant slope toward <InlineMath math="6\text{ m/s}" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.8 }, y: { min: -2, max: 28 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "position", kind: "quadratic", appearance: "reference", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
-      { id: "step-2", kind: "segment", appearance: "warning", from: { x: 3, y: 2.25 }, to: { x: 5, y: 6.25 } },
-      { id: "step-1", kind: "segment", appearance: "primary", from: { x: 3, y: 2.25 }, to: { x: 4, y: 4 } },
-      { id: "step-half", kind: "segment", appearance: "secondary", from: { x: 3, y: 2.25 }, to: { x: 3.5, y: 3.5 ** 2 / 4 } },
-      { id: "now", kind: "point", appearance: "answer", at: { x: 3, y: 2.25 } },
+      { id: "position", kind: "function", appearance: "reference", formula: "x^2", domain: { min: 0, max: 5 } },
+      { id: "step-2", kind: "segment", appearance: "warning", from: { x: 3, y: 9 }, to: { x: 5, y: 25 } },
+      { id: "step-1", kind: "segment", appearance: "primary", from: { x: 3, y: 9 }, to: { x: 4, y: 16 } },
+      { id: "step-half", kind: "segment", appearance: "secondary", from: { x: 3, y: 9 }, to: { x: 3.5, y: 12.25 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 3, y: 9 } },
     ],
     labels: [
-      { key: "s2", objectId: "step-2", at: { x: 5, y: 6.25 }, placement: "right" },
-      { key: "s1", objectId: "step-1", at: { x: 4, y: 4 }, placement: "right" },
-      { key: "sh", objectId: "step-half", at: { x: 3.5, y: 3.5 ** 2 / 4 }, placement: "right" },
-      { key: "now", objectId: "now", at: { x: 3, y: 2.25 }, placement: "left" },
+      { key: "s2", objectId: "step-2", at: { x: 5, y: 25 }, placement: "right" },
+      { key: "s1", objectId: "step-1", at: { x: 4, y: 16 }, placement: "right" },
+      { key: "sh", objectId: "step-half", at: { x: 3.5, y: 12.25 }, placement: "right" },
+      { key: "now", objectId: "now", at: { x: 3, y: 9 }, placement: "left" },
     ],
   }}
   labels={{
@@ -77,30 +85,37 @@ Watch the limit happen on an illustrative motion, <InlineMath math="x=t^2" />. E
   }}
 />
 
-## A Speed Trap with a Shrinking Gap
+The closer the second point slides toward <InlineMath math="t=3\text{ s}" />, the tighter the secant hugs the tangent line at that instant.
 
-A speed trap measures time over a gap, so it always reports an average. Shrink the gap, and **the average closes in on the speed at the centre**. The car speeds up from rest at <InlineMath math="4\text{ m/s}^2" /> and passes the centre at <InlineMath math="20\text{ m/s}" />.
+### A Speed Trap with a Shrinking Gap
+
+A speed trap measures time over a gap, so it always reports an average. Shrink the gap, and **the average closes in on the speed at the center**. The car speeds up from rest at <InlineMath math="4\text{ m/s}^2" /> and passes the center at <InlineMath math="20\text{ m/s}" />.
 
 <SpeedTrapInstantSpeedLab
   title={<>A Speed Trap That Shrinks</>}
   description={
     <>
-      Two light gates sit around the <InlineMath math="50\text{ m}" /> mark. Pick the gap and watch the secant on the graph turn into the tangent at the centre.
+      Two light gates sit around the <InlineMath math="50\text{ m}" /> mark. Pick the gap and watch the secant on the graph turn into the tangent at the center.
     </>
   }
+  footer={<>Pulling both light gates closer pushes the trap reading toward <InlineMath math="20\text{ m/s}" />.</>}
   labels={{
     averageSpeed: <>Trap reading</>,
     chooseGap: "Choose the gap between the gates",
     elapsed: <>Time between the beams</>,
     gap: <>Gap between the gates</>,
-    instantSpeed: <>Speed at the centre</>,
+    instantSpeed: <>Speed at the center</>,
     viewLabel: "Car crossing two light gates on a test track",
   }}
 />
 
 The reading climbs from <InlineMath math="19.58\text{ m/s}" /> with a <InlineMath math="40\text{ m}" /> gap to <InlineMath math="19.9" /> and <InlineMath math="19.97\text{ m/s}" />, and with a <InlineMath math="2\text{ m}" /> gap it shows <InlineMath math="20\text{ m/s}" /> to two decimals. That limit is the instantaneous speed.
 
-## Direction Sets the Sign of Instantaneous Velocity
+## Direction Changes Instantaneous Velocity
+
+Instantaneous velocity always pairs **how fast** with **which way**. Both reversing along a line and curving around a circle change the velocity even when the speed stays untouched.
+
+### Direction Sets the Sign of Instantaneous Velocity
 
 The measuring point in the simulation records the car at one instant. Speed gives the magnitude of its motion. The **direction of travel** sets the sign of its velocity.
 
@@ -119,21 +134,22 @@ A speedometer gives only the size. Add the direction as a sign: rightward is pos
 
 <MathVisual
   title={<>From Speed Reading to Velocity</>}
-  description={<>Velocity at <InlineMath math="6\text{ s}" /> (teal, rightward) and at <InlineMath math="9\text{ s}" /> (violet, leftward). Vertical: one grid step is <InlineMath math="5\text{ m/s}" />.</>}
+  description={<>Velocity at <InlineMath math="6\text{ s}" /> (teal, rightward) and at <InlineMath math="9\text{ s}" /> (violet, leftward) in m/s.</>}
+  footer={<>Direction decides whether the velocity bar stands above or below zero.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -2.5, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -12, max: 25 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
       { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
-      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
-      { id: "nine", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: -1.6 } },
-      { id: "six-top", kind: "point", appearance: "construction", at: { x: 6, y: 4 } },
-      { id: "nine-end", kind: "point", appearance: "secondary", at: { x: 9, y: -1.6 } },
+      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 20 } },
+      { id: "nine", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: -8 } },
+      { id: "six-top", kind: "point", appearance: "construction", at: { x: 6, y: 20 } },
+      { id: "nine-end", kind: "point", appearance: "secondary", at: { x: 9, y: -8 } },
     ],
     labels: [
-      { key: "six", objectId: "six-top", at: { x: 6, y: 4 }, placement: "above" },
-      { key: "nine", objectId: "nine-end", at: { x: 9, y: -1.6 }, placement: "below" },
+      { key: "six", objectId: "six-top", at: { x: 6, y: 20 }, placement: "above" },
+      { key: "nine", objectId: "nine-end", at: { x: 9, y: -8 }, placement: "below" },
     ],
   }}
   labels={{
@@ -142,38 +158,88 @@ A speedometer gives only the size. Add the direction as a sign: rightward is pos
   }}
 />
 
-## Same Speed but Changing Velocity
+Bars above the axis represent rightward velocity, while bars below represent leftward velocity. Speed equals only the bar height from zero.
 
-Whirl a ball on a string <InlineMath math="0.8\text{ m}" /> long once every <InlineMath math="0.8\text{ s}" />. Its speed stays <InlineMath math="6.28\text{ m/s}" />, but **its instantaneous velocity always points along the circle at that moment**, so the direction keeps turning.
+### Same Speed but Changing Velocity
 
-<StringWhirlReleaseLab
-  period={0.8}
-  radius={0.8}
-  title={<>Let Go of the String</>}
+Whirl a ball on a string <InlineMath math="0.8\text{ m}" /> long once every <InlineMath math="0.8\text{ s}" />. Its speed stays <InlineMath math="6.28\text{ m/s}" />, but **its instantaneous velocity always points tangent to the circle**, so its direction turns nonstop. Drag angle <InlineMath math="a" /> to watch <InlineMath math="v_x" /> and <InlineMath math="v_y" /> change while speed stays fixed.
+
+<MathVisual
+  title={<>Tangent Velocity Around a Circle</>}
   description={
     <>
-      The teal arrow is the ball's velocity right now. Pick where to let go: the ball leaves along that arrow.
+      Circular path of radius <InlineMath math="0.8\text{ m}" /> and period{" "}
+      <InlineMath math="0.8\text{ s}" />. The teal arrow shows the tangent
+      velocity at angle <InlineMath math="a" />.
     </>
   }
+  footer={<>Speed stays locked at <InlineMath math="6.28\text{ m/s}" /> even as the tangent arrow rotates.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.6 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 330, value: 90, step: 30, label: "a" },
+    ],
+    objects: [
+      { id: "orbit", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 0.8 },
+      {
+        id: "string",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "0", y: "0" },
+          { x: "0.8*cos(a*pi/180)", y: "0.8*sin(a*pi/180)" },
+        ],
+      },
+      {
+        id: "tangent",
+        kind: "path",
+        appearance: "construction",
+        points: [
+          { x: "0.8*cos(a*pi/180)", y: "0.8*sin(a*pi/180)" },
+          { x: "0.8*cos(a*pi/180) - 0.55*sin(a*pi/180)", y: "0.8*sin(a*pi/180) + 0.55*cos(a*pi/180)" },
+        ],
+      },
+      { id: "ball", kind: "marker", appearance: "primary", x: "0.8*cos(a*pi/180)", y: "0.8*sin(a*pi/180)" },
+      {
+        id: "tip",
+        kind: "marker",
+        appearance: "construction",
+        x: "0.8*cos(a*pi/180) - 0.55*sin(a*pi/180)",
+        y: "0.8*sin(a*pi/180) + 0.55*cos(a*pi/180)",
+      },
+    ],
+    labels: [
+      {
+        key: "v-lbl",
+        objectId: "tip",
+        at: { x: "0.8*cos(a*pi/180) - 0.55*sin(a*pi/180)", y: "0.8*sin(a*pi/180) + 0.55*cos(a*pi/180)" },
+        placement: "above",
+      },
+    ],
+    readouts: [
+      { key: "speed", formula: "2*pi" },
+      { key: "vx", formula: "-2*pi*sin(a*pi/180)" },
+      { key: "vy", formula: "2*pi*cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    acceleration: <>Centripetal acceleration</>,
-    chooseRelease: "Choose where to let go",
-    period: <>Time for one turn</>,
-    radius: <>String length</>,
-    releases: {
-      east: <>East</>,
-      north: <>North</>,
-      west: <>West</>,
-      south: <>South</>,
-    },
-    speed: <>Speed</>,
-    viewLabel: "Ball whirled on a string seen from above",
+    a: <>Angle <InlineMath math="a" /> (deg)</>,
+    "v-lbl": <InlineMath math="\vec{v}" />,
+    speed: <>Speed (m/s)</>,
+    vx: <>Component <InlineMath math="v_x" /> (m/s)</>,
+    vy: <>Component <InlineMath math="v_y" /> (m/s)</>,
   }}
 />
 
-Let go at the north point and the ball flies west, the direction its velocity had at that instant. Two moments with the same speed can still have different velocities, and the sign or direction you read depends on the moment.
+Let go at the north point at <InlineMath math="a=90^\circ" /> and the ball flies west, the direction its velocity had at that instant. Two moments with the same speed can still have different velocities.
 
-## Difference from Average Speed
+## Contrasting Instantaneous and Average Speed
+
+Average speed condenses a whole trip into one number, whereas instantaneous speed **can rise and fall every second**. During stops or free fall, the two rarely match.
+
+### Difference from Average Speed
 
 Average speed summarizes the whole trip by dividing total distance by total time. Instantaneous speed gives the speed at **one chosen time**.
 
@@ -181,54 +247,130 @@ If a speedometer shows <InlineMath math="15 \text{ m/s}" /> right now, it does n
 
 For example, a vehicle may stop at a red light and then move quickly afterward. Its average speed can be small because the whole trip time is counted, while its instantaneous speed while moving can be much larger.
 
-## A Falling Ball Never Keeps One Speed
+### A Falling Ball Never Keeps One Speed
 
-A ball dropped from <InlineMath math="1.8\text{ m}" /> falls for <InlineMath math="0.6\text{ s}" />, so its average speed is <InlineMath math="\frac{1.8}{0.6}=3\text{ m/s}" />. Its **instantaneous speed never stays at that average**, because it grows by <InlineMath math="1\text{ m/s}" /> at every flash.
+A ball dropped from <InlineMath math="1.8\text{ m}" /> falls for <InlineMath math="0.6\text{ s}" />, giving an average speed of:
 
-<StrobePhotoMotionLab
-  shot="drop"
-  title={<>A Dropped Ball, Flash by Flash</>}
+<BlockMath math="\bar{v}=\frac{1.8\text{ m}}{0.6\text{ s}}=3\text{ m/s}" />
+
+Its **instantaneous speed never stays at that average**, because it grows by <InlineMath math="1\text{ m/s}" /> every tenth of a second. Slide the drop time <InlineMath math="d" /> to compare the rising line with the flat average.
+
+<MathVisual
+  title={<>Instantaneous vs Average Speed During a Drop</>}
   description={
     <>
-      A lamp flashes every <InlineMath math="0.1\text{ s}" /> in a dark room while the camera shutter stays open. Each image of the ball is one flash.
+      Instantaneous speed <InlineMath math="v(t)=10t" /> of a dropped ball
+      (orange) compared with its trip average <InlineMath math="3\text{ m/s}" />{" "}
+      (gray).
     </>
   }
+  footer={<>Only at the midpoint <InlineMath math="0.3\text{ s}" /> does instantaneous speed equal the average.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 0.7 }, y: { min: -0.5, max: 6.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.1, max: 0.6, value: 0.3, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "v-inst", kind: "function", appearance: "primary", formula: "10*x", domain: { min: 0, max: 0.6 } },
+      { id: "v-avg", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 0.6, y: 3 } },
+      { id: "cross", kind: "point", appearance: "secondary", at: { x: 0.3, y: 3 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "d", y: "0" },
+          { x: "d", y: "10*d" },
+        ],
+      },
+      { id: "now", kind: "marker", appearance: "answer", x: "d", y: "10*d" },
+    ],
+    labels: [
+      { key: "avg-lbl", objectId: "cross", at: { x: 0.3, y: 3 }, placement: "above-left" },
+      { key: "now-lbl", objectId: "now", at: { x: "d", y: "10*d" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "v-now", formula: "10*d" },
+      { key: "fall", formula: "5*d^2" },
+    ],
+  }}
   labels={{
-    airTime: <>Time in the air</>,
-    height: <>Start height</>,
-    interval: <>Time between flashes</>,
-    outcome: <>Speed at the floor</>,
-    viewLabel: "Strobe photograph built up flash by flash",
+    d: <>Drop time <InlineMath math="d" /> (s)</>,
+    "avg-lbl": <InlineMath math="3\text{ m/s}" />,
+    "now-lbl": <InlineMath math="v(d)" />,
+    "v-now": <>Instantaneous speed (m/s)</>,
+    fall: <>Distance fallen (m)</>,
   }}
 />
 
-The gaps grow from <InlineMath math="5\text{ cm}" /> to <InlineMath math="55\text{ cm}" />, and the ball reaches the floor at <InlineMath math="6\text{ m/s}" />, twice its average speed. At one instant, halfway through the fall at <InlineMath math="0.3\text{ s}" />, the instantaneous speed equals the average.
+The ball reaches the floor at <InlineMath math="6\text{ m/s}" />, twice its average speed. At only one instant, halfway through the fall at <InlineMath math="0.3\text{ s}" />, does its instantaneous speed match the average.
 
-## A Speedometer Measures the Current Speed
+## Reading Speed on Roads and Wheels
+
+Speedometers and bike computers turn real motion into **instantaneous speed readings**. What matters is how fast a vehicle passes one detector or how quickly a wheel completes one turn.
+
+### A Speedometer Measures the Current Speed
 
 A posted limit of <InlineMath math="80 \text{ km/h}" /> applies to the vehicle at **every moment**. A roadside detector therefore reads the instantaneous speed as the vehicle passes.
 
 A vehicle passing at <InlineMath math="90 \text{ km/h}" /> exceeds that limit even if its average speed for the whole trip is only <InlineMath math="60 \text{ km/h}" />. Time spent stopped at a red light lowers the trip average but does not change the reading at the detector.
 
-## How a Bike Computer Reads Speed
+### How a Bike Computer Reads Speed
 
-A bike computer counts how often a magnet on the wheel passes a sensor. The speed of a point on the wheel is **its circle divided by the time for one turn**. The valve sits on the rim, <InlineMath math="0.311\text{ m}" /> from the axle.
+A bike computer counts how often a magnet on the wheel passes a sensor. The speed of a point on the wheel is **its circle divided by the time for one turn**. The valve sits on the rim at <InlineMath math="0.311\text{ m}" />, while a spoke reflector sits halfway out at <InlineMath math="0.155\text{ m}" />. Adjust the turn period <InlineMath math="p" /> to compare both speeds.
 
-<BicycleWheelSpeedLab
-  title={<>One Wheel, Two Speeds</>}
+<MathVisual
+  title={<>Rim Valve vs Spoke Reflector Speed</>}
   description={
     <>
-      The valve and a reflector halfway out turn through the same angle each second. Compare the lengths of their velocity arrows.
+      Linear speed of the valve (orange, <InlineMath math="r=0.311\text{ m}" />)
+      and reflector (teal, <InlineMath math="r=0.155\text{ m}" />) against rotation
+      period <InlineMath math="p" />.
     </>
   }
+  footer={<>At every rotation period, the rim valve moves twice as fast as the reflector.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.3, max: 1.7 }, y: { min: 0, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0.4, max: 1.6, value: 1, step: 0.1, label: "p" },
+    ],
+    objects: [
+      { id: "valve-curve", kind: "function", appearance: "primary", formula: "2*pi*0.311/x", domain: { min: 0.4, max: 1.6 } },
+      { id: "ref-curve", kind: "function", appearance: "construction", formula: "2*pi*0.155/x", domain: { min: 0.4, max: 1.6 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "p", y: "0" },
+          { x: "p", y: "2*pi*0.311/p" },
+        ],
+      },
+      { id: "valve-dot", kind: "marker", appearance: "primary", x: "p", y: "2*pi*0.311/p" },
+      { id: "ref-dot", kind: "marker", appearance: "construction", x: "p", y: "2*pi*0.155/p" },
+    ],
+    labels: [
+      { key: "v-valve", objectId: "valve-dot", at: { x: "p", y: "2*pi*0.311/p" }, placement: "above-right" },
+      { key: "v-ref", objectId: "ref-dot", at: { x: "p", y: "2*pi*0.155/p" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "valve-v", formula: "2*pi*0.311/p" },
+      { key: "ref-v", formula: "2*pi*0.155/p" },
+      { key: "omega", formula: "2*pi/p" },
+    ],
+  }}
   labels={{
-    angularSpeed: <>Angular speed</>,
-    choosePeriod: "Choose the time for one turn",
-    reflectorSpeed: <>Speed of the reflector</>,
-    valveAcceleration: <>Centripetal acceleration of the valve</>,
-    valveSpeed: <>Speed of the valve</>,
-    viewLabel: "Bicycle wheel spinning on a stand",
+    p: <>Period <InlineMath math="p" /> (s)</>,
+    "v-valve": <>Valve</>,
+    "v-ref": <>Reflector</>,
+    "valve-v": <>Valve speed (m/s)</>,
+    "ref-v": <>Reflector speed (m/s)</>,
+    omega: <>Angular speed (rad/s)</>,
   }}
 />
 
-At one turn per second the valve moves at <InlineMath math="2\pi(0.311)\approx1.95\text{ m/s}" />, and the reflector at about <InlineMath math="0.97\text{ m/s}" />. Choose <InlineMath math="T=0.5\text{ s}" /> and both speeds double, while each arrow stays tangent to its circle.
+At one turn per second the valve moves at <InlineMath math="2\pi(0.311)\approx1.95\text{ m/s}" />, and the reflector at about <InlineMath math="0.97\text{ m/s}" />. Cutting the period in half to <InlineMath math="p=0.5\text{ s}" /> doubles both speeds together.

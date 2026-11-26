@@ -34,6 +34,7 @@ Pada gerak dua dimensi, perpindahan ditunjukkan sebagai garis lurus dari titik a
       lurus.
     </>
   }
+  footer={<>Setiap belokan memperpanjang jarak, panah hanya menghubungkan awal dan akhir.</>}
   labels={{
     chooseCase: "Pilih rute",
     modeLabels: {
@@ -56,13 +57,13 @@ Pada gerak dua dimensi, perpindahan ditunjukkan sebagai garis lurus dari titik a
   }}
 />
 
-## Lintasan dan Garis Lurus Memberi Angka Berbeda
+Begitu mobil berbelok atau berbalik arah, jarak tempuhnya terus bertambah sementara panah perpindahannya tetap lebih pendek atau menyusut menjadi nol.
 
-Bandingkan benda yang bergerak dari titik awal ke titik akhir lewat dua rute. Pada rute lurus, jarak sama dengan besar perpindahan. Rute memutar menghasilkan jarak yang lebih panjang, tetapi perpindahannya tetap berupa garis dari awal ke akhir.
+## Memutar Memisahkan Jarak dari Perpindahan
 
-Pada simulasi, pilih rute berbelok lalu rute kembali. Bandingkan **panjang lintasan** dengan **besar perpindahan**. Saat mobil kembali ke awal, lintasan tetap mempunyai panjang, sedangkan garis penghubung awal dan akhir mempunyai panjang nol.
+Pada lintasan lurus tanpa berbalik, **jarak dan besar perpindahan** bernilai sama. Rute memutar menghasilkan jarak yang lebih panjang, tetapi perpindahannya tetap berupa garis lurus dari awal ke akhir.
 
-## Jalan Memutar di Kota
+Pada simulasi di atas, pilih rute berbelok lalu rute kembali. Bandingkan **panjang lintasan** dengan **besar perpindahan**. Saat mobil kembali ke awal, lintasan tetap mempunyai panjang, sedangkan garis penghubung awal dan akhir mempunyai panjang nol.
 
 Perbesar contoh pelajaran ini ke ukuran kota, lalu **bandingkan jalur dengan panahnya**: kamu berjalan <InlineMath math="400\text{ m}" /> ke timur di sepanjang jalan, lalu <InlineMath math="300\text{ m}" /> ke selatan, dengan kelajuan <InlineMath math="1{,}25\text{ m/s}" />.
 
@@ -78,6 +79,7 @@ Perbesar contoh pelajaran ini ke ukuran kota, lalu **bandingkan jalur dengan pan
       Jalur kuning adalah jarak yang kamu tempuh. Panah ungu adalah perpindahan, lurus dari titik awal ke posisimu sekarang.
     </>
   }
+  footer={<>Dua ruas jalan berjumlah <InlineMath math="700\text{ m}" />, sedangkan panah lurusnya hanya <InlineMath math="500\text{ m}" />.</>}
   labels={{
     averageSpeed: <>Kelajuan rata-rata</>,
     averageVelocity: <>Besar kecepatan rata-rata</>,
@@ -90,7 +92,11 @@ Perbesar contoh pelajaran ini ke ukuran kota, lalu **bandingkan jalur dengan pan
 
 Panjang jalurnya <InlineMath math="700\text{ m}" />, tetapi panahnya hanya <InlineMath math="500\text{ m}" />, segitiga <InlineMath math="3:4:5" /> yang sama seperti tadi. Dalam <InlineMath math="560\text{ s}" />, kelajuan rata-ratanya <InlineMath math="1{,}25\text{ m/s}" />, sedangkan besar kecepatan rata-ratanya hanya sekitar <InlineMath math="0{,}89\text{ m/s}" />.
 
-## Jarak Menyatakan Panjang Lintasan
+## Jarak Terus Bertambah Sepanjang Lintasan
+
+Jarak tidak pernah negatif karena besaran ini **menjumlahkan setiap langkah yang ditempuh**. Meskipun lintasan melengkung kembali ke arah start, setiap tambahan meter tetap ikut terhitung.
+
+### Jarak Menyatakan Panjang Lintasan
 
 Jarak selalu bernilai nol atau positif. Jarak menjawab pertanyaan, "berapa panjang lintasan yang ditempuh?" Karena itu, <Highlight>jarak tidak menyebut arah</Highlight>.
 
@@ -100,31 +106,66 @@ Jika benda berjalan <InlineMath math="4 \text{ m}" /> ke timur lalu <InlineMath 
 
 Simbol <InlineMath math="s" /> sering digunakan untuk menyatakan jarak tempuh.
 
-## Jarak Hanya Bertambah
+### Jarak Hanya Bertambah Saat Perpindahan Menyusut
 
-Jarak **hanya bisa bertambah** selama kamu bergerak. Di lintasan lari <InlineMath math="400\text{ m}" />, setiap tambahan lari <InlineMath math="100\text{ m}" /> menambah jarak <InlineMath math="100\text{ m}" />, ke mana pun tikungannya berbelok.
+Jarak **hanya bisa bertambah** selama kamu bergerak. Di lintasan lari melingkar <InlineMath math="400\text{ m}" />, setiap tambahan lari <InlineMath math="100\text{ m}" /> menambah jarak <InlineMath math="100\text{ m}" />, sedangkan perpindahannya kembali menyusut selepas setengah putaran. Geser jarak lari <InlineMath math="s" /> untuk membandingkan kedua kurva.
 
-<RunningTrackDisplacementLab
-  speed={8}
-  title={<>Jarak di Lintasan Lari</>}
+<MathVisual
+  title={<>Jarak terhadap Perpindahan pada Lintasan</>}
   description={
     <>
-      Pelari di lajur <InlineMath math="1" /> berlari tetap <InlineMath math="8\text{ m/s}" />. Hentikan larinya di setiap tanda dan perhatikan jarak yang terus naik, sementara perpindahannya tidak.
+      Jarak kumulatif (oranye) dan besar perpindahan (teal) pada lintasan
+      melingkar <InlineMath math="400\text{ m}" /> sampai tanda <InlineMath math="s" />.
     </>
   }
+  footer={<>Jarak naik lurus hingga <InlineMath math="400\text{ m}" />, sementara perpindahan turun lagi ke nol.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 430 }, y: { min: -20, max: 430 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 50, max: 400, value: 200, step: 50, label: "s" },
+    ],
+    objects: [
+      { id: "dist-curve", kind: "function", appearance: "primary", formula: "x", domain: { min: 0, max: 400 } },
+      { id: "disp-curve", kind: "function", appearance: "construction", formula: "(400/pi)*abs(sin(pi*x/400))", domain: { min: 0, max: 400 } },
+      {
+        id: "gap",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "s", y: "(400/pi)*abs(sin(pi*s/400))" },
+          { x: "s", y: "s" },
+        ],
+      },
+      { id: "dist-dot", kind: "marker", appearance: "primary", x: "s", y: "s" },
+      { id: "disp-dot", kind: "marker", appearance: "construction", x: "s", y: "(400/pi)*abs(sin(pi*s/400))" },
+    ],
+    labels: [
+      { key: "dist-lbl", objectId: "dist-dot", at: { x: "s", y: "s" }, placement: "above-left" },
+      { key: "disp-lbl", objectId: "disp-dot", at: { x: "s", y: "(400/pi)*abs(sin(pi*s/400))" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "dist-val", formula: "s" },
+      { key: "disp-val", formula: "(400/pi)*abs(sin(pi*s/400))" },
+    ],
+  }}
   labels={{
-    averageVelocity: <>Besar kecepatan rata-rata</>,
-    chooseDistance: "Pilih jarak lari",
-    displacement: <>Besar perpindahan</>,
-    distance: <>Jarak lari</>,
-    time: <>Waktu</>,
-    viewLabel: "Pelari di lintasan atletik 400 m dilihat dari atas",
+    s: <>Jarak lari <InlineMath math="s" /> (m)</>,
+    "dist-lbl": <InlineMath math="s" />,
+    "disp-lbl": <InlineMath math="|\Delta \vec{r}|" />,
+    "dist-val": <>Jarak (m)</>,
+    "disp-val": <>Besar perpindahan (m)</>,
   }}
 />
 
-Jaraknya terbaca <InlineMath math="100" />, <InlineMath math="200" />, <InlineMath math="300" />, dan <InlineMath math="400\text{ m}" />. Perpindahannya berubah dari sekitar <InlineMath math="72\text{ m}" /> ke <InlineMath math="112\text{ m}" />, turun lagi ke sekitar <InlineMath math="100\text{ m}" />, lalu akhirnya <InlineMath math="0" />.
+Jaraknya naik tetap dari <InlineMath math="100" />, <InlineMath math="200" />, <InlineMath math="300" />, hingga <InlineMath math="400\text{ m}" />. Sementara itu, besar perpindahannya mencapai puncak di diameter lintasan sekitar <InlineMath math="127{,}3\text{ m}" /> lalu kembali turun ke <InlineMath math="0\text{ m}" />.
 
-## Perpindahan Memiliki Besar dan Arah
+## Perpindahan Hanya Bergantung pada Awal dan Akhir
+
+Berbeda dari jarak, perpindahan adalah **selisih berarah antara posisi awal dan posisi akhir**. Menggeser titik nol penggaris di sepanjang jalan akan mengubah semua angka posisi, tetapi selisih perpindahannya tetap sama di mana pun pengamat berdiri.
+
+### Perpindahan Memiliki Besar dan Arah
 
 Perpindahan adalah besaran vektor. Artinya, perpindahan memiliki **besar dan arah**. Untuk contoh <InlineMath math="4 \text{ m}" /> ke timur lalu <InlineMath math="3 \text{ m}" /> ke selatan, besar perpindahannya adalah garis lurus dari awal ke akhir:
 
@@ -136,34 +177,79 @@ Perpindahan adalah besaran vektor. Artinya, perpindahan memiliki **besar dan ara
 
 Arah perpindahan mengikuti garis lurus dari titik awal ke titik akhir.
 
-## Perpindahan Sama dari Patokan Mana Pun
+### Perpindahan Sama dari Patokan Mana Pun
 
-Perpindahan **tidak bergantung pada letak titik nol**. Pesepeda bergerak dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="50\text{ m}" /> di timur toko, lalu kembali ke <InlineMath math="35\text{ m}" />. Ukur dari toko, dari rumah Rani, atau dari tiang bendera.
+Perpindahan **tidak bergantung pada letak titik nol**. Pesepeda bergerak dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="50\text{ m}" /> di timur toko, lalu kembali ke <InlineMath math="35\text{ m}" />. Geser titik acuan <InlineMath math="k" /> di sepanjang jalan dan amati selisih posisinya.
 
-<StreetOriginPositionLab
-  title={<>Satu Perjalanan, Tiga Titik Acuan</>}
+<MathVisual
+  title={<>Satu Perjalanan dari Titik Acuan yang Digeser</>}
   description={
     <>
-      Timur bernilai positif. Panah kuning berawal dari titik acuan yang dipilih dan berakhir di pesepeda, dan grafiknya menunjukkan posisi terhadap waktu.
+      Posisi pesepeda terhadap waktu saat titik nol berada di{" "}
+      <InlineMath math="k\text{ m}" /> timur toko. Ruas ungu menunjukkan perpindahan.
     </>
   }
+  footer={<>Menggeser <InlineMath math="k" /> memindahkan grafik naik turun, tetapi selisihnya tetap <InlineMath math="+15\text{ m}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -25, max: 75 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: -20, max: 40, value: 0, step: 10, label: "k" },
+    ],
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      {
+        id: "ride",
+        kind: "path",
+        appearance: "primary",
+        points: [
+          { x: "0", y: "20 - k" },
+          { x: "6", y: "50 - k" },
+          { x: "9", y: "35 - k" },
+        ],
+      },
+      {
+        id: "shift",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "9.8", y: "20 - k" },
+          { x: "9.8", y: "35 - k" },
+        ],
+      },
+      { id: "start-dot", kind: "marker", appearance: "secondary", x: "0", y: "20 - k" },
+      { id: "end-dot", kind: "marker", appearance: "answer", x: "9", y: "35 - k" },
+    ],
+    labels: [
+      { key: "start-lbl", objectId: "start-dot", at: { x: "0", y: "20 - k" }, placement: "above-right" },
+      { key: "end-lbl", objectId: "end-dot", at: { x: "9", y: "35 - k" }, placement: "above" },
+      { key: "delta-lbl", objectId: "shift", at: { x: "9.8", y: "27.5 - k" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "x-start", formula: "20 - k" },
+      { key: "x-end", formula: "35 - k" },
+      { key: "dx", formula: "(35 - k) - (20 - k)" },
+    ],
+  }}
   labels={{
-    change: <>Perubahan posisi</>,
-    chooseOrigin: "Pilih titik acuan",
-    end: <>Posisi akhir</>,
-    origins: {
-      store: <>Toko</>,
-      house: <>Rumah Rani</>,
-      pole: <>Tiang bendera</>,
-    },
-    start: <>Posisi awal</>,
-    viewLabel: "Pesepeda di jalan dengan tiga tempat",
+    k: <>Pergeseran titik nol <InlineMath math="k" /> (m)</>,
+    "start-lbl": <InlineMath math="x_0" />,
+    "end-lbl": <InlineMath math="x_t" />,
+    "delta-lbl": <InlineMath math="\Delta x" />,
+    "x-start": <>Posisi awal (m)</>,
+    "x-end": <>Posisi akhir (m)</>,
+    dx: <>Perpindahan (m)</>,
   }}
 />
 
 Posisi awal dan akhirnya berubah mengikuti titik acuan, tetapi perubahan posisinya selalu <InlineMath math="+15\text{ m}" />: <InlineMath math="15\text{ m}" /> ke arah timur, sementara panjang jalur yang ditempuh <InlineMath math="45\text{ m}" />.
 
-## Saat Kembali ke Titik Awal
+## Lintasan Tertutup dan Rute Berbelok
+
+Saat benda berakhir tepat di tempat ia berangkat, perpindahannya menjadi **persis nol**. Untuk rute yang berbelok siku-siku di bidang, teorema Pythagoras menghasilkan panjang panah lurusnya.
+
+### Perpindahan Nol pada Lintasan Tertutup
 
 Jika benda bergerak berkeliling lalu kembali ke titik awal, jaraknya tidak nol karena lintasannya tetap ditempuh. Tetapi perpindahannya nol karena **posisi awal dan posisi akhir sama**.
 
@@ -180,6 +266,7 @@ Tiga perjalanan berangkat dari titik awal yang sama. Yang lurus punya jarak sama
 <MathVisual
   title={<>Tiga Perjalanan, Satu Titik Awal</>}
   description={<>Perjalanan lurus (teal), memutar (oranye), dan berputar kembali ke titik awal (ungu).</>}
+  footer={<>Rute lurus dan memutar berakhir sama, sedangkan putaran kembali ke awal.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -2.5, max: 2.8 } },
@@ -207,32 +294,67 @@ Tiga perjalanan berangkat dari titik awal yang sama. Yang lurus punya jarak sama
   }}
 />
 
-## Pergi dan Kembali pada Grafik
+Dua rute berbeda dapat menghasilkan perpindahan yang persis sama, sedangkan perjalanan memutar yang panjang tetap bisa berakhir dengan perpindahan nol.
 
-Mobil yang mulai menanjak di jalan landai dengan kecepatan <InlineMath math="6\text{ m/s}" /> meluncur maju, berhenti setelah <InlineMath math="5\text{ s}" />, lalu meluncur kembali ke titik awalnya. Grafik posisi terhadap waktunya **naik, lalu turun lagi ke nol**.
+### Pergi dan Kembali pada Grafik Posisi
 
-<CarTripSecantSlopeLab
-  trip="return"
-  title={<>Pergi dan Kembali</>}
+Mobil yang mulai menanjak di jalan landai dengan kecepatan <InlineMath math="6\text{ m/s}" /> mencapai **titik balik tertinggi** di <InlineMath math="15\text{ m}" /> setelah <InlineMath math="5\text{ s}" />, lalu meluncur kembali ke titik awal pada <InlineMath math="10\text{ s}" />. Geser waktu <InlineMath math="d" /> untuk membandingkan jarak tempuh dan perpindahannya.
+
+<MathVisual
+  title={<>Meluncur Naik dan Kembali di Tanjakan</>}
   description={
     <>
-      Pilih selang waktu. Bendera menandai dua posisi mobil, dan garis potong menghubungkan keduanya pada grafik.
+      Posisi <InlineMath math="x(t)=6t-0{,}6t^2" /> mobil yang meluncur naik
+      lalu kembali turun. Garis ungu menyambung titik awal ke waktu{" "}
+      <InlineMath math="d" />.
     </>
   }
+  footer={<>Selepas titik balik, jarak terus naik sedangkan perpindahan kembali ke nol.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -1.5, max: 17 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 1, max: 10, value: 10, step: 1, label: "d" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "6*x - 0.6*x^2", domain: { min: 0, max: 10 } },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "peak", kind: "point", appearance: "secondary", at: { x: 5, y: 15 } },
+      {
+        id: "secant",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0", y: "0" },
+          { x: "d", y: "6*d - 0.6*d^2" },
+        ],
+      },
+      { id: "car", kind: "marker", appearance: "answer", x: "d", y: "6*d - 0.6*d^2" },
+    ],
+    labels: [
+      { key: "peak-lbl", objectId: "peak", at: { x: 5, y: 15 }, placement: "above" },
+      { key: "car-lbl", objectId: "car", at: { x: "d", y: "6*d - 0.6*d^2" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "dist", formula: "15 + 0.6*(d - 5)*abs(d - 5)" },
+      { key: "disp", formula: "6*d - 0.6*d^2" },
+    ],
+  }}
   labels={{
-    change: <>Perpindahan</>,
-    chooseInterval: "Pilih selang waktu",
-    elapsed: <>Selang waktu</>,
-    rate: <>Kecepatan rata-rata</>,
-    viewLabel: "Perjalanan mobil dengan grafik posisi terhadap waktu",
+    d: <>Waktu <InlineMath math="d" /> (s)</>,
+    "peak-lbl": <InlineMath math="15\text{ m}" />,
+    "car-lbl": <InlineMath math="x(d)" />,
+    dist: <>Jarak tempuh (m)</>,
+    disp: <>Perpindahan (m)</>,
   }}
 />
 
 Dari <InlineMath math="0" /> sampai <InlineMath math="10\text{ s}" />, mobil menempuh <InlineMath math="15\text{ m}" /> maju dan <InlineMath math="15\text{ m}" /> kembali, jadi jaraknya <InlineMath math="30\text{ m}" />, tetapi perpindahannya <InlineMath math="0" /> dan garis potongnya datar.
 
-## Jarak dan Perpindahan pada Lintasan Berbelok
+### Jarak dan Perpindahan pada Lintasan Berbelok
 
-Seorang siswa berjalan <InlineMath math="8 \text{ m}" /> ke timur, lalu <InlineMath math="6 \text{ m}" /> ke utara. Jarak tempuhnya adalah:
+Seorang pejalan kaki melangkah <InlineMath math="8 \text{ m}" /> ke timur menyusuri jalur, lalu berbelok <InlineMath math="6 \text{ m}" /> ke utara. Jarak tempuhnya adalah:
 
 <BlockMath math="s=8 \text{ m}+6 \text{ m}=14 \text{ m}" />
 
@@ -250,23 +372,21 @@ Putar perjalanan di bawah. Panah oranye dan ungu adalah lintasannya, jaraknya <I
 
 <MathVisual
   title={<>Jarak dan Perpindahan pada Belokan</>}
-  description={<><InlineMath math="8\text{ m}" /> ke timur, lalu <InlineMath math="6\text{ m}" /> ke utara, dilihat dari atas. Satu kotak grid sama dengan <InlineMath math="2\text{ m}" />.</>}
+  description={<><InlineMath math="8\text{ m}" /> ke timur, lalu <InlineMath math="6\text{ m}" /> ke utara, dilihat dari atas dalam satuan meter.</>}
+  footer={<>Diagonal lurusnya sepanjang <InlineMath math="10\text{ m}" />, lebih pendek daripada <InlineMath math="14\text{ m}" /> lintasan.</>}
   scene={{
     space: "space",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 1 }, z: { min: -3.5, max: 0.5 } },
-    view: { kind: "camera", position: { x: 2, y: 7, z: 5 }, target: { x: 2, y: 0, z: -1.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: 0, max: 2 }, z: { min: -7, max: 1 } },
+    view: { kind: "camera", position: { x: 4, y: 12, z: 8 }, target: { x: 4, y: 0, z: -3 } },
     objects: [
-      { id: "east", kind: "segment", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 } },
-      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0, z: 0 }, { x: 3.75, y: 0, z: 0.125 }, { x: 3.75, y: 0, z: -0.125 }] },
-      { id: "north", kind: "segment", appearance: "secondary", from: { x: 4, y: 0, z: 0 }, to: { x: 4, y: 0, z: -3 } },
-      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 0, z: -3 }, { x: 4.125, y: 0, z: -2.75 }, { x: 3.875, y: 0, z: -2.75 }] },
-      { id: "straight", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: -3 } },
-      { id: "straight-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 0, z: -3 }, { x: 4 - (0.25 * 4) / Math.hypot(4, -3) + ((0.25 / 2) * 3) / Math.hypot(4, -3), y: 0, z: -3 - (0.25 * -3) / Math.hypot(4, -3) + ((0.25 / 2) * 4) / Math.hypot(4, -3) }, { x: 4 - (0.25 * 4) / Math.hypot(4, -3) - ((0.25 / 2) * 3) / Math.hypot(4, -3), y: 0, z: -3 - (0.25 * -3) / Math.hypot(4, -3) - ((0.25 / 2) * 4) / Math.hypot(4, -3) }] },
+      { id: "east", kind: "vector", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 8, y: 0, z: 0 } },
+      { id: "north", kind: "vector", appearance: "secondary", from: { x: 8, y: 0, z: 0 }, to: { x: 8, y: 0, z: -6 } },
+      { id: "straight", kind: "vector", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 8, y: 0, z: -6 } },
     ],
     labels: [
-      { key: "east", objectId: "east", at: { x: 2, y: 0, z: 0 }, placement: "below" },
-      { key: "north", objectId: "north", at: { x: 4, y: 0, z: -1.5 }, placement: "right" },
-      { key: "straight", objectId: "straight", at: { x: 2, y: 0, z: -1.5 }, placement: "above-left" },
+      { key: "east", objectId: "east", at: { x: 4, y: 0, z: 0 }, placement: "below" },
+      { key: "north", objectId: "north", at: { x: 8, y: 0, z: -3 }, placement: "right" },
+      { key: "straight", objectId: "straight", at: { x: 4, y: 0, z: -3 }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -275,3 +395,5 @@ Putar perjalanan di bawah. Panah oranye dan ungu adalah lintasannya, jaraknya <I
     straight: <InlineMath math="\sqrt{8^2+6^2}=10\text{ m}" />,
   }}
 />
+
+Karena belokannya membentuk sudut siku-siku, perpindahan berperan sebagai sisi miring segitiga dan selalu lebih pendek daripada jumlah kedua sisinya.

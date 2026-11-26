@@ -1,13 +1,14 @@
 export const metadata = {
   title: "Projectile Motion",
-  description: "Projectile motion combines horizontal motion at constant velocity with vertical motion accelerated by gravity. See its path, time of flight, and range.",
+  description:
+    "Projectile motion combines horizontal motion at constant velocity with vertical motion accelerated by gravity. See its path, time of flight, and range.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
   dateModified: "2026-11-08",
   subject: "Kinematics",
 };
 
-## Two Motions in One Path
+## Two Motions Combined in One Curved Path
 
 Projectile motion is the motion of an object thrown at an angle or horizontally, so that its path curves. The curve comes from **two motions happening at the same time**: horizontal motion at constant velocity and vertical motion accelerated downward by gravity. With air resistance ignored, the two motions follow these equations:
 
@@ -16,6 +17,8 @@ Projectile motion is the motion of an object thrown at an angle or horizontally,
   <BlockMath math="y(t)=y_0+v_0\sin\theta\ t-\frac{1}{2}gt^2" />
   <BlockMath math="v_x=v_0\cos\theta,\qquad v_y=v_0\sin\theta-gt" />
 </MathContainer>
+
+> Horizontal motion and vertical motion unfold independently and connect only through the shared time in the air.
 
 Here <InlineMath math="v_0" /> is the initial speed, <InlineMath math="\theta" /> the launch angle above the horizontal, <InlineMath math="g" /> the gravitational acceleration, and <InlineMath math="t" /> the time since launch. The horizontal launch direction and upward are taken as positive. The ball path simulation keeps the same initial speed for several angles, so you can compare their ranges and times of flight.
 
@@ -38,6 +41,8 @@ Here <InlineMath math="v_0" /> is the initial speed, <InlineMath math="\theta" /
     viewLabel: "Projectile ball path visual",
   }}
 />
+
+A steeper angle lifts the ball higher and keeps it airborne longer, while a shallower angle puts more of the initial speed into sideways travel.
 
 ## Gravity Changes Only the Vertical Motion
 
@@ -62,6 +67,7 @@ Here is a demonstration of that idea. A launcher aims straight at a can, and the
       The can hangs <InlineMath math="4\text{ m}" /> away and <InlineMath math="2\text{ m}" /> up, and the launcher points straight at it. Change the launch speed.
     </>
   }
+  footer={<>Ball and can fall equally far below the aim line and meet in midair.</>}
   labels={{
     drop: <>Drop of the can at the meeting</>,
     meetTime: <>Time to meet</>,
@@ -73,7 +79,22 @@ Here is a demonstration of that idea. A launcher aims straight at a can, and the
 
 At <InlineMath math="8\text{ m/s}" /> the ball reaches the can's line after <InlineMath math="0.56\text{ s}" />, when both have fallen <InlineMath math="1.56\text{ m}" />, so it still hits. Gravity changes only the vertical motion, and it changes both bodies the same way.
 
-## The Range Depends on the Time in the Air
+Before you calculate, **separate the horizontal and vertical motions**, and link them only through time.
+
+| Misconception | Why it fails | How to check |
+| --- | --- | --- |
+| Thinking velocity is zero at the top | Only <InlineMath math="v_y" /> is zero, <InlineMath math="v_x" /> stays | The speed at the top equals <InlineMath math="v_x" /> |
+| Putting gravity into horizontal motion | Gravity acts only downward | Horizontal acceleration must be zero |
+| Finding time from horizontal motion | Time in the air comes from vertical motion | Time must fit the <InlineMath math="y" /> equation |
+| Thinking a horizontal throw falls slower | Horizontal velocity does not alter falling | Compare with a ball dropped from the same height |
+
+You catch the first error right away whenever you write a speed of zero at the peak. The object is still gliding sideways there, so its speed equals <InlineMath math="v_x" />.
+
+## How Time in the Air Controls Range
+
+Range balances two competing effects: **steady horizontal velocity** and **airtime set by vertical motion**. Multiplying those two numbers determines how far the projectile lands.
+
+### Linking Components Through Flight Time
 
 The range <InlineMath math="R" /> is the horizontal distance from the launch point to the landing point. Because the horizontal motion has constant velocity, the range is **the horizontal velocity times the time in the air**:
 
@@ -84,6 +105,7 @@ The time in the air comes from the vertical motion alone. Of two balls with the 
 <Mermaid
   title={<>From initial velocity to range</>}
   description={<>The horizontal and vertical motions are worked out separately, then joined through the time in the air.</>}
+  footer={<>Both branches run independently and reunite only when computing range.</>}
   chart={`flowchart TD
   A["Initial velocity v₀ and angle θ"] --> B["v_x = v₀ cos θ, constant"]
   A --> C["v₀y = v₀ sin θ, reduced by g"]
@@ -92,66 +114,131 @@ The time in the air comes from the vertical motion alone. Of two balls with the 
   D --> E`}
 />
 
-## One Stream at Every Angle
+Once the vertical equation fixes the flight time <InlineMath math="T" />, one multiplication by <InlineMath math="v_x" /> delivers the full horizontal range.
 
-A garden hose turns the range rule into something you can watch. All the water leaves at <InlineMath math="8\text{ m/s}" />, and **the stream that stays longest in the air does not always land farthest**.
+### Comparing Stream Angles at Equal Speed
 
-<HoseJetProjectileLab
-  angle={30}
-  speed={8}
-  title={<>A Garden Hose at Six Angles</>}
+A water jet leaving a nozzle at <InlineMath math="8\text{ m/s}" /> makes this trade-off visible: **the stream that stays longest in the air does not always land farthest**. Tilt the nozzle angle <InlineMath math="a" /> and compare the arc with the dashed <InlineMath math="45^\circ" /> trajectory.
+
+<MathVisual
+  title={<>Water Jet Across Launch Angles</>}
   description={
     <>
-      Tilt the nozzle and compare the time in the air with the range. The dashed line is the stream at <InlineMath math="45^\circ" />.
+      Water jet launched at <InlineMath math="v_0=8\text{ m/s}" /> at angle{" "}
+      <InlineMath math="a" /> (orange) compared against the peak-range{" "}
+      <InlineMath math="45^\circ" /> arc (dashed gray) in meters.
     </>
   }
+  footer={<>Both <InlineMath math="30^\circ" /> and <InlineMath math="60^\circ" /> land at the same point despite different airtimes.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 7 }, y: { min: -0.3, max: 3.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 15, max: 75, value: 30, step: 15, label: "a" },
+    ],
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6.8, y: 0 } },
+      { id: "best", kind: "function", appearance: "reference", stroke: "dashed", formula: "x - x^2 / 6.4", domain: { min: 0, max: 6.4 } },
+      { id: "jet", kind: "function", appearance: "primary", formula: "max(0, tan(a*pi/180)*x - 5*x^2/(64*cos(a*pi/180)^2))", domain: { min: 0, max: 6.4 } },
+      { id: "apex", kind: "marker", appearance: "secondary", x: "3.2*sin(2*a*pi/180)", y: "3.2*sin(a*pi/180)^2" },
+      { id: "land", kind: "marker", appearance: "answer", x: "6.4*sin(2*a*pi/180)", y: "0" },
+    ],
+    labels: [
+      { key: "apex-lbl", objectId: "apex", at: { x: "3.2*sin(2*a*pi/180)", y: "3.2*sin(a*pi/180)^2" }, placement: "above" },
+      { key: "land-lbl", objectId: "land", at: { x: "6.4*sin(2*a*pi/180)", y: "0" }, placement: "below" },
+    ],
+    readouts: [
+      { key: "flight", formula: "1.6*sin(a*pi/180)" },
+      { key: "range", formula: "6.4*sin(2*a*pi/180)" },
+      { key: "height", formula: "3.2*sin(a*pi/180)^2" },
+    ],
+  }}
   labels={{
-    chooseAngle: "Choose the nozzle angle",
-    flight: <>Time in the air</>,
-    range: <>Range</>,
-    top: <>Top height</>,
-    viewLabel: "Water jet from a garden hose",
+    a: <>Nozzle angle <InlineMath math="a" /> (deg)</>,
+    "apex-lbl": <InlineMath math="H" />,
+    "land-lbl": <InlineMath math="R" />,
+    flight: <>Time in air (s)</>,
+    range: <>Range (m)</>,
+    height: <>Peak height (m)</>,
   }}
 />
 
 At <InlineMath math="30^\circ" /> the water flies for <InlineMath math="0.8\text{ s}" /> and lands <InlineMath math="5.54\text{ m}" /> away. At <InlineMath math="60^\circ" /> it flies for <InlineMath math="1.39\text{ s}" /> and lands at the same <InlineMath math="5.54\text{ m}" />, because its horizontal velocity is smaller.
 
-## A Ball Rolling Off a Table
+## Horizontal Launches and Launch Angles
 
-An object launched horizontally has zero initial vertical velocity, so its vertical motion is **free fall**. Suppose a ball rolls horizontally off the edge of a table <InlineMath math="1.25\text{ m}" /> high with <InlineMath math="v_x = 4\text{ m/s}" />. With <InlineMath math="g = 10\text{ m/s}^2" />, the fall time comes from the vertical motion:
+A ball rolling off a table and a ball launched upward from level ground obey the exact same rules. One starts with **zero vertical speed**, while the other splits initial speed by angle.
 
-<BlockMath math="1.25 = \frac{1}{2}(10)t^2 \quad\Longrightarrow\quad t^2 = 0.25 \quad\Longrightarrow\quad t = 0.5\text{ s}" />
+### A Ball Rolling Off a Table Matches Free Fall
 
-The range comes from the horizontal motion during that same time:
+An object launched horizontally has zero initial vertical velocity, so its vertical motion is **free fall**. Suppose a ball rolls horizontally off the edge of a table <InlineMath math="1.25\text{ m}" /> high with <InlineMath math="v_x = 4\text{ m/s}" />. With <InlineMath math="g = 10\text{ m/s}^2" />, the fall time and range are:
 
-<BlockMath math="R = v_x t = 4(0.5) = 2\text{ m}" />
+<MathContainer>
+  <BlockMath math="1.25 = \frac{1}{2}(10)t^2 \quad\Longrightarrow\quad t^2 = 0.25 \quad\Longrightarrow\quad t = 0.5\text{ s}" />
+  <BlockMath math="R = v_x t = 4(0.5) = 2\text{ m}" />
+</MathContainer>
 
-Check with the vertical equation: <InlineMath math="\frac{1}{2}(10)(0.5)^2 = 1.25\text{ m}" />, the height of the table. A ball dropped from rest at the same table edge also reaches the floor after <InlineMath math="0.5\text{ s}" />, because the horizontal velocity does not change how long the fall takes.
+Checking with the vertical equation recovers the exact height of the table:
 
-## The Table Example in a Strobe Photo
+<BlockMath math="h = \frac{1}{2}(10)(0.5)^2 = 1.25\text{ m}" />
 
-Here is the table example photographed. One ball rolls off a <InlineMath math="1.25\text{ m}" /> table at <InlineMath math="4\text{ m/s}" /> while a twin is dropped beside it, with a flash every <InlineMath math="0.05\text{ s}" />. At every flash **the two balls are at the same height**.
+A ball dropped from rest at the same table edge also reaches the floor after <InlineMath math="0.5\text{ s}" />. Slide time <InlineMath math="d" /> below to verify that both balls match height at every instant.
 
-<StrobePhotoMotionLab
-  shot="launch"
-  title={<>Dropped and Rolled Off Together</>}
+<MathVisual
+  title={<>Dropped Ball vs Horizontally Rolled Ball</>}
   description={
     <>
-      The table is <InlineMath math="1.25\text{ m}" /> high and the teal ball leaves its edge at <InlineMath math="4\text{ m/s}" />. Compare the two heights at every flash.
+      A dropped ball (violet) and a ball rolling off a{" "}
+      <InlineMath math="1.25\text{ m}" /> table at <InlineMath math="4\text{ m/s}" />{" "}
+      (teal) compared at time <InlineMath math="d" />.
     </>
   }
+  footer={<>The tie line stays perfectly level because both balls fall at the same rate.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.4 }, y: { min: -0.15, max: 1.45 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.05, max: 0.5, value: 0.3, step: 0.05, label: "d" },
+    ],
+    objects: [
+      { id: "drop-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 1.25 } },
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: -0.2, y: 0 }, to: { x: 2.2, y: 0 } },
+      { id: "arc", kind: "function", appearance: "construction", formula: "1.25 - (5/16)*x^2", domain: { min: 0, max: 2 } },
+      {
+        id: "level",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "0", y: "1.25 - 5*d^2" },
+          { x: "4*d", y: "1.25 - 5*d^2" },
+        ],
+      },
+      { id: "dropped", kind: "marker", appearance: "secondary", x: "0", y: "1.25 - 5*d^2" },
+      { id: "rolled", kind: "marker", appearance: "construction", x: "4*d", y: "1.25 - 5*d^2" },
+    ],
+    labels: [
+      { key: "h-lbl", objectId: "rolled", at: { x: "4*d", y: "1.25 - 5*d^2" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "height", formula: "1.25 - 5*d^2" },
+      { key: "reach", formula: "4*d" },
+      { key: "vy", formula: "-10*d" },
+    ],
+  }}
   labels={{
-    airTime: <>Time in the air</>,
-    height: <>Start height</>,
-    interval: <>Time between flashes</>,
-    outcome: <>Reach of the rolled ball</>,
-    viewLabel: "Strobe photograph built up flash by flash",
+    d: <>Time <InlineMath math="d" /> (s)</>,
+    "h-lbl": <InlineMath math="(x, y)" />,
+    height: <>Height above floor (m)</>,
+    reach: <>Horizontal reach (m)</>,
+    vy: <>Vertical velocity (m/s)</>,
   }}
 />
 
-Both reach the floor after <InlineMath math="0.5\text{ s}" />, just as the calculation said, and the rolling ball lands <InlineMath math="4(0.5)=2\text{ m}" /> from the table. Its horizontal speed never changed when it fell.
+Both reach the floor after <InlineMath math="0.5\text{ s}" />, just as the calculation predicted, and the rolling ball lands <InlineMath math="2\text{ m}" /> from the table. Its horizontal speed never changed while it fell.
 
-## Launch Angle and Range
+### Complementary Angles and Maximum Range
 
 For an object launched from the ground that lands on the ground, the launch angle splits the initial speed into a horizontal part and a vertical part. A small angle gives a large <InlineMath math="v_x" /> but a short time in the air. A large angle gives a long time in the air but a small <InlineMath math="v_x" />. The longest range comes at **an angle of** <InlineMath math="45^\circ" />, where the two parts are equal.
 
@@ -163,79 +250,86 @@ With <InlineMath math="v_0 = 20\text{ m/s}" />, throws at <InlineMath math="30^\
 | <InlineMath math="45^\circ" /> | <InlineMath math="10\sqrt{2}\text{ m/s}" /> | <InlineMath math="2\sqrt{2}\text{ s}" /> | <InlineMath math="40\text{ m}" /> |
 | <InlineMath math="60^\circ" /> | <InlineMath math="10\text{ m/s}" /> | <InlineMath math="2\sqrt{3}\text{ s}" /> | <InlineMath math="20\sqrt{3} \approx 34.6\text{ m}" /> |
 
-For the <InlineMath math="30^\circ" /> throw, every quantity comes from the two components:
+Working out the <InlineMath math="30^\circ" /> and <InlineMath math="60^\circ" /> launches confirms their matching range:
 
 <MathContainer>
   <BlockMath math="v_x = 20\cos30^\circ = 10\sqrt{3}\text{ m/s},\qquad v_{0y} = 20\sin30^\circ = 10\text{ m/s}" />
-  <BlockMath math="T = \frac{2 \times 10}{10} = 2\text{ s},\qquad R = 10\sqrt{3} \times 2 = 20\sqrt{3}\text{ m}" />
+  <BlockMath math="T_{30^\circ} = \frac{2 \times 10}{10} = 2\text{ s},\qquad R_{30^\circ} = 10\sqrt{3} \times 2 = 20\sqrt{3}\text{ m}" />
+  <BlockMath math="T_{60^\circ} = 2\sqrt{3}\text{ s},\qquad R_{60^\circ} = 10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m}" />
 </MathContainer>
 
-Check with the <InlineMath math="60^\circ" /> throw: <InlineMath math="v_x = 10\text{ m/s}" /> and <InlineMath math="T = 2\sqrt{3}\text{ s}" />, so <InlineMath math="R = 10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m}" />, the same range.
+Each time in the air is twice the rise time, and all three ranges come straight from the [projectile motion formulas](/en/subjects/physics/kinematics/parabolic-movement-analysis):
 
-Each time in the air is twice the rise time <InlineMath math="\frac{v_0 \sin\theta}{g}" />. The <InlineMath math="60^\circ" /> throw stays up longer but moves sideways more slowly, so its range equals that of the <InlineMath math="30^\circ" /> throw. All three ranges also come straight from the formula <InlineMath math="R = \frac{v_0^2 \sin 2\theta}{g}" /> used in [projectile motion formulas](/en/subjects/physics/kinematics/parabolic-movement-analysis). The largest value of <InlineMath math="\sin 2\theta" />, which is <InlineMath math="1" />, comes at <InlineMath math="\theta = 45^\circ" />.
+<BlockMath math="T = \frac{2 v_0 \sin\theta}{g},\qquad R = \frac{v_0^2 \sin 2\theta}{g}" />
+
+The largest value of <InlineMath math="\sin 2\theta" />, which is <InlineMath math="1" />, occurs at <InlineMath math="\theta = 45^\circ" />.
 
 <MathVisual
-  title={<>Paths for three launch angles with <InlineMath math="v_0=20\text{ m/s}" /></>}
-  description={<>One grid square stands for <InlineMath math="5\text{ m}" />. The <InlineMath math="30^\circ" /> and <InlineMath math="60^\circ" /> throws land at the same point, about <InlineMath math="34.6\text{ m}" /> away, while the <InlineMath math="45^\circ" /> throw lands farthest at <InlineMath math="40\text{ m}" />.</>}
+  title={<>Paths for Three Launch Angles with <InlineMath math="v_0=20\text{ m/s}" /></>}
+  description={<>The <InlineMath math="30^\circ" /> and <InlineMath math="60^\circ" /> throws land together near <InlineMath math="34.6\text{ m}" />, while the <InlineMath math="45^\circ" /> throw lands farthest at <InlineMath math="40\text{ m}" />.</>}
+  footer={<>The <InlineMath math="30^\circ" /> and <InlineMath math="60^\circ" /> arcs reach different heights yet land at one spot.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.8, max: 3.8 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 44 }, y: { min: -3, max: 18 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8.5, y: 0 } },
-      { id: "thirty", kind: "function", appearance: "construction", formula: "x / sqrt(3) - x^2 / 12", domain: { min: 0, max: 4 * Math.sqrt(3) } },
-      { id: "fortyfive", kind: "function", appearance: "secondary", formula: "x - x^2 / 8", domain: { min: 0, max: 8 } },
-      { id: "sixty", kind: "function", appearance: "highlight", formula: "sqrt(3) x - x^2 / 4", domain: { min: 0, max: 4 * Math.sqrt(3) } },
-      { id: "thirty-top", kind: "point", appearance: "construction", at: { x: 2 * Math.sqrt(3), y: 1 } },
-      { id: "fortyfive-top", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
-      { id: "sixty-top", kind: "point", appearance: "highlight", at: { x: 2 * Math.sqrt(3), y: 3 } },
-      { id: "land-same", kind: "point", appearance: "answer", at: { x: 4 * Math.sqrt(3), y: 0 } },
-      { id: "land-far", kind: "point", appearance: "answer", at: { x: 8, y: 0 } },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 42, y: 0 } },
+      { id: "thirty", kind: "function", appearance: "construction", formula: "x / sqrt(3) - x^2 / 60", domain: { min: 0, max: 20 * Math.sqrt(3) } },
+      { id: "fortyfive", kind: "function", appearance: "secondary", formula: "x - x^2 / 40", domain: { min: 0, max: 40 } },
+      { id: "sixty", kind: "function", appearance: "highlight", formula: "sqrt(3)*x - x^2 / 20", domain: { min: 0, max: 20 * Math.sqrt(3) } },
+      { id: "thirty-top", kind: "point", appearance: "construction", at: { x: 10 * Math.sqrt(3), y: 5 } },
+      { id: "fortyfive-top", kind: "point", appearance: "secondary", at: { x: 20, y: 10 } },
+      { id: "sixty-top", kind: "point", appearance: "highlight", at: { x: 10 * Math.sqrt(3), y: 15 } },
+      { id: "land-same", kind: "point", appearance: "answer", at: { x: 20 * Math.sqrt(3), y: 0 } },
+      { id: "land-far", kind: "point", appearance: "answer", at: { x: 40, y: 0 } },
     ],
     labels: [
-      { key: "thirty", objectId: "thirty-top", at: { x: 2 * Math.sqrt(3), y: 1 }, placement: "above" },
-      { key: "fortyfive", objectId: "fortyfive-top", at: { x: 4, y: 2 }, placement: "above" },
-      { key: "sixty", objectId: "sixty-top", at: { x: 2 * Math.sqrt(3), y: 3 }, placement: "above" },
-      { key: "same", objectId: "land-same", at: { x: 4 * Math.sqrt(3), y: 0 }, placement: "below" },
-      { key: "far", objectId: "land-far", at: { x: 8, y: 0 }, placement: "below" },
+      { key: "thirty", objectId: "thirty-top", at: { x: 10 * Math.sqrt(3), y: 5 }, placement: "above" },
+      { key: "fortyfive", objectId: "fortyfive-top", at: { x: 20, y: 10 }, placement: "above" },
+      { key: "sixty", objectId: "sixty-top", at: { x: 10 * Math.sqrt(3), y: 15 }, placement: "above" },
+      { key: "same", objectId: "land-same", at: { x: 20 * Math.sqrt(3), y: 0 }, placement: "below" },
+      { key: "far", objectId: "land-far", at: { x: 40, y: 0 }, placement: "below" },
     ],
   }}
   labels={{
     thirty: <InlineMath math="30^\circ" />,
     fortyfive: <InlineMath math="45^\circ" />,
     sixty: <InlineMath math="60^\circ" />,
-    same: <InlineMath math="20\sqrt3\approx34.6\text{ m}" />,
+    same: <InlineMath math="34.6\text{ m}" />,
     far: <InlineMath math="40\text{ m}" />,
   }}
 />
 
-Now try every angle yourself. With <InlineMath math="v_0=20\text{ m/s}" /> and <InlineMath math="g=10\text{ m/s}^2" />, slide <InlineMath math="\theta" /> and watch the landing point: the range grows until <InlineMath math="45^\circ" />, then shrinks again, and two angles that add up to <InlineMath math="90^\circ" /> always land together.
+The plot confirms both symmetries at once: complementary angles share one landing point, and <InlineMath math="45^\circ" /> reaches farthest right between them.
+
+Now try every angle yourself. With <InlineMath math="v_0=20\text{ m/s}" /> and <InlineMath math="g=10\text{ m/s}^2" />, slide <InlineMath math="\theta" /> and watch the landing point grow until <InlineMath math="45^\circ" /> and then shrink back.
 
 <MathVisual
   title={<>Slide the Launch Angle</>}
-  description={<>The path of a ball launched at <InlineMath math="v_0=20\text{ m/s}" />, its highest point (violet) and its landing point (fuchsia). One grid step is <InlineMath math="5\text{ m}" />. The angle slider is in radians, and the readout shows it in degrees.</>}
+  description={<>Path of a ball launched at <InlineMath math="v_0=20\text{ m/s}" />, its peak (violet), and its landing point (fuchsia) in meters. The slider uses radians while the readout shows degrees.</>}
+  footer={<>Any two angles adding to <InlineMath math="90^\circ" /> hit the exact same landing point <InlineMath math="R" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 4.5 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 44 }, y: { min: -2, max: 24 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8.5, y: 0 } },
-      { id: "path", kind: "parametric", appearance: "primary", x: "4 cos(a) t", y: "4 sin(a) t - t^2", parameter: { min: 0, max: 4 } },
-      { id: "landing", kind: "marker", appearance: "answer", x: "8 sin(2a)", y: "0" },
-      { id: "apex", kind: "marker", appearance: "secondary", x: "4 sin(2a)", y: "4 sin(a)^2" },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 42, y: 0 } },
+      { id: "path", kind: "function", appearance: "primary", formula: "max(0, tan(a)*x - x^2/(80*cos(a)^2))", domain: { min: 0, max: 40 } },
+      { id: "landing", kind: "marker", appearance: "answer", x: "40*sin(2*a)", y: "0" },
+      { id: "apex", kind: "marker", appearance: "secondary", x: "20*sin(2*a)", y: "20*sin(a)^2" },
     ],
     labels: [
-      { key: "land", objectId: "landing", at: { x: "8 sin(2a)", y: "0" }, placement: "below" },
-      { key: "top", objectId: "apex", at: { x: "4 sin(2a)", y: "4 sin(a)^2" }, placement: "above" },
+      { key: "land", objectId: "landing", at: { x: "40*sin(2*a)", y: "0" }, placement: "below" },
+      { key: "top", objectId: "apex", at: { x: "20*sin(2*a)", y: "20*sin(a)^2" }, placement: "above" },
     ],
     parameters: [
-      { name: "a", min: 0.1, max: 1.5, value: Math.PI / 4, step: 0.01, label: "angle" },
+      { name: "a", min: 0.15, max: 1.45, value: Math.PI / 4, step: 0.05, label: "angle" },
     ],
     readouts: [
       { key: "deg", formula: "a * 180 / pi" },
-      { key: "range", formula: "40 sin(2a)" },
-      { key: "height", formula: "20 sin(a)^2" },
-      { key: "time", formula: "4 sin(a)" },
+      { key: "range", formula: "40*sin(2*a)" },
+      { key: "height", formula: "20*sin(a)^2" },
+      { key: "time", formula: "4*sin(a)" },
     ],
   }}
   labels={{
@@ -243,93 +337,111 @@ Now try every angle yourself. With <InlineMath math="v_0=20\text{ m/s}" /> and <
     land: <InlineMath math="R" />,
     top: <InlineMath math="H" />,
     deg: <InlineMath math="\theta\ (^\circ)" />,
-    range: <InlineMath math="R=\tfrac{v_0^2\sin2\theta}{g}\ (\text{m})" />,
-    height: <InlineMath math="H=\tfrac{v_0^2\sin^2\theta}{2g}\ (\text{m})" />,
-    time: <InlineMath math="T=\tfrac{2v_0\sin\theta}{g}\ (\text{s})" />,
+    range: <InlineMath math="R\ (\text{m})" />,
+    height: <InlineMath math="H\ (\text{m})" />,
+    time: <InlineMath math="T\ (\text{s})" />,
   }}
 />
 
-## A Cannonball over the Water
+While peak height <InlineMath math="H" /> and flight time <InlineMath math="T" /> keep climbing all the way to <InlineMath math="90^\circ" />, range <InlineMath math="R" /> peaks at <InlineMath math="45^\circ" /> and then folds back.
 
-A cannonball follows the same rules on a larger scale. **Its shadow on the water moves at a constant speed**, while the ball itself rises and falls.
+### Watching a Cannonball and Its Shadow
 
-<ParabolicMovementAnalysisLab
-  title={<>A Cannonball over the Water</>}
+A cannonball follows the same rules on a larger scale. Fired with <InlineMath math="v_x=15\text{ m/s}" /> and <InlineMath math="v_{0y}=20\text{ m/s}" />, **its shadow on the water moves at a constant speed**, while the ball itself rises to <InlineMath math="20\text{ m}" /> and lands <InlineMath math="60\text{ m}" /> away after <InlineMath math="4\text{ s}" />. Slide time <InlineMath math="d" /> to track both.
+
+<MathVisual
+  title={<>A Cannonball and Its Shadow Over Water</>}
   description={
     <>
-      Switch between the launches and compare the horizontal and vertical components with the range.
+      Arc of a cannonball with <InlineMath math="v_x=15\text{ m/s}" /> and{" "}
+      <InlineMath math="v_{0y}=20\text{ m/s}" /> linked vertically to its shadow
+      on the water at time <InlineMath math="d" />.
     </>
   }
+  footer={<>The shadow glides forward at a steady <InlineMath math="15\text{ m/s}" /> as the ball rises and falls.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 64 }, y: { min: -3, max: 24 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 4, value: 1.5, step: 0.25, label: "d" },
+    ],
+    objects: [
+      { id: "water", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 62, y: 0 } },
+      { id: "arc", kind: "function", appearance: "primary", formula: "(4/3)*x - x^2 / 45", domain: { min: 0, max: 60 } },
+      {
+        id: "drop",
+        kind: "path",
+        appearance: "secondary",
+        points: [
+          { x: "15*d", y: "0" },
+          { x: "15*d", y: "20*d - 5*d^2" },
+        ],
+      },
+      { id: "ball", kind: "marker", appearance: "primary", x: "15*d", y: "20*d - 5*d^2" },
+      { id: "shadow", kind: "marker", appearance: "answer", x: "15*d", y: "0" },
+    ],
+    labels: [
+      { key: "ball-lbl", objectId: "ball", at: { x: "15*d", y: "20*d - 5*d^2" }, placement: "above" },
+      { key: "sh-lbl", objectId: "shadow", at: { x: "15*d", y: "0" }, placement: "below" },
+    ],
+    readouts: [
+      { key: "x-pos", formula: "15*d" },
+      { key: "y-pos", formula: "20*d - 5*d^2" },
+      { key: "vy", formula: "20 - 10*d" },
+    ],
+  }}
   labels={{
-    chooseScenario: "Choose launch",
-    scenarioNames: {
-      "sixty-degree": <>Sixty Degrees</>,
-      "long-drive": <>Long Drive</>,
-      "high-arc": <>High Arc</>,
-    },
-    factLabels: {
-      horizontalComponent: <>Horizontal component</>,
-      verticalComponent: <>Vertical component</>,
-      peakTime: <>Peak time</>,
-      flightTime: <>Flight time</>,
-      range: <>Range</>,
-      instantaneousVelocity: <>Velocity at two seconds</>,
-    },
-    viewLabel: "Cannonball projectile analysis visual",
+    d: <>Flight time <InlineMath math="d" /> (s)</>,
+    "ball-lbl": <>Ball</>,
+    "sh-lbl": <>Shadow</>,
+    "x-pos": <>Shadow position (m)</>,
+    "y-pos": <>Ball height (m)</>,
+    vy: <>Vertical velocity (m/s)</>,
   }}
 />
 
-Each launch keeps its horizontal component for the whole flight. The higher arc gives a larger vertical component and a longer time in the air, but not always a longer range.
+Every launch keeps its horizontal component throughout the entire flight. Only vertical velocity drops by <InlineMath math="10\text{ m/s}" /> each second and bends the arc back to the water.
 
-## Common Mistakes
+## Worked Projectile Scenarios
 
-Before you calculate, **separate the horizontal and vertical motions**, and link them only through time.
+These worked examples follow the **same two-step order**: find the time in the air from the vertical equation using <InlineMath math="g = 10\text{ m/s}^2" />, then calculate horizontal reach and impact speed.
 
-| Mistake | Why it fails | How to check |
-| --- | --- | --- |
-| Thinking the velocity is zero at the top | Only <InlineMath math="v_y" /> is zero, <InlineMath math="v_x" /> stays | The speed at the top equals <InlineMath math="v_x" /> |
-| Putting gravity into the horizontal motion | Gravity acts only downward | The horizontal acceleration must be zero |
-| Finding the time from the horizontal motion | The time in the air comes from the vertical motion | The time must fit the <InlineMath math="y" /> equation |
-| Thinking a ball thrown horizontally falls more slowly | The horizontal velocity does not change the vertical motion | Compare with a ball dropped from the same height |
+### Horizontal Drops from Tables and Cliffs
 
-The first mistake shows when you write a speed of zero at the top. The object is still moving sideways there, so its speed equals <InlineMath math="v_x" />.
-
-## Practice on Projectile Motion
-
-Use <InlineMath math="g = 10\text{ m/s}^2" />. For each problem, first find **the time in the air from the vertical motion**.
-
-1. A ball rolls off a table <InlineMath math="0.8\text{ m}" /> high with a horizontal velocity of <InlineMath math="3\text{ m/s}" />. Find the fall time and how far it lands from the point on the floor directly below the table edge.
-
-2. A stone is thrown horizontally at <InlineMath math="15\text{ m/s}" /> from a cliff <InlineMath math="20\text{ m}" /> high. Find the horizontal distance it travels before reaching the bottom and its speed at that moment.
-
-3. Two balls are launched from the ground at <InlineMath math="20\text{ m/s}" />, one at <InlineMath math="30^\circ" /> and one at <InlineMath math="60^\circ" />. Which ball stays in the air longer, and which lands farther away?
-
-### Answers
-
-**Problem 1**. The vertical motion is **free fall** from a height of <InlineMath math="0.8\text{ m}" />:
+Suppose a ball rolls off a table <InlineMath math="0.8\text{ m}" /> high with horizontal velocity <InlineMath math="3\text{ m/s}" />. Its vertical motion is **free fall**:
 
 <MathContainer>
   <BlockMath math="0.8 = \frac{1}{2}(10)t^2 \quad\Longrightarrow\quad t^2 = 0.16 \quad\Longrightarrow\quad t = 0.4\text{ s}" />
   <BlockMath math="R = 3(0.4) = 1.2\text{ m}" />
 </MathContainer>
 
-Check: <InlineMath math="5(0.4)^2 = 0.8\text{ m}" />, the height of the table.
+Checking <InlineMath math="5(0.4)^2" /> confirms the exact <InlineMath math="0.8\text{ m}" /> table height.
 
-**Problem 2**. The fall time from <InlineMath math="20\text{ m}" /> is <InlineMath math="\sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />. The horizontal distance and **both velocity components** at the bottom are:
+Next, a stone is thrown horizontally at <InlineMath math="15\text{ m/s}" /> from a cliff <InlineMath math="20\text{ m}" /> high. Computing fall time, horizontal reach, and **both velocity components** at impact gives:
 
 <MathContainer>
-  <BlockMath math="R = 15(2) = 30\text{ m}" />
+  <BlockMath math="t = \sqrt{\frac{2 \times 20}{10}} = 2\text{ s},\qquad R = 15(2) = 30\text{ m}" />
   <BlockMath math="v_x = 15\text{ m/s},\qquad v_y = -10(2) = -20\text{ m/s}" />
   <BlockMath math="v = \sqrt{15^2 + 20^2} = 25\text{ m/s}" />
 </MathContainer>
 
-Check with the third vertical equation: <InlineMath math="v_y^2 = 2(10)(20) = 400" />, so <InlineMath math="\lvert v_y \rvert = 20\text{ m/s}" />.
+Checking with the third vertical equation confirms the vertical speed at impact:
 
-**Problem 3**. The time in the air is **twice the rise time**, <InlineMath math="T = \frac{2 v_0 \sin\theta}{g}" />:
+<BlockMath math="v_y^2 = 2(10)(20) = 400 \quad\Longrightarrow\quad \lvert v_y \rvert = 20\text{ m/s}" />
+
+### Comparing Thirty and Sixty Degree Launches
+
+Two balls are launched from level ground at <InlineMath math="20\text{ m/s}" />, one at <InlineMath math="30^\circ" /> and one at <InlineMath math="60^\circ" />. Each time in the air is **twice the rise time**:
 
 <MathContainer>
+  <BlockMath math="T = \frac{2 v_0 \sin\theta}{g}" />
   <BlockMath math="T_{30^\circ} = \frac{2(20)(0.5)}{10} = 2\text{ s}" />
   <BlockMath math="T_{60^\circ} = \frac{2(20)\left(\frac{\sqrt{3}}{2}\right)}{10} = 2\sqrt{3} \approx 3.46\text{ s}" />
 </MathContainer>
 
-The <InlineMath math="60^\circ" /> ball stays in the air longer. Its range is <InlineMath math="10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m}" />, the same as the <InlineMath math="30^\circ" /> ball's range of <InlineMath math="10\sqrt{3} \times 2 = 20\sqrt{3}\text{ m}" />. So both balls land at the same point.
+The <InlineMath math="60^\circ" /> ball stays in the air longer, yet comparing both ranges shows they land together:
+
+<BlockMath math="R_{60^\circ} = 10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m},\qquad R_{30^\circ} = 10\sqrt{3} \times 2 = 20\sqrt{3}\text{ m}" />
+
+Both balls therefore strike the ground at the exact same distance of about <InlineMath math="34.6\text{ m}" />.

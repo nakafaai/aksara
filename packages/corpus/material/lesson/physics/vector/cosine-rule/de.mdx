@@ -23,6 +23,7 @@ Züge von <InlineMath math="2{,}94\text{ N}" /> und <InlineMath math="3{,}92\tex
 <ForceTableResultantLab
   title={<>Der Winkel verkleinert die Summe</>}
   description={<>Massestücke von <InlineMath math="300\text{ g}" /> bei <InlineMath math="0^\circ" /> und <InlineMath math="400\text{ g}" /> bei dem Winkel, den du wählst.</>}
+  footer={<>Ein größerer Rollenwinkel senkt <InlineMath math="\cos\theta" /> und verkleinert die Resultierende.</>}
   pulls={[
     { angle: 0, mass: 300 },
     { angle: 60, mass: 400 },
@@ -38,36 +39,39 @@ Züge von <InlineMath math="2{,}94\text{ N}" /> und <InlineMath math="3{,}92\tex
   }}
 />
 
+Lässt du die Massen gleich und drehst die zweite Schnur weiter auf, verstärken sich die beiden Kräfte immer schwächer, bis sie sich bei <InlineMath math="180^\circ" /> direkt entgegenwirken.
+
 ## Der Kosinus in der Dreiecksformel
 
-Der Kosinussatz kommt ins Spiel, weil die beiden Vektoren und ihre Resultierende ein Dreieck mit zwei bekannten Seiten bilden. Bei einem kleinen Zwischenwinkel verstärken sich die Vektoren stark. Nähert sich der Winkel <InlineMath math="180^\circ" />, heben sich ihre Wirkungen zunehmend auf.
-
-Legst du die Vektoren **Spitze an Anfangspunkt**, ist der Innenwinkel des Dreiecks der Ergänzungswinkel des Zwischenwinkels. Deshalb wird aus dem Minuszeichen im Kosinussatz des Dreiecks ein Pluszeichen in der Formel für die Resultierende.
+Der Kosinussatz kommt ins Spiel, weil die beiden Vektoren und ihre Resultierende ein Dreieck bilden. Legst du die Vektoren **Spitze an Anfangspunkt**, ist der Innenwinkel der Nebenwinkel zu <InlineMath math="\theta" />, wodurch das Minuszeichen im Dreieckskosinussatz zu einem Pluszeichen wird.
 
 <BlockMath math="\begin{aligned}R^2 &= A^2+B^2-2AB\cos(180^\circ-\theta) \\ &= A^2+B^2-2AB(-\cos\theta) \\ &= A^2+B^2+2AB\cos\theta\end{aligned}" />
 
+Prüfe vor jeder Rechnung drei Punkte: Miss <InlineMath math="\theta" /> immer mit gemeinsamem Anfangspunkt statt als Innenwinkel, behalte das **Pluszeichen** vor <InlineMath math="2AB\cos\theta" /> bei und stelle sicher, dass der Rechner im Gradmaß steht (Probe: <InlineMath math="\cos 60^\circ = 0{,}5" />), bevor du am Schluss die Wurzel ziehst.
+
 <MathVisual
   title={<>Eingeschlossener Winkel und Innenwinkel im Dreieck</>}
-  description={<>Der Winkel <InlineMath math="\theta" /> wird gemessen, wenn beide Anfangspunkte zusammenliegen. Nachdem <InlineMath math="\vec{B}" /> an die Spitze von <InlineMath math="\vec{A}" /> verschoben ist, beträgt der Innenwinkel im Dreieck <InlineMath math="180^\circ-\theta" />.</>}
+  description={<>Winkel <InlineMath math="\theta=60^\circ" /> liegt zwischen den Anfangspunkten von <InlineMath math="\vec A=10\text{ N}" /> und <InlineMath math="\vec B=8\text{ N}" />, während der Innenwinkel <InlineMath math="180^\circ-\theta=120^\circ" /> beträgt.</>}
+  footer={<>Verschiebst du <InlineMath math="\vec B" /> an die Spitze, wird <InlineMath math="\theta" /> innen zu <InlineMath math="180^\circ-\theta" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 4.5 } },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1.5, max: 16.5 }, y: { min: -1.5, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "primary" },
-      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) }, appearance: "secondary" },
-      { id: "moved", kind: "segment", from: { x: 5, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "construction" },
-      { id: "r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "answer" },
-      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
-      { id: "inner", kind: "arc", center: { x: 5, y: 0 }, radius: 0.8, startDegrees: 60, sweepDegrees: 120, appearance: "warning" },
+      { id: "a", kind: "vector", from: { x: 0, y: 0 }, to: { x: 10, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "vector", from: { x: 0, y: 0 }, to: { x: 4, y: 4 * Math.sqrt(3) }, appearance: "secondary" },
+      { id: "moved", kind: "vector", from: { x: 10, y: 0 }, to: { x: 14, y: 4 * Math.sqrt(3) }, appearance: "construction" },
+      { id: "r", kind: "vector", from: { x: 0, y: 0 }, to: { x: 14, y: 4 * Math.sqrt(3) }, appearance: "answer" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 2, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "inner", kind: "arc", center: { x: 10, y: 0 }, radius: 1.6, startDegrees: 60, sweepDegrees: 120, appearance: "warning" },
     ],
     labels: [
-      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
-      { key: "b", objectId: "b", at: { x: 1, y: Math.sqrt(3) }, placement: "left" },
-      { key: "moved", objectId: "moved", at: { x: 6, y: Math.sqrt(3) }, placement: "right" },
-      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above" },
-      { key: "theta", objectId: "theta", at: { x: Math.sqrt(3) / 2, y: 0.5 }, placement: "right" },
-      { key: "inner", objectId: "inner", at: { x: 4.6, y: 0.4 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "left" },
+      { key: "moved", objectId: "moved", at: { x: 12, y: 2 * Math.sqrt(3) }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 14, y: 4 * Math.sqrt(3) }, placement: "above" },
+      { key: "theta", objectId: "theta", at: { x: Math.sqrt(3), y: 1 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 9.2, y: 0.8 * Math.sqrt(3) }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -90,63 +94,82 @@ Die folgende Tabelle zeigt, wie sich <InlineMath math="\cos\theta" /> mit dem Wi
 
 Für <InlineMath math="\theta=90^\circ" /> geht der Kosinussatz in den Satz des Pythagoras über, weil <InlineMath math="\cos90^\circ=0" /> gilt.
 
-Mit der Nase auf <InlineMath math="330^\circ" /> liegen die Eigengeschwindigkeit von <InlineMath math="400\text{ km/h}" /> und der Wind von <InlineMath math="300\text{ km/h}" /> <InlineMath math="120^\circ" /> auseinander, also ist **die Geschwindigkeit über Grund** <InlineMath math="\sqrt{400^2+300^2+2(400)(300)\cos120^\circ}" />, etwa <InlineMath math="361\text{ km/h}" />. Dreh die Nase und vergleich die Karte mit der Formel.
+### Geschwindigkeit über Grund bei Seitenwind
 
-<AircraftCrosswindLab
+Betrachte ein Flugzeug mit <InlineMath math="400\text{ km/h}" /> Eigengeschwindigkeit und <InlineMath math="300\text{ km/h}" /> Wind unter einem Zwischenwinkel <InlineMath math="a" />. Bei <InlineMath math="a = 120^\circ" /> **wird der Kosinusterm negativ** und drückt die Geschwindigkeit über Grund unter die Eigengeschwindigkeit:
+
+<BlockMath math="v_g = \sqrt{400^2+300^2+2(400)(300)\cos 120^\circ} \approx 361\text{ km/h}" />
+
+<MathVisual
   title={<>Geschwindigkeit über Grund mit dem Kosinussatz</>}
-  description={<>Eigengeschwindigkeit <InlineMath math="400\text{ km/h}" />, Wind <InlineMath math="300\text{ km/h}" /> nach Osten. Dreh die Nase.</>}
-  airspeed={400}
-  heading={330}
-  toward={90}
-  wind={300}
+  description={<>Geschwindigkeit über Grund bei <InlineMath math="400\text{ km/h}" /> Flugtempo und <InlineMath math="300\text{ km/h}" /> Wind über dem Winkel <InlineMath math="a" /> in Grad.</>}
+  footer={<>Über <InlineMath math="90^\circ" /> wird der Kosinus negativ und der Wind bremst das Flugzeug.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 195 }, y: { min: 0, max: 760 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 180, value: 120, step: 10, label: "wind-angle" },
+    ],
+    objects: [
+      { id: "speed-curve", kind: "function", appearance: "primary", formula: "sqrt(250000 + 240000*cos(x*pi/180))", domain: { min: 0, max: 180 } },
+      { id: "guide", kind: "path", appearance: "construction", points: [{ x: "a", y: "0" }, { x: "a", y: "sqrt(250000 + 240000*cos(a*pi/180))" }] },
+      { id: "pt", kind: "marker", appearance: "answer", x: "a", y: "sqrt(250000 + 240000*cos(a*pi/180))" },
+    ],
+    labels: [
+      { key: "pt", objectId: "pt", at: { x: "a", y: "sqrt(250000 + 240000*cos(a*pi/180))" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "gs", formula: "sqrt(250000 + 240000*cos(a*pi/180))" },
+    ],
+  }}
   labels={{
-    between: <>Winkel zwischen Eigengeschwindigkeit und Wind</>,
-    drift: <>Abdriftwinkel</>,
-    groundSpeed: <>Geschwindigkeit über Grund</>,
-    heading: <>Steuerkurs der Nase</>,
-    headingName: "Steuerkurs der Nase",
-    track: <>Kurs über Grund</>,
-    viewLabel: "Verkehrsflugzeug über Feldern bei Seitenwind",
+    "wind-angle": <>Winkel zwischen Flug und Wind <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    pt: <InlineMath math="v_g" />,
+    gs: <>Geschwindigkeit über Grund (km/h)</>,
   }}
 />
 
-## Resultierende zweier Kräfte
+Verstellst du <InlineMath math="a" /> von <InlineMath math="0^\circ" /> (reiner Rückenwind mit <InlineMath math="700\text{ km/h}" />) bis <InlineMath math="180^\circ" /> (Gegenwind mit <InlineMath math="100\text{ km/h}" />), deckt die Kurve jede mögliche Geschwindigkeit über Grund ab.
 
-An einem Punkt wirken zwei Kräfte. Die erste hat den Betrag <InlineMath math="10\text{ N}" />, die zweite den Betrag <InlineMath math="8\text{ N}" />. Der Winkel zwischen ihnen beträgt <InlineMath math="60^\circ" />. Gesucht ist der Betrag der Resultierenden.
+### Resultierende zweier schräger Kräfte
+
+An einem Ring greifen eine Kraft von <InlineMath math="10\text{ N}" /> und eine Kraft von <InlineMath math="8\text{ N}" /> unter einem Zwischenwinkel von <InlineMath math="60^\circ" /> an. Gesucht ist der Betrag der Resultierenden.
 
 <MathVisual
   title={<>Resultierendes Dreieck zweier Kräfte</>}
-  description={<>Verschieb den Winkel zwischen den Kräften. Der orange Pfeil beginnt an der Spitze des türkisen Pfeils, und der violette Pfeil ist die Resultierende, die das Dreieck schließt. Ein Gitterschritt entspricht <InlineMath math="2\text{ N}" />.</>}
+  description={<>Verschieb Winkel <InlineMath math="a" /> zwischen <InlineMath math="10\text{ N}" /> und <InlineMath math="8\text{ N}" />, direkt in Newton dargestellt.</>}
+  footer={<>Verstellst du <InlineMath math="a" />, ändert sich das Dreieck samt dritter Seite <InlineMath math="\vec R" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 10 }, y: { min: -1, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -1.5, max: 19.5 }, y: { min: -1.5, max: 10.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "a", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
-      { id: "b", kind: "path", appearance: "primary", points: [{ x: "5", y: "0" }, { x: "5 + 4 cos(a)", y: "4 sin(a)" }] },
-      { id: "r", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "5 + 4 cos(a)", y: "4 sin(a)" }] },
-      { id: "tip", kind: "marker", appearance: "answer", x: "5 + 4 cos(a)", y: "4 sin(a)" },
+      { id: "a", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "b", kind: "path", appearance: "primary", points: [{ x: "10", y: "0" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "r", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" },
     ],
     labels: [
-      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
-      { key: "b", objectId: "b", at: { x: "5 + 2 cos(a)", y: "2 sin(a)" }, placement: "right" },
-      { key: "r", objectId: "r", at: { x: "(5 + 4 cos(a))/2", y: "2 sin(a)" }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: "10 + 4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: "(10 + 8*cos(a*pi/180))/2", y: "4*sin(a*pi/180)" }, placement: "above-left" },
     ],
     parameters: [
-      { name: "a", min: 0, max: Math.PI, value: Math.PI / 3, step: 0.01, label: "angle" },
+      { name: "a", min: 0, max: 180, value: 60, step: 5, label: "angle" },
     ],
     readouts: [
-      { key: "deg", formula: "a * 180 / pi" },
-      { key: "result", formula: "2 sqrt(41 + 40 cos(a))" },
+      { key: "deg", formula: "a" },
+      { key: "result", formula: "sqrt(164 + 160*cos(a*pi/180))" },
     ],
   }}
   labels={{
-    angle: <InlineMath math="\theta" />,
+    angle: <>Winkel <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
     a: <InlineMath math="\vec A=10\text{ N}" />,
     b: <InlineMath math="\vec B=8\text{ N}" />,
     r: <InlineMath math="\vec R" />,
-    deg: <InlineMath math="\theta\ (^\circ)" />,
-    result: <InlineMath math="R=\sqrt{A^2+B^2+2AB\cos\theta}\ (\text{N})" />,
+    deg: <>Winkel (<InlineMath math="^\circ" />)</>,
+    result: <>Resultierende <InlineMath math="R" /> (N)</>,
   }}
 />
 
@@ -160,25 +183,50 @@ R&=\sqrt{A^2+B^2+2AB\cos\theta} \\
 &\approx15{,}6\text{ N}
 \end{aligned}" />
 
-Die Resultierende ist kleiner als <InlineMath math="18\text{ N}" />, weil die beiden Kräfte nicht genau gleichgerichtet sind. Sie ist aber größer als jede einzelne Kraft, da beide noch in hinreichend ähnliche Richtungen zeigen. Probe mit den Grenzen: <InlineMath math="15{,}6" /> liegt zwischen <InlineMath math="10 - 8 = 2" /> und <InlineMath math="10 + 8 = 18" />. Die Richtung der Resultierenden zur ersten Kraft liefert der [Sinussatz](/de/faecher/physik/vektoren/sinussatz): <InlineMath math="\sin\varphi = \frac{8\sin 60^\circ}{\sqrt{244}}" />, also <InlineMath math="\varphi \approx 26{,}3^\circ" />.
+Die Resultierende bleibt kleiner als <InlineMath math="18\text{ N}" />, übertrifft aber jede einzelne Kraft. Die Grenzprobe bestätigt, dass <InlineMath math="15{,}6\text{ N}" /> zwischen <InlineMath math="2\text{ N}" /> und <InlineMath math="18\text{ N}" /> liegt. Die Richtung zur ersten Kraft liefert der [Sinussatz](/de/faecher/physik/vektoren/sinussatz):
 
-Hier sind dieselben Zahlen im Hafen: Schlepper, die mit <InlineMath math="10\text{ kN}" /> und <InlineMath math="8\text{ kN}" /> bei <InlineMath math="60^\circ" /> zwischen den Trossen ziehen, ergeben <InlineMath math="15{,}6\text{ kN}" />, **die Diagonale des gestrichelten Parallelogramms**.
+<BlockMath math="\sin\varphi = \frac{8\sin 60^\circ}{\sqrt{244}} \quad\Longrightarrow\quad \varphi \approx 26{,}3^\circ" />
 
-<TugboatResultantLab
-  title={<>Resultierende zweier Schlepper</>}
-  description={<>Züge von <InlineMath math="10\text{ kN}" /> und <InlineMath math="8\text{ kN}" />. Öffne oder schließe die Trossen.</>}
-  between={60}
-  first={10}
-  second={8}
+Dieselbe Geometrie zeigt sich bei zwei Hafenschleppern mit <InlineMath math="10\text{ kN}" /> und <InlineMath math="8\text{ kN}" /> am Bug: **die Diagonale des Parallelogramms** misst <InlineMath math="15{,}6\text{ kN}" /> bei <InlineMath math="60^\circ" />.
+
+<MathVisual
+  title={<>Parallelogrammdiagonale zweier Schlepperzüge</>}
+  description={<>Schlepperzüge von <InlineMath math="10\text{ kN}" /> und <InlineMath math="8\text{ kN}" /> unter Winkel <InlineMath math="a" /> mit ihrem Parallelogramm in Kilonewton.</>}
+  footer={<>Mit größerem Winkel <InlineMath math="a" /> sinkt die Diagonale stetig von <InlineMath math="18\text{ kN}" /> auf <InlineMath math="2\text{ kN}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 20 }, y: { min: -2, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 150, value: 60, step: 10, label: "tug-angle" },
+    ],
+    objects: [
+      { id: "f1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "f2", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "top", kind: "path", appearance: "construction", points: [{ x: "8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "side", kind: "path", appearance: "construction", points: [{ x: "10", y: "0" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "diag", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "tip", objectId: "tip", at: { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "diag-r", formula: "sqrt(164 + 160*cos(a*pi/180))" },
+      { key: "cos-val", formula: "cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    between: <>Winkel zwischen den Seilen</>,
-    betweenName: "Winkel zwischen den Seilen",
-    fromFirst: <>Winkel von <InlineMath math="\vec R" /> zu <InlineMath math="\vec F_1" /></>,
-    fromLine: <>Winkel zur Schiffslinie</>,
-    resultant: <>Resultierende <InlineMath math="R" /></>,
-    viewLabel: "Zwei Schlepper ziehen ein Schiff",
+    "tug-angle": <>Trossenwinkel <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    f1: <InlineMath math="10\text{ kN}" />,
+    tip: <InlineMath math="\vec R" />,
+    "diag-r": <>Resultierender Zug (kN)</>,
+    "cos-val": <InlineMath math="\cos a" />,
   }}
 />
+
+Achte auf die Anzeige von <InlineMath math="\cos a" />: Bei <InlineMath math="90^\circ" /> wechselt sie das Vorzeichen, sodass spitze Winkel über <InlineMath math="12{,}8\text{ kN}" /> und stumpfe darunter liegen.
 
 ## Beispiel zum Zwischenwinkel aus der Resultierenden
 
@@ -192,87 +240,151 @@ Der Kosinussatz lässt sich auch umgekehrt nach dem Winkel auflösen. **Quadrier
   <BlockMath math="\cos\theta = \frac{15}{30} = \frac12 \quad\Longrightarrow\quad \theta = 60^\circ" />
 </MathContainer>
 
-Probe durch Einsetzen des Winkels: <InlineMath math="\sqrt{25 + 9 + 30 \cdot \frac12} = \sqrt{49} = 7\text{ N}" />. Die Resultierende ist auch plausibel, weil sie zwischen <InlineMath math="5 - 3 = 2" /> und <InlineMath math="5 + 3 = 8" /> liegt.
+Setze <InlineMath math="\theta = 60^\circ" /> zur Probe wieder ein:
+
+<BlockMath math="R = \sqrt{25 + 9 + 30\cdot\frac12} = \sqrt{49} = 7\text{ N}" />
+
+Die Probe stimmt und <InlineMath math="7\text{ N}" /> liegt sauber zwischen der unteren Grenze <InlineMath math="2\text{ N}" /> und der oberen Grenze <InlineMath math="8\text{ N}" />.
 
 ## Überprüfung mit Grenzfällen
 
-**Grenzfälle** zeigen, ob ein Ergebnis plausibel ist. Für <InlineMath math="0^\circ" /> muss die Formel <InlineMath math="A+B" /> liefern.
+**Grenzfälle** zeigen sofort, ob ein Ergebnis mit dem Kosinussatz physikalisch plausibel ist, und decken eine vergessene Wurzel auf. Jede Resultierende aus <InlineMath math="A" /> und <InlineMath math="B" /> muss zwischen <InlineMath math="\lvert A-B\rvert" /> und <InlineMath math="A+B" /> liegen.
 
-<BlockMath math="\begin{aligned} R &amp;=\sqrt{A^2+B^2+2AB} \\ &amp;=\sqrt{(A+B)^2} \\ &amp;=A+B \end{aligned}" />
+Bei <InlineMath math="0^\circ" /> entsteht die direkte Summe, bei <InlineMath math="180^\circ" /> die Betragsdifferenz:
 
-Für <InlineMath math="180^\circ" /> muss sie die Differenz der Beträge liefern.
+<MathContainer>
+  <BlockMath math="\begin{aligned} R &=\sqrt{A^2+B^2+2AB} =\sqrt{(A+B)^2}=A+B \end{aligned}" />
+  <BlockMath math="\begin{aligned} R &=\sqrt{A^2+B^2-2AB} =\sqrt{(A-B)^2}=\lvert A-B\rvert \end{aligned}" />
+</MathContainer>
 
-<BlockMath math="\begin{aligned} R &amp;=\sqrt{A^2+B^2-2AB} \\ &amp;=\sqrt{(A-B)^2} \\ &amp;=\lvert A-B\rvert \end{aligned}" />
-
-Diese Prüfung verbindet den Kosinussatz mit den einfacheren Fällen gleichgerichteter, entgegengesetzter und senkrechter Vektoren.
-
-Prüf jede Antwort an den Enden dieser Kurve. <InlineMath math="R=\sqrt{A^2+B^2+2AB\cos\theta}" /> fällt von <InlineMath math="A+B" />, wenn die Kräfte in dieselbe Richtung zeigen, bis <InlineMath math="\lvert A-B\rvert" />, wenn sie entgegengesetzt zeigen, also liegt jede Resultierende aus <InlineMath math="10\text{ N}" /> und <InlineMath math="8\text{ N}" /> zwischen <InlineMath math="2\text{ N}" /> und <InlineMath math="18\text{ N}" />.
+Für Kräfte von <InlineMath math="10\text{ N}" /> und <InlineMath math="8\text{ N}" /> zeichnet die Kurve unten jede mögliche Resultierende direkt in Grad und Newton zwischen <InlineMath math="2\text{ N}" /> und <InlineMath math="18\text{ N}" />.
 
 <MathVisual
   title={<>Die Resultierende zwischen ihren Grenzfällen</>}
-  description={<>Resultierende aus einer Kraft von <InlineMath math="10\text{ N}" /> und einer von <InlineMath math="8\text{ N}" /> über dem Winkel zwischen ihnen. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="30^\circ" />. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="2\text{ N}" />.</>}
+  description={<>Resultierende aus <InlineMath math="10\text{ N}" /> und <InlineMath math="8\text{ N}" /> direkt über dem Winkel in Grad und der Kraft in Newton.</>}
+  footer={<>Jede Resultierende bleibt zwischen <InlineMath math="18\text{ N}" /> bei <InlineMath math="0^\circ" /> und <InlineMath math="2\text{ N}" /> bei <InlineMath math="180^\circ" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 10 } },
+    frame: { kind: "cartesian", x: { min: -15, max: 205 }, y: { min: -1, max: 20 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "curve", kind: "function", appearance: "secondary", formula: "sqrt(41 + 40 cos(pi x / 6))", domain: { min: 0, max: 6 } },
-      { id: "same", kind: "point", appearance: "answer", at: { x: 0, y: 9 } },
-      { id: "sixty", kind: "point", appearance: "primary", at: { x: 2, y: Math.sqrt(61) } },
-      { id: "right", kind: "point", appearance: "construction", at: { x: 3, y: Math.sqrt(41) } },
-      { id: "opposite", kind: "point", appearance: "answer", at: { x: 6, y: 1 } },
+      { id: "curve", kind: "function", appearance: "secondary", formula: "sqrt(164 + 160*cos(x*pi/180))", domain: { min: 0, max: 180 } },
+      { id: "same", kind: "point", appearance: "answer", at: { x: 0, y: 18 } },
+      { id: "sixty", kind: "point", appearance: "primary", at: { x: 60, y: Math.sqrt(244) } },
+      { id: "right", kind: "point", appearance: "construction", at: { x: 90, y: Math.sqrt(164) } },
+      { id: "opposite", kind: "point", appearance: "answer", at: { x: 180, y: 2 } },
     ],
     labels: [
-      { key: "same", objectId: "same", at: { x: 0, y: 9 }, placement: "right" },
-      { key: "sixty", objectId: "sixty", at: { x: 2, y: Math.sqrt(61) }, placement: "above-right" },
-      { key: "right", objectId: "right", at: { x: 3, y: Math.sqrt(41) }, placement: "above-right" },
-      { key: "opposite", objectId: "opposite", at: { x: 6, y: 1 }, placement: "above" },
+      { key: "same", objectId: "same", at: { x: 0, y: 18 }, placement: "right" },
+      { key: "sixty", objectId: "sixty", at: { x: 60, y: Math.sqrt(244) }, placement: "above-right" },
+      { key: "right", objectId: "right", at: { x: 90, y: Math.sqrt(164) }, placement: "above-right" },
+      { key: "opposite", objectId: "opposite", at: { x: 180, y: 2 }, placement: "above-left" },
     ],
   }}
   labels={{
-    same: <InlineMath math="0^\circ:\ R=10+8=18\text{ N}" />,
-    sixty: <InlineMath math="60^\circ:\ R=\sqrt{244}\approx15{,}6\text{ N}" />,
-    right: <InlineMath math="90^\circ:\ R=\sqrt{164}\approx12{,}8\text{ N}" />,
-    opposite: <InlineMath math="180^\circ:\ R=10-8=2\text{ N}" />,
+    same: <InlineMath math="0^\circ:\ 18\text{ N}" />,
+    sixty: <InlineMath math="60^\circ:\ 15{,}6\text{ N}" />,
+    right: <InlineMath math="90^\circ:\ 12{,}8\text{ N}" />,
+    opposite: <InlineMath math="180^\circ:\ 2\text{ N}" />,
   }}
 />
 
-## Das Seil als Grenzfall
+Liegt ein berechneter Betrag über <InlineMath math="A+B" /> oder unter <InlineMath math="\lvert A-B\rvert" />, stopp sofort und prüfe Vorzeichen und Wurzel.
 
-Beim Tauziehen liegen die beiden Kräfte <InlineMath math="180^\circ" /> auseinander, also ist <InlineMath math="\cos180^\circ=-1" /> und **vom Satz bleibt** <InlineMath math="R=|F_R-F_L|" />: <InlineMath math="900\text{ N}" /> gegen <InlineMath math="600\text{ N}" /> ergibt <InlineMath math="300\text{ N}" />. Mach die Teams gleich groß, und die Resultierende wird null.
+### Entgegengesetzte Züge beim größten Winkel
 
-<TugOfWarForceLab
-  title={<>Kräfte in Gegenrichtung</>}
-  description={<>Jede Person zieht mit <InlineMath math="300\text{ N}" />. Ändere die Teams.</>}
-  left={2}
-  pull={300}
-  right={3}
+Beim Tauziehen liegen die beiden Züge <InlineMath math="180^\circ" /> auseinander, sodass <InlineMath math="\cos180^\circ=-1" /> gilt und **der Kosinussatz zur Differenz schrumpft**. Gegen <InlineMath math="600\text{ N}" /> links (<InlineMath math="2" /> Personen zu je <InlineMath math="300\text{ N}" />) ergibt eine rechte Mannschaft aus <InlineMath math="p" /> Personen den Betrag <InlineMath math="\lvert 300p - 600\rvert" />.
+
+<MathVisual
+  title={<>Betrag der Resultierenden bei Gegenrichtung</>}
+  description={<>Betrag <InlineMath math="R = \lvert 300p - 600\rvert" /> in Newton für <InlineMath math="p" /> Personen rechts gegen <InlineMath math="600\text{ N}" /> links bei <InlineMath math="180^\circ" />.</>}
+  footer={<>Bei <InlineMath math="p=2" /> heben sich gleich starke Gegenzüge exakt auf <InlineMath math="0\text{ N}" /> auf.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: -100, max: 1050 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 5, value: 3, step: 1, label: "right-pullers" },
+    ],
+    objects: [
+      { id: "mag-curve", kind: "function", appearance: "primary", formula: "abs(300*x - 600)", domain: { min: 0, max: 5 } },
+      { id: "guide", kind: "path", appearance: "construction", points: [{ x: "p", y: "0" }, { x: "p", y: "abs(300*p - 600)" }] },
+      { id: "pt", kind: "marker", appearance: "answer", x: "p", y: "abs(300*p - 600)" },
+    ],
+    labels: [
+      { key: "pt", objectId: "pt", at: { x: "p", y: "abs(300*p - 600)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "right-n", formula: "300*p" },
+      { key: "net-n", formula: "abs(300*p - 600)" },
+    ],
+  }}
   labels={{
-    left: <>Linkes Team <InlineMath math="\vec F_L" /></>,
-    leftCount: <>Ziehende links</>,
-    leftName: "Ziehende links",
-    net: <>Gesamtkraft <InlineMath math="\Sigma F" /></>,
-    right: <>Rechtes Team <InlineMath math="\vec F_R" /></>,
-    rightCount: <>Ziehende rechts</>,
-    rightName: "Ziehende rechts",
-    viewLabel: "Tauziehen bei Sonnenuntergang",
+    "right-pullers": <>Ziehende rechts <InlineMath math="p" /></>,
+    pt: <InlineMath math="R" />,
+    "right-n": <>Kraft rechts (N)</>,
+    "net-n": <>Resultierender Betrag (N)</>,
   }}
 />
 
-## Der passende Einsatz des Kosinussatzes
+Die V-förmige Kurve fällt nie unter null, weil ein Betrag niemals negativ ist, und erreicht null genau dann, wenn beide Gegenzüge <InlineMath math="600\text{ N}" /> betragen.
 
-Der Kosinussatz ist geeignet, wenn:
+### Senkrechte Bewegung als Spezialfall
+
+Fährt ein Boot mit <InlineMath math="4\text{ m/s}" /> quer zu einer <InlineMath math="3\text{ m/s}" /> starken Strömung, treffen sich beide Geschwindigkeiten bei <InlineMath math="a = 90^\circ" /> mit <InlineMath math="\cos 90^\circ = 0" />, sodass **der Kosinussatz auf Pythagoras schrumpft** und <InlineMath math="5\text{ m/s}" /> liefert. Dreh Winkel <InlineMath math="a" /> weg von <InlineMath math="90^\circ" />, und der Term <InlineMath math="2AB\cos a" /> kehrt zurück.
+
+<MathVisual
+  title={<>Pythagoras als Spezialfall im Kosinussatz</>}
+  description={<>Bootgeschwindigkeit <InlineMath math="4\text{ m/s}" /> und Strömung <InlineMath math="3\text{ m/s}" /> unter verstellbarem Winkel <InlineMath math="a" /> direkt in m/s.</>}
+  footer={<>Nur bei <InlineMath math="a=90^\circ" /> verschwindet <InlineMath math="\cos a" /> und lässt Pythagoras übrig.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.8 }, y: { min: -0.8, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 150, value: 90, step: 15, label: "flow-angle" },
+    ],
+    objects: [
+      { id: "boat", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "curr", kind: "path", appearance: "secondary", points: [{ x: "4", y: "0" }, { x: "4 + 3*cos(a*pi/180)", y: "3*sin(a*pi/180)" }] },
+      { id: "res", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "4 + 3*cos(a*pi/180)", y: "3*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "4 + 3*cos(a*pi/180)", y: "3*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "boat", objectId: "boat", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "tip", objectId: "tip", at: { x: "4 + 3*cos(a*pi/180)", y: "3*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "cos-term", formula: "24*cos(a*pi/180)" },
+      { key: "speed-ms", formula: "sqrt(25 + 24*cos(a*pi/180))" },
+    ],
+  }}
+  labels={{
+    "flow-angle": <>Winkel <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    boat: <InlineMath math="4\text{ m/s}" />,
+    tip: <InlineMath math="\vec v" />,
+    "cos-term": <InlineMath math="2AB\cos a" />,
+    "speed-ms": <>Resultierendes Tempo (m/s)</>,
+  }}
+/>
+
+Der Wert von <InlineMath math="2AB\cos a" /> ist unter <InlineMath math="90^\circ" /> positiv, bei <InlineMath math="90^\circ" /> null und darüber negativ, womit Pythagoras als einzelner Schnitt im Kosinussatz sichtbar wird.
+
+## Den Kosinussatz gezielt wählen und prüfen
+
+Der Kosinussatz passt direkt, wenn alle vier Bedingungen erfüllt sind:
 
 - genau zwei Vektoren vorliegen.
 - die Beträge beider Vektoren bekannt sind.
 - der **Zwischenwinkel** bekannt ist.
 - der Betrag der Resultierenden gesucht ist.
 
-Bei mehr als zwei Vektoren werden alle Vektoren in Koordinatenkomponenten zerlegt und die <InlineMath math="x" />- sowie <InlineMath math="y" />-Komponenten jeweils addiert. Das ist die [analytische Addition](/de/faecher/physik/vektoren/analytische-addition-und-subtraktion). Der Kosinussatz lässt sich direkt anwenden, wenn genau zwei Vektorbeträge und ihr Zwischenwinkel bekannt sind.
+Bei mehr als zwei Vektoren zerlegst du alle Vektoren in Komponenten und nutzt die [analytische Addition](/de/faecher/physik/vektoren/analytische-addition-und-subtraktion).
 
 <Mermaid
   title={<>Den Weg zur Resultierenden wählen</>}
   description={<>Die gegebenen Größen bestimmen, welche Formel zuerst kommt.</>}
+  footer={<>Kosinussatz für Betrag, Sinussatz für Winkel, Komponenten ab drei Vektoren.</>}
   chart={`flowchart TD
   A{"Was ist gegeben, was ist gesucht?"} -->|"zwei Vektoren und Winkel, Betrag gesucht"| B["Kosinussatz"]
   A -->|"Betrag der Resultierenden bekannt, Richtung gesucht"| C["Sinussatz"]
@@ -280,58 +392,25 @@ Bei mehr als zwei Vektoren werden alle Vektoren in Koordinatenkomponenten zerleg
   B -->|"Richtung auch gesucht"| C`}
 />
 
-## Ein rechter Winkel am Fluss
+Folge diesem Entscheidungsbaum vor dem Rechnen: Sobald ein dritter Vektor dazukommt, spart die Komponentenmethode sofort mehrere Dreiecke.
 
-Fährt das Boot genau quer, liegen seine <InlineMath math="4\text{ m/s}" /> und die <InlineMath math="3\text{ m/s}" /> der Strömung <InlineMath math="90^\circ" /> auseinander, <InlineMath math="\cos90^\circ=0" />, und **der Kosinussatz schrumpft zu Pythagoras**: <InlineMath math="5\text{ m/s}" />. Dreh den Kurs, und du brauchst wieder den ganzen Satz.
+Prüfe den Kosinussatz samt Grenzprobe an drei kurzen Fällen:
 
-<RiverBoatCrossingLab
-  title={<>Pythagoras als Spezialfall</>}
-  description={<>Ein <InlineMath math="60\text{ m}" /> breiter Fluss mit <InlineMath math="3\text{ m/s}" /> Strömung.</>}
-  boatSpeed={4}
-  current={3}
-  width={60}
-  labels={{
-    angle: <>Winkel zur Querrichtung</>,
-    drift: <>Abdrift flussabwärts</>,
-    groundSpeed: <>Geschwindigkeit über Grund</>,
-    heading: <>Kurs des Boots</>,
-    headingName: "Kurs des Boots",
-    time: <>Überfahrtszeit</>,
-    viewLabel: "Boot überquert einen Fluss",
-  }}
-/>
+1. Zwei senkrechte Kräfte von <InlineMath math="6\text{ N}" /> und <InlineMath math="8\text{ N}" /> haben <InlineMath math="\theta = 90^\circ" /> und <InlineMath math="\cos 90^\circ = 0" />, mit einer Resultierenden zwischen <InlineMath math="2\text{ N}" /> und <InlineMath math="14\text{ N}" />:
 
-## Typische Fehler
+<BlockMath math="R = \sqrt{6^2 + 8^2} = \sqrt{100} = 10\text{ N}" />
 
-| Fehler | Warum er scheitert | So prüfst du |
-| --- | --- | --- |
-| Den Innenwinkel des Dreiecks aus Spitze an Anfangspunkt als <InlineMath math="\theta" /> nehmen | Die Formel nutzt **den Winkel zwischen den Vektoren mit gemeinsamem Anfangspunkt** | Für gleichgerichtete Vektoren muss <InlineMath math="\theta = 0^\circ" /> den Wert <InlineMath math="A + B" /> liefern |
-| Das Minuszeichen des Dreieckskosinussatzes übernehmen | Der Innenwinkel ist der Nebenwinkel von <InlineMath math="\theta" />, daher wechselt das Vorzeichen | Für <InlineMath math="\theta = 60^\circ" /> muss das Ergebnis größer sein als jeder einzelne Vektor |
-| Die Wurzel vergessen | Die Formel liefert <InlineMath math="R^2" />, nicht <InlineMath math="R" /> | Die Resultierende liegt zwischen <InlineMath math="\lvert A - B \rvert" /> und <InlineMath math="A + B" /> |
-| Taschenrechner im Bogenmaß | <InlineMath math="\cos 60" /> im Bogenmaß ist etwa <InlineMath math="-0{,}95" /> | Prüfe, dass <InlineMath math="\cos 60^\circ = 0{,}5" /> ist |
-
-## Übungsaufgaben
-
-Rechne mit dem Kosinussatz und **prüfe, dass die Resultierende zwischen <InlineMath math="\lvert A - B \rvert" /> und <InlineMath math="A + B" /> liegt**.
-
-1. Zwei Kräfte von <InlineMath math="6\text{ N}" /> und <InlineMath math="8\text{ N}" /> stehen senkrecht aufeinander. Bestimme den Betrag der Resultierenden.
-
-2. Zwei Vektoren mit den Beträgen <InlineMath math="12" /> und <InlineMath math="5" /> bilden einen Winkel von <InlineMath math="120^\circ" />. Bestimme den Betrag der Resultierenden.
-
-3. Zwei gleich große Kräfte von je <InlineMath math="4\text{ N}" /> ergeben eine Resultierende von <InlineMath math="4\text{ N}" />. Bestimme den Zwischenwinkel.
-
-### Lösungen
-
-**Aufgabe 1**. **Senkrecht bedeutet** <InlineMath math="\theta = 90^\circ" /> und <InlineMath math="\cos\theta = 0" />, also <InlineMath math="R = \sqrt{36 + 64} = 10\text{ N}" />. Probe: <InlineMath math="10" /> liegt zwischen <InlineMath math="2" /> und <InlineMath math="14" />.
-
-**Aufgabe 2**. Mit <InlineMath math="\cos 120^\circ = -\frac12" /> gilt:
+2. Zwei Vektoren mit Beträgen <InlineMath math="12" /> und <InlineMath math="5" /> unter <InlineMath math="120^\circ" /> nutzen <InlineMath math="\cos 120^\circ = -\tfrac12" />:
 
 <BlockMath math="R = \sqrt{144 + 25 + 2(12)(5)\left(-\frac12\right)} = \sqrt{109} \approx 10{,}4" />
 
-Probe: <InlineMath math="10{,}4" /> liegt zwischen <InlineMath math="12 - 5 = 7" /> und <InlineMath math="17" /> und ist kleiner als der Wert derselben Beträge bei <InlineMath math="90^\circ" />, nämlich <InlineMath math="\sqrt{144 + 25} = 13" />, weil die Vektoren weiter auseinander zeigen.
+Der Wert liegt zwischen <InlineMath math="7" /> und <InlineMath math="17" /> und bleibt unter der senkrechten Resultierenden <InlineMath math="13" />, weil der stumpfe Winkel beide Vektoren teilweise gegeneinander richtet.
 
-**Aufgabe 3**. Löse die Formel nach dem Winkel auf:
+3. Zwei gleiche Kräfte von <InlineMath math="4\text{ N}" /> mit Resultierender <InlineMath math="4\text{ N}" /> drehen die Formel um:
 
-<BlockMath math="R^2 = 16 = 16 + 16 + 32\cos\theta \quad\Longrightarrow\quad \cos\theta = -\frac12 \quad\Longrightarrow\quad \theta = 120^\circ" />
+<MathContainer>
+  <BlockMath math="4^2 = 4^2 + 4^2 + 2(4)(4)\cos\theta \quad\Longrightarrow\quad \cos\theta = -\frac12 \quad\Longrightarrow\quad \theta = 120^\circ" />
+  <BlockMath math="R = \sqrt{16 + 16 + 32\left(-\frac12\right)} = \sqrt{16} = 4\text{ N}" />
+</MathContainer>
 
-Probe: <InlineMath math="\sqrt{16 + 16 + 32 \cdot \left(-\frac12\right)} = \sqrt{16} = 4\text{ N}" />.
+Die Kontrolle gegen <InlineMath math="\lvert A-B\rvert" /> und <InlineMath math="A+B" /> deckt Rechen- und Vorzeichenfehler zuverlässig auf.

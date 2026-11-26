@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Penjumlahan dan Pengurangan Vektor dengan Metode Grafis",
   description:
@@ -25,6 +23,7 @@ Kecepatan perahu sendiri <InlineMath math="4\text{ m/s}" /> (hijau toska) dan ar
 <RiverBoatCrossingLab
   title={<>Perahu dan Arus Dijumlahkan</>}
   description={<>Sungai selebar <InlineMath math="60\text{ m}" /> yang mengalir <InlineMath math="3\text{ m/s}" />.</>}
+  footer={<>Mengarahkan haluan ke hulu mengubah segitiga dan mengurangi hanyutan.</>}
   boatSpeed={4}
   current={3}
   width={60}
@@ -39,6 +38,8 @@ Kecepatan perahu sendiri <InlineMath math="4\text{ m/s}" /> (hijau toska) dan ar
   }}
 />
 
+Saat perahu mengarah agak ke hulu, sebagian kecepatannya melawan arus sehingga panah ungu resultan berbelok lebih tegak lurus menyeberangi sungai.
+
 ### Metode Segitiga Kepala ke Ekor
 
 Metode segitiga dipakai untuk menjumlahkan dua vektor. Buat panah vektor pertama, lalu letakkan pangkal vektor kedua di ujung vektor pertama. Resultan ditarik dari pangkal vektor pertama ke ujung vektor kedua.
@@ -52,6 +53,7 @@ Metode segitiga dipakai untuk menjumlahkan dua vektor. Buat panah vektor pertama
       menghubungkan titik awal ke titik akhir.
     </>
   }
+  footer={<>Menyambung <InlineMath math="\vec b" /> di ujung <InlineMath math="\vec a" /> membuat <InlineMath math="\vec R" /> menutup segitiga.</>}
   labels={{
     "l1": <InlineMath math="a" />,
     "l2": <InlineMath math="b" />,
@@ -62,17 +64,14 @@ Metode segitiga dipakai untuk menjumlahkan dua vektor. Buat panah vektor pertama
     frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -0.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0.5 }, { x: 4, y: 1 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2, y: 0.5 }, to: { x: 4, y: 1 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: 5, y: 2.5 }, { x: 6, y: 4 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 5, y: 2.5 }, to: { x: 6, y: 4 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.6, y: 2.4 }, { x: 6, y: 4 }], appearance: "answer" },
-      { id: "s3-head", kind: "vector", from: { x: 3.6, y: 2.4 }, to: { x: 6, y: 4 }, appearance: "answer" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 4, y: 1 }, to: { x: 6, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: 6, y: 4 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2, y: 0.5 }, placement: "below" },
       { key: "l2", objectId: "s2", at: { x: 5, y: 2.5 }, placement: "above-right" },
-      { key: "l3", objectId: "s3", at: { x: 3.6, y: 2.4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 3.6, y: 2.4 }, placement: "above-left" },
     ],
   }}
 />
@@ -81,24 +80,44 @@ Letakkan **pangkal vektor kedua di ujung vektor pertama**. Pada model, satuan ko
 
 <BlockMath math="\vec{R}=(4+2,1+3)\text{ m}=(6,4)\text{ m}" />
 
-Sebuah pesawat menghadap utara dengan <InlineMath math="400\text{ km/h}" /> sementara angin <InlineMath math="300\text{ km/h}" /> bertiup ke timur. Letakkan pangkal angin di ujung kecepatan udara: sisi ketiga segitiga adalah kecepatan terhadap tanah, <InlineMath math="500\text{ km/h}" /> dengan arah lintasan <InlineMath math="36{,}9^\circ" />.
+Sebuah pesawat menghadap utara dengan <InlineMath math="400\text{ km/h}" /> sementara angin samping berkecepatan <InlineMath math="w" /> bertiup ke timur. Letakkan pangkal angin di ujung kecepatan udara: saat <InlineMath math="w = 300\text{ km/h}" />, sisi ketiga segitiga memberi kecepatan terhadap tanah <InlineMath math="500\text{ km/h}" /> dengan sudut hanyut <InlineMath math="36{,}9^\circ" />.
 
-<AircraftCrosswindLab
-  title={<>Segitiga Angin Samping</>}
-  description={<>Kecepatan udara <InlineMath math="400\text{ km/h}" />, angin <InlineMath math="300\text{ km/h}" /> ke timur. Putar hidung pesawat.</>}
-  airspeed={400}
-  toward={90}
-  wind={300}
+<MathVisual
+  title={<>Segitiga Kecepatan Angin Samping</>}
+  description={<>Kecepatan udara <InlineMath math="400\text{ km/h}" /> ke utara disambung ujung ke pangkal dengan angin timur <InlineMath math="w" /> dalam km/h.</>}
+  footer={<>Angin samping <InlineMath math="w" /> makin kuat memperpanjang sisi ketiga dan sudut hanyut.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -50, max: 560 }, y: { min: -50, max: 480 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 100, max: 500, value: 300, step: 50, label: "wind-speed" },
+    ],
+    objects: [
+      { id: "air", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 400 } },
+      { id: "wind", kind: "path", appearance: "secondary", points: [{ x: "0", y: "400" }, { x: "w", y: "400" }] },
+      { id: "ground", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "w", y: "400" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "w", y: "400" },
+    ],
+    labels: [
+      { key: "air", objectId: "air", at: { x: 0, y: 200 }, placement: "left" },
+      { key: "tip", objectId: "tip", at: { x: "w", y: "400" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "gs", formula: "sqrt(160000 + w^2)" },
+      { key: "drift", formula: "atan(w/400)*180/pi" },
+    ],
+  }}
   labels={{
-    between: <>Sudut antara kecepatan udara dan angin</>,
-    drift: <>Sudut hanyut</>,
-    groundSpeed: <>Kelajuan terhadap tanah</>,
-    heading: <>Arah hidung pesawat</>,
-    headingName: "Arah hidung pesawat",
-    track: <>Arah lintasan di atas tanah</>,
-    viewLabel: "Pesawat di atas sawah saat angin samping",
+    "wind-speed": <>Angin timur <InlineMath math="w" /> (km/h)</>,
+    air: <InlineMath math="400\text{ km/h}" />,
+    tip: <InlineMath math="\vec v_g" />,
+    gs: <>Kelajuan terhadap tanah (km/h)</>,
+    drift: <>Sudut hanyut (<InlineMath math="^\circ" />)</>,
   }}
 />
+
+Menggeser kecepatan angin langsung melebarkan segitiga siku-sikunya: sisi miring resultan tumbuh melebihi kecepatan udara dan lintasan menyimpang lebih jauh ke timur.
 
 ### Metode Jajargenjang untuk Dua Vektor Satu Pangkal
 
@@ -107,6 +126,7 @@ Dua gaya yang bekerja pada satu titik dapat digambar dari **pangkal yang sama**.
 <MathVisual
   title={<>Diagonal Jajargenjang</>}
   description={<>Panah ungu menghubungkan pangkal bersama ke titik akhir kedua jalur. Vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> tetap sama meskipun digeser sejajar.</>}
+  footer={<>Kedua jalur mengelilingi jajargenjang bertemu tepat di ujung <InlineMath math="\vec R" />.</>}
   labels={{
     "l1": <InlineMath math="a" />,
     "l2": <InlineMath math="b" />,
@@ -119,16 +139,11 @@ Dua gaya yang bekerja pada satu titik dapat digambar dari **pangkal yang sama**.
     frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -0.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((1) - (0)) }, { x: 4, y: 1 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2, y: 0.5 }, to: { x: 4, y: 1 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((3) - (0)) }, { x: 2, y: 3 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 1, y: 1.5 }, to: { x: 2, y: 3 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: 3 }, { x: (2) + 0.5 * ((6) - (2)), y: (3) + 0.5 * ((4) - (3)) }, { x: 6, y: 4 }], appearance: "primary" },
-      { id: "s3-head", kind: "vector", from: { x: 4, y: 3.5 }, to: { x: 6, y: 4 }, appearance: "primary" },
-      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: (4) + 0.5 * ((6) - (4)), y: (1) + 0.5 * ((4) - (1)) }, { x: 6, y: 4 }], appearance: "secondary" },
-      { id: "s4-head", kind: "vector", from: { x: 5, y: 2.5 }, to: { x: 6, y: 4 }, appearance: "secondary" },
-      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((6) - (0)), y: (0) + 0.5 * ((4) - (0)) }, { x: 6, y: 4 }], appearance: "answer" },
-      { id: "s5-head", kind: "vector", from: { x: 3, y: 2 }, to: { x: 6, y: 4 }, appearance: "answer" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 2, y: 3 }, to: { x: 6, y: 4 }, appearance: "primary" },
+      { id: "s4", kind: "vector", from: { x: 4, y: 1 }, to: { x: 6, y: 4 }, appearance: "secondary" },
+      { id: "s5", kind: "vector", from: { x: 0, y: 0 }, to: { x: 6, y: 4 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2, y: 0.5 }, placement: "below" },
@@ -140,23 +155,46 @@ Dua gaya yang bekerja pada satu titik dapat digambar dari **pangkal yang sama**.
   }}
 />
 
-Kedua tali kapal tunda berpangkal di haluan kapal, satu pangkal. Tarikan <InlineMath math="40\text{ kN}" /> dan <InlineMath math="30\text{ kN}" /> membentuk jajargenjang (putus-putus), dan diagonalnya dari haluan adalah resultan, <InlineMath math="50\text{ kN}" /> saat kedua tali saling tegak lurus.
+Karena sisi berhadapan pada jajargenjang selalu sejajar dan sama panjang, metode jajargenjang menghasilkan resultan yang persis sama dengan metode segitiga.
 
-<TugboatResultantLab
-  title={<>Dua Kapal Tunda, Satu Diagonal</>}
-  description={<>Tarikan kapal tunda <InlineMath math="40\text{ kN}" /> dan <InlineMath math="30\text{ kN}" />. Buka atau tutup sudut talinya.</>}
-  between={90}
-  first={40}
-  second={30}
+Dua tali kapal tunda yang berpangkal di haluan kapal memperlihatkan hal ini secara langsung. Tarikan <InlineMath math="40\text{ kN}" /> dan <InlineMath math="30\text{ kN}" /> yang mengapit sudut <InlineMath math="a" /> membentuk jajargenjang dengan diagonal resultan sebesar <InlineMath math="50\text{ kN}" /> saat sudutnya <InlineMath math="90^\circ" />.
+
+<MathVisual
+  title={<>Dua Kapal Tunda dan Satu Diagonal</>}
+  description={<>Tarikan satu pangkal <InlineMath math="40\text{ kN}" /> dan <InlineMath math="30\text{ kN}" /> dengan sudut apit <InlineMath math="a" /> membentuk jajargenjang dalam kilonewton.</>}
+  footer={<>Membuka sudut <InlineMath math="a" /> memipihkan jajargenjang dan memendekkan diagonalnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 75 }, y: { min: -15, max: 45 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 150, value: 90, step: 15, label: "cable-angle" },
+    ],
+    objects: [
+      { id: "tug1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 40, y: 0 } },
+      { id: "tug2", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "30*cos(a*pi/180)", y: "30*sin(a*pi/180)" }] },
+      { id: "side-top", kind: "path", appearance: "construction", points: [{ x: "30*cos(a*pi/180)", y: "30*sin(a*pi/180)" }, { x: "40 + 30*cos(a*pi/180)", y: "30*sin(a*pi/180)" }] },
+      { id: "side-right", kind: "path", appearance: "construction", points: [{ x: "40", y: "0" }, { x: "40 + 30*cos(a*pi/180)", y: "30*sin(a*pi/180)" }] },
+      { id: "diag", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "40 + 30*cos(a*pi/180)", y: "30*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "40 + 30*cos(a*pi/180)", y: "30*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "tug1", objectId: "tug1", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "tip", objectId: "tip", at: { x: "40 + 30*cos(a*pi/180)", y: "30*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "res-kn", formula: "sqrt(2500 + 2400*cos(a*pi/180))" },
+    ],
+  }}
   labels={{
-    between: <>Sudut antara kedua tali</>,
-    betweenName: "Sudut antara kedua tali",
-    fromFirst: <>Sudut <InlineMath math="\vec R" /> dari <InlineMath math="\vec F_1" /></>,
-    fromLine: <>Sudut dari garis kapal</>,
-    resultant: <>Resultan <InlineMath math="R" /></>,
-    viewLabel: "Dua kapal tunda menarik sebuah kapal",
+    "cable-angle": <>Sudut antar tali <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    tug1: <InlineMath math="40\text{ kN}" />,
+    tip: <InlineMath math="\vec R" />,
+    "res-kn": <>Tarikan resultan (kN)</>,
   }}
 />
+
+Saat sudut kedua tali diperkecil, diagonal memanjang mendekati <InlineMath math="70\text{ kN}" />. Saat sudut diperlebar, sebagian tarikan saling melawan ke samping sehingga diagonal menyusut.
 
 ## Metode Poligon untuk Banyak Vektor
 
@@ -170,27 +208,46 @@ Sebagai contoh, tambahkan <InlineMath math="\vec{c}=(-6,-4)" /> setelah dua perp
 
 <BlockMath math="\vec{a}+\vec{b}+\vec{c}=(4+2-6,1+3-4)=(0,0)" />
 
-Jalan kaki empat bagian adalah poligon dari empat vektor, masing-masing berpangkal di ujung vektor sebelumnya. Panah ungu menutup poligon dari awal ke akhir: <InlineMath math="200\text{ m}" /> ke timur dan <InlineMath math="300\text{ m}" /> ke utara, panjangnya <InlineMath math="361\text{ m}" />.
+Jalan kaki empat bagian membentuk poligon empat panah ujung ke pangkal: <InlineMath math="300\text{ m}" /> timur, <InlineMath math="200\text{ m}" /> utara, <InlineMath math="100\text{ m}" /> barat, lalu ruas utara terakhir sepanjang <InlineMath math="n" /> meter. Saat <InlineMath math="n = 100\text{ m}" />, panah penutup dari awal ke akhir mencapai <InlineMath math="200\text{ m}" /> timur dan <InlineMath math="300\text{ m}" /> utara, panjangnya <InlineMath math="361\text{ m}" />.
 
-<CityWalkDisplacementLab
-  title={<>Empat Bagian, Satu Resultan</>}
-  description={<>Jalan kaki <InlineMath math="1{,}25\text{ m/s}" /> menyusuri empat jalan.</>}
-  legs={[
-    { east: 300, north: 0 },
-    { east: 0, north: 200 },
-    { east: -100, north: 0 },
-    { east: 0, north: 100 },
-  ]}
-  pace={1.25}
+<MathVisual
+  title={<>Empat Bagian dan Satu Resultan Penutup</>}
+  description={<>Empat ruas jalan ujung ke pangkal yang diakhiri ruas utara <InlineMath math="n" /> yang bisa diatur dalam meter.</>}
+  footer={<>Satu panah dari pangkal pertama ke ujung terakhir menutup semua empat ruas.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -40, max: 360 }, y: { min: -40, max: 490 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 0, max: 250, value: 100, step: 50, label: "final-north" },
+    ],
+    objects: [
+      { id: "l1", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 300, y: 0 } },
+      { id: "l2", kind: "vector", appearance: "construction", from: { x: 300, y: 0 }, to: { x: 300, y: 200 } },
+      { id: "l3", kind: "vector", appearance: "secondary", from: { x: 300, y: 200 }, to: { x: 200, y: 200 } },
+      { id: "l4", kind: "path", appearance: "primary", points: [{ x: "200", y: "200" }, { x: "200", y: "200 + n" }] },
+      { id: "close", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "200", y: "200 + n" }] },
+      { id: "end-pt", kind: "marker", appearance: "answer", x: "200", y: "200 + n" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 150, y: 0 }, placement: "below" },
+      { key: "end-pt", objectId: "end-pt", at: { x: "200", y: "200 + n" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "north-tot", formula: "200 + n" },
+      { key: "res-m", formula: "sqrt(40000 + (200 + n)^2)" },
+    ],
+  }}
   labels={{
-    averageSpeed: <>Kelajuan rata-rata</>,
-    averageVelocity: <>Kecepatan rata-rata</>,
-    displacement: <>Perpindahan</>,
-    distance: <>Jarak tempuh</>,
-    time: <>Waktu</>,
-    viewLabel: "Jalan kaki di kota dilihat dari atas",
+    "final-north": <>Ruas utara terakhir <InlineMath math="n" /> (m)</>,
+    l1: <InlineMath math="300\text{ m}" />,
+    "end-pt": <InlineMath math="\vec R" />,
+    "north-tot": <>Total utara (m)</>,
+    "res-m": <>Panjang resultan (m)</>,
   }}
 />
+
+Kamu tidak perlu menggambar jumlah sementara: sambungkan saja semua panah ujung ke pangkal lalu tarik satu panah langsung dari titik awal ke ujung terakhir.
 
 ## Pengurangan Vektor secara Grafis
 
@@ -202,6 +259,7 @@ Untuk pengurangan, **balik arah vektor yang dikurangkan**. Pada pasangan yang sa
   <MathVisual
     title={<>Menambahkan Vektor Negatif</>}
     description={<>Dari ujung <InlineMath math="\vec{a}" /> di <InlineMath math="(4,1)" />, bergerak dua satuan ke kiri dan tiga satuan ke bawah. Resultan berakhir di <InlineMath math="(2,-2)" />.</>}
+    footer={<>Membalik <InlineMath math="\vec b" /> menjadi <InlineMath math="-\vec b" /> mengubah pengurangan jadi penjumlahan.</>}
     labels={{
       "l1": <InlineMath math="a" />,
       "l2": <InlineMath math="-b" />,
@@ -212,12 +270,9 @@ Untuk pengurangan, **balik arah vektor yang dikurangkan**. Pada pasangan yang sa
       frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -2.5, max: 1.5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((1) - (0)) }, { x: 4, y: 1 }], appearance: "primary" },
-        { id: "s1-head", kind: "vector", from: { x: 2, y: 0.5 }, to: { x: 4, y: 1 }, appearance: "primary" },
-        { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: (4) + 0.5 * ((2) - (4)), y: (1) + 0.5 * ((-2) - (1)) }, { x: 2, y: -2 }], appearance: "secondary" },
-        { id: "s2-head", kind: "vector", from: { x: 3, y: -0.5 }, to: { x: 2, y: -2 }, appearance: "secondary" },
-        { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((-2) - (0)) }, { x: 2, y: -2 }], appearance: "answer" },
-        { id: "s3-head", kind: "vector", from: { x: 1, y: -1 }, to: { x: 2, y: -2 }, appearance: "answer" },
+        { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 4, y: 1 }, to: { x: 2, y: -2 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: 2, y: -2 }, appearance: "answer" },
       ],
       labels: [
         { key: "l1", objectId: "s1", at: { x: 2, y: 0.5 }, placement: "above" },
@@ -228,31 +283,48 @@ Untuk pengurangan, **balik arah vektor yang dikurangkan**. Pada pasangan yang sa
   />
 </ContentStack>
 
+Membalik <InlineMath math="\vec{b}" /> mempertahankan panjang aslinya dan hanya memutar arahnya berlawanan, sehingga aturan segitiga langsung memberi <InlineMath math="\vec{a}-\vec{b}" />.
+
 ## Dari Posisi Awal ke Satu Rute
 
-Dari titik awal <InlineMath math="O" />, panah hijau toska <InlineMath math="\vec a" /> menuju pos <InlineMath math="A" /> dan panah kuning <InlineMath math="\vec b" /> menuju <InlineMath math="B" />. **Selisihnya** <InlineMath math="\vec b-\vec a" /> adalah panah dari ujung <InlineMath math="\vec a" /> ke ujung <InlineMath math="\vec b" />: rute dari <InlineMath math="A" /> ke <InlineMath math="B" />, panjangnya <InlineMath math="100\text{ m}" />.
+Dari titik awal <InlineMath math="O" />, panah <InlineMath math="\vec a" /> menuju pos <InlineMath math="A(40,30)\text{ m}" /> dan panah <InlineMath math="\vec b" /> menuju pos <InlineMath math="B(100,b)\text{ m}" />. **Selisihnya** <InlineMath math="\vec b-\vec a" /> mengarah langsung dari ujung <InlineMath math="\vec a" /> ke ujung <InlineMath math="\vec b" />. Saat <InlineMath math="b = 110\text{ m}" />, rute dari <InlineMath math="A" /> ke <InlineMath math="B" /> sepanjang <InlineMath math="100\text{ m}" />.
 
-<OrienteeringMapVectorLab
+<MathVisual
   title={<>Mengurangkan Posisi <InlineMath math="\vec b-\vec a" /></>}
-  description={<>Titik awal <InlineMath math="O" /> adalah segitiga magenta. Ganti antara selisih dan rutenya.</>}
-  marks={{
-    a: { east: 40, north: 30 },
-    b: { east: 100, north: 110 },
-    c: { east: 150, north: -10 },
+  description={<>Vektor posisi <InlineMath math="\vec a=(40,30)\text{ m}" /> dan <InlineMath math="\vec b=(100,b)\text{ m}" /> dengan selisihnya yang menghubungkan <InlineMath math="A" /> ke <InlineMath math="B" />.</>}
+  footer={<>Panah <InlineMath math="\vec b-\vec a" /> selalu berpangkal di ujung <InlineMath math="\vec a" /> dan berakhir di <InlineMath math="\vec b" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 130 }, y: { min: -15, max: 165 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 30, max: 150, value: 110, step: 20, label: "north-b" },
+    ],
+    objects: [
+      { id: "vec-a", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 40, y: 30 } },
+      { id: "vec-b", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "100", y: "b" }] },
+      { id: "leg-ab", kind: "path", appearance: "answer", points: [{ x: "40", y: "30" }, { x: "100", y: "b" }] },
+      { id: "mark-a", kind: "point", appearance: "primary", at: { x: 40, y: 30 } },
+      { id: "mark-b", kind: "marker", appearance: "answer", x: "100", y: "b" },
+    ],
+    labels: [
+      { key: "mark-a", objectId: "mark-a", at: { x: 40, y: 30 }, placement: "below-right" },
+      { key: "mark-b", objectId: "mark-b", at: { x: "100", y: "b" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "leg-dx", formula: "60" },
+      { key: "leg-dy", formula: "b - 30" },
+      { key: "leg-len", formula: "sqrt(3600 + (b - 30)^2)" },
+    ],
   }}
-  views={["difference", "forward"]}
   labels={{
-    angle: <>Arah dari timur</>,
-    chooseView: "Pilih vektor yang ditampilkan",
-    east: <>Bagian timur</>,
-    north: <>Bagian utara</>,
-    size: <>Panjang</>,
-    viewLabel: "Peta orienteering sebuah taman",
-    views: {
-      back: <><InlineMath math="B" /> ke <InlineMath math="A" /></>,
-      copy: <>Vektor sama dari <InlineMath math="C" /></>,
-      difference: <><InlineMath math="\vec b-\vec a" /></>,
-      forward: <><InlineMath math="A" /> ke <InlineMath math="B" /></>,
-    },
+    "north-b": <>Koordinat utara <InlineMath math="b" /> titik <InlineMath math="B" /> (m)</>,
+    "mark-a": <InlineMath math="A(40,30)" />,
+    "mark-b": <InlineMath math="B" />,
+    "leg-dx": <>Langkah timur (m)</>,
+    "leg-dy": <>Langkah utara (m)</>,
+    "leg-len": <>Panjang rute (m)</>,
   }}
 />
+
+Geser <InlineMath math="b" /> turun ke <InlineMath math="30\text{ m}" /> dan lihat rutenya menjadi mendatar lurus sepanjang <InlineMath math="60\text{ m}" />. Di mana pun posisi <InlineMath math="B" />, mengurangkan <InlineMath math="\vec a" /> dari <InlineMath math="\vec b" /> selalu memberi lintasan langsung dari <InlineMath math="A" /> menuju <InlineMath math="B" />.

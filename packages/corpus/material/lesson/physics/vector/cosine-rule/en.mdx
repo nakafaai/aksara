@@ -23,6 +23,7 @@ Pulls of <InlineMath math="2.94\text{ N}" /> and <InlineMath math="3.92\text{ N}
 <ForceTableResultantLab
   title={<>The Angle Shrinks the Sum</>}
   description={<>Hangers of <InlineMath math="300\text{ g}" /> at <InlineMath math="0^\circ" /> and <InlineMath math="400\text{ g}" /> at the angle you choose.</>}
+  footer={<>Opening the pulley angle lowers <InlineMath math="\cos\theta" /> and shrinks the resultant.</>}
   pulls={[
     { angle: 0, mass: 300 },
     { angle: 60, mass: 400 },
@@ -38,36 +39,39 @@ Pulls of <InlineMath math="2.94\text{ N}" /> and <InlineMath math="3.92\text{ N}
   }}
 />
 
+Keep the masses fixed and turn the second string wider: the two pulls reinforce less and less until they oppose directly at <InlineMath math="180^\circ" />.
+
 ## The Cosine in the Triangle Formula
 
-The cosine rule appears because the resultant of two vectors forms a triangle with two known sides. If the angle between the vectors is small, the vectors reinforce each other more strongly. If the angle approaches <InlineMath math="180^\circ" />, they cancel each other more.
-
-When the vectors are arranged **head to tail**, the interior triangle angle is supplementary to the included vector angle. This changes the minus sign in the triangle cosine rule into the plus sign in the resultant formula.
+The cosine rule appears because the resultant of two vectors forms a triangle with two known sides. When vectors are arranged **head to tail**, the interior triangle angle is supplementary to the tail-to-tail angle <InlineMath math="\theta" />, turning the triangle's minus sign into a plus sign.
 
 <BlockMath math="\begin{aligned}R^2 &= A^2+B^2-2AB\cos(180^\circ-\theta) \\ &= A^2+B^2-2AB(-\cos\theta) \\ &= A^2+B^2+2AB\cos\theta\end{aligned}" />
 
+Always check three details before pressing equals: measure <InlineMath math="\theta" /> with both tails together rather than inside the head-to-tail triangle, keep the **plus sign** in front of <InlineMath math="2AB\cos\theta" />, and confirm your calculator sits in degree mode (check that <InlineMath math="\cos 60^\circ = 0.5" />) before taking the final square root.
+
 <MathVisual
-  title={<>The angle between the vectors and the angle inside the triangle</>}
-  description={<>The angle <InlineMath math="\theta" /> is measured with both tails together. After <InlineMath math="\vec{B}" /> moves to the tip of <InlineMath math="\vec{A}" />, the angle inside the triangle is <InlineMath math="180^\circ-\theta" />.</>}
+  title={<>Included Angle and Interior Triangle Angle</>}
+  description={<>Angle <InlineMath math="\theta=60^\circ" /> sits between tails of <InlineMath math="\vec A=10\text{ N}" /> and <InlineMath math="\vec B=8\text{ N}" />, while moving <InlineMath math="\vec B" /> head to tail leaves <InlineMath math="180^\circ-\theta=120^\circ" /> inside.</>}
+  footer={<>Moving <InlineMath math="\vec B" /> head to tail turns tail angle <InlineMath math="\theta" /> into <InlineMath math="180^\circ-\theta" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 4.5 } },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1.5, max: 16.5 }, y: { min: -1.5, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "primary" },
-      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) }, appearance: "secondary" },
-      { id: "moved", kind: "segment", from: { x: 5, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "construction" },
-      { id: "r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "answer" },
-      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
-      { id: "inner", kind: "arc", center: { x: 5, y: 0 }, radius: 0.8, startDegrees: 60, sweepDegrees: 120, appearance: "warning" },
+      { id: "a", kind: "vector", from: { x: 0, y: 0 }, to: { x: 10, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "vector", from: { x: 0, y: 0 }, to: { x: 4, y: 4 * Math.sqrt(3) }, appearance: "secondary" },
+      { id: "moved", kind: "vector", from: { x: 10, y: 0 }, to: { x: 14, y: 4 * Math.sqrt(3) }, appearance: "construction" },
+      { id: "r", kind: "vector", from: { x: 0, y: 0 }, to: { x: 14, y: 4 * Math.sqrt(3) }, appearance: "answer" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 2, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "inner", kind: "arc", center: { x: 10, y: 0 }, radius: 1.6, startDegrees: 60, sweepDegrees: 120, appearance: "warning" },
     ],
     labels: [
-      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
-      { key: "b", objectId: "b", at: { x: 1, y: Math.sqrt(3) }, placement: "left" },
-      { key: "moved", objectId: "moved", at: { x: 6, y: Math.sqrt(3) }, placement: "right" },
-      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above" },
-      { key: "theta", objectId: "theta", at: { x: Math.sqrt(3) / 2, y: 0.5 }, placement: "right" },
-      { key: "inner", objectId: "inner", at: { x: 4.6, y: 0.4 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "left" },
+      { key: "moved", objectId: "moved", at: { x: 12, y: 2 * Math.sqrt(3) }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 14, y: 4 * Math.sqrt(3) }, placement: "above" },
+      { key: "theta", objectId: "theta", at: { x: Math.sqrt(3), y: 1 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 9.2, y: 0.8 * Math.sqrt(3) }, placement: "above-left" },
     ],
   }}
   labels={{
@@ -90,63 +94,82 @@ The table below shows how <InlineMath math="\cos\theta" /> changes with the angl
 
 When <InlineMath math="\theta=90^\circ" />, the cosine rule becomes the Pythagorean form because <InlineMath math="\cos90^\circ=0" />.
 
-With the nose on <InlineMath math="330^\circ" />, the air velocity of <InlineMath math="400\text{ km/h}" /> and the <InlineMath math="300\text{ km/h}" /> wind are <InlineMath math="120^\circ" /> apart, so **the ground speed is** <InlineMath math="\sqrt{400^2+300^2+2(400)(300)\cos120^\circ}" />, about <InlineMath math="361\text{ km/h}" />. Turn the nose and compare the card with the formula.
+### Ground Speed in a Crosswind
 
-<AircraftCrosswindLab
+Consider an aircraft with <InlineMath math="400\text{ km/h}" /> airspeed flying into a <InlineMath math="300\text{ km/h}" /> wind at angle <InlineMath math="a" /> between the two velocity arrows. At <InlineMath math="a = 120^\circ" />, **the cosine term turns negative** and lowers the ground speed below airspeed alone:
+
+<BlockMath math="v_g = \sqrt{400^2+300^2+2(400)(300)\cos 120^\circ} \approx 361\text{ km/h}" />
+
+<MathVisual
   title={<>Ground Speed by the Cosine Rule</>}
-  description={<>Airspeed <InlineMath math="400\text{ km/h}" />, wind <InlineMath math="300\text{ km/h}" /> toward the east. Turn the nose.</>}
-  airspeed={400}
-  heading={330}
-  toward={90}
-  wind={300}
+  description={<>Ground speed of a <InlineMath math="400\text{ km/h}" /> plane in a <InlineMath math="300\text{ km/h}" /> wind against angle <InlineMath math="a" /> in degrees.</>}
+  footer={<>Past <InlineMath math="90^\circ" /> the cosine turns negative and wind slows the plane down.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 195 }, y: { min: 0, max: 760 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 180, value: 120, step: 10, label: "wind-angle" },
+    ],
+    objects: [
+      { id: "speed-curve", kind: "function", appearance: "primary", formula: "sqrt(250000 + 240000*cos(x*pi/180))", domain: { min: 0, max: 180 } },
+      { id: "guide", kind: "path", appearance: "construction", points: [{ x: "a", y: "0" }, { x: "a", y: "sqrt(250000 + 240000*cos(a*pi/180))" }] },
+      { id: "pt", kind: "marker", appearance: "answer", x: "a", y: "sqrt(250000 + 240000*cos(a*pi/180))" },
+    ],
+    labels: [
+      { key: "pt", objectId: "pt", at: { x: "a", y: "sqrt(250000 + 240000*cos(a*pi/180))" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "gs", formula: "sqrt(250000 + 240000*cos(a*pi/180))" },
+    ],
+  }}
   labels={{
-    between: <>Angle between airspeed and wind</>,
-    drift: <>Drift angle</>,
-    groundSpeed: <>Speed over the ground</>,
-    heading: <>Heading of the nose</>,
-    headingName: "Heading of the nose",
-    track: <>Track over the ground</>,
-    viewLabel: "Airliner over farmland in a crosswind",
+    "wind-angle": <>Angle between airspeed and wind <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    pt: <InlineMath math="v_g" />,
+    gs: <>Ground speed (km/h)</>,
   }}
 />
 
-## Resultant of Two Forces
+Sliding <InlineMath math="a" /> from <InlineMath math="0^\circ" /> (pure tailwind at <InlineMath math="700\text{ km/h}" />) to <InlineMath math="180^\circ" /> (direct headwind at <InlineMath math="100\text{ km/h}" />) traces every possible resultant ground speed along one smooth curve.
 
-Two forces act at one point. The first force is <InlineMath math="10\text{ N}" />, the second force is <InlineMath math="8\text{ N}" />, and the angle between them is <InlineMath math="60^\circ" />. Find the resultant magnitude.
+### Resultant of Two Angled Forces
+
+Suppose a ring is pulled by a <InlineMath math="10\text{ N}" /> force and an <InlineMath math="8\text{ N}" /> force separated by <InlineMath math="60^\circ" />. Find the magnitude of their resultant.
 
 <MathVisual
   title={<>Resultant Triangle of Two Forces</>}
-  description={<>Slide the angle between the forces. The orange arrow starts at the teal arrow tip, and the violet arrow is the resultant that closes the triangle. One grid step is <InlineMath math="2\text{ N}" />.</>}
+  description={<>Slide angle <InlineMath math="a" /> between <InlineMath math="10\text{ N}" /> and <InlineMath math="8\text{ N}" /> forces plotted directly in newtons.</>}
+  footer={<>Sliding <InlineMath math="a" /> opens or closes the triangle while <InlineMath math="\vec R" /> tracks the third side.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 10 }, y: { min: -1, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -1.5, max: 19.5 }, y: { min: -1.5, max: 10.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "a", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
-      { id: "b", kind: "path", appearance: "primary", points: [{ x: "5", y: "0" }, { x: "5 + 4 cos(a)", y: "4 sin(a)" }] },
-      { id: "r", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "5 + 4 cos(a)", y: "4 sin(a)" }] },
-      { id: "tip", kind: "marker", appearance: "answer", x: "5 + 4 cos(a)", y: "4 sin(a)" },
+      { id: "a", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "b", kind: "path", appearance: "primary", points: [{ x: "10", y: "0" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "r", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" },
     ],
     labels: [
-      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
-      { key: "b", objectId: "b", at: { x: "5 + 2 cos(a)", y: "2 sin(a)" }, placement: "right" },
-      { key: "r", objectId: "r", at: { x: "(5 + 4 cos(a))/2", y: "2 sin(a)" }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: "10 + 4*cos(a*pi/180)", y: "4*sin(a*pi/180)" }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: "(10 + 8*cos(a*pi/180))/2", y: "4*sin(a*pi/180)" }, placement: "above-left" },
     ],
     parameters: [
-      { name: "a", min: 0, max: Math.PI, value: Math.PI / 3, step: 0.01, label: "angle" },
+      { name: "a", min: 0, max: 180, value: 60, step: 5, label: "angle" },
     ],
     readouts: [
-      { key: "deg", formula: "a * 180 / pi" },
-      { key: "result", formula: "2 sqrt(41 + 40 cos(a))" },
+      { key: "deg", formula: "a" },
+      { key: "result", formula: "sqrt(164 + 160*cos(a*pi/180))" },
     ],
   }}
   labels={{
-    angle: <InlineMath math="\theta" />,
+    angle: <>Angle <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
     a: <InlineMath math="\vec A=10\text{ N}" />,
     b: <InlineMath math="\vec B=8\text{ N}" />,
     r: <InlineMath math="\vec R" />,
-    deg: <InlineMath math="\theta\ (^\circ)" />,
-    result: <InlineMath math="R=\sqrt{A^2+B^2+2AB\cos\theta}\ (\text{N})" />,
+    deg: <>Angle (<InlineMath math="^\circ" />)</>,
+    result: <>Resultant <InlineMath math="R" /> (N)</>,
   }}
 />
 
@@ -160,27 +183,52 @@ R&=\sqrt{A^2+B^2+2AB\cos\theta} \\
 &\approx15.6\text{ N}
 \end{aligned}" />
 
-The angle between the two forces makes the resultant less than <InlineMath math="18\text{ N}" />. Since the forces still point in fairly similar directions, the resultant is greater than either force on its own. Check the bounds: <InlineMath math="15.6" /> lies between <InlineMath math="10 - 8 = 2" /> and <InlineMath math="10 + 8 = 18" />. The direction of the resultant relative to the first force comes from the [sine rule](/en/subjects/physics/vector/sine-rule): <InlineMath math="\sin\varphi = \frac{8\sin 60^\circ}{\sqrt{244}}" />, so <InlineMath math="\varphi \approx 26.3^\circ" />.
+The angle between the two forces makes the resultant less than <InlineMath math="18\text{ N}" />, yet greater than either force alone. Checking the bounds confirms <InlineMath math="15.6\text{ N}" /> sits safely between <InlineMath math="2\text{ N}" /> and <InlineMath math="18\text{ N}" />. The direction relative to the first force comes from the [sine rule](/en/subjects/physics/vector/sine-rule):
 
-Here are the same numbers in a harbour: tugs pulling <InlineMath math="10\text{ kN}" /> and <InlineMath math="8\text{ kN}" /> with <InlineMath math="60^\circ" /> between their cables give <InlineMath math="15.6\text{ kN}" />, **the diagonal of the dashed parallelogram**.
+<BlockMath math="\sin\varphi = \frac{8\sin 60^\circ}{\sqrt{244}} \quad\Longrightarrow\quad \varphi \approx 26.3^\circ" />
 
-<TugboatResultantLab
-  title={<>Resultant of Two Tugs</>}
-  description={<>Pulls of <InlineMath math="10\text{ kN}" /> and <InlineMath math="8\text{ kN}" />. Open or close the cables.</>}
-  between={60}
-  first={10}
-  second={8}
+The same geometry appears with two harbour tugboats pulling <InlineMath math="10\text{ kN}" /> and <InlineMath math="8\text{ kN}" /> from a ship's bow: **the parallelogram diagonal** gives <InlineMath math="15.6\text{ kN}" /> at <InlineMath math="60^\circ" />.
+
+<MathVisual
+  title={<>Parallelogram Diagonal of Two Tug Pulls</>}
+  description={<>Tug pulls of <InlineMath math="10\text{ kN}" /> and <InlineMath math="8\text{ kN}" /> separated by angle <InlineMath math="a" /> with their dashed parallelogram in kilonewtons.</>}
+  footer={<>As cable angle <InlineMath math="a" /> widens, the diagonal drops smoothly from <InlineMath math="18\text{ kN}" /> to <InlineMath math="2\text{ kN}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 20 }, y: { min: -2, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 150, value: 60, step: 10, label: "tug-angle" },
+    ],
+    objects: [
+      { id: "f1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "f2", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "top", kind: "path", appearance: "construction", points: [{ x: "8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "side", kind: "path", appearance: "construction", points: [{ x: "10", y: "0" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "diag", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "tip", objectId: "tip", at: { x: "10 + 8*cos(a*pi/180)", y: "8*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "diag-r", formula: "sqrt(164 + 160*cos(a*pi/180))" },
+      { key: "cos-val", formula: "cos(a*pi/180)" },
+    ],
+  }}
   labels={{
-    between: <>Angle between the cables</>,
-    betweenName: "Angle between the cables",
-    fromFirst: <>Angle of <InlineMath math="\vec R" /> from <InlineMath math="\vec F_1" /></>,
-    fromLine: <>Angle from the ship's line</>,
-    resultant: <>Resultant <InlineMath math="R" /></>,
-    viewLabel: "Two tugboats towing a ship",
+    "tug-angle": <>Cable angle <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    f1: <InlineMath math="10\text{ kN}" />,
+    tip: <InlineMath math="\vec R" />,
+    "diag-r": <>Resultant pull (kN)</>,
+    "cos-val": <InlineMath math="\cos a" />,
   }}
 />
 
-## Example of Finding the Included Angle from the Resultant
+Notice that the live readout of <InlineMath math="\cos a" /> crosses zero at <InlineMath math="90^\circ" />: whenever the angle is acute, <InlineMath math="R" /> stays larger than <InlineMath math="\sqrt{10^2+8^2}\approx12.8\text{ kN}" />, and whenever it is obtuse, <InlineMath math="R" /> drops below that value.
+
+## Finding the Included Angle from the Resultant
 
 Two forces of <InlineMath math="5\text{ N}" /> and <InlineMath math="3\text{ N}" /> give a resultant of <InlineMath math="7\text{ N}" />. Find the angle between the two forces.
 
@@ -192,87 +240,151 @@ The cosine rule also works backwards to find the angle. **Square the resultant**
   <BlockMath math="\cos\theta = \frac{15}{30} = \frac12 \quad\Longrightarrow\quad \theta = 60^\circ" />
 </MathContainer>
 
-Check by putting the angle back in: <InlineMath math="\sqrt{25 + 9 + 30 \cdot \frac12} = \sqrt{49} = 7\text{ N}" />. The resultant also makes sense, because it lies between <InlineMath math="5 - 3 = 2" /> and <InlineMath math="5 + 3 = 8" />.
+Substitute <InlineMath math="\theta = 60^\circ" /> back in to verify the magnitude:
+
+<BlockMath math="R = \sqrt{25 + 9 + 30\cdot\frac12} = \sqrt{49} = 7\text{ N}" />
+
+The check passes and <InlineMath math="7\text{ N}" /> sits neatly between the lower bound <InlineMath math="2\text{ N}" /> and the upper bound <InlineMath math="8\text{ N}" />.
 
 ## Checking with Boundary Cases
 
-**Boundary cases** help check whether an answer is reasonable. If the angle is <InlineMath math="0^\circ" />, the formula should give <InlineMath math="A+B" />.
+**Boundary cases** test whether any cosine-rule answer is physically sensible and catch forgetting the final square root. Every resultant of <InlineMath math="A" /> and <InlineMath math="B" /> must stay inside the closed range from <InlineMath math="\lvert A-B\rvert" /> up to <InlineMath math="A+B" />.
 
-<BlockMath math="\begin{aligned} R &amp;=\sqrt{A^2+B^2+2AB} \\ &amp;=\sqrt{(A+B)^2} \\ &amp;=A+B \end{aligned}" />
+At <InlineMath math="0^\circ" />, the formula reduces to the plain sum, while at <InlineMath math="180^\circ" /> it reduces to the absolute difference:
 
-If the angle is <InlineMath math="180^\circ" />, the formula should give the difference of the magnitudes.
+<MathContainer>
+  <BlockMath math="\begin{aligned} R &=\sqrt{A^2+B^2+2AB} =\sqrt{(A+B)^2}=A+B \end{aligned}" />
+  <BlockMath math="\begin{aligned} R &=\sqrt{A^2+B^2-2AB} =\sqrt{(A-B)^2}=\lvert A-B\rvert \end{aligned}" />
+</MathContainer>
 
-<BlockMath math="\begin{aligned} R &amp;=\sqrt{A^2+B^2-2AB} \\ &amp;=\sqrt{(A-B)^2} \\ &amp;=\lvert A-B\rvert \end{aligned}" />
-
-This check shows that the cosine rule is connected to the simpler same-direction, opposite-direction, and perpendicular-vector cases.
-
-Check any answer against the ends of this curve. <InlineMath math="R=\sqrt{A^2+B^2+2AB\cos\theta}" /> falls from <InlineMath math="A+B" /> when the forces point the same way to <InlineMath math="\lvert A-B\rvert" /> when they point opposite ways, so every resultant of <InlineMath math="10\text{ N}" /> and <InlineMath math="8\text{ N}" /> lies between <InlineMath math="2\text{ N}" /> and <InlineMath math="18\text{ N}" />.
+For forces of <InlineMath math="10\text{ N}" /> and <InlineMath math="8\text{ N}" />, the curve below traces every resultant directly in degrees and newtons between <InlineMath math="2\text{ N}" /> and <InlineMath math="18\text{ N}" />.
 
 <MathVisual
   title={<>The Resultant between Its Boundary Cases</>}
-  description={<>Resultant of a <InlineMath math="10\text{ N}" /> and an <InlineMath math="8\text{ N}" /> force against the angle between them. Horizontal: one grid step is <InlineMath math="30^\circ" />. Vertical: one grid step is <InlineMath math="2\text{ N}" />.</>}
+  description={<>Resultant of <InlineMath math="10\text{ N}" /> and <InlineMath math="8\text{ N}" /> forces plotted directly against angle in degrees and force in newtons.</>}
+  footer={<>Every resultant stays trapped between <InlineMath math="18\text{ N}" /> at <InlineMath math="0^\circ" /> and <InlineMath math="2\text{ N}" /> at <InlineMath math="180^\circ" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 10 } },
+    frame: { kind: "cartesian", x: { min: -15, max: 205 }, y: { min: -1, max: 20 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "curve", kind: "function", appearance: "secondary", formula: "sqrt(41 + 40 cos(pi x / 6))", domain: { min: 0, max: 6 } },
-      { id: "same", kind: "point", appearance: "answer", at: { x: 0, y: 9 } },
-      { id: "sixty", kind: "point", appearance: "primary", at: { x: 2, y: Math.sqrt(61) } },
-      { id: "right", kind: "point", appearance: "construction", at: { x: 3, y: Math.sqrt(41) } },
-      { id: "opposite", kind: "point", appearance: "answer", at: { x: 6, y: 1 } },
+      { id: "curve", kind: "function", appearance: "secondary", formula: "sqrt(164 + 160*cos(x*pi/180))", domain: { min: 0, max: 180 } },
+      { id: "same", kind: "point", appearance: "answer", at: { x: 0, y: 18 } },
+      { id: "sixty", kind: "point", appearance: "primary", at: { x: 60, y: Math.sqrt(244) } },
+      { id: "right", kind: "point", appearance: "construction", at: { x: 90, y: Math.sqrt(164) } },
+      { id: "opposite", kind: "point", appearance: "answer", at: { x: 180, y: 2 } },
     ],
     labels: [
-      { key: "same", objectId: "same", at: { x: 0, y: 9 }, placement: "right" },
-      { key: "sixty", objectId: "sixty", at: { x: 2, y: Math.sqrt(61) }, placement: "above-right" },
-      { key: "right", objectId: "right", at: { x: 3, y: Math.sqrt(41) }, placement: "above-right" },
-      { key: "opposite", objectId: "opposite", at: { x: 6, y: 1 }, placement: "above" },
+      { key: "same", objectId: "same", at: { x: 0, y: 18 }, placement: "right" },
+      { key: "sixty", objectId: "sixty", at: { x: 60, y: Math.sqrt(244) }, placement: "above-right" },
+      { key: "right", objectId: "right", at: { x: 90, y: Math.sqrt(164) }, placement: "above-right" },
+      { key: "opposite", objectId: "opposite", at: { x: 180, y: 2 }, placement: "above-left" },
     ],
   }}
   labels={{
-    same: <InlineMath math="0^\circ:\ R=10+8=18\text{ N}" />,
-    sixty: <InlineMath math="60^\circ:\ R=\sqrt{244}\approx15.6\text{ N}" />,
-    right: <InlineMath math="90^\circ:\ R=\sqrt{164}\approx12.8\text{ N}" />,
-    opposite: <InlineMath math="180^\circ:\ R=10-8=2\text{ N}" />,
+    same: <InlineMath math="0^\circ:\ 18\text{ N}" />,
+    sixty: <InlineMath math="60^\circ:\ 15.6\text{ N}" />,
+    right: <InlineMath math="90^\circ:\ 12.8\text{ N}" />,
+    opposite: <InlineMath math="180^\circ:\ 2\text{ N}" />,
   }}
 />
 
-## The Rope as a Boundary Case
+Whenever a calculated magnitude falls above <InlineMath math="A+B" /> or below <InlineMath math="\lvert A-B\rvert" />, stop immediately and recheck the sign or the square root.
 
-In a tug of war the two forces are <InlineMath math="180^\circ" /> apart, so <InlineMath math="\cos180^\circ=-1" /> and **the rule leaves** <InlineMath math="R=|F_R-F_L|" />: <InlineMath math="900\text{ N}" /> against <InlineMath math="600\text{ N}" /> gives <InlineMath math="300\text{ N}" />. Make the teams equal and the resultant reaches zero.
+### Opposite Pulls at Maximum Angle
 
-<TugOfWarForceLab
-  title={<>Forces in Opposite Directions</>}
-  description={<>Each puller pulls with <InlineMath math="300\text{ N}" />. Change the teams.</>}
-  left={2}
-  pull={300}
-  right={3}
+In a tug of war the two pulls sit <InlineMath math="180^\circ" /> apart, so <InlineMath math="\cos180^\circ=-1" /> and **the cosine rule collapses to subtraction**. Facing a <InlineMath math="600\text{ N}" /> left pull (<InlineMath math="2" /> pullers of <InlineMath math="300\text{ N}" />), a right team of <InlineMath math="p" /> pullers produces net magnitude <InlineMath math="\lvert 300p - 600\rvert" />.
+
+<MathVisual
+  title={<>Resultant Magnitude for Opposite Forces</>}
+  description={<>Magnitude <InlineMath math="R = \lvert 300p - 600\rvert" /> in newtons for <InlineMath math="p" /> right-team pullers against <InlineMath math="600\text{ N}" /> left at <InlineMath math="180^\circ" />.</>}
+  footer={<>At <InlineMath math="p=2" /> equal opposing pulls cancel cleanly to <InlineMath math="0\text{ N}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: -100, max: 1050 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 5, value: 3, step: 1, label: "right-pullers" },
+    ],
+    objects: [
+      { id: "mag-curve", kind: "function", appearance: "primary", formula: "abs(300*x - 600)", domain: { min: 0, max: 5 } },
+      { id: "guide", kind: "path", appearance: "construction", points: [{ x: "p", y: "0" }, { x: "p", y: "abs(300*p - 600)" }] },
+      { id: "pt", kind: "marker", appearance: "answer", x: "p", y: "abs(300*p - 600)" },
+    ],
+    labels: [
+      { key: "pt", objectId: "pt", at: { x: "p", y: "abs(300*p - 600)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "right-n", formula: "300*p" },
+      { key: "net-n", formula: "abs(300*p - 600)" },
+    ],
+  }}
   labels={{
-    left: <>Left team <InlineMath math="\vec F_L" /></>,
-    leftCount: <>Pullers on the left</>,
-    leftName: "Pullers on the left",
-    net: <>Net force <InlineMath math="\Sigma F" /></>,
-    right: <>Right team <InlineMath math="\vec F_R" /></>,
-    rightCount: <>Pullers on the right</>,
-    rightName: "Pullers on the right",
-    viewLabel: "Tug of war at sunset",
+    "right-pullers": <>Right-team pullers <InlineMath math="p" /></>,
+    pt: <InlineMath math="R" />,
+    "right-n": <>Right pull (N)</>,
+    "net-n": <>Resultant magnitude (N)</>,
   }}
 />
 
-## When to Choose the Cosine Rule
+The V-shaped graph never drops below zero because vector magnitude is always nonnegative, hitting zero only when both opposite pulls match at <InlineMath math="600\text{ N}" />.
 
-All of the following must hold:
+### Perpendicular Motion as a Special Case
+
+When a boat aims straight across at <InlineMath math="4\text{ m/s}" /> in a <InlineMath math="3\text{ m/s}" /> current, the two velocities meet at <InlineMath math="a = 90^\circ" /> where <InlineMath math="\cos 90^\circ = 0" />, so **the cosine rule shrinks to Pythagoras** and gives <InlineMath math="5\text{ m/s}" />. Turn angle <InlineMath math="a" /> away from <InlineMath math="90^\circ" /> and the <InlineMath math="2AB\cos a" /> term turns back on.
+
+<MathVisual
+  title={<>Pythagoras Inside the Cosine Rule</>}
+  description={<>Boat velocity <InlineMath math="4\text{ m/s}" /> and current <InlineMath math="3\text{ m/s}" /> meeting at adjustable angle <InlineMath math="a" /> directly in m/s.</>}
+  footer={<>Only at <InlineMath math="a=90^\circ" /> does <InlineMath math="\cos a" /> vanish and leave Pythagoras.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.8 }, y: { min: -0.8, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 30, max: 150, value: 90, step: 15, label: "flow-angle" },
+    ],
+    objects: [
+      { id: "boat", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "curr", kind: "path", appearance: "secondary", points: [{ x: "4", y: "0" }, { x: "4 + 3*cos(a*pi/180)", y: "3*sin(a*pi/180)" }] },
+      { id: "res", kind: "path", appearance: "answer", points: [{ x: "0", y: "0" }, { x: "4 + 3*cos(a*pi/180)", y: "3*sin(a*pi/180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "4 + 3*cos(a*pi/180)", y: "3*sin(a*pi/180)" },
+    ],
+    labels: [
+      { key: "boat", objectId: "boat", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "tip", objectId: "tip", at: { x: "4 + 3*cos(a*pi/180)", y: "3*sin(a*pi/180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "cos-term", formula: "24*cos(a*pi/180)" },
+      { key: "speed-ms", formula: "sqrt(25 + 24*cos(a*pi/180))" },
+    ],
+  }}
+  labels={{
+    "flow-angle": <>Angle <InlineMath math="a" /> (<InlineMath math="^\circ" />)</>,
+    boat: <InlineMath math="4\text{ m/s}" />,
+    tip: <InlineMath math="\vec v" />,
+    "cos-term": <InlineMath math="2AB\cos a" />,
+    "speed-ms": <>Resultant speed (m/s)</>,
+  }}
+/>
+
+Watch the <InlineMath math="2AB\cos a" /> readout: it is positive for angles under <InlineMath math="90^\circ" />, zero at <InlineMath math="90^\circ" />, and negative above <InlineMath math="90^\circ" />, proving Pythagoras is simply one slice of the cosine rule.
+
+## Choosing and Checking the Cosine Rule
+
+Use the cosine rule directly when all four conditions hold:
 
 - there are only two vectors.
 - both vector magnitudes are known.
 - the **included angle** is known.
 - the question asks for resultant magnitude.
 
-For more than two vectors, resolve every vector into coordinate components and add all <InlineMath math="x" /> and <InlineMath math="y" /> components. This is the [analytical method](/en/subjects/physics/vector/analytical-addition-subtraction). The cosine rule applies directly when exactly two vector magnitudes and their included angle are known.
+For more than two vectors, resolve every vector into coordinate components and add all <InlineMath math="x" /> and <InlineMath math="y" /> components using the [analytical method](/en/subjects/physics/vector/analytical-addition-subtraction).
 
 <Mermaid
   title={<>Choosing how to find the resultant</>}
   description={<>The given data decides which formula comes first.</>}
+  footer={<>Pick cosine for two-vector size, sine for angle, and components for three or more.</>}
   chart={`flowchart TD
   A{"What is given and what is asked?"} -->|"two vectors and the angle, find the size"| B["Cosine rule"]
   A -->|"size of the resultant known, find the direction"| C["Sine rule"]
@@ -280,58 +392,25 @@ For more than two vectors, resolve every vector into coordinate components and a
   B -->|"direction asked too"| C`}
 />
 
-## A Right Angle on the River
+Follow the decision tree before writing equations: jumping straight to components saves time once a third vector enters the problem.
 
-Heading straight across, the boat's <InlineMath math="4\text{ m/s}" /> and the current's <InlineMath math="3\text{ m/s}" /> are <InlineMath math="90^\circ" /> apart, <InlineMath math="\cos90^\circ=0" />, and **the cosine rule shrinks to Pythagoras**: <InlineMath math="5\text{ m/s}" />. Turn the heading and you need the full rule again.
+Apply the cosine rule and its bound check to three quick cases:
 
-<RiverBoatCrossingLab
-  title={<>Pythagoras as a Special Case</>}
-  description={<>A river <InlineMath math="60\text{ m}" /> wide flowing at <InlineMath math="3\text{ m/s}" />.</>}
-  boatSpeed={4}
-  current={3}
-  width={60}
-  labels={{
-    angle: <>Angle from straight across</>,
-    drift: <>Drift downstream</>,
-    groundSpeed: <>Speed over the ground</>,
-    heading: <>Boat heading</>,
-    headingName: "Boat heading",
-    time: <>Crossing time</>,
-    viewLabel: "Boat crossing a flowing river",
-  }}
-/>
+1. Two perpendicular forces of <InlineMath math="6\text{ N}" /> and <InlineMath math="8\text{ N}" /> have <InlineMath math="\theta = 90^\circ" /> and <InlineMath math="\cos 90^\circ = 0" />, giving a resultant between <InlineMath math="2\text{ N}" /> and <InlineMath math="14\text{ N}" />:
 
-## Common Mistakes
+<BlockMath math="R = \sqrt{6^2 + 8^2} = \sqrt{100} = 10\text{ N}" />
 
-| Mistake | Why it fails | How to check |
-| --- | --- | --- |
-| Using the interior angle of the tip-to-tail triangle as <InlineMath math="\theta" /> | The resultant formula uses **the angle between the vectors placed tail to tail** | For vectors in the same direction, <InlineMath math="\theta = 0^\circ" /> must give <InlineMath math="A + B" /> |
-| Using the minus sign of the triangle cosine rule | The interior angle is the supplement of <InlineMath math="\theta" />, so the sign changes | For <InlineMath math="\theta = 60^\circ" />, the result must exceed each single vector |
-| Forgetting the square root | The formula gives <InlineMath math="R^2" />, not <InlineMath math="R" /> | The resultant must lie between <InlineMath math="\lvert A - B \rvert" /> and <InlineMath math="A + B" /> |
-| Calculator in radian mode | <InlineMath math="\cos 60" /> in radians is about <InlineMath math="-0.95" /> | Check that <InlineMath math="\cos 60^\circ = 0.5" /> |
-
-## Practice Problems
-
-Compute with the cosine rule, then **check that the resultant lies between <InlineMath math="\lvert A - B \rvert" /> and <InlineMath math="A + B" />**.
-
-1. Two forces of <InlineMath math="6\text{ N}" /> and <InlineMath math="8\text{ N}" /> are perpendicular. Find the magnitude of the resultant.
-
-2. Two vectors of magnitude <InlineMath math="12" /> and <InlineMath math="5" /> units form an angle of <InlineMath math="120^\circ" />. Find the magnitude of the resultant.
-
-3. Two equal forces of <InlineMath math="4\text{ N}" /> each give a resultant of <InlineMath math="4\text{ N}" />. Find the included angle.
-
-### Solutions
-
-**Problem 1**. **Perpendicular means** <InlineMath math="\theta = 90^\circ" /> and <InlineMath math="\cos\theta = 0" />, so <InlineMath math="R = \sqrt{36 + 64} = 10\text{ N}" />. Check: <InlineMath math="10" /> lies between <InlineMath math="2" /> and <InlineMath math="14" />.
-
-**Problem 2**. With <InlineMath math="\cos 120^\circ = -\frac12" />:
+2. Two vectors of <InlineMath math="12" /> and <InlineMath math="5" /> units at <InlineMath math="120^\circ" /> use <InlineMath math="\cos 120^\circ = -\tfrac12" />:
 
 <BlockMath math="R = \sqrt{144 + 25 + 2(12)(5)\left(-\frac12\right)} = \sqrt{109} \approx 10.4" />
 
-Check: <InlineMath math="10.4" /> lies between <InlineMath math="12 - 5 = 7" /> and <InlineMath math="17" />, and it is smaller than the same magnitudes give at <InlineMath math="90^\circ" />, namely <InlineMath math="\sqrt{144 + 25} = 13" />, because the vectors point further apart.
+That value sits between <InlineMath math="7" /> and <InlineMath math="17" />, and stays below the perpendicular resultant <InlineMath math="13" /> because the obtuse angle makes the vectors partially oppose.
 
-**Problem 3**. Reverse the formula:
+3. Two equal <InlineMath math="4\text{ N}" /> forces producing a <InlineMath math="4\text{ N}" /> resultant reverse the formula:
 
-<BlockMath math="R^2 = 16 = 16 + 16 + 32\cos\theta \quad\Longrightarrow\quad \cos\theta = -\frac12 \quad\Longrightarrow\quad \theta = 120^\circ" />
+<MathContainer>
+  <BlockMath math="4^2 = 4^2 + 4^2 + 2(4)(4)\cos\theta \quad\Longrightarrow\quad \cos\theta = -\frac12 \quad\Longrightarrow\quad \theta = 120^\circ" />
+  <BlockMath math="R = \sqrt{16 + 16 + 32\left(-\frac12\right)} = \sqrt{16} = 4\text{ N}" />
+</MathContainer>
 
-Check: <InlineMath math="\sqrt{16 + 16 + 32 \cdot \left(-\frac12\right)} = \sqrt{16} = 4\text{ N}" />.
+Checking the final magnitude back against <InlineMath math="\lvert A-B\rvert" /> and <InlineMath math="A+B" /> catches arithmetic and sign slips before you move on.

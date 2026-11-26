@@ -2,14 +2,18 @@
 export const metadata = {
   title: "Gleichmäßig beschleunigte geradlinige Bewegung",
   description:
-    "Gleichmäßig beschleunigte Bewegung verläuft geradlinig mit konstanter Beschleunigung und lässt sich durch Positionsspuren sowie Geschwindigkeits-Zeit-Diagramme darstellen.",
+    "Gleichmäßig beschleunigte Bewegung verläuft geradlinig mit konstanter Beschleunigung und lässt sich durch Positionsspuren sowie Diagramme darstellen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-09-12",
   subject: "Kinematik",
 };
 
-## Gleiche Geschwindigkeitsänderung in gleichen Zeitintervallen
+## Konstante Beschleunigung verändert die Geschwindigkeit gleichmäßig
+
+Bei einer geradlinigen Bewegung mit konstanter Beschleunigung wächst oder sinkt die Geschwindigkeit in jedem gleichen Zeitintervall **um exakt denselben Betrag**. Daraus folgen direkt die drei Grundgleichungen der Kinematik und das quadratische Weggesetz.
+
+### Gleiche Geschwindigkeitsänderung in gleichen Zeitintervallen
 
 Eine gleichmäßig beschleunigte lineare Bewegung ist eine Bewegung entlang einer geraden Bahn mit konstanter Beschleunigung. Konstante Beschleunigung bedeutet, dass sich die Geschwindigkeit in jedem gleichen Zeitintervall <Highlight>um den gleichen Betrag ändert</Highlight>.
 
@@ -25,29 +29,59 @@ Startet ein Auto mit <InlineMath math="0\text{ m/s}" /> und nimmt seine Geschwin
 
 Hier ist <InlineMath math="v_0" /> die Anfangsgeschwindigkeit, <InlineMath math="v_t" /> die Geschwindigkeit nach der Zeit <InlineMath math="t" />, <InlineMath math="a" /> die Beschleunigung und <InlineMath math="\Delta x" /> die Verschiebung.
 
-## Galilei hat es mit Glocken gemessen
+### Galilei hat das Quadratgesetz auf einer Rampe geprüft
 
-Galilei hat gleichmäßig beschleunigte Bewegung geprüft, indem er eine Kugel eine flache Rampe hinabrollen ließ. **Die Geschwindigkeit wächst jede Sekunde um denselben Betrag**, also bewegt sich die Kugel bei <InlineMath math="3^\circ" /> nach jeder Sekunde mit etwa <InlineMath math="0{,}374" />, <InlineMath math="0{,}748" />, <InlineMath math="1{,}12" /> und <InlineMath math="1{,}50\text{ m/s}" />.
+Galilei hat gleichmäßig beschleunigte Bewegung geprüft, indem er eine Kugel eine flache Rampe hinabrollen ließ. **Die Geschwindigkeit wächst jede Sekunde um denselben Betrag**, sodass die zurückgelegte Strecke quadratisch mit der Zeit anwächst. Verändere den Neigungswinkel <InlineMath math="g" /> und prüfe die Positionen nach jeder Sekunde.
 
-<GalileoInclineBellsLab
-  title={<>Galileis Rampe und ihre Glocken</>}
+<MathVisual
+  title={<>Quadratischer Weg auf Galileis Rampe</>}
   description={
     <>
-      Vier Glocken stehen dort, wo die Kugel nach <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="4\text{ s}" /> ist. Sie läuten im gleichen Takt, obwohl ihre Abstände wachsen.
+      Zurückgelegte Rampenstrecke einer rollenden Kugel aus der Ruhe für{" "}
+      <InlineMath math="4\text{ s}" /> beim Neigungswinkel{" "}
+      <InlineMath math="g" />.
     </>
   }
+  footer={<>Die vier Sekundenmarken wachsen bei jedem Neigungswinkel wie <InlineMath math="1:4:9:16" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.5 }, y: { min: -0.4, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "g", min: 2, max: 8, value: 3, step: 1, label: "g" },
+    ],
+    objects: [
+      { id: "ramp-curve", kind: "function", appearance: "primary", formula: "0.5*(50/7)*sin(g*pi/180)*x^2", domain: { min: 0, max: 4 } },
+      { id: "b1", kind: "marker", appearance: "answer", x: "1", y: "0.5*(50/7)*sin(g*pi/180)" },
+      { id: "b2", kind: "marker", appearance: "answer", x: "2", y: "2*(50/7)*sin(g*pi/180)" },
+      { id: "b3", kind: "marker", appearance: "answer", x: "3", y: "4.5*(50/7)*sin(g*pi/180)" },
+      { id: "b4", kind: "marker", appearance: "answer", x: "4", y: "8*(50/7)*sin(g*pi/180)" },
+    ],
+    labels: [
+      { key: "b4-lbl", objectId: "b4", at: { x: "4", y: "8*(50/7)*sin(g*pi/180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "accel", formula: "(50/7)*sin(g*pi/180)" },
+      { key: "s1", formula: "0.5*(50/7)*sin(g*pi/180)" },
+      { key: "s4", formula: "8*(50/7)*sin(g*pi/180)" },
+    ],
+  }}
   labels={{
-    acceleration: <>Beschleunigung die Rampe hinab</>,
-    chooseAngle: "Neigungswinkel wählen",
-    firstSecond: <>Weg in der ersten Sekunde</>,
-    gaps: <>Abstände der Glocken</>,
-    viewLabel: "Stahlkugel rollt an vier Glocken vorbei Galileis Rampe hinab",
+    g: <>Neigungswinkel <InlineMath math="g" /> (Grad)</>,
+    "b4-lbl": <InlineMath math="s(4)" />,
+    accel: <>Beschleunigung (<InlineMath math="\text{m/s}^2" />)</>,
+    s1: <>Weg nach 1 s (m)</>,
+    s4: <>Weg nach 4 s (m)</>,
   }}
 />
 
-Die Glocken stehen etwa bei <InlineMath math="0{,}19" />, <InlineMath math="0{,}75" />, <InlineMath math="1{,}68" /> und <InlineMath math="2{,}99\text{ m}" /> auf der Rampe, also wachsen die Abstände wie <InlineMath math="1:3:5:7" />. Gleiche Geschwindigkeitsänderungen in gleichen Zeiten ergeben aus der Ruhe immer dieses Muster.
+Bei <InlineMath math="3^\circ" /> liegen die Marken nach <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="4\text{ s}" /> bei etwa <InlineMath math="0{,}19" />, <InlineMath math="0{,}75" />, <InlineMath math="1{,}68" /> und <InlineMath math="2{,}99\text{ m}" />, also wachsen die Abstände zwischen den Marken wie <InlineMath math="1:3:5:7" />.
 
-## Positionsmarkierungen bleiben nicht mehr gleichmäßig verteilt
+## Wachsende Abstände in Positionsspuren und Balkendiagrammen
+
+Bei konstanter Beschleunigung rücken die Sekundenmarken **immer weiter auseinander** und biegen die Ortskurve zu einer Parabel. Gleichzeitig wachsen die Geschwindigkeitsbalken in jedem Zeitschritt um genau denselben Betrag.
+
+### Positionsmarkierungen bleiben nicht mehr gleichmäßig verteilt
 
 Bei einer gleichförmigen geradlinigen Bewegung haben die Positionsmarken für jede Sekunde denselben Abstand. Bei gleichmäßig beschleunigter Bewegung können sich diese Abstände verändern. Solange sich das Objekt in **dieselbe Richtung** bewegt, wachsen die Abstände bei zunehmendem Geschwindigkeitsbetrag und schrumpfen bei abnehmendem Betrag. Bei einer Richtungsumkehr müssen zusätzlich die Reihenfolge und die Seite der Marken betrachtet werden.
 
@@ -61,6 +95,7 @@ Betrachte den Fall „Aus der Ruhe“. Im ersten Augenblick steht das Auto noch.
       <InlineMath math="1\text{ s}" />, während die Beschleunigung konstant bleibt.
     </>
   }
+  footer={<>Aus der Ruhe wächst der Abstand zwischen den Marken in jeder Sekunde.</>}
   labels={{
     chooseScenario: "Bewegung wählen",
     scenarioNames: {
@@ -78,25 +113,26 @@ Betrachte den Fall „Aus der Ruhe“. Im ersten Augenblick steht das Auto noch.
   }}
 />
 
-Beim Spielzeugauto, das aus dem Stand startet, liegen die Marken jede Sekunde bei <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="9" />, <InlineMath math="16" /> und <InlineMath math="25\text{ m}" />. Die Abstände wachsen jede Sekunde um <InlineMath math="2\text{ m}" />, deshalb biegt sich das Positionsdiagramm zu einer Parabel statt zu einer Geraden.
+Beim Spielzeugauto, das aus dem Stand mit <InlineMath math="a=2\text{ m/s}^2" /> startet, liegen die Marken jede Sekunde bei <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="9" />, <InlineMath math="16" /> und <InlineMath math="25\text{ m}" />. Die Abstände wachsen jede Sekunde um <InlineMath math="2\text{ m}" />, deshalb biegt sich das Positionsdiagramm zu einer Parabel statt zu einer Geraden.
 
 <MathVisual
   title={<>Positionsmarken rücken auseinander</>}
-  description={<><InlineMath math="x=\tfrac12at^2" /> mit <InlineMath math="a=2\text{ m/s}^2" /> für <InlineMath math="5\text{ s}" />. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von <InlineMath math="5\text{ m}" />.</>}
+  description={<><InlineMath math="x=\tfrac12at^2" /> mit <InlineMath math="a=2\text{ m/s}^2" /> für <InlineMath math="5\text{ s}" />. Waagerecht: Zeit in s. Senkrecht: Position in m.</>}
+  footer={<>Die Parabel krümmt sich nach oben, weil jede Sekunde mehr Weg hinzukommt.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -1, max: 28 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "position", kind: "quadratic", appearance: "primary", coefficients: { a: 0.2, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
-      { id: "mark-1", kind: "point", appearance: "answer", at: { x: 1, y: 1 ** 2 / 5 } },
-      { id: "mark-2", kind: "point", appearance: "answer", at: { x: 2, y: 2 ** 2 / 5 } },
-      { id: "mark-3", kind: "point", appearance: "answer", at: { x: 3, y: 3 ** 2 / 5 } },
-      { id: "mark-4", kind: "point", appearance: "answer", at: { x: 4, y: 4 ** 2 / 5 } },
-      { id: "mark-5", kind: "point", appearance: "answer", at: { x: 5, y: 5 ** 2 / 5 } },
+      { id: "position", kind: "function", appearance: "primary", formula: "x^2", domain: { min: 0, max: 5 } },
+      { id: "mark-1", kind: "point", appearance: "answer", at: { x: 1, y: 1 } },
+      { id: "mark-2", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+      { id: "mark-3", kind: "point", appearance: "answer", at: { x: 3, y: 9 } },
+      { id: "mark-4", kind: "point", appearance: "answer", at: { x: 4, y: 16 } },
+      { id: "mark-5", kind: "point", appearance: "answer", at: { x: 5, y: 25 } },
     ],
     labels: [
-      { key: "marks", objectId: "mark-5", at: { x: 5, y: 5 }, placement: "left" },
+      { key: "marks", objectId: "mark-5", at: { x: 5, y: 25 }, placement: "left" },
     ],
   }}
   labels={{
@@ -104,36 +140,73 @@ Beim Spielzeugauto, das aus dem Stand startet, liegen die Marken jede Sekunde be
   }}
 />
 
-## Streifen wachsen um einen Zentimeter
+Da die Steigung der Parabel mit jeder Sekunde größer wird, zeigt dieselbe Kurve zugleich den wachsenden Weg und die steigende Geschwindigkeit.
 
-Ein Tickerband bringt dieselbe Idee aufs Papier. Der Wagen beschleunigt mit <InlineMath math="1\text{ m/s}^2" />, und **jeder Streifen von einer Zehntelsekunde ist <InlineMath math="1\text{ cm}" /> länger als der davor**.
+### Gleichmäßig wachsende Geschwindigkeitsbalken
 
-<TickerTapeMotionLab
-  motion="speeding"
-  title={<>Tickerband eines schneller werdenden Wagens</>}
+Ein schneller werdender Wagen legt in jeder Zehntelsekunde **ein längeres Wegstück als zuvor** zurück. Stellt man die zugehörigen Geschwindigkeiten nebeneinander, steigen ihre Spitzen geradlinig an. Verändere die Beschleunigung <InlineMath math="a" /> und lies die Summe der Abschnitte als Gesamtweg ab.
+
+<MathVisual
+  title={<>Wachsende Balken eines beschleunigenden Wagens</>}
   description={
     <>
-      Der Ticker druckt alle <InlineMath math="0{,}02\text{ s}" /> einen Punkt. Nebeneinander gestellt bilden die Streifen ein Geschwindigkeit-Zeit-Diagramm, dessen Oberkanten gerade ansteigen.
+      Geschwindigkeit alle <InlineMath math="0{,}1\text{ s}" /> ab{" "}
+      <InlineMath math="0{,}2\text{ m/s}" /> bei wählbarer Beschleunigung{" "}
+      <InlineMath math="a" />.
     </>
   }
+  footer={<>Die Spitzen liegen auf einer Geraden, deren Steigung die Beschleunigung ist.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.9 }, y: { min: 0, max: 1.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.4, max: 1.4, value: 1, step: 0.2, label: "a" },
+    ],
+    objects: [
+      { id: "slope", kind: "function", appearance: "construction", formula: "0.2 + a*x", domain: { min: 0.05, max: 0.75 } },
+      { id: "b1", kind: "path", appearance: "primary", points: [{ x: "0.05", y: "0" }, { x: "0.05", y: "0.2 + 0.05*a" }] },
+      { id: "b2", kind: "path", appearance: "primary", points: [{ x: "0.15", y: "0" }, { x: "0.15", y: "0.2 + 0.15*a" }] },
+      { id: "b3", kind: "path", appearance: "primary", points: [{ x: "0.25", y: "0" }, { x: "0.25", y: "0.2 + 0.25*a" }] },
+      { id: "b4", kind: "path", appearance: "primary", points: [{ x: "0.35", y: "0" }, { x: "0.35", y: "0.2 + 0.35*a" }] },
+      { id: "b5", kind: "path", appearance: "primary", points: [{ x: "0.45", y: "0" }, { x: "0.45", y: "0.2 + 0.45*a" }] },
+      { id: "b6", kind: "path", appearance: "primary", points: [{ x: "0.55", y: "0" }, { x: "0.55", y: "0.2 + 0.55*a" }] },
+      { id: "b7", kind: "path", appearance: "primary", points: [{ x: "0.65", y: "0" }, { x: "0.65", y: "0.2 + 0.65*a" }] },
+      { id: "b8", kind: "path", appearance: "primary", points: [{ x: "0.75", y: "0" }, { x: "0.75", y: "0.2 + 0.75*a" }] },
+      { id: "top-first", kind: "marker", appearance: "answer", x: "0.05", y: "0.2 + 0.05*a" },
+      { id: "top-last", kind: "marker", appearance: "answer", x: "0.75", y: "0.2 + 0.75*a" },
+    ],
+    labels: [
+      { key: "v1-lbl", objectId: "top-first", at: { x: "0.05", y: "0.2 + 0.05*a" }, placement: "above-right" },
+      { key: "v8-lbl", objectId: "top-last", at: { x: "0.75", y: "0.2 + 0.75*a" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "v1", formula: "0.2 + 0.05*a" },
+      { key: "v8", formula: "0.2 + 0.75*a" },
+      { key: "dist", formula: "0.8*(0.2 + 0.4*a)" },
+    ],
+  }}
   labels={{
-    acceleration: <>Beschleunigung aus den Streifen</>,
-    chooseMotion: "Bewegung des Wagens wählen",
-    firstStrip: <>Erster Streifen</>,
-    interval: <>Zeit zwischen zwei Punkten</>,
-    lastStrip: <>Letzter Streifen</>,
-    motions: {
-      uniform: <>Gleichmäßig</>,
-      speeding: <>Schneller werdend</>,
-      slowing: <>Langsamer werdend</>,
-    },
-    viewLabel: "Wagen zieht ein Papierband durch einen Ticker",
+    a: <>Beschleunigung <InlineMath math="a" /> (<InlineMath math="\text{m/s}^2" />)</>,
+    "v1-lbl": <InlineMath math="v_1" />,
+    "v8-lbl": <InlineMath math="v_8" />,
+    v1: <>Erster Streifen (m/s)</>,
+    v8: <>Letzter Streifen (m/s)</>,
+    dist: <>Gesamtweg über 0,8 s (m)</>,
   }}
 />
 
-Die Streifen wachsen von <InlineMath math="2{,}5\text{ cm}" /> auf <InlineMath math="9{,}5\text{ cm}" />. Ein Streifen dauert <InlineMath math="0{,}1\text{ s}" />, also ist <InlineMath math="a=\frac{0{,}01\text{ m}}{(0{,}1\text{ s})^2}=1\text{ m/s}^2" />, und alle Streifen zusammen sind die <InlineMath math="48\text{ cm}" />, die der Wagen gefahren ist.
+Bei <InlineMath math="a=1\text{ m/s}^2" /> wachsen die Streifen von <InlineMath math="2{,}5\text{ cm}" /> auf <InlineMath math="9{,}5\text{ cm}" />, also um <InlineMath math="1\text{ cm}" /> je <InlineMath math="0{,}1\text{ s}" />:
 
-## Verschiebung aus der Diagrammfläche berechnen
+<BlockMath math="a=\frac{0{,}01\text{ m}}{(0{,}1\text{ s})^2}=1\text{ m/s}^2" />
+
+Alle acht Streifen zusammen ergeben die <InlineMath math="48\text{ cm}" />, die der Wagen insgesamt zurückgelegt hat.
+
+## Verschiebung über Diagrammfläche und Formeln bestimmen
+
+Die Fläche zwischen der Geschwindigkeitslinie und der Zeitachse liefert **genau dieselbe Verschiebung** wie die kinematischen Gleichungen. Ein Dreieck oder Trapez unter dem Graphen fasst jeden Abschnitt derselben Bewegung geometrisch zusammen.
+
+### Verschiebung aus der Diagrammfläche berechnen
 
 Ein Geschwindigkeits-Zeit-Diagramm zeigt die Geschwindigkeit. Die **vorzeichenbehaftete Fläche** zwischen dem Diagramm und der Zeitachse stellt zusätzlich die Verschiebung dar. Oberhalb der Zeitachse kann diese Fläche bei gleichmäßig beschleunigter Bewegung ein Dreieck oder ein Trapez sein. Eine Fläche unterhalb der Achse trägt eine negative Verschiebung bei.
 
@@ -145,6 +218,7 @@ Ein Geschwindigkeits-Zeit-Diagramm zeigt die Geschwindigkeit. Die **vorzeichenbe
       zwischen dem Diagramm und der Zeitachse als Verschiebung des Objekts.
     </>
   }
+  footer={<>Dreieck oder Trapez unter der Linie geben unmittelbar die Verschiebung an.</>}
   labels={{
     chooseScenario: "Bewegung wählen",
     scenarioNames: {
@@ -165,7 +239,7 @@ Ein Geschwindigkeits-Zeit-Diagramm zeigt die Geschwindigkeit. Die **vorzeichenbe
 
 Diese Formeln drücken dieselbe Beziehung aus: Die Verschiebung ist die vorzeichenbehaftete Fläche zwischen dem Geschwindigkeits-Zeit-Diagramm und der Zeitachse.
 
-## Auto startet aus dem Ruhezustand
+### Auto startet aus dem Ruhezustand
 
 Ein Spielzeugauto startet aus dem Ruhezustand und hat dann eine konstante Beschleunigung <InlineMath math="2\text{ m/s}^2" /> für <InlineMath math="5\text{ s}" />.
 
@@ -193,30 +267,74 @@ Du kannst die Verschiebung über die **Dreiecksfläche unter dem Geschwindigkeit
 
 <BlockMath math="\Delta x=\frac{1}{2}(5\text{ s})(10\text{ m/s})=25\text{ m}" />
 
-## Start aus der Ruhe im Stroboskopfoto
+## Freier Fall und das Vorzeichen der Beschleunigung
 
-Eine fallengelassene Kugel ist der reinste Start aus der Ruhe: Sie gewinnt jede Sekunde <InlineMath math="10\text{ m/s}" /> dazu. **Aus der Ruhe wächst die Fallstrecke mit dem Quadrat der Zeit**, <InlineMath math="h=\frac{1}{2}gt^2" />.
+Ein aus der Ruhe fallender Körper zeigt das Quadratgesetz besonders rein, während Bremsvorgänge belegen, dass **das Vorzeichen der Beschleunigung** allein die Richtung der Geschwindigkeitsänderung angibt.
 
-<StrobePhotoMotionLab
-  shot="drop"
-  title={<>Eine Kugel fällt aus der Ruhe</>}
+### Start aus der Ruhe im freien Fall
+
+Eine fallengelassene Kugel ist der reinste Start aus der Ruhe: Sie gewinnt jede Sekunde <InlineMath math="10\text{ m/s}" /> dazu. **Aus der Ruhe wächst die Fallstrecke mit dem Quadrat der Zeit**:
+
+<BlockMath math="h=\frac{1}{2}gt^2" />
+
+Verändere die Fallzeit <InlineMath math="d" /> und vergleiche die Fallstrecke mit dem Verhältnis <InlineMath math="1:4:9:16:25:36" />.
+
+<MathVisual
+  title={<>Quadratische Fallstrecke einer fallenden Kugel</>}
   description={
     <>
-      Eine Lampe blitzt alle <InlineMath math="0{,}1\text{ s}" />, während der Verschluss offen bleibt, also ist jedes Bild ein Blitz.
+      Fallstrecke <InlineMath math="h(t)=5t^2" /> einer aus der Ruhe
+      fallengelassenen Kugel bis <InlineMath math="0{,}6\text{ s}" />.
     </>
   }
+  footer={<>Die Fallstrecke verdreifacht sich nicht, sie wächst quadratisch mit der Zeit.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 0.7 }, y: { min: -0.15, max: 2.1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.1, max: 0.6, value: 0.3, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "drop-curve", kind: "function", appearance: "primary", formula: "5*x^2", domain: { min: 0, max: 0.6 } },
+      { id: "f1", kind: "point", appearance: "secondary", at: { x: 0.1, y: 0.05 } },
+      { id: "f2", kind: "point", appearance: "secondary", at: { x: 0.2, y: 0.2 } },
+      { id: "f3", kind: "point", appearance: "secondary", at: { x: 0.3, y: 0.45 } },
+      { id: "f4", kind: "point", appearance: "secondary", at: { x: 0.4, y: 0.8 } },
+      { id: "f5", kind: "point", appearance: "secondary", at: { x: 0.5, y: 1.25 } },
+      { id: "f6", kind: "point", appearance: "secondary", at: { x: 0.6, y: 1.8 } },
+      {
+        id: "guide",
+        kind: "path",
+        appearance: "answer",
+        points: [
+          { x: "d", y: "0" },
+          { x: "d", y: "5*d^2" },
+        ],
+      },
+      { id: "ball", kind: "marker", appearance: "answer", x: "d", y: "5*d^2" },
+    ],
+    labels: [
+      { key: "h-lbl", objectId: "ball", at: { x: "d", y: "5*d^2" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "fall", formula: "5*d^2" },
+      { key: "speed", formula: "10*d" },
+      { key: "ratio", formula: "(d/0.1)^2" },
+    ],
+  }}
   labels={{
-    airTime: <>Zeit in der Luft</>,
-    height: <>Starthöhe</>,
-    interval: <>Zeit zwischen den Blitzen</>,
-    outcome: <>Schnelligkeit am Boden</>,
-    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+    d: <>Fallzeit <InlineMath math="d" /> (s)</>,
+    "h-lbl": <InlineMath math="h(d)" />,
+    fall: <>Fallstrecke (m)</>,
+    speed: <>Geschwindigkeit (m/s)</>,
+    ratio: <>Vielfaches der ersten 0,1 s</>,
   }}
 />
 
 Nach <InlineMath math="0{,}1" />, <InlineMath math="0{,}2" /> und <InlineMath math="0{,}3\text{ s}" /> ist die Kugel <InlineMath math="5" />, <InlineMath math="20" /> und <InlineMath math="45\text{ cm}" /> gefallen, dasselbe <InlineMath math="1:4:9" />-Muster wie beim Auto, das aus dem Stand anfährt. Den Boden <InlineMath math="1{,}8\text{ m}" /> tiefer erreicht sie nach <InlineMath math="0{,}6\text{ s}" />.
 
-## Das Beschleunigungsvorzeichen hängt von der positiven Richtung ab
+### Das Beschleunigungsvorzeichen hängt von der positiven Richtung ab
 
 Bei eindimensionaler Bewegung hängen positive und negative Vorzeichen von der **gewählten positiven Richtung** ab. Wenn rechts positiv ist, bedeutet eine positive Beschleunigung, dass die Geschwindigkeitsänderung nach rechts zeigt.
 

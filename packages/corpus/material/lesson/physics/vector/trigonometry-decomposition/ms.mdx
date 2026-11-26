@@ -1,5 +1,3 @@
-
-
 export const metadata = {
   title: "Leraian Vektor secara Trigonometri",
   description:
@@ -12,79 +10,99 @@ export const metadata = {
 
 ## Sudut Menentukan Komponen
 
-Apabila vektor membentuk sudut dengan suatu paksi, komponennya boleh dicari menggunakan trigonometri. Ideanya mudah: vektor condong itu menjadi <Highlight>hipotenus bagi segi tiga bersudut tegak</Highlight>, manakala komponennya menjadi sisi mengufuk dan sisi menegak.
+Apabila vektor membentuk sudut dengan suatu paksi, trigonometri meleraikannya secara kemas kepada komponen paksi. Vektor condong bertindak sebagai <Highlight>hipotenus bagi segi tiga bersudut tegak</Highlight>, manakala komponen mengufuk dan menegaknya menjadi kedua-dua sisi berserenjang.
 
-Bagi vektor dalam sukuan I, ukur <InlineMath math="\theta" /> dari paksi <InlineMath math="x" /> positif. Komponen mengufuk bersebelahan dengan sudut itu dan komponen menegak bertentangan dengannya. Bagi magnitud vektor <InlineMath math="F>0" />, bahagikan setiap sisi dengan hipotenus, kemudian darabkan semula dengan <InlineMath math="F" />.
+Bagi vektor dalam sukuan I, ukur <InlineMath math="\theta" /> dari paksi <InlineMath math="x" /> positif. Komponen mengufuk bersebelahan dengan sudut dan komponen menegak bertentangan dengannya. Membahagikan setiap sisi dengan magnitud positif <InlineMath math="F" /> lalu mendarab semula dengan <InlineMath math="F" /> memberikan:
 
 <MathContainer>
   <BlockMath math="\cos\theta=\frac{F_x}{F}\quad\Rightarrow\quad F_x=F\cos\theta" />
   <BlockMath math="\sin\theta=\frac{F_y}{F}\quad\Rightarrow\quad F_y=F\sin\theta" />
 </MathContainer>
 
-> Kenal pasti sisi yang bersebelahan dengan sudut rujukan sebelum memilih <InlineMath math="\cos" />, dan sisi yang bertentangan sebelum memilih <InlineMath math="\sin" />.
+> Kenal pasti sisi yang bersebelahan dengan sudut rujukan sebelum memilih kosinus, dan sisi yang bertentangan sebelum memilih sinus.
 
-## Mencondongkan Satah Condong
+Pada satah condong <InlineMath math="37^\circ" />, berat <InlineMath math="19.6\text{ N}" /> terlerai kepada <InlineMath math="11.8\text{ N}" /> menuruni cerun dan <InlineMath math="15.65\text{ N}" /> berserenjang ke dalam papan. Mengubah kecondongan menukar saiz kedua-dua bahagian sementara **berat keseluruhan kekal malar**.
 
-Pada satah condong <InlineMath math="37^\circ" />, berat <InlineMath math="19.6\text{ N}" /> terlerai kepada <InlineMath math="W\sin\theta" />, kira-kira <InlineMath math="11.8\text{ N}" /> menuruni cerun, dan <InlineMath math="W\cos\theta" />, kira-kira <InlineMath math="15.65\text{ N}" /> ke dalam cerun. Ubah sudutnya dan dua bahagian itu bertukar saiz, sedangkan **berat itu sendiri tidak pernah berubah**.
-
-<RampBlockComponentLab
-  title={<>Sinus dan Kosinus pada Satah Condong</>}
-  description={<>Bongkah <InlineMath math="2\text{ kg}" /> di atas papan. Bongkah mula menggelongsor apabila <InlineMath math="\tan\theta" /> melebihi <InlineMath math="0.8" />.</>}
-  angle={37}
-  friction={0.8}
-  mass={2}
+<MathVisual
+  title={<>Komponen Sinus dan Kosinus pada Satah Condong</>}
+  description={<>Komponen berat menuruni cerun <InlineMath math="W\sin\theta" /> dan berserenjang <InlineMath math="W\cos\theta" /> bagi bongkah <InlineMath math="2\text{ kg}" /> pada sudut <InlineMath math="a" />.</>}
+  footer="Apabila sudut cerun naik, daya menuruni cerun membesar dan daya normal mengecil."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 90 }, y: { min: 0, max: 22 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 10, max: 70, value: 37, step: 1, label: "ramp-angle" },
+    ],
+    objects: [
+      { id: "along", kind: "function", appearance: "primary", formula: "19.6 * sin(x * pi / 180)", domain: { min: 0, max: 90 } },
+      { id: "into", kind: "function", appearance: "secondary", formula: "19.6 * cos(x * pi / 180)", domain: { min: 0, max: 90 } },
+      { id: "pt-along", kind: "marker", appearance: "primary", x: "a", y: "19.6 * sin(a * pi / 180)" },
+      { id: "pt-into", kind: "marker", appearance: "secondary", x: "a", y: "19.6 * cos(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "along", objectId: "along", at: { x: 68, y: 18.2 }, placement: "above-left" },
+      { key: "into", objectId: "into", at: { x: 22, y: 18.2 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "along-n", formula: "19.6 * sin(a * pi / 180)" },
+      { key: "into-n", formula: "19.6 * cos(a * pi / 180)" },
+      { key: "total-n", formula: "19.6" },
+    ],
+  }}
   labels={{
-    along: <>Menuruni cerun <InlineMath math="W\sin\theta" /></>,
-    angle: <>Sudut satah condong</>,
-    angleName: "Sudut satah condong",
-    into: <>Ke dalam cerun <InlineMath math="W\cos\theta" /></>,
-    viewLabel: "Bongkah kayu di atas papan yang condong",
-    weight: <>Berat <InlineMath math="W" /></>,
+    along: <InlineMath math="W\sin\theta" />,
+    into: <InlineMath math="W\cos\theta" />,
+    "ramp-angle": <>Sudut cerun (<InlineMath math="^\circ" />)</>,
+    "along-n": <>Menuruni cerun (N)</>,
+    "into-n": <>Ke dalam cerun (N)</>,
+    "total-n": <>Jumlah berat (N)</>,
   }}
 />
 
-## Daya Condong pada Paksi Koordinat
+Pada sudut <InlineMath math="45^\circ" />, kedua-dua lengkung bersilang pada nilai yang sama kerana <InlineMath math="\sin45^\circ" /> bersamaan <InlineMath math="\cos45^\circ" />.
 
-Bayangkan seutas tali menarik sebuah kotak dengan daya <InlineMath math="\vec{F}" /> ke atas dan ke kanan. Tarikan itu mempunyai **komponen daya ke kanan dan ke atas**. Komponen ke atas tidak semestinya mengangkat kotak itu. Gerakannya juga bergantung pada berat kotak dan daya normal daripada lantai.
+## Meleraikan Daya Condong pada Paksi Koordinat
+
+Bayangkan seutas tali menarik sebuah kotak condong ke atas dan ke kanan. Tarikan itu terlerai kepada **komponen ke kanan dan ke atas** yang hasil tambah vektornya menghasilkan semula daya asal tanpa mengubah kesan bersihnya.
+
+### Komponen Anggaran dan Komponen Tepat
+
+Lukis daya <InlineMath math="50\text{ N}" /> pada <InlineMath math="37^\circ" /> di atas garis mengufuk terus pada paksi newton. Mengikut <InlineMath math="F_x" /> diikuti <InlineMath math="F_y" /> berhenti tepat di hujung <InlineMath math="\vec{F}" />.
 
 <MathVisual
   title={<>Meleraikan Daya Condong</>}
   description={
     <>
-      Daya <InlineMath math="F=50\text{ N}" /> membentuk sudut{" "}
-      <InlineMath math="37^\circ" /> di atas garis mengufuk, jadi
-      komponennya boleh dianggarkan daripada <InlineMath math="\cos37^\circ" /> dan{" "}
-      <InlineMath math="\sin37^\circ" />.
+      Daya <InlineMath math="F=50\text{ N}" /> pada <InlineMath math="37^\circ" />{" "}
+      di atas garis mengufuk dilukis terus dalam newton bersama komponen mengufuk
+      dan menegaknya.
     </>
   }
+  footer="Komponen mengufuk Fx diikuti menegak Fy mendarat tepat pada hujung F."
   labels={{
-    "l1": <InlineMath math="F" />,
-    "l2": <InlineMath math="F_x" />,
-    "l3": <InlineMath math="F_y" />,
+    l1: <InlineMath math="\vec{F}" />,
+    l2: <InlineMath math="F_x" />,
+    l3: <InlineMath math="F_y" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
-    view: { kind: "fit", padding: 0.2 },
+    frame: { kind: "cartesian", x: { min: -5, max: 48 }, y: { min: -5, max: 36 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2.4, y: 1.81 }, { x: 3.99, y: 3.01 }], appearance: "primary" },
-      { id: "s1-head", kind: "vector", from: { x: 2.4, y: 1.81 }, to: { x: 3.99, y: 3.01 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 3.99, y: 0 }], appearance: "secondary" },
-      { id: "s2-head", kind: "vector", from: { x: 2, y: 0 }, to: { x: 3.99, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: [{ x: 3.99, y: 0 }, { x: 3.99, y: 1.5 }, { x: 3.99, y: 3.01 }], appearance: "answer" },
-      { id: "s3-head", kind: "vector", from: { x: 3.99, y: 1.5 }, to: { x: 3.99, y: 3.01 }, appearance: "answer" },
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 39.93, y: 30.09 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 39.93, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 39.93, y: 0 }, to: { x: 39.93, y: 30.09 }, appearance: "answer" },
     ],
     labels: [
-      { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.81 }, placement: "above-right" },
-      { key: "l2", objectId: "s2", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "l3", objectId: "s3", at: { x: 3.99, y: 1.5 }, placement: "right" },
+      { key: "l1", objectId: "s1", at: { x: 20, y: 16 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 39.93, y: 15 }, placement: "right" },
     ],
   }}
 />
 
-Setiap unit koordinat dalam model ini mewakili <InlineMath math="10\text{ N}" />. Titik akhir <InlineMath math="F_x" /> yang diikuti oleh <InlineMath math="F_y" /> sama dengan titik akhir vektor <InlineMath math="\vec{F}" />. Komponen itu menerangkan daya yang sama dalam dua arah.
-
-Daya <InlineMath math="50\text{ N}" /> bertindak <InlineMath math="37^\circ" /> di atas garis mengufuk. Gunakan **nilai anggaran trigonometri** <InlineMath math="\cos37^\circ\approx0.8" /> dan <InlineMath math="\sin37^\circ\approx0.6" />.
+Dengan **nilai anggaran trigonometri** <InlineMath math="\cos37^\circ\approx0.8" /> dan <InlineMath math="\sin37^\circ\approx0.6" />, kamu mendapat anggaran pantas:
 
 <MathContainer>
   <BlockMath math="\begin{aligned}
@@ -100,78 +118,96 @@ Daya <InlineMath math="50\text{ N}" /> bertindak <InlineMath math="37^\circ" /> 
   \end{aligned}" />
 </MathContainer>
 
-Dengan pembundaran ini, komponen daya <InlineMath math="50\text{ N}" /> itu ialah lebih kurang tarikan <InlineMath math="40\text{ N}" /> ke kanan dan tarikan <InlineMath math="30\text{ N}" /> ke atas.
-
-Tanpa membundarkan terlalu awal, nilainya lebih kurang <InlineMath math="39.93\text{ N}" /> dan <InlineMath math="30.09\text{ N}" />. Model ini menggunakan sudut <InlineMath math="37^\circ" /> secara terus, jadi koordinatnya bukan tepat <InlineMath math="4" /> dan <InlineMath math="3" />.
-
-Inilah daya tali yang dileraikan pada paksi. Kosinus memberikan bahagian mengufuk dan sinus memberikan bahagian menegak, lebih kurang <InlineMath math="40\text{ N}" /> dan <InlineMath math="30\text{ N}" />, dan kedua-dua bahagian itu membina semula daya <InlineMath math="50\text{ N}" />.
+Tanpa membundarkan terlalu awal, nilai tepatnya ialah <InlineMath math="39.93\text{ N}" /> ke kanan dan <InlineMath math="30.09\text{ N}" /> ke atas. Kedua-dua komponen ini membina semula daya tali <InlineMath math="50\text{ N}" /> secara penuh.
 
 <MathVisual
   title={<>Meleraikan Daya Tarikan</>}
-  description={<><InlineMath math="F=50\text{ N}" /> pada <InlineMath math="37^\circ" /> di atas garis mengufuk bersama komponennya. Satu petak grid ialah <InlineMath math="10\text{ N}" />.</>}
+  description={<><InlineMath math="F=50\text{ N}" /> pada <InlineMath math="37^\circ" /> di atas garis mengufuk bersama label komponen trigonometri dalam newton.</>}
+  footer="Kosinus memberi kira-kira 40 N mengufuk dan sinus kira-kira 30 N menegak."
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 3.8 } },
-    view: { kind: "fit", padding: 0.06 },
+    frame: { kind: "cartesian", x: { min: -5, max: 52 }, y: { min: -8, max: 38 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "fx", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 } },
-      { id: "fx-head", kind: "polygon", appearance: "construction", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.25, y: 0.125 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.25, y: -0.125 }] },
-      { id: "fy", kind: "segment", appearance: "secondary", from: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) } },
-      { id: "fy-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) }, { x: 5 * Math.cos((37 * Math.PI) / 180) + 0.125, y: 5 * Math.sin((37 * Math.PI) / 180) + -0.25 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.125, y: 5 * Math.sin((37 * Math.PI) / 180) + -0.25 }] },
-      { id: "f", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) } },
-      { id: "f-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) }, { x: 5 * Math.cos((37 * Math.PI) / 180) - (0.25 * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) + ((0.25 / 2) * -3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416), y: 5 * Math.sin((37 * Math.PI) / 180) - (0.25 * 3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416) + ((0.25 / 2) * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) }, { x: 5 * Math.cos((37 * Math.PI) / 180) - (0.25 * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) - ((0.25 / 2) * -3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416), y: 5 * Math.sin((37 * Math.PI) / 180) - (0.25 * 3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416) - ((0.25 / 2) * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) }] },
+      { id: "fx", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 0 } },
+      { id: "fy", kind: "vector", appearance: "secondary", from: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 0 }, to: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 50 * Math.sin((37 * Math.PI) / 180) } },
+      { id: "f", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 50 * Math.sin((37 * Math.PI) / 180) } },
     ],
     labels: [
-      { key: "fx", objectId: "fx", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "fy", objectId: "fy", at: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 1.5 }, placement: "right" },
-      { key: "f", objectId: "f", at: { x: 2, y: 1.5 }, placement: "above-left" },
+      { key: "fx", objectId: "fx", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "fy", objectId: "fy", at: { x: 50 * Math.cos((37 * Math.PI) / 180), y: 15 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: 20, y: 15 }, placement: "above-left" },
     ],
   }}
   labels={{
-    fx: <InlineMath math="F_x=F\cos37^\circ\approx40\text{ N}" />,
-    fy: <InlineMath math="F_y=F\sin37^\circ\approx30\text{ N}" />,
+    fx: <InlineMath math="F_x\approx40\text{ N}" />,
+    fy: <InlineMath math="F_y\approx30\text{ N}" />,
     f: <InlineMath math="F=50\text{ N}" />,
   }}
 />
 
-Inilah tarikan <InlineMath math="50\text{ N}" /> pada <InlineMath math="37^\circ" /> yang sama pada kereta luncur sebenar. Kad ini mengira tanpa pembundaran awal, jadi bacaannya <InlineMath math="39.9\text{ N}" /> di sepanjang salji dan <InlineMath math="30.1\text{ N}" /> ke atas, hampir dengan <InlineMath math="40\text{ N}" /> dan <InlineMath math="30\text{ N}" /> di atas.
+Komponen ke atas tidak semestinya mengangkat kotak daripada lantai kerana gerakannya juga bergantung pada berat dan daya normal.
 
-<SledPullWorkLab
-  title={<>Menarik Kereta Luncur pada Satu Sudut</>}
-  description={<>Kereta luncur berisi kayu api <InlineMath math="20\text{ kg}" />, ditarik sejauh <InlineMath math="10\text{ m}" /> dengan <InlineMath math="50\text{ N}" />.</>}
-  angle={37}
-  distance={10}
-  force={50}
-  mass={20}
+### Menarik Kereta Luncur pada Sudut Boleh Laras
+
+Kenakan tarikan <InlineMath math="50\text{ N}" /> yang sama pada kereta luncur sejauh <InlineMath math="10\text{ m}" /> sambil melaraskan **sudut tali** <InlineMath math="a" />. Pada <InlineMath math="37^\circ" />, pengiraan tepat memberikan <InlineMath math="39.9\text{ N}" /> di sepanjang salji, <InlineMath math="30.1\text{ N}" /> ke atas dan kerja <InlineMath math="399.3\text{ J}" />.
+
+<MathVisual
+  title={<>Komponen Tarikan Kereta Luncur Berbanding Sudut</>}
+  description={<>Daya tali <InlineMath math="50\text{ N}" /> dileraikan kepada mengufuk <InlineMath math="F_x" /> dan menegak <InlineMath math="F_y" /> dalam newton apabila sudut <InlineMath math="a" /> berubah.</>}
+  footer="Menaikkan tali mengurangkan tarikan maju dan menaikkan daya angkat pada 50 N."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 55 }, y: { min: -5, max: 55 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 0, max: 80, value: 37, step: 1, label: "rope-angle" },
+    ],
+    objects: [
+      { id: "fx", kind: "path", appearance: "construction", points: [{ x: "0", y: "0" }, { x: "50 * cos(a * pi / 180)", y: "0" }] },
+      { id: "fy", kind: "path", appearance: "secondary", points: [{ x: "50 * cos(a * pi / 180)", y: "0" }, { x: "50 * cos(a * pi / 180)", y: "50 * sin(a * pi / 180)" }] },
+      { id: "pull", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "50 * cos(a * pi / 180)", y: "50 * sin(a * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "50 * cos(a * pi / 180)", y: "50 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "50 * cos(a * pi / 180)", y: "50 * sin(a * pi / 180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "fx-n", formula: "50 * cos(a * pi / 180)" },
+      { key: "fy-n", formula: "50 * sin(a * pi / 180)" },
+      { key: "work-j", formula: "500 * cos(a * pi / 180)" },
+    ],
+  }}
   labels={{
-    along: <>Di sepanjang salji <InlineMath math="F\cos\theta" /></>,
-    angle: <>Sudut tali di atas salji</>,
-    angleName: "Sudut tali di atas salji",
-    normal: <>Daya normal daripada salji</>,
-    up: <>Bahagian ke atas <InlineMath math="F\sin\theta" /></>,
-    viewLabel: "Kereta luncur berisi kayu api ditarik di atas salji",
-    work: <>Kerja sepanjang <InlineMath math="10\text{ m}" /></>,
+    tip: <InlineMath math="\vec{F}" />,
+    "rope-angle": <>Sudut tali (<InlineMath math="^\circ" />)</>,
+    "fx-n": <>Sepanjang salji (N)</>,
+    "fy-n": <>Ke atas (N)</>,
+    "work-j": <>Kerja 10 m (J)</>,
   }}
 />
 
-## Sudut dari Paksi Menegak
+Perhatikan bahawa hasil tambah kuasa dua komponen sentiasa memenuhi <InlineMath math="F_x^2+F_y^2=2500\text{ N}^2" />, walau berapa pun sudut tali itu.
 
-Kekalkan daya itu dalam sukuan I, tetapi ukur **sudut dari paksi menegak positif** ke arah daya. Komponen yang bersebelahan dengan <InlineMath math="\theta" /> kini ialah <InlineMath math="F_y" />, manakala <InlineMath math="F_x" /> bertentangan dengan sudut itu.
+## Sudut Diukur dari Paksi Menegak
+
+Kekalkan daya dalam sukuan I, tetapi ukur **sudut dari paksi menegak positif** dan bukan garis mengufuk. Kini <InlineMath math="F_y" /> bersebelahan dengan <InlineMath math="\theta" /> lalu mengambil kosinus, manakala <InlineMath math="F_x" /> bertentangan lalu mengambil sinus:
 
 <MathContainer>
   <BlockMath math="F_y=F\cos\theta" />
   <BlockMath math="F_x=F\sin\theta" />
 </MathContainer>
 
-Sebelum menggunakan rumus, sentiasa tanya diri kamu: dari paksi mana sudut itu diukur? Semakan kecil ini mengelakkan kesilapan lazim semasa meleraikan vektor.
+Sentiasa semak paksi rujukan sudut sebelum memilih sinus atau kosinus.
 
-### Tali Layang-layang
+### Tegangan Tali Layang
 
-Tali layang-layang menarik pancangnya dengan <InlineMath math="40\text{ N}" /> pada <InlineMath math="60^\circ" /> dari garis menegak. Diukur dari paksi itu, **bahagian menegak mengambil kosinus**, <InlineMath math="20\text{ N}" />, dan bahagian mengufuk mengambil sinus, <InlineMath math="34.6\text{ N}" />.
+Tali layang menarik pancangnya di pantai dengan <InlineMath math="40\text{ N}" /> pada <InlineMath math="60^\circ" /> dari garis menegak. Oleh sebab sudut itu bersandar pada paksi menegak, **bahagian menegak mengambil kosinus** (<InlineMath math="20\text{ N}" />) dan bahagian mengufuk mengambil sinus (<InlineMath math="34.6\text{ N}" />).
 
 <KiteStringTensionLab
   title={<>Sudut Diukur dari Garis Menegak</>}
   description={<>Tali <InlineMath math="30\text{ m}" /> dengan tegangan <InlineMath math="40\text{ N}" />. Condongkan tali itu menjauhi garis menegak.</>}
+  footer="Dari paksi menegak, kosinus memberi daya angkat dan sinus memberi tarikan datar."
   angle={60}
   length={30}
   tension={40}
@@ -184,13 +220,16 @@ Tali layang-layang menarik pancangnya dengan <InlineMath math="40\text{ N}" /> p
   }}
 />
 
+Merapatkan tali ke arah garis menegak meningkatkan daya angkat sambil mengecilkan tarikan mengufuk pada pancang.
+
 ### Bearing dari Utara
 
-Bearing kapal **juga satu sudut dari paksi menegak**, iaitu utara. Pada bearing <InlineMath math="30^\circ" />, pelayaran <InlineMath math="10\text{ km}" /> menjadi <InlineMath math="10\cos30^\circ" />, kira-kira <InlineMath math="8.66\text{ km}" />, ke utara dan <InlineMath math="10\sin30^\circ" />, <InlineMath math="5\text{ km}" />, ke timur.
+Bearing kapal ialah **satu lagi sudut yang diukur dari paksi utara**. Pada bearing <InlineMath math="30^\circ" />, pelayaran <InlineMath math="10\text{ km}" /> terlerai kepada <InlineMath math="8.66\text{ km}" /> ke utara (<InlineMath math="10\cos30^\circ" />) dan <InlineMath math="5\text{ km}" /> ke timur (<InlineMath math="10\sin30^\circ" />).
 
 <ShipBearingComponentLab
   title={<>Kosinus ke Utara, Sinus ke Timur</>}
   description={<>Feri belayar <InlineMath math="10\text{ km}" />. Putar bearingnya, yang diukur mengikut arah jam dari utara.</>}
+  footer="Bearing dari utara meletakkan kosinus pada utara dan sinus pada timur."
   courses={[{ bearing: 30, distance: 10 }]}
   labels={{
     bearing: <>Bearing peringkat terakhir</>,
@@ -203,9 +242,11 @@ Bearing kapal **juga satu sudut dari paksi menegak**, iaitu utara. Pada bearing 
   }}
 />
 
+Setiap kali sudut dirujuk dari utara, ingatlah bahawa utara ialah sisi bersebelahan dan timur ialah sisi bertentangan.
+
 ## Tanda Komponen Mengikut Sukuan
 
-Jika <InlineMath math="\theta" /> ialah **sudut kedudukan piawai penuh** yang diukur lawan arah jam dari <InlineMath math="x" /> positif, <InlineMath math="\cos\theta" /> dan <InlineMath math="\sin\theta" /> sudah memberikan tanda komponen. Jika sudut rujukan tirus digunakan, kira dahulu magnitud komponen, kemudian tentukan tandanya mengikut sukuan.
+Jika <InlineMath math="\theta" /> ialah **sudut kedudukan piawai penuh** lawan arah jam dari <InlineMath math="x" /> positif, <InlineMath math="\cos\theta" /> dan <InlineMath math="\sin\theta" /> terus memberikan tanda komponen yang tepat. Jika sudut rujukan tirus digunakan, kira magnitud komponen dahulu lalu tetapkan tanda mengikut sukuan.
 
 | Arah vektor | Tanda <InlineMath math="F_x" /> | Tanda <InlineMath math="F_y" /> |
 | :--------------- | :------------------------------- | :------------------------------- |
@@ -214,28 +255,23 @@ Jika <InlineMath math="\theta" /> ialah **sudut kedudukan piawai penuh** yang di
 | bawah dan kiri | negatif | negatif |
 | bawah dan kanan | positif | negatif |
 
-Jika daya menghala ke atas dan ke kiri, komponen mengufuknya negatif kerana ia bertentangan dengan paksi <InlineMath math="x" /> positif, manakala komponen menegaknya kekal positif.
-
-Ukur sudut dari paksi x positif mengikut lawan arah jam, dan sukuan akan memberikan tandanya. Setiap anak panah mempunyai saiz yang sama, tetapi komponennya mengambil tanda sukuan yang ditujunya. Besarkan paparan pada setiap hujung anak panah.
+Empat anak panah sama magnitud di bawah menghala ke keempat-empat sukuan pada sudut <InlineMath math="30^\circ" />, <InlineMath math="150^\circ" />, <InlineMath math="210^\circ" /> dan <InlineMath math="330^\circ" />.
 
 <MathVisual
   title={<>Tanda Komponen Mengikut Sukuan</>}
-  description={<>Empat daya yang sama saiz pada <InlineMath math="30^\circ" />, <InlineMath math="150^\circ" />, <InlineMath math="210^\circ" /> dan <InlineMath math="330^\circ" />.</>}
+  description={<>Empat daya sama magnitud <InlineMath math="3\text{ N}" /> pada <InlineMath math="30^\circ" />, <InlineMath math="150^\circ" />, <InlineMath math="210^\circ" /> dan <InlineMath math="330^\circ" />.</>}
+  footer="Empat anak panah sama panjang membawa empat pasangan tanda komponen berbeza."
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -3, max: 3 } },
-    view: { kind: "fit", padding: 0.06 },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
       { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 3 } },
-      { id: "q30", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 } },
-      { id: "q30-head", kind: "polygon", appearance: "primary", vertices: [{ x: (3 * Math.sqrt(3)) / 2, y: 1.5 }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) + ((0.25 / 2) * -1.5) / Math.hypot(2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(2.598076211353316, 1.5) + ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) - ((0.25 / 2) * -1.5) / Math.hypot(2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(2.598076211353316, 1.5) - ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) }] },
-      { id: "q150", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: 1.5 } },
-      { id: "q150-head", kind: "polygon", appearance: "secondary", vertices: [{ x: -(3 * Math.sqrt(3)) / 2, y: 1.5 }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) + ((0.25 / 2) * -1.5) / Math.hypot(-2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(-2.598076211353316, 1.5) + ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) - ((0.25 / 2) * -1.5) / Math.hypot(-2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(-2.598076211353316, 1.5) - ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) }] },
-      { id: "q210", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: -1.5 } },
-      { id: "q210-head", kind: "polygon", appearance: "construction", vertices: [{ x: -(3 * Math.sqrt(3)) / 2, y: -1.5 }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) + ((0.25 / 2) * 1.5) / Math.hypot(-2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(-2.598076211353316, -1.5) + ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) - ((0.25 / 2) * 1.5) / Math.hypot(-2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(-2.598076211353316, -1.5) - ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) }] },
-      { id: "q330", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: -1.5 } },
-      { id: "q330-head", kind: "polygon", appearance: "answer", vertices: [{ x: (3 * Math.sqrt(3)) / 2, y: -1.5 }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) + ((0.25 / 2) * 1.5) / Math.hypot(2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(2.598076211353316, -1.5) + ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) - ((0.25 / 2) * 1.5) / Math.hypot(2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(2.598076211353316, -1.5) - ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) }] },
+      { id: "q30", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 } },
+      { id: "q150", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: 1.5 } },
+      { id: "q210", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: -1.5 } },
+      { id: "q330", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: -1.5 } },
     ],
     labels: [
       { key: "q30", objectId: "q30", at: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 }, placement: "above" },
@@ -252,22 +288,41 @@ Ukur sudut dari paksi x positif mengikut lawan arah jam, dan sukuan akan memberi
   }}
 />
 
-## Angin dari Setiap Sukuan
+Keempat-empat anak panah berkongsi sudut rujukan tirus <InlineMath math="30^\circ" /> dengan paksi mengufuk, jadi hanya tanda positif dan negatif membezakan setiap sukuan.
 
-Angin <InlineMath math="10\text{ m/s}" /> ke arah <InlineMath math="210^\circ" /> bertiup ke sukuan ketiga, jadi **kosinus dan sinus kedua-duanya negatif**: <InlineMath math="-8.66\text{ m/s}" /> ke timur dan <InlineMath math="-5\text{ m/s}" /> ke utara. Putar arahnya melalui keempat-empat sukuan dan baca tandanya.
+Putar vektor angin <InlineMath math="10\text{ m/s}" /> melalui <InlineMath math="360^\circ" /> penuh. Pada <InlineMath math="210^\circ" /> dalam sukuan III, **kosinus dan sinus kedua-duanya negatif**, memberikan <InlineMath math="-8.66\text{ m/s}" /> ke timur dan <InlineMath math="-5\text{ m/s}" /> ke utara.
 
-<WindMapVectorLab
-  title={<>Tanda Komponen Angin</>}
-  description={<>Angin <InlineMath math="10\text{ m/s}" />. Arahnya diukur melawan arah jam dari timur.</>}
-  angle={210}
-  speed={10}
+<MathVisual
+  title={<>Komponen Angin pada Keempat Sukuan</>}
+  description={<>Angin <InlineMath math="10\text{ m/s}" /> pada sudut piawai <InlineMath math="a" /> lawan arah jam dari timur dengan tanda <InlineMath math="v_x" /> dan <InlineMath math="v_y" />.</>}
+  footer="Memutar sudut a hingga 360 darjah membalikkan tanda komponen pada setiap paksi."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 12 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 0, max: 360, value: 210, step: 15, label: "wind-angle" },
+    ],
+    objects: [
+      { id: "vx", kind: "path", appearance: "construction", points: [{ x: "0", y: "0" }, { x: "10 * cos(a * pi / 180)", y: "0" }] },
+      { id: "vy", kind: "path", appearance: "secondary", points: [{ x: "10 * cos(a * pi / 180)", y: "0" }, { x: "10 * cos(a * pi / 180)", y: "10 * sin(a * pi / 180)" }] },
+      { id: "wind", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "10 * cos(a * pi / 180)", y: "10 * sin(a * pi / 180)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "10 * cos(a * pi / 180)", y: "10 * sin(a * pi / 180)" },
+    ],
+    labels: [
+      { key: "tip", objectId: "tip", at: { x: "10 * cos(a * pi / 180)", y: "10 * sin(a * pi / 180)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "vx-ms", formula: "10 * cos(a * pi / 180)" },
+      { key: "vy-ms", formula: "10 * sin(a * pi / 180)" },
+    ],
+  }}
   labels={{
-    angle: <>Arah dari timur</>,
-    angleName: "Arah dari timur",
-    east: <>Komponen timur <InlineMath math="v_x" /></>,
-    north: <>Komponen utara <InlineMath math="v_y" /></>,
-    speed: <>Laju angin</>,
-    speedName: "Laju angin",
-    viewLabel: "Peta cuaca angin di atas pulau-pulau",
+    tip: <InlineMath math="\vec{v}" />,
+    "wind-angle": <>Sudut dari timur (<InlineMath math="^\circ" />)</>,
+    "vx-ms": <>Komponen timur (m/s)</>,
+    "vy-ms": <>Komponen utara (m/s)</>,
   }}
 />
+
+Melintasi <InlineMath math="90^\circ" /> atau <InlineMath math="270^\circ" /> membalikkan tanda <InlineMath math="v_x" />, manakala melintasi <InlineMath math="180^\circ" /> atau <InlineMath math="360^\circ" /> membalikkan tanda <InlineMath math="v_y" />.
