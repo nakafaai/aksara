@@ -1,29 +1,31 @@
 export const metadata = {
   title: "Immunity in Humans Notes",
   description:
-    "Form 4 Biology Chapter 11: explain the three lines of defence, how antibodies act, types of immunity, the secondary response and herd immunity, with practice.",
+    "The three lines of human body defence, viral neutralisation by antibodies, immune memory in booster doses, herd immunity thresholds, and HIV.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Immunity in Humans",
 };
 
-## The Body Defends Itself with Three Lines of Defence
+## Three Lines of Body Defence
 
-**Immunity** is the body's ability to fight infection by pathogens. The body has **three lines of defence**. The first line stops pathogens getting in. The second line destroys pathogens that do get in, whatever kind they are. The third line is the **specific immune response** by lymphocytes, which make antibodies against a particular antigen and remember it. In the models here, you watch antibodies block virions, compare the primary and secondary responses and see how vaccination slows an outbreak.
+Think of your body as a guarded castle. Thick outer walls block strangers at the gate, patrolling guards inside grab any trespasser on sight, and trained specialists study one exact intruder so they can defeat it fast if it ever returns. **Immunity** works through those same **three lines of defence** against pathogens.
 
-## The First and Second Lines of Defence
+The first line builds **physical and chemical barriers** that keep germs out: unbroken skin, airway mucus swept upward by cilia, lysozyme in tears and saliva, and strong hydrochloric acid in the stomach.
 
-The first line is made of **physical and chemical barriers**: unbroken skin, mucus and cilia in the airways, lysozyme in tears and saliva, and hydrochloric acid in the stomach.
+If a pathogen slips past those barriers, the non-specific second line responds against any invader:
 
-If a pathogen gets past the first line, the second line acts:
+- **Phagocytosis**, where white blood cells such as neutrophils and monocytes engulf and digest pathogens.
+- **Inflammation**, where an injured spot turns red, warm, and swollen as extra blood and phagocytes rush in.
+- **Fever**, where higher body temperature slows down how fast pathogens multiply.
 
-- **phagocytosis** by neutrophils and monocytes, which engulf and digest pathogens,
-- **inflammation**, where a wound turns red, hot and swollen because more blood and phagocytes are brought there,
-- **fever**, where body temperature rises to slow the pathogen's reproduction.
+> The first two lines fight any germ without recognising its identity, while the third line builds specific antibodies and lasting memory against one exact antigen.
 
-## Antigens and Antibodies
+Keep phagocytosis firmly inside the non-specific second line rather than the third line: a phagocyte swallows any foreign germ it meets without matching a custom antigen shape.
 
-An **antigen** is a foreign molecule, usually a protein on the surface of a pathogen, that triggers an immune response. An **antibody** is a Y-shaped protein made by B lymphocytes. Each antibody has a specific binding site that fits only one kind of antigen. This model shows the surface of a SARS-CoV-2 virion, whose spike proteins act as antigens.
+## Antigens and Antibody Action
+
+Imagine every germ wearing a unique surface badge called an **antigen**, usually a foreign protein. In the third line of defence, B lymphocytes build Y-shaped proteins called **antibodies** whose binding tips fit just one matching badge, never random germs. Inspect the spike proteins acting as antigens on the virion surface below.
 
 <SarsCov2VirionLab
   title={<>Spike Proteins as Antigens</>}
@@ -49,17 +51,17 @@ An **antigen** is a foreign molecule, usually a protein on the surface of a path
   }}
 />
 
-Antibodies destroy pathogens in several ways:
+Because spike proteins coat the entire outer envelope, antibodies can latch onto them before the virus touches a human cell. Depending on the pathogen, antibodies clear threats in five main ways:
 
 | Action | Description |
 | :--- | :--- |
 | Neutralisation | Antibodies cover the active site of a toxin or a virus's spike proteins |
-| Agglutination | Antibodies clump pathogens together so phagocytes can engulf them easily |
-| Precipitation | Antibodies make soluble antigens settle out |
-| Lysis | Antibodies break the pathogen's membrane |
-| Opsonisation | Antibodies tag pathogens for phagocytosis |
+| Agglutination | Antibodies clump pathogens together so phagocytes engulf them easily |
+| Precipitation | Antibodies make dissolved antigens settle out of solution |
+| Lysis | Antibodies break open the pathogen's membrane |
+| Opsonisation | Antibodies tag pathogens so phagocytes spot and swallow them faster |
 
-This model shows **neutralisation**. After vaccination, the antibody level rises day by day. Move the day and watch more virions being stopped from docking on the cell's receptors.
+Watch **neutralisation** unfold day by day after a vaccine dose. Slide the day forward below and see how rising antibody levels coat viral spikes before they reach cell receptors.
 
 <AntibodyNeutralizeLab
   title={<>Antibodies Stop Virions from Docking on a Cell</>}
@@ -69,6 +71,7 @@ This model shows **neutralisation**. After vaccination, the antibody level rises
       level rises after one dose of vaccine.
     </>
   }
+  footer={<>As antibody levels climb over two weeks, nearly every virion is blocked.</>}
   mode="days"
   labels={{
     day: "Days after the dose",
@@ -80,73 +83,74 @@ This model shows **neutralisation**. After vaccination, the antibody level rises
   }}
 />
 
-In the first week there are hardly any antibodies, so virions can still dock. On day seven, this model gives each virion about a <InlineMath math="41\%" /> chance of being blocked, and by day fourteen nearly every virion is blocked. That's why protection starts some time after vaccination.
+During the first few days, antibody levels stay low and virions still reach receptors. By day <InlineMath math="7" />, each virion faces roughly a <InlineMath math="41\%" /> chance of being blocked, and by day <InlineMath math="14" /> nearly every particle is stopped. That build-up time explains why full vaccine protection takes days to appear.
 
-## Primary and Secondary Responses
+## Immune Memory and Boosters
 
-When an antigen enters the body for the first time, lymphocytes take several days to multiply and make antibodies. This is the **primary response**. Some lymphocytes become **memory cells**. When the same antigen enters again, memory cells act quickly and make more antibodies. This is the **secondary response**.
+Meeting a new antigen takes days of training, yet once your lymphocytes finish that first fight they keep **long-lived memory cells**. Those saved blueprints turn future encounters and booster shots into swift, overwhelming defences.
 
-This model shows the antibody concentration after a first exposure on day <InlineMath math="0" /> and a second exposure on day <InlineMath math="30" />. Change the strength of the secondary response and compare its peak with the protective level.
+### Primary and Secondary
+
+On first contact with an antigen, lymphocytes need several days to multiply and produce antibodies in the **primary response**. When that same antigen returns later, memory cells wake instantly and launch a faster, much stronger **secondary response**. Adjust the secondary peak <InlineMath math="m" /> below across <InlineMath math="50" /> days.
 
 <MathVisual
   title={<>Primary and Secondary Responses</>}
   description={
     <>
-      Relative antibody concentration against time in units of{" "}
-      <InlineMath math="5" /> days. The horizontal line is the level that gives
-      protection.
+      Relative antibody concentration over <InlineMath math="50" /> days, with
+      first exposure on day <InlineMath math="0" /> and second exposure on day{" "}
+      <InlineMath math="30" />. The flat line marks the protective level.
     </>
   }
+  footer={<>Memory cells make the day-thirty wave climb faster and rise far higher.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 10.5 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "m", min: 3, max: 10, value: 9, step: 0.5, label: "m" },
     ],
     objects: [
-      { id: "primary", kind: "function", appearance: "primary", formula: "3(x/2)^2exp(2 - x)", domain: { min: 0, max: 6 } },
-      { id: "secondary", kind: "function", appearance: "secondary", formula: "m(x - 6)^2exp(2 - 2(x - 6))", domain: { min: 6, max: 10 } },
-      { id: "protection", kind: "function", appearance: "construction", formula: "2 + 0x", domain: { min: 0, max: 10 } },
-      { id: "peak", kind: "marker", x: "7", y: "m", appearance: "warning" },
+      { id: "primary", kind: "function", appearance: "primary", formula: "3(x/10)^2exp(2 - x/5)", domain: { min: 0, max: 30 } },
+      { id: "secondary", kind: "function", appearance: "secondary", formula: "m((x - 30)/5)^2exp(2 - 2(x - 30)/5)", domain: { min: 30, max: 50 } },
+      { id: "protection", kind: "function", appearance: "construction", formula: "2 + 0x", domain: { min: 0, max: 50 } },
+      { id: "peak", kind: "marker", x: "35", y: "m", appearance: "warning" },
     ],
     readouts: [
       { key: "ratio", formula: "m/3" },
     ],
   }}
   labels={{
-    m: <>Peak of the secondary response <InlineMath math="m" /></>,
-    ratio: <>Secondary peak compared with primary peak</>,
+    m: <>Secondary peak <InlineMath math="m" /></>,
+    ratio: <>Peak ratio</>,
   }}
 />
 
-### Example Comparing the Two Responses
-
-In the model, the primary response peaks at <InlineMath math="3" /> units on day <InlineMath math="10" />, and the secondary response peaks at <InlineMath math="9" /> units on day <InlineMath math="35" />. Calculate **how many times higher** the secondary peak is and **how fast** it's reached.
+Compare the two peaks at <InlineMath math="m = 9" />. The primary wave tops out at <InlineMath math="3" /> units on day <InlineMath math="10" />, whereas the secondary wave hits <InlineMath math="9" /> units on day <InlineMath math="35" />:
 
 <MathContainer>
 <BlockMath math="\frac{9}{3} = 3 \text{ times higher}" />
-<BlockMath math="\text{Primary: } 10 \text{ days}, \quad \text{secondary: } 35 - 30 = 5 \text{ days}" />
+<BlockMath math="\text{Primary: } 10\text{ days}, \qquad \text{Secondary: } 35 - 30 = 5\text{ days}" />
 </MathContainer>
 
-Check with the model: at <InlineMath math="m = 9" />, the ratio reads <InlineMath math="3" />. The secondary response is twice as fast and three times as strong, so the antibody concentration passes the protective level before the person falls ill.
+Because memory cells make the response **twice as fast and three times as strong**, antibody levels cross the protective line before symptoms develop. That is why people who recover from chickenpox rarely catch it a second time.
 
-### Booster Doses
+### Booster Doses and Types
 
-Vaccines make use of the secondary response. The first dose triggers a primary response and produces memory cells. A **booster dose** triggers a secondary response, so the antibody level rises higher and lasts longer.
-
-## Types of Immunity
+Vaccines tap directly into that memory loop. A first dose introduces harmless antigens to spark a primary response and store memory cells, and a **booster dose** triggers a secondary surge that lifts protection higher and longer.
 
 | Type | Natural | Artificial |
 | :--- | :--- | :--- |
-| Active, the body makes its own antibodies | After recovering from an infection | After receiving a vaccine |
-| Passive, antibodies come from outside | Mother's antibodies through the placenta or breast milk | Injection of antibody serum |
+| Active, body makes its own antibodies | Recovering from an infection | Receiving a vaccine |
+| Passive, ready-made antibodies enter | Mother's antibodies via placenta or breast milk | Injection of antibody serum |
 
-**Active immunity lasts a long time** because memory cells form. Passive immunity acts at once but is only temporary, because the antibodies received are eventually broken down and no memory cells form.
+Do not confuse vaccines with serum: **vaccines carry antigens** so your own body builds memory cells, while **serum carries ready-made antibodies**. Passive immunity, such as a baby receiving antibodies through breast milk, protects at once yet fades in weeks because no memory cells are made.
 
-## Vaccination and Herd Immunity
+## Outbreaks and Herd Immunity
 
-When enough people are immune, a pathogen struggles to find people it can infect, and the outbreak stops. This is **herd immunity**, which also protects babies and patients who can't be vaccinated. In this model, increase the number of vaccinated people and watch the outbreak's peak fall.
+Picture a spark landing in a forest where most trees are soaked with rain. Because the flame struggles to jump from one dry tree to the next, the fire fizzles out. **Herd immunity** works the same way: when enough people are immune, a pathogen runs out of hosts, shielding babies and patients who cannot be vaccinated.
+
+Raise the share of vaccinated people in the town square below and watch what happens to the outbreak curve.
 
 <EpidemicSpreadLab
   title={<>Vaccination Slows an Outbreak</>}
@@ -156,6 +160,7 @@ When enough people are immune, a pathogen struggles to find people it can infect
       are vaccinated and how many keep their distance.
     </>
   }
+  footer={<>Higher vaccination cuts off transmission paths and flattens the outbreak peak.</>}
   measures={["vaccinated", "distancing"]}
   labels={{
     vaccinated: "People vaccinated",
@@ -170,85 +175,56 @@ When enough people are immune, a pathogen struggles to find people it can infect
   }}
 />
 
-The share of the population that needs to be immune depends on the **basic reproduction number** <InlineMath math="R_0" />, the number of people one case infects in a population with no immunity:
+The immune share needed to halt spread depends on the **basic reproduction number** <InlineMath math="R_0" />, the average number of people one infected person passes the germ to in an unprotected population:
 
 <BlockMath math="\text{Herd immunity threshold} = 1 - \frac{1}{R_0}" />
+
+Drag the reproduction number <InlineMath math="r" /> below and see how steeply the required immune percentage climbs for highly contagious germs.
 
 <MathVisual
   title={<>The Herd Immunity Threshold</>}
   description={
     <>
-      The share of the population that needs to be immune, in tenths,{" "}
-      <InlineMath math="10\left(1 - \dfrac{1}{r}\right)" />, against the basic
-      reproduction number <InlineMath math="r" />.
+      Percentage of the population that must be immune,{" "}
+      <InlineMath math="100(1 - 1/r)" />, against the basic reproduction number{" "}
+      <InlineMath math="r" />.
     </>
   }
+  footer={<>More contagious pathogens push the required immune percentage toward <InlineMath math="100\%" />.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 18 }, y: { min: 0, max: 10.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 18 }, y: { min: 0, max: 105 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "r", min: 1, max: 18, value: 3, step: 0.5, label: "r" },
     ],
     objects: [
-      { id: "threshold", kind: "function", appearance: "primary", formula: "10(1 - 1/x)", domain: { min: 1, max: 18 } },
-      { id: "now", kind: "marker", x: "r", y: "10(1 - 1/r)", appearance: "warning" },
+      { id: "threshold", kind: "function", appearance: "primary", formula: "100(1 - 1/x)", domain: { min: 1, max: 18 } },
+      { id: "now", kind: "marker", x: "r", y: "100(1 - 1/r)", appearance: "warning" },
     ],
     readouts: [
       { key: "percent", formula: "100(1 - 1/r)" },
     ],
   }}
   labels={{
-    r: <>Basic reproduction number <InlineMath math="r" /></>,
-    percent: <>Herd immunity threshold in percent</>,
+    r: <>Reproduction number <InlineMath math="R_0" /></>,
+    percent: <>Threshold (<InlineMath math="\%" />)</>,
   }}
 />
 
-### Example Threshold for Measles
+Test two real diseases on that curve. Measles spreads rapidly with <InlineMath math="R_0 \approx 15" />, whereas another infection with <InlineMath math="R_0 = 4" /> needs a lower bar:
 
-Measles is very contagious, with an <InlineMath math="R_0" /> of about <InlineMath math="15" />. Calculate **the percentage of the population that needs to be immune**.
-
-<BlockMath math="1 - \frac{1}{15} = 1 - 0.067 = 0.933 = 93\%" />
-
-Check with the model: at <InlineMath math="r = 15" />, it reads <InlineMath math="93.3" />. That's why measles vaccine coverage has to be very high, while a disease with <InlineMath math="R_0 = 2" /> needs only <InlineMath math="50\%" />.
-
-### A Virus That Attacks the Immune System
-
-**HIV** infects helper T cells, the lymphocytes that control the immune response. As the number of these cells falls, the body can no longer fight ordinary infections, and the patient develops **AIDS**. HIV spreads through blood, sexual contact and from mother to baby, not through everyday touch.
-
-## Common Mistakes about Immunity
-
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| An antibody can fight any pathogen. | Each antibody is specific to one antigen only. | Match the shape of the binding site to the antigen. |
-| Vaccines contain antibodies. | Vaccines contain weakened or killed antigens. Serum is what contains antibodies. | Ask whether the body has to make its own antibodies. |
-| Passive immunity lasts a lifetime. | Passive immunity is temporary because no memory cells form. | Find where the antibodies came from. |
-| Phagocytosis is a specific response. | Phagocytosis belongs to the non-specific second line. | Ask whether the cell recognises a particular antigen. |
-
-The second mistake is the most common one in questions on types of immunity. **Vaccines carry antigens, serum carries antibodies**.
-
-## Practice on Immunity in Humans
-
-These questions move from the lines of defence to a herd immunity calculation. **State whether the immunity is active or passive** in every answer about types of immunity.
-
-1. Name two barriers in the first line of defence and explain how each one stops pathogens.
-
-2. A baby receives antibodies through breast milk. Name this type of immunity and explain why it doesn't last.
-
-3. A disease has <InlineMath math="R_0 = 4" />. Calculate the herd immunity threshold.
-
-4. Explain why people who have had chickenpox rarely catch it a second time.
-
-### Solutions
-
-**Solution 1**: Unbroken **skin** is a physical barrier pathogens can't get through. **Mucus and cilia** in the airways trap pathogens and sweep them up to the throat.
-
-**Solution 2**: This is **natural passive immunity**. The antibodies come from outside, so the baby forms no memory cells, and the antibodies are broken down within a few weeks.
-
-**Solution 3**: Use the threshold formula:
-
+<MathContainer>
+<BlockMath math="1 - \frac{1}{15} \approx 0.933 = 93.3\%" />
 <BlockMath math="1 - \frac{1}{4} = 0.75 = 75\%" />
+</MathContainer>
 
-Check with the model: at <InlineMath math="r = 4" />, it reads <InlineMath math="75" />.
+Measles therefore demands over <InlineMath math="93\%" /> vaccine coverage to prevent outbreaks, while an infection at <InlineMath math="R_0 = 4" /> stops spreading once <InlineMath math="75\%" /> are immune, and one at <InlineMath math="R_0 = 2" /> needs <InlineMath math="50\%" />.
 
-**Solution 4**: The first infection produces **memory cells** and natural active immunity. When the same virus enters again, the secondary response makes antibodies quickly and in large amounts, so the virus is destroyed before symptoms appear.
+## How a Virus Weakens Immunity
+
+Now imagine an intruder that sneaks past the castle guards and knocks out the radio commander who coordinates every defence unit. **HIV** attacks the immune system in exactly that way by infecting **helper T cells**, the lymphocytes that activate and direct other immune cells.
+
+As helper T cell counts fall over time, the body loses its ability to fight off ordinary bacteria, fungi, and viruses that a healthy immune system clears easily. That advanced stage of immune failure is called **AIDS**.
+
+Understanding how HIV spreads prevents both infection and unfair stigma. HIV passes through infected blood, sexual contact, and from mother to baby during pregnancy, birth, or breastfeeding, never through shaking hands, sharing utensils, or everyday casual touch.

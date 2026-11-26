@@ -195,46 +195,57 @@ Schließzellen öffnen den Spalt im **prallen** Zustand, nicht schlaff. Im Licht
 
 Verdunstet Wasserdampf durch Spaltöffnungen, entsteht **Transpiration** samt **Transpirationssog**, der Wasser durch das Xylem hochzieht und das Blatt kühlt.
 
-### Blasenpotometer
+### Spaltweite und Wind
 
-Ein Potometer misst die Wasseraufnahme eines Sprosses über die Blasenstrecke <InlineMath math="l" /> in einer Kapillare vom Volumen <InlineMath math="\pi r^2 l" />. Vergleich die vier Vaseline-Proben im Modell.
+Stell dir eine Spaltöffnung wie ein Fenster an einem windigen Tag vor: Je weiter das Fenster aufgeht, desto mehr Wasserdampf entweicht, und kräftiger Wind weht feuchte Luft sofort fort. Verstelle Spaltweite <InlineMath math="p" /> und Windgeschwindigkeit <InlineMath math="w" /> im Diagramm, um die Transpirationsrate in echten Einheiten abzulesen.
 
-<PotometerLab
-  title={<>Ein Blasenpotometer mit vier Sprossen</>}
+<MathVisual
+  title={<>Transpirationsrate nach Spaltweite und Wind</>}
   description={
     <>
-      Die Kapillare hat einen Radius von <InlineMath math="0{,}5\text{ mm}" />.
-      Spross A bleibt unbehandelt, B trägt Vaseline oben, C unten und D auf
-      beiden Blattseiten.
+      Vergleichskurven zeigen Windstille (<InlineMath math="0{,}5\text{ m s}^{-1}" />)
+      und kräftigen Wind (<InlineMath math="4{,}0\text{ m s}^{-1}" />) gegen die
+      Spaltweite <InlineMath math="p" /> in <InlineMath math="\mu\text{m}" />.
     </>
   }
-  footer={<>Vaseline auf der Unterseite bremst die Transpiration am stärksten.</>}
-  minutes={10}
-  radius={0.5}
-  shoots={[
-    { name: "A", coat: "none", rate: 0.6 },
-    { name: "B", coat: "upper", rate: 0.48 },
-    { name: "C", coat: "lower", rate: 0.12 },
-    { name: "D", coat: "both", rate: 0.04 },
-  ]}
+  footer={<>Weiter geöffnete Spalten und Wind erhöhen die Transpirationsrate.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12.5 }, y: { min: 0, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 12, value: 6, step: 0.5, label: "p" },
+      { name: "w", min: 0.5, max: 4, value: 1.5, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "calm", kind: "function", appearance: "reference", formula: "(10/3)*(x/(x + 3))", domain: { min: 0, max: 12 } },
+      { id: "breezy", kind: "function", appearance: "reference", formula: "8*(x/(x + 3))", domain: { min: 0, max: 12 } },
+      { id: "active", kind: "function", appearance: "primary", formula: "10*(w/(w + 1))*(x/(x + 3))", domain: { min: 0, max: 12 } },
+      { id: "leaf", kind: "marker", appearance: "warning", x: "p", y: "10*(w/(w + 1))*(p/(p + 3))" },
+    ],
+    readouts: [
+      { key: "transpiration", formula: "10*(w/(w + 1))*(p/(p + 3))" },
+      { key: "wind-gain", formula: "3*(w/(w + 1))" },
+    ],
+  }}
   labels={{
-    distance: <>Weg der Blase</>,
-    rate: <>Wasseraufnahmerate</>,
-    shoot: "Spross wählen",
-    time: "Zeit",
-    view: "Blasenpotometer mit beblättertem Spross",
-    volume: <>Aufgenommenes Wasservolumen</>,
+    p: <>Spaltweite <InlineMath math="p" /> in <InlineMath math="\mu\text{m}" /></>,
+    w: <>Windgeschwindigkeit <InlineMath math="w" /> in <InlineMath math="\text{m s}^{-1}" /></>,
+    transpiration: <>Transpirationsrate in <InlineMath math="\text{mmol m}^{-2}\text{ s}^{-1}" /></>,
+    "wind-gain": <>Windfaktor gegenüber Windstille</>,
   }}
 />
 
-Für Spross A (<InlineMath math="0{,}60\text{ cm}^3" /> pro Stunde) in <InlineMath math="10" /> Minuten bei Radius <InlineMath math="0{,}05\text{ cm}" />:
+Bei <InlineMath math="6\ \mu\text{m}" /> Spaltweite hebt der Wechsel von Windstille (<InlineMath math="0{,}5\text{ m s}^{-1}" />) zu kräftigem Wind (<InlineMath math="4{,}0\text{ m s}^{-1}" />) die Transpiration von <InlineMath math="2{,}22" /> auf <InlineMath math="5{,}33\text{ mmol m}^{-2}\text{ s}^{-1}" />, weil Luftbewegung die feuchte Grenzschicht abträgt.
+
+Im Labor schätzt ein Blasenpotometer diesen Wasserverlust über die Blasenstrecke <InlineMath math="l" /> in einer Kapillare vom Volumen <InlineMath math="\pi r^2 l" />. Für einen Spross mit <InlineMath math="0{,}60\text{ cm}^3" /> pro Stunde in <InlineMath math="10" /> Minuten bei Radius <InlineMath math="0{,}05\text{ cm}" />:
 
 <MathContainer>
 <BlockMath math="V = 0{,}60 \times \frac{10}{60} = 0{,}10\text{ cm}^3" />
 <BlockMath math="l = \frac{0{,}10}{\pi(0{,}05)^2} = 12{,}7\text{ cm}" />
 </MathContainer>
 
-Vaseline auf der Unterseite senkt die Rate um <InlineMath math="80\%" /> gegen nur <InlineMath math="20\%" /> oben, womit die meisten Spaltöffnungen in der **unteren Epidermis** liegen.
+Vaseline auf der Unterseite senkt die Aufnahme um <InlineMath math="80\%" /> gegen nur <InlineMath math="20\%" /> oben, womit die meisten Spaltöffnungen in der **unteren Epidermis** liegen.
 
 ### Dampfdruckdefizit
 
@@ -352,42 +363,46 @@ Die **lichtunabhängige Reaktion** (Calvin-Zyklus) im Stroma baut Kohlenstoffdio
 
 > Fotosynthese-Sauerstoff stammt nie aus Kohlenstoffdioxid, sondern unmittelbar aus der Wasserspaltung während der Lichtreaktion an den Thylakoiden.
 
-Bei Hydrilla unter einer Tischlampe folgt die Lichtstärke dem quadratischen Abstandsgesetz. Vergleich alle sieben Messwerte unten.
+Genau wie eine Bäckerei nicht schneller backt, sobald das Mehl ausgeht, erreicht ein helles Blatt ein **Lichtsättigungsplateau**, das vom Kohlenstoffdioxidgehalt abhängt. Verstelle Lichtstärke <InlineMath math="q" /> und Kohlenstoffdioxid <InlineMath math="c" /> unten in echten physiologischen Einheiten.
 
-<PhotosynthesisLab
-  title={<>Hydrilla unter einer Tischlampe</>}
+<MathVisual
+  title={<>Fotosyntheserate des Blattes und Sättigungsplateau</>}
   description={
     <>
-      Die Lampe wandert von <InlineMath math="50\text{ cm}" /> bis auf{" "}
-      <InlineMath math="10\text{ cm}" /> heran. Die letzten beiden Messungen
-      nutzen zusätzliches Natriumhydrogencarbonat.
+      Vergleichskurven markieren wenig Kohlenstoffdioxid (<InlineMath math="200\text{ ppm}" />)
+      und angereicherte Luft (<InlineMath math="800\text{ ppm}" />) gegen den
+      Photonenfluss in <InlineMath math="\mu\text{mol m}^{-2}\text{ s}^{-1}" />.
     </>
   }
-  footer={<>Bei naher Lampe steigert zusätzliches CO2 die Blasenzahl sprunghaft.</>}
-  readings={[
-    { distance: 50, bubbles: 10 },
-    { distance: 40, bubbles: 14 },
-    { distance: 30, bubbles: 19 },
-    { distance: 20, bubbles: 27 },
-    { distance: 10, bubbles: 36 },
-    { distance: 20, bubbles: 47, bicarbonate: true },
-    { distance: 10, bubbles: 62, bicarbonate: true },
-  ]}
+  footer={<>Mehr CO2 hebt das Lichtsättigungsplateau, sobald das Blatt hell steht.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1250 }, y: { min: 0, max: 30 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0, max: 1200, value: 400, step: 50, label: "q" },
+      { name: "c", min: 200, max: 800, value: 400, step: 50, label: "c" },
+    ],
+    objects: [
+      { id: "low-co2", kind: "function", appearance: "reference", formula: "18*x/(x + 200)", domain: { min: 0, max: 1200 } },
+      { id: "high-co2", kind: "function", appearance: "reference", formula: "28.8*x/(x + 200)", domain: { min: 0, max: 1200 } },
+      { id: "rate", kind: "function", appearance: "primary", formula: "(36*c/(c + 200))*(x/(x + 200))", domain: { min: 0, max: 1200 } },
+      { id: "leaf", kind: "marker", appearance: "warning", x: "q", y: "(36*c/(c + 200))*(q/(q + 200))" },
+    ],
+    readouts: [
+      { key: "uptake", formula: "(36*c/(c + 200))*(q/(q + 200))" },
+      { key: "plateau", formula: "36*c/(c + 200)" },
+    ],
+  }}
   labels={{
-    bubbles: <>Blasen pro Minute</>,
-    carbon: <>Zusätzliches Kohlenstoffdioxid</>,
-    carbonSources: {
-      added: <>Natriumhydrogencarbonat zugegeben</>,
-      none: <>Nur Wasser</>,
-    },
-    distance: <>Abstand der Lampe</>,
-    intensity: <>Relative Lichtstärke</>,
-    reading: "Messung wählen",
-    view: "Hydrilla im Reagenzglas unter einer Lampe",
+    q: <>Lichtstärke <InlineMath math="q" /> in <InlineMath math="\mu\text{mol m}^{-2}\text{ s}^{-1}" /></>,
+    c: <>Kohlenstoffdioxid <InlineMath math="c" /> in <InlineMath math="\text{ppm}" /></>,
+    uptake: <>Fotosyntheserate in <InlineMath math="\mu\text{mol m}^{-2}\text{ s}^{-1}" /></>,
+    plateau: <>Sättigungsplateau in <InlineMath math="\mu\text{mol m}^{-2}\text{ s}^{-1}" /></>,
   }}
 />
 
-Rückt die Lampe von <InlineMath math="20\text{ cm}" /> auf <InlineMath math="10\text{ cm}" />, vervierfacht sich das Licht, doch die Blasen steigen nur von <InlineMath math="27" /> auf <InlineMath math="36" />. Hydrogencarbonat hebt sie auf <InlineMath math="62" />, also begrenzte Kohlenstoffdioxid.
+Bei starkem Licht (<InlineMath math="1000\ \mu\text{mol m}^{-2}\text{ s}^{-1}" />) steigert mehr Kohlenstoffdioxid von <InlineMath math="200\text{ ppm}" /> auf <InlineMath math="800\text{ ppm}" /> die Blattaufnahme von <InlineMath math="15{,}0" /> auf <InlineMath math="24{,}0\ \mu\text{mol m}^{-2}\text{ s}^{-1}" />. Unter einer Tischlampe folgt die Lichtstärke dem **quadratischen Abstandsgesetz**, sodass halber Abstand das Licht vervierfacht, bis Kohlenstoffdioxid das Tempo begrenzt.
 
 ### Begrenzende Faktoren
 
