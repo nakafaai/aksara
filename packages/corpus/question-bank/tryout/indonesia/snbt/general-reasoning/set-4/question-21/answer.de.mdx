@@ -1,13 +1,25 @@
+# Gegeben
+
+Eine rekursive Folge mit festem Abzug <InlineMath math="k" /> hat **<InlineMath math="U_1 = 6" />, <InlineMath math="U_4 = 22" /> und <InlineMath math="U_6 = 52" />**.
+
+# Gesucht
+
+Der Wert des **achten Folgenglieds**.
+
+# Lösung
+
+> Drücke das vierte und sechste Glied durch die beiden Unbekannten aus, löse das Paar und rechne dann bis zum achten Glied weiter.
+
 Die Aufgabe nennt nur drei Glieder, und die liegen weit auseinander: <InlineMath math="U_1=6" />, <InlineMath math="U_4=22" /> und <InlineMath math="U_6=52" />. Zwei Werte fehlen noch, nämlich das zweite Glied und die Zahl <InlineMath math="k" />, die abgezogen wird. Für zwei Unbekannte brauchst du **zwei Gleichungen**, eine aus <InlineMath math="U_4" /> und eine aus <InlineMath math="U_6" />.
 
-Nenn das zweite Glied <InlineMath math="U_2=x" />. Bau die ersten Glieder mit der Regel <InlineMath math="U_n=U_{n-1}+U_{n-2}-k" /> auf. Denk daran, dass <InlineMath math="k" /> bei jedem Schritt erneut abgezogen wird:
+Nenn das zweite Glied <InlineMath math="U_2=x" />. Bau die ersten Glieder indem du die beiden Vorgänger addierst und <InlineMath math="k" /> abziehst auf. Denk daran, dass <InlineMath math="k" /> bei jedem Schritt erneut abgezogen wird:
 
 <BlockMath math="\begin{aligned}
 U_3 &= U_2+U_1-k = x+6-k \\
 U_4 &= U_3+U_2-k = (x+6-k)+x-k = 2x+6-2k
 \end{aligned}" />
 
-Wegen <InlineMath math="U_4=22" /> gilt <InlineMath math="2x+6-2k=22" />, also <InlineMath math="x-k=8" />. Damit kennst du sofort das dritte Glied, denn <InlineMath math="U_3=6+(x-k)=6+8=14" />.
+Wegen <InlineMath math="U_4=22" /> gilt <InlineMath math="x - k = 8" />. Damit kennst du sofort das dritte Glied, nämlich <InlineMath math="14" />.
 
 Rechne jetzt mit dem noch unbekannten <InlineMath math="k" /> bis zum fünften und sechsten Glied weiter:
 
@@ -36,12 +48,14 @@ Das Diagramm zeichnet alle acht Glieder. **Die Linie trifft genau <InlineMath ma
   valueLabel="Wert"
 />
 
-Prüf die ganze Folge von vorn: <InlineMath math="6, 11, 14, 22, 33, 52, 82, 131" />. Jedes Glied ist tatsächlich die Summe der beiden vorherigen minus <InlineMath math="3" />, zum Beispiel <InlineMath math="14+22-3=33" />. Auch das erste, vierte und sechste Glied passen zu den gegebenen Werten.
+Prüf die ganze Folge von vorn: <InlineMath math="6, 11, 14, 22, 33, 52, 82, 131" />. Jedes Glied ist tatsächlich die Summe der beiden vorherigen minus <InlineMath math="3" />, zum Beispiel <InlineMath math="33" /> aus <InlineMath math="14" /> und <InlineMath math="22" />. Auch das erste, vierte und sechste Glied passen zu den gegebenen Werten.
 
 Ein paar falsche Antworten tauchen oft auf:
 
 - <InlineMath math="82" /> ist das siebte Glied. Da hast du einen Schritt zu früh aufgehört.
 - <InlineMath math="134" /> entsteht, wenn du im letzten Schritt vergisst, <InlineMath math="k" /> abzuziehen, also <InlineMath math="82+52=134" />.
 - Wenn du <InlineMath math="k" /> als null behandelst, wie bei einer gewöhnlichen Fibonacci-Folge, liefert das vierte Glied <InlineMath math="22" /> den Wert <InlineMath math="x=8" />. Mit <InlineMath math="x=8" /> wäre das sechste Glied <InlineMath math="58" /> statt <InlineMath math="52" />. Also kann <InlineMath math="k" /> nicht null sein.
+
+# Antwort
 
 Das achte Glied der Folge ist also <InlineMath math="131" />.

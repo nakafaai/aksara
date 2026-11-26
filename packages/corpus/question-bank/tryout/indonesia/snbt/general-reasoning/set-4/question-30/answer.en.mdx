@@ -1,3 +1,15 @@
+# Given
+
+The printing machine starts at 07:00 on an order of **<InlineMath math="520" /> shirts** and must rest **<InlineMath math="1" /> hour** after each full consecutive work block.
+
+# Asked
+
+The **earliest finishing time** for the order.
+
+# Solution
+
+> Find the total active running time first, then add only the rest breaks that actually fall before the very last shirt finishes.
+
 The finishing time depends on two things: how long the work takes and **how many times the machine really has to rest before the job is done**.
 
 Step 1. Find the working time.
@@ -37,5 +49,7 @@ The other options come from miscounting rests or minutes.
 - 19:24 counts only two rests, but the third work block ends at 18:00 with the job still unfinished.
 - 20:40 reads <InlineMath math="0.4" /> hours as <InlineMath math="40" /> minutes, but <InlineMath math="0.4" /> hours is <InlineMath math="24" /> minutes.
 - 21:24 counts four rests by rounding <InlineMath math="10.4 : 3" /> up, but there's no rest after the last T-shirt is done.
+
+# Answer
 
 So the order is done at 20:24 at the earliest.

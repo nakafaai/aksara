@@ -1,3 +1,15 @@
+# Given
+
+The first six terms of a seven-cell lamp strip show a repeating pattern in **how many cells light up and where they shift** each step.
+
+# Asked
+
+The lamp strip arrangement at the **<InlineMath math="32" />nd term**.
+
+# Solution
+
+> Split the strip into two tiny clocks running side by side, one counting how many cells glow and the other tracking where the glowing block starts.
+
 Each term shows a group of lit cells sitting side by side. Your job is to find the rule from the first six terms and use it for term <InlineMath math="32" />. It turns out there are **two rules running at the same time**, one for how many cells are lit and one for where they are.
 
 For each term, note two things: how many cells are lit, and the leftmost cell of the lit group (the starting cell).
@@ -46,5 +58,7 @@ Here's where the wrong options come from:
 - ○ ○ ● ● ○ ○ ○ is term <InlineMath math="2" />. You get it if you only use the count rule (<InlineMath math="32" /> divided by <InlineMath math="3" /> leaves <InlineMath math="2" />) and copy term <InlineMath math="2" /> without moving it.
 - ○ ○ ○ ○ ○ ● ● has the right number of cells, but the group is pushed back so it fits inside the row. The row wraps around, so the second cell has to go to cell <InlineMath math="1" />.
 - ○ ● ● ● ○ ○ ○ is term <InlineMath math="33" />. You get it if you count <InlineMath math="32" /> steps, but from term <InlineMath math="1" /> there are only <InlineMath math="31" /> steps.
+
+# Answer
 
 So in term <InlineMath math="32" />, only the leftmost and rightmost cells are lit: ● ○ ○ ○ ○ ○ ●.

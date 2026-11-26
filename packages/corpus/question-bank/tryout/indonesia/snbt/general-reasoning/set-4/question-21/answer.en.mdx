@@ -1,13 +1,25 @@
+# Given
+
+A recursive sequence with constant subtraction <InlineMath math="k" /> satisfies **<InlineMath math="U_1 = 6" />, <InlineMath math="U_4 = 22" />, and <InlineMath math="U_6 = 52" />**.
+
+# Asked
+
+The value of the **eighth term** of the sequence.
+
+# Solution
+
+> Express the fourth and sixth terms using the two missing numbers, solve that pair of equations, and step forward to the eighth term.
+
 The question gives you only three terms, and they're far apart: <InlineMath math="U_1=6" />, <InlineMath math="U_4=22" />, and <InlineMath math="U_6=52" />. Two values are still unknown, the second term and the number <InlineMath math="k" /> that gets subtracted. Two unknowns need **two equations**, one from <InlineMath math="U_4" /> and one from <InlineMath math="U_6" />.
 
-Call the second term <InlineMath math="U_2=x" />. Build the first terms with the rule <InlineMath math="U_n=U_{n-1}+U_{n-2}-k" />. Remember that <InlineMath math="k" /> is subtracted again at every step:
+Call the second term <InlineMath math="U_2=x" />. Build the first terms by adding the two previous terms and subtracting <InlineMath math="k" />. Remember that <InlineMath math="k" /> is subtracted again at every step:
 
 <BlockMath math="\begin{aligned}
 U_3 &= U_2+U_1-k = x+6-k \\
 U_4 &= U_3+U_2-k = (x+6-k)+x-k = 2x+6-2k
 \end{aligned}" />
 
-Since <InlineMath math="U_4=22" />, you get <InlineMath math="2x+6-2k=22" />, or <InlineMath math="x-k=8" />. That gives you the third term right away, because <InlineMath math="U_3=6+(x-k)=6+8=14" />.
+Since <InlineMath math="U_4=22" />, you get <InlineMath math="x - k = 8" />. That gives you the third term right away as <InlineMath math="14" />.
 
 Now carry on to the fifth and sixth terms with <InlineMath math="k" /> still unknown:
 
@@ -36,12 +48,14 @@ The chart below draws all eight terms. **The line passes exactly through <Inline
   valueLabel="Value"
 />
 
-Check the whole sequence from the start: <InlineMath math="6, 11, 14, 22, 33, 52, 82, 131" />. Each term really is the sum of the two before it minus <InlineMath math="3" />, for example <InlineMath math="14+22-3=33" />. The first, fourth, and sixth terms also match the given values.
+Check the whole sequence from the start: <InlineMath math="6, 11, 14, 22, 33, 52, 82, 131" />. Each term really is the sum of the two before it minus <InlineMath math="3" />, for example <InlineMath math="33" /> from <InlineMath math="14" /> and <InlineMath math="22" />. The first, fourth, and sixth terms also match the given values.
 
 A few wrong answers come up often:
 
 - <InlineMath math="82" /> is the seventh term. You stopped one step too early.
 - <InlineMath math="134" /> comes from forgetting to subtract <InlineMath math="k" /> in the last step, which gives <InlineMath math="82+52=134" />.
 - If you treat <InlineMath math="k" /> as zero, like a plain Fibonacci sequence, the fourth term <InlineMath math="22" /> gives <InlineMath math="x=8" />. With <InlineMath math="x=8" />, the sixth term would be <InlineMath math="58" />, not <InlineMath math="52" />. So <InlineMath math="k" /> can't be zero.
+
+# Answer
 
 So the eighth term of the sequence is <InlineMath math="131" />.

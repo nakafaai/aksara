@@ -1,3 +1,15 @@
+# Gegeben
+
+Dina geht von A nach B nur nach **Osten (<InlineMath math="4" /> Blöcke) und Norden (<InlineMath math="2" /> Blöcke)** und meidet die gesperrte **Kreuzung X (<InlineMath math="2" /> Ost, <InlineMath math="1" /> Nord)**.
+
+# Gesucht
+
+Die **Anzahl verschiedener Wege** von A nach B ohne X.
+
+# Lösung
+
+> Zähle zuerst alle Wege von A nach B und ziehe dann die Wege über X ab, also Wege von A nach X mal Wege von X nach B.
+
 Jeder Weg von A nach B besteht aus <InlineMath math="4" /> Schritten nach Osten und <InlineMath math="2" /> nach Norden. Zähle alle Wege und **ziehe die Wege über X ab**.
 
 Alle Wege: Wähle, welche <InlineMath math="2" /> der <InlineMath math="6" /> Schritte nach Norden gehen.
@@ -18,5 +30,9 @@ Das Diagramm stellt die drei Zählungen nebeneinander. **Die Wege über X machen
   series={[{ label: "Wege", mark: "bar", values: [15, 3 * 3, 15 - 3 * 3] }]}
   valueLabel="Wege"
 />
+
+Der Vergleich aller Wege mit den blockierten Wegen über X zeigt unmittelbar die sechs verbleibenden freien Routen für Dina.
+
+# Antwort
 
 Dina kann also zwischen <InlineMath math="6" /> Wegen wählen.

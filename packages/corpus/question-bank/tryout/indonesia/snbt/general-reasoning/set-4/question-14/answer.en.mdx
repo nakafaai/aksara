@@ -1,3 +1,15 @@
+# Given
+
+Six scheduling rules place **six cultural activities across morning and afternoon sessions** on Monday, Tuesday, and Wednesday.
+
+# Asked
+
+The list of Monday, Tuesday, and Wednesday morning activities that is **POSSIBLE**.
+
+# Solution
+
+> A morning lineup only works if the three leftover activities can still fit into the afternoon slots without breaking a single rule.
+
 The question names only the activities for the three morning sessions. A list is **possible** if the three afternoon sessions can still take the three remaining activities so that all six conditions hold. A list is impossible if every way of filling the afternoons breaks at least one condition.
 
 Here's how to check: place the three morning activities first, then use the tightest conditions. Condition 1 ties batik and gamelan to two sessions in a row. Remember that the session right before Tuesday morning is Monday afternoon, and the session right before Wednesday morning is Tuesday afternoon. Conditions 2 and 3 limit which day wayang can take.
@@ -34,5 +46,7 @@ The other four lists fail, each because of one condition that's easy to miss.
 - Batik, kuliner, dongeng fails because of condition 5. Batik on Monday morning puts gamelan on Monday afternoon. Kuliner is in a morning session, so wayang must be on Monday, but Monday is already full.
 - Wayang, angklung, dongeng fails because of condition 1. The empty sessions are Monday afternoon, Tuesday afternoon and Wednesday afternoon. No two of them come in a row, because Tuesday morning sits between Monday afternoon and Tuesday afternoon. This list traps you if you read "exactly one session before" as the same session on the previous day.
 - Wayang, dongeng, batik fails because of condition 6. Batik on Wednesday morning puts gamelan on Wednesday afternoon, so kuliner would need a day after Wednesday, and there isn't one.
+
+# Answer
 
 So the possible list of morning activities is wayang on Monday, gamelan on Tuesday and dongeng on Wednesday.

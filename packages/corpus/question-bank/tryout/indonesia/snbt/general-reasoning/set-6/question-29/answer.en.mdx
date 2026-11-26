@@ -1,3 +1,15 @@
+# Given
+
+Dina walks from A to B moving only **east (<InlineMath math="4" /> blocks) and north (<InlineMath math="2" /> blocks)** while avoiding closed **intersection X (<InlineMath math="2" /> east, <InlineMath math="1" /> north)**.
+
+# Asked
+
+The **number of distinct valid routes** from A to B avoiding X.
+
+# Solution
+
+> Count every path from A to B first, then subtract the blocked paths found by multiplying paths from A to X by paths from X to B.
+
 Every route from A to B has <InlineMath math="4" /> steps east and <InlineMath math="2" /> steps north. Count all routes, then **subtract the routes through X**.
 
 All routes: choose which <InlineMath math="2" /> of the <InlineMath math="6" /> steps go north.
@@ -18,5 +30,9 @@ The chart below puts the three counts side by side. **Routes through X take up m
   series={[{ label: "Routes", mark: "bar", values: [15, 3 * 3, 15 - 3 * 3] }]}
   valueLabel="Routes"
 />
+
+Setting the blocked paths beside the total paths highlights the exact six open routes left for Dina.
+
+# Answer
 
 So Dina can choose from <InlineMath math="6" /> routes.

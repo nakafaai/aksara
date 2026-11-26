@@ -1,13 +1,25 @@
+# Diketahui
+
+Barisan rekursif dengan pengurang tetap <InlineMath math="k" /> memiliki **<InlineMath math="U_1 = 6" />, <InlineMath math="U_4 = 22" />, dan <InlineMath math="U_6 = 52" />**.
+
+# Ditanyakan
+
+Nilai **suku kedelapan** barisan ini.
+
+# Penyelesaian
+
+> Tulis suku keempat dan suku keenam dalam dua huruf yang belum diketahui, lalu pecahkan pasangan persamaannya untuk membuka seluruh barisan.
+
 Soal ini hanya memberi tiga suku yang letaknya berjauhan, yaitu <InlineMath math="U_1=6" />, <InlineMath math="U_4=22" />, dan <InlineMath math="U_6=52" />. Ada dua nilai yang belum diketahui, yaitu suku kedua dan bilangan pengurang <InlineMath math="k" />. Dua nilai yang belum diketahui butuh **dua persamaan**, satu dari <InlineMath math="U_4" /> dan satu dari <InlineMath math="U_6" />.
 
-Misalkan suku kedua <InlineMath math="U_2=x" />. Bangun suku-suku awal dengan aturan <InlineMath math="U_n=U_{n-1}+U_{n-2}-k" />. Ingat, <InlineMath math="k" /> dikurangkan lagi di setiap langkah:
+Misalkan suku kedua <InlineMath math="U_2=x" />. Bangun suku-suku awal dengan menjumlahkan dua suku sebelumnya lalu menguranginya dengan <InlineMath math="k" />. Ingat, <InlineMath math="k" /> dikurangkan lagi di setiap langkah:
 
 <BlockMath math="\begin{aligned}
 U_3 &= U_2+U_1-k = x+6-k \\
 U_4 &= U_3+U_2-k = (x+6-k)+x-k = 2x+6-2k
 \end{aligned}" />
 
-Karena <InlineMath math="U_4=22" />, kamu dapat <InlineMath math="2x+6-2k=22" />, atau <InlineMath math="x-k=8" />. Hasil ini langsung memberi suku ketiga, sebab <InlineMath math="U_3=6+(x-k)=6+8=14" />.
+Karena <InlineMath math="U_4=22" />, diperoleh <InlineMath math="x - k = 8" />. Nilai ini langsung memberi suku ketiga sebesar <InlineMath math="14" />.
 
 Sekarang lanjutkan ke suku kelima dan keenam dengan <InlineMath math="k" /> yang masih belum diketahui:
 
@@ -36,12 +48,14 @@ Grafik berikut menggambar kedelapan suku. **Garisnya melewati tepat nilai <Inlin
   valueLabel="Nilai"
 />
 
-Cek seluruh barisan dari awal: <InlineMath math="6, 11, 14, 22, 33, 52, 82, 131" />. Setiap suku memang jumlah dua suku sebelumnya dikurangi <InlineMath math="3" />, misalnya <InlineMath math="14+22-3=33" />. Suku pertama, keempat, dan keenam juga cocok dengan yang diketahui.
+Cek seluruh barisan dari awal: <InlineMath math="6, 11, 14, 22, 33, 52, 82, 131" />. Setiap suku memang jumlah dua suku sebelumnya dikurangi <InlineMath math="3" />, misalnya <InlineMath math="33" /> dari <InlineMath math="14" /> dan <InlineMath math="22" />. Suku pertama, keempat, dan keenam juga cocok dengan yang diketahui.
 
 Beberapa jawaban keliru yang sering muncul:
 
 - <InlineMath math="82" /> adalah suku ketujuh. Kamu berhenti satu langkah terlalu cepat.
 - <InlineMath math="134" /> muncul kalau <InlineMath math="k" /> lupa dikurangkan pada langkah terakhir, yaitu <InlineMath math="82+52=134" />.
 - Kalau <InlineMath math="k" /> dianggap nol, seperti barisan Fibonacci biasa, suku keempat <InlineMath math="22" /> memberi <InlineMath math="x=8" />. Dengan <InlineMath math="x=8" />, suku keenam menjadi <InlineMath math="58" />, bukan <InlineMath math="52" />. Jadi, <InlineMath math="k" /> memang tidak nol.
+
+# Jawaban
 
 Jadi, suku kedelapan barisan itu adalah <InlineMath math="131" />.

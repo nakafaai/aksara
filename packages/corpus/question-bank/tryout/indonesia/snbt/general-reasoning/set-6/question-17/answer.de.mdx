@@ -1,3 +1,15 @@
+# Gegeben
+
+Alle fünf Regeln gelten mit **T nur ganz vorn oder ganz hinten** und **P sowie Q stets nebeneinander**.
+
+# Gesucht
+
+Die **Anzahl verschiedener gültiger Auftrittsfolgen**.
+
+# Lösung
+
+> Trenne die beiden Randfälle für T und behandle PQ als einen festen Block, damit die Zählung lückenlos bleibt.
+
 Unterscheide die Fälle nach der Stelle von **T**, denn T darf nur zuerst oder zuletzt kommen. P und Q stehen immer zusammen, also behandle PQ als einen Block.
 
 **Fall T zuletzt**. Die Plätze 1 bis 5 belegen der Block PQ, R, S und U, mit R vor S, S nicht zuletzt (schon erfüllt, da T zuletzt ist) und U nicht neben R. Alle Möglichkeiten:
@@ -25,5 +37,9 @@ Das Diagramm vergleicht die beiden Fälle. **Der Fall mit T am Ende liefert mehr
   series={[{ label: "Reihenfolgen", mark: "bar", values: [6, 4] }]}
   valueLabel="Reihenfolgen"
 />
+
+Der Vergleich beider Balken zeigt sofort, dass T auf Platz eins mehr gültige Reihenfolgen zulässt als T auf dem letzten Platz.
+
+# Antwort
 
 Insgesamt gibt es <InlineMath math="6+4=10" /> Reihenfolgen.

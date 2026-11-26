@@ -1,3 +1,15 @@
+# Given
+
+All five order rules apply with **T limited to first or sixth** and **P and Q always adjacent**.
+
+# Asked
+
+The **number of distinct valid performance orders**.
+
+# Solution
+
+> Split into the two endpoint cases for T and glue PQ into one block so every valid order is counted cleanly.
+
 Split the cases by the position of **T**, since T may only be first or last. P and Q always sit together, so treat PQ as one block.
 
 **Case T last**. Places 1 to 5 hold the block PQ, R, S, and U, with R before S, S not last (already met because T is last), and U not next to R. All possibilities:
@@ -25,5 +37,9 @@ The chart below compares the two cases. **The case with T last gives more orders
   series={[{ label: "Orders", mark: "bar", values: [6, 4] }]}
   valueLabel="Orders"
 />
+
+Comparing the two bars makes it easy to see that placing T first allows more legal orders than placing T last.
+
+# Answer
 
 The total is <InlineMath math="6+4=10" /> orders.
