@@ -30,12 +30,6 @@ Amati tumbukan partikel dua arah pada reaktor 3D berikut. Ubah laju maju, laju b
       partikel bereaksi dua arah hingga <InlineMath math="r_f = r_r" />.
     </>
   }
-  footer={
-    <>
-      Partikel tetap bertukar arah saat <InlineMath math="r_f = r_r" /> dan jumlahnya
-      tidak berubah.
-    </>
-  }
   systems={["generic", "nitrogenDioxide", "hydrogenIodide"]}
   forwardRate={{ min: 0.1, max: 2, value: 0.6 }}
   reverseRate={{ min: 0.1, max: 2, value: 0.2 }}
@@ -56,21 +50,21 @@ Amati tumbukan partikel dua arah pada reaktor 3D berikut. Ubah laju maju, laju b
     systems: {
       generic: {
         equation: <><InlineMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" /></>,
-        name: "A <-> B",
+        name: "Reversible A and B",
         product: "Produk B",
         reactant: "Pereaksi A",
       },
       nitrogenDioxide: {
         equation: <><InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" /></>,
-        name: "N2O4 / NO2",
-        product: "Gas NO2",
-        reactant: "Gas N2O4",
+        name: "Dinitrogen tetroxide",
+        product: "Gas nitrogen dioksida",
+        reactant: "Gas dinitrogen tetraoksida",
       },
       hydrogenIodide: {
         equation: <><InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" /></>,
-        name: "H2 + I2 / HI",
+        name: "Hydrogen and iodine",
         product: "Gas HI",
-        reactant: "Gas H2 + I2",
+        reactant: "Gas hidrogen dan iodin",
       },
     },
     view: "Reaktor partikel kesetimbangan dinamis 3D",
@@ -88,12 +82,6 @@ Di dalam reaktor, tumbukan terus terjadi dua arah walau jumlah partikel biru dan
       <InlineMath math="k_1 = 0{,}6" /> dan <InlineMath math="k_2 = 0{,}2" />,
       sistem setimbang pada <InlineMath math="[\mathrm{A}] = 0{,}25\text{ M}" /> dan{" "}
       <InlineMath math="[\mathrm{B}] = 0{,}75\text{ M}" />.
-    </>
-  }
-  footer={
-    <>
-      Kedua kurva mendatar pada tinggi berbeda karena <InlineMath math="k_1" /> tiga
-      kali lebih besar dari <InlineMath math="k_2" />.
     </>
   }
   scene={{
@@ -134,12 +122,6 @@ Sekarang bandingkan sisi kecepatannya pada grafik laju berikut. Amati bagaimana 
       Untuk <InlineMath math="k_1 = 0{,}6" /> dan <InlineMath math="k_2 = 0{,}2" />,
       laju maju turun dan laju balik naik hingga bertemu di{" "}
       <InlineMath math="0{,}15\text{ M s}^{-1}" /> lalu terus berjalan bersamaan.
-    </>
-  }
-  footer={
-    <>
-      Begitu kedua kurva menyatu di <InlineMath math="0{,}15\text{ M s}^{-1}" />,
-      sistem mencapai kesetimbangan dinamis.
     </>
   }
   scene={{
@@ -260,11 +242,6 @@ Bandingkan tinggi batang sebelum dan sesudah reaksi pada grafik berikut agar per
       cocok dengan perbandingan koefisien <InlineMath math="1 : 1 : 2" />.
     </>
   }
-  footer={
-    <>
-      Batang hidrogen iodida naik dua kali lipat dari penurunan tiap pereaksi.
-    </>
-  }
 />
 
 Penurunan sebesar <InlineMath math="0{,}8\text{ M}" /> pada hidrogen dan iodin menghasilkan kenaikan tepat dua kali lipatnya, yaitu <InlineMath math="1{,}6\text{ M}" />, pada hidrogen iodida.
@@ -300,12 +277,6 @@ Uji langsung perbandingan <InlineMath math="Q_c" /> terhadap <InlineMath math="K
       <InlineMath math="Q_c = K_c" />.
     </>
   }
-  footer={
-    <>
-      Neraca miring ke kanan saat <InlineMath math="Q_c < K_c" /> dan ke kiri saat{" "}
-      <InlineMath math="Q_c > K_c" />.
-    </>
-  }
   kc={4}
   stoichiometry="oneToTwo"
   reactant={{ min: 0.1, max: 4, value: 1 }}
@@ -336,12 +307,6 @@ Ketika kamu memperbesar produk hingga <InlineMath math="Q_c" /> melewati <Inline
       kuosien mengikuti <InlineMath math="Q = 4[\mathrm{HI}]^2" />. Di titik{" "}
       <InlineMath math="[\mathrm{HI}] = 2\text{ M}" />, nilai <InlineMath math="Q = 16" />{" "}
       masih di bawah <InlineMath math="64" /> sehingga reaksi bergeser ke kanan.
-    </>
-  }
-  footer={
-    <>
-      Titik di bawah garis <InlineMath math="64" /> bergeser ke kanan, dan di atasnya
-      bergeser ke kiri.
     </>
   }
   scene={{
@@ -406,12 +371,6 @@ Naikkan tekanan total <InlineMath math="P" /> pada grafik berikut dan lihat sebe
       menjadi <InlineMath math="19\%" /> pada <InlineMath math="1\text{ atm}" />.
     </>
   }
-  footer={
-    <>
-      Tekanan makin tinggi menekan kurva ke bawah karena sisi kiri hanya punya satu
-      mol gas.
-    </>
-  }
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1 } },
@@ -451,12 +410,6 @@ Untuk reaksi eksoterm (<InlineMath math="\Delta H < 0" />), menaikkan suhu mengg
       <InlineMath math="\log K" /> turun tajam saat suhu naik. Ubah{" "}
       <InlineMath math="\Delta H" /> menjadi positif untuk melihat kurva berbalik
       menanjak.
-    </>
-  }
-  footer={
-    <>
-      Kurva menurun untuk reaksi eksoterm dan menanjak saat <InlineMath math="\Delta H" />{" "}
-      positif.
     </>
   }
   scene={{
@@ -501,12 +454,6 @@ Uji seluruh gangguan asas Le Chatelier secara langsung di reaktor piston-silinde
       untuk melihat arah pergeseran serta status <InlineMath math="K_c" />.
     </>
   }
-  footer={
-    <>
-      Hanya suhu yang mengubah <InlineMath math="K_c" />, sedangkan katalis hanya
-      mempercepat reaksi.
-    </>
-  }
   systems={["haber", "nitrogenDioxide"]}
   disturbances={["pressure", "temperature", "concentration", "catalyst"]}
   labels={{
@@ -542,7 +489,7 @@ Uji seluruh gangguan asas Le Chatelier secara langsung di reaktor piston-silinde
       nitrogenDioxide: {
         enthalpy: "Endoterm",
         equation: <><InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" /></>,
-        name: "N2O4 / NO2",
+        name: "Dinitrogen tetroxide",
       },
     },
     temperature: "Suhu reaktor",

@@ -151,7 +151,6 @@ You can read the real and imaginary parts of a product directly. For `z1 = 1+2j`
     "second": <code>z2 = 3-1j</code>,
     "product": <code>z1 * z2 = (5+5j)</code>,
   }}
-  footer="The product z1 * z2 lands at (5, 5) with modulus sqrt(50)."
 />
 
 The magenta segment scales and rotates straight to `(5, 5)`, matching the `real` and `imag` attributes Python returns for `z1 * z2` in the complex plane.
@@ -248,12 +247,11 @@ Draw `z = 3+4j` as a point in the complex plane and notice what each attribute r
   }}
   labels={{
     "modulus": "abs(z) = 5.0",
-    "z": "z = 3+4j",
+    z: <InlineMath math="z = 3 + 4j" />,
     "conjugate": "z.conjugate() = 3-4j",
     "imag": "z.imag = 4.0",
     "real": "z.real = 3.0",
   }}
-  footer="z and z.conjugate() lie on the same circle of radius abs(z) = 5.0."
 />
 
 Both points rest on the circle of radius `5.0` because `z.conjugate()` flips only the sign of `z.imag` while keeping the distance from the origin unchanged.
@@ -337,7 +335,6 @@ The method `bit_length()` counts the binary digits a positive integer needs, whi
     { name: "256", value: Math.floor(Math.log2(256)) + 1 },
   ]}
   chartConfig={{ value: { label: "Number of bits", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
-  footer="Bit count steps up by one at each power of two such as 2, 4, 8, and 256."
 />
 
 Bar height jumps precisely at `2`, `4`, `8`, and `256` because every power of two requires one extra binary digit to represent the larger value.

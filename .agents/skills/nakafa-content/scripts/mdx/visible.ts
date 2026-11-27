@@ -1,6 +1,10 @@
 import { Predicate } from "effect";
 import { isProtectedLineComponent } from "#nakafa-content/mdx/fields";
-import { MATH_LABEL_KEYS, walkKeyedChildren } from "#nakafa-content/mdx/keys";
+import {
+  MATH_LABEL_KEYS,
+  OBJECT_MATH_LABEL_KEYS,
+  walkKeyedChildren,
+} from "#nakafa-content/mdx/keys";
 import type {
   EstreeNode,
   MdxAttribute,
@@ -22,6 +26,8 @@ import { expectShape } from "#nakafa-content/mdx/shape";
  */
 export interface VisibleTextScan {
   readonly attributes: ReadonlySet<string>;
+  /** When true, also descends into nested `ObjectExpression` properties (such as `labels={{ ... }}`). */
+  readonly descendObjects?: boolean;
   /** Returns the index of each match in one learner-visible text. */
   readonly find: (text: string) => readonly number[];
   /** Names the JSX elements, such as `code`, whose text stays out. */
@@ -87,14 +93,51 @@ function rangeOffsets(
 }
 
 /** Scans the rendered text ranges nested below one ESTree field. */
-function collectExpressionValues(state: ScanState, value: unknown): void {
+function collectExpressionValues(
+  state: ScanState,
+  value: unknown,
+  skipValueKey: boolean
+): void {
   for (const childNode of estreeChildren(value)) {
-    collectExpression(state, childNode);
+    collectExpression(state, childNode, skipValueKey);
   }
 }
 
+/** Non-visible or KaTeX-input property keys inside `labels={{ ... }}`. */
+const SKIPPED_PROPERTY_KEYS = new Set(["expression", "math", "view"]);
+
+/** Components whose nested `facts[].value` strings are rendered directly via `<InlineMath math={...} />`. */
+const LATEX_VALUE_COMPONENTS = new Set(["DaltonEvidenceLab"]);
+
+/** Returns the static identifier or string key name of an ESTree `Property` node. */
+function propertyKeyName(node: EstreeNode): string | undefined {
+  if (node.type !== "Property") {
+    return undefined;
+  }
+  const key = node.key as EstreeNode;
+  if (key.type === "Identifier") {
+    return String(key.name);
+  }
+  if (key.type === "Literal" && Predicate.isString(key.value)) {
+    return key.value;
+  }
+  return undefined;
+}
+
 /** Scans the rendered static strings of a learner-facing JSX expression. */
-function collectExpression(state: ScanState, node: EstreeNode): void {
+function collectExpression(
+  state: ScanState,
+  node: EstreeNode,
+  skipValueKey: boolean
+): void {
+  const keyName = propertyKeyName(node);
+  if (
+    keyName !== undefined &&
+    (SKIPPED_PROPERTY_KEYS.has(keyName) ||
+      (skipValueKey && keyName === "value"))
+  ) {
+    return;
+  }
   if (
     (node.type === "Literal" && Predicate.isString(node.value)) ||
     node.type === "JSXText" ||
@@ -117,17 +160,25 @@ function collectExpression(state: ScanState, node: EstreeNode): void {
         state.scan.protectedNames?.has(String(name))
       )
     ) {
-      collectExpressionValues(state, node.children);
+      collectExpressionValues(state, node.children, skipValueKey);
     }
     return;
   }
-  walkKeyedChildren(node, MATH_LABEL_KEYS, (child) => {
-    collectExpression(state, child);
-  });
+  walkKeyedChildren(
+    node,
+    state.scan.descendObjects ? OBJECT_MATH_LABEL_KEYS : MATH_LABEL_KEYS,
+    (child) => {
+      collectExpression(state, child, skipValueKey);
+    }
+  );
 }
 
 /** Scans one learner-facing component attribute. */
-function collectAttribute(state: ScanState, attribute: MdxAttribute): void {
+function collectAttribute(
+  state: ScanState,
+  attribute: MdxAttribute,
+  skipValueKey: boolean
+): void {
   if (
     attribute.name === undefined ||
     !state.scan.attributes.has(attribute.name)
@@ -141,7 +192,7 @@ function collectAttribute(state: ScanState, attribute: MdxAttribute): void {
   }
   const program = attributeEstree(attribute);
   if (program) {
-    collectExpressionValues(state, program);
+    collectExpressionValues(state, program, skipValueKey);
   }
 }
 
@@ -161,8 +212,9 @@ function collectNode(
     state.ranges.push({ kind: "markdown", range: node.position });
   }
   if (!protectedHere && isJsxMdxNode(node)) {
+    const skipValueKey = LATEX_VALUE_COMPONENTS.has(String(node.name));
     for (const attribute of node.attributes) {
-      collectAttribute(state, attribute);
+      collectAttribute(state, attribute, skipValueKey);
     }
   }
   for (const child of node.children ?? []) {

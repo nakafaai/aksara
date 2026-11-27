@@ -38,7 +38,6 @@ The built-in `id()` returns an integer that **uniquely identifies an object** du
     V2 --> M1
     V4 --> M2
     V5 --> M3`}
-  footer="Both x and y point directly to the same single int 2 object in memory."
 />
 
 Both arrows from `x` and `y` converge on the same `Object A: int 2`, while `text` and `numbers` bind to separate objects with their own types.
@@ -102,11 +101,10 @@ Run `x = 5`, then `y = x`, then `x = 7`, and follow the segments. `y = x` does n
     "y": "y",
     "seven": "7",
     "five": "5",
-    "new": "x = 7",
-    "copy": "y = x",
-    "old": "x = 5",
+    new: <InlineMath math="x = 7" />,
+    copy: <InlineMath math="y = x" />,
+    old: <InlineMath math="x = 5" />,
   }}
-  footer="Rebinding x moves only the arrow for x to 7 while y stays bound to 5."
 />
 
 The teal segment from `y` remains attached to `5` after `x` moves to `7`, confirming that reassignment redirects only the name being assigned.
@@ -248,7 +246,6 @@ A valid variable name starts with a letter or `_`, contains only letters, digits
     { name: "my_var2", value: 1 },
   ]}
   chartConfig={{ value: { label: "Valid", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
-  footer="Only total, _count, and my_var2 pass all three Python identifier rules."
 />
 
 The three valid bars each start with a letter or underscore and use only permitted characters, while the three empty positions each break a different syntax rule.
@@ -503,7 +500,6 @@ Variables give the numbers in a program clear names. With `length = 4` and `widt
     "width": <code>width = 3</code>,
     "rectangle": <code>area = 12</code>,
   }}
-  footer="Descriptive names length, width, and area label each dimension and result."
 />
 
 The labeled edges `length = 4` and `width = 3` enclose the region `area = 12`, illustrating how descriptive variable names document the role of every number in a calculation.

@@ -13,7 +13,6 @@ Keutamaan operator <Highlight>menentukan cara Python mengumpulkan sesuatu ungkap
 
 <Mermaid
   title={<>Keutamaan Operator yang Dibincangkan</>}
-  footer={<>Tanda kurung mengikat paling kuat, diikuti aritmetik, perbandingan, not, and, dan or.</>}
   description={<>Rajah ini meringkaskan keutamaan operator yang dibincangkan, bukan masa setiap operan dinilai.</>}
   chart={`
     flowchart LR
@@ -66,7 +65,6 @@ Operator boolean menggabungkan beberapa syarat atau mengubah nilai boolean. Pyth
 
 <Mermaid
   title={<>Operator Boolean Menggabungkan Keputusan</>}
-  footer={<>Operator and dan or memulangkan satu operan, manakala not sentiasa memulangkan bool.</>}
   description={<>Lihat cara ketiga-tiga operator boolean menggabungkan nilai benar dan palsu dalam keputusan atur cara.</>}
   chart={`
     flowchart LR
@@ -126,7 +124,6 @@ Setiap perbandingan bernilai `True` pada satu kawasan garis nombor. Dalam gambar
 
 <MathVisual
   title={<>Perbandingan sebagai kawasan pada garis nombor</>}
-  footer={<>Operator and hanya mengekalkan pertindihan terbuka antara had 2 dan 5.</>}
   description={<>Jalur ungu ialah <InlineMath math="x>2" />, jalur hijau kebiruan ialah <InlineMath math="x<5" />, dan jalur magenta ialah tempat kedua-duanya benar, jadi <code>and</code> mengekalkan <InlineMath math="2<x<5" />. Setiap jalur berhenti tepat pada <InlineMath math="2" /> atau <InlineMath math="5" />, dan nilai-nilai itu sendiri tidak termasuk.</>}
   scene={{
     space: "plane",
@@ -144,9 +141,9 @@ Setiap perbandingan bernilai `True` pada satu kawasan garis nombor. Dalam gambar
     ],
   }}
   labels={{
-    "above": "x > 2",
-    "below": "x < 5",
-    "both": "x > 2 and x < 5",
+    above: <InlineMath math="x > 2" />,
+    below: <InlineMath math="x < 5" />,
+    both: <><InlineMath math="x > 2" /> and <InlineMath math="x < 5" /></>,
   }}
 />
 
@@ -162,7 +159,6 @@ Rajah berikut memisahkan nilai terbina dalam Python yang dinilai sebagai **falsy
 
 <Mermaid
   title={<>Nilai yang Python Anggap sebagai Hasil Syarat</>}
-  footer={<>Nilai sifar, None, False, dan bekas kosong dinilai falsy dalam ujian boolean.</>}
   description={<>Kumpulkan nilai yang Python anggap sebagai False atau True sebelum nilai itu digunakan dalam syarat.</>}
   chart={`
     flowchart TD
@@ -219,7 +215,6 @@ Di dalam `if`, Python memanggil `bool()` pada sebarang nilai. Sifar dan bekas ko
 
 <BarChart
   title={<>Hasil <code>bool()</code> untuk tujuh nilai</>}
-  footer={<>Senarai [0] bernilai True kerana tidak kosong, berbeza dengan 0, '' dan [].</>}
   description={<>Palang setinggi <InlineMath math="1" /> bermaksud <code>True</code> dan tiada palang bermaksud <code>False</code>, bagi nilai yang ditulis di bawahnya. Hanya <code>0</code>, <code>''</code> dan <code>[]</code> yang falsy.</>}
   yAxisLabel="Nilai boolean"
   data={[
@@ -269,7 +264,6 @@ Gabungkan dua perbandingan pada titik <InlineMath math="(x,y)" /> dengan <Inline
 
 <MathVisual
   title={<><code>and</code> dan <code>or</code> sebagai kawasan</>}
-  footer={<>Kawasan and ialah pertindihan sempit, manakala or merangkumi seluruh gabungan L.</>}
   description={<>Garis ungu ialah <InlineMath math="x=1" /> dan garis jingga ialah <InlineMath math="y=3" />. Segi empat tepat magenta ialah kawasan tempat <InlineMath math="x>1" /> dan <InlineMath math="y<3" /> kedua-duanya benar. Kawasan hijau kebiruan yang berbentuk L ialah tempat sekurang-kurangnya satu perbandingan benar.</>}
   scene={{
     space: "plane",
@@ -298,7 +292,6 @@ Pecahan perpuluhan mungkin memerlukan **pembundaran dalam binari**. Rajah ini me
 
 <Mermaid
   title={<>Perbandingan Perpuluhan Boleh Berbeza daripada Rupanya</>}
-  footer={<>Pembundaran binari boleh menggagalkan ==, jadi math.isclose menggunakan toleransi.</>}
   description={<>Nilai perpuluhan menjadi float binari, dan kepersisan yang terhad boleh menyebabkan ralat pembundaran yang menggagalkan perbandingan. math.isclose dengan toleransi relatif atau mutlak membandingkan nilai-nilai itu berdasarkan toleransi yang dipilih.</>}
   chart={`
     flowchart TD

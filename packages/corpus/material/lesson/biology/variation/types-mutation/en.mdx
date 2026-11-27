@@ -34,7 +34,6 @@ Genes set the range a person can grow in, and food, health and exercise move eac
       <InlineMath math="m - 2s" /> and <InlineMath math="m + 2s" />.
     </>
   }
-  footer={<>Most individuals cluster near the mean while extreme heights stay rare.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 140, max: 190 }, y: { min: 0, max: 14 } },
@@ -80,7 +79,6 @@ Real data come in groups. A class of <InlineMath math="40" /> students measured 
       sides, the shape of continuous variation.
     </>
   }
-  footer={<>Grouped heights merge into one unbroken bell-shaped continuous range.</>}
   bars="touching"
   categories={["145 to 149 cm", "150 to 154 cm", "155 to 159 cm", "160 to 164 cm", "165 to 169 cm", "170 to 174 cm", "175 to 179 cm"]}
   series={[
@@ -112,7 +110,6 @@ The same class recorded the pattern on each student's right thumb. A bar chart s
       tallest, with <InlineMath math="26" /> students.
     </>
   }
-  footer={<>Fingerprint classes sit in separate bars with no intermediate blends.</>}
   bars="apart"
   categories={["Loop", "Whorl", "Arch"]}
   series={[
@@ -148,7 +145,6 @@ Why does height form a smooth curve while blood group forms separate bars? Heigh
       bell curve.
     </>
   }
-  footer={<>More polygenic loci plus environmental effects turn discrete bars into a bell curve.</>}
   genePairs={{ min: 1, max: 6, value: 3 }}
   kinds={["continuous", "discontinuous"]}
   labels={{
@@ -191,7 +187,6 @@ Raising the number of gene pairs turns stepped bars into a smooth bell curve, wh
       and back down, already close to a bell.
     </>
   }
-  footer={<>Adding more controlling genes turns discrete steps into a smooth curve.</>}
   bars="touching"
   categories={["0", "1", "2", "3", "4", "5", "6"]}
   series={[
@@ -222,7 +217,6 @@ Move the slider for the haploid number <InlineMath math="n" />. The curve shows 
       homologous chromosome pairs to see gamete diversity grow exponentially.
     </>
   }
-  footer={<>Crossing-over and independent assortment shuffle existing alleles into new combinations.</>}
   chromosomePairs={{ min: 1, max: 8, value: 3 }}
   stages={["crossingOver", "independentAssortment", "randomFertilisation"]}
   labels={{
@@ -243,7 +237,7 @@ Move the slider for the haploid number <InlineMath math="n" />. The curve shows 
         name: "Crossing-over",
       },
       independentAssortment: {
-        mechanism: <>Each homologous pair aligns randomly at metaphase I, giving 2^n gametes</>,
+        mechanism: <>Each homologous pair aligns randomly at metaphase I, giving <InlineMath math="2^n" /> gametes</>,
         name: "Independent assortment",
       },
       randomFertilisation: {
@@ -266,7 +260,6 @@ Notice how crossing-over and independent assortment multiply gamete variety rapi
       <InlineMath math="2^n" />. One more pair of chromosomes doubles it.
     </>
   }
-  footer={<>Independent assortment multiplies gamete combinations as 2 to the power n.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1100 } },
@@ -356,7 +349,6 @@ Mutations can be **harmful, neutral or useful**. Sickle cell anaemia and Down sy
       or chromosome counts change.
     </>
   }
-  footer={<>Chromosomal mutations alter entire gene blocks or total chromosome count at once.</>}
   mutations={["deletion", "duplication", "inversion", "translocation", "nondisjunction"]}
   labels={{
     change: <>Chromosomal change</>,

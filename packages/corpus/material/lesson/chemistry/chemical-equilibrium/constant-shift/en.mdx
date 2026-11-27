@@ -30,12 +30,6 @@ Watch molecules react in both directions inside the 3D reactor below. Adjust the
       watch molecules collide both ways until <InlineMath math="r_f = r_r" />.
     </>
   }
-  footer={
-    <>
-      Molecules keep exchanging once <InlineMath math="r_f = r_r" /> while net
-      counts stay constant.
-    </>
-  }
   systems={["generic", "nitrogenDioxide", "hydrogenIodide"]}
   forwardRate={{ min: 0.1, max: 2, value: 0.6 }}
   reverseRate={{ min: 0.1, max: 2, value: 0.2 }}
@@ -56,21 +50,21 @@ Watch molecules react in both directions inside the 3D reactor below. Adjust the
     systems: {
       generic: {
         equation: <><InlineMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" /></>,
-        name: "A <-> B",
+        name: "Reversible A and B",
         product: "Product B",
         reactant: "Reactant A",
       },
       nitrogenDioxide: {
         equation: <><InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" /></>,
-        name: "N2O4 / NO2",
-        product: "NO2 gas",
-        reactant: "N2O4 gas",
+        name: "Dinitrogen tetroxide",
+        product: "Nitrogen dioxide gas",
+        reactant: "Dinitrogen tetroxide gas",
       },
       hydrogenIodide: {
         equation: <><InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" /></>,
-        name: "H2 + I2 / HI",
+        name: "Hydrogen and iodine",
         product: "HI gas",
-        reactant: "H2 + I2 gas",
+        reactant: "Hydrogen and iodine gas",
       },
     },
     view: "3D dynamic equilibrium particle reactor",
@@ -88,12 +82,6 @@ Inside the vessel, collisions never halt even after the particle counts flatten 
       <InlineMath math="k_1 = 0.6" /> and <InlineMath math="k_2 = 0.2" />, it
       settles at <InlineMath math="[\mathrm{A}] = 0.25\text{ M}" /> and{" "}
       <InlineMath math="[\mathrm{B}] = 0.75\text{ M}" />.
-    </>
-  }
-  footer={
-    <>
-      Both curves flatten at different heights because <InlineMath math="k_1" /> is
-      three times <InlineMath math="k_2" />.
     </>
   }
   scene={{
@@ -134,12 +122,6 @@ Now compare the speeds on the rate graph below. Watch the forward rate <InlineMa
       For <InlineMath math="k_1 = 0.6" /> and <InlineMath math="k_2 = 0.2" />, the
       forward rate falls and the reverse rate climbs until they meet at{" "}
       <InlineMath math="0.15\text{ M s}^{-1}" />.
-    </>
-  }
-  footer={
-    <>
-      Once both curves merge at <InlineMath math="0.15\text{ M s}^{-1}" />, the
-      system reaches dynamic equilibrium.
     </>
   }
   scene={{
@@ -260,11 +242,6 @@ Compare the starting and equilibrium bars on the chart below to see the mole rat
       <InlineMath math="1 : 1 : 2" /> stoichiometric ratio.
     </>
   }
-  footer={
-    <>
-      The hydrogen iodide bar rises twice as much as each reactant bar drops.
-    </>
-  }
 />
 
 Losing <InlineMath math="0.8\text{ M}" /> from hydrogen and iodine produces exactly double that gain, <InlineMath math="1.6\text{ M}" />, on the hydrogen iodide side.
@@ -300,12 +277,6 @@ Test how <InlineMath math="Q_c" /> compares with <InlineMath math="K_c" /> direc
       <InlineMath math="Q_c = K_c" />.
     </>
   }
-  footer={
-    <>
-      The scale tips right when <InlineMath math="Q_c < K_c" /> and left when{" "}
-      <InlineMath math="Q_c > K_c" />.
-    </>
-  }
   kc={4}
   stoichiometry="oneToTwo"
   reactant={{ min: 0.1, max: 4, value: 1 }}
@@ -336,12 +307,6 @@ Push the product slider until <InlineMath math="Q_c" /> exceeds <InlineMath math
       quotient follows <InlineMath math="Q = 4[\mathrm{HI}]^2" />. At{" "}
       <InlineMath math="[\mathrm{HI}] = 2\text{ M}" />, <InlineMath math="Q = 16" />{" "}
       sits below <InlineMath math="64" />, so the reaction shifts right.
-    </>
-  }
-  footer={
-    <>
-      Points below the <InlineMath math="64" /> line shift right, and points above
-      it shift left.
     </>
   }
   scene={{
@@ -406,12 +371,6 @@ Raise the total pressure <InlineMath math="P" /> on the graph below and watch ho
       to <InlineMath math="19\%" /> at <InlineMath math="1\text{ atm}" />.
     </>
   }
-  footer={
-    <>
-      Higher pressure pulls the curve down because the left side holds only one mole
-      of gas.
-    </>
-  }
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1 } },
@@ -451,12 +410,6 @@ For an exothermic reaction (<InlineMath math="\Delta H < 0" />), heating shifts 
       <InlineMath math="\log K" /> drops steeply as temperature rises. Switch{" "}
       <InlineMath math="\Delta H" /> to a positive value to see the curve climb
       instead.
-    </>
-  }
-  footer={
-    <>
-      The curve falls for exothermic reactions and climbs when{" "}
-      <InlineMath math="\Delta H" /> is positive.
     </>
   }
   scene={{
@@ -502,12 +455,6 @@ Test every Le Chatelier disturbance hands-on inside the 3D piston reactor below.
       compare shifts and <InlineMath math="K_c" />.
     </>
   }
-  footer={
-    <>
-      Only temperature changes <InlineMath math="K_c" />, while a catalyst only
-      speeds arrival.
-    </>
-  }
   systems={["haber", "nitrogenDioxide"]}
   disturbances={["pressure", "temperature", "concentration", "catalyst"]}
   labels={{
@@ -543,7 +490,7 @@ Test every Le Chatelier disturbance hands-on inside the 3D piston reactor below.
       nitrogenDioxide: {
         enthalpy: "Endothermic",
         equation: <><InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" /></>,
-        name: "N2O4 / NO2",
+        name: "Dinitrogen tetroxide",
       },
     },
     temperature: "Reactor temperature",

@@ -37,7 +37,6 @@ Erkunde jede Schicht des Blattquerschnitts im dreidimensionalen Modell. Vergleic
       vergleichen.
     </>
   }
-  footer={<>Wähle Blattschichten, um Chloroplastendichte und Aufgabe zu prüfen.</>}
   layers={[
     "cuticle",
     "upperEpidermis",
@@ -108,7 +107,6 @@ Die dünne Spreite schafft ein **Oberfläche-Volumen-Verhältnis** von <InlineMa
       <InlineMath math="d" /> Millimetern Dicke ohne schmale Ränder.
     </>
   }
-  footer={<>Dünnere Blätter erreichen ein deutlich größeres Oberfläche-Volumen-Verhältnis.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1.1 }, y: { min: 0, max: 21 } },
@@ -147,7 +145,6 @@ Schließzellen öffnen den Spalt im **prallen** Zustand, nicht schlaff. Im Licht
       beobachten.
     </>
   }
-  footer={<>Einströmendes Wasser macht Schließzellen prall und krümmt den Spalt auf.</>}
   conditions={["light", "dark", "drought"]}
   light={{ min: 0, max: 100, value: 75 }}
   labels={{
@@ -208,7 +205,6 @@ Stell dir eine Spaltöffnung wie ein Fenster an einem windigen Tag vor: Je weite
       Spaltweite <InlineMath math="p" /> in <InlineMath math="\mu\text{m}" />.
     </>
   }
-  footer={<>Weiter geöffnete Spalten und Wind erhöhen die Transpirationsrate.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 12.5 }, y: { min: 0, max: 7.5 } },
@@ -259,7 +255,6 @@ Die Dampfdiffusion folgt dem **Dampfdruckdefizit** aus Sättigungsdruck <InlineM
       die untere das Defizit bei relativer Luftfeuchte <InlineMath math="h" />.
     </>
   }
-  footer={<>Warme trockene Luft vergrößert das Defizit und beschleunigt die Transpiration.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 47 }, y: { min: 0, max: 10.5 } },
@@ -312,7 +307,6 @@ Die **lichtunabhängige Reaktion** (Calvin-Zyklus) im Stroma baut Kohlenstoffdio
       Netto-Gasaustausch abzulesen.
     </>
   }
-  footer={<>Thylakoide liefern ATP und NADPH für den Calvin-Zyklus im Stroma.</>}
   stages={["lightDependent", "calvinCycle", "compensation"]}
   light={{ min: 0, max: 100, value: 65 }}
   co2={{ min: 0, max: 1000, value: 400 }}
@@ -326,9 +320,9 @@ Die **lichtunabhängige Reaktion** (Calvin-Zyklus) im Stroma baut Kohlenstoffdio
       balanced: "Ausgeglichen",
     },
     gasStates: {
-      netRelease: "Netto-CO2-Abgabe",
+      netRelease: "Netto-Kohlenstoffdioxidabgabe",
       compensation: "Kompensationspunkt",
-      netUptake: "Netto-CO2-Aufnahme",
+      netUptake: "Netto-Kohlenstoffdioxidaufnahme",
     },
     light: "Lichtstärke (%)",
     limitingFactor: <>Begrenzender Faktor</>,
@@ -374,7 +368,6 @@ Genau wie eine Bäckerei nicht schneller backt, sobald das Mehl ausgeht, erreich
       Photonenfluss in <InlineMath math="\mu\text{mol m}^{-2}\text{ s}^{-1}" />.
     </>
   }
-  footer={<>Mehr CO2 hebt das Lichtsättigungsplateau, sobald das Blatt hell steht.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1250 }, y: { min: 0, max: 30 } },
@@ -417,7 +410,6 @@ Ein **begrenzender Faktor** ist der knappste Einfluss, der das Tempo festlegt. B
       <InlineMath math="c" />.
     </>
   }
-  footer={<>Die Kurve steigt steil bei Lichtmangel und flacht bei CO2-Mangel ab.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 21 }, y: { min: 0, max: 13 } },
@@ -459,7 +451,6 @@ Der **Kompensationspunkt** liegt vor, wenn Fotosynthese und Atmung gleich schnel
       untere Kurve zeigt den Netto-Gasaustausch <InlineMath math="P - R" />.
     </>
   }
-  footer={<>Am Kompensationspunkt schneidet der Netto-Gasaustausch P - R genau null.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -2.5, max: 8 } },

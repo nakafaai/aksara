@@ -36,7 +36,6 @@ Inspect every layer of a leaf lamina in three dimensions below. Compare chloropl
       chloroplast density, air spaces, vascular bundles, and key adaptations.
     </>
   }
-  footer={<>Select leaf layers to compare chloroplast density and adaptations.</>}
   layers={[
     "cuticle",
     "upperEpidermis",
@@ -107,7 +106,6 @@ A thin lamina gives a **surface area to volume ratio** of <InlineMath math="2/d"
       <InlineMath math="d" /> millimetres thick, ignoring the narrow edges.
     </>
   }
-  footer={<>Thinner leaves achieve a much higher surface-area-to-volume ratio.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1.1 }, y: { min: 0, max: 21 } },
@@ -146,7 +144,6 @@ Guard cells open a stoma when **turgid**, never when flaccid. In light, they act
       transpiration change.
     </>
   }
-  footer={<>Water entry makes guard cells turgid so their thick inner walls bow open.</>}
   conditions={["light", "dark", "drought"]}
   light={{ min: 0, max: 100, value: 75 }}
   labels={{
@@ -207,7 +204,6 @@ Think of a stomatal pore like a window on a breezy day: opening the window wider
       pore widths <InlineMath math="p" /> in <InlineMath math="\mu\text{m}" />.
     </>
   }
-  footer={<>Wider stomata and brisk wind raise transpiration rate across the leaf.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 12.5 }, y: { min: 0, max: 7.5 } },
@@ -259,7 +255,6 @@ Vapour diffusion scales with the **vapour pressure deficit**, saturation pressur
       <InlineMath math="h" />.
     </>
   }
-  footer={<>Warm dry air widens the vapour deficit and speeds up transpiration.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 47 }, y: { min: 0, max: 10.5 } },
@@ -312,7 +307,6 @@ The **light-independent reaction** (Calvin cycle) in the stroma converts carbon 
       exchange.
     </>
   }
-  footer={<>Thylakoid light reactions supply ATP and NADPH to the Calvin cycle in stroma.</>}
   stages={["lightDependent", "calvinCycle", "compensation"]}
   light={{ min: 0, max: 100, value: 65 }}
   co2={{ min: 0, max: 1000, value: 400 }}
@@ -326,9 +320,9 @@ The **light-independent reaction** (Calvin cycle) in the stroma converts carbon 
       balanced: "Balanced",
     },
     gasStates: {
-      netRelease: "Net CO2 release",
+      netRelease: "Net carbon dioxide release",
       compensation: "Compensation point",
-      netUptake: "Net CO2 uptake",
+      netUptake: "Net carbon dioxide uptake",
     },
     light: "Light intensity (%)",
     limitingFactor: <>Limiting factor</>,
@@ -374,7 +368,6 @@ Just like a kitchen that cannot bake faster once it runs out of flour, a brightl
       flux in <InlineMath math="\mu\text{mol m}^{-2}\text{ s}^{-1}" />.
     </>
   }
-  footer={<>Higher CO2 lifts the light-saturation plateau once leaves leave dim shade.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1250 }, y: { min: 0, max: 30 } },
@@ -417,7 +410,6 @@ A **limiting factor** is the scarcest input holding back the rate. Light limits 
       <InlineMath math="c" />.
     </>
   }
-  footer={<>The curve climbs steeply under light limitation, then plateaus under CO2.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 21 }, y: { min: 0, max: 13 } },
@@ -459,7 +451,6 @@ The **compensation point** occurs when photosynthesis exactly balances respirati
       The lower curve shows net gas exchange <InlineMath math="P - R" />.
     </>
   }
-  footer={<>At the compensation point, net gas exchange P - R crosses zero.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -2.5, max: 8 } },
