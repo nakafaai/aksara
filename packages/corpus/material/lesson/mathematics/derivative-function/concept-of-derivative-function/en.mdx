@@ -3,19 +3,17 @@ export const metadata = {
   description: "A derivative is the local rate of change and tangent slope obtained from the limit of secant slopes.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-27",
   subject: "Derivative Functions",
 };
 
-
-
-## Slope at a Point on a Curve
+## Slope on a Curved Graph
 
 Picture a bicycle moving along a hilly road. Some stretches climb steeply, while others are almost flat. The road's **slope** changes from point to point. A curved function graph behaves in much the same way.
 
 For a straight line, the slope is the same at every point. For a curved line, the slope changes from point to point. A **derivative** gives the slope or rate of change at **one specific point** on a curve.
 
-## Gradient of a Secant Line
+## Secant Line Gradient
 
 We begin with a **secant line**, a straight line through two different points of a curve.
 
@@ -56,7 +54,9 @@ This slope is the **average rate of change** of <InlineMath math="f(x)" /> betwe
   }}
 />
 
-## From Secant Line to Tangent Line
+Notice that the secant beam sits steeper than the curve at <InlineMath math="P" /> because the parabola curves upward between <InlineMath math="x = 1" /> and <InlineMath math="x = 3" />. Moving <InlineMath math="Q" /> closer removes that extra tilt.
+
+## From Secant to Tangent
 
 Imagine choosing <InlineMath math="Q" /> on the parabola closer and closer to <InlineMath math="P" />. The horizontal separation <InlineMath math="\Delta x" /> then approaches zero. We can calculate the effect of choosing different points while keeping the same parabola.
 
@@ -66,7 +66,9 @@ The tangent's slope is the **instantaneous rate of change** of the curve at <Inl
 
 <BlockMath math="\begin{aligned} &amp;m_{\text{tangent}} = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x} \end{aligned}" />
 
-For the plotted parabola, fix <InlineMath math="P=(1,1)" /> and write <InlineMath math="h=\Delta x" />. The second point is <InlineMath math="Q=(1+h,(1+h)^2)" />. As long as <InlineMath math="h\ne0" />, the secant slope simplifies to:
+### Shrinking the Step
+
+For the plotted parabola, fix <InlineMath math="P(1, 1)" /> and write <InlineMath math="h = \Delta x" />. The second point is <InlineMath math="Q(1 + h, (1 + h)^2)" />. As long as <InlineMath math="h \ne 0" />, the secant slope simplifies to:
 
 <BlockMath math="\begin{aligned}\frac{(1+h)^2-1}{h}&=\frac{2h+h^2}{h}\\&=2+h\end{aligned}" />
 
@@ -92,6 +94,50 @@ Tabulate the secant slope <InlineMath math="2 + h" /> as <InlineMath math="Q" />
   chartConfig={{ value: { label: "Secant slope", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
+The bars squeeze symmetrically around <InlineMath math="2" /> as <InlineMath math="h" /> nears zero from either side, confirming that both one-sided secant limits agree on the tangent slope.
+
+### Comparing Secant Limits
+
+The same limit behavior appears on any smooth curve, whether it bends upward like a parabola, steepens like a cubic, or oscillates like a sine wave. Slide the horizontal step toward zero while fixing the anchor at <InlineMath math="x = 0.5" /> to watch the secant beam align with the tangent line.
+
+<SecantToTangentLab
+  title={<>Secant beam converging onto the tangent line</>}
+  description={<>Fix the anchor at <InlineMath math="a = 0.5" /> and shrink the horizontal step <InlineMath math="h" /> across three curves to compare the secant slope with the exact tangent slope <InlineMath math="f'(0.5)" />.</>}
+  curves={["quadratic", "cubic", "sineWave"]}
+  stepH={{ min: 0.04, max: 1.6, value: 0.8 }}
+  labels={{
+    curve: "Curve",
+    curves: {
+      quadratic: {
+        name: "Quadratic",
+        formula: <InlineMath math="f(x) = 0.45x^2 + 0.2" />,
+      },
+      cubic: {
+        name: "Cubic",
+        formula: <InlineMath math="f(x) = 0.16x^3 + 0.25x + 0.5" />,
+      },
+      sineWave: {
+        name: "Sine wave",
+        formula: <InlineMath math="f(x) = 0.75\sin(x) + 0.9" />,
+      },
+    },
+    parts: {
+      curveRibbon: "Curve ribbon",
+      anchorPoint: "Anchor point",
+      movingPoint: "Moving point",
+      secantLine: "Secant line",
+      tangentLine: "Tangent line",
+      slopeTriangle: "Slope triangle",
+    },
+    secantSlope: <>Secant slope</>,
+    stepH: "Horizontal step",
+    tangentSlope: <>Tangent slope</>,
+    view: "Three-dimensional curve stage showing a secant line and slope triangle converging onto a tangent line",
+  }}
+/>
+
+As the horizontal step decreases, the slope triangle collapses around the anchor point and the secant slope approaches the exact **tangent slope** on every preset curve. Even on the sine wave, where curvature bends downward so the secant starts flatter than the tangent, the two slopes lock together as the step nears zero.
+
 ## Definition of the Derivative
 
 <Highlight>[The limit](/en/subjects/mathematics/limit/concept-of-limit-function) of the secant slopes</Highlight> as <InlineMath math="\Delta x" /> approaches zero is called the **derivative**.
@@ -101,6 +147,8 @@ The derivative of a function <InlineMath math="f(x)" />, denoted as <InlineMath 
 <BlockMath math="f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}" />
 
 Finding a derivative is called **differentiation**.
+
+> A derivative is not a fraction with zero in the denominator. It is the limiting slope that secant lines approach while the two points are still distinct.
 
 The derivative <InlineMath math="f'(x)" /> is a new function. At every value of <InlineMath math="x" /> where the limit exists, it gives the **instantaneous rate of change** of <InlineMath math="f(x)" />, which is also the slope of the tangent line there. Differential calculus uses the derivative function to analyze both quantities.
 
@@ -134,3 +182,5 @@ As <InlineMath math="Q" /> slides toward <InlineMath math="P" />, the secants tu
     ],
   }}
 />
+
+Each shorter chord pivots closer to the tangent at <InlineMath math="P" />, so reading <InlineMath math="f'(1) = 2" /> means reading the exact direction of the parabola right at that single point.

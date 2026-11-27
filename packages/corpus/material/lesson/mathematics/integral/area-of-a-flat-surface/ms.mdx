@@ -3,13 +3,11 @@ export const metadata = {
   description: "Gunakan kamiran tentu untuk mengira luas rantau yang dibatasi oleh lengkung, dengan contoh lengkap bagi fungsi kuadratik dan fungsi punca kuasa dua.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-27",
   subject: "Pengamiran",
 };
 
-
-
-## Daripada Jalur Segi Empat Tepat kepada Kamiran Tentu
+## Jalur ke Kamiran Tentu
 
 Rumus luas segi empat tepat dan segi tiga yang biasa kamu guna tidak boleh terus digunakan pada rantau yang sempadannya melengkung.
 
@@ -17,16 +15,20 @@ Rumus luas segi empat tepat dan segi tiga yang biasa kamu guna tidak boleh terus
 
 Katakan fungsi <InlineMath math="f(x)" /> membatasi suatu rantau dari <InlineMath math="x = a" /> hingga <InlineMath math="x = b" />. Kita bahagikan <InlineMath math="[a, b]" /> kepada <InlineMath math="n" /> subselang yang lebarnya <InlineMath math="\Delta x" />.
 
-Bagi fungsi selanjar yang **tidak negatif** pada <InlineMath math="[a,b]" /> dengan <InlineMath math="a<b" />, rumus luasnya ialah:
+Bagi fungsi selanjar yang **tidak negatif** pada <InlineMath math="[a, b]" /> dengan <InlineMath math="a < b" />, rumus luasnya ialah:
 
 <MathContainer>
 <BlockMath math="A = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \cdot \Delta x" />
 <BlockMath math="A = \int_{a}^{b} f(x) \, dx" />
 </MathContainer>
 
-## Menentukan Luas Menggunakan Kamiran Tentu
+## Menyusun Kamiran Luas
 
-Untuk mencari luas, kenal pasti dahulu **had kamiran dan tinggi jalur** sebelum kamu mencari antiterbitan. Contoh <InlineMath math="f(x)=x" /> pada <InlineMath math="[0,2]" /> menunjukkan ketiga-tiga keputusan itu.
+Setiap kamiran luas bergantung pada pemilihan had yang betul dan pengukuran **tinggi jalur** positif supaya tiada bahagian rantau yang saling membatalkan. Mulakan dengan satu lengkung berbanding paksi mengufuk, kemudian luaskan idea jalur yang sama kepada rantau yang terkepung antara dua lengkung.
+
+### Had Tinggi dan Tanda
+
+Untuk mencari luas, kenal pasti dahulu **had kamiran dan tinggi jalur** sebelum kamu mencari antiterbitan. Contoh <InlineMath math="f(x) = x" /> pada <InlineMath math="[0, 2]" /> menunjukkan ketiga-tiga keputusan itu.
 
 | Keputusan | Contoh | Sebab |
 | --- | --- | --- |
@@ -40,7 +42,52 @@ Fungsi <InlineMath math="F" /> ialah [satu antiterbitan](/ms/subjek/matematik/pe
 
 Jika lengkung terletak di bawah paksi, gunakan **nilai mutlak** sebagai tinggi. Jika fungsi itu bertukar tanda, pecahkan selang itu pada pensifarnya supaya luas tidak saling membatalkan.
 
-## Aplikasi pada Fungsi Kuadratik
+### Luas Antara Dua Lengkung
+
+Apabila suatu rantau terletak di antara lengkung atas <InlineMath math="f(x)" /> dengan lengkung bawah <InlineMath math="g(x)" /> pada <InlineMath math="[a, b]" />, setiap **jalur menegak** mempunyai tinggi <InlineMath math="f(x) - g(x)" />. Mengamirkan beza tinggi itu mengumpulkan luas rantau yang terkepung:
+
+<BlockMath math="A = \int_{a}^{b} \big(f(x) - g(x)\big) \, dx" />
+
+Seret had atas merentasi tiga pasangan lengkung untuk melihat tinggi jalur menegak menyumbang kepada jumlah luas terkepung.
+
+<AreaBetweenCurvesLab
+  title={<>Luas terkepung antara lengkung atas dan lengkung bawah</>}
+  description={<>Tukar antara tiga pasangan lengkung dan gerakkan had atas pada <InlineMath math="[0, 2]" /> untuk mengukur tinggi jalur menegak <InlineMath math="f(x) - g(x)" /> serta jumlah luas terkepung.</>}
+  pairs={["lineAndParabola", "twoParabolas", "sineAndCosine"]}
+  upperBound={{ min: 0.2, max: 2.0, value: 1.5 }}
+  labels={{
+    enclosedArea: <>Luas terkepung</>,
+    heightGap: <>Tinggi jalur</>,
+    pair: "Pasangan lengkung",
+    pairs: {
+      lineAndParabola: {
+        name: "Garis dan parabola",
+        formula: <><InlineMath math="f(x) = 0.7x + 0.15" />, <InlineMath math="g(x) = 0.35x^2 + 0.15" /></>,
+      },
+      twoParabolas: {
+        name: "Dua parabola",
+        formula: <><InlineMath math="f(x) = 1.4 - 0.3(x-1)^2" />, <InlineMath math="g(x) = 0.3(x-1)^2 + 0.2" /></>,
+      },
+      sineAndCosine: {
+        name: "Sinus dan kosinus",
+        formula: <><InlineMath math="f(x) = 0.85 + 0.45\sin(1.1x)" />, <InlineMath math="g(x) = 0.35 + 0.25\cos(1.3x)" /></>,
+      },
+    },
+    parts: {
+      upperCurve: "Lengkung atas",
+      lowerCurve: "Lengkung bawah",
+      shadedRibbon: "Jalur berlorek",
+      verticalStrip: "Jalur menegak",
+      intersectionPins: "Titik persilangan",
+    },
+    upperBound: "Had atas",
+    view: "Jalur tiga dimensi di antara lengkung atas dan lengkung bawah dengan jalur menegak yang bergerak",
+  }}
+/>
+
+Di bahagian yang lengkung atas dan lengkung bawah jauh terpisah, jalur menegak menjadi tinggi dan luas terkepung bertambah cepat. Apabila had atas menghampiri titik persilangan, tinggi jalur mengecil ke sifar dan luas terkepung mula mendatar.
+
+## Kuadratik di Bawah Paksi
 
 Perhatikan rantau yang dibatasi oleh <InlineMath math="f(x) = x^2 - 4x" />, paksi-<InlineMath math="x" />, <InlineMath math="x = 1" />, dan <InlineMath math="x = 3" />.
 
@@ -70,7 +117,7 @@ Perhatikan rantau yang dibatasi oleh <InlineMath math="f(x) = x^2 - 4x" />, paks
   }}
 />
 
-Pada <InlineMath math="[1,3]" />, faktorkan fungsi itu sebagai <InlineMath math="f(x)=x(x-4)" />. Setiap titik dalam selang ini memenuhi <InlineMath math="x>0" /> dan <InlineMath math="x-4<0" />, jadi <InlineMath math="f(x)<0" /> di sepanjang selang itu. Nilai pada titik hujung, <InlineMath math="f(1)=-3" /> dan <InlineMath math="f(3)=-3" />, sepadan dengan analisis tanda ini.
+Pada <InlineMath math="[1, 3]" />, faktorkan fungsi itu sebagai <InlineMath math="f(x) = x(x - 4)" />. Setiap titik dalam selang ini memenuhi <InlineMath math="x > 0" /> dan <InlineMath math="x - 4 < 0" />, jadi <InlineMath math="f(x) < 0" /> di sepanjang selang itu. Nilai pada titik hujung, <InlineMath math="f(1) = -3" /> dan <InlineMath math="f(3) = -3" />, sepadan dengan analisis tanda ini.
 
 **Luas geometri** tidak boleh negatif. Oleh sebab fungsi itu negatif di sepanjang selang ini, nilai mutlaknya sama dengan negatif fungsi itu, jadi:
 
@@ -90,9 +137,11 @@ Sekarang, nilaikan kamiran tentu itu:
 
 Luas rantau itu ialah <InlineMath math="\frac{22}{3}" /> unit persegi.
 
-## Aplikasi pada Fungsi Punca Kuasa Dua
+## Penggantian Punca Kuasa Dua
 
-Untuk contoh kedua, kira luas di bawah <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 2" />.
+Untuk contoh kedua, kira luas di bawah lengkung punca kuasa dua berikut dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 2" />:
+
+<BlockMath math="f(x) = x\sqrt{x^2 + 5}" />
 
 <MathVisual
   title={<>Graf <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /></>}
@@ -120,9 +169,9 @@ Untuk contoh kedua, kira luas di bawah <InlineMath math="f(x) = x\sqrt{x^2 + 5}"
   }}
 />
 
-Ungkapan <InlineMath math="x\sqrt{x^2 + 5}" /> memberi petunjuk supaya kita guna **kaedah penggantian**, kerana faktor <InlineMath math="x" /> berkadar dengan terbitan ungkapan di dalam punca kuasa dua.
+Ungkapan <InlineMath math="x\sqrt{x^2 + 5}" /> memberi petunjuk supaya kita guna **kaedah penggantian**, kerana faktor <InlineMath math="x" /> berkadar dengan terbitan ungkapan di dalam punca kuasa dua:
 
-Tetapkan <InlineMath math="u = x^2 + 5" />. Maka <InlineMath math="du = 2x \, dx" />, jadi <InlineMath math="x \, dx = \frac{1}{2} du" />.
+<BlockMath math="u = x^2 + 5, \qquad du = 2x\,dx, \qquad x\,dx = \frac{1}{2}\,du" />
 
 Had kamiran mesti menggunakan pemboleh ubah yang sama dengan kamiranan: <InlineMath math="x = 0" /> memberikan <InlineMath math="u = 5" />, manakala <InlineMath math="x = 2" /> memberikan <InlineMath math="u = 9" />.
 
@@ -137,27 +186,32 @@ Sekarang, kamiran kita menjadi:
 <BlockMath math="A = \frac{1}{3}\left(27 - 5\sqrt{5}\right)" />
 </MathContainer>
 
-Di sini, <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> dan <InlineMath math="5^{3/2} = 5 \cdot \sqrt{5}" />.
+Nilaikan kedua-dua kuasa pecahan pada had atas dan bawah:
 
-> Apabila menggunakan penggantian dalam kamiran tentu, jangan lupa tukar had kamiran mengikut pemboleh ubah penggantian yang baharu.
+<MathContainer>
+<BlockMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" />
+<BlockMath math="5^{3/2} = 5\sqrt{5}" />
+</MathContainer>
 
-## Latihan
+> Apabila menggunakan penggantian dalam kamiran tentu, sentiasa tukar had kamiran mengikut pemboleh ubah penggantian yang baharu.
+
+## Menguji Luas Rantau Lengkung
 
 Had kamiran mungkin diberikan terus atau perlu dicari daripada titik persilangan. Semak tanda fungsi di sepanjang selang supaya kamiran itu menghasilkan **luas geometri**.
 
 1. Kira luas rantau yang dibatasi oleh lengkung <InlineMath math="y = x^2 + 1" />, paksi-<InlineMath math="x" />, serta garis <InlineMath math="x = 0" /> dan <InlineMath math="x = 2" />.
 
-2. Tentukan luas rantau di bawah lengkung <InlineMath math="y = \frac{1}{x^2 + 1}" /> dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 1" />.
+2. Tentukan luas rantau dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 1" /> di bawah lengkung berikut:
+
+   <BlockMath math="y = \frac{1}{x^2 + 1}" />
 
 3. Kira luas rantau yang dibatasi oleh lengkung <InlineMath math="y = 2x - x^2" /> dan paksi-<InlineMath math="x" />.
-
-### Jalan Kerja
 
 **Soalan 1**. Oleh sebab fungsi ini **sentiasa positif**, kita boleh terus menulis kamirannya:
 
 <BlockMath math="A = \int_{0}^{2} (x^2 + 1) \, dx" />
 
-Selepas kita kamirkan dan nilaikan, kita peroleh:
+Menilai kamiran tentu antara kedua-dua had itu memberikan:
 
 <MathContainer>
 <BlockMath math="A = \left[\frac{x^3}{3} + x\right]_{0}^{2}" />
@@ -166,7 +220,7 @@ Selepas kita kamirkan dan nilaikan, kita peroleh:
 
 Jadi, luas rantau itu ialah <InlineMath math="\frac{14}{3}" /> unit persegi.
 
-**Soalan 2**. **Antiterbitan** yang digunakan dalam kamiran ini ialah <InlineMath math="\arctan(x)" /> kerana terbitannya ialah <InlineMath math="\frac{1}{x^2 + 1}" />.
+**Soalan 2**. **Antiterbitan** yang digunakan dalam kamiran ini ialah <InlineMath math="\arctan(x)" /> kerana terbitannya menghasilkan kamiranan dalam soalan:
 
 <MathContainer>
 <BlockMath math="A = \int_{0}^{1} \frac{1}{x^2 + 1} \, dx" />
@@ -190,7 +244,7 @@ Jadi, titik persilangannya ialah pada <InlineMath math="x = 0" /> dan <InlineMat
 
 Luas rantau itu ialah <InlineMath math="\frac{4}{3}" /> unit persegi.
 
-Soalan 3 pada graf: <InlineMath math="y = 2x - x^2" /> bermula pada <InlineMath math="0" />, naik ke <InlineMath math="1" /> pada <InlineMath math="x = 1" />, dan kembali ke <InlineMath math="0" /> pada <InlineMath math="x = 2" />. Rantau di antara lengkung gerbang itu dengan paksi-x mempunyai luas <InlineMath math="\int_0^2 (2x - x^2)\,dx = \tfrac43" />.
+Soalan 3 pada graf menunjukkan <InlineMath math="y = 2x - x^2" /> naik dari <InlineMath math="0" /> ke puncaknya <InlineMath math="1" /> pada <InlineMath math="x = 1" /> dan kembali ke <InlineMath math="0" /> pada <InlineMath math="x = 2" />, mengepung luas <InlineMath math="\tfrac{4}{3}" /> di atas paksi.
 
 <MathVisual
   title={<>Lengkung gerbang <InlineMath math="y = 2x - x^2" /></>}
@@ -216,3 +270,5 @@ Soalan 3 pada graf: <InlineMath math="y = 2x - x^2" /> bermula pada <InlineMath 
     ],
   }}
 />
+
+Oleh sebab seluruh gerbang berada di atas paksi di antara punca <InlineMath math="0" /> dengan <InlineMath math="2" />, satu kamiran sahaja terus memberikan luas geometri tepat tanpa perlu memecahkan selang.

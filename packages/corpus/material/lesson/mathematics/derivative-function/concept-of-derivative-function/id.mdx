@@ -3,29 +3,27 @@ export const metadata = {
   description: "Turunan adalah laju perubahan lokal dan gradien garis singgung yang diperoleh dari limit gradien garis sekan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-27",
   subject: "Turunan Fungsi",
 };
 
+## Kemiringan pada Kurva
 
+Bayangkan sepeda melaju di jalan berbukit. Ada bagian yang menanjak tajam, ada pula yang hampir datar. **Kemiringan** jalan berubah dari satu titik ke titik berikutnya. Kurva pada grafik fungsi juga berubah dengan cara serupa.
 
-## Kemiringan Kurva pada Satu Titik
-
-Bayangkan sepeda melaju di jalan berbukit. Ada bagian yang menanjak tajam, ada pula yang hampir datar. **Kemiringan** jalan berubah dari satu titik ke titik berikutnya. Kurva pada grafik fungsi juga dapat berubah dengan cara serupa.
-
-Garis lurus memiliki kemiringan yang sama di setiap titik, sedangkan kemiringan kurva dapat terus berubah. **Turunan** menyatakan kemiringan atau laju perubahan kurva pada **satu titik tertentu**.
+Garis lurus memiliki kemiringan yang sama di setiap titik, sedangkan kemiringan kurva terus berubah. **Turunan** menyatakan kemiringan atau laju perubahan kurva pada **satu titik tertentu**.
 
 ## Gradien Garis Sekan
 
 Kita mulai dengan **garis sekan**, yaitu garis lurus yang melalui dua titik berbeda pada sebuah kurva.
 
-Misalkan kurva tersebut menyatakan <InlineMath math="y = f(x)" />. Pilih dua titik berbeda, <InlineMath math="P(x, f(x))" /> dan <InlineMath math="Q(x+\Delta x, f(x+\Delta x))" />, pada kurva. Di sini, <InlineMath math="\Delta x" /> (dibaca "delta x") adalah perubahan mendatar dari <InlineMath math="P" /> ke <InlineMath math="Q" />, sehingga <InlineMath math="\Delta x \ne 0" />.
+Misalkan kurva ini menyatakan <InlineMath math="y = f(x)" />. Pilih dua titik berbeda, <InlineMath math="P(x, f(x))" /> dan <InlineMath math="Q(x+\Delta x, f(x+\Delta x))" />, pada kurva. Di sini, <InlineMath math="\Delta x" /> (dibaca "delta x") adalah perubahan mendatar dari <InlineMath math="P" /> ke <InlineMath math="Q" />, sehingga <InlineMath math="\Delta x \ne 0" />.
 
 Gradien garis sekan yang melalui <InlineMath math="P" /> dan <InlineMath math="Q" /> adalah:
 
 <BlockMath math="\begin{aligned} m_{\text{sekan}} &amp;= \frac{\Delta y}{\Delta x} \\ &amp;= \frac{f(x + \Delta x) - f(x)}{\Delta x} \end{aligned}" />
 
-Gradien ini merupakan **laju perubahan rata-rata** fungsi <InlineMath math="f(x)" /> antara <InlineMath math="P" /> dan <InlineMath math="Q" />.
+Gradien ini adalah **laju perubahan rata-rata** fungsi <InlineMath math="f(x)" /> antara <InlineMath math="P" /> dan <InlineMath math="Q" />.
 
 <MathVisual
   title={<>Garis potong dan garis singgung</>}
@@ -56,17 +54,21 @@ Gradien ini merupakan **laju perubahan rata-rata** fungsi <InlineMath math="f(x)
   }}
 />
 
-## Dari Garis Sekan ke Garis Singgung
+Garis sekan tampak lebih curam daripada arah kurva di <InlineMath math="P" /> karena parabola melengkung naik antara <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" />. Menggeser <InlineMath math="Q" /> mendekati <InlineMath math="P" /> mengurangi kemiringan berlebih itu.
+
+## Dari Sekan ke Garis Singgung
 
 Bayangkan titik <InlineMath math="Q" /> pada parabola dipilih semakin dekat ke <InlineMath math="P" />. Jarak mendatar <InlineMath math="\Delta x" /> kemudian mendekati nol. Perubahan pemilihan titik itu dapat kita hitung tanpa mengubah rumus parabola.
 
-Ketika <InlineMath math="\Delta x \to 0" /> (dibaca "delta x mendekati nol"), garis-garis sekan tersebut mendekati **garis singgung** di <InlineMath math="P" />. Garis singgung menunjukkan arah lokal kurva pada titik itu. Garis ini tidak harus hanya berpotongan satu kali dengan seluruh kurva. Yang penting adalah perilakunya di sekitar <InlineMath math="P" />.
+Ketika <InlineMath math="\Delta x \to 0" /> (dibaca "delta x mendekati nol"), garis-garis sekan itu mendekati **garis singgung** di <InlineMath math="P" />. Garis singgung menunjukkan arah lokal kurva pada titik itu. Garis ini tidak harus hanya berpotongan satu kali dengan seluruh kurva. Yang penting adalah perilakunya di sekitar <InlineMath math="P" />.
 
-Gradien garis singgung merupakan **laju perubahan sesaat** kurva di <InlineMath math="P" />. Nilainya diperoleh dengan **limit**:
+Gradien garis singgung adalah **laju perubahan sesaat** kurva di <InlineMath math="P" />. Nilainya diperoleh dengan **limit**:
 
 <BlockMath math="\begin{aligned} &amp;m_{\text{singgung}} = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x} \end{aligned}" />
 
-Untuk parabola pada grafik, tetapkan <InlineMath math="P=(1,1)" /> dan tulis <InlineMath math="h=\Delta x" />. Titik kedua menjadi <InlineMath math="Q=(1+h,(1+h)^2)" />. Selama <InlineMath math="h\ne0" />, gradien sekan dapat disederhanakan:
+### Mengecilkan Langkah
+
+Untuk parabola pada grafik, tetapkan <InlineMath math="P(1, 1)" /> dan tulis <InlineMath math="h = \Delta x" />. Titik kedua menjadi <InlineMath math="Q(1 + h, (1 + h)^2)" />. Selama <InlineMath math="h \ne 0" />, gradien sekan dapat disederhanakan:
 
 <BlockMath math="\begin{aligned}\frac{(1+h)^2-1}{h}&=\frac{2h+h^2}{h}\\&=2+h\end{aligned}" />
 
@@ -92,6 +94,50 @@ Tabelkan gradien garis potong <InlineMath math="2 + h" /> saat <InlineMath math=
   chartConfig={{ value: { label: "Gradien garis potong", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
+Batang-batang itu menyempit secara simetris di sekitar <InlineMath math="2" /> ketika <InlineMath math="h" /> mendekati nol dari kiri maupun kanan, menandakan kedua limit sepihak sepakat pada gradien garis singgung.
+
+### Uji Limit Garis Sekan
+
+Perilaku limit yang sama berlaku pada setiap kurva mulus, baik yang melengkung seperti parabola, menanjak seperti kubik, maupun bergelombang seperti sinus. Geser langkah mendatar mendekati nol sambil menahan titik acuan di <InlineMath math="x = 0{,}5" /> untuk melihat garis sekan berimpit dengan **garis singgung**.
+
+<SecantToTangentLab
+  title={<>Garis sekan menuju garis singgung</>}
+  description={<>Tahan titik acuan di <InlineMath math="a = 0{,}5" /> lalu perkecil langkah mendatar <InlineMath math="h" /> pada tiga kurva untuk membandingkan gradien sekan dengan gradien garis singgung <InlineMath math="f'(0{,}5)" />.</>}
+  curves={["quadratic", "cubic", "sineWave"]}
+  stepH={{ min: 0.04, max: 1.6, value: 0.8 }}
+  labels={{
+    curve: "Kurva",
+    curves: {
+      quadratic: {
+        name: "Kuadrat",
+        formula: <InlineMath math="f(x) = 0{,}45x^2 + 0{,}2" />,
+      },
+      cubic: {
+        name: "Kubik",
+        formula: <InlineMath math="f(x) = 0{,}16x^3 + 0{,}25x + 0{,}5" />,
+      },
+      sineWave: {
+        name: "Gelombang sinus",
+        formula: <InlineMath math="f(x) = 0{,}75\sin(x) + 0{,}9" />,
+      },
+    },
+    parts: {
+      curveRibbon: "Pita kurva",
+      anchorPoint: "Titik acuan",
+      movingPoint: "Titik gerak",
+      secantLine: "Garis sekan",
+      tangentLine: "Garis singgung",
+      slopeTriangle: "Segitiga kemiringan",
+    },
+    secantSlope: <>Gradien sekan</>,
+    stepH: "Langkah mendatar",
+    tangentSlope: <>Gradien singgung</>,
+    view: "Panggung tiga dimensi yang menampilkan garis sekan dan segitiga kemiringan yang mendekati garis singgung",
+  }}
+/>
+
+Ketika langkah mendatar diperkecil, segitiga kemiringan menyusut ke titik acuan dan gradien sekan mendekati gradien garis singgung pada ketiga kurva. Bahkan pada gelombang sinus yang melengkung ke bawah sehingga sekan awalnya lebih landai, kedua gradien bertemu saat langkah mendekati nol.
+
 ## Definisi Turunan
 
 <Highlight>[Limit gradien garis sekan](/id/materi/matematika/limit/konsep-limit-fungsi)</Highlight> saat <InlineMath math="\Delta x" /> mendekati nol disebut **turunan**.
@@ -102,7 +148,9 @@ Turunan dari sebuah fungsi <InlineMath math="f(x)" />, yang dinotasikan sebagai 
 
 Proses mencari turunan disebut **diferensiasi**.
 
-Turunan <InlineMath math="f'(x)" /> adalah fungsi baru. Pada setiap nilai <InlineMath math="x" /> tempat limit tersebut ada, turunannya memberikan **laju perubahan sesaat** dari <InlineMath math="f(x)" />, yang juga merupakan gradien garis singgung di titik itu. Kalkulus diferensial menggunakan fungsi turunan untuk menganalisis kedua besaran tersebut.
+> Turunan bukan pembagian dengan nol, melainkan nilai gradien yang didekati garis sekan selama kedua titik masih berbeda.
+
+Turunan <InlineMath math="f'(x)" /> adalah fungsi baru. Pada setiap nilai <InlineMath math="x" /> tempat limit itu ada, turunannya memberikan **laju perubahan sesaat** dari <InlineMath math="f(x)" />, yang juga adalah gradien garis singgung di titik itu. Kalkulus diferensial menggunakan fungsi turunan untuk menganalisis kedua besaran itu.
 
 Saat <InlineMath math="Q" /> bergeser menuju <InlineMath math="P" />, garis-garis potong berputar menuju garis singgung. <InlineMath math="h = 1" /> memberi gradien <InlineMath math="3" />, <InlineMath math="h = \tfrac12" /> memberi <InlineMath math="2{,}5" />, dan garis singgung di <InlineMath math="P" /> bergradien <InlineMath math="2" />: limit gradien garis potong.
 
@@ -134,3 +182,5 @@ Saat <InlineMath math="Q" /> bergeser menuju <InlineMath math="P" />, garis-gari
     ],
   }}
 />
+
+Setiap ruas sekan yang makin pendek berputar mendekati garis singgung di <InlineMath math="P" />, sehingga <InlineMath math="f'(1) = 2" /> merekam arah persis parabola tepat di titik itu.

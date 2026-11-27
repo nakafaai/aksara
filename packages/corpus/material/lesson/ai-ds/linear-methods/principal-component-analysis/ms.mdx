@@ -1,9 +1,10 @@
 export const metadata = {
   title: "Analisis Komponen Utama",
-  description: "Terbitkan PCA daripada data terpusat, vektor eigen kovarians dan SVD. Tafsirkan varians yang diterangkan dan pembinaan semula berpangkat rendah secara geometri.",
+  description:
+    "Terbitkan PCA daripada data terpusat, vektor eigen kovarians dan SVD. Tafsirkan varians yang diterangkan dan pembinaan semula berpangkat rendah secara geometri.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-09-08",
+  dateModified: "2026-11-27",
   subject: "Kaedah Linear AI",
 };
 
@@ -11,7 +12,7 @@ export const metadata = {
 
 Andaikan <InlineMath math="m\ge2" /> supaya penyebut kovarians sampel bukan sifar.
 
-Katakan <InlineMath math="X\in\mathbb{R}^{m\times n}" /> mengandungi <InlineMath math="m" /> cerapan bagi <InlineMath math="n" /> ciri (feature). <InlineMath math="\mathrm{PCA}" /> bermula dengan menolak min setiap ciri:
+Katakan <InlineMath math="X\in\mathbb{R}^{m\times n}" /> mengandungi <InlineMath math="m" /> cerapan bagi <InlineMath math="n" /> ciri. <InlineMath math="\mathrm{PCA}" /> bermula dengan menolak min setiap ciri:
 
 <MathContainer>
 <BlockMath math="\mu_j=\frac1m\sum_{i=1}^m X_{ij}" />
@@ -23,6 +24,8 @@ Matriks kovarians sampel ialah
 <BlockMath math="C=\frac{1}{m-1}X_c^TX_c" />
 
 Matriks ini simetri dan separa tentu positif. Matriks ini mungkin singular apabila ciri-cirinya bersandar linear atau apabila <InlineMath math="n>m-1" />.
+
+> Pemusatan setiap ciri pada minnya wajib dilakukan sebelum mencari arah utama, manakala penskalaan kepada varians unit ialah pilihan pemodelan yang berasingan.
 
 Pemusatan ini wajib. <Highlight>Memiawaikan setiap ciri kepada varians unit</Highlight> pula ialah <Highlight>pilihan pemodelan yang berasingan</Highlight>, dan pilihan ini selalunya sesuai apabila ciri-ciri menggunakan unit yang tidak boleh dibandingkan. Langkah ini mengubah soalan yang kamu tanya, daripada arah dengan varians mutlak terbesar kepada arah dengan varians terpiawai terbesar.
 
@@ -55,7 +58,13 @@ Ambil tiga cerapan <InlineMath math="(2,3)" />, <InlineMath math="(4,4)" /> dan 
   ]}
 />
 
-## Arah Utama
+Mengalihkan semua titik dengan vektor min yang sama mengekalkan setiap jarak antara titik sambil memastikan semua paksi komponen utama melalui asalan.
+
+## Arah Utama dan Pengurangan Varians
+
+Arah utama ialah **vektor eigen ortogon** bagi matriks kovarians yang disusun daripada varians terbesar kepada terkecil, dan unjuran ke atas beberapa arah pertama mengekalkan sebahagian besar sebaran data.
+
+### Arah Utama
 
 Menurut teorem spektrum,
 
@@ -70,7 +79,7 @@ Arah utama pertama ialah penyelesaian bagi masalah ini:
 
 <BlockMath math="v_1=\underset{\|v\|_2=1}{\operatorname{argmax}}\;v^TCv" />
 
-Setiap arah seterusnya memaksimumkan varians yang sama, dengan syarat arah itu **ortogon terhadap semua arah sebelumnya**. Koordinat hasil transformasi, atau skor (scores), ialah
+Setiap arah seterusnya memaksimumkan varians yang sama, dengan syarat arah itu **ortogon terhadap semua arah sebelumnya**. Koordinat hasil transformasi, atau skor, ialah
 
 <BlockMath math="Z=X_cV" />
 
@@ -80,7 +89,7 @@ Kovarians sampel bagi skor <InlineMath math="Z" /> ialah matriks pepenjuru:
 
 Oleh itu, komponen utama tidak berkorelasi antara satu sama lain. Namun, secara amnya komponen itu belum tentu tak bersandar. Untuk vektor rawak yang bertaburan Gauss secara bersama, asas eigen yang tetap bagi kovarians populasinya memberikan komponen hasil transformasi yang tak bersandar. Korelasi sampel yang sifar sahaja tidak membuktikan ketakbersandaran dalam populasi.
 
-## Varians yang Diterangkan dan Pengurangan Dimensi
+### Varians yang Diterangkan dan Pengurangan Dimensi
 
 Nisbah varians yang diterangkan memerlukan **jumlah varians yang positif**, iaitu <InlineMath math="\operatorname{tr}(C)>0" />. Jika setiap cerapan terpusat ialah sifar, setiap nilai eigen juga sifar dan nisbah itu tidak tertakrif.
 
@@ -100,7 +109,7 @@ Antara semua pembinaan semula linear yang berpangkat tidak melebihi <InlineMath 
 
 <BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
 
-Setiap komponen utama menerangkan sebahagian daripada jumlah varians, dan saiz bahagian itu ditentukan oleh nilai eigennya. Dalam contoh lengkap di bawah, <InlineMath math="\lambda_1=9" /> dan <InlineMath math="\lambda_2=2.25" />, jadi komponen pertama menerangkan <InlineMath math="\tfrac9{11.25}=80\%" /> dan komponen kedua menerangkan baki <InlineMath math="20\%" />.
+Setiap komponen utama menerangkan sebahagian daripada jumlah varians, dan saiz bahagian itu ditentukan oleh nilai eigennya. Dalam contoh lengkap di bawah, <InlineMath math="\lambda_1=9" /> dan <InlineMath math="\lambda_2=2.25" />, jadi komponen pertama menerangkan <InlineMath math="80\%" /> dan komponen kedua menerangkan baki <InlineMath math="20\%" />.
 
 <BarChart
   title={<>Varians yang diterangkan oleh setiap komponen</>}
@@ -112,6 +121,73 @@ Setiap komponen utama menerangkan sebahagian daripada jumlah varians, dan saiz b
   ]}
   chartConfig={{ value: { label: "Varians yang diterangkan", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Kerana kedua-dua bar berjumlah <InlineMath math="1" />, menyimpan komponen pertama sahaja sudah mengekalkan empat perlima varians keseluruhan sambil mengetepikan sebaran kecil yang berserenjang.
+
+Sekarang putar kelompok titik berkorelasi dalam ruang untuk memerhatikan garis unjuran ortogonnya. Tukar subruang unjuran antara garis komponen pertama, satah dua komponen dan ruang penuh, kemudian naikkan korelasi ciri untuk melihat varians yang diterangkan meningkat manakala ralat pembinaan semula mengecut.
+
+<PcaProjection3DLab
+  title={<>Unjuran Ortogon Komponen Utama dalam Ruang</>}
+  description={
+    <>
+      Pilih subruang unjuran dan laraskan korelasi ciri untuk membandingkan
+      varians yang diterangkan dengan kuasa dua ralat pembinaan semula di
+      sepanjang garis sisa.
+    </>
+  }
+  subspaces={["pc1Line", "pc1Pc2Plane", "full3D"]}
+  correlation={{ min: 0.05, max: 0.98, value: 0.75 }}
+  labels={{
+    subspace: "Subruang unjuran",
+    correlation: "Korelasi ciri",
+    view: "Kelompok titik tiga dimensi berkorelasi dengan paksi utama ortogon dan garis unjuran sisa",
+    varianceExplained: <>Varians diterangkan</>,
+    reconstructionError: <>Ralat pembinaan semula</>,
+    parts: {
+      pointCloud: "Kelompok titik terpusat",
+      pc1Axis: "Paksi utama pertama",
+      pc2Axis: "Paksi utama kedua",
+      pc3Axis: "Paksi utama ketiga",
+      projectionPlane: "Satah unjuran",
+      residualLines: "Garis sisa unjuran",
+    },
+    subspaces: {
+      pc1Line: {
+        name: "Garis paksi pertama",
+        summary: (
+          <>
+            Mengunjurkan semua titik secara ortogon ke{" "}
+            <InlineMath math="\mathrm{PC}_1" /> bagi menyimpan satu arah
+            varians terkuat.
+          </>
+        ),
+      },
+      pc1Pc2Plane: {
+        name: "Satah dua komponen",
+        summary: (
+          <>
+            Mengunjurkan ke satah yang direntang oleh{" "}
+            <InlineMath math="\mathrm{PC}_1" /> dan{" "}
+            <InlineMath math="\mathrm{PC}_2" />, meninggalkan sisa kecil pada
+            paksi ketiga.
+          </>
+        ),
+      },
+      full3D: {
+        name: "Ruang tiga paksi penuh",
+        summary: (
+          <>
+            Mengekalkan ketiga-tiga paksi ortogon supaya{" "}
+            <InlineMath math="100\%" /> varians kekal utuh dengan ralat
+            pembinaan semula sifar.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Apabila korelasi menghampiri <InlineMath math="1" />, kelompok titik memanjang rapat mengikut paksi utama pertama sehingga unjuran satu dimensi pun mampu mengekalkan lebih daripada <InlineMath math="90\%" /> varians dengan garis sisa yang sangat pendek.
 
 ## Pengiraan Setara dengan Penguraian Nilai Singular
 
@@ -183,6 +259,8 @@ Hasil <InlineMath math="80\%" /> ialah pecahan daripada jumlah varians yang dite
     "v2": <InlineMath math="v_2" />,
   }}
 />
+
+Apabila sudut menyapu separuh pusingan, varians terarah berubah secara lancar antara nilai eigen terkecil <InlineMath math="2.25" /> sepanjang <InlineMath math="v_2" /> dengan nilai eigen terbesar <InlineMath math="9" /> sepanjang <InlineMath math="v_1" />.
 
 ## Batasan Tafsiran
 

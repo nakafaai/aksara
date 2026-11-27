@@ -1,10 +1,11 @@
 export const metadata = {
-    title: "Eigenwerte Eigenvektoren und Eigenräume",
-    description: "Eigenwerte, Eigenvektoren und Eigenräume verstehen, berechnen und mit der Invertierbarkeit einer Matrix verknüpfen.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2026-08-22",
-    dateModified: "2026-09-19",
-    subject: "Lineare Methoden der KI",
+  title: "Eigenwerte Eigenvektoren und Eigenräume",
+  description:
+    "Eigenwerte, Eigenvektoren und Eigenräume verstehen, berechnen und mit der Invertierbarkeit einer Matrix verknüpfen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-08-22",
+  dateModified: "2026-11-27",
+  subject: "Lineare Methoden der KI",
 };
 
 ## Eigenwerte und Eigenvektoren
@@ -19,6 +20,79 @@ Die **Multiplikation von** <InlineMath math="v" /> mit <InlineMath math="A" /> �
 
 > Per Definition können Eigenwerte gleich <InlineMath math="0" /> sein, aber <Highlight>Eigenvektoren sind immer ungleich Null</Highlight>.
 
+Beobachte, wie eine dreidimensionale lineare Abbildung das Einheitsgitter verformt, während jeder reelle Eigenvektor auf seiner invarianten Geraden bleibt. Wechsle die Matrixvorgaben und schiebe den Fortschrittsregler, um Streckfaktoren und Determinante zu vergleichen.
+
+<EigenTransform3DLab
+  title={<>Invariante Eigenvektorrichtungen im Raum</>}
+  description={
+    <>
+      Verforme den Koordinatenwürfel von der Einheitsmatrix zu{" "}
+      <InlineMath math="A" /> über vier Abbildungen, um Eigenwerte,
+      Eigenvektorrichtungen und den orientierten Volumenfaktor{" "}
+      <InlineMath math="\det(A)" /> zu vergleichen.
+    </>
+  }
+  transforms={["stretchShear", "symmetricDiag", "reflectionScale", "anisotropic3D"]}
+  progress={{ min: 0, max: 1, value: 1 }}
+  labels={{
+    transform: "Matrixvorgabe",
+    progress: "Transformationsfortschritt",
+    view: "Dreidimensionales Koordinatengitter unter einer linearen Abbildung mit invarianten Eigenvektorgeraden",
+    eigenvalues: <>Eigenwerte</>,
+    determinant: <>Determinante</>,
+    parts: {
+      basisAxes: "Standardbasisachsen",
+      transformedGrid: "Transformiertes Gitter",
+      eigenvectorOne: "Erster Eigenvektor",
+      eigenvectorTwo: "Zweiter Eigenvektor",
+      eigenvectorThree: "Dritter Eigenvektor",
+      testVector: "Allgemeiner Testvektor",
+    },
+    transforms: {
+      stretchShear: {
+        name: "Streckung und Scherung",
+        formula: (
+          <>
+            Eigenwerte <InlineMath math="\lambda = (1{,}8, 1, 1)" /> mit
+            Scherung <InlineMath math="0{,}55" /> in der Ebene.
+          </>
+        ),
+      },
+      symmetricDiag: {
+        name: "Symmetrische Skalierung",
+        formula: (
+          <>
+            Diagonalskalierung{" "}
+            <InlineMath math="\operatorname{diag}(1{,}7, 1{,}25, 0{,}7)" />{" "}
+            entlang orthogonaler Achsen.
+          </>
+        ),
+      },
+      reflectionScale: {
+        name: "Spiegelung und Skalierung",
+        formula: (
+          <>
+            Diagonalspiegelung{" "}
+            <InlineMath math="\operatorname{diag}(-1{,}2, 1{,}4, 1)" /> mit
+            Umkehrung einer Achse.
+          </>
+        ),
+      },
+      anisotropic3D: {
+        name: "Anisotrope Raumabbildung",
+        formula: (
+          <>
+            Eigenwerte <InlineMath math="\lambda = (1{,}9, 0{,}6, 1{,}3)" />{" "}
+            mit leichter Scherung <InlineMath math="0{,}25" />.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Der allgemeine Testvektor dreht sich aus seinem Startstrahl heraus, sobald Scherung oder ungleiche Achsenskalierung wirken, während jeder Eigenvektor auf seiner Geraden bleibt und sich nur streckt, staucht oder spiegelt. Das Produkt der drei Eigenwerte ergibt genau die Determinante als orientiertes Volumenverhältnis.
+
 ## Grundlegende Eigenschaften von Eigenvektoren
 
 **Skalare Multiplikation**: Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="v \in \mathbb{K}^n" /> mit <InlineMath math="v \neq 0" /> ein Eigenvektor von <InlineMath math="A" /> für den Eigenwert <InlineMath math="\lambda \in \mathbb{K}" />. Dann sind alle Vielfachen <InlineMath math="t \cdot v" /> mit <InlineMath math="t \neq 0" /> auch Eigenvektoren von <InlineMath math="A" /> für denselben Eigenwert <InlineMath math="\lambda" />.
@@ -31,9 +105,9 @@ Wegen <InlineMath math="t\neq0" /> ist <InlineMath math="tv" /> weiterhin unglei
 
 ## Beispiele für Eigenvektorberechnungen
 
-Die Beispiele hier **prüfen die Gleichung** <InlineMath math="Av=\lambda v" /> direkt, einmal mit einer diagonalen und einmal mit einer symmetrischen Matrix. Beide Rechnungen zeigen, woher der Eigenwert kommt und wie der Eigenvektor gefunden wird, und genau dieses Vorgehen brauchst du auch bei einer Matrix, die weder diagonal noch symmetrisch ist.
+Die Beispiele hier **prüfen die Eigenwertgleichung** direkt, einmal mit einer diagonalen und einmal mit einer symmetrischen Matrix. Beide Rechnungen zeigen, woher der Eigenwert kommt und wie der Eigenvektor gefunden wird, und genau dieses Vorgehen brauchst du auch bei einer Matrix, die weder diagonal noch symmetrisch ist.
 
-### Diagonale Matrix
+### Diagonale Eigenpaare
 
 Betrachte die Matrix:
 
@@ -57,7 +131,7 @@ Ein Vektor außerhalb dieser Koordinatenachsen **ändert im Allgemeinen seine Ri
 
 <BlockMath math="A\begin{pmatrix}1\\1\end{pmatrix}=\begin{pmatrix}1\\2\end{pmatrix}\neq\lambda\begin{pmatrix}1\\1\end{pmatrix}\quad\text{für jedes }\lambda" />
 
-### Symmetrische Matrix
+### Symmetrische Eigenpaare
 
 Betrachte die Matrix:
 
@@ -77,7 +151,7 @@ Der folgende Vektor <InlineMath math="v_2" /> ist ein Eigenvektor zum Eigenwert 
 <BlockMath math="A \cdot v_2 = \begin{pmatrix} 4 \\ 4 \end{pmatrix} = 4 \cdot v_2" />
 </MathContainer>
 
-Dreh oder zoom diese Szene und vergleich jede Strecke mit seinem Bild unter der symmetrischen Matrix oben. Die violetten Einheitsvektoren <InlineMath math="v_1" /> und <InlineMath math="v_2" /> werden nur länger: Die orangen Bilder bleiben auf derselben Geraden, gestreckt um <InlineMath math="\lambda_1=2" /> und <InlineMath math="\lambda_2=4" />. Der Vektor <InlineMath math="e_1" /> bleibt dagegen nicht auf seiner Geraden, denn <InlineMath math="Ae_1=(3,1)^T" /> dreht sich von der <InlineMath math="x" />-Achse weg. Nur Eigenrichtungen bleiben erhalten, und die Länge jedes Bilds zeigt direkt seinen Eigenwert.
+Dreh oder zoom diese Szene und vergleich jede Strecke mit seinem Bild unter der symmetrischen Matrix oben. Die violetten Einheitsvektoren <InlineMath math="v_1" /> und <InlineMath math="v_2" /> werden nur länger: Die orangen Bilder bleiben auf derselben Geraden, gestreckt um <InlineMath math="\lambda_1=2" /> und <InlineMath math="\lambda_2=4" />. Der Vektor <InlineMath math="e_1" /> dreht sich dagegen von der <InlineMath math="x" />-Achse weg, weil sein Bild <InlineMath math="(3,1)^T" /> ist.
 
 <MathVisual
   title={<>Eigenvektoren bleiben auf ihrer Geraden</>}
@@ -116,6 +190,8 @@ Dreh oder zoom diese Szene und vergleich jede Strecke mit seinem Bild unter der 
   }}
 />
 
+Nur die beiden senkrechten Eigenrichtungen bleiben zu ihren Bildern parallel, und die Länge jeder orangen Strecke zeigt direkt den zugehörigen Eigenwert.
+
 ## Lineare Unabhängigkeit von Eigenvektoren
 
 Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> **paarweise verschiedene Eigenwerte** von <InlineMath math="A" />, sodass <InlineMath math="\lambda_i \neq \lambda_j" /> gilt, sobald <InlineMath math="i \neq j" /> ist. Dann sind die zugehörigen Eigenvektoren <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> linear unabhängig.
@@ -124,7 +200,7 @@ Durch mathematische Induktion folgt aus diesem Satz, dass eine <InlineMath math=
 
 ## Eigenräume und geometrische Multiplizität
 
-Für jeden Eigenwert definieren wir einen Vektorraum mit allen Lösungen von <InlineMath math="Av=\lambda v" />, einschließlich des Nullvektors.
+Für jeden Eigenwert definieren wir einen Vektorraum mit allen Lösungen der Eigenwertgleichung, einschließlich des Nullvektors.
 
 Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="\lambda \in \mathbb{K}" />. Die folgende Menge heißt **Eigenraum** der Matrix <InlineMath math="A" /> zum Eigenwert <InlineMath math="\lambda" />.
 
@@ -144,15 +220,19 @@ Für jeden Eigenraum gelten die folgenden Eigenschaften:
 
 3. **Eigenwertbedingung**: <InlineMath math="\lambda" /> ist genau dann ein Eigenwert von <InlineMath math="A" />, wenn <InlineMath math="E_A(\lambda) \neq \{0\}" />.
 
-4. **Dimensionsgrenze**: <InlineMath math="0 \leq \dim E_A(\lambda) \leq n" />. Ist <InlineMath math="\lambda" /> ein Eigenwert, verbessert sich die untere Grenze auf <InlineMath math="1" />.
+4. **Dimensionsgrenze**: Die Dimension <InlineMath math="\dim E_A(\lambda)" /> liegt zwischen <InlineMath math="0" /> und <InlineMath math="n" /> und beträgt mindestens <InlineMath math="1" />, wenn <InlineMath math="\lambda" /> ein Eigenwert ist.
 
-5. **Beziehung zum Kern**: <InlineMath math="E_A(0) = \{v \in \mathbb{K}^n : A \cdot v = 0\} = \ker A" />.
+5. **Beziehung zum Kern**: Für den Eigenwert null stimmt <InlineMath math="E_A(0)" /> mit dem Kern <InlineMath math="\ker A" /> überein.
 
-6. **Allgemeiner Eigenraum**: <InlineMath math="E_A(\lambda) = \{v \in \mathbb{K}^n : (A - \lambda \cdot I) \cdot v = 0\} = \ker(A - \lambda \cdot I)" />.
+6. **Allgemeiner Eigenraum**: Für jeden Skalar <InlineMath math="\lambda" /> stimmt der Eigenraum <InlineMath math="E_A(\lambda)" /> mit <InlineMath math="\ker(A - \lambda I)" /> überein.
 
-7. **Schnitt der Eigenräume**: Wenn <InlineMath math="\lambda_1 \neq \lambda_2" />, dann gilt <InlineMath math="E_A(\lambda_1) \cap E_A(\lambda_2) = \{0\}" />.
+7. **Schnitt der Eigenräume**: Wenn <InlineMath math="\lambda_1 \neq \lambda_2" />, haben die Eigenräume <InlineMath math="E_A(\lambda_1)" /> und <InlineMath math="E_A(\lambda_2)" /> nur den Nullvektor <InlineMath math="0" /> gemeinsam.
 
-Mit <InlineMath math="A=\operatorname{diag}(2,2,1)" /> erfüllt jeder Vektor der Form <InlineMath math="(a,b,0)" /> die Gleichung <InlineMath math="Av=2v" />. Also ist <InlineMath math="E_A(2)" /> eine ganze Ebene mit geometrischer Multiplizität <InlineMath math="2" />, während <InlineMath math="E_A(1)" /> die von <InlineMath math="e_3" /> aufgespannte Gerade ist.
+Betrachte die dreidimensionale Diagonalmatrix:
+
+<BlockMath math="A = \operatorname{diag}(2, 2, 1)" />
+
+Jeder Vektor der Form <InlineMath math="(a,b,0)" /> erfüllt <InlineMath math="Av=2v" />. Also ist <InlineMath math="E_A(2)" /> eine ganze Ebene mit geometrischer Multiplizität <InlineMath math="2" />, während <InlineMath math="E_A(1)" /> die von <InlineMath math="e_3" /> aufgespannte Gerade ist.
 
 <MathVisual
   title={<>Der Eigenraum <InlineMath math="E_A(2)" /> ist eine Ebene</>}
@@ -180,19 +260,28 @@ Mit <InlineMath math="A=\operatorname{diag}(2,2,1)" /> erfüllt jeder Vektor der
   }}
 />
 
+Jede Richtung in der waagrechten Ebene wird um den Faktor <InlineMath math="2" /> gestreckt, ohne die Ebene zu verlassen, was die geometrische Multiplizität <InlineMath math="2" /> sichtbar macht.
+
 ## Zusammenhang mit Invertibilität
 
 Eine Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> ist genau dann invertierbar, wenn **null keiner ihrer Eigenwerte** ist.
 
-Tatsächlich ist <InlineMath math="A" /> genau dann invertierbar, wenn <InlineMath math="\operatorname{rank} A = n" /> gilt, äquivalent zu <InlineMath math="E_A(0) = \ker A = \{0\}" />. Ein Eigenwert null bedeutet also, dass die Matrix einen Vektor ungleich null auf null abbildet, und genau das schließt die Invertierbarkeit aus.
+Tatsächlich ist <InlineMath math="A" /> genau dann invertierbar, wenn <InlineMath math="\operatorname{rank} A = n" /> gilt, also <InlineMath math="\ker A" /> nur <InlineMath math="0" /> enthält. Ein Eigenwert null bedeutet also, dass die Matrix einen Vektor ungleich null auf null abbildet, und genau das schließt die Invertierbarkeit aus.
 
-Wenn die Matrix <InlineMath math="A" /> **invertierbar** ist und <InlineMath math="v \neq 0" /> ein Eigenvektor von <InlineMath math="A" /> für den Eigenwert <InlineMath math="\lambda \in \mathbb{K}" /> ist, dann ist <InlineMath math="v" /> auch ein Eigenvektor von <InlineMath math="A^{-1}" /> für den Eigenwert <InlineMath math="\frac{1}{\lambda}" />.
+Wenn die Matrix <InlineMath math="A" /> **invertierbar** ist und <InlineMath math="v \neq 0" /> ein Eigenvektor von <InlineMath math="A" /> für den Eigenwert <InlineMath math="\lambda \in \mathbb{K}" /> ist, dann ist <InlineMath math="v" /> auch ein Eigenvektor von <InlineMath math="A^{-1}" /> für den Eigenwert <InlineMath math="\lambda^{-1}" />.
 
-Die Multiplikation von <InlineMath math="A \cdot v = \lambda \cdot v" /> mit <InlineMath math="A^{-1}" /> ergibt:
+Die Multiplikation beider Seiten der Eigenwertgleichung mit <InlineMath math="A^{-1}" /> ergibt:
 
 <BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
 
-Für <InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" /> liefert der Vektor <InlineMath math="v=(2,-1)" /> das Ergebnis <InlineMath math="Av=(2-2,4-4)=(0,0)=0\cdot v" />. Der Eigenwert <InlineMath math="0" /> bedeutet, dass <InlineMath math="A" /> eine ganze Richtung in den Ursprung drückt. Keine Inverse kann sie zurückholen.
+Prüfe diese Eigenschaft an einer singulären Zweikreuzzwei-Matrix mit dem Eigenvektor <InlineMath math="v=(2,-1)" />:
+
+<MathContainer>
+<BlockMath math="A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}" />
+<BlockMath math="Av = \begin{pmatrix} 2 - 2 \\ 4 - 4 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} = 0 \cdot v" />
+</MathContainer>
+
+Der Eigenwert <InlineMath math="0" /> bedeutet, dass <InlineMath math="A" /> eine ganze Richtung in den Ursprung drückt. Keine Inverse kann sie zurückholen.
 
 <MathVisual
   title={<>Ein Eigenwert null macht die Ebene flach</>}
@@ -218,12 +307,14 @@ Für <InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" /> liefert der Ve
   }}
 />
 
+Da das gesamte zweidimensionale Quadrat auf eine eindimensionale Gerade zusammenfällt, geht jede Information entlang der Kernrichtung verloren, sodass <InlineMath math="A^{-1}" /> nicht existieren kann.
+
 ## Invertibilitätskriterien
 
 Für eine quadratische Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> sind die folgenden Aussagen äquivalent:
 
 1. <InlineMath math="A" /> ist invertierbar
-2. Es existiert eine Matrix <InlineMath math="A^{-1} \in \mathbb{K}^{n \times n}" /> mit <InlineMath math="A \cdot A^{-1} = I = A^{-1} \cdot A" />
+2. Es existiert eine inverse Matrix <InlineMath math="A^{-1} \in \mathbb{K}^{n \times n}" /> mit <InlineMath math="AA^{-1} = I" /> und <InlineMath math="A^{-1}A = I" />
 3. <InlineMath math="A" /> hat vollen Rang, <InlineMath math="\operatorname{rank} A = n" />, äquivalent zu <InlineMath math="\ker A = \{0\}" />
 4. Die Spalten von <InlineMath math="A" /> sind linear unabhängig
 5. Die Zeilen von <InlineMath math="A" /> sind linear unabhängig

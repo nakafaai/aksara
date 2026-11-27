@@ -1,15 +1,13 @@
-
-
 export const metadata = {
   title: "Fungsi Menokok dan Fungsi Menyusut",
   description: "Gunakan tanda terbitan pertama untuk mengenal pasti selang menokok dan selang menyusut, serta mentafsir titik pegun.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-27",
   subject: "Pembezaan",
 };
 
-## Kelakuan Fungsi dan Terbitannya
+## Tanda Kecerunan dan Monoton
 
 Apabila kita membaca graf dari kiri ke kanan, lengkungnya mungkin naik, turun atau mendatar seketika. Kelakuan ini dipanggil **kemonotonan** fungsi, dan terbitan pertamanya memberitahu kita cara mengelaskannya.
 
@@ -23,11 +21,13 @@ Tanda kecerunan memberitahu kita arah setempat lengkung itu:
 
 Secara geometri, <InlineMath math="f'(x)" /> ialah kecerunan [garis tangen](/ms/subjek/matematik/pembezaan/persamaan-tangen-kepada-lengkung). Jadi tandanya menerangkan arah setempat lengkung itu.
 
-## Sifat Kemonotonan
+## Sifat Tanda Terbitan
 
-Hubungan antara terbitan pertama dan kelakuan sesuatu fungsi boleh diringkaskan dengan sifat-sifat berikut:
+Oleh sebab kecerunan setempat menggambarkan arah gerak graf, tanda **terbitan pertama** mengelaskan setiap bahagian licin lengkung kepada kelakuan menokok, menyusut, atau mendatar. Fahami dahulu syarat tanda pada suatu selang, kemudian lihat cara lengkung fungsi dan jalur terbitannya berpasangan dalam ruang tiga dimensi.
 
-Katakan fungsi <InlineMath math="y = f(x)" /> selanjar dan boleh dibezakan pada suatu selang.
+### Syarat pada Selang
+
+Katakan fungsi <InlineMath math="y = f(x)" /> selanjar dan boleh dibezakan pada suatu selang. Tanda terbitan pertamanya mengelaskan arah gerak lengkung pada selang itu:
 
 -   Jika <InlineMath math="f'(x) > 0" /> untuk semua <InlineMath math="x" /> dalam selang itu, maka <InlineMath math="f(x)" /> ialah **fungsi menokok**.
 
@@ -37,25 +37,60 @@ Katakan fungsi <InlineMath math="y = f(x)" /> selanjar dan boleh dibezakan pada 
 
 Titik pegun membahagikan domain kepada beberapa selang yang boleh kita uji. Titik-titik ini ialah calon tempat kemonotonan berubah, tetapi <Highlight>terbitan mesti bertukar tanda</Highlight> supaya fungsi itu bertukar daripada menokok kepada menyusut atau sebaliknya.
 
-Untuk fungsi lain, semak juga **sempadan domain dan titik yang tiada terbitan**. Contohnya, domain <InlineMath math="1/x" /> terpisah pada <InlineMath math="x=0" /> walaupun fungsi itu tiada titik pegun. Uji tanda terbitan pada setiap selang domain yang berasingan.
+> Terbitan bernilai sifar hanya menandakan calon titik pusingan. Arah lengkung hanya berbalik apabila terbitan pertama bertukar tanda merentasi titik itu.
 
-## Menganalisis Selang Fungsi
+Untuk fungsi lain, semak juga **sempadan domain dan titik yang tiada terbitan**. Contohnya, domain <InlineMath math="1/x" /> terpisah pada <InlineMath math="x = 0" /> walaupun fungsi itu tiada titik pegun. Uji tanda terbitan pada setiap selang domain yang berasingan.
 
-Contoh berikut menunjukkan proses analisis tanda yang lengkap.
+### Lengkung dan Terbitan
 
-Tentukan selang tempat fungsi <InlineMath math="f(x) = x^3 - 3x" /> menokok dan menyusut.
+Meletakkan lengkung di sebelah **jalur terbitan** menampakkan sebab pertukaran tanda menentukan setiap puncak dan lembah. Seret penanda sepanjang setiap lengkung supaya kamu boleh membandingkan jarum kecerunan setempat dengan tinggi jalur terbitan.
 
-**Penyelesaian**:
+<DerivativeSlopeFieldLab
+  title={<>Lengkung, jalur terbitan, dan jarum kecerunan setempat</>}
+  description={<>Gerakkan penanda sepanjang tiga lengkung untuk melihat <InlineMath math="f(x)" /> menokok apabila <InlineMath math="f'(x) > 0" />, menyusut apabila <InlineMath math="f'(x) < 0" />, dan mendatar pada titik genting apabila <InlineMath math="f'(x) = 0" />.</>}
+  curves={["cubicWave", "quarticWell", "dampedSine"]}
+  probeX={{ min: -2.2, max: 2.2, value: -0.6 }}
+  labels={{
+    curve: "Lengkung",
+    curves: {
+      cubicWave: {
+        name: "Gelombang kubik",
+        formula: <InlineMath math="f(x) = 0.24x^3 - 0.85x + 0.9" />,
+      },
+      quarticWell: {
+        name: "Lembah kuartik",
+        formula: <InlineMath math="f(x) = 0.12x^4 - 0.55x^2 + 1.05" />,
+      },
+      dampedSine: {
+        name: "Gelombang sinus",
+        formula: <InlineMath math="f(x) = 0.8\sin(1.4x) + 0.95" />,
+      },
+    },
+    monotonicity: <>Kemonotonan</>,
+    parts: {
+      functionCurve: "Lengkung fungsi",
+      derivativeCurve: "Lengkung terbitan",
+      slopeNeedles: "Jarum kecerunan",
+      probeMarker: "Penanda uji",
+      criticalPoints: "Titik genting",
+    },
+    probeX: "Kedudukan mengufuk",
+    slopeValue: <>Nilai terbitan</>,
+    view: "Paparan tiga dimensi yang menunjukkan lengkung fungsi, lengkung terbitan, jarum kecerunan, dan titik genting",
+  }}
+/>
 
-**Langkah 1**: Cari terbitan pertama
+Setiap kali penanda melintasi titik genting, lengkung terbitan memotong sifar dan jarum kecerunan berpusing melintasi kedudukan mengufuk. Tinggi terbitan positif sepadan dengan bahagian lengkung yang menokok, manakala tinggi negatif sepadan dengan bahagian yang menyusut.
 
-Mula-mula, kita bezakan fungsi <InlineMath math="f(x)" />.
+## Analisis Tanda Fungsi Kubik
+
+Tentukan selang tempat fungsi kubik <InlineMath math="x^3 - 3x" /> menokok dan menyusut melalui langkah analisis tanda berikut.
+
+**Langkah 1**: Cari terbitan pertama dengan membezakan <InlineMath math="f(x) = x^3 - 3x" />.
 
 <BlockMath math="f'(x) = 3x^2 - 3" />
 
-**Langkah 2**: Cari titik pegun
-
-Titik pegun berlaku apabila <InlineMath math="f'(x) = 0" />.
+**Langkah 2**: Cari titik pegun dengan menyelesaikan <InlineMath math="f'(x) = 0" />.
 
 <MathContainer>
     <BlockMath math="3x^2 - 3 = 0" />
@@ -63,11 +98,9 @@ Titik pegun berlaku apabila <InlineMath math="f'(x) = 0" />.
     <BlockMath math="(x-1)(x+1) = 0" />
 </MathContainer>
 
-Daripada sini, kita dapat titik pegun pada <InlineMath math="x = 1" /> dan <InlineMath math="x = -1" />.
+Daripada sini, kita dapat **titik pegun** pada <InlineMath math="x = 1" /> dan <InlineMath math="x = -1" />.
 
-**Langkah 3**: Lukis garis nombor dan uji setiap selang
-
-Kita letakkan titik pegun pada garis nombor. Titik-titik ini membahagikan garis itu kepada tiga selang. Kita ambil satu titik ujian daripada setiap selang untuk mencari tanda <InlineMath math="f'(x)" /> (positif atau negatif).
+**Langkah 3**: Letakkan titik pegun pada garis nombor untuk membahagikannya kepada tiga selang, kemudian ambil satu titik ujian daripada setiap selang untuk mencari tanda <InlineMath math="f'(x)" />.
 
 | Selang | Titik ujian | Nilai terbitan | Kelakuan |
 | --- | --- | --- | --- |
@@ -75,13 +108,11 @@ Kita letakkan titik pegun pada garis nombor. Titik-titik ini membahagikan garis 
 | <InlineMath math="-1<x<1" /> | <InlineMath math="x=0" /> | <InlineMath math="f'(0)=3(0)^2-3=-3" /> | Menyusut |
 | <InlineMath math="x>1" /> | <InlineMath math="x=2" /> | <InlineMath math="f'(2)=3(2)^2-3=9" /> | Menokok |
 
-**Langkah 4**: Buat kesimpulan tentang selang
-
-Berdasarkan ujian ini, kita boleh simpulkan:
+**Langkah 4**: Buat kesimpulan tentang selang daripada jadual tanda:
 
 -   Fungsi itu menokok pada selang <InlineMath math="x < -1" /> atau <InlineMath math="x > 1" />.
 
--   Fungsi itu menyusut pada selang <InlineMath math="-1 < x < 1" />.
+-   Fungsi itu menyusut pada selang terbuka <InlineMath math="(-1, 1)" />.
 
 <MathVisual
   title={<>Gambaran kemonotonan fungsi</>}
@@ -112,43 +143,43 @@ Berdasarkan ujian ini, kita boleh simpulkan:
   }}
 />
 
-Carta tanda bagi <InlineMath math="f'(x) = 3x^2 - 3" />: positif di luar <InlineMath math="(-1, 1)" />, sifar pada <InlineMath math="x = \pm 1" /> dan negatif di dalamnya, sepadan dengan nilai ujian <InlineMath math="f'(-2) = 9" />, <InlineMath math="f'(0) = -3" /> dan <InlineMath math="f'(2) = 9" />.
+Carta tanda bagi <InlineMath math="f'(x) = 3x^2 - 3" /> bernilai positif di luar <InlineMath math="(-1, 1)" />, sifar pada <InlineMath math="x = \pm 1" />, dan negatif di dalamnya, sepadan dengan nilai ujian <InlineMath math="f'(-2) = 9" />, <InlineMath math="f'(0) = -3" />, dan <InlineMath math="f'(2) = 9" />.
 
 <BarChart
   title={<>Nilai <InlineMath math="f'(x) = 3x^2 - 3" /></>}
   description={<>Palang <InlineMath math="f'(x)" /> untuk <InlineMath math="x = -2" /> hingga <InlineMath math="2" /> dengan langkah <InlineMath math="0.5" />.</>}
-  yAxisLabel="f'(x)"
+  yAxisLabel="Nilai terbitan"
   data={[-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2].map((x) => ({ name: String(x), value: 3 * x ** 2 - 3 }))}
-  chartConfig={{ value: { label: "f'(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  chartConfig={{ value: { label: "Nilai terbitan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-## Latihan
+Palang negatif di antara <InlineMath math="-1" /> dengan <InlineMath math="1" /> sepadan dengan cabang tengah kubik yang menyusut, manakala palang sifar pada <InlineMath math="-1" /> dan <InlineMath math="1" /> menunjukkan kedua-dua titik pusingannya.
+
+## Menguji Selang Menokok
 
 Setiap soalan bertanya di mana sesuatu fungsi menokok atau menyusut. Cari **titik pegun** dahulu, kerana titik-titik itulah yang memisahkan selang-selang.
 
-1.  Tentukan selang tempat fungsi menokok dan menyusut bagi lengkung <InlineMath math="f(x) = x^3 - 3x^2 - 15" />.
+1.  Tentukan selang tempat fungsi menokok dan menyusut bagi lengkung <InlineMath math="x^3 - 3x^2 - 15" />.
 
-2.  Jika <InlineMath math="f(x) = ax^3 + x^2 + 5" /> menokok di sepanjang <InlineMath math="0 < x < 2" />, tentukan nilai-nilai yang mungkin bagi <InlineMath math="a" />.
+2.  Jika fungsi kubik <InlineMath math="ax^3 + x^2 + 5" /> menokok di sepanjang <InlineMath math="0 < x < 2" />, tentukan nilai-nilai yang mungkin bagi <InlineMath math="a" />.
 
 3.  Tentukan selang tempat <InlineMath math="f(x) = \sin 2x \cos 2x" /> menokok dan menyusut.
 
-### Jalan Kerja
-
-**Soalan 1**. Terbitan pertama bagi <InlineMath math="f(x) = x^3 - 3x^2 - 15" /> ialah <InlineMath math="f'(x) = 3x^2 - 6x" />.
+**Soalan 1**. Terbitan pertama bagi <InlineMath math="x^3 - 3x^2 - 15" /> ialah <InlineMath math="f'(x) = 3x^2 - 6x" />.
 
 **Titik pegun** diperoleh apabila <InlineMath math="f'(x) = 0" />.
 
 <BlockMath math="3x^2 - 6x = 0 \implies 3x(x - 2) = 0" />
 
-Titik pegun berada pada <InlineMath math="x=0" /> dan <InlineMath math="x=2" />.
+Titik pegun berada pada <InlineMath math="x = 0" /> dan <InlineMath math="x = 2" />.
 
 Dengan menguji setiap selang pada garis nombor:
 
--   Untuk <InlineMath math="x<0" />, <InlineMath math="f'(x)" /> positif (menokok).
+-   Untuk <InlineMath math="x < 0" />, <InlineMath math="f'(x)" /> positif (menokok).
 
--   Untuk <InlineMath math="0<x<2" />, <InlineMath math="f'(x)" /> negatif (menyusut).
+-   Untuk <InlineMath math="0 < x < 2" />, <InlineMath math="f'(x)" /> negatif (menyusut).
 
--   Untuk <InlineMath math="x>2" />, <InlineMath math="f'(x)" /> positif (menokok).
+-   Untuk <InlineMath math="x > 2" />, <InlineMath math="f'(x)" /> positif (menokok).
 
 Jadi, fungsi itu menokok pada <InlineMath math="x < 0" /> atau <InlineMath math="x > 2" />, dan menyusut pada selang <InlineMath math="0 < x < 2" />.
 
@@ -156,17 +187,17 @@ Jadi, fungsi itu menokok pada <InlineMath math="x < 0" /> atau <InlineMath math=
 
 <BlockMath math="f'(x) = 3ax^2 + 2x = x(3ax + 2)" />
 
-Dalam selang <InlineMath math="0 < x < 2" />, faktor <InlineMath math="x" /> sentiasa positif. Oleh itu, supaya <InlineMath math="f'(x) \ge 0" />, faktor kedua, iaitu <InlineMath math="(3ax + 2)" />, juga mesti tidak negatif.
+Dalam selang <InlineMath math="0 < x < 2" />, faktor <InlineMath math="x" /> sentiasa positif. Oleh itu, supaya <InlineMath math="f'(x) \ge 0" />, faktor kedua, iaitu <InlineMath math="3ax + 2" />, juga mesti tidak negatif.
 
 <BlockMath math="3ax + 2 \ge 0" />
 
 Ketaksamaan ini mesti benar untuk setiap <InlineMath math="x" /> dalam <InlineMath math="0 < x < 2" />. Oleh sebab <InlineMath math="h(x) = 3ax + 2" /> linear, nilai had yang terkecil berlaku ke arah salah satu hujung selang.
 
--   Jika <InlineMath math="a \ge 0" />, maka <InlineMath math="3ax \ge 0" />, jadi <InlineMath math="3ax+2" /> positif di sepanjang selang itu.
+-   Jika <InlineMath math="a \ge 0" />, maka <InlineMath math="3ax \ge 0" />, jadi <InlineMath math="3ax + 2" /> positif di sepanjang selang itu.
 
--   Jika <InlineMath math="a < 0" />, maka <InlineMath math="h(x)" /> menyusut. Oleh sebab <InlineMath math="x=2" /> dikecualikan, <InlineMath math="h" /> tiada nilai minimum di situ. Infimumnya ialah nilai sempadan yang dihampiri apabila <InlineMath math="x \to 2^-" />. Apabila kita syaratkan nilai sempadan itu tidak negatif, kita dapat syarat yang tepat.
+-   Jika <InlineMath math="a < 0" />, maka <InlineMath math="h(x)" /> menyusut. Oleh sebab <InlineMath math="x = 2" /> dikecualikan, <InlineMath math="h" /> tiada nilai minimum di situ. Infimumnya ialah nilai sempadan yang dihampiri apabila <InlineMath math="x \to 2^-" />. Apabila kita syaratkan nilai sempadan itu tidak negatif, kita dapat syarat yang tepat.
 
-Nilaikan syarat sempadan had itu pada <InlineMath math="x=2" />:
+Nilaikan syarat sempadan had itu pada <InlineMath math="x = 2" />:
 
 <MathContainer>
     <BlockMath math="3a(2) + 2 \ge 0" />
@@ -176,11 +207,11 @@ Nilaikan syarat sempadan had itu pada <InlineMath math="x=2" />:
 
 Apabila kedua-dua kes digabungkan, fungsi itu menokok di sepanjang selang yang diberi tepat apabila <InlineMath math="a \ge -1/3" />.
 
-Pada sempadan <InlineMath math="a=-1/3" />, terbitannya menjadi <InlineMath math="f'(x)=x(2-x)>0" /> untuk setiap <InlineMath math="0<x<2" />. Jadi fungsi itu **menokok di sepanjang selang terbuka itu**. Jika <InlineMath math="a<-1/3" />, terbitannya negatif apabila cukup hampir dengan <InlineMath math="x=2" />, jadi fungsi itu tidak boleh terus menokok.
+Pada sempadan <InlineMath math="a = -1/3" />, terbitannya menjadi <InlineMath math="f'(x) = x(2 - x)" /> yang kekal positif untuk setiap <InlineMath math="0 < x < 2" />. Jadi fungsi itu **menokok di sepanjang selang terbuka itu**. Jika <InlineMath math="a < -1/3" />, terbitannya negatif apabila cukup hampir dengan <InlineMath math="x = 2" />, jadi fungsi itu tidak boleh terus menokok.
 
-**Soalan 3**. Gunakan identiti trigonometri sudut berganda: <InlineMath math="\sin(2A) = 2\sin(A)\cos(A)" />.
+**Soalan 3**. Gunakan identiti trigonometri sudut berganda <InlineMath math="\sin(2A) = 2\sin(A)\cos(A)" /> untuk menulis semula fungsinya:
 
-Jadi, <InlineMath math="f(x) = \sin 2x \cos 2x = \frac{1}{2} \sin(4x)" />.
+<BlockMath math="f(x) = \sin 2x \cos 2x = \frac{1}{2} \sin(4x)" />
 
 Terbitan pertamanya ialah:
 
@@ -204,7 +235,7 @@ Terbitan pertamanya ialah:
 
     Selang ini sah untuk sebarang integer <InlineMath math="k" />.
 
-Soalan 1 pada graf: <InlineMath math="f(x) = x^3 - 3x^2 - 15" /> naik ke <InlineMath math="-15" /> pada <InlineMath math="x = 0" />, turun ke <InlineMath math="-19" /> pada <InlineMath math="x = 2" /> dan naik semula, jadi fungsi itu menokok untuk <InlineMath math="x < 0" /> dan <InlineMath math="x > 2" /> dan menyusut di antaranya.
+Soalan 1 pada graf menunjukkan <InlineMath math="x^3 - 3x^2 - 15" /> naik ke <InlineMath math="-15" /> pada <InlineMath math="x = 0" />, turun ke <InlineMath math="-19" /> pada <InlineMath math="x = 2" />, lalu naik semula selepas itu.
 
 <MathVisual
   title={<>Graf <InlineMath math="f(x) = x^3 - 3x^2 - 15" /></>}
@@ -228,3 +259,5 @@ Soalan 1 pada graf: <InlineMath math="f(x) = x^3 - 3x^2 - 15" /> naik ke <Inline
     ],
   }}
 />
+
+Puncak pada <InlineMath math="(0, -15)" /> dan lembah pada <InlineMath math="(2, -19)" /> sepadan dengan selang tanda daripada ujian terbitan, mengesahkan lengkung itu hanya menyusut di antara dua titik pegun ini.

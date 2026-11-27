@@ -1,41 +1,45 @@
 export const metadata = {
-   title: "Limit Fungsi Trigonometri",
-   description: "Hitung limit trigonometri dengan limit dasar sinus, identitas, dan substitusi.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2025-05-26",
-   dateModified: "2026-11-08",
-   subject: "Limit",
+  title: "Limit Fungsi Trigonometri",
+  description:
+    "Hitung limit trigonometri dengan teorema apit, limit dasar sinus, identitas trigonometri, dan substitusi.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-27",
+  subject: "Limit",
 };
 
-## Memeriksa Hasil Substitusi pada Fungsi Trigonometri
+## Substitusi Limit Trigonometri
 
-**Limit trigonometri** mengajukan pertanyaan lokal yang sama dengan limit aljabar: nilai apa yang didekati suatu bentuk di sekitar input tertentu? Sinus dan cosinus kontinu pada setiap bilangan real, sedangkan tangen kontinu ketika cosinus tidak nol. Jadi, substitusi langsung tetap berlaku jika bentuk yang dihasilkan terdefinisi.
+**Limit trigonometri** mengajukan pertanyaan lokal yang sama dengan limit aljabar: nilai apa yang didekati suatu bentuk di sekitar input tertentu? Sinus dan kosinus kontinu pada setiap bilangan real, sedangkan tangen kontinu ketika kosinus tidak nol, sehingga substitusi langsung bekerja selama bentuknya terdefinisi.
 
-Langkah khusus diperlukan ketika substitusi menghasilkan bentuk tak tentu seperti <InlineMath math="\frac{0}{0}" />. Di sekitar nol, gunakan **limit sinus dasar** dan [identitas trigonometri](/id/materi/matematika/fungsi-dan-pemodelannya/identitas-trigonometri) untuk mengubah ekspresi menjadi bentuk yang limitnya dapat dihitung.
+Langkah khusus dimulai ketika substitusi menghasilkan bentuk tak tentu seperti <InlineMath math="\frac{0}{0}" />. Di sekitar nol, pakai **limit sinus dasar** dan [identitas trigonometri](/id/materi/matematika/fungsi-dan-pemodelannya/identitas-trigonometri) untuk mengubah ekspresi ke bentuk yang limitnya mudah dihitung.
 
 ## Limit Sinus di Nol
 
-Ketika sudut dalam radian mendekati nol, <Highlight>perbandingan sinus sudut dengan sudut itu sendiri</Highlight> mendekati satu. Satuan radian itulah yang membuat nilainya tepat satu, dan satu fakta itu menentukan nilai setiap perbandingan yang dibangun dari sinus dan kosinus.
+Ketika sudut dalam radian mendekati nol, <Highlight>perbandingan sinus sudut dengan sudut itu sendiri</Highlight> mendekati satu. Satuan radian inilah yang membuat nilainya tepat satu, dan satu hasil ini menentukan setiap perbandingan trigonometri di sekitar nol.
 
 ### Limit Sinus Dasar
 
-Limitnya adalah:
+Limit dasar trigonometri dinyatakan sebagai:
 
 <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
 
-Ekspresinya tidak terdefinisi pada <InlineMath math="x=0" />, sehingga substitusi langsung tidak membuktikan nilai limit. Bukti geometrinya menggunakan lingkaran satuan dan teorema apit.
+Karena rasio ini tidak terdefinisi pada <InlineMath math="x = 0" />, substitusi langsung tidak bisa membuktikan nilainya. Bukti geometrinya memakai lingkaran satuan bersama **teorema apit**.
 
-> Dalam teorema ini, ukur <InlineMath math="x" /> dalam **radian**. Penggunaan derajat akan memberi hasil yang berbeda.
+> Dalam limit trigonometri, selalu ukur <InlineMath math="x" /> dalam **radian** karena satuan derajat mengubah skala sudut dan mengubah nilai limitnya.
 
-Pada lingkaran satuan dengan <InlineMath math="0<x<\pi/2" />, perbandingan luas segitiga dan juring menghasilkan <InlineMath math="\sin x<x<\tan x" />. Setelah membagi dengan besaran positif, kita memperoleh **dua batas pengapit**:
+Pada lingkaran satuan untuk <InlineMath math="x" /> di antara <InlineMath math="0" /> dan <InlineMath math="\pi/2" />, perbandingan luas segitiga dan juring membentuk dua batas pengapit:
 
-<BlockMath math="\cos x<\frac{\sin x}{x}<1" />
+<MathContainer>
+  <BlockMath math="\sin x < x < \tan x" />
+  <BlockMath math="\cos x < \frac{\sin x}{x} < 1" />
+</MathContainer>
 
-Ketika <InlineMath math="x\to0^+" />, kedua batas menuju <InlineMath math="1" />. Untuk sisi kiri, <InlineMath math="\sin(-x)/(-x)=\sin x/x" />, sehingga limitnya sama. Grafik memperlihatkan pendekatan itu, tetapi nilai di <InlineMath math="x=0" /> tetap tidak terdefinisi.
+Saat <InlineMath math="x \to 0^+" />, kedua batas luar menuju <InlineMath math="1" />. Karena rasio ini genap terhadap <InlineMath math="x = 0" />, sisi kiri pun menuju <InlineMath math="1" /> walaupun lubang terbuka tetap ada di <InlineMath math="(0, 1)" />.
 
 <MathVisual
   title={<>Rasio <InlineMath math="\frac{\sin x}{x}" /> mendekati <InlineMath math="1" /></>}
-  description={<>Kurva <InlineMath math="y = \frac{\sin x}{x}" /> untuk <InlineMath math="0 < |x| \le 3" />, dengan sudut dalam radian. Kedua sisi mendekati garis <InlineMath math="y = 1" />, dan lingkaran kosong di <InlineMath math="(0, 1)" /> menandai tempat ungkapan itu tidak terdefinisi.</>}
+  description={<>Kurva <InlineMath math="y = \frac{\sin x}{x}" /> untuk <InlineMath math="0 < |x| \le 3" /> dalam radian, mendekati <InlineMath math="y = 1" /> dengan lubang terbuka di <InlineMath math="(0, 1)" />.</>}
   labels={{
     one: <InlineMath math="y = 1" />,
     hole: <InlineMath math="(0, 1)" />,
@@ -57,30 +61,73 @@ Ketika <InlineMath math="x\to0^+" />, kedua batas menuju <InlineMath math="1" />
   }}
 />
 
-### Konsekuensi dari Limit Dasar
+Kedua belahan simetris mendatar mulus pada tinggi <InlineMath math="1" /> di sumbu tegak. Sekarang perkecil radius jendela pada laboratorium teorema apit di bawah untuk melihat batas atas dan bawah menjepit <InlineMath math="\frac{\sin x}{x}" /> serta dua gelombang berosilasi ke satu titik limit.
 
-Gunakan limit tersebut untuk menurunkan hasil berikut:
+<SqueezeTheoremWaveLab
+  title={<>Batas Pengapit Teorema Apit di Sekitar Nol</>}
+  description={
+    <>
+      Perkecil radius jendela <InlineMath math="r" /> dan bandingkan selubung
+      rasio sinus <InlineMath math="\cos x \le \frac{\sin x}{x} \le 1" />{" "}
+      dengan dua gelombang teredam yang terjepit menuju nol.
+    </>
+  }
+  envelopes={["sincEnvelope", "quadraticSine", "linearDamped"]}
+  radius={{ min: 0.1, max: 1.5, value: 0.8 }}
+  labels={{
+    envelope: "Pasangan batas",
+    envelopes: {
+      sincEnvelope: {
+        name: "Batas rasio sinus",
+        formula: <InlineMath math="\cos x \le \frac{\sin x}{x} \le 1" />,
+      },
+      quadraticSine: {
+        name: "Jepitan kuadrat",
+        formula: (
+          <InlineMath math="-x^2 \le x^2 \sin\!\left(\frac{1}{x}\right) \le x^2" />
+        ),
+      },
+      linearDamped: {
+        name: "Jepitan linear",
+        formula: (
+          <InlineMath math="-|x| \le |x| \cos\!\left(\frac{1}{x}\right) \le |x|" />
+        ),
+      },
+    },
+    radius: "Radius jendela",
+    boundSpread: <>Lebar celah batas</>,
+    squeezedLimit: <>Limit terjepit</>,
+    view: "Kurva terjepit di antara garis batas atas dan bawah yang menyatu pada titik jepit di dalam jendela yang menyempit",
+    parts: {
+      upperBound: "Batas atas",
+      lowerBound: "Batas bawah",
+      squeezedWave: "Gelombang terjepit",
+      pinchPoint: "Titik jepit",
+      windowFrame: "Radius jendela",
+    },
+  }}
+/>
 
-Karena <InlineMath math="\tan x=\frac{\sin x}{\cos x}" /> dan <InlineMath math="\cos x\to1" />:
+Saat radius mengecil ke nol, celah vertikal antara batas atas dan batas bawah menyusut ke nol sehingga kurva yang terjepit terpaksa bertemu di satu titik limit yang sama seberapa cepat pun ia berosilasi.
+
+### Limit Kosinus Terkait
+
+Gabungkan limit dasar sinus dengan identitas tangen dan **identitas setengah sudut** untuk menurunkan tiga limit pendamping. Menulis tangen sebagai sinus dibagi kosinus dengan <InlineMath math="\cos x \to 1" /> memberi:
 
 <BlockMath math="\lim_{x \to 0} \frac{\tan x}{x} = 1" />
 
-Gunakan identitas <InlineMath math="1-\cos x=2\sin^2\frac x2" />:
+Sekarang terapkan identitas kosinus setengah sudut:
 
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = 0" />
+<BlockMath math="1 - \cos x = 2\sin^2\frac{x}{2}" />
 
-Gunakan identitas <InlineMath math="1-\cos x=2\sin^2\frac x2" />:
-
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}" />
-
-Identitas tersebut langsung menghasilkan kedua limit cosinus tanpa memakai **aturan turunan** yang baru dipelajari pada tahap berikutnya:
+Substitusi identitas ini menyelesaikan kedua rasio kosinus secara langsung tanpa perlu aturan turunan:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\frac{1-\cos x}{x} \\ &amp;=\sin\frac{x}{2}\cdot\frac{\sin(x/2)}{x/2}\;\\ &amp;\longrightarrow\;0\cdot 1 \\ &amp;=0 \end{aligned}" />
-<BlockMath math="\begin{aligned} &amp;\frac{1-\cos x}{x^2} =\frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2\; \\ &amp;\longrightarrow\;\frac{1}{2} \end{aligned}" />
+  <BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = \lim_{x \to 0} \sin\frac{x}{2} \cdot \frac{\sin(x/2)}{x/2} = 0 \cdot 1 = 0" />
+  <BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \lim_{x \to 0} \frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2 = \frac{1}{2}" />
 </MathContainer>
 
-Periksa <InlineMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac12" /> dengan bilangan. Di <InlineMath math="x = 1" />, <InlineMath math="0{,}5" />, <InlineMath math="0{,}1" />, dan <InlineMath math="0{,}01" /> rasionya sekitar <InlineMath math="0{,}460" />, <InlineMath math="0{,}490" />, <InlineMath math="0{,}4996" />, dan <InlineMath math="0{,}499996" />, mendekati <InlineMath math="\tfrac12" /> dari bawah.
+Uji limit kosinus kedua secara numerik. Pada <InlineMath math="x = 1" />, <InlineMath math="0{,}5" />, <InlineMath math="0{,}1" />, dan <InlineMath math="0{,}01" />, rasionya naik melewati <InlineMath math="0{,}460" />, <InlineMath math="0{,}490" />, <InlineMath math="0{,}4996" />, dan <InlineMath math="0{,}499996" /> menuju <InlineMath math="\frac{1}{2}" />.
 
 <BarChart
   title={<><InlineMath math="\frac{1 - \cos x}{x^2}" /> di dekat <InlineMath math="0" /></>}
@@ -90,47 +137,54 @@ Periksa <InlineMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac12" /> de
   chartConfig={{ value: { label: "Rasio", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-## Sifat Limit Trigonometri
+Batang-batangnya naik mantap dari bawah lalu merata tepat di <InlineMath math="0{,}5" />, memastikan penyebut kuadrat mengimbangi <InlineMath math="1 - \cos x" /> di sekitar nol.
 
-**Limit dasar** itu menentukan beberapa perbandingan terkait, karena faktor konstan pada sudutnya dapat dikeluarkan dari limit dan kebalikannya berperilaku sama. Dengan begitu, setiap bentuk sinus berpangkat sudut berlipat dapat dikembalikan ke limit dasarnya.
+## Sifat Perbandingan Limit
 
-### Perbandingan Trigonometri
-
-Untuk konstanta real <InlineMath math="a" /> dan <InlineMath math="b \neq 0" />, **semua limit berikut diambil ketika <InlineMath math="x \to 0" />**:
+Karena faktor konstanta di dalam sudut keluar dengan rapi, empat perbandingan baku langsung berlaku untuk konstanta real <InlineMath math="a" /> dan <InlineMath math="b \neq 0" /> saat <InlineMath math="x \to 0" />:
 
 | Limit | Hasil | Catatan |
-|-------|-------|---------|
+| --- | --- | --- |
 | <InlineMath math="\lim_{x \to 0} \frac{\sin ax}{bx}" /> | <InlineMath math="\frac{a}{b}" /> | Manipulasi dari teorema dasar |
 | <InlineMath math="\lim_{x \to 0} \frac{\tan ax}{bx}" /> | <InlineMath math="\frac{a}{b}" /> | Karena <InlineMath math="\tan ax = \frac{\sin ax}{\cos ax}" /> |
-| <InlineMath math="\lim_{x \to 0} \frac{\sin ax}{\sin bx}" /> | <InlineMath math="\frac{a}{b}" /> | Kombinasi dua limit sine |
+| <InlineMath math="\lim_{x \to 0} \frac{\sin ax}{\sin bx}" /> | <InlineMath math="\frac{a}{b}" /> | Kombinasi dua limit sinus |
 | <InlineMath math="\lim_{x \to 0} \frac{\tan ax}{\tan bx}" /> | <InlineMath math="\frac{a}{b}" /> | Kombinasi dua limit tangen |
 
-### Kombinasi Trigonometri
-
-Perbandingan campuran tangen dan sinus mengikuti aturan yang sama. Dengan <InlineMath math="a\ne0" /> dan <InlineMath math="b\ne0" />, pisahkan menjadi **limit dasar**:
+Perbandingan campuran tangen dan sinus mematuhi rumus yang sama. Untuk <InlineMath math="a \neq 0" /> dan <InlineMath math="b \neq 0" />, pecah ke dalam limit dasar:
 
 <BlockMath math="\begin{aligned}\lim_{x\to0}\frac{\tan ax}{\sin bx}&=\lim_{x\to0}\left(\frac{\tan ax}{ax}\cdot\frac{bx}{\sin bx}\cdot\frac ab\right)\\&=1\cdot1\cdot\frac ab=\frac ab\end{aligned}" />
 
-Jika <InlineMath math="a=0" />, pembilang selalu nol sehingga hasilnya juga nol. Karena itu, rumus akhir tetap berlaku untuk setiap konstanta real <InlineMath math="a" /> dan <InlineMath math="b\ne0" />.
+Jika <InlineMath math="a = 0" />, pembilangnya selalu nol sehingga limitnya <InlineMath math="0" />, artinya rumus ini berlaku untuk setiap <InlineMath math="a" /> real dengan <InlineMath math="b \neq 0" />.
 
-## Teknik Penyelesaian Limit Trigonometri
+Perbandingan kotangen disederhanakan dengan cara serupa dengan menulis **kotangen sebagai kosinus dibagi sinus**. Hitung:
 
-Sebagian limit trigonometri selesai dengan substitusi, sebagian lagi memerlukan **identitas** atau limit yang sudah dikenal. Bentuk ekspresinya sendiri menunjukkan kasus mana yang berlaku, karena jumlah atau selisih di dalam argumen trigonometrinya menandakan identitas yang diperlukan.
+<BlockMath math="\lim_{t \to 0} \frac{\cot 5t}{\cot 10t}" />
 
-### Teknik Substitusi dan Manipulasi
-
-Untuk menghitung limit trigonometri yang belum dapat disubstitusikan langsung, ubah ekspresinya hingga memuat bentuk limit sinus di nol.
-
-**Hitung**: <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x}" />
-
-Kita manipulasi agar memperoleh bentuk standar:
+Memisahkan bagian kosinus dan sinus menghasilkan:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 2x}{3x} &amp;= \lim_{x \to 0} \frac{2 \sin 2x}{2 \cdot 3x} \\ &amp;= \lim_{x \to 0} \frac{2}{3} \cdot \frac{\sin 2x}{2x} \end{aligned}" />
-<BlockMath math="= \frac{2}{3} \lim_{x \to 0} \frac{\sin 2x}{2x} = \frac{2}{3} \cdot 1 = \frac{2}{3}" />
+  <BlockMath math="\begin{aligned}\lim_{t \to 0} \frac{\cot 5t}{\cot 10t} &= \lim_{t \to 0} \frac{\frac{\cos 5t}{\sin 5t}}{\frac{\cos 10t}{\sin 10t}} \\ &= \lim_{t \to 0} \frac{\cos 5t \sin 10t}{\sin 5t \cos 10t}\end{aligned}" />
+  <BlockMath math="= \lim_{t \to 0} \frac{\cos 5t}{\cos 10t} \cdot \frac{\sin 10t}{\sin 5t} = 1 \cdot \frac{10}{5} = 2" />
 </MathContainer>
 
-Periksa <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x} = \frac23" /> dengan bilangan. Di <InlineMath math="x = 0{,}5" />, <InlineMath math="0{,}1" />, dan <InlineMath math="0{,}01" /> rasionya sekitar <InlineMath math="0{,}561" />, <InlineMath math="0{,}662" />, dan <InlineMath math="0{,}6666" />, mendekati <InlineMath math="\tfrac23 \approx 0{,}667" />.
+## Teknik Limit Trigonometri
+
+Sebagian limit trigonometri selesai lewat substitusi, sedangkan yang lain memerlukan **penyesuaian sudut**, identitas, atau ganti variabel. Memeriksa sudut dan penyebut lebih dulu menunjukkan teknik yang pas.
+
+### Penyesuaian Sudut
+
+Ketika sudut memuat **faktor konstanta**, samakan penyebut dengan sudut itu. Hitung:
+
+<BlockMath math="\lim_{x \to 0} \frac{\sin 2x}{3x}" />
+
+Kalikan pembilang dan penyebut dengan <InlineMath math="2" /> agar muncul bentuk baku sinus:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 2x}{3x} &amp;= \lim_{x \to 0} \frac{2 \sin 2x}{2 \cdot 3x} \\ &amp;= \lim_{x \to 0} \frac{2}{3} \cdot \frac{\sin 2x}{2x} \end{aligned}" />
+  <BlockMath math="= \frac{2}{3} \lim_{x \to 0} \frac{\sin 2x}{2x} = \frac{2}{3} \cdot 1 = \frac{2}{3}" />
+</MathContainer>
+
+Uji numerik pada <InlineMath math="x = 0{,}5" />, <InlineMath math="0{,}1" />, dan <InlineMath math="0{,}01" /> menghasilkan <InlineMath math="0{,}561" />, <InlineMath math="0{,}662" />, dan <InlineMath math="0{,}6666" />, merapat ke <InlineMath math="\frac{2}{3}" />.
 
 <BarChart
   title={<><InlineMath math="\frac{\sin 2x}{3x}" /> di dekat <InlineMath math="0" /></>}
@@ -140,102 +194,101 @@ Periksa <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x} = \frac23" /> dengan
   chartConfig={{ value: { label: "Rasio", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-### Substitusi Langsung dengan Penyebut Tak Nol
+Setiap masukan yang lebih kecil membawa batang makin dekat ke <InlineMath math="0{,}667" />, sejalan dengan rasio koefisien eksak <InlineMath math="\frac{2}{3}" />.
 
-**Substitusi langsung** dapat dipakai jika fungsi kontinu di titik yang dituju dan penyebut tidak nol. Keberadaan limit secara umum tidak mensyaratkan fungsi terdefinisi tepat di titik itu.
+### Penyebut Tak Nol
 
-**Hitung**: <InlineMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x}" />
+**Substitusi langsung** langsung bekerja kapan pun ekspresi kontinu di titik target dan penyebutnya tidak nol. Hitung:
 
-Karena <InlineMath math="\sin(\frac{\pi}{4}) = \frac{\sqrt{2}}{2} \neq 0" />, penyebut tidak nol di <InlineMath math="x = \frac{\pi}{4}" />.
+<BlockMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x}" />
 
-Substitusi langsung:
+Pada <InlineMath math="\pi/4" />, nilai sinus di penyebut adalah <InlineMath math="\sqrt{2}/2" /> yang bukan nol, sehingga substitusikan langsung:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x} = \frac{\sin \frac{\pi}{4} + \cos \frac{\pi}{4}}{\sin \frac{\pi}{4}}" />
-<BlockMath math="\begin{aligned}  &amp;= \frac{\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \frac{2 \cdot \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \frac{\sqrt{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \sqrt{2} \cdot \frac{2}{\sqrt{2}} \\ &amp;= 2 \end{aligned}" />
+  <BlockMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x} = \frac{\sin \frac{\pi}{4} + \cos \frac{\pi}{4}}{\sin \frac{\pi}{4}}" />
+  <BlockMath math="\begin{aligned} &amp;= \frac{\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \frac{\sqrt{2}}{\frac{\sqrt{2}}{2}} = 2 \end{aligned}" />
 </MathContainer>
 
-### Teknik untuk Bentuk Khusus
+### Substitusi Variabel
 
-Untuk limit yang melibatkan bentuk <InlineMath math="\frac{0}{0}" />, kita perlu teknik khusus.
+Jika titik target bukan nol dan substitusi menghasilkan <InlineMath math="\frac{0}{0}" />, **geser variabelnya** agar sudut baru mendekati nol. Hitung:
 
-**Hitung**: <InlineMath math="\lim_{x \to \frac{\pi}{2}} \frac{\sin^2(x - \frac{\pi}{2})}{x(x - \frac{\pi}{2})}" />
+<BlockMath math="\lim_{x \to \frac{\pi}{2}} \frac{\sin^2\left(x - \frac{\pi}{2}\right)}{x\left(x - \frac{\pi}{2}\right)}" />
 
-Misalkan <InlineMath math="u = x - \frac{\pi}{2}" />, maka ketika <InlineMath math="x \to \frac{\pi}{2}" />, kita punya <InlineMath math="u \to 0" /> dan <InlineMath math="x = u + \frac{\pi}{2}" />.
+Tetapkan variabel geser <InlineMath math="u" /> sehingga <InlineMath math="u \to 0" /> saat <InlineMath math="x \to \pi/2" />:
+
+<BlockMath math="u = x - \frac{\pi}{2}, \quad x = u + \frac{\pi}{2}" />
+
+Menulis ulang limit dalam <InlineMath math="u" /> memisahkan kuadrat limit dasar sinus:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\lim_{u \to 0} \frac{\sin^2 u}{(u + \frac{\pi}{2}) \cdot u} \\ &amp;= \lim_{u \to 0} \frac{\sin^2 u}{u^2} \cdot \frac{u}{u + \frac{\pi}{2}} \end{aligned}" />
-<BlockMath math="= \lim_{u \to 0} \left(\frac{\sin u}{u}\right)^2 \cdot \lim_{u \to 0} \frac{u}{u + \frac{\pi}{2}}" />
-<BlockMath math="= 1^2 \cdot \lim_{u \to 0} \frac{u}{\frac{\pi}{2} + u} = 1 \cdot \frac{0}{\frac{\pi}{2}} = 0" />
+  <BlockMath math="\begin{aligned} &amp;\lim_{u \to 0} \frac{\sin^2 u}{(u + \frac{\pi}{2}) \cdot u} \\ &amp;= \lim_{u \to 0} \frac{\sin^2 u}{u^2} \cdot \frac{u}{u + \frac{\pi}{2}} \end{aligned}" />
+  <BlockMath math="= \lim_{u \to 0} \left(\frac{\sin u}{u}\right)^2 \cdot \lim_{u \to 0} \frac{u}{u + \frac{\pi}{2}}" />
+  <BlockMath math="= 1^2 \cdot \frac{0}{\frac{\pi}{2}} = 0" />
 </MathContainer>
 
-## Limit Perbandingan Cotangen
+## Soal Limit Trigonometri
 
-Ubah **cotangen menjadi cosinus dibagi sinus**. Perbandingan cosinus menuju satu, sedangkan perbandingan sinus menyumbang rasio faktor sudut.
+Tentukan sebelum menghitung apakah substitusi cukup atau diperlukan penyesuaian sudut, identitas, maupun pergeseran variabel.
 
-**Hitung**: <InlineMath math="\lim_{t \to 0} \frac{\cot 5t}{\cot 10t}" />
+1. Hitung limit sinus berskala berikut:
 
-Menggunakan definisi cotangen:
+   <BlockMath math="\lim_{x \to 0} \frac{\sin 3x}{4x}" />
+
+2. Hitung rasio campuran tangen dan sinus berikut:
+
+   <BlockMath math="\lim_{x \to 0} \frac{\tan 2x}{\sin 5x}" />
+
+3. Hitung limit kosinus kuadratik berikut:
+
+   <BlockMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2}" />
+
+4. Hitung hasil bagi selisih sinus bergeser berikut:
+
+   <BlockMath math="\lim_{x \to \frac{\pi}{6}} \frac{\sin x - \frac{1}{2}}{x - \frac{\pi}{6}}" />
+
+5. Hitung limit hasil kali sinus dan kosinus berikut:
+
+   <BlockMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x}" />
+
+Bandingkan cara pengerjaanmu dengan langkah penyelesaian ini.
+
+**Soal 1**. Kalikan pembilang dan penyebut dengan <InlineMath math="3" /> agar cocok dengan **bentuk standar**:
 
 <MathContainer>
-<BlockMath math="\begin{aligned}\lim_{t \to 0} \frac{\cot 5t}{\cot 10t} &= \lim_{t \to 0} \frac{\frac{\cos 5t}{\sin 5t}}{\frac{\cos 10t}{\sin 10t}} \\ &= \lim_{t \to 0} \frac{\cos 5t \sin 10t}{\sin 5t \cos 10t}\end{aligned}" />
-<BlockMath math="= \lim_{t \to 0} \frac{\cos 5t}{\cos 10t} \cdot \frac{\sin 10t}{\sin 5t} = 1 \cdot \frac{10}{5} = 2" />
+  <BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 3x}{4x} &amp;= \lim_{x \to 0} \frac{3 \sin 3x}{3 \cdot 4x} \\ &amp;= \lim_{x \to 0} \frac{3}{4} \cdot \frac{\sin 3x}{3x} \end{aligned}" />
+  <BlockMath math="= \frac{3}{4} \lim_{x \to 0} \frac{\sin 3x}{3x} = \frac{3}{4} \cdot 1 = \frac{3}{4}" />
 </MathContainer>
 
-## Latihan
-
-Setiap soal meminta limit trigonometri. Tentukan apakah substitusi cukup atau identitas diperlukan sebelum menghitung. Tuliskan limit yang kamu pakai pada setiap langkah, lalu periksa hasilnya terhadap **limit dasar** setiap kali sudutnya diskalakan.
-
-1. Hitung <InlineMath math="\lim_{x \to 0} \frac{\sin 3x}{4x}" />
-
-2. Hitung <InlineMath math="\lim_{x \to 0} \frac{\tan 2x}{\sin 5x}" />
-
-3. Hitung <InlineMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2}" />
-
-4. Hitung <InlineMath math="\lim_{x \to \frac{\pi}{6}} \frac{\sin x - \frac{1}{2}}{x - \frac{\pi}{6}}" />
-
-5. Hitung <InlineMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x}" />
-
-### Pembahasan
-
-**Soal 1**. Gunakan manipulasi aljabar untuk memperoleh **bentuk standar**:
+**Soal 2**. Pecah menjadi dua **limit perbandingan dasar**:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 3x}{4x} &amp;= \lim_{x \to 0} \frac{3 \sin 3x}{3 \cdot 4x} \\ &amp;= \lim_{x \to 0} \frac{3}{4} \cdot \frac{\sin 3x}{3x} \end{aligned}" />
-<BlockMath math="= \frac{3}{4} \lim_{x \to 0} \frac{\sin 3x}{3x} = \frac{3}{4} \cdot 1 = \frac{3}{4}" />
+  <BlockMath math="\begin{aligned} &amp;\lim_{x \to 0} \frac{\tan 2x}{\sin 5x} \\ &amp;= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \frac{5x}{\sin 5x} \cdot \frac{2x}{5x} \end{aligned}" />
+  <BlockMath math="= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \lim_{x \to 0} \frac{5x}{\sin 5x} \cdot \frac{2}{5} = \frac{2}{5}" />
 </MathContainer>
 
-**Soal 2**. Gunakan sifat **perbandingan trigonometri**:
+**Soal 3**. Gunakan **identitas setengah sudut** untuk mengubah pembilang menjadi kuadrat sinus:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\lim_{x \to 0} \frac{\tan 2x}{\sin 5x} \\ &amp;= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \frac{5x}{\sin 5x} \cdot \frac{2x}{5x} \end{aligned}" />
-<BlockMath math="= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \lim_{x \to 0} \frac{5x}{\sin 5x} \cdot \frac{2}{5}" />
-<BlockMath math="= 1 \cdot 1 \cdot \frac{2}{5} = \frac{2}{5}" />
+  <BlockMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2} = \lim_{x \to 0} \frac{2\sin^2\frac{3x}{2}}{x^2}" />
+  <BlockMath math="= \lim_{x \to 0} 2 \cdot \left(\frac{\sin\frac{3x}{2}}{\frac{3x}{2}}\right)^2 \cdot \left(\frac{3}{2}\right)^2" />
+  <BlockMath math="= 2 \cdot 1^2 \cdot \frac{9}{4} = \frac{9}{2}" />
 </MathContainer>
 
-**Soal 3**. Gunakan **identitas setengah sudut** untuk menulis selisih cosinus sebagai kuadrat sinus:
+**Soal 4**. Geser variabel agar **sudut mendekati nol**, lalu uraikan dengan rumus jumlah sinus:
+
+<BlockMath math="h = x - \frac{\pi}{6}, \quad x = h + \frac{\pi}{6}, \quad h \to 0" />
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2} = \lim_{x \to 0} \frac{2\sin^2\frac{3x}{2}}{x^2}" />
-<BlockMath math="= \lim_{x \to 0} 2 \cdot \left(\frac{\sin\frac{3x}{2}}{\frac{3x}{2}}\right)^2 \cdot \left(\frac{3}{2}\right)^2" />
-<BlockMath math="= 2 \cdot 1^2 \cdot \frac{9}{4} = \frac{9}{2}" />
+  <BlockMath math="\lim_{h \to 0} \frac{\sin(h + \frac{\pi}{6}) - \frac{1}{2}}{h}" />
+  <BlockMath math="= \lim_{h \to 0} \frac{\sin h \cos\frac{\pi}{6} + \cos h \sin\frac{\pi}{6} - \frac{1}{2}}{h}" />
+  <BlockMath math="= \lim_{h \to 0} \frac{\frac{\sqrt{3}}{2}\sin h + \frac{1}{2}(\cos h - 1)}{h}" />
+  <BlockMath math="= \frac{\sqrt{3}}{2} \lim_{h \to 0} \frac{\sin h}{h} + \frac{1}{2} \lim_{h \to 0} \frac{\cos h - 1}{h} = \frac{\sqrt{3}}{2}" />
 </MathContainer>
 
-**Soal 4**. Ganti variabel agar **sudut mendekati nol**, lalu gunakan limit dasar sinus. Misalkan <InlineMath math="h = x - \frac{\pi}{6}" />, maka <InlineMath math="x = h + \frac{\pi}{6}" /> dan ketika <InlineMath math="x \to \frac{\pi}{6}" />, kita punya <InlineMath math="h \to 0" />:
+**Soal 5**. Terapkan **identitas sudut ganda** sebelum memisahkan rasio sinus:
 
 <MathContainer>
-<BlockMath math="\lim_{h \to 0} \frac{\sin(h + \frac{\pi}{6}) - \frac{1}{2}}{h}" />
-<BlockMath math="= \lim_{h \to 0} \frac{\sin h \cos\frac{\pi}{6} + \cos h \sin\frac{\pi}{6} - \frac{1}{2}}{h}" />
-<BlockMath math="= \lim_{h \to 0} \frac{\sin h \cdot \frac{\sqrt{3}}{2} + \cos h \cdot \frac{1}{2} - \frac{1}{2}}{h}" />
-<BlockMath math="= \lim_{h \to 0} \frac{\frac{\sqrt{3}}{2}\sin h + \frac{1}{2}(\cos h - 1)}{h}" />
-<BlockMath math="= \frac{\sqrt{3}}{2} \lim_{h \to 0} \frac{\sin h}{h} + \frac{1}{2} \lim_{h \to 0} \frac{\cos h - 1}{h}" />
-<BlockMath math="= \frac{\sqrt{3}}{2} \cdot 1 + \frac{1}{2} \cdot 0 = \frac{\sqrt{3}}{2}" />
-</MathContainer>
-
-**Soal 5**. Gunakan **identitas sudut ganda** sebelum mencoret faktor yang sama:
-
-<MathContainer>
-<BlockMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x} = \lim_{x \to 0} \frac{\frac{1}{2}\sin 2x}{x}" />
-<BlockMath math="= \frac{1}{2} \lim_{x \to 0} \frac{\sin 2x}{x} = \frac{1}{2} \lim_{x \to 0} \frac{2 \sin 2x}{2x}" />
-<BlockMath math="= \frac{1}{2} \cdot 2 \lim_{x \to 0} \frac{\sin 2x}{2x} = 1 \cdot 1 = 1" />
+  <BlockMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x} = \lim_{x \to 0} \frac{\frac{1}{2}\sin 2x}{x}" />
+  <BlockMath math="= \frac{1}{2} \cdot 2 \lim_{x \to 0} \frac{\sin 2x}{2x} = 1 \cdot 1 = 1" />
 </MathContainer>

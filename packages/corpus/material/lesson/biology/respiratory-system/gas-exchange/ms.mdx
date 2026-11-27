@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Nota Sistem Respirasi dalam Manusia dan Haiwan Tingkatan Empat",
   description:
-    "Nota Biologi Tingkatan 4 Bab 8: terangkan mekanisme pernafasan, pertukaran gas di alveolus, pengangkutan oksigen oleh hemoglobin dan respirasi haiwan.",
+    "Terangkan mekanisme pernafasan, pertukaran gas di alveolus, pengangkutan oksigen oleh hemoglobin, dan respirasi haiwan bersama contoh.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Sistem Respirasi dalam Manusia dan Haiwan",
@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Sistem Respirasi Membawa Oksigen kepada Darah
 
-**Sistem respirasi** membawa oksigen dari udara ke dalam darah dan menyingkirkan karbon dioksida. Udara masuk dan keluar dari peparu kerana **perubahan isi padu toraks mengubah tekanan udara di dalam peparu**. Di alveolus, oksigen meresap ke dalam darah dan diangkut oleh **hemoglobin** ke sel badan. Dalam model di sini, kamu memampatkan udara seperti toraks, mengukur tekanan hembusan, membaca lengkung hemoglobin dan membandingkan permukaan respirasi.
+**Sistem respirasi** membawa oksigen dari udara ke dalam darah dan menyingkirkan karbon dioksida. Udara masuk dan keluar dari peparu kerana **perubahan isi padu toraks mengubah tekanan udara di dalam peparu**. Di alveolus, oksigen meresap ke dalam darah dan diangkut oleh **hemoglobin** ke sel badan. Dalam makmal interaktif di sini, kamu meneroka pertukaran gas alveolus, menggerakkan diafragma dan sangkar rusuk, mengukur tekanan hembusan, dan membaca lengkung hemoglobin.
+
+> Udara masuk dan keluar dari peparu hanya apabila perubahan isi padu toraks mewujudkan beza tekanan dengan atmosfera di sekeliling.
 
 Jangan keliru antara **pernafasan** dengan **respirasi sel**. Pernafasan ialah proses fizikal menarik dan menghembus nafas. Respirasi sel ialah tindak balas kimia di dalam mitokondria yang membebaskan tenaga daripada glukosa.
 
@@ -60,7 +62,70 @@ Kadar resapan gas mengikut **hukum Fick**: kadar berkadar terus dengan luas perm
   }}
 />
 
-Dinding yang menebal lapan kali ganda menurunkan kadar resapan kepada satu perlapan. Itulah sebabnya penyakit yang menebalkan dinding alveolus membuatkan pesakit cepat sesak nafas.
+Dinding yang menebal lapan kali ganda menurunkan kadar resapan kepada satu perlapan. Itulah sebabnya penyakit yang menebalkan dinding alveolus membuatkan pesakit cepat sesak nafas. Uji satu pundi alveolus yang dibaluti kapilari di bawah untuk melihat bagaimana kadar pernafasan dan altitud mengubah kecerunan tekanan separa oksigen serta pengambilan oksigen.
+
+<AlveolusGasExchangeLab
+  title={<>Pertukaran Gas Merentas Membran Alveolus</>}
+  description={
+    <>
+      Tukar antara rehat, senaman dan altitud tinggi serta laraskan kadar
+      pernafasan untuk membandingkan pengambilan oksigen dan kecerunan tekanan
+      separa <InlineMath math="\mathrm{O_2}" /> di alveolus.
+    </>
+  }
+  states={["rest", "exercise", "highAltitude"]}
+  ventilation={{ min: 6, max: 36, value: 12 }}
+  labels={{
+    state: "Keadaan aktiviti",
+    ventilation: "Kadar pernafasan",
+    view: "Pundi alveolus berbalut kapilari darah bagi pertukaran oksigen dan karbon dioksida",
+    oxygenUptake: <>Pengambilan oksigen</>,
+    diffusionRate: <>Kecerunan <InlineMath math="\mathrm{O_2}" /> alveolus</>,
+    parts: {
+      alveolus: "Pundi alveolus",
+      capillary: "Kapilari darah",
+      redBloodCell: "Sel darah merah",
+      oxygen: "Molekul oksigen",
+      carbonDioxide: "Molekul karbon dioksida",
+      surfactantFilm: "Lapisan surfaktan lembap",
+    },
+    states: {
+      rest: {
+        name: "Rehat",
+        summary: (
+          <>
+            Pengudaraan stabil mengekalkan kecerunan{" "}
+            <InlineMath math="\mathrm{O_2}" /> alveolus pada{" "}
+            <InlineMath math="60\text{ mmHg}" /> bagi keperluan asas.
+          </>
+        ),
+      },
+      exercise: {
+        name: "Senaman",
+        summary: (
+          <>
+            Darah vena tiba dengan oksigen lebih rendah lalu meninggikan
+            kecerunan <InlineMath math="\mathrm{O_2}" /> kepada{" "}
+            <InlineMath math="78\text{ mmHg}" /> dan meningkatkan pengambilan.
+          </>
+        ),
+      },
+      highAltitude: {
+        name: "Altitud tinggi",
+        summary: (
+          <>
+            Tekanan atmosfera lebih rendah mengurangkan kecerunan{" "}
+            <InlineMath math="\mathrm{O_2}" /> kepada{" "}
+            <InlineMath math="34\text{ mmHg}" />, jadi pernafasan perlu lebih
+            pantas.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Kamu boleh melihat bahawa **senaman melebarkan kecerunan tekanan** apabila otot aktif menggunakan lebih banyak oksigen, manakala altitud tinggi menyempitkan kecerunan kerana udara luar membawa kurang oksigen bagi setiap liter. Meningkatkan kadar pernafasan menambah pengambilan oksigen dalam semua keadaan kerana udara alveolus diperbaharui lebih cepat.
 
 ## Mekanisme Pernafasan
 
@@ -75,35 +140,66 @@ Pernafasan bergantung pada **hukum Boyle**: bagi jisim gas yang tetap pada suhu 
 | Isi padu toraks | Bertambah | Berkurang |
 | Tekanan dalam peparu | Lebih rendah daripada atmosfera | Lebih tinggi daripada atmosfera |
 
-Model picagari tertutup ini menunjukkan prinsip yang sama. Tekan udara kepada isi padu yang lebih kecil, kemudian panaskan ke suhu badan, dan perhatikan tekanan meningkat. Udara di dalam peparu yang dimampatkan dengan cara ini akan mengalir keluar ke tekanan atmosfera yang lebih rendah.
+Uji hukum Boyle terus di dalam rongga toraks. Pilih fasa tarikan nafas, hembusan nafas atau hembusan kuat, kemudian ubah kedalaman nafas untuk melihat diafragma, sangkar rusuk, isi padu peparu dan tekanan alveolus bertindak balas bersama.
 
-<GasPistonLab
-  title={<>Udara dalam Picagari Tertutup Dimampatkan</>}
+<ThoraxDiaphragmLab
+  title={<>Mekanik Rongga Toraks dan Diafragma semasa Pernafasan</>}
   description={
     <>
-      Udara pada <InlineMath math="101\text{ kPa}" /> dan{" "}
-      <InlineMath math="25^\circ\text{C}" /> dimampatkan kepada{" "}
-      <InlineMath math="0.8" /> isi padu asal, kemudian dipanaskan ke{" "}
-      <InlineMath math="37^\circ\text{C}" />.
+      Bandingkan tarikan nafas, hembusan biasa dan hembusan kuat pada pelbagai
+      kedalaman nafas untuk melihat perubahan isi padu toraks mengubah tekanan
+      alveolus berbanding atmosfera.
     </>
   }
-  pressure={101}
-  temperature={25}
-  volumeRatio={0.8}
-  finalTemperature={37}
+  phases={["inhalation", "exhalation", "forcedExhalation"]}
+  depth={{ min: 10, max: 100, value: 60 }}
   labels={{
-    pressure: <>Tekanan udara</>,
-    stage: "Peringkat",
-    stages: {
-      start: <>Mula</>,
-      compressed: <>Dimampatkan</>,
-      heated: <>Dipanaskan ke suhu badan</>,
+    phase: "Fasa pernafasan",
+    depth: "Kedalaman nafas",
+    view: "Sangkar rusuk, peparu dan diafragma yang mengubah isi padu toraks semasa pernafasan",
+    thoracicVolume: <>Isi padu toraks</>,
+    alveolarPressure: <>Perubahan tekanan alveolus</>,
+    parts: {
+      trachea: "Trakea",
+      lungs: "Peparu",
+      ribcage: "Sangkar rusuk",
+      intercostal: "Otot interkosta",
+      diaphragm: "Diafragma",
+      pleuralCavity: "Rongga pleura",
     },
-    temperature: <>Suhu</>,
-    viewLabel: "Udara di dalam picagari tertutup dengan tolok tekanan",
-    volume: <>Isi padu relatif</>,
+    phases: {
+      inhalation: {
+        name: "Tarik nafas",
+        summary: (
+          <>
+            Diafragma mendatar dan sangkar rusuk terangkat lalu isi padu
+            mengembang dan tekanan alveolus jatuh di bawah atmosfera.
+          </>
+        ),
+      },
+      exhalation: {
+        name: "Hembus nafas",
+        summary: (
+          <>
+            Diafragma melengkung ke atas dan rusuk turun secara pasif, menaikkan
+            tekanan alveolus sedikit melebihi atmosfera.
+          </>
+        ),
+      },
+      forcedExhalation: {
+        name: "Hembusan kuat",
+        summary: (
+          <>
+            Otot interkosta dalam dan otot abdomen menekan toraks lebih kuat
+            lalu menghasilkan lonjakan tekanan positif yang tinggi.
+          </>
+        ),
+      },
+    },
   }}
 />
+
+Apabila kedalaman nafas bertambah semasa tarik nafas, isi padu toraks meningkat dan tekanan alveolus menjadi lebih negatif untuk menyedut lebih banyak udara melalui trakea. Semasa hembusan kuat, pengecutan otot secara aktif mengecilkan isi padu dengan pantas dan menolak lebihan udara keluar.
 
 Tekanan hembusan boleh diukur dengan **manometer air**. Seorang murid menghembus sekuat mungkin ke dalam satu lengan tiub U, dan beza aras air menunjukkan berapa banyak tekanan di dalam peparu melebihi tekanan atmosfera. Ubah beza aras dan baca tekanan lebihan.
 
@@ -127,6 +223,8 @@ Tekanan hembusan boleh diukur dengan **manometer air**. Seorang murid menghembus
     viewLabel: "Manometer air yang disambung ke mulut",
   }}
 />
+
+Setiap sentimeter beza aras air hanya menyamai pecahan kecil sentimeter merkuri kerana ketumpatan air jauh lebih rendah daripada merkuri. Ketumpatan rendah ini menjadikan manometer air cukup peka untuk menunjukkan perubahan tekanan hembusan biasa dengan tepat.
 
 ### Contoh Tekanan Hembusan
 
@@ -158,11 +256,12 @@ Semak: <InlineMath math="75 \div 6 = 12.5" />, jadi pengudaraan meningkat lebih 
   title={<>Kadar Pengudaraan Semasa Rehat dan Senaman</>}
   description={
     <>
-      Isi padu udara yang disedut seminit, iaitu isi padu tidal darab kadar
-      pernafasan, bagi tiga tahap aktiviti.
+      Isi padu udara yang disedut seminit dalam{" "}
+      <InlineMath math="\text{dm}^3\text{ min}^{-1}" /> bagi tiga tahap
+      aktiviti.
     </>
   }
-  yAxisLabel="Kadar pengudaraan (dm³ min⁻¹)"
+  yAxisLabel="Kadar pengudaraan"
   data={[
     { name: "Rehat", value: 0.5 * 12 },
     { name: "Berjalan", value: 1.2 * 18 },
@@ -171,34 +270,37 @@ Semak: <InlineMath math="75 \div 6 = 12.5" />, jadi pengudaraan meningkat lebih 
   chartConfig={{ value: { label: "Kadar pengudaraan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
+Berlari menaikkan kadar pengudaraan jauh melebihi berjalan kerana isi padu tidal dan kekerapan pernafasan bertambah serentak. Hasil darab kedua-dua peningkatan ini menjelaskan lonjakan dari <InlineMath math="6\text{ dm}^3\text{ min}^{-1}" /> semasa rehat kepada <InlineMath math="75\text{ dm}^3\text{ min}^{-1}" /> semasa berlari laju.
+
 ## Pengangkutan Oksigen oleh Hemoglobin
 
 Oksigen yang meresap ke dalam darah bergabung dengan **hemoglobin** di dalam sel darah merah untuk membentuk **oksihemoglobin**. Di alveolus, tekanan separa oksigen tinggi, kira-kira <InlineMath math="13.3\text{ kPa}" />, jadi hemoglobin hampir tepu. Di tisu yang aktif, tekanan separa oksigen rendah, kira-kira <InlineMath math="5.3\text{ kPa}" />, jadi oksihemoglobin terurai dan membebaskan oksigen.
 
-Lengkung pengurai oksihemoglobin berbentuk S. Gerakkan gelangsar tekanan separa untuk membaca peratus ketepuan, dan tambahkan karbon dioksida untuk melihat lengkung beralih ke kanan, iaitu **kesan Bohr**.
+Lengkung pengurai oksihemoglobin berbentuk S. Gerakkan gelangsar tekanan separa untuk membaca peratus ketepuan, dan naikkan <InlineMath math="b" /> untuk melihat lengkung beralih ke kanan apabila karbon dioksida meningkat, iaitu **kesan Bohr**.
 
 <MathVisual
   title={<>Lengkung Pengurai Oksihemoglobin</>}
   description={
     <>
-      Ketepuan hemoglobin dalam puluhan peratus,{" "}
-      <InlineMath math="\dfrac{10p^{2.7}}{p^{2.7} + b^{2.7}}" />, terhadap tekanan
-      separa oksigen <InlineMath math="p" /> dalam kPa. Nilai{" "}
-      <InlineMath math="b" /> ialah tekanan separa pada ketepuan separuh.
+      Peratus ketepuan hemoglobin{" "}
+      <InlineMath math="\dfrac{100p^{2.7}}{p^{2.7} + b^{2.7}}" /> terhadap
+      tekanan separa oksigen <InlineMath math="p" /> dalam{" "}
+      <InlineMath math="\text{kPa}" />. Nilai <InlineMath math="b" /> ialah
+      tekanan separa pada ketepuan separuh.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 14.5 }, y: { min: 0, max: 10.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 14.5 }, y: { min: 0, max: 105 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "p", min: 0.5, max: 14, value: 5.3, step: 0.1, label: "p" },
       { name: "b", min: 3.5, max: 5, value: 3.5, step: 0.1, label: "b" },
     ],
     objects: [
-      { id: "curve", kind: "function", appearance: "primary", formula: "10x^2.7/(x^2.7 + b^2.7)", domain: { min: 0, max: 14 } },
-      { id: "normal", kind: "function", appearance: "reference", formula: "10x^2.7/(x^2.7 + 3.5^2.7)", domain: { min: 0, max: 14 } },
-      { id: "now", kind: "marker", x: "p", y: "10p^2.7/(p^2.7 + b^2.7)", appearance: "warning" },
+      { id: "curve", kind: "function", appearance: "primary", formula: "100x^2.7/(x^2.7 + b^2.7)", domain: { min: 0, max: 14 } },
+      { id: "normal", kind: "function", appearance: "reference", formula: "100x^2.7/(x^2.7 + 3.5^2.7)", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "p", y: "100p^2.7/(p^2.7 + b^2.7)", appearance: "warning" },
     ],
     readouts: [
       { key: "saturation", formula: "100p^2.7/(p^2.7 + b^2.7)" },
@@ -210,6 +312,8 @@ Lengkung pengurai oksihemoglobin berbentuk S. Gerakkan gelangsar tekanan separa 
     saturation: <>Peratus ketepuan hemoglobin</>,
   }}
 />
+
+Bahagian tengah lengkung S yang curam bermakna penurunan kecil tekanan separa di tisu aktif membebaskan banyak oksigen, manakala bahagian atas yang landai memastikan darah di peparu kekal hampir tepu walaupun tekanan alveolus menyusut sedikit.
 
 ### Contoh Oksigen yang Dibebaskan kepada Tisu
 
@@ -237,7 +341,7 @@ Setiap haiwan mempunyai permukaan respirasi yang nipis, lembap dan luas, tetapi 
 
 Pada insang ikan, darah dalam lamela mengalir **bertentangan arah** dengan air. Dengan cara ini, darah sentiasa bertemu air yang lebih kaya oksigen, jadi kecerunan kepekatan dikekalkan sepanjang lamela dan ikan dapat menyerap sehingga <InlineMath math="80\%" /> oksigen terlarut.
 
-## Kesilapan Lazim tentang Sistem Respirasi
+## Perangkap dan Semakan Respirasi
 
 | Kesilapan | Sebab salah | Cara semak |
 | :--- | :--- | :--- |
@@ -248,8 +352,6 @@ Pada insang ikan, darah dalam lamela mengalir **bertentangan arah** dengan air. 
 
 Kesilapan pertama paling kerap muncul dalam soalan mekanisme pernafasan. **Isi padu berubah dahulu, kemudian tekanan, kemudian aliran udara**.
 
-## Latihan Sistem Respirasi
-
 Soalan ini bergerak dari mekanisme pernafasan ke pengiraan pengangkutan oksigen. **Nyatakan perubahan tekanan** dalam setiap jawapan tentang aliran udara.
 
 1. Terangkan apa yang berlaku kepada diafragma dan tekanan dalam peparu semasa tarik nafas.
@@ -259,8 +361,6 @@ Soalan ini bergerak dari mekanisme pernafasan ke pengiraan pengangkutan oksigen.
 3. Ketepuan hemoglobin jatuh dari <InlineMath math="96\%" /> kepada <InlineMath math="60\%" /> semasa senaman. Setiap <InlineMath math="100\text{ cm}^3" /> darah tepu membawa <InlineMath math="20\text{ cm}^3" /> oksigen. Hitung oksigen yang dibebaskan oleh <InlineMath math="100\text{ cm}^3" /> darah.
 
 4. Terangkan mengapa emfisema, iaitu kerosakan dinding alveolus, membuatkan pesakit cepat penat.
-
-### Penyelesaian
 
 **Penyelesaian 1**: Diafragma **mengecut dan mendatar**, dan otot interkosta luar mengecut. Isi padu toraks bertambah, jadi tekanan dalam peparu jatuh di bawah tekanan atmosfera dan udara mengalir masuk.
 

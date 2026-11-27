@@ -1,41 +1,45 @@
 export const metadata = {
-   title: "Limit of Trigonometric Function",
-   description: "Evaluate trigonometric limits with the fundamental sine limit, identities, and substitution.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2025-05-26",
-   dateModified: "2026-11-08",
-   subject: "Limits",
+  title: "Limit of Trigonometric Function",
+  description:
+    "Evaluate trigonometric limits with the squeeze theorem, the fundamental sine limit, trigonometric identities, and substitution.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-27",
+  subject: "Limits",
 };
 
-## When Substitution Resolves a Trigonometric Limit
+## Direct Substitution Cases
 
-**Trigonometric limits** ask the same local question as algebraic limits: what value does an expression approach near a chosen input? Sine and cosine are continuous everywhere, while tangent is continuous wherever cosine is nonzero, so direct substitution still works whenever the resulting expression is defined.
+**Trigonometric limits** ask the same local question as algebraic limits: what value does an expression approach near a chosen input? Sine and cosine are continuous everywhere, while tangent is continuous wherever cosine is nonzero, so direct substitution works whenever the resulting expression is defined.
 
-The special work begins when substitution produces an indeterminate form such as <InlineMath math="\frac{0}{0}" />. Near zero, use the **fundamental sine limit** and familiar [trigonometric identities](/en/subjects/mathematics/function-modeling/trigonometric-identity) to rewrite the expression into a form whose limit can be evaluated.
+Special steps begin when substitution yields an indeterminate form such as <InlineMath math="\frac{0}{0}" />. Near zero, use the **fundamental sine limit** and familiar [trigonometric identities](/en/subjects/mathematics/function-modeling/trigonometric-identity) to rewrite the expression into a form whose limit evaluates cleanly.
 
 ## Sine Limit at Zero
 
-When an angle measured in radians approaches zero, <Highlight>the ratio of its sine to the angle</Highlight> approaches one. Measuring the angle in radians is what makes the value exactly one, and that single fact decides the value of every ratio built from sine and cosine.
+When an angle measured in radians approaches zero, <Highlight>the ratio of its sine to the angle</Highlight> approaches one. Measuring in radians is what makes the limit exactly one, and that single result governs every trigonometric ratio near zero.
 
 ### Basic Sine Limit
 
-The limit is:
+The fundamental trigonometric limit reads:
 
 <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
 
-The expression is undefined at <InlineMath math="x=0" />, so direct substitution does not establish the limit. A geometric proof uses the unit circle and the squeeze theorem.
+Because the ratio is undefined at <InlineMath math="x = 0" />, direct substitution cannot prove the limit. A geometric proof uses the unit circle together with the **squeeze theorem**.
 
-> In this theorem, measure <InlineMath math="x" /> in **radians**. Using degrees gives a different result.
+> In trigonometric limits, always measure <InlineMath math="x" /> in **radians** because degrees rescale the angle and change the limit.
 
-On the unit circle, for <InlineMath math="0<x<\pi/2" />, comparing triangle and sector areas gives <InlineMath math="\sin x<x<\tan x" />. Dividing by positive quantities produces **two enclosing bounds**:
+On the unit circle for <InlineMath math="x" /> between <InlineMath math="0" /> and <InlineMath math="\pi/2" />, comparing triangle and sector areas establishes two ordered bounds:
 
-<BlockMath math="\cos x<\frac{\sin x}{x}<1" />
+<MathContainer>
+  <BlockMath math="\sin x < x < \tan x" />
+  <BlockMath math="\cos x < \frac{\sin x}{x} < 1" />
+</MathContainer>
 
-As <InlineMath math="x\to0^+" />, both bounds approach <InlineMath math="1" />. On the left, <InlineMath math="\sin(-x)/(-x)=\sin x/x" />, so the limit is the same. The graph illustrates this approach, while the expression remains undefined at <InlineMath math="x=0" />.
+As <InlineMath math="x \to 0^+" />, both outer bounds approach <InlineMath math="1" />. Because the ratio is even across <InlineMath math="x = 0" />, the left side approaches <InlineMath math="1" /> as well, even though an open hole remains at <InlineMath math="(0, 1)" />.
 
 <MathVisual
   title={<>The ratio <InlineMath math="\frac{\sin x}{x}" /> approaches <InlineMath math="1" /></>}
-  description={<>The curve <InlineMath math="y = \frac{\sin x}{x}" /> for <InlineMath math="0 < |x| \le 3" />, with angles in radians. Both sides approach the line <InlineMath math="y = 1" />, and the open circle at <InlineMath math="(0, 1)" /> marks where the expression is undefined.</>}
+  description={<>Curve <InlineMath math="y = \frac{\sin x}{x}" /> for <InlineMath math="0 < |x| \le 3" /> in radians, approaching <InlineMath math="y = 1" /> with an open hole at <InlineMath math="(0, 1)" />.</>}
   labels={{
     one: <InlineMath math="y = 1" />,
     hole: <InlineMath math="(0, 1)" />,
@@ -57,30 +61,73 @@ As <InlineMath math="x\to0^+" />, both bounds approach <InlineMath math="1" />. 
   }}
 />
 
-### Consequences of the Basic Limit
+Both symmetric halves flatten cleanly into height <InlineMath math="1" /> at the vertical axis. Now shrink the window radius in the squeeze theorem lab below to watch the upper and lower bounds pinch <InlineMath math="\frac{\sin x}{x}" /> and two oscillating waves to a single limit point.
 
-Use this limit to derive the following results:
+<SqueezeTheoremWaveLab
+  title={<>Squeeze Theorem Bounds Around Zero</>}
+  description={
+    <>
+      Shrink the window radius <InlineMath math="r" /> and switch between the
+      sine ratio envelope <InlineMath math="\cos x \le \frac{\sin x}{x} \le 1" />{" "}
+      and damped oscillating waves pinched toward zero.
+    </>
+  }
+  envelopes={["sincEnvelope", "quadraticSine", "linearDamped"]}
+  radius={{ min: 0.1, max: 1.5, value: 0.8 }}
+  labels={{
+    envelope: "Bounding pair",
+    envelopes: {
+      sincEnvelope: {
+        name: "Sine ratio bounds",
+        formula: <InlineMath math="\cos x \le \frac{\sin x}{x} \le 1" />,
+      },
+      quadraticSine: {
+        name: "Quadratic pinch",
+        formula: (
+          <InlineMath math="-x^2 \le x^2 \sin\!\left(\frac{1}{x}\right) \le x^2" />
+        ),
+      },
+      linearDamped: {
+        name: "Linear pinch",
+        formula: (
+          <InlineMath math="-|x| \le |x| \cos\!\left(\frac{1}{x}\right) \le |x|" />
+        ),
+      },
+    },
+    radius: "Window radius",
+    boundSpread: <>Envelope gap</>,
+    squeezedLimit: <>Pinched limit</>,
+    view: "Trapped curve squeezed between upper and lower dashed bounding envelopes converging at the pinch point inside a shrinking window",
+    parts: {
+      upperBound: "Upper bound",
+      lowerBound: "Lower bound",
+      squeezedWave: "Squeezed wave",
+      pinchPoint: "Pinch point",
+      windowFrame: "Window radius",
+    },
+  }}
+/>
 
-Because <InlineMath math="\tan x=\frac{\sin x}{\cos x}" /> and <InlineMath math="\cos x\to1" />:
+As the radius shrinks toward zero, the vertical gap between the upper and lower envelopes collapses to zero, forcing the trapped curve to meet the exact same limit point regardless of how rapidly it oscillates.
+
+### Related Cosine Limits
+
+Combine the basic sine limit with tangent and **half-angle identities** to derive three companion limits. Writing tangent as sine over cosine with <InlineMath math="\cos x \to 1" /> gives:
 
 <BlockMath math="\lim_{x \to 0} \frac{\tan x}{x} = 1" />
 
-Use the identity <InlineMath math="1-\cos x=2\sin^2\frac x2" />:
+Now apply the half-angle cosine identity:
 
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = 0" />
+<BlockMath math="1 - \cos x = 2\sin^2\frac{x}{2}" />
 
-Use the identity <InlineMath math="1-\cos x=2\sin^2\frac x2" />:
-
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}" />
-
-The identity gives both cosine limits directly, without using **derivative rules** that are developed later:
+Substituting this identity resolves both cosine ratios directly without needing derivative rules:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\frac{1-\cos x}{x} \\ &amp;=\sin\frac{x}{2}\cdot\frac{\sin(x/2)}{x/2}\;\\ &amp;\longrightarrow\;0\cdot 1 \\ &amp;=0 \end{aligned}" />
-<BlockMath math="\begin{aligned} &amp;\frac{1-\cos x}{x^2} =\frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2\; \\ &amp;\longrightarrow\;\frac{1}{2} \end{aligned}" />
+  <BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = \lim_{x \to 0} \sin\frac{x}{2} \cdot \frac{\sin(x/2)}{x/2} = 0 \cdot 1 = 0" />
+  <BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \lim_{x \to 0} \frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2 = \frac{1}{2}" />
 </MathContainer>
 
-Check <InlineMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac12" /> with numbers. At <InlineMath math="x = 1" />, <InlineMath math="0.5" />, <InlineMath math="0.1" /> and <InlineMath math="0.01" /> the ratio is about <InlineMath math="0.460" />, <InlineMath math="0.490" />, <InlineMath math="0.4996" /> and <InlineMath math="0.499996" />, approaching <InlineMath math="\tfrac12" /> from below.
+Check the second cosine limit numerically. At <InlineMath math="x = 1" />, <InlineMath math="0.5" />, <InlineMath math="0.1" />, and <InlineMath math="0.01" />, the ratio rises through <InlineMath math="0.460" />, <InlineMath math="0.490" />, <InlineMath math="0.4996" />, and <InlineMath math="0.499996" /> toward <InlineMath math="\frac{1}{2}" />.
 
 <BarChart
   title={<><InlineMath math="\frac{1 - \cos x}{x^2}" /> near <InlineMath math="0" /></>}
@@ -90,47 +137,54 @@ Check <InlineMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac12" /> with
   chartConfig={{ value: { label: "Ratio", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-## Properties of Trigonometric Limits
+The bars climb steadily from below and level off right at <InlineMath math="0.5" />, confirming that the quadratic denominator balances <InlineMath math="1 - \cos x" /> near zero.
 
-The **fundamental limit** determines several related ratios, because a constant factor inside the angle moves out of the limit and the reciprocal of the ratio behaves the same way.
+## Limit Ratio Properties
 
-### Trigonometric Ratios
-
-For real constants <InlineMath math="a" /> and <InlineMath math="b \neq 0" />, **all following limits are taken as <InlineMath math="x \to 0" />**:
+Because a constant scale inside the angle factors out cleanly, four standard ratios follow immediately for real constants <InlineMath math="a" /> and <InlineMath math="b \neq 0" /> as <InlineMath math="x \to 0" />:
 
 | Limit | Result | Notes |
-|-------|--------|-------|
+| --- | --- | --- |
 | <InlineMath math="\lim_{x \to 0} \frac{\sin ax}{bx}" /> | <InlineMath math="\frac{a}{b}" /> | Manipulation from basic theorem |
 | <InlineMath math="\lim_{x \to 0} \frac{\tan ax}{bx}" /> | <InlineMath math="\frac{a}{b}" /> | Because <InlineMath math="\tan ax = \frac{\sin ax}{\cos ax}" /> |
 | <InlineMath math="\lim_{x \to 0} \frac{\sin ax}{\sin bx}" /> | <InlineMath math="\frac{a}{b}" /> | Combination of two sine limits |
 | <InlineMath math="\lim_{x \to 0} \frac{\tan ax}{\tan bx}" /> | <InlineMath math="\frac{a}{b}" /> | Combination of two tangent limits |
 
-### Trigonometric Combinations
-
-The mixed tangent and sine ratio follows the same rule. For <InlineMath math="a\ne0" /> and <InlineMath math="b\ne0" />, separate it into fundamental limits:
+The mixed tangent-sine ratio obeys the same formula. For <InlineMath math="a \neq 0" /> and <InlineMath math="b \neq 0" />, split it into fundamental pieces:
 
 <BlockMath math="\begin{aligned}\lim_{x\to0}\frac{\tan ax}{\sin bx}&=\lim_{x\to0}\left(\frac{\tan ax}{ax}\cdot\frac{bx}{\sin bx}\cdot\frac ab\right)\\&=1\cdot1\cdot\frac ab=\frac ab\end{aligned}" />
 
-If <InlineMath math="a=0" />, the **numerator** is always zero, so the result is zero. The final rule therefore holds for every real constant <InlineMath math="a" /> with <InlineMath math="b\ne0" />.
+When <InlineMath math="a = 0" />, the numerator stays zero so the limit is <InlineMath math="0" />, meaning the rule holds for every real <InlineMath math="a" /> with <InlineMath math="b \neq 0" />.
 
-## Techniques for Solving Trigonometric Limits
+Cotangent ratios reduce the same way by rewriting **cotangent as cosine divided by sine**. Evaluate:
 
-Some trigonometric limits resolve by substitution, and others need an **identity or a known limit**. The expression itself tells you which case applies, because a sum or a difference inside the trigonometric function is the sign that an identity is needed.
+<BlockMath math="\lim_{t \to 0} \frac{\cot 5t}{\cot 10t}" />
 
-### Substitution and Manipulation Techniques
-
-When facing complex trigonometric limits, we often need to manipulate expressions to use the fundamental theorem.
-
-**Calculate**: <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x}" />
-
-We manipulate to obtain the standard form:
+Separating the cosine and sine parts gives:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 2x}{3x} &amp;= \lim_{x \to 0} \frac{2 \sin 2x}{2 \cdot 3x} \\ &amp;= \lim_{x \to 0} \frac{2}{3} \cdot \frac{\sin 2x}{2x} \end{aligned}" />
-<BlockMath math="= \frac{2}{3} \lim_{x \to 0} \frac{\sin 2x}{2x} = \frac{2}{3} \cdot 1 = \frac{2}{3}" />
+  <BlockMath math="\begin{aligned}\lim_{t \to 0} \frac{\cot 5t}{\cot 10t} &= \lim_{t \to 0} \frac{\frac{\cos 5t}{\sin 5t}}{\frac{\cos 10t}{\sin 10t}} \\ &= \lim_{t \to 0} \frac{\cos 5t \sin 10t}{\sin 5t \cos 10t}\end{aligned}" />
+  <BlockMath math="= \lim_{t \to 0} \frac{\cos 5t}{\cos 10t} \cdot \frac{\sin 10t}{\sin 5t} = 1 \cdot \frac{10}{5} = 2" />
 </MathContainer>
 
-Check <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x} = \frac23" /> with numbers. At <InlineMath math="x = 0.5" />, <InlineMath math="0.1" /> and <InlineMath math="0.01" /> the ratio is about <InlineMath math="0.561" />, <InlineMath math="0.662" /> and <InlineMath math="0.6666" />, closing in on <InlineMath math="\tfrac23 \approx 0.667" />.
+## Trig Limit Techniques
+
+Some trigonometric limits finish with substitution, while others require **angle scaling**, identities, or a change of variable. Inspecting the angle and denominator first reveals which technique fits.
+
+### Angle Scaling
+
+When an angle carries a **constant factor**, match the denominator to that same angle. Evaluate:
+
+<BlockMath math="\lim_{x \to 0} \frac{\sin 2x}{3x}" />
+
+Multiply top and bottom by <InlineMath math="2" /> to isolate the standard sine form:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 2x}{3x} &amp;= \lim_{x \to 0} \frac{2 \sin 2x}{2 \cdot 3x} \\ &amp;= \lim_{x \to 0} \frac{2}{3} \cdot \frac{\sin 2x}{2x} \end{aligned}" />
+  <BlockMath math="= \frac{2}{3} \lim_{x \to 0} \frac{\sin 2x}{2x} = \frac{2}{3} \cdot 1 = \frac{2}{3}" />
+</MathContainer>
+
+Testing numerically at <InlineMath math="x = 0.5" />, <InlineMath math="0.1" />, and <InlineMath math="0.01" /> gives <InlineMath math="0.561" />, <InlineMath math="0.662" />, and <InlineMath math="0.6666" />, closing in on <InlineMath math="\frac{2}{3}" />.
 
 <BarChart
   title={<><InlineMath math="\frac{\sin 2x}{3x}" /> near <InlineMath math="0" /></>}
@@ -140,102 +194,101 @@ Check <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x} = \frac23" /> with num
   chartConfig={{ value: { label: "Ratio", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-### Direct Substitution with a Nonzero Denominator
+Each smaller input brings the bar closer to <InlineMath math="0.667" />, matching the exact coefficient ratio <InlineMath math="\frac{2}{3}" />.
 
-**Direct substitution** applies when the function is continuous at the target point and its denominator is nonzero. A limit in general does not require the function to be defined at that point.
+### Nonzero Denominators
 
-**Calculate**: <InlineMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x}" />
+**Direct substitution** works immediately whenever the expression is continuous at the target point and the denominator is nonzero. Evaluate:
 
-Since <InlineMath math="\sin(\frac{\pi}{4}) = \frac{\sqrt{2}}{2} \neq 0" />, the denominator is not zero at <InlineMath math="x = \frac{\pi}{4}" />.
+<BlockMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x}" />
 
-Direct substitution:
+At <InlineMath math="\pi/4" />, the denominator sine equals <InlineMath math="\sqrt{2}/2" />, which is nonzero, so substitute directly:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x} = \frac{\sin \frac{\pi}{4} + \cos \frac{\pi}{4}}{\sin \frac{\pi}{4}}" />
-<BlockMath math="\begin{aligned}  &amp;= \frac{\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \frac{2 \cdot \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \frac{\sqrt{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \sqrt{2} \cdot \frac{2}{\sqrt{2}} \\ &amp;= 2 \end{aligned}" />
+  <BlockMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x} = \frac{\sin \frac{\pi}{4} + \cos \frac{\pi}{4}}{\sin \frac{\pi}{4}}" />
+  <BlockMath math="\begin{aligned} &amp;= \frac{\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \frac{\sqrt{2}}{\frac{\sqrt{2}}{2}} = 2 \end{aligned}" />
 </MathContainer>
 
-### Techniques for Special Forms
+### Variable Substitution
 
-For limits involving the form <InlineMath math="\frac{0}{0}" />, we need special techniques.
+When the target point is not zero and substitution yields <InlineMath math="\frac{0}{0}" />, **shift the variable** so the new angle approaches zero. Evaluate:
 
-**Calculate**: <InlineMath math="\lim_{x \to \frac{\pi}{2}} \frac{\sin^2(x - \frac{\pi}{2})}{x(x - \frac{\pi}{2})}" />
+<BlockMath math="\lim_{x \to \frac{\pi}{2}} \frac{\sin^2\left(x - \frac{\pi}{2}\right)}{x\left(x - \frac{\pi}{2}\right)}" />
 
-Let <InlineMath math="u = x - \frac{\pi}{2}" />, then when <InlineMath math="x \to \frac{\pi}{2}" />, we have <InlineMath math="u \to 0" /> and <InlineMath math="x = u + \frac{\pi}{2}" />.
+Set the shifted variable <InlineMath math="u" /> so that <InlineMath math="u \to 0" /> as <InlineMath math="x \to \pi/2" />:
+
+<BlockMath math="u = x - \frac{\pi}{2}, \quad x = u + \frac{\pi}{2}" />
+
+Rewriting the limit in terms of <InlineMath math="u" /> separates a squared basic sine limit:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\lim_{u \to 0} \frac{\sin^2 u}{(u + \frac{\pi}{2}) \cdot u} \\ &amp;= \lim_{u \to 0} \frac{\sin^2 u}{u^2} \cdot \frac{u}{u + \frac{\pi}{2}} \end{aligned}" />
-<BlockMath math="= \lim_{u \to 0} \left(\frac{\sin u}{u}\right)^2 \cdot \lim_{u \to 0} \frac{u}{u + \frac{\pi}{2}}" />
-<BlockMath math="= 1^2 \cdot \lim_{u \to 0} \frac{u}{\frac{\pi}{2} + u} = 1 \cdot \frac{0}{\frac{\pi}{2}} = 0" />
+  <BlockMath math="\begin{aligned} &amp;\lim_{u \to 0} \frac{\sin^2 u}{(u + \frac{\pi}{2}) \cdot u} \\ &amp;= \lim_{u \to 0} \frac{\sin^2 u}{u^2} \cdot \frac{u}{u + \frac{\pi}{2}} \end{aligned}" />
+  <BlockMath math="= \lim_{u \to 0} \left(\frac{\sin u}{u}\right)^2 \cdot \lim_{u \to 0} \frac{u}{u + \frac{\pi}{2}}" />
+  <BlockMath math="= 1^2 \cdot \frac{0}{\frac{\pi}{2}} = 0" />
 </MathContainer>
 
-## A Ratio of Cotangent Functions
+## Checking Trig Limit Values
 
-Write **cotangent as cosine divided by sine**. The cosine ratio approaches one, while the sine ratio contributes the ratio of the angle factors.
+Decide before calculating whether substitution works or whether scaling, identities, or a variable shift is needed.
 
-**Calculate**: <InlineMath math="\lim_{t \to 0} \frac{\cot 5t}{\cot 10t}" />
+1. Evaluate the scaled sine limit:
 
-Using the definition of cotangent:
+   <BlockMath math="\lim_{x \to 0} \frac{\sin 3x}{4x}" />
+
+2. Evaluate the mixed tangent and sine ratio:
+
+   <BlockMath math="\lim_{x \to 0} \frac{\tan 2x}{\sin 5x}" />
+
+3. Evaluate the quadratic cosine limit:
+
+   <BlockMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2}" />
+
+4. Evaluate the shifted sine difference quotient:
+
+   <BlockMath math="\lim_{x \to \frac{\pi}{6}} \frac{\sin x - \frac{1}{2}}{x - \frac{\pi}{6}}" />
+
+5. Evaluate the sine-cosine product limit:
+
+   <BlockMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x}" />
+
+Compare your steps against the worked solutions below.
+
+**Problem 1**. Scale numerator and denominator by <InlineMath math="3" /> to match the **standard form**:
 
 <MathContainer>
-<BlockMath math="\begin{aligned}\lim_{t \to 0} \frac{\cot 5t}{\cot 10t} &= \lim_{t \to 0} \frac{\frac{\cos 5t}{\sin 5t}}{\frac{\cos 10t}{\sin 10t}} \\ &= \lim_{t \to 0} \frac{\cos 5t \sin 10t}{\sin 5t \cos 10t}\end{aligned}" />
-<BlockMath math="= \lim_{t \to 0} \frac{\cos 5t}{\cos 10t} \cdot \frac{\sin 10t}{\sin 5t} = 1 \cdot \frac{10}{5} = 2" />
+  <BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 3x}{4x} &amp;= \lim_{x \to 0} \frac{3 \sin 3x}{3 \cdot 4x} \\ &amp;= \lim_{x \to 0} \frac{3}{4} \cdot \frac{\sin 3x}{3x} \end{aligned}" />
+  <BlockMath math="= \frac{3}{4} \lim_{x \to 0} \frac{\sin 3x}{3x} = \frac{3}{4} \cdot 1 = \frac{3}{4}" />
 </MathContainer>
 
-## Exercises
-
-Each problem asks for a trigonometric limit. Decide whether substitution is enough or an identity is needed before calculating. Write the limit you use at every step, and check the result against the **fundamental limit** whenever the angle is scaled.
-
-1. Calculate <InlineMath math="\lim_{x \to 0} \frac{\sin 3x}{4x}" />
-
-2. Calculate <InlineMath math="\lim_{x \to 0} \frac{\tan 2x}{\sin 5x}" />
-
-3. Calculate <InlineMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2}" />
-
-4. Calculate <InlineMath math="\lim_{x \to \frac{\pi}{6}} \frac{\sin x - \frac{1}{2}}{x - \frac{\pi}{6}}" />
-
-5. Calculate <InlineMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x}" />
-
-### Worked Solutions
-
-**Problem 1**. Use algebraic manipulation to obtain the **standard form**:
+**Problem 2**. Split into two **fundamental ratio limits**:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 3x}{4x} &amp;= \lim_{x \to 0} \frac{3 \sin 3x}{3 \cdot 4x} \\ &amp;= \lim_{x \to 0} \frac{3}{4} \cdot \frac{\sin 3x}{3x} \end{aligned}" />
-<BlockMath math="= \frac{3}{4} \lim_{x \to 0} \frac{\sin 3x}{3x} = \frac{3}{4} \cdot 1 = \frac{3}{4}" />
+  <BlockMath math="\begin{aligned} &amp;\lim_{x \to 0} \frac{\tan 2x}{\sin 5x} \\ &amp;= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \frac{5x}{\sin 5x} \cdot \frac{2x}{5x} \end{aligned}" />
+  <BlockMath math="= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \lim_{x \to 0} \frac{5x}{\sin 5x} \cdot \frac{2}{5} = \frac{2}{5}" />
 </MathContainer>
 
-**Problem 2**. Use **trigonometric ratio** properties:
+**Problem 3**. Use the **half-angle identity** to rewrite the numerator as a squared sine:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\lim_{x \to 0} \frac{\tan 2x}{\sin 5x} \\ &amp;= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \frac{5x}{\sin 5x} \cdot \frac{2x}{5x} \end{aligned}" />
-<BlockMath math="= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \lim_{x \to 0} \frac{5x}{\sin 5x} \cdot \frac{2}{5}" />
-<BlockMath math="= 1 \cdot 1 \cdot \frac{2}{5} = \frac{2}{5}" />
+  <BlockMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2} = \lim_{x \to 0} \frac{2\sin^2\frac{3x}{2}}{x^2}" />
+  <BlockMath math="= \lim_{x \to 0} 2 \cdot \left(\frac{\sin\frac{3x}{2}}{\frac{3x}{2}}\right)^2 \cdot \left(\frac{3}{2}\right)^2" />
+  <BlockMath math="= 2 \cdot 1^2 \cdot \frac{9}{4} = \frac{9}{2}" />
 </MathContainer>
 
-**Problem 3**. Use the **half angle identity** to write the cosine difference as a squared sine:
+**Problem 4**. Shift the variable so the **angle approaches zero**, then expand using the sine addition formula:
+
+<BlockMath math="h = x - \frac{\pi}{6}, \quad x = h + \frac{\pi}{6}, \quad h \to 0" />
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2} = \lim_{x \to 0} \frac{2\sin^2\frac{3x}{2}}{x^2}" />
-<BlockMath math="= \lim_{x \to 0} 2 \cdot \left(\frac{\sin\frac{3x}{2}}{\frac{3x}{2}}\right)^2 \cdot \left(\frac{3}{2}\right)^2" />
-<BlockMath math="= 2 \cdot 1^2 \cdot \frac{9}{4} = \frac{9}{2}" />
+  <BlockMath math="\lim_{h \to 0} \frac{\sin(h + \frac{\pi}{6}) - \frac{1}{2}}{h}" />
+  <BlockMath math="= \lim_{h \to 0} \frac{\sin h \cos\frac{\pi}{6} + \cos h \sin\frac{\pi}{6} - \frac{1}{2}}{h}" />
+  <BlockMath math="= \lim_{h \to 0} \frac{\frac{\sqrt{3}}{2}\sin h + \frac{1}{2}(\cos h - 1)}{h}" />
+  <BlockMath math="= \frac{\sqrt{3}}{2} \lim_{h \to 0} \frac{\sin h}{h} + \frac{1}{2} \lim_{h \to 0} \frac{\cos h - 1}{h} = \frac{\sqrt{3}}{2}" />
 </MathContainer>
 
-**Problem 4**. Change variables so the **angle approaches zero**, then use the fundamental sine limit. Let <InlineMath math="h = x - \frac{\pi}{6}" />, then <InlineMath math="x = h + \frac{\pi}{6}" /> and when <InlineMath math="x \to \frac{\pi}{6}" />, we have <InlineMath math="h \to 0" />:
+**Problem 5**. Apply the **double-angle identity** before isolating the sine ratio:
 
 <MathContainer>
-<BlockMath math="\lim_{h \to 0} \frac{\sin(h + \frac{\pi}{6}) - \frac{1}{2}}{h}" />
-<BlockMath math="= \lim_{h \to 0} \frac{\sin h \cos\frac{\pi}{6} + \cos h \sin\frac{\pi}{6} - \frac{1}{2}}{h}" />
-<BlockMath math="= \lim_{h \to 0} \frac{\sin h \cdot \frac{\sqrt{3}}{2} + \cos h \cdot \frac{1}{2} - \frac{1}{2}}{h}" />
-<BlockMath math="= \lim_{h \to 0} \frac{\frac{\sqrt{3}}{2}\sin h + \frac{1}{2}(\cos h - 1)}{h}" />
-<BlockMath math="= \frac{\sqrt{3}}{2} \lim_{h \to 0} \frac{\sin h}{h} + \frac{1}{2} \lim_{h \to 0} \frac{\cos h - 1}{h}" />
-<BlockMath math="= \frac{\sqrt{3}}{2} \cdot 1 + \frac{1}{2} \cdot 0 = \frac{\sqrt{3}}{2}" />
-</MathContainer>
-
-**Problem 5**. Use the **double angle identity** before canceling the shared factor:
-
-<MathContainer>
-<BlockMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x} = \lim_{x \to 0} \frac{\frac{1}{2}\sin 2x}{x}" />
-<BlockMath math="= \frac{1}{2} \lim_{x \to 0} \frac{\sin 2x}{x} = \frac{1}{2} \lim_{x \to 0} \frac{2 \sin 2x}{2x}" />
-<BlockMath math="= \frac{1}{2} \cdot 2 \lim_{x \to 0} \frac{\sin 2x}{2x} = 1 \cdot 1 = 1" />
+  <BlockMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x} = \lim_{x \to 0} \frac{\frac{1}{2}\sin 2x}{x}" />
+  <BlockMath math="= \frac{1}{2} \cdot 2 \lim_{x \to 0} \frac{\sin 2x}{2x} = 1 \cdot 1 = 1" />
 </MathContainer>

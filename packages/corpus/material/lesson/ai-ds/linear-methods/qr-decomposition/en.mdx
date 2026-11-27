@@ -1,10 +1,11 @@
 export const metadata = {
-   title: "QR Decomposition",
-    description: "Factor matrices with QR decomposition using the Gram Schmidt process or Householder transformations, then solve linear systems.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2025-07-14",
-   dateModified: "2026-09-19",
-   subject: "Linear Methods of AI",
+  title: "QR Decomposition",
+  description:
+    "Factor matrices with QR decomposition using the Gram Schmidt process or Householder transformations, then solve linear systems.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-14",
+  dateModified: "2026-11-27",
+  subject: "Linear Methods of AI",
 };
 
 ## Existence of QR Decomposition
@@ -32,15 +33,62 @@ Full column rank guarantees <InlineMath math="\widetilde q_j\neq0" /> at every s
 <BlockMath math="= \sum_{k=1}^{j-1} q_k \cdot r_{kj} + q_j \cdot r_{jj}" />
 </MathContainer>
 
-<InlineMath math="A=Q_1R_1" />, where <InlineMath math="R_1 \in \mathbb{R}^{n \times n}" /> is upper triangular and <InlineMath math="r_{ii}=\|\widetilde q_i\|_2>0" />.
+This gives the reduced factorization <InlineMath math="A=Q_1R_1" />, where <InlineMath math="R_1 \in \mathbb{R}^{n \times n}" /> is upper triangular with positive diagonal entries:
 
-Complete <InlineMath math="Q_1" /> with <InlineMath math="m-n" /> orthonormal columns to form <InlineMath math="Q=(Q_1\quad Q_2)\in\mathbb{R}^{m\times m}" />.
+<BlockMath math="r_{ii} = \|\widetilde q_i\|_2 > 0" />
 
-Appending <InlineMath math="m-n" /> zero rows to <InlineMath math="R_1" /> gives:
+Complete <InlineMath math="Q_1" /> with <InlineMath math="m-n" /> orthonormal columns and append <InlineMath math="m-n" /> zero rows to <InlineMath math="R_1" /> to form the full factors:
 
-<BlockMath math="R=\begin{pmatrix}R_1\\0\end{pmatrix}\in\mathbb{R}^{m\times n}" />
+<MathContainer>
+<BlockMath math="Q = (Q_1 \quad Q_2) \in \mathbb{R}^{m \times m}" />
+<BlockMath math="R = \begin{pmatrix} R_1 \\ 0 \end{pmatrix} \in \mathbb{R}^{m \times n}" />
+<BlockMath math="A = Q_1 R_1 = Q R" />
+</MathContainer>
 
-The completed matrices still satisfy <InlineMath math="A=Q_1R_1=QR" />.
+Step through the three-dimensional Gram-Schmidt construction below and adjust the column skew to see how projections strip away overlap and leave an orthonormal frame.
+
+<QrGramSchmidt3DLab
+  title={<>Gram-Schmidt orthogonalization in <InlineMath math="\mathbb{R}^3" /></>}
+  description={<>Advance through the Gram-Schmidt stages on three skewed input columns and vary the column skew to inspect the projection shadows, upper-triangular entry <InlineMath math="r_{12}" />, and orthogonality error.</>}
+  steps={["originalBasis", "normalizeQ1", "orthogonalizeQ2", "orthogonalizeQ3"]}
+  skew={{ min: 0, max: 1, value: 0.7 }}
+  labels={{
+    step: "Stage",
+    skew: "Column skew",
+    view: "View",
+    orthogonalityCheck: <>Orthogonality error <InlineMath math="\|Q^T Q - I\|" /></>,
+    rEntries: <>Off-diagonal entry <InlineMath math="r_{12}" /></>,
+    parts: {
+      inputVectors: "Input columns",
+      orthonormalBasis: "Orthonormal vectors",
+      projectionShadow: "Projection shadow",
+      orthogonalFrame: "Orthogonal frame",
+      unitSphere: "Unit sphere",
+    },
+    steps: {
+      originalBasis: {
+        name: "Original columns",
+        summary: <>Start with three skewed columns <InlineMath math="a_1, a_2, a_3" /> whose pairwise inner products are nonzero.</>,
+      },
+      normalizeQ1: {
+        name: "Normalize first vector",
+        summary: <>Scale <InlineMath math="a_1" /> onto the unit sphere to establish the first orthonormal direction <InlineMath math="q_1" />.</>,
+      },
+      orthogonalizeQ2: {
+        name: "Orthogonalize second vector",
+        summary: <>Subtract the projection <InlineMath math="r_{12} q_1" /> from <InlineMath math="a_2" /> and normalize the perpendicular residual to <InlineMath math="q_2" />.</>,
+      },
+      orthogonalizeQ3: {
+        name: "Complete orthonormal frame",
+        summary: <>Remove components along both <InlineMath math="q_1" /> and <InlineMath math="q_2" /> from <InlineMath math="a_3" /> so all three unit vectors meet at right angles.</>,
+      },
+    },
+  }}
+/>
+
+Increasing the column skew grows the off-diagonal projection <InlineMath math="r_{12}" /> that must be subtracted, yet once all three stages finish the orthogonality error drops to zero and every vector lands on the unit sphere.
+
+> Gram-Schmidt builds orthonormal columns directly by subtracting projections, while Householder reflections achieve the same factorization with stronger numerical stability when columns are nearly dependent.
 
 ## Full and Reduced QR Decomposition
 
@@ -72,7 +120,12 @@ The null space of <InlineMath math="A^T" /> is the set of vectors <InlineMath ma
 
 For a full-column-rank matrix, the reduced factorization <InlineMath math="A=Q_1R_1" /> is unique when every **diagonal entry** of <InlineMath math="R_1" /> is positive. That sign condition removes the remaining freedom, because multiplying a column of <InlineMath math="Q_1" /> and the matching row of <InlineMath math="R_1" /> by <InlineMath math="-1" /> leaves the product unchanged.
 
-For the columns <InlineMath math="a_1=(1,1,0)" /> and <InlineMath math="a_2=(1,0,1)" />, Gram-Schmidt gives <InlineMath math="q_1=\tfrac1{\sqrt2}(1,1,0)" /> and <InlineMath math="q_2=\tfrac1{\sqrt6}(1,-1,2)" />. The reduced factorization stops here. The full one adds <InlineMath math="q_3=\tfrac1{\sqrt3}(1,-1,-1)" />, perpendicular to the column plane, and a row of zeros under <InlineMath math="R" />.
+For the columns <InlineMath math="a_1=(1,1,0)" /> and <InlineMath math="a_2=(1,0,1)" />, Gram-Schmidt yields the reduced basis vectors <InlineMath math="q_1" /> and <InlineMath math="q_2" />, while the full factorization appends a third normal vector <InlineMath math="q_3" /> and a zero row beneath <InlineMath math="R_1" />:
+
+<MathContainer>
+<BlockMath math="q_1 = \frac{1}{\sqrt{2}}(1, 1, 0), \qquad q_2 = \frac{1}{\sqrt{6}}(1, -1, 2)" />
+<BlockMath math="q_3 = \frac{1}{\sqrt{3}}(1, -1, -1)" />
+</MathContainer>
 
 <MathVisual
   title={<>Reduced and full <InlineMath math="Q" /> for two columns in <InlineMath math="\mathbb R^3" /></>}
@@ -100,10 +153,11 @@ For the columns <InlineMath math="a_1=(1,1,0)" /> and <InlineMath math="a_2=(1,0
   }}
 />
 
+Notice that <InlineMath math="q_1" /> and <InlineMath math="q_2" /> span the exact same plane as the original columns, while <InlineMath math="q_3" /> stands orthogonal to that plane and spans the orthogonal complement.
+
 ## Worked Thin QR Example
 
 Let
-
 
 <BlockMath math="A=\begin{pmatrix}1&1\\1&0\\0&1\end{pmatrix}=(a_1\ \,a_2)" />
 
@@ -124,7 +178,7 @@ The calculation gives:
 <BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
 </MathContainer>
 
-Rotate this three-dimensional scene to see the example from every side. The amber projection <InlineMath math="r_{12}q_1=(1/2,1/2,0)^T" /> is the part of <InlineMath math="a_2" /> that points along <InlineMath math="q_1" />. The orange remainder <InlineMath math="\widetilde q_2" />, from the tip of the projection to the tip of <InlineMath math="a_2" />, is perpendicular to <InlineMath math="q_1" />, and normalizing it gives <InlineMath math="q_2" />. From any angle, the two magenta segments always meet at a right angle.
+Rotate this three-dimensional scene to see the example from every side. The amber projection <InlineMath math="r_{12}q_1" /> is the part of <InlineMath math="a_2" /> that points along <InlineMath math="q_1" />. The orange remainder <InlineMath math="\widetilde q_2" />, from the tip of the projection to the tip of <InlineMath math="a_2" />, is perpendicular to <InlineMath math="q_1" />, and normalizing it gives <InlineMath math="q_2" />.
 
 <MathVisual
   title={<>Gram-Schmidt on <InlineMath math="a_1,a_2" /></>}
@@ -160,6 +214,8 @@ Rotate this three-dimensional scene to see the example from every side. The ambe
   }}
 />
 
+From any angle, the two magenta unit vectors <InlineMath math="q_1" /> and <InlineMath math="q_2" /> meet at a right angle, and their linear combinations using the columns of <InlineMath math="R_1" /> recover <InlineMath math="a_1" /> and <InlineMath math="a_2" /> exactly.
+
 ## Householder Method for QR Decomposition
 
 Classical Gram-Schmidt gives a direct derivation, but **nearly dependent columns** can lose orthogonality in floating-point arithmetic. Modified Gram-Schmidt reduces that error. Dense numerical software commonly uses Householder reflectors, while Givens rotations are useful when only selected entries need to be eliminated.
@@ -170,9 +226,7 @@ For a unit vector <InlineMath math="v\in\mathbb{R}^m" />, define the Householder
 
 The **outer product** <InlineMath math="vv^T" /> multiplies an <InlineMath math="m\times1" /> column by a <InlineMath math="1\times m" /> row, so it produces an <InlineMath math="m\times m" /> rank-one matrix. The reversed product <InlineMath math="v^Tv" /> is the scalar <InlineMath math="1" />.
 
-## Properties of Householder Transformation
-
-For <InlineMath math="S=I-2vv^T" /> and <InlineMath math="\|v\|_2=1" />, the following properties hold. Symmetry and orthogonality come from the unit vector in the definition, the reflection explains what the transformation does to a vector, and **condition number one** means that an exact reflection preserves the Euclidean norm of a perturbation vector.
+Because <InlineMath math="\|v\|_2=1" />, the reflector <InlineMath math="S" /> satisfies four core properties. Symmetry and orthogonality come from the unit vector in the definition, the reflection explains what the transformation does to a vector, and **condition number one** means that an exact reflection preserves the Euclidean norm of a perturbation vector.
 
 1. <InlineMath math="S" /> is symmetric: <InlineMath math="S^T = S" />
 
@@ -182,7 +236,11 @@ For <InlineMath math="S=I-2vv^T" /> and <InlineMath math="\|v\|_2=1" />, the fol
 
 4. <InlineMath math="\text{cond}_2(S) = 1" />
 
-For <InlineMath math="x=(3,4)" /> with <InlineMath math="\|x\|_2=5" />, choose <InlineMath math="v=\tfrac{x-5e_1}{\|x-5e_1\|_2}=\tfrac1{\sqrt5}(-1,2)" />. Then <InlineMath math="S=I-2vv^T" /> mirrors <InlineMath math="x" /> across the line perpendicular to <InlineMath math="v" /> and sends it to <InlineMath math="(5,0)" />. One reflection zeroes the second entry without changing the length.
+For <InlineMath math="x=(3,4)" /> with <InlineMath math="\|x\|_2=5" />, choose the unit normal vector:
+
+<BlockMath math="v = \frac{x - 5e_1}{\|x - 5e_1\|_2} = \frac{1}{\sqrt{5}}(-1, 2)" />
+
+Then <InlineMath math="S=I-2vv^T" /> mirrors <InlineMath math="x" /> across the line perpendicular to <InlineMath math="v" /> and sends it to <InlineMath math="(5,0)" />.
 
 <MathVisual
   title={<>A Householder reflection sends <InlineMath math="(3,4)" /> to <InlineMath math="(5,0)" /></>}
@@ -211,6 +269,8 @@ For <InlineMath math="x=(3,4)" /> with <InlineMath math="\|x\|_2=5" />, choose <
   }}
 />
 
+One reflection zeros the second coordinate without altering the Euclidean length of <InlineMath math="x" />, which is why chaining reflectors introduces zeros column by column while preserving stability.
+
 ## Householder Procedure
 
 Let <InlineMath math="A\in\mathbb{R}^{m\times n}" /> satisfy <InlineMath math="m\geq n" /> and <InlineMath math="\operatorname{rank}(A)=n" />. **Each Householder step** zeros the entries below one diagonal position while leaving the zeros created by earlier steps unchanged.
@@ -229,7 +289,9 @@ With <InlineMath math="S_1=I_m-2v_1v_1^T" />, the first column below the diagona
 
 <BlockMath math="A_2 = S_1 \cdot A_1 = \begin{pmatrix} r_{11} & * \\ 0 & \tilde{A}_2 \end{pmatrix}" />
 
-In the matrix <InlineMath math="A_2" />, <InlineMath math="r_{11} = \pm\|\tilde{a}_1\|_2" /> and <InlineMath math="\tilde{A}_2 \in \mathbb{R}^{m-1 \times n-1}" />.
+In the matrix <InlineMath math="A_2" />, the leading pivot and reduced block satisfy:
+
+<BlockMath math="r_{11} = \pm\|\tilde{a}_1\|_2, \qquad \tilde{A}_2 \in \mathbb{R}^{(m-1) \times (n-1)}" />
 
 Apply the next reflector only to the **remaining lower-right submatrix**:
 
@@ -252,7 +314,11 @@ The second column below the diagonal then becomes zero:
 
 <BlockMath math="A_3 = S_2 \cdot A_2 = \begin{pmatrix} r_{11} & * & * \\ 0 & r_{22} & * \\ 0 & 0 & \tilde{A}_3 \end{pmatrix}" />
 
-Here <InlineMath math="r_{22}=\pm\|\widetilde a_2\|_2" /> and <InlineMath math="\widetilde A_3\in\mathbb{R}^{(m-2)\times(n-2)}" />. Repeating the same operation leaves the final active column
+Here the second pivot and remaining active block satisfy:
+
+<BlockMath math="r_{22} = \pm\|\widetilde a_2\|_2, \qquad \widetilde A_3 \in \mathbb{R}^{(m-2) \times (n-2)}" />
+
+Repeating the same operation leaves the final active column
 
 <BlockMath math="\tilde{A}_n = \begin{pmatrix} \tilde{a}_{nn} \\ \vdots \\ \tilde{a}_{mn} \end{pmatrix} \in \mathbb{R}^{m-(n-1) \times 1}" />
 
@@ -321,20 +387,23 @@ After <InlineMath math="n" /> steps,
 
 Implementing the decomposition in floating-point arithmetic raises two practical questions, how many operations it costs and how the **rounding error behaves**. Both answers decide whether the method fits the problem: the operation count sets the run time for a large matrix, and the rounding behavior decides how much of the computed result you can trust.
 
-### Computational Complexity
+### Householder Operation Count
 
 The count below stores <InlineMath math="Q" /> **implicitly as reflectors** and computes <InlineMath math="R" />. Explicitly constructing a full <InlineMath math="m\times m" /> matrix <InlineMath math="Q" /> costs additional work.
 
 For <InlineMath math="m\ge n" />, a <InlineMath math="\mathrm{QR}" /> decomposition with Householder reflectors requires approximately:
 
 <BlockMath math="2mn^2-\frac23n^3" />
+
 The approximate number of **floating-point operations** when <InlineMath math="m=n" /> is:
 
 <BlockMath math="\frac43n^3" />
 
 ### Numerical Properties
 
-Orthogonal multiplication **preserves singular values**, so <InlineMath math="\operatorname{cond}_2(R)=\operatorname{cond}_2(A)" /> for a full-column-rank matrix.
+Orthogonal multiplication **preserves singular values**, so a full-column-rank matrix keeps the exact same condition number in its triangular factor:
+
+<BlockMath math="\operatorname{cond}_2(R) = \operatorname{cond}_2(A)" />
 
 At step <InlineMath math="i" />, the new diagonal entry is <InlineMath math="\pm\|\widetilde a_i\|_2" />. Choose the sign below while computing the reflector to avoid subtracting nearly equal numbers:
 

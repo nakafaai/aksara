@@ -3,13 +3,11 @@ export const metadata = {
   description: "Berechne mit bestimmten Integralen Flächen, die von Kurven begrenzt werden, anhand vollständiger Beispiele zu quadratischen Funktionen und Wurzelfunktionen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-27",
   subject: "Integrale",
 };
 
-
-
-## Rechteckstreifen unter einer Kurve addieren
+## Streifen zum Integral
 
 Für einfache Figuren wie Rechtecke oder Dreiecke gibt es vertraute Flächenformeln. Wird eine Fläche jedoch von einer gekrümmten Linie begrenzt, reicht keine dieser Formeln direkt aus.
 
@@ -17,16 +15,20 @@ Für einfache Figuren wie Rechtecke oder Dreiecke gibt es vertraute Flächenform
 
 Eine Funktion <InlineMath math="f(x)" /> begrenze eine Fläche von <InlineMath math="x = a" /> bis <InlineMath math="x = b" />. Wir zerlegen <InlineMath math="[a, b]" /> in <InlineMath math="n" /> Teilintervalle der Breite <InlineMath math="\Delta x" />.
 
-Für eine stetige, **nicht negative** Funktion auf <InlineMath math="[a,b]" /> mit <InlineMath math="a<b" /> lautet die Flächenformel:
+Für eine stetige, **nicht negative** Funktion auf <InlineMath math="[a, b]" /> mit <InlineMath math="a < b" /> lautet die Flächenformel:
 
 <MathContainer>
 <BlockMath math="A = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \cdot \Delta x" />
 <BlockMath math="A = \int_{a}^{b} f(x) \, dx" />
 </MathContainer>
 
-## Fläche mit einem bestimmten Integral bestimmen
+## Flächenintegrale aufstellen
 
-Bestimme für eine Fläche zuerst **Grenzen und Streifenhöhe**, dann eine Stammfunktion. Das Beispiel <InlineMath math="f(x)=x" /> auf <InlineMath math="[0,2]" /> zeigt diese drei Entscheidungen.
+Jedes Flächenintegral beruht auf den passenden Grenzen und einer positiven **Streifenhöhe**, damit sich kein Teil der Fläche gegenseitig aufhebt. Beginne mit einer einzelnen Kurve über oder unter der Achse und übertrage dasselbe Streifenprinzip anschließend auf Flächen zwischen zwei Kurven.
+
+### Grenzen und Vorzeichen
+
+Bestimme für eine Fläche zuerst **Grenzen und Streifenhöhe**, dann eine Stammfunktion. Das Beispiel <InlineMath math="f(x) = x" /> auf <InlineMath math="[0, 2]" /> zeigt diese drei Entscheidungen.
 
 | Entscheidung | Beispiel | Begründung |
 | --- | --- | --- |
@@ -40,7 +42,52 @@ Die Funktion <InlineMath math="F" /> ist [eine Stammfunktion](/de/faecher/mathem
 
 Liegt der Graph unterhalb der Achse, verwende den **Betrag** als Höhe. Bei einem Vorzeichenwechsel zerlegst du das Intervall an den Nullstellen, damit sich Flächen nicht gegenseitig aufheben.
 
-## Anwendung auf quadratische Funktionen
+### Fläche zweier Kurven
+
+Liegt eine Fläche zwischen einer oberen Kurve <InlineMath math="f(x)" /> und einer unteren Kurve <InlineMath math="g(x)" /> auf <InlineMath math="[a, b]" />, hat jeder **senkrechte Streifen** die Höhe <InlineMath math="f(x) - g(x)" />. Das Integral über diese Höhendifferenz summiert die eingeschlossene Fläche auf:
+
+<BlockMath math="A = \int_{a}^{b} \big(f(x) - g(x)\big) \, dx" />
+
+Schiebe die obere Grenze über drei Kurvenpaare, um zu verfolgen, wie die Höhe des senkrechten Streifens die eingeschlossene Fläche aufbaut.
+
+<AreaBetweenCurvesLab
+  title={<>Eingeschlossene Fläche zwischen oberer und unterer Kurve</>}
+  description={<>Wechsle zwischen drei Kurvenpaaren und verschiebe die obere Grenze auf <InlineMath math="[0, 2]" />, um die senkrechte Streifenhöhe <InlineMath math="f(x) - g(x)" /> und die eingeschlossene Fläche zu messen.</>}
+  pairs={["lineAndParabola", "twoParabolas", "sineAndCosine"]}
+  upperBound={{ min: 0.2, max: 2.0, value: 1.5 }}
+  labels={{
+    enclosedArea: <>Eingeschlossene Fläche</>,
+    heightGap: <>Streifenhöhe</>,
+    pair: "Kurvenpaar",
+    pairs: {
+      lineAndParabola: {
+        name: "Gerade und Parabel",
+        formula: <><InlineMath math="f(x) = 0{,}7x + 0{,}15" />, <InlineMath math="g(x) = 0{,}35x^2 + 0{,}15" /></>,
+      },
+      twoParabolas: {
+        name: "Zwei Parabeln",
+        formula: <><InlineMath math="f(x) = 1{,}4 - 0{,}3(x-1)^2" />, <InlineMath math="g(x) = 0{,}3(x-1)^2 + 0{,}2" /></>,
+      },
+      sineAndCosine: {
+        name: "Sinus und Kosinus",
+        formula: <><InlineMath math="f(x) = 0{,}85 + 0{,}45\sin(1{,}1x)" />, <InlineMath math="g(x) = 0{,}35 + 0{,}25\cos(1{,}3x)" /></>,
+      },
+    },
+    parts: {
+      upperCurve: "Obere Kurve",
+      lowerCurve: "Untere Kurve",
+      shadedRibbon: "Schattiertes Band",
+      verticalStrip: "Senkrechter Streifen",
+      intersectionPins: "Schnittpunkte",
+    },
+    upperBound: "Obere Grenze",
+    view: "Dreidimensionales Band zwischen einer oberen und einer unteren Kurve mit verschiebbarem senkrechtem Streifen",
+  }}
+/>
+
+Wo obere und untere Kurve weit auseinanderliegen, wird der senkrechte Streifen hoch und die eingeschlossene Fläche wächst schnell. Nähert sich die Grenze einem Schnittpunkt, schrumpft die Streifenhöhe gegen null und der Flächenzuwachs flacht ab.
+
+## Parabel unter der Achse
 
 Betrachte die Fläche zwischen <InlineMath math="f(x) = x^2 - 4x" /> und der <InlineMath math="x" />-Achse im Intervall von <InlineMath math="x = 1" /> bis <InlineMath math="x = 3" />.
 
@@ -70,7 +117,7 @@ Betrachte die Fläche zwischen <InlineMath math="f(x) = x^2 - 4x" /> und der <In
   }}
 />
 
-Auf <InlineMath math="[1,3]" /> lässt sich die Funktion als <InlineMath math="f(x)=x(x-4)" /> faktorisieren. Jeder Punkt des Intervalls erfüllt <InlineMath math="x>0" /> und <InlineMath math="x-4<0" />. Daher gilt im gesamten Intervall <InlineMath math="f(x)<0" />. Die Randwerte <InlineMath math="f(1)=-3" /> und <InlineMath math="f(3)=-3" /> stimmen mit dieser Vorzeichenanalyse überein.
+Auf <InlineMath math="[1, 3]" /> lässt sich die Funktion als <InlineMath math="f(x) = x(x - 4)" /> faktorisieren. Jeder Punkt des Intervalls erfüllt <InlineMath math="x > 0" /> und <InlineMath math="x - 4 < 0" />. Daher gilt im gesamten Intervall <InlineMath math="f(x) < 0" />. Die Randwerte <InlineMath math="f(1) = -3" /> und <InlineMath math="f(3) = -3" /> stimmen mit dieser Vorzeichenanalyse überein.
 
 Hier ist das Vorzeichen entscheidend: Ein **geometrischer Flächeninhalt** ist nicht negativ. Da der Graph im gesamten Intervall unterhalb der Achse liegt, integrieren wir den Betrag der Funktion:
 
@@ -90,9 +137,11 @@ Eine Stammfunktion liefert nun:
 
 Daher beträgt die Fläche dieser Region <InlineMath math="\frac{22}{3}" /> Quadrateinheiten.
 
-## Anwendung auf eine Wurzelfunktion
+## Wurzelfunktion substituieren
 
-Im zweiten Beispiel berechnen wir die Fläche unter <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> von <InlineMath math="x = 0" /> bis <InlineMath math="x = 2" />.
+Im zweiten Beispiel berechnen wir die Fläche von <InlineMath math="x = 0" /> bis <InlineMath math="x = 2" /> unter dieser Wurzelfunktion:
+
+<BlockMath math="f(x) = x\sqrt{x^2 + 5}" />
 
 <MathVisual
   title={<>Graph von <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /></>}
@@ -120,9 +169,9 @@ Im zweiten Beispiel berechnen wir die Fläche unter <InlineMath math="f(x) = x\s
   }}
 />
 
-Die Form <InlineMath math="x\sqrt{x^2 + 5}" /> legt eine **Substitution** nahe: Der lineare Faktor <InlineMath math="x" /> passt bis auf einen konstanten Faktor zur Ableitung des Ausdrucks unter der Wurzel.
+Die Form <InlineMath math="x\sqrt{x^2 + 5}" /> legt eine **Substitution** nahe: Der lineare Faktor <InlineMath math="x" /> passt bis auf einen konstanten Faktor zur Ableitung des Ausdrucks unter der Wurzel:
 
-Setze <InlineMath math="u = x^2 + 5" />. Dann gilt <InlineMath math="du = 2x \, dx" /> und damit <InlineMath math="x \, dx = \frac{1}{2} du" />.
+<BlockMath math="u = x^2 + 5, \qquad du = 2x\,dx, \qquad x\,dx = \frac{1}{2}\,du" />
 
 Auch die Grenzen werden in die neue Variable umgerechnet: Aus <InlineMath math="x = 0" /> folgt <InlineMath math="u = 5" />, und aus <InlineMath math="x = 2" /> folgt <InlineMath math="u = 9" />.
 
@@ -137,27 +186,32 @@ Nun wird unser Integral:
 <BlockMath math="A = \frac{1}{3}\left(27 - 5\sqrt{5}\right)" />
 </MathContainer>
 
-Dabei gilt <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> und <InlineMath math="5^{3/2} = 5 \cdot \sqrt{5}" />.
+Berechne die beiden gebrochenen Potenzen an den Grenzen:
+
+<MathContainer>
+<BlockMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" />
+<BlockMath math="5^{3/2} = 5\sqrt{5}" />
+</MathContainer>
 
 > Bei einer Substitution im bestimmten Integral müssen auch die Integrationsgrenzen zur neuen Variablen passen.
 
-## Übungen
+## Flächenberechnung üben
 
 Grenzen können vorgegeben sein oder aus Schnittpunkten folgen. Prüfe das Vorzeichen der Funktion im Intervall, damit das Integral den **geometrischen Flächeninhalt** ergibt.
 
 1. Berechne die Fläche des Bereichs, der durch <InlineMath math="y = x^2 + 1" />, die <InlineMath math="x" />-Achse sowie die Geraden <InlineMath math="x = 0" /> und <InlineMath math="x = 2" /> begrenzt wird.
 
-2. Bestimme die Fläche unter der Kurve <InlineMath math="y = \frac{1}{x^2 + 1}" /> von <InlineMath math="x = 0" /> bis <InlineMath math="x = 1" />.
+2. Bestimme die Fläche von <InlineMath math="x = 0" /> bis <InlineMath math="x = 1" /> unter dieser Kurve:
+
+   <BlockMath math="y = \frac{1}{x^2 + 1}" />
 
 3. Berechne die Fläche des Bereichs, der durch <InlineMath math="y = 2x - x^2" /> und die <InlineMath math="x" />-Achse begrenzt wird.
-
-### Lösungen
 
 **Aufgabe 1**. Da diese Funktion **immer positiv** ist, können wir das Integral direkt aufstellen:
 
 <BlockMath math="A = \int_{0}^{2} (x^2 + 1) \, dx" />
 
-Nach der Integration und Auswertung erhalten wir:
+Die Auswertung des bestimmten Integrals zwischen den Grenzen liefert:
 
 <MathContainer>
 <BlockMath math="A = \left[\frac{x^3}{3} + x\right]_{0}^{2}" />
@@ -166,7 +220,7 @@ Nach der Integration und Auswertung erhalten wir:
 
 Daher beträgt die Fläche dieser Region <InlineMath math="\frac{14}{3}" /> Quadrateinheiten.
 
-**Aufgabe 2**. Für dieses Integral müssen wir bedenken, dass die **Stammfunktion** von <InlineMath math="\frac{1}{x^2 + 1}" /> <InlineMath math="\arctan(x)" /> ist.
+**Aufgabe 2**. Die **Stammfunktion** für dieses Integral ist <InlineMath math="\arctan(x)" />, weil ihre Ableitung genau den Integranden liefert:
 
 <MathContainer>
 <BlockMath math="A = \int_{0}^{1} \frac{1}{x^2 + 1} \, dx" />
@@ -180,7 +234,7 @@ Die Fläche dieser Region beträgt <InlineMath math="\frac{\pi}{4}" /> Quadratei
 
 <BlockMath math="2x - x^2 = 0 \Rightarrow x(2 - x) = 0" />
 
-Die Schnittpunkte liegen also bei <InlineMath math="x = 0" /> und <InlineMath math="x = 2" />. Da diese Funktion **zwischen diesen beiden Punkten positiv** ist, können wir Folgendes direkt integrieren:
+Die Schnittpunkte liegen also bei <InlineMath math="x = 0" /> und <InlineMath math="x = 2" />. Da diese Funktion **zwischen diesen beiden Punkten positiv** ist, können wir direkt integrieren:
 
 <MathContainer>
 <BlockMath math="A = \int_{0}^{2} (2x - x^2) \, dx" />
@@ -190,7 +244,7 @@ Die Schnittpunkte liegen also bei <InlineMath math="x = 0" /> und <InlineMath ma
 
 Die Fläche dieser Region beträgt <InlineMath math="\frac{4}{3}" /> Quadrateinheiten.
 
-Aufgabe 3 im Graphen: <InlineMath math="y = 2x - x^2" /> beginnt bei <InlineMath math="0" />, steigt bei <InlineMath math="x = 1" /> auf <InlineMath math="1" /> und kehrt bei <InlineMath math="x = 2" /> zu <InlineMath math="0" /> zurück. Die Fläche zwischen dem Bogen und der x-Achse ist <InlineMath math="\int_0^2 (2x - x^2)\,dx = \tfrac43" />.
+Aufgabe 3 im Graphen zeigt, wie <InlineMath math="y = 2x - x^2" /> von <InlineMath math="0" /> zum Scheitel <InlineMath math="1" /> bei <InlineMath math="x = 1" /> steigt und bei <InlineMath math="x = 2" /> zu <InlineMath math="0" /> zurückkehrt, wobei eine Fläche von <InlineMath math="\tfrac{4}{3}" /> eingeschlossen wird.
 
 <MathVisual
   title={<>Der Bogen <InlineMath math="y = 2x - x^2" /></>}
@@ -216,3 +270,5 @@ Aufgabe 3 im Graphen: <InlineMath math="y = 2x - x^2" /> beginnt bei <InlineMath
     ],
   }}
 />
+
+Da der gesamte Bogen zwischen seinen Nullstellen <InlineMath math="0" /> und <InlineMath math="2" /> oberhalb der Achse verläuft, liefert ein einziges Integral die exakte geometrische Fläche ohne Intervallteilung.

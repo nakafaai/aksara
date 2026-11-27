@@ -3,13 +3,11 @@ export const metadata = {
   description: "Use definite integrals to calculate areas bounded by curves, with complete examples for quadratic and radical functions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-27",
   subject: "Integrals",
 };
 
-
-
-## From Rectangular Strips to a Definite Integral
+## Strips to Definite Integrals
 
 The familiar formulas for rectangles and triangles do not apply directly to a region with a curved boundary.
 
@@ -17,16 +15,20 @@ The familiar formulas for rectangles and triangles do not apply directly to a re
 
 Suppose a function <InlineMath math="f(x)" /> bounds a region from <InlineMath math="x = a" /> to <InlineMath math="x = b" />. We divide <InlineMath math="[a, b]" /> into <InlineMath math="n" /> subintervals of width <InlineMath math="\Delta x" />.
 
-For a continuous **nonnegative** function on <InlineMath math="[a,b]" /> with <InlineMath math="a<b" />, the area formula is:
+For a continuous **nonnegative** function on <InlineMath math="[a, b]" /> with <InlineMath math="a < b" />, the area formula is:
 
 <MathContainer>
 <BlockMath math="A = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \cdot \Delta x" />
 <BlockMath math="A = \int_{a}^{b} f(x) \, dx" />
 </MathContainer>
 
-## Determining Area Using Definite Integrals
+## Setting Up Area Integrals
 
-To find an area, identify the **bounds and strip height** before finding an antiderivative. The example <InlineMath math="f(x)=x" /> on <InlineMath math="[0,2]" /> shows all three decisions.
+Every area integral depends on choosing the right bounds and measuring a positive **strip height** so no section cancels out. Start with a single curve relative to the horizontal axis, then extend the exact same strip idea to regions enclosed between two curves.
+
+### Bounds Height and Sign
+
+To find an area, identify the **bounds and strip height** before finding an antiderivative. The example <InlineMath math="f(x) = x" /> on <InlineMath math="[0, 2]" /> shows all three decisions.
 
 | Decision | Example | Reason |
 | --- | --- | --- |
@@ -40,7 +42,52 @@ The function <InlineMath math="F" /> is [an antiderivative](/en/subjects/mathema
 
 If the curve lies below the axis, use the **absolute value** as the height. If it changes sign, split the interval at its zeros so that areas do not cancel.
 
-## Application to Quadratic Functions
+### Area Between Two Curves
+
+When a region sits between an upper curve <InlineMath math="f(x)" /> and a lower curve <InlineMath math="g(x)" /> across <InlineMath math="[a, b]" />, each **vertical strip** has height <InlineMath math="f(x) - g(x)" />. Integrating that vertical gap accumulates the enclosed area:
+
+<BlockMath math="A = \int_{a}^{b} \big(f(x) - g(x)\big) \, dx" />
+
+Sweep the upper bound across three curve pairs to track how each vertical strip's height feeds into the accumulated enclosed area.
+
+<AreaBetweenCurvesLab
+  title={<>Enclosed area between an upper and lower curve</>}
+  description={<>Switch between three curve pairs and sweep the upper bound across <InlineMath math="[0, 2]" /> to measure the vertical strip height <InlineMath math="f(x) - g(x)" /> and accumulated enclosed area.</>}
+  pairs={["lineAndParabola", "twoParabolas", "sineAndCosine"]}
+  upperBound={{ min: 0.2, max: 2.0, value: 1.5 }}
+  labels={{
+    enclosedArea: <>Enclosed area</>,
+    heightGap: <>Strip height</>,
+    pair: "Curve pair",
+    pairs: {
+      lineAndParabola: {
+        name: "Line and parabola",
+        formula: <><InlineMath math="f(x) = 0.7x + 0.15" />, <InlineMath math="g(x) = 0.35x^2 + 0.15" /></>,
+      },
+      twoParabolas: {
+        name: "Two parabolas",
+        formula: <><InlineMath math="f(x) = 1.4 - 0.3(x-1)^2" />, <InlineMath math="g(x) = 0.3(x-1)^2 + 0.2" /></>,
+      },
+      sineAndCosine: {
+        name: "Sine and cosine",
+        formula: <><InlineMath math="f(x) = 0.85 + 0.45\sin(1.1x)" />, <InlineMath math="g(x) = 0.35 + 0.25\cos(1.3x)" /></>,
+      },
+    },
+    parts: {
+      upperCurve: "Upper curve",
+      lowerCurve: "Lower curve",
+      shadedRibbon: "Shaded ribbon",
+      verticalStrip: "Vertical strip",
+      intersectionPins: "Intersection pins",
+    },
+    upperBound: "Upper bound",
+    view: "Three-dimensional ribbon bounded between an upper curve and a lower curve with a sliding vertical strip",
+  }}
+/>
+
+Where the upper and lower curves bow far apart, the sliding strip grows tall and the enclosed area accumulates quickly. As the bound approaches an intersection pin, the strip height shrinks toward zero and the area levels off.
+
+## Quadratic Curve Below Axis
 
 Consider the region bounded by <InlineMath math="f(x) = x^2 - 4x" />, the <InlineMath math="x" />-axis, <InlineMath math="x = 1" />, and <InlineMath math="x = 3" />.
 
@@ -70,7 +117,7 @@ Consider the region bounded by <InlineMath math="f(x) = x^2 - 4x" />, the <Inlin
   }}
 />
 
-On <InlineMath math="[1,3]" />, factor the function as <InlineMath math="f(x)=x(x-4)" />. Every point in the interval satisfies <InlineMath math="x>0" /> and <InlineMath math="x-4<0" />, so <InlineMath math="f(x)<0" /> throughout the interval. The endpoint values <InlineMath math="f(1)=-3" /> and <InlineMath math="f(3)=-3" /> agree with this sign analysis.
+On <InlineMath math="[1, 3]" />, factor the function as <InlineMath math="f(x) = x(x - 4)" />. Every point in the interval satisfies <InlineMath math="x > 0" /> and <InlineMath math="x - 4 < 0" />, so <InlineMath math="f(x) < 0" /> throughout the interval. The endpoint values <InlineMath math="f(1) = -3" /> and <InlineMath math="f(3) = -3" /> agree with this sign analysis.
 
 **Geometric area** is nonnegative. Because the function is negative throughout this interval, its absolute value equals its negative, so:
 
@@ -90,9 +137,11 @@ Now evaluate the definite integral:
 
 The area of that region is <InlineMath math="\frac{22}{3}" /> square units.
 
-## Application to a Radical Function
+## Radical Curve Substitution
 
-For a second example, calculate the area under <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> from <InlineMath math="x = 0" /> to <InlineMath math="x = 2" />.
+For a second example, calculate the area under this radical curve from <InlineMath math="x = 0" /> to <InlineMath math="x = 2" />:
+
+<BlockMath math="f(x) = x\sqrt{x^2 + 5}" />
 
 <MathVisual
   title={<>Graph of <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /></>}
@@ -120,9 +169,9 @@ For a second example, calculate the area under <InlineMath math="f(x) = x\sqrt{x
   }}
 />
 
-The expression <InlineMath math="x\sqrt{x^2 + 5}" /> suggests **substitution** because the factor <InlineMath math="x" /> is proportional to the derivative of the expression inside the square root.
+The expression <InlineMath math="x\sqrt{x^2 + 5}" /> suggests **substitution** because the factor <InlineMath math="x" /> is proportional to the derivative of the expression inside the square root:
 
-Set <InlineMath math="u = x^2 + 5" />. Then <InlineMath math="du = 2x \, dx" />, so <InlineMath math="x \, dx = \frac{1}{2} du" />.
+<BlockMath math="u = x^2 + 5, \qquad du = 2x\,dx, \qquad x\,dx = \frac{1}{2}\,du" />
 
 The limits must use the same variable as the integrand: <InlineMath math="x = 0" /> gives <InlineMath math="u = 5" />, while <InlineMath math="x = 2" /> gives <InlineMath math="u = 9" />.
 
@@ -137,27 +186,32 @@ Now our integral becomes:
 <BlockMath math="A = \frac{1}{3}\left(27 - 5\sqrt{5}\right)" />
 </MathContainer>
 
-Here, <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> and <InlineMath math="5^{3/2} = 5 \cdot \sqrt{5}" />.
+Evaluate the two fractional powers at the bounds:
 
-> When using substitution in definite integrals, don't forget to change the integration limits according to the new substitution variable.
+<MathContainer>
+<BlockMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" />
+<BlockMath math="5^{3/2} = 5\sqrt{5}" />
+</MathContainer>
 
-## Exercises
+> When using substitution in definite integrals, always convert the integration limits to match the new variable.
+
+## Testing Enclosed Area Setups
 
 Bounds may be given directly or found from intersections. Check the sign of the function over the interval so that the integral produces **geometric area**.
 
-1. Calculate the area of the region bounded by the curve <InlineMath math="y = x^2 + 1" />, the <InlineMath math="x" />-axis, and the lines <InlineMath math="x = 0" /> and <InlineMath math="x = 2" />!
+1. Calculate the area of the region bounded by the curve <InlineMath math="y = x^2 + 1" />, the <InlineMath math="x" />-axis, and the lines <InlineMath math="x = 0" /> and <InlineMath math="x = 2" />.
 
-2. Determine the area of the region under the curve <InlineMath math="y = \frac{1}{x^2 + 1}" /> from <InlineMath math="x = 0" /> to <InlineMath math="x = 1" />!
+2. Determine the area of the region from <InlineMath math="x = 0" /> to <InlineMath math="x = 1" /> under this curve:
 
-3. Calculate the area of the region bounded by the curve <InlineMath math="y = 2x - x^2" /> and the <InlineMath math="x" />-axis!
+   <BlockMath math="y = \frac{1}{x^2 + 1}" />
 
-### Worked Solutions
+3. Calculate the area of the region bounded by the curve <InlineMath math="y = 2x - x^2" /> and the <InlineMath math="x" />-axis.
 
 **Problem 1**. Since this function is **always positive**, we can directly set up the integral:
 
 <BlockMath math="A = \int_{0}^{2} (x^2 + 1) \, dx" />
 
-After we integrate and evaluate, we obtain:
+Evaluating this definite integral between the limits gives:
 
 <MathContainer>
 <BlockMath math="A = \left[\frac{x^3}{3} + x\right]_{0}^{2}" />
@@ -166,7 +220,7 @@ After we integrate and evaluate, we obtain:
 
 Therefore, the area of that region is <InlineMath math="\frac{14}{3}" /> square units.
 
-**Problem 2**. The **antiderivative** used in this integral is <InlineMath math="\arctan(x)" /> because its derivative is <InlineMath math="\frac{1}{x^2 + 1}" />.
+**Problem 2**. The **antiderivative** used in this integral is <InlineMath math="\arctan(x)" /> because differentiating it recovers the integrand:
 
 <MathContainer>
 <BlockMath math="A = \int_{0}^{1} \frac{1}{x^2 + 1} \, dx" />
@@ -190,7 +244,7 @@ So the intersection points are at <InlineMath math="x = 0" /> and <InlineMath ma
 
 The area of that region is <InlineMath math="\frac{4}{3}" /> square units.
 
-Problem 3 on the graph: <InlineMath math="y = 2x - x^2" /> starts at <InlineMath math="0" />, rises to <InlineMath math="1" /> at <InlineMath math="x = 1" /> and returns to <InlineMath math="0" /> at <InlineMath math="x = 2" />. The region between the arch and the x-axis has area <InlineMath math="\int_0^2 (2x - x^2)\,dx = \tfrac43" />.
+Problem 3 on the graph shows <InlineMath math="y = 2x - x^2" /> rising from <InlineMath math="0" /> to its peak <InlineMath math="1" /> at <InlineMath math="x = 1" /> and returning to <InlineMath math="0" /> at <InlineMath math="x = 2" />, enclosing an area of <InlineMath math="\tfrac{4}{3}" /> above the axis.
 
 <MathVisual
   title={<>The arch <InlineMath math="y = 2x - x^2" /></>}
@@ -216,3 +270,5 @@ Problem 3 on the graph: <InlineMath math="y = 2x - x^2" /> starts at <InlineMath
     ],
   }}
 />
+
+Because the entire arch sits strictly above the axis between its roots <InlineMath math="0" /> and <InlineMath math="2" />, the single integral gives the exact geometric area without splitting the interval.

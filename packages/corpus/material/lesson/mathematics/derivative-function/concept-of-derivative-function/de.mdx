@@ -3,19 +3,17 @@ export const metadata = {
   description: "Die Ableitung ist die lokale Änderungsrate und Tangentensteigung aus dem Grenzwert der Sekantensteigungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-27",
   subject: "Ableitungsfunktionen",
 };
 
-
-
-## Die Steigung an einem einzelnen Kurvenpunkt
+## Steigung an einer Kurve
 
 Stell dir ein Fahrrad auf einer hügeligen Straße vor. Manche Abschnitte steigen steil an, andere sind fast eben. Die **Steigung** ändert sich von Punkt zu Punkt. Bei einem gekrümmten Funktionsgraphen ist es ähnlich.
 
 Bei einer Geraden ist die Steigung überall gleich. Bei einer gekrümmten Linie verändert sie sich dagegen fortlaufend. Die **Ableitung** liefert die Steigung oder Änderungsrate an **einem bestimmten Punkt** der Kurve.
 
-## Steigung einer Sekantenlinie
+## Steigung einer Sekante
 
 Wir beginnen mit einer **Sekante**, also einer Geraden durch zwei verschiedene Punkte einer Kurve.
 
@@ -56,6 +54,8 @@ Diese Steigung ist die **mittlere Änderungsrate** von <InlineMath math="f(x)" /
   }}
 />
 
+Die Sekante verläuft steiler als die Kurve bei <InlineMath math="P" />, weil die Parabel zwischen <InlineMath math="x = 1" /> und <InlineMath math="x = 3" /> nach oben gekrümmt ist. Rückt <InlineMath math="Q" /> näher heran, verschwindet diese Abweichung.
+
 ## Von der Sekante zur Tangente
 
 Stell dir vor, du wählst <InlineMath math="Q" /> auf der Parabel immer näher an <InlineMath math="P" />. Der waagerechte Abstand <InlineMath math="\Delta x" /> nähert sich dann null. Wir können die Folgen dieser Punktwahl berechnen, ohne die Parabelgleichung zu ändern.
@@ -66,7 +66,9 @@ Die Tangentensteigung ist die **momentane Änderungsrate** der Kurve in <InlineM
 
 <BlockMath math="\begin{aligned} m_{\text{Tangente}} = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x} \end{aligned}" />
 
-Für die dargestellte Parabel halten wir <InlineMath math="P=(1,1)" /> fest und schreiben <InlineMath math="h=\Delta x" />. Der zweite Punkt lautet <InlineMath math="Q=(1+h,(1+h)^2)" />. Solange <InlineMath math="h\ne0" /> gilt, lässt sich die Sekantensteigung vereinfachen:
+### Schrittweite verkleinern
+
+Für die dargestellte Parabel halten wir <InlineMath math="P(1, 1)" /> fest und schreiben <InlineMath math="h = \Delta x" />. Der zweite Punkt lautet <InlineMath math="Q(1 + h, (1 + h)^2)" />. Solange <InlineMath math="h \ne 0" /> gilt, lässt sich die Sekantensteigung vereinfachen:
 
 <BlockMath math="\begin{aligned}\frac{(1+h)^2-1}{h}&=\frac{2h+h^2}{h}\\&=2+h\end{aligned}" />
 
@@ -92,6 +94,50 @@ Tabellier die Sekantensteigung <InlineMath math="2 + h" />, während <InlineMath
   chartConfig={{ value: { label: "Sekantensteigung", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
+Die Balken ziehen sich symmetrisch auf <InlineMath math="2" /> zusammen, wenn <InlineMath math="h" /> von links und rechts gegen null läuft, sodass beide einseitigen Grenzwerte dieselbe Tangentensteigung liefern.
+
+### Sekanten im Grenzwert
+
+Dasselbe Grenzwertverhalten zeigt sich an jeder glatten Kurve, ob nach oben gekrümmte Parabel, steiler werdende Kubik oder geschwungene Sinuswelle. Verkleinere die horizontale Schrittweite am festen Ankerpunkt <InlineMath math="x = 0{,}5" /> und beobachte, wie sich die Sekante an die **Tangente** anlegt.
+
+<SecantToTangentLab
+  title={<>Sekante konvergiert gegen die Tangente</>}
+  description={<>Halte den Ankerpunkt bei <InlineMath math="a = 0{,}5" /> fest und verkleinere die Schrittweite <InlineMath math="h" /> auf drei Kurven, um Sekantensteigung und exakte Tangentensteigung <InlineMath math="f'(0{,}5)" /> zu vergleichen.</>}
+  curves={["quadratic", "cubic", "sineWave"]}
+  stepH={{ min: 0.04, max: 1.6, value: 0.8 }}
+  labels={{
+    curve: "Kurve",
+    curves: {
+      quadratic: {
+        name: "Quadratisch",
+        formula: <InlineMath math="f(x) = 0{,}45x^2 + 0{,}2" />,
+      },
+      cubic: {
+        name: "Kubisch",
+        formula: <InlineMath math="f(x) = 0{,}16x^3 + 0{,}25x + 0{,}5" />,
+      },
+      sineWave: {
+        name: "Sinuswelle",
+        formula: <InlineMath math="f(x) = 0{,}75\sin(x) + 0{,}9" />,
+      },
+    },
+    parts: {
+      curveRibbon: "Kurvenband",
+      anchorPoint: "Ankerpunkt",
+      movingPoint: "Beweglicher Punkt",
+      secantLine: "Sekante",
+      tangentLine: "Tangente",
+      slopeTriangle: "Steigungsdreieck",
+    },
+    secantSlope: <>Sekantensteigung</>,
+    stepH: "Horizontale Schrittweite",
+    tangentSlope: <>Tangentensteigung</>,
+    view: "Dreidimensionale Kurvenansicht mit Sekante und Steigungsdreieck, die sich einer Tangente annähern",
+  }}
+/>
+
+Mit kleiner werdender Schrittweite schrumpft das Steigungsdreieck auf den Ankerpunkt zusammen und die Sekantensteigung nähert sich auf allen drei Kurven dem exakten Tangentenwert. Selbst bei der Sinuswelle, deren Krümmung die Sekante anfangs flacher macht, fallen beide Steigungen nahe null zusammen.
+
 ## Definition der Ableitung
 
 <Highlight>[Der Grenzwert der Sekantensteigungen](/de/faecher/mathematik/grenzwerte/begriff-des-grenzwerts)</Highlight> für <InlineMath math="\Delta x" /> gegen Null heißt **Ableitung**.
@@ -101,6 +147,8 @@ Die Ableitung einer Funktion <InlineMath math="f(x)" />, bezeichnet als <InlineM
 <BlockMath math="f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}" />
 
 Das Bestimmen einer Ableitung heißt **Differenzieren**.
+
+> Eine Ableitung ist keine Division durch null, sondern die Grenzsteigung, der sich die Sekanten nähern, solange die beiden Punkte noch verschieden sind.
 
 Die Ableitung <InlineMath math="f'(x)" /> ist eine neue Funktion. Für jeden Wert <InlineMath math="x" />, an dem der Grenzwert existiert, gibt sie die **momentane Änderungsrate** von <InlineMath math="f(x)" /> und damit die dortige Tangentensteigung an. Die Differentialrechnung verwendet die Ableitungsfunktion, um beide Größen zu untersuchen.
 
@@ -134,3 +182,5 @@ Während <InlineMath math="Q" /> auf <InlineMath math="P" /> zurückt, drehen si
     ],
   }}
 />
+
+Jede kürzere Sehne dreht sich dichter an die Tangente in <InlineMath math="P" />, sodass <InlineMath math="f'(1) = 2" /> die exakte Richtung der Parabel genau an diesem Punkt angibt.

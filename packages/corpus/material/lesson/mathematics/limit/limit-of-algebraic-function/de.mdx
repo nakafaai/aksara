@@ -1,128 +1,130 @@
 export const metadata = {
-   title: "Grenzwerte algebraischer Funktionen",
-   description: "Grenzwerte von Polynom- und rationalen Funktionen berechnen, unbestimmte Formen erkennen und durch Faktorisieren oder Rationalisieren auflösen.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2026-08-22",
-   dateModified: "2026-11-08",
-   subject: "Grenzwerte",
+  title: "Grenzwerte algebraischer Funktionen",
+  description:
+    "Grenzwerte von Polynomen und rationalen Funktionen durch Einsetzen, Faktorisieren, Rationalisieren und Asymptotenanalyse berechnen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-08-22",
+  dateModified: "2026-11-27",
+  subject: "Grenzwerte",
 };
 
-## Den Rechenweg aus der Form des Terms wählen
+## Algebraische Methode wählen
 
-Bei einem **algebraischen Grenzwert** entscheidet die Form des Ausdrucks darüber, welche Rechenoperation zulässig ist. <Highlight>Ein Polynom kann direkt ausgewertet werden</Highlight>. Ein rationaler Ausdruck oder ein Wurzelausdruck kann dagegen einen kürzbaren Faktor, einen Rand des Definitionsbereichs oder eine senkrechte Asymptote enthalten, die zuerst untersucht werden muss.
+Bei einem **algebraischen Grenzwert** entscheidet die Struktur des Terms, welcher Schritt zulässig ist. <Highlight>Ein Polynom kann direkt ausgewertet werden</Highlight>. Ein rationaler Term oder Wurzelterm kann dagegen einen kürzbaren Faktor, einen Rand des Definitionsbereichs oder eine Asymptote enthalten.
 
-Viele Beispiele algebraischer Funktionen lassen sich durch Addition, Subtraktion, Multiplikation, Division und Potenzen mit rationalen Exponenten bilden. Beispiele sind das Polynom <InlineMath math="f(x) = x^2 + 3x - 2" /> und die rationale Funktion <InlineMath math="g(x) = \frac{x + 1}{x - 2}" />. Wir verwenden direktes Einsetzen als Diagnose und faktorisieren, rationalisieren oder prüfen einseitiges Verhalten, wenn das Einsetzen den Grenzwert noch nicht bestimmt.
+Algebraische Terme entstehen aus Addition, Subtraktion, Multiplikation, Division und rationalen Potenzen, wie dieses Polynom und diese rationale Funktion zeigen:
+
+<MathContainer>
+  <BlockMath math="f(x) = x^2 + 3x - 2" />
+  <BlockMath math="g(x) = \frac{x + 1}{x - 2}" />
+</MathContainer>
+
+Nutze direktes Einsetzen zuerst als Diagnose und faktorisiere, rationalisiere oder prüfe einseitige Grenzwerte, sobald das Einsetzen kein eindeutiges Ergebnis liefert.
 
 ## Grundlegende Rechenwege
 
-Welcher Rechenweg passt, hängt von der Art der Funktion und vom Ergebnis des direkten Einsetzens ab. Liefert das Einsetzen einen definierten Wert, ist die Rechnung beendet. Erst wenn eine **unbestimmte Form** entsteht, ist eine Umformung nötig.
+Ein algebraischer Grenzwert zerfällt in **Grenzwerte einfacherer Terme**. Wendest du die Rechenregeln Schritt für Schritt auf jeden einzelnen Baustein an, entscheidet der Funktionstyp sofort darüber, ob direktes Einsetzen genügt oder der Nenner eine genauere Prüfung verlangt.
 
-### Grenzwerte von Polynomfunktionen
+### Polynomgrenzwerte
 
-Polynomfunktionen sind überall **stetig**. Deshalb können wir den Wert, gegen den die Variable läuft, direkt **einsetzen**.
+Da Polynomfunktionen überall **stetig** sind, setzt du die Zielstelle direkt ein. Betrachte das Polynom:
 
-Sei <InlineMath math="f(x) = x^4 - 5x^3 + x^2 - 7" />, dann:
+<BlockMath math="f(x) = x^4 - 5x^3 + x^2 - 7" />
 
-<BlockMath math="\lim_{x \to 2} f(x) = \lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7)" />
+Beim Grenzwert für <InlineMath math="x \to 2" /> ersetzt du <InlineMath math="x" /> unmittelbar durch <InlineMath math="2" />:
 
-Da Polynomfunktionen überall stetig sind, setzen wir direkt ein:
+<MathContainer>
+  <BlockMath math="\lim_{x \to 2} f(x) = \lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7)" />
+  <BlockMath math="\begin{aligned} &amp;= 2^4 - 5(2^3) + 2^2 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
+</MathContainer>
 
-<BlockMath math="\begin{aligned}  &amp;= 2^4 - 5(2^3) + 2^2 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
+### Rationale Grenzwerte
 
-### Grenzwerte rationaler Funktionen
+Rationale Funktionen haben die Quotientenform <InlineMath math="\frac{P(x)}{Q(x)}" /> aus zwei Polynomen <InlineMath math="P(x)" /> und <InlineMath math="Q(x)" />. Der Nenner entscheidet über das weitere Vorgehen:
 
-Rationale Funktionen haben die Form <InlineMath math="\frac{P(x)}{Q(x)}" />, wobei <InlineMath math="P(x)" /> und <InlineMath math="Q(x)" /> Polynome sind. Der Nenner entscheidet über den nächsten Schritt:
-
-- **Ist der Nenner nicht null**: Setze direkt ein, genau wie bei einer Polynomfunktion.
-
-- **Ist der Nenner null**: Prüfe Zähler, Vorzeichen und einseitiges Verhalten. Nur <InlineMath math="\frac{0}{0}" /> ist eine unbestimmte Form, die sich möglicherweise algebraisch auflösen lässt. Ein von null verschiedener Zähler über null ist nicht unbestimmt.
+- **Nenner ungleich null**: Setze direkt ein wie bei einem Polynom.
+- **Nenner gleich null**: Prüfe Zähler, Vorzeichen und einseitiges Verhalten. Nur <InlineMath math="\frac{0}{0}" /> ist eine unbestimmte Form zum Vereinfachen. Ein Zähler ungleich null über null zeigt unbeschränktes Wachstum an.
 
 ## Unbestimmte Formen auflösen
 
-Ergibt direktes Einsetzen <InlineMath math="\frac{0}{0}" />, ist der **Grenzwert** noch nicht bestimmt. Dann helfen unter anderem Faktorisieren und Rationalisieren. Nach beiden Techniken lässt sich der gemeinsame Faktor kürzen, der die Null im Nenner verursacht.
+Liefert **direktes Einsetzen** die Form <InlineMath math="\frac{0}{0}" />, teilen Zähler und Nenner einen gemeinsamen Nullfaktor. Faktorisieren bei Polynomen und Rationalisieren bei Wurzeltermen legen diesen Faktor frei, sodass du ihn kürzen und anschließend wieder direkt einsetzen kannst.
 
-### Faktorisieren
+### Faktorisieren bei Null
 
-Ein **gemeinsamer Faktor** darf nur für Eingaben gekürzt werden, bei denen er nicht null ist. Der vereinfachte Term stimmt in der Umgebung der Grenzwertstelle mit dem ursprünglichen überein, auch wenn die ursprüngliche Funktion dort selbst nicht definiert ist.
+Ein **gemeinsamer Faktor** darf nur dort gekürzt werden, wo er nicht null ist, weshalb der gekürzte Term in der Umgebung der Zielstelle mit dem Original übereinstimmt. Berechne:
 
-**Beispiel**: Berechne <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />
+<BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />
 
-Direktes Einsetzen ergibt <InlineMath math="\frac{0}{0}" />. Wir faktorisieren:
+Direktes Einsetzen liefert <InlineMath math="\frac{0}{0}" />, daher faktorisieren wir zuerst den Zähler:
 
 <MathContainer>
-<BlockMath math="x^2 - 4 = (x + 2)(x - 2)" />
-<BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" />
+  <BlockMath math="x^2 - 4 = (x + 2)(x - 2)" />
+  <BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" />
 </MathContainer>
 
-Da sich <InlineMath math="x" /> der Zahl <InlineMath math="2" /> nähert, aber nicht gleich <InlineMath math="2" /> ist, dürfen wir <InlineMath math="(x - 2)" /> kürzen:
+Da sich <InlineMath math="x" /> der <InlineMath math="2" /> mit <InlineMath math="x \neq 2" /> nähert, kürzen wir <InlineMath math="(x - 2)" /> und setzen ein:
 
 <BlockMath math="\lim_{x\to2}\frac{x^2-4}{x-2}= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
-### Rationalisierungstechnik
+### Wurzeln rationalisieren
 
-Bei Ausdrücken mit Wurzeln hilft häufig das Rationalisieren. Auch hier zeigt direktes Einsetzen zunächst, ob eine unbestimmte Form vorliegt.
+Bei Ausdrücken mit Quadratwurzeln beseitigt das Erweitern mit dem **konjugierten Term** die Wurzel. Berechne:
 
-**Beispiel**: Berechne <InlineMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1}" />
+<BlockMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1}" />
 
-Direktes Einsetzen:
-
-Der Zähler <InlineMath math="\sqrt1-1=0" /> und der Nenner <InlineMath math="1-1=0" /> sind beide null. Die unbestimmte Form <InlineMath math="0/0" /> liefert noch keinen Grenzwert.
-
-Wir multiplizieren mit dem **konjugierten Ausdruck** <InlineMath math="\sqrt{x} + 1" />. Dadurch verschwindet die Wurzel aus dem Zähler, denn <InlineMath math="(a-b)(a+b) = a^2 - b^2" />:
+Direktes Einsetzen ergibt <InlineMath math="0" /> im Zähler und im Nenner, also die unbestimmte Form <InlineMath math="\frac{0}{0}" />. Erweitere mit <InlineMath math="\sqrt{x} + 1" /> mithilfe der dritten binomischen Formel:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1} \cdot \frac{\sqrt{x} + 1}{\sqrt{x} + 1}" />
-<BlockMath math="= \lim_{x \to 1} \frac{(\sqrt{x} - 1)(\sqrt{x} + 1)}{(x - 1)(\sqrt{x} + 1)}" />
-<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 1} \frac{(\sqrt{x})^2 - 1^2}{(x - 1)(\sqrt{x} + 1)} \\ &amp;= \lim_{x \to 1} \frac{x - 1}{(x - 1)(\sqrt{x} + 1)} \end{aligned}" />
+  <BlockMath math="(a - b)(a + b) = a^2 - b^2" />
+  <BlockMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1} \cdot \frac{\sqrt{x} + 1}{\sqrt{x} + 1} = \lim_{x \to 1} \frac{(\sqrt{x})^2 - 1^2}{(x - 1)(\sqrt{x} + 1)}" />
+  <BlockMath math="= \lim_{x \to 1} \frac{x - 1}{(x - 1)(\sqrt{x} + 1)}" />
 </MathContainer>
 
-Für <InlineMath math="x \neq 1" /> nähert sich der Variablenwert der Zahl <InlineMath math="1" />. Deshalb dürfen wir den Faktor <InlineMath math="(x - 1)" /> kürzen und anschließend den Grenzwert bilden:
+Für <InlineMath math="x \neq 1" /> kürzen wir <InlineMath math="(x - 1)" /> und werten aus:
 
-<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 1} \frac{1}{\sqrt{x} + 1} \\ &amp;= \frac{1}{\sqrt{1} + 1} \\ &amp;= \frac{1}{1 + 1} \\ &amp;= \frac{1}{2} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;= \lim_{x \to 1} \frac{1}{\sqrt{x} + 1} \\ &amp;= \frac{1}{\sqrt{1} + 1} \\ &amp;= \frac{1}{2} \end{aligned}" />
 
-## Mehrere Techniken verbinden
+## Techniken und Asymptoten
 
-Bei komplizierteren Termen werden die gleichen Schritte nacheinander angewendet. Jeder Schritt macht den Term einfacher, und am Ende liefert das **direkte Einsetzen** einen definierten Wert.
+Faktorisiere und kürze Schritt für Schritt, bis **direktes Einsetzen** einen definierten Wert liefert. Berechne:
 
-**Beispiel**: Berechne <InlineMath math="\lim_{x \to 3} \frac{x^2 - 9}{x^2 + 2x - 15}" />
+<BlockMath math="\lim_{x \to 3} \frac{x^2 - 9}{x^2 + 2x - 15}" />
 
-Direktes Einsetzen führt zur unbestimmten Form <InlineMath math="\frac00" />: Zähler und Nenner sind beide null.
+Direktes Einsetzen ergibt <InlineMath math="\frac{0}{0}" />, da Zähler und Nenner bei <InlineMath math="x = 3" /> beide verschwinden:
 
 <MathContainer>
-  <BlockMath math="3^2-9=9-9=0" />
-
-  <BlockMath math="3^2+2(3)-15=9+6-15=0" />
+  <BlockMath math="3^2 - 9 = 9 - 9 = 0" />
+  <BlockMath math="3^2 + 2(3) - 15 = 9 + 6 - 15 = 0" />
 </MathContainer>
 
-Wir faktorisieren Zähler und Nenner. Für <InlineMath math="x^2 + 2x - 15" /> suchen wir zwei Zahlen mit dem Produkt <InlineMath math="-15" /> und der Summe <InlineMath math="2" />. Das sind <InlineMath math="5" /> und <InlineMath math="-3" />.
+Faktorisiere beide quadratischen Terme mit <InlineMath math="5" /> und <InlineMath math="-3" /> für den Nenner:
 
 <MathContainer>
-<BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
-<BlockMath math="\begin{aligned} &amp;x^2 + 2x - 15 \\ &amp;= x^2 + 5x - 3x - 15 \\ &amp;= x(x + 5) - 3(x + 5) \\ &amp;= (x - 3)(x + 5) \end{aligned}" />
+  <BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
+  <BlockMath math="\begin{aligned} &amp;x^2 + 2x - 15 \\ &amp;= x^2 + 5x - 3x - 15 \\ &amp;= (x - 3)(x + 5) \end{aligned}" />
 </MathContainer>
 
-Damit folgt:
+Kürze <InlineMath math="(x - 3)" /> und setze <InlineMath math="x = 3" /> ein:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 3} \frac{(x - 3)(x + 3)}{(x - 3)(x + 5)} = \lim_{x \to 3} \frac{x + 3}{x + 5}" />
+  <BlockMath math="\lim_{x \to 3} \frac{(x - 3)(x + 3)}{(x - 3)(x + 5)} = \lim_{x \to 3} \frac{x + 3}{x + 5}" />
+  <BlockMath math="= \frac{3 + 3}{3 + 5} = \frac{6}{8} = \frac{3}{4}" />
 </MathContainer>
 
-Nun setzen wir <InlineMath math="x = 3" /> ein: <InlineMath math="\frac{3 + 3}{3 + 5} = \frac{6}{8} = \frac{3}{4}" />
+> Liefert direktes Einsetzen <InlineMath math="\frac{a}{0}" /> mit <InlineMath math="a \neq 0" />, liegt keine unbestimmte Form vor. Prüfe das Vorzeichen des Nenners von beiden Seiten, um die einseitigen unendlichen Grenzwerte zu bestimmen.
 
-> Ergibt direktes Einsetzen <InlineMath math="\frac{a}{0}" /> mit <InlineMath math="a \neq 0" />, reicht dieses Ergebnis allein nicht aus. Prüfe das Vorzeichen und die beiden einseitigen Grenzwerte. Zum Beispiel:
+Verfolge, wie das Vorzeichen von <InlineMath math="x - 2" /> die einseitigen Grenzwerte an der Polstelle <InlineMath math="x = 2" /> trennt:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 2^-}\frac{1}{x-2}=-\infty" />
-<BlockMath math="\lim_{x \to 2^+}\frac{1}{x-2}=+\infty" />
+  <BlockMath math="\lim_{x \to 2^-}\frac{1}{x-2}=-\infty" />
+  <BlockMath math="\lim_{x \to 2^+}\frac{1}{x-2}=+\infty" />
 </MathContainer>
 
-Da die einseitigen Grenzwerte verschieden sind, existiert <InlineMath math="\lim_{x \to 2}\frac{1}{x-2}" /> nicht als zweiseitiger Grenzwert. Ergibt das Einsetzen dagegen <InlineMath math="\frac{0}{0}" />, wird der Term zuerst faktorisiert, rationalisiert oder auf andere Weise vereinfacht.
-
-Achte auf das **Vorzeichen des Nenners**. Links von <InlineMath math="2" /> nähert sich der negative Nenner der null, und die Funktion geht gegen <InlineMath math="-\infty" />. Rechts ist der Nenner positiv, und die Funktion geht gegen <InlineMath math="+\infty" />. Verbinde die Äste nicht über die Asymptote hinweg.
+Da beide Seiten in entgegengesetzte Richtungen streben, gibt es bei <InlineMath math="x = 2" /> keinen endlichen zweiseitigen Grenzwert. Beobachte unten die Trennung an der senkrechten Geraden.
 
 <MathVisual
   title={<>Zwei Richtungen an einer senkrechten Asymptote</>}
-  description={<>Die Kurve <InlineMath math="y = \frac{1}{x - 2}" /> fällt gegen <InlineMath math="-\infty" />, wenn <InlineMath math="x" /> sich von links der <InlineMath math="2" /> nähert, und steigt von rechts gegen <InlineMath math="+\infty" />. Die beiden Äste bleiben an der Asymptote <InlineMath math="x = 2" /> getrennt.</>}
+  description={<>Die Kurve <InlineMath math="y = \frac{1}{x - 2}" /> fällt von links gegen <InlineMath math="-\infty" /> und steigt von rechts gegen <InlineMath math="+\infty" /> an der Stelle <InlineMath math="x = 2" />.</>}
   labels={{
     asym: <InlineMath math="x = 2" />,
     left: <InlineMath math="x \to 2^-" />,
@@ -145,21 +147,73 @@ Achte auf das **Vorzeichen des Nenners**. Links von <InlineMath math="2" /> näh
   }}
 />
 
+Die senkrechte Gerade <InlineMath math="x = 2" /> bildet eine unüberwindbare Grenze zwischen fallendem linken und steigendem rechten Ast. Für große <InlineMath math="|x|" /> schmiegen sich rationale Kurven zudem an waagerechte oder schiefe Geraden an. Bewege unten die Prüfstelle über drei rationale Kurvenfamilien, um Polverhalten und Fernasymptoten direkt zu vergleichen.
+
+<AsymptoteBehaviorLab
+  title={<>Senkrechte, waagerechte und schiefe Asymptoten</>}
+  description={
+    <>
+      Wechsle zwischen Kehrwertpol, verschobener rationaler Funktion mit
+      waagerechter Asymptote und schräger Asymptote und bewege die Prüfstelle
+      für Pol- und Fernverhalten.
+    </>
+  }
+  curves={["reciprocalPole", "rationalHorizontal", "obliqueSlant"]}
+  probeX={{ min: -2.5, max: 2.5, value: 0.6 }}
+  labels={{
+    curve: "Kurvenfamilie",
+    curves: {
+      reciprocalPole: {
+        name: "Kehrwertpol",
+        formula: <InlineMath math="f(x) = \frac{0{,}45}{x}" />,
+      },
+      rationalHorizontal: {
+        name: "Waagerechte Asymptote",
+        formula: <InlineMath math="f(x) = \frac{0{,}8x + 0{,}35}{x - 0{,}3}" />,
+      },
+      obliqueSlant: {
+        name: "Schiefe Asymptote",
+        formula: <InlineMath math="f(x) = 0{,}45x + \frac{0{,}3}{x}" />,
+      },
+    },
+    probeX: "Prüfstelle",
+    asymptoteSummary: <>Asymptotenlage</>,
+    approachValue: <>Kurvenwert <InlineMath math="f(x)" /></>,
+    view: "Rationale Kurvenäste mit gestrichelter senkrechter und ferner Asymptote sowie linkem und rechtem Messpunkt",
+    parts: {
+      curveBranches: "Kurvenäste",
+      verticalAsymptote: "Senkrechte Asymptote",
+      horizontalAsymptote: "Fernasymptote",
+      leftProbe: "Linker Punkt",
+      rightProbe: "Rechter Punkt",
+    },
+  }}
+/>
+
+Rückst du die Prüfstelle an die Polstelle heran, schießen die Funktionswerte auf beiden Seiten in entgegengesetzte Unendlichkeiten. Ziehst du sie weit nach außen, legt sich die Kurve eng an ihre gestrichelte waagerechte oder schiefe Leitgerade an.
+
 ## Stetigkeit und Grenzwerte
 
-Eine Funktion <InlineMath math="f" /> heißt bei <InlineMath math="x = c" /> **stetig**, wenn:
+Eine Funktion <InlineMath math="f" /> heißt an der Stelle <InlineMath math="x = c" /> **stetig**, wenn drei Bedingungen gleichzeitig gelten:
 
-1. <InlineMath math="f(c)" /> existiert (ist definiert)
-2. <InlineMath math="\lim_{x \to c} f(x)" /> existiert
-3. <InlineMath math="\lim_{x \to c} f(x) = f(c)" />
+1. Der Funktionswert <InlineMath math="f(c)" /> ist definiert.
+2. Der zweiseitige Grenzwert existiert:
 
-Polynomfunktionen sind überall stetig. Rationale Funktionen sind an allen Stellen stetig, an denen ihr Nenner nicht null ist.
+   <BlockMath math="\lim_{x \to c} f(x)" />
 
-Ein Beispiel: <InlineMath math="f(x) = x^2 - 2x + 1 = (x - 1)^2" /> hat bei <InlineMath math="x = 1" /> weder ein Loch noch einen Sprung. Der Grenzwert <InlineMath math="0" /> ist gleich dem Funktionswert <InlineMath math="f(1) = 0" />, und genau das bedeutet Stetigkeit bei <InlineMath math="1" />.
+3. Grenzwert und Funktionswert stimmen überein:
+
+   <BlockMath math="\lim_{x \to c} f(x) = f(c)" />
+
+Polynome sind überall stetig, rationale Funktionen überall dort, wo ihr Nenner nicht null ist. Betrachte die quadratische Funktion:
+
+<BlockMath math="f(x) = x^2 - 2x + 1 = (x - 1)^2" />
+
+Bei <InlineMath math="x = 1" /> gibt es weder Loch noch Sprung, und der Grenzwert <InlineMath math="0" /> stimmt mit <InlineMath math="f(1) = 0" /> überein.
 
 <MathVisual
   title={<>Ein stetiger Graph bei <InlineMath math="x = 1" /></>}
-  description={<>Die Parabel <InlineMath math="y = (x - 1)^2" /> mit dem Punkt <InlineMath math="(1, 0)" />, wo Grenzwert und Funktionswert übereinstimmen.</>}
+  description={<>Die Parabel <InlineMath math="y = (x - 1)^2" /> läuft glatt durch <InlineMath math="(1, 0)" />, wo Grenzwert und Funktionswert gleich sind.</>}
   labels={{
     curve: <InlineMath math="y = (x - 1)^2" />,
     point: <InlineMath math="(1, 0)" />,
@@ -179,44 +233,56 @@ Ein Beispiel: <InlineMath math="f(x) = x^2 - 2x + 1 = (x - 1)^2" /> hat bei <Inl
   }}
 />
 
-## Übungen
+Die durchgehende Kurve durch den ausgefüllten Scheitelpunkt <InlineMath math="(1, 0)" /> bestätigt die Stetigkeit: Beide Äste treffen ohne Absetzen des Stifts genau auf den Funktionspunkt.
 
-Jede Aufgabe verlangt den **Grenzwert** eines algebraischen Terms. Bestimme zuerst die Form, denn bei null durch null sind Faktorisieren oder Erweitern nötig.
+## Termgrenzen sicher prüfen
 
-1. Berechne <InlineMath math="\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7)" />
+Bestimme bei jeder Aufgabe zuerst die Form des Terms, denn bei <InlineMath math="\frac{0}{0}" /> sind **Faktorisieren oder Rationalisieren** nötig.
 
-2. Berechne <InlineMath math="\lim_{x \to 2} \frac{x^2 - 6x + 8}{x^2 + 16x + 28}" />
+1. Berechne den Polynomgrenzwert:
 
-3. Berechne <InlineMath math="\lim_{x \to 1} \frac{x^2 - 2x + 1}{x - 1}" />
+   <BlockMath math="\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7)" />
 
-4. Entscheide, ob <InlineMath math="f(x) = x^2 - 2x + 1" /> bei <InlineMath math="x = 1" /> stetig ist
+2. Berechne den rationalen Grenzwert:
 
-5. Berechne <InlineMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x}" />
+   <BlockMath math="\lim_{x \to 2} \frac{x^2 - 6x + 8}{x^2 + 16x + 28}" />
 
-### Lösungen
+3. Berechne den unbestimmten rationalen Grenzwert:
 
-**Aufgabe 1**. Da die Polynomfunktion **überall stetig** ist, setzen wir direkt ein:
+   <BlockMath math="\lim_{x \to 1} \frac{x^2 - 2x + 1}{x - 1}" />
 
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7) \\ &amp;= 2^4 - 5(2^3) + 2^2 - 7 \end{aligned}" />
-<BlockMath math="\begin{aligned}  &amp;= 16 - 5(8) + 4 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
-</MathContainer>
+4. Entscheide, ob folgende Funktion bei <InlineMath math="x = 1" /> stetig ist:
 
-**Aufgabe 2**. Der **Nenner** der rationalen Funktion ist bei <InlineMath math="x = 2" /> ungleich null. Deshalb setzen wir direkt ein:
+   <BlockMath math="f(x) = x^2 - 2x + 1" />
 
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} \frac{x^2 - 6x + 8}{x^2 + 16x + 28} \\ &amp;= \frac{2^2 - 6(2) + 8}{2^2 + 16(2) + 28} \end{aligned}" />
-<BlockMath math="= \frac{4 - 12 + 8}{4 + 32 + 28} = \frac{0}{64} = 0" />
-</MathContainer>
+5. Berechne den Wurzelgrenzwert:
 
-**Aufgabe 3**. **Direktes Einsetzen** ergibt <InlineMath math="\frac{0}{0}" />. Wir faktorisieren den Zähler:
+   <BlockMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x}" />
+
+Vergleiche deine Rechnung mit den folgenden Lösungen.
+
+**Aufgabe 1**. Da das Polynom **überall stetig** ist, setzt du direkt ein:
 
 <MathContainer>
-<BlockMath math="x^2 - 2x + 1 = (x - 1)^2" />
-<BlockMath math="\begin{aligned} \lim_{x \to 1} \frac{(x - 1)^2}{x - 1} &amp;= \lim_{x \to 1} (x - 1) \\ &amp;= 1 - 1 \\ &amp;= 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7) \\ &amp;= 2^4 - 5(2^3) + 2^2 - 7 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;= 16 - 5(8) + 4 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
 </MathContainer>
 
-**Aufgabe 4**. Für die Stetigkeit bei <InlineMath math="x = 1" /> prüfen wir drei Bedingungen:
+**Aufgabe 2**. Weil der Nenner bei <InlineMath math="x = 2" /> ungleich null ist, genügt **direktes Einsetzen**:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} \frac{x^2 - 6x + 8}{x^2 + 16x + 28} \\ &amp;= \frac{2^2 - 6(2) + 8}{2^2 + 16(2) + 28} \end{aligned}" />
+  <BlockMath math="= \frac{4 - 12 + 8}{4 + 32 + 28} = \frac{0}{64} = 0" />
+</MathContainer>
+
+**Aufgabe 3**. **Direktes Einsetzen** ergibt <InlineMath math="\frac{0}{0}" />, daher faktorisieren wir den Zähler:
+
+<MathContainer>
+  <BlockMath math="x^2 - 2x + 1 = (x - 1)^2" />
+  <BlockMath math="\begin{aligned} \lim_{x \to 1} \frac{(x - 1)^2}{x - 1} &amp;= \lim_{x \to 1} (x - 1) \\ &amp;= 1 - 1 \\ &amp;= 0 \end{aligned}" />
+</MathContainer>
+
+**Aufgabe 4**. Prüfe alle drei Stetigkeitsbedingungen bei <InlineMath math="x = 1" />:
 
 | Bedingung | Prüfung |
 | --- | --- |
@@ -224,24 +290,26 @@ Jede Aufgabe verlangt den **Grenzwert** eines algebraischen Terms. Bestimme zuer
 | Der Grenzwert existiert | <InlineMath math="\lim_{x\to1}(x^2-2x+1)=1-2+1=0" /> |
 | Grenzwert und Funktionswert stimmen überein | <InlineMath math="\lim_{x\to1}f(x)=0=f(1)" /> |
 
-Alle drei Bedingungen sind erfüllt. Daher ist die Funktion bei <InlineMath math="x = 1" /> **stetig**.
+Da alle drei Bedingungen erfüllt sind, ist die Funktion bei <InlineMath math="x = 1" /> **stetig**.
 
-**Aufgabe 5**. **Direktes Einsetzen** ergibt <InlineMath math="\frac{\sqrt{0 + 4} - 2}{0} = \frac{2 - 2}{0} = \frac{0}{0}" />, also eine unbestimmte Form.
+**Aufgabe 5**. Direktes Einsetzen ergibt eine unbestimmte Form:
 
-Wir rationalisieren durch Multiplikation mit dem konjugierten Ausdruck <InlineMath math="\sqrt{x + 4} + 2" />:
+<BlockMath math="\frac{\sqrt{0 + 4} - 2}{0} = \frac{2 - 2}{0} = \frac{0}{0}" />
+
+Rationalisiere durch Multiplikation mit dem **konjugierten Ausdruck** <InlineMath math="\sqrt{x + 4} + 2" />:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x} \cdot \frac{\sqrt{x + 4} + 2}{\sqrt{x + 4} + 2}" />
-<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{(\sqrt{x + 4})^2 - 2^2}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{(x + 4) - 4}{x(\sqrt{x + 4} + 2)} \end{aligned}" />
-<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{x}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{1}{\sqrt{x + 4} + 2} \end{aligned}" />
-<BlockMath math="\begin{aligned}  &amp;= \frac{1}{\sqrt{0 + 4} + 2} \\ &amp;= \frac{1}{\sqrt{4} + 2} \\ &amp;= \frac{1}{2 + 2} \\ &amp;= \frac{1}{4} \end{aligned}" />
+  <BlockMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x} \cdot \frac{\sqrt{x + 4} + 2}{\sqrt{x + 4} + 2}" />
+  <BlockMath math="\begin{aligned} &amp;= \lim_{x \to 0} \frac{(\sqrt{x + 4})^2 - 2^2}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{(x + 4) - 4}{x(\sqrt{x + 4} + 2)} \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;= \lim_{x \to 0} \frac{x}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{1}{\sqrt{x + 4} + 2} \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;= \frac{1}{\sqrt{0 + 4} + 2} \\ &amp;= \frac{1}{2 + 2} \\ &amp;= \frac{1}{4} \end{aligned}" />
 </MathContainer>
 
-Vergleich mit Aufgabe 3: <InlineMath math="\frac{x^2 - 2x + 1}{x - 1}" /> vereinfacht sich zu <InlineMath math="x - 1" />, aber der Graph verliert den Punkt bei <InlineMath math="x = 1" />. Er ist die Gerade <InlineMath math="y = x - 1" /> mit einem Loch bei <InlineMath math="(1, 0)" />, und der Grenzwert ist die Höhe des Lochs, <InlineMath math="0" />.
+Zurück zu Aufgabe 3: Der rationale Ausdruck kürzt sich für <InlineMath math="x \neq 1" /> zu <InlineMath math="x - 1" />, sodass eine Gerade mit offenem Loch bei <InlineMath math="(1, 0)" /> entsteht.
 
 <MathVisual
   title={<>Die Gerade <InlineMath math="y = x - 1" /> mit einem Loch bei <InlineMath math="(1, 0)" /></>}
-  description={<>Der Graph von <InlineMath math="\frac{x^2 - 2x + 1}{x - 1}" />: die Gerade <InlineMath math="y = x - 1" /> mit einem offenen Kreis bei <InlineMath math="(1, 0)" />.</>}
+  description={<>Graph von <InlineMath math="\frac{x^2 - 2x + 1}{x - 1}" /> entlang der Geraden <InlineMath math="y = x - 1" /> mit offenem Kreis bei <InlineMath math="(1, 0)" />.</>}
   labels={{
     line: <InlineMath math="y = x - 1" />,
     hole: <InlineMath math="(1, 0)" />,
@@ -261,3 +329,5 @@ Vergleich mit Aufgabe 3: <InlineMath math="\frac{x^2 - 2x + 1}{x - 1}" /> verein
     ],
   }}
 />
+
+Der Vergleich dieser gelochten Geraden mit der stetigen Parabel oben zeigt den Unterschied klar: Beide besitzen bei <InlineMath math="x = 1" /> den Grenzwert <InlineMath math="0" />, aber nur die Parabel ist dort auch definiert.

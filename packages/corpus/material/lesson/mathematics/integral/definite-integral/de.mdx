@@ -1,42 +1,42 @@
 export const metadata = {
-    title: "Bestimmtes Integral",
-    description: "Definiere das bestimmte Integral als Grenzwert von Riemann-Summen und werte ein Beispiel direkt über diesen Grenzwert aus.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2026-08-22",
-    dateModified: "2026-11-08",
-    subject: "Integrale",
+  title: "Bestimmtes Integral",
+  description: "Definiere das bestimmte Integral als Grenzwert von Riemann-Summen und werte ein Beispiel direkt über diesen Grenzwert aus.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-08-22",
+  dateModified: "2026-11-27",
+  subject: "Integrale",
 };
 
-## Von der Näherung zur exakten Fläche
+## Von Summen zur Fläche
 
 Im Material [Riemann-Summen](/de/faecher/mathematik/integralrechnung/riemann-summen) haben wir die Fläche unter einer nichtnegativen Kurve durch Rechtecke angenähert. Wird die Zerlegung immer feiner, nähern sich die Riemann-Summen bei einer integrierbaren Funktion demselben Wert.
 
 Nun lassen wir die Rechteckbreite <InlineMath math="\Delta x" /> gegen null gehen, während die Anzahl <InlineMath math="n" /> der Rechtecke unbegrenzt wächst. Entscheidend ist, dass die **Maschenweite gegen null geht**. Der Grenzwert der Riemann-Summen ersetzt die Näherung durch einen exakten Wert. Genau daraus entsteht das **bestimmte Integral**.
 
-## Notation und Bedeutung des bestimmten Integrals
+## Bestandteile des Integrals
 
 Das bestimmte Integral beschreibt diese Akkumulation im Grenzwert. <Highlight>Es ist als Grenzwert von Riemann-Summen definiert</Highlight>, sofern dieser Grenzwert existiert.
 
 <BlockMath math="\int_{a}^{b} f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x" />
 
 Jeder Teil der Notation hat eine klare Bedeutung:
-- <InlineMath math="\int_{a}^{b}" />: Das Integralsymbol trägt die **untere Grenze** <InlineMath math="a" /> und die **obere Grenze** <InlineMath math="b" />. Beide Werte legen das betrachtete Intervall fest.
-- <InlineMath math="f(x)" />: Der **Integrand** liefert auf dem gesamten Intervall <InlineMath math="[a,b]" /> die Werte für die vorzeichenbehaftete Akkumulation.
+
+- <InlineMath math="\int" />: Das Integralsymbol trägt die **untere Grenze** <InlineMath math="a" /> und die **obere Grenze** <InlineMath math="b" />, die das betrachtete Intervall festlegen.
+- <InlineMath math="f(x)" />: Der **Integrand** liefert auf dem gesamten Intervall <InlineMath math="[a, b]" /> die Werte für die vorzeichenbehaftete Akkumulation.
 - <InlineMath math="dx" />: Wie beim unbestimmten Integral zeigt diese Schreibweise an, dass bezüglich der Variablen <InlineMath math="x" /> integriert wird.
 
-Ein unbestimmtes Integral umfasst alle Funktionen der Form <InlineMath math="F(x) + C" />. Ein bestimmtes Integral ist dagegen eine **einzelne Zahl**. Sie beschreibt die vorzeichenbehaftete Akkumulation von <InlineMath math="x=a" /> bis <InlineMath math="x=b" />. Nur bei einem nichtnegativen Integranden entspricht diese Zahl dem geometrischen Flächeninhalt.
+Ein unbestimmtes Integral umfasst alle Funktionen der Form <InlineMath math="F(x) + C" />. Ein bestimmtes Integral ist dagegen eine **einzelne Zahl**. Sie beschreibt die vorzeichenbehaftete Akkumulation von <InlineMath math="x = a" /> bis <InlineMath math="x = b" />. Nur bei einem nichtnegativen Integranden entspricht diese Zahl dem geometrischen Flächeninhalt.
 
-## Berechnung des bestimmten Integrals mit Grenzwerten
+> Ein bestimmtes Integral liefert eine einzige vorzeichenbehaftete Zahl statt einer ganzen Funktionsschar, weil der Grenzwert alle dünnen Scheiben zwischen den Grenzen zu einer Summe vereint.
 
-**Aufgabe**: Berechne den Wert von <InlineMath math="\int_{0}^{7} x \, dx" />.
+## Grenzwert direkt berechnen
 
-**Lösung**:
+**Aufgabe**: Berechne den exakten Wert dieses bestimmten Integrals, indem du es wieder als Grenzwert einer Riemann-Summe schreibst:
 
-Dazu schreiben wir das Integral wieder als Grenzwert einer Riemann-Summe.
+<BlockMath math="\int_{0}^{7} x \, dx" />
 
-**Schritt 1**: Bestandteile der Riemann-Summe bestimmen
+**Schritt 1**: Bestimme die Bestandteile der Riemann-Summe aus dem obigen Integral:
 
-Aus dem Problem <InlineMath math="\int_{0}^{7} x \, dx" /> wissen wir:
 - Funktion: <InlineMath math="f(x) = x" />
 - Intervall: <InlineMath math="[a, b] = [0, 7]" />
 
@@ -48,7 +48,7 @@ Als Stützstelle jedes Teilintervalls verwenden wir den rechten Endpunkt <Inline
 
 <BlockMath math="x_i = a + i \Delta x = 0 + i \left(\frac{7}{n}\right) = \frac{7i}{n}" />
 
-**Schritt 2**: Riemann-Summe aufstellen
+**Schritt 2**: Riemann-Summe aufstellen.
 
 Die Höhe jedes Rechtecks beträgt <InlineMath math="f(x_i)" />, also:
 
@@ -58,26 +58,27 @@ Nun setzen wir diesen Ausdruck in die Riemann-Summe ein:
 
 <BlockMath math="\begin{aligned} \sum_{i=1}^{n} f(x_i) \Delta x &amp;= \sum_{i=1}^{n} \left(\frac{7i}{n}\right) \left(\frac{7}{n}\right) \\ &amp;= \sum_{i=1}^{n} \frac{49i}{n^2} \end{aligned}" />
 
-**Schritt 3**: Vereinfachen und die Summenformel anwenden
+**Schritt 3**: Vereinfachen und Summenformeln anwenden.
 
-<InlineMath math="n" /> ist für die Summe von <InlineMath math="i=1" /> bis <InlineMath math="n" /> konstant. Deshalb kann der Faktor vor das Summenzeichen gezogen werden.
+<InlineMath math="n" /> bleibt konstant, während <InlineMath math="i" /> von <InlineMath math="1" /> bis <InlineMath math="n" /> läuft. Deshalb kann der Faktor vor das Summenzeichen gezogen werden:
 
-<BlockMath math="R_n=\frac{49}{n^2} \sum_{i=1}^{n} i" />
+<BlockMath math="R_n = \frac{49}{n^2} \sum_{i=1}^{n} i" />
 
-Als Nächstes ersetzen wir <InlineMath math="\sum_{i=1}^{n} i" /> durch die Summenformel <InlineMath math="\frac{n(n+1)}{2}" /> und vereinfachen den Ausdruck, bevor wir den Grenzwert bilden.
+Für polynomiale Riemann-Summen helfen drei Standardformeln für Potenzsummen:
+
+<MathContainer>
+<BlockMath math="\sum_{i=1}^{n} i = \frac{n(n+1)}{2}" />
+<BlockMath math="\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}" />
+<BlockMath math="\sum_{i=1}^{n} i^3 = \left(\frac{n(n+1)}{2}\right)^2" />
+</MathContainer>
+
+Setze die lineare Summenformel ein und vereinfache den Ausdruck, bis der von <InlineMath math="n" /> abhängige Term isoliert steht:
 
 <BlockMath math="\begin{aligned}R_n&=\frac{49}{n^2}\cdot\frac{n(n+1)}{2}\\&=\frac{49n(n+1)}{2n^2}\\&=\frac{49(n+1)}{2n}\\&=\frac{49}{2}\left(1+\frac1n\right)\end{aligned}" />
 
 Zuerst kürzen wir <InlineMath math="n" /> in Zähler und Nenner. Anschließend zerlegen wir den verbleibenden Bruch so, dass der Grenzwert direkt ablesbar wird.
 
-> Für Grenzwerte von Riemann-Summen sind diese Summenformeln besonders nützlich:
-> - <InlineMath math="\sum_{i=1}^{n} i = \frac{n(n+1)}{2}" />
-> - <InlineMath math="\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}" />
-> - <InlineMath math="\sum_{i=1}^{n} i^3 = \left( \frac{n(n+1)}{2} \right)^2" />
-
-**Schritt 4**: Grenzwert bilden
-
-Nun lassen wir <InlineMath math="n \to \infty" /> gehen. Dabei nähert sich <InlineMath math="\frac{1}{n}" /> dem Wert null.
+**Schritt 4**: Grenzwert für <InlineMath math="n \to \infty" /> bilden. Dabei nähert sich <InlineMath math="\frac{1}{n}" /> dem Wert null.
 
 <MathContainer>
 <BlockMath math="\int_{0}^{7} x \, dx = \lim_{n \to \infty} \frac{49}{2} \left( 1 + \frac{1}{n} \right)" />
@@ -85,9 +86,13 @@ Nun lassen wir <InlineMath math="n \to \infty" /> gehen. Dabei nähert sich <Inl
 <BlockMath math="= \frac{49}{2}" />
 </MathContainer>
 
-Da <InlineMath math="f(x) = x" /> zwischen <InlineMath math="x=0" /> und <InlineMath math="x=7" /> nichtnegativ ist, entspricht das Integral zugleich dem geometrischen Flächeninhalt: <InlineMath math="\frac{49}{2}" /> beziehungsweise <InlineMath math="24{,}5" /> Quadrateinheiten. Der Grenzwert hat die Rechtecknäherungen in einen exakten Wert überführt.
+Da <InlineMath math="f(x) = x" /> zwischen <InlineMath math="x = 0" /> und <InlineMath math="x = 7" /> nichtnegativ ist, entspricht das Integral zugleich dem geometrischen Flächeninhalt: <InlineMath math="\frac{49}{2}" /> beziehungsweise <InlineMath math="24{,}5" /> Quadrateinheiten. Der Grenzwert hat die Rechtecknäherungen in einen exakten Wert überführt.
 
-So arbeitet der Grenzwert. Die genaue Fläche unter <InlineMath math="y = x" /> von <InlineMath math="0" /> bis <InlineMath math="7" /> ist das Dreieck <InlineMath math="\tfrac12 \cdot 7 \cdot 7 = \tfrac{49}{2}" />. Sieben Rechtecke mit rechtem Randpunkt und Breite <InlineMath math="1" /> bedecken es mit etwas Überschuss: <InlineMath math="1 + 2 + \cdots + 7 = 28" />, passend zu <InlineMath math="\tfrac{49}{2}(1 + \tfrac17) = 28" />.
+Vergleiche die endliche Zerlegung bei <InlineMath math="n = 7" /> mit der exakten Dreiecksfläche <InlineMath math="24{,}5" />:
+
+<BlockMath math="R_7 = 1 + 2 + \cdots + 7 = \frac{49}{2}\left(1 + \frac{1}{7}\right) = 28" />
+
+Sieben Rechtecke mit rechtem Randpunkt und Breite <InlineMath math="1" /> bedecken das Dreieck mit kleinen Überschüssen oberhalb der Geraden.
 
 <MathVisual
   title={<>Sieben Rechtecke über der genauen Fläche</>}
@@ -116,9 +121,19 @@ So arbeitet der Grenzwert. Die genaue Fläche unter <InlineMath math="y = x" /> 
   }}
 />
 
-## Unterschiedliche Rechteckanzahlen vergleichen
+Diese sieben überstehenden Dreiecke summieren sich auf <InlineMath math="3{,}5" />, weshalb <InlineMath math="R_7 = 28" /> die exakte Fläche <InlineMath math="24{,}5" /> um genau diesen Betrag überschreitet.
 
-Schreibe die Summe mit rechten Stützstellen als <InlineMath math="R_n=\frac{49}{2}(1+\frac1n)" />. Vor dem Grenzübergang können wir mehrere Werte von <InlineMath math="n" /> prüfen. Weil der Graph steigt, liefern die rechten Stützstellen eine **Überschätzung**.
+## Konvergenz und Volumen
+
+Verfeinert man eine Zerlegung in **feinere Scheiben**, konvergieren endliche Summen zu exakten Flächen in der Ebene und zu exakten Rotationsvolumina im Raum. Beobachte zuerst, wie wachsende Rechteckanzahlen einer Dreiecksfläche näherkommen, und drehe danach eine Profilkurve zu einem Körper aus Kreisscheiben.
+
+### Rechteckanzahlen prüfen
+
+Nutze die geschlossene Formel der rechten Riemann-Summe, um vor dem Grenzübergang mehrere Werte von <InlineMath math="n" /> zu prüfen:
+
+<BlockMath math="R_n = \frac{49}{2}\left(1 + \frac{1}{n}\right)" />
+
+Weil der Graph steigt, liefern die rechten Stützstellen eine **Überschätzung**.
 
 | Anzahl der Rechtecke | Näherung mit rechten Stützstellen |
 | --- | --- |
@@ -128,11 +143,19 @@ Schreibe die Summe mit rechten Stützstellen als <InlineMath math="R_n=\frac{49}
 | <InlineMath math="10" /> | <InlineMath math="26{,}95" /> |
 | <InlineMath math="100" /> | <InlineMath math="24{,}745" /> |
 
-Der Abstand zum exakten Wert beträgt <InlineMath math="R_n-\frac{49}{2}=\frac{49}{2n}" />. Wenn sich die Rechteckanzahl verdoppelt, halbiert sich der Fehler in diesem linearen Beispiel. Den exakten Flächeninhalt kannst du auch als Dreiecksfläche mit Grundseite und Höhe <InlineMath math="7" /> prüfen:
+Ziehe den exakten Wert ab, um zu sehen, wie der Fehler mit <InlineMath math="n" /> abnimmt:
 
-<BlockMath math="A=\frac12(7)(7)=\frac{49}{2}" />
+<BlockMath math="R_n - \frac{49}{2} = \frac{49}{2n}" />
 
-Verdopple die Anzahl der Rechtecke auf <InlineMath math="14" />, jedes mit Breite <InlineMath math="\tfrac12" />. Die Überschussstreifen oben werden dünner, und die Summe sinkt auf <InlineMath math="\tfrac{49}{2}(1 + \tfrac{1}{14}) = 26{,}25" />. Jedes Mal, wenn <InlineMath math="n" /> wächst, rückt die Summe näher an <InlineMath math="24{,}5" />.
+Wenn sich die Rechteckanzahl verdoppelt, halbiert sich der Fehler in diesem linearen Beispiel. Den exakten Flächeninhalt kannst du auch als Dreiecksfläche mit Grundseite und Höhe <InlineMath math="7" /> prüfen:
+
+<BlockMath math="A = \frac{1}{2}(7)(7) = \frac{49}{2}" />
+
+Verdopple die Anzahl der Rechtecke auf <InlineMath math="14" />, jedes mit Breite <InlineMath math="\tfrac{1}{2}" />, sodass die Summe näher an <InlineMath math="24{,}5" /> rückt:
+
+<BlockMath math="R_{14} = \frac{49}{2}\left(1 + \frac{1}{14}\right) = 26{,}25" />
+
+Die Überschussstreifen oben werden dünner, je größer <InlineMath math="n" /> wird.
 
 <MathVisual
   title={<>Vierzehn schmalere Rechtecke</>}
@@ -168,7 +191,7 @@ Verdopple die Anzahl der Rechtecke auf <InlineMath math="14" />, jedes mit Breit
   }}
 />
 
-Stell die Summen mit rechten Stützstellen nebeneinander. Von <InlineMath math="n = 1" /> bis <InlineMath math="n = 100" /> schrumpfen die Balken von <InlineMath math="49" /> auf den exakten Flächeninhalt <InlineMath math="\frac{49}{2} = 24{,}5" /> zu, und der Abstand darüber ist immer <InlineMath math="\frac{49}{2n}" />.
+Stell die Summen mit rechten Stützstellen nebeneinander. Von <InlineMath math="n = 1" /> bis <InlineMath math="n = 100" /> schrumpfen die Balken von <InlineMath math="49" /> auf den exakten Flächeninhalt <InlineMath math="24{,}5" /> zu, und der Abstand darüber ist immer <InlineMath math="\frac{49}{2n}" />.
 
 <BarChart
   title={<>Summen <InlineMath math="R_n" /> mit rechten Stützstellen für sechs Rechteckanzahlen</>}
@@ -177,3 +200,54 @@ Stell die Summen mit rechten Stützstellen nebeneinander. Von <InlineMath math="
   data={[1, 2, 7, 10, 14, 100].map((n) => ({ name: String(n), value: (49 / 2) * (1 + 1 / n) }))}
   chartConfig={{ value: { label: "Näherung", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+Bei <InlineMath math="n = 100" /> liegt der Balken nur noch <InlineMath math="0{,}245" /> über der wahren Fläche und macht sichtbar, wie der Riemann-Grenzwert auf eine einzige exakte Zahl zuläuft.
+
+### Rotationskörper im Raum
+
+Dasselbe Prinzip der Akkumulation erweitert sich von zweidimensionalen Streifen auf dreidimensionale Volumina. Rotiert eine Profilkurve um eine Achse, wird jeder schmale Streifen zu einer **Kreisscheibe** der Fläche <InlineMath math="\pi R(x)^2" />, oder bei einem Hohlraum zu einem Kreisring der Fläche <InlineMath math="\pi(R(x)^2 - r(x)^2)" />, und das bestimmte Integral summiert alle Querschnitte:
+
+<BlockMath math="V = \int_{a}^{b} A(x)\,dx = \pi \int_{a}^{b} \big(R(x)^2 - r(x)^2\big)\,dx" />
+
+Verändere den Drehwinkel über vier Profile, um zu beobachten, wie eine einzige Profilkurve einen dreidimensionalen Körper überstreicht, dessen Volumen Scheibe für Scheibe wächst.
+
+<SolidOfRevolutionLab
+  title={<>Querschnittsscheiben zu Rotationskörpern aufsummieren</>}
+  description={<>Drehe vier Profilkurven um die Achse bis zu einer vollen Umdrehung, um die hervorgehobene Scheiben- oder Ringfläche mit dem überstrichenen Volumen zu verbinden.</>}
+  profiles={["paraboloid", "trumpetHorn", "washerBowl", "frustumCone"]}
+  sweepAngle={{ min: 30, max: 360, value: 270 }}
+  labels={{
+    parts: {
+      profileCurve: "Profilkurve",
+      revolvedShell: "Rotationsmantel",
+      crossSectionDisk: "Querschnittsscheibe",
+      rotationAxis: "Drehachse",
+      radiusArrow: "Radius",
+    },
+    profile: "Rotationsprofil",
+    profiles: {
+      paraboloid: {
+        name: "Paraboloid",
+        formula: <InlineMath math="A = \pi R^2,\; V_{360^\circ} = 2\pi" />,
+      },
+      trumpetHorn: {
+        name: "Trompetentrichter",
+        formula: <InlineMath math="A = \pi R^2,\; V_{360^\circ} = 1{,}4\pi" />,
+      },
+      washerBowl: {
+        name: "Hohlschale",
+        formula: <InlineMath math="A = \pi(R^2 - r^2),\; V_{360^\circ} = 2{,}4\pi" />,
+      },
+      frustumCone: {
+        name: "Kegelstumpf",
+        formula: <InlineMath math="A = \pi R^2,\; V_{360^\circ} = 1{,}85\pi" />,
+      },
+    },
+    sliceArea: <>Querschnittsfläche</>,
+    sweepAngle: "Drehwinkel",
+    totalVolume: <>Rotationsvolumen</>,
+    view: "Dreidimensionaler Rotationskörper um eine Achse mit hervorgehobener kreisförmiger Querschnittsscheibe",
+  }}
+/>
+
+Mit größerem Drehwinkel wächst das überstrichene Volumen linear mit dem Winkelanteil, während die Hohlschale den inneren Kern ausspart, sodass jeder Querschnitt ein Kreisring statt einer Vollscheibe ist.

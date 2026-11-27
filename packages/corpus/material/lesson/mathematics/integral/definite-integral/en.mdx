@@ -1,42 +1,42 @@
 export const metadata = {
-    title: "Definite Integral",
-    description: "Define a definite integral as the limit of Riemann sums and evaluate one directly from that limit.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2025-05-26",
-    dateModified: "2026-11-08",
-    subject: "Integrals",
+  title: "Definite Integral",
+  description: "Define a definite integral as the limit of Riemann sums and evaluate one directly from that limit.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-27",
+  subject: "Integrals",
 };
 
-## From Approximation to Exact Area
+## From Sums to Exact Area
 
 In the [Riemann Sums](/en/subjects/mathematics/integral/riemann-sum) material, we approximated the area under a nonnegative curve with rectangles. As the partition becomes finer, the corresponding Riemann sums approach a common value for an integrable function.
 
 For an equal-width partition, let the number of subintervals <InlineMath math="n" /> grow without bound. Their width <InlineMath math="\Delta x" /> then approaches zero. The essential condition is that the **mesh width tends to zero**. If the Riemann sums have a limit, that limit is the **definite integral**.
 
-## Notation and Meaning of the Definite Integral
+## Definite Integral Notation
 
 The definite integral records this limiting accumulation. It is <Highlight>defined as the limit of Riemann sums</Highlight>, provided that the limit exists.
 
 <BlockMath math="\int_{a}^{b} f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x" />
 
 This notation has a specific meaning:
-- <InlineMath math="\int_{a}^{b}" />: This is the integral symbol with a **lower** limit <InlineMath math="a" /> and an **upper** limit <InlineMath math="b" />. These numbers define the interval over which we are calculating the area.
-- <InlineMath math="f(x)" />: This is the **integrand**. Its values throughout <InlineMath math="[a,b]" /> determine the signed accumulation.
+
+- <InlineMath math="\int" />: The integral sign carries a **lower** bound <InlineMath math="a" /> and an **upper** bound <InlineMath math="b" /> that fix the interval of accumulation.
+- <InlineMath math="f(x)" />: This is the **integrand**. Its values throughout <InlineMath math="[a, b]" /> determine the signed accumulation.
 - <InlineMath math="dx" />: Just as with indefinite integrals, this indicates that we are integrating with respect to the variable <InlineMath math="x" />.
 
-An indefinite integral includes every function of the form <InlineMath math="F(x) + C" />. A definite integral gives a **single number** that measures signed accumulation from <InlineMath math="x=a" /> to <InlineMath math="x=b" />. This number equals ordinary geometric area when the integrand is nonnegative throughout the interval.
+An indefinite integral includes every function of the form <InlineMath math="F(x) + C" />. A definite integral gives a **single number** that measures signed accumulation from <InlineMath math="x = a" /> to <InlineMath math="x = b" />. This number equals ordinary geometric area when the integrand is nonnegative throughout the interval.
 
-## Calculating the Definite Integral with Limits
+> A definite integral returns one signed number rather than a family of functions, because the limit collapses every thin slice across the bounds into a single total.
 
-**Problem**: Determine the value of <InlineMath math="\int_{0}^{7} x \, dx" />.
+## Limit Evaluation Example
 
-**Solution**:
+**Problem**: Determine the exact value of this definite integral by converting it back into the limit of a Riemann sum:
 
-To solve this, we will convert it back to the limit form of a Riemann Sum.
+<BlockMath math="\int_{0}^{7} x \, dx" />
 
-**Step 1**: Determine the Riemann Sum components
+**Step 1**: Identify the Riemann sum components from the integral above:
 
-From the problem <InlineMath math="\int_{0}^{7} x \, dx" />, we know:
 - Function: <InlineMath math="f(x) = x" />
 - Interval: <InlineMath math="[a, b] = [0, 7]" />
 
@@ -48,36 +48,37 @@ We will use the right endpoint (<InlineMath math="x_i" />) as the sample point f
 
 <BlockMath math="x_i = a + i \Delta x = 0 + i \left(\frac{7}{n}\right) = \frac{7i}{n}" />
 
-**Step 2**: Set up the Riemann Sum
+**Step 2**: Set up the Riemann sum.
 
 The height of each rectangle is <InlineMath math="f(x_i)" />, so:
 
 <BlockMath math="f(x_i) = x_i = \frac{7i}{n}" />
 
-Now, we plug this into the Riemann Sum formula:
+Now plug this expression into the Riemann sum formula:
 
 <BlockMath math="\begin{aligned} \sum_{i=1}^{n} f(x_i) \Delta x &amp;= \sum_{i=1}^{n} \left(\frac{7i}{n}\right) \left(\frac{7}{n}\right) \\ &amp;= \sum_{i=1}^{n} \frac{49i}{n^2} \end{aligned}" />
 
-**Step 3**: Simplify and use summation properties
+**Step 3**: Simplify and apply power-sum identities.
 
-We can factor constants out of the sigma notation, as <InlineMath math="n" /> is treated as a constant in the sum from <InlineMath math="i=1" /> to <InlineMath math="n" />.
+We can factor constants out of the sigma notation, as <InlineMath math="n" /> stays fixed while <InlineMath math="i" /> runs from <InlineMath math="1" /> to <InlineMath math="n" />:
 
-<BlockMath math="R_n=\frac{49}{n^2} \sum_{i=1}^{n} i" />
+<BlockMath math="R_n = \frac{49}{n^2} \sum_{i=1}^{n} i" />
 
-Next, replace <InlineMath math="\sum_{i=1}^{n} i" /> with <InlineMath math="\frac{n(n+1)}{2}" /> and simplify until the term that depends on <InlineMath math="n" /> is isolated.
+Three standard summation identities handle polynomial Riemann sums:
+
+<MathContainer>
+<BlockMath math="\sum_{i=1}^{n} i = \frac{n(n+1)}{2}" />
+<BlockMath math="\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}" />
+<BlockMath math="\sum_{i=1}^{n} i^3 = \left(\frac{n(n+1)}{2}\right)^2" />
+</MathContainer>
+
+Substitute the linear summation identity and simplify until the term depending on <InlineMath math="n" /> is isolated:
 
 <BlockMath math="\begin{aligned}R_n&=\frac{49}{n^2}\cdot\frac{n(n+1)}{2}\\&=\frac{49n(n+1)}{2n^2}\\&=\frac{49(n+1)}{2n}\\&=\frac{49}{2}\left(1+\frac1n\right)\end{aligned}" />
 
-The algebra reduces the expression to a constant factor multiplied by <InlineMath math="1+\frac{1}{n}" />. The remaining limit follows from <InlineMath math="\frac{1}{n}\to0" />.
+First cancel a factor of <InlineMath math="n" /> in the numerator and denominator, then split the fraction so the constant part separates cleanly from the shrinking remainder.
 
-> To solve the limit of a Riemann Sum, we often need some common series summation formulas:
-> - <InlineMath math="\sum_{i=1}^{n} i = \frac{n(n+1)}{2}" />
-> - <InlineMath math="\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}" />
-> - <InlineMath math="\sum_{i=1}^{n} i^3 = \left( \frac{n(n+1)}{2} \right)^2" />
-
-**Step 4**: Take the Limit
-
-Finally, we take the limit as <InlineMath math="n \to \infty" />. In this limit, <InlineMath math="\frac{1}{n}" /> approaches zero.
+**Step 4**: Take the limit as <InlineMath math="n \to \infty" />. In this limit, <InlineMath math="\frac{1}{n}" /> approaches zero.
 
 <MathContainer>
 <BlockMath math="\int_{0}^{7} x \, dx = \lim_{n \to \infty} \frac{49}{2} \left( 1 + \frac{1}{n} \right)" />
@@ -85,9 +86,13 @@ Finally, we take the limit as <InlineMath math="n \to \infty" />. In this limit,
 <BlockMath math="= \frac{49}{2}" />
 </MathContainer>
 
-Because <InlineMath math="f(x) = x" /> is nonnegative from <InlineMath math="x=0" /> to <InlineMath math="x=7" />, the definite integral is also the geometric area: <InlineMath math="\frac{49}{2}" />, or <InlineMath math="24.5" /> square units. The limit has turned the rectangle approximations into an exact value.
+Because <InlineMath math="f(x) = x" /> is nonnegative from <InlineMath math="x = 0" /> to <InlineMath math="x = 7" />, the definite integral is also the geometric area: <InlineMath math="\frac{49}{2}" />, or <InlineMath math="24.5" /> square units. The limit has turned the rectangle approximations into an exact value.
 
-Here is the limit at work. The exact area under <InlineMath math="y = x" /> from <InlineMath math="0" /> to <InlineMath math="7" /> is the triangle <InlineMath math="\tfrac12 \cdot 7 \cdot 7 = \tfrac{49}{2}" />. Seven right-endpoint rectangles of width <InlineMath math="1" /> cover it with a little extra on top: <InlineMath math="1 + 2 + \cdots + 7 = 28" />, which matches <InlineMath math="\tfrac{49}{2}(1 + \tfrac17) = 28" />.
+Compare the finite partition at <InlineMath math="n = 7" /> against the exact triangle area <InlineMath math="24.5" />:
+
+<BlockMath math="R_7 = 1 + 2 + \cdots + 7 = \frac{49}{2}\left(1 + \frac{1}{7}\right) = 28" />
+
+Seven right-endpoint rectangles of width <InlineMath math="1" /> cover the triangle with triangular slivers jutting above the line.
 
 <MathVisual
   title={<>Seven rectangles over the exact area</>}
@@ -116,9 +121,19 @@ Here is the limit at work. The exact area under <InlineMath math="y = x" /> from
   }}
 />
 
-## Comparing Different Rectangle Counts
+Those seven overhanging triangles add up to <InlineMath math="3.5" />, which is why <InlineMath math="R_7 = 28" /> overshoots the exact area <InlineMath math="24.5" /> by exactly that margin.
 
-Write the right-endpoint sum as <InlineMath math="R_n=\frac{49}{2}(1+\frac1n)" />. We can check several values of <InlineMath math="n" /> before taking the limit. Since the graph increases, right-endpoint rectangles give an **overestimate**.
+## Convergence and Volumes
+
+Refining a partition into **finer slices** makes finite approximations converge to exact areas in two dimensions and exact rotational volumes in three dimensions. First watch rectangle counts close in on a triangle area, then revolve a profile curve to see how circular cross-sections build a solid.
+
+### Finer Rectangle Grids
+
+Use the closed right-endpoint sum formula to test several values of <InlineMath math="n" /> before taking the limit:
+
+<BlockMath math="R_n = \frac{49}{2}\left(1 + \frac{1}{n}\right)" />
+
+Since the graph increases, right-endpoint rectangles give an **overestimate**.
 
 | Number of rectangles | Right-endpoint approximation |
 | --- | --- |
@@ -128,11 +143,19 @@ Write the right-endpoint sum as <InlineMath math="R_n=\frac{49}{2}(1+\frac1n)" /
 | <InlineMath math="10" /> | <InlineMath math="26.95" /> |
 | <InlineMath math="100" /> | <InlineMath math="24.745" /> |
 
-The difference from the exact value is <InlineMath math="R_n-\frac{49}{2}=\frac{49}{2n}" />. Doubling the rectangle count therefore halves the error in this linear example. You can also check the exact area as a triangle whose base and height both equal <InlineMath math="7" />:
+Subtract the exact value to see how the error scales with <InlineMath math="n" />:
 
-<BlockMath math="A=\frac12(7)(7)=\frac{49}{2}" />
+<BlockMath math="R_n - \frac{49}{2} = \frac{49}{2n}" />
 
-Double the rectangle count to <InlineMath math="14" />, each of width <InlineMath math="\tfrac12" />. The extra slivers on top get thinner, and the total drops to <InlineMath math="\tfrac{49}{2}(1 + \tfrac{1}{14}) = 26.25" />. Every time <InlineMath math="n" /> grows, the sum moves closer to <InlineMath math="24.5" />.
+Doubling the rectangle count therefore halves the error in this linear example. You can also check the exact area as a triangle whose base and height both equal <InlineMath math="7" />:
+
+<BlockMath math="A = \frac{1}{2}(7)(7) = \frac{49}{2}" />
+
+Double the rectangle count to <InlineMath math="14" />, each of width <InlineMath math="\tfrac{1}{2}" />, so the total drops closer to <InlineMath math="24.5" />:
+
+<BlockMath math="R_{14} = \frac{49}{2}\left(1 + \frac{1}{14}\right) = 26.25" />
+
+The extra slivers on top get thinner as <InlineMath math="n" /> grows.
 
 <MathVisual
   title={<>Fourteen thinner rectangles</>}
@@ -168,7 +191,7 @@ Double the rectangle count to <InlineMath math="14" />, each of width <InlineMat
   }}
 />
 
-Put the right-endpoint sums side by side. From <InlineMath math="n = 1" /> to <InlineMath math="n = 100" /> the bars shrink from <InlineMath math="49" /> toward the exact area <InlineMath math="\frac{49}{2} = 24.5" />, and the gap above it is always <InlineMath math="\frac{49}{2n}" />.
+Put the right-endpoint sums side by side. From <InlineMath math="n = 1" /> to <InlineMath math="n = 100" /> the bars shrink from <InlineMath math="49" /> toward the exact area <InlineMath math="24.5" />, and the gap above it is always <InlineMath math="\frac{49}{2n}" />.
 
 <BarChart
   title={<>Right-endpoint sums <InlineMath math="R_n" /> for six rectangle counts</>}
@@ -177,3 +200,54 @@ Put the right-endpoint sums side by side. From <InlineMath math="n = 1" /> to <I
   data={[1, 2, 7, 10, 14, 100].map((n) => ({ name: String(n), value: (49 / 2) * (1 + 1 / n) }))}
   chartConfig={{ value: { label: "Approximation", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+By <InlineMath math="n = 100" />, the bar sits within <InlineMath math="0.245" /> of the true area, illustrating how the Riemann limit stabilizes onto a single exact number.
+
+### Solids of Revolution
+
+The exact same accumulation idea extends from two-dimensional strips into three-dimensional volumes. Rotating a profile curve around an axis turns every thin vertical strip into a **circular disk** of area <InlineMath math="\pi R(x)^2" />, or a washer of area <InlineMath math="\pi(R(x)^2 - r(x)^2)" /> when an inner cavity exists, so the definite integral adds up those cross-sectional slices:
+
+<BlockMath math="V = \int_{a}^{b} A(x)\,dx = \pi \int_{a}^{b} \big(R(x)^2 - r(x)^2\big)\,dx" />
+
+Sweep the rotation angle across four profiles to see how revolving a single curve generates a 3D solid whose volume accumulates slice by slice.
+
+<SolidOfRevolutionLab
+  title={<>Accumulating cross-section disks into 3D solids</>}
+  description={<>Revolve four profile curves around the axis and sweep the angle up to a full turn to connect the highlighted cross-section disk or washer area with the swept volume.</>}
+  profiles={["paraboloid", "trumpetHorn", "washerBowl", "frustumCone"]}
+  sweepAngle={{ min: 30, max: 360, value: 270 }}
+  labels={{
+    parts: {
+      profileCurve: "Profile curve",
+      revolvedShell: "Revolved shell",
+      crossSectionDisk: "Cross-section slice",
+      rotationAxis: "Rotation axis",
+      radiusArrow: "Radius",
+    },
+    profile: "Solid profile",
+    profiles: {
+      paraboloid: {
+        name: "Paraboloid",
+        formula: <InlineMath math="A = \pi R^2,\; V_{360^\circ} = 2\pi" />,
+      },
+      trumpetHorn: {
+        name: "Trumpet horn",
+        formula: <InlineMath math="A = \pi R^2,\; V_{360^\circ} = 1.4\pi" />,
+      },
+      washerBowl: {
+        name: "Washer bowl",
+        formula: <InlineMath math="A = \pi(R^2 - r^2),\; V_{360^\circ} = 2.4\pi" />,
+      },
+      frustumCone: {
+        name: "Frustum cone",
+        formula: <InlineMath math="A = \pi R^2,\; V_{360^\circ} = 1.85\pi" />,
+      },
+    },
+    sliceArea: <>Cross-section area</>,
+    sweepAngle: "Sweep angle",
+    totalVolume: <>Swept volume</>,
+    view: "Three-dimensional solid of revolution swept around an axis with a highlighted circular cross-section slice",
+  }}
+/>
+
+Increasing the sweep angle grows the swept volume linearly in proportion to the turn, while switching to the washer bowl removes the inner core so each cross-section becomes an annular ring rather than a full disk.

@@ -1,10 +1,11 @@
 export const metadata = {
-   title: "Penguraian QR",
-    description: "Faktorkan matriks dengan penguraian QR menggunakan proses Gram Schmidt atau transformasi Householder, kemudian selesaikan sistem linear.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2025-07-14",
-   dateModified: "2026-09-19",
-   subject: "Kaedah Linear AI",
+  title: "Penguraian QR",
+  description:
+    "Faktorkan matriks dengan penguraian QR menggunakan proses Gram Schmidt atau transformasi Householder, kemudian selesaikan sistem linear.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-14",
+  dateModified: "2026-11-27",
+  subject: "Kaedah Linear AI",
 };
 
 ## Kewujudan Penguraian QR
@@ -32,15 +33,62 @@ Pangkat lajur penuh menjamin <InlineMath math="\widetilde q_j\neq0" /> pada seti
 <BlockMath math="= \sum_{k=1}^{j-1} q_k \cdot r_{kj} + q_j \cdot r_{jj}" />
 </MathContainer>
 
-<InlineMath math="A=Q_1R_1" />, dengan <InlineMath math="R_1 \in \mathbb{R}^{n \times n}" /> ialah matriks segi tiga atas dan <InlineMath math="r_{ii}=\|\widetilde q_i\|_2>0" />.
+Hasilnya ialah pemfaktoran terturun <InlineMath math="A=Q_1R_1" />, dengan <InlineMath math="R_1 \in \mathbb{R}^{n \times n}" /> ialah matriks segi tiga atas yang mempunyai pepenjuru positif:
 
-Lengkapkan <InlineMath math="Q_1" /> dengan <InlineMath math="m-n" /> lajur ortonormal untuk membentuk <InlineMath math="Q=(Q_1\quad Q_2)\in\mathbb{R}^{m\times m}" />.
+<BlockMath math="r_{ii} = \|\widetilde q_i\|_2 > 0" />
 
-Tambahkan <InlineMath math="m-n" /> baris sifar di bawah <InlineMath math="R_1" />, dan kamu dapat:
+Lengkapkan <InlineMath math="Q_1" /> dengan <InlineMath math="m-n" /> lajur ortonormal dan tambahkan <InlineMath math="m-n" /> baris sifar di bawah <InlineMath math="R_1" /> untuk membentuk faktor penuhnya:
 
-<BlockMath math="R=\begin{pmatrix}R_1\\0\end{pmatrix}\in\mathbb{R}^{m\times n}" />
+<MathContainer>
+<BlockMath math="Q = (Q_1 \quad Q_2) \in \mathbb{R}^{m \times m}" />
+<BlockMath math="R = \begin{pmatrix} R_1 \\ 0 \end{pmatrix} \in \mathbb{R}^{m \times n}" />
+<BlockMath math="A = Q_1 R_1 = Q R" />
+</MathContainer>
 
-Matriks yang sudah dilengkapkan ini masih memenuhi <InlineMath math="A=Q_1R_1=QR" />.
+Ikuti peringkat pembinaan Gram-Schmidt tiga dimensi di bawah dan laraskan kecondongan lajur untuk melihat bagaimana unjuran menyingkirkan pertindihan lalu meninggalkan rangka ortonormal.
+
+<QrGramSchmidt3DLab
+  title={<>Pengortogonan Gram-Schmidt dalam <InlineMath math="\mathbb{R}^3" /></>}
+  description={<>Langkah demi langkah, jalankan Gram-Schmidt pada tiga lajur condong dan ubah kecondongan lajur untuk meneliti bayang unjuran, unsur segi tiga atas <InlineMath math="r_{12}" />, serta ralat keortogonan.</>}
+  steps={["originalBasis", "normalizeQ1", "orthogonalizeQ2", "orthogonalizeQ3"]}
+  skew={{ min: 0, max: 1, value: 0.7 }}
+  labels={{
+    step: "Peringkat",
+    skew: "Kecondongan lajur",
+    view: "Paparan",
+    orthogonalityCheck: <>Ralat keortogonan <InlineMath math="\|Q^T Q - I\|" /></>,
+    rEntries: <>Unsur luar pepenjuru <InlineMath math="r_{12}" /></>,
+    parts: {
+      inputVectors: "Lajur input",
+      orthonormalBasis: "Vektor ortonormal",
+      projectionShadow: "Bayang unjuran",
+      orthogonalFrame: "Rangka ortogon",
+      unitSphere: "Sfera unit",
+    },
+    steps: {
+      originalBasis: {
+        name: "Lajur asal",
+        summary: <>Mulakan dengan tiga lajur condong <InlineMath math="a_1, a_2, a_3" /> yang hasil darab dalamnya bukan sifar.</>,
+      },
+      normalizeQ1: {
+        name: "Normalkan vektor pertama",
+        summary: <>Skalakan <InlineMath math="a_1" /> ke sfera unit untuk menetapkan arah ortonormal pertama <InlineMath math="q_1" />.</>,
+      },
+      orthogonalizeQ2: {
+        name: "Ortogonkan vektor kedua",
+        summary: <>Tolak unjuran <InlineMath math="r_{12} q_1" /> daripada <InlineMath math="a_2" /> dan normalkan baki berserenjangnya kepada <InlineMath math="q_2" />.</>,
+      },
+      orthogonalizeQ3: {
+        name: "Lengkapkan rangka ortonormal",
+        summary: <>Buang komponen sepanjang <InlineMath math="q_1" /> dan <InlineMath math="q_2" /> daripada <InlineMath math="a_3" /> supaya ketiga-tiga vektor unit bertemu pada sudut tegak.</>,
+      },
+    },
+  }}
+/>
+
+Apabila kecondongan lajur bertambah, unjuran luar pepenjuru <InlineMath math="r_{12}" /> yang mesti ditolak turut membesar, tetapi setelah ketiga-tiga peringkat selesai ralat keortogonan jatuh ke sifar dan setiap vektor terletak tepat pada sfera unit.
+
+> Gram-Schmidt membina lajur ortonormal secara langsung dengan menolak unjuran, manakala pantulan Householder menghasilkan pemfaktoran yang sama dengan kestabilan berangka yang lebih kuat apabila lajur hampir bersandar.
 
 ## Penguraian QR Penuh dan Terturun
 
@@ -72,7 +120,12 @@ Ruang nol <InlineMath math="A^T" /> ialah set semua vektor <InlineMath math="x" 
 
 Untuk matriks berpangkat lajur penuh, pemfaktoran terturun <InlineMath math="A=Q_1R_1" /> menjadi unik apabila setiap **unsur pepenjuru** <InlineMath math="R_1" /> positif. Syarat tanda ini membuang kebebasan yang masih tinggal, kerana mendarab satu lajur <InlineMath math="Q_1" /> dan baris <InlineMath math="R_1" /> yang sepadan dengan <InlineMath math="-1" /> tidak mengubah hasil darabnya.
 
-Untuk lajur <InlineMath math="a_1=(1,1,0)" /> dan <InlineMath math="a_2=(1,0,1)" />, Gram-Schmidt memberikan <InlineMath math="q_1=\tfrac1{\sqrt2}(1,1,0)" /> dan <InlineMath math="q_2=\tfrac1{\sqrt6}(1,-1,2)" />. Pemfaktoran terturun berhenti di sini. Pemfaktoran penuh pula menambah <InlineMath math="q_3=\tfrac1{\sqrt3}(1,-1,-1)" />, yang berserenjang dengan satah lajur, serta satu baris sifar di bawah <InlineMath math="R" />.
+Untuk lajur <InlineMath math="a_1=(1,1,0)" /> dan <InlineMath math="a_2=(1,0,1)" />, Gram-Schmidt menghasilkan vektor asas terturun <InlineMath math="q_1" /> dan <InlineMath math="q_2" />, manakala pemfaktoran penuh menambah vektor normal <InlineMath math="q_3" /> serta satu baris sifar di bawah <InlineMath math="R_1" />:
+
+<MathContainer>
+<BlockMath math="q_1 = \frac{1}{\sqrt{2}}(1, 1, 0), \qquad q_2 = \frac{1}{\sqrt{6}}(1, -1, 2)" />
+<BlockMath math="q_3 = \frac{1}{\sqrt{3}}(1, -1, -1)" />
+</MathContainer>
 
 <MathVisual
   title={<><InlineMath math="Q" /> terturun dan penuh untuk dua lajur dalam <InlineMath math="\mathbb R^3" /></>}
@@ -100,10 +153,11 @@ Untuk lajur <InlineMath math="a_1=(1,1,0)" /> dan <InlineMath math="a_2=(1,0,1)"
   }}
 />
 
+Perhatikan bahawa <InlineMath math="q_1" /> dan <InlineMath math="q_2" /> merentang satah yang sama persis dengan lajur asal, manakala <InlineMath math="q_3" /> berserenjang dengan satah itu untuk merentang pelengkap ortogonnya.
+
 ## Contoh Lengkap QR Nipis
 
 Katakan
-
 
 <BlockMath math="A=\begin{pmatrix}1&1\\1&0\\0&1\end{pmatrix}=(a_1\ \,a_2)" />
 
@@ -124,7 +178,7 @@ Daripada pengiraan ini, kamu dapat:
 <BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
 </MathContainer>
 
-Putar paparan tiga dimensi ini supaya kamu dapat melihat contoh ini dari setiap sisi. Unjuran ambar <InlineMath math="r_{12}q_1=(1/2,1/2,0)^T" /> ialah bahagian <InlineMath math="a_2" /> yang menghala sepanjang <InlineMath math="q_1" />. Baki jingga <InlineMath math="\widetilde q_2" />, dari hujung unjuran ke hujung <InlineMath math="a_2" />, berserenjang dengan <InlineMath math="q_1" />, dan apabila baki ini dinormalkan, kamu dapat <InlineMath math="q_2" />. Dari sudut mana pun kamu lihat, dua segmen magenta itu sentiasa bertemu pada sudut tegak.
+Putar paparan tiga dimensi ini supaya kamu dapat melihat contoh ini dari setiap sisi. Unjuran ambar <InlineMath math="r_{12}q_1" /> ialah bahagian <InlineMath math="a_2" /> yang menghala sepanjang <InlineMath math="q_1" />. Baki jingga <InlineMath math="\widetilde q_2" />, dari hujung unjuran ke hujung <InlineMath math="a_2" />, berserenjang dengan <InlineMath math="q_1" />, dan apabila baki ini dinormalkan, kamu dapat <InlineMath math="q_2" />.
 
 <MathVisual
   title={<>Gram-Schmidt pada <InlineMath math="a_1,a_2" /></>}
@@ -160,6 +214,8 @@ Putar paparan tiga dimensi ini supaya kamu dapat melihat contoh ini dari setiap 
   }}
 />
 
+Dari sudut mana pun kamu lihat, dua vektor unit magenta <InlineMath math="q_1" /> dan <InlineMath math="q_2" /> sentiasa bertemu pada sudut tegak, dan gabungan linearnya melalui lajur <InlineMath math="R_1" /> memulihkan <InlineMath math="a_1" /> dan <InlineMath math="a_2" /> dengan tepat.
+
 ## Kaedah Householder untuk Penguraian QR
 
 Gram-Schmidt klasik memberikan cara yang langsung untuk menerbitkan penguraian ini, tetapi **lajur yang hampir bersandar** boleh kehilangan keortogonan dalam aritmetik titik apungan. Gram-Schmidt terubah suai mengurangkan ralat itu. Perisian berangka untuk matriks padat lazimnya menggunakan pemantul Householder, manakala putaran Givens berguna apabila hanya unsur tertentu yang perlu dihapuskan.
@@ -170,9 +226,7 @@ Untuk vektor unit <InlineMath math="v\in\mathbb{R}^m" />, takrifkan matriks Hous
 
 **Hasil darab luar** <InlineMath math="vv^T" /> mendarab lajur <InlineMath math="m\times1" /> dengan baris <InlineMath math="1\times m" />, jadi ia menghasilkan matriks <InlineMath math="m\times m" /> berpangkat satu. Hasil darab yang diterbalikkan, <InlineMath math="v^Tv" />, ialah skalar <InlineMath math="1" />.
 
-## Sifat Transformasi Householder
-
-Untuk <InlineMath math="S=I-2vv^T" /> dan <InlineMath math="\|v\|_2=1" />, sifat-sifat berikut berlaku. Kesimetrian dan keortogonan datang daripada vektor unit dalam definisi, pantulan menerangkan apa yang transformasi ini lakukan pada sesuatu vektor, dan **nombor syarat satu** bermaksud pantulan yang tepat mengekalkan norma Euclid bagi vektor gangguan.
+Oleh sebab <InlineMath math="\|v\|_2=1" />, pemantul <InlineMath math="S" /> memenuhi empat sifat utama. Kesimetrian dan keortogonan datang daripada vektor unit dalam definisi, pantulan menerangkan apa yang transformasi ini lakukan pada sesuatu vektor, dan **nombor syarat satu** bermaksud pantulan yang tepat mengekalkan norma Euclid bagi vektor gangguan.
 
 1. <InlineMath math="S" /> simetri: <InlineMath math="S^T = S" />
 
@@ -182,7 +236,11 @@ Untuk <InlineMath math="S=I-2vv^T" /> dan <InlineMath math="\|v\|_2=1" />, sifat
 
 4. <InlineMath math="\text{cond}_2(S) = 1" />
 
-Untuk <InlineMath math="x=(3,4)" /> dengan <InlineMath math="\|x\|_2=5" />, pilih <InlineMath math="v=\tfrac{x-5e_1}{\|x-5e_1\|_2}=\tfrac1{\sqrt5}(-1,2)" />. Kemudian <InlineMath math="S=I-2vv^T" /> mencerminkan <InlineMath math="x" /> merentasi garis yang berserenjang dengan <InlineMath math="v" /> dan menghantarnya ke <InlineMath math="(5,0)" />. Satu pantulan sahaja menjadikan unsur kedua sifar tanpa mengubah panjangnya.
+Untuk <InlineMath math="x=(3,4)" /> dengan <InlineMath math="\|x\|_2=5" />, pilih vektor normal unit:
+
+<BlockMath math="v = \frac{x - 5e_1}{\|x - 5e_1\|_2} = \frac{1}{\sqrt{5}}(-1, 2)" />
+
+Kemudian <InlineMath math="S=I-2vv^T" /> mencerminkan <InlineMath math="x" /> merentasi garis yang berserenjang dengan <InlineMath math="v" /> dan menghantarnya ke <InlineMath math="(5,0)" />.
 
 <MathVisual
   title={<>Pantulan Householder menghantar <InlineMath math="(3,4)" /> ke <InlineMath math="(5,0)" /></>}
@@ -211,6 +269,8 @@ Untuk <InlineMath math="x=(3,4)" /> dengan <InlineMath math="\|x\|_2=5" />, pili
   }}
 />
 
+Satu pantulan sahaja menjadikan koordinat kedua sifar tanpa mengubah panjang Euclid bagi <InlineMath math="x" />, sebab itulah rangkaian pemantul boleh mensifarkan lajur demi lajur secara stabil.
+
 ## Prosedur Householder
 
 Katakan <InlineMath math="A\in\mathbb{R}^{m\times n}" /> memenuhi <InlineMath math="m\geq n" /> dan <InlineMath math="\operatorname{rank}(A)=n" />. **Setiap langkah Householder** menjadikan semua unsur di bawah satu kedudukan pepenjuru sifar, sambil mengekalkan sifar yang sudah dihasilkan oleh langkah-langkah sebelumnya.
@@ -229,7 +289,9 @@ Dengan <InlineMath math="S_1=I_m-2v_1v_1^T" />, lajur pertama di bawah pepenjuru
 
 <BlockMath math="A_2 = S_1 \cdot A_1 = \begin{pmatrix} r_{11} & * \\ 0 & \tilde{A}_2 \end{pmatrix}" />
 
-Dalam matriks <InlineMath math="A_2" />, <InlineMath math="r_{11} = \pm\|\tilde{a}_1\|_2" /> dan <InlineMath math="\tilde{A}_2 \in \mathbb{R}^{m-1 \times n-1}" />.
+Dalam matriks <InlineMath math="A_2" />, pangsi pertama dan blok aktifnya memenuhi:
+
+<BlockMath math="r_{11} = \pm\|\tilde{a}_1\|_2, \qquad \tilde{A}_2 \in \mathbb{R}^{(m-1) \times (n-1)}" />
 
 Gunakan pemantul seterusnya hanya pada **submatriks kanan bawah yang masih tinggal**:
 
@@ -252,7 +314,11 @@ Selepas itu, lajur kedua di bawah pepenjuru pula menjadi sifar:
 
 <BlockMath math="A_3 = S_2 \cdot A_2 = \begin{pmatrix} r_{11} & * & * \\ 0 & r_{22} & * \\ 0 & 0 & \tilde{A}_3 \end{pmatrix}" />
 
-Di sini <InlineMath math="r_{22}=\pm\|\widetilde a_2\|_2" /> dan <InlineMath math="\widetilde A_3\in\mathbb{R}^{(m-2)\times(n-2)}" />. Apabila operasi yang sama diulang, yang tinggal ialah lajur aktif terakhir
+Di sini pangsi kedua dan blok aktif yang tinggal memenuhi:
+
+<BlockMath math="r_{22} = \pm\|\widetilde a_2\|_2, \qquad \widetilde A_3 \in \mathbb{R}^{(m-2) \times (n-2)}" />
+
+Apabila operasi yang sama diulang, yang tinggal ialah lajur aktif terakhir
 
 <BlockMath math="\tilde{A}_n = \begin{pmatrix} \tilde{a}_{nn} \\ \vdots \\ \tilde{a}_{mn} \end{pmatrix} \in \mathbb{R}^{m-(n-1) \times 1}" />
 
@@ -321,20 +387,23 @@ Selepas <InlineMath math="n" /> langkah,
 
 Apabila penguraian ini dilaksanakan dalam aritmetik titik apungan, timbul dua soalan praktikal: berapa banyak operasi yang diperlukan, dan apakah kelakuan **ralat pembundaran**. Kedua-dua jawapan menentukan sama ada kaedah ini sesuai dengan masalah kamu: bilangan operasi menentukan masa larian untuk matriks yang besar, dan kelakuan pembundaran menentukan sejauh mana kamu boleh mempercayai hasil yang dikira.
 
-### Kerumitan Pengiraan
+### Bilangan Operasi Householder
 
 Kiraan di bawah menyimpan <InlineMath math="Q" /> **secara tersirat sebagai pemantul** dan mengira <InlineMath math="R" />. Membina matriks penuh <InlineMath math="m\times m" />, iaitu <InlineMath math="Q" />, secara tersurat memerlukan kerja tambahan.
 
 Untuk <InlineMath math="m\ge n" />, penguraian <InlineMath math="\mathrm{QR}" /> dengan pemantul Householder memerlukan kira-kira:
 
 <BlockMath math="2mn^2-\frac23n^3" />
+
 Anggaran bilangan **operasi titik apungan** apabila <InlineMath math="m=n" /> ialah:
 
 <BlockMath math="\frac43n^3" />
 
 ### Sifat Berangka
 
-Pendaraban ortogon **mengekalkan nilai singular**, jadi <InlineMath math="\operatorname{cond}_2(R)=\operatorname{cond}_2(A)" /> untuk matriks berpangkat lajur penuh.
+Pendaraban ortogon **mengekalkan nilai singular**, jadi matriks berpangkat lajur penuh mengekalkan nombor syarat yang sama pada faktor segi tiganya:
+
+<BlockMath math="\operatorname{cond}_2(R) = \operatorname{cond}_2(A)" />
 
 Pada langkah <InlineMath math="i" />, unsur pepenjuru yang baharu ialah <InlineMath math="\pm\|\widetilde a_i\|_2" />. Pilih tanda di bawah semasa mengira pemantul supaya kamu tidak menolak dua nombor yang hampir sama:
 

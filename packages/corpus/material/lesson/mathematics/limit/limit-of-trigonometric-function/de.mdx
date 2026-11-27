@@ -1,41 +1,45 @@
 export const metadata = {
-   title: "Grenzwerte trigonometrischer Funktionen",
-   description: "Trigonometrische Grenzwerte mit dem grundlegenden Sinusgrenzwert, passenden Identitäten und gezielten Substitutionen berechnen.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2026-08-22",
-   dateModified: "2026-11-08",
-   subject: "Grenzwerte",
+  title: "Grenzwerte trigonometrischer Funktionen",
+  description:
+    "Trigonometrische Grenzwerte mit dem Einschließungssatz, dem Sinusgrenzwert, Identitäten und gezielten Substitutionen berechnen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-08-22",
+  dateModified: "2026-11-27",
+  subject: "Grenzwerte",
 };
 
-## Direktes Einsetzen und unbestimmte Formen
+## Einsetzen bei Winkelfunktionen
 
-**Trigonometrische Grenzwerte** stellen dieselbe lokale Frage wie algebraische Grenzwerte: Welchem Wert nähert sich ein Ausdruck in der Umgebung einer bestimmten Eingabe? Sinus und Kosinus sind überall stetig, Tangens überall dort, wo der Kosinus nicht null ist. Direktes Einsetzen funktioniert daher weiterhin, wenn der entstehende Ausdruck definiert ist.
+**Trigonometrische Grenzwerte** stellen dieselbe lokale Frage wie algebraische Grenzwerte: Welchem Wert nähert sich ein Term in der Umgebung einer bestimmten Eingabe? Sinus und Kosinus sind überall stetig, Tangens überall bei nicht verschwindendem Kosinus, sodass direktes Einsetzen bei definierten Termen sofort gelingt.
 
-Besondere Schritte sind nötig, wenn das Einsetzen eine unbestimmte Form wie <InlineMath math="\frac{0}{0}" /> ergibt. In der Umgebung von null lassen sich solche Ausdrücke mit einem **grundlegenden Sinusgrenzwert** und bekannten [trigonometrischen Identitäten](/de/faecher/mathematik/funktionen-und-modelle/trigonometrische-identitaeten) umformen.
+Besondere Schritte beginnen erst bei einer unbestimmten Form wie <InlineMath math="\frac{0}{0}" />. Nahe null formst du den Ausdruck mit dem **grundlegenden Sinusgrenzwert** und [trigonometrischen Identitäten](/de/faecher/mathematik/funktionen-und-modelle/trigonometrische-identitaeten) in eine direkt auswertbare Form um.
 
 ## Sinusgrenzwert bei null
 
-Nähert sich ein im Bogenmaß angegebener Winkel null, dann nähert sich das <Highlight>Verhältnis aus seinem Sinus und dem Winkel selbst</Highlight> dem Wert eins. Das Bogenmaß ist es, das den Wert genau eins macht, und diese eine Tatsache bestimmt den Wert jedes Verhältnisses aus Sinus und Kosinus.
+Nähert sich ein im Bogenmaß gemessener Winkel null, dann strebt das <Highlight>Verhältnis aus seinem Sinus und dem Winkel selbst</Highlight> gegen eins. Gerade das Bogenmaß macht diesen Wert genau eins und bestimmt jedes verwandte Verhältnis nahe null.
 
 ### Sinusgrenzwert
 
-Es gilt:
+Der grundlegende trigonometrische Grenzwert lautet:
 
 <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
 
-Der Ausdruck ist bei <InlineMath math="x=0" /> nicht definiert. Direktes Einsetzen bestimmt den Grenzwert daher nicht. Ein geometrischer Beweis verwendet den Einheitskreis und den Einschließungssatz.
+Da der Quotient bei <InlineMath math="x = 0" /> undefiniert ist, reicht direktes Einsetzen nicht als Beweis. Der geometrische Beweis kombiniert den Einheitskreis mit dem **Einschließungssatz**.
 
-> Hier muss <InlineMath math="x" /> im **Bogenmaß** stehen. Für Gradmaß gilt dieser Grenzwert nicht in derselben Form.
+> Gib <InlineMath math="x" /> in trigonometrischen Grenzwerten immer im **Bogenmaß** an, weil das Gradmaß den Winkel umskaliert und den Grenzwert verändert.
 
-Am Einheitskreis liefert der Vergleich von Dreiecks- und Sektorflächen für <InlineMath math="0<x<\pi/2" /> die Ungleichung <InlineMath math="\sin x<x<\tan x" />. Division durch positive Größen ergibt **zwei einschließende Schranken**:
+Am Einheitskreis für <InlineMath math="x" /> zwischen <InlineMath math="0" /> und <InlineMath math="\pi/2" /> liefert der Vergleich von Dreiecks- und Sektorflächen zwei einschließende Ungleichungen:
 
-<BlockMath math="\cos x<\frac{\sin x}{x}<1" />
+<MathContainer>
+  <BlockMath math="\sin x < x < \tan x" />
+  <BlockMath math="\cos x < \frac{\sin x}{x} < 1" />
+</MathContainer>
 
-Für <InlineMath math="x\to0^+" /> gehen beide Schranken gegen <InlineMath math="1" />. Links gilt <InlineMath math="\sin(-x)/(-x)=\sin x/x" />, sodass derselbe Grenzwert entsteht. Der Graph veranschaulicht die Annäherung. Bei <InlineMath math="x=0" /> bleibt der Ausdruck undefiniert.
+Für <InlineMath math="x \to 0^+" /> laufen beide Schranken gegen <InlineMath math="1" />. Weil der Quotient symmetrisch zu <InlineMath math="x = 0" /> ist, strebt die linke Seite ebenfalls gegen <InlineMath math="1" />, obwohl bei <InlineMath math="(0, 1)" /> ein offenes Loch bleibt.
 
 <MathVisual
   title={<>Das Verhältnis <InlineMath math="\frac{\sin x}{x}" /> nähert sich <InlineMath math="1" /></>}
-  description={<>Die Kurve <InlineMath math="y = \frac{\sin x}{x}" /> für <InlineMath math="0 < |x| \le 3" />, Winkel im Bogenmaß. Beide Seiten nähern sich der Geraden <InlineMath math="y = 1" />, und der offene Kreis bei <InlineMath math="(0, 1)" /> markiert, wo der Ausdruck nicht definiert ist.</>}
+  description={<>Kurve <InlineMath math="y = \frac{\sin x}{x}" /> für <InlineMath math="0 < |x| \le 3" /> im Bogenmaß, die sich <InlineMath math="y = 1" /> mit offenem Loch bei <InlineMath math="(0, 1)" /> nähert.</>}
   labels={{
     one: <InlineMath math="y = 1" />,
     hole: <InlineMath math="(0, 1)" />,
@@ -57,30 +61,73 @@ Für <InlineMath math="x\to0^+" /> gehen beide Schranken gegen <InlineMath math=
   }}
 />
 
-### Folgen der Grundgrenze
+Beide symmetrischen Äste münden glatt auf Höhe <InlineMath math="1" /> an der senkrechten Achse. Verkleinere unten im Einschließungslabor den Fensterradius, um zu beobachten, wie obere und untere Schranke <InlineMath math="\frac{\sin x}{x}" /> sowie zwei gedämpfte Wellen auf einen einzigen Grenzwert zusammendrücken.
 
-Mit diesem **Grenzwert** lassen sich die folgenden Ergebnisse herleiten:
+<SqueezeTheoremWaveLab
+  title={<>Schranken des Einschließungssatzes bei null</>}
+  description={
+    <>
+      Verkleinere den Fensterradius <InlineMath math="r" /> und vergleiche die
+      Sinusschranken <InlineMath math="\cos x \le \frac{\sin x}{x} \le 1" />{" "}
+      mit zwei gedämpft schwingenden Wellen gegen null.
+    </>
+  }
+  envelopes={["sincEnvelope", "quadraticSine", "linearDamped"]}
+  radius={{ min: 0.1, max: 1.5, value: 0.8 }}
+  labels={{
+    envelope: "Schrankenpaar",
+    envelopes: {
+      sincEnvelope: {
+        name: "Sinusschranken",
+        formula: <InlineMath math="\cos x \le \frac{\sin x}{x} \le 1" />,
+      },
+      quadraticSine: {
+        name: "Quadratische Hülle",
+        formula: (
+          <InlineMath math="-x^2 \le x^2 \sin\!\left(\frac{1}{x}\right) \le x^2" />
+        ),
+      },
+      linearDamped: {
+        name: "Lineare Hülle",
+        formula: (
+          <InlineMath math="-|x| \le |x| \cos\!\left(\frac{1}{x}\right) \le |x|" />
+        ),
+      },
+    },
+    radius: "Fensterradius",
+    boundSpread: <>Schrankenabstand</>,
+    squeezedLimit: <>Eingeschlossener Grenzwert</>,
+    view: "Eingeschlossene Kurve zwischen gestrichelter oberer und unterer Hüllkurve, die sich im schrumpfenden Fenster am Schnittpunkt treffen",
+    parts: {
+      upperBound: "Obere Schranke",
+      lowerBound: "Untere Schranke",
+      squeezedWave: "Eingeschlossene Welle",
+      pinchPoint: "Treffpunkt",
+      windowFrame: "Fensterradius",
+    },
+  }}
+/>
 
-Da <InlineMath math="\tan x=\frac{\sin x}{\cos x}" /> und <InlineMath math="\cos x\to1" /> gelten:
+Schrumpft der Radius gegen null, fällt der vertikale Abstand zwischen oberer und unterer Schranke auf null, sodass die eingeschlossene Kurve unabhängig von ihrer Schwingungsfrequenz genau denselben Grenzwert annehmen muss.
+
+### Kosinusgrenzwerte
+
+Aus dem Sinusgrenzwert zusammen mit Tangens- und **Halbwinkelidentitäten** folgen drei weitere Grundgrenzwerte. Mit Tangens als Sinus durch Kosinus und <InlineMath math="\cos x \to 1" /> gilt:
 
 <BlockMath math="\lim_{x \to 0} \frac{\tan x}{x} = 1" />
 
-Verwende die Identität <InlineMath math="1-\cos x=2\sin^2\frac x2" />:
+Nutze nun die Halbwinkelidentität für den Kosinus:
 
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = 0" />
+<BlockMath math="1 - \cos x = 2\sin^2\frac{x}{2}" />
 
-Verwende die Identität <InlineMath math="1-\cos x=2\sin^2\frac x2" />:
-
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}" />
-
-Die Identität liefert beide Kosinusgrenzwerte direkt, ohne Ableitungsregeln vorwegzunehmen, die erst später entwickelt werden:
+Damit lösen sich beide Kosinusquotienten direkt ohne Ableitungsregeln:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\frac{1-\cos x}{x} \\ &amp;=\sin\frac{x}{2}\cdot\frac{\sin(x/2)}{x/2}\;\\ &amp;\longrightarrow\;0\cdot 1 \\ &amp;=0 \end{aligned}" />
-<BlockMath math="\begin{aligned} &amp;\frac{1-\cos x}{x^2} =\frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2\; \\ &amp;\longrightarrow\;\frac{1}{2} \end{aligned}" />
+  <BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x} = \lim_{x \to 0} \sin\frac{x}{2} \cdot \frac{\sin(x/2)}{x/2} = 0 \cdot 1 = 0" />
+  <BlockMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \lim_{x \to 0} \frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2 = \frac{1}{2}" />
 </MathContainer>
 
-Prüf <InlineMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac12" /> mit Zahlen. Bei <InlineMath math="x = 1" />, <InlineMath math="0{,}5" />, <InlineMath math="0{,}1" /> und <InlineMath math="0{,}01" /> ist das Verhältnis etwa <InlineMath math="0{,}460" />, <InlineMath math="0{,}490" />, <InlineMath math="0{,}4996" /> und <InlineMath math="0{,}499996" /> und nähert sich <InlineMath math="\tfrac12" /> von unten.
+Prüfe den zweiten Kosinusgrenzwert mit Zahlen. Bei <InlineMath math="x = 1" />, <InlineMath math="0{,}5" />, <InlineMath math="0{,}1" /> und <InlineMath math="0{,}01" /> steigt der Quotient über <InlineMath math="0{,}460" />, <InlineMath math="0{,}490" />, <InlineMath math="0{,}4996" /> und <InlineMath math="0{,}499996" /> gegen <InlineMath math="\frac{1}{2}" />.
 
 <BarChart
   title={<><InlineMath math="\frac{1 - \cos x}{x^2}" /> nahe <InlineMath math="0" /></>}
@@ -90,47 +137,54 @@ Prüf <InlineMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac12" /> mit 
   chartConfig={{ value: { label: "Verhältnis", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-## Eigenschaften trigonometrischer Grenzwerte
+Die Balken nähern sich von unten gleichmäßig der Höhe <InlineMath math="0{,}5" /> und bestätigen, dass der quadratische Nenner <InlineMath math="1 - \cos x" /> nahe null ausgleicht.
 
-Aus diesem Grundgrenzwert folgen mehrere verwandte Verhältnisse, weil ein konstanter Faktor im Winkel vor den **Grenzwert** tritt und der Kehrwert sich genauso verhält. Damit lässt sich jeder Sinus eines vervielfachten Winkels auf den Grundgrenzwert zurückführen.
+## Verhältnisregeln im Überblick
 
-### Trigonometrische Verhältnisse
-
-Für reelle Konstanten <InlineMath math="a" /> und <InlineMath math="b \neq 0" /> werden **alle folgenden Grenzwerte für <InlineMath math="x \to 0" />** betrachtet:
+Da ein konstanter Winkelfaktor sauber vor den Grenzwert tritt, folgen für reelle Konstanten <InlineMath math="a" /> und <InlineMath math="b \neq 0" /> bei <InlineMath math="x \to 0" /> vier Standardregeln:
 
 | Grenzwert | Ergebnis | Begründung |
-|-------|--------|-------|
+| --- | --- | --- |
 | <InlineMath math="\lim_{x \to 0} \frac{\sin ax}{bx}" /> | <InlineMath math="\frac{a}{b}" /> | Auf die Grundform zurückführen |
 | <InlineMath math="\lim_{x \to 0} \frac{\tan ax}{bx}" /> | <InlineMath math="\frac{a}{b}" /> | Denn <InlineMath math="\tan ax = \frac{\sin ax}{\cos ax}" /> |
 | <InlineMath math="\lim_{x \to 0} \frac{\sin ax}{\sin bx}" /> | <InlineMath math="\frac{a}{b}" /> | Kombination zweier Sinusgrenzen |
 | <InlineMath math="\lim_{x \to 0} \frac{\tan ax}{\tan bx}" /> | <InlineMath math="\frac{a}{b}" /> | Zwei Tangensgrenzwerte verbinden |
 
-### Trigonometrische Kombinationen
-
-Für das gemischte Verhältnis von Tangens und Sinus gilt dieselbe Regel. Für <InlineMath math="a\ne0" /> und <InlineMath math="b\ne0" /> zerlegen wir den Ausdruck in Grundgrenzwerte:
+Das gemischte Verhältnis aus Tangens und Sinus folgt derselben Regel. Für <InlineMath math="a \neq 0" /> und <InlineMath math="b \neq 0" /> zerlegen wir den Term in Grundgrenzwerte:
 
 <BlockMath math="\begin{aligned}\lim_{x\to0}\frac{\tan ax}{\sin bx}&=\lim_{x\to0}\left(\frac{\tan ax}{ax}\cdot\frac{bx}{\sin bx}\cdot\frac ab\right)\\&=1\cdot1\cdot\frac ab=\frac ab\end{aligned}" />
 
-Ist <InlineMath math="a=0" />, bleibt der Zähler null, also ist auch der **Grenzwert** null. Die abschließende Regel gilt daher für jedes reelle <InlineMath math="a" /> und <InlineMath math="b\ne0" />.
+Für <InlineMath math="a = 0" /> bleibt der Zähler null und der Grenzwert ist <InlineMath math="0" />, sodass die Regel für jedes reelle <InlineMath math="a" /> mit <InlineMath math="b \neq 0" /> gilt.
 
-## Rechentechniken
+Kotangensquotienten lösen sich genauso, indem du **Kotangens als Kosinus durch Sinus** schreibst. Berechne:
 
-Manche trigonometrischen Grenzwerte lösen sich durch Einsetzen, andere brauchen eine Identität oder einen bekannten **Grenzwert**. Der Ausdruck selbst zeigt, welcher Fall vorliegt, denn eine Summe oder Differenz im Argument weist auf eine benötigte Identität hin.
+<BlockMath math="\lim_{t \to 0} \frac{\cot 5t}{\cot 10t}" />
 
-### Auf die Grundform zurückführen
-
-Wir formen den Ausdruck in ein Produkt um, das den grundlegenden Sinusgrenzwert enthält.
-
-**Berechne**: <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x}" />
-
-Wir ergänzen den passenden Faktor:
+Die Trennung in Kosinus- und Sinusfaktor liefert:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 2x}{3x} &amp;= \lim_{x \to 0} \frac{2 \sin 2x}{2 \cdot 3x} \\ &amp;= \lim_{x \to 0} \frac{2}{3} \cdot \frac{\sin 2x}{2x} \end{aligned}" />
-<BlockMath math="= \frac{2}{3} \lim_{x \to 0} \frac{\sin 2x}{2x} = \frac{2}{3} \cdot 1 = \frac{2}{3}" />
+  <BlockMath math="\begin{aligned}\lim_{t \to 0} \frac{\cot 5t}{\cot 10t} &= \lim_{t \to 0} \frac{\frac{\cos 5t}{\sin 5t}}{\frac{\cos 10t}{\sin 10t}} \\ &= \lim_{t \to 0} \frac{\cos 5t \sin 10t}{\sin 5t \cos 10t}\end{aligned}" />
+  <BlockMath math="= \lim_{t \to 0} \frac{\cos 5t}{\cos 10t} \cdot \frac{\sin 10t}{\sin 5t} = 1 \cdot \frac{10}{5} = 2" />
 </MathContainer>
 
-Prüf <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x} = \frac23" /> mit Zahlen. Bei <InlineMath math="x = 0{,}5" />, <InlineMath math="0{,}1" /> und <InlineMath math="0{,}01" /> ist das Verhältnis etwa <InlineMath math="0{,}561" />, <InlineMath math="0{,}662" /> und <InlineMath math="0{,}6666" /> und nähert sich <InlineMath math="\tfrac23 \approx 0{,}667" />.
+## Rechentechniken anwenden
+
+Manche trigonometrischen Grenzwerte gelingen durch Einsetzen, andere brauchen **Winkelskalierung**, Identitäten oder eine neue Variable. Ein Blick auf Winkel und Nenner zeigt sofort, welche Technik passt.
+
+### Winkel skalieren
+
+Enthält der Winkel einen **konstanten Faktor**, passt du den Nenner genau an diesen Winkel an. Berechne:
+
+<BlockMath math="\lim_{x \to 0} \frac{\sin 2x}{3x}" />
+
+Erweitere Zähler und Nenner mit <InlineMath math="2" />, um die Sinusgrundform abzutrennen:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 2x}{3x} &amp;= \lim_{x \to 0} \frac{2 \sin 2x}{2 \cdot 3x} \\ &amp;= \lim_{x \to 0} \frac{2}{3} \cdot \frac{\sin 2x}{2x} \end{aligned}" />
+  <BlockMath math="= \frac{2}{3} \lim_{x \to 0} \frac{\sin 2x}{2x} = \frac{2}{3} \cdot 1 = \frac{2}{3}" />
+</MathContainer>
+
+Numerische Werte bei <InlineMath math="x = 0{,}5" />, <InlineMath math="0{,}1" /> und <InlineMath math="0{,}01" /> ergeben <InlineMath math="0{,}561" />, <InlineMath math="0{,}662" /> und <InlineMath math="0{,}6666" />, dicht an <InlineMath math="\frac{2}{3}" />.
 
 <BarChart
   title={<><InlineMath math="\frac{\sin 2x}{3x}" /> nahe <InlineMath math="0" /></>}
@@ -140,102 +194,101 @@ Prüf <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x} = \frac23" /> mit Zahl
   chartConfig={{ value: { label: "Verhältnis", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-### Direktes Einsetzen bei einem Nenner ungleich null
+Jede kleinere Eingabe rückt den Balken näher an <InlineMath math="0{,}667" /> und bestätigt das exakte Koeffizientenverhältnis <InlineMath math="\frac{2}{3}" />.
 
-**Direktes Einsetzen** ist zulässig, wenn die Funktion an der betrachteten Stelle stetig und der Nenner ungleich null ist. Ein Grenzwert setzt allgemein nicht voraus, dass die Funktion an dieser Stelle definiert ist.
+### Nenner ungleich null
 
-**Berechne**: <InlineMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x}" />
+**Direktes Einsetzen** funktioniert sofort, sobald der Term an der Zielstelle stetig und der Nenner ungleich null ist. Berechne:
 
-Da <InlineMath math="\sin(\frac{\pi}{4}) = \frac{\sqrt{2}}{2} \neq 0" />, ist der Nenner bei <InlineMath math="x = \frac{\pi}{4}" /> nicht Null.
+<BlockMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x}" />
 
-Direktes Einsetzen:
+Bei <InlineMath math="\pi/4" /> hat der Nenner den Wert <InlineMath math="\sqrt{2}/2" /> ungleich null, weshalb wir direkt einsetzen:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x} = \frac{\sin \frac{\pi}{4} + \cos \frac{\pi}{4}}{\sin \frac{\pi}{4}}" />
-<BlockMath math="\begin{aligned}  &amp;= \frac{\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \frac{2 \cdot \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \frac{\sqrt{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \sqrt{2} \cdot \frac{2}{\sqrt{2}} \\ &amp;= 2 \end{aligned}" />
+  <BlockMath math="\lim_{x \to \frac{\pi}{4}} \frac{\sin x + \cos x}{\sin x} = \frac{\sin \frac{\pi}{4} + \cos \frac{\pi}{4}}{\sin \frac{\pi}{4}}" />
+  <BlockMath math="\begin{aligned} &amp;= \frac{\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} \\ &amp;= \frac{\sqrt{2}}{\frac{\sqrt{2}}{2}} = 2 \end{aligned}" />
 </MathContainer>
 
-### Eine neue Variable einführen
+### Variable ersetzen
 
-Bei einem Ausdruck der Form <InlineMath math="\frac{0}{0}" /> kann eine geeignete Substitution den Ausdruck auf eine bekannte Grundform zurückführen.
+Liegt die Zielstelle nicht bei null und ergibt Einsetzen <InlineMath math="\frac{0}{0}" />, **verschiebst du die Variable** so, dass der neue Winkel gegen null läuft. Berechne:
 
-**Berechne**: <InlineMath math="\lim_{x \to \frac{\pi}{2}} \frac{\sin^2(x - \frac{\pi}{2})}{x(x - \frac{\pi}{2})}" />
+<BlockMath math="\lim_{x \to \frac{\pi}{2}} \frac{\sin^2\left(x - \frac{\pi}{2}\right)}{x\left(x - \frac{\pi}{2}\right)}" />
 
-Sei <InlineMath math="u = x - \frac{\pi}{2}" />, dann haben wir für <InlineMath math="x \to \frac{\pi}{2}" /> <InlineMath math="u \to 0" /> und <InlineMath math="x = u + \frac{\pi}{2}" />.
+Wähle die verschobene Variable <InlineMath math="u" />, sodass <InlineMath math="u \to 0" /> für <InlineMath math="x \to \pi/2" /> gilt:
+
+<BlockMath math="u = x - \frac{\pi}{2}, \quad x = u + \frac{\pi}{2}" />
+
+Die Umschreibung in <InlineMath math="u" /> trennt ein Quadrat des Sinusgrundgrenzwerts ab:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\lim_{u \to 0} \frac{\sin^2 u}{(u + \frac{\pi}{2}) \cdot u} \\ &amp;= \lim_{u \to 0} \frac{\sin^2 u}{u^2} \cdot \frac{u}{u + \frac{\pi}{2}} \end{aligned}" />
-<BlockMath math="= \lim_{u \to 0} \left(\frac{\sin u}{u}\right)^2 \cdot \lim_{u \to 0} \frac{u}{u + \frac{\pi}{2}}" />
-<BlockMath math="= 1^2 \cdot \lim_{u \to 0} \frac{u}{\frac{\pi}{2} + u} = 1 \cdot \frac{0}{\frac{\pi}{2}} = 0" />
+  <BlockMath math="\begin{aligned} &amp;\lim_{u \to 0} \frac{\sin^2 u}{(u + \frac{\pi}{2}) \cdot u} \\ &amp;= \lim_{u \to 0} \frac{\sin^2 u}{u^2} \cdot \frac{u}{u + \frac{\pi}{2}} \end{aligned}" />
+  <BlockMath math="= \lim_{u \to 0} \left(\frac{\sin u}{u}\right)^2 \cdot \lim_{u \to 0} \frac{u}{u + \frac{\pi}{2}}" />
+  <BlockMath math="= 1^2 \cdot \frac{0}{\frac{\pi}{2}} = 0" />
 </MathContainer>
 
-## Grenzwert eines Kotangensquotienten
+## Winkelfunktionen im Grenzwert
 
-Schreibe den **Kotangens als Kosinus durch Sinus**. Der Kosinusquotient geht gegen eins. Der Sinusquotient liefert das Verhältnis der Winkelfaktoren.
+Entscheide vor dem Rechnen, ob Einsetzen genügt oder Winkelskalierung, eine Identität oder eine Variablenverschiebung nötig ist.
 
-**Berechne**: <InlineMath math="\lim_{t \to 0} \frac{\cot 5t}{\cot 10t}" />
+1. Berechne den skalierten Sinusgrenzwert:
 
-Wir schreiben den Kotangens als Quotienten:
+   <BlockMath math="\lim_{x \to 0} \frac{\sin 3x}{4x}" />
+
+2. Berechne den gemischten Tangens-Sinus-Quotienten:
+
+   <BlockMath math="\lim_{x \to 0} \frac{\tan 2x}{\sin 5x}" />
+
+3. Berechne den quadratischen Kosinusgrenzwert:
+
+   <BlockMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2}" />
+
+4. Berechne den verschobenen Sinus-Differenzenquotienten:
+
+   <BlockMath math="\lim_{x \to \frac{\pi}{6}} \frac{\sin x - \frac{1}{2}}{x - \frac{\pi}{6}}" />
+
+5. Berechne den Grenzwert des Sinus-Kosinus-Produkts:
+
+   <BlockMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x}" />
+
+Vergleiche deine Schritte mit den folgenden Lösungen.
+
+**Aufgabe 1**. Erweitere Zähler und Nenner mit <InlineMath math="3" /> auf die **Grundform**:
 
 <MathContainer>
-<BlockMath math="\begin{aligned}\lim_{t \to 0} \frac{\cot 5t}{\cot 10t} &= \lim_{t \to 0} \frac{\frac{\cos 5t}{\sin 5t}}{\frac{\cos 10t}{\sin 10t}} \\ &= \lim_{t \to 0} \frac{\cos 5t \sin 10t}{\sin 5t \cos 10t}\end{aligned}" />
-<BlockMath math="= \lim_{t \to 0} \frac{\cos 5t}{\cos 10t} \cdot \frac{\sin 10t}{\sin 5t} = 1 \cdot \frac{10}{5} = 2" />
+  <BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 3x}{4x} &amp;= \lim_{x \to 0} \frac{3 \sin 3x}{3 \cdot 4x} \\ &amp;= \lim_{x \to 0} \frac{3}{4} \cdot \frac{\sin 3x}{3x} \end{aligned}" />
+  <BlockMath math="= \frac{3}{4} \lim_{x \to 0} \frac{\sin 3x}{3x} = \frac{3}{4} \cdot 1 = \frac{3}{4}" />
 </MathContainer>
 
-## Übungen
-
-Jede Aufgabe verlangt einen trigonometrischen **Grenzwert**. Entscheide vor dem Rechnen, ob Einsetzen genügt oder eine Identität nötig ist. Notiere bei jedem Schritt den verwendeten Grenzwert und prüfe das Ergebnis am Grundgrenzwert, sobald der Winkel skaliert wird.
-
-1. Berechne <InlineMath math="\lim_{x \to 0} \frac{\sin 3x}{4x}" />
-
-2. Berechne <InlineMath math="\lim_{x \to 0} \frac{\tan 2x}{\sin 5x}" />
-
-3. Berechne <InlineMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2}" />
-
-4. Berechne <InlineMath math="\lim_{x \to \frac{\pi}{6}} \frac{\sin x - \frac{1}{2}}{x - \frac{\pi}{6}}" />
-
-5. Berechne <InlineMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x}" />
-
-### Lösungen
-
-**Aufgabe 1**. Forme den Ausdruck in die **Grundform** um:
+**Aufgabe 2**. Zerlege den Bruch in zwei **Verhältnisgrundgrenzwerte**:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 3x}{4x} &amp;= \lim_{x \to 0} \frac{3 \sin 3x}{3 \cdot 4x} \\ &amp;= \lim_{x \to 0} \frac{3}{4} \cdot \frac{\sin 3x}{3x} \end{aligned}" />
-<BlockMath math="= \frac{3}{4} \lim_{x \to 0} \frac{\sin 3x}{3x} = \frac{3}{4} \cdot 1 = \frac{3}{4}" />
+  <BlockMath math="\begin{aligned} &amp;\lim_{x \to 0} \frac{\tan 2x}{\sin 5x} \\ &amp;= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \frac{5x}{\sin 5x} \cdot \frac{2x}{5x} \end{aligned}" />
+  <BlockMath math="= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \lim_{x \to 0} \frac{5x}{\sin 5x} \cdot \frac{2}{5} = \frac{2}{5}" />
 </MathContainer>
 
-**Aufgabe 2**. Verwende die **trigonometrischen Verhältnisgrenzwerte**:
+**Aufgabe 3**. Nutze die **Halbwinkelformel**, um den Zähler als Sinusquadrat zu schreiben:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\lim_{x \to 0} \frac{\tan 2x}{\sin 5x} \\ &amp;= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \frac{5x}{\sin 5x} \cdot \frac{2x}{5x} \end{aligned}" />
-<BlockMath math="= \lim_{x \to 0} \frac{\tan 2x}{2x} \cdot \lim_{x \to 0} \frac{5x}{\sin 5x} \cdot \frac{2}{5}" />
-<BlockMath math="= 1 \cdot 1 \cdot \frac{2}{5} = \frac{2}{5}" />
+  <BlockMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2} = \lim_{x \to 0} \frac{2\sin^2\frac{3x}{2}}{x^2}" />
+  <BlockMath math="= \lim_{x \to 0} 2 \cdot \left(\frac{\sin\frac{3x}{2}}{\frac{3x}{2}}\right)^2 \cdot \left(\frac{3}{2}\right)^2" />
+  <BlockMath math="= 2 \cdot 1^2 \cdot \frac{9}{4} = \frac{9}{2}" />
 </MathContainer>
 
-**Aufgabe 3**. Verwende die **Halbwinkelformel**, um die Kosinusdifferenz als Sinusquadrat zu schreiben:
+**Aufgabe 4**. Verschiebe die Variable so, dass der **Winkel gegen null geht**, und wende das Additionstheorem für den Sinus an:
+
+<BlockMath math="h = x - \frac{\pi}{6}, \quad x = h + \frac{\pi}{6}, \quad h \to 0" />
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 0} \frac{1 - \cos 3x}{x^2} = \lim_{x \to 0} \frac{2\sin^2\frac{3x}{2}}{x^2}" />
-<BlockMath math="= \lim_{x \to 0} 2 \cdot \left(\frac{\sin\frac{3x}{2}}{\frac{3x}{2}}\right)^2 \cdot \left(\frac{3}{2}\right)^2" />
-<BlockMath math="= 2 \cdot 1^2 \cdot \frac{9}{4} = \frac{9}{2}" />
+  <BlockMath math="\lim_{h \to 0} \frac{\sin(h + \frac{\pi}{6}) - \frac{1}{2}}{h}" />
+  <BlockMath math="= \lim_{h \to 0} \frac{\sin h \cos\frac{\pi}{6} + \cos h \sin\frac{\pi}{6} - \frac{1}{2}}{h}" />
+  <BlockMath math="= \lim_{h \to 0} \frac{\frac{\sqrt{3}}{2}\sin h + \frac{1}{2}(\cos h - 1)}{h}" />
+  <BlockMath math="= \frac{\sqrt{3}}{2} \lim_{h \to 0} \frac{\sin h}{h} + \frac{1}{2} \lim_{h \to 0} \frac{\cos h - 1}{h} = \frac{\sqrt{3}}{2}" />
 </MathContainer>
 
-**Aufgabe 4**. Ersetze die Variable, sodass der **Winkel gegen null geht**, und verwende dann den Sinusgrundgrenzwert. Sei <InlineMath math="h = x - \frac{\pi}{6}" />, dann <InlineMath math="x = h + \frac{\pi}{6}" /> und wenn <InlineMath math="x \to \frac{\pi}{6}" />, haben wir <InlineMath math="h \to 0" />:
+**Aufgabe 5**. Wende die **Doppelwinkelformel** an, bevor du das Sinusverhältnis abtrennst:
 
 <MathContainer>
-<BlockMath math="\lim_{h \to 0} \frac{\sin(h + \frac{\pi}{6}) - \frac{1}{2}}{h}" />
-<BlockMath math="= \lim_{h \to 0} \frac{\sin h \cos\frac{\pi}{6} + \cos h \sin\frac{\pi}{6} - \frac{1}{2}}{h}" />
-<BlockMath math="= \lim_{h \to 0} \frac{\sin h \cdot \frac{\sqrt{3}}{2} + \cos h \cdot \frac{1}{2} - \frac{1}{2}}{h}" />
-<BlockMath math="= \lim_{h \to 0} \frac{\frac{\sqrt{3}}{2}\sin h + \frac{1}{2}(\cos h - 1)}{h}" />
-<BlockMath math="= \frac{\sqrt{3}}{2} \lim_{h \to 0} \frac{\sin h}{h} + \frac{1}{2} \lim_{h \to 0} \frac{\cos h - 1}{h}" />
-<BlockMath math="= \frac{\sqrt{3}}{2} \cdot 1 + \frac{1}{2} \cdot 0 = \frac{\sqrt{3}}{2}" />
-</MathContainer>
-
-**Aufgabe 5**. Verwende die **Doppelwinkelformel**, bevor du den gemeinsamen Faktor kürzt:
-
-<MathContainer>
-<BlockMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x} = \lim_{x \to 0} \frac{\frac{1}{2}\sin 2x}{x}" />
-<BlockMath math="= \frac{1}{2} \lim_{x \to 0} \frac{\sin 2x}{x} = \frac{1}{2} \lim_{x \to 0} \frac{2 \sin 2x}{2x}" />
-<BlockMath math="= \frac{1}{2} \cdot 2 \lim_{x \to 0} \frac{\sin 2x}{2x} = 1 \cdot 1 = 1" />
+  <BlockMath math="\lim_{x \to 0} \frac{\sin x \cos x}{x} = \lim_{x \to 0} \frac{\frac{1}{2}\sin 2x}{x}" />
+  <BlockMath math="= \frac{1}{2} \cdot 2 \lim_{x \to 0} \frac{\sin 2x}{2x} = 1 \cdot 1 = 1" />
 </MathContainer>

@@ -3,30 +3,32 @@ export const metadata = {
   description: "Gunakan integral tentu untuk menghitung luas daerah yang dibatasi kurva, dengan contoh lengkap pada fungsi kuadrat dan fungsi akar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-27",
   subject: "Integral",
 };
 
-
-
-## Pendekatan Luas dengan Persegi Panjang
+## Strip ke Integral Tentu
 
 Rumus luas persegi panjang dan segitiga tidak langsung berlaku pada daerah yang batasnya melengkung.
 
-**Integral tentu** menangani daerah tersebut dengan <Highlight>menjumlahkan luas strip yang makin sempit</Highlight>. Pada [jumlahan Riemann](/id/materi/matematika/integral/jumlahan-riemann), interval dibagi menjadi beberapa bagian, setiap strip dihampiri dengan persegi panjang, lalu limit jumlah luasnya dihitung.
+**Integral tentu** menangani daerah melengkung dengan <Highlight>menjumlahkan luas strip yang makin sempit</Highlight>. Pada [jumlahan Riemann](/id/materi/matematika/integral/jumlahan-riemann), interval dibagi menjadi beberapa bagian, setiap strip dihampiri dengan persegi panjang, lalu limit jumlah luasnya dihitung.
 
 Misalkan fungsi <InlineMath math="f(x)" /> membatasi daerah dari <InlineMath math="x = a" /> sampai <InlineMath math="x = b" />. Kita membagi <InlineMath math="[a, b]" /> menjadi <InlineMath math="n" /> subinterval dengan lebar <InlineMath math="\Delta x" />.
 
-Untuk fungsi yang kontinu dan **tidak negatif** pada <InlineMath math="[a,b]" /> dengan <InlineMath math="a<b" />, rumus luasnya adalah:
+Untuk fungsi yang kontinu dan **tidak negatif** pada <InlineMath math="[a, b]" /> dengan <InlineMath math="a < b" />, rumus luasnya adalah:
 
 <MathContainer>
 <BlockMath math="A = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \cdot \Delta x" />
 <BlockMath math="A = \int_{a}^{b} f(x) \, dx" />
 </MathContainer>
 
-## Menentukan Luas dengan Integral Tentu
+## Menyusun Integral Luas
 
-Untuk luas daerah, tetapkan **batas dan tinggi irisan** sebelum mencari antiturunan. Contoh <InlineMath math="f(x)=x" /> pada <InlineMath math="[0,2]" /> memperlihatkan ketiga keputusan itu.
+Setiap integral luas bergantung pada penentuan batas yang tepat dan pengukuran **tinggi irisan** positif agar tidak ada bagian daerah yang saling menghapus. Mulai dari satu kurva terhadap sumbu mendatar, lalu perluas gagasan irisan yang sama untuk daerah tertutup di antara dua kurva.
+
+### Batas Tinggi dan Tanda
+
+Untuk luas daerah, tetapkan **batas dan tinggi irisan** sebelum mencari antiturunan. Contoh <InlineMath math="f(x) = x" /> pada <InlineMath math="[0, 2]" /> memperlihatkan ketiga keputusan itu.
 
 | Keputusan | Contoh | Alasan |
 | --- | --- | --- |
@@ -40,7 +42,52 @@ Fungsi <InlineMath math="F" /> adalah [antiturunan](/id/materi/matematika/integr
 
 Jika kurva berada di bawah sumbu, gunakan **nilai mutlak** sebagai tinggi. Jika kurva berganti tanda, pisahkan interval pada titik nol agar tidak ada luas yang saling menghapus.
 
-## Penerapan pada Fungsi Kuadrat
+### Luas Antara Dua Kurva
+
+Ketika suatu daerah diapit oleh kurva atas <InlineMath math="f(x)" /> dan kurva bawah <InlineMath math="g(x)" /> pada <InlineMath math="[a, b]" />, setiap **irisan vertikal** memiliki tinggi <InlineMath math="f(x) - g(x)" />. Mengintegralkan selisih tinggi ini menjumlahkan luas daerah tertutup:
+
+<BlockMath math="A = \int_{a}^{b} \big(f(x) - g(x)\big) \, dx" />
+
+Geser batas atas sepanjang tiga pasangan kurva untuk mengamati bagaimana tinggi irisan vertikal mengisi luas daerah tertutup.
+
+<AreaBetweenCurvesLab
+  title={<>Luas tertutup antara kurva atas dan kurva bawah</>}
+  description={<>Ganti antara tiga pasangan kurva dan geser batas atas pada <InlineMath math="[0, 2]" /> untuk mengukur tinggi irisan vertikal <InlineMath math="f(x) - g(x)" /> serta luas daerah tertutup.</>}
+  pairs={["lineAndParabola", "twoParabolas", "sineAndCosine"]}
+  upperBound={{ min: 0.2, max: 2.0, value: 1.5 }}
+  labels={{
+    enclosedArea: <>Luas tertutup</>,
+    heightGap: <>Tinggi irisan</>,
+    pair: "Pasangan kurva",
+    pairs: {
+      lineAndParabola: {
+        name: "Garis dan parabola",
+        formula: <><InlineMath math="f(x) = 0{,}7x + 0{,}15" />, <InlineMath math="g(x) = 0{,}35x^2 + 0{,}15" /></>,
+      },
+      twoParabolas: {
+        name: "Dua parabola",
+        formula: <><InlineMath math="f(x) = 1{,}4 - 0{,}3(x-1)^2" />, <InlineMath math="g(x) = 0{,}3(x-1)^2 + 0{,}2" /></>,
+      },
+      sineAndCosine: {
+        name: "Sinus dan kosinus",
+        formula: <><InlineMath math="f(x) = 0{,}85 + 0{,}45\sin(1{,}1x)" />, <InlineMath math="g(x) = 0{,}35 + 0{,}25\cos(1{,}3x)" /></>,
+      },
+    },
+    parts: {
+      upperCurve: "Kurva atas",
+      lowerCurve: "Kurva bawah",
+      shadedRibbon: "Pita berarsir",
+      verticalStrip: "Irisan vertikal",
+      intersectionPins: "Titik potong",
+    },
+    upperBound: "Batas atas",
+    view: "Pita tiga dimensi di antara kurva atas dan kurva bawah dengan irisan vertikal yang bergeser",
+  }}
+/>
+
+Di tempat kurva atas dan kurva bawah merenggang jauh, irisan vertikal menjadi tinggi sehingga luas tertutup bertambah cepat. Saat batas mendekati titik potong, tinggi irisan menyusut ke nol dan pertambahan luas melandai.
+
+## Kurva Kuadrat Bawah Sumbu
 
 Perhatikan daerah yang dibatasi oleh <InlineMath math="f(x) = x^2 - 4x" />, sumbu <InlineMath math="x" />, <InlineMath math="x = 1" />, dan <InlineMath math="x = 3" />.
 
@@ -70,7 +117,7 @@ Perhatikan daerah yang dibatasi oleh <InlineMath math="f(x) = x^2 - 4x" />, sumb
   }}
 />
 
-Pada <InlineMath math="[1,3]" />, faktorkan fungsi menjadi <InlineMath math="f(x)=x(x-4)" />. Setiap titik pada interval memenuhi <InlineMath math="x>0" /> dan <InlineMath math="x-4<0" />, sehingga <InlineMath math="f(x)<0" /> di seluruh interval. Nilai ujung <InlineMath math="f(1)=-3" /> dan <InlineMath math="f(3)=-3" /> konsisten dengan analisis tanda ini.
+Pada <InlineMath math="[1, 3]" />, faktorkan fungsi menjadi <InlineMath math="f(x) = x(x - 4)" />. Setiap titik pada interval memenuhi <InlineMath math="x > 0" /> dan <InlineMath math="x - 4 < 0" />, sehingga <InlineMath math="f(x) < 0" /> di seluruh interval. Nilai ujung <InlineMath math="f(1) = -3" /> dan <InlineMath math="f(3) = -3" /> konsisten dengan analisis tanda ini.
 
 **Luas geometris** tidak bernilai negatif. Karena fungsi negatif di seluruh interval ini, nilai mutlaknya sama dengan lawan fungsinya, sehingga:
 
@@ -88,11 +135,13 @@ Sekarang evaluasi integral tentunya:
 <BlockMath math="A = 9 - \frac{5}{3} = \frac{22}{3}" />
 </MathContainer>
 
-Jadi, luas daerah tersebut adalah <InlineMath math="\frac{22}{3}" /> satuan luas.
+Jadi, luas daerah itu adalah <InlineMath math="\frac{22}{3}" /> satuan luas.
 
-## Penerapan pada Fungsi Akar
+## Substitusi Fungsi Akar
 
-Pada contoh kedua, hitung luas di bawah kurva <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 2" />.
+Pada contoh kedua, hitung luas di bawah kurva akar berikut dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 2" />:
+
+<BlockMath math="f(x) = x\sqrt{x^2 + 5}" />
 
 <MathVisual
   title={<>Grafik <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /></>}
@@ -120,9 +169,9 @@ Pada contoh kedua, hitung luas di bawah kurva <InlineMath math="f(x) = x\sqrt{x^
   }}
 />
 
-Bentuk <InlineMath math="x\sqrt{x^2 + 5}" /> mengarahkan kita pada **substitusi** karena faktor <InlineMath math="x" /> sebanding dengan turunan ekspresi di dalam akar.
+Bentuk <InlineMath math="x\sqrt{x^2 + 5}" /> mengarahkan kita pada **substitusi** karena faktor <InlineMath math="x" /> sebanding dengan turunan ekspresi di dalam akar:
 
-Tetapkan <InlineMath math="u = x^2 + 5" />. Maka <InlineMath math="du = 2x \, dx" />, sehingga <InlineMath math="x \, dx = \frac{1}{2} du" />.
+<BlockMath math="u = x^2 + 5, \qquad du = 2x\,dx, \qquad x\,dx = \frac{1}{2}\,du" />
 
 Batas integrasi harus memakai variabel yang sama dengan integran: <InlineMath math="x = 0" /> menghasilkan <InlineMath math="u = 5" />, sedangkan <InlineMath math="x = 2" /> menghasilkan <InlineMath math="u = 9" />.
 
@@ -137,36 +186,41 @@ Sekarang integral kita menjadi:
 <BlockMath math="A = \frac{1}{3}\left(27 - 5\sqrt{5}\right)" />
 </MathContainer>
 
-Perhatikan bahwa <InlineMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" /> dan <InlineMath math="5^{3/2} = 5 \cdot \sqrt{5}" />.
+Hitung kedua pangkat pecahan di batas atas dan bawah:
 
-> Saat menggunakan substitusi dalam integral tentu, jangan lupa mengubah batas integrasi sesuai dengan variabel substitusi yang baru.
+<MathContainer>
+<BlockMath math="9^{3/2} = (3^2)^{3/2} = 3^3 = 27" />
+<BlockMath math="5^{3/2} = 5\sqrt{5}" />
+</MathContainer>
 
-## Latihan
+> Saat menggunakan substitusi dalam integral tentu, selalu ubah batas integrasi sesuai variabel substitusi yang baru.
+
+## Soal Luas Daerah Kurva
 
 Batas dapat diberikan langsung atau diperoleh dari titik potong. Sebelum menghitung, tentukan tanda fungsi pada interval agar integral menghasilkan **luas geometris**.
 
-1. Hitunglah luas daerah yang dibatasi oleh kurva <InlineMath math="y = x^2 + 1" />, sumbu <InlineMath math="x" />, dan garis <InlineMath math="x = 0" /> serta <InlineMath math="x = 2" />!
+1. Hitunglah luas daerah yang dibatasi oleh kurva <InlineMath math="y = x^2 + 1" />, sumbu <InlineMath math="x" />, dan garis <InlineMath math="x = 0" /> serta <InlineMath math="x = 2" />.
 
-2. Tentukan luas daerah di bawah kurva <InlineMath math="y = \frac{1}{x^2 + 1}" /> dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 1" />!
+2. Tentukan luas daerah dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 1" /> di bawah kurva berikut:
 
-3. Hitunglah luas daerah yang dibatasi oleh kurva <InlineMath math="y = 2x - x^2" /> dan sumbu <InlineMath math="x" />!
+   <BlockMath math="y = \frac{1}{x^2 + 1}" />
 
-### Pembahasan
+3. Hitunglah luas daerah yang dibatasi oleh kurva <InlineMath math="y = 2x - x^2" /> dan sumbu <InlineMath math="x" />.
 
 **Soal 1**. Karena fungsi ini **selalu positif**, kita langsung dapat menyusun integral:
 
 <BlockMath math="A = \int_{0}^{2} (x^2 + 1) \, dx" />
 
-Setelah kita integralkan dan evaluasi, diperoleh:
+Hasil perhitungan integral tentu di antara kedua batas menghasilkan:
 
 <MathContainer>
 <BlockMath math="A = \left[\frac{x^3}{3} + x\right]_{0}^{2}" />
 <BlockMath math="A = \left(\frac{8}{3} + 2\right) - 0 = \frac{14}{3}" />
 </MathContainer>
 
-Jadi, luas daerah tersebut adalah <InlineMath math="\frac{14}{3}" /> satuan luas.
+Jadi, luas daerah itu adalah <InlineMath math="\frac{14}{3}" /> satuan luas.
 
-**Soal 2**. **Antiturunan** yang digunakan adalah <InlineMath math="\arctan(x)" /> karena turunannya sama dengan <InlineMath math="\frac{1}{x^2 + 1}" />.
+**Soal 2**. **Antiturunan** yang digunakan adalah <InlineMath math="\arctan(x)" /> karena turunannya menghasilkan integran pada soal:
 
 <MathContainer>
 <BlockMath math="A = \int_{0}^{1} \frac{1}{x^2 + 1} \, dx" />
@@ -174,13 +228,13 @@ Jadi, luas daerah tersebut adalah <InlineMath math="\frac{14}{3}" /> satuan luas
 <BlockMath math="A = \arctan(1) - \arctan(0) = \frac{\pi}{4}" />
 </MathContainer>
 
-Luas daerah tersebut adalah <InlineMath math="\frac{\pi}{4}" /> satuan luas.
+Luas daerah itu adalah <InlineMath math="\frac{\pi}{4}" /> satuan luas.
 
 **Soal 3**. Pertama, kita cari dulu di mana kurva memotong sumbu <InlineMath math="x" />:
 
 <BlockMath math="2x - x^2 = 0 \Rightarrow x(2 - x) = 0" />
 
-Jadi titik potongnya di <InlineMath math="x = 0" /> dan <InlineMath math="x = 2" />. Karena fungsi ini **positif di antara kedua titik tersebut**, kita dapat langsung mengintegralkan:
+Jadi titik potongnya di <InlineMath math="x = 0" /> dan <InlineMath math="x = 2" />. Karena fungsi ini **positif di antara kedua titik itu**, kita dapat langsung mengintegralkan:
 
 <MathContainer>
 <BlockMath math="A = \int_{0}^{2} (2x - x^2) \, dx" />
@@ -188,9 +242,9 @@ Jadi titik potongnya di <InlineMath math="x = 0" /> dan <InlineMath math="x = 2"
 <BlockMath math="A = 4 - \frac{8}{3} = \frac{4}{3}" />
 </MathContainer>
 
-Luas daerah tersebut adalah <InlineMath math="\frac{4}{3}" /> satuan luas.
+Luas daerah itu adalah <InlineMath math="\frac{4}{3}" /> satuan luas.
 
-Soal 3 pada grafik: <InlineMath math="y = 2x - x^2" /> mulai dari <InlineMath math="0" />, naik ke <InlineMath math="1" /> di <InlineMath math="x = 1" />, lalu kembali ke <InlineMath math="0" /> di <InlineMath math="x = 2" />. Daerah antara lengkungan dan sumbu x luasnya <InlineMath math="\int_0^2 (2x - x^2)\,dx = \tfrac43" />.
+Soal 3 pada grafik memperlihatkan <InlineMath math="y = 2x - x^2" /> naik dari <InlineMath math="0" /> menuju puncaknya <InlineMath math="1" /> di <InlineMath math="x = 1" /> lalu kembali ke <InlineMath math="0" /> di <InlineMath math="x = 2" />, membatasi luas <InlineMath math="\tfrac{4}{3}" /> di atas sumbu.
 
 <MathVisual
   title={<>Lengkungan <InlineMath math="y = 2x - x^2" /></>}
@@ -216,3 +270,5 @@ Soal 3 pada grafik: <InlineMath math="y = 2x - x^2" /> mulai dari <InlineMath ma
     ],
   }}
 />
+
+Karena seluruh lengkungan berada di atas sumbu di antara akar <InlineMath math="0" /> dan <InlineMath math="2" />, satu integral langsung menghasilkan luas geometris tanpa memecah interval.

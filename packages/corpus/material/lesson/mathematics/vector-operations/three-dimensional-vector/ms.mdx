@@ -1,24 +1,27 @@
-
-
 export const metadata = {
   title: "Vektor dalam Tiga Dimensi",
-    description: "Wakilkan vektor tiga dimensi, hitung magnitudnya, dan gunakan penambahan, hasil darab titik serta hasil darab silang.",
+  description:
+    "Wakilkan vektor tiga dimensi, hitung magnitudnya, dan gunakan penambahan, hasil darab titik, hasil darab silang serta isi padu hasil darab skalar ganda tiga.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-27",
   subject: "Vektor dan Operasinya",
 };
 
-## Vektor dalam Ruang dengan Tiga Paksi Koordinat
+## Ruang Tiga Paksi Koordinat
 
 Vektor tiga dimensi diterangkan oleh <Highlight>tiga komponen koordinat</Highlight>. Komponen ini mengukur sesaran di sepanjang paksi <InlineMath math="x" />, <InlineMath math="y" /> dan <InlineMath math="z" />. Vektor bukan sifar mempunyai magnitud dan arah, manakala vektor sifar tidak mempunyai arah geometri.
+
+> Dalam sistem Cartesan tangan kanan, tertib komponen sentiasa mengikut sesaran pada paksi <InlineMath math="x" />, kemudian <InlineMath math="y" />, kemudian <InlineMath math="z" />, walau bagaimana pun sudut pandangan skrin diputar.
+
+Jejaki anak panah dari asalan ke <InlineMath math="(3,4,2)" /> dalam ruang tiga dimensi di bawah.
 
 <MathVisual
   title={<>Vektor dalam Ruang Tiga Dimensi</>}
   description={
     <>
-      Visualisasi vektor dalam ruang tiga dimensi dengan komponen{" "}
-      <InlineMath math="x" />, <InlineMath math="y" /> dan{" "}
+      Anak panah sesaran dari asalan ke <InlineMath math="(3,4,2)" /> di
+      sepanjang paksi <InlineMath math="x" />, <InlineMath math="y" /> dan{" "}
       <InlineMath math="z" />.
     </>
   }
@@ -38,43 +41,43 @@ Vektor tiga dimensi diterangkan oleh <Highlight>tiga komponen koordinat</Highlig
   }}
 />
 
-## Perwakilan Vektor Tiga Dimensi
+Setiap koordinat mencatat satu langkah bertanda yang selari dengan paksinya. Gabungan ketiga-tiga langkah berserenjang ini menentukan panjang dan arah ruang bagi <InlineMath math="\vec{v}" />.
 
-Paksi-<InlineMath math="z" /> berserenjang dengan satah <InlineMath math="xy" />. Dalam sistem Cartesan ini, **tertib komponen** sentiasa mengikut paksi-<InlineMath math="x" />, kemudian paksi-<InlineMath math="y" />, kemudian paksi-<InlineMath math="z" />.
+## Tatatanda dan Komponen
 
-Contohnya, komponen ketiga bagi <InlineMath math="(3,4,2)" /> ialah <InlineMath math="2" />. Komponen itu tidak semestinya kelihatan sebagai ketinggian mencancang pada skrin.
+Paksi-<InlineMath math="z" /> berserenjang dengan satah <InlineMath math="xy" />. Contohnya, komponen ketiga bagi <InlineMath math="(3,4,2)" /> ialah <InlineMath math="2" />, yang menandakan langkah sepanjang paksi-<InlineMath math="z" /> walaupun kamera dicondongkan.
 
-### Tatatanda Vektor Tiga Dimensi
+Vektor tiga dimensi ditulis dalam tiga tatatanda piawai:
 
-Vektor tiga dimensi boleh ditulis dalam beberapa tatatanda:
-
-1. Tatatanda huruf dengan anak panah di atasnya: <InlineMath math="\vec{a}" /> atau <InlineMath math="\overrightarrow{PQ}" />
+1. Tatatanda anak panah: <InlineMath math="\vec{a}" /> atau <InlineMath math="\overrightarrow{PQ}" />
 2. Tatatanda komponen: <InlineMath math="(a_x, a_y, a_z)" /> atau <InlineMath math="(a_1, a_2, a_3)" />
 3. Tatatanda asas: <InlineMath math="a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
 
-Untuk vektor dalam gambar rajah pertama, ketiga-tiga tatatanda komponen ini menerangkan **sesaran yang sama**:
+Untuk vektor dalam gambar rajah pertama, ketiga-tiga tatatanda ini menerangkan **sesaran yang sama**:
 
 <BlockMath math="\vec v=(3,4,2)=\begin{pmatrix}3\\4\\2\end{pmatrix}=3\vec i+4\vec j+2\vec k" />
 
-### Komponen Vektor Tiga Dimensi
-
-Vektor dalam ruang tiga dimensi mempunyai **tiga komponen koordinat skalar**. Apabila setiap skalar didarab dengan vektor unit bagi paksinya, kita dapat unjuran vektor yang sepadan:
+Apabila setiap **komponen skalar** didarab dengan vektor unit bagi paksinya, kita dapat unjuran vektor yang sepadan di sepanjang paksi itu:
 
 <BlockMath math="\vec{a} = (a_x, a_y, a_z) = a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
 
-Komponen dalam bentuk ini ialah:
+Setiap bahagian memainkan peranan geometri yang jelas:
 
-- <InlineMath math="a_x" /> ialah komponen skalar di sepanjang paksi-<InlineMath math="x" />, manakala <InlineMath math="a_x\vec{i}" /> ialah unjuran vektornya
-- <InlineMath math="a_y" /> ialah komponen skalar di sepanjang paksi-<InlineMath math="y" />, manakala <InlineMath math="a_y\vec{j}" /> ialah unjuran vektornya
-- <InlineMath math="a_z" /> ialah komponen skalar di sepanjang paksi-<InlineMath math="z" />, manakala <InlineMath math="a_z\vec{k}" /> ialah unjuran vektornya
+- Pada paksi-<InlineMath math="x" />, <InlineMath math="a_x" /> menyatakan sesaran bertanda dan <InlineMath math="a_x\vec{i}" /> ialah anak panah terarah pada paksi itu
+- Pada paksi-<InlineMath math="y" />, <InlineMath math="a_y" /> menyatakan sesaran bertanda dan <InlineMath math="a_y\vec{j}" /> ialah anak panah terarah pada paksi itu
+- Pada paksi-<InlineMath math="z" />, <InlineMath math="a_z" /> menyatakan sesaran bertanda dan <InlineMath math="a_z\vec{k}" /> ialah anak panah terarah pada paksi itu
 - <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> ialah vektor unit pada paksi <InlineMath math="x" />, <InlineMath math="y" /> dan <InlineMath math="z" />
+
+Bandingkan ketiga-tiga unjuran paksi dengan anak panah paduannya di bawah.
 
 <ContentBlock>
   <MathVisual
     title={<>Komponen Vektor Tiga Dimensi</>}
     description={
         <>
-          Vektor tiga dimensi dengan komponen pada paksi <InlineMath math="x" />, <InlineMath math="y" /> dan <InlineMath math="z" />.
+          Unjuran paksi <InlineMath math="a_x" />, <InlineMath math="a_y" /> dan{" "}
+          <InlineMath math="a_z" /> yang bergabung membentuk vektor ruang{" "}
+          <InlineMath math="a" />.
         </>
       }
     labels={{
@@ -103,40 +106,42 @@ Komponen dalam bentuk ini ialah:
   />
 </ContentBlock>
 
-## Magnitud Vektor Tiga Dimensi
+Vektor <InlineMath math="a" /> yang diserlahkan mencapai bucu bertentangan bagi kuboid yang dibina oleh <InlineMath math="a_x" />, <InlineMath math="a_y" /> dan <InlineMath math="a_z" />. Jika kamu ubah satu komponen sahaja, vektor itu terus condong keluar daripada satah asalnya.
 
-Magnitud atau panjang vektor tiga dimensi <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> ditentukan oleh rumus:
+## Magnitud Vektor Ruang
+
+**Magnitud** atau panjang vektor tiga dimensi <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> meluaskan teorem Pythagoras kepada tiga paksi berserenjang:
 
 <BlockMath math="|\vec{a}| = \sqrt{a_x^2 + a_y^2 + a_z^2}" />
 
-**Contoh**:
-
-Jika <InlineMath math="\vec{a} = (3, 4, 5)" />, maka magnitud vektor <InlineMath math="\vec{a}" /> ialah:
+Contohnya, ambil <InlineMath math="\vec{a} = (3, 4, 5)" /> dan kuasa duakan setiap komponen sebelum menjumlahkannya:
 
 <BlockMath math="\begin{aligned} |\vec{a}| &amp;= \sqrt{3^2 + 4^2 + 5^2} \\ &amp;= \sqrt{9 + 16 + 25} \\ &amp;= \sqrt{50} \\ &amp;= 5\sqrt{2} \end{aligned}" />
 
-## Operasi pada Vektor Tiga Dimensi
+Kerana setiap kuasa dua tidak negatif, hanya vektor sifar yang mempunyai magnitud <InlineMath math="0" />.
 
-Untuk penambahan dan penolakan, pasangkan **komponen pada paksi yang sama**. Pendaraban skalar mendarab setiap komponen dengan nombor yang sama. Bezakan juga jenis hasilnya: hasil darab titik memberikan skalar, manakala hasil darab silang memberikan vektor.
+## Penambahan dan Skala
 
-### Penambahan dan Penolakan Vektor
+Untuk penambahan dan penolakan, pasangkan **komponen pada paksi yang sama**. Pendaraban skalar mendarab setiap komponen dengan faktor yang sama untuk memanjangkan, memendekkan, atau membalikkan anak panah di sepanjang garisnya.
 
-Penambahan dan penolakan vektor tiga dimensi dilakukan dengan menambah atau menolak **komponen yang sepadan**.
+### Menambah Vektor Ruang
 
-Jika <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> dan <InlineMath math="\vec{b} = (b_x, b_y, b_z)" />, maka:
+Penambahan dan penolakan vektor tiga dimensi bekerja pada **komponen yang sepadan**. Jika <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> dan <InlineMath math="\vec{b} = (b_x, b_y, b_z)" />, gabungkan setiap koordinat secara berasingan:
 
 <MathContainer>
   <BlockMath math="\vec{a} + \vec{b} = (a_x + b_x, a_y + b_y, a_z + b_z)" />
   <BlockMath math="\vec{a} - \vec{b} = (a_x - b_x, a_y - b_y, a_z - b_z)" />
 </MathContainer>
 
+Secara geometri, sambungkan pangkal <InlineMath math="\vec{b}" /> pada hujung <InlineMath math="\vec{a}" /> untuk menjejaki anak panah paduan dalam ruang.
+
 <ContentBlock>
   <MathVisual
     title={<>Penambahan Vektor dalam Tiga Dimensi</>}
     description={
         <>
-          Visualisasi penambahan vektor <InlineMath math="a" /> dan{" "}
-          <InlineMath math="b" /> untuk menghasilkan vektor{" "}
+          Jumlah hujung ke pangkal bagi <InlineMath math="a" /> dan{" "}
+          <InlineMath math="b" /> yang menghasilkan sesaran paduan{" "}
           <InlineMath math="c = a + b" />.
         </>
       }
@@ -165,19 +170,24 @@ Jika <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> dan <InlineMath math="\vec{
   />
 </ContentBlock>
 
-### Pendaraban Vektor dengan Skalar
+Anak panah paduan <InlineMath math="c" /> menutup segi tiga terus dari asalan ke <InlineMath math="(5,4,3)" />, sepadan dengan hasil tambah komponen <InlineMath math="(2,3,1)" /> dan <InlineMath math="(3,1,2)" />.
+
+### Skala Vektor Ruang
 
 Mendarab skalar <InlineMath math="k" /> dengan vektor <InlineMath math="\vec{a}" /> menskalakan magnitudnya dengan faktor <InlineMath math="|k|" />. Jika <InlineMath math="\vec{a}" /> bukan sifar, arahnya kekal sama apabila <InlineMath math="k > 0" /> dan **menjadi terbalik** apabila <InlineMath math="k < 0" />.
 
 <BlockMath math="k\vec{a} = (k \cdot a_x, k \cdot a_y, k \cdot a_z)" />
+
+Lihat bagaimana menggandakan setiap komponen menggandakan panjang anak panah pada sinar yang sama.
 
 <ContentBlock>
   <MathVisual
     title={<>Pendaraban Vektor dengan Skalar</>}
     description={
         <>
-          Visualisasi pendaraban skalar dengan <InlineMath math="k" /> bagi
-          vektor <InlineMath math="a" />, dengan nilai <InlineMath math="k = 2" />.
+          Penggandaan <InlineMath math="a" /> dengan <InlineMath math="k = 2" />{" "}
+          mengekalkan arahnya sambil memanjangkan hujungnya ke{" "}
+          <InlineMath math="2a" />.
         </>
       }
     labels={{
@@ -200,41 +210,82 @@ Mendarab skalar <InlineMath math="k" /> dengan vektor <InlineMath math="\vec{a}"
   />
 </ContentBlock>
 
+Kedua-dua anak panah terletak pada garis yang sama melalui asalan kerana semua koordinat didarab dengan faktor positif yang sama, iaitu <InlineMath math="2" />.
+
+## Hasil Darab Titik dan Silang
+
+Dua operasi darab vektor menjawab soalan geometri yang berbeza. **Hasil darab titik** memberikan skalar yang mengukur penjajaran dan unjuran, manakala **hasil darab silang** memberikan vektor berserenjang yang panjangnya sama dengan luas segi empat selari.
+
 ### Hasil Darab Titik
 
-Hasil darab titik antara dua vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> **memberikan skalar** yang ditakrifkan sebagai:
+Hasil darab titik antara dua vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> **memberikan skalar** yang ditakrifkan melalui komponen atau sudut <InlineMath math="\theta" /> antara dua arah bukan sifar:
 
 <BlockMath math="\begin{aligned} \vec{a} \cdot \vec{b} &amp;= a_x b_x + a_y b_y + a_z b_z \\ &amp;= |\vec{a}||\vec{b}|\cos\theta \end{aligned}" />
 
-Untuk rumus sudut ini, kedua-dua vektor mesti bukan sifar. Simbol <InlineMath math="\theta" /> mewakili sudut antara arah kedua-dua vektor itu.
+Tiga identiti algebra terbit terus daripada takrif ini:
 
-Hasil darab titik mempunyai sifat-sifat berikut:
+<MathContainer>
+  <BlockMath math="\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}" />
+  <BlockMath math="\vec{a} \cdot \vec{b} = 0 \iff \vec{a} \perp \vec{b}" />
+  <BlockMath math="\vec{a} \cdot \vec{a} = |\vec{a}|^2" />
+</MathContainer>
 
-1. <InlineMath math="\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}" /> (kalis tukar tertib)
-2. <InlineMath math="\vec{a} \cdot \vec{b} = 0" /> jika dan hanya jika <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> ortogon. Jika kedua-duanya bukan sifar, arah geometri kedua-duanya berserenjang
-3. <InlineMath math="\vec{a} \cdot \vec{a} = |\vec{a}|^2" />
+Apabila kedua-dua vektor bukan sifar, hasil darab titik bernilai sifar tepat ketika kedua-duanya membentuk sudut tegak. Gerakkan sudut antara <InlineMath math="\vec{u}" /> dan <InlineMath math="\vec{v}" /> di bawah untuk melihat tanda unjuran pada <InlineMath math="\vec{v}" /> bertukar melepasi sembilan puluh darjah.
+
+<DotProductProjection3DLab
+  title={<>Hasil Darab Titik dan Unjuran Ortogon</>}
+  description={
+    <>
+      Pilih pratetap sudut tirus, sudut tegak, atau sudut cakah lalu seret
+      peluncur sudut bagi <InlineMath math="|\vec{u}| = 1.5" /> dan{" "}
+      <InlineMath math="|\vec{v}| = 2.0" /> untuk menyemak{" "}
+      <InlineMath math="\vec{u} \cdot \vec{v}" /> dan panjang unjuran bertanda.
+    </>
+  }
+  angle={{ min: 0, max: 180, value: 40 }}
+  presets={["acute", "orthogonal", "obtuse"]}
+  labels={{
+    angle: "Sudut antara vektor",
+    preset: "Jenis sudut",
+    presets: {
+      acute: "Sudut tirus",
+      orthogonal: "Sudut tegak",
+      obtuse: "Sudut cakah",
+    },
+    view: "Unjuran ortogon vektor pertama ke atas vektor rujukan bagi sudut tirus, tegak dan cakah",
+    dotValue: <>Hasil darab titik <InlineMath math="\vec{u} \cdot \vec{v}" /></>,
+    projectionLength: <>Panjang unjuran</>,
+    parts: {
+      vectorU: "Vektor u",
+      vectorV: "Vektor v",
+      projectionVector: "Unjuran",
+      dropLine: "Garis serenjang",
+      angleArc: "Sudut",
+      coordinateAxes: "Paksi koordinat",
+    },
+  }}
+/>
+
+Apabila sudut tirus, unjuran menghala searah dengan <InlineMath math="\vec{v}" /> dan hasil darab titik bernilai positif. Pada <InlineMath math="90^\circ" />, unjuran mengecil ke asalan dan nilainya sifar. Melepasi <InlineMath math="90^\circ" />, unjuran berbalik arah dan kedua-dua nilai menjadi negatif.
 
 ### Hasil Darab Silang
 
-Hasil darab silang antara dua vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> memberikan vektor yang hasil darab titiknya dengan setiap faktor ialah sifar:
+Hasil darab silang antara <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> memberikan vektor yang hasil darab titiknya dengan setiap faktor ialah sifar:
 
 <MathContainer>
   <BlockMath math="(\vec{a}\times\vec{b})\cdot\vec{a}=(\vec{a}\times\vec{b})\cdot\vec{b}=0" />
-
   <BlockMath math="\vec a\times\vec b=\begin{pmatrix}a_yb_z-a_zb_y\\a_zb_x-a_xb_z\\a_xb_y-a_yb_x\end{pmatrix}" />
 </MathContainer>
 
-Magnitud hasil darab silang ialah:
+Bagi vektor bukan sifar yang membentuk sudut <InlineMath math="\theta" />, magnitud hasil darab silang sama dengan luas segi empat selari yang direntangi keduanya:
 
 <BlockMath math="|\vec{a} \times \vec{b}| = |\vec{a}||\vec{b}|\sin\theta" />
 
-Untuk rumus sudut ini, kedua-dua vektor mesti bukan sifar. Simbol <InlineMath math="\theta" /> mewakili sudut antara arah kedua-dua vektor itu.
-
-Apabila <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" />, arahnya berserenjang dengan kedua-dua faktor dan mengikut petua tangan kanan dari <InlineMath math="\vec{a}" /> ke arah <InlineMath math="\vec{b}" />. Jika salah satu faktor ialah sifar atau kedua-dua faktor selari, hasil darab silang ialah <InlineMath math="\vec{0}" />, jadi ia tidak mempunyai arah geometri.
+Apabila hasil darab silang bukan sifar, arahnya berserenjang dengan kedua-dua faktor mengikut **petua tangan kanan** dari <InlineMath math="\vec{a}" /> ke arah <InlineMath math="\vec{b}" />. Jika salah satu faktor ialah sifar atau kedua-duanya selari, hasilnya ialah vektor sifar <InlineMath math="\vec{0}" />.
 
 <MathVisual
-  title={<>Hasil Darab Silang Vektor</>}
-  description={<>Arah <InlineMath math="\vec{a}\times\vec{b}" /> mengikut petua tangan kanan, yang berserenjang dengan kedua-dua vektor yang tidak selari.</>}
+  title={<>Hasil Darab Silang Vektor Paksi Berserenjang</>}
+  description={<>Anak panah petua tangan kanan <InlineMath math="\vec{a}\times\vec{b}" /> yang naik berserenjang dengan <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" />.</>}
   labels={{
     "l1": <InlineMath math="a" />,
     "l2": <InlineMath math="b" />,
@@ -257,26 +308,125 @@ Apabila <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" />, arahnya berserenj
   }}
 />
 
-
 Dalam gambar rajah, ambil <InlineMath math="\vec a=(2,0,0)" /> dan <InlineMath math="\vec b=(0,2,0)" />. Kedua-dua vektor ini **berserenjang**, jadi hasil darab titiknya ialah sifar:
 
 <BlockMath math="\vec a\cdot\vec b=2\cdot0+0\cdot2+0\cdot0=0" />
 
-Hasil darab silang memberikan jenis hasil yang berbeza. Gantikan komponen kedua-dua vektor ke dalam rumus:
+Hasil darab silang pula memberikan vektor baharu. Gantikan komponen kedua-dua vektor ke dalam rumus:
 
 <BlockMath math="\begin{aligned}\vec a\times\vec b&amp;=(0\cdot0-0\cdot2,\;0\cdot0-2\cdot0,\;2\cdot2-0\cdot0)\\&amp;=(0,0,4)\end{aligned}" />
 
-Hasilnya menghala di sepanjang paksi-<InlineMath math="z" /> positif, sepadan dengan anak panah hijau. Magnitudnya, <InlineMath math="4" />, sama dengan luas segi empat tepat yang panjang sisinya <InlineMath math="2" /> dan <InlineMath math="2" />.
+Hasilnya menghala di sepanjang paksi-<InlineMath math="z" /> positif, sepadan dengan anak panah hijau, dan magnitudnya <InlineMath math="4" /> sama dengan luas segi empat sama bersisi <InlineMath math="2" /> dan <InlineMath math="2" />. Sekarang terbalikkan tertib pendaraban dan ubah sudut bukaan dalam ruang tiga dimensi di bawah.
 
+<Vector3DCrossProductLab
+  title={<>Petua Tangan Kanan dan Sifat Antikalistukar Tertib</>}
+  description={
+    <>
+      Bandingkan tertib hadapan <InlineMath math="\vec{u} \times \vec{v}" /> dan
+      tertib songsang <InlineMath math="\vec{v} \times \vec{u}" /> bagi{" "}
+      <InlineMath math="|\vec{u}| = 2" /> dan{" "}
+      <InlineMath math="|\vec{v}| = 1.5" /> apabila sudut berubah.
+    </>
+  }
+  angle={{ min: 0, max: 180, value: 60 }}
+  orders={["uCrossV", "vCrossU"]}
+  labels={{
+    angle: "Sudut antara vektor",
+    order: "Tertib pendaraban",
+    orders: {
+      uCrossV: "Tertib hadapan",
+      vCrossU: "Tertib songsang",
+    },
+    view: "Dua vektor tiga dimensi merentangi segi empat selari dengan anak panah hasil darab silang berserenjang mengikut petua tangan kanan",
+    crossMagnitude: <>Luas segi empat selari <InlineMath math="|\vec{u} \times \vec{v}|" /></>,
+    directionRule: <>Arah normal</>,
+    parts: {
+      vectorU: "Vektor u",
+      vectorV: "Vektor v",
+      crossVector: "Vektor hasil silang",
+      parallelogram: "Segi empat selari",
+      curlArc: "Lengkok tangan kanan",
+      coordinateAxes: "Paksi koordinat",
+    },
+  }}
+/>
 
-## Aplikasi Vektor Tiga Dimensi
+Menukar tertib mengekalkan luas segi empat selari tetapi menterbalikkan anak panah normal daripada <InlineMath math="+\hat{n}" /> kepada <InlineMath math="-\hat{n}" />. Apabila sudut menghampiri <InlineMath math="0^\circ" /> atau <InlineMath math="180^\circ" />, segi empat selari menjadi leper dan hasil darab silang mengecil kepada sifar.
+
+## Isi Padu dan Aplikasi Vektor
+
+Menggabungkan hasil darab titik dengan hasil darab silang mengukur **isi padu paralelepiped** yang direntangi oleh tiga vektor <InlineMath math="\vec{u}" />, <InlineMath math="\vec{v}" /> dan <InlineMath math="\vec{w}" />:
+
+<BlockMath math="V = |\vec{w} \cdot (\vec{u} \times \vec{v})|" />
+
+Nilai <InlineMath math="|\vec{u} \times \vec{v}|" /> memberi luas tapak, manakala komponen <InlineMath math="\vec{w}" /> di sepanjang normal memberi tingginya. Tukar bentuk prisma dan sudut dongakan di bawah untuk menguji bila isi padunya menjadi sifar.
+
+<VectorParallelepipedLab
+  title={<>Isi Padu Hasil Darab Skalar Ganda Tiga</>}
+  description={
+    <>
+      Bandingkan kotak ortogon, prisma ricih, dan tiga vektor sesatah sambil
+      mencondongkan <InlineMath math="\vec{w}" /> untuk melihat perubahan tinggi
+      dan <InlineMath math="|\vec{w} \cdot (\vec{u} \times \vec{v})|" />.
+    </>
+  }
+  configurations={["orthogonalBox", "shearedPrism", "coplanarFlat"]}
+  elevation={{ min: 0, max: 90, value: 60 }}
+  labels={{
+    configuration: "Bentuk prisma",
+    configurations: {
+      orthogonalBox: {
+        name: "Kotak ortogon",
+        summary: (
+          <>
+            Vektor tapak berserenjang memberi luas tapak{" "}
+            <InlineMath math="3.0" /> dan isi padu maksimum apabila{" "}
+            <InlineMath math="\vec{w}" /> tegak ke atas.
+          </>
+        ),
+      },
+      shearedPrism: {
+        name: "Prisma ricih",
+        summary: (
+          <>
+            Mencondongkan vektor tapak mengurangkan luas tapak kepada{" "}
+            <InlineMath math="2.4" /> dan merendahkan tinggi mencancang.
+          </>
+        ),
+      },
+      coplanarFlat: {
+        name: "Sesatah leper",
+        summary: (
+          <>
+            Ketiga-tiga vektor terletak pada satu satah, jadi tinggi dan isi
+            padu hasil darab ganda tiga jatuh kepada <InlineMath math="0" />.
+          </>
+        ),
+      },
+    },
+    elevation: "Sudut dongakan",
+    view: "Paralelepiped lut cahaya yang direntangi tiga vektor ruang dengan tapak segi empat selari dan garis tinggi mencancang",
+    tripleVolume: <>Isi padu ganda tiga</>,
+    coplanarityNote: <>Status isi padu</>,
+    parts: {
+      vectorU: "Vektor u",
+      vectorV: "Vektor v",
+      vectorW: "Vektor w",
+      baseParallelogram: "Tapak segi empat selari",
+      parallelepipedMesh: "Isi padu paralelepiped",
+      altitudeLine: "Garis tinggi",
+    },
+  }}
+/>
+
+Setiap kali ketiga-tiga vektor berada pada satu satah yang sama, tingginya jatuh kepada sifar dan hasil darab skalar ganda tiga bernilai sifar. Menaikkan <InlineMath math="\vec{w}" /> ke arah <InlineMath math="90^\circ" /> memaksimumkan tinggi di atas tapak lalu menghasilkan isi padu terbesar.
 
 Dalam robotik, vektor sesaran memberitahu lengan robot **sejauh mana ia perlu bergerak di sepanjang setiap paksi**. Katakan hujung lengan itu bermula di <InlineMath math="P(1,2,0)" /> dan mesti sampai ke <InlineMath math="Q(3,4,2)" />:
 
 <BlockMath math="\overrightarrow{PQ}=Q-P=(3-1,4-2,2-0)=(2,2,2)" />
 
-Sesaran di sepanjang setiap paksi ialah <InlineMath math="2" /> unit. Magnitud sesaran garis lurus berbeza daripada hasil tambah komponennya:
+Sesaran di sepanjang setiap paksi ialah <InlineMath math="2" /> unit, manakala jarak lurusnya dihitung dengan rumus magnitud:
 
 <BlockMath math="|\overrightarrow{PQ}|=\sqrt{2^2+2^2+2^2}=\sqrt{12}=2\sqrt3" />
 
-Grafik komputer dan navigasi menggunakan pengiraan kedudukan dan sesaran yang sama. Dalam fizik, komponen boleh mewakili daya, halaju, pecutan atau momentum. Dalam kejuruteraan mekanikal, vektor membantu menganalisis daya pada struktur dan aliran bendalir. Makna dan unit komponen mengikut kuantiti yang dimodelkan.
+Grafik komputer dan navigasi memakai pengiraan sesaran dan hasil darab silang yang sama untuk mengorientasikan permukaan serta kamera. Dalam fizik dan kejuruteraan mekanikal, komponen vektor memodelkan daya, halaju, tork dan beban struktur dengan unit mengikut kuantitinya.

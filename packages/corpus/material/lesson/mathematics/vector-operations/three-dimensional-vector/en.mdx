@@ -1,25 +1,28 @@
-
-
 export const metadata = {
   title: "Vectors in Three Dimensions",
-    description: "Represent three-dimensional vectors, calculate their magnitudes, and apply addition, dot products, and cross products.",
+  description:
+    "Represent three-dimensional vectors, calculate their magnitudes, and apply addition, dot products, cross products, and triple product volumes.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-27",
   subject: "Vector and Operations",
 };
 
-## Vectors in a Space with Three Coordinate Axes
+## Three Axis Coordinate Space
 
 A three-dimensional vector is described by <Highlight>three coordinate components</Highlight>. These components measure displacement along the <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> axes. A nonzero vector has magnitude and direction, while the zero vector has no geometric direction.
+
+> In a right-handed Cartesian frame, the component order always reads the <InlineMath math="x" />, then <InlineMath math="y" />, then <InlineMath math="z" /> displacement, regardless of how the scene is rotated on screen.
+
+Trace the arrow from the origin to <InlineMath math="(3,4,2)" /> in the three-dimensional frame below.
 
 <MathVisual
   title={<>Vector in Three-Dimensional Space</>}
   description={
     <>
-      Visualization of a vector in three-dimensional space with{" "}
-      <InlineMath math="x" />, <InlineMath math="y" />, and{" "}
-      <InlineMath math="z" /> components.
+      Displacement arrow from the origin to <InlineMath math="(3,4,2)" /> along
+      the <InlineMath math="x" />, <InlineMath math="y" />, and{" "}
+      <InlineMath math="z" /> axes.
     </>
   }
   labels={{
@@ -38,43 +41,43 @@ A three-dimensional vector is described by <Highlight>three coordinate component
   }}
 />
 
-## Representation of Three Dimensional Vectors
+Each coordinate measures one signed step parallel to its axis. Together, those three perpendicular steps fix both the length and the spatial heading of <InlineMath math="\vec{v}" />.
 
-The <InlineMath math="z" />-axis is perpendicular to the <InlineMath math="xy" />-plane. In this Cartesian system, the **component order** always follows the <InlineMath math="x" />-, then <InlineMath math="y" />-, then <InlineMath math="z" />-axis.
+## Notation and Components
 
-For example, the third component of <InlineMath math="(3,4,2)" /> is <InlineMath math="2" />. It does not have to appear as vertical height on the screen.
+The <InlineMath math="z" />-axis stands perpendicular to the <InlineMath math="xy" />-plane. For example, the third component of <InlineMath math="(3,4,2)" /> is <InlineMath math="2" />, which marks the step along the <InlineMath math="z" />-axis even when the camera tilts.
 
-### Notation of Three Dimensional Vectors
+Three-dimensional vectors appear in three standard notations:
 
-Three-dimensional vectors can be notated in various ways:
-
-1. Letter notation with an arrow above it: <InlineMath math="\vec{a}" /> or <InlineMath math="\overrightarrow{PQ}" />
+1. Arrow notation: <InlineMath math="\vec{a}" /> or <InlineMath math="\overrightarrow{PQ}" />
 2. Component notation: <InlineMath math="(a_x, a_y, a_z)" /> or <InlineMath math="(a_1, a_2, a_3)" />
 3. Basis notation: <InlineMath math="a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
 
-For the vector in the first diagram, these three component notations describe the **same displacement**:
+For the vector in the first diagram, these notations describe the **same displacement**:
 
 <BlockMath math="\vec v=(3,4,2)=\begin{pmatrix}3\\4\\2\end{pmatrix}=3\vec i+4\vec j+2\vec k" />
 
-### Components of Three Dimensional Vectors
-
-A vector in three-dimensional space has **three scalar coordinate components**. Multiplying each scalar by its axis unit vector gives the corresponding vector projection:
+Multiplying each **scalar component** by its axis unit vector produces the corresponding vector projection along that axis:
 
 <BlockMath math="\vec{a} = (a_x, a_y, a_z) = a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
 
-The components in this form are:
+Each piece plays a distinct geometric role:
 
-- <InlineMath math="a_x" /> is the scalar component along the <InlineMath math="x" />-axis, while <InlineMath math="a_x\vec{i}" /> is its vector projection
-- <InlineMath math="a_y" /> is the scalar component along the <InlineMath math="y" />-axis, while <InlineMath math="a_y\vec{j}" /> is its vector projection
-- <InlineMath math="a_z" /> is the scalar component along the <InlineMath math="z" />-axis, while <InlineMath math="a_z\vec{k}" /> is its vector projection
-- <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> are the unit vectors on the <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> axes
+- Along the <InlineMath math="x" />-axis, <InlineMath math="a_x" /> gives the signed displacement and <InlineMath math="a_x\vec{i}" /> is the directed axis arrow
+- Along the <InlineMath math="y" />-axis, <InlineMath math="a_y" /> gives the signed displacement and <InlineMath math="a_y\vec{j}" /> is the directed axis arrow
+- Along the <InlineMath math="z" />-axis, <InlineMath math="a_z" /> gives the signed displacement and <InlineMath math="a_z\vec{k}" /> is the directed axis arrow
+- <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> are the unit vectors along the <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> axes
+
+Compare the three axis projections with their combined spatial arrow below.
 
 <ContentBlock>
   <MathVisual
     title={<>Components of a Three-Dimensional Vector</>}
     description={
         <>
-          Three-dimensional vector with components on the <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="z" /> axes.
+          Axis projections <InlineMath math="a_x" />, <InlineMath math="a_y" />,
+          and <InlineMath math="a_z" /> combining into the resultant spatial
+          vector <InlineMath math="a" />.
         </>
       }
     labels={{
@@ -103,40 +106,42 @@ The components in this form are:
   />
 </ContentBlock>
 
-## Magnitude of Three Dimensional Vectors
+The highlighted vector <InlineMath math="a" /> reaches the opposite corner of the rectangular box framed by <InlineMath math="a_x" />, <InlineMath math="a_y" />, and <InlineMath math="a_z" />. Changing any single component tilts the vector out of its original plane.
 
-The magnitude or length of a three-dimensional vector <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> is determined by the formula:
+## Vector Magnitude
+
+The **magnitude** or length of a three-dimensional vector <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> extends the Pythagorean theorem to three perpendicular axes:
 
 <BlockMath math="|\vec{a}| = \sqrt{a_x^2 + a_y^2 + a_z^2}" />
 
-**Example**:
-
-If <InlineMath math="\vec{a} = (3, 4, 5)" />, then the magnitude of vector <InlineMath math="\vec{a}" /> is:
+For example, take <InlineMath math="\vec{a} = (3, 4, 5)" /> and square each component before summing:
 
 <BlockMath math="\begin{aligned} |\vec{a}| &amp;= \sqrt{3^2 + 4^2 + 5^2} \\ &amp;= \sqrt{9 + 16 + 25} \\ &amp;= \sqrt{50} \\ &amp;= 5\sqrt{2} \end{aligned}" />
 
-## Operations on Three Dimensional Vectors
+Because every square is nonnegative, only the zero vector has magnitude <InlineMath math="0" />.
 
-For addition and subtraction, pair **components on the same axis**. Scalar multiplication multiplies every component by the same number. Also distinguish the result types: a dot product produces a scalar, while a cross product produces a vector.
+## Addition and Scaling
 
-### Addition and Subtraction of Vectors
+For addition and subtraction, pair **components on the same axis**. Scalar multiplication multiplies every component by the same factor, stretching, shrinking, or reversing the arrow without bending it off its line.
 
-Addition and subtraction of three-dimensional vectors are performed by adding or subtracting the **corresponding components**.
+### Adding Space Vectors
 
-If <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> and <InlineMath math="\vec{b} = (b_x, b_y, b_z)" />, then:
+Addition and subtraction of three-dimensional vectors operate on **corresponding components**. Given <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> and <InlineMath math="\vec{b} = (b_x, b_y, b_z)" />, combine each coordinate separately:
 
 <MathContainer>
   <BlockMath math="\vec{a} + \vec{b} = (a_x + b_x, a_y + b_y, a_z + b_z)" />
   <BlockMath math="\vec{a} - \vec{b} = (a_x - b_x, a_y - b_y, a_z - b_z)" />
 </MathContainer>
 
+Geometrically, place the tail of <InlineMath math="\vec{b}" /> at the tip of <InlineMath math="\vec{a}" /> to trace the resultant arrow in space.
+
 <ContentBlock>
   <MathVisual
     title={<>Vector Addition in Three Dimensions</>}
     description={
         <>
-          Visualization of adding vectors <InlineMath math="a" /> and{" "}
-          <InlineMath math="b" /> to produce vector{" "}
+          Head-to-tail sum of <InlineMath math="a" /> and{" "}
+          <InlineMath math="b" /> producing the resultant displacement{" "}
           <InlineMath math="c = a + b" />.
         </>
       }
@@ -165,19 +170,23 @@ If <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> and <InlineMath math="\vec{b}
   />
 </ContentBlock>
 
-### Scalar Multiplication of Vectors
+The resultant arrow <InlineMath math="c" /> closes the triangle directly from the origin to <InlineMath math="(5,4,3)" />, matching the componentwise sum <InlineMath math="(2,3,1)" /> plus <InlineMath math="(3,1,2)" />.
+
+### Scaling Space Vectors
 
 Multiplying a scalar <InlineMath math="k" /> by a vector <InlineMath math="\vec{a}" /> scales its magnitude by <InlineMath math="|k|" />. If <InlineMath math="\vec{a}" /> is nonzero, the direction stays the same when <InlineMath math="k > 0" /> and **reverses** when <InlineMath math="k < 0" />.
 
 <BlockMath math="k\vec{a} = (k \cdot a_x, k \cdot a_y, k \cdot a_z)" />
+
+Notice how doubling each component doubles the arrow length along the exact same ray.
 
 <ContentBlock>
   <MathVisual
     title={<>Scalar Multiplication of a Vector</>}
     description={
         <>
-          Visualization of scalar multiplication by <InlineMath math="k" /> for
-          vector <InlineMath math="a" />, where <InlineMath math="k = 2" />.
+          Doubling <InlineMath math="a" /> by <InlineMath math="k = 2" /> keeps
+          its direction fixed while extending its tip to <InlineMath math="2a" />.
         </>
       }
     labels={{
@@ -200,41 +209,83 @@ Multiplying a scalar <InlineMath math="k" /> by a vector <InlineMath math="\vec{
   />
 </ContentBlock>
 
+Both arrows lie on the same line through the origin because every coordinate scales by the same positive factor <InlineMath math="2" />.
+
+## Dot and Cross Products
+
+Two vector multiplications answer different geometric questions. The **dot product** returns a scalar measuring alignment and projection, while the **cross product** returns a perpendicular vector whose length equals a parallelogram area.
+
 ### Dot Product
 
-The dot product between two vectors <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> **produces a scalar** defined as:
+The dot product between two vectors <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> **produces a scalar** defined by their components or the angle <InlineMath math="\theta" /> between nonzero directions:
 
 <BlockMath math="\begin{aligned} \vec{a} \cdot \vec{b} &amp;= a_x b_x + a_y b_y + a_z b_z \\ &amp;= |\vec{a}||\vec{b}|\cos\theta \end{aligned}" />
 
-For this angle formula, both vectors must be nonzero. The symbol <InlineMath math="\theta" /> denotes the angle between their directions.
+Three algebraic identities follow directly from this definition:
 
-The dot product has the following properties:
+<MathContainer>
+  <BlockMath math="\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}" />
+  <BlockMath math="\vec{a} \cdot \vec{b} = 0 \iff \vec{a} \perp \vec{b}" />
+  <BlockMath math="\vec{a} \cdot \vec{a} = |\vec{a}|^2" />
+</MathContainer>
 
-1. <InlineMath math="\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}" /> (commutative)
-2. <InlineMath math="\vec{a} \cdot \vec{b} = 0" /> if and only if <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> are orthogonal. If both are nonzero, their geometric directions are perpendicular
-3. <InlineMath math="\vec{a} \cdot \vec{a} = |\vec{a}|^2" />
+When both vectors are nonzero, a zero dot product means they meet at a right angle. Sweep the angle between <InlineMath math="\vec{u}" /> and <InlineMath math="\vec{v}" /> below to see how the signed projection along <InlineMath math="\vec{v}" /> changes sign across ninety degrees.
+
+<DotProductProjection3DLab
+  title={<>Dot Product and Orthogonal Projection</>}
+  description={
+    <>
+      Switch between acute, right, and obtuse angle presets or drag the angle
+      slider for <InlineMath math="|\vec{u}| = 1.5" /> and{" "}
+      <InlineMath math="|\vec{v}| = 2.0" /> to inspect{" "}
+      <InlineMath math="\vec{u} \cdot \vec{v}" /> and the signed projection
+      length.
+    </>
+  }
+  angle={{ min: 0, max: 180, value: 40 }}
+  presets={["acute", "orthogonal", "obtuse"]}
+  labels={{
+    angle: "Angle between vectors",
+    preset: "Angle regime",
+    presets: {
+      acute: "Acute angle",
+      orthogonal: "Right angle",
+      obtuse: "Obtuse angle",
+    },
+    view: "Orthogonal projection of the first vector onto the reference vector across acute, right, and obtuse angles",
+    dotValue: <>Dot product <InlineMath math="\vec{u} \cdot \vec{v}" /></>,
+    projectionLength: <>Signed projection</>,
+    parts: {
+      vectorU: "Vector u",
+      vectorV: "Vector v",
+      projectionVector: "Projection",
+      dropLine: "Orthogonal drop",
+      angleArc: "Angle",
+      coordinateAxes: "Coordinate axes",
+    },
+  }}
+/>
+
+When the angle is acute, the projection points along <InlineMath math="\vec{v}" /> and the dot product is positive. At <InlineMath math="90^\circ" />, the projection collapses to the origin and the dot product hits zero. Past <InlineMath math="90^\circ" />, the projection flips opposite <InlineMath math="\vec{v}" /> and both values turn negative.
 
 ### Cross Product
 
-The cross product between two vectors <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> produces a vector whose dot product with each factor is zero:
+The cross product of <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> produces a vector whose dot product with each factor is zero:
 
 <MathContainer>
   <BlockMath math="(\vec{a}\times\vec{b})\cdot\vec{a}=(\vec{a}\times\vec{b})\cdot\vec{b}=0" />
-
   <BlockMath math="\vec a\times\vec b=\begin{pmatrix}a_yb_z-a_zb_y\\a_zb_x-a_xb_z\\a_xb_y-a_yb_x\end{pmatrix}" />
 </MathContainer>
 
-The magnitude of the cross product is:
+For nonzero vectors forming angle <InlineMath math="\theta" />, the cross product magnitude equals the area of the parallelogram they span:
 
 <BlockMath math="|\vec{a} \times \vec{b}| = |\vec{a}||\vec{b}|\sin\theta" />
 
-For this angle formula, both vectors must be nonzero. The symbol <InlineMath math="\theta" /> denotes the angle between their directions.
-
-When <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" />, its direction is perpendicular to both factors and follows the right-hand rule from <InlineMath math="\vec{a}" /> toward <InlineMath math="\vec{b}" />. If either factor is zero or the factors are parallel, the cross product is <InlineMath math="\vec{0}" /> and therefore has no geometric direction.
+Whenever the cross product is nonzero, it points perpendicular to both factors along the **right-hand rule** from <InlineMath math="\vec{a}" /> toward <InlineMath math="\vec{b}" />. If either factor is zero or the factors are parallel, the result is the zero vector <InlineMath math="\vec{0}" />.
 
 <MathVisual
-  title={<>Cross Product of Vectors</>}
-  description={<>The right-hand-rule direction of <InlineMath math="\vec{a}\times\vec{b}" />, perpendicular to both nonparallel vectors.</>}
+  title={<>Cross Product of Perpendicular Axis Vectors</>}
+  description={<>The right-hand-rule arrow <InlineMath math="\vec{a}\times\vec{b}" /> rising perpendicular to both <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" />.</>}
   labels={{
     "l1": <InlineMath math="a" />,
     "l2": <InlineMath math="b" />,
@@ -257,26 +308,125 @@ When <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" />, its direction is per
   }}
 />
 
-
 In the diagram, take <InlineMath math="\vec a=(2,0,0)" /> and <InlineMath math="\vec b=(0,2,0)" />. The vectors are **perpendicular**, so their dot product is zero:
 
 <BlockMath math="\vec a\cdot\vec b=2\cdot0+0\cdot2+0\cdot0=0" />
 
-The cross product gives a different kind of result. Substitute the components of both vectors into the formula:
+The cross product gives a vector instead. Substituting both component triples gives:
 
 <BlockMath math="\begin{aligned}\vec a\times\vec b&amp;=(0\cdot0-0\cdot2,\;0\cdot0-2\cdot0,\;2\cdot2-0\cdot0)\\&amp;=(0,0,4)\end{aligned}" />
 
-The result points along the positive <InlineMath math="z" />-axis, matching the green arrow. Its magnitude of <InlineMath math="4" /> equals the area of a rectangle with side lengths <InlineMath math="2" /> and <InlineMath math="2" />.
+The result points along the positive <InlineMath math="z" />-axis, matching the green arrow, and its length <InlineMath math="4" /> equals the area of the square with sides <InlineMath math="2" /> and <InlineMath math="2" />. Now reverse the multiplication order and vary the opening angle in three dimensions below.
 
+<Vector3DCrossProductLab
+  title={<>Right-Hand Rule and Anti-Commutativity</>}
+  description={
+    <>
+      Compare forward order <InlineMath math="\vec{u} \times \vec{v}" /> and
+      reversed order <InlineMath math="\vec{v} \times \vec{u}" /> for{" "}
+      <InlineMath math="|\vec{u}| = 2" /> and{" "}
+      <InlineMath math="|\vec{v}| = 1.5" /> as the angle changes.
+    </>
+  }
+  angle={{ min: 0, max: 180, value: 60 }}
+  orders={["uCrossV", "vCrossU"]}
+  labels={{
+    angle: "Angle between vectors",
+    order: "Multiplication order",
+    orders: {
+      uCrossV: "Forward order",
+      vCrossU: "Reversed order",
+    },
+    view: "Three-dimensional vectors spanning a parallelogram with a perpendicular cross product arrow showing the right-hand curl",
+    crossMagnitude: <>Parallelogram area <InlineMath math="|\vec{u} \times \vec{v}|" /></>,
+    directionRule: <>Normal orientation</>,
+    parts: {
+      vectorU: "Vector u",
+      vectorV: "Vector v",
+      crossVector: "Cross product vector",
+      parallelogram: "Spanned parallelogram",
+      curlArc: "Right-hand curl",
+      coordinateAxes: "Coordinate axes",
+    },
+  }}
+/>
 
-## Applications of Three Dimensional Vectors
+Swapping the order keeps the parallelogram area unchanged while flipping the normal arrow from <InlineMath math="+\hat{n}" /> to <InlineMath math="-\hat{n}" />. As the angle approaches <InlineMath math="0^\circ" /> or <InlineMath math="180^\circ" />, the parallelogram flattens and the cross product shrinks to zero.
+
+## Triple Product and Uses
+
+Combining a dot product with a cross product measures the **volume of a parallelepiped** spanned by three vectors <InlineMath math="\vec{u}" />, <InlineMath math="\vec{v}" />, and <InlineMath math="\vec{w}" />:
+
+<BlockMath math="V = |\vec{w} \cdot (\vec{u} \times \vec{v})|" />
+
+Here <InlineMath math="|\vec{u} \times \vec{v}|" /> gives the base area and the component of <InlineMath math="\vec{w}" /> along the normal gives the altitude. Switch shapes and change the elevation angle below to test when the volume vanishes.
+
+<VectorParallelepipedLab
+  title={<>Scalar Triple Product Volume</>}
+  description={
+    <>
+      Compare an orthogonal box, a sheared prism, and a flat coplanar triple
+      while tilting <InlineMath math="\vec{w}" /> to watch altitude and{" "}
+      <InlineMath math="|\vec{w} \cdot (\vec{u} \times \vec{v})|" /> change.
+    </>
+  }
+  configurations={["orthogonalBox", "shearedPrism", "coplanarFlat"]}
+  elevation={{ min: 0, max: 90, value: 60 }}
+  labels={{
+    configuration: "Prism configuration",
+    configurations: {
+      orthogonalBox: {
+        name: "Orthogonal box",
+        summary: (
+          <>
+            Perpendicular base vectors give base area{" "}
+            <InlineMath math="3.0" /> and maximum volume when{" "}
+            <InlineMath math="\vec{w}" /> rises straight up.
+          </>
+        ),
+      },
+      shearedPrism: {
+        name: "Sheared prism",
+        summary: (
+          <>
+            Tilting the base vectors reduces the base area to{" "}
+            <InlineMath math="2.4" /> and lowers the vertical altitude.
+          </>
+        ),
+      },
+      coplanarFlat: {
+        name: "Coplanar flat",
+        summary: (
+          <>
+            All three vectors lie in one plane, so the altitude and scalar
+            triple product volume collapse to <InlineMath math="0" />.
+          </>
+        ),
+      },
+    },
+    elevation: "Elevation angle",
+    view: "Translucent parallelepiped spanned by three space vectors with a base parallelogram and vertical altitude line",
+    tripleVolume: <>Triple product volume</>,
+    coplanarityNote: <>Volume condition</>,
+    parts: {
+      vectorU: "Vector u",
+      vectorV: "Vector v",
+      vectorW: "Vector w",
+      baseParallelogram: "Base parallelogram",
+      parallelepipedMesh: "Parallelepiped volume",
+      altitudeLine: "Altitude",
+    },
+  }}
+/>
+
+Whenever all three vectors lie in the same plane, the altitude drops to zero and the scalar triple product equals zero. Raising <InlineMath math="\vec{w}" /> toward <InlineMath math="90^\circ" /> maximizes the height above the base parallelogram and therefore maximizes the enclosed volume.
 
 In robotics, a displacement vector tells a robot arm **how far to move along each axis**. Suppose the arm tip starts at <InlineMath math="P(1,2,0)" /> and must reach <InlineMath math="Q(3,4,2)" />:
 
 <BlockMath math="\overrightarrow{PQ}=Q-P=(3-1,4-2,2-0)=(2,2,2)" />
 
-The displacement along each axis is <InlineMath math="2" /> units. The straight-line displacement magnitude differs from the sum of the components:
+The displacement along each axis is <InlineMath math="2" /> units, while the straight-line travel distance uses the magnitude formula:
 
 <BlockMath math="|\overrightarrow{PQ}|=\sqrt{2^2+2^2+2^2}=\sqrt{12}=2\sqrt3" />
 
-Computer graphics and navigation use the same position and displacement calculations. In physics, components can represent force, velocity, acceleration, or momentum. In mechanical engineering, vectors help analyze structural forces and fluid flow. The meaning and units of the components follow the quantity being modeled.
+Computer graphics and navigation rely on the same displacement and cross product calculations to orient surfaces and cameras. In physics and mechanical engineering, components model force, velocity, torque, and structural loads, with units set by the physical quantity.

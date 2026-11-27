@@ -1,42 +1,42 @@
 export const metadata = {
-    title: "Kamiran Tentu",
-    description: "Takrifkan kamiran tentu sebagai had hasil tambah Riemann dan nilaikan satu kamiran tentu terus daripada had itu.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2025-05-26",
-    dateModified: "2026-11-08",
-    subject: "Pengamiran",
+  title: "Kamiran Tentu",
+  description: "Takrifkan kamiran tentu sebagai had hasil tambah Riemann dan nilaikan satu kamiran tentu terus daripada had itu.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-27",
+  subject: "Pengamiran",
 };
 
-## Daripada Anggaran kepada Luas Tepat
+## Dari Anggaran ke Luas Tepat
 
 Dalam bahan [Hasil Tambah Riemann](/ms/subjek/matematik/pengamiran/hasil-tambah-riemann), kita menganggarkan luas di bawah lengkung yang tidak negatif dengan segi empat tepat. Apabila selang dibahagikan dengan lebih halus, hasil tambah Riemann yang sepadan akan menghampiri satu nilai yang sama bagi fungsi yang boleh dikamirkan.
 
 Jika semua subselang sama lebar, biarkan bilangan subselang <InlineMath math="n" /> bertambah tanpa batas. Lebarnya, <InlineMath math="\Delta x" />, kemudian menghampiri sifar. Syarat pentingnya ialah **lebar subselang terbesar menghampiri sifar**. Jika hasil tambah Riemann mempunyai had, had itu ialah **kamiran tentu**.
 
-## Tatatanda dan Maksud Kamiran Tentu
+## Tatatanda Kamiran Tentu
 
 Kamiran tentu merekodkan pengumpulan yang diperoleh melalui had ini. Kamiran ini <Highlight>ditakrifkan sebagai had hasil tambah Riemann</Highlight>, dengan syarat had itu wujud.
 
 <BlockMath math="\int_{a}^{b} f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x" />
 
 Tatatanda ini mempunyai maksud yang khusus:
-- <InlineMath math="\int_{a}^{b}" />: Ini ialah simbol kamiran dengan had **bawah** <InlineMath math="a" /> dan had **atas** <InlineMath math="b" />. Kedua-dua nombor ini menentukan selang tempat kita mengira luas.
-- <InlineMath math="f(x)" />: Ini ialah **kamiranan**, iaitu fungsi yang dikamirkan. Nilainya di sepanjang <InlineMath math="[a,b]" /> menentukan pengumpulan bertanda.
+
+- <InlineMath math="\int" />: Simbol kamiran ini membawa had **bawah** <InlineMath math="a" /> dan had **atas** <InlineMath math="b" /> yang menentukan selang pengumpulan.
+- <InlineMath math="f(x)" />: Ini ialah **kamiranan**, iaitu fungsi yang dikamirkan. Nilainya di sepanjang <InlineMath math="[a, b]" /> menentukan pengumpulan bertanda.
 - <InlineMath math="dx" />: Sama seperti dalam kamiran tak tentu, simbol ini menunjukkan bahawa kita mengamirkan terhadap pemboleh ubah <InlineMath math="x" />.
 
-Kamiran tak tentu merangkumi setiap fungsi yang berbentuk <InlineMath math="F(x) + C" />. Kamiran tentu pula memberikan **satu nombor** yang mengukur pengumpulan bertanda dari <InlineMath math="x=a" /> hingga <InlineMath math="x=b" />. Nombor ini sama dengan luas geometri biasa apabila kamiranan tidak negatif di sepanjang selang itu.
+Kamiran tak tentu merangkumi setiap fungsi yang berbentuk <InlineMath math="F(x) + C" />. Kamiran tentu pula memberikan **satu nombor** yang mengukur pengumpulan bertanda dari <InlineMath math="x = a" /> hingga <InlineMath math="x = b" />. Nombor ini sama dengan luas geometri biasa apabila kamiranan tidak negatif di sepanjang selang itu.
 
-## Mengira Kamiran Tentu dengan Had
+> Kamiran tentu menghasilkan satu nombor bertanda dan bukannya keluarga fungsi, kerana hadnya menggabungkan semua jalur nipis di antara had kamiran menjadi satu jumlah.
 
-**Soalan**: Tentukan nilai <InlineMath math="\int_{0}^{7} x \, dx" />.
+## Mengira dengan Had
 
-**Penyelesaian**:
+**Soalan**: Tentukan nilai tepat kamiran tentu berikut dengan menukarkannya kembali kepada bentuk had hasil tambah Riemann:
 
-Untuk menyelesaikannya, kita tukarkan kamiran ini kembali kepada bentuk had hasil tambah Riemann.
+<BlockMath math="\int_{0}^{7} x \, dx" />
 
-**Langkah 1**: Tentukan komponen hasil tambah Riemann
+**Langkah 1**: Kenal pasti komponen hasil tambah Riemann daripada kamiran di atas:
 
-Daripada soalan <InlineMath math="\int_{0}^{7} x \, dx" />, kita tahu:
 - Fungsi: <InlineMath math="f(x) = x" />
 - Selang: <InlineMath math="[a, b] = [0, 7]" />
 
@@ -48,36 +48,37 @@ Kita gunakan titik hujung kanan (<InlineMath math="x_i" />) sebagai titik sampel
 
 <BlockMath math="x_i = a + i \Delta x = 0 + i \left(\frac{7}{n}\right) = \frac{7i}{n}" />
 
-**Langkah 2**: Bina hasil tambah Riemann
+**Langkah 2**: Bina hasil tambah Riemann.
 
 Tinggi setiap segi empat tepat ialah <InlineMath math="f(x_i)" />, jadi:
 
 <BlockMath math="f(x_i) = x_i = \frac{7i}{n}" />
 
-Sekarang, kita gantikan nilai ini ke dalam rumus hasil tambah Riemann:
+Sekarang gantikan nilai ini ke dalam rumus hasil tambah Riemann:
 
 <BlockMath math="\begin{aligned} \sum_{i=1}^{n} f(x_i) \Delta x &amp;= \sum_{i=1}^{n} \left(\frac{7i}{n}\right) \left(\frac{7}{n}\right) \\ &amp;= \sum_{i=1}^{n} \frac{49i}{n^2} \end{aligned}" />
 
-**Langkah 3**: Permudahkan dan gunakan sifat hasil tambah
+**Langkah 3**: Permudahkan dan gunakan sifat hasil tambah.
 
-Kita boleh keluarkan pemalar daripada tatatanda sigma, kerana <InlineMath math="n" /> dianggap sebagai pemalar dalam hasil tambah dari <InlineMath math="i=1" /> hingga <InlineMath math="n" />.
+Kita boleh keluarkan pemalar daripada tatatanda sigma, kerana <InlineMath math="n" /> kekal tetap ketika <InlineMath math="i" /> berjalan dari <InlineMath math="1" /> hingga <InlineMath math="n" />:
 
-<BlockMath math="R_n=\frac{49}{n^2} \sum_{i=1}^{n} i" />
+<BlockMath math="R_n = \frac{49}{n^2} \sum_{i=1}^{n} i" />
 
-Seterusnya, gantikan <InlineMath math="\sum_{i=1}^{n} i" /> dengan <InlineMath math="\frac{n(n+1)}{2}" /> dan permudahkan sehingga sebutan yang bergantung pada <InlineMath math="n" /> terasing.
+Tiga rumus hasil tambah siri berikut sering digunakan bagi hasil tambah Riemann polinomial:
+
+<MathContainer>
+<BlockMath math="\sum_{i=1}^{n} i = \frac{n(n+1)}{2}" />
+<BlockMath math="\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}" />
+<BlockMath math="\sum_{i=1}^{n} i^3 = \left(\frac{n(n+1)}{2}\right)^2" />
+</MathContainer>
+
+Gantikan rumus hasil tambah linear dan permudahkan sehingga sebutan yang bergantung pada <InlineMath math="n" /> terasing:
 
 <BlockMath math="\begin{aligned}R_n&=\frac{49}{n^2}\cdot\frac{n(n+1)}{2}\\&=\frac{49n(n+1)}{2n^2}\\&=\frac{49(n+1)}{2n}\\&=\frac{49}{2}\left(1+\frac1n\right)\end{aligned}" />
 
-Langkah algebra ini meringkaskan ungkapan itu kepada satu faktor pemalar yang didarab dengan <InlineMath math="1+\frac{1}{n}" />. Had yang tinggal boleh diperoleh daripada <InlineMath math="\frac{1}{n}\to0" />.
+Mula-mula mansuhkan faktor <InlineMath math="n" /> pada pengangka dan penyebut, kemudian pecahkan pecahan itu supaya bahagian pemalar terasing daripada baki yang mengecil.
 
-> Untuk menyelesaikan had hasil tambah Riemann, kita selalu memerlukan beberapa rumus hasil tambah siri yang biasa:
-> - <InlineMath math="\sum_{i=1}^{n} i = \frac{n(n+1)}{2}" />
-> - <InlineMath math="\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}" />
-> - <InlineMath math="\sum_{i=1}^{n} i^3 = \left( \frac{n(n+1)}{2} \right)^2" />
-
-**Langkah 4**: Ambil Had
-
-Akhir sekali, kita ambil had apabila <InlineMath math="n \to \infty" />. Dalam had ini, <InlineMath math="\frac{1}{n}" /> menghampiri sifar.
+**Langkah 4**: Ambil had apabila <InlineMath math="n \to \infty" />. Dalam had ini, <InlineMath math="\frac{1}{n}" /> menghampiri sifar.
 
 <MathContainer>
 <BlockMath math="\int_{0}^{7} x \, dx = \lim_{n \to \infty} \frac{49}{2} \left( 1 + \frac{1}{n} \right)" />
@@ -85,9 +86,13 @@ Akhir sekali, kita ambil had apabila <InlineMath math="n \to \infty" />. Dalam h
 <BlockMath math="= \frac{49}{2}" />
 </MathContainer>
 
-Oleh sebab <InlineMath math="f(x) = x" /> tidak negatif dari <InlineMath math="x=0" /> hingga <InlineMath math="x=7" />, kamiran tentu ini juga ialah luas geometri: <InlineMath math="\frac{49}{2}" />, atau <InlineMath math="24.5" /> unit persegi. Had telah menukar anggaran segi empat tepat itu kepada nilai yang tepat.
+Oleh sebab <InlineMath math="f(x) = x" /> tidak negatif dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 7" />, kamiran tentu ini juga ialah luas geometri: <InlineMath math="\frac{49}{2}" />, atau <InlineMath math="24.5" /> unit persegi. Had telah menukar anggaran segi empat tepat itu kepada nilai yang tepat.
 
-Begini cara had ini berfungsi. Luas tepat di bawah <InlineMath math="y = x" /> dari <InlineMath math="0" /> hingga <InlineMath math="7" /> ialah luas segi tiga <InlineMath math="\tfrac12 \cdot 7 \cdot 7 = \tfrac{49}{2}" />. Tujuh segi empat tepat titik hujung kanan dengan lebar <InlineMath math="1" /> menutupi luas itu dengan sedikit lebihan di bahagian atas: <InlineMath math="1 + 2 + \cdots + 7 = 28" />, yang sepadan dengan <InlineMath math="\tfrac{49}{2}(1 + \tfrac17) = 28" />.
+Bandingkan pembahagian terhingga bagi <InlineMath math="n = 7" /> dengan luas tepat segi tiga <InlineMath math="24.5" />:
+
+<BlockMath math="R_7 = 1 + 2 + \cdots + 7 = \frac{49}{2}\left(1 + \frac{1}{7}\right) = 28" />
+
+Tujuh segi empat tepat titik hujung kanan dengan lebar <InlineMath math="1" /> menutupi segi tiga itu dengan lebihan kecil di bahagian atas garis.
 
 <MathVisual
   title={<>Tujuh segi empat tepat yang menutupi luas tepat</>}
@@ -116,9 +121,19 @@ Begini cara had ini berfungsi. Luas tepat di bawah <InlineMath math="y = x" /> d
   }}
 />
 
-## Membandingkan Bilangan Segi Empat Tepat yang Berbeza
+Ketujuh-tujuh segi tiga lebihan itu berjumlah <InlineMath math="3.5" />, sebab itulah <InlineMath math="R_7 = 28" /> melebihi luas tepat <InlineMath math="24.5" /> sebanyak angka itu.
 
-Tulis hasil tambah titik hujung kanan sebagai <InlineMath math="R_n=\frac{49}{2}(1+\frac1n)" />. Kita boleh semak beberapa nilai <InlineMath math="n" /> sebelum mengambil had. Oleh sebab graf itu menokok, segi empat tepat titik hujung kanan memberikan **anggaran berlebihan**.
+## Penumpuan dan Isi Padu
+
+Menghaluskan pembahagian kepada **hirisan nipis** menjadikan anggaran terhingga menumpu kepada luas tepat dalam dua dimensi dan isi padu putaran tepat dalam tiga dimensi. Lihat dahulu bagaimana bilangan petak menghampiri luas segi tiga, kemudian putarkan lengkung profil untuk melihat keratan bulatan membina pepejal.
+
+### Membandingkan Petak
+
+Gunakan rumus tertutup hasil tambah titik hujung kanan untuk menyemak beberapa nilai <InlineMath math="n" /> sebelum mengambil had:
+
+<BlockMath math="R_n = \frac{49}{2}\left(1 + \frac{1}{n}\right)" />
+
+Oleh sebab graf itu menokok, segi empat tepat titik hujung kanan memberikan **anggaran berlebihan**.
 
 | Bilangan segi empat tepat | Anggaran titik hujung kanan |
 | --- | --- |
@@ -128,11 +143,19 @@ Tulis hasil tambah titik hujung kanan sebagai <InlineMath math="R_n=\frac{49}{2}
 | <InlineMath math="10" /> | <InlineMath math="26.95" /> |
 | <InlineMath math="100" /> | <InlineMath math="24.745" /> |
 
-Beza daripada nilai tepat ialah <InlineMath math="R_n-\frac{49}{2}=\frac{49}{2n}" />. Jadi, apabila bilangan segi empat tepat digandakan, ralat dalam contoh linear ini menjadi separuh. Kamu juga boleh semak luas tepat itu sebagai segi tiga yang tapak dan tingginya sama-sama <InlineMath math="7" />:
+Tolakkan nilai tepat untuk melihat bagaimana ralat mengecil apabila <InlineMath math="n" /> bertambah:
 
-<BlockMath math="A=\frac12(7)(7)=\frac{49}{2}" />
+<BlockMath math="R_n - \frac{49}{2} = \frac{49}{2n}" />
 
-Gandakan bilangan segi empat tepat kepada <InlineMath math="14" />, setiap satu dengan lebar <InlineMath math="\tfrac12" />. Jalur lebihan di bahagian atas menjadi lebih nipis, dan jumlahnya turun kepada <InlineMath math="\tfrac{49}{2}(1 + \tfrac{1}{14}) = 26.25" />. Setiap kali <InlineMath math="n" /> bertambah, hasil tambah itu semakin hampir kepada <InlineMath math="24.5" />.
+Jadi, apabila bilangan segi empat tepat digandakan, ralat dalam contoh linear ini menjadi separuh. Kamu juga boleh semak luas tepat itu sebagai segi tiga yang tapak dan tingginya sama-sama <InlineMath math="7" />:
+
+<BlockMath math="A = \frac{1}{2}(7)(7) = \frac{49}{2}" />
+
+Gandakan bilangan segi empat tepat kepada <InlineMath math="14" />, setiap satu dengan lebar <InlineMath math="\tfrac{1}{2}" />, supaya jumlahnya turun menghampiri <InlineMath math="24.5" />:
+
+<BlockMath math="R_{14} = \frac{49}{2}\left(1 + \frac{1}{14}\right) = 26.25" />
+
+Jalur lebihan di bahagian atas menjadi semakin nipis apabila <InlineMath math="n" /> bertambah.
 
 <MathVisual
   title={<>Empat belas segi empat tepat yang lebih sempit</>}
@@ -168,7 +191,7 @@ Gandakan bilangan segi empat tepat kepada <InlineMath math="14" />, setiap satu 
   }}
 />
 
-Letakkan hasil tambah titik hujung kanan bersebelahan. Dari <InlineMath math="n = 1" /> hingga <InlineMath math="n = 100" />, palang mengecil daripada <InlineMath math="49" /> ke arah luas tepat <InlineMath math="\frac{49}{2} = 24.5" />, dan jurang di atasnya sentiasa <InlineMath math="\frac{49}{2n}" />.
+Letakkan hasil tambah titik hujung kanan bersebelahan. Dari <InlineMath math="n = 1" /> hingga <InlineMath math="n = 100" />, palang mengecil daripada <InlineMath math="49" /> ke arah luas tepat <InlineMath math="24.5" />, dan jurang di atasnya sentiasa <InlineMath math="\frac{49}{2n}" />.
 
 <BarChart
   title={<>Hasil tambah titik hujung kanan <InlineMath math="R_n" /> bagi enam bilangan segi empat tepat</>}
@@ -177,3 +200,54 @@ Letakkan hasil tambah titik hujung kanan bersebelahan. Dari <InlineMath math="n 
   data={[1, 2, 7, 10, 14, 100].map((n) => ({ name: String(n), value: (49 / 2) * (1 + 1 / n) }))}
   chartConfig={{ value: { label: "Anggaran", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+Pada <InlineMath math="n = 100" />, tinggi palang hanya berbeza <InlineMath math="0.245" /> daripada luas sebenar, menunjukkan bagaimana had Riemann menetap pada satu nilai tepat.
+
+### Pepejal Putaran Cakera
+
+Idea pengumpulan yang sama berkembang daripada jalur dua dimensi kepada isi padu tiga dimensi. Memutar satu lengkung profil mengelilingi paksi menukarkan setiap jalur menegak kepada **cakera bulatan** berluas <InlineMath math="\pi R(x)^2" />, atau sesendal berluas <InlineMath math="\pi(R(x)^2 - r(x)^2)" /> apabila ada rongga di tengah, jadi kamiran tentu menjumlahkan keratan rentas itu:
+
+<BlockMath math="V = \int_{a}^{b} A(x)\,dx = \pi \int_{a}^{b} \big(R(x)^2 - r(x)^2\big)\,dx" />
+
+Seret sudut putaran pada empat profil untuk melihat satu lengkung yang diputarkan membentuk pepejal tiga dimensi yang isi padunya terkumpul hirisan demi hirisan.
+
+<SolidOfRevolutionLab
+  title={<>Mengumpulkan cakera keratan rentas menjadi pepejal putaran</>}
+  description={<>Putar empat lengkung profil mengelilingi paksi sehingga satu pusingan penuh untuk menghubungkan luas cakera atau sesendal keratan rentas dengan isi padu putaran.</>}
+  profiles={["paraboloid", "trumpetHorn", "washerBowl", "frustumCone"]}
+  sweepAngle={{ min: 30, max: 360, value: 270 }}
+  labels={{
+    parts: {
+      profileCurve: "Lengkung profil",
+      revolvedShell: "Cangkerang putaran",
+      crossSectionDisk: "Keratan rentas",
+      rotationAxis: "Paksi putaran",
+      radiusArrow: "Jejari",
+    },
+    profile: "Profil pepejal putaran",
+    profiles: {
+      paraboloid: {
+        name: "Paraboloid",
+        formula: <InlineMath math="A = \pi R^2,\; V_{360^\circ} = 2\pi" />,
+      },
+      trumpetHorn: {
+        name: "Corong trompet",
+        formula: <InlineMath math="A = \pi R^2,\; V_{360^\circ} = 1.4\pi" />,
+      },
+      washerBowl: {
+        name: "Mangkuk sesendal",
+        formula: <InlineMath math="A = \pi(R^2 - r^2),\; V_{360^\circ} = 2.4\pi" />,
+      },
+      frustumCone: {
+        name: "Kon frustum",
+        formula: <InlineMath math="A = \pi R^2,\; V_{360^\circ} = 1.85\pi" />,
+      },
+    },
+    sliceArea: <>Luas keratan rentas</>,
+    sweepAngle: "Sudut putaran",
+    totalVolume: <>Isi padu putaran</>,
+    view: "Pepejal putaran tiga dimensi yang disapu mengelilingi paksi dengan keratan rentas bulatan yang diserlahkan",
+  }}
+/>
+
+Meningkatkan sudut putaran menambah isi padu sapuan secara linear mengikut kadar pusingan, manakala memilih mangkuk sesendal menanggalkan teras dalam supaya setiap keratan rentas menjadi gelang dan bukannya cakera penuh.

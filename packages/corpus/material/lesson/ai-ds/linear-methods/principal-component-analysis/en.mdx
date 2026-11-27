@@ -1,9 +1,10 @@
 export const metadata = {
   title: "Principal Component Analysis",
-  description: "Derive PCA from centered data, covariance eigenvectors, and the singular value decomposition. Interpret explained variance and low-rank reconstruction geometrically.",
+  description:
+    "Derive PCA from centered data, covariance eigenvectors, and the singular value decomposition. Interpret explained variance and low rank reconstruction geometrically.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-09-08",
+  dateModified: "2026-11-27",
   subject: "Linear Methods of AI",
 };
 
@@ -23,6 +24,8 @@ The sample covariance matrix is
 <BlockMath math="C=\frac{1}{m-1}X_c^TX_c" />
 
 It is symmetric positive semidefinite. It may be singular when features are linearly dependent or when <InlineMath math="n>m-1" />.
+
+> Centering every feature around its mean is mandatory before computing principal directions, whereas scaling to unit variance is a separate modeling decision.
 
 Centering is mandatory. <Highlight>Standardizing each feature to unit variance</Highlight> is a <Highlight>separate modeling choice</Highlight> that is often appropriate when features use incomparable units. It changes the question from directions of largest absolute variance to directions of largest standardized variance.
 
@@ -55,7 +58,13 @@ Take three observations <InlineMath math="(2,3)" />, <InlineMath math="(4,4)" />
   ]}
 />
 
-## Principal Directions
+Shifting every point by the same mean vector leaves every pairwise distance and spread unchanged while ensuring that every principal axis passes straight through the origin.
+
+## Principal Directions and Variance Reduction
+
+Principal directions are the **orthogonal eigenvectors** of the covariance matrix ordered from largest variance to smallest, and projecting onto the leading few captures most of the data spread.
+
+### Principal Directions
 
 By the spectral theorem,
 
@@ -80,7 +89,7 @@ The sample covariance of the scores <InlineMath math="Z" /> is diagonal:
 
 The principal components are therefore uncorrelated. They are not generally independent. For a jointly Gaussian random vector, a fixed eigenbasis of its population covariance gives independent transformed components. Zero sample correlations alone do not prove population independence.
 
-## Explained Variance and Dimension Reduction
+### Explained Variance and Dimension Reduction
 
 The ratios require **positive total variance**, <InlineMath math="\operatorname{tr}(C)>0" />. If every centered observation is zero, every eigenvalue is zero and explained-variance ratios are undefined.
 
@@ -100,7 +109,7 @@ Among all linear reconstructions of rank at most <InlineMath math="k" />, this c
 
 <BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
 
-Each principal component explains its eigenvalue's share of the total variance. In the worked example below, <InlineMath math="\lambda_1=9" /> and <InlineMath math="\lambda_2=2.25" />, so the first component explains <InlineMath math="\tfrac9{11.25}=80\%" /> and the second the remaining <InlineMath math="20\%" />.
+Each principal component explains its eigenvalue's share of the total variance. In the worked example below, <InlineMath math="\lambda_1=9" /> and <InlineMath math="\lambda_2=2.25" />, so the first component explains <InlineMath math="80\%" /> and the second the remaining <InlineMath math="20\%" />.
 
 <BarChart
   title={<>Explained variance of each component</>}
@@ -112,6 +121,73 @@ Each principal component explains its eigenvalue's share of the total variance. 
   ]}
   chartConfig={{ value: { label: "Explained variance", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Because the bars add up to <InlineMath math="1" />, keeping just the first component preserves four fifths of the total variance while discarding only the smaller orthogonal spread.
+
+Now rotate a correlated point cloud in space to see orthogonal projection drop-lines directly. Switch between projecting onto the first principal line, the two-component plane, and the full space, then raise feature correlation to watch explained variance climb and reconstruction error shrink.
+
+<PcaProjection3DLab
+  title={<>Orthogonal Principal Component Projection in Space</>}
+  description={
+    <>
+      Choose a projection subspace and adjust feature correlation to compare
+      explained variance against squared reconstruction error along the residual
+      drop-lines.
+    </>
+  }
+  subspaces={["pc1Line", "pc1Pc2Plane", "full3D"]}
+  correlation={{ min: 0.05, max: 0.98, value: 0.75 }}
+  labels={{
+    subspace: "Projection subspace",
+    correlation: "Feature correlation",
+    view: "Three-dimensional correlated point cloud with orthogonal principal axes and projection drop-lines",
+    varianceExplained: <>Variance explained</>,
+    reconstructionError: <>Reconstruction error</>,
+    parts: {
+      pointCloud: "Centered point cloud",
+      pc1Axis: "First principal axis",
+      pc2Axis: "Second principal axis",
+      pc3Axis: "Third principal axis",
+      projectionPlane: "Projection plane",
+      residualLines: "Residual drop-lines",
+    },
+    subspaces: {
+      pc1Line: {
+        name: "First axis line",
+        summary: (
+          <>
+            Projects every point orthogonally onto{" "}
+            <InlineMath math="\mathrm{PC}_1" />, keeping the single strongest
+            variance direction.
+          </>
+        ),
+      },
+      pc1Pc2Plane: {
+        name: "Two-component plane",
+        summary: (
+          <>
+            Projects onto the plane spanned by{" "}
+            <InlineMath math="\mathrm{PC}_1" /> and{" "}
+            <InlineMath math="\mathrm{PC}_2" />, leaving only minor third-axis
+            residuals.
+          </>
+        ),
+      },
+      full3D: {
+        name: "Full three-axis space",
+        summary: (
+          <>
+            Retains all three orthogonal axes so{" "}
+            <InlineMath math="100\%" /> of variance stays intact with zero
+            reconstruction error.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+When correlation approaches <InlineMath math="1" />, the cloud elongates into a tight cigar along the first principal axis, so even a one-dimensional projection retains over <InlineMath math="90\%" /> of the variance with tiny residual lines.
 
 ## Equivalent Computation with Singular Value Decomposition
 
@@ -183,6 +259,8 @@ The result <InlineMath math="80\%" /> is the fraction of the total variance expl
     "v2": <InlineMath math="v_2" />,
   }}
 />
+
+As the angle sweeps through a half turn, the directional variance oscillates smoothly between the minimum eigenvalue <InlineMath math="2.25" /> along <InlineMath math="v_2" /> and the maximum eigenvalue <InlineMath math="9" /> along <InlineMath math="v_1" />.
 
 ## Interpretation Boundaries
 
