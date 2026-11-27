@@ -185,6 +185,11 @@ Read only what the task needs. Each reference owns one concern.
 - Every plotted coordinate is computed in the source from the formula it
   draws, and a smooth function renders smooth. Illustrations use only Nakafa's
   three.js foundation or p5, never SVG, HTML drawings, canvas code, or images.
+  Never mix 3D + charts or p5 + charts inside `VisualCardBody` (keep supporting
+  charts in `VisualCardFooter` via EvilCharts), keep mathematical
+  `CoordinateSystem` visuals razor-sharp GeoGebra-3D with zero drop shadows
+  (`shadows={false}`), and keep Chemistry, Physics, and Biology labs real-world
+  photorealistic with zero cartoonish primitives or unlabeled bottles.
   [Components and visuals](references/visuals.md#computed-and-exact-visuals)
   owns these rules and the `points` gate that enforces them, and
   [verification](references/verification.md#points-gate) owns the gate's
