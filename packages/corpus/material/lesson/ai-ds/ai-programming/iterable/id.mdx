@@ -86,7 +86,6 @@ Setiap putaran `for item in [3, 8, 1, 6]` memanggil `next()` sekali dan memberi 
 
 <BarChart
   title={<><code>total</code> setelah setiap <code>next()</code></>}
-  footer={<>Setiap panggilan next() memasok satu nilai hingga iterator berhenti di elemen terakhir.</>}
   description={<>Setiap batang adalah <code>total</code> setelah elemen yang tertulis di bawahnya ditambahkan: <InlineMath math="3" />, <InlineMath math="11" />, <InlineMath math="12" />, lalu <InlineMath math="18" />.</>}
   yAxisLabel="Total berjalan"
   data={[
@@ -257,7 +256,6 @@ Periksa daftar `[3, 8, 1, 6]` terhadap syarat `v > 5`. Dua titik magenta, <Inlin
 
 <MathVisual
   title={<><code>any</code> dan <code>all</code> pada <code>[3, 8, 1, 6]</code></>}
-  footer={<>Cukup satu titik melewati batas agar any benar, tetapi semua titik wajib lulus untuk all.</>}
   description={<>Setiap titik adalah satu nilai di posisinya. Titik magenta memenuhi <InlineMath math="v>5" />, titik hijau toska tidak, dan garis abu-abu adalah batas <InlineMath math="5" />.</>}
   scene={{
     space: "plane",
@@ -279,7 +277,7 @@ Periksa daftar `[3, 8, 1, 6]` terhadap syarat `v > 5`. Dua titik magenta, <Inlin
     ],
   }}
   labels={{
-    "limit": "v > 5",
+    limit: <InlineMath math="v > 5" />,
     "value-a": "3",
     "value-b": "8",
     "value-c": "1",
@@ -411,7 +409,6 @@ Nama berbintang mengambil semua elemen yang tidak diambil nama lain, dan selalu 
 
 <MathVisual
   title={<>Ke mana setiap elemen pergi saat unpacking dengan bintang</>}
-  footer={<>Variabel berbintang selalu menampung sisa elemen sebagai list, di tengah maupun di akhir.</>}
   description={<>Baris atas adalah <code>[1, 2, 3, 4]</code>: sel ungu masuk ke <code>a</code> dan sel hijau toska ke <code>rest</code>. Baris bawah adalah <code>[1, 2, 3, 4, 5]</code>: sel ungu masuk ke <code>first</code>, tiga sel hijau toska ke <code>middle</code>, dan sel oranye ke <code>last</code>.</>}
   scene={{
     space: "plane",

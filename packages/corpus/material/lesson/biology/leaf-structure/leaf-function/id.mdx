@@ -36,7 +36,6 @@ Telusuri setiap lapisan penampang melintang daun secara tiga dimensi pada model 
       kepadatan kloroplas, rongga udara, berkas pengangkut, dan adaptasinya.
     </>
   }
-  footer={<>Pilih lapisan daun untuk membandingkan kloroplas dan fungsinya.</>}
   layers={[
     "cuticle",
     "upperEpidermis",
@@ -107,7 +106,6 @@ Helaian tipis memberi daun **rasio luas permukaan terhadap volume** sebesar <Inl
       <InlineMath math="d" /> milimeter, dengan tepi daun diabaikan.
     </>
   }
-  footer={<>Daun lebih tipis memberi rasio luas terhadap volume jauh lebih besar.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1.1 }, y: { min: 0, max: 21 } },
@@ -146,7 +144,6 @@ Sepasang sel penjaga membuka stomata saat **turgid**, bukan saat lembek. Dalam c
       serta laju transpirasi.
     </>
   }
-  footer={<>Air masuk membuat sel penjaga turgid dan membuka celah stomata.</>}
   conditions={["light", "dark", "drought"]}
   light={{ min: 0, max: 100, value: 75 }}
   labels={{
@@ -207,7 +204,6 @@ Bayangkan celah stomata seperti jendela pada hari berangin: semakin lebar jendel
       lebar celah stomata <InlineMath math="p" /> dalam <InlineMath math="\mu\text{m}" />.
     </>
   }
-  footer={<>Stomata lebih lebar dan angin kencang menaikkan laju transpirasi daun.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 12.5 }, y: { min: 0, max: 7.5 } },
@@ -259,7 +255,6 @@ Kecepatan difusi uap air bergantung pada **defisit tekanan uap**, yaitu tekanan 
       <InlineMath math="h" />.
     </>
   }
-  footer={<>Udara panas dan kering memperbesar defisit sehingga transpirasi melonjak.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 47 }, y: { min: 0, max: 10.5 } },
@@ -312,7 +307,6 @@ Di kloroplas, **reaksi terang** berlangsung pada tilakoid grana lewat **fotolisi
       gas bersihnya.
     </>
   }
-  footer={<>Reaksi terang di tilakoid memasok ATP dan NADPH bagi siklus Calvin di stroma.</>}
   stages={["lightDependent", "calvinCycle", "compensation"]}
   light={{ min: 0, max: 100, value: 65 }}
   co2={{ min: 0, max: 1000, value: 400 }}
@@ -326,9 +320,9 @@ Di kloroplas, **reaksi terang** berlangsung pada tilakoid grana lewat **fotolisi
       balanced: "Seimbang",
     },
     gasStates: {
-      netRelease: "Pelepasan CO2 bersih",
+      netRelease: "Pelepasan karbon dioksida bersih",
       compensation: "Titik kompensasi",
-      netUptake: "Penyerapan CO2 bersih",
+      netUptake: "Penyerapan karbon dioksida bersih",
     },
     light: "Intensitas cahaya (%)",
     limitingFactor: <>Faktor pembatas</>,
@@ -374,7 +368,6 @@ Seperti dapur yang tidak bisa memanggang lebih cepat saat tepungnya habis, daun 
       dalam <InlineMath math="\mu\text{mol m}^{-2}\text{ s}^{-1}" />.
     </>
   }
-  footer={<>Kadar CO2 lebih tinggi mengangkat dataran jenuh cahaya saat daun terang.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1250 }, y: { min: 0, max: 30 } },
@@ -417,7 +410,6 @@ Pada cahaya terang (<InlineMath math="1000\ \mu\text{mol m}^{-2}\text{ s}^{-1}" 
       <InlineMath math="c" />.
     </>
   }
-  footer={<>Kurva naik curam saat cahaya membatasi lalu mendatar saat CO2 membatasi.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 21 }, y: { min: 0, max: 13 } },
@@ -460,7 +452,6 @@ Pada cahaya redup (<InlineMath math="I" /> sebesar <InlineMath math="1" />), men
       <InlineMath math="P - R" />.
     </>
   }
-  footer={<>Di titik kompensasi, pertukaran gas bersih P - R tepat bernilai nol.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -2.5, max: 8 } },

@@ -171,13 +171,17 @@ Read only what the task needs. Each reference owns one concern.
   least one core blockquote, at least three unique custom 3D scenes or
   animations owned by this lesson alone (zero cross-lesson reuse and zero
   within-lesson filler repetition, aiming for five, never fewer than before a
-  revision), an authored `footer` on every visual card (D3), complete worked
-  examples, mistakes and practice only where the topic needs them (never a
-  template tail), a non-flat outline (`>= 4` H2 sections grouped with 2 to 4 H3
-  subsections and zero lone H3), globally unique headings per locale, clean
-  comma-and-period `metadata.description` with no curriculum or chapter
-  prefixes, zero em dashes (U+2014), and a mandatory four-locale (`en`, `id`,
-  `ms`, `de`) clarity trace (D29).
+  revision), zero plain-text `footer` props on catalog visual cards (a
+  `VisualCard` owns at most one structured key-value or tabular footer band),
+  strict `<InlineMath />` / `<BlockMath />` for every mathematical, physical,
+  or chemical symbol, formula, ion, exponent, and unit in prose and JSX labels
+  (zero plain-text formulas anywhere), complete worked examples, mistakes and
+  practice only where the topic needs them (never a template tail), a non-flat
+  outline (`>= 4` H2 sections grouped with 2 to 4 H3 subsections and zero lone
+  H3), globally unique headings per locale, clean comma-and-period
+  `metadata.description` with no curriculum or chapter prefixes, zero em dashes
+  (U+2014), and a mandatory four-locale (`en`, `id`, `ms`, `de`) clarity trace
+  (D29).
 - Every plotted coordinate is computed in the source from the formula it
   draws, and a smooth function renders smooth. Illustrations use only Nakafa's
   three.js foundation or p5, never SVG, HTML drawings, canvas code, or images.

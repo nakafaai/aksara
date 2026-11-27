@@ -30,12 +30,6 @@ Perhatikan perlanggaran zarah dua hala di dalam reaktor 3D di bawah. Laraskan pe
       bertindak balas dua hala hingga <InlineMath math="r_f = r_r" />.
     </>
   }
-  footer={
-    <>
-      Zarah terus bertukar arah apabila <InlineMath math="r_f = r_r" /> manakala
-      bilangannya malar.
-    </>
-  }
   systems={["generic", "nitrogenDioxide", "hydrogenIodide"]}
   forwardRate={{ min: 0.1, max: 2, value: 0.6 }}
   reverseRate={{ min: 0.1, max: 2, value: 0.2 }}
@@ -56,21 +50,21 @@ Perhatikan perlanggaran zarah dua hala di dalam reaktor 3D di bawah. Laraskan pe
     systems: {
       generic: {
         equation: <><InlineMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" /></>,
-        name: "A <-> B",
+        name: "Reversible A and B",
         product: "Hasil B",
         reactant: "Bahan A",
       },
       nitrogenDioxide: {
         equation: <><InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" /></>,
-        name: "N2O4 / NO2",
-        product: "Gas NO2",
-        reactant: "Gas N2O4",
+        name: "Dinitrogen tetroxide",
+        product: "Gas nitrogen dioksida",
+        reactant: "Gas dinitrogen tetraoksida",
       },
       hydrogenIodide: {
         equation: <><InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" /></>,
-        name: "H2 + I2 / HI",
+        name: "Hydrogen and iodine",
         product: "Gas HI",
-        reactant: "Gas H2 + I2",
+        reactant: "Gas hidrogen dan iodin",
       },
     },
     view: "Reaktor zarah keseimbangan dinamik 3D",
@@ -88,12 +82,6 @@ Di dalam reaktor itu, perlanggaran zarah terus berlaku walaupun bilangan zarah m
       <InlineMath math="k_1 = 0.6" /> dan <InlineMath math="k_2 = 0.2" />, sistem
       seimbang pada <InlineMath math="[\mathrm{A}] = 0.25\text{ M}" /> dan{" "}
       <InlineMath math="[\mathrm{B}] = 0.75\text{ M}" />.
-    </>
-  }
-  footer={
-    <>
-      Kedua-dua lengkung mendatar pada aras berbeza kerana <InlineMath math="k_1" />{" "}
-      tiga kali <InlineMath math="k_2" />.
     </>
   }
   scene={{
@@ -134,12 +122,6 @@ Sekarang bandingkan kelajuannya pada graf kadar di bawah. Perhatikan kadar ke ha
       Bagi <InlineMath math="k_1 = 0.6" /> dan <InlineMath math="k_2 = 0.2" />,
       kadar ke hadapan turun dan kadar songsang naik hingga bertemu di{" "}
       <InlineMath math="0.15\text{ M s}^{-1}" /> lalu kekal sama.
-    </>
-  }
-  footer={
-    <>
-      Sebaik kedua-dua lengkung bercantum pada{" "}
-      <InlineMath math="0.15\text{ M s}^{-1}" />, keseimbangan dinamik tercapai.
     </>
   }
   scene={{
@@ -260,11 +242,6 @@ Bandingkan bar awal dan keseimbangan pada carta di bawah untuk melihat nisbah pe
       dengan nisbah pekali <InlineMath math="1 : 1 : 2" />.
     </>
   }
-  footer={
-    <>
-      Bar hidrogen iodida naik dua kali ganda daripada penurunan setiap bahan.
-    </>
-  }
 />
 
 Jelas kelihatan pengurangan <InlineMath math="0.8\text{ M}" /> bagi setiap bahan menghasilkan kenaikan tepat dua kali ganda, iaitu <InlineMath math="1.6\text{ M}" />, pada hasil.
@@ -300,12 +277,6 @@ Uji perbandingan <InlineMath math="Q_c" /> melawan <InlineMath math="K_c" /> sec
       <InlineMath math="Q_c = K_c" />.
     </>
   }
-  footer={
-    <>
-      Neraca condong ke kanan apabila <InlineMath math="Q_c < K_c" /> dan ke kiri
-      apabila <InlineMath math="Q_c > K_c" />.
-    </>
-  }
   kc={4}
   stoichiometry="oneToTwo"
   reactant={{ min: 0.1, max: 4, value: 1 }}
@@ -336,12 +307,6 @@ Apabila hasil dinaikkan sehingga <InlineMath math="Q_c" /> melebihi <InlineMath 
       nilai <InlineMath math="Q = 4[\mathrm{HI}]^2" />. Pada{" "}
       <InlineMath math="[\mathrm{HI}] = 2\text{ M}" />, nilai <InlineMath math="Q = 16" />{" "}
       masih di bawah <InlineMath math="64" />, jadi tindak balas beranjak ke kanan.
-    </>
-  }
-  footer={
-    <>
-      Titik di bawah garis <InlineMath math="64" /> beranjak ke kanan, dan di
-      atasnya beranjak ke kiri.
     </>
   }
   scene={{
@@ -407,12 +372,6 @@ Naikkan tekanan jumlah <InlineMath math="P" /> pada graf di bawah dan lihat beta
       <InlineMath math="1\text{ atm}" />.
     </>
   }
-  footer={
-    <>
-      Tekanan lebih tinggi menarik lengkung ke bawah kerana sebelah kiri hanya ada
-      satu mol gas.
-    </>
-  }
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1 } },
@@ -451,12 +410,6 @@ Bagi tindak balas eksotermik (<InlineMath math="\Delta H < 0" />), kenaikan suhu
       Dengan <InlineMath math="\Delta H = -92\text{ kJ}" />, nilai{" "}
       <InlineMath math="\log K" /> jatuh curam apabila suhu naik. Tukar{" "}
       <InlineMath math="\Delta H" /> menjadi positif untuk melihat lengkung menaik.
-    </>
-  }
-  footer={
-    <>
-      Lengkung menurun bagi tindak balas eksotermik dan menaik apabila{" "}
-      <InlineMath math="\Delta H" /> positif.
     </>
   }
   scene={{
@@ -502,12 +455,6 @@ Uji setiap gangguan prinsip Le Chatelier dalam reaktor omboh 3D di bawah. Bandin
       melihat anjakan serta status <InlineMath math="K_c" />.
     </>
   }
-  footer={
-    <>
-      Hanya suhu mengubah <InlineMath math="K_c" />, manakala mangkin hanya
-      mempercepat keseimbangan.
-    </>
-  }
   systems={["haber", "nitrogenDioxide"]}
   disturbances={["pressure", "temperature", "concentration", "catalyst"]}
   labels={{
@@ -543,7 +490,7 @@ Uji setiap gangguan prinsip Le Chatelier dalam reaktor omboh 3D di bawah. Bandin
       nitrogenDioxide: {
         enthalpy: "Endotermik",
         equation: <><InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" /></>,
-        name: "N2O4 / NO2",
+        name: "Dinitrogen tetroxide",
       },
     },
     temperature: "Suhu reaktor",

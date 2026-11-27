@@ -56,3 +56,30 @@ it("keeps math, code, links, metadata and ordinary words out", () => {
   ].join("\n");
   assert.deepEqual(findings(source), []);
 });
+
+it("catches plain-text ions, ASCII unit exponents, caret powers, and nested labels object props", () => {
+  const source = [
+    "<SaltBridgeIonFlowLab",
+    "  labels={{",
+    '    view: "Galvanic cell with Cu2+ and mol/dm3 stays aria-only",',
+    '    "math": "x^2 stays ignored",',
+    '    0: "O2- and Na+ and NH4+ and NO3- ions",',
+    '    netRelease: "Net CO2 release in mol/dm3",',
+    '    redox: "Zn + Cu2+ -> Zn2+ + Cu",',
+    '    count: "6.02 x 10^23 particles and 2^n gametes",',
+    '    speed: "9.8 m/s2 with Cl- and OH- ions",',
+    "  }}",
+    "/>",
+    "",
+    "<DaltonEvidenceLab",
+    '  labels={{ facts: [{ label: "Count", value: "2 = 2" }] }}',
+    "/>",
+  ].join("\n");
+  assert.equal(findings(source).length, 14);
+});
+
+it("ignores non-chemical tokens such as A+, C++, mp3, P3K, and German suspended hyphens", () => {
+  const source =
+    "Nilai A+, bahasa C++, berkas mp3, kotak P3K, sowie VIP- und C3- und KI-Modelle.";
+  assert.deepEqual(findings(source), []);
+});

@@ -167,7 +167,6 @@ Suppose `def power(x, n=2): return x ** n`. If you call `power(x)` without a sec
     "linear": "power(x, 1)",
     "square": "power(x)",
   }}
-  footer="Omitting the second argument uses n=2, while passing 1 overrides the default."
 />
 
 Default parameters keep the most common call short while still letting callers override that default whenever different behavior is needed.
@@ -235,7 +234,6 @@ A function can return several values at once as a tuple. `def min_max(data): ret
     "smallest": <code>min</code>,
     "largest": <code>max</code>,
   }}
-  footer="One return statement packs both the minimum 1 and maximum 7 into one tuple."
 />
 
 Returning multiple values as a tuple lets the caller unpack `low, high = min_max(...)` directly without scanning the data twice.
@@ -253,7 +251,6 @@ Variables in Python have scope that determines **where variables can be accessed
         E --> G[Global Scope]
         G --> B[Built-in Scope]
   `}
-  footer="Python resolves names outward from Local to Enclosing, Global, and Built-in."
 />
 
 Lookup stops at the first matching level, so assigning a local variable with the same name shadows the global name without modifying it.
@@ -464,7 +461,6 @@ Each call of `create_multiplier(factor)` builds a closure that remembers its own
     "two-call": <code>multiply_two(10)</code>,
     "five-call": <code>multiply_five(4)</code>,
   }}
-  footer="Each closure retains its own factor and produces a distinct linear function."
 />
 
 Even though both functions come from one `create_multiplier` definition, each carries its own captured `factor`, so calling one never interferes with the other.

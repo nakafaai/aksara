@@ -13,7 +13,6 @@ Die Operatorrangfolge <Highlight>bestimmt, wie Python einen Ausdruck gruppiert, 
 
 <Mermaid
   title={<>Priorität der behandelten Operatoren</>}
-  footer={<>Klammern binden am stärksten, gefolgt von Arithmetik, Vergleichen, not, and und or.</>}
   description={<>Das Diagramm zeigt die Priorität der behandelten Operatoren, nicht den Auswertungszeitpunkt jedes Operanden.</>}
   chart={`
     flowchart LR
@@ -66,7 +65,6 @@ Mit booleschen Operatoren lassen sich mehrere Bedingungen kombinieren oder boole
 
 <Mermaid
   title={<>Boolesche Operatoren verknüpfen Bedingungen</>}
-  footer={<>Sowohl and als auch or liefern einen Operanden zurück, während not stets bool ergibt.</>}
   description={<>Das Diagramm zeigt, wie die Operatoren and, or und not Wahrheitswerte verarbeiten.</>}
   chart={`
     flowchart LR
@@ -126,7 +124,6 @@ Jeder Vergleich ist auf einem Bereich des Zahlenstrahls `True`. In diesem Bild m
 
 <MathVisual
   title={<>Vergleiche als Bereiche auf dem Zahlenstrahl</>}
-  footer={<>Der Operator and behält nur die offene Schnittmenge streng zwischen 2 und 5.</>}
   description={<>Die violette Zeile ist <InlineMath math="x>2" />, die türkise Zeile <InlineMath math="x<5" />, und die magentafarbene Zeile zeigt, wo beides gilt, also behält <code>and</code> den Bereich <InlineMath math="2<x<5" />. Jede Zeile hört genau bei <InlineMath math="2" /> oder <InlineMath math="5" /> auf, und diese Werte selbst gehören nicht dazu.</>}
   scene={{
     space: "plane",
@@ -144,9 +141,9 @@ Jeder Vergleich ist auf einem Bereich des Zahlenstrahls `True`. In diesem Bild m
     ],
   }}
   labels={{
-    "above": "x > 2",
-    "below": "x < 5",
-    "both": "x > 2 and x < 5",
+    above: <InlineMath math="x > 2" />,
+    below: <InlineMath math="x < 5" />,
+    both: <><InlineMath math="x > 2" /> and <InlineMath math="x < 5" /></>,
   }}
 />
 
@@ -162,7 +159,6 @@ Das Diagramm trennt eingebaute Python-Werte, die in Bedingungen als **falsy** ge
 
 <Mermaid
   title={<>Werte, die Python als Bedingungsergebnisse behandelt</>}
-  footer={<>Null, None, False und leere Container gelten in booleschen Prüfungen als falsy.</>}
   description={<>Gruppiere die Werte, die Python als „False“ oder „True“ behandelt, bevor sie in Bedingungen verwendet werden.</>}
   chart={`
     flowchart TD
@@ -219,7 +215,6 @@ In einem `if` ruft Python `bool()` auf jeden Wert auf. Null und leere Container 
 
 <BarChart
   title={<>Das Ergebnis von <code>bool()</code> für sieben Werte</>}
-  footer={<>Die Liste [0] ergibt True, weil sie nicht leer ist, anders als 0, '' und [].</>}
   description={<>Ein Balken der Höhe <InlineMath math="1" /> bedeutet <code>True</code> und kein Balken <code>False</code>, für den darunter stehenden Wert. Nur <code>0</code>, <code>''</code> und <code>[]</code> sind falsy.</>}
   yAxisLabel="Wahrheitswert"
   data={[
@@ -269,7 +264,6 @@ Verknüpfe zwei Vergleiche für Punkte <InlineMath math="(x,y)" /> mit <InlineMa
 
 <MathVisual
   title={<><code>and</code> und <code>or</code> als Bereiche</>}
-  footer={<>Der and-Bereich ist die enge Schnittmenge, während or die ganze L-Vereinigung deckt.</>}
   description={<>Die violette Gerade ist <InlineMath math="x=1" /> und die orange Gerade <InlineMath math="y=3" />. Das magentafarbene Rechteck ist der Bereich, in dem <InlineMath math="x>1" /> und <InlineMath math="y<3" /> beide gelten. Der türkise L-förmige Bereich ist der, in dem mindestens ein Vergleich gilt.</>}
   scene={{
     space: "plane",
@@ -298,7 +292,6 @@ Ein Dezimalbruch kann eine **binäre Rundung** erfordern. Das Diagramm untersche
 
 <Mermaid
   title={<>Gleich aussehende Dezimalwerte können sich unterscheiden</>}
-  footer={<>Binäre Rundung kann == brechen, daher prüft math.isclose Werte mit einer Toleranz.</>}
   description={<>Verfolge Dezimalwerte bis zur Gleitkommadarstellung, um die Rolle einer Vergleichstoleranz zu verstehen.</>}
   chart={`
     flowchart TD

@@ -81,6 +81,15 @@ export const MATH_LABEL_KEYS: Readonly<Record<string, readonly string[]>> = {
   TemplateLiteral: ["quasis", "expressions"],
 };
 
+/** Child fields traversed when scanning nested object properties for plain-text formulas. */
+export const OBJECT_MATH_LABEL_KEYS: Readonly<
+  Record<string, readonly string[]>
+> = {
+  ...MATH_LABEL_KEYS,
+  ObjectExpression: ["properties"],
+  Property: ["value"],
+};
+
 /** Visits every child stored under one node's purpose-selected fields. */
 export function walkKeyedChildren(
   node: EstreeNode,

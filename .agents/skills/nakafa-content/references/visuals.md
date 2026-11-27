@@ -90,10 +90,10 @@ publishes once Nakafa's production renderer draws it.
   The owning card composes its header, an optional toolbar, the scene body,
   an actions band, and at most one optional footer band (structured key-value
   readouts or a table owned by the component), separated by full-width lines.
-  The actions band holds the shared scene actions (Play, Reset, Full screen,
-  and Grid on a coordinate scene). Do not add a gizmo or overlay controls on
-  the mathematical subject. The toolbar and the actions band hold only
-  controls, each with its own short label: never a legend, a key such as
+  The actions band holds the shared scene actions (Play, Pause, Stop, Reset,
+  Full screen, and Grid on a coordinate scene). Do not add a gizmo or overlay
+  controls on the mathematical subject. The toolbar and the actions band hold
+  only controls, each with its own short label: never a legend, a key such as
   "A = {red objects}", a readout or a note. Write what the reader should try
   in the header description, and never pass a plain-text `footer` prop on a
   visual card: see [the card footer](#the-card-footer).
@@ -428,8 +428,21 @@ designed: it carries a teaching job and never decorates.
   molecules, and machines must match their cited references in parts,
   proportions where stated, labels, and motion.
 - Every visual renders inside its renderer-owned card: a header with a title
-  and description, the scene with its actions, and the footer its author
-  wrote for it ([the card footer](#the-card-footer)).
+  and description, an optional toolbar, the scene with its Play, Pause, Stop,
+  Reset, and Full screen actions, and at most one component-owned structured
+  key-value or tabular footer band ([the card footer](#the-card-footer)).
+- **Real-world photorealism and zero primitive slop.** Every custom 3D scene
+  and p5 simulation must look like real-world scientific apparatus, anatomy,
+  fauna, flora, or physical phenomena, never raw spheres, cylinders, boxes,
+  cones, or pills. Use verified open-source `.glb`/`.gltf` assets (with
+  provenance and license files) or sculpted PBR geometry with procedural
+  textures, seamless distance-faded horizons (`useHorizonFade`, never a hard
+  cut horizon edge), realistic translucent borosilicate glassware with liquid
+  meniscus and crisp labeled reagent bottles (proper Unicode subscripts, never
+  unlabeled mystery bottles), balanced non-overlapping labels, and labeled
+  curves in `MathVisual`. Follow deep-module composition with zero copy-paste
+  redundancy, and loop Playwright Chromium visual inspection until every frame
+  is crisp in light and dark modes with zero overlap or console errors.
 - The still frame teaches on its own, because a learner may pause the motion
   or read the page with reduced motion.
 - Be creative inside these limits. A good visual surprises the learner with a

@@ -54,7 +54,6 @@ Mendel wiederholte den Versuch für sieben Merkmale. Lies die Balken unten ab un
       <InlineMath math="3" />.
     </>
   }
-  footer={<>Alle sieben Merkmale Mendels lagen nah am F2-Verhältnis drei zu eins.</>}
   bars="apart"
   categories={["Blütenfarbe", "Blütenstellung", "Wuchshöhe", "Samenform", "Samenfarbe", "Hülsenform", "Hülsenfarbe"]}
   series={[
@@ -95,14 +94,13 @@ Das Quadrat liefert **Wahrscheinlichkeiten, keine genauen Zahlen**. Jeder <Inlin
       verfolgen.
     </>
   }
-  footer={<>Die Alleltrennung in der Meiose liefert 3:1 in der F2 und 1:1 bei der Testkreuzung.</>}
   crosses={["pureF1", "heteroF2", "testCross"]}
   labels={{
     cross: "Kreuzung wählen",
     crosses: {
       heteroF2: {
         genotypeRatio: <>1 TT : 2 Tt : 1 tt</>,
-        name: "F2-Kreuzung (Tt x Tt)",
+        name: "Zweite Filialkreuzung",
         phenotypeRatio: <>3 hoch : 1 zwerg</>,
       },
       pureF1: {
@@ -141,7 +139,6 @@ Der Wechsel zwischen den drei Kreuzungen trennt klar das **<InlineMath math="3:1
       <InlineMath math="705" /> violette und <InlineMath math="224" /> weiße.
     </>
   }
-  footer={<>Größere F2-Stichproben nähern sich dem erwarteten Verhältnis drei zu eins.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1000 }, y: { min: 0, max: 800 } },
@@ -217,7 +214,6 @@ Das Quadrat unten hat die Seitenlänge <InlineMath math="1" />. Der Regler <Inli
       rekombinante und doppelt rezessive Samen im Verhältnis <InlineMath math="9:3:3:1" /> hervorzuheben.
     </>
   }
-  footer={<>Die unabhängige Verteilung zweier Gene ergibt neun, drei, drei und eins.</>}
   filters={["all", "dominantBoth", "recombinants", "recessiveBoth"]}
   labels={{
     count: <>Passende Felder</>,
@@ -251,7 +247,6 @@ Die sechs rekombinanten Felder zeigen, warum die **Unabhängigkeitsregel** neue 
       von Nachkommen unter <InlineMath math="16" />.
     </>
   }
-  footer={<>Unabhängige Merkmale multiplizieren ihre Anteile zum 9:3:3:1-Muster.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 1 } },
@@ -315,7 +310,6 @@ Jede Geburt geht auf eine neue Befruchtung zurück, also ändern frühere Kinder
       sind, <InlineMath math="\left(\tfrac{1}{2}\right)^k" />.
     </>
   }
-  footer={<>Jede Geburt bleibt unabhängig, sodass sich die Wahrscheinlichkeit halbiert.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 1.1 } },
@@ -373,7 +367,6 @@ Bestimme die Kinder eines Vaters mit Blutgruppe A, <InlineMath math="I^A i" />, 
       jedes Kind gleich wahrscheinlich.
     </>
   }
-  footer={<>Eltern IAi und IBi können Kinder mit allen vier ABO-Blutgruppen bekommen.</>}
   bars="apart"
   categories={["Gruppe A", "Gruppe B", "Gruppe AB", "Gruppe O"]}
   series={[
@@ -405,7 +398,6 @@ Eine Frau braucht zwei rezessive Allele, <InlineMath math="X^b X^b" />, um rot-g
       betroffen sind.
     </>
   }
-  footer={<>Männer tragen nur ein X-Chromosom, sodass ein rezessives Allel sofort wirkt.</>}
   patterns={["aboBlood", "sexDetermination", "xLinked"]}
   labels={{
     parts: {
@@ -451,7 +443,6 @@ Vergleiche Überträgerinnen und betroffene Väter in den drei Erbgängen, bevor
       ihrem Vater <InlineMath math="X^B" /> bekommt.
     </>
   }
-  footer={<>Die Hälfte der Söhne einer Überträgerin erbt das X-chromosomale Merkmal.</>}
   bars="apart"
   categories={["Töchter", "Söhne"]}
   series={[
@@ -476,7 +467,6 @@ Ein **Stammbaum** ist eine Familientafel, die zeigt, wer ein Merkmal hat. Ein Qu
       Überträgerin sein oder nicht.
     </>
   }
-  footer={<>Zwei gesunde Überträger können ein rezessiv betroffenes Kind bekommen.</>}
   chart={`flowchart TD
   F["Vater, gesund: Aa"] --> S["Sohn, Thalassämie: aa"]
   M["Mutter, gesund: Aa"] --> S

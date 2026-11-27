@@ -86,7 +86,6 @@ Every round of `for item in [3, 8, 1, 6]` calls `next()` once and hands over one
 
 <BarChart
   title={<><code>total</code> after each <code>next()</code></>}
-  footer={<>Each next() call supplies one item until the iterator finishes at the last element.</>}
   description={<>Each bar is <code>total</code> after the element written below it is added: <InlineMath math="3" />, <InlineMath math="11" />, <InlineMath math="12" />, then <InlineMath math="18" />.</>}
   yAxisLabel="Running total"
   data={[
@@ -257,7 +256,6 @@ Check the list `[3, 8, 1, 6]` against the condition `v > 5`. The two magenta poi
 
 <MathVisual
   title={<><code>any</code> and <code>all</code> on <code>[3, 8, 1, 6]</code></>}
-  footer={<>One point above the threshold makes any true, while all requires every point to pass.</>}
   description={<>Each point is one value at its position. Magenta points meet <InlineMath math="v>5" />, teal points don't, and the gray line is the threshold <InlineMath math="5" />.</>}
   scene={{
     space: "plane",
@@ -279,7 +277,7 @@ Check the list `[3, 8, 1, 6]` against the condition `v > 5`. The two magenta poi
     ],
   }}
   labels={{
-    "limit": "v > 5",
+    limit: <InlineMath math="v > 5" />,
     "value-a": "3",
     "value-b": "8",
     "value-c": "1",
@@ -411,7 +409,6 @@ A starred name takes every element that no other name takes, and it is always a 
 
 <MathVisual
   title={<>Where each element goes in starred unpacking</>}
-  footer={<>A starred target collects all remaining items into a list, in the middle or at the end.</>}
   description={<>The top row is <code>[1, 2, 3, 4]</code>: the violet cell goes to <code>a</code> and the teal cells to <code>rest</code>. The bottom row is <code>[1, 2, 3, 4, 5]</code>: the violet cell goes to <code>first</code>, the three teal cells to <code>middle</code>, and the orange cell to <code>last</code>.</>}
   scene={{
     space: "plane",

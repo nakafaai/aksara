@@ -13,7 +13,6 @@ Prioritas operator <Highlight>menentukan cara Python mengelompokkan ekspresi ket
 
 <Mermaid
   title={<>Prioritas Operator yang Dibahas</>}
-  footer={<>Kurung mengikat paling kuat, lalu aritmetika, perbandingan, not, and, hingga or.</>}
   description={<>Diagram merangkum prioritas operator yang dibahas, bukan waktu evaluasi setiap operand.</>}
   chart={`
     flowchart LR
@@ -66,7 +65,6 @@ Operator boolean menggabungkan beberapa kondisi atau mengubah nilai boolean. Pyt
 
 <Mermaid
   title={<>Operator Boolean Menggabungkan Keputusan</>}
-  footer={<>Operator and dan or mengembalikan salah satu operand, sedangkan not selalu bool.</>}
   description={<>Lihat bagaimana and, or, dan not menggabungkan nilai benar-salah dalam keputusan program.</>}
   chart={`
     flowchart LR
@@ -126,7 +124,6 @@ Setiap perbandingan bernilai `True` di satu daerah garis bilangan. Di gambar ini
 
 <MathVisual
   title={<>Perbandingan sebagai daerah pada garis bilangan</>}
-  footer={<>Operator and hanya mempertahankan irisan terbuka antara batas 2 dan 5.</>}
   description={<>Baris ungu adalah <InlineMath math="x>2" />, baris hijau toska adalah <InlineMath math="x<5" />, dan baris magenta adalah bagian tempat keduanya benar, jadi <code>and</code> menyisakan <InlineMath math="2<x<5" />. Setiap baris berhenti tepat di <InlineMath math="2" /> atau <InlineMath math="5" />, dan nilai itu sendiri tidak termasuk.</>}
   scene={{
     space: "plane",
@@ -144,9 +141,9 @@ Setiap perbandingan bernilai `True` di satu daerah garis bilangan. Di gambar ini
     ],
   }}
   labels={{
-    "above": "x > 2",
-    "below": "x < 5",
-    "both": "x > 2 and x < 5",
+    above: <InlineMath math="x > 2" />,
+    below: <InlineMath math="x < 5" />,
+    both: <><InlineMath math="x > 2" /> and <InlineMath math="x < 5" /></>,
   }}
 />
 
@@ -162,7 +159,6 @@ Diagram berikut mengelompokkan nilai bawaan Python yang selalu dievaluasi sebaga
 
 <Mermaid
   title={<>Nilai yang Dibaca Python sebagai Kondisi</>}
-  footer={<>Nilai nol, None, False, dan wadah kosong dianggap falsy oleh evaluasi boolean.</>}
   description={<>Kelompokkan nilai yang dianggap False dan True oleh Python sebelum dipakai dalam kondisi.</>}
   chart={`
     flowchart TD
@@ -219,7 +215,6 @@ Di dalam `if`, Python memanggil `bool()` pada nilai apa pun. Angka nol dan wadah
 
 <BarChart
   title={<>Hasil <code>bool()</code> untuk tujuh nilai</>}
-  footer={<>List [0] tetap bernilai True karena tidak kosong, berbeda dengan 0, '', dan [].</>}
   description={<>Batang setinggi <InlineMath math="1" /> berarti <code>True</code> dan tanpa batang berarti <code>False</code>, untuk nilai yang tertulis di bawahnya. Hanya <code>0</code>, <code>''</code>, dan <code>[]</code> yang bernilai salah.</>}
   yAxisLabel="Nilai bool"
   data={[
@@ -269,7 +264,6 @@ Gabungkan dua perbandingan pada titik <InlineMath math="(x,y)" /> dengan <Inline
 
 <MathVisual
   title={<><code>and</code> dan <code>or</code> sebagai daerah</>}
-  footer={<>Daerah and adalah irisan sempit, sedangkan or mencakup seluruh gabungan berbentuk L.</>}
   description={<>Garis ungu adalah <InlineMath math="x=1" /> dan garis oranye adalah <InlineMath math="y=3" />. Persegi panjang magenta adalah tempat <InlineMath math="x>1" /> dan <InlineMath math="y<3" /> sama-sama benar. Daerah hijau toska berbentuk L adalah tempat setidaknya satu perbandingan benar.</>}
   scene={{
     space: "plane",
@@ -298,7 +292,6 @@ Pecahan desimal dapat memerlukan **pembulatan dalam biner**. Diagram berikut mem
 
 <Mermaid
   title={<>Desimal Bisa Dibandingkan Berbeda dari Tampilannya</>}
-  footer={<>Pembulatan biner dapat mematahkan ==, sehingga math.isclose memakai toleransi.</>}
   description={<>Telusuri angka desimal ke representasi float agar kebutuhan toleransi perbandingan masuk akal.</>}
   chart={`
     flowchart TD

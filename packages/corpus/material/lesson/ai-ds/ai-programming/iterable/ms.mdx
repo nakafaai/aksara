@@ -86,7 +86,6 @@ Setiap pusingan `for item in [3, 8, 1, 6]` memanggil `next()` sekali dan menyera
 
 <BarChart
   title={<><code>total</code> selepas setiap <code>next()</code></>}
-  footer={<>Setiap panggilan next() membekalkan satu nilai hingga pelelar tamat pada unsur terakhir.</>}
   description={<>Setiap bar ialah <code>total</code> selepas unsur yang tertulis di bawahnya ditambah: <InlineMath math="3" />, <InlineMath math="11" />, <InlineMath math="12" />, kemudian <InlineMath math="18" />.</>}
   yAxisLabel="Jumlah terkumpul"
   data={[
@@ -257,7 +256,6 @@ Semak senarai `[3, 8, 1, 6]` dengan syarat `v > 5`. Dua titik magenta, <InlineMa
 
 <MathVisual
   title={<><code>any</code> dan <code>all</code> pada <code>[3, 8, 1, 6]</code></>}
-  footer={<>Satu titik melepasi ambang cukup untuk any, tetapi all memerlukan semua titik lulus.</>}
   description={<>Setiap titik ialah satu nilai pada kedudukannya. Titik magenta memenuhi <InlineMath math="v>5" />, titik hijau kebiruan tidak, dan garis kelabu ialah nilai ambang <InlineMath math="5" />.</>}
   scene={{
     space: "plane",
@@ -279,7 +277,7 @@ Semak senarai `[3, 8, 1, 6]` dengan syarat `v > 5`. Dua titik magenta, <InlineMa
     ],
   }}
   labels={{
-    "limit": "v > 5",
+    limit: <InlineMath math="v > 5" />,
     "value-a": "3",
     "value-b": "8",
     "value-c": "1",
@@ -411,7 +409,6 @@ Nama yang berbintang mengambil setiap unsur yang tidak diambil oleh nama lain, d
 
 <MathVisual
   title={<>Ke mana setiap unsur pergi dalam pembongkaran berbintang</>}
-  footer={<>Sasaran berbintang mengumpul baki unsur sebagai senarai, di tengah atau hujung.</>}
   description={<>Baris atas ialah <code>[1, 2, 3, 4]</code>: sel ungu pergi ke <code>a</code> dan sel hijau kebiruan ke <code>rest</code>. Baris bawah ialah <code>[1, 2, 3, 4, 5]</code>: sel ungu pergi ke <code>first</code>, tiga sel hijau kebiruan ke <code>middle</code>, dan sel jingga ke <code>last</code>.</>}
   scene={{
     space: "plane",

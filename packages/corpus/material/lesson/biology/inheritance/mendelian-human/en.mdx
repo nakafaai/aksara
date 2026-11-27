@@ -53,7 +53,6 @@ He repeated the experiment for seven characteristics. Read the bars below and co
       line marks the expected ratio, <InlineMath math="3" />.
     </>
   }
-  footer={<>Every one of Mendel's seven traits landed right near the 3:1 F2 ratio.</>}
   bars="apart"
   categories={["Flower colour", "Flower position", "Plant height", "Seed shape", "Seed colour", "Pod shape", "Pod colour"]}
   series={[
@@ -94,14 +93,13 @@ The square gives **probabilities, not exact counts**. Each <InlineMath math="F_2
       offspring ratios.
     </>
   }
-  footer={<>Alleles separate cleanly during meiosis to give 3:1 in F2 and 1:1 in a test cross.</>}
   crosses={["pureF1", "heteroF2", "testCross"]}
   labels={{
     cross: "Choose cross",
     crosses: {
       heteroF2: {
         genotypeRatio: <>1 TT : 2 Tt : 1 tt</>,
-        name: "F2 cross (Tt x Tt)",
+        name: "Second filial cross",
         phenotypeRatio: <>3 tall : 1 dwarf</>,
       },
       pureF1: {
@@ -140,7 +138,6 @@ Switching between the three crosses contrasts the **<InlineMath math="3:1" /> <I
       <InlineMath math="705" /> violet and <InlineMath math="224" /> white.
     </>
   }
-  footer={<>Larger F2 sample sizes settle closer to the predicted three-to-one split.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1000 }, y: { min: 0, max: 800 } },
@@ -217,7 +214,6 @@ The square below has sides of length <InlineMath math="1" />. The slider <Inline
       <InlineMath math="9:3:3:1" /> ratio.
     </>
   }
-  footer={<>Independent assortment across two genes creates nine, three, three, and one.</>}
   filters={["all", "dominantBoth", "recombinants", "recessiveBoth"]}
   labels={{
     count: <>Matching squares</>,
@@ -251,7 +247,6 @@ Highlighting the six recombinant boxes shows why **independent assortment** crea
       of offspring out of <InlineMath math="16" />.
     </>
   }
-  footer={<>Independent traits multiply their probabilities into a 9:3:3:1 area grid.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 1 } },
@@ -315,7 +310,6 @@ Each birth is a new fertilisation, so earlier children don't change the chance f
       <InlineMath math="\left(\tfrac{1}{2}\right)^k" />.
     </>
   }
-  footer={<>Each birth stays independent, so all-girls odds halve with every child.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 1.1 } },
@@ -373,7 +367,6 @@ Work out the children of a father with blood group A, <InlineMath math="I^A i" /
       likely for every child.
     </>
   }
-  footer={<>Parents IAi and IBi can produce children across all four ABO blood groups.</>}
   bars="apart"
   categories={["Group A", "Group B", "Group AB", "Group O"]}
   series={[
@@ -405,7 +398,6 @@ A female needs two recessive alleles, <InlineMath math="X^b X^b" />, to be colou
       allele.
     </>
   }
-  footer={<>Males carry only one X chromosome, so one recessive allele expresses the trait.</>}
   patterns={["aboBlood", "sexDetermination", "xLinked"]}
   labels={{
     parts: {
@@ -451,7 +443,6 @@ Compare carrier mothers and affected fathers across the three human patterns bef
       <InlineMath math="X^B" /> from her father.
     </>
   }
-  footer={<>Half of a carrier mother's sons inherit the X-linked recessive trait.</>}
   bars="apart"
   categories={["Daughters", "Sons"]}
   series={[
@@ -476,7 +467,6 @@ A **pedigree** is a family tree that shows who has a trait. A square is a male, 
       may not be a carrier.
     </>
   }
-  footer={<>Two unaffected carrier parents can have an affected recessive child.</>}
   chart={`flowchart TD
   F["Father, unaffected: Aa"] --> S["Son, thalassaemia: aa"]
   M["Mother, unaffected: Aa"] --> S

@@ -31,12 +31,6 @@ Beobachte im 3D-Reaktor unten, wie Teilchen ständig in beide Richtungen reagier
       einstellt.
     </>
   }
-  footer={
-    <>
-      Teilchen reagieren bei <InlineMath math="r_f = r_r" /> weiter, während ihre
-      Anzahl konstant bleibt.
-    </>
-  }
   systems={["generic", "nitrogenDioxide", "hydrogenIodide"]}
   forwardRate={{ min: 0.1, max: 2, value: 0.6 }}
   reverseRate={{ min: 0.1, max: 2, value: 0.2 }}
@@ -57,21 +51,21 @@ Beobachte im 3D-Reaktor unten, wie Teilchen ständig in beide Richtungen reagier
     systems: {
       generic: {
         equation: <><InlineMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" /></>,
-        name: "A <-> B",
+        name: "Reversible A and B",
         product: "Produkt B",
         reactant: "Edukt A",
       },
       nitrogenDioxide: {
         equation: <><InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" /></>,
-        name: "N2O4 / NO2",
-        product: "NO2-Gas",
-        reactant: "N2O4-Gas",
+        name: "Dinitrogen tetroxide",
+        product: "Stickstoffdioxid-Gas",
+        reactant: "Distickstofftetroxid-Gas",
       },
       hydrogenIodide: {
         equation: <><InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" /></>,
-        name: "H2 + I2 / HI",
+        name: "Hydrogen and iodine",
         product: "HI-Gas",
-        reactant: "H2 + I2-Gas",
+        reactant: "Wasserstoff und Iod",
       },
     },
     view: "3D-Teilchenreaktor für dynamisches Gleichgewicht",
@@ -89,12 +83,6 @@ Im Reaktor siehst du unmittelbar, dass Zusammenstöße weiterlaufen, sobald die 
       <InlineMath math="k_1 = 0{,}6" /> und <InlineMath math="k_2 = 0{,}2" />{" "}
       stellen sich <InlineMath math="[\mathrm{A}] = 0{,}25\text{ M}" /> und{" "}
       <InlineMath math="[\mathrm{B}] = 0{,}75\text{ M}" /> ein.
-    </>
-  }
-  footer={
-    <>
-      Beide Kurven werden auf verschiedener Höhe flach, weil{" "}
-      <InlineMath math="k_1" /> dreimal so groß ist wie <InlineMath math="k_2" />.
     </>
   }
   scene={{
@@ -135,12 +123,6 @@ Vergleiche nun die Geschwindigkeiten im zweiten Graphen. Beobachte, wie die Hinr
       Für <InlineMath math="k_1 = 0{,}6" /> und <InlineMath math="k_2 = 0{,}2" />{" "}
       sinkt die Hinreaktion und steigt die Rückreaktion, bis sich beide bei{" "}
       <InlineMath math="0{,}15\text{ M s}^{-1}" /> treffen.
-    </>
-  }
-  footer={
-    <>
-      Sobald beide Kurven bei <InlineMath math="0{,}15\text{ M s}^{-1}" />{" "}
-      zusammenlaufen, herrscht dynamisches Gleichgewicht.
     </>
   }
   scene={{
@@ -261,11 +243,6 @@ Vergleiche die Balken vor und nach der Reaktion im Diagramm unten, um das Stoffm
       Koeffizientenverhältnis <InlineMath math="1 : 1 : 2" />.
     </>
   }
-  footer={
-    <>
-      Der Iodwasserstoffbalken wächst doppelt so stark, wie jedes Edukt sinkt.
-    </>
-  }
 />
 
 Man sieht sofort: Der Verlust von <InlineMath math="0{,}8\text{ M}" /> bei jedem Edukt erzeugt genau den doppelten Zuwachs von <InlineMath math="1{,}6\text{ M}" /> beim Produkt.
@@ -301,12 +278,6 @@ Prüfe den Vergleich von <InlineMath math="Q_c" /> und <InlineMath math="K_c" />
       <InlineMath math="Q_c = K_c" /> zu verfolgen.
     </>
   }
-  footer={
-    <>
-      Die Waage kippt rechts bei <InlineMath math="Q_c < K_c" /> und links bei{" "}
-      <InlineMath math="Q_c > K_c" />.
-    </>
-  }
   kc={4}
   stoichiometry="oneToTwo"
   reactant={{ min: 0.1, max: 4, value: 1 }}
@@ -338,12 +309,6 @@ Sobald du die Produktkonzentration über <InlineMath math="Q_c = 4" /> anhebst, 
       <InlineMath math="[\mathrm{HI}] = 2\text{ M}" /> liegt{" "}
       <InlineMath math="Q = 16" /> unter <InlineMath math="64" />, die Reaktion
       läuft also nach rechts.
-    </>
-  }
-  footer={
-    <>
-      Punkte unter der Linie <InlineMath math="64" /> laufen nach rechts, darüber
-      nach links.
     </>
   }
   scene={{
@@ -408,11 +373,6 @@ Erhöhe den Gesamtdruck <InlineMath math="P" /> im Graphen unten und beobachte, 
       auf <InlineMath math="19\%" /> bei <InlineMath math="1\text{ atm}" />.
     </>
   }
-  footer={
-    <>
-      Höherer Druck zieht die Kurve nach unten, da links nur ein Mol Gas steht.
-    </>
-  }
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1 } },
@@ -451,12 +411,6 @@ Bei einer exothermen Reaktion (<InlineMath math="\Delta H < 0" />) verschiebt Er
       Mit <InlineMath math="\Delta H = -92\text{ kJ}" /> fällt{" "}
       <InlineMath math="\log K" /> bei steigender Temperatur steil ab. Wählst du{" "}
       <InlineMath math="\Delta H" /> positiv, steigt die Kurve an.
-    </>
-  }
-  footer={
-    <>
-      Die Kurve fällt bei exothermen Reaktionen und steigt bei positivem{" "}
-      <InlineMath math="\Delta H" />.
     </>
   }
   scene={{
@@ -502,12 +456,6 @@ Teste alle Störungen nach Le Chatelier direkt im 3D-Kolbenreaktor unten. Vergle
       Verschiebung und <InlineMath math="K_c" /> zu prüfen.
     </>
   }
-  footer={
-    <>
-      Nur die Temperatur ändert <InlineMath math="K_c" />, ein Katalysator verkürzt
-      nur die Einstellzeit.
-    </>
-  }
   systems={["haber", "nitrogenDioxide"]}
   disturbances={["pressure", "temperature", "concentration", "catalyst"]}
   labels={{
@@ -543,7 +491,7 @@ Teste alle Störungen nach Le Chatelier direkt im 3D-Kolbenreaktor unten. Vergle
       nitrogenDioxide: {
         enthalpy: "Endotherm",
         equation: <><InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" /></>,
-        name: "N2O4 / NO2",
+        name: "Dinitrogen tetroxide",
       },
     },
     temperature: "Reaktortemperatur",

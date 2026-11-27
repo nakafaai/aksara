@@ -13,7 +13,6 @@ Operator precedence <Highlight>determines how Python groups an expression when p
 
 <Mermaid
   title={<>Precedence of the Operators Discussed</>}
-  footer={<>Parentheses bind tightest, followed by arithmetic, comparisons, not, and, then or.</>}
   description={<>The diagram summarizes the precedence of the operators discussed, not the evaluation time of each operand.</>}
   chart={`
     flowchart LR
@@ -66,7 +65,6 @@ Boolean operators combine multiple conditions or modify boolean values. Python p
 
 <Mermaid
   title={<>Boolean Operators Combine Decisions</>}
-  footer={<>Both and and or return one of their operands, whereas not always returns a boolean.</>}
   description={<>See how and, or, and not combine true-false values in program decisions.</>}
   chart={`
     flowchart LR
@@ -126,7 +124,6 @@ Each comparison is `True` on one region of the number line. In this picture, the
 
 <MathVisual
   title={<>Comparisons as regions on the number line</>}
-  footer={<>The and operator keeps only the open overlap strictly between 2 and 5.</>}
   description={<>The violet row is <InlineMath math="x>2" />, the teal row is <InlineMath math="x<5" />, and the magenta row is where both hold, so <code>and</code> keeps <InlineMath math="2<x<5" />. Each row stops exactly at <InlineMath math="2" /> or <InlineMath math="5" />, and those values themselves are not included.</>}
   scene={{
     space: "plane",
@@ -144,9 +141,9 @@ Each comparison is `True` on one region of the number line. In this picture, the
     ],
   }}
   labels={{
-    "above": "x > 2",
-    "below": "x < 5",
-    "both": "x > 2 and x < 5",
+    above: <InlineMath math="x > 2" />,
+    below: <InlineMath math="x < 5" />,
+    both: <><InlineMath math="x > 2" /> and <InlineMath math="x < 5" /></>,
   }}
 />
 
@@ -162,7 +159,6 @@ The chart below separates the built-in Python values that evaluate as **falsy** 
 
 <Mermaid
   title={<>Values Python Treats as Condition Results</>}
-  footer={<>Zero, None, False, and empty containers evaluate as falsy in boolean checks.</>}
   description={<>Group the values Python treats as False or True before they are used in conditions.</>}
   chart={`
     flowchart TD
@@ -219,7 +215,6 @@ Inside an `if`, Python calls `bool()` on any value. Zero and empty containers be
 
 <BarChart
   title={<>The result of <code>bool()</code> for seven values</>}
-  footer={<>The list [0] evaluates to True because it is non-empty, unlike 0, '', and [].</>}
   description={<>A bar of height <InlineMath math="1" /> means <code>True</code> and no bar means <code>False</code>, for the value written below it. Only <code>0</code>, <code>''</code>, and <code>[]</code> are falsy.</>}
   yAxisLabel="Boolean value"
   data={[
@@ -269,7 +264,6 @@ Combine two comparisons on points <InlineMath math="(x,y)" /> with <InlineMath m
 
 <MathVisual
   title={<><code>and</code> and <code>or</code> as regions</>}
-  footer={<>The and region is the tight overlap, while or covers the entire L-shaped union.</>}
   description={<>The violet line is <InlineMath math="x=1" /> and the orange line is <InlineMath math="y=3" />. The magenta rectangle is where <InlineMath math="x>1" /> and <InlineMath math="y<3" /> both hold. The teal L-shaped region is where at least one comparison holds.</>}
   scene={{
     space: "plane",
@@ -298,7 +292,6 @@ A decimal fraction may require **rounding in binary**. The diagram distinguishes
 
 <Mermaid
   title={<>Decimals Can Compare Differently Than They Look</>}
-  footer={<>Binary rounding can break ==, so math.isclose checks values within a tolerance.</>}
   description={<>Decimal values become binary floats, and limited precision can cause a rounding error that makes a comparison fail. math.isclose with a relative or absolute tolerance compares the values against the chosen tolerance.</>}
   chart={`
     flowchart TD
