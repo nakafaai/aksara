@@ -1,0 +1,333 @@
+# Teil a: Verhalten an den Rändern
+
+Stell dir ein Tauziehen vor: Zwei Faktoren ziehen an <InlineMath math="f_a(x)=(x^2-a)\,e^{x}" />, und das Produkt geht dahin, wo der Stärkere zieht.
+
+Nach rechts ziehen beide in dieselbe Richtung. Für <InlineMath math="x\to+\infty" /> wächst <InlineMath math="x^2-a" /> über jede Grenze und <InlineMath math="e^{x}" /> auch, also gilt **<InlineMath math="f_a(x)\to+\infty" /> für jedes <InlineMath math="a" />**.
+
+Nach links wird es spannend. <InlineMath math="x^2-a" /> wächst weiter, aber <InlineMath math="e^{x}" /> schrumpft gegen <InlineMath math="0" />. Das ist der Fall „unendlich mal null“, und hier gewinnt die e-Funktion: **<InlineMath math="e^{x}" /> geht schneller gegen <InlineMath math="0" />, als jedes Polynom wächst**. Deshalb gilt <InlineMath math="f_a(x)\to0" /> für <InlineMath math="x\to-\infty" />, und die <InlineMath math="x" />-Achse ist links eine waagrechte Asymptote.
+
+Von welcher Seite kommt der Graph? Schau aufs Vorzeichen. Sobald <InlineMath math="x<-\sqrt{|a|}" /> ist, gilt <InlineMath math="x^2>|a|\ge a" />, also <InlineMath math="x^2-a>0" />. Und <InlineMath math="e^{x}" /> ist immer positiv. Weit links ist <InlineMath math="f_a(x)" /> also positiv, und **<InlineMath math="G_a" /> nähert sich der <InlineMath math="x" />-Achse für jedes <InlineMath math="a" /> von oben**.
+
+# Teil b: Anzahl der Nullstellen
+
+Ein Produkt ist nur dann null, wenn einer seiner Faktoren null ist. **Die e-Funktion wird nie null**, denn <InlineMath math="e^{x}>0" /> für alle <InlineMath math="x" />. Also entscheidet allein der quadratische Faktor:
+
+<BlockMath math="f_a(x)=0\iff x^2-a=0\iff x^2=a" />
+
+Wie oft ein Quadrat einen Wert <InlineMath math="a" /> annimmt, hängt vom Vorzeichen von <InlineMath math="a" /> ab:
+
+| Fall | Nullstellen | Was der Graph tut |
+| --- | --- | --- |
+| <InlineMath math="a>0" /> | <InlineMath math="x=-\sqrt a" /> und <InlineMath math="x=\sqrt a" /> | schneidet die <InlineMath math="x" />-Achse zweimal |
+| <InlineMath math="a=0" /> | nur <InlineMath math="x=0" /> | berührt die <InlineMath math="x" />-Achse im Ursprung |
+| <InlineMath math="a<0" /> | keine | bleibt ganz über der Achse |
+
+Warum berührt <InlineMath math="G_0" /> die Achse nur? Für <InlineMath math="a=0" /> ist <InlineMath math="f_0(x)=x^2\,e^{x}\ge0" />, der Graph kommt also nie unter die Achse. Die Nullstelle <InlineMath math="x=0" /> ist doppelt, und <InlineMath math="f_0'(0)=0" />. **<InlineMath math="G_0" /> berührt die <InlineMath math="x" />-Achse im Ursprung**, dort liegt sogar ein Tiefpunkt. Für <InlineMath math="a<0" /> ist <InlineMath math="x^2-a>0" /> für alle <InlineMath math="x" />, darum gibt es dann keine Nullstelle. Zusammen mit dem Berührfall <InlineMath math="a=0" /> nimmt <InlineMath math="f_a" /> **genau für <InlineMath math="a\le0" /> nirgends negative Werte an**.
+
+<MathVisual
+  title={<>Drei Graphen, drei Fälle</>}
+  description={<><InlineMath math="a=1" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="-1" /> und <InlineMath math="1" />, <InlineMath math="a=0" /> berührt sie im Ursprung, <InlineMath math="a=-2" /> bleibt ganz darüber. Links schmiegen sich alle von oben an die Achse.</>}
+  footer={<>Schau nach links: Jeder Graph kommt von oben an die Achse, egal wie groß <InlineMath math="a" /> ist.</>}
+  labels={{
+    one: <><InlineMath math="a=1" /></>,
+    zero: <><InlineMath math="a=0" /></>,
+    neg: <><InlineMath math="a=-2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 1.5 }, y: { min: -1.6, max: 2.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g1", kind: "function", appearance: "primary", formula: "(x^2 - 1) exp(x)" },
+      { id: "g0", kind: "function", appearance: "secondary", formula: "x^2 exp(x)" },
+      { id: "gm2", kind: "function", appearance: "highlight", formula: "(x^2 + 2) exp(x)" },
+      { id: "z1", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "z2", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "one", objectId: "g1", at: { x: 0.5, y: -0.75 * Math.exp(0.5) }, placement: "right" },
+      { key: "zero", objectId: "g0", at: { x: -2, y: 4 * Math.exp(-2) }, placement: "above" },
+      { key: "neg", objectId: "gm2", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Der Vergleich der drei Graphen zeigt den Übergang unmittelbar: Nur für <InlineMath math="a>0" /> taucht die Kurve zwischen <InlineMath math="-\sqrt a" /> und <InlineMath math="\sqrt a" /> unter die Achse ab.
+
+# Teil c: Extrempunkte je nach Parameter
+
+Mit der Produktregel bekommst du die Ableitung:
+
+<BlockMath math="\begin{aligned}
+f_a'(x)&=2x\cdot e^{x}+\left(x^2-a\right)e^{x}\\
+&=\left(x^2+2x-a\right)e^{x}
+\end{aligned}" />
+
+Wieder ist <InlineMath math="e^{x}>0" />. **Das Vorzeichen von <InlineMath math="f_a'" /> ist also das Vorzeichen der Parabel <InlineMath math="x^2+2x-a" />**, und <InlineMath math="f_a'(x)=0" /> heißt <InlineMath math="x^2+2x=a" />. Stell dir das wie eine waagrechte Latte in der Höhe <InlineMath math="a" /> vor, die du gegen die Parabel <InlineMath math="y=x^2+2x" /> hältst. Ihr tiefster Punkt ist der Scheitel <InlineMath math="(-1\mid-1)" />.
+
+<MathVisual
+  title={<>Wie oft die Höhe <InlineMath math="a" /> die Parabel trifft</>}
+  description={<>Die Ableitung ist null, wo <InlineMath math="x^2+2x=a" /> gilt. Die Linie <InlineMath math="y=1" /> trifft die Parabel zweimal, <InlineMath math="y=-1" /> berührt sie im Scheitel <InlineMath math="(-1\mid-1)" />, <InlineMath math="y=-2" /> verfehlt sie.</>}
+  footer={<>Zwei Treffer geben Hoch- und Tiefpunkt, ein Berühren nur einen Sattelpunkt.</>}
+  labels={{
+    parabola: <><InlineMath math="y=x^2+2x" /></>,
+    one: <><InlineMath math="a=1" /></>,
+    saddle: <><InlineMath math="a=-1" /></>,
+    none: <><InlineMath math="a=-2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 2 }, y: { min: -2.6, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p", kind: "function", appearance: "primary", formula: "x^2 + 2x" },
+      { id: "l1", kind: "line", appearance: "secondary", through: [{ x: 0, y: 1 }, { x: 1, y: 1 }] },
+      { id: "lm1", kind: "line", appearance: "warning", through: [{ x: 0, y: -1 }, { x: 1, y: -1 }] },
+      { id: "lm2", kind: "line", appearance: "construction", through: [{ x: 0, y: -2 }, { x: 1, y: -2 }] },
+      { id: "s1", kind: "point", appearance: "answer", at: { x: -1 - Math.SQRT2, y: 1 } },
+      { id: "s2", kind: "point", appearance: "answer", at: { x: Math.SQRT2 - 1, y: 1 } },
+      { id: "v", kind: "point", appearance: "warning", at: { x: -1, y: -1 } },
+    ],
+    labels: [
+      { key: "parabola", objectId: "p", at: { x: 0.5, y: 1.25 }, placement: "right" },
+      { key: "one", objectId: "l1", at: { x: -3.5, y: 1 }, placement: "above" },
+      { key: "saddle", objectId: "lm1", at: { x: -3.5, y: -1 }, placement: "above" },
+      { key: "none", objectId: "lm2", at: { x: -3.5, y: -2 }, placement: "above" },
+    ],
+  }}
+/>
+
+Die Lösungen sind <InlineMath math="x=-1\pm\sqrt{1+a}" />. Jetzt kommt die Fallunterscheidung:
+
+Für <InlineMath math="a>-1" /> gibt es **zwei Extrempunkte**. Die Parabel <InlineMath math="x^2+2x-a" /> ist nach oben geöffnet, also ist <InlineMath math="f_a'" /> links positiv, zwischen den Nullstellen negativ und rechts wieder positiv. Bei <InlineMath math="x_1=-1-\sqrt{1+a}" /> wechselt <InlineMath math="f_a'" /> von plus nach minus, das ist ein Hochpunkt. Bei <InlineMath math="x_2=-1+\sqrt{1+a}" /> wechselt es von minus nach plus, das ist ein Tiefpunkt. Mit der zweiten Ableitung geht es auch: An den Extremstellen gilt <InlineMath math="f_a''(x_i)=2(x_i+1)e^{x_i}" />, das ist bei <InlineMath math="x_1" /> negativ und bei <InlineMath math="x_2" /> positiv.
+
+Für <InlineMath math="a=-1" /> gibt es **nur einen Sattelpunkt**. Dann ist <InlineMath math="f_{-1}'(x)=(x+1)^2e^{x}\ge0" />. Die Ableitung wird bei <InlineMath math="x=-1" /> zwar null, wechselt aber nicht das Vorzeichen. Der Graph steigt davor und danach, bei <InlineMath math="(-1\mid\tfrac{2}{e})" /> macht er nur kurz eine waagrechte Pause.
+
+Für <InlineMath math="a<-1" /> gibt es **keinen Extrempunkt**. Mit quadratischer Ergänzung ist <InlineMath math="x^2+2x-a=(x+1)^2-(1+a)>0" />, weil <InlineMath math="1+a<0" />. Also ist <InlineMath math="f_a'(x)>0" /> für alle <InlineMath math="x" />, und der Graph steigt überall.
+
+# Teil d: Ein Wendepunkt auf der Achse
+
+Du suchst eine Stelle, an der zwei Dinge gleichzeitig passieren, so wie ein Treffpunkt, an dem sich zwei Wege kreuzen: Der Graph liegt auf der Achse, und er wechselt dort seine Krümmung. Dafür brauchst du die zweite Ableitung:
+
+<BlockMath math="\begin{aligned}
+f_a''(x)&=(2x+2)e^{x}+\left(x^2+2x-a\right)e^{x}\\
+&=\left(x^2+4x+2-a\right)e^{x}
+\end{aligned}" />
+
+**Beide Bedingungen müssen an derselben Stelle gelten**, <InlineMath math="f_a(x)=0" /> und <InlineMath math="f_a''(x)=0" />. Nach dem Teilen durch <InlineMath math="e^{x}" /> ziehst du die zwei Gleichungen voneinander ab:
+
+<BlockMath math="\begin{aligned}
+x^2-a&=0\\
+x^2+4x+2-a&=0\\
+\Rightarrow\quad 4x+2&=0\\
+x&=-\tfrac12,\quad a=x^2=\tfrac14
+\end{aligned}" />
+
+Prüfe noch, ob es wirklich ein Wendepunkt ist: <InlineMath math="f_{1/4}''(x)=\left(x+\tfrac12\right)\left(x+\tfrac72\right)e^{x}" /> hat bei <InlineMath math="-\tfrac12" /> eine einfache Nullstelle, **die Krümmung wechselt also tatsächlich**. Der Wendepunkt ist <InlineMath math="W(-\tfrac12\mid0)" />. Der zweite Wendepunkt bei <InlineMath math="x=-\tfrac72" /> liegt nicht auf der Achse, denn <InlineMath math="f_{1/4}(-\tfrac72)=12\,e^{-7/2}>0" />.
+
+Die Steigung dort ist <InlineMath math="f_{1/4}'(-\tfrac12)=\left(\tfrac14-1-\tfrac14\right)e^{-1/2}=-e^{-1/2}" />. Die Tangente geht durch <InlineMath math="W" />, also gilt **<InlineMath math="t(x)=-e^{-1/2}\left(x+\tfrac12\right)" />**.
+
+<MathVisual
+  title={<>Die Wendetangente für <InlineMath math="a=\tfrac14" /></>}
+  description={<><InlineMath math="G_{1/4}" /> wechselt bei <InlineMath math="W(-\tfrac12\mid0)" /> seine Krümmung, genau auf der <InlineMath math="x" />-Achse. Die Tangente dort hat die Steigung <InlineMath math="-e^{-1/2}\approx-0{,}61" />. Der zweite Wendepunkt bei <InlineMath math="x=-\tfrac72" /> liegt über der Achse.</>}
+  footer={<>Nur der Wendepunkt <InlineMath math="W" /> sitzt auf der Achse, der andere liegt ein Stück darüber.</>}
+  labels={{
+    w: <><InlineMath math="W" /></>,
+    t: <><InlineMath math="t" /></>,
+    w2: <>zweiter Wendepunkt</>,
+    g: <><InlineMath math="G_{1/4}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 1.5 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "function", appearance: "primary", formula: "(x^2 - 0.25) exp(x)" },
+      { id: "t", kind: "line", appearance: "answer", through: [{ x: -0.5, y: 0 }, { x: 0.5, y: -Math.exp(-0.5) }] },
+      { id: "w", kind: "point", appearance: "highlight", at: { x: -0.5, y: 0 } },
+      { id: "w2", kind: "point", appearance: "reference", at: { x: -3.5, y: 12 * Math.exp(-3.5) } },
+    ],
+    labels: [
+      { key: "w", objectId: "w", at: { x: -0.5, y: 0 }, placement: "above-right" },
+      { key: "t", objectId: "t", at: { x: -1.5, y: Math.exp(-0.5) }, placement: "left" },
+      { key: "w2", objectId: "w2", at: { x: -3.5, y: 12 * Math.exp(-3.5) }, placement: "above" },
+      { key: "g", objectId: "g", at: { x: 0.75, y: 0.3125 * Math.exp(0.75) }, placement: "left" },
+    ],
+  }}
+/>
+
+Im Bild siehst du beides zusammen: Die Tangente schneidet <InlineMath math="G_{1/4}" /> im Wendepunkt <InlineMath math="W" /> genau auf der Achse, während der linke Wendepunkt klar darüber liegt.
+
+# Teil e: Die Kurve aller Extrempunkte
+
+Stell dir vor, jedes Scharmitglied stellt an seinen Hoch- und Tiefpunkten eine kleine Lampe auf. Die Ortskurve ist der Weg, auf dem alle Lampen stehen. Um ihn zu finden, **wirfst du den Parameter <InlineMath math="a" /> hinaus**. An einer Extremstelle gilt <InlineMath math="x^2+2x-a=0" />, also <InlineMath math="a=x^2+2x" />. Das setzt du in den Funktionsterm ein:
+
+<BlockMath math="\begin{aligned}
+y&=\left(x^2-a\right)e^{x}\\
+&=\left(x^2-x^2-2x\right)e^{x}\\
+&=-2x\,e^{x}
+\end{aligned}" />
+
+Gilt das auch umgekehrt? Nimm irgendein <InlineMath math="x" /> und setze <InlineMath math="a=x^2+2x=(x+1)^2-1" />. Für <InlineMath math="x\neq-1" /> ist <InlineMath math="a>-1" />, und dann hat <InlineMath math="G_a" /> wirklich bei <InlineMath math="x" /> einen Extrempunkt, weil <InlineMath math="x=-1\pm\sqrt{1+a}" /> mit <InlineMath math="\sqrt{1+a}=|x+1|" />.
+
+**Nur <InlineMath math="x=-1" />** fällt heraus. Dort gehört <InlineMath math="a=-1" /> dazu, und <InlineMath math="G_{-1}" /> hat bei <InlineMath math="(-1\mid\tfrac{2}{e})" /> nur einen Sattelpunkt. Die Ortskurve ist also <InlineMath math="y=-2x\,e^{x}" /> ohne den Punkt <InlineMath math="(-1\mid\tfrac{2}{e})" />. Weil <InlineMath math="x_1=-1-\sqrt{1+a}<-1" /> ist, **liegen die Hochpunkte auf dem Teil mit <InlineMath math="x<-1" />** und die Tiefpunkte auf dem Teil mit <InlineMath math="x>-1" />.
+
+<MathVisual
+  title={<>Alle Extrempunkte auf einer Kurve</>}
+  description={<>Die Ortskurve <InlineMath math="y=-2x\,e^{x}" /> trägt die Hochpunkte und Tiefpunkte von <InlineMath math="G_0" /> und <InlineMath math="G_1" />. Hochpunkte liegen links von <InlineMath math="x=-1" />, Tiefpunkte rechts davon. Der Punkt <InlineMath math="(-1\mid\tfrac{2}{e})" /> gehört zum Sattelpunkt von <InlineMath math="G_{-1}" />.</>}
+  footer={<>Der Punkt bei <InlineMath math="x=-1" /> liegt zwar auf der Kurve, ist aber kein Extrempunkt.</>}
+  labels={{
+    o: <>Ortskurve</>,
+    h0: <><InlineMath math="H_0" /></>,
+    t0: <><InlineMath math="T_0" /></>,
+    h1: <><InlineMath math="H_1" /></>,
+    t1: <><InlineMath math="T_1" /></>,
+    s: <>Sattelpunkt von <InlineMath math="G_{-1}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 1 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "o", kind: "function", appearance: "answer", formula: "-2x exp(x)" },
+      { id: "g0", kind: "function", appearance: "construction", formula: "x^2 exp(x)" },
+      { id: "g1", kind: "function", appearance: "construction", formula: "(x^2 - 1) exp(x)" },
+      { id: "h0", kind: "point", appearance: "highlight", at: { x: -2, y: 4 * Math.exp(-2) } },
+      { id: "t0", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "h1", kind: "point", appearance: "highlight", at: { x: -1 - Math.SQRT2, y: 2 * (1 + Math.SQRT2) * Math.exp(-1 - Math.SQRT2) } },
+      { id: "t1", kind: "point", appearance: "highlight", at: { x: Math.SQRT2 - 1, y: -2 * (Math.SQRT2 - 1) * Math.exp(Math.SQRT2 - 1) } },
+      { id: "s", kind: "point", appearance: "warning", at: { x: -1, y: 2 * Math.exp(-1) } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0.25, y: -0.5 * Math.exp(0.25) }, placement: "right" },
+      { key: "h0", objectId: "h0", at: { x: -2, y: 4 * Math.exp(-2) }, placement: "above-left" },
+      { key: "t0", objectId: "t0", at: { x: 0, y: 0 }, placement: "above-right" },
+      { key: "h1", objectId: "h1", at: { x: -1 - Math.SQRT2, y: 2 * (1 + Math.SQRT2) * Math.exp(-1 - Math.SQRT2) }, placement: "below-left" },
+      { key: "t1", objectId: "t1", at: { x: Math.SQRT2 - 1, y: -2 * (Math.SQRT2 - 1) * Math.exp(Math.SQRT2 - 1) }, placement: "left" },
+      { key: "s", objectId: "s", at: { x: -1, y: 2 * Math.exp(-1) }, placement: "above" },
+    ],
+  }}
+/>
+
+Damit trennt der ausgeschlossene Sattelpunkt bei <InlineMath math="x=-1" /> die Kurve sauber in den Hochpunkt-Ast links und den Tiefpunkt-Ast rechts.
+
+# Teil f: Das größte Zeltdreieck
+
+Denk an ein Zelt: Die Spitze ist <InlineMath math="H_a" />, eine Stange geht senkrecht nach unten zu <InlineMath math="L_a" />, und die Plane spannt sich bis zum Ursprung. Je nach <InlineMath math="a" /> steht die Spitze woanders, und du suchst das Zelt mit der größten Fläche.
+
+Hier zahlt sich Teil e aus. Nenne die Stelle des Hochpunkts <InlineMath math="u=-1-\sqrt{1+a}" />. Dann ist <InlineMath math="u<-1" />, und **die Höhe liest du direkt an der Ortskurve ab**: <InlineMath math="H_a(u\mid-2u\,e^{u})" />. Das Dreieck hat bei <InlineMath math="L_a(u\mid0)" /> einen rechten Winkel, die Grundseite ist <InlineMath math="|u|=-u" />:
+
+<BlockMath math="D(u)=\tfrac12\cdot(-u)\cdot\left(-2u\,e^{u}\right)=u^2e^{u},\quad u<-1" />
+
+<BlockMath math="D'(u)=\left(2u+u^2\right)e^{u}=u(u+2)\,e^{u}" />
+
+Die Kandidaten sind <InlineMath math="u=0" /> und <InlineMath math="u=-2" />. <InlineMath math="u=0" /> fällt weg, **weil Hochpunkte nur bei <InlineMath math="u<-1" /> liegen**. Für <InlineMath math="u<-2" /> ist <InlineMath math="D'>0" />, zwischen <InlineMath math="-2" /> und <InlineMath math="-1" /> ist <InlineMath math="D'<0" />, bei <InlineMath math="u=-2" /> liegt also ein Maximum.
+
+Ist es auch das größte überhaupt? Schau an die Ränder: Für <InlineMath math="u\to-\infty" /> geht <InlineMath math="D(u)\to0" />, und für <InlineMath math="u\to-1" /> geht <InlineMath math="D(u)\to\tfrac1e\approx0{,}37" />. Beides ist kleiner als <InlineMath math="D(-2)=\tfrac{4}{e^2}\approx0{,}54" />. Damit ist es das globale Maximum.
+
+Zurück zum Parameter: <InlineMath math="-1-\sqrt{1+a}=-2" /> ergibt <InlineMath math="\sqrt{1+a}=1" />, also **<InlineMath math="a=0" /> mit dem größten Flächeninhalt <InlineMath math="\tfrac{4}{e^2}" />**.
+
+<MathVisual
+  title={<>Das Dreieck unter dem Hochpunkt</>}
+  description={<>Für <InlineMath math="a=0" /> hat das Dreieck <InlineMath math="O\,L_0\,H_0" /> die Ecken <InlineMath math="(0\mid0)" />, <InlineMath math="(-2\mid0)" /> und <InlineMath math="(-2\mid\tfrac{4}{e^2})" /> und den Inhalt <InlineMath math="\tfrac{4}{e^2}\approx0{,}54" />. Zum Vergleich <InlineMath math="a=3" /> mit <InlineMath math="H_3(-3\mid\tfrac{6}{e^3})" /> und nur <InlineMath math="\tfrac{9}{e^3}\approx0{,}45" />.</>}
+  footer={<>Weiter links wird das Dreieck breiter, aber auch flacher, und verliert insgesamt.</>}
+  labels={{
+    h0: <><InlineMath math="H_0" /></>,
+    h3: <><InlineMath math="H_3" /></>,
+    area: <><InlineMath math="\tfrac{4}{e^2}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.2, max: 0.6 }, y: { min: -0.9, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g0", kind: "function", appearance: "primary", formula: "x^2 exp(x)" },
+      { id: "g3", kind: "function", appearance: "construction", formula: "(x^2 - 3) exp(x)" },
+      { id: "tri3", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: -3, y: 0 }, { x: -3, y: 6 * Math.exp(-3) }] },
+      { id: "tri0", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: -2, y: 0 }, { x: -2, y: 4 * Math.exp(-2) }] },
+      { id: "h0", kind: "point", appearance: "answer", at: { x: -2, y: 4 * Math.exp(-2) } },
+      { id: "h3", kind: "point", appearance: "secondary", at: { x: -3, y: 6 * Math.exp(-3) } },
+    ],
+    labels: [
+      { key: "h0", objectId: "h0", at: { x: -2, y: 4 * Math.exp(-2) }, placement: "above" },
+      { key: "h3", objectId: "h3", at: { x: -3, y: 6 * Math.exp(-3) }, placement: "above-left" },
+      { key: "area", objectId: "tri0", at: { x: -4 / 3, y: 4 * Math.exp(-2) / 3 }, placement: "center" },
+    ],
+  }}
+/>
+
+Der Vergleich mit <InlineMath math="a=3" /> macht die Balance greifbar: Weiter links gewinnt das Dreieck zwar Breite, verliert aber schneller an Höhe.
+
+# Teil g: Fläche zwischen den Nullstellen
+
+Integrieren heißt, rückwärts abzuleiten: Du suchst eine Funktion, deren Ableitung <InlineMath math="f_a" /> ist. Weil beim Ableiten von <InlineMath math="(\text{Polynom})\cdot e^{x}" /> wieder <InlineMath math="(\text{Polynom})\cdot e^{x}" /> herauskommt, setzt du <InlineMath math="F_a(x)=\left(x^2+bx+c\right)e^{x}" /> an:
+
+<BlockMath math="\begin{aligned}
+F_a'(x)&=\left(x^2+(b+2)x+b+c\right)e^{x}\overset{!}{=}\left(x^2-a\right)e^{x}\\
+b&=-2,\quad c=2-a
+\end{aligned}" />
+
+Also ist **<InlineMath math="F_a(x)=\left(x^2-2x+2-a\right)e^{x}" /> eine Stammfunktion**. Zweimal partielle Integration liefert dasselbe.
+
+Für <InlineMath math="a>0" /> liegen die Nullstellen bei <InlineMath math="\pm\sqrt a" />. Dazwischen ist <InlineMath math="x^2<a" />, also <InlineMath math="f_a<0" />. **Die Fläche liegt unter der Achse**, das Integral ist negativ, und der Inhalt ist sein Gegenwert. Mit <InlineMath math="s=\sqrt a" />:
+
+<BlockMath math="\begin{aligned}
+\int_{-s}^{s}f_a(x)\,dx&=F_a(s)-F_a(-s)\\
+&=(2-2s)\,e^{s}-(2+2s)\,e^{-s}
+\end{aligned}" />
+
+<BlockMath math="A(a)=2\left(\sqrt a-1\right)e^{\sqrt a}+2\left(\sqrt a+1\right)e^{-\sqrt a}" />
+
+Kurzer Test mit <InlineMath math="a=1" />: <InlineMath math="A(1)=0+4e^{-1}=\tfrac{4}{e}\approx1{,}47" />, positiv, wie es für einen Flächeninhalt sein muss.
+
+# Teil h: Die unbegrenzte Fläche links
+
+Eine Fläche, die nach links nie aufhört, kann trotzdem einen endlichen Inhalt haben, so wie <InlineMath math="1+\tfrac12+\tfrac14+\dots" /> nie aufhört und doch nur <InlineMath math="2" /> ergibt. **Du rechnest so eine Fläche als Grenzwert**: bis zu einer beweglichen linken Grenze <InlineMath math="r" /> integrieren und <InlineMath math="r" /> dann nach links schieben.
+
+Links von <InlineMath math="-\sqrt a" /> ist <InlineMath math="f_a>0" />, die Fläche liegt also über der Achse. Mit der Stammfunktion aus Teil g:
+
+<BlockMath math="\begin{aligned}
+B(a)&=\lim_{r\to-\infty}\int_{r}^{-\sqrt a}f_a(x)\,dx\\
+&=\lim_{r\to-\infty}\left(F_a(-\sqrt a)-F_a(r)\right)
+\end{aligned}" />
+
+Für <InlineMath math="r\to-\infty" /> geht <InlineMath math="F_a(r)=\left(r^2-2r+2-a\right)e^{r}\to0" />, denn auch hier drückt die e-Funktion das Polynom auf null. Es bleibt
+
+<BlockMath math="B(a)=F_a(-\sqrt a)=\left(a+2\sqrt a+2-a\right)e^{-\sqrt a}=2\left(\sqrt a+1\right)e^{-\sqrt a}" />
+
+**Der Inhalt ist endlich**, für jedes <InlineMath math="a>0" />. Jetzt vergleichst du mit <InlineMath math="A(a)" />. Der Summand <InlineMath math="2(\sqrt a+1)e^{-\sqrt a}" /> steht auf beiden Seiten und fällt bei der Differenz heraus:
+
+<BlockMath math="B(a)-A(a)=2\left(1-\sqrt a\right)e^{\sqrt a}" />
+
+Weil <InlineMath math="e^{\sqrt a}>0" /> ist, gilt <InlineMath math="B(a)=A(a)" /> genau für <InlineMath math="\sqrt a=1" />, also **nur für <InlineMath math="a=1" />** (beide Flächen haben dann den Inhalt <InlineMath math="\tfrac{4}{e}" />). Außerdem ist <InlineMath math="B(a)-A(a)>0" /> genau für <InlineMath math="1-\sqrt a>0" />, zusammen mit <InlineMath math="a>0" /> also **genau für <InlineMath math="0<a<1" />**.
+
+<MathVisual
+  title={<>Zwei gleich große Flächen für <InlineMath math="a=1" /></>}
+  description={<>Zwischen <InlineMath math="-1" /> und <InlineMath math="1" /> liegt die Fläche unter der Achse, ihr Inhalt ist <InlineMath math="A(1)=\tfrac{4}{e}" />. Links von <InlineMath math="-1" /> reicht die Fläche über der Achse unendlich weit und hat trotzdem nur <InlineMath math="B(1)=\tfrac{4}{e}\approx1{,}47" />.</>}
+  footer={<>Die linke Fläche hört nie auf und ist doch genau so groß wie die mittlere.</>}
+  labels={{
+    a: <><InlineMath math="A(1)=\tfrac{4}{e}" /></>,
+    b: <><InlineMath math="B(1)=\tfrac{4}{e}" /></>,
+    z1: <><InlineMath math="-1" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 1.6 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mid", kind: "region", appearance: "secondary", inequalities: ["y <= 0", "y >= (x^2 - 1) exp(x)"] },
+      { id: "left", kind: "region", appearance: "answer", inequalities: ["y >= 0", "y <= (x^2 - 1) exp(x)", "x <= -1"] },
+      { id: "g1", kind: "function", appearance: "primary", formula: "(x^2 - 1) exp(x)" },
+      { id: "z1", kind: "point", appearance: "reference", at: { x: -1, y: 0 } },
+      { id: "z2", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "mid", at: { x: 0, y: -0.45 }, placement: "below" },
+      { key: "b", objectId: "left", at: { x: -2.5, y: 0.12 }, placement: "above" },
+      { key: "z1", objectId: "z1", at: { x: -1, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Bei <InlineMath math="a=1" /> kippt das Gleichgewicht: Für <InlineMath math="0<a<1" /> ist der unendliche linke Ausläufer größer, ab <InlineMath math="a>1" /> überholt ihn die endliche Mulde dazwischen.

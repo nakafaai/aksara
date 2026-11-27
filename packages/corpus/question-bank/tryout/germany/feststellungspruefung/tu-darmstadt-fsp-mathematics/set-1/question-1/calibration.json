@@ -1,0 +1,673 @@
+{
+  "a": [
+    {
+      "grade": "good",
+      "id": "fsp1-a-edges-complete",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Beide Faktoren gehen gegen plus unendlich, das ist begründet."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Grenzwert 0 mit dem Argument, dass die e-Funktion schneller gegen 0 geht."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Vorzeichen für kleine x geprüft, Annäherung von oben für jedes a."
+        }
+      ],
+      "text": "Für x -> +unendlich geht x^2 - a -> +unendlich und e^x -> +unendlich, also f_a(x) -> +unendlich.\nFür x -> -unendlich geht e^x -> 0, und zwar schneller als x^2 - a wächst (e-Funktion gewinnt gegen jedes Polynom). Also f_a(x) -> 0, die x-Achse ist links waagrechte Asymptote.\nFür x < -Wurzel(|a|) ist x^2 > |a| >= a, also x^2 - a > 0, und e^x > 0. Damit ist f_a(x) > 0 und der Graph kommt für jedes a von oben an die x-Achse."
+    },
+    {
+      "grade": "partial",
+      "id": "fsp1-a-edges-zero-times-infinity",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Richtiger Grenzwert mit richtiger Begründung für große x."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Nur e^x gegen 0 genannt, der Fall unendlich mal null ist nicht begründet."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Das Vorzeichenargument ist richtig und baut auf dem eigenen Grenzwert 0 auf."
+        }
+      ],
+      "text": "x -> +unendlich: beide Faktoren werden riesig, f_a(x) -> +unendlich.\nx -> -unendlich: e^x geht gegen 0, also geht f_a(x) gegen 0.\nWenn x sehr klein ist, ist x^2 - a positiv, weil x^2 sehr groß wird, und e^x ist immer positiv. Also ist f_a(x) positiv und der Graph nähert sich der Achse von oben."
+    },
+    {
+      "grade": "wrong",
+      "id": "fsp1-a-edges-square-wins",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Grenzwert für große x stimmt, beide Faktoren wachsen."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Falscher Grenzwert, die e-Funktion wird übersehen."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Keine Annäherung an die Achse untersucht."
+        }
+      ],
+      "text": "Für x -> +unendlich geht f_a(x) gegen +unendlich, weil beide Faktoren wachsen.\nFür x -> -unendlich wird x^2 riesig, also geht auch f_a(x) gegen +unendlich. Links gibt es deshalb keine Asymptote."
+    }
+  ],
+  "b": [
+    {
+      "grade": "good",
+      "id": "fsp1-b-zeros-complete",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "e^x > 0 genannt und auf x^2 - a = 0 zurückgeführt."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Beide Nullstellen für a > 0 angegeben."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "a = 0 mit Berührung über f_0 >= 0 begründet."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Für a < 0 keine Nullstelle und Nichtnegativität genau für a <= 0 begründet."
+        }
+      ],
+      "text": "e^x > 0 für alle x, also f_a(x) = 0 <=> x^2 - a = 0 <=> x^2 = a.\na > 0: zwei Nullstellen x1 = -Wurzel(a), x2 = Wurzel(a), dazwischen ist f_a(x) < 0.\na = 0: nur x = 0, doppelte Nullstelle. f_0(x) = x^2 e^x >= 0, also berührt G_0 die x-Achse im Ursprung.\na < 0: x^2 - a > 0 für alle x, keine Nullstelle. Zusammen nimmt f_a genau für a <= 0 nirgends negative Werte an."
+    },
+    {
+      "grade": "partial",
+      "id": "fsp1-b-zeros-one-root-lost",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Rückführung auf den quadratischen Faktor mit e^x ungleich 0."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Die negative Nullstelle -Wurzel(a) fehlt."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Die eigene Ableitung ist unvollständig, liefert an der Stelle 0 aber denselben Wert 0, die Begründung über die waagrechte Tangente trägt."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Fall a < 0 und Nichtnegativität für a <= 0 richtig begründet."
+        }
+      ],
+      "text": "Weil e^x nie 0 wird, muss x^2 - a = 0 sein.\nFall a > 0: x = Wurzel(a).\nFall a = 0: x = 0. Ableitung f_0'(x) = 2x e^x, also f_0'(0) = 0, waagrechte Tangente auf der Achse, der Graph berührt die x-Achse.\nFall a < 0: x^2 - a > 0, keine Nullstelle. Nirgends negativ ist f_a für a <= 0."
+    },
+    {
+      "grade": "wrong",
+      "id": "fsp1-b-zeros-always-one",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": false,
+          "reason": "Die Rolle von e^x wird nicht begründet."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Nur eine Nullstelle und kein Fall für a > 0 unterschieden."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Falscher Wert für die Berührung."
+        },
+        {
+          "criterion": 4,
+          "met": false,
+          "reason": "Der Randfall a = 0 fehlt bei der Nichtnegativität, und die Aussage immer eine Nullstelle ist falsch."
+        }
+      ],
+      "text": "f_a(x) = 0 => x^2 - a = 0 => x = Wurzel(a). Es gibt also immer genau eine Nullstelle. Der Graph berührt die x-Achse für a = 1, und nirgends negativ ist er nur für a < 0."
+    }
+  ],
+  "c": [
+    {
+      "grade": "good",
+      "id": "fsp1-c-extrema-complete",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Ableitung richtig mit der Produktregel."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Kandidaten mit Bedingung a >= -1 richtig."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Hochpunkt links mit Vorzeichenwechsel begründet."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Tiefpunkt rechts mit Vorzeichenwechsel begründet."
+        },
+        {
+          "criterion": 5,
+          "met": true,
+          "reason": "Sattelpunkt für a = -1 erkannt."
+        },
+        {
+          "criterion": 6,
+          "met": true,
+          "reason": "Für a < -1 mit quadratischer Ergänzung begründet."
+        }
+      ],
+      "text": "f_a'(x) = 2x e^x + (x^2 - a) e^x = (x^2 + 2x - a) e^x.\nf_a'(x) = 0 <=> x^2 + 2x - a = 0 (e^x > 0) <=> x = -1 +- Wurzel(1 + a), reell für a >= -1.\na > -1: Der Faktor x^2 + 2x - a ist eine nach oben offene Parabel, f' wechselt bei x1 = -1 - Wurzel(1+a) von + nach -, also Hochpunkt, und bei x2 = -1 + Wurzel(1+a) von - nach +, also Tiefpunkt.\na = -1: f'(x) = (x + 1)^2 e^x >= 0, bei x = -1 kein Vorzeichenwechsel, Sattelpunkt, kein Extrempunkt.\na < -1: x^2 + 2x - a = (x+1)^2 - (1+a) > 0, also f' > 0, G_a steigt streng, keine Extrempunkte."
+    },
+    {
+      "grade": "partial",
+      "id": "fsp1-c-extrema-sign-slip",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": false,
+          "reason": "Vorzeichenfehler, die Ableitung enthält + a statt - a."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Die eigene Ableitung ist richtig null gesetzt und gelöst, Folgefehler."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Hochpunkt an der eigenen linken Stelle richtig begründet, Folgefehler."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Tiefpunkt an der eigenen rechten Stelle richtig begründet, Folgefehler."
+        },
+        {
+          "criterion": 5,
+          "met": true,
+          "reason": "Sattelpunkt für den eigenen Grenzwert von a richtig erkannt, Folgefehler."
+        },
+        {
+          "criterion": 6,
+          "met": false,
+          "reason": "Der Fall ohne Extrempunkte wird nicht untersucht."
+        }
+      ],
+      "text": "f_a'(x) = (x^2 + 2x + a) e^x.\nf_a'(x) = 0 => x^2 + 2x + a = 0 => x = -1 +- Wurzel(1 - a), das gibt es nur für a <= 1.\nFür a < 1: f' wechselt bei x1 = -1 - Wurzel(1 - a) von + nach -, Hochpunkt. Bei x2 = -1 + Wurzel(1 - a) von - nach +, Tiefpunkt.\nFür a = 1: x = -1 doppelt, f'(x) = (x + 1)^2 e^x wechselt das Vorzeichen nicht, also Sattelpunkt."
+    },
+    {
+      "grade": "wrong",
+      "id": "fsp1-c-extrema-always-two",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Die Ableitung ist richtig."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Die Bedingung für reelle Lösungen fehlt, die Wurzel existiert nicht für jedes a."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Die Art der Extrempunkte wird nicht nachgewiesen."
+        },
+        {
+          "criterion": 4,
+          "met": false,
+          "reason": "Die Art der Extrempunkte wird nicht nachgewiesen."
+        },
+        {
+          "criterion": 5,
+          "met": false,
+          "reason": "Der Sonderfall a = -1 fehlt."
+        },
+        {
+          "criterion": 6,
+          "met": false,
+          "reason": "Die falsche Aussage zwei Extrempunkte für jedes a, kein Fall ohne Extrempunkte."
+        }
+      ],
+      "text": "f_a'(x) = (x^2 + 2x - a) e^x. Null setzen: x^2 + 2x - a = 0, x = -1 +- Wurzel(1 + a). Also hat jeder Graph zwei Extrempunkte."
+    }
+  ],
+  "d": [
+    {
+      "grade": "good",
+      "id": "fsp1-d-inflection-complete",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Zweite Ableitung mit Produktregel richtig."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "x = -1/2 und a = 1/4 aus beiden Bedingungen richtig."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Vorzeichenwechsel bei -1/2 nachgewiesen und zweiten Wendepunkt bei -7/2 geprüft."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Steigung -e^(-1/2) und Wendetangente richtig."
+        }
+      ],
+      "text": "f_a''(x) = (2x + 2) e^x + (x^2 + 2x - a) e^x = (x^2 + 4x + 2 - a) e^x.\nWendepunkt auf der x-Achse: f_a(x) = 0 und f_a''(x) = 0. Mit e^x > 0: x^2 - a = 0 und x^2 + 4x + 2 - a = 0.\nSubtrahieren gibt 4x + 2 = 0, also x = -1/2 und a = x^2 = 1/4.\nFür a = 1/4 ist f''(x) = (x^2 + 4x + 7/4) e^x = (x + 1/2)(x + 7/2) e^x. Beide Nullstellen sind einfach, also wechselt f'' bei x = -1/2 das Vorzeichen (echter Wendepunkt W(-1/2 | 0)). Am zweiten Wendepunkt x = -7/2 ist f_{1/4}(-7/2) = (49/4 - 1/4) e^(-7/2) = 12 e^(-7/2) ungleich 0, er liegt nicht auf der x-Achse.\nSteigung: f_{1/4}'(-1/2) = (1/4 - 1 - 1/4) e^(-1/2) = -e^(-1/2). Tangente: t(x) = -e^(-1/2) (x + 1/2)."
+    },
+    {
+      "grade": "partial",
+      "id": "fsp1-d-inflection-sign-slip",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Zweite Ableitung richtig."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Stelle x = -1/2 und Parameter a = 1/4 richtig."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Weder Vorzeichenwechsel von f'' noch der zweite Wendepunkt werden geprüft."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Wendetangente richtig aufgestellt."
+        }
+      ],
+      "text": "f_a''(x) = (x^2 + 4x + 2 - a) e^x.\nAus x^2 - a = 0 und x^2 + 4x + 2 - a = 0 folgt 4x + 2 = 0, also x = -1/2 und a = 1/4.\nSteigung: f_{1/4}'(-1/2) = (1/4 - 1 - 1/4) e^(-1/2) = -e^(-1/2), Tangente durch (-1/2 | 0): t(x) = -e^(-1/2) (x + 1/2)."
+    },
+    {
+      "grade": "wrong",
+      "id": "fsp1-d-inflection-wrong-derivative",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": false,
+          "reason": "Zweite Ableitung falsch, die Produktregel fehlt."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Kein a und keine Stelle bestimmt."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Kein Nachweis und kein zweiter Wendepunkt."
+        },
+        {
+          "criterion": 4,
+          "met": false,
+          "reason": "Keine Wendetangente bestimmt."
+        }
+      ],
+      "text": "f_a''(x) = 2 e^x. Das wird nie 0, also gibt es keinen Wendepunkt auf der x-Achse und keine Wendetangente."
+    }
+  ],
+  "e": [
+    {
+      "grade": "good",
+      "id": "fsp1-e-locus-complete",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "a = x^2 + 2x aus der Bedingung."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Ortskurve y = -2x e^x richtig."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Rückrichtung für x ungleich -1 begründet."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Punkt (-1 | 2/e) mit dem Sattelpunkt ausgenommen."
+        },
+        {
+          "criterion": 5,
+          "met": true,
+          "reason": "Hochpunkte auf x < -1 zugeordnet."
+        }
+      ],
+      "text": "Extremstellen: x^2 + 2x - a = 0 => a = x^2 + 2x.\nEinsetzen: y = (x^2 - a) e^x = (x^2 - x^2 - 2x) e^x = -2x e^x. Ortskurve y = -2x e^x.\nUmgekehrt gehört zu jedem x mit a = x^2 + 2x = (x + 1)^2 - 1 ein Graph. Für x ungleich -1 ist a > -1, dann ist x wirklich eine Extremstelle.\nFür x = -1 ist a = -1, dort hat G_-1 nur einen Sattelpunkt. Der Punkt (-1 | 2/e) gehört also zu keinem Extrempunkt.\nHochpunkte liegen bei x = -1 - Wurzel(1+a) < -1, also auf dem Teil x < -1, Tiefpunkte auf dem Teil x > -1."
+    },
+    {
+      "grade": "partial",
+      "id": "fsp1-e-locus-carried-slip",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Die eigene Bedingung aus c richtig nach a aufgelöst, Folgefehler."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Den eigenen Term richtig eingesetzt und vereinfacht, Folgefehler."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Die Rückrichtung, dass jeder Kurvenpunkt vorkommt, fehlt."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Der zum eigenen Sattelpunktfall passende Kurvenpunkt ist richtig ausgenommen, Folgefehler."
+        },
+        {
+          "criterion": 5,
+          "met": false,
+          "reason": "Keine Aussage dazu, wo die Hochpunkte liegen."
+        }
+      ],
+      "text": "Aus c: x^2 + 2x + a = 0, also a = -x^2 - 2x.\nIn f_a eingesetzt: y = (x^2 + x^2 + 2x) e^x = (2x^2 + 2x) e^x. Das ist die Ortskurve.\nBei a = 1 gibt es nur den Sattelpunkt bei x = -1, deshalb gehört der Kurvenpunkt (-1 | 0) zu keinem Extrempunkt."
+    },
+    {
+      "grade": "wrong",
+      "id": "fsp1-e-locus-vertical-line",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": false,
+          "reason": "a wird nicht durch x ausgedrückt."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Die Gerade x = -1 ist keine Ortskurve der Extrempunkte."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Keine Rückrichtung."
+        },
+        {
+          "criterion": 4,
+          "met": false,
+          "reason": "Kein ausgenommener Punkt."
+        },
+        {
+          "criterion": 5,
+          "met": false,
+          "reason": "Keine Zuordnung der Hochpunkte."
+        }
+      ],
+      "text": "Die Extrempunkte liegen bei x = -1 - Wurzel(1 + a) und x = -1 + Wurzel(1 + a). Die Mitte ist immer x = -1. Also ist die Ortskurve die Gerade x = -1."
+    }
+  ],
+  "f": [
+    {
+      "grade": "good",
+      "id": "fsp1-f-triangle-complete",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Hochpunkt mit der Ortskurve aus e."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "D(u) = u^2 e^u richtig."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "u = 0 wegen u < -1 verworfen."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Vorzeichenwechsel und beide Ränder verglichen."
+        },
+        {
+          "criterion": 5,
+          "met": true,
+          "reason": "a = 0 richtig."
+        },
+        {
+          "criterion": 6,
+          "met": true,
+          "reason": "4/e^2 exakt angegeben."
+        }
+      ],
+      "text": "Hochpunkt H_a(u | -2u e^u) mit u = -1 - Wurzel(1 + a), also u < -1. L_a = (u | 0).\nDreieck O L_a H_a ist rechtwinklig bei L_a: D(u) = 1/2 * |u| * (-2u e^u) = 1/2 * (-u) * (-2u e^u) = u^2 e^u, u < -1.\nD'(u) = (2u + u^2) e^u = u(u + 2) e^u = 0 => u = 0 oder u = -2. u = 0 fällt weg, weil u < -1.\nFür u < -2 ist D' > 0, für -2 < u < -1 ist D' < 0, also Maximum bei u = -2. Ränder: D(u) -> 0 für u -> -unendlich, D(u) -> 1/e für u -> -1, und 1/e < 4/e^2. Also globales Maximum.\n-1 - Wurzel(1 + a) = -2 => a = 0. D(-2) = 4/e^2, etwa 0,54."
+    },
+    {
+      "grade": "partial",
+      "id": "fsp1-f-triangle-no-half",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Hochpunkt richtig über die Ortskurve."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Der Faktor 1/2 der Dreiecksfläche fehlt."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Die eigene Funktion richtig abgeleitet und u = 0 verworfen, Folgefehler."
+        },
+        {
+          "criterion": 4,
+          "met": false,
+          "reason": "Nur der Vorzeichenwechsel, die Ränder werden nicht verglichen."
+        },
+        {
+          "criterion": 5,
+          "met": true,
+          "reason": "a = 0 richtig aus der eigenen Stelle."
+        },
+        {
+          "criterion": 6,
+          "met": true,
+          "reason": "8/e^2 ist der richtige Wert der eigenen Funktion, Folgefehler."
+        }
+      ],
+      "text": "H_a(u | -2u e^u) mit u = -1 - Wurzel(1 + a) < -1.\nFläche = Grundseite mal Höhe = (-u) * (-2u e^u) = 2u^2 e^u.\nD'(u) = (4u + 2u^2) e^u = 2u(u + 2) e^u, Nullstellen u = 0 und u = -2. u = 0 geht nicht, weil u < -1 sein muss.\nD' wechselt bei -2 von + nach -, also Maximum.\nu = -2 => Wurzel(1 + a) = 1 => a = 0. Maximale Fläche 2 * 4 e^-2 = 8/e^2."
+    },
+    {
+      "grade": "wrong",
+      "id": "fsp1-f-triangle-trial",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": false,
+          "reason": "Kein allgemeiner Hochpunkt in u oder a."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Keine Flächenfunktion."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Keine Ableitung und keine Kandidaten."
+        },
+        {
+          "criterion": 4,
+          "met": false,
+          "reason": "Zwei Probewerte beweisen kein Maximum."
+        },
+        {
+          "criterion": 5,
+          "met": false,
+          "reason": "a = 0 ist geraten, nicht hergeleitet."
+        },
+        {
+          "criterion": 6,
+          "met": false,
+          "reason": "Nur ein gerundeter Probewert, kein exakter Wert aus einer Herleitung."
+        }
+      ],
+      "text": "Ich probiere Werte aus. a = 0: H(-2 | 0,54), Fläche 1/2 * 2 * 0,54 = 0,54. a = 1: H(-2,41 | 0,43), Fläche 0,52. Also ist a = 0 am besten, die größte Fläche ist ungefähr 0,54."
+    }
+  ],
+  "h": [
+    {
+      "grade": "good",
+      "id": "fsp1-h-improper-complete",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Grenzwertansatz richtig."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Stammfunktion eingesetzt und Grenzwert 0 begründet."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "B(a) = 2(Wurzel(a) + 1) e^(-Wurzel(a)) richtig."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Gleichung richtig vereinfacht."
+        },
+        {
+          "criterion": 5,
+          "met": true,
+          "reason": "a = 1 mit e^(Wurzel(a)) > 0."
+        },
+        {
+          "criterion": 6,
+          "met": true,
+          "reason": "B(a) > A(a) genau für 0 < a < 1 richtig begründet."
+        }
+      ],
+      "text": "Links von -Wurzel(a) ist f_a > 0. B(a) = lim (r -> -unendlich) Integral von r bis -Wurzel(a) f_a(x) dx.\nStammfunktion aus g: F_a(x) = (x^2 - 2x + 2 - a) e^x. Integral = F_a(-Wurzel(a)) - F_a(r). Für r -> -unendlich geht F_a(r) -> 0, weil e^r schneller gegen 0 geht als das Polynom wächst.\nAlso B(a) = F_a(-Wurzel(a)) = (a + 2 Wurzel(a) + 2 - a) e^(-Wurzel(a)) = 2(Wurzel(a) + 1) e^(-Wurzel(a)), endlich.\nB = A: 2(Wurzel(a) + 1) e^(-Wurzel(a)) = 2(Wurzel(a) - 1) e^(Wurzel(a)) + 2(Wurzel(a) + 1) e^(-Wurzel(a)) => 2(Wurzel(a) - 1) e^(Wurzel(a)) = 0.\ne^(Wurzel(a)) > 0, also Wurzel(a) = 1, a = 1 > 0.\nAußerdem ist B(a) - A(a) = 2(1 - Wurzel(a)) e^(Wurzel(a)) > 0 genau für 1 - Wurzel(a) > 0, also zusammen mit a > 0 genau für 0 < a < 1."
+    },
+    {
+      "grade": "partial",
+      "id": "fsp1-h-improper-carried-antiderivative",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Grenzwertansatz richtig."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "F(-unendlich) = 0 nur eingesetzt, der Grenzwert ist nicht begründet."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Endlicher Inhalt richtig aus der eigenen Stammfunktion, Folgefehler."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Gleichsetzen mit den eigenen Termen richtig vereinfacht, Folgefehler."
+        },
+        {
+          "criterion": 5,
+          "met": true,
+          "reason": "Aus der eigenen Gleichung richtig gefolgert und a > 0 geprüft, Folgefehler."
+        },
+        {
+          "criterion": 6,
+          "met": true,
+          "reason": "Vorzeichen der eigenen Differenz B - A richtig bewertet, Folgefehler."
+        }
+      ],
+      "text": "B(a) = lim (r -> -unendlich) Integral von r bis -Wurzel(a) f_a(x) dx, die Fläche liegt über der Achse.\nMit meiner Stammfunktion aus g, F(x) = (x^2 - 2x - a) e^x: B = F(-Wurzel(a)) - F(-unendlich) = F(-Wurzel(a)) - 0.\nF(-Wurzel(a)) = (a + 2 Wurzel(a) - a) e^(-Wurzel(a)) = 2 Wurzel(a) e^(-Wurzel(a)), also endlich.\nMein A(a) aus g ist 2 Wurzel(a) e^(-Wurzel(a)) + 2 Wurzel(a) e^(Wurzel(a)). Gleichsetzen: 2 Wurzel(a) e^(Wurzel(a)) = 0.\nDas geht nur für a = 0, aber a > 0. Also gibt es kein solches a, und B - A = -2 Wurzel(a) e^(Wurzel(a)) < 0 ist nie positiv."
+    },
+    {
+      "grade": "wrong",
+      "id": "fsp1-h-improper-infinite",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": false,
+          "reason": "Kein Grenzwert, minus unendlich wird direkt eingesetzt."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Keine konkrete Stammfunktion und falscher Grenzwert."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Kein endlicher Inhalt."
+        },
+        {
+          "criterion": 4,
+          "met": false,
+          "reason": "Keine Gleichung aufgestellt."
+        },
+        {
+          "criterion": 5,
+          "met": false,
+          "reason": "Keine Lösung."
+        },
+        {
+          "criterion": 6,
+          "met": false,
+          "reason": "Falscher Schluss, weil B endlich ist und nur für 0 < a < 1 größer als A bleibt."
+        }
+      ],
+      "text": "B(a) = Integral von -unendlich bis -Wurzel(a) f_a(x) dx = F(-Wurzel(a)) - F(-unendlich). Weil x^2 gegen unendlich geht, ist F(-unendlich) unendlich. Die Fläche ist unendlich groß, B(a) = A(a) ist nie möglich und B ist immer größer als A."
+    }
+  ]
+}

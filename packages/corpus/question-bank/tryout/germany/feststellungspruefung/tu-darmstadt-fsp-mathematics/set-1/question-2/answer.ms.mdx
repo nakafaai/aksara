@@ -1,0 +1,110 @@
+# Bahagian a: Satu-satunya penyelesaian bagi <InlineMath math="k=0" />
+
+Sebelum memakai hukum logaritma, kunci dahulu domainnya, sama seperti menyemak senarai tetamu sebelum membuka pintu. **Bagi <InlineMath math="\ln(x-1)" /> mesti berlaku <InlineMath math="x>1" />**, dan bagi <InlineMath math="\ln(4x+k)" /> mesti berlaku <InlineMath math="4x+k>0" />.
+
+Hanya pada <InlineMath math="x>1" /> kamu boleh menulis <InlineMath math="2\ln(x-1)=\ln\!\left((x-1)^2\right)" />, kerana <InlineMath math="(x-1)^2" /> juga positif bagi <InlineMath math="x<1" /> dan akan membawa masuk punca palsu. Dengan <InlineMath math="k=0" /> muncul persamaan kuadratik:
+
+<BlockMath math="\begin{aligned}
+4x=(x-1)^2&\iff x^2-6x+1=0\\
+x_{1,2}&=3\pm\sqrt{9-1}=3\pm2\sqrt2
+\end{aligned}" />
+
+Semak kedua-dua punca terhadap <InlineMath math="x>1" />. Oleh sebab <InlineMath math="2\sqrt2=\sqrt8>2" />, kita dapat <InlineMath math="x_1=3-2\sqrt2\approx0.17<1" />. Walaupun <InlineMath math="4x_1>0" /> benar, <InlineMath math="x_1" /> gagal pada <InlineMath math="\ln(x-1)" />. **Maka hanya <InlineMath math="x=3+2\sqrt2\approx5.83" /> yang sah**.
+
+# Bahagian b: Semua <InlineMath math="k" /> dengan tepat satu penyelesaian
+
+Asingkan <InlineMath math="k" /> pada satu sebelah, lalu bagi <InlineMath math="x>1" /> persamaan ini sekadar memotong parabola <InlineMath math="y=x^2-6x+1" /> dengan garis mengufuk <InlineMath math="y=k" />. Oleh sebab <InlineMath math="4x+k=(x-1)^2>0" /> dipenuhi secara automatik bagi setiap <InlineMath math="x>1" />, **hanya syarat <InlineMath math="x>1" /> yang menentukan** punca mana yang kekal.
+
+<BlockMath math="x^2-6x+(1-k)=0&\iff x_{1,2}=3\pm\sqrt{8+k}" />
+
+Perangkap klasiknya ialah menetapkan pembezalayan sama dengan sifar sahaja. Itu memang menangkap kes pertama **<InlineMath math="k=-8" />** dengan punca berganda <InlineMath math="x=3>1" />, tetapi tertinggal keseluruhan julat kedua: sebaik <InlineMath math="k>-8" />, punca lebih besar <InlineMath math="x_2=3+\sqrt{8+k}>3>1" /> sentiasa sah, manakala punca lebih kecil <InlineMath math="x_1=3-\sqrt{8+k}" /> boleh terkeluar dari sempadan <InlineMath math="x=1" />:
+
+<BlockMath math="3-\sqrt{8+k}\le1\iff \sqrt{8+k}\ge2\iff 8+k\ge4\iff k\ge-4" />
+
+Perhatikan sempadan <InlineMath math="k=-4" />: punca algebranya ialah <InlineMath math="x_1=1" /> dan <InlineMath math="x_2=5" />, dan <InlineMath math="x_1=1" /> dilarang kerana <InlineMath math="\ln(0)" /> tidak tertakrif. Rajah di bawah menunjukkan kedua-dua julat itu serentak.
+
+<MathVisual
+  title={<>Titik potong lengkung mana yang benar-benar sah</>}
+  description={<>Parabola <InlineMath math="y=x^2-6x+1" /> hanya sah di kanan <InlineMath math="x=1" />. Garis <InlineMath math="y=-8" /> menyentuh bucu <InlineMath math="(3\mid-8)" />, dan mulai <InlineMath math="y=-4" /> titik potong kiri keluar melepasi had <InlineMath math="x=1" /> sehingga tinggal satu punca sah.</>}
+  footer={<>Di kiri <InlineMath math="x=1" /> sebutan <InlineMath math="\ln(x-1)" /> tidak tertakrif, jadi mulai <InlineMath math="k=-4" /> tinggal cabang kanan.</>}
+  labels={{
+    wall: <><InlineMath math="x=1" /></>,
+    v: <><InlineMath math="(3\mid-8)" /></>,
+    km4: <><InlineMath math="k=-4" /></>,
+    z0: <><InlineMath math="3+2\sqrt2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -9.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "valid", kind: "function", appearance: "primary", formula: "x^2 - 6x + 1", domain: { min: 1, max: 6.2 } },
+      { id: "ghost", kind: "function", appearance: "construction", formula: "x^2 - 6x + 1", domain: { min: -0.5, max: 1 } },
+      { id: "wall", kind: "segment", appearance: "warning", from: { x: 1, y: -9.2 }, to: { x: 1, y: 1.2 } },
+      { id: "k0", kind: "line", appearance: "secondary", through: [{ x: 0, y: 0 }, { x: 5, y: 0 }] },
+      { id: "km4", kind: "line", appearance: "warning", through: [{ x: 0, y: -4 }, { x: 5, y: -4 }] },
+      { id: "km8", kind: "line", appearance: "answer", through: [{ x: 0, y: -8 }, { x: 5, y: -8 }] },
+      { id: "v", kind: "point", appearance: "answer", at: { x: 3, y: -8 } },
+      { id: "b1", kind: "point", appearance: "warning", at: { x: 1, y: -4 } },
+      { id: "b2", kind: "point", appearance: "highlight", at: { x: 5, y: -4 } },
+      { id: "z0", kind: "point", appearance: "secondary", at: { x: 3 + 2 * Math.SQRT2, y: 0 } },
+    ],
+    labels: [
+      { key: "wall", objectId: "wall", at: { x: 1, y: -1.6 }, placement: "left" },
+      { key: "v", objectId: "v", at: { x: 3, y: -8 }, placement: "below" },
+      { key: "km4", objectId: "km4", at: { x: 3, y: -4 }, placement: "above" },
+      { key: "z0", objectId: "z0", at: { x: 3 + 2 * Math.SQRT2, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Antara <InlineMath math="-8" /> dengan <InlineMath math="-4" /> garis <InlineMath math="y=k" /> memotong cabang sah dua kali, lalu mulai <InlineMath math="k=-4" /> ke atas hanya sekali. **Persamaan mempunyai tepat satu penyelesaian nyata tepat apabila <InlineMath math="k=-8" /> atau <InlineMath math="k\ge-4" />**.
+
+# Bahagian c: Dua penyelesaian dengan <InlineMath math="x_2=x_1^2" />
+
+Mengikut rumus Vieta, hasil tambah dua punca <InlineMath math="x^2-6x+(1-k)=0" /> sentiasa <InlineMath math="x_1+x_2=6" />, tidak kira apa pun nilai <InlineMath math="k" />. **Gantikan <InlineMath math="x_2=x_1^2" />** supaya kamu terus mendapat semua pasangan calon sebelum mencari <InlineMath math="k" />:
+
+<BlockMath math="\begin{aligned}
+x_1+x_1^2=6\iff x_1^2+x_1-6=(x_1+3)(x_1-2)=0\\
+(x_1,x_2)=(-3,9)\ \text{atau}\ (x_1,x_2)=(2,4)
+\end{aligned}" />
+
+Sekali lagi sempadan <InlineMath math="x>1" /> bertindak. Pasangan <InlineMath math="(-3,9)" /> memberi <InlineMath math="1-k=-27" /> iaitu <InlineMath math="k=28" /> dan malah memenuhi <InlineMath math="4\cdot(-3)+28=16>0" />, tetapi gagal kerana <InlineMath math="x_1=-3<1" />. Hanya <InlineMath math="x_1=2" /> dan <InlineMath math="x_2=4" /> kedua-duanya di kanan <InlineMath math="1" />:
+
+<BlockMath math="1-k=x_1\cdot x_2=2\cdot4=8\implies k=-7" />
+
+Graf ini mengesahkan bagaimana garis <InlineMath math="k=-7" /> memotong cabang sah tepat pada kedua-dua titik itu.
+
+<MathVisual
+  title={<>Satu-satunya pasangan sah dengan <InlineMath math="x_2=x_1^2" /></>}
+  description={<>Pada paras <InlineMath math="k=-7" /> garis itu memotong cabang sah di <InlineMath math="x_1=2" /> dan <InlineMath math="x_2=4" />. Kedua-duanya terletak di kanan <InlineMath math="x=1" />, manakala pasangan algebra kedua <InlineMath math="-3" /> dan <InlineMath math="9" /> gugur pada sempadan <InlineMath math="x=1" />.</>}
+  footer={<>Hanya <InlineMath math="k=-7" /> mengekalkan kedua-dua punca <InlineMath math="2" /> dan <InlineMath math="4" /> dalam julat <InlineMath math="x>1" />.</>}
+  labels={{
+    p1: <><InlineMath math="x_1=2" /></>,
+    p2: <><InlineMath math="x_2=4" /></>,
+    km7: <><InlineMath math="k=-7" /></>,
+    wall: <><InlineMath math="x=1" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -9.5, max: -1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "valid", kind: "function", appearance: "primary", formula: "x^2 - 6x + 1", domain: { min: 1, max: 6 } },
+      { id: "ghost", kind: "function", appearance: "construction", formula: "x^2 - 6x + 1", domain: { min: 0, max: 1 } },
+      { id: "wall", kind: "segment", appearance: "warning", from: { x: 1, y: -9.2 }, to: { x: 1, y: -2 } },
+      { id: "km7", kind: "line", appearance: "answer", through: [{ x: 0, y: -7 }, { x: 6, y: -7 }] },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 2, y: -7 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 4, y: -7 } },
+      { id: "v", kind: "point", appearance: "reference", at: { x: 3, y: -8 } },
+    ],
+    labels: [
+      { key: "p1", objectId: "p1", at: { x: 2, y: -7 }, placement: "above-right" },
+      { key: "p2", objectId: "p2", at: { x: 4, y: -7 }, placement: "above-left" },
+      { key: "km7", objectId: "km7", at: { x: 5.3, y: -7 }, placement: "below" },
+      { key: "wall", objectId: "wall", at: { x: 1, y: -3.2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Semakan pantas mengesahkan kedua-duanya: <InlineMath math="-8<-7<-4" />, <InlineMath math="\ln(8-7)=0=2\ln(1)" /> dan <InlineMath math="\ln(16-7)=\ln(9)=2\ln(3)" />. **Nilai yang dicari ialah <InlineMath math="k=-7" />**.

@@ -1,0 +1,274 @@
+# Part a: Building the square and base plane
+
+Picture three corners of a tilted table in space: the fourth corner closes the frame into a parallelogram, yet only **equal side lengths and a right angle** make it a square.
+
+<BlockMath math="\begin{aligned}
+\overrightarrow{AB}=\begin{pmatrix}4\\4\\-2\end{pmatrix},\qquad \overrightarrow{BC}=\begin{pmatrix}2\\-4\\-4\end{pmatrix}\\
+\overrightarrow{OD}=\overrightarrow{OA}+\overrightarrow{BC}=\begin{pmatrix}-2\\1\\7\end{pmatrix}+\begin{pmatrix}2\\-4\\-4\end{pmatrix}=\begin{pmatrix}0\\-3\\3\end{pmatrix}
+\end{aligned}" />
+
+Both adjacent edges have length <InlineMath math="\sqrt{36}=6" />, and <InlineMath math="\overrightarrow{AB}\cdot\overrightarrow{BC}=8-16+8=0" /> proves the right angle at <InlineMath math="B" />. So **<InlineMath math="ABCD" /> is a square with <InlineMath math="D(0\mid-3\mid3)" />**. The cross product supplies the normal of plane <InlineMath math="E" />:
+
+<BlockMath math="\begin{aligned}
+\overrightarrow{AB}\times\overrightarrow{BC}=\begin{pmatrix}-24\\12\\-24\end{pmatrix}=-12\cdot\begin{pmatrix}2\\-1\\2\end{pmatrix}\\
+2(-2)-1+2\cdot7=9\implies E:\ 2x-y+2z=9
+\end{aligned}" />
+
+# Part b: Circumscribed sphere and selecting the apex
+
+By symmetry, both the apex <InlineMath math="S_h" /> and the sphere centre <InlineMath math="K" /> sit on the line perpendicular to <InlineMath math="E" /> through the square centre <InlineMath math="M(1\mid1\mid4)" />. The unit normal into <InlineMath math="2x-y+2z>9" /> is <InlineMath math="\vec n_0=\tfrac13(2,-1,2)^T" />, and half the diagonal measures <InlineMath math="|\overrightarrow{MA}|=\sqrt{9+0+9}=3\sqrt2" />.
+
+If <InlineMath math="K" /> sits at signed height <InlineMath math="z_K" /> above <InlineMath math="M" />, **both its distance to <InlineMath math="A" /> and its distance to <InlineMath math="S_h" /> must equal <InlineMath math="R=4.5" />**:
+
+<BlockMath math="\begin{aligned}
+z_K^2+18=\left(\tfrac92\right)^2=\tfrac{81}{4}\implies z_K^2=\tfrac94\implies z_K=\pm\tfrac32\\
+|h-z_K|=\tfrac92\ \text{with }h>0\implies h=z_K+\tfrac92\in\{3,\,6\}
+\end{aligned}" />
+
+Here sits the trap: both <InlineMath math="h=3" /> and <InlineMath math="h=6" /> give radius <InlineMath math="4.5" />. For <InlineMath math="h=3" />, however, the sphere centre sits at <InlineMath math="z_K=-1.5<0" /> below the base plane <InlineMath math="E" />, outside the pyramid. Only for <InlineMath math="h=6" /> do you get <InlineMath math="0<z_K=1.5<6" />, putting <InlineMath math="K" /> strictly inside on segment <InlineMath math="MS" />.
+
+<MathVisual
+  title={<>Two sphere centres on the axis</>}
+  description={<>Only for <InlineMath math="h=6" /> does the centre <InlineMath math="K(2\mid0.5\mid5)" /> sit between <InlineMath math="M" /> and <InlineMath math="S" /> inside the pyramid. For <InlineMath math="h=3" /> the centre <InlineMath math="K_3(0\mid1.5\mid3)" /> drops below the base plane <InlineMath math="E" />.</>}
+  footer={<>Both heights give <InlineMath math="R=4.5" />, yet only <InlineMath math="K" /> sits inside while <InlineMath math="K_3" /> lies below the base.</>}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    m: <><InlineMath math="M" /></>,
+    kin: <><InlineMath math="K" /></>,
+    kout: <><InlineMath math="K_3" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -4, max: 6 }, z: { min: 0, max: 9 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", appearance: "secondary", vertices: [{ x: -2, y: 1, z: 7 }, { x: 2, y: 5, z: 5 }, { x: 4, y: 1, z: 1 }, { x: 0, y: -3, z: 3 }] },
+      { id: "sa", kind: "segment", appearance: "primary", from: { x: 5, y: -1, z: 8 }, to: { x: -2, y: 1, z: 7 } },
+      { id: "sb", kind: "segment", appearance: "primary", from: { x: 5, y: -1, z: 8 }, to: { x: 2, y: 5, z: 5 } },
+      { id: "sc", kind: "segment", appearance: "primary", from: { x: 5, y: -1, z: 8 }, to: { x: 4, y: 1, z: 1 } },
+      { id: "sd", kind: "segment", appearance: "primary", from: { x: 5, y: -1, z: 8 }, to: { x: 0, y: -3, z: 3 } },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 0, y: 3 / 2, z: 3 }, to: { x: 5, y: -1, z: 8 } },
+      { id: "ks", kind: "segment", appearance: "answer", from: { x: 2, y: 1 / 2, z: 5 }, to: { x: 5, y: -1, z: 8 } },
+      { id: "ka", kind: "segment", appearance: "answer", from: { x: 2, y: 1 / 2, z: 5 }, to: { x: -2, y: 1, z: 7 } },
+      { id: "pm", kind: "point", appearance: "reference", at: { x: 1, y: 1, z: 4 } },
+      { id: "ps", kind: "point", appearance: "highlight", at: { x: 5, y: -1, z: 8 } },
+      { id: "pkin", kind: "point", appearance: "answer", at: { x: 2, y: 1 / 2, z: 5 } },
+      { id: "pkout", kind: "point", appearance: "warning", at: { x: 0, y: 3 / 2, z: 3 } },
+    ],
+    labels: [
+      { key: "s", objectId: "ps", at: { x: 5, y: -1, z: 8 }, placement: "above-right" },
+      { key: "m", objectId: "pm", at: { x: 1, y: 1, z: 4 }, placement: "below-left" },
+      { key: "kin", objectId: "pkin", at: { x: 2, y: 1 / 2, z: 5 }, placement: "right" },
+      { key: "kout", objectId: "pkout", at: { x: 0, y: 3 / 2, z: 3 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Stepping along <InlineMath math="\vec n_0" /> gives **<InlineMath math="S=M+6\vec n_0=(5\mid-1\mid8)" />** and **<InlineMath math="K=M+1.5\vec n_0=(2\mid0.5\mid5)" />**.
+
+# Part c: Interior angle between adjacent side faces
+
+Flatten a square pyramid and two adjacent roof faces approach a flat <InlineMath math="180^\circ" />, stretch it tall and they approach <InlineMath math="90^\circ" />. **So the interior angle between adjacent side faces of a right square pyramid is always obtuse**. First find both face normals:
+
+<BlockMath math="\overrightarrow{AB}\times\overrightarrow{AS}=\begin{pmatrix}0\\-18\\-36\end{pmatrix},\qquad \overrightarrow{BC}\times\overrightarrow{BS}=\begin{pmatrix}-36\\-18\\0\end{pmatrix}" />
+
+Simplify and orient both outwards by testing against <InlineMath math="\overrightarrow{AM}" /> and <InlineMath math="\overrightarrow{BM}" />: <InlineMath math="\vec u_1=(0,1,2)^T" /> gives <InlineMath math="\vec u_1\cdot\overrightarrow{AM}=-6<0" />, and <InlineMath math="\vec u_2=(2,1,0)^T" /> gives <InlineMath math="\vec u_2\cdot\overrightarrow{BM}=-6<0" />, so both point out of the pyramid.
+
+<BlockMath math="\begin{aligned}
+\cos\varphi=\frac{\vec u_1\cdot\vec u_2}{|\vec u_1|\,|\vec u_2|}=\frac{1}{5}\implies \varphi\approx78.46^\circ\\
+\gamma=180^\circ-\varphi\approx101.54^\circ
+\end{aligned}" />
+
+The 3D view shows why the two outward normals meet at the acute angle <InlineMath math="78.5^\circ" /> while the faces meet obtusely inside.
+
+<MathVisual
+  title={<>Adjacent faces and their outward normals</>}
+  description={<>Faces <InlineMath math="ABS" /> and <InlineMath math="BCS" /> meet along <InlineMath math="BS" />. Their outward normals <InlineMath math="\vec u_1=(0,1,2)" /> and <InlineMath math="\vec u_2=(2,1,0)" /> make an acute angle of <InlineMath math="78.5^\circ" />, so the interior dihedral angle is <InlineMath math="101.5^\circ" />.</>}
+  footer={<>The outward normals form <InlineMath math="78.5^\circ" />, so the pyramid's interior angle is its supplement.</>}
+  labels={{
+    u1: <><InlineMath math="\vec u_1" /></>,
+    u2: <><InlineMath math="\vec u_2" /></>,
+    b: <><InlineMath math="B" /></>,
+    s: <><InlineMath math="S" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -4, max: 6 }, z: { min: 0, max: 9 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", appearance: "secondary", vertices: [{ x: -2, y: 1, z: 7 }, { x: 2, y: 5, z: 5 }, { x: 4, y: 1, z: 1 }, { x: 0, y: -3, z: 3 }] },
+      { id: "fabs", kind: "polygon", appearance: "primary", vertices: [{ x: -2, y: 1, z: 7 }, { x: 2, y: 5, z: 5 }, { x: 5, y: -1, z: 8 }] },
+      { id: "fbcs", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 5, z: 5 }, { x: 4, y: 1, z: 1 }, { x: 5, y: -1, z: 8 }] },
+      { id: "bs", kind: "segment", appearance: "highlight", from: { x: 2, y: 5, z: 5 }, to: { x: 5, y: -1, z: 8 } },
+      { id: "u1", kind: "vector", appearance: "answer", from: { x: 5 / 3, y: 5 / 3, z: 20 / 3 }, to: { x: 5 / 3, y: 8 / 3, z: 26 / 3 } },
+      { id: "u2", kind: "vector", appearance: "answer", from: { x: 11 / 3, y: 5 / 3, z: 14 / 3 }, to: { x: 17 / 3, y: 8 / 3, z: 14 / 3 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 2, y: 5, z: 5 } },
+      { id: "ps", kind: "point", appearance: "reference", at: { x: 5, y: -1, z: 8 } },
+    ],
+    labels: [
+      { key: "u1", objectId: "u1", at: { x: 5 / 3, y: 8 / 3, z: 26 / 3 }, placement: "above" },
+      { key: "u2", objectId: "u2", at: { x: 17 / 3, y: 8 / 3, z: 14 / 3 }, placement: "right" },
+      { key: "b", objectId: "pb", at: { x: 2, y: 5, z: 5 }, placement: "above" },
+      { key: "s", objectId: "ps", at: { x: 5, y: -1, z: 8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Taking the acute normal angle blindly falls into the <InlineMath math="78.5^\circ" /> trap. **The interior angle is <InlineMath math="101.5^\circ" /> to one decimal place**.
+
+# Part d: Skew lines and the smallest triangle
+
+The direction vectors <InlineMath math="\overrightarrow{AS}=(7,-2,1)^T" /> and <InlineMath math="\overrightarrow{BD}=(-2,-8,-2)^T" /> aren't multiples of each other. Solving <InlineMath math="A+\lambda\overrightarrow{AS}=B+\mu\overrightarrow{BD}" /> from the <InlineMath math="x" />- and <InlineMath math="z" />-rows gives <InlineMath math="\lambda=1" /> and <InlineMath math="\mu=-\tfrac32" />, which contradicts the <InlineMath math="y" />-row (<InlineMath math="-1\neq17" />). **So the two lines are skew**.
+
+Triangle <InlineMath math="BDT" /> has fixed base <InlineMath math="|\overrightarrow{BD}|=\sqrt{72}=6\sqrt2" />, so its area is smallest when <InlineMath math="T" /> comes closest to line <InlineMath math="BD" />. Midpoint <InlineMath math="M(1\mid1\mid4)" /> lies on <InlineMath math="BD" />, so find <InlineMath math="T=A+\lambda\overrightarrow{AS}" /> with <InlineMath math="\overrightarrow{MT}\perp\overrightarrow{AS}" />:
+
+<BlockMath math="\left(\begin{pmatrix}-3\\0\\3\end{pmatrix}+\lambda\begin{pmatrix}7\\-2\\1\end{pmatrix}\right)\cdot\begin{pmatrix}7\\-2\\1\end{pmatrix}=-18+54\lambda=0\implies \lambda=\tfrac13" />
+
+That gives <InlineMath math="T_0(\tfrac13\mid\tfrac13\mid\tfrac{22}{3})" /> and <InlineMath math="\overrightarrow{MT_0}=\tfrac13(-2,-2,10)^T" />. Checking <InlineMath math="\overrightarrow{MT_0}\cdot\overrightarrow{BD}=\tfrac13(4+16-20)=0" /> confirms <InlineMath math="MT_0" /> is the common perpendicular. **The crucial edge check**: since <InlineMath math="0\le\tfrac13\le1" />, <InlineMath math="T_0" /> truly lies on edge <InlineMath math="AS" />.
+
+<MathVisual
+  title={<>Common perpendicular and smallest triangle <InlineMath math="BDT_0" /></>}
+  description={<>The segment from <InlineMath math="M(1\mid1\mid4)" /> to <InlineMath math="T_0(\tfrac13\mid\tfrac13\mid\tfrac{22}{3})" /> is perpendicular to both <InlineMath math="AS" /> and <InlineMath math="BD" /> with length <InlineMath math="2\sqrt3" />. Because <InlineMath math="T_0" /> sits on the edge, it forms the smallest triangle of area <InlineMath math="6\sqrt6" />.</>}
+  footer={<>The common perpendicular <InlineMath math="MT_0" /> lands on edge <InlineMath math="AS" /> and sets the smallest triangle height.</>}
+  labels={{
+    t: <><InlineMath math="T_0" /></>,
+    m: <><InlineMath math="M" /></>,
+    b: <><InlineMath math="B" /></>,
+    d: <><InlineMath math="D" /></>,
+    mt: <><InlineMath math="2\sqrt3" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -4, max: 6 }, z: { min: 0, max: 9 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", appearance: "secondary", vertices: [{ x: -2, y: 1, z: 7 }, { x: 2, y: 5, z: 5 }, { x: 4, y: 1, z: 1 }, { x: 0, y: -3, z: 3 }] },
+      { id: "as", kind: "segment", appearance: "primary", from: { x: -2, y: 1, z: 7 }, to: { x: 5, y: -1, z: 8 } },
+      { id: "bd", kind: "segment", appearance: "secondary", from: { x: 2, y: 5, z: 5 }, to: { x: 0, y: -3, z: 3 } },
+      { id: "tri", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 5, z: 5 }, { x: 0, y: -3, z: 3 }, { x: 1 / 3, y: 1 / 3, z: 22 / 3 }] },
+      { id: "mt", kind: "segment", appearance: "highlight", from: { x: 1, y: 1, z: 4 }, to: { x: 1 / 3, y: 1 / 3, z: 22 / 3 } },
+      { id: "pt", kind: "point", appearance: "answer", at: { x: 1 / 3, y: 1 / 3, z: 22 / 3 } },
+      { id: "pm", kind: "point", appearance: "answer", at: { x: 1, y: 1, z: 4 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 2, y: 5, z: 5 } },
+      { id: "pd", kind: "point", appearance: "reference", at: { x: 0, y: -3, z: 3 } },
+    ],
+    labels: [
+      { key: "t", objectId: "pt", at: { x: 1 / 3, y: 1 / 3, z: 22 / 3 }, placement: "above-left" },
+      { key: "m", objectId: "pm", at: { x: 1, y: 1, z: 4 }, placement: "below-right" },
+      { key: "b", objectId: "pb", at: { x: 2, y: 5, z: 5 }, placement: "above" },
+      { key: "d", objectId: "pd", at: { x: 0, y: -3, z: 3 }, placement: "below" },
+      { key: "mt", objectId: "mt", at: { x: 2 / 3, y: 2 / 3, z: 17 / 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+With height <InlineMath math="|\overrightarrow{MT_0}|=\sqrt{12}=2\sqrt3" />, the exact minimum area is **<InlineMath math="F_{\min}=\tfrac12\cdot6\sqrt2\cdot2\sqrt3=6\sqrt6" />**.
+
+# Part e: Light parameter keeping the shadow on the edge
+
+Trace the light ray from <InlineMath math="S" /> down to plane <InlineMath math="E" />. **Because the light arrives from above <InlineMath math="E" />, the ray must hit <InlineMath math="E" /> in the forward direction <InlineMath math="\mu>0" />**:
+
+<BlockMath math="2(5-\mu)-(-1+2\mu)+2(8+\mu t)=9\implies 27+\mu(2t-4)=9\implies \mu=\frac{9}{2-t}\quad(t<2)" />
+
+At <InlineMath math="t=2" /> the ray runs parallel to <InlineMath math="E" />, and for <InlineMath math="t>2" /> light would come from underneath. Compare the shadow point <InlineMath math="S'(5-\mu\mid-1+2\mu\mid8+\mu t)" /> with a point <InlineMath math="B+\sigma\overrightarrow{BC}=(2+2\sigma\mid5-4\sigma\mid5-4\sigma)" /> on line <InlineMath math="BC" />:
+
+<BlockMath math="\begin{aligned}
+x:&\quad 5-\mu=2+2\sigma\implies \mu=3-2\sigma\\
+y:&\quad -1+2(3-2\sigma)=5-4\sigma\quad\text{always true}\\
+z:&\quad 8+(3-2\sigma)t=5-4\sigma\implies \sigma=\frac{-3(1+t)}{2(2-t)}
+\end{aligned}" />
+
+So the shadow of <InlineMath math="S" /> lies on line <InlineMath math="BC" /> for every <InlineMath math="t<2" />. It stays on the edge exactly when <InlineMath math="0\le\sigma\le1" />, and because <InlineMath math="2-t>0" />:
+
+<BlockMath math="\sigma\ge0\iff 1+t\le0\iff t\le-1,\qquad \sigma\le1\iff -3-3t\le4-2t\iff t\ge-7" />
+
+The figure shows the two boundary rays hitting <InlineMath math="B" /> (<InlineMath math="t=-1" />) and <InlineMath math="C" /> (<InlineMath math="t=-7" />).
+
+<MathVisual
+  title={<>Light rays from the apex to the base edge</>}
+  description={<>For <InlineMath math="t=-1" /> the ray from <InlineMath math="S" /> hits corner <InlineMath math="B" />, for <InlineMath math="t=-7" /> corner <InlineMath math="C" />. For every <InlineMath math="t" /> in between, the apex shadow sits on edge <InlineMath math="BC" /> and the whole pyramid shadow stays inside the square.</>}
+  footer={<>Between <InlineMath math="t=-1" /> and <InlineMath math="t=-7" /> the shadow slides along <InlineMath math="BC" /> and never leaves the square.</>}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    rb: <><InlineMath math="t=-1" /></>,
+    rc: <><InlineMath math="t=-7" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -4, max: 6 }, z: { min: 0, max: 9 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", appearance: "secondary", vertices: [{ x: -2, y: 1, z: 7 }, { x: 2, y: 5, z: 5 }, { x: 4, y: 1, z: 1 }, { x: 0, y: -3, z: 3 }] },
+      { id: "sa", kind: "segment", appearance: "construction", from: { x: 5, y: -1, z: 8 }, to: { x: -2, y: 1, z: 7 } },
+      { id: "sd", kind: "segment", appearance: "construction", from: { x: 5, y: -1, z: 8 }, to: { x: 0, y: -3, z: 3 } },
+      { id: "edge", kind: "segment", appearance: "answer", from: { x: 2, y: 5, z: 5 }, to: { x: 4, y: 1, z: 1 } },
+      { id: "rb", kind: "vector", appearance: "highlight", from: { x: 5, y: -1, z: 8 }, to: { x: 2, y: 5, z: 5 } },
+      { id: "rc", kind: "vector", appearance: "warning", from: { x: 5, y: -1, z: 8 }, to: { x: 4, y: 1, z: 1 } },
+      { id: "ps", kind: "point", appearance: "reference", at: { x: 5, y: -1, z: 8 } },
+      { id: "pb", kind: "point", appearance: "answer", at: { x: 2, y: 5, z: 5 } },
+      { id: "pc", kind: "point", appearance: "answer", at: { x: 4, y: 1, z: 1 } },
+    ],
+    labels: [
+      { key: "s", objectId: "ps", at: { x: 5, y: -1, z: 8 }, placement: "above-right" },
+      { key: "b", objectId: "pb", at: { x: 2, y: 5, z: 5 }, placement: "above" },
+      { key: "c", objectId: "pc", at: { x: 4, y: 1, z: 1 }, placement: "below" },
+      { key: "rb", objectId: "rb", at: { x: 7 / 2, y: 2, z: 13 / 2 }, placement: "left" },
+      { key: "rc", objectId: "rc", at: { x: 9 / 2, y: 0, z: 9 / 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+The whole pyramid's shadow consists of the base and the shadows of all four side edges, which are the segments joining <InlineMath math="S'" /> to <InlineMath math="A,B,C,D" />. Because square <InlineMath math="ABCD" /> is convex and <InlineMath math="S'" /> sits on its boundary edge <InlineMath math="BC" />, every segment stays inside the square. **The exact range is <InlineMath math="-7\le t\le-1" />**.
+
+# Part f: Radius of the inscribed sphere
+
+By symmetry, the inscribed sphere's centre <InlineMath math="I" /> sits on axis <InlineMath math="MS" /> at height <InlineMath math="r" /> above <InlineMath math="M" />: <InlineMath math="I=M+\tfrac{r}{3}(2,-1,2)^T" /> with <InlineMath math="0<r<6" />. It automatically touches the base at distance <InlineMath math="r" />, and **its distance to side face <InlineMath math="BCS" /> must also equal <InlineMath math="r" />**.
+
+From part c you already have the normal <InlineMath math="(2,1,0)^T" /> of <InlineMath math="BCS" />, and substituting <InlineMath math="B(2\mid5\mid5)" /> yields the clean plane equation <InlineMath math="2x+y=9" />. Inside the pyramid (testing <InlineMath math="M(1\mid1\mid4)" /> gives <InlineMath math="3<9" />), you have <InlineMath math="2x+y<9" />, which fixes the sign inside the absolute value:
+
+<BlockMath math="\begin{aligned}
+d(I,BCS)=\frac{\left|2\left(1+\tfrac{2r}{3}\right)+\left(1-\tfrac{r}{3}\right)-9\right|}{\sqrt5}=\frac{|r-6|}{\sqrt5}=r\\
+0<r<6\implies 6-r=r\sqrt5\implies r=\frac{6}{\sqrt5+1}=\frac{3\left(\sqrt5-1\right)}{2}
+\end{aligned}" />
+
+Placing the centre below the base (<InlineMath math="z_I=-r" />) would give the exscribed sphere of radius <InlineMath math="\tfrac{3(\sqrt5+1)}{2}\approx4.85" /> outside the pyramid. The 3D view shows the inscribed sphere with its equal radii <InlineMath math="IM" /> and <InlineMath math="IQ" />.
+
+<MathVisual
+  title={<>Inscribed sphere centre and touchpoint on a face</>}
+  description={<>The centre <InlineMath math="I" /> of the inscribed sphere lies on axis <InlineMath math="MS" /> at height <InlineMath math="r=\tfrac{3(\sqrt5-1)}{2}" /> above <InlineMath math="M" />. The exact same distance runs perpendicular to the touchpoint <InlineMath math="Q" /> on face <InlineMath math="BCS" />.</>}
+  footer={<>Both radii <InlineMath math="IM" /> and <InlineMath math="IQ" /> share the exact length <InlineMath math="\tfrac{3(\sqrt5-1)}{2}\approx1.85" />.</>}
+  labels={{
+    i: <><InlineMath math="I" /></>,
+    m: <><InlineMath math="M" /></>,
+    q: <><InlineMath math="Q" /></>,
+    s: <><InlineMath math="S" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -4, max: 6 }, z: { min: 0, max: 9 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", appearance: "secondary", vertices: [{ x: -2, y: 1, z: 7 }, { x: 2, y: 5, z: 5 }, { x: 4, y: 1, z: 1 }, { x: 0, y: -3, z: 3 }] },
+      { id: "sb", kind: "segment", appearance: "construction", from: { x: 5, y: -1, z: 8 }, to: { x: 2, y: 5, z: 5 } },
+      { id: "sc", kind: "segment", appearance: "construction", from: { x: 5, y: -1, z: 8 }, to: { x: 4, y: 1, z: 1 } },
+      { id: "axis", kind: "segment", appearance: "primary", from: { x: 1, y: 1, z: 4 }, to: { x: 5, y: -1, z: 8 } },
+      { id: "ns", kind: "segment", appearance: "secondary", from: { x: 3, y: 3, z: 3 }, to: { x: 5, y: -1, z: 8 } },
+      { id: "rm", kind: "segment", appearance: "answer", from: { x: Math.sqrt(5), y: (3 - Math.sqrt(5)) / 2, z: 3 + Math.sqrt(5) }, to: { x: 1, y: 1, z: 4 } },
+      { id: "rq", kind: "segment", appearance: "answer", from: { x: Math.sqrt(5), y: (3 - Math.sqrt(5)) / 2, z: 3 + Math.sqrt(5) }, to: { x: 3 + 2 / Math.sqrt(5), y: 3 - 4 / Math.sqrt(5), z: 3 + Math.sqrt(5) } },
+      { id: "pi", kind: "point", appearance: "answer", at: { x: Math.sqrt(5), y: (3 - Math.sqrt(5)) / 2, z: 3 + Math.sqrt(5) } },
+      { id: "pm", kind: "point", appearance: "reference", at: { x: 1, y: 1, z: 4 } },
+      { id: "pq", kind: "point", appearance: "highlight", at: { x: 3 + 2 / Math.sqrt(5), y: 3 - 4 / Math.sqrt(5), z: 3 + Math.sqrt(5) } },
+      { id: "ps", kind: "point", appearance: "reference", at: { x: 5, y: -1, z: 8 } },
+    ],
+    labels: [
+      { key: "i", objectId: "pi", at: { x: Math.sqrt(5), y: (3 - Math.sqrt(5)) / 2, z: 3 + Math.sqrt(5) }, placement: "left" },
+      { key: "m", objectId: "pm", at: { x: 1, y: 1, z: 4 }, placement: "below-left" },
+      { key: "q", objectId: "pq", at: { x: 3 + 2 / Math.sqrt(5), y: 3 - 4 / Math.sqrt(5), z: 3 + Math.sqrt(5) }, placement: "right" },
+      { key: "s", objectId: "ps", at: { x: 5, y: -1, z: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
+Quick volume-surface cross-check: <InlineMath math="V=72" />, <InlineMath math="O=36+4\cdot\tfrac12\cdot6\cdot3\sqrt5=36(1+\sqrt5)" /> and <InlineMath math="\tfrac{3V}{O}=\tfrac{6}{1+\sqrt5}=\tfrac{3(\sqrt5-1)}{2}" />. **The exact inscribed radius is <InlineMath math="r=\tfrac{3(\sqrt5-1)}{2}" />**.

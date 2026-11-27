@@ -1,0 +1,110 @@
+# Teil a: Die einzige Lösung für <InlineMath math="k=0" />
+
+Bevor du ein Logarithmusgesetz anwendest, sicherst du den Definitionsbereich, genau wie ein Türsteher die Gästeliste prüft, bevor jemand hineindarf. **Für <InlineMath math="\ln(x-1)" /> muss <InlineMath math="x>1" /> gelten**, und für <InlineMath math="\ln(4x+k)" /> muss <InlineMath math="4x+k>0" /> gelten.
+
+Erst unter <InlineMath math="x>1" /> darfst du <InlineMath math="2\ln(x-1)=\ln\!\left((x-1)^2\right)" /> schreiben, denn <InlineMath math="(x-1)^2" /> wäre auch für <InlineMath math="x<1" /> positiv und würde sonst Scheinlösungen einschleusen. Mit <InlineMath math="k=0" /> entsteht eine quadratische Gleichung:
+
+<BlockMath math="\begin{aligned}
+4x=(x-1)^2&\iff x^2-6x+1=0\\
+x_{1,2}&=3\pm\sqrt{9-1}=3\pm2\sqrt2
+\end{aligned}" />
+
+Prüfe beide Kandidaten gegen <InlineMath math="x>1" />. Weil <InlineMath math="2\sqrt2=\sqrt8>2" /> gilt, ist <InlineMath math="x_1=3-2\sqrt2\approx0{,}17<1" />. Obwohl <InlineMath math="4x_1>0" /> stimmt, scheitert <InlineMath math="x_1" /> an <InlineMath math="\ln(x-1)" />. **Damit bleibt nur <InlineMath math="x=3+2\sqrt2\approx5{,}83" />**.
+
+# Teil b: Alle <InlineMath math="k" /> mit genau einer Lösung
+
+Stelle <InlineMath math="k" /> auf die andere Seite, dann vergleicht die Gleichung für <InlineMath math="x>1" /> einfach die Parabel <InlineMath math="y=x^2-6x+1" /> mit der waagrechten Linie <InlineMath math="y=k" />. Weil <InlineMath math="4x+k=(x-1)^2>0" /> für jedes <InlineMath math="x>1" /> automatisch erfüllt ist, **entscheidet allein die Bedingung <InlineMath math="x>1" />**, welche Wurzeln überleben.
+
+<BlockMath math="x^2-6x+(1-k)=0&\iff x_{1,2}=3\pm\sqrt{8+k}" />
+
+Eine typische Falle ist es, nur die Diskriminante null zu setzen. Das liefert zwar den ersten Fall **<InlineMath math="k=-8" />** mit der doppelten Wurzel <InlineMath math="x=3>1" />, übersieht aber einen ganzen zweiten Bereich: Sobald <InlineMath math="k>-8" /> ist, liegt die größere Wurzel <InlineMath math="x_2=3+\sqrt{8+k}>3>1" /> immer im Definitionsbereich, während die kleinere Wurzel <InlineMath math="x_1=3-\sqrt{8+k}" /> an der Mauer <InlineMath math="x=1" /> hinausfallen kann:
+
+<BlockMath math="3-\sqrt{8+k}\le1\iff \sqrt{8+k}\ge2\iff 8+k\ge4\iff k\ge-4" />
+
+Beachte besonders die Grenze <InlineMath math="k=-4" />: Dort sind die Wurzeln <InlineMath math="x_1=1" /> und <InlineMath math="x_2=5" />, und <InlineMath math="x_1=1" /> ist wegen <InlineMath math="\ln(0)" /> nicht erlaubt. Das Bild zeigt beide Bereiche auf einen Blick.
+
+<MathVisual
+  title={<>Welche Treffer der Kurve wirklich erlaubt sind</>}
+  description={<>Die Parabel <InlineMath math="y=x^2-6x+1" /> zählt nur rechts von <InlineMath math="x=1" />. Die Linie <InlineMath math="y=-8" /> berührt im Scheitel <InlineMath math="(3\mid-8)" />, ab <InlineMath math="y=-4" /> rutscht der linke Schnittpunkt über die Grenze <InlineMath math="x=1" /> hinaus, sodass wieder nur ein Treffer bleibt.</>}
+  footer={<>Links von <InlineMath math="x=1" /> ist <InlineMath math="\ln(x-1)" /> undefiniert, deshalb zählt ab <InlineMath math="k=-4" /> nur der rechte Ast.</>}
+  labels={{
+    wall: <><InlineMath math="x=1" /></>,
+    v: <><InlineMath math="(3\mid-8)" /></>,
+    km4: <><InlineMath math="k=-4" /></>,
+    z0: <><InlineMath math="3+2\sqrt2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -9.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "valid", kind: "function", appearance: "primary", formula: "x^2 - 6x + 1", domain: { min: 1, max: 6.2 } },
+      { id: "ghost", kind: "function", appearance: "construction", formula: "x^2 - 6x + 1", domain: { min: -0.5, max: 1 } },
+      { id: "wall", kind: "segment", appearance: "warning", from: { x: 1, y: -9.2 }, to: { x: 1, y: 1.2 } },
+      { id: "k0", kind: "line", appearance: "secondary", through: [{ x: 0, y: 0 }, { x: 5, y: 0 }] },
+      { id: "km4", kind: "line", appearance: "warning", through: [{ x: 0, y: -4 }, { x: 5, y: -4 }] },
+      { id: "km8", kind: "line", appearance: "answer", through: [{ x: 0, y: -8 }, { x: 5, y: -8 }] },
+      { id: "v", kind: "point", appearance: "answer", at: { x: 3, y: -8 } },
+      { id: "b1", kind: "point", appearance: "warning", at: { x: 1, y: -4 } },
+      { id: "b2", kind: "point", appearance: "highlight", at: { x: 5, y: -4 } },
+      { id: "z0", kind: "point", appearance: "secondary", at: { x: 3 + 2 * Math.SQRT2, y: 0 } },
+    ],
+    labels: [
+      { key: "wall", objectId: "wall", at: { x: 1, y: -1.6 }, placement: "left" },
+      { key: "v", objectId: "v", at: { x: 3, y: -8 }, placement: "below" },
+      { key: "km4", objectId: "km4", at: { x: 3, y: -4 }, placement: "above" },
+      { key: "z0", objectId: "z0", at: { x: 3 + 2 * Math.SQRT2, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Zwischen <InlineMath math="-8" /> und <InlineMath math="-4" /> trifft die Linie <InlineMath math="y=k" /> den gültigen Ast zweimal, ab <InlineMath math="k=-4" /> aufwärts nur noch einmal. **Die Gleichung hat genau für <InlineMath math="k=-8" /> oder <InlineMath math="k\ge-4" /> genau eine reelle Lösung**.
+
+# Teil c: Zwei Lösungen mit <InlineMath math="x_2=x_1^2" />
+
+Nach dem Satz von Vieta ist die Summe der beiden Wurzeln von <InlineMath math="x^2-6x+(1-k)=0" /> unabhängig von <InlineMath math="k" /> immer <InlineMath math="x_1+x_2=6" />. **Setze <InlineMath math="x_2=x_1^2" /> ein**, und du bekommst die möglichen Paare direkt, noch bevor du <InlineMath math="k" /> kennst:
+
+<BlockMath math="\begin{aligned}
+x_1+x_1^2=6\iff x_1^2+x_1-6=(x_1+3)(x_1-2)=0\\
+(x_1,x_2)=(-3,9)\ \text{oder}\ (x_1,x_2)=(2,4)
+\end{aligned}" />
+
+Jetzt greift wieder die Grenze <InlineMath math="x>1" />. Das Paar <InlineMath math="(-3,9)" /> gehört zu <InlineMath math="1-k=-27" />, also <InlineMath math="k=28" />, erfüllt sogar <InlineMath math="4\cdot(-3)+28=16>0" />, scheitert aber an <InlineMath math="x_1=-3<1" />. Nur <InlineMath math="x_1=2" /> und <InlineMath math="x_2=4" /> liegen beide rechts von <InlineMath math="1" />:
+
+<BlockMath math="1-k=x_1\cdot x_2=2\cdot4=8\implies k=-7" />
+
+Das Bild zeigt, wie die Linie <InlineMath math="k=-7" /> den gültigen Ast genau in diesen beiden Punkten schneidet.
+
+<MathVisual
+  title={<>Das einzige erlaubte Paar mit <InlineMath math="x_2=x_1^2" /></>}
+  description={<>Auf der Höhe <InlineMath math="k=-7" /> trifft die Linie den erlaubten Ast genau bei <InlineMath math="x_1=2" /> und <InlineMath math="x_2=4" />. Beide liegen rechts von <InlineMath math="x=1" />, während das zweite rechnerische Paar <InlineMath math="-3" /> und <InlineMath math="9" /> an der Grenze <InlineMath math="x=1" /> scheitert.</>}
+  footer={<>Nur <InlineMath math="k=-7" /> hält beide Lösungen <InlineMath math="2" /> und <InlineMath math="4" /> im erlaubten Bereich <InlineMath math="x>1" />.</>}
+  labels={{
+    p1: <><InlineMath math="x_1=2" /></>,
+    p2: <><InlineMath math="x_2=4" /></>,
+    km7: <><InlineMath math="k=-7" /></>,
+    wall: <><InlineMath math="x=1" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -9.5, max: -1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "valid", kind: "function", appearance: "primary", formula: "x^2 - 6x + 1", domain: { min: 1, max: 6 } },
+      { id: "ghost", kind: "function", appearance: "construction", formula: "x^2 - 6x + 1", domain: { min: 0, max: 1 } },
+      { id: "wall", kind: "segment", appearance: "warning", from: { x: 1, y: -9.2 }, to: { x: 1, y: -2 } },
+      { id: "km7", kind: "line", appearance: "answer", through: [{ x: 0, y: -7 }, { x: 6, y: -7 }] },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 2, y: -7 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 4, y: -7 } },
+      { id: "v", kind: "point", appearance: "reference", at: { x: 3, y: -8 } },
+    ],
+    labels: [
+      { key: "p1", objectId: "p1", at: { x: 2, y: -7 }, placement: "above-right" },
+      { key: "p2", objectId: "p2", at: { x: 4, y: -7 }, placement: "above-left" },
+      { key: "km7", objectId: "km7", at: { x: 5.3, y: -7 }, placement: "below" },
+      { key: "wall", objectId: "wall", at: { x: 1, y: -3.2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Die Probe stimmt: <InlineMath math="-8<-7<-4" />, <InlineMath math="\ln(8-7)=0=2\ln(1)" /> und <InlineMath math="\ln(16-7)=\ln(9)=2\ln(3)" />. **Gesucht ist <InlineMath math="k=-7" />**.

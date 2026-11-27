@@ -1,0 +1,333 @@
+# Part a: Behaviour at both ends
+
+Think of a tug of war: two factors pull on <InlineMath math="f_a(x)=(x^2-a)\,e^{x}" />, and the product goes wherever the stronger one pulls.
+
+To the right, both pull the same way. As <InlineMath math="x\to+\infty" />, <InlineMath math="x^2-a" /> grows without bound and so does <InlineMath math="e^{x}" />, so **<InlineMath math="f_a(x)\to+\infty" /> for every <InlineMath math="a" />**.
+
+To the left it gets interesting. <InlineMath math="x^2-a" /> keeps growing, but <InlineMath math="e^{x}" /> shrinks towards <InlineMath math="0" />. That's the case “infinity times zero”, and the exponential wins: **<InlineMath math="e^{x}" /> goes to <InlineMath math="0" /> faster than any polynomial grows**. So <InlineMath math="f_a(x)\to0" /> as <InlineMath math="x\to-\infty" />, and the <InlineMath math="x" />-axis is a horizontal asymptote on the left.
+
+From which side does the graph arrive? Check the sign. As soon as <InlineMath math="x<-\sqrt{|a|}" />, you have <InlineMath math="x^2>|a|\ge a" />, so <InlineMath math="x^2-a>0" />. And <InlineMath math="e^{x}" /> is always positive. Far to the left <InlineMath math="f_a(x)" /> is positive, so **<InlineMath math="G_a" /> approaches the <InlineMath math="x" />-axis from above for every <InlineMath math="a" />**.
+
+# Part b: How many zeros
+
+A product is zero only when one of its factors is zero. **The exponential is never zero**, because <InlineMath math="e^{x}>0" /> for every <InlineMath math="x" />. So the quadratic factor decides on its own:
+
+<BlockMath math="f_a(x)=0\iff x^2-a=0\iff x^2=a" />
+
+How often a square takes the value <InlineMath math="a" /> depends on the sign of <InlineMath math="a" />:
+
+| Case | Zeros | What the graph does |
+| --- | --- | --- |
+| <InlineMath math="a>0" /> | <InlineMath math="x=-\sqrt a" /> and <InlineMath math="x=\sqrt a" /> | crosses the <InlineMath math="x" />-axis twice |
+| <InlineMath math="a=0" /> | only <InlineMath math="x=0" /> | touches the <InlineMath math="x" />-axis at the origin |
+| <InlineMath math="a<0" /> | none | stays completely above the axis |
+
+Why does <InlineMath math="G_0" /> only touch the axis? For <InlineMath math="a=0" /> you get <InlineMath math="f_0(x)=x^2\,e^{x}\ge0" />, so the graph never dips below the axis. The zero <InlineMath math="x=0" /> is a double zero, and <InlineMath math="f_0'(0)=0" />. **<InlineMath math="G_0" /> touches the <InlineMath math="x" />-axis at the origin**, where it even has a minimum. For <InlineMath math="a<0" />, <InlineMath math="x^2-a>0" /> for every <InlineMath math="x" />, so there's no zero at all. Including the touching case <InlineMath math="a=0" />, <InlineMath math="f_a" /> stays **nonnegative everywhere precisely for <InlineMath math="a\le0" />**.
+
+<MathVisual
+  title={<>Three graphs, three cases</>}
+  description={<><InlineMath math="a=1" /> crosses the <InlineMath math="x" />-axis at <InlineMath math="-1" /> and <InlineMath math="1" />, <InlineMath math="a=0" /> touches it at the origin, <InlineMath math="a=-2" /> stays above it. On the left every graph creeps down onto the axis from above.</>}
+  footer={<>Look left: every graph reaches the axis from above, whatever <InlineMath math="a" /> is.</>}
+  labels={{
+    one: <><InlineMath math="a=1" /></>,
+    zero: <><InlineMath math="a=0" /></>,
+    neg: <><InlineMath math="a=-2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 1.5 }, y: { min: -1.6, max: 2.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g1", kind: "function", appearance: "primary", formula: "(x^2 - 1) exp(x)" },
+      { id: "g0", kind: "function", appearance: "secondary", formula: "x^2 exp(x)" },
+      { id: "gm2", kind: "function", appearance: "highlight", formula: "(x^2 + 2) exp(x)" },
+      { id: "z1", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "z2", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "one", objectId: "g1", at: { x: 0.5, y: -0.75 * Math.exp(0.5) }, placement: "right" },
+      { key: "zero", objectId: "g0", at: { x: -2, y: 4 * Math.exp(-2) }, placement: "above" },
+      { key: "neg", objectId: "gm2", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Comparing the three graphs shows the boundary right away: only for <InlineMath math="a>0" /> does the curve dip below the axis between <InlineMath math="-\sqrt a" /> and <InlineMath math="\sqrt a" />.
+
+# Part c: Extrema for each parameter
+
+The product rule gives you the derivative:
+
+<BlockMath math="\begin{aligned}
+f_a'(x)&=2x\cdot e^{x}+\left(x^2-a\right)e^{x}\\
+&=\left(x^2+2x-a\right)e^{x}
+\end{aligned}" />
+
+Again <InlineMath math="e^{x}>0" />. **So the sign of <InlineMath math="f_a'" /> is the sign of the parabola <InlineMath math="x^2+2x-a" />**, and <InlineMath math="f_a'(x)=0" /> means <InlineMath math="x^2+2x=a" />. Picture a horizontal bar at height <InlineMath math="a" /> held against the parabola <InlineMath math="y=x^2+2x" />, whose lowest point is the vertex <InlineMath math="(-1\mid-1)" />.
+
+<MathVisual
+  title={<>How often height <InlineMath math="a" /> meets the parabola</>}
+  description={<>The derivative is zero where <InlineMath math="x^2+2x=a" />. The line <InlineMath math="y=1" /> meets the parabola twice, <InlineMath math="y=-1" /> touches it at the vertex <InlineMath math="(-1\mid-1)" />, <InlineMath math="y=-2" /> misses it.</>}
+  footer={<>Two hits give a maximum and a minimum, a touch only gives a saddle point.</>}
+  labels={{
+    parabola: <><InlineMath math="y=x^2+2x" /></>,
+    one: <><InlineMath math="a=1" /></>,
+    saddle: <><InlineMath math="a=-1" /></>,
+    none: <><InlineMath math="a=-2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 2 }, y: { min: -2.6, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p", kind: "function", appearance: "primary", formula: "x^2 + 2x" },
+      { id: "l1", kind: "line", appearance: "secondary", through: [{ x: 0, y: 1 }, { x: 1, y: 1 }] },
+      { id: "lm1", kind: "line", appearance: "warning", through: [{ x: 0, y: -1 }, { x: 1, y: -1 }] },
+      { id: "lm2", kind: "line", appearance: "construction", through: [{ x: 0, y: -2 }, { x: 1, y: -2 }] },
+      { id: "s1", kind: "point", appearance: "answer", at: { x: -1 - Math.SQRT2, y: 1 } },
+      { id: "s2", kind: "point", appearance: "answer", at: { x: Math.SQRT2 - 1, y: 1 } },
+      { id: "v", kind: "point", appearance: "warning", at: { x: -1, y: -1 } },
+    ],
+    labels: [
+      { key: "parabola", objectId: "p", at: { x: 0.5, y: 1.25 }, placement: "right" },
+      { key: "one", objectId: "l1", at: { x: -3.5, y: 1 }, placement: "above" },
+      { key: "saddle", objectId: "lm1", at: { x: -3.5, y: -1 }, placement: "above" },
+      { key: "none", objectId: "lm2", at: { x: -3.5, y: -2 }, placement: "above" },
+    ],
+  }}
+/>
+
+The solutions are <InlineMath math="x=-1\pm\sqrt{1+a}" />. Now split into cases:
+
+For <InlineMath math="a>-1" /> there are **two extrema**. The parabola <InlineMath math="x^2+2x-a" /> opens upwards, so <InlineMath math="f_a'" /> is positive on the left, negative between its zeros and positive again on the right. At <InlineMath math="x_1=-1-\sqrt{1+a}" /> the derivative changes from plus to minus, that's a maximum. At <InlineMath math="x_2=-1+\sqrt{1+a}" /> it changes from minus to plus, that's a minimum. The second derivative works too: at the extrema <InlineMath math="f_a''(x_i)=2(x_i+1)e^{x_i}" />, which is negative at <InlineMath math="x_1" /> and positive at <InlineMath math="x_2" />.
+
+For <InlineMath math="a=-1" /> there's **only a saddle point** (_Sattelpunkt_). Then <InlineMath math="f_{-1}'(x)=(x+1)^2e^{x}\ge0" />. The derivative is zero at <InlineMath math="x=-1" /> but doesn't change sign. The graph rises before and after, and at <InlineMath math="(-1\mid\tfrac{2}{e})" /> it just pauses with a horizontal tangent.
+
+For <InlineMath math="a<-1" /> there's **no extremum**. Completing the square gives <InlineMath math="x^2+2x-a=(x+1)^2-(1+a)>0" />, since <InlineMath math="1+a<0" />. So <InlineMath math="f_a'(x)>0" /> for every <InlineMath math="x" />, and the graph rises everywhere.
+
+# Part d: An inflection point on the axis
+
+You're looking for a spot where two things happen at once, like a meeting point where two paths cross: the graph sits on the axis, and it changes its bending right there. For that you need the second derivative:
+
+<BlockMath math="\begin{aligned}
+f_a''(x)&=(2x+2)e^{x}+\left(x^2+2x-a\right)e^{x}\\
+&=\left(x^2+4x+2-a\right)e^{x}
+\end{aligned}" />
+
+**Both conditions must hold at the same <InlineMath math="x" />**, <InlineMath math="f_a(x)=0" /> and <InlineMath math="f_a''(x)=0" />. After dividing by <InlineMath math="e^{x}" />, subtract one equation from the other:
+
+<BlockMath math="\begin{aligned}
+x^2-a&=0\\
+x^2+4x+2-a&=0\\
+\Rightarrow\quad 4x+2&=0\\
+x&=-\tfrac12,\quad a=x^2=\tfrac14
+\end{aligned}" />
+
+Check that it really is an inflection point: <InlineMath math="f_{1/4}''(x)=\left(x+\tfrac12\right)\left(x+\tfrac72\right)e^{x}" /> has a simple zero at <InlineMath math="-\tfrac12" />, **so the bending really does switch**. The inflection point is <InlineMath math="W(-\tfrac12\mid0)" />. The second inflection point at <InlineMath math="x=-\tfrac72" /> sits off the axis, because <InlineMath math="f_{1/4}(-\tfrac72)=12\,e^{-7/2}>0" />.
+
+The slope there is <InlineMath math="f_{1/4}'(-\tfrac12)=\left(\tfrac14-1-\tfrac14\right)e^{-1/2}=-e^{-1/2}" />. The tangent (_Wendetangente_, the inflection tangent) passes through <InlineMath math="W" />, so **<InlineMath math="t(x)=-e^{-1/2}\left(x+\tfrac12\right)" />**.
+
+<MathVisual
+  title={<>The inflection tangent for <InlineMath math="a=\tfrac14" /></>}
+  description={<><InlineMath math="G_{1/4}" /> changes its bending at <InlineMath math="W(-\tfrac12\mid0)" />, right on the <InlineMath math="x" />-axis. The tangent there has slope <InlineMath math="-e^{-1/2}\approx-0.61" />. The second inflection point at <InlineMath math="x=-\tfrac72" /> sits above the axis.</>}
+  footer={<>Only the inflection point <InlineMath math="W" /> sits on the axis, the other one is a little above it.</>}
+  labels={{
+    w: <><InlineMath math="W" /></>,
+    t: <><InlineMath math="t" /></>,
+    w2: <>second inflection point</>,
+    g: <><InlineMath math="G_{1/4}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 1.5 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "function", appearance: "primary", formula: "(x^2 - 0.25) exp(x)" },
+      { id: "t", kind: "line", appearance: "answer", through: [{ x: -0.5, y: 0 }, { x: 0.5, y: -Math.exp(-0.5) }] },
+      { id: "w", kind: "point", appearance: "highlight", at: { x: -0.5, y: 0 } },
+      { id: "w2", kind: "point", appearance: "reference", at: { x: -3.5, y: 12 * Math.exp(-3.5) } },
+    ],
+    labels: [
+      { key: "w", objectId: "w", at: { x: -0.5, y: 0 }, placement: "above-right" },
+      { key: "t", objectId: "t", at: { x: -1.5, y: Math.exp(-0.5) }, placement: "left" },
+      { key: "w2", objectId: "w2", at: { x: -3.5, y: 12 * Math.exp(-3.5) }, placement: "above" },
+      { key: "g", objectId: "g", at: { x: 0.75, y: 0.3125 * Math.exp(0.75) }, placement: "left" },
+    ],
+  }}
+/>
+
+The plot brings both facts together: the tangent cuts through <InlineMath math="G_{1/4}" /> at <InlineMath math="W" /> right on the axis, while the left inflection point hovers clearly above it.
+
+# Part e: The curve through all extrema
+
+Imagine every member of the family (_Funktionenschar_) putting a small lamp at each of its maxima and minima. The locus (_Ortskurve_) is the path all those lamps stand on. To find it, **you throw the parameter <InlineMath math="a" /> out**. At an extremum <InlineMath math="x^2+2x-a=0" />, so <InlineMath math="a=x^2+2x" />. Put that into the function:
+
+<BlockMath math="\begin{aligned}
+y&=\left(x^2-a\right)e^{x}\\
+&=\left(x^2-x^2-2x\right)e^{x}\\
+&=-2x\,e^{x}
+\end{aligned}" />
+
+Does it work the other way round? Take any <InlineMath math="x" /> and set <InlineMath math="a=x^2+2x=(x+1)^2-1" />. For <InlineMath math="x\neq-1" /> you get <InlineMath math="a>-1" />, and then <InlineMath math="G_a" /> really has an extremum at <InlineMath math="x" />, because <InlineMath math="x=-1\pm\sqrt{1+a}" /> with <InlineMath math="\sqrt{1+a}=|x+1|" />.
+
+**Only <InlineMath math="x=-1" />** drops out. It belongs to <InlineMath math="a=-1" />, and <InlineMath math="G_{-1}" /> has just a saddle point at <InlineMath math="(-1\mid\tfrac{2}{e})" />. So the locus is <InlineMath math="y=-2x\,e^{x}" /> without the point <InlineMath math="(-1\mid\tfrac{2}{e})" />. Because <InlineMath math="x_1=-1-\sqrt{1+a}<-1" />, **the maxima lie on the part with <InlineMath math="x<-1" />** and the minima on the part with <InlineMath math="x>-1" />.
+
+<MathVisual
+  title={<>Every extremum on one curve</>}
+  description={<>The locus <InlineMath math="y=-2x\,e^{x}" /> carries the maxima and minima of <InlineMath math="G_0" /> and <InlineMath math="G_1" />. Maxima lie left of <InlineMath math="x=-1" />, minima to its right. The point <InlineMath math="(-1\mid\tfrac{2}{e})" /> belongs to the saddle point of <InlineMath math="G_{-1}" />.</>}
+  footer={<>The point at <InlineMath math="x=-1" /> sits on the curve, but it isn't an extremum.</>}
+  labels={{
+    o: <>locus</>,
+    h0: <><InlineMath math="H_0" /></>,
+    t0: <><InlineMath math="T_0" /></>,
+    h1: <><InlineMath math="H_1" /></>,
+    t1: <><InlineMath math="T_1" /></>,
+    s: <>saddle of <InlineMath math="G_{-1}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 1 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "o", kind: "function", appearance: "answer", formula: "-2x exp(x)" },
+      { id: "g0", kind: "function", appearance: "construction", formula: "x^2 exp(x)" },
+      { id: "g1", kind: "function", appearance: "construction", formula: "(x^2 - 1) exp(x)" },
+      { id: "h0", kind: "point", appearance: "highlight", at: { x: -2, y: 4 * Math.exp(-2) } },
+      { id: "t0", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "h1", kind: "point", appearance: "highlight", at: { x: -1 - Math.SQRT2, y: 2 * (1 + Math.SQRT2) * Math.exp(-1 - Math.SQRT2) } },
+      { id: "t1", kind: "point", appearance: "highlight", at: { x: Math.SQRT2 - 1, y: -2 * (Math.SQRT2 - 1) * Math.exp(Math.SQRT2 - 1) } },
+      { id: "s", kind: "point", appearance: "warning", at: { x: -1, y: 2 * Math.exp(-1) } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0.25, y: -0.5 * Math.exp(0.25) }, placement: "right" },
+      { key: "h0", objectId: "h0", at: { x: -2, y: 4 * Math.exp(-2) }, placement: "above-left" },
+      { key: "t0", objectId: "t0", at: { x: 0, y: 0 }, placement: "above-right" },
+      { key: "h1", objectId: "h1", at: { x: -1 - Math.SQRT2, y: 2 * (1 + Math.SQRT2) * Math.exp(-1 - Math.SQRT2) }, placement: "below-left" },
+      { key: "t1", objectId: "t1", at: { x: Math.SQRT2 - 1, y: -2 * (Math.SQRT2 - 1) * Math.exp(Math.SQRT2 - 1) }, placement: "left" },
+      { key: "s", objectId: "s", at: { x: -1, y: 2 * Math.exp(-1) }, placement: "above" },
+    ],
+  }}
+/>
+
+That single excluded saddle point at <InlineMath math="x=-1" /> cleanly splits the locus into its left maximum branch and its right minimum branch.
+
+# Part f: The largest tent triangle
+
+Think of a tent: the top is <InlineMath math="H_a" />, a pole goes straight down to <InlineMath math="L_a" />, and the canvas stretches back to the origin. The top moves with <InlineMath math="a" />, and you want the tent with the biggest area.
+
+This is where part e pays off. Call the position of the maximum <InlineMath math="u=-1-\sqrt{1+a}" />. Then <InlineMath math="u<-1" />, and **you read the height straight off the locus**: <InlineMath math="H_a(u\mid-2u\,e^{u})" />. The triangle has its right angle at <InlineMath math="L_a(u\mid0)" />, and its base is <InlineMath math="|u|=-u" />:
+
+<BlockMath math="D(u)=\tfrac12\cdot(-u)\cdot\left(-2u\,e^{u}\right)=u^2e^{u},\quad u<-1" />
+
+<BlockMath math="D'(u)=\left(2u+u^2\right)e^{u}=u(u+2)\,e^{u}" />
+
+The candidates are <InlineMath math="u=0" /> and <InlineMath math="u=-2" />. <InlineMath math="u=0" /> drops out, **because maxima only sit at <InlineMath math="u<-1" />**. For <InlineMath math="u<-2" />, <InlineMath math="D'>0" />, and between <InlineMath math="-2" /> and <InlineMath math="-1" />, <InlineMath math="D'<0" />, so <InlineMath math="u=-2" /> is a maximum.
+
+Is it the largest of all? Check the ends: as <InlineMath math="u\to-\infty" />, <InlineMath math="D(u)\to0" />, and as <InlineMath math="u\to-1" />, <InlineMath math="D(u)\to\tfrac1e\approx0.37" />. Both are smaller than <InlineMath math="D(-2)=\tfrac{4}{e^2}\approx0.54" />, so it's the global maximum.
+
+Back to the parameter: <InlineMath math="-1-\sqrt{1+a}=-2" /> gives <InlineMath math="\sqrt{1+a}=1" />, so **<InlineMath math="a=0" /> with the largest area <InlineMath math="\tfrac{4}{e^2}" />**.
+
+<MathVisual
+  title={<>The triangle under the maximum</>}
+  description={<>For <InlineMath math="a=0" /> the triangle <InlineMath math="O\,L_0\,H_0" /> has corners <InlineMath math="(0\mid0)" />, <InlineMath math="(-2\mid0)" /> and <InlineMath math="(-2\mid\tfrac{4}{e^2})" /> and area <InlineMath math="\tfrac{4}{e^2}\approx0.54" />. For comparison, <InlineMath math="a=3" /> with <InlineMath math="H_3(-3\mid\tfrac{6}{e^3})" /> gives only <InlineMath math="\tfrac{9}{e^3}\approx0.45" />.</>}
+  footer={<>Further left the triangle gets wider but also flatter, and it loses overall.</>}
+  labels={{
+    h0: <><InlineMath math="H_0" /></>,
+    h3: <><InlineMath math="H_3" /></>,
+    area: <><InlineMath math="\tfrac{4}{e^2}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.2, max: 0.6 }, y: { min: -0.9, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g0", kind: "function", appearance: "primary", formula: "x^2 exp(x)" },
+      { id: "g3", kind: "function", appearance: "construction", formula: "(x^2 - 3) exp(x)" },
+      { id: "tri3", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: -3, y: 0 }, { x: -3, y: 6 * Math.exp(-3) }] },
+      { id: "tri0", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: -2, y: 0 }, { x: -2, y: 4 * Math.exp(-2) }] },
+      { id: "h0", kind: "point", appearance: "answer", at: { x: -2, y: 4 * Math.exp(-2) } },
+      { id: "h3", kind: "point", appearance: "secondary", at: { x: -3, y: 6 * Math.exp(-3) } },
+    ],
+    labels: [
+      { key: "h0", objectId: "h0", at: { x: -2, y: 4 * Math.exp(-2) }, placement: "above" },
+      { key: "h3", objectId: "h3", at: { x: -3, y: 6 * Math.exp(-3) }, placement: "above-left" },
+      { key: "area", objectId: "tri0", at: { x: -4 / 3, y: 4 * Math.exp(-2) / 3 }, placement: "center" },
+    ],
+  }}
+/>
+
+Comparing with <InlineMath math="a=3" /> shows the trade-off visually: moving farther left widens the base, yet height shrinks even faster.
+
+# Part g: Area between the zeros
+
+Integrating means differentiating backwards: you look for a function whose derivative is <InlineMath math="f_a" />. Differentiating <InlineMath math="(\text{polynomial})\cdot e^{x}" /> gives <InlineMath math="(\text{polynomial})\cdot e^{x}" /> again, so try <InlineMath math="F_a(x)=\left(x^2+bx+c\right)e^{x}" />:
+
+<BlockMath math="\begin{aligned}
+F_a'(x)&=\left(x^2+(b+2)x+b+c\right)e^{x}\overset{!}{=}\left(x^2-a\right)e^{x}\\
+b&=-2,\quad c=2-a
+\end{aligned}" />
+
+So **<InlineMath math="F_a(x)=\left(x^2-2x+2-a\right)e^{x}" /> is an antiderivative**. Integrating by parts twice gives the same.
+
+For <InlineMath math="a>0" /> the zeros are at <InlineMath math="\pm\sqrt a" />. In between, <InlineMath math="x^2<a" />, so <InlineMath math="f_a<0" />. **The region lies below the axis**, the integral is negative, and the area is its opposite. With <InlineMath math="s=\sqrt a" />:
+
+<BlockMath math="\begin{aligned}
+\int_{-s}^{s}f_a(x)\,dx&=F_a(s)-F_a(-s)\\
+&=(2-2s)\,e^{s}-(2+2s)\,e^{-s}
+\end{aligned}" />
+
+<BlockMath math="A(a)=2\left(\sqrt a-1\right)e^{\sqrt a}+2\left(\sqrt a+1\right)e^{-\sqrt a}" />
+
+Quick test with <InlineMath math="a=1" />: <InlineMath math="A(1)=0+4e^{-1}=\tfrac{4}{e}\approx1.47" />, positive, just as an area must be.
+
+# Part h: The endless region on the left
+
+A region that never ends on the left can still have a finite area, just as <InlineMath math="1+\tfrac12+\tfrac14+\dots" /> never ends and still adds up to only <InlineMath math="2" />. **You compute such an area as a limit**: integrate up to a movable left bound <InlineMath math="r" />, then slide <InlineMath math="r" /> to the left.
+
+Left of <InlineMath math="-\sqrt a" />, <InlineMath math="f_a>0" />, so the region lies above the axis. With the antiderivative from part g:
+
+<BlockMath math="\begin{aligned}
+B(a)&=\lim_{r\to-\infty}\int_{r}^{-\sqrt a}f_a(x)\,dx\\
+&=\lim_{r\to-\infty}\left(F_a(-\sqrt a)-F_a(r)\right)
+\end{aligned}" />
+
+As <InlineMath math="r\to-\infty" />, <InlineMath math="F_a(r)=\left(r^2-2r+2-a\right)e^{r}\to0" />, because the exponential crushes the polynomial here too. What's left is
+
+<BlockMath math="B(a)=F_a(-\sqrt a)=\left(a+2\sqrt a+2-a\right)e^{-\sqrt a}=2\left(\sqrt a+1\right)e^{-\sqrt a}" />
+
+**The area is finite** for every <InlineMath math="a>0" />. Now compare it with <InlineMath math="A(a)" />. The term <InlineMath math="2(\sqrt a+1)e^{-\sqrt a}" /> sits in both expressions and drops out of their difference:
+
+<BlockMath math="B(a)-A(a)=2\left(1-\sqrt a\right)e^{\sqrt a}" />
+
+Since <InlineMath math="e^{\sqrt a}>0" />, you get <InlineMath math="B(a)=A(a)" /> **only for <InlineMath math="a=1" />** (both equal <InlineMath math="\tfrac{4}{e}" />). Moreover, <InlineMath math="B(a)-A(a)>0" /> holds iff <InlineMath math="1-\sqrt a>0" />, so together with <InlineMath math="a>0" /> **the unbounded region is larger precisely for <InlineMath math="0<a<1" />**.
+
+<MathVisual
+  title={<>Two equal areas for <InlineMath math="a=1" /></>}
+  description={<>Between <InlineMath math="-1" /> and <InlineMath math="1" /> the region lies below the axis with area <InlineMath math="A(1)=\tfrac{4}{e}" />. Left of <InlineMath math="-1" /> the region above the axis runs on forever and still has only <InlineMath math="B(1)=\tfrac{4}{e}\approx1.47" />.</>}
+  footer={<>The left region never ends, yet it's exactly as big as the middle one.</>}
+  labels={{
+    a: <><InlineMath math="A(1)=\tfrac{4}{e}" /></>,
+    b: <><InlineMath math="B(1)=\tfrac{4}{e}" /></>,
+    z1: <><InlineMath math="-1" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 1.6 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mid", kind: "region", appearance: "secondary", inequalities: ["y <= 0", "y >= (x^2 - 1) exp(x)"] },
+      { id: "left", kind: "region", appearance: "answer", inequalities: ["y >= 0", "y <= (x^2 - 1) exp(x)", "x <= -1"] },
+      { id: "g1", kind: "function", appearance: "primary", formula: "(x^2 - 1) exp(x)" },
+      { id: "z1", kind: "point", appearance: "reference", at: { x: -1, y: 0 } },
+      { id: "z2", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "mid", at: { x: 0, y: -0.45 }, placement: "below" },
+      { key: "b", objectId: "left", at: { x: -2.5, y: 0.12 }, placement: "above" },
+      { key: "z1", objectId: "z1", at: { x: -1, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+At <InlineMath math="a=1" /> the balance tips: for <InlineMath math="0<a<1" /> the endless left tail wins, while for <InlineMath math="a>1" /> the finite middle dip overtakes it.

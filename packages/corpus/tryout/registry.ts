@@ -9,6 +9,7 @@ import {
   Schema,
 } from "effect";
 import { entranceTryoutSource } from "#corpus/tryout/germany/entrance/source";
+import { feststellungspruefungTryoutSource } from "#corpus/tryout/germany/feststellungspruefung/source";
 import { snbtTryoutSource } from "#corpus/tryout/indonesia/snbt/source";
 import { tkaTryoutSource } from "#corpus/tryout/indonesia/tka/source";
 import { spmTryoutSource } from "#corpus/tryout/malaysia/spm/source";
@@ -19,6 +20,7 @@ const tryoutPrograms = [
   snbtTryoutSource,
   tkaTryoutSource,
   entranceTryoutSource,
+  feststellungspruefungTryoutSource,
   spmTryoutSource,
 ];
 

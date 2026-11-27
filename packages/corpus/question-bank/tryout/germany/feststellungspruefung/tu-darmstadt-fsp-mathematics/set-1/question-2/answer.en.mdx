@@ -1,0 +1,110 @@
+# Part a: The single solution for <InlineMath math="k=0" />
+
+Before applying any log rule, lock down the domain, just like checking the guest list before opening the door. **For <InlineMath math="\ln(x-1)" /> you need <InlineMath math="x>1" />**, and for <InlineMath math="\ln(4x+k)" /> you need <InlineMath math="4x+k>0" />.
+
+Only on <InlineMath math="x>1" /> can you rewrite <InlineMath math="2\ln(x-1)" /> as <InlineMath math="\ln\!\left((x-1)^2\right)" />, because <InlineMath math="(x-1)^2" /> is also positive for <InlineMath math="x<1" /> and would sneak in false roots. Setting <InlineMath math="k=0" /> gives a quadratic equation:
+
+<BlockMath math="\begin{aligned}
+4x=(x-1)^2&\iff x^2-6x+1=0\\
+x_{1,2}&=3\pm\sqrt{9-1}=3\pm2\sqrt2
+\end{aligned}" />
+
+Check both roots against <InlineMath math="x>1" />. Since <InlineMath math="2\sqrt2=\sqrt8>2" />, you get <InlineMath math="x_1=3-2\sqrt2\approx0.17<1" />. Even though <InlineMath math="4x_1>0" /> holds, <InlineMath math="x_1" /> fails <InlineMath math="\ln(x-1)" />. **Only <InlineMath math="x=3+2\sqrt2\approx5.83" /> survives**.
+
+# Part b: Every <InlineMath math="k" /> with exactly one solution
+
+Isolate <InlineMath math="k" /> on one side and, for <InlineMath math="x>1" />, the equation simply intersects the parabola <InlineMath math="y=x^2-6x+1" /> with the horizontal line <InlineMath math="y=k" />. Since <InlineMath math="4x+k=(x-1)^2>0" /> holds automatically for every <InlineMath math="x>1" />, **the single inequality <InlineMath math="x>1" /> decides** which roots survive.
+
+<BlockMath math="x^2-6x+(1-k)=0&\iff x_{1,2}=3\pm\sqrt{8+k}" />
+
+The classic trap is to set only the discriminant to zero. That catches the first case **<InlineMath math="k=-8" />** with the double root <InlineMath math="x=3>1" />, yet misses an entire second regime: once <InlineMath math="k>-8" />, the larger root <InlineMath math="x_2=3+\sqrt{8+k}>3>1" /> always stays valid, while the smaller root <InlineMath math="x_1=3-\sqrt{8+k}" /> can fall behind the wall <InlineMath math="x=1" />:
+
+<BlockMath math="3-\sqrt{8+k}\le1\iff \sqrt{8+k}\ge2\iff 8+k\ge4\iff k\ge-4" />
+
+Watch the boundary <InlineMath math="k=-4" /> in particular: its algebraic roots are <InlineMath math="x_1=1" /> and <InlineMath math="x_2=5" />, and <InlineMath math="x_1=1" /> is forbidden because <InlineMath math="\ln(0)" /> doesn't exist. The picture shows both regimes at once.
+
+<MathVisual
+  title={<>Which hits on the curve are actually allowed</>}
+  description={<>The parabola <InlineMath math="y=x^2-6x+1" /> only counts to the right of <InlineMath math="x=1" />. The line <InlineMath math="y=-8" /> touches the vertex <InlineMath math="(3\mid-8)" />, and from <InlineMath math="y=-4" /> upward the left intersection slips past <InlineMath math="x=1" />, leaving just one valid hit again.</>}
+  footer={<>Left of <InlineMath math="x=1" /> the term <InlineMath math="\ln(x-1)" /> is undefined, so from <InlineMath math="k=-4" /> on only one root lives.</>}
+  labels={{
+    wall: <><InlineMath math="x=1" /></>,
+    v: <><InlineMath math="(3\mid-8)" /></>,
+    km4: <><InlineMath math="k=-4" /></>,
+    z0: <><InlineMath math="3+2\sqrt2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -9.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "valid", kind: "function", appearance: "primary", formula: "x^2 - 6x + 1", domain: { min: 1, max: 6.2 } },
+      { id: "ghost", kind: "function", appearance: "construction", formula: "x^2 - 6x + 1", domain: { min: -0.5, max: 1 } },
+      { id: "wall", kind: "segment", appearance: "warning", from: { x: 1, y: -9.2 }, to: { x: 1, y: 1.2 } },
+      { id: "k0", kind: "line", appearance: "secondary", through: [{ x: 0, y: 0 }, { x: 5, y: 0 }] },
+      { id: "km4", kind: "line", appearance: "warning", through: [{ x: 0, y: -4 }, { x: 5, y: -4 }] },
+      { id: "km8", kind: "line", appearance: "answer", through: [{ x: 0, y: -8 }, { x: 5, y: -8 }] },
+      { id: "v", kind: "point", appearance: "answer", at: { x: 3, y: -8 } },
+      { id: "b1", kind: "point", appearance: "warning", at: { x: 1, y: -4 } },
+      { id: "b2", kind: "point", appearance: "highlight", at: { x: 5, y: -4 } },
+      { id: "z0", kind: "point", appearance: "secondary", at: { x: 3 + 2 * Math.SQRT2, y: 0 } },
+    ],
+    labels: [
+      { key: "wall", objectId: "wall", at: { x: 1, y: -1.6 }, placement: "left" },
+      { key: "v", objectId: "v", at: { x: 3, y: -8 }, placement: "below" },
+      { key: "km4", objectId: "km4", at: { x: 3, y: -4 }, placement: "above" },
+      { key: "z0", objectId: "z0", at: { x: 3 + 2 * Math.SQRT2, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Between <InlineMath math="-8" /> and <InlineMath math="-4" /> the horizontal line hits the valid branch twice, and from <InlineMath math="k=-4" /> upward it hits only once. **The equation has exactly one real solution precisely when <InlineMath math="k=-8" /> or <InlineMath math="k\ge-4" />**.
+
+# Part c: Two solutions with <InlineMath math="x_2=x_1^2" />
+
+By Vieta's formula, the sum of the two roots of <InlineMath math="x^2-6x+(1-k)=0" /> is always <InlineMath math="x_1+x_2=6" />, regardless of <InlineMath math="k" />. **Substitute <InlineMath math="x_2=x_1^2" />** to find every candidate pair before even touching <InlineMath math="k" />:
+
+<BlockMath math="\begin{aligned}
+x_1+x_1^2=6\iff x_1^2+x_1-6=(x_1+3)(x_1-2)=0\\
+(x_1,x_2)=(-3,9)\ \text{or}\ (x_1,x_2)=(2,4)
+\end{aligned}" />
+
+Now the domain wall <InlineMath math="x>1" /> strikes again. The pair <InlineMath math="(-3,9)" /> gives <InlineMath math="1-k=-27" />, so <InlineMath math="k=28" />, and even satisfies <InlineMath math="4\cdot(-3)+28=16>0" />, yet fails because <InlineMath math="x_1=-3<1" />. Only <InlineMath math="x_1=2" /> and <InlineMath math="x_2=4" /> both sit to the right of <InlineMath math="1" />:
+
+<BlockMath math="1-k=x_1\cdot x_2=2\cdot4=8\implies k=-7" />
+
+The plot confirms how the line <InlineMath math="k=-7" /> meets the valid branch at those exact two points.
+
+<MathVisual
+  title={<>The only allowed pair with <InlineMath math="x_2=x_1^2" /></>}
+  description={<>At height <InlineMath math="k=-7" /> the line cuts the allowed branch at <InlineMath math="x_1=2" /> and <InlineMath math="x_2=4" />. Both sit right of <InlineMath math="x=1" />, whereas the second algebraic pair <InlineMath math="-3" /> and <InlineMath math="9" /> fails the wall <InlineMath math="x=1" />.</>}
+  footer={<>Only <InlineMath math="k=-7" /> keeps both roots <InlineMath math="2" /> and <InlineMath math="4" /> inside the allowed domain <InlineMath math="x>1" />.</>}
+  labels={{
+    p1: <><InlineMath math="x_1=2" /></>,
+    p2: <><InlineMath math="x_2=4" /></>,
+    km7: <><InlineMath math="k=-7" /></>,
+    wall: <><InlineMath math="x=1" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -9.5, max: -1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "valid", kind: "function", appearance: "primary", formula: "x^2 - 6x + 1", domain: { min: 1, max: 6 } },
+      { id: "ghost", kind: "function", appearance: "construction", formula: "x^2 - 6x + 1", domain: { min: 0, max: 1 } },
+      { id: "wall", kind: "segment", appearance: "warning", from: { x: 1, y: -9.2 }, to: { x: 1, y: -2 } },
+      { id: "km7", kind: "line", appearance: "answer", through: [{ x: 0, y: -7 }, { x: 6, y: -7 }] },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 2, y: -7 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 4, y: -7 } },
+      { id: "v", kind: "point", appearance: "reference", at: { x: 3, y: -8 } },
+    ],
+    labels: [
+      { key: "p1", objectId: "p1", at: { x: 2, y: -7 }, placement: "above-right" },
+      { key: "p2", objectId: "p2", at: { x: 4, y: -7 }, placement: "above-left" },
+      { key: "km7", objectId: "km7", at: { x: 5.3, y: -7 }, placement: "below" },
+      { key: "wall", objectId: "wall", at: { x: 1, y: -3.2 }, placement: "left" },
+    ],
+  }}
+/>
+
+A quick check confirms both: <InlineMath math="-8<-7<-4" />, <InlineMath math="\ln(8-7)=0=2\ln(1)" /> and <InlineMath math="\ln(16-7)=\ln(9)=2\ln(3)" />. **The required value is <InlineMath math="k=-7" />**.
