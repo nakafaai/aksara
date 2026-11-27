@@ -456,6 +456,14 @@ designed: it carries a teaching job and never decorates.
   translucent borosilicate glassware with liquid meniscus and crisp labeled
   reagent bottles (proper KaTeX or Unicode subscripts, never unlabeled mystery
   bottles), balanced non-overlapping labels, and labeled curves in `MathVisual`.
+- **Absolute ban on raw 2D photographs or image planes inside 3D and p5 visuals.**
+  Never place raw `.jpg`, `.jpeg`, `.png`, `.webp`, `<img>`, picture frames, or
+  photo-textured planes inside a Three.js scene or p5 canvas (`useTexture`,
+  `TextureLoader`, `ImageLoader`, `loadImage`, or `data:image/` are banned in
+  content visuals outside the existing NASA Blue Marble Earth globe map). Web
+  reference photos exist strictly for studying real-world anatomy, proportions,
+  and coloration so you build real 3D models (verified open-source `.glb` meshes
+  or multi-part sculpted 3D PBR geometry).
 - **Body-scoped error isolation, zero retry flicker, and multi-loop visual
   verification.** Runtime errors stay isolated inside `VisualCardBody` (never
   replacing the card header, toolbar, actions, or footer and never causing
