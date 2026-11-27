@@ -431,18 +431,40 @@ designed: it carries a teaching job and never decorates.
   and description, an optional toolbar, the scene with its Play, Pause, Stop,
   Reset, and Full screen actions, and at most one component-owned structured
   key-value or tabular footer band ([the card footer](#the-card-footer)).
-- **Real-world photorealism and zero primitive slop.** Every custom 3D scene
-  and p5 simulation must look like real-world scientific apparatus, anatomy,
-  fauna, flora, or physical phenomena, never raw spheres, cylinders, boxes,
-  cones, or pills. Use verified open-source `.glb`/`.gltf` assets (with
-  provenance and license files) or sculpted PBR geometry with procedural
-  textures, seamless distance-faded horizons (`useHorizonFade`, never a hard
-  cut horizon edge), realistic translucent borosilicate glassware with liquid
-  meniscus and crisp labeled reagent bottles (proper Unicode subscripts, never
-  unlabeled mystery bottles), balanced non-overlapping labels, and labeled
-  curves in `MathVisual`. Follow deep-module composition with zero copy-paste
-  redundancy, and loop Playwright Chromium visual inspection until every frame
-  is crisp in light and dark modes with zero overlap or console errors.
+- **Single-focus `VisualCardBody` (never mix 3D + charts or p5 + charts).**
+  `VisualCardBody` holds exactly one focused visual representation: a pure 3D
+  scene, a pure p5 simulation, a pure diagram, or a pure chart. Never draw a 2D
+  chart, graph, or curve panel inside a 3D WebGL scene or inside a p5 canvas,
+  and never hand-code bespoke `<svg>` mini-charts. When a 3D or p5 lab needs a
+  synchronized supporting chart (such as a p-V diagram, Boltzmann distribution,
+  reaction-rate curve, or SIR curve), render it with Nakafa's shared EvilCharts
+  components inside `VisualCardFooter` alongside structured readouts so learners
+  always know where to focus.
+- **Sharp GeoGebra-3D clarity for mathematical `CoordinateSystem` vs real-world
+  photorealism for science labs.** Keep mathematical `CoordinateSystem` and
+  `MathVisual` scenes crisp, bright, high-contrast, and easy to read in both
+  light and dark modes with **zero drop shadows** (`shadows={false}` on
+  `CoordinateSystem`): never cast fuzzy grey shadows behind curves, asymptotes,
+  vectors, or points, and never invent half-done manual XYZ axes instead of
+  `CoordinateSystem`. By contrast, every Chemistry, Physics, Biology, and
+  physical tabletop 3D scene or p5 simulation must look like real-world
+  scientific apparatus, anatomy, wildlife, flora, or physical phenomena, never
+  cartoonish toy shapes or raw spheres, cylinders, boxes, cones, or pills. Use
+  verified open-source `.glb`/`.gltf` assets (with provenance and license files)
+  or sculpted PBR geometry with procedural textures, seamless distance-faded
+  horizons (`useHorizonFade`, never a hard cut horizon edge), realistic
+  translucent borosilicate glassware with liquid meniscus and crisp labeled
+  reagent bottles (proper KaTeX or Unicode subscripts, never unlabeled mystery
+  bottles), balanced non-overlapping labels, and labeled curves in `MathVisual`.
+- **Body-scoped error isolation, zero retry flicker, and multi-loop visual
+  verification.** Runtime errors stay isolated inside `VisualCardBody` (never
+  replacing the card header, toolbar, actions, or footer and never causing
+  layout shift or flicker on Retry), and narrow mobile viewports (`320px` to
+  `412px`) fall back cleanly instead of throwing uncaught label-fit errors.
+  Follow deep-module and Vercel composition patterns with zero copy-paste
+  redundancy, and run multiple Playwright visual inspection loops across
+  desktop and mobile in light and dark modes until every frame is sharp, alive,
+  and error-free with working Play, Pause, Stop, and Reset controls.
 - The still frame teaches on its own, because a learner may pause the motion
   or read the page with reduced motion.
 - Be creative inside these limits. A good visual surprises the learner with a
