@@ -1,10 +1,11 @@
 export const metadata = {
-   title: "Dekomposisi QR",
-    description: "Faktorkan matriks dengan dekomposisi QR memakai proses Gram Schmidt atau transformasi Householder, lalu selesaikan sistem linear.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2025-07-14",
-   dateModified: "2026-09-19",
-   subject: "Metode Linear AI",
+  title: "Dekomposisi QR",
+  description:
+    "Faktorkan matriks dengan dekomposisi QR memakai proses Gram Schmidt atau transformasi Householder, lalu selesaikan sistem linear.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-14",
+  dateModified: "2026-11-27",
+  subject: "Metode Linear AI",
 };
 
 ## Keberadaan Dekomposisi QR
@@ -32,15 +33,62 @@ Karena kolom <InlineMath math="A" /> bebas linear, <InlineMath math="\widetilde 
 <BlockMath math="= \sum_{k=1}^{j-1} q_k \cdot r_{kj} + q_j \cdot r_{jj}" />
 </MathContainer>
 
-Jadi, <InlineMath math="A=Q_1R_1" />, dengan <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> berbentuk segitiga atas dan <InlineMath math="r_{ii}=\|\widetilde q_i\|_2>0" />.
+Langkah ini menghasilkan faktorisasi tipis <InlineMath math="A=Q_1R_1" />, dengan <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> berbentuk segitiga atas dan diagonalnya positif:
 
-Lengkapi <InlineMath math="Q_1" /> dengan <InlineMath math="m-n" /> kolom ortonormal sehingga <InlineMath math="Q=(Q_1\quad Q_2)\in\mathbb{R}^{m\times m}" />.
+<BlockMath math="r_{ii} = \|\widetilde q_i\|_2 > 0" />
 
-Tambahkan <InlineMath math="m-n" /> baris nol pada <InlineMath math="R_1" /> sehingga diperoleh:
+Lengkapi <InlineMath math="Q_1" /> dengan <InlineMath math="m-n" /> kolom ortonormal lalu tambahkan <InlineMath math="m-n" /> baris nol di bawah <InlineMath math="R_1" /> untuk membentuk faktor lengkapnya:
 
-<BlockMath math="R=\begin{pmatrix}R_1\\0\end{pmatrix}\in\mathbb{R}^{m\times n}" />
+<MathContainer>
+<BlockMath math="Q = (Q_1 \quad Q_2) \in \mathbb{R}^{m \times m}" />
+<BlockMath math="R = \begin{pmatrix} R_1 \\ 0 \end{pmatrix} \in \mathbb{R}^{m \times n}" />
+<BlockMath math="A = Q_1 R_1 = Q R" />
+</MathContainer>
 
-Matriks yang sudah dilengkapi tetap memenuhi <InlineMath math="A=Q_1R_1=QR" />.
+Ikuti tahapan konstruksi Gram-Schmidt tiga dimensi di bawah ini dan ubah kemiringan kolom untuk melihat cara proyeksi membuang komponen tumpang tindih hingga tersisa kerangka ortonormal.
+
+<QrGramSchmidt3DLab
+  title={<>Ortogonalisasi Gram-Schmidt di <InlineMath math="\mathbb{R}^3" /></>}
+  description={<>Lanjutkan setiap tahap Gram-Schmidt pada tiga kolom miring dan ubah kemiringan kolom untuk mengamati bayangan proyeksi, entri segitiga atas <InlineMath math="r_{12}" />, dan galat ortogonalitas.</>}
+  steps={["originalBasis", "normalizeQ1", "orthogonalizeQ2", "orthogonalizeQ3"]}
+  skew={{ min: 0, max: 1, value: 0.7 }}
+  labels={{
+    step: "Tahap",
+    skew: "Kemiringan kolom",
+    view: "Tampilan",
+    orthogonalityCheck: <>Galat ortogonalitas <InlineMath math="\|Q^T Q - I\|" /></>,
+    rEntries: <>Entri luar diagonal <InlineMath math="r_{12}" /></>,
+    parts: {
+      inputVectors: "Kolom masukan",
+      orthonormalBasis: "Vektor ortonormal",
+      projectionShadow: "Bayangan proyeksi",
+      orthogonalFrame: "Kerangka ortogonal",
+      unitSphere: "Bola satuan",
+    },
+    steps: {
+      originalBasis: {
+        name: "Kolom awal",
+        summary: <>Mulai dari tiga kolom miring <InlineMath math="a_1, a_2, a_3" /> yang hasil kali dalamnya belum nol.</>,
+      },
+      normalizeQ1: {
+        name: "Normalisasi vektor pertama",
+        summary: <>Skalakan <InlineMath math="a_1" /> ke bola satuan untuk menetapkan arah ortonormal pertama <InlineMath math="q_1" />.</>,
+      },
+      orthogonalizeQ2: {
+        name: "Ortogonalisasi vektor kedua",
+        summary: <>Kurangkan proyeksi <InlineMath math="r_{12} q_1" /> dari <InlineMath math="a_2" /> lalu normalkan sisanya yang tegak lurus menjadi <InlineMath math="q_2" />.</>,
+      },
+      orthogonalizeQ3: {
+        name: "Lengkapi kerangka ortonormal",
+        summary: <>Buang komponen sepanjang <InlineMath math="q_1" /> dan <InlineMath math="q_2" /> dari <InlineMath math="a_3" /> agar ketiga vektor satuan saling tegak lurus.</>,
+      },
+    },
+  }}
+/>
+
+Kemiringan kolom yang lebih besar memperbesar proyeksi luar diagonal <InlineMath math="r_{12}" /> yang perlu dikurangkan, namun begitu ketiga tahap selesai galat ortogonalitas turun ke nol dan semua vektor tepat berada di permukaan bola satuan.
+
+> Gram-Schmidt membangun kolom ortonormal secara langsung dengan mengurangkan proyeksi, sedangkan refleksi Householder menghasilkan faktorisasi yang sama dengan kestabilan numerik lebih kuat saat kolom hampir bergantung linear.
 
 ## Dekomposisi QR Lengkap dan Tipis
 
@@ -56,7 +104,7 @@ Pada bentuk lengkap ini, <InlineMath math="Q\in\mathbb{R}^{m\times m}" /> ortogo
 
 ### Dekomposisi QR Tipis
 
-Bentuk tipis **menghapus baris nol** tersebut beserta kolom <InlineMath math="Q" /> yang tidak lagi dipakai:
+Bentuk tipis **menghapus baris nol** itu beserta kolom <InlineMath math="Q" /> yang tidak lagi dipakai:
 
 <BlockMath math="\begin{aligned} A &amp;= Q \cdot R \\ &amp;= (Q_1 \quad Q_2) \cdot \begin{pmatrix} R_1 \\ 0 \end{pmatrix} \\ &amp;= Q_1 \cdot R_1 \end{aligned}" />
 
@@ -72,7 +120,12 @@ Ruang nol <InlineMath math="A^T" /> berisi semua vektor <InlineMath math="x" /> 
 
 Untuk matriks dengan peringkat kolom penuh, faktorisasi tipis <InlineMath math="A=Q_1R_1" /> bersifat unik jika semua **elemen diagonal** <InlineMath math="R_1" /> **positif**. Syarat tanda itu menghapus kebebasan yang tersisa, karena mengalikan satu kolom <InlineMath math="Q_1" /> dan baris <InlineMath math="R_1" /> yang bersesuaian dengan <InlineMath math="-1" /> tidak mengubah hasil kalinya.
 
-Untuk kolom <InlineMath math="a_1=(1,1,0)" /> dan <InlineMath math="a_2=(1,0,1)" />, Gram-Schmidt memberi <InlineMath math="q_1=\tfrac1{\sqrt2}(1,1,0)" /> dan <InlineMath math="q_2=\tfrac1{\sqrt6}(1,-1,2)" />. Dekomposisi tipis berhenti di sini. Dekomposisi lengkap menambahkan <InlineMath math="q_3=\tfrac1{\sqrt3}(1,-1,-1)" />, yang tegak lurus dengan bidang kolom, dan sebaris nol di bawah <InlineMath math="R" />.
+Untuk kolom <InlineMath math="a_1=(1,1,0)" /> dan <InlineMath math="a_2=(1,0,1)" />, Gram-Schmidt memberi basis tipis <InlineMath math="q_1" /> dan <InlineMath math="q_2" />, sedangkan dekomposisi lengkap menambahkan vektor normal <InlineMath math="q_3" /> serta sebaris nol di bawah <InlineMath math="R_1" />:
+
+<MathContainer>
+<BlockMath math="q_1 = \frac{1}{\sqrt{2}}(1, 1, 0), \qquad q_2 = \frac{1}{\sqrt{6}}(1, -1, 2)" />
+<BlockMath math="q_3 = \frac{1}{\sqrt{3}}(1, -1, -1)" />
+</MathContainer>
 
 <MathVisual
   title={<><InlineMath math="Q" /> tipis dan <InlineMath math="Q" /> lengkap untuk dua kolom di <InlineMath math="\mathbb R^3" /></>}
@@ -100,6 +153,8 @@ Untuk kolom <InlineMath math="a_1=(1,1,0)" /> dan <InlineMath math="a_2=(1,0,1)"
   }}
 />
 
+Perhatikan bahwa <InlineMath math="q_1" /> dan <InlineMath math="q_2" /> merentang bidang yang persis sama dengan kolom awal, sedangkan <InlineMath math="q_3" /> berdiri tegak lurus pada bidang itu untuk merentang komplemen ortogonalnya.
+
 ## Contoh Dekomposisi QR Tipis
 
 Misalkan
@@ -115,7 +170,7 @@ Misalkan
 <BlockMath math="q_2=\frac1{\sqrt6}\begin{pmatrix}1\\-1\\2\end{pmatrix}" />
 </MathContainer>
 
-Dengan demikian,
+Hasil perhitungannya adalah:
 
 <MathContainer>
 <BlockMath math="Q_1=\begin{pmatrix}1/\sqrt2&1/\sqrt6\\1/\sqrt2&-1/\sqrt6\\0&2/\sqrt6\end{pmatrix}" />
@@ -123,7 +178,7 @@ Dengan demikian,
 <BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
 </MathContainer>
 
-Putar adegan tiga dimensi ini untuk melihat contoh tadi dari segala arah. Proyeksi kuning <InlineMath math="r_{12}q_1=(1/2,1/2,0)^T" /> adalah bagian <InlineMath math="a_2" /> yang searah <InlineMath math="q_1" />. Sisa oranye <InlineMath math="\widetilde q_2" /> dari ujung proyeksi ke ujung <InlineMath math="a_2" /> tegak lurus terhadap <InlineMath math="q_1" />, dan kalau dinormalkan kamu dapat <InlineMath math="q_2" />. Dari sudut mana pun, kedua ruas magenta selalu membentuk sudut siku-siku.
+Putar adegan tiga dimensi ini untuk melihat contoh tadi dari segala arah. Proyeksi kuning <InlineMath math="r_{12}q_1" /> adalah bagian <InlineMath math="a_2" /> yang searah <InlineMath math="q_1" />. Sisa oranye <InlineMath math="\widetilde q_2" /> dari ujung proyeksi ke ujung <InlineMath math="a_2" /> tegak lurus terhadap <InlineMath math="q_1" />, dan saat dinormalkan kamu memperoleh <InlineMath math="q_2" />.
 
 <MathVisual
   title={<>Gram-Schmidt pada <InlineMath math="a_1,a_2" /></>}
@@ -159,19 +214,19 @@ Putar adegan tiga dimensi ini untuk melihat contoh tadi dari segala arah. Proyek
   }}
 />
 
+Dari sudut mana pun, kedua vektor satuan magenta <InlineMath math="q_1" /> dan <InlineMath math="q_2" /> selalu membentuk sudut siku-siku, dan kombinasi linearnya melalui kolom <InlineMath math="R_1" /> mengembalikan <InlineMath math="a_1" /> serta <InlineMath math="a_2" /> secara persis.
+
 ## Metode Householder untuk Dekomposisi QR
 
-Gram-Schmidt klasik mudah diturunkan, tetapi kolom yang **hampir bergantung linear** dapat kehilangan ortogonalitas dalam aritmetika titik mengambang. Gram-Schmidt termodifikasi mengurangi galat tersebut. Perangkat lunak numerik untuk matriks padat umumnya memakai reflektor Householder, sedangkan rotasi Givens berguna ketika hanya elemen tertentu yang perlu dibuat nol.
+Gram-Schmidt klasik mudah diturunkan, tetapi kolom yang **hampir bergantung linear** dapat kehilangan ortogonalitas dalam aritmetika titik mengambang. Gram-Schmidt termodifikasi mengurangi galat itu. Perangkat lunak numerik untuk matriks padat umumnya memakai reflektor Householder, sedangkan rotasi Givens berguna ketika hanya elemen tertentu yang perlu dibuat nol.
 
 Untuk vektor satuan <InlineMath math="v\in\mathbb{R}^m" />, matriks Householder didefinisikan sebagai
 
 <BlockMath math="S = I - 2vv^T \in \mathbb{R}^{m \times m}" />
 
-**Produk luar** <InlineMath math="vv^T" /> mengalikan vektor kolom berukuran <InlineMath math="m\times1" /> dengan vektor baris berukuran <InlineMath math="1\times m" />, sehingga produk tersebut berupa matriks <InlineMath math="m\times m" /> berperingkat satu. Urutan terbalik <InlineMath math="v^Tv" /> menghasilkan skalar <InlineMath math="1" />.
+**Produk luar** <InlineMath math="vv^T" /> mengalikan vektor kolom berukuran <InlineMath math="m\times1" /> dengan vektor baris berukuran <InlineMath math="1\times m" />, sehingga produk itu berupa matriks <InlineMath math="m\times m" /> berperingkat satu. Urutan terbalik <InlineMath math="v^Tv" /> menghasilkan skalar <InlineMath math="1" />.
 
-## Sifat Transformasi Householder
-
-Untuk <InlineMath math="S=I-2vv^T" /> dan <InlineMath math="\|v\|_2=1" />, berlaku sifat berikut. Sifat simetri dan ortogonal berasal dari vektor satuan pada definisinya, sifat pantulan menjelaskan pengaruh transformasi pada sebuah vektor, dan **bilangan kondisi satu** berarti pantulan eksak mempertahankan norma Euklides vektor gangguan.
+Karena <InlineMath math="\|v\|_2=1" />, reflektor <InlineMath math="S" /> memenuhi empat sifat utama. Sifat simetri dan ortogonal berasal dari vektor satuan pada definisinya, sifat pantulan menjelaskan pengaruh transformasi pada sebuah vektor, dan **bilangan kondisi satu** berarti pantulan eksak mempertahankan norma Euklides vektor gangguan.
 
 1. <InlineMath math="S" /> adalah simetri: <InlineMath math="S^T = S" />
 
@@ -181,7 +236,11 @@ Untuk <InlineMath math="S=I-2vv^T" /> dan <InlineMath math="\|v\|_2=1" />, berla
 
 4. <InlineMath math="\text{cond}_2(S) = 1" />
 
-Untuk <InlineMath math="x=(3,4)" /> dengan <InlineMath math="\|x\|_2=5" />, pilih <InlineMath math="v=\tfrac{x-5e_1}{\|x-5e_1\|_2}=\tfrac1{\sqrt5}(-1,2)" />. Maka <InlineMath math="S=I-2vv^T" /> mencerminkan <InlineMath math="x" /> terhadap garis yang tegak lurus dengan <InlineMath math="v" /> dan memetakannya ke <InlineMath math="(5,0)" />. Satu refleksi saja sudah membuat entri kedua nol tanpa mengubah panjang.
+Untuk <InlineMath math="x=(3,4)" /> dengan <InlineMath math="\|x\|_2=5" />, pilih vektor normal satuan:
+
+<BlockMath math="v = \frac{x - 5e_1}{\|x - 5e_1\|_2} = \frac{1}{\sqrt{5}}(-1, 2)" />
+
+Maka <InlineMath math="S=I-2vv^T" /> mencerminkan <InlineMath math="x" /> terhadap garis yang tegak lurus dengan <InlineMath math="v" /> dan memetakannya ke <InlineMath math="(5,0)" />.
 
 <MathVisual
   title={<>Refleksi Householder memetakan <InlineMath math="(3,4)" /> ke <InlineMath math="(5,0)" /></>}
@@ -210,6 +269,8 @@ Untuk <InlineMath math="x=(3,4)" /> dengan <InlineMath math="\|x\|_2=5" />, pili
   }}
 />
 
+Satu refleksi saja sudah membuat koordinat kedua nol tanpa mengubah panjang Euklides <InlineMath math="x" />, sehingga rangkaian reflektor dapat mengenolkan kolom demi kolom secara stabil.
+
 ## Prosedur Householder
 
 Misalkan <InlineMath math="A\in\mathbb{R}^{m\times n}" /> memenuhi <InlineMath math="m\geq n" /> dan <InlineMath math="\operatorname{rank}(A)=n" />. **Setiap langkah Householder** membuat elemen di bawah satu posisi diagonal menjadi nol tanpa mengubah nol yang sudah terbentuk pada langkah sebelumnya.
@@ -228,7 +289,9 @@ Dengan <InlineMath math="S_1=I_m-2v_1v_1^T" />, seluruh elemen kolom pertama di 
 
 <BlockMath math="A_2 = S_1 \cdot A_1 = \begin{pmatrix} r_{11} & * \\ 0 & \tilde{A}_2 \end{pmatrix}" />
 
-Pada matriks <InlineMath math="A_2" />, <InlineMath math="r_{11} = \pm\|\tilde{a}_1\|_2" /> dan <InlineMath math="\tilde{A}_2 \in \mathbb{R}^{m-1 \times n-1}" />.
+Pada matriks <InlineMath math="A_2" />, pivot pertama dan blok aktifnya memenuhi:
+
+<BlockMath math="r_{11} = \pm\|\tilde{a}_1\|_2, \qquad \tilde{A}_2 \in \mathbb{R}^{(m-1) \times (n-1)}" />
 
 Terapkan reflektor berikutnya hanya pada **submatriks kanan bawah** yang tersisa:
 
@@ -251,7 +314,11 @@ Seluruh elemen kolom kedua di bawah diagonal kemudian menjadi nol:
 
 <BlockMath math="A_3 = S_2 \cdot A_2 = \begin{pmatrix} r_{11} & * & * \\ 0 & r_{22} & * \\ 0 & 0 & \tilde{A}_3 \end{pmatrix}" />
 
-Di sini <InlineMath math="r_{22}=\pm\|\widetilde a_2\|_2" /> dan <InlineMath math="\widetilde A_3\in\mathbb{R}^{(m-2)\times(n-2)}" />. Pengulangan operasi yang sama menyisakan kolom aktif terakhir
+Di sini pivot kedua dan blok aktif tersisa memenuhi:
+
+<BlockMath math="r_{22} = \pm\|\widetilde a_2\|_2, \qquad \widetilde A_3 \in \mathbb{R}^{(m-2) \times (n-2)}" />
+
+Pengulangan operasi yang sama menyisakan kolom aktif terakhir
 
 <BlockMath math="\tilde{A}_n = \begin{pmatrix} \tilde{a}_{nn} \\ \vdots \\ \tilde{a}_{mn} \end{pmatrix} \in \mathbb{R}^{m-(n-1) \times 1}" />
 
@@ -266,7 +333,7 @@ Karena setiap reflektor ortogonal dan simetris, hasil kalinya memberikan
 <BlockMath math="Q = (S_n \cdot \ldots \cdot S_1)^T = S_1 \cdot \ldots \cdot S_n" />
 </MathContainer>
 
-Matriks <InlineMath math="Q" /> bersifat ortogonal karena merupakan hasil kali beberapa reflektor ortogonal.
+Matriks <InlineMath math="Q" /> bersifat ortogonal karena hasil kali beberapa reflektor ortogonal tetap ortogonal.
 
 ## Algoritma Householder
 
@@ -320,20 +387,23 @@ Setelah <InlineMath math="n" /> langkah,
 
 Menerapkan dekomposisi dalam aritmetika floating-point memunculkan dua pertanyaan praktis, yaitu berapa banyak operasi yang dibutuhkan dan bagaimana **galat pembulatannya** berperilaku. Jawaban keduanya menentukan apakah metode ini cocok untuk masalahmu: jumlah operasi menentukan waktu jalan pada matriks besar, sedangkan perilaku pembulatannya menentukan seberapa jauh hasil hitungan bisa dipercaya.
 
-### Kompleksitas Komputasi
+### Jumlah Operasi Householder
 
 Perhitungan berikut menyimpan <InlineMath math="Q" /> **secara implisit sebagai reflektor** dan menghitung <InlineMath math="R" />. Membentuk matriks penuh <InlineMath math="Q" /> berukuran <InlineMath math="m\times m" /> secara eksplisit memerlukan operasi tambahan.
 
 Untuk <InlineMath math="m\ge n" />, dekomposisi <InlineMath math="\mathrm{QR}" /> dengan reflektor Householder memerlukan kira-kira:
 
 <BlockMath math="2mn^2-\frac23n^3" />
+
 Perkiraan banyaknya **operasi floating-point** saat <InlineMath math="m=n" /> adalah:
 
 <BlockMath math="\frac43n^3" />
 
 ### Sifat Numerik
 
-Perkalian ortogonal **mempertahankan nilai singular**, sehingga <InlineMath math="\operatorname{cond}_2(R)=\operatorname{cond}_2(A)" /> untuk matriks dengan peringkat kolom penuh.
+Perkalian ortogonal **mempertahankan nilai singular**, sehingga matriks dengan peringkat kolom penuh memiliki bilangan kondisi yang sama pada faktor segitiganya:
+
+<BlockMath math="\operatorname{cond}_2(R) = \operatorname{cond}_2(A)" />
 
 Pada langkah ke-<InlineMath math="i" />, elemen diagonal baru bernilai <InlineMath math="\pm\|\widetilde a_i\|_2" />. Pilih tanda berikut saat menghitung reflektor agar dua bilangan yang hampir sama tidak saling dikurangkan:
 
@@ -342,7 +412,7 @@ Pada langkah ke-<InlineMath math="i" />, elemen diagonal baru bernilai <InlineMa
   <BlockMath math="s_i=\begin{cases}1,&amp;\tilde a_{ii}\ge0\\-1,&amp;\tilde a_{ii}&lt;0\end{cases}" />
 </MathContainer>
 
-Setelah faktorisasi selesai, tanda satu kolom <InlineMath math="Q" /> dan baris <InlineMath math="R" /> yang bersesuaian dapat dibalik agar diagonal <InlineMath math="R" /> positif. Jika <InlineMath math="\|\widetilde a_i\|_2=0" />, matriks tidak memiliki peringkat kolom penuh dan syarat keunikan tersebut tidak berlaku. Gunakan dekomposisi <InlineMath math="\mathrm{QR}" /> dengan pivot kolom untuk menentukan peringkat numeriknya.
+Setelah faktorisasi selesai, tanda satu kolom <InlineMath math="Q" /> dan baris <InlineMath math="R" /> yang bersesuaian dapat dibalik agar diagonal <InlineMath math="R" /> positif. Jika <InlineMath math="\|\widetilde a_i\|_2=0" />, matriks tidak memiliki peringkat kolom penuh dan syarat keunikan itu tidak berlaku. Gunakan dekomposisi <InlineMath math="\mathrm{QR}" /> dengan pivot kolom untuk menentukan peringkat numeriknya.
 
 Implementasi ringkas menskalakan vektor Householder agar entri aktif pertamanya <InlineMath math="1" />. Entri sisanya disimpan di bawah diagonal matriks kerja, sedangkan skalar terpisah menyimpan kekuatan reflektor. Diagonal dan segitiga atas tetap menyimpan <InlineMath math="R" />. Terapkan reflektor tersimpan tanpa membentuk <InlineMath math="Q" /> secara eksplisit.
 

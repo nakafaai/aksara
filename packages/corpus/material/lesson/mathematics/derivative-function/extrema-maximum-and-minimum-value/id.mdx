@@ -1,27 +1,33 @@
 export const metadata = {
   title: "Nilai Ekstrem dan Uji Turunan Pertama serta Kedua",
-  description: "Tentukan maksimum dan minimum lokal dengan uji turunan pertama dan kedua, atasi kasus f''(c) = 0, lalu cari nilai terbesar pada interval tertutup.",
+  description: "Tentukan maksimum dan minimum lokal dengan uji turunan pertama dan kedua, atasi kasus turunan kedua bernilai nol, lalu cari nilai terbesar pada interval tertutup.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-27",
   subject: "Turunan Fungsi",
 };
 
-## Tempat Fungsi Bisa Mencapai Nilai Ekstrem
+## Calon Titik Ekstrem
 
-Fungsi punya **maksimum lokal** di <InlineMath math="c" /> jika <InlineMath math="f(c)" /> adalah nilai terbesar di sekitarnya, dan **minimum lokal** jika <InlineMath math="f(c)" /> nilai terkecil di sekitarnya. <Highlight>Untuk fungsi yang dapat diturunkan, setiap ekstrem lokal di bagian dalam domain berada di titik stasioner</Highlight>, yaitu titik dengan <InlineMath math="f'(c)=0" />. Cari titik-titik itu dulu, lalu uji satu per satu, karena tidak setiap titik stasioner adalah titik ekstrem.
+Fungsi punya **maksimum lokal** di <InlineMath math="c" /> jika <InlineMath math="f(c)" /> adalah nilai terbesar di sekitarnya, dan **minimum lokal** jika <InlineMath math="f(c)" /> nilai terkecil di sekitarnya. <Highlight>Untuk fungsi yang dapat diturunkan, setiap ekstrem lokal di bagian dalam domain berada di titik stasioner</Highlight>, yaitu titik dengan <InlineMath math="f'(c) = 0" />. Cari titik-titik itu dulu, lalu uji satu per satu, karena tidak setiap titik stasioner adalah titik ekstrem.
 
-Untuk <InlineMath math="f(x)=x^2-4x" />, turunan <InlineMath math="f'(x)=2x-4" /> bernilai nol di <InlineMath math="x=2" />. Grafiknya turun sebelum <InlineMath math="x=2" /> dan naik sesudahnya, jadi <InlineMath math="f(2)=-4" /> adalah minimum lokal.
+Untuk <InlineMath math="f(x) = x^2 - 4x" />, turunan <InlineMath math="f'(x) = 2x - 4" /> bernilai nol di <InlineMath math="x = 2" />. Grafiknya turun sebelum <InlineMath math="x = 2" /> dan naik sesudahnya, jadi <InlineMath math="f(2) = -4" /> adalah minimum lokal.
 
 Ada tiga jenis titik yang bisa menjadi tempat nilai ekstrem:
 
-- [titik stasioner](/id/materi/matematika/turunan-fungsi/fungsi-naik-turun-dan-stasioner), tempat <InlineMath math="f'(x)=0" />
-- titik tempat <InlineMath math="f'(x)" /> tidak ada, misalnya sudut runcing grafik <InlineMath math="|x|" /> di <InlineMath math="x=0" />
+- [titik stasioner](/id/materi/matematika/turunan-fungsi/fungsi-naik-turun-dan-stasioner), tempat <InlineMath math="f'(x) = 0" />
+- titik tempat <InlineMath math="f'(x)" /> tidak ada, misalnya sudut runcing grafik <InlineMath math="|x|" /> di <InlineMath math="x = 0" />
 - titik ujung, jika fungsi hanya dilihat pada interval tertutup
+
+> Mencari titik saat turunan bernilai nol baru menyaring calon titik ekstrem, jadi selalu periksa perubahan tanda, kecekungan, dan titik ujung interval sebelum menyimpulkan maksimum atau minimum.
 
 Dalam soal sehari-hari, titik-titik ini adalah nilai terbaik, seperti keuntungan terbesar, biaya terkecil, atau jarak terpendek. Turunan menemukannya tanpa perlu menggambar seluruh grafik.
 
 ## Uji Turunan Pertama
+
+Memeriksa tanda **turunan pertama** di kiri dan kanan titik stasioner menunjukkan apakah grafik sungguh berbalik arah atau sekadar mendatar sebelum melanjutkan arah yang sama. Pahami aturan perubahan tanda terlebih dahulu, lalu ikuti penerapannya untuk mengelompokkan setiap titik balik fungsi kubik.
+
+### Perubahan Tanda Turunan
 
 Uji turunan pertama membaca **tanda <InlineMath math="f'(x)" /> di kedua sisi** titik stasioner, yang menunjukkan apakah fungsi naik atau turun di sana.
 
@@ -62,9 +68,11 @@ Grafik menunjukkan garis singgung mendatar di maksimum lokal dan minimum lokal.
   }}
 />
 
-## Contoh dengan Uji Turunan Pertama
+Kedua titik stasioner sama-sama memiliki garis singgung mendatar, tetapi kurva kiri naik menuju puncak lalu turun, sedangkan kurva kanan turun menuju lembah lalu naik kembali.
 
-Tentukan nilai stasioner <InlineMath math="f(x) = x(x-3)^2" /> dengan uji turunan pertama.
+### Titik Balik Fungsi Kubik
+
+Tentukan nilai stasioner <InlineMath math="f(x) = x(x - 3)^2" /> dengan uji turunan pertama.
 
 **Langkah 1**: Jabarkan fungsinya lalu turunkan.
 
@@ -91,7 +99,7 @@ Titik stasionernya <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" />.
 | <InlineMath math="1 < x < 3" /> | <InlineMath math="f'(2) = -3" /> | negatif | turun |
 | <InlineMath math="x > 3" /> | <InlineMath math="f'(4) = 9" /> | positif | naik |
 
-Tandanya berubah dari positif ke negatif di <InlineMath math="x=1" />, jadi di sana **maksimum**, dan dari negatif ke positif di <InlineMath math="x=3" />, jadi di sana **minimum**.
+Tandanya berubah dari positif ke negatif di <InlineMath math="x = 1" />, jadi di sana **maksimum**, dan dari negatif ke positif di <InlineMath math="x = 3" />, jadi di sana **minimum**.
 
 **Langkah 4**: Substitusikan ke fungsi *asal*.
 
@@ -100,7 +108,7 @@ Tandanya berubah dari positif ke negatif di <InlineMath math="x=1" />, jadi di s
     <BlockMath math="f(3) = 3(3-3)^2 = 0" />
 </MathContainer>
 
-Nilai maksimum lokalnya <InlineMath math="4" /> di <InlineMath math="(1,4)" />, dan nilai minimum lokalnya <InlineMath math="0" /> di <InlineMath math="(3,0)" />. Periksa dengan titik di dekatnya: <InlineMath math="f(0{,}9) = 3{,}969" /> dan <InlineMath math="f(1{,}1) = 3{,}971" /> sama-sama lebih kecil dari <InlineMath math="4" />, sedangkan <InlineMath math="f(2{,}9)=0{,}029" /> dan <InlineMath math="f(3{,}1)=0{,}031" /> sama-sama lebih besar dari <InlineMath math="0" />.
+Nilai maksimum lokalnya <InlineMath math="4" /> di <InlineMath math="(1, 4)" />, dan nilai minimum lokalnya <InlineMath math="0" /> di <InlineMath math="(3, 0)" />. Periksa dengan titik di dekatnya: <InlineMath math="f(0{,}9) = 3{,}969" /> dan <InlineMath math="f(1{,}1) = 3{,}971" /> sama-sama lebih kecil dari <InlineMath math="4" />, sedangkan <InlineMath math="f(2{,}9) = 0{,}029" /> dan <InlineMath math="f(3{,}1) = 0{,}031" /> sama-sama lebih besar dari <InlineMath math="0" />.
 
 <MathVisual
   title={<>Visualisasi Titik Ekstrem</>}
@@ -132,7 +140,13 @@ Nilai maksimum lokalnya <InlineMath math="4" /> di <InlineMath math="(1,4)" />, 
   }}
 />
 
+Garis singgung mendatar berada tepat di <InlineMath math="(1, 4)" /> dan <InlineMath math="(3, 0)" />, memisahkan kedua cabang luar yang naik dari bagian tengah yang menurun di antaranya.
+
 ## Uji Turunan Kedua
+
+Alih-alih menguji titik di kiri dan kanan titik stasioner, **turunan kedua** langsung membaca kecekungan tepat di titik itu dan menentukan sebagian besar puncak maupun lembah dengan cepat. Pelajari peran kecekungan pada contoh fungsi kubik, lalu pahami langkah cadangan ketika uji cepat ini tidak memberi keputusan.
+
+### Kecekungan Fungsi Kubik
 
 Uji turunan kedua menentukan jenis titik langsung di titik stasioner itu, tanpa menguji interval di sekitarnya. Uji ini memakai **kecekungan yang diberikan <InlineMath math="f''(c)" />**. Misalkan <InlineMath math="f'(c) = 0" /> dan <InlineMath math="f''" /> kontinu di sekitar <InlineMath math="c" />.
 
@@ -140,11 +154,9 @@ Uji turunan kedua menentukan jenis titik langsung di titik stasioner itu, tanpa 
 -   Jika <InlineMath math="f''(c) > 0" />, kurva cekung ke atas seperti mangkuk terbuka, dan <InlineMath math="f(c)" /> adalah minimum lokal.
 -   Jika <InlineMath math="f''(c) = 0" />, uji ini tidak memberi jawaban. Titiknya bisa maksimum, minimum, atau bukan keduanya.
 
-Turunan kedua biasanya cepat didapat dengan [aturan turunan fungsi aljabar](/id/materi/matematika/turunan-fungsi/turunan-fungsi-aljabar), jadi uji ini sering lebih cepat daripada tabel tanda.
+Turunan kedua biasanya cepat didapat dengan [aturan turunan fungsi aljabar](/id/materi/matematika/turunan-fungsi/turunan-fungsi-aljabar), jadi uji ini sering lebih cepat daripada tabel tanda. Terapkan sekarang untuk menentukan nilai ekstrem fungsi kubik berikut:
 
-## Contoh dengan Uji Turunan Kedua
-
-Tentukan nilai ekstrem <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x + 2" /> dengan uji turunan kedua.
+<BlockMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x + 2" />
 
 **Langkah 1**: Cari kedua turunannya.
 
@@ -162,10 +174,10 @@ Tentukan nilai ekstrem <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x + 2" /
 
 Titik stasionernya <InlineMath math="x = 3" /> dan <InlineMath math="x = -1" />.
 
-**Langkah 3**: Hitung <InlineMath math="f''" /> di setiap titik.
+**Langkah 3**: Hitung <InlineMath math="f''" /> di setiap titik stasioner.
 
--   <InlineMath math="f''(3) = 4 > 0" />, jadi <InlineMath math="x=3" /> memberi **minimum lokal**.
--   <InlineMath math="f''(-1) = -4 < 0" />, jadi <InlineMath math="x=-1" /> memberi **maksimum lokal**.
+-   Di <InlineMath math="x = 3" />, <InlineMath math="f''(3) = 4" /> bernilai positif, jadi <InlineMath math="x = 3" /> memberi **minimum lokal**.
+-   Di <InlineMath math="x = -1" />, <InlineMath math="f''(-1) = -4" /> bernilai negatif, jadi <InlineMath math="x = -1" /> memberi **maksimum lokal**.
 
 **Langkah 4**: Substitusikan ke fungsi asal.
 
@@ -174,7 +186,11 @@ Titik stasionernya <InlineMath math="x = 3" /> dan <InlineMath math="x = -1" />.
     <BlockMath math="f(-1) = -\frac{1}{3} - 1 + 3 + 2 = \frac{11}{3}" />
 </MathContainer>
 
-Periksa maksimumnya dengan titik di dekatnya: <InlineMath math="f(-2) = -\frac{8}{3} - 4 + 6 + 2 = \frac{4}{3}" />, lebih kecil dari <InlineMath math="\frac{11}{3}" />. Kurvanya cekung ke bawah di <InlineMath math="x=-1" /> dan cekung ke atas di <InlineMath math="x=3" />.
+Periksa maksimumnya dengan satu titik di dekatnya:
+
+<BlockMath math="f(-2) = -\frac{8}{3} - 4 + 6 + 2 = \frac{4}{3} < \frac{11}{3}" />
+
+Kurvanya cekung ke bawah di <InlineMath math="x = -1" /> dan cekung ke atas di <InlineMath math="x = 3" />.
 
 <MathVisual
   title={<>Visualisasi Uji Turunan Kedua</>}
@@ -208,13 +224,15 @@ Periksa maksimumnya dengan titik di dekatnya: <InlineMath math="f(-2) = -\frac{8
   }}
 />
 
-## Saat Uji Turunan Kedua Tidak Memberi Jawaban
+Kurva membuka ke bawah di bawah garis mendatar pada <InlineMath math="x = -1" /> dan membuka ke atas di atas garis mendatar pada <InlineMath math="x = 3" />, tepat sesuai tanda <InlineMath math="f''" />.
 
-Jika <InlineMath math="f'(c)=0" /> dan <InlineMath math="f''(c)=0" />, **kembali ke uji turunan pertama**. Dua fungsi berikut menunjukkan mengapa uji kedua tidak bisa memutuskan sendiri.
+### Saat Uji Kedua Buntu
 
-Untuk <InlineMath math="f(x)=x^3" />, berlaku <InlineMath math="f'(0)=0" /> dan <InlineMath math="f''(0)=0" />. Turunan <InlineMath math="f'(x)=3x^2" /> positif di kedua sisi <InlineMath math="0" />, jadi tandanya tidak pernah berubah dan <InlineMath math="x=0" /> bukan titik ekstrem. Titik itu adalah titik belok mendatar.
+Jika <InlineMath math="f'(c) = 0" /> dan <InlineMath math="f''(c) = 0" />, **kembali ke uji turunan pertama**. Dua fungsi berikut menunjukkan mengapa uji kedua tidak bisa memutuskan sendiri.
 
-Untuk <InlineMath math="f(x)=x^4" />, lagi-lagi <InlineMath math="f'(0)=0" /> dan <InlineMath math="f''(0)=0" />. Kali ini <InlineMath math="f'(x)=4x^3" /> negatif untuk <InlineMath math="x<0" /> dan positif untuk <InlineMath math="x>0" />, jadi <InlineMath math="f(0)=0" /> adalah minimum lokal. Periksa: <InlineMath math="x^4 \ge 0" /> untuk setiap <InlineMath math="x" />.
+Untuk <InlineMath math="f(x) = x^3" />, berlaku <InlineMath math="f'(0) = 0" /> dan <InlineMath math="f''(0) = 0" />. Turunan <InlineMath math="f'(x) = 3x^2" /> positif di kedua sisi <InlineMath math="0" />, jadi tandanya tidak pernah berubah dan <InlineMath math="x = 0" /> bukan titik ekstrem. Titik itu adalah titik belok mendatar.
+
+Untuk <InlineMath math="f(x) = x^4" />, lagi-lagi <InlineMath math="f'(0) = 0" /> dan <InlineMath math="f''(0) = 0" />. Kali ini <InlineMath math="f'(x) = 4x^3" /> negatif untuk <InlineMath math="x < 0" /> dan positif untuk <InlineMath math="x > 0" />, jadi <InlineMath math="f(0) = 0" /> adalah minimum lokal. Periksa: <InlineMath math="x^4 \ge 0" /> untuk setiap <InlineMath math="x" />.
 
 <Mermaid
   title={<>Memilih uji untuk titik stasioner</>}
@@ -229,21 +247,66 @@ Untuk <InlineMath math="f(x)=x^4" />, lagi-lagi <InlineMath math="f'(0)=0" /> da
   E -->|"tidak berubah"| F["Bukan ekstrem"]`}
 />
 
-## Nilai Terbesar dan Terkecil pada Interval Tertutup
+Setiap kali cabang turunan kedua menghasilkan nol, alur keputusan langsung beralih ke perubahan tanda <InlineMath math="f'" />, sehingga semua kasus stasioner terselesaikan tanpa keraguan.
 
-Pada interval tertutup <InlineMath math="[a,b]" />, fungsi kontinu selalu mencapai nilai terbesar dan nilai terkecil. Keduanya bisa berada di titik stasioner, di titik tempat <InlineMath math="f'" /> tidak ada, atau di titik ujung, jadi **bandingkan nilai fungsi di semua calon**.
+## Ekstrem pada Interval Tertutup
 
-**Soal**: Tentukan nilai terbesar dan terkecil <InlineMath math="f(x)=x^3-3x" /> pada <InlineMath math="[-2,3]" />.
+Pada interval tertutup <InlineMath math="[a, b]" />, fungsi kontinu selalu mencapai nilai terbesar dan nilai terkecil. Keduanya bisa berada di titik stasioner, di titik tempat <InlineMath math="f'" /> tidak ada, atau di titik ujung, jadi **bandingkan nilai fungsi di semua calon**.
 
-Turunan <InlineMath math="f'(x)=3x^2-3" /> bernilai nol di <InlineMath math="x=-1" /> dan <InlineMath math="x=1" />, keduanya di dalam interval. Hitung <InlineMath math="f" /> di kedua titik itu dan di kedua ujung:
+**Soal**: Tentukan nilai terbesar dan terkecil <InlineMath math="f(x) = x^3 - 3x" /> pada <InlineMath math="[-2, 3]" />.
+
+Turunan <InlineMath math="f'(x) = 3x^2 - 3" /> bernilai nol di <InlineMath math="x = -1" /> dan <InlineMath math="x = 1" />, keduanya di dalam interval. Hitung <InlineMath math="f" /> di kedua titik itu dan di kedua ujung:
 
 | <InlineMath math="x" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="3" /> |
 | --- | --- | --- | --- | --- |
 | <InlineMath math="f(x)" /> | <InlineMath math="-2" /> | <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="18" /> |
 
-Nilai terbesarnya <InlineMath math="18" /> di ujung <InlineMath math="x=3" />, padahal maksimum lokal di <InlineMath math="x=-1" /> hanya <InlineMath math="2" />. Nilai terkecilnya <InlineMath math="-2" />, tercapai dua kali, di <InlineMath math="x=-2" /> dan <InlineMath math="x=1" />. Soal cerita tentang ukuran terbaik atau biaya terendah memakai perbandingan yang sama, seperti pada [aplikasi turunan](/id/materi/matematika/turunan-fungsi/aplikasi-turunan).
+Nilai terbesarnya <InlineMath math="18" /> di ujung <InlineMath math="x = 3" />, padahal maksimum lokal di <InlineMath math="x = -1" /> hanya <InlineMath math="2" />. Nilai terkecilnya <InlineMath math="-2" />, tercapai dua kali, di <InlineMath math="x = -2" /> dan <InlineMath math="x = 1" />. Soal cerita tentang ukuran terbaik atau biaya terendah memakai perbandingan yang sama, seperti pada [aplikasi turunan](/id/materi/matematika/turunan-fungsi/aplikasi-turunan).
 
-## Kesalahan yang Sering Terjadi
+Salah satu soal optimasi klasik pada interval tertutup memotong persegi identik bersisi <InlineMath math="x" /> di keempat sudut lembar persegi panjang berukuran <InlineMath math="L \times W" /> lalu melipat keempat sisinya menjadi kotak tanpa tutup:
+
+<BlockMath math="V(x) = x(L - 2x)(W - 2x), \qquad 0 \le x \le \frac{W}{2}" />
+
+Pada kedua ujung interval, volume kotak menyusut menjadi nol, sehingga volume terbesar pasti terletak di titik stasioner bagian dalam saat <InlineMath math="V'(x) = 0" />. Ubah ukuran potongan sudut pada tiga lembar karton untuk mengamati kotak lipat dan kurva volumenya mencapai puncak bersamaan.
+
+<OptimizationBox3DLab
+  title={<>Melipat kotak tanpa tutup untuk volume maksimum</>}
+  description={<>Potong persegi bersisi <InlineMath math="x" /> dari tiap sudut tiga lembar karton untuk melihat bagaimana volume kotak <InlineMath math="V(x)" /> mencapai puncak tepat saat <InlineMath math="V'(x) = 0" />.</>}
+  sheets={["squareSheet", "wideSheet", "tallSheet"]}
+  cutout={{ min: 0.2, max: 2.6, value: 1.0 }}
+  labels={{
+    boxVolume: <>Volume kotak</>,
+    cutout: "Ukuran potongan sudut",
+    derivativeNote: <>Turunan volume</>,
+    parts: {
+      basePlate: "Pelat alas",
+      sideFlaps: "Sisi lipatan",
+      cornerCutouts: "Potongan sudut",
+      volumeCurve: "Kurva volume",
+      optimalMarker: "Puncak optimal",
+    },
+    sheet: "Lembar karton",
+    sheets: {
+      squareSheet: {
+        name: "Persegi",
+        dimensions: <InlineMath math="6 \times 6" />,
+      },
+      wideSheet: {
+        name: "Persegi panjang lebar",
+        dimensions: <InlineMath math="8 \times 6" />,
+      },
+      tallSheet: {
+        name: "Lembar memanjang",
+        dimensions: <InlineMath math="10 \times 6" />,
+      },
+    },
+    view: "Kotak terbuka tiga dimensi yang dilipat bersama kurva volume dan penanda puncak optimal",
+  }}
+/>
+
+Ketika potongan sudut terlalu kecil, kotak tetap dangkal. Ketika potongan terlalu besar, alasnya menyempit. Tepat di penanda puncak optimal, <InlineMath math="V'(x)" /> berpindah dari positif ke negatif dan menyeimbangkan tinggi dengan luas alas untuk volume maksimum.
+
+## Jebakan Menentukan Ekstrem
 
 Kebanyakan jawaban keliru berasal dari **pemeriksaan yang terlewat**, bukan dari turunannya.
 
@@ -255,33 +318,38 @@ Kebanyakan jawaban keliru berasal dari **pemeriksaan yang terlewat**, bukan dari
 | Menganggap <InlineMath math="f''(c)=0" /> pasti titik belok | <InlineMath math="x^4" /> punya minimum di sana | Kembali ke uji turunan pertama |
 | Lupa titik ujung pada interval tertutup | Nilai terbesar bisa berada di titik ujung | Bandingkan titik stasioner dan titik ujung |
 
-## Latihan
+## Soal Klasifikasi Ekstrem
 
 Untuk mengklasifikasikan titik stasioner, pakai **uji turunan pertama atau kedua**. Garis singgung mendatar saja tidak menunjukkan apakah fungsi mencapai maksimum atau minimum.
 
-1. Tentukan titik stasioner <InlineMath math="y = x^2 + 2x - 3" /> beserta jenisnya.
-2. Tentukan dan klasifikasikan titik stasioner <InlineMath math="f(x) = 2x^3 - 3x^2 - 12x + 1" />.
-3. Tentukan nilai terbesar dan terkecil <InlineMath math="f(x) = x^2 - 6x + 5" /> pada <InlineMath math="[0, 4]" />.
+1. Tentukan titik stasioner parabola <InlineMath math="x^2 + 2x - 3" /> beserta jenisnya.
+2. Tentukan dan klasifikasikan titik stasioner fungsi kubik berikut:
 
-### Pembahasan
+   <BlockMath math="f(x) = 2x^3 - 3x^2 - 12x + 1" />
 
-1. Turunannya <InlineMath math="f'(x) = 2x + 2" />, yang bernilai nol di <InlineMath math="x = -1" />. Substitusikan ke fungsi asal:
+3. Tentukan nilai terbesar dan terkecil <InlineMath math="x^2 - 6x + 5" /> pada <InlineMath math="[0, 4]" />.
 
-    <BlockMath math="y = (-1)^2 + 2(-1) - 3 = -4" />
+**Soal 1**. Turunannya <InlineMath math="f'(x) = 2x + 2" />, yang bernilai nol di <InlineMath math="x = -1" />. Substitusikan ke fungsi asal:
 
-    Titik stasionernya <InlineMath math="(-1, -4)" />, dan <InlineMath math="f''(x)=2 > 0" /> menjadikannya **minimum**. Periksa: <InlineMath math="y=(x+1)^2-4" />, jadi <InlineMath math="y" /> tidak pernah kurang dari <InlineMath math="-4" />.
+<BlockMath math="y = (-1)^2 + 2(-1) - 3 = -4" />
 
-2. Turunannya <InlineMath math="f'(x) = 6x^2 - 6x - 12 = 6(x-2)(x+1)" />, jadi titik stasionernya <InlineMath math="x=2" /> dan <InlineMath math="x=-1" />. Dengan <InlineMath math="f''(x) = 12x - 6" />:
+Titik stasionernya <InlineMath math="(-1, -4)" />, dan karena <InlineMath math="f''(x) = 2" /> positif, titik ini adalah **minimum**. Melengkapkan kuadrat menghasilkan <InlineMath math="(x + 1)^2 - 4" />, yang memastikan nilainya tidak pernah kurang dari <InlineMath math="-4" />.
 
-    <MathContainer>
-        <BlockMath math="f''(-1) = -18 < 0, \qquad f(-1) = -2 - 3 + 12 + 1 = 8" />
-        <BlockMath math="f''(2) = 18 > 0, \qquad f(2) = 16 - 12 - 24 + 1 = -19" />
-    </MathContainer>
+**Soal 2**. Turunkan lalu faktorkan turunan pertamanya:
 
-    Maksimum lokalnya <InlineMath math="8" /> di <InlineMath math="x=-1" />, dan minimum lokalnya <InlineMath math="-19" /> di <InlineMath math="x=2" />. Periksa: <InlineMath math="f(0)=1" /> berada di antara keduanya, karena <InlineMath math="f" /> turun dari <InlineMath math="x=-1" /> sampai <InlineMath math="x=2" />.
+<BlockMath math="f'(x) = 6x^2 - 6x - 12 = 6(x - 2)(x + 1)" />
 
-3. Turunan <InlineMath math="f'(x) = 2x - 6" /> bernilai nol di <InlineMath math="x=3" />, di dalam <InlineMath math="[0,4]" />. Bandingkan semua calonnya:
+Titik stasionernya <InlineMath math="x = 2" /> dan <InlineMath math="x = -1" />. Dengan <InlineMath math="f''(x) = 12x - 6" />:
 
-    <BlockMath math="f(0) = 5, \qquad f(3) = -4, \qquad f(4) = -3" />
+<MathContainer>
+    <BlockMath math="f''(-1) = -18 < 0, \qquad f(-1) = -2 - 3 + 12 + 1 = 8" />
+    <BlockMath math="f''(2) = 18 > 0, \qquad f(2) = 16 - 12 - 24 + 1 = -19" />
+</MathContainer>
 
-    Nilai terbesarnya <InlineMath math="5" /> di <InlineMath math="x=0" />, dan nilai terkecilnya <InlineMath math="-4" /> di <InlineMath math="x=3" />. Periksa: <InlineMath math="f(x)=(x-3)^2-4" />, yang titik puncaknya <InlineMath math="(3,-4)" />.
+Maksimum lokalnya <InlineMath math="8" /> di <InlineMath math="x = -1" />, dan minimum lokalnya <InlineMath math="-19" /> di <InlineMath math="x = 2" />. Periksa: <InlineMath math="f(0) = 1" /> berada di antara keduanya, karena <InlineMath math="f" /> turun dari <InlineMath math="x = -1" /> sampai <InlineMath math="x = 2" />.
+
+**Soal 3**. Turunan <InlineMath math="f'(x) = 2x - 6" /> bernilai nol di <InlineMath math="x = 3" />, di dalam <InlineMath math="[0, 4]" />. Bandingkan semua calonnya:
+
+<BlockMath math="f(0) = 5, \qquad f(3) = -4, \qquad f(4) = -3" />
+
+Nilai terbesarnya <InlineMath math="5" /> di <InlineMath math="x = 0" />, dan nilai terkecilnya <InlineMath math="-4" /> di <InlineMath math="x = 3" />. Menulis kuadratnya sebagai <InlineMath math="(x - 3)^2 - 4" /> memastikan titik puncaknya berada di <InlineMath math="(3, -4)" />.

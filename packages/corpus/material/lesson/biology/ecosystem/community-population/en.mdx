@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Ecosystem Notes",
   description:
-    "Form 5 Biology Chapter 9: communities, ecological pyramids, interactions, nutrient cycles, mangroves, and population estimates with quadrats and recapture.",
+    "Trace ecological pyramids, species interactions, nutrient cycles, succession, and population estimates with quadrats and recapture.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Ecosystem",
@@ -10,6 +10,8 @@ export const metadata = {
 ## An Ecosystem Is a Community with Its Physical Surroundings
 
 An **ecosystem** is a community of organisms interacting with each other and with the **abiotic components** around them. Organisms of one species form a **population**, all the populations in one area form a **community**, and the community together with its light, water, soil and air forms an ecosystem.
+
+> Energy flows in one direction through trophic levels and dissipates as heat at every step, whereas carbon and nitrogen cycle continuously through organisms and their physical environment.
 
 | Term | Meaning | Example in a mangrove swamp |
 | :--- | :--- | :--- |
@@ -20,9 +22,9 @@ An **ecosystem** is a community of organisms interacting with each other and wit
 | Niche | An organism's role: its food, activities and interactions | Crabs eat fallen leaves and break down organic waste |
 | Ecosystem | A community together with its abiotic components | The whole mangrove swamp with its salt water and mud |
 
-The basics of energy flow and the roles of producers, consumers and decomposers are covered in [living organisms in an ecosystem](/en/subjects/biology/biodiversity/living-organisms). Here we go further: you calculate the efficiency of energy transfer, build ecological pyramids, run a predator and prey model, pile up mud in a mangrove swamp, and estimate population size with quadrats and the recapture method.
+The basics of energy flow and the roles of producers, consumers and decomposers are covered in [living organisms in an ecosystem](/en/subjects/biology/biodiversity/living-organisms). Here we go further: you calculate the efficiency of energy transfer, test disturbances in a trophic food web, follow ecological succession, and estimate population size with quadrats and the recapture method.
 
-## Biotic and Abiotic Components Decide Who Lives There
+### Biotic and Abiotic Components Decide Who Lives There
 
 Biotic components are grouped by how they get food. **Autotrophs** make their own food. Photoautotrophs such as plants use light, while chemoautotrophs such as nitrifying bacteria use energy from chemical reactions. **Heterotrophs** get food from other organisms in three ways: holozoic, which means swallowing and digesting food as animals do, saprophytic, which means digesting dead organic matter outside the body, and parasitic, which means absorbing food from a living host.
 
@@ -35,13 +37,101 @@ Abiotic components set the limits for every organism:
 - **Topography**: altitude, gradient and the direction a slope faces change the temperature, light and water that reach an area.
 - **Microclimate**: small local conditions under a rock or a canopy, such as a shady, damp spot, let small organisms live there even when the surrounding area is dry.
 
+### Six Kinds of Interaction between Organisms
+
+Organisms in a community interact in ways that affect each side differently. The symbol <InlineMath math="+" /> means the organism benefits, <InlineMath math="-" /> means it's harmed and <InlineMath math="0" /> means it's unaffected.
+
+| Interaction | Effect | Example |
+| :--- | :--- | :--- |
+| Mutualism | <InlineMath math="+/+" /> | Rhizobium bacteria in legume root nodules fix nitrogen, and the plant supplies sugar |
+| Commensalism | <InlineMath math="+/0" /> | A bird's nest fern grows on a tree branch to reach light without harming the tree |
+| Parasitism | <InlineMath math="+/-" /> | Dodder absorbs water and food from its host plant |
+| Saprophytism | Waste is broken down | Fungi and bacteria digest fallen leaves and absorb the products |
+| Competition | <InlineMath math="-/-" /> | Rice seedlings compete with each other and with weeds for light and nutrients |
+| Predation | <InlineMath math="+/-" /> | Barn owls hunt rats in paddy fields and oil palm plantations |
+
+**Intraspecific competition** happens between organisms of the same species, while **interspecific competition** happens between different species. Both happen when resources such as food, light, water or space are limited.
+
+Predation keeps prey and predator populations oscillating in turn. When rats are plentiful in a paddy field, more barn owl chicks survive. The larger owl population then reduces rat numbers until food runs low for the owls too. Oil palm planters in Malaysia install barn owl nest boxes as **biological control** to curb rat damage without poison.
+
 ## Food Chains and Ecological Pyramids
 
 Each feeding step puts an organism on a **trophic level**. Producers are on the first level, primary consumers on the second, and so on. A **food chain** follows one path, for example mangrove leaves to crabs to fish to herons. A **food web** joins many chains that cross, so one organism can sit on more than one trophic level.
 
-Ecology uses three pyramids. A **pyramid of numbers** counts the organisms at each level, a **pyramid of biomass** weighs the dry mass of the organisms, and a **pyramid of energy** measures the energy flowing through each level over a period of time. The first two can be inverted. One large tree supports thousands of caterpillars, so its pyramid of numbers is inverted. In the English Channel, <InlineMath math="4\text{ g m}^{-2}" /> of phytoplankton supports <InlineMath math="21\text{ g m}^{-2}" /> of zooplankton, because the phytoplankton are eaten quickly but reproduce even faster. **A pyramid of energy is always upright**, because energy is lost as heat at every level.
+Ecology uses three pyramids. A **pyramid of numbers** counts the organisms at each level, a **pyramid of biomass** weighs their dry mass, and a **pyramid of energy** measures the energy flowing through each level over time.
 
-This model builds both pyramids from real data. The top area of each layer is proportional to its value. Rotate the model and compare which way the two pyramids point.
+The first two can be inverted. One large tree supports thousands of caterpillars, inverting the pyramid of numbers. In the English Channel, <InlineMath math="4\text{ g m}^{-2}" /> of phytoplankton supports <InlineMath math="21\text{ g m}^{-2}" /> of zooplankton because phytoplankton reproduce rapidly. **A pyramid of energy is always upright**, because energy is lost as heat at every level.
+
+Explore how roughly <InlineMath math="10\%" /> of producer energy passes to each higher trophic level and what happens to the food web when predators vanish, algae bloom, or fish are overharvested.
+
+<FoodWebTrophicLab
+  title={<>Trophic Energy Pyramid and Food Web Disturbances</>}
+  description={
+    <>
+      Adjust initial producer energy input and switch ecological scenarios to
+      compare energy transfer across trophic levels and heat loss at every step.
+    </>
+  }
+  scenarios={["balanced", "removePredator", "algalBloom", "overharvest"]}
+  energyInput={{ min: 1000, max: 20000, value: 10000 }}
+  labels={{
+    scenario: "Ecosystem scenario",
+    energyInput: "Producer energy input",
+    view: "Trophic energy pyramid linking producers, consumers, decomposers, and heat loss",
+    energyCascade: <>Energy cascade</>,
+    outcome: <>Ecosystem response</>,
+    parts: {
+      producer: "Producers",
+      primaryConsumer: "Primary consumers",
+      secondaryConsumer: "Secondary consumers",
+      tertiaryConsumer: "Tertiary consumers",
+      decomposer: "Decomposers",
+      heatLoss: "Heat loss",
+    },
+    scenarios: {
+      balanced: {
+        name: "Balanced web",
+        effect: (
+          <>
+            About <InlineMath math="10\%" /> of energy advances at each transfer,
+            keeping all four trophic tiers stable.
+          </>
+        ),
+      },
+      removePredator: {
+        name: "Predator removed",
+        effect: (
+          <>
+            Without apex predators, primary consumers surge and overgraze the
+            producer base.
+          </>
+        ),
+      },
+      algalBloom: {
+        name: "Algal bloom",
+        effect: (
+          <>
+            Excess nutrient runoff spikes producer biomass while oxygen loss
+            shrinks upper consumer tiers.
+          </>
+        ),
+      },
+      overharvest: {
+        name: "Overharvesting",
+        effect: (
+          <>
+            Heavy extraction depletes producers and starves secondary and
+            tertiary consumers sharply.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Raising producer energy input widens every tier proportionally, yet tertiary consumers still receive only a tiny fraction of the starting energy. Disturbances like removing apex predators cascade downward and destabilize the producer base.
+
+This next model compares two classic field pyramids built from real data. The top area of each layer is proportional to its value. Rotate the model and compare which way the two pyramids point.
 
 <MathVisual
   title={<>Silver Springs Energy Pyramid and English Channel Biomass Pyramid</>}
@@ -113,44 +203,11 @@ Now work out how much energy moves up. **Energy transfer efficiency** is the ene
 <BlockMath math="\frac{21}{383} \times 100\% = 5.5\%" />
 </MathContainer>
 
-The efficiencies sit between <InlineMath math="5\%" /> and <InlineMath math="17\%" />, so roughly a tenth of the energy reaches the next level. Check: <InlineMath math="20{,}810 \times 0.162 \times 0.114 \times 0.055 \approx 21" />, the energy of the tertiary consumers. That's why food chains rarely go beyond four or five levels.
+The efficiencies sit between <InlineMath math="5\%" /> and <InlineMath math="17\%" />, so roughly a tenth of the energy reaches the next level. Multiplying the three efficiencies checks the tertiary consumer energy directly:
 
-## Six Kinds of Interaction between Organisms
+<BlockMath math="20{,}810 \times 0.162 \times 0.114 \times 0.055 \approx 21" />
 
-Organisms in a community interact in ways that affect each side differently. The symbol <InlineMath math="+" /> means the organism benefits, <InlineMath math="-" /> means it's harmed and <InlineMath math="0" /> means it's unaffected.
-
-| Interaction | Effect | Example |
-| :--- | :--- | :--- |
-| Mutualism | <InlineMath math="+/+" /> | Rhizobium bacteria in legume root nodules fix nitrogen, and the plant supplies sugar |
-| Commensalism | <InlineMath math="+/0" /> | A bird's nest fern grows on a tree branch to reach light without harming the tree |
-| Parasitism | <InlineMath math="+/-" /> | Dodder absorbs water and food from its host plant |
-| Saprophytism | Waste is broken down | Fungi and bacteria digest fallen leaves and absorb the products |
-| Competition | <InlineMath math="-/-" /> | Rice seedlings compete with each other and with weeds for light and nutrients |
-| Predation | <InlineMath math="+/-" /> | Barn owls hunt rats in paddy fields and oil palm plantations |
-
-**Intraspecific competition** happens between organisms of the same species, while **interspecific competition** happens between different species. Both happen when resources such as food, light, water or space are limited.
-
-Predation controls both populations. In this paddy field model, the rats have no food limit, so only the barn owls keep the rats in check. Set the number of owls at the start and play the model.
-
-<PredatorPreyLab
-  title={<>Barn Owls and Rats Rise and Fall in Turn</>}
-  description={
-    <>
-      A Lotka-Volterra predator and prey model of rats and barn owls over{" "}
-      <InlineMath math="20" /> years, with no food limit for the rats.
-    </>
-  }
-  labels={{
-    start: "Barn owls at the start",
-    prey: <>Rats</>,
-    predators: <>Barn owls</>,
-    peak: <>Most rats</>,
-    year: <>Year</>,
-    viewLabel: "Paddy field with rats and barn owls",
-  }}
-/>
-
-The peak in barn owls always **comes after the peak in rats**. When rats are plentiful, more owl chicks survive. Then the many owls eat rats until the rats run low, and the owls in turn run short of food. Oil palm planters in Malaysia put up barn owl nest boxes as **biological control** to cut rat numbers without poison.
+That rapid drop explains why food chains rarely go beyond four or five levels.
 
 ## Nutrients Cycle through the Ecosystem
 
@@ -175,11 +232,95 @@ In the **nitrogen cycle**, air holds about <InlineMath math="78\%" /> nitrogen, 
     NO3 -->|"Denitrification"| N2`}
 />
 
+Every arrow in the diagram depends on microbial enzymes. Without nitrifying bacteria, ammonia would never convert into the nitrates that plant roots can absorb, and without decomposers, nitrogen locked in dead tissue would leave the cycle.
+
 ## Colonisation and Succession in a Mangrove Swamp
 
 A mangrove swamp is an ecosystem on a muddy shore that seawater floods at high tide. Its abiotic components are salt water, soft mud that lacks oxygen, and the tides. Its biotic components include mangrove trees, crabs, prawns, mudskippers, snails and monkeys. Mangrove trees have pneumatophores, prop roots and concentrated root cell sap, as described in [plant adaptations in a mangrove swamp](/en/subjects/biology/plant-adaptations/different-habitats).
 
 **Colonisation** is the arrival of pioneer species in a new area. **Succession** is the gradual replacement of one community by another. At the seaward edge, **the pioneer species Avicennia and Sonneratia** grow first. Their roots slow the water, so mud settles and the ground rises. Once the ground is higher and flooded less often, Rhizophora replaces the pioneers. Its prop roots trap even more mud, then Bruguiera takes over, and finally land plants grow where seawater no longer floods.
+
+Step through primary and secondary succession on land to see how pioneer species weather bedrock, deepen topsoil, and raise biodiversity all the way to a climax forest.
+
+<EcologicalSuccessionLab
+  title={<>Primary and Secondary Ecological Succession</>}
+  description={
+    <>
+      Compare primary succession starting from bare rock with secondary
+      succession starting with existing topsoil across five stages to climax
+      forest.
+    </>
+  }
+  pathways={["primary", "secondary"]}
+  stages={["bareRock", "lichenMoss", "grassShrub", "youngWoodland", "climaxForest"]}
+  labels={{
+    pathway: "Succession pathway",
+    stage: "Succession stage",
+    view: "Landscape diorama progressing from pioneer colonization through shrubs to climax forest",
+    soilDepth: <>Topsoil depth</>,
+    biodiversity: <>Biodiversity index</>,
+    parts: {
+      bedrock: "Bedrock layer",
+      topsoil: "Topsoil horizon",
+      pioneerPlant: "Pioneer plants",
+      shrubLayer: "Shrub layer",
+      canopyTree: "Canopy trees",
+    },
+    pathways: {
+      primary: "Primary succession",
+      secondary: "Secondary succession",
+    },
+    stages: {
+      bareRock: {
+        name: "Bare ground",
+        summary: (
+          <>
+            Exposed substrate holds almost no organic matter in primary
+            succession, whereas secondary sites retain a soil layer.
+          </>
+        ),
+      },
+      lichenMoss: {
+        name: "Lichens and moss",
+        summary: (
+          <>
+            Hardy pioneers weather rock, trap dust, and leave thin organic
+            humus behind when they die.
+          </>
+        ),
+      },
+      grassShrub: {
+        name: "Grass and shrubs",
+        summary: (
+          <>
+            Deeper soil supports grasses and woody shrubs that shade the ground
+            and stabilize moisture.
+          </>
+        ),
+      },
+      youngWoodland: {
+        name: "Young woodland",
+        summary: (
+          <>
+            Fast-growing trees build a partial canopy, creating new microhabitats
+            for birds and insects.
+          </>
+        ),
+      },
+      climaxForest: {
+        name: "Climax forest",
+        summary: (
+          <>
+            A layered forest canopy reaches maximum topsoil thickness and high,
+            self-sustaining biodiversity.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Secondary succession reaches every stage with thicker topsoil and faster recovery because soil microbes and seeds already sit in the ground, whereas primary succession must build soil slowly from bare rock.
 
 This model assumes the mud surface drops <InlineMath math="0.03\text{ m}" /> for every metre towards the sea, starting <InlineMath math="1.5\text{ m}" /> above mean sea level at the landward edge. The slider <InlineMath math="s" /> adds a layer of settled mud. Move the slider and watch the seaward edge shift.
 
@@ -278,6 +419,72 @@ Counting every organism is rarely possible, so ecologists take samples. **The qu
 <BlockMath math="\text{Percentage cover} = \frac{\text{total area covered}}{\text{number of quadrats} \times \text{area of one quadrat}} \times 100\%" />
 </MathContainer>
 
+Lay out a field plot to compare random quadrat throws against a belt transect across different ground species, and see how increasing quadrat count stabilizes density and percentage cover estimates.
+
+<QuadratSamplingLab
+  title={<>Field Quadrat and Belt Transect Sampling</>}
+  description={
+    <>
+      Choose a ground plant, switch between random quadrats and a belt
+      transect, and vary the number of quadrats to compare estimated density and
+      percentage ground cover.
+    </>
+  }
+  methods={["random", "beltTransect"]}
+  organisms={["clover", "fern", "moss"]}
+  quadrats={{ min: 2, max: 20, value: 10 }}
+  labels={{
+    method: "Sampling method",
+    organism: "Target organism",
+    quadrats: "Number of quadrats",
+    view: "Field grid with quadrat frames, transect line, and sampled plant patches",
+    density: <>Estimated density</>,
+    coverage: <>Ground cover</>,
+    methods: {
+      random: "Random quadrats",
+      beltTransect: "Belt transect",
+    },
+    parts: {
+      quadratFrame: "Quadrat frame",
+      transectLine: "Transect tape",
+      gridPlot: "Field grid plot",
+      canopy: "Shade canopy",
+      markerFlag: "Plot marker flag",
+    },
+    organisms: {
+      clover: {
+        name: "Clover",
+        habit: (
+          <>
+            Low creeping clusters across open meadow patches, easy to count by
+            individual shoots.
+          </>
+        ),
+      },
+      fern: {
+        name: "Fern",
+        habit: (
+          <>
+            Larger shade-loving fronds spaced unevenly under the canopy along
+            moisture gradients.
+          </>
+        ),
+      },
+      moss: {
+        name: "Moss",
+        habit: (
+          <>
+            Dense continuous mats on damp soil best measured by percentage
+            ground cover.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Increasing the number of quadrats narrows sampling fluctuations so the estimated density and cover settle closer to the true habitat average. Random throws suit uniform meadows, while a belt transect captures gradual changes from sunny ground into shade.
+
 ### Example of Quadrat Sampling
 
 Ten <InlineMath math="1\text{ m}^2" /> quadrats are placed at random on a field. The numbers of touch-me-not plants in them are <InlineMath math="3, 0, 5, 2, 0, 4, 6, 0, 1" /> and <InlineMath math="3" />. Grass covers a total of <InlineMath math="3.2\text{ m}^2" /> across the ten quadrats. **Touch-me-not is present** in <InlineMath math="7" /> quadrats, and its total is <InlineMath math="24" /> individuals:
@@ -288,7 +495,14 @@ Ten <InlineMath math="1\text{ m}^2" /> quadrats are placed at random on a field.
 <BlockMath math="\text{Grass cover} = \frac{3.2\text{ m}^2}{10 \times 1\text{ m}^2} \times 100\% = 32\%" />
 </MathContainer>
 
-Check the total: <InlineMath math="3 + 5 + 2 + 4 + 6 + 1 + 3 = 24" />, and three quadrats hold zero, so <InlineMath math="10 - 3 = 7" /> quadrats have touch-me-not.
+Check the total count and the number of occupied quadrats directly:
+
+<MathContainer>
+<BlockMath math="3 + 5 + 2 + 4 + 6 + 1 + 3 = 24" />
+<BlockMath math="10 - 3 = 7" />
+</MathContainer>
+
+Three quadrats hold zero plants, so <InlineMath math="7" /> quadrats contain touch-me-not while all <InlineMath math="10" /> remain in the denominator for density.
 
 ### Example of Recapturing Snails
 
@@ -334,7 +548,9 @@ This model fixes <InlineMath math="40" /> marked snails and <InlineMath math="50
 
 If marked snails learn to avoid traps, <InlineMath math="m" /> gets small and the estimate **comes out too large**. At <InlineMath math="m = 4" />, the estimate jumps to <InlineMath math="500" />.
 
-## Common Mistakes about Ecosystems
+## Ecosystem Checks and Traps
+
+Avoid these four frequent traps before working through the practice questions below.
 
 | Mistake | Why it's wrong | How to check |
 | :--- | :--- | :--- |
@@ -344,8 +560,6 @@ If marked snails learn to avoid traps, <InlineMath math="m" /> gets small and th
 | In recapture, <InlineMath math="N = \dfrac{n_1 \times m}{n_2}" />. | The marked proportion in the second sample must equal the marked proportion in the population. | Check that <InlineMath math="N" /> is bigger than both catches. |
 
 The third mistake shrinks the denominator, so the density comes out too large. **Empty quadrats are still part of the sample**.
-
-## Practice on Ecosystems
 
 These questions start with naming an interaction and end with a population estimate. **Write the formula before you substitute values**.
 
@@ -357,15 +571,14 @@ These questions start with naming an interaction and end with a population estim
 
 4. Researchers mark <InlineMath math="60" /> fish and release them into a pond. Later they catch <InlineMath math="45" /> fish and <InlineMath math="9" /> of them are marked. Estimate the number of fish, then explain what happens if some of the marks fall off.
 
-### Solutions
-
 **Solution 1**: This interaction is **mutualism**. Rhizobium fixes nitrogen from the air into nitrogen compounds that the plant uses to build protein. The plant supplies sugar and shelter to the bacteria. Both sides benefit, <InlineMath math="+/+" />.
 
 **Solution 2**: The pyramid of numbers is **narrow at the base and wide in the middle**: one tree at the base, <InlineMath math="2{,}000" /> caterpillars in the middle and <InlineMath math="20" /> birds at the top. The pyramid of energy stays upright, because one durian tree holds far more energy than all the caterpillars, and energy is lost as heat at every level.
 
-**Solution 3**: Goosegrass is present in <InlineMath math="6" /> of the <InlineMath math="8" /> quadrats, and its total is <InlineMath math="2 + 4 + 3 + 5 + 1 + 1 = 16" /> individuals:
+**Solution 3**: Goosegrass is present in <InlineMath math="6" /> of the <InlineMath math="8" /> quadrats, and adding the counts gives <InlineMath math="16" /> individuals:
 
 <MathContainer>
+<BlockMath math="2 + 4 + 3 + 5 + 1 + 1 = 16" />
 <BlockMath math="\text{Frequency} = \frac{6}{8} \times 100\% = 75\%" />
 <BlockMath math="\text{Density} = \frac{16}{8 \times 0.5\text{ m}^2} = 4\text{ individuals m}^{-2}" />
 </MathContainer>

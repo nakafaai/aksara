@@ -1,25 +1,28 @@
-
-
 export const metadata = {
   title: "Dreidimensionaler Vektor",
-    description: "Stelle dreidimensionale Vektoren dar, berechne ihren Betrag und führe Addition, Skalarprodukt sowie Kreuzprodukt aus.",
+  description:
+    "Stelle dreidimensionale Vektoren dar, berechne ihren Betrag und nutze Addition, Skalarprodukt, Kreuzprodukt sowie Spatprodukt.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-27",
   subject: "Vektoren und ihre Operationen",
 };
 
-## Vektoren entlang dreier Koordinatenachsen beschreiben
+## Raum mit drei Achsen
 
-Ein dreidimensionaler Vektor wird durch <Highlight>drei Koordinatenkomponenten</Highlight> beschrieben. Sie geben die Verschiebungen entlang der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse an. Ein Vektor ungleich null hat einen Betrag und eine Richtung. Der Nullvektor besitzt keine geometrische Richtung.
+Ein dreidimensionaler Vektor wird durch <Highlight>drei Koordinatenkomponenten</Highlight> beschrieben. Sie geben die Verschiebungen entlang der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse an. Ein Vektor ungleich null hat einen Betrag und eine Richtung, während der Nullvektor keine geometrische Richtung besitzt.
+
+> In einem rechtshändigen kartesischen Koordinatensystem stehen die Komponenten immer in der Reihenfolge <InlineMath math="x" />, <InlineMath math="y" /> und <InlineMath math="z" />, unabhängig davon, wie das Bild auf dem Bildschirm gedreht ist.
+
+Verfolge den Pfeil vom Ursprung zum Punkt <InlineMath math="(3,4,2)" /> im dreidimensionalen Koordinatensystem unten.
 
 <MathVisual
   title={<>Vektor im dreidimensionalen Raum</>}
   description={
     <>
-      Darstellung eines Vektors im Raum mit den Komponenten{" "}
-      <InlineMath math="x" />, <InlineMath math="y" />, und{" "}
-      <InlineMath math="z" />.
+      Verschiebungspfeil vom Ursprung zu <InlineMath math="(3,4,2)" /> entlang
+      der <InlineMath math="x" />-, <InlineMath math="y" />- und{" "}
+      <InlineMath math="z" />-Achse.
     </>
   }
   labels={{
@@ -38,43 +41,43 @@ Ein dreidimensionaler Vektor wird durch <Highlight>drei Koordinatenkomponenten</
   }}
 />
 
-## Darstellung dreidimensionaler Vektoren
+Jede Koordinate beschreibt einen vorzeichenbehafteten Schritt parallel zu ihrer Achse. Zusammen legen diese drei zueinander senkrechten Schritte Länge und Raumrichtung von <InlineMath math="\vec{v}" /> fest.
 
-Die <InlineMath math="z" />-Achse steht senkrecht auf der <InlineMath math="xy" />-Ebene. In diesem kartesischen System folgt die **Reihenfolge der Komponenten** stets der <InlineMath math="x" />-, dann der <InlineMath math="y" />- und schließlich der <InlineMath math="z" />-Achse.
+## Notation und Komponenten
 
-Die dritte Komponente von <InlineMath math="(3,4,2)" /> beträgt beispielsweise <InlineMath math="2" />. Sie muss auf dem Bildschirm nicht als senkrechte Höhe erscheinen.
+Die <InlineMath math="z" />-Achse steht senkrecht auf der <InlineMath math="xy" />-Ebene. Bei <InlineMath math="(3,4,2)" /> steht die dritte Komponente <InlineMath math="2" /> für den Schritt entlang der <InlineMath math="z" />-Achse, auch wenn die Kamera schräg blickt.
 
-### Notation dreidimensionaler Vektoren
+Dreidimensionale Vektoren erscheinen in drei Standardschreibweisen:
 
-Dreidimensionale Vektoren lassen sich auf verschiedene Arten schreiben:
-
-1. Buchstabennotation mit einem Pfeil darüber: <InlineMath math="\vec{a}" /> oder <InlineMath math="\overrightarrow{PQ}" />
+1. Pfeilnotation: <InlineMath math="\vec{a}" /> oder <InlineMath math="\overrightarrow{PQ}" />
 2. Komponentennotation: <InlineMath math="(a_x, a_y, a_z)" /> oder <InlineMath math="(a_1, a_2, a_3)" />
 3. Basisnotation: <InlineMath math="a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
 
-Für den Vektor im ersten Diagramm beschreiben diese drei Komponentenschreibweisen **dieselbe Verschiebung**:
+Für den Vektor im ersten Diagramm beschreiben diese Schreibweisen **dieselbe Verschiebung**:
 
 <BlockMath math="\vec v=(3,4,2)=\begin{pmatrix}3\\4\\2\end{pmatrix}=3\vec i+4\vec j+2\vec k" />
 
-### Komponenten dreidimensionaler Vektoren
-
-Ein Vektor im Raum besitzt **drei skalare Koordinatenkomponenten**. Multiplizieren wir jeden Skalar mit dem Einheitsvektor seiner Achse, erhalten wir die zugehörige Vektorprojektion:
+Multiplizierst du jede **skalare Komponente** mit dem Einheitsvektor ihrer Achse, erhältst du die zugehörige Vektorprojektion entlang dieser Achse:
 
 <BlockMath math="\vec{a} = (a_x, a_y, a_z) = a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
 
-Die Komponenten in dieser Form bedeuten:
+Jeder Baustein hat dabei eine klare geometrische Aufgabe:
 
-- <InlineMath math="a_x" /> ist die skalare Komponente entlang der <InlineMath math="x" />-Achse, <InlineMath math="a_x\vec{i}" /> die zugehörige Vektorprojektion
-- <InlineMath math="a_y" /> ist die skalare Komponente entlang der <InlineMath math="y" />-Achse, <InlineMath math="a_y\vec{j}" /> die zugehörige Vektorprojektion
-- <InlineMath math="a_z" /> ist die skalare Komponente entlang der <InlineMath math="z" />-Achse, <InlineMath math="a_z\vec{k}" /> die zugehörige Vektorprojektion
-- <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> sind die Einheitsvektoren auf der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse
+- <InlineMath math="a_x" /> ist die skalare Komponente entlang der <InlineMath math="x" />-Achse, <InlineMath math="a_x\vec{i}" /> ihre Vektorprojektion
+- <InlineMath math="a_y" /> ist die skalare Komponente entlang der <InlineMath math="y" />-Achse, <InlineMath math="a_y\vec{j}" /> ihre Vektorprojektion
+- <InlineMath math="a_z" /> ist die skalare Komponente entlang der <InlineMath math="z" />-Achse, <InlineMath math="a_z\vec{k}" /> ihre Vektorprojektion
+- <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> sind die Einheitsvektoren entlang der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse
+
+Vergleiche die drei Achsenprojektionen mit ihrem zusammengesetzten Raumvektor unten.
 
 <ContentBlock>
   <MathVisual
     title={<>Komponenten eines dreidimensionalen Vektors</>}
     description={
         <>
-          Dreidimensionaler Vektor mit Komponenten auf der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse.
+          Achsenprojektionen <InlineMath math="a_x" />, <InlineMath math="a_y" />{" "}
+          und <InlineMath math="a_z" />, die zusammen den Raumvektor{" "}
+          <InlineMath math="a" /> bilden.
         </>
       }
     labels={{
@@ -103,40 +106,42 @@ Die Komponenten in dieser Form bedeuten:
   />
 </ContentBlock>
 
-## Betrag dreidimensionaler Vektoren
+Der hervorgehobene Vektor <InlineMath math="a" /> zeigt zur gegenüberliegenden Ecke des Quaders, den <InlineMath math="a_x" />, <InlineMath math="a_y" /> und <InlineMath math="a_z" /> aufspannen. Ändert sich auch nur eine Komponente, kippt der Vektor aus seiner bisherigen Ebene heraus.
 
-Der Betrag oder die Länge eines dreidimensionalen Vektors <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> wird mit folgender Formel berechnet:
+## Betrag von Raumvektoren
+
+Der **Betrag** oder die Länge eines dreidimensionalen Vektors <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> überträgt den Satz des Pythagoras auf drei senkrechte Achsen:
 
 <BlockMath math="|\vec{a}| = \sqrt{a_x^2 + a_y^2 + a_z^2}" />
 
-**Beispiel**:
-
-Für <InlineMath math="\vec{a} = (3, 4, 5)" /> ergibt sich der Betrag von <InlineMath math="\vec{a}" /> zu:
+Für das Beispiel <InlineMath math="\vec{a} = (3, 4, 5)" /> quadrierst du jede Komponente vor dem Addieren:
 
 <BlockMath math="\begin{aligned} |\vec{a}| &amp;= \sqrt{3^2 + 4^2 + 5^2} \\ &amp;= \sqrt{9 + 16 + 25} \\ &amp;= \sqrt{50} \\ &amp;= 5\sqrt{2} \end{aligned}" />
 
-## Operationen auf dreidimensionalen Vektoren
+Da jedes Quadrat nicht negativ ist, besitzt ausschließlich der Nullvektor den Betrag <InlineMath math="0" />.
 
-Bei Addition und Subtraktion verbindest du **Komponenten derselben Achse**. Bei der skalaren Multiplikation multiplizierst du jede Komponente mit derselben Zahl. Achte auch auf die Art des Ergebnisses: Das Skalarprodukt ergibt eine Zahl, das Kreuzprodukt einen Vektor.
+## Addition und Skalierung
 
-### Addition und Subtraktion von Vektoren
+Bei Addition und Subtraktion verbindest du **Komponenten derselben Achse**. Bei der Skalarmultiplikation vervielfachst du jede Komponente mit demselben Faktor und streckst, stauchst oder drehst den Pfeil entlang seiner Geraden.
 
-Die Addition und Subtraktion dreidimensionaler Vektoren erfolgt durch Addition oder Subtraktion der **entsprechenden Komponenten**.
+### Raumvektoren addieren
 
-Für <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> und <InlineMath math="\vec{b} = (b_x, b_y, b_z)" /> gilt:
+Die Addition und Subtraktion dreidimensionaler Vektoren erfolgt über die **entsprechenden Komponenten**. Für <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> und <InlineMath math="\vec{b} = (b_x, b_y, b_z)" /> rechnest du Koordinate für Koordinate:
 
 <MathContainer>
   <BlockMath math="\vec{a} + \vec{b} = (a_x + b_x, a_y + b_y, a_z + b_z)" />
   <BlockMath math="\vec{a} - \vec{b} = (a_x - b_x, a_y - b_y, a_z - b_z)" />
 </MathContainer>
 
+Geometrisch setzt du den Fußpunkt von <InlineMath math="\vec{b}" /> an die Spitze von <InlineMath math="\vec{a}" />, um den Summenpfeil im Raum abzulesen.
+
 <ContentBlock>
   <MathVisual
     title={<>Vektoraddition in drei Dimensionen</>}
     description={
         <>
-          Die Addition der Vektoren <InlineMath math="a" /> und{" "}
-          <InlineMath math="b" /> ergibt den Vektor{" "}
+          Hintereinanderlegen von <InlineMath math="a" /> und{" "}
+          <InlineMath math="b" /> ergibt den resultierenden Verschiebungsvektor{" "}
           <InlineMath math="c = a + b" />.
         </>
       }
@@ -165,19 +170,24 @@ Für <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> und <InlineMath math="\vec{
   />
 </ContentBlock>
 
-### Skalare Multiplikation von Vektoren
+Der Summenpfeil <InlineMath math="c" /> schließt das Dreieck direkt vom Ursprung bis <InlineMath math="(5,4,3)" /> und stimmt mit der komponentenweisen Summe aus <InlineMath math="(2,3,1)" /> und <InlineMath math="(3,1,2)" /> überein.
+
+### Raumvektoren skalieren
 
 Die Multiplikation eines Skalars <InlineMath math="k" /> mit einem Vektor <InlineMath math="\vec{a}" /> vervielfacht dessen Betrag mit <InlineMath math="|k|" />. Ist <InlineMath math="\vec{a}" /> nicht null, bleibt die Richtung für <InlineMath math="k > 0" /> gleich und **kehrt sich** für <InlineMath math="k < 0" /> um.
 
 <BlockMath math="k\vec{a} = (k \cdot a_x, k \cdot a_y, k \cdot a_z)" />
+
+Sieh dir an, wie das Verdoppeln jeder Koordinate den Pfeil exakt entlang desselben Strahls auf die doppelte Länge streckt.
 
 <ContentBlock>
   <MathVisual
     title={<>Skalare Multiplikation eines Vektors</>}
     description={
         <>
-          Darstellung der Skalarmultiplikation mit <InlineMath math="k" /> für den
-          Vektor <InlineMath math="a" />, wobei <InlineMath math="k = 2" /> gilt.
+          Verdoppeln von <InlineMath math="a" /> mit <InlineMath math="k = 2" />{" "}
+          erhält die Richtung und verlängert die Spitze auf{" "}
+          <InlineMath math="2a" />.
         </>
       }
     labels={{
@@ -200,41 +210,83 @@ Die Multiplikation eines Skalars <InlineMath math="k" /> mit einem Vektor <Inlin
   />
 </ContentBlock>
 
+Beide Pfeile liegen auf derselben Ursprungsgeraden, weil jede Koordinate mit demselben positiven Faktor <InlineMath math="2" /> multipliziert wird.
+
+## Produkte im Raum
+
+Zwei Vektorprodukte beantworten unterschiedliche geometrische Fragen. Das **Skalarprodukt** liefert eine Zahl für Ausrichtung und Projektion, das **Kreuzprodukt** liefert einen senkrechten Vektor, dessen Betrag einer Parallelogrammfläche entspricht.
+
 ### Skalarprodukt
 
-Das Skalarprodukt zweier Vektoren <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> ist **eine Zahl** und wird so berechnet:
+Das Skalarprodukt zweier Vektoren <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> ist **eine Zahl**, die sich aus den Komponenten oder dem Winkel <InlineMath math="\theta" /> zwischen zwei nicht verschwindenden Richtungen ergibt:
 
 <BlockMath math="\begin{aligned} \vec{a} \cdot \vec{b} &amp;= a_x b_x + a_y b_y + a_z b_z \\ &amp;= |\vec{a}||\vec{b}|\cos\theta \end{aligned}" />
 
-Für diese Winkelformel müssen beide Vektoren ungleich null sein. Das Symbol <InlineMath math="\theta" /> bezeichnet den Winkel zwischen ihren Richtungen.
+Aus dieser Definition folgen unmittelbar drei Rechenregeln:
 
-Das Skalarprodukt hat folgende Eigenschaften:
+<MathContainer>
+  <BlockMath math="\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}" />
+  <BlockMath math="\vec{a} \cdot \vec{b} = 0 \iff \vec{a} \perp \vec{b}" />
+  <BlockMath math="\vec{a} \cdot \vec{a} = |\vec{a}|^2" />
+</MathContainer>
 
-1. <InlineMath math="\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}" /> (kommutativ)
-2. <InlineMath math="\vec{a} \cdot \vec{b} = 0" /> genau dann, wenn <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> orthogonal sind. Sind beide nicht null, stehen ihre geometrischen Richtungen senkrecht aufeinander
-3. <InlineMath math="\vec{a} \cdot \vec{a} = |\vec{a}|^2" />
+Sind beide Vektoren ungleich null, zeigt ein Skalarprodukt von null genau einen rechten Winkel an. Verändere unten den Winkel zwischen <InlineMath math="\vec{u}" /> und <InlineMath math="\vec{v}" />, um den Vorzeichenwechsel der Projektion entlang <InlineMath math="\vec{v}" /> bei neunzig Grad zu beobachten.
+
+<DotProductProjection3DLab
+  title={<>Skalarprodukt und orthogonale Projektion</>}
+  description={
+    <>
+      Wähle spitzen, rechten oder stumpfen Winkel oder schiebe den Regler für{" "}
+      <InlineMath math="|\vec{u}| = 1{,}5" /> und{" "}
+      <InlineMath math="|\vec{v}| = 2{,}0" />, um{" "}
+      <InlineMath math="\vec{u} \cdot \vec{v}" /> und die orientierte
+      Projektionslänge zu vergleichen.
+    </>
+  }
+  angle={{ min: 0, max: 180, value: 40 }}
+  presets={["acute", "orthogonal", "obtuse"]}
+  labels={{
+    angle: "Winkel zwischen Vektoren",
+    preset: "Winkelbereich",
+    presets: {
+      acute: "Spitzer Winkel",
+      orthogonal: "Rechter Winkel",
+      obtuse: "Stumpfer Winkel",
+    },
+    view: "Orthogonale Projektion des ersten Vektors auf den Bezugsvektor bei spitzem, rechtem und stumpfem Winkel",
+    dotValue: <>Skalarprodukt <InlineMath math="\vec{u} \cdot \vec{v}" /></>,
+    projectionLength: <>Projektionslänge</>,
+    parts: {
+      vectorU: "Vektor u",
+      vectorV: "Vektor v",
+      projectionVector: "Projektion",
+      dropLine: "Lotstrecke",
+      angleArc: "Winkel",
+      coordinateAxes: "Koordinatenachsen",
+    },
+  }}
+/>
+
+Bei einem spitzen Winkel zeigt die Projektion in Richtung von <InlineMath math="\vec{v}" /> und das Skalarprodukt ist positiv. Bei <InlineMath math="90^\circ" /> schrumpft die Projektion auf den Ursprung und der Wert wird null. Darüber klappt sie in die Gegenrichtung und beide Werte werden negativ.
 
 ### Kreuzprodukt
 
-Das Kreuzprodukt zweier Vektoren <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> ist ein Vektor, dessen Skalarprodukt mit jedem Faktor null ist:
+Das Kreuzprodukt von <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> liefert einen Vektor, dessen Skalarprodukt mit beiden Faktoren null ist:
 
 <MathContainer>
   <BlockMath math="(\vec{a}\times\vec{b})\cdot\vec{a}=(\vec{a}\times\vec{b})\cdot\vec{b}=0" />
-
   <BlockMath math="\vec a\times\vec b=\begin{pmatrix}a_yb_z-a_zb_y\\a_zb_x-a_xb_z\\a_xb_y-a_yb_x\end{pmatrix}" />
 </MathContainer>
 
-Der Betrag des Kreuzprodukts beträgt:
+Für zwei Vektoren ungleich null mit Zwischenwinkel <InlineMath math="\theta" /> entspricht der Betrag dem Flächeninhalt des aufgespannten Parallelogramms:
 
 <BlockMath math="|\vec{a} \times \vec{b}| = |\vec{a}||\vec{b}|\sin\theta" />
 
-Für diese Winkelformel müssen beide Vektoren ungleich null sein. Das Symbol <InlineMath math="\theta" /> bezeichnet den Winkel zwischen ihren Richtungen.
-
-Wenn <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" /> gilt, steht seine Richtung senkrecht auf beiden Faktoren und folgt der Rechte-Hand-Regel von <InlineMath math="\vec{a}" /> zu <InlineMath math="\vec{b}" />. Ist einer der Faktoren der Nullvektor oder sind beide Faktoren parallel, ist das Kreuzprodukt <InlineMath math="\vec{0}" /> und besitzt deshalb keine geometrische Richtung.
+Ist das Kreuzprodukt ungleich null, steht es senkrecht auf beiden Faktoren und folgt der **Rechte-Hand-Regel** von <InlineMath math="\vec{a}" /> zu <InlineMath math="\vec{b}" />. Ist ein Faktor der Nullvektor oder sind beide parallel, entsteht der Nullvektor <InlineMath math="\vec{0}" />.
 
 <MathVisual
-  title={<>Kreuzprodukt von Vektoren</>}
-  description={<>Die Rechte-Hand-Richtung von <InlineMath math="\vec{a}\times\vec{b}" />, senkrecht zu beiden nicht parallelen Vektoren.</>}
+  title={<>Kreuzprodukt senkrechter Achsenvektoren</>}
+  description={<>Der Rechte-Hand-Pfeil <InlineMath math="\vec{a}\times\vec{b}" />, der senkrecht auf <InlineMath math="\vec{a}" /> und <InlineMath math="\vec{b}" /> steht.</>}
   labels={{
     "l1": <InlineMath math="a" />,
     "l2": <InlineMath math="b" />,
@@ -257,26 +309,125 @@ Wenn <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" /> gilt, steht seine Ric
   }}
 />
 
-
 Im Diagramm gilt <InlineMath math="\vec a=(2,0,0)" /> und <InlineMath math="\vec b=(0,2,0)" />. Die Vektoren stehen **senkrecht aufeinander**, deshalb ist ihr Skalarprodukt null:
 
 <BlockMath math="\vec a\cdot\vec b=2\cdot0+0\cdot2+0\cdot0=0" />
 
-Das Kreuzprodukt liefert dagegen einen Vektor. Setze die Komponenten beider Vektoren in die Formel ein:
+Das Kreuzprodukt ergibt dagegen einen Vektor. Einsetzen beider Komponententripel liefert:
 
 <BlockMath math="\begin{aligned}\vec a\times\vec b&amp;=(0\cdot0-0\cdot2,\;0\cdot0-2\cdot0,\;2\cdot2-0\cdot0)\\&amp;=(0,0,4)\end{aligned}" />
 
-Das Ergebnis zeigt wie der grüne Pfeil entlang der positiven <InlineMath math="z" />-Achse. Sein Betrag <InlineMath math="4" /> entspricht dem Flächeninhalt eines Rechtecks mit den Seitenlängen <InlineMath math="2" /> und <InlineMath math="2" />.
+Das Ergebnis zeigt wie der grüne Pfeil entlang der positiven <InlineMath math="z" />-Achse, und sein Betrag <InlineMath math="4" /> entspricht der Fläche des Quadrats mit den Seitenlängen <InlineMath math="2" /> und <InlineMath math="2" />. Kehre nun die Reihenfolge im Raum um und variiere den Winkel im Labor unten.
 
+<Vector3DCrossProductLab
+  title={<>Rechte-Hand-Regel und Antikommutativität</>}
+  description={
+    <>
+      Vergleiche die Vorwärtsfolge <InlineMath math="\vec{u} \times \vec{v}" />{" "}
+      und die umgekehrte Folge <InlineMath math="\vec{v} \times \vec{u}" /> für{" "}
+      <InlineMath math="|\vec{u}| = 2" /> und{" "}
+      <InlineMath math="|\vec{v}| = 1{,}5" /> bei veränderlichem Winkel.
+    </>
+  }
+  angle={{ min: 0, max: 180, value: 60 }}
+  orders={["uCrossV", "vCrossU"]}
+  labels={{
+    angle: "Winkel zwischen Vektoren",
+    order: "Reihenfolge",
+    orders: {
+      uCrossV: "Vorwärtsfolge",
+      vCrossU: "Umgekehrte Folge",
+    },
+    view: "Zwei Raumvektoren spannen ein Parallelogramm auf, mit senkrechtem Kreuzproduktpfeil nach der Rechte-Hand-Regel",
+    crossMagnitude: <>Parallelogrammfläche <InlineMath math="|\vec{u} \times \vec{v}|" /></>,
+    directionRule: <>Normalenrichtung</>,
+    parts: {
+      vectorU: "Vektor u",
+      vectorV: "Vektor v",
+      crossVector: "Kreuzproduktvektor",
+      parallelogram: "Aufgespanntes Parallelogramm",
+      curlArc: "Rechte-Hand-Bogen",
+      coordinateAxes: "Koordinatenachsen",
+    },
+  }}
+/>
 
-## Anwendungen dreidimensionaler Vektoren
+Das Vertauschen der Reihenfolge lässt die Parallelogrammfläche unverändert, kehrt den Normalenpfeil jedoch von <InlineMath math="+\hat{n}" /> nach <InlineMath math="-\hat{n}" /> um. Nähert sich der Winkel <InlineMath math="0^\circ" /> oder <InlineMath math="180^\circ" />, klappt das Parallelogramm zusammen und das Kreuzprodukt schrumpft auf null.
 
-In der Robotik gibt ein Verschiebungsvektor an, **wie weit sich ein Roboterarm entlang jeder Achse bewegen soll**. Die Spitze des Arms startet beispielsweise bei <InlineMath math="P(1,2,0)" /> und soll <InlineMath math="Q(3,4,2)" /> erreichen:
+## Spatprodukt und Anwendungen
+
+Die Verbindung aus Skalar- und Kreuzprodukt misst das **Volumen eines Spats**, den drei Vektoren <InlineMath math="\vec{u}" />, <InlineMath math="\vec{v}" /> und <InlineMath math="\vec{w}" /> aufspannen:
+
+<BlockMath math="V = |\vec{w} \cdot (\vec{u} \times \vec{v})|" />
+
+Dabei liefert <InlineMath math="|\vec{u} \times \vec{v}|" /> die Grundfläche und der Anteil von <InlineMath math="\vec{w}" /> entlang der Normalen die Höhe. Wechsle unten die Körperform und den Neigungswinkel, um zu prüfen, wann das Volumen verschwindet.
+
+<VectorParallelepipedLab
+  title={<>Volumen des Spatprodukts</>}
+  description={
+    <>
+      Vergleiche Quader, schiefes Prisma und komplanare Lage, während du{" "}
+      <InlineMath math="\vec{w}" /> anhebst und Höhe sowie{" "}
+      <InlineMath math="|\vec{w} \cdot (\vec{u} \times \vec{v})|" /> beobachtest.
+    </>
+  }
+  configurations={["orthogonalBox", "shearedPrism", "coplanarFlat"]}
+  elevation={{ min: 0, max: 90, value: 60 }}
+  labels={{
+    configuration: "Körperform",
+    configurations: {
+      orthogonalBox: {
+        name: "Senkrechter Quader",
+        summary: (
+          <>
+            Senkrechte Grundvektoren liefern die Grundfläche{" "}
+            <InlineMath math="3{,}0" /> und maximales Volumen, wenn{" "}
+            <InlineMath math="\vec{w}" /> senkrecht aufragt.
+          </>
+        ),
+      },
+      shearedPrism: {
+        name: "Schiefes Prisma",
+        summary: (
+          <>
+            Schräge Grundvektoren verkleinern die Grundfläche auf{" "}
+            <InlineMath math="2{,}4" /> und verringern die senkrechte Höhe.
+          </>
+        ),
+      },
+      coplanarFlat: {
+        name: "Komplanar flach",
+        summary: (
+          <>
+            Alle drei Vektoren liegen in einer Ebene, sodass Höhe und
+            Spatproduktvolumen auf <InlineMath math="0" /> fallen.
+          </>
+        ),
+      },
+    },
+    elevation: "Höhenwinkel",
+    view: "Halbtransparenter Spat aus drei Raumvektoren mit Parallelogramm-Grundfläche und senkrechter Höhenlinie",
+    tripleVolume: <>Spatvolumen</>,
+    coplanarityNote: <>Volumenstatus</>,
+    parts: {
+      vectorU: "Vektor u",
+      vectorV: "Vektor v",
+      vectorW: "Vektor w",
+      baseParallelogram: "Grundfläche",
+      parallelepipedMesh: "Spatkörper",
+      altitudeLine: "Höhe",
+    },
+  }}
+/>
+
+Liegen alle drei Vektoren in derselben Ebene, sinkt die Höhe auf null und das Spatprodukt verschwindet. Richtest du <InlineMath math="\vec{w}" /> gegen <InlineMath math="90^\circ" /> auf, erreicht die Höhe über dem Grundparallelogramm ihr Maximum und damit auch das eingeschlossene Volumen.
+
+In der Robotik gibt ein Verschiebungsvektor an, **wie weit sich ein Roboterarm entlang jeder Achse bewegen soll**. Startet die Spitze bei <InlineMath math="P(1,2,0)" /> und soll <InlineMath math="Q(3,4,2)" /> erreichen, rechnest du:
 
 <BlockMath math="\overrightarrow{PQ}=Q-P=(3-1,4-2,2-0)=(2,2,2)" />
 
-Die Verschiebung entlang jeder Achse beträgt <InlineMath math="2" /> Einheiten. Der Betrag der geradlinigen Verschiebung unterscheidet sich von der Summe der Komponenten:
+Die Verschiebung entlang jeder Achse beträgt <InlineMath math="2" /> Einheiten, während die geradlinige Strecke aus der Betragsformel folgt:
 
 <BlockMath math="|\overrightarrow{PQ}|=\sqrt{2^2+2^2+2^2}=\sqrt{12}=2\sqrt3" />
 
-Computergrafik und Navigation verwenden dieselben Rechnungen für Positionen und Verschiebungen. In der Physik können die Komponenten Kraft, Geschwindigkeit, Beschleunigung oder Impuls beschreiben. Im Maschinenbau helfen Vektoren bei der Untersuchung von Kräften in Tragwerken und von Fluidströmungen. Bedeutung und Einheit der Komponenten richten sich nach der dargestellten Größe.
+Computergrafik und Navigation nutzen dieselben Verschiebungs- und Kreuzproduktrechnungen, um Flächen und Kameras auszurichten. In Physik und Maschinenbau beschreiben Komponenten Kräfte, Geschwindigkeiten, Drehmomente und Tragwerkslasten mit der jeweils passenden Einheit.

@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Das Atmungssystem bringt Sauerstoff ins Blut
 
-Das **Atmungssystem** bringt Sauerstoff aus der Luft ins Blut und entfernt Kohlenstoffdioxid. Luft strömt in die Lunge hinein und heraus, weil **Änderungen des Brustraumvolumens den Luftdruck in der Lunge ändern**. In den Lungenbläschen diffundiert Sauerstoff ins Blut, und **Hämoglobin** trägt ihn zu den Körperzellen. In den Modellen hier presst du Luft zusammen wie der Brustraum, misst den Druck beim Ausatmen, liest die Hämoglobinkurve ab und vergleichst Atmungsflächen.
+Das **Atmungssystem** bringt Sauerstoff aus der Luft ins Blut und entfernt Kohlenstoffdioxid. Luft strömt in die Lunge hinein und heraus, weil **Änderungen des Brustraumvolumens den Luftdruck in der Lunge ändern**. In den Lungenbläschen diffundiert Sauerstoff ins Blut, und **Hämoglobin** trägt ihn zu den Körperzellen. In den interaktiven Modellen hier beobachtest du den Gasaustausch in den Lungenbläschen, bewegst Zwerchfell und Brustkorb, misst den Druck beim Ausatmen und liest die Hämoglobinkurve ab.
+
+> Luft strömt nur dann in die Lunge hinein und wieder hinaus, wenn eine Änderung des Brustraumvolumens einen Druckunterschied zur Außenluft erzeugt.
 
 Verwechsle **Atmung** nicht mit **Zellatmung**. Atmung ist der physikalische Vorgang des Ein und Ausatmens. Zellatmung ist die chemische Reaktion in den Mitochondrien, die Energie aus Glucose freisetzt.
 
@@ -59,7 +61,70 @@ Die Diffusionsgeschwindigkeit folgt dem **Fickschen Gesetz**: Sie ist proportion
   }}
 />
 
-Eine achtmal dickere Wand senkt die Diffusionsgeschwindigkeit auf ein Achtel. Deshalb geraten Menschen mit verdickten Wänden der Lungenbläschen schnell außer Atem.
+Eine achtmal dickere Wand senkt die Diffusionsgeschwindigkeit auf ein Achtel. Deshalb geraten Menschen mit verdickten Wänden der Lungenbläschen schnell außer Atem. Schau nun in ein einzelnes von Kapillaren umsponnenes Lungenbläschen und verfolge, wie Atemfrequenz und Höhenlage das Sauerstoffdruckgefälle und die Sauerstoffaufnahme verändern.
+
+<AlveolusGasExchangeLab
+  title={<>Gasaustausch an der Alveolarmembran</>}
+  description={
+    <>
+      Wechsle zwischen Ruhe, Sport und großer Höhe und verstelle die
+      Atemfrequenz, um Sauerstoffaufnahme und das alveoläre{" "}
+      <InlineMath math="\mathrm{O_2}" />-Partialdruckgefälle zu vergleichen.
+    </>
+  }
+  states={["rest", "exercise", "highAltitude"]}
+  ventilation={{ min: 6, max: 36, value: 12 }}
+  labels={{
+    state: "Aktivitätszustand",
+    ventilation: "Atemfrequenz",
+    view: "Von Blutkapillaren umsponnenes Lungenbläschen beim Austausch von Sauerstoff und Kohlenstoffdioxid",
+    oxygenUptake: <>Sauerstoffaufnahme</>,
+    diffusionRate: <>Alveoläres <InlineMath math="\mathrm{O_2}" />-Gefälle</>,
+    parts: {
+      alveolus: "Lungenbläschen",
+      capillary: "Blutkapillare",
+      redBloodCell: "Rotes Blutkörperchen",
+      oxygen: "Sauerstoffmoleküle",
+      carbonDioxide: "Kohlenstoffdioxidmoleküle",
+      surfactantFilm: "Feuchter Surfactantfilm",
+    },
+    states: {
+      rest: {
+        name: "Ruhe",
+        summary: (
+          <>
+            Gleichmäßige Belüftung hält ein alveoläres{" "}
+            <InlineMath math="\mathrm{O_2}" />-Gefälle von{" "}
+            <InlineMath math="60\text{ mmHg}" /> für den Grundbedarf aufrecht.
+          </>
+        ),
+      },
+      exercise: {
+        name: "Sport",
+        summary: (
+          <>
+            Venöses Blut kommt sauerstoffärmer an, vergrößert das{" "}
+            <InlineMath math="\mathrm{O_2}" />-Gefälle auf{" "}
+            <InlineMath math="78\text{ mmHg}" /> und steigert die Aufnahme.
+          </>
+        ),
+      },
+      highAltitude: {
+        name: "Große Höhe",
+        summary: (
+          <>
+            Der niedrigere Luftdruck senkt das{" "}
+            <InlineMath math="\mathrm{O_2}" />-Gefälle auf{" "}
+            <InlineMath math="34\text{ mmHg}" />, weshalb eine höhere
+            Atemfrequenz nötig wird.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Man sieht deutlich, dass **Sport das Druckgefälle vergrößert**, weil arbeitende Muskeln mehr Sauerstoff verbrauchen, während große Höhe das Gefälle verkleinert, weil die Außenluft weniger Sauerstoff pro Liter enthält. Eine höhere Atemfrequenz steigert in jedem Zustand die Sauerstoffaufnahme, weil die Alveolarluft rascher erneuert wird.
 
 ## Der Atemmechanismus
 
@@ -74,35 +139,66 @@ Die Atmung beruht auf dem **Gesetz von Boyle**: Für eine feste Gasmenge bei kon
 | Volumen des Brustraums | Nimmt zu | Nimmt ab |
 | Druck in der Lunge | Niedriger als der Luftdruck | Höher als der Luftdruck |
 
-Dieses Modell einer verschlossenen Spritze zeigt dasselbe Prinzip. Drück die Luft auf ein kleineres Volumen zusammen, erwärme sie dann auf Körpertemperatur und beobachte, wie der Druck steigt. Luft in der Lunge, die so zusammengedrückt wird, strömt zum niedrigeren Luftdruck hinaus.
+Teste das Gesetz von Boyle direkt im Brustkorb. Wähle Einatmen, normales Ausatmen oder kräftiges Ausatmen und verstelle die Atemtiefe, um Zwerchfell, Brustkorb, Lungenvolumen und Alveolardruck gemeinsam zu verfolgen.
 
-<GasPistonLab
-  title={<>Luft in einer verschlossenen Spritze zusammengedrückt</>}
+<ThoraxDiaphragmLab
+  title={<>Atemmechanik von Brustkorb und Zwerchfell</>}
   description={
     <>
-      Luft bei <InlineMath math="101\text{ kPa}" /> und{" "}
-      <InlineMath math="25^\circ\text{C}" /> wird auf das{" "}
-      <InlineMath math="0{,}8" />fache ihres Volumens zusammengedrückt und dann
-      auf <InlineMath math="37^\circ\text{C}" /> erwärmt.
+      Vergleiche Einatmen, Ausatmen und kräftiges Ausatmen bei verschiedener
+      Atemtiefe und sieh, wie das Brustraumvolumen den Alveolardruck unter oder
+      über den Luftdruck schiebt.
     </>
   }
-  pressure={101}
-  temperature={25}
-  volumeRatio={0.8}
-  finalTemperature={37}
+  phases={["inhalation", "exhalation", "forcedExhalation"]}
+  depth={{ min: 10, max: 100, value: 60 }}
   labels={{
-    pressure: <>Luftdruck</>,
-    stage: "Schritt",
-    stages: {
-      start: <>Anfang</>,
-      compressed: <>Zusammengedrückt</>,
-      heated: <>Auf Körpertemperatur erwärmt</>,
+    phase: "Atemphase",
+    depth: "Atemtiefe",
+    view: "Brustkorb, Lunge und Zwerchfell bei Volumenänderungen während der Atmung",
+    thoracicVolume: <>Brustraumvolumen</>,
+    alveolarPressure: <>Änderung des Alveolardrucks</>,
+    parts: {
+      trachea: "Luftröhre",
+      lungs: "Lunge",
+      ribcage: "Brustkorb",
+      intercostal: "Zwischenrippenmuskeln",
+      diaphragm: "Zwerchfell",
+      pleuralCavity: "Pleurahöhle",
     },
-    temperature: <>Temperatur</>,
-    viewLabel: "Luft in einer verschlossenen Spritze mit Druckanzeige",
-    volume: <>Relatives Volumen</>,
+    phases: {
+      inhalation: {
+        name: "Einatmen",
+        summary: (
+          <>
+            Das Zwerchfell flacht ab und die Rippen heben sich, sodass das
+            Volumen wächst und der Alveolardruck unter den Luftdruck fällt.
+          </>
+        ),
+      },
+      exhalation: {
+        name: "Ausatmen",
+        summary: (
+          <>
+            Das Zwerchfell wölbt sich nach oben und die Rippen senken sich
+            passiv, sodass der Alveolardruck leicht über den Luftdruck steigt.
+          </>
+        ),
+      },
+      forcedExhalation: {
+        name: "Kräftiges Ausatmen",
+        summary: (
+          <>
+            Innere Zwischenrippen- und Bauchmuskeln pressen den Brustkorb weiter
+            zusammen und erzeugen einen starken Überdruck.
+          </>
+        ),
+      },
+    },
   }}
 />
+
+Je größer die Atemtiefe beim Einatmen wird, desto stärker wächst das Brustraumvolumen und desto deutlicher fällt der Alveolardruck ins Negative, sodass mehr Luft durch die Luftröhre einströmt. Beim kräftigen Ausatmen verkleinern aktive Muskeln das Volumen rasch und drücken zusätzliche Luft mit einem deutlichen Überdruck hinaus.
 
 Den Druck beim Ausatmen kannst du mit einem **Wassermanometer** messen. Eine Schülerin bläst so kräftig wie möglich in einen Schenkel eines U-Rohrs, und der Unterschied der Wasserstände zeigt, wie weit der Druck in der Lunge über dem Luftdruck liegt. Ändere den Höhenunterschied und lies den Überdruck ab.
 
@@ -126,6 +222,8 @@ Den Druck beim Ausatmen kannst du mit einem **Wassermanometer** messen. Eine Sch
     viewLabel: "Ein Wassermanometer, das mit dem Mund verbunden ist",
   }}
 />
+
+Jeder Zentimeter Höhenunterschied im Wasser entspricht nur einem kleinen Bruchteil eines Zentimeters Quecksilber, weil Wasser deutlich weniger dicht ist als Quecksilber. Genau diese geringe Dichte macht ein Wassermanometer empfindlich genug für gewöhnliche Atemdrücke.
 
 ### Beispiel Der Druck beim Ausatmen
 
@@ -157,11 +255,12 @@ Prüfe: <InlineMath math="75 \div 6 = 12{,}5" />, also steigt die Belüftung etw
   title={<>Atemminutenvolumen in Ruhe und beim Sport</>}
   description={
     <>
-      Das pro Minute eingeatmete Luftvolumen, Atemzugvolumen mal Atemfrequenz,
-      bei drei Stufen der Aktivität.
+      Das pro Minute eingeatmete Luftvolumen in{" "}
+      <InlineMath math="\text{dm}^3\text{ min}^{-1}" /> bei drei Stufen der
+      Aktivität.
     </>
   }
-  yAxisLabel="Atemminutenvolumen (dm³ min⁻¹)"
+  yAxisLabel="Atemminutenvolumen"
   data={[
     { name: "Ruhe", value: 0.5 * 12 },
     { name: "Gehen", value: 1.2 * 18 },
@@ -170,34 +269,37 @@ Prüfe: <InlineMath math="75 \div 6 = 12{,}5" />, also steigt die Belüftung etw
   chartConfig={{ value: { label: "Atemminutenvolumen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
+Beim Laufen liegt das Atemminutenvolumen weit über dem Wert beim Gehen, weil Atemzugvolumen und Atemfrequenz gleichzeitig ansteigen. Das Produkt beider Steigerungen erklärt den Sprung von <InlineMath math="6\text{ dm}^3\text{ min}^{-1}" /> in Ruhe auf <InlineMath math="75\text{ dm}^3\text{ min}^{-1}" /> beim schnellen Laufen.
+
 ## Sauerstofftransport durch Hämoglobin
 
 Sauerstoff, der ins Blut diffundiert, verbindet sich in den roten Blutkörperchen mit **Hämoglobin** zu **Oxyhämoglobin**. In den Lungenbläschen ist der Sauerstoffpartialdruck hoch, etwa <InlineMath math="13{,}3\text{ kPa}" />, also ist das Hämoglobin fast gesättigt. In aktivem Gewebe ist der Sauerstoffpartialdruck niedrig, etwa <InlineMath math="5{,}3\text{ kPa}" />, also zerfällt Oxyhämoglobin und gibt Sauerstoff ab.
 
-Die Sauerstoffbindungskurve ist S-förmig. Verschiebe den Regler für den Partialdruck, um die prozentuale Sättigung abzulesen, und füge Kohlenstoffdioxid hinzu, um zu sehen, wie sich die Kurve nach rechts verschiebt. Das ist der **Bohr-Effekt**.
+Die Sauerstoffbindungskurve ist S-förmig. Verschiebe den Regler für den Partialdruck, um die prozentuale Sättigung abzulesen, und erhöhe <InlineMath math="b" />, um zu sehen, wie sich die Kurve bei mehr Kohlenstoffdioxid nach rechts verschiebt. Das ist der **Bohr-Effekt**.
 
 <MathVisual
   title={<>Die Sauerstoffbindungskurve</>}
   description={
     <>
-      Sättigung des Hämoglobins in Zehnerprozent,{" "}
-      <InlineMath math="\dfrac{10p^{2{,}7}}{p^{2{,}7} + b^{2{,}7}}" />, gegen
-      den Sauerstoffpartialdruck <InlineMath math="p" /> in kPa. Der Wert{" "}
-      <InlineMath math="b" /> ist der Partialdruck bei halber Sättigung.
+      Prozentuale Sättigung des Hämoglobins{" "}
+      <InlineMath math="\dfrac{100p^{2{,}7}}{p^{2{,}7} + b^{2{,}7}}" /> gegen
+      den Sauerstoffpartialdruck <InlineMath math="p" /> in{" "}
+      <InlineMath math="\text{kPa}" />. Der Wert <InlineMath math="b" /> ist
+      der Partialdruck bei halber Sättigung.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 14.5 }, y: { min: 0, max: 10.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 14.5 }, y: { min: 0, max: 105 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "p", min: 0.5, max: 14, value: 5.3, step: 0.1, label: "p" },
       { name: "b", min: 3.5, max: 5, value: 3.5, step: 0.1, label: "b" },
     ],
     objects: [
-      { id: "curve", kind: "function", appearance: "primary", formula: "10x^2.7/(x^2.7 + b^2.7)", domain: { min: 0, max: 14 } },
-      { id: "normal", kind: "function", appearance: "reference", formula: "10x^2.7/(x^2.7 + 3.5^2.7)", domain: { min: 0, max: 14 } },
-      { id: "now", kind: "marker", x: "p", y: "10p^2.7/(p^2.7 + b^2.7)", appearance: "warning" },
+      { id: "curve", kind: "function", appearance: "primary", formula: "100x^2.7/(x^2.7 + b^2.7)", domain: { min: 0, max: 14 } },
+      { id: "normal", kind: "function", appearance: "reference", formula: "100x^2.7/(x^2.7 + 3.5^2.7)", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "p", y: "100p^2.7/(p^2.7 + b^2.7)", appearance: "warning" },
     ],
     readouts: [
       { key: "saturation", formula: "100p^2.7/(p^2.7 + b^2.7)" },
@@ -209,6 +311,8 @@ Die Sauerstoffbindungskurve ist S-förmig. Verschiebe den Regler für den Partia
     saturation: <>Prozentuale Sättigung des Hämoglobins</>,
   }}
 />
+
+Der steile Mittelteil der S-Kurve sorgt dafür, dass schon ein kleiner Abfall des Partialdrucks im aktiven Gewebe viel Sauerstoff freisetzt, während das flache obere Plateau das Blut in der Lunge selbst bei leicht niedrigerem Druck nahezu gesättigt hält.
 
 ### Beispiel An das Gewebe abgegebener Sauerstoff
 
@@ -236,7 +340,7 @@ Jedes Tier hat eine Atmungsfläche, die dünn, feucht und groß ist, doch ihre F
 
 In den Kiemen eines Fisches fließt das Blut in den Lamellen **entgegen der Strömung** des Wassers. So trifft das Blut immer auf sauerstoffreicheres Wasser, das Konzentrationsgefälle bleibt entlang der ganzen Lamelle erhalten, und der Fisch kann bis zu <InlineMath math="80\%" /> des gelösten Sauerstoffs aufnehmen.
 
-## Häufige Fehler zum Atmungssystem
+## Atemmechanik sicher prüfen
 
 | Fehler | Warum er falsch ist | So prüfst du es |
 | :--- | :--- | :--- |
@@ -247,8 +351,6 @@ In den Kiemen eines Fisches fließt das Blut in den Lamellen **entgegen der Str�
 
 Der erste Fehler kommt in Aufgaben zum Atemmechanismus am häufigsten vor. **Erst ändert sich das Volumen, dann der Druck, dann strömt die Luft**.
 
-## Übungen zum Atmungssystem
-
 Diese Aufgaben führen vom Atemmechanismus bis zu Rechnungen zum Sauerstofftransport. **Nenne bei jeder Antwort zum Luftstrom die Druckänderung**.
 
 1. Erkläre, was beim Einatmen mit dem Zwerchfell und dem Druck in der Lunge geschieht.
@@ -258,8 +360,6 @@ Diese Aufgaben führen vom Atemmechanismus bis zu Rechnungen zum Sauerstofftrans
 3. Beim Sport fällt die Sättigung des Hämoglobins von <InlineMath math="96\%" /> auf <InlineMath math="60\%" />. Jeweils <InlineMath math="100\text{ cm}^3" /> gesättigtes Blut tragen <InlineMath math="20\text{ cm}^3" /> Sauerstoff. Berechne den Sauerstoff, den <InlineMath math="100\text{ cm}^3" /> Blut abgeben.
 
 4. Erkläre, warum ein Lungenemphysem, bei dem die Wände der Lungenbläschen zerstört werden, schnell müde macht.
-
-### Lösungen
 
 **Lösung 1**: Das Zwerchfell **zieht sich zusammen und flacht ab**, und die äußeren Zwischenrippenmuskeln ziehen sich zusammen. Das Volumen des Brustraums nimmt zu, also sinkt der Druck in der Lunge unter den Luftdruck, und Luft strömt hinein.
 

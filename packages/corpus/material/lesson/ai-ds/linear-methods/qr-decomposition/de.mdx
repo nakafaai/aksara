@@ -1,10 +1,11 @@
 export const metadata = {
-   title: "Matrizen mit dem QR Verfahren zerlegen",
-   description: "QR-Zerlegung mit Gram-Schmidt- und Householder-Verfahren. Volle und reduzierte Faktorisierung, numerische Stabilität und Rechenaufwand werden hergeleitet.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2026-08-22",
-   dateModified: "2026-09-19",
-   subject: "Lineare Methoden der KI",
+  title: "Matrizen mit dem QR Verfahren zerlegen",
+  description:
+    "Faktorisiere Matrizen mit der QR Zerlegung durch das Gram Schmidt Verfahren oder Householder Spiegelungen und löse lineare Systeme.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-08-22",
+  dateModified: "2026-11-27",
+  subject: "Lineare Methoden der KI",
 };
 
 ## Existenzsatz der Zerlegung mit QR
@@ -32,15 +33,62 @@ Der volle Spaltenrang garantiert <InlineMath math="\widetilde q_j\neq0" /> in je
 <BlockMath math="= \sum_{k=1}^{j-1} q_k \cdot r_{kj} + q_j \cdot r_{jj}" />
 </MathContainer>
 
-Damit gilt <InlineMath math="A=Q_1R_1" />, wobei <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> eine obere Dreiecksmatrix mit <InlineMath math="r_{ii}=\|\widetilde q_i\|_2>0" /> ist.
+Damit entsteht die reduzierte Zerlegung <InlineMath math="A=Q_1R_1" />, wobei <InlineMath math="R_1\in\mathbb{R}^{n\times n}" /> eine obere Dreiecksmatrix mit positiven Diagonaleinträgen ist:
 
-Ergänzt man <InlineMath math="Q_1" /> um <InlineMath math="m-n" /> orthonormale Spalten, entsteht <InlineMath math="Q=(Q_1\quad Q_2)\in\mathbb{R}^{m\times m}" />.
+<BlockMath math="r_{ii} = \|\widetilde q_i\|_2 > 0" />
 
-Durch Anhängen von <InlineMath math="m-n" /> Nullzeilen an <InlineMath math="R_1" /> entsteht:
+Ergänzt man <InlineMath math="Q_1" /> um <InlineMath math="m-n" /> orthonormale Spalten und hängt <InlineMath math="m-n" /> Nullzeilen an <InlineMath math="R_1" /> an, entstehen die vollständigen Faktoren:
 
-<BlockMath math="R=\begin{pmatrix}R_1\\0\end{pmatrix}\in\mathbb{R}^{m\times n}" />
+<MathContainer>
+<BlockMath math="Q = (Q_1 \quad Q_2) \in \mathbb{R}^{m \times m}" />
+<BlockMath math="R = \begin{pmatrix} R_1 \\ 0 \end{pmatrix} \in \mathbb{R}^{m \times n}" />
+<BlockMath math="A = Q_1 R_1 = Q R" />
+</MathContainer>
 
-Die ergänzten Matrizen erfüllen weiterhin <InlineMath math="A=Q_1R_1=QR" />.
+Gehe die dreidimensionale Gram-Schmidt-Konstruktion Schritt für Schritt durch und verändere die Spaltenscherung, um zu beobachten, wie Projektionen Überlappungen abziehen und ein orthonormales Dreibein hinterlassen.
+
+<QrGramSchmidt3DLab
+  title={<>Gram-Schmidt-Orthogonalisierung im <InlineMath math="\mathbb{R}^3" /></>}
+  description={<>Durchlaufe die Gram-Schmidt-Schritte an drei gescherte Eingabespalten und verändere die Spaltenscherung, um Projektionsschatten, den Nebendiagonaleintrag <InlineMath math="r_{12}" /> und den Orthogonalitätsfehler zu prüfen.</>}
+  steps={["originalBasis", "normalizeQ1", "orthogonalizeQ2", "orthogonalizeQ3"]}
+  skew={{ min: 0, max: 1, value: 0.7 }}
+  labels={{
+    step: "Schritt",
+    skew: "Spaltenscherung",
+    view: "Ansicht",
+    orthogonalityCheck: <>Orthogonalitätsfehler <InlineMath math="\|Q^T Q - I\|" /></>,
+    rEntries: <>Nebendiagonaleintrag <InlineMath math="r_{12}" /></>,
+    parts: {
+      inputVectors: "Eingabespalten",
+      orthonormalBasis: "Orthonormale Vektoren",
+      projectionShadow: "Projektionsschatten",
+      orthogonalFrame: "Orthogonales Dreibein",
+      unitSphere: "Einheitssphäre",
+    },
+    steps: {
+      originalBasis: {
+        name: "Ausgangsspalten",
+        summary: <>Starte mit drei schrägen Spalten <InlineMath math="a_1, a_2, a_3" />, deren Skalarprodukte noch nicht null sind.</>,
+      },
+      normalizeQ1: {
+        name: "Ersten Vektor normieren",
+        summary: <>Skaliere <InlineMath math="a_1" /> auf die Einheitssphäre, um die erste orthonormale Richtung <InlineMath math="q_1" /> festzulegen.</>,
+      },
+      orthogonalizeQ2: {
+        name: "Zweiten Vektor orthogonalisieren",
+        summary: <>Ziehe die Projektion <InlineMath math="r_{12} q_1" /> von <InlineMath math="a_2" /> ab und normiere den senkrechten Rest auf <InlineMath math="q_2" />.</>,
+      },
+      orthogonalizeQ3: {
+        name: "Orthonormales Dreibein abschließen",
+        summary: <>Entferne die Anteile längs <InlineMath math="q_1" /> und <InlineMath math="q_2" /> aus <InlineMath math="a_3" />, sodass alle drei Einheitsvektoren rechte Winkel bilden.</>,
+      },
+    },
+  }}
+/>
+
+Mit stärkerer Spaltenscherung wächst die abzuziehende Projektion <InlineMath math="r_{12}" />, doch am Ende aller drei Schritte fällt der Orthogonalitätsfehler auf null und jeder Vektor landet genau auf der Einheitssphäre.
+
+> Gram-Schmidt baut orthonormale Spalten direkt durch das Abziehen von Projektionen auf, während Householder-Spiegelungen dieselbe Faktorisierung bei nahezu abhängigen Spalten numerisch stabiler liefern.
 
 ## Vollständige und reduzierte Zerlegung mit QR
 
@@ -72,7 +120,12 @@ Der Kern von <InlineMath math="A^T" /> enthält genau die Vektoren <InlineMath m
 
 Für eine Matrix mit vollem Spaltenrang ist die reduzierte Faktorisierung <InlineMath math="A=Q_1R_1" /> eindeutig, wenn alle **Diagonaleinträge** von <InlineMath math="R_1" /> **positiv** sind. Diese Vorzeichenbedingung beseitigt die verbleibende Freiheit, denn multiplizierst du eine Spalte von <InlineMath math="Q_1" /> und die zugehörige Zeile von <InlineMath math="R_1" /> mit <InlineMath math="-1" />, bleibt das Produkt unverändert.
 
-Für die Spalten <InlineMath math="a_1=(1,1,0)" /> und <InlineMath math="a_2=(1,0,1)" /> liefert Gram-Schmidt <InlineMath math="q_1=\tfrac1{\sqrt2}(1,1,0)" /> und <InlineMath math="q_2=\tfrac1{\sqrt6}(1,-1,2)" />. Die reduzierte Zerlegung endet hier. Die vollständige ergänzt <InlineMath math="q_3=\tfrac1{\sqrt3}(1,-1,-1)" />, senkrecht zur Spaltenebene, und eine Nullzeile unter <InlineMath math="R" />.
+Für die Spalten <InlineMath math="a_1=(1,1,0)" /> und <InlineMath math="a_2=(1,0,1)" /> liefert Gram-Schmidt die reduzierte Basis aus <InlineMath math="q_1" /> und <InlineMath math="q_2" />, während die vollständige Zerlegung einen Normalenvektor <InlineMath math="q_3" /> sowie eine Nullzeile unter <InlineMath math="R_1" /> ergänzt:
+
+<MathContainer>
+<BlockMath math="q_1 = \frac{1}{\sqrt{2}}(1, 1, 0), \qquad q_2 = \frac{1}{\sqrt{6}}(1, -1, 2)" />
+<BlockMath math="q_3 = \frac{1}{\sqrt{3}}(1, -1, -1)" />
+</MathContainer>
 
 <MathVisual
   title={<>Reduziertes und vollständiges <InlineMath math="Q" /> für zwei Spalten in <InlineMath math="\mathbb R^3" /></>}
@@ -100,6 +153,8 @@ Für die Spalten <InlineMath math="a_1=(1,1,0)" /> und <InlineMath math="a_2=(1,
   }}
 />
 
+Man sieht direkt, dass <InlineMath math="q_1" /> und <InlineMath math="q_2" /> genau dieselbe Ebene aufspannen wie die Ausgangsspalten, während <InlineMath math="q_3" /> senkrecht darauf steht und das orthogonale Komplement aufspannt.
+
 ## Beispiel einer dünnen Zerlegung mit QR
 
 Sei
@@ -123,7 +178,7 @@ Damit gilt
 <BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
 </MathContainer>
 
-Dreh diese dreidimensionale Szene, um das Beispiel von allen Seiten zu sehen. Die gelbe Projektion <InlineMath math="r_{12}q_1=(1/2,1/2,0)^T" /> ist der Teil von <InlineMath math="a_2" />, der in Richtung <InlineMath math="q_1" /> zeigt. Der orange Rest <InlineMath math="\widetilde q_2" /> von der Spitze der Projektion zur Spitze von <InlineMath math="a_2" /> steht senkrecht auf <InlineMath math="q_1" />, und normiert ergibt er <InlineMath math="q_2" />. Aus jedem Blickwinkel bilden die beiden magentafarbenen Strecken einen rechten Winkel.
+Dreh diese dreidimensionale Szene, um das Beispiel von allen Seiten zu sehen. Die gelbe Projektion <InlineMath math="r_{12}q_1" /> ist der Teil von <InlineMath math="a_2" />, der in Richtung <InlineMath math="q_1" /> zeigt. Der orange Rest <InlineMath math="\widetilde q_2" /> von der Spitze der Projektion zur Spitze von <InlineMath math="a_2" /> steht senkrecht auf <InlineMath math="q_1" />, und normiert ergibt er <InlineMath math="q_2" />.
 
 <MathVisual
   title={<>Gram-Schmidt für <InlineMath math="a_1,a_2" /></>}
@@ -159,6 +214,8 @@ Dreh diese dreidimensionale Szene, um das Beispiel von allen Seiten zu sehen. Di
   }}
 />
 
+Aus jedem Blickwinkel bilden die beiden magentafarbenen Einheitsvektoren <InlineMath math="q_1" /> und <InlineMath math="q_2" /> einen rechten Winkel, und ihre Linearkombinationen mit den Spalten von <InlineMath math="R_1" /> stellen <InlineMath math="a_1" /> und <InlineMath math="a_2" /> exakt wieder her.
+
 ## Householderverfahren zur Zerlegung mit QR
 
 Das klassische Gram-Schmidt-Verfahren lässt sich direkt herleiten, kann aber bei **nahezu linear abhängigen Spalten** in Gleitkommaarithmetik Orthogonalität verlieren. Das modifizierte Verfahren verringert diesen Fehler. Numerische Software verwendet für dichte Matrizen meist Householder-Spiegelungen. Givens-Rotationen eignen sich, wenn nur einzelne Einträge beseitigt werden sollen.
@@ -169,9 +226,7 @@ Für einen Einheitsvektor <InlineMath math="v\in\mathbb{R}^m" /> ist die Househo
 
 Das **äußere Produkt** <InlineMath math="vv^T" /> multipliziert eine <InlineMath math="m\times1" />-Spalte mit einer <InlineMath math="1\times m" />-Zeile und ergibt daher eine <InlineMath math="m\times m" />-Matrix vom Rang eins. Das umgekehrte Produkt <InlineMath math="v^Tv" /> ist der Skalar <InlineMath math="1" />.
 
-## Eigenschaften der Householdertransformation
-
-Für <InlineMath math="S=I-2vv^T" /> und <InlineMath math="\|v\|_2=1" /> gelten folgende Eigenschaften. Symmetrie und Orthogonalität folgen aus dem Einheitsvektor in der Definition, die Spiegelung erklärt die Wirkung auf einen Vektor, und **Konditionszahl eins** bedeutet, dass eine exakte Spiegelung die euklidische Norm eines Störvektors erhält.
+Weil <InlineMath math="\|v\|_2=1" /> gilt, erfüllt der Reflektor <InlineMath math="S" /> vier Kerneigenschaften. Symmetrie und Orthogonalität folgen aus dem Einheitsvektor in der Definition, die Spiegelung erklärt die Wirkung auf einen Vektor, und **Konditionszahl eins** bedeutet, dass eine exakte Spiegelung die euklidische Norm eines Störvektors erhält.
 
 1. <InlineMath math="S" /> ist symmetrisch: <InlineMath math="S^T = S" />
 
@@ -181,7 +236,11 @@ Für <InlineMath math="S=I-2vv^T" /> und <InlineMath math="\|v\|_2=1" /> gelten 
 
 4. <InlineMath math="\text{cond}_2(S) = 1" />
 
-Für <InlineMath math="x=(3,4)" /> mit <InlineMath math="\|x\|_2=5" /> wähle <InlineMath math="v=\tfrac{x-5e_1}{\|x-5e_1\|_2}=\tfrac1{\sqrt5}(-1,2)" />. Dann spiegelt <InlineMath math="S=I-2vv^T" /> den Vektor <InlineMath math="x" /> an der Geraden senkrecht zu <InlineMath math="v" /> und schickt ihn nach <InlineMath math="(5,0)" />. Eine einzige Spiegelung macht den zweiten Eintrag zu null, ohne die Länge zu ändern.
+Für <InlineMath math="x=(3,4)" /> mit <InlineMath math="\|x\|_2=5" /> wähle den Einheitsnormalenvektor:
+
+<BlockMath math="v = \frac{x - 5e_1}{\|x - 5e_1\|_2} = \frac{1}{\sqrt{5}}(-1, 2)" />
+
+Dann spiegelt <InlineMath math="S=I-2vv^T" /> den Vektor <InlineMath math="x" /> an der Geraden senkrecht zu <InlineMath math="v" /> und schickt ihn nach <InlineMath math="(5,0)" />.
 
 <MathVisual
   title={<>Eine Householder-Spiegelung schickt <InlineMath math="(3,4)" /> nach <InlineMath math="(5,0)" /></>}
@@ -210,6 +269,8 @@ Für <InlineMath math="x=(3,4)" /> mit <InlineMath math="\|x\|_2=5" /> wähle <I
   }}
 />
 
+Eine einzige Spiegelung macht die zweite Koordinate zu null, ohne die euklidische Länge von <InlineMath math="x" /> zu ändern, weshalb eine Folge von Reflektoren Spalte für Spalte stabil Nullen erzeugt.
+
 ## Householderverfahren
 
 Sei <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> und <InlineMath math="\operatorname{rang}(A)=n" />. **In jedem Householder-Schritt** werden die Einträge unter einer Diagonalposition null, während die bereits erzeugten Nullen erhalten bleiben.
@@ -228,7 +289,9 @@ Mit <InlineMath math="S_1=I_m-2v_1v_1^T" /> werden alle Einträge der ersten Spa
 
 <BlockMath math="A_2 = S_1 \cdot A_1 = \begin{pmatrix} r_{11} & * \\ 0 & \tilde{A}_2 \end{pmatrix}" />
 
-In der Matrix <InlineMath math="A_2" /> gilt <InlineMath math="r_{11} = \pm\|\tilde{a}_1\|_2" /> und <InlineMath math="\tilde{A}_2 \in \mathbb{R}^{m-1 \times n-1}" />.
+In der Matrix <InlineMath math="A_2" /> erfüllen der erste Diagonaleintrag und der aktive Block:
+
+<BlockMath math="r_{11} = \pm\|\tilde{a}_1\|_2, \qquad \tilde{A}_2 \in \mathbb{R}^{(m-1) \times (n-1)}" />
 
 Im nächsten Schritt spiegeln wir die erste Spalte der **verbleibenden Untermatrix**:
 
@@ -251,7 +314,11 @@ Danach sind auch die Einträge der zweiten Spalte unterhalb der Diagonale null:
 
 <BlockMath math="A_3 = S_2 \cdot A_2 = \begin{pmatrix} r_{11} & * & * \\ 0 & r_{22} & * \\ 0 & 0 & \tilde{A}_3 \end{pmatrix}" />
 
-Dabei gilt <InlineMath math="r_{22}=\pm\|\widetilde a_2\|_2" /> und <InlineMath math="\widetilde A_3\in\mathbb{R}^{(m-2)\times(n-2)}" />. Durch Wiederholung bleibt schließlich die letzte aktive Spalte
+Dabei erfüllen der zweite Diagonaleintrag und der verbleibende aktive Block:
+
+<BlockMath math="r_{22} = \pm\|\widetilde a_2\|_2, \qquad \widetilde A_3 \in \mathbb{R}^{(m-2) \times (n-2)}" />
+
+Durch Wiederholung bleibt schließlich die letzte aktive Spalte
 
 <BlockMath math="\tilde{A}_n = \begin{pmatrix} \tilde{a}_{nn} \\ \vdots \\ \tilde{a}_{mn} \end{pmatrix} \in \mathbb{R}^{m-(n-1) \times 1}" />
 
@@ -320,20 +387,23 @@ Nach <InlineMath math="n" /> Schritten gilt
 
 Die Umsetzung der Zerlegung in Gleitkommaarithmetik wirft zwei praktische Fragen auf, nämlich wie viele Operationen sie kostet und wie sich der **Rundungsfehler** verhält. Beide Antworten entscheiden, ob das Verfahren zum Problem passt: Die Operationszahl bestimmt die Laufzeit bei einer großen Matrix, und das Rundungsverhalten bestimmt, wie viel vom berechneten Ergebnis du verwerten kannst.
 
-### Rechenkomplexität
+### Rechenaufwand Householder
 
 Die folgende Zählung speichert <InlineMath math="Q" /> **implizit als Reflektoren** und berechnet <InlineMath math="R" />. Das explizite Bilden der vollständigen <InlineMath math="m\times m" />-Matrix <InlineMath math="Q" /> benötigt zusätzliche Arbeit.
 
 Für <InlineMath math="m\ge n" /> benötigt eine <InlineMath math="\mathrm{QR}" />-Zerlegung mit Householder-Spiegelungen ungefähr:
 
 <BlockMath math="2mn^2-\frac23n^3" />
+
 Die ungefähre Anzahl an **Gleitkommaoperationen** für <InlineMath math="m=n" /> beträgt:
 
 <BlockMath math="\frac43n^3" />
 
 ### Numerische Eigenschaften
 
-Orthogonale Multiplikationen **erhalten die Singulärwerte**. Daher gilt für eine Matrix mit vollem Spaltenrang <InlineMath math="\operatorname{cond}_2(R)=\operatorname{cond}_2(A)" />.
+Orthogonale Multiplikationen **erhalten die Singulärwerte**, sodass eine Matrix mit vollem Spaltenrang dieselbe Konditionszahl in ihrem Dreiecksfaktor behält:
+
+<BlockMath math="\operatorname{cond}_2(R) = \operatorname{cond}_2(A)" />
 
 Im Schritt <InlineMath math="i" /> entsteht der neue Diagonaleintrag <InlineMath math="\pm\|\widetilde a_i\|_2" />. Das folgende Vorzeichen verhindert beim Berechnen des Reflektors die Subtraktion fast gleicher Zahlen:
 

@@ -1,19 +1,22 @@
 export const metadata = {
-    title: "Konsep Had Fungsi",
-  description: "Anggarkan had daripada jadual nilai dan kelakuan satu sisi, kemudian tafsirkan definisi epsilon-delta.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2025-05-26",
-    dateModified: "2026-11-08",
-    subject: "Had",
+  title: "Konsep Had Fungsi",
+  description:
+    "Anggarkan had daripada jadual nilai dan kelakuan satu sisi, kemudian tafsirkan definisi epsilon-delta.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-27",
+  subject: "Had",
 };
 
-## Mengikuti Nilai Fungsi Berhampiran Input yang Dipilih
+## Kelakuan Berhampiran Titik
 
-**Had** menerangkan kelakuan nilai output yang berhampiran apabila input menghampiri satu titik yang dipilih. Nilai fungsi pada titik itu tidak menentukan had. Had dua sisi boleh wujud walaupun nilai fungsi di situ tidak tertakrif atau berbeza. Pada satu lompatan, bandingkan kedua-dua had satu sisi. Berhampiran asimptot mencancang, had tak terhingga menerangkan kelakuan yang tidak terbatas.
+**Had** menerangkan kelakuan nilai output yang berhampiran apabila input menghampiri satu titik yang dipilih. Nilai fungsi pada titik itu tidak menentukan had, jadi had dua sisi tetap boleh wujud walaupun fungsi tidak tertakrif atau bernilai lain di situ.
 
-Keselanjaran, [terbitan](/ms/subjek/matematik/pembezaan/terbitan-sebagai-kadar-perubahan), dan [kamiran tentu](/ms/subjek/matematik/pengamiran/kamiran-tentu) semuanya ditakrifkan menggunakan had. Kita akan baca corak daripada jadual nilai dahulu, kemudian kaitkan corak itu dengan had satu sisi dan definisi epsilon-delta yang tepat.
+> Had hanya bergantung pada nilai output berhampiran input sasaran, bukan pada nilai fungsi tepat pada titik sasaran itu sendiri.
 
-## Menghampiri Melalui Jadual Nilai
+Pada satu lompatan, bandingkan kedua-dua had satu sisi. Berhampiran asimptot mencancang, had tak terhingga menerangkan pertumbuhan tanpa batas. Keselanjaran, [terbitan](/ms/subjek/matematik/pembezaan/terbitan-sebagai-kadar-perubahan), dan [kamiran tentu](/ms/subjek/matematik/pengamiran/kamiran-tentu) semuanya dibina atas had. Kita mula dengan jadual nilai, kemudian kaitkannya dengan had satu sisi dan definisi epsilon-delta.
+
+## Hampiran Jadual Nilai
 
 Jadual di bawah mencatat perubahan <InlineMath math="f(x) = x + 2" /> apabila <InlineMath math="x" /> menghampiri <InlineMath math="3" /> dari kedua-dua belah.
 
@@ -28,89 +31,147 @@ Jadual di bawah mencatat perubahan <InlineMath math="f(x) = x + 2" /> apabila <I
 
 Apabila <InlineMath math="x" /> menghampiri <InlineMath math="3" /> dari mana-mana belah, nilai <InlineMath math="f(x)" /> dalam jadual menghampiri <InlineMath math="5" />. <Highlight>Nilai yang dihampiri itulah had</Highlight>.
 
-Lihat jarak ke had, bukan nilainya. <InlineMath math="|f(x) - 5| = |x - 3|" /> mengecil daripada <InlineMath math="0.1" /> kepada <InlineMath math="0.01" />, kemudian kepada <InlineMath math="0.001" /> apabila <InlineMath math="x" /> menghampiri <InlineMath math="3" /> dari mana-mana belah.
+Lihat jarak ke had, bukan nilai output semata-mata:
+
+<BlockMath math="|f(x) - 5| = |x - 3|" />
+
+Jurang itu mengecil daripada <InlineMath math="0.1" /> kepada <InlineMath math="0.01" />, kemudian kepada <InlineMath math="0.001" /> apabila <InlineMath math="x" /> semakin hampir kepada <InlineMath math="3" /> dari kedua-dua belah.
 
 <BarChart
   title={<>Jarak dari had <InlineMath math="5" /></>}
   description={<>Palang <InlineMath math="|f(x) - 5|" /> untuk <InlineMath math="f(x) = x + 2" /> pada input jadual dari <InlineMath math="2.9" /> hingga <InlineMath math="3.1" />.</>}
-  yAxisLabel="Jarak dari 5"
+  yAxisLabel="Jarak ke had"
   data={[2.9, 2.99, 2.999, 3.001, 3.01, 3.1].map((x) => ({ name: String(x), value: Math.round(10000 * Math.abs(x + 2 - 5)) / 10000 }))}
-  chartConfig={{ value: { label: "Jarak dari 5", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  chartConfig={{ value: { label: "Jarak ke had", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-## Tatatanda Had Satu Sisi dan Maksud Formal
+Palang-palangnya mengecil secara simetri ke arah sifar dari kiri dan kanan, mengesahkan kedua-dua belah menuju ketinggian sasaran yang sama, iaitu <InlineMath math="5" />.
 
-Tatatanda piawainya ialah:
+## Had Satu Sisi dan Formal
+
+Tatatanda piawai bagi had ditulis sebagai:
 
 <BlockMath math="\lim_{x \to c} f(x) = L" />
 
 Baca ini sebagai had <InlineMath math="f(x)" /> apabila <InlineMath math="x" /> menghampiri <InlineMath math="c" /> ialah <InlineMath math="L" />. **Menghampiri** tidak bermaksud menggantikan nilai fungsi pada titik itu.
 
-Apabila <InlineMath math="c" /> ialah titik pedalaman dan fungsi itu tertakrif pada kedua-dua belah berhampiran <InlineMath math="c" />, had dua sisi wujud tepat apabila:
-- **Had kiri** dan **had kanan** mesti wujud
-- Had kiri mesti **sama dengan** had kanan
-- Nilai hadnya ialah <InlineMath math="L" />
+Apabila <InlineMath math="c" /> ialah titik pedalaman dan fungsi tertakrif pada kedua-dua belah berhampiran <InlineMath math="c" />, had dua sisi wujud tepat apabila:
 
-Secara lebih formal, had kiri dan had kanan boleh ditulis seperti ini:
+- **Had kiri** dan **had kanan** kedua-duanya wujud
+- Had kiri **sama dengan** had kanan
+- Nilai sepunya kedua-duanya ialah <InlineMath math="L" />
 
-Untuk had kiri, <InlineMath math="x" /> menghampiri <InlineMath math="c" /> dari kiri:
+Tulis had kiri apabila <InlineMath math="x" /> menghampiri <InlineMath math="c" /> daripada nilai lebih kecil daripada <InlineMath math="c" />:
 
 <BlockMath math="\lim_{x\to c^-}f(x)=L" />
 
-Untuk had kanan, <InlineMath math="x" /> menghampiri <InlineMath math="c" /> dari kanan:
+Tulis had kanan apabila <InlineMath math="x" /> menghampiri <InlineMath math="c" /> daripada nilai lebih besar daripada <InlineMath math="c" />:
 
 <BlockMath math="\lim_{x\to c^+}f(x)=L" />
 
-Jika kedua-dua had itu sama, maka <InlineMath math="\lim_{x \to c} f(x) = L" />. Jika berbeza, maka had dua sisi tidak wujud. Pada titik hujung domain, hanya had satu sisi dari dalam domain yang diambil kira.
+Jika kedua-dua had satu sisi berkongsi nilai terhingga <InlineMath math="L" />, had dua sisinya ialah <InlineMath math="L" />. Jika berbeza, had dua sisi tidak wujud. Pada titik hujung domain, hanya had satu sisi dari dalam domain diambil kira.
 
 Definisi epsilon-delta yang tepat memberikan maksud matematik kepada "menghampiri":
 
 <BlockMath math="\begin{aligned} &amp;\forall \varepsilon>0\;\exists\delta>0: \\ &amp;0&lt;|x-c|&lt;\delta\; \\ &amp;\Longrightarrow\;|f(x)-L|&lt;\varepsilon \end{aligned}" />
 
-Dalam bentuk ayat, untuk setiap toleransi output <InlineMath math="\varepsilon>0" /> yang diminta, sekecil mana pun, kita boleh pilih toleransi input <InlineMath math="\delta>0" /> yang memastikan <InlineMath math="f(x)" /> berada dalam jarak <InlineMath math="\varepsilon" /> dari <InlineMath math="L" /> setiap kali <InlineMath math="x" /> berada dalam jarak <InlineMath math="\delta" /> dari <InlineMath math="c" /> tetapi tidak sama dengannya. Syarat <InlineMath math="0<|x-c|" /> inilah sebabnya nilai <InlineMath math="f(c)" /> **tidak menentukan had dengan sendirinya**.
+Untuk setiap toleransi output <InlineMath math="\varepsilon > 0" />, sekecil mana pun, kamu boleh pilih toleransi input <InlineMath math="\delta > 0" /> yang memastikan <InlineMath math="f(x)" /> berada dalam jarak <InlineMath math="\varepsilon" /> dari <InlineMath math="L" /> setiap kali <InlineMath math="x" /> berada dalam jarak <InlineMath math="\delta" /> dari <InlineMath math="c" /> tanpa sama dengannya. Syarat <InlineMath math="0 < |x - c|" /> membuat nilai <InlineMath math="f(c)" /> **tidak menentukan had dengan sendirinya**.
 
 Untuk <InlineMath math="f(x)=x+2" />, <InlineMath math="c=3" />, dan <InlineMath math="L=5" />, jarak output sama dengan jarak input:
 
 <BlockMath math="|f(x)-5|=|(x+2)-5|=|x-3|" />
 
-Pilih **toleransi input dan output yang sama**, jadi <InlineMath math="\delta=\varepsilon" />. Contohnya, ralat output kurang daripada <InlineMath math="0.01" /> pasti diperoleh setiap kali <InlineMath math="0<|x-3|<0.01" />. Pengiraan ini sah untuk setiap toleransi positif.
+Memilih <InlineMath math="\delta = \varepsilon" /> memastikan ralat output kurang daripada <InlineMath math="0.01" /> pasti tercapai apabila input kekal dalam selang:
 
-## Aplikasi Had
+<BlockMath math="0 < |x - 3| < 0.01" />
 
-Had menjawab soalan tentang kelakuan satu kuantiti berhampiran satu titik. **Nilai had** boleh berbeza daripada nilai fungsi pada titik itu, dan dua contoh ini menunjukkan satu kes yang cukup dengan penggantian dan satu kes yang ungkapannya mesti dipermudahkan dahulu.
+Sekarang ketatkan jalur output mengufuk <InlineMath math="\varepsilon" /> merentasi tiga fungsi berbeza di bawah untuk melihat bagaimana jalur input mencancang <InlineMath math="\delta" /> mengecil.
 
-### Menilai Had dengan Penggantian Terus
+<EpsilonDeltaBandLab
+  title={<>Koridor Epsilon dan Delta di Sekitar Had</>}
+  description={
+    <>
+      Laraskan toleransi output <InlineMath math="\varepsilon" /> dan bandingkan
+      fungsi berlubang, kuadratik licin, dan garis curam yang menghampiri{" "}
+      <InlineMath math="L = 1" /> pada <InlineMath math="a = 0" />.
+    </>
+  }
+  epsilon={{ min: 0.1, max: 1.0, value: 0.4 }}
+  functions={["removableHole", "quadraticSmooth", "steepLinear"]}
+  labels={{
+    epsilon: "Toleransi output",
+    functionLabel: "Fungsi ujian",
+    functions: {
+      removableHole: {
+        name: "Lubang boleh hapus",
+        formula: (
+          <InlineMath math="f(x) = \frac{x(x+1)}{x},\ \delta = \varepsilon" />
+        ),
+      },
+      quadraticSmooth: {
+        name: "Kuadratik licin",
+        formula: (
+          <InlineMath math="f(x) = x^2 + 2x + 1,\ \delta = \sqrt{1 + \varepsilon} - 1" />
+        ),
+      },
+      steepLinear: {
+        name: "Garis curam",
+        formula: (
+          <InlineMath math="f(x) = 2.5x + 1,\ \delta = \frac{\varepsilon}{2.5}" />
+        ),
+      },
+    },
+    deltaBound: <>Batas input <InlineMath math="\delta" /></>,
+    limitVerdict: <>Syarat output</>,
+    view: "Satah koordinat memaparkan jalur toleransi mengufuk, koridor input mencancang, lengkung fungsi dan bulatan kosong pada sasaran had",
+    parts: {
+      curvePath: "Lengkung fungsi",
+      epsilonBand: "Jalur output",
+      deltaBand: "Koridor input",
+      holePoint: "Lubang terbuka",
+      limitTarget: "Tinggi sasaran",
+    },
+  }}
+/>
 
-Cari <InlineMath math="\lim_{x \to 4} (2x - 1)" />.
+Kecerunan yang lebih curam memerlukan koridor input <InlineMath math="\delta" /> yang lebih sempit bagi toleransi <InlineMath math="\varepsilon" /> yang sama, namun setiap lengkung tetap terkawal di dalam jalur mengufuk walaupun ada lubang terbuka pada titik sasaran.
 
-**Penyelesaian**:
+## Aplikasi Had Fungsi
 
-Oleh sebab fungsi <InlineMath math="f(x) = 2x - 1" /> selanjar pada <InlineMath math="x = 4" />, kita boleh terus gantikan nilainya:
+Had mengukur kelakuan suatu kuantiti berhampiran satu titik. Kerana **nilai had** boleh berbeza daripada nilai fungsi pada titik itu, dua contoh berikut membezakan penggantian terus dengan pemfaktoran lubang.
+
+### Penggantian Terus
+
+Nilaikan had linear berikut:
+
+<BlockMath math="\lim_{x \to 4} (2x - 1)" />
+
+Kerana <InlineMath math="f(x) = 2x - 1" /> **selanjar** pada <InlineMath math="x = 4" />, penggantian terus memberikan jawapan serta-merta:
 
 <BlockMath math="\begin{aligned} \lim_{x \to 4} (2x - 1) &amp;= 2(4) - 1 \\ &amp;= 8 - 1 \\ &amp;= 7 \end{aligned}" />
 
-### Mempermudahkan Bentuk Tak Tentu Sebelum Mengambil Had
+### Mempermudahkan Lubang
 
-Cari <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />.
+Nilaikan had nisbah berikut:
 
-**Penyelesaian**:
+<BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />
 
-Jika kita gantikan <InlineMath math="x = 2" /> secara terus, kita dapat bentuk tak tentu <InlineMath math="\frac{0}{0}" />. Kita perlu permudahkan dahulu dengan pemfaktoran:
+Penggantian terus <InlineMath math="x = 2" /> menghasilkan **bentuk tak tentu** <InlineMath math="\frac{0}{0}" />, jadi faktorkan pengangka dahulu:
 
 <MathContainer>
-<BlockMath math="x^2 - 4 = (x + 2)(x - 2)" />
-<BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" />
+  <BlockMath math="x^2 - 4 = (x + 2)(x - 2)" />
+  <BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" />
 </MathContainer>
 
-Oleh sebab had melibatkan nilai berhampiran dengan <InlineMath math="x \neq 2" />, kita boleh membatalkan <InlineMath math="(x - 2)" /> sebelum menilai ungkapan yang sudah dipermudahkan:
+Kerana had menyemak nilai berhampiran dengan <InlineMath math="x \neq 2" />, batalkan <InlineMath math="(x - 2)" /> sebelum menilai:
 
 <BlockMath math="\lim_{x\to2}\frac{x^2-4}{x-2}= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
-Graf <InlineMath math="\frac{x^2 - 4}{x - 2}" /> ialah garis <InlineMath math="y = x + 2" /> yang ada lubang pada <InlineMath math="(2, 4)" />. Fungsi ini tiada nilai pada <InlineMath math="2" />, tetapi hadnya ialah tinggi lubang itu, iaitu <InlineMath math="4" />.
+Grafnya sepadan dengan garis <InlineMath math="y = x + 2" /> di mana-mana sahaja kecuali satu titik kosong pada <InlineMath math="(2, 4)" />.
 
 <MathVisual
   title={<>Garis <InlineMath math="y = x + 2" /> dengan lubang pada <InlineMath math="(2, 4)" /></>}
-  description={<>Graf <InlineMath math="\frac{x^2 - 4}{x - 2}" />: garis <InlineMath math="y = x + 2" /> dengan bulatan kosong pada <InlineMath math="(2, 4)" />.</>}
+  description={<>Graf <InlineMath math="\frac{x^2 - 4}{x - 2}" /> memaparkan cabang garis lurus dengan bulatan kosong pada <InlineMath math="(2, 4)" />.</>}
   labels={{
     line: <InlineMath math="y = x + 2" />,
     hole: <InlineMath math="(2, 4)" />,
@@ -131,9 +192,18 @@ Graf <InlineMath math="\frac{x^2 - 4}{x - 2}" /> ialah garis <InlineMath math="y
   }}
 />
 
-## Sifat Asas Had
+Walaupun tiada titik fungsi pada <InlineMath math="x = 2" />, kedua-dua bahagian garis menghala tepat ke bulatan kosong itu, jadi hadnya ialah tinggi lubang, iaitu <InlineMath math="4" />.
 
-Petua berikut memerlukan kedua-dua had <InlineMath math="L=\lim_{x\to c}f(x)" /> dan <InlineMath math="M=\lim_{x\to c}g(x)" /> **wujud dan terhingga**, dengan pekali pemalar <InlineMath math="a,b" />.
+## Petua Gabungan Had Asas
+
+Andaikan kedua-dua **had terhingga** berikut wujud apabila <InlineMath math="x \to c" />, dengan pemalar <InlineMath math="a" /> dan <InlineMath math="b" />:
+
+<MathContainer>
+  <BlockMath math="L = \lim_{x \to c} f(x)" />
+  <BlockMath math="M = \lim_{x \to c} g(x)" />
+</MathContainer>
+
+Gabungan fungsi <InlineMath math="f" /> dan <InlineMath math="g" /> mengikut tiga petua algebra berikut:
 
 | Operasi | Had | Syarat tambahan |
 | --- | --- | --- |
@@ -141,62 +211,64 @@ Petua berikut memerlukan kedua-dua had <InlineMath math="L=\lim_{x\to c}f(x)" />
 | Hasil darab | <InlineMath math="LM" /> | Tiada |
 | Hasil bahagi | <InlineMath math="\frac{L}{M}" /> | <InlineMath math="M\ne0" /> |
 
-## Latihan
+## Soalan Konsep Had Asas
 
-Empat soalan di bawah merangkumi **penggantian terus**, satu kes yang perlu pemfaktoran, satu had trigonometri asas, dan satu fungsi cebis demi cebis. Selesaikan setiap satu di atas kertas dahulu, kemudian bandingkan langkah kamu dengan jalan kerja.
+Empat soalan di bawah merangkumi **penggantian terus**, pemfaktoran, had asas trigonometri, dan lompatan pada fungsi cebis demi cebis. Selesaikan di atas kertas dahulu, kemudian bandingkan langkah kamu dengan jalan kerja di bawah.
 
-1. Cari <InlineMath math="\lim_{x \to 3} (x^2 + 2x - 1)" />
+1. Cari had polinomial berikut:
 
-2. Cari <InlineMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1}" />
+   <BlockMath math="\lim_{x \to 3} (x^2 + 2x - 1)" />
 
-3. Cari <InlineMath math="\lim_{x \to 0} \frac{\sin x}{x}" /> (gunakan teorem had trigonometri)
+2. Cari had nisbah berikut:
 
-4. Fungsi <InlineMath math="f" /> ditakrifkan oleh:
+   <BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1}" />
+
+3. Cari had trigonometri berikut menggunakan teorem had asas sinus:
+
+   <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x}" />
+
+4. Cari had dua sisi pada <InlineMath math="x = 2" /> bagi fungsi cebis demi cebis berikut:
 
    <BlockMath math="f(x) = \begin{cases} x + 1, & x < 2 \\ 3x - 2, & x \geq 2 \end{cases}" />
 
-   Cari <InlineMath math="\lim_{x \to 2} f(x)" />.
+Semak jawapan kamu dengan jalan kerja langkah demi langkah di bawah.
 
-### Jalan Kerja
-
-**Soalan 1**. Oleh sebab fungsi polinomial **selanjar pada semua titik**, kita boleh gantikan secara terus:
+**Soalan 1**. Kerana fungsi polinomial **selanjar pada semua titik**, gantikan <InlineMath math="x = 3" /> secara terus:
 
 <BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (x^2 + 2x - 1) \\ &amp;= 3^2 + 2(3) - 1 \\ &amp;= 9 + 6 - 1 \\ &amp;= 14 \end{aligned}" />
 
-**Soalan 2**. **Penggantian terus** memberikan bentuk <InlineMath math="\frac{0}{0}" />. Kita faktorkan dahulu:
+**Soalan 2**. Memasukkan <InlineMath math="x = 1" /> secara terus menghasilkan bentuk tak tentu <InlineMath math="\frac{0}{0}" />, maka pengangkanya perlu difaktorkan dahulu:
 
 <MathContainer>
-<BlockMath math="x^2 - 1 = (x + 1)(x - 1)" />
-<BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x + 1)(x - 1)}{x - 1}" />
+  <BlockMath math="x^2 - 1 = (x + 1)(x - 1)" />
+  <BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x + 1)(x - 1)}{x - 1}" />
 </MathContainer>
 
-Oleh sebab had menggunakan nilai berhampiran dengan <InlineMath math="x \neq 1" />, kita boleh membatalkan <InlineMath math="(x - 1)" /> sebelum menilai ungkapan yang sudah dipermudahkan:
+Batalkan <InlineMath math="(x - 1)" /> bagi input berhampiran <InlineMath math="x \neq 1" /> lalu nilaikan:
 
 <BlockMath math="\lim_{x\to1}\frac{x^2-1}{x-1}= \lim_{x \to 1} (x + 1) = 1 + 1 = 2" />
 
-**Soalan 3**. **Had trigonometri asas** ini digunakan untuk menerbitkan terbitan sinus dan kosinus. Penggantian terus memberikan bentuk tak tentu <InlineMath math="\frac{0}{0}" />, jadi kita gunakan teorem had trigonometri:
+**Soalan 3**. Penggantian terus memberi <InlineMath math="\frac{0}{0}" />, jadi gunakan **had asas trigonometri** dengan <InlineMath math="x" /> diukur dalam radian (darjah memberi nilai berbeza):
 
 <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
 
-**Nota**: Ukur <InlineMath math="x" /> dalam radian. Jika diukur dalam darjah, hasilnya berbeza.
+**Soalan 4**. Untuk fungsi cebis demi cebis, semak had kiri dan had kanan secara berasingan.
 
-**Soalan 4**. Untuk fungsi cebis demi cebis (yang ditakrifkan dengan rumus berbeza), kita mesti semak had kiri dan had kanan secara berasingan:
-
-**Had kiri** (apabila <InlineMath math="x" /> menghampiri <InlineMath math="2" /> dari kiri, jadi <InlineMath math="x < 2" />):
+Menghampiri <InlineMath math="2" /> dari kiri (<InlineMath math="x < 2" />) memakai cabang atas:
 
 <BlockMath math="\begin{aligned} \lim_{x \to 2^-} f(x) &amp;= \lim_{x \to 2^-} (x + 1) \\ &amp;= 2 + 1 \\ &amp;= 3 \end{aligned}" />
 
-**Had kanan** (apabila <InlineMath math="x" /> menghampiri <InlineMath math="2" /> dari kanan, jadi input berhampiran memenuhi <InlineMath math="x > 2" />):
+Menghampiri <InlineMath math="2" /> dari kanan (<InlineMath math="x > 2" />) memakai cabang bawah:
 
 <BlockMath math="\begin{aligned} \lim_{x \to 2^+} f(x) &amp;= \lim_{x \to 2^+} (3x - 2) \\ &amp;= 3(2) - 2 \\ &amp;= 6 - 2 \\ &amp;= 4 \end{aligned}" />
 
-Oleh sebab <InlineMath math="\lim_{x \to 2^-} f(x) = 3 \neq 4 = \lim_{x \to 2^+} f(x)" />, maka <InlineMath math="\lim_{x \to 2} f(x)" /> **tidak wujud**.
+Kerana had kiri <InlineMath math="3" /> berbeza daripada had kanan <InlineMath math="4" />, had dua sisi pada <InlineMath math="x = 2" /> **tidak wujud**.
 
-Graf ini menunjukkan **dua tinggi hampiran yang berbeza**. Titik pada cabang kanan memberikan <InlineMath math="f(2)=4" />, tetapi mentakrifkan nilai itu tidak mengubah had kiri, iaitu <InlineMath math="3" />.
+Graf ini menunjukkan **dua tinggi hampiran yang berbeza**. Titik penuh memberi <InlineMath math="f(2) = 4" />, manakala cabang kiri tetap menghala ke <InlineMath math="3" />.
 
 <MathVisual
   title={<>Lompatan dalam fungsi cebis demi cebis</>}
-  description={<>Cabang kiri <InlineMath math="x + 1" /> menghampiri tinggi <InlineMath math="3" />, tetapi cabang kanan <InlineMath math="3x - 2" /> bermula pada tinggi <InlineMath math="4" />. Bulatan kosong pada <InlineMath math="(2, 3)" /> dan titik <InlineMath math="(2, 4)" /> menunjukkan bahawa kedua-dua had satu sisi itu berbeza.</>}
+  description={<>Cabang kiri <InlineMath math="x + 1" /> menghampiri tinggi <InlineMath math="3" />, manakala cabang kanan <InlineMath math="3x - 2" /> bermula pada tinggi <InlineMath math="4" /> dengan bulatan kosong pada <InlineMath math="(2, 3)" /> dan titik penuh pada <InlineMath math="(2, 4)" />.</>}
   labels={{
     hole: <InlineMath math="3" />,
     value: <InlineMath math="(2, 4)" />,
@@ -217,3 +289,5 @@ Graf ini menunjukkan **dua tinggi hampiran yang berbeza**. Titik pada cabang kan
     ],
   }}
 />
+
+Jurang mencancang sebanyak <InlineMath math="1" /> unit antara bulatan kosong dengan titik penuh menunjukkan mengapa tiada satu jalur output sempit pun yang dapat memerangkap kedua-dua cabang serentak.

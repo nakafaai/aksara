@@ -1,19 +1,22 @@
 export const metadata = {
-    title: "Konsep Limit Fungsi",
-  description: "Perkirakan limit dari tabel nilai dan perilaku satu sisi, lalu jelaskan arti definisi epsilon delta.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2025-05-26",
-    dateModified: "2026-11-08",
-    subject: "Limit",
+  title: "Konsep Limit Fungsi",
+  description:
+    "Perkirakan limit dari tabel nilai dan perilaku satu sisi, lalu jelaskan arti definisi epsilon delta.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-27",
+  subject: "Limit",
 };
 
-## Nilai Fungsi saat Input Mendekati Sebuah Titik
+## Perilaku di Dekat Titik
 
-**Limit** menggambarkan perilaku nilai keluaran ketika input mendekati suatu titik. Nilai fungsi tepat di titik tersebut tidak menentukan limit. Limit dua sisi tetap dapat ada meskipun nilai fungsinya tidak terdefinisi atau berbeda dari limit. Pada lompatan, bandingkan limit satu sisi dari kiri dan kanan. Di dekat asimtot tegak, limit tak hingga menggambarkan nilai fungsi yang membesar tanpa batas.
+**Limit** menggambarkan perilaku nilai keluaran ketika input mendekati suatu titik. Nilai fungsi tepat di titik itu tidak menentukan limit, sehingga limit dua sisi tetap bisa ada meskipun fungsi tidak terdefinisi atau bernilai berbeda di sana.
 
-Kontinuitas, [turunan](/id/materi/matematika/turunan-fungsi/konsep-turunan-fungsi), dan [integral tentu](/id/materi/matematika/integral/integral-tentu) semuanya didefinisikan dengan limit. Kita akan membaca pola nilai fungsi terlebih dahulu dari tabel, lalu menghubungkan pola tersebut dengan limit satu sisi dan definisi epsilon-delta yang tepat.
+> Limit hanya bergantung pada nilai fungsi di sekitar titik masukan yang dituju, bukan pada nilai fungsi tepat di titik itu sendiri.
 
-## Pendekatan Melalui Tabel Nilai
+Pada lompatan, bandingkan kedua limit satu sisi. Di dekat asimtot tegak, limit tak hingga menggambarkan pertumbuhan tanpa batas. Kontinuitas, [turunan](/id/materi/matematika/turunan-fungsi/konsep-turunan-fungsi), dan [integral tentu](/id/materi/matematika/integral/integral-tentu) semuanya bertumpu pada limit. Kita mulai dari tabel nilai, lalu menghubungkannya ke limit satu sisi dan definisi epsilon-delta.
+
+## Pendekatan Tabel Nilai
 
 Tabel berikut mencatat perubahan <InlineMath math="f(x) = x + 2" /> saat <InlineMath math="x" /> mendekati <InlineMath math="3" /> dari kedua sisi.
 
@@ -28,89 +31,147 @@ Tabel berikut mencatat perubahan <InlineMath math="f(x) = x + 2" /> saat <Inline
 
 Saat <InlineMath math="x" /> mendekati <InlineMath math="3" /> dari kedua sisi, nilai <InlineMath math="f(x)" /> pada tabel mendekati <InlineMath math="5" />. <Highlight>Nilai yang didekati itu disebut limit</Highlight>.
 
-Lihat jaraknya ke limit, bukan nilainya. <InlineMath math="|f(x) - 5| = |x - 3|" /> menyusut dari <InlineMath math="0{,}1" /> ke <InlineMath math="0{,}01" /> lalu ke <InlineMath math="0{,}001" /> saat <InlineMath math="x" /> mendekati <InlineMath math="3" /> dari kedua sisi.
+Amati jaraknya ke limit, bukan hanya nilai keluarannya:
+
+<BlockMath math="|f(x) - 5| = |x - 3|" />
+
+Selisih itu menyusut dari <InlineMath math="0{,}1" /> ke <InlineMath math="0{,}01" /> lalu ke <InlineMath math="0{,}001" /> saat <InlineMath math="x" /> makin dekat ke <InlineMath math="3" /> dari kedua arah.
 
 <BarChart
   title={<>Jarak dari limit <InlineMath math="5" /></>}
   description={<>Batang <InlineMath math="|f(x) - 5|" /> untuk <InlineMath math="f(x) = x + 2" /> pada input tabel dari <InlineMath math="2{,}9" /> sampai <InlineMath math="3{,}1" />.</>}
-  yAxisLabel="Jarak dari 5"
+  yAxisLabel="Jarak ke limit"
   data={[2.9, 2.99, 2.999, 3.001, 3.01, 3.1].map((x) => ({ name: String(x), value: Math.round(10000 * Math.abs(x + 2 - 5)) / 10000 }))}
-  chartConfig={{ value: { label: "Jarak dari 5", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  chartConfig={{ value: { label: "Jarak ke limit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-## Notasi Limit Satu Sisi dan Makna Formal
+Tampak batang-batangnya mengecil simetris menuju nol dari kiri dan kanan, memastikan kedua sisi mengarah pada ketinggian target yang sama, yaitu <InlineMath math="5" />.
 
-Notasi baku untuk limit adalah:
+## Limit Satu Sisi dan Formal
+
+Notasi baku untuk limit ditulis sebagai:
 
 <BlockMath math="\lim_{x \to c} f(x) = L" />
 
-Notasi ini dibaca sebagai limit <InlineMath math="f(x)" /> ketika <InlineMath math="x" /> mendekati <InlineMath math="c" /> sama dengan <InlineMath math="L" />. **Mendekati** tidak berarti mengganti nilai fungsi tepat di titik tersebut.
+Notasi ini dibaca sebagai limit <InlineMath math="f(x)" /> ketika <InlineMath math="x" /> mendekati <InlineMath math="c" /> sama dengan <InlineMath math="L" />. **Mendekati** tidak berarti mengganti nilai fungsi tepat di titik itu.
 
-Jika <InlineMath math="c" /> merupakan titik interior dan fungsi terdefinisi pada kedua sisi di sekitar <InlineMath math="c" />, limit dua sisi ada tepat ketika:
-- **Limit kiri** dan **limit kanan** harus ada
-- Limit kiri harus **sama dengan** limit kanan
-- Nilai limit tersebut adalah <InlineMath math="L" />
+Jika <InlineMath math="c" /> adalah titik interior dan fungsi terdefinisi pada kedua sisi di sekitar <InlineMath math="c" />, limit dua sisi ada tepat ketika:
 
-Secara lebih formal, limit kiri dan kanan dapat ditulis sebagai:
+- **Limit kiri** dan **limit kanan** keduanya ada
+- Limit kiri **sama dengan** limit kanan
+- Nilai bersama keduanya adalah <InlineMath math="L" />
 
-Untuk limit kiri, <InlineMath math="x" /> mendekati <InlineMath math="c" /> dari kiri:
+Limit kiri ditulis saat <InlineMath math="x" /> mendekati <InlineMath math="c" /> dari nilai lebih kecil daripada <InlineMath math="c" />:
 
 <BlockMath math="\lim_{x\to c^-}f(x)=L" />
 
-Untuk limit kanan, <InlineMath math="x" /> mendekati <InlineMath math="c" /> dari kanan:
+Limit kanan ditulis saat <InlineMath math="x" /> mendekati <InlineMath math="c" /> dari nilai lebih besar daripada <InlineMath math="c" />:
 
 <BlockMath math="\lim_{x\to c^+}f(x)=L" />
 
-Jika kedua limit ini sama, maka <InlineMath math="\lim_{x \to c} f(x) = L" />. Jika berbeda, limit dua sisi tidak ada. Pada ujung daerah asal, hanya limit satu sisi dari arah yang termasuk dalam daerah asal yang relevan.
+Jika kedua limit satu sisi bernilai berhingga yang sama <InlineMath math="L" />, limit dua sisinya sama dengan <InlineMath math="L" />. Jika berbeda, limit dua sisi tidak ada. Pada ujung daerah asal, hanya limit satu sisi dari arah dalam daerah asal yang berlaku.
 
 Definisi epsilon-delta berikut memberi makna matematis yang tepat pada kata "mendekati":
 
 <BlockMath math="\begin{aligned} &amp;\forall \varepsilon>0\;\exists\delta>0: \\ &amp;0&lt;|x-c|&lt;\delta\; \\ &amp;\Longrightarrow\;|f(x)-L|&lt;\varepsilon \end{aligned}" />
 
-Artinya, untuk setiap toleransi keluaran <InlineMath math="\varepsilon>0" /> sekecil apa pun, kita dapat memilih toleransi masukan <InlineMath math="\delta>0" /> sehingga <InlineMath math="f(x)" /> berjarak kurang dari <InlineMath math="\varepsilon" /> terhadap <InlineMath math="L" /> ketika <InlineMath math="x" /> berjarak kurang dari <InlineMath math="\delta" /> terhadap <InlineMath math="c" />, tetapi tidak sama dengannya. Syarat <InlineMath math="0<|x-c|" /> menjelaskan mengapa nilai <InlineMath math="f(c)" /> **tidak menentukan limit dengan sendirinya**.
+Untuk setiap toleransi keluaran <InlineMath math="\varepsilon > 0" /> sekecil apa pun, kamu bisa memilih toleransi masukan <InlineMath math="\delta > 0" /> yang menjaga <InlineMath math="f(x)" /> dalam jarak <InlineMath math="\varepsilon" /> dari <InlineMath math="L" /> setiap kali <InlineMath math="x" /> berada dalam jarak <InlineMath math="\delta" /> dari <InlineMath math="c" /> tanpa sama dengannya. Syarat <InlineMath math="0 < |x - c|" /> membuat nilai <InlineMath math="f(c)" /> **tidak pernah menentukan limit sendirian**.
 
-Untuk contoh <InlineMath math="f(x)=x+2" />, <InlineMath math="c=3" />, dan <InlineMath math="L=5" />, jarak keluaran tepat sama dengan jarak masukan:
+Untuk <InlineMath math="f(x)=x+2" />, <InlineMath math="c=3" />, dan <InlineMath math="L=5" />, jarak keluaran sama persis dengan jarak masukan:
 
 <BlockMath math="|f(x)-5|=|(x+2)-5|=|x-3|" />
 
-Jadi, pilih **toleransi masukan sama dengan toleransi keluaran**, yaitu <InlineMath math="\delta=\varepsilon" />. Misalnya, agar selisih keluaran kurang dari <InlineMath math="0{,}01" />, cukup ambil <InlineMath math="0<|x-3|<0{,}01" />. Perhitungan ini berlaku untuk setiap toleransi positif.
+Memilih <InlineMath math="\delta = \varepsilon" /> memastikan galat keluaran di bawah <InlineMath math="0{,}01" /> selalu berlaku selama masukan berada dalam selang:
 
-## Penerapan Limit
+<BlockMath math="0 < |x - 3| < 0{,}01" />
 
-Limit menjawab pertanyaan tentang perilaku suatu besaran di dekat sebuah titik. **Nilai limit** dapat berbeda dari nilai fungsi di titik itu, dan kedua contoh menunjukkan satu kasus yang selesai dengan substitusi serta satu kasus yang harus disederhanakan lebih dulu.
+Sekarang persempit pita keluaran mendatar <InlineMath math="\varepsilon" /> pada tiga fungsi berbeda di bawah untuk melihat bagaimana pita masukan tegak <InlineMath math="\delta" /> ikut menyempit.
 
-### Menghitung Limit dengan Substitusi Langsung
+<EpsilonDeltaBandLab
+  title={<>Koridor Epsilon dan Delta di Sekitar Limit</>}
+  description={
+    <>
+      Ubah toleransi keluaran <InlineMath math="\varepsilon" /> lalu bandingkan
+      fungsi berlubang, kuadrat mulus, dan garis curam yang menuju{" "}
+      <InlineMath math="L = 1" /> di <InlineMath math="a = 0" />.
+    </>
+  }
+  epsilon={{ min: 0.1, max: 1.0, value: 0.4 }}
+  functions={["removableHole", "quadraticSmooth", "steepLinear"]}
+  labels={{
+    epsilon: "Toleransi keluaran",
+    functionLabel: "Fungsi uji",
+    functions: {
+      removableHole: {
+        name: "Lubang terhapus",
+        formula: (
+          <InlineMath math="f(x) = \frac{x(x+1)}{x},\ \delta = \varepsilon" />
+        ),
+      },
+      quadraticSmooth: {
+        name: "Kuadrat mulus",
+        formula: (
+          <InlineMath math="f(x) = x^2 + 2x + 1,\ \delta = \sqrt{1 + \varepsilon} - 1" />
+        ),
+      },
+      steepLinear: {
+        name: "Garis curam",
+        formula: (
+          <InlineMath math="f(x) = 2{,}5x + 1,\ \delta = \frac{\varepsilon}{2{,}5}" />
+        ),
+      },
+    },
+    deltaBound: <>Batas masukan <InlineMath math="\delta" /></>,
+    limitVerdict: <>Syarat keluaran</>,
+    view: "Bidang koordinat menampilkan pita toleransi mendatar, koridor masukan tegak, kurva fungsi, dan lubang terbuka di titik limit",
+    parts: {
+      curvePath: "Kurva fungsi",
+      epsilonBand: "Pita keluaran",
+      deltaBand: "Koridor masukan",
+      holePoint: "Titik berlubang",
+      limitTarget: "Tinggi limit",
+    },
+  }}
+/>
 
-Tentukan <InlineMath math="\lim_{x \to 4} (2x - 1)" />.
+Kemiringan kurva yang lebih curam memaksa koridor masukan <InlineMath math="\delta" /> lebih sempit untuk toleransi <InlineMath math="\varepsilon" /> yang sama, tetapi setiap kurva tetap terkurung di dalam pita mendatar walaupun ada lubang terbuka tepat di titik target.
 
-**Penyelesaian**:
+## Penerapan Limit Fungsi
 
-Karena fungsi <InlineMath math="f(x) = 2x - 1" /> kontinu di <InlineMath math="x = 4" />, substitusikan <InlineMath math="x=4" /> secara langsung:
+Limit mengukur perilaku suatu besaran di dekat sebuah titik. Karena **nilai limit** bisa berbeda dari nilai fungsi di titik itu, dua contoh berikut membandingkan substitusi langsung dengan pemfaktoran lubang.
+
+### Substitusi Langsung
+
+Hitung limit linear berikut:
+
+<BlockMath math="\lim_{x \to 4} (2x - 1)" />
+
+Karena <InlineMath math="f(x) = 2x - 1" /> **kontinu** di <InlineMath math="x = 4" />, substitusi langsung segera memberi hasilnya:
 
 <BlockMath math="\begin{aligned} \lim_{x \to 4} (2x - 1) &amp;= 2(4) - 1 \\ &amp;= 8 - 1 \\ &amp;= 7 \end{aligned}" />
 
-### Menyederhanakan Bentuk Tak Tentu Sebelum Menghitung Limit
+### Menyederhanakan Lubang
 
-Tentukan <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />.
+Hitung limit rasional berikut:
 
-**Penyelesaian**:
+<BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />
 
-Jika kita substitusi langsung <InlineMath math="x = 2" />, kita mendapat bentuk <InlineMath math="\frac{0}{0}" /> yang tak tentu. Kita perlu menyederhanakan terlebih dahulu dengan memfaktorkan:
+Substitusi langsung <InlineMath math="x = 2" /> menghasilkan **bentuk tak tentu** <InlineMath math="\frac{0}{0}" />, sehingga faktorkan pembilangnya lebih dulu:
 
 <MathContainer>
-<BlockMath math="x^2 - 4 = (x + 2)(x - 2)" />
-<BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" />
+  <BlockMath math="x^2 - 4 = (x + 2)(x - 2)" />
+  <BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" />
 </MathContainer>
 
-Karena limit memakai nilai di sekitar titik dengan <InlineMath math="x \neq 2" />, kita dapat membatalkan <InlineMath math="(x - 2)" /> sebelum menilai bentuk yang telah disederhanakan:
+Karena limit memeriksa nilai sekitar dengan <InlineMath math="x \neq 2" />, coret <InlineMath math="(x - 2)" /> sebelum menghitung:
 
 <BlockMath math="\lim_{x\to2}\frac{x^2-4}{x-2}= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
-Grafik <InlineMath math="\frac{x^2 - 4}{x - 2}" /> adalah garis <InlineMath math="y = x + 2" /> dengan lubang di <InlineMath math="(2, 4)" />. Fungsinya tidak bernilai di <InlineMath math="2" />, tetapi limitnya adalah tinggi lubang itu, yaitu <InlineMath math="4" />.
+Grafiknya cocok dengan garis <InlineMath math="y = x + 2" /> di semua titik kecuali satu titik kosong di <InlineMath math="(2, 4)" />.
 
 <MathVisual
   title={<>Garis <InlineMath math="y = x + 2" /> dengan lubang di <InlineMath math="(2, 4)" /></>}
-  description={<>Grafik <InlineMath math="\frac{x^2 - 4}{x - 2}" />: garis <InlineMath math="y = x + 2" /> dengan lingkaran kosong di <InlineMath math="(2, 4)" />.</>}
+  description={<>Grafik <InlineMath math="\frac{x^2 - 4}{x - 2}" /> yang memperlihatkan cabang garis lurus dengan lingkaran kosong di <InlineMath math="(2, 4)" />.</>}
   labels={{
     line: <InlineMath math="y = x + 2" />,
     hole: <InlineMath math="(2, 4)" />,
@@ -131,9 +192,18 @@ Grafik <InlineMath math="\frac{x^2 - 4}{x - 2}" /> adalah garis <InlineMath math
   }}
 />
 
-## Sifat Dasar Limit
+Meski tidak ada titik fungsi tepat di <InlineMath math="x = 2" />, kedua belahan garis mengarah tepat ke lingkaran kosong itu sehingga limitnya sama dengan tinggi lubang, yaitu <InlineMath math="4" />.
 
-Aturan berikut berlaku jika kedua limit <InlineMath math="L=\lim_{x\to c}f(x)" /> dan <InlineMath math="M=\lim_{x\to c}g(x)" /> **ada dan berhingga**, serta <InlineMath math="a,b" /> konstan.
+## Aturan Gabungan Limit Dasar
+
+Asumsikan kedua **limit berhingga** berikut ada saat <InlineMath math="x \to c" />, dengan konstanta <InlineMath math="a" /> dan <InlineMath math="b" />:
+
+<MathContainer>
+  <BlockMath math="L = \lim_{x \to c} f(x)" />
+  <BlockMath math="M = \lim_{x \to c} g(x)" />
+</MathContainer>
+
+Gabungan fungsi <InlineMath math="f" /> dan <InlineMath math="g" /> mengikuti tiga aturan aljabar berikut:
 
 | Operasi | Hasil limit | Syarat tambahan |
 | --- | --- | --- |
@@ -141,62 +211,64 @@ Aturan berikut berlaku jika kedua limit <InlineMath math="L=\lim_{x\to c}f(x)" /
 | Hasil kali | <InlineMath math="LM" /> | Tidak ada |
 | Hasil bagi | <InlineMath math="\frac{L}{M}" /> | <InlineMath math="M\ne0" /> |
 
-## Latihan
+## Soal Konsep Limit Dasar
 
-Empat soal berikut mencakup **substitusi langsung**, pemfaktoran, limit trigonometri dasar, dan fungsi sepotong. Kerjakan setiap soal di kertas terlebih dahulu sebelum membuka pembahasan, lalu bandingkan langkahmu dengan langkah di bawah.
+Empat soal berikut mencakup **substitusi langsung**, pemfaktoran, limit trigonometri dasar, dan lompatan pada fungsi sepotong. Kerjakan di kertas dulu, lalu cocokkan langkahmu dengan pembahasan di bawah.
 
-1. Tentukan <InlineMath math="\lim_{x \to 3} (x^2 + 2x - 1)" />
+1. Hitung limit polinomial berikut:
 
-2. Tentukan <InlineMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1}" />
+   <BlockMath math="\lim_{x \to 3} (x^2 + 2x - 1)" />
 
-3. Tentukan <InlineMath math="\lim_{x \to 0} \frac{\sin x}{x}" /> (gunakan teorema limit trigonometri)
+2. Hitung limit rasional berikut:
 
-4. Fungsi <InlineMath math="f" /> didefinisikan sebagai berikut:
+   <BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1}" />
+
+3. Hitung limit trigonometri berikut menggunakan teorema limit dasar sinus:
+
+   <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x}" />
+
+4. Tentukan limit dua sisi di <InlineMath math="x = 2" /> untuk fungsi sepotong berikut:
 
    <BlockMath math="f(x) = \begin{cases} x + 1, & x < 2 \\ 3x - 2, & x \geq 2 \end{cases}" />
 
-   Tentukan <InlineMath math="\lim_{x \to 2} f(x)" />.
+Cocokkan jawabanmu dengan langkah penyelesaian berikut.
 
-### Pembahasan
-
-**Soal 1**. Karena fungsi polinomial kontinu di semua titik, kita dapat **substitusi langsung**:
+**Soal 1**. Karena fungsi polinomial **kontinu di semua titik**, substitusikan <InlineMath math="x = 3" /> secara langsung:
 
 <BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (x^2 + 2x - 1) \\ &amp;= 3^2 + 2(3) - 1 \\ &amp;= 9 + 6 - 1 \\ &amp;= 14 \end{aligned}" />
 
-**Soal 2**. **Substitusi langsung** menghasilkan bentuk <InlineMath math="\frac{0}{0}" />. Kita faktorkan terlebih dahulu:
+**Soal 2**. Memasukkan <InlineMath math="x = 1" /> secara langsung memunculkan bentuk tak tentu <InlineMath math="\frac{0}{0}" />, sehingga pembilangnya perlu difaktorkan dulu:
 
 <MathContainer>
-<BlockMath math="x^2 - 1 = (x + 1)(x - 1)" />
-<BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x + 1)(x - 1)}{x - 1}" />
+  <BlockMath math="x^2 - 1 = (x + 1)(x - 1)" />
+  <BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x + 1)(x - 1)}{x - 1}" />
 </MathContainer>
 
-Karena limit memakai nilai di sekitar titik dengan <InlineMath math="x \neq 1" />, kita dapat membatalkan <InlineMath math="(x - 1)" /> sebelum menilai bentuk yang telah disederhanakan:
+Coret <InlineMath math="(x - 1)" /> untuk masukan sekitar <InlineMath math="x \neq 1" />, lalu hitung nilainya:
 
 <BlockMath math="\lim_{x\to1}\frac{x^2-1}{x-1}= \lim_{x \to 1} (x + 1) = 1 + 1 = 2" />
 
-**Soal 3**. **Limit fundamental trigonometri** ini digunakan untuk menurunkan rumus turunan sinus dan kosinus. Substitusi langsung menghasilkan bentuk tak tentu <InlineMath math="\frac{0}{0}" />, sehingga kita memakai teorema limit trigonometri:
+**Soal 3**. Substitusi langsung menghasilkan <InlineMath math="\frac{0}{0}" />, sehingga pakai **limit fundamental trigonometri** dengan <InlineMath math="x" /> dalam radian (derajat memberi nilai berbeda):
 
 <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
 
-**Catatan**: Ukur <InlineMath math="x" /> dalam radian. Derajat memberi hasil yang berbeda.
+**Soal 4**. Untuk aturan sepotong, periksa limit kiri dan limit kanan secara terpisah.
 
-**Soal 4**. Untuk fungsi piecewise (terdefinisi dengan aturan berbeda), kita harus memeriksa limit kiri dan kanan secara terpisah:
-
-**Limit kiri** (ketika <InlineMath math="x" /> mendekati <InlineMath math="2" /> dari kiri, maka <InlineMath math="x < 2" />):
+Mendekati <InlineMath math="2" /> dari kiri (<InlineMath math="x < 2" />) memakai cabang atas:
 
 <BlockMath math="\begin{aligned} \lim_{x \to 2^-} f(x) &amp;= \lim_{x \to 2^-} (x + 1) \\ &amp;= 2 + 1 \\ &amp;= 3 \end{aligned}" />
 
-**Limit kanan** (ketika <InlineMath math="x" /> mendekati <InlineMath math="2" /> dari kanan, sehingga input di sekitarnya memenuhi <InlineMath math="x > 2" />):
+Mendekati <InlineMath math="2" /> dari kanan (<InlineMath math="x > 2" />) memakai cabang bawah:
 
 <BlockMath math="\begin{aligned} \lim_{x \to 2^+} f(x) &amp;= \lim_{x \to 2^+} (3x - 2) \\ &amp;= 3(2) - 2 \\ &amp;= 6 - 2 \\ &amp;= 4 \end{aligned}" />
 
-Karena <InlineMath math="\lim_{x \to 2^-} f(x) = 3 \neq 4 = \lim_{x \to 2^+} f(x)" />, maka <InlineMath math="\lim_{x \to 2} f(x)" /> **tidak ada**.
+Karena limit kiri <InlineMath math="3" /> berbeda dari limit kanan <InlineMath math="4" />, limit dua sisi di <InlineMath math="x = 2" /> **tidak ada**.
 
-Grafik memperlihatkan **dua tinggi pendekatan yang berbeda**. Titik pada cabang kanan menyatakan <InlineMath math="f(2)=4" />, tetapi menetapkan nilai itu tidak mengubah limit kiri yang bernilai <InlineMath math="3" />.
+Grafik memperlihatkan **dua tinggi pendekatan yang berbeda**. Titik penuh menyatakan <InlineMath math="f(2) = 4" />, sementara cabang kiri tetap mengarah ke <InlineMath math="3" />.
 
 <MathVisual
   title={<>Lompatan pada fungsi sepotong-sepotong</>}
-  description={<>Cabang kiri <InlineMath math="x + 1" /> mendekati ketinggian <InlineMath math="3" />, tetapi cabang kanan <InlineMath math="3x - 2" /> mulai di ketinggian <InlineMath math="4" />. Lingkaran kosong di <InlineMath math="(2, 3)" /> dan titik <InlineMath math="(2, 4)" /> menunjukkan bahwa kedua limit sepihak berbeda.</>}
+  description={<>Cabang kiri <InlineMath math="x + 1" /> mendekati tinggi <InlineMath math="3" />, sedangkan cabang kanan <InlineMath math="3x - 2" /> dimulai di tinggi <InlineMath math="4" /> dengan lingkaran kosong di <InlineMath math="(2, 3)" /> dan titik penuh di <InlineMath math="(2, 4)" />.</>}
   labels={{
     hole: <InlineMath math="3" />,
     value: <InlineMath math="(2, 4)" />,
@@ -217,3 +289,5 @@ Grafik memperlihatkan **dua tinggi pendekatan yang berbeda**. Titik pada cabang 
     ],
   }}
 />
+
+Celah vertikal sebesar <InlineMath math="1" /> satuan antara lingkaran kosong dan titik penuh menunjukkan bahwa tidak ada satu pita keluaran sempit pun yang bisa mengurung kedua cabang sekaligus.

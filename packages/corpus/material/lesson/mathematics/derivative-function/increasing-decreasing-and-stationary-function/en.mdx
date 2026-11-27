@@ -1,15 +1,13 @@
-
-
 export const metadata = {
   title: "Increasing and Decreasing Functions",
   description: "Use the sign of the first derivative to identify increasing and decreasing intervals and interpret stationary points.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-27",
   subject: "Derivative Functions",
 };
 
-## Behavior of a Function and Its Derivative
+## Slope Sign and Monotonicity
 
 As we read a graph from left to right, its curve may rise, fall, or briefly become flat. This behavior is called the function's **monotonicity**, and its first derivative tells us how to classify it.
 
@@ -23,11 +21,13 @@ The sign of the slope tells us the curve's local direction:
 
 Geometrically, <InlineMath math="f'(x)" /> is the slope of [the tangent line](/en/subjects/mathematics/derivative-function/equation-of-a-tangent-line-to-a-curve). Its sign therefore describes the curve's local direction.
 
-## Properties of Monotonicity
+## Rules for Derivative Signs
 
-The relationship between the first derivative and the behavior of a function can be summarized by the following properties:
+Because local slope encodes direction, the sign of the **first derivative** classifies every smooth stretch of a curve into rising, falling, or flat behavior. First check the algebraic sign rules on an interval, then inspect how a function ribbon and its derivative ribbon pair up in space.
 
-Suppose the function <InlineMath math="y = f(x)" /> is continuous and differentiable over an interval.
+### Signs on an Interval
+
+Suppose the function <InlineMath math="y = f(x)" /> is continuous and differentiable over an interval. The sign of its first derivative classifies how the curve moves across that interval:
 
 -   If <InlineMath math="f'(x) > 0" /> for all <InlineMath math="x" /> in that interval, then <InlineMath math="f(x)" /> is an **increasing function**.
 
@@ -37,25 +37,60 @@ Suppose the function <InlineMath math="y = f(x)" /> is continuous and differenti
 
 Stationary points divide the domain into intervals that we can test. They are candidates for a change in monotonicity, but <Highlight>the derivative must change sign</Highlight> for the function to switch from increasing to decreasing or vice versa.
 
-For other functions, also check **domain boundaries and points without a derivative**. For example, the domain of <InlineMath math="1/x" /> is separated at <InlineMath math="x=0" /> even though the function has no stationary point. Test derivative signs on each separate domain interval.
+> A zero derivative only marks a candidate turning point. The curve reverses direction only when the first derivative changes sign across that point.
 
-## Analyzing Function Intervals
+For other functions, also check **domain boundaries and points without a derivative**. For example, the domain of <InlineMath math="1/x" /> is separated at <InlineMath math="x = 0" /> even though the function has no stationary point. Test derivative signs on each separate domain interval.
 
-The following example shows the complete sign-analysis process.
+### Curves and Slope Signs
 
-Determine the intervals for which the function <InlineMath math="f(x) = x^3 - 3x" /> is increasing and decreasing.
+Placing a curve beside its **derivative ribbon** reveals why sign changes govern every peak and valley. Drag the probe across each preset curve to compare local tangent slope needles with the height of the derivative ribbon.
 
-**Solution**:
+<DerivativeSlopeFieldLab
+  title={<>Curve, derivative ribbon, and local slope needles</>}
+  description={<>Move the probe along three curves to see how <InlineMath math="f(x)" /> rises whenever <InlineMath math="f'(x) > 0" />, falls whenever <InlineMath math="f'(x) < 0" />, and flattens at critical points where <InlineMath math="f'(x) = 0" />.</>}
+  curves={["cubicWave", "quarticWell", "dampedSine"]}
+  probeX={{ min: -2.2, max: 2.2, value: -0.6 }}
+  labels={{
+    curve: "Curve",
+    curves: {
+      cubicWave: {
+        name: "Cubic wave",
+        formula: <InlineMath math="f(x) = 0.24x^3 - 0.85x + 0.9" />,
+      },
+      quarticWell: {
+        name: "Quartic well",
+        formula: <InlineMath math="f(x) = 0.12x^4 - 0.55x^2 + 1.05" />,
+      },
+      dampedSine: {
+        name: "Sine wave",
+        formula: <InlineMath math="f(x) = 0.8\sin(1.4x) + 0.95" />,
+      },
+    },
+    monotonicity: <>Monotonicity</>,
+    parts: {
+      functionCurve: "Function curve",
+      derivativeCurve: "Derivative curve",
+      slopeNeedles: "Slope needles",
+      probeMarker: "Probe marker",
+      criticalPoints: "Critical points",
+    },
+    probeX: "Horizontal position",
+    slopeValue: <>Derivative slope</>,
+    view: "Three-dimensional dual ribbon showing a function curve, its derivative curve, slope needles, and critical points",
+  }}
+/>
 
-**Step 1**: Find the first derivative
+Whenever the probe crosses a critical point beacon, the derivative curve passes through zero and the slope needles tilt across horizontal. Positive derivative heights match upward stretches of the main ribbon, while negative heights match downward stretches.
 
-First, we differentiate the function <InlineMath math="f(x)" />.
+## Sign Analysis of a Cubic
+
+Determine the intervals where the cubic function <InlineMath math="x^3 - 3x" /> is increasing and decreasing by working through the sign-analysis steps.
+
+**Step 1**: Find the first derivative by differentiating <InlineMath math="f(x) = x^3 - 3x" />.
 
 <BlockMath math="f'(x) = 3x^2 - 3" />
 
-**Step 2**: Find the stationary points
-
-Stationary points occur when <InlineMath math="f'(x) = 0" />.
+**Step 2**: Find the stationary points by solving <InlineMath math="f'(x) = 0" />.
 
 <MathContainer>
     <BlockMath math="3x^2 - 3 = 0" />
@@ -63,11 +98,9 @@ Stationary points occur when <InlineMath math="f'(x) = 0" />.
     <BlockMath math="(x-1)(x+1) = 0" />
 </MathContainer>
 
-From this, we get the stationary points at <InlineMath math="x = 1" /> and <InlineMath math="x = -1" />.
+From this, we get the **stationary points** at <InlineMath math="x = 1" /> and <InlineMath math="x = -1" />.
 
-**Step 3**: Create a number line and test intervals
-
-We place the stationary points on a number line. These points divide the line into three intervals. We take a test point from each interval to find the sign of <InlineMath math="f'(x)" /> (positive or negative).
+**Step 3**: Place the stationary points on a number line to divide it into three intervals, then pick one test point in each interval to check the sign of <InlineMath math="f'(x)" />.
 
 | Interval | Test point | Derivative value | Behavior |
 | --- | --- | --- | --- |
@@ -75,13 +108,11 @@ We place the stationary points on a number line. These points divide the line in
 | <InlineMath math="-1<x<1" /> | <InlineMath math="x=0" /> | <InlineMath math="f'(0)=3(0)^2-3=-3" /> | Decreasing |
 | <InlineMath math="x>1" /> | <InlineMath math="x=2" /> | <InlineMath math="f'(2)=3(2)^2-3=9" /> | Increasing |
 
-**Step 4**: Conclude the intervals
-
-Based on the tests, we can conclude:
+**Step 4**: Conclude the intervals from the sign table:
 
 -   The function is increasing on the intervals <InlineMath math="x < -1" /> or <InlineMath math="x > 1" />.
 
--   The function is decreasing on the interval <InlineMath math="-1 < x < 1" />.
+-   The function is decreasing on the open interval <InlineMath math="(-1, 1)" />.
 
 <MathVisual
   title={<>Visualization of function monotonicity</>}
@@ -112,43 +143,43 @@ Based on the tests, we can conclude:
   }}
 />
 
-The sign chart of <InlineMath math="f'(x) = 3x^2 - 3" />: positive outside <InlineMath math="(-1, 1)" />, zero at <InlineMath math="x = \pm 1" /> and negative inside, matching the test values <InlineMath math="f'(-2) = 9" />, <InlineMath math="f'(0) = -3" /> and <InlineMath math="f'(2) = 9" />.
+The sign chart of <InlineMath math="f'(x) = 3x^2 - 3" /> is positive outside <InlineMath math="(-1, 1)" />, zero at <InlineMath math="x = \pm 1" />, and negative inside, matching the test values <InlineMath math="f'(-2) = 9" />, <InlineMath math="f'(0) = -3" />, and <InlineMath math="f'(2) = 9" />.
 
 <BarChart
   title={<>Values of <InlineMath math="f'(x) = 3x^2 - 3" /></>}
   description={<>Bars of <InlineMath math="f'(x)" /> for <InlineMath math="x = -2" /> to <InlineMath math="2" /> in steps of <InlineMath math="0.5" />.</>}
-  yAxisLabel="f'(x)"
+  yAxisLabel="Derivative value"
   data={[-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2].map((x) => ({ name: String(x), value: 3 * x ** 2 - 3 }))}
-  chartConfig={{ value: { label: "f'(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  chartConfig={{ value: { label: "Derivative value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-## Exercises
+The negative bars between <InlineMath math="-1" /> and <InlineMath math="1" /> correspond directly to the falling middle branch of the cubic, while the zero bars at <InlineMath math="-1" /> and <InlineMath math="1" /> pinpoint both turning points.
+
+## Testing Monotone Intervals
 
 Each problem asks where a function increases or decreases. Find the **stationary points** first, because they separate the intervals.
 
-1.  Determine the intervals where the function is increasing and decreasing for the curve <InlineMath math="f(x) = x^3 - 3x^2 - 15" />.
+1.  Determine the intervals where the curve defined by <InlineMath math="x^3 - 3x^2 - 15" /> is increasing and decreasing.
 
-2.  If <InlineMath math="f(x) = ax^3 + x^2 + 5" /> is increasing throughout <InlineMath math="0 < x < 2" />, determine the possible values of <InlineMath math="a" />.
+2.  If the cubic <InlineMath math="ax^3 + x^2 + 5" /> is increasing throughout <InlineMath math="0 < x < 2" />, determine the possible values of <InlineMath math="a" />.
 
 3.  Determine the intervals where <InlineMath math="f(x) = \sin 2x \cos 2x" /> is increasing and decreasing.
 
-### Worked Solutions
-
-**Problem 1**. The first derivative of <InlineMath math="f(x) = x^3 - 3x^2 - 15" /> is <InlineMath math="f'(x) = 3x^2 - 6x" />.
+**Problem 1**. The first derivative of <InlineMath math="x^3 - 3x^2 - 15" /> is <InlineMath math="f'(x) = 3x^2 - 6x" />.
 
 **Stationary points** are found when <InlineMath math="f'(x) = 0" />.
 
 <BlockMath math="3x^2 - 6x = 0 \implies 3x(x - 2) = 0" />
 
-The stationary points are at <InlineMath math="x=0" /> and <InlineMath math="x=2" />.
+The stationary points are at <InlineMath math="x = 0" /> and <InlineMath math="x = 2" />.
 
 By testing the intervals on a number line:
 
--   For <InlineMath math="x<0" />, <InlineMath math="f'(x)" /> is positive (increasing).
+-   For <InlineMath math="x < 0" />, <InlineMath math="f'(x)" /> is positive (increasing).
 
--   For <InlineMath math="0<x<2" />, <InlineMath math="f'(x)" /> is negative (decreasing).
+-   For <InlineMath math="0 < x < 2" />, <InlineMath math="f'(x)" /> is negative (decreasing).
 
--   For <InlineMath math="x>2" />, <InlineMath math="f'(x)" /> is positive (increasing).
+-   For <InlineMath math="x > 2" />, <InlineMath math="f'(x)" /> is positive (increasing).
 
 So, the function is increasing on <InlineMath math="x < 0" /> or <InlineMath math="x > 2" />, and decreasing on the interval <InlineMath math="0 < x < 2" />.
 
@@ -156,17 +187,17 @@ So, the function is increasing on <InlineMath math="x < 0" /> or <InlineMath mat
 
 <BlockMath math="f'(x) = 3ax^2 + 2x = x(3ax + 2)" />
 
-In the interval <InlineMath math="0 < x < 2" />, the factor <InlineMath math="x" /> is always positive. Therefore, for <InlineMath math="f'(x) \ge 0" />, the second factor, <InlineMath math="(3ax + 2)" />, must also be non-negative.
+In the interval <InlineMath math="0 < x < 2" />, the factor <InlineMath math="x" /> is always positive. Therefore, for <InlineMath math="f'(x) \ge 0" />, the second factor, <InlineMath math="3ax + 2" />, must also be non-negative.
 
 <BlockMath math="3ax + 2 \ge 0" />
 
 This inequality must hold for every <InlineMath math="x" /> in <InlineMath math="0 < x < 2" />. Since <InlineMath math="h(x) = 3ax + 2" /> is linear, its smallest limiting value occurs toward one end of the interval.
 
--   If <InlineMath math="a \ge 0" />, then <InlineMath math="3ax \ge 0" />, so <InlineMath math="3ax+2" /> is positive throughout the interval.
+-   If <InlineMath math="a \ge 0" />, then <InlineMath math="3ax \ge 0" />, so <InlineMath math="3ax + 2" /> is positive throughout the interval.
 
--   If <InlineMath math="a < 0" />, then <InlineMath math="h(x)" /> decreases. Because <InlineMath math="x=2" /> is excluded, <InlineMath math="h" /> has no minimum there. Its infimum is the boundary value approached as <InlineMath math="x \to 2^-" />. Requiring that boundary value to be non-negative gives the exact condition.
+-   If <InlineMath math="a < 0" />, then <InlineMath math="h(x)" /> decreases. Because <InlineMath math="x = 2" /> is excluded, <InlineMath math="h" /> has no minimum there. Its infimum is the boundary value approached as <InlineMath math="x \to 2^-" />. Requiring that boundary value to be non-negative gives the exact condition.
 
-Evaluate the limiting boundary condition at <InlineMath math="x=2" />:
+Evaluate the limiting boundary condition at <InlineMath math="x = 2" />:
 
 <MathContainer>
     <BlockMath math="3a(2) + 2 \ge 0" />
@@ -176,11 +207,11 @@ Evaluate the limiting boundary condition at <InlineMath math="x=2" />:
 
 Combining both cases, the function increases throughout the given interval precisely when <InlineMath math="a \ge -1/3" />.
 
-At the boundary <InlineMath math="a=-1/3" />, the derivative becomes <InlineMath math="f'(x)=x(2-x)>0" /> for every <InlineMath math="0<x<2" />. The function is therefore **increasing throughout the open interval**. If <InlineMath math="a<-1/3" />, the derivative is negative sufficiently close to <InlineMath math="x=2" />, so the function cannot keep increasing.
+At the boundary <InlineMath math="a = -1/3" />, the derivative simplifies to <InlineMath math="f'(x) = x(2 - x)" />, which stays positive for every <InlineMath math="0 < x < 2" />. The function is therefore **increasing throughout the open interval**. If <InlineMath math="a < -1/3" />, the derivative is negative sufficiently close to <InlineMath math="x = 2" />, so the function cannot keep increasing.
 
-**Problem 3**. Use the double angle trigonometric identity: <InlineMath math="\sin(2A) = 2\sin(A)\cos(A)" />.
+**Problem 3**. Use the double angle trigonometric identity <InlineMath math="\sin(2A) = 2\sin(A)\cos(A)" /> to rewrite the function first:
 
-So, <InlineMath math="f(x) = \sin 2x \cos 2x = \frac{1}{2} \sin(4x)" />.
+<BlockMath math="f(x) = \sin 2x \cos 2x = \frac{1}{2} \sin(4x)" />
 
 Its first derivative is:
 
@@ -204,7 +235,7 @@ Its first derivative is:
 
     This interval is valid for any integer <InlineMath math="k" />.
 
-Problem 1 on the graph: <InlineMath math="f(x) = x^3 - 3x^2 - 15" /> rises to <InlineMath math="-15" /> at <InlineMath math="x = 0" />, falls to <InlineMath math="-19" /> at <InlineMath math="x = 2" /> and rises again, so it increases for <InlineMath math="x < 0" /> and <InlineMath math="x > 2" /> and decreases between.
+Problem 1 on the graph shows <InlineMath math="x^3 - 3x^2 - 15" /> rising to <InlineMath math="-15" /> at <InlineMath math="x = 0" />, falling to <InlineMath math="-19" /> at <InlineMath math="x = 2" />, and rising again afterward.
 
 <MathVisual
   title={<>The graph of <InlineMath math="f(x) = x^3 - 3x^2 - 15" /></>}
@@ -228,3 +259,5 @@ Problem 1 on the graph: <InlineMath math="f(x) = x^3 - 3x^2 - 15" /> rises to <I
     ],
   }}
 />
+
+The plotted peak at <InlineMath math="(0, -15)" /> and valley at <InlineMath math="(2, -19)" /> match the sign intervals from the derivative test, confirming the curve falls strictly between those two stationary points.

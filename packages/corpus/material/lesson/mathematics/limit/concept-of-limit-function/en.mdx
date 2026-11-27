@@ -1,17 +1,20 @@
 export const metadata = {
-    title: "Concept of Limit Function",
-  description: "Estimate limits from value tables and one-sided behavior, then interpret the epsilon-delta definition.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2025-05-26",
-    dateModified: "2026-11-08",
-    subject: "Limits",
+  title: "Concept of Limit Function",
+  description:
+    "Estimate limits from value tables and one-sided behavior, then interpret the epsilon-delta definition.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-27",
+  subject: "Limits",
 };
 
-## Following Function Values near a Chosen Input
+## Behavior Near a Target Point
 
-A **limit** describes how nearby output values behave as the input approaches a chosen point. The function value at that point does not determine the limit. A two-sided limit can exist even if the function value is undefined or different. At a jump, compare the two one-sided limits. Near a vertical asymptote, an infinite limit describes the unbounded behavior.
+A **limit** describes how nearby output values behave as the input approaches a chosen point. The function value at that point does not decide the limit, so a two-sided limit can exist even when the function is undefined or takes a different value there.
 
-Continuity, [derivatives](/en/subjects/mathematics/derivative-function/concept-of-derivative-function), and [definite integrals](/en/subjects/mathematics/integral/definite-integral) are all defined using limits. We will first read the pattern from a value table, then connect it to one-sided limits and the precise epsilon-delta definition.
+> A limit depends only on output values strictly near the target input, never on the value assigned at the target point itself.
+
+At a jump, compare the two one-sided limits. Near a vertical asymptote, an infinite limit describes unbounded growth. Continuity, [derivatives](/en/subjects/mathematics/derivative-function/concept-of-derivative-function), and [definite integrals](/en/subjects/mathematics/integral/definite-integral) all build on limits. We start with a value table, then connect it to one-sided limits and the epsilon-delta definition.
 
 ## Approach Through Value Tables
 
@@ -28,89 +31,147 @@ The table below records how <InlineMath math="f(x) = x + 2" /> changes as <Inlin
 
 As <InlineMath math="x" /> approaches <InlineMath math="3" /> from either side, the table values of <InlineMath math="f(x)" /> approach <InlineMath math="5" />. <Highlight>That approaching value is the limit</Highlight>.
 
-Look at the gap to the limit instead of the values. <InlineMath math="|f(x) - 5| = |x - 3|" /> shrinks from <InlineMath math="0.1" /> to <InlineMath math="0.01" /> to <InlineMath math="0.001" /> as <InlineMath math="x" /> approaches <InlineMath math="3" /> from either side.
+Look at the distance to the limit instead of the raw outputs:
+
+<BlockMath math="|f(x) - 5| = |x - 3|" />
+
+That gap shrinks from <InlineMath math="0.1" /> to <InlineMath math="0.01" /> to <InlineMath math="0.001" /> as <InlineMath math="x" /> moves closer to <InlineMath math="3" /> from either side.
 
 <BarChart
   title={<>Distance from the limit <InlineMath math="5" /></>}
   description={<>Bars of <InlineMath math="|f(x) - 5|" /> for <InlineMath math="f(x) = x + 2" /> at the table inputs from <InlineMath math="2.9" /> to <InlineMath math="3.1" />.</>}
-  yAxisLabel="Distance from 5"
+  yAxisLabel="Distance to limit"
   data={[2.9, 2.99, 2.999, 3.001, 3.01, 3.1].map((x) => ({ name: String(x), value: Math.round(10000 * Math.abs(x + 2 - 5)) / 10000 }))}
-  chartConfig={{ value: { label: "Distance from 5", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  chartConfig={{ value: { label: "Distance to limit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-## Notation One Sided Limits and Formal Meaning
+Notice that the bars shrink symmetrically toward zero from both the left and the right, confirming that both sides close in on the exact same target height <InlineMath math="5" />.
 
-The standard notation is:
+## One Sided and Formal Limits
+
+The standard limit notation reads:
 
 <BlockMath math="\lim_{x \to c} f(x) = L" />
 
 Read this as the limit of <InlineMath math="f(x)" /> as <InlineMath math="x" /> approaches <InlineMath math="c" /> equals <InlineMath math="L" />. **Approaching** does not mean substituting the function value at that point.
 
 When <InlineMath math="c" /> is an interior point and the function is defined on both sides near <InlineMath math="c" />, the two-sided limit exists exactly when:
-- **Left limit** and **right limit** must exist
-- Left limit must be **equal to** the right limit
-- The limit value is <InlineMath math="L" />
 
-More formally, left and right limits can be written as:
+- The **left limit** and **right limit** both exist
+- The left limit is **equal to** the right limit
+- Their shared value is <InlineMath math="L" />
 
-For the left limit, <InlineMath math="x" /> approaches <InlineMath math="c" /> from the left:
+Write the left limit as <InlineMath math="x" /> approaches <InlineMath math="c" /> from values smaller than <InlineMath math="c" />:
 
 <BlockMath math="\lim_{x\to c^-}f(x)=L" />
 
-For the right limit, <InlineMath math="x" /> approaches <InlineMath math="c" /> from the right:
+Write the right limit as <InlineMath math="x" /> approaches <InlineMath math="c" /> from values larger than <InlineMath math="c" />:
 
 <BlockMath math="\lim_{x\to c^+}f(x)=L" />
 
-If both limits are equal, then <InlineMath math="\lim_{x \to c} f(x) = L" />. If they are different, then the two-sided limit does not exist. At an endpoint of a domain, only the one-sided limit from within the domain is relevant.
+When both one-sided limits share the same finite value <InlineMath math="L" />, the two-sided limit equals <InlineMath math="L" />. If they differ, the two-sided limit does not exist. At a domain endpoint, only the one-sided limit from inside the domain applies.
 
 The precise epsilon-delta definition gives mathematical meaning to "approaches":
 
 <BlockMath math="\begin{aligned} &amp;\forall \varepsilon>0\;\exists\delta>0: \\ &amp;0&lt;|x-c|&lt;\delta\; \\ &amp;\Longrightarrow\;|f(x)-L|&lt;\varepsilon \end{aligned}" />
 
-In words, for every requested output tolerance <InlineMath math="\varepsilon>0" />, however small, we can choose an input tolerance <InlineMath math="\delta>0" /> that keeps <InlineMath math="f(x)" /> within <InlineMath math="\varepsilon" /> of <InlineMath math="L" /> whenever <InlineMath math="x" /> is within <InlineMath math="\delta" /> of <InlineMath math="c" /> but not equal to it. The condition <InlineMath math="0<|x-c|" /> is why the value <InlineMath math="f(c)" /> **does not determine the limit by itself**.
+For every output tolerance <InlineMath math="\varepsilon > 0" />, however small, you can choose an input tolerance <InlineMath math="\delta > 0" /> that traps <InlineMath math="f(x)" /> within <InlineMath math="\varepsilon" /> of <InlineMath math="L" /> whenever <InlineMath math="x" /> lies within <InlineMath math="\delta" /> of <InlineMath math="c" /> without equaling <InlineMath math="c" />. The strict condition <InlineMath math="0 < |x - c|" /> is why <InlineMath math="f(c)" /> **never determines the limit by itself**.
 
-For <InlineMath math="f(x)=x+2" />, <InlineMath math="c=3" />, and <InlineMath math="L=5" />, the output distance equals the input distance:
+For <InlineMath math="f(x)=x+2" />, <InlineMath math="c=3" />, and <InlineMath math="L=5" />, the output distance matches the input distance:
 
 <BlockMath math="|f(x)-5|=|(x+2)-5|=|x-3|" />
 
-Choose **the same input and output tolerance**, so <InlineMath math="\delta=\varepsilon" />. For example, an output error below <InlineMath math="0.01" /> follows whenever <InlineMath math="0<|x-3|<0.01" />. This calculation works for every positive tolerance.
+Choosing <InlineMath math="\delta = \varepsilon" /> guarantees that an output error below <InlineMath math="0.01" /> holds whenever the input stays inside:
+
+<BlockMath math="0 < |x - 3| < 0.01" />
+
+Now tighten the horizontal output corridor <InlineMath math="\varepsilon" /> across three different functions below to see how the required vertical input corridor <InlineMath math="\delta" /> responds.
+
+<EpsilonDeltaBandLab
+  title={<>Epsilon and Delta Corridors Around a Limit</>}
+  description={
+    <>
+      Adjust the output tolerance <InlineMath math="\varepsilon" /> and compare
+      a removable hole, a smooth quadratic, and a steep line approaching{" "}
+      <InlineMath math="L = 1" /> at <InlineMath math="a = 0" />.
+    </>
+  }
+  epsilon={{ min: 0.1, max: 1.0, value: 0.4 }}
+  functions={["removableHole", "quadraticSmooth", "steepLinear"]}
+  labels={{
+    epsilon: "Output tolerance",
+    functionLabel: "Test function",
+    functions: {
+      removableHole: {
+        name: "Removable hole",
+        formula: (
+          <InlineMath math="f(x) = \frac{x(x+1)}{x},\ \delta = \varepsilon" />
+        ),
+      },
+      quadraticSmooth: {
+        name: "Smooth quadratic",
+        formula: (
+          <InlineMath math="f(x) = x^2 + 2x + 1,\ \delta = \sqrt{1 + \varepsilon} - 1" />
+        ),
+      },
+      steepLinear: {
+        name: "Steep line",
+        formula: (
+          <InlineMath math="f(x) = 2.5x + 1,\ \delta = \frac{\varepsilon}{2.5}" />
+        ),
+      },
+    },
+    deltaBound: <>Input bound <InlineMath math="\delta" /></>,
+    limitVerdict: <>Output condition</>,
+    view: "Coordinate plane showing horizontal epsilon tolerance band, vertical delta corridor, curve path, and open hole at the limit target",
+    parts: {
+      curvePath: "Function curve",
+      epsilonBand: "Output corridor",
+      deltaBand: "Input corridor",
+      holePoint: "Removable hole",
+      limitTarget: "Target height",
+    },
+  }}
+/>
+
+A steeper slope forces a narrower input band <InlineMath math="\delta" /> for the same output tolerance <InlineMath math="\varepsilon" />, yet every curve stays trapped inside the horizontal band across its vertical window even with the open hole right at the target point.
 
 ## Application of Limits
 
-Limits answer questions about how a quantity behaves near a point. A **limit value** can differ from the function value at that point, and the two examples show one case where substitution is enough and one where the expression must be simplified first.
+Limits measure how a quantity behaves near a point. Because a **limit value** can differ from the function value at that point, the next two examples contrast direct substitution with factoring out a removable hole.
 
-### Evaluating a Limit by Direct Substitution
+### Direct Substitution
 
-Find <InlineMath math="\lim_{x \to 4} (2x - 1)" />.
+Evaluate the linear limit below:
 
-**Solution**:
+<BlockMath math="\lim_{x \to 4} (2x - 1)" />
 
-Since the function <InlineMath math="f(x) = 2x - 1" /> is continuous at <InlineMath math="x = 4" />, we can directly substitute:
+Because <InlineMath math="f(x) = 2x - 1" /> is **continuous** at <InlineMath math="x = 4" />, direct substitution gives the answer immediately:
 
 <BlockMath math="\begin{aligned} \lim_{x \to 4} (2x - 1) &amp;= 2(4) - 1 \\ &amp;= 8 - 1 \\ &amp;= 7 \end{aligned}" />
 
-### Simplifying an Indeterminate Form Before Taking the Limit
+### Factoring Holes
 
-Find <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />.
+Evaluate the rational limit below:
 
-**Solution**:
+<BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />
 
-If we substitute <InlineMath math="x = 2" /> directly, we get the indeterminate form <InlineMath math="\frac{0}{0}" />. We need to simplify first by factoring:
+Substituting <InlineMath math="x = 2" /> directly yields the **indeterminate form** <InlineMath math="\frac{0}{0}" />, so factor the numerator first:
 
 <MathContainer>
-<BlockMath math="x^2 - 4 = (x + 2)(x - 2)" />
-<BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" />
+  <BlockMath math="x^2 - 4 = (x + 2)(x - 2)" />
+  <BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" />
 </MathContainer>
 
-Since a limit concerns nearby values with <InlineMath math="x \neq 2" />, we may cancel <InlineMath math="(x - 2)" /> before evaluating the simplified expression:
+Because a limit inspects nearby inputs with <InlineMath math="x \neq 2" />, cancel <InlineMath math="(x - 2)" /> before evaluating:
 
 <BlockMath math="\lim_{x\to2}\frac{x^2-4}{x-2}= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
-The graph of <InlineMath math="\frac{x^2 - 4}{x - 2}" /> is the line <InlineMath math="y = x + 2" /> with a hole at <InlineMath math="(2, 4)" />. The function has no value at <InlineMath math="2" />, but the limit is the height of the hole, <InlineMath math="4" />.
+The graph matches the line <InlineMath math="y = x + 2" /> everywhere except for a missing point at <InlineMath math="(2, 4)" />.
 
 <MathVisual
   title={<>The line <InlineMath math="y = x + 2" /> with a hole at <InlineMath math="(2, 4)" /></>}
-  description={<>The graph of <InlineMath math="\frac{x^2 - 4}{x - 2}" />: the line <InlineMath math="y = x + 2" /> with an open circle at <InlineMath math="(2, 4)" />.</>}
+  description={<>Graph of <InlineMath math="\frac{x^2 - 4}{x - 2}" /> showing the linear branch with an open circle marking the missing point at <InlineMath math="(2, 4)" />.</>}
   labels={{
     line: <InlineMath math="y = x + 2" />,
     hole: <InlineMath math="(2, 4)" />,
@@ -131,9 +192,18 @@ The graph of <InlineMath math="\frac{x^2 - 4}{x - 2}" /> is the line <InlineMath
   }}
 />
 
-## Basic Properties of Limits
+Even though no point sits at <InlineMath math="x = 2" />, both linear halves aim directly at the open circle, so the limit equals the height of the hole, <InlineMath math="4" />.
 
-The following rules require both limits <InlineMath math="L=\lim_{x\to c}f(x)" /> and <InlineMath math="M=\lim_{x\to c}g(x)" /> to **exist and be finite**, with constant coefficients <InlineMath math="a,b" />.
+## Core Limit Combination Rules
+
+Assume both **finite limits** exist at <InlineMath math="x \to c" /> with constant coefficients <InlineMath math="a" /> and <InlineMath math="b" />:
+
+<MathContainer>
+  <BlockMath math="L = \lim_{x \to c} f(x)" />
+  <BlockMath math="M = \lim_{x \to c} g(x)" />
+</MathContainer>
+
+Then combinations of <InlineMath math="f" /> and <InlineMath math="g" /> follow three algebraic rules:
 
 | Operation | Limit | Extra condition |
 | --- | --- | --- |
@@ -141,62 +211,64 @@ The following rules require both limits <InlineMath math="L=\lim_{x\to c}f(x)" /
 | Product | <InlineMath math="LM" /> | None |
 | Quotient | <InlineMath math="\frac{L}{M}" /> | <InlineMath math="M\ne0" /> |
 
-## Exercises
+## Checking Basic Limit Values
 
-The four problems below cover **direct substitution**, a case that needs factoring, a basic trigonometric limit, and a piecewise function. Solve each one on paper first, then compare your steps with the solutions.
+The four problems below cover **direct substitution**, factoring, a fundamental trigonometric limit, and a piecewise jump. Solve each one on paper first, then compare your steps with the solutions that follow.
 
-1. Find <InlineMath math="\lim_{x \to 3} (x^2 + 2x - 1)" />
+1. Evaluate the polynomial limit:
 
-2. Find <InlineMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1}" />
+   <BlockMath math="\lim_{x \to 3} (x^2 + 2x - 1)" />
 
-3. Find <InlineMath math="\lim_{x \to 0} \frac{\sin x}{x}" /> (use trigonometric limit theorem)
+2. Evaluate the rational limit:
 
-4. The function <InlineMath math="f" /> is defined by:
+   <BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1}" />
+
+3. Evaluate the trigonometric limit using the fundamental sine limit theorem:
+
+   <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x}" />
+
+4. Find the two-sided limit at <InlineMath math="x = 2" /> for the piecewise function:
 
    <BlockMath math="f(x) = \begin{cases} x + 1, & x < 2 \\ 3x - 2, & x \geq 2 \end{cases}" />
 
-   Find <InlineMath math="\lim_{x \to 2} f(x)" />.
+Compare your work against the step-by-step solutions below.
 
-### Worked Solutions
-
-**Problem 1**. Since polynomial functions are **continuous at all points**, we can substitute directly:
+**Problem 1**. Because polynomials are **continuous everywhere**, substitute <InlineMath math="x = 3" /> directly:
 
 <BlockMath math="\begin{aligned} &amp;\lim_{x \to 3} (x^2 + 2x - 1) \\ &amp;= 3^2 + 2(3) - 1 \\ &amp;= 9 + 6 - 1 \\ &amp;= 14 \end{aligned}" />
 
-**Problem 2**. **Direct substitution** yields the form <InlineMath math="\frac{0}{0}" />. We factor first:
+**Problem 2**. **Direct substitution** yields <InlineMath math="\frac{0}{0}" />, so factor the numerator first:
 
 <MathContainer>
-<BlockMath math="x^2 - 1 = (x + 1)(x - 1)" />
-<BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x + 1)(x - 1)}{x - 1}" />
+  <BlockMath math="x^2 - 1 = (x + 1)(x - 1)" />
+  <BlockMath math="\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x + 1)(x - 1)}{x - 1}" />
 </MathContainer>
 
-Since the limit uses nearby values with <InlineMath math="x \neq 1" />, we may cancel <InlineMath math="(x - 1)" /> before evaluating the simplified expression:
+Cancel <InlineMath math="(x - 1)" /> for nearby inputs <InlineMath math="x \neq 1" /> and evaluate:
 
 <BlockMath math="\lim_{x\to1}\frac{x^2-1}{x-1}= \lim_{x \to 1} (x + 1) = 1 + 1 = 2" />
 
-**Problem 3**. This **fundamental trigonometric limit** is used to derive the derivatives of sine and cosine. Direct substitution gives the indeterminate form <InlineMath math="\frac{0}{0}" />, so we use the trigonometric limit theorem:
+**Problem 3**. Direct substitution produces <InlineMath math="\frac{0}{0}" />, so apply the **fundamental trigonometric limit** with <InlineMath math="x" /> measured in radians (degrees give a different value):
 
 <BlockMath math="\lim_{x \to 0} \frac{\sin x}{x} = 1" />
 
-**Note**: Measure <InlineMath math="x" /> in radians. Degrees give a different result.
+**Problem 4**. For a piecewise rule, evaluate the left and right limits separately.
 
-**Problem 4**. For piecewise functions (defined with different rules), we must check left and right limits separately:
-
-**Left limit** (when <InlineMath math="x" /> approaches <InlineMath math="2" /> from the left, so <InlineMath math="x < 2" />):
+Approaching <InlineMath math="2" /> from the left (<InlineMath math="x < 2" />) uses the upper branch:
 
 <BlockMath math="\begin{aligned} \lim_{x \to 2^-} f(x) &amp;= \lim_{x \to 2^-} (x + 1) \\ &amp;= 2 + 1 \\ &amp;= 3 \end{aligned}" />
 
-**Right limit** (when <InlineMath math="x" /> approaches <InlineMath math="2" /> from the right, so nearby inputs satisfy <InlineMath math="x > 2" />):
+Approaching <InlineMath math="2" /> from the right (<InlineMath math="x > 2" />) uses the lower branch:
 
 <BlockMath math="\begin{aligned} \lim_{x \to 2^+} f(x) &amp;= \lim_{x \to 2^+} (3x - 2) \\ &amp;= 3(2) - 2 \\ &amp;= 6 - 2 \\ &amp;= 4 \end{aligned}" />
 
-Since <InlineMath math="\lim_{x \to 2^-} f(x) = 3 \neq 4 = \lim_{x \to 2^+} f(x)" />, then <InlineMath math="\lim_{x \to 2} f(x)" /> **does not exist**.
+Because the left limit <InlineMath math="3" /> differs from the right limit <InlineMath math="4" />, the two-sided limit at <InlineMath math="x = 2" /> **does not exist**.
 
-The graph shows **two different approach heights**. The point on the right branch gives <InlineMath math="f(2)=4" />, but defining that value does not change the left limit of <InlineMath math="3" />.
+The graph shows **two different approach heights**. The filled point gives <InlineMath math="f(2) = 4" />, while the left branch still aims at <InlineMath math="3" />.
 
 <MathVisual
   title={<>A jump in a piecewise function</>}
-  description={<>The left branch <InlineMath math="x + 1" /> approaches height <InlineMath math="3" />, but the right branch <InlineMath math="3x - 2" /> starts at height <InlineMath math="4" />. The open circle at <InlineMath math="(2, 3)" /> and the point <InlineMath math="(2, 4)" /> show that the two one-sided limits differ.</>}
+  description={<>The left branch <InlineMath math="x + 1" /> approaches height <InlineMath math="3" />, while the right branch <InlineMath math="3x - 2" /> starts at height <InlineMath math="4" /> with an open circle at <InlineMath math="(2, 3)" /> and filled point at <InlineMath math="(2, 4)" />.</>}
   labels={{
     hole: <InlineMath math="3" />,
     value: <InlineMath math="(2, 4)" />,
@@ -217,3 +289,5 @@ The graph shows **two different approach heights**. The point on the right branc
     ],
   }}
 />
+
+The vertical gap of <InlineMath math="1" /> unit between the open circle and the filled dot shows visually why no single output corridor around one target height can trap both branches at once.

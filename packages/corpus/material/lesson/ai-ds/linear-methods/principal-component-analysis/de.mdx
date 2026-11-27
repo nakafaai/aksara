@@ -1,9 +1,10 @@
 export const metadata = {
   title: "Hauptkomponentenanalyse",
-  description: "Leite die PCA aus zentrierten Daten, Kovarianzeigenvektoren und der Singulärwertzerlegung her. Deute erklärte Varianz und niedrig-rangige Rekonstruktion geometrisch.",
+  description:
+    "Leite die PCA aus zentrierten Daten, Kovarianzeigenvektoren und der Singulärwertzerlegung her. Deute erklärte Varianz und niedrigrangige Rekonstruktion geometrisch.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-08",
+  dateModified: "2026-11-27",
   subject: "Lineare Methoden der KI",
 };
 
@@ -23,6 +24,8 @@ Die Stichprobenkovarianzmatrix lautet
 <BlockMath math="C=\frac{1}{m-1}X_c^TX_c" />
 
 Sie ist <Highlight>symmetrisch positiv semidefinit</Highlight>. Sie kann singulär sein, wenn Merkmale linear abhängig sind oder <InlineMath math="n>m-1" /> gilt.
+
+> Jedes Merkmal vor der Berechnung der Hauptachsen um seinen Mittelwert zu zentrieren ist Pflicht, während die Skalierung auf Varianz eins eine eigene Modellierungsentscheidung bleibt.
 
 Die Zentrierung ist zwingend. Jedes Merkmal auf Varianz eins zu standardisieren ist eine eigene Modellierungsentscheidung, die bei nicht vergleichbaren Einheiten oft sinnvoll ist. Dadurch ändert sich die Frage von den Richtungen größter absoluter Varianz zu den Richtungen größter standardisierter Varianz.
 
@@ -55,7 +58,13 @@ Nimm drei Beobachtungen <InlineMath math="(2,3)" />, <InlineMath math="(4,4)" />
   ]}
 />
 
-## Hauptkomponentenrichtungen
+Das Verschieben aller Punkte um denselben Mittelwertvektor lässt jeden paarweisen Abstand unverändert und stellt sicher, dass alle Hauptachsen genau durch den Ursprung laufen.
+
+## Hauptachsen und Varianzreduktion
+
+Die Hauptachsen sind die **orthogonalen Eigenvektoren** der Kovarianzmatrix, geordnet von größter zu kleinster Varianz, und die Projektion auf die ersten Richtungen bewahrt den größten Teil der Streuung.
+
+### Hauptkomponentenrichtungen
 
 Nach dem Spektralsatz gilt
 
@@ -80,7 +89,7 @@ Die Stichprobenkovarianz der Scores <InlineMath math="Z" /> ist diagonal:
 
 Die Hauptkomponenten sind daher unkorreliert. Im Allgemeinen sind sie nicht unabhängig. Bei einem gemeinsam gaußverteilten Zufallsvektor liefert eine feste Eigenbasis seiner Populationskovarianz unabhängige transformierte Komponenten. Stichprobenkorrelationen null allein beweisen keine Unabhängigkeit in der Population.
 
-## Erklärte Varianz und Dimensionsreduktion
+### Erklärte Varianz und Dimensionsreduktion
 
 Die Anteile setzen **positive Gesamtvarianz** voraus: <InlineMath math="\operatorname{tr}(C)>0" />. Sind alle zentrierten Beobachtungen null, sind sämtliche Eigenwerte null und die erklärten Varianzanteile nicht definiert.
 
@@ -100,7 +109,7 @@ Unter allen linearen Rekonstruktionen vom Rang höchstens <InlineMath math="k" /
 
 <BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
 
-Jede Hauptkomponente erklärt den Anteil ihres Eigenwerts an der Gesamtvarianz. Im Rechenbeispiel weiter unten sind <InlineMath math="\lambda_1=9" /> und <InlineMath math="\lambda_2=2{,}25" />, also erklärt die erste Komponente <InlineMath math="\tfrac9{11{,}25}=80\%" /> und die zweite die übrigen <InlineMath math="20\%" />.
+Jede Hauptkomponente erklärt den Anteil ihres Eigenwerts an der Gesamtvarianz. Im Rechenbeispiel weiter unten sind <InlineMath math="\lambda_1=9" /> und <InlineMath math="\lambda_2=2{,}25" />, also erklärt die erste Komponente <InlineMath math="80\%" /> und die zweite die übrigen <InlineMath math="20\%" />.
 
 <BarChart
   title={<>Erklärte Varianz jeder Komponente</>}
@@ -112,6 +121,72 @@ Jede Hauptkomponente erklärt den Anteil ihres Eigenwerts an der Gesamtvarianz. 
   ]}
   chartConfig={{ value: { label: "Erklärte Varianz", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Da sich beide Balken zu <InlineMath math="1" /> summieren, erhält schon die erste Komponente vier Fünftel der Gesamtvarianz und verwirft nur die kleinere orthogonale Streuung.
+
+Dreh nun eine korrelierte Punktwolke im Raum, um die orthogonalen Projektionslote direkt zu sehen. Wechsle zwischen der ersten Hauptachse, der Ebene aus zwei Komponenten und dem vollen Raum und erhöhe die Korrelation, um steigende erklärte Varianz und schrumpfenden Rekonstruktionsfehler zu verfolgen.
+
+<PcaProjection3DLab
+  title={<>Orthogonale Hauptkomponentenprojektion im Raum</>}
+  description={
+    <>
+      Wähle einen Projektionsunterraum und verstelle die Merkmalskorrelation, um
+      erklärte Varianz und quadratischen Rekonstruktionsfehler entlang der
+      Restlote zu vergleichen.
+    </>
+  }
+  subspaces={["pc1Line", "pc1Pc2Plane", "full3D"]}
+  correlation={{ min: 0.05, max: 0.98, value: 0.75 }}
+  labels={{
+    subspace: "Projektionsunterraum",
+    correlation: "Merkmalskorrelation",
+    view: "Dreidimensionale korrelierte Punktwolke mit orthogonalen Hauptachsen und Projektionsloten",
+    varianceExplained: <>Erklärte Varianz</>,
+    reconstructionError: <>Rekonstruktionsfehler</>,
+    parts: {
+      pointCloud: "Zentrierte Punktwolke",
+      pc1Axis: "Erste Hauptachse",
+      pc2Axis: "Zweite Hauptachse",
+      pc3Axis: "Dritte Hauptachse",
+      projectionPlane: "Projektionsebene",
+      residualLines: "Restlote der Projektion",
+    },
+    subspaces: {
+      pc1Line: {
+        name: "Gerade der ersten Achse",
+        summary: (
+          <>
+            Projiziert alle Punkte orthogonal auf{" "}
+            <InlineMath math="\mathrm{PC}_1" /> und bewahrt die stärkste
+            Streuungsrichtung.
+          </>
+        ),
+      },
+      pc1Pc2Plane: {
+        name: "Ebene zweier Komponenten",
+        summary: (
+          <>
+            Projiziert auf die von <InlineMath math="\mathrm{PC}_1" /> und{" "}
+            <InlineMath math="\mathrm{PC}_2" /> aufgespannte Ebene mit kleinen
+            Resten entlang der dritten Achse.
+          </>
+        ),
+      },
+      full3D: {
+        name: "Voller dreidimensionaler Raum",
+        summary: (
+          <>
+            Behält alle drei orthogonalen Achsen bei, sodass{" "}
+            <InlineMath math="100\%" /> der Varianz ohne Rekonstruktionsfehler
+            erhalten bleiben.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Nähert sich die Korrelation dem Wert <InlineMath math="1" />, streckt sich die Punktwolke eng entlang der ersten Hauptachse, sodass selbst eine eindimensionale Projektion über <InlineMath math="90\%" /> der Varianz bei winzigen Restloten einfängt.
 
 ## Gleichwertige Berechnung mit der Singulärwertzerlegung
 
@@ -183,6 +258,8 @@ Das Ergebnis <InlineMath math="80\%" /> ist der Anteil der Gesamtvarianz, den di
     "v2": <InlineMath math="v_2" />,
   }}
 />
+
+Während der Winkel einen Halbkreis überstreicht, schwankt die richtungsabhängige Varianz glatt zwischen dem kleinsten Eigenwert <InlineMath math="2{,}25" /> entlang <InlineMath math="v_2" /> und dem größten Eigenwert <InlineMath math="9" /> entlang <InlineMath math="v_1" />.
 
 ## Grenzen der Interpretation
 

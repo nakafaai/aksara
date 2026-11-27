@@ -1,10 +1,11 @@
 export const metadata = {
-    title: "Nilai Eigen Vektor Eigen dan Ruang Eigen",
-   description: "Jelaskan cara matriks mentransformasi vektor eigennya, hitung vektor tersebut, lalu tentukan ruang eigennya.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2025-07-12",
-    dateModified: "2026-09-19",
-    subject: "Metode Linear AI",
+  title: "Nilai Eigen Vektor Eigen dan Ruang Eigen",
+  description:
+    "Jelaskan cara matriks mentransformasi vektor eigennya, hitung vektor eigen, lalu tentukan ruang eigennya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-12",
+  dateModified: "2026-11-27",
+  subject: "Metode Linear AI",
 };
 
 ## Nilai Eigen dan Vektor Eigen
@@ -19,9 +20,82 @@ Untuk nilai eigen real, perkalian <InlineMath math="Av" /> mengubah skala atau o
 
 > Menurut definisi, nilai eigen dapat sama dengan <InlineMath math="0" />, tetapi <Highlight>vektor eigen selalu tak nol</Highlight>.
 
+Amati bagaimana transformasi linear tiga dimensi mengubah bentuk kisi satuan sambil menjaga setiap vektor eigen real tetap berada pada garis invariannya. Ganti prasetel matriks dan geser penggeser progres transformasi untuk membandingkan faktor skala dan determinannya.
+
+<EigenTransform3DLab
+  title={<>Arah Vektor Eigen yang Invarian di Ruang</>}
+  description={
+    <>
+      Ubah kubus koordinat dari matriks identitas menuju{" "}
+      <InlineMath math="A" /> pada empat transformasi untuk membandingkan nilai
+      eigen, rentangan vektor eigen, dan faktor volume bertanda{" "}
+      <InlineMath math="\det(A)" />.
+    </>
+  }
+  transforms={["stretchShear", "symmetricDiag", "reflectionScale", "anisotropic3D"]}
+  progress={{ min: 0, max: 1, value: 1 }}
+  labels={{
+    transform: "Prasetel matriks",
+    progress: "Progres transformasi",
+    view: "Kisi koordinat tiga dimensi yang berubah oleh transformasi linear bersama garis vektor eigen invarian",
+    eigenvalues: <>Nilai eigen</>,
+    determinant: <>Determinan</>,
+    parts: {
+      basisAxes: "Sumbu basis baku",
+      transformedGrid: "Kisi tertransformasi",
+      eigenvectorOne: "Vektor eigen pertama",
+      eigenvectorTwo: "Vektor eigen kedua",
+      eigenvectorThree: "Vektor eigen ketiga",
+      testVector: "Vektor uji umum",
+    },
+    transforms: {
+      stretchShear: {
+        name: "Regangan dan geseran",
+        formula: (
+          <>
+            Nilai eigen <InlineMath math="\lambda = (1{,}8, 1, 1)" /> dengan
+            geseran <InlineMath math="0{,}55" /> pada bidang.
+          </>
+        ),
+      },
+      symmetricDiag: {
+        name: "Penskalaan simetris",
+        formula: (
+          <>
+            Penskalaan diagonal{" "}
+            <InlineMath math="\operatorname{diag}(1{,}7, 1{,}25, 0{,}7)" />{" "}
+            sepanjang sumbu ortogonal.
+          </>
+        ),
+      },
+      reflectionScale: {
+        name: "Refleksi dan skala",
+        formula: (
+          <>
+            Refleksi diagonal{" "}
+            <InlineMath math="\operatorname{diag}(-1{,}2, 1{,}4, 1)" /> yang
+            membalik orientasi satu sumbu.
+          </>
+        ),
+      },
+      anisotropic3D: {
+        name: "Pemetaan ruang anisotropik",
+        formula: (
+          <>
+            Nilai eigen <InlineMath math="\lambda = (1{,}9, 0{,}6, 1{,}3)" />{" "}
+            dengan geseran ringan <InlineMath math="0{,}25" />.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Vektor uji umum berbelok dari sinar awalnya saat geseran atau skala sumbu yang berbeda bekerja, sedangkan setiap vektor eigen tetap terkunci pada garisnya dan hanya memanjang, memendek, atau berbalik arah. Hasil kali ketiga nilai eigen tepat sama dengan determinan yang mengukur rasio volume bertanda.
+
 ## Sifat Dasar Vektor Eigen
 
-**Perkalian Skalar**: Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="v \in \mathbb{K}^n" /> dengan <InlineMath math="v \neq 0" /> adalah vektor eigen dari <InlineMath math="A" /> untuk nilai eigen <InlineMath math="\lambda \in \mathbb{K}" />. Maka semua kelipatan <InlineMath math="t \cdot v" /> dengan <InlineMath math="t \neq 0" /> juga merupakan vektor eigen dari <InlineMath math="A" /> untuk nilai eigen yang sama <InlineMath math="\lambda" />.
+**Perkalian Skalar**: Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="v \in \mathbb{K}^n" /> dengan <InlineMath math="v \neq 0" /> adalah vektor eigen dari <InlineMath math="A" /> untuk nilai eigen <InlineMath math="\lambda \in \mathbb{K}" />. Maka semua kelipatan <InlineMath math="t \cdot v" /> dengan <InlineMath math="t \neq 0" /> juga vektor eigen dari <InlineMath math="A" /> untuk nilai eigen yang sama <InlineMath math="\lambda" />.
 
 Kesamaan berikut berasal dari sifat linear:
 
@@ -31,9 +105,9 @@ Karena <InlineMath math="t\neq0" />, vektor <InlineMath math="tv" /> tetap tak n
 
 ## Contoh Perhitungan Vektor Eigen
 
-Kedua contoh di sini **memeriksa persamaan** <InlineMath math="Av=\lambda v" /> secara langsung, satu dengan matriks diagonal dan satu dengan matriks simetris. Keduanya menunjukkan dari mana nilai eigen berasal dan bagaimana vektor eigennya ditemukan, yaitu langkah yang sama untuk matriks yang bukan keduanya.
+Kedua contoh di sini **memeriksa persamaan vektor eigen** secara langsung, satu dengan matriks diagonal dan satu dengan matriks simetris. Keduanya menunjukkan dari mana nilai eigen berasal dan bagaimana vektor eigennya ditemukan, yaitu langkah yang sama untuk matriks yang bukan keduanya.
 
-### Matriks Diagonal
+### Pasangan Eigen Diagonal
 
 Perhatikan matriks:
 
@@ -53,11 +127,11 @@ Vektor <InlineMath math="v_2" /> berikut adalah vektor eigen untuk <InlineMath m
 <BlockMath math="A \cdot v_2 = \begin{pmatrix} 0 \\ 2 \end{pmatrix} = 2 \cdot v_2" />
 </MathContainer>
 
-Vektor di luar kedua sumbu koordinat tersebut umumnya **berubah arah**. Untuk matriks diagonal tadi:
+Vektor di luar kedua sumbu koordinat ini umumnya **berubah arah**. Untuk matriks diagonal tadi:
 
 <BlockMath math="A\begin{pmatrix}1\\1\end{pmatrix}=\begin{pmatrix}1\\2\end{pmatrix}\neq\lambda\begin{pmatrix}1\\1\end{pmatrix}\quad\text{untuk setiap }\lambda" />
 
-### Matriks Simetris
+### Pasangan Eigen Simetris
 
 Perhatikan matriks:
 
@@ -77,7 +151,7 @@ Vektor <InlineMath math="v_2" /> berikut adalah vektor eigen untuk <InlineMath m
 <BlockMath math="A \cdot v_2 = \begin{pmatrix} 4 \\ 4 \end{pmatrix} = 4 \cdot v_2" />
 </MathContainer>
 
-Putar atau perbesar adegan ini untuk membandingkan tiap ruas dengan bayangannya oleh matriks simetris di atas. Vektor satuan ungu <InlineMath math="v_1" /> dan <InlineMath math="v_2" /> hanya memanjang: bayangan oranyenya tetap di garis yang sama, dikali <InlineMath math="\lambda_1=2" /> dan <InlineMath math="\lambda_2=4" />. Vektor <InlineMath math="e_1" /> tidak begitu, karena <InlineMath math="Ae_1=(3,1)^T" /> berbelok dari sumbu <InlineMath math="x" />. Hanya arah eigen yang bertahan, dan panjang bayangannya langsung menunjukkan nilai eigen.
+Putar atau perbesar adegan ini untuk membandingkan tiap ruas dengan bayangannya oleh matriks simetris di atas. Vektor satuan ungu <InlineMath math="v_1" /> dan <InlineMath math="v_2" /> hanya memanjang: bayangan oranyenya tetap di garis yang sama, dikali <InlineMath math="\lambda_1=2" /> dan <InlineMath math="\lambda_2=4" />. Vektor <InlineMath math="e_1" /> berbelok dari sumbu <InlineMath math="x" /> karena bayangannya adalah <InlineMath math="(3,1)^T" />.
 
 <MathVisual
   title={<>Vektor eigen tetap di garisnya</>}
@@ -116,6 +190,8 @@ Putar atau perbesar adegan ini untuk membandingkan tiap ruas dengan bayangannya 
   }}
 />
 
+Hanya dua arah eigen yang saling tegak lurus tetap sejajar dengan bayangannya, dan panjang tiap ruas oranye langsung menunjukkan nilai eigennya.
+
 ## Kebebasan Linear Vektor Eigen
 
 Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> adalah nilai eigen <InlineMath math="A" /> yang **berbeda secara berpasangan**, sehingga <InlineMath math="\lambda_i \neq \lambda_j" /> setiap kali <InlineMath math="i \neq j" />. Vektor eigen yang bersesuaian <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> bersifat bebas linear.
@@ -124,7 +200,7 @@ Dengan induksi matematika, teorema ini menunjukkan bahwa matriks <InlineMath mat
 
 ## Ruang Eigen dan Multiplisitas Geometrik
 
-Untuk setiap nilai eigen, kita mendefinisikan ruang vektor yang memuat semua solusi <InlineMath math="Av=\lambda v" />, termasuk vektor nol.
+Untuk setiap nilai eigen, kita mendefinisikan ruang vektor yang memuat semua solusi persamaan vektor eigen, termasuk vektor nol.
 
 Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="\lambda \in \mathbb{K}" />. Kita menyebut himpunan berikut sebagai **ruang eigen** matriks <InlineMath math="A" /> untuk nilai eigen <InlineMath math="\lambda" />.
 
@@ -138,21 +214,25 @@ Nilai <InlineMath math="\dim E_A(\lambda)" /> menyatakan multiplisitas geometrik
 
 Ketujuh sifat berikut semuanya mengikuti definisi <InlineMath math="E_A(\lambda)" /> di atas. Coba kamu periksa satu per satu.
 
-1. **Vektor nol bukan vektor eigen**: Vektor nol bukan vektor eigen, tetapi merupakan anggota <InlineMath math="E_A(\lambda)" />.
+1. **Vektor nol bukan vektor eigen**: Vektor nol bukan vektor eigen, tetapi masuk ke dalam <InlineMath math="E_A(\lambda)" />.
 
 2. **Himpunan vektor eigen**: <InlineMath math="E_A(\lambda) \setminus \{0\}" /> adalah himpunan semua vektor eigen dari <InlineMath math="A" /> yang bersesuaian dengan <InlineMath math="\lambda" />.
 
 3. **Kondisi nilai eigen**: <InlineMath math="\lambda" /> adalah nilai eigen dari <InlineMath math="A" /> jika dan hanya jika <InlineMath math="E_A(\lambda) \neq \{0\}" />.
 
-4. **Batas dimensi**: <InlineMath math="0 \leq \dim E_A(\lambda) \leq n" />. Jika <InlineMath math="\lambda" /> merupakan nilai eigen, batas bawahnya menjadi <InlineMath math="1" />.
+4. **Batas dimensi**: Dimensi <InlineMath math="\dim E_A(\lambda)" /> berada di antara <InlineMath math="0" /> dan <InlineMath math="n" />, dan minimal <InlineMath math="1" /> saat <InlineMath math="\lambda" /> adalah nilai eigen.
 
-5. **Hubungan dengan kernel**: <InlineMath math="E_A(0) = \{v \in \mathbb{K}^n : A \cdot v = 0\} = \ker A" />.
+5. **Hubungan dengan kernel**: Untuk nilai eigen nol, <InlineMath math="E_A(0)" /> sama dengan kernel <InlineMath math="\ker A" />.
 
-6. **Ruang eigen umum**: <InlineMath math="E_A(\lambda) = \{v \in \mathbb{K}^n : (A - \lambda \cdot I) \cdot v = 0\} = \ker(A - \lambda \cdot I)" />.
+6. **Ruang eigen umum**: Untuk skalar <InlineMath math="\lambda" /> mana pun, ruang eigen <InlineMath math="E_A(\lambda)" /> sama dengan <InlineMath math="\ker(A - \lambda I)" />.
 
-7. **Perpotongan ruang eigen**: Jika <InlineMath math="\lambda_1 \neq \lambda_2" />, maka <InlineMath math="E_A(\lambda_1) \cap E_A(\lambda_2) = \{0\}" />.
+7. **Perpotongan ruang eigen**: Jika <InlineMath math="\lambda_1 \neq \lambda_2" />, ruang eigen <InlineMath math="E_A(\lambda_1)" /> dan <InlineMath math="E_A(\lambda_2)" /> hanya beririsan di vektor nol <InlineMath math="0" />.
 
-Dengan <InlineMath math="A=\operatorname{diag}(2,2,1)" />, setiap vektor berbentuk <InlineMath math="(a,b,0)" /> memenuhi <InlineMath math="Av=2v" />. Jadi <InlineMath math="E_A(2)" /> adalah sebuah bidang utuh dengan multiplisitas geometrik <InlineMath math="2" />, sedangkan <InlineMath math="E_A(1)" /> adalah garis yang direntang oleh <InlineMath math="e_3" />.
+Matriks diagonal tiga dimensi berikut memetakan setiap sumbu koordinat ke kelipatannya sendiri:
+
+<BlockMath math="A = \operatorname{diag}(2, 2, 1)" />
+
+Setiap vektor berbentuk <InlineMath math="(a,b,0)" /> memenuhi <InlineMath math="Av=2v" />. Jadi <InlineMath math="E_A(2)" /> adalah sebuah bidang utuh dengan multiplisitas geometrik <InlineMath math="2" />, sedangkan <InlineMath math="E_A(1)" /> adalah garis yang direntang oleh <InlineMath math="e_3" />.
 
 <MathVisual
   title={<>Ruang eigen <InlineMath math="E_A(2)" /> adalah sebuah bidang</>}
@@ -180,19 +260,28 @@ Dengan <InlineMath math="A=\operatorname{diag}(2,2,1)" />, setiap vektor berbent
   }}
 />
 
+Setiap arah di dalam bidang mendatar memanjang dua kali lipat tanpa keluar dari bidang itu, yang langsung memperlihatkan multiplisitas geometrik <InlineMath math="2" />.
+
 ## Hubungan dengan Invertibilitas
 
 Matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dapat diinversi jika dan hanya jika **nol bukan salah satu** nilai eigennya.
 
-Memang, <InlineMath math="A" /> dapat diinversi jika dan hanya jika <InlineMath math="\operatorname{rank} A = n" />, yang ekuivalen dengan <InlineMath math="E_A(0) = \ker A = \{0\}" />. Nilai eigen nol berarti ada vektor tak nol yang dipetakan ke nol, sehingga transformasi tidak dapat dibalik.
+Memang, <InlineMath math="A" /> dapat diinversi jika dan hanya jika <InlineMath math="\operatorname{rank} A = n" />, yang berarti <InlineMath math="\ker A" /> hanya berisi <InlineMath math="0" />. Nilai eigen nol berarti ada vektor tak nol yang dipetakan ke nol, sehingga transformasi tidak dapat dibalik.
 
-Jika matriks <InlineMath math="A" /> dapat diinversi dan <InlineMath math="v \neq 0" /> adalah vektor eigen dari <InlineMath math="A" /> untuk nilai eigen <InlineMath math="\lambda \in \mathbb{K}" />, maka <InlineMath math="v" /> juga merupakan vektor eigen dari <InlineMath math="A^{-1}" /> untuk nilai eigen <InlineMath math="\frac{1}{\lambda}" />.
+Jika matriks <InlineMath math="A" /> dapat diinversi dan <InlineMath math="v \neq 0" /> adalah vektor eigen dari <InlineMath math="A" /> untuk nilai eigen <InlineMath math="\lambda \in \mathbb{K}" />, maka <InlineMath math="v" /> juga vektor eigen dari <InlineMath math="A^{-1}" /> untuk nilai eigen <InlineMath math="\lambda^{-1}" />.
 
-**Menerapkan** <InlineMath math="A^{-1}" /> pada <InlineMath math="A \cdot v = \lambda \cdot v" /> menghasilkan:
+**Menerapkan** <InlineMath math="A^{-1}" /> pada kedua ruas persamaan vektor eigen menghasilkan:
 
 <BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
 
-Untuk <InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" />, vektor <InlineMath math="v=(2,-1)" /> memberi <InlineMath math="Av=(2-2,4-4)=(0,0)=0\cdot v" />. Nilai eigen <InlineMath math="0" /> berarti <InlineMath math="A" /> memampatkan satu arah utuh ke titik asal, jadi tidak ada invers yang bisa mengembalikannya.
+Amati matriks singular dua kali dua berikut bersama vektor eigen <InlineMath math="v=(2,-1)" />:
+
+<MathContainer>
+<BlockMath math="A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}" />
+<BlockMath math="Av = \begin{pmatrix} 2 - 2 \\ 4 - 4 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} = 0 \cdot v" />
+</MathContainer>
+
+Nilai eigen <InlineMath math="0" /> berarti <InlineMath math="A" /> memampatkan satu arah utuh ke titik asal, jadi tidak ada invers yang bisa mengembalikannya.
 
 <MathVisual
   title={<>Nilai eigen nol memipihkan bidang</>}
@@ -218,16 +307,18 @@ Untuk <InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" />, vektor <Inli
   }}
 />
 
+Karena seluruh persegi dua dimensi runtuh menjadi satu garis berdimensi satu, informasi di sepanjang arah kernel hilang sehingga <InlineMath math="A^{-1}" /> tidak ada.
+
 ## Kriteria Invertibilitas
 
 Untuk matriks persegi <InlineMath math="A \in \mathbb{K}^{n \times n}" />, pernyataan berikut saling ekuivalen:
 
 1. <InlineMath math="A" /> dapat diinversi
-2. Terdapat matriks <InlineMath math="A^{-1} \in \mathbb{K}^{n \times n}" /> dengan <InlineMath math="A \cdot A^{-1} = I = A^{-1} \cdot A" />
+2. Terdapat matriks invers <InlineMath math="A^{-1} \in \mathbb{K}^{n \times n}" /> yang memenuhi <InlineMath math="AA^{-1} = I" /> dan <InlineMath math="A^{-1}A = I" />
 3. <InlineMath math="A" /> memiliki peringkat penuh, <InlineMath math="\operatorname{rank} A = n" />, yang ekuivalen dengan <InlineMath math="\ker A = \{0\}" />
 4. Kolom-kolom dari <InlineMath math="A" /> bebas linear
 5. Baris-baris dari <InlineMath math="A" /> bebas linear
 6. <InlineMath math="\det A \neq 0" />
 7. <InlineMath math="0" /> bukan nilai eigen dari <InlineMath math="A" />
 
-**Salah satu kondisi tersebut** sudah cukup untuk membuktikan bahwa matriks dapat diinversi.
+**Salah satu kondisi ini** sudah cukup untuk membuktikan bahwa matriks dapat diinversi.

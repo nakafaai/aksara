@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Respiratory Systems in Humans and Animals Notes",
   description:
-    "Form 4 Biology Chapter 8: explain the breathing mechanism, gas exchange in the alveoli, oxygen transport by haemoglobin and how animals breathe, with practice.",
+    "Explain the breathing mechanism, gas exchange in the alveoli, oxygen transport by haemoglobin, and how animals breathe with worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Respiratory Systems in Humans and Animals",
@@ -9,7 +9,9 @@ export const metadata = {
 
 ## The Respiratory System Brings Oxygen to the Blood
 
-The **respiratory system** carries oxygen from the air into the blood and removes carbon dioxide. Air moves in and out of the lungs because **changes in the volume of the thorax change the air pressure inside the lungs**. In the alveoli, oxygen diffuses into the blood and **haemoglobin** carries it to the body's cells. In the models here, you compress air the way the thorax does, measure the pressure of a breath out, read the haemoglobin curve and compare breathing surfaces.
+The **respiratory system** carries oxygen from the air into the blood and removes carbon dioxide. Air moves in and out of the lungs because **changes in the volume of the thorax change the air pressure inside the lungs**. In the alveoli, oxygen diffuses into the blood and **haemoglobin** carries it to the body's cells. In the interactive labs here, you inspect alveolar gas exchange, move the diaphragm and rib cage, measure the pressure of a breath out, and read the haemoglobin curve.
+
+> Air moves into and out of the lungs only when changes in thoracic volume create a pressure difference with the surrounding atmosphere.
 
 Don't confuse **breathing** with **cellular respiration**. Breathing is the physical process of taking air in and out. Cellular respiration is the chemical reaction in the mitochondria that releases energy from glucose.
 
@@ -60,7 +62,69 @@ The rate at which gases diffuse follows **Fick's law**: the rate is directly pro
   }}
 />
 
-A wall eight times thicker cuts the rate of diffusion to one eighth. That's why diseases that thicken the alveolar walls leave patients short of breath.
+A wall eight times thicker cuts the rate of diffusion to one eighth. That's why diseases that thicken the alveolar walls leave patients short of breath. Now step inside a single alveolar sac wrapped in capillaries to see how breathing rate and altitude change the oxygen partial pressure gradient and oxygen uptake.
+
+<AlveolusGasExchangeLab
+  title={<>Gas Exchange across the Alveolar Membrane</>}
+  description={
+    <>
+      Switch between rest, exercise, and high altitude and adjust the breathing
+      rate to compare oxygen uptake and the alveolar{" "}
+      <InlineMath math="\mathrm{O_2}" /> partial pressure gradient.
+    </>
+  }
+  states={["rest", "exercise", "highAltitude"]}
+  ventilation={{ min: 6, max: 36, value: 12 }}
+  labels={{
+    state: "Activity state",
+    ventilation: "Breathing rate",
+    view: "Alveolar sac wrapped in blood capillaries exchanging oxygen and carbon dioxide",
+    oxygenUptake: <>Oxygen uptake</>,
+    diffusionRate: <>Alveolar <InlineMath math="\mathrm{O_2}" /> gradient</>,
+    parts: {
+      alveolus: "Alveolar sac",
+      capillary: "Blood capillary",
+      redBloodCell: "Red blood cell",
+      oxygen: "Oxygen molecules",
+      carbonDioxide: "Carbon dioxide molecules",
+      surfactantFilm: "Moist surfactant film",
+    },
+    states: {
+      rest: {
+        name: "Rest",
+        summary: (
+          <>
+            Steady ventilation maintains an alveolar{" "}
+            <InlineMath math="\mathrm{O_2}" /> gradient of{" "}
+            <InlineMath math="60\text{ mmHg}" /> for basal demand.
+          </>
+        ),
+      },
+      exercise: {
+        name: "Exercise",
+        summary: (
+          <>
+            Venous blood arrives more depleted, steepening the{" "}
+            <InlineMath math="\mathrm{O_2}" /> gradient to{" "}
+            <InlineMath math="78\text{ mmHg}" /> and boosting uptake.
+          </>
+        ),
+      },
+      highAltitude: {
+        name: "High altitude",
+        summary: (
+          <>
+            Lower atmospheric pressure cuts the{" "}
+            <InlineMath math="\mathrm{O_2}" /> gradient to{" "}
+            <InlineMath math="34\text{ mmHg}" />, so faster breathing is needed.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Notice that **exercise widens the pressure gradient** as active muscles consume more oxygen, whereas high altitude narrows the gradient because ambient air holds less oxygen per litre. Increasing breathing rate raises oxygen uptake in every state by refreshing alveolar air faster.
 
 ## The Breathing Mechanism
 
@@ -75,35 +139,66 @@ Breathing depends on **Boyle's law**: for a fixed mass of gas at constant temper
 | Volume of the thorax | Increases | Decreases |
 | Pressure in the lungs | Lower than atmospheric | Higher than atmospheric |
 
-This sealed syringe model shows the same principle. Push the air into a smaller volume, then warm it to body temperature, and watch the pressure rise. Air in the lungs squeezed this way flows out towards the lower atmospheric pressure.
+Test Boyle's law directly inside the chest cavity. Switch between inhalation, normal exhalation, and forced exhalation, then vary breath depth to watch the diaphragm, rib cage, lung volume, and alveolar pressure respond together.
 
-<GasPistonLab
-  title={<>Air Compressed in a Sealed Syringe</>}
+<ThoraxDiaphragmLab
+  title={<>Thoracic Cavity and Diaphragm Breathing Mechanics</>}
   description={
     <>
-      Air at <InlineMath math="101\text{ kPa}" /> and{" "}
-      <InlineMath math="25^\circ\text{C}" /> is compressed to{" "}
-      <InlineMath math="0.8" /> of its starting volume, then warmed to{" "}
-      <InlineMath math="37^\circ\text{C}" />.
+      Compare inhalation, exhalation, and forced exhalation across breath depths
+      to see how thoracic volume changes drive alveolar pressure above or below
+      atmospheric pressure.
     </>
   }
-  pressure={101}
-  temperature={25}
-  volumeRatio={0.8}
-  finalTemperature={37}
+  phases={["inhalation", "exhalation", "forcedExhalation"]}
+  depth={{ min: 10, max: 100, value: 60 }}
   labels={{
-    pressure: <>Air pressure</>,
-    stage: "Stage",
-    stages: {
-      start: <>Start</>,
-      compressed: <>Compressed</>,
-      heated: <>Warmed to body temperature</>,
+    phase: "Breathing phase",
+    depth: "Breath depth",
+    view: "Thoracic rib cage, lungs, and diaphragm changing volume during breathing",
+    thoracicVolume: <>Thoracic volume</>,
+    alveolarPressure: <>Alveolar pressure change</>,
+    parts: {
+      trachea: "Trachea",
+      lungs: "Lungs",
+      ribcage: "Rib cage",
+      intercostal: "Intercostal muscles",
+      diaphragm: "Diaphragm",
+      pleuralCavity: "Pleural cavity",
     },
-    temperature: <>Temperature</>,
-    viewLabel: "Air in a sealed syringe with a pressure gauge",
-    volume: <>Relative volume</>,
+    phases: {
+      inhalation: {
+        name: "Inhalation",
+        summary: (
+          <>
+            The diaphragm flattens and the ribs lift, expanding volume so
+            alveolar pressure falls below atmospheric pressure.
+          </>
+        ),
+      },
+      exhalation: {
+        name: "Exhalation",
+        summary: (
+          <>
+            The diaphragm domes upward and the ribs lower passively, raising
+            alveolar pressure slightly above atmospheric pressure.
+          </>
+        ),
+      },
+      forcedExhalation: {
+        name: "Forced exhalation",
+        summary: (
+          <>
+            Internal intercostal and abdominal muscles squeeze the thorax
+            further, creating a sharp positive pressure spike.
+          </>
+        ),
+      },
+    },
   }}
 />
+
+When breath depth increases during inhalation, thoracic volume climbs and alveolar pressure becomes more negative, drawing more air down the trachea. During forced exhalation, active muscle compression shrinks volume rapidly and drives a strong positive pressure pulse that pushes extra air out.
 
 You can measure the pressure of a breath out with a **water manometer**. A student blows as hard as possible into one arm of a U-tube, and the difference in water levels shows how far the pressure in the lungs exceeds atmospheric pressure. Change the level difference and read the excess pressure.
 
@@ -127,6 +222,8 @@ You can measure the pressure of a breath out with a **water manometer**. A stude
     viewLabel: "A water manometer connected to the mouth",
   }}
 />
+
+Each centimetre of water height difference adds only a small fraction of a centimetre of mercury because water is much less dense than mercury. That lower density makes water manometers sensitive enough to display ordinary lung pressure changes clearly.
 
 ### Example Pressure of a Breath Out
 
@@ -158,11 +255,12 @@ Check: <InlineMath math="75 \div 6 = 12.5" />, so ventilation rises about twelve
   title={<>Ventilation Rate at Rest and during Exercise</>}
   description={
     <>
-      The volume of air breathed in each minute, tidal volume times breathing
-      rate, at three levels of activity.
+      The volume of air breathed in each minute, in{" "}
+      <InlineMath math="\text{dm}^3\text{ min}^{-1}" />, at three levels of
+      activity.
     </>
   }
-  yAxisLabel="Ventilation rate (dm³ min⁻¹)"
+  yAxisLabel="Ventilation rate"
   data={[
     { name: "Rest", value: 0.5 * 12 },
     { name: "Walking", value: 1.2 * 18 },
@@ -171,34 +269,37 @@ Check: <InlineMath math="75 \div 6 = 12.5" />, so ventilation rises about twelve
   chartConfig={{ value: { label: "Ventilation rate", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
+Running raises ventilation rate far above walking because both tidal volume and breathing frequency increase together. Multiplying both increases explains the steep jump from <InlineMath math="6\text{ dm}^3\text{ min}^{-1}" /> at rest to <InlineMath math="75\text{ dm}^3\text{ min}^{-1}" /> during vigorous running.
+
 ## Oxygen Transport by Haemoglobin
 
 Oxygen that diffuses into the blood combines with **haemoglobin** in the red blood cells to form **oxyhaemoglobin**. In the alveoli, the partial pressure of oxygen is high, about <InlineMath math="13.3\text{ kPa}" />, so haemoglobin is almost saturated. In active tissues, the partial pressure of oxygen is low, about <InlineMath math="5.3\text{ kPa}" />, so oxyhaemoglobin breaks down and releases oxygen.
 
-The oxygen dissociation curve is S-shaped. Move the partial pressure slider to read the percentage saturation, and add carbon dioxide to watch the curve shift to the right, which is the **Bohr effect**.
+The oxygen dissociation curve is S-shaped. Move the partial pressure slider to read the percentage saturation, and raise <InlineMath math="b" /> to see the curve shift to the right under higher carbon dioxide, which is the **Bohr effect**.
 
 <MathVisual
   title={<>The Oxygen Dissociation Curve</>}
   description={
     <>
-      Haemoglobin saturation in tens of percent,{" "}
-      <InlineMath math="\dfrac{10p^{2.7}}{p^{2.7} + b^{2.7}}" />, against the
-      partial pressure of oxygen <InlineMath math="p" /> in kPa. The value{" "}
-      <InlineMath math="b" /> is the partial pressure at half saturation.
+      Percentage haemoglobin saturation{" "}
+      <InlineMath math="\dfrac{100p^{2.7}}{p^{2.7} + b^{2.7}}" /> against the
+      partial pressure of oxygen <InlineMath math="p" /> in{" "}
+      <InlineMath math="\text{kPa}" />. The value <InlineMath math="b" /> is the
+      partial pressure at half saturation.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 14.5 }, y: { min: 0, max: 10.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 14.5 }, y: { min: 0, max: 105 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
       { name: "p", min: 0.5, max: 14, value: 5.3, step: 0.1, label: "p" },
       { name: "b", min: 3.5, max: 5, value: 3.5, step: 0.1, label: "b" },
     ],
     objects: [
-      { id: "curve", kind: "function", appearance: "primary", formula: "10x^2.7/(x^2.7 + b^2.7)", domain: { min: 0, max: 14 } },
-      { id: "normal", kind: "function", appearance: "reference", formula: "10x^2.7/(x^2.7 + 3.5^2.7)", domain: { min: 0, max: 14 } },
-      { id: "now", kind: "marker", x: "p", y: "10p^2.7/(p^2.7 + b^2.7)", appearance: "warning" },
+      { id: "curve", kind: "function", appearance: "primary", formula: "100x^2.7/(x^2.7 + b^2.7)", domain: { min: 0, max: 14 } },
+      { id: "normal", kind: "function", appearance: "reference", formula: "100x^2.7/(x^2.7 + 3.5^2.7)", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "p", y: "100p^2.7/(p^2.7 + b^2.7)", appearance: "warning" },
     ],
     readouts: [
       { key: "saturation", formula: "100p^2.7/(p^2.7 + b^2.7)" },
@@ -210,6 +311,8 @@ The oxygen dissociation curve is S-shaped. Move the partial pressure slider to r
     saturation: <>Percentage saturation of haemoglobin</>,
   }}
 />
+
+The steep middle portion of the S-curve means that a small drop in partial pressure around active tissues releases a large share of bound oxygen, while the flat upper plateau keeps blood nearly saturated in the lungs even if alveolar pressure dips slightly.
 
 ### Example Oxygen Released to the Tissues
 
@@ -237,7 +340,7 @@ Every animal has a breathing surface that is thin, moist and large, but its form
 
 In a fish's gills, blood in the lamellae flows **in the opposite direction** to the water. That way, the blood always meets water richer in oxygen, so the concentration gradient is kept along the whole lamella and the fish can absorb up to <InlineMath math="80\%" /> of the dissolved oxygen.
 
-## Common Mistakes about Respiratory Systems
+## Respiratory Traps and Checks
 
 | Mistake | Why it's wrong | How to check |
 | :--- | :--- | :--- |
@@ -248,8 +351,6 @@ In a fish's gills, blood in the lamellae flows **in the opposite direction** to 
 
 The first mistake is the most common one in breathing mechanism questions. **Volume changes first, then pressure, then airflow**.
 
-## Practice on Respiratory Systems
-
 These questions move from the breathing mechanism to oxygen transport calculations. **State the pressure change** in every answer about airflow.
 
 1. Explain what happens to the diaphragm and the pressure in the lungs when you breathe in.
@@ -259,8 +360,6 @@ These questions move from the breathing mechanism to oxygen transport calculatio
 3. Haemoglobin saturation falls from <InlineMath math="96\%" /> to <InlineMath math="60\%" /> during exercise. Every <InlineMath math="100\text{ cm}^3" /> of saturated blood carries <InlineMath math="20\text{ cm}^3" /> of oxygen. Calculate the oxygen released by <InlineMath math="100\text{ cm}^3" /> of blood.
 
 4. Explain why emphysema, which damages the alveolar walls, makes a patient tire quickly.
-
-### Solutions
 
 **Solution 1**: The diaphragm **contracts and flattens**, and the external intercostal muscles contract. The volume of the thorax increases, so the pressure in the lungs falls below atmospheric pressure and air flows in.
 

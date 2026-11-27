@@ -1,9 +1,10 @@
 export const metadata = {
   title: "Analisis Komponen Utama",
-  description: "Turunkan PCA dari data terpusat, vektor eigen kovarians, dan dekomposisi nilai singular. Jelaskan arti varians terjelaskan dan rekonstruksi rank rendah secara geometris.",
+  description:
+    "Turunkan PCA dari data terpusat, vektor eigen kovarians, dan dekomposisi nilai singular. Jelaskan arti varians terjelaskan dan rekonstruksi rank rendah secara geometris.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-07-17",
-  dateModified: "2026-09-08",
+  dateModified: "2026-11-27",
   subject: "Metode Linear AI",
 };
 
@@ -23,6 +24,8 @@ Matriks kovarians untuk data yang sudah dipusatkan adalah:
 <BlockMath math="C=\frac{1}{m-1}X_c^TX_c" />
 
 Matriks <InlineMath math="C" /> simetris positif semidefinit. Matriks <InlineMath math="C" /> dapat singular ketika fitur saling bergantung linear atau ketika <InlineMath math="n>m-1" />.
+
+> Pemusatan setiap fitur terhadap rata-ratanya wajib dilakukan sebelum mencari arah utama, sedangkan penskalaan ke varians satu adalah pilihan pemodelan tersendiri.
 
 Data harus dipusatkan sebelum <InlineMath math="\mathrm{PCA}" />. <Highlight>Standardisasi setiap fitur agar variansnya satu</Highlight> adalah <Highlight>pilihan model</Highlight>, dan biasanya berguna ketika fitur memakai satuan yang tidak sebanding. Standardisasi mengubah pertanyaan dari arah dengan varians absolut terbesar menjadi arah dengan varians terstandardisasi terbesar.
 
@@ -55,7 +58,13 @@ Ambil tiga pengamatan <InlineMath math="(2,3)" />, <InlineMath math="(4,4)" />, 
   ]}
 />
 
-## Arah Komponen Utama
+Menggeser seluruh titik dengan vektor rata-rata yang sama mempertahankan semua jarak antartitik sekaligus memastikan setiap sumbu komponen utama melewati titik asal.
+
+## Arah Utama dan Reduksi Varians
+
+Arah utama adalah **vektor eigen ortogonal** matriks kovarians yang diurutkan dari varians terbesar ke terkecil, dan proyeksi pada beberapa arah pertama menangkap sebagian besar sebaran data.
+
+### Arah Komponen Utama
 
 Berdasarkan teorema spektral,
 
@@ -78,9 +87,9 @@ Kovarians sampel dari skor <InlineMath math="Z" /> berbentuk diagonal:
 
 <BlockMath math="\frac{1}{m-1}Z^TZ=V^TCV=\Lambda" />
 
-Jadi, komponen utama tidak berkorelasi. Komponen tersebut tidak selalu independen. Untuk vektor acak Gaussian bersama, basis eigen tetap dari kovarians populasi menghasilkan komponen transformasi yang independen. Korelasi sampel nol saja tidak membuktikan independensi populasi.
+Jadi, komponen utama tidak berkorelasi. Komponen ini tidak selalu independen. Untuk vektor acak Gaussian bersama, basis eigen tetap dari kovarians populasi menghasilkan komponen transformasi yang independen. Korelasi sampel nol saja tidak membuktikan independensi populasi.
 
-## Varians Terjelaskan dan Reduksi Dimensi
+### Varians Terjelaskan dan Reduksi Dimensi
 
 Rasio memerlukan **varians total positif**, yaitu <InlineMath math="\operatorname{tr}(C)>0" />. Jika semua pengamatan terpusat bernilai nol, seluruh nilai eigen nol dan rasio varians terjelaskan tidak terdefinisi.
 
@@ -100,7 +109,7 @@ Di antara semua rekonstruksi linear dengan rank paling tinggi <InlineMath math="
 
 <BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
 
-Setiap komponen utama menjelaskan bagian variansi total yang sebanding dengan nilai eigennya. Pada contoh kerja di bawah, <InlineMath math="\lambda_1=9" /> dan <InlineMath math="\lambda_2=2{,}25" />, jadi komponen pertama menjelaskan <InlineMath math="\tfrac9{11{,}25}=80\%" /> dan komponen kedua sisanya, <InlineMath math="20\%" />.
+Setiap komponen utama menjelaskan bagian variansi total yang sebanding dengan nilai eigennya. Pada contoh kerja di bawah, <InlineMath math="\lambda_1=9" /> dan <InlineMath math="\lambda_2=2{,}25" />, jadi komponen pertama menjelaskan <InlineMath math="80\%" /> dan komponen kedua sisanya, <InlineMath math="20\%" />.
 
 <BarChart
   title={<>Variansi yang dijelaskan setiap komponen</>}
@@ -112,6 +121,73 @@ Setiap komponen utama menjelaskan bagian variansi total yang sebanding dengan ni
   ]}
   chartConfig={{ value: { label: "Variansi yang dijelaskan", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
+
+Karena jumlah kedua batang tepat <InlineMath math="1" />, mempertahankan komponen pertama saja sudah menyimpan empat perlima varians total dan hanya membuang sebaran kecil yang tegak lurus.
+
+Sekarang putar awan titik berkorelasi di ruang untuk mengamati garis proyeksi ortogonalnya. Ganti subruang proyeksi antara garis komponen pertama, bidang dua komponen, dan ruang penuh, lalu naikkan korelasi fitur untuk melihat varians terjelaskan melonjak sementara galat rekonstruksi menyusut.
+
+<PcaProjection3DLab
+  title={<>Proyeksi Ortogonal Komponen Utama di Ruang</>}
+  description={
+    <>
+      Pilih subruang proyeksi dan atur korelasi fitur untuk membandingkan
+      varians terjelaskan terhadap galat rekonstruksi kuadrat sepanjang garis
+      sisa.
+    </>
+  }
+  subspaces={["pc1Line", "pc1Pc2Plane", "full3D"]}
+  correlation={{ min: 0.05, max: 0.98, value: 0.75 }}
+  labels={{
+    subspace: "Subruang proyeksi",
+    correlation: "Korelasi fitur",
+    view: "Awan titik tiga dimensi berkorelasi bersama sumbu utama ortogonal dan garis proyeksi residual",
+    varianceExplained: <>Varians terjelaskan</>,
+    reconstructionError: <>Galat rekonstruksi</>,
+    parts: {
+      pointCloud: "Awan titik terpusat",
+      pc1Axis: "Sumbu utama pertama",
+      pc2Axis: "Sumbu utama kedua",
+      pc3Axis: "Sumbu utama ketiga",
+      projectionPlane: "Bidang proyeksi",
+      residualLines: "Garis sisa proyeksi",
+    },
+    subspaces: {
+      pc1Line: {
+        name: "Garis sumbu pertama",
+        summary: (
+          <>
+            Memproyeksikan semua titik tegak lurus ke{" "}
+            <InlineMath math="\mathrm{PC}_1" /> dan menyimpan satu arah varians
+            terkuat.
+          </>
+        ),
+      },
+      pc1Pc2Plane: {
+        name: "Bidang dua komponen",
+        summary: (
+          <>
+            Memproyeksikan ke bidang yang direntang{" "}
+            <InlineMath math="\mathrm{PC}_1" /> dan{" "}
+            <InlineMath math="\mathrm{PC}_2" />, menyisakan residual kecil pada
+            sumbu ketiga.
+          </>
+        ),
+      },
+      full3D: {
+        name: "Ruang tiga sumbu penuh",
+        summary: (
+          <>
+            Mempertahankan ketiga sumbu ortogonal sehingga{" "}
+            <InlineMath math="100\%" /> varians utuh dengan galat rekonstruksi
+            nol.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Saat korelasi mendekati <InlineMath math="1" />, awan titik memanjang rapat mengikuti sumbu utama pertama sehingga proyeksi satu dimensi pun sanggup menyimpan lebih dari <InlineMath math="90\%" /> varians dengan garis sisa yang sangat pendek.
 
 ## Perhitungan Ekuivalen dengan Dekomposisi Nilai Singular
 
@@ -184,6 +260,8 @@ Hasil <InlineMath math="80\%" /> adalah bagian dari varians total yang dijelaska
   }}
 />
 
+Saat sudut menyapu setengah putaran, varians terarah bergerak mulus di antara nilai eigen terkecil <InlineMath math="2{,}25" /> sepanjang <InlineMath math="v_2" /> dan nilai eigen terbesar <InlineMath math="9" /> sepanjang <InlineMath math="v_1" />.
+
 ## Batas Penggunaan PCA
 
 | Pemeriksaan | Alasan |
@@ -192,6 +270,6 @@ Hasil <InlineMath math="80\%" /> adalah bagian dari varians total yang dijelaska
 | Tinjau satuan dan skala fitur | fitur dengan rentang nilai numerik yang besar dapat mendominasi perhitungan meskipun perbedaan itu hanya berasal dari satuan |
 | Pilih <InlineMath math="k" /> berdasarkan kebutuhan validasi | varians terjelaskan tidak mengukur relevansi prediktif |
 | Tanda vektor eigen bersifat sembarang | <InlineMath math="v_j" /> dan <InlineMath math="-v_j" /> mendefinisikan komponen yang sama |
-| Periksa struktur nonlinear dan pencilan | <InlineMath math="\mathrm{PCA}" /> merupakan ringkasan linear berbasis varians dan peka terhadap keduanya |
+| Periksa struktur nonlinear dan pencilan | <InlineMath math="\mathrm{PCA}" /> adalah ringkasan linear berbasis varians dan peka terhadap keduanya |
 
 <InlineMath math="\mathrm{PCA}" /> menemukan arah dengan variasi data terbesar. <Highlight>Nilai varians saja tidak menjelaskan penyebab</Highlight>. Satu komponen utama dapat mencampurkan banyak fitur asli. Arah dengan varians rendah tetap dapat membawa sinyal yang dibutuhkan oleh tugas prediksi atau klasifikasi berikutnya.

@@ -1,24 +1,27 @@
-
-
 export const metadata = {
   title: "Vektor Tiga Dimensi",
-    description: "Nyatakan vektor tiga dimensi, hitung besarnya, lalu terapkan penjumlahan, perkalian titik, dan perkalian silang.",
+  description:
+    "Nyatakan vektor tiga dimensi, hitung besarnya, lalu terapkan penjumlahan, perkalian titik, perkalian silang, dan volume hasil kali rangkap tiga.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-27",
   subject: "Vektor dan Operasinya",
 };
 
-## Komponen Vektor pada Tiga Sumbu Koordinat
+## Ruang Tiga Sumbu Koordinat
 
 Vektor tiga dimensi dinyatakan oleh <Highlight>tiga komponen koordinat</Highlight>. Ketiga komponen mengukur perpindahan sepanjang sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />. Vektor tak nol memiliki besar dan arah, sedangkan vektor nol tidak memiliki arah geometris.
+
+> Dalam sistem Kartesius tangan kanan, urutan komponen selalu mengikuti perpindahan pada sumbu <InlineMath math="x" />, lalu <InlineMath math="y" />, lalu <InlineMath math="z" />, berapa pun sudut pandang kameranya.
+
+Ikuti panah dari titik asal menuju <InlineMath math="(3,4,2)" /> pada kerangka tiga dimensi berikut.
 
 <MathVisual
   title={<>Vektor dalam Ruang Tiga Dimensi</>}
   description={
     <>
-      Visualisasi vektor dalam ruang tiga dimensi dengan komponen{" "}
-      <InlineMath math="x" />, <InlineMath math="y" />, dan{" "}
+      Panah perpindahan dari titik asal ke <InlineMath math="(3,4,2)" /> di
+      sepanjang sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan{" "}
       <InlineMath math="z" />.
     </>
   }
@@ -38,43 +41,43 @@ Vektor tiga dimensi dinyatakan oleh <Highlight>tiga komponen koordinat</Highligh
   }}
 />
 
-## Representasi Vektor Tiga Dimensi
+Setiap koordinat mencatat satu langkah bertanda yang sejajar dengan sumbunya. Gabungan ketiga langkah saling tegak lurus ini menentukan panjang sekaligus arah ruang dari <InlineMath math="\vec{v}" />.
 
-Sumbu <InlineMath math="z" /> tegak lurus terhadap bidang <InlineMath math="xy" />. Dalam sistem Kartesius ini, **urutan komponen** selalu mengikuti sumbu <InlineMath math="x" />, kemudian <InlineMath math="y" />, lalu <InlineMath math="z" />.
+## Notasi dan Komponen Vektor
 
-Misalnya, komponen ketiga pada vektor <InlineMath math="(3,4,2)" /> bernilai <InlineMath math="2" />, bukan ketinggian yang harus selalu tampak vertikal pada layar.
+Sumbu <InlineMath math="z" /> tegak lurus terhadap bidang <InlineMath math="xy" />. Misalnya, komponen ketiga pada vektor <InlineMath math="(3,4,2)" /> bernilai <InlineMath math="2" />, yang menandai langkah pada sumbu <InlineMath math="z" /> walaupun sudut pandang layar miring.
 
-### Notasi Vektor Tiga Dimensi
+Vektor tiga dimensi ditulis dalam tiga notasi baku:
 
-Vektor tiga dimensi dapat dinotasikan dengan berbagai cara:
-
-1. Notasi huruf dengan tanda panah di atasnya: <InlineMath math="\vec{a}" /> atau <InlineMath math="\overrightarrow{PQ}" />
+1. Notasi panah: <InlineMath math="\vec{a}" /> atau <InlineMath math="\overrightarrow{PQ}" />
 2. Notasi komponen: <InlineMath math="(a_x, a_y, a_z)" /> atau <InlineMath math="(a_1, a_2, a_3)" />
 3. Notasi basis: <InlineMath math="a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
 
-Untuk vektor pada diagram pertama, tiga notasi komponen berikut menyatakan **perpindahan yang sama**:
+Untuk vektor pada diagram pertama, ketiga notasi ini menyatakan **perpindahan yang sama**:
 
 <BlockMath math="\vec v=(3,4,2)=\begin{pmatrix}3\\4\\2\end{pmatrix}=3\vec i+4\vec j+2\vec k" />
 
-### Komponen Vektor Tiga Dimensi
-
-Vektor dalam ruang tiga dimensi memiliki **tiga komponen koordinat skalar**. Perkalian setiap skalar dengan vektor satuan sumbunya menghasilkan proyeksi vektor yang bersesuaian:
+Perkalian setiap **komponen skalar** dengan vektor satuan sumbunya menghasilkan proyeksi vektor sepanjang sumbu itu:
 
 <BlockMath math="\vec{a} = (a_x, a_y, a_z) = a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
 
-Pada bentuk ini:
+Masing-masing bagian memiliki peran geometris tersendiri:
 
-- <InlineMath math="a_x" /> adalah komponen skalar sepanjang sumbu <InlineMath math="x" />, sedangkan <InlineMath math="a_x\vec{i}" /> adalah proyeksi vektornya
-- <InlineMath math="a_y" /> adalah komponen skalar sepanjang sumbu <InlineMath math="y" />, sedangkan <InlineMath math="a_y\vec{j}" /> adalah proyeksi vektornya
-- <InlineMath math="a_z" /> adalah komponen skalar sepanjang sumbu <InlineMath math="z" />, sedangkan <InlineMath math="a_z\vec{k}" /> adalah proyeksi vektornya
-- <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> adalah vektor satuan pada sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />
+- Pada sumbu <InlineMath math="x" />, <InlineMath math="a_x" /> menyatakan perpindahan bertanda dan <InlineMath math="a_x\vec{i}" /> membentuk anak panah searah sumbu
+- Pada sumbu <InlineMath math="y" />, <InlineMath math="a_y" /> menyatakan perpindahan bertanda dan <InlineMath math="a_y\vec{j}" /> membentuk anak panah searah sumbu
+- Pada sumbu <InlineMath math="z" />, <InlineMath math="a_z" /> menyatakan perpindahan bertanda dan <InlineMath math="a_z\vec{k}" /> membentuk anak panah searah sumbu
+- <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> adalah vektor satuan sepanjang sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />
+
+Bandingkan ketiga proyeksi sumbu dengan panah resultannya pada visual berikut.
 
 <ContentBlock>
   <MathVisual
     title={<>Komponen Vektor Tiga Dimensi</>}
     description={
         <>
-          Vektor tiga dimensi dengan komponen pada sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />.
+          Proyeksi sumbu <InlineMath math="a_x" />, <InlineMath math="a_y" />,
+          dan <InlineMath math="a_z" /> yang bergabung membentuk vektor ruang{" "}
+          <InlineMath math="a" />.
         </>
       }
     labels={{
@@ -103,40 +106,42 @@ Pada bentuk ini:
   />
 </ContentBlock>
 
-## Panjang Vektor Tiga Dimensi
+Vektor <InlineMath math="a" /> yang disorot menjangkau sudut berlawanan dari balok yang dibentuk oleh <InlineMath math="a_x" />, <InlineMath math="a_y" />, dan <InlineMath math="a_z" />. Mengubah satu komponen saja memiringkan vektor keluar dari bidang asalnya.
 
-Panjang atau besar vektor tiga dimensi <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> ditentukan dengan rumus:
+## Panjang Vektor Ruang
+
+**Panjang** atau besar vektor tiga dimensi <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> memperluas teorema Pythagoras ke tiga sumbu yang saling tegak lurus:
 
 <BlockMath math="|\vec{a}| = \sqrt{a_x^2 + a_y^2 + a_z^2}" />
 
-**Contoh**:
-
-Jika <InlineMath math="\vec{a} = (3, 4, 5)" />, maka panjang vektor <InlineMath math="\vec{a}" /> adalah:
+Misalnya, ambil <InlineMath math="\vec{a} = (3, 4, 5)" />, lalu kuadratkan setiap komponennya sebelum dijumlahkan:
 
 <BlockMath math="\begin{aligned} |\vec{a}| &amp;= \sqrt{3^2 + 4^2 + 5^2} \\ &amp;= \sqrt{9 + 16 + 25} \\ &amp;= \sqrt{50} \\ &amp;= 5\sqrt{2} \end{aligned}" />
 
-## Operasi Vektor Tiga Dimensi
+Karena setiap kuadrat bernilai tak negatif, hanya vektor nol yang panjangnya <InlineMath math="0" />.
 
-Untuk penjumlahan dan pengurangan, pasangkan **komponen pada sumbu yang sama**. Perkalian skalar mengalikan setiap komponen dengan bilangan yang sama. Perhatikan pula jenis hasilnya: perkalian titik menghasilkan skalar, sedangkan perkalian silang menghasilkan vektor.
+## Penjumlahan dan Skala
 
-### Penjumlahan dan Pengurangan Vektor
+Untuk penjumlahan dan pengurangan, pasangkan **komponen pada sumbu yang sama**. Perkalian skalar mengalikan setiap komponen dengan faktor yang sama, sehingga memanjangkan, memendekkan, atau membalik panah tanpa membelokkannya dari garisnya.
 
-Penjumlahan dan pengurangan vektor tiga dimensi dilakukan dengan menjumlahkan atau mengurangkan **komponen-komponen yang bersesuaian**.
+### Menjumlah Vektor Ruang
 
-Jika <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> dan <InlineMath math="\vec{b} = (b_x, b_y, b_z)" />, maka:
+Penjumlahan dan pengurangan vektor tiga dimensi bekerja pada **komponen yang bersesuaian**. Jika <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> dan <InlineMath math="\vec{b} = (b_x, b_y, b_z)" />, gabungkan setiap koordinat secara terpisah:
 
 <MathContainer>
   <BlockMath math="\vec{a} + \vec{b} = (a_x + b_x, a_y + b_y, a_z + b_z)" />
   <BlockMath math="\vec{a} - \vec{b} = (a_x - b_x, a_y - b_y, a_z - b_z)" />
 </MathContainer>
 
+Secara geometris, tempelkan pangkal <InlineMath math="\vec{b}" /> pada ujung <InlineMath math="\vec{a}" /> untuk menelusuri panah resultannya di ruang.
+
 <ContentBlock>
   <MathVisual
     title={<>Penjumlahan Vektor Tiga Dimensi</>}
     description={
         <>
-          Visualisasi penjumlahan vektor <InlineMath math="a" /> dan{" "}
-          <InlineMath math="b" /> menghasilkan vektor{" "}
+          Jumlah ujung ke pangkal dari <InlineMath math="a" /> dan{" "}
+          <InlineMath math="b" /> yang menghasilkan perpindahan resultan{" "}
           <InlineMath math="c = a + b" />.
         </>
       }
@@ -165,19 +170,24 @@ Jika <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> dan <InlineMath math="\vec{
   />
 </ContentBlock>
 
-### Perkalian Skalar dengan Vektor
+Panah resultan <InlineMath math="c" /> menutup segitiga langsung dari titik asal ke <InlineMath math="(5,4,3)" />, sesuai dengan penjumlahan komponen <InlineMath math="(2,3,1)" /> dan <InlineMath math="(3,1,2)" />.
+
+### Skala Vektor Ruang
 
 Perkalian skalar <InlineMath math="k" /> dengan vektor <InlineMath math="\vec{a}" /> mengalikan besarnya dengan <InlineMath math="|k|" />. Jika <InlineMath math="\vec{a}" /> tak nol, arahnya tetap ketika <InlineMath math="k > 0" /> dan **berbalik** ketika <InlineMath math="k < 0" />.
 
 <BlockMath math="k\vec{a} = (k \cdot a_x, k \cdot a_y, k \cdot a_z)" />
+
+Perhatikan bagaimana menggandakan setiap komponen menggandakan panjang panah pada sinar yang persis sama.
 
 <ContentBlock>
   <MathVisual
     title={<>Perkalian Skalar dengan Vektor</>}
     description={
         <>
-          Visualisasi perkalian skalar oleh <InlineMath math="k" /> pada vektor{" "}
-          <InlineMath math="a" />, dengan <InlineMath math="k = 2" />.
+          Penggandaan <InlineMath math="a" /> dengan <InlineMath math="k = 2" />{" "}
+          menjaga arahnya tetap sama sambil memanjangkan ujungnya ke{" "}
+          <InlineMath math="2a" />.
         </>
       }
     labels={{
@@ -200,41 +210,82 @@ Perkalian skalar <InlineMath math="k" /> dengan vektor <InlineMath math="\vec{a}
   />
 </ContentBlock>
 
-### Perkalian Titik atau Dot Product
+Kedua panah berada pada garis yang sama melalui titik asal karena seluruh koordinat dikalikan dengan faktor positif yang sama, yaitu <InlineMath math="2" />.
 
-Perkalian titik antara dua vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> **menghasilkan skalar** yang didefinisikan sebagai:
+## Hasil Kali Titik dan Silang
+
+Dua operasi perkalian vektor menjawab pertanyaan geometris yang berbeda. **Perkalian titik** menghasilkan skalar yang mengukur keselarasan dan proyeksi, sedangkan **perkalian silang** menghasilkan vektor tegak lurus yang panjangnya sama dengan luas jajargenjang.
+
+### Perkalian Titik
+
+Perkalian titik antara dua vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> **menghasilkan skalar** yang ditentukan oleh komponen atau sudut <InlineMath math="\theta" /> antara dua arah tak nol:
 
 <BlockMath math="\begin{aligned} \vec{a} \cdot \vec{b} &amp;= a_x b_x + a_y b_y + a_z b_z \\ &amp;= |\vec{a}||\vec{b}|\cos\theta \end{aligned}" />
 
-Pada rumus sudut ini, kedua vektor harus tak nol. Simbol <InlineMath math="\theta" /> menyatakan sudut antara kedua arah vektor.
+Tiga identitas aljabar berikut langsung lahir dari definisi ini:
 
-Perkalian titik memiliki sifat:
+<MathContainer>
+  <BlockMath math="\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}" />
+  <BlockMath math="\vec{a} \cdot \vec{b} = 0 \iff \vec{a} \perp \vec{b}" />
+  <BlockMath math="\vec{a} \cdot \vec{a} = |\vec{a}|^2" />
+</MathContainer>
 
-1. <InlineMath math="\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}" /> (komutatif)
-2. <InlineMath math="\vec{a} \cdot \vec{b} = 0" /> jika dan hanya jika <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> ortogonal. Jika kedua vektor tidak nol, kedua vektor saling tegak lurus
-3. <InlineMath math="\vec{a} \cdot \vec{a} = |\vec{a}|^2" />
+Jika kedua vektor tak nol, hasil kali titik bernilai nol tepat saat keduanya membentuk sudut siku-siku. Geser sudut antara <InlineMath math="\vec{u}" /> dan <InlineMath math="\vec{v}" /> berikut untuk mengamati bagaimana proyeksi bertanda pada <InlineMath math="\vec{v}" /> berubah tanda melewati sembilan puluh derajat.
 
-### Perkalian Silang atau Cross Product
+<DotProductProjection3DLab
+  title={<>Perkalian Titik dan Proyeksi Ortogonal</>}
+  description={
+    <>
+      Pilih sudut lancip, siku-siku, atau tumpul lalu geser sudut untuk{" "}
+      <InlineMath math="|\vec{u}| = 1{,}5" /> dan{" "}
+      <InlineMath math="|\vec{v}| = 2{,}0" /> agar melihat perubahan{" "}
+      <InlineMath math="\vec{u} \cdot \vec{v}" /> dan panjang proyeksi bertanda.
+    </>
+  }
+  angle={{ min: 0, max: 180, value: 40 }}
+  presets={["acute", "orthogonal", "obtuse"]}
+  labels={{
+    angle: "Sudut antarvektor",
+    preset: "Jenis sudut",
+    presets: {
+      acute: "Sudut lancip",
+      orthogonal: "Sudut siku-siku",
+      obtuse: "Sudut tumpul",
+    },
+    view: "Proyeksi ortogonal vektor pertama ke vektor acuan pada sudut lancip, siku-siku, dan tumpul",
+    dotValue: <>Perkalian titik <InlineMath math="\vec{u} \cdot \vec{v}" /></>,
+    projectionLength: <>Panjang proyeksi</>,
+    parts: {
+      vectorU: "Vektor u",
+      vectorV: "Vektor v",
+      projectionVector: "Proyeksi",
+      dropLine: "Garis tegak lurus",
+      angleArc: "Sudut",
+      coordinateAxes: "Sumbu koordinat",
+    },
+  }}
+/>
 
-Perkalian silang antara dua vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> menghasilkan vektor yang hasil kali titiknya dengan masing-masing faktor bernilai nol:
+Pada sudut lancip, proyeksi searah dengan <InlineMath math="\vec{v}" /> sehingga perkalian titik bernilai positif. Pada <InlineMath math="90^\circ" />, proyeksi menyusut ke titik asal dan nilainya nol. Lewat <InlineMath math="90^\circ" />, proyeksi berbalik arah dan kedua nilainya menjadi negatif.
+
+### Perkalian Silang
+
+Perkalian silang antara <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> menghasilkan vektor yang hasil kali titiknya dengan masing-masing faktor bernilai nol:
 
 <MathContainer>
   <BlockMath math="(\vec{a}\times\vec{b})\cdot\vec{a}=(\vec{a}\times\vec{b})\cdot\vec{b}=0" />
-
   <BlockMath math="\vec a\times\vec b=\begin{pmatrix}a_yb_z-a_zb_y\\a_zb_x-a_xb_z\\a_xb_y-a_yb_x\end{pmatrix}" />
 </MathContainer>
 
-Besar dari hasil perkalian silang adalah:
+Untuk vektor tak nol dengan sudut apit <InlineMath math="\theta" />, besar hasil kali silang sama dengan luas jajargenjang yang dibentuk keduanya:
 
 <BlockMath math="|\vec{a} \times \vec{b}| = |\vec{a}||\vec{b}|\sin\theta" />
 
-Pada rumus sudut ini, kedua vektor harus tak nol. Simbol <InlineMath math="\theta" /> menyatakan sudut antara kedua arah vektor.
-
-Jika <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" />, arahnya tegak lurus terhadap kedua faktor dan mengikuti kaidah tangan kanan dari <InlineMath math="\vec{a}" /> menuju <InlineMath math="\vec{b}" />. Jika salah satu faktor adalah vektor nol atau kedua faktor sejajar, hasil kali silangnya adalah <InlineMath math="\vec{0}" /> sehingga tidak memiliki arah geometris.
+Ketika hasil kali silang tak nol, arahnya tegak lurus terhadap kedua faktor mengikuti **kaidah tangan kanan** dari <InlineMath math="\vec{a}" /> menuju <InlineMath math="\vec{b}" />. Jika salah satu faktor nol atau keduanya sejajar, hasilnya adalah vektor nol <InlineMath math="\vec{0}" />.
 
 <MathVisual
-  title={<>Perkalian Silang Vektor</>}
-  description={<>Arah kaidah tangan kanan dari <InlineMath math="\vec{a}\times\vec{b}" />, yang tegak lurus terhadap kedua vektor tak sejajar.</>}
+  title={<>Perkalian Silang Vektor Sumbu Tegak Lurus</>}
+  description={<>Panah kaidah tangan kanan <InlineMath math="\vec{a}\times\vec{b}" /> yang naik tegak lurus terhadap <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" />.</>}
   labels={{
     "l1": <InlineMath math="a" />,
     "l2": <InlineMath math="b" />,
@@ -257,26 +308,125 @@ Jika <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" />, arahnya tegak lurus 
   }}
 />
 
-
 Pada diagram, ambil <InlineMath math="\vec a=(2,0,0)" /> dan <InlineMath math="\vec b=(0,2,0)" />. Kedua vektor **tegak lurus**, sehingga perkalian titiknya nol:
 
 <BlockMath math="\vec a\cdot\vec b=2\cdot0+0\cdot2+0\cdot0=0" />
 
-Perkalian silang memberi komponen yang berbeda. Substitusikan komponen kedua vektor ke dalam rumus:
+Perkalian silang justru memberi vektor baru. Substitusi komponen kedua vektor menghasilkan:
 
 <BlockMath math="\begin{aligned}\vec a\times\vec b&amp;=(0\cdot0-0\cdot2,\;0\cdot0-2\cdot0,\;2\cdot2-0\cdot0)\\&amp;=(0,0,4)\end{aligned}" />
 
-Hasilnya mengarah ke sumbu <InlineMath math="z" /> positif, seperti panah hijau. Panjangnya <InlineMath math="4" /> sama dengan luas persegi panjang bersisi <InlineMath math="2" /> dan <InlineMath math="2" />.
+Hasilnya mengarah ke sumbu <InlineMath math="z" /> positif, cocok dengan panah hijau, dan panjangnya <InlineMath math="4" /> sama dengan luas persegi bersisi <InlineMath math="2" /> dan <InlineMath math="2" />. Sekarang balik urutan perkalian dan ubah sudut bukaan pada ruang tiga dimensi berikut.
 
+<Vector3DCrossProductLab
+  title={<>Kaidah Tangan Kanan dan Sifat Antikomutatif</>}
+  description={
+    <>
+      Bandingkan urutan maju <InlineMath math="\vec{u} \times \vec{v}" /> dan
+      urutan terbalik <InlineMath math="\vec{v} \times \vec{u}" /> untuk{" "}
+      <InlineMath math="|\vec{u}| = 2" /> dan{" "}
+      <InlineMath math="|\vec{v}| = 1{,}5" /> saat sudutnya berubah.
+    </>
+  }
+  angle={{ min: 0, max: 180, value: 60 }}
+  orders={["uCrossV", "vCrossU"]}
+  labels={{
+    angle: "Sudut antarvektor",
+    order: "Urutan perkalian",
+    orders: {
+      uCrossV: "Urutan maju",
+      vCrossU: "Urutan terbalik",
+    },
+    view: "Dua vektor tiga dimensi yang membentuk jajargenjang dengan panah hasil kali silang tegak lurus sesuai kaidah tangan kanan",
+    crossMagnitude: <>Luas jajargenjang <InlineMath math="|\vec{u} \times \vec{v}|" /></>,
+    directionRule: <>Arah normal</>,
+    parts: {
+      vectorU: "Vektor u",
+      vectorV: "Vektor v",
+      crossVector: "Vektor hasil silang",
+      parallelogram: "Jajargenjang alas",
+      curlArc: "Putaran tangan kanan",
+      coordinateAxes: "Sumbu koordinat",
+    },
+  }}
+/>
 
-## Aplikasi Vektor Tiga Dimensi
+Menukar urutan mempertahankan luas jajargenjang, tetapi membalik panah normal dari <InlineMath math="+\hat{n}" /> menjadi <InlineMath math="-\hat{n}" />. Saat sudut mendekati <InlineMath math="0^\circ" /> atau <InlineMath math="180^\circ" />, jajargenjang memipih dan panjang hasil kali silang menyusut ke nol.
+
+## Volume dan Aplikasi Vektor
+
+Menggabungkan perkalian titik dengan perkalian silang mengukur **volume paralelepipedum** yang dibentuk oleh tiga vektor <InlineMath math="\vec{u}" />, <InlineMath math="\vec{v}" />, dan <InlineMath math="\vec{w}" />:
+
+<BlockMath math="V = |\vec{w} \cdot (\vec{u} \times \vec{v})|" />
+
+Nilai <InlineMath math="|\vec{u} \times \vec{v}|" /> menyatakan luas alas, sedangkan komponen <InlineMath math="\vec{w}" /> sepanjang arah normal menyatakan tingginya. Ubah konfigurasi dan sudut elevasi di bawah untuk menguji kapan volumenya lenyap.
+
+<VectorParallelepipedLab
+  title={<>Volume Hasil Kali Rangkap Tiga Skalar</>}
+  description={
+    <>
+      Bandingkan balok ortogonal, prisma miring, dan tiga vektor sebidang
+      sambil mengubah elevasi <InlineMath math="\vec{w}" /> untuk melihat tinggi
+      dan <InlineMath math="|\vec{w} \cdot (\vec{u} \times \vec{v})|" />.
+    </>
+  }
+  configurations={["orthogonalBox", "shearedPrism", "coplanarFlat"]}
+  elevation={{ min: 0, max: 90, value: 60 }}
+  labels={{
+    configuration: "Bentuk prisma",
+    configurations: {
+      orthogonalBox: {
+        name: "Balok ortogonal",
+        summary: (
+          <>
+            Vektor alas saling tegak lurus memberi luas alas{" "}
+            <InlineMath math="3{,}0" /> dan volume maksimum saat{" "}
+            <InlineMath math="\vec{w}" /> tegak ke atas.
+          </>
+        ),
+      },
+      shearedPrism: {
+        name: "Prisma miring",
+        summary: (
+          <>
+            Memiringkan vektor alas mengecilkan luas alas menjadi{" "}
+            <InlineMath math="2{,}4" /> dan menurunkan tinggi tegaknya.
+          </>
+        ),
+      },
+      coplanarFlat: {
+        name: "Sebidang datar",
+        summary: (
+          <>
+            Ketiga vektor terletak pada satu bidang, sehingga tinggi dan volume
+            hasil kali rangkap tiga menjadi <InlineMath math="0" />.
+          </>
+        ),
+      },
+    },
+    elevation: "Sudut elevasi",
+    view: "Paralelepipedum transparan dari tiga vektor ruang dengan alas jajargenjang dan garis tinggi vertikal",
+    tripleVolume: <>Volume rangkap tiga</>,
+    coplanarityNote: <>Status volume</>,
+    parts: {
+      vectorU: "Vektor u",
+      vectorV: "Vektor v",
+      vectorW: "Vektor w",
+      baseParallelogram: "Alas jajargenjang",
+      parallelepipedMesh: "Volume paralelepipedum",
+      altitudeLine: "Garis tinggi",
+    },
+  }}
+/>
+
+Ketika ketiga vektor terletak pada satu bidang yang sama, tingginya turun ke nol sehingga hasil kali rangkap tiga skalar bernilai nol. Menaikkan <InlineMath math="\vec{w}" /> menuju <InlineMath math="90^\circ" /> memaksimalkan tinggi di atas alas dan menghasilkan volume terbesar.
 
 Dalam robotika, vektor perpindahan memberi tahu lengan robot **seberapa jauh bergerak pada setiap sumbu**. Misalkan ujung lengan berangkat dari <InlineMath math="P(1,2,0)" /> dan harus mencapai <InlineMath math="Q(3,4,2)" />:
 
 <BlockMath math="\overrightarrow{PQ}=Q-P=(3-1,4-2,2-0)=(2,2,2)" />
 
-Artinya, perpindahan pada setiap sumbu adalah <InlineMath math="2" /> satuan. Panjang perpindahan lurus berbeda dari jumlah ketiga komponen:
+Perpindahan pada setiap sumbu adalah <InlineMath math="2" /> satuan, sedangkan jarak lurusnya dihitung dengan rumus panjang vektor:
 
 <BlockMath math="|\overrightarrow{PQ}|=\sqrt{2^2+2^2+2^2}=\sqrt{12}=2\sqrt3" />
 
-Perhitungan posisi dan perpindahan yang sama dipakai dalam grafika komputer dan navigasi. Dalam fisika, komponennya dapat menyatakan gaya, kecepatan, percepatan, atau momentum. Dalam teknik mesin, vektor membantu menganalisis gaya pada struktur dan aliran fluida. Makna serta satuan komponen mengikuti besaran yang sedang dimodelkan.
+Grafika komputer dan navigasi memakai perhitungan perpindahan dan perkalian silang yang sama untuk mengarahkan permukaan dan kamera. Dalam fisika dan teknik mesin, komponen vektor memodelkan gaya, kecepatan, torsi, serta beban struktur dengan satuan sesuai besarannya.

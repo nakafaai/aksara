@@ -3,13 +3,11 @@ export const metadata = {
   description: "Terbitan ialah kadar perubahan setempat dan kecerunan tangen yang diperoleh daripada had kecerunan garis sekan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-27",
   subject: "Pembezaan",
 };
 
-
-
-## Kecerunan di Satu Titik pada Lengkung
+## Kecerunan pada Lengkung
 
 Bayangkan sebuah basikal bergerak di sepanjang jalan berbukit. Ada bahagian jalan yang mendaki dengan curam, ada pula yang hampir rata. **Kecerunan** jalan itu berubah dari satu titik ke titik yang lain. Graf fungsi yang melengkung pun berkelakuan lebih kurang sama.
 
@@ -56,7 +54,9 @@ Kecerunan ini ialah **kadar perubahan purata** bagi <InlineMath math="f(x)" /> d
   }}
 />
 
-## Daripada Garis Sekan kepada Garis Tangen
+Garis sekan lebih curam berbanding lengkung di <InlineMath math="P" /> kerana parabola melengkung ke atas di antara <InlineMath math="x = 1" /> dengan <InlineMath math="x = 3" />. Apabila kamu gerakkan <InlineMath math="Q" /> lebih hampir kepada <InlineMath math="P" />, kecondongan lebihan itu mengecil.
+
+## Dari Sekan kepada Tangen
 
 Bayangkan kita memilih <InlineMath math="Q" /> pada parabola itu semakin dekat dengan <InlineMath math="P" />. Jarak mengufuk <InlineMath math="\Delta x" /> pun menghampiri sifar. Kita boleh kira kesan memilih titik yang berbeza sambil mengekalkan parabola yang sama.
 
@@ -66,7 +66,9 @@ Kecerunan tangen ialah **kadar perubahan seketika** lengkung di <InlineMath math
 
 <BlockMath math="\begin{aligned} &amp;m_{\text{tangen}} = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x} \end{aligned}" />
 
-Untuk parabola yang diplot, tetapkan <InlineMath math="P=(1,1)" /> dan tulis <InlineMath math="h=\Delta x" />. Titik kedua ialah <InlineMath math="Q=(1+h,(1+h)^2)" />. Selagi <InlineMath math="h\ne0" />, kecerunan sekan boleh dipermudahkan menjadi:
+### Mengecilkan Langkah
+
+Untuk parabola yang diplot, tetapkan <InlineMath math="P(1, 1)" /> dan tulis <InlineMath math="h = \Delta x" />. Titik kedua ialah <InlineMath math="Q(1 + h, (1 + h)^2)" />. Selagi <InlineMath math="h \ne 0" />, kecerunan sekan boleh dipermudahkan menjadi:
 
 <BlockMath math="\begin{aligned}\frac{(1+h)^2-1}{h}&=\frac{2h+h^2}{h}\\&=2+h\end{aligned}" />
 
@@ -92,6 +94,50 @@ Jadualkan kecerunan sekan <InlineMath math="2 + h" /> apabila <InlineMath math="
   chartConfig={{ value: { label: "Kecerunan sekan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
+Palang-palang itu menyempit secara simetri ke arah <InlineMath math="2" /> apabila <InlineMath math="h" /> menghampiri sifar dari kiri dan kanan, mengesahkan kedua-dua had sebelah bersetuju pada kecerunan tangen.
+
+### Uji Had Garis Sekan
+
+Kelakuan had yang sama berlaku pada sebarang lengkung licin, sama ada melengkung seperti parabola, menaik tajam seperti kubik atau beralun seperti gelombang sinus. Seret langkah mengufuk ke arah sifar sambil mengekalkan titik rujukan pada <InlineMath math="x = 0.5" /> supaya kamu nampak garis sekan sejajar dengan **garis tangen**.
+
+<SecantToTangentLab
+  title={<>Garis sekan menghampiri garis tangen</>}
+  description={<>Tetapkan titik rujukan pada <InlineMath math="a = 0.5" /> dan kecilkan langkah mengufuk <InlineMath math="h" /> pada tiga lengkung untuk membandingkan kecerunan sekan dengan kecerunan tangen tepat <InlineMath math="f'(0.5)" />.</>}
+  curves={["quadratic", "cubic", "sineWave"]}
+  stepH={{ min: 0.04, max: 1.6, value: 0.8 }}
+  labels={{
+    curve: "Lengkung",
+    curves: {
+      quadratic: {
+        name: "Kuadratik",
+        formula: <InlineMath math="f(x) = 0.45x^2 + 0.2" />,
+      },
+      cubic: {
+        name: "Kubik",
+        formula: <InlineMath math="f(x) = 0.16x^3 + 0.25x + 0.5" />,
+      },
+      sineWave: {
+        name: "Gelombang sinus",
+        formula: <InlineMath math="f(x) = 0.75\sin(x) + 0.9" />,
+      },
+    },
+    parts: {
+      curveRibbon: "Jalur lengkung",
+      anchorPoint: "Titik rujukan",
+      movingPoint: "Titik bergerak",
+      secantLine: "Garis sekan",
+      tangentLine: "Garis tangen",
+      slopeTriangle: "Segi tiga kecerunan",
+    },
+    secantSlope: <>Kecerunan sekan</>,
+    stepH: "Langkah mengufuk",
+    tangentSlope: <>Kecerunan tangen</>,
+    view: "Paparan tiga dimensi yang menunjukkan garis sekan dan segi tiga kecerunan menghampiri garis tangen",
+  }}
+/>
+
+Apabila langkah mengufuk mengecil, segi tiga kecerunan mengecut ke arah titik rujukan dan kecerunan sekan menghampiri nilai tangen tepat pada ketiga-tiga lengkung. Malah pada gelombang sinus yang melengkung ke bawah sehingga sekan bermula lebih landai daripada tangen, kedua-dua kecerunan bertemu apabila langkah menghampiri sifar.
+
 ## Takrif Terbitan
 
 <Highlight>[Had](/ms/subjek/matematik/had/konsep-had-fungsi) bagi kecerunan sekan</Highlight> apabila <InlineMath math="\Delta x" /> menghampiri sifar dinamakan **terbitan**.
@@ -101,6 +147,8 @@ Terbitan bagi fungsi <InlineMath math="f(x)" />, yang ditandakan sebagai <Inline
 <BlockMath math="f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}" />
 
 Proses mencari terbitan dinamakan **pembezaan**.
+
+> Terbitan bukanlah pembahagian dengan sifar, sebaliknya nilai kecerunan yang dihampiri garis sekan ketika dua titik itu masih berbeza.
 
 Terbitan <InlineMath math="f'(x)" /> ialah satu fungsi baharu. Pada setiap nilai <InlineMath math="x" /> yang hadnya wujud, terbitan memberikan **kadar perubahan seketika** bagi <InlineMath math="f(x)" />, yang juga ialah kecerunan garis tangen di situ. Kalkulus pembezaan menggunakan fungsi terbitan untuk menganalisis kedua-dua kuantiti ini.
 
@@ -134,3 +182,5 @@ Apabila <InlineMath math="Q" /> bergerak ke arah <InlineMath math="P" />, garis-
     ],
   }}
 />
+
+Setiap perentas yang lebih pendek berpusing semakin rapat kepada tangen di <InlineMath math="P" />, jadi <InlineMath math="f'(1) = 2" /> merekodkan arah tepat parabola pada satu titik itu sahaja.

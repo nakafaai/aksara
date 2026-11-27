@@ -1,128 +1,130 @@
 export const metadata = {
-   title: "Limit Fungsi Aljabar",
-   description: "Cara menghitung limit fungsi polinomial dan rasional lewat substitusi, pemfaktoran, rasionalisasi, dan bentuk tak tentu.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2025-05-26",
-   dateModified: "2026-11-08",
-   subject: "Limit",
+  title: "Limit Fungsi Aljabar",
+  description:
+    "Hitung limit fungsi polinomial dan rasional lewat substitusi, pemfaktoran, rasionalisasi, dan analisis asimtot tegak, datar, serta miring.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-27",
+  subject: "Limit",
 };
 
-## Bentuk Fungsi Menentukan Cara Menghitung Limit
+## Memilih Metode Limit Aljabar
 
-Pada **limit fungsi aljabar**, bentuk ekspresi menentukan operasi yang dapat dibenarkan. <Highlight>Polinomial dapat dinilai dengan substitusi langsung</Highlight>. Sebaliknya, ekspresi rasional atau bentuk akar mungkin memuat faktor yang dapat disederhanakan, batas daerah asal, atau asimtot tegak yang harus dianalisis terlebih dahulu.
+Pada **limit fungsi aljabar**, struktur ekspresi menentukan langkah yang sah dipakai. <Highlight>Polinomial dapat dinilai dengan substitusi langsung</Highlight>. Sebaliknya, ekspresi rasional atau akar mungkin menyimpan faktor yang bisa dicoret, batas daerah asal, atau asimtot yang perlu dianalisis lebih dulu.
 
-Banyak contoh fungsi aljabar dapat dibentuk dengan penjumlahan, pengurangan, perkalian, pembagian, dan pangkat bereksponen rasional. Contohnya adalah polinomial <InlineMath math="f(x) = x^2 + 3x - 2" /> dan fungsi rasional <InlineMath math="g(x) = \frac{x + 1}{x - 2}" />. Kita akan memakai substitusi sebagai langkah diagnosis, lalu memfaktorkan, merasionalkan, atau memeriksa perilaku satu sisi jika substitusi belum menentukan limit.
+Ekspresi aljabar disusun dari penjumlahan, pengurangan, perkalian, pembagian, dan pangkat rasional, seperti contoh polinomial dan fungsi rasional berikut:
+
+<MathContainer>
+  <BlockMath math="f(x) = x^2 + 3x - 2" />
+  <BlockMath math="g(x) = \frac{x + 1}{x - 2}" />
+</MathContainer>
+
+Pakai substitusi langsung lebih dulu sebagai uji awal, lalu faktorkan, rasionalkan, atau periksa limit satu sisi jika substitusi belum memberi jawaban.
 
 ## Sifat Limit Aljabar
 
-Limit fungsi aljabar dapat dipecah menjadi **limit suku**-suku yang lebih sederhana. Sifat yang sama dipakai berulang, sehingga kamu menghitung setiap suku sendiri-sendiri dalam beberapa langkah kecil.
+Limit fungsi aljabar bisa dipecah menjadi **limit suku**-suku yang lebih sederhana. Menerapkan sifat limit suku demi suku membuat setiap langkah menangani satu bagian dasar saja.
 
-### Limit Fungsi Polinomial
+### Limit Polinomial
 
-Fungsi polinomial **kontinu** di semua titik. Karena itu, limitnya dapat dihitung dengan **substitusi langsung**.
+Karena fungsi polinomial **kontinu** di semua titik, substitusikan nilai target secara langsung. Ambil polinomial:
 
-Misalkan <InlineMath math="f(x) = x^4 - 5x^3 + x^2 - 7" />, maka:
+<BlockMath math="f(x) = x^4 - 5x^3 + x^2 - 7" />
 
-<BlockMath math="\lim_{x \to 2} f(x) = \lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7)" />
+Menghitung limitnya saat <InlineMath math="x \to 2" /> cukup mengganti <InlineMath math="x" /> dengan <InlineMath math="2" />:
 
-Karena fungsi polinomial kontinu di semua titik, lakukan substitusi langsung:
+<MathContainer>
+  <BlockMath math="\lim_{x \to 2} f(x) = \lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7)" />
+  <BlockMath math="\begin{aligned} &amp;= 2^4 - 5(2^3) + 2^2 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
+</MathContainer>
 
-<BlockMath math="\begin{aligned}  &amp;= 2^4 - 5(2^3) + 2^2 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
+### Limit Rasional
 
-### Limit Fungsi Rasional
+Fungsi rasional berbentuk hasil bagi <InlineMath math="\frac{P(x)}{Q(x)}" /> dengan <InlineMath math="P(x)" /> dan <InlineMath math="Q(x)" /> polinomial. Menguji penyebut menentukan jalur penyelesaian:
 
-Fungsi rasional memiliki bentuk <InlineMath math="\frac{P(x)}{Q(x)}" />, dengan <InlineMath math="P(x)" /> dan <InlineMath math="Q(x)" /> berupa polinomial. Substitusi langsung menunjukkan metode yang perlu dicoba berikutnya:
-
-- **Jika penyebut tidak nol**: Gunakan substitusi langsung seperti fungsi polinomial.
-
-- **Jika penyebut nol**: Periksa pembilang, tanda, dan perilaku satu sisi. Hanya <InlineMath math="\frac{0}{0}" /> yang merupakan bentuk tak tentu. Jika limitnya ada, penyederhanaan aljabar dapat membantu menghitungnya. Pembilang tak nol dibagi nol bukan bentuk tak tentu.
+- **Penyebut tidak nol**: Hitung langsung seperti fungsi polinomial.
+- **Penyebut nol**: Periksa pembilang, tanda, dan perilaku satu sisi. Hanya <InlineMath math="\frac{0}{0}" /> yang berupa bentuk tak tentu yang bisa disederhanakan. Pembilang tak nol dibagi nol menandakan perilaku tak hingga.
 
 ## Mengatasi Bentuk Tak Tentu
 
-Ketika **substitusi langsung** menghasilkan bentuk <InlineMath math="\frac{0}{0}" />, kita perlu menggunakan teknik khusus. Pemfaktoran dan rasionalisasi mengubah bentuknya sampai faktor penyebab nol pada penyebut dapat dicoret, dan setelah itu substitusi kembali dapat dipakai.
+Ketika **substitusi langsung** menghasilkan <InlineMath math="\frac{0}{0}" />, pembilang dan penyebut menyimpan faktor nol yang sama. Pemfaktoran polinomial dan rasionalisasi bentuk akar membuka lalu mencoret faktor bersama itu agar substitusi kembali bekerja.
 
 ### Teknik Pemfaktoran
 
-**Faktor yang sama** dapat dicoret hanya untuk nilai masukan yang membuat faktor itu tidak nol. Kesamaan bentuk hasil penyederhanaan berlaku di sekitar titik limit, meskipun fungsi semula tidak terdefinisi tepat di titik itu.
+**Faktor yang sama** hanya boleh dicoret pada masukan yang membuat faktor itu tidak nol, sehingga bentuk hasil penyederhanaan cocok dengan fungsi awal di sekitar titik target. Hitung:
 
-**Contoh**: Hitung <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />
+<BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />
 
-Substitusi langsung memberikan <InlineMath math="\frac{0}{0}" />. Faktorkan:
+Substitusi langsung memberi <InlineMath math="\frac{0}{0}" />, sehingga faktorkan pembilangnya lebih dulu:
 
 <MathContainer>
-<BlockMath math="x^2 - 4 = (x + 2)(x - 2)" />
-<BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" />
+  <BlockMath math="x^2 - 4 = (x + 2)(x - 2)" />
+  <BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" />
 </MathContainer>
 
-Karena <InlineMath math="x" /> mendekati <InlineMath math="2" /> (bukan sama dengan <InlineMath math="2" />), kita dapat membatalkan faktor <InlineMath math="(x - 2)" />:
+Karena <InlineMath math="x" /> mendekati <InlineMath math="2" /> dengan <InlineMath math="x \neq 2" />, coret <InlineMath math="(x - 2)" /> lalu substitusikan:
 
 <BlockMath math="\lim_{x\to2}\frac{x^2-4}{x-2}= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
 ### Teknik Rasionalisasi
 
-Untuk limit yang melibatkan bentuk akar, sering kali kita perlu merasionalkan. Substitusi langsung menghasilkan bentuk tak tentu.
+Limit yang memuat bentuk akar sering perlu dikalikan dengan **bentuk sekawan** agar akarnya hilang. Hitung:
 
-**Contoh**: Hitung <InlineMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1}" />
+<BlockMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1}" />
 
-Substitusi langsung:
-
-Pembilang <InlineMath math="\sqrt1-1=0" /> dan penyebut <InlineMath math="1-1=0" /> sama-sama nol. Bentuk tak tentu <InlineMath math="0/0" /> ini belum menyatakan nilai limit.
-
-Kita rasionalkan dengan mengalikan dengan **bentuk sekawan** <InlineMath math="\sqrt{x} + 1" />. Tujuannya adalah menghilangkan bentuk akar di pembilang menggunakan rumus <InlineMath math="(a-b)(a+b) = a^2 - b^2" />:
+Substitusi langsung memberi <InlineMath math="0" /> pada pembilang dan penyebut, menghasilkan bentuk tak tentu <InlineMath math="\frac{0}{0}" />. Kalikan pembilang dan penyebut dengan sekawan <InlineMath math="\sqrt{x} + 1" /> memakai selisih kuadrat:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1} \cdot \frac{\sqrt{x} + 1}{\sqrt{x} + 1}" />
-<BlockMath math="= \lim_{x \to 1} \frac{(\sqrt{x} - 1)(\sqrt{x} + 1)}{(x - 1)(\sqrt{x} + 1)}" />
-<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 1} \frac{(\sqrt{x})^2 - 1^2}{(x - 1)(\sqrt{x} + 1)} \\ &amp;= \lim_{x \to 1} \frac{x - 1}{(x - 1)(\sqrt{x} + 1)} \end{aligned}" />
+  <BlockMath math="(a - b)(a + b) = a^2 - b^2" />
+  <BlockMath math="\lim_{x \to 1} \frac{\sqrt{x} - 1}{x - 1} \cdot \frac{\sqrt{x} + 1}{\sqrt{x} + 1} = \lim_{x \to 1} \frac{(\sqrt{x})^2 - 1^2}{(x - 1)(\sqrt{x} + 1)}" />
+  <BlockMath math="= \lim_{x \to 1} \frac{x - 1}{(x - 1)(\sqrt{x} + 1)}" />
 </MathContainer>
 
-Karena <InlineMath math="x \neq 1" /> (mendekati <InlineMath math="1" />), kita dapat membatalkan <InlineMath math="(x - 1)" />:
+Karena <InlineMath math="x \neq 1" />, coret <InlineMath math="(x - 1)" /> lalu hitung nilainya:
 
-<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 1} \frac{1}{\sqrt{x} + 1} \\ &amp;= \frac{1}{\sqrt{1} + 1} \\ &amp;= \frac{1}{1 + 1} \\ &amp;= \frac{1}{2} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;= \lim_{x \to 1} \frac{1}{\sqrt{x} + 1} \\ &amp;= \frac{1}{\sqrt{1} + 1} \\ &amp;= \frac{1}{2} \end{aligned}" />
 
-## Penerapan Sifat Limit pada Fungsi Aljabar
+## Gabungan Sifat dan Asimtot
 
-Sifat-sifat limit dapat diterapkan satu demi satu sampai **substitusi langsung** menghasilkan nilai yang terdefinisi. Setiap langkah memakai satu sifat, dan bentuknya menjadi lebih sederhana pada setiap tahap.
+Terapkan pemfaktoran dan pencoretan bertahap hingga **substitusi langsung** memberi nilai yang terdefinisi. Hitung:
 
-**Contoh**: Hitung <InlineMath math="\lim_{x \to 3} \frac{x^2 - 9}{x^2 + 2x - 15}" />
+<BlockMath math="\lim_{x \to 3} \frac{x^2 - 9}{x^2 + 2x - 15}" />
 
-Substitusi langsung menghasilkan bentuk tak tentu <InlineMath math="\frac00" />: pembilang dan penyebut sama-sama nol.
+Substitusi langsung menghasilkan <InlineMath math="\frac{0}{0}" /> karena pembilang dan penyebut sama-sama nol di <InlineMath math="x = 3" />:
 
 <MathContainer>
-  <BlockMath math="3^2-9=9-9=0" />
-
-  <BlockMath math="3^2+2(3)-15=9+6-15=0" />
+  <BlockMath math="3^2 - 9 = 9 - 9 = 0" />
+  <BlockMath math="3^2 + 2(3) - 15 = 9 + 6 - 15 = 0" />
 </MathContainer>
 
-Faktorkan keduanya. Untuk <InlineMath math="x^2 + 2x - 15" />, kita cari dua bilangan yang jika dikalikan hasilnya <InlineMath math="-15" /> dan jika dijumlahkan hasilnya <InlineMath math="2" />. Bilangan tersebut adalah <InlineMath math="5" /> dan <InlineMath math="-3" />.
+Faktorkan kedua bentuk kuadrat memakai <InlineMath math="5" /> dan <InlineMath math="-3" /> untuk penyebutnya:
 
 <MathContainer>
-<BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
-<BlockMath math="\begin{aligned} &amp;x^2 + 2x - 15 \\ &amp;= x^2 + 5x - 3x - 15 \\ &amp;= x(x + 5) - 3(x + 5) \\ &amp;= (x - 3)(x + 5) \end{aligned}" />
+  <BlockMath math="x^2 - 9 = (x - 3)(x + 3)" />
+  <BlockMath math="\begin{aligned} &amp;x^2 + 2x - 15 \\ &amp;= x^2 + 5x - 3x - 15 \\ &amp;= (x - 3)(x + 5) \end{aligned}" />
 </MathContainer>
 
-Sehingga:
+Coret <InlineMath math="(x - 3)" /> lalu substitusikan <InlineMath math="x = 3" />:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 3} \frac{(x - 3)(x + 3)}{(x - 3)(x + 5)} = \lim_{x \to 3} \frac{x + 3}{x + 5}" />
+  <BlockMath math="\lim_{x \to 3} \frac{(x - 3)(x + 3)}{(x - 3)(x + 5)} = \lim_{x \to 3} \frac{x + 3}{x + 5}" />
+  <BlockMath math="= \frac{3 + 3}{3 + 5} = \frac{6}{8} = \frac{3}{4}" />
 </MathContainer>
 
-Substitusi <InlineMath math="x = 3" />: <InlineMath math="\frac{3 + 3}{3 + 5} = \frac{6}{8} = \frac{3}{4}" />
+> Jika substitusi langsung menghasilkan <InlineMath math="\frac{a}{0}" /> dengan <InlineMath math="a \neq 0" />, bentuk itu bukan tak tentu. Periksa tanda penyebut dari kedua sisi untuk menentukan limit tak hingga satu sisinya.
 
-> Jika substitusi langsung menghasilkan <InlineMath math="\frac{a}{0}" /> dengan <InlineMath math="a \neq 0" />, hasil itu saja belum cukup. Periksa tanda dan kedua limit satu sisi. Sebagai contoh:
+Lihat bagaimana tanda <InlineMath math="x - 2" /> memisahkan kedua limit satu sisi di sekitar kutub tegak <InlineMath math="x = 2" />:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 2^-}\frac{1}{x-2}=-\infty" />
-<BlockMath math="\lim_{x \to 2^+}\frac{1}{x-2}=+\infty" />
+  <BlockMath math="\lim_{x \to 2^-}\frac{1}{x-2}=-\infty" />
+  <BlockMath math="\lim_{x \to 2^+}\frac{1}{x-2}=+\infty" />
 </MathContainer>
 
-Karena kedua limit satu sisi berbeda, <InlineMath math="\lim_{x \to 2}\frac{1}{x-2}" /> tidak ada sebagai limit dua sisi. Sebaliknya, jika substitusi menghasilkan <InlineMath math="\frac{0}{0}" />, faktorkan, rasionalkan, atau sederhanakan bentuknya terlebih dahulu.
-
-Perhatikan **tanda penyebut**. Di kiri <InlineMath math="2" />, penyebut negatif dan mendekati nol sehingga nilai fungsi menuju <InlineMath math="-\infty" />. Di kanan, penyebut positif dan nilai fungsi menuju <InlineMath math="+\infty" />. Jangan menghubungkan kedua cabang melewati asimtot.
+Karena kedua sisi menyimpang ke arah berlawanan, limit dua sisi berhingga di <InlineMath math="x = 2" /> tidak ada. Amati pemisahan kedua cabang di garis tegak berikut.
 
 <MathVisual
   title={<>Dua arah di dekat asimtot tegak</>}
-  description={<>Kurva <InlineMath math="y = \frac{1}{x - 2}" /> turun menuju <InlineMath math="-\infty" /> saat <InlineMath math="x" /> mendekati <InlineMath math="2" /> dari kiri dan naik menuju <InlineMath math="+\infty" /> dari kanan. Kedua cabang tetap terpisah di asimtot <InlineMath math="x = 2" />.</>}
+  description={<>Kurva <InlineMath math="y = \frac{1}{x - 2}" /> turun menuju <InlineMath math="-\infty" /> saat <InlineMath math="x" /> mendekati <InlineMath math="2" /> dari kiri dan naik menuju <InlineMath math="+\infty" /> dari kanan.</>}
   labels={{
     asym: <InlineMath math="x = 2" />,
     left: <InlineMath math="x \to 2^-" />,
@@ -145,21 +147,73 @@ Perhatikan **tanda penyebut**. Di kiri <InlineMath math="2" />, penyebut negatif
   }}
 />
 
+Garis tegak <InlineMath math="x = 2" /> menjadi sekat yang memisahkan cabang kiri yang jatuh dari cabang kanan yang melonjak. Kurva rasional juga bisa merapat ke garis datar atau miring saat <InlineMath math="|x|" /> membesar. Geser titik uji di bawah pada tiga keluarga kurva rasional untuk membandingkan lonjakan di kutub dan asimtot jauhnya.
+
+<AsymptoteBehaviorLab
+  title={<>Asimtot Tegak, Datar, dan Miring</>}
+  description={
+    <>
+      Pilih kurva kebalikan, fungsi rasional bergeser dengan asimtot datar, atau
+      kurva berasimtot miring, lalu geser posisi uji untuk memantau lonjakan di
+      dekat kutub dan perilaku ujungnya.
+    </>
+  }
+  curves={["reciprocalPole", "rationalHorizontal", "obliqueSlant"]}
+  probeX={{ min: -2.5, max: 2.5, value: 0.6 }}
+  labels={{
+    curve: "Keluarga rasional",
+    curves: {
+      reciprocalPole: {
+        name: "Kutub kebalikan",
+        formula: <InlineMath math="f(x) = \frac{0{,}45}{x}" />,
+      },
+      rationalHorizontal: {
+        name: "Asimtot datar",
+        formula: <InlineMath math="f(x) = \frac{0{,}8x + 0{,}35}{x - 0{,}3}" />,
+      },
+      obliqueSlant: {
+        name: "Asimtot miring",
+        formula: <InlineMath math="f(x) = 0{,}45x + \frac{0{,}3}{x}" />,
+      },
+    },
+    probeX: "Posisi titik uji",
+    asymptoteSummary: <>Panduan asimtot</>,
+    approachValue: <>Nilai kurva <InlineMath math="f(x)" /></>,
+    view: "Cabang fungsi rasional dengan garis putus asimtot tegak dan asimtot ujung serta penanda pendekatan kiri dan kanan",
+    parts: {
+      curveBranches: "Cabang kurva",
+      verticalAsymptote: "Asimtot tegak",
+      horizontalAsymptote: "Asimtot ujung",
+      leftProbe: "Uji kiri",
+      rightProbe: "Uji kanan",
+    },
+  }}
+/>
+
+Saat titik uji mendekati kutub tegak, nilai kurva melonjak tajam ke arah tak hingga yang berlawanan di kedua sisi. Menggeser titik uji menjauh ke ujung menarik kurva merapat pada garis asimtot datar atau miringnya.
+
 ## Kontinuitas dan Limit
 
-Suatu fungsi <InlineMath math="f" /> dikatakan **kontinu** di <InlineMath math="x = c" /> jika:
+Suatu fungsi <InlineMath math="f" /> disebut **kontinu** di <InlineMath math="x = c" /> apabila ketiga syarat ini terpenuhi bersama:
 
-1. <InlineMath math="f(c)" /> ada (terdefinisi)
-2. <InlineMath math="\lim_{x \to c} f(x)" /> ada
-3. <InlineMath math="\lim_{x \to c} f(x) = f(c)" />
+1. Nilai fungsi <InlineMath math="f(c)" /> terdefinisi.
+2. Limit dua sisinya ada:
 
-Fungsi polinomial kontinu pada setiap bilangan real. Fungsi rasional kontinu di setiap titik dalam daerah asalnya, yaitu ketika penyebutnya tidak nol.
+   <BlockMath math="\lim_{x \to c} f(x)" />
 
-Sebagai contoh, <InlineMath math="f(x) = x^2 - 2x + 1 = (x - 1)^2" /> tidak berlubang dan tidak melompat di <InlineMath math="x = 1" />. Limit <InlineMath math="0" /> sama dengan nilai fungsi <InlineMath math="f(1) = 0" />, dan itulah arti kontinu di <InlineMath math="1" />.
+3. Limit sama dengan nilai fungsinya:
+
+   <BlockMath math="\lim_{x \to c} f(x) = f(c)" />
+
+Polinomial kontinu di setiap bilangan real, sedangkan fungsi rasional kontinu di mana pun penyebutnya tidak nol. Perhatikan fungsi kuadrat:
+
+<BlockMath math="f(x) = x^2 - 2x + 1 = (x - 1)^2" />
+
+Di <InlineMath math="x = 1" />, grafiknya tanpa lubang maupun lompatan, dan limit <InlineMath math="0" /> sama persis dengan <InlineMath math="f(1) = 0" />.
 
 <MathVisual
   title={<>Grafik yang kontinu di <InlineMath math="x = 1" /></>}
-  description={<>Parabola <InlineMath math="y = (x - 1)^2" /> dengan titik <InlineMath math="(1, 0)" />, tempat limit dan nilai fungsi sama.</>}
+  description={<>Parabola <InlineMath math="y = (x - 1)^2" /> melintas mulus melalui <InlineMath math="(1, 0)" />, tempat limit dan nilai fungsi sama.</>}
   labels={{
     curve: <InlineMath math="y = (x - 1)^2" />,
     point: <InlineMath math="(1, 0)" />,
@@ -179,44 +233,56 @@ Sebagai contoh, <InlineMath math="f(x) = x^2 - 2x + 1 = (x - 1)^2" /> tidak berl
   }}
 />
 
-## Latihan
+Kurva utuh yang menyentuh puncak penuh di <InlineMath math="(1, 0)" /> menegaskan sifat kontinu: menelusuri cabang mana pun mendarat langsung pada titik fungsi tanpa mengangkat pensil.
 
-Setiap soal meminta limit suatu bentuk aljabar. Tentukan bentuknya lebih dulu, karena hasil nol per nol memerlukan pemfaktoran atau perkalian dengan **bentuk sekawan**.
+## Soal Limit Aljabar
 
-1. Hitung <InlineMath math="\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7)" />
+Kenali bentuk setiap ekspresi sebelum menghitung, karena hasil <InlineMath math="\frac{0}{0}" /> membutuhkan **pemfaktoran atau rasionalisasi**.
 
-2. Hitung <InlineMath math="\lim_{x \to 2} \frac{x^2 - 6x + 8}{x^2 + 16x + 28}" />
+1. Hitung limit polinomial berikut:
 
-3. Hitung <InlineMath math="\lim_{x \to 1} \frac{x^2 - 2x + 1}{x - 1}" />
+   <BlockMath math="\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7)" />
 
-4. Tentukan apakah fungsi <InlineMath math="f(x) = x^2 - 2x + 1" /> kontinu di <InlineMath math="x = 1" />
+2. Hitung limit rasional berikut:
 
-5. Hitung <InlineMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x}" />
+   <BlockMath math="\lim_{x \to 2} \frac{x^2 - 6x + 8}{x^2 + 16x + 28}" />
 
-### Pembahasan
+3. Hitung limit rasional bentuk tak tentu berikut:
 
-**Soal 1**. Karena ini adalah fungsi polinomial yang kontinu di semua titik, kita dapat **substitusi langsung**:
+   <BlockMath math="\lim_{x \to 1} \frac{x^2 - 2x + 1}{x - 1}" />
 
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7) \\ &amp;= 2^4 - 5(2^3) + 2^2 - 7 \end{aligned}" />
-<BlockMath math="\begin{aligned}  &amp;= 16 - 5(8) + 4 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
-</MathContainer>
+4. Periksa apakah polinomial berikut memenuhi syarat kontinu di <InlineMath math="x = 1" />:
 
-**Soal 2**. Karena ini fungsi rasional dengan penyebut tidak nol di <InlineMath math="x = 2" />, gunakan **substitusi langsung**:
+   <BlockMath math="f(x) = x^2 - 2x + 1" />
 
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} \frac{x^2 - 6x + 8}{x^2 + 16x + 28} \\ &amp;= \frac{2^2 - 6(2) + 8}{2^2 + 16(2) + 28} \end{aligned}" />
-<BlockMath math="= \frac{4 - 12 + 8}{4 + 32 + 28} = \frac{0}{64} = 0" />
-</MathContainer>
+5. Hitung limit bentuk akar berikut:
 
-**Soal 3**. **Substitusi langsung** memberikan <InlineMath math="\frac{0}{0}" />. Mari faktorkan pembilang:
+   <BlockMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x}" />
+
+Cocokkan pekerjaanmu dengan langkah penyelesaian berikut.
+
+**Soal 1**. Karena polinomial ini **kontinu di semua titik**, substitusikan langsung:
 
 <MathContainer>
-<BlockMath math="x^2 - 2x + 1 = (x - 1)^2" />
-<BlockMath math="\begin{aligned} \lim_{x \to 1} \frac{(x - 1)^2}{x - 1} &amp;= \lim_{x \to 1} (x - 1) \\ &amp;= 1 - 1 \\ &amp;= 0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} (x^4 - 5x^3 + x^2 - 7) \\ &amp;= 2^4 - 5(2^3) + 2^2 - 7 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;= 16 - 5(8) + 4 - 7 \\ &amp;= 16 - 40 + 4 - 7 \\ &amp;= -27 \end{aligned}" />
 </MathContainer>
 
-**Soal 4**. Untuk memeriksa kontinuitas di <InlineMath math="x = 1" />, periksa tiga syarat:
+**Soal 2**. Karena penyebut tidak nol di <InlineMath math="x = 2" />, pakai **substitusi langsung**:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;\lim_{x \to 2} \frac{x^2 - 6x + 8}{x^2 + 16x + 28} \\ &amp;= \frac{2^2 - 6(2) + 8}{2^2 + 16(2) + 28} \end{aligned}" />
+  <BlockMath math="= \frac{4 - 12 + 8}{4 + 32 + 28} = \frac{0}{64} = 0" />
+</MathContainer>
+
+**Soal 3**. **Substitusi langsung** menghasilkan <InlineMath math="\frac{0}{0}" />, sehingga faktorkan pembilangnya:
+
+<MathContainer>
+  <BlockMath math="x^2 - 2x + 1 = (x - 1)^2" />
+  <BlockMath math="\begin{aligned} \lim_{x \to 1} \frac{(x - 1)^2}{x - 1} &amp;= \lim_{x \to 1} (x - 1) \\ &amp;= 1 - 1 \\ &amp;= 0 \end{aligned}" />
+</MathContainer>
+
+**Soal 4**. Periksa ketiga syarat kontinuitas di <InlineMath math="x = 1" />:
 
 | Syarat | Pemeriksaan |
 | --- | --- |
@@ -224,24 +290,26 @@ Setiap soal meminta limit suatu bentuk aljabar. Tentukan bentuknya lebih dulu, k
 | Limit ada | <InlineMath math="\lim_{x\to1}(x^2-2x+1)=1-2+1=0" /> |
 | Limit sama dengan nilai fungsi | <InlineMath math="\lim_{x\to1}f(x)=0=f(1)" /> |
 
-Karena ketiga syarat kontinuitas terpenuhi, fungsi **kontinu** di <InlineMath math="x = 1" />.
+Karena ketiga syarat terpenuhi, fungsi ini **kontinu** di <InlineMath math="x = 1" />.
 
-**Soal 5**. Substitusi langsung: <InlineMath math="\frac{\sqrt{0 + 4} - 2}{0} = \frac{2 - 2}{0} = \frac{0}{0}" /> (bentuk tak tentu).
+**Soal 5**. Substitusi langsung menghasilkan bentuk tak tentu:
 
-Gunakan rasionalisasi dengan mengalikan **bentuk sekawan** <InlineMath math="\sqrt{x + 4} + 2" />:
+<BlockMath math="\frac{\sqrt{0 + 4} - 2}{0} = \frac{2 - 2}{0} = \frac{0}{0}" />
+
+Rasionalkan dengan mengalikan **bentuk sekawan** <InlineMath math="\sqrt{x + 4} + 2" />:
 
 <MathContainer>
-<BlockMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x} \cdot \frac{\sqrt{x + 4} + 2}{\sqrt{x + 4} + 2}" />
-<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{(\sqrt{x + 4})^2 - 2^2}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{(x + 4) - 4}{x(\sqrt{x + 4} + 2)} \end{aligned}" />
-<BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{x}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{1}{\sqrt{x + 4} + 2} \end{aligned}" />
-<BlockMath math="\begin{aligned}  &amp;= \frac{1}{\sqrt{0 + 4} + 2} \\ &amp;= \frac{1}{\sqrt{4} + 2} \\ &amp;= \frac{1}{2 + 2} \\ &amp;= \frac{1}{4} \end{aligned}" />
+  <BlockMath math="\lim_{x \to 0} \frac{\sqrt{x + 4} - 2}{x} \cdot \frac{\sqrt{x + 4} + 2}{\sqrt{x + 4} + 2}" />
+  <BlockMath math="\begin{aligned} &amp;= \lim_{x \to 0} \frac{(\sqrt{x + 4})^2 - 2^2}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{(x + 4) - 4}{x(\sqrt{x + 4} + 2)} \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;= \lim_{x \to 0} \frac{x}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{1}{\sqrt{x + 4} + 2} \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;= \frac{1}{\sqrt{0 + 4} + 2} \\ &amp;= \frac{1}{2 + 2} \\ &amp;= \frac{1}{4} \end{aligned}" />
 </MathContainer>
 
-Bandingkan dengan Soal 3: <InlineMath math="\frac{x^2 - 2x + 1}{x - 1}" /> disederhanakan menjadi <InlineMath math="x - 1" />, tetapi grafiknya kehilangan titik di <InlineMath math="x = 1" />. Grafiknya adalah garis <InlineMath math="y = x - 1" /> dengan lubang di <InlineMath math="(1, 0)" />, dan limitnya adalah tinggi lubang itu, <InlineMath math="0" />.
+Kembali ke Soal 3, ekspresi rasionalnya menyederhana menjadi <InlineMath math="x - 1" /> untuk <InlineMath math="x \neq 1" />, meninggalkan garis dengan lubang terbuka di <InlineMath math="(1, 0)" />.
 
 <MathVisual
   title={<>Garis <InlineMath math="y = x - 1" /> dengan lubang di <InlineMath math="(1, 0)" /></>}
-  description={<>Grafik <InlineMath math="\frac{x^2 - 2x + 1}{x - 1}" />: garis <InlineMath math="y = x - 1" /> dengan lingkaran kosong di <InlineMath math="(1, 0)" />.</>}
+  description={<>Grafik <InlineMath math="\frac{x^2 - 2x + 1}{x - 1}" /> mengikuti garis <InlineMath math="y = x - 1" /> dengan lingkaran kosong di <InlineMath math="(1, 0)" />.</>}
   labels={{
     line: <InlineMath math="y = x - 1" />,
     hole: <InlineMath math="(1, 0)" />,
@@ -261,3 +329,5 @@ Bandingkan dengan Soal 3: <InlineMath math="\frac{x^2 - 2x + 1}{x - 1}" /> dised
     ],
   }}
 />
+
+Membandingkan garis berlubang ini dengan parabola kontinu sebelumnya memperjelas bedanya: keduanya punya limit <InlineMath math="0" /> di <InlineMath math="x = 1" />, tetapi hanya parabola yang terdefinisi tepat di titik itu.

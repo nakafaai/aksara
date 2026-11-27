@@ -1,42 +1,42 @@
 export const metadata = {
-    title: "Integral Tentu",
-    description: "Definisikan integral tentu sebagai limit jumlahan Riemann dan evaluasi satu contoh langsung dari limit tersebut.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2025-05-26",
-    dateModified: "2026-11-08",
-    subject: "Integral",
+  title: "Integral Tentu",
+  description: "Definisikan integral tentu sebagai limit jumlahan Riemann dan evaluasi satu contoh langsung dari limit tersebut.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-27",
+  subject: "Integral",
 };
 
-## Dari Perkiraan Menuju Luas Pasti
+## Dari Hampiran ke Luas Eksak
 
 Pada materi [Jumlahan Riemann](/id/materi/matematika/integral/jumlahan-riemann), kita menghampiri luas di bawah kurva tidak negatif dengan persegi panjang. Ketika partisi makin halus, jumlahan Riemann yang bersesuaian mendekati satu nilai yang sama untuk fungsi yang dapat diintegralkan.
 
 Untuk partisi berlebar sama, biarkan jumlah subinterval <InlineMath math="n" /> bertambah tanpa batas. Lebarnya, <InlineMath math="\Delta x" />, akan mendekati nol. Agar definisi ini berlaku, lebar subinterval terbesar juga harus mendekati nol. Jika jumlahan Riemann memiliki limit, limit itulah **integral tentu**.
 
-## Notasi dan Makna Integral Tentu
+## Notasi Integral Tentu
 
-Integral tentu mencatat akumulasi pada limit tersebut. Secara matematis, integral tentu <Highlight>didefinisikan sebagai limit jumlahan Riemann</Highlight>, asalkan limitnya ada.
+Integral tentu mencatat akumulasi pada limit itu. Secara matematis, integral tentu <Highlight>didefinisikan sebagai limit jumlahan Riemann</Highlight>, asalkan limitnya ada.
 
 <BlockMath math="\int_{a}^{b} f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x" />
 
 Notasi ini memiliki arti spesifik:
-- <InlineMath math="\int_{a}^{b}" />: Simbol ini memiliki batas **bawah** <InlineMath math="a" /> dan batas **atas** <InlineMath math="b" />. Kedua batas menentukan interval perhitungan integral.
-- <InlineMath math="f(x)" />: Ini adalah **integran**. Nilai <InlineMath math="f(x)" /> pada seluruh interval <InlineMath math="[a,b]" /> menentukan akumulasi bertanda.
+
+- <InlineMath math="\int" />: Simbol integral memuat batas **bawah** <InlineMath math="a" /> dan batas **atas** <InlineMath math="b" /> yang menetapkan interval akumulasi.
+- <InlineMath math="f(x)" />: Ini adalah **integran**. Nilai <InlineMath math="f(x)" /> pada seluruh interval <InlineMath math="[a, b]" /> menentukan akumulasi bertanda.
 - <InlineMath math="dx" />: Sama seperti pada integral tak tentu, ini menandakan bahwa kita mengintegrasikan terhadap variabel <InlineMath math="x" />.
 
-Integral tak tentu memuat semua fungsi berbentuk <InlineMath math="F(x) + C" />. Integral tentu menghasilkan sebuah **angka tunggal** yang menyatakan akumulasi bertanda dari <InlineMath math="x=a" /> hingga <InlineMath math="x=b" />. Nilai tersebut sama dengan luas geometris jika fungsi yang diintegralkan tidak negatif pada seluruh interval.
+Integral tak tentu memuat semua fungsi berbentuk <InlineMath math="F(x) + C" />. Integral tentu menghasilkan sebuah **angka tunggal** yang menyatakan akumulasi bertanda dari <InlineMath math="x = a" /> hingga <InlineMath math="x = b" />. Nilai itu sama dengan luas geometris jika fungsi yang diintegralkan tidak negatif pada seluruh interval.
 
-## Menghitung Integral Tentu dengan Limit
+> Integral tentu menghasilkan satu bilangan bertanda, bukan keluarga fungsi, karena limitnya menggabungkan seluruh irisan tipis di antara batas menjadi satu total.
 
-**Soal**: Tentukan nilai dari <InlineMath math="\int_{0}^{7} x \, dx" />.
+## Menghitung dengan Limit
 
-**Penyelesaian**:
+**Soal**: Tentukan nilai eksak integral tentu berikut dengan mengubahnya kembali ke bentuk limit jumlahan Riemann:
 
-Untuk menyelesaikan integral pada soal ini, kita akan mengubah integral itu kembali ke bentuk limit dari Jumlahan Riemann.
+<BlockMath math="\int_{0}^{7} x \, dx" />
 
-**Langkah 1**: Tentukan komponen Jumlahan Riemann
+**Langkah 1**: Tentukan komponen jumlahan Riemann dari integral di atas:
 
-Dari soal <InlineMath math="\int_{0}^{7} x \, dx" />, kita tahu:
 - Fungsi: <InlineMath math="f(x) = x" />
 - Interval: <InlineMath math="[a, b] = [0, 7]" />
 
@@ -48,36 +48,37 @@ Kita akan menggunakan titik sampel ujung kanan (<InlineMath math="x_i" />) untuk
 
 <BlockMath math="x_i = a + i \Delta x = 0 + i \left(\frac{7}{n}\right) = \frac{7i}{n}" />
 
-**Langkah 2**: Susun Jumlahan Riemann
+**Langkah 2**: Susun jumlahan Riemann.
 
 Tinggi setiap persegi panjang adalah <InlineMath math="f(x_i)" />, jadi:
 
 <BlockMath math="f(x_i) = x_i = \frac{7i}{n}" />
 
-Sekarang, kita masukkan ke dalam formula Jumlahan Riemann:
+Sekarang masukkan bentuk ini ke dalam rumus jumlahan Riemann:
 
 <BlockMath math="\begin{aligned} \sum_{i=1}^{n} f(x_i) \Delta x &amp;= \sum_{i=1}^{n} \left(\frac{7i}{n}\right) \left(\frac{7}{n}\right) \\ &amp;= \sum_{i=1}^{n} \frac{49i}{n^2} \end{aligned}" />
 
-**Langkah 3**: Sederhanakan dan gunakan properti notasi sigma
+**Langkah 3**: Sederhanakan dan gunakan sifat notasi sigma.
 
-Kita bisa mengeluarkan konstanta dari sigma, karena <InlineMath math="n" /> dianggap konstan dalam penjumlahan dari <InlineMath math="i=1" /> sampai <InlineMath math="n" />.
+Kita bisa mengeluarkan konstanta dari sigma, karena <InlineMath math="n" /> tetap konstan saat <InlineMath math="i" /> berjalan dari <InlineMath math="1" /> sampai <InlineMath math="n" />:
 
-<BlockMath math="R_n=\frac{49}{n^2} \sum_{i=1}^{n} i" />
+<BlockMath math="R_n = \frac{49}{n^2} \sum_{i=1}^{n} i" />
 
-Selanjutnya, ganti <InlineMath math="\sum_{i=1}^{n} i" /> dengan <InlineMath math="\frac{n(n+1)}{2}" />, lalu sederhanakan sampai suku yang bergantung pada <InlineMath math="n" /> terpisah.
+Tiga identitas jumlah deret berikut sering dipakai pada jumlahan Riemann polinomial:
+
+<MathContainer>
+<BlockMath math="\sum_{i=1}^{n} i = \frac{n(n+1)}{2}" />
+<BlockMath math="\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}" />
+<BlockMath math="\sum_{i=1}^{n} i^3 = \left(\frac{n(n+1)}{2}\right)^2" />
+</MathContainer>
+
+Substitusikan rumus jumlah linear lalu sederhanakan sampai suku yang bergantung pada <InlineMath math="n" /> terpisah:
 
 <BlockMath math="\begin{aligned}R_n&=\frac{49}{n^2}\cdot\frac{n(n+1)}{2}\\&=\frac{49n(n+1)}{2n^2}\\&=\frac{49(n+1)}{2n}\\&=\frac{49}{2}\left(1+\frac1n\right)\end{aligned}" />
 
-Penyederhanaan tersebut menghasilkan faktor konstan yang dikalikan dengan <InlineMath math="1+\frac{1}{n}" />. Limit sisanya dapat dihitung dari <InlineMath math="\frac{1}{n}\to0" />.
+Mula-mula sederhanakan faktor <InlineMath math="n" /> pada pembilang dan penyebut, lalu pecah pecahannya agar bagian konstan terpisah dari sisa yang mengecil.
 
-> Untuk menghitung limit jumlah Riemann, kita sering memerlukan beberapa rumus jumlah deret yang umum:
-> - <InlineMath math="\sum_{i=1}^{n} i = \frac{n(n+1)}{2}" />
-> - <InlineMath math="\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}" />
-> - <InlineMath math="\sum_{i=1}^{n} i^3 = \left( \frac{n(n+1)}{2} \right)^2" />
-
-**Langkah 4**: Ambil Limitnya
-
-Terakhir, kita ambil limit saat <InlineMath math="n \to \infty" />. Pada limit ini, <InlineMath math="\frac{1}{n}" /> mendekati nol.
+**Langkah 4**: Ambil limit saat <InlineMath math="n \to \infty" />. Pada limit ini, <InlineMath math="\frac{1}{n}" /> mendekati nol.
 
 <MathContainer>
 <BlockMath math="\int_{0}^{7} x \, dx = \lim_{n \to \infty} \frac{49}{2} \left( 1 + \frac{1}{n} \right)" />
@@ -85,9 +86,13 @@ Terakhir, kita ambil limit saat <InlineMath math="n \to \infty" />. Pada limit i
 <BlockMath math="= \frac{49}{2}" />
 </MathContainer>
 
-Karena <InlineMath math="f(x) = x" /> tidak negatif dari <InlineMath math="x=0" /> sampai <InlineMath math="x=7" />, integral tentu ini juga merupakan luas geometris: <InlineMath math="\frac{49}{2}" /> atau <InlineMath math="24{,}5" /> satuan luas. Limit tersebut mengubah hampiran persegi panjang menjadi nilai eksak.
+Karena <InlineMath math="f(x) = x" /> tidak negatif dari <InlineMath math="x = 0" /> sampai <InlineMath math="x = 7" />, integral tentu ini juga menjadi luas geometris: <InlineMath math="\frac{49}{2}" /> atau <InlineMath math="24{,}5" /> satuan luas. Limit itu mengubah hampiran persegi panjang menjadi nilai eksak.
 
-Ini cara kerja limitnya. Luas tepat di bawah <InlineMath math="y = x" /> dari <InlineMath math="0" /> sampai <InlineMath math="7" /> adalah segitiga <InlineMath math="\tfrac12 \cdot 7 \cdot 7 = \tfrac{49}{2}" />. Tujuh persegi panjang titik ujung kanan selebar <InlineMath math="1" /> menutupinya dengan sedikit kelebihan di atas: <InlineMath math="1 + 2 + \cdots + 7 = 28" />, sesuai dengan <InlineMath math="\tfrac{49}{2}(1 + \tfrac17) = 28" />.
+Bandingkan partisi berhingga untuk <InlineMath math="n = 7" /> dengan luas segitiga eksak <InlineMath math="24{,}5" />:
+
+<BlockMath math="R_7 = 1 + 2 + \cdots + 7 = \frac{49}{2}\left(1 + \frac{1}{7}\right) = 28" />
+
+Tujuh persegi panjang titik ujung kanan selebar <InlineMath math="1" /> menutupi segitiga dengan potongan kecil yang menonjol di atas garis.
 
 <MathVisual
   title={<>Tujuh persegi panjang di atas luas tepatnya</>}
@@ -116,9 +121,19 @@ Ini cara kerja limitnya. Luas tepat di bawah <InlineMath math="y = x" /> dari <I
   }}
 />
 
-## Membandingkan Banyak Persegi Panjang
+Ketujuh segitiga kelebihan itu berjumlah <InlineMath math="3{,}5" />, sehingga <InlineMath math="R_7 = 28" /> melampaui luas eksak <InlineMath math="24{,}5" /> tepat sebesar selisih itu.
 
-Tuliskan jumlahan ujung kanan sebagai <InlineMath math="R_n=\frac{49}{2}(1+\frac1n)" />. Kita dapat memeriksa beberapa nilai <InlineMath math="n" /> sebelum mengambil limit. Karena grafik naik, setiap persegi panjang ujung kanan memberi **hampiran dari atas**.
+## Konvergensi dan Volume
+
+Memperhalus partisi menjadi **irisan tipis** membuat hampiran berhingga menumpu pada luas eksak di bidang datar dan volume putar eksak di ruang tiga dimensi. Amati dulu bagaimana jumlah persegi panjang mendekati luas segitiga, lalu putar kurva profil untuk melihat penampang lingkaran membangun benda padat.
+
+### Membandingkan Partisi
+
+Gunakan rumus tertutup jumlahan ujung kanan untuk memeriksa beberapa nilai <InlineMath math="n" /> sebelum mengambil limit:
+
+<BlockMath math="R_n = \frac{49}{2}\left(1 + \frac{1}{n}\right)" />
+
+Karena grafik naik, setiap persegi panjang ujung kanan memberi **hampiran dari atas**.
 
 | Jumlah persegi panjang | Hampiran ujung kanan |
 | --- | --- |
@@ -128,11 +143,19 @@ Tuliskan jumlahan ujung kanan sebagai <InlineMath math="R_n=\frac{49}{2}(1+\frac
 | <InlineMath math="10" /> | <InlineMath math="26{,}95" /> |
 | <InlineMath math="100" /> | <InlineMath math="24{,}745" /> |
 
-Selisih hampiran dari nilai eksak adalah <InlineMath math="R_n-\frac{49}{2}=\frac{49}{2n}" />. Jadi, menggandakan banyak persegi panjang membagi dua galat pada contoh linear ini. Kamu juga dapat memeriksa luas eksaknya sebagai segitiga dengan alas dan tinggi <InlineMath math="7" />:
+Kurangkan nilai eksak untuk melihat bagaimana galat mengecil saat <InlineMath math="n" /> naik:
 
-<BlockMath math="A=\frac12(7)(7)=\frac{49}{2}" />
+<BlockMath math="R_n - \frac{49}{2} = \frac{49}{2n}" />
 
-Gandakan banyak persegi panjangnya menjadi <InlineMath math="14" />, masing-masing selebar <InlineMath math="\tfrac12" />. Kelebihan di atasnya makin tipis, dan totalnya turun menjadi <InlineMath math="\tfrac{49}{2}(1 + \tfrac{1}{14}) = 26{,}25" />. Setiap kali <InlineMath math="n" /> bertambah, jumlahnya makin dekat ke <InlineMath math="24{,}5" />.
+Jadi, menggandakan banyak persegi panjang membagi dua galat pada contoh linear ini. Kamu juga dapat memeriksa luas eksaknya sebagai segitiga dengan alas dan tinggi <InlineMath math="7" />:
+
+<BlockMath math="A = \frac{1}{2}(7)(7) = \frac{49}{2}" />
+
+Gandakan banyak persegi panjangnya menjadi <InlineMath math="14" />, masing-masing selebar <InlineMath math="\tfrac{1}{2}" />, sehingga totalnya turun mendekati <InlineMath math="24{,}5" />:
+
+<BlockMath math="R_{14} = \frac{49}{2}\left(1 + \frac{1}{14}\right) = 26{,}25" />
+
+Kelebihan di bagian atas makin tipis saat <InlineMath math="n" /> bertambah.
 
 <MathVisual
   title={<>Empat belas persegi panjang yang lebih tipis</>}
@@ -168,7 +191,7 @@ Gandakan banyak persegi panjangnya menjadi <InlineMath math="14" />, masing-masi
   }}
 />
 
-Letakkan jumlah dengan titik sampel ujung kanan berdampingan. Dari <InlineMath math="n = 1" /> sampai <InlineMath math="n = 100" /> batangnya menyusut dari <InlineMath math="49" /> menuju luas eksak <InlineMath math="\frac{49}{2} = 24{,}5" />, dan selisih di atasnya selalu <InlineMath math="\frac{49}{2n}" />.
+Letakkan jumlah dengan titik sampel ujung kanan berdampingan. Dari <InlineMath math="n = 1" /> sampai <InlineMath math="n = 100" /> batangnya menyusut dari <InlineMath math="49" /> menuju luas eksak <InlineMath math="24{,}5" />, dan selisih di atasnya selalu <InlineMath math="\frac{49}{2n}" />.
 
 <BarChart
   title={<>Jumlah titik ujung kanan <InlineMath math="R_n" /> untuk enam banyak persegi panjang</>}
@@ -177,3 +200,54 @@ Letakkan jumlah dengan titik sampel ujung kanan berdampingan. Dari <InlineMath m
   data={[1, 2, 7, 10, 14, 100].map((n) => ({ name: String(n), value: (49 / 2) * (1 + 1 / n) }))}
   chartConfig={{ value: { label: "Hampiran", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
+
+Pada <InlineMath math="n = 100" />, tinggi batang tinggal berselisih <InlineMath math="0{,}245" /> dari luas sebenarnya, memperlihatkan bagaimana limit Riemann mantap menuju satu nilai eksak.
+
+### Benda Putar dari Cakram
+
+Gagasan akumulasi yang sama meluas dari irisan dua dimensi menjadi volume tiga dimensi. Memutar kurva profil mengelilingi suatu sumbu mengubah setiap pita tipis menjadi **cakram lingkaran** berluas <InlineMath math="\pi R(x)^2" />, atau cincin berluas <InlineMath math="\pi(R(x)^2 - r(x)^2)" /> jika ada rongga di tengah, lalu integral tentu menjumlahkan semua irisan itu:
+
+<BlockMath math="V = \int_{a}^{b} A(x)\,dx = \pi \int_{a}^{b} \big(R(x)^2 - r(x)^2\big)\,dx" />
+
+Putar sudut sapuan pada empat profil untuk melihat bagaimana satu kurva yang diputar membentuk benda tiga dimensi yang volumenya terakumulasi irisan demi irisan.
+
+<SolidOfRevolutionLab
+  title={<>Mengakumulasi cakram penampang menjadi benda putar</>}
+  description={<>Putar empat kurva profil mengelilingi sumbu hingga satu putaran penuh untuk menghubungkan luas cakram atau cincin penampang dengan volume putaran.</>}
+  profiles={["paraboloid", "trumpetHorn", "washerBowl", "frustumCone"]}
+  sweepAngle={{ min: 30, max: 360, value: 270 }}
+  labels={{
+    parts: {
+      profileCurve: "Kurva profil",
+      revolvedShell: "Kulit putaran",
+      crossSectionDisk: "Irisan penampang",
+      rotationAxis: "Sumbu putar",
+      radiusArrow: "Jari-jari",
+    },
+    profile: "Profil benda putar",
+    profiles: {
+      paraboloid: {
+        name: "Paraboloid",
+        formula: <InlineMath math="A = \pi R^2,\; V_{360^\circ} = 2\pi" />,
+      },
+      trumpetHorn: {
+        name: "Terompet",
+        formula: <InlineMath math="A = \pi R^2,\; V_{360^\circ} = 1{,}4\pi" />,
+      },
+      washerBowl: {
+        name: "Mangkuk cincin",
+        formula: <InlineMath math="A = \pi(R^2 - r^2),\; V_{360^\circ} = 2{,}4\pi" />,
+      },
+      frustumCone: {
+        name: "Kerucut terpancung",
+        formula: <InlineMath math="A = \pi R^2,\; V_{360^\circ} = 1{,}85\pi" />,
+      },
+    },
+    sliceArea: <>Luas irisan</>,
+    sweepAngle: "Sudut putaran",
+    totalVolume: <>Volume putaran</>,
+    view: "Benda putar tiga dimensi yang disapu mengelilingi sumbu dengan irisan penampang melingkar yang disorot",
+  }}
+/>
+
+Memperbesar sudut putaran menaikkan volume sapuan secara linear sebanding dengan sudutnya, sementara memilih mangkuk cincin membuang inti dalam sehingga setiap penampang berbentuk cincin, bukan cakram penuh.
