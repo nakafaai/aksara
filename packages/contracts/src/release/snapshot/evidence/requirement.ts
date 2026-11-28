@@ -17,7 +17,7 @@ export class SnapshotEvidenceError extends Schema.TaggedError<
   field: Schema.String,
 }) {}
 
-/** Creates a fresh structured-row replay for one verification pass. */
+/** Streams the structured rows that one verification pass reads once. */
 export type SnapshotRowSource<E, R> = Stream.Stream<ContentSnapshotRow, E, R>;
 
 /** Fails with one field-level mismatch without exposing row bodies. */
