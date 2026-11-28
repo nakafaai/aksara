@@ -1,4 +1,11 @@
-import { Effect, MutableRef, Option, Schema, Stream } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableRef,
+  Option,
+  Schema,
+  Stream,
+} from "effect";
 import { assessmentRowCount } from "#contracts/assessment/snapshot";
 import type {
   ContentSnapshotManifest,
@@ -245,8 +252,17 @@ export function verifyStagedSnapshotRows(
 }
 
 /**
- * Authenticates every replacement through replayable Stream values.
- * Global rows may interleave families; each filtered family order stays signed.
+ * Rows a fused pass may hold ahead of its slowest reader. One chunk can carry a
+ * whole read window of rows, so a deeper buffer only costs memory.
+ */
+const PASS_BUFFER_CHUNKS = 2;
+
+/**
+ * Authenticates every replacement in one replay of its rows: the row count and
+ * every family pass read the same decoded rows, so a row is decoded once
+ * however many passes check it. Failures keep their order: a row the release
+ * does not own is reported before any family evidence, and families report in
+ * canonical order.
  */
 export const verifyContentSnapshots = Effect.fn(
   "AksaraContracts.verifyContentSnapshots"
@@ -254,7 +270,7 @@ export const verifyContentSnapshots = Effect.fn(
   readonly previousSnapshots: ContentSnapshotSet | null;
   /** Replays canonical replacement manifests. */
   readonly manifests: Stream.Stream<unknown, ManifestError, ManifestContext>;
-  /** Replays structured rows for every verification pass. */
+  /** Streams the structured rows of every replacement once. */
   readonly rows: Stream.Stream<unknown, RowError, RowContext>;
 }) {
   const decodedManifests = decodeContentSnapshotManifests(input.manifests);
@@ -263,18 +279,45 @@ export const verifyContentSnapshots = Effect.fn(
     input.previousSnapshots,
     manifests
   );
-  const actualRows = yield* countOwnedRows(
-    decodeContentSnapshotRows(input.rows),
-    snapshots
-  );
-  const verifiedRows = yield* Effect.reduce(
-    manifests,
-    () => 0,
-    (count, manifest) =>
-      verifySnapshotRows(manifest, decodeContentSnapshotRows(input.rows)).pipe(
-        Effect.map((verified) => count + verified)
+  const passes = Arr.prepend(
+    Arr.map(
+      manifests,
+      (manifest) =>
+        (
+          rows: Stream.Stream<
+            ContentSnapshotRow,
+            RowError | SnapshotRowDecodeError
+          >
+        ) =>
+          verifySnapshotRows(manifest, rows).pipe(
+            Effect.map((verified) => ({ counted: 0, verified }))
+          )
+    ),
+    (
+      rows: Stream.Stream<ContentSnapshotRow, RowError | SnapshotRowDecodeError>
+    ) =>
+      countOwnedRows(rows, snapshots).pipe(
+        Effect.map((counted) => ({ counted, verified: 0 }))
       )
   );
+  const results = yield* Effect.scoped(
+    Effect.gen(function* () {
+      const branches = yield* decodeContentSnapshotRows(input.rows).pipe(
+        Stream.broadcastN({ capacity: PASS_BUFFER_CHUNKS, n: passes.length })
+      );
+      return yield* Effect.all(
+        Arr.map(Arr.zip(passes, branches), ([pass, rows]) => pass(rows)),
+        { concurrency: "unbounded", mode: "result" }
+      );
+    })
+  );
+  let actualRows = 0;
+  let verifiedRows = 0;
+  for (const result of results) {
+    const rows = yield* Effect.fromResult(result);
+    actualRows += rows.counted;
+    verifiedRows += rows.verified;
+  }
   const expectedRows = snapshotRowCount(snapshots);
   yield* verifyStagedSnapshotRows(actualRows, verifiedRows, expectedRows);
   return {

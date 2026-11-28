@@ -84,6 +84,22 @@ describe("canonical JSON", () => {
       })
   );
 
+  it.effect(
+    "orders array index keys by code unit like every other key, deep in a value",
+    () =>
+      Effect.gen(function* () {
+        expect(yield* canonicalJson({ 10: "ten", 9: "nine", b: 0 })).toBe(
+          '{"10":"ten","9":"nine","b":0}'
+        );
+        expect(
+          yield* canonicalJson([{ z: { 2: true, "01": false, 4294967295: 1 } }])
+        ).toBe('[{"z":{"01":false,"2":true,"4294967295":1}}]');
+        expect(yield* canonicalJson({ "4294967295": 1, "4294967294": 2 })).toBe(
+          '{"4294967294":2,"4294967295":1}'
+        );
+      })
+  );
+
   it.effect("keeps the order of an array and writes a lone value as JSON", () =>
     Effect.gen(function* () {
       expect(yield* canonicalJson([2, 1])).toBe("[2,1]");
