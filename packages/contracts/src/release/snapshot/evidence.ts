@@ -6,7 +6,7 @@ import { verifyProgramSnapshotRows } from "#contracts/release/snapshot/evidence/
 import { verifyQuranSnapshotRows } from "#contracts/release/snapshot/evidence/quran";
 import type { SnapshotRowSource } from "#contracts/release/snapshot/evidence/requirement";
 
-/** Authenticates one replacement manifest through fresh structured-row replays. */
+/** Authenticates one replacement manifest against one pass of its structured rows. */
 export const verifySnapshotRows = Effect.fn(
   "AksaraContracts.verifySnapshotRows"
 )(function* <E, R>(

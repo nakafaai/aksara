@@ -53,7 +53,7 @@ function interleaveRows(rows: readonly ContentSnapshotRow[]) {
   return MutableList.toArray(result);
 }
 
-/** Authenticates one test input through explicit replay factories. */
+/** Authenticates one test input. */
 function verify(input: {
   readonly manifests: readonly unknown[];
   readonly previousSnapshots?: Parameters<

@@ -6,6 +6,8 @@
 - Amended: 2026-10-26, a manifest generation change crosses by genesis.
 - Amended: 2026-10-31, the declared bootstrap is deleted: genesis is the one way
   across a generation.
+- Amended: 2026-11-28, a genesis retains an inverse like every release, and that
+  inverse restores the empty catalog.
 
 ## Context
 
@@ -149,12 +151,14 @@ continues from current state. A different identity fails closed.
 
 A content contract generation change can make the active release unreadable by
 the new decoder and renderer. Its artifacts cannot be restored under the new
-generation, so no inverse can protect the switch, and a stored manifest may not
-decode at all. The target deletes its stored release state in the same deploy
-that reads the new generation, and the first release of that generation is a
-genesis: no base, every family in scope, and no recovery. The content a target
-serves is empty between that deploy and the genesis activation, which the
-one-step contract change accepts. The switch is one way.
+generation, so no inverse can restore the previous one, and a stored manifest
+may not decode at all. The target deletes its stored release state in the same
+deploy that reads the new generation, and the first release of that generation
+is a genesis: no base and every family in scope. Like every release it stages a
+signed inverse before activation, and that inverse restores the empty catalog
+the genesis started from. The content a target serves is empty between that
+deploy and the genesis activation, which the one-step contract change accepts.
+The switch is one way.
 
 ### Failure and cleanup
 
@@ -211,7 +215,8 @@ source repository is public.
 ## Consequences
 
 - Every release and explicit rollback has a verified recovery path before it
-  becomes visible, except a genesis, which is one way.
+  becomes visible. The inverse of a genesis restores an empty catalog, so a
+  generation change stays one way.
 - Healthy acceptance and emergency recovery are intentional operator actions.
 - Content publication does not pretend to transact with a renderer deploy.
 - Additional components in existing renderer domains can deploy before

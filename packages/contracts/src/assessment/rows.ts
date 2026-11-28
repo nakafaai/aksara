@@ -7,8 +7,8 @@ import type { StimulusVersion } from "#contracts/assessment/stimulus";
 /**
  * Keeps what the reference checks read of one record. An explanation keeps
  * only its identity and the version it explains, and a stimulus only its
- * identity: explanation bodies are most of a snapshot's bytes, and holding
- * every one pushed the assessment proof past an action's memory.
+ * identity: explanation bodies are most of a snapshot's bytes, and no check
+ * reads them.
  */
 function referenceFacts({ row }: AssessmentRecord) {
   if (row.kind === "explanation") {
