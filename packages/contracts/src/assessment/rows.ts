@@ -1,76 +1,94 @@
-import { Array as Arr, HashMap, HashSet, Result } from "effect";
+import { Array as Arr, Effect, HashMap, HashSet, Stream } from "effect";
 
 import type { Paper } from "#contracts/assessment/paper";
-import type { AssessmentRecord } from "#contracts/assessment/snapshot";
+import type {
+  AssessmentRecord,
+  AssessmentRow,
+} from "#contracts/assessment/snapshot";
 import type { StimulusVersion } from "#contracts/assessment/stimulus";
 
-/** Gathers the rows of a snapshot by kind for the reference checks. */
-export function indexRows(records: readonly AssessmentRecord[]) {
-  const rows = Arr.map(records, ({ row }) => row);
+type RowOf<Kind extends AssessmentRow["kind"]> = Extract<
+  AssessmentRow,
+  { kind: Kind }
+>;
+
+/**
+ * The facts the reference checks read, gathered while the records stream past.
+ * An explanation keeps only its identity and the version it explains, and a
+ * stimulus only its identity: explanation bodies are most of a snapshot's
+ * bytes, and holding them pushed the assessment proof past an action's memory.
+ */
+interface RowFacts {
+  readonly catalog: RowOf<"catalog">["row"][];
+  readonly explanations: (readonly [string, string])[];
+  readonly families: (readonly [string, RowOf<"family">["family"]])[];
+  readonly items: (readonly [string, RowOf<"item">["version"]])[];
+  readonly keys: (readonly [string, RowOf<"key">["key"]])[];
+  readonly papers: (readonly [string, RowOf<"paper">])[];
+  readonly profiles: (readonly [string, RowOf<"profile">])[];
+  readonly stimuli: string[];
+}
+
+/** Starts the facts of one gathering run. */
+function emptyFacts(): RowFacts {
   return {
-    catalog: Arr.filterMap(rows, (row) =>
-      row.kind === "catalog" ? Result.succeed(row.row) : Result.failVoid
-    ),
-    explanations: HashMap.fromIterable(
-      Arr.filterMap(rows, (row) =>
-        row.kind === "explanation"
-          ? Result.succeed([
-              explanationIdentity(
-                row.explanation.version,
-                row.explanation.language
-              ),
-              row.explanation.version,
-            ] as const)
-          : Result.failVoid
-      )
-    ),
-    families: HashMap.fromIterable(
-      Arr.filterMap(rows, (row) =>
-        row.kind === "family"
-          ? Result.succeed([row.family.id, row.family] as const)
-          : Result.failVoid
-      )
-    ),
-    items: HashMap.fromIterable(
-      Arr.filterMap(rows, (row) =>
-        row.kind === "item"
-          ? Result.succeed([row.version.hash, row.version] as const)
-          : Result.failVoid
-      )
-    ),
-    keys: HashMap.fromIterable(
-      Arr.filterMap(rows, (row) =>
-        row.kind === "key"
-          ? Result.succeed([row.key.version, row.key] as const)
-          : Result.failVoid
-      )
-    ),
-    papers: HashMap.fromIterable(
-      Arr.filterMap(rows, (row) =>
-        row.kind === "paper"
-          ? Result.succeed([row.paper.id, row] as const)
-          : Result.failVoid
-      )
-    ),
-    profiles: HashMap.fromIterable(
-      Arr.filterMap(rows, (row) =>
-        row.kind === "profile"
-          ? Result.succeed([row.profile.id, row] as const)
-          : Result.failVoid
-      )
-    ),
-    stimuli: HashSet.fromIterable(
-      Arr.filterMap(rows, (row) =>
-        row.kind === "stimulus"
-          ? Result.succeed(stimulusIdentity(row.version))
-          : Result.failVoid
-      )
-    ),
+    catalog: [],
+    explanations: [],
+    families: [],
+    items: [],
+    keys: [],
+    papers: [],
+    profiles: [],
+    stimuli: [],
   };
 }
 
+/** Adds the facts of one record to the run that owns `facts`. */
+function gatherRecord(facts: RowFacts, { row }: AssessmentRecord) {
+  if (row.kind === "catalog") {
+    facts.catalog.push(row.row);
+  } else if (row.kind === "explanation") {
+    facts.explanations.push([
+      explanationIdentity(row.explanation.version, row.explanation.language),
+      row.explanation.version,
+    ]);
+  } else if (row.kind === "family") {
+    facts.families.push([row.family.id, row.family]);
+  } else if (row.kind === "item") {
+    facts.items.push([row.version.hash, row.version]);
+  } else if (row.kind === "key") {
+    facts.keys.push([row.key.version, row.key]);
+  } else if (row.kind === "paper") {
+    facts.papers.push([row.paper.id, row]);
+  } else if (row.kind === "profile") {
+    facts.profiles.push([row.profile.id, row]);
+  } else {
+    facts.stimuli.push(stimulusIdentity(row.version));
+  }
+  return facts;
+}
+
+/** Gathers the rows of a snapshot by kind for the reference checks, one record at a time. */
+export function indexRecords<E, R>(
+  records: Stream.Stream<AssessmentRecord, E, R>
+) {
+  return records.pipe(
+    Stream.runFold(emptyFacts, gatherRecord),
+    Effect.map((facts) => ({
+      catalog: facts.catalog,
+      explanations: HashMap.fromIterable(facts.explanations),
+      families: HashMap.fromIterable(facts.families),
+      items: HashMap.fromIterable(facts.items),
+      keys: HashMap.fromIterable(facts.keys),
+      papers: HashMap.fromIterable(facts.papers),
+      profiles: HashMap.fromIterable(facts.profiles),
+      stimuli: HashSet.fromIterable(facts.stimuli),
+    }))
+  );
+}
+
 /** The rows of a snapshot, gathered by kind. */
-export type Rows = ReturnType<typeof indexRows>;
+export type Rows = Effect.Success<ReturnType<typeof indexRecords>>;
 
 /** The hash of every version a paper places, every language of every place. */
 export function placedHashes(paper: Paper) {

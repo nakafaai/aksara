@@ -1,3 +1,4 @@
+import type { Stream } from "effect";
 import {
   Array as Arr,
   Effect,
@@ -6,7 +7,6 @@ import {
   Option,
   Result,
   Schema,
-  Stream,
 } from "effect";
 
 import { hasKeyedRubrics } from "#contracts/assessment/fit";
@@ -20,7 +20,7 @@ import type { ExamProfile } from "#contracts/assessment/profile";
 import type { Rows } from "#contracts/assessment/rows";
 import {
   explanationIdentity,
-  indexRows,
+  indexRecords,
   placedHashes,
   stimulusIdentity,
 } from "#contracts/assessment/rows";
@@ -274,7 +274,7 @@ export const verifyAssessmentClosure = Effect.fn(
   readonly activeAppLocales: ActiveAppLocaleList;
   readonly records: Stream.Stream<AssessmentRecord, E, R>;
 }) {
-  const rows = indexRows(yield* Stream.runCollect(input.records));
+  const rows = yield* indexRecords(input.records);
   yield* verifyCatalog(rows, input.activeAppLocales);
   yield* verifyPapers(rows);
   yield* verifyItems(rows);
