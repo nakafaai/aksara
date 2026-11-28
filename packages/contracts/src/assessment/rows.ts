@@ -1,12 +1,37 @@
-import { Array as Arr, HashMap, HashSet, Result } from "effect";
+import { Array as Arr, Effect, HashMap, HashSet, Result, Stream } from "effect";
 
 import type { Paper } from "#contracts/assessment/paper";
 import type { AssessmentRecord } from "#contracts/assessment/snapshot";
 import type { StimulusVersion } from "#contracts/assessment/stimulus";
 
-/** Gathers the rows of a snapshot by kind for the reference checks. */
-export function indexRows(records: readonly AssessmentRecord[]) {
-  const rows = Arr.map(records, ({ row }) => row);
+/**
+ * Keeps what the reference checks read of one record. An explanation keeps
+ * only its identity and the version it explains, and a stimulus only its
+ * identity: explanation bodies are most of a snapshot's bytes, and holding
+ * every one pushed the assessment proof past an action's memory.
+ */
+function referenceFacts({ row }: AssessmentRecord) {
+  if (row.kind === "explanation") {
+    return {
+      identity: explanationIdentity(
+        row.explanation.version,
+        row.explanation.language
+      ),
+      kind: "explanation" as const,
+      version: row.explanation.version,
+    };
+  }
+  if (row.kind === "stimulus") {
+    return {
+      identity: stimulusIdentity(row.version),
+      kind: "stimulus" as const,
+    };
+  }
+  return row;
+}
+
+/** Gathers the facts of a snapshot by kind for the reference checks. */
+function indexFacts(rows: readonly ReturnType<typeof referenceFacts>[]) {
   return {
     catalog: Arr.filterMap(rows, (row) =>
       row.kind === "catalog" ? Result.succeed(row.row) : Result.failVoid
@@ -14,13 +39,7 @@ export function indexRows(records: readonly AssessmentRecord[]) {
     explanations: HashMap.fromIterable(
       Arr.filterMap(rows, (row) =>
         row.kind === "explanation"
-          ? Result.succeed([
-              explanationIdentity(
-                row.explanation.version,
-                row.explanation.language
-              ),
-              row.explanation.version,
-            ] as const)
+          ? Result.succeed([row.identity, row.version] as const)
           : Result.failVoid
       )
     ),
@@ -61,16 +80,25 @@ export function indexRows(records: readonly AssessmentRecord[]) {
     ),
     stimuli: HashSet.fromIterable(
       Arr.filterMap(rows, (row) =>
-        row.kind === "stimulus"
-          ? Result.succeed(stimulusIdentity(row.version))
-          : Result.failVoid
+        row.kind === "stimulus" ? Result.succeed(row.identity) : Result.failVoid
       )
     ),
   };
 }
 
+/** Gathers the rows of a snapshot by kind, holding only the facts the reference checks read. */
+export function indexRecords<E, R>(
+  records: Stream.Stream<AssessmentRecord, E, R>
+) {
+  return records.pipe(
+    Stream.map(referenceFacts),
+    Stream.runCollect,
+    Effect.map(indexFacts)
+  );
+}
+
 /** The rows of a snapshot, gathered by kind. */
-export type Rows = ReturnType<typeof indexRows>;
+export type Rows = Effect.Success<ReturnType<typeof indexRecords>>;
 
 /** The hash of every version a paper places, every language of every place. */
 export function placedHashes(paper: Paper) {
