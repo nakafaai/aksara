@@ -1,0 +1,274 @@
+# Teil a: Quadrat und Grundebene aufbauen
+
+Stell dir drei Ecken eines gekippten Tisches im Raum vor: Die vierte Ecke schließt den Rahmen zum Parallelogramm, aber erst **gleiche Seitenlängen und ein rechter Winkel** machen daraus ein Quadrat.
+
+<BlockMath math="\begin{aligned}
+\overrightarrow{AB}=\begin{pmatrix}4\\4\\-2\end{pmatrix},\qquad \overrightarrow{BC}=\begin{pmatrix}2\\-4\\-4\end{pmatrix}\\
+\overrightarrow{OD}=\overrightarrow{OA}+\overrightarrow{BC}=\begin{pmatrix}-2\\1\\7\end{pmatrix}+\begin{pmatrix}2\\-4\\-4\end{pmatrix}=\begin{pmatrix}0\\-3\\3\end{pmatrix}
+\end{aligned}" />
+
+Beide Nachbarseiten haben die Länge <InlineMath math="\sqrt{36}=6" />, und <InlineMath math="\overrightarrow{AB}\cdot\overrightarrow{BC}=8-16+8=0" /> zeigt den rechten Winkel bei <InlineMath math="B" />. Damit ist **<InlineMath math="ABCD" /> ein Quadrat mit <InlineMath math="D(0\mid-3\mid3)" />**. Für die Ebene bildet das Kreuzprodukt den Normalenvektor:
+
+<BlockMath math="\begin{aligned}
+\overrightarrow{AB}\times\overrightarrow{BC}=\begin{pmatrix}-24\\12\\-24\end{pmatrix}=-12\cdot\begin{pmatrix}2\\-1\\2\end{pmatrix}\\
+2(-2)-1+2\cdot7=9\implies E:\ 2x-y+2z=9
+\end{aligned}" />
+
+# Teil b: Umkugel und Auswahl der Spitze
+
+Aus Symmetriegründen liegen sowohl die Spitze <InlineMath math="S_h" /> als auch der Mittelpunkt <InlineMath math="K" /> der Umkugel auf dem Lot durch den Quadratmittelpunkt <InlineMath math="M(1\mid1\mid4)" />. Der Einheitsnormalenvektor in den Halbraum <InlineMath math="2x-y+2z>9" /> ist <InlineMath math="\vec n_0=\tfrac13(2,-1,2)^T" />, und die halbe Diagonale hat die Länge <InlineMath math="|\overrightarrow{MA}|=\sqrt{9+0+9}=3\sqrt2" />.
+
+Liegt <InlineMath math="K" /> in der vorzeichenbehafteten Höhe <InlineMath math="z_K" /> über <InlineMath math="M" />, dann müssen **sowohl der Abstand zu <InlineMath math="A" /> als auch der Abstand zu <InlineMath math="S_h" /> gleich <InlineMath math="R=4{,}5" /> sein**:
+
+<BlockMath math="\begin{aligned}
+z_K^2+18=\left(\tfrac92\right)^2=\tfrac{81}{4}\implies z_K^2=\tfrac94\implies z_K=\pm\tfrac32\\
+|h-z_K|=\tfrac92\ \text{mit }h>0\implies h=z_K+\tfrac92\in\{3,\,6\}
+\end{aligned}" />
+
+Hier steckt die Falle: Beide Höhen <InlineMath math="h=3" /> und <InlineMath math="h=6" /> liefern exakt den Radius <InlineMath math="4{,}5" />. Für <InlineMath math="h=3" /> sitzt der Kugelmittelpunkt aber bei <InlineMath math="z_K=-1{,}5<0" /> unterhalb der Grundebene <InlineMath math="E" />, also außerhalb der Pyramide. Erst für <InlineMath math="h=6" /> gilt <InlineMath math="0<z_K=1{,}5<6" />, sodass <InlineMath math="K" /> auf der Strecke <InlineMath math="MS" /> im Inneren liegt.
+
+<MathVisual
+  title={<>Zwei Umkugelmittelpunkte auf der Lotgeraden</>}
+  description={<>Nur für <InlineMath math="h=6" /> liegt der Mittelpunkt <InlineMath math="K(2\mid0{,}5\mid5)" /> zwischen <InlineMath math="M" /> und <InlineMath math="S" /> im Inneren der Pyramide. Für <InlineMath math="h=3" /> sitzt der Mittelpunkt <InlineMath math="K_3(0\mid1{,}5\mid3)" /> unterhalb der Grundebene <InlineMath math="E" />.</>}
+  footer={<>Beide Höhen geben <InlineMath math="R=4{,}5" />, aber nur <InlineMath math="K" /> liegt im Inneren, <InlineMath math="K_3" /> liegt unter der Basis.</>}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    m: <><InlineMath math="M" /></>,
+    kin: <><InlineMath math="K" /></>,
+    kout: <><InlineMath math="K_3" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -4, max: 6 }, z: { min: 0, max: 9 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", appearance: "secondary", vertices: [{ x: -2, y: 1, z: 7 }, { x: 2, y: 5, z: 5 }, { x: 4, y: 1, z: 1 }, { x: 0, y: -3, z: 3 }] },
+      { id: "sa", kind: "segment", appearance: "primary", from: { x: 5, y: -1, z: 8 }, to: { x: -2, y: 1, z: 7 } },
+      { id: "sb", kind: "segment", appearance: "primary", from: { x: 5, y: -1, z: 8 }, to: { x: 2, y: 5, z: 5 } },
+      { id: "sc", kind: "segment", appearance: "primary", from: { x: 5, y: -1, z: 8 }, to: { x: 4, y: 1, z: 1 } },
+      { id: "sd", kind: "segment", appearance: "primary", from: { x: 5, y: -1, z: 8 }, to: { x: 0, y: -3, z: 3 } },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 0, y: 3 / 2, z: 3 }, to: { x: 5, y: -1, z: 8 } },
+      { id: "ks", kind: "segment", appearance: "answer", from: { x: 2, y: 1 / 2, z: 5 }, to: { x: 5, y: -1, z: 8 } },
+      { id: "ka", kind: "segment", appearance: "answer", from: { x: 2, y: 1 / 2, z: 5 }, to: { x: -2, y: 1, z: 7 } },
+      { id: "pm", kind: "point", appearance: "reference", at: { x: 1, y: 1, z: 4 } },
+      { id: "ps", kind: "point", appearance: "highlight", at: { x: 5, y: -1, z: 8 } },
+      { id: "pkin", kind: "point", appearance: "answer", at: { x: 2, y: 1 / 2, z: 5 } },
+      { id: "pkout", kind: "point", appearance: "warning", at: { x: 0, y: 3 / 2, z: 3 } },
+    ],
+    labels: [
+      { key: "s", objectId: "ps", at: { x: 5, y: -1, z: 8 }, placement: "above-right" },
+      { key: "m", objectId: "pm", at: { x: 1, y: 1, z: 4 }, placement: "below-left" },
+      { key: "kin", objectId: "pkin", at: { x: 2, y: 1 / 2, z: 5 }, placement: "right" },
+      { key: "kout", objectId: "pkout", at: { x: 0, y: 3 / 2, z: 3 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Entlang von <InlineMath math="\vec n_0" /> bekommst du **<InlineMath math="S=M+6\vec n_0=(5\mid-1\mid8)" />** und **<InlineMath math="K=M+1{,}5\vec n_0=(2\mid0{,}5\mid5)" />**.
+
+# Teil c: Innenwinkel zweier benachbarter Seitenflächen
+
+Klappst du zwei benachbarte Dachflächen einer flachen Pyramide auf, stehen sie fast in einer Ebene bei <InlineMath math="180^\circ" />, bei einer sehr hohen Pyramide nähern sie sich <InlineMath math="90^\circ" /> an. **Der Innenwinkel zwischen zwei benachbarten Seitenflächen einer geraden quadratischen Pyramide ist also immer stumpf**. Bestimme zuerst beide Normalenvektoren:
+
+<BlockMath math="\overrightarrow{AB}\times\overrightarrow{AS}=\begin{pmatrix}0\\-18\\-36\end{pmatrix},\qquad \overrightarrow{BC}\times\overrightarrow{BS}=\begin{pmatrix}-36\\-18\\0\end{pmatrix}" />
+
+Kürze und richte beide nach außen aus, indem du mit <InlineMath math="\overrightarrow{AM}" /> und <InlineMath math="\overrightarrow{BM}" /> prüfst: <InlineMath math="\vec u_1=(0,1,2)^T" /> erfüllt <InlineMath math="\vec u_1\cdot\overrightarrow{AM}=-6<0" />, und <InlineMath math="\vec u_2=(2,1,0)^T" /> erfüllt <InlineMath math="\vec u_2\cdot\overrightarrow{BM}=-6<0" />. Beide zeigen also aus der Pyramide heraus.
+
+<BlockMath math="\begin{aligned}
+\cos\varphi=\frac{\vec u_1\cdot\vec u_2}{|\vec u_1|\,|\vec u_2|}=\frac{1}{5}\implies \varphi\approx78{,}46^\circ\\
+\gamma=180^\circ-\varphi\approx101{,}54^\circ
+\end{aligned}" />
+
+Die Szene zeigt, warum sich die beiden äußeren Normalen zum spitzen Winkel <InlineMath math="78{,}5^\circ" /> treffen, während die Flächen innen stumpf aneinanderstoßen.
+
+<MathVisual
+  title={<>Nachbarflächen und ihre äußeren Normalen</>}
+  description={<>Die Flächen <InlineMath math="ABS" /> und <InlineMath math="BCS" /> treffen sich längs <InlineMath math="BS" />. Ihre nach außen gerichteten Normalen <InlineMath math="\vec u_1=(0,1,2)" /> und <InlineMath math="\vec u_2=(2,1,0)" /> schließen den spitzen Winkel <InlineMath math="78{,}5^\circ" /> ein, also beträgt der Innenwinkel <InlineMath math="101{,}5^\circ" />.</>}
+  footer={<>Die äußeren Normalen bilden <InlineMath math="78{,}5^\circ" />, der Innenwinkel der Pyramide ergänzt auf <InlineMath math="180^\circ" />.</>}
+  labels={{
+    u1: <><InlineMath math="\vec u_1" /></>,
+    u2: <><InlineMath math="\vec u_2" /></>,
+    b: <><InlineMath math="B" /></>,
+    s: <><InlineMath math="S" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -4, max: 6 }, z: { min: 0, max: 9 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", appearance: "secondary", vertices: [{ x: -2, y: 1, z: 7 }, { x: 2, y: 5, z: 5 }, { x: 4, y: 1, z: 1 }, { x: 0, y: -3, z: 3 }] },
+      { id: "fabs", kind: "polygon", appearance: "primary", vertices: [{ x: -2, y: 1, z: 7 }, { x: 2, y: 5, z: 5 }, { x: 5, y: -1, z: 8 }] },
+      { id: "fbcs", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 5, z: 5 }, { x: 4, y: 1, z: 1 }, { x: 5, y: -1, z: 8 }] },
+      { id: "bs", kind: "segment", appearance: "highlight", from: { x: 2, y: 5, z: 5 }, to: { x: 5, y: -1, z: 8 } },
+      { id: "u1", kind: "vector", appearance: "answer", from: { x: 5 / 3, y: 5 / 3, z: 20 / 3 }, to: { x: 5 / 3, y: 8 / 3, z: 26 / 3 } },
+      { id: "u2", kind: "vector", appearance: "answer", from: { x: 11 / 3, y: 5 / 3, z: 14 / 3 }, to: { x: 17 / 3, y: 8 / 3, z: 14 / 3 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 2, y: 5, z: 5 } },
+      { id: "ps", kind: "point", appearance: "reference", at: { x: 5, y: -1, z: 8 } },
+    ],
+    labels: [
+      { key: "u1", objectId: "u1", at: { x: 5 / 3, y: 8 / 3, z: 26 / 3 }, placement: "above" },
+      { key: "u2", objectId: "u2", at: { x: 17 / 3, y: 8 / 3, z: 14 / 3 }, placement: "right" },
+      { key: "b", objectId: "pb", at: { x: 2, y: 5, z: 5 }, placement: "above" },
+      { key: "s", objectId: "ps", at: { x: 5, y: -1, z: 8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Wer blind den spitzen Normalenwinkel nimmt, tappt in die Falle <InlineMath math="78{,}5^\circ" />. **Der gesuchte Innenwinkel beträgt gerundet <InlineMath math="101{,}5^\circ" />**.
+
+# Teil d: Windschiefe Geraden und kleinstes Dreieck
+
+Die Richtungsvektoren <InlineMath math="\overrightarrow{AS}=(7,-2,1)^T" /> und <InlineMath math="\overrightarrow{BD}=(-2,-8,-2)^T" /> sind keine Vielfachen voneinander. Setzt du <InlineMath math="A+\lambda\overrightarrow{AS}=B+\mu\overrightarrow{BD}" /> an, liefern <InlineMath math="x" />- und <InlineMath math="z" />-Zeile <InlineMath math="\lambda=1" /> und <InlineMath math="\mu=-\tfrac32" />, aber die <InlineMath math="y" />-Zeile ergibt <InlineMath math="-1\neq17" />. **Beide Geraden sind also windschief**.
+
+Das Dreieck <InlineMath math="BDT" /> hat die feste Grundseite <InlineMath math="|\overrightarrow{BD}|=\sqrt{72}=6\sqrt2" />, seine Fläche wird also kleinstmöglich, wenn <InlineMath math="T" /> der Geraden <InlineMath math="BD" /> am nächsten kommt. Auf <InlineMath math="BD" /> liegt der Mittelpunkt <InlineMath math="M(1\mid1\mid4)" />. Suche <InlineMath math="T=A+\lambda\overrightarrow{AS}" /> so, dass <InlineMath math="\overrightarrow{MT}" /> auf <InlineMath math="\overrightarrow{AS}" /> senkrecht steht:
+
+<BlockMath math="\left(\begin{pmatrix}-3\\0\\3\end{pmatrix}+\lambda\begin{pmatrix}7\\-2\\1\end{pmatrix}\right)\cdot\begin{pmatrix}7\\-2\\1\end{pmatrix}=-18+54\lambda=0\implies \lambda=\tfrac13" />
+
+Damit ist <InlineMath math="T_0(\tfrac13\mid\tfrac13\mid\tfrac{22}{3})" /> und <InlineMath math="\overrightarrow{MT_0}=\tfrac13(-2,-2,10)^T" />. Die Probe <InlineMath math="\overrightarrow{MT_0}\cdot\overrightarrow{BD}=\tfrac13(4+16-20)=0" /> bestätigt, dass <InlineMath math="MT_0" /> das gemeinsame Lot beider Geraden ist. **Entscheidend ist der Kantentest**: Wegen <InlineMath math="0\le\tfrac13\le1" /> liegt <InlineMath math="T_0" /> tatsächlich auf der Kante <InlineMath math="AS" />.
+
+<MathVisual
+  title={<>Gemeinsames Lot und kleinstes Dreieck <InlineMath math="BDT_0" /></>}
+  description={<>Die Strecke von <InlineMath math="M(1\mid1\mid4)" /> nach <InlineMath math="T_0(\tfrac13\mid\tfrac13\mid\tfrac{22}{3})" /> steht auf <InlineMath math="AS" /> und <InlineMath math="BD" /> senkrecht und hat die Länge <InlineMath math="2\sqrt3" />. Weil <InlineMath math="T_0" /> auf der Kante liegt, entsteht das kleinste Dreieck mit dem Inhalt <InlineMath math="6\sqrt6" />.</>}
+  footer={<>Das gemeinsame Lot <InlineMath math="MT_0" /> liegt auf der Kante <InlineMath math="AS" /> und liefert die kleinste Dreieckshöhe.</>}
+  labels={{
+    t: <><InlineMath math="T_0" /></>,
+    m: <><InlineMath math="M" /></>,
+    b: <><InlineMath math="B" /></>,
+    d: <><InlineMath math="D" /></>,
+    mt: <><InlineMath math="2\sqrt3" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -4, max: 6 }, z: { min: 0, max: 9 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", appearance: "secondary", vertices: [{ x: -2, y: 1, z: 7 }, { x: 2, y: 5, z: 5 }, { x: 4, y: 1, z: 1 }, { x: 0, y: -3, z: 3 }] },
+      { id: "as", kind: "segment", appearance: "primary", from: { x: -2, y: 1, z: 7 }, to: { x: 5, y: -1, z: 8 } },
+      { id: "bd", kind: "segment", appearance: "secondary", from: { x: 2, y: 5, z: 5 }, to: { x: 0, y: -3, z: 3 } },
+      { id: "tri", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 5, z: 5 }, { x: 0, y: -3, z: 3 }, { x: 1 / 3, y: 1 / 3, z: 22 / 3 }] },
+      { id: "mt", kind: "segment", appearance: "highlight", from: { x: 1, y: 1, z: 4 }, to: { x: 1 / 3, y: 1 / 3, z: 22 / 3 } },
+      { id: "pt", kind: "point", appearance: "answer", at: { x: 1 / 3, y: 1 / 3, z: 22 / 3 } },
+      { id: "pm", kind: "point", appearance: "answer", at: { x: 1, y: 1, z: 4 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 2, y: 5, z: 5 } },
+      { id: "pd", kind: "point", appearance: "reference", at: { x: 0, y: -3, z: 3 } },
+    ],
+    labels: [
+      { key: "t", objectId: "pt", at: { x: 1 / 3, y: 1 / 3, z: 22 / 3 }, placement: "above-left" },
+      { key: "m", objectId: "pm", at: { x: 1, y: 1, z: 4 }, placement: "below-right" },
+      { key: "b", objectId: "pb", at: { x: 2, y: 5, z: 5 }, placement: "above" },
+      { key: "d", objectId: "pd", at: { x: 0, y: -3, z: 3 }, placement: "below" },
+      { key: "mt", objectId: "mt", at: { x: 2 / 3, y: 2 / 3, z: 17 / 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+Mit der Höhe <InlineMath math="|\overrightarrow{MT_0}|=\sqrt{12}=2\sqrt3" /> ergibt sich **<InlineMath math="F_{\min}=\tfrac12\cdot6\sqrt2\cdot2\sqrt3=6\sqrt6" />**.
+
+# Teil e: Lichtparameter für den Schatten auf der Kante
+
+Verfolge den Lichtstrahl von <InlineMath math="S" /> aus bis zur Ebene <InlineMath math="E" />. **Weil das Licht von oberhalb der Ebene kommt, muss der Strahl in positiver Richtung <InlineMath math="\mu>0" /> nach unten auf <InlineMath math="E" /> treffen**:
+
+<BlockMath math="2(5-\mu)-(-1+2\mu)+2(8+\mu t)=9\implies 27+\mu(2t-4)=9\implies \mu=\frac{9}{2-t}\quad(t<2)" />
+
+Für <InlineMath math="t=2" /> läuft der Strahl parallel zu <InlineMath math="E" />, und für <InlineMath math="t>2" /> käme das Licht von unten. Vergleiche nun den Schattenpunkt <InlineMath math="S'(5-\mu\mid-1+2\mu\mid8+\mu t)" /> mit einem Punkt <InlineMath math="B+\sigma\overrightarrow{BC}=(2+2\sigma\mid5-4\sigma\mid5-4\sigma)" /> der Geraden <InlineMath math="BC" />:
+
+<BlockMath math="\begin{aligned}
+x:&\quad 5-\mu=2+2\sigma\implies \mu=3-2\sigma\\
+y:&\quad -1+2(3-2\sigma)=5-4\sigma\quad\text{immer erfüllt}\\
+z:&\quad 8+(3-2\sigma)t=5-4\sigma\implies \sigma=\frac{-3(1+t)}{2(2-t)}
+\end{aligned}" />
+
+Der Schatten von <InlineMath math="S" /> liegt also für jedes <InlineMath math="t<2" /> auf der Geraden <InlineMath math="BC" />. Auf der Kante liegt er genau für <InlineMath math="0\le\sigma\le1" />, und da <InlineMath math="2-t>0" /> gilt, löst du direkt:
+
+<BlockMath math="\sigma\ge0\iff 1+t\le0\iff t\le-1,\qquad \sigma\le1\iff -3-3t\le4-2t\iff t\ge-7" />
+
+Das Bild zeigt beide Randstrahlen zu <InlineMath math="B" /> (<InlineMath math="t=-1" />) und <InlineMath math="C" /> (<InlineMath math="t=-7" />).
+
+<MathVisual
+  title={<>Lichtstrahlen von der Spitze zur Grundkante</>}
+  description={<>Für <InlineMath math="t=-1" /> trifft der Strahl von <InlineMath math="S" /> die Ecke <InlineMath math="B" />, für <InlineMath math="t=-7" /> die Ecke <InlineMath math="C" />. Für jedes <InlineMath math="t" /> dazwischen landet der Schatten der Spitze auf der Kante <InlineMath math="BC" /> und der ganze Pyramidenschatten bleibt im Quadrat.</>}
+  footer={<>Zwischen <InlineMath math="t=-1" /> und <InlineMath math="t=-7" /> wandert der Schatten längs <InlineMath math="BC" /> und verlässt das Quadrat nie.</>}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    rb: <><InlineMath math="t=-1" /></>,
+    rc: <><InlineMath math="t=-7" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -4, max: 6 }, z: { min: 0, max: 9 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", appearance: "secondary", vertices: [{ x: -2, y: 1, z: 7 }, { x: 2, y: 5, z: 5 }, { x: 4, y: 1, z: 1 }, { x: 0, y: -3, z: 3 }] },
+      { id: "sa", kind: "segment", appearance: "construction", from: { x: 5, y: -1, z: 8 }, to: { x: -2, y: 1, z: 7 } },
+      { id: "sd", kind: "segment", appearance: "construction", from: { x: 5, y: -1, z: 8 }, to: { x: 0, y: -3, z: 3 } },
+      { id: "edge", kind: "segment", appearance: "answer", from: { x: 2, y: 5, z: 5 }, to: { x: 4, y: 1, z: 1 } },
+      { id: "rb", kind: "vector", appearance: "highlight", from: { x: 5, y: -1, z: 8 }, to: { x: 2, y: 5, z: 5 } },
+      { id: "rc", kind: "vector", appearance: "warning", from: { x: 5, y: -1, z: 8 }, to: { x: 4, y: 1, z: 1 } },
+      { id: "ps", kind: "point", appearance: "reference", at: { x: 5, y: -1, z: 8 } },
+      { id: "pb", kind: "point", appearance: "answer", at: { x: 2, y: 5, z: 5 } },
+      { id: "pc", kind: "point", appearance: "answer", at: { x: 4, y: 1, z: 1 } },
+    ],
+    labels: [
+      { key: "s", objectId: "ps", at: { x: 5, y: -1, z: 8 }, placement: "above-right" },
+      { key: "b", objectId: "pb", at: { x: 2, y: 5, z: 5 }, placement: "above" },
+      { key: "c", objectId: "pc", at: { x: 4, y: 1, z: 1 }, placement: "below" },
+      { key: "rb", objectId: "rb", at: { x: 7 / 2, y: 2, z: 13 / 2 }, placement: "left" },
+      { key: "rc", objectId: "rc", at: { x: 9 / 2, y: 0, z: 9 / 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Der Schatten der gesamten Pyramide entsteht aus der Grundfläche und den Schatten der vier Seitenkanten, also den Strecken von <InlineMath math="S'" /> zu <InlineMath math="A,B,C,D" />. Weil das Quadrat konvex ist und <InlineMath math="S'" /> auf seiner Kante <InlineMath math="BC" /> liegt, bleiben alle vier Strecken im Quadrat. **Gesucht ist genau <InlineMath math="-7\le t\le-1" />**.
+
+# Teil f: Radius der Inkugel
+
+Die Inkugel liegt symmetrisch im Inneren der Pyramide, also sitzt ihr Mittelpunkt <InlineMath math="I" /> auf der Achse <InlineMath math="MS" /> im Abstand <InlineMath math="r" /> über <InlineMath math="M" />: <InlineMath math="I=M+\tfrac{r}{3}(2,-1,2)^T" /> mit <InlineMath math="0<r<6" />. Sie berührt die Grundfläche automatisch im Abstand <InlineMath math="r" />, und **ihr Abstand zur Seitenfläche <InlineMath math="BCS" /> muss ebenfalls genau <InlineMath math="r" /> sein**.
+
+Aus Teil c kennst du den Normalenvektor <InlineMath math="(2,1,0)^T" /> von <InlineMath math="BCS" />. Punkt <InlineMath math="B(2\mid5\mid5)" /> einsetzen gibt die handliche Ebenengleichung <InlineMath math="2x+y=9" />. Im Inneren der Pyramide (Probe mit <InlineMath math="M(1\mid1\mid4)" />: <InlineMath math="3<9" />) gilt <InlineMath math="2x+y<9" />, sodass du den Betrag sauber auflösen kannst:
+
+<BlockMath math="\begin{aligned}
+d(I,BCS)=\frac{\left|2\left(1+\tfrac{2r}{3}\right)+\left(1-\tfrac{r}{3}\right)-9\right|}{\sqrt5}=\frac{|r-6|}{\sqrt5}=r\\
+0<r<6\implies 6-r=r\sqrt5\implies r=\frac{6}{\sqrt5+1}=\frac{3\left(\sqrt5-1\right)}{2}
+\end{aligned}" />
+
+Die zweite Möglichkeit unterhalb der Grundebene (<InlineMath math="z_I=-r" />) würde die äußere Ankugel mit <InlineMath math="r=\tfrac{3(\sqrt5+1)}{2}\approx4{,}85" /> liefern. Das 3D-Modell zeigt die innere Kugel mit beiden gleichen Radien <InlineMath math="IM" /> und <InlineMath math="IQ" />.
+
+<MathVisual
+  title={<>Inkugelmittelpunkt und Berührpunkt auf der Seitenfläche</>}
+  description={<>Der Mittelpunkt <InlineMath math="I" /> der Inkugel liegt auf der Achse <InlineMath math="MS" /> im Abstand <InlineMath math="r=\tfrac{3(\sqrt5-1)}{2}" /> über <InlineMath math="M" />. Der gleiche Abstand führt senkrecht zum Berührpunkt <InlineMath math="Q" /> auf der Seitenfläche <InlineMath math="BCS" />.</>}
+  footer={<>Beide Radien <InlineMath math="IM" /> und <InlineMath math="IQ" /> sind genau <InlineMath math="\tfrac{3(\sqrt5-1)}{2}\approx1{,}85" /> lang.</>}
+  labels={{
+    i: <><InlineMath math="I" /></>,
+    m: <><InlineMath math="M" /></>,
+    q: <><InlineMath math="Q" /></>,
+    s: <><InlineMath math="S" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -4, max: 6 }, z: { min: 0, max: 9 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", appearance: "secondary", vertices: [{ x: -2, y: 1, z: 7 }, { x: 2, y: 5, z: 5 }, { x: 4, y: 1, z: 1 }, { x: 0, y: -3, z: 3 }] },
+      { id: "sb", kind: "segment", appearance: "construction", from: { x: 5, y: -1, z: 8 }, to: { x: 2, y: 5, z: 5 } },
+      { id: "sc", kind: "segment", appearance: "construction", from: { x: 5, y: -1, z: 8 }, to: { x: 4, y: 1, z: 1 } },
+      { id: "axis", kind: "segment", appearance: "primary", from: { x: 1, y: 1, z: 4 }, to: { x: 5, y: -1, z: 8 } },
+      { id: "ns", kind: "segment", appearance: "secondary", from: { x: 3, y: 3, z: 3 }, to: { x: 5, y: -1, z: 8 } },
+      { id: "rm", kind: "segment", appearance: "answer", from: { x: Math.sqrt(5), y: (3 - Math.sqrt(5)) / 2, z: 3 + Math.sqrt(5) }, to: { x: 1, y: 1, z: 4 } },
+      { id: "rq", kind: "segment", appearance: "answer", from: { x: Math.sqrt(5), y: (3 - Math.sqrt(5)) / 2, z: 3 + Math.sqrt(5) }, to: { x: 3 + 2 / Math.sqrt(5), y: 3 - 4 / Math.sqrt(5), z: 3 + Math.sqrt(5) } },
+      { id: "pi", kind: "point", appearance: "answer", at: { x: Math.sqrt(5), y: (3 - Math.sqrt(5)) / 2, z: 3 + Math.sqrt(5) } },
+      { id: "pm", kind: "point", appearance: "reference", at: { x: 1, y: 1, z: 4 } },
+      { id: "pq", kind: "point", appearance: "highlight", at: { x: 3 + 2 / Math.sqrt(5), y: 3 - 4 / Math.sqrt(5), z: 3 + Math.sqrt(5) } },
+      { id: "ps", kind: "point", appearance: "reference", at: { x: 5, y: -1, z: 8 } },
+    ],
+    labels: [
+      { key: "i", objectId: "pi", at: { x: Math.sqrt(5), y: (3 - Math.sqrt(5)) / 2, z: 3 + Math.sqrt(5) }, placement: "left" },
+      { key: "m", objectId: "pm", at: { x: 1, y: 1, z: 4 }, placement: "below-left" },
+      { key: "q", objectId: "pq", at: { x: 3 + 2 / Math.sqrt(5), y: 3 - 4 / Math.sqrt(5), z: 3 + Math.sqrt(5) }, placement: "right" },
+      { key: "s", objectId: "ps", at: { x: 5, y: -1, z: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
+Als rasche Probe über Volumen und Oberfläche: <InlineMath math="V=72" />, <InlineMath math="O=36+4\cdot\tfrac12\cdot6\cdot3\sqrt5=36(1+\sqrt5)" /> und <InlineMath math="\tfrac{3V}{O}=\tfrac{6}{1+\sqrt5}=\tfrac{3(\sqrt5-1)}{2}" />. **Der exakte Inkugelradius beträgt <InlineMath math="r=\tfrac{3(\sqrt5-1)}{2}" />**.

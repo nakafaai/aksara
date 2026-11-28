@@ -1,0 +1,319 @@
+{
+  "a": [
+    {
+      "grade": "good",
+      "id": "fsp3-a-square-complete",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "D = (0 | -3 | 3) richtig bestimmt."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Gleich lange Seiten und rechter Winkel nachgewiesen."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Normalenvektor und Ebenengleichung E: 2x - y + 2z = 9 richtig."
+        }
+      ],
+      "text": "AB = (4, 4, -2), BC = (2, -4, -4). Parallelogramm: D = A + BC = (-2+2 | 1-4 | 7-4) = (0 | -3 | 3).\nLängen: |AB| = Wurzel(16+16+4) = 6, |BC| = Wurzel(4+16+16) = 6. Skalarprodukt: AB * BC = 8 - 16 + 8 = 0, rechter Winkel bei B. Also Quadrat.\nNormalenvektor: AB x BC = (-24, 12, -24) = -12(2, -1, 2). Mit A(-2|1|7): 2(-2) - 1 + 14 = 9, also E: 2x - y + 2z = 9."
+    },
+    {
+      "grade": "partial",
+      "id": "fsp3-a-square-wrong-d",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": false,
+          "reason": "Falsche Umlaufrichtung, D = A + BC statt C + AB."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Seitenlängen und rechter Winkel an A, B, C richtig nachgewiesen."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Ebenengleichung richtig hergeleitet."
+        }
+      ],
+      "text": "D = C + AB = (4+4 | 1+4 | 1-2) = (8 | 5 | -1).\nAB = (4, 4, -2) hat Länge 6, BC = (2, -4, -4) hat Länge 6, und AB * BC = 8 - 16 + 8 = 0, also rechter Winkel.\nAB x BC = (-24, 12, -24), gekürzt n = (2, -1, 2). Punkt B eingesetzt: 4 - 5 + 10 = 9, also E: 2x - y + 2z = 9."
+    },
+    {
+      "grade": "wrong",
+      "id": "fsp3-a-square-no-angle",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "D richtig berechnet."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Kein rechter Winkel gezeigt, reicht nur für eine Raute."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Falsche Ebenengleichung ohne Herleitung."
+        }
+      ],
+      "text": "D = A + BC = (0 | -3 | 3). Weil |AB| = 6 und |BC| = 6 ist, ist ABCD ein Quadrat. Die Ebene ist x + y + z = 6."
+    }
+  ],
+  "b": [
+    {
+      "grade": "good",
+      "id": "fsp3-b-sphere-complete",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "M, |MA| und Lotgerade richtig."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Beide Höhen h = 3 und h = 6 richtig gefunden."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Ausschluss von h = 3 über z_K = -1,5 < 0 und Innenlage für h = 6 sauber begründet."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Koordinaten von S und K richtig."
+        }
+      ],
+      "text": "Mittelpunkt M = (A + C)/2 = (1 | 1 | 4). Halbe Diagonale: MA = (-3, 0, 3), |MA| = Wurzel(18) = 3 Wurzel(2). Einheitsnormalenvektor n0 = (2, -1, 2)/3.\nSpitze S_h = M + h n0, Kugelmittelpunkt K = M + z_K n0. Bedingung |KA| = R = 4,5: z_K^2 + 18 = 81/4 => z_K^2 = 9/4 => z_K = +- 1,5.\nDa |KS_h| = 4,5 und h > 0, gilt h = z_K + 4,5: Für z_K = -1,5 ist h = 3, für z_K = 1,5 ist h = 6.\nBei h = 3 liegt K mit z_K = -1,5 unterhalb von E, also außerhalb der Pyramide. Nur für h = 6 liegt K mit 0 < 1,5 < 6 auf der Strecke MS im Inneren.\nAlso S = M + 2(2, -1, 2) = (5 | -1 | 8) und K = M + 0,5(2, -1, 2) = (2 | 0,5 | 5)."
+    },
+    {
+      "grade": "partial",
+      "id": "fsp3-b-sphere-missed-low-h",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "M und |MA| richtig."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Durch die Annahme z_K > 0 wird die zweite Höhe h = 3 übersehen."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Innenlage für h = 6 richtig begründet."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "S und K richtig berechnet."
+        }
+      ],
+      "text": "M = (1 | 1 | 4), |MA| = Wurzel(18). K liegt in der Höhe z_K > 0 über M, also z_K = Wurzel(4,5^2 - 18) = Wurzel(2,25) = 1,5.\nDamit ist h = z_K + R = 1,5 + 4,5 = 6. Weil 0 < 1,5 < 6 ist, liegt K im Inneren.\nS = (1,1,4) + 2(2,-1,2) = (5 | -1 | 8), K = (1,1,4) + 0,5(2,-1,2) = (2 | 0,5 | 5)."
+    },
+    {
+      "grade": "wrong",
+      "id": "fsp3-b-sphere-diameter-mistake",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": false,
+          "reason": "M und |MA| werden gar nicht bestimmt."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Falsche Formel h = 2R, die Grundfläche liegt nicht in einem Großkreis."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Keine Prüfung zweier Höhen."
+        },
+        {
+          "criterion": 4,
+          "met": false,
+          "reason": "Falsche Koordinaten für S und fehlende Koordinaten für K."
+        }
+      ],
+      "text": "Der Durchmesser der Kugel ist die Höhe, also h = 2R = 9. Mittelpunkt K liegt in der Mitte bei h/2 = 4,5 über M, also S = M + 3(2,-1,2) = (7 | -2 | 10)."
+    }
+  ],
+  "d": [
+    {
+      "grade": "good",
+      "id": "fsp3-d-skew-complete",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Windschiefe über nicht-kollineare Richtungen und Widerspruch gezeigt."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Fußpunkt T0 = (1/3 | 1/3 | 22/3) und M als Lotfußpunkte nachgewiesen."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Kantenbedingung 0 <= 1/3 <= 1 geprüft."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Minimaler Flächeninhalt 6 Wurzel(6) exakt berechnet."
+        }
+      ],
+      "text": "AS = (7, -2, 1), BD = (-2, -8, -2), offensichtlich keine Vielfachen.\nSchnittpunkt: -2 + 7l = 2 - 2m und 7 + l = 5 - 2m liefern l = 1, m = -3/2, aber y-Zeile gibt 1 - 2 = -1 ungleich 5 + 12 = 17. Also windschief.\nGemeinsames Lot zwischen T = A + l AS und P = B + m BD: Aus Symmetrie oder Gleichungssystem MT * AS = 0 mit M(1|1|4) auf BD folgt (-3+7l, -2l, 3+l)*(7,-2,1) = -18 + 54l = 0, also l = 1/3.\nPrüfung: MT0 = (-2/3, -2/3, 10/3) steht auch senkrecht auf BD (4/3 + 16/3 - 20/3 = 0), also T0 = (1/3 | 1/3 | 22/3).\nWegen 0 <= 1/3 <= 1 liegt T0 wirklich auf der Kante AS (und M auf BD).\n|BD| = Wurzel(72) = 6 Wurzel(2), |MT0| = Wurzel(12) = 2 Wurzel(3), F_min = 1/2 * 6 Wurzel(2) * 2 Wurzel(3) = 6 Wurzel(6)."
+    },
+    {
+      "grade": "partial",
+      "id": "fsp3-d-skew-no-edge-check",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "Windschiefe über nicht-kollineare Richtungen und Abstand > 0 gezeigt."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "T0 über das Lot von M auf AS richtig bestimmt."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Es wird nicht geprüft, dass T0 mit 0 <= 1/3 <= 1 auch wirklich auf der Kante AS liegt."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Minimaler Flächeninhalt 6 Wurzel(6) richtig."
+        }
+      ],
+      "text": "AS = (7, -2, 1) und BD = (-2, -8, -2) sind nicht parallel. Kreuzprodukt (7,-2,1) x (1,4,1) = (-6,-6,30), parallel zu (1,1,-5). Abstand d = |AB*(1,1,-5)|/Wurzel(27) = 18/(3 Wurzel(3)) = 2 Wurzel(3) > 0, also windschief.\nFür T = A + l AS setze ich MT * AS = 0 und erhalte l = 1/3, T0 = (1/3 | 1/3 | 22/3).\nFläche: 1/2 * |BD| * d = 1/2 * 6 Wurzel(2) * 2 Wurzel(3) = 6 Wurzel(6)."
+    },
+    {
+      "grade": "wrong",
+      "id": "fsp3-d-skew-midpoint-guess",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": false,
+          "reason": "Windschiefe wird gar nicht gezeigt."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Kantenmitte geraten statt gemeinsames Lot berechnet."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Falscher Punkt, keine Begründung der Minimalität auf der Kante."
+        },
+        {
+          "criterion": 4,
+          "met": false,
+          "reason": "Falscher Flächeninhalt."
+        }
+      ],
+      "text": "Der kleinste Abstand ist in der Mitte der Kante AS bei l = 1/2, also T = (1,5 | 0 | 7,5). Abstand zu M ist Wurzel(0,25 + 1 + 12,25) = Wurzel(13,5), Fläche 1/2 * 6 Wurzel(2) * Wurzel(13,5) = 9 Wurzel(3)."
+    }
+  ],
+  "e": [
+    {
+      "grade": "good",
+      "id": "fsp3-e-shadow-complete",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "mu = 9/(2 - t) und Bedingung t < 2 richtig."
+        },
+        {
+          "criterion": 2,
+          "met": true,
+          "reason": "Lage auf der Geraden BC über x- und y-Zeile gezeigt."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Intervall -7 <= t <= -1 richtig hergeleitet."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Begründung über die Kantenschatten im konvexen Quadrat richtig."
+        }
+      ],
+      "text": "Strahl: S + mu(-1, 2, t) in E: 2(5 - mu) - (-1 + 2mu) + 2(8 + mu t) = 9 => 27 + mu(2t - 4) = 9 => mu = 9/(2 - t) für t ungleich 2. Licht von oberhalb E bedeutet mu > 0, also t < 2.\nSchattenpunkt S'(5 - mu | -1 + 2mu | 8 + mu t). Vergleich mit B + s(C - B) = (2 + 2s | 5 - 4s | 5 - 4s): x-Zeile gibt mu = 3 - 2s, y-Zeile -1 + 6 - 4s = 5 - 4s stimmt immer.\nz-Zeile: 8 + (3 - 2s)t = 5 - 4s => s = -3(1 + t)/(2(2 - t)). Mit t < 2 ist 2 - t > 0: s >= 0 <=> t <= -1 und s <= 1 <=> -3 - 3t <= 4 - 2t <=> t >= -7. Also -7 <= t <= -1.\nFür jedes solche t liegt S' auf der Kante BC. Die Schatten aller vier Seitenkanten sind die Strecken von S' zu A, B, C und D, und weil das Quadrat konvex ist und S' auf seinem Rand liegt, bleiben alle diese Strecken im Quadrat ABCD."
+    },
+    {
+      "grade": "partial",
+      "id": "fsp3-e-shadow-wrong-direction",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": true,
+          "reason": "mu = 9/(2 - t) und t < 2 richtig."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Falscher Richtungsvektor für BC, Lage auf BC nicht gezeigt."
+        },
+        {
+          "criterion": 3,
+          "met": true,
+          "reason": "Intervall richtig aus der eigenen Gleichung für 0 <= s <= 1 bestimmt, Folgefehler."
+        },
+        {
+          "criterion": 4,
+          "met": true,
+          "reason": "Geometrische Begründung über die Kantenschatten richtig."
+        }
+      ],
+      "text": "S + mu(-1, 2, t) in E ergibt mu = 9/(2 - t), Licht von oben also t < 2.\nGerade BC falsch als B + s(2, -4, 4): x-Zeile mu = 3 - 2s, z-Zeile 8 + (3 - 2s)t = 5 + 4s => t = (4s - 3)/(3 - 2s). Für 0 <= s <= 1 ergibt sich -1 <= t <= 1.\nWeil der Schatten der Spitze auf BC liegt, laufen alle Schatten der Seitenkanten von diesem Punkt zu den vier Ecken und bleiben im Quadrat ABCD."
+    },
+    {
+      "grade": "wrong",
+      "id": "fsp3-e-shadow-parallel-light",
+      "marks": [
+        {
+          "criterion": 1,
+          "met": false,
+          "reason": "Kein Schnitt mit E, für t = 2 läuft der Strahl parallel zu E."
+        },
+        {
+          "criterion": 2,
+          "met": false,
+          "reason": "Kein Schattenpunkt untersucht."
+        },
+        {
+          "criterion": 3,
+          "met": false,
+          "reason": "Kein Intervall für die Kante."
+        },
+        {
+          "criterion": 4,
+          "met": false,
+          "reason": "Keine Begründung für den Gesamtschatten."
+        }
+      ],
+      "text": "Der Schatten fällt auf BC, wenn der Lichtvektor parallel zu BC ist: (-1, 2, t) = k(2, -4, -4) gibt k = -1/2 und t = 2."
+    }
+  ]
+}
