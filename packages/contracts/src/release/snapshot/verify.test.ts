@@ -70,7 +70,7 @@ function verify(input: {
 
 describe("structured snapshot verification", () => {
   it.effect(
-    "derives the fixed set and deliberately replays interleaved rows",
+    "derives the fixed set from one replay of interleaved rows",
     () =>
       Effect.gen(function* () {
         const snapshotData = yield* makeSnapshotTestData();
@@ -94,7 +94,7 @@ describe("structured snapshot verification", () => {
         ).toEqual(["replace", "replace", "replace"]);
         expect({ manifestReplays, rowReplays }).toEqual({
           manifestReplays: 1,
-          rowReplays: 5,
+          rowReplays: 1,
         });
       }),
     30_000

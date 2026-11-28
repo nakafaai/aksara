@@ -27,26 +27,81 @@ const PROFILE_DOMAIN = "nakafa.aksara.assessment-profile";
 /** Separates the hash of a paper from the hash of any other record. */
 const PAPER_DOMAIN = "nakafa.aksara.assessment-paper";
 
+/** The largest array index, 2^32 - 2: a key at most this is written first. */
+const MAX_ARRAY_INDEX = 4_294_967_294;
+
+/** The text of a nonnegative integer without leading zeros, the form of an array index. */
+const INDEX_TEXT = /^(?:0|[1-9]\d*)$/u;
+
+/** Checks whether a key is an array index, which JSON text writes before every other key. */
+function isArrayIndex(key: string) {
+  return INDEX_TEXT.test(key) && Number(key) <= MAX_ARRAY_INDEX;
+}
+
+/** Checks whether any object of a JSON value has a key that is an array index. */
+function hasArrayIndexKey(value: unknown): boolean {
+  if (Arr.isArray(value)) {
+    return Arr.some(value, hasArrayIndexKey);
+  }
+  if (Predicate.isObject(value)) {
+    return Arr.some(
+      Rec.keys(value),
+      (key) => isArrayIndex(key) || hasArrayIndexKey(value[key])
+    );
+  }
+  return false;
+}
+
+/** Rebuilds a JSON value with the keys of every object added in code-unit order. */
+function orderKeys(value: unknown): unknown {
+  if (Arr.isArray(value)) {
+    return Arr.map(value, orderKeys);
+  }
+  if (Predicate.isObject(value)) {
+    return Rec.fromEntries(
+      Arr.map(Arr.sort(Rec.keys(value), Order.String), (key) => [
+        key,
+        orderKeys(value[key]),
+      ])
+    );
+  }
+  return value;
+}
+
 /**
- * Writes a value that is already known to be JSON as text, with the keys of
- * every object in code-unit order. Every leaf is a string, a finite number, a
- * boolean, or null, so writing it cannot fail.
+ * Writes a value that is already known to be JSON as text, member by member,
+ * with the keys of every object in code-unit order. Every leaf is a string, a
+ * finite number, a boolean, or null, so writing it cannot fail.
  */
-function writeCanonical(value: unknown): string {
+function writeMembers(value: unknown): string {
   if (Arr.isArray(value)) {
     return `[${Arr.join(
-      Arr.map(value, (part) => writeCanonical(part)),
+      Arr.map(value, (part) => writeMembers(part)),
       ","
     )}]`;
   }
   if (Predicate.isObject(value)) {
     const members = Arr.map(
       Arr.sort(Rec.keys(value), Order.String),
-      (key) => `${encodeJsonText(key)}:${writeCanonical(value[key])}`
+      (key) => `${encodeJsonText(key)}:${writeMembers(value[key])}`
     );
     return `{${Arr.join(members, ",")}}`;
   }
   return encodeJsonText(value);
+}
+
+/**
+ * Writes a value that is already known to be JSON as text, with the keys of
+ * every object in code-unit order. JSON text keeps the order keys were added
+ * in, so a value rebuilt in key order is written by one codec call. A key that
+ * is an array index is the exception, written before every other key, so a
+ * value that holds one is written member by member. Writing every key and leaf
+ * through the codec made an assessment snapshot proof five times slower.
+ */
+function writeCanonical(value: unknown) {
+  return hasArrayIndexKey(value)
+    ? writeMembers(value)
+    : encodeJsonText(orderKeys(value));
 }
 
 /**
